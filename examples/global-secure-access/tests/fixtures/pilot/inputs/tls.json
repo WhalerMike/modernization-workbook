@@ -1,0 +1,37 @@
+{
+  "certificate": {
+    "name": "contosotls1",
+    "issuer": "Contoso TLS Inspection CA",
+    "notBefore": "2026-11-01T00:00:00Z",
+    "notAfter": "2027-01-30T00:00:00Z",
+    "status": "enabled"
+  },
+  "policies": [
+    {
+      "name": "TLS-Pilot",
+      "defaultAction": "inspect",
+      "linkedProfiles": [
+        "SP-Pilot"
+      ],
+      "customBypass": [
+        "*.payroll-partner.example"
+      ]
+    }
+  ],
+  "privacy": {
+    "approvedOn": "2026-11-05",
+    "approver": "Privacy officer",
+    "userNoticeSentOn": "2026-11-06",
+    "bypassCategories": [
+      "Education",
+      "Finance",
+      "Government",
+      "Health & Medicine"
+    ]
+  },
+  "trustProfile": {
+    "name": "NET-TLS-Trust-Chain",
+    "deployedTo": "pilot",
+    "deployedOn": "2026-11-07"
+  }
+}

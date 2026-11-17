@@ -1,0 +1,18 @@
+{
+  "_comment": "The lab's desired state for ring 1: Internet Access on, and the compliant network policy enforced. Enforcing a policy that is in report-only needs Invoke-GsaPlan.ps1 -AllowEnforce, which a reviewer passes only after its report-only results are clean (Chapter 05).",
+  "ring": "ring1",
+  "forwardingProfiles": { "m365": "enabled", "private": "enabled", "internet": "enabled" },
+  "signalingStatus": "enabled",
+  "networkPacketTaggingStatus": "enabled",
+  "conditionalAccess": [
+    "policies/NET-CN-Require-Compliant-Network-Pilot.enforced.json",
+    "policies/NET-IA-SecurityProfile-Pilot.json",
+    "policies/NET-PA-PA-HR-Portal-Device-MFA.json",
+    "policies/NET-PA-AdminRDP-PhishingResistant.json"
+  ],
+  "profileAssignments": [
+    { "profile": "m365", "group": "<pilot-group-id>" },
+    { "profile": "private", "group": "<pilot-group-id>" },
+    { "profile": "internet", "group": "<pilot-group-id>" }
+  ]
+}

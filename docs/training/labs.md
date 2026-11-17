@@ -122,6 +122,23 @@ Every lab opens with the list of every command it runs, in order: follow it top 
 
 : Building Provider Notices: labs by chapter {.striped .hover}
 
+## Building Global Secure Access {#gsa}
+
+[The workbook](../project-plans/developer-workbooks/global-secure-access/index.md) · [its implementation guide](../books/guides/global-secure-access-implementation.md) · [its learning path](global-secure-access/index.md) · [the code: global-secure-access-code.zip](../../downloads/global-secure-access-code.zip)
+
+| Chapter | Lab 1, no tenant | You need | Lab 2 runs in | Module |
+|---|---|---|---|---|
+| [01 Decision, Licensing and GCC Availability](../project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.md) | [Lab 1](../project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.md#lab-1-fixtures-no-tenant) · [commands](../project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.md#lab-1-commands) | PowerShell 7.1 or later with Pester 5 | [a test tenant](../project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.md#lab-2-a-test-tenant) · [commands](../project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.md#lab-2-commands) | [Module 1](global-secure-access/01-decide-design-and-log-first.md) |
+| [02 The Configuration Export and Logs First](../project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.md) | [Lab 1](../project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.md#lab-1-fixtures-no-tenant) · [commands](../project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.md#lab-1-commands) | PowerShell 7.1 or later with Pester 5 | [a test tenant](../project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.md#lab-2-a-test-tenant) · [commands](../project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.md#lab-2-commands) | [Module 1](global-secure-access/01-decide-design-and-log-first.md) |
+| [03 The Client and Its Coverage](../project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.md) | [Lab 1](../project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.md#lab-1-fixtures-no-tenant) · [commands](../project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.md#lab-1-commands) | PowerShell 7.1 or later with Pester 5 | [a test device and tenant](../project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.md#lab-2-a-test-device-and-tenant) · [commands](../project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.md#lab-2-commands) | [Module 2](global-secure-access/02-the-client-and-microsoft-traffic.md) |
+| [04 Microsoft Traffic and Change Plans](../project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md) | [Lab 1](../project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md#lab-1-fixtures-no-tenant) · [commands](../project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md#lab-1-commands) | PowerShell 7.1 or later with Pester 5 | [a test tenant](../project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md#lab-2-a-test-tenant) · [commands](../project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md#lab-2-commands) | [Module 2](global-secure-access/02-the-client-and-microsoft-traffic.md) |
+| [05 The Compliant Network and Tenant Restrictions](../project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.md) | [Lab 1](../project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.md#lab-1-fixtures-no-tenant) · [commands](../project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.md#lab-1-commands) | PowerShell 7.1 or later with Pester 5 | [a test tenant](../project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.md#lab-2-a-test-tenant) · [commands](../project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.md#lab-2-commands) | [Module 3](global-secure-access/03-compliant-network-and-tenant-restrictions.md) |
+| [06 Private Applications and Administrative Paths](../project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.md) | [Lab 1](../project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.md#lab-1-fixtures-no-tenant) · [commands](../project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.md#lab-1-commands) | PowerShell 7.1 or later with Pester 5 | [a test tenant](../project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.md#lab-2-a-test-tenant) · [commands](../project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.md#lab-2-commands) | [Module 4](global-secure-access/04-private-apps-and-admin-paths.md) |
+| [07 Internet Access, QUIC and TLS Inspection](../project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md) | [Lab 1](../project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md#lab-1-fixtures-no-tenant) · [commands](../project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md#lab-1-commands) | PowerShell 7.1 or later with Pester 5 | [a test tenant](../project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md#lab-2-a-test-tenant) · [commands](../project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md#lab-2-commands) | [Module 5](global-secure-access/05-internet-access-and-tls-inspection.md) |
+| [08 Rings, Metrics and the Evidence Package](../project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.md) | [Lab 1](../project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.md#lab-1-fixtures-no-tenant) · [commands](../project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.md#lab-1-commands) | PowerShell 7.1 or later with Pester 5 | [a test tenant](../project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.md#lab-2-a-test-tenant) · [commands](../project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.md#lab-2-commands) | [Module 6](global-secure-access/06-rings-rollback-and-the-evidence-package.md) |
+
+: Building Global Secure Access: labs by chapter {.striped .hover}
+
 ## Building Azure Security {#azs}
 
 [The workbook](../project-plans/developer-workbooks/azure-security/index.md) · [its implementation guide](../books/guides/azure-security-implementation.md) · [its learning path](azure-security/index.md) · [the code: azure-security-code.zip](../../downloads/azure-security-code.zip)
@@ -180,23 +197,6 @@ The guide has no kit and no developer workbook yet, so there is no Lab 1 on fixt
 | [Module 5: Automation, operations and evidence](defender-xdr/05-automation-operations-and-evidence.md) | [Lab 2](defender-xdr/05-automation-operations-and-evidence.md#xdr-m5-lab-2) |
 
 : Defender XDR: labs by module {.striped .hover}
-
-## The Global Secure Access learning path {#gsa}
-
-[The learning path](global-secure-access/index.md) · [its implementation guide](../books/guides/global-secure-access-implementation.md)
-
-The guide has no kit and no developer workbook yet, so there is no Lab 1 on fixtures: each module's lab runs the guide's own commands and Validate steps in a test tenant.
-
-| Module | Lab 2, a test tenant |
-|---|---|
-| [Module 1: Decide, design and log first](global-secure-access/01-decide-design-and-log-first.md) | [Lab 2](global-secure-access/01-decide-design-and-log-first.md#gsa-m1-lab-2) |
-| [Module 2: The client and Microsoft traffic](global-secure-access/02-the-client-and-microsoft-traffic.md) | [Lab 2](global-secure-access/02-the-client-and-microsoft-traffic.md#gsa-m2-lab-2) |
-| [Module 3: The compliant network and tenant restrictions](global-secure-access/03-compliant-network-and-tenant-restrictions.md) | [Lab 2](global-secure-access/03-compliant-network-and-tenant-restrictions.md#gsa-m3-lab-2) |
-| [Module 4: Private applications and administrative paths](global-secure-access/04-private-apps-and-admin-paths.md) | [Lab 2](global-secure-access/04-private-apps-and-admin-paths.md#gsa-m4-lab-2) |
-| [Module 5: Internet Access and TLS inspection](global-secure-access/05-internet-access-and-tls-inspection.md) | [Lab 2](global-secure-access/05-internet-access-and-tls-inspection.md#gsa-m5-lab-2) |
-| [Module 6: Rings, rollback and the evidence package](global-secure-access/06-rings-rollback-and-the-evidence-package.md) | [Lab 2](global-secure-access/06-rings-rollback-and-the-evidence-package.md#gsa-m6-lab-2) |
-
-: Global Secure Access: labs by module {.striped .hover}
 
 ## What Lab 2 needs {#lab-2-environments}
 

@@ -1,0 +1,17 @@
+{
+  "_comment": "The desired state for one ring, as reviewed JSON: the traffic profiles' state, the signaling and tagging settings, and the Conditional Access policies (files under config/policies, with <placeholders> the settings file fills). Invoke-GsaPlan.ps1 compares it with a collection and writes the steps that would close the gap. Profile assignments to groups are a portal step on the pages read (the guide's Step 4.2), so the plan lists them as manual steps. This file is the lab's: the pilot ring with Internet Access still off.",
+  "ring": "pilot",
+  "forwardingProfiles": { "m365": "enabled", "private": "enabled", "internet": "disabled" },
+  "signalingStatus": "enabled",
+  "networkPacketTaggingStatus": "enabled",
+  "conditionalAccess": [
+    "policies/NET-CN-Require-Compliant-Network-Pilot.json",
+    "policies/NET-IA-SecurityProfile-Pilot.json",
+    "policies/NET-PA-PA-HR-Portal-Device-MFA.json",
+    "policies/NET-PA-AdminRDP-PhishingResistant.json"
+  ],
+  "profileAssignments": [
+    { "profile": "m365", "group": "<pilot-group-id>" },
+    { "profile": "private", "group": "<pilot-group-id>" }
+  ]
+}

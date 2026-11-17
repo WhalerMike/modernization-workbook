@@ -1,0 +1,19 @@
+# New Look pattern 9: tabs for "portal or code" steps.
+#
+# The guides don't pair portal steps with code blocks in a pattern a filter could
+# find: their steps are prose with links, and their code blocks have no portal
+# twin. So the New Look shows tabs only where this file adds the portal side,
+# as a demonstration on one step. The code block stays exactly as written; the
+# portal text below is new, sourced from Microsoft Learn, and appears only in
+# the New Look. Tabs across the guides would need portal text written for each
+# step, in the pages themselves, which is Mike's call.
+#
+# match: text that appears in exactly one code block of the page.
+
+tabs:
+  - page: docs/books/guides/defender-xdr-implementation.md
+    match: "g2-coverage.json"
+    code-label: "Microsoft Graph PowerShell"
+    portal-label: "Defender portal"
+    portal: |
+      In the Defender portal, open **Assets** > **Devices**, the device inventory. Filter on **Onboarding status** to see devices that aren't onboarded, and on **Sensor health state** (**Inactive** or **Misconfigured**) to see sensors that aren't healthy. **Export** saves the list as a CSV for the evidence folder; Learn notes that the export holds every device, whatever filters are applied. Source: Microsoft Learn, [Explore devices in the device inventory](https://learn.microsoft.com/defender-endpoint/machines-view-overview).

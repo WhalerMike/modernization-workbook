@@ -1,0 +1,381 @@
+---
+title: "Chapter 08 — Rings, Metrics and the Evidence Package"
+description: "The guide's Steps 11 and 12 as code: telemetry checks for the diagnostic setting, rows from every network table in the last day and the CISA telemetry agreement; the guide's eight coverage and effectiveness metrics computed from one collection; the ring exit criteria of Step 11.1 with a Go or No-go; the rollback plan in the guide's order, with signaling last; and every run recorded as hashed, chained evidence tagged with SP 800-53 controls and FedRAMP 20x KSIs, the package the Zero Trust Assessment results kit's closure register points to. Labs against a fictional tenant's fixtures and a test tenant."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-global-secure-access
+part: How
+series-order: 8
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 08 — Rings, Metrics and the Evidence Package
+
+*A ring exits on numbers, not on a quiet week. This chapter computes the guide's numbers, says Go or No-go, writes the rollback before it is needed, and hands the ISSO a package an assessor can re-hash.*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [Step 11: Coexistence and migration](../../../books/guides/global-secure-access-implementation.md#step-11-coexistence-and-migration), its [Step 12: Telemetry and evidence](../../../books/guides/global-secure-access-implementation.md#step-12-telemetry-and-evidence), its [metrics](../../../books/guides/global-secure-access-implementation.md#metrics), [rollback order](../../../books/guides/global-secure-access-implementation.md#rollback) and [evidence catalog](../../../books/guides/global-secure-access-implementation.md#evidence). You read the telemetry checks GSA-LOG-01 to -03, `Get-GsaMetrics`, `Test-GsaRingExit`, `New-GsaRollbackPlan` and the evidence records. Lab 1 says No-go for the pilot, with the five reasons, and Go for ring 1 two weeks later, plans ring 1's rollback without sending it, and records the runs as evidence. Lab 2 does the same in a test tenant.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can decide a ring's exit from measured values, roll back in the guide's order from a plan a reviewer approved, and give the ISSO and the assessor one evidence folder, with the controls and KSIs each run supports, whose every file they can verify.
+
+**Audience.** Developers who build or maintain the kit, the technical program manager who runs the rings, the security monitor, and the ISSO. You don't need a tenant until Lab 2.
+
+## Start with Microsoft's documentation
+
+### What Microsoft gives you
+
+Traffic and remote network health logs stay in the service for 30 days; Learn's security operations page lists the four tables (`NetworkAccessTraffic`, `NetworkAccessConnectionEvents`, `RemoteNetworkHealthLogs`, `NetworkAccessAlerts`) and says to treat a sudden drop in traffic volume as an alert, since tenant offboarding has no audit signal.[^gsa08-logs] [^gsa08-secops] Learn's deployment guide asks for a rollback plan that "defines the circumstances and procedures" for removing the client or disabling a profile, and its operations guide gives a RACI and at least two people per role.[^gsa08-dg] [^gsa08-ops] The guide adds the rings and their exit criteria, the metrics with starting targets, the rollback order (policies to report-only from Step 10 back to Step 5, profile links removed, tagging off, groups off the profiles, the VPN route restored, signaling last), and CISA's Remote User Use Case, which says that as users connect more directly to external services, "visibility by CISA must be preserved through telemetry sharing."[^gsa08-tic]
+
+### What it leaves to you
+
+Each row is pinned by a test in the `Chapter 08`, `Plans` or `Evidence` blocks of `tests/GlobalSecureAccess.Tests.ps1`.
+
+| What the guide and Learn give | Why it matters | What the kit adds |
+|---|---|---|
+| A freshness query | A table that stops is only noticed if someone runs it | GSA-LOG-02 per table: *Fail* for traffic and connection events older than 24 hours, *Warn* for alerts and branch health, which can be quiet |
+| CISA telemetry "agreed with the TIC delegates" | It gets forgotten until the VPN's web path is gone | GSA-LOG-03 warns until the architecture record has the agreement date |
+| A metrics table with targets | Each number is computed differently each time | `Get-GsaMetrics`: the eight metrics from one collection and the inputs, each with its value, target and met or not |
+| Exit criteria per ring | A ring exits because the calendar says so | `Test-GsaRingExit`: RX-01 to RX-08 from the ring record, the metrics and the compliant network results |
+| A rollback order in prose | In an incident, the order is the first thing lost | `New-GsaRollbackPlan`: the Graph steps in that order, the portal steps as manual lines, and signaling only with `-DisableSignaling`, refused while a compliant network policy is enforced |
+| An evidence catalog | Files on a share with no proof they're unchanged | `Write-GsaEvidence`: each run copied with its manifest, the steps' controls and KSIs, every file's SHA-256 and the previous record's, so `sha256sum -c SHA256SUMS` and the chain check both work |
+
+**Reused, not rebuilt.** The Zero Trust Assessment results kit, [`examples/zta-results`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/zta-results), already turns an assessment export into the closure register of [Book 11, Chapter 10](../../../books/b11-zero-trust/10-evidence-not-verdicts.md#the-closure-chain), and its `network-access` finding family names this guide as the remediation page. That register's "ready for closure" evidence for a network finding is this chapter's evidence folder; run the [Zero Trust Assessment implementation guide](../../../books/guides/zero-trust-assessment-implementation.md)'s re-run after each ring. Scheduled comparison of runs belongs to the [drift pipeline](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline); the network package here is interactive, because the beta API is.
+
+## The code
+
+### The metrics and the ring exit
+
+| Metric (guide) | How the kit computes it | Target in the lab settings |
+|---|---|---|
+| Client coverage | `activeDeviceCount` ÷ `inScopeDevices` | 98% |
+| Sign-ins through the service | Seven days of the sign-in query | 95% |
+| Compliant network enforcement | A `NET-CN-` policy enforced for the ring | On |
+| Private Access least privilege | Quick Access segments; apps without a group; apps without a policy | 0; 0; 0 |
+| Connector resilience | Groups with two active, current connectors ÷ groups | 100% |
+| Bypass exposure | Bypasses past expiry; exceptions without an approver | 0; 0 |
+| TLS inspection health | Failure share; days to certificate expiry | Under 1%; over 90 |
+| Telemetry freshness | Tables with no rows in 24 hours | 0 |
+
+| Criterion | From |
+|---|---|
+| RX-01 time in ring | Business days since the ring record's `started` (10 for the pilot and ring 1, 20 for rings 2 and 3) |
+| RX-02, RX-03 | Open Sev-2 tickets; help desk tickets against the agreed threshold |
+| RX-04 | Client coverage at 100% of in-scope devices |
+| RX-05 | No report-only failure carried by the service, and no compliant network check failing |
+| RX-06 | TLS failure share under 1% |
+| RX-07, RX-08 | The emergency access exclusion tested on or after the ring's start; break-glass rehearsed |
+
+### The evidence
+
+Each run folder (a collection, a check, a plan, metrics, a deploy step) is recorded with the steps it covers from `config/requirements.json`, which carries the guide's requirements table: for example a `tls` check is the TLS step (SC-8, SC-12, SC-17, SI-4; KSI-SVC-SIN, KSI-SVC-ASM, KSI-CNA-MAT) plus the evidence step (AU-9, AU-6; KSI-MLA-OSM, KSI-MLA-RVL). A check whose findings include a failure is recorded with result `Findings`, not `Pass`, and doesn't count toward a stage.
+
+::: {.callout-important}
+## Illustrative code
+Lab 1 reads fixtures and plans a rollback it can't send. Tested against fixtures and stand-in runners, not a live tenant.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/global-secure-access`.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/global-secure-access`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Collect the pilot tenant
+./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/pilot -OutputPath out/pilot -AsOf 2026-11-16T12:00:00Z
+
+# Step 2: Run the telemetry checks
+./Invoke-GsaCheck.ps1 -Area telemetry -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-telemetry -AsOf 2026-11-16T12:00:00Z
+
+# Step 3: Compute the metrics and the pilot's exit
+./Invoke-GsaMetrics.ps1 -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/metrics -AsOf 2026-11-16T12:00:00Z
+
+# Step 4: Two weeks later, the same for ring 1
+./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab-ring1.json -FixturePath tests/fixtures/ring1 -OutputPath out/ring1 -AsOf 2026-11-30T12:00:00Z
+./Invoke-GsaMetrics.ps1 -SettingsPath tests/fixtures/settings.lab-ring1.json -CollectionPath out/ring1 -InputsPath tests/fixtures/ring1/inputs -OutputPath out/metrics-ring1 -AsOf 2026-11-30T12:00:00Z
+
+# Step 5: Plan ring 1's rollback, before it is needed
+./deploy/Invoke-GsaRollback.ps1 -SettingsPath tests/fixtures/settings.lab-ring1.json -CollectionPath out/ring1 -OutputPath out/rollback -AsOf 2026-11-30T12:00:00Z
+
+# Step 6: Ask for signaling off as well
+Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
+(Read-GsaJson -Path (New-GsaRollbackPlan -CollectionPath out/ring1 -Settings (Read-GsaSettings -Path tests/fixtures/settings.lab-ring1.json) -OutputPath out/rollback-signaling -AsOf 2026-11-30T12:00:00Z -DisableSignaling).FullName).steps | ForEach-Object { $_.why }
+
+# Step 7: Record the runs as evidence, and check the folder
+./Invoke-GsaEvidence.ps1 -EvidencePath out/evidence -RunPath out/ring1 -AsOf 2026-11-30T12:01:00Z
+./Invoke-GsaEvidence.ps1 -EvidencePath out/evidence -RunPath out/metrics-ring1 -AsOf 2026-11-30T12:02:00Z
+./Invoke-GsaEvidence.ps1 -EvidencePath out/evidence -RunPath out/rollback -AsOf 2026-11-30T12:03:00Z
+./Invoke-GsaEvidence.ps1 -EvidencePath out/evidence -Check
+Import-Csv out/evidence/records.csv | Format-Table sequence, label, result, steps
+
+# Step 8: Run this chapter's tests
+Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Chapter 08*', 'Evidence*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Collect the pilot tenant:**
+
+   ```powershell
+   ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/pilot -OutputPath out/pilot -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 08-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/08-1.txt))](captures/08-1.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -Fixtu… and what it printed"}
+
+   <!-- capture:end -->
+
+2. **Run the telemetry checks:**
+
+   ```powershell
+   ./Invoke-GsaCheck.ps1 -Area telemetry -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-telemetry -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 08-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/08-2.txt))](captures/08-2.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCheck.ps1 -Area telemetry -SettingsPath tests/fixtures/settings.l… and what it printed"}
+
+   <!-- capture:end -->
+
+   The setting misses a category (Chapter 02), branch health has no rows because no branch is on a remote network yet, alerts are 27 hours old, and CISA telemetry isn't agreed.
+
+3. **Compute the metrics and the pilot's exit:**
+
+   ```powershell
+   ./Invoke-GsaMetrics.ps1 -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/metrics -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 08-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/08-3.txt))](captures/08-3.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaMetrics.ps1 -SettingsPath tests/fixtures/settings.lab.json -Colle… and what it printed"}
+
+   <!-- capture:end -->
+
+   No metric is met, and the pilot is No-go: five business days in, one Sev-2 open, 83.3% coverage, three report-only failures carried by the service, and 1.5% TLS failures.
+
+4. **Two weeks later, the same for ring 1:**
+
+   ```powershell
+   ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab-ring1.json -FixturePath tests/fixtures/ring1 -OutputPath out/ring1 -AsOf 2026-11-30T12:00:00Z
+   ./Invoke-GsaMetrics.ps1 -SettingsPath tests/fixtures/settings.lab-ring1.json -CollectionPath out/ring1 -InputsPath tests/fixtures/ring1/inputs -OutputPath out/metrics-ring1 -AsOf 2026-11-30T12:00:00Z
+   ```
+
+   <!-- capture:begin 08-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/08-4.txt))](captures/08-4.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab-ring1.json … and what it printed"}
+
+   <!-- capture:end -->
+
+   Every metric is met and every criterion passes: Go.
+
+5. **Plan ring 1's rollback, before it is needed.** Three enforced policies go to report-only in the guide's order (Step 7, then 6, then 5), tagging goes off, the profile links and group assignments are portal steps, the VPN route is the agency's own change, and signaling stays on:
+
+   ```powershell
+   ./deploy/Invoke-GsaRollback.ps1 -SettingsPath tests/fixtures/settings.lab-ring1.json -CollectionPath out/ring1 -OutputPath out/rollback -AsOf 2026-11-30T12:00:00Z
+   ```
+
+   <!-- capture:begin 08-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/08-5.txt))](captures/08-5.png){.lightbox fig-alt="Terminal window showing ./deploy/Invoke-GsaRollback.ps1 -SettingsPath tests/fixtures/settings.lab-rin… and what it printed"}
+
+   <!-- capture:end -->
+
+6. **Ask for signaling off as well.** The plan adds it as the last step, after its own earlier steps have moved the enforced compliant network policy to report-only; it refuses `-DisableSignaling` if any compliant network policy would stay enforced:
+
+   ```powershell
+   Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
+   (Read-GsaJson -Path (New-GsaRollbackPlan -CollectionPath out/ring1 -Settings (Read-GsaSettings -Path tests/fixtures/settings.lab-ring1.json) -OutputPath out/rollback-signaling -AsOf 2026-11-30T12:00:00Z -DisableSignaling).FullName).steps | ForEach-Object { $_.why }
+   ```
+
+   <!-- capture:begin 08-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/08-6.txt))](captures/08-6.png){.lightbox fig-alt="Terminal window showing Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1 and what it printed"}
+
+   <!-- capture:end -->
+
+   The last line is the signaling step.
+
+7. **Record the runs as evidence, and check the folder:**
+
+   ```powershell
+   ./Invoke-GsaEvidence.ps1 -EvidencePath out/evidence -RunPath out/ring1 -AsOf 2026-11-30T12:01:00Z
+   ./Invoke-GsaEvidence.ps1 -EvidencePath out/evidence -RunPath out/metrics-ring1 -AsOf 2026-11-30T12:02:00Z
+   ./Invoke-GsaEvidence.ps1 -EvidencePath out/evidence -RunPath out/rollback -AsOf 2026-11-30T12:03:00Z
+   ./Invoke-GsaEvidence.ps1 -EvidencePath out/evidence -Check
+   Import-Csv out/evidence/records.csv | Format-Table sequence, label, result, steps
+   ```
+
+   <!-- capture:begin 08-7 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/08-7.txt))](captures/08-7.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaEvidence.ps1 -EvidencePath out/evidence -RunPath out/ring1 -AsOf … and what it printed"}
+
+   <!-- capture:end -->
+
+8. **Run this chapter's tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Chapter 08*', 'Evidence*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+   ```
+
+   <!-- capture:begin 08-8 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/08-8.txt))](captures/08-8.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Chapt… and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** `FailedCount` 0, and the evidence check's `SUMS` and `CHAIN` rows pass. Delete `out` when you're done:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 08-9 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/08-9.txt))](captures/08-9.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test tenant
+
+Use the test tenant from Chapters 04 to 07, with the network diagnostic setting on and pilot traffic for at least a day, never production. **The authors haven't run this lab.** Work in `examples/global-secure-access`. You'll replace: `<tenant-id>`, `<settings-file>`, `<inputs-folder>` (with your `ring-record.json`, from `templates/ring-record.template.json`), `<workspace-guid>` and `<evidence-folder>` (a protected folder inside the boundary, not a personal drive).
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/global-secure-access`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Run the guide's freshness query
+az monitor log-analytics query --workspace <workspace-guid> --analytics-query "union isfuzzy=true withsource=Table NetworkAccessTraffic, NetworkAccessConnectionEvents, RemoteNetworkHealthLogs, NetworkAccessAlerts | where TimeGenerated > ago(1d) | summarize Rows = count(), Last = max(TimeGenerated) by Table" -o table
+
+# Step 2: Collect, check telemetry, and compute the ring's metrics and exit
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes "NetworkAccess.Read.All","Policy.Read.All","Directory.ReadWrite.All","LicenseAssignment.Read.All","NetworkAccessPolicy.Read.All"
+./Invoke-GsaCollect.ps1 -SettingsPath <settings-file> -OutputPath out/ring-test -AllowUnverified
+./Invoke-GsaCheck.ps1 -Area telemetry -SettingsPath <settings-file> -CollectionPath out/ring-test -InputsPath <inputs-folder> -OutputPath out/check-telemetry-test
+./Invoke-GsaMetrics.ps1 -SettingsPath <settings-file> -CollectionPath out/ring-test -InputsPath <inputs-folder> -OutputPath out/metrics-test
+
+# Step 3: Plan the rollback and file it with the change record
+./deploy/Invoke-GsaRollback.ps1 -SettingsPath <settings-file> -CollectionPath out/ring-test -OutputPath out/rollback-test
+
+# Step 4: Record the runs in the protected folder and check it
+./Invoke-GsaEvidence.ps1 -EvidencePath <evidence-folder> -RunPath out/ring-test
+./Invoke-GsaEvidence.ps1 -EvidencePath <evidence-folder> -RunPath out/check-telemetry-test
+./Invoke-GsaEvidence.ps1 -EvidencePath <evidence-folder> -RunPath out/metrics-test
+./Invoke-GsaEvidence.ps1 -EvidencePath <evidence-folder> -RunPath out/rollback-test
+./Invoke-GsaEvidence.ps1 -EvidencePath <evidence-folder> -Check
+
+# Step 5: Back it out
+Disconnect-MgGraph
+Remove-Item -Recurse -Force out/ring-test, out/check-telemetry-test, out/metrics-test, out/rollback-test
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Run the guide's freshness query:**
+
+   ```powershell
+   az monitor log-analytics query --workspace <workspace-guid> --analytics-query "union isfuzzy=true withsource=Table NetworkAccessTraffic, NetworkAccessConnectionEvents, RemoteNetworkHealthLogs, NetworkAccessAlerts | where TimeGenerated > ago(1d) | summarize Rows = count(), Last = max(TimeGenerated) by Table" -o table
+   ```
+
+2. **Collect, check telemetry, and compute the ring's metrics and exit:**
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes "NetworkAccess.Read.All","Policy.Read.All","Directory.ReadWrite.All","LicenseAssignment.Read.All","NetworkAccessPolicy.Read.All"
+   ./Invoke-GsaCollect.ps1 -SettingsPath <settings-file> -OutputPath out/ring-test -AllowUnverified
+   ./Invoke-GsaCheck.ps1 -Area telemetry -SettingsPath <settings-file> -CollectionPath out/ring-test -InputsPath <inputs-folder> -OutputPath out/check-telemetry-test
+   ./Invoke-GsaMetrics.ps1 -SettingsPath <settings-file> -CollectionPath out/ring-test -InputsPath <inputs-folder> -OutputPath out/metrics-test
+   ```
+
+3. **Plan the rollback and file it with the change record.** Don't apply it unless the ring is being rolled back:
+
+   ```powershell
+   ./deploy/Invoke-GsaRollback.ps1 -SettingsPath <settings-file> -CollectionPath out/ring-test -OutputPath out/rollback-test
+   ```
+
+4. **Record the runs in the protected folder and check it:**
+
+   ```powershell
+   ./Invoke-GsaEvidence.ps1 -EvidencePath <evidence-folder> -RunPath out/ring-test
+   ./Invoke-GsaEvidence.ps1 -EvidencePath <evidence-folder> -RunPath out/check-telemetry-test
+   ./Invoke-GsaEvidence.ps1 -EvidencePath <evidence-folder> -RunPath out/metrics-test
+   ./Invoke-GsaEvidence.ps1 -EvidencePath <evidence-folder> -RunPath out/rollback-test
+   ./Invoke-GsaEvidence.ps1 -EvidencePath <evidence-folder> -Check
+   ```
+
+5. **Back it out.** Nothing changed in the tenant; the evidence folder stays. Sign out and delete the working copies:
+
+   ```powershell
+   Disconnect-MgGraph
+   Remove-Item -Recurse -Force out/ring-test, out/check-telemetry-test, out/metrics-test, out/rollback-test
+   ```
+
+## Verified facts
+
+| Item | Value | GCC | Stage | Source |
+|---|---|---|---|---|
+| Log retention | 30 days in the service; export through diagnostic settings | — | Traffic logs page titled "(preview)" | [^gsa08-logs] |
+| Tables | `NetworkAccessTraffic`, `NetworkAccessConnectionEvents`, `RemoteNetworkHealthLogs`, `NetworkAccessAlerts`; a traffic drop is an alert | — | — | [^gsa08-secops] |
+| Rollback plan | Learn's deployment guide asks for one | — | — | [^gsa08-dg] |
+| Roles | A RACI; at least two people per role | — | — | [^gsa08-ops] |
+| `az monitor log-analytics query` | An extension command; `--workspace` takes the workspace's GUID | — | — | [^gsa08-cli] |
+| CISA telemetry | Visibility "must be preserved through telemetry sharing" | — | — | [^gsa08-tic] |
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| The network tables are fresh and the CISA path is agreed (Lab 1, step 2; Lab 2, steps 1 and 2) | AU-2, AU-6 (audit review), AU-12, SI-4; OMB M-26-14 and TIC 3.0 telemetry | KSI-MLA-OSM, KSI-MLA-LET, KSI-MLA-RVL | The security monitor |
+| Each ring exited on its recorded criteria, with measured values (Lab 1, steps 3 and 4; Lab 2, step 2: `metrics.json`, `ring-exit.json`) | CM-3, CM-4 | KSI-CMT-LMC, KSI-CMT-VTD | The technical program manager; the service owner approves |
+| A rollback plan in the guide's order exists before it is needed (Lab 1, steps 5 and 6; Lab 2, step 3) | CP-2 (contingency plan), CM-3 | KSI-CMT-LMC | The change record |
+| Every run is recorded with its hashes and the record before it (Lab 1, step 7; Lab 2, step 4) | AU-9, AU-6 | KSI-MLA-OSM, KSI-MLA-RVL | The ISSO |
+
+The kit's records support these controls; the agency's assessor or authorizing official decides them, and decides closure of each finding through the closure chain.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| A ring exits on the calendar | Problems reach a larger group | `Test-GsaRingExit` |
+| The VPN's web path retired without CISA telemetry | Loss of the visibility the TIC use case requires | GSA-LOG-03 before ring 3 |
+| A traffic table goes quiet | An outage, a disabled profile or an offboarding unnoticed | GSA-LOG-02 |
+| Signaling turned off first in an incident | Users blocked while policies still depend on it | The rollback plan puts it last, and refuses it while a compliant network policy stays enforced |
+| Evidence edited after the fact | The package no longer shows the tenant | The chain and `SHA256SUMS`; a check with failures is `Findings`, not `Pass` |
+
+## Checklist
+
+- [ ] The four network tables have rows from the last day, and the CISA telemetry path is agreed and dated.
+- [ ] Each ring's metrics and exit were computed from a fresh collection and filed with the ring record.
+- [ ] The rollback plan for the current ring exists, reviewed, before the ring starts.
+- [ ] Every run is in the evidence folder, and `-Check` passes.
+- [ ] The Zero Trust Assessment was re-run after the ring, and each network finding's closure register entry points to this evidence.
+
+::: {.callout-tip}
+## Continue the book
+[← Chapter 07 — Internet Access, QUIC and TLS Inspection](07-internet-access-and-tls-inspection.md) · [Workbook index](index.md) · [Next: Chapter 09 — Deploying to Test and Production →](09-deploying-to-test-and-production.md)
+:::
+
+[^gsa08-logs]: Microsoft Learn, "Global Secure Access logs and monitoring," <https://learn.microsoft.com/entra/global-secure-access/concept-global-secure-access-logs-monitoring> (read November 11, 2026, for the guide).
+[^gsa08-secops]: Microsoft Learn, "Security operations for network access," <https://learn.microsoft.com/entra/global-secure-access/how-to-security-operations> (read November 11, 2026, for the guide).
+[^gsa08-dg]: Microsoft Learn, "Microsoft Global Secure Access deployment guide for Microsoft Traffic," rollback plan, <https://learn.microsoft.com/entra/architecture/gsa-deployment-guide-microsoft-traffic> (read November 11, 2026, for the guide).
+[^gsa08-ops]: Microsoft Learn, "Microsoft Entra Global Secure Access operations guide," <https://learn.microsoft.com/entra/global-secure-access/overview-operations> (read November 11, 2026, for the guide).
+[^gsa08-cli]: Microsoft Learn, Azure CLI reference, "az monitor log-analytics," <https://learn.microsoft.com/cli/azure/monitor/log-analytics> (read November 13, 2026, for the Azure Security implementation guide; carried).
+[^gsa08-tic]: Cybersecurity and Infrastructure Security Agency, *Trusted Internet Connections 3.0 Remote User Use Case*, Version 2.2, §8 (read November 11, 2026, for the guide; its verification log).

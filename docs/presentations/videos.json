@@ -7280,7 +7280,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-global-secure-access/Guide_Global_Secure_Access_Narration_Script.md",
   "page": "docs/books/guides/global-secure-access-implementation.html",
   "source": "docs/books/guides/global-secure-access-implementation.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -15789,7 +15795,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-gsa-module-1/Training_GSA_Module_1_Narration_Script.md",
   "page": "docs/training/global-secure-access/01-decide-design-and-log-first.html",
   "source": "docs/training/global-secure-access/01-decide-design-and-log-first.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -15858,7 +15870,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-gsa-module-2/Training_GSA_Module_2_Narration_Script.md",
   "page": "docs/training/global-secure-access/02-the-client-and-microsoft-traffic.html",
   "source": "docs/training/global-secure-access/02-the-client-and-microsoft-traffic.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -15927,7 +15945,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-gsa-module-3/Training_GSA_Module_3_Narration_Script.md",
   "page": "docs/training/global-secure-access/03-compliant-network-and-tenant-restrictions.html",
   "source": "docs/training/global-secure-access/03-compliant-network-and-tenant-restrictions.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -15996,7 +16020,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-gsa-module-4/Training_GSA_Module_4_Narration_Script.md",
   "page": "docs/training/global-secure-access/04-private-apps-and-admin-paths.html",
   "source": "docs/training/global-secure-access/04-private-apps-and-admin-paths.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -16065,7 +16095,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-gsa-module-5/Training_GSA_Module_5_Narration_Script.md",
   "page": "docs/training/global-secure-access/05-internet-access-and-tls-inspection.html",
   "source": "docs/training/global-secure-access/05-internet-access-and-tls-inspection.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -16130,7 +16166,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-gsa-module-6/Training_GSA_Module_6_Narration_Script.md",
   "page": "docs/training/global-secure-access/06-rings-rollback-and-the-evidence-package.html",
   "source": "docs/training/global-secure-access/06-rings-rollback-and-the-evidence-package.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
   "chapters": [
    [
     0,

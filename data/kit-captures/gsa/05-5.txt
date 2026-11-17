@@ -1,0 +1,8 @@
+PS> ./Invoke-GsaCheck.ps1 -Area tenant-restrictions -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-tr -AsOf 2026-11-16T12:00:00Z
+GSA-TR-01   Pass  TRv2 default: users: blocked; applications: blocked
+GSA-TR-02   Pass  partner 66666666-6666-4666-8666-666666666601: register EX-05, owner Identity engineer, review 2027-06-30
+GSA-TR-02   Fail  partner 66666666-6666-4666-8666-666666666602: allowed by TRv2 but not in the exception register
+GSA-TR-03   Pass  tagging: networkPacketTaggingStatus: enabled; TRv2 default blocking: True
+GSA-TR-04   Info  resource tenant 66666666-6666-4666-8666-666666666699: 7 blocks (Office 365 Exchange Online); not a registered partner: review weekly
+
+tenant-restrictions: 5 checks (1 Fail, 1 Info, 3 Pass). Written to out/check-tr: findings.json, findings.csv, manifest.json

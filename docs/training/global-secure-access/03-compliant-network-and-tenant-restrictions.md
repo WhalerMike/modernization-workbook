@@ -59,6 +59,13 @@ Read the guide's [Step 8](../../books/guides/global-secure-access-implementation
 
 **Where agencies are.** Both features come with Entra ID P1 or P2 and the Microsoft traffic profile, are generally available, and are available in GCC by Learn's product-wide statement. Where the Microsoft traffic profile isn't adopted yet, the interim path is named-location Conditional Access and device-side tenant restrictions v2 by Group Policy ([Book 09, Chapter 12](../../books/b09-network/12-microsoft-365-traffic.md#tenant-restrictions-the-case-an-assessor-will-build)).
 
+## Exercise: Lab 1, fixtures, no tenant {#gsa-m3-lab-1}
+*About 20 minutes per chapter. No tenant: it runs on a laptop.*
+
+This module's fixture labs are in the developer workbook [*Building Global Secure Access*](../../project-plans/developer-workbooks/global-secure-access/index.md). Each runs the kit in `examples/global-secure-access` against one fictional tenant, `contoso.example`, with every command as a copy-paste block and the kit's real output beside it. Follow them as written; they aren't repeated here:
+
+- [Chapter 05, Lab 1](../../project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.md#lab-1-fixtures-no-tenant): when the compliant network policy is ready to enforce, and the tenant restrictions with their partner register.
+
 ## Exercise: Lab 2, a test tenant {#gsa-m3-lab-2}
 *Not timed. Not run by the authors. Never production.*
 

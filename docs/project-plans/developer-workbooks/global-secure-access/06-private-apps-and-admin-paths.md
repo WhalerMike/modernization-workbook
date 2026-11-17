@@ -1,0 +1,357 @@
+---
+title: "Chapter 06 — Private Applications and Administrative Paths"
+description: "The guide's Steps 6 and 10 as code: connector groups read with their members and checked for two active, current connectors each; each Private Access application checked for narrow segments that don't overlap, a group assignment, a NET-PA Conditional Access policy that excludes emergency access, and, for RDP and SSH, the phishing-resistant authentication strength and a compliant device; Quick Access measured until it holds nothing; and a plan that brings a drifted administrative policy back to its reviewed file. Labs against a fictional tenant's fixtures and a test tenant."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-global-secure-access
+part: How
+series-order: 6
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 06 — Private Applications and Administrative Paths
+
+*A VPN gives a device an address range. Private Access gives a group one application, on its ports, behind its own Conditional Access. The code checks that each app is that narrow, and that administrative paths ask for phishing-resistant authentication.*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [Step 6: Private applications](../../../books/guides/global-secure-access-implementation.md#step-6-private-applications) and [Step 10: Privileged protocols](../../../books/guides/global-secure-access-implementation.md#step-10-privileged-protocols). The design is [Book 09, Chapter 05](../../../books/b09-network/05-sd-wan-sase-and-governed-transport.md#private-access-as-the-vpn-and-directaccess-replacement); the privileged groups behind the administrative apps are [*Building Privileged Access*](../privileged-access/index.md)'s. You read checks GSA-PA-01 to -09. Lab 1 finds a connector group with one active connector, a Finance app published as a /16 on every port and assigned to a person, an RDP app without the phishing-resistant strength, and Quick Access still in use. Lab 2 publishes one app in a test tenant with the guide's requests, puts its policy on from a plan, and removes both.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can show, application by application, that each Private Access app reaches only its host and ports, only for its group, under a policy that excludes emergency access, and that administrative RDP and SSH require phishing-resistant authentication, with connectors that survive a patch night.
+
+**Audience.** Developers who build or maintain the kit, the platform owner (servers) who runs the connectors, application owners, and the privileged access owner. You don't need a tenant until Lab 2.
+
+## Start with Microsoft's documentation
+
+### What Microsoft gives you
+
+Learn's Private Access Graph tutorial creates an application from the custom application template, marks it a Private Access app (`onPremisesPublishing` with `isAccessibleViaZTNAClient`), binds it to a connector group, adds application segments, and assigns a group with the app's `User` role.[^gsa06-pa] Segments may not overlap between per-app applications; a per-app segment overrides an overlapping Quick Access segment; clients take up to 15 minutes to pick up a change.[^gsa06-perapp] Connector groups and their members are read with `Directory.ReadWrite.All`, delegated only; a connector has `status` (`active` or `inactive`) and `version`.[^gsa06-cg] [^gsa06-conn] Learn's Zero Trust recommendations ask for healthy, current connectors with at least two per group, least-privilege segments, every app assigned, and phishing-resistant authentication for domain controller RDP; Learn's domain controller page adds the Private Access sensor, in Audit first, with application SPNs before the DC's own.[^gsa06-zt] [^gsa06-dc]
+
+### What it leaves to you
+
+Each row is pinned by a test in the `Chapter 06` or `Plans` blocks of `tests/GlobalSecureAccess.Tests.ps1`.
+
+| Learn's material, as published | Why it matters | What the kit adds |
+|---|---|---|
+| Requests that create one app | No read back of all apps with their segments and assignments | The `private-apps` read, one record per app (marked unverified until a Learn page gives the request); Lab 2 compares it with the portal |
+| "At least two connectors per group" | A group with one inactive connector looks fine in a list | GSA-PA-01 counts active connectors per group from its members; GSA-PA-02 compares versions with `minConnectorVersion` |
+| "Least-privilege segments" | A /16 on every port is the VPN again | GSA-PA-04 fails an IP range wider than /24 or ports `1-65535`; GSA-PA-05 fails overlaps |
+| "Assign a group, not individuals" | Direct assignments escape access reviews | GSA-PA-06 |
+| Phishing-resistant RDP, in prose | An administrative app protected by plain MFA passes a casual look | GSA-PA-08: any app whose segment covers 22 or 3389 needs strength `00000000-0000-0000-0000-000000000004` and a compliant device |
+| Quick Access as a bridge | It quietly becomes permanent | GSA-PA-03 warns while it holds segments; Chapter 08 counts them as a metric |
+
+The domain controller sensor (Step 10.3) is configured on the DCs and in the portal; the kit doesn't read it. Its evidence is the guide's `klist` test record and the sensor's mode, kept by the privileged access owner.
+
+## The code
+
+| Check | What it looks for |
+|---|---|
+| GSA-PA-01 | Two or more active connectors per group |
+| GSA-PA-02 | Every connector at `minConnectorVersion` or later |
+| GSA-PA-03 | Segments left in Quick Access (*Warn* until zero) |
+| GSA-PA-04 | Each segment is a host or a narrow range, on named ports |
+| GSA-PA-05 | No two per-app segments overlap |
+| GSA-PA-06 | Group assignments only |
+| GSA-PA-07 | A `NET-PA-` policy targets the app and excludes the emergency access group |
+| GSA-PA-08 | RDP and SSH apps require the phishing-resistant strength and a compliant device |
+| GSA-PA-09 | Private sessions in the last day, by destination (*Info*, to compare with assignments) |
+
+The administrative policy is a reviewed file, `config/policies/NET-PA-AdminRDP-PhishingResistant.json`, the guide's Step 10.2 policy. When the tenant's copy drifts (the pilot's asks only for MFA), the plan's `ca-update` step brings it back to the file.
+
+::: {.callout-important}
+## Illustrative code
+Lab 1 reads fixtures; nothing signs in. Tested against fixtures and stand-in runners, not a live tenant.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/global-secure-access`.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/global-secure-access`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: List what the private access area reads
+Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
+Get-GsaRequiredPermission -Area private-access | Format-Table
+
+# Step 2: Collect the pilot tenant
+./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/pilot -OutputPath out/pilot -AsOf 2026-11-16T12:00:00Z
+
+# Step 3: Read the connectors, group by group
+$c = Read-GsaCollection -Path out/pilot
+$c['connector-groups'].value | ForEach-Object { $g = $_; $c['connector-group-members'][$g.id].value | ForEach-Object { [pscustomobject]@{ Group = $g.name; Connector = $_.machineName; Status = $_.status; Version = $_.version } } } | Format-Table
+
+# Step 4: Run the private access checks
+./Invoke-GsaCheck.ps1 -Area private-access -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-pa -AsOf 2026-11-16T12:00:00Z
+
+# Step 5: Plan the pilot and read the administrative policy's fix
+./Invoke-GsaPlan.ps1 -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -DesiredPath config/desired.lab.json -OutputPath out/plan -AsOf 2026-11-16T12:00:00Z
+(Read-GsaJson -Path out/plan/plan.json).steps | Where-Object { $_.call -eq 'ca-update' } | ForEach-Object { $_.body.grantControls | ConvertTo-Json -Depth 5 }
+
+# Step 6: Check the tenant two weeks later
+./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab-ring1.json -FixturePath tests/fixtures/ring1 -OutputPath out/ring1 -AsOf 2026-11-30T12:00:00Z
+./Invoke-GsaCheck.ps1 -Area private-access -SettingsPath tests/fixtures/settings.lab-ring1.json -CollectionPath out/ring1 -InputsPath tests/fixtures/ring1/inputs -OutputPath out/check-pa-ring1 -AsOf 2026-11-30T12:00:00Z
+
+# Step 7: Run this chapter's tests
+Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Chapter 06*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **List what the private access area reads.** `private-apps` is the one read without a verified Learn page:
+
+   ```powershell
+   Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
+   Get-GsaRequiredPermission -Area private-access | Format-Table
+   ```
+
+   <!-- capture:begin 06-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/06-1.txt))](captures/06-1.png){.lightbox fig-alt="Terminal window showing Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1 and what it printed"}
+
+   <!-- capture:end -->
+
+2. **Collect the pilot tenant:**
+
+   ```powershell
+   ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/pilot -OutputPath out/pilot -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 06-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/06-2.txt))](captures/06-2.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -Fixtu… and what it printed"}
+
+   <!-- capture:end -->
+
+3. **Read the connectors, group by group:**
+
+   ```powershell
+   $c = Read-GsaCollection -Path out/pilot
+   $c['connector-groups'].value | ForEach-Object { $g = $_; $c['connector-group-members'][$g.id].value | ForEach-Object { [pscustomobject]@{ Group = $g.name; Connector = $_.machineName; Status = $_.status; Version = $_.version } } } | Format-Table
+   ```
+
+   <!-- capture:begin 06-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/06-3.txt))](captures/06-3.png){.lightbox fig-alt="Terminal window showing $c = Read-GsaCollection -Path out/pilot and what it printed"}
+
+   <!-- capture:end -->
+
+4. **Run the private access checks:**
+
+   ```powershell
+   ./Invoke-GsaCheck.ps1 -Area private-access -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-pa -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 06-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/06-4.txt))](captures/06-4.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCheck.ps1 -Area private-access -SettingsPath tests/fixtures/setti… and what it printed"}
+
+   <!-- capture:end -->
+
+   CG-Cloud-East has one active connector, and an old one. PA-Finance is `10.20.0.0/16` on every port, assigned to a person, under an enforced policy that doesn't exclude emergency access (and, since every port includes 3389, it is an administrative path without the phishing-resistant strength). PA-AdminRDP-Tier1 asks only for MFA. Quick Access still holds two segments.
+
+5. **Plan the pilot and read the administrative policy's fix:**
+
+   ```powershell
+   ./Invoke-GsaPlan.ps1 -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -DesiredPath config/desired.lab.json -OutputPath out/plan -AsOf 2026-11-16T12:00:00Z
+   (Read-GsaJson -Path out/plan/plan.json).steps | Where-Object { $_.call -eq 'ca-update' } | ForEach-Object { $_.body.grantControls | ConvertTo-Json -Depth 5 }
+   ```
+
+   <!-- capture:begin 06-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/06-5.txt))](captures/06-5.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaPlan.ps1 -SettingsPath tests/fixtures/settings.lab.json -Collecti… and what it printed"}
+
+   <!-- capture:end -->
+
+   The body sets the built-in phishing-resistant strength and a compliant device, as the reviewed file says.
+
+6. **Check the tenant two weeks later.** Finance is one host on 443 for the pilot group, both East connectors are active and current, the RDP policy has its strength, and Quick Access is empty:
+
+   ```powershell
+   ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab-ring1.json -FixturePath tests/fixtures/ring1 -OutputPath out/ring1 -AsOf 2026-11-30T12:00:00Z
+   ./Invoke-GsaCheck.ps1 -Area private-access -SettingsPath tests/fixtures/settings.lab-ring1.json -CollectionPath out/ring1 -InputsPath tests/fixtures/ring1/inputs -OutputPath out/check-pa-ring1 -AsOf 2026-11-30T12:00:00Z
+   ```
+
+   <!-- capture:begin 06-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/06-6.txt))](captures/06-6.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab-ring1.json … and what it printed"}
+
+   <!-- capture:end -->
+
+7. **Run this chapter's tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Chapter 06*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+   ```
+
+   <!-- capture:begin 06-7 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/06-7.txt))](captures/06-7.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Chapt… and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** `FailedCount` 0. Delete `out` when you're done:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 06-8 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/06-8.txt))](captures/06-8.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test tenant
+
+Use a test tenant with Private Access licenses, a test connector group with two connectors on Windows Server 2019 or later, a test application server and a pilot group, never production. **The authors haven't run this lab.** Work in `examples/global-secure-access`. Activate Global Secure Access Administrator, Application Administrator and Conditional Access Administrator through PIM for the lab only. You'll replace: `<tenant-id>`, `<settings-file>`, `<inputs-folder>`, `<connector-group-id>`, `<app-fqdn>` (the test server's name), `<pilot-group-id>`, `<app-object-id>`, `<sp-object-id>`, `<user-role-id>`, `<desired-file>` (a copy of `config/desired.lab.json` whose `conditionalAccess` lists only `policies/NET-PA-PA-HR-Portal-Device-MFA.json`), `<plan-sha256>` and `<policy-id>`.
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/global-secure-access`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Sign in
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes "Application.ReadWrite.All","Directory.ReadWrite.All","AppRoleAssignment.ReadWrite.All","Policy.Read.All","Policy.ReadWrite.ConditionalAccess","NetworkAccess.Read.All","LicenseAssignment.Read.All","NetworkAccessPolicy.Read.All"
+
+# Step 2: Publish one app with the guide's Steps 6.1 to 6.4
+$app = Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/applicationTemplates/8adf8e6e-67b2-4cf2-a259-e3dc5476c621/instantiate" -Body '{"displayName":"PA-HR-Portal"}' -ContentType "application/json"
+$app.application.id; $app.servicePrincipal.id
+Invoke-MgGraphRequest -Method PATCH -Uri "https://graph.microsoft.com/beta/applications/<app-object-id>" -ContentType "application/json" -Body '{"onPremisesPublishing":{"applicationType":"nonwebapp","isAccessibleViaZTNAClient":true}}'
+Invoke-MgGraphRequest -Method PUT -Uri "https://graph.microsoft.com/beta/applications/<app-object-id>/connectorGroup/`$ref" -ContentType "application/json" -Body '{"@odata.id":"https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/<connector-group-id>"}'
+Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/beta/applications/<app-object-id>/onPremisesPublishing/segmentsConfiguration/microsoft.graph.ipSegmentConfiguration/applicationSegments" -ContentType "application/json" -Body '{"destinationHost":"<app-fqdn>","destinationType":"fqdn","port":0,"ports":["443-443"],"protocol":"tcp"}'
+(Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals/<sp-object-id>?`$select=appRoles").appRoles | Select-Object id, value
+Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/servicePrincipals/<sp-object-id>/appRoleAssignments" -ContentType "application/json" -Body '{"principalId":"<pilot-group-id>","principalType":"Group","appRoleId":"<user-role-id>","resourceId":"<sp-object-id>"}'
+
+# Step 3: Collect and check
+./Invoke-GsaCollect.ps1 -SettingsPath <settings-file> -OutputPath out/pa-test -AllowUnverified
+./Invoke-GsaCheck.ps1 -Area private-access -SettingsPath <settings-file> -CollectionPath out/pa-test -InputsPath <inputs-folder> -OutputPath out/check-pa-test
+
+# Step 4: Plan and apply the app's policy, report-only
+./Invoke-GsaPlan.ps1 -SettingsPath <settings-file> -CollectionPath out/pa-test -DesiredPath <desired-file> -OutputPath out/plan-pa
+./Invoke-GsaPlan.ps1 -SettingsPath <settings-file> -CollectionPath out/pa-test -DesiredPath <desired-file> -OutputPath out/plan-pa -Apply -ApprovedSha256 <plan-sha256>
+
+# Step 6: Back it out
+Invoke-MgGraphRequest -Method DELETE -Uri "https://graph.microsoft.com/v1.0/identity/conditionalAccess/policies/<policy-id>"
+Invoke-MgGraphRequest -Method DELETE -Uri "https://graph.microsoft.com/v1.0/applications/<app-object-id>"
+Disconnect-MgGraph
+Remove-Item -Recurse -Force out/pa-test, out/check-pa-test, out/plan-pa
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Sign in:**
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes "Application.ReadWrite.All","Directory.ReadWrite.All","AppRoleAssignment.ReadWrite.All","Policy.Read.All","Policy.ReadWrite.ConditionalAccess","NetworkAccess.Read.All","LicenseAssignment.Read.All","NetworkAccessPolicy.Read.All"
+   ```
+
+2. **Publish one app with the guide's Steps 6.1 to 6.4,** named `PA-HR-Portal` so the reviewed policy file finds it:
+
+   ```powershell
+   $app = Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/applicationTemplates/8adf8e6e-67b2-4cf2-a259-e3dc5476c621/instantiate" -Body '{"displayName":"PA-HR-Portal"}' -ContentType "application/json"
+   $app.application.id; $app.servicePrincipal.id
+   Invoke-MgGraphRequest -Method PATCH -Uri "https://graph.microsoft.com/beta/applications/<app-object-id>" -ContentType "application/json" -Body '{"onPremisesPublishing":{"applicationType":"nonwebapp","isAccessibleViaZTNAClient":true}}'
+   Invoke-MgGraphRequest -Method PUT -Uri "https://graph.microsoft.com/beta/applications/<app-object-id>/connectorGroup/`$ref" -ContentType "application/json" -Body '{"@odata.id":"https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/<connector-group-id>"}'
+   Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/beta/applications/<app-object-id>/onPremisesPublishing/segmentsConfiguration/microsoft.graph.ipSegmentConfiguration/applicationSegments" -ContentType "application/json" -Body '{"destinationHost":"<app-fqdn>","destinationType":"fqdn","port":0,"ports":["443-443"],"protocol":"tcp"}'
+   (Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals/<sp-object-id>?`$select=appRoles").appRoles | Select-Object id, value
+   Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/servicePrincipals/<sp-object-id>/appRoleAssignments" -ContentType "application/json" -Body '{"principalId":"<pilot-group-id>","principalType":"Group","appRoleId":"<user-role-id>","resourceId":"<sp-object-id>"}'
+   ```
+
+3. **Collect and check.** Compare the `private-apps` result with **Global Secure Access** > **Applications** > **Enterprise applications** in the portal before trusting it:
+
+   ```powershell
+   ./Invoke-GsaCollect.ps1 -SettingsPath <settings-file> -OutputPath out/pa-test -AllowUnverified
+   ./Invoke-GsaCheck.ps1 -Area private-access -SettingsPath <settings-file> -CollectionPath out/pa-test -InputsPath <inputs-folder> -OutputPath out/check-pa-test
+   ```
+
+   GSA-PA-07 fails: no policy yet.
+
+4. **Plan and apply the app's policy, report-only:**
+
+   ```powershell
+   ./Invoke-GsaPlan.ps1 -SettingsPath <settings-file> -CollectionPath out/pa-test -DesiredPath <desired-file> -OutputPath out/plan-pa
+   ./Invoke-GsaPlan.ps1 -SettingsPath <settings-file> -CollectionPath out/pa-test -DesiredPath <desired-file> -OutputPath out/plan-pa -Apply -ApprovedSha256 <plan-sha256>
+   ```
+
+5. **Validate** from a pilot device off the corporate network: reach `<app-fqdn>` on 443, confirm another port fails, and use the client's **Advanced diagnostics** > **Forwarding profile** > **Policy tester** to see which rule handles it.
+
+6. **Back it out:** delete the policy, then the application (which removes its segments and assignment):
+
+   ```powershell
+   Invoke-MgGraphRequest -Method DELETE -Uri "https://graph.microsoft.com/v1.0/identity/conditionalAccess/policies/<policy-id>"
+   Invoke-MgGraphRequest -Method DELETE -Uri "https://graph.microsoft.com/v1.0/applications/<app-object-id>"
+   Disconnect-MgGraph
+   Remove-Item -Recurse -Force out/pa-test, out/check-pa-test, out/plan-pa
+   ```
+
+## Verified facts
+
+| Item | Value | GCC | Stage | Source |
+|---|---|---|---|---|
+| App creation, segments, connector group binding, assignment | Learn's tutorial requests (custom template `8adf8e6e-67b2-4cf2-a259-e3dc5476c621`) | Available (product-wide) | Beta for `onPremisesPublishing` and segments | [^gsa06-pa] |
+| Segments | No overlap between per-app apps; per-app overrides Quick Access; up to 15 minutes to take effect | — | GA | [^gsa06-perapp] |
+| Connectors | `Directory.ReadWrite.All`, delegated only; `status` `active` or `inactive`; `version` | — | Beta | [^gsa06-cg] [^gsa06-conn] |
+| Phishing-resistant strength | Built-in strength `00000000-0000-0000-0000-000000000004` | — | — | [Book 04, Chapter 03](../../../books/b04-access/03-the-conditional-access-model.md) |
+| DC sensor | Audit first; application SPNs before the DC's own; break-glass mode | Available (product-wide) | Not labeled preview | [^gsa06-dc] |
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| Each app reaches one host and its ports, for one group (Lab 1, step 4; Lab 2, steps 2 and 3) | AC-3, AC-6 (least privilege), AC-17(3) (managed access control points) | KSI-IAM-ELP, KSI-CNA-ULN, KSI-CNA-MAT | The application owner; the platform owner |
+| Two active, current connectors per group (Lab 1, steps 3 and 4) | AC-17 | KSI-CNA-ULN | The platform owner (servers) |
+| Administrative paths require phishing-resistant authentication and a compliant device (Lab 1, steps 4 and 5) | IA-2(1), IA-2(2) (multi-factor authentication), AC-6(9) | KSI-IAM-APM, KSI-IAM-ELP | The privileged access owner |
+| Each app's policy, planned and approved by its hash (Lab 2, step 4) | CM-3 | KSI-CMT-LMC | The change record |
+
+M-22-09's application access without a VPN and its phishing-resistant MFA are the memo's requirements this step supports, as the guide's table says. The kit's records support these controls; the agency's assessor decides them.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| A wide segment | The VPN's lateral movement exposure under a new name | GSA-PA-04 |
+| One active connector | A patch takes the app down | GSA-PA-01 |
+| A person assigned instead of a group | Escapes the quarterly access review | GSA-PA-06 |
+| Plain MFA on RDP | A phished administrator reaches a server | GSA-PA-08; the plan restores the reviewed file |
+| Quick Access left as a range | Nothing per-app is enforced | GSA-PA-03 and Chapter 08's metric |
+| The DC's own SPN protected first | Administrators locked out of the domain | Learn's order; the guide's break-glass mode, outside the kit |
+
+## Checklist
+
+- [ ] Every connector group has two or more active connectors at the current version.
+- [ ] Every per-app segment is a host (or a narrow range) on the ports the application uses, with no overlaps.
+- [ ] Every app is assigned to a group and has a `NET-PA-` policy that excludes emergency access.
+- [ ] RDP and SSH apps require the phishing-resistant strength and a compliant device.
+- [ ] Quick Access has a plan to reach zero segments, tracked in Chapter 08.
+- [ ] The `private-apps` read was compared with the portal before its results were trusted.
+
+::: {.callout-tip}
+## Continue the book
+[← Chapter 05 — The Compliant Network and Tenant Restrictions](05-compliant-network-and-tenant-restrictions.md) · [Workbook index](index.md) · [Next: Chapter 07 — Internet Access, QUIC and TLS Inspection →](07-internet-access-and-tls-inspection.md)
+:::
+
+[^gsa06-pa]: Microsoft Learn, "Configure Microsoft Entra Private Access using Microsoft Graph APIs," Steps 1 to 8, <https://learn.microsoft.com/graph/tutorial-entra-private-access> (read November 11, 2026, for the guide).
+[^gsa06-perapp]: Microsoft Learn, "How to configure per-app access using Global Secure Access applications," <https://learn.microsoft.com/entra/global-secure-access/how-to-configure-per-app-access> (read November 11, 2026, for the guide).
+[^gsa06-cg]: Microsoft Learn, "List connectorGroups" and "List members" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/connectorgroup-list?view=graph-rest-beta> and <https://learn.microsoft.com/graph/api/connectorgroup-list-members?view=graph-rest-beta> (accessed November 17, 2026).
+[^gsa06-conn]: Microsoft Learn, "connector resource type" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/resources/connector?view=graph-rest-beta> (accessed November 17, 2026).
+[^gsa06-zt]: Microsoft Learn, "Configure Microsoft Entra for Zero Trust: Protect networks," <https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-networks> (read November 11, 2026, for the guide).
+[^gsa06-dc]: Microsoft Learn, "Configure Microsoft Entra Private Access for Active Directory domain controllers," <https://learn.microsoft.com/entra/global-secure-access/how-to-configure-domain-controllers> (read November 11, 2026, for the guide).

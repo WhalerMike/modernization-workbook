@@ -1,0 +1,21 @@
+{
+  "value": [
+    {
+      "@odata.type": "#microsoft.graph.compliantNetworkNamedLocation",
+      "id": "44444444-4444-4444-8444-444444444401",
+      "displayName": "All Compliant Network locations",
+      "isTrusted": true
+    },
+    {
+      "@odata.type": "#microsoft.graph.ipNamedLocation",
+      "id": "44444444-4444-4444-8444-444444444402",
+      "displayName": "HQ egress",
+      "isTrusted": true,
+      "ipRanges": [
+        {
+          "cidrAddress": "198.51.100.0/24"
+        }
+      ]
+    }
+  ]
+}

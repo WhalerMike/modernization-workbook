@@ -59,6 +59,13 @@ Read the guide's [Step 10](../../books/guides/global-secure-access-implementatio
 
 Read the guide's Step 10, 10.3 and its How-section. The program retires its domain controllers; until then they are Tier 0. Learn's procedure publishes the DCs on TCP 88, names the SPNs to protect, opens inbound TCP 1337, installs one sensor per DC silently and registers it with a token. The sensor installs in **Audit** mode. Learn's advice is to test with application SPNs first and protect the DC's own SPN only later, to avoid admin lockout, and to assess NTLM use before restricting it. The registration token is a credential: acquire it on a privileged access workstation, use it once, clear the session. The rollback is the sensor's break-glass mode, from the admin center or `TmpBreakglass` set to `1` and the sensor restarted.
 
+## Exercise: Lab 1, fixtures, no tenant {#gsa-m4-lab-1}
+*About 20 minutes per chapter. No tenant: it runs on a laptop.*
+
+This module's fixture labs are in the developer workbook [*Building Global Secure Access*](../../project-plans/developer-workbooks/global-secure-access/index.md). Each runs the kit in `examples/global-secure-access` against one fictional tenant, `contoso.example`, with every command as a copy-paste block and the kit's real output beside it. Follow them as written; they aren't repeated here:
+
+- [Chapter 06, Lab 1](../../project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.md#lab-1-fixtures-no-tenant): connector resilience, narrow segments, group assignments and phishing-resistant administrative paths.
+
 ## Exercise: Lab 2, a test tenant {#gsa-m4-lab-2}
 *Not timed. Not run by the authors. Never production.*
 

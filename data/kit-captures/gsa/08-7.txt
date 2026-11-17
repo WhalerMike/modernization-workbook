@@ -1,0 +1,24 @@
+PS> ./Invoke-GsaEvidence.ps1 -EvidencePath out/evidence -RunPath out/ring1 -AsOf 2026-11-30T12:01:00Z
+Record 1: Pass (BASELINE, EVIDENCE)
+Controls: AC-4, AU-6, AU-9, CM-2, CM-8, SC-7
+KSIs:     KSI-CNA-ULN, KSI-MLA-OSM, KSI-MLA-RVL, KSI-PIY-GIV
+Written to out/evidence: records/, runs/, records.csv, SHA256SUMS
+PS> ./Invoke-GsaEvidence.ps1 -EvidencePath out/evidence -RunPath out/metrics-ring1 -AsOf 2026-11-30T12:02:00Z
+Record 2: Pass (RINGS, TELEMETRY, EVIDENCE)
+Controls: AU-12, AU-2, AU-6, AU-9, CM-3, CM-4, CP-2, SI-4
+KSIs:     KSI-CMT-LMC, KSI-CMT-VTD, KSI-MLA-LET, KSI-MLA-OSM, KSI-MLA-RVL
+Written to out/evidence: records/, runs/, records.csv, SHA256SUMS
+PS> ./Invoke-GsaEvidence.ps1 -EvidencePath out/evidence -RunPath out/rollback -AsOf 2026-11-30T12:03:00Z
+Record 3: Pass (RB, EVIDENCE)
+Controls: AU-6, AU-9, CM-3, CP-2
+KSIs:     KSI-CMT-LMC, KSI-MLA-OSM, KSI-MLA-RVL
+Written to out/evidence: records/, runs/, records.csv, SHA256SUMS
+PS> ./Invoke-GsaEvidence.ps1 -EvidencePath out/evidence -Check
+SUMS            Pass  29 files match SHA256SUMS
+CHAIN           Pass  3 records, chain unbroken
+PS> Import-Csv out/evidence/records.csv | Format-Table sequence, label, result, steps
+sequence label    result steps
+-------- -----    ------ -----
+1        collect  Pass   BASELINE EVIDENCE
+2        metrics  Pass   RINGS TELEMETRY EVIDENCE
+3        rollback Pass   RB EVIDENCE

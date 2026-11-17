@@ -1,0 +1,259 @@
+---
+title: "Chapter 09 — Deploying to Test and Production"
+description: "The runbook that takes the Global Secure Access kit from the labs to a live test tenant, then production, ring by ring, with the same commands and one settings file per environment: a read-only preflight that puts the logs and the emergency access exclusion first (PF-01 to -06), a staged enable from a plan approved by its SHA-256, a smoke test with the ring exit criteria and a Go or No-go, a rollback planned in the guide's order before the ring starts, and the evidence each stage must hold. Every step is a command block or an exact portal path; the fixture-mode output is labeled with its date. Not yet run against a live tenant."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-global-secure-access
+part: How
+series-order: 9
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 09 — Deploying to Test and Production
+
+*The labs proved the code on fixtures and in a test tenant. This runbook moves the rollout itself: one ring at a time, logs first, emergency access checked before anything changes, every change from a plan a second person approved, and a Go or No-go from measured values.*
+
+::: {.callout-note}
+## In this chapter
+A runbook, not a code chapter: it has no labs of its own. It runs Chapters 02 to 08's entry scripts and the kit's `deploy/` scripts in the order of the guide's [Step 11 rings](../../../books/guides/global-secure-access-implementation.md#step-11-coexistence-and-migration): settings per environment, preflight, Stage 1 in a live test tenant (staged enable, smoke test, rollback rehearsed), the go/no-go, Stage 2 in production ring by ring, and the evidence each stage must hold. **Not yet run against a live tenant.** The output shown is the kit's fixture mode, run on November 17, 2026.
+:::
+
+## Before you start
+
+- Chapters 01 to 08's Lab 2s have been run in a test tenant, and their findings fixed or recorded.
+- The decision records (Chapter 01) are approved for every function the first ring enables.
+- The network diagnostic setting exists (Chapter 02); the preflight fails without it.
+- The emergency access accounts and their group exist and have been tested ([Book 04, Chapter 04](../../../books/b04-access/04-privileged-roles-and-tiers.md#emergency-access-accounts); [*Building Privileged Access*, Chapter 02](../privileged-access/02-emergency-access-as-code.md)).
+- Microsoft's break-glass scripts for compliant network outages are staged and rehearsed, and the date is in the ring record.
+- The change record is open; enabling a new traffic profile is a major change for the change advisory board, as Learn categorizes it.[^gsa09-ops]
+- Roles are activated through PIM for the change window only: Global Secure Access Administrator, Conditional Access Administrator and, for assignments, Application Administrator.
+
+Work in `examples/global-secure-access`, in PowerShell 7, on an administrator workstation with the Microsoft Graph PowerShell SDK and the Azure CLI. Values you supply: `<tenant-id>` (one per environment), `<evidence-test>` and `<evidence-production>` (protected evidence folders inside the boundary), `<desired-file>` (the reviewed desired state for the ring, from `config/desired.*.json`), `<inputs-folder>` (the agency's records), `<plan-sha256>` and `<rollback-sha256>` (as the reviewer approved them), and `<change-record>` (the change record's number).
+
+## Step 1: One settings file per environment
+
+Copy the template once per environment and fill every placeholder: the tenant, the ring, the groups (pilot, emergency, administrators, the next ring), the Intune application IDs, the security profile, the workspace, the in-scope device count from Intune, the minimum client and connector versions, the acceptable-use categories and the authentication CAs:
+
+```powershell
+Copy-Item deploy/settings.template.json settings.test.json
+Copy-Item deploy/settings.template.json settings.production.json
+```
+
+`Read-GsaSettings` refuses a file with a secret-like value, and, for `test` and `production`, any placeholder left in it. The settings hold names and IDs only; the operator signs in as a person. File both copies with the change record. Everything below is the same command for both stages; only the settings file, the evidence folder and the tenant change.
+
+## Step 2: Collect and preflight
+
+Sign in to the stage's tenant, collect, and run the preflight. It reads only:
+
+```powershell
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes "NetworkAccess.Read.All","Policy.Read.All","Directory.ReadWrite.All","LicenseAssignment.Read.All","NetworkAccessPolicy.Read.All"
+az login --tenant <tenant-id>
+./Invoke-GsaCollect.ps1 -SettingsPath settings.test.json -OutputPath out/deploy-test/collect -AllowUnverified
+./deploy/Test-GsaPreflight.ps1 -SettingsPath settings.test.json -Stage test -CollectionPath out/deploy-test/collect -InputsPath <inputs-folder> -DesiredPath <desired-file> -OutputPath out/deploy-test/preflight
+```
+
+| Check | What it requires |
+|---|---|
+| PF-01 | The settings file names this stage |
+| PF-02 | The collection matches its manifest and was read in the settings' tenant |
+| PF-03 | The emergency access group is excluded from every `NET-` Conditional Access policy in the tenant |
+| PF-04 | The `gsa-network-telemetry` diagnostic setting exists: logs before the ring |
+| PF-05 | Every function the desired state enables has an approved decision |
+| PF-06 | Production only: the test stage's evidence passes `-Check -Stage test` |
+
+Fixture mode, November 17, 2026 (the fictional tenant at ring 1, `tests/fixtures/settings.test.json` and `tests/fixtures/ring1`):
+
+```text
+PF-01  Pass  settings environment 'test', stage 'test'; ring ring1
+PF-02  Pass  18 files match the manifest; tenant 11111111-1111-4111-8111-111111111111
+PF-03  Pass  emergency group excluded from all 5 NET- policies
+PF-04  Pass  gsa-network-telemetry exists
+PF-05  Pass  every enabled function has an approved decision
+
+Preflight (test): 5 checks, 0 failed. Written to out/deploy-test/preflight
+```
+
+A preflight failure stops the stage. The pilot fixture fails PF-03, because its Finance policy doesn't exclude the emergency group (Chapter 06).
+
+## Step 3: Plan the rollback before the ring
+
+Plan the rollback for the state the ring starts from, have it reviewed, and file its hash. It is applied only if a backout trigger fires (Step 6):
+
+```powershell
+./deploy/Invoke-GsaRollback.ps1 -SettingsPath settings.test.json -CollectionPath out/deploy-test/collect -OutputPath out/deploy-test/rollback
+```
+
+Fixture mode, November 17, 2026:
+
+```text
+RB-01      WouldApply  PATCH Step 7: NET-CN-Require-Compliant-Network-Pilot enabled -> report-only
+RB-02      WouldApply  PATCH Step 6: NET-PA-PA-Finance-Device-MFA enabled -> report-only
+RB-03      WouldApply  PATCH Step 5: NET-IA-SecurityProfile-Pilot enabled -> report-only
+RB-04      WouldApply  PATCH Step 8: universal tenant restrictions tagging disabled (the TRv2 policy stays)
+MAN-LINK   Manual      Portal: remove link 55555555-5555-4555-8555-000000000023 from security profile SP-Pilot (Steps 5 and 9; TLS: unlink, delete the policy, then remove the certificate)
+MAN-LINK   Manual      Portal: remove link 55555555-5555-4555-8555-000000000024 from security profile SP-Pilot (Steps 5 and 9; TLS: unlink, delete the policy, then remove the certificate)
+MAN-GROUPS Manual      Portal: remove the ring's groups from the traffic profiles' user and group assignments
+MAN-VPN    Manual      Agency change: restore the VPN route for the affected applications
+
+Plan SHA-256: 77609a56e669187e96c4b8ad23236830bdf577230afae96f441b17f61b5bb9ab
+Dry run: nothing changed.
+```
+
+## Step 4: Staged enable
+
+Plan the ring from its reviewed desired state, have a second person approve the plan's hash, apply it, and do the manual steps it lists. Pass `-AllowEnforce` only for a ring whose desired state enforces a policy that has passed its report-only period (Chapter 05):
+
+```powershell
+./Invoke-GsaPlan.ps1 -SettingsPath settings.test.json -CollectionPath out/deploy-test/collect -DesiredPath <desired-file> -OutputPath out/deploy-test/plan
+./Invoke-GsaPlan.ps1 -SettingsPath settings.test.json -CollectionPath out/deploy-test/collect -DesiredPath <desired-file> -OutputPath out/deploy-test/plan -Apply -ApprovedSha256 <plan-sha256>
+```
+
+Then, for each `MAN-ASSIGN` line, in the Microsoft Entra admin center:
+
+1. **Global Secure Access** > **Connect** > **Traffic forwarding**.
+2. The profile the line names > **User and group assignments** > **View**.
+3. **Add user/group**, select the ring's group, **Assign**.
+
+The client reaches the ring through its Intune assignment (the guide's Step 3.2), widened to the ring's group in the same change. Rings follow the guide: 0, the implementing team; 1, the pilot of fewer than 20 users; 2, about 10% including one branch; 3, everyone in waves.
+
+## Step 5: Smoke test and go/no-go
+
+After the ring's exit period (10 business days for rings 0 and 1, 20 for rings 2 and 3), collect again and run the smoke test. It runs every area's checks and the ring exit criteria; Go only if no check fails and every criterion passes:
+
+```powershell
+./Invoke-GsaCollect.ps1 -SettingsPath settings.test.json -OutputPath out/deploy-test/after -AllowUnverified
+./deploy/Invoke-GsaSmokeTest.ps1 -SettingsPath settings.test.json -CollectionPath out/deploy-test/after -InputsPath <inputs-folder> -OutputPath out/deploy-test/smoke
+```
+
+Fixture mode, November 17, 2026 (the ring 1 fixture, two weeks into the ring):
+
+```text
+Checks: 100 run, 0 fail
+RX-01 time in ring                             Pass  10 business days since 2026-11-16 (needs 10)
+RX-02 Sev-2 tickets                            Pass  0 unresolved
+RX-03 help desk volume                         Pass  6 tickets (threshold 10)
+RX-04 client active on every in-scope device   Pass  100.0% of in-scope devices
+RX-05 report-only results clean                Pass  0 report-only failures carried by the service; 0 compliant network checks fail
+RX-06 TLS failure share under 1%               Pass  0.50% failures; 180 days to expiry
+RX-07 emergency exclusion tested at ring start Pass  tested 2026-11-16; ring started 2026-11-16
+RX-08 break-glass rehearsed                    Pass  rehearsed 2026-11-13
+
+Ring ring1: Go. Written to out/deploy-test/smoke
+```
+
+The same command on the pilot fixture says No-go and exits 1. Run the guide's Validate steps for the ring's group as well (the source IP comparison, the blocked-category test, the disable-and-retry test, the four-case tenant restrictions test, the reachable and unreachable port test): the smoke test reads configuration and logs, not what a user sees.
+
+## Step 6: Roll back when a trigger fires
+
+Backout triggers are set before each ring: a sign-in failure rate above the baseline, help desk calls above the agreed threshold, a mission application unreachable, or a TLS failure share above 1%. When one fires, apply the plan from Step 3 with its approved hash, then do its manual steps in order:
+
+```powershell
+./deploy/Invoke-GsaRollback.ps1 -SettingsPath settings.test.json -CollectionPath out/deploy-test/collect -OutputPath out/deploy-test/rollback -Apply -ApprovedSha256 <rollback-sha256>
+```
+
+In Stage 1, rehearse it once: apply the rollback in the test tenant, confirm the policies are report-only and tagging is off, then re-apply Step 4's plan. Signaling stays on; turn it off only in a separate change, with `-DisableSignaling`, after no policy depends on it. After any rollback, collect again (Step 2's command) so the evidence shows the state after it.
+
+## Step 7: Record the stage's evidence
+
+Record every run folder of the stage, then check that the stage's evidence is complete:
+
+```powershell
+foreach ($run in 'preflight', 'collect', 'plan', 'smoke', 'rollback') { ./Invoke-GsaEvidence.ps1 -EvidencePath <evidence-test> -RunPath out/deploy-test/$run -ChangeRecord <change-record> }
+./Invoke-GsaEvidence.ps1 -EvidencePath <evidence-test> -Check -Stage test
+```
+
+Fixture mode, November 17, 2026:
+
+```text
+SUMS            Pass  39 files match SHA256SUMS
+CHAIN           Pass  5 records, chain unbroken
+STEP-PRE        Pass  a passing record covers it
+STEP-BASELINE   Pass  a passing record covers it
+STEP-PLAN       Pass  a passing record covers it
+STEP-SMOKE      Pass  a passing record covers it
+STEP-RB         Pass  a passing record covers it
+```
+
+| Stage | Steps its evidence must hold (`config/requirements.json`) |
+|---|---|
+| Test | PRE, BASELINE, PLAN, SMOKE, RB (the rollback planned and rehearsed) |
+| Production | PRE, BASELINE, TELEMETRY (the telemetry check passing, CISA telemetry agreed), PLAN, SMOKE |
+
+## Step 8: Go/no-go for production
+
+Production starts only when all of these hold, recorded in the change record:
+
+- The test stage's evidence check passes (`-Check -Stage test`), which the production preflight's PF-06 re-checks.
+- The test tenant's smoke test said Go for the ring, and the rollback was rehearsed.
+- The policy owner approved the production decision records and the ring's desired state; the change advisory board approved the change.
+- CISA telemetry is agreed with the TIC delegates before ring 3, which retires the VPN's web path.
+
+## Step 9: Stage 2, production, ring by ring
+
+Repeat Steps 2 to 7 with `settings.production.json`, `out/deploy-prod/...` and `<evidence-production>`, one ring at a time. The production preflight takes the test evidence:
+
+```powershell
+./deploy/Test-GsaPreflight.ps1 -SettingsPath settings.production.json -Stage production -CollectionPath out/deploy-prod/collect -InputsPath <inputs-folder> -DesiredPath <desired-file> -TestEvidencePath <evidence-test> -OutputPath out/deploy-prod/preflight
+```
+
+Fixture mode, November 17, 2026:
+
+```text
+PF-01  Pass  settings environment 'production', stage 'production'; ring ring1
+PF-02  Pass  18 files match the manifest; tenant 11111111-1111-4111-8111-111111111111
+PF-03  Pass  emergency group excluded from all 5 NET- policies
+PF-04  Pass  gsa-network-telemetry exists
+PF-05  Pass  every enabled function has an approved decision
+PF-06  Pass  the test stage's evidence passes
+
+Preflight (production): 6 checks, 0 failed. Written to out/deploy-prod/preflight
+```
+
+For each ring after the first, change `ring` in the settings file, use the ring's desired-state file, and widen the Intune client assignment and the profile assignments to the ring's group. Remove a migrated application's VPN route only after the VPN's own logs show no traffic for it for 10 business days. After each ring, re-run the Zero Trust Assessment and update each network finding's closure register entry with the ring's evidence (Chapter 08). Close the Graph session at the end of each window:
+
+```powershell
+Disconnect-MgGraph
+```
+
+## Federal requirements and evidence
+
+| What the stage's evidence proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| Logs and the emergency exclusion were in place before any change (preflight) | CM-4; CP-2 | KSI-CMT-VTD | The ISSO |
+| Each change was planned, approved by its hash and applied in order (plan) | CM-3, CM-4 | KSI-CMT-LMC, KSI-CMT-VTD | The change record |
+| The ring exited on measured criteria (smoke test) | CM-3, CM-4 | KSI-CMT-LMC, KSI-CMT-VTD | The technical program manager; the service owner approves |
+| The rollback was planned and rehearsed in the guide's order (rollback) | CP-2, CM-3 | KSI-CMT-LMC | The change record |
+| Every run is hashed and chained (evidence) | AU-9, AU-6 | KSI-MLA-OSM, KSI-MLA-RVL | The ISSO |
+
+The kit's records support these controls; the agency's assessor decides them. KSIs are FedRAMP 20x indicators for cloud service providers; the agency lines its evidence up with them and doesn't report KSIs itself.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| A ring changed before its logs exist | Blocks with no record | PF-04 |
+| A new policy that catches the emergency accounts | Lockout during an incident | PF-03; the plan refuses the file |
+| A plan applied that differs from the one reviewed | Changes nobody approved | `-ApprovedSha256` must equal the file's hash |
+| Rollback improvised during an incident | Signaling off first, users blocked | The rollback planned in Step 3, signaling last |
+| Production before the test stage's evidence is complete | The runbook's own checks skipped | PF-06 |
+| Unattended runs of the beta API | A silent change breaks the evidence | The live reader refuses an app-only session; the runbook is run by a person |
+
+## Checklist
+
+- [ ] One filled settings file per environment, filed with the change record.
+- [ ] The preflight passed for the stage; for production, PF-06 too.
+- [ ] The rollback plan for the ring was reviewed before the ring started, and rehearsed in Stage 1.
+- [ ] Each ring's plan hash was approved by someone other than the person who applied it.
+- [ ] Each ring's smoke test said Go, and the guide's Validate steps passed for its group.
+- [ ] The stage's evidence check passes, and the evidence folder is inside the boundary.
+
+::: {.callout-tip}
+## Continue the book
+[← Chapter 08 — Rings, Metrics and the Evidence Package](08-rings-metrics-and-evidence.md) · [Workbook index](index.md)
+:::
+
+[^gsa09-ops]: Microsoft Learn, "Common operations for Microsoft Entra Global Secure Access," change management (categories), <https://learn.microsoft.com/entra/global-secure-access/how-to-operations-common> (read November 11, 2026, for the guide).

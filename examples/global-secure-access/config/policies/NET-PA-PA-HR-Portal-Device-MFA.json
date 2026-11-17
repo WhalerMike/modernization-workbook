@@ -1,0 +1,9 @@
+{
+  "displayName": "NET-PA-PA-HR-Portal-Device-MFA",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "applications": { "includeApplications": [ "<app-id:PA-HR-Portal>" ] },
+    "users": { "includeGroups": [ "<pilot-group-id>" ], "excludeGroups": [ "<emergency-group-id>" ] }
+  },
+  "grantControls": { "operator": "AND", "builtInControls": [ "mfa", "compliantDevice" ] }
+}
