@@ -162,6 +162,12 @@ function Get-GsaSum {
     $t
 }
 
+function Format-GsaPct {
+    # A share as a percentage with the given decimals, the same on every machine (invariant culture, no space).
+    param([double]$Value, [int]$Decimals)
+    [string]::Format([Globalization.CultureInfo]::InvariantCulture, "{0:F$Decimals}%", 100.0 * $Value)
+}
+
 function Compare-GsaVersion {
     # -1, 0 or 1; a version that doesn't parse sorts lowest.
     param([string]$A, [string]$B)
@@ -1123,11 +1129,11 @@ function Get-GsaMetrics {
     $row = { param($m, $v, $t, $ok) [pscustomobject][ordered]@{ Metric = $m; Value = $v; Target = $t; Met = [bool]$ok } }
     $act = [int](Get-GsaPolicyValue $Collection['device-usage'] @('activeDeviceCount')); $scope = [int]$Settings.inScopeDevices
     $cov = if ($scope) { $act / $scope } else { 0 }
-    & $row 'Client coverage' ('{0:P1}' -f $cov) ('{0:P0}' -f [double]$Settings.targets.clientCoverage) ($cov -ge [double]$Settings.targets.clientCoverage)
+    & $row 'Client coverage' (Format-GsaPct $cov 1) (Format-GsaPct ([double]$Settings.targets.clientCoverage) 0) ($cov -ge [double]$Settings.targets.clientCoverage)
     $rows = @(Get-GsaPolicyValue $Collection['law-query'] @('signin-share'))
     $tot = (Get-GsaSum $rows 'Total'); $thr = (Get-GsaSum $rows 'ThroughGSA')
     $sh = if ($tot) { $thr / $tot } else { 0 }
-    & $row 'Sign-ins through the service' ('{0:P1}' -f $sh) ('{0:P0}' -f [double]$Settings.targets.signinShare) ($sh -ge [double]$Settings.targets.signinShare)
+    & $row 'Sign-ins through the service' (Format-GsaPct $sh 1) (Format-GsaPct ([double]$Settings.targets.signinShare) 0) ($sh -ge [double]$Settings.targets.signinShare)
     $cn = @(Get-GsaPolicies $Collection 'NET-CN-' | Where-Object { $_.state -eq 'enabled' })
     & $row 'Compliant network enforcement' $(if ($cn.Count) { 'On for the ring' } else { 'Report-only or none' }) 'On by ring' ($cn.Count -gt 0)
     $apps = @(Get-GsaList $Collection['private-apps'])
@@ -1140,7 +1146,7 @@ function Get-GsaMetrics {
     $groups = @(Get-GsaList $Collection['connector-groups']); $good = 0
     foreach ($g in $groups) { $cs = @(Get-GsaList $Collection['connector-group-members'][$g.id] | Where-Object { $_.status -eq 'active' -and (Compare-GsaVersion $_.version $Settings.minConnectorVersion) -ge 0 }); if ($cs.Count -ge 2) { $good++ } }
     $res = if ($groups.Count) { $good / $groups.Count } else { 1 }
-    & $row 'Connector resilience' ('{0:P0}' -f $res) '100%' ($res -ge 1)
+    & $row 'Connector resilience' (Format-GsaPct $res 0) '100%' ($res -ge 1)
     $byp = @($Inputs.exceptions | Where-Object { $_.kind -eq 'custom-bypass' -and (Test-GsaException $_ $AsOf).Expired }).Count
     $unappr = @($Inputs.exceptions | Where-Object { -not $_.approver }).Count
     & $row 'Bypass exposure' "$byp bypasses past expiry; $unappr exceptions without an approver" '0; 0' ($byp -eq 0 -and $unappr -eq 0)
@@ -1148,7 +1154,7 @@ function Get-GsaMetrics {
     $tt = (Get-GsaSum $tl 'Count'); $tf = (Get-GsaSum @($tl | Where-Object { "$($_.TlsStatus)" -eq 'Failure' }) 'Count')
     $fs = if ($tt) { 100.0 * $tf / $tt } else { 0 }
     $days = if ($Inputs.tls -and $Inputs.tls.Contains('certificate')) { [int]((Get-GsaDate $Inputs.tls.certificate.notAfter) - $now).TotalDays } else { 0 }
-    & $row 'TLS inspection health' ('{0:N2}% failures; {1} days to expiry' -f $fs, $days) 'Under 1%; over 90' ($fs -lt 1 -and $days -gt 90)
+    & $row 'TLS inspection health' ([string]::Format([Globalization.CultureInfo]::InvariantCulture, '{0:N2}% failures; {1} days to expiry', $fs, $days)) 'Under 1%; over 90' ($fs -lt 1 -and $days -gt 90)
     $fr = @(Get-GsaPolicyValue $Collection['law-query'] @('freshness'))
     $stale = @('NetworkAccessTraffic', 'NetworkAccessConnectionEvents', 'RemoteNetworkHealthLogs', 'NetworkAccessAlerts' | Where-Object { $t = $_; $r = @($fr | Where-Object { $_.Table -eq $t }); -not $r.Count -or ($now - (Get-GsaDate $r[0].Last)).TotalHours -gt 24 }).Count
     & $row 'Telemetry freshness' "$stale tables with no rows in 24 hours" '0' ($stale -eq 0)
@@ -1175,7 +1181,8 @@ function Test-GsaRingExit {
     & $row 'RX-03 help desk volume' ([int]$r.helpDeskTickets -le [int]$r.helpDeskThreshold) "$($r.helpDeskTickets) tickets (threshold $($r.helpDeskThreshold))"
     $m = @(Get-GsaMetrics -Collection $Collection -Inputs $Inputs -Settings $Settings -AsOf $AsOf)
     $cov = $m | Where-Object Metric -EQ 'Client coverage'
-    & $row 'RX-04 client active on every in-scope device' ($cov.Value -eq '100.0%') "$($cov.Value) of in-scope devices"
+    $covN = if ([int]$Settings.inScopeDevices) { [int](Get-GsaPolicyValue $Collection['device-usage'] @('activeDeviceCount')) / [int]$Settings.inScopeDevices } else { 0 }
+    & $row 'RX-04 client active on every in-scope device' ($covN -ge 1) "$($cov.Value) of in-scope devices"
     $cn = @(Test-GsaCompliantNetwork -Collection $Collection -Inputs $Inputs -Settings $Settings -AsOf $AsOf | Where-Object Status -EQ 'Fail')
     $ro = @(Get-GsaPolicyValue $Collection['law-query'] @('cn-report-only'))
     $defects = [int](Get-GsaSum @($ro | Where-Object { "$($_.Result)" -eq 'reportOnlyFailure' -and "$($_.Through)" -eq 'true' }) 'count_')
