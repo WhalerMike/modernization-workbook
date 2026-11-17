@@ -7003,7 +7003,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-azure-security/Guide_Azure_Security_Narration_Script.md",
   "page": "docs/books/guides/azure-security-implementation.html",
   "source": "docs/books/guides/azure-security-implementation.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "azure-security",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/azure-security",
+    "zip": "downloads/azure-security-code.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -15067,7 +15073,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-azs-module-1/Training_AZS_Module_1_Narration_Script.md",
   "page": "docs/training/azure-security/01-the-baseline-and-the-exposure-register.html",
   "source": "docs/training/azure-security/01-the-baseline-and-the-exposure-register.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "azure-security",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/azure-security",
+    "zip": "downloads/azure-security-code.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -15140,7 +15152,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-azs-module-2/Training_AZS_Module_2_Narration_Script.md",
   "page": "docs/training/azure-security/02-ddos-protection-and-the-waf.html",
   "source": "docs/training/azure-security/02-ddos-protection-and-the-waf.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "azure-security",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/azure-security",
+    "zip": "downloads/azure-security-code.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -15213,7 +15231,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-azs-module-3/Training_AZS_Module_3_Narration_Script.md",
   "page": "docs/training/azure-security/03-the-edge-and-the-egress.html",
   "source": "docs/training/azure-security/03-the-edge-and-the-egress.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "azure-security",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/azure-security",
+    "zip": "downloads/azure-security-code.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -15286,7 +15310,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-azs-module-4/Training_AZS_Module_4_Narration_Script.md",
   "page": "docs/training/azure-security/04-private-link-dns-and-key-vault.html",
   "source": "docs/training/azure-security/04-private-link-dns-and-key-vault.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "azure-security",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/azure-security",
+    "zip": "downloads/azure-security-code.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -15351,7 +15381,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-azs-module-5/Training_AZS_Module_5_Narration_Script.md",
   "page": "docs/training/azure-security/05-policy-drift-and-evidence.html",
   "source": "docs/training/azure-security/05-policy-drift-and-evidence.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "azure-security",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/azure-security",
+    "zip": "downloads/azure-security-code.zip"
+   }
+  ],
   "chapters": [
    [
     0,
