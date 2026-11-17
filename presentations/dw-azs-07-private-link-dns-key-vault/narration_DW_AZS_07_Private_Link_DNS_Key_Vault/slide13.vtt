@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:05.937
+Every privatelink zone is in the connectivity
+subscription and linked to the hub.
+
+3
+00:00:05.937 --> 00:00:09.413
+Every private endpoint has a
+zone group in a central zone.
+
+4
+00:00:09.413 --> 00:00:13.461
+No resource has an endpoint with
+public network access still on,
+
+5
+00:00:13.461 --> 00:00:15.600
+unless a decision record says why.
+
+6
+00:00:15.600 --> 00:00:18.875
+Every vault has the full
+posture, or a dated plan.
+
+7
+00:00:18.875 --> 00:00:22.625
+And nslookup from a linked machine
+returned a private address.
+
+8
+00:00:22.625 --> 00:00:26.675
+Next, Chapter 8: the policy that
+holds all of this in place,
+
+9
+00:00:26.675 --> 00:00:28.750
+and the evidence that it did.

@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.388
+Lab 2 moves to a test management
+group with at least one
+
+2
+00:00:03.388 --> 00:00:06.800
+policy assignment and one
+exemption, never production.
+
+3
+00:00:06.800 --> 00:00:12.450
+Sign in, write the settings file, and run
+every area twice, a few minutes apart.
+
+4
+00:00:12.450 --> 00:00:14.528
+With nothing changed between them,
+
+5
+00:00:14.528 --> 00:00:17.538
+the comparison should show
+no new and no fixed rows.
+
+6
+00:00:17.538 --> 00:00:21.961
+Then compare the policy rows with the
+guide's compliance export and Learn's
+
+7
+00:00:21.961 --> 00:00:26.313
+exemption list: every exemption should
+appear, in the state the kit gave it.
+
+8
+00:00:26.313 --> 00:00:30.425
+Record the second run: its mode is
+live, but the stage check still
+
+9
+00:00:30.425 --> 00:00:34.537
+lacks the preflight and the
+scheduled run, which Chapter 9 adds.
+
+10
+00:00:34.537 --> 00:00:38.676
+Nothing changed in Azure, so backing
+out is deleting what the lab wrote.
+
+11
+00:00:38.676 --> 00:00:40.730
+The authors haven't run this lab.

@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.263
+Lab 2 moves to a test
+subscription with a Front Door
+
+2
+00:00:03.263 --> 00:00:07.087
+Premium profile and an App
+Service origin, never production.
+
+3
+00:00:07.087 --> 00:00:10.132
+Sign in to commercial
+Azure, write the settings,
+
+4
+00:00:10.132 --> 00:00:13.801
+and run the edge check live,
+allowing the unverified calls.
+
+5
+00:00:13.801 --> 00:00:17.681
+Compare the origin's access
+restrictions with what the kit read,
+
+6
+00:00:17.681 --> 00:00:21.050
+and check each custom domain's
+minimum TLS in the portal.
+
+7
+00:00:21.050 --> 00:00:26.262
+Then run the guide's own test: a direct
+request to the origin should come back 403,
+
+8
+00:00:26.262 --> 00:00:29.950
+and the same request through
+Front Door should succeed.
+
+9
+00:00:29.950 --> 00:00:34.400
+If the kit said locked and the direct
+request isn't refused, record it.
+
+10
+00:00:34.400 --> 00:00:37.813
+Back out by deleting what the
+lab wrote, and signing out.
+
+11
+00:00:37.813 --> 00:00:39.860
+The authors haven't run this lab.

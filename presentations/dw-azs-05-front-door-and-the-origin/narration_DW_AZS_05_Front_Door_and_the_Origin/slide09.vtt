@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.300
+Step 3 reads the findings.
+
+2
+00:00:02.300 --> 00:00:06.537
+The API origin group mixes a
+private and a public origin.
+
+3
+00:00:06.537 --> 00:00:09.124
+The west origin's tag rule has no header.
+
+4
+00:00:09.124 --> 00:00:13.125
+The careers custom domain allows TLS 1.0.
+
+5
+00:00:13.125 --> 00:00:18.025
+The intranet gateway uses
+an old 2015 TLS policy.
+
+6
+00:00:18.025 --> 00:00:22.062
+The careers origin group has one
+origin, so it can't fail over.
+
+7
+00:00:22.062 --> 00:00:24.162
+The classic profile is still there.
+
+8
+00:00:24.162 --> 00:00:27.786
+And the two unchecked origins
+get a warning that says,
+
+9
+00:00:27.786 --> 00:00:30.751
+in plain words, test a
+direct request by hand.
+
+10
+00:00:30.751 --> 00:00:33.480
+Step 4 runs this chapter's two tests.

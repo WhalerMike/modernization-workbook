@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.913
+Why does the mode matter so much?
+
+2
+00:00:01.913 --> 00:00:04.286
+Because, as Microsoft Learn puts it,
+
+3
+00:00:04.286 --> 00:00:08.213
+detection mode only logs, and
+only prevention mode blocks.
+
+4
+00:00:08.213 --> 00:00:13.300
+By the end of this chapter you can check
+every WAF policy against Microsoft's Zero
+
+5
+00:00:13.300 --> 00:00:18.843
+Trust recommendations, find every internet-facing
+application gateway and Front Door
+
+6
+00:00:18.843 --> 00:00:23.475
+profile that has no WAF or no logs,
+compute the guide's prevention coverage,
+
+7
+00:00:23.475 --> 00:00:27.271
+and hand the application owner
+the exact command that moves
+
+8
+00:00:27.271 --> 00:00:30.688
+a policy to prevention, without
+the kit ever sending it.
+
+9
+00:00:30.688 --> 00:00:34.120
+It's for application owners
+who tune and switch the WAF,
+
+10
+00:00:34.120 --> 00:00:39.050
+platform owners who own the policies,
+and security monitors who read the logs.

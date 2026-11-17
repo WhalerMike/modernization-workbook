@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:04.685
+The application owner tunes the
+policy while it's in detection,
+
+3
+00:00:04.685 --> 00:00:07.650
+and runs the switch after
+the false-positive review.
+
+4
+00:00:07.650 --> 00:00:11.775
+The platform owner owns the policies
+and their rule-set versions.
+
+5
+00:00:11.775 --> 00:00:14.570
+And the security monitor
+reads the WAF logs,
+
+6
+00:00:14.570 --> 00:00:18.762
+and confirms every endpoint's logs
+reach the platform workspace.
+
+7
+00:00:18.762 --> 00:00:20.887
+The kit's reads need only Reader.
+
+8
+00:00:20.887 --> 00:00:23.540
+The plan is the
+application owner's to run.

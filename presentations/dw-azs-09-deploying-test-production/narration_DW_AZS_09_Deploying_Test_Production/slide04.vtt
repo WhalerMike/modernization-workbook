@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.217
+Step 1 writes one settings
+file per environment,
+
+2
+00:00:03.217 --> 00:00:05.750
+from the kit's template, with no secrets.
+
+3
+00:00:05.750 --> 00:00:09.979
+The command sets the environment,
+the tenant, the intermediate root,
+
+4
+00:00:09.979 --> 00:00:13.756
+the platform workspace, the hub,
+the workload subscriptions,
+
+5
+00:00:13.756 --> 00:00:18.816
+the required assignments, the security
+initiative's name, the narrowest role its
+
+6
+00:00:18.816 --> 00:00:23.725
+policies need and its enforce-by date,
+the output folders and the change record.
+
+7
+00:00:23.725 --> 00:00:29.212
+The loader refuses a placeholder left
+unfilled, and any key that names a secret.
+
+8
+00:00:29.212 --> 00:00:34.920
+Test and production each get their own
+file, and both live outside any repository.

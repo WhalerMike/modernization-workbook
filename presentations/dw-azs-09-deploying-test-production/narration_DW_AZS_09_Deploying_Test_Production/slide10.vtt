@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.262
+Step 9 is the go or no-go.
+
+2
+00:00:02.262 --> 00:00:05.401
+One command checks the test
+stage's evidence folder.
+
+3
+00:00:05.401 --> 00:00:10.072
+Go when the hashes match every file,
+the chain of records is unbroken,
+
+4
+00:00:10.072 --> 00:00:13.911
+and each step the test stage
+needs, the preflight, the run,
+
+5
+00:00:13.911 --> 00:00:18.750
+the nine area steps and the metrics,
+has a passing record from a live run.
+
+6
+00:00:18.750 --> 00:00:23.204
+Fixture records never count, so a
+rehearsal can't promote anything:
+
+7
+00:00:23.204 --> 00:00:27.900
+in fixture mode the folder's own checks
+pass, and every stage step fails.
+
+8
+00:00:27.900 --> 00:00:32.116
+Then the security officer and the
+platform owner record the decision
+
+9
+00:00:32.116 --> 00:00:35.810
+in the change record, with the
+open findings and their owners.

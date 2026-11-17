@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+Here's the starting point.
+
+2
+00:00:01.437 --> 00:00:06.851
+The guide builds four Resource Graph queries
+from Microsoft Learn's starter sample
+
+3
+00:00:06.851 --> 00:00:10.562
+that lists every public IP:
+public IPs with their DDoS mode,
+
+4
+00:00:10.562 --> 00:00:14.969
+the resource they're attached to and
+an owner tag; Front Door profiles;
+
+5
+00:00:14.969 --> 00:00:17.830
+application gateways
+with their WAF policy;
+
+6
+00:00:17.830 --> 00:00:21.851
+and every resource whose public
+network access isn't disabled.
+
+7
+00:00:21.851 --> 00:00:26.301
+Learn recommends an inventory of
+every public IP and its protection,
+
+8
+00:00:26.301 --> 00:00:31.688
+kept with Resource Graph, and a quarterly
+review of which IPs still need protection.
+
+9
+00:00:31.688 --> 00:00:36.410
+And Learn's cost guidance adds that
+fewer public IPs means less to protect.

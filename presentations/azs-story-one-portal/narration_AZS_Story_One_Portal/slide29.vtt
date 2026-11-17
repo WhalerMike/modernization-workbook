@@ -1,0 +1,25 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.900
+Check nine, the last one.
+
+2
+00:00:01.900 --> 00:00:04.800
+An operator runs production's
+preflight before
+
+3
+00:00:04.800 --> 00:00:07.700
+the test stage's evidence
+passes its stage check.
+
+4
+00:00:07.700 --> 00:00:11.822
+Does it pass anyway, fail on the
+check that reads the test evidence,
+
+5
+00:00:11.822 --> 00:00:16.320
+warn and let the operator decide, or
+assign the initiative regardless?

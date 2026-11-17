@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.450
+What breaks in production?
+
+2
+00:00:01.450 --> 00:00:04.978
+Zones in workload subscriptions
+split the records,
+
+3
+00:00:04.978 --> 00:00:08.588
+so resolution fails or goes
+public; the kit flags them.
+
+4
+00:00:08.588 --> 00:00:13.450
+An endpoint with no zone group has a record
+somebody made by hand, or none at all.
+
+5
+00:00:13.450 --> 00:00:17.310
+The public path left open means
+the private endpoint works,
+
+6
+00:00:17.310 --> 00:00:20.225
+and so does the internet;
+three rules catch it.
+
+7
+00:00:20.225 --> 00:00:23.384
+Purge protection can't be
+turned off once it's on,
+
+8
+00:00:23.384 --> 00:00:26.787
+which is the point, so the
+kit only ever asks for it on.
+
+9
+00:00:26.787 --> 00:00:31.676
+And configuration isn't resolution: the
+records can exist while clients still
+
+10
+00:00:31.676 --> 00:00:36.550
+resolve the public name, which is why Lab
+2 runs nslookup from a linked machine.

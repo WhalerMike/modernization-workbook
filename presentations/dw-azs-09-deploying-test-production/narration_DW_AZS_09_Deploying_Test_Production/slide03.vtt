@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.637
+Before you start, finish Lab 2 of
+Chapters 1 to 8 in the test subscription,
+
+2
+00:00:04.637 --> 00:00:08.525
+and check every unverified call's
+output against the portal.
+
+3
+00:00:08.525 --> 00:00:10.100
+You need two identities.
+
+4
+00:00:10.100 --> 00:00:14.913
+A reader for the weekly run, with Reader
+on the intermediate root and the tenant
+
+5
+00:00:14.913 --> 00:00:19.875
+root group, as a managed identity or a
+federated workload identity, never a secret.
+
+6
+00:00:19.875 --> 00:00:21.439
+And an operator for the plan,
+
+7
+00:00:21.439 --> 00:00:24.838
+with Resource Policy Contributor
+at the intermediate root,
+
+8
+00:00:24.838 --> 00:00:28.578
+eligible through privileged
+identity management and activated
+
+9
+00:00:28.578 --> 00:00:32.113
+only for the change window, as
+the guide's prerequisites set out.
+
+10
+00:00:32.113 --> 00:00:37.174
+You need PowerShell 7 and the Azure
+CLI on commercial Azure, output folders
+
+11
+00:00:37.174 --> 00:00:42.790
+inside the boundary but outside any
+repository, and a change record for each stage.

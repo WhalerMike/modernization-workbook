@@ -1,0 +1,34 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:05.629
+Every internet-facing endpoint
+is behind a WAF in prevention,
+
+3
+00:00:05.629 --> 00:00:07.288
+or has a decision record.
+
+4
+00:00:07.288 --> 00:00:11.975
+Every policy's rule set is the version
+the application owner validated.
+
+5
+00:00:11.975 --> 00:00:16.250
+The plan file was reviewed with the
+application owner before anyone ran it.
+
+6
+00:00:16.250 --> 00:00:20.350
+And every endpoint's WAF logs
+reach the platform workspace.
+
+7
+00:00:20.350 --> 00:00:26.260
+Next, Chapter 5: a WAF only helps if
+nothing can reach the origin around it.

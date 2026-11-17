@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.600
+The answer to check two:
+inside the agency's boundary,
+
+2
+00:00:03.600 --> 00:00:07.975
+never in a public repository,
+because it maps the attack surface.
+
+3
+00:00:07.975 --> 00:00:09.025
+Scene three.
+
+4
+00:00:09.025 --> 00:00:13.529
+Microsoft Learn's Zero Trust
+recommendations check that every public
+
+5
+00:00:13.529 --> 00:00:17.575
+address in a virtual network is
+protected, with metrics and logs.
+
+6
+00:00:17.575 --> 00:00:22.325
+The jump box's address says it inherits
+its protection, which sounds protected.
+
+7
+00:00:22.325 --> 00:00:25.673
+But the kit follows it to its
+network, the portal's spoke,
+
+8
+00:00:25.673 --> 00:00:28.425
+and that network has no
+DDoS protection plan.
+
+9
+00:00:28.425 --> 00:00:29.800
+So it's unprotected.
+
+10
+00:00:29.800 --> 00:00:33.950
+The gateway's address inherits from
+the hub, which is linked to the plan.
+
+11
+00:00:33.950 --> 00:00:37.076
+And it's the one address
+with both DDoS logs to the
+
+12
+00:00:37.076 --> 00:00:41.110
+platform workspace and an enabled
+alert on Under DDoS attack.

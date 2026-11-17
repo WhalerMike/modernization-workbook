@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why does this matter?
+
+2
+00:00:01.200 --> 00:00:03.762
+A web application
+firewall at the edge only
+
+3
+00:00:03.762 --> 00:00:06.538
+helps if nothing can reach
+the origin around it.
+
+4
+00:00:06.538 --> 00:00:10.662
+By the end of this chapter you can
+say, for every Front Door origin,
+
+5
+00:00:10.662 --> 00:00:14.632
+whether its configuration lets
+only your Front Door reach it;
+
+6
+00:00:14.632 --> 00:00:19.068
+which origin groups can't fail over
+or mix private and public origins;
+
+7
+00:00:19.068 --> 00:00:23.271
+which custom domains or application
+gateways allow TLS below 1.2;
+
+8
+00:00:23.271 --> 00:00:26.462
+and which classic profiles
+still need migrating.
+
+9
+00:00:26.462 --> 00:00:30.325
+It's for application owners, who
+own origins and certificates,
+
+10
+00:00:30.325 --> 00:00:32.900
+and platform owners, who own the profiles.
+
+11
+00:00:32.900 --> 00:00:36.444
+One limit to keep in mind:
+the kit reads configuration,
+
+12
+00:00:36.444 --> 00:00:38.538
+and the guide's test is a request.
+
+13
+00:00:38.538 --> 00:00:41.090
+You'll know which answers
+still need that test.

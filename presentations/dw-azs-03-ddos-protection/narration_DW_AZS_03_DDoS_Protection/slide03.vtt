@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.925
+Here's Microsoft's starting point.
+
+2
+00:00:01.925 --> 00:00:05.813
+Every public IP gets infrastructure
+protection at no cost.
+
+3
+00:00:05.813 --> 00:00:09.977
+Network Protection and IP
+Protection add tuning, metrics,
+
+4
+00:00:09.977 --> 00:00:14.662
+alerts and reports, and neither
+covers a public IP on a NAT gateway.
+
+5
+00:00:14.662 --> 00:00:18.655
+Network Protection is a plan
+you link to virtual networks;
+
+6
+00:00:18.655 --> 00:00:22.149
+IP Protection is enabled
+on one Standard public IP.
+
+7
+00:00:22.149 --> 00:00:27.185
+Microsoft's Zero Trust recommendations
+check that every public IP in a virtual
+
+8
+00:00:27.185 --> 00:00:31.763
+network is protected, that metrics are
+on, and that diagnostic logs are on.
+
+9
+00:00:31.763 --> 00:00:34.471
+And Learn's simulation
+tutorial alerts on the
+
+10
+00:00:34.471 --> 00:00:37.537
+metric that says whether an
+address is under attack.
+
+11
+00:00:37.537 --> 00:00:40.825
+DDoS protection covers
+layers three and four;
+
+12
+00:00:40.825 --> 00:00:44.180
+layer seven needs a web
+application firewall.

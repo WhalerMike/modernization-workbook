@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.950
+Welcome to the Federal
+Modernization Workbook's
+
+2
+00:00:02.950 --> 00:00:05.638
+developer workbook,
+Building Azure Security.
+
+3
+00:00:05.638 --> 00:00:08.725
+This is Chapter 1: the
+landing-zone baseline.
+
+4
+00:00:08.725 --> 00:00:13.102
+A baseline nobody reads back is a
+wish, so the first thing the kit does
+
+5
+00:00:13.102 --> 00:00:17.400
+is read it back, the same way, every
+week, with nothing it could change.
+
+6
+00:00:17.400 --> 00:00:22.013
+We'll start from Microsoft Learn's own
+commands, see what they leave to you,
+
+7
+00:00:22.013 --> 00:00:24.704
+read the kit's spine
+and its baseline check,
+
+8
+00:00:24.704 --> 00:00:27.625
+and walk two labs, the
+evidence and the dangers.
+
+9
+00:00:27.625 --> 00:00:30.640
+The chapter is a draft
+awaiting the owner's review,
+
+10
+00:00:30.640 --> 00:00:34.610
+and the code is illustrative,
+tested against a fictional estate.

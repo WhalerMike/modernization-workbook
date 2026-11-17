@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.950
+Welcome to the Federal
+Modernization Workbook's
+
+2
+00:00:02.950 --> 00:00:05.638
+developer workbook,
+Building Azure Security.
+
+3
+00:00:05.638 --> 00:00:09.576
+This is Chapter 9: deploying
+to test and production.
+
+4
+00:00:09.576 --> 00:00:12.223
+The kit reads every week and writes once,
+
+5
+00:00:12.223 --> 00:00:15.913
+so this runbook is about the
+week, and about the one write.
+
+6
+00:00:15.913 --> 00:00:20.444
+It takes the kit from the labs to a live
+test subscription, then to production,
+
+7
+00:00:20.444 --> 00:00:24.112
+with the same commands and one
+settings file per environment.
+
+8
+00:00:24.112 --> 00:00:27.506
+The chapter is a draft
+awaiting the owner's review,
+
+9
+00:00:27.506 --> 00:00:31.479
+and nothing in it has been run
+against a live subscription;
+
+10
+00:00:31.479 --> 00:00:36.170
+the output you'll see comes from
+fixture mode, dated November 17, 2026.

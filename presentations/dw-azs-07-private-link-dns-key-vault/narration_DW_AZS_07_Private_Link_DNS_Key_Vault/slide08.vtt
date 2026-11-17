@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.350
+Lab 1 needs PowerShell 7 with Pester, in
+the kit's folder, and no subscription.
+
+2
+00:00:05.350 --> 00:00:08.617
+Contoso's vault zone is
+central and linked to the hub;
+
+3
+00:00:08.617 --> 00:00:13.175
+the payroll team created its own blob
+zone in its workload subscription.
+
+4
+00:00:13.175 --> 00:00:17.450
+Step 1 runs the check: one of
+three vaults has the full posture.
+
+5
+00:00:17.450 --> 00:00:19.625
+Step 2 reads each vault.
+
+6
+00:00:19.625 --> 00:00:21.375
+The payroll vault has everything.
+
+7
+00:00:21.375 --> 00:00:26.375
+The hub certificates vault has no private
+endpoint, and its public access is on.
+
+8
+00:00:26.375 --> 00:00:32.050
+And the portal vault misses every part:
+access policies, no purge protection,
+
+9
+00:00:32.050 --> 00:00:36.530
+an open firewall, public access,
+no endpoint and no audit log.

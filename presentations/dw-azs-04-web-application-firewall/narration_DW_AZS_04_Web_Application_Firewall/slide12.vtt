@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.313
+What breaks, and what guards against it?
+
+2
+00:00:02.313 --> 00:00:06.671
+A WAF left in detection logs attacks
+and lets them reach the backend,
+
+3
+00:00:06.671 --> 00:00:10.174
+so the finding comes back
+every week until it switches.
+
+4
+00:00:10.174 --> 00:00:15.068
+Automation that switches to prevention
+blocks legitimate traffic before tuning,
+
+5
+00:00:15.068 --> 00:00:17.337
+so the kit only writes the command down.
+
+6
+00:00:17.337 --> 00:00:20.998
+A Front Door profile with no
+security policy has no WAF,
+
+7
+00:00:20.998 --> 00:00:26.124
+and nothing on the profile says so, so
+security policies are read per profile.
+
+8
+00:00:26.124 --> 00:00:29.096
+And the two services'
+property shapes differ,
+
+9
+00:00:29.096 --> 00:00:32.040
+so each is read on its
+own, with a test for both.

@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:05.702
+The platform owner runs the register
+every week, keeps it inside the boundary,
+
+3
+00:00:05.702 --> 00:00:08.938
+and reviews it each quarter
+with the security officer.
+
+4
+00:00:08.938 --> 00:00:11.618
+Workload owners answer for their own rows:
+
+5
+00:00:11.618 --> 00:00:15.063
+every row needs an owner tag,
+and every finding a ticket.
+
+6
+00:00:15.063 --> 00:00:17.658
+The security officer
+reconciles the register
+
+7
+00:00:17.658 --> 00:00:20.387
+with Defender for Cloud
+at that quarterly review.
+
+8
+00:00:20.387 --> 00:00:23.800
+The kit's reads need only Reader
+on the intermediate root.
+
+9
+00:00:23.800 --> 00:00:25.680
+Nothing in this chapter writes.

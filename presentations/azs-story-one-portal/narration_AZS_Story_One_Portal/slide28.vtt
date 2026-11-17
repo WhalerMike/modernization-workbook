@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:03.675
+The runbook's own
+rehearsal on the fixtures.
+
+3
+00:00:03.675 --> 00:00:08.623
+The first weekly run reads every
+area, records itself as the baseline,
+
+4
+00:00:08.623 --> 00:00:11.662
+and covers every area
+step and the metrics.
+
+5
+00:00:11.662 --> 00:00:15.526
+A week later, the second run
+finds last week's, compares them,
+
+6
+00:00:15.526 --> 00:00:19.712
+thirteen fixed and four new, and
+its record adds the comparison.
+
+7
+00:00:19.712 --> 00:00:22.886
+Then the rollback for
+production, back to audit:
+
+8
+00:00:22.886 --> 00:00:26.712
+one command, printed with its
+plan's hash, and nothing sent.
+
+9
+00:00:26.712 --> 00:00:31.490
+In a live stage, a second person approves
+that hash before anyone applies it.

@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.100
+Step 4 plans the one write.
+
+2
+00:00:02.100 --> 00:00:04.395
+The script reads the assignments first,
+
+3
+00:00:04.395 --> 00:00:08.012
+and plans nothing if the security
+initiative is already there.
+
+4
+00:00:08.012 --> 00:00:11.808
+Otherwise its plan holds the one
+command from the guide's Step 9:
+
+5
+00:00:11.808 --> 00:00:16.114
+assign the initiative at the intermediate
+root in DoNotEnforce, with a
+
+6
+00:00:16.114 --> 00:00:18.815
+system-assigned identity and the narrowest
+
+7
+00:00:18.815 --> 00:00:21.662
+role its policies need,
+instead of Contributor.
+
+8
+00:00:21.662 --> 00:00:23.218
+It prints the plan's hash,
+
+9
+00:00:23.218 --> 00:00:26.950
+and the security officer and
+the policy owner review both.
+
+10
+00:00:26.950 --> 00:00:31.889
+Step 5 applies it, with the role activated
+for the window and the approved hash;
+
+11
+00:00:31.889 --> 00:00:36.750
+a plan whose hash changed is refused,
+and fixture mode refuses to apply at all.
+
+12
+00:00:36.750 --> 00:00:42.100
+Step 6 is the smoke test: the policy
+check shows the initiative is assigned.
+
+13
+00:00:42.100 --> 00:00:45.600
+Learn says DoNotEnforce
+evaluates without enforcing.

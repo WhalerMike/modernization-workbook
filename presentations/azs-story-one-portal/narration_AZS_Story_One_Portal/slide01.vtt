@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.314
+Welcome to the story deck
+for Building Azure Security,
+
+2
+00:00:03.314 --> 00:00:07.013
+a developer workbook in the
+Federal Modernization Workbook.
+
+3
+00:00:07.013 --> 00:00:09.427
+Instead of nine chapters one at a time,
+
+4
+00:00:09.427 --> 00:00:14.099
+we'll follow one application all the
+way through: Contoso's public portal,
+
+5
+00:00:14.099 --> 00:00:16.980
+its subscription, its
+Front Door and gateway,
+
+6
+00:00:16.980 --> 00:00:20.251
+its network, its key vault,
+and the hub that serves it.
+
+7
+00:00:20.251 --> 00:00:24.371
+It's fictional: every value comes
+from the kit's own test fixtures,
+
+8
+00:00:24.371 --> 00:00:28.025
+and every output on a slide is
+what the kit really printed.
+
+9
+00:00:28.025 --> 00:00:29.600
+Two notes before we begin.
+
+10
+00:00:29.600 --> 00:00:32.538
+The chapters are drafts
+awaiting the owner's review.
+
+11
+00:00:32.538 --> 00:00:36.014
+And the code is illustrative,
+tested against fixtures,
+
+12
+00:00:36.014 --> 00:00:38.160
+not against a live subscription.

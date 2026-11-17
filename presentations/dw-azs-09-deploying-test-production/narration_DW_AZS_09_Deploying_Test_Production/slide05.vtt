@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Step 2 is the preflight, seven checks.
+
+2
+00:00:02.963 --> 00:00:07.400
+The settings are complete, name
+commercial Azure and have no placeholder.
+
+3
+00:00:07.400 --> 00:00:09.100
+No key names a secret.
+
+4
+00:00:09.100 --> 00:00:12.739
+The output root isn't inside
+the kit's own repository,
+
+5
+00:00:12.739 --> 00:00:16.125
+which fails, or any other
+repository, which warns.
+
+6
+00:00:16.125 --> 00:00:20.540
+With the live switch, the Azure CLI is
+on commercial Azure and signed in to the
+
+7
+00:00:20.540 --> 00:00:23.132
+right tenant, and Resource
+Graph returns the
+
+8
+00:00:23.132 --> 00:00:25.725
+subscriptions under the intermediate root.
+
+9
+00:00:25.725 --> 00:00:29.462
+The unverified calls are allowed
+for the stage, or listed.
+
+10
+00:00:29.462 --> 00:00:34.287
+And in production only, the test stage's
+evidence must pass its stage check.
+
+11
+00:00:34.287 --> 00:00:39.260
+Any fail stops the stage, and the
+result is recorded as evidence.

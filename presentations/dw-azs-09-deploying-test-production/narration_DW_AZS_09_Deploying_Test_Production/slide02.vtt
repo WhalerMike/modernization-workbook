@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Why a runbook?
+
+2
+00:00:01.100 --> 00:00:05.290
+Because the kit's weekly reads need
+only Reader, but it makes one write:
+
+3
+00:00:05.290 --> 00:00:09.186
+the security initiative's assignment
+at the intermediate root,
+
+4
+00:00:09.186 --> 00:00:11.538
+in DoNotEnforce, from the guide's Step 9.
+
+5
+00:00:11.538 --> 00:00:15.642
+That write is a plan, applied only
+with the hash a reviewer approved,
+
+6
+00:00:15.642 --> 00:00:19.149
+and its rollback is rehearsed
+in test before production.
+
+7
+00:00:19.149 --> 00:00:23.587
+The runbook has two stages: a live
+test subscription, then production,
+
+8
+00:00:23.587 --> 00:00:27.712
+with the same commands and each
+environment's own settings file.
+
+9
+00:00:27.712 --> 00:00:32.824
+Between them sits the go or no-go,
+decided on the test stage's live evidence.
+
+10
+00:00:32.824 --> 00:00:36.020
+None of it has been run against
+a live subscription yet.

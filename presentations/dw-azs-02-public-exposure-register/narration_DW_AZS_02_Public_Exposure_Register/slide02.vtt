@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.562
+Why a register first?
+
+2
+00:00:01.562 --> 00:00:04.950
+Because the later steps can't
+be proved complete without it.
+
+3
+00:00:04.950 --> 00:00:10.530
+By the end of this chapter you can build
+the register the guide's Step 2 asks for:
+
+4
+00:00:10.530 --> 00:00:14.541
+one row per exposure with its
+resource, type, public name,
+
+5
+00:00:14.541 --> 00:00:18.900
+owner, DDoS state, and its WAF
+and mode, regenerated every week.
+
+6
+00:00:18.900 --> 00:00:23.693
+Every ownerless row is flagged, every
+new exposure since last week reported,
+
+7
+00:00:23.693 --> 00:00:28.562
+every one that went away reported with
+a reminder to remove its DNS record, and
+
+8
+00:00:28.562 --> 00:00:33.812
+every resource Defender for Cloud calls
+internet-exposed that the register lacks.
+
+9
+00:00:33.812 --> 00:00:35.244
+It's for platform owners,
+
+10
+00:00:35.244 --> 00:00:39.112
+workload owners and the developers
+who keep the queries current.
+
+11
+00:00:39.112 --> 00:00:43.970
+And the register is a map of the attack
+surface: it stays inside the boundary.

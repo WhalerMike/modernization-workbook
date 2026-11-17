@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.525
+Lab 1 needs only PowerShell 7
+with Pester, in the kit's folder.
+
+2
+00:00:04.525 --> 00:00:09.361
+Between the two weeks, Contoso's platform
+team switched the WAF to prevention,
+
+3
+00:00:09.361 --> 00:00:14.423
+moved the firewall to deny, routed a subnet
+to the firewall, added a missing header,
+
+4
+00:00:14.423 --> 00:00:19.184
+turned on purge protection, enforced
+the security initiative and required
+
+5
+00:00:19.184 --> 00:00:21.828
+authorization for new management groups;
+
+6
+00:00:21.828 --> 00:00:24.775
+a new public IP appeared
+and an orphan went away.
+
+7
+00:00:24.775 --> 00:00:29.713
+Step 1 runs every area on week
+one: forty-eight findings in all.
+
+8
+00:00:29.713 --> 00:00:34.503
+Step 2 reads the policy findings:
+an assignment with excluded scopes,
+
+9
+00:00:34.503 --> 00:00:40.050
+an exemption expired on October 31, one
+with no expiry, one due within thirty days,
+
+10
+00:00:40.050 --> 00:00:44.980
+and the initiative still in audit
+after its November 1 enforce-by date.

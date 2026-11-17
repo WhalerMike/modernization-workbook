@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.313
+What breaks, and what guards against it?
+
+2
+00:00:02.313 --> 00:00:06.349
+An exemption with no expiry
+accepts non-compliance forever,
+
+3
+00:00:06.349 --> 00:00:08.287
+so the kit flags it every week.
+
+4
+00:00:08.287 --> 00:00:11.716
+An expired exemption can look
+current in an old report,
+
+5
+00:00:11.716 --> 00:00:15.449
+so the kit names it, because
+Learn says it's no longer honored.
+
+6
+00:00:15.449 --> 00:00:19.610
+A changed query can make rows look
+fixed when they only disappeared;
+
+7
+00:00:19.610 --> 00:00:24.587
+that shows as many fixed rows at once, which
+the reviewer reads in the drift report.
+
+8
+00:00:24.587 --> 00:00:26.888
+Lab evidence can't promote anything,
+
+9
+00:00:26.888 --> 00:00:30.187
+because fixture records
+never count toward a stage.
+
+10
+00:00:30.187 --> 00:00:33.238
+And evidence edited after
+filing fails the check,
+
+11
+00:00:33.238 --> 00:00:36.260
+because the hashes and
+the chain no longer match.

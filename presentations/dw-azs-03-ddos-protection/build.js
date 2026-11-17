@@ -1,0 +1,220 @@
+// Building Azure Security, Chapter 03 — DDoS Protection: the narrated tour.
+// Every fact comes from docs/project-plans/developer-workbooks/azure-security/03-ddos-protection.md;
+// cite names are that chapter's footnotes. Layout and notes: ../_build/devwb.js.
+// Build (Git Bash): source /c/tmp/deckenv.sh && DATECODE="…" node presentations/dw-azs-03-ddos-protection/build.js
+require("../_build/devwb.js")({
+  workbook: "azs", chapter: 3, dir: __dirname,
+  base: "DW_AZS_03_DDoS_Protection",
+  title: "DDoS Protection",
+  map: "Why protection isn't a property · what Learn gives and leaves · six statuses · six rules · who · two labs · evidence · dangers",
+  slides: [
+    {
+      say: `Welcome back to Building Azure Security. This is Chapter 3: DDoS protection. Protected isn't a property of a public IP. It depends on the address, the network behind it and the plan that network is linked to, and the code has to follow all three. We'll start from what Microsoft Learn gives you, see what it leaves to you, read how the kit follows each address to its network, and walk two labs, the evidence and the dangers. The chapter is a draft awaiting the owner's review, and the code is illustrative, tested against a fictional estate.`,
+      detail: `The chapter is the code behind the guide's Step 3, DDoS protection. You start with what Learn and the guide give you: two tiers, a ddosSettings.protectionMode on each public IP, Zero Trust checks for protection, metrics and logs, and an alert on IfUnderDDoSAttack. Then you read how the kit follows each address to the virtual network behind it, and what it can't follow. Lab 1 traces the Contoso estate's eight public IPs; Lab 2 does it for a test subscription beside the guide's own query.`,
+      cite: ["azs03-guide"],
+      ref: "“In this chapter”",
+    },
+    {
+      part: "Why", title: "Why protected depends on the network behind it",
+      body: [
+        { cols: [[{ bullets: [
+          "Whether every public IP is under **IP Protection** or **Network Protection**",
+          "Whether it sends **DDoS logs** to the platform workspace",
+          "Whether an **enabled alert** fires when it's under attack",
+          "The guide's **DDoS coverage** metric, from the same run",
+        ], label: "By the end you can say", color: "navy", pt: 14 }], [{ bullets: [
+          "Platform owners who own the DDoS plan",
+          "Security monitors who answer the alert",
+          "Developers who keep the check honest",
+        ], label: "Who it's for", color: "teal", pt: 14 }]] },
+      ],
+      sources: "Sources: Chapter 03, opening, “Goal and audience.”",
+      say: `Why does this need code? Because a public IP's own setting can say it inherits protection, while the network it inherits from has no plan at all. By the end of this chapter you can say, for every public IP in an estate, whether it's under DDoS IP Protection or Network Protection, whether it sends DDoS logs to the platform workspace, and whether an enabled alert fires when it's under attack. And you can compute the guide's DDoS coverage metric from the same run. It's for platform owners who own the plan, security monitors who answer the alert, and the developers who keep the check honest.`,
+      detail: `Goal: say, for every public IP in an estate, whether it is under DDoS IP Protection or Network Protection, whether it sends DDoS logs to the platform workspace, and whether an enabled alert fires when it is under attack; and compute the guide's DDoS coverage metric from the same run. Audience: platform owners who own the DDoS plan, security monitors who answer the alert, and the developers who keep the check honest. Read Chapter 02 first: this chapter reads the same public IPs.`,
+      cite: [],
+      ref: "Opening; “Goal and audience”",
+    },
+    {
+      part: "What", title: "What Microsoft Learn gives you",
+      body: [
+        { table: { head: ["Learn gives", "What it says"], w: [3.6, 8.55], rows: [
+          ["Tier comparison", "Infrastructure protection free; Network and IP Protection add tuning, metrics, alerts; neither covers NAT gateway IPs"],
+          ["Network Protection", "A plan linked to virtual networks; a protected network can't move between resource groups or subscriptions"],
+          ["IP Protection", "Enabled on one Standard public IP with --ddos-protection-mode Enabled"],
+          ["Zero Trust checks", "Every public IP in a virtual network protected; metrics on; diagnostic logs on"],
+          ["The alert", "IfUnderDDoSAttack, maximum 1 or more; layer 7 needs a WAF"],
+        ] }, pt: 12.5 },
+      ],
+      sources: "Sources: Learn, DDoS tier comparison; Network and IP Protection quickstarts; Zero Trust for DDoS; simulation tutorial; supported metrics.",
+      say: `Here's Microsoft's starting point. Every public IP gets infrastructure protection at no cost. Network Protection and IP Protection add tuning, metrics, alerts and reports, and neither covers a public IP on a NAT gateway. Network Protection is a plan you link to virtual networks; IP Protection is enabled on one Standard public IP. Microsoft's Zero Trust recommendations check that every public IP in a virtual network is protected, that metrics are on, and that diagnostic logs are on. And Learn's simulation tutorial alerts on the metric that says whether an address is under attack. DDoS protection covers layers three and four; layer seven needs a web application firewall.`,
+      detail: `Every public IP gets infrastructure protection at no cost; Network Protection and IP Protection add per-IP tuning, metrics, alerts and reports, and neither covers a public IP on a NAT gateway; Basic public IPs only under Network Protection. Network Protection: az network ddos-protection create; az network vnet update --ddos-protection-plan --ddos-protection true; a protected network can't move between resource groups or subscriptions. IP Protection: az network public-ip update --ddos-protection-mode Enabled. The guide's Step 2 query reads ddosSettings.protectionMode, and its Validate step expects Enabled, or VirtualNetworkInherited in a linked network. Zero Trust: every public IP in a virtual network protected; metrics; diagnostic logs. The metric IfUnderDDoSAttack, Maximum, 1-minute grain; the tutorial alerts at 1 or more. Layers 3 and 4; layer 7 needs a WAF.`,
+      cite: ["azs03-tiers", "azs03-cli", "azs03-ip-cli", "azs03-zt", "azs03-sim", "azs03-metric", "azs03-overview"],
+      ref: "“Start with Microsoft Learn” — “What Learn and the guide give you”; “Verified facts”",
+    },
+    {
+      part: "What", title: "What it leaves to you",
+      body: [
+        { table: { head: ["As given", "Why it matters", "What the kit adds"], w: [3.4, 3.9, 4.85], rows: [
+          ["protectionMode VirtualNetworkInherited", "From which network, and does it have a plan?", "The address followed to its subnet, network and plan"],
+          ["NAT gateway IPs not covered", "Counted as unprotected, it lowers coverage", "Info, and left out of coverage"],
+          ["One alert command per address", "An address added later has no alert", "Every protected address checked for an enabled alert"],
+          ["One diagnostic setting per address", "Logs to the wrong workspace look like logging", "Only the platform workspace counts"],
+          ["Disabled isn't in the Validate step", "Disabled in a protected network isn't protected", "Disabled is unprotected, always"],
+          ["A load balancer's frontend", "Its backend network isn't named", "Reported as unknown, not guessed"],
+        ] }, pt: 11.5 },
+      ],
+      sources: "Sources: Chapter 03, “What it leaves to you”; the kit's DDoS tests.",
+      say: `What does that leave to you? Inherited from which network, and does that network have a plan? The property doesn't say, so the kit follows each address to the resource that holds it, its subnet, its network and that network's plan. NAT gateway addresses can't be protected, so they're reported as information and left out of coverage. An alert or a diagnostic setting made one address at a time misses the next address, or goes to the wrong workspace. An address set to Disabled isn't protected, whatever the network. And a load balancer's frontend doesn't name its backend network, so the kit says it can't resolve it rather than guessing.`,
+      detail: `Each row is pinned by a test in the DDoS (Step 3) tests. protectionMode VirtualNetworkInherited: each address followed to the resource that holds it, its subnet and virtual network, and that network's plan ("resolves each public IP"). NAT gateway: AZS-DD-03 Info, left out of coverage. One alert command per address: AZS-DD-05 on every protected address with no enabled alert on IfUnderDDoSAttack whose scope includes it. One diagnostic setting per address: AZS-DD-04 unless an enabled DDoS category or allLogs goes to the platform workspace. Disabled isn't in the Validate step: Disabled is unprotected, whatever the network ("treats protectionMode Disabled as unprotected"). A load balancer's frontend: AZS-DD-02, the kit says it can't resolve it.`,
+      cite: ["azs03-tiers"],
+      ref: "“What it leaves to you”",
+    },
+    {
+      part: "What", title: "Six statuses, and how coverage is counted",
+      body: [
+        { table: { head: ["Status", "When", "In coverage"], w: [2.4, 6.6, 3.15], rows: [
+          ["IpProtection", "protectionMode Enabled", "Protected"],
+          ["Inherited", "VirtualNetworkInherited, and the network has protection and a plan", "Protected"],
+          ["Unprotected", "Disabled, or inherited from a network with no plan", "Not (AZS-DD-01)"],
+          ["Unknown", "Inherited; the network can't be found (load balancer frontend)", "Not (AZS-DD-02)"],
+          ["NatGateway", "On a NAT gateway", "Left out (AZS-DD-03)"],
+          ["Unattached", "Attached to nothing", "Left out"],
+        ] }, pt: 12.5 },
+        { lead: "Coverage = protected ÷ addresses in scope: the guide's metric, with NAT gateway addresses left out." },
+      ],
+      sources: "Sources: examples/azure-security (Get-AzsDdosCheck). Chapter 03, “The code: the ddos area.”",
+      say: `So every public IP gets exactly one status. IP Protection when its mode is enabled. Inherited when it inherits and its network has protection and a plan. Unprotected when it's disabled, or inherits from a network with no plan. Unknown when it inherits and the kit can't find the network, as with a load balancer frontend. NAT gateway when it sits on one. And unattached when it's attached to nothing. Coverage is protected addresses over addresses in scope, the guide's metric, with NAT gateway and unattached addresses left out.`,
+      detail: `Get-AzsDdosCheck reads the public IPs, the virtual networks with their plan, the plans, the NAT gateways, the metric alerts, and the resources that own public IPs (network interfaces, application gateways, firewalls, Bastion hosts, virtual network gateways and load balancers). A network interface's, firewall's, Bastion host's or gateway's IP configuration names its subnet; an application gateway's frontend uses the gateway's subnet. Statuses: IpProtection (Enabled), Inherited (VirtualNetworkInherited and the subnet's network has enableDdosProtection and a plan), Unprotected (Disabled, or a network with no plan; AZS-DD-01), Unknown (a load balancer frontend; AZS-DD-02), NatGateway (AZS-DD-03, left out), Unattached (left out; Chapter 02's AZS-EX-02). Coverage is protected addresses over addresses in scope.`,
+      cite: ["azs03-guide"],
+      ref: "“The code: the ddos area”",
+    },
+    {
+      part: "What", title: "Logs, the alert, and six rules",
+      body: [
+        { table: { head: ["Rule", "Severity", "What it flags", "Source"], w: [1.6, 1.4, 6.3, 2.85], rows: [
+          ["AZS-DD-01", "Finding", "A public IP under neither IP nor Network Protection", "Learn"],
+          ["AZS-DD-02", "Warn", "Inherited from a network the kit can't resolve", "Kit's limit"],
+          ["AZS-DD-03", "Info", "On a NAT gateway: not covered", "Learn"],
+          ["AZS-DD-04", "Finding", "Protected, no DDoS log to the platform workspace", "Learn"],
+          ["AZS-DD-05", "Finding", "Protected, no enabled IfUnderDDoSAttack alert", "Learn"],
+          ["AZS-DD-06", "Warn", "More than one DDoS protection plan", "Design guidance"],
+        ] }, pt: 12.5 },
+        { callout: "any of DDoSProtectionNotifications, DDoSMitigationFlowLogs, DDoSMitigationReports (retiring from about mid-August 2026), or allLogs.", label: "Logs that count: ", icon: "FaFileShield", color: "teal" },
+      ],
+      sources: "Sources: examples/azure-security (config/rules.json); Learn, Secure your DDoS Protection deployment; Zero Trust for DDoS; simulation tutorial.",
+      say: `For each protected address the check reads its diagnostic settings and the metric alerts. A log counts if one of Learn's three DDoS categories, or all logs, goes to the platform workspace; Learn says the mitigation reports category retires from about mid-August 2026. An alert counts if it's enabled, has a criterion on the under-attack metric, and its scope is the address, its resource group or its subscription. That gives six rules: unprotected, unresolvable, on a NAT gateway, no logs, no alert, and more than one plan, since the guide keeps one plan for the agency.`,
+      detail: `For each protected address the check reads its diagnostic settings and the metric alerts: an alert counts if it is enabled, has a criterion on IfUnderDDoSAttack, and its scope is the address, its resource group or its subscription. Log categories (config/baseline.json): DDoSProtectionNotifications, DDoSMitigationFlowLogs, DDoSMitigationReports (Learn: retiring from about mid-August 2026); the kit accepts any of the three or allLogs. Rules: AZS-DD-01 Finding (Learn, Zero Trust); AZS-DD-02 Warn (design guidance, the kit's limit); AZS-DD-03 Info (Learn, tiers); AZS-DD-04 Finding (Learn, Zero Trust and secure deployment); AZS-DD-05 Finding (Learn, simulation tutorial); AZS-DD-06 Warn (design guidance, the guide's one plan). The simulation exercise is a person's work: the kit shows the alert exists; the exercise shows it fires.`,
+      cite: ["azs03-zt", "azs03-secure", "azs03-sim"],
+      ref: "“The code: the ddos area”",
+    },
+    {
+      part: "Who", title: "Who owns the plan, and who answers the alert",
+      body: [
+        { cards: [
+          { title: "Platform owner", text: "Owns the DDoS plan, the linked networks and the coverage number", color: "navy" },
+          { title: "Security monitor", text: "Answers the IfUnderDDoSAttack alert; reads the DDoS logs", color: "teal" },
+          { title: "ISSO", text: "Keeps the decision records for addresses no plan can protect", color: "amber" },
+        ], pt: 13.5 },
+        { lead: "The reads need Reader on the intermediate root. The simulation, with an approved partner, is the exercise's owner's work." },
+      ],
+      sources: "Sources: Chapter 03, “Goal and audience,” “Federal requirements and evidence”; Learn, simulation tutorial.",
+      say: `Who's involved? The platform owner owns the DDoS plan, the networks linked to it, and the coverage number. The security monitor answers the under-attack alert and reads the DDoS logs. And the security officer keeps the decision records for addresses no plan can protect, like those on a NAT gateway. The kit's reads need only Reader. The simulation the guide asks for, run only through Learn's approved partners against the agency's own protected addresses, is a person's work, not the kit's.`,
+      detail: `Every public IP's protection and coverage: platform owner. DDoS logs and an enabled attack alert on each protected address: security monitor. Addresses no plan can protect, and the ones the kit couldn't resolve (AZS-DD-02 and AZS-DD-03): the ISSO, with the decision records. Simulations only through Learn's approved partners, against the agency's own protected public IPs. The kit's calls are Reader.`,
+      cite: ["azs03-sim"],
+      ref: "“Goal and audience”; “Federal requirements and evidence”",
+    },
+    {
+      part: "How", title: "Lab 1: run the check, read each address",
+      body: [
+        { terminal: "03-1", label: "examples/azure-security  ·  fixture data  ·  real output" },
+        { terminal: "03-2", lines: "2-10" },
+      ],
+      sources: "Sources: examples/azure-security (fictional fixtures). Chapter 03, “Lab 1: fixtures, no subscription,” steps 1–2.",
+      say: `Lab 1 needs PowerShell 7 with Pester, in the kit's folder. Contoso's hub network is linked to its DDoS plan; the portal spoke isn't. Step 1 runs the check: four of six addresses in scope are protected. Step 2 reads each address. The firewall's, the application gateway's and the VPN gateway's addresses inherit from the hub. The test app's address has IP Protection. The jump box's address inherits from the portal spoke, which has no plan. And only the application gateway's address has both logs and an alert.`,
+      detail: `You need PowerShell 7.1 or later with Pester 5, in examples/azure-security. The Contoso hub, vnet-hub, is linked to the plan ddos-contoso; the portal spoke, vnet-portal, isn't. Step 1: protected 4 of 6 in scope (66.7%). Step 2: the firewall's, the application gateway's and the VPN gateway's addresses inherit from vnet-hub; pip-test-app has IP Protection; pip-jump inherits from vnet-portal, which has no plan. Only pip-appgw-portal has both logs and an alert. pip-nat-egress is on a NAT gateway; pip-orphan is unattached; pip-lb-portal is a load balancer frontend.`,
+      cite: [],
+      ref: "“Lab 1: fixtures, no subscription,” steps 1–2",
+    },
+    {
+      part: "How", title: "Lab 1: the statuses and the findings",
+      body: [
+        { terminal: "03-3" },
+        { terminal: "03-4" },
+      ],
+      sources: "Sources: examples/azure-security (fictional fixtures). Chapter 03, “Lab 1: fixtures, no subscription,” steps 3–5.",
+      say: `Step 3 counts the statuses: one with IP Protection, three inherited, one unprotected, one unknown, one on a NAT gateway and one unattached. Step 4 reads the findings. The firewall's address sends its logs to an application team's workspace, so the missing-logs finding still fires. The test app's alert exists but is disabled, so the missing-alert finding fires too. The load balancer is reported as unknown, not guessed. And the trial plan is a second plan with no networks. Step 5 runs the chapter's three tests.`,
+      detail: `Step 3: {"IpProtection":1,"Inherited":3,"Unprotected":1,"Unknown":1,"NatGateway":1,"Unattached":1}. Step 4: pip-afw-hub sends its logs to an application team's workspace, so AZS-DD-04 still fires; pip-test-app's alert exists but is disabled, so AZS-DD-05 fires; pip-vpngw has neither; pip-jump is AZS-DD-01; pip-lb-portal is AZS-DD-02; ddos-portal-trial is a second plan with no networks (AZS-DD-06); pip-nat-egress is AZS-DD-03, Info. Step 5: the three DDoS tests pass.`,
+      cite: [],
+      ref: "“Lab 1: fixtures, no subscription,” steps 3–5",
+    },
+    {
+      part: "How", title: "Lab 2: a test subscription",
+      body: [
+        { steps: [
+          { title: "Sign in to commercial Azure", text: "az cloud set --name AzureCloud; az login --tenant; the resource-graph extension" },
+          { title: "Write the test settings file", text: "From deploy/settings.template.json, outside any repository" },
+          { title: "Run the DDoS check, live", text: "-AllowUnverified: six of seven calls aren't verified on Learn yet" },
+          { title: "Compare with the guide's query", text: "Each address's ddosMode; one inherited network's DDoS protection page; resolve any Unknown by hand" },
+          { title: "Back it out", text: "Nothing changed in Azure: delete what the lab wrote, and sign out" },
+        ], pt: 12.5 },
+        { callout: "a test tenant and test subscription, never production. A Network Protection plan is billed per plan; without one, every address shows unprotected. The authors haven't run this lab.", label: "Where: ", icon: "FaTriangleExclamation", color: "red" },
+      ],
+      sources: "Sources: Chapter 03, “Lab 2: a test subscription”; Learn, DDoS tier comparison.",
+      say: `Lab 2 moves to a test subscription in a test tenant, never production, with at least one public IP in a virtual network. A Network Protection plan is billed per plan; without one the lab still runs, and every address shows as unprotected. Sign in to commercial Azure, write the settings file, and run the check live; six of its seven calls aren't verified on Learn yet, so allow them and compare. The guide's own query gives each address's mode, and the portal shows an inherited network's DDoS protection. Resolve any unknown address by hand and record it. Nothing changed in Azure, so back out by deleting the output. The authors haven't run this lab.`,
+      detail: `Use a test tenant with a test management group and subscription in commercial Azure, never production, with at least one public IP in a virtual network. A DDoS Network Protection plan is billed per plan; without one the lab still runs, and every address shows as unprotected. Step 3: Invoke-AzsCheck.ps1 -Area ddos -AllowUnverified; six of seven calls are unverified (the networks, plans, NAT gateways, alerts and IP owners). Step 4: az graph query projecting ddosSettings.protectionMode and ipConfiguration.id; each mode should match ddos.json; for one Inherited address, open the virtual network, Settings > DDoS protection; for each Unknown, record the backend network (research gaps, row 3). Step 5: Remove-Item the output; az logout.`,
+      cite: ["azs03-tiers"],
+      ref: "“Lab 2: a test subscription”",
+    },
+    {
+      part: "How", title: "Federal requirements and the evidence",
+      body: [
+        { table: { head: ["What the output proves", "Supports", "KSI", "Who keeps it"], w: [5.6, 2.2, 2.1, 2.25], rows: [
+          ["Every address's protection and network (ddos.json); coverage", "SC-5", "CNA-RVP", "Platform owner"],
+          ["DDoS logs and an enabled attack alert on each protected address", "SI-4", "MLA-LET", "Security monitor"],
+          ["Addresses no plan can protect, and those unresolved, named", "SC-5 (exception)", "CNA-RVP", "ISSO, with decision records"],
+        ] }, pt: 12.5 },
+        { lead: "The simulation report and the fired alert are the guide's test evidence; the kit doesn't produce them." },
+      ],
+      sources: "Sources: NIST SP 800-53 Rev. 5; FedRAMP KSIs, through the guide's requirements table (Step 3). Chapter 03, “Federal requirements and evidence.”",
+      say: `Each output supports a specific control from the guide's requirements table. Every address's protection, the network it depends on, and the coverage support NIST's denial-of-service protection control, aligned to FedRAMP's indicator that cites it. DDoS logs and an enabled attack alert on each protected address support system monitoring. And the addresses no plan can protect, or the kit couldn't resolve, are named for the security officer's decision records. The simulation report and the fired alert are the guide's test evidence; the kit doesn't produce them. The kit's output supports these controls; the assessor decides.`,
+      detail: `Every public IP's protection and the network it depends on (ddos.json, Lab 1 step 2; coverage in summary.json): SC-5, denial-of-service protection; KSI-CNA-RVP; platform owner. DDoS logs to the platform workspace and an enabled attack alert on each protected address (AZS-DD-04 and AZS-DD-05, or none): SI-4, system monitoring; KSI-MLA-LET; security monitor. Addresses no plan can protect, and the ones the kit couldn't resolve (AZS-DD-02 and AZS-DD-03): SC-5, the exception with its decision record; KSI-CNA-RVP; the ISSO. The controls are the guide's Step 3 row (SC-5, SI-4); the guide notes KSI-CNA-RVP cites SC-5.`,
+      cite: ["azs03-guide"],
+      ref: "“Federal requirements and evidence”",
+    },
+    {
+      part: "How", title: "Dangers, and the guard for each",
+      body: [
+        { table: { head: ["Danger", "What happens", "The guard"], w: [3.2, 4.2, 4.75], rows: [
+          ["Trusting VirtualNetworkInherited", "The network has no plan; the address is open", "The address followed to its network and plan"],
+          ["A guess about a load balancer", "Coverage claimed for an unknown backend", "AZS-DD-02, counted as not protected"],
+          ["An alert that exists but is off", "Nobody is paged during an attack", "Only enabled alerts count"],
+          ["Logs to the wrong workspace", "The monitor's queries find nothing", "Only the settings' workspace counts"],
+          ["Moving a protected network", "The move fails; disabling resets tuning", "The guide's change record, not the kit"],
+        ] }, pt: 12 },
+      ],
+      sources: "Sources: Chapter 03, “Dangers”; Learn, Network Protection quickstart.",
+      say: `What breaks, and what guards against it? Trust the inherited setting and you may count an address whose network has no plan, so the kit follows it to the plan. Guess about a load balancer and coverage is claimed for a backend nobody checked, so it's counted as not protected. An alert that exists but is switched off pages nobody, so only enabled alerts count. Logs to the wrong workspace leave the monitor's queries empty, so only the platform workspace counts. And Learn warns that a protected network can't be moved, and disabling protection to move it resets the tuning: that's the change record's job, not the kit's.`,
+      detail: `Trusting VirtualNetworkInherited: the network behind it has no plan; the kit follows the address to its network and the network's plan. A guess about a load balancer: AZS-DD-02, reported as unknown, counted as not protected. An alert that exists but is off: only enabled alerts count. Logs to the wrong workspace: only logs to the settings' workspace count. Moving a protected network: the move fails; disabling protection to move resets tuning (Learn); not the kit's to guard: the guide's change record.`,
+      cite: ["azs03-cli"],
+      ref: "“Dangers”",
+    },
+    {
+      part: "How", title: "Done when: the DDoS checklist",
+      body: [
+        { bullets: [
+          "Every AZS-DD-01 address has a plan, a decision record or a ticket",
+          "Every AZS-DD-02 address was resolved by hand and recorded",
+          "Every protected address has DDoS logs to the platform workspace and an enabled alert",
+          "The coverage in summary.json is the number the metric reports",
+          "A simulation ran this year, with its report filed beside the run",
+        ], pt: 14.5 },
+        { callout: "Chapter 04: layer 7, the web application firewall.", label: "Next: ", icon: "FaRoute", color: "amber" },
+      ],
+      sources: "Sources: Chapter 03, “Checklist”; “Continue the book.”",
+      say: `Here's what done looks like. Every unprotected address has a plan, a decision record or a ticket. Every address the kit couldn't resolve was resolved by hand and recorded. Every protected address has DDoS logs to the platform workspace and an enabled alert. The coverage in the summary is the number the metric reports. And a simulation ran this year, with its report filed beside the run. Next, Chapter 4 moves to layer seven: the web application firewall.`,
+      detail: `Checklist: every AZS-DD-01 address has a plan, a decision record or a ticket; every AZS-DD-02 address was resolved by hand and recorded; every protected address has DDoS logs to the platform workspace and an enabled alert; the coverage in summary.json is the number the metric reports; a simulation ran this year, with its report filed beside the run. Next, Chapter 04: layer 7, the web application firewall. The guide's Step 3 holds the commands that create and link the plan; this chapter only reads it.`,
+      cite: [],
+      ref: "“Checklist”; “Continue the book”",
+    },
+  ],
+});

@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.497
+Lab 2 moves to a test
+subscription in a test tenant,
+
+2
+00:00:03.497 --> 00:00:08.037
+never production, with at least
+one public IP in a virtual network.
+
+3
+00:00:08.037 --> 00:00:10.861
+A Network Protection
+plan is billed per plan;
+
+4
+00:00:10.861 --> 00:00:15.287
+without one the lab still runs, and
+every address shows as unprotected.
+
+5
+00:00:15.287 --> 00:00:19.953
+Sign in to commercial Azure, write the
+settings file, and run the check live;
+
+6
+00:00:19.953 --> 00:00:24.775
+six of its seven calls aren't verified
+on Learn yet, so allow them and compare.
+
+7
+00:00:24.775 --> 00:00:27.533
+The guide's own query
+gives each address's mode,
+
+8
+00:00:27.533 --> 00:00:31.163
+and the portal shows an inherited
+network's DDoS protection.
+
+9
+00:00:31.163 --> 00:00:34.713
+Resolve any unknown address
+by hand and record it.
+
+10
+00:00:34.713 --> 00:00:38.562
+Nothing changed in Azure, so
+back out by deleting the output.
+
+11
+00:00:38.562 --> 00:00:40.630
+The authors haven't run this lab.

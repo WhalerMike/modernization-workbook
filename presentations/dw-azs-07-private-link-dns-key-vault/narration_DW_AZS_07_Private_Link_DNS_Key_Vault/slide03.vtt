@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.925
+Here's Microsoft's starting point.
+
+2
+00:00:01.925 --> 00:00:06.941
+Learn's Key Vault Private Link page creates
+a vault on role-based access with purge
+
+3
+00:00:06.941 --> 00:00:11.957
+protection, closes its firewall, creates
+the vault's privatelink zone and its link,
+
+4
+00:00:11.957 --> 00:00:15.350
+and the private endpoint,
+then validates with nslookup.
+
+5
+00:00:15.350 --> 00:00:19.062
+It also says name resolution is
+where private endpoints fail.
+
+6
+00:00:19.062 --> 00:00:22.714
+A private DNS zone group
+registers the endpoint's record,
+
+7
+00:00:22.714 --> 00:00:24.812
+and removes it with the endpoint.
+
+8
+00:00:24.812 --> 00:00:28.421
+The Cloud Adoption Framework
+keeps privatelink zones central
+
+9
+00:00:28.421 --> 00:00:32.099
+in the connectivity subscription
+and adds zone groups by policy.
+
+10
+00:00:32.099 --> 00:00:35.450
+The zone group API
+returns each group's zone.
+
+11
+00:00:35.450 --> 00:00:40.477
+And Learn's Key Vault recommendations:
+role-based access, not access policies;
+
+12
+00:00:40.477 --> 00:00:46.030
+purge protection; private endpoints with
+public access disabled; and audit logging.

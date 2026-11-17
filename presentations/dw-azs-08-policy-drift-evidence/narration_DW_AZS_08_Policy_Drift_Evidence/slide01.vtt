@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.950
+Welcome to the Federal
+Modernization Workbook's
+
+2
+00:00:02.950 --> 00:00:05.638
+developer workbook,
+Building Azure Security.
+
+3
+00:00:05.638 --> 00:00:09.313
+This is Chapter 8: policy,
+drift and evidence.
+
+4
+00:00:09.313 --> 00:00:13.718
+An exemption without an expiry is a
+decision nobody has to make again,
+
+5
+00:00:13.718 --> 00:00:18.587
+and a finding without last week's run
+beside it is a number nobody can explain.
+
+6
+00:00:18.587 --> 00:00:22.900
+We'll start from Microsoft Learn's
+policy samples for Resource Graph,
+
+7
+00:00:22.900 --> 00:00:26.154
+see what they leave to you,
+read the kit's policy check,
+
+8
+00:00:26.154 --> 00:00:31.224
+its comparison of two runs, its metrics and
+its evidence records, and walk two labs.
+
+9
+00:00:31.224 --> 00:00:34.240
+The chapter is a draft
+awaiting the owner's review,
+
+10
+00:00:34.240 --> 00:00:38.210
+and the code is illustrative,
+tested against a fictional estate.

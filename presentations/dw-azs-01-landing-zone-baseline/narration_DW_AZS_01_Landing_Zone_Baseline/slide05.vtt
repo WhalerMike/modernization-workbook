@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.288
+Now the kit's spine.
+
+2
+00:00:01.288 --> 00:00:04.113
+One call list declares thirty-three reads:
+
+3
+00:00:04.113 --> 00:00:08.632
+twenty-four Resource Graph queries
+and nine Resource Manager GETs,
+
+4
+00:00:08.632 --> 00:00:12.022
+each with its query or path,
+its API version, its role,
+
+5
+00:00:12.022 --> 00:00:15.976
+which is Reader everywhere, and
+the Learn page it comes from.
+
+6
+00:00:15.976 --> 00:00:18.100
+Fifteen are verified on Learn.
+
+7
+00:00:18.100 --> 00:00:20.380
+The other eighteen say what's missing,
+
+8
+00:00:20.380 --> 00:00:23.175
+and a live run refuses
+them unless you allow it.
+
+9
+00:00:23.175 --> 00:00:28.414
+Two invokers serve the calls: the fixture
+invoker reads files and sends nothing;
+
+10
+00:00:28.414 --> 00:00:32.700
+the live invoker runs a scoped
+Resource Graph query or a GET on the
+
+11
+00:00:32.700 --> 00:00:37.700
+commercial Resource Manager host, after
+checking the CLI's cloud and tenant.
+
+12
+00:00:37.700 --> 00:00:41.056
+The kit knows one cloud, commercial Azure,
+
+13
+00:00:41.056 --> 00:00:45.460
+which Microsoft 365 GCC pairs
+with, and has no default.

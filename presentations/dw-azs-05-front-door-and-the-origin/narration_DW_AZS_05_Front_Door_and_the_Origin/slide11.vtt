@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.715
+Each output is evidence
+for something specific,
+
+2
+00:00:02.715 --> 00:00:08.112
+from the guide's requirements
+table against NIST SP 800-53.
+
+3
+00:00:08.112 --> 00:00:12.006
+Each origin's lock-down, read
+from configuration and backed
+
+4
+00:00:12.006 --> 00:00:15.501
+by Lab 2's request test,
+supports boundary protection.
+
+5
+00:00:15.501 --> 00:00:19.717
+TLS 1.2 as the minimum on
+every custom domain and gateway
+
+6
+00:00:19.717 --> 00:00:24.025
+supports transmission
+confidentiality and integrity.
+
+7
+00:00:24.025 --> 00:00:26.105
+A second origin in every group,
+
+8
+00:00:26.105 --> 00:00:29.850
+with the failover test,
+supports the contingency plan.
+
+9
+00:00:29.850 --> 00:00:34.587
+And classic profiles named before their
+retirement support boundary protection too.
+
+10
+00:00:34.587 --> 00:00:38.637
+The kit's output supports these
+controls; the assessor decides.
+
+11
+00:00:38.637 --> 00:00:43.388
+And the key security indicators are
+FedRAMP's indicators for cloud providers,
+
+12
+00:00:43.388 --> 00:00:46.300
+which the agency lines
+its own evidence up with.

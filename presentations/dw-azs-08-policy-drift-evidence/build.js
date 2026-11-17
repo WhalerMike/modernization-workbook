@@ -1,0 +1,245 @@
+// Building Azure Security, Chapter 08 — Policy, Drift and Evidence: the narrated tour.
+// Every fact comes from docs/project-plans/developer-workbooks/azure-security/08-policy-drift-and-evidence.md;
+// cite names are that chapter's footnotes. Layout and notes: ../_build/devwb.js.
+// Build (Git Bash): source /c/tmp/deckenv.sh && DATECODE="…" node presentations/dw-azs-08-policy-drift-evidence/build.js
+require("../_build/devwb.js")({
+  workbook: "azs", chapter: 8, dir: __dirname,
+  base: "DW_AZS_08_Policy_Drift_Evidence",
+  title: "Policy, Drift and Evidence",
+  map: "Why expiry and comparison · what Learn gives and leaves · the policy rules · drift, metrics, evidence · who · two labs · evidence · dangers",
+  slides: [
+    {
+      say: `Welcome to the Federal Modernization Workbook's developer workbook, Building Azure Security. This is Chapter 8: policy, drift and evidence. An exemption without an expiry is a decision nobody has to make again, and a finding without last week's run beside it is a number nobody can explain. We'll start from Microsoft Learn's policy samples for Resource Graph, see what they leave to you, read the kit's policy check, its comparison of two runs, its metrics and its evidence records, and walk two labs. The chapter is a draft awaiting the owner's review, and the code is illustrative, tested against a fictional estate.`,
+      detail: `The code behind the Azure Security Engineering guide's Step 9, policy and drift, and Step 10, operations and evidence. You start with Learn's policy samples for Resource Graph: compliance by assignment, exemptions per assignment and exemptions due to expire. Then you read the kit's policy check, its comparison of two runs, its metrics and its evidence records. Lab 1 runs every area on both weeks of the Contoso estate, compares them, computes the metrics and records the evidence. Lab 2 does it for a test management group.`,
+      cite: ["azs08-guide"],
+      ref: "“In this chapter”",
+    },
+    {
+      part: "Why", title: "Why exemptions expire and runs are compared",
+      body: [
+        { cols: [[{ bullets: [
+          "Check the **security initiative** and its **exemptions** every week",
+          "Say **what changed since last week** in every area",
+          "Report the guide's **metrics** with the numbers behind them",
+          "Hand the ISSO evidence that is **hashed, chained** and tagged with controls and KSIs",
+        ], label: "By the end you can", color: "navy", pt: 14 }], [{ bullets: [
+          "Policy owners and ISSOs: the initiative, the exemptions, the evidence",
+          "Platform owners, who run the weekly job",
+          "Developers who keep the comparison and the records honest",
+        ], label: "Who it's for", color: "teal", pt: 14 }]] },
+      ],
+      sources: "Sources: Chapter 08, opening, “In this chapter,” “Goal and audience.”",
+      say: `Why this chapter? Because policy holds everything the earlier chapters checked, and evidence is what an assessor reads. By the end you can check the security initiative and its exemptions every week, say what changed since last week in every area, report the guide's metrics with the numbers behind them, and hand the security officer an evidence folder whose every file is hashed, whose records form a chain, and whose records name the controls and indicators each run supports. It's for policy owners and security officers, for the platform owners who run the weekly job, and for the developers who keep the comparison and the records honest.`,
+      detail: `Goal: by the end of this chapter you can check the security initiative and its exemptions every week, say what changed since last week in every area, report the guide's metrics with the numbers behind them, and hand the ISSO an evidence folder whose every file is hashed, whose records form a chain, and whose records name the controls and KSIs each run supports. Audience: policy owners and ISSOs, who own the initiative, the exemptions and the evidence; platform owners, who run the weekly job; the developers who keep the comparison and the records honest.`,
+      cite: [],
+      ref: "Opening; “Goal and audience”",
+    },
+    {
+      part: "What", title: "What Microsoft Learn gives you",
+      body: [
+        { table: { head: ["Learn gives", "What it says"], w: [3.8, 8.35], rows: [
+          ["Resource Graph policy samples", "PolicyResources holds assignments, exemptions and compliance states"],
+          ["Compliance by policy assignment", "Each assignment's state, percentage and counts; the kit uses it as published"],
+          ["Exemptions that expire within 90 days", "Lists the exemptions coming due"],
+          ["Exemption structure", "Mitigated or Waiver; expiresOn; an expired exemption is kept but no longer honored"],
+          ["Enforcement mode", "DoNotEnforce evaluates without enforcing"],
+        ] }, pt: 12.5 },
+      ],
+      sources: "Sources: Learn, Resource Graph sample queries for Azure Policy; exemption structure; assignment structure; az policy exemption.",
+      say: `Here's Microsoft's starting point. Learn's Resource Graph samples for Azure Policy read assignments, exemptions and compliance states from one table. Its compliance-by-assignment query gives each assignment's state, percentage and counts, and the kit uses it exactly as published. Another sample lists the exemptions due to expire within ninety days. Learn's exemption structure says an exemption is either mitigated or a waiver, can carry an expiry, and once expired is kept for the record but no longer honored. And DoNotEnforce evaluates without enforcing, which is where the guide's Step 9 starts before switching to enforcement after the compliance review.`,
+      detail: `Learn's Resource Graph samples for Azure Policy read assignments, exemptions and compliance states from the PolicyResources table; "Compliance by policy assignment" gives each assignment's state, percentage and counts; "Policy exemptions that expire within 90 days" lists the ones due. An exemption is Mitigated or Waiver, can carry expiresOn, and an expired one is kept for the record but no longer honored. az policy exemption list --management-group <name> --filter "atScopeAndBelow()" lists them. DoNotEnforce evaluates without enforcing. The guide's Step 9 assigns the initiative in DoNotEnforce, switches it to Default after the compliance review, and exports compliance each month.`,
+      cite: ["azs08-arg-policy", "azs08-exemption", "azs08-enforcement", "azs08-cli-exemption", "azs08-guide"],
+      ref: "“Start with Microsoft Learn”; “Verified facts”",
+    },
+    {
+      part: "What", title: "What it leaves to you",
+      body: [
+        { table: { head: ["Learn and the guide give", "Why it matters", "What the kit adds"], w: [3.5, 4.0, 4.65], rows: [
+          ["Exemptions due within 90 days", "No expiry, or already expired, isn't in that list", "AZS-POL-03, 04 and 05"],
+          ["Switch to Default after the review", "Audit left for months: a gate nobody closed", "AZS-POL-02 after the enforce-by date"],
+          ["No notScopes for convenience", "A sentence, not a check", "AZS-POL-06"],
+          ["The monthly compliance export", "One month can't show what got better", "Two runs compared by fingerprint"],
+          ["The guide's metrics table", "Each metric needs a different step's numbers", "Eight computed, four marked"],
+          ["The evidence catalog", "A folder doesn't show it's unchanged", "Records hashed, chained, tagged"],
+        ] }, pt: 11.5 },
+      ],
+      sources: "Sources: Chapter 08, “What it leaves to you”; the kit's tests (Policy, Drift, Metrics, Evidence).",
+      say: `What do Learn and the guide leave to you? The ninety-day list misses an exemption with no expiry, and one already expired. "Switch to enforcement after the review" is a sentence, so an assignment can sit in audit for months. So is "no excluded scopes for convenience". One month's compliance export alone can't show whether anything got better. The guide's metrics each need numbers from a different step. And a folder of exports doesn't show that nothing changed after it was filed, or which control a file supports. The kit answers each, and a test pins each answer.`,
+      detail: `Exemptions due within 90 days: AZS-POL-03 (no expiry), AZS-POL-04 (expired), AZS-POL-05 (due within 30 days, config/baseline.json). "Switch to Default after the review": AZS-POL-02 after the settings' enforce-by date. "No notScopes for convenience": AZS-POL-06. The monthly compliance export: two runs compared by fingerprint, per area (Drift test). The guide's metrics table: Get-AzsMetric computes the eight it can from one run, with the numbers behind each, and marks the four that come from exercise records or the workspace (Metrics test). The evidence catalog: each run recorded with every file's hash, the hash of the record before it, and its controls and KSIs (Evidence tests). Why not the drift pipeline: it compares validation kit runs and refuses any run that isn't one (it checks ValidationManifest.json), so this kit compares by its own finding fingerprint, as the provider notices and Zero Trust Assessment results kits do.`,
+      cite: ["azs08-arg-policy"],
+      ref: "“What it leaves to you”; “Why not the drift pipeline”",
+    },
+    {
+      part: "What", title: "The policy check: six rules",
+      body: [
+        { table: { head: ["Rule", "Severity", "What it flags", "Source"], w: [1.7, 1.4, 6.0, 3.05], rows: [
+          ["AZS-POL-01", "Finding", "The security initiative isn't assigned at the intermediate root", "Design guidance"],
+          ["AZS-POL-02", "Warn", "Still in DoNotEnforce after the settings' enforce-by date", "Design guidance"],
+          ["AZS-POL-03", "Finding", "An exemption with no expiry", "Design guidance; Learn"],
+          ["AZS-POL-04", "Finding", "An exemption past its expiry: kept, no longer honored", "Learn"],
+          ["AZS-POL-05", "Warn", "An exemption due within the warning window", "Design guidance"],
+          ["AZS-POL-06", "Finding", "An assignment with notScopes", "Design guidance"],
+        ] }, pt: 12.5 },
+      ],
+      sources: "Sources: examples/azure-security (config/rules.json); Learn, exemption structure. Chapter 08, “The policy area.”",
+      say: `The policy check reads the assignments, the exemptions and Learn's compliance query, and reports six rules. The security initiative must be assigned at the intermediate root. It's a warning if it's still in DoNotEnforce after the enforce-by date the settings give. Every exemption needs an expiry; one past its expiry is a finding, because Learn says it's kept but no longer honored; one due within thirty days is a warning. And an assignment that excludes scopes with notScopes is a finding. Most of these are the program's design guidance; the expiry rule is Learn's.`,
+      detail: `Get-AzsPolicyCheck reads the assignments, the exemptions and Learn's compliance-by-assignment query, as published. AZS-POL-01, Finding: the security initiative isn't assigned at the intermediate root (design guidance, guide Step 9). AZS-POL-02, Warn: still in DoNotEnforce after the settings' enforce-by date (design guidance). AZS-POL-03, Finding: an exemption with no expiry (design guidance; Learn). AZS-POL-04, Finding: an exemption past its expiry, kept, no longer honored (Learn). AZS-POL-05, Warn: an exemption due within the warning window, 30 days (design guidance). AZS-POL-06, Finding: an assignment with notScopes (design guidance, guide Step 9).`,
+      cite: ["azs08-exemption", "azs08-guide"],
+      ref: "“The code” — “The policy area”",
+    },
+    {
+      part: "What", title: "Drift, metrics and evidence",
+      body: [
+        { cols: [[{ bullets: [
+          "Two runs, per area, by **fingerprint**: rule and resource",
+          "Only in the later run: **new**; only in the earlier: **fixed**; in both: **still open**",
+          "drift.json and drift.md",
+        ], label: "The comparison", color: "navy", pt: 13 }], [{ bullets: [
+          "**Eight** of the guide's twelve from one run, with the numbers behind each",
+          "Private PaaS: a count, no denominator",
+          "**Three** from exercise records and the workspace, and they say so",
+        ], label: "The metrics", color: "teal", pt: 13 }]] },
+        { callout: "every file hashed, the hash of the record before it, the steps' SP 800-53 controls and KSIs. Fixture records never count toward a stage.", label: "The evidence: ", icon: "FaFingerprint", color: "amber" },
+      ],
+      sources: "Sources: examples/azure-security (Invoke-AzsCompare, Invoke-AzsMetrics, Invoke-AzsEvidence). Chapter 08, “The comparison,” “The metrics,” “The evidence.”",
+      say: `Three more tools. The comparison takes two runs and, per area, compares findings and warnings by fingerprint, the rule and the resource. Only in the later run is new; only in the earlier is fixed; in both, still open. The metrics tool computes eight of the guide's twelve metrics from one run, with the numbers behind each; private PaaS reports a count, because Resource Graph's list has no denominator; and three come from exercise records and the workspace, and say so. And the evidence tool records any run: every file's hash, the hash of the record before it, and the controls and indicators of the steps it covers. A fixture run never counts toward a stage.`,
+      detail: `Invoke-AzsCompare.ps1 takes two runs (two -Area all folders, or two folders of one area) and, per area, compares Finding and Warn rows by fingerprint: the rule and the lower-cased resource ID; it writes drift.json and drift.md. Invoke-AzsMetrics.ps1 reads each area's summary.json and writes the guide's twelve metrics: eight from the kit (exposure ownership, DDoS coverage, WAF prevention coverage, origin lock-down by configuration, egress inspection by declared routes, vault posture, policy compliance, exemption hygiene); private PaaS reports the count of public resources; detection to page, exercise currency and WAF effectiveness come from exercise records and the workspace. Invoke-AzsEvidence.ps1 checks a run folder against its manifest, copies it under runs/, and writes a record with time, environment, mode, tenant, command, result, steps with their SP 800-53 controls and KSIs, every file's SHA-256 and the SHA-256 of the record before it; -Check re-hashes and walks the chain; with -Stage, every step the stage needs must have a passing record from a live run. Every record says it supports the controls listed and the assessor decides.`,
+      cite: ["azs08-guide"],
+      ref: "“The comparison”; “The metrics”; “The evidence”",
+    },
+    {
+      part: "Who", title: "Who owns policy, drift and the evidence",
+      body: [
+        { cards: [
+          { title: "Policy owner", text: "Owns the initiative and the exemptions; reads drift.md at the weekly review", color: "navy" },
+          { title: "Platform owner", text: "Runs the weekly job; answers for new rows", color: "teal" },
+          { title: "ISSO", text: "Keeps the evidence folder on agency storage and runs the check", color: "amber" },
+        ], pt: 13.5 },
+        { lead: "Every read is Reader. Findings from a Zero Trust assessment enter the closure chain; the ZTA results kit files these under DDoS, WAF and public exposure." },
+      ],
+      sources: "Sources: Chapter 08, “Goal and audience,” “The evidence,” “Federal requirements and evidence.”",
+      say: `Who's involved? The policy owner owns the initiative and its exemptions, and reads the drift report at the weekly review with the security officer. The platform owner runs the weekly job and answers for new rows. And the security officer keeps the evidence folder, on agency storage, and runs its check. Every read is still Reader. Findings from a Zero Trust assessment enter the workbook's closure chain, and the Zero Trust Assessment results kit files them under its DDoS, WAF and public exposure family, whose ready-for-closure evidence is this kit's register, DDoS and WAF runs.`,
+      detail: `Policy owner: the initiative's enforcement, exemptions with their expiry, compliance by assignment, with the ISSO. Platform owner and policy owner: what changed since last week, per area (drift.json, drift.md). The ISSO: the metrics with the numbers behind them; every run hashed, chained and tagged, on agency storage. Findings from a Zero Trust assessment enter the closure chain of Zero Trust & Assessment's Chapter 10; the Zero Trust Assessment results kit files them under its DDoS, WAF and public exposure family, whose ready-for-closure evidence is this kit's register, DDoS and WAF runs.`,
+      cite: [],
+      ref: "“Goal and audience”; “The evidence”; “Federal requirements and evidence”",
+    },
+    {
+      part: "How", title: "Lab 1: every area, week one, and the policy",
+      body: [
+        { terminal: "08-1", label: "examples/azure-security  ·  fixture data  ·  real output" },
+        { terminal: "08-2" },
+      ],
+      sources: "Sources: examples/azure-security (fictional fixtures). Chapter 08, “Lab 1: fixtures, no subscription,” steps 1–2.",
+      say: `Lab 1 needs only PowerShell 7 with Pester, in the kit's folder. Between the two weeks, Contoso's platform team switched the WAF to prevention, moved the firewall to deny, routed a subnet to the firewall, added a missing header, turned on purge protection, enforced the security initiative and required authorization for new management groups; a new public IP appeared and an orphan went away. Step 1 runs every area on week one: forty-eight findings in all. Step 2 reads the policy findings: an assignment with excluded scopes, an exemption expired on October 31, one with no expiry, one due within thirty days, and the initiative still in audit after its November 1 enforce-by date.`,
+      detail: `You need PowerShell 7.1 or later with Pester 5, working in examples/azure-security. Between the two weeks, Contoso's platform team switched the WAF to Prevention, moved the firewall policy to Deny, routed snet-web to the firewall, added the header to origin-west, turned on purge protection on kv-portal, enforced the security initiative and required authorization for new management groups; a new public IP appeared and the orphan went away. Step 1: Invoke-AzsCheck.ps1 -Area all on week1: 48 Finding, 19 Warn, 2 Info. Step 2: AZS-POL-06 for allowed-locations (notScopes contoso-sandbox); AZS-POL-04 for ex-legacy-fd, expired 2026-10-31; AZS-POL-03 for ex-payroll-ddos, no expiry; AZS-POL-02 for azs-security, DoNotEnforce after 2026-11-01; AZS-POL-05 for ex-portal-waf, due 2026-12-01.`,
+      cite: [],
+      ref: "“Lab 1: fixtures, no subscription,” steps 1–2",
+    },
+    {
+      part: "How", title: "Lab 1: week two, and what changed",
+      body: [
+        { terminal: "08-3", lines: "1,10" },
+        { terminal: "08-4", lines: "1-10,11-13,20-21,23" },
+      ],
+      sources: "Sources: examples/azure-security (fictional fixtures). Chapter 08, “Lab 1: fixtures, no subscription,” steps 3–4.",
+      say: `Step 3 runs every area on the second week, with the first week's register: forty findings now. Step 4 compares the two weeks. Thirteen fixed, four new, and all four new rows come from the two public IPs that changed: the new one has no log, no owner and no DDoS protection, and the one that went away leaves a reminder to remove any DNS record still pointing at its address. Among the fixed: the hierarchy setting, the WAF in detection, the firewall's threat intelligence and intrusion detection, and the security initiative's enforcement.`,
+      detail: `Step 3: Invoke-AzsCheck.ps1 -Area all on week2 with -PreviousRegisterPath out/week1/exposure/register.json: 40 Finding, 18 Warn, 3 Info. Step 4: Invoke-AzsCompare.ps1: new 4, fixed 13, still open 54. New: AZS-BL-05, AZS-EX-01 and AZS-DD-01 for pip-new-api; AZS-EX-04 for pip-orphan (remove any DNS record that still points at it). Fixed include AZS-BL-01 (hierarchy settings), AZS-WAF-01 (wafp-portal), AZS-EDGE-03 (origin-west), AZS-FW-01, 02, 03 and 05, AZS-KV-02 (kv-portal) and AZS-POL-02 (azs-security).`,
+      cite: [],
+      ref: "“Lab 1: fixtures, no subscription,” steps 3–4",
+    },
+    {
+      part: "How", title: "Lab 1: the metrics and the evidence records",
+      body: [
+        { terminal: "08-5", lines: "1-6,8-10" },
+        { terminal: "08-6", lines: "1-3,7,12,16-18" },
+      ],
+      sources: "Sources: examples/azure-security (fictional fixtures). Chapter 08, “Lab 1: fixtures, no subscription,” steps 5–6.",
+      say: `Step 5 computes the metrics for the second week. DDoS coverage is fifty-seven percent, WAF prevention coverage sixty-seven, egress inspection sixty, vault posture thirty-three, and one exemption has expired. The rows that come from exercise records say so instead of inventing a number. Step 6 records the run, the comparison and the metrics as evidence, then checks the folder. The first record covers all nine area steps and lists sixteen controls. The comparison and the metrics each get their own record, and the chain of three records is unbroken.`,
+      detail: `Step 5: Invoke-AzsMetrics.ps1 on week2: exposure ownership 84.2%, DDoS coverage 57.1%, WAF prevention coverage 66.7%, origin lock-down 60%, egress inspection 60%, private PaaS 6 public, vault posture 33.3%, policy compliance 63.2%, exemption hygiene 1 expired; detection to page, exercise currency and WAF effectiveness from the exercise records or the workspace. Step 6: record 1 covers BL, EXP, DDOS, WAF, EDGE, FW, PL, KV, POL and EVIDENCE with sixteen controls; record 2 DRIFT; record 3 METRICS; -Check: SUMS pass, CHAIN pass, 3 records, chain unbroken.`,
+      cite: [],
+      ref: "“Lab 1: fixtures, no subscription,” steps 5–6",
+    },
+    {
+      part: "How", title: "Lab 1: fixture evidence can't pass a stage",
+      body: [
+        { terminal: "08-7", lines: "2-6,14" },
+        { terminal: "08-8" },
+      ],
+      sources: "Sources: examples/azure-security (fictional fixtures). Chapter 08, “Lab 1: fixtures, no subscription,” steps 7–8.",
+      say: `Step 7 asks whether this evidence could pass the test stage's go or no-go. Every step fails, with the same reason: no passing live record. That's on purpose. Lab evidence can't promote anything, so nobody can take a fixture run to production by mistake. Step 8 runs this chapter's tests: ten pass, covering the policy check, the run folders, the comparison, the metrics and the evidence. When you're done, delete the output folder.`,
+      detail: `Step 7: Test-AzsEvidence -Stage test lists STEP-PRE, STEP-RUN, the nine area steps and STEP-METRICS, every one Fail: no passing live record. A fixture run is recorded as mode Fixture and never counts toward a stage. Step 8: Invoke-Pester on the Policy, Run folders, Drift, Metrics and Evidence tests: 10 passed, 0 failed (two on the policy check, one the comparison, one the metrics, three the evidence and three the run folders). After the steps: Remove-Item -Recurse -Force out.`,
+      cite: [],
+      ref: "“Lab 1: fixtures, no subscription,” steps 7–8",
+    },
+    {
+      part: "How", title: "Lab 2: a test management group",
+      body: [
+        { steps: [
+          { title: "Sign in and write the settings", text: "Commercial Azure, the resource-graph extension, the settings file outside any repository" },
+          { title: "Run every area twice, then compare", text: "Nothing changed between them: no new and no fixed rows" },
+          { title: "Compare with Learn's lists", text: "az policy state summarize; az policy exemption list --filter atScopeAndBelow()" },
+          { title: "Record the second run and check it", text: "Mode Live; the stage still lacks the preflight and the scheduled run (Chapter 09)" },
+          { title: "Back it out", text: "Nothing changed in Azure: delete the runs, drift and evidence, and sign out" },
+        ], pt: 12.5 },
+        { callout: "a test tenant with at least one assignment and one exemption, never production. The authors haven't run this lab.", label: "Where: ", icon: "FaTriangleExclamation", color: "red" },
+      ],
+      sources: "Sources: Learn, az policy exemption. Chapter 08, “Lab 2: a test subscription.”",
+      say: `Lab 2 moves to a test management group with at least one policy assignment and one exemption, never production. Sign in, write the settings file, and run every area twice, a few minutes apart. With nothing changed between them, the comparison should show no new and no fixed rows. Then compare the policy rows with the guide's compliance export and Learn's exemption list: every exemption should appear, in the state the kit gave it. Record the second run: its mode is live, but the stage check still lacks the preflight and the scheduled run, which Chapter 9 adds. Nothing changed in Azure, so backing out is deleting what the lab wrote. The authors haven't run this lab.`,
+      detail: `Use a test tenant with a test management group and subscription in commercial Azure, never production, with at least one policy assignment and one exemption at the test management group. Run Invoke-AzsCheck.ps1 -Area all twice (run-1, run-2 with the previous register), then Invoke-AzsCompare.ps1. Compare with az policy state summarize --management-group <test-mg-id> and az policy exemption list --management-group <test-mg-id> --filter "atScopeAndBelow()": every exemption in the second list should be a row of kind exemption in run-2/policy/policy.json. Record run-2 with Invoke-AzsEvidence.ps1 and check it. Back out: delete run-1, run-2, drift and evidence; az logout.`,
+      cite: ["azs08-cli-exemption"],
+      ref: "“Lab 2: a test subscription”",
+    },
+    {
+      part: "How", title: "Federal requirements and the evidence",
+      body: [
+        { table: { head: ["What the output proves", "Supports", "KSI", "Who keeps it"], w: [5.0, 2.4, 2.6, 2.15], rows: [
+          ["Enforcement, exemptions with expiry, compliance (policy folder)", "CM-2; CM-6; CA-7", "SVC-ACM, CNA-EIS, MLA-EVC", "Policy owner, ISSO"],
+          ["What changed since last week (drift.json, drift.md)", "CM-6; CA-7", "SVC-ACM, MLA-EVC", "Platform and policy owners"],
+          ["The metrics with their numbers (metrics.json)", "CA-7; AU-6", "MLA-EVC, MLA-OSM", "ISSO"],
+          ["Every run hashed, chained, tagged (records/, SHA256SUMS)", "CA-7; AU-9", "MLA-EVC, MLA-OSM", "ISSO, agency storage"],
+        ] }, pt: 12 },
+        { lead: "The kit's output supports these controls; the assessor decides. KSIs are FedRAMP 20x indicators for providers." },
+      ],
+      sources: "Sources: NIST SP 800-53 Rev. 5; FedRAMP, Key Security Indicators; the guide's Steps 9 and 10. Chapter 08, “Federal requirements and evidence.”",
+      say: `Each output supports specific controls from NIST's catalog, as the guide's requirements table maps them. The policy folder supports baseline configuration, configuration settings and continuous monitoring. The drift report supports configuration settings and continuous monitoring. The metrics support continuous monitoring and audit record review. And the chained, hashed records support continuous monitoring and the protection of audit information. The kit's output supports those controls; the assessor decides. The key security indicators are FedRAMP's indicators for cloud providers: the agency lines its own evidence up with them and doesn't report them. The exercise and after-action records the guide's Step 10 asks for are people's work, filed beside the runs.`,
+      detail: `The initiative's enforcement, exemptions with their expiry, compliance by assignment (the policy run folder): CM-2, CM-6, CA-7; KSI-SVC-ACM, KSI-CNA-EIS, KSI-MLA-EVC; policy owner with the ISSO. What changed since last week (drift.json, drift.md): CM-6, CA-7; KSI-SVC-ACM, KSI-MLA-EVC; platform owner, policy owner. The metrics with the numbers behind them: CA-7, AU-6; KSI-MLA-EVC, KSI-MLA-OSM; the ISSO. Every run hashed, chained and tagged (records/, records.csv, SHA256SUMS): CA-7, AU-9; KSI-MLA-EVC, KSI-MLA-OSM; the ISSO, on agency storage. The controls are the guide's Step 9 and Step 10 rows; AU-9 to KSI-MLA-OSM is the provider notices kit's pair.`,
+      cite: ["azs08-guide"],
+      ref: "“Federal requirements and evidence”",
+    },
+    {
+      part: "How", title: "Dangers, and the guard for each",
+      body: [
+        { table: { head: ["Danger", "What happens", "The guard"], w: [3.3, 4.2, 4.65], rows: [
+          ["An exemption with no expiry", "Non-compliance accepted forever", "AZS-POL-03 every week"],
+          ["An expired exemption treated as current", "Looks exempt in an old report", "AZS-POL-04; Learn: no longer honored"],
+          ["A comparison across a changed query", "Rows look fixed that only disappeared", "Many fixed rows at once, read in drift.md"],
+          ["Lab evidence used to promote", "Fixture runs pass a go/no-go", "Fixture records never count toward a stage"],
+          ["Evidence edited after filing", "A record no longer matches the run", "SHA256SUMS and the chain fail -Check"],
+        ] }, pt: 12 },
+      ],
+      sources: "Sources: Learn, exemption structure. Chapter 08, “Dangers.”",
+      say: `What breaks, and what guards against it? An exemption with no expiry accepts non-compliance forever, so the kit flags it every week. An expired exemption can look current in an old report, so the kit names it, because Learn says it's no longer honored. A changed query can make rows look fixed when they only disappeared; that shows as many fixed rows at once, which the reviewer reads in the drift report. Lab evidence can't promote anything, because fixture records never count toward a stage. And evidence edited after filing fails the check, because the hashes and the chain no longer match.`,
+      detail: `An exemption with no expiry: non-compliance accepted forever; AZS-POL-03 every week. An expired exemption treated as current: the resource looks exempt in a report that predates the expiry; AZS-POL-04 names it; Learn says it's no longer honored. A comparison across a changed query: a "fixed" row that only disappeared because the query changed; fingerprints are rule and resource, so a changed query shows as many fixed rows at once, which the reviewer reads in drift.md. Lab evidence used to promote: fixture records never count toward a stage. Evidence edited after filing: SHA256SUMS and the chain fail -Check.`,
+      cite: ["azs08-exemption"],
+      ref: "“Dangers”",
+    },
+    {
+      part: "How", title: "Done when: the chapter's checklist",
+      body: [
+        { bullets: [
+          "The security initiative is enforcing, or its enforce-by date is in the future",
+          "Every exemption has an expiry, and none is past it without a renewal decision",
+          "drift.md is read at the weekly review, and every new row has an owner",
+          "The metrics report carries the numbers behind each value",
+          "Invoke-AzsEvidence.ps1 -Check passes on the evidence folder, on agency storage",
+        ], pt: 14.5 },
+        { callout: "Chapter 09 takes all of this to a test subscription, then production.", label: "Next: ", icon: "FaRoute", color: "amber" },
+      ],
+      sources: "Sources: Chapter 08, “Checklist”; “Continue the book.”",
+      say: `Here's what done looks like. The security initiative is enforcing, or its enforce-by date is still in the future. Every exemption has an expiry, and none is past it without a renewal decision. The drift report is read at the weekly review, and every new row has an owner. The metrics report carries the numbers behind each value. And the evidence check passes on a folder that lives on agency storage. Next, Chapter 9 is the runbook that takes all of this to a test subscription, then to production.`,
+      detail: `Checklist: the security initiative is enforcing, or its enforce-by date is in the future; every exemption has an expiry, and none is past it without a renewal decision; drift.md is read at the weekly review, and every new row has an owner; the metrics report carries the numbers behind each value; Invoke-AzsEvidence.ps1 -Check passes on the evidence folder, which lives on agency storage. Next, Chapter 09: the runbook that takes all of this to a test subscription, then production. The guide's Steps 9 and 10 hold the initiative's commands, the RACI and the review calendar.`,
+      cite: [],
+      ref: "“Checklist”; “Continue the book”",
+    },
+  ],
+});

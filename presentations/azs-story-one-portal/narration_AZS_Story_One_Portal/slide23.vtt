@@ -1,0 +1,31 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.988
+Check seven.
+
+2
+00:00:00.988 --> 00:00:04.713
+The fix for the portal's vault
+includes turning on purge protection.
+
+3
+00:00:04.713 --> 00:00:06.338
+Can that be rolled back later?
+
+4
+00:00:06.338 --> 00:00:08.438
+Yes, with a key vault update?
+
+5
+00:00:08.438 --> 00:00:12.376
+No, because once it's on it can't be
+turned off, and that's the point?
+
+6
+00:00:12.376 --> 00:00:14.125
+Only by Microsoft support?
+
+7
+00:00:14.125 --> 00:00:16.150
+Or only in a test subscription?

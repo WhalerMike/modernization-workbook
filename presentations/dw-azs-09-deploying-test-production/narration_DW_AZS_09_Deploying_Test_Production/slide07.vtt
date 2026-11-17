@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.750
+Stage 1 begins with the
+first scheduled run.
+
+2
+00:00:02.750 --> 00:00:06.697
+One command runs every area's
+check into a dated run folder,
+
+3
+00:00:06.697 --> 00:00:11.713
+computes the metrics, writes one
+manifest, and records an evidence record.
+
+4
+00:00:11.713 --> 00:00:17.044
+In fixture mode, on week one of the Contoso
+estate, it found forty-eight findings,
+
+5
+00:00:17.044 --> 00:00:22.047
+said this run is the baseline, and wrote
+evidence record 1 covering the run,
+
+6
+00:00:22.047 --> 00:00:24.426
+all nine area steps and the metrics.
+
+7
+00:00:24.426 --> 00:00:28.077
+In the live test, read each
+area's findings with its owner,
+
+8
+00:00:28.077 --> 00:00:32.125
+and for every unverified call
+compare one row with the portal,
+
+9
+00:00:32.125 --> 00:00:36.720
+as each chapter's Lab 2 does, and
+record the result in the change record.

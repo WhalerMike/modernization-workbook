@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.925
+What breaks in production,
+and what guards against it?
+
+2
+00:00:02.925 --> 00:00:07.296
+A live run on the wrong cloud or tenant
+reports another estate as this one,
+
+3
+00:00:07.296 --> 00:00:11.156
+so the kit checks the CLI's cloud
+and tenant before its first call,
+
+4
+00:00:11.156 --> 00:00:12.613
+and has no default cloud.
+
+5
+00:00:12.613 --> 00:00:16.489
+A query without a scope covers
+whatever the account happens to see,
+
+6
+00:00:16.489 --> 00:00:20.013
+so every query takes the management
+group from the settings.
+
+7
+00:00:20.013 --> 00:00:23.313
+A response's next link
+could point at another host,
+
+8
+00:00:23.313 --> 00:00:27.499
+so any URL off the commercial
+Resource Manager host is refused.
+
+9
+00:00:27.499 --> 00:00:32.077
+An unverified call could misread
+a property and report a false gap,
+
+10
+00:00:32.077 --> 00:00:36.488
+so it's refused in a live run unless
+you allow it, and Lab 2 compares.
+
+11
+00:00:36.488 --> 00:00:40.080
+And the run folder never
+goes in a public repository.

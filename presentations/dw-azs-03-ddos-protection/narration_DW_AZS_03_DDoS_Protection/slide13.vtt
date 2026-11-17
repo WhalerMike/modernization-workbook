@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:06.088
+Every unprotected address has a
+plan, a decision record or a ticket.
+
+3
+00:00:06.088 --> 00:00:10.638
+Every address the kit couldn't resolve
+was resolved by hand and recorded.
+
+4
+00:00:10.638 --> 00:00:13.241
+Every protected address has DDoS logs to
+
+5
+00:00:13.241 --> 00:00:16.075
+the platform workspace
+and an enabled alert.
+
+6
+00:00:16.075 --> 00:00:19.575
+The coverage in the summary is
+the number the metric reports.
+
+7
+00:00:19.575 --> 00:00:23.812
+And a simulation ran this year, with
+its report filed beside the run.
+
+8
+00:00:23.812 --> 00:00:28.800
+Next, Chapter 4 moves to layer
+seven: the web application firewall.

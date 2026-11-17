@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.350
+Lab 1 needs PowerShell 7 with Pester, in
+the kit's folder, and no subscription.
+
+2
+00:00:05.350 --> 00:00:08.865
+Contoso's hub firewall has
+the private IP ten dot zero
+
+3
+00:00:08.865 --> 00:00:12.300
+dot zero dot four and a
+Premium policy still in alert.
+
+4
+00:00:12.300 --> 00:00:15.700
+Two workload networks hold
+five workload subnets.
+
+5
+00:00:15.700 --> 00:00:17.758
+Step 1 runs the firewall check:
+
+6
+00:00:17.758 --> 00:00:22.450
+two of five subnets route to the
+firewall, and the plan file is written.
+
+7
+00:00:22.450 --> 00:00:24.750
+Step 2 reads each subnet.
+
+8
+00:00:24.750 --> 00:00:27.612
+The payroll data subnet
+has no route table.
+
+9
+00:00:27.612 --> 00:00:31.501
+The portal web subnet sends its
+default route to the internet.
+
+10
+00:00:31.501 --> 00:00:35.272
+And the jump subnet sends it to
+ten dot nine dot nine dot nine,
+
+11
+00:00:35.272 --> 00:00:37.420
+an appliance the kit doesn't know.

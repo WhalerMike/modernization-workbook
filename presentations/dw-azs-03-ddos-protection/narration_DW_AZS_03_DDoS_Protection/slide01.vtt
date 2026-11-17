@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.425
+Welcome back to Building Azure Security.
+
+2
+00:00:02.425 --> 00:00:05.237
+This is Chapter 3: DDoS protection.
+
+3
+00:00:05.237 --> 00:00:08.324
+Protected isn't a property of a public IP.
+
+4
+00:00:08.324 --> 00:00:11.858
+It depends on the address, the
+network behind it and the plan
+
+5
+00:00:11.858 --> 00:00:15.463
+that network is linked to, and
+the code has to follow all three.
+
+6
+00:00:15.463 --> 00:00:19.820
+We'll start from what Microsoft Learn
+gives you, see what it leaves to you,
+
+7
+00:00:19.820 --> 00:00:22.995
+read how the kit follows
+each address to its network,
+
+8
+00:00:22.995 --> 00:00:25.801
+and walk two labs, the
+evidence and the dangers.
+
+9
+00:00:25.801 --> 00:00:28.815
+The chapter is a draft
+awaiting the owner's review,
+
+10
+00:00:28.815 --> 00:00:32.780
+and the code is illustrative,
+tested against a fictional estate.

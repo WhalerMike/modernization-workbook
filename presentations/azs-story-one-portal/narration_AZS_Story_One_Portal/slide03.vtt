@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+Scene one.
+
+2
+00:00:00.875 --> 00:00:06.003
+The guide's Step 1 sets four things once:
+the hierarchy settings, the initiatives
+
+3
+00:00:06.003 --> 00:00:10.975
+in audit at the intermediate root, platform
+logs, and Defender for Cloud plans.
+
+4
+00:00:10.975 --> 00:00:15.497
+Microsoft Learn gives the commands,
+and its REST reference gives the reads,
+
+5
+00:00:15.497 --> 00:00:19.362
+but nobody runs them back every
+week across every subscription.
+
+6
+00:00:19.362 --> 00:00:23.188
+So the kit does, with one check
+scoped to the intermediate root.
+
+7
+00:00:23.188 --> 00:00:25.363
+For our portal, two things turn up.
+
+8
+00:00:25.363 --> 00:00:28.526
+Its subscription's Key Vault
+plan is on the Free tier.
+
+9
+00:00:28.526 --> 00:00:31.691
+And the hub firewall's public
+address does send logs,
+
+10
+00:00:31.691 --> 00:00:35.225
+but to an application team's
+workspace, which doesn't count:
+
+11
+00:00:35.225 --> 00:00:39.340
+a log counts only if it's enabled
+and goes to the platform workspace.

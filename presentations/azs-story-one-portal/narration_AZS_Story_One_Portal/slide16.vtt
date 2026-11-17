@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:02.837
+Read each origin's lock-down.
+
+3
+00:00:02.837 --> 00:00:06.694
+In the portal's origin group, the
+east web app is locked with the
+
+4
+00:00:06.694 --> 00:00:10.475
+service tag and the Front Door
+ID; the west one has the tag only.
+
+5
+00:00:10.475 --> 00:00:15.627
+In the API group, one origin reaches its
+back end over Private Link and one is
+
+6
+00:00:15.627 --> 00:00:20.612
+a public host the kit can't check, so it
+says to test a direct request by hand.
+
+7
+00:00:20.612 --> 00:00:24.305
+Then the findings: the west
+origin's rule has no header,
+
+8
+00:00:24.305 --> 00:00:29.740
+and the API group mixes a private and a
+public origin, which Learn says not to do.

@@ -1,0 +1,35 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.962
+Check four.
+
+2
+00:00:00.962 --> 00:00:03.251
+The gateway's policy is in detection,
+
+3
+00:00:03.251 --> 00:00:06.913
+and the kit wrote the switch to
+prevention into a plan file.
+
+4
+00:00:06.913 --> 00:00:08.237
+Who runs it, and when?
+
+5
+00:00:08.237 --> 00:00:10.438
+The kit, on its next weekly run?
+
+6
+00:00:10.438 --> 00:00:15.026
+The application owner, after the
+false-positive review, in a change window?
+
+7
+00:00:15.026 --> 00:00:17.025
+Azure Policy, automatically?
+
+8
+00:00:17.025 --> 00:00:19.680
+Or nobody, because detection is enough?

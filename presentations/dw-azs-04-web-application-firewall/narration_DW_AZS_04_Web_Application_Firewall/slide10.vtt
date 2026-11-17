@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.982
+Lab 2 moves to a test subscription with
+an Application Gateway WAF version
+
+2
+00:00:04.982 --> 00:00:09.437
+two and its policy, as the guide's
+pilot builds them, never production.
+
+3
+00:00:09.437 --> 00:00:14.050
+Sign in to commercial Azure, write the
+settings file, and run the check live,
+
+4
+00:00:14.050 --> 00:00:18.200
+allowing the WAF policy queries
+that aren't verified on Learn yet.
+
+5
+00:00:18.200 --> 00:00:21.592
+Then compare with the guide's
+Validate query: the mode,
+
+6
+00:00:21.592 --> 00:00:25.138
+body inspection and rule sets
+should match the kit's row.
+
+7
+00:00:25.138 --> 00:00:27.999
+If a property is named
+differently, record it.
+
+8
+00:00:27.999 --> 00:00:31.092
+Nothing changed in Azure
+and the plan wasn't run,
+
+9
+00:00:31.092 --> 00:00:33.312
+so back out by deleting the output.
+
+10
+00:00:33.312 --> 00:00:38.200
+The guide's own blocked-request test is
+the application owner's, after the switch.
+
+11
+00:00:38.200 --> 00:00:40.250
+The authors haven't run this lab.

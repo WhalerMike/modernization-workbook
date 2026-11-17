@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.213
+Three more tools.
+
+2
+00:00:01.213 --> 00:00:04.088
+The comparison takes
+two runs and, per area,
+
+3
+00:00:04.088 --> 00:00:09.100
+compares findings and warnings by
+fingerprint, the rule and the resource.
+
+4
+00:00:09.100 --> 00:00:14.850
+Only in the later run is new; only in the
+earlier is fixed; in both, still open.
+
+5
+00:00:14.850 --> 00:00:19.515
+The metrics tool computes eight of the
+guide's twelve metrics from one run,
+
+6
+00:00:19.515 --> 00:00:23.185
+with the numbers behind each;
+private PaaS reports a count,
+
+7
+00:00:23.185 --> 00:00:26.321
+because Resource Graph's
+list has no denominator;
+
+8
+00:00:26.321 --> 00:00:30.450
+and three come from exercise records
+and the workspace, and say so.
+
+9
+00:00:30.450 --> 00:00:34.934
+And the evidence tool records any run:
+every file's hash, the hash of the
+
+10
+00:00:34.934 --> 00:00:39.575
+record before it, and the controls
+and indicators of the steps it covers.
+
+11
+00:00:39.575 --> 00:00:42.380
+A fixture run never counts toward a stage.

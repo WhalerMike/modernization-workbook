@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:03.525
+Read each workload subnet's default route.
+
+3
+00:00:03.525 --> 00:00:07.788
+Two go to the hub firewall at 10.0.0.4.
+
+4
+00:00:07.788 --> 00:00:10.862
+The payroll data subnet
+has no route table at all.
+
+5
+00:00:10.862 --> 00:00:14.204
+The portal's jump subnet goes
+to an unknown appliance,
+
+6
+00:00:14.204 --> 00:00:16.938
+and its web subnet
+straight to the internet.
+
+7
+00:00:16.938 --> 00:00:19.076
+Two of five route to the firewall.
+
+8
+00:00:19.076 --> 00:00:23.237
+Then read the plan: Microsoft Learn's
+four commands, create a draft,
+
+9
+00:00:23.237 --> 00:00:28.248
+set threat intelligence and intrusion
+detection to deny, show it, and deploy it,
+
+10
+00:00:28.248 --> 00:00:31.794
+each with the policy's resource
+group and subscription,
+
+11
+00:00:31.794 --> 00:00:34.850
+under a header that says
+the kit did not run them.

@@ -1,0 +1,38 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:03.778
+The platform owner owns the central zones,
+
+3
+00:00:03.778 --> 00:00:07.450
+their links to the hub, and the
+policy that adds zone groups.
+
+4
+00:00:07.450 --> 00:00:10.522
+Workload owners own their
+endpoints and vaults,
+
+5
+00:00:10.522 --> 00:00:13.825
+and close the public path
+once the private one works.
+
+6
+00:00:13.825 --> 00:00:18.250
+And the application owner keeps each
+vault's posture, with the platform owner.
+
+7
+00:00:18.250 --> 00:00:20.865
+Every read the check makes is Reader,
+
+8
+00:00:20.865 --> 00:00:25.100
+and it never touches a vault's
+data plane: no secrets, no keys.

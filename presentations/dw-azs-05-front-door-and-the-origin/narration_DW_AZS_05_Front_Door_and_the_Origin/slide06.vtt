@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.925
+Beyond each origin, five more rules.
+
+2
+00:00:02.925 --> 00:00:06.975
+A classic Front Door profile is
+a finding, because it retires.
+
+3
+00:00:06.975 --> 00:00:10.008
+An origin group that
+mixes Private Link and
+
+4
+00:00:10.008 --> 00:00:13.125
+public origins is a
+finding, as Learn advises.
+
+5
+00:00:13.125 --> 00:00:18.094
+A custom domain whose minimum TLS is
+below 1.2 is a finding, and so is an
+
+6
+00:00:18.094 --> 00:00:21.289
+application gateway whose TLS policy isn't
+
+7
+00:00:21.289 --> 00:00:24.750
+one of the two predefined
+policies Learn names.
+
+8
+00:00:24.750 --> 00:00:27.732
+An origin group with
+fewer than two enabled
+
+9
+00:00:27.732 --> 00:00:30.300
+origins is a warning: it can't fail over.
+
+10
+00:00:30.300 --> 00:00:34.549
+The origin groups' and custom
+domains' calls are still unverified,
+
+11
+00:00:34.549 --> 00:00:38.380
+read by their Resource Manager
+names, which Lab 2 confirms.

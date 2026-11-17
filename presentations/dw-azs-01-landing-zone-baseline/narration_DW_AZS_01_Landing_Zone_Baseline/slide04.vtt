@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+What does Learn leave to you?
+
+2
+00:00:01.413 --> 00:00:03.710
+Each command is run by hand, once,
+
+3
+00:00:03.710 --> 00:00:07.775
+so nobody runs it every week
+across every subscription.
+
+4
+00:00:07.775 --> 00:00:10.388
+A Resource Graph query with no scope reads
+
+5
+00:00:10.388 --> 00:00:13.225
+whatever the signed-in
+account happens to see.
+
+6
+00:00:13.225 --> 00:00:16.164
+Comparing diagnostic
+settings by eye misses the
+
+7
+00:00:16.164 --> 00:00:18.887
+one resource that logs
+to the wrong workspace.
+
+8
+00:00:18.887 --> 00:00:22.175
+A session left on another
+cloud reads another estate.
+
+9
+00:00:22.175 --> 00:00:24.119
+And nothing records what was read,
+
+10
+00:00:24.119 --> 00:00:27.175
+so an assessor can't tell
+which run a finding came from.
+
+11
+00:00:27.175 --> 00:00:31.080
+The kit answers each of those,
+and a test pins each answer.

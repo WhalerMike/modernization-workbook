@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.600
+Lab 2 moves to a test subscription
+in a test tenant, never production.
+
+2
+00:00:04.600 --> 00:00:07.726
+Sign in to commercial Azure,
+write the settings file,
+
+3
+00:00:07.726 --> 00:00:11.288
+and build the register live with
+Defender for Cloud's export.
+
+4
+00:00:11.288 --> 00:00:16.075
+The classic Front Door, gateway and WAF
+queries aren't verified on Learn yet,
+
+5
+00:00:16.075 --> 00:00:19.087
+so allow them and check
+their rows in the portal.
+
+6
+00:00:19.087 --> 00:00:23.887
+Then run the guide's own test: create a
+public IP and build the register again.
+
+7
+00:00:23.887 --> 00:00:26.969
+It should appear as new,
+and as attached to nothing;
+
+8
+00:00:26.969 --> 00:00:29.900
+Resource Graph can take
+a few minutes to show it.
+
+9
+00:00:29.900 --> 00:00:34.150
+Back out by deleting the public
+IP and the output, and sign out.
+
+10
+00:00:34.150 --> 00:00:36.220
+The authors haven't run this lab.

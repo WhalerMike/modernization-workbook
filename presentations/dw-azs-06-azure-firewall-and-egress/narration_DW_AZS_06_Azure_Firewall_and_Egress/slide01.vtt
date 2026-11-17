@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.513
+Welcome to Building Azure Security,
+Chapter 6: Azure Firewall and egress.
+
+2
+00:00:05.513 --> 00:00:08.238
+A firewall nobody routes
+to inspects nothing.
+
+3
+00:00:08.238 --> 00:00:11.344
+So the kit reads the policy
+and the routes together,
+
+4
+00:00:11.344 --> 00:00:16.300
+and it admits what it can't see: the effective
+route on a running network interface.
+
+5
+00:00:16.300 --> 00:00:19.466
+We'll start from Microsoft
+Learn's Zero Trust checks,
+
+6
+00:00:19.466 --> 00:00:24.178
+route commands and Draft and Deployment
+procedure, see what they leave to you,
+
+7
+00:00:24.178 --> 00:00:27.565
+read the kit's check and the
+plan it writes but never runs,
+
+8
+00:00:27.565 --> 00:00:30.437
+then walk two labs, the
+evidence and the dangers.
+
+9
+00:00:30.437 --> 00:00:33.453
+The chapter is a draft
+awaiting the owner's review,
+
+10
+00:00:33.453 --> 00:00:37.420
+and the code is illustrative,
+tested against a fictional estate.

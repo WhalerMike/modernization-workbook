@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.789
+Each runbook step leaves a record
+the security officer keeps,
+
+2
+00:00:03.789 --> 00:00:07.162
+mapped to NIST's controls in
+the kit's requirements file.
+
+3
+00:00:07.162 --> 00:00:11.274
+The preflight supports least
+privilege and configuration settings.
+
+4
+00:00:11.274 --> 00:00:15.700
+The plan supports configuration
+change control and impact analysis.
+
+5
+00:00:15.700 --> 00:00:19.550
+The rollback supports change
+control and the contingency plan.
+
+6
+00:00:19.550 --> 00:00:22.988
+Each scheduled run supports
+continuous monitoring,
+
+7
+00:00:22.988 --> 00:00:26.425
+the component inventory and
+each area's own controls.
+
+8
+00:00:26.425 --> 00:00:30.775
+The comparison supports configuration
+settings and continuous monitoring.
+
+9
+00:00:30.775 --> 00:00:33.365
+And the chain of records
+supports continuous
+
+10
+00:00:33.365 --> 00:00:36.363
+monitoring and the protection
+of audit information.
+
+11
+00:00:36.363 --> 00:00:40.275
+The evidence supports those
+controls; the assessor decides.
+
+12
+00:00:40.275 --> 00:00:44.838
+The key security indicators are
+FedRAMP's indicators for cloud providers,
+
+13
+00:00:44.838 --> 00:00:48.860
+which the agency lines its own
+evidence up with and doesn't report.

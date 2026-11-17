@@ -1,0 +1,477 @@
+{
+ "1": [
+  [
+   0.05,
+   5.588,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Azure Security."
+  ],
+  [
+   5.638,
+   3.675,
+   "This is Chapter 8: policy, drift and evidence."
+  ],
+  [
+   9.312,
+   9.275,
+   "An exemption without an expiry is a decision nobody has to make again, and a finding without last week's run beside it is a number nobody can explain."
+  ],
+  [
+   18.587,
+   12.637,
+   "We'll start from Microsoft Learn's policy samples for Resource Graph, see what they leave to you, read the kit's policy check, its comparison of two runs, its metrics and its evidence records, and walk two labs."
+  ],
+  [
+   31.225,
+   6.912,
+   "The chapter is a draft awaiting the owner's review, and the code is illustrative, tested against a fictional estate."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.113,
+   "Why this chapter?"
+  ],
+  [
+   1.163,
+   6.138,
+   "Because policy holds everything the earlier chapters checked, and evidence is what an assessor reads."
+  ],
+  [
+   7.3,
+   20.825,
+   "By the end you can check the security initiative and its exemptions every week, say what changed since last week in every area, report the guide's metrics with the numbers behind them, and hand the security officer an evidence folder whose every file is hashed, whose records form a chain, and whose records name the controls and indicators each run supports."
+  ],
+  [
+   28.125,
+   9.375,
+   "It's for policy owners and security officers, for the platform owners who run the weekly job, and for the developers who keep the comparison and the records honest."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.875,
+   "Here's Microsoft's starting point."
+  ],
+  [
+   1.925,
+   7.037,
+   "Learn's Resource Graph samples for Azure Policy read assignments, exemptions and compliance states from one table."
+  ],
+  [
+   8.963,
+   7.938,
+   "Its compliance-by-assignment query gives each assignment's state, percentage and counts, and the kit uses it exactly as published."
+  ],
+  [
+   16.9,
+   4.375,
+   "Another sample lists the exemptions due to expire within ninety days."
+  ],
+  [
+   21.275,
+   9.7,
+   "Learn's exemption structure says an exemption is either mitigated or a waiver, can carry an expiry, and once expired is kept for the record but no longer honored."
+  ],
+  [
+   30.975,
+   8.625,
+   "And DoNotEnforce evaluates without enforcing, which is where the guide's Step 9 starts before switching to enforcement after the compliance review."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.225,
+   "What do Learn and the guide leave to you?"
+  ],
+  [
+   2.275,
+   5.15,
+   "The ninety-day list misses an exemption with no expiry, and one already expired."
+  ],
+  [
+   7.425,
+   6.475,
+   "\"Switch to enforcement after the review\" is a sentence, so an assignment can sit in audit for months."
+  ],
+  [
+   13.9,
+   2.962,
+   "So is \"no excluded scopes for convenience\"."
+  ],
+  [
+   16.863,
+   4.375,
+   "One month's compliance export alone can't show whether anything got better."
+  ],
+  [
+   21.238,
+   3.212,
+   "The guide's metrics each need numbers from a different step."
+  ],
+  [
+   24.45,
+   6.287,
+   "And a folder of exports doesn't show that nothing changed after it was filed, or which control a file supports."
+  ],
+  [
+   30.738,
+   3.638,
+   "The kit answers each, and a test pins each answer."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   6.737,
+   "The policy check reads the assignments, the exemptions and Learn's compliance query, and reports six rules."
+  ],
+  [
+   6.787,
+   3.6,
+   "The security initiative must be assigned at the intermediate root."
+  ],
+  [
+   10.387,
+   4.938,
+   "It's a warning if it's still in DoNotEnforce after the enforce-by date the settings give."
+  ],
+  [
+   15.325,
+   10.488,
+   "Every exemption needs an expiry; one past its expiry is a finding, because Learn says it's kept but no longer honored; one due within thirty days is a warning."
+  ],
+  [
+   25.812,
+   4.075,
+   "And an assignment that excludes scopes with notScopes is a finding."
+  ],
+  [
+   29.887,
+   4.8,
+   "Most of these are the program's design guidance; the expiry rule is Learn's."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.163,
+   "Three more tools."
+  ],
+  [
+   1.212,
+   7.888,
+   "The comparison takes two runs and, per area, compares findings and warnings by fingerprint, the rule and the resource."
+  ],
+  [
+   9.1,
+   5.75,
+   "Only in the later run is new; only in the earlier is fixed; in both, still open."
+  ],
+  [
+   14.85,
+   15.6,
+   "The metrics tool computes eight of the guide's twelve metrics from one run, with the numbers behind each; private PaaS reports a count, because Resource Graph's list has no denominator; and three come from exercise records and the workspace, and say so."
+  ],
+  [
+   30.45,
+   9.125,
+   "And the evidence tool records any run: every file's hash, the hash of the record before it, and the controls and indicators of the steps it covers."
+  ],
+  [
+   39.575,
+   2.737,
+   "A fixture run never counts toward a stage."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   7.8,
+   "The policy owner owns the initiative and its exemptions, and reads the drift report at the weekly review with the security officer."
+  ],
+  [
+   8.9,
+   4.225,
+   "The platform owner runs the weekly job and answers for new rows."
+  ],
+  [
+   13.125,
+   5.675,
+   "And the security officer keeps the evidence folder, on agency storage, and runs its check."
+  ],
+  [
+   18.8,
+   1.887,
+   "Every read is still Reader."
+  ],
+  [
+   20.688,
+   16.4,
+   "Findings from a Zero Trust assessment enter the workbook's closure chain, and the Zero Trust Assessment results kit files them under its DDoS, WAF and public exposure family, whose ready-for-closure evidence is this kit's register, DDoS and WAF runs."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.475,
+   "Lab 1 needs only PowerShell 7 with Pester, in the kit's folder."
+  ],
+  [
+   4.525,
+   20.25,
+   "Between the two weeks, Contoso's platform team switched the WAF to prevention, moved the firewall to deny, routed a subnet to the firewall, added a missing header, turned on purge protection, enforced the security initiative and required authorization for new management groups; a new public IP appeared and an orphan went away."
+  ],
+  [
+   24.775,
+   4.938,
+   "Step 1 runs every area on week one: forty-eight findings in all."
+  ],
+  [
+   29.712,
+   15.213,
+   "Step 2 reads the policy findings: an assignment with excluded scopes, an exemption expired on October 31, one with no expiry, one due within thirty days, and the initiative still in audit after its November 1 enforce-by date."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   6.388,
+   "Step 3 runs every area on the second week, with the first week's register: forty findings now."
+  ],
+  [
+   6.438,
+   2.288,
+   "Step 4 compares the two weeks."
+  ],
+  [
+   8.725,
+   16.05,
+   "Thirteen fixed, four new, and all four new rows come from the two public IPs that changed: the new one has no log, no owner and no DDoS protection, and the one that went away leaves a reminder to remove any D N S record still pointing at its address."
+  ],
+  [
+   24.775,
+   10.262,
+   "Among the fixed: the hierarchy setting, the WAF in detection, the firewall's threat intelligence and intrusion detection, and the security initiative's enforcement."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.975,
+   "Step 5 computes the metrics for the second week."
+  ],
+  [
+   3.025,
+   10.838,
+   "DDoS coverage is fifty-seven percent, WAF prevention coverage sixty-seven, egress inspection sixty, vault posture thirty-three, and one exemption has expired."
+  ],
+  [
+   13.863,
+   4.8,
+   "The rows that come from exercise records say so instead of inventing a number."
+  ],
+  [
+   18.663,
+   5.875,
+   "Step 6 records the run, the comparison and the metrics as evidence, then checks the folder."
+  ],
+  [
+   24.538,
+   4.95,
+   "The first record covers all nine area steps and lists sixteen controls."
+  ],
+  [
+   29.488,
+   6.062,
+   "The comparison and the metrics each get their own record, and the chain of three records is unbroken."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.825,
+   "Step 7 asks whether this evidence could pass the test stage's go or no-go."
+  ],
+  [
+   4.875,
+   4.375,
+   "Every step fails, with the same reason: no passing lyve record."
+  ],
+  [
+   9.25,
+   1.2,
+   "That's on purpose."
+  ],
+  [
+   10.45,
+   6.037,
+   "Lab evidence can't promote anything, so nobody can take a fixture run to production by mistake."
+  ],
+  [
+   16.488,
+   9.512,
+   "Step 8 runs this chapter's tests: ten pass, covering the policy check, the run folders, the comparison, the metrics and the evidence."
+  ],
+  [
+   26.0,
+   2.438,
+   "When you're done, delete the output folder."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   6.75,
+   "Lab 2 moves to a test management group with at least one policy assignment and one exemption, never production."
+  ],
+  [
+   6.8,
+   5.65,
+   "Sign in, write the settings file, and run every area twice, a few minutes apart."
+  ],
+  [
+   12.45,
+   5.088,
+   "With nothing changed between them, the comparison should show no new and no fixed rows."
+  ],
+  [
+   17.538,
+   8.775,
+   "Then compare the policy rows with the guide's compliance export and Learn's exemption list: every exemption should appear, in the state the kit gave it."
+  ],
+  [
+   26.312,
+   8.225,
+   "Record the second run: its mode is lyve, but the stage check still lacks the preflight and the scheduled run, which Chapter 9 adds."
+  ],
+  [
+   34.538,
+   4.138,
+   "Nothing changed in Azure, so backing out is deleting what the lab wrote."
+  ],
+  [
+   38.675,
+   2.0,
+   "The authors haven't run this lab."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   6.188,
+   "Each output supports specific controls from nist's catalog, as the guide's requirements table maps them."
+  ],
+  [
+   6.237,
+   6.35,
+   "The policy folder supports baseline configuration, configuration settings and continuous monitoring."
+  ],
+  [
+   12.588,
+   4.55,
+   "The drift report supports configuration settings and continuous monitoring."
+  ],
+  [
+   17.137,
+   4.037,
+   "The metrics support continuous monitoring and audit record review."
+  ],
+  [
+   21.175,
+   6.15,
+   "And the chained, hashed records support continuous monitoring and the protection of audit information."
+  ],
+  [
+   27.325,
+   4.088,
+   "The kit's output supports those controls; the assessor decides."
+  ],
+  [
+   31.413,
+   8.475,
+   "The key security indicators are fed-ramp's indicators for cloud providers: the agency lines its own evidence up with them and doesn't report them."
+  ],
+  [
+   39.888,
+   6.65,
+   "The exercise and after-action records the guide's Step 10 asks for are people's work, filed beside the runs."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   2.263,
+   "What breaks, and what guards against it?"
+  ],
+  [
+   2.312,
+   5.975,
+   "An exemption with no expiry accepts non-compliance forever, so the kit flags it every week."
+  ],
+  [
+   8.287,
+   7.162,
+   "An expired exemption can look current in an old report, so the kit names it, because Learn says it's no longer honored."
+  ],
+  [
+   15.45,
+   9.137,
+   "A changed query can make rows look fixed when they only disappeared; that shows as many fixed rows at once, which the reviewer reads in the drift report."
+  ],
+  [
+   24.587,
+   5.6,
+   "Lab evidence can't promote anything, because fixture records never count toward a stage."
+  ],
+  [
+   30.188,
+   6.025,
+   "And evidence edited after filing fails the check, because the hashes and the chain no longer match."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   5.438,
+   "The security initiative is enforcing, or its enforce-by date is still in the future."
+  ],
+  [
+   6.838,
+   4.975,
+   "Every exemption has an expiry, and none is past it without a renewal decision."
+  ],
+  [
+   11.812,
+   4.825,
+   "The drift report is read at the weekly review, and every new row has an owner."
+  ],
+  [
+   16.637,
+   3.65,
+   "The metrics report carries the numbers behind each value."
+  ],
+  [
+   20.288,
+   4.463,
+   "And the evidence check passes on a folder that lives on agency storage."
+  ],
+  [
+   24.75,
+   6.138,
+   "Next, Chapter 9 is the runbook that takes all of this to a test subscription, then to production."
+  ]
+ ]
+}

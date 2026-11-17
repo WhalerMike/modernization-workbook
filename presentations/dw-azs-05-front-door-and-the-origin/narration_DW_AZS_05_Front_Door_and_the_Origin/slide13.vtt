@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:06.199
+Every origin is locked by Private Link
+or by the tag and this profile's header,
+
+3
+00:00:06.199 --> 00:00:09.550
+or has a decision record
+with a compensating control.
+
+4
+00:00:09.550 --> 00:00:13.250
+Every unchecked origin has
+a dated direct-request test.
+
+5
+00:00:13.250 --> 00:00:18.312
+Every origin group has a second origin,
+and failover was tested this half year.
+
+6
+00:00:18.312 --> 00:00:22.787
+No custom domain or gateway
+allows TLS below 1.2.
+
+7
+00:00:22.787 --> 00:00:29.926
+And no classic profile remains, or its
+migration is scheduled before March 31, 2027.
+
+8
+00:00:29.926 --> 00:00:36.070
+Next, Chapter 6 turns from what comes in
+to what leaves: Azure Firewall and egress.

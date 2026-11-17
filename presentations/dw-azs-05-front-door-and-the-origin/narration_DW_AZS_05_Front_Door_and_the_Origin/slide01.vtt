@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.313
+Welcome to Building Azure
+Security, Chapter 5:
+
+2
+00:00:03.313 --> 00:00:06.662
+Front Door, Application
+Gateway and the origin.
+
+3
+00:00:06.662 --> 00:00:10.587
+The service tag tells an origin
+a request came from a Front Door.
+
+4
+00:00:10.587 --> 00:00:13.438
+Only the header tells it
+the request came from yours.
+
+5
+00:00:13.438 --> 00:00:17.991
+We'll start from Microsoft Learn's two
+ways to lock an origin to the edge,
+
+6
+00:00:17.991 --> 00:00:19.639
+see what they leave to you,
+
+7
+00:00:19.639 --> 00:00:24.427
+read how the kit checks each origin's
+configuration and where it stops and
+
+8
+00:00:24.427 --> 00:00:28.901
+says "test this by hand", then walk
+two labs, the evidence and the dangers.
+
+9
+00:00:28.901 --> 00:00:31.915
+The chapter is a draft
+awaiting the owner's review,
+
+10
+00:00:31.915 --> 00:00:35.880
+and the code is illustrative,
+tested against a fictional estate.

@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.313
+What breaks, and what guards against it?
+
+2
+00:00:02.313 --> 00:00:07.076
+Published in a public repository, the
+register is a map of the attack surface,
+
+3
+00:00:07.076 --> 00:00:10.554
+so the check prints a warning
+every run and the runbook's
+
+4
+00:00:10.554 --> 00:00:14.562
+preflight refuses an output folder
+inside the kit's repository.
+
+5
+00:00:14.562 --> 00:00:17.760
+Some public addresses
+aren't public IP resources,
+
+6
+00:00:17.760 --> 00:00:22.362
+so the queries can't see them; Defender
+for Cloud's export closes that gap.
+
+7
+00:00:22.362 --> 00:00:26.904
+A DNS record left pointing at a
+released address can be taken over,
+
+8
+00:00:26.904 --> 00:00:29.763
+so every exposure that goes away is named.
+
+9
+00:00:29.763 --> 00:00:33.956
+And an owner tag nobody checks names
+a team that may no longer exist,
+
+10
+00:00:33.956 --> 00:00:36.600
+which is what the quarterly review is for.

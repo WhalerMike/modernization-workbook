@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.137
+The check reports seven rules.
+
+2
+00:00:02.137 --> 00:00:06.752
+Threat intelligence not in deny, and
+intrusion detection not in deny or a
+
+3
+00:00:06.752 --> 00:00:11.751
+policy that isn't Premium, are findings
+straight from Learn's Zero Trust checks.
+
+4
+00:00:11.751 --> 00:00:16.063
+A workload subnet without a default
+route to the firewall is a finding;
+
+5
+00:00:16.063 --> 00:00:18.963
+one routed to an unknown
+appliance is a warning.
+
+6
+00:00:18.963 --> 00:00:21.625
+A firewall with no logs is a finding.
+
+7
+00:00:21.625 --> 00:00:26.454
+A firewall with no policy, and a
+Premium policy with no TLS inspection,
+
+8
+00:00:26.454 --> 00:00:31.875
+are warnings: the program pilots TLS
+inspection on one rule collection first.
+
+9
+00:00:31.875 --> 00:00:35.752
+And for each policy not yet in
+deny, the kit writes Learn's four
+
+10
+00:00:35.752 --> 00:00:39.910
+draft and deployment commands to
+a plan file, and never runs them.

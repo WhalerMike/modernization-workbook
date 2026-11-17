@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.899
+Step 3 runs every area on the second week,
+
+2
+00:00:02.899 --> 00:00:06.438
+with the first week's
+register: forty findings now.
+
+3
+00:00:06.438 --> 00:00:08.726
+Step 4 compares the two weeks.
+
+4
+00:00:08.726 --> 00:00:13.993
+Thirteen fixed, four new, and all four
+new rows come from the two public IPs that
+
+5
+00:00:13.993 --> 00:00:19.178
+changed: the new one has no log, no owner
+and no DDoS protection, and the one that
+
+6
+00:00:19.178 --> 00:00:24.775
+went away leaves a reminder to remove any
+DNS record still pointing at its address.
+
+7
+00:00:24.775 --> 00:00:29.831
+Among the fixed: the hierarchy setting,
+the WAF in detection, the firewall's threat
+
+8
+00:00:29.831 --> 00:00:35.090
+intelligence and intrusion detection, and
+the security initiative's enforcement.

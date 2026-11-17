@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:05.832
+Every call the code makes is in the call
+list, with its role and Learn page,
+
+3
+00:00:05.832 --> 00:00:09.437
+and the test that compares
+declared and made calls passes.
+
+4
+00:00:09.437 --> 00:00:13.788
+Every rule the code can report is
+in the rules file, with its source.
+
+5
+00:00:13.788 --> 00:00:18.524
+The required plans and platform types
+match the agency's decision records.
+
+6
+00:00:18.524 --> 00:00:20.495
+Lab 2 ran in a test subscription,
+
+7
+00:00:20.495 --> 00:00:24.512
+and the unverified calls' output
+was checked against the portal.
+
+8
+00:00:24.512 --> 00:00:27.962
+And output folders live
+outside any repository.
+
+9
+00:00:27.962 --> 00:00:32.590
+Next, Chapter 2 builds the public
+exposure register on the same spine.

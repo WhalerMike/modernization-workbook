@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.944
+Welcome back to Building Azure
+Security, the Federal Modernization
+
+2
+00:00:03.944 --> 00:00:08.112
+Workbook's developer workbook for
+the Azure Security Engineering guide.
+
+3
+00:00:08.112 --> 00:00:11.526
+This is Chapter 2: the
+public exposure register.
+
+4
+00:00:11.526 --> 00:00:15.739
+DDoS protection, the web application
+firewall and origin lock-down
+
+5
+00:00:15.739 --> 00:00:19.275
+can't be proved complete without
+a list of what is exposed.
+
+6
+00:00:19.275 --> 00:00:23.937
+So the list is code, it runs every
+week, and it notices what is new.
+
+7
+00:00:23.937 --> 00:00:26.966
+We'll start from the guide's
+Resource Graph queries,
+
+8
+00:00:26.966 --> 00:00:31.148
+built from Microsoft Learn's starter
+sample, see what they leave to you,
+
+9
+00:00:31.148 --> 00:00:34.825
+read the register and its rules,
+then walk two labs a week apart.
+
+10
+00:00:34.825 --> 00:00:38.400
+The chapter is a draft, and
+the code is illustrative.

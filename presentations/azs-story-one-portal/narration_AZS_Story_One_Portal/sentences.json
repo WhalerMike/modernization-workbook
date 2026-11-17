@@ -1,0 +1,1102 @@
+{
+ "1": [
+  [
+   0.05,
+   6.963,
+   "Welcome to the story deck for Building Azure Security, a developer workbook in the Federal Modernization Workbook."
+  ],
+  [
+   7.013,
+   13.238,
+   "Instead of nine chapters one at a time, we'll follow one application all the way through: Contoso's public portal, its subscription, its Front Door and gateway, its network, its key vault, and the hub that serves it."
+  ],
+  [
+   20.25,
+   7.775,
+   "It's fictional: every value comes from the kit's own test fixtures, and every output on a slide is what the kit really printed."
+  ],
+  [
+   28.025,
+   1.575,
+   "Two notes before we begin."
+  ],
+  [
+   29.6,
+   2.938,
+   "The chapters are drafts awaiting the owner's review."
+  ],
+  [
+   32.538,
+   5.562,
+   "And the code is illustrative, tested against fixtures, not against a lyve subscription."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   0.988,
+   "Here's the route."
+  ],
+  [
+   1.038,
+   2.938,
+   "Scene one reads the landing-zone baseline back."
+  ],
+  [
+   3.975,
+   4.088,
+   "Scene two lists every public face of the portal, with its owner."
+  ],
+  [
+   8.062,
+   5.162,
+   "Scene three asks which of its public IP addresses are really under DDoS protection."
+  ],
+  [
+   13.225,
+   4.463,
+   "Scene four finds a web application firewall that logs but doesn't block."
+  ],
+  [
+   17.688,
+   4.35,
+   "Scene five checks whether the portal's origins can be reached around the edge."
+  ],
+  [
+   22.038,
+   2.038,
+   "Scene six follows its egress."
+  ],
+  [
+   24.075,
+   2.188,
+   "Scene seven reads its key vault."
+  ],
+  [
+   26.262,
+   5.188,
+   "Scene eight holds it all with policy, compares two weeks, and records the evidence."
+  ],
+  [
+   31.45,
+   3.112,
+   "And scene nine takes the kit liv, test first."
+  ],
+  [
+   34.562,
+   5.475,
+   "Each scene has a story slide, a try-it slide with real output, and a one-question check."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   0.825,
+   "Scene one."
+  ],
+  [
+   0.875,
+   10.1,
+   "The guide's Step 1 sets four things once: the hierarchy settings, the initiatives in audit at the intermediate root, platform logs, and Defender for Cloud plans."
+  ],
+  [
+   10.975,
+   8.387,
+   "Microsoft Learn gives the commands, and its REST reference gives the reads, but nobody runs them back every week across every subscription."
+  ],
+  [
+   19.363,
+   3.825,
+   "So the kit does, with one check scoped to the intermediate root."
+  ],
+  [
+   23.188,
+   2.175,
+   "For our portal, two things turn up."
+  ],
+  [
+   25.363,
+   3.163,
+   "Its subscription's Key Vault plan is on the Free tier."
+  ],
+  [
+   28.525,
+   10.75,
+   "And the hub firewall's public address does send logs, but to an application team's workspace, which doesn't count: a log counts only if it's enabled and goes to the platform workspace."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   4.3,
+   "From the kit's folder, run the baseline check on the first week's estate."
+  ],
+  [
+   5.075,
+   9.4,
+   "It reads the hierarchy settings, four policy assignments, sixteen platform resources and four subscriptions, from six calls, every one a read."
+  ],
+  [
+   14.475,
+   2.612,
+   "Twelve findings and one information row."
+  ],
+  [
+   17.087,
+   17.15,
+   "Read them: creating management groups doesn't need authorization; the firewall and its public IP send nothing to the platform workspace; the online subscription, the portal's, has its Key Vault plan on Free; and the fed-ramp initiative is in audit, exactly as Step 1 intends."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   0.812,
+   "Check one."
+  ],
+  [
+   0.863,
+   6.925,
+   "The hub firewall's public address has a diagnostic setting that sends all its logs to an application team's workspace."
+  ],
+  [
+   7.787,
+   1.825,
+   "Does the kit count that as logging?"
+  ],
+  [
+   9.613,
+   1.337,
+   "Any enabled setting?"
+  ],
+  [
+   10.95,
+   2.163,
+   "Only one to the platform workspace?"
+  ],
+  [
+   13.113,
+   2.925,
+   "Yes, if the application team owns the address?"
+  ],
+  [
+   16.038,
+   2.3,
+   "Or only when Defender for Cloud is on?"
+  ],
+  [
+   18.337,
+   2.05,
+   "The answer opens the next scene."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.863,
+   "The answer to check one: no."
+  ],
+  [
+   1.913,
+   3.438,
+   "Only an enabled log to the platform workspace counts."
+  ],
+  [
+   5.35,
+   0.863,
+   "Scene two."
+  ],
+  [
+   6.213,
+   13.925,
+   "Steps 3 to 5 can't be proved complete without a list of what's exposed, and the portal is public in many places: a Front Door profile, the gateway's address, a jump box, a load balancer, two web apps and a vault."
+  ],
+  [
+   20.137,
+   9.213,
+   "The kit joins the guide's Resource Graph queries, built from Microsoft Learn's starter sample, into one register, with an owner on every row."
+  ],
+  [
+   29.35,
+   2.487,
+   "The jump box's address has no owner."
+  ],
+  [
+   31.837,
+   10.175,
+   "A week later a new address appears, with no owner either, and an orphan address is gone, with a reminder to remove any D N S record still pointing at it."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   5.025,
+   "Build the first week's register: nineteen exposures, sixteen with an owner."
+  ],
+  [
+   5.8,
+   1.488,
+   "Read the portal's rows."
+  ],
+  [
+   7.287,
+   6.188,
+   "The gateway's public address carries the gateway's web application firewall policy, wafp-portal."
+  ],
+  [
+   13.475,
+   2.413,
+   "The Front Door profile carries its own."
+  ],
+  [
+   15.887,
+   2.487,
+   "The jump box's address has no owner."
+  ],
+  [
+   18.375,
+   3.663,
+   "Then build the register again a week later, against the first one."
+  ],
+  [
+   22.038,
+   10.988,
+   "The new address, pip-new-api, is reported as new, and the orphan as gone, with the reminder to remove any D N S record that still points at its old address."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.825,
+   "Check two."
+  ],
+  [
+   0.875,
+   5.775,
+   "The register lists every public address, Front Door profile and gateway, with its owner."
+  ],
+  [
+   6.65,
+   1.3,
+   "Where should it be kept?"
+  ],
+  [
+   7.95,
+   3.212,
+   "In a public repository, so assessors can find it?"
+  ],
+  [
+   11.162,
+   1.9,
+   "Inside the agency's boundary?"
+  ],
+  [
+   13.062,
+   1.975,
+   "Only in the portal's own subscription?"
+  ],
+  [
+   15.037,
+   2.938,
+   "Or nowhere, since it's regenerated each week?"
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   7.925,
+   "The answer to check two: inside the agency's boundary, never in a public repository, because it maps the attack surface."
+  ],
+  [
+   7.975,
+   1.05,
+   "Scene three."
+  ],
+  [
+   9.025,
+   8.55,
+   "Microsoft Learn's Zero Trust recommendations check that every public address in a virtual network is protected, with metrics and logs."
+  ],
+  [
+   17.575,
+   4.75,
+   "The jump box's address says it inherits its protection, which sounds protected."
+  ],
+  [
+   22.325,
+   6.1,
+   "But the kit follows it to its network, the portal's spoke, and that network has no DDoS protection plan."
+  ],
+  [
+   28.425,
+   1.375,
+   "So it's unprotected."
+  ],
+  [
+   29.8,
+   4.15,
+   "The gateway's address inherits from the hub, which is linked to the plan."
+  ],
+  [
+   33.95,
+   7.112,
+   "And it's the one address with both DDoS logs to the platform workspace and an enabled alert on Under DDoS attack."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   2.362,
+   "Read each public address's status."
+  ],
+  [
+   3.138,
+   3.138,
+   "The hub's three addresses inherit from the hub network."
+  ],
+  [
+   6.275,
+   4.4,
+   "The test application's address has IP Protection on the address itself."
+  ],
+  [
+   10.675,
+   5.713,
+   "The jump box's inherits from the portal's spoke, which has no plan, so it's unprotected."
+  ],
+  [
+   16.387,
+   8.925,
+   "The load balancer's is unknown: its protection depends on a backend network the frontend doesn't name, and the kit says so rather than guessing."
+  ],
+  [
+   25.312,
+   11.025,
+   "Then the findings: the jump box unprotected, the firewall's address with no logs to the workspace and no alert, and the test application's alert, which exists but is disabled."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   0.912,
+   "Check three."
+  ],
+  [
+   0.963,
+   4.35,
+   "The jump box's address has the protection mode virtual network inherited."
+  ],
+  [
+   5.312,
+   2.188,
+   "What decides whether it's actually protected?"
+  ],
+  [
+   7.5,
+   3.163,
+   "Nothing, because inherited always means protected?"
+  ],
+  [
+   10.662,
+   3.263,
+   "Whether its network is linked to a DDoS protection plan?"
+  ],
+  [
+   13.925,
+   1.788,
+   "Whether it has an owner tag?"
+  ],
+  [
+   15.713,
+   2.288,
+   "Or whether Front Door sits in front of it?"
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   6.4,
+   "The answer to check three: whether its network is linked to a DDoS protection plan, and the portal's spoke isn't."
+  ],
+  [
+   6.45,
+   0.975,
+   "Scene four."
+  ],
+  [
+   7.425,
+   6.487,
+   "DDoS protection stops at layers three and four; layer seven needs a web application firewall."
+  ],
+  [
+   13.912,
+   6.362,
+   "Microsoft Learn is plain about it: detection mode logs and forwards, and only prevention mode blocks."
+  ],
+  [
+   20.275,
+   3.212,
+   "The portal's gateway policy is still in detection."
+  ],
+  [
+   23.488,
+   4.125,
+   "Its Front Door policy blocks, but has no bot protection rule set."
+  ],
+  [
+   27.613,
+   7.963,
+   "The kit checks every policy on both services the same way, and writes the switch to prevention to a plan, which it never runs."
+  ],
+  [
+   35.575,
+   4.188,
+   "The application owner runs it, after reviewing the false positives."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   1.438,
+   "Read each policy."
+  ],
+  [
+   2.212,
+   8.35,
+   "The gateway's policy, wafp-portal: detection, body inspection on, rule set 2.1, bot rules and a rate limit."
+  ],
+  [
+   10.562,
+   6.675,
+   "The Front Door policy: prevention, body inspection on, rule set 2.1, no bot rules."
+  ],
+  [
+   17.238,
+   13.1,
+   "Then read the plan the kit wrote: a header that says the kit did not run it, then Microsoft Learn's own switch command for wafp-portal, with its resource group and subscription, setting prevention, the state and body inspection."
+  ],
+  [
+   30.337,
+   5.062,
+   "One of three internet-facing endpoints is behind a firewall in prevention this week."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   0.912,
+   "Check four."
+  ],
+  [
+   0.963,
+   5.95,
+   "The gateway's policy is in detection, and the kit wrote the switch to prevention into a plan file."
+  ],
+  [
+   6.912,
+   1.325,
+   "Who runs it, and when?"
+  ],
+  [
+   8.238,
+   2.2,
+   "The kit, on its next weekly run?"
+  ],
+  [
+   10.438,
+   4.588,
+   "The application owner, after the false-positive review, in a change window?"
+  ],
+  [
+   15.025,
+   2.0,
+   "Azure Policy, automatically?"
+  ],
+  [
+   17.025,
+   2.6,
+   "Or nobody, because detection is enough?"
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   6.188,
+   "The answer to check four: the application owner, after the false-positive review, in a change window."
+  ],
+  [
+   6.237,
+   1.025,
+   "Scene five."
+  ],
+  [
+   7.263,
+   4.713,
+   "A web application firewall only helps if nothing can reach the origin around it."
+  ],
+  [
+   11.975,
+   9.175,
+   "Microsoft Learn says to use the Front Door service tag and the Front Door I D header together, because the tag's addresses are shared by every Front Door customer."
+  ],
+  [
+   21.15,
+   4.5,
+   "The portal's east web app does both, with this profile's own I D."
+  ],
+  [
+   25.65,
+   2.612,
+   "The west web app allows the tag alone."
+  ],
+  [
+   28.262,
+   2.5,
+   "So any customer's Front Door can reach it."
+  ],
+  [
+   30.762,
+   5.912,
+   "The kit reads each origin's access restrictions and compares the header with the profile's I D."
+  ],
+  [
+   36.675,
+   5.85,
+   "And it knows configuration isn't proof: the guide's test is a direct request, refused."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   2.062,
+   "Read each origin's lock-down."
+  ],
+  [
+   2.837,
+   7.638,
+   "In the portal's origin group, the east web app is locked with the service tag and the Front Door I D; the west one has the tag only."
+  ],
+  [
+   10.475,
+   10.137,
+   "In the A P I group, one origin reaches its back end over Private Link and one is a public host the kit can't check, so it says to test a direct request by hand."
+  ],
+  [
+   20.613,
+   9.062,
+   "Then the findings: the west origin's rule has no header, and the A P I group mixes a private and a public origin, which Learn says not to do."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   0.938,
+   "Check five."
+  ],
+  [
+   0.988,
+   5.025,
+   "The west origin allows the Front Door service tag, with no Front Door I D header."
+  ],
+  [
+   6.013,
+   1.175,
+   "What's wrong with that?"
+  ],
+  [
+   7.188,
+   2.675,
+   "Nothing, since the tag is Front Door's own?"
+  ],
+  [
+   9.863,
+   3.188,
+   "The tag's addresses are shared by every Front Door customer?"
+  ],
+  [
+   13.05,
+   2.312,
+   "The tag blocks Front Door's health probes?"
+  ],
+  [
+   15.363,
+   2.362,
+   "Or the tag works only with Private Link?"
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   6.925,
+   "The answer to check five: the tag's addresses are shared by every Front Door customer, so the header has to prove it's yours."
+  ],
+  [
+   6.975,
+   1.688,
+   "Scene six, what leaves."
+  ],
+  [
+   8.662,
+   11.137,
+   "Microsoft Learn's Zero Trust recommendations for Azure Firewall check that outbound traffic routes through the firewall, with threat intelligence and intrusion detection in alert and deny."
+  ],
+  [
+   19.8,
+   4.287,
+   "The portal's web subnet sends its default route straight to the internet."
+  ],
+  [
+   24.087,
+   4.037,
+   "Its jump subnet sends it to an appliance that isn't the hub firewall."
+  ],
+  [
+   28.125,
+   2.325,
+   "And the hub policy is still in alert."
+  ],
+  [
+   30.45,
+   9.375,
+   "The kit writes Learn's draft-and-deploy commands for the move to deny into a plan, which it never runs, because deploying replaces the whole applied policy."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   2.75,
+   "Read each workload subnet's default route."
+  ],
+  [
+   3.525,
+   4.263,
+   "Two go to the hub firewall at 10.0.0.4."
+  ],
+  [
+   7.787,
+   3.075,
+   "The payroll data subnet has no route table at all."
+  ],
+  [
+   10.863,
+   6.075,
+   "The portal's jump subnet goes to an unknown appliance, and its web subnet straight to the internet."
+  ],
+  [
+   16.938,
+   2.138,
+   "Two of five route to the firewall."
+  ],
+  [
+   19.075,
+   15.725,
+   "Then read the plan: Microsoft Learn's four commands, create a draft, set threat intelligence and intrusion detection to deny, show it, and deploy it, each with the policy's resource group and subscription, under a header that says the kit did not run them."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   1.025,
+   "Check six."
+  ],
+  [
+   1.075,
+   5.088,
+   "Why does the kit write the move to deny as a draft-and-deploy plan, instead of sending it?"
+  ],
+  [
+   6.162,
+   1.562,
+   "Because drafts are cheaper?"
+  ],
+  [
+   7.725,
+   5.7,
+   "Because deploying replaces the whole applied policy, so it goes through review and a change window?"
+  ],
+  [
+   13.425,
+   2.675,
+   "Because deny can't be set from the command line?"
+  ],
+  [
+   16.1,
+   2.513,
+   "Or because the kit has no network access?"
+  ]
+ ],
+ "21": [
+  [
+   0.05,
+   6.938,
+   "The answer to check six: deploying replaces the whole applied policy, so it goes through review and a change window."
+  ],
+  [
+   6.987,
+   1.712,
+   "Scene seven, the vault."
+  ],
+  [
+   8.7,
+   12.675,
+   "Microsoft Learn's Key Vault recommendations are clear: Azure role-based access, not access policies; soft delete and purge protection; private endpoints with public access disabled; and audit logging."
+  ],
+  [
+   21.375,
+   2.275,
+   "The portal's vault misses every part."
+  ],
+  [
+   23.65,
+   11.262,
+   "It uses access policies, has no purge protection, a firewall that allows all networks, public access on, no private endpoint, and no audit events to the workspace."
+  ],
+  [
+   34.913,
+   5.95,
+   "The payroll team's vault next door has every part, so the estate already shows what done looks like."
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   1.4,
+   "Read each vault."
+  ],
+  [
+   2.175,
+   9.688,
+   "The hub's certificate vault has role-based access, purge protection, a closed firewall and audit logs, but public access on and no private endpoint."
+  ],
+  [
+   11.863,
+   1.75,
+   "The payroll vault has everything."
+  ],
+  [
+   13.613,
+   10.713,
+   "The portal's vault has nothing: no role-based access, no purge protection, a firewall that allows all networks, public access, no endpoints, no audit."
+  ],
+  [
+   24.325,
+   5.95,
+   "Then its findings, one per missing part, from access policies to the missing audit events."
+  ],
+  [
+   30.275,
+   2.4,
+   "One of three vaults has the full posture."
+  ]
+ ],
+ "23": [
+  [
+   0.05,
+   0.938,
+   "Check seven."
+  ],
+  [
+   0.988,
+   3.725,
+   "The fix for the portal's vault includes turning on purge protection."
+  ],
+  [
+   4.713,
+   1.625,
+   "Can that be rolled back later?"
+  ],
+  [
+   6.338,
+   2.1,
+   "Yes, with a key vault update?"
+  ],
+  [
+   8.438,
+   3.938,
+   "No, because once it's on it can't be turned off, and that's the point?"
+  ],
+  [
+   12.375,
+   1.75,
+   "Only by Microsoft support?"
+  ],
+  [
+   14.125,
+   1.975,
+   "Or only in a test subscription?"
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   2.05,
+   "The answer to check seven: no."
+  ],
+  [
+   2.1,
+   4.3,
+   "Once on, purge protection can't be turned off, and that's the point."
+  ],
+  [
+   6.4,
+   0.863,
+   "Scene eight."
+  ],
+  [
+   7.263,
+   7.725,
+   "The portal's WAF tuning runs under a waiver that expires on December first, so the kit warns it's due within thirty days."
+  ],
+  [
+   14.988,
+   11.225,
+   "A week later, the platform team switches the gateway's firewall to prevention, adds the west origin's header, routes the web subnet to the firewall, and turns on the vault's purge protection."
+  ],
+  [
+   26.212,
+   3.812,
+   "A new address arrives, with no owner and no protection."
+  ],
+  [
+   30.025,
+   10.775,
+   "The kit compares the two weeks by fingerprint, and records each run as evidence that supports the controls, with its key security indicators, its hashes and the record before it."
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   3.987,
+   "The policy check flags the portal's waiver, due December first."
+  ],
+  [
+   4.763,
+   3.312,
+   "Compare the two weeks: thirteen fixed, four new."
+  ],
+  [
+   8.075,
+   7.287,
+   "Among the fixed, the portal's firewall policy, the west origin, the web subnet's route and the vault's purge protection."
+  ],
+  [
+   15.363,
+   4.938,
+   "Among the new, the arriving address, with no owner and no protection plan."
+  ],
+  [
+   20.3,
+   8.2,
+   "Record the run as evidence: it covers all nine area steps, and the check shows the hashes match and the chain is unbroken."
+  ],
+  [
+   28.5,
+   3.663,
+   "Then ask whether this evidence could promote anything to production."
+  ],
+  [
+   32.163,
+   3.475,
+   "Every stage step fails: no passing lyve record."
+  ]
+ ],
+ "26": [
+  [
+   0.05,
+   0.787,
+   "Check eight."
+  ],
+  [
+   0.838,
+   4.2,
+   "The evidence folder's hashes match, and its chain is unbroken."
+  ],
+  [
+   5.037,
+   3.075,
+   "Why does the test-stage check still fail every step?"
+  ],
+  [
+   8.113,
+   1.375,
+   "Is the chain too short?"
+  ],
+  [
+   9.488,
+   4.85,
+   "Do the records come from fixture runs, when only lyve records count toward a stage?"
+  ],
+  [
+   14.338,
+   2.375,
+   "Are the key security indicators wrong?"
+  ],
+  [
+   16.712,
+   1.788,
+   "Or were the metrics not recorded?"
+  ]
+ ],
+ "27": [
+  [
+   0.05,
+   6.3,
+   "The answer to check eight: the records come from fixture runs, and only lyve records count toward a stage."
+  ],
+  [
+   6.35,
+   1.913,
+   "Scene nine, the runbook."
+  ],
+  [
+   8.262,
+   7.388,
+   "It's one ordered set of commands, run against a test subscription, then production, and only the settings file changes."
+  ],
+  [
+   15.65,
+   2.175,
+   "The weekly run needs only Reader."
+  ],
+  [
+   17.825,
+   11.225,
+   "The kit's one write is the security initiative's assignment at the intermediate root in DoNotEnforce, which evaluates without enforcing, as Microsoft Learn's assignment structure page describes."
+  ],
+  [
+   29.05,
+   6.562,
+   "It's a plan, applied only with its approved hash, and its rollback is rehearsed in test before production."
+  ],
+  [
+   35.612,
+   3.163,
+   "Go or no-go is the test stage's lyve evidence."
+  ],
+  [
+   38.775,
+   4.7,
+   "One honest label: nobody has run this runbook against a lyve subscription."
+  ]
+ ],
+ "28": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   2.9,
+   "The runbook's own rehearsal on the fixtures."
+  ],
+  [
+   3.675,
+   7.987,
+   "The first weekly run reads every area, records itself as the baseline, and covers every area step and the metrics."
+  ],
+  [
+   11.662,
+   8.05,
+   "A week later, the second run finds last week's, compares them, thirteen fixed and four new, and its record adds the comparison."
+  ],
+  [
+   19.712,
+   7.0,
+   "Then the rollback for production, back to audit: one command, printed with its plan's hash, and nothing sent."
+  ],
+  [
+   26.712,
+   4.725,
+   "In a live stage, a second person approves that hash before anyone applies it."
+  ]
+ ],
+ "29": [
+  [
+   0.05,
+   1.85,
+   "Check nine, the last one."
+  ],
+  [
+   1.9,
+   5.8,
+   "An operator runs production's preflight before the test stage's evidence passes its stage check."
+  ],
+  [
+   7.7,
+   8.55,
+   "Does it pass anyway, fail on the check that reads the test evidence, warn and let the operator decide, or assign the initiative regardless?"
+  ]
+ ],
+ "30": [
+  [
+   0.05,
+   7.438,
+   "The answer to check nine: the preflight's last check fails, because production needs the test stage's evidence to pass first."
+  ],
+  [
+   7.487,
+   18.637,
+   "That's the portal, end to end: its baseline read back, every public face owned, its protection traced to the network behind it, a web application firewall switched by a person, origins locked to the edge, egress through the firewall, its vault fixed, and every week's drift recorded as evidence."
+  ],
+  [
+   26.125,
+   1.137,
+   "Now it's your turn."
+  ],
+  [
+   27.262,
+   8.488,
+   "Each chapter has a second lab in your own test subscription, never production, with Reader and the guide's own Validate commands beside the kit."
+  ],
+  [
+   35.75,
+   6.862,
+   "Then go deeper: the draft chapters and their narrated tours, the learning path, and the implementation guide."
+  ],
+  [
+   42.612,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

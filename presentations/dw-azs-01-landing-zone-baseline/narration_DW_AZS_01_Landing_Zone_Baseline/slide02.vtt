@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.100
+Why read the baseline back as code?
+
+2
+00:00:02.100 --> 00:00:04.971
+Because the guide's Step
+1 sets four things once,
+
+3
+00:00:04.971 --> 00:00:08.725
+and nobody checks them every
+week across every subscription.
+
+4
+00:00:08.725 --> 00:00:11.286
+By the end of this chapter
+you can read all four:
+
+5
+00:00:11.286 --> 00:00:16.274
+whether creating management groups needs
+authorization and new subscriptions land in
+
+6
+00:00:16.274 --> 00:00:20.857
+a default group, whether the required
+initiatives sit at the intermediate root in
+
+7
+00:00:20.857 --> 00:00:25.171
+audit, whether every platform resource
+sends logs to the platform workspace,
+
+8
+00:00:25.171 --> 00:00:29.350
+and whether every subscription has
+the required Defender for Cloud plans.
+
+9
+00:00:29.350 --> 00:00:32.062
+It's for platform engineers
+who own the hierarchy,
+
+10
+00:00:32.062 --> 00:00:36.162
+and for the developers and security
+officers who review their automation.
+
+11
+00:00:36.162 --> 00:00:39.713
+And one rule holds throughout:
+every read is declared,
+
+12
+00:00:39.713 --> 00:00:44.930
+every finding names its source, and
+nothing the kit runs can change the estate.

@@ -1,0 +1,32 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.988
+Check five.
+
+2
+00:00:00.988 --> 00:00:06.013
+The west origin allows the Front Door
+service tag, with no Front Door ID header.
+
+3
+00:00:06.013 --> 00:00:07.188
+What's wrong with that?
+
+4
+00:00:07.188 --> 00:00:09.863
+Nothing, since the tag
+is Front Door's own?
+
+5
+00:00:09.863 --> 00:00:13.051
+The tag's addresses are shared
+by every Front Door customer?
+
+6
+00:00:13.051 --> 00:00:15.362
+The tag blocks Front Door's health probes?
+
+7
+00:00:15.362 --> 00:00:17.780
+Or the tag works only with Private Link?

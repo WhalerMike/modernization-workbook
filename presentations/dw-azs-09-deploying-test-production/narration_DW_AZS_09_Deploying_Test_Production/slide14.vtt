@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.347
+You can rehearse the runbook's
+offline half on the fictional estate:
+
+2
+00:00:04.347 --> 00:00:09.182
+copy the test settings, point the outputs
+at a folder outside any repository,
+
+3
+00:00:09.182 --> 00:00:11.791
+and run the preflight, two scheduled runs,
+
+4
+00:00:11.791 --> 00:00:14.937
+the plan, the rollback plan
+and the evidence check.
+
+5
+00:00:14.937 --> 00:00:16.962
+The plan says there's nothing to do,
+
+6
+00:00:16.962 --> 00:00:20.288
+because the fixture estate
+already has the initiative.
+
+7
+00:00:20.288 --> 00:00:23.313
+The runbook's scripts have
+eleven tests of their own.
+
+8
+00:00:23.313 --> 00:00:25.970
+And here's what done looks
+like: the labs passed,
+
+9
+00:00:25.970 --> 00:00:28.908
+one settings file per
+environment with no secrets,
+
+10
+00:00:28.908 --> 00:00:31.986
+the plan's hash approved
+before anything was applied,
+
+11
+00:00:31.986 --> 00:00:36.183
+the rollback rehearsed in test, the
+test stage's evidence passing before
+
+12
+00:00:36.183 --> 00:00:40.850
+production's preflight, and the weekly
+run scheduled under the reader identity.

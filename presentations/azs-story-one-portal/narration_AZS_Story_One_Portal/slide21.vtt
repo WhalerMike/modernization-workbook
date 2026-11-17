@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.257
+The answer to check six: deploying
+replaces the whole applied policy,
+
+2
+00:00:04.257 --> 00:00:06.988
+so it goes through review
+and a change window.
+
+3
+00:00:06.988 --> 00:00:08.699
+Scene seven, the vault.
+
+4
+00:00:08.699 --> 00:00:13.739
+Microsoft Learn's Key Vault recommendations
+are clear: Azure role-based access,
+
+5
+00:00:13.739 --> 00:00:17.175
+not access policies; soft
+delete and purge protection;
+
+6
+00:00:17.175 --> 00:00:21.375
+private endpoints with public
+access disabled; and audit logging.
+
+7
+00:00:21.375 --> 00:00:23.650
+The portal's vault misses every part.
+
+8
+00:00:23.650 --> 00:00:28.980
+It uses access policies, has no purge
+protection, a firewall that allows all
+
+9
+00:00:28.980 --> 00:00:32.333
+networks, public access
+on, no private endpoint,
+
+10
+00:00:32.333 --> 00:00:34.912
+and no audit events to the workspace.
+
+11
+00:00:34.912 --> 00:00:37.888
+The payroll team's vault
+next door has every part,
+
+12
+00:00:37.888 --> 00:00:40.920
+so the estate already
+shows what done looks like.

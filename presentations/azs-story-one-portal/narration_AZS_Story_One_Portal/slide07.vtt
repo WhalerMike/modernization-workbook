@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.800
+Build the first week's register: nineteen
+exposures, sixteen with an owner.
+
+3
+00:00:05.800 --> 00:00:07.288
+Read the portal's rows.
+
+4
+00:00:07.288 --> 00:00:10.536
+The gateway's public address
+carries the gateway's
+
+5
+00:00:10.536 --> 00:00:13.475
+web application firewall
+policy, wafp-portal.
+
+6
+00:00:13.475 --> 00:00:15.888
+The Front Door profile carries its own.
+
+7
+00:00:15.888 --> 00:00:18.374
+The jump box's address has no owner.
+
+8
+00:00:18.374 --> 00:00:22.038
+Then build the register again a
+week later, against the first one.
+
+9
+00:00:22.038 --> 00:00:27.074
+The new address, pip-new-api, is
+reported as new, and the orphan as gone,
+
+10
+00:00:27.074 --> 00:00:33.100
+with the reminder to remove any DNS record
+that still points at its old address.

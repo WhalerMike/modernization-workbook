@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.362
+Stage 2 is production,
+with the same commands.
+
+2
+00:00:03.362 --> 00:00:07.612
+Write production's settings file,
+pointing it at the test stage's evidence.
+
+3
+00:00:07.612 --> 00:00:12.537
+Run the preflight live: its seventh check
+fails unless that test evidence passes.
+
+4
+00:00:12.537 --> 00:00:14.286
+In the change window, plan,
+
+5
+00:00:14.286 --> 00:00:18.449
+have the reviewers approve the
+hash, and apply only that plan.
+
+6
+00:00:18.449 --> 00:00:23.555
+Schedule the weekly run under the reader
+identity in the agency's own scheduler; the
+
+7
+00:00:23.555 --> 00:00:28.512
+first production run is the baseline, and
+every run after carries its comparison.
+
+8
+00:00:28.512 --> 00:00:32.515
+Production's own evidence check
+adds the plan and the comparison,
+
+9
+00:00:32.515 --> 00:00:34.887
+so it passes from the second weekly run.
+
+10
+00:00:34.887 --> 00:00:37.561
+Switching the initiative to enforcing,
+
+11
+00:00:37.561 --> 00:00:42.890
+remediation and exemptions are the guide's
+Step 9, each its own reviewed change.

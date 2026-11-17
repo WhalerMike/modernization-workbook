@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.300
+Step 3 reads the findings.
+
+2
+00:00:02.300 --> 00:00:04.813
+The gateway's policy is in detection.
+
+3
+00:00:04.813 --> 00:00:09.325
+The careers Front Door profile
+has no WAF and sends no logs.
+
+4
+00:00:09.325 --> 00:00:12.802
+Both policies are a rule-set
+version behind the baseline,
+
+5
+00:00:12.802 --> 00:00:15.687
+and the Front Door policy
+has no bot protection.
+
+6
+00:00:15.687 --> 00:00:20.113
+The intranet gateway has a private
+frontend only, so it isn't counted.
+
+7
+00:00:20.113 --> 00:00:23.048
+Step 4 reads the plan the
+kit wrote and didn't run:
+
+8
+00:00:23.048 --> 00:00:25.984
+Learn's switch command
+for the gateway's policy,
+
+9
+00:00:25.984 --> 00:00:30.650
+with its resource group and subscription,
+ready for the application owner.
+
+10
+00:00:30.650 --> 00:00:33.170
+Step 5 runs the chapter's tests.

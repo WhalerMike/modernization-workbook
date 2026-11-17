@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.313
+What breaks, and what guards against it?
+
+2
+00:00:02.313 --> 00:00:06.244
+A plan applied after it changed
+would send a command nobody reviewed,
+
+3
+00:00:06.244 --> 00:00:09.349
+so applying needs the approved
+hash of the plan on disk.
+
+4
+00:00:09.349 --> 00:00:12.703
+Lab evidence could start
+production on fixture results,
+
+5
+00:00:12.703 --> 00:00:17.625
+so fixture records never count, and the
+production preflight checks the test stage.
+
+6
+00:00:17.625 --> 00:00:21.187
+A standing write role would let
+the reader change the estate,
+
+7
+00:00:21.187 --> 00:00:24.464
+so reads need only Reader and
+the plan's role is eligible
+
+8
+00:00:24.464 --> 00:00:27.813
+through privileged identity
+management, for the window.
+
+9
+00:00:27.813 --> 00:00:31.069
+Output in a repository
+would publish the register,
+
+10
+00:00:31.069 --> 00:00:35.412
+so the preflight fails in the kit's
+repository and warns in any other.
+
+11
+00:00:35.412 --> 00:00:40.455
+And removal as production's rollback would
+lose remediated resources and history,
+
+12
+00:00:40.455 --> 00:00:43.080
+so production rolls back to audit instead.

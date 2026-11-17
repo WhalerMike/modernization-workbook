@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.925
+Here's Microsoft's starting point.
+
+2
+00:00:01.925 --> 00:00:05.957
+Learn's Resource Graph samples
+for Azure Policy read assignments,
+
+3
+00:00:05.957 --> 00:00:08.962
+exemptions and compliance
+states from one table.
+
+4
+00:00:08.962 --> 00:00:13.043
+Its compliance-by-assignment query
+gives each assignment's state,
+
+5
+00:00:13.043 --> 00:00:16.901
+percentage and counts, and the
+kit uses it exactly as published.
+
+6
+00:00:16.901 --> 00:00:21.275
+Another sample lists the exemptions
+due to expire within ninety days.
+
+7
+00:00:21.275 --> 00:00:26.088
+Learn's exemption structure says an
+exemption is either mitigated or a waiver,
+
+8
+00:00:26.088 --> 00:00:30.975
+can carry an expiry, and once expired is
+kept for the record but no longer honored.
+
+9
+00:00:30.975 --> 00:00:35.218
+And DoNotEnforce evaluates without
+enforcing, which is where the guide's
+
+10
+00:00:35.218 --> 00:00:39.650
+Step 9 starts before switching to
+enforcement after the compliance review.

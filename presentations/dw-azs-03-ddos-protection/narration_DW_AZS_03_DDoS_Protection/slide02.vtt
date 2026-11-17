@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.362
+Why does this need code?
+
+2
+00:00:01.362 --> 00:00:05.028
+Because a public IP's own setting
+can say it inherits protection,
+
+3
+00:00:05.028 --> 00:00:08.001
+while the network it inherits
+from has no plan at all.
+
+4
+00:00:08.001 --> 00:00:12.317
+By the end of this chapter you can
+say, for every public IP in an estate,
+
+5
+00:00:12.317 --> 00:00:16.172
+whether it's under DDoS IP
+Protection or Network Protection,
+
+6
+00:00:16.172 --> 00:00:19.564
+whether it sends DDoS logs
+to the platform workspace,
+
+7
+00:00:19.564 --> 00:00:23.188
+and whether an enabled alert
+fires when it's under attack.
+
+8
+00:00:23.188 --> 00:00:26.951
+And you can compute the guide's DDoS
+coverage metric from the same run.
+
+9
+00:00:26.951 --> 00:00:31.507
+It's for platform owners who own the plan,
+security monitors who answer the alert,
+
+10
+00:00:31.507 --> 00:00:34.130
+and the developers who
+keep the check honest.

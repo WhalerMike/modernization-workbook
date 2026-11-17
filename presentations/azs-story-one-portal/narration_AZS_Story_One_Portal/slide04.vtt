@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.075
+From the kit's folder, run the baseline
+check on the first week's estate.
+
+3
+00:00:05.075 --> 00:00:08.931
+It reads the hierarchy settings,
+four policy assignments,
+
+4
+00:00:08.931 --> 00:00:14.475
+sixteen platform resources and four
+subscriptions, from six calls, every one a read.
+
+5
+00:00:14.475 --> 00:00:17.087
+Twelve findings and one information row.
+
+6
+00:00:17.087 --> 00:00:21.355
+Read them: creating management
+groups doesn't need authorization;
+
+7
+00:00:21.355 --> 00:00:25.856
+the firewall and its public IP send
+nothing to the platform workspace;
+
+8
+00:00:25.856 --> 00:00:30.124
+the online subscription, the portal's,
+has its Key Vault plan on Free;
+
+9
+00:00:30.124 --> 00:00:34.300
+and the FedRAMP initiative is in
+audit, exactly as Step 1 intends.

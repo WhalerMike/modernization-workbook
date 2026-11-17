@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:03.137
+Read each public address's status.
+
+3
+00:00:03.137 --> 00:00:06.276
+The hub's three addresses
+inherit from the hub network.
+
+4
+00:00:06.276 --> 00:00:10.675
+The test application's address has
+IP Protection on the address itself.
+
+5
+00:00:10.675 --> 00:00:13.868
+The jump box's inherits
+from the portal's spoke,
+
+6
+00:00:13.868 --> 00:00:16.388
+which has no plan, so it's unprotected.
+
+7
+00:00:16.388 --> 00:00:20.619
+The load balancer's is unknown:
+its protection depends on a backend
+
+8
+00:00:20.619 --> 00:00:25.312
+network the frontend doesn't name, and
+the kit says so rather than guessing.
+
+9
+00:00:25.312 --> 00:00:28.147
+Then the findings: the
+jump box unprotected,
+
+10
+00:00:28.147 --> 00:00:32.321
+the firewall's address with no logs
+to the workspace and no alert,
+
+11
+00:00:32.321 --> 00:00:36.410
+and the test application's alert,
+which exists but is disabled.
