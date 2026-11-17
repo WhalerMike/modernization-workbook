@@ -1,0 +1,38 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.125
+Lab 1, in the kit's folder, no tenant.
+
+2
+00:00:03.125 --> 00:00:06.763
+Step 1 lists one read,
+the device usage summary.
+
+3
+00:00:06.763 --> 00:00:09.459
+Step 2 reads the pilot tenant's summary:
+
+4
+00:00:09.459 --> 00:00:12.913
+eighteen devices, fifteen
+active, three inactive.
+
+5
+00:00:12.913 --> 00:00:16.271
+Step 3 reads the four pilot
+devices' client records,
+
+6
+00:00:16.271 --> 00:00:18.350
+as the device script wrote them.
+
+7
+00:00:18.350 --> 00:00:24.688
+Pilot 3 runs an older client with
+DisabledComponents zero, so IPv6 is preferred;
+
+8
+00:00:24.688 --> 00:00:29.380
+pilot 4 is disconnected; and only
+pilot 1 has the hardening values.

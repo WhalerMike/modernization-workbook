@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.075
+Who decides?
+
+2
+00:00:01.075 --> 00:00:06.076
+The policy owner decides enforcement, and
+passes the enforce switch on the record,
+
+3
+00:00:06.076 --> 00:00:08.650
+only after the report-only
+result is clean.
+
+4
+00:00:08.650 --> 00:00:12.686
+The identity engineer runs the
+policies and owns the partner list,
+
+5
+00:00:12.686 --> 00:00:14.887
+reviewed with the partner register.
+
+6
+00:00:14.887 --> 00:00:19.117
+The security monitor watches blocks
+that weren't carried by the service:
+
+7
+00:00:19.117 --> 00:00:21.725
+those are either an attack
+or a broken client.
+
+8
+00:00:21.725 --> 00:00:24.589
+For permissions: Policy
+Read All for policies,
+
+9
+00:00:24.589 --> 00:00:27.904
+named locations and the
+tenant restrictions policy;
+
+10
+00:00:27.904 --> 00:00:32.200
+Network Access Read All and Read
+Write All for signaling and tagging;
+
+11
+00:00:32.200 --> 00:00:36.118
+and Policy Read Write Conditional
+Access to create the policy,
+
+12
+00:00:36.118 --> 00:00:40.180
+with the two administrator roles
+activated just for the window.

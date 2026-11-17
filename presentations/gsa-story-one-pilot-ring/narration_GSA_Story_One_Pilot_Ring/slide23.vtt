@@ -1,0 +1,36 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.988
+Check seven.
+
+2
+00:00:00.988 --> 00:00:03.988
+Learn says an expired
+inspection certificate
+
+3
+00:00:03.988 --> 00:00:06.988
+disables all TLS inspection
+across the tenant.
+
+4
+00:00:06.988 --> 00:00:09.074
+When does the kit fail the certificate?
+
+5
+00:00:09.074 --> 00:00:10.587
+On the day it expires?
+
+6
+00:00:10.587 --> 00:00:14.851
+With ninety days or fewer left, or
+less than six months' validity?
+
+7
+00:00:14.851 --> 00:00:16.775
+Only after inspection stops?
+
+8
+00:00:16.775 --> 00:00:19.390
+Or never, because renewal is manual?

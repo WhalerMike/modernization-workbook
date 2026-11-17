@@ -1,0 +1,27 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.962
+Check four.
+
+2
+00:00:00.962 --> 00:00:05.101
+What does the plan script need before it
+sends anything with the apply switch?
+
+3
+00:00:05.101 --> 00:00:06.213
+Only the switch?
+
+4
+00:00:06.213 --> 00:00:10.888
+The approved hash, a live collection and
+a delegated session in the right tenant?
+
+5
+00:00:10.888 --> 00:00:12.412
+A Global Administrator?
+
+6
+00:00:12.412 --> 00:00:13.800
+Or a fixture folder?

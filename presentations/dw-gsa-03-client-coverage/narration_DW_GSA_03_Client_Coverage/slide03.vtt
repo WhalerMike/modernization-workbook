@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.878
+Learn's client page gives
+the prerequisites: a joined,
+
+2
+00:00:03.878 --> 00:00:09.880
+hybrid joined or registered device, though
+registered devices carry only Private
+
+3
+00:00:09.880 --> 00:00:15.187
+Access, in preview; an administrator to
+install; IPv4 only; and no secure DNS.
+
+4
+00:00:15.187 --> 00:00:19.335
+It gives the Intune values,
+the DNS-over-HTTPS profile,
+
+5
+00:00:19.335 --> 00:00:25.838
+four hardening registry values, and the
+advice to let users run unrestricted first.
+
+6
+00:00:25.838 --> 00:00:29.630
+For the fleet, the beta device
+usage summary counts total,
+
+7
+00:00:29.630 --> 00:00:33.987
+active and inactive devices, with
+Network Access Policy Read All.
+
+8
+00:00:33.987 --> 00:00:40.524
+Clients 1.8.239 or later use Universal
+Continuous Access Evaluation.
+
+9
+00:00:40.524 --> 00:00:45.006
+One difference: the summary's parameter
+table marks traffic type required,
+
+10
+00:00:45.006 --> 00:00:47.880
+while its own example and
+the guide leave it out.

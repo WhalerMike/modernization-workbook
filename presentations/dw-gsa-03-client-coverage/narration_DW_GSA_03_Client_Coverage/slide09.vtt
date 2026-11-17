@@ -1,0 +1,38 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.550
+Step 6 reads the device script's header.
+
+2
+00:00:02.550 --> 00:00:07.432
+It runs on a Windows device, not on
+the lab laptop, as an administrator,
+
+3
+00:00:07.432 --> 00:00:12.228
+and only reads: the client's file
+version, the four hardening values,
+
+4
+00:00:12.228 --> 00:00:16.500
+the IPv4 preference and the
+browsers' DNS-over-HTTPS policy.
+
+5
+00:00:16.500 --> 00:00:20.580
+The health is read from the tray's
+health check by a person and passed in,
+
+6
+00:00:20.580 --> 00:00:22.338
+because the script can't see it.
+
+7
+00:00:22.338 --> 00:00:26.800
+Step 7 runs this chapter's tests:
+three passed, none failed.
+
+8
+00:00:26.800 --> 00:00:28.700
+Then delete the output folder.

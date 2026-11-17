@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.348
+Narrow apps for one group
+support access enforcement,
+
+2
+00:00:03.348 --> 00:00:06.500
+least privilege and managed
+access control points.
+
+3
+00:00:06.500 --> 00:00:09.413
+Resilient connectors
+support remote access.
+
+4
+00:00:09.413 --> 00:00:14.975
+Phishing-resistant administrative paths
+support multifactor authentication and
+
+5
+00:00:14.975 --> 00:00:20.929
+logging privileged functions; the guide
+lists OMB M-22-09's phishing-resistant
+
+6
+00:00:20.929 --> 00:00:25.787
+MFA and VPN-free application access
+among the requirements this supports.
+
+7
+00:00:25.787 --> 00:00:27.951
+The assessor decides the controls.
+
+8
+00:00:27.951 --> 00:00:32.856
+The dangers: a wide segment, a group
+with one connector, plain MFA on RDP,
+
+9
+00:00:32.856 --> 00:00:37.762
+Quick Access left as a range, and
+protecting a domain controller's own
+
+10
+00:00:37.762 --> 00:00:43.012
+service name before the applications',
+which can lock administrators out.
+
+11
+00:00:43.012 --> 00:00:47.938
+You're done when every group, every app
+and every administrative path passes.
+
+12
+00:00:47.938 --> 00:00:49.780
+Next, Chapter 7.

@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.575
+Here's the fixture run, the
+fictional tenant at ring 1.
+
+2
+00:00:03.575 --> 00:00:07.523
+The preflight passes all five
+test-stage checks: the right stage,
+
+3
+00:00:07.523 --> 00:00:12.438
+a collection that matches its manifest
+in the right tenant, the emergency group
+
+4
+00:00:12.438 --> 00:00:14.971
+excluded from all five network policies,
+
+5
+00:00:14.971 --> 00:00:17.950
+the diagnostic setting,
+and approved decisions.
+
+6
+00:00:17.950 --> 00:00:21.560
+Step 3 plans the rollback for
+the state the ring starts from,
+
+7
+00:00:21.560 --> 00:00:26.570
+before the ring starts: three enforced
+policies to report-only in the guide's order,
+
+8
+00:00:26.570 --> 00:00:31.212
+tagging off with the tenant restrictions
+policy kept, then the manual steps.
+
+9
+00:00:31.212 --> 00:00:36.460
+It's reviewed, its hash filed, and it's
+applied only if a backout trigger fires.

@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.150
+The runbook's own fixture run,
+the fictional tenant at ring 1.
+
+3
+00:00:05.150 --> 00:00:08.966
+The test preflight passes,
+including the emergency exclusion
+
+4
+00:00:08.966 --> 00:00:12.562
+from all five network policies
+and the diagnostic setting.
+
+5
+00:00:12.562 --> 00:00:17.262
+The smoke test runs a hundred checks,
+none fail, and the ring says go.
+
+6
+00:00:17.262 --> 00:00:20.550
+The test stage's evidence
+forms an unbroken chain,
+
+7
+00:00:20.550 --> 00:00:23.999
+with a passing record for
+every step the stage needs.
+
+8
+00:00:23.999 --> 00:00:29.110
+And so the production preflight's last check,
+which reads that evidence, passes too.

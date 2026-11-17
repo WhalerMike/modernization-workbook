@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Why a plan, now?
+
+2
+00:00:01.200 --> 00:00:03.015
+Because source IP restoration,
+
+3
+00:00:03.015 --> 00:00:07.760
+the compliant network check and universal
+tenant restrictions all depend on the
+
+4
+00:00:07.760 --> 00:00:09.366
+Microsoft traffic profile,
+
+5
+00:00:09.366 --> 00:00:12.925
+and switching it on is the first
+time the kit changes anything.
+
+6
+00:00:12.925 --> 00:00:14.700
+So the goal has two halves.
+
+7
+00:00:14.700 --> 00:00:18.515
+Show that a ring's Microsoft
+365 and Entra ID traffic
+
+8
+00:00:18.515 --> 00:00:22.862
+goes through the service,
+carrying its real source address.
+
+9
+00:00:22.862 --> 00:00:27.376
+And change the tenant only through a plan
+file whose hash a reviewer approved.
+
+10
+00:00:27.376 --> 00:00:31.100
+It's for the developers, the
+platform owner who runs the changes,
+
+11
+00:00:31.100 --> 00:00:33.020
+and the change board's reviewer.

@@ -1,0 +1,349 @@
+{
+ "1": [
+  [
+   0.05,
+   2.913,
+   "Welcome back to Building Global Secure Access."
+  ],
+  [
+   2.962,
+   4.425,
+   "This is Chapter 2: the configuration export, and logs first."
+  ],
+  [
+   7.388,
+   7.25,
+   "Every later chapter reads the same export, and nothing is enforced before the logs exist, so this chapter builds both."
+  ],
+  [
+   14.637,
+   11.125,
+   "We'll start from Learn's advice to back the configuration up as Graph jay-son, see what it leaves to you, read the kit's collector, its manifest and five baseline checks, and walk two labs."
+  ],
+  [
+   25.762,
+   6.05,
+   "The chapter is a draft awaiting review, and the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.312,
+   "Why this chapter, now?"
+  ],
+  [
+   1.363,
+   5.562,
+   "The guide's run order is decision, architecture, then logging, and only then the client."
+  ],
+  [
+   6.925,
+   6.425,
+   "So the logs exist before anything is enforced, and every later Validate step has a record to read."
+  ],
+  [
+   13.35,
+   16.05,
+   "The goal: export the tenant's configuration in one read-only run whose files an assessor can re-hash; keep the architecture record that names every connector group and D N S suffix; and prove the network logs reach the workspace before anyone is in a pilot."
+  ],
+  [
+   29.4,
+   7.263,
+   "It's for the developers, the platform owner who keeps the architecture record, and the security monitor who owns the workspace."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   9.213,
+   "Learn's operations guidance is to back the configuration up as Graph jay-son, weekly and before every change, and the guide's export is that loop."
+  ],
+  [
+   9.262,
+   1.762,
+   "Each read has a Learn page."
+  ],
+  [
+   11.025,
+   8.2,
+   "Profiles, signaling and tagging need Network Access Read All, and Global Reader or the Global Secure Access Log Reader can read them."
+  ],
+  [
+   19.225,
+   4.7,
+   "Named locations and the tenant restrictions default need Policy Read All."
+  ],
+  [
+   23.925,
+   9.088,
+   "Connector groups and their members are the surprise: Learn names only Directory Read Write All, delegated, so there's no read-only permission for them."
+  ],
+  [
+   33.013,
+   3.612,
+   "A connector reports active or inactive, and its version."
+  ],
+  [
+   36.625,
+   4.662,
+   "And traffic logs stay thirty days, longer only through a diagnostic setting."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.225,
+   "What does it leave to you?"
+  ],
+  [
+   1.275,
+   11.325,
+   "The guide's export covers nine addresses, but later chapters also need connector members, Private Access apps, licenses and the logs, so the kit has one collector for every read."
+  ],
+  [
+   12.6,
+   7.213,
+   "The guide's hash list is something nobody checks, so the kit's manifest is checked every time a later step reads the collection."
+  ],
+  [
+   19.812,
+   7.55,
+   "The connector reads need a write permission, so the call list says so, the reader only sends GET, and the lab signs out after."
+  ],
+  [
+   27.363,
+   7.1,
+   "A diagnostic setting created by hand can lose a category, and an architecture record in prose drifts from the tenant."
+  ],
+  [
+   34.462,
+   1.35,
+   "The kit checks both."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.0,
+   "Here's the code."
+  ],
+  [
+   1.05,
+   13.6,
+   "The collector reads every declared call for the areas you name, all of them by default: seventeen calls, twenty-four reads in the fixture tenant, because connector members are read once per group and the guide's seven queries one by one."
+  ],
+  [
+   14.65,
+   7.15,
+   "It writes each read, one collection file, and a manifest with each call's permission and every file's hash."
+  ],
+  [
+   21.8,
+   5.963,
+   "Two reads aren't verified against a Learn page yet, and lyve runs refuse them unless you say so."
+  ],
+  [
+   27.762,
+   14.525,
+   "Then five baseline checks: each connector group in the architecture record with two hosts, the forest in the D N S suffixes, the workspace named, the export complete, and the diagnostic setting sending all four network categories."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   0.925,
+   "Who does what?"
+  ],
+  [
+   0.975,
+   5.362,
+   "The platform owner keeps the architecture record and runs the export before every change."
+  ],
+  [
+   6.338,
+   3.95,
+   "The security monitor owns the workspace and the diagnostic setting."
+  ],
+  [
+   10.287,
+   6.037,
+   "The security officer keeps the export folders, in the evidence store, not on a personal drive."
+  ],
+  [
+   16.325,
+   10.075,
+   "The reader holds Network Access Read All and Policy Read All for the configuration, and Directory Read Write All for the connectors, so the lab signs out right after the read."
+  ],
+  [
+   26.4,
+   8.575,
+   "Creating the diagnostic setting takes Security Administrator, and roles are activated through privileged identity management for the change window only."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.312,
+   "Lab 1, again in the kit's folder with no tenant."
+  ],
+  [
+   3.362,
+   2.538,
+   "Step 1 lists what the baseline reads."
+  ],
+  [
+   5.9,
+   8.787,
+   "Step 2 collects the whole pilot tenant: seventeen calls, each with its least-privileged permission and its beta and verified flags."
+  ],
+  [
+   14.688,
+   6.487,
+   "The Private Access apps and the tenant restrictions partners are the two not yet verified against a Learn page."
+  ],
+  [
+   21.175,
+   3.3,
+   "Twenty-four reads in all, eighteen files hashed."
+  ],
+  [
+   24.475,
+   5.188,
+   "Step 3 checks the folder against its manifest: all eighteen files match."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.388,
+   "Step 4 runs the baseline checks."
+  ],
+  [
+   2.438,
+   8.75,
+   "Both connector groups are in the architecture record with two hosts each, the forest is in the D N S suffixes, and the workspace is named."
+  ],
+  [
+   11.188,
+   4.787,
+   "One failure: the diagnostic setting doesn't send the remote network health logs."
+  ],
+  [
+   15.975,
+   6.737,
+   "Step 5 reads the setting's categories as the collector saved them: three on, and remote network health off."
+  ],
+  [
+   22.712,
+   6.575,
+   "No branch is on a remote network yet, but when one is, its health would never reach the workspace."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.325,
+   "Step 6 is the one to remember."
+  ],
+  [
+   2.375,
+   4.375,
+   "Copy the collection, add one space to one file, and try to read it."
+  ],
+  [
+   6.75,
+   4.612,
+   "The read is refused: the licenses file changed since its manifest."
+  ],
+  [
+   11.363,
+   7.05,
+   "Every later chapter reads the collection through that same check, so an edited export can't quietly become evidence."
+  ],
+  [
+   18.413,
+   4.525,
+   "Step 7 runs this chapter's tests: eight passed, none failed."
+  ],
+  [
+   22.938,
+   1.837,
+   "Then delete the output folder."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   6.912,
+   "Lab 2 uses a test tenant and an Azure test subscription with a Log Analytics workspace, never production."
+  ],
+  [
+   6.963,
+   7.275,
+   "Turn the network logs on first, with the guide's own command: one diagnostic setting, all four categories."
+  ],
+  [
+   14.238,
+   4.588,
+   "Then sign in to Graph as a person with the baseline's permissions and collect."
+  ],
+  [
+   18.825,
+   6.225,
+   "The two unverified reads need an extra switch, and you compare their results with the portal before trusting them."
+  ],
+  [
+   25.05,
+   3.038,
+   "The logging check passes once the setting exists."
+  ],
+  [
+   28.087,
+   7.287,
+   "Back it out by signing out first, because the session can write, and delete the setting only if this test tenant shouldn't keep it."
+  ],
+  [
+   35.375,
+   2.0,
+   "The authors haven't run this lab."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   5.938,
+   "The export with its permissions and hashes supports baseline configuration and component inventory."
+  ],
+  [
+   5.987,
+   4.45,
+   "The architecture record supports boundary protection and information flow."
+  ],
+  [
+   10.438,
+   9.812,
+   "Logs in the workspace before the pilot support event logging and audit record generation, and a refused, changed export supports protecting audit information."
+  ],
+  [
+   20.25,
+   7.987,
+   "The key security indicators are fed-ramp's, and which output supports which is the program's mapping; the assessor decides the controls."
+  ],
+  [
+   28.238,
+   7.487,
+   "The dangers: a pilot before the logs, a write-capable session left open, and an edited export used as evidence."
+  ],
+  [
+   35.725,
+   5.4,
+   "You're done when the setting existed before the pilot, and the export runs before every change."
+  ],
+  [
+   41.125,
+   2.663,
+   "Next, Chapter 3: the client."
+  ]
+ ]
+}

@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.525
+The rollback plan follows
+the guide's order.
+
+2
+00:00:02.525 --> 00:00:07.350
+Enforced policies go to report-only,
+from Step 10 back to Step 5.
+
+3
+00:00:07.350 --> 00:00:09.988
+Profile links come off,
+which is a portal step,
+
+4
+00:00:09.988 --> 00:00:13.837
+and tagging goes off while the
+tenant restrictions policy stays.
+
+5
+00:00:13.837 --> 00:00:17.888
+The groups come off the profiles
+and the VPN route comes back.
+
+6
+00:00:17.888 --> 00:00:20.399
+Signaling is last, and only on request;
+
+7
+00:00:20.399 --> 00:00:25.100
+the plan refuses it if a compliant
+network policy would stay enforced.
+
+8
+00:00:25.100 --> 00:00:28.633
+The evidence chain copies
+each run with its manifest,
+
+9
+00:00:28.633 --> 00:00:34.012
+adds its controls and indicators, every
+file's hash and the previous record's hash.
+
+10
+00:00:34.012 --> 00:00:37.071
+A check with a failure
+is recorded as findings,
+
+11
+00:00:37.071 --> 00:00:39.790
+not pass, and doesn't
+count toward a stage.

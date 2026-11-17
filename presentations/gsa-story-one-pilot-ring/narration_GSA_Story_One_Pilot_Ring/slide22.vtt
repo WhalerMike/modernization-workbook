@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:06.076
+Run the Internet Access checks: the two
+bypasses fail, and the QUIC check passes
+
+3
+00:00:06.076 --> 00:00:11.050
+on the interim block, with the preview's
+GCC state written into the finding.
+
+4
+00:00:11.050 --> 00:00:14.622
+Then the TLS checks: the
+certificate fails on both counts,
+
+5
+00:00:14.622 --> 00:00:17.815
+the pinned payroll site's
+bypass is the expired one,
+
+6
+00:00:17.815 --> 00:00:22.375
+and the failure share is one and a half
+percent against a threshold of one.
+
+7
+00:00:22.375 --> 00:00:25.326
+Two weeks later the
+certificate has been rolled,
+
+8
+00:00:25.326 --> 00:00:29.300
+the bypasses renewed and approved,
+and all thirteen checks pass.

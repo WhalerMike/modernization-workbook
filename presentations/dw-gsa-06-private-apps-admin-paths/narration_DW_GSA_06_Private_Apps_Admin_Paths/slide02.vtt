@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.888
+Why narrow?
+
+2
+00:00:00.888 --> 00:00:04.269
+Because a compromised user
+or device on a VPN address
+
+3
+00:00:04.269 --> 00:00:08.112
+pool can move laterally across
+everything the pool reaches.
+
+4
+00:00:08.112 --> 00:00:12.488
+Private Access replaces the range
+with one application for one group,
+
+5
+00:00:12.488 --> 00:00:14.826
+behind that application's own policy.
+
+6
+00:00:14.826 --> 00:00:17.894
+So the goal: show,
+application by application,
+
+7
+00:00:17.894 --> 00:00:21.958
+that each reaches only its host
+and ports, only for its group,
+
+8
+00:00:21.958 --> 00:00:27.433
+under a policy that excludes emergency
+access; that administrative RDP and SSH
+
+9
+00:00:27.433 --> 00:00:30.585
+require phishing-resistant authentication;
+
+10
+00:00:30.585 --> 00:00:33.488
+and that connectors survive a patch night.
+
+11
+00:00:33.488 --> 00:00:36.799
+It's for the developers, the
+server and application owners,
+
+12
+00:00:36.799 --> 00:00:38.710
+and the privileged access owner.

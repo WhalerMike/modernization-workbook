@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.210
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.210 --> 00:00:06.075
+Building Global Secure Access.
+
+3
+00:00:06.075 --> 00:00:11.737
+This is Chapter 1: the decision,
+licensing, and availability in GCC.
+
+4
+00:00:11.737 --> 00:00:15.793
+A network control is adopted by a
+written decision with exit criteria,
+
+5
+00:00:15.793 --> 00:00:18.589
+not by turning on a toggle,
+so the first code reads
+
+6
+00:00:18.589 --> 00:00:21.875
+what the tenant holds and
+checks the decision against it.
+
+7
+00:00:21.875 --> 00:00:26.068
+We'll start from what Microsoft Learn
+says, see what it leaves to you,
+
+8
+00:00:26.068 --> 00:00:31.100
+read the kit's call list, its availability
+table and nine checks, and walk two labs.
+
+9
+00:00:31.100 --> 00:00:35.419
+One note before we begin: this
+chapter is a draft awaiting review,
+
+10
+00:00:35.419 --> 00:00:39.140
+and the code is illustrative,
+tested against fixtures.

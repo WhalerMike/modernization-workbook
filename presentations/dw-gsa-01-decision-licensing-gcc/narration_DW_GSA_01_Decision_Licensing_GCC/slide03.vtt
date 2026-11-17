@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.925
+Here's Microsoft's starting point.
+
+2
+00:00:01.925 --> 00:00:07.362
+Learn's known limitations page says
+Global Secure Access is available in GCC,
+
+3
+00:00:07.362 --> 00:00:11.865
+for the product as a whole; no
+feature page narrows or widens that,
+
+4
+00:00:11.865 --> 00:00:16.113
+so a preview feature's GCC
+availability is not yet specified.
+
+5
+00:00:16.113 --> 00:00:21.459
+Learn names the licenses: the Microsoft
+traffic profile with Entra ID P1 or P2,
+
+6
+00:00:21.459 --> 00:00:26.888
+and Internet Access and Private Access
+separately, or through the Entra Suite.
+
+7
+00:00:26.888 --> 00:00:30.993
+Two Graph reads tell you what the
+tenant holds: the subscribed SKUs,
+
+8
+00:00:30.993 --> 00:00:35.697
+with License Assignment Read All, and
+the tenant status on the beta endpoint,
+
+9
+00:00:35.697 --> 00:00:37.937
+with Network Access Policy Read All.
+
+10
+00:00:37.937 --> 00:00:41.760
+Both live on the global
+service, which GCC uses.

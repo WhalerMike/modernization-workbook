@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.975
+Who does what?
+
+2
+00:00:00.975 --> 00:00:05.238
+The platform owner writes the
+desired state, plans and applies.
+
+3
+00:00:05.238 --> 00:00:07.893
+A second person, the
+change board's reviewer,
+
+4
+00:00:07.893 --> 00:00:11.212
+approves the plan's hash, and
+the change record keeps it.
+
+5
+00:00:11.212 --> 00:00:13.925
+The security monitor
+reads the sign-in share.
+
+6
+00:00:13.925 --> 00:00:19.500
+For permissions, the reads need Network
+Access Read All and access to the workspace.
+
+7
+00:00:19.500 --> 00:00:23.132
+The writes are Network Access
+Read Write All for the profiles,
+
+8
+00:00:23.132 --> 00:00:27.975
+signaling and tagging, and Policy Read
+Write Conditional Access for the policies.
+
+9
+00:00:27.975 --> 00:00:31.164
+The portal assignment needs
+Application Administrator,
+
+10
+00:00:31.164 --> 00:00:35.210
+activated through privileged identity
+management for the window only.

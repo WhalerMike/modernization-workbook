@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.163
+Eleven checks.
+
+2
+00:00:01.163 --> 00:00:04.571
+For the compliant network:
+the named location exists,
+
+3
+00:00:04.571 --> 00:00:09.761
+which tells you signaling was turned on;
+the policy blocks everything outside it;
+
+4
+00:00:09.761 --> 00:00:13.247
+the emergency group and both
+Intune apps are excluded;
+
+5
+00:00:13.247 --> 00:00:16.732
+no Private Access app is in
+scope; while it's report-only,
+
+6
+00:00:16.732 --> 00:00:19.676
+the business days and
+the defects are counted,
+
+7
+00:00:19.676 --> 00:00:24.401
+as information until it's ready; and once
+it's enforced, signaling must be on.
+
+8
+00:00:24.401 --> 00:00:28.718
+For tenant restrictions: the default
+blocks everyone and everything;
+
+9
+00:00:28.718 --> 00:00:33.484
+each partner allowance is in the register
+and current; tagging is on only with
+
+10
+00:00:33.484 --> 00:00:38.160
+a blocking default; and each blocked
+tenant is listed for the weekly review.

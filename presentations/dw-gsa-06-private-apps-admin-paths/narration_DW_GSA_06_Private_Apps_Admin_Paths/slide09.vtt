@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.612
+Step 6 checks the tenant two weeks later.
+
+2
+00:00:02.612 --> 00:00:06.243
+Finance is one host on port
+443 for the pilot group,
+
+3
+00:00:06.243 --> 00:00:08.812
+with the emergency group excluded.
+
+4
+00:00:08.812 --> 00:00:11.524
+Both cloud connectors
+are active and current.
+
+5
+00:00:11.524 --> 00:00:15.487
+The RDP policy has its strength
+and a compliant device.
+
+6
+00:00:15.487 --> 00:00:17.188
+And Quick Access is empty.
+
+7
+00:00:17.188 --> 00:00:18.575
+Every check passes.
+
+8
+00:00:18.575 --> 00:00:22.937
+Step 7 runs this chapter's
+tests: four passed, none failed.
+
+9
+00:00:22.937 --> 00:00:24.840
+Then delete the output folder.

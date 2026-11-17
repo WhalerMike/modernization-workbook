@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.488
+Step 6 runs the TLS checks.
+
+2
+00:00:02.488 --> 00:00:03.499
+Three fail.
+
+3
+00:00:03.499 --> 00:00:08.741
+The certificate has seventy-four days
+left, inside the ninety-day renewal window,
+
+4
+00:00:08.741 --> 00:00:12.887
+and it was issued for only ninety
+days, short of Learn's six months.
+
+5
+00:00:12.887 --> 00:00:17.337
+The pinned payroll site's
+bypass is E X 3, which expired.
+
+6
+00:00:17.337 --> 00:00:21.850
+And one and a half percent of sessions
+failed, above the one percent threshold.
+
+7
+00:00:21.850 --> 00:00:25.522
+Three pass: the issuer is a
+dedicated inspection authority,
+
+8
+00:00:25.522 --> 00:00:30.167
+not the authentication one; the policy
+is linked only to the pilot's profile;
+
+9
+00:00:30.167 --> 00:00:35.020
+and the privacy approval and the user
+notice came before inspection started.

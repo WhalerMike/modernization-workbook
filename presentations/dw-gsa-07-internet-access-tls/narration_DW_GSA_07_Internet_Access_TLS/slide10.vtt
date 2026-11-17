@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.542
+Lab 2 uses a test tenant with
+Internet Access licenses,
+
+2
+00:00:03.542 --> 00:00:08.275
+the Internet profile on for a pilot
+group, and a test device with the client.
+
+3
+00:00:08.275 --> 00:00:10.367
+It doesn't enable TLS inspection,
+
+4
+00:00:10.367 --> 00:00:14.937
+which needs a dedicated test authority
+and the privacy officer's scope.
+
+5
+00:00:14.937 --> 00:00:19.451
+Create the filtering policy and the
+pilot profile with the guide's requests.
+
+6
+00:00:19.451 --> 00:00:23.674
+Plan and apply the Internet Access
+policy, on for the pilot group only,
+
+7
+00:00:23.674 --> 00:00:28.638
+as the guide does, because Learn doesn't
+say whether report-only applies a profile.
+
+8
+00:00:28.638 --> 00:00:32.312
+Block QUIC on the device with
+Learn's firewall command.
+
+9
+00:00:32.312 --> 00:00:36.137
+Then browse to a blocked category
+and expect the block page.
+
+10
+00:00:36.137 --> 00:00:37.700
+Back out newest first.
+
+11
+00:00:37.700 --> 00:00:39.770
+The authors haven't run this lab.

@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.362
+Why this chapter, now?
+
+2
+00:00:01.362 --> 00:00:04.462
+The guide's run order is
+decision, architecture,
+
+3
+00:00:04.462 --> 00:00:06.925
+then logging, and only then the client.
+
+4
+00:00:06.925 --> 00:00:10.016
+So the logs exist before
+anything is enforced,
+
+5
+00:00:10.016 --> 00:00:13.350
+and every later Validate
+step has a record to read.
+
+6
+00:00:13.350 --> 00:00:18.312
+The goal: export the tenant's configuration
+in one read-only run whose files an
+
+7
+00:00:18.312 --> 00:00:23.740
+assessor can re-hash; keep the architecture
+record that names every connector group
+
+8
+00:00:23.740 --> 00:00:26.376
+and DNS suffix; and prove the network logs
+
+9
+00:00:26.376 --> 00:00:29.400
+reach the workspace before
+anyone is in a pilot.
+
+10
+00:00:29.400 --> 00:00:33.870
+It's for the developers, the platform
+owner who keeps the architecture record,
+
+11
+00:00:33.870 --> 00:00:36.720
+and the security monitor
+who owns the workspace.

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.862
+Lab 1.
+
+2
+00:00:00.862 --> 00:00:04.863
+After collecting the pilot, step
+2 runs the telemetry checks.
+
+3
+00:00:04.863 --> 00:00:06.805
+The setting misses a category;
+
+4
+00:00:06.805 --> 00:00:11.236
+branch health has no rows because no
+branch is on a remote network yet;
+
+5
+00:00:11.236 --> 00:00:15.512
+alerts are twenty-seven hours old;
+and CISA telemetry isn't agreed.
+
+6
+00:00:15.512 --> 00:00:19.050
+Step 3 computes the metrics
+and the pilot's exit.
+
+7
+00:00:19.050 --> 00:00:24.129
+No metric is met, and the pilot is no-go,
+for five reasons: five business days in,
+
+8
+00:00:24.129 --> 00:00:29.454
+one severity-two ticket open, eighty-three
+percent coverage, three report-only
+
+9
+00:00:29.454 --> 00:00:34.288
+failures carried by the service, and
+one and a half percent TLS failures.
+
+10
+00:00:34.288 --> 00:00:39.240
+The emergency exclusion was tested at
+ring start and break-glass was rehearsed.

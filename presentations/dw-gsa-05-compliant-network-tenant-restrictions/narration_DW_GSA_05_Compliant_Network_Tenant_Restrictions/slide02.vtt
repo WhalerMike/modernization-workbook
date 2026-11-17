@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.975
+Why a gate?
+
+2
+00:00:00.975 --> 00:00:05.919
+The compliant network check passes only
+for users who come through the agency's
+
+3
+00:00:05.919 --> 00:00:10.563
+own Global Secure Access, so a replayed
+token from anywhere else is refused.
+
+4
+00:00:10.563 --> 00:00:16.137
+Tenant restrictions let agency devices
+sign in only to tenants the policy allows.
+
+5
+00:00:16.137 --> 00:00:20.174
+Both are strong, and both can lock people
+out if they're enforced too early.
+
+6
+00:00:20.174 --> 00:00:23.202
+So the goal: keep both as
+reviewed configuration,
+
+7
+00:00:23.202 --> 00:00:26.910
+show when the compliant network
+policy is ready to enforce,
+
+8
+00:00:26.910 --> 00:00:31.450
+and show that agency devices reach
+only the tenants the register allows.
+
+9
+00:00:31.450 --> 00:00:34.194
+It's for the developers,
+the identity engineer,
+
+10
+00:00:34.194 --> 00:00:37.010
+and the policy owner
+who decides enforcement.

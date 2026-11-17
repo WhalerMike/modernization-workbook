@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.950
+Lab 1, after listing the reads
+and collecting the pilot.
+
+2
+00:00:03.950 --> 00:00:07.037
+Step 3 reads the
+connectors group by group.
+
+3
+00:00:07.037 --> 00:00:10.387
+Headquarters has two active
+connectors on the current version.
+
+4
+00:00:10.387 --> 00:00:15.037
+The cloud group has one active and one
+inactive, and the active one is old.
+
+5
+00:00:15.037 --> 00:00:16.825
+Step 4 runs the checks.
+
+6
+00:00:16.825 --> 00:00:18.675
+Both connector problems fail.
+
+7
+00:00:18.675 --> 00:00:23.363
+The Finance app is a slash sixteen
+on every port, assigned to a person,
+
+8
+00:00:23.363 --> 00:00:27.800
+under an enforced policy that
+doesn't exclude emergency access.
+
+9
+00:00:27.800 --> 00:00:32.200
+Because every port includes RDP,
+it's an administrative path too.
+
+10
+00:00:32.200 --> 00:00:35.488
+The RDP app asks only for MFA.
+
+11
+00:00:35.488 --> 00:00:38.230
+And Quick Access still holds two segments.

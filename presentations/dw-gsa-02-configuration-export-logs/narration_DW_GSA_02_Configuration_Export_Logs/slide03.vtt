@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.011
+Learn's operations guidance is to back
+the configuration up as Graph JSON,
+
+2
+00:00:05.011 --> 00:00:09.263
+weekly and before every change, and
+the guide's export is that loop.
+
+3
+00:00:09.263 --> 00:00:11.024
+Each read has a Learn page.
+
+4
+00:00:11.024 --> 00:00:14.862
+Profiles, signaling and tagging
+need Network Access Read All,
+
+5
+00:00:14.862 --> 00:00:19.225
+and Global Reader or the Global Secure
+Access Log Reader can read them.
+
+6
+00:00:19.225 --> 00:00:23.925
+Named locations and the tenant
+restrictions default need Policy Read All.
+
+7
+00:00:23.925 --> 00:00:28.875
+Connector groups and their members are
+the surprise: Learn names only Directory
+
+8
+00:00:28.875 --> 00:00:33.013
+Read Write All, delegated, so there's
+no read-only permission for them.
+
+9
+00:00:33.013 --> 00:00:36.625
+A connector reports active or
+inactive, and its version.
+
+10
+00:00:36.625 --> 00:00:41.350
+And traffic logs stay thirty days, longer
+only through a diagnostic setting.

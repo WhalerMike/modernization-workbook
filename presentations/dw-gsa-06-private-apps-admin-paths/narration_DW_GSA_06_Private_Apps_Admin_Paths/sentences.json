@@ -1,0 +1,394 @@
+{
+ "1": [
+  [
+   0.05,
+   2.913,
+   "Welcome back to Building Global Secure Access."
+  ],
+  [
+   2.962,
+   4.537,
+   "This is Chapter 6: private applications and administrative paths."
+  ],
+  [
+   7.5,
+   2.875,
+   "A VPN gives a device an address range."
+  ],
+  [
+   10.375,
+   6.463,
+   "Private Access gives a group one application, on its ports, behind its own Conditional Access."
+  ],
+  [
+   16.837,
+   6.775,
+   "The code checks that each app is that narrow, and that administrative paths ask for phishing-resistant authentication."
+  ],
+  [
+   23.613,
+   6.05,
+   "The chapter is a draft awaiting review, and the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   0.838,
+   "Why narrow?"
+  ],
+  [
+   0.887,
+   7.225,
+   "Because a compromised user or device on a VPN address pool can move laterally across everything the pool reaches."
+  ],
+  [
+   8.113,
+   6.713,
+   "Private Access replaces the range with one application for one group, behind that application's own policy."
+  ],
+  [
+   14.825,
+   18.663,
+   "So the goal: show, application by application, that each reaches only its host and ports, only for its group, under a policy that excludes emergency access; that administrative RDP and SSH require phishing-resistant authentication; and that connectors survive a patch night."
+  ],
+  [
+   33.487,
+   5.175,
+   "It's for the developers, the server and application owners, and the privileged access owner."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   11.6,
+   "Learn's Private Access tutorial creates an application from the custom template, marks it a Private Access app, binds it to a connector group, adds its segments and assigns a group with the app's user role."
+  ],
+  [
+   11.65,
+   9.075,
+   "Segments may not overlap between per-app applications; a per-app segment overrides Quick Access; and clients can take fifteen minutes to see a change."
+  ],
+  [
+   20.725,
+   5.8,
+   "Connectors are read with a write-capable permission and report active or inactive, and their version."
+  ],
+  [
+   26.525,
+   8.325,
+   "Learn's Zero Trust recommendations ask for two healthy, current connectors per group, least-privilege segments and every app assigned."
+  ],
+  [
+   34.85,
+   6.65,
+   "And for domain controllers, the sensor starts in audit, with application service names before the DC's own."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.225,
+   "What does it leave to you?"
+  ],
+  [
+   1.275,
+   10.925,
+   "The requests create one app, but nothing reads all of them back with their segments and assignments, so the kit has a read for that, marked unverified, and the lab compares it with the portal."
+  ],
+  [
+   12.2,
+   5.375,
+   "A group with one inactive connector looks fine in a list, so the kit counts active members."
+  ],
+  [
+   17.575,
+   6.05,
+   "A wide range on every port is the VPN again, so wide segments and overlaps fail."
+  ],
+  [
+   23.625,
+   3.513,
+   "A person assigned directly escapes the access review."
+  ],
+  [
+   27.137,
+   11.863,
+   "Plain M F A on RDP passes a casual look, so any app covering port 22 or 3389 needs the phishing-resistant strength and a compliant device."
+  ],
+  [
+   39.0,
+   2.5,
+   "And Quick Access is tracked until it's empty."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.0,
+   "Nine checks."
+  ],
+  [
+   1.05,
+   4.25,
+   "Two or more active connectors per group, each at the minimum version."
+  ],
+  [
+   5.3,
+   4.088,
+   "Segments left in Quick Access, a warning until there are none."
+  ],
+  [
+   9.387,
+   5.588,
+   "Each segment a host or a narrow range, on named ports, with no overlaps."
+  ],
+  [
+   14.975,
+   1.387,
+   "Group assignments only."
+  ],
+  [
+   16.363,
+   3.913,
+   "A policy that targets the app and excludes the emergency group."
+  ],
+  [
+   20.275,
+   5.75,
+   "RDP and SSH apps that require the phishing-resistant strength and a compliant device."
+  ],
+  [
+   26.025,
+   4.75,
+   "And the last day's private sessions by destination, to compare with the assignments."
+  ],
+  [
+   30.775,
+   7.287,
+   "The administrative policy is a reviewed file, the guide's own; when the tenant's copy drifts, the plan brings it back."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   0.95,
+   "Who owns what?"
+  ],
+  [
+   1.0,
+   4.463,
+   "Application owners own their app's assignment and review it each quarter."
+  ],
+  [
+   5.463,
+   5.388,
+   "The platform owner for servers keeps two healthy, current connectors in every group."
+  ],
+  [
+   10.85,
+   10.0,
+   "The privileged access owner owns the administrative apps and the domain controller sensor, and that's where Building Privileged Access comes in, for the privileged groups behind them."
+  ],
+  [
+   20.85,
+   12.488,
+   "For permissions: a write-capable delegated permission for the connector reads, an application read for the apps, which isn't verified yet, the policy permissions, and three administrator roles activated just for the lab."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.9,
+   "Lab 1, after listing the reads and collecting the pilot."
+  ],
+  [
+   3.95,
+   3.087,
+   "Step 3 reads the connectors group by group."
+  ],
+  [
+   7.037,
+   3.35,
+   "Headquarters has two active connectors on the current version."
+  ],
+  [
+   10.387,
+   4.65,
+   "The cloud group has one active and one inactive, and the active one is old."
+  ],
+  [
+   15.037,
+   1.788,
+   "Step 4 runs the checks."
+  ],
+  [
+   16.825,
+   1.85,
+   "Both connector problems fail."
+  ],
+  [
+   18.675,
+   9.125,
+   "The Finance app is a slash sixteen on every port, assigned to a person, under an enforced policy that doesn't exclude emergency access."
+  ],
+  [
+   27.8,
+   4.4,
+   "Because every port includes RDP, it's an administrative path too."
+  ],
+  [
+   32.2,
+   3.288,
+   "The RDP app asks only for M F A."
+  ],
+  [
+   35.487,
+   2.675,
+   "And Quick Access still holds two segments."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.25,
+   "Step 5 plans the pilot and reads the administrative policy's fix."
+  ],
+  [
+   4.3,
+   9.162,
+   "The plan has two Graph steps: the internet profile off, and a patch for the RDP policy, because the tenant's copy differs from the reviewed file."
+  ],
+  [
+   13.463,
+   8.0,
+   "The body of that patch sets the built-in phishing-resistant authentication strength, the one ending in four, and a compliant device."
+  ],
+  [
+   21.462,
+   2.9,
+   "That's the guide's Step 10 policy, as written."
+  ],
+  [
+   24.363,
+   4.45,
+   "Nothing is sent: it's a dry run, and fixture mode never applies."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.562,
+   "Step 6 checks the tenant two weeks later."
+  ],
+  [
+   2.612,
+   6.2,
+   "Finance is one host on port 443 for the pilot group, with the emergency group excluded."
+  ],
+  [
+   8.812,
+   2.712,
+   "Both cloud connectors are active and current."
+  ],
+  [
+   11.525,
+   3.962,
+   "The RDP policy has its strength and a compliant device."
+  ],
+  [
+   15.488,
+   1.7,
+   "And Quick Access is empty."
+  ],
+  [
+   17.188,
+   1.387,
+   "Every check passes."
+  ],
+  [
+   18.575,
+   4.362,
+   "Step 7 runs this chapter's tests: four passed, none failed."
+  ],
+  [
+   22.938,
+   1.837,
+   "Then delete the output folder."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   10.463,
+   "Lab 2 needs a test tenant with Private Access licenses, a connector group with two connectors on Windows Server 2019 or later, a test server and a pilot group."
+  ],
+  [
+   10.512,
+   8.775,
+   "Publish one app with the guide's own requests, named so the kit's reviewed policy file finds it, one host on 443, for the pilot group."
+  ],
+  [
+   19.288,
+   7.275,
+   "Collect and check, comparing the app read with the portal first; the policy check fails, because there's no policy yet."
+  ],
+  [
+   26.562,
+   2.888,
+   "Plan and apply its policy in report-only."
+  ],
+  [
+   29.45,
+   7.662,
+   "Then validate: from a device off the corporate network, the host is reachable on 443 and not on another port."
+  ],
+  [
+   37.112,
+   3.525,
+   "Back it out by deleting the policy, then the application."
+  ],
+  [
+   40.638,
+   2.0,
+   "The authors haven't run this lab."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   6.45,
+   "Narrow apps for one group support access enforcement, least privilege and managed access control points."
+  ],
+  [
+   6.5,
+   2.913,
+   "Resilient connectors support remote access."
+  ],
+  [
+   9.412,
+   16.375,
+   "Phishing-resistant administrative paths support multifactor authentication and logging privileged functions; the guide lists O M B M twenty-two oh-nine's phishing-resistant M F A and VPN-free application access among the requirements this supports."
+  ],
+  [
+   25.788,
+   2.163,
+   "The assessor decides the controls."
+  ],
+  [
+   27.95,
+   15.062,
+   "The dangers: a wide segment, a group with one connector, plain M F A on RDP, Quick Access left as a range, and protecting a domain controller's own service name before the applications', which can lock administrators out."
+  ],
+  [
+   43.013,
+   4.925,
+   "You're done when every group, every app and every administrative path passes."
+  ],
+  [
+   47.938,
+   1.788,
+   "Next, Chapter 7."
+  ]
+ ]
+}
