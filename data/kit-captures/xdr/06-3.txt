@@ -1,0 +1,7 @@
+PS> Get-Content out/detections/plan.sha256
+2bfe49bb15add13dc7a81654fe5deeee341246a5cd17c19da1275bcf8abd2601  plan.json
+PS> (Get-Content out/detections/plan.json | ConvertFrom-Json).actions | Format-Table ruleId, action, method, path -AutoSize
+ruleId                            action method path
+------                            ------ ------ ----
+contoso-lsass-dump-tool           create POST   /security/rules/detectionRules
+contoso-office-encoded-powershell update PATCH  /security/rules/detectionRules/contoso-office-encoded-powershell

@@ -1,0 +1,2 @@
+Role,Permissions,Groups,DataSources
+<role-name>,<permission (Read|Manage); permission ...>,<group; group ...>,<All|data sources>

@@ -1,0 +1,314 @@
+---
+title: "Chapter 08 — The Monthly Evidence Run"
+description: "The guide's monthly evidence run as one command: every check from Chapters 01 to 07 into its own run folder, the guide's metrics computed from those folders (protected coverage, enforcement depth, prevention effectiveness, exception exposure, detection validity, synthetic-event success, and mean time to triage reported as not computed because Graph doesn't carry it), and every folder recorded as evidence with its NIST SP 800-53 controls, FedRAMP 20x KSIs, the run's own check result, every file's SHA-256 and the hash of the record before it; a check of the chain, a stage's go/no-go that fails on a run that found something, and a changed file caught by name. Lab 1 against fixtures; Lab 2 in a test tenant."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-defender-xdr
+part: How
+series-order: 8
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 08 — The Monthly Evidence Run
+
+*The metrics measure what the controls do, not whether a setting exists, and the evidence is a chain an ISSO can check with one command.*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [G10 Operations and evidence](../../../books/guides/defender-xdr-implementation.md#step-10-operations-and-evidence), its [metrics](../../../books/guides/defender-xdr-implementation.md#metrics) and its [evidence catalog](../../../books/guides/defender-xdr-implementation.md#evidence-catalog). You start with the guide's monthly evidence run, a loop of queries and a `SHA256SUMS.csv`, and what it leaves to you. Then you read the monthly run, the metrics and the evidence record. Lab 1 runs the month on fixtures, reads the metrics, checks the chain, runs a stage's go/no-go and changes a file to watch the check fail. Lab 2 runs the month in a test tenant.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can produce the month's evidence package in one command, read the guide's metrics from it, and show the ISSO it hasn't changed since.
+
+**Audience.** Developers who maintain the kit, the platform owner who owns the run, and the ISSO who receives the package. The reporting rhythm and the metric set are Book 12's [Chapter 12](../../../books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md#the-metric-set). You should have run every earlier chapter's Lab 1.
+
+## Start with Microsoft Learn's commands
+
+### What the guide gives you
+
+The guide's monthly run connects with `SecurityIncident.Read.All` and `ThreatHunting.Read.All`, runs three hunting queries (coverage, ASR, prevention) into JSON files, exports the month's incidents with `Get-MgSecurityIncident -Filter "createdDateTime ge ..."`, and hashes the folder into `SHA256SUMS.csv`.[^xdr08-incidents] [^xdr08-hunting] Its metrics table gives seven formulas, and its evidence catalog gives each artifact's kind, gate and retention *(program design)*. Its Validate step: a re-hash next month matches, and the quarter's exercise raised the expected incident for each synthetic event.
+
+### What it leaves to you
+
+Each row is pinned by a test in `tests/Evidence.Tests.ps1`.
+
+| What the guide's run gives | Why it isn't enough | What the kit adds |
+|---|---|---|
+| Three queries and an incident export | Gates 1, 4 to 9 have their own checks | Every check, each into its own folder with a manifest |
+| A hash list | A hash list can be regenerated after an edit | Each record holds the hash of the one before; removing or changing one breaks the chain |
+| Files with no controls named | The ISSO maps each file to controls by hand | Each record names its steps, their controls and KSIs, and the claim language |
+| — | A run that found five tickets hashes as cleanly as one that found none | The run's own check result is in the record; the stage go/no-go fails until the findings are closed |
+| Seven metric formulas | Someone computes them from the files each month | `metrics.md` from the run folders, with where each value came from |
+| Mean time to triage and to contain | Graph's incident has no time of first assignment or containment | Reported as *not computed*, with where to get it, rather than a number that looks precise |
+
+**The verdict.** Keep the guide's run as the floor. Build the chain and the record, because evidence the ISSO can't verify alone is a folder of files.
+
+## The code
+
+### The monthly run
+
+`Invoke-XdrMonthlyRun.ps1` (`Invoke-XdrRunAll`) runs access, coverage, prevention, ASR, exposure, incidents, detections, signals and automation into `<RunRoot>/<task>`, then the metrics into `<RunRoot>/metrics`, and with `-EvidencePath` records each folder. A check that throws (a missing input, a refused session) is an `Error` row; the others still run.
+
+### The metrics
+
+`Invoke-XdrMetrics.ps1` reads the run folders' `summary.json` files:
+
+| Metric | From |
+|---|---|
+| Protected coverage | `coverage/summary.json` |
+| Exception exposure | `coverage/summary.json` |
+| Enforcement depth | `asr/summary.json` (devices with every applicable rule in block) and the onboarded count |
+| Prevention effectiveness | `prevention/summary.json` (7 days) and `asr/raw/asr-events.json` (30 days, scaled to a week), per 1,000 onboarded devices |
+| Expired ASR exclusions | `asr/summary.json` |
+| Mean time to triage and to contain | Not computed: from the ticketing system or the Action center history |
+| Detection validity | `detections/summary.json` |
+| Synthetic-event success | The exercise record (`inputs.exercise`) |
+
+### The evidence record
+
+`Invoke-XdrEvidence.ps1` (`Write-XdrEvidence`) checks a run folder against its manifest, copies it to `runs/<NNNN>-<task>`, and writes `records/<NNNN>-<task>.json`: time, environment, mode, change record, command, the integrity result, the run's own check result, the steps with their controls and KSIs, the claim, every file's SHA-256 and the previous record's SHA-256. It appends `records.csv` and rewrites `SHA256SUMS`, which `sha256sum -c` reads. `-Check` re-hashes everything and walks the chain; `-Check -Stage test` or `production` adds a row per step the stage needs (`config/requirements.json`), passing only when a record covers it with intact files and a passing check.
+
+::: {.callout-important}
+## Illustrative code
+Lab 1's fixtures carry deliberate faults, so most runs record a failed check, and the go/no-go fails. That is the point: evidence of a finding is still evidence, but it isn't a go. Keep the evidence folder on agency storage with the access the ISSO sets.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/defender-xdr`.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/defender-xdr`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Run the month, recording every run
+./Invoke-XdrMonthlyRun.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -RunRoot out/month -EvidencePath out/evidence -AsOf 2026-11-16T12:00:00Z -ChangeRecord CHG-LAB-0001
+
+# Step 2: Read the metrics
+Get-Content out/month/metrics/metrics.md
+
+# Step 3: Read the records' index
+Import-Csv out/evidence/records.csv | Format-Table sequence, task, result, checkResult, controls -AutoSize
+
+# Step 4: Check the chain
+./Invoke-XdrEvidence.ps1 -EvidencePath out/evidence -Check
+
+# Step 5: Run the production stage's go/no-go
+./Invoke-XdrEvidence.ps1 -EvidencePath out/evidence -Check -Stage production
+
+# Step 6: Change a recorded file and check again
+Add-Content -Path out/evidence/runs/0002-coverage/tickets.csv -Value '"edited after it was recorded"'
+./Invoke-XdrEvidence.ps1 -EvidencePath out/evidence -Check
+
+# Step 7: Run the evidence tests
+Invoke-Pester -Path tests/Evidence.Tests.ps1 -Output None -PassThru | Select-Object PassedCount, FailedCount
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Run the month, recording every run:**
+
+   ```powershell
+   ./Invoke-XdrMonthlyRun.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -RunRoot out/month -EvidencePath out/evidence -AsOf 2026-11-16T12:00:00Z -ChangeRecord CHG-LAB-0001
+   ```
+
+   <!-- capture:begin 08-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/08-1.txt))](captures/08-1.png){.lightbox fig-alt="Terminal window showing ./Invoke-XdrMonthlyRun.ps1 -SettingsPath tests/fixtures/settings.lab.json -Fi… and what it printed"}
+
+   <!-- capture:end -->
+
+   Ten run folders, ten records. Only signals and the metrics pass their own checks; every other run found something, as the earlier chapters showed.
+
+2. **Read the metrics:**
+
+   ```powershell
+   Get-Content out/month/metrics/metrics.md
+   ```
+
+   <!-- capture:begin 08-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/08-2.txt))](captures/08-2.png){.lightbox fig-alt="Terminal window showing Get-Content out/month/metrics/metrics.md and what it printed"}
+
+   <!-- capture:end -->
+
+   Protected coverage 64.3 percent; two of eleven onboarded devices have every rule in block; one of one enabled detection has a passing test; four of five synthetic events produced what they should. Mean time to triage says *not computed*, and why.
+
+3. **Read the records' index:**
+
+   ```powershell
+   Import-Csv out/evidence/records.csv | Format-Table sequence, task, result, checkResult, controls -AutoSize
+   ```
+
+   <!-- capture:begin 08-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/08-3.txt))](captures/08-3.png){.lightbox fig-alt="Terminal window showing Import-Csv out/evidence/records.csv | Format-Table sequence, task, result, ch… and what it printed"}
+
+   <!-- capture:end -->
+
+   `result` is the files' integrity; `checkResult` is what the run found.
+
+4. **Check the chain:**
+
+   ```powershell
+   ./Invoke-XdrEvidence.ps1 -EvidencePath out/evidence -Check
+   ```
+
+   <!-- capture:begin 08-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/08-4.txt))](captures/08-4.png){.lightbox fig-alt="Terminal window showing ./Invoke-XdrEvidence.ps1 -EvidencePath out/evidence -Check and what it printed"}
+
+   <!-- capture:end -->
+
+5. **Run the production stage's go/no-go.** It fails, and says why for each step, so the command exits 1:
+
+   ```powershell
+   ./Invoke-XdrEvidence.ps1 -EvidencePath out/evidence -Check -Stage production
+   ```
+
+   <!-- capture:begin 08-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/08-5.txt))](captures/08-5.png){.lightbox fig-alt="Terminal window showing ./Invoke-XdrEvidence.ps1 -EvidencePath out/evidence -Check -Stage production and what it printed"}
+
+   <!-- capture:end -->
+
+6. **Change a recorded file and check again:**
+
+   ```powershell
+   Add-Content -Path out/evidence/runs/0002-coverage/tickets.csv -Value '"edited after it was recorded"'
+   ./Invoke-XdrEvidence.ps1 -EvidencePath out/evidence -Check
+   ```
+
+   <!-- capture:begin 08-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/08-6.txt))](captures/08-6.png){.lightbox fig-alt="Terminal window showing Add-Content -Path out/evidence/runs/0002-coverage/tickets.csv -Value ''edited… and what it printed"}
+
+   <!-- capture:end -->
+
+   Both checks fail and name `tickets.csv`.
+
+7. **Run the evidence tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests/Evidence.Tests.ps1 -Output None -PassThru | Select-Object PassedCount, FailedCount
+   ```
+
+   <!-- capture:begin 08-7 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/08-7.txt))](captures/08-7.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests/Evidence.Tests.ps1 -Output None -PassThru | Select-… and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** `PassedCount` 20 and `FailedCount` 0. Delete `out` when you're done:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 08-8 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/08-8.txt))](captures/08-8.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test tenant
+
+Use a test tenant, never production, with every earlier chapter's Lab 2 inputs named in your settings file. Work in `examples/defender-xdr`. You'll replace: `<tenant-id>`, `<settings-file>`, `<output-folder>` (on agency storage) and `<change-record>`.
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/defender-xdr`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Sign in with the read scopes and run the month
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes SecurityIncident.Read.All,ThreatHunting.Read.All,CustomDetection.Read.All
+./Invoke-XdrMonthlyRun.ps1 -SettingsPath <settings-file> -RunRoot <output-folder>/month -EvidencePath <output-folder>/evidence -ChangeRecord <change-record>
+./Invoke-XdrEvidence.ps1 -EvidencePath <output-folder>/evidence -Check
+
+# Step 2: Back it out
+Disconnect-MgGraph
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Sign in with the read scopes and run the month:**
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes SecurityIncident.Read.All,ThreatHunting.Read.All,CustomDetection.Read.All
+   ./Invoke-XdrMonthlyRun.ps1 -SettingsPath <settings-file> -RunRoot <output-folder>/month -EvidencePath <output-folder>/evidence -ChangeRecord <change-record>
+   ./Invoke-XdrEvidence.ps1 -EvidencePath <output-folder>/evidence -Check
+   ```
+
+   Give `metrics.md` and `SHA256SUMS` to the ISSO. Next month, re-run the `-Check`: last month's files must still match.
+
+2. **Back it out.** Nothing changed in the tenant. The evidence is kept with its change record; sign out:
+
+   ```powershell
+   Disconnect-MgGraph
+   ```
+
+## Verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| Controls | AC-2, AC-6, AU-6, AU-9, AU-11, CA-7, CM-3, CM-6, CM-7, CM-8, IR-3, IR-4, IR-5, IR-6, RA-5, SC-7, SI-2, SI-3, SI-4, SI-7: titles as the kit's catalog paraphrases them | [^xdr08-oscal] |
+| KSIs | The guide's pairs per gate, carried from the Security Operations and Devices books, which checked them against fedramp.gov | [^xdr08-ksi] |
+| AU-9 to KSI-MLA-OSM | The privileged access guide's mapping | [Privileged access guide](../../../books/guides/privileged-access-implementation.md) |
+| Incident filter | `createdDateTime` is filterable on list incidents | [^xdr08-incidents] |
+
+This chapter adds no new pair. The guide says its KSI mapping was carried from those books, not re-read; so is this kit's.
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| The month's metrics, from the month's runs (`metrics.md`, `metrics.json`) | CA-7 (continuous monitoring) | KSI-MLA-EVC | The platform owner; the ISSO receives it |
+| Each run recorded with its controls, KSIs, check result and hashes (`records/`, `records.csv`) | CA-7, AU-9 | KSI-MLA-EVC, KSI-MLA-OSM | The ISSO |
+| Kept and unchanged (`SHA256SUMS`, `-Check`) | AU-9, AU-11 (retention) | KSI-MLA-OSM, KSI-MLA-EVC | The ISSO, to the evidence catalog's retention |
+| The exercise's synthetic events (`Synthetic-event success`) | IR-3 (incident response testing) | KSI-INR-AAR | The SOC lead, quarterly |
+
+The pairs are the guide's G10 row. KSIs are FedRAMP 20x indicators for cloud service providers; the agency lines its evidence up with them and doesn't report them. Each record carries that sentence as its claim. The kit's records support these controls; the assessor decides them *(design guidance)*.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| A run with findings reads as evidence of a control | A go on a fleet with gaps | `checkResult` in every record; the go/no-go fails until the run passes |
+| A file edited after recording | The evidence no longer shows what was read | `SHA256SUMS` and each record's hashes; `-Check` names the file |
+| A record removed | A bad month disappears | The chain |
+| Advanced hunting asked for last quarter | It keeps 30 days | The monthly run files the results every month |
+| A metric computed from a field that doesn't hold it | A number that misleads | *Not computed*, with where the number lives |
+
+## Checklist
+
+- [ ] The monthly run is scheduled (Chapter 09) and runs with the change record.
+- [ ] `metrics.md` reaches the ISSO each month.
+- [ ] `Invoke-XdrEvidence.ps1 -Check` passes on last month's folder this month.
+- [ ] The quarter's exercise record is named in the settings.
+- [ ] The evidence folder is on agency storage, kept to the catalog's retention.
+
+::: {.callout-tip}
+## Continue the book
+[← Previous: Chapter 07 — Identity Signals and Automation Boundaries](07-identity-signals-and-automation-boundaries.md) · [Workbook index](index.md) · [Next: Chapter 09 — Deploying to Test and Production →](09-deploying-to-test-and-production.md)
+:::
+
+[^xdr08-incidents]: Microsoft Learn, "List incidents," <https://learn.microsoft.com/graph/api/security-list-incidents?view=graph-rest-1.0> (accessed November 11, 2026; carried from the guide's verification log).
+[^xdr08-hunting]: Microsoft Learn, "security: runHuntingQuery," <https://learn.microsoft.com/graph/api/security-security-runhuntingquery?view=graph-rest-1.0> (accessed November 17, 2026).
+[^xdr08-oscal]: National Institute of Standards and Technology, SP 800-53 Rev. 5 OSCAL catalog, release 5.2.0, <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (control titles; read for the provider notices guide on November 9, 2026, and carried).
+[^xdr08-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, <https://www.fedramp.gov/2026/providers/20x/key-security-indicators/> (carried through the Defender XDR guide from the Security Operations and Devices books).

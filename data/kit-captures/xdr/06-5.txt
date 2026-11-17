@@ -1,0 +1,2 @@
+PS> Remove-Item -Recurse -Force out
+PS> Remove-Item tests/fixtures/settings.portal.json

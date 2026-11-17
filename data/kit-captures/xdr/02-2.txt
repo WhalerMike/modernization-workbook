@@ -1,0 +1,8 @@
+PS> Import-Csv out/coverage/tickets.csv | Format-Table DeviceName, Ring, Status, Note -AutoSize -Wrap
+DeviceName   Ring    Status           Note
+----------   ----    ------           ----
+WKS-R1-03    ring1   NotActive
+WKS-R2-03    ring2   NotActive
+WKS-R3-02    ring3   NotOnboarded
+SRV-LEGACY01 servers ExceptionExpired exception EX-DEV-02 (Windows Server 2016 leaves the estate; expires 2026-10-31); not reported by Defender
+WKS-OLD-07           NotInInventory   Defender reports a device the CM-8 inventory does not list

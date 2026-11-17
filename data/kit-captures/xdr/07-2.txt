@@ -1,0 +1,22 @@
+PS> ./Invoke-XdrAutomation.ps1 -SettingsPath tests/fixtures/settings.lab.json -OutputPath out/automation -AsOf 2026-11-16T12:00:00Z
+Name               Kind        RemediationLevel                         Status
+----               ----        ----------------                         ------
+Servers            server      Semi - require approval for core folders Pass
+Ring0-Workstations workstation Full - remediate threats automatically   Pass
+Ring1-Pilot        pilot       Semi - require approval for all folders  Pass
+Ring2-Workstations workstation Full - remediate threats automatically   Pass
+Ring3-Workstations workstation Semi - require approval for core folders Fail
+
+
+Type     Value                                       Detail
+----     -----                                       ------
+IpRange  192.0.2.0/24                                review date passed
+Identity breakglass02@contosoexample.onmicrosoft.com emergency access account is not in the identity exclusions
+
+
+DeviceName SenseVersion       Minimum
+---------- ------------       -------
+WKS-R3-01  10.8460.22621.1001 10.8470
+
+Automation: 1 of 5 device group(s) off the ladder; 1 lapsed exclusion(s); 1 emergency access account(s) not excluded; 1 device(s) below the Contain User sensor version.
+Written to out/automation: groups.csv, exclusions.csv, sensor.csv, summary.json, manifest.json

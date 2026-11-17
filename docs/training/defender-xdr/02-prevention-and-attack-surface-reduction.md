@@ -1,17 +1,17 @@
 ---
 title: "Module 2: Prevention and Attack Surface Reduction"
-description: "Guide Steps 3 and 4: antivirus, firewall and tamper protection at the device-management policy library's values; network protection and controlled folder access through audit to block, ring by ring, with backout triggers; every Attack Surface Reduction rule through audit, warn and block, with the two rules that don't support warn going straight from audit to block; per-rule exclusions; and why a server's compliance report isn't proof. Lab 2 checks each setting on a test device and reads the fleet's audit and block events. About 50 minutes, plus Lab 2, with a knowledge check."
+description: "Guide Steps 3 and 4: antivirus, firewall and tamper protection at the device-management policy library's values; network protection and controlled folder access through audit to block, ring by ring, with backout triggers; every Attack Surface Reduction rule through audit, warn and block, with the two rules that don't support warn going straight from audit to block; per-rule exclusions; and why a server's compliance report isn't proof. Lab 2 checks each setting on a test device and reads the fleet's audit and block events. About 50 minutes, plus Lab 1 and Lab 2, with a knowledge check."
 doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Book 12"
 series-order: 2
 review-status: pending
-last-reviewed: 2026-11-13
+last-reviewed: 2026-11-17
 ---
 # Module 2: Prevention and Attack Surface Reduction {.unnumbered}
 
-*Part of the [Defender XDR learning path](index.md). Guide [Step 3](../../books/guides/defender-xdr-implementation.md#step-3-endpoint-prevention) and [Step 4](../../books/guides/defender-xdr-implementation.md#step-4-attack-surface-reduction). About 50 minutes, plus Lab 2.*
+*Part of the [Defender XDR learning path](index.md). Guide [Step 3](../../books/guides/defender-xdr-implementation.md#step-3-endpoint-prevention) and [Step 4](../../books/guides/defender-xdr-implementation.md#step-4-attack-surface-reduction). About 50 minutes, plus Lab 1 and Lab 2.*
 
 **Watch:** the narrated deck for this module (about 13 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_XDR_Module_2_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_XDR_Module_2_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-xdr-module-2) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-2/Training_XDR_Module_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-2/Training_XDR_Module_2_Narrated.vtt). The deck files join the next edition.
 
@@ -60,6 +60,14 @@ Rule modes are `0` off, `1` block, `2` audit, `5` not configured and `6` warn. R
 ## Unit 3: Exclusions, and what the server report doesn't prove (6 minutes) {#xdr-m2-unit-3}
 
 Read the guide's Step 4 sections *Exclusions* and *Telemetry*. Per-rule exclusions go in the policy's **ASR only per rule exclusions**, a file path rather than a folder where you can; each goes in the register with an owner and an expiry. Configure a rule in Intune or Group Policy, never both: Group Policy wins by default, and the Intune value silently loses. On Windows Server, Microsoft lists a known issue where a rule shows as compliant without being enforced, so trust the device-side check and the events, not the compliance report. Read the guide's [dangers](../../books/guides/defender-xdr-implementation.md#dangers) table for these and the other traps.
+
+## Exercise: Lab 1, fixtures, no tenant (30 minutes) {#xdr-m2-lab-1}
+
+Run the developer workbook's [Chapter 03, Prevention Through Audit](../../project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.md#lab-1-fixtures-no-tenant) and [Chapter 04, Attack Surface Reduction: Audit, Warn, Block](../../project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.md#lab-1-fixtures-no-tenant). They have the exact commands and the output each gave; this module doesn't repeat them. Work in `examples/defender-xdr`, in PowerShell 7 with Pester 5, from the [defender-xdr-code.zip](../../../downloads/defender-xdr-code.zip) download or a clone of the repository. Nothing signs in: the estate is the fictional `contoso.example`.
+
+- **What you'll see:** the prevention check finds tamper protection off, network protection off and a file server with datagram processing on; the ASR check says which rules each ring can move, holds one with an audit hit nobody decided, refuses a rule planned in warn that doesn't support it, and prints the OMA-URI value that moves ring 1.
+- **What to look for:** each finding names the device, rule, incident or group, and the run folder's manifest records the call and its permission. Compare what you see with this module's units.
+- **Back-out:** each lab ends by deleting `out`.
 
 ## Exercise: Lab 2, a test tenant {#xdr-m2-lab-2}
 *Not timed. Not run by the authors. Never production.*

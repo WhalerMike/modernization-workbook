@@ -1,0 +1,172 @@
+{
+  "_comment": "The Attack Surface Reduction rules the program deploys: the fourteen rules of the device-management policy library's ES-005 (Book 05, Chapter 08), in its order, with each rule's GUID, whether Microsoft classes it as a standard protection rule, whether it supports warn mode, its advanced hunting action types (the prefix plus Audited or Blocked), and whether Learn's support table lists it for Windows Server 2019 and later. Read on Microsoft Learn, 'Attack surface reduction (ASR) rules reference', and 'Attack surface reduction (ASR) rules overview', on November 17, 2026. Modes are Learn's: 0 off, 1 block, 2 audit, 5 not configured, 6 warn ('Configure attack surface reduction (ASR) rules and exclusions'). The stage lengths are the program's (ES-005): audit 30 days, warn 14 days (design guidance).",
+  "source": "https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-reference",
+  "readOn": "2026-11-17",
+  "modes": {
+    "off": 0,
+    "block": 1,
+    "audit": 2,
+    "notConfigured": 5,
+    "warn": 6
+  },
+  "stageDays": {
+    "audit": 30,
+    "warn": 14
+  },
+  "rules": [
+    {
+      "id": "56a863a9-875e-4185-98a7-b882c64b5ce5",
+      "name": "Block abuse of exploited vulnerable signed drivers",
+      "standardProtection": true,
+      "supportsWarn": true,
+      "actionTypePrefix": "AsrVulnerableSignedDriver",
+      "audited": "AsrVulnerableSignedDriverAudited",
+      "blocked": "AsrVulnerableSignedDriverBlocked",
+      "windowsServer": true,
+      "note": ""
+    },
+    {
+      "id": "e6db77e5-3df2-4cf1-b95a-636979351e5b",
+      "name": "Block persistence through WMI event subscription",
+      "standardProtection": true,
+      "supportsWarn": true,
+      "actionTypePrefix": "AsrPersistenceThroughWmi",
+      "audited": "AsrPersistenceThroughWmiAudited",
+      "blocked": "AsrPersistenceThroughWmiBlocked",
+      "windowsServer": true,
+      "note": "Not supported through Intune on Windows Server 2012 R2 or 2016 with the modern unified solution."
+    },
+    {
+      "id": "be9ba2d9-53ea-4cdc-84e5-9b1eeee46550",
+      "name": "Block executable content from email client and webmail",
+      "standardProtection": false,
+      "supportsWarn": true,
+      "actionTypePrefix": "AsrExecutableEmailContent",
+      "audited": "AsrExecutableEmailContentAudited",
+      "blocked": "AsrExecutableEmailContentBlocked",
+      "windowsServer": true,
+      "note": ""
+    },
+    {
+      "id": "d4f940ab-401b-4efc-aadc-ad5f3c50688a",
+      "name": "Block all Office applications from creating child processes",
+      "standardProtection": false,
+      "supportsWarn": true,
+      "actionTypePrefix": "AsrOfficeChildProcess",
+      "audited": "AsrOfficeChildProcessAudited",
+      "blocked": "AsrOfficeChildProcessBlocked",
+      "windowsServer": true,
+      "note": ""
+    },
+    {
+      "id": "d3e037e1-3eb8-44c8-a917-57927947596d",
+      "name": "Block JavaScript or VBScript from launching downloaded executable content",
+      "standardProtection": false,
+      "supportsWarn": true,
+      "actionTypePrefix": "AsrScriptExecutableDownload",
+      "audited": "AsrScriptExecutableDownloadAudited",
+      "blocked": "AsrScriptExecutableDownloadBlocked",
+      "windowsServer": true,
+      "note": ""
+    },
+    {
+      "id": "5beb7efe-fd9a-4556-801d-275e5ffc04cc",
+      "name": "Block execution of potentially obfuscated scripts",
+      "standardProtection": false,
+      "supportsWarn": true,
+      "actionTypePrefix": "AsrObfuscatedScript",
+      "audited": "AsrObfuscatedScriptAudited",
+      "blocked": "AsrObfuscatedScriptBlocked",
+      "windowsServer": true,
+      "note": "Needs cloud-delivered protection."
+    },
+    {
+      "id": "92e97fa1-2edf-4476-bdd6-9dd0b4dddc7b",
+      "name": "Block Win32 API calls from Office macros",
+      "standardProtection": false,
+      "supportsWarn": true,
+      "actionTypePrefix": "AsrOfficeMacroWin32ApiCalls",
+      "audited": "AsrOfficeMacroWin32ApiCallsAudited",
+      "blocked": "AsrOfficeMacroWin32ApiCallsBlocked",
+      "windowsServer": false,
+      "note": "Learn's support table lists it as n/a on Windows Server."
+    },
+    {
+      "id": "9e6c4e1f-7d60-472f-ba1a-a39ef669e4b2",
+      "name": "Block credential stealing from the Windows local security authority subsystem",
+      "standardProtection": true,
+      "supportsWarn": false,
+      "actionTypePrefix": "AsrLsassCredentialTheft",
+      "audited": "AsrLsassCredentialTheftAudited",
+      "blocked": "AsrLsassCredentialTheftBlocked",
+      "windowsServer": true,
+      "note": "No warn mode. Microsoft allows skipping audit and starting block on a small set of devices; it adds nothing where LSA protection and Credential Guard are on."
+    },
+    {
+      "id": "d1e49aac-8f56-4280-b9ba-993a6d77406c",
+      "name": "Block process creations originating from PSExec and WMI commands",
+      "standardProtection": false,
+      "supportsWarn": true,
+      "actionTypePrefix": "AsrPsexecWmiChildProcess",
+      "audited": "AsrPsexecWmiChildProcessAudited",
+      "blocked": "AsrPsexecWmiChildProcessBlocked",
+      "windowsServer": true,
+      "note": "Not on devices Configuration Manager manages: its client relies on WMI."
+    },
+    {
+      "id": "b2b3f03d-6a65-4f7b-a9c7-1c7ef74a9ba4",
+      "name": "Block untrusted and unsigned processes that run from USB",
+      "standardProtection": false,
+      "supportsWarn": true,
+      "actionTypePrefix": "AsrUntrustedUsbProcess",
+      "audited": "AsrUntrustedUsbProcessAudited",
+      "blocked": "AsrUntrustedUsbProcessBlocked",
+      "windowsServer": true,
+      "note": ""
+    },
+    {
+      "id": "3b576869-a4ec-4529-8536-b80a7769e899",
+      "name": "Block Office applications from creating executable content",
+      "standardProtection": false,
+      "supportsWarn": true,
+      "actionTypePrefix": "AsrExecutableOfficeContent",
+      "audited": "AsrExecutableOfficeContentAudited",
+      "blocked": "AsrExecutableOfficeContentBlocked",
+      "windowsServer": true,
+      "note": ""
+    },
+    {
+      "id": "75668c1f-73b5-4cf0-bb93-3ecf5cb7cc84",
+      "name": "Block Office applications from injecting code into other processes",
+      "standardProtection": false,
+      "supportsWarn": false,
+      "actionTypePrefix": "AsrOfficeProcessInjection",
+      "audited": "AsrOfficeProcessInjectionAudited",
+      "blocked": "AsrOfficeProcessInjectionBlocked",
+      "windowsServer": true,
+      "note": "No warn mode."
+    },
+    {
+      "id": "7674ba52-37eb-4a4f-a9a1-f0f9a1619a2c",
+      "name": "Block Adobe Reader from creating child processes",
+      "standardProtection": false,
+      "supportsWarn": true,
+      "actionTypePrefix": "AsrAdobeReaderChildProcess",
+      "audited": "AsrAdobeReaderChildProcessAudited",
+      "blocked": "AsrAdobeReaderChildProcessBlocked",
+      "windowsServer": true,
+      "note": ""
+    },
+    {
+      "id": "c1db55ab-c21a-4637-bb3f-a12568109d35",
+      "name": "Use advanced protection against ransomware",
+      "standardProtection": false,
+      "supportsWarn": true,
+      "actionTypePrefix": "AsrRansomware",
+      "audited": "AsrRansomwareAudited",
+      "blocked": "AsrRansomwareBlocked",
+      "windowsServer": true,
+      "note": "Needs cloud-delivered protection. Not supported through Intune on Windows Server 2012 R2 or 2016 with the modern unified solution."
+    }
+  ]
+}

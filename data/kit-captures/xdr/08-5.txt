@@ -1,0 +1,17 @@
+PS> ./Invoke-XdrEvidence.ps1 -EvidencePath out/evidence -Check -Stage production
+SUMS               Pass  86 files match SHA256SUMS
+CHAIN              Pass  10 records, chain unbroken
+STEP-PRE           Fail  no record
+STEP-ACCESS        Fail  recorded, but the run's own check failed: close its findings and run it again
+STEP-COVERAGE      Fail  recorded, but the run's own check failed: close its findings and run it again
+STEP-PREVENTION    Fail  recorded, but the run's own check failed: close its findings and run it again
+STEP-ASR           Fail  recorded, but the run's own check failed: close its findings and run it again
+STEP-EXPOSURE      Fail  recorded, but the run's own check failed: close its findings and run it again
+STEP-INCIDENTS     Fail  recorded, but the run's own check failed: close its findings and run it again
+STEP-DETECTIONS    Fail  recorded, but the run's own check failed: close its findings and run it again
+STEP-PUBLISH       Fail  no record
+STEP-SIGNALS       Pass  a passing record covers it
+STEP-AUTOMATION    Fail  recorded, but the run's own check failed: close its findings and run it again
+STEP-METRICS       Pass  a passing record covers it
+STEP-RUN           Fail  no record
+(exit code 1)

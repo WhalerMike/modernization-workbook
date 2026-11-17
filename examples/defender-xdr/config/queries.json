@@ -1,0 +1,45 @@
+{
+  "_comment": "The advanced hunting queries the kit runs through runHuntingQuery. 'source' says where each comes from: the Defender XDR implementation guide's Validate step (which takes it from Microsoft Learn), or the kit (a per-device form of the guide's query, so the result can be joined to the inventory). 'columns' are the columns the kit reads; a response without one of them fails the run rather than reading as empty. Advanced hunting keeps 30 days of data (Learn, 'Monitor attack surface reduction (ASR) rule activity'). Table and column names from Learn's DeviceInfo, DeviceEvents, DeviceTvmSoftwareVulnerabilities, AlertEvidence and AlertInfo references, read November 11, 2026.",
+  "queries": {
+    "coverage-summary": {
+      "source": "Guide G2 Validate",
+      "kql": "DeviceInfo | where Timestamp > ago(1d) | summarize arg_max(Timestamp, *) by DeviceId | where OSPlatform startswith \"Windows\" | summarize Devices = count() by OnboardingStatus, SensorHealthState",
+      "columns": ["OnboardingStatus", "SensorHealthState", "Devices"]
+    },
+    "coverage-devices": {
+      "source": "Kit: the guide's G2 query, one row per device",
+      "kql": "DeviceInfo | where Timestamp > ago(1d) | summarize arg_max(Timestamp, *) by DeviceId | where OSPlatform startswith \"Windows\" | project DeviceId, DeviceName, OSPlatform, OnboardingStatus, SensorHealthState, MachineGroup, Timestamp",
+      "columns": ["DeviceId", "DeviceName", "OSPlatform", "OnboardingStatus", "SensorHealthState", "MachineGroup"]
+    },
+    "prevention-events": {
+      "source": "Guide G3 Validate",
+      "kql": "DeviceEvents | where Timestamp > ago(7d) | where ActionType in ('ExploitGuardNetworkProtectionAudited','ExploitGuardNetworkProtectionBlocked','ControlledFolderAccessViolationAudited','ControlledFolderAccessViolationBlocked','TamperingAttempt') | summarize Events = count(), Devices = dcount(DeviceId) by ActionType",
+      "columns": ["ActionType", "Events", "Devices"]
+    },
+    "asr-events": {
+      "source": "Guide G4 Validate (Learn's query)",
+      "kql": "DeviceEvents | where Timestamp > ago(30d) | where ActionType startswith \"Asr\" | summarize EventCount=count() by ActionType",
+      "columns": ["ActionType", "EventCount"]
+    },
+    "asr-events-by-device": {
+      "source": "Kit: the guide's G4 query by device and file path, so each audit hit can be matched to an exclusion or a decision",
+      "kql": "DeviceEvents | where Timestamp > ago(30d) | where ActionType startswith \"Asr\" | summarize Events = count(), LastSeen = max(Timestamp) by ActionType, DeviceName, FolderPath",
+      "columns": ["ActionType", "DeviceName", "FolderPath", "Events"]
+    },
+    "tvm-high-critical": {
+      "source": "Guide G5 Validate",
+      "kql": "DeviceTvmSoftwareVulnerabilities | where VulnerabilitySeverityLevel in (\"Critical\", \"High\") | summarize CVEs = dcount(CveId), Devices = dcount(DeviceId) by SoftwareVendor, SoftwareName, RecommendedSecurityUpdate | order by Devices desc",
+      "columns": ["SoftwareVendor", "SoftwareName", "CVEs", "Devices"]
+    },
+    "exposed-devices": {
+      "source": "Guide G5 Validate",
+      "kql": "DeviceInfo | where Timestamp > ago(1d) | summarize arg_max(Timestamp, *) by DeviceId | where ExposureLevel == \"High\" or IsInternetFacing == true | project DeviceName, ExposureLevel, IsInternetFacing, AssetValue, MachineGroup",
+      "columns": ["DeviceName", "ExposureLevel", "IsInternetFacing", "MachineGroup"]
+    },
+    "cross-source-users": {
+      "source": "Guide G8 Validate",
+      "kql": "AlertEvidence | where Timestamp > ago(7d) | where EntityType == \"User\" and isnotempty(AccountObjectId) | join kind=inner (AlertInfo | project AlertId, Title, Severity) on AlertId | summarize Sources = dcount(ServiceSource), SourceList = make_set(ServiceSource), Alerts = dcount(AlertId) by AccountObjectId, AccountUpn | where Sources > 1 | order by Sources desc, Alerts desc",
+      "columns": ["AccountObjectId", "AccountUpn", "Sources", "SourceList", "Alerts"]
+    }
+  }
+}

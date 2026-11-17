@@ -1,0 +1,16 @@
+{
+  "_comment": "The response ladder mapped to Defender's device group automation levels (the Defender XDR implementation guide's Gate 9, design guidance): workstation groups at Full, Microsoft's recommended setting; server groups at a Semi level, because isolating a server is never autonomous in the program's ladder; a pilot group at Semi - require approval for all folders during its two weeks. The five level names are Learn's ('Exclude assets from automated responses in automatic attack disruption', read November 11, 2026). Contain User needs the sensor at version 10.8470 or later (Learn, 'Configure automatic attack disruption in Microsoft Defender XDR').",
+  "levels": [
+    "Full - remediate threats automatically",
+    "Semi - require approval for core folders",
+    "Semi - require approval for non-temp folders",
+    "Semi - require approval for all folders",
+    "No automated response"
+  ],
+  "allowed": {
+    "workstation": ["Full - remediate threats automatically"],
+    "pilot": ["Semi - require approval for all folders"],
+    "server": ["Semi - require approval for core folders", "Semi - require approval for non-temp folders", "Semi - require approval for all folders"]
+  },
+  "containUserMinimumSense": "10.8470"
+}

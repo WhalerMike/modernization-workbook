@@ -1,0 +1,15 @@
+PS> ./Invoke-XdrMonthlyRun.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -RunRoot out/month -EvidencePath out/evidence -AsOf 2026-11-16T12:00:00Z -ChangeRecord CHG-LAB-0001
+Task       Result Record Detail
+----       ------ ------ ------
+access     Fail   0001
+coverage   Fail   0002
+prevention Fail   0003
+asr        Fail   0004
+exposure   Fail   0005
+incidents  Fail   0006
+detections Fail   0007
+signals    Pass   0008
+automation Fail   0009
+metrics    Pass   0010
+
+Monthly run: 10 run folder(s) under out/month; 8 with findings, 0 error(s); recorded in out/evidence.

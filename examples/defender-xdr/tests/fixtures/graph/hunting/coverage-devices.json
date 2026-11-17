@@ -1,0 +1,161 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#microsoft.graph.security.huntingQueryResults",
+  "schema": [
+    {
+      "name": "DeviceId",
+      "type": "String"
+    },
+    {
+      "name": "DeviceName",
+      "type": "String"
+    },
+    {
+      "name": "OSPlatform",
+      "type": "String"
+    },
+    {
+      "name": "OnboardingStatus",
+      "type": "String"
+    },
+    {
+      "name": "SensorHealthState",
+      "type": "String"
+    },
+    {
+      "name": "MachineGroup",
+      "type": "String"
+    },
+    {
+      "name": "Timestamp",
+      "type": "DateTime"
+    }
+  ],
+  "results": [
+    {
+      "DeviceId": "0000000000000000000000000000000000000001",
+      "DeviceName": "srv-app01.contoso.example",
+      "OSPlatform": "WindowsServer2022",
+      "OnboardingStatus": "Onboarded",
+      "SensorHealthState": "Active",
+      "MachineGroup": "Servers",
+      "Timestamp": "2026-11-16T11:00:00Z"
+    },
+    {
+      "DeviceId": "0000000000000000000000000000000000000002",
+      "DeviceName": "srv-file01.contoso.example",
+      "OSPlatform": "WindowsServer2019",
+      "OnboardingStatus": "Onboarded",
+      "SensorHealthState": "Active",
+      "MachineGroup": "Servers",
+      "Timestamp": "2026-11-16T11:00:00Z"
+    },
+    {
+      "DeviceId": "0000000000000000000000000000000000000003",
+      "DeviceName": "wks-old-07.contoso.example",
+      "OSPlatform": "Windows10",
+      "OnboardingStatus": "Onboarded",
+      "SensorHealthState": "Active",
+      "MachineGroup": "Unassigned",
+      "Timestamp": "2026-11-16T11:00:00Z"
+    },
+    {
+      "DeviceId": "0000000000000000000000000000000000000004",
+      "DeviceName": "wks-r0-01.contoso.example",
+      "OSPlatform": "Windows11",
+      "OnboardingStatus": "Onboarded",
+      "SensorHealthState": "Active",
+      "MachineGroup": "Ring0-Workstations",
+      "Timestamp": "2026-11-16T11:00:00Z"
+    },
+    {
+      "DeviceId": "0000000000000000000000000000000000000005",
+      "DeviceName": "wks-r0-02.contoso.example",
+      "OSPlatform": "Windows11",
+      "OnboardingStatus": "Onboarded",
+      "SensorHealthState": "Active",
+      "MachineGroup": "Ring0-Workstations",
+      "Timestamp": "2026-11-16T11:00:00Z"
+    },
+    {
+      "DeviceId": "0000000000000000000000000000000000000006",
+      "DeviceName": "wks-r1-01.contoso.example",
+      "OSPlatform": "Windows11",
+      "OnboardingStatus": "Onboarded",
+      "SensorHealthState": "Active",
+      "MachineGroup": "Ring1-Pilot",
+      "Timestamp": "2026-11-16T11:00:00Z"
+    },
+    {
+      "DeviceId": "0000000000000000000000000000000000000007",
+      "DeviceName": "wks-r1-02.contoso.example",
+      "OSPlatform": "Windows11",
+      "OnboardingStatus": "Onboarded",
+      "SensorHealthState": "Active",
+      "MachineGroup": "Ring1-Pilot",
+      "Timestamp": "2026-11-16T11:00:00Z"
+    },
+    {
+      "DeviceId": "0000000000000000000000000000000000000008",
+      "DeviceName": "wks-r1-03.contoso.example",
+      "OSPlatform": "Windows11",
+      "OnboardingStatus": "Onboarded",
+      "SensorHealthState": "ImpairedCommunication",
+      "MachineGroup": "Ring1-Pilot",
+      "Timestamp": "2026-11-16T11:00:00Z"
+    },
+    {
+      "DeviceId": "0000000000000000000000000000000000000009",
+      "DeviceName": "wks-r2-01.contoso.example",
+      "OSPlatform": "Windows11",
+      "OnboardingStatus": "Onboarded",
+      "SensorHealthState": "Active",
+      "MachineGroup": "Ring2-Workstations",
+      "Timestamp": "2026-11-16T11:00:00Z"
+    },
+    {
+      "DeviceId": "000000000000000000000000000000000000000a",
+      "DeviceName": "wks-r2-02.contoso.example",
+      "OSPlatform": "Windows10",
+      "OnboardingStatus": "Onboarded",
+      "SensorHealthState": "Active",
+      "MachineGroup": "Ring2-Workstations",
+      "Timestamp": "2026-11-16T11:00:00Z"
+    },
+    {
+      "DeviceId": "000000000000000000000000000000000000000b",
+      "DeviceName": "wks-r2-03.contoso.example",
+      "OSPlatform": "Windows11",
+      "OnboardingStatus": "Onboarded",
+      "SensorHealthState": "Inactive",
+      "MachineGroup": "Ring2-Workstations",
+      "Timestamp": "2026-11-16T11:00:00Z"
+    },
+    {
+      "DeviceId": "000000000000000000000000000000000000000c",
+      "DeviceName": "wks-r3-01.contoso.example",
+      "OSPlatform": "Windows11",
+      "OnboardingStatus": "Onboarded",
+      "SensorHealthState": "Active",
+      "MachineGroup": "Ring3-Workstations",
+      "Timestamp": "2026-11-16T11:00:00Z"
+    },
+    {
+      "DeviceId": "000000000000000000000000000000000000000d",
+      "DeviceName": "wks-r3-02.contoso.example",
+      "OSPlatform": "Windows11",
+      "OnboardingStatus": "Can be onboarded",
+      "SensorHealthState": "",
+      "MachineGroup": "Ring3-Workstations",
+      "Timestamp": "2026-11-16T11:00:00Z"
+    },
+    {
+      "DeviceId": "000000000000000000000000000000000000000e",
+      "DeviceName": "wks-test-99.contoso.example",
+      "OSPlatform": "Windows11",
+      "OnboardingStatus": "Onboarded",
+      "SensorHealthState": "Active",
+      "MachineGroup": "Ring0-Workstations",
+      "Timestamp": "2026-11-16T11:00:00Z"
+    }
+  ]
+}

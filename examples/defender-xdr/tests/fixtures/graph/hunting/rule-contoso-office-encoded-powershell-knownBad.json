@@ -1,0 +1,34 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#microsoft.graph.security.huntingQueryResults",
+  "schema": [
+    {
+      "name": "Timestamp",
+      "type": "DateTime"
+    },
+    {
+      "name": "DeviceId",
+      "type": "String"
+    },
+    {
+      "name": "DeviceName",
+      "type": "String"
+    },
+    {
+      "name": "FileName",
+      "type": "String"
+    },
+    {
+      "name": "ProcessCommandLine",
+      "type": "String"
+    }
+  ],
+  "results": [
+    {
+      "Timestamp": "2026-11-03T10:15:00Z",
+      "DeviceId": "0000000000000000000000000000000000000001",
+      "DeviceName": "wks-r0-01.contoso.example",
+      "FileName": "powershell.exe",
+      "ProcessCommandLine": "powershell.exe -enc SQBFAFgA (replayed test)"
+    }
+  ]
+}

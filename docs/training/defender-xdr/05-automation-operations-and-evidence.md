@@ -1,17 +1,17 @@
 ---
 title: "Module 5: Automation, operations and evidence"
-description: "Guide Steps 9 and 10: automated investigation and response levels per device group matched to the response ladder, with workstation groups at Full after a semi-automated pilot and server groups kept at a semi level; automatic attack disruption's exclusions for emergency access and service accounts; the operating cadence; the monthly evidence run that files the read-only queries and hashes them; synthetic events, the metrics and the evidence catalog an assessor reads. Lab 2 checks the sensor version and the device group levels and runs the monthly evidence run in a test tenant. About 40 minutes, plus Lab 2, with a knowledge check."
+description: "Guide Steps 9 and 10: automated investigation and response levels per device group matched to the response ladder, with workstation groups at Full after a semi-automated pilot and server groups kept at a semi level; automatic attack disruption's exclusions for emergency access and service accounts; the operating cadence; the monthly evidence run that files the read-only queries and hashes them; synthetic events, the metrics and the evidence catalog an assessor reads. Lab 2 checks the sensor version and the device group levels and runs the monthly evidence run in a test tenant. About 40 minutes, plus Lab 1 and Lab 2, with a knowledge check."
 doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Book 12"
 series-order: 5
 review-status: pending
-last-reviewed: 2026-11-13
+last-reviewed: 2026-11-17
 ---
 # Module 5: Automation, operations and evidence {.unnumbered}
 
-*Part of the [Defender XDR learning path](index.md). Guide [Step 9](../../books/guides/defender-xdr-implementation.md#step-9-automation-with-approval-boundaries) and [Step 10](../../books/guides/defender-xdr-implementation.md#step-10-operations-and-evidence). About 40 minutes, plus Lab 2.*
+*Part of the [Defender XDR learning path](index.md). Guide [Step 9](../../books/guides/defender-xdr-implementation.md#step-9-automation-with-approval-boundaries) and [Step 10](../../books/guides/defender-xdr-implementation.md#step-10-operations-and-evidence). About 40 minutes, plus Lab 1 and Lab 2.*
 
 **Watch:** the narrated deck for this module (about 12 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_XDR_Module_5_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_XDR_Module_5_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-xdr-module-5) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-5/Training_XDR_Module_5_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-5/Training_XDR_Module_5_Narrated.vtt). The deck files join the next edition.
 
@@ -53,6 +53,14 @@ Attack disruption's exclusions are set under **Settings** > **Microsoft Defender
 Read the guide's [Step 10](../../books/guides/defender-xdr-implementation.md#step-10-operations-and-evidence), its [synthetic events](../../books/guides/defender-xdr-implementation.md#synthetic-events), [metrics](../../books/guides/defender-xdr-implementation.md#metrics) and [evidence catalog](../../books/guides/defender-xdr-implementation.md#evidence-catalog). The cadence *(risk-based recommended)*: sensor health and coverage, and prevention and Attack Surface Reduction drift, weekly; the metrics and evidence package monthly; detection tuning, the exception register review and an exercise with synthetic events quarterly.
 
 The monthly evidence run files the read-only queries and incident export and hashes every file, from a workstation inside the boundary. Advanced hunting keeps 30 days, so the run is what lets anyone answer for an older month. The metrics measure protected coverage and effectiveness, not whether a setting exists: protected coverage counts devices with an Active sensor against the CM-8 inventory, because a policy assigned to a group says nothing about devices that never checked in; enforcement depth counts devices with every rule in block, because audit mode is configured but protects nothing. The synthetic events show the assessor that telemetry, detection and routing work end to end.
+
+## Exercise: Lab 1, fixtures, no tenant (30 minutes) {#xdr-m5-lab-1}
+
+Run the developer workbook's [Chapter 07, Identity Signals and Automation Boundaries](../../project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.md#lab-1-fixtures-no-tenant) and [Chapter 08, The Monthly Evidence Run](../../project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.md#lab-1-fixtures-no-tenant). They have the exact commands and the output each gave; this module doesn't repeat them. Work in `examples/defender-xdr`, in PowerShell 7 with Pester 5, from the [defender-xdr-code.zip](../../../downloads/defender-xdr-code.zip) download or a clone of the repository. Nothing signs in: the estate is the fictional `contoso.example`.
+
+- **What you'll see:** the automation check finds a workstation group off the ladder and an emergency access account not excluded; the monthly run records ten run folders, computes the guide's metrics, and its go/no-go fails until the findings are closed.
+- **What to look for:** each finding names the device, rule, incident or group, and the run folder's manifest records the call and its permission. Compare what you see with this module's units.
+- **Back-out:** each lab ends by deleting `out`.
 
 ## Exercise: Lab 2, a test tenant {#xdr-m5-lab-2}
 *Not timed. Not run by the authors. Never production.*

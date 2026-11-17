@@ -1,0 +1,39 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#microsoft.graph.security.huntingQueryResults",
+  "schema": [
+    {
+      "name": "OnboardingStatus",
+      "type": "String"
+    },
+    {
+      "name": "SensorHealthState",
+      "type": "String"
+    },
+    {
+      "name": "Devices",
+      "type": "Int64"
+    }
+  ],
+  "results": [
+    {
+      "OnboardingStatus": "Can be onboarded",
+      "SensorHealthState": "",
+      "Devices": 1
+    },
+    {
+      "OnboardingStatus": "Onboarded",
+      "SensorHealthState": "Active",
+      "Devices": 11
+    },
+    {
+      "OnboardingStatus": "Onboarded",
+      "SensorHealthState": "ImpairedCommunication",
+      "Devices": 1
+    },
+    {
+      "OnboardingStatus": "Onboarded",
+      "SensorHealthState": "Inactive",
+      "Devices": 1
+    }
+  ]
+}

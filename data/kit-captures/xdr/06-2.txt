@@ -1,0 +1,26 @@
+PS> ./Invoke-XdrDetections.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/detections -AsOf 2026-11-16T12:00:00Z
+Subject                  Id            Detail
+-------                  --            ------
+contoso-admin-share-copy NO-AUTOMATION automatedActions set: containment stays on the response ladder (Gate 9); remove them
+
+
+RuleId                            Window    Rows Expected Status
+------                            ------    ---- -------- ------
+contoso-admin-share-copy          knownBad     1 >= 1     Pass
+contoso-admin-share-copy          knownGood    3 <= 1     Fail
+contoso-lsass-dump-tool           knownBad     2 >= 1     Pass
+contoso-lsass-dump-tool           knownGood    0 <= 0     Pass
+contoso-office-encoded-powershell knownBad     1 >= 1     Pass
+contoso-office-encoded-powershell knownGood    0 <= 0     Pass
+
+
+Rule                              Plan   Changed
+----                              ----   -------
+contoso-lsass-dump-tool           create displayName, description, status, queryCondition, schedule, detectionAction
+contoso-office-encoded-powershell update status
+contoso-admin-share-copy          held   validation failed: NO-AUTOMATION
+contoso-legacy-rdp-rule           orphan deployed (enabled), not in the repository
+
+Detections: 3 rule(s); 1 validation failure(s); tests 5 passed, 1 failed. Plan via graph: 1 create, 1 update, 1 held, 1 orphan(s), 0 unchanged.
+Plan SHA-256: 2bfe49bb15add13dc7a81654fe5deeee341246a5cd17c19da1275bcf8abd2601
+Written to out/detections: validation.csv, tests.csv, deployed-rules.json, plan.json, plan.sha256, summary.json, raw/, manifest.json

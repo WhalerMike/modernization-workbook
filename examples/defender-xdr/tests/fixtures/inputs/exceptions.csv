@@ -1,0 +1,3 @@
+Id,Scope,Subject,Reason,CompensatingControl,Approver,Expires
+EX-DEV-01,Device,LAB-KIOSK01,"Isolated lab network, no path to the service",Windows Event Forwarding of the Defender operational log,ISSO (example),2027-02-28
+EX-DEV-02,Device,SRV-LEGACY01,Windows Server 2016 leaves the estate,Network isolation; quarterly scan,ISSO (example),2026-10-31

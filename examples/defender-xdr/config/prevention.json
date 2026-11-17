@@ -1,0 +1,7 @@
+{
+  "_comment": "What each prevention stage means on the device, for the Defender XDR implementation guide's Gate 3. Values are Learn's: network protection EnableNetworkProtection 0 off, 1 block, 2 audit ('Configure network protection'); controlled folder access EnableControlledFolderAccess 0 off, 1 block, 2 audit, 3 and 4 disk modification only ('Configure controlled folder access'); tamper protection and real-time protection from Get-MpComputerStatus, True when on ('Configure tamper protection'); firewall profiles from Get-NetFirewallProfile -PolicyStore ActiveStore. On Windows Server 2019 and later, network protection also needs AllowNetworkProtectionOnWinServer, and the high-UDP roles (domain controllers, DNS, file, SQL Server) need AllowDatagramProcessingOnWinServer false. Read November 11, 2026. Which stage each ring is at is the agency's plan (the 'prevention' input).",
+  "networkProtection": { "off": 0, "block": 1, "audit": 2 },
+  "controlledFolderAccess": { "off": 0, "block": 1, "audit": 2, "diskOnlyBlock": 3, "diskOnlyAudit": 4 },
+  "highUdpRoles": ["dc", "dns", "file", "sql"],
+  "firewall": { "enabled": true, "defaultInboundAction": "Block" }
+}

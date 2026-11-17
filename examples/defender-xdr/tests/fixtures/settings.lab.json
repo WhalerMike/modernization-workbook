@@ -1,0 +1,38 @@
+{
+  "_comment": "Lab 1's settings: the fictional contoso.example tenant, fixture inputs. Names and IDs only, never a secret.",
+  "environment": "lab",
+  "cloud": "gcc",
+  "tenantId": "00000000-0000-0000-0000-00000000c0de",
+  "tenantDomain": "contosoexample.onmicrosoft.com",
+  "pimGroups": [
+    "SG-XDR-Readers",
+    "SG-XDR-Assessor-ReadOnly",
+    "SG-XDR-Responders",
+    "SG-XDR-DetectionEngineers",
+    "SG-XDR-Tier0"
+  ],
+  "emergencyAccessGroups": [
+    "SG-EmergencyAccess"
+  ],
+  "emergencyAccessAccounts": [
+    "breakglass01@contosoexample.onmicrosoft.com",
+    "breakglass02@contosoexample.onmicrosoft.com"
+  ],
+  "detections": {
+    "deployVia": "graph"
+  },
+  "inputs": {
+    "inventory": "inputs/inventory.csv",
+    "exceptions": "inputs/exceptions.csv",
+    "roleExport": "inputs/role-export.csv",
+    "deviceStates": "devices",
+    "prevention": "inputs/prevention-plan.json",
+    "asrPlan": "inputs/asr-plan.json",
+    "asrExclusions": "inputs/asr-exclusions.csv",
+    "owners": "inputs/owners.json",
+    "rules": "rules",
+    "deviceGroups": "inputs/device-groups.csv",
+    "automationExclusions": "inputs/automation-exclusions.csv",
+    "exercise": "inputs/exercise.csv"
+  }
+}

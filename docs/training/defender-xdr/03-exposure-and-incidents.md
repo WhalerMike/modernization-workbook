@@ -1,17 +1,17 @@
 ---
 title: "Module 3: Exposure and incidents"
-description: "Guide Steps 5 and 6: what Defender Vulnerability Management adds in GCC, why Security Exposure Management's attack paths aren't available there, and the interim path that prioritizes by exposure level, internet-facing devices and the Tier 0 inventory; one incident queue, a severity table with triage windows and a containment rung, the hand-off, and every incident closed with a classification. Lab 2 files the vulnerability and exposure queries and exports open incidents through Microsoft Graph. About 35 minutes, plus Lab 2, with a knowledge check."
+description: "Guide Steps 5 and 6: what Defender Vulnerability Management adds in GCC, why Security Exposure Management's attack paths aren't available there, and the interim path that prioritizes by exposure level, internet-facing devices and the Tier 0 inventory; one incident queue, a severity table with triage windows and a containment rung, the hand-off, and every incident closed with a classification. Lab 2 files the vulnerability and exposure queries and exports open incidents through Microsoft Graph. About 35 minutes, plus Lab 1 and Lab 2, with a knowledge check."
 doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Book 12"
 series-order: 3
 review-status: pending
-last-reviewed: 2026-11-13
+last-reviewed: 2026-11-17
 ---
 # Module 3: Exposure and incidents {.unnumbered}
 
-*Part of the [Defender XDR learning path](index.md). Guide [Step 5](../../books/guides/defender-xdr-implementation.md#step-5-exposure-management) and [Step 6](../../books/guides/defender-xdr-implementation.md#step-6-xdr-incidents). About 35 minutes, plus Lab 2.*
+*Part of the [Defender XDR learning path](index.md). Guide [Step 5](../../books/guides/defender-xdr-implementation.md#step-5-exposure-management) and [Step 6](../../books/guides/defender-xdr-implementation.md#step-6-xdr-incidents). About 35 minutes, plus Lab 1 and Lab 2.*
 
 **Watch:** the narrated deck for this module (about 11 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_XDR_Module_3_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_XDR_Module_3_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-xdr-module-3) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-3/Training_XDR_Module_3_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-3/Training_XDR_Module_3_Narrated.vtt). The deck files join the next edition.
 
@@ -59,6 +59,14 @@ Read the guide's [Step 6](../../books/guides/defender-xdr-implementation.md#step
 : The program's severity table, from the guide's Step 6 {.striped .hover}
 
 A High incident goes to the IR lead and the ISSO, with the US-CERT reporting decision made under the incident response plan. Servers and privileged or emergency accounts are never contained by a playbook; a human decides. Every incident closes with a classification and a determination, which the Graph incident record carries with `assignedTo` and comments. Containment is reversible from the Action center; an incident closed by mistake is reopened with a comment.
+
+## Exercise: Lab 1, fixtures, no tenant (20 minutes) {#xdr-m3-lab-1}
+
+Run the developer workbook's [Chapter 05, Exposure and Incidents](../../project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.md#lab-1-fixtures-no-tenant). They have the exact commands and the output each gave; this module doesn't repeat them. Work in `examples/defender-xdr`, in PowerShell 7 with Pester 5, from the [defender-xdr-code.zip](../../../downloads/defender-xdr-code.zip) download or a clone of the repository. Nothing signs in: the estate is the fictional `contoso.example`.
+
+- **What you'll see:** the exposure check finds an exposed device with no owner and records Security Exposure Management as not applicable in GCC; the incident check finds a high-severity incident past its one-hour window and one closed without a classification.
+- **What to look for:** each finding names the device, rule, incident or group, and the run folder's manifest records the call and its permission. Compare what you see with this module's units.
+- **Back-out:** each lab ends by deleting `out`.
 
 ## Exercise: Lab 2, a test tenant {#xdr-m3-lab-2}
 *Not timed. Not run by the authors. Never production.*

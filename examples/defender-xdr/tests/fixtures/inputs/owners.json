@@ -1,0 +1,10 @@
+{
+  "_comment": "Fictional. The remediation owner of each Defender device group.",
+  "machineGroups": {
+    "Ring0-Workstations": "Endpoint engineering (example)",
+    "Ring1-Pilot": "Endpoint engineering (example)",
+    "Ring2-Workstations": "Desktop support (example)",
+    "Ring3-Workstations": "Desktop support (example)",
+    "Servers": "Server operations (example)"
+  }
+}

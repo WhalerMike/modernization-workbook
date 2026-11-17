@@ -1,0 +1,48 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#microsoft.graph.security.huntingQueryResults",
+  "schema": [
+    {
+      "name": "DeviceName",
+      "type": "String"
+    },
+    {
+      "name": "ExposureLevel",
+      "type": "String"
+    },
+    {
+      "name": "IsInternetFacing",
+      "type": "Boolean"
+    },
+    {
+      "name": "AssetValue",
+      "type": "String"
+    },
+    {
+      "name": "MachineGroup",
+      "type": "String"
+    }
+  ],
+  "results": [
+    {
+      "DeviceName": "srv-app01.contoso.example",
+      "ExposureLevel": "High",
+      "IsInternetFacing": true,
+      "AssetValue": "High",
+      "MachineGroup": "Servers"
+    },
+    {
+      "DeviceName": "wks-r2-01.contoso.example",
+      "ExposureLevel": "High",
+      "IsInternetFacing": false,
+      "AssetValue": "Normal",
+      "MachineGroup": "Ring2-Workstations"
+    },
+    {
+      "DeviceName": "wks-old-07.contoso.example",
+      "ExposureLevel": "High",
+      "IsInternetFacing": false,
+      "AssetValue": "Normal",
+      "MachineGroup": "Unassigned"
+    }
+  ]
+}

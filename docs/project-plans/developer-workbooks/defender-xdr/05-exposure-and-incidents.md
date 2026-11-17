@@ -1,0 +1,264 @@
+---
+title: "Chapter 05 — Exposure and Incidents"
+description: "Two read-only checks for two gates. Exposure: the guide's vulnerability and exposed-device queries through Microsoft Graph, each exposed device matched to the remediation owner of its device group, a device with no owner as a CM-8 finding, and Microsoft Security Exposure Management, which isn't available in GCC, recorded as a disposition with the guide's interim path rather than code that assumes it. Incidents: the last 30 days and every active incident, with their alerts, read against the guide's severity table, so an incident past its triage window and one closed without a classification are findings. Lab 1 against fixtures; Lab 2 in a test tenant."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-defender-xdr
+part: How
+series-order: 5
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 05 — Exposure and Incidents
+
+*A vulnerability without an owner is an inventory finding, and an incident without an owner is a clock running. Both checks ask the same question: who has this?*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [G5 Exposure management](../../../books/guides/defender-xdr-implementation.md#step-5-exposure-management) and [G6 XDR incidents](../../../books/guides/defender-xdr-implementation.md#step-6-xdr-incidents). You start with the guide's two exposure queries, its incident export and the government-cloud fact that shapes G5, and what they leave to you. Then you read the exposure check, the Exposure Management disposition and the incident check. Lab 1 runs both on fixtures. Lab 2 runs them in a test tenant.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can route every exposed device to an owner, record Exposure Management correctly for a GCC tenant, and list every incident that broke the severity table.
+
+**Audience.** Developers who maintain the kit, the vulnerability manager who owns G5 and the SOC lead who owns G6. The remediation program and its clock are Book 12's [Chapter 06](../../../books/b12-security-operations/06-vulnerability-management.md); the response ladder and containment are [Chapter 11](../../../books/b12-security-operations/11-detection-engineering-and-response.md#the-response-ladder).
+
+## Start with Microsoft Learn's commands
+
+### What the guide and Learn give you
+
+**Exposure.** Microsoft Security Exposure Management (attack paths, the exposure graph, critical asset management) is available in Public Cloud only, not in US Government clouds; Defender Vulnerability Management core and premium are available in GCC, without *report inaccuracy* and *request CVE support*.[^xdr05-msem] [^xdr05-gov] The guide's interim path prioritizes by `ExposureLevel`, `IsInternetFacing` and `AssetValue` from `DeviceInfo` and by Vulnerability Management's recommendations,[^xdr05-deviceinfo] and its two queries list high and critical vulnerabilities by software and update, and exposed or internet-facing devices. The `DeviceTvm*` tables stay in Defender; they aren't ingested into Sentinel.[^xdr05-tvm]
+
+**Incidents.** Learn's *List incidents* returns each incident with `severity`, `status`, `assignedTo`, `classification`, `determination` and `createdDateTime`, and `$expand=alerts` brings its alerts; `createdDateTime` is filterable.[^xdr05-incidents] The guide's severity table gives each severity a triage window (high 1 hour, medium 24, low or informational 72), a containment rung and a hand-off *(program design)*.
+
+### What it leaves to you
+
+Each row is pinned by a test in `tests/Checks.Tests.ps1`, *Chapter 05*.
+
+| What the guide and Learn give | Why it isn't enough | What the kit adds |
+|---|---|---|
+| A query of exposed devices | Rows, not owners | Each device's group matched to an owner in the agency's owners file; no owner is a finding |
+| "Exposure Management: not available" | A Zero Trust Assessment test that needs it reads as a failure | `exposure-management.json`: not available in GCC, normalized result `Skipped-Not-Applicable`, the interim path, the Learn page and date |
+| An incident export | A list, not a judgment | Each incident read against the severity table: `Triaged`, `Untriaged`, `OverdueTriage`, `Closed`, `ClosedWithoutClassification` |
+| One filter at a time | Last month's incidents miss an old one still open | Two reads, created in 30 days and still active, merged by ID |
+| A table with triage windows | Graph doesn't record when an incident was first assigned | The kit reports an unowned incident past its window; it doesn't claim a time to triage it can't see |
+
+**The verdict.** Run the guide's queries and Learn's list call as they are. Add the owner, the table and the disposition, because the gate is about who has each item, and the record has to say plainly what a GCC tenant can't do.
+
+## The code
+
+### Exposure
+
+`Invoke-XdrExposure.ps1` (`Invoke-XdrExposureCheck`) runs the guide's two queries, reads the owners file named in the settings (`machineGroups`: device group to owner), and writes `vulnerabilities.csv`, `exposed.csv`, `unowned.csv`, `exposure-management.json`, `summary.json`, `raw/` and the manifest. `Get-XdrExposureDisposition` writes the record for the settings' cloud: for `gcc`, not available, `Skipped-Not-Applicable`, the interim path. That result name is one of the seven the [Zero Trust Assessment results kit](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/zta-results) and [Book 11, Chapter 10](../../../books/b11-zero-trust/10-evidence-not-verdicts.md#a-normalized-result-taxonomy) use, so the same disposition lands in the closure register; a test reads that kit's taxonomy to keep them equal.
+
+### Incidents
+
+`Invoke-XdrIncidents.ps1` (`Invoke-XdrIncidentCheck`) reads incidents created in the last 30 days and every incident still active, with `$expand=alerts`, and applies `config/severity.json`:
+
+| Finding | When | Result |
+|---|---|---|
+| `Triaged` | Open, with an owner | Pass |
+| `Untriaged` | Open, no owner, inside its window | Warn |
+| `OverdueTriage` | Open, no owner, past its window | Fail |
+| `Closed` | Resolved with a classification and a determination | Pass |
+| `ClosedWithoutClassification` | Resolved with either still `unknown` | Fail |
+
+It writes `incidents.csv`, `findings.csv`, `by-severity.csv`, `summary.json`, `raw/incidents.json` and the manifest. Containment stays on Book 12's ladder; the kit only prints each incident's rung.
+
+::: {.callout-important}
+## Illustrative code
+The incident check reads; it never assigns, comments on or closes an incident. The guide's severity windows are the program's design, and the `VulnerabilitySeverityLevel` strings the exposure query filters on (`Critical`, `High`) are as the portal shows them; check them in the test tenant.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/defender-xdr`.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/defender-xdr`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Run the exposure check
+./Invoke-XdrExposure.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/exposure -AsOf 2026-11-16T12:00:00Z
+
+# Step 2: Read the Exposure Management record
+Get-Content out/exposure/exposure-management.json
+
+# Step 3: Run the incident check
+./Invoke-XdrIncidents.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/incidents -AsOf 2026-11-16T12:00:00Z
+
+# Step 4: Read the findings as the SOC lead gets them
+Import-Csv out/incidents/findings.csv | Format-Table Id, Severity, Finding, Rung -AutoSize -Wrap
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Run the exposure check:**
+
+   ```powershell
+   ./Invoke-XdrExposure.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/exposure -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 05-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/05-1.txt))](captures/05-1.png){.lightbox fig-alt="Terminal window showing ./Invoke-XdrExposure.ps1 -SettingsPath tests/fixtures/settings.lab.json -Fixt… and what it printed"}
+
+   <!-- capture:end -->
+
+   Three exposed devices; `WKS-OLD-07` sits in a group no owner covers, the same device Chapter 02 found missing from the inventory. Two findings, one cause.
+
+2. **Read the Exposure Management record:**
+
+   ```powershell
+   Get-Content out/exposure/exposure-management.json
+   ```
+
+   <!-- capture:begin 05-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/05-2.txt))](captures/05-2.png){.lightbox fig-alt="Terminal window showing Get-Content out/exposure/exposure-management.json and what it printed"}
+
+   <!-- capture:end -->
+
+   Not available in GCC; `Skipped-Not-Applicable`; the interim path in one sentence. This is what goes in the closure register, not a failed control.
+
+3. **Run the incident check:**
+
+   ```powershell
+   ./Invoke-XdrIncidents.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/incidents -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 05-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/05-3.txt))](captures/05-3.png){.lightbox fig-alt="Terminal window showing ./Invoke-XdrIncidents.ps1 -SettingsPath tests/fixtures/settings.lab.json -Fix… and what it printed"}
+
+   <!-- capture:end -->
+
+   Seven incidents. Incident 1002, high severity, has waited three and a half hours with no owner against a one-hour window. Incident 1005 was resolved with its classification still `unknown`. Incident 1003, medium, has no owner yet but is inside its 24 hours.
+
+4. **Read the findings as the SOC lead gets them:**
+
+   ```powershell
+   Import-Csv out/incidents/findings.csv | Format-Table Id, Severity, Finding, Rung -AutoSize -Wrap
+   ```
+
+   <!-- capture:begin 05-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/05-4.txt))](captures/05-4.png){.lightbox fig-alt="Terminal window showing Import-Csv out/incidents/findings.csv | Format-Table Id, Severity, Finding, R… and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** exposure 9 CVEs, 3 exposed devices, 1 with no owner; incidents 7 in the window, 1 past its triage window, 1 untriaged inside it, 1 closed without a classification. Delete `out` when you're done:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 05-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/05-5.txt))](captures/05-5.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test tenant
+
+Use a test tenant, never production, with Defender Vulnerability Management data on at least one device and at least one incident (the detection test in the guide's G2 makes one). Work in `examples/defender-xdr`. You'll replace: `<tenant-id>`, `<settings-file>` (with `inputs.owners` naming the test tenant's owners file) and `<output-folder>`.
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/defender-xdr`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Sign in and run both checks
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes ThreatHunting.Read.All,SecurityIncident.Read.All
+./Invoke-XdrExposure.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/exposure
+./Invoke-XdrIncidents.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/incidents
+
+# Step 2: Back it out
+Disconnect-MgGraph
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Sign in and run both checks:**
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes ThreatHunting.Read.All,SecurityIncident.Read.All
+   ./Invoke-XdrExposure.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/exposure
+   ./Invoke-XdrIncidents.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/incidents
+   ```
+
+   Check the `VulnerabilitySeverityLevel` values in `<output-folder>/exposure/raw/tvm-high-critical.json`; an empty file in a tenant with known high vulnerabilities means the strings differ.
+
+2. **Back it out.** Nothing changed. Sign out:
+
+   ```powershell
+   Disconnect-MgGraph
+   ```
+
+## Verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| Security Exposure Management | Public Cloud only, not US Government clouds | [^xdr05-msem] |
+| Defender Vulnerability Management in GCC | Core and premium available, without *report inaccuracy* and *request CVE support*; Secure Score with some recommendations missing | [^xdr05-gov] |
+| DeviceInfo exposure columns | `ExposureLevel`, `IsInternetFacing`, `AssetValue`, `MachineGroup` | [^xdr05-deviceinfo] |
+| TVM tables | Not ingested into Microsoft Sentinel | [^xdr05-tvm] |
+| List incidents | `GET /security/incidents`; `SecurityIncident.Read.All`; `$expand=alerts`; `createdDateTime` filterable; Defender XDR correlates alerts into incidents | [^xdr05-incidents] |
+
+Read for the guide on November 11, 2026; this chapter adds no provider fact. The exact `VulnerabilitySeverityLevel` strings are *not yet specified* ([research gaps](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/project-plans/developer-workbooks/defender-xdr/_verification/research-gaps.md)).
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| High and critical vulnerabilities by software and update (`vulnerabilities.csv`) | RA-5 (vulnerability monitoring), SI-2 (flaw remediation) | KSI-MLA-EVC | The vulnerability manager, into Book 12's queue |
+| Every exposed device has an owner, or is a finding (`exposed.csv`, `unowned.csv`) | CM-8 | KSI-PIY-GIV | The vulnerability manager; the ISSO for the inventory gap |
+| Exposure Management recorded as not applicable in GCC, with the interim path (`exposure-management.json`) | RA-5 | KSI-MLA-EVC | The ISSO, in the closure register |
+| Every incident owned inside its window and closed with a classification (`incidents.csv`, `findings.csv`) | IR-4 (incident handling), IR-5 (incident monitoring), AU-6 (review and analysis) | KSI-INR-RIR, KSI-MLA-RVL | The SOC lead, monthly |
+| The incident record with its alerts, for the reporting decision (`raw/incidents.json`) | IR-6 (incident reporting) | KSI-INR-RPI | The IR lead |
+
+The pairs are the guide's G5 and G6 rows. KSIs are FedRAMP 20x indicators for cloud service providers; the agency lines its evidence up with them and doesn't report them. The kit's records support these controls; the assessor decides them *(design guidance)*.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| Exposure Management assumed in GCC | Attack-path work stalls; a ZTA test reads as failed | The disposition record and the interim path |
+| An exposed device with no owner | Nobody patches it | `unowned.csv`, a CM-8 finding |
+| Sentinel queries on `DeviceTvm*` | They return nothing | The kit queries Defender's own advanced hunting |
+| Only last month's incidents read | An old incident still open is missed | The active filter is read too, merged by ID |
+| A time to triage computed from the wrong field | A metric that looks precise and isn't | The kit reports past-window, not a duration |
+
+## Checklist
+
+- [ ] Every device group has an owner in the owners file.
+- [ ] `exposure-management.json` is filed with the closure register.
+- [ ] Every `OverdueTriage` incident has an owner today.
+- [ ] Every `ClosedWithoutClassification` incident is reopened and classified.
+- [ ] Both run folders are recorded as evidence (Chapter 08).
+
+::: {.callout-tip}
+## Continue the book
+[← Previous: Chapter 04 — Attack Surface Reduction: Audit, Warn, Block](04-attack-surface-reduction-audit-warn-block.md) · [Workbook index](index.md) · [Next: Chapter 06 — Detections as Code →](06-detections-as-code.md)
+:::
+
+[^xdr05-msem]: Microsoft Learn, "What is Microsoft Security Exposure Management?" (available in Public Cloud only), <https://learn.microsoft.com/security-exposure-management/microsoft-security-exposure-management> (accessed November 11, 2026; carried from the guide's verification log).
+[^xdr05-gov]: Microsoft Learn, "Microsoft Defender for Endpoint for US Government customers," <https://learn.microsoft.com/defender-endpoint/gov> (accessed November 11, 2026; carried).
+[^xdr05-deviceinfo]: Microsoft Learn, "DeviceInfo," <https://learn.microsoft.com/defender-xdr/advanced-hunting-deviceinfo-table> (accessed November 11, 2026; carried).
+[^xdr05-tvm]: Microsoft Learn, "DeviceTvmSoftwareVulnerabilities," <https://learn.microsoft.com/defender-xdr/advanced-hunting-devicetvmsoftwarevulnerabilities-table> (accessed November 11, 2026; carried).
+[^xdr05-incidents]: Microsoft Learn, "List incidents," <https://learn.microsoft.com/graph/api/security-list-incidents?view=graph-rest-1.0> (accessed November 11, 2026; carried).

@@ -1,0 +1,28 @@
+{
+  "_comment": "One environment's settings for the Defender XDR kit. Copy it once per environment (settings.test.json, settings.production.json), replace every <placeholder>, and file each copy with the change record. Names, IDs and paths only, never a secret: the operator signs in with Connect-MgGraph (delegated, through PIM) or the run uses a managed identity. Read-XdrSettings refuses a file with a secret-like value or a placeholder in environment, cloud or tenantId. GCC uses the worldwide Graph endpoints, so cloud is 'gcc' and the Graph environment is Global. detections.deployVia is 'graph' (the detectionRules API) or 'portal' (the interim path while Learn doesn't state the API's GCC availability). The commands are the same for test and production; only this file changes. Not run against a live tenant.",
+  "environment": "<test-or-production>",
+  "changeRecord": "<change-record>",
+  "cloud": "gcc",
+  "tenantId": "<tenant-id>",
+  "tenantDomain": "<tenant-domain>",
+  "outputRoot": "<output-folder>",
+  "pimGroups": ["<each-group-pim-governs-that-holds-a-defender-role>"],
+  "emergencyAccessGroups": ["<emergency-access-group>"],
+  "emergencyAccessAccounts": ["<emergency-access-account-upn>"],
+  "detections": { "deployVia": "graph" },
+  "inputs": {
+    "inventory": "<cm-8-inventory.csv>",
+    "exceptions": "<exception-register.csv>",
+    "roleExport": "<defender-role-export.csv>",
+    "deviceStates": "<device-state-folder>",
+    "prevention": "<prevention-plan.json>",
+    "asrPlan": "<asr-plan.json>",
+    "asrExclusions": "<asr-exclusions.csv>",
+    "owners": "<owners.json>",
+    "rules": "<detection-repository-folder>",
+    "deviceGroups": "<device-groups-export.csv>",
+    "automationExclusions": "<attack-disruption-exclusions.csv>",
+    "exercise": "<exercise-record.csv>"
+  },
+  "schedule": { "taskName": "DefenderXdr-Monthly" }
+}

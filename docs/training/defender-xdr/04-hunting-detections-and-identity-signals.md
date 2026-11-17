@@ -1,17 +1,17 @@
 ---
 title: "Module 4: Hunting, detections as code and identity signals"
-description: "Guide Steps 7 and 8: custom detections kept as files in a repository, tested against a validation window with a known-bad event and a known-good window, deployed disabled through the Microsoft Graph detectionRules API and enabled after review, with schema governance and the 30-day hunting limit; Defender for Identity and Defender for Cloud Apps feeding the same incidents, their GCC gaps, and one query that finds a user seen by more than one source. Lab 2 writes, tests and deploys a disabled rule in a test tenant and runs the correlation query. About 45 minutes, plus Lab 2, with a knowledge check."
+description: "Guide Steps 7 and 8: custom detections kept as files in a repository, tested against a validation window with a known-bad event and a known-good window, deployed disabled through the Microsoft Graph detectionRules API and enabled after review, with schema governance and the 30-day hunting limit; Defender for Identity and Defender for Cloud Apps feeding the same incidents, their GCC gaps, and one query that finds a user seen by more than one source. Lab 2 writes, tests and deploys a disabled rule in a test tenant and runs the correlation query. About 45 minutes, plus Lab 1 and Lab 2, with a knowledge check."
 doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Book 12"
 series-order: 4
 review-status: pending
-last-reviewed: 2026-11-13
+last-reviewed: 2026-11-17
 ---
 # Module 4: Hunting, detections as code and identity signals {.unnumbered}
 
-*Part of the [Defender XDR learning path](index.md). Guide [Step 7](../../books/guides/defender-xdr-implementation.md#step-7-advanced-hunting-and-detections-as-code) and [Step 8](../../books/guides/defender-xdr-implementation.md#step-8-identity-and-cloud-app-signals). About 45 minutes, plus Lab 2.*
+*Part of the [Defender XDR learning path](index.md). Guide [Step 7](../../books/guides/defender-xdr-implementation.md#step-7-advanced-hunting-and-detections-as-code) and [Step 8](../../books/guides/defender-xdr-implementation.md#step-8-identity-and-cloud-app-signals). About 45 minutes, plus Lab 1 and Lab 2.*
 
 **Watch:** the narrated deck for this module (about 12 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_XDR_Module_4_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_XDR_Module_4_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-xdr-module-4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-4/Training_XDR_Module_4_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-4/Training_XDR_Module_4_Narrated.vtt). The deck files join the next edition.
 
@@ -52,6 +52,14 @@ Each rule has a validation dataset: a known-bad event it must find (from the gui
 Read the guide's [Step 8](../../books/guides/defender-xdr-implementation.md#step-8-identity-and-cloud-app-signals). Defender for Identity's sensors on domain controllers, AD FS, AD CS and Entra Connect servers, and Defender for Cloud Apps' connectors, put identity and SaaS behavior into the same incidents as the endpoint. Sensors reach `<workspace>sensorapi.atp.gcc.azure.com` in GCC, or the `AzureAdvancedThreatProtection` service tag. Pilot on one domain controller per domain first; domain controllers remain Tier 0 until retired.
 
 The gaps: Defender for Cloud Apps lists App Governance's predefined policy alerts and threat-detection alerts as roadmap items for GCC, and its behaviors in `BehaviorInfo` aren't available for GCC. The interim path for OAuth-app abuse is the application detections in Sentinel that [Security Operations](../../books/b12-security-operations/index.md) describes. Defender for Identity says new features reach GCC within 90 days of commercial release, and previews may not be supported there.
+
+## Exercise: Lab 1, fixtures, no tenant (30 minutes) {#xdr-m4-lab-1}
+
+Run the developer workbook's [Chapter 06, Detections as Code](../../project-plans/developer-workbooks/defender-xdr/06-detections-as-code.md#lab-1-fixtures-no-tenant) and [Chapter 07, Identity Signals and Automation Boundaries](../../project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.md#lab-1-fixtures-no-tenant). They have the exact commands and the output each gave; this module doesn't repeat them. Work in `examples/defender-xdr`, in PowerShell 7 with Pester 5, from the [defender-xdr-code.zip](../../../downloads/defender-xdr-code.zip) download or a clone of the repository. Nothing signs in: the estate is the fictional `contoso.example`.
+
+- **What you'll see:** the detection check holds a rule with automated isolation, tests each rule over its known-bad and known-good windows, and plans a create and an update by its SHA-256; the signals check puts an emergency access account at the top of the cross-source list.
+- **What to look for:** each finding names the device, rule, incident or group, and the run folder's manifest records the call and its permission. Compare what you see with this module's units.
+- **Back-out:** each lab ends by deleting `out`.
 
 ## Exercise: Lab 2, a test tenant {#xdr-m4-lab-2}
 *Not timed. Not run by the authors. Never production.*

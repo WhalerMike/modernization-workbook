@@ -7094,7 +7094,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-defender-xdr/Guide_Defender_XDR_Narration_Script.md",
   "page": "docs/books/guides/defender-xdr-implementation.html",
   "source": "docs/books/guides/defender-xdr-implementation.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -15462,7 +15468,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-1/Training_XDR_Module_1_Narration_Script.md",
   "page": "docs/training/defender-xdr/01-architecture-access-and-onboarding.html",
   "source": "docs/training/defender-xdr/01-architecture-access-and-onboarding.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -15531,7 +15543,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-2/Training_XDR_Module_2_Narration_Script.md",
   "page": "docs/training/defender-xdr/02-prevention-and-attack-surface-reduction.html",
   "source": "docs/training/defender-xdr/02-prevention-and-attack-surface-reduction.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -15600,7 +15618,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-3/Training_XDR_Module_3_Narration_Script.md",
   "page": "docs/training/defender-xdr/03-exposure-and-incidents.html",
   "source": "docs/training/defender-xdr/03-exposure-and-incidents.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -15665,7 +15689,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-4/Training_XDR_Module_4_Narration_Script.md",
   "page": "docs/training/defender-xdr/04-hunting-detections-and-identity-signals.html",
   "source": "docs/training/defender-xdr/04-hunting-detections-and-identity-signals.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,
@@ -15730,7 +15760,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-5/Training_XDR_Module_5_Narration_Script.md",
   "page": "docs/training/defender-xdr/05-automation-operations-and-evidence.html",
   "source": "docs/training/defender-xdr/05-automation-operations-and-evidence.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   }
+  ],
   "chapters": [
    [
     0,

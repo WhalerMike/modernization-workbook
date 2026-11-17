@@ -1,0 +1,6 @@
+Role,Permissions,Groups,DataSources
+XDR Read,Security data basics (Read),SG-XDR-Readers; SG-XDR-Assessor-ReadOnly,All
+XDR Responder,Security data basics (Read); Alerts (Manage); Response (Manage); Basic live response (Manage),SG-XDR-Responders; SG-SOC-Standing,All
+XDR Detection Engineer,Security data basics (Read); Detection tuning (Manage); Advanced live response (Manage),SG-XDR-DetectionEngineers,All
+XDR Tier 0 Analyst,Security data basics (Read); Alerts (Manage); Response (Manage); Basic live response (Manage); Advanced live response (Manage),SG-XDR-Tier0,All
+Legacy SOC role,Security data basics (Read),SG-XDR-Readers,Microsoft Defender for Endpoint

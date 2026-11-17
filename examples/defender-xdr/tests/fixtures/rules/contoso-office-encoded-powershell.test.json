@@ -1,0 +1,15 @@
+{
+  "tables": [
+    "DeviceProcessEvents"
+  ],
+  "knownBad": {
+    "timespan": "2026-11-03T00:00:00Z/2026-11-04T00:00:00Z",
+    "minRows": 1,
+    "source": "ring 0 replay under a change record"
+  },
+  "knownGood": {
+    "timespan": "2026-11-10T00:00:00Z/2026-11-11T00:00:00Z",
+    "maxRows": 0,
+    "source": "a quiet business day"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "_comment": "Fictional production environment for the deploy tests and Chapter 09's fixture-mode steps: the lab tenant and the lab's inputs.",
+  "environment": "production",
+  "cloud": "gcc",
+  "tenantId": "00000000-0000-0000-0000-00000000c0de",
+  "tenantDomain": "contosoexample.onmicrosoft.com",
+  "pimGroups": [
+    "SG-XDR-Readers",
+    "SG-XDR-Assessor-ReadOnly",
+    "SG-XDR-Responders",
+    "SG-XDR-DetectionEngineers",
+    "SG-XDR-Tier0"
+  ],
+  "emergencyAccessGroups": [
+    "SG-EmergencyAccess"
+  ],
+  "emergencyAccessAccounts": [
+    "breakglass01@contosoexample.onmicrosoft.com",
+    "breakglass02@contosoexample.onmicrosoft.com"
+  ],
+  "detections": {
+    "deployVia": "graph"
+  },
+  "inputs": {
+    "inventory": "../../../tests/fixtures/inputs/inventory.csv",
+    "exceptions": "../../../tests/fixtures/inputs/exceptions.csv",
+    "roleExport": "../../../tests/fixtures/inputs/role-export.csv",
+    "deviceStates": "../../../tests/fixtures/devices",
+    "prevention": "../../../tests/fixtures/inputs/prevention-plan.json",
+    "asrPlan": "../../../tests/fixtures/inputs/asr-plan.json",
+    "asrExclusions": "../../../tests/fixtures/inputs/asr-exclusions.csv",
+    "owners": "../../../tests/fixtures/inputs/owners.json",
+    "rules": "../../../tests/fixtures/rules",
+    "deviceGroups": "../../../tests/fixtures/inputs/device-groups.csv",
+    "automationExclusions": "../../../tests/fixtures/inputs/automation-exclusions.csv",
+    "exercise": "../../../tests/fixtures/inputs/exercise.csv"
+  },
+  "changeRecord": "CHG-PROD-0001 (example)",
+  "outputRoot": "../../../out/production",
+  "schedule": {
+    "taskName": "DefenderXdr-Monthly"
+  }
+}

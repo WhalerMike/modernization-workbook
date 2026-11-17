@@ -1,0 +1,26 @@
+PS> Get-Content out/access/manifest.json
+{
+  "schema": "fmp-xdr-manifest/1",
+  "task": "access",
+  "asOf": "2026-11-16T12:00:00Z",
+  "mode": "Fixture",
+  "environment": "lab",
+  "kit": "examples/defender-xdr",
+  "calls": [
+    {
+      "id": "incidents-list",
+      "method": "GET",
+      "path": "/security/incidents",
+      "permission": "SecurityIncident.Read.All",
+      "doc": "https://learn.microsoft.com/graph/api/security-list-incidents?view=graph-rest-1.0"
+    }
+  ],
+  "files": {
+    "permissions.csv": "59ea30398171f4ab2e98613afbe4a4f1adc919617a5ab66b4fb7354cddaa9fb1",
+    "raw/incidents-top.json": "1cef1dcd9446d6674a596b88a912b5c082d70923942a1c6d955f28a6697b0f30",
+    "results.csv": "15fe8e970320764144c3b4ec9696c89931aaa48cab9c6ada45ef3c2801f46217",
+    "results.json": "f5d3ccb55b3807789db2edf82529cddde353883575e24bc78feab0307210de2e"
+  },
+  "failed": 3,
+  "result": "Fail"
+}

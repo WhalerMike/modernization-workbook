@@ -1,0 +1,43 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#microsoft.graph.security.huntingQueryResults",
+  "schema": [
+    {
+      "name": "ActionType",
+      "type": "String"
+    },
+    {
+      "name": "EventCount",
+      "type": "Int64"
+    }
+  ],
+  "results": [
+    {
+      "ActionType": "AsrExecutableEmailContentBlocked",
+      "EventCount": 1
+    },
+    {
+      "ActionType": "AsrLsassCredentialTheftBlocked",
+      "EventCount": 40
+    },
+    {
+      "ActionType": "AsrObfuscatedScriptAudited",
+      "EventCount": 5
+    },
+    {
+      "ActionType": "AsrOfficeChildProcessAudited",
+      "EventCount": 17
+    },
+    {
+      "ActionType": "AsrOfficeChildProcessBlocked",
+      "EventCount": 2
+    },
+    {
+      "ActionType": "AsrPsexecWmiChildProcessAudited",
+      "EventCount": 6
+    },
+    {
+      "ActionType": "AsrUntrustedUsbProcessAudited",
+      "EventCount": 1
+    }
+  ]
+}
