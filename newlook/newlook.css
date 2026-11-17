@@ -1,0 +1,41 @@
+/* New Look only (newlook/_quarto-newlook.yml): styles for the parts the New Look
+   adds to every page. The workbook's own theme (assets/fmw-theme.scss) still
+   sets the fonts and colors. */
+
+.nl-preview-banner {
+  background: #e6f4f1; color: #0D1B2E; border-bottom: 1px solid #b9ddd6;
+  font-size: .85rem; line-height: 1.45; padding: .4rem 1rem; text-align: center;
+}
+.nl-preview-banner a { color: #16706F; font-weight: 600; }
+
+.nl-sidebar-filter { padding: .5rem .5rem .25rem; }
+.nl-sidebar-filter input {
+  width: 100%; font: inherit; font-size: .9rem; border: 1px solid #b8c3cf; border-radius: 6px; padding: .35rem .6rem;
+}
+.nl-sidebar-filter input:focus-visible { outline: 2px solid #16706F; outline-offset: 1px; }
+#quarto-sidebar li.nl-hidden { display: none; }
+
+/* Blocks newlook/newlook.lua adds to pages. */
+.nl-applies { font-size: .9rem; color: #5a6878; margin: 0 0 .5rem; }
+.nl-applies-label, .nl-position-n { font-family: "IBM Plex Mono", monospace; font-size: .78rem; letter-spacing: .04em; text-transform: uppercase; color: #16706F; }
+.nl-position { font-size: .9rem; margin: 0 0 .75rem; }
+.nl-glance { border: 1px solid #dfe5ec; border-left: 4px solid #1E8C8C; border-radius: 8px; padding: .75rem 1rem; margin: 0 0 1.25rem; background: #f5f7fa; }
+.nl-glance-title, .nl-learn-title { font-weight: 600; color: #0D1B2E; margin: 0 0 .4rem; }
+.nl-glance dl { display: grid; grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); gap: .4rem 1.25rem; margin: 0; }
+.nl-glance dt { font-family: "IBM Plex Mono", monospace; font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: #5a6878; font-weight: 500; }
+.nl-glance dd { margin: 0; font-size: .92rem; }
+.nl-hub { display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: .75rem; margin: 0 0 1.25rem; }
+.nl-hub-group { border: 1px solid #dfe5ec; border-top: 3px solid #1E8C8C; border-radius: 8px; padding: .6rem .85rem; background: #fff; }
+.nl-hub-label { font-family: "IBM Plex Mono", monospace; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: #16706F; margin: 0 0 .3rem; font-weight: 500; }
+.nl-hub-group ul, .nl-learn ul, .nl-related ul { list-style: none; padding: 0; margin: 0; }
+.nl-hub-group li { font-size: .9rem; line-height: 1.4; margin: .2rem 0; }
+.nl-learn { margin: 0 0 1.25rem; }
+.nl-learn ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: .75rem; }
+.nl-learn-card { display: flex; flex-direction: column; gap: .2rem; border: 1px solid #dfe5ec; border-radius: 8px; padding: .6rem .85rem; font-size: .9rem; }
+.nl-learn-kind { font-family: "IBM Plex Mono", monospace; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: #8F5B0C; }
+.nl-learn-meta { color: #5a6878; font-size: .82rem; }
+.nl-related { border-top: 2px solid #dfe5ec; margin-top: 2rem; padding-top: .5rem; }
+.nl-related-title { font-size: 1.35rem; margin: .5rem 0 .6rem; border: 0; }
+.nl-related li { margin: .35rem 0; font-size: .95rem; }
+.nl-rel-kind { display: inline-block; min-width: 9.5rem; font-family: "IBM Plex Mono", monospace; font-size: .72rem; letter-spacing: .05em; text-transform: uppercase; color: #5a6878; }
+@media (max-width: 575.98px) { .nl-rel-kind { display: block; } }
