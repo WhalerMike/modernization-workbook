@@ -17,9 +17,9 @@ review-status: pending
 
 ## Week 2: Defender XDR
 
-- [Defender XDR Engineering and Operations](../../training/defender-xdr/index.md) (Learning path, 5 modules, about 1 hr 46 min). Five modules: architecture, access and onboarding; prevention and Attack Surface Reduction; exposure and incidents; hunting, detections as code and identity signals; and automation, operations and evidence, each with a lab in your own….
+- [Defender XDR Engineering and Operations](../../training/defender-xdr/index.md) (Learning path, 5 modules, about 1 hr 50 min). Five modules: architecture, access and onboarding; prevention and Attack Surface Reduction; exposure and incidents; hunting, detections as code and identity signals; and automation, operations and evidence, each with a lab in your own….
 
-*Milestone 2: about 1 hr 46 min.*
+*Milestone 2: about 1 hr 50 min.*
 
 ## Week 3: the identity-aware network
 
@@ -29,10 +29,10 @@ review-status: pending
 
 ## Week 4: labs
 
-- [Labs: Defender XDR learning path](../../training/labs.md#xdr) (Lab, 5 labs). 5 hands-on labs across 5 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The Defender XDR learning path.
-- [Labs: Global Secure Access learning path](../../training/labs.md#gsa) (Lab, 6 labs). 6 hands-on labs across 6 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The Global Secure Access learning path.
+- [Labs: Building Defender XDR](../../training/labs.md#xdr) (Lab, 16 labs). 16 hands-on labs across 8 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building Defender XDR.
+- [Labs: Building Global Secure Access](../../training/labs.md#gsa) (Lab, 16 labs). 16 hands-on labs across 8 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building Global Secure Access.
 
 *Milestone 4: about a short read.*
 
-**Whole plan:** about 15 hr 8 min of reading and video, plus the labs.
+**Whole plan:** about 15 hr 12 min of reading and video, plus the labs.
 

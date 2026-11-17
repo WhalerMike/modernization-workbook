@@ -188,7 +188,7 @@
    "url": "docs/training/defender-xdr/index.html",
    "count": 5,
    "unit": "modules",
-   "reading_minutes": 44,
+   "reading_minutes": 48,
    "reading_source": "estimate",
    "videos": 5,
    "video_minutes": 62,
@@ -630,7 +630,7 @@
    "url": "docs/books/guides/defender-xdr-implementation.html",
    "count": 10,
    "unit": "steps",
-   "reading_minutes": 51,
+   "reading_minutes": 55,
    "reading_source": "estimate",
    "videos": 1,
    "video_minutes": 17,
@@ -682,7 +682,7 @@
    "url": "docs/books/guides/global-secure-access-implementation.html",
    "count": 12,
    "unit": "steps",
-   "reading_minutes": 66,
+   "reading_minutes": 67,
    "reading_source": "estimate",
    "videos": 1,
    "video_minutes": 16,
@@ -997,6 +997,60 @@
    ],
    "status": "Approved",
    "family": "attribute-driven-migration",
+   "featured": false
+  },
+  {
+   "id": "docs/project-plans/developer-workbooks/defender-xdr/index.md",
+   "type": "Developer workbook",
+   "title": "Building Defender XDR",
+   "description": "A developer workbook for the Defender XDR implementation guide",
+   "url": "docs/project-plans/developer-workbooks/defender-xdr/index.html",
+   "count": 9,
+   "unit": "chapters",
+   "reading_minutes": 91,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Advanced",
+   "level_source": "audience",
+   "roles": [
+    "Endpoint engineer",
+    "Security operations",
+    "Developer"
+   ],
+   "topics": [
+    "Defender XDR"
+   ],
+   "status": "Draft",
+   "family": "defender-xdr",
+   "featured": false
+  },
+  {
+   "id": "docs/project-plans/developer-workbooks/global-secure-access/index.md",
+   "type": "Developer workbook",
+   "title": "Building Global Secure Access",
+   "description": "A developer workbook for the Global Secure Access implementation guide",
+   "url": "docs/project-plans/developer-workbooks/global-secure-access/index.html",
+   "count": 9,
+   "unit": "chapters",
+   "reading_minutes": 118,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Advanced",
+   "level_source": "audience",
+   "roles": [
+    "Identity engineer",
+    "Endpoint engineer",
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Global Secure Access"
+   ],
+   "status": "Draft",
+   "family": "global-secure-access",
    "featured": false
   },
   {
@@ -1959,6 +2013,64 @@
    "featured": false
   },
   {
+   "id": "docs/training/labs.md#xdr",
+   "type": "Lab",
+   "title": "Labs: Building Defender XDR",
+   "description": "16 hands-on labs across 8 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building Defender XDR.",
+   "url": "docs/training/labs.html#xdr",
+   "count": 16,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "Endpoint engineer",
+    "Security operations"
+   ],
+   "topics": [
+    "Intune and endpoints",
+    "Defender XDR",
+    "Security operations"
+   ],
+   "status": "Draft",
+   "family": "defender-xdr",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#gsa",
+   "type": "Lab",
+   "title": "Labs: Building Global Secure Access",
+   "description": "16 hands-on labs across 8 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building Global Secure Access.",
+   "url": "docs/training/labs.html#gsa",
+   "count": 16,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "Identity engineer",
+    "Endpoint engineer",
+    "Cloud and platform engineer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Entra ID",
+    "Intune and endpoints",
+    "Global Secure Access",
+    "Azure",
+    "Compliance and authorization"
+   ],
+   "status": "Draft",
+   "family": "global-secure-access",
+   "featured": false
+  },
+  {
    "id": "docs/training/labs.md#hr",
    "type": "Lab",
    "title": "Labs: Building HR-Driven Identity",
@@ -2129,64 +2241,6 @@
    ],
    "status": "Approved",
    "family": "ticket-to-machine",
-   "featured": false
-  },
-  {
-   "id": "docs/training/labs.md#xdr",
-   "type": "Lab",
-   "title": "Labs: Defender XDR learning path",
-   "description": "5 hands-on labs across 5 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The Defender XDR learning path.",
-   "url": "docs/training/labs.html#xdr",
-   "count": 5,
-   "unit": "labs",
-   "reading_minutes": null,
-   "reading_source": null,
-   "videos": 0,
-   "video_minutes": 0,
-   "level": "Intermediate",
-   "level_source": "path",
-   "roles": [
-    "Endpoint engineer",
-    "Security operations"
-   ],
-   "topics": [
-    "Intune and endpoints",
-    "Defender XDR",
-    "Security operations"
-   ],
-   "status": "Draft",
-   "family": "defender-xdr",
-   "featured": false
-  },
-  {
-   "id": "docs/training/labs.md#gsa",
-   "type": "Lab",
-   "title": "Labs: Global Secure Access learning path",
-   "description": "6 hands-on labs across 6 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The Global Secure Access learning path.",
-   "url": "docs/training/labs.html#gsa",
-   "count": 6,
-   "unit": "labs",
-   "reading_minutes": null,
-   "reading_source": null,
-   "videos": 0,
-   "video_minutes": 0,
-   "level": "Intermediate",
-   "level_source": "path",
-   "roles": [
-    "Identity engineer",
-    "Endpoint engineer",
-    "Cloud and platform engineer",
-    "ISSO and assessor"
-   ],
-   "topics": [
-    "Entra ID",
-    "Intune and endpoints",
-    "Global Secure Access",
-    "Azure",
-    "Compliance and authorization"
-   ],
-   "status": "Draft",
-   "family": "global-secure-access",
    "featured": false
   },
   {

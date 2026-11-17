@@ -24,10 +24,10 @@ review-status: pending
 
 ## Week 3: Defender XDR
 
-- [Defender XDR Engineering and Operations](../../training/defender-xdr/index.md) (Learning path, 5 modules, about 1 hr 46 min). Five modules: architecture, access and onboarding; prevention and Attack Surface Reduction; exposure and incidents; hunting, detections as code and identity signals; and automation, operations and evidence, each with a lab in your own….
-- [Labs: Defender XDR learning path](../../training/labs.md#xdr) (Lab, 5 labs). 5 hands-on labs across 5 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The Defender XDR learning path.
+- [Defender XDR Engineering and Operations](../../training/defender-xdr/index.md) (Learning path, 5 modules, about 1 hr 50 min). Five modules: architecture, access and onboarding; prevention and Attack Surface Reduction; exposure and incidents; hunting, detections as code and identity signals; and automation, operations and evidence, each with a lab in your own….
+- [Labs: Building Defender XDR](../../training/labs.md#xdr) (Lab, 16 labs). 16 hands-on labs across 8 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building Defender XDR.
 
-*Milestone 3: about 1 hr 46 min.*
+*Milestone 3: about 1 hr 50 min.*
 
 ## Week 4: automation
 
@@ -36,5 +36,5 @@ review-status: pending
 
 *Milestone 4: about 2 hr 40 min.*
 
-**Whole plan:** about 12 hr 34 min of reading and video, plus the labs.
+**Whole plan:** about 12 hr 38 min of reading and video, plus the labs.
 
