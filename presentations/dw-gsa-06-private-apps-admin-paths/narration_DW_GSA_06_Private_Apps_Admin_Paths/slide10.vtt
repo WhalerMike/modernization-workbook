@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.281
+Lab 2 needs a test tenant with Private
+Access licenses, a connector group with
+
+2
+00:00:05.281 --> 00:00:10.513
+two connectors on Windows Server 2019 or
+later, a test server and a pilot group.
+
+3
+00:00:10.513 --> 00:00:14.815
+Publish one app with the guide's
+own requests, named so the kit's
+
+4
+00:00:14.815 --> 00:00:19.287
+reviewed policy file finds it, one
+host on 443, for the pilot group.
+
+5
+00:00:19.287 --> 00:00:23.270
+Collect and check, comparing the
+app read with the portal first;
+
+6
+00:00:23.270 --> 00:00:26.563
+the policy check fails,
+because there's no policy yet.
+
+7
+00:00:26.563 --> 00:00:29.450
+Plan and apply its policy in report-only.
+
+8
+00:00:29.450 --> 00:00:33.413
+Then validate: from a device
+off the corporate network,
+
+9
+00:00:33.413 --> 00:00:37.112
+the host is reachable on
+443 and not on another port.
+
+10
+00:00:37.112 --> 00:00:40.637
+Back it out by deleting the
+policy, then the application.
+
+11
+00:00:40.637 --> 00:00:42.700
+The authors haven't run this lab.

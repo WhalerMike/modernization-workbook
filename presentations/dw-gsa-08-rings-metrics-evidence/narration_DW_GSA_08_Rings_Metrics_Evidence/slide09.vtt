@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.700
+Step 6 asks for signaling off as well.
+
+2
+00:00:02.700 --> 00:00:04.906
+The plan adds it as the very last step,
+
+3
+00:00:04.906 --> 00:00:10.054
+after its own steps have moved the enforced
+compliant network policy to report-only;
+
+4
+00:00:10.054 --> 00:00:14.025
+it would refuse if any compliant
+network policy stayed enforced.
+
+5
+00:00:14.025 --> 00:00:19.019
+Step 7 records the collection, the
+metrics and the rollback plan as evidence,
+
+6
+00:00:19.019 --> 00:00:22.269
+and checks the folder:
+every file matches its hash,
+
+7
+00:00:22.269 --> 00:00:27.025
+the three records form an unbroken
+chain, and each record lists its steps.
+
+8
+00:00:27.025 --> 00:00:31.080
+Step 8 runs the tests:
+ten passed, none failed.

@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.225
+Step 4 is the staged enable.
+
+2
+00:00:02.225 --> 00:00:05.123
+Plan the ring from its
+reviewed desired state,
+
+3
+00:00:05.123 --> 00:00:08.250
+have a second person approve
+the hash, and apply it.
+
+4
+00:00:08.250 --> 00:00:12.925
+Pass the enforce switch only for a policy
+whose report-only period was clean.
+
+5
+00:00:12.925 --> 00:00:17.446
+Then do the plan's manual steps: assign
+the ring's group to each profile
+
+6
+00:00:17.446 --> 00:00:22.125
+in the portal, and widen the Intune
+client assignment in the same change.
+
+7
+00:00:22.125 --> 00:00:27.463
+Step 5 comes after the ring's exit period:
+collect again and run the smoke test.
+
+8
+00:00:27.463 --> 00:00:31.337
+It runs every area's checks
+and the ring exit criteria.
+
+9
+00:00:31.337 --> 00:00:34.667
+In the fixture at ring
+1, a hundred checks run,
+
+10
+00:00:34.667 --> 00:00:38.737
+none fail, every criterion
+passes, and the ring says go.
+
+11
+00:00:38.737 --> 00:00:42.290
+Then run the guide's own Validate
+steps for the ring's group.

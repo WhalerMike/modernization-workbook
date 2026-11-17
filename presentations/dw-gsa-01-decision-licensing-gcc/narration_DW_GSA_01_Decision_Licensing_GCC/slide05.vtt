@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.400
+This is where GCC matters.
+
+2
+00:00:02.400 --> 00:00:05.185
+Because Learn's sentence
+covers the product,
+
+3
+00:00:05.185 --> 00:00:09.099
+every preview feature's GCC
+availability is not yet specified,
+
+4
+00:00:09.099 --> 00:00:12.712
+and the kit's table lists them
+with the guide's interim path.
+
+5
+00:00:12.712 --> 00:00:16.851
+Registered devices: use joined
+or hybrid joined devices.
+
+6
+00:00:16.851 --> 00:00:18.943
+The cloud firewall for clients:
+
+7
+00:00:18.943 --> 00:00:22.887
+block QUIC with an Intune-delivered
+Windows Firewall rule.
+
+8
+00:00:22.887 --> 00:00:26.712
+The Explicit Forward Proxy:
+acquire with the client only.
+
+9
+00:00:26.712 --> 00:00:30.850
+HTTP method filtering:
+filter by category and name.
+
+10
+00:00:30.850 --> 00:00:34.650
+Custom Private Access
+profiles: per-app applications.
+
+11
+00:00:34.650 --> 00:00:38.450
+Enriched log categories: not
+exported without a decision.
+
+12
+00:00:38.450 --> 00:00:42.137
+A decision that uses one without
+an approved exception fails,
+
+13
+00:00:42.137 --> 00:00:44.520
+and the finding says what to do instead.

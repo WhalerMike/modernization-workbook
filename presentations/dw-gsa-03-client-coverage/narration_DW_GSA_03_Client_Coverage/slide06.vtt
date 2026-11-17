@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.088
+Who owns this?
+
+2
+00:00:01.088 --> 00:00:04.317
+The endpoint engineer owns the Intune app,
+
+3
+00:00:04.317 --> 00:00:08.562
+the DNS-over-HTTPS profile,
+and the hardening from ring 2.
+
+4
+00:00:08.562 --> 00:00:13.349
+The help desk uses the client's collect
+logs and health check before escalating.
+
+5
+00:00:13.349 --> 00:00:15.687
+The policy owner approves exclusions,
+
+6
+00:00:15.687 --> 00:00:19.850
+and the security officer keeps the
+runs and the health check exports.
+
+7
+00:00:19.850 --> 00:00:24.525
+The fleet read needs only Network
+Access Policy Read All, delegated.
+
+8
+00:00:24.525 --> 00:00:29.300
+The device script runs as an administrator
+on a test device and only reads.
+
+9
+00:00:29.300 --> 00:00:34.200
+And the in-scope count comes from Intune,
+with its date, in the settings file.

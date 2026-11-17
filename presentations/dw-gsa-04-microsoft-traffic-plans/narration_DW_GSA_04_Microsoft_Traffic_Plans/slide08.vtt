@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.137
+Step 5 plans the pilot
+from its desired state.
+
+2
+00:00:03.137 --> 00:00:04.488
+Two Graph steps.
+
+3
+00:00:04.488 --> 00:00:06.370
+The internet profile goes off,
+
+4
+00:00:06.370 --> 00:00:10.662
+because the pilot's desired state
+hasn't adopted Internet Access yet.
+
+5
+00:00:10.662 --> 00:00:13.846
+And the administrative
+RDP policy goes back
+
+6
+00:00:13.846 --> 00:00:16.600
+to its reviewed file; Chapter 6 says why.
+
+7
+00:00:16.600 --> 00:00:18.975
+Two portal steps assign the pilot group.
+
+8
+00:00:18.975 --> 00:00:22.513
+Then the plan's hash, and
+dry run, nothing changed.
+
+9
+00:00:22.513 --> 00:00:25.299
+Step 6 reads the plan's
+first step in full,
+
+10
+00:00:25.299 --> 00:00:29.943
+as the reviewer does before approving
+the hash: the call, the method,
+
+11
+00:00:29.943 --> 00:00:33.980
+the address on graph dot
+microsoft dot com, and the reason.

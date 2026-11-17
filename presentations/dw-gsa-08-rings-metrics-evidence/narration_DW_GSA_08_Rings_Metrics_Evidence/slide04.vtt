@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.213
+Here are the numbers.
+
+2
+00:00:01.213 --> 00:00:05.346
+Eight metrics from one collection
+and the inputs: client coverage,
+
+3
+00:00:05.346 --> 00:00:09.180
+sign-ins through the service,
+compliant network enforcement,
+
+4
+00:00:09.180 --> 00:00:13.690
+Private Access least privilege,
+connector resilience, bypass exposure,
+
+5
+00:00:13.690 --> 00:00:18.200
+TLS health, and telemetry freshness,
+each with a target from the settings.
+
+6
+00:00:18.200 --> 00:00:23.274
+And eight exit criteria from the guide's
+ring table: business days in the ring,
+
+7
+00:00:23.274 --> 00:00:28.508
+open severity-two tickets, help desk
+volume, the client on every in-scope device,
+
+8
+00:00:28.508 --> 00:00:32.374
+clean report-only results, TLS
+failures under one percent,
+
+9
+00:00:32.374 --> 00:00:37.850
+the emergency exclusion tested on the ring's
+start date, and break-glass rehearsed.
+
+10
+00:00:37.850 --> 00:00:41.280
+The ring exits only if
+every criterion passes.

@@ -1,0 +1,374 @@
+{
+ "1": [
+  [
+   0.05,
+   2.913,
+   "Welcome back to Building Global Secure Access."
+  ],
+  [
+   2.962,
+   3.337,
+   "This is Chapter 3: the client and its coverage."
+  ],
+  [
+   6.3,
+   6.237,
+   "Every later policy assumes the client is on the device, connected, current, and hard to turn off."
+  ],
+  [
+   12.537,
+   4.1,
+   "This chapter measures that, device by device and across the fleet."
+  ],
+  [
+   16.637,
+   6.737,
+   "The guide already holds Learn's Intune packaging and hardening, so we won't repeat them; we'll build the measurement."
+  ],
+  [
+   23.375,
+   6.05,
+   "The chapter is a draft awaiting review, and the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.363,
+   "Why measure the client?"
+  ],
+  [
+   1.413,
+   5.775,
+   "Because the compliant network check, the tenant restrictions and every private app assume it's there."
+  ],
+  [
+   7.188,
+   6.062,
+   "If the client is missing or off, users are blocked, or traffic quietly goes around the policy."
+  ],
+  [
+   13.25,
+   17.55,
+   "So the goal: say what share of in-scope devices carry an active client; for each pilot device, say whether it runs a current client with IPv4 preferred, D N S over HTTPS off and a healthy connection; and from ring 2, show the hardening values, with evidence for each."
+  ],
+  [
+   30.8,
+   5.6,
+   "It's for the developers, the endpoint engineer who owns the Intune app, and help desk leads."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   15.137,
+   "Learn's client page gives the prerequisites: a joined, hybrid joined or registered device, though registered devices carry only Private Access, in preview; an administrator to install; IPv4 only; and no secure D N S."
+  ],
+  [
+   15.188,
+   10.65,
+   "It gives the Intune values, the D N S-over-HTTPS profile, four hardening registry values, and the advice to let users run unrestricted first."
+  ],
+  [
+   25.837,
+   8.15,
+   "For the fleet, the beta device usage summary counts total, active and inactive devices, with Network Access Policy Read All."
+  ],
+  [
+   33.987,
+   6.537,
+   "Clients 1.8.239 or later use Universal Continuous Access Evaluation."
+  ],
+  [
+   40.525,
+   7.3,
+   "One difference: the summary's parameter table marks traffic type required, while its own example and the guide leave it out."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.225,
+   "What does it leave to you?"
+  ],
+  [
+   1.275,
+   10.6,
+   "The Validate commands are typed on one device, with no record to compare across devices, so the kit's device script runs the same reads, read-only, and writes one record."
+  ],
+  [
+   11.875,
+   6.575,
+   "A device count means nothing without the number that should be there, so coverage divides by Intune's in-scope count."
+  ],
+  [
+   18.45,
+   6.625,
+   "Hardening in the pilot hides who needs to turn the client off, so it's information in the pilot and a check from ring 2."
+  ],
+  [
+   25.075,
+   4.45,
+   "An old client quietly loses a protection, so there's a version check."
+  ],
+  [
+   29.525,
+   6.05,
+   "And an exclusion without an owner never ends, so exclusions liv in the exception register."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.475,
+   "Here are the seven checks."
+  ],
+  [
+   1.525,
+   7.8,
+   "Coverage: active devices over in-scope devices, against the target, ninety-eight percent after ring 3 in the guide."
+  ],
+  [
+   9.325,
+   6.525,
+   "Each device's client is at least the minimum version, here the one Universal access evaluation needs."
+  ],
+  [
+   15.85,
+   4.25,
+   "IPv4 is preferred, the value Learn's install script sets."
+  ],
+  [
+   20.1,
+   4.225,
+   "D N S over HTTPS is off in Edge and Chrome."
+  ],
+  [
+   24.325,
+   1.238,
+   "Health is connected."
+  ],
+  [
+   25.562,
+   3.112,
+   "The four hardening values are set, from ring 2."
+  ],
+  [
+   28.675,
+   4.537,
+   "And each client exclusion has an owner, an approver and an expiry."
+  ],
+  [
+   33.212,
+   8.7,
+   "One honest note: the browser policy value the script expects is Chromium's, not stated on the Learn page read, and the research gaps say so."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.038,
+   "Who owns this?"
+  ],
+  [
+   1.087,
+   7.475,
+   "The endpoint engineer owns the Intune app, the D N S-over-HTTPS profile, and the hardening from ring 2."
+  ],
+  [
+   8.562,
+   4.787,
+   "The help desk uses the client's collect logs and health check before escalating."
+  ],
+  [
+   13.35,
+   6.5,
+   "The policy owner approves exclusions, and the security officer keeps the runs and the health check exports."
+  ],
+  [
+   19.85,
+   4.675,
+   "The fleet read needs only Network Access Policy Read All, delegated."
+  ],
+  [
+   24.525,
+   4.775,
+   "The device script runs as an administrator on a test device and only reads."
+  ],
+  [
+   29.3,
+   4.838,
+   "And the in-scope count comes from Intune, with its date, in the settings file."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.075,
+   "Lab 1, in the kit's folder, no tenant."
+  ],
+  [
+   3.125,
+   3.638,
+   "Step 1 lists one read, the device usage summary."
+  ],
+  [
+   6.763,
+   6.15,
+   "Step 2 reads the pilot tenant's summary: eighteen devices, fifteen active, three inactive."
+  ],
+  [
+   12.912,
+   5.438,
+   "Step 3 reads the four pilot devices' client records, as the device script wrote them."
+  ],
+  [
+   18.35,
+   10.963,
+   "Pilot 3 runs an older client with DisabledComponents zero, so I P version six is preferred; pilot 4 is disconnected; and only pilot 1 has the hardening values."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.087,
+   "Step 4 runs the client checks."
+  ],
+  [
+   2.138,
+   3.112,
+   "Coverage is eighty-three percent against ninety-eight."
+  ],
+  [
+   5.25,
+   7.475,
+   "Pilot 3 has an old client, I P version six preferred, and D N S over HTTPS still on in Chrome."
+  ],
+  [
+   12.725,
+   1.962,
+   "Pilot 4 is disconnected."
+  ],
+  [
+   14.688,
+   4.325,
+   "The Hyper-V exclusion has an owner, an approver and an expiry."
+  ],
+  [
+   19.012,
+   2.837,
+   "Hardening is only information in the pilot."
+  ],
+  [
+   21.85,
+   9.637,
+   "Step 5 asks the same devices ring 2's question, where hardening is required: three devices fail, because only pilot 1 has the remediation."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.5,
+   "Step 6 reads the device script's header."
+  ],
+  [
+   2.55,
+   13.95,
+   "It runs on a Windows device, not on the lab laptop, as an administrator, and only reads: the client's file version, the four hardening values, the IPv4 preference and the browsers' D N S-over-HTTPS policy."
+  ],
+  [
+   16.5,
+   5.838,
+   "The health is read from the tray's health check by a person and passed in, because the script can't see it."
+  ],
+  [
+   22.337,
+   4.463,
+   "Step 7 runs this chapter's tests: three passed, none failed."
+  ],
+  [
+   26.8,
+   1.837,
+   "Then delete the output folder."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   9.088,
+   "Lab 2 needs one Windows 11 test device, joined to Entra I D and enrolled in Intune, with the client installed from the guide's Intune app."
+  ],
+  [
+   9.137,
+   5.15,
+   "On the device, open the health check, then run the device script as an administrator."
+  ],
+  [
+   14.287,
+   3.188,
+   "Run the guide's own reads beside it as a cross-check."
+  ],
+  [
+   17.475,
+   3.5,
+   "Add the record to your inputs, on agency storage."
+  ],
+  [
+   20.975,
+   2.312,
+   "Then read the fleet's count and check."
+  ],
+  [
+   23.288,
+   8.787,
+   "If the service reports no active devices while the client is connected, record it: it may be the traffic type parameter Learn's table marks required."
+  ],
+  [
+   32.075,
+   3.038,
+   "Nothing changed, so backing out is signing out."
+  ],
+  [
+   35.112,
+   2.0,
+   "The authors haven't run this lab."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   5.35,
+   "Coverage against Intune's count supports system monitoring and the component inventory."
+  ],
+  [
+   5.4,
+   3.85,
+   "Each device's configuration supports configuration settings."
+  ],
+  [
+   9.25,
+   5.575,
+   "Hardening from ring 2 supports least functionality, and governed exclusions support both."
+  ],
+  [
+   14.825,
+   5.688,
+   "The indicators are fed-ramp's, mapped by the program, and the assessor decides the controls."
+  ],
+  [
+   20.512,
+   13.988,
+   "The dangers: hardening in the pilot, which hides who needs to turn the client off; I P version six preferred or D N S over HTTPS on, which lets traffic go around the client; and a raw count mistaken for coverage."
+  ],
+  [
+   34.5,
+   8.287,
+   "You're done when the count comes from Intune with its date, every pilot device has a record, and coverage meets the target before the ring exits."
+  ],
+  [
+   42.788,
+   4.263,
+   "Next, Chapter 4: Microsoft traffic, and change plans."
+  ]
+ ]
+}

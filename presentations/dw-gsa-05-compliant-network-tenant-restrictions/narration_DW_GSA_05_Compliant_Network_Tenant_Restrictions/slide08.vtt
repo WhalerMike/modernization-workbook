@@ -1,0 +1,42 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.537
+Step 5 checks the tenant restrictions.
+
+2
+00:00:02.537 --> 00:00:05.063
+The default blocks, and tagging is on.
+
+3
+00:00:05.063 --> 00:00:09.661
+But one partner tenant is allowed with
+no register entry, and the block query
+
+4
+00:00:09.661 --> 00:00:14.187
+shows a tenant that isn't a registered
+partner, listed for the weekly review.
+
+5
+00:00:14.187 --> 00:00:15.452
+Step 6 plans ring 1,
+
+6
+00:00:15.452 --> 00:00:20.088
+whose desired state wants the
+compliant network policy enforced.
+
+7
+00:00:20.088 --> 00:00:21.874
+Without the enforce switch,
+
+8
+00:00:21.874 --> 00:00:25.525
+the plan leaves it report-only
+and says so on a manual line.
+
+9
+00:00:25.525 --> 00:00:30.860
+A reviewer passes the switch only once step
+3's check is clean, which it isn't yet.

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Welcome back to Building
+Global Secure Access.
+
+2
+00:00:02.963 --> 00:00:07.249
+This is Chapter 5: the compliant
+network, and tenant restrictions.
+
+3
+00:00:07.249 --> 00:00:10.917
+These are two settings only
+Microsoft Entra can provide,
+
+4
+00:00:10.917 --> 00:00:13.725
+and two of the easiest
+ways to lock users out.
+
+5
+00:00:13.725 --> 00:00:17.250
+The code's job is to say when
+each is safe to enforce.
+
+6
+00:00:17.250 --> 00:00:21.896
+We'll start from Learn's example policy
+and its universal tenant restrictions,
+
+7
+00:00:21.896 --> 00:00:23.397
+see what they leave to you,
+
+8
+00:00:23.397 --> 00:00:27.400
+read eleven checks and the plan's
+enforcement gate, and walk two labs.
+
+9
+00:00:27.400 --> 00:00:29.914
+The chapter is a draft awaiting review,
+
+10
+00:00:29.914 --> 00:00:33.500
+and the code is illustrative,
+tested against fixtures.

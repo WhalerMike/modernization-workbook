@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.488
+The answer to check eight: last,
+only after no policy depends on it.
+
+2
+00:00:04.488 --> 00:00:05.425
+Scene nine.
+
+3
+00:00:05.425 --> 00:00:09.183
+Ring 1 goes live, in a test
+tenant first and then production,
+
+4
+00:00:09.183 --> 00:00:13.175
+with one settings file per
+environment and the same commands.
+
+5
+00:00:13.175 --> 00:00:17.934
+Before any change, a read-only preflight
+checks the stage, the collection,
+
+6
+00:00:17.934 --> 00:00:21.821
+the emergency group's exclusion
+from every network policy,
+
+7
+00:00:21.821 --> 00:00:24.200
+the logs, and the approved decisions.
+
+8
+00:00:24.200 --> 00:00:28.944
+The ring is enabled from a plan approved
+by its hash, smoke-tested after its exit
+
+9
+00:00:28.944 --> 00:00:33.688
+period, and rolled back from a plan written
+before it started if a trigger fires.
+
+10
+00:00:33.688 --> 00:00:37.338
+Production starts only when the
+test stage's evidence passes.
+
+11
+00:00:37.338 --> 00:00:40.320
+The runbook hasn't been
+run against a live tenant.

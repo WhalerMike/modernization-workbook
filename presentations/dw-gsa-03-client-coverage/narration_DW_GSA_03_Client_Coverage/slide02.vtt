@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+Why measure the client?
+
+2
+00:00:01.413 --> 00:00:03.544
+Because the compliant network check,
+
+3
+00:00:03.544 --> 00:00:07.188
+the tenant restrictions and every
+private app assume it's there.
+
+4
+00:00:07.188 --> 00:00:10.421
+If the client is missing
+or off, users are blocked,
+
+5
+00:00:10.421 --> 00:00:13.250
+or traffic quietly goes around the policy.
+
+6
+00:00:13.250 --> 00:00:17.930
+So the goal: say what share of in-scope
+devices carry an active client;
+
+7
+00:00:17.930 --> 00:00:23.362
+for each pilot device, say whether it runs
+a current client with IPv4 preferred,
+
+8
+00:00:23.362 --> 00:00:27.374
+DNS over HTTPS off and a healthy
+connection; and from ring 2,
+
+9
+00:00:27.374 --> 00:00:30.800
+show the hardening values,
+with evidence for each.
+
+10
+00:00:30.800 --> 00:00:32.258
+It's for the developers,
+
+11
+00:00:32.258 --> 00:00:36.460
+the endpoint engineer who owns the
+Intune app, and help desk leads.

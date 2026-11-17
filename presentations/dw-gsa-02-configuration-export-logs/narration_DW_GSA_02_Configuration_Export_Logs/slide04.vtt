@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.275
+What does it leave to you?
+
+2
+00:00:01.275 --> 00:00:03.949
+The guide's export covers nine addresses,
+
+3
+00:00:03.949 --> 00:00:08.432
+but later chapters also need connector
+members, Private Access apps,
+
+4
+00:00:08.432 --> 00:00:12.600
+licenses and the logs, so the kit
+has one collector for every read.
+
+5
+00:00:12.600 --> 00:00:15.401
+The guide's hash list is
+something nobody checks,
+
+6
+00:00:15.401 --> 00:00:19.813
+so the kit's manifest is checked every
+time a later step reads the collection.
+
+7
+00:00:19.813 --> 00:00:24.083
+The connector reads need a write
+permission, so the call list says so,
+
+8
+00:00:24.083 --> 00:00:27.362
+the reader only sends GET,
+and the lab signs out after.
+
+9
+00:00:27.362 --> 00:00:30.839
+A diagnostic setting created
+by hand can lose a category,
+
+10
+00:00:30.839 --> 00:00:34.463
+and an architecture record in
+prose drifts from the tenant.
+
+11
+00:00:34.463 --> 00:00:35.880
+The kit checks both.

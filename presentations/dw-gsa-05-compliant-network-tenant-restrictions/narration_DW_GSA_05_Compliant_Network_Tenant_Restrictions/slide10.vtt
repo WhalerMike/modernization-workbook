@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.665
+Lab 2 needs a test tenant with the
+Microsoft profile on for a pilot group,
+
+2
+00:00:04.665 --> 00:00:09.750
+a test device, an emergency access group,
+and a second test tenant as the partner.
+
+3
+00:00:09.750 --> 00:00:13.737
+Find the two Intune apps and
+put their IDs in the settings.
+
+4
+00:00:13.737 --> 00:00:18.176
+Collect, plan and apply the report-only
+policy with the approved hash.
+
+5
+00:00:18.176 --> 00:00:23.251
+Run Learn's test: sign in, disable the
+client, open a new browser session,
+
+6
+00:00:23.251 --> 00:00:27.437
+and sign in again; in report-only,
+that's a recorded failure.
+
+7
+00:00:27.437 --> 00:00:32.038
+Read the tenant restrictions policy,
+and stop if its default doesn't block.
+
+8
+00:00:32.038 --> 00:00:33.826
+Run Learn's four-case test.
+
+9
+00:00:33.826 --> 00:00:36.362
+Then back it out: delete the lab's policy,
+
+10
+00:00:36.362 --> 00:00:39.137
+and turn tagging off if
+the lab turned it on.
+
+11
+00:00:39.137 --> 00:00:41.210
+The authors haven't run this lab.

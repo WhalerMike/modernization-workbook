@@ -1,0 +1,36 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.300
+Step 5 plans the pilot and reads
+the administrative policy's fix.
+
+2
+00:00:04.300 --> 00:00:08.761
+The plan has two Graph steps: the
+internet profile off, and a patch for
+
+3
+00:00:08.761 --> 00:00:13.462
+the RDP policy, because the tenant's
+copy differs from the reviewed file.
+
+4
+00:00:13.462 --> 00:00:18.722
+The body of that patch sets the built-in
+phishing-resistant authentication strength,
+
+5
+00:00:18.722 --> 00:00:21.463
+the one ending in four,
+and a compliant device.
+
+6
+00:00:21.463 --> 00:00:24.362
+That's the guide's Step
+10 policy, as written.
+
+7
+00:00:24.362 --> 00:00:28.870
+Nothing is sent: it's a dry run,
+and fixture mode never applies.

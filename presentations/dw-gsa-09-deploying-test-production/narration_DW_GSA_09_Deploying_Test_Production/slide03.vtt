@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.536
+Step 1 is one settings file per
+environment, copied from the template,
+
+2
+00:00:04.536 --> 00:00:08.549
+with every placeholder filled:
+the tenant, the ring, the groups,
+
+3
+00:00:08.549 --> 00:00:12.720
+the Intune application IDs, the
+security profile, the workspace,
+
+4
+00:00:12.720 --> 00:00:16.576
+the in-scope device count from
+Intune, the minimum versions,
+
+5
+00:00:16.576 --> 00:00:21.062
+the acceptable-use categories, and
+the authentication authorities.
+
+6
+00:00:21.062 --> 00:00:26.000
+The settings hold names and IDs only;
+the operator signs in as a person.
+
+7
+00:00:26.000 --> 00:00:30.708
+The kit refuses a file with anything
+that looks like a secret, a test or
+
+8
+00:00:30.708 --> 00:00:35.912
+production file with a placeholder left
+in it, and any cloud but GCC or global.
+
+9
+00:00:35.912 --> 00:00:39.653
+Everything after this is the
+same command for both stages;
+
+10
+00:00:39.653 --> 00:00:43.300
+only the file, the evidence
+folder and the tenant change.

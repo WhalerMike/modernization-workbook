@@ -1,0 +1,42 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:03.375
+Compute the pilot's metrics and exit.
+
+3
+00:00:03.375 --> 00:00:07.148
+The failing criteria are on
+the slide: time in the ring,
+
+4
+00:00:07.148 --> 00:00:12.550
+the open severity-two, coverage, the
+report-only defects, and the TLS failures.
+
+5
+00:00:12.550 --> 00:00:13.937
+Pilot: no-go.
+
+6
+00:00:13.937 --> 00:00:16.512
+Then the same for ring 1, two weeks later:
+
+7
+00:00:16.512 --> 00:00:21.418
+time in the ring passes at ten business
+days, coverage is a hundred percent,
+
+8
+00:00:21.418 --> 00:00:24.715
+report-only is clean, the
+emergency exclusion was
+
+9
+00:00:24.715 --> 00:00:28.080
+tested on the ring's start
+date, and the ring says go.

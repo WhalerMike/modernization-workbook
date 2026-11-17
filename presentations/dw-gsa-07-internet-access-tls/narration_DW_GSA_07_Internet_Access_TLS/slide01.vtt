@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Welcome back to Building
+Global Secure Access.
+
+2
+00:00:02.963 --> 00:00:08.449
+This is Chapter 7: Internet
+Access, QUIC, and TLS inspection.
+
+3
+00:00:08.449 --> 00:00:11.687
+Filtering the web by
+identity is the easy part.
+
+4
+00:00:11.687 --> 00:00:16.067
+The hard parts are the bypasses that
+never expire, the protocol the service
+
+5
+00:00:16.067 --> 00:00:20.588
+doesn't carry, and a certificate authority
+that could impersonate every site.
+
+6
+00:00:20.588 --> 00:00:22.275
+The code watches all three.
+
+7
+00:00:22.275 --> 00:00:26.300
+This is also the chapter
+where GCC availability bites.
+
+8
+00:00:26.300 --> 00:00:28.814
+The chapter is a draft awaiting review,
+
+9
+00:00:28.814 --> 00:00:32.400
+and the code is illustrative,
+tested against fixtures.

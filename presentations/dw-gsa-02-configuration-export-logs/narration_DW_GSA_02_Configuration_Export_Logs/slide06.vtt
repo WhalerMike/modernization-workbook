@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.975
+Who does what?
+
+2
+00:00:00.975 --> 00:00:03.549
+The platform owner keeps the architecture
+
+3
+00:00:03.549 --> 00:00:06.337
+record and runs the export
+before every change.
+
+4
+00:00:06.337 --> 00:00:10.288
+The security monitor owns the
+workspace and the diagnostic setting.
+
+5
+00:00:10.288 --> 00:00:13.385
+The security officer
+keeps the export folders,
+
+6
+00:00:13.385 --> 00:00:16.324
+in the evidence store,
+not on a personal drive.
+
+7
+00:00:16.324 --> 00:00:21.221
+The reader holds Network Access Read All
+and Policy Read All for the configuration,
+
+8
+00:00:21.221 --> 00:00:24.059
+and Directory Read Write
+All for the connectors,
+
+9
+00:00:24.059 --> 00:00:26.400
+so the lab signs out right after the read.
+
+10
+00:00:26.400 --> 00:00:30.655
+Creating the diagnostic setting takes
+Security Administrator, and roles are
+
+11
+00:00:30.655 --> 00:00:35.040
+activated through privileged identity
+management for the change window only.

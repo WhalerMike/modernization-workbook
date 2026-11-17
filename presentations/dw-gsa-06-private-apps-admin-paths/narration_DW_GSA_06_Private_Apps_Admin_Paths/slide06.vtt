@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.000
+Who owns what?
+
+2
+00:00:01.000 --> 00:00:05.463
+Application owners own their app's
+assignment and review it each quarter.
+
+3
+00:00:05.463 --> 00:00:10.851
+The platform owner for servers keeps two
+healthy, current connectors in every group.
+
+4
+00:00:10.851 --> 00:00:15.491
+The privileged access owner owns the
+administrative apps and the domain controller
+
+5
+00:00:15.491 --> 00:00:18.758
+sensor, and that's where Building
+Privileged Access comes in,
+
+6
+00:00:18.758 --> 00:00:20.850
+for the privileged groups behind them.
+
+7
+00:00:20.850 --> 00:00:25.404
+For permissions: a write-capable delegated
+permission for the connector reads,
+
+8
+00:00:25.404 --> 00:00:28.646
+an application read for the
+apps, which isn't verified yet,
+
+9
+00:00:28.646 --> 00:00:33.410
+the policy permissions, and three
+administrator roles activated just for the lab.

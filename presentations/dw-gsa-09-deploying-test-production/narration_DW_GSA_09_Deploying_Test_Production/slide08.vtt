@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.235
+Step 6: backout triggers
+are set before each ring,
+
+2
+00:00:03.235 --> 00:00:08.091
+for example sign-in failures above the
+baseline, help desk calls above the
+
+3
+00:00:08.091 --> 00:00:13.425
+threshold, a mission application unreachable,
+or TLS failures above one percent.
+
+4
+00:00:13.425 --> 00:00:18.385
+When one fires, apply Step 3's rollback
+with its approved hash, do its manual
+
+5
+00:00:18.385 --> 00:00:23.263
+steps in order, and collect again so
+the evidence shows the state after it.
+
+6
+00:00:23.263 --> 00:00:25.637
+In Stage 1, rehearse it once.
+
+7
+00:00:25.637 --> 00:00:30.462
+Step 7 records every run of the stage
+and checks the stage's evidence.
+
+8
+00:00:30.462 --> 00:00:34.267
+In the fixture, every file matches,
+five records form a chain,
+
+9
+00:00:34.267 --> 00:00:37.762
+and each step the test stage
+needs has a passing record.
+
+10
+00:00:37.762 --> 00:00:42.240
+Production also needs the telemetry
+step, with CISA telemetry agreed.

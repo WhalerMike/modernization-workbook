@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.212
+Step 3 reads the pilot tenant's
+licenses and onboarding state.
+
+2
+00:00:04.212 --> 00:00:08.450
+Step 4 checks the four decision
+records, and finds four failures.
+
+3
+00:00:08.450 --> 00:00:12.500
+The internet decision's availability
+quote is forty-six days old.
+
+4
+00:00:12.500 --> 00:00:15.663
+Its SKU has twenty-five
+units for sixty users.
+
+5
+00:00:15.663 --> 00:00:20.612
+It uses the cloud firewall for clients,
+a preview feature, with no exception.
+
+6
+00:00:20.612 --> 00:00:23.308
+And the branch decision
+defers remote networks
+
+7
+00:00:23.308 --> 00:00:26.138
+without naming what protects
+branches meanwhile.
+
+8
+00:00:26.138 --> 00:00:29.062
+Step 5 reads the preview finding in full.
+
+9
+00:00:29.062 --> 00:00:32.124
+Look at the fix: it isn't
+"enable the preview".
+
+10
+00:00:32.124 --> 00:00:37.100
+It's the guide's interim path, a Windows
+Firewall rule delivered by Intune.

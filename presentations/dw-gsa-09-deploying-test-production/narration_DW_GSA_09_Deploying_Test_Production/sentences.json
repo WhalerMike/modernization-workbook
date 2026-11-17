@@ -1,0 +1,337 @@
+{
+ "1": [
+  [
+   0.05,
+   7.175,
+   "Welcome to the last chapter of Building Global Secure Access, Chapter 9: deploying to test and production."
+  ],
+  [
+   7.225,
+   3.612,
+   "The labs proved the code on fixtures and in a test tenant."
+  ],
+  [
+   10.838,
+   13.838,
+   "This runbook moves the rollout itself: one ring at a time, logs first, emergency access checked before anything changes, every change from a plan a second person approved, and a go or no-go from measured values."
+  ],
+  [
+   24.675,
+   8.588,
+   "It hasn't been run against a lyve tenant; the output you'll see is the kit's fixture mode, run on November 17, 2026."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.05,
+   "Why a runbook?"
+  ],
+  [
+   1.1,
+   1.913,
+   "Because the order is the safety."
+  ],
+  [
+   3.013,
+   6.725,
+   "Before you start: every chapter's Lab 2 has run in a test tenant, with its findings fixed or recorded."
+  ],
+  [
+   9.738,
+   4.138,
+   "The decision records are approved for every function the ring enables."
+  ],
+  [
+   13.875,
+   2.5,
+   "The network diagnostic setting exists."
+  ],
+  [
+   16.375,
+   5.638,
+   "The emergency access accounts exist and have been tested, from Building Privileged Access."
+  ],
+  [
+   22.012,
+   5.412,
+   "Microsoft's break-glass scripts for compliant network outages are staged and rehearsed."
+  ],
+  [
+   27.425,
+   7.65,
+   "And the change record is open, because Learn treats enabling a new traffic profile as a major change for the change advisory board."
+  ],
+  [
+   35.075,
+   4.425,
+   "Roles are activated through privileged identity management for the window only."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   21.012,
+   "Step 1 is one settings file per environment, copied from the template, with every placeholder filled: the tenant, the ring, the groups, the Intune application I D's, the security profile, the workspace, the in-scope device count from Intune, the minimum versions, the acceptable-use categories, and the authentication authorities."
+  ],
+  [
+   21.062,
+   4.938,
+   "The settings hold names and I D's only; the operator signs in as a person."
+  ],
+  [
+   26.0,
+   9.912,
+   "The kit refuses a file with anything that looks like a secret, a test or production file with a placeholder left in it, and any cloud but G C C or global."
+  ],
+  [
+   35.913,
+   7.325,
+   "Everything after this is the same command for both stages; only the file, the evidence folder and the tenant change."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   6.2,
+   "Step 2 signs in to the stage's tenant, collects, and runs the preflight, which only reads."
+  ],
+  [
+   6.25,
+   1.075,
+   "Six checks."
+  ],
+  [
+   7.325,
+   2.237,
+   "The settings file names this stage."
+  ],
+  [
+   9.562,
+   4.15,
+   "The collection matches its manifest and was read in the right tenant."
+  ],
+  [
+   13.713,
+   6.812,
+   "The emergency access group is excluded from every network policy in the tenant, not just the ones in the plan."
+  ],
+  [
+   20.525,
+   4.025,
+   "The network diagnostic setting exists, so logs come before the ring."
+  ],
+  [
+   24.55,
+   3.913,
+   "Every function the desired state enables has an approved decision."
+  ],
+  [
+   28.462,
+   3.237,
+   "And in production, the test stage's evidence passes."
+  ],
+  [
+   31.7,
+   7.838,
+   "Any failure stops the stage; the pilot fixture fails the emergency check, because of the Finance policy from Chapter 6."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   0.925,
+   "Who does what?"
+  ],
+  [
+   0.975,
+   6.775,
+   "The platform owner fills the settings, collects, plans, applies, and does the manual portal steps."
+  ],
+  [
+   7.75,
+   5.562,
+   "A second person, from the change board, approves each plan's hash and each rollback's."
+  ],
+  [
+   13.312,
+   8.887,
+   "The policy owner approves the decision records and the ring's desired state, and passes the enforce switch when a policy's report-only period is clean."
+  ],
+  [
+   22.2,
+   6.55,
+   "The technical program manager runs the rings and keeps the ring record, and the service owner approves each exit."
+  ],
+  [
+   28.75,
+   4.812,
+   "The security officer keeps each stage's evidence folder, inside the boundary."
+  ],
+  [
+   33.562,
+   1.863,
+   "No one approves their own change."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.525,
+   "Here's the fixture run, the fictional tenant at ring 1."
+  ],
+  [
+   3.575,
+   14.375,
+   "The preflight passes all five test-stage checks: the right stage, a collection that matches its manifest in the right tenant, the emergency group excluded from all five network policies, the diagnostic setting, and approved decisions."
+  ],
+  [
+   17.95,
+   13.262,
+   "Step 3 plans the rollback for the state the ring starts from, before the ring starts: three enforced policies to report-only in the guide's order, tagging off with the tenant restrictions policy kept, then the manual steps."
+  ],
+  [
+   31.212,
+   5.175,
+   "It's reviewed, its hash filed, and it's applied only if a backout trigger fires."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.175,
+   "Step 4 is the staged enable."
+  ],
+  [
+   2.225,
+   6.025,
+   "Plan the ring from its reviewed desired state, have a second person approve the hash, and apply it."
+  ],
+  [
+   8.25,
+   4.675,
+   "Pass the enforce switch only for a policy whose report-only period was clean."
+  ],
+  [
+   12.925,
+   9.2,
+   "Then do the plan's manual steps: assign the ring's group to each profile in the portal, and widen the Intune client assignment in the same change."
+  ],
+  [
+   22.125,
+   5.338,
+   "Step 5 comes after the ring's exit period: collect again and run the smoke test."
+  ],
+  [
+   27.462,
+   3.875,
+   "It runs every area's checks and the ring exit criteria."
+  ],
+  [
+   31.337,
+   7.4,
+   "In the fixture at ring 1, a hundred checks run, none fail, every criterion passes, and the ring says go."
+  ],
+  [
+   38.737,
+   3.487,
+   "Then run the guide's own Validate steps for the ring's group."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   13.375,
+   "Step 6: backout triggers are set before each ring, for example sign-in failures above the baseline, help desk calls above the threshold, a mission application unreachable, or TLS failures above one percent."
+  ],
+  [
+   13.425,
+   9.838,
+   "When one fires, apply Step 3's rollback with its approved hash, do its manual steps in order, and collect again so the evidence shows the state after it."
+  ],
+  [
+   23.262,
+   2.375,
+   "In Stage 1, rehearse it once."
+  ],
+  [
+   25.637,
+   4.825,
+   "Step 7 records every run of the stage and checks the stage's evidence."
+  ],
+  [
+   30.462,
+   7.3,
+   "In the fixture, every file matches, five records form a chain, and each step the test stage needs has a passing record."
+  ],
+  [
+   37.763,
+   4.412,
+   "Production also needs the telemetry step, with sis-uh telemetry agreed."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.862,
+   "Step 8 is the go or no-go for production."
+  ],
+  [
+   2.913,
+   20.3,
+   "It starts only when the test stage's evidence passes, which the production preflight re-checks; the test tenant said go and the rollback was rehearsed; the policy owner approved the production records and desired state, and the change board approved the change; and sis-uh telemetry is agreed before ring 3 retires the VPN's web path."
+  ],
+  [
+   23.212,
+   4.625,
+   "Step 9 repeats Steps 2 to 7 in production, one ring at a time."
+  ],
+  [
+   27.837,
+   4.975,
+   "Its preflight takes the test evidence, and in the fixture all six checks pass."
+  ],
+  [
+   32.812,
+   5.787,
+   "For each later ring, change the ring, use its desired state and widen the assignments."
+  ],
+  [
+   38.6,
+   4.713,
+   "Remove a VPN route only after ten business days with no traffic on it."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   14.613,
+   "The stage's evidence supports impact analysis and contingency planning for the preflight, configuration change control for the plans and the ring exits, the contingency plan for the rehearsed rollback, and protection of audit information for the chain."
+  ],
+  [
+   14.662,
+   2.163,
+   "The assessor decides the controls."
+  ],
+  [
+   16.825,
+   16.262,
+   "The dangers: changing a ring before its logs exist, a policy that catches the emergency accounts, a plan applied that differs from the one reviewed, an improvised rollback, production before the test evidence is complete, and unattended runs of the beta A P I."
+  ],
+  [
+   33.087,
+   7.912,
+   "You're done when every stage's preflight passed, the rollback was reviewed and rehearsed, and every hash was approved by someone else."
+  ],
+  [
+   41.0,
+   3.062,
+   "That's the end of Building Global Secure Access."
+  ],
+  [
+   44.062,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

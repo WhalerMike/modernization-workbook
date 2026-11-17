@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.150
+Who is involved?
+
+2
+00:00:01.150 --> 00:00:05.913
+The policy owner signs each decision
+record and approves any exception.
+
+3
+00:00:05.913 --> 00:00:08.425
+Developers build and maintain the kit.
+
+4
+00:00:08.425 --> 00:00:13.350
+The security officer keeps the records,
+the license export and the run folders.
+
+5
+00:00:13.350 --> 00:00:19.026
+And the reader holds very little: License
+Assignment Read All for the licenses,
+
+6
+00:00:19.026 --> 00:00:22.257
+on version 1.0, and
+Network Access Policy Read
+
+7
+00:00:22.257 --> 00:00:25.750
+All for the tenant status,
+on beta, delegated only.
+
+8
+00:00:25.750 --> 00:00:27.850
+Global Reader is enough for both.
+
+9
+00:00:27.850 --> 00:00:32.686
+One difference worth knowing: the guide's
+step connects with Organization Read All,
+
+10
+00:00:32.686 --> 00:00:34.858
+a higher permission Learn also lists;
+
+11
+00:00:34.858 --> 00:00:39.120
+the kit asks for the least-privileged
+one, and the research gaps record it.
