@@ -54,7 +54,8 @@ BOOK = re.compile(r"\bBooks? (\d\d)\b")
 CHAPTERS = re.compile(r"\b(?:Chapters?|Ch\.?) ?(\d\d(?:(?:, and |, | and |–)\d\d)*)")
 APPENDIX = re.compile(r"\b(?:Appendix|App\.) ([A-C])\b")
 # The developer workbooks under Projects, which a deck's chapter numbers can mean. Book 19 is a book.
-WORKBOOKS = {"hr": "hr-driven-identity", "npi": "non-person-identity", "pa": "privileged-access", "pn": "provider-notices", "ttm": "ticket-to-machine", "gsa": "global-secure-access"}
+WORKBOOKS = {"hr": "hr-driven-identity", "npi": "non-person-identity", "pa": "privileged-access", "pn": "provider-notices", "ttm": "ticket-to-machine", "gsa": "global-secure-access",
+             "xdr": "defender-xdr", "azs": "azure-security"}
 TABLE_CELL = re.compile(r"\bBook \d\d\b|\bCh\.? ?\d\d|\bChapters? \d\d|\bApp\. [A-C]\b")
 
 
@@ -196,8 +197,9 @@ def deck_book(deck: Path) -> str | None:
     m = re.match(r"(?:dw|training)-(adm|hr|npi|pa|pn|ttm)-", deck.parent.name)
     if m:
         return "19" if m.group(1) == "adm" else m.group(1)
-    if re.match(r"(?:dw-gsa-|gsa-story)", deck.parent.name):
-        return "gsa"
+    m = re.match(r"(?:dw-(gsa|xdr|azs)-|(gsa|xdr|azs)-story)", deck.parent.name)
+    if m:
+        return m.group(1) or m.group(2)
     return "ttm" if deck.parent.name.startswith("ttm-story") else None
 
 

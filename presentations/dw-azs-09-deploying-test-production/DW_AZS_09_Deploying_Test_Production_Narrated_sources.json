@@ -1,0 +1,144 @@
+[
+ {
+  "slide": 2,
+  "title": "Why a runbook: read every week, write once",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Before you start",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.html"
+   },
+   {
+    "text": "Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Step 1: one settings file per environment",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Step 2: preflight, PF-01 to PF-07",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Who runs each stage, with which role",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Stage 1: the first scheduled run",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Stage 1: plan, approve and apply the one write",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Stage 1: rehearse the rollback, then week two",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Step 9: go or no-go, on live evidence",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Stage 2: production",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "The evidence the ISSO keeps",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Rehearse it, and done when",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.html"
+   }
+  ]
+ }
+]

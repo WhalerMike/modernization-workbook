@@ -1,0 +1,334 @@
+[
+ {
+  "slide": 2,
+  "title": "The macro's path through the nine chapters",
+  "links": [
+   {
+    "text": "Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/09-deploying-to-test-and-production.html"
+   },
+   {
+    "text": "Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.html"
+   },
+   {
+    "text": "Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.html"
+   },
+   {
+    "text": "Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.html"
+   },
+   {
+    "text": "Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.html"
+   },
+   {
+    "text": "Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.html"
+   },
+   {
+    "text": "Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/06-detections-as-code.html"
+   },
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.html"
+   },
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.html"
+   },
+   {
+    "text": "Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Scene 1: before the macro, who may respond to it",
+  "links": [
+   {
+    "text": "List incidents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-list-incidents"
+   },
+   {
+    "text": "National cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "unified RBAC custom roles",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#defender-urbac-create-custom-roles"
+   },
+   {
+    "text": "Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Try it: the access check finds three faults",
+  "links": [
+   {
+    "text": "Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Scene 2: is the device that opened it even seen?",
+  "links": [
+   {
+    "text": "DeviceInfo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#advanced-hunting-deviceinfo-table"
+   },
+   {
+    "text": "troubleshoot onboarding",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-troubleshoot-onboarding"
+   },
+   {
+    "text": "Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Try it: coverage, and where WKS-R0-01 stands",
+  "links": [
+   {
+    "text": "Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Scene 3: what prevention does around the macro",
+  "links": [
+   {
+    "text": "Configure network protection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-configure-network-protection"
+   },
+   {
+    "text": "Evaluate network protection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-evaluate-network-protection"
+   },
+   {
+    "text": "Configure CFA",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-configure-controlled-folder-access"
+   },
+   {
+    "text": "tamper protection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-tamper-protection-overview"
+   },
+   {
+    "text": "Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Try it: three drifts, and the week's events",
+  "links": [
+   {
+    "text": "Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Scene 4: the rule that blocked it, ring by ring",
+  "links": [
+   {
+    "text": "ASR rules reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-reference"
+   },
+   {
+    "text": "Configure ASR rules and exclusions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-configure"
+   },
+   {
+    "text": "ASR rules overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-overview"
+   },
+   {
+    "text": "Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Try it: which rings can move, and ring 1's next value",
+  "links": [
+   {
+    "text": "Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Scene 5: the incident it raised, and its clock",
+  "links": [
+   {
+    "text": "List incidents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-list-incidents"
+   },
+   {
+    "text": "What is Microsoft Security Exposure Management?",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#security-exposure-management-overview"
+   },
+   {
+    "text": "Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Try it: incident 1001, and the ones that broke the table",
+  "links": [
+   {
+    "text": "Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Scene 6: the detection that finds it, kept as code",
+  "links": [
+   {
+    "text": "Update detectionRule",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-update-detectionrule"
+   },
+   {
+    "text": "runHuntingQuery",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-runhuntingquery"
+   },
+   {
+    "text": "Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/06-detections-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "Try it: the rule's test, and the plan for it",
+  "links": [
+   {
+    "text": "Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/06-detections-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 21,
+  "title": "Scene 7: who else it touched, and what may act alone",
+  "links": [
+   {
+    "text": "AlertEvidence",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#advanced-hunting-alertevidence-table"
+   },
+   {
+    "text": "attack disruption exclusions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#attack-disruption-exclusions"
+   },
+   {
+    "text": "configure attack disruption",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-automatic-attack-disruption"
+   },
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.html"
+   }
+  ]
+ },
+ {
+  "slide": 22,
+  "title": "Try it: the ladder check, and what it finds",
+  "links": [
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.html"
+   }
+  ]
+ },
+ {
+  "slide": 24,
+  "title": "Scene 8: the month's evidence, and the metrics",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.html"
+   }
+  ]
+ },
+ {
+  "slide": 25,
+  "title": "Try it: the month, the metrics, a tampered file",
+  "links": [
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.html"
+   }
+  ]
+ },
+ {
+  "slide": 27,
+  "title": "Scene 9: the detection goes live, test first",
+  "links": [
+   {
+    "text": "Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 28,
+  "title": "Try it: publish the rule, dry run, then the hash",
+  "links": [
+   {
+    "text": "Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 29,
+  "title": "Your turn: Lab 2, and where to go next",
+  "links": [
+   {
+    "text": "Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.html"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/09-deploying-to-test-and-production.html"
+   }
+  ]
+ }
+]

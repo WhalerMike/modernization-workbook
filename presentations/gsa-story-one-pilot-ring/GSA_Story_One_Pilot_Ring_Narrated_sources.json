@@ -1,0 +1,226 @@
+[
+ {
+  "slide": 2,
+  "title": "The pilot's path through nine chapters",
+  "links": [
+   {
+    "text": "Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Scene 1: Internet Access, decided on a preview",
+  "links": [
+   {
+    "text": "List subscribedSkus",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-subscribedskus"
+   },
+   {
+    "text": "Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Try it: check the decision records",
+  "links": [
+   {
+    "text": "Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Scene 2: a category the logs leave out",
+  "links": [
+   {
+    "text": "Book 12, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/03-identity-telemetry.html"
+   },
+   {
+    "text": "Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/02-the-evidence-contract.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Try it: the baseline, and a changed file",
+  "links": [
+   {
+    "text": "Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Scene 3: one device behind the rest",
+  "links": [
+   {
+    "text": "Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Try it: coverage and the four devices",
+  "links": [
+   {
+    "text": "Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Scene 4: sign-ins short of target; the first plan",
+  "links": [
+   {
+    "text": "Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Try it: the traffic checks and the pilot's plan",
+  "links": [
+   {
+    "text": "Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Scene 5: three failures the service carried",
+  "links": [
+   {
+    "text": "Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Try it: not ready, and the plan holds it",
+  "links": [
+   {
+    "text": "Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Scene 6: a Finance app that is a VPN again",
+  "links": [
+   {
+    "text": "Zero Trust: Protect networks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#zero-trust-protect-networks"
+   },
+   {
+    "text": "Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "Try it: the private access checks",
+  "links": [
+   {
+    "text": "Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.html"
+   }
+  ]
+ },
+ {
+  "slide": 21,
+  "title": "Scene 7: a bypass that expired",
+  "links": [
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.html"
+   }
+  ]
+ },
+ {
+  "slide": 22,
+  "title": "Try it: bypasses and the TLS checks",
+  "links": [
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.html"
+   }
+  ]
+ },
+ {
+  "slide": 24,
+  "title": "Scene 8: No-go, then Go",
+  "links": [
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 25,
+  "title": "Try it: the pilot's exit, then ring 1's",
+  "links": [
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 27,
+  "title": "Scene 9: the same commands, test then production",
+  "links": [
+   {
+    "text": "Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 28,
+  "title": "Try it: the runbook's fixture run",
+  "links": [
+   {
+    "text": "Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 30,
+  "title": "Your turn: Lab 2, and where to go next",
+  "links": [
+   {
+    "text": "Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.html"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/09-deploying-to-test-and-production.html"
+   }
+  ]
+ }
+]

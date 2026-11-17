@@ -1,0 +1,102 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the client has to be measured",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What Microsoft Learn gives you",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What it leaves to you",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The seven client checks",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Who owns the client, and what they read",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Lab 1: the fleet count and the four devices",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: five failures, and ring 2's rule",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 1: the device script, and the tests",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2: a test device and tenant",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Requirements, dangers, done",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.html"
+   }
+  ]
+ }
+]

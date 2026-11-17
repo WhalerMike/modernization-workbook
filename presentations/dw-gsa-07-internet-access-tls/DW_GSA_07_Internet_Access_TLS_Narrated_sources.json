@@ -1,0 +1,92 @@
+[
+ {
+  "slide": 2,
+  "title": "Why bypasses, QUIC and the CA",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "GCC: QUIC through the interim path",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Twelve checks: six for filtering, six for TLS",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Who approves categories, bypasses, privacy",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Lab 1: two bypasses fail",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: TLS — a certificate near expiry",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 1: two weeks later, thirteen pass",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2: a pilot security profile and QUIC",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Requirements, dangers, done",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.html"
+   }
+  ]
+ }
+]

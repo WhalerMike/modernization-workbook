@@ -1,0 +1,128 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the decision comes first",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What Microsoft Learn gives you",
+  "links": [
+   {
+    "text": "What is Global Secure Access?",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-global-secure-access"
+   },
+   {
+    "text": "List subscribedSkus",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-subscribedskus"
+   },
+   {
+    "text": "national cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What it leaves to you, and the verdict",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "GCC: the features Learn doesn't state",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The nine decision checks",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Who signs, who reads, with what",
+  "links": [
+   {
+    "text": "List subscribedSkus",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-subscribedskus"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: the reads, and the unstated features",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 1: four failures in the pilot's records",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 1: two weeks later, every check passes",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Lab 2: a test tenant",
+  "links": [
+   {
+    "text": "List subscribedSkus",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#list-subscribedskus"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Federal requirements, dangers, done",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.html"
+   }
+  ]
+ }
+]

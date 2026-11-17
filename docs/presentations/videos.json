@@ -6599,6 +6599,451 @@
   "sources": "presentations/b20-information-protection/B20_Information_Protection_Narrated_sources.json"
  },
  {
+  "id": "AZS_Story_One_Portal_Narrated",
+  "title": "Building Azure Security — One Portal, End to End: narrated story deck",
+  "group": "book",
+  "minutes": 18,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/AZS_Story_One_Portal_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/azs-story-one-portal/AZS_Story_One_Portal_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/azs-story-one-portal/AZS_Story_One_Portal_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/azure-security/index.html",
+  "source": "docs/project-plans/developer-workbooks/azure-security/index.md",
+  "kits": [
+   {
+    "name": "azure-security",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/azure-security",
+    "zip": "downloads/azure-security-code.zip"
+   },
+   {
+    "name": "zta-results",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/zta-results",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "One Portal, End to End"
+   ],
+   [
+    42,
+    "The portal's path through the nine chapters"
+   ],
+   [
+    86,
+    "Scene 1: the baseline, read back every week"
+   ],
+   [
+    129,
+    "Try it: the baseline check on week one"
+   ],
+   [
+    167,
+    "Check 1: does pip-afw-hub's log count?"
+   ],
+   [
+    192,
+    "Scene 2: every public face of the portal, owned"
+   ],
+   [
+    238,
+    "Try it: the register, then a week later"
+   ],
+   [
+    275,
+    "Check 2: where does the register live?"
+   ],
+   [
+    297,
+    "Scene 3: which of the portal's IPs are protected"
+   ],
+   [
+    342,
+    "Try it: each public IP's protection"
+   ],
+   [
+    383,
+    "Check 3: is pip-jump protected?"
+   ],
+   [
+    405,
+    "Scene 4: a WAF that logs but doesn't block"
+   ],
+   [
+    448,
+    "Try it: the portal's WAF policies, and the plan"
+   ],
+   [
+    488,
+    "Check 4: who sends the switch to Prevention?"
+   ],
+   [
+    512,
+    "Scene 5: can the portal be reached around the edge?"
+   ],
+   [
+    558,
+    "Try it: each origin's lock-down"
+   ],
+   [
+    592,
+    "Check 5: why isn't the tag enough?"
+   ],
+   [
+    614,
+    "Scene 6: the portal's egress skips the firewall"
+   ],
+   [
+    658,
+    "Try it: default routes, and the draft to Deny"
+   ],
+   [
+    696,
+    "Check 6: why a draft, and why not automated?"
+   ],
+   [
+    719,
+    "Scene 7: the portal's vault, missing every part"
+   ],
+   [
+    764,
+    "Try it: the vaults"
+   ],
+   [
+    801,
+    "Check 7: can purge protection be undone?"
+   ],
+   [
+    821,
+    "Scene 8: an exemption due, a week of drift, the evidence"
+   ],
+   [
+    866,
+    "Try it: the exemption, the drift, the records"
+   ],
+   [
+    905,
+    "Check 8: why does the stage check fail?"
+   ],
+   [
+    928,
+    "Scene 9: the kit goes live, test first"
+   ],
+   [
+    976,
+    "Try it: the runbook's rehearsal on the fixtures"
+   ],
+   [
+    1011,
+    "Check 9: production before test passes"
+   ],
+   [
+    1031,
+    "Your turn: Lab 2, and where to go next"
+   ]
+  ],
+  "sources": "presentations/azs-story-one-portal/AZS_Story_One_Portal_Narrated_sources.json"
+ },
+ {
+  "id": "XDR_Story_One_Office_Macro_Narrated",
+  "title": "Building Defender XDR — One Office Macro, End to End: narrated story deck",
+  "group": "book",
+  "minutes": 16,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/XDR_Story_One_Office_Macro_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/xdr-story-one-office-macro/XDR_Story_One_Office_Macro_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/xdr-story-one-office-macro/XDR_Story_One_Office_Macro_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/defender-xdr/index.html",
+  "source": "docs/project-plans/developer-workbooks/defender-xdr/index.md",
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   },
+   {
+    "name": "zta-results",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/zta-results",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "One Office Macro, End to End"
+   ],
+   [
+    43,
+    "The macro's path through the nine chapters"
+   ],
+   [
+    86,
+    "Scene 1: before the macro, who may respond to it"
+   ],
+   [
+    129,
+    "Try it: the access check finds three faults"
+   ],
+   [
+    166,
+    "Check 1: a Graph session in the wrong tenant"
+   ],
+   [
+    185,
+    "Scene 2: is the device that opened it even seen?"
+   ],
+   [
+    223,
+    "Try it: coverage, and where WKS-R0-01 stands"
+   ],
+   [
+    257,
+    "Check 2: a device Defender sees that the inventory doesn't"
+   ],
+   [
+    276,
+    "Scene 3: what prevention does around the macro"
+   ],
+   [
+    318,
+    "Try it: three drifts, and the week's events"
+   ],
+   [
+    352,
+    "Check 3: network protection reads 2 on ring 1"
+   ],
+   [
+    369,
+    "Scene 4: the rule that blocked it, ring by ring"
+   ],
+   [
+    410,
+    "Try it: which rings can move, and ring 1's next value"
+   ],
+   [
+    446,
+    "Check 4: the LSASS rule planned in warn"
+   ],
+   [
+    461,
+    "Scene 5: the incident it raised, and its clock"
+   ],
+   [
+    506,
+    "Try it: incident 1001, and the ones that broke the table"
+   ],
+   [
+    546,
+    "Check 5: Exposure Management in a GCC tenant"
+   ],
+   [
+    565,
+    "Scene 6: the detection that finds it, kept as code"
+   ],
+   [
+    610,
+    "Try it: the rule's test, and the plan for it"
+   ],
+   [
+    643,
+    "Check 6: a rule with automated isolation"
+   ],
+   [
+    658,
+    "Scene 7: who else it touched, and what may act alone"
+   ],
+   [
+    698,
+    "Try it: the ladder check, and what it finds"
+   ],
+   [
+    729,
+    "Check 7: a server group at Full"
+   ],
+   [
+    747,
+    "Scene 8: the month's evidence, and the metrics"
+   ],
+   [
+    785,
+    "Try it: the month, the metrics, a tampered file"
+   ],
+   [
+    817,
+    "Check 8: a run that found something"
+   ],
+   [
+    836,
+    "Scene 9: the detection goes live, test first"
+   ],
+   [
+    879,
+    "Try it: publish the rule, dry run, then the hash"
+   ],
+   [
+    916,
+    "Your turn: Lab 2, and where to go next"
+   ]
+  ],
+  "sources": "presentations/xdr-story-one-office-macro/XDR_Story_One_Office_Macro_Narrated_sources.json"
+ },
+ {
+  "id": "GSA_Story_One_Pilot_Ring_Narrated",
+  "title": "Building Global Secure Access — One Pilot Ring, Decision to Go: narrated story deck",
+  "group": "book",
+  "minutes": 17,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/GSA_Story_One_Pilot_Ring_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/gsa-story-one-pilot-ring/GSA_Story_One_Pilot_Ring_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/gsa-story-one-pilot-ring/GSA_Story_One_Pilot_Ring_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/global-secure-access/index.html",
+  "source": "docs/project-plans/developer-workbooks/global-secure-access/index.md",
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   },
+   {
+    "name": "zta-results",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/zta-results",
+    "zip": null
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "One Pilot Ring, Decision to Go"
+   ],
+   [
+    41,
+    "The pilot's path through nine chapters"
+   ],
+   [
+    86,
+    "Scene 1: Internet Access, decided on a preview"
+   ],
+   [
+    130,
+    "Try it: check the decision records"
+   ],
+   [
+    161,
+    "Check 1: a preview in GCC"
+   ],
+   [
+    184,
+    "Scene 2: a category the logs leave out"
+   ],
+   [
+    226,
+    "Try it: the baseline, and a changed file"
+   ],
+   [
+    258,
+    "Check 2: when the logs come"
+   ],
+   [
+    278,
+    "Scene 3: one device behind the rest"
+   ],
+   [
+    324,
+    "Try it: coverage and the four devices"
+   ],
+   [
+    357,
+    "Check 3: hardening in the pilot"
+   ],
+   [
+    380,
+    "Scene 4: sign-ins short of target; the first plan"
+   ],
+   [
+    420,
+    "Try it: the traffic checks and the pilot's plan"
+   ],
+   [
+    452,
+    "Check 4: applying a plan"
+   ],
+   [
+    470,
+    "Scene 5: three failures the service carried"
+   ],
+   [
+    511,
+    "Try it: not ready, and the plan holds it"
+   ],
+   [
+    543,
+    "Check 5: which failures matter"
+   ],
+   [
+    564,
+    "Scene 6: a Finance app that is a VPN again"
+   ],
+   [
+    610,
+    "Try it: the private access checks"
+   ],
+   [
+    641,
+    "Check 6: an administrative path"
+   ],
+   [
+    662,
+    "Scene 7: a bypass that expired"
+   ],
+   [
+    708,
+    "Try it: bypasses and the TLS checks"
+   ],
+   [
+    741,
+    "Check 7: the inspection certificate"
+   ],
+   [
+    764,
+    "Scene 8: No-go, then Go"
+   ],
+   [
+    809,
+    "Try it: the pilot's exit, then ring 1's"
+   ],
+   [
+    842,
+    "Check 8: signaling in a rollback"
+   ],
+   [
+    859,
+    "Scene 9: the same commands, test then production"
+   ],
+   [
+    903,
+    "Try it: the runbook's fixture run"
+   ],
+   [
+    936,
+    "Check 9: production before test passes"
+   ],
+   [
+    955,
+    "Your turn: Lab 2, and where to go next"
+   ]
+  ],
+  "sources": "presentations/gsa-story-one-pilot-ring/GSA_Story_One_Pilot_Ring_Narrated_sources.json"
+ },
+ {
   "id": "PN_Story_One_Retirement_Notice_Narrated",
   "title": "Building Provider Notices — One Retirement Notice, End to End: narrated story deck",
   "group": "book",
@@ -9569,6 +10014,1993 @@
    ]
   ],
   "sources": "presentations/research-ttm-servicenow-sailpoint/Research_TTM_ServiceNow_SailPoint_Narrated_sources.json"
+ },
+ {
+  "id": "DW_AZS_01_Landing_Zone_Baseline_Narrated",
+  "title": "Building Azure Security, Chapter 01 — The Landing-Zone Baseline: narrated tour",
+  "group": "developer",
+  "minutes": 9,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_AZS_01_Landing_Zone_Baseline_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-azs-01-landing-zone-baseline/DW_AZS_01_Landing_Zone_Baseline_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-01-landing-zone-baseline/DW_AZS_01_Landing_Zone_Baseline_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.html",
+  "source": "docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.md",
+  "kits": [
+   {
+    "name": "azure-security",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/azure-security",
+    "zip": "downloads/azure-security-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 01: The Landing-Zone Baseline"
+   ],
+   [
+    38,
+    "Why the baseline is read back as code"
+   ],
+   [
+    87,
+    "What Microsoft Learn gives you"
+   ],
+   [
+    127,
+    "What it leaves to you"
+   ],
+   [
+    162,
+    "The spine: one call list, two invokers"
+   ],
+   [
+    211,
+    "The baseline check: six rules"
+   ],
+   [
+    257,
+    "Who owns the baseline, and what the reader may do"
+   ],
+   [
+    290,
+    "Lab 1: the calls, and the check on week one"
+   ],
+   [
+    330,
+    "Lab 1: the findings, the summary, the command"
+   ],
+   [
+    373,
+    "Lab 2: a test subscription"
+   ],
+   [
+    415,
+    "Federal requirements and the evidence"
+   ],
+   [
+    458,
+    "Dangers, and the guard for each"
+   ],
+   [
+    503,
+    "Done when: the chapter's checklist"
+   ]
+  ],
+  "sources": "presentations/dw-azs-01-landing-zone-baseline/DW_AZS_01_Landing_Zone_Baseline_Narrated_sources.json"
+ },
+ {
+  "id": "DW_AZS_02_Public_Exposure_Register_Narrated",
+  "title": "Building Azure Security, Chapter 02 — The Public Exposure Register: narrated tour",
+  "group": "developer",
+  "minutes": 8,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_AZS_02_Public_Exposure_Register_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-azs-02-public-exposure-register/DW_AZS_02_Public_Exposure_Register_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-02-public-exposure-register/DW_AZS_02_Public_Exposure_Register_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.html",
+  "source": "docs/project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.md",
+  "kits": [
+   {
+    "name": "azure-security",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/azure-security",
+    "zip": "downloads/azure-security-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 02: The Public Exposure Register"
+   ],
+   [
+    42,
+    "Why the exposure list comes before the controls"
+   ],
+   [
+    90,
+    "What the guide's Learn queries give you"
+   ],
+   [
+    130,
+    "What four queries leave to you"
+   ],
+   [
+    176,
+    "The register's columns, and its five rules"
+   ],
+   [
+    224,
+    "Who runs the register, and who answers for it"
+   ],
+   [
+    253,
+    "Lab 1: build the first week's register"
+   ],
+   [
+    295,
+    "Lab 1: findings now, and a week later"
+   ],
+   [
+    333,
+    "Lab 2: a test subscription"
+   ],
+   [
+    373,
+    "Federal requirements and the register"
+   ],
+   [
+    412,
+    "Dangers, and the guard for each"
+   ],
+   [
+    453,
+    "Done when: the register's checklist"
+   ]
+  ],
+  "sources": "presentations/dw-azs-02-public-exposure-register/DW_AZS_02_Public_Exposure_Register_Narrated_sources.json"
+ },
+ {
+  "id": "DW_AZS_03_DDoS_Protection_Narrated",
+  "title": "Building Azure Security, Chapter 03 — DDoS Protection: narrated tour",
+  "group": "developer",
+  "minutes": 9,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_AZS_03_DDoS_Protection_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-azs-03-ddos-protection/DW_AZS_03_DDoS_Protection_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-03-ddos-protection/DW_AZS_03_DDoS_Protection_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/azure-security/03-ddos-protection.html",
+  "source": "docs/project-plans/developer-workbooks/azure-security/03-ddos-protection.md",
+  "kits": [
+   {
+    "name": "azure-security",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/azure-security",
+    "zip": "downloads/azure-security-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 03: DDoS Protection"
+   ],
+   [
+    36,
+    "Why protected depends on the network behind it"
+   ],
+   [
+    74,
+    "What Microsoft Learn gives you"
+   ],
+   [
+    123,
+    "What it leaves to you"
+   ],
+   [
+    164,
+    "Six statuses, and how coverage is counted"
+   ],
+   [
+    201,
+    "Logs, the alert, and six rules"
+   ],
+   [
+    244,
+    "Who owns the plan, and who answers the alert"
+   ],
+   [
+    278,
+    "Lab 1: run the check, read each address"
+   ],
+   [
+    315,
+    "Lab 1: the statuses and the findings"
+   ],
+   [
+    354,
+    "Lab 2: a test subscription"
+   ],
+   [
+    399,
+    "Federal requirements and the evidence"
+   ],
+   [
+    440,
+    "Dangers, and the guard for each"
+   ],
+   [
+    481,
+    "Done when: the DDoS checklist"
+   ]
+  ],
+  "sources": "presentations/dw-azs-03-ddos-protection/DW_AZS_03_DDoS_Protection_Narrated_sources.json"
+ },
+ {
+  "id": "DW_AZS_04_Web_Application_Firewall_Narrated",
+  "title": "Building Azure Security, Chapter 04 — The Web Application Firewall: narrated tour",
+  "group": "developer",
+  "minutes": 8,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_AZS_04_Web_Application_Firewall_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-azs-04-web-application-firewall/DW_AZS_04_Web_Application_Firewall_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-04-web-application-firewall/DW_AZS_04_Web_Application_Firewall_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.html",
+  "source": "docs/project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.md",
+  "kits": [
+   {
+    "name": "azure-security",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/azure-security",
+    "zip": "downloads/azure-security-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 04: The Web Application Firewall"
+   ],
+   [
+    36,
+    "Why a WAF in detection mode isn't protection"
+   ],
+   [
+    79,
+    "What Microsoft Learn gives you"
+   ],
+   [
+    120,
+    "What it leaves to you"
+   ],
+   [
+    167,
+    "Eight rules, and the coverage count"
+   ],
+   [
+    209,
+    "The switch to Prevention, as a plan"
+   ],
+   [
+    244,
+    "Who tunes, who switches, who watches"
+   ],
+   [
+    272,
+    "Lab 1: run the check, read each policy"
+   ],
+   [
+    310,
+    "Lab 1: the findings, and the unsent plan"
+   ],
+   [
+    348,
+    "Lab 2: a test subscription"
+   ],
+   [
+    392,
+    "Federal requirements and the evidence"
+   ],
+   [
+    427,
+    "Dangers, and the guard for each"
+   ],
+   [
+    463,
+    "Done when: the WAF checklist"
+   ]
+  ],
+  "sources": "presentations/dw-azs-04-web-application-firewall/DW_AZS_04_Web_Application_Firewall_Narrated_sources.json"
+ },
+ {
+  "id": "DW_AZS_05_Front_Door_and_the_Origin_Narrated",
+  "title": "Building Azure Security, Chapter 05 — Front Door, Application Gateway and the Origin: narrated tour",
+  "group": "developer",
+  "minutes": 9,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_AZS_05_Front_Door_and_the_Origin_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-azs-05-front-door-and-the-origin/DW_AZS_05_Front_Door_and_the_Origin_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-05-front-door-and-the-origin/DW_AZS_05_Front_Door_and_the_Origin_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.html",
+  "source": "docs/project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.md",
+  "kits": [
+   {
+    "name": "azure-security",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/azure-security",
+    "zip": "downloads/azure-security-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 05: Front Door, Application Gateway and the Origin"
+   ],
+   [
+    39,
+    "Why an origin must refuse the way around"
+   ],
+   [
+    84,
+    "What Microsoft Learn gives you"
+   ],
+   [
+    134,
+    "What it leaves to you"
+   ],
+   [
+    175,
+    "Each origin gets one lock-down state"
+   ],
+   [
+    216,
+    "The edge rules, beyond the origin"
+   ],
+   [
+    258,
+    "Who owns the origin and who owns the profile"
+   ],
+   [
+    286,
+    "Lab 1: run the edge check, read each origin"
+   ],
+   [
+    326,
+    "Lab 1: the findings"
+   ],
+   [
+    364,
+    "Lab 2: a test profile, and the refused request"
+   ],
+   [
+    408,
+    "Federal requirements and the evidence"
+   ],
+   [
+    458,
+    "Dangers, and the guard for each"
+   ],
+   [
+    499,
+    "Done when: the chapter's checklist"
+   ]
+  ],
+  "sources": "presentations/dw-azs-05-front-door-and-the-origin/DW_AZS_05_Front_Door_and_the_Origin_Narrated_sources.json"
+ },
+ {
+  "id": "DW_AZS_06_Azure_Firewall_and_Egress_Narrated",
+  "title": "Building Azure Security, Chapter 06 — Azure Firewall and Egress: narrated tour",
+  "group": "developer",
+  "minutes": 9,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_AZS_06_Azure_Firewall_and_Egress_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-azs-06-azure-firewall-and-egress/DW_AZS_06_Azure_Firewall_and_Egress_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-06-azure-firewall-and-egress/DW_AZS_06_Azure_Firewall_and_Egress_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.html",
+  "source": "docs/project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.md",
+  "kits": [
+   {
+    "name": "azure-security",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/azure-security",
+    "zip": "downloads/azure-security-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 06: Azure Firewall and Egress"
+   ],
+   [
+    41,
+    "Why the policy and the routes are read together"
+   ],
+   [
+    82,
+    "What Microsoft Learn gives you"
+   ],
+   [
+    127,
+    "What it leaves to you"
+   ],
+   [
+    166,
+    "Workload subnets and their default route"
+   ],
+   [
+    205,
+    "The firewall rules, and the plan never run"
+   ],
+   [
+    249,
+    "Who owns the policy, the routes and the logs"
+   ],
+   [
+    276,
+    "Lab 1: run the check, read each subnet"
+   ],
+   [
+    318,
+    "Lab 1: the findings and the plan"
+   ],
+   [
+    353,
+    "Lab 2: a test subscription, effective routes"
+   ],
+   [
+    396,
+    "Federal requirements and the evidence"
+   ],
+   [
+    447,
+    "Dangers, and the guard for each"
+   ],
+   [
+    487,
+    "Done when: the chapter's checklist"
+   ]
+  ],
+  "sources": "presentations/dw-azs-06-azure-firewall-and-egress/DW_AZS_06_Azure_Firewall_and_Egress_Narrated_sources.json"
+ },
+ {
+  "id": "DW_AZS_07_Private_Link_DNS_Key_Vault_Narrated",
+  "title": "Building Azure Security, Chapter 07 — Private Link, DNS and Key Vault: narrated tour",
+  "group": "developer",
+  "minutes": 9,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_AZS_07_Private_Link_DNS_Key_Vault_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-azs-07-private-link-dns-key-vault/DW_AZS_07_Private_Link_DNS_Key_Vault_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-07-private-link-dns-key-vault/DW_AZS_07_Private_Link_DNS_Key_Vault_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.html",
+  "source": "docs/project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.md",
+  "kits": [
+   {
+    "name": "azure-security",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/azure-security",
+    "zip": "downloads/azure-security-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 07: Private Link, DNS and Key Vault"
+   ],
+   [
+    43,
+    "Why an endpoint is three questions, not one"
+   ],
+   [
+    87,
+    "What Microsoft Learn gives you"
+   ],
+   [
+    137,
+    "What it leaves to you"
+   ],
+   [
+    180,
+    "Zones, endpoints and public access: six rules"
+   ],
+   [
+    224,
+    "Every vault, six checks"
+   ],
+   [
+    265,
+    "Who owns the zones, endpoints and vaults"
+   ],
+   [
+    294,
+    "Lab 1: run the check, read each vault"
+   ],
+   [
+    334,
+    "Lab 1: endpoints and the findings"
+   ],
+   [
+    376,
+    "Lab 2: a test vault, nslookup and the CLI"
+   ],
+   [
+    423,
+    "Federal requirements and the evidence"
+   ],
+   [
+    472,
+    "Dangers, and the guard for each"
+   ],
+   [
+    513,
+    "Done when: the chapter's checklist"
+   ]
+  ],
+  "sources": "presentations/dw-azs-07-private-link-dns-key-vault/DW_AZS_07_Private_Link_DNS_Key_Vault_Narrated_sources.json"
+ },
+ {
+  "id": "DW_AZS_08_Policy_Drift_Evidence_Narrated",
+  "title": "Building Azure Security, Chapter 08 — Policy, Drift and Evidence: narrated tour",
+  "group": "developer",
+  "minutes": 10,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_AZS_08_Policy_Drift_Evidence_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-azs-08-policy-drift-evidence/DW_AZS_08_Policy_Drift_Evidence_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-08-policy-drift-evidence/DW_AZS_08_Policy_Drift_Evidence_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/azure-security/08-policy-drift-and-evidence.html",
+  "source": "docs/project-plans/developer-workbooks/azure-security/08-policy-drift-and-evidence.md",
+  "kits": [
+   {
+    "name": "azure-security",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/azure-security",
+    "zip": "downloads/azure-security-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   },
+   {
+    "name": "zta-results",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/zta-results",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 08: Policy, Drift and Evidence"
+   ],
+   [
+    42,
+    "Why exemptions expire and runs are compared"
+   ],
+   [
+    83,
+    "What Microsoft Learn gives you"
+   ],
+   [
+    127,
+    "What it leaves to you"
+   ],
+   [
+    165,
+    "The policy check: six rules"
+   ],
+   [
+    204,
+    "Drift, metrics and evidence"
+   ],
+   [
+    250,
+    "Who owns policy, drift and the evidence"
+   ],
+   [
+    292,
+    "Lab 1: every area, week one, and the policy"
+   ],
+   [
+    341,
+    "Lab 1: week two, and what changed"
+   ],
+   [
+    380,
+    "Lab 1: the metrics and the evidence records"
+   ],
+   [
+    419,
+    "Lab 1: fixture evidence can't pass a stage"
+   ],
+   [
+    452,
+    "Lab 2: a test management group"
+   ],
+   [
+    497,
+    "Federal requirements and the evidence"
+   ],
+   [
+    547,
+    "Dangers, and the guard for each"
+   ],
+   [
+    587,
+    "Done when: the chapter's checklist"
+   ]
+  ],
+  "sources": "presentations/dw-azs-08-policy-drift-evidence/DW_AZS_08_Policy_Drift_Evidence_Narrated_sources.json"
+ },
+ {
+  "id": "DW_AZS_09_Deploying_Test_Production_Narrated",
+  "title": "Building Azure Security, Chapter 09 — Deploying to Test and Production: narrated tour",
+  "group": "developer",
+  "minutes": 10,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_AZS_09_Deploying_Test_Production_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-azs-09-deploying-test-production/DW_AZS_09_Deploying_Test_Production_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-09-deploying-test-production/DW_AZS_09_Deploying_Test_Production_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.html",
+  "source": "docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.md",
+  "kits": [
+   {
+    "name": "azure-security",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/azure-security",
+    "zip": "downloads/azure-security-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 09: Deploying to Test and Production"
+   ],
+   [
+    40,
+    "Why a runbook: read every week, write once"
+   ],
+   [
+    80,
+    "Before you start"
+   ],
+   [
+    126,
+    "Step 1: one settings file per environment"
+   ],
+   [
+    165,
+    "Step 2: preflight, PF-01 to PF-07"
+   ],
+   [
+    209,
+    "Who runs each stage, with which role"
+   ],
+   [
+    243,
+    "Stage 1: the first scheduled run"
+   ],
+   [
+    284,
+    "Stage 1: plan, approve and apply the one write"
+   ],
+   [
+    334,
+    "Stage 1: rehearse the rollback, then week two"
+   ],
+   [
+    375,
+    "Step 9: go or no-go, on live evidence"
+   ],
+   [
+    415,
+    "Stage 2: production"
+   ],
+   [
+    462,
+    "The evidence the ISSO keeps"
+   ],
+   [
+    515,
+    "Dangers, and the guard for each"
+   ],
+   [
+    562,
+    "Rehearse it, and done when"
+   ]
+  ],
+  "sources": "presentations/dw-azs-09-deploying-test-production/DW_AZS_09_Deploying_Test_Production_Narrated_sources.json"
+ },
+ {
+  "id": "DW_XDR_01_Access_Graph_Read_Path_Narrated",
+  "title": "Building Defender XDR, Chapter 01 — Access and the Graph Read Path: narrated tour",
+  "group": "developer",
+  "minutes": 8,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_XDR_01_Access_Graph_Read_Path_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-xdr-01-access-graph-read-path/DW_XDR_01_Access_Graph_Read_Path_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-01-access-graph-read-path/DW_XDR_01_Access_Graph_Read_Path_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.html",
+  "source": "docs/project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.md",
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 01: Access and the Graph Read Path"
+   ],
+   [
+    40,
+    "Why prove the read path first"
+   ],
+   [
+    78,
+    "What the guide and Microsoft Learn give you"
+   ],
+   [
+    119,
+    "What it leaves to you, and the verdict"
+   ],
+   [
+    158,
+    "Declared calls, and one door for writes"
+   ],
+   [
+    200,
+    "The role check: six rows"
+   ],
+   [
+    243,
+    "Who owns the roles, who reads the result"
+   ],
+   [
+    281,
+    "Lab 1: run the access check on fixtures"
+   ],
+   [
+    321,
+    "Lab 1: the permissions, the manifest, the tests"
+   ],
+   [
+    353,
+    "Lab 2: the same check in a test tenant"
+   ],
+   [
+    393,
+    "Federal requirements and the evidence"
+   ],
+   [
+    431,
+    "Dangers, and the guard for each"
+   ],
+   [
+    471,
+    "Done when: the chapter's checklist"
+   ]
+  ],
+  "sources": "presentations/dw-xdr-01-access-graph-read-path/DW_XDR_01_Access_Graph_Read_Path_Narrated_sources.json"
+ },
+ {
+  "id": "DW_XDR_02_Onboarding_Coverage_Sensor_Health_Narrated",
+  "title": "Building Defender XDR, Chapter 02 — Onboarding Coverage and Sensor Health: narrated tour",
+  "group": "developer",
+  "minutes": 8,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_XDR_02_Onboarding_Coverage_Sensor_Health_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-xdr-02-onboarding-coverage-sensor-health/DW_XDR_02_Onboarding_Coverage_Sensor_Health_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-02-onboarding-coverage-sensor-health/DW_XDR_02_Onboarding_Coverage_Sensor_Health_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.html",
+  "source": "docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.md",
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   },
+   {
+    "name": "ms-automation",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation",
+    "zip": "downloads/microsoft-automation-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 02: Onboarding Coverage and Sensor Health"
+   ],
+   [
+    41,
+    "Why coverage is a fraction of the inventory"
+   ],
+   [
+    78,
+    "What the guide and Learn give you"
+   ],
+   [
+    118,
+    "What a count leaves to you, and the verdict"
+   ],
+   [
+    160,
+    "Seven statuses for every device"
+   ],
+   [
+    206,
+    "The device collector the next chapters read"
+   ],
+   [
+    248,
+    "Who works the tickets, who keeps the file"
+   ],
+   [
+    281,
+    "Lab 1: run the coverage check"
+   ],
+   [
+    317,
+    "Lab 1: tickets, the guide's count, one device"
+   ],
+   [
+    350,
+    "Lab 2: coverage live, and one test device"
+   ],
+   [
+    389,
+    "Federal requirements and the evidence"
+   ],
+   [
+    423,
+    "Dangers, and the guard for each"
+   ],
+   [
+    462,
+    "Done when: the chapter's checklist"
+   ]
+  ],
+  "sources": "presentations/dw-xdr-02-onboarding-coverage-sensor-health/DW_XDR_02_Onboarding_Coverage_Sensor_Health_Narrated_sources.json"
+ },
+ {
+  "id": "DW_XDR_03_Prevention_Through_Audit_Narrated",
+  "title": "Building Defender XDR, Chapter 03 — Prevention Through Audit: narrated tour",
+  "group": "developer",
+  "minutes": 8,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_XDR_03_Prevention_Through_Audit_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-xdr-03-prevention-through-audit/DW_XDR_03_Prevention_Through_Audit_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-03-prevention-through-audit/DW_XDR_03_Prevention_Through_Audit_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.html",
+  "source": "docs/project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.md",
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 03: Prevention Through Audit"
+   ],
+   [
+    39,
+    "Why the check is on the device"
+   ],
+   [
+    80,
+    "What Learn's commands give you"
+   ],
+   [
+    129,
+    "What running them by hand leaves to you"
+   ],
+   [
+    173,
+    "The checks on each device"
+   ],
+   [
+    218,
+    "Who moves the rings, who reads the events"
+   ],
+   [
+    256,
+    "Lab 1: the plan, then the check"
+   ],
+   [
+    295,
+    "Lab 1: one server's checks, and the week's events"
+   ],
+   [
+    334,
+    "Lab 2: one test device in a test tenant"
+   ],
+   [
+    374,
+    "Federal requirements and the evidence"
+   ],
+   [
+    411,
+    "Dangers, and the guard for each"
+   ],
+   [
+    448,
+    "Done when: the chapter's checklist"
+   ]
+  ],
+  "sources": "presentations/dw-xdr-03-prevention-through-audit/DW_XDR_03_Prevention_Through_Audit_Narrated_sources.json"
+ },
+ {
+  "id": "DW_XDR_04_ASR_Audit_Warn_Block_Narrated",
+  "title": "Building Defender XDR, Chapter 04 — Attack Surface Reduction: Audit, Warn, Block: narrated tour",
+  "group": "developer",
+  "minutes": 9,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_XDR_04_ASR_Audit_Warn_Block_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-xdr-04-asr-audit-warn-block/DW_XDR_04_ASR_Audit_Warn_Block_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-04-asr-audit-warn-block/DW_XDR_04_ASR_Audit_Warn_Block_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.html",
+  "source": "docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.md",
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 04: Attack Surface Reduction: Audit, Warn, Block"
+   ],
+   [
+    41,
+    "Why the rollout needs bookkeeping"
+   ],
+   [
+    81,
+    "What Microsoft Learn gives you"
+   ],
+   [
+    125,
+    "What Learn leaves to you, and the verdict"
+   ],
+   [
+    167,
+    "What the ASR check writes"
+   ],
+   [
+    213,
+    "The readiness rules"
+   ],
+   [
+    253,
+    "Who moves a rule, who watches the blocks"
+   ],
+   [
+    293,
+    "Lab 1: run the ASR check mid-rollout"
+   ],
+   [
+    335,
+    "Lab 1: the held rule, and ring 1's next value"
+   ],
+   [
+    373,
+    "Lab 2: the ASR check in a test tenant"
+   ],
+   [
+    412,
+    "Federal requirements and the evidence"
+   ],
+   [
+    451,
+    "Dangers, and the guard for each"
+   ],
+   [
+    493,
+    "Done when: the chapter's checklist"
+   ]
+  ],
+  "sources": "presentations/dw-xdr-04-asr-audit-warn-block/DW_XDR_04_ASR_Audit_Warn_Block_Narrated_sources.json"
+ },
+ {
+  "id": "DW_XDR_05_Exposure_Incidents_Narrated",
+  "title": "Building Defender XDR, Chapter 05 — Exposure and Incidents: narrated tour",
+  "group": "developer",
+  "minutes": 9,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_XDR_05_Exposure_Incidents_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-xdr-05-exposure-incidents/DW_XDR_05_Exposure_Incidents_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-05-exposure-incidents/DW_XDR_05_Exposure_Incidents_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.html",
+  "source": "docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.md",
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   },
+   {
+    "name": "zta-results",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/zta-results",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 05: Exposure and Incidents"
+   ],
+   [
+    39,
+    "Why both checks ask who has it"
+   ],
+   [
+    76,
+    "The government-cloud fact that shapes G5"
+   ],
+   [
+    121,
+    "What the guide and Learn leave to you"
+   ],
+   [
+    166,
+    "The exposure check and its disposition"
+   ],
+   [
+    210,
+    "The incident check: five findings"
+   ],
+   [
+    257,
+    "Who owns the exposure, who owns the queue"
+   ],
+   [
+    296,
+    "Lab 1: the exposure check and its record"
+   ],
+   [
+    333,
+    "Lab 1: the incident check and its findings"
+   ],
+   [
+    372,
+    "Lab 2: both checks in a test tenant"
+   ],
+   [
+    404,
+    "Federal requirements and the evidence"
+   ],
+   [
+    447,
+    "Dangers, and the guard for each"
+   ],
+   [
+    487,
+    "Done when: the chapter's checklist"
+   ]
+  ],
+  "sources": "presentations/dw-xdr-05-exposure-incidents/DW_XDR_05_Exposure_Incidents_Narrated_sources.json"
+ },
+ {
+  "id": "DW_XDR_06_Detections_As_Code_Narrated",
+  "title": "Building Defender XDR, Chapter 06 — Detections as Code: narrated tour",
+  "group": "developer",
+  "minutes": 8,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_XDR_06_Detections_As_Code_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-xdr-06-detections-as-code/DW_XDR_06_Detections_As_Code_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-06-detections-as-code/DW_XDR_06_Detections_As_Code_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/defender-xdr/06-detections-as-code.html",
+  "source": "docs/project-plans/developer-workbooks/defender-xdr/06-detections-as-code.md",
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 06: Detections as Code"
+   ],
+   [
+    42,
+    "Why a rule must fire, and trace to a file"
+   ],
+   [
+    84,
+    "What Microsoft Learn's three calls give you"
+   ],
+   [
+    131,
+    "What the calls leave to you, and the verdict"
+   ],
+   [
+    176,
+    "The repository: two files per rule"
+   ],
+   [
+    221,
+    "Who writes the rules, who signs the plan"
+   ],
+   [
+    256,
+    "Lab 1: validate, test and plan the repository"
+   ],
+   [
+    303,
+    "Lab 1: the plan's hash, and the portal path"
+   ],
+   [
+    334,
+    "Lab 2: test one rule in a test tenant"
+   ],
+   [
+    373,
+    "Federal requirements and the evidence"
+   ],
+   [
+    407,
+    "Dangers, and the guard for each"
+   ],
+   [
+    445,
+    "Done when: the chapter's checklist"
+   ]
+  ],
+  "sources": "presentations/dw-xdr-06-detections-as-code/DW_XDR_06_Detections_As_Code_Narrated_sources.json"
+ },
+ {
+  "id": "DW_XDR_07_Identity_Signals_Automation_Narrated",
+  "title": "Building Defender XDR, Chapter 07 — Identity Signals and Automation Boundaries: narrated tour",
+  "group": "developer",
+  "minutes": 8,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_XDR_07_Identity_Signals_Automation_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-xdr-07-identity-signals-automation/DW_XDR_07_Identity_Signals_Automation_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-07-identity-signals-automation/DW_XDR_07_Identity_Signals_Automation_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.html",
+  "source": "docs/project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.md",
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 07: Identity Signals and Automation Boundaries"
+   ],
+   [
+    40,
+    "Why signals and automation share a chapter"
+   ],
+   [
+    78,
+    "What the guide and Learn give you"
+   ],
+   [
+    128,
+    "What it leaves to you, and the verdict"
+   ],
+   [
+    168,
+    "The two checks"
+   ],
+   [
+    208,
+    "Who sets the boundary, who keeps it"
+   ],
+   [
+    242,
+    "Lab 1: the signals check"
+   ],
+   [
+    272,
+    "Lab 1: the automation check, and the ladder"
+   ],
+   [
+    312,
+    "Lab 2: signals live, automation from exports"
+   ],
+   [
+    353,
+    "Federal requirements and the evidence"
+   ],
+   [
+    394,
+    "Dangers, and the guard for each"
+   ],
+   [
+    432,
+    "Done when: the chapter's checklist"
+   ]
+  ],
+  "sources": "presentations/dw-xdr-07-identity-signals-automation/DW_XDR_07_Identity_Signals_Automation_Narrated_sources.json"
+ },
+ {
+  "id": "DW_XDR_08_Monthly_Evidence_Run_Narrated",
+  "title": "Building Defender XDR, Chapter 08 — The Monthly Evidence Run: narrated tour",
+  "group": "developer",
+  "minutes": 9,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_XDR_08_Monthly_Evidence_Run_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-xdr-08-monthly-evidence-run/DW_XDR_08_Monthly_Evidence_Run_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-08-monthly-evidence-run/DW_XDR_08_Monthly_Evidence_Run_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.html",
+  "source": "docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.md",
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 08: The Monthly Evidence Run"
+   ],
+   [
+    39,
+    "Why the month needs one command and a chain"
+   ],
+   [
+    75,
+    "What the guide's monthly run gives you"
+   ],
+   [
+    108,
+    "What the guide's run leaves to you"
+   ],
+   [
+    151,
+    "The run, the metrics and the record"
+   ],
+   [
+    197,
+    "The metrics, and where each comes from"
+   ],
+   [
+    239,
+    "Who runs it, who receives it"
+   ],
+   [
+    274,
+    "Lab 1: run the month, read the metrics"
+   ],
+   [
+    313,
+    "Lab 1: the records, the chain, the go/no-go"
+   ],
+   [
+    351,
+    "Lab 1: change a recorded file; run the tests"
+   ],
+   [
+    383,
+    "Lab 2: the month in a test tenant"
+   ],
+   [
+    417,
+    "Federal requirements and the evidence"
+   ],
+   [
+    454,
+    "Dangers, and the guard for each"
+   ],
+   [
+    490,
+    "Done when: the chapter's checklist"
+   ]
+  ],
+  "sources": "presentations/dw-xdr-08-monthly-evidence-run/DW_XDR_08_Monthly_Evidence_Run_Narrated_sources.json"
+ },
+ {
+  "id": "DW_XDR_09_Deploying_Test_Production_Narrated",
+  "title": "Building Defender XDR, Chapter 09 — Deploying to Test and Production: narrated tour",
+  "group": "developer",
+  "minutes": 9,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_XDR_09_Deploying_Test_Production_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-xdr-09-deploying-test-production/DW_XDR_09_Deploying_Test_Production_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-09-deploying-test-production/DW_XDR_09_Deploying_Test_Production_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/defender-xdr/09-deploying-to-test-and-production.html",
+  "source": "docs/project-plans/developer-workbooks/defender-xdr/09-deploying-to-test-and-production.md",
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 09: Deploying to Test and Production"
+   ],
+   [
+    40,
+    "Why the same commands in both stages"
+   ],
+   [
+    75,
+    "What the kit changes, and what a person does"
+   ],
+   [
+    121,
+    "One settings file per environment"
+   ],
+   [
+    164,
+    "Who signs what"
+   ],
+   [
+    196,
+    "Step 1: sign in and run the pre-flight"
+   ],
+   [
+    235,
+    "Step 2: the first scheduled run"
+   ],
+   [
+    268,
+    "Step 3: publish the detections, dry run first"
+   ],
+   [
+    306,
+    "Steps 4 and 5: smoke test, then one ASR ring"
+   ],
+   [
+    349,
+    "Step 6: plan the rollback before you need it"
+   ],
+   [
+    390,
+    "The go/no-go, from the evidence"
+   ],
+   [
+    429,
+    "Stage 2: production, and the monthly schedule"
+   ],
+   [
+    474,
+    "Federal requirements and the evidence"
+   ],
+   [
+    513,
+    "Dangers, and the checklist"
+   ]
+  ],
+  "sources": "presentations/dw-xdr-09-deploying-test-production/DW_XDR_09_Deploying_Test_Production_Narrated_sources.json"
+ },
+ {
+  "id": "DW_GSA_01_Decision_Licensing_GCC_Narrated",
+  "title": "Building Global Secure Access, Chapter 01 — Decision, Licensing and GCC Availability: narrated tour",
+  "group": "developer",
+  "minutes": 8,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_GSA_01_Decision_Licensing_GCC_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-gsa-01-decision-licensing-gcc/DW_GSA_01_Decision_Licensing_GCC_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-01-decision-licensing-gcc/DW_GSA_01_Decision_Licensing_GCC_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.html",
+  "source": "docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.md",
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 01: Decision, Licensing and GCC Availability"
+   ],
+   [
+    43,
+    "Why the decision comes first"
+   ],
+   [
+    84,
+    "What Microsoft Learn gives you"
+   ],
+   [
+    130,
+    "What it leaves to you, and the verdict"
+   ],
+   [
+    172,
+    "GCC: the features Learn doesn't state"
+   ],
+   [
+    220,
+    "The nine decision checks"
+   ],
+   [
+    260,
+    "Who signs, who reads, with what"
+   ],
+   [
+    303,
+    "Lab 1: the reads, and the unstated features"
+   ],
+   [
+    341,
+    "Lab 1: four failures in the pilot's records"
+   ],
+   [
+    382,
+    "Lab 1: two weeks later, every check passes"
+   ],
+   [
+    412,
+    "Lab 2: a test tenant"
+   ],
+   [
+    454,
+    "Federal requirements, dangers, done"
+   ]
+  ],
+  "sources": "presentations/dw-gsa-01-decision-licensing-gcc/DW_GSA_01_Decision_Licensing_GCC_Narrated_sources.json"
+ },
+ {
+  "id": "DW_GSA_02_Configuration_Export_Logs_Narrated",
+  "title": "Building Global Secure Access, Chapter 02 — The Configuration Export and Logs First: narrated tour",
+  "group": "developer",
+  "minutes": 7,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_GSA_02_Configuration_Export_Logs_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-gsa-02-configuration-export-logs/DW_GSA_02_Configuration_Export_Logs_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-02-configuration-export-logs/DW_GSA_02_Configuration_Export_Logs_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.html",
+  "source": "docs/project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.md",
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 02: The Configuration Export and Logs First"
+   ],
+   [
+    35,
+    "Why one export, and why logs first"
+   ],
+   [
+    76,
+    "What Microsoft Learn gives you"
+   ],
+   [
+    121,
+    "What it leaves to you"
+   ],
+   [
+    161,
+    "The collector, the manifest and the checks"
+   ],
+   [
+    208,
+    "Who keeps the record, and the logs"
+   ],
+   [
+    247,
+    "Lab 1: collect the whole pilot tenant"
+   ],
+   [
+    280,
+    "Lab 1: the category the setting leaves out"
+   ],
+   [
+    314,
+    "Lab 1: a changed file stops every later step"
+   ],
+   [
+    343,
+    "Lab 2: logs on, then the export"
+   ],
+   [
+    384,
+    "Requirements, dangers, done"
+   ]
+  ],
+  "sources": "presentations/dw-gsa-02-configuration-export-logs/DW_GSA_02_Configuration_Export_Logs_Narrated_sources.json"
+ },
+ {
+  "id": "DW_GSA_03_Client_Coverage_Narrated",
+  "title": "Building Global Secure Access, Chapter 03 — The Client and Its Coverage: narrated tour",
+  "group": "developer",
+  "minutes": 7,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_GSA_03_Client_Coverage_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-gsa-03-client-coverage/DW_GSA_03_Client_Coverage_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-03-client-coverage/DW_GSA_03_Client_Coverage_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.html",
+  "source": "docs/project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.md",
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 03: The Client and Its Coverage"
+   ],
+   [
+    33,
+    "Why the client has to be measured"
+   ],
+   [
+    73,
+    "What Microsoft Learn gives you"
+   ],
+   [
+    125,
+    "What it leaves to you"
+   ],
+   [
+    165,
+    "The seven client checks"
+   ],
+   [
+    211,
+    "Who owns the client, and what they read"
+   ],
+   [
+    249,
+    "Lab 1: the fleet count and the four devices"
+   ],
+   [
+    283,
+    "Lab 1: five failures, and ring 2's rule"
+   ],
+   [
+    318,
+    "Lab 1: the device script, and the tests"
+   ],
+   [
+    351,
+    "Lab 2: a test device and tenant"
+   ],
+   [
+    392,
+    "Requirements, dangers, done"
+   ]
+  ],
+  "sources": "presentations/dw-gsa-03-client-coverage/DW_GSA_03_Client_Coverage_Narrated_sources.json"
+ },
+ {
+  "id": "DW_GSA_04_Microsoft_Traffic_Plans_Narrated",
+  "title": "Building Global Secure Access, Chapter 04 — Microsoft Traffic and Change Plans: narrated tour",
+  "group": "developer",
+  "minutes": 7,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_GSA_04_Microsoft_Traffic_Plans_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-gsa-04-microsoft-traffic-plans/DW_GSA_04_Microsoft_Traffic_Plans_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-04-microsoft-traffic-plans/DW_GSA_04_Microsoft_Traffic_Plans_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.html",
+  "source": "docs/project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md",
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 04: Microsoft Traffic and Change Plans"
+   ],
+   [
+    33,
+    "Why the first write needs a plan"
+   ],
+   [
+    70,
+    "What Microsoft Learn gives you"
+   ],
+   [
+    113,
+    "What it leaves to you"
+   ],
+   [
+    153,
+    "The plan, and its four guards"
+   ],
+   [
+    200,
+    "Who plans, who approves, who applies"
+   ],
+   [
+    239,
+    "Lab 1: the sign-in share is under target"
+   ],
+   [
+    275,
+    "Lab 1: plan the pilot, read a step"
+   ],
+   [
+    313,
+    "Lab 1: fixture mode refuses to apply"
+   ],
+   [
+    345,
+    "Lab 2: the profile on, from an approved plan"
+   ],
+   [
+    388,
+    "Requirements, dangers, done"
+   ]
+  ],
+  "sources": "presentations/dw-gsa-04-microsoft-traffic-plans/DW_GSA_04_Microsoft_Traffic_Plans_Narrated_sources.json"
+ },
+ {
+  "id": "DW_GSA_05_Compliant_Network_Tenant_Restrictions_Narrated",
+  "title": "Building Global Secure Access, Chapter 05 — The Compliant Network and Tenant Restrictions: narrated tour",
+  "group": "developer",
+  "minutes": 7,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_GSA_05_Compliant_Network_Tenant_Restrictions_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-gsa-05-compliant-network-tenant-restrictions/DW_GSA_05_Compliant_Network_Tenant_Restrictions_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-05-compliant-network-tenant-restrictions/DW_GSA_05_Compliant_Network_Tenant_Restrictions_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.html",
+  "source": "docs/project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.md",
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 05: The Compliant Network and Tenant Restrictions"
+   ],
+   [
+    37,
+    "Why these two need a gate"
+   ],
+   [
+    78,
+    "What Microsoft Learn gives you"
+   ],
+   [
+    123,
+    "What it leaves to you"
+   ],
+   [
+    163,
+    "Eleven checks across the two steps"
+   ],
+   [
+    205,
+    "Who decides enforcement"
+   ],
+   [
+    249,
+    "Lab 1: built right, but not ready"
+   ],
+   [
+    288,
+    "Lab 1: a partner nobody registered"
+   ],
+   [
+    323,
+    "Lab 1: two weeks later, enforced and clean"
+   ],
+   [
+    350,
+    "Lab 2: report-only, then Learn's tests"
+   ],
+   [
+    396,
+    "Requirements, dangers, done"
+   ]
+  ],
+  "sources": "presentations/dw-gsa-05-compliant-network-tenant-restrictions/DW_GSA_05_Compliant_Network_Tenant_Restrictions_Narrated_sources.json"
+ },
+ {
+  "id": "DW_GSA_06_Private_Apps_Admin_Paths_Narrated",
+  "title": "Building Global Secure Access, Chapter 06 — Private Applications and Administrative Paths: narrated tour",
+  "group": "developer",
+  "minutes": 8,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_GSA_06_Private_Apps_Admin_Paths_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-gsa-06-private-apps-admin-paths/DW_GSA_06_Private_Apps_Admin_Paths_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-06-private-apps-admin-paths/DW_GSA_06_Private_Apps_Admin_Paths_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.html",
+  "source": "docs/project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.md",
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 06: Private Applications and Administrative Paths"
+   ],
+   [
+    33,
+    "Why one application, not a range"
+   ],
+   [
+    76,
+    "What Microsoft Learn gives you"
+   ],
+   [
+    121,
+    "What it leaves to you"
+   ],
+   [
+    167,
+    "The nine private access checks"
+   ],
+   [
+    209,
+    "Who owns apps, connectors and admin paths"
+   ],
+   [
+    247,
+    "Lab 1: the connectors, group by group"
+   ],
+   [
+    289,
+    "Lab 1: the plan restores the RDP policy"
+   ],
+   [
+    322,
+    "Lab 1: two weeks later, every app passes"
+   ],
+   [
+    351,
+    "Lab 2: publish one app, then remove it"
+   ],
+   [
+    397,
+    "Requirements, dangers, done"
+   ]
+  ],
+  "sources": "presentations/dw-gsa-06-private-apps-admin-paths/DW_GSA_06_Private_Apps_Admin_Paths_Narrated_sources.json"
+ },
+ {
+  "id": "DW_GSA_07_Internet_Access_TLS_Narrated",
+  "title": "Building Global Secure Access, Chapter 07 — Internet Access, QUIC and TLS Inspection: narrated tour",
+  "group": "developer",
+  "minutes": 8,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_GSA_07_Internet_Access_TLS_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-gsa-07-internet-access-tls/DW_GSA_07_Internet_Access_TLS_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-07-internet-access-tls/DW_GSA_07_Internet_Access_TLS_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.html",
+  "source": "docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md",
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 07: Internet Access, QUIC and TLS Inspection"
+   ],
+   [
+    36,
+    "Why bypasses, QUIC and the CA"
+   ],
+   [
+    76,
+    "What Microsoft Learn gives you"
+   ],
+   [
+    127,
+    "GCC: QUIC through the interim path"
+   ],
+   [
+    172,
+    "Twelve checks: six for filtering, six for TLS"
+   ],
+   [
+    222,
+    "Who approves categories, bypasses, privacy"
+   ],
+   [
+    263,
+    "Lab 1: two bypasses fail"
+   ],
+   [
+    299,
+    "Lab 1: TLS — a certificate near expiry"
+   ],
+   [
+    338,
+    "Lab 1: two weeks later, thirteen pass"
+   ],
+   [
+    369,
+    "Lab 2: a pilot security profile and QUIC"
+   ],
+   [
+    412,
+    "Requirements, dangers, done"
+   ]
+  ],
+  "sources": "presentations/dw-gsa-07-internet-access-tls/DW_GSA_07_Internet_Access_TLS_Narrated_sources.json"
+ },
+ {
+  "id": "DW_GSA_08_Rings_Metrics_Evidence_Narrated",
+  "title": "Building Global Secure Access, Chapter 08 — Rings, Metrics and the Evidence Package: narrated tour",
+  "group": "developer",
+  "minutes": 8,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_GSA_08_Rings_Metrics_Evidence_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-gsa-08-rings-metrics-evidence/DW_GSA_08_Rings_Metrics_Evidence_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-08-rings-metrics-evidence/DW_GSA_08_Rings_Metrics_Evidence_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.html",
+  "source": "docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.md",
+  "kits": [
+   {
+    "name": "zta-results",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/zta-results",
+    "zip": null
+   },
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 08: Rings, Metrics and the Evidence Package"
+   ],
+   [
+    31,
+    "Why a ring exits on numbers"
+   ],
+   [
+    73,
+    "What Learn and the guide give you"
+   ],
+   [
+    118,
+    "Eight metrics, eight exit criteria"
+   ],
+   [
+    164,
+    "The rollback plan and the evidence chain"
+   ],
+   [
+    207,
+    "Who runs rings, watches logs, keeps evidence"
+   ],
+   [
+    247,
+    "Lab 1: telemetry, and the pilot's No-go"
+   ],
+   [
+    290,
+    "Lab 1: ring 1 says Go; plan its rollback"
+   ],
+   [
+    326,
+    "Lab 1: signaling last, and the evidence"
+   ],
+   [
+    361,
+    "Lab 2: a ring in a test tenant"
+   ],
+   [
+    404,
+    "Requirements, dangers, done"
+   ]
+  ],
+  "sources": "presentations/dw-gsa-08-rings-metrics-evidence/DW_GSA_08_Rings_Metrics_Evidence_Narrated_sources.json"
+ },
+ {
+  "id": "DW_GSA_09_Deploying_Test_Production_Narrated",
+  "title": "Building Global Secure Access, Chapter 09 — Deploying to Test and Production: narrated tour",
+  "group": "developer",
+  "minutes": 7,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_GSA_09_Deploying_Test_Production_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-gsa-09-deploying-test-production/DW_GSA_09_Deploying_Test_Production_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-09-deploying-test-production/DW_GSA_09_Deploying_Test_Production_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/global-secure-access/09-deploying-to-test-and-production.html",
+  "source": "docs/project-plans/developer-workbooks/global-secure-access/09-deploying-to-test-and-production.md",
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 09: Deploying to Test and Production"
+   ],
+   [
+    37,
+    "Why a runbook, and what comes first"
+   ],
+   [
+    80,
+    "One settings file per environment"
+   ],
+   [
+    128,
+    "Preflight: six checks before anything changes"
+   ],
+   [
+    171,
+    "Who does each step"
+   ],
+   [
+    211,
+    "Preflight and the rollback, fixture mode"
+   ],
+   [
+    251,
+    "Staged enable, then the smoke test"
+   ],
+   [
+    298,
+    "Roll back on a trigger; record the evidence"
+   ],
+   [
+    344,
+    "Go/no-go, then production ring by ring"
+   ],
+   [
+    391,
+    "Requirements, dangers, done"
+   ]
+  ],
+  "sources": "presentations/dw-gsa-09-deploying-test-production/DW_GSA_09_Deploying_Test_Production_Narrated_sources.json"
  },
  {
   "id": "DW_HR_01_Writer_Register_Narrated",

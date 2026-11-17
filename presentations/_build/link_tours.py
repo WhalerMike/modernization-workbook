@@ -31,7 +31,8 @@ WB = {"adm": ("docs/books/b19-developer-workbook", "Building the Attribute-Drive
       "hr": ("docs/project-plans/developer-workbooks/hr-driven-identity", "Building HR-Driven Identity"),
       "pn": ("docs/project-plans/developer-workbooks/provider-notices", "Building Provider Notices"),
       "gsa": ("docs/project-plans/developer-workbooks/global-secure-access", "Building Global Secure Access"),
-      "xdr": ("docs/project-plans/developer-workbooks/defender-xdr", "Building Defender XDR")}
+      "xdr": ("docs/project-plans/developer-workbooks/defender-xdr", "Building Defender XDR"),
+      "azs": ("docs/project-plans/developer-workbooks/azure-security", "Building Azure Security")}
 GH = "https://github.com/WhalerMike/modernization-workbook/blob/main"
 TREE = "https://github.com/WhalerMike/modernization-workbook/tree/main"
 REL = "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23"
@@ -62,7 +63,7 @@ def write(p: Path, text: str):
 
 tours = {k: [] for k in WB}
 for folder in sorted((ROOT / "presentations").glob("dw-*")):
-    m = re.match(r"dw-(adm|pa|npi|ttm|hr|pn|gsa|xdr)-(\d\d)-", folder.name)
+    m = re.match(r"dw-(adm|pa|npi|ttm|hr|pn|gsa|xdr|azs)-(\d\d)-", folder.name)
     wb, nn = m.group(1), m.group(2)
     src = (folder / "build.js").read_text(encoding="utf-8")
     base = re.search(r'base:\s*"([^"]+)"', src).group(1)
@@ -70,6 +71,9 @@ for folder in sorted((ROOT / "presentations").glob("dw-*")):
     chdir = ROOT / WB[wb][0]
     page = next(chdir.glob(f"{nn}-*.md"))
     title = re.search(r'^title:\s*"Chapter \d\d — (.*)"\s*$', page.read_text(encoding="utf-8"), re.M).group(1)
+    # A chapter still waiting for its review is recorded from the draft, and the pages say so.
+    approved = bool(re.search(r"^review-status:\s*approved\s*$", page.read_text(encoding="utf-8"), re.M))
+    src_ch = "the approved chapter" if approved else "the draft chapter, before its review"
     secs = durs.get(vid)
     mins = max(1, round(secs / 60)) if secs else None
     when = DATES.get(f"{wb}-{nn}", DATES.get(wb, DATE))
@@ -97,7 +101,7 @@ Build (Git Bash): `source /c/tmp/deckenv.sh`, then `DATECODE="YYYY-MM-DD HH:MM E
 
 Each slide's speaker notes have three parts: the narration (the only part spoken), a Detail part with the chapter's full content for a presenter, and the chapter footnotes the slide relies on, in full, ending with the chapter sections it draws on. Every fact comes from the chapter; the deck adds none. The chapter's own labels carry over: design guidance, preview and beta stages, and points not confirmed. The example code is illustrative and tested against fixtures, not proven against a production tenant.
 
-The title slide carries the Date Code of the build and the chapter's review status. The tour was recorded on {when} from the chapter as approved at the review gate; if the chapter changes, the tour is rebuilt and re-recorded.
+The title slide carries the Date Code of the build and the chapter's review status. The tour was recorded on {when} from {"the chapter as approved at the review gate" if approved else "the draft chapter, before the owner's review"}; if the chapter changes, the tour is rebuilt and re-recorded.
 """)
     # Chapter page: a tour callout right after the "In this chapter" callout.
     md = page.read_text(encoding="utf-8")
@@ -109,13 +113,13 @@ The title slide carries the Date Code of the build and the chapter's review stat
 ## Narrated tour
 {{{{< fmw-video {vid} >}}}}
 
-[Deck]({deck(f'{rel}/{base}.pptx', up)}) · [Narrated deck]({deck(f'{rel}/{vid}.pptx', up)}) ({length}captions) · [Script]({GH}/{rel}/{base}_Narration_Script.md) · [Captions]({GH}/{rel}/{vid}.vtt). Recorded on {when} from the approved chapter.
+[Deck]({deck(f'{rel}/{base}.pptx', up)}) · [Narrated deck]({deck(f'{rel}/{vid}.pptx', up)}) ({length}captions) · [Script]({GH}/{rel}/{base}_Narration_Script.md) · [Captions]({GH}/{rel}/{vid}.vtt). Recorded on {when} from {src_ch}.
 :::
 """
     else:  # recorded, not uploaded yet: no player, and the decks link to the tour's folder
         block = f"""::: {{.callout-tip appearance="simple"}}
 ## Narrated tour
-[Deck and narrated deck]({deck(f'{rel}/{base}.pptx', up)}) · [Script]({GH}/{rel}/{base}_Narration_Script.md). Recorded on {when} from the approved chapter; the video follows when it is uploaded.
+[Deck and narrated deck]({deck(f'{rel}/{base}.pptx', up)}) · [Script]({GH}/{rel}/{base}_Narration_Script.md). Recorded on {when} from {src_ch}; the video follows when it is uploaded.
 :::
 """
     i = md.index("## In this chapter")
@@ -123,6 +127,7 @@ The title slide carries the Date Code of the build and the chapter's review stat
     md = insert_marked(md, j + 1, block)
     write(page, md)
     tours[wb].append((nn, title, page.name, rel, base, vid, mins))
+    tours.setdefault("_draft", set()).update(set() if approved else {wb})
     dates = tours.setdefault("_dates", {})
     dates.setdefault(wb, set()).add(when)
 
@@ -143,6 +148,7 @@ def covered(wb, rows):
 
 # Workbook indexes: a "Narrated chapter tours" section before "## How each chapter is built" is replaced or added after the chapter table.
 dates = tours.pop("_dates", {})
+drafts = tours.pop("_draft", set())
 for wb, rows in tours.items():
     if not rows:
         continue
@@ -153,7 +159,7 @@ for wb, rows in tours.items():
     md = MARKED.sub("", md)
     lines = ["## Narrated chapter tours", "",
              f"{covered(wb, rows)} a narrated tour: a deck in Why, What, Who and How order, a self-running edition with captions, and a video. "
-             f"The tours were recorded {recorded(dates[wb])} from the approved chapters, and a tour is re-recorded when its chapter changes. "
+             f"The tours were recorded {recorded(dates[wb])} from the {'draft chapters, before their review' if wb in drafts else 'approved chapters'}, and a tour is re-recorded when its chapter changes. "
              + (f"All of them are also on the [Watch page]({docs}presentations/watch.md)." if all(r[6] for r in rows)
                 else "The videos and decks follow on the Watch page and the edition's Release when they are uploaded; until then each deck links to its folder on GitHub."), "",
              "| # | Chapter | Watch | Length | Deck | Narrated deck |", "|---|---|---|---|---|---|"]
@@ -168,12 +174,13 @@ for wb, rows in tours.items():
     write(idx, md)
     print(f"{wb}: {len(rows)} tours linked")
 
+NUM = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"]
 # The Presentations page: one section with a table per workbook, before the HR-driven identity interview set.
 pi = ROOT / "docs/presentations/index.md"
 md = pi.read_text(encoding="utf-8")
 md = re.sub(r"\n## Developer workbook chapter tours\n.*?(?=\n## )", "", md, flags=re.S)
 out = ["", "## Developer workbook chapter tours", "",
-       "Each code chapter of [Book 19](../books/b19-developer-workbook/index.md) and of five [developer workbooks](../project-plans/developer-workbooks/index.md) under Projects has a narrated tour of about ten minutes: "
+       f"Each code chapter of [Book 19](../books/b19-developer-workbook/index.md) and of {NUM[sum(1 for k, r in tours.items() if r and k != 'adm')]} [developer workbooks](../project-plans/developer-workbooks/index.md) under Projects has a narrated tour of about ten minutes: "
        "why the chapter's code comes first, what Microsoft's own sample gives and leaves out, the code and its tests, who runs it, the two labs, the dangers and the checklist. "
        "The slides follow the Why, What, Who and How order of the book decks; each slide's notes carry the narration, the chapter's full detail and the footnotes it rests on.", ""]
 for wb, rows in tours.items():

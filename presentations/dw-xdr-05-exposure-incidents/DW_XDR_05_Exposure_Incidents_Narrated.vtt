@@ -1,0 +1,626 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.234
+Welcome to Building Defender XDR,
+
+2
+00:00:02.234 --> 00:00:06.212
+a developer workbook in the
+Federal Modernization Workbook.
+
+3
+00:00:06.212 --> 00:00:09.438
+This is Chapter 5: exposure and incidents.
+
+4
+00:00:09.438 --> 00:00:12.872
+A vulnerability without an
+owner is an inventory finding,
+
+5
+00:00:12.872 --> 00:00:15.876
+and an incident without an
+owner is a clock running.
+
+6
+00:00:15.876 --> 00:00:19.788
+Both checks in this chapter ask
+the same question: who has this?
+
+7
+00:00:19.788 --> 00:00:23.813
+We'll start from the guide's queries
+and Learn's incident list, and the
+
+8
+00:00:23.813 --> 00:00:26.976
+government-cloud fact that
+shapes the exposure gate,
+
+9
+00:00:26.976 --> 00:00:29.276
+then read both checks and walk two labs.
+
+10
+00:00:29.276 --> 00:00:31.908
+The chapter is a draft awaiting review;
+
+11
+00:00:31.908 --> 00:00:35.720
+the code is illustrative,
+tested against fixtures.
+
+12
+00:00:39.470 --> 00:00:40.970
+Why put these two together?
+
+13
+00:00:40.970 --> 00:00:42.908
+Because both ask who has this.
+
+14
+00:00:42.908 --> 00:00:48.345
+A vulnerability with no owner isn't just
+unpatched; it's a gap in the inventory.
+
+15
+00:00:48.345 --> 00:00:52.595
+And an incident with no owner is a clock
+running against the severity table.
+
+16
+00:00:52.595 --> 00:00:57.085
+By the end of this chapter you can
+route every exposed device to an owner,
+
+17
+00:00:57.085 --> 00:01:01.195
+record Security Exposure Management
+correctly for a GCC tenant,
+
+18
+00:01:01.195 --> 00:01:04.620
+and list every incident that
+broke the severity table.
+
+19
+00:01:04.620 --> 00:01:09.191
+It's for the developers, the vulnerability
+manager who owns the exposure gate,
+
+20
+00:01:09.191 --> 00:01:12.700
+and the security operations
+lead who owns incidents.
+
+21
+00:01:16.450 --> 00:01:19.638
+One government-cloud fact
+shapes the exposure gate.
+
+22
+00:01:19.638 --> 00:01:24.466
+Learn says Microsoft Security Exposure
+Management, with its attack paths,
+
+23
+00:01:24.466 --> 00:01:27.503
+exposure graph and
+critical asset management,
+
+24
+00:01:27.503 --> 00:01:31.475
+is available in Public Cloud
+only, not in US Government clouds.
+
+25
+00:01:31.475 --> 00:01:35.357
+Defender Vulnerability
+Management is available in GCC,
+
+26
+00:01:35.357 --> 00:01:38.000
+core and premium, without two features.
+
+27
+00:01:38.000 --> 00:01:43.050
+DeviceInfo still carries exposure level,
+internet facing, and asset value.
+
+28
+00:01:43.050 --> 00:01:47.813
+And the vulnerability tables stay in
+Defender; they aren't ingested into Sentinel.
+
+29
+00:01:47.813 --> 00:01:52.580
+So the guide's interim path prioritizes
+by those columns and Vulnerability
+
+30
+00:01:52.580 --> 00:01:58.150
+Management's recommendations, with the Tier
+0 inventory as the critical-asset list.
+
+31
+00:02:01.900 --> 00:02:02.900
+What's left to you?
+
+32
+00:02:02.900 --> 00:02:06.083
+The exposure query
+returns rows, not owners,
+
+33
+00:02:06.083 --> 00:02:11.388
+so the kit matches each device's group
+to an owner, and no owner is a finding.
+
+34
+00:02:11.388 --> 00:02:16.168
+Not available is a fact, but a Zero
+Trust Assessment test that needs Exposure
+
+35
+00:02:16.168 --> 00:02:20.341
+Management would read as a failure,
+so the kit writes a disposition:
+
+36
+00:02:20.341 --> 00:02:23.225
+skipped, not applicable,
+with the interim path.
+
+37
+00:02:23.225 --> 00:02:28.663
+An incident export is a list, so each
+incident is read against the severity table.
+
+38
+00:02:28.663 --> 00:02:32.137
+One filter misses an old
+incident that's still open,
+
+39
+00:02:32.137 --> 00:02:34.537
+so the kit reads two and merges them.
+
+40
+00:02:34.537 --> 00:02:38.467
+And Graph doesn't record when
+an incident was first assigned,
+
+41
+00:02:38.467 --> 00:02:43.140
+so the kit reports unowned past its
+window, and invents no duration.
+
+42
+00:02:46.890 --> 00:02:52.196
+The exposure check runs the guide's two
+queries: high and critical vulnerabilities
+
+43
+00:02:52.196 --> 00:02:57.040
+by software and recommended update,
+and exposed or internet-facing devices.
+
+44
+00:02:57.040 --> 00:02:59.834
+It matches each exposed
+device's group to a
+
+45
+00:02:59.834 --> 00:03:03.027
+remediation owner from
+the agency's owners file.
+
+46
+00:03:03.027 --> 00:03:08.265
+A device with no owner is an inventory
+finding, not just a vulnerability finding.
+
+47
+00:03:08.265 --> 00:03:11.415
+And it writes the disposition
+for the settings file's cloud.
+
+48
+00:03:11.415 --> 00:03:15.155
+For GCC: not available,
+skipped, not applicable,
+
+49
+00:03:15.155 --> 00:03:18.402
+with the interim path and the Learn page.
+
+50
+00:03:18.402 --> 00:03:23.100
+That result name is one of the seven the
+Zero Trust Assessment results kit uses,
+
+51
+00:03:23.100 --> 00:03:26.720
+so the same disposition lands
+in the closure register.
+
+52
+00:03:30.470 --> 00:03:35.204
+The incident check reads incidents
+created in the last thirty days, and every
+
+53
+00:03:35.204 --> 00:03:37.719
+incident still active, with their alerts,
+
+54
+00:03:37.719 --> 00:03:40.308
+using Learn's list call
+with expand alerts.
+
+55
+00:03:40.308 --> 00:03:41.707
+Each one gets a finding.
+
+56
+00:03:41.707 --> 00:03:44.220
+Triaged: open, with an owner.
+
+57
+00:03:44.220 --> 00:03:48.558
+Untriaged: open, no owner,
+but inside its window.
+
+58
+00:03:48.558 --> 00:03:53.270
+Overdue triage: no owner,
+past its window, which fails.
+
+59
+00:03:53.270 --> 00:03:57.132
+Closed: resolved with a
+classification and a determination.
+
+60
+00:03:57.132 --> 00:04:00.457
+And closed without
+classification, which also fails.
+
+61
+00:04:00.457 --> 00:04:04.765
+The windows come from the guide's
+severity table: one hour for high,
+
+62
+00:04:04.765 --> 00:04:08.833
+twenty-four for medium, seventy-two
+for low and informational.
+
+63
+00:04:08.833 --> 00:04:14.160
+Containment stays on the response ladder;
+the kit only prints each incident's rung.
+
+64
+00:04:17.910 --> 00:04:18.960
+Who's involved?
+
+65
+00:04:18.960 --> 00:04:22.134
+The vulnerability manager
+owns the exposure gate:
+
+66
+00:04:22.134 --> 00:04:25.535
+an owner for every exposed
+device, and the weekly queue.
+
+67
+00:04:25.535 --> 00:04:28.858
+The security operations lead
+owns the incident gate:
+
+68
+00:04:28.858 --> 00:04:32.635
+a daily queue review, and every
+overdue incident owned today.
+
+69
+00:04:32.635 --> 00:04:35.788
+The security officer files
+the Exposure Management
+
+70
+00:04:35.788 --> 00:04:39.372
+disposition in the closure
+register, and the inventory gaps.
+
+71
+00:04:39.372 --> 00:04:42.385
+One caution: the incident
+check only reads.
+
+72
+00:04:42.385 --> 00:04:46.173
+It never assigns, comments
+on or closes an incident.
+
+73
+00:04:46.173 --> 00:04:49.643
+And the severity strings the
+exposure query filters on are
+
+74
+00:04:49.643 --> 00:04:53.130
+as the portal shows them;
+check them in the test tenant.
+
+75
+00:04:56.880 --> 00:04:58.980
+Lab 1, in the kit's folder.
+
+76
+00:04:58.980 --> 00:05:01.380
+Step 1 runs the exposure check.
+
+77
+00:05:01.380 --> 00:05:06.492
+Three software rows with nine CVEs
+between them, and three exposed devices.
+
+78
+00:05:06.492 --> 00:05:07.642
+Two have owners.
+
+79
+00:05:07.642 --> 00:05:10.373
+The third sits in a group no owner covers:
+
+80
+00:05:10.373 --> 00:05:14.429
+the same device Chapter 2 found
+missing from the inventory.
+
+81
+00:05:14.429 --> 00:05:16.392
+Two findings, one cause.
+
+82
+00:05:16.392 --> 00:05:21.182
+Step 2 reads the Exposure Management
+record: not available in GCC,
+
+83
+00:05:21.182 --> 00:05:25.617
+skipped, not applicable, and the
+interim path in one sentence.
+
+84
+00:05:25.617 --> 00:05:29.550
+That's what goes in the closure
+register, not a failed control.
+
+85
+00:05:33.300 --> 00:05:35.625
+Step 3 runs the incident check.
+
+86
+00:05:35.625 --> 00:05:36.887
+Seven incidents.
+
+87
+00:05:36.887 --> 00:05:41.271
+Incident 1002, high severity,
+has waited three and a half
+
+88
+00:05:41.271 --> 00:05:45.463
+hours with no owner, against
+a one-hour window: overdue.
+
+89
+00:05:45.463 --> 00:05:50.563
+Incident 1005 was resolved with
+its classification still unknown.
+
+90
+00:05:50.563 --> 00:05:57.200
+And incident 1003, medium, has no owner
+yet, but it's inside its twenty-four hours.
+
+91
+00:05:57.200 --> 00:06:01.451
+Step 4 reads the findings as the
+security operations lead gets them,
+
+92
+00:06:01.451 --> 00:06:03.425
+each with its containment rung.
+
+93
+00:06:03.425 --> 00:06:05.304
+The high one is the gated rung:
+
+94
+00:06:05.304 --> 00:06:09.120
+the playbook prepares, and
+a named approver releases.
+
+95
+00:06:12.870 --> 00:06:17.977
+Lab 2 uses a test tenant, never production,
+with Vulnerability Management data on
+
+96
+00:06:17.977 --> 00:06:23.083
+at least one device and at least one incident;
+the guide's detection test makes one.
+
+97
+00:06:23.083 --> 00:06:27.795
+Sign in with both read scopes, and run
+both checks without the fixture path.
+
+98
+00:06:27.795 --> 00:06:30.058
+Then look at the raw vulnerability file.
+
+99
+00:06:30.058 --> 00:06:34.092
+If it's empty in a tenant you know
+has high vulnerabilities, the severity
+
+100
+00:06:34.092 --> 00:06:38.058
+strings differ from the portal's, and
+that goes in the verification log.
+
+101
+00:06:38.058 --> 00:06:40.740
+Nothing changed, so you just sign out.
+
+102
+00:06:44.490 --> 00:06:48.140
+Here's what these two gates
+prove, against NIST's catalog.
+
+103
+00:06:48.140 --> 00:06:51.203
+Vulnerabilities by software
+and update support
+
+104
+00:06:51.203 --> 00:06:54.265
+vulnerability monitoring
+and flaw remediation.
+
+105
+00:06:54.265 --> 00:06:59.153
+Every exposed device owned, or a finding,
+supports the component inventory.
+
+106
+00:06:59.153 --> 00:07:01.900
+The Exposure Management
+disposition supports
+
+107
+00:07:01.900 --> 00:07:04.578
+vulnerability monitoring,
+honestly recorded.
+
+108
+00:07:04.578 --> 00:07:08.725
+Incidents owned inside their windows
+and closed with a classification
+
+109
+00:07:08.725 --> 00:07:12.527
+support incident handling, incident
+monitoring, and audit review.
+
+110
+00:07:12.527 --> 00:07:16.339
+And the incident record with its alerts
+supports the reporting decision.
+
+111
+00:07:16.339 --> 00:07:19.528
+The indicators are FedRAMP's,
+as the guide maps them.
+
+112
+00:07:19.528 --> 00:07:23.690
+The records support these controls;
+the assessor decides them.
+
+113
+00:07:27.440 --> 00:07:28.840
+What breaks in production?
+
+114
+00:07:28.840 --> 00:07:33.646
+Assuming Exposure Management in GCC
+stalls attack-path work, and makes a Zero
+
+115
+00:07:33.646 --> 00:07:38.678
+Trust Assessment test look failed; the
+disposition and the interim path guard it.
+
+116
+00:07:38.678 --> 00:07:42.940
+An exposed device with no owner
+never gets patched; it's a finding.
+
+117
+00:07:42.940 --> 00:07:46.591
+Sentinel queries on the
+vulnerability tables return nothing,
+
+118
+00:07:46.591 --> 00:07:49.540
+so the kit queries Defender's
+own advanced hunting.
+
+119
+00:07:49.540 --> 00:07:53.792
+Reading only last month's incidents
+misses an old one still open,
+
+120
+00:07:53.792 --> 00:07:55.878
+so the active filter is read too.
+
+121
+00:07:55.878 --> 00:08:00.242
+And a time to triage computed from
+the wrong field is a precise-looking,
+
+122
+00:08:00.242 --> 00:08:03.830
+wrong number, so the kit
+reports past-window instead.
+
+123
+00:08:07.580 --> 00:08:08.930
+Here's what done looks like.
+
+124
+00:08:08.930 --> 00:08:12.005
+Every device group has an
+owner in the owners file.
+
+125
+00:08:12.005 --> 00:08:16.205
+The Exposure Management disposition
+is filed with the closure register.
+
+126
+00:08:16.205 --> 00:08:19.030
+Every overdue incident has an owner today.
+
+127
+00:08:19.030 --> 00:08:23.743
+Every incident closed without a
+classification is reopened and classified.
+
+128
+00:08:23.743 --> 00:08:26.880
+And both run folders are
+recorded as evidence.
+
+129
+00:08:26.880 --> 00:08:31.323
+Next, Chapter 6 keeps the rules that
+raise these incidents as files:
+
+130
+00:08:31.323 --> 00:08:34.393
+tested, and deployed
+through Microsoft Graph.
+
+131
+00:08:34.393 --> 00:08:35.560
+Thanks for watching.

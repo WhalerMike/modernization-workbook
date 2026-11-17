@@ -1,0 +1,130 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the policy and the routes are read together",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What Microsoft Learn gives you",
+  "links": [
+   {
+    "text": "Zero Trust recommendations for Azure Firewall",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#zero-trust-azure-firewall"
+   },
+   {
+    "text": "az network firewall policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cli-network-firewall-policy"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What it leaves to you",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Workload subnets and their default route",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The firewall rules, and the plan never run",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Who owns the policy, the routes and the logs",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: run the check, read each subnet",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 1: the findings and the plan",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2: a test subscription, effective routes",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Federal requirements and the evidence",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.html"
+   }
+  ]
+ }
+]

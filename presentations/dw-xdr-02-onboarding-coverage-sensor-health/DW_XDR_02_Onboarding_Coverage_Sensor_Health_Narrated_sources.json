@@ -1,0 +1,158 @@
+[
+ {
+  "slide": 2,
+  "title": "Why coverage is a fraction of the inventory",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What the guide and Learn give you",
+  "links": [
+   {
+    "text": "Troubleshoot onboarding",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-troubleshoot-onboarding"
+   },
+   {
+    "text": "DeviceInfo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#advanced-hunting-deviceinfo-table"
+   },
+   {
+    "text": "Device inventory field reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-device-inventory-field-reference"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What a count leaves to you, and the verdict",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Seven statuses for every device",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The device collector the next chapters read",
+  "links": [
+   {
+    "text": "Troubleshoot onboarding",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-troubleshoot-onboarding"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Who works the tickets, who keeps the file",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: run the coverage check",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 1: tickets, the guide's count, one device",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2: coverage live, and one test device",
+  "links": [
+   {
+    "text": "Onboard Windows devices with Intune",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-onboard-windows-intune"
+   },
+   {
+    "text": "runHuntingQuery",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-runhuntingquery"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Federal requirements and the evidence",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.html"
+   }
+  ]
+ }
+]

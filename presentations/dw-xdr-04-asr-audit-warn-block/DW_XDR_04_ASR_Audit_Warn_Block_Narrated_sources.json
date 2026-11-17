@@ -1,0 +1,170 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the rollout needs bookkeeping",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.html"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What Microsoft Learn gives you",
+  "links": [
+   {
+    "text": "Configure ASR rules and exclusions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-configure"
+   },
+   {
+    "text": "ASR rules overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-overview"
+   },
+   {
+    "text": "ASR rules reference",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-reference"
+   },
+   {
+    "text": "Monitor ASR rule activity",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-monitor"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What Learn leaves to you, and the verdict",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.html"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What the ASR check writes",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The readiness rules",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Who moves a rule, who watches the blocks",
+  "links": [
+   {
+    "text": "ASR rules overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-overview"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: run the ASR check mid-rollout",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 1: the held rule, and ring 1's next value",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2: the ASR check in a test tenant",
+  "links": [
+   {
+    "text": "Configure ASR rules and exclusions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-configure"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Federal requirements and the evidence",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Configure ASR rules and exclusions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-configure"
+   },
+   {
+    "text": "ASR rules overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#asr-rules-overview"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.html"
+   }
+  ]
+ }
+]

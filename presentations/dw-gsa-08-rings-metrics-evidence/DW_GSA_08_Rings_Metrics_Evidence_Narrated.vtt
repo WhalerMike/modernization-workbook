@@ -1,0 +1,545 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Welcome back to Building
+Global Secure Access.
+
+2
+00:00:02.963 --> 00:00:07.600
+This is Chapter 8: rings, metrics,
+and the evidence package.
+
+3
+00:00:07.600 --> 00:00:10.800
+A ring exits on numbers,
+not on a quiet week.
+
+4
+00:00:10.800 --> 00:00:15.764
+This chapter computes the guide's numbers,
+says go or no-go, writes the rollback
+
+5
+00:00:15.764 --> 00:00:18.401
+before it's needed, and hands the security
+
+6
+00:00:18.401 --> 00:00:21.038
+officer a package an assessor can re-hash.
+
+7
+00:00:21.038 --> 00:00:23.552
+The chapter is a draft awaiting review,
+
+8
+00:00:23.552 --> 00:00:27.440
+and the code is illustrative,
+tested against fixtures.
+
+9
+00:00:31.190 --> 00:00:32.153
+Why numbers?
+
+10
+00:00:32.153 --> 00:00:37.046
+Because a ring that exits on the calendar
+carries its problems to a larger group:
+
+11
+00:00:37.046 --> 00:00:40.531
+users the client doesn't cover,
+policies that would block
+
+12
+00:00:40.531 --> 00:00:44.090
+people the service carries, a
+certificate about to expire.
+
+13
+00:00:44.090 --> 00:00:47.526
+So the goal: decide each ring's
+exit from measured values;
+
+14
+00:00:47.526 --> 00:00:51.260
+roll back in the guide's order
+from a plan a reviewer approved,
+
+15
+00:00:51.260 --> 00:00:52.904
+written before it's needed;
+
+16
+00:00:52.904 --> 00:00:57.609
+and give the security officer and the
+assessor one evidence folder, with the
+
+17
+00:00:57.609 --> 00:01:02.315
+controls and indicators each run supports,
+where every file can be verified.
+
+18
+00:01:02.315 --> 00:01:06.097
+It's for the developers, the
+program manager who runs the rings,
+
+19
+00:01:06.097 --> 00:01:09.360
+the security monitor,
+and the security officer.
+
+20
+00:01:13.110 --> 00:01:17.422
+Learn says traffic and remote
+network health logs stay thirty days,
+
+21
+00:01:17.422 --> 00:01:22.042
+names the four tables, and says a sudden
+drop in traffic volume is an alert,
+
+22
+00:01:22.042 --> 00:01:24.660
+because offboarding has no audit signal.
+
+23
+00:01:24.660 --> 00:01:27.315
+Its deployment guide asks
+for a rollback plan,
+
+24
+00:01:27.315 --> 00:01:30.598
+and its operations guide for
+at least two people per role.
+
+25
+00:01:30.598 --> 00:01:36.036
+The guide adds the rings, the metrics and
+the rollback order, with signaling last.
+
+26
+00:01:36.036 --> 00:01:39.214
+And CISA's remote user
+use case says visibility
+
+27
+00:01:39.214 --> 00:01:42.235
+must be preserved through
+telemetry sharing.
+
+28
+00:01:42.235 --> 00:01:46.907
+One thing isn't rebuilt: the Zero Trust
+Assessment results kit already turns an
+
+29
+00:01:46.907 --> 00:01:51.723
+assessment into the closure register, and
+its network family points at the guide.
+
+30
+00:01:51.723 --> 00:01:55.170
+This chapter's evidence is
+what that register cites.
+
+31
+00:01:58.920 --> 00:02:00.083
+Here are the numbers.
+
+32
+00:02:00.083 --> 00:02:04.216
+Eight metrics from one collection
+and the inputs: client coverage,
+
+33
+00:02:04.216 --> 00:02:08.050
+sign-ins through the service,
+compliant network enforcement,
+
+34
+00:02:08.050 --> 00:02:12.560
+Private Access least privilege,
+connector resilience, bypass exposure,
+
+35
+00:02:12.560 --> 00:02:17.070
+TLS health, and telemetry freshness,
+each with a target from the settings.
+
+36
+00:02:17.070 --> 00:02:22.144
+And eight exit criteria from the guide's
+ring table: business days in the ring,
+
+37
+00:02:22.144 --> 00:02:27.378
+open severity-two tickets, help desk
+volume, the client on every in-scope device,
+
+38
+00:02:27.378 --> 00:02:31.244
+clean report-only results, TLS
+failures under one percent,
+
+39
+00:02:31.244 --> 00:02:36.720
+the emergency exclusion tested on the ring's
+start date, and break-glass rehearsed.
+
+40
+00:02:36.720 --> 00:02:40.450
+The ring exits only if
+every criterion passes.
+
+41
+00:02:44.200 --> 00:02:46.675
+The rollback plan follows
+the guide's order.
+
+42
+00:02:46.675 --> 00:02:51.500
+Enforced policies go to report-only,
+from Step 10 back to Step 5.
+
+43
+00:02:51.500 --> 00:02:54.138
+Profile links come off,
+which is a portal step,
+
+44
+00:02:54.138 --> 00:02:57.987
+and tagging goes off while the
+tenant restrictions policy stays.
+
+45
+00:02:57.987 --> 00:03:02.038
+The groups come off the profiles
+and the VPN route comes back.
+
+46
+00:03:02.038 --> 00:03:04.549
+Signaling is last, and only on request;
+
+47
+00:03:04.549 --> 00:03:09.250
+the plan refuses it if a compliant
+network policy would stay enforced.
+
+48
+00:03:09.250 --> 00:03:12.783
+The evidence chain copies
+each run with its manifest,
+
+49
+00:03:12.783 --> 00:03:18.162
+adds its controls and indicators, every
+file's hash and the previous record's hash.
+
+50
+00:03:18.162 --> 00:03:21.221
+A check with a failure
+is recorded as findings,
+
+51
+00:03:21.221 --> 00:03:24.240
+not pass, and doesn't
+count toward a stage.
+
+52
+00:03:27.990 --> 00:03:28.928
+Who does this?
+
+53
+00:03:28.928 --> 00:03:32.965
+The technical program manager runs
+the waves and keeps the ring record.
+
+54
+00:03:32.965 --> 00:03:35.865
+The service owner approves
+each ring's exit.
+
+55
+00:03:35.865 --> 00:03:39.031
+The security monitor
+watches freshness and agrees
+
+56
+00:03:39.031 --> 00:03:41.977
+the CISA telemetry path
+with the TIC delegates.
+
+57
+00:03:41.977 --> 00:03:46.127
+The security officer keeps the
+evidence folder, inside the boundary.
+
+58
+00:03:46.127 --> 00:03:50.941
+And the assessor or authorizing official
+decides each finding's closure:
+
+59
+00:03:50.941 --> 00:03:53.466
+the kit only says the evidence is ready.
+
+60
+00:03:53.466 --> 00:03:56.215
+Learn's advice is at
+least two people per role.
+
+61
+00:03:56.215 --> 00:03:58.891
+The reads are Chapter
+2's, plus the workspace,
+
+62
+00:03:58.891 --> 00:04:03.640
+and nothing writes unless a rollback
+is applied with its approved hash.
+
+63
+00:04:07.390 --> 00:04:08.202
+Lab 1.
+
+64
+00:04:08.202 --> 00:04:12.203
+After collecting the pilot, step
+2 runs the telemetry checks.
+
+65
+00:04:12.203 --> 00:04:14.145
+The setting misses a category;
+
+66
+00:04:14.145 --> 00:04:18.576
+branch health has no rows because no
+branch is on a remote network yet;
+
+67
+00:04:18.576 --> 00:04:22.852
+alerts are twenty-seven hours old;
+and CISA telemetry isn't agreed.
+
+68
+00:04:22.852 --> 00:04:26.390
+Step 3 computes the metrics
+and the pilot's exit.
+
+69
+00:04:26.390 --> 00:04:31.469
+No metric is met, and the pilot is no-go,
+for five reasons: five business days in,
+
+70
+00:04:31.469 --> 00:04:36.794
+one severity-two ticket open, eighty-three
+percent coverage, three report-only
+
+71
+00:04:36.794 --> 00:04:41.628
+failures carried by the service, and
+one and a half percent TLS failures.
+
+72
+00:04:41.628 --> 00:04:46.880
+The emergency exclusion was tested at
+ring start and break-glass was rehearsed.
+
+73
+00:04:50.630 --> 00:04:54.065
+Step 4 does the same for
+ring 1, two weeks later:
+
+74
+00:04:54.065 --> 00:04:58.892
+every metric is met, every criterion
+passes, and the ring says go.
+
+75
+00:04:58.892 --> 00:05:02.254
+Step 5 plans ring 1's
+rollback before it's needed.
+
+76
+00:05:02.254 --> 00:05:07.355
+Three enforced policies go to
+report-only in the guide's order,
+
+77
+00:05:07.355 --> 00:05:08.855
+Step 7, then 6, then 5.
+
+78
+00:05:08.855 --> 00:05:10.117
+Tagging goes off.
+
+79
+00:05:10.117 --> 00:05:13.964
+The profile links and group
+assignments are portal steps,
+
+80
+00:05:13.964 --> 00:05:16.768
+and the VPN route is
+the agency's own change.
+
+81
+00:05:16.768 --> 00:05:18.131
+Signaling stays on.
+
+82
+00:05:18.131 --> 00:05:22.750
+The plan's hash is printed, and
+it's a dry run: nothing changed.
+
+83
+00:05:26.500 --> 00:05:29.150
+Step 6 asks for signaling off as well.
+
+84
+00:05:29.150 --> 00:05:31.356
+The plan adds it as the very last step,
+
+85
+00:05:31.356 --> 00:05:36.504
+after its own steps have moved the enforced
+compliant network policy to report-only;
+
+86
+00:05:36.504 --> 00:05:40.475
+it would refuse if any compliant
+network policy stayed enforced.
+
+87
+00:05:40.475 --> 00:05:45.469
+Step 7 records the collection, the
+metrics and the rollback plan as evidence,
+
+88
+00:05:45.469 --> 00:05:48.719
+and checks the folder:
+every file matches its hash,
+
+89
+00:05:48.719 --> 00:05:53.475
+the three records form an unbroken
+chain, and each record lists its steps.
+
+90
+00:05:53.475 --> 00:05:57.830
+Step 8 runs the tests:
+ten passed, none failed.
+
+91
+00:06:01.580 --> 00:06:04.644
+Lab 2 uses the test tenant
+from Chapters 4 to 7,
+
+92
+00:06:04.644 --> 00:06:09.117
+with the diagnostic setting on and
+at least a day of pilot traffic.
+
+93
+00:06:09.117 --> 00:06:10.930
+Run the guide's freshness query.
+
+94
+00:06:10.930 --> 00:06:15.063
+Collect, check telemetry, and
+compute the ring's metrics and exit,
+
+95
+00:06:15.063 --> 00:06:19.430
+using your own ring record from the
+template, kept on agency storage.
+
+96
+00:06:19.430 --> 00:06:23.492
+Plan the rollback and file it with the
+change record, without applying it.
+
+97
+00:06:23.492 --> 00:06:28.517
+Record every run in a protected evidence
+folder inside the boundary and check it.
+
+98
+00:06:28.517 --> 00:06:30.195
+Nothing changed in the tenant,
+
+99
+00:06:30.195 --> 00:06:33.080
+so there's nothing to back
+out but the working copies.
+
+100
+00:06:33.080 --> 00:06:35.654
+Then re-run the Zero Trust Assessment and
+
+101
+00:06:35.654 --> 00:06:38.455
+point each network
+finding at this evidence.
+
+102
+00:06:38.455 --> 00:06:40.810
+The authors haven't run this lab.
+
+103
+00:06:44.560 --> 00:06:50.254
+Fresh tables and an agreed CISA path
+support event logging, audit review and
+
+104
+00:06:50.254 --> 00:06:56.660
+monitoring, with OMB M-26-14 and TIC
+3.0's telemetry requirement behind them.
+
+105
+00:06:56.660 --> 00:07:01.685
+Ring exits on measured criteria support
+change control and impact analysis.
+
+106
+00:07:01.685 --> 00:07:05.585
+A rollback planned before it's needed
+supports the contingency plan.
+
+107
+00:07:05.585 --> 00:07:08.885
+And the hashed chain supports
+protecting audit information.
+
+108
+00:07:08.885 --> 00:07:13.610
+The assessor or authorizing official
+decides the controls, and closure.
+
+109
+00:07:13.610 --> 00:07:18.338
+The dangers: a ring that exits on the
+calendar, the VPN's web path retired
+
+110
+00:07:18.338 --> 00:07:23.147
+without CISA telemetry, and signaling
+turned off first in an incident.
+
+111
+00:07:23.147 --> 00:07:26.849
+You're done when the tables are
+fresh, each ring's exit is filed,
+
+112
+00:07:26.849 --> 00:07:29.810
+and its rollback was
+reviewed before it started.
+
+113
+00:07:29.810 --> 00:07:33.760
+Next, Chapter 9: deploying
+to test, and production.

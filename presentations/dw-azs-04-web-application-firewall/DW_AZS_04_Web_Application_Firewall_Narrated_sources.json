@@ -1,0 +1,134 @@
+[
+ {
+  "slide": 2,
+  "title": "Why a WAF in detection mode isn't protection",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What Microsoft Learn gives you",
+  "links": [
+   {
+    "text": "az network application-gateway waf-policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cli-application-gateway-waf-policy"
+   },
+   {
+    "text": "Front Door CLI quickstart",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#front-door-cli-quickstart"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What it leaves to you",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Eight rules, and the coverage count",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The switch to Prevention, as a plan",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Who tunes, who switches, who watches",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: run the check, read each policy",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 1: the findings, and the unsent plan",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2: a test subscription",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Federal requirements and the evidence",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Done when: the WAF checklist",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.html"
+   }
+  ]
+ }
+]

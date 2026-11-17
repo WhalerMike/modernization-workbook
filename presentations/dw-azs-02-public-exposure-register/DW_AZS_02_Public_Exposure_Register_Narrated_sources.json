@@ -1,0 +1,128 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the exposure list comes before the controls",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What the guide's Learn queries give you",
+  "links": [
+   {
+    "text": "Secure your Azure DDoS Protection deployment",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-ddos-protection-deployment"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What four queries leave to you",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.html"
+   },
+   {
+    "text": "Migrate Azure Front Door (classic)",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#migrate-front-door-classic"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The register's columns, and its five rules",
+  "links": [
+   {
+    "text": "What is Azure Front Door?",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#front-door-overview"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Who runs the register, and who answers for it",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Lab 1: build the first week's register",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: findings now, and a week later",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 2: a test subscription",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Federal requirements and the register",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Done when: the register's checklist",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.html"
+   }
+  ]
+ }
+]

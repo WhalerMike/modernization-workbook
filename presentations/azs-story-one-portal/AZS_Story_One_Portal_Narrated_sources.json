@@ -1,0 +1,282 @@
+[
+ {
+  "slide": 2,
+  "title": "The portal's path through the nine chapters",
+  "links": [
+   {
+    "text": "Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.html"
+   },
+   {
+    "text": "09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.html"
+   },
+   {
+    "text": "Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.html"
+   },
+   {
+    "text": "Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.html"
+   },
+   {
+    "text": "Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/03-ddos-protection.html"
+   },
+   {
+    "text": "Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.html"
+   },
+   {
+    "text": "Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.html"
+   },
+   {
+    "text": "Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.html"
+   },
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.html"
+   },
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/08-policy-drift-and-evidence.html"
+   },
+   {
+    "text": "Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Scene 1: the baseline, read back every week",
+  "links": [
+   {
+    "text": "Protect your resource hierarchy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#protect-resource-hierarchy"
+   },
+   {
+    "text": "Diagnostic Settings - List",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-diagnostic-settings-list"
+   },
+   {
+    "text": "Pricings - List",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-defender-pricings-list"
+   },
+   {
+    "text": "Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Try it: the baseline check on week one",
+  "links": [
+   {
+    "text": "Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Scene 2: every public face of the portal, owned",
+  "links": [
+   {
+    "text": "Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Try it: the register, then a week later",
+  "links": [
+   {
+    "text": "Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Scene 3: which of the portal's IPs are protected",
+  "links": [
+   {
+    "text": "Zero Trust for DDoS Protection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-zero-trust-ddos"
+   },
+   {
+    "text": "Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/03-ddos-protection.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Try it: each public IP's protection",
+  "links": [
+   {
+    "text": "Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/03-ddos-protection.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Scene 4: a WAF that logs but doesn't block",
+  "links": [
+   {
+    "text": "Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Try it: the portal's WAF policies, and the plan",
+  "links": [
+   {
+    "text": "Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Scene 5: can the portal be reached around the edge?",
+  "links": [
+   {
+    "text": "Web Apps - Get Configuration",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-webapps-get-configuration"
+   },
+   {
+    "text": "Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Try it: each origin's lock-down",
+  "links": [
+   {
+    "text": "Ch 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Scene 6: the portal's egress skips the firewall",
+  "links": [
+   {
+    "text": "Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.html"
+   }
+  ]
+ },
+ {
+  "slide": 19,
+  "title": "Try it: default routes, and the draft to Deny",
+  "links": [
+   {
+    "text": "Ch 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.html"
+   }
+  ]
+ },
+ {
+  "slide": 21,
+  "title": "Scene 7: the portal's vault, missing every part",
+  "links": [
+   {
+    "text": "Secure your Azure Key Vault",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-azure-key-vault"
+   },
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.html"
+   }
+  ]
+ },
+ {
+  "slide": 22,
+  "title": "Try it: the vaults",
+  "links": [
+   {
+    "text": "Ch 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.html"
+   }
+  ]
+ },
+ {
+  "slide": 24,
+  "title": "Scene 8: an exemption due, a week of drift, the evidence",
+  "links": [
+   {
+    "text": "Resource Graph samples for Azure Policy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-policy-resource-graph-samples"
+   },
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/08-policy-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 25,
+  "title": "Try it: the exemption, the drift, the records",
+  "links": [
+   {
+    "text": "Ch 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/08-policy-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 27,
+  "title": "Scene 9: the kit goes live, test first",
+  "links": [
+   {
+    "text": "Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.html"
+   },
+   {
+    "text": "Azure Policy assignment structure",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#azure-policy-assignment-structure"
+   }
+  ]
+ },
+ {
+  "slide": 28,
+  "title": "Try it: the runbook's rehearsal on the fixtures",
+  "links": [
+   {
+    "text": "Ch 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 30,
+  "title": "Your turn: Lab 2, and where to go next",
+  "links": [
+   {
+    "text": "Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/08-policy-drift-and-evidence.html"
+   },
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.html"
+   }
+  ]
+ }
+]

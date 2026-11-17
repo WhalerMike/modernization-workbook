@@ -1,0 +1,142 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the baseline is read back as code",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What Microsoft Learn gives you",
+  "links": [
+   {
+    "text": "Protect your resource hierarchy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#protect-resource-hierarchy"
+   },
+   {
+    "text": "Hierarchy Settings - Get",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-mg-hierarchy-settings-get"
+   },
+   {
+    "text": "Diagnostic Settings - List",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-diagnostic-settings-list"
+   },
+   {
+    "text": "Pricings - List",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-defender-pricings-list"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What it leaves to you",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The spine: one call list, two invokers",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The baseline check: six rules",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Who owns the baseline, and what the reader may do",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: the calls, and the check on week one",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 1: the findings, the summary, the command",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2: a test subscription",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Federal requirements and the evidence",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.html"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/08-policy-drift-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.html"
+   }
+  ]
+ }
+]

@@ -1,0 +1,106 @@
+[
+ {
+  "slide": 2,
+  "title": "Why one export, and why logs first",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What Microsoft Learn gives you",
+  "links": [
+   {
+    "text": "Book 12, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/03-identity-telemetry.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What it leaves to you",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The collector, the manifest and the checks",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Who keeps the record, and the logs",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Lab 1: collect the whole pilot tenant",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: the category the setting leaves out",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 1: a changed file stops every later step",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2: logs on, then the export",
+  "links": [
+   {
+    "text": "Book 12, Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/03-identity-telemetry.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/02-the-evidence-contract.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Requirements, dangers, done",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.html"
+   }
+  ]
+ }
+]

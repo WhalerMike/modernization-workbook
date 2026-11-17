@@ -1,0 +1,166 @@
+[
+ {
+  "slide": 2,
+  "title": "Why prove the read path first",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What the guide and Microsoft Learn give you",
+  "links": [
+   {
+    "text": "List incidents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-list-incidents"
+   },
+   {
+    "text": "National cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Create custom roles with unified RBAC",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#defender-urbac-create-custom-roles"
+   },
+   {
+    "text": "Activate unified RBAC",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#defender-urbac-activate"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What it leaves to you, and the verdict",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Declared calls, and one door for writes",
+  "links": [
+   {
+    "text": "List incidents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-list-incidents"
+   },
+   {
+    "text": "runHuntingQuery",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-runhuntingquery"
+   },
+   {
+    "text": "List detectionRule",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-list-detectionrules"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The role check: six rows",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Who owns the roles, who reads the result",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: run the access check on fixtures",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 1: the permissions, the manifest, the tests",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2: the same check in a test tenant",
+  "links": [
+   {
+    "text": "List incidents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-list-incidents"
+   },
+   {
+    "text": "National cloud deployments",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#national-cloud-deployments"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Federal requirements and the evidence",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.html"
+   }
+  ]
+ }
+]

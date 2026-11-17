@@ -1,0 +1,110 @@
+[
+ {
+  "slide": 2,
+  "title": "Why one application, not a range",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What Microsoft Learn gives you",
+  "links": [
+   {
+    "text": "Zero Trust: Protect networks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#zero-trust-protect-networks"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What it leaves to you",
+  "links": [
+   {
+    "text": "Zero Trust: Protect networks",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#zero-trust-protect-networks"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.html"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The nine private access checks",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Who owns apps, connectors and admin paths",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Lab 1: the connectors, group by group",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: the plan restores the RDP policy",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 1: two weeks later, every app passes",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2: publish one app, then remove it",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Requirements, dangers, done",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.html"
+   }
+  ]
+ }
+]
