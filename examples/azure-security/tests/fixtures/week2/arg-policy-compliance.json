@@ -1,0 +1,47 @@
+{
+  "count": 4,
+  "data": [
+    {
+      "policyAssignmentName": "allowed-locations",
+      "scope": "/providers/Microsoft.Management/managementGroups/contoso",
+      "complianceState": "compliant",
+      "compliancePercentage": 100.0,
+      "compliantCount": 61,
+      "nonCompliantCount": 0,
+      "conflictCount": 0,
+      "exemptCount": 0
+    },
+    {
+      "policyAssignmentName": "azs-fedramp-mod",
+      "scope": "/providers/Microsoft.Management/managementGroups/contoso",
+      "complianceState": "noncompliant",
+      "compliancePercentage": 71.4,
+      "compliantCount": 40,
+      "nonCompliantCount": 16,
+      "conflictCount": 0,
+      "exemptCount": 0
+    },
+    {
+      "policyAssignmentName": "azs-mcsb",
+      "scope": "/providers/Microsoft.Management/managementGroups/contoso",
+      "complianceState": "noncompliant",
+      "compliancePercentage": 80.3,
+      "compliantCount": 45,
+      "nonCompliantCount": 11,
+      "conflictCount": 0,
+      "exemptCount": 0
+    },
+    {
+      "policyAssignmentName": "azs-security",
+      "scope": "/providers/Microsoft.Management/managementGroups/contoso",
+      "complianceState": "noncompliant",
+      "compliancePercentage": 63.2,
+      "compliantCount": 22,
+      "nonCompliantCount": 14,
+      "conflictCount": 0,
+      "exemptCount": 2
+    }
+  ],
+  "skip_token": null,
+  "total_count": 4
+}

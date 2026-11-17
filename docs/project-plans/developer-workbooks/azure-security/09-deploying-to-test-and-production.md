@@ -1,0 +1,308 @@
+---
+title: "Chapter 09 — Deploying to Test and Production"
+description: "The runbook that takes the Azure security kit from the labs to a live test subscription, then to production, with the same commands and one settings file per environment: preflight checks (PF-01 to PF-07), the weekly scheduled run with its comparison, metrics and evidence record, the security initiative's assignment in DoNotEnforce planned and applied only with its approved SHA-256, a rehearsed rollback, the go/no-go on the test stage's live evidence, and Stage 2 in production. Every step is a command; fixture-mode output is shown with its date. Not yet run against a live subscription."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-azure-security
+part: How
+series-order: 9
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 09 — Deploying to Test and Production
+
+*The kit reads every week and writes once. The runbook is about the week, and about the one write.*
+
+::: {.callout-note}
+## In this chapter
+A runbook, not a code chapter: it has no labs of its own. It takes the kit from [Chapters 01 to 08](index.md#chapters) to a live test subscription, then to production, with the same commands and one settings file per environment. The kit's reads need only Reader. Its one write, the security initiative's assignment at the intermediate root in `DoNotEnforce` from the guide's [Step 9](../../../books/guides/azure-security-implementation.md#step-9-policy-and-drift), is a plan that applies only with its approved SHA-256, and its rollback is rehearsed before production. The go/no-go is the test stage's live evidence. Nothing here has been run against a live subscription; the fixture-mode output below was produced on November 17, 2026.
+:::
+
+## Before you start
+
+- **Done first:** Lab 2 of Chapters 01 to 08 in the test subscription, with the unverified calls' output checked against the portal (research gaps lists what each lab confirms).
+- **Identities.** A reader for the weekly run: Reader on the intermediate root and on the tenant root group (for the hierarchy settings), as a managed identity or a workload identity with a federated credential, never a secret (the [service account guide, Migration C](../../../books/guides/service-account-migration.md#migration-c)). An operator for the plan: Resource Policy Contributor at the intermediate root, eligible through PIM, activated for the change window ([*Building Privileged Access*, Chapter 06](../privileged-access/06-pim-for-azure-resources.md)).
+- **Tools.** PowerShell 7.1 or later, Azure CLI with the `resource-graph` extension, signed in to commercial Azure (`az cloud set --name AzureCloud`).
+- **Storage.** An output folder and an evidence folder inside the agency's boundary, outside any repository: the register maps the attack surface.
+- **A change record** for each stage, whose ID goes in the settings file.
+
+Work in `examples/azure-security`. Values you supply: `<tenant-id>`, `<test-mg-id>` and `<prod-mg-id>` (the intermediate roots), `<test-subscription-id>` and `<prod-connectivity-subscription-id>`, `<workspace-id>` and `<prod-workspace-id>`, `<hub-vnet-id>` and `<prod-hub-vnet-id>`, `<workload-subscription-id>` (each production workload subscription), `<benchmark-assignment-name>` and `<fedramp-assignment-name>` (Step 1's assignments), `<initiative-name>` (the security initiative's definition name), `<identity-role>` (the narrowest role the initiative's `deployIfNotExists` and `modify` policies need), `<location>`, `<enforce-by>` (the date the initiative should be enforcing), `<test-output>` and `<prod-output>` (folders outside any repository), `<test-change>` and `<prod-change>` (change record IDs), and `<plan-sha256>` (printed by the plan).
+
+## 1. The settings files
+
+One file per environment, from `deploy/settings.template.json`, no secrets. The loader refuses a placeholder left unfilled and a key that names a secret. Write the test stage's:
+
+```powershell
+$s = Get-Content deploy/settings.template.json -Raw | ConvertFrom-Json
+$s.environment = 'test'; $s.tenantId = '<tenant-id>'; $s.tenantRootGroupId = '<tenant-id>'; $s.managementGroup = '<test-mg-id>'
+$s.workspaceId = '<workspace-id>'; $s.connectivitySubscriptionId = '<test-subscription-id>'; $s.hubVnetId = '<hub-vnet-id>'
+$s.workloadSubscriptionIds = @('<test-subscription-id>'); $s.requiredAssignments = @('<benchmark-assignment-name>', '<fedramp-assignment-name>')
+$s.securityInitiative = [pscustomobject]@{ assignmentName = 'azs-security'; definitionName = '<initiative-name>'; identityRole = '<identity-role>'; enforceBy = '<enforce-by>' }
+$s.location = '<location>'; $s.outputRoot = '<test-output>/runs'; $s.evidencePath = '<test-output>/evidence'; $s.changeRecord = '<test-change>'
+$s.PSObject.Properties.Remove('testEvidencePath'); $s.PSObject.Properties.Remove('_comment')
+$s | ConvertTo-Json -Depth 5 | Set-Content <test-output>/settings.test.json
+```
+
+## 2. Preflight
+
+```powershell
+az cloud set --name AzureCloud
+az login --tenant <tenant-id>
+az extension add --name resource-graph
+./deploy/Test-AzsPreflight.ps1 -SettingsPath <test-output>/settings.test.json -OutputPath <test-output>/preflight -Live -AllowUnverified
+./Invoke-AzsEvidence.ps1 -EvidencePath <test-output>/evidence -RunPath <test-output>/preflight -ChangeRecord <test-change>
+```
+
+| Check | What it checks |
+|---|---|
+| PF-01 | The settings are complete, name `AzureCloud`, and have no placeholder |
+| PF-02 | No key names a secret |
+| PF-03 | The output root isn't inside the repository the kit runs from (fail), or any other repository (warn) |
+| PF-04 | Azure CLI is on `AzureCloud` and signed in to the settings' tenant (with `-Live`) |
+| PF-05 | Resource Graph returns the subscriptions under the intermediate root (with `-Live`) |
+| PF-06 | The unverified calls are allowed for this stage, or listed |
+| PF-07 | Production only: the test stage's evidence passes its stage check |
+
+Any Fail stops the stage (the script exits 1). In fixture mode, on November 17, 2026, against the fictional test settings, it printed:
+
+```text
+PF-01  Pass    settings complete for test, cloud AzureCloud, no placeholder
+PF-02  Pass    no secret in the settings file
+PF-03  Warn    outputRoot is inside the git repository at <home>; make sure nothing there is pushed outside the boundary
+PF-04  Skipped not run without -Live
+PF-05  Skipped not run without -Live
+PF-06  Warn    18 calls aren't verified on Learn; without -AllowUnverified the areas that use them stop
+PF-07  Skipped test stage: no earlier stage to check
+```
+
+The rehearsal folder sat under a home folder that is itself a git repository, so PF-03 warned; inside the kit's own repository it fails.
+
+## Stage 1: live test
+
+### 3. The first scheduled run
+
+```powershell
+./deploy/Invoke-AzsScheduledRun.ps1 -SettingsPath <test-output>/settings.test.json -AllowUnverified
+```
+
+Every area's check into `<test-output>/runs/run-<date>/`, the metrics, one manifest and an evidence record. In fixture mode (week 1 of the Contoso estate, November 17, 2026):
+
+```text
+Run run-2026-11-09: 48 Finding, 18 Warn, 2 Info
+No earlier run: this run is the baseline
+Evidence record 1: Pass (RUN, BL, EXP, DDOS, WAF, EDGE, FW, PL, KV, POL, METRICS, EVIDENCE)
+```
+
+Read each area's `findings.csv` with its owner. For every unverified call, compare one row with the portal, as each chapter's Lab 2 does, and record the result in the change record.
+
+### 4. Plan the security initiative's assignment
+
+```powershell
+./deploy/New-AzsPolicyPlan.ps1 -SettingsPath <test-output>/settings.test.json -OutputPath <test-output>/plan
+```
+
+It reads the assignments first; if `azs-security` already exists at the intermediate root it plans nothing. Otherwise `plan.txt` holds the one command the guide's Step 9 gives, with the settings' role in place of Contributor:
+
+```text
+az policy assignment create --name azs-security --policy-set-definition <initiative-name> --scope /providers/Microsoft.Management/managementGroups/<test-mg-id> --enforcement-mode DoNotEnforce --mi-system-assigned --location <location> --role <identity-role> --identity-scope /providers/Microsoft.Management/managementGroups/<test-mg-id>
+```
+
+and the script prints the plan's SHA-256. Attach `plan.txt` and the hash to the change record. The ISSO and the policy owner review it.
+
+### 5. Apply the approved plan
+
+Activate Resource Policy Contributor through PIM for the change window, then:
+
+```powershell
+./deploy/New-AzsPolicyPlan.ps1 -SettingsPath <test-output>/settings.test.json -OutputPath <test-output>/plan -Apply -ApprovedSha256 <plan-sha256>
+./Invoke-AzsEvidence.ps1 -EvidencePath <test-output>/evidence -RunPath <test-output>/plan -ChangeRecord <test-change>
+```
+
+A plan whose hash isn't the approved one is refused: if anything changed, plan again and review again. `-Apply` is refused in fixture mode.
+
+### 6. Smoke test
+
+```powershell
+./Invoke-AzsCheck.ps1 -Area policy -SettingsPath <test-output>/settings.test.json -OutputPath <test-output>/smoke
+Import-Csv <test-output>/smoke/findings.csv | Where-Object rule -in 'AZS-POL-01', 'AZS-POL-02' | ForEach-Object { "{0} {1}" -f $_.rule, $_.detail }
+```
+
+No AZS-POL-01: the initiative is assigned. AZS-POL-02 only if the enforce-by date has passed. Compliance takes an evaluation cycle to appear; the guide asks for at least one 24-hour cycle in audit before any review.
+
+### 7. Rehearse the rollback
+
+Plan the removal, apply it, see the check notice, then put the assignment back:
+
+```powershell
+./deploy/Invoke-AzsRollback.ps1 -SettingsPath <test-output>/settings.test.json -Mode Delete -OutputPath <test-output>/rollback
+./deploy/Invoke-AzsRollback.ps1 -SettingsPath <test-output>/settings.test.json -Mode Delete -OutputPath <test-output>/rollback -Apply -ApprovedSha256 <plan-sha256>
+./Invoke-AzsEvidence.ps1 -EvidencePath <test-output>/evidence -RunPath <test-output>/rollback -ChangeRecord <test-change>
+./Invoke-AzsCheck.ps1 -Area policy -SettingsPath <test-output>/settings.test.json -OutputPath <test-output>/smoke-after-rollback
+./deploy/New-AzsPolicyPlan.ps1 -SettingsPath <test-output>/settings.test.json -OutputPath <test-output>/plan
+```
+
+Use the SHA-256 the first command printed for the second. AZS-POL-01 should appear in `smoke-after-rollback`. The last command plans the assignment again; apply it as in step 5. Resources a remediation created stay until removed. In production, the rollback is `-Mode DoNotEnforce` once the initiative enforces: back to audit, not removed. In fixture mode, on November 17, 2026, `-Mode DoNotEnforce` printed:
+
+```text
+# The command -Apply would send
+# Back to audit: evaluate, don't enforce (guide Step 9 rollback)
+az policy assignment update --name azs-security --scope /providers/Microsoft.Management/managementGroups/contoso --enforcement-mode DoNotEnforce
+Plan SHA-256: 3215132646d6464cde2858095e4eb26db7c462d975e92c453a3ada3a83b97d66
+Dry run: nothing was sent.
+```
+
+### 8. A week later, the second scheduled run
+
+```powershell
+./deploy/Invoke-AzsScheduledRun.ps1 -SettingsPath <test-output>/settings.test.json -AllowUnverified
+```
+
+It finds last week's run, compares the register and the findings, and records the comparison. In fixture mode (week 2, November 17, 2026):
+
+```text
+Run run-2026-11-16: 40 Finding, 17 Warn, 3 Info
+Against run-2026-11-09: new 4, fixed 13, still open 53
+Evidence record 2: Pass (RUN, BL, EXP, DDOS, WAF, EDGE, FW, PL, KV, POL, METRICS, DRIFT, EVIDENCE)
+```
+
+## 9. Go or no-go
+
+```powershell
+./Invoke-AzsEvidence.ps1 -EvidencePath <test-output>/evidence -Check -Stage test
+```
+
+Go when every check passes: `SHA256SUMS` matches, the chain is unbroken, and each test-stage step (PRE, RUN, the nine area steps and METRICS) has a passing record from a live run. Fixture records never count. Then the ISSO and the platform owner record the decision in the change record, with the open findings and their owners. In fixture mode the folder's own checks pass and every stage step fails, as Chapter 08's Lab 1 shows.
+
+## Stage 2: production
+
+### 10. The production settings file
+
+The same command as step 1, with production's values and the test stage's evidence:
+
+```powershell
+$s = Get-Content deploy/settings.template.json -Raw | ConvertFrom-Json
+$s.environment = 'production'; $s.tenantId = '<tenant-id>'; $s.tenantRootGroupId = '<tenant-id>'; $s.managementGroup = '<prod-mg-id>'
+$s.workspaceId = '<prod-workspace-id>'; $s.connectivitySubscriptionId = '<prod-connectivity-subscription-id>'; $s.hubVnetId = '<prod-hub-vnet-id>'
+$s.workloadSubscriptionIds = @('<workload-subscription-id>'); $s.requiredAssignments = @('<benchmark-assignment-name>', '<fedramp-assignment-name>')
+$s.securityInitiative = [pscustomobject]@{ assignmentName = 'azs-security'; definitionName = '<initiative-name>'; identityRole = '<identity-role>'; enforceBy = '<enforce-by>' }
+$s.location = '<location>'; $s.outputRoot = '<prod-output>/runs'; $s.evidencePath = '<prod-output>/evidence'; $s.testEvidencePath = '<test-output>/evidence'; $s.changeRecord = '<prod-change>'
+$s.PSObject.Properties.Remove('_comment')
+$s | ConvertTo-Json -Depth 5 | Set-Content <prod-output>/settings.production.json
+```
+
+### 11. Preflight, with the test stage's evidence
+
+```powershell
+./deploy/Test-AzsPreflight.ps1 -SettingsPath <prod-output>/settings.production.json -OutputPath <prod-output>/preflight -Live -AllowUnverified
+./Invoke-AzsEvidence.ps1 -EvidencePath <prod-output>/evidence -RunPath <prod-output>/preflight -ChangeRecord <prod-change>
+```
+
+PF-07 fails unless the test stage's evidence passes its stage check.
+
+### 12. Plan and apply in the change window
+
+```powershell
+./deploy/New-AzsPolicyPlan.ps1 -SettingsPath <prod-output>/settings.production.json -OutputPath <prod-output>/plan
+./deploy/New-AzsPolicyPlan.ps1 -SettingsPath <prod-output>/settings.production.json -OutputPath <prod-output>/plan -Apply -ApprovedSha256 <plan-sha256>
+./Invoke-AzsEvidence.ps1 -EvidencePath <prod-output>/evidence -RunPath <prod-output>/plan -ChangeRecord <prod-change>
+```
+
+The first prints the hash the reviewers approve; the second applies only that plan.
+
+### 13. The weekly run
+
+```powershell
+./deploy/Invoke-AzsScheduledRun.ps1 -SettingsPath <prod-output>/settings.production.json -AllowUnverified
+```
+
+Schedule it weekly under the reader identity, in the agency's own scheduler (*design guidance*: the guide's Step 10 runs the register weekly). The first production run is the baseline; from the second, every run carries its comparison. The switch from `DoNotEnforce` to `Default`, the remediation tasks and the exemptions are the guide's Step 9, each its own reviewed change; the kit reports AZS-POL-02 once the enforce-by date passes.
+
+### 14. Production's go-live evidence
+
+```powershell
+./Invoke-AzsEvidence.ps1 -EvidencePath <prod-output>/evidence -Check -Stage production
+```
+
+Production's stage adds PLAN and DRIFT to the test stage's steps, so it passes from the second weekly run.
+
+## The evidence the ISSO keeps
+
+| Step | What the record holds | Requirement it supports | KSI it aligns to |
+|---|---|---|---|
+| Preflight (PRE) | `results.json`: settings, no secret, cloud and tenant, the reader's first query | AC-6, least privilege; CM-6, configuration settings | KSI-IAM-ELP, KSI-SVC-ACM |
+| Plan (PLAN) | `plan.json`, `plan.txt`, the approved SHA-256, `results.json` once applied | CM-3, configuration change control; CM-4, impact analyses | KSI-CMT-LMC, KSI-CMT-RVP |
+| Rollback (RB) | The rollback plan, its hash and its result | CM-3; CP-2, contingency plan | KSI-CMT-LMC, KSI-RPL-ARP |
+| Scheduled run (RUN and the area steps) | Every area's run folder, the register, the metrics | CA-7, continuous monitoring; CM-8, system component inventory; and each area's controls (Chapters 01 to 07) | KSI-MLA-EVC, KSI-CNA-MAT, and each area's |
+| Comparison (DRIFT) | `drift.json`, `drift.md` | CM-6; CA-7 | KSI-SVC-ACM, KSI-MLA-EVC |
+| Every record (EVIDENCE) | The chain, every file's SHA-256, `records.csv`, `SHA256SUMS` | CA-7; AU-9, protection of audit information | KSI-MLA-EVC, KSI-MLA-OSM |
+
+The pairs are in [`config/requirements.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/azure-security/config/requirements.json): the area steps are the guide's table; PRE reuses *Building Privileged Access*'s AC-6 to KSI-IAM-ELP; PLAN, RB and EVIDENCE reuse the provider notices kit's. The evidence supports these controls; the assessor decides. KSIs are FedRAMP 20x indicators for cloud service providers; the agency lines its own evidence up with them and doesn't report them.
+
+## Rehearse it in fixture mode
+
+The whole runbook's offline half, on the fictional estate, from `examples/azure-security`, with `<rehearsal-folder>` a folder outside any repository:
+
+```powershell
+$s = Get-Content deploy/tests/fixtures/settings.test.json -Raw | ConvertFrom-Json
+$s.outputRoot = '<rehearsal-folder>/runs'; $s.evidencePath = '<rehearsal-folder>/evidence'
+New-Item -ItemType Directory -Force -Path <rehearsal-folder> | Out-Null
+$s | ConvertTo-Json -Depth 5 | Set-Content <rehearsal-folder>/settings.test.json
+./deploy/Test-AzsPreflight.ps1 -SettingsPath <rehearsal-folder>/settings.test.json -OutputPath <rehearsal-folder>/preflight -AsOf 2026-11-16T12:00:00Z
+./deploy/Invoke-AzsScheduledRun.ps1 -SettingsPath <rehearsal-folder>/settings.test.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z
+./deploy/Invoke-AzsScheduledRun.ps1 -SettingsPath <rehearsal-folder>/settings.test.json -FixturePath tests/fixtures/week2 -AsOf 2026-11-16T12:00:00Z
+./deploy/New-AzsPolicyPlan.ps1 -SettingsPath <rehearsal-folder>/settings.test.json -FixturePath tests/fixtures/week1 -OutputPath <rehearsal-folder>/plan -AsOf 2026-11-16T12:00:00Z
+./deploy/Invoke-AzsRollback.ps1 -SettingsPath <rehearsal-folder>/settings.test.json -Mode DoNotEnforce -OutputPath <rehearsal-folder>/rollback -AsOf 2026-11-16T12:00:00Z -Fixture
+./Invoke-AzsEvidence.ps1 -EvidencePath <rehearsal-folder>/evidence -Check
+```
+
+The outputs are the ones shown in steps 2, 3, 7 and 8; the plan prints "Nothing to do: azs-security is already assigned at contoso", because the fixture estate already has it; the evidence check passes `SUMS` and `CHAIN` with two records. The runbook's scripts have 11 tests of their own:
+
+```powershell
+Invoke-Pester -Path deploy/tests
+```
+
+Delete the rehearsal folder when you're done:
+
+```powershell
+Remove-Item -Recurse -Force <rehearsal-folder>
+```
+
+## Verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| The assignment | `az policy assignment create --policy-set-definition --scope --enforcement-mode DoNotEnforce --mi-system-assigned --location --role --identity-scope`; grant the narrowest role each definition names | [^azs09-guide] |
+| `DoNotEnforce` | Evaluates without enforcing; remediation can still run | [^azs09-enforcement] |
+| Rollback | `az policy assignment update --enforcement-mode DoNotEnforce` (Step 9); `az policy assignment delete` (Step 1); resources a remediation created stay | [^azs09-guide] |
+| Roles | Resource Policy Contributor for Azure Policy, eligible through PIM | [^azs09-guide] |
+| Commercial Azure | Microsoft 365 GCC pairs with commercial Azure; `az cloud set --name AzureCloud` | [^azs09-guide] |
+
+## Dangers
+
+| Danger | What goes wrong | The guard |
+|---|---|---|
+| A plan applied after it changed | A command nobody reviewed is sent | `-Apply` needs the approved SHA-256 of the plan on disk |
+| Lab evidence used to promote | Production starts on fixture results | Fixture records never count toward a stage; PF-07 checks the test stage |
+| A standing write role | The reader identity could change the estate | Reads need Reader only; the plan's role is eligible through PIM, for the window |
+| Output in a repository | The register is published | PF-03 fails inside the kit's repository and warns in any other |
+| Rollback by removal in production | Remediated resources and compliance history are lost | Production's rollback is `-Mode DoNotEnforce`; removal is rehearsed in test only |
+
+## Checklist
+
+- [ ] Lab 2 of Chapters 01 to 08 passed in the test subscription, and every unverified call's output was compared with the portal.
+- [ ] One settings file per environment, no secrets, outputs outside any repository.
+- [ ] The plan's hash was approved in the change record before `-Apply`.
+- [ ] The rollback was rehearsed in test, with its evidence record.
+- [ ] `-Check -Stage test` passed before production's preflight.
+- [ ] The weekly run is scheduled under the reader identity, and its evidence lives on agency storage.
+
+## Continue the book
+
+Back to the [workbook's index](index.md), or to the guide's [Step 10](../../../books/guides/azure-security-implementation.md#step-10-operations-and-evidence) for the RACI, the review calendar and the incident runbook that the weekly run feeds.
+
+[^azs09-guide]: Azure Security Engineering, [Prerequisites](../../../books/guides/azure-security-implementation.md#prerequisites), [Step 1](../../../books/guides/azure-security-implementation.md#step-1-landing-zone-security-baseline), [Step 9](../../../books/guides/azure-security-implementation.md#step-9-policy-and-drift) and [Rollback](../../../books/guides/azure-security-implementation.md#rollback), with their Learn sources read November 11, 2026.
+[^azs09-enforcement]: Microsoft Learn, "Azure Policy assignment structure," section "Enforcement mode," <https://learn.microsoft.com/azure/governance/policy/concepts/assignment-structure> (accessed Nov 11, 2026).

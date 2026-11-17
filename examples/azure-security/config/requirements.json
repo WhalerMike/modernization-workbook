@@ -1,0 +1,53 @@
+{
+  "_comment": "Each step of the Azure security kit, with the NIST SP 800-53 Rev 5 controls whose statements it supports and the FedRAMP 20x Key Security Indicators. The step-to-control and control-to-KSI pairs are the Azure Security Engineering guide's 'Federal requirements and KSIs' table (read from fedramp.gov's 2026 KSI theme pages and SP 800-53 on November 11, 2026); EVIDENCE, PLAN and RB reuse the provider notices kit's verified pairs (CA-7 to KSI-MLA-EVC, AU-9 to KSI-MLA-OSM, CM-3 to KSI-CMT-LMC and KSI-CMT-RVP, CP-2 to KSI-RPL-ARP); PRE reuses the privileged access workbook's AC-6 to KSI-IAM-ELP. KSIs are FedRAMP's indicators for cloud service providers: the agency lines its own evidence up with what its providers report against them and doesn't report KSIs itself. Which step supports which control is the program's reading (design guidance); the agency's assessor decides. 'stages' lists the steps each stage's evidence must hold before the go/no-go.",
+  "version": 1,
+  "controls": {
+    "AC-4": { "title": "Information Flow Enforcement" },
+    "AC-6": { "title": "Least Privilege" },
+    "AU-6": { "title": "Audit Record Review, Analysis, and Reporting" },
+    "AU-9": { "title": "Protection of Audit Information" },
+    "CA-7": { "title": "Continuous Monitoring" },
+    "CM-2": { "title": "Baseline Configuration" },
+    "CM-3": { "title": "Configuration Change Control" },
+    "CM-4": { "title": "Impact Analyses" },
+    "CM-6": { "title": "Configuration Settings" },
+    "CM-8": { "title": "System Component Inventory" },
+    "CP-2": { "title": "Contingency Plan" },
+    "IA-5": { "title": "Authenticator Management" },
+    "IR-4": { "title": "Incident Handling" },
+    "SC-5": { "title": "Denial-of-service Protection" },
+    "SC-7": { "title": "Boundary Protection" },
+    "SC-7(5)": { "title": "Boundary Protection | Deny by Default — Allow by Exception" },
+    "SC-8": { "title": "Transmission Confidentiality and Integrity" },
+    "SC-12": { "title": "Cryptographic Key Establishment and Management" },
+    "SC-28": { "title": "Protection of Information at Rest" },
+    "SI-4": { "title": "System Monitoring" },
+    "SI-10": { "title": "Information Input Validation" }
+  },
+  "steps": {
+    "BL": { "title": "Landing-zone security baseline (guide Step 1)", "controls": ["CM-2", "CM-6", "CA-7"], "ksis": ["KSI-SVC-ACM", "KSI-MLA-EVC"] },
+    "EXP": { "title": "Public exposure register (guide Step 2)", "controls": ["CM-8", "SC-7"], "ksis": ["KSI-CNA-MAT"] },
+    "DDOS": { "title": "DDoS protection (guide Step 3)", "controls": ["SC-5", "SI-4"], "ksis": ["KSI-CNA-RVP", "KSI-MLA-LET"] },
+    "WAF": { "title": "Web application firewall (guide Step 4)", "controls": ["SC-7", "SI-10"], "ksis": ["KSI-CNA-MAT", "KSI-CNA-RVP"] },
+    "EDGE": { "title": "Front Door, Application Gateway and the origin (guide Step 5)", "controls": ["SC-7", "SC-8", "CP-2"], "ksis": ["KSI-CNA-MAT", "KSI-SVC-SIN"] },
+    "FW": { "title": "Azure Firewall and egress (guide Step 6)", "controls": ["SC-7", "SC-7(5)", "SI-4"], "ksis": ["KSI-CNA-RNT", "KSI-CNA-ULN"] },
+    "PL": { "title": "Private Link and DNS (guide Step 7)", "controls": ["SC-7", "AC-4"], "ksis": ["KSI-CNA-ULN"] },
+    "KV": { "title": "Key Vault (guide Step 8)", "controls": ["SC-12", "SC-28", "IA-5"], "ksis": ["KSI-SVC-ASM", "KSI-IAM-SNU"] },
+    "POL": { "title": "Policy and exemptions (guide Step 9)", "controls": ["CM-2", "CM-6", "CA-7"], "ksis": ["KSI-SVC-ACM", "KSI-CNA-EIS", "KSI-MLA-EVC"] },
+    "DRIFT": { "title": "Compare two runs: new, fixed and still open (guide Steps 9 and 10)", "controls": ["CM-6", "CA-7"], "ksis": ["KSI-SVC-ACM", "KSI-MLA-EVC"] },
+    "METRICS": { "title": "The guide's metrics from a run (guide Step 10)", "controls": ["CA-7", "AU-6"], "ksis": ["KSI-MLA-EVC", "KSI-MLA-OSM"] },
+    "EVIDENCE": { "title": "Record the run as hashed, chained evidence", "controls": ["CA-7", "AU-9"], "ksis": ["KSI-MLA-EVC", "KSI-MLA-OSM"] },
+    "PRE": { "title": "Preflight: settings, cloud, sign-in and the reader's role", "controls": ["AC-6", "CM-6"], "ksis": ["KSI-IAM-ELP", "KSI-SVC-ACM"] },
+    "RUN": { "title": "Scheduled run: every check, the register, the comparison and the metrics", "controls": ["CA-7", "CM-8"], "ksis": ["KSI-MLA-EVC", "KSI-CNA-MAT"] },
+    "PLAN": { "title": "Plan the security initiative's assignment in DoNotEnforce", "controls": ["CM-3", "CM-4"], "ksis": ["KSI-CMT-LMC", "KSI-CMT-RVP"] },
+    "RB": { "title": "Rollback plan", "controls": ["CM-3", "CP-2"], "ksis": ["KSI-CMT-LMC", "KSI-RPL-ARP"] }
+  },
+  "areas": {
+    "baseline": ["BL"], "exposure": ["EXP"], "ddos": ["DDOS"], "waf": ["WAF"], "edge": ["EDGE"],
+    "firewall": ["FW"], "private": ["PL", "KV"], "policy": ["POL"]
+  },
+  "stages": {
+    "test": ["PRE", "RUN", "BL", "EXP", "DDOS", "WAF", "EDGE", "FW", "PL", "KV", "POL", "METRICS"],
+    "production": ["PRE", "PLAN", "RUN", "BL", "EXP", "DDOS", "WAF", "EDGE", "FW", "PL", "KV", "POL", "DRIFT", "METRICS"]
+  }
+}

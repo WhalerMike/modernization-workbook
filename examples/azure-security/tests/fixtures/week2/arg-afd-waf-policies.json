@@ -1,0 +1,38 @@
+{
+  "count": 1,
+  "data": [
+    {
+      "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-edge/providers/Microsoft.Network/frontdoorwebapplicationfirewallpolicies/afdwafportal",
+      "name": "afdwafportal",
+      "subscriptionId": "11111111-1111-4111-8111-111111111111",
+      "sku": "Premium_AzureFrontDoor",
+      "policySettings": {
+        "enabledState": "Enabled",
+        "mode": "Prevention",
+        "requestBodyCheck": "Enabled"
+      },
+      "managedRuleSets": [
+        {
+          "ruleSetType": "Microsoft_DefaultRuleSet",
+          "ruleSetVersion": "2.1",
+          "ruleSetAction": "Block"
+        }
+      ],
+      "customRules": [
+        {
+          "name": "rateLimitRule",
+          "ruleType": "RateLimitRule",
+          "action": "Block",
+          "priority": 1
+        }
+      ],
+      "securityPolicyLinks": [
+        {
+          "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-edge/providers/Microsoft.Cdn/profiles/afd-portal/securityPolicies/afd-portal-waf"
+        }
+      ]
+    }
+  ],
+  "skip_token": null,
+  "total_count": 1
+}

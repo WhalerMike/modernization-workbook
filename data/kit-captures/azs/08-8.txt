@@ -1,0 +1,4 @@
+PS> Invoke-Pester -Path tests/DriftEvidence.Tests.ps1, tests/Areas.Tests.ps1 -FullNameFilter 'Policy*', 'Run folders*', 'Drift*', 'Metrics*', 'Evidence*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+PassedCount FailedCount
+----------- -----------
+         10           0

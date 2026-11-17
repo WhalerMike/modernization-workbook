@@ -1,0 +1,18 @@
+PS> ./Invoke-AzsEvidence.ps1 -EvidencePath out/evidence -RunPath out/week2 -AsOf 2026-11-16T12:00:00Z
+Record 1: Pass (BL, EXP, DDOS, WAF, EDGE, FW, PL, KV, POL, EVIDENCE)
+Controls: AC-4, AU-9, CA-7, CM-2, CM-6, CM-8, CP-2, IA-5, SC-12, SC-28, SC-5, SC-7, SC-7(5), SC-8, SI-10, SI-4
+KSIs:     KSI-CNA-EIS, KSI-CNA-MAT, KSI-CNA-RNT, KSI-CNA-RVP, KSI-CNA-ULN, KSI-IAM-SNU, KSI-MLA-EVC, KSI-MLA-LET, KSI-MLA-OSM, KSI-SVC-ACM, KSI-SVC-ASM, KSI-SVC-SIN
+Written to out/evidence: records/, runs/, records.csv, SHA256SUMS
+PS> ./Invoke-AzsEvidence.ps1 -EvidencePath out/evidence -RunPath out/drift -AsOf 2026-11-16T12:00:00Z
+Record 2: Pass (DRIFT, EVIDENCE)
+Controls: AU-9, CA-7, CM-6
+KSIs:     KSI-MLA-EVC, KSI-MLA-OSM, KSI-SVC-ACM
+Written to out/evidence: records/, runs/, records.csv, SHA256SUMS
+PS> ./Invoke-AzsEvidence.ps1 -EvidencePath out/evidence -RunPath out/metrics -AsOf 2026-11-16T12:00:00Z
+Record 3: Pass (METRICS, EVIDENCE)
+Controls: AU-6, AU-9, CA-7
+KSIs:     KSI-MLA-EVC, KSI-MLA-OSM
+Written to out/evidence: records/, runs/, records.csv, SHA256SUMS
+PS> ./Invoke-AzsEvidence.ps1 -EvidencePath out/evidence -Check
+SUMS           Pass  103 files match SHA256SUMS
+CHAIN          Pass  3 records, chain unbroken

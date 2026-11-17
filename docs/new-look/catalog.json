@@ -682,7 +682,7 @@
    "url": "docs/books/guides/global-secure-access-implementation.html",
    "count": 12,
    "unit": "steps",
-   "reading_minutes": 66,
+   "reading_minutes": 67,
    "reading_source": "estimate",
    "videos": 1,
    "video_minutes": 16,
@@ -997,6 +997,62 @@
    ],
    "status": "Approved",
    "family": "attribute-driven-migration",
+   "featured": false
+  },
+  {
+   "id": "docs/project-plans/developer-workbooks/azure-security/index.md",
+   "type": "Developer workbook",
+   "title": "Building Azure Security",
+   "description": "A developer workbook for the Azure Security Engineering implementation guide",
+   "url": "docs/project-plans/developer-workbooks/azure-security/index.html",
+   "count": 9,
+   "unit": "chapters",
+   "reading_minutes": 120,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Advanced",
+   "level_source": "audience",
+   "roles": [
+    "Security operations",
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Azure"
+   ],
+   "status": "Draft",
+   "family": "azure-security",
+   "featured": false
+  },
+  {
+   "id": "docs/project-plans/developer-workbooks/global-secure-access/index.md",
+   "type": "Developer workbook",
+   "title": "Building Global Secure Access",
+   "description": "A developer workbook for the Global Secure Access implementation guide",
+   "url": "docs/project-plans/developer-workbooks/global-secure-access/index.html",
+   "count": 9,
+   "unit": "chapters",
+   "reading_minutes": 118,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Advanced",
+   "level_source": "audience",
+   "roles": [
+    "Identity engineer",
+    "Endpoint engineer",
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Global Secure Access"
+   ],
+   "status": "Draft",
+   "family": "global-secure-access",
    "featured": false
   },
   {
@@ -1932,10 +1988,10 @@
   {
    "id": "docs/training/labs.md#azs",
    "type": "Lab",
-   "title": "Labs: Azure Security Engineering learning path",
-   "description": "5 hands-on labs across 5 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The Azure Security Engineering learning path.",
+   "title": "Labs: Building Azure Security",
+   "description": "16 hands-on labs across 8 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building Azure Security.",
    "url": "docs/training/labs.html#azs",
-   "count": 5,
+   "count": 16,
    "unit": "labs",
    "reading_minutes": null,
    "reading_source": null,
@@ -1956,6 +2012,37 @@
    ],
    "status": "Draft",
    "family": "azure-security",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#gsa",
+   "type": "Lab",
+   "title": "Labs: Building Global Secure Access",
+   "description": "16 hands-on labs across 8 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building Global Secure Access.",
+   "url": "docs/training/labs.html#gsa",
+   "count": 16,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "Identity engineer",
+    "Endpoint engineer",
+    "Cloud and platform engineer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Entra ID",
+    "Intune and endpoints",
+    "Global Secure Access",
+    "Azure",
+    "Compliance and authorization"
+   ],
+   "status": "Draft",
+   "family": "global-secure-access",
    "featured": false
   },
   {
@@ -2156,37 +2243,6 @@
    ],
    "status": "Draft",
    "family": "defender-xdr",
-   "featured": false
-  },
-  {
-   "id": "docs/training/labs.md#gsa",
-   "type": "Lab",
-   "title": "Labs: Global Secure Access learning path",
-   "description": "6 hands-on labs across 6 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The Global Secure Access learning path.",
-   "url": "docs/training/labs.html#gsa",
-   "count": 6,
-   "unit": "labs",
-   "reading_minutes": null,
-   "reading_source": null,
-   "videos": 0,
-   "video_minutes": 0,
-   "level": "Intermediate",
-   "level_source": "path",
-   "roles": [
-    "Identity engineer",
-    "Endpoint engineer",
-    "Cloud and platform engineer",
-    "ISSO and assessor"
-   ],
-   "topics": [
-    "Entra ID",
-    "Intune and endpoints",
-    "Global Secure Access",
-    "Azure",
-    "Compliance and authorization"
-   ],
-   "status": "Draft",
-   "family": "global-secure-access",
    "featured": false
   },
   {

@@ -1,0 +1,335 @@
+---
+title: "Chapter 03 — DDoS Protection"
+description: "The guide's Step 3 as code: every public IP traced to its protection, whether DDoS IP Protection on the address, Network Protection inherited from a virtual network linked to a plan, none, a NAT gateway DDoS protection doesn't cover, or nothing attached; then the diagnostic logs and the IfUnderDDoSAttack alert Learn asks for on each protected address, and the coverage the guide's metric counts. Labs against a fictional estate and a test subscription, beside the guide's ddosSettings query."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-azure-security
+part: How
+series-order: 3
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 03 — DDoS Protection
+
+*"Protected" isn't a property of a public IP. It depends on the address, the network behind it and the plan that network is linked to, and the code has to follow all three.*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [Step 3, DDoS protection](../../../books/guides/azure-security-implementation.md#step-3-ddos-protection). You start with what Learn and the guide give you: two tiers, a `ddosSettings.protectionMode` on each public IP, Zero Trust checks for protection, metrics and logs, and an alert on `IfUnderDDoSAttack`. Then you read how the kit follows each address to the virtual network behind it, and what it can't follow. Lab 1 traces the Contoso estate's eight public IPs; Lab 2 does it for a test subscription beside the guide's own query.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can say, for every public IP in an estate, whether it is under DDoS IP Protection or Network Protection, whether it sends DDoS logs to the platform workspace, and whether an enabled alert fires when it is under attack; and you can compute the guide's DDoS coverage metric from the same run.
+
+**Audience.** Platform owners who own the DDoS plan, security monitors who answer the alert, and the developers who keep the check honest. Read [Chapter 02](02-the-public-exposure-register.md) first: this chapter reads the same public IPs.
+
+## Start with Microsoft Learn
+
+### What Learn and the guide give you
+
+Every public IP gets infrastructure protection at no cost; Network Protection and IP Protection add per-IP tuning, metrics, alerts and reports, and neither covers a public IP on a NAT gateway.[^azs03-tiers] Network Protection is a plan you link to virtual networks; IP Protection is enabled on one Standard public IP with `--ddos-protection-mode Enabled`.[^azs03-cli][^azs03-ip-cli] The guide's Step 2 query reads `ddosSettings.protectionMode`, and its Validate step expects `Enabled`, or `VirtualNetworkInherited` in a linked network.[^azs03-guide] Microsoft's Zero Trust recommendations check that every public IP in a virtual network is protected, that metrics are on and that diagnostic logs are on.[^azs03-zt] Learn's simulation tutorial alerts on the metric *Under DDoS attack or not* (`IfUnderDDoSAttack`), maximum 1 or more.[^azs03-sim][^azs03-metric]
+
+### What it leaves to you
+
+| What Learn and the guide give | Why it matters | What the kit adds (pinned by a test) |
+|---|---|---|
+| `protectionMode` `VirtualNetworkInherited` | Inherited from *which* network, and is that one linked to a plan? The property alone doesn't say | Each address followed to the resource that holds it, its subnet and virtual network, and that network's plan (`DDoS (Step 3)`, "resolves each public IP") |
+| "Neither covers a public IP attached to a NAT gateway" | Counted as unprotected, it lowers coverage for something no plan can fix | NAT gateway addresses reported as Info (AZS-DD-03) and left out of coverage |
+| One alert command per address | An address added later has no alert | AZS-DD-05 on every protected address with no enabled alert on `IfUnderDDoSAttack` whose scope includes it |
+| One diagnostic setting per address | A setting to the wrong workspace looks like logging | AZS-DD-04 unless an enabled DDoS category or `allLogs` goes to the platform workspace |
+| `Disabled` isn't in the Validate step | An address set to `Disabled` in a protected network isn't protected | `Disabled` is unprotected, whatever the network (test "treats protectionMode Disabled as unprotected") |
+| A load balancer's frontend | Its protection depends on the backend's network, which the frontend doesn't name | AZS-DD-02: the kit says it can't resolve it, rather than guessing |
+
+## The code: the `ddos` area
+
+`Get-AzsDdosCheck` reads the public IPs, the virtual networks with their plan, the plans, the NAT gateways, the metric alerts, and the resources that own public IPs (network interfaces, application gateways, firewalls, Bastion hosts, virtual network gateways and load balancers). For each IP configuration it records the subnet: a network interface's, firewall's, Bastion host's or gateway's IP configuration names its subnet; an application gateway's frontend uses the gateway's subnet. Then each public IP gets one status:
+
+| Status | When | In coverage |
+|---|---|---|
+| `IpProtection` | `protectionMode` `Enabled` | Protected |
+| `Inherited` | `VirtualNetworkInherited`, and the subnet's virtual network has `enableDdosProtection` and a plan | Protected |
+| `Unprotected` | `Disabled`, or inherited from a network with no plan | Not protected (AZS-DD-01) |
+| `Unknown` | Inherited, and the kit can't find the network (a load balancer frontend) | Not protected (AZS-DD-02) |
+| `NatGateway` | On a NAT gateway | Left out (AZS-DD-03) |
+| `Unattached` | Attached to nothing | Left out (Chapter 02's AZS-EX-02) |
+
+Coverage is protected addresses over addresses in scope, the guide's metric with NAT gateway addresses left out.[^azs03-guide] For each protected address the check reads its diagnostic settings and the metric alerts: an alert counts if it is enabled, has a criterion on `IfUnderDDoSAttack`, and its scope is the address, its resource group or its subscription.
+
+| Rule | Severity | What it flags | Source |
+|---|---|---|---|
+| AZS-DD-01 | Finding | A public IP not under IP Protection or Network Protection | Learn[^azs03-zt] |
+| AZS-DD-02 | Warn | Inherited from a network the kit can't resolve | *Design guidance* (the kit's limit) |
+| AZS-DD-03 | Info | On a NAT gateway: not covered | Learn[^azs03-tiers] |
+| AZS-DD-04 | Finding | Protected, but no DDoS log to the platform workspace | Learn[^azs03-zt][^azs03-secure] |
+| AZS-DD-05 | Finding | Protected, but no enabled `IfUnderDDoSAttack` alert | Learn[^azs03-sim] |
+| AZS-DD-06 | Warn | More than one DDoS protection plan | *Design guidance* (the guide's one plan) |
+
+The log categories (`DDoSProtectionNotifications`, `DDoSMitigationFlowLogs`, `DDoSMitigationReports`) and the metric name are in `config/baseline.json`. Learn says `DDoSMitigationReports` retires from about mid-August 2026;[^azs03-secure] the kit accepts any of the three or `allLogs`. Three tests cover this area.
+
+The exercise the guide asks for, a simulation through one of Learn's approved partners, is a person's work, not the kit's: the kit shows the alert exists; the exercise shows it fires.[^azs03-sim]
+
+::: {.callout-important}
+## Illustrative code
+The labs run the kit against a fictional estate served from files. Review the code, and run Lab 2 in a test subscription, before it reads a real one.
+:::
+
+## Lab 1: fixtures, no subscription
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/azure-security`. The Contoso hub, `vnet-hub`, is linked to the plan `ddos-contoso`; the portal spoke, `vnet-portal`, isn't.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/azure-security`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Run the DDoS check
+./Invoke-AzsCheck.ps1 -Area ddos -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath out/week1/ddos
+
+# Step 2: Read each public IP's status
+Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
+(Read-AzsJson -Path out/week1/ddos/ddos.json) | ForEach-Object { "{0,-17} {1,-13} {2,-12} logs: {3,-5} alert: {4}" -f $_.name, $_.status, $_.virtualNetwork, $_.logsToWorkspace, $_.alert }
+
+# Step 3: Read the counts by status
+(Read-AzsJson -Path out/week1/ddos/summary.json).byStatus | ConvertTo-Json -Compress
+
+# Step 4: Read the findings
+Import-Csv out/week1/ddos/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+
+# Step 5: Run this chapter's tests
+Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'DDoS*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Run the DDoS check:**
+
+   ```powershell
+   ./Invoke-AzsCheck.ps1 -Area ddos -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath out/week1/ddos
+   ```
+
+   <!-- capture:begin 03-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/03-1.txt))](captures/03-1.png){.lightbox fig-alt="Terminal window showing ./Invoke-AzsCheck.ps1 -Area ddos -SettingsPath tests/fixtures/settings.lab.js… and what it printed"}
+
+   <!-- capture:end -->
+
+   Protected: 4 of 6 in scope (66.7%).
+
+2. **Read each public IP's status:**
+
+   ```powershell
+   Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
+   (Read-AzsJson -Path out/week1/ddos/ddos.json) | ForEach-Object { "{0,-17} {1,-13} {2,-12} logs: {3,-5} alert: {4}" -f $_.name, $_.status, $_.virtualNetwork, $_.logsToWorkspace, $_.alert }
+   ```
+
+   <!-- capture:begin 03-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/03-2.txt))](captures/03-2.png){.lightbox fig-alt="Terminal window showing Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1 and what it printed"}
+
+   <!-- capture:end -->
+
+   The firewall's, the application gateway's and the VPN gateway's addresses inherit from `vnet-hub`; `pip-test-app` has IP Protection; `pip-jump` inherits from `vnet-portal`, which has no plan. Only `pip-appgw-portal` has both logs and an alert.
+
+3. **Read the counts by status:**
+
+   ```powershell
+   (Read-AzsJson -Path out/week1/ddos/summary.json).byStatus | ConvertTo-Json -Compress
+   ```
+
+   <!-- capture:begin 03-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/03-3.txt))](captures/03-3.png){.lightbox fig-alt="Terminal window showing (Read-AzsJson -Path out/week1/ddos/summary.json).byStatus | ConvertTo-Json -C… and what it printed"}
+
+   <!-- capture:end -->
+
+4. **Read the findings:**
+
+   ```powershell
+   Import-Csv out/week1/ddos/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+   ```
+
+   <!-- capture:begin 03-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/03-4.txt))](captures/03-4.png){.lightbox fig-alt="Terminal window showing Import-Csv out/week1/ddos/findings.csv | ForEach-Object { '{0} {1,-7} {2}: {3… and what it printed"}
+
+   <!-- capture:end -->
+
+   `pip-afw-hub` sends its logs to an application team's workspace, so AZS-DD-04 still fires. `pip-test-app`'s alert exists but is disabled, so AZS-DD-05 fires. `ddos-portal-trial` is a second plan with no networks.
+
+5. **Run this chapter's tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'DDoS*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+   ```
+
+   <!-- capture:begin 03-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/03-5.txt))](captures/03-5.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'DDoS*' -Output Non… and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** every public IP with one status, the network it depends on, and the two things Learn asks for on each protected address.
+
+When you're done, delete `out`:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 03-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/03-6.txt))](captures/03-6.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test subscription
+
+Use a test tenant with a test management group and subscription in commercial Azure, never production, with at least one public IP in a virtual network. A DDoS Network Protection plan is billed per plan;[^azs03-tiers] if the test subscription has none, the lab still runs, and every address shows as unprotected. You need Reader on the test management group, Azure CLI with the `resource-graph` extension, and PowerShell 7. Work in `examples/azure-security`. The authors haven't run this lab.
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/azure-security`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Sign in to commercial Azure
+az cloud set --name AzureCloud
+az login --tenant <tenant-id>
+az extension add --name resource-graph
+
+# Step 2: Write the test settings file
+$s = Get-Content deploy/settings.template.json -Raw | ConvertFrom-Json
+$s.environment = 'test'; $s.tenantId = '<tenant-id>'; $s.tenantRootGroupId = '<tenant-id>'; $s.managementGroup = '<test-mg-id>'
+$s.workspaceId = '<workspace-id>'; $s.connectivitySubscriptionId = '<test-subscription-id>'; $s.hubVnetId = '<hub-vnet-id>'
+$s.workloadSubscriptionIds = @('<test-subscription-id>'); $s.requiredAssignments = @('<baseline-assignment-name>')
+$s.securityInitiative = [pscustomobject]@{ assignmentName = 'azs-security'; definitionName = 'not-used-in-lab-2'; identityRole = 'Reader'; enforceBy = '2027-01-31' }
+$s.location = '<location>'; $s.outputRoot = '<output-folder>'; $s.evidencePath = '<output-folder>'; $s.changeRecord = 'lab-2'
+$s.PSObject.Properties.Remove('testEvidencePath'); $s.PSObject.Properties.Remove('_comment')
+$s | ConvertTo-Json -Depth 5 | Set-Content <output-folder>/settings.test.json
+
+# Step 3: Run the DDoS check, live
+./Invoke-AzsCheck.ps1 -Area ddos -SettingsPath <output-folder>/settings.test.json -OutputPath <output-folder>/ddos -AllowUnverified
+
+# Step 4: Compare with the guide's own query and the portal
+az graph query -q "Resources | where type =~ 'microsoft.network/publicipaddresses' | project name, ddosMode = tostring(properties.ddosSettings.protectionMode), attachedTo = tostring(properties.ipConfiguration.id)" --management-groups <test-mg-id> -o table
+
+# Step 5: Back it out
+Remove-Item -Recurse -Force <output-folder>/ddos
+az logout
+```
+
+:::
+
+<!-- labs:end -->
+
+You'll replace the values of [Chapter 01, Lab 2](01-the-landing-zone-baseline.md#lab-2-a-test-subscription) (`<tenant-id>`, `<test-mg-id>`, `<test-subscription-id>`, `<workspace-id>`, `<hub-vnet-id>`, `<baseline-assignment-name>`, `<location>`, `<output-folder>`).
+
+1. **Sign in to commercial Azure:**
+
+   ```powershell
+   az cloud set --name AzureCloud
+   az login --tenant <tenant-id>
+   az extension add --name resource-graph
+   ```
+
+2. **Write the test settings file:**
+
+   ```powershell
+   $s = Get-Content deploy/settings.template.json -Raw | ConvertFrom-Json
+   $s.environment = 'test'; $s.tenantId = '<tenant-id>'; $s.tenantRootGroupId = '<tenant-id>'; $s.managementGroup = '<test-mg-id>'
+   $s.workspaceId = '<workspace-id>'; $s.connectivitySubscriptionId = '<test-subscription-id>'; $s.hubVnetId = '<hub-vnet-id>'
+   $s.workloadSubscriptionIds = @('<test-subscription-id>'); $s.requiredAssignments = @('<baseline-assignment-name>')
+   $s.securityInitiative = [pscustomobject]@{ assignmentName = 'azs-security'; definitionName = 'not-used-in-lab-2'; identityRole = 'Reader'; enforceBy = '2027-01-31' }
+   $s.location = '<location>'; $s.outputRoot = '<output-folder>'; $s.evidencePath = '<output-folder>'; $s.changeRecord = 'lab-2'
+   $s.PSObject.Properties.Remove('testEvidencePath'); $s.PSObject.Properties.Remove('_comment')
+   $s | ConvertTo-Json -Depth 5 | Set-Content <output-folder>/settings.test.json
+   ```
+
+3. **Run the DDoS check, live:**
+
+   ```powershell
+   ./Invoke-AzsCheck.ps1 -Area ddos -SettingsPath <output-folder>/settings.test.json -OutputPath <output-folder>/ddos -AllowUnverified
+   ```
+
+   Six of this area's seven calls are unverified (the networks, plans, NAT gateways, alerts and IP owners); check the rows against the portal in the next step.
+
+4. **Compare with the guide's own query and the portal:**
+
+   ```powershell
+   az graph query -q "Resources | where type =~ 'microsoft.network/publicipaddresses' | project name, ddosMode = tostring(properties.ddosSettings.protectionMode), attachedTo = tostring(properties.ipConfiguration.id)" --management-groups <test-mg-id> -o table
+   ```
+
+   Each address's mode should match the `ddosMode` column of `<output-folder>/ddos/ddos.json`. For one `Inherited` address, open the virtual network in the portal, **Settings** > **DDoS protection**, and confirm it is enabled with a plan. For each `Unknown` address, record the backend network you found by hand (research gaps, row 3).
+
+5. **Back it out.** The lab changed nothing in Azure. Delete what it wrote and sign out:
+
+   ```powershell
+   Remove-Item -Recurse -Force <output-folder>/ddos
+   az logout
+   ```
+
+## Verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| Tiers | Infrastructure protection free; Network Protection per plan, IP Protection per protected IP; NAT gateway IPs not supported; Basic public IPs only under Network Protection | [^azs03-tiers] |
+| Layers | 3 and 4; layer 7 needs a WAF | [^azs03-overview] |
+| Network Protection | `az network ddos-protection create`; `az network vnet update --ddos-protection-plan --ddos-protection true`; a protected network can't move between resource groups or subscriptions | [^azs03-cli] |
+| IP Protection | `az network public-ip update --ddos-protection-mode Enabled` | [^azs03-ip-cli] |
+| Zero Trust checks | Every public IP in a virtual network protected; metrics; diagnostic logs | [^azs03-zt] |
+| Log categories | `DDoSProtectionNotifications`, `DDoSMitigationFlowLogs`, `DDoSMitigationReports` (retiring from about mid-August 2026) | [^azs03-secure] |
+| The metric | `IfUnderDDoSAttack`, Maximum, 1-minute grain; the tutorial alerts at 1 or more | [^azs03-metric] [^azs03-sim] |
+| Simulations | Only through Learn's approved partners, against the agency's own protected public IPs | [^azs03-sim] |
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| Every public IP's protection and the network it depends on: `ddos.json`, Lab 1 step 2; coverage in `summary.json` | SC-5, denial-of-service protection | KSI-CNA-RVP | Platform owner |
+| DDoS logs to the platform workspace and an enabled attack alert on each protected address: AZS-DD-04 and AZS-DD-05, or none | SI-4, system monitoring | KSI-MLA-LET | Security monitor |
+| Addresses no plan can protect, and the ones the kit couldn't resolve, named: AZS-DD-02 and AZS-DD-03 | SC-5 (the exception, with its decision record) | KSI-CNA-RVP | The ISSO, with the decision records |
+
+The controls are the guide's Step 3 row (SC-5, SI-4) and its KSIs; the guide notes KSI-CNA-RVP cites SC-5.[^azs03-guide] The simulation report, the fired alert and the after-action notes are the guide's test evidence; the kit doesn't produce them.
+
+## Dangers
+
+| Danger | What goes wrong | The guard |
+|---|---|---|
+| Trusting `VirtualNetworkInherited` | The network behind it has no plan; the address is unprotected | The kit follows the address to its network and the network's plan |
+| A guess about a load balancer | Coverage reported for a frontend whose backend network isn't known | AZS-DD-02: reported as unknown, counted as not protected |
+| An alert that exists but is off | Nobody is paged during an attack | Only enabled alerts count |
+| Logs to the wrong workspace | The security monitor's queries find nothing | Only logs to the settings' workspace count |
+| Moving a protected network | The move fails; disabling protection to move resets tuning[^azs03-cli] | Not the kit's to guard: the guide's change record |
+
+## Checklist
+
+- [ ] Every AZS-DD-01 address has a plan, a decision record or a ticket.
+- [ ] Every AZS-DD-02 address was resolved by hand and recorded.
+- [ ] Every protected address has DDoS logs to the platform workspace and an enabled alert.
+- [ ] The coverage in `summary.json` is the number the metric reports.
+- [ ] A simulation ran this year, with its report filed beside the run.
+
+## Continue the book
+
+Next, [Chapter 04](04-the-web-application-firewall.md): layer 7, the web application firewall. The guide's [Step 3](../../../books/guides/azure-security-implementation.md#step-3-ddos-protection) holds the commands that create and link the plan; this chapter only reads it.
+
+[^azs03-guide]: Azure Security Engineering, [Step 3: DDoS protection](../../../books/guides/azure-security-implementation.md#step-3-ddos-protection), [Metrics](../../../books/guides/azure-security-implementation.md#metrics) and [Federal requirements and KSIs](../../../books/guides/azure-security-implementation.md#requirements), with its sources read November 11, 2026.
+[^azs03-tiers]: Microsoft Learn, "About Azure DDoS Protection tier comparison," <https://learn.microsoft.com/azure/ddos-protection/ddos-protection-sku-comparison> (accessed Nov 11, 2026).
+[^azs03-overview]: Microsoft Learn, "What is Azure DDoS Protection?," <https://learn.microsoft.com/azure/ddos-protection/ddos-protection-overview> (accessed Nov 11, 2026).
+[^azs03-cli]: Microsoft Learn, "QuickStart: Create and configure Azure DDoS Network Protection using Azure CLI," <https://learn.microsoft.com/azure/ddos-protection/manage-ddos-protection-cli> (accessed Nov 11, 2026).
+[^azs03-ip-cli]: Microsoft Learn, "QuickStart: Create and configure Azure DDoS IP Protection using Azure CLI," <https://learn.microsoft.com/azure/ddos-protection/manage-ddos-ip-protection-cli> (accessed Nov 11, 2026).
+[^azs03-zt]: Microsoft Learn, "Zero Trust recommendations for Azure DDoS Protection," <https://learn.microsoft.com/azure/networking/security/zero-trust-ddos-protection> (accessed Nov 11, 2026).
+[^azs03-secure]: Microsoft Learn, "Secure your Azure DDoS Protection deployment" (diagnostic categories and the `DDoSMitigationReports` retirement), <https://learn.microsoft.com/azure/ddos-protection/secure-ddos-protection> (accessed Nov 11, 2026).
+[^azs03-metric]: Microsoft Learn, "Supported metrics for Microsoft.Network/publicIPAddresses" (`IfUnderDDoSAttack`), <https://learn.microsoft.com/azure/azure-monitor/reference/supported-metrics/microsoft-network-publicipaddresses-metrics> (accessed Nov 11, 2026).
+[^azs03-sim]: Microsoft Learn, "Tutorial: Azure DDoS Protection simulation testing," <https://learn.microsoft.com/azure/ddos-protection/test-through-simulations> (accessed Nov 11, 2026).

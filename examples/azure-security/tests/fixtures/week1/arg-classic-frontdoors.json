@@ -1,0 +1,13 @@
+{
+  "count": 1,
+  "data": [
+    {
+      "id": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-legacy/providers/Microsoft.Network/frontdoors/fd-legacy-intranet",
+      "name": "fd-legacy-intranet",
+      "subscriptionId": "33333333-3333-4333-8333-333333333333",
+      "owner": "payroll-team"
+    }
+  ],
+  "skip_token": null,
+  "total_count": 1
+}

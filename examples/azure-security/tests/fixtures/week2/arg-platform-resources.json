@@ -1,0 +1,87 @@
+{
+  "count": 16,
+  "data": [
+    {
+      "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-edge/providers/Microsoft.Cdn/profiles/afd-portal",
+      "type": "microsoft.cdn/profiles",
+      "subscriptionId": "11111111-1111-4111-8111-111111111111"
+    },
+    {
+      "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.KeyVault/vaults/kv-hub-certs",
+      "type": "microsoft.keyvault/vaults",
+      "subscriptionId": "11111111-1111-4111-8111-111111111111"
+    },
+    {
+      "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/applicationGateways/appgw-portal",
+      "type": "microsoft.network/applicationgateways",
+      "subscriptionId": "11111111-1111-4111-8111-111111111111"
+    },
+    {
+      "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/azureFirewalls/afw-hub",
+      "type": "microsoft.network/azurefirewalls",
+      "subscriptionId": "11111111-1111-4111-8111-111111111111"
+    },
+    {
+      "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/publicIPAddresses/pip-afw-hub",
+      "type": "microsoft.network/publicipaddresses",
+      "subscriptionId": "11111111-1111-4111-8111-111111111111"
+    },
+    {
+      "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/publicIPAddresses/pip-appgw-portal",
+      "type": "microsoft.network/publicipaddresses",
+      "subscriptionId": "11111111-1111-4111-8111-111111111111"
+    },
+    {
+      "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/publicIPAddresses/pip-nat-egress",
+      "type": "microsoft.network/publicipaddresses",
+      "subscriptionId": "11111111-1111-4111-8111-111111111111"
+    },
+    {
+      "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/publicIPAddresses/pip-vpngw",
+      "type": "microsoft.network/publicipaddresses",
+      "subscriptionId": "11111111-1111-4111-8111-111111111111"
+    },
+    {
+      "id": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll-net/providers/Microsoft.Network/applicationGateways/appgw-intranet",
+      "type": "microsoft.network/applicationgateways",
+      "subscriptionId": "33333333-3333-4333-8333-333333333333"
+    },
+    {
+      "id": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll/providers/Microsoft.KeyVault/vaults/kv-payroll",
+      "type": "microsoft.keyvault/vaults",
+      "subscriptionId": "33333333-3333-4333-8333-333333333333"
+    },
+    {
+      "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-careers/providers/Microsoft.Cdn/profiles/afd-careers",
+      "type": "microsoft.cdn/profiles",
+      "subscriptionId": "44444444-4444-4444-8444-444444444444"
+    },
+    {
+      "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal/providers/Microsoft.KeyVault/vaults/kv-portal",
+      "type": "microsoft.keyvault/vaults",
+      "subscriptionId": "44444444-4444-4444-8444-444444444444"
+    },
+    {
+      "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal/providers/Microsoft.Network/publicIPAddresses/pip-jump",
+      "type": "microsoft.network/publicipaddresses",
+      "subscriptionId": "44444444-4444-4444-8444-444444444444"
+    },
+    {
+      "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal/providers/Microsoft.Network/publicIPAddresses/pip-lb-portal",
+      "type": "microsoft.network/publicipaddresses",
+      "subscriptionId": "44444444-4444-4444-8444-444444444444"
+    },
+    {
+      "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal/providers/Microsoft.Network/publicIPAddresses/pip-new-api",
+      "type": "microsoft.network/publicipaddresses",
+      "subscriptionId": "44444444-4444-4444-8444-444444444444"
+    },
+    {
+      "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal/providers/Microsoft.Network/publicIPAddresses/pip-test-app",
+      "type": "microsoft.network/publicipaddresses",
+      "subscriptionId": "44444444-4444-4444-8444-444444444444"
+    }
+  ],
+  "skip_token": null,
+  "total_count": 16
+}

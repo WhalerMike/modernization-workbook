@@ -30,7 +30,7 @@ review-status: pending
 ## Week 4: labs
 
 - [Labs: Defender XDR learning path](../../training/labs.md#xdr) (Lab, 5 labs). 5 hands-on labs across 5 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The Defender XDR learning path.
-- [Labs: Global Secure Access learning path](../../training/labs.md#gsa) (Lab, 6 labs). 6 hands-on labs across 6 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The Global Secure Access learning path.
+- [Labs: Building Global Secure Access](../../training/labs.md#gsa) (Lab, 16 labs). 16 hands-on labs across 8 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building Global Secure Access.
 
 *Milestone 4: about a short read.*
 

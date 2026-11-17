@@ -1,0 +1,21 @@
+{
+  "count": 1,
+  "data": [
+    {
+      "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/firewallPolicies/afwp-hub",
+      "name": "afwp-hub",
+      "subscriptionId": "11111111-1111-4111-8111-111111111111",
+      "tier": "Premium",
+      "threatIntelMode": "Alert",
+      "idpsMode": "Alert",
+      "tlsInspection": false,
+      "firewalls": [
+        {
+          "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/azureFirewalls/afw-hub"
+        }
+      ]
+    }
+  ],
+  "skip_token": null,
+  "total_count": 1
+}

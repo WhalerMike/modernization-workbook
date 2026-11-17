@@ -1,0 +1,2 @@
+PS> (Read-AzsJson -Path out/week1/ddos/summary.json).byStatus | ConvertTo-Json -Compress
+{"IpProtection":1,"Inherited":3,"Unprotected":1,"Unknown":1,"NatGateway":1,"Unattached":1}

@@ -70,6 +70,15 @@ On other clouds, the guide's [comparison](../../books/guides/azure-security-impl
 
 **Watch.** The guide's narrated deck covers this module in slides 11 and 12, *an origin nothing can reach around the edge* and *egress through Azure Firewall, then deny*. [▶ Watch the guide's video](../../presentations/watch.html?v=Guide_Azure_Security_Narrated), or read  in the [script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-azure-security/Guide_Azure_Security_Narration_Script.md).
 
+## Exercise: Lab 1, fixtures, no subscription {#azs-m3-lab-1}
+
+Run the Lab 1 of these chapters of [*Building Azure Security*](../../project-plans/developer-workbooks/azure-security/index.md), in order. Each is a list of exact commands, run from `examples/azure-security` in PowerShell 7 with Pester 5, against a fictional estate with no subscription, with the output each step prints. They aren't repeated here.
+
+- [Chapter 05, Front Door, Application Gateway and the origin: Lab 1](../../project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.md#lab-1-fixtures-no-subscription): each origin's lock-down, failover and TLS.
+- [Chapter 06, Azure Firewall and egress: Lab 1](../../project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.md#lab-1-fixtures-no-subscription): the policy's modes, every workload subnet's default route, and the draft to Deny.
+
+Then come back for the Lab 2, which runs the guide's own checks in a test subscription; each chapter's Lab 2 runs the kit there too.
+
 ## Exercise: Lab 2, a test subscription {#azs-m3-lab-2}
 *Not timed. Not run by the authors. Never production.*
 

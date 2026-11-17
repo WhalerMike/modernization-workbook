@@ -1,0 +1,75 @@
+{
+  "/subscriptions/11111111-1111-4111-8111-111111111111/resourcegroups/rg-edge/providers/microsoft.cdn/profiles/afd-portal/origingroups/og-api": {
+    "value": [
+      {
+        "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-edge/providers/Microsoft.Cdn/profiles/afd-portal/originGroups/og-api/origins/api-private",
+        "name": "api-private",
+        "properties": {
+          "hostName": "api-int.contoso.example",
+          "enabledState": "Enabled",
+          "sharedPrivateLinkResource": {
+            "privateLink": {
+              "id": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll-net/providers/Microsoft.Network/applicationGateways/appgw-intranet"
+            },
+            "groupId": "fe-private",
+            "privateLinkLocation": "eastus2",
+            "status": "Approved"
+          }
+        }
+      },
+      {
+        "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-edge/providers/Microsoft.Cdn/profiles/afd-portal/originGroups/og-api/origins/api-public",
+        "name": "api-public",
+        "properties": {
+          "hostName": "api-public.contoso.example",
+          "enabledState": "Enabled",
+          "sharedPrivateLinkResource": null
+        }
+      }
+    ]
+  },
+  "/subscriptions/11111111-1111-4111-8111-111111111111/resourcegroups/rg-edge/providers/microsoft.cdn/profiles/afd-portal/origingroups/og-portal": {
+    "value": [
+      {
+        "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-edge/providers/Microsoft.Cdn/profiles/afd-portal/originGroups/og-portal/origins/origin-east",
+        "name": "origin-east",
+        "properties": {
+          "hostName": "app-portal-east.azurewebsites.net",
+          "enabledState": "Enabled",
+          "azureOrigin": {
+            "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal/providers/Microsoft.Web/sites/app-portal-east"
+          },
+          "sharedPrivateLinkResource": null
+        }
+      },
+      {
+        "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-edge/providers/Microsoft.Cdn/profiles/afd-portal/originGroups/og-portal/origins/origin-west",
+        "name": "origin-west",
+        "properties": {
+          "hostName": "app-portal-west.azurewebsites.net",
+          "enabledState": "Enabled",
+          "azureOrigin": {
+            "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal/providers/Microsoft.Web/sites/app-portal-west"
+          },
+          "sharedPrivateLinkResource": null
+        }
+      }
+    ]
+  },
+  "/subscriptions/44444444-4444-4444-8444-444444444444/resourcegroups/rg-careers/providers/microsoft.cdn/profiles/afd-careers/origingroups/og-careers": {
+    "value": [
+      {
+        "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-careers/providers/Microsoft.Cdn/profiles/afd-careers/originGroups/og-careers/origins/careers-static",
+        "name": "careers-static",
+        "properties": {
+          "hostName": "stcareersweb.z13.web.core.windows.net",
+          "enabledState": "Enabled",
+          "azureOrigin": {
+            "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-careers/providers/Microsoft.Storage/storageAccounts/stcareersweb"
+          },
+          "sharedPrivateLinkResource": null
+        }
+      }
+    ]
+  }
+}

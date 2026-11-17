@@ -1,0 +1,337 @@
+---
+title: "Chapter 07 — Private Link, DNS and Key Vault"
+description: "The guide's Steps 7 and 8 as code: privatelink DNS zones kept in the connectivity subscription and linked to the hub, every private endpoint registered through a zone group in those zones, resources still public behind a private endpoint, PaaS that is public with no private endpoint, and every key vault checked for Azure RBAC, purge protection, a closed firewall, public access, an approved private endpoint and AuditEvent logs to the platform workspace, with the guide's vault-posture metric. Labs against a fictional estate and a test subscription, beside nslookup and the guide's Validate query."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-azure-security
+part: How
+series-order: 7
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 07 — Private Link, DNS and Key Vault
+
+*A private endpoint is an address. Whether anything uses it is a DNS question, and whether the public path is closed is a third one. The code asks all three.*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [Step 7, Private Link and DNS](../../../books/guides/azure-security-implementation.md#step-7-private-link-and-dns) and [Step 8, managed identities and Key Vault](../../../books/guides/azure-security-implementation.md#step-8-managed-identities-and-key-vault). You start with Learn's Private Link commands for Key Vault, its zone group, the Cloud Adoption Framework's central-zone pattern and Learn's Key Vault recommendations. Then you read how the kit checks the zones, the endpoints and their zone groups, the resources still public, and each vault. Lab 1 checks Contoso's two zones, three endpoints and three vaults; Lab 2 checks a test vault beside `nslookup` and the guide's Validate query. Managed identities are the [service account guide's](../../../books/guides/service-account-migration.md#migration-c); this chapter reads the vaults they use.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can say whether every `privatelink` zone is central and linked to the hub, whether every private endpoint registers its record in a central zone, which resources still accept public traffic beside their private endpoint, and which vaults miss any part of the posture Learn recommends; and compute the guide's vault-posture metric.
+
+**Audience.** Platform owners, who own the zones and the policy; workload owners, who own endpoints and vaults; the developers who review both. [Book 08](../../../books/b08-ddi/index.md) owns the agency's DNS authority; [*Building Privileged Access*, Chapter 06](../privileged-access/06-pim-for-azure-resources.md) makes Key Vault Administrator eligible rather than standing.
+
+## Start with Microsoft Learn
+
+### What Learn gives you
+
+Learn's Key Vault Private Link page creates an RBAC vault with purge protection, closes its firewall, creates the `privatelink.vaultcore.azure.net` zone and its link, and the private endpoint; it validates with `nslookup`, and says name resolution is where private endpoints fail.[^azs07-kv-pl] A private DNS zone group registers the endpoint's record and removes it with the endpoint.[^azs07-zonegroup] The Cloud Adoption Framework keeps `privatelink` zones central in the connectivity subscription, denies them in workload subscriptions, and adds zone groups with `deployIfNotExists`.[^azs07-scale] Learn's Key Vault recommendations: Azure RBAC, not access policies; soft delete and purge protection; private endpoints with public access disabled; audit logging.[^azs07-kv-secure] The zone group API returns each group's `privateDnsZoneConfigs[].properties.privateDnsZoneId`.[^azs07-zg-api]
+
+### What it leaves to you
+
+| What Learn gives | Why it matters | What the kit adds (pinned by a test) |
+|---|---|---|
+| One zone, one link, one endpoint, by command | Zones get created in workload subscriptions anyway, and records split | AZS-PL-01 and AZS-PL-02 for every `privatelink` zone outside the connectivity subscription or not linked to the hub (`Private Link, DNS and Key Vault` tests) |
+| A zone group per endpoint | An endpoint without one has no record anyone manages | AZS-PL-03 for an endpoint with no zone group; AZS-PL-04 for one that registers in a non-central zone |
+| "Turn public access off once the private path works" | The private path works, and the public one stays open | AZS-PL-05 for a resource with an endpoint and public network access still on |
+| Key Vault's recommendations, one page | Read once, then a vault created next quarter misses one | Six checks on every vault, every run (AZS-KV-01 to 06) |
+| `nslookup` from a linked VM | The kit can't resolve names inside a network | The kit checks the records' configuration; Lab 2 runs `nslookup` |
+
+## The code: the `private` area
+
+`Get-AzsPrivateCheck` reads the private DNS zones and their virtual network links, the private endpoints and each one's zone groups, the public PaaS list from Chapter 02, the key vaults, and each vault's diagnostic settings.
+
+| Rule | Severity | What it flags | Source |
+|---|---|---|---|
+| AZS-PL-01 | Finding | A `privatelink` zone outside the connectivity subscription | Learn[^azs07-scale] |
+| AZS-PL-02 | Finding | A `privatelink` zone not linked to the hub virtual network | Learn[^azs07-kv-pl] |
+| AZS-PL-03 | Finding | A private endpoint with no DNS zone group | Learn[^azs07-zonegroup] |
+| AZS-PL-04 | Finding | A zone group that registers in a zone outside the connectivity subscription | Learn[^azs07-scale] |
+| AZS-PL-05 | Finding | A resource with a private endpoint and public network access still on | Learn[^azs07-kv-secure][^azs07-scale] |
+| AZS-PL-06 | Warn | A PaaS resource that is public with no private endpoint (vaults go to the Key Vault rules) | Learn[^azs07-scale] |
+| AZS-KV-01 | Finding | A vault on access policies, not Azure RBAC | Learn[^azs07-kv-secure] |
+| AZS-KV-02 | Finding | A vault without purge protection | Learn[^azs07-kv-secure] |
+| AZS-KV-03 | Finding | A vault's firewall default action isn't Deny | Learn[^azs07-kv-pl] |
+| AZS-KV-04 | Warn | A vault's public network access is on | Learn[^azs07-kv-secure] |
+| AZS-KV-05 | Finding | A vault with no approved private endpoint | Learn[^azs07-kv-secure] |
+| AZS-KV-06 | Finding | A vault with no AuditEvent (or the `audit` or `allLogs` group) to the platform workspace | Learn[^azs07-kv-log] |
+
+A vault has the full posture when it is on RBAC, has purge protection, an approved private endpoint and AuditEvent logs: the four parts of the guide's "Vault posture" metric.[^azs07-guide] AZS-PL-06 is a Warn because the guide's private PaaS target is the agency's own, rising; a Front Door origin locked by Chapter 05's checks may be public by design. Rotation policies are read through the vault's data plane, which the kit doesn't call; Lab 2 reads one with the guide's command (research gaps, row 9). Two tests cover this area.
+
+::: {.callout-important}
+## Illustrative code
+The labs run the kit against a fictional estate served from files. Review the code, and run Lab 2 in a test subscription, before it reads a real one.
+:::
+
+## Lab 1: fixtures, no subscription
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/azure-security`. Contoso's vault zone is central and linked to the hub; the payroll team created its own blob zone in its workload subscription. Three vaults: `kv-payroll`, `kv-hub-certs` and `kv-portal`.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/azure-security`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Run the private-access check
+./Invoke-AzsCheck.ps1 -Area private -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath out/week1/private
+
+# Step 2: Read each vault
+Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
+(Read-AzsJson -Path out/week1/private/private.json) | Where-Object kind -EQ vault | ForEach-Object { "{0,-13} rbac: {1,-5} purge: {2,-5} firewall: {3,-5} public: {4,-8} endpoints: {5} audit: {6,-5} posture: {7}" -f $_.name, $_.rbac, $_.purgeProtection, $_.defaultAction, $_.publicNetworkAccess, $_.privateEndpoints, $_.auditToWorkspace, $_.posture }
+
+# Step 3: Read each private endpoint and the zone it registers in
+(Read-AzsJson -Path out/week1/private/private.json) | Where-Object kind -EQ private-endpoint | ForEach-Object { "{0,-20} {1,-22} {2}" -f $_.name, $_.target, ($_.zones -join ', ') }
+
+# Step 4: Read the findings
+Import-Csv out/week1/private/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+
+# Step 5: Run this chapter's tests
+Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'Private*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Run the private-access check:**
+
+   ```powershell
+   ./Invoke-AzsCheck.ps1 -Area private -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath out/week1/private
+   ```
+
+   <!-- capture:begin 07-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/07-1.txt))](captures/07-1.png){.lightbox fig-alt="Terminal window showing ./Invoke-AzsCheck.ps1 -Area private -SettingsPath tests/fixtures/settings.lab… and what it printed"}
+
+   <!-- capture:end -->
+
+   One of three vaults has the full posture.
+
+2. **Read each vault:**
+
+   ```powershell
+   Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
+   (Read-AzsJson -Path out/week1/private/private.json) | Where-Object kind -EQ vault | ForEach-Object { "{0,-13} rbac: {1,-5} purge: {2,-5} firewall: {3,-5} public: {4,-8} endpoints: {5} audit: {6,-5} posture: {7}" -f $_.name, $_.rbac, $_.purgeProtection, $_.defaultAction, $_.publicNetworkAccess, $_.privateEndpoints, $_.auditToWorkspace, $_.posture }
+   ```
+
+   <!-- capture:begin 07-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/07-2.txt))](captures/07-2.png){.lightbox fig-alt="Terminal window showing Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1 and what it printed"}
+
+   <!-- capture:end -->
+
+   `kv-payroll` has everything; `kv-hub-certs` has no private endpoint and its public access is on; `kv-portal` misses every part.
+
+3. **Read each private endpoint and the zone it registers in:**
+
+   ```powershell
+   (Read-AzsJson -Path out/week1/private/private.json) | Where-Object kind -EQ private-endpoint | ForEach-Object { "{0,-20} {1,-22} {2}" -f $_.name, $_.target, ($_.zones -join ', ') }
+   ```
+
+   <!-- capture:begin 07-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/07-3.txt))](captures/07-3.png){.lightbox fig-alt="Terminal window showing (Read-AzsJson -Path out/week1/private/private.json) | Where-Object kind -EQ p… and what it printed"}
+
+   <!-- capture:end -->
+
+   The queue endpoint has no zone group: nothing registers its record.
+
+4. **Read the findings:**
+
+   ```powershell
+   Import-Csv out/week1/private/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+   ```
+
+   <!-- capture:begin 07-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/07-4.txt))](captures/07-4.png){.lightbox fig-alt="Terminal window showing Import-Csv out/week1/private/findings.csv | ForEach-Object { '{0} {1,-7} {2}:… and what it printed"}
+
+   <!-- capture:end -->
+
+   The blob zone is in the payroll subscription and not linked to the hub; the blob endpoint registers there; `stpayrolldata` has two endpoints and public access still on.
+
+5. **Run this chapter's tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'Private*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+   ```
+
+   <!-- capture:begin 07-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/07-5.txt))](captures/07-5.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'Private*' -Output … and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** every zone, endpoint and vault checked, and the one vault with the full posture.
+
+When you're done, delete `out`:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 07-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/07-6.txt))](captures/07-6.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test subscription
+
+Use a test tenant with a test management group and subscription in commercial Azure, never production, with a test vault behind a private endpoint and the central zone, as the guide's Steps 7 and 8 pilot builds them, and a test VM in a linked network. You need Reader on the test management group, Azure CLI with the `resource-graph` extension, and PowerShell 7. Work in `examples/azure-security`. The authors haven't run this lab.
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/azure-security`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Sign in to commercial Azure
+az cloud set --name AzureCloud
+az login --tenant <tenant-id>
+az extension add --name resource-graph
+
+# Step 2: Write the test settings file
+$s = Get-Content deploy/settings.template.json -Raw | ConvertFrom-Json
+$s.environment = 'test'; $s.tenantId = '<tenant-id>'; $s.tenantRootGroupId = '<tenant-id>'; $s.managementGroup = '<test-mg-id>'
+$s.workspaceId = '<workspace-id>'; $s.connectivitySubscriptionId = '<test-subscription-id>'; $s.hubVnetId = '<hub-vnet-id>'
+$s.workloadSubscriptionIds = @('<test-subscription-id>'); $s.requiredAssignments = @('<baseline-assignment-name>')
+$s.securityInitiative = [pscustomobject]@{ assignmentName = 'azs-security'; definitionName = 'not-used-in-lab-2'; identityRole = 'Reader'; enforceBy = '2027-01-31' }
+$s.location = '<location>'; $s.outputRoot = '<output-folder>'; $s.evidencePath = '<output-folder>'; $s.changeRecord = 'lab-2'
+$s.PSObject.Properties.Remove('testEvidencePath'); $s.PSObject.Properties.Remove('_comment')
+$s | ConvertTo-Json -Depth 5 | Set-Content <output-folder>/settings.test.json
+
+# Step 3: Run the private-access check, live
+./Invoke-AzsCheck.ps1 -Area private -SettingsPath <output-folder>/settings.test.json -OutputPath <output-folder>/private -AllowUnverified
+
+# Step 4: Compare with the guide's Validate query and a rotation policy
+az keyvault show --name <vault> --resource-group <rg> --query "{rbac:properties.enableRbacAuthorization, purge:properties.enablePurgeProtection, net:properties.networkAcls.defaultAction, pna:properties.publicNetworkAccess}"
+az keyvault key rotation-policy show --vault-name <vault> --name <key>
+
+# Step 5: From the test VM in the linked network, resolve the vault
+nslookup <vault>.vault.azure.net
+
+# Step 6: Back it out
+Remove-Item -Recurse -Force <output-folder>/private
+az logout
+```
+
+:::
+
+<!-- labs:end -->
+
+You'll replace the values of [Chapter 01, Lab 2](01-the-landing-zone-baseline.md#lab-2-a-test-subscription), and `<vault>` and `<rg>` (the test vault and its resource group) and `<key>` (a key in it).
+
+1. **Sign in to commercial Azure:**
+
+   ```powershell
+   az cloud set --name AzureCloud
+   az login --tenant <tenant-id>
+   az extension add --name resource-graph
+   ```
+
+2. **Write the test settings file:**
+
+   ```powershell
+   $s = Get-Content deploy/settings.template.json -Raw | ConvertFrom-Json
+   $s.environment = 'test'; $s.tenantId = '<tenant-id>'; $s.tenantRootGroupId = '<tenant-id>'; $s.managementGroup = '<test-mg-id>'
+   $s.workspaceId = '<workspace-id>'; $s.connectivitySubscriptionId = '<test-subscription-id>'; $s.hubVnetId = '<hub-vnet-id>'
+   $s.workloadSubscriptionIds = @('<test-subscription-id>'); $s.requiredAssignments = @('<baseline-assignment-name>')
+   $s.securityInitiative = [pscustomobject]@{ assignmentName = 'azs-security'; definitionName = 'not-used-in-lab-2'; identityRole = 'Reader'; enforceBy = '2027-01-31' }
+   $s.location = '<location>'; $s.outputRoot = '<output-folder>'; $s.evidencePath = '<output-folder>'; $s.changeRecord = 'lab-2'
+   $s.PSObject.Properties.Remove('testEvidencePath'); $s.PSObject.Properties.Remove('_comment')
+   $s | ConvertTo-Json -Depth 5 | Set-Content <output-folder>/settings.test.json
+   ```
+
+3. **Run the private-access check, live:**
+
+   ```powershell
+   ./Invoke-AzsCheck.ps1 -Area private -SettingsPath <output-folder>/settings.test.json -OutputPath <output-folder>/private -AllowUnverified
+   ```
+
+4. **Compare with the guide's Validate query and a rotation policy:**
+
+   ```powershell
+   az keyvault show --name <vault> --resource-group <rg> --query "{rbac:properties.enableRbacAuthorization, purge:properties.enablePurgeProtection, net:properties.networkAcls.defaultAction, pna:properties.publicNetworkAccess}"
+   az keyvault key rotation-policy show --vault-name <vault> --name <key>
+   ```
+
+   The first should match the vault's row in `<output-folder>/private/private.json`. The second needs a data-plane role on the vault and a private path to it; it reads what the kit doesn't.
+
+5. **From the test VM in the linked network, resolve the vault:**
+
+   ```powershell
+   nslookup <vault>.vault.azure.net
+   ```
+
+   The answer should come through `privatelink.vaultcore.azure.net` with a private address. From outside, the same name resolves to the public frontend, which refuses the request.[^azs07-kv-pl]
+
+6. **Back it out.** The lab changed nothing in Azure. Delete what it wrote and sign out:
+
+   ```powershell
+   Remove-Item -Recurse -Force <output-folder>/private
+   az logout
+   ```
+
+## Verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| Key Vault Private Link | RBAC vault with purge protection; `--default-action deny`; zone `privatelink.vaultcore.azure.net` and link; private endpoint with `--group-ids vault`; `nslookup` validation; on-premises forwarders | [^azs07-kv-pl] |
+| Zone groups | Register the record with the endpoint, delete it with the endpoint; GET `.../privateEndpoints/{name}/privateDnsZoneGroups`; `privateDnsZoneConfigs[].properties.privateDnsZoneId` | [^azs07-zonegroup] [^azs07-zg-api] |
+| At scale | Central zones in the connectivity subscription; deny zones and public endpoints in workload subscriptions; `deployIfNotExists` zone groups; Private DNS Zone Contributor for the policy's identity | [^azs07-scale] |
+| Zone names | One per service, for example `privatelink.vaultcore.azure.net`, `privatelink.blob.core.windows.net` | [^azs07-pe-dns] |
+| Key Vault recommendations | One vault per application, region and environment; RBAC; PIM; soft delete and purge protection; autorotation; logging; private endpoints with public access disabled | [^azs07-kv-secure] |
+| Audit logs | A diagnostic setting with the `AuditEvent` category | [^azs07-kv-log] |
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| Central zones linked to the hub, every endpoint registered there, nothing public behind an endpoint: AZS-PL-01 to 05, or none | SC-7, boundary protection; AC-4, information flow enforcement | KSI-CNA-ULN | Platform owner |
+| Public PaaS without an endpoint, named: AZS-PL-06 | SC-7 | KSI-CNA-ULN | Workload owners |
+| Every vault on RBAC with purge protection, a private endpoint and audit logs: `private.json` vault rows, `vaultPosturePercent` | SC-12, cryptographic key establishment and management; SC-28, protection of information at rest; IA-5, authenticator management | KSI-SVC-ASM, KSI-IAM-SNU | Application owner, platform owner |
+
+The controls are the guide's Step 7 and Step 8 rows and their KSIs; the guide notes KSI-CNA-ULN cites AC-4(21) and SC-7, and KSI-SVC-ASM cites SC-12 and IA-5(2).[^azs07-guide]
+
+## Dangers
+
+| Danger | What goes wrong | The guard |
+|---|---|---|
+| Zones in workload subscriptions | Records split across zones; resolution fails or goes public | AZS-PL-01, AZS-PL-04 |
+| An endpoint with no zone group | Its record is hand-made, or missing | AZS-PL-03 |
+| The public path left open | The private endpoint works, and so does the internet | AZS-PL-05, AZS-KV-03, AZS-KV-04 |
+| Purge protection read as a rollback | It can't be turned off once on; that is the point | AZS-KV-02 only ever asks for it on |
+| Configuration taken as resolution | Records exist; clients still resolve the public name | Lab 2 runs `nslookup` from a linked VM |
+
+## Checklist
+
+- [ ] Every `privatelink` zone is in the connectivity subscription and linked to the hub.
+- [ ] Every private endpoint has a zone group in a central zone.
+- [ ] No resource has an endpoint with public network access still on, unless a decision record says why.
+- [ ] Every vault has the full posture, or a dated plan.
+- [ ] `nslookup` from a linked VM returned a private address.
+
+## Continue the book
+
+Next, [Chapter 08](08-policy-drift-and-evidence.md): policy that holds all of this in place, and the evidence that it did. The guide's [Step 7](../../../books/guides/azure-security-implementation.md#step-7-private-link-and-dns) and [Step 8](../../../books/guides/azure-security-implementation.md#step-8-managed-identities-and-key-vault) hold the commands that build the zones, endpoints and vaults.
+
+[^azs07-guide]: Azure Security Engineering, [Step 7](../../../books/guides/azure-security-implementation.md#step-7-private-link-and-dns), [Step 8](../../../books/guides/azure-security-implementation.md#step-8-managed-identities-and-key-vault), [Metrics](../../../books/guides/azure-security-implementation.md#metrics) and [Federal requirements and KSIs](../../../books/guides/azure-security-implementation.md#requirements), with its sources read November 11, 2026.
+[^azs07-kv-pl]: Microsoft Learn, "Integrate Key Vault with Azure Private Link," <https://learn.microsoft.com/azure/key-vault/general/private-link-service> (accessed Nov 11, 2026).
+[^azs07-zonegroup]: Microsoft Learn, "Azure Private Endpoint DNS integration scenarios," section "Private DNS zone group," <https://learn.microsoft.com/azure/private-link/private-endpoint-dns-integration> (accessed Nov 11, 2026).
+[^azs07-zg-api]: Microsoft Learn, REST API, "Private Dns Zone Groups - List" (GET `.../privateEndpoints/{name}/privateDnsZoneGroups`; `privateDnsZoneConfigs[].properties.privateDnsZoneId`), <https://learn.microsoft.com/rest/api/virtualnetwork/private-dns-zone-groups/list> (accessed Nov 17, 2026).
+[^azs07-scale]: Microsoft Learn, Cloud Adoption Framework, "Private Link and DNS integration at scale," <https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/private-link-and-dns-integration-at-scale> (accessed Nov 11, 2026).
+[^azs07-pe-dns]: Microsoft Learn, "Azure Private Endpoint private DNS zone values," section "Commercial," <https://learn.microsoft.com/azure/private-link/private-endpoint-dns> (accessed Nov 11, 2026).
+[^azs07-kv-secure]: Microsoft Learn, "Secure your Azure Key Vault," <https://learn.microsoft.com/azure/key-vault/general/secure-key-vault> (accessed Nov 11, 2026).
+[^azs07-kv-log]: Microsoft Learn, "Enable Key Vault logging," <https://learn.microsoft.com/azure/key-vault/general/howto-logging> (accessed Nov 11, 2026).

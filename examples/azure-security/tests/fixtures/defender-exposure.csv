@@ -1,0 +1,4 @@
+resourceId,resourceName,source
+/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/publicIPAddresses/pip-appgw-portal,pip-appgw-portal,internet exposure analysis
+/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal/providers/Microsoft.Network/publicIPAddresses/pip-jump,pip-jump,internet exposure analysis
+/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-batch/providers/Microsoft.ContainerInstance/containerGroups/ci-batch-export,ci-batch-export,internet exposure analysis

@@ -71,6 +71,15 @@ On other clouds, the guide's [comparison](../../books/guides/azure-security-impl
 
 **Watch.** The guide's narrated deck covers this module in slides 9 and 10, *DDoS protection on every public IP* and *the WAF, from detection to prevention*. [▶ Watch the guide's video](../../presentations/watch.html?v=Guide_Azure_Security_Narrated), or read  in the [script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-azure-security/Guide_Azure_Security_Narration_Script.md).
 
+## Exercise: Lab 1, fixtures, no subscription {#azs-m2-lab-1}
+
+Run the Lab 1 of these chapters of [*Building Azure Security*](../../project-plans/developer-workbooks/azure-security/index.md), in order. Each is a list of exact commands, run from `examples/azure-security` in PowerShell 7 with Pester 5, against a fictional estate with no subscription, with the output each step prints. They aren't repeated here.
+
+- [Chapter 03, DDoS protection: Lab 1](../../project-plans/developer-workbooks/azure-security/03-ddos-protection.md#lab-1-fixtures-no-subscription): each public IP traced to its protection, logs and alert.
+- [Chapter 04, The web application firewall: Lab 1](../../project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.md#lab-1-fixtures-no-subscription): every WAF policy and endpoint, and the switch to Prevention as a plan.
+
+Then come back for the Lab 2, which runs the guide's own checks in a test subscription; each chapter's Lab 2 runs the kit there too.
+
 ## Exercise: Lab 2, a test subscription {#azs-m2-lab-2}
 *Not timed. Not run by the authors. Never production.*
 

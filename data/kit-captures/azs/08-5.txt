@@ -1,0 +1,14 @@
+PS> ./Invoke-AzsMetrics.ps1 -RunPath out/week2 -OutputPath out/metrics -AsOf 2026-11-16T12:00:00Z
+Exposure ownership       84.2%                      target 100%
+DDoS coverage            57.1%                      target 100%
+WAF prevention coverage  66.7%                      target 100%
+Origin lock-down         60%                        target 100%
+Egress inspection        60%                        target 100%
+Private PaaS             6 public                   target Agency target, rising
+Vault posture            33.3%                      target 100%
+Policy compliance        63.2%                      target Rising each month
+Exemption hygiene        1 expired                  target 0
+Detection to page        from the exercise record   target Agency target
+Exercise currency        from the exercise records  target Under 365 and 183
+WAF effectiveness        from the workspace         target Trend
+Written to out/metrics: metrics.json, metrics.csv (with the numbers behind each)

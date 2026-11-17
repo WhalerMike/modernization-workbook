@@ -15,7 +15,8 @@ kit with the finding contract it reads), and the Downloads page links every kit,
 consolidation guides link theirs (--kit dp-consolidation), and the provider notices guide its kit
 (--kit provider-notices-code: the kit with the finding contract its router mirrors), and the Zero Trust
 Assessment guide and learning path the results kit (--kit zta-results), and the Global Secure Access
-workbook its kit (--kit global-secure-access-code).
+workbook its kit (--kit global-secure-access-code), and the Azure Security Engineering guide and
+its developer workbook their kit (--kit azure-security-code).
 This packs the folder as
 it is in the repository, scripts, README, fixtures and tests, under a top-level <kit>/
 folder. The archive is reproducible: entries are sorted, timestamps fixed and
@@ -44,7 +45,7 @@ KITS = ("start-kit", "copilot-agent-pack", "app-modernization", "ansible", "vali
         "attribute-driven-migration-code", "ticket-to-machine-code", "hr-driven-identity-code",
         "privileged-access-code", "non-person-identity-code", "microsoft-automation-code",
         "cisco-sdwan", "ticket-to-machine-task-catalog", "dp-consolidation", "provider-notices-code",
-        "zta-results", "global-secure-access-code")
+        "zta-results", "global-secure-access-code", "azure-security-code")
 # Kits packed from several examples folders, each kept under its own path, instead of
 # from examples/<kit>. The Attribute-Driven Migration developer workbook's chapters 01-09
 # build on these folders and the Microsoft samples pinned under third_party/.
@@ -96,6 +97,8 @@ BUNDLES = {
     "provider-notices-code": ("provider-notices", "servicenow-sailpoint/clients/python"),
     # The Global Secure Access kit (Building Global Secure Access).
     "global-secure-access-code": ("global-secure-access",),
+    # The Azure security kit behind Building Azure Security.
+    "azure-security-code": ("azure-security",),
 }
 # Kits whose download name differs from their folder name.
 ZIP_NAMES = {"ansible": "ansible-examples"}

@@ -1,0 +1,2 @@
+exemptionName,assignmentName,scope,category,expiresOn,decisionRecord,compensatingControl,owner
+<exemption-name>,azs-security,<scope>,<Mitigated-or-Waiver>,<yyyy-mm-ddT00:00:00Z>,<decision-record-id>,<compensating-control>,<owner>

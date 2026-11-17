@@ -1,0 +1,322 @@
+---
+title: "Chapter 06 — Azure Firewall and Egress"
+description: "The guide's Step 6 as code: every firewall policy's threat intelligence and IDPS in Deny, its tier and TLS inspection; every firewall's policy and logs; every workload subnet's declared default route to a firewall's private IP, with the guide's egress-inspection metric; and Learn's Draft + Deployment commands for the move to Deny written to a plan the kit never runs. Labs against a fictional estate and a test subscription, beside the effective routes and the guide's Validate query."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-azure-security
+part: How
+series-order: 6
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 06 — Azure Firewall and Egress
+
+*A firewall nobody routes to inspects nothing. The check reads the policy and the routes together, and admits what it can't see: the effective route on a running NIC.*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [Step 6, firewall and segmentation](../../../books/guides/azure-security-implementation.md#step-6-firewall-and-segmentation). You start with Learn's Zero Trust checks for Azure Firewall, its route table commands and its Draft + Deployment procedure. Then you read how the kit checks each policy and each workload subnet's default route, and writes the move to Deny as a draft a person deploys. Lab 1 checks Contoso's hub firewall and five workload subnets; Lab 2 checks a test subscription beside the effective routes and the guide's Validate query.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can say whether every firewall policy denies on threat intelligence and IDPS, whether each firewall has a policy and logs, and what share of workload subnets declare a default route to a firewall, the guide's egress-inspection metric; and you can hand the platform owner the Draft + Deployment commands that move a policy to Deny, unrun.
+
+**Audience.** Platform owners, who own the firewall policy and the routes; security monitors, who read the threat intelligence and IDPS logs; the developers who review both. [Book 09](../../../books/b09-network/index.md) owns the agency edge; [Book 10, Chapter 06](../../../books/b10-cloud-boundary/06-ipam-and-network-as-code.md) holds the route and NSG code this chapter reads.
+
+## Start with Microsoft Learn
+
+### What Learn gives you
+
+Microsoft's Zero Trust recommendations for Azure Firewall check that outbound traffic from workloads routes through the firewall, that threat intelligence and IDPS are in "alert and deny", that outbound TLS is inspected, and that diagnostic logs are on; threat intelligence deny needs Standard or Premium, IDPS and TLS inspection need Premium.[^azs06-zt] The CLI creates a policy with `--threat-intel-mode` and `--idps-mode`, each `Alert`, `Deny` or `Off`.[^azs06-cli] Learn's route commands add a `0.0.0.0/0` route with next hop `VirtualAppliance` at the firewall's private IP and attach the table to the subnet.[^azs06-route] Learn's Draft + Deployment procedure stages every change in a draft and deploys it at once; deploying replaces the whole applied policy.[^azs06-draft]
+
+### What it leaves to you
+
+| What Learn gives | Why it matters | What the kit adds (pinned by a test) |
+|---|---|---|
+| The guide's Validate query for one policy | An estate's policies drift one at a time | Every policy's modes, tier and TLS inspection, every week (`Firewall (Step 6)` tests) |
+| A route command per subnet | A subnet added later has no route, or a route to the internet | Every workload subnet's declared default route, followed to its route table and next hop |
+| `VirtualAppliance` at an IP | An appliance that isn't the firewall inspects nothing the guide counts | The next hop compared with the firewalls' private IPs; another appliance is a Warn (AZS-FW-04) |
+| IDPS needs Premium | A Standard policy can't deny on IDPS whatever its mode says | AZS-FW-02 says "IDPS needs Premium" for a Standard policy (test "says a Standard policy needs Premium") |
+| Draft + Deployment as commands | Sent by automation, a deny lands without review, and replaces live edits made since the draft | The draft commands written to `plan-deny.txt`, never run |
+| `az network nic show-effective-route-table` | The route a VM actually uses includes system routes and BGP; the declared table may not win | The kit reads declared routes only and says so; Lab 2 checks the effective routes |
+
+## The code: the `firewall` area
+
+`Get-AzsFirewallCheck` reads the firewall policies, the firewalls with their private IPs, the route tables and the virtual networks of the settings' workload subscriptions. Workload subnets are every subnet there except the reserved ones (`GatewaySubnet`, `AzureFirewallSubnet`, `AzureFirewallManagementSubnet`, `AzureBastionSubnet`, `RouteServerSubnet`, listed in `config/baseline.json`). Each gets one state: `Firewall` (a `0.0.0.0/0` route to a firewall's private IP), `OtherAppliance`, `NoRouteTable`, `NoDefaultRoute`, or the next hop type it found.
+
+| Rule | Severity | What it flags | Source |
+|---|---|---|---|
+| AZS-FW-01 | Finding | Threat intelligence not in Deny | Learn[^azs06-zt] |
+| AZS-FW-02 | Finding | IDPS not in Deny, or the policy isn't Premium | Learn[^azs06-zt] |
+| AZS-FW-03 | Finding | A workload subnet with no default route to the firewall | Learn[^azs06-zt] |
+| AZS-FW-04 | Warn | A default route to an appliance that isn't a known Azure Firewall | *Design guidance* (guide Step 6) |
+| AZS-FW-05 | Finding | A firewall with no logs to the platform workspace | Learn[^azs06-zt] |
+| AZS-FW-06 | Warn | A firewall with no firewall policy | *Design guidance* (guide Step 6) |
+| AZS-FW-07 | Warn | A Premium policy with no TLS inspection | Learn[^azs06-zt] |
+
+For each policy not yet in Deny, the check writes Learn's four commands to `plan-deny.txt`: create a draft, update its modes to Deny, show it, deploy it.[^azs06-draft] The deploy line replaces the applied policy, so the plan's header points at the guide's Step 6 and the change window. TLS inspection needs an intermediate CA in Key Vault that clients trust;[^azs06-zt] it's a Warn, because the program pilots it on one rule collection first (*design guidance*). Two tests cover this area; another checks the plan file is gone once the policy denies.
+
+::: {.callout-important}
+## Illustrative code
+The labs run the kit against a fictional estate served from files. Review the code, and run Lab 2 in a test subscription, before it reads a real one.
+:::
+
+## Lab 1: fixtures, no subscription
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/azure-security`. Contoso's hub firewall `afw-hub` has the private IP `10.0.0.4` and the Premium policy `afwp-hub`, still in Alert. Two workload virtual networks hold five workload subnets.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/azure-security`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Run the firewall check
+./Invoke-AzsCheck.ps1 -Area firewall -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath out/week1/firewall
+
+# Step 2: Read each workload subnet's default route
+Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
+(Read-AzsJson -Path out/week1/firewall/firewall.json) | Where-Object kind -EQ subnet | ForEach-Object { "{0,-24} {1,-13} {2,-15} {3}" -f $_.name, $_.routeTable, $_.defaultRoute, $_.detail }
+
+# Step 3: Read the findings
+Import-Csv out/week1/firewall/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+
+# Step 4: Read the plan the kit wrote and didn't run
+Get-Content out/week1/firewall/plan-deny.txt
+
+# Step 5: Run this chapter's tests
+Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'Firewall*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Run the firewall check:**
+
+   ```powershell
+   ./Invoke-AzsCheck.ps1 -Area firewall -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath out/week1/firewall
+   ```
+
+   <!-- capture:begin 06-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/06-1.txt))](captures/06-1.png){.lightbox fig-alt="Terminal window showing ./Invoke-AzsCheck.ps1 -Area firewall -SettingsPath tests/fixtures/settings.la… and what it printed"}
+
+   <!-- capture:end -->
+
+   Two of five workload subnets route to the firewall.
+
+2. **Read each workload subnet's default route:**
+
+   ```powershell
+   Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
+   (Read-AzsJson -Path out/week1/firewall/firewall.json) | Where-Object kind -EQ subnet | ForEach-Object { "{0,-24} {1,-13} {2,-15} {3}" -f $_.name, $_.routeTable, $_.defaultRoute, $_.detail }
+   ```
+
+   <!-- capture:begin 06-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/06-2.txt))](captures/06-2.png){.lightbox fig-alt="Terminal window showing Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1 and what it printed"}
+
+   <!-- capture:end -->
+
+   `snet-data` has no route table; `snet-web` sends `0.0.0.0/0` to the internet; `snet-jump` sends it to `10.9.9.9`, an appliance the kit doesn't know.
+
+3. **Read the findings:**
+
+   ```powershell
+   Import-Csv out/week1/firewall/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+   ```
+
+   <!-- capture:begin 06-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/06-3.txt))](captures/06-3.png){.lightbox fig-alt="Terminal window showing Import-Csv out/week1/firewall/findings.csv | ForEach-Object { '{0} {1,-7} {2}… and what it printed"}
+
+   <!-- capture:end -->
+
+   Threat intelligence and IDPS in Alert, no firewall logs, two subnets without a route to the firewall, and no TLS inspection.
+
+4. **Read the plan the kit wrote and didn't run:**
+
+   ```powershell
+   Get-Content out/week1/firewall/plan-deny.txt
+   ```
+
+   <!-- capture:begin 06-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/06-4.txt))](captures/06-4.png){.lightbox fig-alt="Terminal window showing Get-Content out/week1/firewall/plan-deny.txt and what it printed"}
+
+   <!-- capture:end -->
+
+   Learn's Draft + Deployment commands for `afwp-hub`, with its resource group and subscription.
+
+5. **Run this chapter's tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'Firewall*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+   ```
+
+   <!-- capture:begin 06-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/06-5.txt))](captures/06-5.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'Firewall*' -Output… and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** the policy's modes, every workload subnet's declared route, and the move to Deny as a draft a person deploys.
+
+When you're done, delete `out`:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 06-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/06-6.txt))](captures/06-6.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test subscription
+
+Use a test tenant with a test management group and subscription in commercial Azure, never production, with an Azure Firewall, its policy and a pilot spoke subnet routed to it, as the guide's Step 6 pilot builds them. You need Reader on the test management group, Azure CLI with the `resource-graph` and `azure-firewall` extensions, and PowerShell 7. Work in `examples/azure-security`. The authors haven't run this lab.
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/azure-security`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Sign in to commercial Azure
+az cloud set --name AzureCloud
+az login --tenant <tenant-id>
+az extension add --name resource-graph
+az extension add --name azure-firewall
+
+# Step 2: Write the test settings file
+$s = Get-Content deploy/settings.template.json -Raw | ConvertFrom-Json
+$s.environment = 'test'; $s.tenantId = '<tenant-id>'; $s.tenantRootGroupId = '<tenant-id>'; $s.managementGroup = '<test-mg-id>'
+$s.workspaceId = '<workspace-id>'; $s.connectivitySubscriptionId = '<test-subscription-id>'; $s.hubVnetId = '<hub-vnet-id>'
+$s.workloadSubscriptionIds = @('<test-subscription-id>'); $s.requiredAssignments = @('<baseline-assignment-name>')
+$s.securityInitiative = [pscustomobject]@{ assignmentName = 'azs-security'; definitionName = 'not-used-in-lab-2'; identityRole = 'Reader'; enforceBy = '2027-01-31' }
+$s.location = '<location>'; $s.outputRoot = '<output-folder>'; $s.evidencePath = '<output-folder>'; $s.changeRecord = 'lab-2'
+$s.PSObject.Properties.Remove('testEvidencePath'); $s.PSObject.Properties.Remove('_comment')
+$s | ConvertTo-Json -Depth 5 | Set-Content <output-folder>/settings.test.json
+
+# Step 3: Run the firewall check, live
+./Invoke-AzsCheck.ps1 -Area firewall -SettingsPath <output-folder>/settings.test.json -OutputPath <output-folder>/firewall -AllowUnverified
+
+# Step 4: Compare with the guide's Validate commands
+az network firewall policy show --name <fw-policy> --resource-group <rg> --query "{ti:threatIntelMode, idps:intrusionDetection.mode}"
+az network nic show-effective-route-table --resource-group <nic-rg> --name <nic-name> -o table
+
+# Step 5: Back it out
+Remove-Item -Recurse -Force <output-folder>/firewall
+az logout
+```
+
+:::
+
+<!-- labs:end -->
+
+You'll replace the values of [Chapter 01, Lab 2](01-the-landing-zone-baseline.md#lab-2-a-test-subscription), and `<fw-policy>`, `<rg>` (the policy and its resource group), and `<nic-name>` and `<nic-rg>` (a test VM's network interface in the pilot subnet, and its resource group).
+
+1. **Sign in to commercial Azure:**
+
+   ```powershell
+   az cloud set --name AzureCloud
+   az login --tenant <tenant-id>
+   az extension add --name resource-graph
+   az extension add --name azure-firewall
+   ```
+
+2. **Write the test settings file:**
+
+   ```powershell
+   $s = Get-Content deploy/settings.template.json -Raw | ConvertFrom-Json
+   $s.environment = 'test'; $s.tenantId = '<tenant-id>'; $s.tenantRootGroupId = '<tenant-id>'; $s.managementGroup = '<test-mg-id>'
+   $s.workspaceId = '<workspace-id>'; $s.connectivitySubscriptionId = '<test-subscription-id>'; $s.hubVnetId = '<hub-vnet-id>'
+   $s.workloadSubscriptionIds = @('<test-subscription-id>'); $s.requiredAssignments = @('<baseline-assignment-name>')
+   $s.securityInitiative = [pscustomobject]@{ assignmentName = 'azs-security'; definitionName = 'not-used-in-lab-2'; identityRole = 'Reader'; enforceBy = '2027-01-31' }
+   $s.location = '<location>'; $s.outputRoot = '<output-folder>'; $s.evidencePath = '<output-folder>'; $s.changeRecord = 'lab-2'
+   $s.PSObject.Properties.Remove('testEvidencePath'); $s.PSObject.Properties.Remove('_comment')
+   $s | ConvertTo-Json -Depth 5 | Set-Content <output-folder>/settings.test.json
+   ```
+
+3. **Run the firewall check, live:**
+
+   ```powershell
+   ./Invoke-AzsCheck.ps1 -Area firewall -SettingsPath <output-folder>/settings.test.json -OutputPath <output-folder>/firewall -AllowUnverified
+   ```
+
+4. **Compare with the guide's Validate commands:**
+
+   ```powershell
+   az network firewall policy show --name <fw-policy> --resource-group <rg> --query "{ti:threatIntelMode, idps:intrusionDetection.mode}"
+   az network nic show-effective-route-table --resource-group <nic-rg> --name <nic-name> -o table
+   ```
+
+   The modes should match the policy's row in `<output-folder>/firewall/firewall.json`. The effective `0.0.0.0/0` route should go to the firewall's private IP for a subnet the kit called `Firewall`; if it doesn't, record why (research gaps, row 8).
+
+5. **Back it out.** The lab changed nothing in Azure, and the plan file wasn't run. Delete what it wrote and sign out:
+
+   ```powershell
+   Remove-Item -Recurse -Force <output-folder>/firewall
+   az logout
+   ```
+
+## Verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| Zero Trust checks | Outbound through the firewall; threat intelligence and IDPS in alert and deny; outbound TLS inspection with a CA in Key Vault; diagnostic logs; a NAT gateway on the firewall subnet for SNAT | [^azs06-zt] |
+| Tiers | Threat intelligence deny: Standard or Premium; IDPS, TLS inspection, full URL filtering: Premium; Standard upgrades to Premium without redeployment | [^azs06-zt] [^azs06-sku] |
+| Modes | `--threat-intel-mode` and `--idps-mode`: `Alert`, `Deny`, `Off` | [^azs06-cli] |
+| The default route | `0.0.0.0/0`, next hop `VirtualAppliance`, the firewall's private IP; the table attached to the subnet | [^azs06-route] |
+| Draft + Deployment | `draft create`, `draft update --threat-intel-mode Deny --idps-mode Deny`, `draft show`, `deploy`; deploying replaces the applied policy; extension 1.2.3 or later | [^azs06-draft] |
+| Threat intelligence log | `AZFWThreatIntel` holds all threat intelligence events | [^azs06-monref] |
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| Threat intelligence and IDPS in Deny on every policy: AZS-FW-01 and AZS-FW-02, or none | SC-7(5), deny by default, allow by exception; SI-4, system monitoring | KSI-CNA-RNT | Platform owner |
+| Every workload subnet's declared default route to the firewall, and the share that has one: `firewall.json` subnet rows, `egressPercent` in `summary.json` | SC-7, boundary protection | KSI-CNA-ULN | Platform owner |
+| Firewall logs to the platform workspace: AZS-FW-05, or none | SI-4 | KSI-CNA-RNT | Security monitor |
+| The move to Deny reviewed before it is deployed: `plan-deny.txt`, never run by the kit | SC-7(5); the change goes through the guide's change record | KSI-CNA-RNT | Platform owner |
+
+The controls are the guide's Step 6 row (SC-7, SC-7(5), SI-4) and its KSIs; the guide notes KSI-CNA-RNT cites SC-7(5) and KSI-CNA-ULN cites SC-7.[^azs06-guide]
+
+## Dangers
+
+| Danger | What goes wrong | The guard |
+|---|---|---|
+| A draft deployed over newer live edits | The live edits are lost | The kit never deploys; the plan's header names the change window and the guide's single change path |
+| A declared route that doesn't win | The effective route bypasses the firewall | The metric says "declared"; Lab 2 checks the effective route |
+| A route to an unknown appliance | Egress through something that isn't the inspecting firewall | AZS-FW-04 names it |
+| A Standard policy with IDPS set | It reads as configured and inspects nothing | AZS-FW-02 says Premium is needed |
+
+## Checklist
+
+- [ ] Every policy denies on threat intelligence and IDPS, or has a dated plan to.
+- [ ] Every workload subnet is `Firewall`, or has a decision record.
+- [ ] The effective route was checked on a VM in each pilot subnet.
+- [ ] `plan-deny.txt` went through the change record before anyone ran it.
+
+## Continue the book
+
+Next, [Chapter 07](07-private-link-dns-and-key-vault.md): PaaS reached only through private endpoints, and the vaults behind them. The guide's [Step 6](../../../books/guides/azure-security-implementation.md#step-6-firewall-and-segmentation) holds the commands that create the policy and the routes.
+
+[^azs06-guide]: Azure Security Engineering, [Step 6: Firewall and segmentation](../../../books/guides/azure-security-implementation.md#step-6-firewall-and-segmentation), [Metrics](../../../books/guides/azure-security-implementation.md#metrics) and [Federal requirements and KSIs](../../../books/guides/azure-security-implementation.md#requirements), with its sources read November 11, 2026.
+[^azs06-zt]: Microsoft Learn, "Zero Trust recommendations for Azure Firewall," <https://learn.microsoft.com/azure/networking/security/zero-trust-azure-firewall> (accessed Nov 11, 2026).
+[^azs06-sku]: Microsoft Learn, "Azure Firewall and traffic inspection," section "Azure Firewall SKU tiers," <https://learn.microsoft.com/azure/networking/design-guide/azure-firewall> (accessed Nov 11, 2026).
+[^azs06-cli]: Microsoft Learn, Azure CLI reference, "az network firewall policy create," <https://learn.microsoft.com/cli/azure/network/firewall/policy> (accessed Nov 11, 2026).
+[^azs06-route]: Microsoft Learn, "Integrate NAT gateway with Azure Firewall," section "Create a route table," <https://learn.microsoft.com/azure/firewall/integrate-with-nat-gateway-v2> (accessed Nov 11, 2026).
+[^azs06-draft]: Microsoft Learn, "Azure Firewall Draft + Deployment," <https://learn.microsoft.com/azure/firewall/draft-deploy> (accessed Nov 11, 2026).
+[^azs06-monref]: Microsoft Learn, "Monitoring data reference for Azure Firewall," <https://learn.microsoft.com/azure/firewall/monitor-firewall-reference> (accessed Nov 13, 2026).
