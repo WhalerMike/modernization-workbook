@@ -64,6 +64,13 @@ Trust comes before activation, because an expired inspection certificate disable
 
 **Where agencies are.** Internet Access and TLS inspection need an Internet Access or Microsoft Entra Suite license. Both are generally available and available in GCC by Learn's product-wide statement; the cloud firewall for clients and the Explicit Forward Proxy are preview, with GCC availability *not yet specified* ([availability](../../books/guides/global-secure-access-implementation.md#availability)). An agency that keeps its current gateway records `retain-current` or `coexist` for the internet function in Module 1's decision record.
 
+## Exercise: Lab 1, fixtures, no tenant {#gsa-m5-lab-1}
+*About 20 minutes per chapter. No tenant: it runs on a laptop.*
+
+This module's fixture labs are in the developer workbook [*Building Global Secure Access*](../../project-plans/developer-workbooks/global-secure-access/index.md). Each runs the kit in `examples/global-secure-access` against one fictional tenant, `contoso.example`, with every command as a copy-paste block and the kit's real output beside it. Follow them as written; they aren't repeated here:
+
+- [Chapter 07, Lab 1](../../project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md#lab-1-fixtures-no-tenant): security profiles, governed bypasses, the QUIC interim path and TLS inspection.
+
 ## Exercise: Lab 2, a test tenant {#gsa-m5-lab-2}
 *Not timed. Not run by the authors. Never production.*
 

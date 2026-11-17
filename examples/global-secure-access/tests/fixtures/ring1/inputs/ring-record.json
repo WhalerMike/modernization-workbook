@@ -1,0 +1,9 @@
+{
+  "ring": "ring1",
+  "started": "2026-11-16",
+  "sev2Open": 0,
+  "helpDeskTickets": 6,
+  "helpDeskThreshold": 10,
+  "emergencyExclusionTestedOn": "2026-11-16",
+  "breakGlassRehearsedOn": "2026-11-13"
+}

@@ -1,0 +1,6 @@
+PS> (Read-GsaCollection -Path out/pilot)['law-query']['cn-report-only'] | ForEach-Object { [pscustomobject]$_ } | Format-Table Result, Through, count_
+Result            Through count_
+------            ------- ------
+reportOnlySuccess true      1830
+reportOnlyFailure false       41
+reportOnlyFailure true         3

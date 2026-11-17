@@ -1,0 +1,43 @@
+{
+  "tenant": "contoso.example",
+  "forest": "corp.contoso.example",
+  "connectorGroups": [
+    {
+      "name": "CG-HQ",
+      "site": "HQ datacenter",
+      "hosts": [
+        "con01.contoso.example",
+        "con02.contoso.example"
+      ],
+      "applications": [
+        "PA-HR-Portal",
+        "PA-AdminRDP-Tier1"
+      ]
+    },
+    {
+      "name": "CG-Cloud-East",
+      "site": "Azure East US",
+      "hosts": [
+        "con11.contoso.example",
+        "con12.contoso.example"
+      ],
+      "applications": [
+        "PA-Finance"
+      ]
+    }
+  ],
+  "privateDnsSuffixes": [
+    "contoso.example"
+  ],
+  "remoteNetworks": [],
+  "workspace": "law-security",
+  "cisaTelemetry": {
+    "agreedOn": "",
+    "path": ""
+  },
+  "quicBlock": {
+    "method": "Intune firewall rule",
+    "profile": "NET-QUIC-Block-UDP443",
+    "assignedTo": "pilot"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "_comment": "The TLS inspection record the platform owner exports from the portal (inputs/tls.json): no Graph request for TLS inspection was verified for the kit. The certificate is the active one; the privacy approval and user notice precede enabling inspection.",
+  "certificate": { "name": "<name, at most 12 characters>", "issuer": "<issuing CA>", "notBefore": "<iso time>", "notAfter": "<iso time>", "status": "enabled" },
+  "policies": [ { "name": "<TLS policy>", "defaultAction": "<inspect | bypass>", "linkedProfiles": [ "<security profile>" ], "customBypass": [ "<destination>" ] } ],
+  "privacy": { "approvedOn": "<yyyy-mm-dd>", "approver": "<privacy officer>", "userNoticeSentOn": "<yyyy-mm-dd>", "bypassCategories": [ "Education", "Finance", "Government", "Health & Medicine" ] },
+  "trustProfile": { "name": "<Intune trusted certificate profile>", "deployedTo": "<ring>", "deployedOn": "<yyyy-mm-dd>" }
+}

@@ -1,0 +1,9 @@
+PS> ./Invoke-GsaPlan.ps1 -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -DesiredPath config/desired.ring1.json -OutputPath out/plan-ring1 -AsOf 2026-11-16T12:00:00Z
+PL-01      WouldApply  PATCH NET-PA-AdminRDP-PhishingResistant: conditions or controls differ from the reviewed file
+MAN-ENF    Manual      NET-CN-Require-Compliant-Network-Pilot stays report-only: enforcing it needs -AllowEnforce after its report-only results are clean
+MAN-ASSIGN Manual      Portal: Global Secure Access > Connect > Traffic forwarding > m365 profile > User and group assignments: add 22222222-2222-4222-8222-222222222201 (no Graph request on the pages read)
+MAN-ASSIGN Manual      Portal: Global Secure Access > Connect > Traffic forwarding > private profile > User and group assignments: add 22222222-2222-4222-8222-222222222201 (no Graph request on the pages read)
+MAN-ASSIGN Manual      Portal: Global Secure Access > Connect > Traffic forwarding > internet profile > User and group assignments: add 22222222-2222-4222-8222-222222222201 (no Graph request on the pages read)
+
+Plan SHA-256: 452086e2867892bc49d0450d6f4902794e6fe1e226433b110c5d86a5a970cec3
+Dry run: nothing changed.

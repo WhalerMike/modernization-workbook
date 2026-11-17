@@ -1,0 +1,375 @@
+---
+title: "Chapter 07 — Internet Access, QUIC and TLS Inspection"
+description: "The guide's Steps 5 and 9 as code: security profiles and the NET-IA policies that assign them checked for an existing profile and the emergency exclusion, the acceptable-use categories and threat intelligence blocked, every custom bypass governed in the exception register, QUIC blocked by the guide's interim path while the cloud firewall for clients is a preview with no stated GCC availability, and Learn's limits; then TLS inspection checked for certificate validity and renewal, a dedicated CA, no baseline profile before ring 3, the privacy approval and user notice, registered bypasses and a failure share under 1%. Labs against a fictional tenant's fixtures and a test tenant."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-global-secure-access
+part: How
+series-order: 7
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 07 — Internet Access, QUIC and TLS Inspection
+
+*Filtering the web by identity is the easy part. The hard parts are the bypasses that never expire, the protocol the service doesn't carry, and a certificate authority that can impersonate every site. The code watches all three.*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [Step 5: Internet traffic](../../../books/guides/global-secure-access-implementation.md#step-5-internet-traffic) and [Step 9: TLS inspection](../../../books/guides/global-secure-access-implementation.md#step-9-tls-inspection), which the run order puts last among the controls, after filtering works on server names. You read checks GSA-IA-01 to -06 and GSA-TLS-01 to -06. This is the chapter where GCC availability bites: the cloud firewall for clients is a preview whose GCC availability isn't stated, so the kit checks the guide's interim path instead. Lab 1 finds an expired bypass, a bypass nobody approved, an inspection certificate 74 days from expiry and a 1.5% failure share. Lab 2 builds a pilot security profile in a test tenant, blocks QUIC on a test device and reads the TLS outcomes.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can show that the ring's web traffic is filtered by an identity-aware policy, that every exception to it has an owner and an end date, that QUIC can't slip past it, and that TLS inspection runs from a dedicated CA, within an approved privacy scope, without breaking more than 1% of sessions.
+
+**Audience.** Developers who build or maintain the kit, the platform owner, the policy owner who approves categories and bypasses, the privacy officer, and the PKI team. You don't need a tenant until Lab 2.
+
+## Start with Microsoft's documentation
+
+### What Microsoft gives you
+
+Learn's Internet Access Graph tutorial creates a filtering policy, a security (filtering) profile, a link between them, and a Conditional Access policy targeting **All internet resources with Global Secure Access** with the `globalSecureAccessFilteringProfile` session control.[^gsa07-ia] Security profiles are listed with `NetworkAccess.Read.All`, and each lists its `conditionalAccessPolicies`.[^gsa07-sp] Learn's limits are 256 security profiles, 1,000 policies, 1,000 rules and 8,000 destinations per tenant; Internet Access doesn't forward QUIC end to end.[^gsa07-limits] Learn's newer pages handle QUIC with a cloud firewall rule, which is preview; its TLS page blocks outbound UDP 443 with Windows Firewall.[^gsa07-tls] [^gsa07-limits] Learn's change guidance asks for an expiration or review date on allow-list entries.[^gsa07-ops] For TLS inspection, the agency's own intermediate needs Server Auth, `CA:TRUE`, `pathLenConstraint=1`, at least six months' validity, and only one can be active; Learn's tutorial suggests a dedicated CA, not the production PKI; an expired certificate disables all TLS inspection, and renewal starts 90 days ahead; the traffic logs carry `TlsAction` and `TlsStatus`; Microsoft treats a failure rate above 1% as systemic.[^gsa07-byoc] [^gsa07-tlstut] [^gsa07-opsia] [^gsa07-concept] [^gsa07-zt]
+
+### What it leaves to you
+
+Each row is pinned by a test in the `Chapter 07` block of `tests/GlobalSecureAccess.Tests.ps1`.
+
+| Learn's material, as published | Why it matters | What the kit adds |
+|---|---|---|
+| A category list, Learn's example being one category | The agency's acceptable-use list goes untested | GSA-IA-02 checks the settings' `highRiskCategories` are blocked; GSA-IA-03 that threat intelligence filtering exists |
+| "Set an expiration or review date" | Bypasses become permanent | GSA-IA-04 and GSA-TLS-05: every `custom-bypass` row has an owner, an approver and an unexpired date |
+| QUIC through a preview cloud firewall | Its GCC availability isn't stated | GSA-IA-05 requires the guide's interim path, a Windows Firewall rule delivered by Intune, recorded in the architecture record |
+| No Graph read for TLS inspection verified for the kit | The certificate and policies can't be collected | `templates/tls.json`: the platform owner's export from the portal, checked by GSA-TLS-01 to -05 |
+| "A dedicated CA" is advice | The authentication CA gets reused | GSA-TLS-02 fails an issuer the settings list as an authentication CA |
+| A 1% threshold in a recommendation | No measured number | GSA-TLS-06 computes the failure share from the guide's query |
+
+## The code
+
+| Check | What it looks for |
+|---|---|
+| GSA-IA-01 | Each `NET-IA-` policy links an existing security profile and excludes the emergency group |
+| GSA-IA-02, -03 | The high-risk categories are blocked; a threat intelligence policy exists |
+| GSA-IA-04 | Each custom bypass is owned, approved and unexpired |
+| GSA-IA-05 | QUIC is blocked by the interim path while the cloud firewall for clients isn't available |
+| GSA-IA-06 | Within 256 profiles and 1,000 policies |
+| GSA-TLS-01 | More than 90 days left, and at least six months' validity |
+| GSA-TLS-02 | The issuer isn't an authentication CA |
+| GSA-TLS-03 | Not linked to the baseline profile before ring 3 |
+| GSA-TLS-04 | The privacy approval and user notice are recorded |
+| GSA-TLS-05 | Each custom bypass in a TLS policy is in the register, current |
+| GSA-TLS-06 | `Failure` sessions under 1% of the sessions with a TLS status |
+
+The guide notes that Learn's pages give the `TlsStatus` values as Success and Failure in one place and filter on `Inspected` in another; the check counts `Failure` and the query groups by the values the workspace holds (research gap 5).
+
+::: {.callout-important}
+## Illustrative code
+Lab 1 reads fixtures; nothing signs in. Tested against fixtures and stand-in runners, not a live tenant.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/global-secure-access`.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/global-secure-access`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: List what the internet area reads
+Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
+Get-GsaRequiredPermission -Area internet-access | Format-Table
+
+# Step 2: Read the GCC table's rows for Step 5
+Get-GsaAvailability | Where-Object step -EQ 5 | Format-Table id, gcc, status, interim -Wrap
+
+# Step 3: Collect the pilot tenant
+./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/pilot -OutputPath out/pilot -AsOf 2026-11-16T12:00:00Z
+
+# Step 4: Run the internet checks
+./Invoke-GsaCheck.ps1 -Area internet-access -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-ia -AsOf 2026-11-16T12:00:00Z
+
+# Step 5: Read the bypass rows of the exception register
+Import-Csv tests/fixtures/pilot/inputs/exceptions.csv | Where-Object kind -EQ 'custom-bypass' | Format-Table id, target, reason, owner, approver, expires
+
+# Step 6: Run the TLS checks
+./Invoke-GsaCheck.ps1 -Area tls -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-tls -AsOf 2026-11-16T12:00:00Z
+
+# Step 7: Check both areas two weeks later
+./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab-ring1.json -FixturePath tests/fixtures/ring1 -OutputPath out/ring1 -AsOf 2026-11-30T12:00:00Z
+./Invoke-GsaCheck.ps1 -Area internet-access, tls -SettingsPath tests/fixtures/settings.lab-ring1.json -CollectionPath out/ring1 -InputsPath tests/fixtures/ring1/inputs -OutputPath out/check-ring1 -AsOf 2026-11-30T12:00:00Z
+
+# Step 8: Run this chapter's tests
+Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Chapter 07*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **List what the internet area reads:**
+
+   ```powershell
+   Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
+   Get-GsaRequiredPermission -Area internet-access | Format-Table
+   ```
+
+   <!-- capture:begin 07-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/07-1.txt))](captures/07-1.png){.lightbox fig-alt="Terminal window showing Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1 and what it printed"}
+
+   <!-- capture:end -->
+
+2. **Read the GCC table's rows for Step 5.** Three features are previews with no stated GCC availability, each with an interim path:
+
+   ```powershell
+   Get-GsaAvailability | Where-Object step -EQ 5 | Format-Table id, gcc, status, interim -Wrap
+   ```
+
+   <!-- capture:begin 07-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/07-2.txt))](captures/07-2.png){.lightbox fig-alt="Terminal window showing Get-GsaAvailability | Where-Object step -EQ 5 | Format-Table id, gcc, status,… and what it printed"}
+
+   <!-- capture:end -->
+
+3. **Collect the pilot tenant:**
+
+   ```powershell
+   ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/pilot -OutputPath out/pilot -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 07-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/07-3.txt))](captures/07-3.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -Fixtu… and what it printed"}
+
+   <!-- capture:end -->
+
+4. **Run the internet checks:**
+
+   ```powershell
+   ./Invoke-GsaCheck.ps1 -Area internet-access -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-ia -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 07-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/07-4.txt))](captures/07-4.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCheck.ps1 -Area internet-access -SettingsPath tests/fixtures/sett… and what it printed"}
+
+   <!-- capture:end -->
+
+   The profile, categories, threat intelligence, QUIC interim block and limits pass. Two bypasses fail: EX-03 expired on November 1, and EX-04 has no approver.
+
+5. **Read the bypass rows of the exception register:**
+
+   ```powershell
+   Import-Csv tests/fixtures/pilot/inputs/exceptions.csv | Where-Object kind -EQ 'custom-bypass' | Format-Table id, target, reason, owner, approver, expires
+   ```
+
+   <!-- capture:begin 07-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/07-5.txt))](captures/07-5.png){.lightbox fig-alt="Terminal window showing Import-Csv tests/fixtures/pilot/inputs/exceptions.csv | Where-Object kind -EQ… and what it printed"}
+
+   <!-- capture:end -->
+
+6. **Run the TLS checks:**
+
+   ```powershell
+   ./Invoke-GsaCheck.ps1 -Area tls -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-tls -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 07-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/07-6.txt))](captures/07-6.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCheck.ps1 -Area tls -SettingsPath tests/fixtures/settings.lab.jso… and what it printed"}
+
+   <!-- capture:end -->
+
+   The certificate has 74 days left and was issued for only 90; the pinned payroll site's bypass is EX-03, expired; and 1.5% of sessions failed. The issuer is a dedicated CA, the policy is on the pilot profile only, and the privacy approval and notice came first.
+
+7. **Check both areas two weeks later,** after the certificate was rolled, the bypasses renewed and approved, and the failing destinations bypassed:
+
+   ```powershell
+   ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab-ring1.json -FixturePath tests/fixtures/ring1 -OutputPath out/ring1 -AsOf 2026-11-30T12:00:00Z
+   ./Invoke-GsaCheck.ps1 -Area internet-access, tls -SettingsPath tests/fixtures/settings.lab-ring1.json -CollectionPath out/ring1 -InputsPath tests/fixtures/ring1/inputs -OutputPath out/check-ring1 -AsOf 2026-11-30T12:00:00Z
+   ```
+
+   <!-- capture:begin 07-7 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/07-7.txt))](captures/07-7.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab-ring1.json … and what it printed"}
+
+   <!-- capture:end -->
+
+8. **Run this chapter's tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Chapter 07*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+   ```
+
+   <!-- capture:begin 07-8 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/07-8.txt))](captures/07-8.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Chapt… and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** `FailedCount` 0. Delete `out` when you're done:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 07-9 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/07-9.txt))](captures/07-9.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test tenant
+
+Use a test tenant with Internet Access licenses, the Internet Access profile enabled for a pilot group, and one test device with the client, never production. **The authors haven't run this lab**, and it doesn't enable TLS inspection: that needs a dedicated test CA and the privacy officer's scope, which the guide's Step 9 covers. Work in `examples/global-secure-access`. Activate Global Secure Access Administrator and Conditional Access Administrator through PIM for the lab only. You'll replace: `<tenant-id>`, `<settings-file>` (with `securityProfile` `SP-Pilot`), `<inputs-folder>`, `<security-profile-id>`, `<filtering-policy-id>`, `<desired-file>` (a copy of `config/desired.lab.json` with `internet` `enabled` and `conditionalAccess` listing only `policies/NET-IA-SecurityProfile-Pilot.json`), `<plan-sha256>`, `<policy-id>` and `<workspace-guid>`.
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/global-secure-access`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Sign in
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes "NetworkAccess.ReadWrite.All","Policy.Read.All","Policy.ReadWrite.ConditionalAccess","Directory.ReadWrite.All","LicenseAssignment.Read.All","NetworkAccessPolicy.Read.All"
+
+# Step 2: Create the filtering policy and the pilot security profile with the guide's Steps 5.2 and 5.3
+Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/beta/networkaccess/filteringPolicies" -ContentType "application/json" -Body '{"name":"NET-WCF-Block-HighRisk","policyRules":[{"@odata.type":"#microsoft.graph.networkaccess.webCategoryFilteringRule","name":"Categories","ruleType":"webCategory","destinations":[{"@odata.type":"#microsoft.graph.networkaccess.webCategory","name":"ArtificialIntelligence"}]}],"action":"block"}'
+Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/beta/networkaccess/filteringProfiles" -ContentType "application/json" -Body '{"name":"SP-Pilot","state":"enabled","priority":100,"policies":[]}'
+Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/beta/networkaccess/filteringProfiles/<security-profile-id>/policies" -ContentType "application/json" -Body '{"priority":100,"state":"enabled","@odata.type":"#microsoft.graph.networkaccess.filteringPolicyLink","loggingState":"enabled","policy":{"id":"<filtering-policy-id>","@odata.type":"#microsoft.graph.networkaccess.filteringPolicy"}}'
+
+# Step 3: Plan and apply the pilot's NET-IA policy
+./Invoke-GsaCollect.ps1 -SettingsPath <settings-file> -OutputPath out/ia-test -AllowUnverified
+./Invoke-GsaPlan.ps1 -SettingsPath <settings-file> -CollectionPath out/ia-test -DesiredPath <desired-file> -OutputPath out/plan-ia
+./Invoke-GsaPlan.ps1 -SettingsPath <settings-file> -CollectionPath out/ia-test -DesiredPath <desired-file> -OutputPath out/plan-ia -Apply -ApprovedSha256 <plan-sha256>
+
+# Step 4: Block QUIC on the test device with the interim path
+New-NetFirewallRule -DisplayName "Block QUIC" -Direction Outbound -Action Block -Protocol UDP -RemotePort 443
+
+# Step 5: Validate
+az monitor log-analytics query --workspace <workspace-guid> --analytics-query "NetworkAccessTraffic | where TimeGenerated > ago(24h) and TrafficType == 'internet' | summarize Allowed = countif(Action == 'Allowed'), Denied = countif(Action == 'Denied') by UserPrincipalName" -o table
+./Invoke-GsaCollect.ps1 -SettingsPath <settings-file> -OutputPath out/ia-after -AllowUnverified
+./Invoke-GsaCheck.ps1 -Area internet-access -SettingsPath <settings-file> -CollectionPath out/ia-after -InputsPath <inputs-folder> -OutputPath out/check-ia-test
+
+# Step 6: Back it out
+Invoke-MgGraphRequest -Method DELETE -Uri "https://graph.microsoft.com/v1.0/identity/conditionalAccess/policies/<policy-id>"
+Remove-NetFirewallRule -DisplayName "Block QUIC"
+Disconnect-MgGraph
+Remove-Item -Recurse -Force out/ia-test, out/plan-ia, out/ia-after, out/check-ia-test
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Sign in:**
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes "NetworkAccess.ReadWrite.All","Policy.Read.All","Policy.ReadWrite.ConditionalAccess","Directory.ReadWrite.All","LicenseAssignment.Read.All","NetworkAccessPolicy.Read.All"
+   ```
+
+2. **Create the filtering policy and the pilot security profile with the guide's Steps 5.2 and 5.3:**
+
+   ```powershell
+   Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/beta/networkaccess/filteringPolicies" -ContentType "application/json" -Body '{"name":"NET-WCF-Block-HighRisk","policyRules":[{"@odata.type":"#microsoft.graph.networkaccess.webCategoryFilteringRule","name":"Categories","ruleType":"webCategory","destinations":[{"@odata.type":"#microsoft.graph.networkaccess.webCategory","name":"ArtificialIntelligence"}]}],"action":"block"}'
+   Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/beta/networkaccess/filteringProfiles" -ContentType "application/json" -Body '{"name":"SP-Pilot","state":"enabled","priority":100,"policies":[]}'
+   Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/beta/networkaccess/filteringProfiles/<security-profile-id>/policies" -ContentType "application/json" -Body '{"priority":100,"state":"enabled","@odata.type":"#microsoft.graph.networkaccess.filteringPolicyLink","loggingState":"enabled","policy":{"id":"<filtering-policy-id>","@odata.type":"#microsoft.graph.networkaccess.filteringPolicy"}}'
+   ```
+
+3. **Plan and apply the pilot's NET-IA policy** (the plan creates it On for the pilot group only, as the guide does, because Learn doesn't say whether a report-only policy applies a security profile):
+
+   ```powershell
+   ./Invoke-GsaCollect.ps1 -SettingsPath <settings-file> -OutputPath out/ia-test -AllowUnverified
+   ./Invoke-GsaPlan.ps1 -SettingsPath <settings-file> -CollectionPath out/ia-test -DesiredPath <desired-file> -OutputPath out/plan-ia
+   ./Invoke-GsaPlan.ps1 -SettingsPath <settings-file> -CollectionPath out/ia-test -DesiredPath <desired-file> -OutputPath out/plan-ia -Apply -ApprovedSha256 <plan-sha256>
+   ```
+
+4. **Block QUIC on the test device with the interim path.** On the device, as an administrator, Learn's command (in the rings, deliver the same rule with Intune):
+
+   ```powershell
+   New-NetFirewallRule -DisplayName "Block QUIC" -Direction Outbound -Action Block -Protocol UDP -RemotePort 443
+   ```
+
+5. **Validate.** From the test device, browse to a site in the blocked category and expect the block page. Then read the guide's query and check:
+
+   ```powershell
+   az monitor log-analytics query --workspace <workspace-guid> --analytics-query "NetworkAccessTraffic | where TimeGenerated > ago(24h) and TrafficType == 'internet' | summarize Allowed = countif(Action == 'Allowed'), Denied = countif(Action == 'Denied') by UserPrincipalName" -o table
+   ./Invoke-GsaCollect.ps1 -SettingsPath <settings-file> -OutputPath out/ia-after -AllowUnverified
+   ./Invoke-GsaCheck.ps1 -Area internet-access -SettingsPath <settings-file> -CollectionPath out/ia-after -InputsPath <inputs-folder> -OutputPath out/check-ia-test
+   ```
+
+6. **Back it out,** newest first: the policy, the firewall rule on the device, then the profile and the filtering policy in the portal (**Global Secure Access** > **Secure** > **Security profiles**, then **Web content filtering policies**: select, **Delete**):
+
+   ```powershell
+   Invoke-MgGraphRequest -Method DELETE -Uri "https://graph.microsoft.com/v1.0/identity/conditionalAccess/policies/<policy-id>"
+   Remove-NetFirewallRule -DisplayName "Block QUIC"
+   Disconnect-MgGraph
+   Remove-Item -Recurse -Force out/ia-test, out/plan-ia, out/ia-after, out/check-ia-test
+   ```
+
+## Verified facts
+
+| Item | Value | GCC | Stage | Source |
+|---|---|---|---|---|
+| Filtering policy, profile, link, Conditional Access session control | Learn's tutorial requests; app ID `5dc48733-b5df-475c-a49b-fa307ef00853` | Available (product-wide) | Beta | [^gsa07-ia] |
+| Security profiles read | `NetworkAccess.Read.All`; each lists `conditionalAccessPolicies` | Global service | Beta | [^gsa07-sp] |
+| Limits | 256 profiles, 1,000 policies, 1,000 rules, 8,000 destinations; ports 80 and 443; no IPv6, no UDP | — | — | [^gsa07-limits] |
+| QUIC | Not forwarded end to end; cloud firewall for clients (preview) or Windows Firewall on UDP 443 | Cloud firewall: not yet specified | Preview | [^gsa07-limits] [^gsa07-tls] |
+| Inspection certificate | Server Auth, `CA:TRUE`, `pathLenConstraint=1`; at least six months; one active; renew 90 days ahead | Available (product-wide) | GA | [^gsa07-byoc] [^gsa07-opsia] |
+| Dedicated CA | "a dedicated CA for TLS inspection, not your production PKI" | — | — | [^gsa07-tlstut] |
+| Failure threshold | Above 1% is systemic | — | — | [^gsa07-zt] |
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| Web access is filtered by an identity-aware profile with the acceptable-use categories and threat intelligence (Lab 1, step 4; Lab 2, steps 2, 3 and 5) | SC-7, SC-7(5) (deny by default), SI-3 (malicious code protection) | KSI-CNA-ULN, KSI-CNA-RNT, KSI-CNA-MAT | The platform owner; the policy owner approves categories |
+| Every bypass has an owner, an approver and an end date (Lab 1, steps 4 and 5) | SC-7(5); CM-6 | KSI-CNA-MAT | The policy owner keeps the register |
+| QUIC is blocked by the interim path (Lab 1, step 4; Lab 2, step 4) | SC-7 | KSI-CNA-RNT | The endpoint engineer |
+| Inspection from a dedicated CA, renewed in time, within an approved privacy scope, under 1% failures (Lab 1, step 6) | SC-8 (transmission confidentiality), SC-12, SC-17 (PKI certificates), SI-4 | KSI-SVC-SIN, KSI-SVC-ASM, KSI-CNA-MAT | The platform owner; the privacy officer keeps the approval |
+
+TIC 3.0's Remote User Use Case, Pattern 3, and its Web PEP capabilities are the guide's reading for these steps. The kit's records support these controls; the agency's assessor decides them.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| A preview firewall assumed in GCC | QUIC traffic leaves uninspected if the feature isn't there | GSA-DEC-07 and GSA-IA-05 require the interim path |
+| A bypass with no end date | A permanent hole in filtering | GSA-IA-04, GSA-TLS-05 |
+| The authentication CA issues the inspection intermediate | A compromise impersonates sign-in pages too | GSA-TLS-02 |
+| The certificate expires | All TLS inspection stops, tenant-wide | GSA-TLS-01 at 90 days |
+| Inspection on the baseline profile early | Everyone inspected before the privacy scope is proven | GSA-TLS-03 |
+| A pinned application broken by inspection | A mission app fails for the ring | GSA-TLS-06, and a registered bypass |
+
+## Checklist
+
+- [ ] The acceptable-use categories and threat intelligence are blocked in the ring's profile.
+- [ ] Every custom bypass and allow-list entry is in the register with an owner, an approver and an end date.
+- [ ] QUIC is blocked by the Intune-delivered firewall rule while the cloud firewall for clients isn't stated for GCC.
+- [ ] The inspection intermediate comes from a dedicated CA, has more than 90 days left, and its trust was deployed before activation.
+- [ ] The privacy officer approved the scope and users were told before inspection started.
+- [ ] The failure share is under 1% for the ring.
+
+::: {.callout-tip}
+## Continue the book
+[← Chapter 06 — Private Applications and Administrative Paths](06-private-apps-and-admin-paths.md) · [Workbook index](index.md) · [Next: Chapter 08 — Rings, Metrics and the Evidence Package →](08-rings-metrics-and-evidence.md)
+:::
+
+[^gsa07-ia]: Microsoft Learn, "Configure Microsoft Entra Internet Access using Microsoft Graph APIs," <https://learn.microsoft.com/graph/tutorial-entra-internet-access> (read November 11, 2026, for the guide).
+[^gsa07-sp]: Microsoft Learn, "List filteringProfiles" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/networkaccess-filteringprofile-list?view=graph-rest-beta> (accessed November 17, 2026).
+[^gsa07-limits]: Microsoft Learn, "Known limitations for Global Secure Access," Internet Access, <https://learn.microsoft.com/entra/global-secure-access/reference-current-known-limitations> (read November 11, 2026, for the guide).
+[^gsa07-tls]: Microsoft Learn, "Configure Transport Layer Security inspection policies," <https://learn.microsoft.com/entra/global-secure-access/how-to-transport-layer-security> (read November 11, 2026, for the guide).
+[^gsa07-ops]: Microsoft Learn, "Common operations for Microsoft Entra Global Secure Access," change management, <https://learn.microsoft.com/entra/global-secure-access/how-to-operations-common> (read November 11, 2026, for the guide).
+[^gsa07-byoc]: Microsoft Learn, "Configure TLS inspection with your own certificate," <https://learn.microsoft.com/entra/global-secure-access/how-to-transport-layer-security-settings> (read November 11, 2026, for the guide).
+[^gsa07-tlstut]: Microsoft Learn, "Tutorial: Enable TLS inspection," security considerations, <https://learn.microsoft.com/entra/global-secure-access/tutorial-internet-access-tls-inspection> (read November 11, 2026, for the guide).
+[^gsa07-opsia]: Microsoft Learn, "Operate Microsoft Entra Internet Access," certificate validity and renewal, <https://learn.microsoft.com/entra/global-secure-access/how-to-operate-internet-access> (read November 11, 2026, for the guide).
+[^gsa07-concept]: Microsoft Learn, "What is Transport Layer Security inspection?," `TlsAction` and `TlsStatus`, <https://learn.microsoft.com/entra/global-secure-access/concept-transport-layer-security> (read November 11, 2026, for the guide).
+[^gsa07-zt]: Microsoft Learn, "Configure Microsoft Entra for Zero Trust: Protect networks," TLS failure rate, <https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-networks> (read November 11, 2026, for the guide).

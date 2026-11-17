@@ -1,0 +1,10 @@
+{
+  "displayName": "NET-PA-AdminRDP-PhishingResistant",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "applications": { "includeApplications": [ "<app-id:PA-AdminRDP-Tier1>" ] },
+    "users": { "includeGroups": [ "<admin-group-id>" ], "excludeGroups": [ "<emergency-group-id>" ] }
+  },
+  "grantControls": { "operator": "AND", "builtInControls": [ "compliantDevice" ],
+                     "authenticationStrength": { "id": "00000000-0000-0000-0000-000000000004" } }
+}

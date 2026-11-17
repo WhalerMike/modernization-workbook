@@ -1,0 +1,11 @@
+PS> Get-GsaAvailability -NotAvailable | Format-Table id, status, step, interim -Wrap
+id                       status  step interim
+--                       ------  ---- -------
+registered-devices       preview    3 Deploy the client to Microsoft Entra joined or hybrid joined devices only.
+cloud-firewall-clients   preview    5 Block QUIC (outbound UDP 443) with an Intune-delivered Windows Firewall rule, piloted first (the guide's Step 5.6); record it in the architecture record's quicBlock.
+explicit-forward-proxy   preview    5 Acquire traffic with the client only; where a PAC file stays, exclude every FQDN and IP the client tunnels (the guide's Step 11.2).
+http-method-filtering    preview    5 Filter by web category and FQDN in security profiles (generally available).
+custom-private-profiles  preview    6 Per-app applications, each with its own group assignment and Conditional Access, in the one Private Access profile.
+enriched-m365-logs       preview   12 Not exported; add only by a decision record (the guide's Step 12.1).
+intelligent-local-access preview    6 Not adopted: a Zero Trust Assessment test against it is recorded as not applicable, with the decision record as its exception evidence.
+ai-gateway-prompt-shield preview    9 Not adopted: recorded as not applicable, with the decision record as its exception evidence.

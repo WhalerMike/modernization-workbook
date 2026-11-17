@@ -1,0 +1,10 @@
+{
+  "_comment": "The ring record the technical program manager keeps (inputs/ring-record.json), read by the ring exit criteria (the guide's Step 11.1).",
+  "ring": "<pilot | ring1 | ring2 | ring3>",
+  "started": "<yyyy-mm-dd>",
+  "sev2Open": 0,
+  "helpDeskTickets": 0,
+  "helpDeskThreshold": 0,
+  "emergencyExclusionTestedOn": "<yyyy-mm-dd, on or after the ring's start>",
+  "breakGlassRehearsedOn": "<yyyy-mm-dd>"
+}

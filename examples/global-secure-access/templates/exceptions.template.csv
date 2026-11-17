@@ -1,0 +1,2 @@
+id,kind,target,reason,owner,approver,expires,step
+EX-<nn>,<policy-exclusion | custom-bypass | trv2-partner | client-exclusion | spn-exclusion>,<what is excepted>,<why>,<owner role>,<approver role>,<yyyy-mm-dd>,<guide step>

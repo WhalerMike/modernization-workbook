@@ -1,0 +1,9 @@
+{
+  "displayName": "NET-IA-SecurityProfile-Pilot",
+  "state": "enabled",
+  "conditions": {
+    "applications": { "includeApplications": [ "5dc48733-b5df-475c-a49b-fa307ef00853" ] },
+    "users": { "includeGroups": [ "<pilot-group-id>" ], "excludeGroups": [ "<emergency-group-id>" ] }
+  },
+  "sessionControls": { "globalSecureAccessFilteringProfile": { "profileId": "<security-profile-id>", "isEnabled": true } }
+}

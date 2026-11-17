@@ -198,6 +198,8 @@ website:
             text: "Building Provider Notices"
           - href: docs/project-plans/developer-workbooks/defender-xdr/index.md
             text: "Building Defender XDR"
+          - href: docs/project-plans/developer-workbooks/global-secure-access/index.md
+            text: "Building Global Secure Access"
       - href: docs/evaluations/index.md
         text: "Evaluations"
       - href: docs/training/index.md
@@ -419,6 +421,10 @@ website:
               href: docs/project-plans/developer-workbooks/defender-xdr/index.md
               contents:
                 - auto: "docs/project-plans/developer-workbooks/defender-xdr/*-*.md"
+            - section: "Building Global Secure Access"
+              href: docs/project-plans/developer-workbooks/global-secure-access/index.md
+              contents:
+                - auto: "docs/project-plans/developer-workbooks/global-secure-access/*-*.md"
     - id: books
       title: "The Workbook Books"
       style: docked

@@ -1,0 +1,2370 @@
+{
+ "generated_by": "scripts/build_catalog.py",
+ "facets": {
+  "type": [
+   "Learning path",
+   "Implementation guide",
+   "Developer workbook",
+   "Book",
+   "Companion guide",
+   "Lab",
+   "Video series"
+  ],
+  "role": [
+   "Identity engineer",
+   "Endpoint engineer",
+   "Security operations",
+   "Cloud and platform engineer",
+   "Developer",
+   "ISSO and assessor",
+   "Program lead and service owner",
+   "HR and governance analyst",
+   "Executive"
+  ],
+  "topic": [
+   "Entra ID",
+   "Active Directory",
+   "Intune and endpoints",
+   "Defender XDR",
+   "Global Secure Access",
+   "Azure",
+   "DNS and DDI",
+   "Network",
+   "HR-driven identity",
+   "Privileged access",
+   "Non-person identity",
+   "Zero Trust",
+   "PKI and certificates",
+   "Security operations",
+   "Information protection",
+   "Data platform",
+   "Cloud provider notices",
+   "ServiceNow and automation",
+   "Application modernization",
+   "Compliance and authorization",
+   "Program and people"
+  ],
+  "level": [
+   "Beginner",
+   "Intermediate",
+   "Advanced",
+   "Unrated"
+  ],
+  "status": [
+   "Approved",
+   "Draft",
+   "Not tracked"
+  ]
+ },
+ "roles": [
+  {
+   "name": "Identity engineer",
+   "blurb": "Entra ID, Active Directory, HR-driven provisioning, privileged and non-person identities."
+  },
+  {
+   "name": "Endpoint engineer",
+   "blurb": "Intune, Defender for Endpoint, Group Policy to cloud policy, device onboarding."
+  },
+  {
+   "name": "Security operations",
+   "blurb": "Monitoring, detections, hunting and incident response."
+  },
+  {
+   "name": "Cloud and platform engineer",
+   "blurb": "Azure, network and DNS platforms, landing zones, ServiceNow and other platforms."
+  },
+  {
+   "name": "Developer",
+   "blurb": "The tested code behind each kit, with labs on fixtures and in a test tenant."
+  },
+  {
+   "name": "ISSO and assessor",
+   "blurb": "Federal requirements, evidence and what an assessor reads."
+  },
+  {
+   "name": "Program lead and service owner",
+   "blurb": "Plans, owners, decisions, service health and change."
+  },
+  {
+   "name": "HR and governance analyst",
+   "blurb": "HR and contractor data, AI governance and the records behind access."
+  },
+  {
+   "name": "Executive",
+   "blurb": "Why modernize, what it costs, and the decisions to bring."
+  }
+ ],
+ "items": [
+  {
+   "id": "docs/training/infoblox-training.md",
+   "type": "Learning path",
+   "title": "Infoblox Training and Learning Paths",
+   "description": "Official Infoblox courses, certifications, labs, documentation and videos, organized by role, for an agency adopting NIOS, Universal DDI and Threat Defense",
+   "url": "docs/training/infoblox-training.html",
+   "count": null,
+   "unit": "modules",
+   "reading_minutes": 5,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Security operations",
+    "Cloud and platform engineer"
+   ],
+   "topics": [
+    "DNS and DDI"
+   ],
+   "status": "Approved",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "docs/training/azure-security/index.md",
+   "type": "Learning path",
+   "title": "Learning path: Azure Security Engineering",
+   "description": "Five modules: the baseline and the exposure register, DDoS protection and the WAF, the edge and the egress, Private Link, DNS and Key Vault, and policy, drift and evidence, each with a lab of the guide's checks in your own test subscription",
+   "url": "docs/training/azure-security/index.html",
+   "count": 5,
+   "unit": "modules",
+   "reading_minutes": 255,
+   "reading_source": "page",
+   "videos": 5,
+   "video_minutes": 61,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Security operations",
+    "Cloud and platform engineer",
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Defender XDR",
+    "Azure",
+    "DNS and DDI"
+   ],
+   "status": "Draft",
+   "family": "azure-security",
+   "featured": false
+  },
+  {
+   "id": "docs/training/attribute-driven-migration/index.md",
+   "type": "Learning path",
+   "title": "Learning path: Building the Attribute-Driven Migration",
+   "description": "Nine modules that teach you to build, test and evidence the software the Attribute-Driven Migration runs on, one Book 19 chapter at a time, in the order of the implementation guide's gates",
+   "url": "docs/training/attribute-driven-migration/index.html",
+   "count": 9,
+   "unit": "modules",
+   "reading_minutes": 445,
+   "reading_source": "page",
+   "videos": 9,
+   "video_minutes": 127,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Identity engineer",
+    "Endpoint engineer",
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Entra ID",
+    "Intune and endpoints",
+    "Azure",
+    "HR-driven identity"
+   ],
+   "status": "Approved",
+   "family": "attribute-driven-migration",
+   "featured": true
+  },
+  {
+   "id": "docs/training/defender-xdr/index.md",
+   "type": "Learning path",
+   "title": "Learning path: Defender XDR Engineering and Operations",
+   "description": "Five modules: architecture, access and onboarding; prevention and Attack Surface Reduction; exposure and incidents; hunting, detections as code and identity signals; and automation, operations and evidence, each with a lab in your own…",
+   "url": "docs/training/defender-xdr/index.html",
+   "count": 5,
+   "unit": "modules",
+   "reading_minutes": 44,
+   "reading_source": "estimate",
+   "videos": 5,
+   "video_minutes": 62,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Endpoint engineer",
+    "Security operations"
+   ],
+   "topics": [
+    "Intune and endpoints",
+    "Defender XDR",
+    "Security operations"
+   ],
+   "status": "Draft",
+   "family": "defender-xdr",
+   "featured": false
+  },
+  {
+   "id": "docs/training/global-secure-access/index.md",
+   "type": "Learning path",
+   "title": "Learning path: Global Secure Access as the Identity-Aware Network",
+   "description": "Six modules, in the guide's run order: decide, design and log first; the client and Microsoft traffic; the compliant network and tenant restrictions; private applications and administrative paths; Internet Access and TLS inspection; and…",
+   "url": "docs/training/global-secure-access/index.html",
+   "count": 6,
+   "unit": "modules",
+   "reading_minutes": 275,
+   "reading_source": "page",
+   "videos": 6,
+   "video_minutes": 71,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Identity engineer",
+    "Endpoint engineer",
+    "Cloud and platform engineer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Entra ID",
+    "Intune and endpoints",
+    "Global Secure Access",
+    "Azure",
+    "Compliance and authorization"
+   ],
+   "status": "Draft",
+   "family": "global-secure-access",
+   "featured": false
+  },
+  {
+   "id": "docs/training/hr-driven-identity/index.md",
+   "type": "Learning path",
+   "title": "Learning path: HR-Driven Identity in Microsoft Entra ID",
+   "description": "Seven modules, one per gate of the HR-driven identity implementation guide, each with a lab on fixtures and a lab in your own test tenant",
+   "url": "docs/training/hr-driven-identity/index.html",
+   "count": 7,
+   "unit": "modules",
+   "reading_minutes": 360,
+   "reading_source": "page",
+   "videos": 7,
+   "video_minutes": 92,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Identity engineer",
+    "Developer",
+    "ISSO and assessor",
+    "HR and governance analyst"
+   ],
+   "topics": [
+    "Entra ID",
+    "HR-driven identity"
+   ],
+   "status": "Approved",
+   "family": "hr-driven-identity",
+   "featured": true
+  },
+  {
+   "id": "path:ms-automation",
+   "type": "Learning path",
+   "title": "Learning path: Microsoft Automation",
+   "description": "Four modules on calling Microsoft Graph and Azure Resource Manager from scripts: endpoints, sign-in without a secret, permissions and paging, then read-only checks for Entra ID, Intune and Azure Arc on fixtures and in a test tenant.",
+   "url": "docs/training/ms-automation-foundations.html",
+   "count": 4,
+   "unit": "modules",
+   "reading_minutes": 105,
+   "reading_source": "estimate",
+   "videos": 4,
+   "video_minutes": 55,
+   "level": "Intermediate",
+   "level_source": "override",
+   "roles": [
+    "Identity engineer",
+    "Endpoint engineer",
+    "Cloud and platform engineer",
+    "Developer"
+   ],
+   "topics": [
+    "Entra ID",
+    "Intune and endpoints",
+    "Azure",
+    "ServiceNow and automation"
+   ],
+   "status": "Draft",
+   "family": "ms-automation",
+   "featured": false
+  },
+  {
+   "id": "docs/training/non-person-identity/index.md",
+   "type": "Learning path",
+   "title": "Learning path: Non-Person Identity in Microsoft Entra ID",
+   "description": "Twelve modules: one per chapter of the developer workbook, in the order of the implementation guide's six gates, then the deployment runbook, then one service account migrated by hand, each with a lab on fixtures and a lab in your own…",
+   "url": "docs/training/non-person-identity/index.html",
+   "count": 12,
+   "unit": "modules",
+   "reading_minutes": 745,
+   "reading_source": "page",
+   "videos": 11,
+   "video_minutes": 161,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Identity engineer",
+    "Developer",
+    "ISSO and assessor",
+    "HR and governance analyst"
+   ],
+   "topics": [
+    "Entra ID",
+    "Active Directory",
+    "Azure",
+    "Non-person identity"
+   ],
+   "status": "Approved",
+   "family": "non-person-identity",
+   "featured": true
+  },
+  {
+   "id": "docs/training/privileged-access/index.md",
+   "type": "Learning path",
+   "title": "Learning path: Privileged Access in Microsoft Entra ID and Azure",
+   "description": "Eight modules, one per chapter of the Privileged Access developer workbook, each with a lab on fixtures and a lab in your own test tenant",
+   "url": "docs/training/privileged-access/index.html",
+   "count": 8,
+   "unit": "modules",
+   "reading_minutes": 440,
+   "reading_source": "page",
+   "videos": 8,
+   "video_minutes": 114,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Identity engineer",
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Entra ID",
+    "Azure",
+    "Privileged access"
+   ],
+   "status": "Approved",
+   "family": "privileged-access",
+   "featured": true
+  },
+  {
+   "id": "docs/training/provider-notices/index.md",
+   "type": "Learning path",
+   "title": "Learning path: Provider Notices",
+   "description": "Nine modules: why notices go unread, one module per provider, routing, the digest and evidence, and an optional module on the deployment runbook, each with a lab on fixtures and a pointer to a lab in your own test environment",
+   "url": "docs/training/provider-notices/index.html",
+   "count": 9,
+   "unit": "modules",
+   "reading_minutes": 415,
+   "reading_source": "page",
+   "videos": 9,
+   "video_minutes": 123,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Azure",
+    "Cloud provider notices"
+   ],
+   "status": "Approved",
+   "family": "provider-notices",
+   "featured": true
+  },
+  {
+   "id": "docs/training/zero-trust-assessment/index.md",
+   "type": "Learning path",
+   "title": "Learning path: The Zero Trust Assessment as Evidence",
+   "description": "Four modules: what the assessment is and isn't, running it safely, turning its results into a closure register, and reconciling and re-running it, with labs on fixtures and in your own test tenant",
+   "url": "docs/training/zero-trust-assessment/index.html",
+   "count": 4,
+   "unit": "modules",
+   "reading_minutes": 180,
+   "reading_source": "page",
+   "videos": 4,
+   "video_minutes": 47,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Azure",
+    "Zero Trust",
+    "Compliance and authorization"
+   ],
+   "status": "Draft",
+   "family": "zero-trust-assessment",
+   "featured": false
+  },
+  {
+   "id": "docs/training/ticket-to-machine/index.md",
+   "type": "Learning path",
+   "title": "Learning path: Ticket-to-Machine on ServiceNow and SailPoint",
+   "description": "Seven modules that teach you to build, test and evidence Book 13's Ticket-to-Machine loop on ServiceNow and SailPoint Identity Security Cloud, gate by gate, with labs on fixtures and in your own test instance",
+   "url": "docs/training/ticket-to-machine/index.html",
+   "count": 7,
+   "unit": "modules",
+   "reading_minutes": 340,
+   "reading_source": "page",
+   "videos": 7,
+   "video_minutes": 96,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Identity engineer",
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "ServiceNow and automation"
+   ],
+   "status": "Approved",
+   "family": "ticket-to-machine",
+   "featured": true
+  },
+  {
+   "id": "docs/books/guides/attribute-driven-migration-implementation.md",
+   "type": "Implementation guide",
+   "title": "Attribute-Driven Migration: An Implementation Guide",
+   "description": "A step-by-step guide to the cross-track foundation of the attribute-driven migration from Active Directory to Microsoft Entra ID, in the order the two technical deep-dive decks present it: read the OU tree, fix the attribute schema and…",
+   "url": "docs/books/guides/attribute-driven-migration-implementation.html",
+   "count": 10,
+   "unit": "gates",
+   "reading_minutes": 55,
+   "reading_source": "estimate",
+   "videos": 2,
+   "video_minutes": 32,
+   "level": "Intermediate",
+   "level_source": "audience",
+   "roles": [
+    "Identity engineer",
+    "Endpoint engineer",
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Entra ID",
+    "Active Directory",
+    "Non-person identity",
+    "PKI and certificates"
+   ],
+   "status": "Approved",
+   "family": "attribute-driven-migration",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/arc-track-implementation.md",
+   "type": "Implementation guide",
+   "title": "Azure Arc Track: Implementation Guide",
+   "description": "The step-by-step implementation of the companion guide's Azure Arc track: bringing servers on premises and in other clouds under Azure Resource Manager with attribute- and tag-driven governance.",
+   "url": "docs/books/guides/arc-track-implementation.html",
+   "count": 8,
+   "unit": "steps",
+   "reading_minutes": 39,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Cloud and platform engineer"
+   ],
+   "topics": [
+    "Azure"
+   ],
+   "status": "Approved",
+   "family": "arc-track",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/azure-security-implementation.md",
+   "type": "Implementation guide",
+   "title": "Azure Security Engineering",
+   "description": "An implementation guide for the security of an agency's Azure estate: the landing-zone security baseline, a continuous inventory of public exposure, Azure DDoS Protection, Azure Web Application Firewall, Azure Front Door and Application…",
+   "url": "docs/books/guides/azure-security-implementation.html",
+   "count": 10,
+   "unit": "steps",
+   "reading_minutes": 60,
+   "reading_source": "estimate",
+   "videos": 1,
+   "video_minutes": 17,
+   "level": "Intermediate",
+   "level_source": "audience",
+   "roles": [
+    "Security operations",
+    "Cloud and platform engineer",
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Azure"
+   ],
+   "status": "Draft",
+   "family": "azure-security",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/ttm-task-catalog.md",
+   "type": "Implementation guide",
+   "title": "Building an internal Ticket-to-Machine task catalog",
+   "description": "List your agency's day-to-day Ticket-to-Machine tasks in a workbook you download at work, fill in inside your agency, and never send back",
+   "url": "docs/books/guides/ttm-task-catalog.html",
+   "count": null,
+   "unit": "steps",
+   "reading_minutes": 12,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "audience",
+   "roles": [
+    "Identity engineer",
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "ServiceNow and automation"
+   ],
+   "status": "Approved",
+   "family": "ticket-to-machine",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/hcm-entra-implementation.md",
+   "type": "Implementation guide",
+   "title": "Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID",
+   "description": "An implementation guide: reading Core HCM through HCM Extracts and Atom feeds, the middleware's five duties, the /bulkUpload contract, the two landing zones, Lifecycle Workflows, and the evidence the pipeline has to leave",
+   "url": "docs/books/guides/hcm-entra-implementation.html",
+   "count": null,
+   "unit": "steps",
+   "reading_minutes": 41,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Identity engineer",
+    "Cloud and platform engineer",
+    "HR and governance analyst"
+   ],
+   "topics": [
+    "Entra ID",
+    "Azure",
+    "HR-driven identity"
+   ],
+   "status": "Approved",
+   "family": "hcm-entra",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/cisco-sdwan-implementation.md",
+   "type": "Implementation guide",
+   "title": "Building Book 09's SD-WAN Design on Cisco Catalyst SD-WAN",
+   "description": "An implementation guide: the ED 26-03 gate, the hosted-or-on-premises decision, the 12-hub fabric, hardening, TIC 3.0 and Microsoft 365 paths, and the evidence the fabric has to emit",
+   "url": "docs/books/guides/cisco-sdwan-implementation.html",
+   "count": null,
+   "unit": "gates",
+   "reading_minutes": 49,
+   "reading_source": "estimate",
+   "videos": 1,
+   "video_minutes": 17,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Cloud and platform engineer"
+   ],
+   "topics": [
+    "Network"
+   ],
+   "status": "Approved",
+   "family": "cisco-sdwan",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/cyberark-certificate-lifecycle.md",
+   "type": "Implementation guide",
+   "title": "Certificate Lifecycle on CyberArk Certificate Manager",
+   "description": "An implementation guide: building Book 07's certificate lifecycle on CyberArk Certificate Manager, Self-Hosted, from platform build to the six migration waves",
+   "url": "docs/books/guides/cyberark-certificate-lifecycle.html",
+   "count": null,
+   "unit": "steps",
+   "reading_minutes": 6,
+   "reading_source": "estimate",
+   "videos": 1,
+   "video_minutes": 20,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Identity engineer"
+   ],
+   "topics": [
+    "PKI and certificates"
+   ],
+   "status": "Approved",
+   "family": "cyberark-certificate-lifecycle",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/defender-xdr-implementation.md",
+   "type": "Implementation guide",
+   "title": "Defender XDR Engineering & Operations: An Implementation Guide",
+   "description": "A gated guide for engineering and operating Microsoft Defender XDR on Windows endpoints and servers in a federal tenant: the service architecture, permissions and government-cloud constraints; onboarding and sensor health; endpoint…",
+   "url": "docs/books/guides/defender-xdr-implementation.html",
+   "count": 10,
+   "unit": "steps",
+   "reading_minutes": 51,
+   "reading_source": "estimate",
+   "videos": 1,
+   "video_minutes": 17,
+   "level": "Intermediate",
+   "level_source": "audience",
+   "roles": [
+    "Endpoint engineer",
+    "Security operations"
+   ],
+   "topics": [
+    "Defender XDR"
+   ],
+   "status": "Draft",
+   "family": "defender-xdr",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/dp-consolidation-implementation.md",
+   "type": "Implementation guide",
+   "title": "Distribution Point Consolidation: An Implementation Guide",
+   "description": "A step-by-step guide to consolidating Configuration Manager distribution points, from the analysis of the existing estate to the last distribution point retired and its site roles cleaned up: inventory and analysis, sizing against…",
+   "url": "docs/books/guides/dp-consolidation-implementation.html",
+   "count": 11,
+   "unit": "steps",
+   "reading_minutes": 40,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "audience",
+   "roles": [
+    "Endpoint engineer",
+    "Program lead and service owner",
+    "Executive"
+   ],
+   "topics": [
+    "Intune and endpoints",
+    "Program and people"
+   ],
+   "status": "Approved",
+   "family": "dp-consolidation",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/global-secure-access-implementation.md",
+   "type": "Implementation guide",
+   "title": "Global Secure Access & Zero Trust Network Engineering: An Implementation Guide",
+   "description": "A gated guide for deploying Microsoft Entra Internet Access and Private Access as the agency's identity-aware network layer, in twelve steps that match the twelve network topics of the Zero Trust closure update: the decision and…",
+   "url": "docs/books/guides/global-secure-access-implementation.html",
+   "count": 12,
+   "unit": "steps",
+   "reading_minutes": 66,
+   "reading_source": "estimate",
+   "videos": 1,
+   "video_minutes": 16,
+   "level": "Intermediate",
+   "level_source": "audience",
+   "roles": [
+    "Identity engineer",
+    "Endpoint engineer",
+    "Cloud and platform engineer",
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Global Secure Access",
+    "Zero Trust"
+   ],
+   "status": "Draft",
+   "family": "global-secure-access",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/hr-driven-identity-implementation.md",
+   "type": "Implementation guide",
+   "title": "HR-Driven Identity: An Implementation Guide",
+   "description": "A gated guide for running the HR-driven identity lifecycle in Microsoft Entra ID once the HR pipeline exists: who writes each account state and attribute, employee and contractor sources, joiner workflows and day-one access, access…",
+   "url": "docs/books/guides/hr-driven-identity-implementation.html",
+   "count": 7,
+   "unit": "steps",
+   "reading_minutes": 45,
+   "reading_source": "estimate",
+   "videos": 2,
+   "video_minutes": 32,
+   "level": "Intermediate",
+   "level_source": "audience",
+   "roles": [
+    "Identity engineer",
+    "Developer",
+    "ISSO and assessor",
+    "HR and governance analyst"
+   ],
+   "topics": [
+    "HR-driven identity"
+   ],
+   "status": "Approved",
+   "family": "hr-driven-identity",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/infoblox-nios-implementation.md",
+   "type": "Implementation guide",
+   "title": "Implementing Book 08 on Infoblox NIOS",
+   "description": "An implementation guide: building Book 08's DDI design on Infoblox NIOS 9.1, from the Grid build to migrating off Microsoft DNS and DHCP, signing, hardening and operating it",
+   "url": "docs/books/guides/infoblox-nios-implementation.html",
+   "count": null,
+   "unit": "steps",
+   "reading_minutes": 7,
+   "reading_source": "estimate",
+   "videos": 1,
+   "video_minutes": 22,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Cloud and platform engineer"
+   ],
+   "topics": [
+    "DNS and DDI"
+   ],
+   "status": "Approved",
+   "family": "infoblox-nios",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/snow-sailpoint-integration-kit.md",
+   "type": "Implementation guide",
+   "title": "Integrating ServiceNow and SailPoint: An Implementation Example (Pass 1)",
+   "description": "Three identity builds behind the Ticket-to-Machine example: drift events become typed findings, findings close only on a re-read, and a read-only reconciliation measures Book 03's drift classes",
+   "url": "docs/books/guides/snow-sailpoint-integration-kit.html",
+   "count": null,
+   "unit": "steps",
+   "reading_minutes": 17,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Identity engineer",
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "ServiceNow and automation"
+   ],
+   "status": "Approved",
+   "family": "ticket-to-machine",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/intune-track-implementation.md",
+   "type": "Implementation guide",
+   "title": "Intune Track Implementation: Attribute-Driven Management of End-User Devices",
+   "description": "A step-by-step guide to the Intune track of the attribute-driven migration: the prerequisites (licensing, the GCC tenant, roles and the coverage matrix), the device sources and their single writer (Autopilot registration and group tags…",
+   "url": "docs/books/guides/intune-track-implementation.html",
+   "count": 7,
+   "unit": "gates",
+   "reading_minutes": 40,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "audience",
+   "roles": [
+    "Endpoint engineer"
+   ],
+   "topics": [
+    "Intune and endpoints"
+   ],
+   "status": "Approved",
+   "family": "intune-track",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/non-person-identity-implementation.md",
+   "type": "Implementation guide",
+   "title": "Non-Person Identity: An Implementation Guide",
+   "description": "A step-by-step guide to governing service accounts and workload identities in the non-person identity track: inventory AD service accounts, MSAs and gMSAs, app registrations and service principals, managed identities, federated…",
+   "url": "docs/books/guides/non-person-identity-implementation.html",
+   "count": 6,
+   "unit": "steps",
+   "reading_minutes": 48,
+   "reading_source": "estimate",
+   "videos": 2,
+   "video_minutes": 32,
+   "level": "Intermediate",
+   "level_source": "audience",
+   "roles": [
+    "Identity engineer",
+    "Developer",
+    "ISSO and assessor",
+    "HR and governance analyst"
+   ],
+   "topics": [
+    "Non-person identity"
+   ],
+   "status": "Approved",
+   "family": "non-person-identity",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/privileged-access-implementation.md",
+   "type": "Implementation guide",
+   "title": "Privileged Access: An Implementation Guide",
+   "description": "A gated guide for making privileged access just-in-time in Microsoft Entra ID and Azure: inventory every privileged assignment by tier; build and test the emergency access accounts first, so nobody is locked out; put the administrators…",
+   "url": "docs/books/guides/privileged-access-implementation.html",
+   "count": 8,
+   "unit": "steps",
+   "reading_minutes": 48,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "audience",
+   "roles": [
+    "Identity engineer",
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Privileged access"
+   ],
+   "status": "Approved",
+   "family": "privileged-access",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/provider-notices-implementation.md",
+   "type": "Implementation guide",
+   "title": "Provider Notices: An Implementation Guide",
+   "description": "A gated guide for collecting the tenant-specific notices cloud providers send (scheduled maintenance, retirements, health and security advisories, upcoming changes and incidents), giving each an owner and tracking it to closure: Azure…",
+   "url": "docs/books/guides/provider-notices-implementation.html",
+   "count": 7,
+   "unit": "steps",
+   "reading_minutes": 40,
+   "reading_source": "estimate",
+   "videos": 2,
+   "video_minutes": 30,
+   "level": "Intermediate",
+   "level_source": "audience",
+   "roles": [
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Cloud provider notices"
+   ],
+   "status": "Approved",
+   "family": "provider-notices",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/service-account-migration.md",
+   "type": "Implementation guide",
+   "title": "Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities",
+   "description": "A comparison and migration guide for every kind of service identity, on premises and in the cloud: a user account used as a service, a standalone MSA, a group managed service account (gMSA), a Windows Server 2025 delegated managed…",
+   "url": "docs/books/guides/service-account-migration.html",
+   "count": null,
+   "unit": "steps",
+   "reading_minutes": 54,
+   "reading_source": "estimate",
+   "videos": 1,
+   "video_minutes": 18,
+   "level": "Intermediate",
+   "level_source": "audience",
+   "roles": [
+    "Identity engineer",
+    "Developer",
+    "ISSO and assessor",
+    "HR and governance analyst"
+   ],
+   "topics": [
+    "Entra ID",
+    "Active Directory",
+    "Non-person identity"
+   ],
+   "status": "Draft",
+   "family": "non-person-identity",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/ttm-servicenow-sailpoint.md",
+   "type": "Implementation guide",
+   "title": "Ticket-to-Machine on ServiceNow and SailPoint: An Example Implementation Guide",
+   "description": "Book 13's loop built on two named products, in seven gates: confirm the boundary, decide the writers and approvers, connect the sources, open the front door, actuate on the native surface, close only on a re-read, and operate the tempo",
+   "url": "docs/books/guides/ttm-servicenow-sailpoint.html",
+   "count": 7,
+   "unit": "steps",
+   "reading_minutes": 47,
+   "reading_source": "estimate",
+   "videos": 3,
+   "video_minutes": 41,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Identity engineer",
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "ServiceNow and automation"
+   ],
+   "status": "Approved",
+   "family": "ticket-to-machine",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/zero-trust-assessment-implementation.md",
+   "type": "Implementation guide",
+   "title": "Zero Trust Assessment: An Implementation Guide",
+   "description": "An implementation guide for running Microsoft's Zero Trust Assessment as evidence rather than a verdict: scoping what it is and isn't, preparing a dedicated host and protecting the output, consenting with least privilege and reviewing…",
+   "url": "docs/books/guides/zero-trust-assessment-implementation.html",
+   "count": 10,
+   "unit": "steps",
+   "reading_minutes": 47,
+   "reading_source": "estimate",
+   "videos": 1,
+   "video_minutes": 15,
+   "level": "Intermediate",
+   "level_source": "audience",
+   "roles": [
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Zero Trust"
+   ],
+   "status": "Draft",
+   "family": "zero-trust-assessment",
+   "featured": false
+  },
+  {
+   "id": "docs/books/b19-developer-workbook/index.md",
+   "type": "Developer workbook",
+   "title": "Book 19 — Building the Attribute-Driven Migration",
+   "description": "Why the Attribute-Driven Migration needs code with tests, not only runbooks: the HR middleware, Graph clients for GCC, validation kit checks, dynamic rules as code, Lifecycle Workflows extensions, Group Policy and machine configuration…",
+   "url": "docs/books/b19-developer-workbook/index.html",
+   "count": 10,
+   "unit": "chapters",
+   "reading_minutes": 338,
+   "reading_source": "estimate",
+   "videos": 9,
+   "video_minutes": 100,
+   "level": "Advanced",
+   "level_source": "override",
+   "roles": [
+    "Identity engineer",
+    "Endpoint engineer",
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor",
+    "HR and governance analyst"
+   ],
+   "topics": [
+    "Active Directory",
+    "Azure",
+    "HR-driven identity",
+    "ServiceNow and automation"
+   ],
+   "status": "Approved",
+   "family": "attribute-driven-migration",
+   "featured": false
+  },
+  {
+   "id": "docs/project-plans/developer-workbooks/hr-driven-identity/index.md",
+   "type": "Developer workbook",
+   "title": "Building HR-Driven Identity",
+   "description": "A developer workbook for the Identity Lifecycle & Provisioning project",
+   "url": "docs/project-plans/developer-workbooks/hr-driven-identity/index.html",
+   "count": 8,
+   "unit": "chapters",
+   "reading_minutes": 228,
+   "reading_source": "estimate",
+   "videos": 7,
+   "video_minutes": 77,
+   "level": "Advanced",
+   "level_source": "audience",
+   "roles": [
+    "Identity engineer",
+    "Developer",
+    "ISSO and assessor",
+    "HR and governance analyst"
+   ],
+   "topics": [
+    "HR-driven identity"
+   ],
+   "status": "Approved",
+   "family": "hr-driven-identity",
+   "featured": false
+  },
+  {
+   "id": "docs/project-plans/developer-workbooks/non-person-identity/index.md",
+   "type": "Developer workbook",
+   "title": "Building Non-Person Identity",
+   "description": "A developer workbook for the Non-Person Identity Modernization project",
+   "url": "docs/project-plans/developer-workbooks/non-person-identity/index.html",
+   "count": 11,
+   "unit": "chapters",
+   "reading_minutes": 472,
+   "reading_source": "estimate",
+   "videos": 10,
+   "video_minutes": 115,
+   "level": "Advanced",
+   "level_source": "audience",
+   "roles": [
+    "Identity engineer",
+    "Developer",
+    "ISSO and assessor",
+    "HR and governance analyst"
+   ],
+   "topics": [
+    "Non-person identity"
+   ],
+   "status": "Approved",
+   "family": "non-person-identity",
+   "featured": false
+  },
+  {
+   "id": "docs/project-plans/developer-workbooks/privileged-access/index.md",
+   "type": "Developer workbook",
+   "title": "Building Privileged Access",
+   "description": "A developer workbook for the Privileged Access & Administrative Identity project",
+   "url": "docs/project-plans/developer-workbooks/privileged-access/index.html",
+   "count": 9,
+   "unit": "chapters",
+   "reading_minutes": 336,
+   "reading_source": "estimate",
+   "videos": 8,
+   "video_minutes": 89,
+   "level": "Advanced",
+   "level_source": "audience",
+   "roles": [
+    "Identity engineer",
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Privileged access"
+   ],
+   "status": "Approved",
+   "family": "privileged-access",
+   "featured": false
+  },
+  {
+   "id": "docs/project-plans/developer-workbooks/provider-notices/index.md",
+   "type": "Developer workbook",
+   "title": "Building Provider Notices",
+   "description": "A developer workbook for the provider notices implementation guide",
+   "url": "docs/project-plans/developer-workbooks/provider-notices/index.html",
+   "count": 8,
+   "unit": "chapters",
+   "reading_minutes": 134,
+   "reading_source": "estimate",
+   "videos": 9,
+   "video_minutes": 112,
+   "level": "Advanced",
+   "level_source": "audience",
+   "roles": [
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Cloud provider notices"
+   ],
+   "status": "Approved",
+   "family": "provider-notices",
+   "featured": false
+  },
+  {
+   "id": "docs/project-plans/developer-workbooks/ticket-to-machine/index.md",
+   "type": "Developer workbook",
+   "title": "Building Ticket-to-Machine",
+   "description": "A developer workbook for the Ticket-to-Machine loop on ServiceNow and SailPoint",
+   "url": "docs/project-plans/developer-workbooks/ticket-to-machine/index.html",
+   "count": 9,
+   "unit": "chapters",
+   "reading_minutes": 195,
+   "reading_source": "estimate",
+   "videos": 9,
+   "video_minutes": 97,
+   "level": "Advanced",
+   "level_source": "audience",
+   "roles": [
+    "Identity engineer",
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "ServiceNow and automation"
+   ],
+   "status": "Approved",
+   "family": "ticket-to-machine",
+   "featured": false
+  },
+  {
+   "id": "docs/books/b00-orientation/index.md",
+   "type": "Book",
+   "title": "Book 00 — Orientation & Program",
+   "description": "Why modernize, and why now: the case for one governed program, how the workbook is organized, and the program's charter, principles, plan, projects and decision rights",
+   "url": "docs/books/b00-orientation/index.html",
+   "count": 14,
+   "unit": "chapters",
+   "reading_minutes": 258,
+   "reading_source": "estimate",
+   "videos": 2,
+   "video_minutes": 38,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Program lead and service owner",
+    "Executive"
+   ],
+   "topics": [
+    "Program and people"
+   ],
+   "status": "Draft",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "docs/books/b01-transformation-arc/index.md",
+   "type": "Book",
+   "title": "Book 01 — The Transformation Arc",
+   "description": "Client-server to hybrid cloud: why modernization is so hard, what changes across identity, policy, services, compute and access, who leads it, and how to analyze, plan and deliver it in gated phases",
+   "url": "docs/books/b01-transformation-arc/index.html",
+   "count": 14,
+   "unit": "chapters",
+   "reading_minutes": 222,
+   "reading_source": "estimate",
+   "videos": 2,
+   "video_minutes": 41,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Cloud and platform engineer",
+    "Program lead and service owner",
+    "Executive"
+   ],
+   "topics": [
+    "Azure",
+    "Program and people"
+   ],
+   "status": "Approved",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "docs/books/b02-identity/index.md",
+   "type": "Book",
+   "title": "Book 02 — Identity & Directory",
+   "description": "Active Directory to Entra ID: why identity matters, what changes, who owns it, and how to do it",
+   "url": "docs/books/b02-identity/index.html",
+   "count": 15,
+   "unit": "chapters",
+   "reading_minutes": 458,
+   "reading_source": "estimate",
+   "videos": 3,
+   "video_minutes": 52,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Identity engineer",
+    "Executive"
+   ],
+   "topics": [
+    "Entra ID",
+    "Active Directory"
+   ],
+   "status": "Draft",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "docs/books/b03-hr-identity/index.md",
+   "type": "Book",
+   "title": "Book 03 — HR-Driven Identity",
+   "description": "HR-Driven Identity Modernization — an enterprise data architecture case study: using Federal HR 2.0 and the Entra ID migration to start HR-driven Entra ID, Active Directory and ICAM on OPM standard attributes",
+   "url": "docs/books/b03-hr-identity/index.html",
+   "count": 19,
+   "unit": "chapters",
+   "reading_minutes": 303,
+   "reading_source": "estimate",
+   "videos": 8,
+   "video_minutes": 116,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Identity engineer",
+    "HR and governance analyst",
+    "Executive"
+   ],
+   "topics": [
+    "Entra ID",
+    "Active Directory",
+    "HR-driven identity"
+   ],
+   "status": "Approved",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "docs/books/b04-access/index.md",
+   "type": "Book",
+   "title": "Book 04 — Access & Privilege",
+   "description": "Conditional Access, privileged roles, applications and access governance: why every access decision is a policy decision, and how to run it",
+   "url": "docs/books/b04-access/index.html",
+   "count": 14,
+   "unit": "chapters",
+   "reading_minutes": 424,
+   "reading_source": "estimate",
+   "videos": 3,
+   "video_minutes": 48,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Identity engineer",
+    "Executive"
+   ],
+   "topics": [
+    "Entra ID",
+    "Privileged access"
+   ],
+   "status": "Draft",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "docs/books/b05-devices/index.md",
+   "type": "Book",
+   "title": "Book 05 — Devices & Endpoints",
+   "description": "Group Policy to Intune and Azure Arc: why the policy model can't move as it is, what replaces it, who owns the endpoint, and how to migrate",
+   "url": "docs/books/b05-devices/index.html",
+   "count": 11,
+   "unit": "chapters",
+   "reading_minutes": 353,
+   "reading_source": "estimate",
+   "videos": 3,
+   "video_minutes": 56,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Identity engineer",
+    "Endpoint engineer",
+    "Cloud and platform engineer",
+    "Executive"
+   ],
+   "topics": [
+    "Active Directory",
+    "Intune and endpoints",
+    "Azure"
+   ],
+   "status": "Approved",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "docs/books/b06-data-platform/index.md",
+   "type": "Book",
+   "title": "Book 06 — Data Platform: SQL Server Identity",
+   "description": "From Windows Authentication to cloud identity: why the database is where legacy authentication hides, and how to transform the SQL Server estate",
+   "url": "docs/books/b06-data-platform/index.html",
+   "count": 26,
+   "unit": "chapters",
+   "reading_minutes": 257,
+   "reading_source": "estimate",
+   "videos": 3,
+   "video_minutes": 49,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Cloud and platform engineer",
+    "Executive"
+   ],
+   "topics": [
+    "Data platform"
+   ],
+   "status": "Approved",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "docs/books/b07-pki/index.md",
+   "type": "Book",
+   "title": "Book 07 — PKI & Certificates",
+   "description": "AD CS to Cloud PKI, Entra CBA and Federal PKI: why certificates outlive every migration, what the target PKI is, who owns the certificate estate, and how to migrate and retire the old CAs",
+   "url": "docs/books/b07-pki/index.html",
+   "count": 12,
+   "unit": "chapters",
+   "reading_minutes": 294,
+   "reading_source": "estimate",
+   "videos": 3,
+   "video_minutes": 52,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Identity engineer",
+    "Executive"
+   ],
+   "topics": [
+    "Active Directory",
+    "PKI and certificates"
+   ],
+   "status": "Approved",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "docs/books/b08-ddi/index.md",
+   "type": "Book",
+   "title": "Book 08 — DNS, DHCP & IPAM",
+   "description": "Governing DNS, DHCP and IPAM as the hybrid multi-cloud control plane: why DNS is now the control plane, what has to change, who owns it, and how to migrate and run it",
+   "url": "docs/books/b08-ddi/index.html",
+   "count": 15,
+   "unit": "chapters",
+   "reading_minutes": 290,
+   "reading_source": "estimate",
+   "videos": 3,
+   "video_minutes": 53,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Cloud and platform engineer",
+    "Executive"
+   ],
+   "topics": [
+    "DNS and DDI"
+   ],
+   "status": "Approved",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "docs/books/b09-network/index.md",
+   "type": "Book",
+   "title": "Book 09 — Network & Transport",
+   "description": "Transport is a physics decision; control is a compliance decision: why physics decides the architecture, what TIC 3.0 and the network control plane require, who owns the network, and how to move branches without a compliance regression",
+   "url": "docs/books/b09-network/index.html",
+   "count": 16,
+   "unit": "chapters",
+   "reading_minutes": 422,
+   "reading_source": "estimate",
+   "videos": 6,
+   "video_minutes": 96,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Cloud and platform engineer",
+    "ISSO and assessor",
+    "Executive"
+   ],
+   "topics": [
+    "Network",
+    "Compliance and authorization"
+   ],
+   "status": "Approved",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "docs/books/b10-cloud-boundary/index.md",
+   "type": "Book",
+   "title": "Book 10 — Cloud Boundary & Landing Zone",
+   "description": "Why the authorization boundary, not the product catalog, decides what an agency can use: what changed at FedRAMP, what GCC leaves out, how the landing zone makes the boundary concrete, who owns it, and how to compensate and evidence it",
+   "url": "docs/books/b10-cloud-boundary/index.html",
+   "count": 13,
+   "unit": "chapters",
+   "reading_minutes": 242,
+   "reading_source": "estimate",
+   "videos": 3,
+   "video_minutes": 56,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Cloud and platform engineer",
+    "ISSO and assessor",
+    "Executive"
+   ],
+   "topics": [
+    "Azure",
+    "Compliance and authorization"
+   ],
+   "status": "Approved",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "docs/books/b11-zero-trust/index.md",
+   "type": "Book",
+   "title": "Book 11 — Zero Trust & Assessment",
+   "description": "Why Zero Trust is a property of the whole agency, not a product: what the mandates actually require, how SCuBA and the assessment tools fit, who owns it, and how to assess honestly and turn the findings into a program",
+   "url": "docs/books/b11-zero-trust/index.html",
+   "count": 11,
+   "unit": "chapters",
+   "reading_minutes": 208,
+   "reading_source": "estimate",
+   "videos": 3,
+   "video_minutes": 57,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "ISSO and assessor",
+    "Program lead and service owner",
+    "Executive"
+   ],
+   "topics": [
+    "Zero Trust",
+    "Program and people"
+   ],
+   "status": "Approved",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "docs/books/b12-security-operations/index.md",
+   "type": "Book",
+   "title": "Book 12 — Security Operations & Telemetry",
+   "description": "Why you can't defend what you can't see: emitting telemetry from every plane under one evidence contract, turning a log warehouse into detection and response, and feeding vulnerability, patch, posture and data findings into one queue an…",
+   "url": "docs/books/b12-security-operations/index.html",
+   "count": 14,
+   "unit": "chapters",
+   "reading_minutes": 409,
+   "reading_source": "estimate",
+   "videos": 3,
+   "video_minutes": 47,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Security operations",
+    "Executive"
+   ],
+   "topics": [
+    "Security operations"
+   ],
+   "status": "Draft",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "docs/books/b13-governance/index.md",
+   "type": "Book",
+   "title": "Book 13 — Governance, Drift & Evidence",
+   "description": "Why compliance decays the day after the audit: one authoritative record, controlled and provenanced change, deterministic rules, continuous drift detection, system-produced evidence, adapters, and a tempo where routine remediation goes…",
+   "url": "docs/books/b13-governance/index.html",
+   "count": 16,
+   "unit": "chapters",
+   "reading_minutes": 341,
+   "reading_source": "estimate",
+   "videos": 4,
+   "video_minutes": 60,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "ISSO and assessor",
+    "Executive"
+   ],
+   "topics": [
+    "Compliance and authorization"
+   ],
+   "status": "Draft",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "docs/books/b14-compliance/index.md",
+   "type": "Book",
+   "title": "Book 14 — Federal Compliance & Authorization",
+   "description": "Why every control needs proof, not a promise: the federal clock, the Moderate baseline and the crosswalk, closure with proof, the program-management, contingency, supply-chain, privacy and training controls, who owns compliance, and the…",
+   "url": "docs/books/b14-compliance/index.html",
+   "count": 20,
+   "unit": "chapters",
+   "reading_minutes": 443,
+   "reading_source": "estimate",
+   "videos": 2,
+   "video_minutes": 28,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "ISSO and assessor",
+    "Program lead and service owner",
+    "Executive"
+   ],
+   "topics": [
+    "Compliance and authorization",
+    "Program and people"
+   ],
+   "status": "Draft",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "docs/books/b15-day2-operations/index.md",
+   "type": "Book",
+   "title": "Book 15 — Compliance Automation & Day-2 Operations",
+   "description": "Why modernization succeeds or fails at the help desk: intake and triage, help-desk authority in Entra ID, the service catalogs, SaaS integration governance, the CMDB, control compliance automation across clouds, who runs day two…",
+   "url": "docs/books/b15-day2-operations/index.html",
+   "count": 16,
+   "unit": "chapters",
+   "reading_minutes": 426,
+   "reading_source": "estimate",
+   "videos": 4,
+   "video_minutes": 56,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Identity engineer",
+    "Cloud and platform engineer",
+    "ISSO and assessor",
+    "Program lead and service owner",
+    "Executive"
+   ],
+   "topics": [
+    "Entra ID",
+    "Cloud provider notices",
+    "Compliance and authorization"
+   ],
+   "status": "Draft",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "docs/books/b16-people/index.md",
+   "type": "Book",
+   "title": "Book 16 — People: Training & Education",
+   "description": "Why people, not tools, close the gap: what federal workforce rules require, the compliance and implementation tracks, assessment and certification, vendor training and labs, end-user training, who owns readiness, and how to run and…",
+   "url": "docs/books/b16-people/index.html",
+   "count": 11,
+   "unit": "chapters",
+   "reading_minutes": 243,
+   "reading_source": "estimate",
+   "videos": 2,
+   "video_minutes": 27,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "ISSO and assessor",
+    "Program lead and service owner",
+    "Executive"
+   ],
+   "topics": [
+    "Compliance and authorization",
+    "Program and people"
+   ],
+   "status": "Approved",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "docs/books/b17-ai-identity/index.md",
+   "type": "Book",
+   "title": "Book 17 — AI Identity Governance",
+   "description": "Why AI agents need identities and owners: what federal AI rules require and don't, the use-case inventory as an identity source, the kinds of AI identity, owners and lifecycle, credentials and least privilege, monitoring and shadow AI…",
+   "url": "docs/books/b17-ai-identity/index.html",
+   "count": 11,
+   "unit": "chapters",
+   "reading_minutes": 281,
+   "reading_source": "estimate",
+   "videos": 3,
+   "video_minutes": 49,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Identity engineer",
+    "Developer",
+    "ISSO and assessor",
+    "Executive"
+   ],
+   "topics": [
+    "Non-person identity",
+    "Compliance and authorization"
+   ],
+   "status": "Approved",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "docs/books/b18-application-modernization/index.md",
+   "type": "Book",
+   "title": "Book 18 — Application Modernization",
+   "description": "Why modernizing thousands of legacy mission applications is a portfolio decision, not a rewrite: triage, the target reference architecture, moving the data off Db2 and Oracle, generative and agentic AI with sponsors, compliance by…",
+   "url": "docs/books/b18-application-modernization/index.html",
+   "count": 11,
+   "unit": "chapters",
+   "reading_minutes": 222,
+   "reading_source": "estimate",
+   "videos": 3,
+   "video_minutes": 45,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Developer",
+    "ISSO and assessor",
+    "Program lead and service owner",
+    "Executive"
+   ],
+   "topics": [
+    "Application modernization",
+    "Compliance and authorization"
+   ],
+   "status": "Draft",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "docs/books/b20-information-protection/index.md",
+   "type": "Book",
+   "title": "Book 20 — Information Protection & Microsoft Purview",
+   "description": "Why protection has to travel with the data: classes and owners, sensitivity labels and defaults, container labels, Rights Management and recovery, message encryption, SharePoint and OneDrive, DLP, auto-labeling, audit and insider risk…",
+   "url": "docs/books/b20-information-protection/index.html",
+   "count": 13,
+   "unit": "chapters",
+   "reading_minutes": 252,
+   "reading_source": "estimate",
+   "videos": 1,
+   "video_minutes": 16,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "ISSO and assessor",
+    "Program lead and service owner",
+    "Executive"
+   ],
+   "topics": [
+    "Information protection"
+   ],
+   "status": "Draft",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/ansible-configuration-automation.md",
+   "type": "Companion guide",
+   "title": "Ansible for Configuration Automation",
+   "description": "Where Ansible fits in a federal modernization program beside Intune, Azure Arc, Azure Policy machine configuration and Configuration Manager, with one owning tool per setting: Azure Arc onboarding at scale, and the tier-2 populations…",
+   "url": "docs/books/guides/ansible-configuration-automation.html",
+   "count": null,
+   "unit": "steps",
+   "reading_minutes": 47,
+   "reading_source": "estimate",
+   "videos": 1,
+   "video_minutes": 19,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Cloud and platform engineer",
+    "Developer",
+    "Executive"
+   ],
+   "topics": [
+    "ServiceNow and automation"
+   ],
+   "status": "Approved",
+   "family": "ansible-configuration-automation",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/attribute-driven-migration.md",
+   "type": "Companion guide",
+   "title": "Attribute-Driven Migration from Active Directory to Microsoft Entra ID",
+   "description": "One end-to-end path for moving a forest to Entra ID on attributes instead of OU placement, in four tracks (people from HR, end-user devices through Intune, servers through Azure Arc, and non-person identities from their owners'…",
+   "url": "docs/books/guides/attribute-driven-migration.html",
+   "count": null,
+   "unit": "steps",
+   "reading_minutes": 105,
+   "reading_source": "estimate",
+   "videos": 3,
+   "video_minutes": 52,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Identity engineer",
+    "Endpoint engineer",
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor",
+    "Executive"
+   ],
+   "topics": [
+    "Entra ID",
+    "Active Directory"
+   ],
+   "status": "Approved",
+   "family": "attribute-driven-migration",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/charter-sign-off-sheet.md",
+   "type": "Companion guide",
+   "title": "Charter Sign-Off Sheet",
+   "description": "Who signs what: one page that puts names on the charter roles and the gates",
+   "url": "docs/books/guides/charter-sign-off-sheet.html",
+   "count": null,
+   "unit": "steps",
+   "reading_minutes": 2,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Beginner",
+   "level_source": "audience",
+   "roles": [
+    "Program lead and service owner",
+    "Executive"
+   ],
+   "topics": [
+    "Program and people"
+   ],
+   "status": "Approved",
+   "family": "charter-sign-off-sheet",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/dp-consolidation.md",
+   "type": "Companion guide",
+   "title": "Distribution Point Consolidation: A Decision Guide Before You Fund a Refresh",
+   "description": "A decision guide for the CIO, program lead, endpoint lead, ISSO and budget officer at an agency weighing a Configuration Manager distribution point refresh: what a distribution point is and what changed, the five questions to answer…",
+   "url": "docs/books/guides/dp-consolidation.html",
+   "count": null,
+   "unit": "steps",
+   "reading_minutes": 25,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Endpoint engineer",
+    "Program lead and service owner",
+    "Executive"
+   ],
+   "topics": [
+    "Intune and endpoints",
+    "Program and people"
+   ],
+   "status": "Approved",
+   "family": "dp-consolidation",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/effective-meetings.md",
+   "type": "Companion guide",
+   "title": "Effective Meetings — Purpose, Agenda, Roles, and Follow-Through",
+   "description": "A practical standard for running program meetings: a real agenda, named roles, a parking lot, and written action items with owners and dates.",
+   "url": "docs/books/guides/effective-meetings.html",
+   "count": null,
+   "unit": "steps",
+   "reading_minutes": 10,
+   "reading_source": "estimate",
+   "videos": 1,
+   "video_minutes": 14,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Program lead and service owner",
+    "Executive"
+   ],
+   "topics": [
+    "Program and people"
+   ],
+   "status": "Approved",
+   "family": "effective-meetings",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/brief-authorizing-official.md",
+   "type": "Companion guide",
+   "title": "For the Authorizing Official: Evidence over Attestation",
+   "description": "A one-page brief for the meeting that approves the pre-flight",
+   "url": "docs/books/guides/brief-authorizing-official.html",
+   "count": null,
+   "unit": "steps",
+   "reading_minutes": 2,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Beginner",
+   "level_source": "audience",
+   "roles": [
+    "ISSO and assessor",
+    "Executive"
+   ],
+   "topics": [
+    "Compliance and authorization",
+    "Program and people"
+   ],
+   "status": "Approved",
+   "family": "brief-authorizing-official",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/brief-chco.md",
+   "type": "Companion guide",
+   "title": "For the CHCO: HR 2.0 and the Contractor Source",
+   "description": "A one-page brief for the meeting that approves the pre-flight",
+   "url": "docs/books/guides/brief-chco.html",
+   "count": null,
+   "unit": "steps",
+   "reading_minutes": 2,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Beginner",
+   "level_source": "audience",
+   "roles": [
+    "HR and governance analyst",
+    "Executive"
+   ],
+   "topics": [
+    "HR-driven identity",
+    "Program and people"
+   ],
+   "status": "Approved",
+   "family": "brief-chco",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/brief-cio.md",
+   "type": "Companion guide",
+   "title": "For the CIO: The Clocks and the Cost",
+   "description": "A one-page brief for the meeting that approves the pre-flight",
+   "url": "docs/books/guides/brief-cio.html",
+   "count": null,
+   "unit": "steps",
+   "reading_minutes": 2,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Beginner",
+   "level_source": "audience",
+   "roles": [
+    "Executive"
+   ],
+   "topics": [
+    "Program and people"
+   ],
+   "status": "Approved",
+   "family": "brief-cio",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/brief-ciso.md",
+   "type": "Companion guide",
+   "title": "For the CISO: Leavers and Account Findings",
+   "description": "A one-page brief for the meeting that approves the pre-flight",
+   "url": "docs/books/guides/brief-ciso.html",
+   "count": null,
+   "unit": "steps",
+   "reading_minutes": 2,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Beginner",
+   "level_source": "audience",
+   "roles": [
+    "ISSO and assessor",
+    "Program lead and service owner",
+    "Executive"
+   ],
+   "topics": [
+    "Compliance and authorization",
+    "Program and people"
+   ],
+   "status": "Approved",
+   "family": "brief-ciso",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/one-page-ask.md",
+   "type": "Companion guide",
+   "title": "The One-Page Ask",
+   "description": "A fill-in page for the meeting where leadership approves the pre-flight",
+   "url": "docs/books/guides/one-page-ask.html",
+   "count": null,
+   "unit": "steps",
+   "reading_minutes": 3,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Beginner",
+   "level_source": "audience",
+   "roles": [
+    "Program lead and service owner",
+    "Executive"
+   ],
+   "topics": [
+    "Program and people"
+   ],
+   "status": "Approved",
+   "family": "one-page-ask",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#azs",
+   "type": "Lab",
+   "title": "Labs: Azure Security Engineering learning path",
+   "description": "5 hands-on labs across 5 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The Azure Security Engineering learning path.",
+   "url": "docs/training/labs.html#azs",
+   "count": 5,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "Security operations",
+    "Cloud and platform engineer",
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Defender XDR",
+    "Azure",
+    "DNS and DDI"
+   ],
+   "status": "Draft",
+   "family": "azure-security",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#hr",
+   "type": "Lab",
+   "title": "Labs: Building HR-Driven Identity",
+   "description": "14 hands-on labs across 7 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building HR-Driven Identity.",
+   "url": "docs/training/labs.html#hr",
+   "count": 14,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "Identity engineer",
+    "Developer",
+    "ISSO and assessor",
+    "HR and governance analyst"
+   ],
+   "topics": [
+    "Entra ID",
+    "HR-driven identity"
+   ],
+   "status": "Approved",
+   "family": "hr-driven-identity",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#npi",
+   "type": "Lab",
+   "title": "Labs: Building Non-Person Identity",
+   "description": "20 hands-on labs across 10 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building Non-Person Identity.",
+   "url": "docs/training/labs.html#npi",
+   "count": 20,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "Identity engineer",
+    "Developer",
+    "ISSO and assessor",
+    "HR and governance analyst"
+   ],
+   "topics": [
+    "Entra ID",
+    "Active Directory",
+    "Azure",
+    "Non-person identity"
+   ],
+   "status": "Approved",
+   "family": "non-person-identity",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#pa",
+   "type": "Lab",
+   "title": "Labs: Building Privileged Access",
+   "description": "16 hands-on labs across 8 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building Privileged Access.",
+   "url": "docs/training/labs.html#pa",
+   "count": 16,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "Identity engineer",
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Entra ID",
+    "Azure",
+    "Privileged access"
+   ],
+   "status": "Approved",
+   "family": "privileged-access",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#pn",
+   "type": "Lab",
+   "title": "Labs: Building Provider Notices",
+   "description": "14 hands-on labs across 7 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building Provider Notices.",
+   "url": "docs/training/labs.html#pn",
+   "count": 14,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Azure",
+    "Cloud provider notices"
+   ],
+   "status": "Approved",
+   "family": "provider-notices",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#adm",
+   "type": "Lab",
+   "title": "Labs: Building the Attribute-Driven Migration (Book 19)",
+   "description": "18 hands-on labs across 9 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building the Attribute-Driven Migration (Book 19).",
+   "url": "docs/training/labs.html#adm",
+   "count": 18,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "Identity engineer",
+    "Endpoint engineer",
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Entra ID",
+    "Intune and endpoints",
+    "Azure",
+    "HR-driven identity"
+   ],
+   "status": "Approved",
+   "family": "attribute-driven-migration",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#ttm",
+   "type": "Lab",
+   "title": "Labs: Building Ticket-to-Machine",
+   "description": "16 hands-on labs across 8 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building Ticket-to-Machine.",
+   "url": "docs/training/labs.html#ttm",
+   "count": 16,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "Identity engineer",
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "ServiceNow and automation"
+   ],
+   "status": "Approved",
+   "family": "ticket-to-machine",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#xdr",
+   "type": "Lab",
+   "title": "Labs: Defender XDR learning path",
+   "description": "5 hands-on labs across 5 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The Defender XDR learning path.",
+   "url": "docs/training/labs.html#xdr",
+   "count": 5,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "Endpoint engineer",
+    "Security operations"
+   ],
+   "topics": [
+    "Intune and endpoints",
+    "Defender XDR",
+    "Security operations"
+   ],
+   "status": "Draft",
+   "family": "defender-xdr",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#gsa",
+   "type": "Lab",
+   "title": "Labs: Global Secure Access learning path",
+   "description": "6 hands-on labs across 6 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The Global Secure Access learning path.",
+   "url": "docs/training/labs.html#gsa",
+   "count": 6,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "Identity engineer",
+    "Endpoint engineer",
+    "Cloud and platform engineer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Entra ID",
+    "Intune and endpoints",
+    "Global Secure Access",
+    "Azure",
+    "Compliance and authorization"
+   ],
+   "status": "Draft",
+   "family": "global-secure-access",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#ms-automation",
+   "type": "Lab",
+   "title": "Labs: Microsoft Automation learning path",
+   "description": "8 hands-on labs across 4 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Microsoft Automation learning path.",
+   "url": "docs/training/labs.html#ms-automation",
+   "count": 8,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "Identity engineer",
+    "Endpoint engineer",
+    "Cloud and platform engineer",
+    "Developer"
+   ],
+   "topics": [
+    "Entra ID",
+    "Intune and endpoints",
+    "Azure",
+    "ServiceNow and automation"
+   ],
+   "status": "Draft",
+   "family": "ms-automation",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#zta",
+   "type": "Lab",
+   "title": "Labs: Zero Trust Assessment learning path",
+   "description": "6 hands-on labs across 4 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The Zero Trust Assessment learning path.",
+   "url": "docs/training/labs.html#zta",
+   "count": 6,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Azure",
+    "Zero Trust",
+    "Compliance and authorization"
+   ],
+   "status": "Draft",
+   "family": "zero-trust-assessment",
+   "featured": false
+  },
+  {
+   "id": "videos:book",
+   "type": "Video series",
+   "title": "Book presentations and briefings",
+   "description": "84 narrated videos with captions, playable in the browser or downloadable.",
+   "url": "docs/presentations/watch.html#book-presentations-and-briefings",
+   "count": 84,
+   "unit": "videos",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 84,
+   "video_minutes": 1375,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [],
+   "topics": [],
+   "status": "Not tracked",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "videos:developer",
+   "type": "Video series",
+   "title": "Developer workbook chapter tours",
+   "description": "50 narrated videos with captions, playable in the browser or downloadable.",
+   "url": "docs/presentations/watch.html#developer-workbook-chapter-tours",
+   "count": 50,
+   "unit": "videos",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 50,
+   "video_minutes": 554,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [],
+   "topics": [],
+   "status": "Not tracked",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "videos:interview",
+   "type": "Video series",
+   "title": "HR-driven identity interview set",
+   "description": "3 narrated videos with captions, playable in the browser or downloadable.",
+   "url": "docs/presentations/watch.html#hr-driven-identity-interview-set",
+   "count": 3,
+   "unit": "videos",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 3,
+   "video_minutes": 39,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [],
+   "topics": [],
+   "status": "Not tracked",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "videos:training",
+   "type": "Video series",
+   "title": "Learning path module videos",
+   "description": "75 narrated videos with captions, playable in the browser or downloadable.",
+   "url": "docs/presentations/watch.html#training-learning-path-modules",
+   "count": 75,
+   "unit": "videos",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 75,
+   "video_minutes": 1009,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [],
+   "topics": [],
+   "status": "Not tracked",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "videos:research",
+   "type": "Video series",
+   "title": "Research presentations",
+   "description": "12 narrated videos with captions, playable in the browser or downloadable.",
+   "url": "docs/presentations/watch.html#research",
+   "count": 12,
+   "unit": "videos",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 12,
+   "video_minutes": 185,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [],
+   "topics": [],
+   "status": "Not tracked",
+   "family": null,
+   "featured": false
+  },
+  {
+   "id": "videos:start",
+   "type": "Video series",
+   "title": "The Start series",
+   "description": "4 narrated videos with captions, playable in the browser or downloadable.",
+   "url": "docs/presentations/watch.html#the-start-series",
+   "count": 4,
+   "unit": "videos",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 4,
+   "video_minutes": 27,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [],
+   "topics": [],
+   "status": "Not tracked",
+   "family": null,
+   "featured": false
+  }
+ ]
+}

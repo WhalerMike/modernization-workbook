@@ -7280,7 +7280,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-global-secure-access/Guide_Global_Secure_Access_Narration_Script.md",
   "page": "docs/books/guides/global-secure-access-implementation.html",
   "source": "docs/books/guides/global-secure-access-implementation.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -9557,6 +9563,170 @@
    ]
   ],
   "sources": "presentations/research-ttm-servicenow-sailpoint/Research_TTM_ServiceNow_SailPoint_Narrated_sources.json"
+ },
+ {
+  "id": "DW_XDR_02_Onboarding_Coverage_Sensor_Health_Narrated",
+  "title": "Building Defender XDR, Chapter 02 — Onboarding Coverage and Sensor Health: narrated tour",
+  "group": "developer",
+  "minutes": 8,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_XDR_02_Onboarding_Coverage_Sensor_Health_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-xdr-02-onboarding-coverage-sensor-health/DW_XDR_02_Onboarding_Coverage_Sensor_Health_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-02-onboarding-coverage-sensor-health/DW_XDR_02_Onboarding_Coverage_Sensor_Health_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.html",
+  "source": "docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.md",
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   },
+   {
+    "name": "ms-automation",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation",
+    "zip": "downloads/microsoft-automation-code.zip"
+   }
+  ],
+  "chapters": null,
+  "sources": null
+ },
+ {
+  "id": "DW_XDR_03_Prevention_Through_Audit_Narrated",
+  "title": "Building Defender XDR, Chapter 03 — Prevention Through Audit: narrated tour",
+  "group": "developer",
+  "minutes": 8,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_XDR_03_Prevention_Through_Audit_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-xdr-03-prevention-through-audit/DW_XDR_03_Prevention_Through_Audit_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-03-prevention-through-audit/DW_XDR_03_Prevention_Through_Audit_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.html",
+  "source": "docs/project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.md",
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   }
+  ],
+  "chapters": null,
+  "sources": null
+ },
+ {
+  "id": "DW_XDR_04_ASR_Audit_Warn_Block_Narrated",
+  "title": "Building Defender XDR, Chapter 04 — Attack Surface Reduction: Audit, Warn, Block: narrated tour",
+  "group": "developer",
+  "minutes": 9,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_XDR_04_ASR_Audit_Warn_Block_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-xdr-04-asr-audit-warn-block/DW_XDR_04_ASR_Audit_Warn_Block_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-04-asr-audit-warn-block/DW_XDR_04_ASR_Audit_Warn_Block_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.html",
+  "source": "docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.md",
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   }
+  ],
+  "chapters": null,
+  "sources": null
+ },
+ {
+  "id": "DW_XDR_05_Exposure_Incidents_Narrated",
+  "title": "Building Defender XDR, Chapter 05 — Exposure and Incidents: narrated tour",
+  "group": "developer",
+  "minutes": 9,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_XDR_05_Exposure_Incidents_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-xdr-05-exposure-incidents/DW_XDR_05_Exposure_Incidents_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-05-exposure-incidents/DW_XDR_05_Exposure_Incidents_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.html",
+  "source": "docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.md",
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   },
+   {
+    "name": "zta-results",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/zta-results",
+    "zip": null
+   }
+  ],
+  "chapters": null,
+  "sources": null
+ },
+ {
+  "id": "DW_XDR_06_Detections_As_Code_Narrated",
+  "title": "Building Defender XDR, Chapter 06 — Detections as Code: narrated tour",
+  "group": "developer",
+  "minutes": 8,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_XDR_06_Detections_As_Code_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-xdr-06-detections-as-code/DW_XDR_06_Detections_As_Code_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-06-detections-as-code/DW_XDR_06_Detections_As_Code_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/defender-xdr/06-detections-as-code.html",
+  "source": "docs/project-plans/developer-workbooks/defender-xdr/06-detections-as-code.md",
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   }
+  ],
+  "chapters": null,
+  "sources": null
+ },
+ {
+  "id": "DW_XDR_07_Identity_Signals_Automation_Narrated",
+  "title": "Building Defender XDR, Chapter 07 — Identity Signals and Automation Boundaries: narrated tour",
+  "group": "developer",
+  "minutes": 8,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_XDR_07_Identity_Signals_Automation_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-xdr-07-identity-signals-automation/DW_XDR_07_Identity_Signals_Automation_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-07-identity-signals-automation/DW_XDR_07_Identity_Signals_Automation_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.html",
+  "source": "docs/project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.md",
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   }
+  ],
+  "chapters": null,
+  "sources": null
+ },
+ {
+  "id": "DW_XDR_08_Monthly_Evidence_Run_Narrated",
+  "title": "Building Defender XDR, Chapter 08 — The Monthly Evidence Run: narrated tour",
+  "group": "developer",
+  "minutes": 9,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_XDR_08_Monthly_Evidence_Run_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-xdr-08-monthly-evidence-run/DW_XDR_08_Monthly_Evidence_Run_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-08-monthly-evidence-run/DW_XDR_08_Monthly_Evidence_Run_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.html",
+  "source": "docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.md",
+  "kits": [
+   {
+    "name": "defender-xdr",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr",
+    "zip": null
+   }
+  ],
+  "chapters": null,
+  "sources": null
  },
  {
   "id": "DW_HR_01_Writer_Register_Narrated",
@@ -15789,7 +15959,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-gsa-module-1/Training_GSA_Module_1_Narration_Script.md",
   "page": "docs/training/global-secure-access/01-decide-design-and-log-first.html",
   "source": "docs/training/global-secure-access/01-decide-design-and-log-first.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -15858,7 +16034,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-gsa-module-2/Training_GSA_Module_2_Narration_Script.md",
   "page": "docs/training/global-secure-access/02-the-client-and-microsoft-traffic.html",
   "source": "docs/training/global-secure-access/02-the-client-and-microsoft-traffic.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -15927,7 +16109,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-gsa-module-3/Training_GSA_Module_3_Narration_Script.md",
   "page": "docs/training/global-secure-access/03-compliant-network-and-tenant-restrictions.html",
   "source": "docs/training/global-secure-access/03-compliant-network-and-tenant-restrictions.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -15996,7 +16184,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-gsa-module-4/Training_GSA_Module_4_Narration_Script.md",
   "page": "docs/training/global-secure-access/04-private-apps-and-admin-paths.html",
   "source": "docs/training/global-secure-access/04-private-apps-and-admin-paths.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -16065,7 +16259,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-gsa-module-5/Training_GSA_Module_5_Narration_Script.md",
   "page": "docs/training/global-secure-access/05-internet-access-and-tls-inspection.html",
   "source": "docs/training/global-secure-access/05-internet-access-and-tls-inspection.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -16130,7 +16330,13 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-gsa-module-6/Training_GSA_Module_6_Narration_Script.md",
   "page": "docs/training/global-secure-access/06-rings-rollback-and-the-evidence-package.html",
   "source": "docs/training/global-secure-access/06-rings-rollback-and-the-evidence-package.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "global-secure-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access",
+    "zip": "downloads/global-secure-access-code.zip"
+   }
+  ],
   "chapters": [
    [
     0,

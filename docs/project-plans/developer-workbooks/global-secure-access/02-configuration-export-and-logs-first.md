@@ -1,0 +1,347 @@
+---
+title: "Chapter 02 — The Configuration Export and Logs First"
+description: "The guide's Steps 2 and 12.1 as code: one read-only collection of the tenant's Global Secure Access configuration through Microsoft Graph and Azure Resource Manager, each call with Learn's least-privileged permission, written as JSON with a SHA-256 manifest that later chapters refuse to read if it changed; checks that every connector group is in the architecture record with two hosts, that the private DNS suffixes include the forest, and that the network diagnostic setting sends all four categories before any pilot. Labs against a fictional tenant's fixtures and a test tenant."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-global-secure-access
+part: How
+series-order: 2
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 02 — The Configuration Export and Logs First
+
+*Every later chapter reads the same export, and nothing is enforced before the logs exist. This chapter builds both.*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [Step 2: Reference architecture](../../../books/guides/global-secure-access-implementation.md#step-2-reference-architecture) and the logging half of its [Step 12](../../../books/guides/global-secure-access-implementation.md#step-12-telemetry-and-evidence), which its run order puts before the pilot. You start with Learn's operations guidance, which says to back up the configuration as Graph JSON weekly and before every change, and the guide's export loop and diagnostic setting. Then you read the kit's collector, its manifest, and the baseline checks GSA-ARC-01 to -04 and GSA-LOG-01. Lab 1 collects the fictional tenant, finds the category the setting leaves out, and shows that a changed file stops every later step. Lab 2 collects a test tenant and turns its network logs on.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can export a tenant's Global Secure Access configuration in one read-only run whose files an assessor can re-hash, keep the architecture record that names every connector group and DNS suffix, and prove the network logs reach the workspace before anyone is in a pilot.
+
+**Audience.** Developers who build or maintain the kit, the platform owner who keeps the architecture record, and the security monitor who owns the workspace. You don't need a tenant until Lab 2.
+
+## Start with Microsoft's documentation
+
+### What Microsoft gives you
+
+Learn's operations guidance is to back up the Global Secure Access configuration through Microsoft Graph JSON exports weekly and before every change.[^gsa02-ops] The guide's Step 2.1 is that export: nine GET requests in a loop, written to a dated folder with a SHA-256 manifest. Each read has a Learn page: the forwarding profiles, security (filtering) profiles, Conditional Access signaling and cross-tenant tagging settings need `NetworkAccess.Read.All`, delegated or application, with Global Reader or Global Secure Access Log Reader enough to read;[^gsa02-fp] [^gsa02-sp] [^gsa02-sig] [^gsa02-tag] named locations and the tenant restrictions v2 default need `Policy.Read.All`;[^gsa02-nl] [^gsa02-trv2] and connector groups and their members need `Directory.ReadWrite.All`, delegated only: Learn gives no read-only permission for them.[^gsa02-cg] [^gsa02-cgm] Traffic logs stay in the service for 30 days; longer retention needs export through diagnostic settings, which the guide's Step 12.1 creates with Book 12's `az rest` pattern for `microsoft.aadiam/diagnosticSettings`.[^gsa02-logs] [^gsa02-b12]
+
+### What it leaves to you
+
+Each row is pinned by a test in the `Collection` or `Chapter 02` blocks of `tests/GlobalSecureAccess.Tests.ps1`.
+
+| Learn's material, as published | Why it matters | What the kit adds |
+|---|---|---|
+| A backup recommendation; the guide's loop exports nine URIs | Connector membership, Private Access apps, licenses and the logs aren't in it | One collector for every read the later chapters need, connector members once per group and the guide's queries once each |
+| The guide's manifest is a CSV of hashes nobody checks | A changed export reads like the real one | `manifest.json` lists each call with its permission and every file's SHA-256; `Read-GsaCollection` refuses a folder that doesn't match |
+| Connector reads need `Directory.ReadWrite.All` | A read-only job holds a write permission | The call list says so; the reader sends only GET, and Lab 2 signs out after the read |
+| A diagnostic setting created by hand | Nobody checks it stays complete | GSA-LOG-01 names any of the four categories that isn't sent, and the workspace it goes to |
+| An architecture record in prose | Groups and suffixes drift from the tenant | `templates/architecture.template.json`; GSA-ARC-01 to -03 compare it with the collection |
+
+## The code
+
+### The collector
+
+`Invoke-GsaCollection` (and `Invoke-GsaCollect.ps1`) reads every declared call for the areas named, all of them by default: 17 calls, 24 reads in the fixture tenant, because connector members are read per group and the seven queries one by one. It writes `raw/<call>.json`, one `collection.json`, and `manifest.json` with the time, mode, environment, tenant, cloud, ring, each call (method, permissions, beta, verified, Learn page) and the SHA-256 of every file. Two reads aren't verified against a Learn page (the tenant restrictions partners list and the Private Access application read); the live reader refuses them unless the run passes `-AllowUnverified`.
+
+### The baseline checks
+
+| Check | What it looks for |
+|---|---|
+| GSA-ARC-01 | Each connector group in the tenant is in the architecture record with two or more hosts |
+| GSA-ARC-02 | The private DNS suffixes include the Active Directory forest name |
+| GSA-ARC-03 | The record names the workspace |
+| GSA-ARC-04 | The collection holds every baseline read |
+| GSA-LOG-01 | A diagnostic setting named `gsa-network-telemetry` sends `NetworkAccessTrafficLogs`, `NetworkAccessConnectionEvents`, `RemoteNetworkHealthLogs` and `NetworkAccessAlerts` to the record's workspace |
+
+::: {.callout-important}
+## Illustrative code
+Lab 1 reads fixtures; nothing signs in. Tested against fixtures and stand-in runners, not a live tenant.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/global-secure-access`.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/global-secure-access`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: List what the baseline reads
+Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
+Get-GsaRequiredPermission -Area baseline | Format-Table
+
+# Step 2: Collect the whole pilot tenant
+./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/pilot -OutputPath out/pilot -AsOf 2026-11-16T12:00:00Z
+
+# Step 3: Check the folder against its manifest
+(Test-GsaRunFolder -Path out/pilot).Detail
+
+# Step 4: Run the baseline checks
+./Invoke-GsaCheck.ps1 -Area baseline -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-baseline -AsOf 2026-11-16T12:00:00Z
+
+# Step 5: Read the setting's categories, as the collector saved them
+(Read-GsaJson -Path out/pilot/raw/diagnostic-settings.json).value | Where-Object { $_.name -eq 'gsa-network-telemetry' } | ForEach-Object { $_.properties.logs } | ForEach-Object { [pscustomobject]$_ } | Format-Table category, enabled
+
+# Step 6: Change one file and try to read the collection
+Copy-Item -Recurse out/pilot out/tampered
+Add-Content -Path out/tampered/raw/licenses.json -Value ' '
+Read-GsaCollection -Path out/tampered
+
+# Step 7: Run this chapter's tests
+Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Collection*', 'Chapter 02*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **List what the baseline reads.** Note the two connector reads and their write-capable permission:
+
+   ```powershell
+   Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
+   Get-GsaRequiredPermission -Area baseline | Format-Table
+   ```
+
+   <!-- capture:begin 02-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/02-1.txt))](captures/02-1.png){.lightbox fig-alt="Terminal window showing Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1 and what it printed"}
+
+   <!-- capture:end -->
+
+2. **Collect the whole pilot tenant:**
+
+   ```powershell
+   ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/pilot -OutputPath out/pilot -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 02-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/02-2.txt))](captures/02-2.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -Fixtu… and what it printed"}
+
+   <!-- capture:end -->
+
+   17 calls, 24 reads, 18 files hashed. `private-apps` and `trv2-partners` are the two with `Verified` False.
+
+3. **Check the folder against its manifest:**
+
+   ```powershell
+   (Test-GsaRunFolder -Path out/pilot).Detail
+   ```
+
+   <!-- capture:begin 02-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/02-3.txt))](captures/02-3.png){.lightbox fig-alt="Terminal window showing (Test-GsaRunFolder -Path out/pilot).Detail and what it printed"}
+
+   <!-- capture:end -->
+
+4. **Run the baseline checks:**
+
+   ```powershell
+   ./Invoke-GsaCheck.ps1 -Area baseline -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-baseline -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 02-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/02-4.txt))](captures/02-4.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCheck.ps1 -Area baseline -SettingsPath tests/fixtures/settings.la… and what it printed"}
+
+   <!-- capture:end -->
+
+   One failure: the setting doesn't send `RemoteNetworkHealthLogs`.
+
+5. **Read the setting's categories, as the collector saved them:**
+
+   ```powershell
+   (Read-GsaJson -Path out/pilot/raw/diagnostic-settings.json).value | Where-Object { $_.name -eq 'gsa-network-telemetry' } | ForEach-Object { $_.properties.logs } | ForEach-Object { [pscustomobject]$_ } | Format-Table category, enabled
+   ```
+
+   <!-- capture:begin 02-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/02-5.txt))](captures/02-5.png){.lightbox fig-alt="Terminal window showing (Read-GsaJson -Path out/pilot/raw/diagnostic-settings.json).value | Where-Obj… and what it printed"}
+
+   <!-- capture:end -->
+
+6. **Change one file and try to read the collection.** Every later chapter reads the collection through the same check:
+
+   ```powershell
+   Copy-Item -Recurse out/pilot out/tampered
+   Add-Content -Path out/tampered/raw/licenses.json -Value ' '
+   Read-GsaCollection -Path out/tampered
+   ```
+
+   <!-- capture:begin 02-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/02-6.txt))](captures/02-6.png){.lightbox fig-alt="Terminal window showing Copy-Item -Recurse out/pilot out/tampered and what it printed"}
+
+   <!-- capture:end -->
+
+   The read is refused: `raw/licenses.json changed since its manifest`.
+
+7. **Run this chapter's tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Collection*', 'Chapter 02*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+   ```
+
+   <!-- capture:begin 02-7 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/02-7.txt))](captures/02-7.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Colle… and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** `FailedCount` 0. Delete `out` when you're done:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 02-8 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/02-8.txt))](captures/02-8.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test tenant
+
+Use a test tenant and an Azure test subscription with a Log Analytics workspace, never production. **The authors haven't run this lab.** Work in `examples/global-secure-access`: PowerShell 7 with the Microsoft Graph PowerShell SDK for the collection, and a Bash shell with the Azure CLI for the diagnostic setting. Activate Global Secure Access Administrator and Security Administrator through PIM for the lab only. You'll replace: `<tenant-id>`, `<settings-file>` (your filled copy of `deploy/settings.template.json`), `<inputs-folder>` (your architecture record and decision records), and `<subscription-id>`, `<resource-group>`, `<workspace>` (the workspace).
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/global-secure-access`. Each step below says what it does and what to look for.
+
+In a POSIX shell (Git Bash on Windows):
+
+```bash
+# Step 1: Turn the network logs on first
+ARM="https://management.azure.com"
+WORKSPACE_ID="/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.OperationalInsights/workspaces/<workspace>"
+az rest --method PUT --uri "${ARM}/providers/microsoft.aadiam/diagnosticSettings/gsa-network-telemetry?api-version=2017-04-01" --headers "Content-Type=application/json" --body "{\"properties\":{\"workspaceId\":\"${WORKSPACE_ID}\",\"logs\":[{\"category\":\"NetworkAccessTrafficLogs\",\"enabled\":true},{\"category\":\"NetworkAccessConnectionEvents\",\"enabled\":true},{\"category\":\"RemoteNetworkHealthLogs\",\"enabled\":true},{\"category\":\"NetworkAccessAlerts\",\"enabled\":true}]}}"
+```
+
+In PowerShell 7:
+
+```powershell
+# Step 2: Sign in to Graph as a person with the baseline's permissions
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes "NetworkAccess.Read.All","Policy.Read.All","Directory.ReadWrite.All","LicenseAssignment.Read.All","NetworkAccessPolicy.Read.All"
+az login --tenant <tenant-id>
+
+# Step 3: Collect the tenant
+./Invoke-GsaCollect.ps1 -SettingsPath <settings-file> -OutputPath out/baseline-test -AllowUnverified
+./Invoke-GsaCheck.ps1 -Area baseline -SettingsPath <settings-file> -CollectionPath out/baseline-test -InputsPath <inputs-folder> -OutputPath out/check-baseline-test
+
+# Step 4: Back it out
+Disconnect-MgGraph
+az rest --method DELETE --uri "https://management.azure.com/providers/microsoft.aadiam/diagnosticSettings/gsa-network-telemetry?api-version=2017-04-01"
+Remove-Item -Recurse -Force out/baseline-test, out/check-baseline-test
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Turn the network logs on first,** with the guide's Step 12.1 command, in Bash (Security Administrator):
+
+   ```bash
+   ARM="https://management.azure.com"
+   WORKSPACE_ID="/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.OperationalInsights/workspaces/<workspace>"
+   az rest --method PUT --uri "${ARM}/providers/microsoft.aadiam/diagnosticSettings/gsa-network-telemetry?api-version=2017-04-01" --headers "Content-Type=application/json" --body "{\"properties\":{\"workspaceId\":\"${WORKSPACE_ID}\",\"logs\":[{\"category\":\"NetworkAccessTrafficLogs\",\"enabled\":true},{\"category\":\"NetworkAccessConnectionEvents\",\"enabled\":true},{\"category\":\"RemoteNetworkHealthLogs\",\"enabled\":true},{\"category\":\"NetworkAccessAlerts\",\"enabled\":true}]}}"
+   ```
+
+2. **Sign in to Graph as a person with the baseline's permissions,** in PowerShell:
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes "NetworkAccess.Read.All","Policy.Read.All","Directory.ReadWrite.All","LicenseAssignment.Read.All","NetworkAccessPolicy.Read.All"
+   az login --tenant <tenant-id>
+   ```
+
+3. **Collect the tenant.** `-AllowUnverified` sends the two reads not yet checked against a Learn page; compare their results with the portal before trusting them:
+
+   ```powershell
+   ./Invoke-GsaCollect.ps1 -SettingsPath <settings-file> -OutputPath out/baseline-test -AllowUnverified
+   ./Invoke-GsaCheck.ps1 -Area baseline -SettingsPath <settings-file> -CollectionPath out/baseline-test -InputsPath <inputs-folder> -OutputPath out/check-baseline-test
+   ```
+
+   GSA-LOG-01 passes once step 1's setting exists. Record each connector group the portal shows that the record doesn't.
+
+4. **Back it out.** Sign out of Graph first (the session holds `Directory.ReadWrite.All`). Delete the diagnostic setting only if this test tenant shouldn't keep it; deleting it ends the evidence trail:
+
+   ```powershell
+   Disconnect-MgGraph
+   az rest --method DELETE --uri "https://management.azure.com/providers/microsoft.aadiam/diagnosticSettings/gsa-network-telemetry?api-version=2017-04-01"
+   Remove-Item -Recurse -Force out/baseline-test, out/check-baseline-test
+   ```
+
+## Verified facts
+
+| Item | Value | GCC | Stage | Source |
+|---|---|---|---|---|
+| Configuration backup | Graph JSON exports weekly and before every change | — | — | [^gsa02-ops] |
+| Forwarding profiles, filtering profiles, signaling, tagging | `NetworkAccess.Read.All`, delegated and application; Global Reader, Global Secure Access Log Reader | Global service | Beta | [^gsa02-fp] [^gsa02-sp] [^gsa02-sig] [^gsa02-tag] |
+| Connector groups and members | `Directory.ReadWrite.All`, delegated only; no application permission | Not stated on the pages | Beta | [^gsa02-cg] [^gsa02-cgm] |
+| Connector properties | `status` (`active`, `inactive`), `version`, `machineName`, `externalIp` | — | Beta | [^gsa02-conn] |
+| Named locations; TRv2 default | `Policy.Read.All` | Global service | Beta (read here) | [^gsa02-nl] [^gsa02-trv2] |
+| Traffic log retention | 30 days in the service; longer through diagnostic settings | — | Traffic logs page titled "(preview)" | [^gsa02-logs] |
+| Entra diagnostic settings | `microsoft.aadiam/diagnosticSettings`, API `2017-04-01`, tenant scope | — | — | [^gsa02-b12] |
+
+The connector pages carry no national cloud table; the product is available in GCC (Chapter 01), and the kit sends the read to `graph.microsoft.com`.
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| The configuration export, each call with its permission, and a SHA-256 per file (Lab 1, steps 2 and 3; Lab 2, step 3: the collection folder) | CM-2 (baseline configuration), CM-8 (component inventory) | KSI-CNA-ULN, KSI-PIY-GIV | The platform owner; the ISSO keeps the folder |
+| Every connector group, suffix and the workspace are in the architecture record (Lab 1, step 4) | SC-7 (boundary protection), AC-4 (information flow) | KSI-CNA-ULN | The platform owner |
+| The network categories reach the workspace before the pilot (Lab 1, steps 4 and 5; Lab 2, step 1) | AU-2 (event logging), AU-12 (audit record generation) | KSI-MLA-OSM, KSI-MLA-LET | The security monitor |
+| A changed export is refused (Lab 1, step 6) | CM-2; AU-9 (protection of audit information) | KSI-MLA-OSM | The repository's tests |
+
+The kit's records support these controls; the agency's assessor decides them. KSIs are FedRAMP 20x indicators for cloud service providers, framed as in Chapter 01.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| A pilot before the logs | The first blocks happen with no record | GSA-LOG-01; the runbook's preflight PF-04 |
+| A category left out of the setting | Branch health or alerts are never seen | GSA-LOG-01 names it |
+| A write-capable session left open after the connector read | `Directory.ReadWrite.All` outlives the read | Lab 2 signs out; the call list says why |
+| An edited export used as evidence | The evidence no longer shows the tenant | `Read-GsaCollection` refuses a folder that doesn't match its manifest |
+| A connector group the record doesn't know | A site with one connector, or none, goes unnoticed | GSA-ARC-01 |
+
+## Checklist
+
+- [ ] The network diagnostic setting existed, with all four categories, before the pilot started.
+- [ ] The export runs weekly and before every change, and its folder goes to the evidence store.
+- [ ] The architecture record names every connector group (two hosts or more), every private DNS suffix, the forest and the workspace.
+- [ ] The two unverified reads were compared with the portal before their results were trusted.
+- [ ] The Graph session that read connectors was closed after the read.
+
+::: {.callout-tip}
+## Continue the book
+[← Chapter 01 — Decision, Licensing and GCC Availability](01-decision-licensing-and-gcc-availability.md) · [Workbook index](index.md) · [Next: Chapter 03 — The Client and Its Coverage →](03-the-client-and-its-coverage.md)
+:::
+
+[^gsa02-ops]: Microsoft Learn, "Common operations for Microsoft Entra Global Secure Access," configuration backup strategy, <https://learn.microsoft.com/entra/global-secure-access/how-to-operations-common> (read November 11, 2026, for the guide).
+[^gsa02-fp]: Microsoft Learn, "List forwardingProfiles" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/networkaccess-networkaccessroot-list-forwardingprofiles?view=graph-rest-beta> (accessed November 17, 2026).
+[^gsa02-sp]: Microsoft Learn, "List filteringProfiles" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/networkaccess-filteringprofile-list?view=graph-rest-beta> (accessed November 17, 2026).
+[^gsa02-sig]: Microsoft Learn, "Get conditionalAccessSettings" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/networkaccess-conditionalaccesssettings-get?view=graph-rest-beta> (accessed November 17, 2026).
+[^gsa02-tag]: Microsoft Learn, "Get crossTenantAccessSettings" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/networkaccess-crosstenantaccesssettings-get?view=graph-rest-beta> (accessed November 17, 2026).
+[^gsa02-cg]: Microsoft Learn, "List connectorGroups" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/connectorgroup-list?view=graph-rest-beta> (accessed November 17, 2026).
+[^gsa02-cgm]: Microsoft Learn, "List members" of a connectorGroup (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/connectorgroup-list-members?view=graph-rest-beta> (accessed November 17, 2026).
+[^gsa02-conn]: Microsoft Learn, "connector resource type" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/resources/connector?view=graph-rest-beta> (accessed November 17, 2026).
+[^gsa02-nl]: Microsoft Learn, "List namedLocations" (Microsoft Graph beta), permissions and Example 5 (compliantNetworkNamedLocation), <https://learn.microsoft.com/graph/api/conditionalaccessroot-list-namedlocations?view=graph-rest-beta> (accessed November 17, 2026).
+[^gsa02-trv2]: Microsoft Learn, "Get crossTenantAccessPolicyConfigurationDefault" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationdefault-get?view=graph-rest-beta> (accessed November 17, 2026).
+[^gsa02-logs]: Microsoft Learn, "Global Secure Access logs and monitoring," log retention and storage, <https://learn.microsoft.com/entra/global-secure-access/concept-global-secure-access-logs-monitoring> (read November 11, 2026, for the guide).
+[^gsa02-b12]: [Book 12, Chapter 03](../../../books/b12-security-operations/03-identity-telemetry.md#global-secure-access-logs-and-alerts), which verified the resource type and API version on Learn's ARM template reference.

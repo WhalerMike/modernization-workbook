@@ -1,0 +1,41 @@
+# New Look pattern 2: the "Applies to" line under each page title.
+# The workbook covers Microsoft 365 GCC (Moderate) with commercial Azure only,
+# and no other government cloud. Pages about another provider say so.
+# The longest matching path prefix wins. Read by scripts/newlook/build_context.py.
+
+default: "Microsoft 365 GCC (Moderate) with commercial Azure"
+
+prefixes:
+  # Book 15, Chapter 09: AWS and VMware. The program's AWS estate runs in AWS
+  # GovCloud (US); the Amazon Connect contact center stays in AWS commercial
+  # Regions (decision WD-157).
+  docs/books/b15-day2-operations/09-control-automation-aws-and-vmware.md: "AWS GovCloud (US), with the Amazon Connect contact center in AWS commercial Regions (WD-157); VMware; beside Microsoft 365 GCC (Moderate) with commercial Azure"
+  # Provider notices: one reader for every provider the program uses.
+  docs/books/b15-day2-operations/14-provider-notices.md: "Microsoft 365 GCC (Moderate), commercial Azure, Oracle Cloud Infrastructure, AWS GovCloud (US) and Google Cloud"
+  docs/books/guides/provider-notices-implementation.md: "Microsoft 365 GCC (Moderate), commercial Azure, Oracle Cloud Infrastructure, AWS GovCloud (US) and Google Cloud"
+  docs/project-plans/developer-workbooks/provider-notices/: "Microsoft 365 GCC (Moderate), commercial Azure, Oracle Cloud Infrastructure, AWS GovCloud (US) and Google Cloud"
+  docs/training/provider-notices/: "Microsoft 365 GCC (Moderate), commercial Azure, Oracle Cloud Infrastructure, AWS GovCloud (US) and Google Cloud"
+  docs/project-plans/developer-workbooks/provider-notices/03-oracle-cloud-infrastructure-announcements.md: "Oracle Cloud Infrastructure, beside Microsoft 365 GCC (Moderate) with commercial Azure"
+  docs/training/provider-notices/04-oci-announcements.md: "Oracle Cloud Infrastructure, beside Microsoft 365 GCC (Moderate) with commercial Azure"
+  docs/project-plans/developer-workbooks/provider-notices/04-aws-health.md: "AWS GovCloud (US), beside Microsoft 365 GCC (Moderate) with commercial Azure"
+  docs/training/provider-notices/05-aws-health-and-the-support-plan.md: "AWS GovCloud (US), beside Microsoft 365 GCC (Moderate) with commercial Azure"
+  docs/project-plans/developer-workbooks/provider-notices/05-google-cloud-personalized-service-health.md: "Google Cloud, beside Microsoft 365 GCC (Moderate) with commercial Azure"
+  docs/training/provider-notices/06-google-incidents-and-the-maintenance-gap.md: "Google Cloud, beside Microsoft 365 GCC (Moderate) with commercial Azure"
+  # Vendor platforms the workbook implements on.
+  docs/books/guides/infoblox-nios-implementation.md: "Infoblox NIOS, beside Microsoft 365 GCC (Moderate) with commercial Azure"
+  docs/training/infoblox-training.md: "Infoblox NIOS, Universal DDI and Threat Defense"
+  docs/books/guides/cisco-sdwan-implementation.md: "Cisco Catalyst SD-WAN, beside Microsoft 365 GCC (Moderate) with commercial Azure"
+  docs/books/guides/cyberark-certificate-lifecycle.md: "CyberArk Certificate Manager, beside Microsoft 365 GCC (Moderate) with commercial Azure"
+  docs/books/guides/hcm-entra-implementation.md: "Oracle Fusion Cloud HCM and Microsoft Entra ID, in Microsoft 365 GCC (Moderate) with commercial Azure"
+  docs/books/guides/ttm-servicenow-sailpoint.md: "ServiceNow and SailPoint Identity Security Cloud, beside Microsoft 365 GCC (Moderate) with commercial Azure"
+  docs/books/guides/snow-sailpoint-integration-kit.md: "ServiceNow and SailPoint Identity Security Cloud, beside Microsoft 365 GCC (Moderate) with commercial Azure"
+  docs/training/ticket-to-machine/: "ServiceNow and SailPoint Identity Security Cloud, beside Microsoft 365 GCC (Moderate) with commercial Azure"
+  docs/project-plans/developer-workbooks/ticket-to-machine/: "ServiceNow and SailPoint Identity Security Cloud, beside Microsoft 365 GCC (Moderate) with commercial Azure"
+  docs/books/guides/defender-xdr-implementation.md: "Microsoft 365 GCC (Moderate); Windows clients and Windows Server only"
+  docs/training/defender-xdr/: "Microsoft 365 GCC (Moderate); Windows clients and Windows Server only"
+  # Pages with no technical scope.
+  docs/books/guides/effective-meetings.md: ""
+  docs/about/: ""
+  docs/inspiration/: ""
+  docs/presentations/: ""
+  docs/new-look/: ""

@@ -1,0 +1,20 @@
+<!-- New Look only (newlook/_quarto-newlook.yml): the preview banner on every page. -->
+<div class="nl-preview-banner" role="note" aria-label="New Look preview">
+  <strong>New Look preview.</strong> The current site is unchanged.
+  <a id="nl-classic-link" href="https://whalermike.github.io/modernization-workbook/">See this page on the current site</a>
+  · <a id="nl-differs-link" href="https://whalermike.github.io/modernization-workbook/new-look/docs/new-look/index.html#what-differs">What differs</a>
+</div>
+<script>
+  (function () {
+    // This page's path under the site root, from Quarto's offset meta: the same
+    // page on the current site has that path under the current site's root.
+    var a = document.getElementById("nl-classic-link");
+    var offset = (document.querySelector('meta[name="quarto:offset"]') || {}).content || "./";
+    try {
+      var root = new URL(offset, window.location.href);
+      document.getElementById("nl-differs-link").href = new URL("docs/new-look/index.html#what-differs", root).href;
+      var rel = window.location.href.slice(root.href.length).split("#")[0];
+      if (rel && rel.indexOf("://") < 0 && rel.indexOf("docs/new-look/") !== 0) a.href = a.href + rel;
+    } catch (e) {}
+  })();
+</script>

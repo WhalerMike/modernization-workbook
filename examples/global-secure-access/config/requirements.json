@@ -1,0 +1,46 @@
+{
+  "_comment": "Each kit step, with the NIST SP 800-53 Rev 5 controls and FedRAMP 20x Key Security Indicators the guide's 'Federal requirements and KSIs, by step' table gives for the guide step it supports (read from fedramp.gov's 2026 KSI pages and NIST's catalog for the guide, November 11, 2026). Which step supports which control is the program's mapping (design guidance); the agency's assessor decides whether a control is satisfied. KSIs are FedRAMP's indicators for cloud service providers: the agency lines its evidence up with them and doesn't report KSIs itself. 'stages' lists the steps each deployment stage's evidence must hold before the go/no-go (Invoke-GsaEvidence.ps1 -Check -Stage).",
+  "version": 1,
+  "controls": {
+    "PL-2": "System Security and Privacy Plans", "SA-9": "External System Services", "CA-3": "Information Exchange",
+    "SC-7": "Boundary Protection", "SC-7(5)": "Boundary Protection | Deny by Default — Allow by Exception", "AC-4": "Information Flow Enforcement",
+    "CM-2": "Baseline Configuration", "CM-8": "System Component Inventory", "CM-6": "Configuration Settings", "CM-7": "Least Functionality",
+    "SI-4": "System Monitoring", "AC-17": "Remote Access", "AC-17(3)": "Remote Access | Managed Access Control Points", "AU-3": "Content of Audit Records",
+    "SI-3": "Malicious Code Protection", "AC-3": "Access Enforcement", "AC-6": "Least Privilege", "AC-6(9)": "Least Privilege | Log Use of Privileged Functions",
+    "AC-12": "Session Termination", "SC-23": "Session Authenticity", "AC-20": "Use of External Systems", "AC-20(1)": "Use of External Systems | Limits on Authorized Use",
+    "SC-8": "Transmission Confidentiality and Integrity", "SC-12": "Cryptographic Key Establishment and Management", "SC-17": "Public Key Infrastructure Certificates",
+    "IA-2(1)": "Identification and Authentication | Multi-factor Authentication to Privileged Accounts", "IA-2(2)": "Identification and Authentication | Multi-factor Authentication to Non-privileged Accounts",
+    "CM-3": "Configuration Change Control", "CM-4": "Impact Analyses", "CP-2": "Contingency Plan",
+    "AU-2": "Event Logging", "AU-6": "Audit Record Review, Analysis, and Reporting", "AU-12": "Audit Record Generation", "AU-9": "Protection of Audit Information"
+  },
+  "steps": {
+    "DECISION":  { "title": "Decision and licensing (guide Step 1)", "guideStep": 1, "controls": ["PL-2", "SA-9", "CA-3"], "ksis": [] },
+    "BASELINE":  { "title": "Reference architecture and configuration export (guide Step 2)", "guideStep": 2, "controls": ["SC-7", "AC-4", "CM-2", "CM-8"], "ksis": ["KSI-CNA-ULN", "KSI-PIY-GIV"] },
+    "CLIENT":    { "title": "Client deployment and coverage (guide Step 3)", "guideStep": 3, "controls": ["CM-6", "CM-7", "SI-4"], "ksis": ["KSI-MLA-EVC", "KSI-CNA-RNT"] },
+    "TRAFFIC":   { "title": "Microsoft traffic and source IP restoration (guide Step 4)", "guideStep": 4, "controls": ["AC-17", "AU-3", "SI-4"], "ksis": ["KSI-IAM-ELP", "KSI-MLA-OSM"] },
+    "INTERNET":  { "title": "Internet traffic and bypass governance (guide Step 5)", "guideStep": 5, "controls": ["SC-7", "SC-7(5)", "SI-3", "SI-4"], "ksis": ["KSI-CNA-ULN", "KSI-CNA-RNT", "KSI-CNA-MAT"] },
+    "PRIVATE":   { "title": "Private applications (guide Step 6)", "guideStep": 6, "controls": ["AC-3", "AC-6", "AC-17", "AC-17(3)"], "ksis": ["KSI-IAM-ELP", "KSI-CNA-ULN", "KSI-CNA-MAT"] },
+    "COMPLIANT": { "title": "Compliant network (guide Step 7)", "guideStep": 7, "controls": ["AC-3", "AC-12", "SC-23"], "ksis": ["KSI-IAM-ELP", "KSI-CNA-ULN", "KSI-IAM-APM"] },
+    "TENANT":    { "title": "Tenant restrictions (guide Step 8)", "guideStep": 8, "controls": ["AC-20", "AC-20(1)", "AC-4"], "ksis": ["KSI-IAM-ELP", "KSI-CNA-MAT"] },
+    "TLS":       { "title": "TLS inspection (guide Step 9)", "guideStep": 9, "controls": ["SC-8", "SC-12", "SC-17", "SI-4"], "ksis": ["KSI-SVC-SIN", "KSI-SVC-ASM", "KSI-CNA-MAT"] },
+    "ADMIN":     { "title": "Privileged protocols (guide Step 10)", "guideStep": 10, "controls": ["IA-2(1)", "IA-2(2)", "AC-6(9)", "AC-17"], "ksis": ["KSI-IAM-APM", "KSI-IAM-ELP", "KSI-MLA-LET"] },
+    "RINGS":     { "title": "Coexistence, rings and rollback (guide Step 11)", "guideStep": 11, "controls": ["CM-3", "CM-4", "CP-2"], "ksis": ["KSI-CMT-LMC", "KSI-CMT-VTD"] },
+    "TELEMETRY": { "title": "Telemetry and evidence (guide Step 12)", "guideStep": 12, "controls": ["AU-2", "AU-6", "AU-12", "SI-4"], "ksis": ["KSI-MLA-OSM", "KSI-MLA-LET", "KSI-MLA-RVL"] },
+    "PLAN":      { "title": "A change planned as a file and approved by its hash (guide Step 11's change safety)", "guideStep": 11, "controls": ["CM-3", "CM-4"], "ksis": ["KSI-CMT-LMC", "KSI-CMT-VTD"] },
+    "PRE":       { "title": "Preflight before a stage", "guideStep": 11, "controls": ["CM-4", "CP-2"], "ksis": ["KSI-CMT-VTD"] },
+    "SMOKE":     { "title": "Smoke test and ring exit (go/no-go)", "guideStep": 11, "controls": ["CM-3", "CM-4"], "ksis": ["KSI-CMT-LMC", "KSI-CMT-VTD"] },
+    "RB":        { "title": "Rollback plan in the guide's order", "guideStep": 11, "controls": ["CM-3", "CP-2"], "ksis": ["KSI-CMT-LMC"] },
+    "EVIDENCE":  { "title": "Record the run as hashed, chained evidence", "guideStep": 12, "controls": ["AU-9", "AU-6"], "ksis": ["KSI-MLA-OSM", "KSI-MLA-RVL"] }
+  },
+  "areas": {
+    "collect": ["BASELINE"],
+    "decision": ["DECISION"], "baseline": ["BASELINE", "TELEMETRY"], "client": ["CLIENT"], "traffic": ["TRAFFIC"],
+    "compliant-network": ["COMPLIANT"], "tenant-restrictions": ["TENANT"], "private-access": ["PRIVATE", "ADMIN"],
+    "internet-access": ["INTERNET"], "tls": ["TLS"], "telemetry": ["TELEMETRY"], "metrics": ["RINGS", "TELEMETRY"],
+    "plan": ["PLAN"], "preflight": ["PRE"], "smoke": ["SMOKE", "RINGS"], "rollback": ["RB"]
+  },
+  "stages": {
+    "test": ["PRE", "BASELINE", "PLAN", "SMOKE", "RB"],
+    "production": ["PRE", "BASELINE", "TELEMETRY", "PLAN", "SMOKE"]
+  }
+}

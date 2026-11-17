@@ -42,6 +42,7 @@ WORKBOOKS = {
     "npi": ("docs/project-plans/developer-workbooks/non-person-identity", "examples/non-person-identity"),
     "pn": ("docs/project-plans/developer-workbooks/provider-notices", "examples/provider-notices"),
     "xdr": ("docs/project-plans/developer-workbooks/defender-xdr", "examples/defender-xdr"),
+    "gsa": ("docs/project-plans/developer-workbooks/global-secure-access", "examples/global-secure-access"),
     "hr": ("docs/project-plans/developer-workbooks/hr-driven-identity", "examples/hr-lifecycle"),
     "adm": ("docs/books/b19-developer-workbook", "examples"),
 }

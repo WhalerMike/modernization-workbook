@@ -1,0 +1,12 @@
+{
+  "_comment": "The guide's KQL, verbatim, each with the step that reads it. Lab 2 runs them with az monitor log-analytics query against the workspace; Lab 1 reads their saved results from the fixture's queries.json. Read the column names the workspace returns before trusting a result: the guide notes that IsThroughGlobalSecureAccess's type and TlsStatus's values aren't fully documented.",
+  "queries": {
+    "signin-share": { "step": 4, "kql": "SigninLogs | where TimeGenerated > ago(7d) | summarize Total = count(), ThroughGSA = countif(tostring(IsThroughGlobalSecureAccess) =~ \"true\") by bin(TimeGenerated, 1d) | extend PctThroughGSA = round(100.0 * ThroughGSA / Total, 1)" },
+    "cn-report-only": { "step": 7, "kql": "SigninLogs | where TimeGenerated > ago(7d) | mv-expand CAP = ConditionalAccessPolicies | where tostring(CAP.displayName) == \"NET-CN-Require-Compliant-Network-Pilot\" | summarize count() by Result = tostring(CAP.result), Through = tostring(IsThroughGlobalSecureAccess)" },
+    "trv2-blocks": { "step": 8, "kql": "SigninLogs | where TimeGenerated > ago(30d) | where Identity contains \"Tenant Restriction\" and ResultType == 5000211 | summarize Blocked = count() by AppDisplayName, ResourceDisplayName, ResourceTenantId" },
+    "ia-allow-deny": { "step": 5, "kql": "NetworkAccessTraffic | where TimeGenerated > ago(24h) and TrafficType == \"internet\" | summarize Allowed = countif(Action == \"Allowed\"), Denied = countif(Action == \"Denied\") by UserPrincipalName" },
+    "private-sessions": { "step": 6, "kql": "NetworkAccessTraffic | where TimeGenerated > ago(24h) and TrafficType == \"private\" | summarize Sessions = count() by DestinationFqdn, UserPrincipalName" },
+    "tls-outcomes": { "step": 9, "kql": "let T = NetworkAccessTraffic | where TimeGenerated > ago(24h) and TrafficType == \"internet\" and isnotempty(TlsStatus) | summarize Count = count() by TlsStatus, TlsAction; let Total = toscalar(T | summarize sum(Count)); T | extend Share = round(100.0 * Count / Total, 2)" },
+    "freshness": { "step": 12, "kql": "union isfuzzy=true withsource=Table NetworkAccessTraffic, NetworkAccessConnectionEvents, RemoteNetworkHealthLogs, NetworkAccessAlerts | where TimeGenerated > ago(1d) | summarize Rows = count(), Last = max(TimeGenerated) by Table" }
+  }
+}

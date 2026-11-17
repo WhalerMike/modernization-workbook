@@ -1,0 +1,244 @@
+# Microsoft Learn training cards for the New Look (pattern 5: docs-to-training
+# cards). Each page shows up to three cards: those of its catalog topics
+# (data/catalog-overrides.yml, docs/new-look/catalog.json), in topic order, then
+# any listed under `pages` for it.
+#
+# Every entry comes from Microsoft Learn's public catalog API
+# (https://learn.microsoft.com/api/catalog/), read on November 17, 2026: the uid,
+# title, URL (with the locale removed), length and level are the catalog's own.
+# Don't add an entry by hand-writing a URL: check it with
+#   python scripts/newlook/verify_learn.py
+# which reads the live catalog and fails on any uid or URL it doesn't list.
+verified: 2026-11-17
+
+topics:
+  Entra ID:
+    - uid: learn.security.manage-identity-and-access
+      kind: Learning path
+      title: "Manage identity and access in Microsoft Entra ID"
+      url: https://learn.microsoft.com/training/paths/manage-identity-and-access/
+      minutes: 119
+      level: Beginner
+    - uid: learn.wwl.plan-implement-administer-conditional-access
+      kind: Module
+      title: "Plan, implement, and administer Conditional Access"
+      url: https://learn.microsoft.com/training/modules/plan-implement-administer-conditional-access/
+      minutes: 65
+      level: Advanced
+    - uid: certification.identity-and-access-administrator
+      kind: Certification
+      title: "Microsoft Certified: Identity and Access Administrator Associate"
+      url: https://learn.microsoft.com/credentials/certifications/identity-and-access-administrator/
+      level: Intermediate
+  Active Directory:
+    - uid: learn.devrel.understand-active-directory-domain-name-system
+      kind: Module
+      title: "Understand how Active Directory Domain Services uses DNS"
+      url: https://learn.microsoft.com/training/modules/understand-active-directory-domain-name-system/
+      minutes: 150
+      level: Advanced
+    - uid: learn.security.manage-identity-and-access
+      kind: Learning path
+      title: "Manage identity and access in Microsoft Entra ID"
+      url: https://learn.microsoft.com/training/paths/manage-identity-and-access/
+      minutes: 119
+      level: Beginner
+  Intune and endpoints:
+    - uid: learn.endpoint-manager-fundamentals
+      kind: Learning path
+      title: "Microsoft Intune fundamentals"
+      url: https://learn.microsoft.com/training/paths/endpoint-manager-fundamentals/
+      minutes: 221
+      level: Beginner
+    - uid: learn.wwl.manage-maintain-devices-intune
+      kind: Learning path
+      title: "Manage and maintain devices using Microsoft Intune"
+      url: https://learn.microsoft.com/training/paths/manage-maintain-devices-intune/
+      minutes: 236
+      level: Intermediate
+  Defender XDR:
+    - uid: learn.wwl.sc-200-mitigate-threats-using-microsoft-365-defender
+      kind: Learning path
+      title: "Mitigate threats using Microsoft Defender XDR"
+      url: https://learn.microsoft.com/training/paths/sc-200-mitigate-threats-using-microsoft-365-defender/
+      minutes: 366
+      level: Intermediate
+    - uid: learn.wwl.sc-200-mitigate-threats-using-microsoft-defender-for-endpoint
+      kind: Learning path
+      title: "Mitigate threats using Microsoft Defender for Endpoint"
+      url: https://learn.microsoft.com/training/paths/sc-200-mitigate-threats-using-microsoft-defender-for-endpoint/
+      minutes: 349
+      level: Intermediate
+    - uid: applied-skill.defend-against-cyberthreats-with-microsoft-defender-xdr
+      kind: Applied Skills
+      title: "Microsoft Applied Skills: Defend against cyberthreats with Microsoft Defender XDR"
+      url: https://learn.microsoft.com/credentials/applied-skills/defend-against-cyberthreats-with-microsoft-defender-xdr/
+      level: Intermediate
+  Global Secure Access:
+    - uid: learn.wwl.deploy-configure-microsoft-entra-global-secure-access
+      kind: Module
+      title: "Deploy and Configure Microsoft Entra Global Secure Access"
+      url: https://learn.microsoft.com/training/modules/deploy-configure-microsoft-entra-global-secure-access/
+      minutes: 58
+      level: Intermediate
+    - uid: learn.wwl.secure-hybrid-connectivity-azure
+      kind: Module
+      title: "Secure remote and hybrid connectivity using VPN gateways and Microsoft Entra Private Access"
+      url: https://learn.microsoft.com/training/modules/secure-hybrid-connectivity-azure/
+      minutes: 39
+      level: Intermediate
+  Azure:
+    - uid: learn.secure-networking-infrastructure
+      kind: Learning path
+      title: "Introduction to Secure Network Infrastructure with Azure network security"
+      url: https://learn.microsoft.com/training/paths/secure-networking-infrastructure/
+      minutes: 76
+      level: Beginner
+    - uid: learn.wwl.configure-key-vault-security
+      kind: Learning path
+      title: "Secure Azure Key Vault with defense in depth for the cloud and AI workloads"
+      url: https://learn.microsoft.com/training/paths/configure-key-vault-security/
+      minutes: 104
+      level: Intermediate
+    - uid: certification.azure-security-engineer
+      kind: Certification
+      title: "Microsoft Certified: Azure Security Engineer Associate"
+      url: https://learn.microsoft.com/credentials/certifications/azure-security-engineer/
+      level: Intermediate
+  DNS and DDI:
+    - uid: learn.wwl.implement-windows-server-dns
+      kind: Module
+      title: "Implement Windows Server DNS"
+      url: https://learn.microsoft.com/training/modules/implement-windows-server-dns/
+      minutes: 49
+      level: Intermediate
+    - uid: learn.intro-to-azure-dns-private-resolver
+      kind: Module
+      title: "Intro to Azure DNS Private Resolver"
+      url: https://learn.microsoft.com/training/modules/intro-to-azure-dns-private-resolver/
+      minutes: 10
+      level: Beginner
+  HR-driven identity:
+    - uid: learn.wwl.automate-identity-lifecycle-workflows
+      kind: Module
+      title: "Automate identity lifecycle using Lifecycle Workflows in Microsoft Entra"
+      url: https://learn.microsoft.com/training/modules/automate-identity-lifecycle-workflows/
+      minutes: 45
+      level: Advanced
+    - uid: learn.wwl.plan-implement-identity-governance-strategy
+      kind: Learning path
+      title: "Plan and implement an identity governance strategy"
+      url: https://learn.microsoft.com/training/paths/plan-implement-identity-governance-strategy/
+      minutes: 203
+      level: Intermediate
+  Privileged access:
+    - uid: learn.wwl.plan-implement-privileged-access
+      kind: Module
+      title: "Plan and implement privileged access"
+      url: https://learn.microsoft.com/training/modules/plan-implement-privileged-access/
+      minutes: 62
+      level: Advanced
+    - uid: learn.wwl.implement-configure-privileged-identity-management
+      kind: Module
+      title: "Implement and configure Privileged Identity Management (PIM)"
+      url: https://learn.microsoft.com/training/modules/implement-configure-privileged-identity-management/
+      minutes: 32
+      level: Intermediate
+    - uid: learn.wwl.plan-implement-manage-access-review
+      kind: Module
+      title: "Plan, implement, and manage access review"
+      url: https://learn.microsoft.com/training/modules/plan-implement-manage-access-review/
+      minutes: 50
+      level: Advanced
+  Non-person identity:
+    - uid: learn.wwl.entra-ai-configure-workload-identities
+      kind: Module
+      title: "Configure workload identities and permissions for AI environments"
+      url: https://learn.microsoft.com/training/modules/microsoft-entra-ai-configure-workload-identities/
+      minutes: 49
+      level: Intermediate
+    - uid: learn.wwl.entra-ai-secure-workloads
+      kind: Learning path
+      title: "Secure AI identity infrastructure with Microsoft Entra"
+      url: https://learn.microsoft.com/training/paths/entra-ai-secure-workloads/
+      minutes: 188
+      level: Intermediate
+  Zero Trust:
+    - uid: learn-m365.principles-zero-trust
+      kind: Learning path
+      title: "Establish the guiding principles and core components of Zero Trust"
+      url: https://learn.microsoft.com/training/paths/zero-trust-principles/
+      minutes: 106
+      level: Beginner
+    - uid: learn.wwl.introduction-zero-trust-best-practice-frameworks
+      kind: Module
+      title: "Introduction to Zero Trust and best practice frameworks"
+      url: https://learn.microsoft.com/training/modules/introduction-zero-trust-best-practice-frameworks/
+      minutes: 37
+      level: Advanced
+  Security operations:
+    - uid: learn.wwl.sc-200-create-detections-perform-investigations-azure-sentinel
+      kind: Learning path
+      title: "Create detections and perform investigations using Microsoft Sentinel"
+      url: https://learn.microsoft.com/training/paths/sc-200-create-detections-perform-investigations-azure-sentinel/
+      minutes: 394
+      level: Intermediate
+    - uid: certification.security-operations-analyst
+      kind: Certification
+      title: "Microsoft Certified: Security Operations Analyst Associate"
+      url: https://learn.microsoft.com/credentials/certifications/security-operations-analyst/
+      level: Intermediate
+  Information protection:
+    - uid: learn.wwl.purview-implement-information-protection
+      kind: Learning path
+      title: "Implement Microsoft Purview Information Protection"
+      url: https://learn.microsoft.com/training/paths/purview-implement-information-protection/
+      minutes: 376
+      level: Intermediate
+    - uid: applied-skill.implement-information-protection-and-data-loss-prevention-by-using-microsoft-purview
+      kind: Applied Skills
+      title: "Microsoft Applied Skills: Implement information protection and data loss prevention by using Microsoft Purview"
+      url: https://learn.microsoft.com/credentials/applied-skills/implement-information-protection-and-data-loss-prevention-by-using-microsoft-purview/
+      level: Intermediate
+  Cloud provider notices:
+    - uid: learn.intro-to-azure-service-health
+      kind: Module
+      title: "Intro to Azure Service Health"
+      url: https://learn.microsoft.com/training/modules/intro-to-azure-service-health/
+      minutes: 15
+      level: Beginner
+    - uid: learn.wwl.guided-project-monitor-service-health-activity-alerts
+      kind: Module
+      title: "Guided project: Monitor Azure with Service Health and Activity Log alerts"
+      url: https://learn.microsoft.com/training/modules/guided-project-monitor-service-health-activity-alerts/
+      minutes: 36
+      level: Beginner
+  ServiceNow and automation:
+    - uid: learn-m365.m365-msgraph-fundamentals
+      kind: Learning path
+      title: "Microsoft Graph Fundamentals"
+      url: https://learn.microsoft.com/training/paths/m365-msgraph-fundamentals/
+      minutes: 75
+      level: Beginner
+    - uid: learn.wwl.manage-azure-arc-enabled-servers-scripting
+      kind: Module
+      title: "Manage Azure Arc-enabled servers by using scripting"
+      url: https://learn.microsoft.com/training/modules/manage-azure-arc-enabled-servers-scripting/
+      minutes: 57
+      level: Intermediate
+  Compliance and authorization:
+    - uid: learn.wwl.enforce-governance-azure-policy-resource-locks
+      kind: Module
+      title: "Enforce governance with Azure Policy and resource locks"
+      url: https://learn.microsoft.com/training/modules/enforce-governance-azure-policy-resource-locks/
+      minutes: 29
+      level: Intermediate
+    - uid: learn.intro-to-azure-policy
+      kind: Module
+      title: "Intro to Azure Policy"
+      url: https://learn.microsoft.com/training/modules/intro-to-azure-policy/
+      minutes: 10
+      level: Beginner
+
+# Extra cards for one page or folder (a path prefix), shown after the topics'.
+pages: {}

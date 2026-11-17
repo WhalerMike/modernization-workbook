@@ -1,0 +1,123 @@
+# New Look pattern 10: static reading plans by role. Each plan is a few
+# milestones of a week or two (Microsoft Learn's own advice for a plan: no
+# milestone over 14 days and no plan over 30 days). Items are catalog ids:
+# the page path of a learning path, guide, workbook, book or the labs section
+# (docs/new-look/catalog.json). scripts/newlook/build_context.py writes one page
+# per plan under docs/new-look/plans/ with each item's length from the catalog;
+# its tests fail if an id isn't in the catalog. No progress is tracked.
+
+plans:
+  - role: ISSO and assessor
+    slug: isso
+    intro: "What each control area asks for, what evidence the kits produce, and how to read it."
+    milestones:
+      - name: "Week 1: the authorization picture"
+        items: [docs/books/guides/brief-authorizing-official.md, docs/books/b14-compliance/index.md]
+      - name: "Week 2: evidence over attestation"
+        items: [docs/books/b13-governance/index.md, docs/training/zero-trust-assessment/index.md]
+      - name: "Week 3: identity evidence"
+        items: [docs/training/privileged-access/index.md, docs/books/guides/hr-driven-identity-implementation.md]
+      - name: "Week 4: run one kit's labs"
+        items: ["docs/training/labs.md#pa"]
+
+  - role: Identity engineer
+    slug: identity-engineer
+    intro: "From Active Directory to Entra ID: the target, privileged and non-person identities, and HR-driven lifecycle."
+    milestones:
+      - name: "Week 1: the identity books"
+        items: [docs/books/b02-identity/index.md, docs/books/b04-access/index.md]
+      - name: "Week 2: privileged access"
+        items: [docs/training/privileged-access/index.md, "docs/training/labs.md#pa"]
+      - name: "Week 3: HR-driven identity"
+        items: [docs/training/hr-driven-identity/index.md, "docs/training/labs.md#hr"]
+      - name: "Week 4: non-person identity"
+        items: [docs/training/non-person-identity/index.md, docs/books/guides/service-account-migration.md]
+
+  - role: Endpoint engineer
+    slug: endpoint-engineer
+    intro: "Devices without Group Policy: Intune first, Arc for servers, and Defender for Endpoint on top."
+    milestones:
+      - name: "Week 1: devices and endpoints"
+        items: [docs/books/b05-devices/index.md]
+      - name: "Week 2: the Intune and Arc tracks"
+        items: [docs/books/guides/intune-track-implementation.md, docs/books/guides/arc-track-implementation.md]
+      - name: "Week 3: Defender XDR"
+        items: [docs/training/defender-xdr/index.md, "docs/training/labs.md#xdr"]
+      - name: "Week 4: automation"
+        items: [path:ms-automation, "docs/training/labs.md#ms-automation"]
+
+  - role: Security operations
+    slug: security-operations
+    intro: "What you can see, what you detect, and what you hand the ISSO."
+    milestones:
+      - name: "Week 1: telemetry"
+        items: [docs/books/b12-security-operations/index.md]
+      - name: "Week 2: Defender XDR"
+        items: [docs/training/defender-xdr/index.md]
+      - name: "Week 3: the identity-aware network"
+        items: [docs/training/global-secure-access/index.md]
+      - name: "Week 4: labs"
+        items: ["docs/training/labs.md#xdr", "docs/training/labs.md#gsa"]
+
+  - role: Cloud and platform engineer
+    slug: cloud-platform-engineer
+    intro: "The authorization boundary, the landing zone, the network and DNS, and what the providers tell you."
+    milestones:
+      - name: "Week 1: boundary and landing zone"
+        items: [docs/books/b10-cloud-boundary/index.md, docs/training/azure-security/index.md]
+      - name: "Week 2: network and DNS"
+        items: [docs/books/b09-network/index.md, docs/books/b08-ddi/index.md]
+      - name: "Week 3: provider notices"
+        items: [docs/training/provider-notices/index.md, "docs/training/labs.md#pn"]
+      - name: "Week 4: Global Secure Access"
+        items: [docs/books/guides/global-secure-access-implementation.md, "docs/training/labs.md#azs"]
+
+  - role: Developer
+    slug: developer
+    intro: "The tested code behind each kit: workbooks with labs on fixtures, then a test tenant."
+    milestones:
+      - name: "Week 1: Graph and Azure foundations"
+        items: [path:ms-automation]
+      - name: "Week 2: the attribute-driven migration"
+        items: [docs/books/b19-developer-workbook/index.md, "docs/training/labs.md#adm"]
+      - name: "Week 3: identity workbooks"
+        items: [docs/project-plans/developer-workbooks/hr-driven-identity/index.md, docs/project-plans/developer-workbooks/privileged-access/index.md]
+      - name: "Week 4: Ticket-to-Machine"
+        items: [docs/project-plans/developer-workbooks/ticket-to-machine/index.md, "docs/training/labs.md#ttm"]
+
+  - role: Program lead and service owner
+    slug: program-lead
+    intro: "Why, in what order, who owns what, and how the program proves progress."
+    milestones:
+      - name: "Week 1: orientation"
+        items: [docs/books/b00-orientation/index.md, docs/books/guides/one-page-ask.md]
+      - name: "Week 2: the transformation arc"
+        items: [docs/books/b01-transformation-arc/index.md, docs/books/guides/effective-meetings.md]
+      - name: "Week 3: Zero Trust as a program"
+        items: [docs/books/b11-zero-trust/index.md, docs/training/zero-trust-assessment/index.md]
+      - name: "Week 4: people and change"
+        items: [docs/books/b16-people/index.md, docs/books/b15-day2-operations/index.md]
+
+  - role: HR and governance analyst
+    slug: hr-governance
+    intro: "How HR and contractor records drive access, and how AI agents get owners."
+    milestones:
+      - name: "Week 1: HR as the source"
+        items: [docs/books/guides/brief-chco.md, docs/books/b03-hr-identity/index.md]
+      - name: "Week 2: the HR-driven path"
+        items: [docs/training/hr-driven-identity/index.md]
+      - name: "Week 3: AI identity governance"
+        items: [docs/books/b17-ai-identity/index.md]
+      - name: "Week 4: the HCM pipeline"
+        items: [docs/books/guides/hcm-entra-implementation.md]
+
+  - role: Executive
+    slug: executive
+    intro: "The decisions to bring, the clocks that can't move, and what each book asks of leadership."
+    milestones:
+      - name: "Week 1: the briefs"
+        items: [docs/books/guides/brief-cio.md, docs/books/guides/brief-ciso.md, docs/books/guides/brief-chco.md, docs/books/guides/brief-authorizing-official.md]
+      - name: "Week 2: why, and why now"
+        items: [docs/books/b00-orientation/index.md, docs/books/guides/one-page-ask.md]
+      - name: "Week 3: the hard parts"
+        items: [docs/books/b01-transformation-arc/index.md]

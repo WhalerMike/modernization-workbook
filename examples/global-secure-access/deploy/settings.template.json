@@ -1,0 +1,36 @@
+{
+  "_comment": "One environment's settings for the Global Secure Access kit. Copy it once per environment (settings.test.json, settings.production.json), replace every <placeholder>, and file each copy with the change record. Names and IDs only, never a secret: the operator signs in to Microsoft Graph and the Azure CLI as a person, interactively. Read-GsaSettings refuses a secret-like value, and, for test and production, a placeholder left in the file. The commands are the same for test and production; only this file changes. cloud is gcc for Microsoft 365 GCC (Moderate), which uses graph.microsoft.com. Not run against a live tenant.",
+  "environment": "<test-or-production>",
+  "changeRecord": "<change-record>",
+  "cloud": "gcc",
+  "tenantId": "<tenant-id>",
+  "ring": "<pilot-ring1-ring2-or-ring3>",
+  "groups": {
+    "pilot": "<pilot-group-id>",
+    "emergency": "<emergency-group-id>",
+    "admins": "<admin-group-id>",
+    "ring2": "<ring-group-id>"
+  },
+  "apps": {
+    "intuneEnrollment": "<intune-enrollment-app-id>",
+    "intune": "<intune-app-id>"
+  },
+  "securityProfile": "<security-profile-name>",
+  "workspace": {
+    "name": "<workspace>",
+    "guid": "<workspace-guid>"
+  },
+  "inScopeDevices": 0,
+  "minClientVersion": "1.8.239.0",
+  "minConnectorVersion": "<current-connector-version>",
+  "highRiskCategories": [
+    "<category-from-the-acceptable-use-policy>"
+  ],
+  "authenticationCas": [
+    "<name-of-each-ca-that-issues-authentication-certificates>"
+  ],
+  "targets": {
+    "clientCoverage": 0.98,
+    "signinShare": 0.95
+  }
+}

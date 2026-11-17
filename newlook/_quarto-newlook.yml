@@ -1,0 +1,62 @@
+# New Look: the second build of the site, for Mike's review. The current site
+# (_quarto.yml) is unchanged and still publishes at the site root; the New Look
+# publishes the same source pages under /new-look/.
+#
+# Not a Quarto profile file on its own: Quarto merges a profile into _quarto.yml
+# and concatenates lists, so a profile can add a navbar item or a filter but
+# can't replace the navbar or the sidebars. scripts/newlook/render.py builds the
+# New Look's configuration instead: it reads _quarto.yml, replaces the navbar
+# (generated from the folders, so new books, guides, paths and workbooks appear
+# by themselves), adds to the sidebars and the lists below, and renders with it.
+# Render the New Look with:
+#
+#   python scripts/newlook/render.py                 # every page, into _site-newlook/
+#   python scripts/newlook/render.py docs/new-look   # some pages or folders
+#   python scripts/newlook/render.py --print-config  # show the configuration
+#
+# Keys here are added to _quarto.yml's (lists are appended), except where a
+# comment says "replaces".
+
+project:
+  # Replaces. The deploy workflow copies it to _site/new-look/.
+  output-dir: _site-newlook
+  render:
+    - "docs/new-look/**/*.md"
+  # index.qmd (the current site's home page) isn't rendered; the New Look's
+  # index.html forwards to docs/new-look/ (scripts/newlook/postrender.py).
+  render-exclude:
+    - "index.qmd"
+  pre-render:
+    # The Browse catalog (docs/new-look/catalog.json).
+    - scripts/build_catalog.py
+    # What the New Look adds to each page (_newlook/context/), the GCC
+    # availability index and the reading plans (docs/new-look/).
+    - scripts/newlook/build_context.py
+  post-render:
+    # Forwarding home page; links to files only the current site publishes
+    # (downloads, Word editions) point there.
+    - scripts/newlook/postrender.py
+  resources:
+    - "docs/new-look/catalog.json"
+    - "docs/new-look/*.js"
+    - "newlook/*.js"
+
+website:
+  # Replaces.
+  site-url: https://whalermike.github.io/modernization-workbook/new-look/
+  title: "Federal Modernization Workbook (New Look preview)"
+
+format:
+  html:
+    # Runs after the site's own filters (assets/research-banner.lua, assets/fmw-hero.lua).
+    filters:
+      # Before Quarto reads tabsets: the portal-or-code tabs.
+      - path: newlook/newlook-tabs.lua
+        at: pre-ast
+      - newlook/newlook.lua
+    css:
+      - newlook/newlook.css
+    include-before-body:
+      - file: newlook/preview-banner.html
+    include-after-body:
+      - file: newlook/newlook-nav.html

@@ -104,6 +104,7 @@ KIT_CAPTURES = {"ttm": ("docs/project-plans/developer-workbooks/ticket-to-machin
                 "npi": ("docs/project-plans/developer-workbooks/non-person-identity", "examples/non-person-identity"),
                 "pn": ("docs/project-plans/developer-workbooks/provider-notices", "examples/provider-notices"),
                 "xdr": ("docs/project-plans/developer-workbooks/defender-xdr", "examples/defender-xdr"),
+                "gsa": ("docs/project-plans/developer-workbooks/global-secure-access", "examples/global-secure-access"),
                 "adm": ("docs/books/b19-developer-workbook", "examples")}
 
 
@@ -317,7 +318,8 @@ def non_site_tasks(changes: Iterable[Change], kits: Iterable[str] = ("start-kit"
         if p in ("scripts/check_changed.py", "scripts/check_evidence_maps.py", "scripts/check_neutrality.py",
                  "scripts/check_claims.py", "scripts/check_identifiers.py", "scripts/zta_coverage.py",
                  "scripts/generate_revisions.py", "scripts/deck_assets.py", "scripts/command_reference.py",
-                 "scripts/run_example_tests.py", ".github/workflows/pr-checks.yml") or p.startswith("scripts/tests/"):
+                 "scripts/run_example_tests.py", ".github/workflows/pr-checks.yml",
+                 "scripts/build_catalog.py", "data/catalog-overrides.yml") or p.startswith(("scripts/tests/", "docs/new-look/")):
             add("unit-tests", p)
     import check_claims
     import check_neutrality

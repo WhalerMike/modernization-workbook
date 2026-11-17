@@ -563,6 +563,7 @@ This register lists 764 sources. A slide or a video description links to a sourc
 | [Remediate non-compliant resources with Azure Policy](https://learn.microsoft.com/azure/governance/policy/how-to/remediate-resources){#remediate-non-compliant-resources-with-azure} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="remediate-non-compliant-resources-with-azure"} |
 | [Remove-DhcpServerInDC](https://learn.microsoft.com/powershell/module/dhcpserver/remove-dhcpserverindc?view=windowsserver2025-ps){#remove-dhcpserverindc} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="remove-dhcpserverindc"} |
 | [Renewal of 'Enrollment Agent' certificate used by NDES may fail](https://learn.microsoft.com/troubleshoot/windows-server/certificates-and-public-key-infrastructure-pki/renewal-of-enrollment-agent-certificate-fail){#renewal-of-enrollment-agent-certificate-used} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="renewal-of-enrollment-agent-certificate-used"} |
+| [reports: getDeviceUsageSummary (Microsoft Graph beta)](https://learn.microsoft.com/graph/api/networkaccess-reports-getdeviceusagesummary?view=graph-rest-beta){#gsa-get-device-usage-summary} | Retired | November 12, 2026 | [Not read yet]{.fmw-scan data-source="gsa-get-device-usage-summary"} |
 | [requestorManager resource type](https://learn.microsoft.com/graph/api/resources/requestormanager?view=graph-rest-1.0){#requestormanager-resource-type} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="requestormanager-resource-type"} |
 | [Resolve-DnsName](https://learn.microsoft.com/powershell/module/dnsclient/resolve-dnsname?view=windowsserver2025-ps){#resolve-dnsname} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="resolve-dnsname"} |
 | [Resource Graph sample queries for impacted resources](https://learn.microsoft.com/azure/service-health/resource-graph-impacted-samples){#learn-service-health-impacted-resources-samples} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="learn-service-health-impacted-resources-samples"} |
@@ -920,13 +921,13 @@ This register lists 764 sources. A slide or a video description links to a sourc
 | Date | Source | Change |
 |---|---|---|
 | November 15, 2026 | [AWS Security Hub CSPM in AWS GovCloud (US)](#security-hub-cspm-in-govcloud) | Retired: the Zero Trust Assessment guide no longer cites it; the program's AWS workloads run in the commercial Regions (WD-156) |
-| November 13, 2026 | [Microsoft Intune Government Service overview](#microsoft-intune-for-us-government-gcc-high) | Retired: the workbook covers GCC Moderate only (Nov 13, 2026) |
+| November 13, 2026 | 2 sources | Retired: the workbook covers GCC Moderate only (Nov 13, 2026) |
 | November 13, 2026 | [Microsoft Intune Government Service overview](#microsoft-intune-for-us-government-gcc-high) | Title updated to Learn's current title, Microsoft Intune Government Service overview |
 | November 13, 2026 | 43 sources | Added: cited on the narrated deck slides |
 | November 13, 2026 | 4 sources | Added: cited in the Azure Security guide and training labs |
 | November 12, 2026 | [Manage audit log retention policies](#manage-audit-log-retention-policies) | Label added: "audit retention", as the Book 20 deck source list names it |
 | November 12, 2026 | 22 sources | More slide wording links here |
-| November 12, 2026 | 170 sources | Added: cited on the narrated deck slides |
+| November 12, 2026 | 171 sources | Added: cited on the narrated deck slides |
 | November 11, 2026 | 14 sources | Added: cited on the Zero Trust Assessment guide's narrated deck slides |
 | November 9, 2026 | [CISA Logging Reference Architecture](#cisa-logging) | Moved: cisa.gov/Logging now redirects (301) to the Logging Reference Architecture resource page (source watch 2026-11-02 manual check) |
 | November 9, 2026 | [CISA TIC 3.0 Branch Office Use Case](#tic-3-branch-office) | Moved: CISA reposted the September 2026 Branch Office Use Case (v3.0) as an accessible PDF; the old address redirects (301) (source watch 2026-11-02 manual check) |

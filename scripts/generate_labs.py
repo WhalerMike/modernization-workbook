@@ -73,6 +73,9 @@ WORKBOOKS = [
     Workbook("xdr", "Building Defender XDR", "docs/project-plans/developer-workbooks/defender-xdr",
              "defender-xdr-code.zip", "docs/books/guides/defender-xdr-implementation.md",
              "docs/training/defender-xdr"),
+    Workbook("gsa", "Building Global Secure Access", "docs/project-plans/developer-workbooks/global-secure-access",
+             "global-secure-access-code.zip", "docs/books/guides/global-secure-access-implementation.md",
+             "docs/training/global-secure-access"),
 ]
 # Learning paths whose modules have their own exercises but no developer workbook behind them.
 MS_AUTOMATION = ["docs/training/ms-automation-foundations.md", "docs/training/ms-automation-entra.md",
@@ -82,14 +85,6 @@ ZTA = ["docs/training/zero-trust-assessment/01-evidence-not-a-verdict.md",
        "docs/training/zero-trust-assessment/02-running-the-assessment-safely.md",
        "docs/training/zero-trust-assessment/03-from-results-to-a-closure-register.md",
        "docs/training/zero-trust-assessment/04-reconcile-re-run-and-keep-the-evidence.md"]
-# The Global Secure Access learning path: no kit and no developer workbook yet, so each module's only lab is a
-# Lab 2, the guide's own commands and Validate steps in a test tenant.
-GSA = ["docs/training/global-secure-access/01-decide-design-and-log-first.md",
-       "docs/training/global-secure-access/02-the-client-and-microsoft-traffic.md",
-       "docs/training/global-secure-access/03-compliant-network-and-tenant-restrictions.md",
-       "docs/training/global-secure-access/04-private-apps-and-admin-paths.md",
-       "docs/training/global-secure-access/05-internet-access-and-tls-inspection.md",
-       "docs/training/global-secure-access/06-rings-rollback-and-the-evidence-package.md"]
 # The Azure Security Engineering learning path: no kit or workbook yet, so each module's exercise is a Lab 2
 # of the guide's own checks in a test subscription.
 AZS = ["docs/training/azure-security/01-the-baseline-and-the-exposure-register.md",
@@ -274,16 +269,6 @@ def page_text() -> str:
         out.append(f"| [{name}]({rel(src, path)}) | " + " | ".join(
             f"[{k.replace('lab', 'Lab ')}]({rel(src, path)}#{ex[k]})" if k in ex else "—" for k in ("lab1", "lab2")) + " |")
     out += ["", ": The Zero Trust Assessment: labs by module {.striped .hover}", "",
-            "## The Global Secure Access learning path {#gsa}", "",
-            "[The learning path](global-secure-access/index.md) · [its implementation guide](../books/guides/global-secure-access-implementation.md)", "",
-            "The guide has no kit and no developer workbook yet, so there is no Lab 1 on fixtures: each module's lab runs the guide's own commands and Validate steps in a test tenant.", "",
-            "| Module | Lab 2, a test tenant |", "|---|---|"]
-    for path in GSA:
-        md = (ROOT / path).read_text(encoding="utf-8")
-        ex = {h for t, h, _ in headings(md) if "Lab 2" in t}
-        name = front(md, "title")
-        out.append(f"| [{name}]({rel(src, path)}) | " + (f"[Lab 2]({rel(src, path)}#{next(iter(ex))})" if ex else "—") + " |")
-    out += ["", ": Global Secure Access: labs by module {.striped .hover}", "",
             "## The Azure Security Engineering learning path {#azs}", "",
             "[The learning path](azure-security/index.md) · [its implementation guide](../books/guides/azure-security-implementation.md)."
             " The guide has no kit or developer workbook yet, so there is no Lab 1: each module's Lab 2 runs the guide's own checks in a test subscription.", "",
@@ -313,6 +298,7 @@ def place(wb: Workbook, md: str) -> str:
     labs = f"{rel(src, 'docs/training/labs.md')}#{wb.key}"
     mods = modules(wb)
     by_nn = {c["nn"]: c for c in wb.chapters}
+    placed = False
     # After each gate's Validate callout: that gate's labs and module, where a learning path maps them.
     # Guides name a gate "G1 Writers" or "Gate 1: schema and slots".
     if any(x["gates"] for x in mods):
@@ -341,6 +327,7 @@ def place(wb: Workbook, md: str) -> str:
             if own:
                 at, title = at + own.end(), f"Labs and training: {gate}"
             md = md[:at] + block(key, lines, title) + md[at:]
+            placed = True
     elif wb.gates:
         # No learning path: each gate's Try it box links its workbook chapter's two labs.
         for m in reversed(list(re.finditer(r"^## Validate \((G(\d)[^)]*)\)\n.*?^:::\n\n", md, re.S | re.M))):
@@ -362,6 +349,7 @@ def place(wb: Workbook, md: str) -> str:
                     lines.append(f"- **As training:** [Module {int(nn)}: {name}]({rel(src, path)}), with a knowledge check")
             if lines:
                 md = md[:m.end()] + block(f"try-{gate.split()[0].lower()}", lines, f"Try it: {gate}") + md[m.end():]
+                placed = True
     # After "How to read (or use) this guide": the guide's labs on the Labs page.
     h = next((p for t, _, p in headings(md) if t.startswith(("How to read this guide", "How to use this guide"))), None)
     if h is not None:
@@ -369,7 +357,7 @@ def place(wb: Workbook, md: str) -> str:
         lines = [f"Every gate's hands-on work is a lab in the developer workbook [*{wb.title}*]({rel(src, wb.docs + '/index.md')}): "
                  f"Lab 1 on a laptop with the kit's fixtures, Lab 2 in a non-production environment. "
                  f"[The Labs page]({labs}) lists them chapter by chapter, with what each needs and a direct link"
-                 + ("; each gate below links its own labs." if mods or wb.gates else ".")]
+                 + ("; each gate below links its own labs." if placed else ".")]
         md = md[:nxt] + block("labs", lines, "Labs for this guide") + md[nxt:]
     return md
 
@@ -442,7 +430,7 @@ def lab_pages() -> list[Path]:
         pages += sorted((ROOT / wb.docs).glob("[0-9][0-9]-*.md"))
         if wb.training:
             pages += sorted((ROOT / wb.training).glob("[0-9][0-9]-*.md"))
-    return pages + [ROOT / p for p in MS_AUTOMATION + ZTA + GSA + AZS]
+    return pages + [ROOT / p for p in MS_AUTOMATION + ZTA + AZS]
 
 
 def main() -> int:

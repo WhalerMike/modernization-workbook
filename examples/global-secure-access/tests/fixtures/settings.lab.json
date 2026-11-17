@@ -1,0 +1,37 @@
+{
+  "_comment": "Lab 1's settings for the fictional tenant contoso.example at its pilot ring: the same shape as deploy/settings.template.json, with invented IDs. Names and IDs only, never a secret.",
+  "environment": "lab",
+  "changeRecord": "LAB-0001",
+  "cloud": "gcc",
+  "tenantId": "11111111-1111-4111-8111-111111111111",
+  "ring": "pilot",
+  "groups": {
+    "pilot": "22222222-2222-4222-8222-222222222201",
+    "emergency": "22222222-2222-4222-8222-222222222202",
+    "admins": "22222222-2222-4222-8222-222222222203",
+    "ring2": "22222222-2222-4222-8222-222222222204"
+  },
+  "apps": {
+    "intuneEnrollment": "33333333-3333-4333-8333-333333333301",
+    "intune": "33333333-3333-4333-8333-333333333302"
+  },
+  "securityProfile": "SP-Pilot",
+  "workspace": {
+    "name": "law-security",
+    "guid": "99999999-9999-4999-8999-999999999901"
+  },
+  "inScopeDevices": 18,
+  "minClientVersion": "1.8.239.0",
+  "minConnectorVersion": "1.5.4522.0",
+  "highRiskCategories": [
+    "ArtificialIntelligence",
+    "Gambling"
+  ],
+  "authenticationCas": [
+    "Contoso Issuing CA 01"
+  ],
+  "targets": {
+    "clientCoverage": 0.98,
+    "signinShare": 0.95
+  }
+}

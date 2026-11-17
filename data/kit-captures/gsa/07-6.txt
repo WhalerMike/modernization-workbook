@@ -1,0 +1,9 @@
+PS> ./Invoke-GsaCheck.ps1 -Area tls -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-tls -AsOf 2026-11-16T12:00:00Z
+GSA-TLS-01  Fail  certificate contosotls1: 74 days left (renew 90 days ahead); valid for 90 days in all (Learn: at least six months)
+GSA-TLS-02  Pass  certificate contosotls1: issuer: Contoso TLS Inspection CA
+GSA-TLS-03  Pass  policy TLS-Pilot: linked to: SP-Pilot
+GSA-TLS-05  Fail  policy TLS-Pilot: custom bypass *.payroll-partner.example is EX-03, expires 2026-11-01
+GSA-TLS-04  Pass  privacy: approved 2026-11-05 by Privacy officer; user notice 2026-11-06
+GSA-TLS-06  Fail  TLS outcomes: failure share 1.5% of 10000 inspected or bypassed sessions (threshold 1%)
+
+tls: 6 checks (3 Fail, 3 Pass). Written to out/check-tls: findings.json, findings.csv, manifest.json

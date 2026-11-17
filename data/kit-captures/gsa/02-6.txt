@@ -1,0 +1,4 @@
+PS> Copy-Item -Recurse out/pilot out/tampered
+PS> Add-Content -Path out/tampered/raw/licenses.json -Value ' '
+PS> Read-GsaCollection -Path out/tampered
+Exception: Collection out/tampered doesn't match its manifest: raw/licenses.json changed since its manifest
