@@ -1,0 +1,59 @@
+# New Look pattern 1: the content-type label above every page title.
+# The pages' own `doc-type` values (16 of them, several used once) fold into a
+# short list. A path rule is tried first, then the page's doc-type, then the
+# fallback. Read by scripts/newlook/build_context.py.
+
+# Path rules: [regular expression on the page's path, label]. First match wins.
+rules:
+  - ['^docs/books/b\d\d-[^/]+/index\.md$', Book]
+  - ['^docs/books/b19-developer-workbook/\d', Workbook chapter]
+  - ['^docs/books/b\d\d-[^/]+/appendix-', Appendix]
+  - ['^docs/books/b\d\d-[^/]+/r?\d', Chapter]
+  - ['^docs/project-plans/developer-workbooks/[^/]+/index\.md$', Developer workbook]
+  - ['^docs/project-plans/developer-workbooks/[^/]+/\d', Workbook chapter]
+  - ['^docs/books/guides/brief-', Brief]
+  - ['^docs/books/guides/(one-page-ask|charter-sign-off-sheet)', Brief]
+  - ['^docs/books/guides/.*-implementation\.md$', Implementation guide]
+  - ['^docs/books/guides/(ttm-servicenow-sailpoint|snow-sailpoint-integration-kit|cyberark-certificate-lifecycle|ttm-task-catalog)\.md$', Implementation guide]
+  - ['^docs/books/guides/', Guide]
+  - ['^docs/books/explainers/(?!index)', Explainer]
+  - ['^docs/evaluations/(?!index)', Evaluation]
+  - ['^docs/training/[^/]+/index\.md$', Learning path]
+  - ['^docs/training/[^/]+/\d', Module]
+  - ['^docs/training/ms-automation-', Module]
+  - ['^docs/training/infoblox', Learning path]
+  - ['^docs/training/labs\.md$', Labs]
+  - ['^docs/presentations/', Watch]
+  - ['^docs/reference/', Reference]
+  - ['^docs/project-plans/[^/]+\.md$', Plan]
+
+# doc-type value -> label.
+doc-types:
+  workbook-chapter: Chapter
+  training-module: Module
+  training-path: Learning path
+  section-landing: Overview
+  subcategory-landing: Overview
+  pillar-landing: Overview
+  workbook-guide: Guide
+  guide: Guide
+  project-plan: Plan
+  operational-guide: How-to guide
+  technical-guide: How-to guide
+  runbook: How-to guide
+  playbook: How-to guide
+  reference: Reference
+  policy-library: Reference
+  kit-reference: Reference
+
+fallback: Page
+
+# Search scopes (pattern 6): each label belongs to one tab on the New Look's
+# search page.
+scopes:
+  Books: [Book, Chapter, Appendix]
+  Guides: [Implementation guide, Guide, Brief, How-to guide, Explainer]
+  Training: [Learning path, Module, Labs]
+  Workbooks: [Developer workbook, Workbook chapter]
+  Videos: [Watch]
+  Reference: [Reference, Evaluation, Plan, Overview, Page]

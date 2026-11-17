@@ -1,0 +1,46 @@
+<!-- New Look only (newlook/_quarto-newlook.yml): a filter box at the top of long sidebars. -->
+<script>
+  (function () {
+    var nav = document.querySelector("#quarto-sidebar .sidebar-menu-container");
+    if (!nav) return;
+    var links = nav.querySelectorAll("a.sidebar-link, a.sidebar-item-text");
+    if (links.length < 25) return;
+    var wrap = document.createElement("div");
+    wrap.className = "nl-sidebar-filter";
+    var label = document.createElement("label");
+    label.setAttribute("for", "nl-sidebar-filter");
+    label.className = "visually-hidden";
+    label.textContent = "Filter this list";
+    var input = document.createElement("input");
+    input.type = "search";
+    input.id = "nl-sidebar-filter";
+    input.placeholder = "Filter this list";
+    input.autocomplete = "off";
+    var status = document.createElement("p");
+    status.className = "visually-hidden";
+    status.setAttribute("aria-live", "polite");
+    wrap.appendChild(label);
+    wrap.appendChild(input);
+    wrap.appendChild(status);
+    nav.parentNode.insertBefore(wrap, nav);
+    var items = Array.prototype.slice.call(nav.querySelectorAll("li.sidebar-item"));
+    input.addEventListener("input", function () {
+      var q = input.value.trim().toLowerCase();
+      var shown = 0;
+      // A section stays visible when it or anything inside it matches.
+      items.slice().reverse().forEach(function (li) {
+        var own = li.querySelector(":scope > .sidebar-item-container, :scope > a");
+        var text = (own ? own.textContent : li.textContent).toLowerCase();
+        var child = li.querySelector("li.sidebar-item:not(.nl-hidden)");
+        var match = !q || text.indexOf(q) >= 0 || !!child;
+        li.classList.toggle("nl-hidden", !match);
+        if (q && match) {
+          var sub = li.querySelector(":scope > ul.collapse");
+          if (sub) sub.classList.add("show");
+          if (!child) shown++;
+        }
+      });
+      status.textContent = q ? shown + " matching pages" : "";
+    });
+  })();
+</script>

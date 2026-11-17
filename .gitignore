@@ -40,3 +40,9 @@ presentations/**/narration_*/*.mp3
 /data/source-watch/state.json
 /data/source-watch/state.json.tmp
 /_watch/
+
+# The New Look build (scripts/newlook/render.py): its output, and the copy of
+# _quarto.yml it keeps while it renders.
+/_site-newlook/
+/_quarto.yml.classic
+/_newlook/

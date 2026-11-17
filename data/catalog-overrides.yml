@@ -1,0 +1,138 @@
+# Hand-kept tags for the New Look catalog (docs/new-look/catalog.json), built by
+# scripts/build_catalog.py. The generator reads titles, descriptions, status,
+# module and chapter counts, stated levels, roles and reading times from the pages
+# themselves, and video lengths from docs/presentations/videos.json. This file
+# holds only what the pages don't say: how role names map to the Browse page's
+# role list, which words mark a topic, and per-item corrections.
+#
+# Don't add these tags to the pages' front matter: many pages are approved and
+# carry a review hash, so an edit there reopens their review.
+#
+# After an edit, run:  python scripts/build_catalog.py
+# The check:           python scripts/build_catalog.py --check
+
+# The Browse page's role list, in display order, with the line each home-page tile
+# shows. Derived from the "Who this path is for" and "Roles" sections of the
+# learning paths under docs/training/.
+roles:
+  - name: Identity engineer
+    blurb: Entra ID, Active Directory, HR-driven provisioning, privileged and non-person identities.
+  - name: Endpoint engineer
+    blurb: Intune, Defender for Endpoint, Group Policy to cloud policy, device onboarding.
+  - name: Security operations
+    blurb: Monitoring, detections, hunting and incident response.
+  - name: Cloud and platform engineer
+    blurb: Azure, network and DNS platforms, landing zones, ServiceNow and other platforms.
+  - name: Developer
+    blurb: The tested code behind each kit, with labs on fixtures and in a test tenant.
+  - name: ISSO and assessor
+    blurb: Federal requirements, evidence and what an assessor reads.
+  - name: Program lead and service owner
+    blurb: Plans, owners, decisions, service health and change.
+  - name: HR and governance analyst
+    blurb: HR and contractor data, AI governance and the records behind access.
+  - name: Executive
+    blurb: Why modernize, what it costs, and the decisions to bring.
+
+# A role named on a page (lower case) matches the first rule whose pattern it
+# contains (Python regular expressions, case-insensitive).
+role-rules:
+  - [Executive, "executive|cio\\b|ciso|chco|authorizing official"]
+  - [ISSO and assessor, "isso|assessor|assessment operator"]
+  - [Security operations, "security monitor|\\bsoc\\b|detection"]
+  - [Endpoint engineer, "endpoint|intune"]
+  - [HR and governance analyst, "hr systems|ai governance"]
+  - [Identity engineer, "identity engineer|active directory|identity governance|\\biga\\b"]
+  - [Cloud and platform engineer, "platform|network|cloud|itsm|servicenow"]
+  - [Developer, "developer"]
+  - [Program lead and service owner, "program lead|pillar owner|service owner|service desk|change manager|application owner|policy owner|operator"]
+
+# Topics, in display order. An item gets a topic when the pattern matches its
+# title, subtitle or stated products; only when none does is its description read.
+topics:
+  - [Entra ID, "\\bentra id\\b|microsoft entra(?! (internet|private) access)|conditional access|identity & directory|\\bpim\\b|privileged identity management"]
+  - [Active Directory, "active directory|group policy|\\bgpo\\b|gmsa|kerberos|\\bad\\b"]
+  - [Intune and endpoints, "intune|endpoint|autopilot|devices"]
+  - [Defender XDR, "defender"]
+  - [Global Secure Access, "global secure access|internet access|private access"]
+  - [Azure, "\\bazure\\b|\\barc\\b|landing zone"]
+  - [DNS and DDI, "\\bdns\\b|dhcp|ipam|\\bddi\\b|infoblox"]
+  - [Network, "sd-wan|\\bwan\\b|network & transport|network and transport"]
+  - [HR-driven identity, "\\bhr\\b|hr-driven|joiner|\\bhcm\\b|lifecycle workflows"]
+  - [Privileged access, "privileged|emergency access"]
+  - [Non-person identity, "non-person|service account|workload identit|managed identit|agent identit|ai identity"]
+  - [Zero Trust, "zero trust"]
+  - [PKI and certificates, "\\bpki\\b|certificate"]
+  - [Security operations, "security operations|\\bsoc\\b|sentinel|telemetry|hunting"]
+  - [Information protection, "purview|information protection"]
+  - [Data platform, "\\bsql\\b|data platform"]
+  - [Cloud provider notices, "provider notices|service health|message center"]
+  - [ServiceNow and automation, "servicenow|sailpoint|ticket-to-machine|ansible|microsoft automation|graph and azure foundations"]
+  - [Application modernization, "application moderni"]
+  - [Compliance and authorization, "complian|fedramp|authoriz|\\brmf\\b|800-53|governance, drift"]
+  - [Program and people, "orientation|program|people:|meetings|charter|\\bbrief\\b|one-page|transformation arc|distribution point"]
+
+# Roles a topic implies, for items whose pages don't name their readers.
+topic-roles:
+  Entra ID: [Identity engineer]
+  Active Directory: [Identity engineer]
+  Intune and endpoints: [Endpoint engineer]
+  Defender XDR: [Security operations, Endpoint engineer]
+  Global Secure Access: [Cloud and platform engineer, Identity engineer]
+  Azure: [Cloud and platform engineer]
+  DNS and DDI: [Cloud and platform engineer]
+  Network: [Cloud and platform engineer]
+  HR-driven identity: [Identity engineer, HR and governance analyst]
+  Privileged access: [Identity engineer]
+  Non-person identity: [Identity engineer, Developer]
+  Zero Trust: [Program lead and service owner, ISSO and assessor]
+  PKI and certificates: [Identity engineer]
+  Security operations: [Security operations]
+  Information protection: [ISSO and assessor, Program lead and service owner]
+  Data platform: [Cloud and platform engineer]
+  Cloud provider notices: [Cloud and platform engineer, Program lead and service owner]
+  ServiceNow and automation: [Developer, Cloud and platform engineer]
+  Application modernization: [Developer, Program lead and service owner]
+  Compliance and authorization: [ISSO and assessor]
+  Program and people: [Program lead and service owner, Executive]
+
+# Pages that belong with a learning path whose folder name differs from theirs.
+# An item in a family takes the path's roles too.
+families:
+  docs/books/guides/ttm-servicenow-sailpoint.md: ticket-to-machine
+  docs/books/guides/snow-sailpoint-integration-kit.md: ticket-to-machine
+  docs/books/guides/ttm-task-catalog.md: ticket-to-machine
+  docs/books/b19-developer-workbook/index.md: attribute-driven-migration
+  docs/books/guides/attribute-driven-migration.md: attribute-driven-migration
+  docs/books/guides/service-account-migration.md: non-person-identity
+
+# Learning paths that aren't a folder of modules.
+extra-paths:
+  - id: ms-automation
+    title: "Learning path: Microsoft Automation"
+    description: "Four modules on calling Microsoft Graph and Azure Resource Manager from scripts: endpoints, sign-in without a secret, permissions and paging, then read-only checks for Entra ID, Intune and Azure Arc on fixtures and in a test tenant."
+    url: docs/training/ms-automation-foundations.md
+    modules: "docs/training/ms-automation-*.md"
+    level: Intermediate
+    roles: [Developer, Identity engineer, Endpoint engineer, Cloud and platform engineer]
+
+# Per-item corrections, keyed by the page's path. Allowed keys: type, level,
+# roles (replace), add-roles, topics (replace), add-topics, featured.
+items:
+  docs/books/b19-developer-workbook/index.md:
+    type: Developer workbook
+    level: Advanced
+  docs/books/guides/brief-authorizing-official.md: {roles: [Executive, ISSO and assessor]}
+  docs/books/guides/brief-chco.md: {roles: [Executive, HR and governance analyst]}
+  docs/books/guides/brief-cio.md: {roles: [Executive]}
+  docs/books/guides/brief-ciso.md: {roles: [Executive, ISSO and assessor]}
+  docs/books/guides/infoblox-nios-implementation.md: {topics: [DNS and DDI]}
+  docs/training/infoblox-training.md: {topics: [DNS and DDI], roles: [Cloud and platform engineer, Security operations]}
+  docs/books/guides/cisco-sdwan-implementation.md: {topics: [Network]}
+  docs/books/guides/dp-consolidation.md: {add-topics: [Intune and endpoints]}
+  docs/books/guides/dp-consolidation-implementation.md: {add-topics: [Intune and endpoints]}
+  docs/books/guides/brief-ciso.md: {add-topics: [Compliance and authorization]}
+
+# Learning paths shown first on the New Look home page. Leave empty to show every
+# approved learning path.
+featured: []

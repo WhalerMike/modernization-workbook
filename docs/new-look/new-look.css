@@ -1,0 +1,178 @@
+/* New Look preview (docs/new-look/ only). Loaded by those two pages' front
+   matter, so nothing here reaches any other page. A catalog layout (filter
+   rail, card grid, type labels, counts) in the workbook's own colors and fonts
+   (assets/fmw-theme.scss). */
+
+.fmw-new-look {
+  --nl-navy: #0D1B2E;
+  --nl-ink: #243248;
+  --nl-muted: #5a6878;
+  --nl-teal: #1E8C8C;
+  --nl-teal-text: #16706F;
+  --nl-amber: #E8A020;
+  --nl-amber-text: #8F5B0C;
+  --nl-line: #dfe5ec;
+  --nl-paper: #ffffff;
+  --nl-paper2: #f5f7fa;
+  --nl-approved-bg: #e6f4f1;
+  --nl-draft-bg: #fdf3e1;
+  --nl-shadow: 0 1px 2px rgba(13, 27, 46, .06), 0 2px 8px rgba(13, 27, 46, .06);
+}
+
+/* If the site ever adds a dark theme, Quarto marks the body quarto-dark. */
+body.quarto-dark.fmw-new-look {
+  --nl-navy: #e8eef5;
+  --nl-ink: #d6dee8;
+  --nl-muted: #a3b0bf;
+  --nl-teal-text: #6fd0cc;
+  --nl-amber-text: #f2c26b;
+  --nl-line: #34445a;
+  --nl-paper: #152238;
+  --nl-paper2: #101b2d;
+  --nl-approved-bg: #12393a;
+  --nl-draft-bg: #3d2f12;
+  --nl-shadow: none;
+}
+
+.fmw-new-look main.content { max-width: 1280px; margin-left: auto; margin-right: auto; }
+.fmw-new-look .nl-page { color: var(--nl-ink); }
+.fmw-new-look .nl-page ul { list-style: none; margin: 0; padding: 0; }
+.fmw-new-look .nl-preview { max-width: 60rem; }
+
+/* ------------------------------------------------------------ home */
+
+.nl-hero-search { max-width: 44rem; margin: .5rem 0 .25rem; }
+.nl-hero-search label { display: block; font-weight: 600; color: var(--nl-navy); margin-bottom: .35rem; }
+.nl-search-row { display: flex; gap: .5rem; }
+.nl-search-row input { flex: 1; min-width: 0; }
+.fmw-new-look .nl-page input[type="search"],
+.fmw-new-look .nl-page select {
+  font: inherit; color: var(--nl-ink); background: var(--nl-paper);
+  border: 1px solid #b8c3cf; border-radius: 6px; padding: .5rem .75rem; min-height: 2.75rem;
+}
+.fmw-new-look .nl-page input[type="search"]:focus-visible,
+.fmw-new-look .nl-page select:focus-visible,
+.fmw-new-look .nl-page button:focus-visible,
+.fmw-new-look .nl-page input[type="checkbox"]:focus-visible + label {
+  outline: 2px solid var(--nl-teal-text); outline-offset: 2px;
+}
+.nl-stats { color: var(--nl-muted); font-size: .95rem; }
+
+.nl-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 1rem; }
+.nl-tiles-small { grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); }
+.nl-tile {
+  position: relative; background: var(--nl-paper); border: 1px solid var(--nl-line);
+  border-top: 4px solid var(--nl-teal); border-radius: 8px; padding: 1rem 1.1rem; box-shadow: var(--nl-shadow);
+}
+.nl-tile:hover { border-color: var(--nl-teal); }
+.nl-tile-title { font-family: inherit; font-size: 1.05rem; font-weight: 600; margin: 0 0 .35rem; }
+.nl-tile-title a { color: var(--nl-navy); text-decoration: none; }
+.nl-tile-title a::after { content: ""; position: absolute; inset: 0; }
+.nl-tile-title a:hover, .nl-tile-title a:focus-visible { text-decoration: underline; }
+.nl-tile-desc { font-size: .92rem; margin: 0 0 .5rem; }
+.nl-tile-count { font-family: "IBM Plex Mono", monospace; font-size: .78rem; color: var(--nl-teal-text); margin: 0; }
+.nl-more { margin-top: .75rem; font-weight: 600; }
+
+.nl-chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+.nl-chip {
+  display: inline-block; border: 1px solid var(--nl-line); border-radius: 999px; background: var(--nl-paper2);
+  color: var(--nl-ink); padding: .3rem .8rem; font-size: .9rem; text-decoration: none; line-height: 1.4;
+}
+a.nl-chip:hover { border-color: var(--nl-teal); color: var(--nl-teal-text); }
+.nl-chip-count { color: var(--nl-muted); }
+
+/* ------------------------------------------------------------ cards */
+
+.nl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; }
+.nl-card {
+  position: relative; display: flex; flex-direction: column; background: var(--nl-paper);
+  border: 1px solid var(--nl-line); border-radius: 8px; padding: 1rem 1.1rem .9rem; box-shadow: var(--nl-shadow);
+}
+.nl-card:hover { border-color: var(--nl-teal); }
+.nl-card-type {
+  font-family: "IBM Plex Mono", monospace; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--nl-teal-text); margin: 0 0 .35rem; font-weight: 500;
+}
+.nl-type-book .nl-card-type, .nl-type-companion-guide .nl-card-type { color: var(--nl-amber-text); }
+.nl-type-video-series .nl-card-type, .nl-type-lab .nl-card-type { color: var(--nl-muted); }
+.nl-card-title { font-family: inherit; font-size: 1.05rem; font-weight: 600; line-height: 1.35; margin: 0 0 .4rem; }
+.nl-card-title a { color: var(--nl-navy); text-decoration: none; }
+.nl-card-title a::after { content: ""; position: absolute; inset: 0; }
+.nl-card-title a:hover, .nl-card-title a:focus-visible { text-decoration: underline; }
+.nl-card-desc {
+  font-size: .9rem; line-height: 1.5; margin: 0 0 .6rem;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.nl-card-meta { display: flex; flex-wrap: wrap; gap: .15rem .9rem; font-size: .82rem; color: var(--nl-muted); margin-top: auto !important; }
+.nl-card-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin: .6rem 0 0; font-size: .78rem; }
+.nl-level { border: 1px solid var(--nl-line); border-radius: 4px; padding: .05rem .45rem; color: var(--nl-ink); }
+.nl-badge { border-radius: 4px; padding: .05rem .45rem; font-weight: 600; }
+.nl-badge-approved { background: var(--nl-approved-bg); color: var(--nl-teal-text); }
+.nl-badge-draft { background: var(--nl-draft-bg); color: var(--nl-amber-text); }
+.nl-empty { grid-column: 1 / -1; padding: 2rem 0; color: var(--nl-muted); }
+
+/* ------------------------------------------------------------ browse */
+
+.nl-browse { display: grid; grid-template-columns: 16rem minmax(0, 1fr); gap: 2rem; align-items: start; margin-top: 1rem; }
+.nl-filter-toggle { display: none; }
+.nl-rail { position: sticky; top: 5rem; max-height: calc(100vh - 6rem); overflow-y: auto; padding-right: .25rem; }
+.nl-rail-head { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--nl-line); padding-bottom: .4rem; }
+.nl-rail-head h2 { font-size: 1.25rem; margin: 0; border: 0; padding: 0; }
+.nl-linkbtn { background: none; border: 0; padding: 0; color: var(--nl-teal-text); text-decoration: underline; font: inherit; font-size: .9rem; cursor: pointer; }
+.nl-facet { border-bottom: 1px solid var(--nl-line); padding: .5rem 0; }
+.nl-facet summary { font-weight: 600; color: var(--nl-navy); cursor: pointer; padding: .25rem 0; }
+.nl-facet fieldset { border: 0; margin: 0; padding: .25rem 0 0; min-width: 0; }
+.nl-facet-item { display: flex; align-items: flex-start; gap: .5rem; padding: .2rem 0; }
+.nl-facet-item input { margin-top: .3rem; width: 1rem; height: 1rem; accent-color: var(--nl-teal-text); flex-shrink: 0; }
+.nl-facet-item label { display: flex; justify-content: space-between; gap: .5rem; flex: 1; font-size: .92rem; cursor: pointer; }
+.nl-facet-count { font-family: "IBM Plex Mono", monospace; font-size: .78rem; color: var(--nl-muted); padding-top: .15rem; }
+.nl-zero label { color: var(--nl-muted); }
+.nl-folded [data-fold] { display: none; }
+.nl-more-btn { margin-top: .25rem; }
+
+.nl-toolbar { display: flex; flex-wrap: wrap; gap: .75rem 1rem; align-items: end; }
+.nl-field { display: flex; flex-direction: column; gap: .25rem; }
+.nl-field label { font-size: .85rem; font-weight: 600; color: var(--nl-navy); }
+.nl-field-grow { flex: 1 1 18rem; }
+.nl-summary { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; margin: 1rem 0 .75rem; }
+.nl-count { font-weight: 600; margin: 0; color: var(--nl-navy); }
+.nl-active { display: flex; flex-wrap: wrap; gap: .4rem; }
+.nl-chip-remove { cursor: pointer; font-size: .82rem; padding: .15rem .65rem; }
+.nl-chip-remove:hover { border-color: var(--nl-teal); }
+.nl-sitewide { margin: 0 0 .75rem; }
+
+@media (max-width: 991.98px) {
+  .nl-browse { grid-template-columns: minmax(0, 1fr); gap: .75rem; }
+  .nl-filter-toggle { display: inline-block; justify-self: start; }
+  .nl-rail { display: none; position: static; max-height: none; overflow: visible; border: 1px solid var(--nl-line); border-radius: 8px; padding: .75rem 1rem; }
+  .nl-rail.nl-rail-open { display: block; }
+}
+
+@media (max-width: 575.98px) {
+  .nl-grid, .nl-tiles { grid-template-columns: minmax(0, 1fr); }
+  .nl-tiles-small { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .nl-search-row { flex-direction: column; }
+  .nl-field, .nl-field-grow { flex: 1 1 100%; }
+}
+
+/* ------------------------------------------------------------ search */
+
+.nl-scope-tabs { display: flex; flex-wrap: wrap; gap: .25rem; border-bottom: 1px solid var(--nl-line); margin: 1rem 0 .75rem; }
+.nl-scope-tab { background: none; border: 0; border-bottom: 3px solid transparent; padding: .45rem .8rem; font: inherit; font-size: .92rem; color: var(--nl-ink); cursor: pointer; }
+.nl-scope-tab[aria-selected="true"] { border-bottom-color: var(--nl-teal); color: var(--nl-navy); font-weight: 600; }
+.nl-scope-tab:focus-visible { outline: 2px solid var(--nl-teal-text); outline-offset: -2px; }
+.nl-s-results { list-style: none; padding: 0; margin: 1rem 0; display: grid; gap: 1rem; }
+.nl-s-result { border-bottom: 1px solid var(--nl-line); padding-bottom: .75rem; }
+.nl-s-result mark { background: #fdf3e1; padding: 0 .1em; }
+
+/* Quarto's heading rules are more specific than the classes above. */
+.fmw-new-look .nl-page h3.nl-tile-title, .fmw-new-look .nl-page h3.nl-card-title { margin-top: 0 !important; font-weight: 600 !important; }
+
+/* Quarto's full-page layout puts its own column grid ("page-columns") on top-level
+   blocks; the catalog sets its own. */
+.fmw-new-look .nl-page.nl-browse.page-columns { display: grid; grid-template-columns: 16rem minmax(0, 1fr); }
+.fmw-new-look .nl-page.nl-browse.page-columns > * { grid-column: auto; }
+@media (max-width: 991.98px) {
+  .fmw-new-look .nl-page.nl-browse.page-columns { grid-template-columns: minmax(0, 1fr); }
+}
+.fmw-new-look .nl-page.page-columns:not(.nl-browse) { display: block; }
