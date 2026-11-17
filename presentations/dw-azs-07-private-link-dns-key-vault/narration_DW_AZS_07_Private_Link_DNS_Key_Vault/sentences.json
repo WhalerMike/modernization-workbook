@@ -1,0 +1,428 @@
+{
+ "1": [
+  [
+   0.05,
+   6.2,
+   "Welcome to Building Azure Security, Chapter 7: Private Link, D N S and Key Vault."
+  ],
+  [
+   6.25,
+   2.212,
+   "A private endpoint is an address."
+  ],
+  [
+   8.463,
+   6.763,
+   "Whether anything uses it is a D N S question, and whether the public path is closed is a third one."
+  ],
+  [
+   15.225,
+   1.75,
+   "The code asks all three."
+  ],
+  [
+   16.975,
+   15.85,
+   "We'll start from Microsoft Learn's Private Link commands for Key Vault, the zone group, the Cloud Adoption Framework's central-zone pattern and Learn's Key Vault recommendations, see what they leave to you, read the kit's check, and walk two labs, the evidence and the dangers."
+  ],
+  [
+   32.825,
+   6.912,
+   "The chapter is a draft awaiting the owner's review, and the code is illustrative, tested against a fictional estate."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.375,
+   "Why three questions?"
+  ],
+  [
+   1.425,
+   8.438,
+   "Because a private endpoint that exists can still go unused if the name doesn't resolve to it, and can still be bypassed if the public path stays open."
+  ],
+  [
+   9.863,
+   18.975,
+   "By the end of this chapter you can answer four things: whether every privatelink zone is central and linked to the hub, whether every private endpoint registers its record in a central zone, which resources still accept public traffic beside their endpoint, and which key vaults miss any part of the posture Microsoft Learn recommends."
+  ],
+  [
+   28.837,
+   2.688,
+   "And you can compute the guide's vault-posture metric."
+  ],
+  [
+   31.525,
+   7.95,
+   "It's for platform owners, who own the zones; workload owners, who own endpoints and vaults; and the developers who review both."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.875,
+   "Here's Microsoft's starting point."
+  ],
+  [
+   1.925,
+   13.425,
+   "Learn's Key Vault Private Link page creates a vault on role-based access with purge protection, closes its firewall, creates the vault's privatelink zone and its link, and the private endpoint, then validates with nslookup."
+  ],
+  [
+   15.35,
+   3.712,
+   "It also says name resolution is where private endpoints fail."
+  ],
+  [
+   19.062,
+   5.75,
+   "A private D N S zone group registers the endpoint's record, and removes it with the endpoint."
+  ],
+  [
+   24.812,
+   7.287,
+   "The Cloud Adoption Framework keeps privatelink zones central in the connectivity subscription and adds zone groups by policy."
+  ],
+  [
+   32.1,
+   3.35,
+   "The zone group A P I returns each group's zone."
+  ],
+  [
+   35.45,
+   10.525,
+   "And Learn's Key Vault recommendations: role-based access, not access policies; purge protection; private endpoints with public access disabled; and audit logging."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.363,
+   "What does Learn leave to you?"
+  ],
+  [
+   1.413,
+   9.287,
+   "The commands make one zone, one link, one endpoint; in practice, zones still get created in workload subscriptions, and records split."
+  ],
+  [
+   10.7,
+   5.388,
+   "A zone group per endpoint means an endpoint without one has no record anybody manages."
+  ],
+  [
+   16.087,
+   7.862,
+   "\"Turn public access off once the private path works\" leaves room for the private path to work while the public one stays open."
+  ],
+  [
+   23.95,
+   5.513,
+   "Key Vault's recommendations are read once, and a vault created next quarter misses one."
+  ],
+  [
+   29.462,
+   4.175,
+   "And nslookup has to run from inside a network, which the kit can't do."
+  ],
+  [
+   33.638,
+   5.438,
+   "So the kit checks the records' configuration every run, and Lab 2 runs nslookup."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.962,
+   "Six rules cover the network side."
+  ],
+  [
+   2.013,
+   9.025,
+   "A privatelink zone outside the connectivity subscription, or not linked to the hub, is a finding, as the Cloud Adoption Framework's central pattern asks."
+  ],
+  [
+   11.037,
+   7.513,
+   "A private endpoint with no zone group, or one that registers in a zone outside the connectivity subscription, is a finding."
+  ],
+  [
+   18.55,
+   5.062,
+   "A resource with a private endpoint and public network access still on is a finding."
+  ],
+  [
+   23.613,
+   14.412,
+   "And a platform service that's public with no private endpoint at all is a warning, not a finding: the guide's private PaaS target is the agency's own, rising, and a Front Door origin locked by Chapter 5's checks may be public by design."
+  ],
+  [
+   38.025,
+   1.913,
+   "Vaults go to the Key Vault rules."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   18.275,
+   "Then every vault gets six checks from Learn's Key Vault recommendations: role-based access, not access policies; purge protection; a firewall whose default is deny; public network access, which is a warning; an approved private endpoint; and audit events sent to the platform workspace."
+  ],
+  [
+   18.325,
+   10.412,
+   "A vault has the full posture when it has role-based access, purge protection, an approved private endpoint and audit logs: the four parts of the guide's vault-posture metric."
+  ],
+  [
+   28.738,
+   5.412,
+   "Key rotation policies are read through the vault's own data plane, which the kit doesn't call."
+  ],
+  [
+   34.15,
+   2.65,
+   "Lab 2 reads one with the guide's command."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   6.35,
+   "The platform owner owns the central zones, their links to the hub, and the policy that adds zone groups."
+  ],
+  [
+   7.45,
+   6.375,
+   "Workload owners own their endpoints and vaults, and close the public path once the private one works."
+  ],
+  [
+   13.825,
+   4.425,
+   "And the application owner keeps each vault's posture, with the platform owner."
+  ],
+  [
+   18.25,
+   6.8,
+   "Every read the check makes is Reader, and it never touches a vault's data plane: no secrets, no keys."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   5.3,
+   "Lab 1 needs PowerShell 7 with Pester, in the kit's folder, and no subscription."
+  ],
+  [
+   5.35,
+   7.825,
+   "Contoso's vault zone is central and linked to the hub; the payroll team created its own blob zone in its workload subscription."
+  ],
+  [
+   13.175,
+   4.275,
+   "Step 1 runs the check: one of three vaults has the full posture."
+  ],
+  [
+   17.45,
+   2.175,
+   "Step 2 reads each vault."
+  ],
+  [
+   19.625,
+   1.75,
+   "The payroll vault has everything."
+  ],
+  [
+   21.375,
+   5.0,
+   "The hub certificates vault has no private endpoint, and its public access is on."
+  ],
+  [
+   26.375,
+   10.088,
+   "And the portal vault misses every part: access policies, no purge protection, an open firewall, public access, no endpoint and no audit log."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.475,
+   "Step 3 reads each private endpoint and the zone it registers in."
+  ],
+  [
+   4.525,
+   3.3,
+   "The vault's endpoint registers in the central vault zone."
+  ],
+  [
+   7.825,
+   3.625,
+   "The blob endpoint registers in the payroll team's own zone."
+  ],
+  [
+   11.45,
+   4.575,
+   "And the queue endpoint has no zone group at all: nothing registers its record."
+  ],
+  [
+   16.025,
+   2.125,
+   "Step 4 reads the findings."
+  ],
+  [
+   18.15,
+   12.2,
+   "The blob zone is in the payroll subscription and not linked to the hub; the blob endpoint registers there; the queue endpoint has no zone group; the storage account has two endpoints and public access still on."
+  ],
+  [
+   30.35,
+   4.487,
+   "Then the vault findings, and warnings for public services with no endpoint."
+  ],
+  [
+   34.837,
+   2.712,
+   "Step 5 runs this chapter's two tests."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   9.175,
+   "Lab 2 moves to a test subscription with a test vault behind a private endpoint and the central zone, and a test machine in a linked network, never production."
+  ],
+  [
+   9.225,
+   5.513,
+   "Sign in, write the settings, and run the check liv, allowing the unverified calls."
+  ],
+  [
+   14.738,
+   11.662,
+   "Compare with the guide's Validate query, which reads the vault's role-based access, purge protection, firewall and public access, and read one key's rotation policy, which the kit doesn't."
+  ],
+  [
+   26.4,
+   7.588,
+   "Then, from the test machine, look up the vault's name: the answer should come through the vault's privatelink zone with a private address."
+  ],
+  [
+   33.987,
+   5.625,
+   "From outside, the same name resolves to the public frontend, which refuses the request."
+  ],
+  [
+   39.612,
+   2.825,
+   "Back out by deleting the output and signing out."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   8.062,
+   "Each output is evidence for something specific, from the guide's requirements table against nist special publication eight hundred fifty-three."
+  ],
+  [
+   8.113,
+   9.537,
+   "Central zones linked to the hub, every endpoint registered there, and nothing public behind an endpoint support boundary protection and information flow enforcement."
+  ],
+  [
+   17.65,
+   4.95,
+   "Public services without an endpoint, named, support boundary protection."
+  ],
+  [
+   22.6,
+   11.725,
+   "And every vault on role-based access with purge protection, a private endpoint and audit logs supports cryptographic key management, protection of information at rest, and authenticator management."
+  ],
+  [
+   34.325,
+   4.05,
+   "The kit's output supports these controls; the assessor decides."
+  ],
+  [
+   38.375,
+   7.463,
+   "The key security indicators are fed-ramp's indicators for cloud providers, which the agency lines its own evidence up with."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.4,
+   "What breaks in production?"
+  ],
+  [
+   1.45,
+   7.138,
+   "Zones in workload subscriptions split the records, so resolution fails or goes public; the kit flags them."
+  ],
+  [
+   8.588,
+   4.862,
+   "An endpoint with no zone group has a record somebody made by hand, or none at all."
+  ],
+  [
+   13.45,
+   6.775,
+   "The public path left open means the private endpoint works, and so does the internet; three rules catch it."
+  ],
+  [
+   20.225,
+   6.562,
+   "Purge protection can't be turned off once it's on, which is the point, so the kit only ever asks for it on."
+  ],
+  [
+   26.788,
+   9.7,
+   "And configuration isn't resolution: the records can exist while clients still resolve the public name, which is why Lab 2 runs nslookup from a linked machine."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   4.537,
+   "Every privatelink zone is in the connectivity subscription and linked to the hub."
+  ],
+  [
+   5.938,
+   3.475,
+   "Every private endpoint has a zone group in a central zone."
+  ],
+  [
+   9.412,
+   6.188,
+   "No resource has an endpoint with public network access still on, unless a decision record says why."
+  ],
+  [
+   15.6,
+   3.275,
+   "Every vault has the full posture, or a dated plan."
+  ],
+  [
+   18.875,
+   3.75,
+   "And nslookup from a linked machine returned a private address."
+  ],
+  [
+   22.625,
+   6.075,
+   "Next, Chapter 8: the policy that holds all of this in place, and the evidence that it did."
+  ]
+ ]
+}

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.450
+What breaks in production?
+
+2
+00:00:01.450 --> 00:00:04.146
+The service tag alone lets any customer's
+
+3
+00:00:04.146 --> 00:00:07.000
+Front Door reach the
+origin: the kit flags it.
+
+4
+00:00:07.000 --> 00:00:10.455
+A header copied from another
+profile lets that profile in,
+
+5
+00:00:10.455 --> 00:00:13.765
+so the kit compares the header
+with this profile's own ID.
+
+6
+00:00:13.765 --> 00:00:18.443
+Configuration taken as proof is a danger
+of its own: a rule can read right while a
+
+7
+00:00:18.443 --> 00:00:23.337
+request still gets through another path,
+like another slot or the deployment site.
+
+8
+00:00:23.337 --> 00:00:28.749
+So the metric says "by configuration",
+and Lab 2's direct request is the test.
+
+9
+00:00:28.749 --> 00:00:33.211
+And an origin the kit can't read would
+otherwise be counted locked by nobody
+
+10
+00:00:33.211 --> 00:00:37.370
+and tested by nobody, so it's flagged
+every week until someone tests it.

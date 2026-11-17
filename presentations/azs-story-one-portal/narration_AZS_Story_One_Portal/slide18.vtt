@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.371
+The answer to check five: the
+tag's addresses are shared by
+
+2
+00:00:03.371 --> 00:00:06.975
+every Front Door customer, so the
+header has to prove it's yours.
+
+3
+00:00:06.975 --> 00:00:08.663
+Scene six, what leaves.
+
+4
+00:00:08.663 --> 00:00:13.674
+Microsoft Learn's Zero Trust recommendations
+for Azure Firewall check that outbound
+
+5
+00:00:13.674 --> 00:00:15.831
+traffic routes through the firewall,
+
+6
+00:00:15.831 --> 00:00:19.799
+with threat intelligence and
+intrusion detection in alert and deny.
+
+7
+00:00:19.799 --> 00:00:24.087
+The portal's web subnet sends its
+default route straight to the internet.
+
+8
+00:00:24.087 --> 00:00:28.124
+Its jump subnet sends it to an
+appliance that isn't the hub firewall.
+
+9
+00:00:28.124 --> 00:00:30.450
+And the hub policy is still in alert.
+
+10
+00:00:30.450 --> 00:00:35.286
+The kit writes Learn's draft-and-deploy
+commands for the move to deny into a plan,
+
+11
+00:00:35.286 --> 00:00:39.890
+which it never runs, because deploying
+replaces the whole applied policy.

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.012
+Six rules cover the network side.
+
+2
+00:00:02.012 --> 00:00:06.995
+A privatelink zone outside the connectivity
+subscription, or not linked to the hub,
+
+3
+00:00:06.995 --> 00:00:11.038
+is a finding, as the Cloud Adoption
+Framework's central pattern asks.
+
+4
+00:00:11.038 --> 00:00:14.718
+A private endpoint with no zone
+group, or one that registers
+
+5
+00:00:14.718 --> 00:00:18.550
+in a zone outside the connectivity
+subscription, is a finding.
+
+6
+00:00:18.550 --> 00:00:23.612
+A resource with a private endpoint and
+public network access still on is a finding.
+
+7
+00:00:23.612 --> 00:00:28.755
+And a platform service that's public with
+no private endpoint at all is a warning,
+
+8
+00:00:28.755 --> 00:00:33.273
+not a finding: the guide's private PaaS
+target is the agency's own, rising,
+
+9
+00:00:33.273 --> 00:00:38.025
+and a Front Door origin locked by Chapter
+5's checks may be public by design.
+
+10
+00:00:38.025 --> 00:00:40.010
+Vaults go to the Key Vault rules.

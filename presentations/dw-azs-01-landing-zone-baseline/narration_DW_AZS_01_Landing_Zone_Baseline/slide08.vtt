@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.749
+Lab 1 needs only PowerShell 7 with
+Pester, in the kit's folder, against the
+
+2
+00:00:04.749 --> 00:00:07.935
+fictional Contoso estate:
+an intermediate root,
+
+3
+00:00:07.935 --> 00:00:10.962
+four subscriptions and
+a platform workspace.
+
+4
+00:00:10.962 --> 00:00:12.163
+No subscription.
+
+5
+00:00:12.163 --> 00:00:17.987
+Step 1 lists the six calls this chapter
+makes, every one Reader, every one verified.
+
+6
+00:00:17.987 --> 00:00:23.035
+Step 2 runs the baseline check on the
+first week's estate: hierarchy settings,
+
+7
+00:00:23.035 --> 00:00:28.563
+four policy assignments, sixteen platform
+resources and four subscriptions read.
+
+8
+00:00:28.563 --> 00:00:32.526
+Twelve findings and one
+information row, from six calls,
+
+9
+00:00:32.526 --> 00:00:36.720
+every one a read, with a manifest
+that lists each file's hash.

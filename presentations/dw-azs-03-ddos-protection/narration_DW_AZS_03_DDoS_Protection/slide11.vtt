@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.250
+Each output supports a specific control
+from the guide's requirements table.
+
+2
+00:00:04.250 --> 00:00:07.325
+Every address's protection,
+the network it depends on,
+
+3
+00:00:07.325 --> 00:00:11.378
+and the coverage support NIST's
+denial-of-service protection control,
+
+4
+00:00:11.378 --> 00:00:13.963
+aligned to FedRAMP's
+indicator that cites it.
+
+5
+00:00:13.963 --> 00:00:16.860
+DDoS logs and an enabled
+attack alert on each
+
+6
+00:00:16.860 --> 00:00:19.913
+protected address support
+system monitoring.
+
+7
+00:00:19.913 --> 00:00:23.861
+And the addresses no plan can
+protect, or the kit couldn't resolve,
+
+8
+00:00:23.861 --> 00:00:27.213
+are named for the security
+officer's decision records.
+
+9
+00:00:27.213 --> 00:00:30.125
+The simulation report and
+the fired alert are the
+
+10
+00:00:30.125 --> 00:00:33.037
+guide's test evidence; the
+kit doesn't produce them.
+
+11
+00:00:33.037 --> 00:00:37.150
+The kit's output supports these
+controls; the assessor decides.

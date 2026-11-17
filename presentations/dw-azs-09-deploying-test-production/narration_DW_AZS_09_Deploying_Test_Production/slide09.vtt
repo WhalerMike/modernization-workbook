@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.875
+Step 7 rehearses the rollback in test.
+
+2
+00:00:02.875 --> 00:00:06.910
+Plan the removal, apply it with
+its own hash, see the policy check
+
+3
+00:00:06.910 --> 00:00:11.488
+notice the initiative is gone, then
+plan and apply the assignment again.
+
+4
+00:00:11.488 --> 00:00:15.151
+Resources a remediation
+created stay until removed.
+
+5
+00:00:15.151 --> 00:00:19.651
+In production the rollback is different:
+once the initiative enforces,
+
+6
+00:00:19.651 --> 00:00:24.000
+you set it back to DoNotEnforce, back
+to audit, rather than removing it.
+
+7
+00:00:24.000 --> 00:00:28.225
+In fixture mode, that plan printed
+the update command and sent nothing.
+
+8
+00:00:28.225 --> 00:00:31.801
+Step 8, a week later, is
+the second scheduled run:
+
+9
+00:00:31.801 --> 00:00:34.625
+it finds last week's run and compares.
+
+10
+00:00:34.625 --> 00:00:37.780
+In fixture mode, thirteen
+fixed and four new.

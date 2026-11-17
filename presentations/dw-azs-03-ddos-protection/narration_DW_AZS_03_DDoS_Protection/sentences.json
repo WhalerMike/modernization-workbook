@@ -1,0 +1,448 @@
+{
+ "1": [
+  [
+   0.05,
+   2.375,
+   "Welcome back to Building Azure Security."
+  ],
+  [
+   2.425,
+   2.812,
+   "This is Chapter 3: DDoS protection."
+  ],
+  [
+   5.237,
+   3.087,
+   "Protected isn't a property of a public IP."
+  ],
+  [
+   8.325,
+   7.138,
+   "It depends on the address, the network behind it and the plan that network is linked to, and the code has to follow all three."
+  ],
+  [
+   15.463,
+   10.338,
+   "We'll start from what Microsoft Learn gives you, see what it leaves to you, read how the kit follows each address to its network, and walk two labs, the evidence and the dangers."
+  ],
+  [
+   25.8,
+   6.912,
+   "The chapter is a draft awaiting the owner's review, and the code is illustrative, tested against a fictional estate."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.312,
+   "Why does this need code?"
+  ],
+  [
+   1.363,
+   6.638,
+   "Because a public IP's own setting can say it inherits protection, while the network it inherits from has no plan at all."
+  ],
+  [
+   8.0,
+   15.188,
+   "By the end of this chapter you can say, for every public IP in an estate, whether it's under DDoS IP Protection or Network Protection, whether it sends DDoS logs to the platform workspace, and whether an enabled alert fires when it's under attack."
+  ],
+  [
+   23.188,
+   3.763,
+   "And you can compute the guide's DDoS coverage metric from the same run."
+  ],
+  [
+   26.95,
+   7.112,
+   "It's for platform owners who own the plan, security monitors who answer the alert, and the developers who keep the check honest."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.875,
+   "Here's Microsoft's starting point."
+  ],
+  [
+   1.925,
+   3.888,
+   "Every public IP gets infrastructure protection at no cost."
+  ],
+  [
+   5.812,
+   8.85,
+   "Network Protection and IP Protection add tuning, metrics, alerts and reports, and neither covers a public IP on a NAT gateway."
+  ],
+  [
+   14.662,
+   7.487,
+   "Network Protection is a plan you link to virtual networks; IP Protection is enabled on one Standard public IP."
+  ],
+  [
+   22.15,
+   9.613,
+   "Microsoft's Zero Trust recommendations check that every public IP in a virtual network is protected, that metrics are on, and that diagnostic logs are on."
+  ],
+  [
+   31.762,
+   5.775,
+   "And Learn's simulation tutorial alerts on the metric that says whether an address is under attack."
+  ],
+  [
+   37.538,
+   6.575,
+   "DDoS protection covers layers three and four; layer seven needs a web application firewall."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.337,
+   "What does that leave to you?"
+  ],
+  [
+   1.387,
+   3.4,
+   "Inherited from which network, and does that network have a plan?"
+  ],
+  [
+   4.787,
+   8.3,
+   "The property doesn't say, so the kit follows each address to the resource that holds it, its subnet, its network and that network's plan."
+  ],
+  [
+   13.088,
+   6.075,
+   "NAT gateway addresses can't be protected, so they're reported as information and left out of coverage."
+  ],
+  [
+   19.163,
+   7.375,
+   "An alert or a diagnostic setting made one address at a time misses the next address, or goes to the wrong workspace."
+  ],
+  [
+   26.538,
+   4.025,
+   "An address set to Disabled isn't protected, whatever the network."
+  ],
+  [
+   30.562,
+   6.487,
+   "And a load balancer's frontend doesn't name its backend network, so the kit says it can't resolve it rather than guessing."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.138,
+   "So every public IP gets exactly one status."
+  ],
+  [
+   3.188,
+   2.587,
+   "IP Protection when its mode is enabled."
+  ],
+  [
+   5.775,
+   4.263,
+   "Inherited when it inherits and its network has protection and a plan."
+  ],
+  [
+   10.037,
+   4.425,
+   "Unprotected when it's disabled, or inherits from a network with no plan."
+  ],
+  [
+   14.463,
+   5.713,
+   "Unknown when it inherits and the kit can't find the network, as with a load balancer frontend."
+  ],
+  [
+   20.175,
+   2.013,
+   "NAT gateway when it sits on one."
+  ],
+  [
+   22.188,
+   2.487,
+   "And unattached when it's attached to nothing."
+  ],
+  [
+   24.675,
+   8.512,
+   "Coverage is protected addresses over addresses in scope, the guide's metric, with NAT gateway and unattached addresses left out."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   5.425,
+   "For each protected address the check reads its diagnostic settings and the metric alerts."
+  ],
+  [
+   5.475,
+   12.3,
+   "A log counts if one of Learn's three DDoS categories, or all logs, goes to the platform workspace; Learn says the mitigation reports category retires from about mid-August 2026."
+  ],
+  [
+   17.775,
+   8.912,
+   "An alert counts if it's enabled, has a criterion on the under-attack metric, and its scope is the address, its resource group or its subscription."
+  ],
+  [
+   26.688,
+   12.113,
+   "That gives six rules: unprotected, unresolvable, on a NAT gateway, no logs, no alert, and more than one plan, since the guide keeps one plan for the agency."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   5.525,
+   "The platform owner owns the DDoS plan, the networks linked to it, and the coverage number."
+  ],
+  [
+   6.625,
+   4.675,
+   "The security monitor answers the under-attack alert and reads the DDoS logs."
+  ],
+  [
+   11.3,
+   7.025,
+   "And the security officer keeps the decision records for addresses no plan can protect, like those on a NAT gateway."
+  ],
+  [
+   18.325,
+   2.125,
+   "The kit's reads need only Reader."
+  ],
+  [
+   20.45,
+   9.65,
+   "The simulation the guide asks for, run only through Learn's approved partners against the agency's own protected addresses, is a person's work, not the kit's."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.112,
+   "Lab 1 needs PowerShell 7 with Pester, in the kit's folder."
+  ],
+  [
+   4.162,
+   4.8,
+   "Contoso's hub network is linked to its DDoS plan; the portal spoke isn't."
+  ],
+  [
+   8.963,
+   4.725,
+   "Step 1 runs the check: four of six addresses in scope are protected."
+  ],
+  [
+   13.688,
+   2.3,
+   "Step 2 reads each address."
+  ],
+  [
+   15.988,
+   6.013,
+   "The firewall's, the application gateway's and the VPN gateway's addresses inherit from the hub."
+  ],
+  [
+   22.0,
+   2.562,
+   "The test app's address has IP Protection."
+  ],
+  [
+   24.562,
+   4.412,
+   "The jump box's address inherits from the portal spoke, which has no plan."
+  ],
+  [
+   28.975,
+   4.362,
+   "And only the application gateway's address has both logs and an alert."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   10.613,
+   "Step 3 counts the statuses: one with IP Protection, three inherited, one unprotected, one unknown, one on a NAT gateway and one unattached."
+  ],
+  [
+   10.662,
+   2.125,
+   "Step 4 reads the findings."
+  ],
+  [
+   12.787,
+   6.725,
+   "The firewall's address sends its logs to an application team's workspace, so the missing-logs finding still fires."
+  ],
+  [
+   19.512,
+   5.1,
+   "The test app's alert exists but is disabled, so the missing-alert finding fires too."
+  ],
+  [
+   24.613,
+   4.037,
+   "The load balancer is reported as unknown, not guessed."
+  ],
+  [
+   28.65,
+   3.125,
+   "And the trial plan is a second plan with no networks."
+  ],
+  [
+   31.775,
+   2.812,
+   "Step 5 runs the chapter's three tests."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   7.987,
+   "Lab 2 moves to a test subscription in a test tenant, never production, with at least one public IP in a virtual network."
+  ],
+  [
+   8.037,
+   7.25,
+   "A Network Protection plan is billed per plan; without one the lab still runs, and every address shows as unprotected."
+  ],
+  [
+   15.287,
+   9.488,
+   "Sign in to commercial Azure, write the settings file, and run the check liv; six of its seven calls aren't verified on Learn yet, so allow them and compare."
+  ],
+  [
+   24.775,
+   6.388,
+   "The guide's own query gives each address's mode, and the portal shows an inherited network's DDoS protection."
+  ],
+  [
+   31.163,
+   3.55,
+   "Resolve any unknown address by hand and record it."
+  ],
+  [
+   34.712,
+   3.85,
+   "Nothing changed in Azure, so back out by deleting the output."
+  ],
+  [
+   38.562,
+   2.0,
+   "The authors haven't run this lab."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.2,
+   "Each output supports a specific control from the guide's requirements table."
+  ],
+  [
+   4.25,
+   9.713,
+   "Every address's protection, the network it depends on, and the coverage support nist's denial-of-service protection control, aligned to fed-ramp's indicator that cites it."
+  ],
+  [
+   13.963,
+   5.95,
+   "DDoS logs and an enabled attack alert on each protected address support system monitoring."
+  ],
+  [
+   19.913,
+   7.3,
+   "And the addresses no plan can protect, or the kit couldn't resolve, are named for the security officer's decision records."
+  ],
+  [
+   27.212,
+   5.825,
+   "The simulation report and the fired alert are the guide's test evidence; the kit doesn't produce them."
+  ],
+  [
+   33.038,
+   4.05,
+   "The kit's output supports these controls; the assessor decides."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   2.263,
+   "What breaks, and what guards against it?"
+  ],
+  [
+   2.312,
+   6.925,
+   "Trust the inherited setting and you may count an address whose network has no plan, so the kit follows it to the plan."
+  ],
+  [
+   9.238,
+   6.675,
+   "Guess about a load balancer and coverage is claimed for a backend nobody checked, so it's counted as not protected."
+  ],
+  [
+   15.912,
+   5.312,
+   "An alert that exists but is switched off pages nobody, so only enabled alerts count."
+  ],
+  [
+   21.225,
+   6.175,
+   "Logs to the wrong workspace leave the monitor's queries empty, so only the platform workspace counts."
+  ],
+  [
+   27.4,
+   9.312,
+   "And Learn warns that a protected network can't be moved, and disabling protection to move it resets the tuning: that's the change record's job, not the kit's."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   4.688,
+   "Every unprotected address has a plan, a decision record or a ticket."
+  ],
+  [
+   6.088,
+   4.55,
+   "Every address the kit couldn't resolve was resolved by hand and recorded."
+  ],
+  [
+   10.637,
+   5.438,
+   "Every protected address has DDoS logs to the platform workspace and an enabled alert."
+  ],
+  [
+   16.075,
+   3.5,
+   "The coverage in the summary is the number the metric reports."
+  ],
+  [
+   19.575,
+   4.237,
+   "And a simulation ran this year, with its report filed beside the run."
+  ],
+  [
+   23.812,
+   4.938,
+   "Next, Chapter 4 moves to layer seven: the web application firewall."
+  ]
+ ]
+}

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.756
+Then every vault gets six checks from
+Learn's Key Vault recommendations:
+
+2
+00:00:04.756 --> 00:00:08.442
+role-based access, not access
+policies; purge protection;
+
+3
+00:00:08.442 --> 00:00:13.227
+a firewall whose default is deny; public
+network access, which is a warning;
+
+4
+00:00:13.227 --> 00:00:18.325
+an approved private endpoint; and audit
+events sent to the platform workspace.
+
+5
+00:00:18.325 --> 00:00:22.936
+A vault has the full posture when it
+has role-based access, purge protection,
+
+6
+00:00:22.936 --> 00:00:25.688
+an approved private
+endpoint and audit logs:
+
+7
+00:00:25.688 --> 00:00:28.737
+the four parts of the
+guide's vault-posture metric.
+
+8
+00:00:28.737 --> 00:00:32.635
+Key rotation policies are read
+through the vault's own data plane,
+
+9
+00:00:32.635 --> 00:00:34.150
+which the kit doesn't call.
+
+10
+00:00:34.150 --> 00:00:36.860
+Lab 2 reads one with the guide's command.

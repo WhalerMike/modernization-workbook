@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:02.213
+Read each policy.
+
+3
+00:00:02.213 --> 00:00:05.878
+The gateway's policy,
+wafp-portal: detection,
+
+4
+00:00:05.878 --> 00:00:10.562
+body inspection on, rule set
+2.1, bot rules and a rate limit.
+
+5
+00:00:10.562 --> 00:00:17.237
+The Front Door policy: prevention, body
+inspection on, rule set 2.1, no bot rules.
+
+6
+00:00:17.237 --> 00:00:21.390
+Then read the plan the kit wrote: a
+header that says the kit did not run it,
+
+7
+00:00:21.390 --> 00:00:25.900
+then Microsoft Learn's own switch command
+for wafp-portal, with its resource
+
+8
+00:00:25.900 --> 00:00:30.338
+group and subscription, setting
+prevention, the state and body inspection.
+
+9
+00:00:30.338 --> 00:00:35.450
+One of three internet-facing endpoints is
+behind a firewall in prevention this week.

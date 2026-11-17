@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.576
+The policy check reads the assignments,
+
+2
+00:00:02.576 --> 00:00:06.787
+the exemptions and Learn's compliance
+query, and reports six rules.
+
+3
+00:00:06.787 --> 00:00:10.387
+The security initiative must be
+assigned at the intermediate root.
+
+4
+00:00:10.387 --> 00:00:12.821
+It's a warning if it's
+still in DoNotEnforce
+
+5
+00:00:12.821 --> 00:00:15.325
+after the enforce-by
+date the settings give.
+
+6
+00:00:15.325 --> 00:00:20.735
+Every exemption needs an expiry; one past
+its expiry is a finding, because Learn
+
+7
+00:00:20.735 --> 00:00:25.813
+says it's kept but no longer honored;
+one due within thirty days is a warning.
+
+8
+00:00:25.813 --> 00:00:29.887
+And an assignment that excludes
+scopes with notScopes is a finding.
+
+9
+00:00:29.887 --> 00:00:34.750
+Most of these are the program's design
+guidance; the expiry rule is Learn's.

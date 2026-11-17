@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+What does Learn leave to you?
+
+2
+00:00:01.413 --> 00:00:06.501
+The guide's Validate query reads one
+policy, and policies drift one at a time.
+
+3
+00:00:06.501 --> 00:00:09.527
+A route command per subnet
+means a subnet added
+
+4
+00:00:09.527 --> 00:00:12.088
+later has no route, or
+one to the internet.
+
+5
+00:00:12.088 --> 00:00:16.075
+A virtual appliance at some address
+may not be the firewall at all.
+
+6
+00:00:16.075 --> 00:00:20.875
+A Standard policy can't deny on intrusion
+detection whatever its mode says.
+
+7
+00:00:20.875 --> 00:00:23.562
+Sent by automation, a draft would deploy
+
+8
+00:00:23.562 --> 00:00:26.900
+without review and replace
+live edits made since.
+
+9
+00:00:26.900 --> 00:00:31.050
+And the route a machine actually uses
+can include system routes that win.
+
+10
+00:00:31.050 --> 00:00:35.880
+The kit answers each one, and is honest
+that it reads declared routes only.

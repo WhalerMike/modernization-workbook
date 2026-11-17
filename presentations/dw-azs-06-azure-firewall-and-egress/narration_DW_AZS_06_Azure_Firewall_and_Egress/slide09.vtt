@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.623
+Step 3 reads the findings: threat
+intelligence and intrusion detection both in
+
+2
+00:00:05.623 --> 00:00:10.098
+alert, no firewall logs, two subnets
+with no route to the firewall,
+
+3
+00:00:10.098 --> 00:00:13.138
+an unknown appliance,
+and no TLS inspection.
+
+4
+00:00:13.138 --> 00:00:15.974
+Step 4 reads the plan the
+kit wrote and didn't run:
+
+5
+00:00:15.974 --> 00:00:19.684
+Learn's four draft and deployment
+commands for the hub policy,
+
+6
+00:00:19.684 --> 00:00:23.903
+with its resource group and subscription,
+under a header that says the
+
+7
+00:00:23.903 --> 00:00:28.049
+kit did not run them, and points at
+the guide's Step 6 and a change window.
+
+8
+00:00:28.049 --> 00:00:30.820
+Step 5 runs this chapter's two tests.

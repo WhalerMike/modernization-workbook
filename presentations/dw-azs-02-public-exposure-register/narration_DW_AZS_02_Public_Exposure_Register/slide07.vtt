@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.162
+Lab 1 needs PowerShell 7 with
+Pester, in the kit's folder.
+
+2
+00:00:04.162 --> 00:00:07.179
+The fixture estate is
+read twice, a week apart,
+
+3
+00:00:07.179 --> 00:00:11.012
+and a small file stands in for
+Defender for Cloud's export.
+
+4
+00:00:11.012 --> 00:00:16.431
+Step 1 builds the first week's register:
+nineteen exposures, eight public IPs,
+
+5
+00:00:16.431 --> 00:00:20.216
+three Front Door profiles,
+two application gateways
+
+6
+00:00:20.216 --> 00:00:23.399
+and six PaaS resources,
+sixteen with an owner.
+
+7
+00:00:23.399 --> 00:00:24.750
+Step 2 reads it.
+
+8
+00:00:24.750 --> 00:00:29.888
+The application gateway's public IP
+carries the gateway's WAF policy.
+
+9
+00:00:29.888 --> 00:00:32.841
+The careers Front Door profile has no WAF,
+
+10
+00:00:32.841 --> 00:00:37.080
+the legacy profile is classic,
+and three rows have no owner.

@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.358
+The answer to check three:
+whether its network is linked
+
+2
+00:00:03.358 --> 00:00:06.450
+to a DDoS protection plan,
+and the portal's spoke isn't.
+
+3
+00:00:06.450 --> 00:00:07.425
+Scene four.
+
+4
+00:00:07.425 --> 00:00:10.711
+DDoS protection stops at
+layers three and four;
+
+5
+00:00:10.711 --> 00:00:13.912
+layer seven needs a web
+application firewall.
+
+6
+00:00:13.912 --> 00:00:16.058
+Microsoft Learn is plain about it:
+
+7
+00:00:16.058 --> 00:00:20.274
+detection mode logs and forwards,
+and only prevention mode blocks.
+
+8
+00:00:20.274 --> 00:00:23.487
+The portal's gateway policy
+is still in detection.
+
+9
+00:00:23.487 --> 00:00:27.613
+Its Front Door policy blocks, but
+has no bot protection rule set.
+
+10
+00:00:27.613 --> 00:00:31.356
+The kit checks every policy on
+both services the same way,
+
+11
+00:00:31.356 --> 00:00:35.576
+and writes the switch to prevention
+to a plan, which it never runs.
+
+12
+00:00:35.576 --> 00:00:39.820
+The application owner runs it,
+after reviewing the false positives.

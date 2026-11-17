@@ -1,0 +1,473 @@
+{
+ "1": [
+  [
+   0.05,
+   6.612,
+   "Welcome to Building Azure Security, Chapter 5: Front Door, Application Gateway and the origin."
+  ],
+  [
+   6.662,
+   3.925,
+   "The service tag tells an origin a request came from a Front Door."
+  ],
+  [
+   10.588,
+   2.85,
+   "Only the header tells it the request came from yours."
+  ],
+  [
+   13.438,
+   15.463,
+   "We'll start from Microsoft Learn's two ways to lock an origin to the edge, see what they leave to you, read how the kit checks each origin's configuration and where it stops and says \"test this by hand\", then walk two labs, the evidence and the dangers."
+  ],
+  [
+   28.9,
+   6.912,
+   "The chapter is a draft awaiting the owner's review, and the code is illustrative, tested against a fictional estate."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why does this matter?"
+  ],
+  [
+   1.2,
+   5.338,
+   "A web application firewall at the edge only helps if nothing can reach the origin around it."
+  ],
+  [
+   6.537,
+   19.925,
+   "By the end of this chapter you can say, for every Front Door origin, whether its configuration lets only your Front Door reach it; which origin groups can't fail over or mix private and public origins; which custom domains or application gateways allow TLS below 1.2; and which classic profiles still need migrating."
+  ],
+  [
+   26.462,
+   6.438,
+   "It's for application owners, who own origins and certificates, and platform owners, who own the profiles."
+  ],
+  [
+   32.9,
+   5.638,
+   "One limit to keep in mind: the kit reads configuration, and the guide's test is a request."
+  ],
+  [
+   38.538,
+   2.487,
+   "You'll know which answers still need that test."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.025,
+   "Here's what Microsoft Learn gives you."
+  ],
+  [
+   2.075,
+   11.137,
+   "The origin security page says to use the Azure Front Door Backend service tag and the X-Azure-FDID header together, because the tag's addresses are shared by every Front Door customer."
+  ],
+  [
+   13.213,
+   4.225,
+   "Learn's App Service tutorial does both in one access restriction."
+  ],
+  [
+   17.438,
+   12.5,
+   "Where the origin supports it, Private Link is the alternative: Front Door Premium requests a private endpoint connection that the origin owner approves, and an origin group shouldn't mix public and private origins."
+  ],
+  [
+   29.938,
+   7.412,
+   "The App Service configuration and Front Door origins A P I's return what the kit reads, and the header matches exactly."
+  ],
+  [
+   37.35,
+   3.65,
+   "On TLS, 1.2 or 1.3 only."
+  ],
+  [
+   41.0,
+   4.6,
+   "And classic Front Door retires on March 31, 2027."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.363,
+   "What does Learn leave to you?"
+  ],
+  [
+   1.413,
+   5.237,
+   "The command adds a restriction, but nothing reads back what every origin has today."
+  ],
+  [
+   6.65,
+   3.712,
+   "A rule with the tag alone admits any customer's Front Door."
+  ],
+  [
+   10.363,
+   4.438,
+   "A header copied from another profile admits that profile, not this one."
+  ],
+  [
+   14.8,
+   6.912,
+   "An allow rule for any address, or a default action of allow, opens the origin whatever the tag rule says."
+  ],
+  [
+   21.712,
+   5.4,
+   "\"Don't mix origins\" is a sentence, not a check, and one origin can't fail over."
+  ],
+  [
+   27.113,
+   3.688,
+   "And origins of other types restrict access their own ways."
+  ],
+  [
+   30.8,
+   5.662,
+   "The kit answers each, and says plainly which origins it couldn't check, so a person tests them."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.575,
+   "Here's how the kit decides."
+  ],
+  [
+   1.625,
+   2.525,
+   "Every origin gets one lock-down state."
+  ],
+  [
+   4.15,
+   3.8,
+   "Private Link, when the shared private link connection is approved."
+  ],
+  [
+   7.95,
+   10.9,
+   "Service tag plus Front Door I D, when an App Service origin has an allow rule for the tag with this profile's header, no allow rule for any address, and no default of allow."
+  ],
+  [
+   18.85,
+   1.7,
+   "Those two count as locked."
+  ],
+  [
+   20.55,
+   2.188,
+   "Tag only, when the header's missing."
+  ],
+  [
+   22.738,
+   3.237,
+   "Other Front Door, when the header is some other profile's."
+  ],
+  [
+   25.975,
+   5.05,
+   "Open, when there's no tag rule, an allow-any rule, or a default of allow."
+  ],
+  [
+   31.025,
+   5.888,
+   "And unchecked, for any origin type the kit can't read: it's not counted as locked by anybody."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.875,
+   "Beyond each origin, five more rules."
+  ],
+  [
+   2.925,
+   4.05,
+   "A classic Front Door profile is a finding, because it retires."
+  ],
+  [
+   6.975,
+   6.15,
+   "An origin group that mixes Private Link and public origins is a finding, as Learn advises."
+  ],
+  [
+   13.125,
+   11.625,
+   "A custom domain whose minimum TLS is below 1.2 is a finding, and so is an application gateway whose TLS policy isn't one of the two predefined policies Learn names."
+  ],
+  [
+   24.75,
+   5.55,
+   "An origin group with fewer than two enabled origins is a warning: it can't fail over."
+  ],
+  [
+   30.3,
+   8.025,
+   "The origin groups' and custom domains' calls are still unverified, read by their Resource Manager names, which Lab 2 confirms."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   7.275,
+   "The application owner owns the origins and their certificates, and runs the direct-request test the guide asks for."
+  ],
+  [
+   8.375,
+   5.162,
+   "The platform owner owns the Front Door profiles and the gateways' TLS policy."
+  ],
+  [
+   13.537,
+   7.088,
+   "Developers keep the lock-down states honest, and make sure the unchecked list stays visible, so nobody counts it as done."
+  ],
+  [
+   20.625,
+   3.312,
+   "Every read the check makes is Reader, and it sends nothing."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   5.3,
+   "Lab 1 needs PowerShell 7 with Pester, in the kit's folder, and no subscription."
+  ],
+  [
+   5.35,
+   8.775,
+   "Contoso's Premium profile has two origin groups: one with two App Service origins, one with a Private Link origin and a public one."
+  ],
+  [
+   14.125,
+   3.487,
+   "The Standard careers profile has a single storage origin."
+  ],
+  [
+   17.613,
+   5.425,
+   "Step 1 runs the edge check: two of five origins locked by configuration."
+  ],
+  [
+   23.038,
+   2.375,
+   "Step 2 reads each origin."
+  ],
+  [
+   25.413,
+   4.775,
+   "The east origin has the tag and the header; the west origin has the tag only."
+  ],
+  [
+   30.188,
+   4.5,
+   "The private A P I origin reaches its origin over Private Link."
+  ],
+  [
+   34.688,
+   1.475,
+   "And two are unchecked."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.25,
+   "Step 3 reads the findings."
+  ],
+  [
+   2.3,
+   4.237,
+   "The A P I origin group mixes a private and a public origin."
+  ],
+  [
+   6.537,
+   2.587,
+   "The west origin's tag rule has no header."
+  ],
+  [
+   9.125,
+   4.0,
+   "The careers custom domain allows TLS 1.0."
+  ],
+  [
+   13.125,
+   4.9,
+   "The intranet gateway uses an old 2015 TLS policy."
+  ],
+  [
+   18.025,
+   4.037,
+   "The careers origin group has one origin, so it can't fail over."
+  ],
+  [
+   22.062,
+   2.1,
+   "The classic profile is still there."
+  ],
+  [
+   24.163,
+   6.588,
+   "And the two unchecked origins get a warning that says, in plain words, test a direct request by hand."
+  ],
+  [
+   30.75,
+   2.675,
+   "Step 4 runs this chapter's two tests."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   7.037,
+   "Lab 2 moves to a test subscription with a Front Door Premium profile and an App Service origin, never production."
+  ],
+  [
+   7.088,
+   6.713,
+   "Sign in to commercial Azure, write the settings, and run the edge check liv, allowing the unverified calls."
+  ],
+  [
+   13.8,
+   7.25,
+   "Compare the origin's access restrictions with what the kit read, and check each custom domain's minimum TLS in the portal."
+  ],
+  [
+   21.05,
+   8.9,
+   "Then run the guide's own test: a direct request to the origin should come back 403, and the same request through Front Door should succeed."
+  ],
+  [
+   29.95,
+   4.45,
+   "If the kit said locked and the direct request isn't refused, record it."
+  ],
+  [
+   34.4,
+   3.413,
+   "Back out by deleting what the lab wrote, and signing out."
+  ],
+  [
+   37.812,
+   2.0,
+   "The authors haven't run this lab."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   8.062,
+   "Each output is evidence for something specific, from the guide's requirements table against nist special publication eight hundred fifty-three."
+  ],
+  [
+   8.113,
+   7.388,
+   "Each origin's lock-down, read from configuration and backed by Lab 2's request test, supports boundary protection."
+  ],
+  [
+   15.5,
+   8.525,
+   "TLS 1.2 as the minimum on every custom domain and gateway supports transmission confidentiality and integrity."
+  ],
+  [
+   24.025,
+   5.825,
+   "A second origin in every group, with the failover test, supports the contingency plan."
+  ],
+  [
+   29.85,
+   4.737,
+   "And classic profiles named before their retirement support boundary protection too."
+  ],
+  [
+   34.587,
+   4.05,
+   "The kit's output supports these controls; the assessor decides."
+  ],
+  [
+   38.638,
+   7.6,
+   "And the key security indicators are fed-ramp's indicators for cloud providers, which the agency lines its own evidence up with."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.4,
+   "What breaks in production?"
+  ],
+  [
+   1.45,
+   5.55,
+   "The service tag alone lets any customer's Front Door reach the origin: the kit flags it."
+  ],
+  [
+   7.0,
+   16.337,
+   "A header copied from another profile lets that profile in, so the kit compares the header with this profile's own I D. Configuration taken as proof is a danger of its own: a rule can read right while a request still gets through another path, like another slot or the deployment site."
+  ],
+  [
+   23.337,
+   5.412,
+   "So the metric says \"by configuration\", and Lab 2's direct request is the test."
+  ],
+  [
+   28.75,
+   8.562,
+   "And an origin the kit can't read would otherwise be counted locked by nobody and tested by nobody, so it's flagged every week until someone tests it."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   8.15,
+   "Every origin is locked by Private Link or by the tag and this profile's header, or has a decision record with a compensating control."
+  ],
+  [
+   9.55,
+   3.7,
+   "Every unchecked origin has a dated direct-request test."
+  ],
+  [
+   13.25,
+   5.062,
+   "Every origin group has a second origin, and failover was tested this half year."
+  ],
+  [
+   18.312,
+   4.475,
+   "No custom domain or gateway allows TLS below 1.2."
+  ],
+  [
+   22.788,
+   7.138,
+   "And no classic profile remains, or its migration is scheduled before March 31, 2027."
+  ],
+  [
+   29.925,
+   6.088,
+   "Next, Chapter 6 turns from what comes in to what leaves: Azure Firewall and egress."
+  ]
+ ]
+}

@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:02.175
+Read each vault.
+
+3
+00:00:02.175 --> 00:00:06.696
+The hub's certificate vault has
+role-based access, purge protection,
+
+4
+00:00:06.696 --> 00:00:11.863
+a closed firewall and audit logs, but
+public access on and no private endpoint.
+
+5
+00:00:11.863 --> 00:00:13.613
+The payroll vault has everything.
+
+6
+00:00:13.613 --> 00:00:18.924
+The portal's vault has nothing: no
+role-based access, no purge protection,
+
+7
+00:00:18.924 --> 00:00:24.326
+a firewall that allows all networks,
+public access, no endpoints, no audit.
+
+8
+00:00:24.326 --> 00:00:26.933
+Then its findings, one per missing part,
+
+9
+00:00:26.933 --> 00:00:30.275
+from access policies to
+the missing audit events.
+
+10
+00:00:30.275 --> 00:00:32.740
+One of three vaults has the full posture.

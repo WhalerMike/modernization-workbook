@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+What does Learn leave to you?
+
+2
+00:00:01.413 --> 00:00:05.442
+Its Validate query reads one
+policy; an estate has several,
+
+3
+00:00:05.442 --> 00:00:09.638
+on two services, so the kit reads
+them all with the same checks.
+
+4
+00:00:09.638 --> 00:00:14.881
+Front Door says body inspection is enabled
+where Application Gateway says true,
+
+5
+00:00:14.881 --> 00:00:19.812
+and code written for one reads the other
+as off, so each shape is read as its own.
+
+6
+00:00:19.812 --> 00:00:23.114
+A policy that requires a
+WAF audits resources but
+
+7
+00:00:23.114 --> 00:00:26.174
+doesn't count endpoints,
+so the kit counts them.
+
+8
+00:00:26.174 --> 00:00:31.425
+A Front Door's WAF lives in a security
+policy, so those are read per profile.
+
+9
+00:00:31.425 --> 00:00:34.422
+The switch to prevention,
+sent by automation,
+
+10
+00:00:34.422 --> 00:00:37.825
+blocks users before tuning,
+so it's written to a plan.
+
+11
+00:00:37.825 --> 00:00:42.380
+And an old rule set is a warning,
+because moving needs validation first.

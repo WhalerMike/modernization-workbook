@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.674
+Lab 2 moves to a test subscription with
+a test vault behind a private endpoint
+
+2
+00:00:04.674 --> 00:00:09.225
+and the central zone, and a test machine
+in a linked network, never production.
+
+3
+00:00:09.225 --> 00:00:14.738
+Sign in, write the settings, and run the
+check live, allowing the unverified calls.
+
+4
+00:00:14.738 --> 00:00:19.947
+Compare with the guide's Validate query,
+which reads the vault's role-based access,
+
+5
+00:00:19.947 --> 00:00:22.901
+purge protection, firewall
+and public access,
+
+6
+00:00:22.901 --> 00:00:26.400
+and read one key's rotation
+policy, which the kit doesn't.
+
+7
+00:00:26.400 --> 00:00:29.228
+Then, from the test machine,
+look up the vault's name:
+
+8
+00:00:29.228 --> 00:00:33.988
+the answer should come through the vault's
+privatelink zone with a private address.
+
+9
+00:00:33.988 --> 00:00:37.869
+From outside, the same name
+resolves to the public frontend,
+
+10
+00:00:37.869 --> 00:00:39.612
+which refuses the request.
+
+11
+00:00:39.612 --> 00:00:42.500
+Back out by deleting the
+output and signing out.

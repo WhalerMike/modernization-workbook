@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.588
+Why read the policy and
+the routes together?
+
+2
+00:00:02.588 --> 00:00:07.120
+Because a policy that denies inspects
+nothing if workloads don't route to it,
+
+3
+00:00:07.120 --> 00:00:10.862
+and a route to a firewall in alert
+mode lets everything through.
+
+4
+00:00:10.862 --> 00:00:15.254
+By the end of this chapter you can say
+whether every firewall policy denies on
+
+5
+00:00:15.254 --> 00:00:17.930
+threat intelligence and
+intrusion detection,
+
+6
+00:00:17.930 --> 00:00:22.390
+whether each firewall has a policy and
+logs, and what share of workload subnets
+
+7
+00:00:22.390 --> 00:00:24.518
+declare a default route to a firewall,
+
+8
+00:00:24.518 --> 00:00:27.125
+which is the guide's
+egress-inspection metric.
+
+9
+00:00:27.125 --> 00:00:32.200
+And you can hand the platform owner the
+commands that move a policy to deny, unrun.
+
+10
+00:00:32.200 --> 00:00:37.030
+It's for platform owners, security monitors,
+and the developers who review both.

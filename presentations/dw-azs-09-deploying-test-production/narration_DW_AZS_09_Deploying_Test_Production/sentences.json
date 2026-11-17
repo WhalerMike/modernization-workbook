@@ -1,0 +1,440 @@
+{
+ "1": [
+  [
+   0.05,
+   5.588,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Azure Security."
+  ],
+  [
+   5.638,
+   3.938,
+   "This is Chapter 9: deploying to test and production."
+  ],
+  [
+   9.575,
+   6.338,
+   "The kit reads every week and writes once, so this runbook is about the week, and about the one write."
+  ],
+  [
+   15.912,
+   8.2,
+   "It takes the kit from the labs to a lyve test subscription, then to production, with the same commands and one settings file per environment."
+  ],
+  [
+   24.113,
+   12.0,
+   "The chapter is a draft awaiting the owner's review, and nothing in it has been run against a lyve subscription; the output you'll see comes from fixture mode, dated November 17, 2026."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.05,
+   "Why a runbook?"
+  ],
+  [
+   1.1,
+   10.438,
+   "Because the kit's weekly reads need only Reader, but it makes one write: the security initiative's assignment at the intermediate root, in DoNotEnforce, from the guide's Step 9."
+  ],
+  [
+   11.537,
+   7.612,
+   "That write is a plan, applied only with the hash a reviewer approved, and its rollback is rehearsed in test before production."
+  ],
+  [
+   19.15,
+   8.562,
+   "The runbook has two stages: a lyve test subscription, then production, with the same commands and each environment's own settings file."
+  ],
+  [
+   27.712,
+   5.112,
+   "Between them sits the go or no-go, decided on the test stage's lyve evidence."
+  ],
+  [
+   32.825,
+   3.138,
+   "None of it has been run against a lyve subscription yet."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   8.475,
+   "Before you start, finish Lab 2 of Chapters 1 to 8 in the test subscription, and check every unverified call's output against the portal."
+  ],
+  [
+   8.525,
+   1.575,
+   "You need two identities."
+  ],
+  [
+   10.1,
+   9.775,
+   "A reader for the weekly run, with Reader on the intermediate root and the tenant root group, as a managed identity or a federated workload identity, never a secret."
+  ],
+  [
+   19.875,
+   12.238,
+   "And an operator for the plan, with Resource Policy Contributor at the intermediate root, eligible through privileged identity management and activated only for the change window, as the guide's prerequisites set out."
+  ],
+  [
+   32.112,
+   10.613,
+   "You need PowerShell 7 and the Azure CLI on commercial Azure, output folders inside the boundary but outside any repository, and a change record for each stage."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   5.7,
+   "Step 1 writes one settings file per environment, from the kit's template, with no secrets."
+  ],
+  [
+   5.75,
+   17.975,
+   "The command sets the environment, the tenant, the intermediate root, the platform workspace, the hub, the workload subscriptions, the required assignments, the security initiative's name, the narrowest role its policies need and its enforce-by date, the output folders and the change record."
+  ],
+  [
+   23.725,
+   5.487,
+   "The loader refuses a placeholder left unfilled, and any key that names a secret."
+  ],
+  [
+   29.212,
+   5.65,
+   "Test and production each get their own file, and both liv outside any repository."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.913,
+   "Step 2 is the preflight, seven checks."
+  ],
+  [
+   2.962,
+   4.438,
+   "The settings are complete, name commercial Azure and have no placeholder."
+  ],
+  [
+   7.4,
+   1.7,
+   "No key names a secret."
+  ],
+  [
+   9.1,
+   7.025,
+   "The output root isn't inside the kit's own repository, which fails, or any other repository, which warns."
+  ],
+  [
+   16.125,
+   9.6,
+   "With the live switch, the Azure CLI is on commercial Azure and signed in to the right tenant, and Resource Graph returns the subscriptions under the intermediate root."
+  ],
+  [
+   25.725,
+   3.737,
+   "The unverified calls are allowed for the stage, or listed."
+  ],
+  [
+   29.462,
+   4.825,
+   "And in production only, the test stage's evidence must pass its stage check."
+  ],
+  [
+   34.288,
+   4.925,
+   "Any fail stops the stage, and the result is recorded as evidence."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   4.688,
+   "The reader identity runs the weekly job and the preflight, with Reader only."
+  ],
+  [
+   5.787,
+   9.238,
+   "The operator applies the approved plan, with Resource Policy Contributor activated through privileged identity management for the change window, and nothing standing."
+  ],
+  [
+   15.025,
+   6.112,
+   "The security officer and the policy owner review the plan and its hash before anything is applied."
+  ],
+  [
+   21.137,
+   9.375,
+   "And at the go or no-go, the security officer and the platform owner record the decision in the change record, with the open findings and their owners."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.7,
+   "Stage 1 begins with the first scheduled run."
+  ],
+  [
+   2.75,
+   8.963,
+   "One command runs every area's check into a dated run folder, computes the metrics, writes one manifest, and records an evidence record."
+  ],
+  [
+   11.713,
+   12.713,
+   "In fixture mode, on week one of the Contoso estate, it found forty-eight findings, said this run is the baseline, and wrote evidence record 1 covering the run, all nine area steps and the metrics."
+  ],
+  [
+   24.425,
+   12.225,
+   "In the lyve test, read each area's findings with its owner, and for every unverified call compare one row with the portal, as each chapter's Lab 2 does, and record the result in the change record."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.05,
+   "Step 4 plans the one write."
+  ],
+  [
+   2.1,
+   5.912,
+   "The script reads the assignments first, and plans nothing if the security initiative is already there."
+  ],
+  [
+   8.012,
+   13.65,
+   "Otherwise its plan holds the one command from the guide's Step 9: assign the initiative at the intermediate root in DoNotEnforce, with a system-assigned identity and the narrowest role its policies need, instead of Contributor."
+  ],
+  [
+   21.663,
+   5.287,
+   "It prints the plan's hash, and the security officer and the policy owner review both."
+  ],
+  [
+   26.95,
+   9.8,
+   "Step 5 applies it, with the role activated for the window and the approved hash; a plan whose hash changed is refused, and fixture mode refuses to apply at all."
+  ],
+  [
+   36.75,
+   5.35,
+   "Step 6 is the smoke test: the policy check shows the initiative is assigned."
+  ],
+  [
+   42.1,
+   3.45,
+   "Learn says DoNotEnforce evaluates without enforcing."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.825,
+   "Step 7 rehearses the rollback in test."
+  ],
+  [
+   2.875,
+   8.613,
+   "Plan the removal, apply it with its own hash, see the policy check notice the initiative is gone, then plan and apply the assignment again."
+  ],
+  [
+   11.488,
+   3.663,
+   "Resources a remediation created stay until removed."
+  ],
+  [
+   15.15,
+   8.85,
+   "In production the rollback is different: once the initiative enforces, you set it back to DoNotEnforce, back to audit, rather than removing it."
+  ],
+  [
+   24.0,
+   4.225,
+   "In fixture mode, that plan printed the update command and sent nothing."
+  ],
+  [
+   28.225,
+   6.4,
+   "Step 8, a week later, is the second scheduled run: it finds last week's run and compares."
+  ],
+  [
+   34.625,
+   3.087,
+   "In fixture mode, thirteen fixed and four new."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.212,
+   "Step 9 is the go or no-go."
+  ],
+  [
+   2.263,
+   3.138,
+   "One command checks the test stage's evidence folder."
+  ],
+  [
+   5.4,
+   13.35,
+   "Go when the hashes match every file, the chain of records is unbroken, and each step the test stage needs, the preflight, the run, the nine area steps and the metrics, has a passing record from a lyve run."
+  ],
+  [
+   18.75,
+   9.15,
+   "Fixture records never count, so a rehearsal can't promote anything: in fixture mode the folder's own checks pass, and every stage step fails."
+  ],
+  [
+   27.9,
+   7.85,
+   "Then the security officer and the platform owner record the decision in the change record, with the open findings and their owners."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.312,
+   "Stage 2 is production, with the same commands."
+  ],
+  [
+   3.362,
+   4.25,
+   "Write production's settings file, pointing it at the test stage's evidence."
+  ],
+  [
+   7.612,
+   4.925,
+   "Run the preflight liv: its seventh check fails unless that test evidence passes."
+  ],
+  [
+   12.537,
+   5.912,
+   "In the change window, plan, have the reviewers approve the hash, and apply only that plan."
+  ],
+  [
+   18.45,
+   10.062,
+   "Schedule the weekly run under the reader identity in the agency's own scheduler; the first production run is the baseline, and every run after carries its comparison."
+  ],
+  [
+   28.512,
+   6.375,
+   "Production's own evidence check adds the plan and the comparison, so it passes from the second weekly run."
+  ],
+  [
+   34.888,
+   7.938,
+   "Switching the initiative to enforcing, remediation and exemptions are the guide's Step 9, each its own reviewed change."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   7.112,
+   "Each runbook step leaves a record the security officer keeps, mapped to nist's controls in the kit's requirements file."
+  ],
+  [
+   7.162,
+   4.112,
+   "The preflight supports least privilege and configuration settings."
+  ],
+  [
+   11.275,
+   4.425,
+   "The plan supports configuration change control and impact analysis."
+  ],
+  [
+   15.7,
+   3.85,
+   "The rollback supports change control and the contingency plan."
+  ],
+  [
+   19.55,
+   6.875,
+   "Each scheduled run supports continuous monitoring, the component inventory and each area's own controls."
+  ],
+  [
+   26.425,
+   4.35,
+   "The comparison supports configuration settings and continuous monitoring."
+  ],
+  [
+   30.775,
+   5.588,
+   "And the chain of records supports continuous monitoring and the protection of audit information."
+  ],
+  [
+   36.362,
+   3.913,
+   "The evidence supports those controls; the assessor decides."
+  ],
+  [
+   40.275,
+   8.537,
+   "The key security indicators are fed-ramp's indicators for cloud providers, which the agency lines its own evidence up with and doesn't report."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.263,
+   "What breaks, and what guards against it?"
+  ],
+  [
+   2.312,
+   7.037,
+   "A plan applied after it changed would send a command nobody reviewed, so applying needs the approved hash of the plan on disk."
+  ],
+  [
+   9.35,
+   8.275,
+   "Lab evidence could start production on fixture results, so fixture records never count, and the production preflight checks the test stage."
+  ],
+  [
+   17.625,
+   10.188,
+   "A standing write role would let the reader change the estate, so reads need only Reader and the plan's role is eligible through privileged identity management, for the window."
+  ],
+  [
+   27.812,
+   7.6,
+   "Output in a repository would publish the register, so the preflight fails in the kit's repository and warns in any other."
+  ],
+  [
+   35.413,
+   7.6,
+   "And removal as production's rollback would lose remediated resources and history, so production rolls back to audit instead."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   14.887,
+   "You can rehearse the runbook's offline half on the fictional estate: copy the test settings, point the outputs at a folder outside any repository, and run the preflight, two scheduled runs, the plan, the rollback plan and the evidence check."
+  ],
+  [
+   14.938,
+   5.35,
+   "The plan says there's nothing to do, because the fixture estate already has the initiative."
+  ],
+  [
+   20.288,
+   3.025,
+   "The runbook's scripts have eleven tests of their own."
+  ],
+  [
+   23.312,
+   17.488,
+   "And here's what done looks like: the labs passed, one settings file per environment with no secrets, the plan's hash approved before anything was applied, the rollback rehearsed in test, the test stage's evidence passing before production's preflight, and the weekly run scheduled under the reader identity."
+  ]
+ ]
+}

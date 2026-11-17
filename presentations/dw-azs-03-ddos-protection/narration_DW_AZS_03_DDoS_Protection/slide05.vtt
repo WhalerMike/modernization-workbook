@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.188
+So every public IP gets
+exactly one status.
+
+2
+00:00:03.188 --> 00:00:05.775
+IP Protection when its mode is enabled.
+
+3
+00:00:05.775 --> 00:00:10.038
+Inherited when it inherits and its
+network has protection and a plan.
+
+4
+00:00:10.038 --> 00:00:14.462
+Unprotected when it's disabled, or
+inherits from a network with no plan.
+
+5
+00:00:14.462 --> 00:00:18.119
+Unknown when it inherits and
+the kit can't find the network,
+
+6
+00:00:18.119 --> 00:00:20.176
+as with a load balancer frontend.
+
+7
+00:00:20.176 --> 00:00:22.188
+NAT gateway when it sits on one.
+
+8
+00:00:22.188 --> 00:00:24.675
+And unattached when it's
+attached to nothing.
+
+9
+00:00:24.675 --> 00:00:28.529
+Coverage is protected addresses
+over addresses in scope,
+
+10
+00:00:28.529 --> 00:00:33.240
+the guide's metric, with NAT gateway
+and unattached addresses left out.

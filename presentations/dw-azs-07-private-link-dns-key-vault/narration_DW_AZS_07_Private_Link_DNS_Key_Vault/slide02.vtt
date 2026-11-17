@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.425
+Why three questions?
+
+2
+00:00:01.425 --> 00:00:05.503
+Because a private endpoint that exists
+can still go unused if the name
+
+3
+00:00:05.503 --> 00:00:09.863
+doesn't resolve to it, and can still be
+bypassed if the public path stays open.
+
+4
+00:00:09.863 --> 00:00:12.819
+By the end of this chapter
+you can answer four things:
+
+5
+00:00:12.819 --> 00:00:16.463
+whether every privatelink zone is
+central and linked to the hub,
+
+6
+00:00:16.463 --> 00:00:20.519
+whether every private endpoint
+registers its record in a central zone,
+
+7
+00:00:20.519 --> 00:00:24.438
+which resources still accept public
+traffic beside their endpoint,
+
+8
+00:00:24.438 --> 00:00:28.838
+and which key vaults miss any part of
+the posture Microsoft Learn recommends.
+
+9
+00:00:28.838 --> 00:00:31.525
+And you can compute the
+guide's vault-posture metric.
+
+10
+00:00:31.525 --> 00:00:35.303
+It's for platform owners, who
+own the zones; workload owners,
+
+11
+00:00:35.303 --> 00:00:39.530
+who own endpoints and vaults; and
+the developers who review both.

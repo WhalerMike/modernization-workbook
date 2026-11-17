@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.525
+Step 3 reads each private endpoint
+and the zone it registers in.
+
+2
+00:00:04.525 --> 00:00:07.825
+The vault's endpoint registers
+in the central vault zone.
+
+3
+00:00:07.825 --> 00:00:11.450
+The blob endpoint registers in
+the payroll team's own zone.
+
+4
+00:00:11.450 --> 00:00:16.025
+And the queue endpoint has no zone group
+at all: nothing registers its record.
+
+5
+00:00:16.025 --> 00:00:18.150
+Step 4 reads the findings.
+
+6
+00:00:18.150 --> 00:00:22.241
+The blob zone is in the payroll
+subscription and not linked to the hub;
+
+7
+00:00:22.241 --> 00:00:26.475
+the blob endpoint registers there;
+the queue endpoint has no zone group;
+
+8
+00:00:26.475 --> 00:00:30.350
+the storage account has two
+endpoints and public access still on.
+
+9
+00:00:30.350 --> 00:00:34.837
+Then the vault findings, and warnings
+for public services with no endpoint.
+
+10
+00:00:34.837 --> 00:00:37.610
+Step 5 runs this chapter's two tests.

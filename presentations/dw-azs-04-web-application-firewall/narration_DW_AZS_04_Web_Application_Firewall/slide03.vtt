@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.925
+Here's Microsoft's starting point.
+
+2
+00:00:01.925 --> 00:00:07.020
+Microsoft's Zero Trust recommendations
+for both services check prevention mode,
+
+3
+00:00:07.020 --> 00:00:11.590
+request body inspection, the default
+rule set, the bot protection rule set,
+
+4
+00:00:11.590 --> 00:00:14.812
+rate limiting and diagnostic
+logging, among others.
+
+5
+00:00:14.812 --> 00:00:19.755
+Learn recommends the latest Default Rule
+Set, two point two at the guide's reading,
+
+6
+00:00:19.755 --> 00:00:24.699
+validated in log mode before blocking; the
+command line's default is two point one.
+
+7
+00:00:24.699 --> 00:00:27.488
+Front Door's managed rules
+need the Premium tier.
+
+8
+00:00:27.488 --> 00:00:32.176
+Built-in policies require a WAF on
+each service, and a given mode.
+
+9
+00:00:32.176 --> 00:00:37.010
+And Learn documents the switch between
+detection and prevention with one command.

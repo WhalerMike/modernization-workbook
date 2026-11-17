@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.612
+The baseline check reports six rules.
+
+2
+00:00:02.612 --> 00:00:05.584
+Two come straight from
+Learn's hierarchy guidance:
+
+3
+00:00:05.584 --> 00:00:08.769
+creating management groups
+must need authorization,
+
+4
+00:00:08.769 --> 00:00:12.874
+and new subscriptions must land in a
+default group, not the tenant root.
+
+5
+00:00:12.874 --> 00:00:14.571
+One is the program's design:
+
+6
+00:00:14.571 --> 00:00:18.425
+the required assignments must
+sit at the intermediate root.
+
+7
+00:00:18.425 --> 00:00:20.762
+One is information, not a finding:
+
+8
+00:00:20.762 --> 00:00:25.175
+an initiative in DoNotEnforce
+is exactly what Step 1 intends.
+
+9
+00:00:25.175 --> 00:00:28.237
+Then logs: every platform
+resource must send
+
+10
+00:00:28.237 --> 00:00:31.050
+an enabled log to the platform workspace.
+
+11
+00:00:31.050 --> 00:00:34.938
+And Defender for Cloud: the
+required plans must be on Standard.
+
+12
+00:00:34.938 --> 00:00:38.300
+The types and plans it checks
+live in a configuration
+
+13
+00:00:38.300 --> 00:00:41.400
+file you change only in
+a reviewed pull request.

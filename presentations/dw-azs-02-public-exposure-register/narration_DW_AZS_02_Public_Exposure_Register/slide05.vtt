@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.687
+Here's what the register holds.
+
+2
+00:00:01.687 --> 00:00:05.378
+The public name is a public
+IP's DNS name and address,
+
+3
+00:00:05.378 --> 00:00:10.825
+a Front Door profile's custom domains,
+or an application gateway's public IP.
+
+4
+00:00:10.825 --> 00:00:12.688
+The owner is the owner tag.
+
+5
+00:00:12.688 --> 00:00:16.726
+The DDoS column is the IP's protection
+mode, or "Front Door edge",
+
+6
+00:00:16.726 --> 00:00:22.138
+because Learn says Front Door's edge has
+built-in layer three and four protection.
+
+7
+00:00:22.138 --> 00:00:25.687
+And the WAF columns name
+the policy and its mode.
+
+8
+00:00:25.687 --> 00:00:29.167
+Five rules read it: a row
+without an owner is a finding;
+
+9
+00:00:29.167 --> 00:00:32.080
+a public IP attached to
+nothing is a warning;
+
+10
+00:00:32.080 --> 00:00:34.751
+a new row since last week is information;
+
+11
+00:00:34.751 --> 00:00:38.473
+a row that went away is a
+warning to check its DNS records;
+
+12
+00:00:38.473 --> 00:00:43.870
+and an exposure Defender reports that the
+register lacks is a gap in the queries.

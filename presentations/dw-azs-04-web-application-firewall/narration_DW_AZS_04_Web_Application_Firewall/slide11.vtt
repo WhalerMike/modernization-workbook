@@ -1,0 +1,35 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.250
+Each output supports a specific control
+from the guide's requirements table.
+
+2
+00:00:04.250 --> 00:00:06.501
+Each policy's mode, body inspection,
+
+3
+00:00:06.501 --> 00:00:11.858
+rule sets and rate limit support NIST's
+information input validation and boundary
+
+4
+00:00:11.858 --> 00:00:17.137
+protection controls, aligned to a FedRAMP
+indicator that cites input validation.
+
+5
+00:00:17.137 --> 00:00:22.004
+Every internet-facing endpoint behind
+a WAF in prevention, the plan reviewed
+
+6
+00:00:22.004 --> 00:00:27.100
+before it runs, and the logs from every
+endpoint all support boundary protection.
+
+7
+00:00:27.100 --> 00:00:31.200
+The kit's output supports these
+controls; the assessor decides.

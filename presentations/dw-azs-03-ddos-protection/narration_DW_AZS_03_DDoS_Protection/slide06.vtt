@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.654
+For each protected address the check reads
+
+2
+00:00:02.654 --> 00:00:05.475
+its diagnostic settings
+and the metric alerts.
+
+3
+00:00:05.475 --> 00:00:09.862
+A log counts if one of Learn's
+three DDoS categories, or all logs,
+
+4
+00:00:09.862 --> 00:00:13.990
+goes to the platform workspace;
+Learn says the mitigation
+
+5
+00:00:13.990 --> 00:00:17.775
+reports category retires
+from about mid-August 2026.
+
+6
+00:00:17.775 --> 00:00:22.385
+An alert counts if it's enabled, has a
+criterion on the under-attack metric,
+
+7
+00:00:22.385 --> 00:00:26.687
+and its scope is the address, its
+resource group or its subscription.
+
+8
+00:00:26.687 --> 00:00:32.594
+That gives six rules: unprotected,
+unresolvable, on a NAT gateway, no logs,
+
+9
+00:00:32.594 --> 00:00:38.860
+no alert, and more than one plan, since
+the guide keeps one plan for the agency.

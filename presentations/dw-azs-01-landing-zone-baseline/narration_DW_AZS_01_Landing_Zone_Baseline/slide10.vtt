@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.273
+Lab 2 moves to a test tenant with a test
+
+2
+00:00:02.273 --> 00:00:05.500
+management group and
+subscription, never production.
+
+3
+00:00:05.500 --> 00:00:08.910
+Sign in to commercial Azure,
+write the settings file from the
+
+4
+00:00:08.910 --> 00:00:12.662
+template with every placeholder
+filled, and run the same check live.
+
+5
+00:00:12.662 --> 00:00:17.387
+Every call this check makes is verified
+on Learn, so it needs no special flag.
+
+6
+00:00:17.387 --> 00:00:21.540
+Then compare with the guide's own
+Validate commands: the assignment list,
+
+7
+00:00:21.540 --> 00:00:25.070
+the hierarchy settings read
+straight from Resource Manager,
+
+8
+00:00:25.070 --> 00:00:28.600
+and one flagged resource's
+diagnostic settings in the portal.
+
+9
+00:00:28.600 --> 00:00:33.151
+Nothing changed in Azure, so backing
+out means deleting what the lab wrote,
+
+10
+00:00:33.151 --> 00:00:35.762
+which maps the test
+estate, and signing out.
+
+11
+00:00:35.762 --> 00:00:37.820
+The authors haven't run this lab.

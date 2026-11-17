@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.450
+What breaks in production?
+
+2
+00:00:01.450 --> 00:00:04.509
+A draft deployed over newer
+live edits loses them,
+
+3
+00:00:04.509 --> 00:00:09.210
+because deploying replaces the whole
+applied policy; the kit never deploys,
+
+4
+00:00:09.210 --> 00:00:13.538
+and the plan names the change window
+and the guide's single change path.
+
+5
+00:00:13.538 --> 00:00:17.763
+A declared route that doesn't win
+sends traffic around the firewall;
+
+6
+00:00:17.763 --> 00:00:21.612
+the metric says declared, and
+Lab 2 checks the effective route.
+
+7
+00:00:21.612 --> 00:00:24.832
+A route to an unknown
+appliance sends egress through
+
+8
+00:00:24.832 --> 00:00:28.563
+something that isn't the inspecting
+firewall; the kit names it.
+
+9
+00:00:28.563 --> 00:00:32.294
+And a Standard policy with
+intrusion detection set reads as
+
+10
+00:00:32.294 --> 00:00:36.310
+configured but inspects nothing;
+the kit says Premium is needed.

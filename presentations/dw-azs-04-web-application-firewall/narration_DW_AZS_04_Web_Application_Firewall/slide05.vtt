@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.450
+Eight rules come out of that.
+
+2
+00:00:01.450 --> 00:00:04.755
+A policy in detection, or
+disabled, is a finding,
+
+3
+00:00:04.755 --> 00:00:07.538
+and so is body inspection switched off.
+
+4
+00:00:07.538 --> 00:00:13.000
+A missing or older rule set, no bot
+protection, and no rate limit are warnings.
+
+5
+00:00:13.000 --> 00:00:18.426
+An internet-facing gateway or Front Door
+profile with no WAF at all is a finding,
+
+6
+00:00:18.426 --> 00:00:22.350
+and so is one that sends no
+logs to the platform workspace.
+
+7
+00:00:22.350 --> 00:00:26.074
+And a Front Door policy that
+isn't Premium is information:
+
+8
+00:00:26.074 --> 00:00:27.975
+it can't use managed rule sets.
+
+9
+00:00:27.975 --> 00:00:31.541
+Coverage is the endpoints
+behind a WAF in prevention
+
+10
+00:00:31.541 --> 00:00:35.188
+over all internet-facing
+endpoints, the guide's metric.
+
+11
+00:00:35.188 --> 00:00:38.690
+A gateway with only a private
+frontend isn't counted.

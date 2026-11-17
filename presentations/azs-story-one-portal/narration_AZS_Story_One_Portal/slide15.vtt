@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.029
+The answer to check four:
+the application owner,
+
+2
+00:00:03.029 --> 00:00:06.238
+after the false-positive
+review, in a change window.
+
+3
+00:00:06.238 --> 00:00:07.262
+Scene five.
+
+4
+00:00:07.262 --> 00:00:11.976
+A web application firewall only helps if
+nothing can reach the origin around it.
+
+5
+00:00:11.976 --> 00:00:16.702
+Microsoft Learn says to use the Front Door
+service tag and the Front Door ID header
+
+6
+00:00:16.702 --> 00:00:21.150
+together, because the tag's addresses
+are shared by every Front Door customer.
+
+7
+00:00:21.150 --> 00:00:25.650
+The portal's east web app does
+both, with this profile's own ID.
+
+8
+00:00:25.650 --> 00:00:28.262
+The west web app allows the tag alone.
+
+9
+00:00:28.262 --> 00:00:30.762
+So any customer's Front Door can reach it.
+
+10
+00:00:30.762 --> 00:00:33.833
+The kit reads each origin's
+access restrictions
+
+11
+00:00:33.833 --> 00:00:36.674
+and compares the header
+with the profile's ID.
+
+12
+00:00:36.674 --> 00:00:39.428
+And it knows configuration isn't proof:
+
+13
+00:00:39.428 --> 00:00:42.580
+the guide's test is a
+direct request, refused.

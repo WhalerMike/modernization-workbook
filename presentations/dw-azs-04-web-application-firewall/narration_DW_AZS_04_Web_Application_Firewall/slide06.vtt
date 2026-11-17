@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.050
+Here's the one thing this check
+could change, and doesn't.
+
+2
+00:00:03.050 --> 00:00:08.062
+For every Application Gateway policy not
+in prevention, the check writes Learn's
+
+3
+00:00:08.062 --> 00:00:13.000
+switch command, with the policy's resource
+group and subscription, to a plan file.
+
+4
+00:00:13.000 --> 00:00:16.712
+For a Front Door policy it writes
+a line pointing at the guide.
+
+5
+00:00:16.712 --> 00:00:17.962
+Nothing runs either.
+
+6
+00:00:17.962 --> 00:00:22.655
+A person runs the command after the
+false-positive review, in a change window,
+
+7
+00:00:22.655 --> 00:00:27.349
+because a switch sent by automation
+before tuning blocks legitimate users.
+
+8
+00:00:27.349 --> 00:00:31.100
+Learn documents the same command
+in reverse for backing out.

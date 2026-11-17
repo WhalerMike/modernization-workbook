@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.250
+Welcome to Building Azure Security,
+Chapter 7: Private Link, DNS and Key Vault.
+
+2
+00:00:06.250 --> 00:00:08.462
+A private endpoint is an address.
+
+3
+00:00:08.462 --> 00:00:11.537
+Whether anything uses
+it is a DNS question,
+
+4
+00:00:11.537 --> 00:00:15.226
+and whether the public path
+is closed is a third one.
+
+5
+00:00:15.226 --> 00:00:16.975
+The code asks all three.
+
+6
+00:00:16.975 --> 00:00:21.135
+We'll start from Microsoft Learn's
+Private Link commands for Key Vault,
+
+7
+00:00:21.135 --> 00:00:26.012
+the zone group, the Cloud Adoption Framework's
+central-zone pattern and Learn's Key
+
+8
+00:00:26.012 --> 00:00:28.952
+Vault recommendations, see
+what they leave to you,
+
+9
+00:00:28.952 --> 00:00:32.825
+read the kit's check, and walk two
+labs, the evidence and the dangers.
+
+10
+00:00:32.825 --> 00:00:35.840
+The chapter is a draft
+awaiting the owner's review,
+
+11
+00:00:35.840 --> 00:00:39.790
+and the code is illustrative,
+tested against a fictional estate.

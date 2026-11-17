@@ -1,0 +1,32 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.837
+Check eight.
+
+2
+00:00:00.837 --> 00:00:05.038
+The evidence folder's hashes
+match, and its chain is unbroken.
+
+3
+00:00:05.038 --> 00:00:08.112
+Why does the test-stage
+check still fail every step?
+
+4
+00:00:08.112 --> 00:00:09.488
+Is the chain too short?
+
+5
+00:00:09.488 --> 00:00:14.338
+Do the records come from fixture runs, when
+only live records count toward a stage?
+
+6
+00:00:14.338 --> 00:00:16.713
+Are the key security indicators wrong?
+
+7
+00:00:16.713 --> 00:00:18.550
+Or were the metrics not recorded?

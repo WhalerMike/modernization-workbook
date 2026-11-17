@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.715
+Each output is evidence
+for something specific,
+
+2
+00:00:02.715 --> 00:00:08.112
+from the guide's requirements
+table against NIST SP 800-53.
+
+3
+00:00:08.112 --> 00:00:12.590
+Threat intelligence and intrusion
+detection in deny on every policy
+
+4
+00:00:12.590 --> 00:00:16.913
+supports deny by default, allow by
+exception, and system monitoring.
+
+5
+00:00:16.913 --> 00:00:20.264
+Every workload subnet's
+declared route to the firewall,
+
+6
+00:00:20.264 --> 00:00:23.688
+and the share that has one,
+supports boundary protection.
+
+7
+00:00:23.688 --> 00:00:27.975
+Firewall logs to the platform
+workspace support system monitoring.
+
+8
+00:00:27.975 --> 00:00:31.132
+And the move to deny, reviewed
+before it's deployed,
+
+9
+00:00:31.132 --> 00:00:34.675
+supports deny by default too,
+through the change record.
+
+10
+00:00:34.675 --> 00:00:38.725
+The kit's output supports these
+controls; the assessor decides.
+
+11
+00:00:38.725 --> 00:00:43.306
+The key security indicators are
+FedRAMP's indicators for cloud providers,
+
+12
+00:00:43.306 --> 00:00:46.250
+which the agency lines
+its own evidence up with.

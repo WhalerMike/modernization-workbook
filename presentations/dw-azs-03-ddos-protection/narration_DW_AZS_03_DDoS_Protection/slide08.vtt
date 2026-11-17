@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.162
+Lab 1 needs PowerShell 7 with
+Pester, in the kit's folder.
+
+2
+00:00:04.162 --> 00:00:08.962
+Contoso's hub network is linked to
+its DDoS plan; the portal spoke isn't.
+
+3
+00:00:08.962 --> 00:00:13.688
+Step 1 runs the check: four of six
+addresses in scope are protected.
+
+4
+00:00:13.688 --> 00:00:15.988
+Step 2 reads each address.
+
+5
+00:00:15.988 --> 00:00:18.877
+The firewall's, the
+application gateway's and
+
+6
+00:00:18.877 --> 00:00:22.001
+the VPN gateway's addresses
+inherit from the hub.
+
+7
+00:00:22.001 --> 00:00:24.562
+The test app's address has IP Protection.
+
+8
+00:00:24.562 --> 00:00:28.974
+The jump box's address inherits from
+the portal spoke, which has no plan.
+
+9
+00:00:28.974 --> 00:00:33.410
+And only the application gateway's
+address has both logs and an alert.

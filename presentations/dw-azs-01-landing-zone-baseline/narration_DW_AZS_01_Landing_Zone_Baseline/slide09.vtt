@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.300
+Step 3 reads the findings.
+
+2
+00:00:02.300 --> 00:00:05.450
+Creating management groups
+doesn't need authorization.
+
+3
+00:00:05.450 --> 00:00:10.765
+Ten resources send no log to the platform
+workspace; one of them, the firewall's
+
+4
+00:00:10.765 --> 00:00:12.426
+public IP, does send logs,
+
+5
+00:00:12.426 --> 00:00:16.413
+but to an application team's
+workspace, which doesn't count.
+
+6
+00:00:16.413 --> 00:00:19.438
+The online subscription's
+Key Vault plan is Free.
+
+7
+00:00:19.438 --> 00:00:23.275
+And the FedRAMP initiative is
+in audit, as Step 1 intends.
+
+8
+00:00:23.275 --> 00:00:26.136
+Step 4 reads the summary the metrics use:
+
+9
+00:00:26.136 --> 00:00:30.125
+six of sixteen platform
+resources log to the workspace.
+
+10
+00:00:30.125 --> 00:00:34.987
+Step 5 prints, without sending it, the
+exact command a live run would send:
+
+11
+00:00:34.987 --> 00:00:38.660
+the guide's own query, scoped
+to the intermediate root.

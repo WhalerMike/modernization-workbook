@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.937
+What do four queries leave to you?
+
+2
+00:00:01.937 --> 00:00:06.975
+Four lists aren't a register, so the kit
+joins them into one with eleven columns.
+
+3
+00:00:06.975 --> 00:00:10.616
+A public IP's attachment
+is an IP configuration ID,
+
+4
+00:00:10.616 --> 00:00:15.588
+so the kit finds the gateway behind
+it and that gateway's WAF and mode.
+
+5
+00:00:15.588 --> 00:00:19.869
+A Front Door profile's public
+names are its custom domains and
+
+6
+00:00:19.869 --> 00:00:24.150
+its WAF lives in a security policy,
+so both are read per profile.
+
+7
+00:00:24.150 --> 00:00:27.019
+Classic Front Door is public too,
+
+8
+00:00:27.019 --> 00:00:31.375
+and retires on March 31,
+2027, so it's in the register.
+
+9
+00:00:31.375 --> 00:00:35.975
+Nothing compares with last week, so
+the kit reports new and gone rows.
+
+10
+00:00:35.975 --> 00:00:39.575
+And Defender for Cloud's view
+is reconciled, not eyeballed.
+
+11
+00:00:39.575 --> 00:00:41.620
+A test pins each answer.

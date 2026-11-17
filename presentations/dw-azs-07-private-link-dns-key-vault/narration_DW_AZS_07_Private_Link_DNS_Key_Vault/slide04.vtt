@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+What does Learn leave to you?
+
+2
+00:00:01.413 --> 00:00:05.713
+The commands make one zone, one
+link, one endpoint; in practice,
+
+3
+00:00:05.713 --> 00:00:10.700
+zones still get created in workload
+subscriptions, and records split.
+
+4
+00:00:10.700 --> 00:00:13.432
+A zone group per endpoint
+means an endpoint
+
+5
+00:00:13.432 --> 00:00:16.088
+without one has no record anybody manages.
+
+6
+00:00:16.088 --> 00:00:20.135
+"Turn public access off once the
+private path works" leaves room
+
+7
+00:00:20.135 --> 00:00:23.949
+for the private path to work
+while the public one stays open.
+
+8
+00:00:23.949 --> 00:00:26.668
+Key Vault's recommendations are read once,
+
+9
+00:00:26.668 --> 00:00:29.463
+and a vault created next
+quarter misses one.
+
+10
+00:00:29.463 --> 00:00:33.637
+And nslookup has to run from inside
+a network, which the kit can't do.
+
+11
+00:00:33.637 --> 00:00:39.140
+So the kit checks the records' configuration
+every run, and Lab 2 runs nslookup.

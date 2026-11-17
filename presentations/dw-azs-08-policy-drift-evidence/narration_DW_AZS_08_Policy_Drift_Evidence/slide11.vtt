@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.875
+Step 7 asks whether this evidence could
+pass the test stage's go or no-go.
+
+2
+00:00:04.875 --> 00:00:09.250
+Every step fails, with the same
+reason: no passing live record.
+
+3
+00:00:09.250 --> 00:00:10.450
+That's on purpose.
+
+4
+00:00:10.450 --> 00:00:12.802
+Lab evidence can't promote anything,
+
+5
+00:00:12.802 --> 00:00:16.487
+so nobody can take a fixture
+run to production by mistake.
+
+6
+00:00:16.487 --> 00:00:21.470
+Step 8 runs this chapter's tests:
+ten pass, covering the policy check,
+
+7
+00:00:21.470 --> 00:00:26.000
+the run folders, the comparison,
+the metrics and the evidence.
+
+8
+00:00:26.000 --> 00:00:28.490
+When you're done, delete
+the output folder.

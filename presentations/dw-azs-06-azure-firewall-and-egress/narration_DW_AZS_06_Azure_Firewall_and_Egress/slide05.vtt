@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.875
+Here's how the kit reads egress.
+
+2
+00:00:01.875 --> 00:00:06.474
+It takes every subnet in the workload
+subscriptions the settings name,
+
+3
+00:00:06.474 --> 00:00:09.514
+except the reserved ones:
+the gateway, firewall,
+
+4
+00:00:09.514 --> 00:00:13.100
+firewall management, Bastion
+and route server subnets.
+
+5
+00:00:13.100 --> 00:00:14.437
+Each gets one state.
+
+6
+00:00:14.437 --> 00:00:18.626
+Firewall, when the default route
+goes to a firewall's private IP.
+
+7
+00:00:18.626 --> 00:00:22.350
+Other appliance, when it goes to
+an address the kit doesn't know.
+
+8
+00:00:22.350 --> 00:00:24.837
+No route table, or no default route.
+
+9
+00:00:24.837 --> 00:00:27.924
+Or the next hop type it
+found, such as the internet.
+
+10
+00:00:27.924 --> 00:00:31.275
+The guide's egress-inspection
+metric is the firewall
+
+11
+00:00:31.275 --> 00:00:34.680
+subnets over all workload
+subnets, by declared route.

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.425
+Welcome back to Building Azure Security.
+
+2
+00:00:02.425 --> 00:00:05.800
+This is Chapter 4: the
+web application firewall.
+
+3
+00:00:05.800 --> 00:00:09.438
+A firewall in detection mode
+is a log with good intentions.
+
+4
+00:00:09.438 --> 00:00:10.835
+The check reads the mode,
+
+5
+00:00:10.835 --> 00:00:14.326
+and the switch to prevention
+stays a decision a person makes.
+
+6
+00:00:14.326 --> 00:00:18.357
+We'll start from what Microsoft Learn
+gives you, see what it leaves to you,
+
+7
+00:00:18.357 --> 00:00:22.457
+read how the kit checks every policy
+and every internet-facing endpoint,
+
+8
+00:00:22.457 --> 00:00:25.737
+and why it writes the switch to
+a plan instead of sending it.
+
+9
+00:00:25.737 --> 00:00:29.088
+Then two labs, the
+evidence and the dangers.
+
+10
+00:00:29.088 --> 00:00:32.660
+The chapter is a draft, and
+the code is illustrative.

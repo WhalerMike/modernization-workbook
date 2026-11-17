@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.925
+Here's Microsoft's starting point.
+
+2
+00:00:01.925 --> 00:00:06.459
+Learn's Az PowerShell for protecting the
+hierarchy sets two things on the tenant
+
+3
+00:00:06.459 --> 00:00:10.181
+root group: that creating a
+management group needs authorization,
+
+4
+00:00:10.181 --> 00:00:12.550
+and which group new subscriptions land in.
+
+5
+00:00:12.550 --> 00:00:15.813
+Learn's REST reference reads
+both back with one call.
+
+6
+00:00:15.813 --> 00:00:20.738
+The guide assigns the security benchmark
+and the FedRAMP initiative in DoNotEnforce,
+
+7
+00:00:20.738 --> 00:00:23.474
+which evaluates compliance
+without enforcing.
+
+8
+00:00:23.474 --> 00:00:28.464
+And two more REST references give the
+reads the kit needs: diagnostic settings,
+
+9
+00:00:28.464 --> 00:00:32.071
+with the workspace and the
+log categories each one sends,
+
+10
+00:00:32.071 --> 00:00:35.590
+and Defender for Cloud's
+pricings, with each plan's tier.

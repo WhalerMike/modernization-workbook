@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.848
+Lab 2 moves to a test subscription
+with an Azure Firewall,
+
+2
+00:00:03.848 --> 00:00:08.212
+its policy and a pilot spoke subnet
+routed to it, never production.
+
+3
+00:00:08.212 --> 00:00:12.864
+Sign in to commercial Azure with the
+Resource Graph and firewall extensions,
+
+4
+00:00:12.864 --> 00:00:17.151
+write the settings, and run the check
+live, allowing the unverified calls.
+
+5
+00:00:17.151 --> 00:00:21.436
+Then compare with the guide's Validate
+commands: the policy's two modes,
+
+6
+00:00:21.436 --> 00:00:25.500
+and the effective route table on a
+test machine in the pilot subnet.
+
+7
+00:00:25.500 --> 00:00:27.684
+For a subnet the kit called firewall,
+
+8
+00:00:27.684 --> 00:00:31.688
+the effective default route should
+go to the firewall's private IP.
+
+9
+00:00:31.688 --> 00:00:33.551
+If it doesn't, record why.
+
+10
+00:00:33.551 --> 00:00:36.493
+Nothing changed in Azure,
+and the plan wasn't run,
+
+11
+00:00:36.493 --> 00:00:39.650
+so back out by deleting
+the output and signing out.

@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.075
+Here's what Microsoft Learn gives you.
+
+2
+00:00:02.075 --> 00:00:07.050
+The origin security page says to use the
+Azure Front Door Backend service tag and
+
+3
+00:00:07.050 --> 00:00:09.054
+the X-Azure-FDID header together,
+
+4
+00:00:09.054 --> 00:00:13.212
+because the tag's addresses are
+shared by every Front Door customer.
+
+5
+00:00:13.212 --> 00:00:17.438
+Learn's App Service tutorial does
+both in one access restriction.
+
+6
+00:00:17.438 --> 00:00:21.040
+Where the origin supports it,
+Private Link is the alternative:
+
+7
+00:00:21.040 --> 00:00:25.489
+Front Door Premium requests a private
+endpoint connection that the origin
+
+8
+00:00:25.489 --> 00:00:29.938
+owner approves, and an origin group
+shouldn't mix public and private origins.
+
+9
+00:00:29.938 --> 00:00:33.721
+The App Service configuration
+and Front Door origins APIs
+
+10
+00:00:33.721 --> 00:00:37.350
+return what the kit reads, and
+the header matches exactly.
+
+11
+00:00:37.350 --> 00:00:41.000
+On TLS, 1.2 or 1.3 only.
+
+12
+00:00:41.000 --> 00:00:45.650
+And classic Front Door
+retires on March 31, 2027.

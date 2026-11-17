@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.387
+What does that leave to you?
+
+2
+00:00:01.387 --> 00:00:04.787
+Inherited from which network, and
+does that network have a plan?
+
+3
+00:00:04.787 --> 00:00:08.706
+The property doesn't say, so the
+kit follows each address to the
+
+4
+00:00:08.706 --> 00:00:13.087
+resource that holds it, its subnet,
+its network and that network's plan.
+
+5
+00:00:13.087 --> 00:00:15.577
+NAT gateway addresses can't be protected,
+
+6
+00:00:15.577 --> 00:00:19.163
+so they're reported as information
+and left out of coverage.
+
+7
+00:00:19.163 --> 00:00:22.969
+An alert or a diagnostic setting
+made one address at a time
+
+8
+00:00:22.969 --> 00:00:26.538
+misses the next address, or
+goes to the wrong workspace.
+
+9
+00:00:26.538 --> 00:00:30.563
+An address set to Disabled isn't
+protected, whatever the network.
+
+10
+00:00:30.563 --> 00:00:34.040
+And a load balancer's frontend
+doesn't name its backend network,
+
+11
+00:00:34.040 --> 00:00:37.100
+so the kit says it can't
+resolve it rather than guessing.

@@ -1,0 +1,38 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.075
+Check six.
+
+2
+00:00:01.075 --> 00:00:03.546
+Why does the kit write
+the move to deny as a
+
+3
+00:00:03.546 --> 00:00:06.163
+draft-and-deploy plan,
+instead of sending it?
+
+4
+00:00:06.163 --> 00:00:07.724
+Because drafts are cheaper?
+
+5
+00:00:07.724 --> 00:00:10.853
+Because deploying replaces
+the whole applied policy,
+
+6
+00:00:10.853 --> 00:00:13.425
+so it goes through review
+and a change window?
+
+7
+00:00:13.425 --> 00:00:16.100
+Because deny can't be set
+from the command line?
+
+8
+00:00:16.100 --> 00:00:18.670
+Or because the kit has no network access?

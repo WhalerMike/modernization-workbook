@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.913
+The answer to check one: no.
+
+2
+00:00:01.913 --> 00:00:05.351
+Only an enabled log to the
+platform workspace counts.
+
+3
+00:00:05.351 --> 00:00:06.213
+Scene two.
+
+4
+00:00:06.213 --> 00:00:10.941
+Steps 3 to 5 can't be proved complete
+without a list of what's exposed,
+
+5
+00:00:10.941 --> 00:00:15.153
+and the portal is public in many
+places: a Front Door profile,
+
+6
+00:00:15.153 --> 00:00:20.138
+the gateway's address, a jump box, a
+load balancer, two web apps and a vault.
+
+7
+00:00:20.138 --> 00:00:24.866
+The kit joins the guide's Resource
+Graph queries, built from Microsoft
+
+8
+00:00:24.866 --> 00:00:29.350
+Learn's starter sample, into one
+register, with an owner on every row.
+
+9
+00:00:29.350 --> 00:00:31.837
+The jump box's address has no owner.
+
+10
+00:00:31.837 --> 00:00:36.625
+A week later a new address appears,
+with no owner either, and an orphan
+
+11
+00:00:36.625 --> 00:00:42.070
+address is gone, with a reminder to remove
+any DNS record still pointing at it.

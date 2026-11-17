@@ -13620,6 +13620,178 @@
      "change": "Added: cited in the Azure Security guide and training labs"
     }
    ]
+  },
+  {
+   "id": "learn-mg-hierarchy-settings-get",
+   "title": "Hierarchy Settings - Get (REST API)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/rest/api/managementgroups/hierarchy-settings/get",
+   "status": "active",
+   "added": "2026-11-17",
+   "labels": [
+    "Hierarchy Settings - Get"
+   ],
+   "history": [
+    {
+     "date": "2026-11-17",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-policy-resource-graph-samples",
+   "title": "Azure Resource Graph sample queries for Azure Policy",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/governance/policy/samples/resource-graph-samples",
+   "status": "active",
+   "added": "2026-11-17",
+   "labels": [
+    "Resource Graph samples for Azure Policy",
+    "Azure Resource Graph sample queries for Azure Policy"
+   ],
+   "history": [
+    {
+     "date": "2026-11-17",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-diagnostic-settings-list",
+   "title": "Diagnostic Settings - List (REST API)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/rest/api/monitor/diagnostic-settings/list",
+   "status": "active",
+   "added": "2026-11-17",
+   "labels": [
+    "Diagnostic Settings - List"
+   ],
+   "history": [
+    {
+     "date": "2026-11-17",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-defender-pricings-list",
+   "title": "Pricings - List (REST API)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/rest/api/defenderforcloud-composite/pricings/list",
+   "status": "active",
+   "added": "2026-11-17",
+   "labels": [
+    "Pricings - List"
+   ],
+   "history": [
+    {
+     "date": "2026-11-17",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-ddos-ip-protection-cli",
+   "title": "QuickStart: Create and configure Azure DDoS IP Protection using Azure CLI",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/ddos-protection/manage-ddos-ip-protection-cli",
+   "status": "active",
+   "added": "2026-11-17",
+   "labels": [
+    "DDoS IP Protection quickstart"
+   ],
+   "history": [
+    {
+     "date": "2026-11-17",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-zero-trust-ddos",
+   "title": "Zero Trust recommendations for Azure DDoS Protection",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/networking/security/zero-trust-ddos-protection",
+   "status": "active",
+   "added": "2026-11-17",
+   "labels": [
+    "Zero Trust recommendations for Azure DDoS Protection",
+    "Zero Trust for DDoS Protection"
+   ],
+   "history": [
+    {
+     "date": "2026-11-17",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-afd-logs",
+   "title": "Configure Azure Front Door logs",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/azure/frontdoor/standard-premium/how-to-logs",
+   "status": "active",
+   "added": "2026-11-17",
+   "labels": [
+    "Configure Azure Front Door logs"
+   ],
+   "history": [
+    {
+     "date": "2026-11-17",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-webapps-get-configuration",
+   "title": "Web Apps - Get Configuration (REST API)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/rest/api/appservice/web-apps/get-configuration",
+   "status": "active",
+   "added": "2026-11-17",
+   "labels": [
+    "Web Apps - Get Configuration"
+   ],
+   "history": [
+    {
+     "date": "2026-11-17",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-afd-origins-list",
+   "title": "AFD Origins - List By Origin Group (REST API)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/rest/api/frontdoor/azurefrontdoorstandardpremium/afd-origins/list-by-origin-group",
+   "status": "active",
+   "added": "2026-11-17",
+   "labels": [
+    "AFD Origins - List By Origin Group"
+   ],
+   "history": [
+    {
+     "date": "2026-11-17",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "learn-private-dns-zone-groups-list",
+   "title": "Private Dns Zone Groups - List (REST API)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/rest/api/virtualnetwork/private-dns-zone-groups/list",
+   "status": "active",
+   "added": "2026-11-17",
+   "labels": [
+    "Private Dns Zone Groups - List"
+   ],
+   "history": [
+    {
+     "date": "2026-11-17",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
   }
  ],
  "phrases": {

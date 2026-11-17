@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.350
+Lab 1 needs PowerShell 7 with Pester, in
+the kit's folder, and no subscription.
+
+2
+00:00:05.350 --> 00:00:08.693
+Contoso's Premium profile
+has two origin groups:
+
+3
+00:00:08.693 --> 00:00:14.125
+one with two App Service origins, one with
+a Private Link origin and a public one.
+
+4
+00:00:14.125 --> 00:00:17.612
+The Standard careers profile
+has a single storage origin.
+
+5
+00:00:17.612 --> 00:00:23.038
+Step 1 runs the edge check: two of
+five origins locked by configuration.
+
+6
+00:00:23.038 --> 00:00:25.413
+Step 2 reads each origin.
+
+7
+00:00:25.413 --> 00:00:30.188
+The east origin has the tag and the
+header; the west origin has the tag only.
+
+8
+00:00:30.188 --> 00:00:34.688
+The private API origin reaches
+its origin over Private Link.
+
+9
+00:00:34.688 --> 00:00:36.220
+And two are unchecked.

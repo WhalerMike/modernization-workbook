@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.162
+Lab 1 needs PowerShell 7 with
+Pester, in the kit's folder.
+
+2
+00:00:04.162 --> 00:00:08.802
+Contoso has two WAF policies: one
+on its portal application gateway,
+
+3
+00:00:08.802 --> 00:00:11.537
+and one on its portal Front Door profile.
+
+4
+00:00:11.537 --> 00:00:15.087
+A second Front Door profile,
+for careers, has none.
+
+5
+00:00:15.087 --> 00:00:19.263
+Step 1 runs the check: one of
+three internet-facing endpoints
+
+6
+00:00:19.263 --> 00:00:23.188
+is behind a WAF in prevention,
+and the plan file is written.
+
+7
+00:00:23.188 --> 00:00:25.451
+Step 2 reads each policy.
+
+8
+00:00:25.451 --> 00:00:28.238
+The gateway's policy
+is still in detection.
+
+9
+00:00:28.238 --> 00:00:31.763
+The Front Door policy blocks,
+but has no bot rule set.
+
+10
+00:00:31.763 --> 00:00:34.460
+Both are on Default
+Rule Set two point one.

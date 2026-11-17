@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.722
+Step 3 reads the findings: three
+exposures with no owner, a public IP
+
+2
+00:00:04.722 --> 00:00:09.988
+attached to nothing, and one resource
+Defender reports that no query finds.
+
+3
+00:00:09.988 --> 00:00:13.328
+It's a container group with
+a public address that isn't
+
+4
+00:00:13.328 --> 00:00:16.213
+a public IP resource, so
+it's a gap in the queries.
+
+5
+00:00:16.213 --> 00:00:19.122
+Step 4 builds the register
+again a week later,
+
+6
+00:00:19.122 --> 00:00:22.425
+against the first one, and
+step 5 reads what changed.
+
+7
+00:00:22.425 --> 00:00:25.500
+One public IP is new, and has no owner.
+
+8
+00:00:25.500 --> 00:00:28.690
+The orphan is gone, with
+the reminder to remove
+
+9
+00:00:28.690 --> 00:00:31.963
+any DNS record that still
+points at its address.
+
+10
+00:00:31.963 --> 00:00:34.490
+Step 6 runs the chapter's tests.

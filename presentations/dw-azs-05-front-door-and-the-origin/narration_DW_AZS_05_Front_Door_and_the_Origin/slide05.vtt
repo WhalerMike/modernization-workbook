@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.625
+Here's how the kit decides.
+
+2
+00:00:01.625 --> 00:00:04.150
+Every origin gets one lock-down state.
+
+3
+00:00:04.150 --> 00:00:07.950
+Private Link, when the shared
+private link connection is approved.
+
+4
+00:00:07.950 --> 00:00:09.969
+Service tag plus Front Door ID,
+
+5
+00:00:09.969 --> 00:00:15.378
+when an App Service origin has an allow rule
+for the tag with this profile's header,
+
+6
+00:00:15.378 --> 00:00:18.850
+no allow rule for any address,
+and no default of allow.
+
+7
+00:00:18.850 --> 00:00:20.550
+Those two count as locked.
+
+8
+00:00:20.550 --> 00:00:22.738
+Tag only, when the header's missing.
+
+9
+00:00:22.738 --> 00:00:25.975
+Other Front Door, when the
+header is some other profile's.
+
+10
+00:00:25.975 --> 00:00:31.025
+Open, when there's no tag rule, an
+allow-any rule, or a default of allow.
+
+11
+00:00:31.025 --> 00:00:34.460
+And unchecked, for any origin
+type the kit can't read:
+
+12
+00:00:34.460 --> 00:00:36.980
+it's not counted as locked by anybody.

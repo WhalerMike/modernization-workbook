@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.648
+Each output supports specific
+controls from NIST's catalog,
+
+2
+00:00:03.648 --> 00:00:06.238
+as the guide's requirements
+table maps them.
+
+3
+00:00:06.238 --> 00:00:09.412
+The policy folder supports
+baseline configuration,
+
+4
+00:00:09.412 --> 00:00:12.587
+configuration settings
+and continuous monitoring.
+
+5
+00:00:12.587 --> 00:00:17.138
+The drift report supports configuration
+settings and continuous monitoring.
+
+6
+00:00:17.138 --> 00:00:21.174
+The metrics support continuous
+monitoring and audit record review.
+
+7
+00:00:21.174 --> 00:00:24.215
+And the chained, hashed
+records support continuous
+
+8
+00:00:24.215 --> 00:00:27.325
+monitoring and the protection
+of audit information.
+
+9
+00:00:27.325 --> 00:00:31.413
+The kit's output supports those
+controls; the assessor decides.
+
+10
+00:00:31.413 --> 00:00:35.829
+The key security indicators are
+FedRAMP's indicators for cloud providers:
+
+11
+00:00:35.829 --> 00:00:39.888
+the agency lines its own evidence up
+with them and doesn't report them.
+
+12
+00:00:39.888 --> 00:00:43.368
+The exercise and after-action
+records the guide's Step
+
+13
+00:00:43.368 --> 00:00:46.610
+10 asks for are people's
+work, filed beside the runs.

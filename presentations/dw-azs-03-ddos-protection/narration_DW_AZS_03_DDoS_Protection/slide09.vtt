@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.309
+Step 3 counts the statuses: one with
+IP Protection, three inherited,
+
+2
+00:00:05.309 --> 00:00:10.663
+one unprotected, one unknown, one on
+a NAT gateway and one unattached.
+
+3
+00:00:10.663 --> 00:00:12.787
+Step 4 reads the findings.
+
+4
+00:00:12.787 --> 00:00:17.126
+The firewall's address sends its logs
+to an application team's workspace,
+
+5
+00:00:17.126 --> 00:00:19.512
+so the missing-logs finding still fires.
+
+6
+00:00:19.512 --> 00:00:24.612
+The test app's alert exists but is disabled,
+so the missing-alert finding fires too.
+
+7
+00:00:24.612 --> 00:00:28.650
+The load balancer is reported
+as unknown, not guessed.
+
+8
+00:00:28.650 --> 00:00:31.775
+And the trial plan is a
+second plan with no networks.
+
+9
+00:00:31.775 --> 00:00:34.660
+Step 5 runs the chapter's three tests.

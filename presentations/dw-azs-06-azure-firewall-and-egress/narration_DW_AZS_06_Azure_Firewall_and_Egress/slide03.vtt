@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.925
+Here's Microsoft's starting point.
+
+2
+00:00:01.925 --> 00:00:06.903
+Learn's Zero Trust recommendations for
+Azure Firewall check that outbound traffic
+
+3
+00:00:06.903 --> 00:00:09.535
+from workloads routes
+through the firewall,
+
+4
+00:00:09.535 --> 00:00:13.802
+that threat intelligence and intrusion
+detection are in alert and deny,
+
+5
+00:00:13.802 --> 00:00:17.500
+that outbound TLS is inspected,
+and that diagnostic logs are on.
+
+6
+00:00:17.500 --> 00:00:20.911
+Threat intelligence deny
+needs Standard or Premium;
+
+7
+00:00:20.911 --> 00:00:24.400
+intrusion detection and TLS
+inspection need Premium.
+
+8
+00:00:24.400 --> 00:00:28.400
+The CLI sets each mode
+to alert, deny or off.
+
+9
+00:00:28.400 --> 00:00:32.538
+Learn's route commands add a default
+route to the firewall's private IP.
+
+10
+00:00:32.538 --> 00:00:36.600
+And Learn's Draft and Deployment
+procedure stages every change in
+
+11
+00:00:36.600 --> 00:00:40.660
+a draft and deploys it at once,
+replacing the whole applied policy.

@@ -1,0 +1,33 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.962
+Check three.
+
+2
+00:00:00.962 --> 00:00:05.313
+The jump box's address has the protection
+mode virtual network inherited.
+
+3
+00:00:05.313 --> 00:00:07.500
+What decides whether
+it's actually protected?
+
+4
+00:00:07.500 --> 00:00:10.663
+Nothing, because inherited
+always means protected?
+
+5
+00:00:10.663 --> 00:00:13.925
+Whether its network is linked
+to a DDoS protection plan?
+
+6
+00:00:13.925 --> 00:00:15.713
+Whether it has an owner tag?
+
+7
+00:00:15.713 --> 00:00:18.050
+Or whether Front Door sits in front of it?

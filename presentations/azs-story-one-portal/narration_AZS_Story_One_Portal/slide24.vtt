@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.100
+The answer to check seven: no.
+
+2
+00:00:02.100 --> 00:00:06.400
+Once on, purge protection can't be
+turned off, and that's the point.
+
+3
+00:00:06.400 --> 00:00:07.263
+Scene eight.
+
+4
+00:00:07.263 --> 00:00:12.172
+The portal's WAF tuning runs under a
+waiver that expires on December first,
+
+5
+00:00:12.172 --> 00:00:14.988
+so the kit warns it's
+due within thirty days.
+
+6
+00:00:14.988 --> 00:00:19.683
+A week later, the platform team switches
+the gateway's firewall to prevention,
+
+7
+00:00:19.683 --> 00:00:23.719
+adds the west origin's header, routes
+the web subnet to the firewall,
+
+8
+00:00:23.719 --> 00:00:26.213
+and turns on the vault's purge protection.
+
+9
+00:00:26.213 --> 00:00:30.024
+A new address arrives, with
+no owner and no protection.
+
+10
+00:00:30.024 --> 00:00:32.849
+The kit compares the two
+weeks by fingerprint,
+
+11
+00:00:32.849 --> 00:00:36.564
+and records each run as evidence
+that supports the controls,
+
+12
+00:00:36.564 --> 00:00:40.850
+with its key security indicators,
+its hashes and the record before it.

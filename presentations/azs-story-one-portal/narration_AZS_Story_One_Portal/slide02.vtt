@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.038
+Here's the route.
+
+2
+00:00:01.038 --> 00:00:03.976
+Scene one reads the
+landing-zone baseline back.
+
+3
+00:00:03.976 --> 00:00:08.063
+Scene two lists every public face
+of the portal, with its owner.
+
+4
+00:00:08.063 --> 00:00:13.224
+Scene three asks which of its public IP
+addresses are really under DDoS protection.
+
+5
+00:00:13.224 --> 00:00:17.688
+Scene four finds a web application
+firewall that logs but doesn't block.
+
+6
+00:00:17.688 --> 00:00:22.038
+Scene five checks whether the portal's
+origins can be reached around the edge.
+
+7
+00:00:22.038 --> 00:00:24.076
+Scene six follows its egress.
+
+8
+00:00:24.076 --> 00:00:26.263
+Scene seven reads its key vault.
+
+9
+00:00:26.263 --> 00:00:31.450
+Scene eight holds it all with policy,
+compares two weeks, and records the evidence.
+
+10
+00:00:31.450 --> 00:00:34.562
+And scene nine takes the
+kit live, test first.
+
+11
+00:00:34.562 --> 00:00:36.414
+Each scene has a story slide,
+
+12
+00:00:36.414 --> 00:00:40.100
+a try-it slide with real output,
+and a one-question check.

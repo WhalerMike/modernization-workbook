@@ -1,0 +1,35 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:05.159
+The application owner owns the
+origins and their certificates,
+
+3
+00:00:05.159 --> 00:00:08.375
+and runs the direct-request
+test the guide asks for.
+
+4
+00:00:08.375 --> 00:00:13.537
+The platform owner owns the Front Door
+profiles and the gateways' TLS policy.
+
+5
+00:00:13.537 --> 00:00:16.213
+Developers keep the
+lock-down states honest,
+
+6
+00:00:16.213 --> 00:00:20.625
+and make sure the unchecked list stays
+visible, so nobody counts it as done.
+
+7
+00:00:20.625 --> 00:00:24.000
+Every read the check makes is
+Reader, and it sends nothing.

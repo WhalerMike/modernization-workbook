@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.715
+Each output is evidence
+for something specific,
+
+2
+00:00:02.715 --> 00:00:08.112
+from the guide's requirements
+table against NIST SP 800-53.
+
+3
+00:00:08.112 --> 00:00:12.881
+Central zones linked to the hub, every
+endpoint registered there, and nothing public
+
+4
+00:00:12.881 --> 00:00:17.650
+behind an endpoint support boundary
+protection and information flow enforcement.
+
+5
+00:00:17.650 --> 00:00:22.600
+Public services without an endpoint,
+named, support boundary protection.
+
+6
+00:00:22.600 --> 00:00:26.061
+And every vault on role-based
+access with purge protection,
+
+7
+00:00:26.061 --> 00:00:30.440
+a private endpoint and audit logs
+supports cryptographic key management,
+
+8
+00:00:30.440 --> 00:00:34.325
+protection of information at rest,
+and authenticator management.
+
+9
+00:00:34.325 --> 00:00:38.375
+The kit's output supports these
+controls; the assessor decides.
+
+10
+00:00:38.375 --> 00:00:42.956
+The key security indicators are
+FedRAMP's indicators for cloud providers,
+
+11
+00:00:42.956 --> 00:00:45.890
+which the agency lines
+its own evidence up with.
