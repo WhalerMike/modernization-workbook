@@ -220,7 +220,7 @@ Disconnect-MgGraph
 | TVM tables | Not ingested into Microsoft Sentinel | [^xdr05-tvm] |
 | List incidents | `GET /security/incidents`; `SecurityIncident.Read.All`; `$expand=alerts`; `createdDateTime` filterable; Defender XDR correlates alerts into incidents | [^xdr05-incidents] |
 
-Read for the guide on November 11, 2026; this chapter adds no provider fact. The exact `VulnerabilitySeverityLevel` strings are *not yet specified* ([research gaps](_verification/research-gaps.md)).
+Read for the guide on November 11, 2026; this chapter adds no provider fact. The exact `VulnerabilitySeverityLevel` strings are *not yet specified* ([research gaps](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/project-plans/developer-workbooks/defender-xdr/_verification/research-gaps.md)).
 
 ## Federal requirements and evidence
 

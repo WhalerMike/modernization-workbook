@@ -224,7 +224,7 @@ Remove-Item <output-folder>/devices/*.json
 | Event action types | `ExploitGuardNetworkProtectionAudited`, `...Blocked`; `ControlledFolderAccessViolationAudited`, `...Blocked`; `TamperingAttempt` | [^xdr03-np-hunt] [^xdr03-cfa-mon] [^xdr03-tamper-ov] |
 | Firewall as enforced | `Get-NetFirewallProfile -PolicyStore ActiveStore` | [^xdr03-fw] |
 
-Read for the guide on November 11, 2026. One value is the kit's own and *not yet specified* here: that `Get-MpComputerStatus` reports active mode as `AMRunningMode` `Normal`. It is in the [research gaps](_verification/research-gaps.md); check it on a test device before relying on the `AntivirusMode` row.
+Read for the guide on November 11, 2026. One value is the kit's own and *not yet specified* here: that `Get-MpComputerStatus` reports active mode as `AMRunningMode` `Normal`. It is in the [research gaps](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/project-plans/developer-workbooks/defender-xdr/_verification/research-gaps.md); check it on a test device before relying on the `AntivirusMode` row.
 
 ## Federal requirements and evidence
 

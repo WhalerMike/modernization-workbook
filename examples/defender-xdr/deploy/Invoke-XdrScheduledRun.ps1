@@ -19,5 +19,5 @@ Import-Module (Join-Path $PSScriptRoot 'XdrDeploy.psm1') -Force
 $s = Read-XdrSettings -Path $SettingsPath
 $inv = if ($EnvironmentFixture) { Use-XdrDeployFixture -Path $EnvironmentFixture } else { New-XdrLiveInvoker -Settings $s }
 $r = Invoke-XdrScheduledRun -Settings $s -Invoker $inv -RunName $RunName -AsOf $AsOf
-$r.Rows | Format-Table Task, Result, Record, Detail -AutoSize -Wrap | Out-Host
+$r.Rows | Format-Table Task, Result, Record, Detail -AutoSize -Wrap | Write-XdrTable
 Write-Host ("Scheduled run {0}: {1} run(s) under outputRoot/{0}, recorded in outputRoot/evidence; the scheduled-run record is {2:d4}." -f $RunName, $r.Rows.Count, $r.Record)

@@ -258,7 +258,7 @@ Disconnect-MgGraph
 | Offboarding | Package expires seven days after download; never deploy onboarding and offboarding together; the device profile stays up to 180 days | [^xdr02-intune] |
 | Hunting results | `schema` and `results`; Learn's examples show column names in PascalCase and in camelCase | [^xdr02-hunting] |
 
-Rows 1 to 5 were read for the guide on November 11, 2026; row 6 on November 17, 2026. The exact strings advanced hunting returns for `OnboardingStatus` and `SensorHealthState` are *not yet specified* ([research gaps](_verification/research-gaps.md)).
+Rows 1 to 5 were read for the guide on November 11, 2026; row 6 on November 17, 2026. The exact strings advanced hunting returns for `OnboardingStatus` and `SensorHealthState` are *not yet specified* ([research gaps](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/project-plans/developer-workbooks/defender-xdr/_verification/research-gaps.md)).
 
 ## Federal requirements and evidence
 

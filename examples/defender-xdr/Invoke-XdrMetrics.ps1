@@ -20,5 +20,5 @@ Import-Module (Join-Path $PSScriptRoot 'powershell/DefenderXdr/DefenderXdr.psm1'
 $s = Read-XdrSettings -Path $SettingsPath
 if (-not $ExercisePath -and $s.inputs.Contains('exercise')) { $ExercisePath = $s.inputs.exercise }
 $r = Invoke-XdrMetrics -Settings $s -RunRoot $RunRoot -OutputPath $OutputPath -AsOf $AsOf -ExercisePath $ExercisePath
-$r.Metrics | Format-Table Metric, Value -AutoSize -Wrap | Out-Host
+$r.Metrics | Format-Table Metric, Value -AutoSize -Wrap | Write-XdrTable
 Write-Host "Written to ${OutputPath}: metrics.md, metrics.json, manifest.json"

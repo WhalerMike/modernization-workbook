@@ -24,5 +24,5 @@ $s = Read-XdrSettings -Path $SettingsPath
 $inv = if ($EnvironmentFixture) { Use-XdrDeployFixture -Path $EnvironmentFixture } else { New-XdrLiveInvoker -Settings $s }
 $cr = if ($s.Contains('changeRecord')) { "$($s.changeRecord)" } else { '' }
 $r = Invoke-XdrPublish -Settings $s -Invoker $inv -PlanPath $PlanPath -OutputPath $OutputPath -AsOf $AsOf -Apply:$Apply -ApprovedSha256 $ApprovedSha256 -ChangeRecord $cr
-$r.Results | ForEach-Object { [pscustomobject]@{ Rule = $_.ruleId; Action = $_.action; Method = $_.method; Status = $_.status } } | Format-Table -AutoSize | Out-Host
+$r.Results | ForEach-Object { [pscustomobject]@{ Rule = $_.ruleId; Action = $_.action; Method = $_.method; Status = $_.status } } | Format-Table -AutoSize | Write-XdrTable
 Write-Host ("Plan {0}: {1}. Written to {2}: results.json, plan.json, manifest.json" -f $r.PlanSha256, $(if ($r.Applied) { 'applied' } else { 'dry run, nothing sent' }), $OutputPath)

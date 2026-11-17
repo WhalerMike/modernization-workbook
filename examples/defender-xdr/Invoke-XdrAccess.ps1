@@ -19,5 +19,5 @@ $ErrorActionPreference = 'Stop'
 Import-Module (Join-Path $PSScriptRoot 'powershell/DefenderXdr/DefenderXdr.psm1') -Force
 $s = Read-XdrSettings -Path $SettingsPath
 $r = Invoke-XdrAccessCheck -Settings $s -Invoker (Resolve-XdrInvoker -Settings $s -FixturePath $FixturePath) -OutputPath $OutputPath -AsOf $AsOf -RoleExportPath $RoleExportPath
-$r.Rows | Format-Table Id, Status, Subject, Detail -AutoSize -Wrap | Out-Host
+$r.Rows | Format-Table Id, Status, Subject, Detail -AutoSize -Wrap | Write-XdrTable
 Write-Host ("Access: {0} checks, {1} failed. Written to {2}: results.csv, results.json, permissions.csv, raw/, manifest.json" -f $r.Rows.Count, $r.Failed, $OutputPath)

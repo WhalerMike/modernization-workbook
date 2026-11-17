@@ -4,8 +4,7 @@ PS> $s | ConvertTo-Json -Depth 10 | Set-Content tests/fixtures/settings.portal.j
 PS> ./Invoke-XdrDetections.ps1 -SettingsPath tests/fixtures/settings.portal.json -FixturePath tests/fixtures/graph -OutputPath out/detections-portal -AsOf 2026-11-16T12:00:00Z
 Subject                  Id            Detail
 -------                  --            ------
-contoso-admin-share-copy NO-AUTOMATION automatedActions set: containment stays on the response ladder (Gate 9); remove
-                                       them
+contoso-admin-share-copy NO-AUTOMATION automatedActions set: containment stays on the response ladder (Gate 9); remove them
 
 
 RuleId                            Window    Rows Expected Status

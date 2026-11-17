@@ -27,7 +27,7 @@ Import-Module (Join-Path $PSScriptRoot 'XdrDeploy.psm1') -Force
 $s = Read-XdrSettings -Path $SettingsPath
 if ($PSCmdlet.ParameterSetName -eq 'Plan') {
     $p = New-XdrRollbackPlan -Settings $s -PublishPath $PublishPath -AsrRunPath $AsrRunPath -OutputPath $OutputPath -AsOf $AsOf
-    @($p.Plan.actions) | ForEach-Object { [pscustomobject]@{ Rule = $_.ruleId; Action = $_.action; Request = "$($_.method) $($_.path)" } } | Format-Table -AutoSize | Out-Host
+    @($p.Plan.actions) | ForEach-Object { [pscustomobject]@{ Rule = $_.ruleId; Action = $_.action; Request = "$($_.method) $($_.path)" } } | Format-Table -AutoSize | Write-XdrTable
     Write-Host ("Rollback plan {0}: {1} detection(s) to disable; ASR values as they were for {2}." -f $p.PlanSha256, @($p.Plan.actions).Count, (@($p.Plan.asrRings) -join ', '))
     Write-Host "Written to ${OutputPath}: plan.json, plan.sha256, oma-uri/"
     return
@@ -35,5 +35,5 @@ if ($PSCmdlet.ParameterSetName -eq 'Plan') {
 $inv = if ($EnvironmentFixture) { Use-XdrDeployFixture -Path $EnvironmentFixture } else { New-XdrLiveInvoker -Settings $s }
 $cr = if ($s.Contains('changeRecord')) { "$($s.changeRecord)" } else { '' }
 $r = Invoke-XdrRollback -Settings $s -Invoker $inv -PlanPath $PlanPath -OutputPath $OutputPath -AsOf $AsOf -Apply:$Apply -ApprovedSha256 $ApprovedSha256 -ChangeRecord $cr
-$r.Results | ForEach-Object { [pscustomobject]@{ Rule = $_.ruleId; Action = $_.action; Status = $_.status } } | Format-Table -AutoSize | Out-Host
+$r.Results | ForEach-Object { [pscustomobject]@{ Rule = $_.ruleId; Action = $_.action; Status = $_.status } } | Format-Table -AutoSize | Write-XdrTable
 Write-Host ("Rollback {0}: {1}. Written to {2}: results.json, plan.json, oma-uri/, manifest.json" -f $r.PlanSha256, $(if ($r.Applied) { 'applied' } else { 'dry run, nothing sent' }), $OutputPath)
