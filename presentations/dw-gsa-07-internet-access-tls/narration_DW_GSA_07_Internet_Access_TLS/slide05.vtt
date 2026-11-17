@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Twelve checks.
+
+2
+00:00:01.100 --> 00:00:06.767
+For filtering: each Internet Access policy
+links an existing profile and excludes
+
+3
+00:00:06.767 --> 00:00:12.681
+emergency access; the acceptable-use categories
+and threat intelligence are blocked;
+
+4
+00:00:12.681 --> 00:00:15.802
+every bypass is owned,
+approved and unexpired;
+
+5
+00:00:15.802 --> 00:00:20.812
+QUIC is blocked by the interim path;
+and the tenant is inside Learn's limits.
+
+6
+00:00:20.812 --> 00:00:26.138
+For TLS: more than ninety days left on a
+certificate issued for at least six months;
+
+7
+00:00:26.138 --> 00:00:29.397
+an issuer that isn't an
+authentication authority;
+
+8
+00:00:29.397 --> 00:00:34.563
+never the baseline profile before ring
+3; the privacy approval and user notice
+
+9
+00:00:34.563 --> 00:00:39.412
+recorded; every custom bypass registered;
+and failures under one percent.
+
+10
+00:00:39.412 --> 00:00:43.176
+One note: no Graph read for
+TLS inspection was verified,
+
+11
+00:00:43.176 --> 00:00:45.650
+so its record comes from the portal.

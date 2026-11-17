@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.512
+Why start with a decision?
+
+2
+00:00:01.512 --> 00:00:05.536
+Because each function of Global
+Secure Access has its own gate:
+
+3
+00:00:05.536 --> 00:00:08.941
+the Microsoft traffic profile
+comes with Entra ID P1,
+
+4
+00:00:08.941 --> 00:00:13.274
+while Internet Access and Private
+Access are licensed separately.
+
+5
+00:00:13.274 --> 00:00:14.925
+So the goal is concrete.
+
+6
+00:00:14.925 --> 00:00:19.286
+By the end you can read the tenant's
+licenses and onboarding state with the
+
+7
+00:00:19.286 --> 00:00:21.145
+least-privileged permissions,
+
+8
+00:00:21.145 --> 00:00:24.433
+keep one decision record for
+each of the four functions,
+
+9
+00:00:24.433 --> 00:00:27.865
+and show an assessor that each
+record is current, licensed,
+
+10
+00:00:27.865 --> 00:00:31.225
+approved, and honest about what
+GCC does and doesn't state.
+
+11
+00:00:31.225 --> 00:00:34.845
+It's for the developers, the policy
+owner who signs the records,
+
+12
+00:00:34.845 --> 00:00:37.250
+and the security officer who keeps them.

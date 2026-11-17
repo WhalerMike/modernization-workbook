@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+Scene one.
+
+2
+00:00:00.875 --> 00:00:03.961
+The pilot's Internet
+Access decision record
+
+3
+00:00:03.961 --> 00:00:06.713
+looks fine at a glance: adopted, approved.
+
+4
+00:00:06.713 --> 00:00:10.918
+But its quote of Learn's availability
+sentence is forty-six days old,
+
+5
+00:00:10.918 --> 00:00:13.696
+its SKU has twenty-five
+units for sixty users,
+
+6
+00:00:13.696 --> 00:00:17.525
+and it counts on the cloud firewall
+for clients to handle QUIC.
+
+7
+00:00:17.525 --> 00:00:18.612
+That's a preview.
+
+8
+00:00:18.612 --> 00:00:24.332
+Learn says Global Secure Access is
+available in GCC for the product as a whole,
+
+9
+00:00:24.332 --> 00:00:28.175
+so a preview's GCC availability
+is not yet specified.
+
+10
+00:00:28.175 --> 00:00:29.713
+The kit doesn't assume it.
+
+11
+00:00:29.713 --> 00:00:34.938
+Its availability table carries the guide's
+interim path, and the check that catches
+
+12
+00:00:34.938 --> 00:00:40.080
+the preview names it: block QUIC with a
+Windows Firewall rule delivered by Intune.

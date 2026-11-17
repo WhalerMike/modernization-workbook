@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.438
+Step 4 runs the baseline checks.
+
+2
+00:00:02.438 --> 00:00:07.290
+Both connector groups are in the
+architecture record with two hosts each,
+
+3
+00:00:07.290 --> 00:00:11.188
+the forest is in the DNS suffixes,
+and the workspace is named.
+
+4
+00:00:11.188 --> 00:00:15.975
+One failure: the diagnostic setting doesn't
+send the remote network health logs.
+
+5
+00:00:15.975 --> 00:00:20.205
+Step 5 reads the setting's categories
+as the collector saved them:
+
+6
+00:00:20.205 --> 00:00:22.712
+three on, and remote network health off.
+
+7
+00:00:22.712 --> 00:00:26.213
+No branch is on a remote
+network yet, but when one is,
+
+8
+00:00:26.213 --> 00:00:29.350
+its health would never
+reach the workspace.

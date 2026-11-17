@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:04.918
+The policy owner approves
+categories and every bypass,
+
+3
+00:00:04.918 --> 00:00:07.325
+and reviews bypasses each quarter.
+
+4
+00:00:07.325 --> 00:00:11.263
+The privacy officer approves the
+inspection scope before it starts.
+
+5
+00:00:11.263 --> 00:00:14.800
+The PKI team runs the
+dedicated issuing authority.
+
+6
+00:00:14.800 --> 00:00:19.725
+The platform owner applies the changes and
+renews the certificate ninety days ahead.
+
+7
+00:00:19.725 --> 00:00:24.400
+And the security monitor watches the failure
+rate and the top blocked destinations.
+
+8
+00:00:24.400 --> 00:00:29.029
+For permissions: Network Access read
+and write for the profiles and policies,
+
+9
+00:00:29.029 --> 00:00:33.223
+Policy Read Write Conditional Access
+for the Internet Access policy,
+
+10
+00:00:33.223 --> 00:00:36.600
+and two administrator roles
+activated just for the lab.

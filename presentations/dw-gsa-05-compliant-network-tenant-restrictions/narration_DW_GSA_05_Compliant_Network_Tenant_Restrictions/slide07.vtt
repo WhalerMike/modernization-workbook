@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.362
+Lab 1, after listing the reads
+and collecting the pilot tenant.
+
+2
+00:00:04.362 --> 00:00:07.324
+Step 3 checks the
+compliant network policy.
+
+3
+00:00:07.324 --> 00:00:13.350
+It's built right: the location, the block,
+both exclusions, no Private Access app.
+
+4
+00:00:13.350 --> 00:00:16.437
+And it has been in report-only
+for ten business days.
+
+5
+00:00:16.437 --> 00:00:20.576
+But it isn't ready: the service
+carried three report-only failures.
+
+6
+00:00:20.576 --> 00:00:24.025
+Step 4 reads the guide's
+query to see why that matters.
+
+7
+00:00:24.025 --> 00:00:27.104
+Forty-one failures came
+from users off the service,
+
+8
+00:00:27.104 --> 00:00:29.450
+which is exactly what the policy is for.
+
+9
+00:00:29.450 --> 00:00:32.160
+The three with through
+equal true are defects:
+
+10
+00:00:32.160 --> 00:00:35.060
+users on the service who
+would have been blocked.

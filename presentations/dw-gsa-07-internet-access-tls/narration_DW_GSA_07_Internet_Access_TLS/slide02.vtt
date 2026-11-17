@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.125
+Why these three?
+
+2
+00:00:01.125 --> 00:00:05.325
+A bypass with no end date is a
+permanent hole in the filter.
+
+3
+00:00:05.325 --> 00:00:07.451
+QUIC isn't forwarded end to end,
+
+4
+00:00:07.451 --> 00:00:11.362
+so a browser could carry web
+traffic around the service.
+
+5
+00:00:11.362 --> 00:00:15.317
+And a TLS inspection certificate
+authority that's compromised
+
+6
+00:00:15.317 --> 00:00:18.525
+could impersonate any site
+to every managed device.
+
+7
+00:00:18.525 --> 00:00:23.172
+So the goal: show that the ring's web
+traffic is filtered by an identity-aware
+
+8
+00:00:23.172 --> 00:00:26.619
+policy, that every exception
+has an owner and an end date,
+
+9
+00:00:26.619 --> 00:00:31.566
+that QUIC can't slip past it, and that
+inspection runs from a dedicated authority,
+
+10
+00:00:31.566 --> 00:00:36.190
+within an approved privacy scope,
+breaking under one percent of sessions.

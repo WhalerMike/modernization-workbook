@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.275
+What does it leave to you?
+
+2
+00:00:01.275 --> 00:00:04.259
+The Validate commands
+are typed on one device,
+
+3
+00:00:04.259 --> 00:00:06.928
+with no record to compare across devices,
+
+4
+00:00:06.928 --> 00:00:11.875
+so the kit's device script runs the same
+reads, read-only, and writes one record.
+
+5
+00:00:11.875 --> 00:00:15.820
+A device count means nothing without
+the number that should be there,
+
+6
+00:00:15.820 --> 00:00:18.450
+so coverage divides by
+Intune's in-scope count.
+
+7
+00:00:18.450 --> 00:00:21.974
+Hardening in the pilot hides who
+needs to turn the client off,
+
+8
+00:00:21.974 --> 00:00:25.075
+so it's information in the
+pilot and a check from ring 2.
+
+9
+00:00:25.075 --> 00:00:29.525
+An old client quietly loses a
+protection, so there's a version check.
+
+10
+00:00:29.525 --> 00:00:32.550
+And an exclusion without
+an owner never ends,
+
+11
+00:00:32.550 --> 00:00:35.640
+so exclusions live in
+the exception register.

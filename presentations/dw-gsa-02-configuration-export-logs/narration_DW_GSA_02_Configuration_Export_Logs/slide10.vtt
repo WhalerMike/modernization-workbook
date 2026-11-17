@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.667
+Lab 2 uses a test tenant and
+an Azure test subscription
+
+2
+00:00:03.667 --> 00:00:06.962
+with a Log Analytics
+workspace, never production.
+
+3
+00:00:06.962 --> 00:00:11.071
+Turn the network logs on first,
+with the guide's own command:
+
+4
+00:00:11.071 --> 00:00:14.238
+one diagnostic setting,
+all four categories.
+
+5
+00:00:14.238 --> 00:00:18.826
+Then sign in to Graph as a person with
+the baseline's permissions and collect.
+
+6
+00:00:18.826 --> 00:00:21.341
+The two unverified reads
+need an extra switch,
+
+7
+00:00:21.341 --> 00:00:25.050
+and you compare their results with
+the portal before trusting them.
+
+8
+00:00:25.050 --> 00:00:28.088
+The logging check passes
+once the setting exists.
+
+9
+00:00:28.088 --> 00:00:31.660
+Back it out by signing out first,
+because the session can write,
+
+10
+00:00:31.660 --> 00:00:35.374
+and delete the setting only if this
+test tenant shouldn't keep it.
+
+11
+00:00:35.374 --> 00:00:37.440
+The authors haven't run this lab.

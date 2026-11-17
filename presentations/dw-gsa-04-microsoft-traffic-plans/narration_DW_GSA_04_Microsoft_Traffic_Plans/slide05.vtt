@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.050
+Here's the plan.
+
+2
+00:00:01.050 --> 00:00:05.351
+It reads a desired-state file: the
+three profiles' state, signaling,
+
+3
+00:00:05.351 --> 00:00:09.413
+tagging, and the guide's Conditional
+Access policies as files.
+
+4
+00:00:09.413 --> 00:00:14.540
+It compares them with a collection and
+writes the requests that close the gap,
+
+5
+00:00:14.540 --> 00:00:18.146
+in a safe order: signaling,
+then profiles, then policies,
+
+6
+00:00:18.146 --> 00:00:21.512
+then tagging, with the
+assignments as manual steps.
+
+7
+00:00:21.512 --> 00:00:22.524
+Four guards.
+
+8
+00:00:22.524 --> 00:00:27.375
+New policies are report-only, and
+enforcing one needs an explicit switch.
+
+9
+00:00:27.375 --> 00:00:31.362
+A policy that doesn't exclude the
+emergency group isn't planned.
+
+10
+00:00:31.362 --> 00:00:34.751
+Tagging waits for a blocking
+tenant restrictions default.
+
+11
+00:00:34.751 --> 00:00:37.938
+And a drifted policy is
+brought back to its file.
+
+12
+00:00:37.938 --> 00:00:40.549
+Nothing applies without the approved hash,
+
+13
+00:00:40.549 --> 00:00:43.150
+a live collection and a delegated session.

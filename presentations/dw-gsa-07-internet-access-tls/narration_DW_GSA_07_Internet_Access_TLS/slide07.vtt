@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.386
+Lab 1, after listing the reads,
+
+2
+00:00:02.386 --> 00:00:06.862
+reading the GCC rows for Step
+5, and collecting the pilot.
+
+3
+00:00:06.862 --> 00:00:09.574
+Step 4 runs the Internet Access checks.
+
+4
+00:00:09.574 --> 00:00:13.162
+The profile, the categories,
+threat intelligence,
+
+5
+00:00:13.162 --> 00:00:16.487
+the QUIC interim block
+and the limits all pass.
+
+6
+00:00:16.487 --> 00:00:22.800
+Two bypasses fail: E X 3 expired on
+November first, and E X 4 has no approver.
+
+7
+00:00:22.800 --> 00:00:27.042
+Step 5 reads the bypass rows
+of the exception register,
+
+8
+00:00:27.042 --> 00:00:32.090
+the agency's own record: target,
+reason, owner, approver and expiry.

@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.256
+Welcome to the last chapter of
+Building Global Secure Access,
+
+2
+00:00:04.256 --> 00:00:07.225
+Chapter 9: deploying to
+test and production.
+
+3
+00:00:07.225 --> 00:00:10.837
+The labs proved the code on
+fixtures and in a test tenant.
+
+4
+00:00:10.837 --> 00:00:15.341
+This runbook moves the rollout itself:
+one ring at a time, logs first,
+
+5
+00:00:15.341 --> 00:00:20.173
+emergency access checked before
+anything changes, every change from a
+
+6
+00:00:20.173 --> 00:00:24.676
+plan a second person approved, and
+a go or no-go from measured values.
+
+7
+00:00:24.676 --> 00:00:27.798
+It hasn't been run against a live tenant;
+
+8
+00:00:27.798 --> 00:00:33.310
+the output you'll see is the kit's
+fixture mode, run on November 17, 2026.

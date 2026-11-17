@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Welcome back to Building
+Global Secure Access.
+
+2
+00:00:02.963 --> 00:00:06.975
+This is Chapter 4: Microsoft
+traffic, and change plans.
+
+3
+00:00:06.975 --> 00:00:10.058
+The Microsoft traffic
+profile is the prerequisite
+
+4
+00:00:10.058 --> 00:00:12.925
+for everything identity-aware
+the service adds.
+
+5
+00:00:12.925 --> 00:00:15.216
+Turning it on is also the first write,
+
+6
+00:00:15.216 --> 00:00:19.186
+so this chapter builds the plan
+every later write goes through:
+
+7
+00:00:19.186 --> 00:00:23.462
+a file a second person approves by
+its hash before anything changes.
+
+8
+00:00:23.462 --> 00:00:25.976
+The chapter is a draft awaiting review,
+
+9
+00:00:25.976 --> 00:00:29.570
+and the code is illustrative,
+tested against fixtures.

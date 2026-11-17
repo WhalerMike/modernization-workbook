@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.540
+Identity-aware filtering
+supports boundary protection,
+
+2
+00:00:03.540 --> 00:00:06.375
+deny by default, and
+malicious code protection.
+
+3
+00:00:06.375 --> 00:00:10.937
+Governed bypasses support deny by
+default and configuration settings.
+
+4
+00:00:10.937 --> 00:00:14.050
+The QUIC block supports
+boundary protection.
+
+5
+00:00:14.050 --> 00:00:17.403
+And inspection from a
+dedicated, renewed authority,
+
+6
+00:00:17.403 --> 00:00:22.316
+within an approved privacy scope,
+supports transmission confidentiality,
+
+7
+00:00:22.316 --> 00:00:25.513
+key management, PKI
+certificates and monitoring.
+
+8
+00:00:25.513 --> 00:00:30.424
+The guide reads these steps as TIC
+3.0's remote user pattern to the web.
+
+9
+00:00:30.424 --> 00:00:32.588
+The assessor decides the controls.
+
+10
+00:00:32.588 --> 00:00:38.309
+The dangers: assuming a preview firewall
+exists in GCC, reusing the authentication
+
+11
+00:00:38.309 --> 00:00:43.450
+authority, and letting the certificate
+expire, which stops all inspection.
+
+12
+00:00:43.450 --> 00:00:49.213
+You're done when every bypass is governed,
+QUIC is blocked, and privacy came first.
+
+13
+00:00:49.213 --> 00:00:50.900
+Next, Chapter 8.

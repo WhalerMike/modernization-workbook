@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.802
+Learn's Private Access tutorial creates
+an application from the custom template,
+
+2
+00:00:04.802 --> 00:00:08.156
+marks it a Private Access app,
+binds it to a connector group,
+
+3
+00:00:08.156 --> 00:00:11.650
+adds its segments and assigns a
+group with the app's user role.
+
+4
+00:00:11.650 --> 00:00:16.077
+Segments may not overlap between
+per-app applications; a per-app segment
+
+5
+00:00:16.077 --> 00:00:20.725
+overrides Quick Access; and clients can
+take fifteen minutes to see a change.
+
+6
+00:00:20.725 --> 00:00:23.763
+Connectors are read with
+a write-capable permission
+
+7
+00:00:23.763 --> 00:00:26.525
+and report active or
+inactive, and their version.
+
+8
+00:00:26.525 --> 00:00:29.944
+Learn's Zero Trust recommendations
+ask for two healthy,
+
+9
+00:00:29.944 --> 00:00:34.850
+current connectors per group, least-privilege
+segments and every app assigned.
+
+10
+00:00:34.850 --> 00:00:38.290
+And for domain controllers,
+the sensor starts in audit,
+
+11
+00:00:38.290 --> 00:00:41.570
+with application service
+names before the DC's own.

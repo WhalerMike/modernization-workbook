@@ -1,0 +1,359 @@
+{
+ "1": [
+  [
+   0.05,
+   2.913,
+   "Welcome back to Building Global Secure Access."
+  ],
+  [
+   2.962,
+   4.638,
+   "This is Chapter 8: rings, metrics, and the evidence package."
+  ],
+  [
+   7.6,
+   3.2,
+   "A ring exits on numbers, not on a quiet week."
+  ],
+  [
+   10.8,
+   10.238,
+   "This chapter computes the guide's numbers, says go or no-go, writes the rollback before it's needed, and hands the security officer a package an assessor can re-hash."
+  ],
+  [
+   21.038,
+   6.05,
+   "The chapter is a draft awaiting review, and the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   0.963,
+   "Why numbers?"
+  ],
+  [
+   1.012,
+   11.938,
+   "Because a ring that exits on the calendar carries its problems to a larger group: users the client doesn't cover, policies that would block people the service carries, a certificate about to expire."
+  ],
+  [
+   12.95,
+   18.225,
+   "So the goal: decide each ring's exit from measured values; roll back in the guide's order from a plan a reviewer approved, written before it's needed; and give the security officer and the assessor one evidence folder, with the controls and indicators each run supports, where every file can be verified."
+  ],
+  [
+   31.175,
+   6.675,
+   "It's for the developers, the program manager who runs the rings, the security monitor, and the security officer."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   11.55,
+   "Learn says traffic and remote network health logs stay thirty days, names the four tables, and says a sudden drop in traffic volume is an alert, because offboarding has no audit signal."
+  ],
+  [
+   11.6,
+   5.938,
+   "Its deployment guide asks for a rollback plan, and its operations guide for at least two people per role."
+  ],
+  [
+   17.538,
+   5.438,
+   "The guide adds the rings, the metrics and the rollback order, with signaling last."
+  ],
+  [
+   22.975,
+   6.2,
+   "And sis-uh's remote user use case says visibility must be preserved through telemetry sharing."
+  ],
+  [
+   29.175,
+   9.488,
+   "One thing isn't rebuilt: the Zero Trust Assessment results kit already turns an assessment into the closure register, and its network family points at the guide."
+  ],
+  [
+   38.663,
+   3.087,
+   "This chapter's evidence is what that register cites."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.163,
+   "Here are the numbers."
+  ],
+  [
+   1.212,
+   16.988,
+   "Eight metrics from one collection and the inputs: client coverage, sign-ins through the service, compliant network enforcement, Private Access least privilege, connector resilience, bypass exposure, TLS health, and telemetry freshness, each with a target from the settings."
+  ],
+  [
+   18.2,
+   19.65,
+   "And eight exit criteria from the guide's ring table: business days in the ring, open severity-two tickets, help desk volume, the client on every in-scope device, clean report-only results, TLS failures under one percent, the emergency exclusion tested on the ring's start date, and break-glass rehearsed."
+  ],
+  [
+   37.85,
+   3.375,
+   "The ring exits only if every criterion passes."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.475,
+   "The rollback plan follows the guide's order."
+  ],
+  [
+   2.525,
+   4.825,
+   "Enforced policies go to report-only, from Step 10 back to Step 5."
+  ],
+  [
+   7.35,
+   6.487,
+   "Profile links come off, which is a portal step, and tagging goes off while the tenant restrictions policy stays."
+  ],
+  [
+   13.838,
+   4.05,
+   "The groups come off the profiles and the VPN route comes back."
+  ],
+  [
+   17.887,
+   7.213,
+   "Signaling is last, and only on request; the plan refuses it if a compliant network policy would stay enforced."
+  ],
+  [
+   25.1,
+   8.912,
+   "The evidence chain copies each run with its manifest, adds its controls and indicators, every file's hash and the previous record's hash."
+  ],
+  [
+   34.013,
+   5.713,
+   "A check with a failure is recorded as findings, not pass, and doesn't count toward a stage."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   0.938,
+   "Who does this?"
+  ],
+  [
+   0.988,
+   4.037,
+   "The technical program manager runs the waves and keeps the ring record."
+  ],
+  [
+   5.025,
+   2.9,
+   "The service owner approves each ring's exit."
+  ],
+  [
+   7.925,
+   6.112,
+   "The security monitor watches freshness and agrees the sis-uh telemetry path with the TIC delegates."
+  ],
+  [
+   14.037,
+   4.15,
+   "The security officer keeps the evidence folder, inside the boundary."
+  ],
+  [
+   18.188,
+   7.338,
+   "And the assessor or authorizing official decides each finding's closure: the kit only says the evidence is ready."
+  ],
+  [
+   25.525,
+   2.75,
+   "Learn's advice is at least two people per role."
+  ],
+  [
+   28.275,
+   7.062,
+   "The reads are Chapter 2's, plus the workspace, and nothing writes unless a rollback is applied with its approved hash."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   0.812,
+   "Lab 1."
+  ],
+  [
+   0.863,
+   4.0,
+   "After collecting the pilot, step 2 runs the telemetry checks."
+  ],
+  [
+   4.862,
+   10.65,
+   "The setting misses a category; branch health has no rows because no branch is on a remote network yet; alerts are twenty-seven hours old; and sis-uh telemetry isn't agreed."
+  ],
+  [
+   15.512,
+   3.538,
+   "Step 3 computes the metrics and the pilot's exit."
+  ],
+  [
+   19.05,
+   15.238,
+   "No metric is met, and the pilot is no-go, for five reasons: five business days in, one severity-two ticket open, eighty-three percent coverage, three report-only failures carried by the service, and one and a half percent TLS failures."
+  ],
+  [
+   34.288,
+   4.888,
+   "The emergency exclusion was tested at ring start and break-glass was rehearsed."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   8.262,
+   "Step 4 does the same for ring 1, two weeks later: every metric is met, every criterion passes, and the ring says go."
+  ],
+  [
+   8.312,
+   3.362,
+   "Step 5 plans ring 1's rollback before it's needed."
+  ],
+  [
+   11.675,
+   6.6,
+   "Three enforced policies go to report-only in the guide's order, Step 7, then 6, then 5."
+  ],
+  [
+   18.275,
+   1.262,
+   "Tagging goes off."
+  ],
+  [
+   19.538,
+   6.65,
+   "The profile links and group assignments are portal steps, and the VPN route is the agency's own change."
+  ],
+  [
+   26.188,
+   1.363,
+   "Signaling stays on."
+  ],
+  [
+   27.55,
+   4.263,
+   "The plan's hash is printed, and it's a dry run: nothing changed."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.65,
+   "Step 6 asks for signaling off as well."
+  ],
+  [
+   2.7,
+   11.325,
+   "The plan adds it as the very last step, after its own steps have moved the enforced compliant network policy to report-only; it would refuse if any compliant network policy stayed enforced."
+  ],
+  [
+   14.025,
+   13.0,
+   "Step 7 records the collection, the metrics and the rollback plan as evidence, and checks the folder: every file matches its hash, the three records form an unbroken chain, and each record lists its steps."
+  ],
+  [
+   27.025,
+   4.0,
+   "Step 8 runs the tests: ten passed, none failed."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   7.537,
+   "Lab 2 uses the test tenant from Chapters 4 to 7, with the diagnostic setting on and at least a day of pilot traffic."
+  ],
+  [
+   7.588,
+   1.812,
+   "Run the guide's freshness query."
+  ],
+  [
+   9.4,
+   8.5,
+   "Collect, check telemetry, and compute the ring's metrics and exit, using your own ring record from the template, kept on agency storage."
+  ],
+  [
+   17.9,
+   4.062,
+   "Plan the rollback and file it with the change record, without applying it."
+  ],
+  [
+   21.962,
+   5.025,
+   "Record every run in a protected evidence folder inside the boundary and check it."
+  ],
+  [
+   26.988,
+   4.562,
+   "Nothing changed in the tenant, so there's nothing to back out but the working copies."
+  ],
+  [
+   31.55,
+   5.375,
+   "Then re-run the Zero Trust Assessment and point each network finding at this evidence."
+  ],
+  [
+   36.925,
+   2.0,
+   "The authors haven't run this lab."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   12.1,
+   "Fresh tables and an agreed sis-uh path support event logging, audit review and monitoring, with O M B M-26-14 and tick three point oh's telemetry requirement behind them."
+  ],
+  [
+   12.15,
+   5.025,
+   "Ring exits on measured criteria support change control and impact analysis."
+  ],
+  [
+   17.175,
+   3.9,
+   "A rollback planned before it's needed supports the contingency plan."
+  ],
+  [
+   21.075,
+   3.3,
+   "And the hashed chain supports protecting audit information."
+  ],
+  [
+   24.375,
+   4.725,
+   "The assessor or authorizing official decides the controls, and closure."
+  ],
+  [
+   29.1,
+   9.537,
+   "The dangers: a ring that exits on the calendar, the VPN's web path retired without sis-uh telemetry, and signaling turned off first in an incident."
+  ],
+  [
+   38.638,
+   6.662,
+   "You're done when the tables are fresh, each ring's exit is filed, and its rollback was reviewed before it started."
+  ],
+  [
+   45.3,
+   3.9,
+   "Next, Chapter 9: deploying to test, and production."
+  ]
+ ]
+}

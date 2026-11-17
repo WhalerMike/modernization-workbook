@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:03.438
+Run the baseline checks
+on the pilot collection.
+
+3
+00:00:03.438 --> 00:00:07.776
+Both connector groups are in the
+architecture record with two hosts,
+
+4
+00:00:07.776 --> 00:00:11.277
+the forest is in the DNS
+suffixes, the workspace is named,
+
+5
+00:00:11.277 --> 00:00:15.463
+the export is complete, and the one
+failure is the missing category.
+
+6
+00:00:15.463 --> 00:00:20.088
+Then copy the collection, add one
+space to one file, and try to read it.
+
+7
+00:00:20.088 --> 00:00:24.699
+The read is refused: the licenses
+file changed since its manifest.
+
+8
+00:00:24.699 --> 00:00:28.060
+Every later chapter reads the
+collection through that check.

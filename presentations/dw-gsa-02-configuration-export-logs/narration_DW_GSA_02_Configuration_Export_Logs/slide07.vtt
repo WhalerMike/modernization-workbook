@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.362
+Lab 1, again in the kit's
+folder with no tenant.
+
+2
+00:00:03.362 --> 00:00:05.900
+Step 1 lists what the baseline reads.
+
+3
+00:00:05.900 --> 00:00:09.643
+Step 2 collects the whole
+pilot tenant: seventeen calls,
+
+4
+00:00:09.643 --> 00:00:14.687
+each with its least-privileged permission
+and its beta and verified flags.
+
+5
+00:00:14.687 --> 00:00:17.790
+The Private Access apps
+and the tenant restrictions
+
+6
+00:00:17.790 --> 00:00:21.175
+partners are the two not yet
+verified against a Learn page.
+
+7
+00:00:21.175 --> 00:00:24.475
+Twenty-four reads in all,
+eighteen files hashed.
+
+8
+00:00:24.475 --> 00:00:29.710
+Step 3 checks the folder against its
+manifest: all eighteen files match.

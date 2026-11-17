@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Welcome back to Building
+Global Secure Access.
+
+2
+00:00:02.963 --> 00:00:07.387
+This is Chapter 2: the configuration
+export, and logs first.
+
+3
+00:00:07.387 --> 00:00:10.031
+Every later chapter reads the same export,
+
+4
+00:00:10.031 --> 00:00:14.638
+and nothing is enforced before the logs
+exist, so this chapter builds both.
+
+5
+00:00:14.638 --> 00:00:19.297
+We'll start from Learn's advice to back
+the configuration up as Graph JSON,
+
+6
+00:00:19.297 --> 00:00:22.304
+see what it leaves to you,
+read the kit's collector,
+
+7
+00:00:22.304 --> 00:00:25.762
+its manifest and five baseline
+checks, and walk two labs.
+
+8
+00:00:25.762 --> 00:00:28.276
+The chapter is a draft awaiting review,
+
+9
+00:00:28.276 --> 00:00:31.870
+and the code is illustrative,
+tested against fixtures.

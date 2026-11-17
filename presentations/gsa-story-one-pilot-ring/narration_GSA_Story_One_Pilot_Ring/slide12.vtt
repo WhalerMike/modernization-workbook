@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.688
+The answer to check three: information
+in the pilot, a check from ring 2.
+
+2
+00:00:04.688 --> 00:00:05.663
+Scene four.
+
+3
+00:00:05.663 --> 00:00:09.024
+The Microsoft traffic
+profile and signaling are on.
+
+4
+00:00:09.024 --> 00:00:13.887
+Signaling is source IP restoration and
+the signal Conditional Access needs.
+
+5
+00:00:13.887 --> 00:00:16.548
+But only ninety-one percent
+of the week's sign-ins
+
+6
+00:00:16.548 --> 00:00:19.075
+went through the service,
+against ninety-five.
+
+7
+00:00:19.075 --> 00:00:20.985
+And the internet profile is on,
+
+8
+00:00:20.985 --> 00:00:25.263
+though the pilot's desired state
+hasn't adopted Internet Access yet.
+
+9
+00:00:25.263 --> 00:00:30.019
+Fixing that is the first write, so it
+goes through a plan: a file listing each
+
+10
+00:00:30.019 --> 00:00:31.500
+request and its reason,
+
+11
+00:00:31.500 --> 00:00:35.450
+with a hash a second person
+approves before anything is sent.

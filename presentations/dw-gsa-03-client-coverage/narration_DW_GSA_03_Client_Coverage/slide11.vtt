@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.547
+Coverage against Intune's count supports
+
+2
+00:00:02.547 --> 00:00:05.400
+system monitoring and
+the component inventory.
+
+3
+00:00:05.400 --> 00:00:09.250
+Each device's configuration
+supports configuration settings.
+
+4
+00:00:09.250 --> 00:00:12.478
+Hardening from ring 2
+supports least functionality,
+
+5
+00:00:12.478 --> 00:00:14.825
+and governed exclusions support both.
+
+6
+00:00:14.825 --> 00:00:18.053
+The indicators are FedRAMP's,
+mapped by the program,
+
+7
+00:00:18.053 --> 00:00:20.513
+and the assessor decides the controls.
+
+8
+00:00:20.513 --> 00:00:25.989
+The dangers: hardening in the pilot, which
+hides who needs to turn the client off;
+
+9
+00:00:25.989 --> 00:00:31.888
+IPv6 preferred or DNS over HTTPS on,
+which lets traffic go around the client;
+
+10
+00:00:31.888 --> 00:00:34.500
+and a raw count mistaken for coverage.
+
+11
+00:00:34.500 --> 00:00:38.572
+You're done when the count comes from
+Intune with its date, every pilot
+
+12
+00:00:38.572 --> 00:00:42.787
+device has a record, and coverage
+meets the target before the ring exits.
+
+13
+00:00:42.787 --> 00:00:47.110
+Next, Chapter 4: Microsoft
+traffic, and change plans.

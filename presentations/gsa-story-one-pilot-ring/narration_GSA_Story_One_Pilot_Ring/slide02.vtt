@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.588
+Here's the route, in
+the guide's run order.
+
+2
+00:00:02.588 --> 00:00:05.917
+Scene one: the pilot
+decides Internet Access on
+
+3
+00:00:05.917 --> 00:00:09.162
+a feature whose GCC
+availability isn't stated.
+
+4
+00:00:09.162 --> 00:00:11.987
+Scene two: the logs leave a category out.
+
+5
+00:00:11.987 --> 00:00:15.100
+Scene three: one device
+is behind the rest.
+
+6
+00:00:15.100 --> 00:00:17.693
+Scene four: sign-ins
+are short of the target,
+
+7
+00:00:17.693 --> 00:00:20.137
+and the first change goes through a plan.
+
+8
+00:00:20.137 --> 00:00:23.464
+Scene five: the compliant
+network policy isn't ready,
+
+9
+00:00:23.464 --> 00:00:25.862
+and a partner tenant isn't registered.
+
+10
+00:00:25.862 --> 00:00:29.438
+Scene six: a Finance app
+that's really a VPN again.
+
+11
+00:00:29.438 --> 00:00:33.713
+Scene seven: an expired bypass
+and a certificate near expiry.
+
+12
+00:00:33.713 --> 00:00:36.812
+Scene eight: the ring says no-go, then go.
+
+13
+00:00:36.812 --> 00:00:40.900
+And scene nine runs the same
+commands in test, then production.
