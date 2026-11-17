@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.475
+For each in-scope device,
+the kit runs these checks.
+
+2
+00:00:03.475 --> 00:00:05.712
+Real-time and tamper protection on.
+
+3
+00:00:05.712 --> 00:00:08.300
+The antivirus in normal, active mode.
+
+4
+00:00:08.300 --> 00:00:11.568
+Network protection and
+controlled folder access
+
+5
+00:00:11.568 --> 00:00:14.525
+at the ring's stage from
+the plan, block or audit.
+
+6
+00:00:14.525 --> 00:00:18.274
+On servers, network protection
+allowed on the server;
+
+7
+00:00:18.274 --> 00:00:21.512
+and on high-UDP roles,
+datagram processing off.
+
+8
+00:00:21.512 --> 00:00:24.999
+And each firewall profile
+on, with inbound blocked.
+
+9
+00:00:24.999 --> 00:00:27.319
+It runs the guide's event query too,
+
+10
+00:00:27.319 --> 00:00:31.625
+and writes the device checks, the
+drift, the events and a summary.
+
+11
+00:00:31.625 --> 00:00:35.201
+Moving a ring from audit to block
+is a change to the plan file,
+
+12
+00:00:35.201 --> 00:00:38.850
+under the same change record
+that changes the Intune policy.
+
+13
+00:00:38.850 --> 00:00:40.970
+The kit never changes a policy.

@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.200
+Microsoft Learn's Graph
+pages give three calls.
+
+2
+00:00:03.200 --> 00:00:07.889
+Post to create a rule, which needs read-write
+custom detection and the Detection
+
+3
+00:00:07.889 --> 00:00:11.087
+tuning manage permission,
+or Security Administrator;
+
+4
+00:00:11.087 --> 00:00:14.000
+the quota is ten creates
+a minute per application.
+
+5
+00:00:14.000 --> 00:00:16.837
+Get to list the rules,
+with the read permission.
+
+6
+00:00:16.837 --> 00:00:21.137
+And patch to update one, supplying
+only the properties that change.
+
+7
+00:00:21.137 --> 00:00:24.988
+A rule has a query, a schedule,
+a status of enabled or disabled,
+
+8
+00:00:24.988 --> 00:00:27.974
+and a detection action
+with an alert template,
+
+9
+00:00:27.974 --> 00:00:31.825
+and optionally automated
+actions, like isolating devices.
+
+10
+00:00:31.825 --> 00:00:35.415
+None of these pages has
+a national-cloud table,
+
+11
+00:00:35.415 --> 00:00:39.288
+so the API's GCC availability
+is not yet specified.
+
+12
+00:00:39.288 --> 00:00:43.010
+The guide's interim path is
+the portal, from the same file.

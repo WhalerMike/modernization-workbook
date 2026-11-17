@@ -1,0 +1,38 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.005
+Step 2 reads what each
+call needs: three reads,
+
+2
+00:00:03.005 --> 00:00:08.037
+each with a read permission, and two
+writes with read-write custom detection.
+
+3
+00:00:08.037 --> 00:00:11.970
+Step 3 reads the manifest: the
+task, the time, fixture mode,
+
+4
+00:00:11.970 --> 00:00:16.331
+the one call the check made with
+its permission and Learn page,
+
+5
+00:00:16.331 --> 00:00:21.375
+a hash for every file, and the result
+Chapter 8's evidence record carries.
+
+6
+00:00:21.375 --> 00:00:23.725
+Step 4 runs the chapter's tests.
+
+7
+00:00:23.725 --> 00:00:25.487
+All pass, none fail.
+
+8
+00:00:25.487 --> 00:00:27.770
+Delete the output folder when you're done.

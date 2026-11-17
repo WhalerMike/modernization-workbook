@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.362
+Here's what's already there.
+
+2
+00:00:01.362 --> 00:00:05.409
+For signals, the guide's query
+joins alert evidence to alert info,
+
+3
+00:00:05.409 --> 00:00:09.913
+and keeps the users with alerts from
+more than one service in seven days.
+
+4
+00:00:09.913 --> 00:00:13.966
+In GCC, Learn lists App Governance's
+alerts as roadmap items,
+
+5
+00:00:13.966 --> 00:00:18.350
+and Cloud Apps behaviors aren't
+available in the behavior table.
+
+6
+00:00:18.350 --> 00:00:22.038
+For automation, each device
+group has one of five levels,
+
+7
+00:00:22.038 --> 00:00:27.088
+from full remediation to no automated
+response; Microsoft recommends full.
+
+8
+00:00:27.088 --> 00:00:31.011
+User exclusions are for service
+and emergency admin accounts,
+
+9
+00:00:31.011 --> 00:00:33.199
+and exclusions reduce protection.
+
+10
+00:00:33.199 --> 00:00:37.862
+Contain User needs the
+sensor at 10.8470 or later.
+
+11
+00:00:37.862 --> 00:00:41.706
+Attack disruption's GCC
+availability isn't specified,
+
+12
+00:00:41.706 --> 00:00:46.630
+and the portal holds these settings;
+Learn names no Graph API for them.

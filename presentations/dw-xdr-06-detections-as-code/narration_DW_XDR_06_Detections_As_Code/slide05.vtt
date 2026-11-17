@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.787
+The repository is one folder
+with two files per rule.
+
+2
+00:00:03.787 --> 00:00:07.913
+The rule file is the Graph request
+body, in Learn's example shape.
+
+3
+00:00:07.913 --> 00:00:11.126
+Beside it, a test file names
+the tables the query reads,
+
+4
+00:00:11.126 --> 00:00:14.339
+a known-bad window that must
+return at least some rows,
+
+5
+00:00:14.339 --> 00:00:17.699
+and a known-good window that
+must stay under a threshold.
+
+6
+00:00:17.699 --> 00:00:20.025
+The detection check does four things.
+
+7
+00:00:20.025 --> 00:00:23.424
+Validates each rule, including
+no automated actions,
+
+8
+00:00:23.424 --> 00:00:26.437
+and that the query starts
+from a declared table.
+
+9
+00:00:26.437 --> 00:00:31.415
+Tests each rule's query over both
+windows, through the hunting API.
+
+10
+00:00:31.415 --> 00:00:33.350
+Reads the deployed rules.
+
+11
+00:00:33.350 --> 00:00:37.253
+And plans: create, update
+only the changed properties,
+
+12
+00:00:37.253 --> 00:00:41.740
+hold with the reason, and report
+orphans, never deleting them.

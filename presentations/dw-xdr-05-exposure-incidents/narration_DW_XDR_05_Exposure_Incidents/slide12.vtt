@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.450
+What breaks in production?
+
+2
+00:00:01.450 --> 00:00:06.256
+Assuming Exposure Management in GCC
+stalls attack-path work, and makes a Zero
+
+3
+00:00:06.256 --> 00:00:11.288
+Trust Assessment test look failed; the
+disposition and the interim path guard it.
+
+4
+00:00:11.288 --> 00:00:15.550
+An exposed device with no owner
+never gets patched; it's a finding.
+
+5
+00:00:15.550 --> 00:00:19.201
+Sentinel queries on the
+vulnerability tables return nothing,
+
+6
+00:00:19.201 --> 00:00:22.150
+so the kit queries Defender's
+own advanced hunting.
+
+7
+00:00:22.150 --> 00:00:26.402
+Reading only last month's incidents
+misses an old one still open,
+
+8
+00:00:26.402 --> 00:00:28.488
+so the active filter is read too.
+
+9
+00:00:28.488 --> 00:00:32.852
+And a time to triage computed from
+the wrong field is a precise-looking,
+
+10
+00:00:32.852 --> 00:00:36.140
+wrong number, so the kit
+reports past-window instead.

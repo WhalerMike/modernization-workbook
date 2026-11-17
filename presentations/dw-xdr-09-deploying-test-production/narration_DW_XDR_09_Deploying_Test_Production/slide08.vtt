@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.813
+Step 3 publishes the
+detections, dry run first.
+
+2
+00:00:03.813 --> 00:00:08.122
+Without apply, the script writes what
+it would send: a post that creates the
+
+3
+00:00:08.122 --> 00:00:12.574
+dump-tool rule, and a patch that updates
+the encoded PowerShell rule's status.
+
+4
+00:00:12.574 --> 00:00:14.250
+Then read the plan's hash.
+
+5
+00:00:14.250 --> 00:00:17.020
+The detection engineer
+and the approver read the
+
+6
+00:00:17.020 --> 00:00:19.588
+plan and record that hash
+in the change record.
+
+7
+00:00:19.588 --> 00:00:22.937
+Only then run it again with
+apply and the approved hash.
+
+8
+00:00:22.937 --> 00:00:25.888
+A plan that changed after
+approval is refused.
+
+9
+00:00:25.888 --> 00:00:27.875
+Record the publish as evidence.
+
+10
+00:00:27.875 --> 00:00:30.839
+Live, the script pauses
+after every ten creates,
+
+11
+00:00:30.839 --> 00:00:34.100
+which is Learn's quota per
+application per minute.

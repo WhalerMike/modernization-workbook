@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.375
+Step 3 reads every check
+on the file server.
+
+2
+00:00:03.375 --> 00:00:06.997
+A server gets the two server
+checks the workstations don't:
+
+3
+00:00:06.997 --> 00:00:10.468
+network protection allowed
+on the server, which passes,
+
+4
+00:00:10.468 --> 00:00:13.863
+and datagram processing for
+its file role, which fails.
+
+5
+00:00:13.863 --> 00:00:15.742
+Step 4 reads the week's events:
+
+6
+00:00:15.742 --> 00:00:20.362
+network protection audited twelve
+times on four devices, three blocks,
+
+7
+00:00:20.362 --> 00:00:25.138
+controlled folder access audited and
+blocked, and one tampering attempt.
+
+8
+00:00:25.138 --> 00:00:28.550
+The security operations center
+reads that with the drift list.
+
+9
+00:00:28.550 --> 00:00:31.667
+A device with tamper
+protection off and a tampering
+
+10
+00:00:31.667 --> 00:00:34.780
+attempt in the same week is
+an incident, not a ticket.

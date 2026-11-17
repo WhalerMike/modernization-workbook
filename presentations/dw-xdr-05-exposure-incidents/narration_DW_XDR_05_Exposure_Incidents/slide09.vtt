@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.375
+Step 3 runs the incident check.
+
+2
+00:00:02.375 --> 00:00:03.637
+Seven incidents.
+
+3
+00:00:03.637 --> 00:00:08.021
+Incident 1002, high severity,
+has waited three and a half
+
+4
+00:00:08.021 --> 00:00:12.213
+hours with no owner, against
+a one-hour window: overdue.
+
+5
+00:00:12.213 --> 00:00:17.313
+Incident 1005 was resolved with
+its classification still unknown.
+
+6
+00:00:17.313 --> 00:00:23.950
+And incident 1003, medium, has no owner
+yet, but it's inside its twenty-four hours.
+
+7
+00:00:23.950 --> 00:00:28.201
+Step 4 reads the findings as the
+security operations lead gets them,
+
+8
+00:00:28.201 --> 00:00:30.175
+each with its containment rung.
+
+9
+00:00:30.175 --> 00:00:32.054
+The high one is the gated rung:
+
+10
+00:00:32.054 --> 00:00:35.570
+the playbook prepares, and
+a named approver releases.

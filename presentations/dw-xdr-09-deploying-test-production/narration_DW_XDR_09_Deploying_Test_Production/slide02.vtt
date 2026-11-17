@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.250
+Why the same commands in both stages?
+
+2
+00:00:02.250 --> 00:00:06.975
+Because a runbook that differs between
+test and production isn't tested at all.
+
+3
+00:00:06.975 --> 00:00:08.831
+Only the settings file changes,
+
+4
+00:00:08.831 --> 00:00:12.613
+and production waits until the
+test stage's own evidence says go.
+
+5
+00:00:12.613 --> 00:00:15.914
+By the end of this chapter you
+can take the kit to a test tenant,
+
+6
+00:00:15.914 --> 00:00:20.074
+prove it there with evidence, and take
+it to production under a change record,
+
+7
+00:00:20.074 --> 00:00:22.913
+with a rollback planned
+before anything is applied.
+
+8
+00:00:22.913 --> 00:00:26.972
+The people who run the change are the
+platform owner with the operator, the
+
+9
+00:00:26.972 --> 00:00:29.234
+detection engineer for the publish step,
+
+10
+00:00:29.234 --> 00:00:31.630
+and the security officer
+for the go or no-go.

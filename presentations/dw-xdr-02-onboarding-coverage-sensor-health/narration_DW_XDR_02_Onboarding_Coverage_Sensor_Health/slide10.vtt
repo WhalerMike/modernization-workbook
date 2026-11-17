@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.608
+Lab 2 uses a test tenant, never
+production, with at least one Windows test
+
+2
+00:00:04.608 --> 00:00:09.475
+device onboarded through Intune's
+endpoint detection and response policy.
+
+3
+00:00:09.475 --> 00:00:11.906
+Sign in with the hunting
+read scope and run
+
+4
+00:00:11.906 --> 00:00:14.475
+the coverage check
+without the fixture path.
+
+5
+00:00:14.475 --> 00:00:17.770
+Then open the raw device rows
+and compare the onboarding
+
+6
+00:00:17.770 --> 00:00:20.575
+and sensor strings with
+the kit's configuration.
+
+7
+00:00:20.575 --> 00:00:25.525
+A row flagged unrecognized means they
+differ; record it before changing anything.
+
+8
+00:00:25.525 --> 00:00:28.237
+On the test device, run
+the collector elevated:
+
+9
+00:00:28.237 --> 00:00:32.163
+it should show the sense service
+running and onboarding state one.
+
+10
+00:00:32.163 --> 00:00:34.560
+Nothing changed, so you just sign out.

@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.550
+Try it, in fixture mode,
+as the runbook prints it.
+
+2
+00:00:03.550 --> 00:00:04.937
+Publish without apply.
+
+3
+00:00:04.937 --> 00:00:09.750
+The plan would create the dump-tool rule,
+and patch our rule, its status only.
+
+4
+00:00:09.750 --> 00:00:10.925
+Nothing is sent.
+
+5
+00:00:10.925 --> 00:00:15.075
+Then read the plan's hash, which the
+approver records in the change record.
+
+6
+00:00:15.075 --> 00:00:19.161
+Only with apply and that exact hash
+does anything go to the tenant,
+
+7
+00:00:19.161 --> 00:00:22.263
+and a plan that changed
+after approval is refused.
+
+8
+00:00:22.263 --> 00:00:25.492
+And the go or no-go after
+the first run: pre-flight,
+
+9
+00:00:25.492 --> 00:00:31.125
+publish and the scheduled run pass, but
+five steps fail until their findings close.
+
+10
+00:00:31.125 --> 00:00:32.640
+No-go, as it should be.

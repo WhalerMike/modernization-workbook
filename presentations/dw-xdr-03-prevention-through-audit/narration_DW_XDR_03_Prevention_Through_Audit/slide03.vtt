@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.463
+Here's what Learn gives you.
+
+2
+00:00:01.463 --> 00:00:06.412
+Get M P computer status shows tamper
+and real-time protection, true when on.
+
+3
+00:00:06.412 --> 00:00:11.468
+Get M P preference shows network
+protection, zero off, one block, two audit;
+
+4
+00:00:11.468 --> 00:00:13.743
+the two Windows Server settings;
+
+5
+00:00:13.743 --> 00:00:17.787
+and controlled folder access,
+with its disk-only modes too.
+
+6
+00:00:17.787 --> 00:00:23.051
+Get net firewall profile, from the active
+store, shows the firewall as enforced.
+
+7
+00:00:23.051 --> 00:00:25.750
+And the guide's query
+counts the audit and block
+
+8
+00:00:25.750 --> 00:00:28.450
+events and tampering
+attempts over seven days.
+
+9
+00:00:28.450 --> 00:00:34.674
+Learn adds three conditions: network
+protection needs the antivirus in active mode,
+
+10
+00:00:34.674 --> 00:00:38.675
+needs its own setting on
+Windows Server 2019 and later,
+
+11
+00:00:38.675 --> 00:00:45.050
+and needs datagram processing off on domain
+controllers, DNS, file and SQL servers.

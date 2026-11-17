@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:05.731
+The platform owner owns this gate,
+moves each ring under a change record,
+
+3
+00:00:05.731 --> 00:00:08.400
+and reviews the exclusions each quarter.
+
+4
+00:00:08.400 --> 00:00:11.649
+The security operations
+center reviews blocks and
+
+5
+00:00:11.649 --> 00:00:15.200
+tampering attempts every week,
+alongside the drift list.
+
+6
+00:00:15.200 --> 00:00:18.129
+The operator collects a
+sample of device states
+
+7
+00:00:18.129 --> 00:00:20.838
+per ring per site and
+works the drift tickets.
+
+8
+00:00:20.838 --> 00:00:24.649
+One caution: the fixtures
+are eleven fictional devices.
+
+9
+00:00:24.649 --> 00:00:27.402
+On a real fleet, sample per ring per site,
+
+10
+00:00:27.402 --> 00:00:30.413
+as the guide's post-change
+validation says.
+
+11
+00:00:30.413 --> 00:00:33.840
+The coverage check in Chapter
+2 is the fleet-wide view.

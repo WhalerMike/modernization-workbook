@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.234
+Welcome to Building Defender XDR,
+
+2
+00:00:02.234 --> 00:00:06.212
+a developer workbook in the
+Federal Modernization Workbook.
+
+3
+00:00:06.212 --> 00:00:09.288
+This is Chapter 3:
+prevention through audit.
+
+4
+00:00:09.288 --> 00:00:13.634
+A setting in a policy protects
+nothing until the device enforces it,
+
+5
+00:00:13.634 --> 00:00:18.137
+so the check is on the device, against
+the stage the ring is meant to be at.
+
+6
+00:00:18.137 --> 00:00:22.760
+We'll start from Learn's three device
+commands and the guide's event query,
+
+7
+00:00:22.760 --> 00:00:26.459
+read how the kit compares every
+device with its ring's plan,
+
+8
+00:00:26.459 --> 00:00:29.387
+and walk two labs, the
+evidence and the dangers.
+
+9
+00:00:29.387 --> 00:00:32.020
+The chapter is a draft awaiting review;
+
+10
+00:00:32.020 --> 00:00:35.540
+the code is illustrative,
+tested against fixtures.

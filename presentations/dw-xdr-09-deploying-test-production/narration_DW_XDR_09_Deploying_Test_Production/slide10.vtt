@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.050
+Step 6: plan the rollback
+before you need it.
+
+2
+00:00:03.050 --> 00:00:07.662
+The rollback plan disables every detection
+rule the stage created or enabled,
+
+3
+00:00:07.662 --> 00:00:10.287
+which is the guide's
+rollback for detections.
+
+4
+00:00:10.287 --> 00:00:14.343
+And it keeps each ring's attack
+surface reduction value from the run
+
+5
+00:00:14.343 --> 00:00:18.762
+before the change, so putting it back
+steps every moved rule back one stage.
+
+6
+00:00:18.762 --> 00:00:21.671
+Applying it works like
+publishing: a dry run,
+
+7
+00:00:21.671 --> 00:00:24.337
+then apply with the plan's approved hash.
+
+8
+00:00:24.337 --> 00:00:27.625
+The A S R values go back
+into Intune by hand.
+
+9
+00:00:27.625 --> 00:00:32.338
+And remember Microsoft's advice: an
+exclusion is better than a step back.
+
+10
+00:00:32.338 --> 00:00:36.120
+A rollback is for a broken
+change, not one noisy rule.

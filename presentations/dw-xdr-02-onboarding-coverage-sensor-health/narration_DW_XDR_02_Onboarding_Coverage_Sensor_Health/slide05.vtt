@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.462
+The coverage check gives every
+in-scope device one of seven statuses.
+
+2
+00:00:04.462 --> 00:00:07.351
+Protected: onboarded
+with an active sensor.
+
+3
+00:00:07.351 --> 00:00:11.587
+Not active: onboarded, but the
+sensor is in any other state.
+
+4
+00:00:11.587 --> 00:00:16.663
+Not onboarded: not onboarded, or not
+reported at all, with no exception.
+
+5
+00:00:16.663 --> 00:00:21.575
+Excepted: a valid exception, with an
+approver and an expiry still ahead.
+
+6
+00:00:21.575 --> 00:00:23.037
+Exception expired.
+
+7
+00:00:23.037 --> 00:00:27.188
+Not in inventory: Defender
+reports it, the inventory doesn't.
+
+8
+00:00:27.188 --> 00:00:28.275
+And out of scope.
+
+9
+00:00:28.275 --> 00:00:29.750
+Four of those are tickets.
+
+10
+00:00:29.750 --> 00:00:33.647
+The run writes the coverage file,
+the tickets, a by-ring summary,
+
+11
+00:00:33.647 --> 00:00:38.537
+the protected-coverage share, which is
+the guide's first metric, and a manifest.
+
+12
+00:00:38.537 --> 00:00:42.170
+A missing column fails the run
+rather than reading as empty.

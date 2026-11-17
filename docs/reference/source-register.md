@@ -14,7 +14,7 @@ last-reviewed: 2026-11-09
 
 <!-- Generated from data/source-register.json by scripts/source_watch/register.py. Don't edit this page. -->
 
-This register lists 774 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
+This register lists 778 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
 
 ## How the register is controlled
 
@@ -407,6 +407,7 @@ This register lists 774 sources. A slide or a video description links to a sourc
 | [Limitations with Microsoft Entra certificate-based authentication](https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-limitations){#limitations-with-microsoft-entra-certificate} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="limitations-with-microsoft-entra-certificate"} |
 | [List applications](https://learn.microsoft.com/graph/api/application-list?view=graph-rest-1.0){#list-applications} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="list-applications"} |
 | [List definitions](https://learn.microsoft.com/graph/api/accessreviewset-list-definitions?view=graph-rest-1.0){#list-definitions} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="list-definitions"} |
+| [List detectionRule objects](https://learn.microsoft.com/graph/api/security-rulesroot-list-detectionrules?view=graph-rest-1.0){#graph-security-list-detectionrules} | Active | November 17, 2026 | [Not read yet]{.fmw-scan data-source="graph-security-list-detectionrules"} |
 | [List directoryAudits](https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0){#list-directoryaudits} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="list-directoryaudits"} |
 | [List group members](https://learn.microsoft.com/graph/api/group-list-members?view=graph-rest-1.0){#list-group-members} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="list-group-members"} |
 | [List healthOverviews](https://learn.microsoft.com/graph/api/serviceannouncement-list-healthoverviews?view=graph-rest-1.0){#learn-graph-list-health-overviews} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="learn-graph-list-health-overviews"} |
@@ -534,6 +535,7 @@ This register lists 774 sources. A slide or a video description links to a sourc
 | [NTLM overview](https://learn.microsoft.com/windows-server/security/kerberos/ntlm-overview){#ntlm-overview} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="ntlm-overview"} |
 | [Office 365 Content Delivery Network (CDN) Quickstart](https://learn.microsoft.com/microsoft-365/enterprise/office-365-cdn-quickstart?view=o365-worldwide){#office-365-content-delivery-network-cdn} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="office-365-content-delivery-network-cdn"} |
 | [Office 365 GCC](https://learn.microsoft.com/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc){#office-365-gcc} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="office-365-gcc"} |
+| [Onboard Windows devices to Defender for Endpoint with Configuration Manager](https://learn.microsoft.com/defender-endpoint/configure-endpoints-sccm){#mde-onboard-configuration-manager} | Active | November 17, 2026 | [Not read yet]{.fmw-scan data-source="mde-onboard-configuration-manager"} |
 | [Onboard Windows devices to Microsoft Defender for Endpoint by using Microsoft Intune](https://learn.microsoft.com/defender-endpoint/configure-endpoints-mdm){#mde-onboard-windows-intune} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="mde-onboard-windows-intune"} |
 | [onPremisesExtensionAttributes resource type](https://learn.microsoft.com/graph/api/resources/onpremisesextensionattributes?view=graph-rest-1.0){#onpremisesextensionattributes-resource-type} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="onpremisesextensionattributes-resource-type"} |
 | [Operate Microsoft Entra Global Secure Access Microsoft traffic profile](https://learn.microsoft.com/entra/global-secure-access/how-to-operate-microsoft-traffic){#gsa-operate-microsoft-traffic} | Active | November 13, 2026 | [Not read yet]{.fmw-scan data-source="gsa-operate-microsoft-traffic"} |
@@ -544,6 +546,7 @@ This register lists 774 sources. A slide or a video description links to a sourc
 | [Overview of Microsoft Graph permissions](https://learn.microsoft.com/graph/permissions-overview){#overview-of-microsoft-graph-permissions} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="overview-of-microsoft-graph-permissions"} |
 | [Overview of the ServiceNow integration](https://learn.microsoft.com/azure/defender-for-cloud/integration-servicenow){#overview-of-the-servicenow-integration} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="overview-of-the-servicenow-integration"} |
 | [Perform bulkUpload](https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-post-bulkupload?view=graph-rest-1.0){#perform-bulkupload} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="perform-bulkupload"} |
+| [Permissions in Microsoft Defender unified role-based access control (RBAC)](https://learn.microsoft.com/defender-xdr/custom-permissions-details){#defender-urbac-permissions} | Active | November 17, 2026 | [Not read yet]{.fmw-scan data-source="defender-urbac-permissions"} |
 | [Plan a Conditional Access deployment](https://learn.microsoft.com/entra/identity/conditional-access/plan-conditional-access){#plan-a-conditional-access-deployment} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="plan-a-conditional-access-deployment"} |
 | [Plan a phishing-resistant passwordless authentication deployment in Microsoft Entra ID](https://learn.microsoft.com/entra/identity/authentication/how-to-deploy-phishing-resistant-passwordless-authentication){#plan-a-phishing-resistant-passwordless} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="plan-a-phishing-resistant-passwordless"} |
 | [Plan a Privileged Identity Management deployment](https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-deployment-plan){#plan-a-privileged-identity-management} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="plan-a-privileged-identity-management"} |
@@ -641,6 +644,7 @@ This register lists 774 sources. A slide or a video description links to a sourc
 | [Unregister-ScheduledTask](https://learn.microsoft.com/powershell/module/scheduledtasks/unregister-scheduledtask){#learn-unregister-scheduledtask} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="learn-unregister-scheduledtask"} |
 | [Update application](https://learn.microsoft.com/graph/api/application-update?view=graph-rest-1.0){#update-application} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="update-application"} |
 | [Update conditionalAccessSettings (Microsoft Graph beta)](https://learn.microsoft.com/graph/api/networkaccess-conditionalaccesssettings-update?view=graph-rest-beta){#gsa-update-conditional-access-settings} | Active | November 13, 2026 | [Not read yet]{.fmw-scan data-source="gsa-update-conditional-access-settings"} |
+| [Update detectionRule](https://learn.microsoft.com/graph/api/security-detectionrule-update?view=graph-rest-1.0){#graph-security-update-detectionrule} | Active | November 17, 2026 | [Not read yet]{.fmw-scan data-source="graph-security-update-detectionrule"} |
 | [Update rings policy settings](https://learn.microsoft.com/intune/device-updates/windows/ref-update-ring-settings){#update-rings-policy-settings} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="update-rings-policy-settings"} |
 | [Update rules in PIM by using Microsoft Graph](https://learn.microsoft.com/graph/how-to-pim-update-rules){#update-rules-in-pim-by-using-microsoft-graph} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="update-rules-in-pim-by-using-microsoft-graph"} |
 | [Update servicePrincipal](https://learn.microsoft.com/graph/api/serviceprincipal-update?view=graph-rest-1.0){#update-serviceprincipal} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="update-serviceprincipal"} |
@@ -930,7 +934,20 @@ This register lists 774 sources. A slide or a video description links to a sourc
 
 | Date | Source | Change |
 |---|---|---|
+| November 17, 2026 | [Microsoft Defender for Cloud Apps for US Government offerings](#defender-for-cloud-apps-us-government) | Labels added: Cloud Apps for US Government (Defender XDR deck sources lines) |
+| November 17, 2026 | [Onboard Windows devices to Microsoft Defender for Endpoint by using Microsoft Intune](#mde-onboard-windows-intune) | Labels added: Onboard Windows devices with Intune (Defender XDR deck sources lines) |
+| November 17, 2026 | [Troubleshoot Microsoft Defender for Endpoint onboarding issues](#mde-troubleshoot-onboarding) | Labels added: Troubleshoot onboarding, troubleshoot onboarding (Defender XDR deck sources lines) |
+| November 17, 2026 | [Configure controlled folder access (CFA)](#mde-configure-controlled-folder-access) | Labels added: Configure CFA (Defender XDR deck sources lines) |
+| November 17, 2026 | [Create custom roles with Microsoft Defender unified RBAC](#defender-urbac-create-custom-roles) | Labels added: Create custom roles with unified RBAC, unified RBAC custom roles (Defender XDR deck sources lines) |
+| November 17, 2026 | [Activate Microsoft Defender unified role-based access control (URBAC)](#defender-urbac-activate) | Labels added: Activate unified RBAC (Defender XDR deck sources lines) |
+| November 17, 2026 | [security: runHuntingQuery](#graph-security-runhuntingquery) | Labels added: runHuntingQuery (Defender XDR deck sources lines) |
+| November 17, 2026 | [Use the Microsoft Graph security API](#graph-security-api-overview) | Labels added: Graph security API, Custom detections (Defender XDR deck sources lines) |
+| November 17, 2026 | [Configure automatic attack disruption in Microsoft Defender XDR](#configure-automatic-attack-disruption) | Labels added: configure attack disruption (Defender XDR deck sources lines) |
+| November 17, 2026 | [Exclude assets from automated responses in automatic attack disruption](#attack-disruption-exclusions) | Labels added: attack disruption exclusions (Defender XDR deck sources lines) |
+| November 17, 2026 | [Tamper protection overview](#mde-tamper-protection-overview) | Labels added: tamper protection (Defender XDR deck sources lines) |
+| November 17, 2026 | [Understand the advanced hunting schema](#advanced-hunting-schema-tables) | Labels added: advanced hunting schema (Defender XDR deck sources lines) |
 | November 17, 2026 | 10 sources | Added: cited on the narrated deck slides |
+| November 17, 2026 | 4 sources | Added: cited in Building Defender XDR and on its narrated deck slides |
 | November 15, 2026 | [AWS Security Hub CSPM in AWS GovCloud (US)](#security-hub-cspm-in-govcloud) | Retired: the Zero Trust Assessment guide no longer cites it; the program's AWS workloads run in the commercial Regions (WD-156) |
 | November 13, 2026 | 2 sources | Retired: the workbook covers GCC Moderate only (Nov 13, 2026) |
 | November 13, 2026 | [Microsoft Intune Government Service overview](#microsoft-intune-for-us-government-gcc-high) | Title updated to Learn's current title, Microsoft Intune Government Service overview |

@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.356
+The exposure check runs the guide's two
+queries: high and critical vulnerabilities
+
+2
+00:00:05.356 --> 00:00:10.200
+by software and recommended update,
+and exposed or internet-facing devices.
+
+3
+00:00:10.200 --> 00:00:12.994
+It matches each exposed
+device's group to a
+
+4
+00:00:12.994 --> 00:00:16.187
+remediation owner from
+the agency's owners file.
+
+5
+00:00:16.187 --> 00:00:21.425
+A device with no owner is an inventory
+finding, not just a vulnerability finding.
+
+6
+00:00:21.425 --> 00:00:24.575
+And it writes the disposition
+for the settings file's cloud.
+
+7
+00:00:24.575 --> 00:00:28.315
+For GCC: not available,
+skipped, not applicable,
+
+8
+00:00:28.315 --> 00:00:31.562
+with the interim path and the Learn page.
+
+9
+00:00:31.562 --> 00:00:36.260
+That result name is one of the seven the
+Zero Trust Assessment results kit uses,
+
+10
+00:00:36.260 --> 00:00:39.580
+so the same disposition lands
+in the closure register.

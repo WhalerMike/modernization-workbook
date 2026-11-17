@@ -1,0 +1,38 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.150
+Lab 1, in the kit's folder.
+
+2
+00:00:02.150 --> 00:00:04.525
+Step 1 runs the signals check.
+
+3
+00:00:04.525 --> 00:00:07.464
+The first row is an
+emergency access account,
+
+4
+00:00:07.464 --> 00:00:10.800
+with identity and cloud-app
+alerts in the same week.
+
+5
+00:00:10.800 --> 00:00:15.013
+Nobody's playbook touches it; the
+incident response lead decides.
+
+6
+00:00:15.013 --> 00:00:19.712
+Then a user seen by three sources,
+a priority, and one seen by two.
+
+7
+00:00:19.712 --> 00:00:22.279
+The last line says identity or cloud-app
+
+8
+00:00:22.279 --> 00:00:25.370
+sources are feeding alerts,
+so the check passes.

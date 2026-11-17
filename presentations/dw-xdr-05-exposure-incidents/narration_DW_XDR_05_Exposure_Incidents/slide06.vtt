@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.784
+The incident check reads incidents
+created in the last thirty days, and every
+
+2
+00:00:04.784 --> 00:00:07.299
+incident still active, with their alerts,
+
+3
+00:00:07.299 --> 00:00:09.888
+using Learn's list call
+with expand alerts.
+
+4
+00:00:09.888 --> 00:00:11.287
+Each one gets a finding.
+
+5
+00:00:11.287 --> 00:00:13.800
+Triaged: open, with an owner.
+
+6
+00:00:13.800 --> 00:00:18.138
+Untriaged: open, no owner,
+but inside its window.
+
+7
+00:00:18.138 --> 00:00:22.850
+Overdue triage: no owner,
+past its window, which fails.
+
+8
+00:00:22.850 --> 00:00:26.712
+Closed: resolved with a
+classification and a determination.
+
+9
+00:00:26.712 --> 00:00:30.037
+And closed without
+classification, which also fails.
+
+10
+00:00:30.037 --> 00:00:34.345
+The windows come from the guide's
+severity table: one hour for high,
+
+11
+00:00:34.345 --> 00:00:38.413
+twenty-four for medium, seventy-two
+for low and informational.
+
+12
+00:00:38.413 --> 00:00:43.440
+Containment stays on the response ladder;
+the kit only prints each incident's rung.

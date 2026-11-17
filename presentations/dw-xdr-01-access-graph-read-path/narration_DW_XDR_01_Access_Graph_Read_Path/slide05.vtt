@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.300
+Here's the call list.
+
+2
+00:00:01.300 --> 00:00:06.634
+Three reads: list incidents, run a hunting
+query, and list custom detection rules,
+
+3
+00:00:06.634 --> 00:00:10.675
+each with the least-privileged
+read permission Learn names.
+
+4
+00:00:10.675 --> 00:00:15.638
+And two writes, create and update a detection
+rule, with the read-write permission.
+
+5
+00:00:15.638 --> 00:00:18.937
+Reads go through one function
+and one of two invokers.
+
+6
+00:00:18.937 --> 00:00:23.201
+The fixture invoker reads a file
+and sends nothing; that's Lab 1.
+
+7
+00:00:23.201 --> 00:00:26.679
+The live invoker calls Graph
+on the settings file's cloud,
+
+8
+00:00:26.679 --> 00:00:30.825
+after the session check, and follows
+next links only on the same host.
+
+9
+00:00:30.825 --> 00:00:33.213
+A write never goes through the read path.
+
+10
+00:00:33.213 --> 00:00:38.110
+Only the runbook's publish and rollback
+scripts send one, with an approved hash.

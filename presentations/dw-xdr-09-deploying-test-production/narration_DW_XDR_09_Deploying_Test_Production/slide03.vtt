@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.637
+Here's the division of labor.
+
+2
+00:00:01.637 --> 00:00:05.790
+The kit reads through Graph,
+compares every input with its plan,
+
+3
+00:00:05.790 --> 00:00:10.662
+writes the evidence, plans the rollback,
+and publishes custom detections,
+
+4
+00:00:10.662 --> 00:00:14.575
+but only from an approved plan,
+with apply and the plan's hash.
+
+5
+00:00:14.575 --> 00:00:16.516
+A person, under the change record,
+
+6
+00:00:16.516 --> 00:00:20.614
+assigns roles through Privileged
+Identity Management and signs in,
+
+7
+00:00:20.614 --> 00:00:25.215
+moves an attack surface reduction or
+prevention ring in Intune from the kit's
+
+8
+00:00:25.215 --> 00:00:27.084
+values, approves the plan's hash,
+
+9
+00:00:27.084 --> 00:00:30.750
+and changes device group levels
+and exclusions in the portal.
+
+10
+00:00:30.750 --> 00:00:32.825
+Only one write is automated.
+
+11
+00:00:32.825 --> 00:00:37.072
+Learn doesn't state the
+detection API's GCC availability,
+
+12
+00:00:37.072 --> 00:00:41.930
+so if a test-tenant call fails, the
+portal path uses the same files.

@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.137
+Lab 2 uses a test
+tenant, never production.
+
+2
+00:00:03.137 --> 00:00:06.817
+First make the known-bad event:
+on a ring 0 test device,
+
+3
+00:00:06.817 --> 00:00:10.838
+under a change record, run the
+activity your rule detects.
+
+4
+00:00:10.838 --> 00:00:14.476
+Then sign in with read scopes
+only, and run the detection check
+
+5
+00:00:14.476 --> 00:00:18.400
+with your own rule folder, its
+known-bad window covering the replay.
+
+6
+00:00:18.400 --> 00:00:21.462
+The test file should show
+the known-bad window passing.
+
+7
+00:00:21.462 --> 00:00:24.925
+If listing the deployed rules
+fails in the test tenant,
+
+8
+00:00:24.925 --> 00:00:28.850
+record it in the verification
+log and set deploy via to portal.
+
+9
+00:00:28.850 --> 00:00:31.437
+Nothing was deployed,
+so you just sign out.
+
+10
+00:00:31.437 --> 00:00:34.920
+Publishing comes in Chapter
+9, with an approved hash.

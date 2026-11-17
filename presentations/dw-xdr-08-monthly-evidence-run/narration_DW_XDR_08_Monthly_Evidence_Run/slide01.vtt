@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.234
+Welcome to Building Defender XDR,
+
+2
+00:00:02.234 --> 00:00:06.212
+a developer workbook in the
+Federal Modernization Workbook.
+
+3
+00:00:06.212 --> 00:00:09.188
+This is Chapter 8: the
+monthly evidence run.
+
+4
+00:00:09.188 --> 00:00:13.286
+The metrics measure what the controls
+do, not whether a setting exists,
+
+5
+00:00:13.286 --> 00:00:17.526
+and the evidence is a chain a security
+officer can check with one command.
+
+6
+00:00:17.526 --> 00:00:22.053
+We'll start from the guide's monthly run,
+read the one command that replaces it,
+
+7
+00:00:22.053 --> 00:00:25.216
+the metrics and the evidence
+record, and walk two labs,
+
+8
+00:00:25.216 --> 00:00:29.600
+including one where we change a recorded
+file and watch the check catch it.
+
+9
+00:00:29.600 --> 00:00:32.233
+The chapter is a draft awaiting review;
+
+10
+00:00:32.233 --> 00:00:35.740
+the code is illustrative,
+tested against fixtures.

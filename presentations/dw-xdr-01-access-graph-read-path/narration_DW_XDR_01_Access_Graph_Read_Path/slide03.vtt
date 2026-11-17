@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.350
+Start from what the guide and
+Microsoft Learn already give you.
+
+2
+00:00:03.350 --> 00:00:07.917
+Create the custom roles in Defender's
+unified role-based access control,
+
+3
+00:00:07.917 --> 00:00:11.875
+in four permission groups, assigned
+to groups and data sources.
+
+4
+00:00:11.875 --> 00:00:15.900
+Activate it per workload, which needs
+at least Security Administrator.
+
+5
+00:00:15.900 --> 00:00:20.405
+Connect the read path with Connect
+M G Graph, the Global environment,
+
+6
+00:00:20.405 --> 00:00:24.588
+and two scopes: security incident
+read, and threat hunting read.
+
+7
+00:00:24.588 --> 00:00:26.691
+Then validate with Learn's own call:
+
+8
+00:00:26.691 --> 00:00:29.737
+list up to five incidents
+with no permission error.
+
+9
+00:00:29.737 --> 00:00:34.901
+Learn's national cloud page says GCC
+uses the worldwide Graph endpoint,
+
+10
+00:00:34.901 --> 00:00:37.060
+so the environment is Global.

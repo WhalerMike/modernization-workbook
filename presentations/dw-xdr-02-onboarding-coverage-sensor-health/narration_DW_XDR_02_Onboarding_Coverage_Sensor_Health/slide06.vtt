@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.662
+The chapter also ships a device collector.
+
+2
+00:00:02.662 --> 00:00:07.514
+It runs on one Windows device, elevated,
+reads only, and writes one JSON file:
+
+3
+00:00:07.514 --> 00:00:12.674
+the sense service and the onboarding state
+and sensor version from the registry;
+
+4
+00:00:12.674 --> 00:00:17.525
+tamper and real-time protection and
+the antivirus mode; network protection,
+
+5
+00:00:17.525 --> 00:00:21.761
+controlled folder access and the
+attack surface reduction rules;
+
+6
+00:00:21.761 --> 00:00:24.225
+and the firewall profiles as enforced.
+
+7
+00:00:24.225 --> 00:00:28.837
+Chapters 3, 4 and 7 compare
+these files with the plans.
+
+8
+00:00:28.837 --> 00:00:33.240
+For servers under Azure Arc that lack
+the Defender extension, the Microsoft
+
+9
+00:00:33.240 --> 00:00:35.197
+automation kit already has a task,
+
+10
+00:00:35.197 --> 00:00:38.110
+so this chapter links it
+instead of rebuilding it.

@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:05.075
+The platform owner owns this gate:
+creates and assigns the roles,
+
+3
+00:00:05.075 --> 00:00:08.450
+and changes them under a change
+record when a row fails.
+
+4
+00:00:08.450 --> 00:00:12.428
+The security officer reviews who
+holds Defender roles each quarter,
+
+5
+00:00:12.428 --> 00:00:15.638
+alongside the Privileged
+Identity Management report.
+
+6
+00:00:15.638 --> 00:00:18.148
+And developers maintain the call list,
+
+7
+00:00:18.148 --> 00:00:21.287
+the invokers and the role
+check, with their tests.
+
+8
+00:00:21.287 --> 00:00:24.387
+One caution: Lab 1 reads
+fictional fixtures,
+
+9
+00:00:24.387 --> 00:00:27.400
+and the role export is
+a file someone makes.
+
+10
+00:00:27.400 --> 00:00:31.053
+Treat the result as a review
+aid for the security officer,
+
+11
+00:00:31.053 --> 00:00:33.530
+not as the authority on who holds what.

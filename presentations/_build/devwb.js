@@ -42,6 +42,7 @@ const WORKBOOKS = {
   pn: { dir: "docs/project-plans/developer-workbooks/provider-notices", name: "Building Provider Notices", kit: "examples/provider-notices", approved: true },
   gsa: { dir: "docs/project-plans/developer-workbooks/global-secure-access", name: "Building Global Secure Access", kit: "examples/global-secure-access" },
   azs: { dir: "docs/project-plans/developer-workbooks/azure-security", name: "Building Azure Security", kit: "examples/azure-security" },
+  xdr: { dir: "docs/project-plans/developer-workbooks/defender-xdr", name: "Building Defender XDR", kit: "examples/defender-xdr" },
 };
 const ICONS = new Set(fs.readdirSync(path.join(__dirname, "icons")).map((f) => f.replace(/\.png$/, "")));
 const BANNED = /\bUIAO\b|\bSSA\b|Social Security|Mainframe PIN|\bDISA\b|\bSTIGs?\b/i;

@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.936
+Lab 2 uses a test
+tenant, never production,
+
+2
+00:00:02.936 --> 00:00:06.925
+with the policy assigned to a
+ring 0 device group in audit.
+
+3
+00:00:06.925 --> 00:00:11.162
+Collect the test device's state,
+sign in, and run the check live.
+
+4
+00:00:11.162 --> 00:00:14.887
+The device check should show
+every rule in audit on the device.
+
+5
+00:00:14.887 --> 00:00:18.913
+A row saying not configured on the
+device while the plan says audit
+
+6
+00:00:18.913 --> 00:00:23.012
+is either the server issue, or a
+policy the device hasn't received yet.
+
+7
+00:00:23.012 --> 00:00:26.450
+Compare with Learn's own
+one-line listing on the device.
+
+8
+00:00:26.450 --> 00:00:27.625
+Nothing changed.
+
+9
+00:00:27.625 --> 00:00:31.528
+If you set a rule locally for an
+investigation, Learn's cmdlet puts
+
+10
+00:00:31.528 --> 00:00:35.640
+it back in audit, and Intune overwrites
+it at the next refresh anyway.

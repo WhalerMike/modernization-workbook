@@ -1,0 +1,117 @@
+# Companion guide — Building Defender XDR — One Office Macro, End to End — narration script (practice copy)
+
+## Slide 1 — One Office Macro, End to End
+
+Welcome to the story deck for Building Defender XDR, a developer workbook in the Federal Modernization Workbook. Instead of nine chapters one at a time, we'll follow one case all the way through. A macro document, an invoice, is opened on a ring 0 workstation, and tries to start encoded PowerShell. An attack surface reduction rule blocks it, an incident opens, and a custom detection finds it. It's fictional: every value comes from the kit's test fixtures, and every output on a slide is what the kit really printed. The workbook is a draft awaiting review, and the code is illustrative, tested against fixtures, not a live tenant.
+
+## Slide 2 — The macro's path through the nine chapters
+
+Here's the route. Scene one asks who may respond to it at all. Scene two, whether the device that opened it is even seen. Scene three, what prevention does around it. Scene four follows the attack surface reduction rule that blocked it, ring by ring. Scene five is the incident it raised. Scene six, the custom detection that finds it, kept as code. Scene seven, who else it touched, and what Defender may do on its own. Scene eight, the month's evidence. And scene nine takes the detection live, test first. Each scene has a story slide, a try-it slide with real output, and, for the first eight, a one-question check.
+
+## Slide 3 — Scene 1: before the macro, who may respond to it
+
+Scene one starts before the macro runs. Whoever triages this incident will read it through Microsoft Graph, on the endpoint GCC uses. And whoever contains it, by isolating the device or running live response, holds that power through a role in Defender's unified role-based access control. The program's design has four roles, and only the Tier 0 role holds advanced live response. Every role goes to a group that Privileged Identity Management governs. So the kit declares every call with its permission, refuses a session in the wrong tenant, and checks the role export against the design. That supports least privilege and account management.
+
+## Slide 4 — Try it: the access check finds three faults
+
+Try it. From the kit's folder, run the access check on the fixtures. The read passes: incidents come back with no permission error. Then three failures. The detection engineer role holds advanced live response, which only Tier 0 may hold, so its role row fails and the restricted row fails. And the responder role, the one that would contain our macro's device, is also assigned to a standing group that Privileged Identity Management doesn't govern. The legacy role is a warning: someone records a decision or removes it.
+
+## Slide 5 — Check 1: a Graph session in the wrong tenant
+
+Check one. An analyst's Graph session is still signed in to another tenant when the live run starts. Does the kit read that tenant and pass, refuse the run, sign in again on its own, or fall back to the fixtures? The answer opens the next scene.
+
+## Slide 6 — Scene 2: is the device that opened it even seen?
+
+The answer to check one: the kit refuses the run. A session in the wrong tenant would read someone else's estate, or nothing, and pass. Scene two asks whether the workstation that opened the invoice is even seen. Defender can only block, or raise an incident, for a device whose sensor is onboarded and active. And coverage is counted against the inventory, not against Defender's own list, because a device that never onboarded would be invisible there. Our workstation is in ring 0, and it's protected. Elsewhere in the estate, five devices are tickets.
+
+## Slide 7 — Try it: coverage, and where WKS-R0-01 stands
+
+Try it. Run the coverage check. Ring 0, where our workstation sits, is two of two protected. Across the estate, nine of fourteen in-scope devices are protected, sixty-four point three percent. The tickets: a sensor with impaired communications, an inactive sensor, a device that was never onboarded, a server whose exception expired, and a device Defender reports that the inventory doesn't list. Our macro was on a device the sensor sees, so the next scenes can tell its story.
+
+## Slide 8 — Check 2: a device Defender sees that the inventory doesn't
+
+Check two. Defender reports a device, onboarded and active, that the system component inventory doesn't list. Is it protected and fine, out of scope, a ticket and an inventory finding, or excepted until someone notices?
+
+## Slide 9 — Scene 3: what prevention does around the macro
+
+The answer to check two: it's a ticket, and an inventory finding. Scene three looks at the prevention around our macro. A macro that starts PowerShell often reaches out to the network next, and network protection is the layer that blocks that call. Ring 0, where our workstation is, enforces network protection and controlled folder access in block. Ring 2 is still auditing. But one ring 2 workstation reads zero: network protection off. The same macro there would meet one less layer. The kit checks every device's state against its ring's stage, which supports malicious code protection and configuration settings.
+
+## Slide 10 — Try it: three drifts, and the week's events
+
+Try it. Run the prevention check. Three drifts. Tamper protection off on a ring 1 workstation. Network protection off on the ring 2 workstation, where its ring should be auditing. And datagram processing on at the file server. Below, the week's events: network protection audited and blocked, controlled folder access audited and blocked, and one tampering attempt. A device with tamper protection off and a tampering attempt in the same week is an incident, not a ticket.
+
+## Slide 11 — Check 3: network protection reads 2 on ring 1
+
+Check three. Ring 1's plan says network protection is in block. A ring 1 device reads two. Is that correct, because two means on? Is it drift? Not applicable on workstations? Or a server setting?
+
+## Slide 12 — Scene 4: the rule that blocked it, ring by ring
+
+The answer to check three: drift. Two is audit, and ring 1 should block. Scene four is the rule that stopped our macro: block all Office applications from creating child processes. In ring 0 it's in block, and the fixture's events show it blocked twice on our workstation, for the invoice. In ring 1 it's in warn, six of fourteen days. In ring 2 it's still auditing, with one hit nobody has decided about. There, the same macro would only be logged. The kit tracks each rule's stage per ring, says which can move, and writes the exact value for Intune. That supports least functionality.
+
+## Slide 13 — Try it: which rings can move, and ring 1's next value
+
+Try it. Run the A S R check. Ring 0 is done: fourteen rules in block. Ring 1 has twelve ready for block; our rule is held, six of fourteen warn days. Ring 2 is ready to leave audit, except our rule, with one audit hit that has no exclusion or decision. Then print the value that moves ring 1. Every rule goes to one, block, but our rule stays at six, warn, because its days aren't up. That's the exact string the change board pastes into the ring 1 policy.
+
+## Slide 14 — Check 4: the LSASS rule planned in warn
+
+Check four. Ring 3's plan puts the LSASS credential-stealing rule in warn. Is it ready for block after fourteen days, a plan error, fine on workstations, or not applicable?
+
+## Slide 15 — Scene 5: the incident it raised, and its clock
+
+The answer to check four: a plan error. That rule doesn't support warn. Scene five is the incident. Defender correlates the alerts into incident 1001: encoded PowerShell launched by an Office application on one endpoint. High severity, so the guide's table gives it a one-hour triage window, and the gated rung: a playbook prepares containment, and a named approver releases it. It has an owner, so it's triaged. But another high incident has waited three and a half hours with no one. Meanwhile the exposure check records Security Exposure Management as not available in GCC: a disposition with an interim path, not a failure.
+
+## Slide 16 — Try it: incident 1001, and the ones that broke the table
+
+Try it. Run the incident check. Our incident, 1001, is high, three hours old, with an owner: triaged. Incident 1002, also high, three and a half hours, no owner, against a one-hour window: overdue. Incident 1003 is medium and still inside its twenty-four hours. And 1005 was resolved with its classification still unknown. The findings list is what the security operations lead gets, each with its containment rung. The high one is gated: a named approver releases containment.
+
+## Slide 17 — Check 5: Exposure Management in a GCC tenant
+
+Check five. A Zero Trust Assessment test needs Security Exposure Management, in a GCC tenant. Is it a fail, a pass because Vulnerability Management covers it, skipped as not applicable with the interim path, or not recorded at all?
+
+## Slide 18 — Scene 6: the detection that finds it, kept as code
+
+The answer to check five: skipped, not applicable, with the interim path. A disposition, not a failed control. Scene six is the custom detection that finds our macro's behavior: encoded PowerShell started by Word, Excel or Outlook. It's Learn's own example rule, kept as a file in a repository, with a test file beside it. Its known-bad window holds a replay on our workstation; its known-good window is a quiet day. It's deployed disabled, and the file now says enabled, after a passing test. So the plan updates its status, and nothing else. A neighbor rule that would isolate devices on its own is held: containment stays with a person.
+
+## Slide 19 — Try it: the rule's test, and the plan for it
+
+Try it. Validate, test and plan the repository. Our rule finds one row in its known-bad window and none on its quiet day: it passes. The plan creates the dump-tool rule, and updates our rule's status, and only its status. The admin-share rule is held, because it would isolate devices on its own. And a legacy rule that was made in the portal, and lives in no file, is reported as an orphan. Then read the plan's hash. That's what an approver signs.
+
+## Slide 20 — Check 6: a rule with automated isolation
+
+Check six. A rule file sets automated actions to isolate devices. Does the plan create it because it's faster, hold it, create it disabled, or delete the deployed copy?
+
+## Slide 21 — Scene 7: who else it touched, and what may act alone
+
+The answer to check six: the plan holds it. Containment stays with a person. Scene seven asks two things. Who else did this touch? The guide's cross-source query finds users with alerts from more than one sensor in a week, and an emergency access account goes to the top for the incident response lead. And what may Defender do on its own? Ring 0's device group is at full remediation, so Defender may clean up our workstation automatically. A server group never is. And every emergency access account must be excluded from attack disruption, so an incident can't lock out the people who fix it.
+
+## Slide 22 — Try it: the ladder check, and what it finds
+
+Try it. Run the automation check. Ring 0's workstations are at full, as the ladder says, so our workstation's cleanup can run on its own. Ring 3's workstation group is at a semi level with no exception: off the ladder. The scanner subnet's exclusion passed its review date. The second emergency access account isn't excluded, so attack disruption could contain it. And one device runs a sensor too old for Contain User.
+
+## Slide 23 — Check 7: a server group at Full
+
+Check seven. The servers device group is set to full remediation. Does it pass because that's Microsoft's recommendation, fail because the ladder allows servers only a semi level, pass in ring 0, or go unchecked?
+
+## Slide 24 — Scene 8: the month's evidence, and the metrics
+
+The answer to check seven: it fails. The ladder allows servers only a semi level. Scene eight is the month. One command runs every check, records each run with its controls, indicators and its own result, and computes the guide's metrics. Our detection counts in detection validity: one of one enabled rule with a passing test. Ring 0's two workstations, including ours, are the only devices with every rule in block, so enforcement depth is two of eleven. And if anyone edits a recorded file afterwards, the check names it.
+
+## Slide 25 — Try it: the month, the metrics, a tampered file
+
+Try it. Run the month. Ten records, and only signals and the metrics pass their own checks; every other run found something, as the earlier scenes showed. Read three metrics: protected coverage sixty-four point three percent, enforcement depth two of eleven, and detection validity one of one. Then append one line to a recorded tickets file, and check again. Both checks fail, and name the file. That's what makes this evidence and not a folder.
+
+## Slide 26 — Check 8: a run that found something
+
+Check eight, the last one. The coverage run is recorded with intact files, but its own check found five tickets. Does it pass the go or no-go because the files are intact, fail, pass with a warning, or pass only in production?
+
+## Slide 27 — Scene 9: the detection goes live, test first
+
+The answer to check eight: no. A step passes only when its files are intact and its own check passed. Scene nine takes our detection live, test first. The same commands run in test and production; only the settings file changes. The pre-flight checks the session's cloud, tenant and scopes, a first read, and the output root. Publishing runs as a dry run first. The approver signs the plan's hash, and only then is it applied with that hash. The smoke test replays the macro's behavior on a ring 0 device, and the custom detection raises its alert. The rollback is planned before go. None of this has been run against a live tenant.
+
+## Slide 28 — Try it: publish the rule, dry run, then the hash
+
+Try it, in fixture mode, as the runbook prints it. Publish without apply. The plan would create the dump-tool rule, and patch our rule, its status only. Nothing is sent. Then read the plan's hash, which the approver records in the change record. Only with apply and that exact hash does anything go to the tenant, and a plan that changed after approval is refused. And the go or no-go after the first run: pre-flight, publish and the scheduled run pass, but five steps fail until their findings close. No-go, as it should be.
+
+## Slide 29 — Your turn: Lab 2, and where to go next
+
+That's our macro, end to end. Who may respond, through least privilege. A device the sensor sees, counted against the inventory. Prevention checked by ring. The rule that blocked it, followed ring by ring. An incident owned inside its window. A detection kept as code, shown to fire and to stay quiet. Automation inside the ladder. The month's evidence in a chain. And the detection taken live, test first. Now it's your turn. Each chapter has a second lab in your own test tenant, never production, with a back-out step. Then go deeper: the chapters and their narrated tours, the learning path, and the implementation guide. Thanks for watching.

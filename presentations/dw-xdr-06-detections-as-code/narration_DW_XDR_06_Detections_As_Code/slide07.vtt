@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.150
+Lab 1, in the kit's folder.
+
+2
+00:00:02.150 --> 00:00:05.387
+Step 1 reads one rule's
+test file: one table,
+
+3
+00:00:05.387 --> 00:00:11.100
+a known-bad day that must return a row,
+and a quiet day that must return none.
+
+4
+00:00:11.100 --> 00:00:14.000
+Step 2 validates, tests and plans.
+
+5
+00:00:14.000 --> 00:00:19.000
+The admin-share rule fails validation:
+it would isolate devices on its own.
+
+6
+00:00:19.000 --> 00:00:22.772
+It also fails its quiet day,
+three rows where one is allowed,
+
+7
+00:00:22.772 --> 00:00:24.737
+so it would have been noisy too.
+
+8
+00:00:24.737 --> 00:00:27.438
+The plan creates the LSASS dump-tool rule.
+
+9
+00:00:27.438 --> 00:00:31.169
+It updates only the status of
+the encoded PowerShell rule,
+
+10
+00:00:31.169 --> 00:00:35.988
+which is deployed disabled and now
+enabled in its file after a passing test.
+
+11
+00:00:35.988 --> 00:00:37.812
+It holds the admin-share rule.
+
+12
+00:00:37.812 --> 00:00:43.180
+And it reports a legacy rule, made in
+the portal and in no file, as an orphan.

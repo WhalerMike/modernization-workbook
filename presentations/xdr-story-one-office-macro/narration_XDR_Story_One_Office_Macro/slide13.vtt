@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:02.525
+Run the A S R check.
+
+3
+00:00:02.525 --> 00:00:05.700
+Ring 0 is done: fourteen rules in block.
+
+4
+00:00:05.700 --> 00:00:11.450
+Ring 1 has twelve ready for block; our
+rule is held, six of fourteen warn days.
+
+5
+00:00:11.450 --> 00:00:14.745
+Ring 2 is ready to leave
+audit, except our rule,
+
+6
+00:00:14.745 --> 00:00:18.575
+with one audit hit that has
+no exclusion or decision.
+
+7
+00:00:18.575 --> 00:00:21.162
+Then print the value that moves ring 1.
+
+8
+00:00:21.162 --> 00:00:25.242
+Every rule goes to one, block,
+but our rule stays at six,
+
+9
+00:00:25.242 --> 00:00:27.613
+warn, because its days aren't up.
+
+10
+00:00:27.613 --> 00:00:32.020
+That's the exact string the change
+board pastes into the ring 1 policy.

@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.267
+One command runs every check from Chapters
+1 to 7, each into its own folder,
+
+2
+00:00:05.267 --> 00:00:09.875
+then the metrics, and with an
+evidence path, records every folder.
+
+3
+00:00:09.875 --> 00:00:13.745
+A check that throws, a missing
+input or a refused session,
+
+4
+00:00:13.745 --> 00:00:16.437
+is an error row, and the others still run.
+
+5
+00:00:16.437 --> 00:00:21.380
+Each record holds the time, the environment,
+the change record, the command,
+
+6
+00:00:21.380 --> 00:00:26.404
+two results, the files' integrity and
+the run's own check, the steps with their
+
+7
+00:00:26.404 --> 00:00:28.753
+controls and indicators, the claim,
+
+8
+00:00:28.753 --> 00:00:31.913
+every file's hash, and the
+previous record's hash.
+
+9
+00:00:31.913 --> 00:00:35.088
+The check re-hashes everything
+and walks the chain.
+
+10
+00:00:35.088 --> 00:00:37.412
+With a stage, it adds a row per step,
+
+11
+00:00:37.412 --> 00:00:41.420
+which passes only with intact
+files and a passing check.

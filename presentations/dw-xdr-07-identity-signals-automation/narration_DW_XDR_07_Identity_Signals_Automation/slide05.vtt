@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.013
+Two checks.
+
+2
+00:00:01.013 --> 00:00:05.824
+The signals check runs the guide's
+cross-source query and writes a priority list.
+
+3
+00:00:05.824 --> 00:00:09.974
+An emergency access account goes
+first, with one instruction:
+
+4
+00:00:09.974 --> 00:00:14.612
+page the incident response lead,
+and a human decides any containment.
+
+5
+00:00:14.612 --> 00:00:17.238
+Three or more sources is a priority.
+
+6
+00:00:17.238 --> 00:00:20.900
+The automation check reads
+three files and calls nothing:
+
+7
+00:00:20.900 --> 00:00:26.088
+the device groups export, the attack
+disruption exclusions, and the device states.
+
+8
+00:00:26.088 --> 00:00:30.512
+A workstation group below full passes
+only with a recorded exception.
+
+9
+00:00:30.512 --> 00:00:35.210
+The exports come from two portal pages,
+copied into the template columns.

@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.075
+Who signs what?
+
+2
+00:00:01.075 --> 00:00:04.510
+The platform owner and the
+operator run the pre-flight,
+
+3
+00:00:04.510 --> 00:00:08.250
+the scheduled run and each ring
+change, in the change window.
+
+4
+00:00:08.250 --> 00:00:11.858
+The detection engineer and the
+approver read the detection plan,
+
+5
+00:00:11.858 --> 00:00:15.600
+and record its hash in the change
+record before anything is applied.
+
+6
+00:00:15.600 --> 00:00:20.788
+And the security officer signs the go or
+no-go, from the test stage's own evidence.
+
+7
+00:00:20.788 --> 00:00:24.988
+Remember: nothing in this chapter
+has been run against a live tenant.
+
+8
+00:00:24.988 --> 00:00:28.270
+Every live result is
+written as an expectation.

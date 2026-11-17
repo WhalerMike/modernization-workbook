@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.838
+Here's where each metric comes from.
+
+2
+00:00:01.838 --> 00:00:05.874
+Protected coverage and exception
+exposure, from the coverage run.
+
+3
+00:00:05.874 --> 00:00:10.351
+Enforcement depth, devices with
+every applicable rule in block,
+
+4
+00:00:10.351 --> 00:00:13.475
+from the A S R run against
+the onboarded count.
+
+5
+00:00:13.475 --> 00:00:18.386
+Prevention effectiveness, blocks per
+thousand onboarded devices per week,
+
+6
+00:00:18.386 --> 00:00:22.362
+from the prevention events and
+the A S R events scaled to a week.
+
+7
+00:00:22.362 --> 00:00:24.026
+Expired exclusions.
+
+8
+00:00:24.026 --> 00:00:26.762
+Detection validity,
+from the detection run.
+
+9
+00:00:26.762 --> 00:00:30.787
+And synthetic-event success, from
+the quarter's exercise record.
+
+10
+00:00:30.787 --> 00:00:33.735
+Mean time to triage and to
+contain isn't computed:
+
+11
+00:00:33.735 --> 00:00:38.520
+the kit says to take it from the ticketing
+system or the Action center history.

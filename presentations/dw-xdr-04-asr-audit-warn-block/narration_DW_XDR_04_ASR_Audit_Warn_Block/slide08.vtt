@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.150
+Lab 1, in the kit's folder.
+
+2
+00:00:02.150 --> 00:00:05.313
+Step 1 lists the rules
+and which skip warn.
+
+3
+00:00:05.313 --> 00:00:07.087
+Step 2 runs the check.
+
+4
+00:00:07.087 --> 00:00:08.550
+Ring 0 is done.
+
+5
+00:00:08.550 --> 00:00:11.145
+Ring 1 has twelve rules ready for block;
+
+6
+00:00:11.145 --> 00:00:15.362
+the Office child-process rule is
+held, six of fourteen warn days.
+
+7
+00:00:15.362 --> 00:00:19.186
+Ring 2 is ready to leave audit,
+except the same Office rule,
+
+8
+00:00:19.186 --> 00:00:21.463
+with one audit hit nobody decided.
+
+9
+00:00:21.463 --> 00:00:24.420
+The PSExec and WMI rule
+is a warning there,
+
+10
+00:00:24.420 --> 00:00:28.162
+because Configuration
+Manager manages one device.
+
+11
+00:00:28.162 --> 00:00:33.713
+Ring 3's plan puts the LSASS rule in warn,
+which it doesn't support: a plan error.
+
+12
+00:00:33.713 --> 00:00:38.230
+And one server enforces none of the
+thirteen rules its plan puts in audit.

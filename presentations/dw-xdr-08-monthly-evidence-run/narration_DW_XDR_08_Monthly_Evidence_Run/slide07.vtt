@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:05.350
+The platform owner owns the run,
+monthly, with the change record.
+
+3
+00:00:05.350 --> 00:00:08.955
+The security officer receives
+the metrics and the hash file,
+
+4
+00:00:08.955 --> 00:00:11.550
+and re-checks last
+month's folder this month.
+
+5
+00:00:11.550 --> 00:00:14.488
+The security operations
+lead runs the quarter's
+
+6
+00:00:14.488 --> 00:00:17.425
+synthetic events and
+files the exercise record.
+
+7
+00:00:17.425 --> 00:00:21.835
+One caution about Lab 1: the
+fixtures carry deliberate faults,
+
+8
+00:00:21.835 --> 00:00:25.900
+so most runs record a failed
+check, and the go or no-go fails.
+
+9
+00:00:25.900 --> 00:00:26.938
+That's the point.
+
+10
+00:00:26.938 --> 00:00:30.740
+Evidence of a finding is still
+evidence, but it isn't a go.

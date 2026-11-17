@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Who's involved?
+
+2
+00:00:01.100 --> 00:00:04.274
+The vulnerability manager
+owns the exposure gate:
+
+3
+00:00:04.274 --> 00:00:07.675
+an owner for every exposed
+device, and the weekly queue.
+
+4
+00:00:07.675 --> 00:00:10.998
+The security operations lead
+owns the incident gate:
+
+5
+00:00:10.998 --> 00:00:14.775
+a daily queue review, and every
+overdue incident owned today.
+
+6
+00:00:14.775 --> 00:00:17.928
+The security officer files
+the Exposure Management
+
+7
+00:00:17.928 --> 00:00:21.512
+disposition in the closure
+register, and the inventory gaps.
+
+8
+00:00:21.512 --> 00:00:24.525
+One caution: the incident
+check only reads.
+
+9
+00:00:24.525 --> 00:00:28.313
+It never assigns, comments
+on or closes an incident.
+
+10
+00:00:28.313 --> 00:00:31.783
+And the severity strings the
+exposure query filters on are
+
+11
+00:00:31.783 --> 00:00:34.970
+as the portal shows them;
+check them in the test tenant.

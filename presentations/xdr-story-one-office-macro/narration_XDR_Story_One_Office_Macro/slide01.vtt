@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.303
+Welcome to the story deck
+for Building Defender XDR,
+
+2
+00:00:03.303 --> 00:00:07.162
+a developer workbook in the
+Federal Modernization Workbook.
+
+3
+00:00:07.162 --> 00:00:12.125
+Instead of nine chapters one at a time,
+we'll follow one case all the way through.
+
+4
+00:00:12.125 --> 00:00:16.492
+A macro document, an invoice, is
+opened on a ring 0 workstation,
+
+5
+00:00:16.492 --> 00:00:19.287
+and tries to start encoded PowerShell.
+
+6
+00:00:19.287 --> 00:00:21.953
+An attack surface
+reduction rule blocks it,
+
+7
+00:00:21.953 --> 00:00:24.988
+an incident opens, and a
+custom detection finds it.
+
+8
+00:00:24.988 --> 00:00:28.770
+It's fictional: every value comes
+from the kit's test fixtures,
+
+9
+00:00:28.770 --> 00:00:32.326
+and every output on a slide is
+what the kit really printed.
+
+10
+00:00:32.326 --> 00:00:36.956
+The workbook is a draft awaiting
+review, and the code is illustrative,
+
+11
+00:00:36.956 --> 00:00:39.860
+tested against fixtures,
+not a live tenant.

@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.862
+Here's what the runbook's steps
+support, against NIST's catalog.
+
+2
+00:00:03.862 --> 00:00:08.347
+The pre-flight supports least privilege,
+because the session holds only the
+
+3
+00:00:08.347 --> 00:00:12.975
+needed scopes, and change control, because
+the change is checked before it runs.
+
+4
+00:00:12.975 --> 00:00:15.875
+The scheduled run supports
+continuous monitoring.
+
+5
+00:00:15.875 --> 00:00:19.362
+Publishing supports change
+control and system monitoring.
+
+6
+00:00:19.362 --> 00:00:22.963
+The rollback supports change
+control and incident handling.
+
+7
+00:00:22.963 --> 00:00:28.100
+And the go or no-go supports continuous
+monitoring and protecting audit information.
+
+8
+00:00:28.100 --> 00:00:31.400
+The indicators are FedRAMP's,
+from the guide's rows.
+
+9
+00:00:31.400 --> 00:00:35.280
+The records support these controls;
+the assessor decides them.

@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.550
+Why put these two together?
+
+2
+00:00:01.550 --> 00:00:03.488
+Because both ask who has this.
+
+3
+00:00:03.488 --> 00:00:08.925
+A vulnerability with no owner isn't just
+unpatched; it's a gap in the inventory.
+
+4
+00:00:08.925 --> 00:00:13.175
+And an incident with no owner is a clock
+running against the severity table.
+
+5
+00:00:13.175 --> 00:00:17.665
+By the end of this chapter you can
+route every exposed device to an owner,
+
+6
+00:00:17.665 --> 00:00:21.775
+record Security Exposure Management
+correctly for a GCC tenant,
+
+7
+00:00:21.775 --> 00:00:25.200
+and list every incident that
+broke the severity table.
+
+8
+00:00:25.200 --> 00:00:29.771
+It's for the developers, the vulnerability
+manager who owns the exposure gate,
+
+9
+00:00:29.771 --> 00:00:32.980
+and the security operations
+lead who owns incidents.

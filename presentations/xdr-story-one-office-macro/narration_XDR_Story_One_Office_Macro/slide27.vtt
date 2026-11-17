@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.963
+The answer to check eight: no.
+
+2
+00:00:01.963 --> 00:00:06.362
+A step passes only when its files
+are intact and its own check passed.
+
+3
+00:00:06.362 --> 00:00:09.537
+Scene nine takes our
+detection live, test first.
+
+4
+00:00:09.537 --> 00:00:14.512
+The same commands run in test and
+production; only the settings file changes.
+
+5
+00:00:14.512 --> 00:00:17.255
+The pre-flight checks the session's cloud,
+
+6
+00:00:17.255 --> 00:00:20.562
+tenant and scopes, a first
+read, and the output root.
+
+7
+00:00:20.562 --> 00:00:23.062
+Publishing runs as a dry run first.
+
+8
+00:00:23.062 --> 00:00:27.825
+The approver signs the plan's hash, and
+only then is it applied with that hash.
+
+9
+00:00:27.825 --> 00:00:31.781
+The smoke test replays the macro's
+behavior on a ring 0 device,
+
+10
+00:00:31.781 --> 00:00:34.550
+and the custom detection raises its alert.
+
+11
+00:00:34.550 --> 00:00:36.600
+The rollback is planned before go.
+
+12
+00:00:36.600 --> 00:00:39.410
+None of this has been run
+against a live tenant.

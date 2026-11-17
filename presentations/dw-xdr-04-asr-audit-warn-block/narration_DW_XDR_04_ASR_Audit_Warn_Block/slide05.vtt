@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.614
+The ASR check reads the plan, the exclusion
+register, the inventory and the device
+
+2
+00:00:05.614 --> 00:00:10.763
+states, runs the guide's query and its
+per-device form, and writes five things.
+
+3
+00:00:10.763 --> 00:00:15.850
+The matrix: each rule's stage on each
+ring, which is what the assessor reads.
+
+4
+00:00:15.850 --> 00:00:19.638
+Readiness: per ring and
+rule, the stage, days in it,
+
+5
+00:00:19.638 --> 00:00:25.563
+audit hits and open hits, blocks, the
+next stage, and a status with the reason.
+
+6
+00:00:25.563 --> 00:00:29.412
+The custom-profile value
+for each ring, now and next.
+
+7
+00:00:29.412 --> 00:00:31.688
+What each device actually enforces.
+
+8
+00:00:31.688 --> 00:00:33.913
+And the exclusions that have expired.
+
+9
+00:00:33.913 --> 00:00:36.998
+A status is ready, hold, done, warn, fail,
+
+10
+00:00:36.998 --> 00:00:42.100
+or not applicable for a rule
+Windows Server doesn't support.

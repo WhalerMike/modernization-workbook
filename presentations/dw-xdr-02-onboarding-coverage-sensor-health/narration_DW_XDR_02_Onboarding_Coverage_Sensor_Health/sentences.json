@@ -1,0 +1,438 @@
+{
+ "1": [
+  [
+   0.05,
+   6.162,
+   "Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook."
+  ],
+  [
+   6.213,
+   3.8,
+   "This is Chapter 2: onboarding coverage and sensor health."
+  ],
+  [
+   10.012,
+   8.75,
+   "A policy assigned to a group says nothing about the devices that never checked in, so coverage is counted against the inventory, one device at a time."
+  ],
+  [
+   18.762,
+   12.875,
+   "We'll start from the guide's coverage query and Learn's device checks, read how the kit joins each device to the inventory and the exception register, meet the device collector the next chapters use, and walk two labs."
+  ],
+  [
+   31.637,
+   6.088,
+   "The chapter is a draft awaiting review; the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.175,
+   "Why count this way?"
+  ],
+  [
+   1.225,
+   4.588,
+   "A policy assigned to a group says nothing about the devices that never checked in."
+  ],
+  [
+   5.812,
+   5.737,
+   "If you count against Defender's own list, a device that never onboarded is simply invisible."
+  ],
+  [
+   11.55,
+   2.362,
+   "So the denominator is the inventory."
+  ],
+  [
+   13.912,
+   10.075,
+   "By the end of this chapter you can produce the weekly coverage file the guide's evidence checklist asks for, with a ticket for every device that isn't protected and isn't excepted."
+  ],
+  [
+   23.988,
+   8.825,
+   "It's for the developers who maintain the kit, the operator who owns onboarding, and the security officer who reconciles the system component inventory."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.312,
+   "Here's what's already there."
+  ],
+  [
+   1.363,
+   6.15,
+   "On a device, Learn names the sense service and the registry value onboarding state, equal to one."
+  ],
+  [
+   7.513,
+   10.613,
+   "Across the fleet, the guide's query takes the latest DeviceInfo row per Windows device and counts them by onboarding status and sensor health state, run through Graph and filed."
+  ],
+  [
+   18.125,
+   13.25,
+   "Learn's device inventory reference lists the sensor health states: active; inactive, which typically means no contact for seven days or more; no sensor data; impaired communications; and misconfigured."
+  ],
+  [
+   31.375,
+   4.05,
+   "Intune's onboarding report shows the same from the Intune side."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.475,
+   "What does a count leave to you?"
+  ],
+  [
+   1.525,
+   7.737,
+   "It can't name the device that needs a ticket, so the kit runs the same query one row per device, and keeps the guide's summary beside it."
+  ],
+  [
+   9.262,
+   7.45,
+   "Defender only lists devices it knows, so every inventory device is classified, whether Defender reports it or not."
+  ],
+  [
+   16.712,
+   8.312,
+   "A lab device with no path to the service looks like a gap forever, so the exception register makes it excepted, and a lapsed exception a ticket."
+  ],
+  [
+   25.025,
+   4.025,
+   "Names differ, so they're compared without the D N S suffix."
+  ],
+  [
+   29.05,
+   9.075,
+   "And Learn doesn't list the exact strings advanced hunting returns, so only listed values count as healthy; anything else is printed and flagged."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   4.412,
+   "The coverage check gives every in-scope device one of seven statuses."
+  ],
+  [
+   4.463,
+   2.888,
+   "Protected: onboarded with an active sensor."
+  ],
+  [
+   7.35,
+   4.237,
+   "Not active: onboarded, but the sensor is in any other state."
+  ],
+  [
+   11.588,
+   5.075,
+   "Not onboarded: not onboarded, or not reported at all, with no exception."
+  ],
+  [
+   16.663,
+   4.912,
+   "Excepted: a valid exception, with an approver and an expiry still ahead."
+  ],
+  [
+   21.575,
+   1.462,
+   "Exception expired."
+  ],
+  [
+   23.038,
+   4.15,
+   "Not in inventory: Defender reports it, the inventory doesn't."
+  ],
+  [
+   27.188,
+   1.087,
+   "And out of scope."
+  ],
+  [
+   28.275,
+   1.475,
+   "Four of those are tickets."
+  ],
+  [
+   29.75,
+   8.787,
+   "The run writes the coverage file, the tickets, a by-ring summary, the protected-coverage share, which is the guide's first metric, and a manifest."
+  ],
+  [
+   38.538,
+   3.575,
+   "A missing column fails the run rather than reading as empty."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.612,
+   "The chapter also ships a device collector."
+  ],
+  [
+   2.663,
+   21.562,
+   "It runs on one Windows device, elevated, reads only, and writes one jay-son file: the sense service and the onboarding state and sensor version from the registry; tamper and real-time protection and the antivirus mode; network protection, controlled folder access and the attack surface reduction rules; and the firewall profiles as enforced."
+  ],
+  [
+   24.225,
+   4.612,
+   "Chapters 3, 4 and 7 compare these files with the plans."
+  ],
+  [
+   28.837,
+   9.225,
+   "For servers under Azure Arc that lack the Defender extension, the Microsoft automation kit already has a task, so this chapter links it instead of rebuilding it."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   6.638,
+   "The operator owns onboarding: every device that isn't active for a week is a ticket, worked within the week."
+  ],
+  [
+   7.737,
+   7.15,
+   "The security officer reconciles coverage against the system component inventory and keeps the weekly file for twelve months."
+  ],
+  [
+   14.887,
+   3.862,
+   "And the platform owner reviews the exception register each quarter."
+  ],
+  [
+   18.75,
+   6.062,
+   "One caution: the onboarding and sensor strings in the kit's configuration are the ones the portal shows."
+  ],
+  [
+   24.812,
+   4.125,
+   "Check them against your test tenant's raw output before the first lyve run."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.1,
+   "Lab 1, in the kit's folder."
+  ],
+  [
+   2.15,
+   2.337,
+   "Step 1 runs the coverage check."
+  ],
+  [
+   4.487,
+   5.112,
+   "Nine of fourteen in-scope devices are protected: sixty-four point three percent."
+  ],
+  [
+   9.6,
+   1.45,
+   "Ring 0 is whole."
+  ],
+  [
+   11.05,
+   15.213,
+   "Five tickets: a sensor with impaired communications, an inactive sensor, a device Defender can see but that was never onboarded, a server whose exception expired at the end of October, and a device Defender reports that the inventory doesn't list at all."
+  ],
+  [
+   26.262,
+   5.5,
+   "The kiosk in the isolated lab isn't a ticket: its exception runs into next year."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   7.588,
+   "Step 2 reads the tickets as the operator gets them, each with its note: the expired exception names its reason and date."
+  ],
+  [
+   7.638,
+   4.638,
+   "Step 3 reads the guide's own query for the same estate, as counts."
+  ],
+  [
+   12.275,
+   5.088,
+   "It can't say which device is inactive, or that two in-scope devices aren't there at all."
+  ],
+  [
+   17.363,
+   4.062,
+   "Step 4 reads one device's state, as the collector writes it."
+  ],
+  [
+   21.425,
+   2.5,
+   "Look at tamper protection: false."
+  ],
+  [
+   23.925,
+   1.538,
+   "Chapter 3 finds it."
+  ],
+  [
+   25.462,
+   3.638,
+   "The last step runs the chapter's tests, and they all pass."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   9.425,
+   "Lab 2 uses a test tenant, never production, with at least one Windows test device onboarded through Intune's endpoint detection and response policy."
+  ],
+  [
+   9.475,
+   5.0,
+   "Sign in with the hunting read scope and run the coverage check without the fixture path."
+  ],
+  [
+   14.475,
+   6.1,
+   "Then open the raw device rows and compare the onboarding and sensor strings with the kit's configuration."
+  ],
+  [
+   20.575,
+   4.95,
+   "A row flagged unrecognized means they differ; record it before changing anything."
+  ],
+  [
+   25.525,
+   6.638,
+   "On the test device, run the collector elevated: it should show the sense service running and onboarding state one."
+  ],
+  [
+   32.163,
+   2.337,
+   "Nothing changed, so you just sign out."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.538,
+   "Here's what the coverage check proves, against nist's catalog."
+  ],
+  [
+   3.587,
+   7.925,
+   "Every in-scope device onboarded with an active sensor, excepted, or a ticket, supports the system component inventory control."
+  ],
+  [
+   11.512,
+   4.1,
+   "The sensor reporting, ring by ring, supports system monitoring."
+  ],
+  [
+   15.613,
+   6.5,
+   "And a device that Defender sees but the inventory doesn't list is an inventory finding in its own right."
+  ],
+  [
+   22.113,
+   4.188,
+   "The indicators are fed-ramp's, as the implementation guide maps them."
+  ],
+  [
+   26.3,
+   3.812,
+   "The records support these controls; the assessor decides them."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.4,
+   "What breaks in production?"
+  ],
+  [
+   1.45,
+   7.037,
+   "Counting against Defender's own list hides every device that never onboarded; the inventory is the denominator."
+  ],
+  [
+   8.488,
+   5.3,
+   "An exception that never expires makes a gap permanent; an expired one is a ticket."
+  ],
+  [
+   13.787,
+   9.15,
+   "A state string the kit doesn't know could make a healthy device look unhealthy, or the reverse; only listed values count, and unknown ones are flagged."
+  ],
+  [
+   22.938,
+   5.775,
+   "A renamed column would make every device read as empty; a missing column fails the run."
+  ],
+  [
+   28.712,
+   6.463,
+   "And servers aren't proven by the client report; the automation kit's Arc task finds servers without the extension."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   4.737,
+   "The inventory and the exception register are current and named in the settings file."
+  ],
+  [
+   6.138,
+   4.112,
+   "The state strings in the kit's configuration match the test tenant."
+  ],
+  [
+   10.25,
+   2.462,
+   "Every ticket has an owner within the week."
+  ],
+  [
+   12.713,
+   3.85,
+   "The guide's summary query is filed beside the per-device result."
+  ],
+  [
+   16.562,
+   2.95,
+   "And the run folder is recorded as evidence."
+  ],
+  [
+   19.512,
+   7.812,
+   "Next, Chapter 3 reads the device state files this chapter's collector writes, and checks prevention against each ring's stage."
+  ],
+  [
+   27.325,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

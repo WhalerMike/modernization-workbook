@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.612
+Each environment gets one settings file,
+
+2
+00:00:02.612 --> 00:00:05.475
+copied from the template
+onto agency storage.
+
+3
+00:00:05.475 --> 00:00:08.719
+Fill every placeholder: the
+tenant, the output root,
+
+4
+00:00:08.719 --> 00:00:13.352
+the groups that Privileged Identity
+Management governs, the emergency
+
+5
+00:00:13.352 --> 00:00:18.063
+access groups and accounts, and every
+input file the earlier chapters use.
+
+6
+00:00:18.063 --> 00:00:20.422
+No secret ever goes in a settings file:
+
+7
+00:00:20.422 --> 00:00:25.599
+the run signs in through Privileged Identity
+Management, or as a managed identity.
+
+8
+00:00:25.599 --> 00:00:29.750
+The cloud is GCC, the Graph
+environment is Global.
+
+9
+00:00:29.750 --> 00:00:34.652
+Every step in this runbook has two forms:
+a fixture form with an environment file,
+
+10
+00:00:34.652 --> 00:00:38.880
+which is what these slides show, and
+the live form, which leaves it out.

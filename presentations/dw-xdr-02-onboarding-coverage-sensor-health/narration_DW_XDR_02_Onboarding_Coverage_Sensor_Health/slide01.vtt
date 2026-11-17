@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.234
+Welcome to Building Defender XDR,
+
+2
+00:00:02.234 --> 00:00:06.212
+a developer workbook in the
+Federal Modernization Workbook.
+
+3
+00:00:06.212 --> 00:00:10.013
+This is Chapter 2: onboarding
+coverage and sensor health.
+
+4
+00:00:10.013 --> 00:00:14.857
+A policy assigned to a group says nothing
+about the devices that never checked in,
+
+5
+00:00:14.857 --> 00:00:18.762
+so coverage is counted against the
+inventory, one device at a time.
+
+6
+00:00:18.762 --> 00:00:22.882
+We'll start from the guide's coverage
+query and Learn's device checks,
+
+7
+00:00:22.882 --> 00:00:27.664
+read how the kit joins each device to
+the inventory and the exception register,
+
+8
+00:00:27.664 --> 00:00:31.637
+meet the device collector the next
+chapters use, and walk two labs.
+
+9
+00:00:31.637 --> 00:00:34.270
+The chapter is a draft awaiting review;
+
+10
+00:00:34.270 --> 00:00:37.780
+the code is illustrative,
+tested against fixtures.

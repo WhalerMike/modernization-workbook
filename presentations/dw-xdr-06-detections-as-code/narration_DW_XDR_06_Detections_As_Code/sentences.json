@@ -1,0 +1,441 @@
+{
+ "1": [
+  [
+   0.05,
+   6.162,
+   "Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook."
+  ],
+  [
+   6.213,
+   2.987,
+   "This is Chapter 6: detections as code."
+  ],
+  [
+   9.2,
+   7.787,
+   "A rule that can't be shown to fire isn't a control, and a rule nobody can trace to a reviewed file isn't a change anyone approved."
+  ],
+  [
+   16.988,
+   12.787,
+   "We'll start from Learn's create, list and update calls for custom detection rules, read the repository layout, the validation, the tests against each rule's windows, and the deployment plan, and walk two labs."
+  ],
+  [
+   29.775,
+   2.362,
+   "Publishing the plan is Chapter 9's."
+  ],
+  [
+   32.138,
+   6.088,
+   "The chapter is a draft awaiting review; the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.762,
+   "Why treat detections as code?"
+  ],
+  [
+   1.812,
+   1.038,
+   "Two reasons."
+  ],
+  [
+   2.85,
+   2.913,
+   "A rule that can't be shown to fire isn't a control."
+  ],
+  [
+   5.763,
+   5.35,
+   "And a rule that nobody can trace back to a reviewed file isn't a change anyone approved."
+  ],
+  [
+   11.113,
+   11.75,
+   "By the end of this chapter you can keep custom detections as files, prove each one fires on its known-bad event and stays quiet otherwise, and produce a deployment plan that an approver signs by its hash."
+  ],
+  [
+   22.863,
+   4.138,
+   "It's for the developers and the detection engineer who owns this gate."
+  ],
+  [
+   27.0,
+   10.85,
+   "The rule lifecycle itself, author, test, alert-only, promote and review, is the Security Operations book's; this chapter builds its test and its deployment."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   3.15,
+   "Microsoft Learn's Graph pages give three calls."
+  ],
+  [
+   3.2,
+   10.8,
+   "Post to create a rule, which needs read-write custom detection and the Detection tuning manage permission, or Security Administrator; the quota is ten creates a minute per application."
+  ],
+  [
+   14.0,
+   2.837,
+   "Get to list the rules, with the read permission."
+  ],
+  [
+   16.837,
+   4.3,
+   "And patch to update one, supplying only the properties that change."
+  ],
+  [
+   21.137,
+   10.688,
+   "A rule has a query, a schedule, a status of enabled or disabled, and a detection action with an alert template, and optionally automated actions, like isolating devices."
+  ],
+  [
+   31.825,
+   7.463,
+   "None of these pages has a national-cloud table, so the A P I's G C C availability is not yet specified."
+  ],
+  [
+   39.288,
+   3.663,
+   "The guide's interim path is the portal, from the same file."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.0,
+   "What's left to you?"
+  ],
+  [
+   1.05,
+   4.175,
+   "Nothing checks a rule before it reaches the tenant, so the kit validates it."
+  ],
+  [
+   5.225,
+   8.387,
+   "Automated actions in the same body could let a rule isolate devices on its own, outside the response ladder, so such a rule is held."
+  ],
+  [
+   13.613,
+   5.4,
+   "One test window can't show a rule is both sensitive and quiet, so each rule has two."
+  ],
+  [
+   19.012,
+   8.85,
+   "The repository and the tenant drift, so the kit plans: create, update only what changed, hold what failed, report orphans."
+  ],
+  [
+   27.863,
+   3.788,
+   "A file marked enabled might never have been tested, so it's held."
+  ],
+  [
+   31.65,
+   3.95,
+   "And an approved plan could change afterwards, so it carries a hash."
+  ],
+  [
+   35.6,
+   5.175,
+   "The verdict: the A P I deploys anything it's given; build the gate in front of it."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.737,
+   "The repository is one folder with two files per rule."
+  ],
+  [
+   3.788,
+   4.125,
+   "The rule file is the Graph request body, in Learn's example shape."
+  ],
+  [
+   7.912,
+   9.787,
+   "Beside it, a test file names the tables the query reads, a known-bad window that must return at least some rows, and a known-good window that must stay under a threshold."
+  ],
+  [
+   17.7,
+   2.325,
+   "The detection check does four things."
+  ],
+  [
+   20.025,
+   6.412,
+   "Validates each rule, including no automated actions, and that the query starts from a declared table."
+  ],
+  [
+   26.438,
+   6.912,
+   "Tests each rule's query over both windows, through the hunting A P I. Reads the deployed rules."
+  ],
+  [
+   33.35,
+   8.338,
+   "And plans: create, update only the changed properties, hold with the reason, and report orphans, never deleting them."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   7.463,
+   "The detection engineer owns this gate, writes each rule and its test file, and reviews every rule each quarter."
+  ],
+  [
+   8.562,
+   3.95,
+   "The approver reads the plan and records its hash in the change record."
+  ],
+  [
+   12.512,
+   9.825,
+   "And the security operations center replays each known-bad event on a ring 0 device, under a change record, as the guide's synthetic events table describes."
+  ],
+  [
+   22.337,
+   3.413,
+   "One caution: advanced hunting keeps thirty days."
+  ],
+  [
+   25.75,
+   4.588,
+   "A known-bad window older than that returns nothing, so keep the replay current."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.1,
+   "Lab 1, in the kit's folder."
+  ],
+  [
+   2.15,
+   8.95,
+   "Step 1 reads one rule's test file: one table, a known-bad day that must return a row, and a quiet day that must return none."
+  ],
+  [
+   11.1,
+   2.9,
+   "Step 2 validates, tests and plans."
+  ],
+  [
+   14.0,
+   5.0,
+   "The admin-share rule fails validation: it would isolate devices on its own."
+  ],
+  [
+   19.0,
+   5.737,
+   "It also fails its quiet day, three rows where one is allowed, so it would have been noisy too."
+  ],
+  [
+   24.738,
+   2.7,
+   "The plan creates the LSASS dump-tool rule."
+  ],
+  [
+   27.438,
+   8.55,
+   "It updates only the status of the encoded PowerShell rule, which is deployed disabled and now enabled in its file after a passing test."
+  ],
+  [
+   35.987,
+   1.825,
+   "It holds the admin-share rule."
+  ],
+  [
+   37.812,
+   5.312,
+   "And it reports a legacy rule, made in the portal and in no file, as an orphan."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   7.775,
+   "Step 3 reads the plan an approver signs: its hash, and the two actions, a post that creates and a patch that updates."
+  ],
+  [
+   7.825,
+   6.013,
+   "The update's body holds the status and nothing else, because Learn's patch supplies only what changes."
+  ],
+  [
+   13.838,
+   5.675,
+   "Step 4 runs the same repository on the interim path, with deploy via set to portal."
+  ],
+  [
+   19.512,
+   5.525,
+   "The same plan comes out, as a sheet for the Defender portal, each rule with its file's hash."
+  ],
+  [
+   25.038,
+   2.062,
+   "Delete what the lab made when you're done."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.087,
+   "Lab 2 uses a test tenant, never production."
+  ],
+  [
+   3.138,
+   7.7,
+   "First make the known-bad event: on a ring 0 test device, under a change record, run the activity your rule detects."
+  ],
+  [
+   10.838,
+   7.562,
+   "Then sign in with read scopes only, and run the detection check with your own rule folder, its known-bad window covering the replay."
+  ],
+  [
+   18.4,
+   3.062,
+   "The test file should show the known-bad window passing."
+  ],
+  [
+   21.462,
+   7.388,
+   "If listing the deployed rules fails in the test tenant, record it in the verification log and set deploy via to portal."
+  ],
+  [
+   28.85,
+   2.587,
+   "Nothing was deployed, so you just sign out."
+  ],
+  [
+   31.438,
+   3.413,
+   "Publishing comes in Chapter 9, with an approved hash."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.325,
+   "Here's what this gate proves, against nist's catalog."
+  ],
+  [
+   3.375,
+   8.613,
+   "Each rule firing on its known-bad event and staying quiet otherwise supports system monitoring and audit review, analysis and reporting."
+  ],
+  [
+   11.988,
+   6.3,
+   "Each change coming from a reviewed file, in a plan with a hash, supports configuration change control."
+  ],
+  [
+   18.288,
+   4.963,
+   "And what's deployed matching the repository, with orphans named, supports both."
+  ],
+  [
+   23.25,
+   3.188,
+   "The indicators are fed-ramp's, as the guide maps them."
+  ],
+  [
+   26.438,
+   3.812,
+   "The records support these controls; the assessor decides them."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.4,
+   "What breaks in production?"
+  ],
+  [
+   1.45,
+   6.162,
+   "A rule with automated isolation could contain a server or an emergency account by query; it's held."
+  ],
+  [
+   7.612,
+   5.912,
+   "A rule enabled without a test is silent or noisy; it's held unless its test passed this run."
+  ],
+  [
+   13.525,
+   3.663,
+   "A rule made in the portal can't be traced; it's an orphan."
+  ],
+  [
+   17.188,
+   5.688,
+   "A plan changed after approval means the approver signed something else; publishing checks the hash."
+  ],
+  [
+   22.875,
+   5.0,
+   "A renamed column makes a rule stop firing; the weekly test run catches it."
+  ],
+  [
+   27.875,
+   5.825,
+   "And if the A P I isn't available in G C C, the portal path deploys the same files."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   4.95,
+   "Every rule has a test file, with both windows inside the last thirty days."
+  ],
+  [
+   6.35,
+   2.237,
+   "No rule has automated actions."
+  ],
+  [
+   8.588,
+   3.45,
+   "Every enabled rule passed its known-bad test in this run."
+  ],
+  [
+   12.037,
+   4.975,
+   "Every orphan has a decision: into the repository, or disabled from a file."
+  ],
+  [
+   17.012,
+   2.737,
+   "And the plan's hash is recorded with the approval."
+  ],
+  [
+   19.75,
+   8.713,
+   "Next, Chapter 7 sets what Defender may do on its own once these rules fire, and joins identity and cloud-app signals to the endpoint's."
+  ],
+  [
+   28.462,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.362
+Here's what's already there.
+
+2
+00:00:01.362 --> 00:00:04.280
+On a device, Learn names
+the sense service and
+
+3
+00:00:04.280 --> 00:00:07.513
+the registry value onboarding
+state, equal to one.
+
+4
+00:00:07.513 --> 00:00:12.271
+Across the fleet, the guide's query takes
+the latest DeviceInfo row per Windows
+
+5
+00:00:12.271 --> 00:00:16.443
+device and counts them by onboarding
+status and sensor health state,
+
+6
+00:00:16.443 --> 00:00:18.126
+run through Graph and filed.
+
+7
+00:00:18.126 --> 00:00:23.712
+Learn's device inventory reference lists
+the sensor health states: active; inactive,
+
+8
+00:00:23.712 --> 00:00:27.384
+which typically means no
+contact for seven days or more;
+
+9
+00:00:27.384 --> 00:00:31.375
+no sensor data; impaired
+communications; and misconfigured.
+
+10
+00:00:31.375 --> 00:00:35.500
+Intune's onboarding report shows
+the same from the Intune side.

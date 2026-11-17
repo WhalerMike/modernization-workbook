@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.872
+Microsoft Learn gives you
+the rule modes: zero off,
+
+2
+00:00:03.872 --> 00:00:07.600
+one block, two audit, five
+not configured, six warn.
+
+3
+00:00:07.600 --> 00:00:13.113
+The custom-profile path in Intune, with
+one rule GUID equals mode per line.
+
+4
+00:00:13.113 --> 00:00:18.857
+Warn's requirements: Windows 10 1809 or
+later, two rules that don't support it,
+
+5
+00:00:18.857 --> 00:00:22.655
+the LSASS rule and the
+Office code-injection rule,
+
+6
+00:00:22.655 --> 00:00:28.213
+and since platform 4.18.26060, Unblock
+needs an administrator's approval.
+
+7
+00:00:28.213 --> 00:00:33.062
+The rules reference gives each rule's GUID
+and its advanced hunting action types.
+
+8
+00:00:33.062 --> 00:00:36.219
+And Learn lists a known
+issue: on Windows Server,
+
+9
+00:00:36.219 --> 00:00:39.770
+a rule can show as compliant
+without being enforced.

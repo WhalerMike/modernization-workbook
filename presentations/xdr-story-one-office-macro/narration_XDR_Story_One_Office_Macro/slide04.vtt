@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.463
+From the kit's folder, run the
+access check on the fixtures.
+
+3
+00:00:04.463 --> 00:00:08.425
+The read passes: incidents come
+back with no permission error.
+
+4
+00:00:08.425 --> 00:00:10.150
+Then three failures.
+
+5
+00:00:10.150 --> 00:00:14.101
+The detection engineer role
+holds advanced live response,
+
+6
+00:00:14.101 --> 00:00:19.100
+which only Tier 0 may hold, so its role
+row fails and the restricted row fails.
+
+7
+00:00:19.100 --> 00:00:23.148
+And the responder role, the one that
+would contain our macro's device, is also
+
+8
+00:00:23.148 --> 00:00:27.588
+assigned to a standing group that Privileged
+Identity Management doesn't govern.
+
+9
+00:00:27.588 --> 00:00:32.350
+The legacy role is a warning: someone
+records a decision or removes it.

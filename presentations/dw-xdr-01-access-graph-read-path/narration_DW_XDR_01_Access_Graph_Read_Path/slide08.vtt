@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.162
+Lab 1 needs PowerShell 7 with
+Pester, in the kit's folder.
+
+2
+00:00:04.162 --> 00:00:07.399
+Step 1 runs the access
+check on the fixtures.
+
+3
+00:00:07.399 --> 00:00:11.038
+The read passes: five
+incidents, no permission error.
+
+4
+00:00:11.038 --> 00:00:12.787
+Then three rows fail.
+
+5
+00:00:12.787 --> 00:00:17.493
+The detection engineer role holds
+advanced live response, which only the
+
+6
+00:00:17.493 --> 00:00:21.737
+Tier 0 role may hold, so both its
+role row and the restricted row fail.
+
+7
+00:00:21.737 --> 00:00:24.571
+And the responder role is
+also assigned to a standing
+
+8
+00:00:24.571 --> 00:00:27.725
+group that Privileged Identity
+Management doesn't govern.
+
+9
+00:00:27.725 --> 00:00:31.100
+The legacy role is a warning:
+it isn't in the design,
+
+10
+00:00:31.100 --> 00:00:34.137
+so someone records a
+decision or removes it.
+
+11
+00:00:34.137 --> 00:00:36.260
+Fourteen checks, three failed.

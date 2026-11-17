@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.588
+Here's what the coverage check
+proves, against NIST's catalog.
+
+2
+00:00:03.588 --> 00:00:07.626
+Every in-scope device onboarded
+with an active sensor, excepted,
+
+3
+00:00:07.626 --> 00:00:11.512
+or a ticket, supports the system
+component inventory control.
+
+4
+00:00:11.512 --> 00:00:15.612
+The sensor reporting, ring by
+ring, supports system monitoring.
+
+5
+00:00:15.612 --> 00:00:18.786
+And a device that Defender
+sees but the inventory
+
+6
+00:00:18.786 --> 00:00:22.113
+doesn't list is an inventory
+finding in its own right.
+
+7
+00:00:22.113 --> 00:00:26.301
+The indicators are FedRAMP's, as
+the implementation guide maps them.
+
+8
+00:00:26.301 --> 00:00:30.170
+The records support these controls;
+the assessor decides them.

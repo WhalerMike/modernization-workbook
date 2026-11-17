@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.150
+Lab 1, in the kit's folder.
+
+2
+00:00:02.150 --> 00:00:04.550
+Step 1 runs the exposure check.
+
+3
+00:00:04.550 --> 00:00:09.662
+Three software rows with nine CVEs
+between them, and three exposed devices.
+
+4
+00:00:09.662 --> 00:00:10.812
+Two have owners.
+
+5
+00:00:10.812 --> 00:00:13.543
+The third sits in a group no owner covers:
+
+6
+00:00:13.543 --> 00:00:17.599
+the same device Chapter 2 found
+missing from the inventory.
+
+7
+00:00:17.599 --> 00:00:19.562
+Two findings, one cause.
+
+8
+00:00:19.562 --> 00:00:24.352
+Step 2 reads the Exposure Management
+record: not available in GCC,
+
+9
+00:00:24.352 --> 00:00:28.787
+skipped, not applicable, and the
+interim path in one sentence.
+
+10
+00:00:28.787 --> 00:00:32.420
+That's what goes in the closure
+register, not a failed control.

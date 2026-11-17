@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.450
+What breaks in production?
+
+2
+00:00:01.450 --> 00:00:03.833
+A Graph session in the wrong tenant:
+
+3
+00:00:03.833 --> 00:00:07.612
+every check reads another
+estate, or nothing, and passes.
+
+4
+00:00:07.612 --> 00:00:09.362
+The live run refuses it.
+
+5
+00:00:09.362 --> 00:00:13.837
+A permission added to a role in the
+portal: someone can isolate devices
+
+6
+00:00:13.837 --> 00:00:18.388
+or run live response who shouldn't;
+the role and restricted rows catch it.
+
+7
+00:00:18.388 --> 00:00:23.887
+A role assigned to a standing group:
+privilege that never expires; the P I M row.
+
+8
+00:00:23.887 --> 00:00:26.772
+An emergency access
+account in a Defender role,
+
+9
+00:00:26.772 --> 00:00:30.249
+which turns the break-glass
+account into a daily account.
+
+10
+00:00:30.249 --> 00:00:32.669
+And a write slipped into the read path:
+
+11
+00:00:32.669 --> 00:00:36.100
+the read function refuses
+any call marked as a write.
