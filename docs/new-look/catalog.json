@@ -188,7 +188,7 @@
    "url": "docs/training/defender-xdr/index.html",
    "count": 5,
    "unit": "modules",
-   "reading_minutes": 44,
+   "reading_minutes": 48,
    "reading_source": "estimate",
    "videos": 5,
    "video_minutes": 62,
@@ -630,7 +630,7 @@
    "url": "docs/books/guides/defender-xdr-implementation.html",
    "count": 10,
    "unit": "steps",
-   "reading_minutes": 51,
+   "reading_minutes": 55,
    "reading_source": "estimate",
    "videos": 1,
    "video_minutes": 17,
@@ -1025,6 +1025,32 @@
    ],
    "status": "Draft",
    "family": "azure-security",
+   "featured": false
+  },
+  {
+   "id": "docs/project-plans/developer-workbooks/defender-xdr/index.md",
+   "type": "Developer workbook",
+   "title": "Building Defender XDR",
+   "description": "A developer workbook for the Defender XDR implementation guide",
+   "url": "docs/project-plans/developer-workbooks/defender-xdr/index.html",
+   "count": 9,
+   "unit": "chapters",
+   "reading_minutes": 91,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Advanced",
+   "level_source": "audience",
+   "roles": [
+    "Endpoint engineer",
+    "Security operations",
+    "Developer"
+   ],
+   "topics": [
+    "Defender XDR"
+   ],
+   "status": "Draft",
+   "family": "defender-xdr",
    "featured": false
   },
   {
@@ -2015,6 +2041,33 @@
    "featured": false
   },
   {
+   "id": "docs/training/labs.md#xdr",
+   "type": "Lab",
+   "title": "Labs: Building Defender XDR",
+   "description": "16 hands-on labs across 8 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building Defender XDR.",
+   "url": "docs/training/labs.html#xdr",
+   "count": 16,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "Endpoint engineer",
+    "Security operations"
+   ],
+   "topics": [
+    "Intune and endpoints",
+    "Defender XDR",
+    "Security operations"
+   ],
+   "status": "Draft",
+   "family": "defender-xdr",
+   "featured": false
+  },
+  {
    "id": "docs/training/labs.md#gsa",
    "type": "Lab",
    "title": "Labs: Building Global Secure Access",
@@ -2216,33 +2269,6 @@
    ],
    "status": "Approved",
    "family": "ticket-to-machine",
-   "featured": false
-  },
-  {
-   "id": "docs/training/labs.md#xdr",
-   "type": "Lab",
-   "title": "Labs: Defender XDR learning path",
-   "description": "5 hands-on labs across 5 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The Defender XDR learning path.",
-   "url": "docs/training/labs.html#xdr",
-   "count": 5,
-   "unit": "labs",
-   "reading_minutes": null,
-   "reading_source": null,
-   "videos": 0,
-   "video_minutes": 0,
-   "level": "Intermediate",
-   "level_source": "path",
-   "roles": [
-    "Endpoint engineer",
-    "Security operations"
-   ],
-   "topics": [
-    "Intune and endpoints",
-    "Defender XDR",
-    "Security operations"
-   ],
-   "status": "Draft",
-   "family": "defender-xdr",
    "featured": false
   },
   {
