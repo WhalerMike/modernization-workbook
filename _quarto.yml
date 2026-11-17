@@ -200,6 +200,8 @@ website:
             text: "Building Defender XDR"
           - href: docs/project-plans/developer-workbooks/global-secure-access/index.md
             text: "Building Global Secure Access"
+          - href: docs/project-plans/developer-workbooks/azure-security/index.md
+            text: "Building Azure Security"
       - href: docs/evaluations/index.md
         text: "Evaluations"
       - href: docs/training/index.md
@@ -425,6 +427,10 @@ website:
               href: docs/project-plans/developer-workbooks/global-secure-access/index.md
               contents:
                 - auto: "docs/project-plans/developer-workbooks/global-secure-access/*-*.md"
+            - section: "Building Azure Security"
+              href: docs/project-plans/developer-workbooks/azure-security/index.md
+              contents:
+                - auto: "docs/project-plans/developer-workbooks/azure-security/*-*.md"
     - id: books
       title: "The Workbook Books"
       style: docked

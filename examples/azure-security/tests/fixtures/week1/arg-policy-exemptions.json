@@ -1,0 +1,39 @@
+{
+  "count": 4,
+  "data": [
+    {
+      "id": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-legacy/providers/Microsoft.Authorization/policyExemptions/ex-legacy-fd",
+      "name": "ex-legacy-fd",
+      "assignmentId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyAssignments/azs-security",
+      "category": "Waiver",
+      "expiresOn": "2026-10-31T00:00:00Z",
+      "description": "DR-AZS-009: classic Front Door until migration"
+    },
+    {
+      "id": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll-net/providers/Microsoft.Authorization/policyExemptions/ex-payroll-ddos",
+      "name": "ex-payroll-ddos",
+      "assignmentId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyAssignments/azs-security",
+      "category": "Mitigated",
+      "expiresOn": "",
+      "description": "DR-AZS-011: no public IPs in the payroll spoke"
+    },
+    {
+      "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-careers/providers/Microsoft.Authorization/policyExemptions/ex-careers-tls",
+      "name": "ex-careers-tls",
+      "assignmentId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyAssignments/azs-security",
+      "category": "Waiver",
+      "expiresOn": "2027-03-31T00:00:00Z",
+      "description": "DR-AZS-014: careers site TLS cutover"
+    },
+    {
+      "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal/providers/Microsoft.Authorization/policyExemptions/ex-portal-waf",
+      "name": "ex-portal-waf",
+      "assignmentId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyAssignments/azs-security",
+      "category": "Waiver",
+      "expiresOn": "2026-12-01T00:00:00Z",
+      "description": "DR-AZS-012: WAF tuning for the portal"
+    }
+  ],
+  "skip_token": null,
+  "total_count": 4
+}

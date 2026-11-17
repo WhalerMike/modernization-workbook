@@ -1,0 +1,10 @@
+PS> Import-Csv out/week1/ddos/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+AZS-DD-04 Finding pip-afw-hub: no DDoS log category or allLogs to the platform workspace
+AZS-DD-05 Finding pip-afw-hub: no enabled metric alert on IfUnderDDoSAttack whose scope includes it
+AZS-DD-04 Finding pip-vpngw: no DDoS log category or allLogs to the platform workspace
+AZS-DD-05 Finding pip-vpngw: no enabled metric alert on IfUnderDDoSAttack whose scope includes it
+AZS-DD-01 Finding pip-jump: inherits from vnet-portal, which has no DDoS protection plan
+AZS-DD-05 Finding pip-test-app: no enabled metric alert on IfUnderDDoSAttack whose scope includes it
+AZS-DD-02 Warn    pip-lb-portal: a load balancer frontend: protection depends on the backend virtual network
+AZS-DD-06 Warn    DDoS protection plans: 2 plans: ddos-contoso, ddos-portal-trial; the guide keeps one plan for the agency
+AZS-DD-03 Info    pip-nat-egress: on nat-hub

@@ -1,0 +1,363 @@
+---
+title: "Chapter 01 — The Landing-Zone Baseline"
+description: "The kit's spine and its first check: one declared list of Azure Resource Graph and Resource Manager reads, each with its role and Learn page; fixture and live invokers that refuse another cloud, tenant or host; a run folder with a manifest of hashes; then the guide's Step 1 as code: hierarchy settings, the initiatives at the intermediate root in audit, diagnostic logs from every platform resource, and Defender for Cloud plans on every subscription. Labs against a fictional estate and a test subscription."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-azure-security
+part: How
+series-order: 1
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 01 — The Landing-Zone Baseline
+
+*A baseline nobody reads back is a wish. The first thing the kit does is read it back, the same way, every week, with nothing it could change.*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [Step 1, the landing-zone security baseline](../../../books/guides/azure-security-implementation.md#step-1-landing-zone-security-baseline), and the parts of the kit every later chapter uses. You start with what the guide's Learn commands give you: a hierarchy setting, an assignment in `DoNotEnforce`, a Resource Graph query that lists the platform resources. Then you read the kit's spine: the call list, the two invokers, the run folder and its manifest. Lab 1 runs the baseline check on the fictional Contoso estate and shows the exact `az` command a live run would send. Lab 2 runs it against a test management group, beside the guide's own Validate commands.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can read an Azure landing zone's security baseline as code: whether creating management groups needs authorization and new subscriptions land in a default group, whether the required initiatives are assigned at the intermediate root, whether every platform resource sends logs to the platform workspace, and whether every subscription has the required Defender for Cloud plans. Every read is declared, every finding names its source, and nothing the kit runs can change the estate.
+
+**Audience.** Platform engineers who own the management group hierarchy, and the developers and ISSOs who review their automation. You should read PowerShell 7 and know what a management group, a policy assignment and a diagnostic setting are. [Book 10, Chapter 05](../../../books/b10-cloud-boundary/05-the-landing-zone.md) is the landing zone this reads. You don't need a subscription until Lab 2.
+
+## Start with Microsoft Learn
+
+### What the guide's Learn commands give you
+
+Step 1 of the guide is built from Learn's own commands.[^azs01-guide] Learn's Az PowerShell for protecting the hierarchy sets two things on the tenant root group: that creating a management group needs authorization, and which group new subscriptions land in.[^azs01-mg-protect] Learn's REST reference reads the same two settings back with one GET on `/providers/Microsoft.Management/managementGroups/{groupId}/settings/default`, returning `requireAuthorizationForGroupCreation` and `defaultManagementGroup`.[^azs01-hier-get] The guide assigns the security benchmark and the FedRAMP initiative at the intermediate root in `DoNotEnforce`, which evaluates compliance without enforcing the effect.[^azs01-enforcement] And it finds the platform resources with one Resource Graph query, then asks you to compare each with `az monitor diagnostic-settings list`.[^azs01-guide]
+
+### What it leaves to you
+
+| What the guide gives, as published | Why it matters | What the kit adds (pinned by a test) |
+|---|---|---|
+| One command per setting, run by hand | Nobody runs them every week, across every subscription | One check that reads all four parts of the baseline in one run (`Baseline (Step 1)` tests) |
+| `az graph query` with no scope | A query without `--management-groups` reads whatever subscriptions the signed-in account sees | Every query is scoped to the settings' intermediate root (`Core: the live commands`) |
+| "Compare the list with `az monitor diagnostic-settings list` for each" | A list compared by eye misses the one resource that logs to the wrong workspace | `Test-AzsDiag`: a setting counts only if it sends an *enabled* log to *the* platform workspace (`Core: findings and rules`) |
+| `az login` with the default cloud | A session left on another cloud reads the wrong estate | A live run refuses an Azure CLI on another cloud or tenant, and a REST call to any host but `management.azure.com` |
+| Nothing records what was read | An assessor can't tell which run a finding came from, or whether the file changed | A run folder with every raw response and a manifest of SHA-256 hashes (`Run folders` tests) |
+| Defender for Cloud "on every subscription" | "On" means a plan on the Standard tier, per subscription | The required plans from `config/baseline.json`, read per subscription from the pricings API |
+
+## The code: the spine of `examples/azure-security`
+
+[`examples/azure-security`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/azure-security) is one PowerShell 7 module, `powershell/AzureSecurity/AzureSecurity.psm1`, with four entry scripts, its configuration in `config/`, the runbook's scripts in `deploy/`, and Pester tests. Every chapter adds one area of checks; this one builds what they share.
+
+**The call list.** [`config/calls.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/azure-security/config/calls.json) declares 33 reads: 24 Resource Graph queries and 9 Resource Manager GETs. Each has its query or path and API version, the areas that use it, its least-privileged role (Reader, which holds `*/read`, everywhere) and the Learn page it comes from. Fifteen are marked verified: their query, path, API version and the properties the kit reads were read on the cited page. The other eighteen say what is missing, for example "the plan's virtualNetworks property"; a live run refuses them unless you pass `-AllowUnverified`, and each chapter's Lab 2 checks their output against the portal. `Get-AzsRequiredRole` prints an area's calls and roles.
+
+**Two invokers.** The fixture invoker reads each call's file from a folder and sends nothing. The live invoker runs `az graph query -q <query> --first 1000 --management-groups <mg-id>`, following skip tokens, or `az rest --method get --url https://management.azure.com/...`, following `nextLink` only on the same host. Before its first call it checks `az cloud show` and `az account show` against the settings, and refuses a mismatch. `Get-AzsLiveCommand` prints the exact arguments a live call would run without running them.
+
+**One cloud, no default.** The kit knows one cloud, `AzureCloud`. The settings file must name it; any other name throws. Microsoft 365 GCC pairs with commercial Azure,[^azs01-gov] so this is the only Azure environment the workbook's estate uses.
+
+**The run folder.** `Invoke-AzsCheck.ps1` writes, for an area: the rows it read (`<area>.json`), `findings.json` and `findings.csv`, `summary.json`, `raw/` with every response, and `manifest.json` with the task, time, mode, environment, tenant, the calls with their roles, and the SHA-256 of every file. Chapter 08 records that folder as evidence.
+
+**Findings.** Every finding carries a rule from [`config/rules.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/azure-security/config/rules.json), with its severity (Finding, Warn or Info), guide step and source, and a fingerprint of the rule and the lower-cased resource ID that stays the same from run to run. A test keeps the rules the code can report equal to that file.
+
+### The baseline check
+
+`Get-AzsBaselineCheck` reads the hierarchy settings, the policy assignments, the platform resources with their diagnostic settings, and each subscription's Defender for Cloud pricings:
+
+| Rule | Severity | What it flags | Source |
+|---|---|---|---|
+| AZS-BL-01 | Finding | `requireAuthorizationForGroupCreation` isn't true | Learn[^azs01-mg-protect] |
+| AZS-BL-02 | Finding | No default management group, or the tenant root group | Learn[^azs01-mg-protect] |
+| AZS-BL-03 | Finding | A required assignment (the settings' `requiredAssignments`) isn't at the intermediate root | *Design guidance* (guide Step 1) |
+| AZS-BL-04 | Info | A required assignment is in `DoNotEnforce`, as Step 1 intends; Step 9 enforces | Learn[^azs01-enforcement] |
+| AZS-BL-05 | Finding | A platform resource sends no enabled log to the platform workspace | Learn, through the guide's per-service pages[^azs01-guide] |
+| AZS-BL-06 | Finding | A required Defender for Cloud plan isn't on the Standard tier | *Design guidance* (guide Step 1; [Book 12, Chapter 08](../../../books/b12-security-operations/08-cloud-native-posture.md)) |
+
+The platform resource types and the required plans are in [`config/baseline.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/azure-security/config/baseline.json): Azure Firewall, application gateways, Front Door profiles, key vaults and public IPs, as the guide's query lists them; and the `CloudPosture`, `KeyVaults` and `Arm` plans. Change them in a reviewed pull request.
+
+### The tests
+
+Pester 5 under PowerShell 7. `tests/Core.Tests.ps1` holds 15 tests for the spine: one cloud and no default; settings refused with a placeholder, a missing key or another cloud; every call a read with a role, a Learn page and fixtures; each area's declared calls equal to the calls its check makes; the live commands' scope, host and paging, and the refusals; and a run in fixture mode that never starts `az`. `tests/Areas.Tests.ps1` holds two for this chapter's check. The kit runs 40 tests in `tests` and 11 in `deploy/tests`.
+
+::: {.callout-important}
+## Illustrative code
+The labs run the kit against a fictional estate served from files. They show what the code does, not that a subscription returns the same shapes. Review the code, and run Lab 2 in a test subscription, before it reads a real one.
+:::
+
+## Lab 1: fixtures, no subscription
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/azure-security`. The fixture estate is Contoso's: an intermediate root `contoso`, four subscriptions (connectivity, management and two workloads), a platform workspace `law-contoso-platform`, and the resources the later chapters read.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/azure-security`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: List the calls this chapter makes, and the role each needs
+Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
+Get-AzsRequiredRole -Area baseline | ForEach-Object { "{0,-26} {1,-28} verified: {2}" -f $_.Call, $_.Role, $_.Verified }
+
+# Step 2: Run the baseline check on the first week's estate
+./Invoke-AzsCheck.ps1 -Area baseline -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath out/week1/baseline
+
+# Step 3: Read the findings
+Import-Csv out/week1/baseline/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+
+# Step 4: Read the summary the metrics use
+Get-Content out/week1/baseline/summary.json
+
+# Step 5: See the exact command a live run would send, without sending it
+(Get-AzsLiveCommand -CallId arg-platform-resources -Settings (Read-AzsSettings -Path tests/fixtures/settings.lab.json)) -join ' '
+
+# Step 6: Run this chapter's tests
+Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'Baseline*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **List the calls this chapter makes, and the role each needs:**
+
+   ```powershell
+   Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
+   Get-AzsRequiredRole -Area baseline | ForEach-Object { "{0,-26} {1,-28} verified: {2}" -f $_.Call, $_.Role, $_.Verified }
+   ```
+
+   <!-- capture:begin 01-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/01-1.txt))](captures/01-1.png){.lightbox fig-alt="Terminal window showing Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1 and what it printed"}
+
+   <!-- capture:end -->
+
+   Six calls, every one Reader, the hierarchy settings at the tenant root group. All six are verified on Learn.
+
+2. **Run the baseline check on the first week's estate:**
+
+   ```powershell
+   ./Invoke-AzsCheck.ps1 -Area baseline -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath out/week1/baseline
+   ```
+
+   <!-- capture:begin 01-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/01-2.txt))](captures/01-2.png){.lightbox fig-alt="Terminal window showing ./Invoke-AzsCheck.ps1 -Area baseline -SettingsPath tests/fixtures/settings.la… and what it printed"}
+
+   <!-- capture:end -->
+
+   Twelve Findings and one Info, from six calls, every one a read.
+
+3. **Read the findings:**
+
+   ```powershell
+   Import-Csv out/week1/baseline/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+   ```
+
+   <!-- capture:begin 01-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/01-3.txt))](captures/01-3.png){.lightbox fig-alt="Terminal window showing Import-Csv out/week1/baseline/findings.csv | ForEach-Object { '{0} {1,-7} {2}… and what it printed"}
+
+   <!-- capture:end -->
+
+   AZS-BL-01: creating management groups doesn't need authorization. Ten AZS-BL-05 rows: the firewall, one application gateway, one Front Door profile, one vault and six public IPs send no log to the platform workspace; `pip-afw-hub` sends its logs to an application team's workspace, which doesn't count. AZS-BL-06: the online subscription's Key Vault plan is Free. AZS-BL-04 is the FedRAMP initiative in audit, as Step 1 intends. No AZS-BL-02: new subscriptions land in `contoso-sandbox`.
+
+4. **Read the summary the metrics use:**
+
+   ```powershell
+   Get-Content out/week1/baseline/summary.json
+   ```
+
+   <!-- capture:begin 01-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/01-4.txt))](captures/01-4.png){.lightbox fig-alt="Terminal window showing Get-Content out/week1/baseline/summary.json and what it printed"}
+
+   <!-- capture:end -->
+
+   6 of 16 platform resources log to the workspace (37.5%); 3 of 4 subscriptions have the required plans.
+
+5. **See the exact command a live run would send, without sending it:**
+
+   ```powershell
+   (Get-AzsLiveCommand -CallId arg-platform-resources -Settings (Read-AzsSettings -Path tests/fixtures/settings.lab.json)) -join ' '
+   ```
+
+   <!-- capture:begin 01-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/01-5.txt))](captures/01-5.png){.lightbox fig-alt="Terminal window showing (Get-AzsLiveCommand -CallId arg-platform-resources -Settings (Read-AzsSetting… and what it printed"}
+
+   <!-- capture:end -->
+
+   The guide's Step 1 query, ordered for paging, with `--management-groups contoso`.
+
+6. **Run this chapter's tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'Baseline*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+   ```
+
+   <!-- capture:begin 01-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/01-6.txt))](captures/01-6.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'Baseline*' -Output… and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** a run folder whose manifest lists every response it read, twelve findings you can trace to a fixture row, and the command a live run would send.
+
+When you're done, delete `out`:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 01-7 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/01-7.txt))](captures/01-7.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test subscription
+
+Use a test tenant with a test management group and subscription in commercial Azure, never production. You need Reader on the test management group and on the tenant root group (for the hierarchy settings), Azure CLI with the `resource-graph` extension, and PowerShell 7. Work in `examples/azure-security`. The authors haven't run this lab; the expected results are what the kit and the guide's Validate step say should happen.
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/azure-security`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Sign in to commercial Azure
+az cloud set --name AzureCloud
+az login --tenant <tenant-id>
+az extension add --name resource-graph
+
+# Step 2: Write the test settings file
+$s = Get-Content deploy/settings.template.json -Raw | ConvertFrom-Json
+$s.environment = 'test'; $s.tenantId = '<tenant-id>'; $s.tenantRootGroupId = '<tenant-id>'; $s.managementGroup = '<test-mg-id>'
+$s.workspaceId = '<workspace-id>'; $s.connectivitySubscriptionId = '<test-subscription-id>'; $s.hubVnetId = '<hub-vnet-id>'
+$s.workloadSubscriptionIds = @('<test-subscription-id>'); $s.requiredAssignments = @('<baseline-assignment-name>')
+$s.securityInitiative = [pscustomobject]@{ assignmentName = 'azs-security'; definitionName = 'not-used-in-lab-2'; identityRole = 'Reader'; enforceBy = '2027-01-31' }
+$s.location = '<location>'; $s.outputRoot = '<output-folder>'; $s.evidencePath = '<output-folder>'; $s.changeRecord = 'lab-2'
+$s.PSObject.Properties.Remove('testEvidencePath'); $s.PSObject.Properties.Remove('_comment')
+$s | ConvertTo-Json -Depth 5 | Set-Content <output-folder>/settings.test.json
+
+# Step 3: Run the baseline check, live
+./Invoke-AzsCheck.ps1 -Area baseline -SettingsPath <output-folder>/settings.test.json -OutputPath <output-folder>/baseline
+
+# Step 4: Read the same things with the guide's own Validate commands, and compare
+az policy assignment list --scope /providers/Microsoft.Management/managementGroups/<test-mg-id> -o table
+az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/<tenant-id>/settings/default?api-version=2020-05-01"
+
+# Step 5: Back it out
+Remove-Item -Recurse -Force <output-folder>/baseline
+az logout
+```
+
+:::
+
+<!-- labs:end -->
+
+You'll replace: `<tenant-id>` (the test tenant, which is also the tenant root group's ID), `<test-mg-id>` (the test intermediate root), `<test-subscription-id>`, `<workspace-id>` (the workspace's resource ID), `<hub-vnet-id>` (a virtual network's resource ID in the test subscription), `<baseline-assignment-name>` (an assignment the test group holds), `<location>`, and `<output-folder>` (a folder outside any repository; what the kit writes describes the test estate).
+
+1. **Sign in to commercial Azure:**
+
+   ```powershell
+   az cloud set --name AzureCloud
+   az login --tenant <tenant-id>
+   az extension add --name resource-graph
+   ```
+
+2. **Write the test settings file:**
+
+   ```powershell
+   $s = Get-Content deploy/settings.template.json -Raw | ConvertFrom-Json
+   $s.environment = 'test'; $s.tenantId = '<tenant-id>'; $s.tenantRootGroupId = '<tenant-id>'; $s.managementGroup = '<test-mg-id>'
+   $s.workspaceId = '<workspace-id>'; $s.connectivitySubscriptionId = '<test-subscription-id>'; $s.hubVnetId = '<hub-vnet-id>'
+   $s.workloadSubscriptionIds = @('<test-subscription-id>'); $s.requiredAssignments = @('<baseline-assignment-name>')
+   $s.securityInitiative = [pscustomobject]@{ assignmentName = 'azs-security'; definitionName = 'not-used-in-lab-2'; identityRole = 'Reader'; enforceBy = '2027-01-31' }
+   $s.location = '<location>'; $s.outputRoot = '<output-folder>'; $s.evidencePath = '<output-folder>'; $s.changeRecord = 'lab-2'
+   $s.PSObject.Properties.Remove('testEvidencePath'); $s.PSObject.Properties.Remove('_comment')
+   $s | ConvertTo-Json -Depth 5 | Set-Content <output-folder>/settings.test.json
+   ```
+
+3. **Run the baseline check, live:**
+
+   ```powershell
+   ./Invoke-AzsCheck.ps1 -Area baseline -SettingsPath <output-folder>/settings.test.json -OutputPath <output-folder>/baseline
+   ```
+
+   Every call this check makes is verified, so it needs no `-AllowUnverified`. It should print the same four lines as Lab 1, with the test estate's counts.
+
+4. **Read the same things with the guide's own Validate commands, and compare:**
+
+   ```powershell
+   az policy assignment list --scope /providers/Microsoft.Management/managementGroups/<test-mg-id> -o table
+   az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/<tenant-id>/settings/default?api-version=2020-05-01"
+   ```
+
+   The required assignments and their enforcement mode should match the rows of kind `assignment` in `<output-folder>/baseline/baseline.json`, and the two hierarchy settings its `hierarchy` row. Check one AZS-BL-05 resource in the portal: **Monitor** > **Diagnostic settings**, select the resource, and confirm no setting sends logs to the workspace.
+
+5. **Back it out.** The lab changed nothing in Azure. Delete what it wrote, which maps the test estate, and sign out:
+
+   ```powershell
+   Remove-Item -Recurse -Force <output-folder>/baseline
+   az logout
+   ```
+
+## Verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| Hierarchy settings | GET `/providers/Microsoft.Management/managementGroups/{groupId}/settings/default`, API version `2020-05-01`; `requireAuthorizationForGroupCreation`, `defaultManagementGroup`; set only on the root group | [^azs01-hier-get] |
+| Protect the hierarchy | `New-AzManagementGroupHierarchySetting -Authorization -DefaultManagementGroup` | [^azs01-mg-protect] |
+| `DoNotEnforce` | Evaluates compliance without enforcing; remediation can still run for `deployIfNotExists` | [^azs01-enforcement] |
+| Policy assignments in Resource Graph | `PolicyResources`, type `microsoft.authorization/policyassignments` | [^azs01-arg-policy] |
+| Diagnostic settings | GET `{resourceUri}/providers/Microsoft.Insights/diagnosticSettings`, API version `2021-05-01-preview`; `properties.workspaceId`, `logs[].category`, `categoryGroup`, `enabled` | [^azs01-diag] |
+| Defender for Cloud plans | GET `{scopeId}/providers/Microsoft.Security/pricings`, API version `2024-01-01`; `properties.pricingTier` `Free` or `Standard` | [^azs01-pricings] |
+| Commercial Azure | Microsoft 365 GCC pairs with commercial Azure; Resource Manager `management.azure.com` | [^azs01-gov] |
+
+Learn's diagnostic settings reference is a preview API version (`2021-05-01-preview`); it is the version Learn's reference shows for the List operation. Research gaps, row 1.
+
+## Federal requirements and evidence
+
+The baseline check's run folder is the evidence for the guide's Step 1 rows. Each row names the command or file that shows it. KSIs are FedRAMP 20x indicators for cloud service providers; the agency lines its own evidence up with them and doesn't report them ([Book 00, Appendix B](../../../books/b00-orientation/appendix-b-engagement-archetype.md)).
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| The hierarchy settings, the initiatives at the intermediate root and their enforcement mode, as read: `baseline.json` rows `hierarchy` and `assignment`, Lab 1 step 2 | CM-2, baseline configuration; CM-6, configuration settings | KSI-SVC-ACM | Platform owner, with the ISSO |
+| Which platform resources send logs to the platform workspace, and which subscriptions have the required Defender for Cloud plans: AZS-BL-05 and AZS-BL-06 in `findings.csv`, `summary.json` | CA-7, continuous monitoring | KSI-MLA-EVC | Platform owner |
+| Every call was a read, as Reader, with every response kept and hashed: `manifest.json` and `raw/` | CA-7; AC-6, least privilege (the reader holds no write) | KSI-MLA-EVC | The ISSO, with the evidence record of Chapter 08 |
+
+The controls are the guide's Step 1 row (CM-2, CM-6, CA-7) and its KSIs.[^azs01-guide] The kit's output supports them; the assessor decides.
+
+## Dangers
+
+| Danger | What goes wrong | The guard |
+|---|---|---|
+| A live run on the wrong cloud or tenant | The kit reads another estate and reports it as this one | `Assert-AzsLiveContext` checks `az cloud show` and `az account show` before the first call; the settings have no default cloud |
+| A query without a scope | The run covers whatever the signed-in account happens to see | Every Resource Graph query takes `--management-groups` from the settings |
+| A REST call that follows a link elsewhere | A response's `nextLink` points the kit at another host | `Get-AzsLiveCommand` refuses any URL not on `management.azure.com` |
+| An unverified call trusted silently | A property the kit reads doesn't exist under that name; the check reports a false gap | Unverified calls stop a live run unless `-AllowUnverified`; Lab 2 compares the output with the portal |
+| The run folder in a public repository | A map of the estate is published | The README, the labs and the runbook's preflight keep the output outside the repository |
+
+## Checklist
+
+- [ ] Every call the code makes is in `config/calls.json`, with its role and Learn page, and the test that compares declared and made calls passes.
+- [ ] Every rule the code can report is in `config/rules.json`, with its source.
+- [ ] The required plans and platform types in `config/baseline.json` match the agency's decision records.
+- [ ] Lab 2 ran in a test subscription, and the unverified calls' output was checked against the portal.
+- [ ] Output folders are outside any repository.
+
+## Continue the book
+
+Next, [Chapter 02](02-the-public-exposure-register.md) builds the public exposure register on the same spine. The guide's [Step 1](../../../books/guides/azure-security-implementation.md#step-1-landing-zone-security-baseline) holds the commands that change the baseline; this chapter only reads it.
+
+[^azs01-guide]: Azure Security Engineering, [Step 1: Landing-zone security baseline](../../../books/guides/azure-security-implementation.md#step-1-landing-zone-security-baseline) and [Federal requirements and KSIs](../../../books/guides/azure-security-implementation.md#requirements) (the Step 1 query, the per-service diagnostic-settings commands, CM-2, CM-6, CA-7, KSI-SVC-ACM, KSI-MLA-EVC), with its Learn sources read November 11, 2026.
+[^azs01-mg-protect]: Microsoft Learn, "Protect your resource hierarchy" and Az PowerShell `New-AzManagementGroupHierarchySetting` (`-Authorization`, `-DefaultManagementGroup`), <https://learn.microsoft.com/azure/governance/management-groups/how-to/protect-resource-hierarchy> (accessed Nov 11, 2026).
+[^azs01-hier-get]: Microsoft Learn, REST API, "Hierarchy Settings - Get" (GET `.../managementGroups/{groupId}/settings/default?api-version=2020-05-01`; `requireAuthorizationForGroupCreation`, `defaultManagementGroup`; settings can only be set on the root management group), <https://learn.microsoft.com/rest/api/managementgroups/hierarchy-settings/get> (accessed Nov 17, 2026).
+[^azs01-enforcement]: Microsoft Learn, "Azure Policy assignment structure," section "Enforcement mode," <https://learn.microsoft.com/azure/governance/policy/concepts/assignment-structure> (accessed Nov 11, 2026).
+[^azs01-arg-policy]: Microsoft Learn, "Azure Resource Graph sample queries for Azure Policy" (`PolicyResources`; policy assignments, exemptions and policy states), <https://learn.microsoft.com/azure/governance/policy/samples/resource-graph-samples> (accessed Nov 17, 2026).
+[^azs01-diag]: Microsoft Learn, REST API, "Diagnostic Settings - List" (GET `{resourceUri}/providers/Microsoft.Insights/diagnosticSettings?api-version=2021-05-01-preview`; `workspaceId`, `logs` with `category`, `categoryGroup`, `enabled`), <https://learn.microsoft.com/rest/api/monitor/diagnostic-settings/list> (accessed Nov 17, 2026).
+[^azs01-pricings]: Microsoft Learn, REST API, "Pricings - List" (GET `{scopeId}/providers/Microsoft.Security/pricings?api-version=2024-01-01`; `pricingTier` `Free` or `Standard`), <https://learn.microsoft.com/rest/api/defenderforcloud-composite/pricings/list> (accessed Nov 17, 2026).
+[^azs01-gov]: Azure Security Engineering, [Availability in commercial Azure](../../../books/guides/azure-security-implementation.md#gov-availability), with its Learn sources read November 11, 2026.

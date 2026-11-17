@@ -1,0 +1,15 @@
+{
+  "_comment": "The posture the checks compare against. Every value is the program's position (design guidance) unless the note says Learn; change it in a reviewed pull request, and record why. The settings file (one per environment) holds the estate's own IDs.",
+  "version": 1,
+  "platformTypes": ["microsoft.network/azurefirewalls", "microsoft.network/applicationgateways", "microsoft.cdn/profiles", "microsoft.keyvault/vaults", "microsoft.network/publicipaddresses"],
+  "requiredDefenderPlans": ["CloudPosture", "KeyVaults", "Arm"],
+  "minimumDefaultRuleSet": "2.2",
+  "minimumDefaultRuleSetNote": "Learn recommends the latest Default Rule Set, 2.2 at the guide's reading (azs-agw-secure); the CLI's default is 2.1",
+  "allowedAppGwSslPolicies": ["AppGwSslPolicy20220101", "AppGwSslPolicy20220101S"],
+  "allowedAppGwSslPoliciesNote": "Learn names AppGwSslPolicy20220101 as an example of a predefined policy with TLS 1.2 or 1.3 only, and shows AppGwSslPolicy20220101S (azs-ingress, azs-agw-tls)",
+  "minimumFrontDoorTls": "TLS12",
+  "reservedSubnets": ["GatewaySubnet", "AzureFirewallSubnet", "AzureFirewallManagementSubnet", "AzureBastionSubnet", "RouteServerSubnet"],
+  "exemptionWarnDays": 30,
+  "ddosLogCategories": ["DDoSProtectionNotifications", "DDoSMitigationFlowLogs", "DDoSMitigationReports"],
+  "ddosMetric": "IfUnderDDoSAttack"
+}

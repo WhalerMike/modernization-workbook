@@ -1,0 +1,7 @@
+PS> Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
+PS> (Read-AzsJson -Path out/week1/firewall/firewall.json) | Where-Object kind -EQ subnet | ForEach-Object { "{0,-24} {1,-13} {2,-15} {3}" -f $_.name, $_.routeTable, $_.defaultRoute, $_.detail }
+vnet-payroll/snet-app    rt-payroll    Firewall        10.0.0.4 (afw-hub)
+vnet-payroll/snet-data                 NoRouteTable
+vnet-portal/snet-jump    rt-jump       OtherAppliance  10.9.9.9
+vnet-portal/snet-pe      rt-portal-pe  Firewall        10.0.0.4 (afw-hub)
+vnet-portal/snet-web     rt-portal     Internet

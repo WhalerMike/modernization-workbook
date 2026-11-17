@@ -1,0 +1,352 @@
+---
+title: "Chapter 02 — The Public Exposure Register"
+description: "The guide's Step 2 as code: one register of every public IP, Front Door profile (Standard, Premium and classic), application gateway and PaaS resource with public network access on, each with its owner, public name, DDoS state and WAF, built from the guide's Resource Graph queries; ownerless and unattached exposures flagged; new and gone exposures against last week's register, with the dangling DNS record to remove; and gaps against Defender for Cloud's internet exposure analysis. Labs against a fictional estate read a week apart and a test subscription."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-azure-security
+part: How
+series-order: 2
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 02 — The Public Exposure Register
+
+*Steps 3 to 5 can't be proved complete without a list of what is exposed. The list is code, it runs every week, and it notices what is new.*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [Step 2, the public exposure inventory](../../../books/guides/azure-security-implementation.md#step-2-public-exposure-inventory). You start with the guide's four Resource Graph queries, built from Learn's starter sample, and what they leave to you: joining them into one register, an owner on every row, last week's register to compare with, and Defender for Cloud's view to reconcile. Lab 1 builds the register for the Contoso estate, then a week later finds the new public IP and the one that went away. Lab 2 builds it for a test management group and checks it against Defender for Cloud.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can build the register the guide's Step 2 asks for: one row per exposure (resource ID, type, public name, owner, DDoS state, WAF and its mode, origin lock-down, last reviewed), regenerated every week, with every ownerless row flagged, every new exposure since last week reported, every exposure that went away reported with a reminder to remove its DNS record, and every resource Defender for Cloud calls internet-exposed that the register lacks.
+
+**Audience.** Platform owners who run the register, workload owners who answer for their rows, and the developers who keep the queries current. Read [Chapter 01](01-the-landing-zone-baseline.md) for the call list and the run folder first.
+
+## Start with Microsoft Learn
+
+### What the guide's queries give you
+
+The guide builds four queries from Learn's starter sample "List all public IP addresses" and the `ddosSettings` property Learn's DDoS samples read: public IPs with their DDoS mode, the resource they are attached to and an `owner` tag; Front Door profiles; application gateways with their WAF policy; and every resource whose `publicNetworkAccess` isn't `Disabled`.[^azs02-guide][^azs02-arg-starter] Learn recommends an inventory of every public IP and its protection status, kept with Resource Graph, and a quarterly review of which IPs still need protection.[^azs02-ddos-secure][^azs02-ddos-cost] The guide adds the rest of the register's shape and says it must stay inside the boundary.[^azs02-guide]
+
+### What it leaves to you
+
+| What the guide gives, as published | Why it matters | What the kit adds (pinned by a test) |
+|---|---|---|
+| Four queries, four JSON files | Four lists aren't a register; nobody joins them the same way twice | One register, 11 columns, as `register.json` and `register.csv` (`Exposure register (Step 2)` tests) |
+| A public IP's `attachedTo` is an IP configuration ID | The reader has to work out that the IP is an application gateway's, and which WAF covers it | The gateway behind each public IP, with its WAF policy and mode |
+| Front Door profiles, without their names or WAF | The profile's public names are its custom domains; its WAF is in a security policy | Custom domains and security policies read per profile; the WAF's mode from its policy |
+| Nothing about classic Front Door | A classic profile is public too, and retires March 31, 2027 | Classic profiles (`microsoft.network/frontdoors`) in the register |
+| "Every ownerless row has a ticket" | A row without an owner has nobody to fix it | AZS-EX-01 on every row without an `owner` tag |
+| No comparison with last week | A new public IP is the guide's "public IP nobody knows about" | AZS-EX-03 for each new row, AZS-EX-04 for each row gone, with the dangling DNS record to remove |
+| "Compare with Defender for Cloud's view" | An exposure Defender reports that the register lacks is a gap in the queries | AZS-EX-05 for each resource in Defender's export that the register lacks |
+
+The `publicNetworkAccess` query is a starting list: the property's name and values vary by service,[^azs02-guide] and Resource Graph returns only the resources that have it. The register says so, and Chapter 07 reads the same list for Private Link.
+
+## The code: the `exposure` area
+
+`Get-AzsExposureCheck` runs the guide's queries (`arg-public-ips`, `arg-frontdoor-profiles`, `arg-classic-frontdoors`, `arg-app-gateways`, `arg-paas-public`), the two WAF policy queries, and per Front Door profile its custom domains and security policies. It builds one row per exposure:
+
+| Column | From |
+|---|---|
+| `resourceId`, `type`, `name`, `subscriptionId` | The query row; the type adds the SKU (Front Door Standard or Premium, application gateway tier) |
+| `publicName` | A public IP's DNS name and address; a Front Door profile's custom domains; an application gateway's public IP; for PaaS, its public network access and private endpoint count |
+| `owner` | The `owner` tag (*design guidance*: the tag name is the guide's) |
+| `ddos` | A public IP's `ddosSettings.protectionMode`; "Front Door edge" for Front Door, whose edge has built-in L3 and L4 protection[^azs02-afd-overview] |
+| `waf`, `wafMode` | The WAF policy of the application gateway behind the public IP, or of the Front Door profile's security policies, and its mode |
+| `originLockdown` | "Step 5": [Chapter 05](05-front-door-application-gateway-and-the-origin.md) checks it |
+| `lastReviewed` | The run's date |
+
+With `-PreviousRegisterPath`, it compares by resource ID with last week's register. With `-DefenderExposurePath`, it reads a CSV with a `resourceId` column, exported from Defender for Cloud's internet exposure analysis, and reports each resource the register lacks. Defender's export format isn't fixed here: the kit needs only the column (research gaps, row 2).
+
+| Rule | Severity | What it flags | Source |
+|---|---|---|---|
+| AZS-EX-01 | Finding | An exposure without an `owner` tag | *Design guidance* (guide Step 2) |
+| AZS-EX-02 | Warn | A public IP attached to nothing | Learn: fewer public IPs means less to protect[^azs02-ddos-cost] |
+| AZS-EX-03 | Info | A new exposure since the previous register | *Design guidance* |
+| AZS-EX-04 | Warn | An exposure gone since the previous register: check for a dangling DNS record | *Design guidance* (guide Step 2, step 4) |
+| AZS-EX-05 | Warn | Defender for Cloud reports an internet-exposed resource the register lacks | *Design guidance* (guide Step 2, step 6) |
+
+The check also prints a line every run: the register is a map of the attack surface; keep it inside the boundary, never in a public repository. Two tests cover this area; the run-folder tests check `register.json` and `register.csv` are written and hashed.
+
+::: {.callout-important}
+## Illustrative code
+The labs run the kit against a fictional estate served from files. Review the code, and run Lab 2 in a test subscription, before it reads a real one.
+:::
+
+## Lab 1: fixtures, no subscription
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/azure-security`. The fixture estate is read twice: `week1` on November 9, 2026 and `week2` on November 16. `tests/fixtures/defender-exposure.csv` stands in for Defender for Cloud's export.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/azure-security`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Build the first week's register
+./Invoke-AzsCheck.ps1 -Area exposure -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath out/week1/exposure -DefenderExposurePath tests/fixtures/defender-exposure.csv
+
+# Step 2: Read the register
+Import-Csv out/week1/exposure/register.csv | ForEach-Object { "{0,-38} {1,-20} {2,-13} {3}" -f $_.type, $_.name, $(if ($_.owner) { $_.owner } else { '(none)' }), $_.waf }
+
+# Step 3: Read the findings
+Import-Csv out/week1/exposure/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+
+# Step 4: A week later, build the register again against the first one
+./Invoke-AzsCheck.ps1 -Area exposure -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week2 -AsOf 2026-11-16T12:00:00Z -OutputPath out/week2/exposure -PreviousRegisterPath out/week1/exposure/register.json -DefenderExposurePath tests/fixtures/defender-exposure.csv
+
+# Step 5: Read what changed
+Import-Csv out/week2/exposure/findings.csv | Where-Object rule -in 'AZS-EX-03', 'AZS-EX-04' | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+
+# Step 6: Run this chapter's tests
+Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'Exposure*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Build the first week's register:**
+
+   ```powershell
+   ./Invoke-AzsCheck.ps1 -Area exposure -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath out/week1/exposure -DefenderExposurePath tests/fixtures/defender-exposure.csv
+   ```
+
+   <!-- capture:begin 02-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/02-1.txt))](captures/02-1.png){.lightbox fig-alt="Terminal window showing ./Invoke-AzsCheck.ps1 -Area exposure -SettingsPath tests/fixtures/settings.la… and what it printed"}
+
+   <!-- capture:end -->
+
+   19 exposures: 8 public IPs, 3 Front Door profiles, 2 application gateways and 6 PaaS resources; 16 with an owner.
+
+2. **Read the register:**
+
+   ```powershell
+   Import-Csv out/week1/exposure/register.csv | ForEach-Object { "{0,-38} {1,-20} {2,-13} {3}" -f $_.type, $_.name, $(if ($_.owner) { $_.owner } else { '(none)' }), $_.waf }
+   ```
+
+   <!-- capture:begin 02-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/02-2.txt))](captures/02-2.png){.lightbox fig-alt="Terminal window showing Import-Csv out/week1/exposure/register.csv | ForEach-Object { '{0,-38} {1,-20… and what it printed"}
+
+   <!-- capture:end -->
+
+   `pip-appgw-portal` carries `wafp-portal`, the WAF of the gateway it fronts. `afd-careers` has no WAF; `fd-legacy-intranet` is classic. Three rows have no owner.
+
+3. **Read the findings:**
+
+   ```powershell
+   Import-Csv out/week1/exposure/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+   ```
+
+   <!-- capture:begin 02-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/02-3.txt))](captures/02-3.png){.lightbox fig-alt="Terminal window showing Import-Csv out/week1/exposure/findings.csv | ForEach-Object { '{0} {1,-7} {2}… and what it printed"}
+
+   <!-- capture:end -->
+
+   Three AZS-EX-01 (no owner), AZS-EX-02 for `pip-orphan`, attached to nothing, and AZS-EX-05 for `ci-batch-export`: Defender reports a container group with a public address that isn't a public IP resource, so no query finds it.
+
+4. **A week later, build the register again against the first one:**
+
+   ```powershell
+   ./Invoke-AzsCheck.ps1 -Area exposure -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week2 -AsOf 2026-11-16T12:00:00Z -OutputPath out/week2/exposure -PreviousRegisterPath out/week1/exposure/register.json -DefenderExposurePath tests/fixtures/defender-exposure.csv
+   ```
+
+   <!-- capture:begin 02-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/02-4.txt))](captures/02-4.png){.lightbox fig-alt="Terminal window showing ./Invoke-AzsCheck.ps1 -Area exposure -SettingsPath tests/fixtures/settings.la… and what it printed"}
+
+   <!-- capture:end -->
+
+5. **Read what changed:**
+
+   ```powershell
+   Import-Csv out/week2/exposure/findings.csv | Where-Object rule -in 'AZS-EX-03', 'AZS-EX-04' | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+   ```
+
+   <!-- capture:begin 02-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/02-5.txt))](captures/02-5.png){.lightbox fig-alt="Terminal window showing Import-Csv out/week2/exposure/findings.csv | Where-Object rule -in 'AZS-EX-03… and what it printed"}
+
+   <!-- capture:end -->
+
+   `pip-new-api` is new, and has no owner; `pip-orphan` is gone, with the reminder to remove any DNS record that still points at its address.
+
+6. **Run this chapter's tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'Exposure*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+   ```
+
+   <!-- capture:begin 02-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/02-6.txt))](captures/02-6.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'Exposure*' -Output… and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** two registers a week apart, the difference between them, and the one exposure Defender for Cloud sees that the queries don't.
+
+When you're done, delete `out`:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 02-7 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/02-7.txt))](captures/02-7.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test subscription
+
+Use a test tenant with a test management group and subscription in commercial Azure, never production, with at least one public IP and, if you can, a Front Door profile. You need Reader on the test management group, Defender for Cloud on the test subscription, Azure CLI with the `resource-graph` extension, and PowerShell 7. Work in `examples/azure-security`. The authors haven't run this lab.
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/azure-security`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Sign in to commercial Azure
+az cloud set --name AzureCloud
+az login --tenant <tenant-id>
+az extension add --name resource-graph
+
+# Step 2: Write the test settings file
+$s = Get-Content deploy/settings.template.json -Raw | ConvertFrom-Json
+$s.environment = 'test'; $s.tenantId = '<tenant-id>'; $s.tenantRootGroupId = '<tenant-id>'; $s.managementGroup = '<test-mg-id>'
+$s.workspaceId = '<workspace-id>'; $s.connectivitySubscriptionId = '<test-subscription-id>'; $s.hubVnetId = '<hub-vnet-id>'
+$s.workloadSubscriptionIds = @('<test-subscription-id>'); $s.requiredAssignments = @('<baseline-assignment-name>')
+$s.securityInitiative = [pscustomobject]@{ assignmentName = 'azs-security'; definitionName = 'not-used-in-lab-2'; identityRole = 'Reader'; enforceBy = '2027-01-31' }
+$s.location = '<location>'; $s.outputRoot = '<output-folder>'; $s.evidencePath = '<output-folder>'; $s.changeRecord = 'lab-2'
+$s.PSObject.Properties.Remove('testEvidencePath'); $s.PSObject.Properties.Remove('_comment')
+$s | ConvertTo-Json -Depth 5 | Set-Content <output-folder>/settings.test.json
+
+# Step 3: Build the register, live
+./Invoke-AzsCheck.ps1 -Area exposure -SettingsPath <output-folder>/settings.test.json -OutputPath <output-folder>/exposure-1 -DefenderExposurePath <defender-export> -AllowUnverified
+
+# Step 4: Create a public IP, the guide's Step 2 test, and build the register again
+az network public-ip create --resource-group <test-rg> --name pip-lab-02 --sku Standard --subscription <test-subscription-id>
+./Invoke-AzsCheck.ps1 -Area exposure -SettingsPath <output-folder>/settings.test.json -OutputPath <output-folder>/exposure-2 -PreviousRegisterPath <output-folder>/exposure-1/register.json -AllowUnverified
+Import-Csv <output-folder>/exposure-2/findings.csv | Where-Object rule -in 'AZS-EX-02', 'AZS-EX-03' | ForEach-Object { "{0} {1}" -f $_.rule, $_.name }
+
+# Step 5: Back it out
+az network public-ip delete --resource-group <test-rg> --name pip-lab-02 --subscription <test-subscription-id>
+Remove-Item -Recurse -Force <output-folder>/exposure-1, <output-folder>/exposure-2
+az logout
+```
+
+:::
+
+<!-- labs:end -->
+
+You'll replace: `<tenant-id>`, `<test-mg-id>`, `<test-subscription-id>`, `<workspace-id>`, `<hub-vnet-id>`, `<baseline-assignment-name>` and `<location>` as in [Chapter 01, Lab 2](01-the-landing-zone-baseline.md#lab-2-a-test-subscription); `<output-folder>` (outside any repository); `<test-rg>` (a resource group you can create a public IP in); and `<defender-export>` (a CSV exported from Defender for Cloud, with the internet-exposed resources' IDs in a `resourceId` column).
+
+1. **Sign in to commercial Azure:**
+
+   ```powershell
+   az cloud set --name AzureCloud
+   az login --tenant <tenant-id>
+   az extension add --name resource-graph
+   ```
+
+2. **Write the test settings file:**
+
+   ```powershell
+   $s = Get-Content deploy/settings.template.json -Raw | ConvertFrom-Json
+   $s.environment = 'test'; $s.tenantId = '<tenant-id>'; $s.tenantRootGroupId = '<tenant-id>'; $s.managementGroup = '<test-mg-id>'
+   $s.workspaceId = '<workspace-id>'; $s.connectivitySubscriptionId = '<test-subscription-id>'; $s.hubVnetId = '<hub-vnet-id>'
+   $s.workloadSubscriptionIds = @('<test-subscription-id>'); $s.requiredAssignments = @('<baseline-assignment-name>')
+   $s.securityInitiative = [pscustomobject]@{ assignmentName = 'azs-security'; definitionName = 'not-used-in-lab-2'; identityRole = 'Reader'; enforceBy = '2027-01-31' }
+   $s.location = '<location>'; $s.outputRoot = '<output-folder>'; $s.evidencePath = '<output-folder>'; $s.changeRecord = 'lab-2'
+   $s.PSObject.Properties.Remove('testEvidencePath'); $s.PSObject.Properties.Remove('_comment')
+   $s | ConvertTo-Json -Depth 5 | Set-Content <output-folder>/settings.test.json
+   ```
+
+3. **Build the register, live:**
+
+   ```powershell
+   ./Invoke-AzsCheck.ps1 -Area exposure -SettingsPath <output-folder>/settings.test.json -OutputPath <output-folder>/exposure-1 -DefenderExposurePath <defender-export> -AllowUnverified
+   ```
+
+   `-AllowUnverified` lets the classic Front Door, application gateway and WAF policy queries run; check their rows against the portal (**Front Door and CDN profiles**, **Application gateways**, **Web Application Firewall policies**).
+
+4. **Create a public IP, the guide's Step 2 test, and build the register again:**
+
+   ```powershell
+   az network public-ip create --resource-group <test-rg> --name pip-lab-02 --sku Standard --subscription <test-subscription-id>
+   ./Invoke-AzsCheck.ps1 -Area exposure -SettingsPath <output-folder>/settings.test.json -OutputPath <output-folder>/exposure-2 -PreviousRegisterPath <output-folder>/exposure-1/register.json -AllowUnverified
+   Import-Csv <output-folder>/exposure-2/findings.csv | Where-Object rule -in 'AZS-EX-02', 'AZS-EX-03' | ForEach-Object { "{0} {1}" -f $_.rule, $_.name }
+   ```
+
+   `pip-lab-02` should appear as AZS-EX-03 (new) and AZS-EX-02 (attached to nothing). Resource Graph can take a short while to show a new resource; if it isn't there, run the check again a few minutes later.
+
+5. **Back it out.** Delete the public IP, then what the lab wrote, and sign out:
+
+   ```powershell
+   az network public-ip delete --resource-group <test-rg> --name pip-lab-02 --subscription <test-subscription-id>
+   Remove-Item -Recurse -Force <output-folder>/exposure-1, <output-folder>/exposure-2
+   az logout
+   ```
+
+## Verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| The inventory | Learn recommends an inventory of every public IP and its protection status, kept with Resource Graph, and a quarterly review | [^azs02-ddos-secure] [^azs02-ddos-cost] |
+| The public IP query | Learn's starter sample "List all public IP addresses"; the guide adds `ddosSettings.protectionMode`, `ipConfiguration.id` and the `owner` tag | [^azs02-arg-starter] [^azs02-guide] |
+| `publicNetworkAccess` | Varies by service; the query is a starting list | [^azs02-guide] |
+| Front Door edge | Built-in layer 3 and 4 DDoS protection | [^azs02-afd-overview] |
+| Classic Front Door | Retires March 31, 2027; no new profiles | [^azs02-afd-classic] |
+| Defender for Cloud | Internet exposure analysis is generally available in commercial Azure | [^azs02-b12] |
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| Every public IP, Front Door profile, application gateway and public PaaS resource, with its owner: `register.json` and `register.csv`, Lab 1 step 1 | CM-8, system component inventory; SC-7, boundary protection | KSI-CNA-MAT | Platform owner, inside the boundary |
+| Ownerless and unattached exposures: AZS-EX-01 and AZS-EX-02 in `findings.csv` | CM-8 | KSI-CNA-MAT | Platform owner; workload owners for their rows |
+| What changed since last week, including the DNS record to remove: AZS-EX-03 and AZS-EX-04, Lab 1 step 5 | CM-8; SC-7 | KSI-CNA-MAT | Platform owner |
+| The register reconciled with Defender for Cloud: AZS-EX-05, or none | CM-8 | KSI-CNA-MAT | The ISSO, for the quarterly review |
+
+The controls are the guide's Step 2 row (CM-8, SC-7) and its KSI.[^azs02-guide] CM-8 is in the Moderate baseline FIPS 200 requires.[^azs02-guide]
+
+## Dangers
+
+| Danger | What goes wrong | The guard |
+|---|---|---|
+| The register in a public repository | A map of the attack surface published | The check prints the warning every run; the runbook's preflight refuses an output folder inside the kit's repository |
+| An exposure the queries can't see | A container group's or service's public address that isn't a public IP resource stays off the register | AZS-EX-05 against Defender for Cloud's export; research gaps, row 2 |
+| A dangling DNS record | A name keeps pointing at an address someone else can now be given | AZS-EX-04 names every exposure that went away |
+| An owner tag nobody checks | A tag with a team that no longer exists | The quarterly review with the ISSO, in the guide's Step 10 |
+
+## Checklist
+
+- [ ] The register runs weekly, and every AZS-EX-01 row has a ticket with an owner.
+- [ ] Every AZS-EX-04 row's DNS records were checked and removed.
+- [ ] Defender for Cloud's export was reconciled, and every AZS-EX-05 row is either added to the queries or explained.
+- [ ] The register and its run folders live inside the boundary.
+
+## Continue the book
+
+Next, [Chapter 03](03-ddos-protection.md) traces each public IP in the register to its DDoS protection. The guide's [Step 2](../../../books/guides/azure-security-implementation.md#step-2-public-exposure-inventory) holds the register's review cadence.
+
+[^azs02-guide]: Azure Security Engineering, [Step 2: Public exposure inventory](../../../books/guides/azure-security-implementation.md#step-2-public-exposure-inventory) and [Federal requirements and KSIs](../../../books/guides/azure-security-implementation.md#requirements) (the four queries, the register's shape, CM-8, SC-7, KSI-CNA-MAT), with its sources read November 11, 2026.
+[^azs02-arg-starter]: Microsoft Learn, "Starter Resource Graph query samples," section "List all public IP addresses," <https://learn.microsoft.com/azure/governance/resource-graph/samples/starter> (accessed Nov 11, 2026).
+[^azs02-ddos-secure]: Microsoft Learn, "Secure your Azure DDoS Protection deployment" (inventory with Resource Graph), <https://learn.microsoft.com/azure/ddos-protection/secure-ddos-protection> (accessed Nov 11, 2026).
+[^azs02-ddos-cost]: Microsoft Learn, "DDoS Protection cost optimization principles" (asset inventory; fewer public IPs; quarterly reviews), <https://learn.microsoft.com/azure/ddos-protection/ddos-optimization-guide> (accessed Nov 11, 2026).
+[^azs02-afd-overview]: Microsoft Learn, "What is Azure Front Door?" (built-in layer 3-4 DDoS protection), <https://learn.microsoft.com/azure/frontdoor/front-door-overview> (accessed Nov 11, 2026).
+[^azs02-afd-classic]: Microsoft Learn, "Migrate Azure Front Door (classic) to Standard or Premium tier," <https://learn.microsoft.com/azure/frontdoor/migrate-tier> (accessed Nov 11, 2026).
+[^azs02-b12]: [Book 12, Chapter 08](../../../books/b12-security-operations/08-cloud-native-posture.md#where-defender-for-cloud-does-and-doesnt-reach), "Where Defender for Cloud does and doesn't reach," with its Learn sources.

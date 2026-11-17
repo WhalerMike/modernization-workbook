@@ -1,0 +1,5 @@
+PS> ./Invoke-AzsCheck.ps1 -Area firewall -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath out/week1/firewall
+Read: 1 firewall policies, 1 firewalls, 5 workload subnets. Routed to the firewall (declared): 2 of 5
+Findings: 5 Finding, 2 Warn, 0 Info
+Plan: plan-deny.txt holds the Draft + Deployment commands to move to Deny; none was run.
+Written to out/week1/firewall (5 calls, every one a read; manifest.json lists each file's SHA-256)

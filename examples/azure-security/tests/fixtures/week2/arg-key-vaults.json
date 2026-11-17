@@ -1,0 +1,52 @@
+{
+  "count": 3,
+  "data": [
+    {
+      "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.KeyVault/vaults/kv-hub-certs",
+      "name": "kv-hub-certs",
+      "subscriptionId": "11111111-1111-4111-8111-111111111111",
+      "rbac": true,
+      "purgeProtection": true,
+      "defaultAction": "Deny",
+      "publicNetworkAccess": "Enabled",
+      "privateEndpointConnections": [],
+      "owner": "platform-team"
+    },
+    {
+      "id": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll/providers/Microsoft.KeyVault/vaults/kv-payroll",
+      "name": "kv-payroll",
+      "subscriptionId": "33333333-3333-4333-8333-333333333333",
+      "rbac": true,
+      "purgeProtection": true,
+      "defaultAction": "Deny",
+      "publicNetworkAccess": "Disabled",
+      "privateEndpointConnections": [
+        {
+          "id": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll/providers/Microsoft.Network/privateEndpoints/pe-kv-payroll/c",
+          "properties": {
+            "privateEndpoint": {
+              "id": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll/providers/Microsoft.Network/privateEndpoints/pe-kv-payroll"
+            },
+            "privateLinkServiceConnectionState": {
+              "status": "Approved"
+            }
+          }
+        }
+      ],
+      "owner": "payroll-team"
+    },
+    {
+      "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal/providers/Microsoft.KeyVault/vaults/kv-portal",
+      "name": "kv-portal",
+      "subscriptionId": "44444444-4444-4444-8444-444444444444",
+      "rbac": false,
+      "purgeProtection": true,
+      "defaultAction": "Allow",
+      "publicNetworkAccess": "Enabled",
+      "privateEndpointConnections": [],
+      "owner": "portal-team"
+    }
+  ],
+  "skip_token": null,
+  "total_count": 3
+}

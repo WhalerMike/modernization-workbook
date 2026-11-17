@@ -1,0 +1,10 @@
+PS> Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
+PS> (Read-AzsJson -Path out/week1/ddos/ddos.json) | ForEach-Object { "{0,-17} {1,-13} {2,-12} logs: {3,-5} alert: {4}" -f $_.name, $_.status, $_.virtualNetwork, $_.logsToWorkspace, $_.alert }
+pip-afw-hub       Inherited     vnet-hub     logs: False alert: False
+pip-appgw-portal  Inherited     vnet-hub     logs: True  alert: True
+pip-nat-egress    NatGateway                 logs:       alert:
+pip-vpngw         Inherited     vnet-hub     logs: False alert: False
+pip-jump          Unprotected   vnet-portal  logs:       alert:
+pip-lb-portal     Unknown                    logs:       alert:
+pip-orphan        Unattached                 logs:       alert:
+pip-test-app      IpProtection               logs: True  alert: False

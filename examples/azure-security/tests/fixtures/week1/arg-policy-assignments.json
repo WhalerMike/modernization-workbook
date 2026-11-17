@@ -1,0 +1,49 @@
+{
+  "count": 4,
+  "data": [
+    {
+      "id": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyAssignments/allowed-locations",
+      "name": "allowed-locations",
+      "displayName": "Allowed locations",
+      "scope": "/providers/Microsoft.Management/managementGroups/contoso",
+      "definitionId": "/providers/Microsoft.Authorization/policySetDefinitions/allowed-locations-set",
+      "enforcementMode": "Default",
+      "notScopes": [
+        "/providers/Microsoft.Management/managementGroups/contoso-sandbox"
+      ],
+      "identityType": ""
+    },
+    {
+      "id": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyAssignments/azs-fedramp-mod",
+      "name": "azs-fedramp-mod",
+      "displayName": "FedRAMP Moderate (audit)",
+      "scope": "/providers/Microsoft.Management/managementGroups/contoso",
+      "definitionId": "/providers/Microsoft.Authorization/policySetDefinitions/azs-fedramp-mod-set",
+      "enforcementMode": "DoNotEnforce",
+      "notScopes": [],
+      "identityType": ""
+    },
+    {
+      "id": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyAssignments/azs-mcsb",
+      "name": "azs-mcsb",
+      "displayName": "Microsoft cloud security benchmark",
+      "scope": "/providers/Microsoft.Management/managementGroups/contoso",
+      "definitionId": "/providers/Microsoft.Authorization/policySetDefinitions/azs-mcsb-set",
+      "enforcementMode": "Default",
+      "notScopes": [],
+      "identityType": ""
+    },
+    {
+      "id": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyAssignments/azs-security",
+      "name": "azs-security",
+      "displayName": "Azure security engineering",
+      "scope": "/providers/Microsoft.Management/managementGroups/contoso",
+      "definitionId": "/providers/Microsoft.Authorization/policySetDefinitions/azs-security-set",
+      "enforcementMode": "DoNotEnforce",
+      "notScopes": [],
+      "identityType": "SystemAssigned"
+    }
+  ],
+  "skip_token": null,
+  "total_count": 4
+}

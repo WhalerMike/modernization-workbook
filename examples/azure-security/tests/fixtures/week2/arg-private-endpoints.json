@@ -1,0 +1,67 @@
+{
+  "count": 3,
+  "data": [
+    {
+      "id": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll/providers/Microsoft.Network/privateEndpoints/pe-kv-payroll",
+      "name": "pe-kv-payroll",
+      "subscriptionId": "33333333-3333-4333-8333-333333333333",
+      "connections": [
+        {
+          "name": "c",
+          "properties": {
+            "privateLinkServiceId": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll/providers/Microsoft.KeyVault/vaults/kv-payroll",
+            "groupIds": [
+              "vault"
+            ],
+            "privateLinkServiceConnectionState": {
+              "status": "Approved"
+            }
+          }
+        }
+      ],
+      "subnet": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll-net/providers/Microsoft.Network/virtualNetworks/vnet-payroll/subnets/snet-app"
+    },
+    {
+      "id": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll/providers/Microsoft.Network/privateEndpoints/pe-st-payroll-blob",
+      "name": "pe-st-payroll-blob",
+      "subscriptionId": "33333333-3333-4333-8333-333333333333",
+      "connections": [
+        {
+          "name": "c",
+          "properties": {
+            "privateLinkServiceId": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll/providers/Microsoft.Storage/storageAccounts/stpayrolldata",
+            "groupIds": [
+              "blob"
+            ],
+            "privateLinkServiceConnectionState": {
+              "status": "Approved"
+            }
+          }
+        }
+      ],
+      "subnet": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll-net/providers/Microsoft.Network/virtualNetworks/vnet-payroll/subnets/snet-app"
+    },
+    {
+      "id": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll/providers/Microsoft.Network/privateEndpoints/pe-st-payroll-queue",
+      "name": "pe-st-payroll-queue",
+      "subscriptionId": "33333333-3333-4333-8333-333333333333",
+      "connections": [
+        {
+          "name": "c",
+          "properties": {
+            "privateLinkServiceId": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll/providers/Microsoft.Storage/storageAccounts/stpayrolldata",
+            "groupIds": [
+              "queue"
+            ],
+            "privateLinkServiceConnectionState": {
+              "status": "Approved"
+            }
+          }
+        }
+      ],
+      "subnet": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll-net/providers/Microsoft.Network/virtualNetworks/vnet-payroll/subnets/snet-app"
+    }
+  ],
+  "skip_token": null,
+  "total_count": 3
+}

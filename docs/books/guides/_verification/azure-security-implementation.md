@@ -101,3 +101,7 @@ Facts carried from the books (Book 10 Chapters 04, 05, 07, 08; Book 12 Chapter 0
 ## Learn pages read
 
 47 Microsoft Learn pages (including CLI and PowerShell reference pages), listed in the claims log above; rows 67 to 70 were added on Nov 13, 2026, for the sources the Azure Security training labs use.
+
+## November 17, 2026
+
+The pieces table names the developer workbook, *Building Azure Security* (draft), and its kit `examples/azure-security`. The comparison's introduction now says the program's AWS estate runs in AWS GovCloud (US), under WD-157 (settled November 16, 2026); the table's rows and footnotes are unchanged. No other claim changed.

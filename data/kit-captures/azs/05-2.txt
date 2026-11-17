@@ -1,0 +1,7 @@
+PS> Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
+PS> (Read-AzsJson -Path out/week1/edge/edge.json) | Where-Object kind -EQ origin | ForEach-Object { "{0,-12} {1,-11} {2,-15} {3,-16} {4}" -f $_.profile, $_.originGroup, $_.name, $_.lockdown, $_.hostName }
+afd-portal   og-api      api-private     PrivateLink      api-int.contoso.example
+afd-portal   og-api      api-public      Unchecked        api-public.contoso.example
+afd-portal   og-portal   origin-east     ServiceTag+FDID  app-portal-east.azurewebsites.net
+afd-portal   og-portal   origin-west     TagOnly          app-portal-west.azurewebsites.net
+afd-careers  og-careers  careers-static  Unchecked        stcareersweb.z13.web.core.windows.net

@@ -1,0 +1,90 @@
+{
+  "count": 3,
+  "data": [
+    {
+      "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/virtualNetworks/vnet-hub",
+      "name": "vnet-hub",
+      "subscriptionId": "11111111-1111-4111-8111-111111111111",
+      "ddosEnabled": true,
+      "ddosPlan": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/ddosProtectionPlans/ddos-contoso",
+      "subnets": [
+        {
+          "name": "AzureFirewallSubnet",
+          "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/virtualNetworks/vnet-hub/subnets/AzureFirewallSubnet",
+          "properties": {}
+        },
+        {
+          "name": "GatewaySubnet",
+          "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/virtualNetworks/vnet-hub/subnets/GatewaySubnet",
+          "properties": {}
+        },
+        {
+          "name": "snet-appgw",
+          "id": "/subscriptions/11111111-1111-4111-8111-111111111111/resourceGroups/rg-hub/providers/Microsoft.Network/virtualNetworks/vnet-hub/subnets/snet-appgw",
+          "properties": {}
+        }
+      ]
+    },
+    {
+      "id": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll-net/providers/Microsoft.Network/virtualNetworks/vnet-payroll",
+      "name": "vnet-payroll",
+      "subscriptionId": "33333333-3333-4333-8333-333333333333",
+      "ddosEnabled": false,
+      "ddosPlan": "",
+      "subnets": [
+        {
+          "name": "snet-app",
+          "id": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll-net/providers/Microsoft.Network/virtualNetworks/vnet-payroll/subnets/snet-app",
+          "properties": {
+            "routeTable": {
+              "id": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll-net/providers/Microsoft.Network/routeTables/rt-payroll"
+            }
+          }
+        },
+        {
+          "name": "snet-data",
+          "id": "/subscriptions/33333333-3333-4333-8333-333333333333/resourceGroups/rg-payroll-net/providers/Microsoft.Network/virtualNetworks/vnet-payroll/subnets/snet-data",
+          "properties": {}
+        }
+      ]
+    },
+    {
+      "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal-net/providers/Microsoft.Network/virtualNetworks/vnet-portal",
+      "name": "vnet-portal",
+      "subscriptionId": "44444444-4444-4444-8444-444444444444",
+      "ddosEnabled": false,
+      "ddosPlan": "",
+      "subnets": [
+        {
+          "name": "snet-jump",
+          "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal-net/providers/Microsoft.Network/virtualNetworks/vnet-portal/subnets/snet-jump",
+          "properties": {
+            "routeTable": {
+              "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal-net/providers/Microsoft.Network/routeTables/rt-jump"
+            }
+          }
+        },
+        {
+          "name": "snet-pe",
+          "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal-net/providers/Microsoft.Network/virtualNetworks/vnet-portal/subnets/snet-pe",
+          "properties": {
+            "routeTable": {
+              "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal-net/providers/Microsoft.Network/routeTables/rt-portal-pe"
+            }
+          }
+        },
+        {
+          "name": "snet-web",
+          "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal-net/providers/Microsoft.Network/virtualNetworks/vnet-portal/subnets/snet-web",
+          "properties": {
+            "routeTable": {
+              "id": "/subscriptions/44444444-4444-4444-8444-444444444444/resourceGroups/rg-portal-net/providers/Microsoft.Network/routeTables/rt-portal"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "skip_token": null,
+  "total_count": 3
+}
