@@ -1,0 +1,2 @@
+Type,Value,Reason,Approver,ReviewBy
+<Identity|DeviceGroup|IpRange>,<upn, group name or CIDR range>,<reason>,<authorizing-official-role>,<yyyy-mm-dd>

@@ -1,0 +1,6 @@
+{
+  "_comment": "The remediation owner of each Defender device group.",
+  "machineGroups": {
+    "<device-group-name>": "<owner-role>"
+  }
+}

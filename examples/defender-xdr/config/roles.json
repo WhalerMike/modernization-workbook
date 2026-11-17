@@ -1,0 +1,10 @@
+{
+  "_comment": "The program's custom roles in Microsoft Defender unified RBAC (design guidance, from the Defender XDR implementation guide's Gate 1): a read role for analysts and the assessor's read-only account, a responder role, a detection-engineer role, and a Tier 0 role that alone holds Advanced live response. Permission names are Learn's ('Permissions in Microsoft Defender unified role-based access control (RBAC)', read November 11, 2026); the Graph custom detection API accepts Detection tuning (Manage). Each role is assigned to Entra security groups that PIM governs; the emergency access accounts hold no Defender role. The agency writes its own copy; the role names are fictional.",
+  "roles": [
+    { "name": "XDR Read", "permissions": ["Security data basics (Read)"] },
+    { "name": "XDR Responder", "permissions": ["Security data basics (Read)", "Alerts (Manage)", "Response (Manage)", "Basic live response (Manage)"] },
+    { "name": "XDR Detection Engineer", "permissions": ["Security data basics (Read)", "Detection tuning (Manage)"] },
+    { "name": "XDR Tier 0 Analyst", "permissions": ["Security data basics (Read)", "Alerts (Manage)", "Response (Manage)", "Basic live response (Manage)", "Advanced live response (Manage)"] }
+  ],
+  "restricted": { "Advanced live response (Manage)": ["XDR Tier 0 Analyst"] }
+}

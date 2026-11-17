@@ -1,0 +1,26 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#microsoft.graph.security.huntingQueryResults",
+  "schema": [
+    {
+      "name": "Timestamp",
+      "type": "DateTime"
+    },
+    {
+      "name": "DeviceId",
+      "type": "String"
+    },
+    {
+      "name": "DeviceName",
+      "type": "String"
+    },
+    {
+      "name": "FileName",
+      "type": "String"
+    },
+    {
+      "name": "ProcessCommandLine",
+      "type": "String"
+    }
+  ],
+  "results": []
+}

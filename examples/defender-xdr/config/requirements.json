@@ -1,0 +1,305 @@
+{
+  "_comment": "Each step of the Defender XDR kit, with the NIST SP 800-53 Rev 5 controls it supports and the FedRAMP 20x Key Security Indicators aligned to them. The pairs are the Defender XDR implementation guide's 'Requirements and KSIs' table (Gates 1 to 10), which carries them from the Security Operations book (Chapter 12) and the Devices book (Chapter 10), checked there against fedramp.gov; AU-9 to KSI-MLA-OSM is the privileged access guide's. The runbook's steps (PRE, RUN, PUBLISH, RB) reuse pairs from those rows. Control parts are short paraphrases, not NIST's text. KSIs are FedRAMP's indicators for cloud service providers: the agency lines its own evidence up with them and doesn't report KSIs itself. Which step supports which control is the program's reading (design guidance); the agency's assessor decides. 'stages' lists the steps each stage's evidence must hold before the go/no-go.",
+  "version": 1,
+  "controls": {
+    "AC-2": {
+      "title": "Account Management",
+      "part": "monitor the use of accounts (12: account monitoring for atypical usage)"
+    },
+    "AC-6": {
+      "title": "Least Privilege",
+      "part": "allow only the access users need to accomplish assigned tasks"
+    },
+    "AU-6": {
+      "title": "Audit Record Review, Analysis, and Reporting",
+      "part": "review and analyze audit records for indications of inappropriate or unusual activity; (1) automated process integration; (3) correlate audit record repositories"
+    },
+    "AU-9": {
+      "title": "Protection of Audit Information",
+      "part": "protect audit information and audit logging tools from unauthorized access, modification and deletion"
+    },
+    "AU-11": {
+      "title": "Audit Record Retention",
+      "part": "retain audit records for the time period the retention policy sets"
+    },
+    "CA-7": {
+      "title": "Continuous Monitoring",
+      "part": "ongoing monitoring of control effectiveness, correlation and analysis, and response"
+    },
+    "CM-3": {
+      "title": "Configuration Change Control",
+      "part": "review, approve, document and monitor configuration-controlled changes"
+    },
+    "CM-6": {
+      "title": "Configuration Settings",
+      "part": "establish, implement and monitor configuration settings"
+    },
+    "CM-7": {
+      "title": "Least Functionality",
+      "part": "prohibit or restrict functions, ports, protocols, software and services not needed"
+    },
+    "CM-8": {
+      "title": "System Component Inventory",
+      "part": "develop and maintain an accurate inventory of system components"
+    },
+    "IR-3": {
+      "title": "Incident Response Testing",
+      "part": "test the incident response capability"
+    },
+    "IR-4": {
+      "title": "Incident Handling",
+      "part": "handle incidents: preparation, detection and analysis, containment, eradication and recovery; (1) automated incident handling processes"
+    },
+    "IR-5": {
+      "title": "Incident Monitoring",
+      "part": "track and document incidents"
+    },
+    "IR-6": {
+      "title": "Incident Reporting",
+      "part": "report incidents to the designated authorities in the required time"
+    },
+    "RA-5": {
+      "title": "Vulnerability Monitoring and Scanning",
+      "part": "monitor and scan for vulnerabilities, analyze the reports and remediate"
+    },
+    "SC-7": {
+      "title": "Boundary Protection",
+      "part": "monitor and control communications at external and key internal interfaces (the host firewall)"
+    },
+    "SI-2": {
+      "title": "Flaw Remediation",
+      "part": "identify, report and correct system flaws"
+    },
+    "SI-3": {
+      "title": "Malicious Code Protection",
+      "part": "implement malicious code protection at entry and exit points"
+    },
+    "SI-4": {
+      "title": "System Monitoring",
+      "part": "monitor the system to detect attacks and indicators of potential attacks; (7) automated response to suspicious events"
+    },
+    "SI-7": {
+      "title": "Software, Firmware, and Information Integrity",
+      "part": "detect unauthorized changes to software, firmware and information (tamper protection)"
+    }
+  },
+  "ksis": [
+    "KSI-CMT-LMC",
+    "KSI-CNA-EIS",
+    "KSI-IAM-ELP",
+    "KSI-INR-AAR",
+    "KSI-INR-RIR",
+    "KSI-INR-RPI",
+    "KSI-MLA-ALA",
+    "KSI-MLA-EVC",
+    "KSI-MLA-LET",
+    "KSI-MLA-OSM",
+    "KSI-MLA-RVL",
+    "KSI-PIY-GIV",
+    "KSI-SVC-ACM"
+  ],
+  "steps": {
+    "ACCESS": {
+      "title": "G1 Service architecture and access: roles and the Graph read path",
+      "controls": [
+        "AC-2",
+        "AC-6",
+        "AU-9"
+      ],
+      "ksis": [
+        "KSI-IAM-ELP",
+        "KSI-MLA-ALA"
+      ]
+    },
+    "COVERAGE": {
+      "title": "G2 Endpoint onboarding: coverage and sensor health against the inventory",
+      "controls": [
+        "CM-8",
+        "SI-4"
+      ],
+      "ksis": [
+        "KSI-PIY-GIV",
+        "KSI-MLA-OSM"
+      ]
+    },
+    "PREVENTION": {
+      "title": "G3 Endpoint prevention: device state against the ring's stage",
+      "controls": [
+        "SI-3",
+        "SC-7",
+        "CM-6",
+        "SI-7"
+      ],
+      "ksis": [
+        "KSI-SVC-ACM",
+        "KSI-CNA-EIS",
+        "KSI-MLA-EVC"
+      ]
+    },
+    "ASR": {
+      "title": "G4 Attack Surface Reduction: rule-by-ring matrix, readiness, device check",
+      "controls": [
+        "CM-7",
+        "CM-6",
+        "SI-3"
+      ],
+      "ksis": [
+        "KSI-SVC-ACM",
+        "KSI-MLA-EVC"
+      ]
+    },
+    "EXPOSURE": {
+      "title": "G5 Exposure management: owned remediation, Exposure Management disposition",
+      "controls": [
+        "RA-5",
+        "SI-2",
+        "CM-8"
+      ],
+      "ksis": [
+        "KSI-MLA-EVC",
+        "KSI-PIY-GIV"
+      ]
+    },
+    "INCIDENTS": {
+      "title": "G6 XDR incidents: severity table, owners, classification",
+      "controls": [
+        "IR-4",
+        "IR-5",
+        "IR-6",
+        "AU-6"
+      ],
+      "ksis": [
+        "KSI-INR-RIR",
+        "KSI-INR-RPI",
+        "KSI-MLA-RVL"
+      ]
+    },
+    "DETECTIONS": {
+      "title": "G7 Detections as code: validation, tests and the deployment plan",
+      "controls": [
+        "SI-4",
+        "AU-6",
+        "CM-3"
+      ],
+      "ksis": [
+        "KSI-MLA-OSM",
+        "KSI-MLA-LET",
+        "KSI-CMT-LMC"
+      ]
+    },
+    "SIGNALS": {
+      "title": "G8 Identity and cloud-app signals: the cross-source query",
+      "controls": [
+        "SI-4",
+        "AU-6",
+        "AC-2"
+      ],
+      "ksis": [
+        "KSI-MLA-OSM",
+        "KSI-MLA-RVL"
+      ]
+    },
+    "AUTOMATION": {
+      "title": "G9 Automation: device group levels against the ladder, exclusions",
+      "controls": [
+        "IR-4",
+        "SI-4"
+      ],
+      "ksis": [
+        "KSI-INR-RIR"
+      ]
+    },
+    "METRICS": {
+      "title": "G10 Operations and evidence: the metrics",
+      "controls": [
+        "CA-7",
+        "AU-11",
+        "IR-3"
+      ],
+      "ksis": [
+        "KSI-MLA-EVC",
+        "KSI-INR-AAR"
+      ]
+    },
+    "EVIDENCE": {
+      "title": "The evidence record and chain",
+      "controls": [
+        "CA-7",
+        "AU-9"
+      ],
+      "ksis": [
+        "KSI-MLA-EVC",
+        "KSI-MLA-OSM"
+      ]
+    },
+    "PRE": {
+      "title": "Runbook pre-flight",
+      "controls": [
+        "AC-6",
+        "CM-3"
+      ],
+      "ksis": [
+        "KSI-IAM-ELP",
+        "KSI-CMT-LMC"
+      ]
+    },
+    "RUN": {
+      "title": "Runbook scheduled run",
+      "controls": [
+        "CA-7"
+      ],
+      "ksis": [
+        "KSI-MLA-EVC"
+      ]
+    },
+    "PUBLISH": {
+      "title": "Runbook: detection rules published from the repository",
+      "controls": [
+        "CM-3",
+        "SI-4"
+      ],
+      "ksis": [
+        "KSI-CMT-LMC",
+        "KSI-MLA-OSM"
+      ]
+    },
+    "RB": {
+      "title": "Runbook rollback",
+      "controls": [
+        "CM-3",
+        "IR-4"
+      ],
+      "ksis": [
+        "KSI-CMT-LMC",
+        "KSI-INR-RIR"
+      ]
+    }
+  },
+  "stages": {
+    "test": [
+      "PRE",
+      "ACCESS",
+      "COVERAGE",
+      "PREVENTION",
+      "ASR",
+      "DETECTIONS",
+      "PUBLISH",
+      "RUN"
+    ],
+    "production": [
+      "PRE",
+      "ACCESS",
+      "COVERAGE",
+      "PREVENTION",
+      "ASR",
+      "EXPOSURE",
+      "INCIDENTS",
+      "DETECTIONS",
+      "PUBLISH",
+      "SIGNALS",
+      "AUTOMATION",
+      "METRICS",
+      "RUN"
+    ]
+  }
+}

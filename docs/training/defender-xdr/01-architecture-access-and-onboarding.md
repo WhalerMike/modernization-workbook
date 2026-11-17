@@ -1,17 +1,17 @@
 ---
 title: "Module 1: Architecture, access and onboarding"
-description: "Guide Steps 1 and 2: Defender XDR's components, its two trust boundaries and one control plane per setting; GCC availability feature by feature, with Security Exposure Management not available in GCC; unified RBAC roles assigned through PIM and the Graph read path in the tenant's own cloud; onboarding Windows clients through Intune and servers through Defender for Servers, and proving the sensor is on and healthy with the coverage query and the detection test. Lab 2 runs the guide's Validate commands in a test tenant. About 40 minutes, plus Lab 2, with a knowledge check."
+description: "Guide Steps 1 and 2: Defender XDR's components, its two trust boundaries and one control plane per setting; GCC availability feature by feature, with Security Exposure Management not available in GCC; unified RBAC roles assigned through PIM and the Graph read path in the tenant's own cloud; onboarding Windows clients through Intune and servers through Defender for Servers, and proving the sensor is on and healthy with the coverage query and the detection test. Lab 1 runs the developer workbook's checks on fixtures; Lab 2 runs the guide's Validate commands in a test tenant. About 40 minutes, plus Lab 1 and Lab 2, with a knowledge check."
 doc-type: training-module
 research-status: draft
 research-type: training module
 research-book: "Book 12"
 series-order: 1
 review-status: pending
-last-reviewed: 2026-11-13
+last-reviewed: 2026-11-17
 ---
 # Module 1: Architecture, access and onboarding {.unnumbered}
 
-*Part of the [Defender XDR learning path](index.md). Guide [Step 1](../../books/guides/defender-xdr-implementation.md#step-1-service-architecture-and-access) and [Step 2](../../books/guides/defender-xdr-implementation.md#step-2-endpoint-onboarding). About 40 minutes, plus Lab 2.*
+*Part of the [Defender XDR learning path](index.md). Guide [Step 1](../../books/guides/defender-xdr-implementation.md#step-1-service-architecture-and-access) and [Step 2](../../books/guides/defender-xdr-implementation.md#step-2-endpoint-onboarding). About 40 minutes, plus Lab 1 and Lab 2.*
 
 **Watch:** the narrated deck for this module (about 14 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_XDR_Module_1_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_XDR_Module_1_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-xdr-module-1) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-1/Training_XDR_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-xdr-module-1/Training_XDR_Module_1_Narrated.vtt). The deck files join the next edition.
 
@@ -60,6 +60,14 @@ Read the guide's [Step 1](../../books/guides/defender-xdr-implementation.md#step
 ## Unit 4: Onboarding and sensor health (8 minutes) {#xdr-m1-unit-4}
 
 Read the guide's [Step 2](../../books/guides/defender-xdr-implementation.md#step-2-endpoint-onboarding). Windows clients onboard through Intune's EDR policy (ES-004 in [Devices, Chapter 08](../../books/b05-devices/08-gpo-to-intune-policy-migration.md#es-004-endpoint-detection-and-response)), ring 0 first, then ring 1. In GCC, Windows Server 2019 needs KB4586839 *before* onboarding so it reaches the right environment. A device the sensor can't reach goes in the exception register with a compensating control. The sensor-health values are **Active**, **Inactive**, **No sensor data**, **Impaired communications** and **Misconfigured**; every device not Active for seven days is a ticket. To roll back, offboard with the offboarding package: it expires seven days after download, and onboarding and offboarding are never deployed to the same device.
+
+## Exercise: Lab 1, fixtures, no tenant (25 minutes) {#xdr-m1-lab-1}
+
+Run the developer workbook's [Chapter 01, Access and the Graph Read Path](../../project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.md#lab-1-fixtures-no-tenant) and [Chapter 02, Onboarding Coverage and Sensor Health](../../project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.md#lab-1-fixtures-no-tenant). They have the exact commands and the output each gave; this module doesn't repeat them. Work in `examples/defender-xdr`, in PowerShell 7 with Pester 5, from the [defender-xdr-code.zip](../../../downloads/defender-xdr-code.zip) download or a clone of the repository. Nothing signs in: the estate is the fictional `contoso.example`.
+
+- **What you'll see:** the access check finds a detection-engineer role holding Advanced live response and a standing assignment; the coverage check counts 9 of 14 devices protected and raises five tickets, one for a device the inventory doesn't list.
+- **What to look for:** each finding names the device, rule, incident or group, and the run folder's manifest records the call and its permission. Compare what you see with this module's units.
+- **Back-out:** each lab ends by deleting `out`.
 
 ## Exercise: Lab 2, a test tenant {#xdr-m1-lab-2}
 *Not timed. Not run by the authors. Never production.*

@@ -1,0 +1,3 @@
+PS> ./Invoke-XdrEvidence.ps1 -EvidencePath out/evidence -Check
+SUMS               Pass  86 files match SHA256SUMS
+CHAIN              Pass  10 records, chain unbroken

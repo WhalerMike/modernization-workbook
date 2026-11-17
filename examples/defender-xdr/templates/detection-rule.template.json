@@ -1,0 +1,39 @@
+{
+  "@odata.type": "#microsoft.graph.security.detectionRule",
+  "id": "<rule-id>",
+  "displayName": "<display name>",
+  "description": "<description>",
+  "status": "disabled",
+  "queryCondition": {
+    "queryText": "<KQL that starts from a table the .test.json declares>"
+  },
+  "schedule": {
+    "frequency": "PT1H"
+  },
+  "detectionAction": {
+    "alertTemplate": {
+      "title": "<alert title>",
+      "description": "<alert description>",
+      "severity": "<informational|low|medium|high>",
+      "recommendedActions": "<what the analyst does>",
+      "entityMappings": {
+        "hosts": [
+          {
+            "deviceIdColumn": "DeviceId",
+            "nameColumn": "DeviceName"
+          }
+        ]
+      },
+      "tactics": [
+        {
+          "tactic": "<tactic>",
+          "techniques": [
+            {
+              "technique": "<technique id>"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

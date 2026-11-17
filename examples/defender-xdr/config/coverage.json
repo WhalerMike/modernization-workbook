@@ -1,0 +1,8 @@
+{
+  "_comment": "How the coverage check reads DeviceInfo. Learn's DeviceInfo reference names OnboardingStatus and SensorHealthState, and the device inventory field reference lists the sensor health states (Active, Inactive, No sensor data, Impaired communications, Misconfigured), read November 11, 2026. Neither page enumerates the exact strings advanced hunting returns, so the kit counts a device as protected only when both values are in these lists, prints any other value as it came back, and reports a value it has never seen as 'unrecognized' for a person to check (the guide's 'What couldn't be verified'). Check these strings in the test tenant before the first live run.",
+  "onboardedValues": ["Onboarded"],
+  "activeValues": ["Active"],
+  "knownOnboardingValues": ["Onboarded", "Can be onboarded", "Unsupported", "Insufficient info"],
+  "knownSensorValues": ["Active", "Inactive", "No sensor data", "Impaired communications", "Misconfigured", "NoSensorData", "ImpairedCommunication"],
+  "inactiveDays": 7
+}

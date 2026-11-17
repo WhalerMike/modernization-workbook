@@ -1,0 +1,10 @@
+{
+  "_comment": "The incident severity table of the Defender XDR implementation guide's Gate 6 (risk-based recommended; the response windows are program design). Graph incident severities are informational, low, medium and high (Learn, 'List incidents'); informational shares the low row. An incident is triaged when it has an owner (assignedTo); the Graph incident carries no time of first assignment, so the kit reports whether an incident is still unowned past its window, not how long triage took.",
+  "rows": [
+    { "severity": "high", "triageHours": 1, "rung": "L3 gated: the playbook prepares, a named approver releases", "handoff": "IR lead and ISSO; reporting decision under the incident response plan" },
+    { "severity": "medium", "triageHours": 24, "rung": "L2 advise: enrich and ticket", "handoff": "Analyst decides" },
+    { "severity": "low", "triageHours": 72, "rung": "L1 observe", "handoff": "Tuning review if recurring" },
+    { "severity": "informational", "triageHours": 72, "rung": "L1 observe", "handoff": "Tuning review if recurring" }
+  ],
+  "closedStatuses": ["resolved", "redirected"]
+}

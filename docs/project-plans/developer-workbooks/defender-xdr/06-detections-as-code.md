@@ -1,0 +1,280 @@
+---
+title: "Chapter 06 — Detections as Code"
+description: "Custom detections kept in a repository and deployed through the Microsoft Graph detectionRules API: each rule a Graph request body with a validation dataset beside it (the tables it reads, a known-bad window it must fire in, a known-good window it must stay quiet in); validation that refuses automated actions, because containment stays on the response ladder; each rule's query run through runHuntingQuery over both windows; and a deployment plan against the deployed rules (create, update only what changed, hold what failed, report orphans) with its SHA-256 for the approver, or a portal sheet on the interim path while Learn doesn't state the API's GCC availability. Lab 1 against fixtures; Lab 2 in a test tenant."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-defender-xdr
+part: How
+series-order: 6
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 06 — Detections as Code
+
+*A rule that can't be shown to fire isn't a control, and a rule nobody can trace to a reviewed file isn't a change anyone approved.*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [G7 Advanced hunting and detections as code](../../../books/guides/defender-xdr-implementation.md#step-7-advanced-hunting-and-detections-as-code). You start with Learn's create, list and update calls and the guide's three steps, and what they leave to you. Then you read the repository layout, the validation, the tests against each rule's windows, and the deployment plan. Lab 1 validates and tests a three-rule repository and reads the plan. Lab 2 tests one rule in a test tenant. Publishing the plan is Chapter 09's.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can keep custom detections as files, prove each fires on its known-bad event and stays quiet otherwise, and produce a deployment plan an approver can sign by its hash.
+
+**Audience.** Developers who maintain the kit, and the detection engineer who owns G7. The rule lifecycle (author, test, alert-only, promote, review) is Book 12's [Chapter 11](../../../books/b12-security-operations/11-detection-engineering-and-response.md#rule-lifecycle-and-testing); you should have run Chapter 05's Lab 1.
+
+## Start with Microsoft Learn's commands
+
+### What the guide and Learn give you
+
+Learn's Graph v1.0 pages give three calls: `POST /security/rules/detectionRules` to create a rule, `GET` to list them and `PATCH /security/rules/detectionRules/{id}` to update one, supplying only the properties that change.[^xdr06-create] [^xdr06-list] [^xdr06-update] Reading needs `CustomDetection.Read.All`; writing needs `CustomDetection.ReadWrite.All` and **Detection tuning (Manage)** in unified RBAC, or Security Administrator (Security Operator only where Defender for Endpoint RBAC is off).[^xdr06-update] A rule has a `queryCondition.queryText`, a `schedule.frequency`, a `status` (`enabled`, `disabled`) and a `detectionAction` with an `alertTemplate` and, optionally, `automatedActions` such as isolating devices.[^xdr06-update] The create quota is 10 rules a minute per application.[^xdr06-quotas] `runHuntingQuery` takes the query and an ISO 8601 `Timespan` (default 30 days); advanced hunting keeps 30 days.[^xdr06-hunting] The guide writes the rule file with `status` `disabled`, tests its query over 30 days, deploys it, and enables it by changing `status` in the file. None of Learn's `detectionRules` pages has a national-cloud table, so the API's GCC availability is *not yet specified*; the guide's interim path is to create the rule in the portal from the same file.
+
+### What it leaves to you
+
+Each row is pinned by a test in `tests/Checks.Tests.ps1`, *Chapter 06*.
+
+| What Learn and the guide give | Why it isn't enough | What the kit adds |
+|---|---|---|
+| A request body | Nothing checks a rule before it reaches the tenant | Validation: the Graph type, an id that matches its file, a query, a schedule, a title and severity, a status |
+| `automatedActions` in the same body | A rule could isolate devices on its own, outside the response ladder | A rule with automated actions is held; containment stays with Gate 9 and a person |
+| "Test against the validation window" | One window can't show a rule is both sensitive and quiet | `<id>.test.json`: the tables, a known-bad window with `minRows`, a known-good window with `maxRows`, both run |
+| Create and update calls | A repository and a tenant drift | The plan: create what isn't deployed, update only the changed properties, hold what failed, report orphans |
+| "Enable after review" | Enabled in the file but never tested | A rule whose file says `enabled` is held unless its test passed in this run |
+| — | An approver signs off on a plan that changes afterwards | `plan.sha256`; publishing (Chapter 09) applies only the approved hash |
+| GCC availability not stated | Code that assumes the API | `detections.deployVia: portal` writes a portal sheet from the same files instead of Graph requests |
+
+**The verdict.** Use Learn's body shape and calls as they are. Build the gate in front of them, because the API will deploy anything it's given.
+
+## The code
+
+### The repository
+
+One folder (the settings' `inputs.rules`), two files per rule:
+
+```text
+contoso-office-encoded-powershell.json        the Graph request body (Learn's example shape)
+contoso-office-encoded-powershell.test.json   tables, knownBad { timespan, minRows }, knownGood { timespan, maxRows }
+```
+
+Templates for both are in `templates/`.
+
+### Validate, test, plan
+
+`Invoke-XdrDetections.ps1` (`Invoke-XdrDetectionCheck`) reads the repository and:
+
+1. **Validates** each rule (`Test-XdrDetectionRule`): `TYPE`, `ID`, `NAME`, `QUERY`, `SCHEDULE`, `ALERT`, `NO-AUTOMATION`, `STATUS`, `DATASET` and `TABLES` (the query starts from a declared table).
+2. **Tests** each rule's query over its two windows (`Test-XdrDetectionQuery`), through `runHuntingQuery`.
+3. **Reads** the deployed rules (`GET /security/rules/detectionRules`).
+4. **Plans** (`New-XdrDetectionPlan`): `create`, `update` with only the changed properties, `held` with the reason, `orphan` for a deployed rule not in the repository (reported, never deleted).
+
+It writes `validation.csv`, `tests.csv`, `deployed-rules.json`, `plan.json`, `plan.sha256`, `summary.json`, `raw/` and the manifest; on the portal path, `portal-sheet.md` too. It writes nothing to the tenant: `deploy/Publish-XdrDetections.ps1` applies a plan, dry run by default (Chapter 09).
+
+::: {.callout-important}
+## Illustrative code
+The three fixture rules are fictional, and their known-bad events are replays on a ring 0 device under a change record, as the guide's synthetic events table describes. A known-bad window older than 30 days returns nothing; keep the replay current.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/defender-xdr`.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/defender-xdr`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Read one rule and its validation dataset
+Get-Content tests/fixtures/rules/contoso-office-encoded-powershell.test.json
+
+# Step 2: Validate, test and plan the repository
+./Invoke-XdrDetections.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/detections -AsOf 2026-11-16T12:00:00Z
+
+# Step 3: Read the plan an approver signs
+Get-Content out/detections/plan.sha256
+(Get-Content out/detections/plan.json | ConvertFrom-Json).actions | Format-Table ruleId, action, method, path -AutoSize
+
+# Step 4: Run the same repository on the interim path
+$s = Get-Content tests/fixtures/settings.lab.json -Raw | ConvertFrom-Json
+$s.detections.deployVia = 'portal'
+$s | ConvertTo-Json -Depth 10 | Set-Content tests/fixtures/settings.portal.json
+./Invoke-XdrDetections.ps1 -SettingsPath tests/fixtures/settings.portal.json -FixturePath tests/fixtures/graph -OutputPath out/detections-portal -AsOf 2026-11-16T12:00:00Z
+Get-Content out/detections-portal/portal-sheet.md
+
+# After the steps
+Remove-Item -Recurse -Force out
+Remove-Item tests/fixtures/settings.portal.json
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Read one rule and its validation dataset:**
+
+   ```powershell
+   Get-Content tests/fixtures/rules/contoso-office-encoded-powershell.test.json
+   ```
+
+   <!-- capture:begin 06-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/06-1.txt))](captures/06-1.png){.lightbox fig-alt="Terminal window showing Get-Content tests/fixtures/rules/contoso-office-encoded-powershell.test.json and what it printed"}
+
+   <!-- capture:end -->
+
+   One table, a known-bad day that must return at least one row, and a quiet day that must return none.
+
+2. **Validate, test and plan the repository:**
+
+   ```powershell
+   ./Invoke-XdrDetections.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/detections -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 06-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/06-2.txt))](captures/06-2.png){.lightbox fig-alt="Terminal window showing ./Invoke-XdrDetections.ps1 -SettingsPath tests/fixtures/settings.lab.json -Fi… and what it printed"}
+
+   <!-- capture:end -->
+
+   `contoso-admin-share-copy` fails validation: it would isolate devices on its own. It also fails its known-good window, three rows on a quiet day where one is allowed, so it would have been noisy too. The plan creates `contoso-lsass-dump-tool`, updates only the `status` of `contoso-office-encoded-powershell` (deployed disabled, now enabled in the file after a passing test), holds the admin-share rule, and reports `contoso-legacy-rdp-rule`, made in the portal and in no file, as an orphan.
+
+3. **Read the plan an approver signs:**
+
+   ```powershell
+   Get-Content out/detections/plan.sha256
+   (Get-Content out/detections/plan.json | ConvertFrom-Json).actions | Format-Table ruleId, action, method, path -AutoSize
+   ```
+
+   <!-- capture:begin 06-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/06-3.txt))](captures/06-3.png){.lightbox fig-alt="Terminal window showing Get-Content out/detections/plan.sha256 and what it printed"}
+
+   <!-- capture:end -->
+
+   The update's body holds `status` and nothing else: Learn's PATCH supplies only what changes.
+
+4. **Run the same repository on the interim path:**
+
+   ```powershell
+   $s = Get-Content tests/fixtures/settings.lab.json -Raw | ConvertFrom-Json
+   $s.detections.deployVia = 'portal'
+   $s | ConvertTo-Json -Depth 10 | Set-Content tests/fixtures/settings.portal.json
+   ./Invoke-XdrDetections.ps1 -SettingsPath tests/fixtures/settings.portal.json -FixturePath tests/fixtures/graph -OutputPath out/detections-portal -AsOf 2026-11-16T12:00:00Z
+   Get-Content out/detections-portal/portal-sheet.md
+   ```
+
+   <!-- capture:begin 06-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/06-4.txt))](captures/06-4.png){.lightbox fig-alt="Terminal window showing $s = Get-Content tests/fixtures/settings.lab.json -Raw | ConvertFrom-Json and what it printed"}
+
+   <!-- capture:end -->
+
+   The same plan as a sheet for the Defender portal, each rule with its file's SHA-256.
+
+**Expected result:** 3 rules, 1 validation failure, tests 5 passed and 1 failed; plan 1 create, 1 update, 1 held, 1 orphan. Delete what the lab made when you're done:
+
+```powershell
+Remove-Item -Recurse -Force out
+Remove-Item tests/fixtures/settings.portal.json
+```
+
+<!-- capture:begin 06-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/06-5.txt))](captures/06-5.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test tenant
+
+Use a test tenant, never production. Make the known-bad event first: on a ring 0 test device, under a change record, run the activity your rule detects. Work in `examples/defender-xdr`. You'll replace: `<tenant-id>`, `<settings-file>` (with `inputs.rules` naming a folder that holds your rule and its test file, its `knownBad` window covering the replay) and `<output-folder>`.
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/defender-xdr`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Sign in with read scopes, and validate, test and plan
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes ThreatHunting.Read.All,CustomDetection.Read.All
+./Invoke-XdrDetections.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/detections
+
+# Step 2: Back it out
+Disconnect-MgGraph
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Sign in with read scopes, and validate, test and plan:**
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes ThreatHunting.Read.All,CustomDetection.Read.All
+   ./Invoke-XdrDetections.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/detections
+   ```
+
+   `tests.csv` should show the known-bad window `Pass`. If `GET /security/rules/detectionRules` fails in the test tenant, record it in the verification log and set `detections.deployVia` to `portal`.
+
+2. **Back it out.** Nothing was deployed. Sign out:
+
+   ```powershell
+   Disconnect-MgGraph
+   ```
+
+## Verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| Create | `POST /security/rules/detectionRules`, v1.0; `CustomDetection.ReadWrite.All`; Detection tuning (Manage), Security Administrator, or Security Operator where Defender for Endpoint RBAC is off; Learn's example body | [^xdr06-create] |
+| List | `GET /security/rules/detectionRules`; `CustomDetection.Read.All`; Security Reader, Global Reader, Security Operator, Security Administrator | [^xdr06-list] |
+| Update | `PATCH /security/rules/detectionRules/{id}`; only the properties to change; `status` is `enabled`, `disabled`, `autoDisabled`; `detectionAction` holds `alertTemplate` and `automatedActions` | [^xdr06-update] |
+| GCC | The `detectionRules` pages have no national-cloud table: *not yet specified* | [^xdr06-list] |
+| Quota | 10 creates a minute per application | [^xdr06-quotas] |
+| Hunting | `runHuntingQuery`; `Timespan` ISO 8601, default 30 days | [^xdr06-hunting] |
+
+Create and quotas were read for the guide on November 11, 2026; list, update and hunting on November 17, 2026.
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| Each rule fires on its known-bad event and stays quiet in its known-good window (`tests.csv`) | SI-4 (system monitoring), AU-6 (1) and (3) | KSI-MLA-OSM, KSI-MLA-LET | The detection engineer, quarterly per rule |
+| Each change to a rule comes from a reviewed file, in a plan with a hash (`plan.json`, `plan.sha256`, `validation.csv`) | CM-3 (configuration change control) | KSI-CMT-LMC | The detection engineer; the approver signs the hash |
+| What is deployed matches the repository; orphans named (`deployed-rules.json`, the plan's `orphans`) | CM-3, SI-4 | KSI-CMT-LMC, KSI-MLA-OSM | The detection engineer |
+
+The pairs are the guide's G7 row. KSIs are FedRAMP 20x indicators for cloud service providers; the agency lines its evidence up with them and doesn't report them. The kit's records support these controls; the assessor decides them *(design guidance)*.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| A rule with automated isolation | A server or an emergency account contained by a query | `NO-AUTOMATION`: held |
+| A rule enabled without a test | A silent or noisy rule in production | Held unless its test passed in this run |
+| A rule made in the portal | Nobody can say what it is or who approved it | Reported as an orphan |
+| A plan changed after approval | The approver signed something else | Publishing checks the SHA-256 |
+| A table column renamed | The rule stops firing | The weekly test run; Learn's schema naming changes page |
+| The API not available in GCC | Deployment fails mid-change | `deployVia: portal`, the same files |
+
+## Checklist
+
+- [ ] Every rule has a test file with both windows inside the last 30 days.
+- [ ] No rule has automated actions.
+- [ ] Every enabled rule passed its known-bad test this run.
+- [ ] Every orphan has a decision: into the repository, or disabled from a file.
+- [ ] The plan's SHA-256 is recorded with the approval.
+
+::: {.callout-tip}
+## Continue the book
+[← Previous: Chapter 05 — Exposure and Incidents](05-exposure-and-incidents.md) · [Workbook index](index.md) · [Next: Chapter 07 — Identity Signals and Automation Boundaries →](07-identity-signals-and-automation-boundaries.md)
+:::
+
+[^xdr06-create]: Microsoft Learn, "Create detectionRule," <https://learn.microsoft.com/graph/api/security-rulesroot-post-detectionrules?view=graph-rest-1.0> (accessed November 11, 2026; carried from the guide's verification log).
+[^xdr06-list]: Microsoft Learn, "List detectionRule objects," <https://learn.microsoft.com/graph/api/security-rulesroot-list-detectionrules?view=graph-rest-1.0> (accessed November 17, 2026).
+[^xdr06-update]: Microsoft Learn, "Update detectionRule," <https://learn.microsoft.com/graph/api/security-detectionrule-update?view=graph-rest-1.0> (accessed November 17, 2026).
+[^xdr06-quotas]: Microsoft Learn, "Use the Microsoft Graph security API," section "Custom detections," <https://learn.microsoft.com/graph/api/resources/security-api-overview?view=graph-rest-1.0#custom-detections> (accessed November 11, 2026; carried).
+[^xdr06-hunting]: Microsoft Learn, "security: runHuntingQuery," <https://learn.microsoft.com/graph/api/security-security-runhuntingquery?view=graph-rest-1.0> (accessed November 17, 2026).

@@ -1,0 +1,6 @@
+Test,Expected,Observed
+Detection test (Gate 2),An alert on the device in about 10 minutes,yes
+Network protection test site (Gate 3),"Blocked, event 1126",yes
+Controlled folder access write (Gate 3),"Blocked, event 1123",yes
+"ASR demonstration, Office child process (Gate 4)","Blocked on ring 0, event 1121",yes
+Custom detection known-bad replay (Gate 7),An alert with detection source Custom detection,no

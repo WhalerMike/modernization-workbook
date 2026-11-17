@@ -1,0 +1,7 @@
+PS> (Get-Content out/coverage/raw/coverage-summary.json | ConvertFrom-Json).results | Format-Table -AutoSize
+OnboardingStatus SensorHealthState     Devices
+---------------- -----------------     -------
+Can be onboarded                             1
+Onboarded        Active                     11
+Onboarded        ImpairedCommunication       1
+Onboarded        Inactive                    1

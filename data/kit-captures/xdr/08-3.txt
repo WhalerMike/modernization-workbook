@@ -1,0 +1,13 @@
+PS> Import-Csv out/evidence/records.csv | Format-Table sequence, task, result, checkResult, controls -AutoSize
+sequence task       result checkResult controls
+-------- ----       ------ ----------- --------
+1        access     Pass   Fail        AC-2 AC-6 AU-9 CA-7
+2        coverage   Pass   Fail        AU-9 CA-7 CM-8 SI-4
+3        prevention Pass   Fail        AU-9 CA-7 CM-6 SC-7 SI-3 SI-7
+4        asr        Pass   Fail        AU-9 CA-7 CM-6 CM-7 SI-3
+5        exposure   Pass   Fail        AU-9 CA-7 CM-8 RA-5 SI-2
+6        incidents  Pass   Fail        AU-6 AU-9 CA-7 IR-4 IR-5 IR-6
+7        detections Pass   Fail        AU-6 AU-9 CA-7 CM-3 SI-4
+8        signals    Pass   Pass        AC-2 AU-6 AU-9 CA-7 SI-4
+9        automation Pass   Fail        AU-9 CA-7 IR-4 SI-4
+10       metrics    Pass   Pass        AU-11 AU-9 CA-7 IR-3

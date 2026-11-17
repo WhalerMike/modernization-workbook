@@ -1,0 +1,4 @@
+Type,Value,Reason,Approver,ReviewBy
+Identity,breakglass01@contosoexample.onmicrosoft.com,Emergency access account,Authorizing official (example),2027-02-15
+Identity,svc-soc-connector@contosoexample.onmicrosoft.com,Service account the SOC's connector runs as,Authorizing official (example),2027-02-15
+IpRange,192.0.2.0/24,Scanner subnet,Authorizing official (example),2026-10-01

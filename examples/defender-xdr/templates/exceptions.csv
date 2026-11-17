@@ -1,0 +1,2 @@
+Id,Scope,Subject,Reason,CompensatingControl,Approver,Expires
+<EX-DEV-nn>,Device,<device-name>,<reason>,<compensating-control>,<approver-role>,<yyyy-mm-dd>

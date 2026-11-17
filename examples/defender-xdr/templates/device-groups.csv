@@ -1,0 +1,2 @@
+Name,Rank,Kind,RemediationLevel,ExceptionId
+<device-group-name>,<rank>,<workstation|pilot|server>,<one of the five levels in config/ladder.json>,<exception-id or blank>

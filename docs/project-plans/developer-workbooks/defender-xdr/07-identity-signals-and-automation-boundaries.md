@@ -1,0 +1,248 @@
+---
+title: "Chapter 07 — Identity Signals and Automation Boundaries"
+description: "Two checks that keep detection and response joined up. Signals: the guide's cross-source query, users with alerts from more than one Defender service in a week, as a priority list that shows the identity and cloud-app sources are feeding alerts and puts an emergency access account at the top for a person. Automation: the device groups export checked against the response ladder (workstations at Full, servers at a Semi level, the pilot at Semi for all folders), the attack disruption exclusions checked for an approver and a review date with every emergency access account excluded, and each device's sensor version against the minimum Contain User needs. Lab 1 against fixtures; Lab 2 in a test tenant."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-defender-xdr
+part: How
+series-order: 7
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 07 — Identity Signals and Automation Boundaries
+
+*The same account seen by the endpoint, the domain controller and a cloud app is one story. What Defender may do about it on its own is a decision the authorizing official made, and the settings have to match it.*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [G8 Identity and cloud-app signals](../../../books/guides/defender-xdr-implementation.md#step-8-identity-and-cloud-app-signals) and [G9 Automation with approval boundaries](../../../books/guides/defender-xdr-implementation.md#step-9-automation-with-approval-boundaries). You start with the guide's cross-source query, the five device group levels and the attack disruption exclusions Learn describes, and what they leave to you. Then you read the two checks. Lab 1 runs both on fixtures. Lab 2 runs them in a test tenant from the portal's own exports.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can show that identity and cloud-app sources feed incidents, and that Defender's automation matches the response ladder, with every exclusion approved and every emergency access account protected.
+
+**Audience.** Developers who maintain the kit, the SOC lead who owns G8 and G9, and the platform owner. The ladder is Book 12's [Chapter 11](../../../books/b12-security-operations/11-detection-engineering-and-response.md#the-response-ladder); identity telemetry is [Chapter 03](../../../books/b12-security-operations/03-identity-telemetry.md). You should have run Chapter 06's Lab 1.
+
+## Start with Microsoft Learn's commands
+
+### What the guide and Learn give you
+
+**Signals.** The guide's query joins `AlertEvidence` to `AlertInfo` and keeps the users with alerts from more than one `ServiceSource` in 7 days.[^xdr07-alertevidence] Defender for Identity's sensors and Defender for Cloud Apps' connectors put identity and SaaS behavior into the same incidents as the endpoint; in GCC, App Governance's predefined policy alerts are listed as roadmap items, and Cloud Apps behaviors in `BehaviorInfo` aren't available.[^xdr07-mdca] [^xdr07-schema]
+
+**Automation.** Each device group has one of five levels: **Full - remediate threats automatically**; **Semi - require approval for core folders**; **Semi - require approval for non-temp folders**; **Semi - require approval for all folders**; **No automated response**.[^xdr07-exclusions] Microsoft recommends Full; excluding a device group from attack disruption also affects automated investigation and response for it; user exclusions are for service and emergency admin accounts, and exclusions reduce protection.[^xdr07-exclusions] [^xdr07-disruption] **Contain User** needs the sensor at version 10.8470 or later, read from `MsSenseDllVersion`.[^xdr07-disruption] Attack disruption's GCC availability is *not yet specified*. The portal holds these settings; Learn names no Graph API for them.
+
+### What it leaves to you
+
+Each row is pinned by a test in `tests/Checks.Tests.ps1`, *Chapter 07*.
+
+| What the guide and Learn give | Why it isn't enough | What the kit adds |
+|---|---|---|
+| A query that returns users | No order, and no sign of which source is missing | A priority list (emergency access accounts first, then by sources and alerts); a fail when no row names a source beyond the endpoint |
+| The five levels | The ladder says which level each kind of group gets; the portal doesn't know the ladder | `config/ladder.json`: workstation Full, pilot Semi for all folders, server any Semi level; each group checked |
+| Exclusions in the portal | Nobody reviews them, and the emergency account may not be there | Each exclusion needs an approver and a review date ahead; every emergency access account in the settings must be an identity exclusion |
+| A minimum sensor version in prose | Contain User silently doesn't run on older sensors | Each device state's `senseVersion` against the minimum |
+
+**The verdict.** Run the guide's query and read Learn's levels as they are. Check them against the ladder and the exclusion register, because automation is only safe inside the boundary the authorizing official set.
+
+## The code
+
+### Signals
+
+`Invoke-XdrSignals.ps1` (`Invoke-XdrSignalsCheck`) runs the guide's query and writes `priority.csv`, `summary.json`, `raw/` and the manifest. An emergency access account (settings `emergencyAccessAccounts`) is flagged *page the IR lead; a human decides any containment*; three or more sources is a priority.
+
+### Automation
+
+`Invoke-XdrAutomation.ps1` (`Invoke-XdrAutomationCheck`) reads three files, no API: the **device groups export** (Name, Rank, Kind, RemediationLevel, ExceptionId), the **attack disruption exclusions** (Type, Value, Reason, Approver, ReviewBy) and the device states. It writes `groups.csv`, `exclusions.csv`, `sensor.csv`, `summary.json` and the manifest. A workstation group below Full passes only with a recorded exception ID.
+
+::: {.callout-important}
+## Illustrative code
+The two exports are files the operator makes from **Settings** > **Endpoints** > **Device groups** and **Settings** > **Microsoft Defender XDR** > **Automated response**, in the columns of `templates/`. The ladder's mapping is the program's design, and the authorizing official's attack disruption decision comes first (Book 12, Chapter 11).
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/defender-xdr`.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/defender-xdr`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Run the signals check
+./Invoke-XdrSignals.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/signals -AsOf 2026-11-16T12:00:00Z
+
+# Step 2: Run the automation check
+./Invoke-XdrAutomation.ps1 -SettingsPath tests/fixtures/settings.lab.json -OutputPath out/automation -AsOf 2026-11-16T12:00:00Z
+
+# Step 3: Read the ladder the groups are checked against
+(Get-Content config/ladder.json | ConvertFrom-Json).allowed | Format-List
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Run the signals check:**
+
+   ```powershell
+   ./Invoke-XdrSignals.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/signals -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 07-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/07-1.txt))](captures/07-1.png){.lightbox fig-alt="Terminal window showing ./Invoke-XdrSignals.ps1 -SettingsPath tests/fixtures/settings.lab.json -Fixtu… and what it printed"}
+
+   <!-- capture:end -->
+
+   `breakglass01` comes first: an emergency access account with identity and cloud-app alerts in the same week. Nobody's playbook touches it; the IR lead decides. The identity and cloud-app sources are feeding alerts, so the check passes.
+
+2. **Run the automation check:**
+
+   ```powershell
+   ./Invoke-XdrAutomation.ps1 -SettingsPath tests/fixtures/settings.lab.json -OutputPath out/automation -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 07-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/07-2.txt))](captures/07-2.png){.lightbox fig-alt="Terminal window showing ./Invoke-XdrAutomation.ps1 -SettingsPath tests/fixtures/settings.lab.json -Ou… and what it printed"}
+
+   <!-- capture:end -->
+
+   `Ring3-Workstations` sits at a Semi level with no exception: off the ladder. The scanner subnet's exclusion passed its review date in October. `breakglass02` isn't in the identity exclusions, so attack disruption could contain it. `WKS-R3-01` runs a sensor below 10.8470, so Contain User won't act there.
+
+3. **Read the ladder the groups are checked against:**
+
+   ```powershell
+   (Get-Content config/ladder.json | ConvertFrom-Json).allowed | Format-List
+   ```
+
+   <!-- capture:begin 07-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/07-3.txt))](captures/07-3.png){.lightbox fig-alt="Terminal window showing (Get-Content config/ladder.json | ConvertFrom-Json).allowed | Format-List and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** signals 3 users, 1 emergency access account; automation 1 group off the ladder, 1 lapsed exclusion, 1 emergency access account not excluded, 1 device below the sensor version. Delete `out` when you're done:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 07-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/07-4.txt))](captures/07-4.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test tenant
+
+Use a test tenant, never production, with Defender for Identity on at least one test domain controller, as the guide's G8 describes. Work in `examples/defender-xdr`. You'll replace: `<tenant-id>`, `<settings-file>` (with `inputs.deviceGroups` and `inputs.automationExclusions` naming the exports you make in step 2), and `<output-folder>`.
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/defender-xdr`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Sign in and run the signals check
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes ThreatHunting.Read.All
+./Invoke-XdrSignals.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/signals
+
+# Step 3: Run the automation check
+./Invoke-XdrAutomation.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/automation
+
+# Step 4: Back it out
+Disconnect-MgGraph
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Sign in and run the signals check:**
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes ThreatHunting.Read.All
+   ./Invoke-XdrSignals.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/signals
+   ```
+
+   In a quiet test tenant the query may return no rows, and the check fails: that says no identity or cloud-app alert met an endpoint alert this week, not that the sensors are broken. Check sensor health in **Settings** > **Identities**.
+
+2. **Export the two portal pages to the template columns:**
+   1. In the Defender portal, **Settings** > **Endpoints** > **Device groups**: copy each group's name, rank and automation level into `templates/device-groups.csv`'s columns, and add the kind.
+   2. **Settings** > **Microsoft Defender XDR** > **Automated response**: copy each **Identities** and **Devices** exclusion into `templates/automation-exclusions.csv`'s columns, with its approver and review date from the register.
+
+3. **Run the automation check:**
+
+   ```powershell
+   ./Invoke-XdrAutomation.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/automation
+   ```
+
+4. **Back it out.** Nothing changed. Sign out:
+
+   ```powershell
+   Disconnect-MgGraph
+   ```
+
+## Verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| AlertEvidence and AlertInfo | Join on `AlertId`; `ServiceSource`, `EntityType`, `AccountObjectId`, `AccountUpn` | [^xdr07-alertevidence] |
+| Cloud Apps in GCC | App Governance predefined policy and threat-detection alerts listed as roadmap | [^xdr07-mdca] |
+| BehaviorInfo | Defender for Cloud Apps behaviors not available for GCC | [^xdr07-schema] |
+| Automation levels | The five levels; exclusions for identities, device groups and IP ranges; a device group exclusion also affects automated investigation and response | [^xdr07-exclusions] |
+| Attack disruption | Full recommended; Contain User needs sensor 10.8470 or later (`MsSenseDllVersion`); Global Administrator or Security Administrator to change device groups | [^xdr07-disruption] |
+| Undo | Every attack disruption action can be undone by the security team | [^xdr07-overview] |
+
+Read for the guide on November 11, 2026; this chapter adds no new fact. Attack disruption's GCC availability is *not yet specified*.
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| Identity and cloud-app alerts correlate with the endpoint's, by user (`priority.csv`) | SI-4, AU-6 (3) (correlate repositories) | KSI-MLA-OSM, KSI-MLA-RVL | The SOC lead, weekly |
+| Emergency access accounts flagged for a person (`priority.csv`, `EmergencyAccess`) | AC-2 (12) (account monitoring) | KSI-MLA-OSM | The IR lead |
+| Each device group's automation level matches the ladder (`groups.csv`) | IR-4 (1) (automated incident handling), SI-4 (7) (automated response) | KSI-INR-RIR | The SOC lead with the platform owner |
+| Exclusions approved and reviewed; emergency accounts excluded (`exclusions.csv`) | IR-4 (1) | KSI-INR-RIR | The authorizing official's register, quarterly |
+
+The pairs are the guide's G8 and G9 rows. KSIs are FedRAMP 20x indicators for cloud service providers; the agency lines its evidence up with them and doesn't report them. The kit's records support these controls; the assessor decides them *(design guidance)*.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| Attack disruption contains an emergency access account | Lockout during the incident | Every emergency account must be an identity exclusion |
+| A server group at Full | A server remediated or isolated without a person | The ladder allows servers only Semi levels |
+| An exclusion nobody reviews | Protection quietly withdrawn | A review date ahead is required |
+| An old sensor | Contain User does nothing | `sensor.csv` |
+| The identity sensors stop | The cross-source query goes quiet and looks calm | No source beyond the endpoint fails the check |
+
+## Checklist
+
+- [ ] The cross-source query names at least one identity or cloud-app source each week.
+- [ ] Every emergency access account in the settings is an identity exclusion.
+- [ ] Every device group is at the ladder's level, or has an exception ID.
+- [ ] Every exclusion has an approver and a review date ahead.
+- [ ] Every device runs a sensor at or above the Contain User minimum.
+
+::: {.callout-tip}
+## Continue the book
+[← Previous: Chapter 06 — Detections as Code](06-detections-as-code.md) · [Workbook index](index.md) · [Next: Chapter 08 — The Monthly Evidence Run →](08-the-monthly-evidence-run.md)
+:::
+
+[^xdr07-alertevidence]: Microsoft Learn, "AlertEvidence," <https://learn.microsoft.com/defender-xdr/advanced-hunting-alertevidence-table>, and "AlertInfo," <https://learn.microsoft.com/defender-xdr/advanced-hunting-alertinfo-table> (accessed November 11, 2026; carried from the guide's verification log).
+[^xdr07-mdca]: Microsoft Learn, "Microsoft Defender for Cloud Apps for US Government offerings," <https://learn.microsoft.com/defender-cloud-apps/editions-cloud-app-security-gcc> (accessed November 11, 2026; carried).
+[^xdr07-schema]: Microsoft Learn, "Understand the advanced hunting schema," <https://learn.microsoft.com/defender-xdr/advanced-hunting-schema-tables> (accessed November 11, 2026; carried).
+[^xdr07-exclusions]: Microsoft Learn, "Exclude assets from automated responses in automatic attack disruption," <https://learn.microsoft.com/defender-xdr/automatic-attack-disruption-exclusions> (accessed November 11, 2026; carried).
+[^xdr07-disruption]: Microsoft Learn, "Configure automatic attack disruption in Microsoft Defender XDR," <https://learn.microsoft.com/defender-xdr/configure-attack-disruption> (accessed November 11, 2026; carried).
+[^xdr07-overview]: Microsoft Learn, "Automatic attack disruption in Microsoft Defender," <https://learn.microsoft.com/defender-xdr/automatic-attack-disruption> (accessed November 11, 2026; carried).

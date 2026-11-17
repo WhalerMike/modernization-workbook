@@ -1,0 +1,276 @@
+---
+title: "Chapter 01 — Access and the Graph Read Path"
+description: "Who can do what in Microsoft Defender XDR, and the read path every later chapter uses: the program's four unified RBAC roles checked against the role export from the Defender portal (each role with exactly its permissions, Advanced live response only in the Tier 0 role, every assignment to a group PIM governs, no emergency access group holding a Defender role), a first read of incidents through Microsoft Graph on the endpoint GCC uses, and the least-privileged permission for every call the kit makes. Lab 1 against fixtures; Lab 2 in a test tenant."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-defender-xdr
+part: How
+series-order: 1
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 01 — Access and the Graph Read Path
+
+*Every check in this workbook reads through one door. Before anything else, prove the door is the right one, in the right cloud, and that the people behind it hold only what the design gave them.*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [G1 Service architecture and access](../../../books/guides/defender-xdr-implementation.md#step-1-service-architecture-and-access). You start with the guide's Validate step, one `Get-MgSecurityIncident` call, and what it leaves to you. Then you read how the kit declares every call it makes, checks the Graph session before a live run, and compares the role export with the program's role design. Lab 1 runs the access check on fixtures and reads the three findings it raises. Lab 2 signs in to a test tenant and runs the same check.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can run the kit's access check, read its findings, and say which Graph permission and role each later chapter needs.
+
+**Audience.** Developers who maintain the kit, the platform owner who owns G1, and the ISSO who reviews who holds Defender roles. You need PowerShell 7.1 or later with Pester 5.
+
+## Start with Microsoft Learn's commands
+
+### What the guide and Learn give you
+
+The guide's G1 has three steps: create the custom roles in unified RBAC, activate unified RBAC per workload, and connect the read path with `Connect-MgGraph -Environment Global` and the scopes `SecurityIncident.Read.All` and `ThreatHunting.Read.All`. Its Validate step is Learn's `Get-MgSecurityIncident -Top 5`: up to five incidents, or none in a new tenant, with no permission error.[^xdr01-incidents] Learn's *List incidents* page names `SecurityIncident.Read.All` as the least-privileged permission, and a delegated user also needs Security Reader, Global Reader, Security Operator or Security Administrator.[^xdr01-incidents] GCC uses the worldwide Graph endpoint, `graph.microsoft.com`, so the environment is `Global`.[^xdr01-deployments]
+
+### What it leaves to you
+
+Each row is pinned by a test in `tests/Core.Tests.ps1` or `tests/Checks.Tests.ps1`.
+
+| What Learn and the guide give | Why it isn't enough | What the kit adds |
+|---|---|---|
+| A `Connect-MgGraph` line with an environment | A session left from another tenant answers too, and a check that reads an empty list passes | `Assert-XdrGraphContext`: a live run refuses a session in another environment or tenant than the settings file names |
+| The permission each call needs, page by page | Nobody can see, in one place, what the whole job needs | `config/calls.json` declares every call with its permission, roles and Learn page; `Get-XdrRequiredPermission` prints them; a call that isn't declared, or one that writes, can't go through the read path |
+| A role design in prose (read, responder, detection engineer, Tier 0) | A portal role list drifts: a permission added, a group assigned outside PIM | `Test-XdrRoleDesign` compares the role export with `config/roles.json`: missing or extra permissions, Advanced live response outside the Tier 0 role, groups PIM doesn't govern, emergency access groups |
+| A Validate step that passes on "no permission error" | A failed read stops a script without saying why | The read is one row in the results, with the error as its detail; the other checks still run |
+
+**The verdict.** Keep Learn's calls and scopes. Build the checks around them, because the read path is only as good as the session it runs in and the people the roles reach.
+
+## The code
+
+### Declared calls and the two invokers
+
+`config/calls.json` lists the kit's five calls: three reads (`GET /security/incidents`, `POST /security/runHuntingQuery`, `GET /security/rules/detectionRules`) and two writes (`POST` and `PATCH` on `detectionRules`). `Invoke-XdrCall` sends a read through an invoker:
+
+- the **fixture invoker** (`-FixturePath`) reads the call's file and sends nothing (Lab 1);
+- the **live invoker** calls `Invoke-MgGraphRequest` on the settings file's cloud, after `Assert-XdrGraphContext`, and follows `@odata.nextLink` only on the same host.
+
+A write never goes through `Invoke-XdrCall`. Only `deploy/Publish-XdrDetections.ps1` and the rollback use `Invoke-XdrWrite`, with `-Apply` and an approved SHA-256 (Chapter 09).
+
+### The role check
+
+The operator files the role export from **System** > **Permissions** > **Microsoft Defender XDR** > **Roles**, one row per role, in the columns of `templates/role-export.csv`. `Invoke-XdrAccess.ps1` writes `results.csv`, `permissions.csv`, the raw first read and a manifest. The checks:
+
+| Check | Passes when |
+|---|---|
+| `CLOUD` | The settings name a known cloud; the Graph host and environment come from it |
+| `READ` | `incidents-list` with `$top=5` answers |
+| `ROLE` | Each designed role exists with exactly its permissions; a role not in the design is a warning |
+| `RESTRICTED` | Advanced live response is held only by the Tier 0 role |
+| `PIM` | Every group a role is assigned to is in the settings' `pimGroups` |
+| `EMERGENCY` | No emergency access group holds a Defender role |
+
+### The tests
+
+`tests/Core.Tests.ps1`: the clouds, the settings refusals (a secret, a placeholder, an unknown cloud), the declared calls and their permissions, both invokers, the context check. `tests/Checks.Tests.ps1`, *Chapter 01*: each finding on the fixtures, an emergency access group, a failed read.
+
+::: {.callout-important}
+## Illustrative code
+Lab 1 reads fictional fixtures. The role export is a file the operator makes; the kit doesn't read Defender's roles through an API, and Learn names none for unified RBAC roles. Treat the result as a review aid for the ISSO, not as the authority on who holds what.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/defender-xdr`.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/defender-xdr`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Run the access check on the fixtures
+./Invoke-XdrAccess.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/access -AsOf 2026-11-16T12:00:00Z
+
+# Step 2: Read what each call needs
+Import-Csv out/access/permissions.csv | Format-Table Call, Method, Permission, Writes -AutoSize
+
+# Step 3: Read the manifest
+Get-Content out/access/manifest.json
+
+# Step 4: Run the chapter's tests
+Invoke-Pester -Path tests/Core.Tests.ps1 -Output None -PassThru | Select-Object PassedCount, FailedCount
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Run the access check on the fixtures:**
+
+   ```powershell
+   ./Invoke-XdrAccess.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/access -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 01-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/01-1.txt))](captures/01-1.png){.lightbox fig-alt="Terminal window showing ./Invoke-XdrAccess.ps1 -SettingsPath tests/fixtures/settings.lab.json -Fixtur… and what it printed"}
+
+   <!-- capture:end -->
+
+   Three rows fail. The detection-engineer role holds Advanced live response, which only the Tier 0 role may hold, so both its `ROLE` row and the `RESTRICTED` row fail. The responder role is also assigned to `SG-SOC-Standing`, a group PIM doesn't govern: a standing assignment. The `Legacy SOC role` is a warning: it isn't in the design, so someone records a decision or removes it.
+
+2. **Read what each call needs:**
+
+   ```powershell
+   Import-Csv out/access/permissions.csv | Format-Table Call, Method, Permission, Writes -AutoSize
+   ```
+
+   <!-- capture:begin 01-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/01-2.txt))](captures/01-2.png){.lightbox fig-alt="Terminal window showing Import-Csv out/access/permissions.csv | Format-Table Call, Method, Permission… and what it printed"}
+
+   <!-- capture:end -->
+
+   Three reads, each with a read permission, and two writes with `CustomDetection.ReadWrite.All`. The access check itself made one call; the manifest lists it.
+
+3. **Read the manifest:**
+
+   ```powershell
+   Get-Content out/access/manifest.json
+   ```
+
+   <!-- capture:begin 01-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/01-3.txt))](captures/01-3.png){.lightbox fig-alt="Terminal window showing Get-Content out/access/manifest.json and what it printed"}
+
+   <!-- capture:end -->
+
+   The task, the time, the mode (`Fixture`), each call with its permission and Learn page, the SHA-256 of every file, and the result Chapter 08's evidence record carries.
+
+4. **Run the chapter's tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests/Core.Tests.ps1 -Output None -PassThru | Select-Object PassedCount, FailedCount
+   ```
+
+   <!-- capture:begin 01-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/01-4.txt))](captures/01-4.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests/Core.Tests.ps1 -Output None -PassThru | Select-Obje… and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** `PassedCount` 23 and `FailedCount` 0. Delete `out` when you're done:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 01-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/01-5.txt))](captures/01-5.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test tenant
+
+Use a test tenant, never production, licensed for Defender for Endpoint Plan 2, with the four roles created in unified RBAC as the guide's G1 describes. Sign in with an account that holds Security Reader through PIM. Work in `examples/defender-xdr`. You'll replace: `<tenant-id>` (the test tenant's ID), `<settings-file>` (your copy of `deploy/settings.template.json` for the test tenant, with `inputs.roleExport` naming the role export you filed) and `<output-folder>` (a folder on agency storage).
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/defender-xdr`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Sign in to Graph in the environment GCC uses
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes SecurityIncident.Read.All,ThreatHunting.Read.All,CustomDetection.Read.All
+
+# Step 2: Run the access check live
+./Invoke-XdrAccess.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/access
+
+# Step 3: Back it out
+Disconnect-MgGraph
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Sign in to Graph in the environment GCC uses:**
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes SecurityIncident.Read.All,ThreatHunting.Read.All,CustomDetection.Read.All
+   ```
+
+2. **Run the access check live:**
+
+   ```powershell
+   ./Invoke-XdrAccess.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/access
+   ```
+
+   `READ` passes with up to five incidents, or none in a new tenant. An error that names a role means the account lacks one of the four Learn lists. Each failing `ROLE`, `RESTRICTED`, `PIM` or `EMERGENCY` row is a change to the role or its assignment, under a change record.
+
+3. **Back it out.** The check changed nothing. Sign out:
+
+   ```powershell
+   Disconnect-MgGraph
+   ```
+
+## Verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| List incidents | `GET /security/incidents`, v1.0; least privilege `SecurityIncident.Read.All`; delegated users also need Security Reader, Global Reader, Security Operator or Security Administrator | [^xdr01-incidents] |
+| GCC endpoint | `graph.microsoft.com`; `Connect-MgGraph -Environment Global` | [^xdr01-deployments] |
+| Run a hunting query | `POST /security/runHuntingQuery`; `ThreatHunting.Read.All` | [^xdr01-hunting] |
+| List custom detection rules | `GET /security/rules/detectionRules`; `CustomDetection.Read.All`; Security Reader, Global Reader, Security Operator or Security Administrator | [^xdr01-rules-list] |
+| Unified RBAC permission groups | Security operations, Security posture, Authorization and settings, Data operations; roles assigned to groups and data sources | [^xdr01-rbac] |
+| Activating unified RBAC | At least Security Administrator; per workload, on **Workload settings** | [^xdr01-rbac-activate] |
+
+The first two rows, and the RBAC rows, were read for the guide on November 11, 2026; the hunting and detection-rule rows were read again for this chapter on November 17, 2026.
+
+## Federal requirements and evidence
+
+The mappings are the guide's [Requirements and KSIs](../../../books/guides/defender-xdr-implementation.md#requirements-and-ksis) row for G1, held in the kit's `config/requirements.json`.
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| Each Defender role holds exactly the designed permissions, Advanced live response only in Tier 0 (Lab 1, step 1: `results.csv`) | AC-6 (least privilege for security tooling) | KSI-IAM-ELP | The platform owner; the ISSO reviews it each quarter |
+| Every assignment is to a group PIM governs; no emergency access group holds a role (`results.csv`, `PIM` and `EMERGENCY` rows) | AC-2 (account management) | KSI-IAM-ELP | The ISSO, with the PIM report from [*Building Privileged Access*](../privileged-access/index.md) |
+| The read path to the security tooling works in the tenant's own cloud, with the permissions listed (`results.csv` `READ`, `permissions.csv`) | AU-9 (4) (access to audit tools by a subset of privileged users) | KSI-MLA-ALA | The platform owner |
+
+KSIs are FedRAMP 20x indicators for cloud service providers; the agency lines its evidence up with them and doesn't report them. The kit's records support these controls; the agency's assessor decides them *(design guidance)*.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| A Graph session in the wrong tenant | Every check reads another estate, or nothing, and passes | `Assert-XdrGraphContext` refuses the run |
+| A permission added to a role in the portal | Someone can isolate devices or run live response who shouldn't | `ROLE` and `RESTRICTED` rows against the design |
+| A role assigned to a standing group | Privilege that never expires | `PIM` row |
+| An emergency access account in a Defender role | The break-glass account becomes a daily account | `EMERGENCY` row; the guide keeps them out of Defender roles |
+| A write slipped into the read path | A check changes the tenant | `Invoke-XdrCall` refuses any call marked `writes` |
+
+## Checklist
+
+- [ ] The settings file names `gcc` and the test tenant's ID; no secret in it.
+- [ ] The access check's `READ` row passes in the test tenant.
+- [ ] Every `ROLE`, `RESTRICTED`, `PIM` and `EMERGENCY` row passes, or has a change record.
+- [ ] `permissions.csv` is filed with the role export.
+- [ ] The run folder is recorded as evidence (Chapter 08).
+
+::: {.callout-tip}
+## Continue the book
+[Workbook index](index.md) · [Next: Chapter 02 — Onboarding Coverage and Sensor Health →](02-onboarding-coverage-and-sensor-health.md)
+:::
+
+[^xdr01-incidents]: Microsoft Learn, "List incidents" (Microsoft Graph v1.0; national cloud table; `SecurityIncident.Read.All`; supported roles; `Get-MgSecurityIncident`), <https://learn.microsoft.com/graph/api/security-list-incidents?view=graph-rest-1.0> (accessed November 11, 2026; carried from the guide's verification log).
+[^xdr01-deployments]: Microsoft Learn, "National cloud deployments" (GCC uses the worldwide endpoints), <https://learn.microsoft.com/graph/deployments> (accessed November 9, 2026; carried from the guide's verification log).
+[^xdr01-hunting]: Microsoft Learn, "security: runHuntingQuery" (`POST /security/runHuntingQuery`; `ThreatHunting.Read.All`; `Query` and optional `Timespan`, default 30 days; the response's `schema` and `results`), <https://learn.microsoft.com/graph/api/security-security-runhuntingquery?view=graph-rest-1.0> (accessed November 17, 2026).
+[^xdr01-rules-list]: Microsoft Learn, "List detectionRule objects" (`GET /security/rules/detectionRules`; `CustomDetection.Read.All`; supported roles), <https://learn.microsoft.com/graph/api/security-rulesroot-list-detectionrules?view=graph-rest-1.0> (accessed November 17, 2026).
+[^xdr01-rbac]: Microsoft Learn, "Create custom roles with Microsoft Defender unified RBAC," <https://learn.microsoft.com/defender-xdr/create-custom-rbac-roles>, and "Permissions in Microsoft Defender unified role-based access control (RBAC)," <https://learn.microsoft.com/defender-xdr/custom-permissions-details> (accessed November 11, 2026; carried from the guide's verification log).
+[^xdr01-rbac-activate]: Microsoft Learn, "Activate Microsoft Defender unified role-based access control (URBAC)," <https://learn.microsoft.com/defender-xdr/activate-defender-rbac> (accessed November 11, 2026; carried from the guide's verification log).

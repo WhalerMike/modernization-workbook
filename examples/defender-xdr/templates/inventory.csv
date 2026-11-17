@@ -1,0 +1,2 @@
+DeviceName,Ring,Kind,Role,Owner,InScope,DeviceGroup,ManagedBy
+<device-name>,<ring0|ring1|ring2|ring3|servers>,<workstation|server>,<blank|dc|dns|file|sql|app>,<owner-role>,<yes|no>,<defender-device-group>,<Intune|ConfigMgr>

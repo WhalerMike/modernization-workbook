@@ -1,0 +1,66 @@
+{
+  "_comment": "Every call the Defender XDR kit makes, with the method and path on Microsoft Graph v1.0, the least-privileged permission Microsoft Learn names for it, the Microsoft Entra or Defender roles a delegated user must also hold, the page that says so, the kit tasks that use it, and whether it writes. Read on Microsoft Learn on November 11, 2026 for the Defender XDR implementation guide (incidents, runHuntingQuery, create detectionRule) and on November 17, 2026 for this kit (list and update detectionRule). GCC uses the worldwide Graph endpoint, graph.microsoft.com (Learn, 'National cloud deployments'). Reads go through Invoke-XdrCall; the two writes go only through Invoke-XdrWrite from deploy/Publish-XdrDetections.ps1 and deploy/Invoke-XdrRollback.ps1, with -Apply and the plan's approved SHA-256. 'fixture' is the file a call reads in fixture mode (Lab 1); hunting queries read hunting/<query name>.json.",
+  "readOn": "2026-11-17",
+  "calls": [
+    {
+      "id": "incidents-list",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/security/incidents",
+      "permission": "SecurityIncident.Read.All",
+      "roles": ["Security Reader", "Global Reader", "Security Operator", "Security Administrator"],
+      "doc": "https://learn.microsoft.com/graph/api/security-list-incidents?view=graph-rest-1.0",
+      "tasks": ["access", "incidents", "preflight"],
+      "writes": false,
+      "fixture": "incidents.json"
+    },
+    {
+      "id": "hunting-query",
+      "method": "POST",
+      "version": "v1.0",
+      "path": "/security/runHuntingQuery",
+      "permission": "ThreatHunting.Read.All",
+      "roles": ["a Defender role that can read the queried data (for example Security data basics in unified RBAC)"],
+      "doc": "https://learn.microsoft.com/graph/api/security-security-runhuntingquery?view=graph-rest-1.0",
+      "tasks": ["coverage", "prevention", "asr", "exposure", "detections", "signals"],
+      "writes": false,
+      "fixture": "hunting/<name>.json"
+    },
+    {
+      "id": "detection-rules-list",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/security/rules/detectionRules",
+      "permission": "CustomDetection.Read.All",
+      "roles": ["Security Reader", "Global Reader", "Security Operator", "Security Administrator"],
+      "doc": "https://learn.microsoft.com/graph/api/security-rulesroot-list-detectionrules?view=graph-rest-1.0",
+      "tasks": ["detections", "publish", "rollback"],
+      "writes": false,
+      "fixture": "detection-rules.json"
+    },
+    {
+      "id": "detection-rule-create",
+      "method": "POST",
+      "version": "v1.0",
+      "path": "/security/rules/detectionRules",
+      "permission": "CustomDetection.ReadWrite.All",
+      "roles": ["Detection tuning (Manage) in Defender unified RBAC", "Security Administrator", "Security Operator only where Defender for Endpoint RBAC is off"],
+      "doc": "https://learn.microsoft.com/graph/api/security-rulesroot-post-detectionrules?view=graph-rest-1.0",
+      "tasks": ["publish"],
+      "writes": true,
+      "fixture": ""
+    },
+    {
+      "id": "detection-rule-update",
+      "method": "PATCH",
+      "version": "v1.0",
+      "path": "/security/rules/detectionRules/{id}",
+      "permission": "CustomDetection.ReadWrite.All",
+      "roles": ["Detection tuning (Manage) in Defender unified RBAC", "Security Administrator", "Security Operator only where Defender for Endpoint RBAC is off"],
+      "doc": "https://learn.microsoft.com/graph/api/security-detectionrule-update?view=graph-rest-1.0",
+      "tasks": ["publish", "rollback"],
+      "writes": true,
+      "fixture": ""
+    }
+  ]
+}

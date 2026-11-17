@@ -1,0 +1,4 @@
+Id,RuleId,Path,Decision,Owner,Approver,Expires
+EX-ASR-01,d4f940ab-401b-4efc-aadc-ad5f3c50688a,C:\Program Files\Contoso\LobApp\lobhelper.exe,exclude,Line-of-business app owner (example),ISSO (example),2027-05-01
+EX-ASR-02,5beb7efe-fd9a-4556-801d-275e5ffc04cc,C:\Program Files\Contoso\Scripts\,fix,Endpoint engineering (example),ISSO (example),2027-01-31
+EX-ASR-03,b2b3f03d-6a65-4f7b-a9c7-1c7ef74a9ba4,D:\Installers\,exclude,Field office (example),ISSO (example),2026-10-31

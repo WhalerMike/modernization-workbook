@@ -1,0 +1,2 @@
+Id,RuleId,Path,Decision,Owner,Approver,Expires
+<EX-ASR-nn>,<rule-guid or *>,<file path, or folder path ending in \>,<exclude|fix|accept>,<owner-role>,<approver-role>,<yyyy-mm-dd>

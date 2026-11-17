@@ -1,0 +1,285 @@
+---
+title: "Chapter 04 — Attack Surface Reduction: Audit, Warn, Block"
+description: "Every Attack Surface Reduction rule moved through audit, warn and block, ring by ring, as code: the fourteen rules of the device policy library with Learn's GUIDs, warn support and advanced hunting action types; the agency's plan of each ring's stage and the date it began; each rule's readiness for its next stage from the program's stage lengths and the audit hits that still lack an exclusion or a decision; the two rules without warn sent from audit straight to block; Learn's OMA-URI value for each ring now and next; expired exclusions; and what each device actually enforces, which catches Learn's known Windows Server compliance issue. Lab 1 against fixtures; Lab 2 in a test tenant."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-defender-xdr
+part: How
+series-order: 4
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 04 — Attack Surface Reduction: Audit, Warn, Block
+
+*Audit is configured but protects nothing. A rule is done when it is in block on every ring, or its exception is written down; the code's job is to say which rules can move this week, and why the others can't.*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [G4 Attack Surface Reduction](../../../books/guides/defender-xdr-implementation.md#step-4-attack-surface-reduction). You start with Learn's rule modes, its OMA-URI syntax and the guide's two queries, and what they leave to you. Then you read the rule catalog, the plan, the readiness rules and the device check. Lab 1 runs the check on a fictional estate in the middle of its rollout, reads which rules can move, prints the value that moves ring 1, and finds a server that enforces nothing. Lab 2 runs it in a test tenant.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can produce the rule-by-ring matrix the assessor reads, say for each ring which rules are ready for their next stage, and hand the change board the exact OMA-URI value that moves them.
+
+**Audience.** Developers who maintain the kit, the platform owner who owns G4, and the SOC lead who reads the weekly per-rule counts. The rule list and the stage lengths are Book 05's [ES-005](../../../books/b05-devices/08-gpo-to-intune-policy-migration.md#es-005-attack-surface-reduction); you should have run Chapter 03's Lab 1.
+
+## Start with Microsoft Learn's commands
+
+### What the guide and Learn give you
+
+Learn gives the rule modes, `0` off, `1` block, `2` audit, `5` not configured, `6` warn; the custom-profile OMA-URI `./Vendor/MSFT/Policy/Config/Defender/AttackSurfaceReductionRules` with one `<rule GUID>=<mode>` per line in Intune; and a PowerShell line that lists a device's rules and actions from `Get-MpPreference`.[^xdr04-configure] It says warn needs Windows 10 1809 or later with a recent platform and engine, that two rules don't support warn (the LSASS rule and the Office code-injection rule), and that since platform 4.18.26060 **Unblock** needs administrator approval.[^xdr04-overview] Its rules reference gives each rule's GUID and its advanced hunting action types, `...Audited` and `...Blocked`.[^xdr04-reference] The guide's queries count `DeviceEvents` with `ActionType` starting `Asr` over 30 days.[^xdr04-monitor] Learn lists a known issue: on Windows Server, a rule can show as compliant without being enforced.[^xdr04-configure]
+
+### What it leaves to you
+
+Each row is pinned by a test in `tests/Checks.Tests.ps1`, *Chapter 04*.
+
+| What Learn and the guide give | Why it isn't enough | What the kit adds |
+|---|---|---|
+| Rule GUIDs and action types, one page section per rule | Nothing ties an event back to its rule and ring | `config/asr-rules.json`: the fourteen ES-005 rules with GUID, warn support, action types and Windows Server support |
+| A count of events by action type | A count can't say whether a hit has an exclusion yet | The per-device query keeps the file path; each audit hit is matched to the exclusion register |
+| Stage lengths (ES-005: audit 30 days, warn 14) | Someone has to count days per ring per rule | The plan records each rule's stage and start date; readiness is computed |
+| Two rules without warn | A plan that puts them in warn acts as block on old Windows, or is just wrong | A plan error, and audit goes straight to block for them |
+| The OMA-URI syntax | Fourteen lines typed by hand per ring | `oma-uri/<ring>.txt` now and `<ring>-next.txt` with only the ready rules moved |
+| A compliance report | Learn's known server issue: compliant without enforced | Each device's own `Get-MpPreference` against its ring's plan |
+| Microsoft's note on PSExec and WMI and Configuration Manager | Easy to miss on a mixed ring | A warning when a ring holds a device Configuration Manager manages |
+
+**The verdict.** Keep Learn's modes, syntax and queries exactly. Build the bookkeeping, because the rollout is fourteen rules times five rings, each with its own clock and its own hits.
+
+## The code
+
+`Invoke-XdrAsr.ps1` (`Invoke-XdrAsrCheck`) reads the plan, the exclusion register, the inventory and the device states named in the settings, runs the guide's query and its per-device form, and writes:
+
+| File | What it holds |
+|---|---|
+| `matrix.csv` | Each rule's stage on each ring: the assessor's rule-by-ring matrix |
+| `readiness.csv` | Per ring and rule: stage, days in it, audit hits, open hits, blocks, next stage, status (`Ready`, `Hold`, `Done`, `Warn`, `Fail`, `NotApplicable`) and why |
+| `oma-uri/<ring>.txt`, `oma-uri/<ring>-next.txt` | Learn's custom-profile value now, and with only the ready rules moved |
+| `device-checks.csv` | What each device enforces against its ring's plan |
+| `exclusions-expired.csv` | Register rows past their expiry |
+
+The readiness rules *(design guidance, from ES-005)*: a rule in audit is ready when it has 30 days and every audit hit on the ring's devices has an exclusion, a fix or a decision in the register; it moves to warn, or to block if it doesn't support warn. A rule in warn is ready after 14 days with no open hit. A hit is covered by a register row for its rule (or `*`) whose path is the same file, or a folder ending in `\` that contains it. Rules Windows Server doesn't support are `NotApplicable` on a ring of servers. The kit never changes the Intune policy: the change board puts the `-next` value in it under a change record, then updates the plan.
+
+::: {.callout-important}
+## Illustrative code
+Lab 1's estate is fictional and mid-rollout on purpose. Microsoft's own position is lighter than the program's: standard protection rules can go to block without extensive testing.[^xdr04-overview] The program runs all three stages; the kit enforces the program's stages, not Microsoft's minimum.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/defender-xdr`.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/defender-xdr`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Read the rules the program deploys, and which skip warn
+(Get-Content config/asr-rules.json | ConvertFrom-Json).rules | Format-Table id, supportsWarn, actionTypePrefix -AutoSize
+
+# Step 2: Run the ASR check
+./Invoke-XdrAsr.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/asr -AsOf 2026-11-16T12:00:00Z
+
+# Step 3: Read why the ring 2 rule is held
+Import-Csv out/asr/readiness.csv | Where-Object { $_.Ring -eq 'ring2' -and $_.OpenHits -ne '0' } | Format-Table Rule, AuditHits, OpenHits, Note -AutoSize -Wrap
+
+# Step 4: Print the value that moves ring 1
+Get-Content out/asr/oma-uri/ring1-next.txt
+
+# Step 5: Read the matrix
+Import-Csv out/asr/matrix.csv | Format-Table Rule, Warn, ring0, ring1, ring2, ring3, servers -AutoSize
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Read the rules the program deploys, and which skip warn:**
+
+   ```powershell
+   (Get-Content config/asr-rules.json | ConvertFrom-Json).rules | Format-Table id, supportsWarn, actionTypePrefix -AutoSize
+   ```
+
+   <!-- capture:begin 04-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/04-1.txt))](captures/04-1.png){.lightbox fig-alt="Terminal window showing (Get-Content config/asr-rules.json | ConvertFrom-Json).rules | Format-Table i… and what it printed"}
+
+   <!-- capture:end -->
+
+2. **Run the ASR check:**
+
+   ```powershell
+   ./Invoke-XdrAsr.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/asr -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 04-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/04-2.txt))](captures/04-2.png){.lightbox fig-alt="Terminal window showing ./Invoke-XdrAsr.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePa… and what it printed"}
+
+   <!-- capture:end -->
+
+   Ring 0 is done. Ring 1 has twelve rules ready for block; the Office child-process rule is held at 6 of 14 warn days. Ring 2 is ready to leave audit except the Office child-process rule, which has one audit hit with no exclusion or decision; the PSExec and WMI rule is a warning, because Configuration Manager manages a device there. Ring 3's plan puts the LSASS rule in warn, which it doesn't support: a plan error. And `SRV-APP01` enforces none of the thirteen rules its plan puts in audit: Learn's known server issue, caught on the device.
+
+3. **Read why the ring 2 rule is held:**
+
+   ```powershell
+   Import-Csv out/asr/readiness.csv | Where-Object { $_.Ring -eq 'ring2' -and $_.OpenHits -ne '0' } | Format-Table Rule, AuditHits, OpenHits, Note -AutoSize -Wrap
+   ```
+
+   <!-- capture:begin 04-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/04-3.txt))](captures/04-3.png){.lightbox fig-alt="Terminal window showing Import-Csv out/asr/readiness.csv | Where-Object { $_.Ring -eq 'ring2' -and $_… and what it printed"}
+
+   <!-- capture:end -->
+
+   Two audit hits for the rule on ring 2: the line-of-business helper has a per-rule exclusion, `EX-ASR-01`; the macro runner in `C:\Users\Public\Tools` has nothing. Someone decides an exclusion or a fix before the rule moves to warn.
+
+4. **Print the value that moves ring 1:**
+
+   ```powershell
+   Get-Content out/asr/oma-uri/ring1-next.txt
+   ```
+
+   <!-- capture:begin 04-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/04-4.txt))](captures/04-4.png){.lightbox fig-alt="Terminal window showing Get-Content out/asr/oma-uri/ring1-next.txt and what it printed"}
+
+   <!-- capture:end -->
+
+   Every rule at `1` (block), except the Office child-process rule still at `6` (warn). This is the string the change board pastes into the ring 1 policy.
+
+5. **Read the matrix:**
+
+   ```powershell
+   Import-Csv out/asr/matrix.csv | Format-Table Rule, Warn, ring0, ring1, ring2, ring3, servers -AutoSize
+   ```
+
+   <!-- capture:begin 04-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/04-5.txt))](captures/04-5.png){.lightbox fig-alt="Terminal window showing Import-Csv out/asr/matrix.csv | Format-Table Rule, Warn, ring0, ring1, ring2,… and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** 36 rule-ring pairs ready, 16 held, 15 in block, 1 plan error, 1 warning, 13 device mismatches, 1 expired exclusion. Delete `out` when you're done:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 04-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/04-6.txt))](captures/04-6.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test tenant
+
+Use a test tenant, never production, with the ASR policy assigned to a ring 0 device group in audit, as the guide's G4 describes. Work in `examples/defender-xdr`. You'll replace: `<tenant-id>`, `<settings-file>` (with `inputs.asrPlan`, `inputs.asrExclusions` and `inputs.deviceStates` naming the test tenant's files), `<output-folder>` and `<rule GUID>` (one rule to test on the device).
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/defender-xdr`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Collect the test device's state, then run the check
+./Get-XdrDeviceState.ps1 -OutputPath <output-folder>/devices
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes ThreatHunting.Read.All
+./Invoke-XdrAsr.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/asr
+
+# Step 2: Compare with Learn's own listing on the device
+$p = Get-MpPreference;0..([math]::Min($p.AttackSurfaceReductionRules_Ids.Count,$p.AttackSurfaceReductionRules_Actions.Count)-1) | % {[pscustomobject]@{Id=$p.AttackSurfaceReductionRules_Ids[$_];Action=$p.AttackSurfaceReductionRules_Actions[$_]}} | Format-Table -AutoSize
+
+# Step 3: Back it out
+Add-MpPreference -AttackSurfaceReductionRules_Ids <rule GUID> -AttackSurfaceReductionRules_Actions AuditMode
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Collect the test device's state, then run the check:**
+
+   ```powershell
+   ./Get-XdrDeviceState.ps1 -OutputPath <output-folder>/devices
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes ThreatHunting.Read.All
+   ./Invoke-XdrAsr.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/asr
+   ```
+
+   `device-checks.csv` should show every rule in `audit` on the device. A row that says `notConfigured` on the device while the plan says `audit` is the server issue or a policy not yet received.
+
+2. **Compare with Learn's own listing on the device,** in an elevated PowerShell window:
+
+   ```powershell
+   $p = Get-MpPreference;0..([math]::Min($p.AttackSurfaceReductionRules_Ids.Count,$p.AttackSurfaceReductionRules_Actions.Count)-1) | % {[pscustomobject]@{Id=$p.AttackSurfaceReductionRules_Ids[$_];Action=$p.AttackSurfaceReductionRules_Actions[$_]}} | Format-Table -AutoSize
+   ```
+
+3. **Back it out.** Nothing changed. If you set a rule locally for an investigation, Learn's cmdlet puts it back in audit, and Intune overwrites it at the next refresh anyway:
+
+   ```powershell
+   Add-MpPreference -AttackSurfaceReductionRules_Ids <rule GUID> -AttackSurfaceReductionRules_Actions AuditMode
+   ```
+
+## Verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| Rule modes | `0` off, `1` block, `2` audit, `5` not configured, `6` warn | [^xdr04-configure] |
+| OMA-URI | `./Vendor/MSFT/Policy/Config/Defender/AttackSurfaceReductionRules`, string, `<rule GUID>=<mode>` per line in Intune | [^xdr04-configure] |
+| Device groups only | Defender for Endpoint management supports device objects; assign to Entra device groups | [^xdr04-configure] |
+| Known server issue | A rule on Windows Server can show compliant without being enforced | [^xdr04-configure] |
+| Warn | Windows 10 1809 or later, platform 4.18.2008.9, engine 1.1.17400.5; not in Configuration Manager; the LSASS and Office code-injection rules don't support it; Unblock needs administrator approval from platform 4.18.26060 | [^xdr04-overview] |
+| GUIDs and action types | The fourteen rules in `config/asr-rules.json`, for example `d4f940ab-401b-4efc-aadc-ad5f3c50688a`, `AsrOfficeChildProcessAudited` and `AsrOfficeChildProcessBlocked` | [^xdr04-reference] |
+| Windows Server support | *Block Win32 API calls from Office macros* is listed n/a on Windows Server; the PSExec and WMI rule shouldn't be enabled where Configuration Manager manages the device | [^xdr04-reference] |
+| Events | `DeviceEvents`, `ActionType` starting `Asr`, throttled to unique processes each hour; 30 days in advanced hunting | [^xdr04-monitor] |
+
+Rows 1 to 5 and 8 were read for the guide on November 11, 2026; the GUIDs, action types and server support were read again on the rules reference on November 17, 2026, and match Book 05's ES-005 table.
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| Each rule's stage on each ring, with the date it entered it (`matrix.csv`, `readiness.csv`) | CM-7 (least functionality) | KSI-SVC-ACM | The platform owner; the assessor reads the matrix |
+| The value each ring is set to, now and next (`oma-uri/`) | CM-6 (configuration settings) | KSI-SVC-ACM | The change board, with the change record |
+| What devices enforce, and blocks per rule (`device-checks.csv`, `readiness.csv` `Blocks`) | SI-3 (malicious code protection) | KSI-MLA-EVC | The SOC lead, weekly |
+| Exclusions with owners and expiry; expired ones listed (`exclusions-expired.csv`) | CM-6 | KSI-MLA-EVC | The policy owner, quarterly |
+
+The pairs are the guide's G4 row. KSIs are FedRAMP 20x indicators for cloud service providers; the agency lines its evidence up with them and doesn't report them. The kit's records support these controls; the assessor decides them *(design guidance)*.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| A server reports compliant but enforces nothing | The matrix says audit; nothing is logged | The device check reads `Get-MpPreference` on the server |
+| A rule moved on a calendar, not on its hits | A line-of-business app breaks in block | Readiness needs every audit hit dispositioned |
+| A rule without warn put in warn | Acts as block on older Windows; plan and reality differ | A plan error |
+| A rule set in Intune and Group Policy | Group Policy wins by default; the Intune value silently loses | One control plane per setting (Book 05, Chapter 07); the device check shows the value that won |
+| A folder exclusion that's too wide | A whole tree escapes the rule | Prefer a file path; a folder must end in `\`, and the register names an owner and expiry |
+| Warn treated as a bypass | Help-desk volume, then a rollback | Brief the help desk; repeated needs become per-rule exclusions |
+
+## Checklist
+
+- [ ] The plan matches each ring's Intune policy, with the change record that set it.
+- [ ] No rule without warn is planned in warn.
+- [ ] Every audit hit has an exclusion, a fix or a decision before its rule moves.
+- [ ] Every server's device check matches its plan.
+- [ ] No expired exclusion remains in the register.
+- [ ] The run folder is recorded as evidence (Chapter 08).
+
+::: {.callout-tip}
+## Continue the book
+[← Previous: Chapter 03 — Prevention Through Audit](03-prevention-through-audit.md) · [Workbook index](index.md) · [Next: Chapter 05 — Exposure and Incidents →](05-exposure-and-incidents.md)
+:::
+
+[^xdr04-configure]: Microsoft Learn, "Configure attack surface reduction (ASR) rules and exclusions," <https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-configure> (accessed November 11, 2026; carried from the guide's verification log).
+[^xdr04-overview]: Microsoft Learn, "Attack surface reduction (ASR) rules overview," <https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-overview> (accessed November 11, 2026; carried).
+[^xdr04-reference]: Microsoft Learn, "ASR rules reference" (operating system and deployment method support; each rule's GUID and advanced hunting action types), <https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-reference> (accessed November 17, 2026).
+[^xdr04-monitor]: Microsoft Learn, "Monitor attack surface reduction (ASR) rule activity," <https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-monitor> (accessed November 11, 2026; carried).

@@ -1,0 +1,58 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#microsoft.graph.security.huntingQueryResults",
+  "schema": [
+    {
+      "name": "AccountObjectId",
+      "type": "String"
+    },
+    {
+      "name": "AccountUpn",
+      "type": "String"
+    },
+    {
+      "name": "Sources",
+      "type": "Int64"
+    },
+    {
+      "name": "SourceList",
+      "type": "Dynamic"
+    },
+    {
+      "name": "Alerts",
+      "type": "Int64"
+    }
+  ],
+  "results": [
+    {
+      "AccountObjectId": "11111111-0000-0000-0000-000000000001",
+      "AccountUpn": "j.rivera@contosoexample.onmicrosoft.com",
+      "Sources": 3,
+      "SourceList": [
+        "Microsoft Defender for Endpoint",
+        "Microsoft Defender for Identity",
+        "Microsoft Defender for Office 365"
+      ],
+      "Alerts": 5
+    },
+    {
+      "AccountObjectId": "11111111-0000-0000-0000-000000000002",
+      "AccountUpn": "a.chen@contosoexample.onmicrosoft.com",
+      "Sources": 2,
+      "SourceList": [
+        "Microsoft Defender for Endpoint",
+        "Microsoft Defender for Cloud Apps"
+      ],
+      "Alerts": 2
+    },
+    {
+      "AccountObjectId": "11111111-0000-0000-0000-000000000003",
+      "AccountUpn": "breakglass01@contosoexample.onmicrosoft.com",
+      "Sources": 2,
+      "SourceList": [
+        "Microsoft Defender for Identity",
+        "Microsoft Defender for Cloud Apps"
+      ],
+      "Alerts": 2
+    }
+  ]
+}

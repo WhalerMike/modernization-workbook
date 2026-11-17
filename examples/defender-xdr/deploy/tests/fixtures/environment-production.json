@@ -1,0 +1,16 @@
+{
+  "_comment": "Fixture mode for the production environment: the installed modules, the Graph session (environment, tenant, granted scopes) and the folder the reads come from. Fictional.",
+  "modules": {
+    "Microsoft.Graph.Authentication": true
+  },
+  "graphContext": {
+    "Environment": "Global",
+    "TenantId": "00000000-0000-0000-0000-00000000c0de",
+    "Scopes": [
+      "SecurityIncident.Read.All",
+      "ThreatHunting.Read.All",
+      "CustomDetection.ReadWrite.All"
+    ]
+  },
+  "readsFrom": "../../../tests/fixtures/graph"
+}

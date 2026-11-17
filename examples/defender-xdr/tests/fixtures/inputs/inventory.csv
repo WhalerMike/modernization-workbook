@@ -1,0 +1,16 @@
+DeviceName,Ring,Kind,Role,Owner,InScope,DeviceGroup,ManagedBy
+WKS-R0-01,ring0,workstation,,Endpoint engineering (example),yes,Ring0-Workstations,Intune
+WKS-R0-02,ring0,workstation,,Endpoint engineering (example),yes,Ring0-Workstations,Intune
+WKS-R1-01,ring1,workstation,,Pilot group (example),yes,Ring1-Pilot,Intune
+WKS-R1-02,ring1,workstation,,Pilot group (example),yes,Ring1-Pilot,Intune
+WKS-R1-03,ring1,workstation,,Pilot group (example),yes,Ring1-Pilot,Intune
+WKS-R2-01,ring2,workstation,,Early adopters (example),yes,Ring2-Workstations,Intune
+WKS-R2-02,ring2,workstation,,Early adopters (example),yes,Ring2-Workstations,ConfigMgr
+WKS-R2-03,ring2,workstation,,Early adopters (example),yes,Ring2-Workstations,Intune
+WKS-R3-01,ring3,workstation,,Field office (example),yes,Ring3-Workstations,Intune
+WKS-R3-02,ring3,workstation,,Field office (example),yes,Ring3-Workstations,Intune
+LAB-KIOSK01,ring3,workstation,,Field office (example),yes,Ring3-Workstations,Intune
+SRV-APP01,servers,server,app,Server operations (example),yes,Servers,Intune
+SRV-FILE01,servers,server,file,Server operations (example),yes,Servers,Intune
+SRV-LEGACY01,servers,server,app,Server operations (example),yes,Servers,Intune
+WKS-TEST-99,ring0,workstation,,Endpoint engineering (example),no,Ring0-Workstations,Intune

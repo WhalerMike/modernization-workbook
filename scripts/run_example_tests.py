@@ -49,6 +49,8 @@ ALSO = {
     # The task catalog reads its vocabulary from the integration kit's finding_contract.py, and the
     # provider notices router mirrors its priorities and windows (a test reads the file).
     "servicenow-sailpoint": ["ttm-task-catalog", "provider-notices"],
+    # A Defender XDR exposure test reads the Zero Trust Assessment results kit's taxonomy.
+    "zta-results": ["defender-xdr"],
 }
 
 # Kit -> (test files that need Windows, relative to the kit; why).

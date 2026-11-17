@@ -1,7 +1,7 @@
 ---
 title: "Learning path: Defender XDR Engineering and Operations"
 subtitle: "Five modules: architecture, access and onboarding; prevention and Attack Surface Reduction; exposure and incidents; hunting, detections as code and identity signals; and automation, operations and evidence, each with a lab in your own test tenant"
-description: "A learning path in five modules for endpoint engineers, Intune and Defender operators, SOC analysts and detection engineers, the policy owner and ISSO reviewers, built from the Defender XDR implementation guide: unified RBAC roles through PIM, the Graph read path in the tenant's own cloud and proof that the sensor is on and healthy; antivirus, firewall, tamper protection, network protection and controlled folder access through audit, and Attack Surface Reduction through audit, warn and block; vulnerability work without Security Exposure Management, which isn't available in GCC, and incidents triaged to a severity table; custom detections kept in a repository and deployed through the Microsoft Graph API, and identity and cloud-app signals in one query; automation levels matched to the response ladder, and the monthly evidence run. Each module has a knowledge check and a lab that runs the guide's own Validate commands in a test tenant. There is no kit and no fixture lab yet."
+description: "A learning path in five modules for endpoint engineers, Intune and Defender operators, SOC analysts and detection engineers, the policy owner and ISSO reviewers, built from the Defender XDR implementation guide: unified RBAC roles through PIM, the Graph read path in the tenant's own cloud and proof that the sensor is on and healthy; antivirus, firewall, tamper protection, network protection and controlled folder access through audit, and Attack Surface Reduction through audit, warn and block; vulnerability work without Security Exposure Management, which isn't available in GCC, and incidents triaged to a severity table; custom detections kept in a repository and deployed through the Microsoft Graph API, and identity and cloud-app signals in one query; automation levels matched to the response ladder, and the monthly evidence run. Each module has a knowledge check, a Lab 1 that runs the developer workbook's checks on fixtures with no tenant, and a Lab 2 that runs the guide's own Validate commands in a test tenant."
 doc-type: training-path
 research-status: draft
 research-type: training module
@@ -17,7 +17,7 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: pending
-last-reviewed: 2026-11-13
+last-reviewed: 2026-11-17
 ---
 # Learning path: Defender XDR Engineering and Operations {.unnumbered}
 
@@ -59,23 +59,23 @@ When you finish the path, you'll be able to:
 
 Work through them in order.
 
-| # | Module | Guide steps | Lab | Time |
+| # | Module | Guide gates | Workbook chapters | Time |
 |---|---|---|---|---|
-| 1 | [Architecture, access and onboarding](01-architecture-access-and-onboarding.md) | 1 and 2 | Lab 2 | 40 min, plus Lab 2 |
-| 2 | [Prevention and Attack Surface Reduction](02-prevention-and-attack-surface-reduction.md) | 3 and 4 | Lab 2 | 50 min, plus Lab 2 |
-| 3 | [Exposure and incidents](03-exposure-and-incidents.md) | 5 and 6 | Lab 2 | 35 min, plus Lab 2 |
-| 4 | [Hunting, detections as code and identity signals](04-hunting-detections-and-identity-signals.md) | 7 and 8 | Lab 2 | 45 min, plus Lab 2 |
-| 5 | [Automation, operations and evidence](05-automation-operations-and-evidence.md) | 9 and 10 | Lab 2 | 40 min, plus Lab 2 |
+| 1 | [Architecture, access and onboarding](01-architecture-access-and-onboarding.md) | G1, G2 | [01](../../project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.md), [02](../../project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.md) | 40 min, plus the labs |
+| 2 | [Prevention and Attack Surface Reduction](02-prevention-and-attack-surface-reduction.md) | G3, G4 | [03](../../project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.md), [04](../../project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.md) | 50 min, plus the labs |
+| 3 | [Exposure and incidents](03-exposure-and-incidents.md) | G5, G6 | [05](../../project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.md) | 35 min, plus the labs |
+| 4 | [Hunting, detections as code and identity signals](04-hunting-detections-and-identity-signals.md) | G7, G8 | [06](../../project-plans/developer-workbooks/defender-xdr/06-detections-as-code.md), [07](../../project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.md) | 45 min, plus the labs |
+| 5 | [Automation, operations and evidence](05-automation-operations-and-evidence.md) | G9, G10 | [07](../../project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.md), [08](../../project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.md) | 40 min, plus the labs |
 
 : The modules of the Defender XDR learning path {.striped .hover}
 
 **Total time:** about 3½ hours of reading and knowledge checks. The labs aren't counted: a policy change takes until the next device check-in, and an audit phase runs for weeks.
 
-**Labs.** This guide has no kit in `examples/` and no developer workbook yet, so there is no Lab 1 on fixtures. Each module's lab is a Lab 2: the guide's own **Validate** commands and read-only queries, run in a test tenant, every step a copy-paste command. The authors haven't run them; the expected result each step states is the one the guide and Microsoft Learn give, not captured output. Where a step changes something, it keeps the guide's change safety: a ring 0 test device, audit before block, and the step back. The developer workbook, with fixture labs, is planned. [The Labs page](../labs.md#xdr) lists every lab in the path.
+**Labs.** Each module has two. **Lab 1** runs the developer workbook [*Building Defender XDR*](../../project-plans/developer-workbooks/defender-xdr/index.md)'s chapter labs on the kit's fictional fixtures, with no tenant; the module links them rather than repeating them. **Lab 2** runs the guide's own **Validate** commands and read-only queries in a test tenant, every step a copy-paste command. The authors haven't run the Lab 2s; the expected result each step states is the one the guide and Microsoft Learn give, not captured output. Where a step changes something, it keeps the guide's change safety: a ring 0 test device, audit before block, and the step back. [The Labs page](../labs.md#xdr) lists every lab in the path.
 
 ## How this path fits {#xdr-fits}
 
-The guide is finished when it has [four pieces](https://github.com/WhalerMike/modernization-workbook/blob/main/CONTRIBUTING.md#an-implementation-guide-is-finished-when-it-has-all-four-pieces): the guide, a narrated deck series, a developer workbook and a training path. This path is the training piece. The guide and each module have a narrated deck; the developer workbook is planned.
+The guide is finished when it has [four pieces](https://github.com/WhalerMike/modernization-workbook/blob/main/CONTRIBUTING.md#an-implementation-guide-is-finished-when-it-has-all-four-pieces): the guide, a narrated deck series, a developer workbook and a training path. This path is the training piece. The guide and each module have a narrated deck; the developer workbook is [*Building Defender XDR*](../../project-plans/developer-workbooks/defender-xdr/index.md), a draft, whose kit is `examples/defender-xdr`.
 
 ::: {#xdr-modules}
 :::

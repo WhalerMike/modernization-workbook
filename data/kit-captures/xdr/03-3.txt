@@ -1,0 +1,13 @@
+PS> Import-Csv out/prevention/device-checks.csv | Where-Object DeviceName -EQ 'SRV-FILE01' | Format-Table Check, Expected, Actual, Status -AutoSize
+Check                          Expected   Actual     Status
+-----                          --------   ------     ------
+RealTimeProtection             True       True       Pass
+TamperProtection               True       True       Pass
+AntivirusMode                  Normal     Normal     Pass
+NetworkProtection              2 (audit)  2 (audit)  Pass
+ControlledFolderAccess         2 (audit)  2 (audit)  Pass
+NetworkProtectionOnServer      1          1          Pass
+DatagramProcessing (file role) 0          1          Fail
+Firewall Domain                True/Block True/Block Pass
+Firewall Private               True/Block True/Block Pass
+Firewall Public                True/Block True/Block Pass

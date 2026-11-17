@@ -1,0 +1,270 @@
+---
+title: "Chapter 03 — Prevention Through Audit"
+description: "Antivirus, tamper protection, the host firewall, network protection and controlled folder access, checked on each device against the stage its ring is at: the device-state files from Chapter 02 compared with the agency's prevention plan (audit or block per ring), with the Windows Server settings Learn names for network protection and high-UDP roles, and the guide's audit and block event query for the fleet. Every mismatch is a drift row; a device with no state file is named. Lab 1 against fixtures; Lab 2 on a test device in a test tenant."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-defender-xdr
+part: How
+series-order: 3
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 03 — Prevention Through Audit
+
+*A setting in a policy protects nothing until the device enforces it. The check is on the device, against the stage the ring is meant to be at.*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [G3 Endpoint prevention](../../../books/guides/defender-xdr-implementation.md#step-3-endpoint-prevention). You start with the guide's three device commands and its event query, and what running them by hand leaves to you. Then you read how the kit compares every device's state with its ring's stage. Lab 1 runs the check on eleven fictional devices and finds three drifts. Lab 2 runs it on one test device.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can say, for each ring, whether its devices enforce the prevention settings at the stage the change record set, and list every device that doesn't.
+
+**Audience.** Developers who maintain the kit, the platform owner who owns G3, and the SOC, which reads the audit and block events weekly. You should have run Chapter 02's Lab 1. The setting values live in Book 05's policies ES-001 and ES-003 ([Chapter 08](../../../books/b05-devices/08-gpo-to-intune-policy-migration.md#es-001-antivirus)); this chapter checks them, it doesn't repeat them.
+
+## Start with Microsoft Learn's commands
+
+### What the guide and Learn give you
+
+The guide's Validate step runs three commands on a device: `Get-MpComputerStatus` for tamper and real-time protection (`True` when on),[^xdr03-tamper] `Get-MpPreference` for network protection (0 off, 1 block, 2 audit), the two Windows Server settings and controlled folder access (0 off, 1 block, 2 audit, 3 and 4 the disk-only modes),[^xdr03-np] [^xdr03-cfa] and `Get-NetFirewallProfile -PolicyStore ActiveStore` for the firewall as enforced.[^xdr03-fw] Learn says network protection needs Defender Antivirus in active mode,[^xdr03-np-eval] needs `AllowNetworkProtectionOnWinServer` on Windows Server 2019 and later, and needs `AllowDatagramProcessingOnWinServer` false on high-UDP roles: domain controllers, DNS, file and SQL Server.[^xdr03-np] Across the fleet, the guide's query counts `ExploitGuardNetworkProtectionAudited` and `Blocked`, `ControlledFolderAccessViolationAudited` and `Blocked`, and `TamperingAttempt` in `DeviceEvents` over 7 days.[^xdr03-np-hunt] [^xdr03-cfa-mon]
+
+### What it leaves to you
+
+Each row is pinned by a test in `tests/Checks.Tests.ps1`, *Chapter 03*.
+
+| What Learn's commands give | Why it isn't enough | What the kit adds |
+|---|---|---|
+| Values on one device at a time | Someone has to know what each ring should read | The agency's prevention plan names each ring's stage; each device is compared with its own ring's |
+| A number for each mode | `2` reads as fine on a ring that should be in block | Each check prints expected and actual as number and name: `2 (audit)` |
+| Server settings in prose | A file server with datagram processing on looks like any other | The inventory's `Role` column: the datagram check runs on `dc`, `dns`, `file` and `sql` servers only |
+| The antivirus mode in a column | Passive mode silently disables network protection | `AntivirusMode` must be `Normal` |
+| A fleet query | Counts, not devices | The query is filed and summarized; the drift list names the devices |
+| — | A device nobody collected looks compliant | Inventory devices with no state file are listed |
+
+**The verdict.** Keep Learn's commands as the collector (Chapter 02). Compare their output with the plan in code, because a value is only right or wrong against the stage its ring is at.
+
+## The code
+
+`Invoke-XdrPrevention.ps1` (`Invoke-XdrPreventionCheck`) reads the device-state folder, the inventory and the prevention plan named in the settings, then runs `Get-XdrPreventionFinding` for each in-scope device:
+
+| Check | Expected |
+|---|---|
+| `RealTimeProtection`, `TamperProtection` | `True` |
+| `AntivirusMode` | `Normal` (active mode) |
+| `NetworkProtection`, `ControlledFolderAccess` | The ring's stage, from the plan: `1 (block)` or `2 (audit)` |
+| `NetworkProtectionOnServer` | `1`, on servers |
+| `DatagramProcessing (<role> role)` | `0`, on servers whose role is high-UDP |
+| `Firewall <profile>` | `True/Block` for each profile |
+
+It runs the guide's event query and writes `device-checks.csv`, `drift.csv`, `events.csv`, `summary.json`, `raw/` and the manifest. Rings move from audit to block by changing the plan file, under the change record that changes the Intune policy; the kit reads the plan, it never changes a policy.
+
+::: {.callout-important}
+## Illustrative code
+The fixtures are eleven fictional device-state files. On a real fleet, collect a sample per ring per site (the guide's post-change validation), not every device every week; the coverage check (Chapter 02) is the fleet-wide view.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/defender-xdr`.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/defender-xdr`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Read the plan the devices are checked against
+Get-Content tests/fixtures/inputs/prevention-plan.json
+
+# Step 2: Run the prevention check
+./Invoke-XdrPrevention.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/prevention -AsOf 2026-11-16T12:00:00Z
+
+# Step 3: Read every check on one device
+Import-Csv out/prevention/device-checks.csv | Where-Object DeviceName -EQ 'SRV-FILE01' | Format-Table Check, Expected, Actual, Status -AutoSize
+
+# Step 4: Read the week's events
+Import-Csv out/prevention/events.csv | Format-Table -AutoSize
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Read the plan the devices are checked against:**
+
+   ```powershell
+   Get-Content tests/fixtures/inputs/prevention-plan.json
+   ```
+
+   <!-- capture:begin 03-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/03-1.txt))](captures/03-1.png){.lightbox fig-alt="Terminal window showing Get-Content tests/fixtures/inputs/prevention-plan.json and what it printed"}
+
+   <!-- capture:end -->
+
+   Rings 0 and 1 are in block; rings 2, 3 and the servers are still in audit.
+
+2. **Run the prevention check:**
+
+   ```powershell
+   ./Invoke-XdrPrevention.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/prevention -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 03-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/03-2.txt))](captures/03-2.png){.lightbox fig-alt="Terminal window showing ./Invoke-XdrPrevention.ps1 -SettingsPath tests/fixtures/settings.lab.json -Fi… and what it printed"}
+
+   <!-- capture:end -->
+
+   Three drifts. `WKS-R1-02` has tamper protection off. `WKS-R2-01` has network protection off, though its ring should be auditing. `SRV-FILE01`, a file server, has datagram processing on, which Learn says to turn off on high-UDP roles. Three inventory devices have no state file: the two never onboarded and the excepted kiosk.
+
+3. **Read every check on one device:**
+
+   ```powershell
+   Import-Csv out/prevention/device-checks.csv | Where-Object DeviceName -EQ 'SRV-FILE01' | Format-Table Check, Expected, Actual, Status -AutoSize
+   ```
+
+   <!-- capture:begin 03-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/03-3.txt))](captures/03-3.png){.lightbox fig-alt="Terminal window showing Import-Csv out/prevention/device-checks.csv | Where-Object DeviceName -EQ 'SR… and what it printed"}
+
+   <!-- capture:end -->
+
+   A server gets the two server checks the workstations don't.
+
+4. **Read the week's events:**
+
+   ```powershell
+   Import-Csv out/prevention/events.csv | Format-Table -AutoSize
+   ```
+
+   <!-- capture:begin 03-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/03-4.txt))](captures/03-4.png){.lightbox fig-alt="Terminal window showing Import-Csv out/prevention/events.csv | Format-Table -AutoSize and what it printed"}
+
+   <!-- capture:end -->
+
+   One tampering attempt. The SOC reviews it with the drift list: a device with tamper protection off and a tampering attempt in the same week is an incident, not a ticket.
+
+**Expected result:** 91 checks on 11 devices, 3 drifts. Delete `out` when you're done:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 03-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/03-5.txt))](captures/03-5.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test device in a test tenant
+
+Use a ring 0 test device in a test tenant, never production, with the antivirus and Attack Surface Reduction policies assigned as the guide's G3 describes, and network protection in audit. Work in `examples/defender-xdr`. You'll replace: `<tenant-id>`, `<settings-file>` (with `inputs.deviceStates` naming `<output-folder>/devices` and `inputs.prevention` naming your plan), and `<output-folder>`.
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/defender-xdr`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: On the test device, in an elevated PowerShell 7 window, collect its state
+./Get-XdrDeviceState.ps1 -OutputPath <output-folder>/devices
+
+# Step 2: On your workstation, run the prevention check live
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes ThreatHunting.Read.All
+./Invoke-XdrPrevention.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/prevention
+
+# Step 4: Back it out
+Remove-Item <output-folder>/devices/*.json
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **On the test device, in an elevated PowerShell 7 window, collect its state:**
+
+   ```powershell
+   ./Get-XdrDeviceState.ps1 -OutputPath <output-folder>/devices
+   ```
+
+2. **On your workstation, run the prevention check live:**
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes ThreatHunting.Read.All
+   ./Invoke-XdrPrevention.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/prevention
+   ```
+
+3. **Test network protection the way Learn does.** In a browser other than Edge, on the test device, open `https://smartscreentestratings2.net`. In audit mode the site opens and event 1125 is logged; in block mode it's blocked and event 1126 is logged.[^xdr03-np-eval] Run the check again the next day: the audited event appears in `events.csv`.
+
+4. **Back it out.** Nothing changed on the device. Delete the state file if the device leaves ring 0:
+
+   ```powershell
+   Remove-Item <output-folder>/devices/*.json
+   ```
+
+## Verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| Tamper and real-time protection | `Get-MpComputerStatus`: `IsTamperProtected`, `RealTimeProtectionEnabled`; tamper protection is turned off only from its console, or briefly in troubleshooting mode | [^xdr03-tamper] |
+| Network protection modes | 0 off, 1 block, 2 audit; `AllowNetworkProtectionOnWinServer` on Windows Server 2019 and later; `AllowDatagramProcessingOnWinServer` false on domain controllers, DNS, file and SQL Server | [^xdr03-np] |
+| Network protection prerequisites and test | Active mode, behavior monitoring, cloud protection; test site `smartscreentestratings2.net`; events 1125 (audit) and 1126 (block) | [^xdr03-np-eval] |
+| Controlled folder access modes | 0 off, 1 block, 2 audit, 3 and 4 disk modification only | [^xdr03-cfa] |
+| Event action types | `ExploitGuardNetworkProtectionAudited`, `...Blocked`; `ControlledFolderAccessViolationAudited`, `...Blocked`; `TamperingAttempt` | [^xdr03-np-hunt] [^xdr03-cfa-mon] [^xdr03-tamper-ov] |
+| Firewall as enforced | `Get-NetFirewallProfile -PolicyStore ActiveStore` | [^xdr03-fw] |
+
+Read for the guide on November 11, 2026. One value is the kit's own and *not yet specified* here: that `Get-MpComputerStatus` reports active mode as `AMRunningMode` `Normal`. It is in the [research gaps](_verification/research-gaps.md); check it on a test device before relying on the `AntivirusMode` row.
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| Antivirus and real-time protection on, in active mode, on every checked device (`device-checks.csv`) | SI-3 (malicious code protection) | KSI-SVC-ACM | The platform owner |
+| The host firewall on with inbound blocked (`Firewall` rows) | SC-7 (boundary protection) | KSI-CNA-EIS | The platform owner |
+| Network protection and controlled folder access at the ring's stage (`drift.csv`) | CM-6 (configuration settings) | KSI-SVC-ACM | The platform owner; drift reviewed weekly |
+| Tamper protection on; tampering attempts counted (`TamperProtection` rows, `events.csv`) | SI-7 (integrity) | KSI-MLA-EVC | The SOC |
+
+The pairs are the guide's G3 row. KSIs are FedRAMP 20x indicators for cloud service providers; the agency lines its evidence up with them and doesn't report them. The kit's records support these controls; the assessor decides them *(design guidance)*.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| A ring moved to block in Intune but not in the plan | The check reports drift on every device | Change the plan file with the same change record |
+| Defender Antivirus in passive mode | Network protection doesn't run | `AntivirusMode` check |
+| Datagram processing on a domain controller | Learn's documented performance risk on high-UDP roles | `DatagramProcessing` on `dc`, `dns`, `file`, `sql` |
+| Tamper protection turned off locally | Settings drift silently | `TamperProtection` row; tampering attempts in `events.csv` |
+| No state file for a device | It looks compliant by absence | Inventory devices with no state file are listed |
+
+## Checklist
+
+- [ ] The prevention plan matches the Intune policy for each ring.
+- [ ] Every ring has at least one sampled device state this week.
+- [ ] Every drift row has a ticket; a tamper drift with a tampering attempt goes to the SOC.
+- [ ] Network protection's test site was blocked on a ring in block.
+- [ ] The run folder is recorded as evidence (Chapter 08).
+
+::: {.callout-tip}
+## Continue the book
+[← Previous: Chapter 02 — Onboarding Coverage and Sensor Health](02-onboarding-coverage-and-sensor-health.md) · [Workbook index](index.md) · [Next: Chapter 04 — Attack Surface Reduction: Audit, Warn, Block →](04-attack-surface-reduction-audit-warn-block.md)
+:::
+
+[^xdr03-tamper]: Microsoft Learn, "Configure tamper protection for Microsoft Defender Antivirus on Windows," <https://learn.microsoft.com/defender-endpoint/tamper-protection-windows-configure> (accessed November 11, 2026; carried from the guide's verification log).
+[^xdr03-tamper-ov]: Microsoft Learn, "Tamper protection overview," section "Query tampering attempts with advanced hunting," <https://learn.microsoft.com/defender-endpoint/tamper-protection-overview> (accessed November 11, 2026; carried).
+[^xdr03-np]: Microsoft Learn, "Configure network protection in Microsoft Defender Antivirus," <https://learn.microsoft.com/defender-endpoint/enable-network-protection> (accessed November 11, 2026; carried).
+[^xdr03-np-eval]: Microsoft Learn, "Evaluate network protection," <https://learn.microsoft.com/defender-endpoint/evaluate-network-protection> (accessed November 11, 2026; carried).
+[^xdr03-np-hunt]: Microsoft Learn, "Use network protection to help prevent connections to malicious or suspicious sites," sections "Advanced hunting" and "Review network protection events in Windows Event Viewer," <https://learn.microsoft.com/defender-endpoint/network-protection> (accessed November 11, 2026; carried).
+[^xdr03-cfa]: Microsoft Learn, "Configure controlled folder access (CFA)," <https://learn.microsoft.com/defender-endpoint/controlled-folder-access-configure> (accessed November 11, 2026; carried).
+[^xdr03-cfa-mon]: Microsoft Learn, "Monitor controlled folder access (CFA) activity," <https://learn.microsoft.com/defender-endpoint/controlled-folder-access-monitor> (accessed November 11, 2026; carried).
+[^xdr03-fw]: Microsoft Learn, NetSecurity module reference, `Get-NetFirewallProfile`, <https://learn.microsoft.com/powershell/module/netsecurity/get-netfirewallprofile> (accessed November 11, 2026; carried).

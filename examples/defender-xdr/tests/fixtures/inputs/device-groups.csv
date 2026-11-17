@@ -1,0 +1,6 @@
+Name,Rank,Kind,RemediationLevel,ExceptionId
+Servers,1,server,Semi - require approval for core folders,
+Ring0-Workstations,2,workstation,Full - remediate threats automatically,
+Ring1-Pilot,3,pilot,Semi - require approval for all folders,
+Ring2-Workstations,4,workstation,Full - remediate threats automatically,
+Ring3-Workstations,5,workstation,Semi - require approval for core folders,

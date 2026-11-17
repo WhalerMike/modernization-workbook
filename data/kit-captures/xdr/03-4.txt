@@ -1,0 +1,8 @@
+PS> Import-Csv out/prevention/events.csv | Format-Table -AutoSize
+ActionType                             Events Devices
+----------                             ------ -------
+ExploitGuardNetworkProtectionAudited   12     4
+ExploitGuardNetworkProtectionBlocked   3      2
+ControlledFolderAccessViolationAudited 7      3
+ControlledFolderAccessViolationBlocked 1      1
+TamperingAttempt                       1      1

@@ -1,0 +1,25 @@
+{
+  "_comment": "The stage each ring is at for network protection and controlled folder access.",
+  "rings": {
+    "ring0": {
+      "networkProtection": "<audit|block>",
+      "controlledFolderAccess": "<audit|block>"
+    },
+    "ring1": {
+      "networkProtection": "<audit|block>",
+      "controlledFolderAccess": "<audit|block>"
+    },
+    "ring2": {
+      "networkProtection": "<audit|block>",
+      "controlledFolderAccess": "<audit|block>"
+    },
+    "ring3": {
+      "networkProtection": "<audit|block>",
+      "controlledFolderAccess": "<audit|block>"
+    },
+    "servers": {
+      "networkProtection": "<audit|block>",
+      "controlledFolderAccess": "<audit|block>"
+    }
+  }
+}

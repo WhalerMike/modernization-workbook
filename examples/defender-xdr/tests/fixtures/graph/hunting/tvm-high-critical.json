@@ -1,0 +1,48 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#microsoft.graph.security.huntingQueryResults",
+  "schema": [
+    {
+      "name": "SoftwareVendor",
+      "type": "String"
+    },
+    {
+      "name": "SoftwareName",
+      "type": "String"
+    },
+    {
+      "name": "RecommendedSecurityUpdate",
+      "type": "String"
+    },
+    {
+      "name": "CVEs",
+      "type": "Int64"
+    },
+    {
+      "name": "Devices",
+      "type": "Int64"
+    }
+  ],
+  "results": [
+    {
+      "SoftwareVendor": "fabrikam",
+      "SoftwareName": "fabrikam_pdf_viewer",
+      "RecommendedSecurityUpdate": "Fabrikam PDF Viewer 24.3 (example)",
+      "CVEs": 4,
+      "Devices": 9
+    },
+    {
+      "SoftwareVendor": "contoso",
+      "SoftwareName": "contoso_lob_client",
+      "RecommendedSecurityUpdate": "Contoso LOB Client 8.2 (example)",
+      "CVEs": 2,
+      "Devices": 5
+    },
+    {
+      "SoftwareVendor": "microsoft",
+      "SoftwareName": "windows_server_2019",
+      "RecommendedSecurityUpdate": "November 2026 security update (example)",
+      "CVEs": 3,
+      "Devices": 1
+    }
+  ]
+}

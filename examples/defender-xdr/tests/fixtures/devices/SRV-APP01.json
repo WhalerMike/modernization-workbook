@@ -1,0 +1,45 @@
+{
+  "deviceName": "SRV-APP01.contoso.example",
+  "os": "Windows Server 2022 Datacenter",
+  "isServer": true,
+  "sense": {
+    "status": "Running"
+  },
+  "onboardingState": 1,
+  "senseVersion": "10.8760.26100.2314",
+  "computerStatus": {
+    "IsTamperProtected": true,
+    "RealTimeProtectionEnabled": true,
+    "AMRunningMode": "Normal",
+    "AMProductVersion": "4.18.26060.3008"
+  },
+  "preference": {
+    "EnableNetworkProtection": 2,
+    "AllowNetworkProtectionOnWinServer": 1,
+    "AllowDatagramProcessingOnWinServer": 0,
+    "EnableControlledFolderAccess": 2,
+    "AttackSurfaceReductionRules_Ids": [],
+    "AttackSurfaceReductionRules_Actions": []
+  },
+  "firewall": [
+    {
+      "Name": "Domain",
+      "Enabled": "True",
+      "DefaultInboundAction": "Block",
+      "DefaultOutboundAction": "Allow"
+    },
+    {
+      "Name": "Private",
+      "Enabled": "True",
+      "DefaultInboundAction": "Block",
+      "DefaultOutboundAction": "Allow"
+    },
+    {
+      "Name": "Public",
+      "Enabled": "True",
+      "DefaultInboundAction": "Block",
+      "DefaultOutboundAction": "Allow"
+    }
+  ],
+  "collectedAt": "2026-11-16T11:40:00Z"
+}

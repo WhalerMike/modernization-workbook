@@ -1,0 +1,301 @@
+---
+title: "Chapter 02 — Onboarding Coverage and Sensor Health"
+description: "Proof that the Defender for Endpoint sensor is on and healthy on every Windows device that should have it: the guide's coverage query and its per-device form, run through Microsoft Graph advanced hunting and joined with the CM-8 inventory and the exception register, so every device is protected, not active, not onboarded, excepted or expired, every gap is a ticket, and a device Defender sees that the inventory doesn't is a finding; plus a read-only collector for a device's own Defender state that later chapters read. Lab 1 against fixtures; Lab 2 in a test tenant."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-defender-xdr
+part: How
+series-order: 2
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+last-reviewed: 2026-11-17
+---
+# Chapter 02 — Onboarding Coverage and Sensor Health
+
+*A policy assigned to a group says nothing about the devices that never checked in. Coverage is counted against the inventory, one device at a time.*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [G2 Endpoint onboarding](../../../books/guides/defender-xdr-implementation.md#step-2-endpoint-onboarding). You start with the guide's coverage query, which counts devices by onboarding status and sensor health, and what a count leaves to you. Then you read how the kit joins each device to the CM-8 inventory and the exception register, and the device-side collector the next chapters use. Lab 1 runs the coverage check on fixtures and reads the five tickets. Lab 2 runs it in a test tenant and collects one test device's state.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can produce the weekly coverage file the guide's evidence checklist asks for, with a ticket for every device that isn't protected and isn't excepted.
+
+**Audience.** Developers who maintain the kit, the operator who owns onboarding, and the ISSO who reconciles the CM-8 inventory. You should have run Chapter 01's Lab 1.
+
+## Start with Microsoft Learn's commands
+
+### What the guide and Learn give you
+
+On a device, Learn names the `Sense` service (`sc query sense`) and the registry value `OnboardingState` = `1` under `HKLM\SOFTWARE\Microsoft\Windows Advanced Threat Protection\Status`.[^xdr02-onboarding] Across the fleet, the guide runs this through Graph and files the result:
+
+```kusto
+DeviceInfo | where Timestamp > ago(1d) | summarize arg_max(Timestamp, *) by DeviceId | where OSPlatform startswith "Windows" | summarize Devices = count() by OnboardingStatus, SensorHealthState
+```
+
+Learn's DeviceInfo reference names `OnboardingStatus` and `SensorHealthState`,[^xdr02-deviceinfo] and the device inventory reference lists the sensor health states: Active; Inactive (no contact, typically for 7 days or more); No sensor data; Impaired communications; Misconfigured.[^xdr02-inventory] Intune's EDR onboarding status report shows the same from the Intune side ([Book 05, Chapter 10](../../../books/b05-devices/10-operating-and-evidencing-the-fleet.md#microsoft-defender-for-endpoint)).
+
+### What it leaves to you
+
+Each row is pinned by a test in `tests/Checks.Tests.ps1`, *Chapter 02*.
+
+| What the guide's query gives | Why it isn't enough | What the kit adds |
+|---|---|---|
+| A count by status and health | A count can't name the device that needs a ticket | The per-device form of the same query (`coverage-devices`), kept beside the guide's summary in `raw/` |
+| Devices Defender knows about | A device that never onboarded may not appear at all | Every device in the CM-8 inventory is classified, whether Defender reports it or not |
+| No exception handling | An isolated lab device looks like a gap forever | The exception register: a valid exception makes a device `Excepted`; a lapsed one is a ticket |
+| Defender's device names | Defender reports the FQDN; inventories often hold the short name | Names compare without the DNS suffix and case |
+| Learn's state names | Learn's pages don't list the exact strings advanced hunting returns | Only the values in `config/coverage.json` count as onboarded and active; any other value is printed as it came back, and one the kit has never seen is flagged *unrecognized* |
+| — | A device Defender sees but the inventory doesn't is a CM-8 gap | `NotInInventory`, a ticket |
+
+**The verdict.** Run the guide's query and file it. Join its per-device form to the inventory, because coverage is a fraction whose denominator is the inventory, not Defender's own list.
+
+## The code
+
+### The coverage check
+
+`Invoke-XdrCoverage.ps1` (`Invoke-XdrCoverageCheck`) runs both queries through `runHuntingQuery`, reads the inventory and the exception register named in the settings, and classifies each in-scope device:
+
+| Status | Meaning | Ticket |
+|---|---|---|
+| `Protected` | Onboarded, sensor active | No |
+| `NotActive` | Onboarded, sensor in any other state | Yes |
+| `NotOnboarded` | Not onboarded, or not reported by Defender, with no exception | Yes |
+| `Excepted` | A valid exception (approver, expiry ahead) | No |
+| `ExceptionExpired` | An exception whose expiry has passed | Yes |
+| `NotInInventory` | Reported by Defender, absent from the inventory | Yes |
+| `OutOfScope` | Marked out of scope in the inventory | No |
+
+It writes `coverage.csv`, `tickets.csv`, `by-ring.csv`, `summary.json` (with the protected-coverage share, the guide's first metric), `raw/` and the manifest. A response missing a column the kit reads fails the run, rather than reading as empty.
+
+### The device state collector
+
+`Get-XdrDeviceState.ps1` runs on one Windows device, elevated, and writes `<device>.json`: the `Sense` service status, `OnboardingState` and `MsSenseDllVersion` from the registry, `Get-MpComputerStatus` (tamper and real-time protection, antivirus mode), `Get-MpPreference` (network protection, controlled folder access, the ASR rules and their actions) and `Get-NetFirewallProfile -PolicyStore ActiveStore`. It reads only. Chapters 03, 04 and 07 compare these files with the plans; the fixtures hold eleven of them.
+
+Servers under Azure Arc that lack the `MDE.Windows` extension are found by the Microsoft automation kit's `arc-extensions` task ([`examples/ms-automation`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation)); this chapter doesn't rebuild that.
+
+### The tests
+
+`tests/Checks.Tests.ps1`, *Chapter 02* and *Device state*: the counts, each status on the fixtures, the FQDN match, an unrecognized sensor value, the guide's summary filed beside the per-device result, and the collector's reader.
+
+::: {.callout-important}
+## Illustrative code
+Lab 1 reads a fictional estate of fifteen inventory rows. The onboarding and sensor strings in `config/coverage.json` are the ones the portal shows; check them against your test tenant's `raw/coverage-devices.json` before the first live run.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/defender-xdr`.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/defender-xdr`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Run the coverage check
+./Invoke-XdrCoverage.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/coverage -AsOf 2026-11-16T12:00:00Z
+
+# Step 2: Read the tickets as the operator gets them
+Import-Csv out/coverage/tickets.csv | Format-Table DeviceName, Ring, Status, Note -AutoSize -Wrap
+
+# Step 3: Compare with the guide's own query
+(Get-Content out/coverage/raw/coverage-summary.json | ConvertFrom-Json).results | Format-Table -AutoSize
+
+# Step 4: Read one device's state, as the collector writes it
+Get-Content tests/fixtures/devices/WKS-R1-02.json
+
+# Step 5: Run the chapter's tests
+Invoke-Pester -Path tests/Checks.Tests.ps1 -Output None -PassThru | Select-Object PassedCount, FailedCount
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Run the coverage check:**
+
+   ```powershell
+   ./Invoke-XdrCoverage.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/coverage -AsOf 2026-11-16T12:00:00Z
+   ```
+
+   <!-- capture:begin 02-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/02-1.txt))](captures/02-1.png){.lightbox fig-alt="Terminal window showing ./Invoke-XdrCoverage.ps1 -SettingsPath tests/fixtures/settings.lab.json -Fixt… and what it printed"}
+
+   <!-- capture:end -->
+
+   Nine of fourteen in-scope devices are protected, 64.3 percent. Five tickets: a sensor reporting impaired communications, an inactive sensor, a device Defender can see but that was never onboarded, a server whose exception expired on October 31, and `WKS-OLD-07`, which Defender reports but the inventory doesn't list. `LAB-KIOSK01` isn't a ticket: its exception runs to February 2027.
+
+2. **Read the tickets as the operator gets them:**
+
+   ```powershell
+   Import-Csv out/coverage/tickets.csv | Format-Table DeviceName, Ring, Status, Note -AutoSize -Wrap
+   ```
+
+   <!-- capture:begin 02-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/02-2.txt))](captures/02-2.png){.lightbox fig-alt="Terminal window showing Import-Csv out/coverage/tickets.csv | Format-Table DeviceName, Ring, Status, … and what it printed"}
+
+   <!-- capture:end -->
+
+3. **Compare with the guide's own query:**
+
+   ```powershell
+   (Get-Content out/coverage/raw/coverage-summary.json | ConvertFrom-Json).results | Format-Table -AutoSize
+   ```
+
+   <!-- capture:begin 02-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/02-3.txt))](captures/02-3.png){.lightbox fig-alt="Terminal window showing (Get-Content out/coverage/raw/coverage-summary.json | ConvertFrom-Json).resul… and what it printed"}
+
+   <!-- capture:end -->
+
+   The same estate as counts. It can't say which device is `Inactive`, or that two in-scope devices aren't there at all.
+
+4. **Read one device's state, as the collector writes it:**
+
+   ```powershell
+   Get-Content tests/fixtures/devices/WKS-R1-02.json
+   ```
+
+   <!-- capture:begin 02-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/02-4.txt))](captures/02-4.png){.lightbox fig-alt="Terminal window showing Get-Content tests/fixtures/devices/WKS-R1-02.json and what it printed"}
+
+   <!-- capture:end -->
+
+   `IsTamperProtected` is `false`. Chapter 03 finds it.
+
+5. **Run the chapter's tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests/Checks.Tests.ps1 -Output None -PassThru | Select-Object PassedCount, FailedCount
+   ```
+
+   <!-- capture:begin 02-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/02-5.txt))](captures/02-5.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests/Checks.Tests.ps1 -Output None -PassThru | Select-Ob… and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** `PassedCount` 55 and `FailedCount` 0. Delete `out` when you're done:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 02-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/xdr/02-6.txt))](captures/02-6.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test tenant
+
+Use a test tenant, never production, with at least one Windows test device onboarded through Intune's EDR policy (package type *Auto from connector*), as the guide's G2 describes. Work in `examples/defender-xdr`. You'll replace: `<tenant-id>`, `<settings-file>` (with `inputs.inventory` and `inputs.exceptions` naming the test tenant's inventory and register) and `<output-folder>`.
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/defender-xdr`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Sign in and run the coverage check live
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes ThreatHunting.Read.All
+./Invoke-XdrCoverage.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/coverage
+
+# Step 2: On the test device, in an elevated PowerShell 7 window, collect its state
+./Get-XdrDeviceState.ps1 -OutputPath <output-folder>/devices
+
+# Step 3: Back it out
+Disconnect-MgGraph
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Sign in and run the coverage check live:**
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes ThreatHunting.Read.All
+   ./Invoke-XdrCoverage.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/coverage
+   ```
+
+   Open `<output-folder>/coverage/raw/coverage-devices.json` and check the `OnboardingStatus` and `SensorHealthState` strings against `config/coverage.json`. A row whose note says *unrecognized* means the strings differ; record it in the verification log before changing the configuration.
+
+2. **On the test device, in an elevated PowerShell 7 window, collect its state:**
+
+   ```powershell
+   ./Get-XdrDeviceState.ps1 -OutputPath <output-folder>/devices
+   ```
+
+   The line it prints should show `sense Running` and `onboarding state 1`.
+
+3. **Back it out.** Nothing changed. Sign out:
+
+   ```powershell
+   Disconnect-MgGraph
+   ```
+
+## Verified facts
+
+| Item | Value | Source |
+|---|---|---|
+| Sensor service and onboarding state | `sc query sense`; `OnboardingState` = `1` under `HKLM\SOFTWARE\Microsoft\Windows Advanced Threat Protection\Status` | [^xdr02-onboarding] |
+| DeviceInfo columns | `OnboardingStatus`, `SensorHealthState`, `MachineGroup`, `ExposureLevel`, `IsInternetFacing`, `AssetValue` | [^xdr02-deviceinfo] |
+| Sensor health states | Active; Inactive (typically 7 days or more without contact); No sensor data; Impaired communications; Misconfigured | [^xdr02-inventory] |
+| Supported in GCC | Windows 11, Windows 10 21H1 and later, Windows Server 2019 and 2022 and later; Windows Server 2019 needs KB4586839 before onboarding | [^xdr02-gov] |
+| Offboarding | Package expires seven days after download; never deploy onboarding and offboarding together; the device profile stays up to 180 days | [^xdr02-intune] |
+| Hunting results | `schema` and `results`; Learn's examples show column names in PascalCase and in camelCase | [^xdr02-hunting] |
+
+Rows 1 to 5 were read for the guide on November 11, 2026; row 6 on November 17, 2026. The exact strings advanced hunting returns for `OnboardingStatus` and `SensorHealthState` are *not yet specified* ([research gaps](_verification/research-gaps.md)).
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| Every in-scope device in the inventory is onboarded with an active sensor, excepted, or a ticket (Lab 1, steps 1 and 2: `coverage.csv`, `tickets.csv`) | CM-8 (system component inventory) | KSI-PIY-GIV | The operator weekly; the ISSO keeps 12 months |
+| The sensor is reporting, ring by ring (`by-ring.csv`, `summary.json`) | SI-4 (system monitoring) | KSI-MLA-OSM | The platform owner |
+| A device Defender sees that the inventory doesn't list (`NotInInventory`) | CM-8 | KSI-PIY-GIV | The ISSO, as a finding |
+
+The pairs are the guide's G2 row. KSIs are FedRAMP 20x indicators for cloud service providers; the agency lines its evidence up with them and doesn't report them. The kit's records support these controls; the assessor decides them *(design guidance)*.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| Coverage counted against Defender's own list | Devices that never onboarded are invisible | The inventory is the denominator |
+| An exception that never expires | A gap becomes permanent | `ExceptionExpired` is a ticket |
+| A state string the kit doesn't know | A healthy device reads as unhealthy, or the reverse | Only listed values count as protected; unknown values are flagged |
+| A query column renamed | The check reads every device as empty | A missing column fails the run |
+| Server onboarding assumed from the client report | Arc servers without the extension go unseen | The Microsoft automation kit's `arc-extensions` task |
+
+## Checklist
+
+- [ ] The inventory and the exception register are current and named in the settings.
+- [ ] The state strings in `config/coverage.json` match the test tenant.
+- [ ] Every ticket in `tickets.csv` has an owner within the week.
+- [ ] The guide's summary query is filed beside the per-device result.
+- [ ] The run folder is recorded as evidence (Chapter 08).
+
+::: {.callout-tip}
+## Continue the book
+[← Previous: Chapter 01 — Access and the Graph Read Path](01-access-and-the-graph-read-path.md) · [Workbook index](index.md) · [Next: Chapter 03 — Prevention Through Audit →](03-prevention-through-audit.md)
+:::
+
+[^xdr02-onboarding]: Microsoft Learn, "Troubleshoot Microsoft Defender for Endpoint onboarding issues," <https://learn.microsoft.com/defender-endpoint/troubleshoot-onboarding>, and "Onboard Windows devices ... with Configuration Manager," section "Monitor device configuration," <https://learn.microsoft.com/defender-endpoint/configure-endpoints-sccm> (accessed November 11, 2026; carried from the guide's verification log).
+[^xdr02-deviceinfo]: Microsoft Learn, "DeviceInfo," <https://learn.microsoft.com/defender-xdr/advanced-hunting-deviceinfo-table> (accessed November 11, 2026; carried from the guide's verification log).
+[^xdr02-inventory]: Microsoft Learn, "Device inventory field reference," section "Sensor health state values," <https://learn.microsoft.com/defender-endpoint/device-inventory-field-reference> (accessed November 11, 2026; carried from the guide's verification log).
+[^xdr02-gov]: Microsoft Learn, "Microsoft Defender for Endpoint for US Government customers," <https://learn.microsoft.com/defender-endpoint/gov> (accessed November 11, 2026; carried from the guide's verification log).
+[^xdr02-intune]: Microsoft Learn, "Onboard Windows devices to Microsoft Defender for Endpoint by using Microsoft Intune," <https://learn.microsoft.com/defender-endpoint/configure-endpoints-mdm> (accessed November 11, 2026; carried from the guide's verification log).
+[^xdr02-hunting]: Microsoft Learn, "security: runHuntingQuery," <https://learn.microsoft.com/graph/api/security-security-runhuntingquery?view=graph-rest-1.0> (accessed November 17, 2026).

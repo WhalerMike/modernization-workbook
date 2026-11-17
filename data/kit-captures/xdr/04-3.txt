@@ -1,0 +1,4 @@
+PS> Import-Csv out/asr/readiness.csv | Where-Object { $_.Ring -eq 'ring2' -and $_.OpenHits -ne '0' } | Format-Table Rule, AuditHits, OpenHits, Note -AutoSize -Wrap
+Rule                                                        AuditHits OpenHits Note
+----                                                        --------- -------- ----
+Block all Office applications from creating child processes 17        1        1 audit hit(s) with no exclusion or decision

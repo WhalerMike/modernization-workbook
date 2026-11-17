@@ -1,0 +1,15 @@
+{
+  "tables": [
+    "<table the query reads>"
+  ],
+  "knownBad": {
+    "timespan": "<start>/<end> within the last 30 days",
+    "minRows": 1,
+    "source": "<the synthetic event or ring 0 replay, with its change record>"
+  },
+  "knownGood": {
+    "timespan": "<start>/<end>",
+    "maxRows": 0,
+    "source": "<a quiet window>"
+  }
+}

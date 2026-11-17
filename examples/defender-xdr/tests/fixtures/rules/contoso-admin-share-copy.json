@@ -1,0 +1,47 @@
+{
+  "@odata.type": "#microsoft.graph.security.detectionRule",
+  "id": "contoso-admin-share-copy",
+  "displayName": "Executable copied to an administrative share",
+  "description": "A command copied a file to admin$ on another host.",
+  "status": "disabled",
+  "queryCondition": {
+    "queryText": "DeviceProcessEvents | where ProcessCommandLine has 'admin$' and ProcessCommandLine has 'copy'"
+  },
+  "schedule": {
+    "frequency": "PT3H"
+  },
+  "detectionAction": {
+    "alertTemplate": {
+      "title": "Executable copied to an administrative share",
+      "description": "",
+      "severity": "medium",
+      "recommendedActions": "Check the source host and the account.",
+      "entityMappings": {
+        "hosts": [
+          {
+            "deviceIdColumn": "DeviceId",
+            "nameColumn": "DeviceName"
+          }
+        ]
+      },
+      "tactics": [
+        {
+          "tactic": "LateralMovement",
+          "techniques": [
+            {
+              "technique": "T1021.002"
+            }
+          ]
+        }
+      ]
+    },
+    "automatedActions": {
+      "isolateDevices": [
+        {
+          "deviceIdColumn": "DeviceId",
+          "isolationType": "full"
+        }
+      ]
+    }
+  }
+}

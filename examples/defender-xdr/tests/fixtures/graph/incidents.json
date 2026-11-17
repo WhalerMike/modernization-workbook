@@ -1,0 +1,163 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#security/incidents(alerts())",
+  "value": [
+    {
+      "id": "1001",
+      "displayName": "Encoded PowerShell launched by an Office application on one endpoint",
+      "severity": "high",
+      "status": "active",
+      "createdDateTime": "2026-11-16T09:00:00Z",
+      "lastUpdateDateTime": "2026-11-16T09:00:00Z",
+      "assignedTo": "analyst1@contosoexample.onmicrosoft.com",
+      "classification": "unknown",
+      "determination": "unknown",
+      "incidentWebUrl": "https://security.microsoft.com/incidents/1001?tid=00000000-0000-0000-0000-00000000c0de",
+      "alerts": [
+        {
+          "id": "da100100",
+          "title": "Encoded PowerShell launched by an Office application on one endpoint (alert 1)",
+          "severity": "high",
+          "serviceSource": "microsoftDefenderForEndpoint"
+        },
+        {
+          "id": "da100101",
+          "title": "Encoded PowerShell launched by an Office application on one endpoint (alert 2)",
+          "severity": "high",
+          "serviceSource": "microsoftDefenderForEndpoint"
+        }
+      ]
+    },
+    {
+      "id": "1002",
+      "displayName": "Suspicious LSASS access on one endpoint",
+      "severity": "high",
+      "status": "active",
+      "createdDateTime": "2026-11-16T08:30:00Z",
+      "lastUpdateDateTime": "2026-11-16T08:30:00Z",
+      "assignedTo": null,
+      "classification": "unknown",
+      "determination": "unknown",
+      "incidentWebUrl": "https://security.microsoft.com/incidents/1002?tid=00000000-0000-0000-0000-00000000c0de",
+      "alerts": [
+        {
+          "id": "da100200",
+          "title": "Suspicious LSASS access on one endpoint (alert 1)",
+          "severity": "high",
+          "serviceSource": "microsoftDefenderForEndpoint"
+        },
+        {
+          "id": "da100201",
+          "title": "Suspicious LSASS access on one endpoint (alert 2)",
+          "severity": "high",
+          "serviceSource": "microsoftDefenderForEndpoint"
+        },
+        {
+          "id": "da100202",
+          "title": "Suspicious LSASS access on one endpoint (alert 3)",
+          "severity": "high",
+          "serviceSource": "microsoftDefenderForEndpoint"
+        }
+      ]
+    },
+    {
+      "id": "1003",
+      "displayName": "Unusual sign-in followed by mailbox rule creation",
+      "severity": "medium",
+      "status": "active",
+      "createdDateTime": "2026-11-16T02:00:00Z",
+      "lastUpdateDateTime": "2026-11-16T02:00:00Z",
+      "assignedTo": null,
+      "classification": "unknown",
+      "determination": "unknown",
+      "incidentWebUrl": "https://security.microsoft.com/incidents/1003?tid=00000000-0000-0000-0000-00000000c0de",
+      "alerts": [
+        {
+          "id": "da100300",
+          "title": "Unusual sign-in followed by mailbox rule creation (alert 1)",
+          "severity": "medium",
+          "serviceSource": "microsoftDefenderForEndpoint"
+        }
+      ]
+    },
+    {
+      "id": "1004",
+      "displayName": "Malware blocked on one endpoint",
+      "severity": "low",
+      "status": "resolved",
+      "createdDateTime": "2026-11-12T14:00:00Z",
+      "lastUpdateDateTime": "2026-11-12T14:00:00Z",
+      "assignedTo": "analyst2@contosoexample.onmicrosoft.com",
+      "classification": "truePositive",
+      "determination": "malware",
+      "incidentWebUrl": "https://security.microsoft.com/incidents/1004?tid=00000000-0000-0000-0000-00000000c0de",
+      "alerts": [
+        {
+          "id": "da100400",
+          "title": "Malware blocked on one endpoint (alert 1)",
+          "severity": "low",
+          "serviceSource": "microsoftDefenderForEndpoint"
+        }
+      ]
+    },
+    {
+      "id": "1005",
+      "displayName": "Suspicious file download from a cloud app",
+      "severity": "medium",
+      "status": "resolved",
+      "createdDateTime": "2026-11-10T10:00:00Z",
+      "lastUpdateDateTime": "2026-11-10T10:00:00Z",
+      "assignedTo": "analyst2@contosoexample.onmicrosoft.com",
+      "classification": "unknown",
+      "determination": "unknown",
+      "incidentWebUrl": "https://security.microsoft.com/incidents/1005?tid=00000000-0000-0000-0000-00000000c0de",
+      "alerts": [
+        {
+          "id": "da100500",
+          "title": "Suspicious file download from a cloud app (alert 1)",
+          "severity": "medium",
+          "serviceSource": "microsoftDefenderForEndpoint"
+        }
+      ]
+    },
+    {
+      "id": "1006",
+      "displayName": "Detection test on a ring 0 device",
+      "severity": "informational",
+      "status": "resolved",
+      "createdDateTime": "2026-11-03T15:00:00Z",
+      "lastUpdateDateTime": "2026-11-03T15:00:00Z",
+      "assignedTo": "analyst1@contosoexample.onmicrosoft.com",
+      "classification": "informationalExpectedActivity",
+      "determination": "securityTesting",
+      "incidentWebUrl": "https://security.microsoft.com/incidents/1006?tid=00000000-0000-0000-0000-00000000c0de",
+      "alerts": [
+        {
+          "id": "da100600",
+          "title": "Detection test on a ring 0 device (alert 1)",
+          "severity": "informational",
+          "serviceSource": "microsoftDefenderForEndpoint"
+        }
+      ]
+    },
+    {
+      "id": "1007",
+      "displayName": "Attack Surface Reduction rule blocked content from email",
+      "severity": "medium",
+      "status": "inProgress",
+      "createdDateTime": "2026-11-15T20:00:00Z",
+      "lastUpdateDateTime": "2026-11-15T20:00:00Z",
+      "assignedTo": "analyst3@contosoexample.onmicrosoft.com",
+      "classification": "unknown",
+      "determination": "unknown",
+      "incidentWebUrl": "https://security.microsoft.com/incidents/1007?tid=00000000-0000-0000-0000-00000000c0de",
+      "alerts": [
+        {
+          "id": "da100700",
+          "title": "Attack Surface Reduction rule blocked content from email (alert 1)",
+          "severity": "medium",
+          "serviceSource": "microsoftDefenderForEndpoint"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#microsoft.graph.security.huntingQueryResults",
+  "schema": [
+    {
+      "name": "ActionType",
+      "type": "String"
+    },
+    {
+      "name": "Events",
+      "type": "Int64"
+    },
+    {
+      "name": "Devices",
+      "type": "Int64"
+    }
+  ],
+  "results": [
+    {
+      "ActionType": "ExploitGuardNetworkProtectionAudited",
+      "Events": 12,
+      "Devices": 4
+    },
+    {
+      "ActionType": "ExploitGuardNetworkProtectionBlocked",
+      "Events": 3,
+      "Devices": 2
+    },
+    {
+      "ActionType": "ControlledFolderAccessViolationAudited",
+      "Events": 7,
+      "Devices": 3
+    },
+    {
+      "ActionType": "ControlledFolderAccessViolationBlocked",
+      "Events": 1,
+      "Devices": 1
+    },
+    {
+      "ActionType": "TamperingAttempt",
+      "Events": 1,
+      "Devices": 1
+    }
+  ]
+}

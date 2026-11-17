@@ -1,0 +1,39 @@
+{
+  "@odata.type": "#microsoft.graph.security.detectionRule",
+  "id": "contoso-lsass-dump-tool",
+  "displayName": "LSASS memory dump with a dump tool",
+  "description": "A process dump tool was pointed at LSASS.",
+  "status": "disabled",
+  "queryCondition": {
+    "queryText": "DeviceProcessEvents | where FileName in~ ('procdump.exe','procdump64.exe') | where ProcessCommandLine has 'lsass'"
+  },
+  "schedule": {
+    "frequency": "PT1H"
+  },
+  "detectionAction": {
+    "alertTemplate": {
+      "title": "LSASS memory dump with a dump tool",
+      "description": "A process dump tool targeted LSASS.",
+      "severity": "high",
+      "recommendedActions": "Check who ran the tool and whether credentials were exposed.",
+      "entityMappings": {
+        "hosts": [
+          {
+            "deviceIdColumn": "DeviceId",
+            "nameColumn": "DeviceName"
+          }
+        ]
+      },
+      "tactics": [
+        {
+          "tactic": "CredentialAccess",
+          "techniques": [
+            {
+              "technique": "T1003.001"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#microsoft.graph.security.huntingQueryResults",
+  "schema": [
+    {
+      "name": "ActionType",
+      "type": "String"
+    },
+    {
+      "name": "DeviceName",
+      "type": "String"
+    },
+    {
+      "name": "FolderPath",
+      "type": "String"
+    },
+    {
+      "name": "Events",
+      "type": "Int64"
+    },
+    {
+      "name": "LastSeen",
+      "type": "DateTime"
+    }
+  ],
+  "results": [
+    {
+      "actionType": "AsrOfficeChildProcessAudited",
+      "deviceName": "wks-r2-01.contoso.example",
+      "folderPath": "C:\\Program Files\\Contoso\\LobApp\\lobhelper.exe",
+      "events": 14,
+      "lastSeen": "2026-11-15T16:20:00Z"
+    },
+    {
+      "actionType": "AsrOfficeChildProcessAudited",
+      "deviceName": "wks-r2-03.contoso.example",
+      "folderPath": "C:\\Users\\Public\\Tools\\macro-runner.exe",
+      "events": 3,
+      "lastSeen": "2026-11-15T16:20:00Z"
+    },
+    {
+      "actionType": "AsrObfuscatedScriptAudited",
+      "deviceName": "wks-r2-02.contoso.example",
+      "folderPath": "C:\\Program Files\\Contoso\\Scripts\\login.ps1",
+      "events": 5,
+      "lastSeen": "2026-11-15T16:20:00Z"
+    },
+    {
+      "actionType": "AsrPsexecWmiChildProcessAudited",
+      "deviceName": "srv-file01.contoso.example",
+      "folderPath": "C:\\Windows\\System32\\wbem\\WmiPrvSE.exe",
+      "events": 6,
+      "lastSeen": "2026-11-15T16:20:00Z"
+    },
+    {
+      "actionType": "AsrUntrustedUsbProcessAudited",
+      "deviceName": "wks-r3-01.contoso.example",
+      "folderPath": "E:\\setup.exe",
+      "events": 1,
+      "lastSeen": "2026-11-15T16:20:00Z"
+    },
+    {
+      "actionType": "AsrLsassCredentialTheftBlocked",
+      "deviceName": "wks-r1-01.contoso.example",
+      "folderPath": "C:\\Program Files\\Fabrikam\\Update\\fabupdate.exe",
+      "events": 40,
+      "lastSeen": "2026-11-15T16:20:00Z"
+    },
+    {
+      "actionType": "AsrOfficeChildProcessBlocked",
+      "deviceName": "wks-r0-01.contoso.example",
+      "folderPath": "C:\\Users\\Public\\Downloads\\invoice.docm",
+      "events": 2,
+      "lastSeen": "2026-11-15T16:20:00Z"
+    },
+    {
+      "actionType": "AsrExecutableEmailContentBlocked",
+      "deviceName": "wks-r0-02.contoso.example",
+      "folderPath": "C:\\Users\\Public\\Downloads\\statement.js",
+      "events": 1,
+      "lastSeen": "2026-11-15T16:20:00Z"
+    }
+  ]
+}

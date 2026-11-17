@@ -1,0 +1,6 @@
+PS> Import-Csv out/incidents/findings.csv | Format-Table Id, Severity, Finding, Rung -AutoSize -Wrap
+Id   Severity Finding                     Rung
+--   -------- -------                     ----
+1002 high     OverdueTriage               L3 gated: the playbook prepares, a named approver releases
+1003 medium   Untriaged                   L2 advise: enrich and ticket
+1005 medium   ClosedWithoutClassification L2 advise: enrich and ticket

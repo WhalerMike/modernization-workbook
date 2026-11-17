@@ -1,0 +1,22 @@
+PS> ./Invoke-XdrAccess.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/access -AsOf 2026-11-16T12:00:00Z
+Id         Status Subject                         Detail
+--         ------ -------                         ------
+CLOUD      Pass   gcc                             Graph https://graph.microsoft.com (environment Global); portal
+                                                  https://security.microsoft.com
+READ       Pass   incidents-list                  5 incident(s) returned with no permission error
+ROLE       Pass   XDR Read                        1 permissions match the design
+ROLE       Pass   XDR Responder                   4 permissions match the design
+ROLE       Fail   XDR Detection Engineer          extra: Advanced live response (Manage)
+ROLE       Pass   XDR Tier 0 Analyst              5 permissions match the design
+ROLE       Warn   Legacy SOC role                 role in the export is not in the design: record a decision or remove
+                                                  it
+RESTRICTED Fail   Advanced live response (Manage) held by XDR Detection Engineer; only XDR Tier 0 Analyst may hold it
+PIM        Pass   XDR Read                        assigned only to PIM-governed groups (SG-XDR-Readers,
+                                                  SG-XDR-Assessor-ReadOnly)
+PIM        Fail   XDR Responder                   assigned to a group PIM doesn't govern: SG-SOC-Standing
+PIM        Pass   XDR Detection Engineer          assigned only to PIM-governed groups (SG-XDR-DetectionEngineers)
+PIM        Pass   XDR Tier 0 Analyst              assigned only to PIM-governed groups (SG-XDR-Tier0)
+PIM        Pass   Legacy SOC role                 assigned only to PIM-governed groups (SG-XDR-Readers)
+EMERGENCY  Pass   Emergency access groups         no emergency access group holds a Defender role
+
+Access: 14 checks, 3 failed. Written to out/access: results.csv, results.json, permissions.csv, raw/, manifest.json

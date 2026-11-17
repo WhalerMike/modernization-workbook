@@ -1,0 +1,25 @@
+{
+  "_comment": "Fictional. The stage each ring is at for network protection and controlled folder access (audit or block).",
+  "rings": {
+    "ring0": {
+      "networkProtection": "block",
+      "controlledFolderAccess": "block"
+    },
+    "ring1": {
+      "networkProtection": "block",
+      "controlledFolderAccess": "block"
+    },
+    "ring2": {
+      "networkProtection": "audit",
+      "controlledFolderAccess": "audit"
+    },
+    "ring3": {
+      "networkProtection": "audit",
+      "controlledFolderAccess": "audit"
+    },
+    "servers": {
+      "networkProtection": "audit",
+      "controlledFolderAccess": "audit"
+    }
+  }
+}
