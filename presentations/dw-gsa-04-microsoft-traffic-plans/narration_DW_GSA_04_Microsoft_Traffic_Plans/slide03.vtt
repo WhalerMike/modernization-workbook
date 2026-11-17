@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.425
+Here's what Learn gives.
+
+2
+00:00:01.425 --> 00:00:05.552
+The Microsoft traffic
+profile acquires Microsoft
+
+3
+00:00:05.552 --> 00:00:09.487
+365 and Entra ID traffic,
+and only that profile can.
+
+4
+00:00:09.487 --> 00:00:12.307
+Learn's Graph tutorial
+finds a profile by its
+
+5
+00:00:12.307 --> 00:00:15.050
+traffic type and sets
+its state with a patch.
+
+6
+00:00:15.050 --> 00:00:19.112
+Assigning users and groups is a
+portal step on the pages read.
+
+7
+00:00:19.112 --> 00:00:23.975
+Signaling is source IP restoration and
+the signal Conditional Access needs.
+
+8
+00:00:23.975 --> 00:00:27.322
+It's on by default for newer
+tenants, and Learn cautions that
+
+9
+00:00:27.322 --> 00:00:30.600
+turning it off while policies
+depend on it can block users.
+
+10
+00:00:30.600 --> 00:00:35.038
+The test compares a SharePoint sign-in's
+address with the client on and off.
+
+11
+00:00:35.038 --> 00:00:39.140
+And Learn treats enabling a
+new profile as a major change.

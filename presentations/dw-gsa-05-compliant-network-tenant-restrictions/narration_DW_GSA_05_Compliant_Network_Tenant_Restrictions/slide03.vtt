@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.350
+Learn gives a lot here.
+
+2
+00:00:01.350 --> 00:00:06.685
+Its example policy blocks everything
+outside the All Compliant Network locations
+
+3
+00:00:06.685 --> 00:00:10.268
+named location, excludes the
+two Intune applications so
+
+4
+00:00:10.268 --> 00:00:13.850
+devices can still enroll, and
+excludes emergency access.
+
+5
+00:00:13.850 --> 00:00:16.640
+The check isn't supported
+for Private Access apps,
+
+6
+00:00:16.640 --> 00:00:20.587
+and turning signaling off while
+policies depend on it can block users.
+
+7
+00:00:20.587 --> 00:00:23.750
+The named location is listed
+with Policy Read All.
+
+8
+00:00:23.750 --> 00:00:27.936
+Universal tenant restrictions
+apply the TRv2 policy to traffic
+
+9
+00:00:27.936 --> 00:00:31.812
+the Microsoft profile carries,
+through one tagging setting.
+
+10
+00:00:31.812 --> 00:00:36.171
+Learn's tests are disabling the client
+and signing in again, and a four-case
+
+11
+00:00:36.171 --> 00:00:40.940
+matrix for tenants, with a block query
+for error five million two hundred eleven.

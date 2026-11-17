@@ -1,0 +1,36 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.962
+Check three.
+
+2
+00:00:00.962 --> 00:00:05.002
+Learn advises letting users run
+the client unrestricted first,
+
+3
+00:00:05.002 --> 00:00:06.450
+and restricting later.
+
+4
+00:00:06.450 --> 00:00:10.213
+So what does the kit do with the four
+hardening values during the pilot?
+
+5
+00:00:10.213 --> 00:00:12.275
+Fail every device without them?
+
+6
+00:00:12.275 --> 00:00:15.512
+Report them as information,
+and check them from ring 2?
+
+7
+00:00:15.512 --> 00:00:16.987
+Apply them automatically?
+
+8
+00:00:16.987 --> 00:00:18.980
+Or ignore them in every ring?

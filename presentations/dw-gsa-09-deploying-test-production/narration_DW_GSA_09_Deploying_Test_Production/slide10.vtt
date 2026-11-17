@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.690
+The stage's evidence supports impact
+analysis and contingency planning for the
+
+2
+00:00:04.690 --> 00:00:08.915
+preflight, configuration change control
+for the plans and the ring exits,
+
+3
+00:00:08.915 --> 00:00:11.754
+the contingency plan for
+the rehearsed rollback,
+
+4
+00:00:11.754 --> 00:00:14.663
+and protection of audit
+information for the chain.
+
+5
+00:00:14.663 --> 00:00:16.825
+The assessor decides the controls.
+
+6
+00:00:16.825 --> 00:00:20.000
+The dangers: changing a
+ring before its logs exist,
+
+7
+00:00:20.000 --> 00:00:22.943
+a policy that catches
+the emergency accounts,
+
+8
+00:00:22.943 --> 00:00:27.666
+a plan applied that differs from the
+one reviewed, an improvised rollback,
+
+9
+00:00:27.666 --> 00:00:30.841
+production before the test
+evidence is complete,
+
+10
+00:00:30.841 --> 00:00:33.087
+and unattended runs of the beta API.
+
+11
+00:00:33.087 --> 00:00:36.934
+You're done when every stage's
+preflight passed, the rollback was
+
+12
+00:00:36.934 --> 00:00:40.999
+reviewed and rehearsed, and every
+hash was approved by someone else.
+
+13
+00:00:40.999 --> 00:00:44.062
+That's the end of Building
+Global Secure Access.
+
+14
+00:00:44.062 --> 00:00:45.220
+Thanks for watching.

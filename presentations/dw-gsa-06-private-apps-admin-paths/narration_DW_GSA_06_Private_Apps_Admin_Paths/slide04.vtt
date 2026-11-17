@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.275
+What does it leave to you?
+
+2
+00:00:01.275 --> 00:00:02.917
+The requests create one app,
+
+3
+00:00:02.917 --> 00:00:07.701
+but nothing reads all of them back with
+their segments and assignments, so the kit
+
+4
+00:00:07.701 --> 00:00:12.200
+has a read for that, marked unverified,
+and the lab compares it with the portal.
+
+5
+00:00:12.200 --> 00:00:15.587
+A group with one inactive
+connector looks fine in a list,
+
+6
+00:00:15.587 --> 00:00:17.575
+so the kit counts active members.
+
+7
+00:00:17.575 --> 00:00:23.625
+A wide range on every port is the VPN
+again, so wide segments and overlaps fail.
+
+8
+00:00:23.625 --> 00:00:27.138
+A person assigned directly
+escapes the access review.
+
+9
+00:00:27.138 --> 00:00:32.745
+Plain MFA on RDP passes a casual
+look, so any app covering port 22
+
+10
+00:00:32.745 --> 00:00:39.000
+or 3389 needs the phishing-resistant
+strength and a compliant device.
+
+11
+00:00:39.000 --> 00:00:41.570
+And Quick Access is
+tracked until it's empty.

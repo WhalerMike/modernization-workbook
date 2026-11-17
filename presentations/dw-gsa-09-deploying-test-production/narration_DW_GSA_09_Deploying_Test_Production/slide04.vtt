@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.327
+Step 2 signs in to the
+stage's tenant, collects,
+
+2
+00:00:03.327 --> 00:00:06.250
+and runs the preflight, which only reads.
+
+3
+00:00:06.250 --> 00:00:07.325
+Six checks.
+
+4
+00:00:07.325 --> 00:00:09.562
+The settings file names this stage.
+
+5
+00:00:09.562 --> 00:00:13.712
+The collection matches its manifest
+and was read in the right tenant.
+
+6
+00:00:13.712 --> 00:00:17.463
+The emergency access group is
+excluded from every network
+
+7
+00:00:17.463 --> 00:00:20.525
+policy in the tenant, not
+just the ones in the plan.
+
+8
+00:00:20.525 --> 00:00:24.550
+The network diagnostic setting
+exists, so logs come before the ring.
+
+9
+00:00:24.550 --> 00:00:28.463
+Every function the desired state
+enables has an approved decision.
+
+10
+00:00:28.463 --> 00:00:31.699
+And in production, the test
+stage's evidence passes.
+
+11
+00:00:31.699 --> 00:00:36.548
+Any failure stops the stage; the pilot
+fixture fails the emergency check,
+
+12
+00:00:36.548 --> 00:00:39.600
+because of the Finance
+policy from Chapter 6.

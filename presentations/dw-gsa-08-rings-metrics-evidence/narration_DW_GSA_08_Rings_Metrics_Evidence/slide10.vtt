@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.114
+Lab 2 uses the test tenant
+from Chapters 4 to 7,
+
+2
+00:00:03.114 --> 00:00:07.587
+with the diagnostic setting on and
+at least a day of pilot traffic.
+
+3
+00:00:07.587 --> 00:00:09.400
+Run the guide's freshness query.
+
+4
+00:00:09.400 --> 00:00:13.533
+Collect, check telemetry, and
+compute the ring's metrics and exit,
+
+5
+00:00:13.533 --> 00:00:17.900
+using your own ring record from the
+template, kept on agency storage.
+
+6
+00:00:17.900 --> 00:00:21.962
+Plan the rollback and file it with the
+change record, without applying it.
+
+7
+00:00:21.962 --> 00:00:26.987
+Record every run in a protected evidence
+folder inside the boundary and check it.
+
+8
+00:00:26.987 --> 00:00:28.665
+Nothing changed in the tenant,
+
+9
+00:00:28.665 --> 00:00:31.550
+so there's nothing to back
+out but the working copies.
+
+10
+00:00:31.550 --> 00:00:34.124
+Then re-run the Zero Trust Assessment and
+
+11
+00:00:34.124 --> 00:00:36.925
+point each network
+finding at this evidence.
+
+12
+00:00:36.925 --> 00:00:38.980
+The authors haven't run this lab.

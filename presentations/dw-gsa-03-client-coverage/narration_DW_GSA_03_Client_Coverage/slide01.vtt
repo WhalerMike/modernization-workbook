@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Welcome back to Building
+Global Secure Access.
+
+2
+00:00:02.963 --> 00:00:06.299
+This is Chapter 3: the
+client and its coverage.
+
+3
+00:00:06.299 --> 00:00:09.945
+Every later policy assumes
+the client is on the device,
+
+4
+00:00:09.945 --> 00:00:12.537
+connected, current, and hard to turn off.
+
+5
+00:00:12.537 --> 00:00:16.637
+This chapter measures that, device
+by device and across the fleet.
+
+6
+00:00:16.637 --> 00:00:20.436
+The guide already holds Learn's
+Intune packaging and hardening,
+
+7
+00:00:20.436 --> 00:00:23.374
+so we won't repeat them;
+we'll build the measurement.
+
+8
+00:00:23.374 --> 00:00:25.889
+The chapter is a draft awaiting review,
+
+9
+00:00:25.889 --> 00:00:29.500
+and the code is illustrative,
+tested against fixtures.

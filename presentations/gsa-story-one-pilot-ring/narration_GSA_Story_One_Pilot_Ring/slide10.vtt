@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:02.175
+Run the client checks.
+
+3
+00:00:02.175 --> 00:00:05.200
+Coverage fails at eighty-three
+point three percent.
+
+4
+00:00:05.200 --> 00:00:08.818
+Pilot 3 fails three
+checks: the old client,
+
+5
+00:00:08.818 --> 00:00:14.138
+IPv6 preferred, and DNS over
+HTTPS left on in Chrome.
+
+6
+00:00:14.138 --> 00:00:16.949
+Pilot 4 fails on health: disconnected.
+
+7
+00:00:16.949 --> 00:00:22.094
+And the one client exclusion, a lab
+machine with a Hyper-V external switch,
+
+8
+00:00:22.094 --> 00:00:26.038
+passes, because it has an owner,
+an approver and an expiry.
+
+9
+00:00:26.038 --> 00:00:29.830
+The pilot isn't ready to exit,
+and Scene eight will say so.

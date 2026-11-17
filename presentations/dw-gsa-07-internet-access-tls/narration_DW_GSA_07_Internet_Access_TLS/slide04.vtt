@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.213
+Here's where GCC bites.
+
+2
+00:00:02.213 --> 00:00:06.003
+In the guide's table, web
+filtering, threat intelligence
+
+3
+00:00:06.003 --> 00:00:10.124
+and TLS inspection rest on
+Learn's product-wide GCC sentence.
+
+4
+00:00:10.124 --> 00:00:14.872
+But the cloud firewall for clients,
+the Explicit Forward Proxy and
+
+5
+00:00:14.872 --> 00:00:20.050
+HTTP method filtering are previews
+whose GCC availability isn't stated.
+
+6
+00:00:20.050 --> 00:00:21.762
+So the kit doesn't assume them.
+
+7
+00:00:21.762 --> 00:00:24.925
+For QUIC, it expects the
+guide's interim path:
+
+8
+00:00:24.925 --> 00:00:30.021
+an Intune-delivered Windows Firewall
+rule blocking outbound UDP 443,
+
+9
+00:00:30.021 --> 00:00:34.062
+piloted first and recorded
+in the architecture record.
+
+10
+00:00:34.062 --> 00:00:37.570
+The QUIC check passes only
+when that block is recorded,
+
+11
+00:00:37.570 --> 00:00:41.690
+and a decision that leans on the
+preview fails Chapter 1's check.

@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.065
+Lab 1 needs only PowerShell 7 with
+Pester, in the kit's folder, against one
+
+2
+00:00:05.065 --> 00:00:10.675
+fictional tenant, contoso dot example,
+seen during its pilot and two weeks later.
+
+3
+00:00:10.675 --> 00:00:11.887
+No tenant at all.
+
+4
+00:00:11.887 --> 00:00:17.218
+Step 1 lists what the decision area reads:
+two calls, each with its least-privileged
+
+5
+00:00:17.218 --> 00:00:21.687
+permission, one of them beta, both
+verified against their Learn pages.
+
+6
+00:00:21.687 --> 00:00:26.345
+Step 2 lists the features whose GCC
+availability Learn doesn't state,
+
+7
+00:00:26.345 --> 00:00:29.776
+each with the interim path
+the kit expects instead.
+
+8
+00:00:29.776 --> 00:00:33.260
+The first rows are on the slide;
+the chapter shows them all.

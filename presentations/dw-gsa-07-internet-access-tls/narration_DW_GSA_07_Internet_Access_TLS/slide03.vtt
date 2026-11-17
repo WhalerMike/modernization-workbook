@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.031
+Learn's Internet Access tutorial creates
+a filtering policy, a security profile,
+
+2
+00:00:05.031 --> 00:00:09.937
+the link between them, and a Conditional
+Access policy that assigns the profile.
+
+3
+00:00:09.937 --> 00:00:15.300
+Its limits are generous, but Internet
+Access doesn't forward QUIC end to end.
+
+4
+00:00:15.300 --> 00:00:19.401
+Learn's newer pages block QUIC
+with a cloud firewall rule,
+
+5
+00:00:19.401 --> 00:00:23.763
+which is preview; its TLS page
+uses Windows Firewall instead.
+
+6
+00:00:23.763 --> 00:00:28.212
+Learn asks for an expiration or
+review date on allow-list entries.
+
+7
+00:00:28.212 --> 00:00:33.214
+The agency's inspection intermediate
+needs specific extensions and at least
+
+8
+00:00:33.214 --> 00:00:38.062
+six months' validity, only one is active,
+and renewal starts ninety days ahead.
+
+9
+00:00:38.062 --> 00:00:42.262
+Learn suggests a dedicated
+authority, not the production PKI,
+
+10
+00:00:42.262 --> 00:00:46.510
+and Microsoft treats failures
+above one percent as systemic.

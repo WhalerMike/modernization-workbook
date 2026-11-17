@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.875
+The answer to check six: the phishing-resistant
+strength and a compliant device.
+
+2
+00:00:04.875 --> 00:00:05.925
+Scene seven.
+
+3
+00:00:05.925 --> 00:00:08.002
+The pilot's web filtering works:
+
+4
+00:00:08.002 --> 00:00:12.555
+the acceptable-use categories and
+threat intelligence are blocked,
+
+5
+00:00:12.555 --> 00:00:17.189
+and QUIC is blocked by the guide's
+interim path, an Intune firewall rule,
+
+6
+00:00:17.189 --> 00:00:21.263
+because the preview firewall's
+GCC availability isn't stated.
+
+7
+00:00:21.263 --> 00:00:23.012
+But two exceptions slipped.
+
+8
+00:00:23.012 --> 00:00:27.475
+One bypass expired on November
+first, and another has no approver.
+
+9
+00:00:27.475 --> 00:00:32.302
+And TLS inspection is in trouble: the
+certificate has seventy-four days left,
+
+10
+00:00:32.302 --> 00:00:37.512
+inside the ninety-day renewal window, and
+one and a half percent of sessions failed.
+
+11
+00:00:37.512 --> 00:00:41.350
+The issuer, at least, is a
+dedicated inspection authority.

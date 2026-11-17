@@ -1,0 +1,374 @@
+{
+ "1": [
+  [
+   0.05,
+   2.913,
+   "Welcome back to Building Global Secure Access."
+  ],
+  [
+   2.962,
+   5.487,
+   "This is Chapter 7: Internet Access, QUIC, and TLS inspection."
+  ],
+  [
+   8.45,
+   3.237,
+   "Filtering the web by identity is the easy part."
+  ],
+  [
+   11.688,
+   8.9,
+   "The hard parts are the bypasses that never expire, the protocol the service doesn't carry, and a certificate authority that could impersonate every site."
+  ],
+  [
+   20.587,
+   1.688,
+   "The code watches all three."
+  ],
+  [
+   22.275,
+   4.025,
+   "This is also the chapter where G C C availability bites."
+  ],
+  [
+   26.3,
+   6.05,
+   "The chapter is a draft awaiting review, and the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.075,
+   "Why these three?"
+  ],
+  [
+   1.125,
+   4.2,
+   "A bypass with no end date is a permanent hole in the filter."
+  ],
+  [
+   5.325,
+   6.037,
+   "QUIC isn't forwarded end to end, so a browser could carry web traffic around the service."
+  ],
+  [
+   11.363,
+   7.162,
+   "And a TLS inspection certificate authority that's compromised could impersonate any site to every managed device."
+  ],
+  [
+   18.525,
+   17.613,
+   "So the goal: show that the ring's web traffic is filtered by an identity-aware policy, that every exception has an owner and an end date, that QUIC can't slip past it, and that inspection runs from a dedicated authority, within an approved privacy scope, breaking under one percent of sessions."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   9.887,
+   "Learn's Internet Access tutorial creates a filtering policy, a security profile, the link between them, and a Conditional Access policy that assigns the profile."
+  ],
+  [
+   9.938,
+   5.362,
+   "Its limits are generous, but Internet Access doesn't forward QUIC end to end."
+  ],
+  [
+   15.3,
+   8.463,
+   "Learn's newer pages block QUIC with a cloud firewall rule, which is preview; its TLS page uses Windows Firewall instead."
+  ],
+  [
+   23.762,
+   4.45,
+   "Learn asks for an expiration or review date on allow-list entries."
+  ],
+  [
+   28.212,
+   9.85,
+   "The agency's inspection intermediate needs specific extensions and at least six months' validity, only one is active, and renewal starts ninety days ahead."
+  ],
+  [
+   38.062,
+   8.4,
+   "Learn suggests a dedicated authority, not the production P K I, and Microsoft treats failures above one percent as systemic."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.163,
+   "Here's where G C C bites."
+  ],
+  [
+   2.212,
+   7.912,
+   "In the guide's table, web filtering, threat intelligence and TLS inspection rest on Learn's product-wide G C C sentence."
+  ],
+  [
+   10.125,
+   9.925,
+   "But the cloud firewall for clients, the Explicit Forward Proxy and HTTP method filtering are previews whose G C C availability isn't stated."
+  ],
+  [
+   20.05,
+   1.712,
+   "So the kit doesn't assume them."
+  ],
+  [
+   21.762,
+   12.3,
+   "For QUIC, it expects the guide's interim path: an Intune-delivered Windows Firewall rule blocking outbound UDP 443, piloted first and recorded in the architecture record."
+  ],
+  [
+   34.062,
+   7.562,
+   "The QUIC check passes only when that block is recorded, and a decision that leans on the preview fails Chapter 1's check."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.05,
+   "Twelve checks."
+  ],
+  [
+   1.1,
+   19.712,
+   "For filtering: each Internet Access policy links an existing profile and excludes emergency access; the acceptable-use categories and threat intelligence are blocked; every bypass is owned, approved and unexpired; QUIC is blocked by the interim path; and the tenant is inside Learn's limits."
+  ],
+  [
+   20.812,
+   18.6,
+   "For TLS: more than ninety days left on a certificate issued for at least six months; an issuer that isn't an authentication authority; never the baseline profile before ring 3; the privacy approval and user notice recorded; every custom bypass registered; and failures under one percent."
+  ],
+  [
+   39.413,
+   6.188,
+   "One note: no Graph read for TLS inspection was verified, so its record comes from the portal."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   6.225,
+   "The policy owner approves categories and every bypass, and reviews bypasses each quarter."
+  ],
+  [
+   7.325,
+   3.938,
+   "The privacy officer approves the inspection scope before it starts."
+  ],
+  [
+   11.262,
+   3.538,
+   "The P K I team runs the dedicated issuing authority."
+  ],
+  [
+   14.8,
+   4.925,
+   "The platform owner applies the changes and renews the certificate ninety days ahead."
+  ],
+  [
+   19.725,
+   4.675,
+   "And the security monitor watches the failure rate and the top blocked destinations."
+  ],
+  [
+   24.4,
+   12.15,
+   "For permissions: Network Access read and write for the profiles and policies, Policy Read Write Conditional Access for the Internet Access policy, and two administrator roles activated just for the lab."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   6.812,
+   "Lab 1, after listing the reads, reading the G C C rows for Step 5, and collecting the pilot."
+  ],
+  [
+   6.862,
+   2.712,
+   "Step 4 runs the Internet Access checks."
+  ],
+  [
+   9.575,
+   6.912,
+   "The profile, the categories, threat intelligence, the QUIC interim block and the limits all pass."
+  ],
+  [
+   16.488,
+   6.312,
+   "Two bypasses fail: E X 3 expired on November first, and E X 4 has no approver."
+  ],
+  [
+   22.8,
+   9.238,
+   "Step 5 reads the bypass rows of the exception register, the agency's own record: target, reason, owner, approver and expiry."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.438,
+   "Step 6 runs the TLS checks."
+  ],
+  [
+   2.487,
+   1.012,
+   "Three fail."
+  ],
+  [
+   3.5,
+   9.387,
+   "The certificate has seventy-four days left, inside the ninety-day renewal window, and it was issued for only ninety days, short of Learn's six months."
+  ],
+  [
+   12.887,
+   4.45,
+   "The pinned payroll site's bypass is E X 3, which expired."
+  ],
+  [
+   17.337,
+   4.513,
+   "And one and a half percent of sessions failed, above the one percent threshold."
+  ],
+  [
+   21.85,
+   13.113,
+   "Three pass: the issuer is a dedicated inspection authority, not the authentication one; the policy is linked only to the pilot's profile; and the privacy approval and the user notice came before inspection started."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   9.762,
+   "Step 7 checks both areas two weeks later, after the certificate was rolled, the bypasses renewed and approved, and the failing destinations bypassed."
+  ],
+  [
+   9.812,
+   3.825,
+   "The certificate has a hundred and eighty days left on two hundred and ten."
+  ],
+  [
+   13.637,
+   3.1,
+   "Both bypasses have an approver and a future date."
+  ],
+  [
+   16.738,
+   2.075,
+   "The failure share is half a percent."
+  ],
+  [
+   18.812,
+   1.738,
+   "All thirteen checks pass."
+  ],
+  [
+   20.55,
+   4.45,
+   "Step 8 runs this chapter's tests: six passed, none failed."
+  ],
+  [
+   25.0,
+   1.837,
+   "Then delete the output folder."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   8.225,
+   "Lab 2 uses a test tenant with Internet Access licenses, the Internet profile on for a pilot group, and a test device with the client."
+  ],
+  [
+   8.275,
+   6.662,
+   "It doesn't enable TLS inspection, which needs a dedicated test authority and the privacy officer's scope."
+  ],
+  [
+   14.938,
+   4.513,
+   "Create the filtering policy and the pilot profile with the guide's requests."
+  ],
+  [
+   19.45,
+   9.188,
+   "Plan and apply the Internet Access policy, on for the pilot group only, as the guide does, because Learn doesn't say whether report-only applies a profile."
+  ],
+  [
+   28.637,
+   3.675,
+   "Block QUIC on the device with Learn's firewall command."
+  ],
+  [
+   32.312,
+   3.825,
+   "Then browse to a blocked category and expect the block page."
+  ],
+  [
+   36.138,
+   1.562,
+   "Back out newest first."
+  ],
+  [
+   37.7,
+   2.0,
+   "The authors haven't run this lab."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   6.325,
+   "Identity-aware filtering supports boundary protection, deny by default, and malicious code protection."
+  ],
+  [
+   6.375,
+   4.562,
+   "Governed bypasses support deny by default and configuration settings."
+  ],
+  [
+   10.938,
+   3.112,
+   "The QUIC block supports boundary protection."
+  ],
+  [
+   14.05,
+   11.463,
+   "And inspection from a dedicated, renewed authority, within an approved privacy scope, supports transmission confidentiality, key management, P K I certificates and monitoring."
+  ],
+  [
+   25.512,
+   4.912,
+   "The guide reads these steps as tick three point oh's remote user pattern to the web."
+  ],
+  [
+   30.425,
+   2.163,
+   "The assessor decides the controls."
+  ],
+  [
+   32.587,
+   10.863,
+   "The dangers: assuming a preview firewall exists in G C C, reusing the authentication authority, and letting the certificate expire, which stops all inspection."
+  ],
+  [
+   43.45,
+   5.763,
+   "You're done when every bypass is governed, QUIC is blocked, and privacy came first."
+  ],
+  [
+   49.212,
+   1.625,
+   "Next, Chapter 8."
+  ]
+ ]
+}

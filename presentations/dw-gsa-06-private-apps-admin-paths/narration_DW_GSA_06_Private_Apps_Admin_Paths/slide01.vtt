@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Welcome back to Building
+Global Secure Access.
+
+2
+00:00:02.963 --> 00:00:07.499
+This is Chapter 6: private
+applications and administrative paths.
+
+3
+00:00:07.499 --> 00:00:10.375
+A VPN gives a device an address range.
+
+4
+00:00:10.375 --> 00:00:13.565
+Private Access gives a
+group one application,
+
+5
+00:00:13.565 --> 00:00:16.838
+on its ports, behind its
+own Conditional Access.
+
+6
+00:00:16.838 --> 00:00:19.301
+The code checks that
+each app is that narrow,
+
+7
+00:00:19.301 --> 00:00:23.612
+and that administrative paths ask for
+phishing-resistant authentication.
+
+8
+00:00:23.612 --> 00:00:26.127
+The chapter is a draft awaiting review,
+
+9
+00:00:26.127 --> 00:00:29.710
+and the code is illustrative,
+tested against fixtures.

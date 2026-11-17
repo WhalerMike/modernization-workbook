@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.570
+The answer to check
+one: not yet specified,
+
+2
+00:00:02.570 --> 00:00:06.275
+because Learn's sentence covers
+the product, not the preview.
+
+3
+00:00:06.275 --> 00:00:07.138
+Scene two.
+
+4
+00:00:07.138 --> 00:00:09.771
+The guide runs logging before the client,
+
+5
+00:00:09.771 --> 00:00:12.713
+so the logs exist before
+anything is enforced.
+
+6
+00:00:12.713 --> 00:00:17.761
+The kit's collector reads the whole tenant
+in one read-only run: seventeen calls,
+
+7
+00:00:17.761 --> 00:00:20.091
+twenty-four reads, every file hashed,
+
+8
+00:00:20.091 --> 00:00:23.275
+and later steps refuse a
+collection that changed.
+
+9
+00:00:23.275 --> 00:00:26.144
+The pilot's diagnostic
+setting looks right but
+
+10
+00:00:26.144 --> 00:00:29.087
+sends only three of the
+four network categories.
+
+11
+00:00:29.087 --> 00:00:30.912
+Remote network health is off.
+
+12
+00:00:30.912 --> 00:00:34.414
+No branch is on a remote
+network yet, but when one is,
+
+13
+00:00:34.414 --> 00:00:37.540
+its health would never
+reach the workspace.

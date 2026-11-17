@@ -1,0 +1,394 @@
+{
+ "1": [
+  [
+   0.05,
+   2.913,
+   "Welcome back to Building Global Secure Access."
+  ],
+  [
+   2.962,
+   4.013,
+   "This is Chapter 4: Microsoft traffic, and change plans."
+  ],
+  [
+   6.975,
+   5.95,
+   "The Microsoft traffic profile is the prerequisite for everything identity-aware the service adds."
+  ],
+  [
+   12.925,
+   10.537,
+   "Turning it on is also the first write, so this chapter builds the plan every later write goes through: a file a second person approves by its hash before anything changes."
+  ],
+  [
+   23.462,
+   6.05,
+   "The chapter is a draft awaiting review, and the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.15,
+   "Why a plan, now?"
+  ],
+  [
+   1.2,
+   11.725,
+   "Because source IP restoration, the compliant network check and universal tenant restrictions all depend on the Microsoft traffic profile, and switching it on is the first time the kit changes anything."
+  ],
+  [
+   12.925,
+   1.775,
+   "So the goal has two halves."
+  ],
+  [
+   14.7,
+   8.162,
+   "Show that a ring's Microsoft 365 and Entra I D traffic goes through the service, carrying its real source address."
+  ],
+  [
+   22.863,
+   4.513,
+   "And change the tenant only through a plan file whose hash a reviewer approved."
+  ],
+  [
+   27.375,
+   5.588,
+   "It's for the developers, the platform owner who runs the changes, and the change board's reviewer."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.375,
+   "Here's what Learn gives."
+  ],
+  [
+   1.425,
+   8.062,
+   "The Microsoft traffic profile acquires Microsoft 365 and Entra I D traffic, and only that profile can."
+  ],
+  [
+   9.488,
+   5.562,
+   "Learn's Graph tutorial finds a profile by its traffic type and sets its state with a patch."
+  ],
+  [
+   15.05,
+   4.062,
+   "Assigning users and groups is a portal step on the pages read."
+  ],
+  [
+   19.113,
+   4.862,
+   "Signaling is source IP restoration and the signal Conditional Access needs."
+  ],
+  [
+   23.975,
+   6.625,
+   "It's on by default for newer tenants, and Learn cautions that turning it off while policies depend on it can block users."
+  ],
+  [
+   30.6,
+   4.438,
+   "The test compares a SharePoint sign-in's address with the client on and off."
+  ],
+  [
+   35.038,
+   4.037,
+   "And Learn treats enabling a new profile as a major change."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.225,
+   "What does it leave to you?"
+  ],
+  [
+   1.275,
+   10.9,
+   "Each change is one patch typed by hand, and a change board can't approve a command that isn't written down, so the kit writes the plan as a file, with every request and its hash."
+  ],
+  [
+   12.175,
+   5.4,
+   "The assignment is a portal step, so the plan lists it as a manual line with the click path."
+  ],
+  [
+   17.575,
+   7.55,
+   "A plan could turn signaling off in the wrong order, so plans turn it on first and only the rollback turns it off, last."
+  ],
+  [
+   25.125,
+   4.463,
+   "A daily percentage has no pass or fail, so the check sums the week."
+  ],
+  [
+   29.587,
+   5.662,
+   "And nothing ties a profile to its decision, so a profile with no approved decision fails."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.0,
+   "Here's the plan."
+  ],
+  [
+   1.05,
+   8.363,
+   "It reads a desired-state file: the three profiles' state, signaling, tagging, and the guide's Conditional Access policies as files."
+  ],
+  [
+   9.412,
+   12.1,
+   "It compares them with a collection and writes the requests that close the gap, in a safe order: signaling, then profiles, then policies, then tagging, with the assignments as manual steps."
+  ],
+  [
+   21.512,
+   1.012,
+   "Four guards."
+  ],
+  [
+   22.525,
+   4.85,
+   "New policies are report-only, and enforcing one needs an explicit switch."
+  ],
+  [
+   27.375,
+   3.987,
+   "A policy that doesn't exclude the emergency group isn't planned."
+  ],
+  [
+   31.363,
+   3.388,
+   "Tagging waits for a blocking tenant restrictions default."
+  ],
+  [
+   34.75,
+   3.188,
+   "And a drifted policy is brought back to its file."
+  ],
+  [
+   37.938,
+   5.15,
+   "Nothing applies without the approved hash, a live collection and a delegated session."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   0.925,
+   "Who does what?"
+  ],
+  [
+   0.975,
+   4.263,
+   "The platform owner writes the desired state, plans and applies."
+  ],
+  [
+   5.237,
+   5.975,
+   "A second person, the change board's reviewer, approves the plan's hash, and the change record keeps it."
+  ],
+  [
+   11.213,
+   2.712,
+   "The security monitor reads the sign-in share."
+  ],
+  [
+   13.925,
+   5.575,
+   "For permissions, the reads need Network Access Read All and access to the workspace."
+  ],
+  [
+   19.5,
+   8.475,
+   "The writes are Network Access Read Write All for the profiles, signaling and tagging, and Policy Read Write Conditional Access for the policies."
+  ],
+  [
+   27.975,
+   7.175,
+   "The portal assignment needs Application Administrator, activated through privileged identity management for the window only."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   0.812,
+   "Lab 1."
+  ],
+  [
+   0.863,
+   7.612,
+   "Steps 1 and 2 list the reads and writes and collect the whole pilot tenant, because the plan compares against everything."
+  ],
+  [
+   8.475,
+   2.362,
+   "Step 3 runs the traffic checks."
+  ],
+  [
+   10.838,
+   6.162,
+   "The profile and signaling are on, and the internet and private profiles each have an approved decision."
+  ],
+  [
+   17.0,
+   9.637,
+   "But only two thousand five hundred fifty-five of two thousand eight hundred sign-ins, ninety-one percent, went through the service, under the ninety-five percent target."
+  ],
+  [
+   26.637,
+   5.075,
+   "Step 4 reads the guide's query day by day: rising, but not there yet."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.087,
+   "Step 5 plans the pilot from its desired state."
+  ],
+  [
+   3.138,
+   1.35,
+   "Two Graph steps."
+  ],
+  [
+   4.487,
+   6.175,
+   "The internet profile goes off, because the pilot's desired state hasn't adopted Internet Access yet."
+  ],
+  [
+   10.662,
+   5.938,
+   "And the administrative RDP policy goes back to its reviewed file; Chapter 6 says why."
+  ],
+  [
+   16.6,
+   2.375,
+   "Two portal steps assign the pilot group."
+  ],
+  [
+   18.975,
+   3.538,
+   "Then the plan's hash, and dry run, nothing changed."
+  ],
+  [
+   22.512,
+   11.4,
+   "Step 6 reads the plan's first step in full, as the reviewer does before approving the hash: the call, the method, the address on graph dot microsoft dot com, and the reason."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.625,
+   "Step 7 tries to apply the plan in fixture mode, with a made-up hash."
+  ],
+  [
+   4.675,
+   7.987,
+   "It's refused before the hash is even read: apply runs only with a live invoker, and fixture mode never changes anything."
+  ],
+  [
+   12.662,
+   9.4,
+   "The tests also show the other refusals: a lyve session with the wrong hash is refused, and the right hash sends the steps in order through the Graph runner."
+  ],
+  [
+   22.062,
+   4.537,
+   "Step 8 runs this chapter's tests: nine passed, none failed."
+  ],
+  [
+   26.6,
+   1.837,
+   "Then delete the output folder."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   7.938,
+   "Lab 2 uses a test tenant with Entra I D P1, a pilot group of fictional users and a test device with the client."
+  ],
+  [
+   7.987,
+   6.213,
+   "Sign in, collect, and plan from a desired file that only turns on Microsoft traffic and signaling."
+  ],
+  [
+   14.2,
+   4.812,
+   "Send the plan and its hash to the reviewer, then apply it with the approved hash."
+  ],
+  [
+   19.012,
+   4.263,
+   "Assign the pilot group in the portal, as the plan's manual line says."
+  ],
+  [
+   23.275,
+   7.388,
+   "Validate with Learn's test, comparing the sign-in address with the client on and off, then the guide's query and the kit's checks."
+  ],
+  [
+   30.663,
+   5.875,
+   "Back it out in the guide's order: remove the group, disable the profile, and leave signaling on."
+  ],
+  [
+   36.538,
+   2.0,
+   "The authors haven't run this lab."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.625,
+   "The profile and signaling support remote access control."
+  ],
+  [
+   3.675,
+   6.588,
+   "The sign-in share, with the real source address, supports the content of audit records and system monitoring."
+  ],
+  [
+   10.262,
+   7.787,
+   "And every plan, approved by its hash and applied in order, supports configuration change control and impact analysis."
+  ],
+  [
+   18.05,
+   6.062,
+   "The guide reads this step as tick three point oh's remote user pattern to a sanctioned cloud service."
+  ],
+  [
+   24.113,
+   2.163,
+   "The assessor decides the controls."
+  ],
+  [
+   26.275,
+   8.1,
+   "The dangers: a plan nobody read, Internet Access turned on before its decision, and signaling turned off while policies need it."
+  ],
+  [
+   34.375,
+   7.713,
+   "You're done when the profile and signaling are on for the ring, the week's share meets the target, and every change came from an approved plan."
+  ],
+  [
+   42.087,
+   4.463,
+   "Next, Chapter 5: the compliant network and tenant restrictions."
+  ]
+ ]
+}

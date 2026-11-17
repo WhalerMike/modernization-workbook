@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:04.602
+Run the traffic checks: the
+profile passes, signaling passes,
+
+3
+00:00:04.602 --> 00:00:08.275
+and the sign-in share fails at
+ninety-one point two percent.
+
+4
+00:00:08.275 --> 00:00:10.862
+Then plan the pilot
+from its desired state.
+
+5
+00:00:10.862 --> 00:00:15.679
+Two Graph steps: the internet profile
+goes off, and the administrator
+
+6
+00:00:15.679 --> 00:00:20.326
+RDP policy goes back to its reviewed
+file, which Scene six explains.
+
+7
+00:00:20.326 --> 00:00:24.588
+The plan's hash is printed, and
+it's a dry run: nothing changed.
+
+8
+00:00:24.588 --> 00:00:27.980
+In fixture mode, applying
+it is refused outright.

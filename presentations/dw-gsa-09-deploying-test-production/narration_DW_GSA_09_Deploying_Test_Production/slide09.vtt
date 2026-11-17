@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.912
+Step 8 is the go or no-go for production.
+
+2
+00:00:02.912 --> 00:00:06.134
+It starts only when the test
+stage's evidence passes,
+
+3
+00:00:06.134 --> 00:00:08.756
+which the production preflight re-checks;
+
+4
+00:00:08.756 --> 00:00:12.127
+the test tenant said go and
+the rollback was rehearsed;
+
+5
+00:00:12.127 --> 00:00:16.396
+the policy owner approved the
+production records and desired state,
+
+6
+00:00:16.396 --> 00:00:18.943
+and the change board approved the change;
+
+7
+00:00:18.943 --> 00:00:23.213
+and CISA telemetry is agreed before
+ring 3 retires the VPN's web path.
+
+8
+00:00:23.213 --> 00:00:27.837
+Step 9 repeats Steps 2 to 7 in
+production, one ring at a time.
+
+9
+00:00:27.837 --> 00:00:32.812
+Its preflight takes the test evidence,
+and in the fixture all six checks pass.
+
+10
+00:00:32.812 --> 00:00:35.244
+For each later ring, change the ring,
+
+11
+00:00:35.244 --> 00:00:38.599
+use its desired state and
+widen the assignments.
+
+12
+00:00:38.599 --> 00:00:43.370
+Remove a VPN route only after ten
+business days with no traffic on it.

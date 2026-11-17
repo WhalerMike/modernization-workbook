@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.137
+Step 4 runs the client checks.
+
+2
+00:00:02.137 --> 00:00:05.250
+Coverage is eighty-three
+percent against ninety-eight.
+
+3
+00:00:05.250 --> 00:00:12.725
+Pilot 3 has an old client, IPv6 preferred,
+and DNS over HTTPS still on in Chrome.
+
+4
+00:00:12.725 --> 00:00:14.687
+Pilot 4 is disconnected.
+
+5
+00:00:14.687 --> 00:00:19.013
+The Hyper-V exclusion has an
+owner, an approver and an expiry.
+
+6
+00:00:19.013 --> 00:00:21.849
+Hardening is only
+information in the pilot.
+
+7
+00:00:21.849 --> 00:00:27.146
+Step 5 asks the same devices ring 2's
+question, where hardening is required:
+
+8
+00:00:27.146 --> 00:00:31.540
+three devices fail, because only
+pilot 1 has the remediation.

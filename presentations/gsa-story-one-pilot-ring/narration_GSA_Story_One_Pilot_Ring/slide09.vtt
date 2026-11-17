@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.765
+The answer to check
+two: before the client,
+
+2
+00:00:02.765 --> 00:00:05.800
+so the logs exist before
+anything is enforced.
+
+3
+00:00:05.800 --> 00:00:06.850
+Scene three.
+
+4
+00:00:06.850 --> 00:00:10.386
+Every later policy assumes
+the client is on the device,
+
+5
+00:00:10.386 --> 00:00:12.900
+connected, current and hard to turn off.
+
+6
+00:00:12.900 --> 00:00:17.861
+The service sees fifteen active devices,
+but Intune says eighteen are in scope,
+
+7
+00:00:17.861 --> 00:00:22.212
+so coverage is eighty-three percent
+against a target of ninety-eight.
+
+8
+00:00:22.212 --> 00:00:25.829
+One device, pilot 3, runs an old client,
+
+9
+00:00:25.829 --> 00:00:31.737
+prefers IPv6, and Chrome
+still uses DNS over HTTPS.
+
+10
+00:00:31.737 --> 00:00:33.700
+Pilot 4 is disconnected.
+
+11
+00:00:33.700 --> 00:00:38.690
+The kit's device script records each
+device's values without changing anything,
+
+12
+00:00:38.690 --> 00:00:41.690
+and hardening waits for
+ring 2, as Learn advises.

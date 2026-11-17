@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:06.032
+Check the compliant network policy: built
+right, ten business days in report-only,
+
+3
+00:00:06.032 --> 00:00:09.562
+and three failures carried by
+the service, so not ready.
+
+4
+00:00:09.562 --> 00:00:13.972
+Read the guide's report-only query:
+eighteen hundred thirty successes,
+
+5
+00:00:13.972 --> 00:00:16.862
+forty-one failures off
+the service, three on it.
+
+6
+00:00:16.862 --> 00:00:21.201
+Then plan ring 1, whose desired
+state wants the policy enforced.
+
+7
+00:00:21.201 --> 00:00:24.895
+The plan leaves it report-only
+and says why on a manual line:
+
+8
+00:00:24.895 --> 00:00:28.490
+enforcing needs the switch,
+after the results are clean.

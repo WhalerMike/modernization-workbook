@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.469
+Lab 2 needs one Windows 11 test device,
+joined to Entra ID and enrolled in Intune,
+
+2
+00:00:05.469 --> 00:00:09.138
+with the client installed
+from the guide's Intune app.
+
+3
+00:00:09.138 --> 00:00:11.333
+On the device, open the health check,
+
+4
+00:00:11.333 --> 00:00:14.287
+then run the device script
+as an administrator.
+
+5
+00:00:14.287 --> 00:00:17.475
+Run the guide's own reads
+beside it as a cross-check.
+
+6
+00:00:17.475 --> 00:00:20.975
+Add the record to your
+inputs, on agency storage.
+
+7
+00:00:20.975 --> 00:00:23.287
+Then read the fleet's count and check.
+
+8
+00:00:23.287 --> 00:00:27.573
+If the service reports no active
+devices while the client is connected,
+
+9
+00:00:27.573 --> 00:00:32.075
+record it: it may be the traffic type
+parameter Learn's table marks required.
+
+10
+00:00:32.075 --> 00:00:35.113
+Nothing changed, so
+backing out is signing out.
+
+11
+00:00:35.113 --> 00:00:37.180
+The authors haven't run this lab.

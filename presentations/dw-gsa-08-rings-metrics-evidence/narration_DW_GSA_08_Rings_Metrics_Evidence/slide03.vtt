@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.362
+Learn says traffic and remote
+network health logs stay thirty days,
+
+2
+00:00:04.362 --> 00:00:08.982
+names the four tables, and says a sudden
+drop in traffic volume is an alert,
+
+3
+00:00:08.982 --> 00:00:11.600
+because offboarding has no audit signal.
+
+4
+00:00:11.600 --> 00:00:14.255
+Its deployment guide asks
+for a rollback plan,
+
+5
+00:00:14.255 --> 00:00:17.538
+and its operations guide for
+at least two people per role.
+
+6
+00:00:17.538 --> 00:00:22.976
+The guide adds the rings, the metrics and
+the rollback order, with signaling last.
+
+7
+00:00:22.976 --> 00:00:26.154
+And CISA's remote user
+use case says visibility
+
+8
+00:00:26.154 --> 00:00:29.175
+must be preserved through
+telemetry sharing.
+
+9
+00:00:29.175 --> 00:00:33.847
+One thing isn't rebuilt: the Zero Trust
+Assessment results kit already turns an
+
+10
+00:00:33.847 --> 00:00:38.663
+assessment into the closure register, and
+its network family points at the guide.
+
+11
+00:00:38.663 --> 00:00:41.810
+This chapter's evidence is
+what that register cites.

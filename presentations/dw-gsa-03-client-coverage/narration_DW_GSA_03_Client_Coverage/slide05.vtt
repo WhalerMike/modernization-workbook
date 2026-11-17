@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.525
+Here are the seven checks.
+
+2
+00:00:01.525 --> 00:00:04.796
+Coverage: active devices
+over in-scope devices,
+
+3
+00:00:04.796 --> 00:00:09.325
+against the target, ninety-eight
+percent after ring 3 in the guide.
+
+4
+00:00:09.325 --> 00:00:12.705
+Each device's client is at
+least the minimum version,
+
+5
+00:00:12.705 --> 00:00:15.850
+here the one Universal
+access evaluation needs.
+
+6
+00:00:15.850 --> 00:00:20.100
+IPv4 is preferred, the value
+Learn's install script sets.
+
+7
+00:00:20.100 --> 00:00:24.325
+DNS over HTTPS is off in Edge and Chrome.
+
+8
+00:00:24.325 --> 00:00:25.563
+Health is connected.
+
+9
+00:00:25.563 --> 00:00:28.674
+The four hardening values
+are set, from ring 2.
+
+10
+00:00:28.674 --> 00:00:33.212
+And each client exclusion has an
+owner, an approver and an expiry.
+
+11
+00:00:33.212 --> 00:00:37.993
+One honest note: the browser policy
+value the script expects is Chromium's,
+
+12
+00:00:37.993 --> 00:00:41.980
+not stated on the Learn page read,
+and the research gaps say so.

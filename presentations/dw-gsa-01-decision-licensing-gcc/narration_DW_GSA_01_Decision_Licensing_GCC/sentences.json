@@ -1,0 +1,431 @@
+{
+ "1": [
+  [
+   0.05,
+   6.025,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Global Secure Access."
+  ],
+  [
+   6.075,
+   5.662,
+   "This is Chapter 1: the decision, licensing, and availability in G C C."
+  ],
+  [
+   11.738,
+   10.137,
+   "A network control is adopted by a written decision with exit criteria, not by turning on a toggle, so the first code reads what the tenant holds and checks the decision against it."
+  ],
+  [
+   21.875,
+   9.225,
+   "We'll start from what Microsoft Learn says, see what it leaves to you, read the kit's call list, its availability table and nine checks, and walk two labs."
+  ],
+  [
+   31.1,
+   7.987,
+   "One note before we begin: this chapter is a draft awaiting review, and the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.462,
+   "Why start with a decision?"
+  ],
+  [
+   1.512,
+   11.762,
+   "Because each function of Global Secure Access has its own gate: the Microsoft traffic profile comes with Entra I D P1, while Internet Access and Private Access are licensed separately."
+  ],
+  [
+   13.275,
+   1.65,
+   "So the goal is concrete."
+  ],
+  [
+   14.925,
+   16.3,
+   "By the end you can read the tenant's licenses and onboarding state with the least-privileged permissions, keep one decision record for each of the four functions, and show an assessor that each record is current, licensed, approved, and honest about what G C C does and doesn't state."
+  ],
+  [
+   31.225,
+   5.963,
+   "It's for the developers, the policy owner who signs the records, and the security officer who keeps them."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.875,
+   "Here's Microsoft's starting point."
+  ],
+  [
+   1.925,
+   14.188,
+   "Learn's known limitations page says Global Secure Access is available in G C C, for the product as a whole; no feature page narrows or widens that, so a preview feature's G C C availability is not yet specified."
+  ],
+  [
+   16.113,
+   10.775,
+   "Learn names the licenses: the Microsoft traffic profile with Entra I D P1 or P2, and Internet Access and Private Access separately, or through the Entra Suite."
+  ],
+  [
+   26.887,
+   11.05,
+   "Two Graph reads tell you what the tenant holds: the subscribed SKUs, with License Assignment Read All, and the tenant status on the beta endpoint, with Network Access Policy Read All."
+  ],
+  [
+   37.938,
+   3.763,
+   "Both liv on the global service, which G C C uses."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.363,
+   "What does Learn leave to you?"
+  ],
+  [
+   1.413,
+   7.013,
+   "One G C C sentence covers the whole product, so nothing says anything per feature, and preview features are silent."
+  ],
+  [
+   8.425,
+   5.8,
+   "License names come without service plan identifiers, so a script can't match a license by I D."
+  ],
+  [
+   14.225,
+   4.95,
+   "The onboarding read is beta, and beta A P I's are subject to change."
+  ],
+  [
+   19.175,
+   2.263,
+   "And nothing covers the decision itself."
+  ],
+  [
+   21.438,
+   12.425,
+   "So the kit adds an availability table, one row per feature with an interim path where G C C isn't stated; a decision record that names the SKU the agency reads from its own export; and nine checks."
+  ],
+  [
+   33.862,
+   4.287,
+   "The verdict: keep Learn's statements as they are, and build what it leaves."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.35,
+   "This is where G C C matters."
+  ],
+  [
+   2.4,
+   10.312,
+   "Because Learn's sentence covers the product, every preview feature's G C C availability is not yet specified, and the kit's table lists them with the guide's interim path."
+  ],
+  [
+   12.713,
+   4.138,
+   "Registered devices: use joined or hybrid joined devices."
+  ],
+  [
+   16.85,
+   6.037,
+   "The cloud firewall for clients: block QUIC with an Intune-delivered Windows Firewall rule."
+  ],
+  [
+   22.887,
+   3.825,
+   "The Explicit Forward Proxy: acquire with the client only."
+  ],
+  [
+   26.712,
+   4.138,
+   "HTTP method filtering: filter by category and name."
+  ],
+  [
+   30.85,
+   3.8,
+   "Custom Private Access profiles: per-app applications."
+  ],
+  [
+   34.65,
+   3.8,
+   "Enriched log categories: not exported without a decision."
+  ],
+  [
+   38.45,
+   6.0,
+   "A decision that uses one without an approved exception fails, and the finding says what to do instead."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   4.713,
+   "Here are the nine checks Test-Gsa-Decision runs on the collection and the records."
+  ],
+  [
+   4.763,
+   1.6,
+   "The tenant is onboarded."
+  ],
+  [
+   6.362,
+   2.837,
+   "There's one record for each of the four functions."
+  ],
+  [
+   9.2,
+   3.888,
+   "Each availability quote was read on Learn within thirty days."
+  ],
+  [
+   13.088,
+   4.225,
+   "An adopted function has enough licenses for the pilot and the first ring."
+  ],
+  [
+   17.312,
+   5.15,
+   "Each record has an approver, exit criteria and a review date within a year."
+  ],
+  [
+   22.462,
+   3.987,
+   "A deferred or retained function names what protects it meanwhile."
+  ],
+  [
+   26.45,
+   5.438,
+   "And any preview feature has an approved exception, or the finding names the interim path."
+  ],
+  [
+   31.887,
+   4.025,
+   "The checks only read files; the policy owner still signs."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.1,
+   "Who is involved?"
+  ],
+  [
+   1.15,
+   4.763,
+   "The policy owner signs each decision record and approves any exception."
+  ],
+  [
+   5.912,
+   2.513,
+   "Developers build and maintain the kit."
+  ],
+  [
+   8.425,
+   4.925,
+   "The security officer keeps the records, the license export and the run folders."
+  ],
+  [
+   13.35,
+   12.4,
+   "And the reader holds very little: License Assignment Read All for the licenses, on version 1.0, and Network Access Policy Read All for the tenant status, on beta, delegated only."
+  ],
+  [
+   25.75,
+   2.1,
+   "Global Reader is enough for both."
+  ],
+  [
+   27.85,
+   11.213,
+   "One difference worth knowing: the guide's step connects with Organization Read All, a higher permission Learn also lists; the kit asks for the least-privileged one, and the research gaps record it."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   10.625,
+   "Lab 1 needs only PowerShell 7 with Pester, in the kit's folder, against one fictional tenant, contoso dot example, seen during its pilot and two weeks later."
+  ],
+  [
+   10.675,
+   1.212,
+   "No tenant at all."
+  ],
+  [
+   11.887,
+   9.8,
+   "Step 1 lists what the decision area reads: two calls, each with its least-privileged permission, one of them beta, both verified against their Learn pages."
+  ],
+  [
+   21.688,
+   8.088,
+   "Step 2 lists the features whose G C C availability Learn doesn't state, each with the interim path the kit expects instead."
+  ],
+  [
+   29.775,
+   3.438,
+   "The first rows are on the slide; the chapter shows them all."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   4.162,
+   "Step 3 reads the pilot tenant's licenses and onboarding state."
+  ],
+  [
+   4.213,
+   4.237,
+   "Step 4 checks the four decision records, and finds four failures."
+  ],
+  [
+   8.45,
+   4.05,
+   "The internet decision's availability quote is forty-six days old."
+  ],
+  [
+   12.5,
+   3.163,
+   "Its SKU has twenty-five units for sixty users."
+  ],
+  [
+   15.662,
+   4.95,
+   "It uses the cloud firewall for clients, a preview feature, with no exception."
+  ],
+  [
+   20.613,
+   5.525,
+   "And the branch decision defers remote networks without naming what protects branches meanwhile."
+  ],
+  [
+   26.137,
+   2.925,
+   "Step 5 reads the preview finding in full."
+  ],
+  [
+   29.062,
+   3.062,
+   "Look at the fix: it isn't \"enable the preview\"."
+  ],
+  [
+   32.125,
+   4.912,
+   "It's the guide's interim path, a Windows Firewall rule delivered by Intune."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.15,
+   "Step 6 checks the same records two weeks later."
+  ],
+  [
+   3.2,
+   15.45,
+   "The internet record was re-read on Learn and drops the preview feature, its SKU now has seventy-five units, and the branch record names its compensating controls: branch traffic stays on the current TIC path, and managed devices at branches keep the client."
+  ],
+  [
+   18.65,
+   1.387,
+   "Every check passes."
+  ],
+  [
+   20.038,
+   4.65,
+   "Step 7 runs this chapter's tests: thirteen passed, none failed."
+  ],
+  [
+   24.688,
+   1.837,
+   "Then delete the output folder."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   7.975,
+   "Lab 2 moves to a test tenant, never production, and a tenant with no Global Secure Access licenses is a valid result."
+  ],
+  [
+   8.025,
+   3.788,
+   "Sign in as a person with the two least-privileged permissions."
+  ],
+  [
+   11.812,
+   2.587,
+   "Run the guide's own reads as a cross-check."
+  ],
+  [
+   14.4,
+   7.838,
+   "Then collect and check with the kit, using your own decision records, kept on agency storage and never in this repository."
+  ],
+  [
+   22.238,
+   2.9,
+   "The kit's license counts should match the guide's."
+  ],
+  [
+   25.137,
+   4.35,
+   "If the tenant isn't onboarded, onboard it before any later chapter."
+  ],
+  [
+   29.488,
+   5.85,
+   "The lab only reads, so backing it out is signing out and filing or deleting the outputs."
+  ],
+  [
+   35.337,
+   2.0,
+   "The authors haven't run this lab."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.45,
+   "What does the output prove?"
+  ],
+  [
+   1.5,
+   11.762,
+   "The license and onboarding reads, hashed, and the decision records support the system security plan and the control on external system services; the decision supports information exchange too."
+  ],
+  [
+   13.262,
+   5.6,
+   "The guide maps no key security indicator to a decision record, and the kit doesn't invent one."
+  ],
+  [
+   18.863,
+   3.812,
+   "The records support these controls; the assessor decides them."
+  ],
+  [
+   22.675,
+   10.113,
+   "The dangers: adopting a preview because the product is in G C C, a stale availability quote, and beta reads in an unattended job, each with its guard."
+  ],
+  [
+   32.788,
+   6.175,
+   "You're done when every function has a current, signed record, and no preview runs without its exception."
+  ],
+  [
+   38.962,
+   4.675,
+   "Next, Chapter 2: the configuration export, and logs first."
+  ]
+ ]
+}

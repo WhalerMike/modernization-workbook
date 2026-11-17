@@ -1,0 +1,34 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.675
+Step 7 tries to apply the plan in
+fixture mode, with a made-up hash.
+
+2
+00:00:04.675 --> 00:00:07.421
+It's refused before the hash is even read:
+
+3
+00:00:07.421 --> 00:00:12.662
+apply runs only with a live invoker,
+and fixture mode never changes anything.
+
+4
+00:00:12.662 --> 00:00:17.324
+The tests also show the other refusals:
+a live session with the wrong hash is
+
+5
+00:00:17.324 --> 00:00:22.062
+refused, and the right hash sends the
+steps in order through the Graph runner.
+
+6
+00:00:22.062 --> 00:00:26.599
+Step 8 runs this chapter's
+tests: nine passed, none failed.
+
+7
+00:00:26.599 --> 00:00:28.490
+Then delete the output folder.
