@@ -74,8 +74,27 @@ function Write-XdrJson {
     param([Parameter(Mandatory)][string]$Path, [AllowNull()]$Value)
     $dir = Split-Path -Parent $Path
     if ($dir) { New-Item -ItemType Directory -Force -Path $dir | Out-Null }
-    $json = (ConvertTo-Json -InputObject $Value -Depth 50) -replace "`r`n", "`n"
+    $json = (ConvertTo-Json -InputObject (ConvertTo-XdrStableOrder $Value) -Depth 50) -replace "`r`n", "`n"
     [IO.File]::WriteAllText($Path, $json + "`n", [Text.UTF8Encoding]::new($false))
+}
+
+function ConvertTo-XdrStableOrder {
+    <#
+    .SYNOPSIS
+        A value whose plain hashtables have their keys sorted, so JSON comes out in the same order on Windows
+        and Linux (a plain @{} has no fixed key order). Ordered dictionaries keep their own order.
+    .EXAMPLE
+        ConvertTo-XdrStableOrder @{ b = 1; a = 2 }
+    #>
+    param([AllowNull()]$Value)
+    if ($Value -is [Collections.Specialized.OrderedDictionary]) {
+        $o = [ordered]@{}; foreach ($k in $Value.Keys) { $o[$k] = ConvertTo-XdrStableOrder $Value[$k] }; return $o
+    }
+    if ($Value -is [Collections.IDictionary]) {
+        $o = [ordered]@{}; foreach ($k in ($Value.Keys | Sort-Object { "$_" })) { $o["$k"] = ConvertTo-XdrStableOrder $Value[$k] }; return $o
+    }
+    if ($Value -is [Collections.IList] -and $Value -isnot [string]) { return , @($Value | ForEach-Object { ConvertTo-XdrStableOrder $_ }) }
+    $Value
 }
 
 function Write-XdrText {
@@ -474,7 +493,7 @@ function Write-XdrManifest {
     }
     $calls = @($CallIds | Sort-Object -Unique | ForEach-Object { $c = Get-XdrCall -Id $_; [ordered]@{ id = $c.id; method = $c.method; path = $c.path; permission = $c.permission; doc = $c.doc } })
     $m = [ordered]@{ schema = 'fmp-xdr-manifest/1'; task = $Task; asOf = (ConvertTo-XdrUtc $AsOf); mode = $Mode; environment = $Environment; kit = 'examples/defender-xdr'; calls = $calls; files = $files }
-    foreach ($k in $Extra.Keys) { $m[$k] = $Extra[$k] }
+    foreach ($k in ($Extra.Keys | Sort-Object)) { $m[$k] = $Extra[$k] }
     Write-XdrJson -Path (Join-Path $root 'manifest.json') -Value $m
     Get-Item -LiteralPath (Join-Path $root 'manifest.json')
 }

@@ -25,12 +25,12 @@ contoso-admin-share-copy          held   validation failed: NO-AUTOMATION
 contoso-legacy-rdp-rule           orphan deployed (enabled), not in the repository
 
 Detections: 3 rule(s); 1 validation failure(s); tests 5 passed, 1 failed. Plan via portal: 1 create, 1 update, 1 held, 1 orphan(s), 0 unchanged.
-Plan SHA-256: cb788a1241ddfa8b99475d122f6b134d36c77da73cfec2b69b61973b1c14c708
+Plan SHA-256: e88d2ff6a8ff2981b27e0ce57a447445c8d72cddfa251d0f2e6f501dcc9ee43c
 Written to out/detections-portal: validation.csv, tests.csv, deployed-rules.json, plan.json, plan.sha256, summary.json, raw/, manifest.json
 PS> Get-Content out/detections-portal/portal-sheet.md
 # Custom detections to make in the Defender portal
 
-Plan cb788a1241ddfa8b99475d122f6b134d36c77da73cfec2b69b61973b1c14c708, 2026-11-16T12:00:00Z. Hunting > Custom detection rules; enter each rule from its repository file, unchanged.
+Plan e88d2ff6a8ff2981b27e0ce57a447445c8d72cddfa251d0f2e6f501dcc9ee43c, 2026-11-16T12:00:00Z. Hunting > Custom detection rules; enter each rule from its repository file, unchanged.
 
 - **create** `contoso-lsass-dump-tool`: displayName, description, status, queryCondition, schedule, detectionAction (file SHA-256 ec5fda8cfc89096c798d8311e43a52c469e2acbd591669c9a1506ad2d60c7663)
 - **update** `contoso-office-encoded-powershell`: status (file SHA-256 f3d04de2fedd8b3d16304f998e77d928257a531766be740d48a1025dfed571d9)

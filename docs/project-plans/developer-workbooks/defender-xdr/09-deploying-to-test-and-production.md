@@ -121,7 +121,7 @@ Rule                              Action Method Status
 contoso-lsass-dump-tool           create POST   planned (dry run)
 contoso-office-encoded-powershell update PATCH  planned (dry run)
 
-9401d7c0d69d42b60b018b756a5d17ef9bd43c203fc134f204418a7eed5c780b  plan.json
+03c9e3fc5de4b2694f88ebd9166cfc41c0a667f27c3a05ee44320f3e26ca03c8  plan.json
 ```
 
 The detection engineer and the approver read `plan.json` and record the SHA-256 in the change record. Then apply it, with that hash:

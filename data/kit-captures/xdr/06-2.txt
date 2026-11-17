@@ -22,5 +22,5 @@ contoso-admin-share-copy          held   validation failed: NO-AUTOMATION
 contoso-legacy-rdp-rule           orphan deployed (enabled), not in the repository
 
 Detections: 3 rule(s); 1 validation failure(s); tests 5 passed, 1 failed. Plan via graph: 1 create, 1 update, 1 held, 1 orphan(s), 0 unchanged.
-Plan SHA-256: 7a42dcca0ea5890fdc98c36dfd1a5d6a921b84c880c7a1e81cb824a3293a0725
+Plan SHA-256: 2bfe49bb15add13dc7a81654fe5deeee341246a5cd17c19da1275bcf8abd2601
 Written to out/detections: validation.csv, tests.csv, deployed-rules.json, plan.json, plan.sha256, summary.json, raw/, manifest.json

@@ -1,5 +1,5 @@
 PS> Get-Content out/detections/plan.sha256
-7a42dcca0ea5890fdc98c36dfd1a5d6a921b84c880c7a1e81cb824a3293a0725  plan.json
+2bfe49bb15add13dc7a81654fe5deeee341246a5cd17c19da1275bcf8abd2601  plan.json
 PS> (Get-Content out/detections/plan.json | ConvertFrom-Json).actions | Format-Table ruleId, action, method, path -AutoSize
 ruleId                            action method path
 ------                            ------ ------ ----
