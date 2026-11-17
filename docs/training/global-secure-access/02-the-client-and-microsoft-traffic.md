@@ -59,6 +59,14 @@ Read the guide's [Step 4](../../books/guides/global-secure-access-implementation
 
 The profile has no report-only mode. The pilot group is the audit phase, read through the sign-in query for five business days; the rollback is removing the ring's group from the assignment.
 
+## Exercise: Lab 1, fixtures, no tenant {#gsa-m2-lab-1}
+*About 20 minutes per chapter. No tenant: it runs on a laptop.*
+
+This module's fixture labs are in the developer workbook [*Building Global Secure Access*](../../project-plans/developer-workbooks/global-secure-access/index.md). Each runs the kit in `examples/global-secure-access` against one fictional tenant, `contoso.example`, with every command as a copy-paste block and the kit's real output beside it. Follow them as written; they aren't repeated here:
+
+- [Chapter 03, Lab 1](../../project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.md#lab-1-fixtures-no-tenant): client coverage and each pilot device's version, IPv4 preference, DNS over HTTPS, health and hardening.
+- [Chapter 04, Lab 1](../../project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md#lab-1-fixtures-no-tenant): the Microsoft traffic checks, the sign-in share, and a change plan approved by its hash.
+
 ## Exercise: Lab 2, a test tenant {#gsa-m2-lab-2}
 *Not timed. Not run by the authors. Never production.*
 

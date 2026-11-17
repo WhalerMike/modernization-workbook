@@ -1,0 +1,32 @@
+{
+  "value": [
+    {
+      "id": "55555555-5555-4555-8555-000000000061",
+      "machineName": "con01.contoso.example",
+      "externalIp": "203.0.113.11",
+      "status": "active",
+      "version": "1.5.4522.0"
+    },
+    {
+      "id": "55555555-5555-4555-8555-000000000062",
+      "machineName": "con02.contoso.example",
+      "externalIp": "203.0.113.12",
+      "status": "active",
+      "version": "1.5.4522.0"
+    },
+    {
+      "id": "55555555-5555-4555-8555-000000000063",
+      "machineName": "con11.contoso.example",
+      "externalIp": "203.0.113.21",
+      "status": "active",
+      "version": "1.5.4522.0"
+    },
+    {
+      "id": "55555555-5555-4555-8555-000000000064",
+      "machineName": "con12.contoso.example",
+      "externalIp": "203.0.113.22",
+      "status": "active",
+      "version": "1.5.4522.0"
+    }
+  ]
+}

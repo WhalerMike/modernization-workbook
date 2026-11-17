@@ -1,0 +1,12 @@
+PS> Get-Content ./tools/Get-GsaClientState.ps1 -TotalCount 11
+#Requires -Version 5.1
+<#
+.SYNOPSIS
+    Run on a Windows device with the Global Secure Access client, as an administrator: reads the guide's Step 3
+    Validate values (the client's file version, the four hardening registry values, IPv4 preferred, the Edge and
+    Chrome DNS-over-HTTPS policy) and prints one client record as JSON for inputs/client-records.json. Reads only;
+    changes nothing. The tray's health (Advanced diagnostics > Health check) is read by a person and passed in.
+.EXAMPLE
+    ./tools/Get-GsaClientState.ps1 -Health Connected | Out-File ./client-PC-PILOT-01.json -Encoding utf8
+#>
+[CmdletBinding()]

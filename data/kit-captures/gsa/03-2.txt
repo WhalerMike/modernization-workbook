@@ -1,0 +1,13 @@
+PS> ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/pilot -Area client -OutputPath out/client -AsOf 2026-11-16T12:00:00Z
+Collected as of 2026-11-16T12:00:00Z (Fixture mode, environment lab, cloud gcc, ring pilot)
+
+Call                     Method  Beta  Verified  Least-privileged permission
+device-usage             GET     True  True      NetworkAccessPolicy.Read.All
+
+1 calls sent (1 reads in all). Written to out/client: collection.json, raw/, manifest.json (2 files hashed)
+PS> Read-GsaJson -Path out/client/raw/device-usage.json
+Name                           Value
+----                           -----
+totalDeviceCount               18
+activeDeviceCount              15
+inactiveDeviceCount            3

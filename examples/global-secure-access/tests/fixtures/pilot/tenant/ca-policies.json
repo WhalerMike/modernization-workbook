@@ -1,0 +1,189 @@
+{
+  "value": [
+    {
+      "id": "55555555-5555-4555-8555-000000000041",
+      "displayName": "NET-CN-Require-Compliant-Network-Pilot",
+      "state": "enabledForReportingButNotEnforced",
+      "conditions": {
+        "users": {
+          "includeGroups": [
+            "22222222-2222-4222-8222-222222222201"
+          ],
+          "excludeGroups": [
+            "22222222-2222-4222-8222-222222222202"
+          ]
+        },
+        "applications": {
+          "includeApplications": [
+            "All"
+          ],
+          "excludeApplications": [
+            "33333333-3333-4333-8333-333333333301",
+            "33333333-3333-4333-8333-333333333302"
+          ]
+        },
+        "locations": {
+          "includeLocations": [
+            "All"
+          ],
+          "excludeLocations": [
+            "44444444-4444-4444-8444-444444444401"
+          ]
+        }
+      },
+      "grantControls": {
+        "operator": "OR",
+        "builtInControls": [
+          "block"
+        ]
+      },
+      "sessionControls": null,
+      "createdDateTime": "2026-11-02T15:00:00Z"
+    },
+    {
+      "id": "55555555-5555-4555-8555-000000000042",
+      "displayName": "NET-IA-SecurityProfile-Pilot",
+      "state": "enabled",
+      "conditions": {
+        "users": {
+          "includeGroups": [
+            "22222222-2222-4222-8222-222222222201"
+          ],
+          "excludeGroups": [
+            "22222222-2222-4222-8222-222222222202"
+          ]
+        },
+        "applications": {
+          "includeApplications": [
+            "5dc48733-b5df-475c-a49b-fa307ef00853"
+          ],
+          "excludeApplications": []
+        }
+      },
+      "grantControls": null,
+      "sessionControls": {
+        "globalSecureAccessFilteringProfile": {
+          "profileId": "55555555-5555-4555-8555-000000000022",
+          "isEnabled": true
+        }
+      },
+      "createdDateTime": "2026-11-09T15:00:00Z"
+    },
+    {
+      "id": "55555555-5555-4555-8555-000000000043",
+      "displayName": "NET-PA-PA-HR-Portal-Device-MFA",
+      "state": "enabledForReportingButNotEnforced",
+      "conditions": {
+        "users": {
+          "includeGroups": [
+            "22222222-2222-4222-8222-222222222201"
+          ],
+          "excludeGroups": [
+            "22222222-2222-4222-8222-222222222202"
+          ]
+        },
+        "applications": {
+          "includeApplications": [
+            "55555555-5555-4555-8555-000000000102"
+          ],
+          "excludeApplications": []
+        }
+      },
+      "grantControls": {
+        "operator": "AND",
+        "builtInControls": [
+          "mfa",
+          "compliantDevice"
+        ]
+      },
+      "sessionControls": null,
+      "createdDateTime": "2026-11-10T15:00:00Z"
+    },
+    {
+      "id": "55555555-5555-4555-8555-000000000044",
+      "displayName": "NET-PA-AdminRDP-PhishingResistant",
+      "state": "enabledForReportingButNotEnforced",
+      "conditions": {
+        "users": {
+          "includeGroups": [
+            "22222222-2222-4222-8222-222222222203"
+          ],
+          "excludeGroups": [
+            "22222222-2222-4222-8222-222222222202"
+          ]
+        },
+        "applications": {
+          "includeApplications": [
+            "55555555-5555-4555-8555-000000000122"
+          ],
+          "excludeApplications": []
+        }
+      },
+      "grantControls": {
+        "operator": "AND",
+        "builtInControls": [
+          "mfa"
+        ]
+      },
+      "sessionControls": null,
+      "createdDateTime": "2026-11-12T15:00:00Z"
+    },
+    {
+      "id": "55555555-5555-4555-8555-000000000045",
+      "displayName": "NET-PA-PA-Finance-Device-MFA",
+      "state": "enabled",
+      "conditions": {
+        "users": {
+          "includeGroups": [
+            "22222222-2222-4222-8222-222222222201"
+          ],
+          "excludeGroups": []
+        },
+        "applications": {
+          "includeApplications": [
+            "55555555-5555-4555-8555-000000000112"
+          ],
+          "excludeApplications": []
+        }
+      },
+      "grantControls": {
+        "operator": "AND",
+        "builtInControls": [
+          "mfa",
+          "compliantDevice"
+        ]
+      },
+      "sessionControls": null,
+      "createdDateTime": "2026-11-12T16:00:00Z"
+    },
+    {
+      "id": "55555555-5555-4555-8555-000000000046",
+      "displayName": "CA-Legacy-Block-Basic-Auth",
+      "state": "enabled",
+      "conditions": {
+        "users": {
+          "includeGroups": [
+            "22222222-2222-4222-8222-222222222201"
+          ],
+          "excludeGroups": [
+            "22222222-2222-4222-8222-222222222202"
+          ]
+        },
+        "applications": {
+          "includeApplications": [
+            "All"
+          ],
+          "excludeApplications": []
+        }
+      },
+      "grantControls": {
+        "operator": "OR",
+        "builtInControls": [
+          "block"
+        ]
+      },
+      "sessionControls": null,
+      "createdDateTime": "2025-03-01T12:00:00Z"
+    }
+  ]
+}

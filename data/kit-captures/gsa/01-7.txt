@@ -1,0 +1,4 @@
+PS> Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Calls and availability*', 'Settings*', 'Chapter 01*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+PassedCount FailedCount
+----------- -----------
+         13           0

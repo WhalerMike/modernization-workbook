@@ -66,6 +66,14 @@ Read the guide's [reference architecture](../../books/guides/global-secure-acces
 
 Read the guide's [Step 12](../../books/guides/global-secure-access-implementation.md#step-12-telemetry-and-evidence), 12.1 to 12.3. Traffic and remote network health logs stay in the service for 30 days; a dedicated Entra diagnostic setting exports `NetworkAccessTrafficLogs`, `NetworkAccessConnectionEvents`, `RemoteNetworkHealthLogs` and `NetworkAccessAlerts` to the workspace, and the freshness query runs daily. A sudden drop in traffic volume is an alert in itself. And the TIC 3.0 Remote User Use Case says CISA's visibility must be preserved through telemetry sharing, so how the logs reach CISA is agreed with the agency's TIC delegates before the VPN's web path is retired.
 
+## Exercise: Lab 1, fixtures, no tenant {#gsa-m1-lab-1}
+*About 20 minutes per chapter. No tenant: it runs on a laptop.*
+
+This module's fixture labs are in the developer workbook [*Building Global Secure Access*](../../project-plans/developer-workbooks/global-secure-access/index.md). Each runs the kit in `examples/global-secure-access` against one fictional tenant, `contoso.example`, with every command as a copy-paste block and the kit's real output beside it. Follow them as written; they aren't repeated here:
+
+- [Chapter 01, Lab 1](../../project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.md#lab-1-fixtures-no-tenant): the decision records and GCC availability, on the fictional tenant during its pilot and two weeks later.
+- [Chapter 02, Lab 1](../../project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.md#lab-1-fixtures-no-tenant): the hashed configuration export, the architecture record and the network diagnostic setting.
+
 ## Exercise: Lab 2, a test tenant {#gsa-m1-lab-2}
 *Not timed. Not run by the authors. Never production.*
 

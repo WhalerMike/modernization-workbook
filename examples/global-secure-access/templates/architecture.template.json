@@ -1,0 +1,11 @@
+{
+  "_comment": "The guide's Step 2 architecture record (inputs/architecture.json). Every connector group the tenant has must be here with two or more hosts. quicBlock records the interim path for QUIC while the cloud firewall for clients is a preview with no stated GCC availability. cisaTelemetry is agreed with the TIC delegates before the VPN's web path is retired.",
+  "tenant": "<tenant domain>",
+  "forest": "<Active Directory forest name>",
+  "connectorGroups": [ { "name": "<connector group>", "site": "<site or cloud network>", "hosts": [ "<host1>", "<host2>" ], "applications": [ "<app name>" ] } ],
+  "privateDnsSuffixes": [ "<suffix>" ],
+  "remoteNetworks": [],
+  "workspace": "<Log Analytics workspace name>",
+  "cisaTelemetry": { "agreedOn": "<yyyy-mm-dd>", "path": "<how telemetry reaches CISA>" },
+  "quicBlock": { "method": "Intune firewall rule", "profile": "<Intune profile name>", "assignedTo": "<ring>" }
+}

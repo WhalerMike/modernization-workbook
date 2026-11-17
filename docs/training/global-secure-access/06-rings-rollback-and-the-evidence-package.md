@@ -61,6 +61,15 @@ A finding is ready for closure when every applicable control state (Designed, Co
 
 Read the guide's [metrics](../../books/guides/global-secure-access-implementation.md#metrics), [dangers](../../books/guides/global-secure-access-implementation.md#dangers) and [rollback](../../books/guides/global-secure-access-implementation.md#rollback). Each metric measures protected coverage or effectiveness, not whether a setting exists: client coverage (98% after ring 3), sign-ins through the service (95%), compliant network enforcement (100% after ring 3), Quick Access residual and unassigned apps (zero), connector resilience (100%), TLS failure share (under 1%) and certificate life (over 90 days), telemetry freshness (no silent table). In an incident that touches several steps, reverse newest first: Conditional Access policies from Steps 10, 7, 6 and 5 to report-only; security profile links removed; universal tenant restrictions tagging disabled; the affected groups removed from the traffic profiles; the VPN route restored; signaling disabled only after no policy depends on it. Every rollback is a change with a record, followed by the Step 2.1 export.
 
+## Exercise: Lab 1, fixtures, no tenant {#gsa-m6-lab-1}
+*About 20 minutes per chapter. No tenant: it runs on a laptop.*
+
+This module's fixture labs are in the developer workbook [*Building Global Secure Access*](../../project-plans/developer-workbooks/global-secure-access/index.md). Each runs the kit in `examples/global-secure-access` against one fictional tenant, `contoso.example`, with every command as a copy-paste block and the kit's real output beside it. Follow them as written; they aren't repeated here:
+
+- [Chapter 08, Lab 1](../../project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.md#lab-1-fixtures-no-tenant): telemetry freshness, the guide's metrics, the ring exit, the rollback plan and the evidence package.
+
+Then read [Chapter 09, Deploying to test and production](../../project-plans/developer-workbooks/global-secure-access/09-deploying-to-test-and-production.md), the runbook that takes the same scripts through a live test tenant to production, ring by ring.
+
 ## Exercise: Lab 2, a test tenant {#gsa-m6-lab-2}
 *Not timed. Not run by the authors. Never production.*
 

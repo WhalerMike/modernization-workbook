@@ -1,0 +1,25 @@
+{
+  "cloud_environment": "GCC",
+  "owner": "Network policy owner",
+  "approver": "Authorizing official (delegated)",
+  "authorization": "Provider package read Oct 2026; FedRAMP High; GCC covered",
+  "exit_criteria": [
+    "Learn's GCC statement changes",
+    "Beta API change breaks evidence collection"
+  ],
+  "review_on": "2027-11-01",
+  "preview_features_used": [],
+  "exceptions": [],
+  "decision_id": "NET-GSA-04",
+  "function": "branch",
+  "decision": "defer",
+  "availability": "Learn, Known limitations for Global Secure Access, read 2026-11-11: Global Secure Access is available in GCC",
+  "availability_read_on": "2026-11-11",
+  "license_required": "At least 50 P1 and Internet Access licenses combined",
+  "license_sku": "",
+  "license_needed": 0,
+  "approved_on": "2026-11-12",
+  "tic_alignment": "Branch Office, deferred",
+  "compensating_controls": [],
+  "pilot_exit_criteria": []
+}

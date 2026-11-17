@@ -1,0 +1,29 @@
+{
+  "cloud_environment": "GCC",
+  "owner": "Network policy owner",
+  "approver": "Authorizing official (delegated)",
+  "authorization": "Provider package read Oct 2026; FedRAMP High; GCC covered",
+  "exit_criteria": [
+    "Learn's GCC statement changes",
+    "Beta API change breaks evidence collection"
+  ],
+  "review_on": "2027-11-01",
+  "preview_features_used": [
+    "cloud-firewall-clients"
+  ],
+  "exceptions": [],
+  "decision_id": "NET-GSA-03",
+  "function": "internet",
+  "decision": "adopt",
+  "availability": "Learn, Known limitations for Global Secure Access, read 2026-10-01: Global Secure Access is available in GCC",
+  "availability_read_on": "2026-10-01",
+  "license_required": "Internet Access or Entra Suite",
+  "license_sku": "FIXTURE-ENTRA-SUITE",
+  "license_needed": 60,
+  "approved_on": "2026-11-12",
+  "tic_alignment": "Remote User, Pattern 3",
+  "pilot_exit_criteria": [
+    "blocked-category test passes",
+    "TLS failure share under 1%"
+  ]
+}

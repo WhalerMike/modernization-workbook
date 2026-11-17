@@ -1,0 +1,18 @@
+{
+  "value": [
+    {
+      "id": "55555555-5555-4555-8555-000000000051",
+      "name": "CG-HQ",
+      "connectorGroupType": "applicationProxy",
+      "isDefault": false,
+      "region": "nam"
+    },
+    {
+      "id": "55555555-5555-4555-8555-000000000052",
+      "name": "CG-Cloud-East",
+      "connectorGroupType": "applicationProxy",
+      "isDefault": false,
+      "region": "nam"
+    }
+  ]
+}

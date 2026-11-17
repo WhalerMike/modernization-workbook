@@ -1,0 +1,23 @@
+{
+  "_comment": "The guide's Step 1.2 decision record, one file per function, as JSON the kit reads (inputs/decisions/<decision_id>.json). Replace every <placeholder>. preview_features_used takes IDs from config/availability.json; each needs an approved entry in exceptions, or the check names the interim path. compensating_controls is required when decision is retain-current or defer.",
+  "decision_id": "NET-GSA-<nn>",
+  "function": "<microsoft-traffic | internet | private | branch>",
+  "decision": "<adopt | retain-current | coexist | defer>",
+  "cloud_environment": "GCC",
+  "availability": "Learn, Known limitations for Global Secure Access, read <yyyy-mm-dd>: <quote>",
+  "availability_read_on": "<yyyy-mm-dd>",
+  "license_required": "<P1 or P2 | Internet Access | Private Access | Entra Suite>",
+  "license_sku": "<skuPartNumber as the licenses read shows it>",
+  "license_needed": 0,
+  "preview_features_used": [],
+  "exceptions": [ { "feature": "<availability id>", "approved_on": "<yyyy-mm-dd>", "approver": "<role>", "reason": "<why>" } ],
+  "compensating_controls": [],
+  "authorization": "<package read; class; environment covered>",
+  "tic_alignment": "<Remote User / Branch Office pattern and option; telemetry path agreed with TIC delegates on <date>>",
+  "pilot_exit_criteria": [ "<e.g., 20 pilot users 10 business days, no Sev-2 tickets>" ],
+  "exit_criteria": [ "Learn's GCC statement changes", "Beta API change breaks evidence collection" ],
+  "owner": "<policy owner role>",
+  "approver": "<AO or delegated official>",
+  "approved_on": "<yyyy-mm-dd>",
+  "review_on": "<yyyy-mm-dd, within 12 months>"
+}

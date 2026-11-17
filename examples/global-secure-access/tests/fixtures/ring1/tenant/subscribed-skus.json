@@ -1,0 +1,24 @@
+{
+  "value": [
+    {
+      "skuPartNumber": "FIXTURE-ENTRA-ID-P1",
+      "capabilityStatus": "Enabled",
+      "consumedUnits": 412,
+      "prepaidUnits": {
+        "enabled": 500,
+        "suspended": 0,
+        "warning": 0
+      }
+    },
+    {
+      "skuPartNumber": "FIXTURE-ENTRA-SUITE",
+      "capabilityStatus": "Enabled",
+      "consumedUnits": 61,
+      "prepaidUnits": {
+        "enabled": 75,
+        "suspended": 0,
+        "warning": 0
+      }
+    }
+  ]
+}
