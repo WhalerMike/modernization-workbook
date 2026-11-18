@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 02: The Configuration Export and Logs First
 
-Welcome back to Building Global Secure Access. This is Chapter 2: the configuration export, and logs first. Every later chapter reads the same export, and nothing is enforced before the logs exist, so this chapter builds both. We'll start from Learn's advice to back the configuration up as Graph JSON, see what it leaves to you, read the kit's collector, its manifest and five baseline checks, and walk two labs. The chapter is a draft awaiting review, and the code is illustrative, tested against fixtures.
+Welcome back to Building Global Secure Access. This is Chapter 2: the configuration export, and logs first. Every later chapter reads the same export, and nothing is enforced before the logs exist, so this chapter builds both. We'll start from Learn's advice to back the configuration up as Graph JSON, see what it leaves to you, read the kit's collector, its manifest and five baseline checks, and walk two labs. The chapter has been reviewed and approved, and the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why one export, and why logs first
 

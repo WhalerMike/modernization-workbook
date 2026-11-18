@@ -40,514 +40,515 @@ read eleven checks and the plan's
 enforcement gate, and walk two labs.
 
 9
-00:00:27.400 --> 00:00:29.914
-The chapter is a draft awaiting review,
+00:00:27.400 --> 00:00:30.172
+The chapter has been
+reviewed and approved,
 
 10
-00:00:29.914 --> 00:00:33.800
+00:00:30.172 --> 00:00:34.000
 and the code is illustrative,
 tested against fixtures.
 
 11
-00:00:37.550 --> 00:00:38.475
+00:00:37.750 --> 00:00:38.675
 Why a gate?
 
 12
-00:00:38.475 --> 00:00:43.419
+00:00:38.675 --> 00:00:43.619
 The compliant network check passes only
 for users who come through the agency's
 
 13
-00:00:43.419 --> 00:00:48.063
+00:00:43.619 --> 00:00:48.263
 own Global Secure Access, so a replayed
 token from anywhere else is refused.
 
 14
-00:00:48.063 --> 00:00:53.637
+00:00:48.263 --> 00:00:53.837
 Tenant restrictions let agency devices
 sign in only to tenants the policy allows.
 
 15
-00:00:53.637 --> 00:00:57.674
+00:00:53.837 --> 00:00:57.874
 Both are strong, and both can lock people
 out if they're enforced too early.
 
 16
-00:00:57.674 --> 00:01:00.702
+00:00:57.874 --> 00:01:00.902
 So the goal: keep both as
 reviewed configuration,
 
 17
-00:01:00.702 --> 00:01:04.410
+00:01:00.902 --> 00:01:04.610
 show when the compliant network
 policy is ready to enforce,
 
 18
-00:01:04.410 --> 00:01:08.950
+00:01:04.610 --> 00:01:09.150
 and show that agency devices reach
 only the tenants the register allows.
 
 19
-00:01:08.950 --> 00:01:11.694
+00:01:09.150 --> 00:01:11.894
 It's for the developers,
 the identity engineer,
 
 20
-00:01:11.694 --> 00:01:14.810
+00:01:11.894 --> 00:01:15.010
 and the policy owner
 who decides enforcement.
 
 21
-00:01:18.560 --> 00:01:19.860
+00:01:18.760 --> 00:01:20.060
 Learn gives a lot here.
 
 22
-00:01:19.860 --> 00:01:25.195
+00:01:20.060 --> 00:01:25.395
 Its example policy blocks everything
 outside the All Compliant Network locations
 
 23
-00:01:25.195 --> 00:01:28.778
+00:01:25.395 --> 00:01:28.978
 named location, excludes the
 two Intune applications so
 
 24
-00:01:28.778 --> 00:01:32.360
+00:01:28.978 --> 00:01:32.560
 devices can still enroll, and
 excludes emergency access.
 
 25
-00:01:32.360 --> 00:01:35.150
+00:01:32.560 --> 00:01:35.350
 The check isn't supported
 for Private Access apps,
 
 26
-00:01:35.150 --> 00:01:39.097
+00:01:35.350 --> 00:01:39.297
 and turning signaling off while
 policies depend on it can block users.
 
 27
-00:01:39.097 --> 00:01:42.260
+00:01:39.297 --> 00:01:42.460
 The named location is listed
 with Policy Read All.
 
 28
-00:01:42.260 --> 00:01:46.446
+00:01:42.460 --> 00:01:46.646
 Universal tenant restrictions
 apply the TRv2 policy to traffic
 
 29
-00:01:46.446 --> 00:01:50.322
+00:01:46.646 --> 00:01:50.522
 the Microsoft profile carries,
 through one tagging setting.
 
 30
-00:01:50.322 --> 00:01:54.681
+00:01:50.522 --> 00:01:54.881
 Learn's tests are disabling the client
 and signing in again, and a four-case
 
 31
-00:01:54.681 --> 00:01:59.750
+00:01:54.881 --> 00:01:59.950
 matrix for tenants, with a block query
 for error five million two hundred eleven.
 
 32
-00:02:03.500 --> 00:02:04.725
+00:02:03.700 --> 00:02:04.925
 What does it leave to you?
 
 33
-00:02:04.725 --> 00:02:07.569
+00:02:04.925 --> 00:02:07.769
 Learn's example policy
 is on from the start,
 
 34
-00:02:07.569 --> 00:02:12.850
+00:02:07.769 --> 00:02:13.050
 but the guide begins every policy in
 report-only, so the kit's file is report-only.
 
 35
-00:02:12.850 --> 00:02:15.184
+00:02:13.050 --> 00:02:15.384
 Nothing says when report-only is done,
 
 36
-00:02:15.184 --> 00:02:19.776
+00:02:15.384 --> 00:02:19.976
 so the kit's rule is ten business days
 and no failure carried by the service,
 
 37
-00:02:19.776 --> 00:02:23.088
+00:02:19.976 --> 00:02:23.288
 and the plan won't enforce
 without an explicit switch.
 
 38
-00:02:23.088 --> 00:02:26.272
+00:02:23.288 --> 00:02:26.472
 Exclusions are prose, so
 two checks look for them
 
 39
-00:02:26.272 --> 00:02:29.775
+00:02:26.472 --> 00:02:29.975
 and the plan refuses a file
 without the emergency one.
 
 40
-00:02:29.775 --> 00:02:33.361
+00:02:29.975 --> 00:02:33.561
 The tagging toggle enforces
 nothing with an allowing default,
 
 41
-00:02:33.361 --> 00:02:35.637
+00:02:33.561 --> 00:02:35.837
 so tagging waits for a blocking default.
 
 42
-00:02:35.637 --> 00:02:39.510
+00:02:35.837 --> 00:02:39.710
 And every partner allowance needs
 a register row with an owner.
 
 43
-00:02:43.260 --> 00:02:44.373
+00:02:43.460 --> 00:02:44.573
 Eleven checks.
 
 44
-00:02:44.373 --> 00:02:47.781
+00:02:44.573 --> 00:02:47.981
 For the compliant network:
 the named location exists,
 
 45
-00:02:47.781 --> 00:02:52.971
+00:02:47.981 --> 00:02:53.171
 which tells you signaling was turned on;
 the policy blocks everything outside it;
 
 46
-00:02:52.971 --> 00:02:56.457
+00:02:53.171 --> 00:02:56.657
 the emergency group and both
 Intune apps are excluded;
 
 47
-00:02:56.457 --> 00:02:59.942
+00:02:56.657 --> 00:03:00.142
 no Private Access app is in
 scope; while it's report-only,
 
 48
-00:02:59.942 --> 00:03:02.886
+00:03:00.142 --> 00:03:03.086
 the business days and
 the defects are counted,
 
 49
-00:03:02.886 --> 00:03:07.611
+00:03:03.086 --> 00:03:07.811
 as information until it's ready; and once
 it's enforced, signaling must be on.
 
 50
-00:03:07.611 --> 00:03:11.928
+00:03:07.811 --> 00:03:12.128
 For tenant restrictions: the default
 blocks everyone and everything;
 
 51
-00:03:11.928 --> 00:03:16.694
+00:03:12.128 --> 00:03:16.894
 each partner allowance is in the register
 and current; tagging is on only with
 
 52
-00:03:16.694 --> 00:03:21.670
+00:03:16.894 --> 00:03:21.870
 a blocking default; and each blocked
 tenant is listed for the weekly review.
 
 53
-00:03:25.420 --> 00:03:26.445
+00:03:25.620 --> 00:03:26.645
 Who decides?
 
 54
-00:03:26.445 --> 00:03:31.446
+00:03:26.645 --> 00:03:31.646
 The policy owner decides enforcement, and
 passes the enforce switch on the record,
 
 55
-00:03:31.446 --> 00:03:34.020
+00:03:31.646 --> 00:03:34.220
 only after the report-only
 result is clean.
 
 56
-00:03:34.020 --> 00:03:38.056
+00:03:34.220 --> 00:03:38.256
 The identity engineer runs the
 policies and owns the partner list,
 
 57
-00:03:38.056 --> 00:03:40.257
+00:03:38.256 --> 00:03:40.457
 reviewed with the partner register.
 
 58
-00:03:40.257 --> 00:03:44.487
+00:03:40.457 --> 00:03:44.687
 The security monitor watches blocks
 that weren't carried by the service:
 
 59
-00:03:44.487 --> 00:03:47.095
+00:03:44.687 --> 00:03:47.295
 those are either an attack
 or a broken client.
 
 60
-00:03:47.095 --> 00:03:49.959
+00:03:47.295 --> 00:03:50.159
 For permissions: Policy
 Read All for policies,
 
 61
-00:03:49.959 --> 00:03:53.274
+00:03:50.159 --> 00:03:53.474
 named locations and the
 tenant restrictions policy;
 
 62
-00:03:53.274 --> 00:03:57.570
+00:03:53.474 --> 00:03:57.770
 Network Access Read All and Read
 Write All for signaling and tagging;
 
 63
-00:03:57.570 --> 00:04:01.488
+00:03:57.770 --> 00:04:01.688
 and Policy Read Write Conditional
 Access to create the policy,
 
 64
-00:04:01.488 --> 00:04:05.850
+00:04:01.688 --> 00:04:06.050
 with the two administrator roles
 activated just for the window.
 
 65
-00:04:09.600 --> 00:04:13.912
+00:04:09.800 --> 00:04:14.112
 Lab 1, after listing the reads
 and collecting the pilot tenant.
 
 66
-00:04:13.912 --> 00:04:16.874
+00:04:14.112 --> 00:04:17.074
 Step 3 checks the
 compliant network policy.
 
 67
-00:04:16.874 --> 00:04:22.900
+00:04:17.074 --> 00:04:23.100
 It's built right: the location, the block,
 both exclusions, no Private Access app.
 
 68
-00:04:22.900 --> 00:04:25.987
+00:04:23.100 --> 00:04:26.187
 And it has been in report-only
 for ten business days.
 
 69
-00:04:25.987 --> 00:04:30.126
+00:04:26.187 --> 00:04:30.326
 But it isn't ready: the service
 carried three report-only failures.
 
 70
-00:04:30.126 --> 00:04:33.575
+00:04:30.326 --> 00:04:33.775
 Step 4 reads the guide's
 query to see why that matters.
 
 71
-00:04:33.575 --> 00:04:36.654
+00:04:33.775 --> 00:04:36.854
 Forty-one failures came
 from users off the service,
 
 72
-00:04:36.654 --> 00:04:39.000
+00:04:36.854 --> 00:04:39.200
 which is exactly what the policy is for.
 
 73
-00:04:39.000 --> 00:04:41.710
+00:04:39.200 --> 00:04:41.910
 The three with through
 equal true are defects:
 
 74
-00:04:41.710 --> 00:04:44.910
+00:04:41.910 --> 00:04:45.110
 users on the service who
 would have been blocked.
 
 75
-00:04:48.660 --> 00:04:51.147
+00:04:48.860 --> 00:04:51.347
 Step 5 checks the tenant restrictions.
 
 76
-00:04:51.147 --> 00:04:53.673
+00:04:51.347 --> 00:04:53.873
 The default blocks, and tagging is on.
 
 77
-00:04:53.673 --> 00:04:58.271
+00:04:53.873 --> 00:04:58.471
 But one partner tenant is allowed with
 no register entry, and the block query
 
 78
-00:04:58.271 --> 00:05:02.797
+00:04:58.471 --> 00:05:02.997
 shows a tenant that isn't a registered
 partner, listed for the weekly review.
 
 79
-00:05:02.797 --> 00:05:04.062
+00:05:02.997 --> 00:05:04.262
 Step 6 plans ring 1,
 
 80
-00:05:04.062 --> 00:05:08.698
+00:05:04.262 --> 00:05:08.898
 whose desired state wants the
 compliant network policy enforced.
 
 81
-00:05:08.698 --> 00:05:10.484
+00:05:08.898 --> 00:05:10.684
 Without the enforce switch,
 
 82
-00:05:10.484 --> 00:05:14.135
+00:05:10.684 --> 00:05:14.335
 the plan leaves it report-only
 and says so on a manual line.
 
 83
-00:05:14.135 --> 00:05:19.770
+00:05:14.335 --> 00:05:19.970
 A reviewer passes the switch only once step
 3's check is clean, which it isn't yet.
 
 84
-00:05:23.520 --> 00:05:28.332
+00:05:23.720 --> 00:05:28.532
 Step 7 checks the same policy two
 weeks later, after ring 1's collection.
 
 85
-00:05:28.332 --> 00:05:31.295
+00:05:28.532 --> 00:05:31.495
 It's enforced, and the
 check that only applies
 
 86
-00:05:31.295 --> 00:05:34.257
+00:05:31.495 --> 00:05:34.457
 to an enforced policy
 passes: signaling is on.
 
 87
-00:05:34.257 --> 00:05:36.344
+00:05:34.457 --> 00:05:36.544
 The unregistered partner is gone,
 
 88
-00:05:36.344 --> 00:05:40.369
+00:05:36.544 --> 00:05:40.569
 and the blocked tenant is still
 listed for review, which is its job.
 
 89
-00:05:40.369 --> 00:05:44.945
+00:05:40.569 --> 00:05:45.145
 Step 8 runs this chapter's
 tests: five passed, none failed.
 
 90
-00:05:44.945 --> 00:05:47.150
+00:05:45.145 --> 00:05:47.350
 Then delete the output folder.
 
 91
-00:05:50.900 --> 00:05:55.515
+00:05:51.100 --> 00:05:55.715
 Lab 2 needs a test tenant with the
 Microsoft profile on for a pilot group,
 
 92
-00:05:55.515 --> 00:06:00.600
+00:05:55.715 --> 00:06:00.800
 a test device, an emergency access group,
 and a second test tenant as the partner.
 
 93
-00:06:00.600 --> 00:06:04.587
+00:06:00.800 --> 00:06:04.787
 Find the two Intune apps and
 put their IDs in the settings.
 
 94
-00:06:04.587 --> 00:06:09.026
+00:06:04.787 --> 00:06:09.226
 Collect, plan and apply the report-only
 policy with the approved hash.
 
 95
-00:06:09.026 --> 00:06:14.101
+00:06:09.226 --> 00:06:14.301
 Run Learn's test: sign in, disable the
 client, open a new browser session,
 
 96
-00:06:14.101 --> 00:06:18.287
+00:06:14.301 --> 00:06:18.487
 and sign in again; in report-only,
 that's a recorded failure.
 
 97
-00:06:18.287 --> 00:06:22.888
+00:06:18.487 --> 00:06:23.088
 Read the tenant restrictions policy,
 and stop if its default doesn't block.
 
 98
-00:06:22.888 --> 00:06:24.676
+00:06:23.088 --> 00:06:24.876
 Run Learn's four-case test.
 
 99
-00:06:24.676 --> 00:06:27.212
+00:06:24.876 --> 00:06:27.412
 Then back it out: delete the lab's policy,
 
 100
-00:06:27.212 --> 00:06:29.987
+00:06:27.412 --> 00:06:30.187
 and turn tagging off if
 the lab turned it on.
 
 101
-00:06:29.987 --> 00:06:32.360
+00:06:30.187 --> 00:06:32.560
 The authors haven't run this lab.
 
 102
-00:06:36.110 --> 00:06:41.485
+00:06:36.310 --> 00:06:41.685
 The reviewed policy file supports access
 enforcement and session authenticity.
 
 103
-00:06:41.485 --> 00:06:44.339
+00:06:41.685 --> 00:06:44.539
 Reading report-only
 results before enforcing
 
 104
-00:06:44.339 --> 00:06:47.485
+00:06:44.539 --> 00:06:47.685
 supports session termination
 and impact analysis.
 
 105
-00:06:47.485 --> 00:06:51.238
+00:06:47.685 --> 00:06:51.438
 A blocking default, registered
 partners and tagging support
 
 106
-00:06:51.238 --> 00:06:54.623
+00:06:51.438 --> 00:06:54.823
 the controls on external
 systems and information flow.
 
 107
-00:06:54.623 --> 00:06:56.184
+00:06:54.823 --> 00:06:56.384
 The assessor decides them.
 
 108
-00:06:56.184 --> 00:07:00.995
+00:06:56.384 --> 00:07:01.195
 The dangers: enforcing before the client
 is everywhere, forgetting the Intune
 
 109
-00:07:00.995 --> 00:07:03.364
+00:07:01.195 --> 00:07:03.564
 exclusions so new devices can't enroll,
 
 110
-00:07:03.364 --> 00:07:06.472
+00:07:03.564 --> 00:07:06.672
 and tagging with a default
 that allows everything.
 
 111
-00:07:06.472 --> 00:07:10.916
+00:07:06.672 --> 00:07:11.116
 A Global Secure Access outage is a
 danger too: Microsoft's break-glass
 
 112
-00:07:10.916 --> 00:07:15.048
+00:07:11.116 --> 00:07:15.248
 scripts are rehearsed, and Chapter
 8's ring record holds the date.
 
 113
-00:07:15.048 --> 00:07:17.620
+00:07:15.248 --> 00:07:17.820
 You're done after a
 clean report-only period,
 
 114
-00:07:17.620 --> 00:07:21.122
+00:07:17.820 --> 00:07:21.322
 an enforce decision on the
 record, and an owned partner list.
 
 115
-00:07:21.122 --> 00:07:23.000
+00:07:21.322 --> 00:07:23.200
 Next, Chapter 6.

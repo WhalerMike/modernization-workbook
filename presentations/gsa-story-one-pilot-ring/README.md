@@ -37,4 +37,4 @@ Build (Git Bash): `source /c/tmp/deckenv.sh`, then `FIT=1 node presentations/gsa
 
 ## Notes and sourcing
 
-Facts come only from the workbook's chapters, their footnotes and the captures; the deck adds none. Narration names the original sources (Microsoft Learn, CISA, NIST, FedRAMP), never a book by number. The workbook is a draft awaiting the owner's review, and the deck says so. The example code is illustrative and tested against fixtures, not proven against a live tenant; no Lab 2 and no runbook step has been run by the authors.
+Facts come only from the workbook's chapters, their footnotes and the captures; the deck adds none. Narration names the original sources (Microsoft Learn, CISA, NIST, FedRAMP), never a book by number. The workbook has been reviewed and approved, and the deck says so. The example code is illustrative and tested against fixtures, not proven against a live tenant; no Lab 2 and no runbook step has been run by the authors.

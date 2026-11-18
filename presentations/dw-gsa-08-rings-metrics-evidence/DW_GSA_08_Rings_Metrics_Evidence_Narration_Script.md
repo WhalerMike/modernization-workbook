@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 08: Rings, Metrics and the Evidence Package
 
-Welcome back to Building Global Secure Access. This is Chapter 8: rings, metrics, and the evidence package. A ring exits on numbers, not on a quiet week. This chapter computes the guide's numbers, says go or no-go, writes the rollback before it's needed, and hands the security officer a package an assessor can re-hash. The chapter is a draft awaiting review, and the code is illustrative, tested against fixtures.
+Welcome back to Building Global Secure Access. This is Chapter 8: rings, metrics, and the evidence package. A ring exits on numbers, not on a quiet week. This chapter computes the guide's numbers, says go or no-go, writes the rollback before it's needed, and hands the security officer a package an assessor can re-hash. The chapter has been reviewed and approved, and the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why a ring exits on numbers
 

@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 04: Microsoft Traffic and Change Plans
 
-Welcome back to Building Global Secure Access. This is Chapter 4: Microsoft traffic, and change plans. The Microsoft traffic profile is the prerequisite for everything identity-aware the service adds. Turning it on is also the first write, so this chapter builds the plan every later write goes through: a file a second person approves by its hash before anything changes. The chapter is a draft awaiting review, and the code is illustrative, tested against fixtures.
+Welcome back to Building Global Secure Access. This is Chapter 4: Microsoft traffic, and change plans. The Microsoft traffic profile is the prerequisite for everything identity-aware the service adds. Turning it on is also the first write, so this chapter builds the plan every later write goes through: a file a second person approves by its hash before anything changes. The chapter has been reviewed and approved, and the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why the first write needs a plan
 

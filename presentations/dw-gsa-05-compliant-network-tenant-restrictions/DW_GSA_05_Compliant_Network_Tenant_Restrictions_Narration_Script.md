@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 05: The Compliant Network and Tenant Restrictions
 
-Welcome back to Building Global Secure Access. This is Chapter 5: the compliant network, and tenant restrictions. These are two settings only Microsoft Entra can provide, and two of the easiest ways to lock users out. The code's job is to say when each is safe to enforce. We'll start from Learn's example policy and its universal tenant restrictions, see what they leave to you, read eleven checks and the plan's enforcement gate, and walk two labs. The chapter is a draft awaiting review, and the code is illustrative, tested against fixtures.
+Welcome back to Building Global Secure Access. This is Chapter 5: the compliant network, and tenant restrictions. These are two settings only Microsoft Entra can provide, and two of the easiest ways to lock users out. The code's job is to say when each is safe to enforce. We'll start from Learn's example policy and its universal tenant restrictions, see what they leave to you, read eleven checks and the plan's enforcement gate, and walk two labs. The chapter has been reviewed and approved, and the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why these two need a gate
 

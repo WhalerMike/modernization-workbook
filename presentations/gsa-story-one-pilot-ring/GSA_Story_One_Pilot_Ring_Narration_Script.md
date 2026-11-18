@@ -2,7 +2,7 @@
 
 ## Slide 1 — One Pilot Ring, Decision to Go
 
-Welcome to the story deck for Building Global Secure Access, a developer workbook in the Federal Modernization Workbook. Instead of nine chapters one at a time, we'll follow one pilot ring all the way through: a fictional agency tenant, contoso dot example, on November 16, 2026, and the same tenant two weeks later. Every value comes from the kit's own test fixtures, and every output on a slide is what the kit really printed. One note before we begin: the workbook is a draft awaiting review, and the code is illustrative, tested against fixtures, not against a live tenant.
+Welcome to the story deck for Building Global Secure Access, a developer workbook in the Federal Modernization Workbook. Instead of nine chapters one at a time, we'll follow one pilot ring all the way through: a fictional agency tenant, contoso dot example, on November 16, 2026, and the same tenant two weeks later. Every value comes from the kit's own test fixtures, and every output on a slide is what the kit really printed. One note before we begin: the workbook has been reviewed and approved, and the code is illustrative, tested against fixtures, not against a live tenant.
 
 ## Slide 2 — The pilot's path through nine chapters
 

@@ -35,523 +35,524 @@ a file a second person approves by
 its hash before anything changes.
 
 8
-00:00:23.462 --> 00:00:25.976
-The chapter is a draft awaiting review,
+00:00:23.462 --> 00:00:26.234
+The chapter has been
+reviewed and approved,
 
 9
-00:00:25.976 --> 00:00:29.870
+00:00:26.234 --> 00:00:30.060
 and the code is illustrative,
 tested against fixtures.
 
 10
-00:00:33.620 --> 00:00:34.770
+00:00:33.810 --> 00:00:34.960
 Why a plan, now?
 
 11
-00:00:34.770 --> 00:00:36.585
+00:00:34.960 --> 00:00:36.775
 Because source IP restoration,
 
 12
-00:00:36.585 --> 00:00:41.330
+00:00:36.775 --> 00:00:41.520
 the compliant network check and universal
 tenant restrictions all depend on the
 
 13
-00:00:41.330 --> 00:00:42.936
+00:00:41.520 --> 00:00:43.126
 Microsoft traffic profile,
 
 14
-00:00:42.936 --> 00:00:46.495
+00:00:43.126 --> 00:00:46.685
 and switching it on is the first
 time the kit changes anything.
 
 15
-00:00:46.495 --> 00:00:48.270
+00:00:46.685 --> 00:00:48.460
 So the goal has two halves.
 
 16
-00:00:48.270 --> 00:00:52.085
+00:00:48.460 --> 00:00:52.275
 Show that a ring's Microsoft
 365 and Entra ID traffic
 
 17
-00:00:52.085 --> 00:00:56.432
+00:00:52.275 --> 00:00:56.622
 goes through the service,
 carrying its real source address.
 
 18
-00:00:56.432 --> 00:01:00.946
+00:00:56.622 --> 00:01:01.136
 And change the tenant only through a plan
 file whose hash a reviewer approved.
 
 19
-00:01:00.946 --> 00:01:04.670
+00:01:01.136 --> 00:01:04.860
 It's for the developers, the
 platform owner who runs the changes,
 
 20
-00:01:04.670 --> 00:01:06.890
+00:01:04.860 --> 00:01:07.080
 and the change board's reviewer.
 
 21
-00:01:10.640 --> 00:01:12.015
+00:01:10.830 --> 00:01:12.205
 Here's what Learn gives.
 
 22
-00:01:12.015 --> 00:01:16.142
+00:01:12.205 --> 00:01:16.332
 The Microsoft traffic
 profile acquires Microsoft
 
 23
-00:01:16.142 --> 00:01:20.077
+00:01:16.332 --> 00:01:20.267
 365 and Entra ID traffic,
 and only that profile can.
 
 24
-00:01:20.077 --> 00:01:22.897
+00:01:20.267 --> 00:01:23.087
 Learn's Graph tutorial
 finds a profile by its
 
 25
-00:01:22.897 --> 00:01:25.640
+00:01:23.087 --> 00:01:25.830
 traffic type and sets
 its state with a patch.
 
 26
-00:01:25.640 --> 00:01:29.702
+00:01:25.830 --> 00:01:29.892
 Assigning users and groups is a
 portal step on the pages read.
 
 27
-00:01:29.702 --> 00:01:34.565
+00:01:29.892 --> 00:01:34.755
 Signaling is source IP restoration and
 the signal Conditional Access needs.
 
 28
-00:01:34.565 --> 00:01:37.912
+00:01:34.755 --> 00:01:38.102
 It's on by default for newer
 tenants, and Learn cautions that
 
 29
-00:01:37.912 --> 00:01:41.190
+00:01:38.102 --> 00:01:41.380
 turning it off while policies
 depend on it can block users.
 
 30
-00:01:41.190 --> 00:01:45.628
+00:01:41.380 --> 00:01:45.818
 The test compares a SharePoint sign-in's
 address with the client on and off.
 
 31
-00:01:45.628 --> 00:01:50.030
+00:01:45.818 --> 00:01:50.220
 And Learn treats enabling a
 new profile as a major change.
 
 32
-00:01:53.780 --> 00:01:55.005
+00:01:53.970 --> 00:01:55.195
 What does it leave to you?
 
 33
-00:01:55.005 --> 00:01:57.454
+00:01:55.195 --> 00:01:57.644
 Each change is one patch typed by hand,
 
 34
-00:01:57.454 --> 00:02:01.640
+00:01:57.644 --> 00:02:01.830
 and a change board can't approve
 a command that isn't written down,
 
 35
-00:02:01.640 --> 00:02:05.905
+00:02:01.830 --> 00:02:06.095
 so the kit writes the plan as a file,
 with every request and its hash.
 
 36
-00:02:05.905 --> 00:02:07.882
+00:02:06.095 --> 00:02:08.072
 The assignment is a portal step,
 
 37
-00:02:07.882 --> 00:02:11.305
+00:02:08.072 --> 00:02:11.495
 so the plan lists it as a manual
 line with the click path.
 
 38
-00:02:11.305 --> 00:02:14.633
+00:02:11.495 --> 00:02:14.823
 A plan could turn signaling
 off in the wrong order,
 
 39
-00:02:14.633 --> 00:02:18.855
+00:02:14.823 --> 00:02:19.045
 so plans turn it on first and only
 the rollback turns it off, last.
 
 40
-00:02:18.855 --> 00:02:23.318
+00:02:19.045 --> 00:02:23.508
 A daily percentage has no pass or
 fail, so the check sums the week.
 
 41
-00:02:23.318 --> 00:02:26.069
+00:02:23.508 --> 00:02:26.259
 And nothing ties a
 profile to its decision,
 
 42
-00:02:26.069 --> 00:02:29.330
+00:02:26.259 --> 00:02:29.520
 so a profile with no
 approved decision fails.
 
 43
-00:02:33.080 --> 00:02:34.080
+00:02:33.270 --> 00:02:34.270
 Here's the plan.
 
 44
-00:02:34.080 --> 00:02:38.381
+00:02:34.270 --> 00:02:38.571
 It reads a desired-state file: the
 three profiles' state, signaling,
 
 45
-00:02:38.381 --> 00:02:42.443
+00:02:38.571 --> 00:02:42.633
 tagging, and the guide's Conditional
 Access policies as files.
 
 46
-00:02:42.443 --> 00:02:47.570
+00:02:42.633 --> 00:02:47.760
 It compares them with a collection and
 writes the requests that close the gap,
 
 47
-00:02:47.570 --> 00:02:51.176
+00:02:47.760 --> 00:02:51.366
 in a safe order: signaling,
 then profiles, then policies,
 
 48
-00:02:51.176 --> 00:02:54.542
+00:02:51.366 --> 00:02:54.732
 then tagging, with the
 assignments as manual steps.
 
 49
-00:02:54.542 --> 00:02:55.554
+00:02:54.732 --> 00:02:55.744
 Four guards.
 
 50
-00:02:55.554 --> 00:03:00.405
+00:02:55.744 --> 00:03:00.595
 New policies are report-only, and
 enforcing one needs an explicit switch.
 
 51
-00:03:00.405 --> 00:03:04.392
+00:03:00.595 --> 00:03:04.582
 A policy that doesn't exclude the
 emergency group isn't planned.
 
 52
-00:03:04.392 --> 00:03:07.781
+00:03:04.582 --> 00:03:07.971
 Tagging waits for a blocking
 tenant restrictions default.
 
 53
-00:03:07.781 --> 00:03:10.968
+00:03:07.971 --> 00:03:11.158
 And a drifted policy is
 brought back to its file.
 
 54
-00:03:10.968 --> 00:03:13.579
+00:03:11.158 --> 00:03:13.769
 Nothing applies without the approved hash,
 
 55
-00:03:13.579 --> 00:03:16.480
+00:03:13.769 --> 00:03:16.670
 a live collection and a delegated session.
 
 56
-00:03:20.230 --> 00:03:21.155
+00:03:20.420 --> 00:03:21.345
 Who does what?
 
 57
-00:03:21.155 --> 00:03:25.418
+00:03:21.345 --> 00:03:25.608
 The platform owner writes the
 desired state, plans and applies.
 
 58
-00:03:25.418 --> 00:03:28.073
+00:03:25.608 --> 00:03:28.263
 A second person, the
 change board's reviewer,
 
 59
-00:03:28.073 --> 00:03:31.392
+00:03:28.263 --> 00:03:31.582
 approves the plan's hash, and
 the change record keeps it.
 
 60
-00:03:31.392 --> 00:03:34.105
+00:03:31.582 --> 00:03:34.295
 The security monitor
 reads the sign-in share.
 
 61
-00:03:34.105 --> 00:03:39.680
+00:03:34.295 --> 00:03:39.870
 For permissions, the reads need Network
 Access Read All and access to the workspace.
 
 62
-00:03:39.680 --> 00:03:43.312
+00:03:39.870 --> 00:03:43.502
 The writes are Network Access
 Read Write All for the profiles,
 
 63
-00:03:43.312 --> 00:03:48.155
+00:03:43.502 --> 00:03:48.345
 signaling and tagging, and Policy Read
 Write Conditional Access for the policies.
 
 64
-00:03:48.155 --> 00:03:51.344
+00:03:48.345 --> 00:03:51.534
 The portal assignment needs
 Application Administrator,
 
 65
-00:03:51.344 --> 00:03:55.690
+00:03:51.534 --> 00:03:55.880
 activated through privileged identity
 management for the window only.
 
 66
-00:03:59.440 --> 00:04:00.252
+00:03:59.630 --> 00:04:00.442
 Lab 1.
 
 67
-00:04:00.252 --> 00:04:04.866
+00:04:00.442 --> 00:04:05.056
 Steps 1 and 2 list the reads and writes
 and collect the whole pilot tenant,
 
 68
-00:04:04.866 --> 00:04:07.865
+00:04:05.056 --> 00:04:08.055
 because the plan compares
 against everything.
 
 69
-00:04:07.865 --> 00:04:10.227
+00:04:08.055 --> 00:04:10.417
 Step 3 runs the traffic checks.
 
 70
-00:04:10.227 --> 00:04:12.185
+00:04:10.417 --> 00:04:12.375
 The profile and signaling are on,
 
 71
-00:04:12.185 --> 00:04:16.390
+00:04:12.375 --> 00:04:16.580
 and the internet and private profiles
 each have an approved decision.
 
 72
-00:04:16.390 --> 00:04:20.790
+00:04:16.580 --> 00:04:20.980
 But only two thousand five hundred
 fifty-five of two thousand eight hundred
 
 73
-00:04:20.790 --> 00:04:23.862
+00:04:20.980 --> 00:04:24.052
 sign-ins, ninety-one percent,
 went through the service,
 
 74
-00:04:23.862 --> 00:04:26.027
+00:04:24.052 --> 00:04:26.217
 under the ninety-five percent target.
 
 75
-00:04:26.027 --> 00:04:31.470
+00:04:26.217 --> 00:04:31.660
 Step 4 reads the guide's query day
 by day: rising, but not there yet.
 
 76
-00:04:35.220 --> 00:04:38.307
+00:04:35.410 --> 00:04:38.497
 Step 5 plans the pilot
 from its desired state.
 
 77
-00:04:38.307 --> 00:04:39.658
+00:04:38.497 --> 00:04:39.848
 Two Graph steps.
 
 78
-00:04:39.658 --> 00:04:41.540
+00:04:39.848 --> 00:04:41.730
 The internet profile goes off,
 
 79
-00:04:41.540 --> 00:04:45.832
+00:04:41.730 --> 00:04:46.022
 because the pilot's desired state
 hasn't adopted Internet Access yet.
 
 80
-00:04:45.832 --> 00:04:49.016
+00:04:46.022 --> 00:04:49.206
 And the administrative
 RDP policy goes back
 
 81
-00:04:49.016 --> 00:04:51.770
+00:04:49.206 --> 00:04:51.960
 to its reviewed file; Chapter 6 says why.
 
 82
-00:04:51.770 --> 00:04:54.145
+00:04:51.960 --> 00:04:54.335
 Two portal steps assign the pilot group.
 
 83
-00:04:54.145 --> 00:04:57.683
+00:04:54.335 --> 00:04:57.873
 Then the plan's hash, and
 dry run, nothing changed.
 
 84
-00:04:57.683 --> 00:05:00.469
+00:04:57.873 --> 00:05:00.659
 Step 6 reads the plan's
 first step in full,
 
 85
-00:05:00.469 --> 00:05:05.113
+00:05:00.659 --> 00:05:05.303
 as the reviewer does before approving
 the hash: the call, the method,
 
 86
-00:05:05.113 --> 00:05:09.450
+00:05:05.303 --> 00:05:09.640
 the address on graph dot
 microsoft dot com, and the reason.
 
 87
-00:05:13.200 --> 00:05:17.825
+00:05:13.390 --> 00:05:18.015
 Step 7 tries to apply the plan in
 fixture mode, with a made-up hash.
 
 88
-00:05:17.825 --> 00:05:20.571
+00:05:18.015 --> 00:05:20.761
 It's refused before the hash is even read:
 
 89
-00:05:20.571 --> 00:05:25.812
+00:05:20.761 --> 00:05:26.002
 apply runs only with a live invoker,
 and fixture mode never changes anything.
 
 90
-00:05:25.812 --> 00:05:30.474
+00:05:26.002 --> 00:05:30.664
 The tests also show the other refusals:
 a live session with the wrong hash is
 
 91
-00:05:30.474 --> 00:05:35.212
+00:05:30.664 --> 00:05:35.402
 refused, and the right hash sends the
 steps in order through the Graph runner.
 
 92
-00:05:35.212 --> 00:05:39.749
+00:05:35.402 --> 00:05:39.939
 Step 8 runs this chapter's
 tests: nine passed, none failed.
 
 93
-00:05:39.749 --> 00:05:41.940
+00:05:39.939 --> 00:05:42.130
 Then delete the output folder.
 
 94
-00:05:45.690 --> 00:05:48.644
+00:05:45.880 --> 00:05:48.834
 Lab 2 uses a test tenant with Entra ID P1,
 
 95
-00:05:48.644 --> 00:05:53.628
+00:05:48.834 --> 00:05:53.818
 a pilot group of fictional users
 and a test device with the client.
 
 96
-00:05:53.628 --> 00:05:56.458
+00:05:53.818 --> 00:05:56.648
 Sign in, collect, and
 plan from a desired file
 
 97
-00:05:56.458 --> 00:05:59.840
+00:05:56.648 --> 00:06:00.030
 that only turns on Microsoft
 traffic and signaling.
 
 98
-00:05:59.840 --> 00:06:04.652
+00:06:00.030 --> 00:06:04.842
 Send the plan and its hash to the reviewer,
 then apply it with the approved hash.
 
 99
-00:06:04.652 --> 00:06:08.915
+00:06:04.842 --> 00:06:09.105
 Assign the pilot group in the portal,
 as the plan's manual line says.
 
 100
-00:06:08.915 --> 00:06:12.609
+00:06:09.105 --> 00:06:12.799
 Validate with Learn's test,
 comparing the sign-in address with
 
 101
-00:06:12.609 --> 00:06:16.303
+00:06:12.799 --> 00:06:16.493
 the client on and off, then the
 guide's query and the kit's checks.
 
 102
-00:06:16.303 --> 00:06:19.358
+00:06:16.493 --> 00:06:19.548
 Back it out in the guide's
 order: remove the group,
 
 103
-00:06:19.358 --> 00:06:22.178
+00:06:19.548 --> 00:06:22.368
 disable the profile,
 and leave signaling on.
 
 104
-00:06:22.178 --> 00:06:24.530
+00:06:22.368 --> 00:06:24.720
 The authors haven't run this lab.
 
 105
-00:06:28.280 --> 00:06:31.905
+00:06:28.470 --> 00:06:32.095
 The profile and signaling
 support remote access control.
 
 106
-00:06:31.905 --> 00:06:34.718
+00:06:32.095 --> 00:06:34.908
 The sign-in share, with
 the real source address,
 
 107
-00:06:34.718 --> 00:06:38.493
+00:06:34.908 --> 00:06:38.683
 supports the content of audit
 records and system monitoring.
 
 108
-00:06:38.493 --> 00:06:42.185
+00:06:38.683 --> 00:06:42.375
 And every plan, approved by
 its hash and applied in order,
 
 109
-00:06:42.185 --> 00:06:46.279
+00:06:42.375 --> 00:06:46.469
 supports configuration change
 control and impact analysis.
 
 110
-00:06:46.279 --> 00:06:49.681
+00:06:46.469 --> 00:06:49.871
 The guide reads this
 step as TIC 3.0's remote
 
 111
-00:06:49.681 --> 00:06:52.342
+00:06:49.871 --> 00:06:52.532
 user pattern to a
 sanctioned cloud service.
 
 112
-00:06:52.342 --> 00:06:54.506
+00:06:52.532 --> 00:06:54.696
 The assessor decides the controls.
 
 113
-00:06:54.506 --> 00:06:59.490
+00:06:54.696 --> 00:06:59.680
 The dangers: a plan nobody read, Internet
 Access turned on before its decision,
 
 114
-00:06:59.490 --> 00:07:02.605
+00:06:59.680 --> 00:07:02.795
 and signaling turned off
 while policies need it.
 
 115
-00:07:02.605 --> 00:07:06.018
+00:07:02.795 --> 00:07:06.208
 You're done when the profile and
 signaling are on for the ring,
 
 116
-00:07:06.018 --> 00:07:10.318
+00:07:06.208 --> 00:07:10.508
 the week's share meets the target, and
 every change came from an approved plan.
 
 117
-00:07:10.318 --> 00:07:14.840
+00:07:10.508 --> 00:07:15.030
 Next, Chapter 5: the compliant
 network and tenant restrictions.
