@@ -40,7 +40,7 @@ const WORKBOOKS = {
   ttm: { dir: "docs/project-plans/developer-workbooks/ticket-to-machine", name: "Building Ticket-to-Machine", kit: "examples/servicenow-sailpoint" },
   hr: { dir: "docs/project-plans/developer-workbooks/hr-driven-identity", name: "Building HR-Driven Identity", kit: "examples/hr-lifecycle" },
   pn: { dir: "docs/project-plans/developer-workbooks/provider-notices", name: "Building Provider Notices", kit: "examples/provider-notices", approved: true },
-  gsa: { dir: "docs/project-plans/developer-workbooks/global-secure-access", name: "Building Global Secure Access", kit: "examples/global-secure-access" },
+  gsa: { dir: "docs/project-plans/developer-workbooks/global-secure-access", name: "Building Global Secure Access", kit: "examples/global-secure-access", approved: true },
   azs: { dir: "docs/project-plans/developer-workbooks/azure-security", name: "Building Azure Security", kit: "examples/azure-security" },
   xdr: { dir: "docs/project-plans/developer-workbooks/defender-xdr", name: "Building Defender XDR", kit: "examples/defender-xdr" },
 };

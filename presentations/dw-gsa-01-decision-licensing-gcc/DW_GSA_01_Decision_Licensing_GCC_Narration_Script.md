@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 01: Decision, Licensing and GCC Availability
 
-Welcome to the Federal Modernization Workbook's developer workbook, Building Global Secure Access. This is Chapter 1: the decision, licensing, and availability in GCC. A network control is adopted by a written decision with exit criteria, not by turning on a toggle, so the first code reads what the tenant holds and checks the decision against it. We'll start from what Microsoft Learn says, see what it leaves to you, read the kit's call list, its availability table and nine checks, and walk two labs. One note before we begin: this chapter is a draft awaiting review, and the code is illustrative, tested against fixtures.
+Welcome to the Federal Modernization Workbook's developer workbook, Building Global Secure Access. This is Chapter 1: the decision, licensing, and availability in GCC. A network control is adopted by a written decision with exit criteria, not by turning on a toggle, so the first code reads what the tenant holds and checks the decision against it. We'll start from what Microsoft Learn says, see what it leaves to you, read the kit's call list, its availability table and nine checks, and walk two labs. One note before we begin: this chapter has been reviewed and approved, and the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why the decision comes first
 
