@@ -1,0 +1,106 @@
+[
+ {
+  "slide": 2,
+  "title": "Why a ring exits on numbers",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What Learn and the guide give you",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Eight metrics, eight exit criteria",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The rollback plan and the evidence chain",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Who runs rings, watches logs, keeps evidence",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Lab 1: telemetry, and the pilot's No-go",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: ring 1 says Go; plan its rollback",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 1: signaling last, and the evidence",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2: a ring in a test tenant",
+  "links": [
+   {
+    "text": "az monitor log-analytics",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#az-monitor-log-analytics"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Requirements, dangers, done",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.html"
+   }
+  ]
+ }
+]

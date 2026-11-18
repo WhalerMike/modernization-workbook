@@ -1,0 +1,160 @@
+[
+ {
+  "slide": 2,
+  "title": "Why a rule must fire, and trace to a file",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/06-detections-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What Microsoft Learn's three calls give you",
+  "links": [
+   {
+    "text": "Create detectionRule",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-create-detectionrule"
+   },
+   {
+    "text": "List detectionRule objects",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-list-detectionrules"
+   },
+   {
+    "text": "Update detectionRule",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-update-detectionrule"
+   },
+   {
+    "text": "Graph security API, Custom detections",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-api-overview"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/06-detections-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What the calls leave to you, and the verdict",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/06-detections-as-code.html"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/06-detections-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The repository: two files per rule",
+  "links": [
+   {
+    "text": "Create detectionRule",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-create-detectionrule"
+   },
+   {
+    "text": "runHuntingQuery",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-runhuntingquery"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/06-detections-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Who writes the rules, who signs the plan",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/06-detections-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Lab 1: validate, test and plan the repository",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/06-detections-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: the plan's hash, and the portal path",
+  "links": [
+   {
+    "text": "Update detectionRule",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-update-detectionrule"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/06-detections-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 2: test one rule in a test tenant",
+  "links": [
+   {
+    "text": "List detectionRule objects",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-list-detectionrules"
+   },
+   {
+    "text": "runHuntingQuery",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-runhuntingquery"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/06-detections-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Federal requirements and the evidence",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/06-detections-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/06-detections-as-code.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/06-detections-as-code.html"
+   }
+  ]
+ }
+]

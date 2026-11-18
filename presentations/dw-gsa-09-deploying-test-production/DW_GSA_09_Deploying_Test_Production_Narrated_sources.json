@@ -1,0 +1,112 @@
+[
+ {
+  "slide": 2,
+  "title": "Why a runbook, and what comes first",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/09-deploying-to-test-and-production.html"
+   },
+   {
+    "text": "Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.html"
+   },
+   {
+    "text": "08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.html"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "One settings file per environment",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Preflight: six checks before anything changes",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Who does each step",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Preflight and the rollback, fixture mode",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Staged enable, then the smoke test",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Roll back on a trigger; record the evidence",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Go/no-go, then production ring by ring",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/09-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Requirements, dangers, done",
+  "links": [
+   {
+    "text": "Chapter 09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/09-deploying-to-test-and-production.html"
+   }
+  ]
+ }
+]

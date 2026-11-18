@@ -1,0 +1,527 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.256
+Welcome to the last chapter of
+Building Global Secure Access,
+
+2
+00:00:04.256 --> 00:00:07.225
+Chapter 9: deploying to
+test and production.
+
+3
+00:00:07.225 --> 00:00:10.837
+The labs proved the code on
+fixtures and in a test tenant.
+
+4
+00:00:10.837 --> 00:00:15.341
+This runbook moves the rollout itself:
+one ring at a time, logs first,
+
+5
+00:00:15.341 --> 00:00:20.173
+emergency access checked before
+anything changes, every change from a
+
+6
+00:00:20.173 --> 00:00:24.676
+plan a second person approved, and
+a go or no-go from measured values.
+
+7
+00:00:24.676 --> 00:00:27.798
+It hasn't been run against a live tenant;
+
+8
+00:00:27.798 --> 00:00:33.610
+the output you'll see is the kit's
+fixture mode, run on November 17, 2026.
+
+9
+00:00:37.360 --> 00:00:38.410
+Why a runbook?
+
+10
+00:00:38.410 --> 00:00:40.323
+Because the order is the safety.
+
+11
+00:00:40.323 --> 00:00:44.526
+Before you start: every chapter's
+Lab 2 has run in a test tenant,
+
+12
+00:00:44.526 --> 00:00:47.048
+with its findings fixed or recorded.
+
+13
+00:00:47.048 --> 00:00:51.186
+The decision records are approved
+for every function the ring enables.
+
+14
+00:00:51.186 --> 00:00:53.685
+The network diagnostic setting exists.
+
+15
+00:00:53.685 --> 00:00:57.246
+The emergency access accounts
+exist and have been tested,
+
+16
+00:00:57.246 --> 00:00:59.323
+from Building Privileged Access.
+
+17
+00:00:59.323 --> 00:01:02.174
+Microsoft's break-glass
+scripts for compliant
+
+18
+00:01:02.174 --> 00:01:04.734
+network outages are staged and rehearsed.
+
+19
+00:01:04.734 --> 00:01:08.596
+And the change record is open,
+because Learn treats enabling a new
+
+20
+00:01:08.596 --> 00:01:12.385
+traffic profile as a major change
+for the change advisory board.
+
+21
+00:01:12.385 --> 00:01:17.160
+Roles are activated through privileged
+identity management for the window only.
+
+22
+00:01:20.910 --> 00:01:25.396
+Step 1 is one settings file per
+environment, copied from the template,
+
+23
+00:01:25.396 --> 00:01:29.409
+with every placeholder filled:
+the tenant, the ring, the groups,
+
+24
+00:01:29.409 --> 00:01:33.580
+the Intune application IDs, the
+security profile, the workspace,
+
+25
+00:01:33.580 --> 00:01:37.436
+the in-scope device count from
+Intune, the minimum versions,
+
+26
+00:01:37.436 --> 00:01:41.922
+the acceptable-use categories, and
+the authentication authorities.
+
+27
+00:01:41.922 --> 00:01:46.860
+The settings hold names and IDs only;
+the operator signs in as a person.
+
+28
+00:01:46.860 --> 00:01:51.568
+The kit refuses a file with anything
+that looks like a secret, a test or
+
+29
+00:01:51.568 --> 00:01:56.772
+production file with a placeholder left
+in it, and any cloud but GCC or global.
+
+30
+00:01:56.772 --> 00:02:00.513
+Everything after this is the
+same command for both stages;
+
+31
+00:02:00.513 --> 00:02:04.460
+only the file, the evidence
+folder and the tenant change.
+
+32
+00:02:08.210 --> 00:02:11.487
+Step 2 signs in to the
+stage's tenant, collects,
+
+33
+00:02:11.487 --> 00:02:14.410
+and runs the preflight, which only reads.
+
+34
+00:02:14.410 --> 00:02:15.485
+Six checks.
+
+35
+00:02:15.485 --> 00:02:17.722
+The settings file names this stage.
+
+36
+00:02:17.722 --> 00:02:21.872
+The collection matches its manifest
+and was read in the right tenant.
+
+37
+00:02:21.872 --> 00:02:25.623
+The emergency access group is
+excluded from every network
+
+38
+00:02:25.623 --> 00:02:28.685
+policy in the tenant, not
+just the ones in the plan.
+
+39
+00:02:28.685 --> 00:02:32.710
+The network diagnostic setting
+exists, so logs come before the ring.
+
+40
+00:02:32.710 --> 00:02:36.623
+Every function the desired state
+enables has an approved decision.
+
+41
+00:02:36.623 --> 00:02:39.859
+And in production, the test
+stage's evidence passes.
+
+42
+00:02:39.859 --> 00:02:44.708
+Any failure stops the stage; the pilot
+fixture fails the emergency check,
+
+43
+00:02:44.708 --> 00:02:48.060
+because of the Finance
+policy from Chapter 6.
+
+44
+00:02:51.810 --> 00:02:52.735
+Who does what?
+
+45
+00:02:52.735 --> 00:02:56.165
+The platform owner fills
+the settings, collects,
+
+46
+00:02:56.165 --> 00:02:59.510
+plans, applies, and does
+the manual portal steps.
+
+47
+00:02:59.510 --> 00:03:02.046
+A second person, from the change board,
+
+48
+00:03:02.046 --> 00:03:05.072
+approves each plan's hash
+and each rollback's.
+
+49
+00:03:05.072 --> 00:03:09.624
+The policy owner approves the decision
+records and the ring's desired state,
+
+50
+00:03:09.624 --> 00:03:13.959
+and passes the enforce switch when a
+policy's report-only period is clean.
+
+51
+00:03:13.959 --> 00:03:18.115
+The technical program manager runs
+the rings and keeps the ring record,
+
+52
+00:03:18.115 --> 00:03:20.510
+and the service owner approves each exit.
+
+53
+00:03:20.510 --> 00:03:25.322
+The security officer keeps each stage's
+evidence folder, inside the boundary.
+
+54
+00:03:25.322 --> 00:03:27.560
+No one approves their own change.
+
+55
+00:03:31.310 --> 00:03:34.835
+Here's the fixture run, the
+fictional tenant at ring 1.
+
+56
+00:03:34.835 --> 00:03:38.783
+The preflight passes all five
+test-stage checks: the right stage,
+
+57
+00:03:38.783 --> 00:03:43.698
+a collection that matches its manifest
+in the right tenant, the emergency group
+
+58
+00:03:43.698 --> 00:03:46.231
+excluded from all five network policies,
+
+59
+00:03:46.231 --> 00:03:49.210
+the diagnostic setting,
+and approved decisions.
+
+60
+00:03:49.210 --> 00:03:52.820
+Step 3 plans the rollback for
+the state the ring starts from,
+
+61
+00:03:52.820 --> 00:03:57.830
+before the ring starts: three enforced
+policies to report-only in the guide's order,
+
+62
+00:03:57.830 --> 00:04:02.472
+tagging off with the tenant restrictions
+policy kept, then the manual steps.
+
+63
+00:04:02.472 --> 00:04:08.020
+It's reviewed, its hash filed, and it's
+applied only if a backout trigger fires.
+
+64
+00:04:11.770 --> 00:04:13.945
+Step 4 is the staged enable.
+
+65
+00:04:13.945 --> 00:04:16.843
+Plan the ring from its
+reviewed desired state,
+
+66
+00:04:16.843 --> 00:04:19.970
+have a second person approve
+the hash, and apply it.
+
+67
+00:04:19.970 --> 00:04:24.645
+Pass the enforce switch only for a policy
+whose report-only period was clean.
+
+68
+00:04:24.645 --> 00:04:29.166
+Then do the plan's manual steps: assign
+the ring's group to each profile
+
+69
+00:04:29.166 --> 00:04:33.845
+in the portal, and widen the Intune
+client assignment in the same change.
+
+70
+00:04:33.845 --> 00:04:39.183
+Step 5 comes after the ring's exit period:
+collect again and run the smoke test.
+
+71
+00:04:39.183 --> 00:04:43.057
+It runs every area's checks
+and the ring exit criteria.
+
+72
+00:04:43.057 --> 00:04:46.387
+In the fixture at ring
+1, a hundred checks run,
+
+73
+00:04:46.387 --> 00:04:50.457
+none fail, every criterion
+passes, and the ring says go.
+
+74
+00:04:50.457 --> 00:04:54.310
+Then run the guide's own Validate
+steps for the ring's group.
+
+75
+00:04:58.060 --> 00:05:01.245
+Step 6: backout triggers
+are set before each ring,
+
+76
+00:05:01.245 --> 00:05:06.101
+for example sign-in failures above the
+baseline, help desk calls above the
+
+77
+00:05:06.101 --> 00:05:11.435
+threshold, a mission application unreachable,
+or TLS failures above one percent.
+
+78
+00:05:11.435 --> 00:05:16.395
+When one fires, apply Step 3's rollback
+with its approved hash, do its manual
+
+79
+00:05:16.395 --> 00:05:21.273
+steps in order, and collect again so
+the evidence shows the state after it.
+
+80
+00:05:21.273 --> 00:05:23.647
+In Stage 1, rehearse it once.
+
+81
+00:05:23.647 --> 00:05:28.472
+Step 7 records every run of the stage
+and checks the stage's evidence.
+
+82
+00:05:28.472 --> 00:05:32.277
+In the fixture, every file matches,
+five records form a chain,
+
+83
+00:05:32.277 --> 00:05:35.772
+and each step the test stage
+needs has a passing record.
+
+84
+00:05:35.772 --> 00:05:40.550
+Production also needs the telemetry
+step, with CISA telemetry agreed.
+
+85
+00:05:44.300 --> 00:05:47.162
+Step 8 is the go or no-go for production.
+
+86
+00:05:47.162 --> 00:05:50.384
+It starts only when the test
+stage's evidence passes,
+
+87
+00:05:50.384 --> 00:05:53.006
+which the production preflight re-checks;
+
+88
+00:05:53.006 --> 00:05:56.377
+the test tenant said go and
+the rollback was rehearsed;
+
+89
+00:05:56.377 --> 00:06:00.646
+the policy owner approved the
+production records and desired state,
+
+90
+00:06:00.646 --> 00:06:03.193
+and the change board approved the change;
+
+91
+00:06:03.193 --> 00:06:07.463
+and CISA telemetry is agreed before
+ring 3 retires the VPN's web path.
+
+92
+00:06:07.463 --> 00:06:12.087
+Step 9 repeats Steps 2 to 7 in
+production, one ring at a time.
+
+93
+00:06:12.087 --> 00:06:17.062
+Its preflight takes the test evidence,
+and in the fixture all six checks pass.
+
+94
+00:06:17.062 --> 00:06:19.494
+For each later ring, change the ring,
+
+95
+00:06:19.494 --> 00:06:22.849
+use its desired state and
+widen the assignments.
+
+96
+00:06:22.849 --> 00:06:27.920
+Remove a VPN route only after ten
+business days with no traffic on it.
+
+97
+00:06:31.670 --> 00:06:36.310
+The stage's evidence supports impact
+analysis and contingency planning for the
+
+98
+00:06:36.310 --> 00:06:40.535
+preflight, configuration change control
+for the plans and the ring exits,
+
+99
+00:06:40.535 --> 00:06:43.374
+the contingency plan for
+the rehearsed rollback,
+
+100
+00:06:43.374 --> 00:06:46.283
+and protection of audit
+information for the chain.
+
+101
+00:06:46.283 --> 00:06:48.445
+The assessor decides the controls.
+
+102
+00:06:48.445 --> 00:06:51.620
+The dangers: changing a
+ring before its logs exist,
+
+103
+00:06:51.620 --> 00:06:54.563
+a policy that catches
+the emergency accounts,
+
+104
+00:06:54.563 --> 00:06:59.286
+a plan applied that differs from the
+one reviewed, an improvised rollback,
+
+105
+00:06:59.286 --> 00:07:02.461
+production before the test
+evidence is complete,
+
+106
+00:07:02.461 --> 00:07:04.707
+and unattended runs of the beta API.
+
+107
+00:07:04.707 --> 00:07:08.554
+You're done when every stage's
+preflight passed, the rollback was
+
+108
+00:07:08.554 --> 00:07:12.619
+reviewed and rehearsed, and every
+hash was approved by someone else.
+
+109
+00:07:12.619 --> 00:07:15.682
+That's the end of Building
+Global Secure Access.
+
+110
+00:07:15.682 --> 00:07:16.840
+Thanks for watching.

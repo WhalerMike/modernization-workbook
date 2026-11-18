@@ -1,0 +1,160 @@
+[
+ {
+  "slide": 2,
+  "title": "Why signals and automation share a chapter",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What the guide and Learn give you",
+  "links": [
+   {
+    "text": "AlertEvidence",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#advanced-hunting-alertevidence-table"
+   },
+   {
+    "text": "AlertInfo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#advanced-hunting-alertinfo-table"
+   },
+   {
+    "text": "Cloud Apps for US Government",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#defender-for-cloud-apps-us-government"
+   },
+   {
+    "text": "advanced hunting schema",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#advanced-hunting-schema-tables"
+   },
+   {
+    "text": "attack disruption exclusions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#attack-disruption-exclusions"
+   },
+   {
+    "text": "configure attack disruption",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-automatic-attack-disruption"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What it leaves to you, and the verdict",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.html"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The two checks",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Who sets the boundary, who keeps it",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Lab 1: the signals check",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: the automation check, and the ladder",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 2: signals live, automation from exports",
+  "links": [
+   {
+    "text": "attack disruption exclusions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#attack-disruption-exclusions"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Federal requirements and the evidence",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "attack disruption exclusions",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#attack-disruption-exclusions"
+   },
+   {
+    "text": "configure attack disruption",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#configure-automatic-attack-disruption"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.html"
+   }
+  ]
+ }
+]

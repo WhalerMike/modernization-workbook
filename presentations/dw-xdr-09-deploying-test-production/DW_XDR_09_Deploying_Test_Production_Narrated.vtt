@@ -1,0 +1,682 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.234
+Welcome to Building Defender XDR,
+
+2
+00:00:02.234 --> 00:00:06.212
+a developer workbook in the
+Federal Modernization Workbook.
+
+3
+00:00:06.212 --> 00:00:10.151
+This is Chapter 9: deploying
+to test and production.
+
+4
+00:00:10.151 --> 00:00:14.343
+The same commands run in both stages;
+only the settings file changes,
+
+5
+00:00:14.343 --> 00:00:18.312
+and production waits until the
+test stage's own evidence says go.
+
+6
+00:00:18.312 --> 00:00:22.974
+This chapter is a runbook, not a
+gate, so it has no labs of its own.
+
+7
+00:00:22.974 --> 00:00:26.622
+Every step is a command,
+and the outputs on these
+
+8
+00:00:26.622 --> 00:00:30.363
+slides are from fixture
+mode on November 17, 2026.
+
+9
+00:00:30.363 --> 00:00:33.059
+Nothing in it has been
+run against a live tenant,
+
+10
+00:00:33.059 --> 00:00:36.470
+and the chapter is a draft
+awaiting the owner's review.
+
+11
+00:00:40.220 --> 00:00:42.420
+Why the same commands in both stages?
+
+12
+00:00:42.420 --> 00:00:47.145
+Because a runbook that differs between
+test and production isn't tested at all.
+
+13
+00:00:47.145 --> 00:00:49.001
+Only the settings file changes,
+
+14
+00:00:49.001 --> 00:00:52.783
+and production waits until the
+test stage's own evidence says go.
+
+15
+00:00:52.783 --> 00:00:56.084
+By the end of this chapter you
+can take the kit to a test tenant,
+
+16
+00:00:56.084 --> 00:01:00.244
+prove it there with evidence, and take
+it to production under a change record,
+
+17
+00:01:00.244 --> 00:01:03.083
+with a rollback planned
+before anything is applied.
+
+18
+00:01:03.083 --> 00:01:07.142
+The people who run the change are the
+platform owner with the operator, the
+
+19
+00:01:07.142 --> 00:01:09.404
+detection engineer for the publish step,
+
+20
+00:01:09.404 --> 00:01:12.100
+and the security officer
+for the go or no-go.
+
+21
+00:01:15.850 --> 00:01:17.437
+Here's the division of labor.
+
+22
+00:01:17.437 --> 00:01:21.590
+The kit reads through Graph,
+compares every input with its plan,
+
+23
+00:01:21.590 --> 00:01:26.462
+writes the evidence, plans the rollback,
+and publishes custom detections,
+
+24
+00:01:26.462 --> 00:01:30.375
+but only from an approved plan,
+with apply and the plan's hash.
+
+25
+00:01:30.375 --> 00:01:32.316
+A person, under the change record,
+
+26
+00:01:32.316 --> 00:01:36.414
+assigns roles through Privileged
+Identity Management and signs in,
+
+27
+00:01:36.414 --> 00:01:41.015
+moves an attack surface reduction or
+prevention ring in Intune from the kit's
+
+28
+00:01:41.015 --> 00:01:42.884
+values, approves the plan's hash,
+
+29
+00:01:42.884 --> 00:01:46.550
+and changes device group levels
+and exclusions in the portal.
+
+30
+00:01:46.550 --> 00:01:48.625
+Only one write is automated.
+
+31
+00:01:48.625 --> 00:01:52.872
+Learn doesn't state the
+detection API's GCC availability,
+
+32
+00:01:52.872 --> 00:01:58.030
+so if a test-tenant call fails, the
+portal path uses the same files.
+
+33
+00:02:01.780 --> 00:02:04.342
+Each environment gets one settings file,
+
+34
+00:02:04.342 --> 00:02:07.205
+copied from the template
+onto agency storage.
+
+35
+00:02:07.205 --> 00:02:10.449
+Fill every placeholder: the
+tenant, the output root,
+
+36
+00:02:10.449 --> 00:02:15.082
+the groups that Privileged Identity
+Management governs, the emergency
+
+37
+00:02:15.082 --> 00:02:19.793
+access groups and accounts, and every
+input file the earlier chapters use.
+
+38
+00:02:19.793 --> 00:02:22.152
+No secret ever goes in a settings file:
+
+39
+00:02:22.152 --> 00:02:27.329
+the run signs in through Privileged Identity
+Management, or as a managed identity.
+
+40
+00:02:27.329 --> 00:02:31.480
+The cloud is GCC, the Graph
+environment is Global.
+
+41
+00:02:31.480 --> 00:02:36.382
+Every step in this runbook has two forms:
+a fixture form with an environment file,
+
+42
+00:02:36.382 --> 00:02:40.910
+which is what these slides show, and
+the live form, which leaves it out.
+
+43
+00:02:44.660 --> 00:02:45.685
+Who signs what?
+
+44
+00:02:45.685 --> 00:02:49.120
+The platform owner and the
+operator run the pre-flight,
+
+45
+00:02:49.120 --> 00:02:52.860
+the scheduled run and each ring
+change, in the change window.
+
+46
+00:02:52.860 --> 00:02:56.468
+The detection engineer and the
+approver read the detection plan,
+
+47
+00:02:56.468 --> 00:03:00.210
+and record its hash in the change
+record before anything is applied.
+
+48
+00:03:00.210 --> 00:03:05.398
+And the security officer signs the go or
+no-go, from the test stage's own evidence.
+
+49
+00:03:05.398 --> 00:03:09.598
+Remember: nothing in this chapter
+has been run against a live tenant.
+
+50
+00:03:09.598 --> 00:03:13.180
+Every live result is
+written as an expectation.
+
+51
+00:03:16.930 --> 00:03:17.793
+Step 1.
+
+52
+00:03:17.793 --> 00:03:21.892
+Sign in to Graph in the Global
+environment, then run the pre-flight.
+
+53
+00:03:21.892 --> 00:03:23.768
+Six checks for the test stage.
+
+54
+00:03:23.768 --> 00:03:26.809
+The settings: the
+environment is the stage,
+
+55
+00:03:26.809 --> 00:03:30.893
+every input is named and exists,
+and the deploy path is set.
+
+56
+00:03:30.893 --> 00:03:32.992
+The Graph module is installed.
+
+57
+00:03:32.992 --> 00:03:37.206
+The session is in the Global environment
+and the tenant the settings name.
+
+58
+00:03:37.206 --> 00:03:41.017
+The granted scopes cover every
+read, and the detection write.
+
+59
+00:03:41.017 --> 00:03:43.117
+A first read of incidents answers.
+
+60
+00:03:43.117 --> 00:03:45.318
+And the output root is writable.
+
+61
+00:03:45.318 --> 00:03:47.318
+Any failure stops the stage.
+
+62
+00:03:47.318 --> 00:03:51.520
+Then record the pre-flight as
+evidence, with the change record.
+
+63
+00:03:55.270 --> 00:03:57.720
+Step 2 is the first scheduled run.
+
+64
+00:03:57.720 --> 00:04:01.404
+It runs every check and the metrics
+into a folder for the month,
+
+65
+00:04:01.404 --> 00:04:05.594
+records each one in the stage's
+evidence folder with the change record,
+
+66
+00:04:05.594 --> 00:04:08.195
+and writes a scheduled-run
+record of its own.
+
+67
+00:04:08.195 --> 00:04:10.293
+In fixture mode, most checks fail,
+
+68
+00:04:10.293 --> 00:04:14.257
+because the fixtures carry each
+chapter's deliberate faults.
+
+69
+00:04:14.257 --> 00:04:19.188
+In a test tenant, each failure is a
+list of findings in its run folder:
+
+70
+00:04:19.188 --> 00:04:22.146
+tickets, plan corrections, role changes.
+
+71
+00:04:22.146 --> 00:04:24.820
+Close them before the go or no-go.
+
+72
+00:04:28.570 --> 00:04:32.333
+Step 3 publishes the
+detections, dry run first.
+
+73
+00:04:32.333 --> 00:04:36.642
+Without apply, the script writes what
+it would send: a post that creates the
+
+74
+00:04:36.642 --> 00:04:41.094
+dump-tool rule, and a patch that updates
+the encoded PowerShell rule's status.
+
+75
+00:04:41.094 --> 00:04:42.770
+Then read the plan's hash.
+
+76
+00:04:42.770 --> 00:04:45.540
+The detection engineer
+and the approver read the
+
+77
+00:04:45.540 --> 00:04:48.108
+plan and record that hash
+in the change record.
+
+78
+00:04:48.108 --> 00:04:51.457
+Only then run it again with
+apply and the approved hash.
+
+79
+00:04:51.457 --> 00:04:54.408
+A plan that changed after
+approval is refused.
+
+80
+00:04:54.408 --> 00:04:56.395
+Record the publish as evidence.
+
+81
+00:04:56.395 --> 00:04:59.359
+Live, the script pauses
+after every ten creates,
+
+82
+00:04:59.359 --> 00:05:02.920
+which is Learn's quota per
+application per minute.
+
+83
+00:05:06.670 --> 00:05:08.670
+Step 4 is the smoke test.
+
+84
+00:05:08.670 --> 00:05:13.356
+Run one synthetic event from the guide's
+table on a ring 0 device, under the
+
+85
+00:05:13.356 --> 00:05:18.120
+change record: the replay behind a
+newly published rule's known-bad window.
+
+86
+00:05:18.120 --> 00:05:22.045
+Within the rule's schedule, an alert
+from a custom detection appears.
+
+87
+00:05:22.045 --> 00:05:24.667
+Re-run the detection
+check, and the plan should
+
+88
+00:05:24.667 --> 00:05:27.633
+hold no create or update
+for the rules you published.
+
+89
+00:05:27.633 --> 00:05:30.320
+Step 5 moves one ring, by hand.
+
+90
+00:05:30.320 --> 00:05:34.492
+The change board takes ring 1's
+next value from Chapter 4's run,
+
+91
+00:05:34.492 --> 00:05:39.832
+the operator puts it in the ring 1 policy
+in Intune, and the plan file is updated.
+
+92
+00:05:39.832 --> 00:05:43.205
+After the devices check in,
+run the A S R check again,
+
+93
+00:05:43.205 --> 00:05:46.280
+and the device checks show the new modes.
+
+94
+00:05:50.030 --> 00:05:53.030
+Step 6: plan the rollback
+before you need it.
+
+95
+00:05:53.030 --> 00:05:57.642
+The rollback plan disables every detection
+rule the stage created or enabled,
+
+96
+00:05:57.642 --> 00:06:00.267
+which is the guide's
+rollback for detections.
+
+97
+00:06:00.267 --> 00:06:04.323
+And it keeps each ring's attack
+surface reduction value from the run
+
+98
+00:06:04.323 --> 00:06:08.742
+before the change, so putting it back
+steps every moved rule back one stage.
+
+99
+00:06:08.742 --> 00:06:11.651
+Applying it works like
+publishing: a dry run,
+
+100
+00:06:11.651 --> 00:06:14.317
+then apply with the plan's approved hash.
+
+101
+00:06:14.317 --> 00:06:17.605
+The A S R values go back
+into Intune by hand.
+
+102
+00:06:17.605 --> 00:06:22.318
+And remember Microsoft's advice: an
+exclusion is better than a step back.
+
+103
+00:06:22.318 --> 00:06:26.400
+A rollback is for a broken
+change, not one noisy rule.
+
+104
+00:06:30.150 --> 00:06:35.062
+The go or no-go comes from the evidence,
+with one command and the test stage.
+
+105
+00:06:35.062 --> 00:06:37.749
+In fixture mode, after steps 1 to 3:
+
+106
+00:06:37.749 --> 00:06:42.125
+every file matches, thirteen
+records, chain unbroken.
+
+107
+00:06:42.125 --> 00:06:45.350
+Pre-flight, publish and
+the scheduled run pass.
+
+108
+00:06:45.350 --> 00:06:47.569
+But access, coverage, prevention,
+
+109
+00:06:47.569 --> 00:06:51.925
+A S R and detections were recorded
+with their own checks failing.
+
+110
+00:06:51.925 --> 00:06:53.975
+So it's no-go, as it should be.
+
+111
+00:06:53.975 --> 00:06:55.605
+Go needs every row to pass:
+
+112
+00:06:55.605 --> 00:07:00.648
+the test stage's findings closed and the
+checks run again, the smoke test's alert,
+
+113
+00:07:00.648 --> 00:07:06.280
+the rollback plan filed, and the security
+officer's signature on the change record.
+
+114
+00:07:10.030 --> 00:07:11.855
+Stage 2 is production.
+
+115
+00:07:11.855 --> 00:07:17.155
+Its pre-flight adds a seventh check:
+the test stage's go or no-go must pass.
+
+116
+00:07:17.155 --> 00:07:21.080
+In fixture mode, it refuses,
+naming the steps that failed.
+
+117
+00:07:21.080 --> 00:07:25.891
+Once it passes, repeat steps 2 to 6 with
+the production settings, one ring at
+
+118
+00:07:25.891 --> 00:07:30.780
+a time, in the change board's window,
+with the backout triggers the guide sets.
+
+119
+00:07:30.780 --> 00:07:34.290
+The production go or
+no-go also needs exposure,
+
+120
+00:07:34.290 --> 00:07:37.892
+incidents, signals,
+automation and the metrics.
+
+121
+00:07:37.892 --> 00:07:42.381
+Finally, register the scheduled run
+inside the boundary, every four weeks,
+
+122
+00:07:42.381 --> 00:07:46.280
+through Privileged Identity
+Management or a managed identity.
+
+123
+00:07:46.280 --> 00:07:50.960
+The month's metrics, records and
+hashes go to the security officer.
+
+124
+00:07:54.710 --> 00:07:58.522
+Here's what the runbook's steps
+support, against NIST's catalog.
+
+125
+00:07:58.522 --> 00:08:03.007
+The pre-flight supports least privilege,
+because the session holds only the
+
+126
+00:08:03.007 --> 00:08:07.635
+needed scopes, and change control, because
+the change is checked before it runs.
+
+127
+00:08:07.635 --> 00:08:10.535
+The scheduled run supports
+continuous monitoring.
+
+128
+00:08:10.535 --> 00:08:14.022
+Publishing supports change
+control and system monitoring.
+
+129
+00:08:14.022 --> 00:08:17.623
+The rollback supports change
+control and incident handling.
+
+130
+00:08:17.623 --> 00:08:22.760
+And the go or no-go supports continuous
+monitoring and protecting audit information.
+
+131
+00:08:22.760 --> 00:08:26.060
+The indicators are FedRAMP's,
+from the guide's rows.
+
+132
+00:08:26.060 --> 00:08:30.240
+The records support these controls;
+the assessor decides them.
+
+133
+00:08:33.990 --> 00:08:36.715
+Last, the dangers and the checklist.
+
+134
+00:08:36.715 --> 00:08:41.615
+Production before the test stage passes:
+the seventh pre-flight check refuses it.
+
+135
+00:08:41.615 --> 00:08:45.540
+A plan edited after approval:
+the approved hash refuses it.
+
+136
+00:08:45.540 --> 00:08:50.003
+A session in the wrong tenant: the
+session check and the plan's tenant check.
+
+137
+00:08:50.003 --> 00:08:56.390
+The detection API unavailable in GCC:
+the portal path, from the same files.
+
+138
+00:08:56.390 --> 00:09:00.677
+And a rollback written during the
+outage: step 6 plans it before go.
+
+139
+00:09:00.677 --> 00:09:04.787
+The checklist: both settings files
+filed, the pre-flight recorded,
+
+140
+00:09:04.787 --> 00:09:09.048
+the plan's hash approved, the smoke
+test's alert, the rollback planned,
+
+141
+00:09:09.048 --> 00:09:13.004
+every go or no-go row passing,
+the production pre-flight passing,
+
+142
+00:09:13.004 --> 00:09:16.428
+and the first monthly package
+at the security officer.
+
+143
+00:09:16.428 --> 00:09:17.600
+Thanks for watching.

@@ -1,0 +1,160 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the month needs one command and a chain",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What the guide's monthly run gives you",
+  "links": [
+   {
+    "text": "List incidents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-list-incidents"
+   },
+   {
+    "text": "runHuntingQuery",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-runhuntingquery"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What the guide's run leaves to you",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The run, the metrics and the record",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The metrics, and where each comes from",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Who runs it, who receives it",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: run the month, read the metrics",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 1: the records, the chain, the go/no-go",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 1: change a recorded file; run the tests",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Lab 2: the month in a test tenant",
+  "links": [
+   {
+    "text": "List incidents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-list-incidents"
+   },
+   {
+    "text": "runHuntingQuery",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-runhuntingquery"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Federal requirements and the evidence",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OSCAL catalog 5.2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#nist-sp-800-53-rev5-oscal-catalog"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.html"
+   }
+  ]
+ }
+]

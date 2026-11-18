@@ -1,0 +1,134 @@
+[
+ {
+  "slide": 2,
+  "title": "Why an endpoint is three questions, not one",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What Microsoft Learn gives you",
+  "links": [
+   {
+    "text": "Secure your Azure Key Vault",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-azure-key-vault"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What it leaves to you",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Zones, endpoints and public access: six rules",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Every vault, six checks",
+  "links": [
+   {
+    "text": "Secure your Azure Key Vault",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#secure-azure-key-vault"
+   },
+   {
+    "text": "Enable Key Vault logging",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#enable-key-vault-logging"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Who owns the zones, endpoints and vaults",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: run the check, read each vault",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 1: endpoints and the findings",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2: a test vault, nslookup and the CLI",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Federal requirements and the evidence",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.html"
+   }
+  ]
+ }
+]

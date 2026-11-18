@@ -1,0 +1,628 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.513
+Welcome to Building Azure Security,
+Chapter 6: Azure Firewall and egress.
+
+2
+00:00:05.513 --> 00:00:08.238
+A firewall nobody routes
+to inspects nothing.
+
+3
+00:00:08.238 --> 00:00:11.344
+So the kit reads the policy
+and the routes together,
+
+4
+00:00:11.344 --> 00:00:16.300
+and it admits what it can't see: the effective
+route on a running network interface.
+
+5
+00:00:16.300 --> 00:00:19.466
+We'll start from Microsoft
+Learn's Zero Trust checks,
+
+6
+00:00:19.466 --> 00:00:24.178
+route commands and Draft and Deployment
+procedure, see what they leave to you,
+
+7
+00:00:24.178 --> 00:00:27.565
+read the kit's check and the
+plan it writes but never runs,
+
+8
+00:00:27.565 --> 00:00:30.437
+then walk two labs, the
+evidence and the dangers.
+
+9
+00:00:30.437 --> 00:00:33.453
+The chapter is a draft
+awaiting the owner's review,
+
+10
+00:00:33.453 --> 00:00:37.720
+and the code is illustrative,
+tested against a fictional estate.
+
+11
+00:00:41.470 --> 00:00:44.008
+Why read the policy and
+the routes together?
+
+12
+00:00:44.008 --> 00:00:48.540
+Because a policy that denies inspects
+nothing if workloads don't route to it,
+
+13
+00:00:48.540 --> 00:00:52.282
+and a route to a firewall in alert
+mode lets everything through.
+
+14
+00:00:52.282 --> 00:00:56.674
+By the end of this chapter you can say
+whether every firewall policy denies on
+
+15
+00:00:56.674 --> 00:00:59.350
+threat intelligence and
+intrusion detection,
+
+16
+00:00:59.350 --> 00:01:03.810
+whether each firewall has a policy and
+logs, and what share of workload subnets
+
+17
+00:01:03.810 --> 00:01:05.938
+declare a default route to a firewall,
+
+18
+00:01:05.938 --> 00:01:08.545
+which is the guide's
+egress-inspection metric.
+
+19
+00:01:08.545 --> 00:01:13.620
+And you can hand the platform owner the
+commands that move a policy to deny, unrun.
+
+20
+00:01:13.620 --> 00:01:18.750
+It's for platform owners, security monitors,
+and the developers who review both.
+
+21
+00:01:22.500 --> 00:01:24.375
+Here's Microsoft's starting point.
+
+22
+00:01:24.375 --> 00:01:29.353
+Learn's Zero Trust recommendations for
+Azure Firewall check that outbound traffic
+
+23
+00:01:29.353 --> 00:01:31.985
+from workloads routes
+through the firewall,
+
+24
+00:01:31.985 --> 00:01:36.252
+that threat intelligence and intrusion
+detection are in alert and deny,
+
+25
+00:01:36.252 --> 00:01:39.950
+that outbound TLS is inspected,
+and that diagnostic logs are on.
+
+26
+00:01:39.950 --> 00:01:43.361
+Threat intelligence deny
+needs Standard or Premium;
+
+27
+00:01:43.361 --> 00:01:46.850
+intrusion detection and TLS
+inspection need Premium.
+
+28
+00:01:46.850 --> 00:01:50.850
+The CLI sets each mode
+to alert, deny or off.
+
+29
+00:01:50.850 --> 00:01:54.988
+Learn's route commands add a default
+route to the firewall's private IP.
+
+30
+00:01:54.988 --> 00:01:59.050
+And Learn's Draft and Deployment
+procedure stages every change in
+
+31
+00:01:59.050 --> 00:02:03.410
+a draft and deploys it at once,
+replacing the whole applied policy.
+
+32
+00:02:07.160 --> 00:02:08.523
+What does Learn leave to you?
+
+33
+00:02:08.523 --> 00:02:13.611
+The guide's Validate query reads one
+policy, and policies drift one at a time.
+
+34
+00:02:13.611 --> 00:02:16.637
+A route command per subnet
+means a subnet added
+
+35
+00:02:16.637 --> 00:02:19.198
+later has no route, or
+one to the internet.
+
+36
+00:02:19.198 --> 00:02:23.185
+A virtual appliance at some address
+may not be the firewall at all.
+
+37
+00:02:23.185 --> 00:02:27.985
+A Standard policy can't deny on intrusion
+detection whatever its mode says.
+
+38
+00:02:27.985 --> 00:02:30.672
+Sent by automation, a draft would deploy
+
+39
+00:02:30.672 --> 00:02:34.010
+without review and replace
+live edits made since.
+
+40
+00:02:34.010 --> 00:02:38.160
+And the route a machine actually uses
+can include system routes that win.
+
+41
+00:02:38.160 --> 00:02:43.290
+The kit answers each one, and is honest
+that it reads declared routes only.
+
+42
+00:02:47.040 --> 00:02:48.865
+Here's how the kit reads egress.
+
+43
+00:02:48.865 --> 00:02:53.464
+It takes every subnet in the workload
+subscriptions the settings name,
+
+44
+00:02:53.464 --> 00:02:56.504
+except the reserved ones:
+the gateway, firewall,
+
+45
+00:02:56.504 --> 00:03:00.090
+firewall management, Bastion
+and route server subnets.
+
+46
+00:03:00.090 --> 00:03:01.427
+Each gets one state.
+
+47
+00:03:01.427 --> 00:03:05.616
+Firewall, when the default route
+goes to a firewall's private IP.
+
+48
+00:03:05.616 --> 00:03:09.340
+Other appliance, when it goes to
+an address the kit doesn't know.
+
+49
+00:03:09.340 --> 00:03:11.827
+No route table, or no default route.
+
+50
+00:03:11.827 --> 00:03:14.914
+Or the next hop type it
+found, such as the internet.
+
+51
+00:03:14.914 --> 00:03:18.265
+The guide's egress-inspection
+metric is the firewall
+
+52
+00:03:18.265 --> 00:03:21.970
+subnets over all workload
+subnets, by declared route.
+
+53
+00:03:25.720 --> 00:03:27.807
+The check reports seven rules.
+
+54
+00:03:27.807 --> 00:03:32.422
+Threat intelligence not in deny, and
+intrusion detection not in deny or a
+
+55
+00:03:32.422 --> 00:03:37.421
+policy that isn't Premium, are findings
+straight from Learn's Zero Trust checks.
+
+56
+00:03:37.421 --> 00:03:41.733
+A workload subnet without a default
+route to the firewall is a finding;
+
+57
+00:03:41.733 --> 00:03:44.633
+one routed to an unknown
+appliance is a warning.
+
+58
+00:03:44.633 --> 00:03:47.295
+A firewall with no logs is a finding.
+
+59
+00:03:47.295 --> 00:03:52.124
+A firewall with no policy, and a
+Premium policy with no TLS inspection,
+
+60
+00:03:52.124 --> 00:03:57.545
+are warnings: the program pilots TLS
+inspection on one rule collection first.
+
+61
+00:03:57.545 --> 00:04:01.422
+And for each policy not yet in
+deny, the kit writes Learn's four
+
+62
+00:04:01.422 --> 00:04:05.880
+draft and deployment commands to
+a plan file, and never runs them.
+
+63
+00:04:09.630 --> 00:04:10.680
+Who's involved?
+
+64
+00:04:10.680 --> 00:04:14.464
+The platform owner owns the
+firewall policy and the routes,
+
+65
+00:04:14.464 --> 00:04:17.630
+and runs the draft in a
+change window, after review.
+
+66
+00:04:17.630 --> 00:04:20.768
+The security monitor reads
+the threat intelligence
+
+67
+00:04:20.768 --> 00:04:23.692
+and intrusion detection
+logs the firewall sends.
+
+68
+00:04:23.692 --> 00:04:28.105
+And developers review the check, the
+plan file and the routes it reads.
+
+69
+00:04:28.105 --> 00:04:33.180
+Every read the check makes is Reader;
+the plan is the platform owner's to run.
+
+70
+00:04:36.930 --> 00:04:42.230
+Lab 1 needs PowerShell 7 with Pester, in
+the kit's folder, and no subscription.
+
+71
+00:04:42.230 --> 00:04:45.745
+Contoso's hub firewall has
+the private IP ten dot zero
+
+72
+00:04:45.745 --> 00:04:49.180
+dot zero dot four and a
+Premium policy still in alert.
+
+73
+00:04:49.180 --> 00:04:52.580
+Two workload networks hold
+five workload subnets.
+
+74
+00:04:52.580 --> 00:04:54.638
+Step 1 runs the firewall check:
+
+75
+00:04:54.638 --> 00:04:59.330
+two of five subnets route to the
+firewall, and the plan file is written.
+
+76
+00:04:59.330 --> 00:05:01.630
+Step 2 reads each subnet.
+
+77
+00:05:01.630 --> 00:05:04.492
+The payroll data subnet
+has no route table.
+
+78
+00:05:04.492 --> 00:05:08.381
+The portal web subnet sends its
+default route to the internet.
+
+79
+00:05:08.381 --> 00:05:12.152
+And the jump subnet sends it to
+ten dot nine dot nine dot nine,
+
+80
+00:05:12.152 --> 00:05:14.600
+an appliance the kit doesn't know.
+
+81
+00:05:18.350 --> 00:05:23.923
+Step 3 reads the findings: threat
+intelligence and intrusion detection both in
+
+82
+00:05:23.923 --> 00:05:28.398
+alert, no firewall logs, two subnets
+with no route to the firewall,
+
+83
+00:05:28.398 --> 00:05:31.438
+an unknown appliance,
+and no TLS inspection.
+
+84
+00:05:31.438 --> 00:05:34.274
+Step 4 reads the plan the
+kit wrote and didn't run:
+
+85
+00:05:34.274 --> 00:05:37.984
+Learn's four draft and deployment
+commands for the hub policy,
+
+86
+00:05:37.984 --> 00:05:42.203
+with its resource group and subscription,
+under a header that says the
+
+87
+00:05:42.203 --> 00:05:46.349
+kit did not run them, and points at
+the guide's Step 6 and a change window.
+
+88
+00:05:46.349 --> 00:05:49.420
+Step 5 runs this chapter's two tests.
+
+89
+00:05:53.170 --> 00:05:56.968
+Lab 2 moves to a test subscription
+with an Azure Firewall,
+
+90
+00:05:56.968 --> 00:06:01.332
+its policy and a pilot spoke subnet
+routed to it, never production.
+
+91
+00:06:01.332 --> 00:06:05.984
+Sign in to commercial Azure with the
+Resource Graph and firewall extensions,
+
+92
+00:06:05.984 --> 00:06:10.271
+write the settings, and run the check
+live, allowing the unverified calls.
+
+93
+00:06:10.271 --> 00:06:14.556
+Then compare with the guide's Validate
+commands: the policy's two modes,
+
+94
+00:06:14.556 --> 00:06:18.620
+and the effective route table on a
+test machine in the pilot subnet.
+
+95
+00:06:18.620 --> 00:06:20.804
+For a subnet the kit called firewall,
+
+96
+00:06:20.804 --> 00:06:24.808
+the effective default route should
+go to the firewall's private IP.
+
+97
+00:06:24.808 --> 00:06:26.671
+If it doesn't, record why.
+
+98
+00:06:26.671 --> 00:06:29.613
+Nothing changed in Azure,
+and the plan wasn't run,
+
+99
+00:06:29.613 --> 00:06:33.070
+so back out by deleting
+the output and signing out.
+
+100
+00:06:36.820 --> 00:06:39.485
+Each output is evidence
+for something specific,
+
+101
+00:06:39.485 --> 00:06:44.882
+from the guide's requirements
+table against NIST SP 800-53.
+
+102
+00:06:44.882 --> 00:06:49.360
+Threat intelligence and intrusion
+detection in deny on every policy
+
+103
+00:06:49.360 --> 00:06:53.683
+supports deny by default, allow by
+exception, and system monitoring.
+
+104
+00:06:53.683 --> 00:06:57.034
+Every workload subnet's
+declared route to the firewall,
+
+105
+00:06:57.034 --> 00:07:00.458
+and the share that has one,
+supports boundary protection.
+
+106
+00:07:00.458 --> 00:07:04.745
+Firewall logs to the platform
+workspace support system monitoring.
+
+107
+00:07:04.745 --> 00:07:07.902
+And the move to deny, reviewed
+before it's deployed,
+
+108
+00:07:07.902 --> 00:07:11.445
+supports deny by default too,
+through the change record.
+
+109
+00:07:11.445 --> 00:07:15.495
+The kit's output supports these
+controls; the assessor decides.
+
+110
+00:07:15.495 --> 00:07:20.076
+The key security indicators are
+FedRAMP's indicators for cloud providers,
+
+111
+00:07:20.076 --> 00:07:23.320
+which the agency lines
+its own evidence up with.
+
+112
+00:07:27.070 --> 00:07:28.470
+What breaks in production?
+
+113
+00:07:28.470 --> 00:07:31.529
+A draft deployed over newer
+live edits loses them,
+
+114
+00:07:31.529 --> 00:07:36.230
+because deploying replaces the whole
+applied policy; the kit never deploys,
+
+115
+00:07:36.230 --> 00:07:40.558
+and the plan names the change window
+and the guide's single change path.
+
+116
+00:07:40.558 --> 00:07:44.783
+A declared route that doesn't win
+sends traffic around the firewall;
+
+117
+00:07:44.783 --> 00:07:48.632
+the metric says declared, and
+Lab 2 checks the effective route.
+
+118
+00:07:48.632 --> 00:07:51.852
+A route to an unknown
+appliance sends egress through
+
+119
+00:07:51.852 --> 00:07:55.583
+something that isn't the inspecting
+firewall; the kit names it.
+
+120
+00:07:55.583 --> 00:07:59.314
+And a Standard policy with
+intrusion detection set reads as
+
+121
+00:07:59.314 --> 00:08:03.630
+configured but inspects nothing;
+the kit says Premium is needed.
+
+122
+00:08:07.380 --> 00:08:08.730
+Here's what done looks like.
+
+123
+00:08:08.730 --> 00:08:11.863
+Every policy denies on
+threat intelligence and
+
+124
+00:08:11.863 --> 00:08:14.605
+intrusion detection, or
+has a dated plan to.
+
+125
+00:08:14.605 --> 00:08:19.068
+Every workload subnet routes to the
+firewall, or has a decision record.
+
+126
+00:08:19.068 --> 00:08:22.981
+The effective route was checked on
+a machine in each pilot subnet.
+
+127
+00:08:22.981 --> 00:08:26.567
+And the plan file went through the
+change record before anyone ran it.
+
+128
+00:08:26.567 --> 00:08:30.243
+Next, Chapter 7: platform
+services reached only through
+
+129
+00:08:30.243 --> 00:08:33.590
+private endpoints, and the
+key vaults behind them.

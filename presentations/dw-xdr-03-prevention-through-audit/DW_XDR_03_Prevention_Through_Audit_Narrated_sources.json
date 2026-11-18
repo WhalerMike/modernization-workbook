@@ -1,0 +1,152 @@
+[
+ {
+  "slide": 2,
+  "title": "Why the check is on the device",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.html"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What Learn's commands give you",
+  "links": [
+   {
+    "text": "Configure tamper protection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-configure-tamper-protection"
+   },
+   {
+    "text": "Configure network protection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-configure-network-protection"
+   },
+   {
+    "text": "Evaluate network protection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-evaluate-network-protection"
+   },
+   {
+    "text": "Configure CFA",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-configure-controlled-folder-access"
+   },
+   {
+    "text": "Get-NetFirewallProfile",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-netfirewallprofile"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What running them by hand leaves to you",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.html"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The checks on each device",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Who moves the rings, who reads the events",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Lab 1: the plan, then the check",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: one server's checks, and the week's events",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 2: one test device in a test tenant",
+  "links": [
+   {
+    "text": "Evaluate network protection",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#mde-evaluate-network-protection"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Federal requirements and the evidence",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.html"
+   }
+  ]
+ }
+]

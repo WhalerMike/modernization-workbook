@@ -1,0 +1,170 @@
+[
+ {
+  "slide": 2,
+  "title": "Why both checks ask who has it",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "The government-cloud fact that shapes G5",
+  "links": [
+   {
+    "text": "What is Microsoft Security Exposure Management?",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#security-exposure-management-overview"
+   },
+   {
+    "text": "Defender for Endpoint for US Government customers",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#defender-for-endpoint-us-government"
+   },
+   {
+    "text": "DeviceInfo",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#advanced-hunting-deviceinfo-table"
+   },
+   {
+    "text": "DeviceTvmSoftwareVulnerabilities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#advanced-hunting-devicetvmsoftwarevulnerabilities"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What the guide and Learn leave to you",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.html"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The exposure check and its disposition",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The incident check: five findings",
+  "links": [
+   {
+    "text": "List incidents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-list-incidents"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Who owns the exposure, who owns the queue",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: the exposure check and its record",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 1: the incident check and its findings",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2: both checks in a test tenant",
+  "links": [
+   {
+    "text": "List incidents",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-list-incidents"
+   },
+   {
+    "text": "runHuntingQuery",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-runhuntingquery"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Federal requirements and the evidence",
+  "links": [
+   {
+    "text": "NIST SP 800-53 Rev. 5",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "What is Microsoft Security Exposure Management?",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#security-exposure-management-overview"
+   },
+   {
+    "text": "DeviceTvmSoftwareVulnerabilities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#advanced-hunting-devicetvmsoftwarevulnerabilities"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.html"
+   }
+  ]
+ }
+]

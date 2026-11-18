@@ -1,0 +1,663 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.950
+Welcome to the Federal
+Modernization Workbook's
+
+2
+00:00:02.950 --> 00:00:05.638
+developer workbook,
+Building Azure Security.
+
+3
+00:00:05.638 --> 00:00:08.725
+This is Chapter 1: the
+landing-zone baseline.
+
+4
+00:00:08.725 --> 00:00:13.102
+A baseline nobody reads back is a
+wish, so the first thing the kit does
+
+5
+00:00:13.102 --> 00:00:17.400
+is read it back, the same way, every
+week, with nothing it could change.
+
+6
+00:00:17.400 --> 00:00:22.013
+We'll start from Microsoft Learn's own
+commands, see what they leave to you,
+
+7
+00:00:22.013 --> 00:00:24.704
+read the kit's spine
+and its baseline check,
+
+8
+00:00:24.704 --> 00:00:27.625
+and walk two labs, the
+evidence and the dangers.
+
+9
+00:00:27.625 --> 00:00:30.640
+The chapter is a draft
+awaiting the owner's review,
+
+10
+00:00:30.640 --> 00:00:34.910
+and the code is illustrative,
+tested against a fictional estate.
+
+11
+00:00:38.660 --> 00:00:40.710
+Why read the baseline back as code?
+
+12
+00:00:40.710 --> 00:00:43.581
+Because the guide's Step
+1 sets four things once,
+
+13
+00:00:43.581 --> 00:00:47.335
+and nobody checks them every
+week across every subscription.
+
+14
+00:00:47.335 --> 00:00:49.896
+By the end of this chapter
+you can read all four:
+
+15
+00:00:49.896 --> 00:00:54.884
+whether creating management groups needs
+authorization and new subscriptions land in
+
+16
+00:00:54.884 --> 00:00:59.467
+a default group, whether the required
+initiatives sit at the intermediate root in
+
+17
+00:00:59.467 --> 00:01:03.781
+audit, whether every platform resource
+sends logs to the platform workspace,
+
+18
+00:01:03.781 --> 00:01:07.960
+and whether every subscription has
+the required Defender for Cloud plans.
+
+19
+00:01:07.960 --> 00:01:10.672
+It's for platform engineers
+who own the hierarchy,
+
+20
+00:01:10.672 --> 00:01:14.772
+and for the developers and security
+officers who review their automation.
+
+21
+00:01:14.772 --> 00:01:18.323
+And one rule holds throughout:
+every read is declared,
+
+22
+00:01:18.323 --> 00:01:23.840
+every finding names its source, and
+nothing the kit runs can change the estate.
+
+23
+00:01:27.590 --> 00:01:29.465
+Here's Microsoft's starting point.
+
+24
+00:01:29.465 --> 00:01:33.999
+Learn's Az PowerShell for protecting the
+hierarchy sets two things on the tenant
+
+25
+00:01:33.999 --> 00:01:37.721
+root group: that creating a
+management group needs authorization,
+
+26
+00:01:37.721 --> 00:01:40.090
+and which group new subscriptions land in.
+
+27
+00:01:40.090 --> 00:01:43.353
+Learn's REST reference reads
+both back with one call.
+
+28
+00:01:43.353 --> 00:01:48.278
+The guide assigns the security benchmark
+and the FedRAMP initiative in DoNotEnforce,
+
+29
+00:01:48.278 --> 00:01:51.014
+which evaluates compliance
+without enforcing.
+
+30
+00:01:51.014 --> 00:01:56.004
+And two more REST references give the
+reads the kit needs: diagnostic settings,
+
+31
+00:01:56.004 --> 00:01:59.611
+with the workspace and the
+log categories each one sends,
+
+32
+00:01:59.611 --> 00:02:03.430
+and Defender for Cloud's
+pricings, with each plan's tier.
+
+33
+00:02:07.180 --> 00:02:08.543
+What does Learn leave to you?
+
+34
+00:02:08.543 --> 00:02:10.840
+Each command is run by hand, once,
+
+35
+00:02:10.840 --> 00:02:14.905
+so nobody runs it every week
+across every subscription.
+
+36
+00:02:14.905 --> 00:02:17.518
+A Resource Graph query with no scope reads
+
+37
+00:02:17.518 --> 00:02:20.355
+whatever the signed-in
+account happens to see.
+
+38
+00:02:20.355 --> 00:02:23.294
+Comparing diagnostic
+settings by eye misses the
+
+39
+00:02:23.294 --> 00:02:26.017
+one resource that logs
+to the wrong workspace.
+
+40
+00:02:26.017 --> 00:02:29.305
+A session left on another
+cloud reads another estate.
+
+41
+00:02:29.305 --> 00:02:31.249
+And nothing records what was read,
+
+42
+00:02:31.249 --> 00:02:34.305
+so an assessor can't tell
+which run a finding came from.
+
+43
+00:02:34.305 --> 00:02:38.510
+The kit answers each of those,
+and a test pins each answer.
+
+44
+00:02:42.260 --> 00:02:43.498
+Now the kit's spine.
+
+45
+00:02:43.498 --> 00:02:46.323
+One call list declares thirty-three reads:
+
+46
+00:02:46.323 --> 00:02:50.842
+twenty-four Resource Graph queries
+and nine Resource Manager GETs,
+
+47
+00:02:50.842 --> 00:02:54.232
+each with its query or path,
+its API version, its role,
+
+48
+00:02:54.232 --> 00:02:58.186
+which is Reader everywhere, and
+the Learn page it comes from.
+
+49
+00:02:58.186 --> 00:03:00.310
+Fifteen are verified on Learn.
+
+50
+00:03:00.310 --> 00:03:02.590
+The other eighteen say what's missing,
+
+51
+00:03:02.590 --> 00:03:05.385
+and a live run refuses
+them unless you allow it.
+
+52
+00:03:05.385 --> 00:03:10.624
+Two invokers serve the calls: the fixture
+invoker reads files and sends nothing;
+
+53
+00:03:10.624 --> 00:03:14.910
+the live invoker runs a scoped
+Resource Graph query or a GET on the
+
+54
+00:03:14.910 --> 00:03:19.910
+commercial Resource Manager host, after
+checking the CLI's cloud and tenant.
+
+55
+00:03:19.910 --> 00:03:23.266
+The kit knows one cloud, commercial Azure,
+
+56
+00:03:23.266 --> 00:03:27.970
+which Microsoft 365 GCC pairs
+with, and has no default.
+
+57
+00:03:31.720 --> 00:03:34.282
+The baseline check reports six rules.
+
+58
+00:03:34.282 --> 00:03:37.254
+Two come straight from
+Learn's hierarchy guidance:
+
+59
+00:03:37.254 --> 00:03:40.439
+creating management groups
+must need authorization,
+
+60
+00:03:40.439 --> 00:03:44.544
+and new subscriptions must land in a
+default group, not the tenant root.
+
+61
+00:03:44.544 --> 00:03:46.241
+One is the program's design:
+
+62
+00:03:46.241 --> 00:03:50.095
+the required assignments must
+sit at the intermediate root.
+
+63
+00:03:50.095 --> 00:03:52.432
+One is information, not a finding:
+
+64
+00:03:52.432 --> 00:03:56.845
+an initiative in DoNotEnforce
+is exactly what Step 1 intends.
+
+65
+00:03:56.845 --> 00:03:59.907
+Then logs: every platform
+resource must send
+
+66
+00:03:59.907 --> 00:04:02.720
+an enabled log to the platform workspace.
+
+67
+00:04:02.720 --> 00:04:06.608
+And Defender for Cloud: the
+required plans must be on Standard.
+
+68
+00:04:06.608 --> 00:04:09.970
+The types and plans it checks
+live in a configuration
+
+69
+00:04:09.970 --> 00:04:13.370
+file you change only in
+a reviewed pull request.
+
+70
+00:04:17.120 --> 00:04:18.170
+Who's involved?
+
+71
+00:04:18.170 --> 00:04:22.315
+The platform owner owns the hierarchy,
+the logging and the weekly run,
+
+72
+00:04:22.315 --> 00:04:26.315
+and answers for the findings, with
+the security officer reviewing
+
+73
+00:04:26.315 --> 00:04:30.170
+compliance beside them, as the
+guide's Step 1 names the gate owner.
+
+74
+00:04:30.170 --> 00:04:35.220
+Developers build and review the kit and
+keep its call list and rules honest.
+
+75
+00:04:35.220 --> 00:04:39.679
+And the reader the kit signs in as needs
+only Reader: on the tenant root group
+
+76
+00:04:39.679 --> 00:04:44.282
+for the hierarchy settings, and on the
+intermediate root for everything else.
+
+77
+00:04:44.282 --> 00:04:46.460
+Nothing in this chapter writes.
+
+78
+00:04:50.210 --> 00:04:54.909
+Lab 1 needs only PowerShell 7 with
+Pester, in the kit's folder, against the
+
+79
+00:04:54.909 --> 00:04:58.095
+fictional Contoso estate:
+an intermediate root,
+
+80
+00:04:58.095 --> 00:05:01.122
+four subscriptions and
+a platform workspace.
+
+81
+00:05:01.122 --> 00:05:02.323
+No subscription.
+
+82
+00:05:02.323 --> 00:05:08.147
+Step 1 lists the six calls this chapter
+makes, every one Reader, every one verified.
+
+83
+00:05:08.147 --> 00:05:13.195
+Step 2 runs the baseline check on the
+first week's estate: hierarchy settings,
+
+84
+00:05:13.195 --> 00:05:18.723
+four policy assignments, sixteen platform
+resources and four subscriptions read.
+
+85
+00:05:18.723 --> 00:05:22.686
+Twelve findings and one
+information row, from six calls,
+
+86
+00:05:22.686 --> 00:05:27.180
+every one a read, with a manifest
+that lists each file's hash.
+
+87
+00:05:30.930 --> 00:05:33.180
+Step 3 reads the findings.
+
+88
+00:05:33.180 --> 00:05:36.330
+Creating management groups
+doesn't need authorization.
+
+89
+00:05:36.330 --> 00:05:41.645
+Ten resources send no log to the platform
+workspace; one of them, the firewall's
+
+90
+00:05:41.645 --> 00:05:43.306
+public IP, does send logs,
+
+91
+00:05:43.306 --> 00:05:47.293
+but to an application team's
+workspace, which doesn't count.
+
+92
+00:05:47.293 --> 00:05:50.318
+The online subscription's
+Key Vault plan is Free.
+
+93
+00:05:50.318 --> 00:05:54.155
+And the FedRAMP initiative is
+in audit, as Step 1 intends.
+
+94
+00:05:54.155 --> 00:05:57.016
+Step 4 reads the summary the metrics use:
+
+95
+00:05:57.016 --> 00:06:01.005
+six of sixteen platform
+resources log to the workspace.
+
+96
+00:06:01.005 --> 00:06:05.867
+Step 5 prints, without sending it, the
+exact command a live run would send:
+
+97
+00:06:05.867 --> 00:06:09.840
+the guide's own query, scoped
+to the intermediate root.
+
+98
+00:06:13.590 --> 00:06:15.813
+Lab 2 moves to a test tenant with a test
+
+99
+00:06:15.813 --> 00:06:19.040
+management group and
+subscription, never production.
+
+100
+00:06:19.040 --> 00:06:22.450
+Sign in to commercial Azure,
+write the settings file from the
+
+101
+00:06:22.450 --> 00:06:26.202
+template with every placeholder
+filled, and run the same check live.
+
+102
+00:06:26.202 --> 00:06:30.927
+Every call this check makes is verified
+on Learn, so it needs no special flag.
+
+103
+00:06:30.927 --> 00:06:35.080
+Then compare with the guide's own
+Validate commands: the assignment list,
+
+104
+00:06:35.080 --> 00:06:38.610
+the hierarchy settings read
+straight from Resource Manager,
+
+105
+00:06:38.610 --> 00:06:42.140
+and one flagged resource's
+diagnostic settings in the portal.
+
+106
+00:06:42.140 --> 00:06:46.691
+Nothing changed in Azure, so backing
+out means deleting what the lab wrote,
+
+107
+00:06:46.691 --> 00:06:49.302
+which maps the test
+estate, and signing out.
+
+108
+00:06:49.302 --> 00:06:51.660
+The authors haven't run this lab.
+
+109
+00:06:55.410 --> 00:07:00.010
+Each output is evidence for something
+specific, from the guide's requirements table.
+
+110
+00:07:00.010 --> 00:07:04.220
+The hierarchy settings, the initiatives
+at the intermediate root and their
+
+111
+00:07:04.220 --> 00:07:08.698
+enforcement mode support baseline
+configuration and configuration settings.
+
+112
+00:07:08.698 --> 00:07:10.894
+Which resources log to the workspace,
+
+113
+00:07:10.894 --> 00:07:15.711
+and which subscriptions have the required
+plans, support continuous monitoring.
+
+114
+00:07:15.711 --> 00:07:18.872
+And the manifest shows
+every call was a read,
+
+115
+00:07:18.872 --> 00:07:22.210
+as Reader, with every
+response kept and hashed.
+
+116
+00:07:22.210 --> 00:07:26.298
+The kit's output supports those
+controls; the assessor decides.
+
+117
+00:07:26.298 --> 00:07:30.887
+And the key security indicators are
+FedRAMP's indicators for cloud providers:
+
+118
+00:07:30.887 --> 00:07:35.260
+the agency lines its own evidence up
+with them, and doesn't report them.
+
+119
+00:07:39.010 --> 00:07:41.885
+What breaks in production,
+and what guards against it?
+
+120
+00:07:41.885 --> 00:07:46.256
+A live run on the wrong cloud or tenant
+reports another estate as this one,
+
+121
+00:07:46.256 --> 00:07:50.116
+so the kit checks the CLI's cloud
+and tenant before its first call,
+
+122
+00:07:50.116 --> 00:07:51.573
+and has no default cloud.
+
+123
+00:07:51.573 --> 00:07:55.449
+A query without a scope covers
+whatever the account happens to see,
+
+124
+00:07:55.449 --> 00:07:58.973
+so every query takes the management
+group from the settings.
+
+125
+00:07:58.973 --> 00:08:02.273
+A response's next link
+could point at another host,
+
+126
+00:08:02.273 --> 00:08:06.459
+so any URL off the commercial
+Resource Manager host is refused.
+
+127
+00:08:06.459 --> 00:08:11.037
+An unverified call could misread
+a property and report a false gap,
+
+128
+00:08:11.037 --> 00:08:15.448
+so it's refused in a live run unless
+you allow it, and Lab 2 compares.
+
+129
+00:08:15.448 --> 00:08:19.340
+And the run folder never
+goes in a public repository.
+
+130
+00:08:23.090 --> 00:08:24.440
+Here's what done looks like.
+
+131
+00:08:24.440 --> 00:08:28.872
+Every call the code makes is in the call
+list, with its role and Learn page,
+
+132
+00:08:28.872 --> 00:08:32.477
+and the test that compares
+declared and made calls passes.
+
+133
+00:08:32.477 --> 00:08:36.828
+Every rule the code can report is
+in the rules file, with its source.
+
+134
+00:08:36.828 --> 00:08:41.564
+The required plans and platform types
+match the agency's decision records.
+
+135
+00:08:41.564 --> 00:08:43.535
+Lab 2 ran in a test subscription,
+
+136
+00:08:43.535 --> 00:08:47.552
+and the unverified calls' output
+was checked against the portal.
+
+137
+00:08:47.552 --> 00:08:51.002
+And output folders live
+outside any repository.
+
+138
+00:08:51.002 --> 00:08:55.630
+Next, Chapter 2 builds the public
+exposure register on the same spine.

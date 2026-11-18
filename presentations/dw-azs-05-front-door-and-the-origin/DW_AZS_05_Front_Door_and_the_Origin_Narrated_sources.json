@@ -1,0 +1,130 @@
+[
+ {
+  "slide": 2,
+  "title": "Why an origin must refuse the way around",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What Microsoft Learn gives you",
+  "links": [
+   {
+    "text": "Secure traffic to Azure Front Door origins",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#front-door-origin-security"
+   },
+   {
+    "text": "Internet ingress",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#internet-ingress-design-guide"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What it leaves to you",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Each origin gets one lock-down state",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The edge rules, beyond the origin",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Who owns the origin and who owns the profile",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: run the edge check, read each origin",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 1: the findings",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2: a test profile, and the refused request",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Federal requirements and the evidence",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 05",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.html"
+   }
+  ]
+ }
+]

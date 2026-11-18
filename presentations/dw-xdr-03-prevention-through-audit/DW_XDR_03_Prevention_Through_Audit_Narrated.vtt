@@ -1,0 +1,613 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.234
+Welcome to Building Defender XDR,
+
+2
+00:00:02.234 --> 00:00:06.212
+a developer workbook in the
+Federal Modernization Workbook.
+
+3
+00:00:06.212 --> 00:00:09.288
+This is Chapter 3:
+prevention through audit.
+
+4
+00:00:09.288 --> 00:00:13.634
+A setting in a policy protects
+nothing until the device enforces it,
+
+5
+00:00:13.634 --> 00:00:18.137
+so the check is on the device, against
+the stage the ring is meant to be at.
+
+6
+00:00:18.137 --> 00:00:22.760
+We'll start from Learn's three device
+commands and the guide's event query,
+
+7
+00:00:22.760 --> 00:00:26.459
+read how the kit compares every
+device with its ring's plan,
+
+8
+00:00:26.459 --> 00:00:29.387
+and walk two labs, the
+evidence and the dangers.
+
+9
+00:00:29.387 --> 00:00:32.020
+The chapter is a draft awaiting review;
+
+10
+00:00:32.020 --> 00:00:35.840
+the code is illustrative,
+tested against fixtures.
+
+11
+00:00:39.590 --> 00:00:41.015
+Why check on the device?
+
+12
+00:00:41.015 --> 00:00:45.515
+Because a value is only right or wrong
+against the stage its ring is at.
+
+13
+00:00:45.515 --> 00:00:50.539
+Network protection reading two, audit, is
+exactly right on a ring still auditing,
+
+14
+00:00:50.539 --> 00:00:53.203
+and drift on a ring that
+should be blocking.
+
+15
+00:00:53.203 --> 00:00:56.090
+By the end of this chapter
+you can say, ring by ring,
+
+16
+00:00:56.090 --> 00:00:59.844
+whether devices enforce the
+prevention settings at the stage
+
+17
+00:00:59.844 --> 00:01:03.165
+the change record set, and list
+every device that doesn't.
+
+18
+00:01:03.165 --> 00:01:06.874
+It's for the developers, the
+platform owner who owns this gate,
+
+19
+00:01:06.874 --> 00:01:11.177
+and the security operations center,
+which reads the events every week.
+
+20
+00:01:11.177 --> 00:01:14.975
+The setting values themselves live
+in the Devices book's policies;
+
+21
+00:01:14.975 --> 00:01:16.820
+this chapter checks them.
+
+22
+00:01:20.570 --> 00:01:21.983
+Here's what Learn gives you.
+
+23
+00:01:21.983 --> 00:01:26.932
+Get M P computer status shows tamper
+and real-time protection, true when on.
+
+24
+00:01:26.932 --> 00:01:31.988
+Get M P preference shows network
+protection, zero off, one block, two audit;
+
+25
+00:01:31.988 --> 00:01:34.263
+the two Windows Server settings;
+
+26
+00:01:34.263 --> 00:01:38.307
+and controlled folder access,
+with its disk-only modes too.
+
+27
+00:01:38.307 --> 00:01:43.571
+Get net firewall profile, from the active
+store, shows the firewall as enforced.
+
+28
+00:01:43.571 --> 00:01:46.270
+And the guide's query
+counts the audit and block
+
+29
+00:01:46.270 --> 00:01:48.970
+events and tampering
+attempts over seven days.
+
+30
+00:01:48.970 --> 00:01:55.194
+Learn adds three conditions: network
+protection needs the antivirus in active mode,
+
+31
+00:01:55.194 --> 00:01:59.195
+needs its own setting on
+Windows Server 2019 and later,
+
+32
+00:01:59.195 --> 00:02:05.870
+and needs datagram processing off on domain
+controllers, DNS, file and SQL servers.
+
+33
+00:02:09.620 --> 00:02:12.670
+Run by hand, those commands
+leave a lot to you.
+
+34
+00:02:12.670 --> 00:02:15.600
+Someone has to know what
+each ring should read,
+
+35
+00:02:15.600 --> 00:02:19.070
+so the agency's prevention
+plan names each ring's stage.
+
+36
+00:02:19.070 --> 00:02:22.275
+A bare two reads as fine on
+a ring that should block,
+
+37
+00:02:22.275 --> 00:02:25.870
+so the kit prints expected
+and actual as number and name.
+
+38
+00:02:25.870 --> 00:02:27.978
+A file server looks like any other,
+
+39
+00:02:27.978 --> 00:02:32.270
+so the inventory's role column
+decides where the datagram check runs.
+
+40
+00:02:32.270 --> 00:02:35.659
+Passive mode silently
+disables network protection,
+
+41
+00:02:35.659 --> 00:02:37.970
+so the antivirus mode must be normal.
+
+42
+00:02:37.970 --> 00:02:42.220
+The fleet query gives counts, so
+the drift list names devices.
+
+43
+00:02:42.220 --> 00:02:45.945
+And a device nobody collected would
+look compliant, so it's listed.
+
+44
+00:02:45.945 --> 00:02:50.070
+The verdict: Learn's commands
+collect; the kit compares.
+
+45
+00:02:53.820 --> 00:02:57.245
+For each in-scope device,
+the kit runs these checks.
+
+46
+00:02:57.245 --> 00:02:59.482
+Real-time and tamper protection on.
+
+47
+00:02:59.482 --> 00:03:02.070
+The antivirus in normal, active mode.
+
+48
+00:03:02.070 --> 00:03:05.338
+Network protection and
+controlled folder access
+
+49
+00:03:05.338 --> 00:03:08.295
+at the ring's stage from
+the plan, block or audit.
+
+50
+00:03:08.295 --> 00:03:12.044
+On servers, network protection
+allowed on the server;
+
+51
+00:03:12.044 --> 00:03:15.282
+and on high-UDP roles,
+datagram processing off.
+
+52
+00:03:15.282 --> 00:03:18.769
+And each firewall profile
+on, with inbound blocked.
+
+53
+00:03:18.769 --> 00:03:21.089
+It runs the guide's event query too,
+
+54
+00:03:21.089 --> 00:03:25.395
+and writes the device checks, the
+drift, the events and a summary.
+
+55
+00:03:25.395 --> 00:03:28.971
+Moving a ring from audit to block
+is a change to the plan file,
+
+56
+00:03:28.971 --> 00:03:32.620
+under the same change record
+that changes the Intune policy.
+
+57
+00:03:32.620 --> 00:03:35.040
+The kit never changes a policy.
+
+58
+00:03:38.790 --> 00:03:39.840
+Who's involved?
+
+59
+00:03:39.840 --> 00:03:44.471
+The platform owner owns this gate,
+moves each ring under a change record,
+
+60
+00:03:44.471 --> 00:03:47.140
+and reviews the exclusions each quarter.
+
+61
+00:03:47.140 --> 00:03:50.389
+The security operations
+center reviews blocks and
+
+62
+00:03:50.389 --> 00:03:53.940
+tampering attempts every week,
+alongside the drift list.
+
+63
+00:03:53.940 --> 00:03:56.869
+The operator collects a
+sample of device states
+
+64
+00:03:56.869 --> 00:03:59.578
+per ring per site and
+works the drift tickets.
+
+65
+00:03:59.578 --> 00:04:03.389
+One caution: the fixtures
+are eleven fictional devices.
+
+66
+00:04:03.389 --> 00:04:06.142
+On a real fleet, sample per ring per site,
+
+67
+00:04:06.142 --> 00:04:09.153
+as the guide's post-change
+validation says.
+
+68
+00:04:09.153 --> 00:04:12.880
+The coverage check in Chapter
+2 is the fleet-wide view.
+
+69
+00:04:16.630 --> 00:04:18.730
+Lab 1, in the kit's folder.
+
+70
+00:04:18.730 --> 00:04:21.993
+Step 1 reads the plan the
+devices are checked against.
+
+71
+00:04:21.993 --> 00:04:27.779
+Rings 0 and 1 are in block; rings 2,
+3 and the servers are still auditing.
+
+72
+00:04:27.779 --> 00:04:31.693
+Step 2 runs the prevention
+check, and finds three drifts.
+
+73
+00:04:31.693 --> 00:04:34.706
+One device in ring 1 has
+tamper protection off.
+
+74
+00:04:34.706 --> 00:04:39.267
+One in ring 2 has network protection
+off, though its ring should be auditing.
+
+75
+00:04:39.267 --> 00:04:42.392
+And the file server has
+datagram processing on,
+
+76
+00:04:42.392 --> 00:04:45.356
+which Learn says to turn
+off on high-UDP roles.
+
+77
+00:04:45.356 --> 00:04:48.265
+Three inventory devices
+have no state file:
+
+78
+00:04:48.265 --> 00:04:51.780
+the two never onboarded,
+and the excepted kiosk.
+
+79
+00:04:55.530 --> 00:04:58.855
+Step 3 reads every check
+on the file server.
+
+80
+00:04:58.855 --> 00:05:02.477
+A server gets the two server
+checks the workstations don't:
+
+81
+00:05:02.477 --> 00:05:05.948
+network protection allowed
+on the server, which passes,
+
+82
+00:05:05.948 --> 00:05:09.343
+and datagram processing for
+its file role, which fails.
+
+83
+00:05:09.343 --> 00:05:11.222
+Step 4 reads the week's events:
+
+84
+00:05:11.222 --> 00:05:15.842
+network protection audited twelve
+times on four devices, three blocks,
+
+85
+00:05:15.842 --> 00:05:20.618
+controlled folder access audited and
+blocked, and one tampering attempt.
+
+86
+00:05:20.618 --> 00:05:24.030
+The security operations center
+reads that with the drift list.
+
+87
+00:05:24.030 --> 00:05:27.147
+A device with tamper
+protection off and a tampering
+
+88
+00:05:27.147 --> 00:05:30.560
+attempt in the same week is
+an incident, not a ticket.
+
+89
+00:05:34.310 --> 00:05:38.510
+Lab 2 uses a ring 0 test device in
+a test tenant, never production,
+
+90
+00:05:38.510 --> 00:05:42.548
+with the policies assigned and
+network protection in audit.
+
+91
+00:05:42.548 --> 00:05:45.647
+On the device, collect
+its state, elevated.
+
+92
+00:05:45.647 --> 00:05:49.497
+On your workstation, sign in and
+run the prevention check live.
+
+93
+00:05:49.497 --> 00:05:52.603
+Then test network protection
+the way Learn does:
+
+94
+00:05:52.603 --> 00:05:55.785
+in a browser other than
+Edge, open Learn's test site.
+
+95
+00:05:55.785 --> 00:06:00.155
+In audit mode the site opens
+and event 1125 is logged;
+
+96
+00:06:00.155 --> 00:06:03.610
+in block mode it's
+blocked, with event 1126.
+
+97
+00:06:03.610 --> 00:06:08.298
+Run the check again the next day, and the
+audited event appears in the events file.
+
+98
+00:06:08.298 --> 00:06:10.510
+Nothing changed on the device.
+
+99
+00:06:14.260 --> 00:06:17.972
+Here's what the prevention check
+proves, against NIST's catalog.
+
+100
+00:06:17.972 --> 00:06:20.559
+Antivirus and real-time protection on,
+
+101
+00:06:20.559 --> 00:06:24.035
+in active mode, supports
+malicious code protection.
+
+102
+00:06:24.035 --> 00:06:28.423
+The host firewall on with inbound
+blocked supports boundary protection.
+
+103
+00:06:28.423 --> 00:06:31.454
+Network protection and
+controlled folder access at
+
+104
+00:06:31.454 --> 00:06:34.348
+the ring's stage supports
+configuration settings.
+
+105
+00:06:34.348 --> 00:06:37.966
+And tamper protection on, with
+tampering attempts counted,
+
+106
+00:06:37.966 --> 00:06:40.847
+supports software and
+information integrity.
+
+107
+00:06:40.847 --> 00:06:44.035
+The indicators are FedRAMP's,
+as the guide maps them.
+
+108
+00:06:44.035 --> 00:06:48.210
+The records support these controls;
+the assessor decides them.
+
+109
+00:06:51.960 --> 00:06:53.360
+What breaks in production?
+
+110
+00:06:53.360 --> 00:06:56.464
+A ring moved to block in
+Intune but not in the plan:
+
+111
+00:06:56.464 --> 00:07:01.198
+every device reports drift, so change
+the plan with the same change record.
+
+112
+00:07:01.198 --> 00:07:03.613
+Defender Antivirus in passive mode:
+
+113
+00:07:03.613 --> 00:07:08.122
+network protection doesn't run; the
+antivirus mode check catches it.
+
+114
+00:07:08.122 --> 00:07:10.914
+Datagram processing on
+a domain controller,
+
+115
+00:07:10.914 --> 00:07:14.460
+the performance risk Learn
+documents for high-UDP roles.
+
+116
+00:07:14.460 --> 00:07:18.673
+Tamper protection turned off
+locally, so settings drift silently.
+
+117
+00:07:18.673 --> 00:07:24.490
+And a device with no state file, which looks
+compliant by absence; the kit lists it.
+
+118
+00:07:28.240 --> 00:07:29.590
+Here's what done looks like.
+
+119
+00:07:29.590 --> 00:07:33.452
+The prevention plan matches the
+Intune policy for each ring.
+
+120
+00:07:33.452 --> 00:07:37.403
+Every ring has at least one
+sampled device state this week.
+
+121
+00:07:37.403 --> 00:07:40.458
+Every drift row has a ticket,
+and a tamper drift with a
+
+122
+00:07:40.458 --> 00:07:43.940
+tampering attempt goes to the
+security operations center.
+
+123
+00:07:43.940 --> 00:07:47.853
+Network protection's test site
+was blocked on a ring in block.
+
+124
+00:07:47.853 --> 00:07:50.803
+And the run folder is
+recorded as evidence.
+
+125
+00:07:50.803 --> 00:07:53.808
+Next, Chapter 4 reads the
+same device states for
+
+126
+00:07:53.808 --> 00:07:56.891
+the attack surface reduction
+rules, ring by ring.
+
+127
+00:07:56.891 --> 00:07:58.050
+Thanks for watching.

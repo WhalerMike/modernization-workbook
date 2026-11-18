@@ -1,0 +1,660 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.234
+Welcome to Building Defender XDR,
+
+2
+00:00:02.234 --> 00:00:06.212
+a developer workbook in the
+Federal Modernization Workbook.
+
+3
+00:00:06.212 --> 00:00:09.188
+This is Chapter 8: the
+monthly evidence run.
+
+4
+00:00:09.188 --> 00:00:13.286
+The metrics measure what the controls
+do, not whether a setting exists,
+
+5
+00:00:13.286 --> 00:00:17.526
+and the evidence is a chain a security
+officer can check with one command.
+
+6
+00:00:17.526 --> 00:00:22.053
+We'll start from the guide's monthly run,
+read the one command that replaces it,
+
+7
+00:00:22.053 --> 00:00:25.216
+the metrics and the evidence
+record, and walk two labs,
+
+8
+00:00:25.216 --> 00:00:29.600
+including one where we change a recorded
+file and watch the check catch it.
+
+9
+00:00:29.600 --> 00:00:32.233
+The chapter is a draft awaiting review;
+
+10
+00:00:32.233 --> 00:00:36.040
+the code is illustrative,
+tested against fixtures.
+
+11
+00:00:39.790 --> 00:00:42.078
+Why one command, and why a chain?
+
+12
+00:00:42.078 --> 00:00:46.426
+Because the guide's metrics measure what
+the controls actually do, not whether
+
+13
+00:00:46.426 --> 00:00:50.440
+a setting exists, and those numbers have
+to come from the month's real runs.
+
+14
+00:00:50.440 --> 00:00:53.203
+And because evidence the security officer
+
+15
+00:00:53.203 --> 00:00:55.890
+can't verify alone is
+just a folder of files.
+
+16
+00:00:55.890 --> 00:01:00.160
+By the end of this chapter you can produce
+the month's evidence package in one
+
+17
+00:01:00.160 --> 00:01:02.396
+command, read the guide's metrics from it,
+
+18
+00:01:02.396 --> 00:01:05.378
+and show the security officer
+it hasn't changed since.
+
+19
+00:01:05.378 --> 00:01:08.824
+It's for the developers, the
+platform owner who owns the run,
+
+20
+00:01:08.824 --> 00:01:11.620
+and the security officer who receives it.
+
+21
+00:01:15.370 --> 00:01:17.170
+Here's the guide's monthly run.
+
+22
+00:01:17.170 --> 00:01:19.232
+Connect with the two read scopes.
+
+23
+00:01:19.232 --> 00:01:21.835
+Run three hunting queries, coverage,
+
+24
+00:01:21.835 --> 00:01:26.171
+attack surface reduction and
+prevention, into JSON files.
+
+25
+00:01:26.171 --> 00:01:30.143
+Export the month's incidents,
+filtered on created date time,
+
+26
+00:01:30.143 --> 00:01:32.332
+which Learn lists as filterable.
+
+27
+00:01:32.332 --> 00:01:36.082
+And hash the folder, so a
+re-hash next month must match.
+
+28
+00:01:36.082 --> 00:01:40.557
+The guide also gives seven metric
+formulas, and an evidence catalog with
+
+29
+00:01:40.557 --> 00:01:45.240
+each artifact's kind, gate and retention,
+which are the program's design.
+
+30
+00:01:48.990 --> 00:01:50.327
+What does that leave to you?
+
+31
+00:01:50.327 --> 00:01:52.313
+Seven gates' checks aren't in it,
+
+32
+00:01:52.313 --> 00:01:56.364
+so the kit runs every check into
+its own folder with a manifest.
+
+33
+00:01:56.364 --> 00:01:59.199
+A hash list can be
+regenerated after an edit,
+
+34
+00:01:59.199 --> 00:02:02.190
+so each record holds the
+hash of the one before.
+
+35
+00:02:02.190 --> 00:02:05.490
+Files don't name their
+controls, so each record does.
+
+36
+00:02:05.490 --> 00:02:10.472
+A run that found five tickets hashes as
+cleanly as one that found none, so each
+
+37
+00:02:10.472 --> 00:02:12.765
+record carries the run's own result,
+
+38
+00:02:12.765 --> 00:02:15.928
+and the go or no-go fails
+until the findings close.
+
+39
+00:02:15.928 --> 00:02:19.665
+Someone computes the metrics by
+hand, so the kit writes them.
+
+40
+00:02:19.665 --> 00:02:23.107
+And Graph carries no assignment
+or containment time,
+
+41
+00:02:23.107 --> 00:02:27.930
+so mean time to triage is reported as
+not computed, with where to get it.
+
+42
+00:02:31.680 --> 00:02:36.897
+One command runs every check from Chapters
+1 to 7, each into its own folder,
+
+43
+00:02:36.897 --> 00:02:41.505
+then the metrics, and with an
+evidence path, records every folder.
+
+44
+00:02:41.505 --> 00:02:45.375
+A check that throws, a missing
+input or a refused session,
+
+45
+00:02:45.375 --> 00:02:48.067
+is an error row, and the others still run.
+
+46
+00:02:48.067 --> 00:02:53.010
+Each record holds the time, the environment,
+the change record, the command,
+
+47
+00:02:53.010 --> 00:02:58.034
+two results, the files' integrity and
+the run's own check, the steps with their
+
+48
+00:02:58.034 --> 00:03:00.383
+controls and indicators, the claim,
+
+49
+00:03:00.383 --> 00:03:03.543
+every file's hash, and the
+previous record's hash.
+
+50
+00:03:03.543 --> 00:03:06.718
+The check re-hashes everything
+and walks the chain.
+
+51
+00:03:06.718 --> 00:03:09.042
+With a stage, it adds a row per step,
+
+52
+00:03:09.042 --> 00:03:13.350
+which passes only with intact
+files and a passing check.
+
+53
+00:03:17.100 --> 00:03:18.888
+Here's where each metric comes from.
+
+54
+00:03:18.888 --> 00:03:22.924
+Protected coverage and exception
+exposure, from the coverage run.
+
+55
+00:03:22.924 --> 00:03:27.401
+Enforcement depth, devices with
+every applicable rule in block,
+
+56
+00:03:27.401 --> 00:03:30.525
+from the A S R run against
+the onboarded count.
+
+57
+00:03:30.525 --> 00:03:35.436
+Prevention effectiveness, blocks per
+thousand onboarded devices per week,
+
+58
+00:03:35.436 --> 00:03:39.412
+from the prevention events and
+the A S R events scaled to a week.
+
+59
+00:03:39.412 --> 00:03:41.076
+Expired exclusions.
+
+60
+00:03:41.076 --> 00:03:43.812
+Detection validity,
+from the detection run.
+
+61
+00:03:43.812 --> 00:03:47.837
+And synthetic-event success, from
+the quarter's exercise record.
+
+62
+00:03:47.837 --> 00:03:50.785
+Mean time to triage and to
+contain isn't computed:
+
+63
+00:03:50.785 --> 00:03:55.870
+the kit says to take it from the ticketing
+system or the Action center history.
+
+64
+00:03:59.620 --> 00:04:00.670
+Who's involved?
+
+65
+00:04:00.670 --> 00:04:04.920
+The platform owner owns the run,
+monthly, with the change record.
+
+66
+00:04:04.920 --> 00:04:08.525
+The security officer receives
+the metrics and the hash file,
+
+67
+00:04:08.525 --> 00:04:11.120
+and re-checks last
+month's folder this month.
+
+68
+00:04:11.120 --> 00:04:14.058
+The security operations
+lead runs the quarter's
+
+69
+00:04:14.058 --> 00:04:16.995
+synthetic events and
+files the exercise record.
+
+70
+00:04:16.995 --> 00:04:21.405
+One caution about Lab 1: the
+fixtures carry deliberate faults,
+
+71
+00:04:21.405 --> 00:04:25.470
+so most runs record a failed
+check, and the go or no-go fails.
+
+72
+00:04:25.470 --> 00:04:26.508
+That's the point.
+
+73
+00:04:26.508 --> 00:04:30.610
+Evidence of a finding is still
+evidence, but it isn't a go.
+
+74
+00:04:34.360 --> 00:04:36.460
+Lab 1, in the kit's folder.
+
+75
+00:04:36.460 --> 00:04:41.548
+Step 1 runs the month and records
+every run, with a lab change record.
+
+76
+00:04:41.548 --> 00:04:44.009
+Ten run folders, ten records.
+
+77
+00:04:44.009 --> 00:04:47.088
+Only signals and the metrics
+pass their own checks;
+
+78
+00:04:47.088 --> 00:04:50.973
+every other run found something,
+as the earlier chapters showed.
+
+79
+00:04:50.973 --> 00:04:52.973
+Step 2 reads the metrics.
+
+80
+00:04:52.973 --> 00:04:56.335
+Protected coverage, sixty-four
+point three percent.
+
+81
+00:04:56.335 --> 00:05:00.072
+Two of eleven onboarded devices
+have every rule in block.
+
+82
+00:05:00.072 --> 00:05:03.059
+One of one enabled detection
+has a passing test.
+
+83
+00:05:03.059 --> 00:05:05.772
+Four of five synthetic
+events did what they should.
+
+84
+00:05:05.772 --> 00:05:09.410
+And mean time to triage
+says not computed, and why.
+
+85
+00:05:13.160 --> 00:05:15.560
+Step 3 reads the records' index.
+
+86
+00:05:15.560 --> 00:05:19.510
+Result is the files' integrity,
+and every record passes.
+
+87
+00:05:19.510 --> 00:05:22.698
+Check result is what the
+run found, and most fail.
+
+88
+00:05:22.698 --> 00:05:29.048
+Step 4 checks the chain: every file matches
+its hash, ten records, chain unbroken.
+
+89
+00:05:29.048 --> 00:05:34.632
+Step 5 runs the production stage's go or
+no-go, and it fails, saying why for each
+
+90
+00:05:34.632 --> 00:05:40.486
+step: no pre-flight record, runs whose own
+checks failed, and no scheduled run yet.
+
+91
+00:05:40.486 --> 00:05:43.085
+Only signals and the metrics pass.
+
+92
+00:05:43.085 --> 00:05:47.780
+The command exits with an error, which
+is what a go or no-go should see.
+
+93
+00:05:51.530 --> 00:05:53.855
+Step 6 is the one to remember.
+
+94
+00:05:53.855 --> 00:05:57.605
+Append one line to a recorded
+tickets file, and check again.
+
+95
+00:05:57.605 --> 00:05:58.768
+Both checks fail.
+
+96
+00:05:58.768 --> 00:06:00.517
+The sums say the file changed,
+
+97
+00:06:00.517 --> 00:06:04.455
+and the chain says it no longer
+matches its record, naming the file.
+
+98
+00:06:04.455 --> 00:06:07.680
+That's what protects the evidence
+from an edit after the fact.
+
+99
+00:06:07.680 --> 00:06:12.143
+Step 7 runs the evidence
+tests: all pass, none fail.
+
+100
+00:06:12.143 --> 00:06:14.552
+Before step 6, you had a folder whose hash
+
+101
+00:06:14.552 --> 00:06:17.180
+file you could hand to
+the security officer.
+
+102
+00:06:17.180 --> 00:06:19.760
+Delete the output folder when you're done.
+
+103
+00:06:23.510 --> 00:06:26.354
+Lab 2 uses a test
+tenant, never production,
+
+104
+00:06:26.354 --> 00:06:31.122
+with every earlier chapter's Lab 2
+inputs named in your settings file.
+
+105
+00:06:31.122 --> 00:06:33.047
+Sign in with the read scopes.
+
+106
+00:06:33.047 --> 00:06:35.798
+Run the month with an
+evidence path on agency
+
+107
+00:06:35.798 --> 00:06:38.473
+storage and the change
+record, then check it.
+
+108
+00:06:38.473 --> 00:06:42.097
+Give the metrics and the hash
+file to the security officer.
+
+109
+00:06:42.097 --> 00:06:45.441
+Next month, run the check
+again on this month's folder:
+
+110
+00:06:45.441 --> 00:06:47.697
+last month's files must still match.
+
+111
+00:06:47.697 --> 00:06:49.399
+Nothing changed in the tenant,
+
+112
+00:06:49.399 --> 00:06:53.420
+and the evidence stays with its
+change record, so you just sign out.
+
+113
+00:06:57.170 --> 00:07:00.495
+Here's what this gate proves,
+against NIST's catalog.
+
+114
+00:07:00.495 --> 00:07:04.883
+The month's metrics, from the month's
+runs, support continuous monitoring.
+
+115
+00:07:04.883 --> 00:07:08.852
+Each run recorded with its controls,
+indicators, check result and
+
+116
+00:07:08.852 --> 00:07:13.483
+hashes supports continuous monitoring
+and protecting audit information.
+
+117
+00:07:13.483 --> 00:07:17.408
+Kept and unchanged supports
+audit protection and retention.
+
+118
+00:07:17.408 --> 00:07:21.608
+And the exercise's synthetic events
+support incident response testing.
+
+119
+00:07:21.608 --> 00:07:24.796
+The indicators are FedRAMP's,
+as the guide maps them.
+
+120
+00:07:24.796 --> 00:07:27.100
+Each record carries the claim itself:
+
+121
+00:07:27.100 --> 00:07:30.880
+it supports the controls, and
+the assessor decides them.
+
+122
+00:07:34.630 --> 00:07:36.030
+What breaks in production?
+
+123
+00:07:36.030 --> 00:07:41.197
+A run with findings read as evidence of
+a control leads to a go on a fleet with
+
+124
+00:07:41.197 --> 00:07:43.780
+gaps; the check result in every record,
+
+125
+00:07:43.780 --> 00:07:47.530
+and a go or no-go that fails
+until the run passes, guard it.
+
+126
+00:07:47.530 --> 00:07:51.530
+A file edited after recording is
+caught by the hashes, by name.
+
+127
+00:07:51.530 --> 00:07:53.718
+A removed record breaks the chain.
+
+128
+00:07:53.718 --> 00:07:58.992
+Advanced hunting only keeps thirty days,
+so the run files results every month.
+
+129
+00:07:58.992 --> 00:08:03.397
+And a metric computed from a field that
+doesn't hold it is a misleading number,
+
+130
+00:08:03.397 --> 00:08:06.900
+so the kit says not computed,
+and where the number lives.
+
+131
+00:08:10.650 --> 00:08:12.000
+Here's what done looks like.
+
+132
+00:08:12.000 --> 00:08:15.462
+The monthly run is scheduled
+and runs with the change record.
+
+133
+00:08:15.462 --> 00:08:18.625
+The metrics reach the
+security officer each month.
+
+134
+00:08:18.625 --> 00:08:21.475
+The check passes on last
+month's folder this month.
+
+135
+00:08:21.475 --> 00:08:24.825
+The quarter's exercise record
+is named in the settings.
+
+136
+00:08:24.825 --> 00:08:27.535
+And the evidence folder
+is on agency storage,
+
+137
+00:08:27.535 --> 00:08:30.025
+kept to the evidence catalog's retention.
+
+138
+00:08:30.025 --> 00:08:34.111
+Next, Chapter 9 schedules this
+run and takes the kit live,
+
+139
+00:08:34.111 --> 00:08:36.200
+test first, then production.
+
+140
+00:08:36.200 --> 00:08:37.360
+Thanks for watching.
