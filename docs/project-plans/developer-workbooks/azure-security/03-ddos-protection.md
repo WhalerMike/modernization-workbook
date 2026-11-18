@@ -10,8 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
-last-reviewed: 2026-11-17
+review-status: approved
+reviewed-sha256: 7e7b6e841b160974d37771db691de48e0e95b41c5be5304235f03cb2a8be8607
+last-reviewed: 2026-11-18
 ---
 # Chapter 03 — DDoS Protection
 

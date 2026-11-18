@@ -9,8 +9,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: f676009368b4e7f490f44812c4097e214b5122443d31b4776f9aca8c8423fa69
-last-reviewed: 2026-11-09
+reviewed-sha256: f9e0ac9e3a8f98343f1dfb77ae64dd5ae0c3b42ce831ebcdb6b57ee398f765c6
+last-reviewed: 2026-11-18
 ---
 # Ansible for Configuration Automation
 

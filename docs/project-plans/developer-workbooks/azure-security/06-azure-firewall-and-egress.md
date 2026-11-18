@@ -10,8 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
-last-reviewed: 2026-11-17
+review-status: approved
+reviewed-sha256: 137a5a430851f2d1b3cfbc5395a3700948e18ed2a51f69c8d9afa5c71fb27714
+last-reviewed: 2026-11-18
 ---
 # Chapter 06 — Azure Firewall and Egress
 

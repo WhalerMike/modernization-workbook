@@ -12,7 +12,7 @@ Lab 1 was run with `python scripts/kit_captures.py gsa` on Windows 11, PowerShel
 | 2 | Licenses per function | Start with | carried (guide) | `gsa01-overview` |
 | 3 | `subscribedSkus`: `LicenseAssignment.Read.All` least privileged, delegated and application; Global Reader, Directory Readers; global service | Start with; Verified facts | verified Nov 17, 2026 | `gsa01-skus` |
 | 4 | `tenantStatus`: `NetworkAccessPolicy.Read.All`, delegated only; Global Reader, GSA Log Reader; global service; beta | Start with; Verified facts | verified Nov 17, 2026 | `gsa01-status` |
-| 5 | Guide's Step 1.1 connects with `Organization.Read.All`, `NetworkAccess.Read.All`; least privileged differs | Verified facts | recorded as research gap 1 (not a conflict: Learn lists both; the kit uses the least privileged) | `gsa01-skus`, `gsa01-status` |
+| 5 | Guide's Step 1.1 connects with `Organization.Read.All`, `NetworkAccess.Read.All`; least privileged differs | Verified facts | recorded as research gap 1 (not a conflict: Learn lists both; the kit uses the least privileged); resolved Nov 18, 2026: the guide's Step 1.1 now uses the same permissions | `gsa01-skus`, `gsa01-status` |
 | 6 | Interim paths | Availability table | the guide's Steps 3, 5, 6, 11, 12 and its mapping table; no new fact | guide |
 | 7 | Lab 1 outputs | Lab 1 | verified by running the commands as written | `data/kit-captures/gsa/01-*.txt` |
 | 8 | Lab 2 behavior | Lab 2 | not run against a tenant | — |

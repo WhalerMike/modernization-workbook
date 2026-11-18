@@ -10,8 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
-last-reviewed: 2026-11-17
+review-status: approved
+reviewed-sha256: 131b1dff02d62675a6deaeccb278700eb56aaa9aa83b1cc3629a0312e262703e
+last-reviewed: 2026-11-18
 ---
 # Chapter 02 — The Public Exposure Register
 

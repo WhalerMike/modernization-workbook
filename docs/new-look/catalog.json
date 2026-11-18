@@ -145,9 +145,9 @@
     "Azure",
     "DNS and DDI"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "azure-security",
-   "featured": false
+   "featured": true
   },
   {
    "id": "docs/training/attribute-driven-migration/index.md",
@@ -203,9 +203,9 @@
     "Defender XDR",
     "Security operations"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "defender-xdr",
-   "featured": false
+   "featured": true
   },
   {
    "id": "docs/training/global-secure-access/index.md",
@@ -234,9 +234,9 @@
     "Azure",
     "Compliance and authorization"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "global-secure-access",
-   "featured": false
+   "featured": true
   },
   {
    "id": "docs/training/hr-driven-identity/index.md",
@@ -292,9 +292,9 @@
     "Azure",
     "ServiceNow and automation"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "ms-automation",
-   "featured": false
+   "featured": true
   },
   {
    "id": "docs/training/non-person-identity/index.md",
@@ -406,9 +406,9 @@
     "Zero Trust",
     "Compliance and authorization"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "zero-trust-assessment",
-   "featured": false
+   "featured": true
   },
   {
    "id": "docs/training/ticket-to-machine/index.md",
@@ -515,7 +515,7 @@
    "topics": [
     "Azure"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "azure-security",
    "featured": false
   },
@@ -643,7 +643,7 @@
    "topics": [
     "Defender XDR"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "defender-xdr",
    "featured": false
   },
@@ -699,7 +699,7 @@
     "Global Secure Access",
     "Zero Trust"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "global-secure-access",
    "featured": false
   },
@@ -911,7 +911,7 @@
     "Active Directory",
     "Non-person identity"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "non-person-identity",
    "featured": false
   },
@@ -963,7 +963,7 @@
    "topics": [
     "Zero Trust"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "zero-trust-assessment",
    "featured": false
   },
@@ -1023,7 +1023,7 @@
    "topics": [
     "Azure"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "azure-security",
    "featured": false
   },
@@ -1049,7 +1049,7 @@
    "topics": [
     "Defender XDR"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "defender-xdr",
    "featured": false
   },
@@ -1077,7 +1077,7 @@
    "topics": [
     "Global Secure Access"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "global-secure-access",
    "featured": false
   },
@@ -1746,7 +1746,7 @@
    "topics": [
     "Information protection"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": null,
    "featured": false
   },
@@ -2036,7 +2036,7 @@
     "Azure",
     "DNS and DDI"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "azure-security",
    "featured": false
   },
@@ -2063,7 +2063,7 @@
     "Defender XDR",
     "Security operations"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "defender-xdr",
    "featured": false
   },
@@ -2094,7 +2094,7 @@
     "Azure",
     "Compliance and authorization"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "global-secure-access",
    "featured": false
   },
@@ -2297,7 +2297,7 @@
     "Azure",
     "ServiceNow and automation"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "ms-automation",
    "featured": false
   },
@@ -2324,7 +2324,7 @@
     "Zero Trust",
     "Compliance and authorization"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "zero-trust-assessment",
    "featured": false
   },

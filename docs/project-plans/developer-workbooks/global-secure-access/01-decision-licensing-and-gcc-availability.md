@@ -10,8 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
-last-reviewed: 2026-11-17
+review-status: approved
+reviewed-sha256: d4b6b2b380d320942f676e2fd518b9b241557d33aa90bf288b25c01f3a61846c
+last-reviewed: 2026-11-18
 ---
 # Chapter 01 — Decision, Licensing and GCC Availability
 
@@ -62,7 +63,7 @@ Each row is pinned by a test in the `Chapter 01` block of `tests/GlobalSecureAcc
 
 ### The calls
 
-`config/calls.json` declares every call the kit makes: its method and URI, the least-privileged permission and roles Learn names, the Learn page, whether it is beta, and whether the row was checked against that page. `Get-GsaRequiredPermission -Area decision` prints the two this chapter needs. The guide's Step 1.1 connects with `Organization.Read.All`, a higher-privileged permission Learn also lists for `subscribedSkus`; the kit asks for the least-privileged one. In live mode the reader sends nothing until `Assert-GsaLiveContext` has seen a Microsoft Graph session in the `Global` environment, in the settings' tenant, signed in as a person.
+`config/calls.json` declares every call the kit makes: its method and URI, the least-privileged permission and roles Learn names, the Learn page, whether it is beta, and whether the row was checked against that page. `Get-GsaRequiredPermission -Area decision` prints the two this chapter needs. The guide's Step 1.1 connects with the same least-privileged permissions the kit asks for (changed Nov 18, 2026; it used `Organization.Read.All`, a higher-privileged permission Learn also lists for `subscribedSkus`). In live mode the reader sends nothing until `Assert-GsaLiveContext` has seen a Microsoft Graph session in the `Global` environment, in the settings' tenant, signed in as a person.
 
 ### The availability table
 
@@ -320,7 +321,7 @@ Remove-Item -Recurse -Force out/decision-test, out/check-decision-test
 | GCC endpoints | `graph.microsoft.com`, `login.microsoftonline.com` | — | — | [^gsa01-deployments] |
 | Beta | "subject to change"; not supported in production applications | — | Beta | [^gsa01-beta] |
 
-Where Learn's pages differ: the guide's Step 1.1 connects with `Organization.Read.All` and `NetworkAccess.Read.All`; Learn's own permission tables name `LicenseAssignment.Read.All` and `NetworkAccessPolicy.Read.All` as least privileged for these two reads. The kit follows Learn's tables (research gap 1).
+Learn's own permission tables name `LicenseAssignment.Read.All` and `NetworkAccessPolicy.Read.All` as least privileged for these two reads. The kit follows Learn's tables, and since Nov 18, 2026, so does the guide's Step 1.1, which connected with `Organization.Read.All` and `NetworkAccess.Read.All` before (research gap 1, resolved).
 
 ## Federal requirements and evidence
 

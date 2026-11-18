@@ -6,8 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 10"
 series-order: 1
-review-status: pending
-last-reviewed: 2026-11-13
+review-status: approved
+reviewed-sha256: a77aa721fe49b400d85a36856ef2d597bf1bc9e1ae66306785f82341f969b250
+last-reviewed: 2026-11-18
 ---
 # Module 1: The baseline and the exposure register {.unnumbered}
 

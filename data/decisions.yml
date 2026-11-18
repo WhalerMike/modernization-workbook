@@ -2057,3 +2057,16 @@
   prs: [642]
   status: settled
   note: "Basis: workbook owner decision, November 16, 2026. Supersedes WD-156, whose rule it restates with AWS GovCloud (US) as the program's AWS environment. Restores the AWS GovCloud content that PR #627 and deck pass 3 changed to commercial Regions. The contact-center exception was confirmed by the workbook owner on November 16, 2026."
+
+- id: WD-158
+  date: 2026-11-18
+  question: Do the New Look catalog's roles, levels and labels, the Azure Security workbook without pinned Microsoft samples, and the Azure Security chapter tours' length stand as built?
+  options: ["Change them before approval", "Accept them as built"]
+  choice: "Accepted as built. The New Look catalog keeps its nine roles and their mapping, its levels (books Unrated; guides and workbooks derived from audience) and its content-type labels, and New Look stays a preview. Building Azure Security pins no Microsoft sample under examples/third_party: its chapters start from the guide's Learn commands and queries (its research gap 11). The Azure Security chapter tours keep their recorded length, about 8 to 10 minutes each."
+  rationale: "The workbook owner accepted the open items with the approval of every waiting page on November 18, 2026; none needs a change."
+  basis: workbook-design
+  sources: []
+  pages: [data/catalog-overrides.yml, docs/project-plans/developer-workbooks/azure-security/_verification/research-gaps.md, docs/project-plans/developer-workbooks/azure-security/index.md]
+  prs: [647, 648, 650]
+  status: settled
+  note: "Basis: workbook owner decision, November 18, 2026."

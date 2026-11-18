@@ -8,12 +8,13 @@ book: B20
 part: Who
 series-order: 12
 status: draft
-review-status: pending
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
+review-status: approved
+reviewed-sha256: 33542fdce54dfae77017df28299c1ba700154b295764431472415fee4ca49da5
+last-reviewed: 2026-11-18
 ---
-
 # Chapter 12 — Operations and Evidence
 
 *A label policy that nobody owns is configured on the day it ships and wrong a year later; information protection is an operation with an owner, a cadence and proof, not a project with an end date.*

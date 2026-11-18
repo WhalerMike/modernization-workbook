@@ -117,6 +117,7 @@ Every Microsoft fact and command was read on Microsoft Learn on November 11, 202
 | 54 | Related SP 800-53 controls for the fourteen KSIs named | Requirements | verified | fedramp.gov Key Security Indicators | Nov 11, 2026 |
 | 55 | Which evidence supports which KSI | Requirements | restated-as-design | The program's mapping | Nov 11, 2026 |
 | 56 | Metric targets | Metrics | restated-as-design | The program's starting values | Nov 11, 2026 |
+| 57 | Step 1.1 connects with the least-privileged permissions: `LicenseAssignment.Read.All` (`subscribedSkus`; `Organization.Read.All` is higher privileged) and `NetworkAccessPolicy.Read.All` (`tenantStatus`, delegated only). Changed Nov 18, 2026, on the owner's decision (the developer workbook's research gap 1) | Step 1 | verified | Learn, List subscribedSkus; Get tenantStatus (read Nov 17, 2026, for the developer workbook) | Nov 18, 2026 |
 
 ## Conflicts between sources (for the program owner)
 

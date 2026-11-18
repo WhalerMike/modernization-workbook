@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: e1159f8877a98a6e0ba646e7106b15d60ef33aa0a14a107f0dbf864ccac2fb1a
-last-reviewed: 2026-11-09
+reviewed-sha256: a10b3ce7421f57ee7eee0f7ddbeee5240abe46ce63265b52bdb7b9cdab010bd7
+last-reviewed: 2026-11-18
 ---
 # Chapter 07 — Access Reviews of Privileged Roles
 

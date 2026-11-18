@@ -8,12 +8,13 @@ book: B20
 part: How
 series-order: 11
 status: draft
-review-status: pending
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
+review-status: approved
+reviewed-sha256: e4968b51dddb33e976bbe75fa5b55de84ca9394de63de03f2cb6590a2dae3eda
+last-reviewed: 2026-11-18
 ---
-
 # Chapter 11 — AI Data Security
 
 *An AI assistant reads what its user can read, so every permission the agency got wrong and every label it never applied becomes an answer the assistant can give.*

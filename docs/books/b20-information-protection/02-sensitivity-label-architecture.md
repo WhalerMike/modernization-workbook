@@ -8,12 +8,13 @@ book: B20
 part: What
 series-order: 2
 status: draft
-review-status: pending
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
+review-status: approved
+reviewed-sha256: 76a7e17efc32f4c1be25dd2387a30e413ef6fea2c6da804f7c850b1f22eec149
+last-reviewed: 2026-11-18
 ---
-
 # Chapter 02 — Sensitivity Label Architecture
 
 *A label is a promise about what happens to the content wherever it goes; the architecture has to say which plane keeps each part of that promise, and the taxonomy has to be small enough that people choose correctly.*

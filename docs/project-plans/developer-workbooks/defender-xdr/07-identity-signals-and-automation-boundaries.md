@@ -10,8 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
-last-reviewed: 2026-11-17
+review-status: approved
+reviewed-sha256: ce0b78eaa5425a40cecd36a2b7ad420d6a545317dbb7ec48b8131ad8d10a21db
+last-reviewed: 2026-11-18
 ---
 # Chapter 07 — Identity Signals and Automation Boundaries
 

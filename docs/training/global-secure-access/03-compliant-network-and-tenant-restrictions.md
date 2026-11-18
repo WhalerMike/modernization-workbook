@@ -6,8 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 09"
 series-order: 3
-review-status: pending
-last-reviewed: 2026-11-13
+review-status: approved
+reviewed-sha256: 5c25bda158651d3ff6e79a688c46a9eb0e367c0bebec2d3a8d3503d3e61abb5a
+last-reviewed: 2026-11-18
 ---
 # Module 3: The compliant network and tenant restrictions {.unnumbered}
 

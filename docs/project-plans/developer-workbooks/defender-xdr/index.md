@@ -19,8 +19,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
-last-reviewed: 2026-11-17
+review-status: approved
+reviewed-sha256: 47184909b22ce70eba64d3756dfb9f25eb5bbb8ed6a0b6f4120ff438d7f86cb4
+last-reviewed: 2026-11-18
 ---
 # Building Defender XDR {.unnumbered}
 

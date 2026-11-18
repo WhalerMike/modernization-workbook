@@ -11,8 +11,9 @@ lifecycle_review: 2027-05-01
 research-status: draft
 research-type: implementation guide
 research-book: "Book 09"
-review-status: pending
-last-reviewed: 2026-11-11
+review-status: approved
+reviewed-sha256: ee6152d6ca42673ce578770df347c890bcf08441a6ead4d676c336de087783cf
+last-reviewed: 2026-11-18
 ---
 # Global Secure Access & Zero Trust Network Engineering: An Implementation Guide
 
@@ -226,10 +227,10 @@ Recommendations for preview features (Intelligent Local Access, the AI gateway's
 
 The decision is whether to adopt each Global Secure Access function, keep the current VPN or SSE for it, or run both. It is made per function (Microsoft traffic, internet, private, branch), because the gates differ: the Microsoft traffic profile comes with P1, while Internet Access and Private Access are separately licensed.
 
-**1.1 Read the tenant's licenses and onboarding state.** Learn names the licenses but doesn't publish their service plan identifiers on the pages read, so compare the output against the licensing section of "What is Global Secure Access?"[^gsai-overview] by product name in the Microsoft 365 admin center:
+**1.1 Read the tenant's licenses and onboarding state.** Learn names the licenses but doesn't publish their service plan identifiers on the pages read, so compare the output against the licensing section of "What is Global Secure Access?"[^gsai-overview] by product name in the Microsoft 365 admin center. The connect line asks for the least-privileged permissions Learn's tables name for these two reads: `LicenseAssignment.Read.All` for `subscribedSkus` and `NetworkAccessPolicy.Read.All` (delegated only) for `tenantStatus`.[^gsai-perm-skus] [^gsai-perm-status]
 
 ```powershell
-Connect-MgGraph -Environment Global -Scopes "Organization.Read.All","NetworkAccess.Read.All"
+Connect-MgGraph -Environment Global -Scopes "LicenseAssignment.Read.All","NetworkAccessPolicy.Read.All"
 Get-MgSubscribedSku | Select-Object SkuPartNumber, ConsumedUnits, @{n="Enabled";e={$_.PrepaidUnits.Enabled}} |
     Export-Csv .\gsa-01-licenses.csv -NoTypeInformation
 # Onboarding status of the tenant to Global Secure Access (beta)
@@ -1035,6 +1036,8 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 [^gsai-forwarding-profile]: Microsoft Learn, "forwardingProfile resource type" (Microsoft Graph beta), `trafficForwardingType` values `m365`, `internet`, `private`, <https://learn.microsoft.com/graph/api/resources/networkaccess-forwardingprofile?view=graph-rest-beta> (accessed Nov 11, 2026).
 [^gsai-client]: Microsoft Learn, "Install the Global Secure Access client for Windows," prerequisites, Intune packaging script and Win32 app values, client version updates, client settings by remediation scripts, DNS over HTTPS by settings catalog, client registry keys and security recommendations, <https://learn.microsoft.com/entra/global-secure-access/how-to-install-windows-client> (accessed Nov 11, 2026).
 [^gsai-overview]: Microsoft Learn, "What is Global Secure Access?," Microsoft Entra Private Access key features ("across hybrid and multicloud environments") and licensing overview, <https://learn.microsoft.com/entra/global-secure-access/overview-what-is-global-secure-access> (accessed Nov 11, 2026).
+[^gsai-perm-skus]: Microsoft Learn, "List subscribedSkus" (Microsoft Graph v1.0), permissions table (`LicenseAssignment.Read.All` least privileged; `Organization.Read.All` higher privileged), <https://learn.microsoft.com/graph/api/subscribedsku-list?view=graph-rest-1.0> (accessed November 17, 2026, for the developer workbook; the guide's connect line adopted it Nov 18, 2026).
+[^gsai-perm-status]: Microsoft Learn, "Get tenantStatus" (Microsoft Graph beta), permissions table (`NetworkAccessPolicy.Read.All`, delegated only; no application permission), <https://learn.microsoft.com/graph/api/networkaccess-tenantstatus-get?view=graph-rest-beta> (accessed November 17, 2026, for the developer workbook; the guide's connect line adopted it Nov 18, 2026).
 [^gsai-tic-ruc]: Cybersecurity and Infrastructure Security Agency, *Trusted Internet Connections 3.0 Remote User Use Case*, Version 2.2, publication September 2026 (revision history: v2.2 July 2025), §6.1 to §6.3 (Security Patterns 1 to 3 and their options), §8 and §8.1 (Telemetry Requirements and Considerations, citing OMB M-26-14), <https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Remote_User_Use_Case_September_2026_61.pdf>, linked from <https://www.cisa.gov/resources-tools/resources/trusted-internet-connections-tic-30-core-guidance-documents> (accessed Nov 11, 2026).
 [^gsai-ops-common]: Microsoft Learn, "Common operations for Microsoft Entra Global Secure Access," roles and responsibilities (RACI matrix), change management (categories; allow-list entries with expiration or review date), configuration backup strategy, <https://learn.microsoft.com/entra/global-secure-access/how-to-operations-common> (accessed Nov 11, 2026).
 [^gsai-ops-overview]: Microsoft Learn, "Microsoft Entra Global Secure Access operations guide," getting started with operations ("Ensure at least two people cover each role"), <https://learn.microsoft.com/entra/global-secure-access/overview-operations> (accessed Nov 11, 2026).

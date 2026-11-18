@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 918ab2aba0c959b7f8be623e64d3ef6f34efcb1d5ac2784092a38248d6a80600
-last-reviewed: 2026-11-09
+reviewed-sha256: 599435993fb46afb986d8cd20922d7b0460618e674af48542e15a7841a2d441b
+last-reviewed: 2026-11-18
 ---
 # Chapter 06 — Routing to Owners and Ticket-to-Machine Tasks
 

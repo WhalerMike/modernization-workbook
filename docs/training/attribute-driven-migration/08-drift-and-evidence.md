@@ -8,8 +8,8 @@ research-book: "Book 19"
 series-order: 8
 date-modified: 2026-11-02
 review-status: approved
-reviewed-sha256: 7007c6bc7b2d1d8cd94bbc36f8916411a51e5bef62690c4425aa5244a9689774
-last-reviewed: 2026-11-07
+reviewed-sha256: 25d0474102a6c960ed74af484f9caf73e34a121fea6fe92a2ce3d039464c6179
+last-reviewed: 2026-11-18
 ---
 # Attribute-Driven Migration, Module 8: Run the Drift Pipeline and Hand Over the Evidence {.unnumbered}
 

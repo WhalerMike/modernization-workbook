@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 15"
 series-order: 3
 review-status: approved
-reviewed-sha256: c0d1d4c4608bdb5184e7990b7a332fa5b23098f2a4270fffc0aa415f0623164f
-last-reviewed: 2026-11-09
+reviewed-sha256: 924394ad00839ae49b0a1a6e8a178a6b0d5f4f026d078fcf7d5f525dfc27aa1a
+last-reviewed: 2026-11-18
 ---
 # Module 3: Microsoft 365 Message center {.unnumbered}
 

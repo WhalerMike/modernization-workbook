@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 03"
 series-order: 4
 review-status: approved
-reviewed-sha256: 6dfc2ddaa19d4cc9689e23182ca18b6a42c34572f2d59838cfb2f76d7d633de1
-last-reviewed: 2026-11-08
+reviewed-sha256: dadefb6f0f697ddf821e4e7c3caf9cb38945c45ebadbc302c4a0a791a4c921c6
+last-reviewed: 2026-11-18
 ---
 # Module 4: Assign access from attributes and review what a move leaves {.unnumbered}
 

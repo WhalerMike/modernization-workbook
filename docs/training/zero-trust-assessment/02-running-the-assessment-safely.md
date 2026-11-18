@@ -6,8 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 11"
 series-order: 2
-review-status: pending
-last-reviewed: 2026-11-11
+review-status: approved
+reviewed-sha256: 44611bebc151c7a12b0b513e91fb33777332aa972a6eb0dc879adb924397ea34
+last-reviewed: 2026-11-18
 ---
 # Module 2: Running the assessment safely {.unnumbered}
 

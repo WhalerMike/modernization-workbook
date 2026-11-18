@@ -6,8 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 10"
 series-order: 5
-review-status: pending
-last-reviewed: 2026-11-13
+review-status: approved
+reviewed-sha256: 8131d00da3942822c4487118573b4c9c9822fe58ff4bd2f2bf0a2d78cadbbffc
+last-reviewed: 2026-11-18
 ---
 # Module 5: Policy, drift and evidence {.unnumbered}
 

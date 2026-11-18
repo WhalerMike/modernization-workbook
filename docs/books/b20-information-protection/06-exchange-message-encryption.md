@@ -8,12 +8,13 @@ book: B20
 part: How
 series-order: 6
 status: draft
-review-status: pending
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
+review-status: approved
+reviewed-sha256: bd18b0dc310d4895ac3dae98470deffbd8e1fdc2bcee1b83d9c2a4cab7278a96
+last-reviewed: 2026-11-18
 ---
-
 # Chapter 06 — Exchange Message Encryption
 
 *A sender who has to remember to encrypt will forget on the day it matters; the agency decides which messages leave encrypted, writes that decision as a rule, and proves the rule fires.*

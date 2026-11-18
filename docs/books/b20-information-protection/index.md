@@ -19,8 +19,10 @@ listing:
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
+review-status: approved
+reviewed-sha256: f0de6b474182f03e5d08422200e5306ccd3217d1d3237be4d0a4a0570c0acc0c
+last-reviewed: 2026-11-18
 ---
-
 # Book 20 — Information Protection & Microsoft Purview: Protection That Travels With the Data {.unnumbered}
 
 ::: {.callout-important appearance="default"}

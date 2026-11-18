@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 50183c3f14adc3a402c7e23ba63489f99149cf591aec5acf732f80d6c7f1e2f2
-last-reviewed: 2026-11-03
+reviewed-sha256: 9a5fefc2f28759cbd6f2027d92e00fc2f0b154f8dbf3133ff6aa25bf4b94cf56
+last-reviewed: 2026-11-18
 ---
 # Chapter 06 — Drift Reconciliation
 

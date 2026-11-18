@@ -8,12 +8,13 @@ book: B20
 part: How
 series-order: 7
 status: draft
-review-status: pending
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
+review-status: approved
+reviewed-sha256: 2ad755c5e5ab2f70fde87bca7ad96983e0765614f966d404578d25deddf49110
+last-reviewed: 2026-11-18
 ---
-
 # Chapter 07 — SharePoint and OneDrive
 
 *An encrypted file that the service can't read is invisible to search, to eDiscovery and to DLP; turning on label integration is what lets protection and oversight coexist.*

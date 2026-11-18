@@ -11,8 +11,9 @@ lifecycle_review: 2027-05-01
 research-status: draft
 research-type: implementation guide
 research-book: "Book 10"
-review-status: pending
-last-reviewed: 2026-11-11
+review-status: approved
+reviewed-sha256: f1d6ebedd0934f7c8bb743d336a7c48fd033555847fd2b5a9bf83bc3549060f7
+last-reviewed: 2026-11-18
 ---
 # Azure Security Engineering
 

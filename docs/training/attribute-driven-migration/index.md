@@ -18,8 +18,8 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: 4f7b70cd531af71dabd301dc755982c02c7105d90c4dfa93331653c38df89be7
-last-reviewed: 2026-11-07
+reviewed-sha256: 8478450ddbb8a62a5704580278dfc1949e9574b68eba257786e8ddc549f4f0a2
+last-reviewed: 2026-11-18
 ---
 # Learning path: Building the Attribute-Driven Migration {.unnumbered}
 

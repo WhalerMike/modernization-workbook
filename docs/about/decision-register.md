@@ -11,7 +11,7 @@ doc-type: section-landing
 
 This register lists the decisions behind the workbook, from the repository's first pull request on, one entry each. Each entry gives the question, the options that were considered, the choice, the reason for it, its basis, its sources and the pages it shaped. The [Reviewers' Guide](reviewers-guide.md) explains how to check an entry and how to tell us you agree or disagree with it. Use the entry's ID when you do.
 
-There are **157** workbook decisions: 147 settled, 0 challenged and 10 superseded. Below them are the **90** decision points the sample project plans leave to the agency that adopts them.
+There are **158** workbook decisions: 148 settled, 0 challenged and 10 superseded. Below them are the **90** decision points the sample project plans leave to the agency that adopts them.
 
 ::: {.callout-note}
 ## How to read the basis
@@ -191,6 +191,7 @@ There are **157** workbook decisions: 147 settled, 0 challenged and 10 supersede
 | [WD-155](#wd-155) | 2026-11-13 | Which Microsoft 365 cloud and which federal sources does the workbook cover? | Workbook design | settled |
 | [WD-156](#wd-156) | 2026-11-15 | Where may a cloud provider's separate government cloud appear in the workbook? | Workbook design | superseded by WD-157 |
 | [WD-157](#wd-157) | 2026-11-16 | Where does the program's AWS estate run, and where may other providers' government clouds appear? | Workbook design | settled |
+| [WD-158](#wd-158) | 2026-11-18 | Do the New Look catalog's roles, levels and labels, the Azure Security workbook without pinned Microsoft samples, and the Azure Security chapter tours' length stand as built? | Workbook design | settled |
 
 : Workbook decisions, oldest first {.striped .hover}
 
@@ -2742,6 +2743,23 @@ There are **157** workbook decisions: 147 settled, 0 challenged and 10 supersede
 | **Note** | Basis: workbook owner decision, November 16, 2026. Supersedes [WD-156](#wd-156), whose rule it restates with AWS GovCloud (US) as the program's AWS environment. Restores the AWS GovCloud content that PR #627 and deck pass 3 changed to commercial Regions. The contact-center exception was confirmed by the workbook owner on November 16, 2026. |
 
 [Agree, disagree or send evidence on WD-157](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-157%3A+)
+
+### WD-158: Do the New Look catalog's roles, levels and labels, the Azure Security workbook without pinned Microsoft samples, and the Azure Security chapter tours' length stand as built? {#wd-158}
+
+| | |
+|---|---|
+| **Options considered** | Change them before approval; Accept them as built |
+| **Choice** | Accepted as built. The New Look catalog keeps its nine roles and their mapping, its levels (books Unrated; guides and workbooks derived from audience) and its content-type labels, and New Look stays a preview. Building Azure Security pins no Microsoft sample under examples/third_party: its chapters start from the guide's Learn commands and queries (its research gap 11). The Azure Security chapter tours keep their recorded length, about 8 to 10 minutes each. |
+| **Rationale** | The workbook owner accepted the open items with the approval of every waiting page on November 18, 2026; none needs a change. |
+| **Basis** | Workbook design |
+| **Sources** | None external: the choice rests on the pages it shaped. |
+| **Pages affected** | [`data/catalog-overrides.yml`](https://github.com/WhalerMike/modernization-workbook/blob/main/data/catalog-overrides.yml), [`docs/project-plans/developer-workbooks/azure-security/_verification/research-gaps.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/project-plans/developer-workbooks/azure-security/_verification/research-gaps.md), [Building Azure Security](../project-plans/developer-workbooks/azure-security/index.md) |
+| **Date** | 2026-11-18 |
+| **Status** | settled |
+| **Defined in** | [#647](https://github.com/WhalerMike/modernization-workbook/pull/647), [#648](https://github.com/WhalerMike/modernization-workbook/pull/648), [#650](https://github.com/WhalerMike/modernization-workbook/pull/650) |
+| **Note** | Basis: workbook owner decision, November 18, 2026. |
+
+[Agree, disagree or send evidence on WD-158](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-158%3A+)
 
 ## Decision points in the sample project plans {#plan-decisions}
 

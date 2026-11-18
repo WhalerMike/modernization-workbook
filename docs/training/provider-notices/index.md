@@ -17,8 +17,8 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: e248fe1e17d48b226c3c28c44735d7166b68dae422a62908d1c0b2be5c1f127c
-last-reviewed: 2026-11-09
+reviewed-sha256: d42de44d77744a3693e68dfcd15cbe50fe9bba5bb009909ba800780ec459ec1d
+last-reviewed: 2026-11-18
 ---
 # Learning path: Provider Notices {.unnumbered}
 

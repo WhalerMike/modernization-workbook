@@ -6,8 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 12"
 series-order: 4
-review-status: pending
-last-reviewed: 2026-11-17
+review-status: approved
+reviewed-sha256: 035f2c8cb1cc9e582cd565b12f59097c1714e26eeaa8ea6c216737a7e943cdfc
+last-reviewed: 2026-11-18
 ---
 # Module 4: Hunting, detections as code and identity signals {.unnumbered}
 

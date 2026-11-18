@@ -6,8 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 12"
 series-order: 1
-review-status: pending
-last-reviewed: 2026-11-17
+review-status: approved
+reviewed-sha256: 263075dc4361a956a8397ffb3a722d84e03498192f5dd96ad68d76ae5ada6f65
+last-reviewed: 2026-11-18
 ---
 # Module 1: Architecture, access and onboarding {.unnumbered}
 

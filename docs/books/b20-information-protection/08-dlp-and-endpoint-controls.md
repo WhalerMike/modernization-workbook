@@ -8,12 +8,13 @@ book: B20
 part: How
 series-order: 8
 status: draft
-review-status: pending
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
+review-status: approved
+reviewed-sha256: 4aecbf72c5dcfd3c9f17fb2b935ef9e007cc243c4bd2c4d1eb846235b0075d1b
+last-reviewed: 2026-11-18
 ---
-
 # Chapter 08 — DLP and Endpoint Controls
 
 *A DLP policy that starts by blocking teaches the workforce to work around it; one that starts by watching teaches the program what the workforce actually does.*

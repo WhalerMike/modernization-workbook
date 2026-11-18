@@ -4,17 +4,17 @@ subtitle: "Every source the slides and videos link to: one permanent row each, u
 description: "The Federal Modernization Workbook's register of the sources its slides and videos link to, each with a permanent address, a link to the original, its revision history and its latest weekly check."
 doc-type: reference
 fmw-eyebrow: "Reference"
-date-modified: 2026-11-17
+date-modified: 2026-11-18
 review-status: approved
-reviewed-sha256: 73f432c010f5e81749e4e78478fca9c7204d5443df8995fa45878636e38cd99c
-last-reviewed: 2026-11-09
+reviewed-sha256: 9302b242ac1f209620cc04e2649f320e277866a3c2c0cf6c7b72c4a8402a0a52
+last-reviewed: 2026-11-18
 ---
 
 # Source Register {.unnumbered}
 
 <!-- Generated from data/source-register.json by scripts/source_watch/register.py. Don't edit this page. -->
 
-This register lists 778 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
+This register lists 780 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
 
 ## How the register is controlled
 
@@ -46,6 +46,7 @@ This register lists 778 sources. A slide or a video description links to a sourc
 | [AWS managed policies for AWS Health](https://docs.aws.amazon.com/health/latest/ug/security-iam-awsmanpol.html){#aws-health-managed-policies} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-health-managed-policies"} |
 | [AWS Prescriptive Guidance: migration strategies](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html){#aws-migration-strategies} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aws-migration-strategies"} |
 | [AWS Security Hub CSPM in AWS GovCloud (US)](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ash.html){#security-hub-cspm-in-govcloud} | Retired | November 11, 2026 | [Not read yet]{.fmw-scan data-source="security-hub-cspm-in-govcloud"} |
+| [AWS Security Hub CSPM in AWS GovCloud (US)](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ash.html){#aws-security-hub-cspm-govcloud} | Active | November 18, 2026 | [Not read yet]{.fmw-scan data-source="aws-security-hub-cspm-govcloud"} |
 | [AWS Security Hub CSPM User Guide](https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html){#aws-security-hub} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aws-security-hub"} |
 | [AWS Service Management Connector end of support](https://docs.aws.amazon.com/smc/latest/ag/smc-end-of-support.html){#aws-smc-end-of-support} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="aws-smc-end-of-support"} |
 | [AWS WAF in AWS GovCloud (US)](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-waf.html){#aws-waf-govcloud} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-waf-govcloud"} |
@@ -575,6 +576,7 @@ This register lists 778 sources. A slide or a video description links to a sourc
 | [Remove-DhcpServerInDC](https://learn.microsoft.com/powershell/module/dhcpserver/remove-dhcpserverindc?view=windowsserver2025-ps){#remove-dhcpserverindc} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="remove-dhcpserverindc"} |
 | [Renewal of 'Enrollment Agent' certificate used by NDES may fail](https://learn.microsoft.com/troubleshoot/windows-server/certificates-and-public-key-infrastructure-pki/renewal-of-enrollment-agent-certificate-fail){#renewal-of-enrollment-agent-certificate-used} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="renewal-of-enrollment-agent-certificate-used"} |
 | [reports: getDeviceUsageSummary (Microsoft Graph beta)](https://learn.microsoft.com/graph/api/networkaccess-reports-getdeviceusagesummary?view=graph-rest-beta){#gsa-get-device-usage-summary} | Retired | November 12, 2026 | [Not read yet]{.fmw-scan data-source="gsa-get-device-usage-summary"} |
+| [reports: getDeviceUsageSummary (Microsoft Graph beta)](https://learn.microsoft.com/graph/api/networkaccess-reports-getdeviceusagesummary?view=graph-rest-beta){#gsa-device-usage-summary} | Active | November 18, 2026 | [Not read yet]{.fmw-scan data-source="gsa-device-usage-summary"} |
 | [requestorManager resource type](https://learn.microsoft.com/graph/api/resources/requestormanager?view=graph-rest-1.0){#requestormanager-resource-type} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="requestormanager-resource-type"} |
 | [Resolve-DnsName](https://learn.microsoft.com/powershell/module/dnsclient/resolve-dnsname?view=windowsserver2025-ps){#resolve-dnsname} | Active | November 5, 2026 | [Not read yet]{.fmw-scan data-source="resolve-dnsname"} |
 | [Resource Graph sample queries for impacted resources](https://learn.microsoft.com/azure/service-health/resource-graph-impacted-samples){#learn-service-health-impacted-resources-samples} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="learn-service-health-impacted-resources-samples"} |
@@ -934,6 +936,9 @@ This register lists 778 sources. A slide or a video description links to a sourc
 
 | Date | Source | Change |
 |---|---|---|
+| November 18, 2026 | [AWS Security Hub CSPM in AWS GovCloud (US)](#security-hub-cspm-in-govcloud) | Label moved to the new row aws-security-hub-cspm-govcloud, which replaces this retired row now that the workbook cites the source again |
+| November 18, 2026 | [AWS Security Hub CSPM in AWS GovCloud (US)](#aws-security-hub-cspm-govcloud) | Added: replaces retired row security-hub-cspm-in-govcloud, which the workbook cites again (the Zero Trust Assessment guide and its decks; the program's AWS estate is in AWS GovCloud (US)) |
+| November 18, 2026 | [reports: getDeviceUsageSummary (Microsoft Graph beta)](#gsa-device-usage-summary) | Added: replaces retired row gsa-get-device-usage-summary, which the workbook cites again (Building Global Secure Access, Chapter 03, and the Global Secure Access decks) |
 | November 17, 2026 | [Microsoft Defender for Cloud Apps for US Government offerings](#defender-for-cloud-apps-us-government) | Labels added: Cloud Apps for US Government (Defender XDR deck sources lines) |
 | November 17, 2026 | [Onboard Windows devices to Microsoft Defender for Endpoint by using Microsoft Intune](#mde-onboard-windows-intune) | Labels added: Onboard Windows devices with Intune (Defender XDR deck sources lines) |
 | November 17, 2026 | [Troubleshoot Microsoft Defender for Endpoint onboarding issues](#mde-troubleshoot-onboarding) | Labels added: Troubleshoot onboarding, troubleshoot onboarding (Defender XDR deck sources lines) |

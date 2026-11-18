@@ -6,8 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 09"
 series-order: 4
-review-status: pending
-last-reviewed: 2026-11-13
+review-status: approved
+reviewed-sha256: 85587432b88db47c89608557d8faa20f61371d51d6dfeda4ccb78bc276d20a16
+last-reviewed: 2026-11-18
 ---
 # Module 4: Private applications and administrative paths {.unnumbered}
 

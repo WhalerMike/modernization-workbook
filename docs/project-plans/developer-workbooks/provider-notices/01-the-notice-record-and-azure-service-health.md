@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 4a78f69e90f6703aecc323400a5589987e6e3ded6ae21c3d7873b85a01b31df6
-last-reviewed: 2026-11-09
+reviewed-sha256: 4a1359fd6c60e9e16fa1b90f35ea37e3ac936803fb73e16c87f50a11becaad32
+last-reviewed: 2026-11-18
 ---
 # Chapter 01 — The Notice Record and Azure Service Health
 

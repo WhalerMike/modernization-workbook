@@ -21,8 +21,8 @@ lifecycle_review: 2027-04-01
 aliases:
   - /docs/project-plans/developer-workbooks/attribute-driven-migration/index.html
 review-status: approved
-reviewed-sha256: d26e1e87032c35705742054001b4bfdac40e93eaa04d481895158c98ead65e76
-last-reviewed: 2026-11-08
+reviewed-sha256: 9fb7c030e39081ec4e7dafbf8bb5c19bc34b61a8afedc7c910798a5ce40d8aa3
+last-reviewed: 2026-11-18
 ---
 # Book 19 — Building the Attribute-Driven Migration {.unnumbered}
 

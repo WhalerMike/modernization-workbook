@@ -14,8 +14,8 @@ lifecycle_review: 2027-04-01
 aliases:
   - /docs/project-plans/developer-workbooks/attribute-driven-migration/02-graph-clients-for-government-clouds.html
 review-status: approved
-reviewed-sha256: 146b6308741ad728ccd9fbe8c6f505f59b81502112d57959c85a4a41789e0a94
-last-reviewed: 2026-11-07
+reviewed-sha256: 7d8cb2a682ffeb4304efe1aa4a1a87e6d1eb6418434945899ef7433948c75e46
+last-reviewed: 2026-11-18
 ---
 # Chapter 02 — Graph Clients for GCC
 
