@@ -90,7 +90,7 @@ In PowerShell 7:
 New-Item -ItemType Directory -Path <lab-folder>
 Set-Location <lab-folder>
 Install-Module Microsoft.Graph -Scope CurrentUser
-Connect-MgGraph -Environment Global -Scopes "Organization.Read.All","NetworkAccess.Read.All"
+Connect-MgGraph -Environment Global -Scopes "LicenseAssignment.Read.All","NetworkAccessPolicy.Read.All"
 
 # Step 2: Read the licenses and the onboarding state
 Get-MgSubscribedSku | Select-Object SkuPartNumber, ConsumedUnits, @{n="Enabled";e={$_.PrepaidUnits.Enabled}} |
@@ -164,7 +164,7 @@ You read the tenant's licenses and onboarding state, take the first configuratio
     New-Item -ItemType Directory -Path <lab-folder>
     Set-Location <lab-folder>
     Install-Module Microsoft.Graph -Scope CurrentUser
-    Connect-MgGraph -Environment Global -Scopes "Organization.Read.All","NetworkAccess.Read.All"
+    Connect-MgGraph -Environment Global -Scopes "LicenseAssignment.Read.All","NetworkAccessPolicy.Read.All"
     ```
 
 2. **Read the licenses and the onboarding state** (the guide's Step 1.1):

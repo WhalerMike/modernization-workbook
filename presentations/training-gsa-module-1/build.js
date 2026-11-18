@@ -192,7 +192,7 @@ endModule(SC);
   const c = code(s, "Lab", 0.6, 1.45, 12.15, [
     "# Steps 1 and 2: the lab folder, the read scopes, the licenses and the onboarding state",
     "New-Item -ItemType Directory -Path <lab-folder>; Set-Location <lab-folder>",
-    "Connect-MgGraph -Environment Global -Scopes \"Organization.Read.All\",\"NetworkAccess.Read.All\"",
+    "Connect-MgGraph -Environment Global -Scopes \"LicenseAssignment.Read.All\",\"NetworkAccessPolicy.Read.All\"",
     "Get-MgSubscribedSku | Select-Object SkuPartNumber, ConsumedUnits, ... | Export-Csv .\\gsa-01-licenses.csv -NoTypeInformation",
     "Invoke-MgGraphRequest -Method GET -Uri \"https://graph.microsoft.com/beta/networkAccess/tenantStatus\" |",
     "    ConvertTo-Json -Depth 5 | Out-File .\\gsa-01-tenant-status.json",

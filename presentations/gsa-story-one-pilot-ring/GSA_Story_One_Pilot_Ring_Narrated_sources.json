@@ -66,6 +66,10 @@
   "title": "Scene 3: one device behind the rest",
   "links": [
    {
+    "text": "getDeviceUsageSummary",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-device-usage-summary"
+   },
+   {
     "text": "Ch 03",
     "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.html"
    }

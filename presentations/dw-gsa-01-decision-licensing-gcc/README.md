@@ -8,7 +8,7 @@
 | `DW_GSA_01_Decision_Licensing_GCC_Narrated.pptx` | The self-running edition: narration audio and a caption track on every slide, backup section dropped |
 | `DW_GSA_01_Decision_Licensing_GCC_Narrated.mp4` | The video, about 8 minutes, on the [videos release](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_GSA_01_Decision_Licensing_GCC_Narrated.mp4) |
 | `DW_GSA_01_Decision_Licensing_GCC_Narrated.vtt` | The video's caption track |
-| `DW_GSA_01_Decision_Licensing_GCC_Narration_Script.md` | The spoken narration, slide by slide (about 1,182 words) |
+| `DW_GSA_01_Decision_Licensing_GCC_Narration_Script.md` | The spoken narration, slide by slide (about 1,176 words) |
 | `build.js` | The slides, the spoken narration (`say`), the presenter detail (`detail`) and the chapter footnotes each slide cites (`cite`) |
 
 Build (Git Bash): `source /c/tmp/deckenv.sh`, then `DATECODE="YYYY-MM-DD HH:MM ET" node presentations/dw-gsa-01-decision-licensing-gcc/build.js`, with the Eastern time taken from PowerShell. Then `narrate.py`, `captions.py`, `build_narrated.ps1` and `export_mp4.ps1`, as in the kit's README; `qa_export.ps1` checks the layout through PowerPoint.
