@@ -10,8 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
-last-reviewed: 2026-11-17
+review-status: approved
+reviewed-sha256: 5e6e37dc50f2c35a612cc930d5631f1270c80ed5025ec983e5642b3f51551973
+last-reviewed: 2026-11-18
 ---
 # Chapter 07 — Internet Access, QUIC and TLS Inspection
 

@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 352aa6709bcd18edbc73ce4759ac6a2ee9f5d0017a96b6bed393f499f56e7c26
-last-reviewed: 2026-11-09
+reviewed-sha256: 17feb7683d37a19968d510dd0d6aaf57dc654576115f0257f84fdda3d08c91c4
+last-reviewed: 2026-11-18
 ---
 # Chapter 03 — Oracle Cloud Infrastructure Announcements
 

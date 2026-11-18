@@ -8,12 +8,13 @@ book: B20
 part: How
 series-order: 10
 status: draft
-review-status: pending
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
+review-status: approved
+reviewed-sha256: 1fef8cc8a0860da658b99110ca46804d755ba3233d0accaef1f2b43ed0638d65
+last-reviewed: 2026-11-18
 ---
-
 # Chapter 10 — Audit, Insider Risk and Communication Compliance
 
 *Audit records what happened to the data; insider risk tools look at what people do with it, and the second needs a charter before it needs a license.*

@@ -8,12 +8,13 @@ book: B20
 part: Why
 series-order: 1
 status: draft
-review-status: pending
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
+review-status: approved
+reviewed-sha256: 030d248d6d6d6ddb9892a726e9d0f23abac5336a31acf959e8c571ef642bb001
+last-reviewed: 2026-11-18
 ---
-
 # Chapter 01 — Data Inventory and Classification
 
 *Identity, device and network controls decide who reaches a file; only a classification decided in advance can say what the file is, and that decision has to be written down before a single label is published.*

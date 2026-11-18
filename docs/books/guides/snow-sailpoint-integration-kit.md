@@ -9,8 +9,8 @@ date-modified: 2026-10-24
 aliases:
   - /docs/research/snow-sailpoint-integration-kit.html
 review-status: approved
-reviewed-sha256: 1c1ae20cd57f43e6f3c7c007c94804b8fab671cf3074f4843f86d19531c3e12d
-last-reviewed: 2026-11-08
+reviewed-sha256: 63eb186999332a3e2f46330c784782420d309bd7c5d604f3d46fff25d922e2d1
+last-reviewed: 2026-11-18
 ---
 # Integrating ServiceNow and SailPoint: An Implementation Example (Pass 1) {.unnumbered}
 

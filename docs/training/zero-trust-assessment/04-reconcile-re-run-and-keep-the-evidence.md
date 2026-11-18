@@ -6,8 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 11"
 series-order: 4
-review-status: pending
-last-reviewed: 2026-11-11
+review-status: approved
+reviewed-sha256: a160dcf0fb85a4cc4143ef3e74f66987cff522fe1c81d096462249f451fdebdd
+last-reviewed: 2026-11-18
 ---
 # Module 4: Reconcile, re-run and keep the evidence {.unnumbered}
 

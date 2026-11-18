@@ -11,8 +11,9 @@ lifecycle_review: 2027-05-01
 research-status: draft
 research-type: implementation guide
 research-book: "Book 11"
-review-status: pending
-last-reviewed: 2026-11-11
+review-status: approved
+reviewed-sha256: 5ffce57a39e010433e364dc333f1624432e75161df94efbf1bbd43009271a5e6
+last-reviewed: 2026-11-18
 ---
 # Zero Trust Assessment: An Implementation Guide
 

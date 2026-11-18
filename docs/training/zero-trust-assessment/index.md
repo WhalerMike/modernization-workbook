@@ -16,8 +16,9 @@ listing:
     sort: "series-order asc"
     sort-ui: false
     filter-ui: false
-review-status: pending
-last-reviewed: 2026-11-11
+review-status: approved
+reviewed-sha256: f11462cb512edb1ac73b9b1d8a66d15ce6085c2ac49ab7fd7847b15431a2e00f
+last-reviewed: 2026-11-18
 ---
 # Learning path: The Zero Trust Assessment as Evidence {.unnumbered}
 

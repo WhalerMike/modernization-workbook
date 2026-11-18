@@ -16,8 +16,9 @@ listing:
     sort: "series-order asc"
     sort-ui: false
     filter-ui: false
-review-status: pending
-last-reviewed: 2026-11-17
+review-status: approved
+reviewed-sha256: 955fe66e36f575fb4ac0bfac60f4d7662bdd5ca4c96989c0884e00e1f7a1522d
+last-reviewed: 2026-11-18
 ---
 # Learning path: Defender XDR Engineering and Operations {.unnumbered}
 

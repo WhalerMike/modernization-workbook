@@ -6,8 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 09"
 series-order: 5
-review-status: pending
-last-reviewed: 2026-11-13
+review-status: approved
+reviewed-sha256: 708ddd1b5b9d0b9049aaa4cd8c5cd89fe3d279ffc179e032efe79bb56b2e0076
+last-reviewed: 2026-11-18
 ---
 # Module 5: Internet Access and TLS inspection {.unnumbered}
 

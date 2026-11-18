@@ -14,8 +14,8 @@ lifecycle_review: 2027-04-01
 aliases:
   - /docs/project-plans/developer-workbooks/attribute-driven-migration/07-machine-configuration-packages.html
 review-status: approved
-reviewed-sha256: c3ea8b7b1f4fe370f577fdd2f8f742dd62ff389e4f65b9caac8df5ed1a793933
-last-reviewed: 2026-11-09
+reviewed-sha256: c896e9ab71635239659bf58a1b390e652a42ab244e4b6125bf58a1b7aa7d51f3
+last-reviewed: 2026-11-18
 ---
 # Chapter 07 — Machine Configuration Packages
 

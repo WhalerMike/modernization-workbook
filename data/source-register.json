@@ -10313,9 +10313,7 @@
    "url": "https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ash.html",
    "status": "retired",
    "added": "2026-11-11",
-   "labels": [
-    "AWS Security Hub CSPM in AWS GovCloud (US)"
-   ],
+   "labels": [],
    "history": [
     {
      "date": "2026-11-11",
@@ -10324,6 +10322,10 @@
     {
      "date": "2026-11-15",
      "change": "Retired: the Zero Trust Assessment guide no longer cites it; the program's AWS workloads run in the commercial Regions (WD-156)"
+    },
+    {
+     "date": "2026-11-18",
+     "change": "Label moved to the new row aws-security-hub-cspm-govcloud, which replaces this retired row now that the workbook cites the source again"
     }
    ]
   },
@@ -13921,6 +13923,41 @@
     {
      "date": "2026-11-17",
      "change": "Added: cited in Building Defender XDR and on its narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "aws-security-hub-cspm-govcloud",
+   "title": "AWS Security Hub CSPM in AWS GovCloud (US)",
+   "publisher": "Amazon Web Services",
+   "url": "https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ash.html",
+   "status": "active",
+   "added": "2026-11-18",
+   "labels": [
+    "AWS Security Hub CSPM in AWS GovCloud (US)"
+   ],
+   "history": [
+    {
+     "date": "2026-11-18",
+     "change": "Added: replaces retired row security-hub-cspm-in-govcloud, which the workbook cites again (the Zero Trust Assessment guide and its decks; the program's AWS estate is in AWS GovCloud (US))"
+    }
+   ]
+  },
+  {
+   "id": "gsa-device-usage-summary",
+   "title": "reports: getDeviceUsageSummary (Microsoft Graph beta)",
+   "publisher": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/graph/api/networkaccess-reports-getdeviceusagesummary?view=graph-rest-beta",
+   "status": "active",
+   "added": "2026-11-18",
+   "labels": [
+    "reports: getDeviceUsageSummary",
+    "getDeviceUsageSummary"
+   ],
+   "history": [
+    {
+     "date": "2026-11-18",
+     "change": "Added: replaces retired row gsa-get-device-usage-summary, which the workbook cites again (Building Global Secure Access, Chapter 03, and the Global Secure Access decks)"
     }
    ]
   }

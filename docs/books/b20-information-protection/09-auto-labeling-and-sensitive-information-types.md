@@ -8,12 +8,13 @@ book: B20
 part: How
 series-order: 9
 status: draft
-review-status: pending
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
+review-status: approved
+reviewed-sha256: 7b5bb919b4bac7cc3a19591f558116b15d0e515b723adb32d6aadf608a5f735a
+last-reviewed: 2026-11-18
 ---
-
 # Chapter 09 — Auto-Labeling and Sensitive Information Types
 
 *People label what they recognize as sensitive; detection is for everything they don't.*

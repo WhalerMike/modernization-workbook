@@ -8,12 +8,13 @@ book: B20
 part: Appendix
 series-order: 90
 status: draft
-review-status: pending
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
+review-status: approved
+reviewed-sha256: d9cedf9e6e8ef4bba9817b167e7b8cbcacf12f352227244f4c1522dc52cb7c6e
+last-reviewed: 2026-11-18
 ---
-
 # Appendix A — Requirements Mapping: Controls, KSIs and Chapters
 
 *A label, a DLP rule and an audit retention policy each contribute evidence to a control; none of them is the control, and the map has to keep the contribution and the judgment apart.*

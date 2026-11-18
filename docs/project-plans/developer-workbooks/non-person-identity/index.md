@@ -19,8 +19,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 871d529a0d98b2c33fcc49a61bd40a341687d61a8b192549317ca2ec3c5dc2c4
-last-reviewed: 2026-11-09
+reviewed-sha256: 22687e1f6a0621d238e5eb33c907ab5f4c9217e9fe2d1541aabc1ec9dbaa63f2
+last-reviewed: 2026-11-18
 ---
 # Building Non-Person Identity {.unnumbered}
 

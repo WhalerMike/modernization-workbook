@@ -12,8 +12,8 @@ research-status: draft
 research-type: implementation guide
 research-book: "Book 09"
 review-status: approved
-reviewed-sha256: 91394eb65be72aa9cdb3eb9c83133c96e6d9cdea808e46fa44aaf6c2d7ead0a6
-last-reviewed: 2026-11-08
+reviewed-sha256: 720cd8bf979f7a85be8d602041f8cfbea7992022f1ee99e911f6b63d2ffb7e1b
+last-reviewed: 2026-11-18
 ---
 # Distribution Point Consolidation: An Implementation Guide
 

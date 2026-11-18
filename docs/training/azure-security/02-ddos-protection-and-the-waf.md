@@ -6,8 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 10"
 series-order: 2
-review-status: pending
-last-reviewed: 2026-11-13
+review-status: approved
+reviewed-sha256: 473eca868aaac2504381d66470b2e1d547723aef3e8012f87e4273c835c1ebb9
+last-reviewed: 2026-11-18
 ---
 # Module 2: DDoS protection and the web application firewall {.unnumbered}
 

@@ -19,8 +19,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 58eaf5ec8397c0d176f316a9683b2c6489775992604995a97699185b54a019e6
-last-reviewed: 2026-11-07
+reviewed-sha256: 96b8662f73cd4fa9ae715792bb30220e3b6f5ace22cdf3a419c4fb949fce32bf
+last-reviewed: 2026-11-18
 ---
 # Building HR-Driven Identity {.unnumbered}
 

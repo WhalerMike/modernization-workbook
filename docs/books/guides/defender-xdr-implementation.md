@@ -11,8 +11,9 @@ lifecycle_review: 2027-05-01
 research-status: draft
 research-type: implementation guide
 research-book: "Book 12"
-review-status: pending
-last-reviewed: 2026-11-11
+review-status: approved
+reviewed-sha256: 416541eb705d8674ec4d1a27ea811387e8d5c20c9506e40ffdef340c5355beaa
+last-reviewed: 2026-11-18
 ---
 # Defender XDR Engineering & Operations: An Implementation Guide
 

@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 21cf6a32ce6056a9b236166c94afe899cddc0c6df9c0da848300bb9ae0298a21
-last-reviewed: 2026-11-09
+reviewed-sha256: 6cbdb1df2f42300eafcf1319b59cb026ded21403ef074fa27fb0af6ae617c91f
+last-reviewed: 2026-11-18
 ---
 # Chapter 07 — The Weekly Digest and Evidence
 

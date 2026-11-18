@@ -10,8 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
-last-reviewed: 2026-11-17
+review-status: approved
+reviewed-sha256: ab58cc399771cc146e5089960e7b623bb7435de5a513f7b7b9af17cd772d05cd
+last-reviewed: 2026-11-18
 ---
 # Chapter 06 — Private Applications and Administrative Paths
 

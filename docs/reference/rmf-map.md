@@ -6,9 +6,10 @@ research-status: in review
 research-type: reference
 research-book: "Books 00–19"
 date-modified: 2026-11-08
-last-reviewed: 2026-11-08
+review-status: approved
+reviewed-sha256: c84a439f0ca196776bf820cd1770f09c267d47ecd48000ac4037bad1dfc2fe7b
+last-reviewed: 2026-11-18
 ---
-
 # RMF Map {.unnumbered}
 
 An ISSO, a control assessor or an authorizing official reads the workbook with one question: where is the Risk Management Framework, and what does each step leave behind? The books answer it, but chapter by chapter. This page puts the answer in one place. For each of the seven steps of NIST SP 800-37 Rev. 2 it lists the tasks, the outputs NIST names, where the workbook treats each one, the evidence the program and its kits produce, and where the workbook stops.[^sp80037]

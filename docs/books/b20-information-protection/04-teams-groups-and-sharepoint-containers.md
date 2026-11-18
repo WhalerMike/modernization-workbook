@@ -8,12 +8,13 @@ book: B20
 part: How
 series-order: 4
 status: draft
-review-status: pending
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
+review-status: approved
+reviewed-sha256: 692dd6c336b193015db3011e98c92a230fd8e252abae15d24c74c6eeca2811fe
+last-reviewed: 2026-11-18
 ---
-
 # Chapter 04 — Teams, Groups and SharePoint Containers
 
 *Sharing is decided per site, not per document, so the site has to carry the classification; a container label sets who can join, who can share and from which devices, and an owner can't quietly loosen it.*

@@ -11,8 +11,9 @@ lifecycle_review: 2027-05-01
 research-status: draft
 research-type: implementation guide
 research-book: "Book 02"
-review-status: pending
-last-reviewed: 2026-11-09
+review-status: approved
+reviewed-sha256: 1032be5fecb0fec4721fca4dcd8f1f729dd7efb78ef19fe2dc7c6497f92c5191
+last-reviewed: 2026-11-18
 ---
 # Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities
 

@@ -8,12 +8,13 @@ book: B20
 part: How
 series-order: 5
 status: draft
-review-status: pending
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
+review-status: approved
+reviewed-sha256: 551252f0b776d9c3e0c55fd726d36b600df879aeebe12b2bc01351dfc1325df5
+last-reviewed: 2026-11-18
 ---
-
 # Chapter 05 — Rights Management and Recovery
 
 *Encryption that the agency can't undo is a data-loss event waiting for a resignation; the service that protects content has to be switched on deliberately, and the way back into it has to be tested before anyone needs it.*

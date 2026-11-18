@@ -6,7 +6,7 @@
       "uri": "https://graph.microsoft.com/v1.0/subscribedSkus",
       "permissions": ["LicenseAssignment.Read.All"], "roles": ["Global Reader", "Directory Readers"],
       "doc": "https://learn.microsoft.com/graph/api/subscribedsku-list?view=graph-rest-1.0", "verified": true, "fixture": "subscribed-skus.json",
-      "note": "The guide's Step 1.1 connects with Organization.Read.All, a higher-privileged permission Learn also lists; the kit asks for the least-privileged one." },
+      "note": "The kit asks for the least-privileged permission; since Nov 18, 2026, the guide's Step 1.1 does too (it used Organization.Read.All, a higher-privileged permission Learn also lists)." },
     { "id": "tenant-status", "area": ["decision"], "method": "GET", "tool": "graph", "beta": true,
       "uri": "https://graph.microsoft.com/beta/networkAccess/tenantStatus",
       "permissions": ["NetworkAccessPolicy.Read.All"], "roles": ["Global Secure Access Log Reader", "Global Reader"],

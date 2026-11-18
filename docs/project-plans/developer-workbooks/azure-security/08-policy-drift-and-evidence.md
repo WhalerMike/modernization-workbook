@@ -10,8 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
-last-reviewed: 2026-11-17
+review-status: approved
+reviewed-sha256: 9f24d6fe135ceeead7686f3a03de2b4453cc0b99e143e559a811ce8674a8324d
+last-reviewed: 2026-11-18
 ---
 # Chapter 08 — Policy, Drift and Evidence
 

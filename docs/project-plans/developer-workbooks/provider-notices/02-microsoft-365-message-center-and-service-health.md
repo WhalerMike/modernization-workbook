@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: f29cde4d9364957f13defa58065ebf0ae303e070ec9c258d0578240e95dbeee2
-last-reviewed: 2026-11-09
+reviewed-sha256: d920b36bd0d554be6ef17a4f342696943f8a659f9749d33737bc2f65d6fa0e6b
+last-reviewed: 2026-11-18
 ---
 # Chapter 02 — Microsoft 365 Message Center and Service Health
 

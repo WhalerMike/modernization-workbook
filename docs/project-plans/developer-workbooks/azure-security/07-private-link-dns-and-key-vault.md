@@ -10,8 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
-last-reviewed: 2026-11-17
+review-status: approved
+reviewed-sha256: 74ccf3e13f38611050e3fc58616fd36910a67fce35da2b6c3102d9a80f701cc2
+last-reviewed: 2026-11-18
 ---
 # Chapter 07 — Private Link, DNS and Key Vault
 

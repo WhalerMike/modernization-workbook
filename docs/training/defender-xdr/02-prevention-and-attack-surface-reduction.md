@@ -6,8 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 12"
 series-order: 2
-review-status: pending
-last-reviewed: 2026-11-17
+review-status: approved
+reviewed-sha256: 77f9984f6391f571397508f03c3a5fd233ab3a0f748e926de281ea8a90bdd35f
+last-reviewed: 2026-11-18
 ---
 # Module 2: Prevention and Attack Surface Reduction {.unnumbered}
 

@@ -6,8 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 12"
 series-order: 3
-review-status: pending
-last-reviewed: 2026-11-17
+review-status: approved
+reviewed-sha256: e04ca8ddc6b047c744fadcf2154c4a59289c0a535ec7af03ca2267bef4441f1d
+last-reviewed: 2026-11-18
 ---
 # Module 3: Exposure and incidents {.unnumbered}
 

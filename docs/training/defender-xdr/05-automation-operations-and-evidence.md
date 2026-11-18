@@ -6,8 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 12"
 series-order: 5
-review-status: pending
-last-reviewed: 2026-11-17
+review-status: approved
+reviewed-sha256: 9ecf2045634b90fcf9413ff9f69798fa7c4989af3fbd6fd2314a0769e8c60ffe
+last-reviewed: 2026-11-18
 ---
 # Module 5: Automation, operations and evidence {.unnumbered}
 

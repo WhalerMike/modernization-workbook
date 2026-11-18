@@ -10,8 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
-last-reviewed: 2026-11-17
+review-status: approved
+reviewed-sha256: 3731450a6420d6621eaf4bde31185c1900b903af254dcfed8a86fa8ddadbd650
+last-reviewed: 2026-11-18
 ---
 # Chapter 06 — Detections as Code
 

@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: bc5d94a917ce3aeec8ffb30e99a371cd48391e06e1776f37e3d2762ef285943d
-last-reviewed: 2026-11-09
+reviewed-sha256: 813939afb4c8602063066a5bdda3eb3c42f1cc500606c80dab7123cf9a51eae3
+last-reviewed: 2026-11-18
 ---
 # Chapter 05 — Google Cloud Personalized Service Health
 

@@ -10,8 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
-last-reviewed: 2026-11-17
+review-status: approved
+reviewed-sha256: 390ae2d4cc478549251c4e322a3ff87dd03e6aa87f4678228187eb6ca52c032d
+last-reviewed: 2026-11-18
 ---
 # Chapter 05 — Exposure and Incidents
 

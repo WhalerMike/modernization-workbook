@@ -10,8 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
-last-reviewed: 2026-11-17
+review-status: approved
+reviewed-sha256: e98d4f669460369f6488a898ec61fbed3e5d07e9fa171f0795c7ad13ff9a52c7
+last-reviewed: 2026-11-18
 ---
 # Chapter 02 — Onboarding Coverage and Sensor Health
 

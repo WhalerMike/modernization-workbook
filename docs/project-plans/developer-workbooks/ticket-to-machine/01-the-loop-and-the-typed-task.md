@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: dcedca9428fbb68053dd1882750142586ac4ac05aec8f376b291d8647b315707
-last-reviewed: 2026-11-09
+reviewed-sha256: 5fc8a9361723958b8af1fd9f76c735da5fcbd66385814847042717ff778e5eef
+last-reviewed: 2026-11-18
 ---
 # Chapter 01 — The Loop and the Typed Task
 

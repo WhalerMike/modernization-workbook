@@ -8,12 +8,13 @@ book: B20
 part: How
 series-order: 3
 status: draft
-review-status: pending
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
+review-status: approved
+reviewed-sha256: 9c9f18266e43c22418160c9d17a85cf16c32a2ea7d1608e960fb3519de6aca58
+last-reviewed: 2026-11-18
 ---
-
 # Chapter 03 — Label Publication and Defaults
 
 *A label nobody sees protects nothing, and a default nobody chose labels everything wrongly; publication is where the taxonomy meets people, so it moves in rings and every default has a written reason.*

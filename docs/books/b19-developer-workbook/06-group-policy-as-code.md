@@ -14,8 +14,8 @@ lifecycle_review: 2027-04-01
 aliases:
   - /docs/project-plans/developer-workbooks/attribute-driven-migration/06-group-policy-as-code.html
 review-status: approved
-reviewed-sha256: 3d3eb2c07ef46abdb68bc67d7792cf3ccf159d47ce672462a88a323306c2f75c
-last-reviewed: 2026-11-03
+reviewed-sha256: 9212bdd4f0c084ad82a8e4907a83eef3cf50bfd5f3581d7da51774add4d608fb
+last-reviewed: 2026-11-18
 ---
 # Chapter 06 — Moving Group Policy as Code
 

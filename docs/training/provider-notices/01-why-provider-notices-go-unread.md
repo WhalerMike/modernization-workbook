@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 15"
 series-order: 1
 review-status: approved
-reviewed-sha256: f96afccbef01b13c713503378840244b0c1294dc3bafb801d33a119e176d7e97
-last-reviewed: 2026-11-09
+reviewed-sha256: 2bbd6edcdd0b377261481b704d30dbe03ed72210580f48afaa65b6f1ca70b874
+last-reviewed: 2026-11-18
 ---
 # Module 1: Why provider notices go unread {.unnumbered}
 

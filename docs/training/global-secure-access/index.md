@@ -16,8 +16,9 @@ listing:
     sort: "series-order asc"
     sort-ui: false
     filter-ui: false
-review-status: pending
-last-reviewed: 2026-11-13
+review-status: approved
+reviewed-sha256: a8f1eefb9d28b118797b28fc5bfa4ad5c26c95568a33074b973ac1de396be029
+last-reviewed: 2026-11-18
 ---
 # Learning path: Global Secure Access as the Identity-Aware Network {.unnumbered}
 

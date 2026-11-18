@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 15"
 series-order: 5
 review-status: approved
-reviewed-sha256: ea9fdc93e0894db162b9efb4964fcf7415be16008b3ed1c280dadbd575c15ccc
-last-reviewed: 2026-11-09
+reviewed-sha256: 9b190b9acd558292e5e9d453b1716b76a50b101a6a5ca3d0876c19e9c2e802f8
+last-reviewed: 2026-11-18
 ---
 # Module 5: AWS Health and the support plan {.unnumbered}
 

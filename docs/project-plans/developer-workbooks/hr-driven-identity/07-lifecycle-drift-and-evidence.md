@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: d2aefc9282cbd6b2271dd6d955ce7150c6a936ef9593af14f20a4cd93e7e1622
-last-reviewed: 2026-11-07
+reviewed-sha256: 2f9bccf59cfb5635e76b2fbecadc8dd6f01df16b9ffb8035f60a7573c97affad
+last-reviewed: 2026-11-18
 ---
 # Chapter 07 — Lifecycle Drift, Metrics and Evidence
 
