@@ -40,12 +40,12 @@ read the kit's call list, its availability
 table and nine checks, and walk two labs.
 
 9
-00:00:31.100 --> 00:00:35.419
-One note before we begin: this
-chapter is a draft awaiting review,
+00:00:31.100 --> 00:00:35.640
+One note before we begin: this chapter
+has been reviewed and approved,
 
 10
-00:00:35.419 --> 00:00:39.440
+00:00:35.640 --> 00:00:39.590
 and the code is illustrative,
 tested against fixtures.
 
@@ -361,236 +361,236 @@ before, it used Organization Read All,
 a higher permission Learn also lists.
 
 77
-00:05:04.030 --> 00:05:09.045
+00:05:02.900 --> 00:05:07.915
 Lab 1 needs only PowerShell 7 with
 Pester, in the kit's folder, against one
 
 78
-00:05:09.045 --> 00:05:14.655
+00:05:07.915 --> 00:05:13.525
 fictional tenant, contoso dot example,
 seen during its pilot and two weeks later.
 
 79
-00:05:14.655 --> 00:05:15.867
+00:05:13.525 --> 00:05:14.737
 No tenant at all.
 
 80
-00:05:15.867 --> 00:05:21.198
+00:05:14.737 --> 00:05:20.068
 Step 1 lists what the decision area reads:
 two calls, each with its least-privileged
 
 81
-00:05:21.198 --> 00:05:25.667
+00:05:20.068 --> 00:05:24.537
 permission, one of them beta, both
 verified against their Learn pages.
 
 82
-00:05:25.667 --> 00:05:30.325
+00:05:24.537 --> 00:05:29.195
 Step 2 lists the features whose GCC
 availability Learn doesn't state,
 
 83
-00:05:30.325 --> 00:05:33.756
+00:05:29.195 --> 00:05:32.626
 each with the interim path
 the kit expects instead.
 
 84
-00:05:33.756 --> 00:05:37.540
+00:05:32.626 --> 00:05:36.410
 The first rows are on the slide;
 the chapter shows them all.
 
 85
-00:05:41.290 --> 00:05:45.452
+00:05:40.160 --> 00:05:44.322
 Step 3 reads the pilot tenant's
 licenses and onboarding state.
 
 86
-00:05:45.452 --> 00:05:49.690
+00:05:44.322 --> 00:05:48.560
 Step 4 checks the four decision
 records, and finds four failures.
 
 87
-00:05:49.690 --> 00:05:53.740
+00:05:48.560 --> 00:05:52.610
 The internet decision's availability
 quote is forty-six days old.
 
 88
-00:05:53.740 --> 00:05:56.903
+00:05:52.610 --> 00:05:55.773
 Its SKU has twenty-five
 units for sixty users.
 
 89
-00:05:56.903 --> 00:06:01.852
+00:05:55.773 --> 00:06:00.722
 It uses the cloud firewall for clients,
 a preview feature, with no exception.
 
 90
-00:06:01.852 --> 00:06:04.548
+00:06:00.722 --> 00:06:03.418
 And the branch decision
 defers remote networks
 
 91
-00:06:04.548 --> 00:06:07.378
+00:06:03.418 --> 00:06:06.248
 without naming what protects
 branches meanwhile.
 
 92
-00:06:07.378 --> 00:06:10.302
+00:06:06.248 --> 00:06:09.172
 Step 5 reads the preview finding in full.
 
 93
-00:06:10.302 --> 00:06:13.364
+00:06:09.172 --> 00:06:12.234
 Look at the fix: it isn't
 "enable the preview".
 
 94
-00:06:13.364 --> 00:06:18.640
+00:06:12.234 --> 00:06:17.510
 It's the guide's interim path, a Windows
 Firewall rule delivered by Intune.
 
 95
-00:06:22.390 --> 00:06:25.540
+00:06:21.260 --> 00:06:24.410
 Step 6 checks the same
 records two weeks later.
 
 96
-00:06:25.540 --> 00:06:29.828
+00:06:24.410 --> 00:06:28.698
 The internet record was re-read on
 Learn and drops the preview feature,
 
 97
-00:06:29.828 --> 00:06:31.897
+00:06:28.698 --> 00:06:30.767
 its SKU now has seventy-five units,
 
 98
-00:06:31.897 --> 00:06:36.629
+00:06:30.767 --> 00:06:35.499
 and the branch record names its
 compensating controls: branch traffic stays
 
 99
-00:06:36.629 --> 00:06:40.990
+00:06:35.499 --> 00:06:39.860
 on the current TIC path, and managed
 devices at branches keep the client.
 
 100
-00:06:40.990 --> 00:06:42.377
+00:06:39.860 --> 00:06:41.247
 Every check passes.
 
 101
-00:06:42.377 --> 00:06:47.028
+00:06:41.247 --> 00:06:45.898
 Step 7 runs this chapter's tests:
 thirteen passed, none failed.
 
 102
-00:06:47.028 --> 00:06:49.230
+00:06:45.898 --> 00:06:48.100
 Then delete the output folder.
 
 103
-00:06:52.980 --> 00:06:56.153
+00:06:51.850 --> 00:06:55.023
 Lab 2 moves to a test
 tenant, never production,
 
 104
-00:06:56.153 --> 00:07:00.955
+00:06:55.023 --> 00:06:59.825
 and a tenant with no Global Secure
 Access licenses is a valid result.
 
 105
-00:07:00.955 --> 00:07:04.743
+00:06:59.825 --> 00:07:03.613
 Sign in as a person with the two
 least-privileged permissions.
 
 106
-00:07:04.743 --> 00:07:07.329
+00:07:03.613 --> 00:07:06.199
 Run the guide's own
 reads as a cross-check.
 
 107
-00:07:07.329 --> 00:07:11.764
+00:07:06.199 --> 00:07:10.634
 Then collect and check with the kit,
 using your own decision records,
 
 108
-00:07:11.764 --> 00:07:15.168
+00:07:10.634 --> 00:07:14.038
 kept on agency storage and
 never in this repository.
 
 109
-00:07:15.168 --> 00:07:18.068
+00:07:14.038 --> 00:07:16.938
 The kit's license counts
 should match the guide's.
 
 110
-00:07:18.068 --> 00:07:22.417
+00:07:16.938 --> 00:07:21.287
 If the tenant isn't onboarded,
 onboard it before any later chapter.
 
 111
-00:07:22.417 --> 00:07:25.009
+00:07:21.287 --> 00:07:23.879
 The lab only reads, so backing it out is
 
 112
-00:07:25.009 --> 00:07:28.268
+00:07:23.879 --> 00:07:27.138
 signing out and filing
 or deleting the outputs.
 
 113
-00:07:28.268 --> 00:07:30.620
+00:07:27.138 --> 00:07:29.490
 The authors haven't run this lab.
 
 114
-00:07:34.370 --> 00:07:35.820
+00:07:33.240 --> 00:07:34.690
 What does the output prove?
 
 115
-00:07:35.820 --> 00:07:38.304
+00:07:34.690 --> 00:07:37.174
 The license and onboarding reads, hashed,
 
 116
-00:07:38.304 --> 00:07:42.833
+00:07:37.174 --> 00:07:41.703
 and the decision records support the
 system security plan and the control
 
 117
-00:07:42.833 --> 00:07:47.582
+00:07:41.703 --> 00:07:46.452
 on external system services; the decision
 supports information exchange too.
 
 118
-00:07:47.582 --> 00:07:51.390
+00:07:46.452 --> 00:07:50.260
 The guide maps no key security
 indicator to a decision record,
 
 119
-00:07:51.390 --> 00:07:53.182
+00:07:50.260 --> 00:07:52.052
 and the kit doesn't invent one.
 
 120
-00:07:53.182 --> 00:07:56.995
+00:07:52.052 --> 00:07:55.865
 The records support these controls;
 the assessor decides them.
 
 121
-00:07:56.995 --> 00:08:01.794
+00:07:55.865 --> 00:08:00.664
 The dangers: adopting a preview
 because the product is in GCC, a stale
 
 122
-00:08:01.794 --> 00:08:07.108
+00:08:00.664 --> 00:08:05.978
 availability quote, and beta reads in
 an unattended job, each with its guard.
 
 123
-00:08:07.108 --> 00:08:09.828
+00:08:05.978 --> 00:08:08.698
 You're done when every
 function has a current,
 
 124
-00:08:09.828 --> 00:08:13.283
+00:08:08.698 --> 00:08:12.153
 signed record, and no preview
 runs without its exception.
 
 125
-00:08:13.283 --> 00:08:18.020
+00:08:12.153 --> 00:08:16.890
 Next, Chapter 2: the configuration
 export, and logs first.
