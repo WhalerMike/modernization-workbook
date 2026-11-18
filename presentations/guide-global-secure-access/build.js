@@ -252,7 +252,7 @@ endModule(SWHO);
   tag(s, "How");
   const c = code(s, "Decide", 0.6, 1.4, FULL, [
     "# Step 1: the tenant's licenses and its onboarding state (GCC uses the Global environment)",
-    "Connect-MgGraph -Environment Global -Scopes \"Organization.Read.All\",\"NetworkAccess.Read.All\"",
+    "Connect-MgGraph -Environment Global -Scopes \"LicenseAssignment.Read.All\",\"NetworkAccessPolicy.Read.All\"",
     "Get-MgSubscribedSku | Select-Object SkuPartNumber, ConsumedUnits | Export-Csv .\\gsa-01-licenses.csv -NoTypeInformation",
     "Invoke-MgGraphRequest -Method GET -Uri \"https://graph.microsoft.com/beta/networkAccess/tenantStatus\"",
     "# Step 2: export profiles, policies, settings, connectors, Conditional Access and named locations to $out, then hash",

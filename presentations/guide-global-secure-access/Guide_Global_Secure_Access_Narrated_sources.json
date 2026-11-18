@@ -140,6 +140,10 @@
    {
     "text": "Known limitations for Global Secure Access",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-known-limitations"
+   },
+   {
+    "text": "reports: getDeviceUsageSummary",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-device-usage-summary"
    }
   ]
  },

@@ -26,7 +26,7 @@ Here are the nine checks Test-Gsa-Decision runs on the collection and the record
 
 ## Slide 7 — Who signs, who reads, with what
 
-Who is involved? The policy owner signs each decision record and approves any exception. Developers build and maintain the kit. The security officer keeps the records, the license export and the run folders. And the reader holds very little: License Assignment Read All for the licenses, on version 1.0, and Network Access Policy Read All for the tenant status, on beta, delegated only. Global Reader is enough for both. One difference worth knowing: the guide's step connects with Organization Read All, a higher permission Learn also lists; the kit asks for the least-privileged one, and the research gaps record it.
+Who is involved? The policy owner signs each decision record and approves any exception. Developers build and maintain the kit. The security officer keeps the records, the license export and the run folders. And the reader holds very little: License Assignment Read All for the licenses, on version 1.0, and Network Access Policy Read All for the tenant status, on beta, delegated only. Global Reader is enough for both. And since November 18, the guide's step connects with these same two permissions; before, it used Organization Read All, a higher permission Learn also lists.
 
 ## Slide 8 — Lab 1: the reads, and the unstated features
 
