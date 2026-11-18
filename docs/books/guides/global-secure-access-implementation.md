@@ -12,7 +12,7 @@ research-status: draft
 research-type: implementation guide
 research-book: "Book 09"
 review-status: approved
-reviewed-sha256: ee6152d6ca42673ce578770df347c890bcf08441a6ead4d676c336de087783cf
+reviewed-sha256: c2b29e7d04892652e3a394deaf730c54b4afe47d53e3a8340d0f10081c2d8215
 last-reviewed: 2026-11-18
 ---
 # Global Secure Access & Zero Trust Network Engineering: An Implementation Guide
@@ -26,7 +26,7 @@ How an agency on Microsoft 365 GCC deploys Microsoft's security service edge, Gl
 
 ::: {.callout-tip}
 ## Watch, present or train
-**Narrated deck (about 16 minutes, captions)**: why a VPN proves only that a device arrived, TIC 3.0's remote-user options, the twelve steps and their run order, government cloud and licensing by feature, the reference architecture and the RACI, then each step from the client and Microsoft traffic to private apps, tenant restrictions, TLS inspection, rings and rollback, the dangers and what couldn't be verified, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-global-secure-access) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Global_Secure_Access_Narrated). The deck says this guide is a draft awaiting the editor's review.
+**Narrated deck (about 16 minutes, captions)**: why a VPN proves only that a device arrived, TIC 3.0's remote-user options, the twelve steps and their run order, government cloud and licensing by feature, the reference architecture and the RACI, then each step from the client and Microsoft traffic to private apps, tenant restrictions, TLS inspection, rings and rollback, the dangers and what couldn't be verified, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-global-secure-access) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Global_Secure_Access_Narrated). The deck says this guide has been reviewed and approved.
 **Training:** the learning path [*Global Secure Access as the Identity-Aware Network*](../../training/global-secure-access/index.md) teaches this guide in six modules, in its run order, with a lab in a test tenant and a knowledge check in each.
 **Code:** the developer workbook [*Building Global Secure Access*](../../project-plans/developer-workbooks/global-secure-access/index.md) builds the reads, checks, change plans, metrics and evidence for these steps in `examples/global-secure-access`, with labs on fixtures and in a test tenant.
 :::
