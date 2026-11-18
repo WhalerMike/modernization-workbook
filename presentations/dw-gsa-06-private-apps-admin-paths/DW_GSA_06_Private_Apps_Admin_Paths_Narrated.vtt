@@ -35,504 +35,505 @@ and that administrative paths ask for
 phishing-resistant authentication.
 
 8
-00:00:23.612 --> 00:00:26.127
-The chapter is a draft awaiting review,
+00:00:23.612 --> 00:00:26.385
+The chapter has been
+reviewed and approved,
 
 9
-00:00:26.127 --> 00:00:30.010
+00:00:26.385 --> 00:00:30.200
 and the code is illustrative,
 tested against fixtures.
 
 10
-00:00:33.760 --> 00:00:34.598
+00:00:33.950 --> 00:00:34.788
 Why narrow?
 
 11
-00:00:34.598 --> 00:00:37.979
+00:00:34.788 --> 00:00:38.169
 Because a compromised user
 or device on a VPN address
 
 12
-00:00:37.979 --> 00:00:41.822
+00:00:38.169 --> 00:00:42.012
 pool can move laterally across
 everything the pool reaches.
 
 13
-00:00:41.822 --> 00:00:46.198
+00:00:42.012 --> 00:00:46.388
 Private Access replaces the range
 with one application for one group,
 
 14
-00:00:46.198 --> 00:00:48.536
+00:00:46.388 --> 00:00:48.726
 behind that application's own policy.
 
 15
-00:00:48.536 --> 00:00:51.604
+00:00:48.726 --> 00:00:51.794
 So the goal: show,
 application by application,
 
 16
-00:00:51.604 --> 00:00:55.668
+00:00:51.794 --> 00:00:55.858
 that each reaches only its host
 and ports, only for its group,
 
 17
-00:00:55.668 --> 00:01:01.143
+00:00:55.858 --> 00:01:01.333
 under a policy that excludes emergency
 access; that administrative RDP and SSH
 
 18
-00:01:01.143 --> 00:01:04.295
+00:01:01.333 --> 00:01:04.485
 require phishing-resistant authentication;
 
 19
-00:01:04.295 --> 00:01:07.198
+00:01:04.485 --> 00:01:07.388
 and that connectors survive a patch night.
 
 20
-00:01:07.198 --> 00:01:10.509
+00:01:07.388 --> 00:01:10.699
 It's for the developers, the
 server and application owners,
 
 21
-00:01:10.509 --> 00:01:12.720
+00:01:10.699 --> 00:01:12.910
 and the privileged access owner.
 
 22
-00:01:16.470 --> 00:01:21.222
+00:01:16.660 --> 00:01:21.412
 Learn's Private Access tutorial creates
 an application from the custom template,
 
 23
-00:01:21.222 --> 00:01:24.576
+00:01:21.412 --> 00:01:24.766
 marks it a Private Access app,
 binds it to a connector group,
 
 24
-00:01:24.576 --> 00:01:28.070
+00:01:24.766 --> 00:01:28.260
 adds its segments and assigns a
 group with the app's user role.
 
 25
-00:01:28.070 --> 00:01:32.497
+00:01:28.260 --> 00:01:32.687
 Segments may not overlap between
 per-app applications; a per-app segment
 
 26
-00:01:32.497 --> 00:01:37.145
+00:01:32.687 --> 00:01:37.335
 overrides Quick Access; and clients can
 take fifteen minutes to see a change.
 
 27
-00:01:37.145 --> 00:01:40.183
+00:01:37.335 --> 00:01:40.373
 Connectors are read with
 a write-capable permission
 
 28
-00:01:40.183 --> 00:01:42.945
+00:01:40.373 --> 00:01:43.135
 and report active or
 inactive, and their version.
 
 29
-00:01:42.945 --> 00:01:46.364
+00:01:43.135 --> 00:01:46.554
 Learn's Zero Trust recommendations
 ask for two healthy,
 
 30
-00:01:46.364 --> 00:01:51.270
+00:01:46.554 --> 00:01:51.460
 current connectors per group, least-privilege
 segments and every app assigned.
 
 31
-00:01:51.270 --> 00:01:54.710
+00:01:51.460 --> 00:01:54.900
 And for domain controllers,
 the sensor starts in audit,
 
 32
-00:01:54.710 --> 00:01:58.290
+00:01:54.900 --> 00:01:58.480
 with application service
 names before the DC's own.
 
 33
-00:02:02.040 --> 00:02:03.265
+00:02:02.230 --> 00:02:03.455
 What does it leave to you?
 
 34
-00:02:03.265 --> 00:02:04.907
+00:02:03.455 --> 00:02:05.097
 The requests create one app,
 
 35
-00:02:04.907 --> 00:02:09.691
+00:02:05.097 --> 00:02:09.881
 but nothing reads all of them back with
 their segments and assignments, so the kit
 
 36
-00:02:09.691 --> 00:02:14.190
+00:02:09.881 --> 00:02:14.380
 has a read for that, marked unverified,
 and the lab compares it with the portal.
 
 37
-00:02:14.190 --> 00:02:17.577
+00:02:14.380 --> 00:02:17.767
 A group with one inactive
 connector looks fine in a list,
 
 38
-00:02:17.577 --> 00:02:19.565
+00:02:17.767 --> 00:02:19.755
 so the kit counts active members.
 
 39
-00:02:19.565 --> 00:02:25.615
+00:02:19.755 --> 00:02:25.805
 A wide range on every port is the VPN
 again, so wide segments and overlaps fail.
 
 40
-00:02:25.615 --> 00:02:29.128
+00:02:25.805 --> 00:02:29.318
 A person assigned directly
 escapes the access review.
 
 41
-00:02:29.128 --> 00:02:34.735
+00:02:29.318 --> 00:02:34.925
 Plain MFA on RDP passes a casual
 look, so any app covering port 22
 
 42
-00:02:34.735 --> 00:02:40.990
+00:02:34.925 --> 00:02:41.180
 or 3389 needs the phishing-resistant
 strength and a compliant device.
 
 43
-00:02:40.990 --> 00:02:43.860
+00:02:41.180 --> 00:02:44.050
 And Quick Access is
 tracked until it's empty.
 
 44
-00:02:47.610 --> 00:02:48.610
+00:02:47.800 --> 00:02:48.800
 Nine checks.
 
 45
-00:02:48.610 --> 00:02:52.860
+00:02:48.800 --> 00:02:53.050
 Two or more active connectors per
 group, each at the minimum version.
 
 46
-00:02:52.860 --> 00:02:56.948
+00:02:53.050 --> 00:02:57.138
 Segments left in Quick Access,
 a warning until there are none.
 
 47
-00:02:56.948 --> 00:03:02.535
+00:02:57.138 --> 00:03:02.725
 Each segment a host or a narrow range,
 on named ports, with no overlaps.
 
 48
-00:03:02.535 --> 00:03:03.922
+00:03:02.725 --> 00:03:04.112
 Group assignments only.
 
 49
-00:03:03.922 --> 00:03:07.836
+00:03:04.112 --> 00:03:08.026
 A policy that targets the app
 and excludes the emergency group.
 
 50
-00:03:07.836 --> 00:03:10.022
+00:03:08.026 --> 00:03:10.212
 RDP and SSH apps that require the
 
 51
-00:03:10.022 --> 00:03:13.585
+00:03:10.212 --> 00:03:13.775
 phishing-resistant strength
 and a compliant device.
 
 52
-00:03:13.585 --> 00:03:18.335
+00:03:13.775 --> 00:03:18.525
 And the last day's private sessions by
 destination, to compare with the assignments.
 
 53
-00:03:18.335 --> 00:03:22.253
+00:03:18.525 --> 00:03:22.443
 The administrative policy is a
 reviewed file, the guide's own;
 
 54
-00:03:22.253 --> 00:03:25.970
+00:03:22.443 --> 00:03:26.160
 when the tenant's copy drifts,
 the plan brings it back.
 
 55
-00:03:29.720 --> 00:03:30.670
+00:03:29.910 --> 00:03:30.860
 Who owns what?
 
 56
-00:03:30.670 --> 00:03:35.133
+00:03:30.860 --> 00:03:35.323
 Application owners own their app's
 assignment and review it each quarter.
 
 57
-00:03:35.133 --> 00:03:40.521
+00:03:35.323 --> 00:03:40.711
 The platform owner for servers keeps two
 healthy, current connectors in every group.
 
 58
-00:03:40.521 --> 00:03:45.161
+00:03:40.711 --> 00:03:45.351
 The privileged access owner owns the
 administrative apps and the domain controller
 
 59
-00:03:45.161 --> 00:03:48.428
+00:03:45.351 --> 00:03:48.618
 sensor, and that's where Building
 Privileged Access comes in,
 
 60
-00:03:48.428 --> 00:03:50.520
+00:03:48.618 --> 00:03:50.710
 for the privileged groups behind them.
 
 61
-00:03:50.520 --> 00:03:55.074
+00:03:50.710 --> 00:03:55.264
 For permissions: a write-capable delegated
 permission for the connector reads,
 
 62
-00:03:55.074 --> 00:03:58.316
+00:03:55.264 --> 00:03:58.506
 an application read for the
 apps, which isn't verified yet,
 
 63
-00:03:58.316 --> 00:04:03.380
+00:03:58.506 --> 00:04:03.570
 the policy permissions, and three
 administrator roles activated just for the lab.
 
 64
-00:04:07.130 --> 00:04:11.030
+00:04:07.320 --> 00:04:11.220
 Lab 1, after listing the reads
 and collecting the pilot.
 
 65
-00:04:11.030 --> 00:04:14.117
+00:04:11.220 --> 00:04:14.307
 Step 3 reads the
 connectors group by group.
 
 66
-00:04:14.117 --> 00:04:17.467
+00:04:14.307 --> 00:04:17.657
 Headquarters has two active
 connectors on the current version.
 
 67
-00:04:17.467 --> 00:04:22.117
+00:04:17.657 --> 00:04:22.307
 The cloud group has one active and one
 inactive, and the active one is old.
 
 68
-00:04:22.117 --> 00:04:23.905
+00:04:22.307 --> 00:04:24.095
 Step 4 runs the checks.
 
 69
-00:04:23.905 --> 00:04:25.755
+00:04:24.095 --> 00:04:25.945
 Both connector problems fail.
 
 70
-00:04:25.755 --> 00:04:30.443
+00:04:25.945 --> 00:04:30.633
 The Finance app is a slash sixteen
 on every port, assigned to a person,
 
 71
-00:04:30.443 --> 00:04:34.880
+00:04:30.633 --> 00:04:35.070
 under an enforced policy that
 doesn't exclude emergency access.
 
 72
-00:04:34.880 --> 00:04:39.280
+00:04:35.070 --> 00:04:39.470
 Because every port includes RDP,
 it's an administrative path too.
 
 73
-00:04:39.280 --> 00:04:42.568
+00:04:39.470 --> 00:04:42.758
 The RDP app asks only for MFA.
 
 74
-00:04:42.568 --> 00:04:45.610
+00:04:42.758 --> 00:04:45.800
 And Quick Access still holds two segments.
 
 75
-00:04:49.360 --> 00:04:53.610
+00:04:49.550 --> 00:04:53.800
 Step 5 plans the pilot and reads
 the administrative policy's fix.
 
 76
-00:04:53.610 --> 00:04:58.071
+00:04:53.800 --> 00:04:58.261
 The plan has two Graph steps: the
 internet profile off, and a patch for
 
 77
-00:04:58.071 --> 00:05:02.772
+00:04:58.261 --> 00:05:02.962
 the RDP policy, because the tenant's
 copy differs from the reviewed file.
 
 78
-00:05:02.772 --> 00:05:08.032
+00:05:02.962 --> 00:05:08.222
 The body of that patch sets the built-in
 phishing-resistant authentication strength,
 
 79
-00:05:08.032 --> 00:05:10.773
+00:05:08.222 --> 00:05:10.963
 the one ending in four,
 and a compliant device.
 
 80
-00:05:10.773 --> 00:05:13.672
+00:05:10.963 --> 00:05:13.862
 That's the guide's Step
 10 policy, as written.
 
 81
-00:05:13.672 --> 00:05:18.480
+00:05:13.862 --> 00:05:18.670
 Nothing is sent: it's a dry run,
 and fixture mode never applies.
 
 82
-00:05:22.230 --> 00:05:24.792
+00:05:22.420 --> 00:05:24.982
 Step 6 checks the tenant two weeks later.
 
 83
-00:05:24.792 --> 00:05:28.423
+00:05:24.982 --> 00:05:28.613
 Finance is one host on port
 443 for the pilot group,
 
 84
-00:05:28.423 --> 00:05:30.992
+00:05:28.613 --> 00:05:31.182
 with the emergency group excluded.
 
 85
-00:05:30.992 --> 00:05:33.704
+00:05:31.182 --> 00:05:33.894
 Both cloud connectors
 are active and current.
 
 86
-00:05:33.704 --> 00:05:37.667
+00:05:33.894 --> 00:05:37.857
 The RDP policy has its strength
 and a compliant device.
 
 87
-00:05:37.667 --> 00:05:39.368
+00:05:37.857 --> 00:05:39.558
 And Quick Access is empty.
 
 88
-00:05:39.368 --> 00:05:40.755
+00:05:39.558 --> 00:05:40.945
 Every check passes.
 
 89
-00:05:40.755 --> 00:05:45.117
+00:05:40.945 --> 00:05:45.307
 Step 7 runs this chapter's
 tests: four passed, none failed.
 
 90
-00:05:45.117 --> 00:05:47.320
+00:05:45.307 --> 00:05:47.510
 Then delete the output folder.
 
 91
-00:05:51.070 --> 00:05:56.301
+00:05:51.260 --> 00:05:56.491
 Lab 2 needs a test tenant with Private
 Access licenses, a connector group with
 
 92
-00:05:56.301 --> 00:06:01.533
+00:05:56.491 --> 00:06:01.723
 two connectors on Windows Server 2019 or
 later, a test server and a pilot group.
 
 93
-00:06:01.533 --> 00:06:05.835
+00:06:01.723 --> 00:06:06.025
 Publish one app with the guide's
 own requests, named so the kit's
 
 94
-00:06:05.835 --> 00:06:10.307
+00:06:06.025 --> 00:06:10.497
 reviewed policy file finds it, one
 host on 443, for the pilot group.
 
 95
-00:06:10.307 --> 00:06:14.290
+00:06:10.497 --> 00:06:14.480
 Collect and check, comparing the
 app read with the portal first;
 
 96
-00:06:14.290 --> 00:06:17.583
+00:06:14.480 --> 00:06:17.773
 the policy check fails,
 because there's no policy yet.
 
 97
-00:06:17.583 --> 00:06:20.470
+00:06:17.773 --> 00:06:20.660
 Plan and apply its policy in report-only.
 
 98
-00:06:20.470 --> 00:06:24.433
+00:06:20.660 --> 00:06:24.623
 Then validate: from a device
 off the corporate network,
 
 99
-00:06:24.433 --> 00:06:28.132
+00:06:24.623 --> 00:06:28.322
 the host is reachable on
 443 and not on another port.
 
 100
-00:06:28.132 --> 00:06:31.657
+00:06:28.322 --> 00:06:31.847
 Back it out by deleting the
 policy, then the application.
 
 101
-00:06:31.657 --> 00:06:34.020
+00:06:31.847 --> 00:06:34.210
 The authors haven't run this lab.
 
 102
-00:06:37.770 --> 00:06:41.068
+00:06:37.960 --> 00:06:41.258
 Narrow apps for one group
 support access enforcement,
 
 103
-00:06:41.068 --> 00:06:44.220
+00:06:41.258 --> 00:06:44.410
 least privilege and managed
 access control points.
 
 104
-00:06:44.220 --> 00:06:47.133
+00:06:44.410 --> 00:06:47.323
 Resilient connectors
 support remote access.
 
 105
-00:06:47.133 --> 00:06:52.695
+00:06:47.323 --> 00:06:52.885
 Phishing-resistant administrative paths
 support multifactor authentication and
 
 106
-00:06:52.695 --> 00:06:58.649
+00:06:52.885 --> 00:06:58.839
 logging privileged functions; the guide
 lists OMB M-22-09's phishing-resistant
 
 107
-00:06:58.649 --> 00:07:03.507
+00:06:58.839 --> 00:07:03.697
 MFA and VPN-free application access
 among the requirements this supports.
 
 108
-00:07:03.507 --> 00:07:05.671
+00:07:03.697 --> 00:07:05.861
 The assessor decides the controls.
 
 109
-00:07:05.671 --> 00:07:10.576
+00:07:05.861 --> 00:07:10.766
 The dangers: a wide segment, a group
 with one connector, plain MFA on RDP,
 
 110
-00:07:10.576 --> 00:07:15.482
+00:07:10.766 --> 00:07:15.672
 Quick Access left as a range, and
 protecting a domain controller's own
 
 111
-00:07:15.482 --> 00:07:20.732
+00:07:15.672 --> 00:07:20.922
 service name before the applications',
 which can lock administrators out.
 
 112
-00:07:20.732 --> 00:07:25.658
+00:07:20.922 --> 00:07:25.848
 You're done when every group, every app
 and every administrative path passes.
 
 113
-00:07:25.658 --> 00:07:27.500
+00:07:25.848 --> 00:07:27.690
 Next, Chapter 7.

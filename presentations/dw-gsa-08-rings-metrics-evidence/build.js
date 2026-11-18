@@ -9,7 +9,7 @@ require("../_build/devwb.js")({
   map: "Why rings exit on numbers · what Learn and the guide give · metrics and ring exit · rollback · evidence and the closure register · who · two labs · dangers",
   slides: [
     {
-      say: `Welcome back to Building Global Secure Access. This is Chapter 8: rings, metrics, and the evidence package. A ring exits on numbers, not on a quiet week. This chapter computes the guide's numbers, says go or no-go, writes the rollback before it's needed, and hands the security officer a package an assessor can re-hash. The chapter is a draft awaiting review, and the code is illustrative, tested against fixtures.`,
+      say: `Welcome back to Building Global Secure Access. This is Chapter 8: rings, metrics, and the evidence package. A ring exits on numbers, not on a quiet week. This chapter computes the guide's numbers, says go or no-go, writes the rollback before it's needed, and hands the security officer a package an assessor can re-hash. The chapter has been reviewed and approved, and the code is illustrative, tested against fixtures.`,
       detail: `The code behind the guide's Step 11, Coexistence and migration, its Step 12, Telemetry and evidence, its metrics, rollback order and evidence catalog. The telemetry checks GSA-LOG-01 to -03, Get-GsaMetrics, Test-GsaRingExit, New-GsaRollbackPlan and the evidence records. Lab 1 says No-go for the pilot, with the five reasons, and Go for ring 1 two weeks later, plans ring 1's rollback without sending it, and records the runs as evidence. Lab 2 does the same in a test tenant.`,
       cite: ["gsa08-dg"],
       ref: "“In this chapter”",

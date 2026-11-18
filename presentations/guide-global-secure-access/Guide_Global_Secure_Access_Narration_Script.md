@@ -2,7 +2,7 @@
 
 ## Slide 1 — Global Secure Access: every connection proves itself
 
-Welcome. This is the narrated briefing for a companion guide in the Federal Modernization Workbook: Global Secure Access and Zero Trust Network Engineering, an implementation guide. One thing first: the guide is a draft, awaiting the editor's review, so recheck it after the review. Its idea fits in a sentence. A V P N proves that a device reached the network; the work in this guide makes every connection prove who is asking, from which device, for which application, and leaves a record that it did. The guide assumes a civilian agency at fed-ramp Moderate on Microsoft three sixty-five G C C. Its product facts come from Microsoft Learn, its tick three point oh statements from CISA's own documents, all read on November eleventh, 2026. Nothing in it was run against a tenant. We'll go in four parts: why, what, who, and how.
+Welcome. This is the narrated briefing for a companion guide in the Federal Modernization Workbook: Global Secure Access and Zero Trust Network Engineering, an implementation guide. One thing first: the guide has been reviewed and approved. Its idea fits in a sentence. A V P N proves that a device reached the network; the work in this guide makes every connection prove who is asking, from which device, for which application, and leaves a record that it did. The guide assumes a civilian agency at fed-ramp Moderate on Microsoft three sixty-five G C C. Its product facts come from Microsoft Learn, its tick three point oh statements from CISA's own documents, all read on November eleventh, 2026. Nothing in it was run against a tenant. We'll go in four parts: why, what, who, and how.
 
 ## Slide 2 — Why this matters: a VPN proves only that a device arrived
 

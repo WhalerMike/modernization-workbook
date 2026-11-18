@@ -1,6 +1,6 @@
 // Companion guide — Global Secure Access & Zero Trust Network Engineering: An Implementation Guide.
 // A narrated Why / What / Who / How deck of about 15 minutes (16 narrated slides, then a backup section).
-// The guide is a draft awaiting the editor's review: the title slide and its narration say so.
+// The guide has been reviewed and approved (review-status: approved): the title slide and its narration say so.
 //   Why:   a VPN proves only that a device arrived; TIC 3.0's remote-user options; beside a third-party SSE and across clouds.
 //   What:  the twelve steps in run order; government cloud and licensing by feature; the reference architecture.
 //   Who:   the RACI.
@@ -19,7 +19,7 @@
 //                      presentations/guide-global-secure-access/Guide_Global_Secure_Access.pptx
 const P = require("../attribute-driven-migration-technical-part-1/slides.js")({
   title: "Global Secure Access & Zero Trust Network Engineering: An Implementation Guide",
-  footer: "Federal Modernization Workbook  ·  Companion guide: Global Secure Access, an implementation guide (draft)",
+  footer: "Federal Modernization Workbook  ·  Companion guide: Global Secure Access, an implementation guide",
 });
 const { HEX, txt, box, tag, content, titleSlide, notes, endModule, table, panel, callout, sources, sourceSlide, backup, finish } = P;
 const OUT = process.argv[2] || "Guide_Global_Secure_Access.pptx";
@@ -66,11 +66,11 @@ const W3 = 3.9, G3 = 0.225;
 // ================================================================== 1 Title
 {
   const s = titleSlide(SWHY, "Global Secure Access: every connection proves itself", "An implementation guide: twelve steps from the license decision to the evidence package");
-  // The guide is a draft: say so before anything else on the slide.
-  box(s, "Draft notice", 0.8, 0.55, 7.9, 0.75, "FFFFFF", HEX.red);
-  txt(s, "Draft notice text", [
-    { text: "DRAFT GUIDE, AWAITING THE EDITOR'S REVIEW.  ", options: { bold: true, color: HEX.red } },
-    { text: "Recheck it after the review; nothing in it was run in a tenant." },
+  // The guide's review status, before anything else on the slide.
+  box(s, "Review status", 0.8, 0.55, 7.9, 0.75, "FFFFFF", HEX.teal);
+  txt(s, "Review status text", [
+    { text: "GUIDE REVIEW STATUS: APPROVED.  ", options: { bold: true, color: HEX.teal } },
+    { text: "Nothing in it was run in a tenant." },
   ], { x: 1.0, y: 0.6, w: 7.55, h: 0.65, fontSize: 14, valign: "middle", color: HEX.ink });
   txt(s, "Session map", [
     { text: "Why: a VPN proves only that a device arrived   ·   What: twelve steps, the clouds, the architecture", options: { color: HEX.navy, bold: true, breakLine: true } },
@@ -78,8 +78,8 @@ const W3 = 3.9, G3 = 0.225;
     { text: "How: client, Microsoft traffic, compliant network, internet, private apps, tenant restrictions, TLS, rings, telemetry", options: { color: HEX.ink } },
   ], { x: 0.8, y: 4.75, w: 11.0, h: 1.3, fontSize: 15, paraSpaceAfter: 2 });
   notes(s,
-`Welcome. This is the narrated briefing for a companion guide in the Federal Modernization Workbook: Global Secure Access and Zero Trust Network Engineering, an implementation guide. One thing first: the guide is a draft, awaiting the editor's review, so recheck it after the review. Its idea fits in a sentence. A V P N proves that a device reached the network; the work in this guide makes every connection prove who is asking, from which device, for which application, and leaves a record that it did. The guide assumes a civilian agency at fed-ramp Moderate on Microsoft three sixty-five G C C. Its product facts come from Microsoft Learn, its tick three point oh statements from CISA's own documents, all read on November eleventh, 2026. Nothing in it was run against a tenant. We'll go in four parts: why, what, who, and how.`,
-  `${G} — status: draft; opening statement, "In this guide," "How to read this guide."`);
+`Welcome. This is the narrated briefing for a companion guide in the Federal Modernization Workbook: Global Secure Access and Zero Trust Network Engineering, an implementation guide. One thing first: the guide has been reviewed and approved. Its idea fits in a sentence. A V P N proves that a device reached the network; the work in this guide makes every connection prove who is asking, from which device, for which application, and leaves a record that it did. The guide assumes a civilian agency at fed-ramp Moderate on Microsoft three sixty-five G C C. Its product facts come from Microsoft Learn, its tick three point oh statements from CISA's own documents, all read on November eleventh, 2026. Nothing in it was run against a tenant. We'll go in four parts: why, what, who, and how.`,
+  `${G} — review status: approved; opening statement, "In this guide," "How to read this guide."`);
 }
 
 // ================================================================== 2 Why: a VPN proves only that the device arrived

@@ -6961,11 +6961,11 @@
     "Try it: coverage and the four devices"
    ],
    [
-    357,
+    358,
     "Check 3: hardening in the pilot"
    ],
    [
-    380,
+    381,
     "Scene 4: sign-ins short of target; the first plan"
    ],
    [
@@ -6985,7 +6985,7 @@
     "Try it: not ready, and the plan holds it"
    ],
    [
-    543,
+    544,
     "Check 5: which failures matter"
    ],
    [
@@ -7017,7 +7017,7 @@
     "Scene 8: No-go, then Go"
    ],
    [
-    809,
+    810,
     "Try it: the pilot's exit, then ring 1's"
    ],
    [
@@ -7744,63 +7744,63 @@
     "Global Secure Access: every connection proves itself"
    ],
    [
-    56,
+    54,
     "Why this matters: a VPN proves only that a device arrived"
    ],
    [
-    113,
+    111,
     "TIC 3.0: one way to build three remote-user options"
    ],
    [
-    176,
+    173,
     "Beside a third-party SSE, and across clouds"
    ],
    [
-    233,
+    230,
     "Twelve steps, run so the logs come first"
    ],
    [
-    289,
+    287,
     "GCC and licensing, feature by feature"
    ],
    [
-    343,
+    341,
     "The reference architecture: planes and boundaries"
    ],
    [
-    406,
+    403,
     "Who does what: the RACI and the closure decision"
    ],
    [
-    469,
+    467,
     "Steps 1 and 2: decide per function, export a baseline"
    ],
    [
-    530,
+    527,
     "Step 3: package, harden and count the client"
    ],
    [
-    595,
+    593,
     "Steps 4 and 7: Microsoft traffic and the compliant network"
    ],
    [
-    659,
+    657,
     "Step 5: Internet Access through security profiles"
    ],
    [
-    721,
+    718,
     "Steps 6 and 10: per-app private access and admin paths"
    ],
    [
-    785,
+    783,
     "Steps 8 and 9: tenant restrictions and TLS inspection"
    ],
    [
-    842,
+    840,
     "Steps 11 and 12: rings, rollback and telemetry"
    ],
    [
-    906,
+    904,
     "Dangers, open questions and where to go next"
    ]
   ],
@@ -11485,7 +11485,7 @@
     "Chapter 02: The Configuration Export and Logs First"
    ],
    [
-    35,
+    36,
     "Why one export, and why logs first"
    ],
    [
@@ -11493,11 +11493,11 @@
     "What Microsoft Learn gives you"
    ],
    [
-    121,
+    122,
     "What it leaves to you"
    ],
    [
-    161,
+    162,
     "The collector, the manifest and the checks"
    ],
    [
@@ -11509,7 +11509,7 @@
     "Lab 1: collect the whole pilot tenant"
    ],
    [
-    280,
+    281,
     "Lab 1: the category the setting leaves out"
    ],
    [
@@ -11556,11 +11556,11 @@
     "Why the client has to be measured"
    ],
    [
-    73,
+    74,
     "What Microsoft Learn gives you"
    ],
    [
-    125,
+    126,
     "What it leaves to you"
    ],
    [
@@ -11718,7 +11718,7 @@
     "Lab 1: two weeks later, enforced and clean"
    ],
    [
-    350,
+    351,
     "Lab 2: report-only, then Learn's tests"
    ],
    [
@@ -11761,7 +11761,7 @@
     "What Microsoft Learn gives you"
    ],
    [
-    121,
+    122,
     "What it leaves to you"
    ],
    [
@@ -11856,7 +11856,7 @@
     "Lab 2: a pilot security profile and QUIC"
    ],
    [
-    412,
+    413,
     "Requirements, dangers, done"
    ]
   ],
@@ -11905,7 +11905,7 @@
     "What Learn and the guide give you"
    ],
    [
-    118,
+    119,
     "Eight metrics, eight exit criteria"
    ],
    [
@@ -11913,7 +11913,7 @@
     "The rollback plan and the evidence chain"
    ],
    [
-    207,
+    208,
     "Who runs rings, watches logs, keeps evidence"
    ],
    [

@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 03: The Client and Its Coverage
 
-Welcome back to Building Global Secure Access. This is Chapter 3: the client and its coverage. Every later policy assumes the client is on the device, connected, current, and hard to turn off. This chapter measures that, device by device and across the fleet. The guide already holds Learn's Intune packaging and hardening, so we won't repeat them; we'll build the measurement. The chapter is a draft awaiting review, and the code is illustrative, tested against fixtures.
+Welcome back to Building Global Secure Access. This is Chapter 3: the client and its coverage. Every later policy assumes the client is on the device, connected, current, and hard to turn off. This chapter measures that, device by device and across the fleet. The guide already holds Learn's Intune packaging and hardening, so we won't repeat them; we'll build the measurement. The chapter has been reviewed and approved, and the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why the client has to be measured
 

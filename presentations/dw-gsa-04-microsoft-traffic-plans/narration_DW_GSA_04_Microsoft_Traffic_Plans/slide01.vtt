@@ -35,10 +35,11 @@ a file a second person approves by
 its hash before anything changes.
 
 8
-00:00:23.462 --> 00:00:25.976
-The chapter is a draft awaiting review,
+00:00:23.462 --> 00:00:26.234
+The chapter has been
+reviewed and approved,
 
 9
-00:00:25.976 --> 00:00:29.570
+00:00:26.234 --> 00:00:29.760
 and the code is illustrative,
 tested against fixtures.

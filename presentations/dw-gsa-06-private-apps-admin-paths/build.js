@@ -9,7 +9,7 @@ require("../_build/devwb.js")({
   map: "Why one app, not a range · what Learn gives and leaves · the nine checks · who · two labs · evidence · dangers",
   slides: [
     {
-      say: `Welcome back to Building Global Secure Access. This is Chapter 6: private applications and administrative paths. A VPN gives a device an address range. Private Access gives a group one application, on its ports, behind its own Conditional Access. The code checks that each app is that narrow, and that administrative paths ask for phishing-resistant authentication. The chapter is a draft awaiting review, and the code is illustrative, tested against fixtures.`,
+      say: `Welcome back to Building Global Secure Access. This is Chapter 6: private applications and administrative paths. A VPN gives a device an address range. Private Access gives a group one application, on its ports, behind its own Conditional Access. The code checks that each app is that narrow, and that administrative paths ask for phishing-resistant authentication. The chapter has been reviewed and approved, and the code is illustrative, tested against fixtures.`,
       detail: `The code behind the guide's Step 6, Private applications, and Step 10, Privileged protocols. The design is Book 09, Chapter 05; the privileged groups behind the administrative apps are Building Privileged Access's. Checks GSA-PA-01 to -09. Lab 1 finds a connector group with one active connector, a Finance app published as a /16 on every port and assigned to a person, an RDP app without the phishing-resistant strength, and Quick Access still in use. Lab 2 publishes one app in a test tenant with the guide's requests, puts its policy on from a plan, and removes both.`,
       cite: ["gsa06-pa"],
       ref: "“In this chapter”",

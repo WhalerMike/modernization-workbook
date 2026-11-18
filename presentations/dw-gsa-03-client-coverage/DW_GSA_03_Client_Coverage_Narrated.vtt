@@ -35,488 +35,489 @@ so we won't repeat them;
 we'll build the measurement.
 
 8
-00:00:23.374 --> 00:00:25.889
-The chapter is a draft awaiting review,
+00:00:23.374 --> 00:00:26.147
+The chapter has been
+reviewed and approved,
 
 9
-00:00:25.889 --> 00:00:29.800
+00:00:26.147 --> 00:00:29.960
 and the code is illustrative,
 tested against fixtures.
 
 10
-00:00:33.550 --> 00:00:34.913
+00:00:33.710 --> 00:00:35.073
 Why measure the client?
 
 11
-00:00:34.913 --> 00:00:37.044
+00:00:35.073 --> 00:00:37.204
 Because the compliant network check,
 
 12
-00:00:37.044 --> 00:00:40.688
+00:00:37.204 --> 00:00:40.848
 the tenant restrictions and every
 private app assume it's there.
 
 13
-00:00:40.688 --> 00:00:43.921
+00:00:40.848 --> 00:00:44.081
 If the client is missing
 or off, users are blocked,
 
 14
-00:00:43.921 --> 00:00:46.750
+00:00:44.081 --> 00:00:46.910
 or traffic quietly goes around the policy.
 
 15
-00:00:46.750 --> 00:00:51.430
+00:00:46.910 --> 00:00:51.590
 So the goal: say what share of in-scope
 devices carry an active client;
 
 16
-00:00:51.430 --> 00:00:56.862
+00:00:51.590 --> 00:00:57.022
 for each pilot device, say whether it runs
 a current client with IPv4 preferred,
 
 17
-00:00:56.862 --> 00:01:00.874
+00:00:57.022 --> 00:01:01.034
 DNS over HTTPS off and a healthy
 connection; and from ring 2,
 
 18
-00:01:00.874 --> 00:01:04.300
+00:01:01.034 --> 00:01:04.460
 show the hardening values,
 with evidence for each.
 
 19
-00:01:04.300 --> 00:01:05.758
+00:01:04.460 --> 00:01:05.918
 It's for the developers,
 
 20
-00:01:05.758 --> 00:01:10.260
+00:01:05.918 --> 00:01:10.420
 the endpoint engineer who owns the
 Intune app, and help desk leads.
 
 21
-00:01:14.010 --> 00:01:17.838
+00:01:14.170 --> 00:01:17.998
 Learn's client page gives
 the prerequisites: a joined,
 
 22
-00:01:17.838 --> 00:01:23.840
+00:01:17.998 --> 00:01:24.000
 hybrid joined or registered device, though
 registered devices carry only Private
 
 23
-00:01:23.840 --> 00:01:29.147
+00:01:24.000 --> 00:01:29.307
 Access, in preview; an administrator to
 install; IPv4 only; and no secure DNS.
 
 24
-00:01:29.147 --> 00:01:33.295
+00:01:29.307 --> 00:01:33.455
 It gives the Intune values,
 the DNS-over-HTTPS profile,
 
 25
-00:01:33.295 --> 00:01:39.798
+00:01:33.455 --> 00:01:39.958
 four hardening registry values, and the
 advice to let users run unrestricted first.
 
 26
-00:01:39.798 --> 00:01:43.590
+00:01:39.958 --> 00:01:43.750
 For the fleet, the beta device
 usage summary counts total,
 
 27
-00:01:43.590 --> 00:01:47.947
+00:01:43.750 --> 00:01:48.107
 active and inactive devices, with
 Network Access Policy Read All.
 
 28
-00:01:47.947 --> 00:01:54.484
+00:01:48.107 --> 00:01:54.644
 Clients 1.8.239 or later use Universal
 Continuous Access Evaluation.
 
 29
-00:01:54.484 --> 00:01:58.966
+00:01:54.644 --> 00:01:59.126
 One difference: the summary's parameter
 table marks traffic type required,
 
 30
-00:01:58.966 --> 00:02:02.140
+00:01:59.126 --> 00:02:02.300
 while its own example and
 the guide leave it out.
 
 31
-00:02:05.890 --> 00:02:07.115
+00:02:06.050 --> 00:02:07.275
 What does it leave to you?
 
 32
-00:02:07.115 --> 00:02:10.099
+00:02:07.275 --> 00:02:10.259
 The Validate commands
 are typed on one device,
 
 33
-00:02:10.099 --> 00:02:12.768
+00:02:10.259 --> 00:02:12.928
 with no record to compare across devices,
 
 34
-00:02:12.768 --> 00:02:17.715
+00:02:12.928 --> 00:02:17.875
 so the kit's device script runs the same
 reads, read-only, and writes one record.
 
 35
-00:02:17.715 --> 00:02:21.660
+00:02:17.875 --> 00:02:21.820
 A device count means nothing without
 the number that should be there,
 
 36
-00:02:21.660 --> 00:02:24.290
+00:02:21.820 --> 00:02:24.450
 so coverage divides by
 Intune's in-scope count.
 
 37
-00:02:24.290 --> 00:02:27.814
+00:02:24.450 --> 00:02:27.974
 Hardening in the pilot hides who
 needs to turn the client off,
 
 38
-00:02:27.814 --> 00:02:30.915
+00:02:27.974 --> 00:02:31.075
 so it's information in the
 pilot and a check from ring 2.
 
 39
-00:02:30.915 --> 00:02:35.365
+00:02:31.075 --> 00:02:35.525
 An old client quietly loses a
 protection, so there's a version check.
 
 40
-00:02:35.365 --> 00:02:38.390
+00:02:35.525 --> 00:02:38.550
 And an exclusion without
 an owner never ends,
 
 41
-00:02:38.390 --> 00:02:41.780
+00:02:38.550 --> 00:02:41.940
 so exclusions live in
 the exception register.
 
 42
-00:02:45.530 --> 00:02:47.005
+00:02:45.690 --> 00:02:47.165
 Here are the seven checks.
 
 43
-00:02:47.005 --> 00:02:50.276
+00:02:47.165 --> 00:02:50.436
 Coverage: active devices
 over in-scope devices,
 
 44
-00:02:50.276 --> 00:02:54.805
+00:02:50.436 --> 00:02:54.965
 against the target, ninety-eight
 percent after ring 3 in the guide.
 
 45
-00:02:54.805 --> 00:02:58.185
+00:02:54.965 --> 00:02:58.345
 Each device's client is at
 least the minimum version,
 
 46
-00:02:58.185 --> 00:03:01.330
+00:02:58.345 --> 00:03:01.490
 here the one Universal
 access evaluation needs.
 
 47
-00:03:01.330 --> 00:03:05.580
+00:03:01.490 --> 00:03:05.740
 IPv4 is preferred, the value
 Learn's install script sets.
 
 48
-00:03:05.580 --> 00:03:09.805
+00:03:05.740 --> 00:03:09.965
 DNS over HTTPS is off in Edge and Chrome.
 
 49
-00:03:09.805 --> 00:03:11.043
+00:03:09.965 --> 00:03:11.203
 Health is connected.
 
 50
-00:03:11.043 --> 00:03:14.154
+00:03:11.203 --> 00:03:14.314
 The four hardening values
 are set, from ring 2.
 
 51
-00:03:14.154 --> 00:03:18.692
+00:03:14.314 --> 00:03:18.852
 And each client exclusion has an
 owner, an approver and an expiry.
 
 52
-00:03:18.692 --> 00:03:23.473
+00:03:18.852 --> 00:03:23.633
 One honest note: the browser policy
 value the script expects is Chromium's,
 
 53
-00:03:23.473 --> 00:03:27.760
+00:03:23.633 --> 00:03:27.920
 not stated on the Learn page read,
 and the research gaps say so.
 
 54
-00:03:31.510 --> 00:03:32.548
+00:03:31.670 --> 00:03:32.708
 Who owns this?
 
 55
-00:03:32.548 --> 00:03:35.777
+00:03:32.708 --> 00:03:35.937
 The endpoint engineer owns the Intune app,
 
 56
-00:03:35.777 --> 00:03:40.022
+00:03:35.937 --> 00:03:40.182
 the DNS-over-HTTPS profile,
 and the hardening from ring 2.
 
 57
-00:03:40.022 --> 00:03:44.809
+00:03:40.182 --> 00:03:44.969
 The help desk uses the client's collect
 logs and health check before escalating.
 
 58
-00:03:44.809 --> 00:03:47.147
+00:03:44.969 --> 00:03:47.307
 The policy owner approves exclusions,
 
 59
-00:03:47.147 --> 00:03:51.310
+00:03:47.307 --> 00:03:51.470
 and the security officer keeps the
 runs and the health check exports.
 
 60
-00:03:51.310 --> 00:03:55.985
+00:03:51.470 --> 00:03:56.145
 The fleet read needs only Network
 Access Policy Read All, delegated.
 
 61
-00:03:55.985 --> 00:04:00.760
+00:03:56.145 --> 00:04:00.920
 The device script runs as an administrator
 on a test device and only reads.
 
 62
-00:04:00.760 --> 00:04:05.960
+00:04:00.920 --> 00:04:06.120
 And the in-scope count comes from Intune,
 with its date, in the settings file.
 
 63
-00:04:09.710 --> 00:04:12.785
+00:04:09.870 --> 00:04:12.945
 Lab 1, in the kit's folder, no tenant.
 
 64
-00:04:12.785 --> 00:04:16.423
+00:04:12.945 --> 00:04:16.583
 Step 1 lists one read,
 the device usage summary.
 
 65
-00:04:16.423 --> 00:04:19.119
+00:04:16.583 --> 00:04:19.279
 Step 2 reads the pilot tenant's summary:
 
 66
-00:04:19.119 --> 00:04:22.573
+00:04:19.279 --> 00:04:22.733
 eighteen devices, fifteen
 active, three inactive.
 
 67
-00:04:22.573 --> 00:04:25.931
+00:04:22.733 --> 00:04:26.091
 Step 3 reads the four pilot
 devices' client records,
 
 68
-00:04:25.931 --> 00:04:28.010
+00:04:26.091 --> 00:04:28.170
 as the device script wrote them.
 
 69
-00:04:28.010 --> 00:04:34.348
+00:04:28.170 --> 00:04:34.508
 Pilot 3 runs an older client with
 DisabledComponents zero, so IPv6 is preferred;
 
 70
-00:04:34.348 --> 00:04:39.340
+00:04:34.508 --> 00:04:39.500
 pilot 4 is disconnected; and only
 pilot 1 has the hardening values.
 
 71
-00:04:43.090 --> 00:04:45.177
+00:04:43.250 --> 00:04:45.337
 Step 4 runs the client checks.
 
 72
-00:04:45.177 --> 00:04:48.290
+00:04:45.337 --> 00:04:48.450
 Coverage is eighty-three
 percent against ninety-eight.
 
 73
-00:04:48.290 --> 00:04:55.765
+00:04:48.450 --> 00:04:55.925
 Pilot 3 has an old client, IPv6 preferred,
 and DNS over HTTPS still on in Chrome.
 
 74
-00:04:55.765 --> 00:04:57.727
+00:04:55.925 --> 00:04:57.887
 Pilot 4 is disconnected.
 
 75
-00:04:57.727 --> 00:05:02.053
+00:04:57.887 --> 00:05:02.213
 The Hyper-V exclusion has an
 owner, an approver and an expiry.
 
 76
-00:05:02.053 --> 00:05:04.889
+00:05:02.213 --> 00:05:05.049
 Hardening is only
 information in the pilot.
 
 77
-00:05:04.889 --> 00:05:10.186
+00:05:05.049 --> 00:05:10.346
 Step 5 asks the same devices ring 2's
 question, where hardening is required:
 
 78
-00:05:10.186 --> 00:05:14.880
+00:05:10.346 --> 00:05:15.040
 three devices fail, because only
 pilot 1 has the remediation.
 
 79
-00:05:18.630 --> 00:05:21.130
+00:05:18.790 --> 00:05:21.290
 Step 6 reads the device script's header.
 
 80
-00:05:21.130 --> 00:05:26.013
+00:05:21.290 --> 00:05:26.173
 It runs on a Windows device, not on
 the lab laptop, as an administrator,
 
 81
-00:05:26.013 --> 00:05:30.808
+00:05:26.173 --> 00:05:30.968
 and only reads: the client's file
 version, the four hardening values,
 
 82
-00:05:30.808 --> 00:05:35.080
+00:05:30.968 --> 00:05:35.240
 the IPv4 preference and the
 browsers' DNS-over-HTTPS policy.
 
 83
-00:05:35.080 --> 00:05:39.160
+00:05:35.240 --> 00:05:39.320
 The health is read from the tray's
 health check by a person and passed in,
 
 84
-00:05:39.160 --> 00:05:40.918
+00:05:39.320 --> 00:05:41.078
 because the script can't see it.
 
 85
-00:05:40.918 --> 00:05:45.380
+00:05:41.078 --> 00:05:45.540
 Step 7 runs this chapter's tests:
 three passed, none failed.
 
 86
-00:05:45.380 --> 00:05:47.580
+00:05:45.540 --> 00:05:47.740
 Then delete the output folder.
 
 87
-00:05:51.330 --> 00:05:56.749
+00:05:51.490 --> 00:05:56.909
 Lab 2 needs one Windows 11 test device,
 joined to Entra ID and enrolled in Intune,
 
 88
-00:05:56.749 --> 00:06:00.418
+00:05:56.909 --> 00:06:00.578
 with the client installed
 from the guide's Intune app.
 
 89
-00:06:00.418 --> 00:06:02.613
+00:06:00.578 --> 00:06:02.773
 On the device, open the health check,
 
 90
-00:06:02.613 --> 00:06:05.567
+00:06:02.773 --> 00:06:05.727
 then run the device script
 as an administrator.
 
 91
-00:06:05.567 --> 00:06:08.755
+00:06:05.727 --> 00:06:08.915
 Run the guide's own reads
 beside it as a cross-check.
 
 92
-00:06:08.755 --> 00:06:12.255
+00:06:08.915 --> 00:06:12.415
 Add the record to your
 inputs, on agency storage.
 
 93
-00:06:12.255 --> 00:06:14.567
+00:06:12.415 --> 00:06:14.727
 Then read the fleet's count and check.
 
 94
-00:06:14.567 --> 00:06:18.853
+00:06:14.727 --> 00:06:19.013
 If the service reports no active
 devices while the client is connected,
 
 95
-00:06:18.853 --> 00:06:23.355
+00:06:19.013 --> 00:06:23.515
 record it: it may be the traffic type
 parameter Learn's table marks required.
 
 96
-00:06:23.355 --> 00:06:26.393
+00:06:23.515 --> 00:06:26.553
 Nothing changed, so
 backing out is signing out.
 
 97
-00:06:26.393 --> 00:06:28.760
+00:06:26.553 --> 00:06:28.920
 The authors haven't run this lab.
 
 98
-00:06:32.510 --> 00:06:35.007
+00:06:32.670 --> 00:06:35.167
 Coverage against Intune's count supports
 
 99
-00:06:35.007 --> 00:06:37.860
+00:06:35.167 --> 00:06:38.020
 system monitoring and
 the component inventory.
 
 100
-00:06:37.860 --> 00:06:41.710
+00:06:38.020 --> 00:06:41.870
 Each device's configuration
 supports configuration settings.
 
 101
-00:06:41.710 --> 00:06:44.938
+00:06:41.870 --> 00:06:45.098
 Hardening from ring 2
 supports least functionality,
 
 102
-00:06:44.938 --> 00:06:47.285
+00:06:45.098 --> 00:06:47.445
 and governed exclusions support both.
 
 103
-00:06:47.285 --> 00:06:50.513
+00:06:47.445 --> 00:06:50.673
 The indicators are FedRAMP's,
 mapped by the program,
 
 104
-00:06:50.513 --> 00:06:52.973
+00:06:50.673 --> 00:06:53.133
 and the assessor decides the controls.
 
 105
-00:06:52.973 --> 00:06:58.449
+00:06:53.133 --> 00:06:58.609
 The dangers: hardening in the pilot, which
 hides who needs to turn the client off;
 
 106
-00:06:58.449 --> 00:07:04.348
+00:06:58.609 --> 00:07:04.508
 IPv6 preferred or DNS over HTTPS on,
 which lets traffic go around the client;
 
 107
-00:07:04.348 --> 00:07:06.960
+00:07:04.508 --> 00:07:07.120
 and a raw count mistaken for coverage.
 
 108
-00:07:06.960 --> 00:07:11.032
+00:07:07.120 --> 00:07:11.192
 You're done when the count comes from
 Intune with its date, every pilot
 
 109
-00:07:11.032 --> 00:07:15.247
+00:07:11.192 --> 00:07:15.407
 device has a record, and coverage
 meets the target before the ring exits.
 
 110
-00:07:15.247 --> 00:07:19.570
+00:07:15.407 --> 00:07:19.730
 Next, Chapter 4: Microsoft
 traffic, and change plans.

@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 06: Private Applications and Administrative Paths
 
-Welcome back to Building Global Secure Access. This is Chapter 6: private applications and administrative paths. A VPN gives a device an address range. Private Access gives a group one application, on its ports, behind its own Conditional Access. The code checks that each app is that narrow, and that administrative paths ask for phishing-resistant authentication. The chapter is a draft awaiting review, and the code is illustrative, tested against fixtures.
+Welcome back to Building Global Secure Access. This is Chapter 6: private applications and administrative paths. A VPN gives a device an address range. Private Access gives a group one application, on its ports, behind its own Conditional Access. The code checks that each app is that narrow, and that administrative paths ask for phishing-resistant authentication. The chapter has been reviewed and approved, and the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why one application, not a range
 

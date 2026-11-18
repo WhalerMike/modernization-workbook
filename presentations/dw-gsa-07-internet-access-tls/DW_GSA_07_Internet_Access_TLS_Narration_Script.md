@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 07: Internet Access, QUIC and TLS Inspection
 
-Welcome back to Building Global Secure Access. This is Chapter 7: Internet Access, QUIC, and TLS inspection. Filtering the web by identity is the easy part. The hard parts are the bypasses that never expire, the protocol the service doesn't carry, and a certificate authority that could impersonate every site. The code watches all three. This is also the chapter where GCC availability bites. The chapter is a draft awaiting review, and the code is illustrative, tested against fixtures.
+Welcome back to Building Global Secure Access. This is Chapter 7: Internet Access, QUIC, and TLS inspection. Filtering the web by identity is the easy part. The hard parts are the bypasses that never expire, the protocol the service doesn't carry, and a certificate authority that could impersonate every site. The code watches all three. This is also the chapter where GCC availability bites. The chapter has been reviewed and approved, and the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why bypasses, QUIC and the CA
 

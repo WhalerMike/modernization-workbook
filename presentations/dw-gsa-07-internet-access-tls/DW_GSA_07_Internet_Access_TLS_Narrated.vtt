@@ -35,495 +35,496 @@ This is also the chapter
 where GCC availability bites.
 
 8
-00:00:26.300 --> 00:00:28.814
-The chapter is a draft awaiting review,
+00:00:26.300 --> 00:00:29.072
+The chapter has been
+reviewed and approved,
 
 9
-00:00:28.814 --> 00:00:32.700
+00:00:29.072 --> 00:00:32.890
 and the code is illustrative,
 tested against fixtures.
 
 10
-00:00:36.450 --> 00:00:37.525
+00:00:36.640 --> 00:00:37.715
 Why these three?
 
 11
-00:00:37.525 --> 00:00:41.725
+00:00:37.715 --> 00:00:41.915
 A bypass with no end date is a
 permanent hole in the filter.
 
 12
-00:00:41.725 --> 00:00:43.851
+00:00:41.915 --> 00:00:44.041
 QUIC isn't forwarded end to end,
 
 13
-00:00:43.851 --> 00:00:47.762
+00:00:44.041 --> 00:00:47.952
 so a browser could carry web
 traffic around the service.
 
 14
-00:00:47.762 --> 00:00:51.717
+00:00:47.952 --> 00:00:51.907
 And a TLS inspection certificate
 authority that's compromised
 
 15
-00:00:51.717 --> 00:00:54.925
+00:00:51.907 --> 00:00:55.115
 could impersonate any site
 to every managed device.
 
 16
-00:00:54.925 --> 00:00:59.572
+00:00:55.115 --> 00:00:59.762
 So the goal: show that the ring's web
 traffic is filtered by an identity-aware
 
 17
-00:00:59.572 --> 00:01:03.019
+00:00:59.762 --> 00:01:03.209
 policy, that every exception
 has an owner and an end date,
 
 18
-00:01:03.019 --> 00:01:07.966
+00:01:03.209 --> 00:01:08.156
 that QUIC can't slip past it, and that
 inspection runs from a dedicated authority,
 
 19
-00:01:07.966 --> 00:01:12.890
+00:01:08.156 --> 00:01:13.080
 within an approved privacy scope,
 breaking under one percent of sessions.
 
 20
-00:01:16.640 --> 00:01:21.621
+00:01:16.830 --> 00:01:21.811
 Learn's Internet Access tutorial creates
 a filtering policy, a security profile,
 
 21
-00:01:21.621 --> 00:01:26.527
+00:01:21.811 --> 00:01:26.717
 the link between them, and a Conditional
 Access policy that assigns the profile.
 
 22
-00:01:26.527 --> 00:01:31.890
+00:01:26.717 --> 00:01:32.080
 Its limits are generous, but Internet
 Access doesn't forward QUIC end to end.
 
 23
-00:01:31.890 --> 00:01:35.991
+00:01:32.080 --> 00:01:36.181
 Learn's newer pages block QUIC
 with a cloud firewall rule,
 
 24
-00:01:35.991 --> 00:01:40.353
+00:01:36.181 --> 00:01:40.543
 which is preview; its TLS page
 uses Windows Firewall instead.
 
 25
-00:01:40.353 --> 00:01:44.802
+00:01:40.543 --> 00:01:44.992
 Learn asks for an expiration or
 review date on allow-list entries.
 
 26
-00:01:44.802 --> 00:01:49.804
+00:01:44.992 --> 00:01:49.994
 The agency's inspection intermediate
 needs specific extensions and at least
 
 27
-00:01:49.804 --> 00:01:54.652
+00:01:49.994 --> 00:01:54.842
 six months' validity, only one is active,
 and renewal starts ninety days ahead.
 
 28
-00:01:54.652 --> 00:01:58.852
+00:01:54.842 --> 00:01:59.042
 Learn suggests a dedicated
 authority, not the production PKI,
 
 29
-00:01:58.852 --> 00:02:03.400
+00:01:59.042 --> 00:02:03.590
 and Microsoft treats failures
 above one percent as systemic.
 
 30
-00:02:07.150 --> 00:02:09.313
+00:02:07.340 --> 00:02:09.503
 Here's where GCC bites.
 
 31
-00:02:09.313 --> 00:02:13.103
+00:02:09.503 --> 00:02:13.293
 In the guide's table, web
 filtering, threat intelligence
 
 32
-00:02:13.103 --> 00:02:17.224
+00:02:13.293 --> 00:02:17.414
 and TLS inspection rest on
 Learn's product-wide GCC sentence.
 
 33
-00:02:17.224 --> 00:02:21.972
+00:02:17.414 --> 00:02:22.162
 But the cloud firewall for clients,
 the Explicit Forward Proxy and
 
 34
-00:02:21.972 --> 00:02:27.150
+00:02:22.162 --> 00:02:27.340
 HTTP method filtering are previews
 whose GCC availability isn't stated.
 
 35
-00:02:27.150 --> 00:02:28.862
+00:02:27.340 --> 00:02:29.052
 So the kit doesn't assume them.
 
 36
-00:02:28.862 --> 00:02:32.025
+00:02:29.052 --> 00:02:32.215
 For QUIC, it expects the
 guide's interim path:
 
 37
-00:02:32.025 --> 00:02:37.121
+00:02:32.215 --> 00:02:37.311
 an Intune-delivered Windows Firewall
 rule blocking outbound UDP 443,
 
 38
-00:02:37.121 --> 00:02:41.162
+00:02:37.311 --> 00:02:41.352
 piloted first and recorded
 in the architecture record.
 
 39
-00:02:41.162 --> 00:02:44.670
+00:02:41.352 --> 00:02:44.860
 The QUIC check passes only
 when that block is recorded,
 
 40
-00:02:44.670 --> 00:02:49.090
+00:02:44.860 --> 00:02:49.280
 and a decision that leans on the
 preview fails Chapter 1's check.
 
 41
-00:02:52.840 --> 00:02:53.890
+00:02:53.030 --> 00:02:54.080
 Twelve checks.
 
 42
-00:02:53.890 --> 00:02:59.557
+00:02:54.080 --> 00:02:59.747
 For filtering: each Internet Access policy
 links an existing profile and excludes
 
 43
-00:02:59.557 --> 00:03:05.471
+00:02:59.747 --> 00:03:05.661
 emergency access; the acceptable-use categories
 and threat intelligence are blocked;
 
 44
-00:03:05.471 --> 00:03:08.592
+00:03:05.661 --> 00:03:08.782
 every bypass is owned,
 approved and unexpired;
 
 45
-00:03:08.592 --> 00:03:13.602
+00:03:08.782 --> 00:03:13.792
 QUIC is blocked by the interim path;
 and the tenant is inside Learn's limits.
 
 46
-00:03:13.602 --> 00:03:18.928
+00:03:13.792 --> 00:03:19.118
 For TLS: more than ninety days left on a
 certificate issued for at least six months;
 
 47
-00:03:18.928 --> 00:03:22.187
+00:03:19.118 --> 00:03:22.377
 an issuer that isn't an
 authentication authority;
 
 48
-00:03:22.187 --> 00:03:27.353
+00:03:22.377 --> 00:03:27.543
 never the baseline profile before ring
 3; the privacy approval and user notice
 
 49
-00:03:27.353 --> 00:03:32.202
+00:03:27.543 --> 00:03:32.392
 recorded; every custom bypass registered;
 and failures under one percent.
 
 50
-00:03:32.202 --> 00:03:35.966
+00:03:32.392 --> 00:03:36.156
 One note: no Graph read for
 TLS inspection was verified,
 
 51
-00:03:35.966 --> 00:03:38.740
+00:03:36.156 --> 00:03:38.930
 so its record comes from the portal.
 
 52
-00:03:42.490 --> 00:03:43.540
+00:03:42.680 --> 00:03:43.730
 Who's involved?
 
 53
-00:03:43.540 --> 00:03:47.358
+00:03:43.730 --> 00:03:47.548
 The policy owner approves
 categories and every bypass,
 
 54
-00:03:47.358 --> 00:03:49.765
+00:03:47.548 --> 00:03:49.955
 and reviews bypasses each quarter.
 
 55
-00:03:49.765 --> 00:03:53.703
+00:03:49.955 --> 00:03:53.893
 The privacy officer approves the
 inspection scope before it starts.
 
 56
-00:03:53.703 --> 00:03:57.240
+00:03:53.893 --> 00:03:57.430
 The PKI team runs the
 dedicated issuing authority.
 
 57
-00:03:57.240 --> 00:04:02.165
+00:03:57.430 --> 00:04:02.355
 The platform owner applies the changes and
 renews the certificate ninety days ahead.
 
 58
-00:04:02.165 --> 00:04:06.840
+00:04:02.355 --> 00:04:07.030
 And the security monitor watches the failure
 rate and the top blocked destinations.
 
 59
-00:04:06.840 --> 00:04:11.469
+00:04:07.030 --> 00:04:11.659
 For permissions: Network Access read
 and write for the profiles and policies,
 
 60
-00:04:11.469 --> 00:04:15.663
+00:04:11.659 --> 00:04:15.853
 Policy Read Write Conditional Access
 for the Internet Access policy,
 
 61
-00:04:15.663 --> 00:04:19.340
+00:04:15.853 --> 00:04:19.530
 and two administrator roles
 activated just for the lab.
 
 62
-00:04:23.090 --> 00:04:25.426
+00:04:23.280 --> 00:04:25.616
 Lab 1, after listing the reads,
 
 63
-00:04:25.426 --> 00:04:29.902
+00:04:25.616 --> 00:04:30.092
 reading the GCC rows for Step
 5, and collecting the pilot.
 
 64
-00:04:29.902 --> 00:04:32.614
+00:04:30.092 --> 00:04:32.804
 Step 4 runs the Internet Access checks.
 
 65
-00:04:32.614 --> 00:04:36.202
+00:04:32.804 --> 00:04:36.392
 The profile, the categories,
 threat intelligence,
 
 66
-00:04:36.202 --> 00:04:39.527
+00:04:36.392 --> 00:04:39.717
 the QUIC interim block
 and the limits all pass.
 
 67
-00:04:39.527 --> 00:04:45.840
+00:04:39.717 --> 00:04:46.030
 Two bypasses fail: E X 3 expired on
 November first, and E X 4 has no approver.
 
 68
-00:04:45.840 --> 00:04:50.082
+00:04:46.030 --> 00:04:50.272
 Step 5 reads the bypass rows
 of the exception register,
 
 69
-00:04:50.082 --> 00:04:55.430
+00:04:50.272 --> 00:04:55.620
 the agency's own record: target,
 reason, owner, approver and expiry.
 
 70
-00:04:59.180 --> 00:05:01.618
+00:04:59.370 --> 00:05:01.808
 Step 6 runs the TLS checks.
 
 71
-00:05:01.618 --> 00:05:02.629
+00:05:01.808 --> 00:05:02.819
 Three fail.
 
 72
-00:05:02.629 --> 00:05:07.871
+00:05:02.819 --> 00:05:08.061
 The certificate has seventy-four days
 left, inside the ninety-day renewal window,
 
 73
-00:05:07.871 --> 00:05:12.017
+00:05:08.061 --> 00:05:12.207
 and it was issued for only ninety
 days, short of Learn's six months.
 
 74
-00:05:12.017 --> 00:05:16.467
+00:05:12.207 --> 00:05:16.657
 The pinned payroll site's
 bypass is E X 3, which expired.
 
 75
-00:05:16.467 --> 00:05:20.980
+00:05:16.657 --> 00:05:21.170
 And one and a half percent of sessions
 failed, above the one percent threshold.
 
 76
-00:05:20.980 --> 00:05:24.652
+00:05:21.170 --> 00:05:24.842
 Three pass: the issuer is a
 dedicated inspection authority,
 
 77
-00:05:24.652 --> 00:05:29.297
+00:05:24.842 --> 00:05:29.487
 not the authentication one; the policy
 is linked only to the pilot's profile;
 
 78
-00:05:29.297 --> 00:05:34.450
+00:05:29.487 --> 00:05:34.640
 and the privacy approval and the user
 notice came before inspection started.
 
 79
-00:05:38.200 --> 00:05:43.041
+00:05:38.390 --> 00:05:43.231
 Step 7 checks both areas two weeks
 later, after the certificate was rolled,
 
 80
-00:05:43.041 --> 00:05:47.962
+00:05:43.231 --> 00:05:48.152
 the bypasses renewed and approved,
 and the failing destinations bypassed.
 
 81
-00:05:47.962 --> 00:05:51.787
+00:05:48.152 --> 00:05:51.977
 The certificate has a hundred and eighty
 days left on two hundred and ten.
 
 82
-00:05:51.787 --> 00:05:54.887
+00:05:51.977 --> 00:05:55.077
 Both bypasses have an
 approver and a future date.
 
 83
-00:05:54.887 --> 00:05:56.963
+00:05:55.077 --> 00:05:57.153
 The failure share is half a percent.
 
 84
-00:05:56.963 --> 00:05:58.700
+00:05:57.153 --> 00:05:58.890
 All thirteen checks pass.
 
 85
-00:05:58.700 --> 00:06:03.150
+00:05:58.890 --> 00:06:03.340
 Step 8 runs this chapter's
 tests: six passed, none failed.
 
 86
-00:06:03.150 --> 00:06:05.350
+00:06:03.340 --> 00:06:05.540
 Then delete the output folder.
 
 87
-00:06:09.100 --> 00:06:12.592
+00:06:09.290 --> 00:06:12.782
 Lab 2 uses a test tenant with
 Internet Access licenses,
 
 88
-00:06:12.592 --> 00:06:17.325
+00:06:12.782 --> 00:06:17.515
 the Internet profile on for a pilot
 group, and a test device with the client.
 
 89
-00:06:17.325 --> 00:06:19.417
+00:06:17.515 --> 00:06:19.607
 It doesn't enable TLS inspection,
 
 90
-00:06:19.417 --> 00:06:23.987
+00:06:19.607 --> 00:06:24.177
 which needs a dedicated test authority
 and the privacy officer's scope.
 
 91
-00:06:23.987 --> 00:06:28.501
+00:06:24.177 --> 00:06:28.691
 Create the filtering policy and the
 pilot profile with the guide's requests.
 
 92
-00:06:28.501 --> 00:06:32.724
+00:06:28.691 --> 00:06:32.914
 Plan and apply the Internet Access
 policy, on for the pilot group only,
 
 93
-00:06:32.724 --> 00:06:37.688
+00:06:32.914 --> 00:06:37.878
 as the guide does, because Learn doesn't
 say whether report-only applies a profile.
 
 94
-00:06:37.688 --> 00:06:41.362
+00:06:37.878 --> 00:06:41.552
 Block QUIC on the device with
 Learn's firewall command.
 
 95
-00:06:41.362 --> 00:06:45.187
+00:06:41.552 --> 00:06:45.377
 Then browse to a blocked category
 and expect the block page.
 
 96
-00:06:45.187 --> 00:06:46.750
+00:06:45.377 --> 00:06:46.940
 Back out newest first.
 
 97
-00:06:46.750 --> 00:06:49.120
+00:06:46.940 --> 00:06:49.310
 The authors haven't run this lab.
 
 98
-00:06:52.870 --> 00:06:56.360
+00:06:53.060 --> 00:06:56.550
 Identity-aware filtering
 supports boundary protection,
 
 99
-00:06:56.360 --> 00:06:59.195
+00:06:56.550 --> 00:06:59.385
 deny by default, and
 malicious code protection.
 
 100
-00:06:59.195 --> 00:07:03.757
+00:06:59.385 --> 00:07:03.947
 Governed bypasses support deny by
 default and configuration settings.
 
 101
-00:07:03.757 --> 00:07:06.870
+00:07:03.947 --> 00:07:07.060
 The QUIC block supports
 boundary protection.
 
 102
-00:07:06.870 --> 00:07:10.223
+00:07:07.060 --> 00:07:10.413
 And inspection from a
 dedicated, renewed authority,
 
 103
-00:07:10.223 --> 00:07:15.136
+00:07:10.413 --> 00:07:15.326
 within an approved privacy scope,
 supports transmission confidentiality,
 
 104
-00:07:15.136 --> 00:07:18.333
+00:07:15.326 --> 00:07:18.523
 key management, PKI
 certificates and monitoring.
 
 105
-00:07:18.333 --> 00:07:23.244
+00:07:18.523 --> 00:07:23.434
 The guide reads these steps as TIC
 3.0's remote user pattern to the web.
 
 106
-00:07:23.244 --> 00:07:25.408
+00:07:23.434 --> 00:07:25.598
 The assessor decides the controls.
 
 107
-00:07:25.408 --> 00:07:31.129
+00:07:25.598 --> 00:07:31.319
 The dangers: assuming a preview firewall
 exists in GCC, reusing the authentication
 
 108
-00:07:31.129 --> 00:07:36.270
+00:07:31.319 --> 00:07:36.460
 authority, and letting the certificate
 expire, which stops all inspection.
 
 109
-00:07:36.270 --> 00:07:42.033
+00:07:36.460 --> 00:07:42.223
 You're done when every bypass is governed,
 QUIC is blocked, and privacy came first.
 
 110
-00:07:42.033 --> 00:07:43.720
+00:07:42.223 --> 00:07:43.910
 Next, Chapter 8.

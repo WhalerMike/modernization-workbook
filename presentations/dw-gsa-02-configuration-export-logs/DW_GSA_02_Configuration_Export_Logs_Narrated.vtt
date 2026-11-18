@@ -35,494 +35,495 @@ its manifest and five baseline
 checks, and walk two labs.
 
 8
-00:00:25.762 --> 00:00:28.276
-The chapter is a draft awaiting review,
+00:00:25.762 --> 00:00:28.534
+The chapter has been
+reviewed and approved,
 
 9
-00:00:28.276 --> 00:00:32.170
+00:00:28.534 --> 00:00:32.360
 and the code is illustrative,
 tested against fixtures.
 
 10
-00:00:35.920 --> 00:00:37.232
+00:00:36.110 --> 00:00:37.422
 Why this chapter, now?
 
 11
-00:00:37.232 --> 00:00:40.332
+00:00:37.422 --> 00:00:40.522
 The guide's run order is
 decision, architecture,
 
 12
-00:00:40.332 --> 00:00:42.795
+00:00:40.522 --> 00:00:42.985
 then logging, and only then the client.
 
 13
-00:00:42.795 --> 00:00:45.886
+00:00:42.985 --> 00:00:46.076
 So the logs exist before
 anything is enforced,
 
 14
-00:00:45.886 --> 00:00:49.220
+00:00:46.076 --> 00:00:49.410
 and every later Validate
 step has a record to read.
 
 15
-00:00:49.220 --> 00:00:54.182
+00:00:49.410 --> 00:00:54.372
 The goal: export the tenant's configuration
 in one read-only run whose files an
 
 16
-00:00:54.182 --> 00:00:59.610
+00:00:54.372 --> 00:00:59.800
 assessor can re-hash; keep the architecture
 record that names every connector group
 
 17
-00:00:59.610 --> 00:01:02.246
+00:00:59.800 --> 00:01:02.436
 and DNS suffix; and prove the network logs
 
 18
-00:01:02.246 --> 00:01:05.270
+00:01:02.436 --> 00:01:05.460
 reach the workspace before
 anyone is in a pilot.
 
 19
-00:01:05.270 --> 00:01:09.740
+00:01:05.460 --> 00:01:09.930
 It's for the developers, the platform
 owner who keeps the architecture record,
 
 20
-00:01:09.740 --> 00:01:12.890
+00:01:09.930 --> 00:01:13.080
 and the security monitor
 who owns the workspace.
 
 21
-00:01:16.640 --> 00:01:21.601
+00:01:16.830 --> 00:01:21.791
 Learn's operations guidance is to back
 the configuration up as Graph JSON,
 
 22
-00:01:21.601 --> 00:01:25.853
+00:01:21.791 --> 00:01:26.043
 weekly and before every change, and
 the guide's export is that loop.
 
 23
-00:01:25.853 --> 00:01:27.614
+00:01:26.043 --> 00:01:27.804
 Each read has a Learn page.
 
 24
-00:01:27.614 --> 00:01:31.452
+00:01:27.804 --> 00:01:31.642
 Profiles, signaling and tagging
 need Network Access Read All,
 
 25
-00:01:31.452 --> 00:01:35.815
+00:01:31.642 --> 00:01:36.005
 and Global Reader or the Global Secure
 Access Log Reader can read them.
 
 26
-00:01:35.815 --> 00:01:40.515
+00:01:36.005 --> 00:01:40.705
 Named locations and the tenant
 restrictions default need Policy Read All.
 
 27
-00:01:40.515 --> 00:01:45.465
+00:01:40.705 --> 00:01:45.655
 Connector groups and their members are
 the surprise: Learn names only Directory
 
 28
-00:01:45.465 --> 00:01:49.603
+00:01:45.655 --> 00:01:49.793
 Read Write All, delegated, so there's
 no read-only permission for them.
 
 29
-00:01:49.603 --> 00:01:53.215
+00:01:49.793 --> 00:01:53.405
 A connector reports active or
 inactive, and its version.
 
 30
-00:01:53.215 --> 00:01:58.240
+00:01:53.405 --> 00:01:58.430
 And traffic logs stay thirty days, longer
 only through a diagnostic setting.
 
 31
-00:02:01.990 --> 00:02:03.215
+00:02:02.180 --> 00:02:03.405
 What does it leave to you?
 
 32
-00:02:03.215 --> 00:02:05.889
+00:02:03.405 --> 00:02:06.079
 The guide's export covers nine addresses,
 
 33
-00:02:05.889 --> 00:02:10.372
+00:02:06.079 --> 00:02:10.562
 but later chapters also need connector
 members, Private Access apps,
 
 34
-00:02:10.372 --> 00:02:14.540
+00:02:10.562 --> 00:02:14.730
 licenses and the logs, so the kit
 has one collector for every read.
 
 35
-00:02:14.540 --> 00:02:17.341
+00:02:14.730 --> 00:02:17.531
 The guide's hash list is
 something nobody checks,
 
 36
-00:02:17.341 --> 00:02:21.753
+00:02:17.531 --> 00:02:21.943
 so the kit's manifest is checked every
 time a later step reads the collection.
 
 37
-00:02:21.753 --> 00:02:26.023
+00:02:21.943 --> 00:02:26.213
 The connector reads need a write
 permission, so the call list says so,
 
 38
-00:02:26.023 --> 00:02:29.302
+00:02:26.213 --> 00:02:29.492
 the reader only sends GET,
 and the lab signs out after.
 
 39
-00:02:29.302 --> 00:02:32.779
+00:02:29.492 --> 00:02:32.969
 A diagnostic setting created
 by hand can lose a category,
 
 40
-00:02:32.779 --> 00:02:36.403
+00:02:32.969 --> 00:02:36.593
 and an architecture record in
 prose drifts from the tenant.
 
 41
-00:02:36.403 --> 00:02:38.120
+00:02:36.593 --> 00:02:38.310
 The kit checks both.
 
 42
-00:02:41.870 --> 00:02:42.870
+00:02:42.060 --> 00:02:43.060
 Here's the code.
 
 43
-00:02:42.870 --> 00:02:46.573
+00:02:43.060 --> 00:02:46.763
 The collector reads every declared
 call for the areas you name,
 
 44
-00:02:46.573 --> 00:02:51.201
+00:02:46.763 --> 00:02:51.391
 all of them by default: seventeen calls,
 twenty-four reads in the fixture tenant,
 
 45
-00:02:51.201 --> 00:02:53.835
+00:02:51.391 --> 00:02:54.025
 because connector
 members are read once per
 
 46
-00:02:53.835 --> 00:02:56.470
+00:02:54.025 --> 00:02:56.660
 group and the guide's
 seven queries one by one.
 
 47
-00:02:56.470 --> 00:02:59.246
+00:02:56.660 --> 00:02:59.436
 It writes each read, one collection file,
 
 48
-00:02:59.246 --> 00:03:03.620
+00:02:59.436 --> 00:03:03.810
 and a manifest with each call's
 permission and every file's hash.
 
 49
-00:03:03.620 --> 00:03:06.837
+00:03:03.810 --> 00:03:07.027
 Two reads aren't verified
 against a Learn page yet,
 
 50
-00:03:06.837 --> 00:03:09.583
+00:03:07.027 --> 00:03:09.773
 and live runs refuse
 them unless you say so.
 
 51
-00:03:09.583 --> 00:03:14.990
+00:03:09.773 --> 00:03:15.180
 Then five baseline checks: each connector
 group in the architecture record with two
 
 52
-00:03:14.990 --> 00:03:19.935
+00:03:15.180 --> 00:03:20.125
 hosts, the forest in the DNS suffixes,
 the workspace named, the export complete,
 
 53
-00:03:19.935 --> 00:03:24.460
+00:03:20.125 --> 00:03:24.650
 and the diagnostic setting sending
 all four network categories.
 
 54
-00:03:28.210 --> 00:03:29.135
+00:03:28.400 --> 00:03:29.325
 Who does what?
 
 55
-00:03:29.135 --> 00:03:31.709
+00:03:29.325 --> 00:03:31.899
 The platform owner keeps the architecture
 
 56
-00:03:31.709 --> 00:03:34.497
+00:03:31.899 --> 00:03:34.687
 record and runs the export
 before every change.
 
 57
-00:03:34.497 --> 00:03:38.448
+00:03:34.687 --> 00:03:38.638
 The security monitor owns the
 workspace and the diagnostic setting.
 
 58
-00:03:38.448 --> 00:03:41.545
+00:03:38.638 --> 00:03:41.735
 The security officer
 keeps the export folders,
 
 59
-00:03:41.545 --> 00:03:44.484
+00:03:41.735 --> 00:03:44.674
 in the evidence store,
 not on a personal drive.
 
 60
-00:03:44.484 --> 00:03:49.381
+00:03:44.674 --> 00:03:49.571
 The reader holds Network Access Read All
 and Policy Read All for the configuration,
 
 61
-00:03:49.381 --> 00:03:52.219
+00:03:49.571 --> 00:03:52.409
 and Directory Read Write
 All for the connectors,
 
 62
-00:03:52.219 --> 00:03:54.560
+00:03:52.409 --> 00:03:54.750
 so the lab signs out right after the read.
 
 63
-00:03:54.560 --> 00:03:58.815
+00:03:54.750 --> 00:03:59.005
 Creating the diagnostic setting takes
 Security Administrator, and roles are
 
 64
-00:03:58.815 --> 00:04:03.500
+00:03:59.005 --> 00:04:03.690
 activated through privileged identity
 management for the change window only.
 
 65
-00:04:07.250 --> 00:04:10.562
+00:04:07.440 --> 00:04:10.752
 Lab 1, again in the kit's
 folder with no tenant.
 
 66
-00:04:10.562 --> 00:04:13.100
+00:04:10.752 --> 00:04:13.290
 Step 1 lists what the baseline reads.
 
 67
-00:04:13.100 --> 00:04:16.843
+00:04:13.290 --> 00:04:17.033
 Step 2 collects the whole
 pilot tenant: seventeen calls,
 
 68
-00:04:16.843 --> 00:04:21.887
+00:04:17.033 --> 00:04:22.077
 each with its least-privileged permission
 and its beta and verified flags.
 
 69
-00:04:21.887 --> 00:04:24.990
+00:04:22.077 --> 00:04:25.180
 The Private Access apps
 and the tenant restrictions
 
 70
-00:04:24.990 --> 00:04:28.375
+00:04:25.180 --> 00:04:28.565
 partners are the two not yet
 verified against a Learn page.
 
 71
-00:04:28.375 --> 00:04:31.675
+00:04:28.565 --> 00:04:31.865
 Twenty-four reads in all,
 eighteen files hashed.
 
 72
-00:04:31.675 --> 00:04:37.210
+00:04:31.865 --> 00:04:37.400
 Step 3 checks the folder against its
 manifest: all eighteen files match.
 
 73
-00:04:40.960 --> 00:04:43.348
+00:04:41.150 --> 00:04:43.538
 Step 4 runs the baseline checks.
 
 74
-00:04:43.348 --> 00:04:48.200
+00:04:43.538 --> 00:04:48.390
 Both connector groups are in the
 architecture record with two hosts each,
 
 75
-00:04:48.200 --> 00:04:52.098
+00:04:48.390 --> 00:04:52.288
 the forest is in the DNS suffixes,
 and the workspace is named.
 
 76
-00:04:52.098 --> 00:04:56.885
+00:04:52.288 --> 00:04:57.075
 One failure: the diagnostic setting doesn't
 send the remote network health logs.
 
 77
-00:04:56.885 --> 00:05:01.115
+00:04:57.075 --> 00:05:01.305
 Step 5 reads the setting's categories
 as the collector saved them:
 
 78
-00:05:01.115 --> 00:05:03.622
+00:05:01.305 --> 00:05:03.812
 three on, and remote network health off.
 
 79
-00:05:03.622 --> 00:05:07.123
+00:05:03.812 --> 00:05:07.313
 No branch is on a remote
 network yet, but when one is,
 
 80
-00:05:07.123 --> 00:05:10.560
+00:05:07.313 --> 00:05:10.750
 its health would never
 reach the workspace.
 
 81
-00:05:14.310 --> 00:05:16.635
+00:05:14.500 --> 00:05:16.825
 Step 6 is the one to remember.
 
 82
-00:05:16.635 --> 00:05:21.010
+00:05:16.825 --> 00:05:21.200
 Copy the collection, add one space
 to one file, and try to read it.
 
 83
-00:05:21.010 --> 00:05:25.622
+00:05:21.200 --> 00:05:25.812
 The read is refused: the licenses
 file changed since its manifest.
 
 84
-00:05:25.622 --> 00:05:29.662
+00:05:25.812 --> 00:05:29.852
 Every later chapter reads the
 collection through that same check,
 
 85
-00:05:29.662 --> 00:05:32.673
+00:05:29.852 --> 00:05:32.863
 so an edited export can't
 quietly become evidence.
 
 86
-00:05:32.673 --> 00:05:37.198
+00:05:32.863 --> 00:05:37.388
 Step 7 runs this chapter's tests:
 eight passed, none failed.
 
 87
-00:05:37.198 --> 00:05:39.400
+00:05:37.388 --> 00:05:39.590
 Then delete the output folder.
 
 88
-00:05:43.150 --> 00:05:46.767
+00:05:43.340 --> 00:05:46.957
 Lab 2 uses a test tenant and
 an Azure test subscription
 
 89
-00:05:46.767 --> 00:05:50.062
+00:05:46.957 --> 00:05:50.252
 with a Log Analytics
 workspace, never production.
 
 90
-00:05:50.062 --> 00:05:54.171
+00:05:50.252 --> 00:05:54.361
 Turn the network logs on first,
 with the guide's own command:
 
 91
-00:05:54.171 --> 00:05:57.338
+00:05:54.361 --> 00:05:57.528
 one diagnostic setting,
 all four categories.
 
 92
-00:05:57.338 --> 00:06:01.926
+00:05:57.528 --> 00:06:02.116
 Then sign in to Graph as a person with
 the baseline's permissions and collect.
 
 93
-00:06:01.926 --> 00:06:04.441
+00:06:02.116 --> 00:06:04.631
 The two unverified reads
 need an extra switch,
 
 94
-00:06:04.441 --> 00:06:08.150
+00:06:04.631 --> 00:06:08.340
 and you compare their results with
 the portal before trusting them.
 
 95
-00:06:08.150 --> 00:06:11.188
+00:06:08.340 --> 00:06:11.378
 The logging check passes
 once the setting exists.
 
 96
-00:06:11.188 --> 00:06:14.760
+00:06:11.378 --> 00:06:14.950
 Back it out by signing out first,
 because the session can write,
 
 97
-00:06:14.760 --> 00:06:18.474
+00:06:14.950 --> 00:06:18.664
 and delete the setting only if this
 test tenant shouldn't keep it.
 
 98
-00:06:18.474 --> 00:06:20.840
+00:06:18.664 --> 00:06:21.030
 The authors haven't run this lab.
 
 99
-00:06:24.590 --> 00:06:27.628
+00:06:24.780 --> 00:06:27.818
 The export with its
 permissions and hashes supports
 
 100
-00:06:27.628 --> 00:06:30.528
+00:06:27.818 --> 00:06:30.718
 baseline configuration
 and component inventory.
 
 101
-00:06:30.528 --> 00:06:34.977
+00:06:30.718 --> 00:06:35.167
 The architecture record supports boundary
 protection and information flow.
 
 102
-00:06:34.977 --> 00:06:39.773
+00:06:35.167 --> 00:06:39.963
 Logs in the workspace before the pilot
 support event logging and audit record
 
 103
-00:06:39.773 --> 00:06:44.790
+00:06:39.963 --> 00:06:44.980
 generation, and a refused, changed export
 supports protecting audit information.
 
 104
-00:06:44.790 --> 00:06:48.891
+00:06:44.980 --> 00:06:49.081
 The key security indicators are
 FedRAMP's, and which output supports
 
 105
-00:06:48.891 --> 00:06:52.777
+00:06:49.081 --> 00:06:52.967
 which is the program's mapping;
 the assessor decides the controls.
 
 106
-00:06:52.777 --> 00:06:55.245
+00:06:52.967 --> 00:06:55.435
 The dangers: a pilot before the logs,
 
 107
-00:06:55.245 --> 00:07:00.265
+00:06:55.435 --> 00:07:00.455
 a write-capable session left open,
 and an edited export used as evidence.
 
 108
-00:07:00.265 --> 00:07:03.351
+00:07:00.455 --> 00:07:03.541
 You're done when the setting
 existed before the pilot,
 
 109
-00:07:03.351 --> 00:07:05.665
+00:07:03.541 --> 00:07:05.855
 and the export runs before every change.
 
 110
-00:07:05.665 --> 00:07:08.390
+00:07:05.855 --> 00:07:08.580
 Next, Chapter 3: the client.
