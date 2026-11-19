@@ -12,7 +12,7 @@ research-status: draft
 research-type: implementation guide
 research-book: "Book 15"
 review-status: approved
-reviewed-sha256: 2c0ad742fd28a336eced76f0a0564c71081e76be577b83ede757573a943569e8
+reviewed-sha256: 4c007ecc0d2721e4d5f05bb08e9958a06b7aa11a4809d0389353f218a21d85f6
 last-reviewed: 2026-11-19
 ---
 # The Daily Checks on One Dashboard: An Implementation Guide
