@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 01: The Landing-Zone Baseline
 
-Welcome to the Federal Modernization Workbook's developer workbook, Building Azure Security. This is Chapter 1: the landing-zone baseline. A baseline nobody reads back is a wish, so the first thing the kit does is read it back, the same way, every week, with nothing it could change. We'll start from Microsoft Learn's own commands, see what they leave to you, read the kit's spine and its baseline check, and walk two labs, the evidence and the dangers. The chapter is a draft awaiting the owner's review, and the code is illustrative, tested against a fictional estate.
+Welcome to the Federal Modernization Workbook's developer workbook, Building Azure Security. This is Chapter 1: the landing-zone baseline. A baseline nobody reads back is a wish, so the first thing the kit does is read it back, the same way, every week, with nothing it could change. We'll start from Microsoft Learn's own commands, see what they leave to you, read the kit's spine and its baseline check, and walk two labs, the evidence and the dangers. The chapter has been reviewed and approved, and the code is illustrative, tested against a fictional estate.
 
 ## Slide 2 — Why the baseline is read back as code
 

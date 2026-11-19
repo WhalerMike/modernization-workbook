@@ -35,16 +35,16 @@ with the same commands and one
 settings file per environment.
 
 8
-00:00:24.112 --> 00:00:27.506
-The chapter is a draft
-awaiting the owner's review,
+00:00:24.112 --> 00:00:27.099
+The chapter has been
+reviewed and approved,
 
 9
-00:00:27.506 --> 00:00:31.479
+00:00:27.099 --> 00:00:31.081
 and nothing in it has been run
 against a live subscription;
 
 10
-00:00:31.479 --> 00:00:36.170
+00:00:31.081 --> 00:00:35.780
 the output you'll see comes from
 fixture mode, dated November 17, 2026.

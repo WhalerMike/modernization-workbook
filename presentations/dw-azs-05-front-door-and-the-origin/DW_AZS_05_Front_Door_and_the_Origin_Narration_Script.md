@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 05: Front Door, Application Gateway and the Origin
 
-Welcome to Building Azure Security, Chapter 5: Front Door, Application Gateway and the origin. The service tag tells an origin a request came from a Front Door. Only the header tells it the request came from yours. We'll start from Microsoft Learn's two ways to lock an origin to the edge, see what they leave to you, read how the kit checks each origin's configuration and where it stops and says "test this by hand", then walk two labs, the evidence and the dangers. The chapter is a draft awaiting the owner's review, and the code is illustrative, tested against a fictional estate.
+Welcome to Building Azure Security, Chapter 5: Front Door, Application Gateway and the origin. The service tag tells an origin a request came from a Front Door. Only the header tells it the request came from yours. We'll start from Microsoft Learn's two ways to lock an origin to the edge, see what they leave to you, read how the kit checks each origin's configuration and where it stops and says "test this by hand", then walk two labs, the evidence and the dangers. The chapter has been reviewed and approved, and the code is illustrative, tested against a fictional estate.
 
 ## Slide 2 — Why an origin must refuse the way around
 

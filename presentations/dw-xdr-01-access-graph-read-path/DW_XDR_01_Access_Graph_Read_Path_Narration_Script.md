@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 01: Access and the Graph Read Path
 
-Welcome to the Federal Modernization Workbook's developer workbook, Building Defender XDR. This is Chapter 1: access, and the Graph read path. Every check in this workbook reads through one door. Before anything else, we prove the door is the right one, in the right cloud, and that the people behind it hold only what the design gave them. We'll start from Microsoft Learn's commands, read how the kit declares its calls and checks its roles, and walk two labs, the evidence and the dangers. The chapter is a draft awaiting the owner's review, and the code is illustrative, tested against fixtures.
+Welcome to the Federal Modernization Workbook's developer workbook, Building Defender XDR. This is Chapter 1: access, and the Graph read path. Every check in this workbook reads through one door. Before anything else, we prove the door is the right one, in the right cloud, and that the people behind it hold only what the design gave them. We'll start from Microsoft Learn's commands, read how the kit declares its calls and checks its roles, and walk two labs, the evidence and the dangers. The chapter has been reviewed and approved, and the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why prove the read path first
 

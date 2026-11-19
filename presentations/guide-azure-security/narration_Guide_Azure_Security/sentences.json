@@ -12,31 +12,31 @@
   ],
   [
    7.838,
-   6.213,
-   "One thing first: the guide is a draft, awaiting the editor's review, so recheck it after that review."
+   3.675,
+   "One thing first: the guide has been reviewed and approved."
   ],
   [
-   14.05,
+   11.512,
    21.4,
    "The guide engineers the security of an agency's Azure estate on top of the landing zone, as ten gated steps an operator can run: from the security baseline and an inventory of public exposure, through DDoS protection, the web application firewall, ingress, Azure Firewall, Private Link and Key Vault, to policy, operations and evidence."
   ],
   [
-   35.45,
+   32.913,
    8.6,
    "Its commands and service behavior come from Microsoft Learn, read on November eleventh, 2026, and its control statements from nist."
   ],
   [
-   44.05,
+   41.513,
    3.125,
    "The program's own choices are called design guidance."
   ],
   [
-   47.175,
+   44.638,
    2.775,
    "Nothing in it was run against a lyve subscription."
   ],
   [
-   49.95,
+   47.413,
    3.5,
    "We'll go in four parts: why, what, who, and how."
   ]
@@ -729,16 +729,11 @@
   ],
   [
    51.788,
-   3.538,
-   "Remember that the guide is a draft awaiting the editor's review."
-  ],
-  [
-   55.325,
    3.95,
    "Its developer workbook with labs and its training path are planned."
   ],
   [
-   59.275,
+   55.737,
    0.762,
    "Thank you."
   ]

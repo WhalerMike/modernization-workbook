@@ -40,607 +40,607 @@ says "test this by hand", then walk
 two labs, the evidence and the dangers.
 
 9
-00:00:28.901 --> 00:00:31.915
-The chapter is a draft
-awaiting the owner's review,
+00:00:28.901 --> 00:00:31.585
+The chapter has been
+reviewed and approved,
 
 10
-00:00:31.915 --> 00:00:36.180
+00:00:31.585 --> 00:00:35.890
 and the code is illustrative,
 tested against a fictional estate.
 
 11
-00:00:39.930 --> 00:00:41.080
+00:00:39.640 --> 00:00:40.790
 Why does this matter?
 
 12
-00:00:41.080 --> 00:00:43.642
+00:00:40.790 --> 00:00:43.352
 A web application
 firewall at the edge only
 
 13
-00:00:43.642 --> 00:00:46.418
+00:00:43.352 --> 00:00:46.128
 helps if nothing can reach
 the origin around it.
 
 14
-00:00:46.418 --> 00:00:50.542
+00:00:46.128 --> 00:00:50.252
 By the end of this chapter you can
 say, for every Front Door origin,
 
 15
-00:00:50.542 --> 00:00:54.512
+00:00:50.252 --> 00:00:54.222
 whether its configuration lets
 only your Front Door reach it;
 
 16
-00:00:54.512 --> 00:00:58.948
+00:00:54.222 --> 00:00:58.658
 which origin groups can't fail over
 or mix private and public origins;
 
 17
-00:00:58.948 --> 00:01:03.151
+00:00:58.658 --> 00:01:02.861
 which custom domains or application
 gateways allow TLS below 1.2;
 
 18
-00:01:03.151 --> 00:01:06.342
+00:01:02.861 --> 00:01:06.052
 and which classic profiles
 still need migrating.
 
 19
-00:01:06.342 --> 00:01:10.205
+00:01:06.052 --> 00:01:09.915
 It's for application owners, who
 own origins and certificates,
 
 20
-00:01:10.205 --> 00:01:12.780
+00:01:09.915 --> 00:01:12.490
 and platform owners, who own the profiles.
 
 21
-00:01:12.780 --> 00:01:16.324
+00:01:12.490 --> 00:01:16.034
 One limit to keep in mind:
 the kit reads configuration,
 
 22
-00:01:16.324 --> 00:01:18.418
+00:01:16.034 --> 00:01:18.128
 and the guide's test is a request.
 
 23
-00:01:18.418 --> 00:01:21.270
+00:01:18.128 --> 00:01:20.980
 You'll know which answers
 still need that test.
 
 24
-00:01:25.020 --> 00:01:27.045
+00:01:24.730 --> 00:01:26.755
 Here's what Microsoft Learn gives you.
 
 25
-00:01:27.045 --> 00:01:32.020
+00:01:26.755 --> 00:01:31.730
 The origin security page says to use the
 Azure Front Door Backend service tag and
 
 26
-00:01:32.020 --> 00:01:34.024
+00:01:31.730 --> 00:01:33.734
 the X-Azure-FDID header together,
 
 27
-00:01:34.024 --> 00:01:38.182
+00:01:33.734 --> 00:01:37.892
 because the tag's addresses are
 shared by every Front Door customer.
 
 28
-00:01:38.182 --> 00:01:42.408
+00:01:37.892 --> 00:01:42.118
 Learn's App Service tutorial does
 both in one access restriction.
 
 29
-00:01:42.408 --> 00:01:46.010
+00:01:42.118 --> 00:01:45.720
 Where the origin supports it,
 Private Link is the alternative:
 
 30
-00:01:46.010 --> 00:01:50.459
+00:01:45.720 --> 00:01:50.169
 Front Door Premium requests a private
 endpoint connection that the origin
 
 31
-00:01:50.459 --> 00:01:54.908
+00:01:50.169 --> 00:01:54.618
 owner approves, and an origin group
 shouldn't mix public and private origins.
 
 32
-00:01:54.908 --> 00:01:58.691
+00:01:54.618 --> 00:01:58.401
 The App Service configuration
 and Front Door origins APIs
 
 33
-00:01:58.691 --> 00:02:02.320
+00:01:58.401 --> 00:02:02.030
 return what the kit reads, and
 the header matches exactly.
 
 34
-00:02:02.320 --> 00:02:05.970
+00:02:02.030 --> 00:02:05.680
 On TLS, 1.2 or 1.3 only.
 
 35
-00:02:05.970 --> 00:02:10.920
+00:02:05.680 --> 00:02:10.630
 And classic Front Door
 retires on March 31, 2027.
 
 36
-00:02:14.670 --> 00:02:16.033
+00:02:14.380 --> 00:02:15.743
 What does Learn leave to you?
 
 37
-00:02:16.033 --> 00:02:21.270
+00:02:15.743 --> 00:02:20.980
 The command adds a restriction, but nothing
 reads back what every origin has today.
 
 38
-00:02:21.270 --> 00:02:24.982
+00:02:20.980 --> 00:02:24.692
 A rule with the tag alone admits
 any customer's Front Door.
 
 39
-00:02:24.982 --> 00:02:29.421
+00:02:24.692 --> 00:02:29.131
 A header copied from another profile
 admits that profile, not this one.
 
 40
-00:02:29.421 --> 00:02:33.334
+00:02:29.131 --> 00:02:33.044
 An allow rule for any address,
 or a default action of allow,
 
 41
-00:02:33.334 --> 00:02:36.332
+00:02:33.044 --> 00:02:36.042
 opens the origin whatever
 the tag rule says.
 
 42
-00:02:36.332 --> 00:02:41.732
+00:02:36.042 --> 00:02:41.442
 "Don't mix origins" is a sentence, not
 a check, and one origin can't fail over.
 
 43
-00:02:41.732 --> 00:02:45.421
+00:02:41.442 --> 00:02:45.131
 And origins of other types
 restrict access their own ways.
 
 44
-00:02:45.421 --> 00:02:48.138
+00:02:45.131 --> 00:02:47.848
 The kit answers each,
 and says plainly which
 
 45
-00:02:48.138 --> 00:02:51.450
+00:02:47.848 --> 00:02:51.160
 origins it couldn't check,
 so a person tests them.
 
 46
-00:02:55.200 --> 00:02:56.775
+00:02:54.910 --> 00:02:56.485
 Here's how the kit decides.
 
 47
-00:02:56.775 --> 00:02:59.300
+00:02:56.485 --> 00:02:59.010
 Every origin gets one lock-down state.
 
 48
-00:02:59.300 --> 00:03:03.100
+00:02:59.010 --> 00:03:02.810
 Private Link, when the shared
 private link connection is approved.
 
 49
-00:03:03.100 --> 00:03:05.119
+00:03:02.810 --> 00:03:04.829
 Service tag plus Front Door ID,
 
 50
-00:03:05.119 --> 00:03:10.528
+00:03:04.829 --> 00:03:10.238
 when an App Service origin has an allow rule
 for the tag with this profile's header,
 
 51
-00:03:10.528 --> 00:03:14.000
+00:03:10.238 --> 00:03:13.710
 no allow rule for any address,
 and no default of allow.
 
 52
-00:03:14.000 --> 00:03:15.700
+00:03:13.710 --> 00:03:15.410
 Those two count as locked.
 
 53
-00:03:15.700 --> 00:03:17.888
+00:03:15.410 --> 00:03:17.598
 Tag only, when the header's missing.
 
 54
-00:03:17.888 --> 00:03:21.125
+00:03:17.598 --> 00:03:20.835
 Other Front Door, when the
 header is some other profile's.
 
 55
-00:03:21.125 --> 00:03:26.175
+00:03:20.835 --> 00:03:25.885
 Open, when there's no tag rule, an
 allow-any rule, or a default of allow.
 
 56
-00:03:26.175 --> 00:03:29.610
+00:03:25.885 --> 00:03:29.320
 And unchecked, for any origin
 type the kit can't read:
 
 57
-00:03:29.610 --> 00:03:32.430
+00:03:29.320 --> 00:03:32.140
 it's not counted as locked by anybody.
 
 58
-00:03:36.180 --> 00:03:39.055
+00:03:35.890 --> 00:03:38.765
 Beyond each origin, five more rules.
 
 59
-00:03:39.055 --> 00:03:43.105
+00:03:38.765 --> 00:03:42.815
 A classic Front Door profile is
 a finding, because it retires.
 
 60
-00:03:43.105 --> 00:03:46.138
+00:03:42.815 --> 00:03:45.848
 An origin group that
 mixes Private Link and
 
 61
-00:03:46.138 --> 00:03:49.255
+00:03:45.848 --> 00:03:48.965
 public origins is a
 finding, as Learn advises.
 
 62
-00:03:49.255 --> 00:03:54.224
+00:03:48.965 --> 00:03:53.934
 A custom domain whose minimum TLS is
 below 1.2 is a finding, and so is an
 
 63
-00:03:54.224 --> 00:03:57.419
+00:03:53.934 --> 00:03:57.129
 application gateway whose TLS policy isn't
 
 64
-00:03:57.419 --> 00:04:00.880
+00:03:57.129 --> 00:04:00.590
 one of the two predefined
 policies Learn names.
 
 65
-00:04:00.880 --> 00:04:03.862
+00:04:00.590 --> 00:04:03.572
 An origin group with
 fewer than two enabled
 
 66
-00:04:03.862 --> 00:04:06.430
+00:04:03.572 --> 00:04:06.140
 origins is a warning: it can't fail over.
 
 67
-00:04:06.430 --> 00:04:10.679
+00:04:06.140 --> 00:04:10.389
 The origin groups' and custom
 domains' calls are still unverified,
 
 68
-00:04:10.679 --> 00:04:14.810
+00:04:10.389 --> 00:04:14.520
 read by their Resource Manager
 names, which Lab 2 confirms.
 
 69
-00:04:18.560 --> 00:04:19.610
+00:04:18.270 --> 00:04:19.320
 Who's involved?
 
 70
-00:04:19.610 --> 00:04:23.669
+00:04:19.320 --> 00:04:23.379
 The application owner owns the
 origins and their certificates,
 
 71
-00:04:23.669 --> 00:04:26.885
+00:04:23.379 --> 00:04:26.595
 and runs the direct-request
 test the guide asks for.
 
 72
-00:04:26.885 --> 00:04:32.047
+00:04:26.595 --> 00:04:31.757
 The platform owner owns the Front Door
 profiles and the gateways' TLS policy.
 
 73
-00:04:32.047 --> 00:04:34.723
+00:04:31.757 --> 00:04:34.433
 Developers keep the
 lock-down states honest,
 
 74
-00:04:34.723 --> 00:04:39.135
+00:04:34.433 --> 00:04:38.845
 and make sure the unchecked list stays
 visible, so nobody counts it as done.
 
 75
-00:04:39.135 --> 00:04:42.810
+00:04:38.845 --> 00:04:42.520
 Every read the check makes is
 Reader, and it sends nothing.
 
 76
-00:04:46.560 --> 00:04:51.860
+00:04:46.270 --> 00:04:51.570
 Lab 1 needs PowerShell 7 with Pester, in
 the kit's folder, and no subscription.
 
 77
-00:04:51.860 --> 00:04:55.203
+00:04:51.570 --> 00:04:54.913
 Contoso's Premium profile
 has two origin groups:
 
 78
-00:04:55.203 --> 00:05:00.635
+00:04:54.913 --> 00:05:00.345
 one with two App Service origins, one with
 a Private Link origin and a public one.
 
 79
-00:05:00.635 --> 00:05:04.122
+00:05:00.345 --> 00:05:03.832
 The Standard careers profile
 has a single storage origin.
 
 80
-00:05:04.122 --> 00:05:09.548
+00:05:03.832 --> 00:05:09.258
 Step 1 runs the edge check: two of
 five origins locked by configuration.
 
 81
-00:05:09.548 --> 00:05:11.923
+00:05:09.258 --> 00:05:11.633
 Step 2 reads each origin.
 
 82
-00:05:11.923 --> 00:05:16.698
+00:05:11.633 --> 00:05:16.408
 The east origin has the tag and the
 header; the west origin has the tag only.
 
 83
-00:05:16.698 --> 00:05:21.198
+00:05:16.408 --> 00:05:20.908
 The private API origin reaches
 its origin over Private Link.
 
 84
-00:05:21.198 --> 00:05:23.030
+00:05:20.908 --> 00:05:22.740
 And two are unchecked.
 
 85
-00:05:26.780 --> 00:05:29.030
+00:05:26.490 --> 00:05:28.740
 Step 3 reads the findings.
 
 86
-00:05:29.030 --> 00:05:33.267
+00:05:28.740 --> 00:05:32.977
 The API origin group mixes a
 private and a public origin.
 
 87
-00:05:33.267 --> 00:05:35.854
+00:05:32.977 --> 00:05:35.564
 The west origin's tag rule has no header.
 
 88
-00:05:35.854 --> 00:05:39.855
+00:05:35.564 --> 00:05:39.565
 The careers custom domain allows TLS 1.0.
 
 89
-00:05:39.855 --> 00:05:44.755
+00:05:39.565 --> 00:05:44.465
 The intranet gateway uses
 an old 2015 TLS policy.
 
 90
-00:05:44.755 --> 00:05:48.792
+00:05:44.465 --> 00:05:48.502
 The careers origin group has one
 origin, so it can't fail over.
 
 91
-00:05:48.792 --> 00:05:50.892
+00:05:48.502 --> 00:05:50.602
 The classic profile is still there.
 
 92
-00:05:50.892 --> 00:05:54.516
+00:05:50.602 --> 00:05:54.226
 And the two unchecked origins
 get a warning that says,
 
 93
-00:05:54.516 --> 00:05:57.481
+00:05:54.226 --> 00:05:57.191
 in plain words, test a
 direct request by hand.
 
 94
-00:05:57.481 --> 00:06:00.510
+00:05:57.191 --> 00:06:00.220
 Step 4 runs this chapter's two tests.
 
 95
-00:06:04.260 --> 00:06:07.473
+00:06:03.970 --> 00:06:07.183
 Lab 2 moves to a test
 subscription with a Front Door
 
 96
-00:06:07.473 --> 00:06:11.297
+00:06:07.183 --> 00:06:11.007
 Premium profile and an App
 Service origin, never production.
 
 97
-00:06:11.297 --> 00:06:14.342
+00:06:11.007 --> 00:06:14.052
 Sign in to commercial
 Azure, write the settings,
 
 98
-00:06:14.342 --> 00:06:18.011
+00:06:14.052 --> 00:06:17.721
 and run the edge check live,
 allowing the unverified calls.
 
 99
-00:06:18.011 --> 00:06:21.891
+00:06:17.721 --> 00:06:21.601
 Compare the origin's access
 restrictions with what the kit read,
 
 100
-00:06:21.891 --> 00:06:25.260
+00:06:21.601 --> 00:06:24.970
 and check each custom domain's
 minimum TLS in the portal.
 
 101
-00:06:25.260 --> 00:06:30.472
+00:06:24.970 --> 00:06:30.182
 Then run the guide's own test: a direct
 request to the origin should come back 403,
 
 102
-00:06:30.472 --> 00:06:34.160
+00:06:30.182 --> 00:06:33.870
 and the same request through
 Front Door should succeed.
 
 103
-00:06:34.160 --> 00:06:38.610
+00:06:33.870 --> 00:06:38.320
 If the kit said locked and the direct
 request isn't refused, record it.
 
 104
-00:06:38.610 --> 00:06:42.023
+00:06:38.320 --> 00:06:41.733
 Back out by deleting what the
 lab wrote, and signing out.
 
 105
-00:06:42.023 --> 00:06:44.370
+00:06:41.733 --> 00:06:44.080
 The authors haven't run this lab.
 
 106
-00:06:48.120 --> 00:06:50.785
+00:06:47.830 --> 00:06:50.495
 Each output is evidence
 for something specific,
 
 107
-00:06:50.785 --> 00:06:56.182
+00:06:50.495 --> 00:06:55.892
 from the guide's requirements
 table against NIST SP 800-53.
 
 108
-00:06:56.182 --> 00:07:00.076
+00:06:55.892 --> 00:06:59.786
 Each origin's lock-down, read
 from configuration and backed
 
 109
-00:07:00.076 --> 00:07:03.571
+00:06:59.786 --> 00:07:03.281
 by Lab 2's request test,
 supports boundary protection.
 
 110
-00:07:03.571 --> 00:07:07.787
+00:07:03.281 --> 00:07:07.497
 TLS 1.2 as the minimum on
 every custom domain and gateway
 
 111
-00:07:07.787 --> 00:07:12.095
+00:07:07.497 --> 00:07:11.805
 supports transmission
 confidentiality and integrity.
 
 112
-00:07:12.095 --> 00:07:14.175
+00:07:11.805 --> 00:07:13.885
 A second origin in every group,
 
 113
-00:07:14.175 --> 00:07:17.920
+00:07:13.885 --> 00:07:17.630
 with the failover test,
 supports the contingency plan.
 
 114
-00:07:17.920 --> 00:07:22.657
+00:07:17.630 --> 00:07:22.367
 And classic profiles named before their
 retirement support boundary protection too.
 
 115
-00:07:22.657 --> 00:07:26.707
+00:07:22.367 --> 00:07:26.417
 The kit's output supports these
 controls; the assessor decides.
 
 116
-00:07:26.707 --> 00:07:31.458
+00:07:26.417 --> 00:07:31.168
 And the key security indicators are
 FedRAMP's indicators for cloud providers,
 
 117
-00:07:31.458 --> 00:07:34.670
+00:07:31.168 --> 00:07:34.380
 which the agency lines
 its own evidence up with.
 
 118
-00:07:38.420 --> 00:07:39.820
+00:07:38.130 --> 00:07:39.530
 What breaks in production?
 
 119
-00:07:39.820 --> 00:07:42.516
+00:07:39.530 --> 00:07:42.226
 The service tag alone lets any customer's
 
 120
-00:07:42.516 --> 00:07:45.370
+00:07:42.226 --> 00:07:45.080
 Front Door reach the
 origin: the kit flags it.
 
 121
-00:07:45.370 --> 00:07:48.825
+00:07:45.080 --> 00:07:48.535
 A header copied from another
 profile lets that profile in,
 
 122
-00:07:48.825 --> 00:07:52.135
+00:07:48.535 --> 00:07:51.845
 so the kit compares the header
 with this profile's own ID.
 
 123
-00:07:52.135 --> 00:07:56.813
+00:07:51.845 --> 00:07:56.523
 Configuration taken as proof is a danger
 of its own: a rule can read right while a
 
 124
-00:07:56.813 --> 00:08:01.707
+00:07:56.523 --> 00:08:01.417
 request still gets through another path,
 like another slot or the deployment site.
 
 125
-00:08:01.707 --> 00:08:07.119
+00:08:01.417 --> 00:08:06.829
 So the metric says "by configuration",
 and Lab 2's direct request is the test.
 
 126
-00:08:07.119 --> 00:08:11.581
+00:08:06.829 --> 00:08:11.291
 And an origin the kit can't read would
 otherwise be counted locked by nobody
 
 127
-00:08:11.581 --> 00:08:16.040
+00:08:11.291 --> 00:08:15.750
 and tested by nobody, so it's flagged
 every week until someone tests it.
 
 128
-00:08:19.790 --> 00:08:21.140
+00:08:19.500 --> 00:08:20.850
 Here's what done looks like.
 
 129
-00:08:21.140 --> 00:08:25.939
+00:08:20.850 --> 00:08:25.649
 Every origin is locked by Private Link
 or by the tag and this profile's header,
 
 130
-00:08:25.939 --> 00:08:29.290
+00:08:25.649 --> 00:08:29.000
 or has a decision record
 with a compensating control.
 
 131
-00:08:29.290 --> 00:08:32.990
+00:08:29.000 --> 00:08:32.700
 Every unchecked origin has
 a dated direct-request test.
 
 132
-00:08:32.990 --> 00:08:38.052
+00:08:32.700 --> 00:08:37.762
 Every origin group has a second origin,
 and failover was tested this half year.
 
 133
-00:08:38.052 --> 00:08:42.527
+00:08:37.762 --> 00:08:42.237
 No custom domain or gateway
 allows TLS below 1.2.
 
 134
-00:08:42.527 --> 00:08:49.666
+00:08:42.237 --> 00:08:49.376
 And no classic profile remains, or its
 migration is scheduled before March 31, 2027.
 
 135
-00:08:49.666 --> 00:08:55.810
+00:08:49.376 --> 00:08:55.520
 Next, Chapter 6 turns from what comes in
 to what leaves: Azure Firewall and egress.

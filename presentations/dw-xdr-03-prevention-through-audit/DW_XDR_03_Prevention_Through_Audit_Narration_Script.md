@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 03: Prevention Through Audit
 
-Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook. This is Chapter 3: prevention through audit. A setting in a policy protects nothing until the device enforces it, so the check is on the device, against the stage the ring is meant to be at. We'll start from Learn's three device commands and the guide's event query, read how the kit compares every device with its ring's plan, and walk two labs, the evidence and the dangers. The chapter is a draft awaiting review; the code is illustrative, tested against fixtures.
+Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook. This is Chapter 3: prevention through audit. A setting in a policy protects nothing until the device enforces it, so the check is on the device, against the stage the ring is meant to be at. We'll start from Learn's three device commands and the guide's event query, read how the kit compares every device with its ring's plan, and walk two labs, the evidence and the dangers. The chapter has been reviewed and approved; the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why the check is on the device
 

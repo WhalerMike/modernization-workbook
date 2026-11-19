@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 09: Deploying to Test and Production
 
-Welcome to the Federal Modernization Workbook's developer workbook, Building Azure Security. This is Chapter 9: deploying to test and production. The kit reads every week and writes once, so this runbook is about the week, and about the one write. It takes the kit from the labs to a live test subscription, then to production, with the same commands and one settings file per environment. The chapter is a draft awaiting the owner's review, and nothing in it has been run against a live subscription; the output you'll see comes from fixture mode, dated November 17, 2026.
+Welcome to the Federal Modernization Workbook's developer workbook, Building Azure Security. This is Chapter 9: deploying to test and production. The kit reads every week and writes once, so this runbook is about the week, and about the one write. It takes the kit from the labs to a live test subscription, then to production, with the same commands and one settings file per environment. The chapter has been reviewed and approved, and nothing in it has been run against a live subscription; the output you'll see comes from fixture mode, dated November 17, 2026.
 
 ## Slide 2 — Why a runbook: read every week, write once
 

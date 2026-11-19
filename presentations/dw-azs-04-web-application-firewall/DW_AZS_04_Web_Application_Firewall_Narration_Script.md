@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 04: The Web Application Firewall
 
-Welcome back to Building Azure Security. This is Chapter 4: the web application firewall. A firewall in detection mode is a log with good intentions. The check reads the mode, and the switch to prevention stays a decision a person makes. We'll start from what Microsoft Learn gives you, see what it leaves to you, read how the kit checks every policy and every internet-facing endpoint, and why it writes the switch to a plan instead of sending it. Then two labs, the evidence and the dangers. The chapter is a draft, and the code is illustrative.
+Welcome back to Building Azure Security. This is Chapter 4: the web application firewall. A firewall in detection mode is a log with good intentions. The check reads the mode, and the switch to prevention stays a decision a person makes. We'll start from what Microsoft Learn gives you, see what it leaves to you, read how the kit checks every policy and every internet-facing endpoint, and why it writes the switch to a plan instead of sending it. Then two labs, the evidence and the dangers. The chapter has been reviewed and approved, and the code is illustrative.
 
 ## Slide 2 — Why a WAF in detection mode isn't protection
 

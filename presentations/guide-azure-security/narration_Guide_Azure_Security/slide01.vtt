@@ -15,60 +15,56 @@ Federal Modernization Workbook:
 Azure Security Engineering.
 
 4
-00:00:07.837 --> 00:00:10.119
-One thing first: the guide is a draft,
+00:00:07.837 --> 00:00:11.513
+One thing first: the guide has
+been reviewed and approved.
 
 5
-00:00:10.119 --> 00:00:14.051
-awaiting the editor's review, so
-recheck it after that review.
-
-6
-00:00:14.051 --> 00:00:19.321
+00:00:11.513 --> 00:00:16.783
 The guide engineers the security of an
 agency's Azure estate on top of the landing
 
-7
-00:00:19.321 --> 00:00:22.075
+6
+00:00:16.783 --> 00:00:19.537
 zone, as ten gated steps
 an operator can run:
 
-8
-00:00:22.075 --> 00:00:26.245
+7
+00:00:19.537 --> 00:00:23.707
 from the security baseline and
 an inventory of public exposure,
 
-9
-00:00:26.245 --> 00:00:30.415
+8
+00:00:23.707 --> 00:00:27.877
 through DDoS protection, the web
 application firewall, ingress,
 
-10
-00:00:30.415 --> 00:00:35.450
+9
+00:00:27.877 --> 00:00:32.912
 Azure Firewall, Private Link and Key
 Vault, to policy, operations and evidence.
 
-11
-00:00:35.450 --> 00:00:39.511
+10
+00:00:32.912 --> 00:00:36.974
 Its commands and service behavior
 come from Microsoft Learn,
 
-12
-00:00:39.511 --> 00:00:44.050
+11
+00:00:36.974 --> 00:00:41.513
 read on November eleventh, 2026, and
 its control statements from NIST.
 
-13
-00:00:44.050 --> 00:00:47.175
+12
+00:00:41.513 --> 00:00:44.638
 The program's own choices
 are called design guidance.
 
-14
-00:00:47.175 --> 00:00:49.950
+13
+00:00:44.638 --> 00:00:47.413
 Nothing in it was run
 against a live subscription.
 
-15
-00:00:49.950 --> 00:00:53.520
+14
+00:00:47.413 --> 00:00:50.980
 We'll go in four parts:
 why, what, who, and how.

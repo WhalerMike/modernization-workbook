@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 08: Policy, Drift and Evidence
 
-Welcome to the Federal Modernization Workbook's developer workbook, Building Azure Security. This is Chapter 8: policy, drift and evidence. An exemption without an expiry is a decision nobody has to make again, and a finding without last week's run beside it is a number nobody can explain. We'll start from Microsoft Learn's policy samples for Resource Graph, see what they leave to you, read the kit's policy check, its comparison of two runs, its metrics and its evidence records, and walk two labs. The chapter is a draft awaiting the owner's review, and the code is illustrative, tested against a fictional estate.
+Welcome to the Federal Modernization Workbook's developer workbook, Building Azure Security. This is Chapter 8: policy, drift and evidence. An exemption without an expiry is a decision nobody has to make again, and a finding without last week's run beside it is a number nobody can explain. We'll start from Microsoft Learn's policy samples for Resource Graph, see what they leave to you, read the kit's policy check, its comparison of two runs, its metrics and its evidence records, and walk two labs. The chapter has been reviewed and approved, and the code is illustrative, tested against a fictional estate.
 
 ## Slide 2 — Why exemptions expire and runs are compared
 

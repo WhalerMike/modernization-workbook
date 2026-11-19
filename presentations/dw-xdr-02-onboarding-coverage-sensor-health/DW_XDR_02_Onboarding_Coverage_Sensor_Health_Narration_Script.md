@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 02: Onboarding Coverage and Sensor Health
 
-Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook. This is Chapter 2: onboarding coverage and sensor health. A policy assigned to a group says nothing about the devices that never checked in, so coverage is counted against the inventory, one device at a time. We'll start from the guide's coverage query and Learn's device checks, read how the kit joins each device to the inventory and the exception register, meet the device collector the next chapters use, and walk two labs. The chapter is a draft awaiting review; the code is illustrative, tested against fixtures.
+Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook. This is Chapter 2: onboarding coverage and sensor health. A policy assigned to a group says nothing about the devices that never checked in, so coverage is counted against the inventory, one device at a time. We'll start from the guide's coverage query and Learn's device checks, read how the kit joins each device to the inventory and the exception register, meet the device collector the next chapters use, and walk two labs. The chapter has been reviewed and approved; the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why coverage is a fraction of the inventory
 

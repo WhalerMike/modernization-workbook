@@ -44,515 +44,516 @@ automation levels and exclusions,
 read both checks, and walk two labs.
 
 10
-00:00:30.663 --> 00:00:33.296
-The chapter is a draft awaiting review;
+00:00:30.663 --> 00:00:33.531
+The chapter has been
+reviewed and approved;
 
 11
-00:00:33.296 --> 00:00:37.120
+00:00:33.531 --> 00:00:37.240
 the code is illustrative,
 tested against fixtures.
 
 12
-00:00:40.870 --> 00:00:42.207
+00:00:40.990 --> 00:00:42.327
 Why these two together?
 
 13
-00:00:42.207 --> 00:00:45.082
+00:00:42.327 --> 00:00:45.202
 Because they keep detection
 and response joined up.
 
 14
-00:00:45.082 --> 00:00:50.070
+00:00:45.202 --> 00:00:50.190
 Detection should see one story across
 the endpoint, identity and cloud apps.
 
 15
-00:00:50.070 --> 00:00:54.382
+00:00:50.190 --> 00:00:54.502
 And response should stay inside the
 boundary the authorizing official set.
 
 16
-00:00:54.382 --> 00:00:58.806
+00:00:54.502 --> 00:00:58.926
 By the end of this chapter you can show
 that identity and cloud-app sources are
 
 17
-00:00:58.806 --> 00:01:03.162
+00:00:58.926 --> 00:01:03.282
 feeding incidents, that Defender's
 automation matches the response ladder,
 
 18
-00:01:03.162 --> 00:01:08.070
+00:01:03.282 --> 00:01:08.190
 and that every exclusion is approved, with
 every emergency access account protected.
 
 19
-00:01:08.070 --> 00:01:11.051
+00:01:08.190 --> 00:01:11.171
 It's for the developers,
 the security operations
 
 20
-00:01:11.051 --> 00:01:14.310
+00:01:11.171 --> 00:01:14.430
 lead who owns both gates,
 and the platform owner.
 
 21
-00:01:18.060 --> 00:01:19.372
+00:01:18.180 --> 00:01:19.492
 Here's what's already there.
 
 22
-00:01:19.372 --> 00:01:23.419
+00:01:19.492 --> 00:01:23.539
 For signals, the guide's query
 joins alert evidence to alert info,
 
 23
-00:01:23.419 --> 00:01:27.923
+00:01:23.539 --> 00:01:28.043
 and keeps the users with alerts from
 more than one service in seven days.
 
 24
-00:01:27.923 --> 00:01:31.976
+00:01:28.043 --> 00:01:32.096
 In GCC, Learn lists App Governance's
 alerts as roadmap items,
 
 25
-00:01:31.976 --> 00:01:36.360
+00:01:32.096 --> 00:01:36.480
 and Cloud Apps behaviors aren't
 available in the behavior table.
 
 26
-00:01:36.360 --> 00:01:40.048
+00:01:36.480 --> 00:01:40.168
 For automation, each device
 group has one of five levels,
 
 27
-00:01:40.048 --> 00:01:45.098
+00:01:40.168 --> 00:01:45.218
 from full remediation to no automated
 response; Microsoft recommends full.
 
 28
-00:01:45.098 --> 00:01:49.021
+00:01:45.218 --> 00:01:49.141
 User exclusions are for service
 and emergency admin accounts,
 
 29
-00:01:49.021 --> 00:01:51.209
+00:01:49.141 --> 00:01:51.329
 and exclusions reduce protection.
 
 30
-00:01:51.209 --> 00:01:55.872
+00:01:51.329 --> 00:01:55.992
 Contain User needs the
 sensor at 10.8470 or later.
 
 31
-00:01:55.872 --> 00:01:59.716
+00:01:55.992 --> 00:01:59.836
 Attack disruption's GCC
 availability isn't specified,
 
 32
-00:01:59.716 --> 00:02:04.940
+00:01:59.836 --> 00:02:05.060
 and the portal holds these settings;
 Learn names no Graph API for them.
 
 33
-00:02:08.690 --> 00:02:09.690
+00:02:08.810 --> 00:02:09.810
 What's left to you?
 
 34
-00:02:09.690 --> 00:02:14.571
+00:02:09.810 --> 00:02:14.691
 The query returns users in no order, and
 can't tell you a source has gone quiet,
 
 35
-00:02:14.571 --> 00:02:16.618
+00:02:14.691 --> 00:02:16.738
 so the kit sorts a priority list,
 
 36
-00:02:16.618 --> 00:02:20.240
+00:02:16.738 --> 00:02:20.360
 and fails when no row names
 a source beyond the endpoint.
 
 37
-00:02:20.240 --> 00:02:23.715
+00:02:20.360 --> 00:02:23.835
 The portal shows five levels
 but doesn't know the ladder,
 
 38
-00:02:23.715 --> 00:02:26.586
+00:02:23.835 --> 00:02:26.706
 so the kit's ladder says
 workstations get full,
 
 39
-00:02:26.586 --> 00:02:30.515
+00:02:26.706 --> 00:02:30.635
 the pilot gets semi for all folders,
 and servers get a semi level.
 
 40
-00:02:30.515 --> 00:02:34.931
+00:02:30.635 --> 00:02:35.051
 Exclusions sit in the portal
 unreviewed, so each needs an approver
 
 41
-00:02:34.931 --> 00:02:38.865
+00:02:35.051 --> 00:02:38.985
 and a review date, and every
 emergency account must be there.
 
 42
-00:02:38.865 --> 00:02:42.421
+00:02:38.985 --> 00:02:42.541
 And Contain User silently
 doesn't run on an old sensor,
 
 43
-00:02:42.421 --> 00:02:45.130
+00:02:42.541 --> 00:02:45.250
 so each device's version is checked.
 
 44
-00:02:48.880 --> 00:02:49.843
+00:02:49.000 --> 00:02:49.963
 Two checks.
 
 45
-00:02:49.843 --> 00:02:54.654
+00:02:49.963 --> 00:02:54.774
 The signals check runs the guide's
 cross-source query and writes a priority list.
 
 46
-00:02:54.654 --> 00:02:58.804
+00:02:54.774 --> 00:02:58.924
 An emergency access account goes
 first, with one instruction:
 
 47
-00:02:58.804 --> 00:03:03.442
+00:02:58.924 --> 00:03:03.562
 page the incident response lead,
 and a human decides any containment.
 
 48
-00:03:03.442 --> 00:03:06.068
+00:03:03.562 --> 00:03:06.188
 Three or more sources is a priority.
 
 49
-00:03:06.068 --> 00:03:09.730
+00:03:06.188 --> 00:03:09.850
 The automation check reads
 three files and calls nothing:
 
 50
-00:03:09.730 --> 00:03:14.918
+00:03:09.850 --> 00:03:15.038
 the device groups export, the attack
 disruption exclusions, and the device states.
 
 51
-00:03:14.918 --> 00:03:19.342
+00:03:15.038 --> 00:03:19.462
 A workstation group below full passes
 only with a recorded exception.
 
 52
-00:03:19.342 --> 00:03:24.340
+00:03:19.462 --> 00:03:24.460
 The exports come from two portal pages,
 copied into the template columns.
 
 53
-00:03:28.090 --> 00:03:29.140
+00:03:28.210 --> 00:03:29.260
 Who's involved?
 
 54
-00:03:29.140 --> 00:03:32.647
+00:03:29.260 --> 00:03:32.767
 The authorizing official
 decides attack disruption as a
 
 55
-00:03:32.647 --> 00:03:36.153
+00:03:32.767 --> 00:03:36.273
 class on the response ladder,
 and approves each exclusion.
 
 56
-00:03:36.153 --> 00:03:39.148
+00:03:36.273 --> 00:03:39.268
 The security operations
 lead owns both gates:
 
 57
-00:03:39.148 --> 00:03:42.853
+00:03:39.268 --> 00:03:42.973
 the weekly hunt, and a quarterly
 review of the exclusions.
 
 58
-00:03:42.853 --> 00:03:47.440
+00:03:42.973 --> 00:03:47.560
 The platform owner sets the device group
 levels with the security operations lead.
 
 59
-00:03:47.440 --> 00:03:50.618
+00:03:47.560 --> 00:03:50.738
 One note: the ladder's mapping
 is the program's design,
 
 60
-00:03:50.618 --> 00:03:55.052
+00:03:50.738 --> 00:03:55.172
 and the authorizing official's attack
 disruption decision comes first.
 
 61
-00:03:55.052 --> 00:03:59.130
+00:03:55.172 --> 00:03:59.250
 The kit checks the settings against
 it; it doesn't make the decision.
 
 62
-00:04:02.880 --> 00:04:04.980
+00:04:03.000 --> 00:04:05.100
 Lab 1, in the kit's folder.
 
 63
-00:04:04.980 --> 00:04:07.355
+00:04:05.100 --> 00:04:07.475
 Step 1 runs the signals check.
 
 64
-00:04:07.355 --> 00:04:10.294
+00:04:07.475 --> 00:04:10.414
 The first row is an
 emergency access account,
 
 65
-00:04:10.294 --> 00:04:13.630
+00:04:10.414 --> 00:04:13.750
 with identity and cloud-app
 alerts in the same week.
 
 66
-00:04:13.630 --> 00:04:17.843
+00:04:13.750 --> 00:04:17.963
 Nobody's playbook touches it; the
 incident response lead decides.
 
 67
-00:04:17.843 --> 00:04:22.542
+00:04:17.963 --> 00:04:22.662
 Then a user seen by three sources,
 a priority, and one seen by two.
 
 68
-00:04:22.542 --> 00:04:25.109
+00:04:22.662 --> 00:04:25.229
 The last line says identity or cloud-app
 
 69
-00:04:25.109 --> 00:04:28.500
+00:04:25.229 --> 00:04:28.620
 sources are feeding alerts,
 so the check passes.
 
 70
-00:04:32.250 --> 00:04:35.875
+00:04:32.370 --> 00:04:35.995
 Step 2 runs the automation
 check, and finds four things.
 
 71
-00:04:35.875 --> 00:04:41.375
+00:04:35.995 --> 00:04:41.495
 The ring 3 workstation group sits at a semi
 level with no exception: off the ladder.
 
 72
-00:04:41.375 --> 00:04:45.612
+00:04:41.495 --> 00:04:45.732
 The scanner subnet's exclusion
 passed its review date in October.
 
 73
-00:04:45.612 --> 00:04:49.962
+00:04:45.732 --> 00:04:50.082
 The second emergency access account
 isn't in the identity exclusions,
 
 74
-00:04:49.962 --> 00:04:52.362
+00:04:50.082 --> 00:04:52.482
 so attack disruption could contain it.
 
 75
-00:04:52.362 --> 00:04:58.713
+00:04:52.482 --> 00:04:58.833
 And one device runs a sensor below
 10.8470, so Contain User won't act there.
 
 76
-00:04:58.713 --> 00:05:03.772
+00:04:58.833 --> 00:05:03.892
 Step 3 reads the ladder the groups are
 checked against: full for workstations,
 
 77
-00:05:03.772 --> 00:05:08.330
+00:05:03.892 --> 00:05:08.450
 semi for all folders for the pilot,
 and any semi level for servers.
 
 78
-00:05:12.080 --> 00:05:15.012
+00:05:12.200 --> 00:05:15.132
 Lab 2 uses a test
 tenant, never production,
 
 79
-00:05:15.012 --> 00:05:19.755
+00:05:15.132 --> 00:05:19.875
 with Defender for Identity on at
 least one test domain controller.
 
 80
-00:05:19.755 --> 00:05:22.055
+00:05:19.875 --> 00:05:22.175
 Sign in and run the signals check.
 
 81
-00:05:22.055 --> 00:05:26.506
+00:05:22.175 --> 00:05:26.626
 In a quiet test tenant the query may
 return no rows, and the check fails:
 
 82
-00:05:26.506 --> 00:05:31.114
+00:05:26.626 --> 00:05:31.234
 that says no identity or cloud-app
 alert met an endpoint alert this week,
 
 83
-00:05:31.114 --> 00:05:36.268
+00:05:31.234 --> 00:05:36.388
 not that the sensors are broken; check
 sensor health in the Identities settings.
 
 84
-00:05:36.268 --> 00:05:40.674
+00:05:36.388 --> 00:05:40.794
 Then copy the two portal pages into the
 template columns: the device groups,
 
 85
-00:05:40.674 --> 00:05:45.293
+00:05:40.794 --> 00:05:45.413
 and the automated response exclusions
 with their approvers and review dates.
 
 86
-00:05:45.293 --> 00:05:46.893
+00:05:45.413 --> 00:05:47.013
 Run the automation check.
 
 87
-00:05:46.893 --> 00:05:49.580
+00:05:47.013 --> 00:05:49.700
 Nothing changed, so you just sign out.
 
 88
-00:05:53.330 --> 00:05:56.692
+00:05:53.450 --> 00:05:56.812
 Here's what these gates prove,
 against NIST's catalog.
 
 89
-00:05:56.692 --> 00:06:00.411
+00:05:56.812 --> 00:06:00.531
 Identity and cloud-app alerts
 correlating with the endpoint's
 
 90
-00:06:00.411 --> 00:06:04.343
+00:06:00.531 --> 00:06:04.463
 supports system monitoring and
 correlating audit repositories.
 
 91
-00:06:04.343 --> 00:06:08.842
+00:06:04.463 --> 00:06:08.962
 Emergency access accounts flagged for
 a person supports account monitoring.
 
 92
-00:06:08.842 --> 00:06:12.058
+00:06:08.962 --> 00:06:12.178
 Each device group's level
 matching the ladder supports
 
 93
-00:06:12.058 --> 00:06:15.204
+00:06:12.178 --> 00:06:15.324
 automated incident handling
 and automated response.
 
 94
-00:06:15.204 --> 00:06:20.163
+00:06:15.324 --> 00:06:20.283
 And exclusions approved and reviewed,
 with every emergency account excluded,
 
 95
-00:06:20.163 --> 00:06:23.443
+00:06:20.283 --> 00:06:23.563
 supports automated incident
 handling done safely.
 
 96
-00:06:23.443 --> 00:06:26.631
+00:06:23.563 --> 00:06:26.751
 The indicators are FedRAMP's,
 as the guide maps them.
 
 97
-00:06:26.631 --> 00:06:30.800
+00:06:26.751 --> 00:06:30.920
 The records support these controls;
 the assessor decides them.
 
 98
-00:06:34.550 --> 00:06:35.950
+00:06:34.670 --> 00:06:36.070
 What breaks in production?
 
 99
-00:06:35.950 --> 00:06:40.011
+00:06:36.070 --> 00:06:40.131
 Attack disruption containing an
 emergency access account locks you
 
 100
-00:06:40.011 --> 00:06:43.862
+00:06:40.131 --> 00:06:43.982
 out during the incident; every
 emergency account must be excluded.
 
 101
-00:06:43.862 --> 00:06:48.887
+00:06:43.982 --> 00:06:49.007
 A server group at full means a server
 remediated or isolated without a person;
 
 102
-00:06:48.887 --> 00:06:51.713
+00:06:49.007 --> 00:06:51.833
 the ladder allows
 servers only semi levels.
 
 103
-00:06:51.713 --> 00:06:55.815
+00:06:51.833 --> 00:06:55.935
 An exclusion nobody reviews
 quietly withdraws protection;
 
 104
-00:06:55.815 --> 00:06:57.949
+00:06:55.935 --> 00:06:58.069
 a review date ahead is required.
 
 105
-00:06:57.949 --> 00:07:00.812
+00:06:58.069 --> 00:07:00.932
 An old sensor means
 Contain User does nothing.
 
 106
-00:07:00.812 --> 00:07:05.467
+00:07:00.932 --> 00:07:05.587
 And when the identity sensors stop,
 the query goes quiet and looks calm,
 
 107
-00:07:05.467 --> 00:07:08.810
+00:07:05.587 --> 00:07:08.930
 so no source beyond the
 endpoint is a failure.
 
 108
-00:07:12.560 --> 00:07:13.910
+00:07:12.680 --> 00:07:14.030
 Here's what done looks like.
 
 109
-00:07:13.910 --> 00:07:18.810
+00:07:14.030 --> 00:07:18.930
 The cross-source query names at least one
 identity or cloud-app source each week.
 
 110
-00:07:18.810 --> 00:07:23.398
+00:07:18.930 --> 00:07:23.518
 Every emergency access account in the
 settings is an identity exclusion.
 
 111
-00:07:23.398 --> 00:07:27.197
+00:07:23.518 --> 00:07:27.317
 Every device group is at the
 ladder's level, or has an exception.
 
 112
-00:07:27.197 --> 00:07:30.785
+00:07:27.317 --> 00:07:30.905
 Every exclusion has an approver
 and a review date ahead.
 
 113
-00:07:30.785 --> 00:07:34.935
+00:07:30.905 --> 00:07:35.055
 And every device runs a sensor at
 or above the Contain User minimum.
 
 114
-00:07:34.935 --> 00:07:38.066
+00:07:35.055 --> 00:07:38.186
 Next, Chapter 8 runs every
 check in one command,
 
 115
-00:07:38.066 --> 00:07:43.010
+00:07:38.186 --> 00:07:43.130
 computes the guide's metrics, and
 records it all for the security officer.
 
 116
-00:07:43.010 --> 00:07:44.170
+00:07:43.130 --> 00:07:44.290
 Thanks for watching.

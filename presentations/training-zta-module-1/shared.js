@@ -4,7 +4,7 @@
 // It wraps the Microsoft Automation training helpers (../training-ms-automation-module-1/shared.js: Learn-style title,
 // objectives and knowledge-check slides, the code panel, tables, panels and callouts) and sets this path's name on the
 // title slide and in the document title. The title slides carry no draft notice: the editor chose on November 13, 2026
-// to leave it off these four decks, though the module pages are still drafts awaiting review.
+// to leave it off these four decks. The module pages have since been reviewed and approved.
 // Every fact on a slide comes from the module page in docs/training/zero-trust-assessment/, the implementation guide it
 // links (docs/books/guides/zero-trust-assessment-implementation.md) and its footnotes, or the kit (examples/zta-results).
 module.exports = (cfg) => {

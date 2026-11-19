@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 04: Attack Surface Reduction: Audit, Warn, Block
 
-Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook. This is Chapter 4: attack surface reduction, through audit, warn and block. Audit is configured but protects nothing. A rule is done when it's in block on every ring, or its exception is written down. The code's job is to say which rules can move this week, and why the others can't. We'll start from Learn's modes and syntax, read the rule catalog, the plan and the readiness rules, and walk two labs. The chapter is a draft awaiting review; the code is illustrative, tested against fixtures.
+Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook. This is Chapter 4: attack surface reduction, through audit, warn and block. Audit is configured but protects nothing. A rule is done when it's in block on every ring, or its exception is written down. The code's job is to say which rules can move this week, and why the others can't. We'll start from Learn's modes and syntax, read the rule catalog, the plan and the readiness rules, and walk two labs. The chapter has been reviewed and approved; the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why the rollout needs bookkeeping
 

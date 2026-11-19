@@ -44,599 +44,599 @@ read the kit's check, and walk two
 labs, the evidence and the dangers.
 
 10
-00:00:32.825 --> 00:00:35.840
-The chapter is a draft
-awaiting the owner's review,
+00:00:32.825 --> 00:00:35.510
+The chapter has been
+reviewed and approved,
 
 11
-00:00:35.840 --> 00:00:40.090
+00:00:35.510 --> 00:00:39.830
 and the code is illustrative,
 tested against a fictional estate.
 
 12
-00:00:43.840 --> 00:00:45.215
+00:00:43.580 --> 00:00:44.955
 Why three questions?
 
 13
-00:00:45.215 --> 00:00:49.293
+00:00:44.955 --> 00:00:49.033
 Because a private endpoint that exists
 can still go unused if the name
 
 14
-00:00:49.293 --> 00:00:53.653
+00:00:49.033 --> 00:00:53.393
 doesn't resolve to it, and can still be
 bypassed if the public path stays open.
 
 15
-00:00:53.653 --> 00:00:56.609
+00:00:53.393 --> 00:00:56.349
 By the end of this chapter
 you can answer four things:
 
 16
-00:00:56.609 --> 00:01:00.253
+00:00:56.349 --> 00:00:59.993
 whether every privatelink zone is
 central and linked to the hub,
 
 17
-00:01:00.253 --> 00:01:04.309
+00:00:59.993 --> 00:01:04.049
 whether every private endpoint
 registers its record in a central zone,
 
 18
-00:01:04.309 --> 00:01:08.228
+00:01:04.049 --> 00:01:07.968
 which resources still accept public
 traffic beside their endpoint,
 
 19
-00:01:08.228 --> 00:01:12.628
+00:01:07.968 --> 00:01:12.368
 and which key vaults miss any part of
 the posture Microsoft Learn recommends.
 
 20
-00:01:12.628 --> 00:01:15.315
+00:01:12.368 --> 00:01:15.055
 And you can compute the
 guide's vault-posture metric.
 
 21
-00:01:15.315 --> 00:01:19.093
+00:01:15.055 --> 00:01:18.833
 It's for platform owners, who
 own the zones; workload owners,
 
 22
-00:01:19.093 --> 00:01:23.620
+00:01:18.833 --> 00:01:23.360
 who own endpoints and vaults; and
 the developers who review both.
 
 23
-00:01:27.370 --> 00:01:29.245
+00:01:27.110 --> 00:01:28.985
 Here's Microsoft's starting point.
 
 24
-00:01:29.245 --> 00:01:34.261
+00:01:28.985 --> 00:01:34.001
 Learn's Key Vault Private Link page creates
 a vault on role-based access with purge
 
 25
-00:01:34.261 --> 00:01:39.277
+00:01:34.001 --> 00:01:39.017
 protection, closes its firewall, creates
 the vault's privatelink zone and its link,
 
 26
-00:01:39.277 --> 00:01:42.670
+00:01:39.017 --> 00:01:42.410
 and the private endpoint,
 then validates with nslookup.
 
 27
-00:01:42.670 --> 00:01:46.382
+00:01:42.410 --> 00:01:46.122
 It also says name resolution is
 where private endpoints fail.
 
 28
-00:01:46.382 --> 00:01:50.034
+00:01:46.122 --> 00:01:49.774
 A private DNS zone group
 registers the endpoint's record,
 
 29
-00:01:50.034 --> 00:01:52.132
+00:01:49.774 --> 00:01:51.872
 and removes it with the endpoint.
 
 30
-00:01:52.132 --> 00:01:55.741
+00:01:51.872 --> 00:01:55.481
 The Cloud Adoption Framework
 keeps privatelink zones central
 
 31
-00:01:55.741 --> 00:01:59.419
+00:01:55.481 --> 00:01:59.159
 in the connectivity subscription
 and adds zone groups by policy.
 
 32
-00:01:59.419 --> 00:02:02.770
+00:01:59.159 --> 00:02:02.510
 The zone group API
 returns each group's zone.
 
 33
-00:02:02.770 --> 00:02:07.797
+00:02:02.510 --> 00:02:07.537
 And Learn's Key Vault recommendations:
 role-based access, not access policies;
 
 34
-00:02:07.797 --> 00:02:13.650
+00:02:07.537 --> 00:02:13.390
 purge protection; private endpoints with
 public access disabled; and audit logging.
 
 35
-00:02:17.400 --> 00:02:18.763
+00:02:17.140 --> 00:02:18.503
 What does Learn leave to you?
 
 36
-00:02:18.763 --> 00:02:23.063
+00:02:18.503 --> 00:02:22.803
 The commands make one zone, one
 link, one endpoint; in practice,
 
 37
-00:02:23.063 --> 00:02:28.050
+00:02:22.803 --> 00:02:27.790
 zones still get created in workload
 subscriptions, and records split.
 
 38
-00:02:28.050 --> 00:02:30.782
+00:02:27.790 --> 00:02:30.522
 A zone group per endpoint
 means an endpoint
 
 39
-00:02:30.782 --> 00:02:33.438
+00:02:30.522 --> 00:02:33.178
 without one has no record anybody manages.
 
 40
-00:02:33.438 --> 00:02:37.485
+00:02:33.178 --> 00:02:37.225
 "Turn public access off once the
 private path works" leaves room
 
 41
-00:02:37.485 --> 00:02:41.299
+00:02:37.225 --> 00:02:41.039
 for the private path to work
 while the public one stays open.
 
 42
-00:02:41.299 --> 00:02:44.018
+00:02:41.039 --> 00:02:43.758
 Key Vault's recommendations are read once,
 
 43
-00:02:44.018 --> 00:02:46.813
+00:02:43.758 --> 00:02:46.553
 and a vault created next
 quarter misses one.
 
 44
-00:02:46.813 --> 00:02:50.987
+00:02:46.553 --> 00:02:50.727
 And nslookup has to run from inside
 a network, which the kit can't do.
 
 45
-00:02:50.987 --> 00:02:56.790
+00:02:50.727 --> 00:02:56.530
 So the kit checks the records' configuration
 every run, and Lab 2 runs nslookup.
 
 46
-00:03:00.540 --> 00:03:02.502
+00:03:00.280 --> 00:03:02.242
 Six rules cover the network side.
 
 47
-00:03:02.502 --> 00:03:07.485
+00:03:02.242 --> 00:03:07.225
 A privatelink zone outside the connectivity
 subscription, or not linked to the hub,
 
 48
-00:03:07.485 --> 00:03:11.528
+00:03:07.225 --> 00:03:11.268
 is a finding, as the Cloud Adoption
 Framework's central pattern asks.
 
 49
-00:03:11.528 --> 00:03:15.208
+00:03:11.268 --> 00:03:14.948
 A private endpoint with no zone
 group, or one that registers
 
 50
-00:03:15.208 --> 00:03:19.040
+00:03:14.948 --> 00:03:18.780
 in a zone outside the connectivity
 subscription, is a finding.
 
 51
-00:03:19.040 --> 00:03:24.102
+00:03:18.780 --> 00:03:23.842
 A resource with a private endpoint and
 public network access still on is a finding.
 
 52
-00:03:24.102 --> 00:03:29.245
+00:03:23.842 --> 00:03:28.985
 And a platform service that's public with
 no private endpoint at all is a warning,
 
 53
-00:03:29.245 --> 00:03:33.763
+00:03:28.985 --> 00:03:33.503
 not a finding: the guide's private PaaS
 target is the agency's own, rising,
 
 54
-00:03:33.763 --> 00:03:38.515
+00:03:33.503 --> 00:03:38.255
 and a Front Door origin locked by Chapter
 5's checks may be public by design.
 
 55
-00:03:38.515 --> 00:03:40.800
+00:03:38.255 --> 00:03:40.540
 Vaults go to the Key Vault rules.
 
 56
-00:03:44.550 --> 00:03:49.256
+00:03:44.290 --> 00:03:48.996
 Then every vault gets six checks from
 Learn's Key Vault recommendations:
 
 57
-00:03:49.256 --> 00:03:52.942
+00:03:48.996 --> 00:03:52.682
 role-based access, not access
 policies; purge protection;
 
 58
-00:03:52.942 --> 00:03:57.727
+00:03:52.682 --> 00:03:57.467
 a firewall whose default is deny; public
 network access, which is a warning;
 
 59
-00:03:57.727 --> 00:04:02.825
+00:03:57.467 --> 00:04:02.565
 an approved private endpoint; and audit
 events sent to the platform workspace.
 
 60
-00:04:02.825 --> 00:04:07.436
+00:04:02.565 --> 00:04:07.176
 A vault has the full posture when it
 has role-based access, purge protection,
 
 61
-00:04:07.436 --> 00:04:10.188
+00:04:07.176 --> 00:04:09.928
 an approved private
 endpoint and audit logs:
 
 62
-00:04:10.188 --> 00:04:13.237
+00:04:09.928 --> 00:04:12.977
 the four parts of the
 guide's vault-posture metric.
 
 63
-00:04:13.237 --> 00:04:17.135
+00:04:12.977 --> 00:04:16.875
 Key rotation policies are read
 through the vault's own data plane,
 
 64
-00:04:17.135 --> 00:04:18.650
+00:04:16.875 --> 00:04:18.390
 which the kit doesn't call.
 
 65
-00:04:18.650 --> 00:04:21.660
+00:04:18.390 --> 00:04:21.400
 Lab 2 reads one with the guide's command.
 
 66
-00:04:25.410 --> 00:04:26.460
+00:04:25.150 --> 00:04:26.200
 Who's involved?
 
 67
-00:04:26.460 --> 00:04:29.138
+00:04:26.200 --> 00:04:28.878
 The platform owner owns the central zones,
 
 68
-00:04:29.138 --> 00:04:32.810
+00:04:28.878 --> 00:04:32.550
 their links to the hub, and the
 policy that adds zone groups.
 
 69
-00:04:32.810 --> 00:04:35.882
+00:04:32.550 --> 00:04:35.622
 Workload owners own their
 endpoints and vaults,
 
 70
-00:04:35.882 --> 00:04:39.185
+00:04:35.622 --> 00:04:38.925
 and close the public path
 once the private one works.
 
 71
-00:04:39.185 --> 00:04:43.610
+00:04:38.925 --> 00:04:43.350
 And the application owner keeps each
 vault's posture, with the platform owner.
 
 72
-00:04:43.610 --> 00:04:46.225
+00:04:43.350 --> 00:04:45.965
 Every read the check makes is Reader,
 
 73
-00:04:46.225 --> 00:04:50.760
+00:04:45.965 --> 00:04:50.500
 and it never touches a vault's
 data plane: no secrets, no keys.
 
 74
-00:04:54.510 --> 00:04:59.810
+00:04:54.250 --> 00:04:59.550
 Lab 1 needs PowerShell 7 with Pester, in
 the kit's folder, and no subscription.
 
 75
-00:04:59.810 --> 00:05:03.077
+00:04:59.550 --> 00:05:02.817
 Contoso's vault zone is
 central and linked to the hub;
 
 76
-00:05:03.077 --> 00:05:07.635
+00:05:02.817 --> 00:05:07.375
 the payroll team created its own blob
 zone in its workload subscription.
 
 77
-00:05:07.635 --> 00:05:11.910
+00:05:07.375 --> 00:05:11.650
 Step 1 runs the check: one of
 three vaults has the full posture.
 
 78
-00:05:11.910 --> 00:05:14.085
+00:05:11.650 --> 00:05:13.825
 Step 2 reads each vault.
 
 79
-00:05:14.085 --> 00:05:15.835
+00:05:13.825 --> 00:05:15.575
 The payroll vault has everything.
 
 80
-00:05:15.835 --> 00:05:20.835
+00:05:15.575 --> 00:05:20.575
 The hub certificates vault has no private
 endpoint, and its public access is on.
 
 81
-00:05:20.835 --> 00:05:26.510
+00:05:20.575 --> 00:05:26.250
 And the portal vault misses every part:
 access policies, no purge protection,
 
 82
-00:05:26.510 --> 00:05:31.290
+00:05:26.250 --> 00:05:31.030
 an open firewall, public access,
 no endpoint and no audit log.
 
 83
-00:05:35.040 --> 00:05:39.515
+00:05:34.780 --> 00:05:39.255
 Step 3 reads each private endpoint
 and the zone it registers in.
 
 84
-00:05:39.515 --> 00:05:42.815
+00:05:39.255 --> 00:05:42.555
 The vault's endpoint registers
 in the central vault zone.
 
 85
-00:05:42.815 --> 00:05:46.440
+00:05:42.555 --> 00:05:46.180
 The blob endpoint registers in
 the payroll team's own zone.
 
 86
-00:05:46.440 --> 00:05:51.015
+00:05:46.180 --> 00:05:50.755
 And the queue endpoint has no zone group
 at all: nothing registers its record.
 
 87
-00:05:51.015 --> 00:05:53.140
+00:05:50.755 --> 00:05:52.880
 Step 4 reads the findings.
 
 88
-00:05:53.140 --> 00:05:57.231
+00:05:52.880 --> 00:05:56.971
 The blob zone is in the payroll
 subscription and not linked to the hub;
 
 89
-00:05:57.231 --> 00:06:01.465
+00:05:56.971 --> 00:06:01.205
 the blob endpoint registers there;
 the queue endpoint has no zone group;
 
 90
-00:06:01.465 --> 00:06:05.340
+00:06:01.205 --> 00:06:05.080
 the storage account has two
 endpoints and public access still on.
 
 91
-00:06:05.340 --> 00:06:09.827
+00:06:05.080 --> 00:06:09.567
 Then the vault findings, and warnings
 for public services with no endpoint.
 
 92
-00:06:09.827 --> 00:06:12.900
+00:06:09.567 --> 00:06:12.640
 Step 5 runs this chapter's two tests.
 
 93
-00:06:16.650 --> 00:06:21.274
+00:06:16.390 --> 00:06:21.014
 Lab 2 moves to a test subscription with
 a test vault behind a private endpoint
 
 94
-00:06:21.274 --> 00:06:25.825
+00:06:21.014 --> 00:06:25.565
 and the central zone, and a test machine
 in a linked network, never production.
 
 95
-00:06:25.825 --> 00:06:31.338
+00:06:25.565 --> 00:06:31.078
 Sign in, write the settings, and run the
 check live, allowing the unverified calls.
 
 96
-00:06:31.338 --> 00:06:36.547
+00:06:31.078 --> 00:06:36.287
 Compare with the guide's Validate query,
 which reads the vault's role-based access,
 
 97
-00:06:36.547 --> 00:06:39.501
+00:06:36.287 --> 00:06:39.241
 purge protection, firewall
 and public access,
 
 98
-00:06:39.501 --> 00:06:43.000
+00:06:39.241 --> 00:06:42.740
 and read one key's rotation
 policy, which the kit doesn't.
 
 99
-00:06:43.000 --> 00:06:45.828
+00:06:42.740 --> 00:06:45.568
 Then, from the test machine,
 look up the vault's name:
 
 100
-00:06:45.828 --> 00:06:50.588
+00:06:45.568 --> 00:06:50.328
 the answer should come through the vault's
 privatelink zone with a private address.
 
 101
-00:06:50.588 --> 00:06:54.469
+00:06:50.328 --> 00:06:54.209
 From outside, the same name
 resolves to the public frontend,
 
 102
-00:06:54.469 --> 00:06:56.212
+00:06:54.209 --> 00:06:55.952
 which refuses the request.
 
 103
-00:06:56.212 --> 00:06:59.400
+00:06:55.952 --> 00:06:59.140
 Back out by deleting the
 output and signing out.
 
 104
-00:07:03.150 --> 00:07:05.815
+00:07:02.890 --> 00:07:05.555
 Each output is evidence
 for something specific,
 
 105
-00:07:05.815 --> 00:07:11.212
+00:07:05.555 --> 00:07:10.952
 from the guide's requirements
 table against NIST SP 800-53.
 
 106
-00:07:11.212 --> 00:07:15.982
+00:07:10.952 --> 00:07:15.722
 Central zones linked to the hub, every
 endpoint registered there, and nothing public
 
 107
-00:07:15.982 --> 00:07:20.750
+00:07:15.722 --> 00:07:20.490
 behind an endpoint support boundary
 protection and information flow enforcement.
 
 108
-00:07:20.750 --> 00:07:25.700
+00:07:20.490 --> 00:07:25.440
 Public services without an endpoint,
 named, support boundary protection.
 
 109
-00:07:25.700 --> 00:07:29.161
+00:07:25.440 --> 00:07:28.901
 And every vault on role-based
 access with purge protection,
 
 110
-00:07:29.161 --> 00:07:33.540
+00:07:28.901 --> 00:07:33.280
 a private endpoint and audit logs
 supports cryptographic key management,
 
 111
-00:07:33.540 --> 00:07:37.425
+00:07:33.280 --> 00:07:37.165
 protection of information at rest,
 and authenticator management.
 
 112
-00:07:37.425 --> 00:07:41.475
+00:07:37.165 --> 00:07:41.215
 The kit's output supports these
 controls; the assessor decides.
 
 113
-00:07:41.475 --> 00:07:46.056
+00:07:41.215 --> 00:07:45.796
 The key security indicators are
 FedRAMP's indicators for cloud providers,
 
 114
-00:07:46.056 --> 00:07:49.290
+00:07:45.796 --> 00:07:49.030
 which the agency lines
 its own evidence up with.
 
 115
-00:07:53.040 --> 00:07:54.440
+00:07:52.780 --> 00:07:54.180
 What breaks in production?
 
 116
-00:07:54.440 --> 00:07:57.968
+00:07:54.180 --> 00:07:57.708
 Zones in workload subscriptions
 split the records,
 
 117
-00:07:57.968 --> 00:08:01.578
+00:07:57.708 --> 00:08:01.318
 so resolution fails or goes
 public; the kit flags them.
 
 118
-00:08:01.578 --> 00:08:06.440
+00:08:01.318 --> 00:08:06.180
 An endpoint with no zone group has a record
 somebody made by hand, or none at all.
 
 119
-00:08:06.440 --> 00:08:10.300
+00:08:06.180 --> 00:08:10.040
 The public path left open means
 the private endpoint works,
 
 120
-00:08:10.300 --> 00:08:13.215
+00:08:10.040 --> 00:08:12.955
 and so does the internet;
 three rules catch it.
 
 121
-00:08:13.215 --> 00:08:16.374
+00:08:12.955 --> 00:08:16.114
 Purge protection can't be
 turned off once it's on,
 
 122
-00:08:16.374 --> 00:08:19.777
+00:08:16.114 --> 00:08:19.517
 which is the point, so the
 kit only ever asks for it on.
 
 123
-00:08:19.777 --> 00:08:24.666
+00:08:19.517 --> 00:08:24.406
 And configuration isn't resolution: the
 records can exist while clients still
 
 124
-00:08:24.666 --> 00:08:29.840
+00:08:24.406 --> 00:08:29.580
 resolve the public name, which is why Lab
 2 runs nslookup from a linked machine.
 
 125
-00:08:33.590 --> 00:08:34.940
+00:08:33.330 --> 00:08:34.680
 Here's what done looks like.
 
 126
-00:08:34.940 --> 00:08:39.477
+00:08:34.680 --> 00:08:39.217
 Every privatelink zone is in the connectivity
 subscription and linked to the hub.
 
 127
-00:08:39.477 --> 00:08:42.953
+00:08:39.217 --> 00:08:42.693
 Every private endpoint has a
 zone group in a central zone.
 
 128
-00:08:42.953 --> 00:08:47.001
+00:08:42.693 --> 00:08:46.741
 No resource has an endpoint with
 public network access still on,
 
 129
-00:08:47.001 --> 00:08:49.140
+00:08:46.741 --> 00:08:48.880
 unless a decision record says why.
 
 130
-00:08:49.140 --> 00:08:52.415
+00:08:48.880 --> 00:08:52.155
 Every vault has the full
 posture, or a dated plan.
 
 131
-00:08:52.415 --> 00:08:56.165
+00:08:52.155 --> 00:08:55.905
 And nslookup from a linked machine
 returned a private address.
 
 132
-00:08:56.165 --> 00:09:00.215
+00:08:55.905 --> 00:08:59.955
 Next, Chapter 8: the policy that
 holds all of this in place,
 
 133
-00:09:00.215 --> 00:09:02.290
+00:08:59.955 --> 00:09:02.030
 and the evidence that it did.

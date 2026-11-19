@@ -28,7 +28,7 @@ How an agency engineers the security of its Azure estate on top of the landing z
 
 ::: {.callout-tip}
 ## Watch, present or train
-**Narrated deck (about 17 minutes, captions)**: why a landing zone isn't a defense, what the books design and what this guide engineers, the ten steps on one page, commercial Azure for a GCC tenant, the same controls on AWS, Google Cloud and Oracle Cloud Infrastructure, the eligible roles and the RACI, then each step from the baseline and the exposure inventory to Key Vault, policy and operations, the dangers and what couldn't be verified, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-azure-security) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Azure_Security_Narrated). The deck says this guide is a draft awaiting the editor's review.
+**Narrated deck (about 17 minutes, captions)**: why a landing zone isn't a defense, what the books design and what this guide engineers, the ten steps on one page, commercial Azure for a GCC tenant, the same controls on AWS, Google Cloud and Oracle Cloud Infrastructure, the eligible roles and the RACI, then each step from the baseline and the exposure inventory to Key Vault, policy and operations, the dangers and what couldn't be verified, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-azure-security) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Azure_Security_Narrated). The deck says this guide has been reviewed and approved.
 :::
 
 ## How to read this guide

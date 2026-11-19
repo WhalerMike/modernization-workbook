@@ -2,7 +2,7 @@
 
 The 15-minute Why / What / Who / How briefing for [Book 20](../../docs/books/b20-information-protection/index.md), built with the shared kit in [`../_build/`](../_build/README.md). This folder sits outside `docs/`, so the site doesn't render it. The audience is CIOs and CISOs, data owners, records officers and privacy officials, Purview and Microsoft 365 engineers, and ISSOs.
 
-**Draft.** Book 20 is a draft awaiting the editor's review and isn't part of Release 2.0, the baseline edition. The title slide and the narration say so. Rebuild the deck when the book's review changes a page it draws on.
+**Approved.** Book 20 has been reviewed and approved and isn't part of Release 2.0, the baseline edition. The title slide and the narration say so. Rebuild the deck when a page it draws on changes.
 
 | File | Use |
 |---|---|

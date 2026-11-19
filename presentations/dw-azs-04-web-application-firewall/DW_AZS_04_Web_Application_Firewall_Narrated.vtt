@@ -44,539 +44,539 @@ Then two labs, the
 evidence and the dangers.
 
 10
-00:00:29.088 --> 00:00:32.960
-The chapter is a draft, and
-the code is illustrative.
+00:00:29.088 --> 00:00:34.120
+The chapter has been reviewed and
+approved, and the code is illustrative.
 
 11
-00:00:36.710 --> 00:00:38.573
+00:00:37.870 --> 00:00:39.733
 Why does the mode matter so much?
 
 12
-00:00:38.573 --> 00:00:40.946
+00:00:39.733 --> 00:00:42.106
 Because, as Microsoft Learn puts it,
 
 13
-00:00:40.946 --> 00:00:44.873
+00:00:42.106 --> 00:00:46.033
 detection mode only logs, and
 only prevention mode blocks.
 
 14
-00:00:44.873 --> 00:00:49.960
+00:00:46.033 --> 00:00:51.120
 By the end of this chapter you can check
 every WAF policy against Microsoft's Zero
 
 15
-00:00:49.960 --> 00:00:55.503
+00:00:51.120 --> 00:00:56.663
 Trust recommendations, find every internet-facing
 application gateway and Front Door
 
 16
-00:00:55.503 --> 00:01:00.135
+00:00:56.663 --> 00:01:01.295
 profile that has no WAF or no logs,
 compute the guide's prevention coverage,
 
 17
-00:01:00.135 --> 00:01:03.931
+00:01:01.295 --> 00:01:05.091
 and hand the application owner
 the exact command that moves
 
 18
-00:01:03.931 --> 00:01:07.348
+00:01:05.091 --> 00:01:08.508
 a policy to prevention, without
 the kit ever sending it.
 
 19
-00:01:07.348 --> 00:01:10.780
+00:01:08.508 --> 00:01:11.940
 It's for application owners
 who tune and switch the WAF,
 
 20
-00:01:10.780 --> 00:01:16.010
+00:01:11.940 --> 00:01:17.170
 platform owners who own the policies,
 and security monitors who read the logs.
 
 21
-00:01:19.760 --> 00:01:21.635
+00:01:20.920 --> 00:01:22.795
 Here's Microsoft's starting point.
 
 22
-00:01:21.635 --> 00:01:26.730
+00:01:22.795 --> 00:01:27.890
 Microsoft's Zero Trust recommendations
 for both services check prevention mode,
 
 23
-00:01:26.730 --> 00:01:31.300
+00:01:27.890 --> 00:01:32.460
 request body inspection, the default
 rule set, the bot protection rule set,
 
 24
-00:01:31.300 --> 00:01:34.522
+00:01:32.460 --> 00:01:35.682
 rate limiting and diagnostic
 logging, among others.
 
 25
-00:01:34.522 --> 00:01:39.465
+00:01:35.682 --> 00:01:40.626
 Learn recommends the latest Default Rule
 Set, two point two at the guide's reading,
 
 26
-00:01:39.465 --> 00:01:44.409
+00:01:40.626 --> 00:01:45.569
 validated in log mode before blocking; the
 command line's default is two point one.
 
 27
-00:01:44.409 --> 00:01:47.198
+00:01:45.569 --> 00:01:48.358
 Front Door's managed rules
 need the Premium tier.
 
 28
-00:01:47.198 --> 00:01:51.886
+00:01:48.358 --> 00:01:53.046
 Built-in policies require a WAF on
 each service, and a given mode.
 
 29
-00:01:51.886 --> 00:01:57.020
+00:01:53.046 --> 00:01:58.180
 And Learn documents the switch between
 detection and prevention with one command.
 
 30
-00:02:00.770 --> 00:02:02.133
+00:02:01.930 --> 00:02:03.293
 What does Learn leave to you?
 
 31
-00:02:02.133 --> 00:02:06.162
+00:02:03.293 --> 00:02:07.322
 Its Validate query reads one
 policy; an estate has several,
 
 32
-00:02:06.162 --> 00:02:10.358
+00:02:07.322 --> 00:02:11.518
 on two services, so the kit reads
 them all with the same checks.
 
 33
-00:02:10.358 --> 00:02:15.601
+00:02:11.518 --> 00:02:16.761
 Front Door says body inspection is enabled
 where Application Gateway says true,
 
 34
-00:02:15.601 --> 00:02:20.532
+00:02:16.761 --> 00:02:21.692
 and code written for one reads the other
 as off, so each shape is read as its own.
 
 35
-00:02:20.532 --> 00:02:23.834
+00:02:21.692 --> 00:02:24.994
 A policy that requires a
 WAF audits resources but
 
 36
-00:02:23.834 --> 00:02:26.894
+00:02:24.994 --> 00:02:28.054
 doesn't count endpoints,
 so the kit counts them.
 
 37
-00:02:26.894 --> 00:02:32.145
+00:02:28.054 --> 00:02:33.305
 A Front Door's WAF lives in a security
 policy, so those are read per profile.
 
 38
-00:02:32.145 --> 00:02:35.142
+00:02:33.305 --> 00:02:36.302
 The switch to prevention,
 sent by automation,
 
 39
-00:02:35.142 --> 00:02:38.545
+00:02:36.302 --> 00:02:39.705
 blocks users before tuning,
 so it's written to a plan.
 
 40
-00:02:38.545 --> 00:02:43.400
+00:02:39.705 --> 00:02:44.560
 And an old rule set is a warning,
 because moving needs validation first.
 
 41
-00:02:47.150 --> 00:02:48.550
+00:02:48.310 --> 00:02:49.710
 Eight rules come out of that.
 
 42
-00:02:48.550 --> 00:02:51.855
+00:02:49.710 --> 00:02:53.015
 A policy in detection, or
 disabled, is a finding,
 
 43
-00:02:51.855 --> 00:02:54.638
+00:02:53.015 --> 00:02:55.798
 and so is body inspection switched off.
 
 44
-00:02:54.638 --> 00:03:00.100
+00:02:55.798 --> 00:03:01.260
 A missing or older rule set, no bot
 protection, and no rate limit are warnings.
 
 45
-00:03:00.100 --> 00:03:05.526
+00:03:01.260 --> 00:03:06.686
 An internet-facing gateway or Front Door
 profile with no WAF at all is a finding,
 
 46
-00:03:05.526 --> 00:03:09.450
+00:03:06.686 --> 00:03:10.610
 and so is one that sends no
 logs to the platform workspace.
 
 47
-00:03:09.450 --> 00:03:13.174
+00:03:10.610 --> 00:03:14.334
 And a Front Door policy that
 isn't Premium is information:
 
 48
-00:03:13.174 --> 00:03:15.075
+00:03:14.334 --> 00:03:16.235
 it can't use managed rule sets.
 
 49
-00:03:15.075 --> 00:03:18.641
+00:03:16.235 --> 00:03:19.801
 Coverage is the endpoints
 behind a WAF in prevention
 
 50
-00:03:18.641 --> 00:03:22.288
+00:03:19.801 --> 00:03:23.448
 over all internet-facing
 endpoints, the guide's metric.
 
 51
-00:03:22.288 --> 00:03:26.090
+00:03:23.448 --> 00:03:27.250
 A gateway with only a private
 frontend isn't counted.
 
 52
-00:03:29.840 --> 00:03:32.840
+00:03:31.000 --> 00:03:34.000
 Here's the one thing this check
 could change, and doesn't.
 
 53
-00:03:32.840 --> 00:03:37.852
+00:03:34.000 --> 00:03:39.012
 For every Application Gateway policy not
 in prevention, the check writes Learn's
 
 54
-00:03:37.852 --> 00:03:42.790
+00:03:39.012 --> 00:03:43.950
 switch command, with the policy's resource
 group and subscription, to a plan file.
 
 55
-00:03:42.790 --> 00:03:46.502
+00:03:43.950 --> 00:03:47.662
 For a Front Door policy it writes
 a line pointing at the guide.
 
 56
-00:03:46.502 --> 00:03:47.752
+00:03:47.662 --> 00:03:48.912
 Nothing runs either.
 
 57
-00:03:47.752 --> 00:03:52.445
+00:03:48.912 --> 00:03:53.605
 A person runs the command after the
 false-positive review, in a change window,
 
 58
-00:03:52.445 --> 00:03:57.139
+00:03:53.605 --> 00:03:58.299
 because a switch sent by automation
 before tuning blocks legitimate users.
 
 59
-00:03:57.139 --> 00:04:01.190
+00:03:58.299 --> 00:04:02.350
 Learn documents the same command
 in reverse for backing out.
 
 60
-00:04:04.940 --> 00:04:05.990
+00:04:06.100 --> 00:04:07.150
 Who's involved?
 
 61
-00:04:05.990 --> 00:04:09.575
+00:04:07.150 --> 00:04:10.735
 The application owner tunes the
 policy while it's in detection,
 
 62
-00:04:09.575 --> 00:04:12.540
+00:04:10.735 --> 00:04:13.700
 and runs the switch after
 the false-positive review.
 
 63
-00:04:12.540 --> 00:04:16.665
+00:04:13.700 --> 00:04:17.825
 The platform owner owns the policies
 and their rule-set versions.
 
 64
-00:04:16.665 --> 00:04:19.460
+00:04:17.825 --> 00:04:20.620
 And the security monitor
 reads the WAF logs,
 
 65
-00:04:19.460 --> 00:04:23.652
+00:04:20.620 --> 00:04:24.812
 and confirms every endpoint's logs
 reach the platform workspace.
 
 66
-00:04:23.652 --> 00:04:25.777
+00:04:24.812 --> 00:04:26.937
 The kit's reads need only Reader.
 
 67
-00:04:25.777 --> 00:04:28.730
+00:04:26.937 --> 00:04:29.890
 The plan is the
 application owner's to run.
 
 68
-00:04:32.480 --> 00:04:36.592
+00:04:33.640 --> 00:04:37.752
 Lab 1 needs PowerShell 7 with
 Pester, in the kit's folder.
 
 69
-00:04:36.592 --> 00:04:41.232
+00:04:37.752 --> 00:04:42.392
 Contoso has two WAF policies: one
 on its portal application gateway,
 
 70
-00:04:41.232 --> 00:04:43.967
+00:04:42.392 --> 00:04:45.127
 and one on its portal Front Door profile.
 
 71
-00:04:43.967 --> 00:04:47.517
+00:04:45.127 --> 00:04:48.677
 A second Front Door profile,
 for careers, has none.
 
 72
-00:04:47.517 --> 00:04:51.693
+00:04:48.677 --> 00:04:52.853
 Step 1 runs the check: one of
 three internet-facing endpoints
 
 73
-00:04:51.693 --> 00:04:55.618
+00:04:52.853 --> 00:04:56.778
 is behind a WAF in prevention,
 and the plan file is written.
 
 74
-00:04:55.618 --> 00:04:57.881
+00:04:56.778 --> 00:04:59.041
 Step 2 reads each policy.
 
 75
-00:04:57.881 --> 00:05:00.668
+00:04:59.041 --> 00:05:01.828
 The gateway's policy
 is still in detection.
 
 76
-00:05:00.668 --> 00:05:04.193
+00:05:01.828 --> 00:05:05.353
 The Front Door policy blocks,
 but has no bot rule set.
 
 77
-00:05:04.193 --> 00:05:07.190
+00:05:05.353 --> 00:05:08.350
 Both are on Default
 Rule Set two point one.
 
 78
-00:05:10.940 --> 00:05:13.190
+00:05:12.100 --> 00:05:14.350
 Step 3 reads the findings.
 
 79
-00:05:13.190 --> 00:05:15.703
+00:05:14.350 --> 00:05:16.863
 The gateway's policy is in detection.
 
 80
-00:05:15.703 --> 00:05:20.215
+00:05:16.863 --> 00:05:21.375
 The careers Front Door profile
 has no WAF and sends no logs.
 
 81
-00:05:20.215 --> 00:05:23.692
+00:05:21.375 --> 00:05:24.852
 Both policies are a rule-set
 version behind the baseline,
 
 82
-00:05:23.692 --> 00:05:26.577
+00:05:24.852 --> 00:05:27.737
 and the Front Door policy
 has no bot protection.
 
 83
-00:05:26.577 --> 00:05:31.003
+00:05:27.737 --> 00:05:32.163
 The intranet gateway has a private
 frontend only, so it isn't counted.
 
 84
-00:05:31.003 --> 00:05:33.938
+00:05:32.163 --> 00:05:35.098
 Step 4 reads the plan the
 kit wrote and didn't run:
 
 85
-00:05:33.938 --> 00:05:36.874
+00:05:35.098 --> 00:05:38.034
 Learn's switch command
 for the gateway's policy,
 
 86
-00:05:36.874 --> 00:05:41.540
+00:05:38.034 --> 00:05:42.700
 with its resource group and subscription,
 ready for the application owner.
 
 87
-00:05:41.540 --> 00:05:44.360
+00:05:42.700 --> 00:05:45.520
 Step 5 runs the chapter's tests.
 
 88
-00:05:48.110 --> 00:05:53.042
+00:05:49.270 --> 00:05:54.202
 Lab 2 moves to a test subscription with
 an Application Gateway WAF version
 
 89
-00:05:53.042 --> 00:05:57.497
+00:05:54.202 --> 00:05:58.657
 two and its policy, as the guide's
 pilot builds them, never production.
 
 90
-00:05:57.497 --> 00:06:02.110
+00:05:58.657 --> 00:06:03.270
 Sign in to commercial Azure, write the
 settings file, and run the check live,
 
 91
-00:06:02.110 --> 00:06:06.260
+00:06:03.270 --> 00:06:07.420
 allowing the WAF policy queries
 that aren't verified on Learn yet.
 
 92
-00:06:06.260 --> 00:06:09.652
+00:06:07.420 --> 00:06:10.812
 Then compare with the guide's
 Validate query: the mode,
 
 93
-00:06:09.652 --> 00:06:13.198
+00:06:10.812 --> 00:06:14.358
 body inspection and rule sets
 should match the kit's row.
 
 94
-00:06:13.198 --> 00:06:16.059
+00:06:14.358 --> 00:06:17.219
 If a property is named
 differently, record it.
 
 95
-00:06:16.059 --> 00:06:19.152
+00:06:17.219 --> 00:06:20.312
 Nothing changed in Azure
 and the plan wasn't run,
 
 96
-00:06:19.152 --> 00:06:21.372
+00:06:20.312 --> 00:06:22.532
 so back out by deleting the output.
 
 97
-00:06:21.372 --> 00:06:26.260
+00:06:22.532 --> 00:06:27.420
 The guide's own blocked-request test is
 the application owner's, after the switch.
 
 98
-00:06:26.260 --> 00:06:28.610
+00:06:27.420 --> 00:06:29.770
 The authors haven't run this lab.
 
 99
-00:06:32.360 --> 00:06:36.560
+00:06:33.520 --> 00:06:37.720
 Each output supports a specific control
 from the guide's requirements table.
 
 100
-00:06:36.560 --> 00:06:38.811
+00:06:37.720 --> 00:06:39.971
 Each policy's mode, body inspection,
 
 101
-00:06:38.811 --> 00:06:44.168
+00:06:39.971 --> 00:06:45.328
 rule sets and rate limit support NIST's
 information input validation and boundary
 
 102
-00:06:44.168 --> 00:06:49.447
+00:06:45.328 --> 00:06:50.607
 protection controls, aligned to a FedRAMP
 indicator that cites input validation.
 
 103
-00:06:49.447 --> 00:06:54.314
+00:06:50.607 --> 00:06:55.474
 Every internet-facing endpoint behind
 a WAF in prevention, the plan reviewed
 
 104
-00:06:54.314 --> 00:06:59.410
+00:06:55.474 --> 00:07:00.570
 before it runs, and the logs from every
 endpoint all support boundary protection.
 
 105
-00:06:59.410 --> 00:07:03.810
+00:07:00.570 --> 00:07:04.970
 The kit's output supports these
 controls; the assessor decides.
 
 106
-00:07:07.560 --> 00:07:09.823
+00:07:08.720 --> 00:07:10.983
 What breaks, and what guards against it?
 
 107
-00:07:09.823 --> 00:07:14.181
+00:07:10.983 --> 00:07:15.341
 A WAF left in detection logs attacks
 and lets them reach the backend,
 
 108
-00:07:14.181 --> 00:07:17.684
+00:07:15.341 --> 00:07:18.844
 so the finding comes back
 every week until it switches.
 
 109
-00:07:17.684 --> 00:07:22.578
+00:07:18.844 --> 00:07:23.738
 Automation that switches to prevention
 blocks legitimate traffic before tuning,
 
 110
-00:07:22.578 --> 00:07:24.847
+00:07:23.738 --> 00:07:26.007
 so the kit only writes the command down.
 
 111
-00:07:24.847 --> 00:07:28.508
+00:07:26.007 --> 00:07:29.668
 A Front Door profile with no
 security policy has no WAF,
 
 112
-00:07:28.508 --> 00:07:33.634
+00:07:29.668 --> 00:07:34.794
 and nothing on the profile says so, so
 security policies are read per profile.
 
 113
-00:07:33.634 --> 00:07:36.606
+00:07:34.794 --> 00:07:37.766
 And the two services'
 property shapes differ,
 
 114
-00:07:36.606 --> 00:07:39.850
+00:07:37.766 --> 00:07:41.010
 so each is read on its
 own, with a test for both.
 
 115
-00:07:43.600 --> 00:07:44.950
+00:07:44.760 --> 00:07:46.110
 Here's what done looks like.
 
 116
-00:07:44.950 --> 00:07:49.179
+00:07:46.110 --> 00:07:50.339
 Every internet-facing endpoint
 is behind a WAF in prevention,
 
 117
-00:07:49.179 --> 00:07:50.838
+00:07:50.339 --> 00:07:51.998
 or has a decision record.
 
 118
-00:07:50.838 --> 00:07:55.525
+00:07:51.998 --> 00:07:56.685
 Every policy's rule set is the version
 the application owner validated.
 
 119
-00:07:55.525 --> 00:07:59.800
+00:07:56.685 --> 00:08:00.960
 The plan file was reviewed with the
 application owner before anyone ran it.
 
 120
-00:07:59.800 --> 00:08:03.900
+00:08:00.960 --> 00:08:05.060
 And every endpoint's WAF logs
 reach the platform workspace.
 
 121
-00:08:03.900 --> 00:08:09.810
+00:08:05.060 --> 00:08:10.970
 Next, Chapter 5: a WAF only helps if
 nothing can reach the origin around it.
