@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.637
+Production runs the same commands
+with the production settings file.
+
+2
+00:00:03.637 --> 00:00:06.422
+That file names the test
+stage's evidence folder,
+
+3
+00:00:06.422 --> 00:00:10.250
+and the preflight refuses production
+until that evidence passes.
+
+4
+00:00:10.250 --> 00:00:13.300
+There are two ways back,
+both planned in advance.
+
+5
+00:00:13.300 --> 00:00:17.345
+Redeploy the previous approved
+plan when the content is wrong;
+
+6
+00:00:17.345 --> 00:00:19.212
+its hash is already approved.
+
+7
+00:00:19.212 --> 00:00:21.924
+Or delete the workbook
+when it shouldn't exist.
+
+8
+00:00:21.924 --> 00:00:27.563
+Deleting it removes a view only: no
+log data, alert rule or task changes.
+
+9
+00:00:27.563 --> 00:00:31.542
+And on day two, a portal edit comes
+back as an export, is validated,
+
+10
+00:00:31.542 --> 00:00:35.740
+and replaces the template through
+review before it's redeployed.

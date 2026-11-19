@@ -1,0 +1,34 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.912
+Step 5 reads the emergency access query.
+
+2
+00:00:02.912 --> 00:00:07.694
+It's Microsoft's own sign-in query from
+its emergency access guidance, with the
+
+3
+00:00:07.694 --> 00:00:12.475
+accounts' object I D's taken from a
+parameter instead of written into the query.
+
+4
+00:00:12.475 --> 00:00:16.488
+Step 6 lists the eight expected
+tables and their limits.
+
+5
+00:00:16.488 --> 00:00:19.588
+Sign-in and audit logs: sixty minutes.
+
+6
+00:00:19.588 --> 00:00:24.028
+Intune's compliance export: two thousand
+eight hundred and eighty minutes,
+
+7
+00:00:24.028 --> 00:00:27.890
+because it arrives once a day and
+can take up to forty-eight hours.

@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.088
+Scene two, before any morning.
+
+2
+00:00:02.088 --> 00:00:05.637
+Someone edited the workbook in
+the portal and exported it.
+
+3
+00:00:05.637 --> 00:00:07.595
+The validator finds four edits:
+
+4
+00:00:07.595 --> 00:00:11.661
+a risk query that reads a workspace
+path instead of the parameter,
+
+5
+00:00:11.661 --> 00:00:14.597
+a devices query that now
+looks back thirty days,
+
+6
+00:00:14.597 --> 00:00:18.813
+a grants tab that lost its banner,
+and a subscription path in the file.
+
+7
+00:00:18.813 --> 00:00:22.662
+Microsoft's own advice is to
+mask the I D's an export embeds;
+
+8
+00:00:22.662 --> 00:00:24.874
+the kit's check simply fails them.
+
+9
+00:00:24.874 --> 00:00:26.038
+Remember the banner.
+
+10
+00:00:26.038 --> 00:00:29.180
+It says the workbook is
+a view, not evidence.

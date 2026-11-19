@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.975
+Who does what?
+
+2
+00:00:00.975 --> 00:00:05.242
+The security operations engineer
+edits a test copy in the portal,
+
+3
+00:00:05.242 --> 00:00:07.613
+exports it and validates the export.
+
+4
+00:00:07.613 --> 00:00:11.525
+A second person reviews the change
+before it replaces the template.
+
+5
+00:00:11.525 --> 00:00:14.512
+Developers keep the
+manifest and the queries.
+
+6
+00:00:14.512 --> 00:00:16.387
+Lab 1 needs only files.
+
+7
+00:00:16.387 --> 00:00:20.869
+Lab 2 saves one test workbook, so it
+needs Workbook Contributor on the
+
+8
+00:00:20.869 --> 00:00:25.350
+test resource group, for the lab only,
+and it deletes the copy at the end.
+
+9
+00:00:25.350 --> 00:00:29.210
+A reviewer checks that no export
+with I D's in it was committed.

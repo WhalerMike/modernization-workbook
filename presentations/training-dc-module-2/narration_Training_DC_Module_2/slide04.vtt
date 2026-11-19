@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.788
+Unit 2: deploying it.
+
+2
+00:00:01.788 --> 00:00:04.300
+What-if previews the
+change and makes none,
+
+3
+00:00:04.300 --> 00:00:08.176
+and it needs the same deployment
+rights as the deployment itself.
+
+4
+00:00:08.176 --> 00:00:11.120
+The plan's hash is what
+a second person approves,
+
+5
+00:00:11.120 --> 00:00:15.500
+and the kit deploys nothing else; it
+refuses any plan that would delete.
+
+6
+00:00:15.500 --> 00:00:18.691
+The deployer holds Workbook
+Contributor and deployment
+
+7
+00:00:18.691 --> 00:00:21.350
+rights on the resource
+group only, for the window.
+
+8
+00:00:21.350 --> 00:00:24.875
+Rollback is a redeploy of
+the previous approved plan,
+
+9
+00:00:24.875 --> 00:00:28.060
+or a delete that removes
+a view and nothing else.

@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.537
+Here are the renderer's rules, in order.
+
+2
+00:00:02.537 --> 00:00:04.551
+A link-out tab shows LINK-OUT.
+
+3
+00:00:04.551 --> 00:00:07.350
+No query result at all shows NO DATA.
+
+4
+00:00:07.350 --> 00:00:11.190
+If any source the tab depends
+on is past its freshness limit,
+
+5
+00:00:11.190 --> 00:00:15.500
+the tab shows STALE, and says the
+rows it does show may be incomplete.
+
+6
+00:00:15.500 --> 00:00:19.175
+Otherwise, any row the tab's
+rule flags shows ATTENTION.
+
+7
+00:00:19.175 --> 00:00:24.050
+No rows where a row is expected, like
+the morning probe, shows NO DATA.
+
+8
+00:00:24.050 --> 00:00:25.937
+And only then, CLEAR.
+
+9
+00:00:25.937 --> 00:00:28.413
+So a stale source never renders clear.
+
+10
+00:00:28.413 --> 00:00:33.340
+The render carries the banner, and the
+kit refuses to record it as evidence.

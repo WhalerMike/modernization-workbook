@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+Step 4 deploys.
+
+2
+00:00:01.413 --> 00:00:05.770
+Saving a shared workbook needs the
+workbooks write permission, which Workbook
+
+3
+00:00:05.770 --> 00:00:08.147
+Contributor grants, and deploying through
+
+4
+00:00:08.147 --> 00:00:10.788
+Resource Manager also
+needs deployment rights.
+
+5
+00:00:10.788 --> 00:00:15.087
+Grant both on the workbook's resource
+group only, for the deployment window.
+
+6
+00:00:15.087 --> 00:00:18.751
+Readers need Workbook Reader and
+their own access to the data.
+
+7
+00:00:18.751 --> 00:00:21.853
+The test stage runs preflight,
+plans with what-if,
+
+8
+00:00:21.853 --> 00:00:25.188
+deploys the approved plan,
+and checks reachability.
+
+9
+00:00:25.188 --> 00:00:28.313
+It's a go when each of those
+has a passing live record.
+
+10
+00:00:28.313 --> 00:00:30.449
+Production runs the same commands,
+
+11
+00:00:30.449 --> 00:00:34.575
+and the preflight refuses it until
+the test stage's evidence passes.
+
+12
+00:00:34.575 --> 00:00:36.840
+Rolling back deletes a view only.

@@ -1,0 +1,320 @@
+{
+ "1": [
+  [
+   0.05,
+   2.737,
+   "Welcome back to Building the Daily Checks Workbook."
+  ],
+  [
+   2.788,
+   3.85,
+   "This is Chapter 4: deploying to test and production."
+  ],
+  [
+   6.638,
+   5.487,
+   "The same commands twice, with a different settings file, and a record of each step in between."
+  ],
+  [
+   12.125,
+   6.1,
+   "It's a runbook, not a lab: it runs Chapters 2 and 3's scripts and the kit's deploy scripts."
+  ],
+  [
+   18.225,
+   5.888,
+   "The output you'll see comes from the kit's fixture mode, on November sixteenth, 2026."
+  ],
+  [
+   24.113,
+   6.162,
+   "Nothing here has been run against a lyve subscription, and the chapter is a draft awaiting the owner's review."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.825,
+   "Why treat a dashboard like this?"
+  ],
+  [
+   1.875,
+   6.925,
+   "Because it's still a change to the estate, and an unreviewed change is exactly what the rest of the workbook guards against."
+  ],
+  [
+   8.8,
+   5.725,
+   "So every deployment is previewed with what-if, which predicts the change and makes none."
+  ],
+  [
+   14.525,
+   4.438,
+   "A second person approves the plan's hash, and the kit deploys nothing else."
+  ],
+  [
+   18.962,
+   3.1,
+   "And every step leaves a hashed, chained record."
+  ],
+  [
+   22.062,
+   6.75,
+   "One rule holds throughout: the workbook itself, and any screenshot of it, is never on the evidence list."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.55,
+   "Here's what a stage holds."
+  ],
+  [
+   1.6,
+   1.962,
+   "Preflight runs six checks."
+  ],
+  [
+   3.562,
+   3.538,
+   "The validation records the template's checks and its hash."
+  ],
+  [
+   7.1,
+   4.237,
+   "The plan writes the parameters, the what-if result and the plan file."
+  ],
+  [
+   11.338,
+   3.337,
+   "The deployment writes its result beside the approved plan."
+  ],
+  [
+   14.675,
+   2.725,
+   "Reachability records each table's age."
+  ],
+  [
+   17.4,
+   2.725,
+   "The rollback plan is written before it's needed."
+  ],
+  [
+   20.125,
+   4.037,
+   "And the evidence step records each folder, hashed and chained."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   0.925,
+   "Who does what?"
+  ],
+  [
+   0.975,
+   10.062,
+   "The deployer needs Workbook Contributor, which can save shared workbooks, and deployment rights on the resource group, because a Resource Manager deployment and its what-if both need them."
+  ],
+  [
+   11.037,
+   4.825,
+   "Both are granted through privileged identity management, for the deployment window only."
+  ],
+  [
+   15.863,
+   3.35,
+   "A second person reads the plan and approves its hash."
+  ],
+  [
+   19.212,
+   3.462,
+   "The reachability check needs only Log Analytics Reader."
+  ],
+  [
+   22.675,
+   7.213,
+   "And readers need Workbook Reader and their own access to the data, because a workbook shows only what its reader can already query."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.775,
+   "Step 4 is the heart of it."
+  ],
+  [
+   1.825,
+   10.8,
+   "The plan writes this environment's parameters, the workspace and the parameter values the template leaves empty, then runs what-if and prints the create command and the hash to approve."
+  ],
+  [
+   12.625,
+   5.963,
+   "In fixture mode, on November sixteenth, it predicts one create: a single workbook."
+  ],
+  [
+   18.587,
+   5.475,
+   "A first deployment shows one create, and a redeploy shows a modify of the same workbook."
+  ],
+  [
+   24.062,
+   3.575,
+   "Anything else, and any delete, stops the stage."
+  ],
+  [
+   27.637,
+   5.875,
+   "Then a second person reads the plan and the what-if result, and records the hash in the change record."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.038,
+   "Step 6 deploys, and only the approved plan."
+  ],
+  [
+   3.087,
+   4.487,
+   "Without the Apply switch, the command prints what it would run and changes nothing."
+  ],
+  [
+   7.575,
+   1.637,
+   "With it, it deploys."
+  ],
+  [
+   9.213,
+   10.35,
+   "And it refuses a plan folder that changed, a hash that isn't the approved one, a plan with no what-if or with a delete, and a plan that wasn't made against the lyve environment."
+  ],
+  [
+   19.562,
+   12.25,
+   "Step 7 is the smoke test, in the portal: open the Daily checks workbook under the test workspace, check that the ten tabs open with the banner, and that the telemetry tab lists every expected table."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.088,
+   "Step 8 runs the reachability check against the test workspace."
+  ],
+  [
+   4.138,
+   2.875,
+   "Step 9 plans the rollback before you need it."
+  ],
+  [
+   7.013,
+   3.1,
+   "Step 10 records each folder as evidence."
+  ],
+  [
+   10.113,
+   12.95,
+   "Then the go or no-go: the stage is a go when every file matches its hash list, the chain is unbroken, and the preflight, validation, plan, deployment and reachability each have a passing lyve record."
+  ],
+  [
+   23.062,
+   1.837,
+   "Fixture records never count."
+  ],
+  [
+   24.9,
+   4.562,
+   "A no-go is a finding with an owner, and the stage is repeated after the fix."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.587,
+   "Production runs the same commands with the production settings file."
+  ],
+  [
+   3.638,
+   6.612,
+   "That file names the test stage's evidence folder, and the preflight refuses production until that evidence passes."
+  ],
+  [
+   10.25,
+   3.05,
+   "There are two ways back, both planned in advance."
+  ],
+  [
+   13.3,
+   5.912,
+   "Redeploy the previous approved plan when the content is wrong; its hash is already approved."
+  ],
+  [
+   19.212,
+   2.712,
+   "Or delete the workbook when it shouldn't exist."
+  ],
+  [
+   21.925,
+   5.638,
+   "Deleting it removes a view only: no log data, alert rule or task changes."
+  ],
+  [
+   27.562,
+   8.113,
+   "And on day two, a portal edit comes back as an export, is validated, and replaces the template through review before it's redeployed."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.887,
+   "Here's what each record supports."
+  ],
+  [
+   1.938,
+   3.925,
+   "Preflight supports least privilege and configuration settings."
+  ],
+  [
+   5.862,
+   3.462,
+   "The validation supports the baseline and change control."
+  ],
+  [
+   9.325,
+   4.65,
+   "The plan and its approval support change control and impact analysis."
+  ],
+  [
+   13.975,
+   3.312,
+   "The deployment supports change control and the baseline."
+  ],
+  [
+   17.288,
+   4.013,
+   "Reachability supports continuous monitoring and system monitoring."
+  ],
+  [
+   21.3,
+   4.138,
+   "The rollback plan supports change control and the contingency plan."
+  ],
+  [
+   25.438,
+   5.475,
+   "And the evidence step supports continuous monitoring and the protection of audit information."
+  ],
+  [
+   30.913,
+   3.812,
+   "The records support these controls; the assessor decides them."
+  ],
+  [
+   34.725,
+   6.55,
+   "Thanks for following the four chapters; the workbook itself remains a view, and the records are the evidence."
+  ]
+ ]
+}

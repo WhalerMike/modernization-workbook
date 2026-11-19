@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.325
+Here's what you start with.
+
+2
+00:00:01.325 --> 00:00:06.055
+The operator runbook's completeness
+check lists each expected table past its
+
+3
+00:00:06.055 --> 00:00:08.530
+freshness limit, and
+it uses a fuzzy union,
+
+4
+00:00:08.530 --> 00:00:12.387
+so a missing table shows up as a
+null instead of failing the query.
+
+5
+00:00:12.387 --> 00:00:16.712
+Sentinel's health page gives the query
+for each connector's latest failure,
+
+6
+00:00:16.712 --> 00:00:20.199
+and recommends Azure Monitor
+alert rules for health drifts.
+
+7
+00:00:20.199 --> 00:00:24.582
+Microsoft's Intune page says compliance
+is exported once a day and can
+
+8
+00:00:24.582 --> 00:00:28.888
+take up to forty-eight hours, and not
+to rely on a fixed completion time.
+
+9
+00:00:28.888 --> 00:00:32.623
+And the Azure command line can
+run a query against a workspace,
+
+10
+00:00:32.623 --> 00:00:34.730
+from its log analytics extension.

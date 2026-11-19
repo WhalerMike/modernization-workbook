@@ -1,0 +1,34 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.512
+Step 3 is the one to remember.
+
+2
+00:00:02.512 --> 00:00:06.488
+A copy was exported after someone
+edited the workbook in the portal.
+
+3
+00:00:06.488 --> 00:00:11.523
+Four edits, four failures: one risk query
+reads a workspace path instead of the
+
+4
+00:00:11.523 --> 00:00:16.401
+parameter; the devices query looks back
+seven hundred and twenty hours; the
+
+5
+00:00:16.401 --> 00:00:21.437
+grants tab lost its banner; and the file
+carries a G U I D and a subscription path.
+
+6
+00:00:21.437 --> 00:00:26.389
+Step 4 shows what the export carried:
+the workspace's full resource path,
+
+7
+00:00:26.389 --> 00:00:29.380
+exactly what Microsoft Learn says to mask.

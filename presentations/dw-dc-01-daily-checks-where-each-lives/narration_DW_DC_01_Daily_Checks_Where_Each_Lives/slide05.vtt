@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.387
+Here's the manifest.
+
+2
+00:00:01.387 --> 00:00:03.762
+Ten tabs, one per daily check.
+
+3
+00:00:03.762 --> 00:00:08.973
+Eight read tables: telemetry
+completeness, the synchronization probe,
+
+4
+00:00:08.973 --> 00:00:12.682
+risky users and sign-ins,
+emergency access sign-ins,
+
+5
+00:00:12.682 --> 00:00:17.451
+noncompliant devices, grants, D L
+P alerts, and the log review queue.
+
+6
+00:00:17.451 --> 00:00:22.768
+Two are link-outs: Entra Health, because
+its alerts aren't in Log Analytics,
+
+7
+00:00:22.768 --> 00:00:26.225
+and the catalog tasks, which
+live in the I T S M tool.
+
+8
+00:00:26.225 --> 00:00:28.125
+Two of the eight are partial.
+
+9
+00:00:28.125 --> 00:00:30.182
+The grants tab lists grants,
+
+10
+00:00:30.182 --> 00:00:33.937
+but matching each to a ticket
+stays in the I T S M tool.
+
+11
+00:00:33.937 --> 00:00:36.279
+And the log review tab shows the queue,
+
+12
+00:00:36.279 --> 00:00:39.580
+while the review itself
+stays a recorded procedure.

@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.337
+Lab 2 runs in a test subscription, never
+production, and the authors haven't run it.
+
+2
+00:00:05.337 --> 00:00:09.196
+Open the template in the portal
+through the Advanced Editor,
+
+3
+00:00:09.196 --> 00:00:12.051
+pick the test workspace,
+and open all ten tabs.
+
+4
+00:00:12.051 --> 00:00:16.988
+Save a test copy, change one look-back,
+and copy the Gallery Template back out.
+
+5
+00:00:16.988 --> 00:00:19.407
+Validate the export: your edit fails,
+
+6
+00:00:19.407 --> 00:00:22.713
+and so does the workspace
+the portal saved into it.
+
+7
+00:00:22.713 --> 00:00:25.937
+Record any other difference
+the portal introduced;
+
+8
+00:00:25.937 --> 00:00:30.512
+that confirms the item format, which
+Learn doesn't document field by field.
+
+9
+00:00:30.512 --> 00:00:33.380
+Then delete the test copy and the export.

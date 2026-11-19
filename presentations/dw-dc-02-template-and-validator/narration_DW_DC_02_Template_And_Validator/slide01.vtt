@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.787
+Welcome back to Building
+the Daily Checks Workbook.
+
+2
+00:00:02.787 --> 00:00:06.825
+This is Chapter 2: the workbook's
+template, and its validator.
+
+3
+00:00:06.825 --> 00:00:10.598
+A workbook edited in the portal
+is a change nobody reviewed,
+
+4
+00:00:10.598 --> 00:00:15.063
+so the kit keeps it as a file and
+checks every copy against the manifest.
+
+5
+00:00:15.063 --> 00:00:19.820
+We'll start from Microsoft Learn's page on
+workbooks as Resource Manager templates,
+
+6
+00:00:19.820 --> 00:00:22.922
+see what it leaves to you,
+read how the template is built
+
+7
+00:00:22.922 --> 00:00:26.025
+and the ten checks the validator
+runs, and walk two labs.
+
+8
+00:00:26.025 --> 00:00:29.020
+The chapter is a draft
+awaiting the owner's review.

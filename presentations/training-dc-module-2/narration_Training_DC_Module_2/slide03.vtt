@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.213
+Unit 1: reading the workbook.
+
+2
+00:00:02.213 --> 00:00:06.356
+Telemetry completeness comes
+first, because every other tab
+
+3
+00:00:06.356 --> 00:00:10.337
+depends on its sources: a dark
+source is a high-severity task.
+
+4
+00:00:10.337 --> 00:00:14.659
+Then each tab in turn, and each
+row that needs work becomes,
+
+5
+00:00:14.659 --> 00:00:17.325
+or is matched to, a task with an owner.
+
+6
+00:00:17.325 --> 00:00:21.225
+Entra Health and the I T S M
+queue are worked where they live.
+
+7
+00:00:21.225 --> 00:00:26.212
+The workbook never closes a task, pages
+anyone, or proves a check happened.
+
+8
+00:00:26.212 --> 00:00:31.262
+And the rule: an empty queue over a
+stale source reads stale, never clear.
+
+9
+00:00:31.262 --> 00:00:35.420
+A missed probe shows yesterday's
+verdict, so its tab is stale too.

@@ -1,0 +1,37 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.550
+Here's what you'll be able to do.
+
+2
+00:00:01.550 --> 00:00:06.300
+Name the dashboard options in Azure,
+and say why the design is one workbook.
+
+3
+00:00:06.300 --> 00:00:11.475
+Say, for each daily check, its table
+or its link-out, and how well it fits.
+
+4
+00:00:11.475 --> 00:00:14.888
+Give each source's availability in G C C.
+
+5
+00:00:14.888 --> 00:00:17.872
+And build the workbook's
+template from the manifest,
+
+6
+00:00:17.872 --> 00:00:20.162
+then validate an export from the portal.
+
+7
+00:00:20.162 --> 00:00:24.755
+You'll need the operator runbook's chapter
+on the daily checks as a prerequisite,
+
+8
+00:00:24.755 --> 00:00:27.120
+and PowerShell 7 with Pester for the lab.

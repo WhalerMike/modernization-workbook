@@ -32,7 +32,8 @@ WB = {"adm": ("docs/books/b19-developer-workbook", "Building the Attribute-Drive
       "pn": ("docs/project-plans/developer-workbooks/provider-notices", "Building Provider Notices"),
       "gsa": ("docs/project-plans/developer-workbooks/global-secure-access", "Building Global Secure Access"),
       "xdr": ("docs/project-plans/developer-workbooks/defender-xdr", "Building Defender XDR"),
-      "azs": ("docs/project-plans/developer-workbooks/azure-security", "Building Azure Security")}
+      "azs": ("docs/project-plans/developer-workbooks/azure-security", "Building Azure Security"),
+      "dc": ("docs/project-plans/developer-workbooks/daily-checks", "Building the Daily Checks Workbook")}
 GH = "https://github.com/WhalerMike/modernization-workbook/blob/main"
 TREE = "https://github.com/WhalerMike/modernization-workbook/tree/main"
 REL = "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23"
@@ -63,7 +64,7 @@ def write(p: Path, text: str):
 
 tours = {k: [] for k in WB}
 for folder in sorted((ROOT / "presentations").glob("dw-*")):
-    m = re.match(r"dw-(adm|pa|npi|ttm|hr|pn|gsa|xdr|azs)-(\d\d)-", folder.name)
+    m = re.match(r"dw-(adm|pa|npi|ttm|hr|pn|gsa|xdr|azs|dc)-(\d\d)-", folder.name)
     wb, nn = m.group(1), m.group(2)
     src = (folder / "build.js").read_text(encoding="utf-8")
     base = re.search(r'base:\s*"([^"]+)"', src).group(1)

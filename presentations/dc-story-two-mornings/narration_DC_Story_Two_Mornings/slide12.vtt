@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.088
+Scene six.
+
+2
+00:00:01.088 --> 00:00:04.583
+The workbook goes to a test
+subscription, then production,
+
+3
+00:00:04.583 --> 00:00:07.787
+with the same commands and
+a different settings file.
+
+4
+00:00:07.787 --> 00:00:12.781
+The plan previews the change with what-if,
+which predicts and changes nothing;
+
+5
+00:00:12.781 --> 00:00:16.449
+on the fixtures it predicts
+one create, a single workbook.
+
+6
+00:00:16.449 --> 00:00:18.747
+A second person approves the plan's hash,
+
+7
+00:00:18.747 --> 00:00:22.575
+and the kit deploys nothing else,
+and never a plan that would delete.
+
+8
+00:00:22.575 --> 00:00:25.887
+Production waits until the
+test stage's evidence passes.
+
+9
+00:00:25.887 --> 00:00:28.282
+That's the story: ten checks on one page,
+
+10
+00:00:28.282 --> 00:00:33.220
+a picture the operator can trust only
+because the records behind it are kept.

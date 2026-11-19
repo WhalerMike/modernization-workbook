@@ -1,0 +1,30 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.162
+Step 6 records the
+reachability check instead.
+
+2
+00:00:03.162 --> 00:00:07.225
+Record one, with result Fail: the
+record keeps what the check found,
+
+3
+00:00:07.225 --> 00:00:11.813
+with continuous monitoring and system
+monitoring, and their indicators.
+
+4
+00:00:11.813 --> 00:00:15.512
+A failing record is still
+evidence; it's evidence of the gap.
+
+5
+00:00:15.512 --> 00:00:19.483
+Step 7 runs this chapter's
+tests and the evidence tests:
+
+6
+00:00:19.483 --> 00:00:21.580
+sixteen passed, none failed.

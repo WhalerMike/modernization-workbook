@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.612
+Welcome to Building the
+Daily Checks Workbook.
+
+2
+00:00:02.612 --> 00:00:06.812
+This is Chapter 1: the daily
+checks, and where each one lives.
+
+3
+00:00:06.812 --> 00:00:09.308
+Before anything is drawn on a dashboard,
+
+4
+00:00:09.308 --> 00:00:13.468
+each daily check in the operator
+runbook gets one row: what it reads,
+
+5
+00:00:13.468 --> 00:00:17.099
+where else to look, and whether
+a workbook can show it at all.
+
+6
+00:00:17.099 --> 00:00:21.645
+We'll start from what Microsoft Learn
+gives you, see what it leaves to you,
+
+7
+00:00:21.645 --> 00:00:25.188
+read the kit's manifest and its
+ten tabs, and walk two labs.
+
+8
+00:00:25.188 --> 00:00:28.287
+The chapter is a draft
+awaiting the owner's review,
+
+9
+00:00:28.287 --> 00:00:31.750
+and the code is illustrative,
+tested against fixtures.

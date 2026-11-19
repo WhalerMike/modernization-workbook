@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.862
+Lab 1.
+
+2
+00:00:00.862 --> 00:00:05.876
+Step 1 renders the morning of November
+sixteenth in the fictional workspace.
+
+3
+00:00:05.876 --> 00:00:08.942
+The Entra diagnostic setting
+stopped at ten past five
+
+4
+00:00:08.942 --> 00:00:11.600
+the evening before, and
+the sync probe didn't run.
+
+5
+00:00:11.600 --> 00:00:16.944
+Telemetry flags four rows: sign-in and
+audit logs are dark, the probe's table
+
+6
+00:00:16.944 --> 00:00:22.025
+is dark, and the Office 365 connector's
+latest health event is a failure.
+
+7
+00:00:22.025 --> 00:00:26.988
+The sync, risk, emergency access
+and grants tabs are all STALE.
+
+8
+00:00:26.988 --> 00:00:29.775
+Step 2 shows why the risk tab isn't clear:
+
+9
+00:00:29.775 --> 00:00:34.800
+its query returned no rows, but its
+source stopped fourteen hours ago.

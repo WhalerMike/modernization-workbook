@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.225
+What does this support?
+
+2
+00:00:01.225 --> 00:00:04.935
+The build check shows the template
+is the reviewed baseline,
+
+3
+00:00:04.935 --> 00:00:07.012
+configuration management C M two.
+
+4
+00:00:07.012 --> 00:00:11.358
+The validation record supports C M
+two and change control, C M three,
+
+5
+00:00:11.358 --> 00:00:16.413
+and catching a portal edit before it
+replaces the template supports C M three.
+
+6
+00:00:16.413 --> 00:00:20.898
+The dangers are the four edits you
+just saw: an export committed as is,
+
+7
+00:00:20.898 --> 00:00:25.463
+a widened look-back, a query on another
+workspace, and a missing banner.
+
+8
+00:00:25.463 --> 00:00:26.650
+Each has its check.
+
+9
+00:00:26.650 --> 00:00:31.420
+Next, Chapter 3 shows what each tab
+would display, without a tenant.

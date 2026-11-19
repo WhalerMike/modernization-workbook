@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.075
+Here's what Microsoft Learn gives you.
+
+2
+00:00:02.075 --> 00:00:05.460
+Its guidance on visualizations
+recommends workbooks for
+
+3
+00:00:05.460 --> 00:00:08.775
+reports across Azure sources,
+and lists the other options.
+
+4
+00:00:08.775 --> 00:00:13.108
+Its table reference pages give
+each source table and its columns,
+
+5
+00:00:13.108 --> 00:00:16.238
+from sign-in logs to
+Intune's compliance export.
+
+6
+00:00:16.238 --> 00:00:19.963
+Sentinel's health table covers
+only the connectors Learn lists,
+
+7
+00:00:19.963 --> 00:00:22.563
+and only once health
+monitoring is turned on.
+
+8
+00:00:22.563 --> 00:00:25.747
+The Logs Ingestion API
+sends your own records
+
+9
+00:00:25.747 --> 00:00:28.597
+to a custom table ending
+in underscore C L.
+
+10
+00:00:28.597 --> 00:00:33.374
+Entra Health monitoring is a preview
+in the admin center and by e-mail.
+
+11
+00:00:33.374 --> 00:00:38.090
+And Intune exports compliance once
+a day, up to forty-eight hours late.

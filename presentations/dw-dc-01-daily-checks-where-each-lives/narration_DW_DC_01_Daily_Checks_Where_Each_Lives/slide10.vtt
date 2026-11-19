@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.375
+Lab 2 runs in a test workspace, never
+production, and the authors haven't run it.
+
+2
+00:00:05.375 --> 00:00:08.901
+Sign in to commercial Azure,
+list the workspace's tables,
+
+3
+00:00:08.901 --> 00:00:12.963
+and print every table a tab reads
+that the workspace doesn't have.
+
+4
+00:00:12.963 --> 00:00:14.863
+It reads and changes nothing.
+
+5
+00:00:14.863 --> 00:00:19.193
+Every name it prints is a source the
+guide's first step still has to connect:
+
+6
+00:00:19.193 --> 00:00:21.677
+the probe's custom table
+until it's created,
+
+7
+00:00:21.677 --> 00:00:25.226
+and the Sentinel health table
+until health monitoring is on.
+
+8
+00:00:25.226 --> 00:00:26.350
+Then sign out.

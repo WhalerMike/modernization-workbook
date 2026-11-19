@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+Unit 1.
+
+2
+00:00:00.875 --> 00:00:04.859
+Microsoft's guidance compares
+workbooks, portal dashboards,
+
+3
+00:00:04.859 --> 00:00:09.937
+Dashboards with Grafana, which is a preview,
+Azure Managed Grafana and Power BI.
+
+4
+00:00:09.937 --> 00:00:12.888
+Workbooks read the widest
+set of Azure data and
+
+5
+00:00:12.888 --> 00:00:15.763
+can be managed as Resource
+Manager templates.
+
+6
+00:00:15.763 --> 00:00:20.593
+Microsoft 365 has built-in views in
+each admin center, but no single
+
+7
+00:00:20.593 --> 00:00:25.687
+custom dashboard: a view across them
+needs their logs in Log Analytics.
+
+8
+00:00:25.687 --> 00:00:28.848
+So the design is one workbook
+in the Sentinel workspace,
+
+9
+00:00:28.848 --> 00:00:32.140
+and a link out where a check's
+data stays in another portal.

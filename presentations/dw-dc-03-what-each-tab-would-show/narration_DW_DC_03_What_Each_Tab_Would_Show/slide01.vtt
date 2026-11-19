@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.787
+Welcome back to Building
+the Daily Checks Workbook.
+
+2
+00:00:02.787 --> 00:00:05.750
+This is Chapter 3: what
+each tab would show.
+
+3
+00:00:05.750 --> 00:00:10.502
+An empty queue over a source that stopped
+arriving looks exactly like a quiet night,
+
+4
+00:00:10.502 --> 00:00:13.463
+and the renderer in this
+chapter says which one it is.
+
+5
+00:00:13.463 --> 00:00:17.183
+We'll see what Microsoft Learn
+and the operator runbook give you,
+
+6
+00:00:17.183 --> 00:00:20.552
+the renderer's rules, and the
+read-only reachability check,
+
+7
+00:00:20.552 --> 00:00:23.500
+then walk two mornings in
+the fictional workspace.
+
+8
+00:00:23.500 --> 00:00:26.599
+The chapter is a draft
+awaiting the owner's review,
+
+9
+00:00:26.599 --> 00:00:30.050
+and the code is illustrative,
+tested against fixtures.
