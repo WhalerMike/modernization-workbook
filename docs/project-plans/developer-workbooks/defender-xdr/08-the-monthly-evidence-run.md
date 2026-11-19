@@ -29,7 +29,7 @@ The code behind the guide's [G10 Operations and evidence](../../../books/guides/
 ## Narrated tour
 {{< fmw-video DW_XDR_08_Monthly_Evidence_Run_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-08-monthly-evidence-run) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-08-monthly-evidence-run) (about 9 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-08-monthly-evidence-run/DW_XDR_08_Monthly_Evidence_Run_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-08-monthly-evidence-run/DW_XDR_08_Monthly_Evidence_Run_Narrated.vtt). Recorded on November 17, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-08-monthly-evidence-run) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-08-monthly-evidence-run) (about 9 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-08-monthly-evidence-run/DW_XDR_08_Monthly_Evidence_Run_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-08-monthly-evidence-run/DW_XDR_08_Monthly_Evidence_Run_Narrated.vtt). Recorded on November 19, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

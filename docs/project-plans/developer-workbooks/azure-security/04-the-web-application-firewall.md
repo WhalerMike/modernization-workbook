@@ -29,7 +29,7 @@ The code behind the guide's [Step 4, the web application firewall](../../../book
 ## Narrated tour
 {{< fmw-video DW_AZS_04_Web_Application_Firewall_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-04-web-application-firewall) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-04-web-application-firewall) (about 8 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-04-web-application-firewall/DW_AZS_04_Web_Application_Firewall_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-04-web-application-firewall/DW_AZS_04_Web_Application_Firewall_Narrated.vtt). Recorded on November 17, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-04-web-application-firewall) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-04-web-application-firewall) (about 8 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-04-web-application-firewall/DW_AZS_04_Web_Application_Firewall_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-04-web-application-firewall/DW_AZS_04_Web_Application_Firewall_Narrated.vtt). Recorded on November 19, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

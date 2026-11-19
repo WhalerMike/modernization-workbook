@@ -5,11 +5,11 @@
    "One Portal, End to End"
   ],
   [
-   42,
+   41,
    "The portal's path through the nine chapters"
   ],
   [
-   86,
+   85,
    "Scene 1: the baseline, read back every week"
   ],
   [
@@ -21,7 +21,7 @@
    "Check 1: does pip-afw-hub's log count?"
   ],
   [
-   192,
+   191,
    "Scene 2: every public face of the portal, owned"
   ],
   [
@@ -41,11 +41,11 @@
    "Try it: each public IP's protection"
   ],
   [
-   383,
+   382,
    "Check 3: is pip-jump protected?"
   ],
   [
-   405,
+   404,
    "Scene 4: a WAF that logs but doesn't block"
   ],
   [
@@ -57,7 +57,7 @@
    "Check 4: who sends the switch to Prevention?"
   ],
   [
-   512,
+   511,
    "Scene 5: can the portal be reached around the edge?"
   ],
   [
@@ -69,11 +69,11 @@
    "Check 5: why isn't the tag enough?"
   ],
   [
-   614,
+   613,
    "Scene 6: the portal's egress skips the firewall"
   ],
   [
-   658,
+   657,
    "Try it: default routes, and the draft to Deny"
   ],
   [
@@ -89,7 +89,7 @@
    "Try it: the vaults"
   ],
   [
-   801,
+   800,
    "Check 7: can purge protection be undone?"
   ],
   [
@@ -97,7 +97,7 @@
    "Scene 8: an exemption due, a week of drift, the evidence"
   ],
   [
-   866,
+   865,
    "Try it: the exemption, the drift, the records"
   ],
   [
@@ -109,7 +109,7 @@
    "Scene 9: the kit goes live, test first"
   ],
   [
-   976,
+   975,
    "Try it: the runbook's rehearsal on the fixtures"
   ],
   [
@@ -5445,55 +5445,55 @@
    "Protection That Travels With the Data"
   ],
   [
-   53,
+   51,
    "Upstream controls can't see the payload"
   ],
   [
-   114,
+   113,
    "Decide the classes before any label"
   ],
   [
-   181,
+   180,
    "Three boundaries, four planes, a small taxonomy"
   ],
   [
-   251,
+   250,
    "Defaults users rarely notice, containers that hold"
   ],
   [
-   323,
+   321,
    "Encrypt, and keep a tested way back in"
   ],
   [
-   396,
+   394,
    "DLP from an owner's outcome, auto-labeling for the rest"
   ],
   [
-   470,
+   468,
    "Audit is the floor; insider risk needs a charter"
   ],
   [
-   543,
+   541,
    "AI inherits every permission error"
   ],
   [
-   613,
+   612,
    "Government cloud: what GCC has"
   ],
   [
-   674,
+   672,
    "Six roles run information protection"
   ],
   [
-   741,
+   739,
    "Roll out in rings, with a way back"
   ],
   [
-   804,
+   803,
    "Evidence an assessor can inspect"
   ],
   [
-   872,
+   871,
    "Decisions to make, and next steps"
   ]
  ],
@@ -6223,11 +6223,11 @@
    "What Microsoft Learn gives you"
   ],
   [
-   127,
+   126,
    "What it leaves to you"
   ],
   [
-   162,
+   161,
    "The spine: one call list, two invokers"
   ],
   [
@@ -6235,11 +6235,11 @@
    "The baseline check: six rules"
   ],
   [
-   257,
+   256,
    "Who owns the baseline, and what the reader may do"
   ],
   [
-   290,
+   289,
    "Lab 1: the calls, and the check on week one"
   ],
   [
@@ -6259,7 +6259,7 @@
    "Dangers, and the guard for each"
   ],
   [
-   503,
+   502,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -6269,47 +6269,47 @@
    "Chapter 02: The Public Exposure Register"
   ],
   [
-   42,
+   43,
    "Why the exposure list comes before the controls"
   ],
   [
-   90,
+   91,
    "What the guide's Learn queries give you"
   ],
   [
-   130,
+   131,
    "What four queries leave to you"
   ],
   [
-   176,
+   177,
    "The register's columns, and its five rules"
   ],
   [
-   224,
+   225,
    "Who runs the register, and who answers for it"
   ],
   [
-   253,
+   255,
    "Lab 1: build the first week's register"
   ],
   [
-   295,
+   296,
    "Lab 1: findings now, and a week later"
   ],
   [
-   333,
+   334,
    "Lab 2: a test subscription"
   ],
   [
-   373,
+   374,
    "Federal requirements and the register"
   ],
   [
-   412,
+   413,
    "Dangers, and the guard for each"
   ],
   [
-   453,
+   454,
    "Done when: the register's checklist"
   ]
  ],
@@ -6327,11 +6327,11 @@
    "What Microsoft Learn gives you"
   ],
   [
-   123,
+   122,
    "What it leaves to you"
   ],
   [
-   164,
+   163,
    "Six statuses, and how coverage is counted"
   ],
   [
@@ -6355,7 +6355,7 @@
    "Lab 2: a test subscription"
   ],
   [
-   399,
+   398,
    "Federal requirements and the evidence"
   ],
   [
@@ -6363,7 +6363,7 @@
    "Dangers, and the guard for each"
   ],
   [
-   481,
+   480,
    "Done when: the DDoS checklist"
   ]
  ],
@@ -6373,51 +6373,51 @@
    "Chapter 04: The Web Application Firewall"
   ],
   [
-   36,
+   37,
    "Why a WAF in detection mode isn't protection"
   ],
   [
-   79,
+   80,
    "What Microsoft Learn gives you"
   ],
   [
-   120,
+   121,
    "What it leaves to you"
   ],
   [
-   167,
+   168,
    "Eight rules, and the coverage count"
   ],
   [
-   209,
+   210,
    "The switch to Prevention, as a plan"
   ],
   [
-   244,
+   246,
    "Who tunes, who switches, who watches"
   ],
   [
-   272,
+   273,
    "Lab 1: run the check, read each policy"
   ],
   [
-   310,
+   312,
    "Lab 1: the findings, and the unsent plan"
   ],
   [
-   348,
+   349,
    "Lab 2: a test subscription"
   ],
   [
-   392,
+   393,
    "Federal requirements and the evidence"
   ],
   [
-   427,
+   428,
    "Dangers, and the guard for each"
   ],
   [
-   463,
+   464,
    "Done when: the WAF checklist"
   ]
  ],
@@ -6439,11 +6439,11 @@
    "What it leaves to you"
   ],
   [
-   175,
+   174,
    "Each origin gets one lock-down state"
   ],
   [
-   216,
+   215,
    "The edge rules, beyond the origin"
   ],
   [
@@ -6459,11 +6459,11 @@
    "Lab 1: the findings"
   ],
   [
-   364,
+   363,
    "Lab 2: a test profile, and the refused request"
   ],
   [
-   408,
+   407,
    "Federal requirements and the evidence"
   ],
   [
@@ -6489,7 +6489,7 @@
    "What Microsoft Learn gives you"
   ],
   [
-   127,
+   126,
    "What it leaves to you"
   ],
   [
@@ -6513,7 +6513,7 @@
    "Lab 1: the findings and the plan"
   ],
   [
-   353,
+   352,
    "Lab 2: a test subscription, effective routes"
   ],
   [
@@ -6521,7 +6521,7 @@
    "Federal requirements and the evidence"
   ],
   [
-   447,
+   446,
    "Dangers, and the guard for each"
   ],
   [
@@ -6571,7 +6571,7 @@
    "Lab 2: a test vault, nslookup and the CLI"
   ],
   [
-   423,
+   422,
    "Federal requirements and the evidence"
   ],
   [
@@ -6589,7 +6589,7 @@
    "Chapter 08: Policy, Drift and Evidence"
   ],
   [
-   42,
+   41,
    "Why exemptions expire and runs are compared"
   ],
   [
@@ -6613,15 +6613,15 @@
    "Who owns policy, drift and the evidence"
   ],
   [
-   292,
+   291,
    "Lab 1: every area, week one, and the policy"
   ],
   [
-   341,
+   340,
    "Lab 1: week two, and what changed"
   ],
   [
-   380,
+   379,
    "Lab 1: the metrics and the evidence records"
   ],
   [
@@ -6633,7 +6633,7 @@
    "Lab 2: a test management group"
   ],
   [
-   497,
+   496,
    "Federal requirements and the evidence"
   ],
   [
@@ -6651,11 +6651,11 @@
    "Chapter 09: Deploying to Test and Production"
   ],
   [
-   40,
+   39,
    "Why a runbook: read every week, write once"
   ],
   [
-   80,
+   79,
    "Before you start"
   ],
   [
@@ -6667,7 +6667,7 @@
    "Step 2: preflight, PF-01 to PF-07"
   ],
   [
-   209,
+   208,
    "Who runs each stage, with which role"
   ],
   [
@@ -6679,7 +6679,7 @@
    "Stage 1: plan, approve and apply the one write"
   ],
   [
-   334,
+   333,
    "Stage 1: rehearse the rollback, then week two"
   ],
   [
@@ -10273,11 +10273,11 @@
    "Why prove the read path first"
   ],
   [
-   78,
+   77,
    "What the guide and Microsoft Learn give you"
   ],
   [
-   119,
+   118,
    "What it leaves to you, and the verdict"
   ],
   [
@@ -10305,7 +10305,7 @@
    "Lab 2: the same check in a test tenant"
   ],
   [
-   393,
+   392,
    "Federal requirements and the evidence"
   ],
   [
@@ -10413,7 +10413,7 @@
    "Federal requirements and the evidence"
   ],
   [
-   411,
+   412,
    "Dangers, and the guard for each"
   ],
   [
@@ -10427,7 +10427,7 @@
    "Chapter 04: Attack Surface Reduction: Audit, Warn, Block"
   ],
   [
-   41,
+   42,
    "Why the rollout needs bookkeeping"
   ],
   [
@@ -10643,7 +10643,7 @@
    "What the guide's monthly run gives you"
   ],
   [
-   108,
+   109,
    "What the guide's run leaves to you"
   ],
   [
@@ -10693,7 +10693,7 @@
    "Chapter 09: Deploying to Test and Production"
   ],
   [
-   40,
+   39,
    "Why the same commands in both stages"
   ],
   [
@@ -10713,7 +10713,7 @@
    "Step 1: sign in and run the pre-flight"
   ],
   [
-   235,
+   234,
    "Step 2: the first scheduled run"
   ],
   [
@@ -10729,7 +10729,7 @@
    "Step 6: plan the rollback before you need it"
   ],
   [
-   390,
+   389,
    "The go/no-go, from the evidence"
   ],
   [
@@ -10991,67 +10991,67 @@
    "Azure security, engineered one service at a time"
   ],
   [
-   57,
+   54,
    "Why this matters: a landing zone isn't a defense"
   ],
   [
-   118,
+   115,
    "The books design it; the guide engineers each service"
   ],
   [
-   176,
+   173,
    "The ten steps on one page"
   ],
   [
-   243,
+   240,
    "GCC uses commercial Azure: what to plan for"
   ],
   [
-   303,
+   300,
    "The same controls on AWS, Google Cloud and Oracle"
   ],
   [
-   367,
+   365,
    "Eligible roles, named owners: who does what"
   ],
   [
-   424,
+   421,
    "Steps 1 and 2: baseline in audit, then inventory"
   ],
   [
-   489,
+   486,
    "Step 3: DDoS protection on every public IP"
   ],
   [
-   553,
+   550,
    "Step 4: the WAF, from detection to prevention"
   ],
   [
-   614,
+   612,
    "Step 5: an origin nothing can reach around the edge"
   ],
   [
-   677,
+   675,
    "Step 6: egress through Azure Firewall, then deny"
   ],
   [
-   742,
+   739,
    "Step 7: Private Link works only if DNS does"
   ],
   [
-   797,
+   794,
    "Step 8: vaults behind RBAC, with purge protection"
   ],
   [
-   858,
+   856,
    "Step 9: policy holds it; exemptions expire"
   ],
   [
-   919,
+   917,
    "Step 10: owners, cadence, metrics and requirements"
   ],
   [
-   981,
+   978,
    "Dangers, open questions and what comes next"
   ]
  ],
@@ -11177,63 +11177,63 @@
    "Defender XDR: from a license to a defended endpoint"
   ],
   [
-   56,
+   53,
    "Why this matters: a license is not a defended endpoint"
   ],
   [
-   113,
+   110,
    "Two boundaries, one control plane per setting"
   ],
   [
-   174,
+   171,
    "GCC: what's there and what Learn doesn't say"
   ],
   [
-   232,
+   230,
    "The ten gates on one page"
   ],
   [
-   300,
+   298,
    "Who does what: roles through PIM and the RACI"
   ],
   [
-   367,
+   364,
    "Gate 1: activate the roles, then read in the right cloud"
   ],
   [
-   425,
+   422,
    "Gate 2: prove the sensor is on and healthy everywhere"
   ],
   [
-   487,
+   485,
    "Gate 3: prevention goes through audit before it blocks"
   ],
   [
-   547,
+   545,
    "Gate 4: Attack Surface Reduction: audit, warn, block"
   ],
   [
-   610,
+   608,
    "Gate 5: exposure management without Exposure Management"
   ],
   [
-   673,
+   671,
    "Gate 6: one incident queue and a severity table"
   ],
   [
-   739,
+   737,
    "Gate 7: detections as code, tested before they're enabled"
   ],
   [
-   803,
+   801,
    "Gates 8 and 9: correlate the signals, bound the automation"
   ],
   [
-   871,
+   868,
    "Gate 10: measure protected coverage, not settings"
   ],
   [
-   935,
+   932,
    "Dangers, open questions and where to go next"
   ]
  ],
@@ -18159,7 +18159,7 @@
    "Check 5: Exposure Management in a GCC tenant"
   ],
   [
-   565,
+   566,
    "Scene 6: the detection that finds it, kept as code"
   ],
   [
@@ -18171,7 +18171,7 @@
    "Check 6: a rule with automated isolation"
   ],
   [
-   658,
+   659,
    "Scene 7: who else it touched, and what may act alone"
   ],
   [
