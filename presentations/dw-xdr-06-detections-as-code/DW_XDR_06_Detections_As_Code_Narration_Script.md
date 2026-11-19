@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 06: Detections as Code
 
-Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook. This is Chapter 6: detections as code. A rule that can't be shown to fire isn't a control, and a rule nobody can trace to a reviewed file isn't a change anyone approved. We'll start from Learn's create, list and update calls for custom detection rules, read the repository layout, the validation, the tests against each rule's windows, and the deployment plan, and walk two labs. Publishing the plan is Chapter 9's. The chapter is a draft awaiting review; the code is illustrative, tested against fixtures.
+Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook. This is Chapter 6: detections as code. A rule that can't be shown to fire isn't a control, and a rule nobody can trace to a reviewed file isn't a change anyone approved. We'll start from Learn's create, list and update calls for custom detection rules, read the repository layout, the validation, the tests against each rule's windows, and the deployment plan, and walk two labs. Publishing the plan is Chapter 9's. The chapter has been reviewed and approved; the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why a rule must fire, and trace to a file
 

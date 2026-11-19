@@ -40,576 +40,576 @@ calls and checks its roles, and walk
 two labs, the evidence and the dangers.
 
 9
-00:00:30.400 --> 00:00:33.499
-The chapter is a draft
-awaiting the owner's review,
+00:00:30.400 --> 00:00:33.172
+The chapter has been
+reviewed and approved,
 
 10
-00:00:33.499 --> 00:00:37.260
+00:00:33.172 --> 00:00:37.000
 and the code is illustrative,
 tested against fixtures.
 
 11
-00:00:41.010 --> 00:00:42.048
+00:00:40.750 --> 00:00:41.788
 Why start here?
 
 12
-00:00:42.048 --> 00:00:45.857
+00:00:41.788 --> 00:00:45.597
 Because every later chapter
 reads through Microsoft Graph:
 
 13
-00:00:45.857 --> 00:00:49.972
+00:00:45.597 --> 00:00:49.712
 incidents, advanced hunting
 results and custom detection rules.
 
 14
-00:00:49.972 --> 00:00:53.531
+00:00:49.712 --> 00:00:53.271
 If the session behind those
 reads is in the wrong tenant,
 
 15
-00:00:53.531 --> 00:00:57.322
+00:00:53.271 --> 00:00:57.062
 it still answers, and a check
 that reads an empty list passes.
 
 16
-00:00:57.322 --> 00:01:01.772
+00:00:57.062 --> 00:01:01.512
 So by the end of this chapter you can run
 the kit's access check, read its findings,
 
 17
-00:01:01.772 --> 00:01:05.811
+00:01:01.512 --> 00:01:05.551
 and say which Graph permission and
 which role each later chapter needs.
 
 18
-00:01:05.811 --> 00:01:10.469
+00:01:05.551 --> 00:01:10.209
 It's for the developers who maintain the
 kit, the platform owner who owns this gate,
 
 19
-00:01:10.469 --> 00:01:14.450
+00:01:10.209 --> 00:01:14.190
 and the security officer who
 reviews who holds Defender roles.
 
 20
-00:01:18.200 --> 00:01:21.500
+00:01:17.940 --> 00:01:21.240
 Start from what the guide and
 Microsoft Learn already give you.
 
 21
-00:01:21.500 --> 00:01:26.067
+00:01:21.240 --> 00:01:25.807
 Create the custom roles in Defender's
 unified role-based access control,
 
 22
-00:01:26.067 --> 00:01:30.025
+00:01:25.807 --> 00:01:29.765
 in four permission groups, assigned
 to groups and data sources.
 
 23
-00:01:30.025 --> 00:01:34.050
+00:01:29.765 --> 00:01:33.790
 Activate it per workload, which needs
 at least Security Administrator.
 
 24
-00:01:34.050 --> 00:01:38.555
+00:01:33.790 --> 00:01:38.295
 Connect the read path with Connect
 M G Graph, the Global environment,
 
 25
-00:01:38.555 --> 00:01:42.738
+00:01:38.295 --> 00:01:42.478
 and two scopes: security incident
 read, and threat hunting read.
 
 26
-00:01:42.738 --> 00:01:44.841
+00:01:42.478 --> 00:01:44.581
 Then validate with Learn's own call:
 
 27
-00:01:44.841 --> 00:01:47.887
+00:01:44.581 --> 00:01:47.627
 list up to five incidents
 with no permission error.
 
 28
-00:01:47.887 --> 00:01:53.051
+00:01:47.627 --> 00:01:52.791
 Learn's national cloud page says GCC
 uses the worldwide Graph endpoint,
 
 29
-00:01:53.051 --> 00:01:55.510
+00:01:52.791 --> 00:01:55.250
 so the environment is Global.
 
 30
-00:01:59.260 --> 00:02:00.597
+00:01:59.000 --> 00:02:00.337
 What does that leave to you?
 
 31
-00:02:00.597 --> 00:02:05.293
+00:02:00.337 --> 00:02:05.033
 A connect line with an environment, but
 a session left over from another tenant
 
 32
-00:02:05.293 --> 00:02:09.772
+00:02:05.033 --> 00:02:09.512
 answers too, so the kit refuses a live
 run in the wrong environment or tenant.
 
 33
-00:02:09.772 --> 00:02:13.956
+00:02:09.512 --> 00:02:13.696
 Permissions page by page, but
 nobody sees the whole job's needs,
 
 34
-00:02:13.956 --> 00:02:18.797
+00:02:13.696 --> 00:02:18.537
 so the kit declares every call with
 its permission, roles and Learn page.
 
 35
-00:02:18.797 --> 00:02:22.157
+00:02:18.537 --> 00:02:21.897
 A role design in prose, but
 a portal role list drifts,
 
 36
-00:02:22.157 --> 00:02:25.197
+00:02:21.897 --> 00:02:24.937
 so the kit compares the
 export with the design.
 
 37
-00:02:25.197 --> 00:02:27.247
+00:02:24.937 --> 00:02:26.987
 And a pass on no permission error,
 
 38
-00:02:27.247 --> 00:02:30.661
+00:02:26.987 --> 00:02:30.401
 so the kit makes the read one
 result row and keeps going.
 
 39
-00:02:30.661 --> 00:02:34.690
+00:02:30.401 --> 00:02:34.430
 The verdict: keep Learn's calls;
 build the checks around them.
 
 40
-00:02:38.440 --> 00:02:39.690
+00:02:38.180 --> 00:02:39.430
 Here's the call list.
 
 41
-00:02:39.690 --> 00:02:45.024
+00:02:39.430 --> 00:02:44.764
 Three reads: list incidents, run a hunting
 query, and list custom detection rules,
 
 42
-00:02:45.024 --> 00:02:49.065
+00:02:44.764 --> 00:02:48.805
 each with the least-privileged
 read permission Learn names.
 
 43
-00:02:49.065 --> 00:02:54.028
+00:02:48.805 --> 00:02:53.768
 And two writes, create and update a detection
 rule, with the read-write permission.
 
 44
-00:02:54.028 --> 00:02:57.327
+00:02:53.768 --> 00:02:57.067
 Reads go through one function
 and one of two invokers.
 
 45
-00:02:57.327 --> 00:03:01.591
+00:02:57.067 --> 00:03:01.331
 The fixture invoker reads a file
 and sends nothing; that's Lab 1.
 
 46
-00:03:01.591 --> 00:03:05.069
+00:03:01.331 --> 00:03:04.809
 The live invoker calls Graph
 on the settings file's cloud,
 
 47
-00:03:05.069 --> 00:03:09.215
+00:03:04.809 --> 00:03:08.955
 after the session check, and follows
 next links only on the same host.
 
 48
-00:03:09.215 --> 00:03:11.603
+00:03:08.955 --> 00:03:11.343
 A write never goes through the read path.
 
 49
-00:03:11.603 --> 00:03:16.800
+00:03:11.343 --> 00:03:16.540
 Only the runbook's publish and rollback
 scripts send one, with an approved hash.
 
 50
-00:03:20.550 --> 00:03:23.175
+00:03:20.290 --> 00:03:22.915
 The access check writes six kinds of row.
 
 51
-00:03:23.175 --> 00:03:27.787
+00:03:22.915 --> 00:03:27.527
 Cloud: the settings name a known cloud,
 and the Graph host comes from it.
 
 52
-00:03:27.787 --> 00:03:30.700
+00:03:27.527 --> 00:03:30.440
 Read: the first read of incidents answers.
 
 53
-00:03:30.700 --> 00:03:34.713
+00:03:30.440 --> 00:03:34.453
 Role: each designed role exists
 with exactly its permissions,
 
 54
-00:03:34.713 --> 00:03:37.625
+00:03:34.453 --> 00:03:37.365
 and a role that isn't in
 the design is a warning.
 
 55
-00:03:37.625 --> 00:03:42.338
+00:03:37.365 --> 00:03:42.078
 Restricted: advanced live response
 is held only by the Tier 0 role.
 
 56
-00:03:42.338 --> 00:03:44.942
+00:03:42.078 --> 00:03:44.682
 P I M: every group a
 role is assigned to is
 
 57
-00:03:44.942 --> 00:03:48.362
+00:03:44.682 --> 00:03:48.102
 one that Privileged Identity
 Management governs.
 
 58
-00:03:48.362 --> 00:03:52.801
+00:03:48.102 --> 00:03:52.541
 And emergency: no emergency access
 group holds a Defender role.
 
 59
-00:03:52.801 --> 00:03:56.475
+00:03:52.541 --> 00:03:56.215
 The input is a role export the
 operator files from the portal.
 
 60
-00:03:56.475 --> 00:04:00.260
+00:03:56.215 --> 00:04:00.000
 Learn names no API for those
 roles on the pages read.
 
 61
-00:04:04.010 --> 00:04:05.060
+00:04:03.750 --> 00:04:04.800
 Who's involved?
 
 62
-00:04:05.060 --> 00:04:09.035
+00:04:04.800 --> 00:04:08.775
 The platform owner owns this gate:
 creates and assigns the roles,
 
 63
-00:04:09.035 --> 00:04:12.410
+00:04:08.775 --> 00:04:12.150
 and changes them under a change
 record when a row fails.
 
 64
-00:04:12.410 --> 00:04:16.388
+00:04:12.150 --> 00:04:16.128
 The security officer reviews who
 holds Defender roles each quarter,
 
 65
-00:04:16.388 --> 00:04:19.598
+00:04:16.128 --> 00:04:19.338
 alongside the Privileged
 Identity Management report.
 
 66
-00:04:19.598 --> 00:04:22.108
+00:04:19.338 --> 00:04:21.848
 And developers maintain the call list,
 
 67
-00:04:22.108 --> 00:04:25.247
+00:04:21.848 --> 00:04:24.987
 the invokers and the role
 check, with their tests.
 
 68
-00:04:25.247 --> 00:04:28.347
+00:04:24.987 --> 00:04:28.087
 One caution: Lab 1 reads
 fictional fixtures,
 
 69
-00:04:28.347 --> 00:04:31.360
+00:04:28.087 --> 00:04:31.100
 and the role export is
 a file someone makes.
 
 70
-00:04:31.360 --> 00:04:35.013
+00:04:31.100 --> 00:04:34.753
 Treat the result as a review
 aid for the security officer,
 
 71
-00:04:35.013 --> 00:04:37.790
+00:04:34.753 --> 00:04:37.530
 not as the authority on who holds what.
 
 72
-00:04:41.540 --> 00:04:45.652
+00:04:41.280 --> 00:04:45.392
 Lab 1 needs PowerShell 7 with
 Pester, in the kit's folder.
 
 73
-00:04:45.652 --> 00:04:48.889
+00:04:45.392 --> 00:04:48.629
 Step 1 runs the access
 check on the fixtures.
 
 74
-00:04:48.889 --> 00:04:52.528
+00:04:48.629 --> 00:04:52.268
 The read passes: five
 incidents, no permission error.
 
 75
-00:04:52.528 --> 00:04:54.277
+00:04:52.268 --> 00:04:54.017
 Then three rows fail.
 
 76
-00:04:54.277 --> 00:04:58.983
+00:04:54.017 --> 00:04:58.723
 The detection engineer role holds
 advanced live response, which only the
 
 77
-00:04:58.983 --> 00:05:03.227
+00:04:58.723 --> 00:05:02.967
 Tier 0 role may hold, so both its
 role row and the restricted row fail.
 
 78
-00:05:03.227 --> 00:05:06.061
+00:05:02.967 --> 00:05:05.801
 And the responder role is
 also assigned to a standing
 
 79
-00:05:06.061 --> 00:05:09.215
+00:05:05.801 --> 00:05:08.955
 group that Privileged Identity
 Management doesn't govern.
 
 80
-00:05:09.215 --> 00:05:12.590
+00:05:08.955 --> 00:05:12.330
 The legacy role is a warning:
 it isn't in the design,
 
 81
-00:05:12.590 --> 00:05:15.627
+00:05:12.330 --> 00:05:15.367
 so someone records a
 decision or removes it.
 
 82
-00:05:15.627 --> 00:05:18.050
+00:05:15.367 --> 00:05:17.790
 Fourteen checks, three failed.
 
 83
-00:05:21.800 --> 00:05:24.755
+00:05:21.540 --> 00:05:24.495
 Step 2 reads what each
 call needs: three reads,
 
 84
-00:05:24.755 --> 00:05:29.787
+00:05:24.495 --> 00:05:29.527
 each with a read permission, and two
 writes with read-write custom detection.
 
 85
-00:05:29.787 --> 00:05:33.720
+00:05:29.527 --> 00:05:33.460
 Step 3 reads the manifest: the
 task, the time, fixture mode,
 
 86
-00:05:33.720 --> 00:05:38.081
+00:05:33.460 --> 00:05:37.821
 the one call the check made with
 its permission and Learn page,
 
 87
-00:05:38.081 --> 00:05:43.125
+00:05:37.821 --> 00:05:42.865
 a hash for every file, and the result
 Chapter 8's evidence record carries.
 
 88
-00:05:43.125 --> 00:05:45.475
+00:05:42.865 --> 00:05:45.215
 Step 4 runs the chapter's tests.
 
 89
-00:05:45.475 --> 00:05:47.237
+00:05:45.215 --> 00:05:46.977
 All pass, none fail.
 
 90
-00:05:47.237 --> 00:05:49.820
+00:05:46.977 --> 00:05:49.560
 Delete the output folder when you're done.
 
 91
-00:05:53.570 --> 00:05:56.107
+00:05:53.310 --> 00:05:55.847
 Lab 2 uses a test
 tenant, never production,
 
 92
-00:05:56.107 --> 00:06:00.435
+00:05:55.847 --> 00:06:00.175
 licensed for Defender for Endpoint
 Plan 2, with the four roles created,
 
 93
-00:06:00.435 --> 00:06:05.658
+00:06:00.175 --> 00:06:05.398
 and an account that holds Security Reader
 through Privileged Identity Management.
 
 94
-00:06:05.658 --> 00:06:09.394
+00:06:05.398 --> 00:06:09.134
 Sign in to Graph in the Global
 environment with the read scopes.
 
 95
-00:06:09.394 --> 00:06:12.183
+00:06:09.134 --> 00:06:11.923
 Run the access check
 without the fixture path.
 
 96
-00:06:12.183 --> 00:06:17.008
+00:06:11.923 --> 00:06:16.748
 The read row should pass with up to five
 incidents, or none in a new tenant.
 
 97
-00:06:17.008 --> 00:06:19.682
+00:06:16.748 --> 00:06:19.422
 An error that names a
 role means the account
 
 98
-00:06:19.682 --> 00:06:22.058
+00:06:19.422 --> 00:06:21.798
 lacks one of the four roles Learn lists.
 
 99
-00:06:22.058 --> 00:06:25.533
+00:06:21.798 --> 00:06:25.273
 Every failing role row is a
 change under a change record.
 
 100
-00:06:25.533 --> 00:06:29.530
+00:06:25.273 --> 00:06:29.270
 The check changed nothing, so
 backing out is just signing out.
 
 101
-00:06:33.280 --> 00:06:37.092
+00:06:33.020 --> 00:06:36.832
 Here's what this gate proves,
 against NIST's control catalog.
 
 102
-00:06:37.092 --> 00:06:40.512
+00:06:36.832 --> 00:06:40.252
 Each role holding exactly
 its designed permissions,
 
 103
-00:06:40.512 --> 00:06:44.942
+00:06:40.252 --> 00:06:44.682
 with advanced live response only in
 Tier 0, supports least privilege.
 
 104
-00:06:44.942 --> 00:06:47.496
+00:06:44.682 --> 00:06:47.236
 Every assignment going
 to a governed group,
 
 105
-00:06:47.496 --> 00:06:52.105
+00:06:47.236 --> 00:06:51.845
 and no emergency access group in a Defender
 role, supports account management.
 
 106
-00:06:52.105 --> 00:06:54.971
+00:06:51.845 --> 00:06:54.711
 And a working read path in
 the tenant's own cloud,
 
 107
-00:06:54.971 --> 00:06:59.455
+00:06:54.711 --> 00:06:59.195
 with its permissions listed, supports
 restricting access to audit tools.
 
 108
-00:06:59.455 --> 00:07:03.643
+00:06:59.195 --> 00:07:03.383
 The indicators are FedRAMP's, as
 the implementation guide maps them.
 
 109
-00:07:03.643 --> 00:07:07.830
+00:07:03.383 --> 00:07:07.570
 The records support these controls;
 the assessor decides them.
 
 110
-00:07:11.580 --> 00:07:12.980
+00:07:11.320 --> 00:07:12.720
 What breaks in production?
 
 111
-00:07:12.980 --> 00:07:15.363
+00:07:12.720 --> 00:07:15.103
 A Graph session in the wrong tenant:
 
 112
-00:07:15.363 --> 00:07:19.142
+00:07:15.103 --> 00:07:18.882
 every check reads another
 estate, or nothing, and passes.
 
 113
-00:07:19.142 --> 00:07:20.892
+00:07:18.882 --> 00:07:20.632
 The live run refuses it.
 
 114
-00:07:20.892 --> 00:07:25.367
+00:07:20.632 --> 00:07:25.107
 A permission added to a role in the
 portal: someone can isolate devices
 
 115
-00:07:25.367 --> 00:07:29.918
+00:07:25.107 --> 00:07:29.658
 or run live response who shouldn't;
 the role and restricted rows catch it.
 
 116
-00:07:29.918 --> 00:07:35.417
+00:07:29.658 --> 00:07:35.157
 A role assigned to a standing group:
 privilege that never expires; the P I M row.
 
 117
-00:07:35.417 --> 00:07:38.302
+00:07:35.157 --> 00:07:38.042
 An emergency access
 account in a Defender role,
 
 118
-00:07:38.302 --> 00:07:41.779
+00:07:38.042 --> 00:07:41.519
 which turns the break-glass
 account into a daily account.
 
 119
-00:07:41.779 --> 00:07:44.199
+00:07:41.519 --> 00:07:43.939
 And a write slipped into the read path:
 
 120
-00:07:44.199 --> 00:07:47.930
+00:07:43.939 --> 00:07:47.670
 the read function refuses
 any call marked as a write.
 
 121
-00:07:51.680 --> 00:07:53.030
+00:07:51.420 --> 00:07:52.770
 Here's what done looks like.
 
 122
-00:07:53.030 --> 00:07:58.430
+00:07:52.770 --> 00:07:58.170
 The settings file names GCC and the
 test tenant's ID, with no secret in it.
 
 123
-00:07:58.430 --> 00:08:00.930
+00:07:58.170 --> 00:08:00.670
 The read row passes in the test tenant.
 
 124
-00:08:00.930 --> 00:08:07.005
+00:08:00.670 --> 00:08:06.745
 Every role, restricted, P I M and emergency
 row passes, or has a change record.
 
 125
-00:08:07.005 --> 00:08:09.930
+00:08:06.745 --> 00:08:09.670
 The permissions file is
 filed with the role export.
 
 126
-00:08:09.930 --> 00:08:14.155
+00:08:09.670 --> 00:08:13.895
 And the run folder is recorded as
 evidence, which Chapter 8 shows.
 
 127
-00:08:14.155 --> 00:08:19.505
+00:08:13.895 --> 00:08:19.245
 Next, Chapter 2 uses the same read path
 to count the fleet against the inventory.
 
 128
-00:08:19.505 --> 00:08:20.670
+00:08:19.245 --> 00:08:20.410
 Thanks for watching.

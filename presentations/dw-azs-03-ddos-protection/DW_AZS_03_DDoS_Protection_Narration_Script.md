@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 03: DDoS Protection
 
-Welcome back to Building Azure Security. This is Chapter 3: DDoS protection. Protected isn't a property of a public IP. It depends on the address, the network behind it and the plan that network is linked to, and the code has to follow all three. We'll start from what Microsoft Learn gives you, see what it leaves to you, read how the kit follows each address to its network, and walk two labs, the evidence and the dangers. The chapter is a draft awaiting the owner's review, and the code is illustrative, tested against a fictional estate.
+Welcome back to Building Azure Security. This is Chapter 3: DDoS protection. Protected isn't a property of a public IP. It depends on the address, the network behind it and the plan that network is linked to, and the code has to follow all three. We'll start from what Microsoft Learn gives you, see what it leaves to you, read how the kit follows each address to its network, and walk two labs, the evidence and the dangers. The chapter has been reviewed and approved, and the code is illustrative, tested against a fictional estate.
 
 ## Slide 2 — Why protected depends on the network behind it
 

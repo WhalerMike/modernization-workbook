@@ -46,520 +46,520 @@ read the register and its rules,
 then walk two labs a week apart.
 
 10
-00:00:34.825 --> 00:00:38.700
-The chapter is a draft, and
-the code is illustrative.
+00:00:34.825 --> 00:00:39.850
+The chapter has been reviewed and
+approved, and the code is illustrative.
 
 11
-00:00:42.450 --> 00:00:43.962
+00:00:43.600 --> 00:00:45.112
 Why a register first?
 
 12
-00:00:43.962 --> 00:00:47.350
+00:00:45.112 --> 00:00:48.500
 Because the later steps can't
 be proved complete without it.
 
 13
-00:00:47.350 --> 00:00:52.930
+00:00:48.500 --> 00:00:54.080
 By the end of this chapter you can build
 the register the guide's Step 2 asks for:
 
 14
-00:00:52.930 --> 00:00:56.941
+00:00:54.080 --> 00:00:58.091
 one row per exposure with its
 resource, type, public name,
 
 15
-00:00:56.941 --> 00:01:01.300
+00:00:58.091 --> 00:01:02.450
 owner, DDoS state, and its WAF
 and mode, regenerated every week.
 
 16
-00:01:01.300 --> 00:01:06.093
+00:01:02.450 --> 00:01:07.243
 Every ownerless row is flagged, every
 new exposure since last week reported,
 
 17
-00:01:06.093 --> 00:01:10.962
+00:01:07.243 --> 00:01:12.112
 every one that went away reported with
 a reminder to remove its DNS record, and
 
 18
-00:01:10.962 --> 00:01:16.212
+00:01:12.112 --> 00:01:17.362
 every resource Defender for Cloud calls
 internet-exposed that the register lacks.
 
 19
-00:01:16.212 --> 00:01:17.644
+00:01:17.362 --> 00:01:18.794
 It's for platform owners,
 
 20
-00:01:17.644 --> 00:01:21.512
+00:01:18.794 --> 00:01:22.662
 workload owners and the developers
 who keep the queries current.
 
 21
-00:01:21.512 --> 00:01:26.670
+00:01:22.662 --> 00:01:27.820
 And the register is a map of the attack
 surface: it stays inside the boundary.
 
 22
-00:01:30.420 --> 00:01:31.807
+00:01:31.570 --> 00:01:32.957
 Here's the starting point.
 
 23
-00:01:31.807 --> 00:01:37.221
+00:01:32.957 --> 00:01:38.371
 The guide builds four Resource Graph queries
 from Microsoft Learn's starter sample
 
 24
-00:01:37.221 --> 00:01:40.932
+00:01:38.371 --> 00:01:42.082
 that lists every public IP:
 public IPs with their DDoS mode,
 
 25
-00:01:40.932 --> 00:01:45.339
+00:01:42.082 --> 00:01:46.489
 the resource they're attached to and
 an owner tag; Front Door profiles;
 
 26
-00:01:45.339 --> 00:01:48.200
+00:01:46.489 --> 00:01:49.350
 application gateways
 with their WAF policy;
 
 27
-00:01:48.200 --> 00:01:52.221
+00:01:49.350 --> 00:01:53.371
 and every resource whose public
 network access isn't disabled.
 
 28
-00:01:52.221 --> 00:01:56.671
+00:01:53.371 --> 00:01:57.821
 Learn recommends an inventory of
 every public IP and its protection,
 
 29
-00:01:56.671 --> 00:02:02.058
+00:01:57.821 --> 00:02:03.208
 kept with Resource Graph, and a quarterly
 review of which IPs still need protection.
 
 30
-00:02:02.058 --> 00:02:07.080
+00:02:03.208 --> 00:02:08.230
 And Learn's cost guidance adds that
 fewer public IPs means less to protect.
 
 31
-00:02:10.830 --> 00:02:12.717
+00:02:11.980 --> 00:02:13.867
 What do four queries leave to you?
 
 32
-00:02:12.717 --> 00:02:17.755
+00:02:13.867 --> 00:02:18.905
 Four lists aren't a register, so the kit
 joins them into one with eleven columns.
 
 33
-00:02:17.755 --> 00:02:21.396
+00:02:18.905 --> 00:02:22.546
 A public IP's attachment
 is an IP configuration ID,
 
 34
-00:02:21.396 --> 00:02:26.368
+00:02:22.546 --> 00:02:27.518
 so the kit finds the gateway behind
 it and that gateway's WAF and mode.
 
 35
-00:02:26.368 --> 00:02:30.649
+00:02:27.518 --> 00:02:31.799
 A Front Door profile's public
 names are its custom domains and
 
 36
-00:02:30.649 --> 00:02:34.930
+00:02:31.799 --> 00:02:36.080
 its WAF lives in a security policy,
 so both are read per profile.
 
 37
-00:02:34.930 --> 00:02:37.799
+00:02:36.080 --> 00:02:38.949
 Classic Front Door is public too,
 
 38
-00:02:37.799 --> 00:02:42.155
+00:02:38.949 --> 00:02:43.305
 and retires on March 31,
 2027, so it's in the register.
 
 39
-00:02:42.155 --> 00:02:46.755
+00:02:43.305 --> 00:02:47.905
 Nothing compares with last week, so
 the kit reports new and gone rows.
 
 40
-00:02:46.755 --> 00:02:50.355
+00:02:47.905 --> 00:02:51.505
 And Defender for Cloud's view
 is reconciled, not eyeballed.
 
 41
-00:02:50.355 --> 00:02:52.700
+00:02:51.505 --> 00:02:53.850
 A test pins each answer.
 
 42
-00:02:56.450 --> 00:02:58.087
+00:02:57.600 --> 00:02:59.237
 Here's what the register holds.
 
 43
-00:02:58.087 --> 00:03:01.778
+00:02:59.237 --> 00:03:02.928
 The public name is a public
 IP's DNS name and address,
 
 44
-00:03:01.778 --> 00:03:07.225
+00:03:02.928 --> 00:03:08.375
 a Front Door profile's custom domains,
 or an application gateway's public IP.
 
 45
-00:03:07.225 --> 00:03:09.088
+00:03:08.375 --> 00:03:10.238
 The owner is the owner tag.
 
 46
-00:03:09.088 --> 00:03:13.126
+00:03:10.238 --> 00:03:14.276
 The DDoS column is the IP's protection
 mode, or "Front Door edge",
 
 47
-00:03:13.126 --> 00:03:18.538
+00:03:14.276 --> 00:03:19.688
 because Learn says Front Door's edge has
 built-in layer three and four protection.
 
 48
-00:03:18.538 --> 00:03:22.087
+00:03:19.688 --> 00:03:23.237
 And the WAF columns name
 the policy and its mode.
 
 49
-00:03:22.087 --> 00:03:25.567
+00:03:23.237 --> 00:03:26.717
 Five rules read it: a row
 without an owner is a finding;
 
 50
-00:03:25.567 --> 00:03:28.480
+00:03:26.717 --> 00:03:29.630
 a public IP attached to
 nothing is a warning;
 
 51
-00:03:28.480 --> 00:03:31.151
+00:03:29.630 --> 00:03:32.300
 a new row since last week is information;
 
 52
-00:03:31.151 --> 00:03:34.873
+00:03:32.300 --> 00:03:36.023
 a row that went away is a
 warning to check its DNS records;
 
 53
-00:03:34.873 --> 00:03:40.570
+00:03:36.023 --> 00:03:41.720
 and an exposure Defender reports that the
 register lacks is a gap in the queries.
 
 54
-00:03:44.320 --> 00:03:45.370
+00:03:45.470 --> 00:03:46.520
 Who's involved?
 
 55
-00:03:45.370 --> 00:03:49.972
+00:03:46.520 --> 00:03:51.122
 The platform owner runs the register
 every week, keeps it inside the boundary,
 
 56
-00:03:49.972 --> 00:03:53.208
+00:03:51.122 --> 00:03:54.358
 and reviews it each quarter
 with the security officer.
 
 57
-00:03:53.208 --> 00:03:55.888
+00:03:54.358 --> 00:03:57.038
 Workload owners answer for their own rows:
 
 58
-00:03:55.888 --> 00:03:59.333
+00:03:57.038 --> 00:04:00.483
 every row needs an owner tag,
 and every finding a ticket.
 
 59
-00:03:59.333 --> 00:04:01.928
+00:04:00.483 --> 00:04:03.078
 The security officer
 reconciles the register
 
 60
-00:04:01.928 --> 00:04:04.657
+00:04:03.078 --> 00:04:05.807
 with Defender for Cloud
 at that quarterly review.
 
 61
-00:04:04.657 --> 00:04:08.070
+00:04:05.807 --> 00:04:09.220
 The kit's reads need only Reader
 on the intermediate root.
 
 62
-00:04:08.070 --> 00:04:10.250
+00:04:09.220 --> 00:04:11.400
 Nothing in this chapter writes.
 
 63
-00:04:14.000 --> 00:04:18.112
+00:04:15.150 --> 00:04:19.262
 Lab 1 needs PowerShell 7 with
 Pester, in the kit's folder.
 
 64
-00:04:18.112 --> 00:04:21.129
+00:04:19.262 --> 00:04:22.279
 The fixture estate is
 read twice, a week apart,
 
 65
-00:04:21.129 --> 00:04:24.962
+00:04:22.279 --> 00:04:26.112
 and a small file stands in for
 Defender for Cloud's export.
 
 66
-00:04:24.962 --> 00:04:30.381
+00:04:26.112 --> 00:04:31.531
 Step 1 builds the first week's register:
 nineteen exposures, eight public IPs,
 
 67
-00:04:30.381 --> 00:04:34.166
+00:04:31.531 --> 00:04:35.316
 three Front Door profiles,
 two application gateways
 
 68
-00:04:34.166 --> 00:04:37.349
+00:04:35.316 --> 00:04:38.499
 and six PaaS resources,
 sixteen with an owner.
 
 69
-00:04:37.349 --> 00:04:38.700
+00:04:38.499 --> 00:04:39.850
 Step 2 reads it.
 
 70
-00:04:38.700 --> 00:04:43.838
+00:04:39.850 --> 00:04:44.988
 The application gateway's public IP
 carries the gateway's WAF policy.
 
 71
-00:04:43.838 --> 00:04:46.791
+00:04:44.988 --> 00:04:47.941
 The careers Front Door profile has no WAF,
 
 72
-00:04:46.791 --> 00:04:51.330
+00:04:47.941 --> 00:04:52.480
 the legacy profile is classic,
 and three rows have no owner.
 
 73
-00:04:55.080 --> 00:04:59.752
+00:04:56.230 --> 00:05:00.902
 Step 3 reads the findings: three
 exposures with no owner, a public IP
 
 74
-00:04:59.752 --> 00:05:05.018
+00:05:00.902 --> 00:05:06.168
 attached to nothing, and one resource
 Defender reports that no query finds.
 
 75
-00:05:05.018 --> 00:05:08.358
+00:05:06.168 --> 00:05:09.508
 It's a container group with
 a public address that isn't
 
 76
-00:05:08.358 --> 00:05:11.243
+00:05:09.508 --> 00:05:12.393
 a public IP resource, so
 it's a gap in the queries.
 
 77
-00:05:11.243 --> 00:05:14.152
+00:05:12.393 --> 00:05:15.302
 Step 4 builds the register
 again a week later,
 
 78
-00:05:14.152 --> 00:05:17.455
+00:05:15.302 --> 00:05:18.605
 against the first one, and
 step 5 reads what changed.
 
 79
-00:05:17.455 --> 00:05:20.530
+00:05:18.605 --> 00:05:21.680
 One public IP is new, and has no owner.
 
 80
-00:05:20.530 --> 00:05:23.720
+00:05:21.680 --> 00:05:24.870
 The orphan is gone, with
 the reminder to remove
 
 81
-00:05:23.720 --> 00:05:26.993
+00:05:24.870 --> 00:05:28.143
 any DNS record that still
 points at its address.
 
 82
-00:05:26.993 --> 00:05:29.820
+00:05:28.143 --> 00:05:30.970
 Step 6 runs the chapter's tests.
 
 83
-00:05:33.570 --> 00:05:38.120
+00:05:34.720 --> 00:05:39.270
 Lab 2 moves to a test subscription
 in a test tenant, never production.
 
 84
-00:05:38.120 --> 00:05:41.246
+00:05:39.270 --> 00:05:42.396
 Sign in to commercial Azure,
 write the settings file,
 
 85
-00:05:41.246 --> 00:05:44.808
+00:05:42.396 --> 00:05:45.958
 and build the register live with
 Defender for Cloud's export.
 
 86
-00:05:44.808 --> 00:05:49.595
+00:05:45.958 --> 00:05:50.745
 The classic Front Door, gateway and WAF
 queries aren't verified on Learn yet,
 
 87
-00:05:49.595 --> 00:05:52.607
+00:05:50.745 --> 00:05:53.757
 so allow them and check
 their rows in the portal.
 
 88
-00:05:52.607 --> 00:05:57.407
+00:05:53.757 --> 00:05:58.557
 Then run the guide's own test: create a
 public IP and build the register again.
 
 89
-00:05:57.407 --> 00:06:00.489
+00:05:58.557 --> 00:06:01.639
 It should appear as new,
 and as attached to nothing;
 
 90
-00:06:00.489 --> 00:06:03.420
+00:06:01.639 --> 00:06:04.570
 Resource Graph can take
 a few minutes to show it.
 
 91
-00:06:03.420 --> 00:06:07.670
+00:06:04.570 --> 00:06:08.820
 Back out by deleting the public
 IP and the output, and sign out.
 
 92
-00:06:07.670 --> 00:06:10.040
+00:06:08.820 --> 00:06:11.190
 The authors haven't run this lab.
 
 93
-00:06:13.790 --> 00:06:18.390
+00:06:14.940 --> 00:06:19.540
 Each output is evidence for something
 specific, from the guide's requirements table.
 
 94
-00:06:18.390 --> 00:06:21.477
+00:06:19.540 --> 00:06:22.627
 The register itself, every
 exposure with its owner,
 
 95
-00:06:21.477 --> 00:06:26.329
+00:06:22.627 --> 00:06:27.479
 supports NIST's system component inventory
 and boundary protection controls,
 
 96
-00:06:26.329 --> 00:06:30.078
+00:06:27.479 --> 00:06:31.228
 and aligns to a FedRAMP cloud-native
 architecture indicator.
 
 97
-00:06:30.078 --> 00:06:33.987
+00:06:31.228 --> 00:06:35.137
 Ownerless and unattached exposures,
 what changed since last week,
 
 98
-00:06:33.987 --> 00:06:38.964
+00:06:35.137 --> 00:06:40.114
 and the reconciliation with Defender for
 Cloud support the same inventory control.
 
 99
-00:06:38.964 --> 00:06:43.605
+00:06:40.114 --> 00:06:44.755
 The kit's output supports those controls;
 the assessor decides, and the agency
 
 100
-00:06:43.605 --> 00:06:48.740
+00:06:44.755 --> 00:06:49.890
 lines its own evidence up with FedRAMP's
 indicators rather than reporting them.
 
 101
-00:06:52.490 --> 00:06:54.753
+00:06:53.640 --> 00:06:55.903
 What breaks, and what guards against it?
 
 102
-00:06:54.753 --> 00:06:59.516
+00:06:55.903 --> 00:07:00.666
 Published in a public repository, the
 register is a map of the attack surface,
 
 103
-00:06:59.516 --> 00:07:02.994
+00:07:00.666 --> 00:07:04.144
 so the check prints a warning
 every run and the runbook's
 
 104
-00:07:02.994 --> 00:07:07.002
+00:07:04.144 --> 00:07:08.152
 preflight refuses an output folder
 inside the kit's repository.
 
 105
-00:07:07.002 --> 00:07:10.200
+00:07:08.152 --> 00:07:11.350
 Some public addresses
 aren't public IP resources,
 
 106
-00:07:10.200 --> 00:07:14.802
+00:07:11.350 --> 00:07:15.952
 so the queries can't see them; Defender
 for Cloud's export closes that gap.
 
 107
-00:07:14.802 --> 00:07:19.344
+00:07:15.952 --> 00:07:20.494
 A DNS record left pointing at a
 released address can be taken over,
 
 108
-00:07:19.344 --> 00:07:22.203
+00:07:20.494 --> 00:07:23.353
 so every exposure that goes away is named.
 
 109
-00:07:22.203 --> 00:07:26.396
+00:07:23.353 --> 00:07:27.546
 And an owner tag nobody checks names
 a team that may no longer exist,
 
 110
-00:07:26.396 --> 00:07:29.340
+00:07:27.546 --> 00:07:30.490
 which is what the quarterly review is for.
 
 111
-00:07:33.090 --> 00:07:34.440
+00:07:34.240 --> 00:07:35.590
 Here's what done looks like.
 
 112
-00:07:34.440 --> 00:07:39.453
+00:07:35.590 --> 00:07:40.603
 The register runs every week, and every
 ownerless row has a ticket with an owner.
 
 113
-00:07:39.453 --> 00:07:44.527
+00:07:40.603 --> 00:07:45.677
 Every exposure that went away had
 its DNS records checked and removed.
 
 114
-00:07:44.527 --> 00:07:47.369
+00:07:45.677 --> 00:07:48.519
 Defender for Cloud's
 export was reconciled,
 
 115
-00:07:47.369 --> 00:07:51.078
+00:07:48.519 --> 00:07:52.228
 and every gap is either added
 to the queries or explained.
 
 116
-00:07:51.078 --> 00:07:54.841
+00:07:52.228 --> 00:07:55.991
 And the register and its run
 folders live inside the boundary.
 
 117
-00:07:54.841 --> 00:08:00.760
+00:07:55.991 --> 00:08:01.910
 Next, Chapter 3 traces each public IP in
 this register to its DDoS protection.

@@ -40,10 +40,11 @@ including one where we change a recorded
 file and watch the check catch it.
 
 9
-00:00:29.600 --> 00:00:32.233
-The chapter is a draft awaiting review;
+00:00:29.600 --> 00:00:32.468
+The chapter has been
+reviewed and approved;
 
 10
-00:00:32.233 --> 00:00:35.740
+00:00:32.468 --> 00:00:35.880
 the code is illustrative,
 tested against fixtures.

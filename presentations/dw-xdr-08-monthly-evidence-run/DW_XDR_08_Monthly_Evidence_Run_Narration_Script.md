@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 08: The Monthly Evidence Run
 
-Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook. This is Chapter 8: the monthly evidence run. The metrics measure what the controls do, not whether a setting exists, and the evidence is a chain a security officer can check with one command. We'll start from the guide's monthly run, read the one command that replaces it, the metrics and the evidence record, and walk two labs, including one where we change a recorded file and watch the check catch it. The chapter is a draft awaiting review; the code is illustrative, tested against fixtures.
+Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook. This is Chapter 8: the monthly evidence run. The metrics measure what the controls do, not whether a setting exists, and the evidence is a chain a security officer can check with one command. We'll start from the guide's monthly run, read the one command that replaces it, the metrics and the evidence record, and walk two labs, including one where we change a recorded file and watch the check catch it. The chapter has been reviewed and approved; the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why the month needs one command and a chain
 

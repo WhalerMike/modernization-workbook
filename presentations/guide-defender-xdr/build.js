@@ -1,6 +1,6 @@
 // Companion guide — Defender XDR Engineering & Operations: An Implementation Guide.
 // A narrated Why / What / Who / How deck of about 15 minutes (16 narrated slides, then a backup section).
-// The guide is a draft awaiting the editor's review: the title slide and its narration say so.
+// The guide has been reviewed and approved (review-status: approved): the title slide and its narration say so.
 //   Why:   a license is not a defended endpoint; the reference architecture, its boundaries and control planes.
 //   What:  government-cloud availability by feature; the ten gates on one page.
 //   Who:   unified RBAC roles through PIM, and the RACI.
@@ -20,7 +20,7 @@
 //                      presentations/guide-defender-xdr/Guide_Defender_XDR.pptx
 const P = require("../attribute-driven-migration-technical-part-1/slides.js")({
   title: "Defender XDR Engineering & Operations: An Implementation Guide",
-  footer: "Federal Modernization Workbook  ·  Companion guide: Defender XDR engineering and operations (draft)",
+  footer: "Federal Modernization Workbook  ·  Companion guide: Defender XDR engineering and operations",
 });
 const { HEX, txt, box, tag, content, titleSlide, notes, endModule, table, panel, callout, sources, sourceSlide, backup, finish } = P;
 const OUT = process.argv[2] || "Guide_Defender_XDR.pptx";
@@ -67,11 +67,11 @@ const W3 = 3.9, G3 = 0.225;
 // ================================================================== 1 Title
 {
   const s = titleSlide(SWHY, "Defender XDR: from a license to a defended endpoint", "An implementation guide: ten gates from service access to the evidence an assessor reads");
-  // The guide is a draft: say so before anything else on the slide.
-  box(s, "Draft notice", 0.8, 0.55, 7.9, 0.75, "FFFFFF", HEX.red);
-  txt(s, "Draft notice text", [
-    { text: "DRAFT GUIDE, AWAITING THE EDITOR'S REVIEW.  ", options: { bold: true, color: HEX.red } },
-    { text: "Recheck it after the review; nothing in it was run in a tenant." },
+  // The guide's review status, before anything else on the slide.
+  box(s, "Review status", 0.8, 0.55, 7.9, 0.75, "FFFFFF", HEX.teal);
+  txt(s, "Review status text", [
+    { text: "GUIDE REVIEW STATUS: APPROVED.  ", options: { bold: true, color: HEX.teal } },
+    { text: "Nothing in it was run in a tenant." },
   ], { x: 1.0, y: 0.6, w: 7.55, h: 0.65, fontSize: 14, valign: "middle", color: HEX.ink });
   txt(s, "Session map", [
     { text: "Why: a license is not a defended endpoint   ·   What: the clouds, feature by feature, and the ten gates", options: { color: HEX.navy, bold: true, breakLine: true } },
@@ -79,8 +79,8 @@ const W3 = 3.9, G3 = 0.225;
     { text: "How: access, onboarding, prevention, ASR, exposure, incidents, hunting, signals, automation, evidence", options: { color: HEX.ink } },
   ], { x: 0.8, y: 4.75, w: 11.0, h: 1.3, fontSize: 15, paraSpaceAfter: 2 });
   notes(s,
-`Welcome. This is the narrated briefing for a companion guide in the Federal Modernization Workbook: Defender X D R Engineering and Operations, an implementation guide. One thing first: the guide is a draft, awaiting the editor's review, so recheck it after the review. Its idea fits in a sentence. A Defender license is not a defended endpoint: the sensor has to be on every device and healthy, the prevention settings have to be enforced and not just configured, and every alert has to end in a decision someone can show. The guide covers Windows clients and Windows Server only, for a civilian agency at fed-ramp Moderate in Microsoft three sixty-five G C C. Its facts were read on Microsoft Learn on November eleventh, 2026, and nothing in it was run in a tenant. We'll go in four parts: why, what, who, and how.`,
-  `${G} — status: draft; opening statement, "In this guide," "How to read this guide."`);
+`Welcome. This is the narrated briefing for a companion guide in the Federal Modernization Workbook: Defender X D R Engineering and Operations, an implementation guide. One thing first: the guide has been reviewed and approved. Its idea fits in a sentence. A Defender license is not a defended endpoint: the sensor has to be on every device and healthy, the prevention settings have to be enforced and not just configured, and every alert has to end in a decision someone can show. The guide covers Windows clients and Windows Server only, for a civilian agency at fed-ramp Moderate in Microsoft three sixty-five G C C. Its facts were read on Microsoft Learn on November eleventh, 2026, and nothing in it was run in a tenant. We'll go in four parts: why, what, who, and how.`,
+  `${G} — review status: approved; opening statement, "In this guide," "How to read this guide."`);
 }
 
 // ================================================================== 2 Why: a license is not a defended endpoint
@@ -496,7 +496,7 @@ endModule(SHOW);
 // ================================================================== Backup
 backup();
 sourceSlide("Sources: the guide and Microsoft Learn", [
-  "Defender XDR Engineering & Operations: An Implementation Guide (companion guide, draft): \"How to read this guide,\" \"The track at a glance,\" \"Reference architecture,\" \"Government-cloud availability by feature,\" \"Prerequisites,\" \"RACI,\" \"The path on one page,\" Steps 1 to 10, \"Synthetic events,\" \"Metrics,\" \"Evidence catalog,\" \"Requirements and KSIs,\" \"Dangers,\" \"What couldn't be verified.\" Its verification log lists every claim.",
+  "Defender XDR Engineering & Operations: An Implementation Guide (companion guide): \"How to read this guide,\" \"The track at a glance,\" \"Reference architecture,\" \"Government-cloud availability by feature,\" \"Prerequisites,\" \"RACI,\" \"The path on one page,\" Steps 1 to 10, \"Synthetic events,\" \"Metrics,\" \"Evidence catalog,\" \"Requirements and KSIs,\" \"Dangers,\" \"What couldn't be verified.\" Its verification log lists every claim.",
   "Microsoft Learn, government clouds, read November 11, 2026: Microsoft Defender for US Government; Defender for Endpoint for US Government customers; Defender for Identity for US Government; Defender for Cloud Apps for US Government; What is Microsoft Security Exposure Management?; Graph national cloud deployments.",
   "Microsoft Learn, endpoint: Onboard Windows devices by using Intune; Troubleshoot Defender for Endpoint onboarding; Run a detection test; Device inventory field reference; Configure tamper protection; Configure network protection; Configure controlled folder access; ASR rules overview; Configure ASR rules and exclusions; Test your ASR rules deployment; Monitor ASR rule activity.",
   "Microsoft Learn, XDR and Graph: Create custom roles with Defender unified RBAC; Activate Defender unified RBAC; List incidents; security: runHuntingQuery; Create detectionRule; Use the Microsoft Graph security API; DeviceInfo; DeviceTvmSoftwareVulnerabilities; Configure automatic attack disruption; Exclude assets from automated responses.",

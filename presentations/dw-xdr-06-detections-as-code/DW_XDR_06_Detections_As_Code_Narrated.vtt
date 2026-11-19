@@ -43,539 +43,540 @@ the deployment plan, and walk two labs.
 Publishing the plan is Chapter 9's.
 
 10
-00:00:32.137 --> 00:00:34.771
-The chapter is a draft awaiting review;
+00:00:32.137 --> 00:00:35.006
+The chapter has been
+reviewed and approved;
 
 11
-00:00:34.771 --> 00:00:38.580
+00:00:35.006 --> 00:00:38.700
 the code is illustrative,
 tested against fixtures.
 
 12
-00:00:42.330 --> 00:00:44.092
+00:00:42.450 --> 00:00:44.212
 Why treat detections as code?
 
 13
-00:00:44.092 --> 00:00:45.130
+00:00:44.212 --> 00:00:45.250
 Two reasons.
 
 14
-00:00:45.130 --> 00:00:48.043
+00:00:45.250 --> 00:00:48.163
 A rule that can't be shown
 to fire isn't a control.
 
 15
-00:00:48.043 --> 00:00:50.565
+00:00:48.163 --> 00:00:50.685
 And a rule that nobody can trace back to a
 
 16
-00:00:50.565 --> 00:00:53.393
+00:00:50.685 --> 00:00:53.513
 reviewed file isn't a
 change anyone approved.
 
 17
-00:00:53.393 --> 00:00:57.262
+00:00:53.513 --> 00:00:57.382
 By the end of this chapter you can
 keep custom detections as files,
 
 18
-00:00:57.262 --> 00:01:01.346
+00:00:57.382 --> 00:01:01.466
 prove each one fires on its known-bad
 event and stays quiet otherwise,
 
 19
-00:01:01.346 --> 00:01:05.143
+00:01:01.466 --> 00:01:05.263
 and produce a deployment plan that
 an approver signs by its hash.
 
 20
-00:01:05.143 --> 00:01:09.281
+00:01:05.263 --> 00:01:09.401
 It's for the developers and the
 detection engineer who owns this gate.
 
 21
-00:01:09.281 --> 00:01:14.228
+00:01:09.401 --> 00:01:14.348
 The rule lifecycle itself, author,
 test, alert-only, promote and review,
 
 22
-00:01:14.228 --> 00:01:20.500
+00:01:14.348 --> 00:01:20.620
 is the Security Operations book's; this
 chapter builds its test and its deployment.
 
 23
-00:01:24.250 --> 00:01:27.400
+00:01:24.370 --> 00:01:27.520
 Microsoft Learn's Graph
 pages give three calls.
 
 24
-00:01:27.400 --> 00:01:32.089
+00:01:27.520 --> 00:01:32.209
 Post to create a rule, which needs read-write
 custom detection and the Detection
 
 25
-00:01:32.089 --> 00:01:35.287
+00:01:32.209 --> 00:01:35.407
 tuning manage permission,
 or Security Administrator;
 
 26
-00:01:35.287 --> 00:01:38.200
+00:01:35.407 --> 00:01:38.320
 the quota is ten creates
 a minute per application.
 
 27
-00:01:38.200 --> 00:01:41.037
+00:01:38.320 --> 00:01:41.157
 Get to list the rules,
 with the read permission.
 
 28
-00:01:41.037 --> 00:01:45.337
+00:01:41.157 --> 00:01:45.457
 And patch to update one, supplying
 only the properties that change.
 
 29
-00:01:45.337 --> 00:01:49.188
+00:01:45.457 --> 00:01:49.308
 A rule has a query, a schedule,
 a status of enabled or disabled,
 
 30
-00:01:49.188 --> 00:01:52.174
+00:01:49.308 --> 00:01:52.294
 and a detection action
 with an alert template,
 
 31
-00:01:52.174 --> 00:01:56.025
+00:01:52.294 --> 00:01:56.145
 and optionally automated
 actions, like isolating devices.
 
 32
-00:01:56.025 --> 00:01:59.615
+00:01:56.145 --> 00:01:59.735
 None of these pages has
 a national-cloud table,
 
 33
-00:01:59.615 --> 00:02:03.488
+00:01:59.735 --> 00:02:03.608
 so the API's GCC availability
 is not yet specified.
 
 34
-00:02:03.488 --> 00:02:07.510
+00:02:03.608 --> 00:02:07.630
 The guide's interim path is
 the portal, from the same file.
 
 35
-00:02:11.260 --> 00:02:12.260
+00:02:11.380 --> 00:02:12.380
 What's left to you?
 
 36
-00:02:12.260 --> 00:02:16.435
+00:02:12.380 --> 00:02:16.555
 Nothing checks a rule before it reaches
 the tenant, so the kit validates it.
 
 37
-00:02:16.435 --> 00:02:21.547
+00:02:16.555 --> 00:02:21.667
 Automated actions in the same body could
 let a rule isolate devices on its own,
 
 38
-00:02:21.547 --> 00:02:24.822
+00:02:21.667 --> 00:02:24.942
 outside the response ladder,
 so such a rule is held.
 
 39
-00:02:24.822 --> 00:02:30.223
+00:02:24.942 --> 00:02:30.343
 One test window can't show a rule is both
 sensitive and quiet, so each rule has two.
 
 40
-00:02:30.223 --> 00:02:34.693
+00:02:30.343 --> 00:02:34.813
 The repository and the tenant
 drift, so the kit plans: create,
 
 41
-00:02:34.693 --> 00:02:39.072
+00:02:34.813 --> 00:02:39.192
 update only what changed, hold
 what failed, report orphans.
 
 42
-00:02:39.072 --> 00:02:42.861
+00:02:39.192 --> 00:02:42.981
 A file marked enabled might never
 have been tested, so it's held.
 
 43
-00:02:42.861 --> 00:02:46.810
+00:02:42.981 --> 00:02:46.930
 And an approved plan could change
 afterwards, so it carries a hash.
 
 44
-00:02:46.810 --> 00:02:52.330
+00:02:46.930 --> 00:02:52.450
 The verdict: the API deploys anything it's
 given; build the gate in front of it.
 
 45
-00:02:56.080 --> 00:02:59.817
+00:02:56.200 --> 00:02:59.937
 The repository is one folder
 with two files per rule.
 
 46
-00:02:59.817 --> 00:03:03.943
+00:02:59.937 --> 00:03:04.063
 The rule file is the Graph request
 body, in Learn's example shape.
 
 47
-00:03:03.943 --> 00:03:07.156
+00:03:04.063 --> 00:03:07.276
 Beside it, a test file names
 the tables the query reads,
 
 48
-00:03:07.156 --> 00:03:10.369
+00:03:07.276 --> 00:03:10.489
 a known-bad window that must
 return at least some rows,
 
 49
-00:03:10.369 --> 00:03:13.729
+00:03:10.489 --> 00:03:13.849
 and a known-good window that
 must stay under a threshold.
 
 50
-00:03:13.729 --> 00:03:16.055
+00:03:13.849 --> 00:03:16.175
 The detection check does four things.
 
 51
-00:03:16.055 --> 00:03:19.454
+00:03:16.175 --> 00:03:19.574
 Validates each rule, including
 no automated actions,
 
 52
-00:03:19.454 --> 00:03:22.467
+00:03:19.574 --> 00:03:22.587
 and that the query starts
 from a declared table.
 
 53
-00:03:22.467 --> 00:03:27.445
+00:03:22.587 --> 00:03:27.565
 Tests each rule's query over both
 windows, through the hunting API.
 
 54
-00:03:27.445 --> 00:03:29.380
+00:03:27.565 --> 00:03:29.500
 Reads the deployed rules.
 
 55
-00:03:29.380 --> 00:03:33.283
+00:03:29.500 --> 00:03:33.403
 And plans: create, update
 only the changed properties,
 
 56
-00:03:33.283 --> 00:03:38.070
+00:03:33.403 --> 00:03:38.190
 hold with the reason, and report
 orphans, never deleting them.
 
 57
-00:03:41.820 --> 00:03:42.870
+00:03:41.940 --> 00:03:42.990
 Who's involved?
 
 58
-00:03:42.870 --> 00:03:45.524
+00:03:42.990 --> 00:03:45.644
 The detection engineer owns this gate,
 
 59
-00:03:45.524 --> 00:03:50.333
+00:03:45.644 --> 00:03:50.453
 writes each rule and its test file,
 and reviews every rule each quarter.
 
 60
-00:03:50.333 --> 00:03:54.282
+00:03:50.453 --> 00:03:54.402
 The approver reads the plan and
 records its hash in the change record.
 
 61
-00:03:54.282 --> 00:03:59.584
+00:03:54.402 --> 00:03:59.704
 And the security operations center replays
 each known-bad event on a ring 0 device,
 
 62
-00:03:59.584 --> 00:04:04.107
+00:03:59.704 --> 00:04:04.227
 under a change record, as the guide's
 synthetic events table describes.
 
 63
-00:04:04.107 --> 00:04:07.520
+00:04:04.227 --> 00:04:07.640
 One caution: advanced
 hunting keeps thirty days.
 
 64
-00:04:07.520 --> 00:04:12.480
+00:04:07.640 --> 00:04:12.600
 A known-bad window older than that returns
 nothing, so keep the replay current.
 
 65
-00:04:16.230 --> 00:04:18.330
+00:04:16.350 --> 00:04:18.450
 Lab 1, in the kit's folder.
 
 66
-00:04:18.330 --> 00:04:21.567
+00:04:18.450 --> 00:04:21.687
 Step 1 reads one rule's
 test file: one table,
 
 67
-00:04:21.567 --> 00:04:27.280
+00:04:21.687 --> 00:04:27.400
 a known-bad day that must return a row,
 and a quiet day that must return none.
 
 68
-00:04:27.280 --> 00:04:30.180
+00:04:27.400 --> 00:04:30.300
 Step 2 validates, tests and plans.
 
 69
-00:04:30.180 --> 00:04:35.180
+00:04:30.300 --> 00:04:35.300
 The admin-share rule fails validation:
 it would isolate devices on its own.
 
 70
-00:04:35.180 --> 00:04:38.952
+00:04:35.300 --> 00:04:39.072
 It also fails its quiet day,
 three rows where one is allowed,
 
 71
-00:04:38.952 --> 00:04:40.917
+00:04:39.072 --> 00:04:41.037
 so it would have been noisy too.
 
 72
-00:04:40.917 --> 00:04:43.618
+00:04:41.037 --> 00:04:43.738
 The plan creates the LSASS dump-tool rule.
 
 73
-00:04:43.618 --> 00:04:47.349
+00:04:43.738 --> 00:04:47.469
 It updates only the status of
 the encoded PowerShell rule,
 
 74
-00:04:47.349 --> 00:04:52.168
+00:04:47.469 --> 00:04:52.288
 which is deployed disabled and now
 enabled in its file after a passing test.
 
 75
-00:04:52.168 --> 00:04:53.992
+00:04:52.288 --> 00:04:54.112
 It holds the admin-share rule.
 
 76
-00:04:53.992 --> 00:04:59.660
+00:04:54.112 --> 00:04:59.780
 And it reports a legacy rule, made in
 the portal and in no file, as an orphan.
 
 77
-00:05:03.410 --> 00:05:06.742
+00:05:03.530 --> 00:05:06.862
 Step 3 reads the plan an
 approver signs: its hash,
 
 78
-00:05:06.742 --> 00:05:11.185
+00:05:06.862 --> 00:05:11.305
 and the two actions, a post that
 creates and a patch that updates.
 
 79
-00:05:11.185 --> 00:05:14.228
+00:05:11.305 --> 00:05:14.348
 The update's body holds the
 status and nothing else,
 
 80
-00:05:14.228 --> 00:05:17.198
+00:05:14.348 --> 00:05:17.318
 because Learn's patch
 supplies only what changes.
 
 81
-00:05:17.198 --> 00:05:22.873
+00:05:17.318 --> 00:05:22.993
 Step 4 runs the same repository on the
 interim path, with deploy via set to portal.
 
 82
-00:05:22.873 --> 00:05:26.529
+00:05:22.993 --> 00:05:26.649
 The same plan comes out, as a
 sheet for the Defender portal,
 
 83
-00:05:26.529 --> 00:05:28.397
+00:05:26.649 --> 00:05:28.517
 each rule with its file's hash.
 
 84
-00:05:28.397 --> 00:05:30.830
+00:05:28.517 --> 00:05:30.950
 Delete what the lab made when you're done.
 
 85
-00:05:34.580 --> 00:05:37.667
+00:05:34.700 --> 00:05:37.787
 Lab 2 uses a test
 tenant, never production.
 
 86
-00:05:37.667 --> 00:05:41.347
+00:05:37.787 --> 00:05:41.467
 First make the known-bad event:
 on a ring 0 test device,
 
 87
-00:05:41.347 --> 00:05:45.368
+00:05:41.467 --> 00:05:45.488
 under a change record, run the
 activity your rule detects.
 
 88
-00:05:45.368 --> 00:05:49.006
+00:05:45.488 --> 00:05:49.126
 Then sign in with read scopes
 only, and run the detection check
 
 89
-00:05:49.006 --> 00:05:52.930
+00:05:49.126 --> 00:05:53.050
 with your own rule folder, its
 known-bad window covering the replay.
 
 90
-00:05:52.930 --> 00:05:55.992
+00:05:53.050 --> 00:05:56.112
 The test file should show
 the known-bad window passing.
 
 91
-00:05:55.992 --> 00:05:59.455
+00:05:56.112 --> 00:05:59.575
 If listing the deployed rules
 fails in the test tenant,
 
 92
-00:05:59.455 --> 00:06:03.380
+00:05:59.575 --> 00:06:03.500
 record it in the verification
 log and set deploy via to portal.
 
 93
-00:06:03.380 --> 00:06:05.967
+00:06:03.500 --> 00:06:06.087
 Nothing was deployed,
 so you just sign out.
 
 94
-00:06:05.967 --> 00:06:09.750
+00:06:06.087 --> 00:06:09.870
 Publishing comes in Chapter
 9, with an approved hash.
 
 95
-00:06:13.500 --> 00:06:16.825
+00:06:13.620 --> 00:06:16.945
 Here's what this gate proves,
 against NIST's catalog.
 
 96
-00:06:16.825 --> 00:06:21.056
+00:06:16.945 --> 00:06:21.176
 Each rule firing on its known-bad
 event and staying quiet otherwise
 
 97
-00:06:21.056 --> 00:06:25.438
+00:06:21.176 --> 00:06:25.558
 supports system monitoring and audit
 review, analysis and reporting.
 
 98
-00:06:25.438 --> 00:06:27.943
+00:06:25.558 --> 00:06:28.063
 Each change coming from a reviewed file,
 
 99
-00:06:27.943 --> 00:06:31.738
+00:06:28.063 --> 00:06:31.858
 in a plan with a hash, supports
 configuration change control.
 
 100
-00:06:31.738 --> 00:06:36.701
+00:06:31.858 --> 00:06:36.821
 And what's deployed matching the repository,
 with orphans named, supports both.
 
 101
-00:06:36.701 --> 00:06:39.888
+00:06:36.821 --> 00:06:40.008
 The indicators are FedRAMP's,
 as the guide maps them.
 
 102
-00:06:39.888 --> 00:06:44.060
+00:06:40.008 --> 00:06:44.180
 The records support these controls;
 the assessor decides them.
 
 103
-00:06:47.810 --> 00:06:49.210
+00:06:47.930 --> 00:06:49.330
 What breaks in production?
 
 104
-00:06:49.210 --> 00:06:52.291
+00:06:49.330 --> 00:06:52.411
 A rule with automated
 isolation could contain a
 
 105
-00:06:52.291 --> 00:06:55.372
+00:06:52.411 --> 00:06:55.492
 server or an emergency
 account by query; it's held.
 
 106
-00:06:55.372 --> 00:06:58.574
+00:06:55.492 --> 00:06:58.694
 A rule enabled without a
 test is silent or noisy;
 
 107
-00:06:58.574 --> 00:07:01.284
+00:06:58.694 --> 00:07:01.404
 it's held unless its test passed this run.
 
 108
-00:07:01.284 --> 00:07:04.948
+00:07:01.404 --> 00:07:05.068
 A rule made in the portal can't
 be traced; it's an orphan.
 
 109
-00:07:04.948 --> 00:07:07.758
+00:07:05.068 --> 00:07:07.878
 A plan changed after
 approval means the approver
 
 110
-00:07:07.758 --> 00:07:10.636
+00:07:07.878 --> 00:07:10.756
 signed something else;
 publishing checks the hash.
 
 111
-00:07:10.636 --> 00:07:15.635
+00:07:10.756 --> 00:07:15.755
 A renamed column makes a rule stop
 firing; the weekly test run catches it.
 
 112
-00:07:15.635 --> 00:07:21.830
+00:07:15.755 --> 00:07:21.950
 And if the API isn't available in GCC,
 the portal path deploys the same files.
 
 113
-00:07:25.580 --> 00:07:26.930
+00:07:25.700 --> 00:07:27.050
 Here's what done looks like.
 
 114
-00:07:26.930 --> 00:07:31.880
+00:07:27.050 --> 00:07:32.000
 Every rule has a test file, with both
 windows inside the last thirty days.
 
 115
-00:07:31.880 --> 00:07:34.117
+00:07:32.000 --> 00:07:34.237
 No rule has automated actions.
 
 116
-00:07:34.117 --> 00:07:37.568
+00:07:34.237 --> 00:07:37.688
 Every enabled rule passed its
 known-bad test in this run.
 
 117
-00:07:37.568 --> 00:07:42.542
+00:07:37.688 --> 00:07:42.662
 Every orphan has a decision: into the
 repository, or disabled from a file.
 
 118
-00:07:42.542 --> 00:07:45.279
+00:07:42.662 --> 00:07:45.399
 And the plan's hash is
 recorded with the approval.
 
 119
-00:07:45.279 --> 00:07:50.084
+00:07:45.399 --> 00:07:50.204
 Next, Chapter 7 sets what Defender may
 do on its own once these rules fire,
 
 120
-00:07:50.084 --> 00:07:53.993
+00:07:50.204 --> 00:07:54.113
 and joins identity and cloud-app
 signals to the endpoint's.
 
 121
-00:07:53.993 --> 00:07:55.150
+00:07:54.113 --> 00:07:55.270
 Thanks for watching.

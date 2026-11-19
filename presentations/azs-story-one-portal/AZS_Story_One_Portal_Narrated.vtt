@@ -44,1344 +44,1344 @@ what the kit really printed.
 Two notes before we begin.
 
 10
-00:00:29.600 --> 00:00:32.538
-The chapters are drafts
-awaiting the owner's review.
+00:00:29.600 --> 00:00:32.187
+The chapters have been
+reviewed and approved.
 
 11
-00:00:32.538 --> 00:00:36.014
+00:00:32.187 --> 00:00:35.664
 And the code is illustrative,
 tested against fixtures,
 
 12
-00:00:36.014 --> 00:00:38.460
+00:00:35.664 --> 00:00:38.100
 not against a live subscription.
 
 13
-00:00:42.210 --> 00:00:43.198
+00:00:41.850 --> 00:00:42.838
 Here's the route.
 
 14
-00:00:43.198 --> 00:00:46.136
+00:00:42.838 --> 00:00:45.776
 Scene one reads the
 landing-zone baseline back.
 
 15
-00:00:46.136 --> 00:00:50.223
+00:00:45.776 --> 00:00:49.863
 Scene two lists every public face
 of the portal, with its owner.
 
 16
-00:00:50.223 --> 00:00:55.384
+00:00:49.863 --> 00:00:55.024
 Scene three asks which of its public IP
 addresses are really under DDoS protection.
 
 17
-00:00:55.384 --> 00:00:59.848
+00:00:55.024 --> 00:00:59.488
 Scene four finds a web application
 firewall that logs but doesn't block.
 
 18
-00:00:59.848 --> 00:01:04.198
+00:00:59.488 --> 00:01:03.838
 Scene five checks whether the portal's
 origins can be reached around the edge.
 
 19
-00:01:04.198 --> 00:01:06.236
+00:01:03.838 --> 00:01:05.876
 Scene six follows its egress.
 
 20
-00:01:06.236 --> 00:01:08.423
+00:01:05.876 --> 00:01:08.063
 Scene seven reads its key vault.
 
 21
-00:01:08.423 --> 00:01:13.610
+00:01:08.063 --> 00:01:13.250
 Scene eight holds it all with policy,
 compares two weeks, and records the evidence.
 
 22
-00:01:13.610 --> 00:01:16.722
+00:01:13.250 --> 00:01:16.362
 And scene nine takes the
 kit live, test first.
 
 23
-00:01:16.722 --> 00:01:18.574
+00:01:16.362 --> 00:01:18.214
 Each scene has a story slide,
 
 24
-00:01:18.574 --> 00:01:22.560
+00:01:18.214 --> 00:01:22.200
 a try-it slide with real output,
 and a one-question check.
 
 25
-00:01:26.310 --> 00:01:27.135
+00:01:25.950 --> 00:01:26.775
 Scene one.
 
 26
-00:01:27.135 --> 00:01:32.263
+00:01:26.775 --> 00:01:31.903
 The guide's Step 1 sets four things once:
 the hierarchy settings, the initiatives
 
 27
-00:01:32.263 --> 00:01:37.235
+00:01:31.903 --> 00:01:36.875
 in audit at the intermediate root, platform
 logs, and Defender for Cloud plans.
 
 28
-00:01:37.235 --> 00:01:41.757
+00:01:36.875 --> 00:01:41.397
 Microsoft Learn gives the commands,
 and its REST reference gives the reads,
 
 29
-00:01:41.757 --> 00:01:45.622
+00:01:41.397 --> 00:01:45.262
 but nobody runs them back every
 week across every subscription.
 
 30
-00:01:45.622 --> 00:01:49.448
+00:01:45.262 --> 00:01:49.088
 So the kit does, with one check
 scoped to the intermediate root.
 
 31
-00:01:49.448 --> 00:01:51.623
+00:01:49.088 --> 00:01:51.263
 For our portal, two things turn up.
 
 32
-00:01:51.623 --> 00:01:54.786
+00:01:51.263 --> 00:01:54.426
 Its subscription's Key Vault
 plan is on the Free tier.
 
 33
-00:01:54.786 --> 00:01:57.951
+00:01:54.426 --> 00:01:57.591
 And the hub firewall's public
 address does send logs,
 
 34
-00:01:57.951 --> 00:02:01.485
+00:01:57.591 --> 00:02:01.125
 but to an application team's
 workspace, which doesn't count:
 
 35
-00:02:01.485 --> 00:02:05.900
+00:02:01.125 --> 00:02:05.540
 a log counts only if it's enabled
 and goes to the platform workspace.
 
 36
-00:02:09.650 --> 00:02:10.375
+00:02:09.290 --> 00:02:10.015
 Try it.
 
 37
-00:02:10.375 --> 00:02:14.675
+00:02:10.015 --> 00:02:14.315
 From the kit's folder, run the baseline
 check on the first week's estate.
 
 38
-00:02:14.675 --> 00:02:18.531
+00:02:14.315 --> 00:02:18.171
 It reads the hierarchy settings,
 four policy assignments,
 
 39
-00:02:18.531 --> 00:02:24.075
+00:02:18.171 --> 00:02:23.715
 sixteen platform resources and four
 subscriptions, from six calls, every one a read.
 
 40
-00:02:24.075 --> 00:02:26.687
+00:02:23.715 --> 00:02:26.327
 Twelve findings and one information row.
 
 41
-00:02:26.687 --> 00:02:30.955
+00:02:26.327 --> 00:02:30.595
 Read them: creating management
 groups doesn't need authorization;
 
 42
-00:02:30.955 --> 00:02:35.456
+00:02:30.595 --> 00:02:35.096
 the firewall and its public IP send
 nothing to the platform workspace;
 
 43
-00:02:35.456 --> 00:02:39.724
+00:02:35.096 --> 00:02:39.364
 the online subscription, the portal's,
 has its Key Vault plan on Free;
 
 44
-00:02:39.724 --> 00:02:44.200
+00:02:39.364 --> 00:02:43.840
 and the FedRAMP initiative is in
 audit, exactly as Step 1 intends.
 
 45
-00:02:47.950 --> 00:02:48.762
+00:02:47.590 --> 00:02:48.402
 Check one.
 
 46
-00:02:48.762 --> 00:02:52.261
+00:02:48.402 --> 00:02:51.901
 The hub firewall's public
 address has a diagnostic setting
 
 47
-00:02:52.261 --> 00:02:55.688
+00:02:51.901 --> 00:02:55.328
 that sends all its logs to an
 application team's workspace.
 
 48
-00:02:55.688 --> 00:02:57.512
+00:02:55.328 --> 00:02:57.152
 Does the kit count that as logging?
 
 49
-00:02:57.512 --> 00:02:58.850
+00:02:57.152 --> 00:02:58.490
 Any enabled setting?
 
 50
-00:02:58.850 --> 00:03:01.013
+00:02:58.490 --> 00:03:00.653
 Only one to the platform workspace?
 
 51
-00:03:01.013 --> 00:03:03.938
+00:03:00.653 --> 00:03:03.578
 Yes, if the application
 team owns the address?
 
 52
-00:03:03.938 --> 00:03:06.238
+00:03:03.578 --> 00:03:05.878
 Or only when Defender for Cloud is on?
 
 53
-00:03:06.238 --> 00:03:08.650
+00:03:05.878 --> 00:03:08.290
 The answer opens the next scene.
 
 54
-00:03:12.400 --> 00:03:14.263
+00:03:12.040 --> 00:03:13.903
 The answer to check one: no.
 
 55
-00:03:14.263 --> 00:03:17.701
+00:03:13.903 --> 00:03:17.341
 Only an enabled log to the
 platform workspace counts.
 
 56
-00:03:17.701 --> 00:03:18.563
+00:03:17.341 --> 00:03:18.203
 Scene two.
 
 57
-00:03:18.563 --> 00:03:23.291
+00:03:18.203 --> 00:03:22.931
 Steps 3 to 5 can't be proved complete
 without a list of what's exposed,
 
 58
-00:03:23.291 --> 00:03:27.503
+00:03:22.931 --> 00:03:27.143
 and the portal is public in many
 places: a Front Door profile,
 
 59
-00:03:27.503 --> 00:03:32.488
+00:03:27.143 --> 00:03:32.128
 the gateway's address, a jump box, a
 load balancer, two web apps and a vault.
 
 60
-00:03:32.488 --> 00:03:37.216
+00:03:32.128 --> 00:03:36.856
 The kit joins the guide's Resource
 Graph queries, built from Microsoft
 
 61
-00:03:37.216 --> 00:03:41.700
+00:03:36.856 --> 00:03:41.340
 Learn's starter sample, into one
 register, with an owner on every row.
 
 62
-00:03:41.700 --> 00:03:44.187
+00:03:41.340 --> 00:03:43.827
 The jump box's address has no owner.
 
 63
-00:03:44.187 --> 00:03:48.975
+00:03:43.827 --> 00:03:48.615
 A week later a new address appears,
 with no owner either, and an orphan
 
 64
-00:03:48.975 --> 00:03:54.720
+00:03:48.615 --> 00:03:54.360
 address is gone, with a reminder to remove
 any DNS record still pointing at it.
 
 65
-00:03:58.470 --> 00:03:59.195
+00:03:58.110 --> 00:03:58.835
 Try it.
 
 66
-00:03:59.195 --> 00:04:04.220
+00:03:58.835 --> 00:04:03.860
 Build the first week's register: nineteen
 exposures, sixteen with an owner.
 
 67
-00:04:04.220 --> 00:04:05.708
+00:04:03.860 --> 00:04:05.348
 Read the portal's rows.
 
 68
-00:04:05.708 --> 00:04:08.956
+00:04:05.348 --> 00:04:08.596
 The gateway's public address
 carries the gateway's
 
 69
-00:04:08.956 --> 00:04:11.895
+00:04:08.596 --> 00:04:11.535
 web application firewall
 policy, wafp-portal.
 
 70
-00:04:11.895 --> 00:04:14.308
+00:04:11.535 --> 00:04:13.948
 The Front Door profile carries its own.
 
 71
-00:04:14.308 --> 00:04:16.794
+00:04:13.948 --> 00:04:16.434
 The jump box's address has no owner.
 
 72
-00:04:16.794 --> 00:04:20.458
+00:04:16.434 --> 00:04:20.098
 Then build the register again a
 week later, against the first one.
 
 73
-00:04:20.458 --> 00:04:25.494
+00:04:20.098 --> 00:04:25.134
 The new address, pip-new-api, is
 reported as new, and the orphan as gone,
 
 74
-00:04:25.494 --> 00:04:31.820
+00:04:25.134 --> 00:04:31.460
 with the reminder to remove any DNS record
 that still points at its old address.
 
 75
-00:04:35.570 --> 00:04:36.395
+00:04:35.210 --> 00:04:36.035
 Check two.
 
 76
-00:04:36.395 --> 00:04:39.122
+00:04:36.035 --> 00:04:38.762
 The register lists every public address,
 
 77
-00:04:39.122 --> 00:04:42.170
+00:04:38.762 --> 00:04:41.810
 Front Door profile and
 gateway, with its owner.
 
 78
-00:04:42.170 --> 00:04:43.470
+00:04:41.810 --> 00:04:43.110
 Where should it be kept?
 
 79
-00:04:43.470 --> 00:04:46.682
+00:04:43.110 --> 00:04:46.322
 In a public repository,
 so assessors can find it?
 
 80
-00:04:46.682 --> 00:04:48.582
+00:04:46.322 --> 00:04:48.222
 Inside the agency's boundary?
 
 81
-00:04:48.582 --> 00:04:50.557
+00:04:48.222 --> 00:04:50.197
 Only in the portal's own subscription?
 
 82
-00:04:50.557 --> 00:04:53.840
+00:04:50.197 --> 00:04:53.480
 Or nowhere, since it's
 regenerated each week?
 
 83
-00:04:57.590 --> 00:05:01.140
+00:04:57.230 --> 00:05:00.780
 The answer to check two:
 inside the agency's boundary,
 
 84
-00:05:01.140 --> 00:05:05.515
+00:05:00.780 --> 00:05:05.155
 never in a public repository,
 because it maps the attack surface.
 
 85
-00:05:05.515 --> 00:05:06.565
+00:05:05.155 --> 00:05:06.205
 Scene three.
 
 86
-00:05:06.565 --> 00:05:11.069
+00:05:06.205 --> 00:05:10.709
 Microsoft Learn's Zero Trust
 recommendations check that every public
 
 87
-00:05:11.069 --> 00:05:15.115
+00:05:10.709 --> 00:05:14.755
 address in a virtual network is
 protected, with metrics and logs.
 
 88
-00:05:15.115 --> 00:05:19.865
+00:05:14.755 --> 00:05:19.505
 The jump box's address says it inherits
 its protection, which sounds protected.
 
 89
-00:05:19.865 --> 00:05:23.213
+00:05:19.505 --> 00:05:22.853
 But the kit follows it to its
 network, the portal's spoke,
 
 90
-00:05:23.213 --> 00:05:25.965
+00:05:22.853 --> 00:05:25.605
 and that network has no
 DDoS protection plan.
 
 91
-00:05:25.965 --> 00:05:27.340
+00:05:25.605 --> 00:05:26.980
 So it's unprotected.
 
 92
-00:05:27.340 --> 00:05:31.490
+00:05:26.980 --> 00:05:31.130
 The gateway's address inherits from
 the hub, which is linked to the plan.
 
 93
-00:05:31.490 --> 00:05:34.616
+00:05:31.130 --> 00:05:34.256
 And it's the one address
 with both DDoS logs to the
 
 94
-00:05:34.616 --> 00:05:38.950
+00:05:34.256 --> 00:05:38.590
 platform workspace and an enabled
 alert on Under DDoS attack.
 
 95
-00:05:42.700 --> 00:05:43.425
+00:05:42.340 --> 00:05:43.065
 Try it.
 
 96
-00:05:43.425 --> 00:05:45.787
+00:05:43.065 --> 00:05:45.427
 Read each public address's status.
 
 97
-00:05:45.787 --> 00:05:48.926
+00:05:45.427 --> 00:05:48.566
 The hub's three addresses
 inherit from the hub network.
 
 98
-00:05:48.926 --> 00:05:53.325
+00:05:48.566 --> 00:05:52.965
 The test application's address has
 IP Protection on the address itself.
 
 99
-00:05:53.325 --> 00:05:56.518
+00:05:52.965 --> 00:05:56.158
 The jump box's inherits
 from the portal's spoke,
 
 100
-00:05:56.518 --> 00:05:59.038
+00:05:56.158 --> 00:05:58.678
 which has no plan, so it's unprotected.
 
 101
-00:05:59.038 --> 00:06:03.269
+00:05:58.678 --> 00:06:02.909
 The load balancer's is unknown:
 its protection depends on a backend
 
 102
-00:06:03.269 --> 00:06:07.962
+00:06:02.909 --> 00:06:07.602
 network the frontend doesn't name, and
 the kit says so rather than guessing.
 
 103
-00:06:07.962 --> 00:06:10.797
+00:06:07.602 --> 00:06:10.437
 Then the findings: the
 jump box unprotected,
 
 104
-00:06:10.797 --> 00:06:14.971
+00:06:10.437 --> 00:06:14.611
 the firewall's address with no logs
 to the workspace and no alert,
 
 105
-00:06:14.971 --> 00:06:19.360
+00:06:14.611 --> 00:06:19.000
 and the test application's alert,
 which exists but is disabled.
 
 106
-00:06:23.110 --> 00:06:24.022
+00:06:22.750 --> 00:06:23.662
 Check three.
 
 107
-00:06:24.022 --> 00:06:28.373
+00:06:23.662 --> 00:06:28.013
 The jump box's address has the protection
 mode virtual network inherited.
 
 108
-00:06:28.373 --> 00:06:30.560
+00:06:28.013 --> 00:06:30.200
 What decides whether
 it's actually protected?
 
 109
-00:06:30.560 --> 00:06:33.723
+00:06:30.200 --> 00:06:33.363
 Nothing, because inherited
 always means protected?
 
 110
-00:06:33.723 --> 00:06:36.985
+00:06:33.363 --> 00:06:36.625
 Whether its network is linked
 to a DDoS protection plan?
 
 111
-00:06:36.985 --> 00:06:38.773
+00:06:36.625 --> 00:06:38.413
 Whether it has an owner tag?
 
 112
-00:06:38.773 --> 00:06:41.410
+00:06:38.413 --> 00:06:41.050
 Or whether Front Door sits in front of it?
 
 113
-00:06:45.160 --> 00:06:48.468
+00:06:44.800 --> 00:06:48.108
 The answer to check three:
 whether its network is linked
 
 114
-00:06:48.468 --> 00:06:51.560
+00:06:48.108 --> 00:06:51.200
 to a DDoS protection plan,
 and the portal's spoke isn't.
 
 115
-00:06:51.560 --> 00:06:52.535
+00:06:51.200 --> 00:06:52.175
 Scene four.
 
 116
-00:06:52.535 --> 00:06:55.821
+00:06:52.175 --> 00:06:55.461
 DDoS protection stops at
 layers three and four;
 
 117
-00:06:55.821 --> 00:06:59.022
+00:06:55.461 --> 00:06:58.662
 layer seven needs a web
 application firewall.
 
 118
-00:06:59.022 --> 00:07:01.168
+00:06:58.662 --> 00:07:00.808
 Microsoft Learn is plain about it:
 
 119
-00:07:01.168 --> 00:07:05.384
+00:07:00.808 --> 00:07:05.024
 detection mode logs and forwards,
 and only prevention mode blocks.
 
 120
-00:07:05.384 --> 00:07:08.597
+00:07:05.024 --> 00:07:08.237
 The portal's gateway policy
 is still in detection.
 
 121
-00:07:08.597 --> 00:07:12.723
+00:07:08.237 --> 00:07:12.363
 Its Front Door policy blocks, but
 has no bot protection rule set.
 
 122
-00:07:12.723 --> 00:07:16.466
+00:07:12.363 --> 00:07:16.106
 The kit checks every policy on
 both services the same way,
 
 123
-00:07:16.466 --> 00:07:20.686
+00:07:16.106 --> 00:07:20.326
 and writes the switch to prevention
 to a plan, which it never runs.
 
 124
-00:07:20.686 --> 00:07:25.230
+00:07:20.326 --> 00:07:24.870
 The application owner runs it,
 after reviewing the false positives.
 
 125
-00:07:28.980 --> 00:07:29.705
+00:07:28.620 --> 00:07:29.345
 Try it.
 
 126
-00:07:29.705 --> 00:07:31.143
+00:07:29.345 --> 00:07:30.783
 Read each policy.
 
 127
-00:07:31.143 --> 00:07:34.808
+00:07:30.783 --> 00:07:34.448
 The gateway's policy,
 wafp-portal: detection,
 
 128
-00:07:34.808 --> 00:07:39.492
+00:07:34.448 --> 00:07:39.132
 body inspection on, rule set
 2.1, bot rules and a rate limit.
 
 129
-00:07:39.492 --> 00:07:46.167
+00:07:39.132 --> 00:07:45.807
 The Front Door policy: prevention, body
 inspection on, rule set 2.1, no bot rules.
 
 130
-00:07:46.167 --> 00:07:50.320
+00:07:45.807 --> 00:07:49.960
 Then read the plan the kit wrote: a
 header that says the kit did not run it,
 
 131
-00:07:50.320 --> 00:07:54.830
+00:07:49.960 --> 00:07:54.470
 then Microsoft Learn's own switch command
 for wafp-portal, with its resource
 
 132
-00:07:54.830 --> 00:07:59.268
+00:07:54.470 --> 00:07:58.908
 group and subscription, setting
 prevention, the state and body inspection.
 
 133
-00:07:59.268 --> 00:08:04.680
+00:07:58.908 --> 00:08:04.320
 One of three internet-facing endpoints is
 behind a firewall in prevention this week.
 
 134
-00:08:08.430 --> 00:08:09.342
+00:08:08.070 --> 00:08:08.982
 Check four.
 
 135
-00:08:09.342 --> 00:08:11.631
+00:08:08.982 --> 00:08:11.271
 The gateway's policy is in detection,
 
 136
-00:08:11.631 --> 00:08:15.293
+00:08:11.271 --> 00:08:14.933
 and the kit wrote the switch to
 prevention into a plan file.
 
 137
-00:08:15.293 --> 00:08:16.617
+00:08:14.933 --> 00:08:16.257
 Who runs it, and when?
 
 138
-00:08:16.617 --> 00:08:18.818
+00:08:16.257 --> 00:08:18.458
 The kit, on its next weekly run?
 
 139
-00:08:18.818 --> 00:08:23.406
+00:08:18.458 --> 00:08:23.046
 The application owner, after the
 false-positive review, in a change window?
 
 140
-00:08:23.406 --> 00:08:25.405
+00:08:23.046 --> 00:08:25.045
 Azure Policy, automatically?
 
 141
-00:08:25.405 --> 00:08:28.360
+00:08:25.045 --> 00:08:28.000
 Or nobody, because detection is enough?
 
 142
-00:08:32.110 --> 00:08:35.089
+00:08:31.750 --> 00:08:34.729
 The answer to check four:
 the application owner,
 
 143
-00:08:35.089 --> 00:08:38.298
+00:08:34.729 --> 00:08:37.938
 after the false-positive
 review, in a change window.
 
 144
-00:08:38.298 --> 00:08:39.322
+00:08:37.938 --> 00:08:38.962
 Scene five.
 
 145
-00:08:39.322 --> 00:08:44.036
+00:08:38.962 --> 00:08:43.676
 A web application firewall only helps if
 nothing can reach the origin around it.
 
 146
-00:08:44.036 --> 00:08:48.762
+00:08:43.676 --> 00:08:48.402
 Microsoft Learn says to use the Front Door
 service tag and the Front Door ID header
 
 147
-00:08:48.762 --> 00:08:53.210
+00:08:48.402 --> 00:08:52.850
 together, because the tag's addresses
 are shared by every Front Door customer.
 
 148
-00:08:53.210 --> 00:08:57.710
+00:08:52.850 --> 00:08:57.350
 The portal's east web app does
 both, with this profile's own ID.
 
 149
-00:08:57.710 --> 00:09:00.322
+00:08:57.350 --> 00:08:59.962
 The west web app allows the tag alone.
 
 150
-00:09:00.322 --> 00:09:02.822
+00:08:59.962 --> 00:09:02.462
 So any customer's Front Door can reach it.
 
 151
-00:09:02.822 --> 00:09:05.893
+00:09:02.462 --> 00:09:05.533
 The kit reads each origin's
 access restrictions
 
 152
-00:09:05.893 --> 00:09:08.734
+00:09:05.533 --> 00:09:08.374
 and compares the header
 with the profile's ID.
 
 153
-00:09:08.734 --> 00:09:11.488
+00:09:08.374 --> 00:09:11.128
 And it knows configuration isn't proof:
 
 154
-00:09:11.488 --> 00:09:14.940
+00:09:11.128 --> 00:09:14.580
 the guide's test is a
 direct request, refused.
 
 155
-00:09:18.690 --> 00:09:19.415
+00:09:18.330 --> 00:09:19.055
 Try it.
 
 156
-00:09:19.415 --> 00:09:21.477
+00:09:19.055 --> 00:09:21.117
 Read each origin's lock-down.
 
 157
-00:09:21.477 --> 00:09:25.334
+00:09:21.117 --> 00:09:24.974
 In the portal's origin group, the
 east web app is locked with the
 
 158
-00:09:25.334 --> 00:09:29.115
+00:09:24.974 --> 00:09:28.755
 service tag and the Front Door
 ID; the west one has the tag only.
 
 159
-00:09:29.115 --> 00:09:34.267
+00:09:28.755 --> 00:09:33.907
 In the API group, one origin reaches its
 back end over Private Link and one is
 
 160
-00:09:34.267 --> 00:09:39.252
+00:09:33.907 --> 00:09:38.892
 a public host the kit can't check, so it
 says to test a direct request by hand.
 
 161
-00:09:39.252 --> 00:09:42.945
+00:09:38.892 --> 00:09:42.585
 Then the findings: the west
 origin's rule has no header,
 
 162
-00:09:42.945 --> 00:09:48.680
+00:09:42.585 --> 00:09:48.320
 and the API group mixes a private and a
 public origin, which Learn says not to do.
 
 163
-00:09:52.430 --> 00:09:53.368
+00:09:52.070 --> 00:09:53.008
 Check five.
 
 164
-00:09:53.368 --> 00:09:58.393
+00:09:53.008 --> 00:09:58.033
 The west origin allows the Front Door
 service tag, with no Front Door ID header.
 
 165
-00:09:58.393 --> 00:09:59.568
+00:09:58.033 --> 00:09:59.208
 What's wrong with that?
 
 166
-00:09:59.568 --> 00:10:02.243
+00:09:59.208 --> 00:10:01.883
 Nothing, since the tag
 is Front Door's own?
 
 167
-00:10:02.243 --> 00:10:05.431
+00:10:01.883 --> 00:10:05.071
 The tag's addresses are shared
 by every Front Door customer?
 
 168
-00:10:05.431 --> 00:10:07.742
+00:10:05.071 --> 00:10:07.382
 The tag blocks Front Door's health probes?
 
 169
-00:10:07.742 --> 00:10:10.460
+00:10:07.382 --> 00:10:10.100
 Or the tag works only with Private Link?
 
 170
-00:10:14.210 --> 00:10:17.531
+00:10:13.850 --> 00:10:17.171
 The answer to check five: the
 tag's addresses are shared by
 
 171
-00:10:17.531 --> 00:10:21.135
+00:10:17.171 --> 00:10:20.775
 every Front Door customer, so the
 header has to prove it's yours.
 
 172
-00:10:21.135 --> 00:10:22.823
+00:10:20.775 --> 00:10:22.463
 Scene six, what leaves.
 
 173
-00:10:22.823 --> 00:10:27.834
+00:10:22.463 --> 00:10:27.474
 Microsoft Learn's Zero Trust recommendations
 for Azure Firewall check that outbound
 
 174
-00:10:27.834 --> 00:10:29.991
+00:10:27.474 --> 00:10:29.631
 traffic routes through the firewall,
 
 175
-00:10:29.991 --> 00:10:33.959
+00:10:29.631 --> 00:10:33.599
 with threat intelligence and
 intrusion detection in alert and deny.
 
 176
-00:10:33.959 --> 00:10:38.247
+00:10:33.599 --> 00:10:37.887
 The portal's web subnet sends its
 default route straight to the internet.
 
 177
-00:10:38.247 --> 00:10:42.284
+00:10:37.887 --> 00:10:41.924
 Its jump subnet sends it to an
 appliance that isn't the hub firewall.
 
 178
-00:10:42.284 --> 00:10:44.610
+00:10:41.924 --> 00:10:44.250
 And the hub policy is still in alert.
 
 179
-00:10:44.610 --> 00:10:49.446
+00:10:44.250 --> 00:10:49.086
 The kit writes Learn's draft-and-deploy
 commands for the move to deny into a plan,
 
 180
-00:10:49.446 --> 00:10:54.350
+00:10:49.086 --> 00:10:53.990
 which it never runs, because deploying
 replaces the whole applied policy.
 
 181
-00:10:58.100 --> 00:10:58.825
+00:10:57.740 --> 00:10:58.465
 Try it.
 
 182
-00:10:58.825 --> 00:11:01.575
+00:10:58.465 --> 00:11:01.215
 Read each workload subnet's default route.
 
 183
-00:11:01.575 --> 00:11:05.838
+00:11:01.215 --> 00:11:05.478
 Two go to the hub firewall at 10.0.0.4.
 
 184
-00:11:05.838 --> 00:11:08.912
+00:11:05.478 --> 00:11:08.552
 The payroll data subnet
 has no route table at all.
 
 185
-00:11:08.912 --> 00:11:12.254
+00:11:08.552 --> 00:11:11.894
 The portal's jump subnet goes
 to an unknown appliance,
 
 186
-00:11:12.254 --> 00:11:14.988
+00:11:11.894 --> 00:11:14.628
 and its web subnet
 straight to the internet.
 
 187
-00:11:14.988 --> 00:11:17.126
+00:11:14.628 --> 00:11:16.766
 Two of five route to the firewall.
 
 188
-00:11:17.126 --> 00:11:21.287
+00:11:16.766 --> 00:11:20.928
 Then read the plan: Microsoft Learn's
 four commands, create a draft,
 
 189
-00:11:21.287 --> 00:11:26.298
+00:11:20.928 --> 00:11:25.938
 set threat intelligence and intrusion
 detection to deny, show it, and deploy it,
 
 190
-00:11:26.298 --> 00:11:29.844
+00:11:25.938 --> 00:11:29.484
 each with the policy's resource
 group and subscription,
 
 191
-00:11:29.844 --> 00:11:33.200
+00:11:29.484 --> 00:11:32.840
 under a header that says
 the kit did not run them.
 
 192
-00:11:36.950 --> 00:11:37.975
+00:11:36.590 --> 00:11:37.615
 Check six.
 
 193
-00:11:37.975 --> 00:11:40.446
+00:11:37.615 --> 00:11:40.086
 Why does the kit write
 the move to deny as a
 
 194
-00:11:40.446 --> 00:11:43.063
+00:11:40.086 --> 00:11:42.703
 draft-and-deploy plan,
 instead of sending it?
 
 195
-00:11:43.063 --> 00:11:44.624
+00:11:42.703 --> 00:11:44.264
 Because drafts are cheaper?
 
 196
-00:11:44.624 --> 00:11:47.753
+00:11:44.264 --> 00:11:47.393
 Because deploying replaces
 the whole applied policy,
 
 197
-00:11:47.753 --> 00:11:50.325
+00:11:47.393 --> 00:11:49.965
 so it goes through review
 and a change window?
 
 198
-00:11:50.325 --> 00:11:53.000
+00:11:49.965 --> 00:11:52.640
 Because deny can't be set
 from the command line?
 
 199
-00:11:53.000 --> 00:11:55.870
+00:11:52.640 --> 00:11:55.510
 Or because the kit has no network access?
 
 200
-00:11:59.620 --> 00:12:03.827
+00:11:59.260 --> 00:12:03.467
 The answer to check six: deploying
 replaces the whole applied policy,
 
 201
-00:12:03.827 --> 00:12:06.558
+00:12:03.467 --> 00:12:06.198
 so it goes through review
 and a change window.
 
 202
-00:12:06.558 --> 00:12:08.269
+00:12:06.198 --> 00:12:07.909
 Scene seven, the vault.
 
 203
-00:12:08.269 --> 00:12:13.309
+00:12:07.909 --> 00:12:12.949
 Microsoft Learn's Key Vault recommendations
 are clear: Azure role-based access,
 
 204
-00:12:13.309 --> 00:12:16.745
+00:12:12.949 --> 00:12:16.385
 not access policies; soft
 delete and purge protection;
 
 205
-00:12:16.745 --> 00:12:20.945
+00:12:16.385 --> 00:12:20.585
 private endpoints with public
 access disabled; and audit logging.
 
 206
-00:12:20.945 --> 00:12:23.220
+00:12:20.585 --> 00:12:22.860
 The portal's vault misses every part.
 
 207
-00:12:23.220 --> 00:12:28.550
+00:12:22.860 --> 00:12:28.190
 It uses access policies, has no purge
 protection, a firewall that allows all
 
 208
-00:12:28.550 --> 00:12:31.903
+00:12:28.190 --> 00:12:31.543
 networks, public access
 on, no private endpoint,
 
 209
-00:12:31.903 --> 00:12:34.482
+00:12:31.543 --> 00:12:34.122
 and no audit events to the workspace.
 
 210
-00:12:34.482 --> 00:12:37.458
+00:12:34.122 --> 00:12:37.098
 The payroll team's vault
 next door has every part,
 
 211
-00:12:37.458 --> 00:12:40.790
+00:12:37.098 --> 00:12:40.430
 so the estate already
 shows what done looks like.
 
 212
-00:12:44.540 --> 00:12:45.265
+00:12:44.180 --> 00:12:44.905
 Try it.
 
 213
-00:12:45.265 --> 00:12:46.665
+00:12:44.905 --> 00:12:46.305
 Read each vault.
 
 214
-00:12:46.665 --> 00:12:51.186
+00:12:46.305 --> 00:12:50.826
 The hub's certificate vault has
 role-based access, purge protection,
 
 215
-00:12:51.186 --> 00:12:56.353
+00:12:50.826 --> 00:12:55.993
 a closed firewall and audit logs, but
 public access on and no private endpoint.
 
 216
-00:12:56.353 --> 00:12:58.103
+00:12:55.993 --> 00:12:57.743
 The payroll vault has everything.
 
 217
-00:12:58.103 --> 00:13:03.414
+00:12:57.743 --> 00:13:03.054
 The portal's vault has nothing: no
 role-based access, no purge protection,
 
 218
-00:13:03.414 --> 00:13:08.816
+00:13:03.054 --> 00:13:08.456
 a firewall that allows all networks,
 public access, no endpoints, no audit.
 
 219
-00:13:08.816 --> 00:13:11.423
+00:13:08.456 --> 00:13:11.063
 Then its findings, one per missing part,
 
 220
-00:13:11.423 --> 00:13:14.765
+00:13:11.063 --> 00:13:14.405
 from access policies to
 the missing audit events.
 
 221
-00:13:14.765 --> 00:13:17.530
+00:13:14.405 --> 00:13:17.170
 One of three vaults has the full posture.
 
 222
-00:13:21.280 --> 00:13:22.218
+00:13:20.920 --> 00:13:21.858
 Check seven.
 
 223
-00:13:22.218 --> 00:13:25.943
+00:13:21.858 --> 00:13:25.583
 The fix for the portal's vault
 includes turning on purge protection.
 
 224
-00:13:25.943 --> 00:13:27.568
+00:13:25.583 --> 00:13:27.208
 Can that be rolled back later?
 
 225
-00:13:27.568 --> 00:13:29.668
+00:13:27.208 --> 00:13:29.308
 Yes, with a key vault update?
 
 226
-00:13:29.668 --> 00:13:33.606
+00:13:29.308 --> 00:13:33.246
 No, because once it's on it can't be
 turned off, and that's the point?
 
 227
-00:13:33.606 --> 00:13:35.355
+00:13:33.246 --> 00:13:34.995
 Only by Microsoft support?
 
 228
-00:13:35.355 --> 00:13:37.680
+00:13:34.995 --> 00:13:37.320
 Or only in a test subscription?
 
 229
-00:13:41.430 --> 00:13:43.480
+00:13:41.070 --> 00:13:43.120
 The answer to check seven: no.
 
 230
-00:13:43.480 --> 00:13:47.780
+00:13:43.120 --> 00:13:47.420
 Once on, purge protection can't be
 turned off, and that's the point.
 
 231
-00:13:47.780 --> 00:13:48.643
+00:13:47.420 --> 00:13:48.283
 Scene eight.
 
 232
-00:13:48.643 --> 00:13:53.552
+00:13:48.283 --> 00:13:53.192
 The portal's WAF tuning runs under a
 waiver that expires on December first,
 
 233
-00:13:53.552 --> 00:13:56.368
+00:13:53.192 --> 00:13:56.008
 so the kit warns it's
 due within thirty days.
 
 234
-00:13:56.368 --> 00:14:01.063
+00:13:56.008 --> 00:14:00.703
 A week later, the platform team switches
 the gateway's firewall to prevention,
 
 235
-00:14:01.063 --> 00:14:05.099
+00:14:00.703 --> 00:14:04.739
 adds the west origin's header, routes
 the web subnet to the firewall,
 
 236
-00:14:05.099 --> 00:14:07.593
+00:14:04.739 --> 00:14:07.233
 and turns on the vault's purge protection.
 
 237
-00:14:07.593 --> 00:14:11.404
+00:14:07.233 --> 00:14:11.044
 A new address arrives, with
 no owner and no protection.
 
 238
-00:14:11.404 --> 00:14:14.229
+00:14:11.044 --> 00:14:13.869
 The kit compares the two
 weeks by fingerprint,
 
 239
-00:14:14.229 --> 00:14:17.944
+00:14:13.869 --> 00:14:17.584
 and records each run as evidence
 that supports the controls,
 
 240
-00:14:17.944 --> 00:14:22.530
+00:14:17.584 --> 00:14:22.170
 with its key security indicators,
 its hashes and the record before it.
 
 241
-00:14:26.280 --> 00:14:27.005
+00:14:25.920 --> 00:14:26.645
 Try it.
 
 242
-00:14:27.005 --> 00:14:30.992
+00:14:26.645 --> 00:14:30.632
 The policy check flags the portal's
 waiver, due December first.
 
 243
-00:14:30.992 --> 00:14:34.305
+00:14:30.632 --> 00:14:33.945
 Compare the two weeks:
 thirteen fixed, four new.
 
 244
-00:14:34.305 --> 00:14:38.140
+00:14:33.945 --> 00:14:37.780
 Among the fixed, the portal's
 firewall policy, the west origin,
 
 245
-00:14:38.140 --> 00:14:41.592
+00:14:37.780 --> 00:14:41.232
 the web subnet's route and
 the vault's purge protection.
 
 246
-00:14:41.592 --> 00:14:46.531
+00:14:41.232 --> 00:14:46.171
 Among the new, the arriving address,
 with no owner and no protection plan.
 
 247
-00:14:46.531 --> 00:14:50.419
+00:14:46.171 --> 00:14:50.059
 Record the run as evidence: it
 covers all nine area steps,
 
 248
-00:14:50.419 --> 00:14:54.730
+00:14:50.059 --> 00:14:54.370
 and the check shows the hashes
 match and the chain is unbroken.
 
 249
-00:14:54.730 --> 00:14:58.393
+00:14:54.370 --> 00:14:58.033
 Then ask whether this evidence could
 promote anything to production.
 
 250
-00:14:58.393 --> 00:15:02.220
+00:14:58.033 --> 00:15:01.860
 Every stage step fails:
 no passing live record.
 
 251
-00:15:05.970 --> 00:15:06.757
+00:15:05.610 --> 00:15:06.397
 Check eight.
 
 252
-00:15:06.757 --> 00:15:10.958
+00:15:06.397 --> 00:15:10.598
 The evidence folder's hashes
 match, and its chain is unbroken.
 
 253
-00:15:10.958 --> 00:15:14.032
+00:15:10.598 --> 00:15:13.672
 Why does the test-stage
 check still fail every step?
 
 254
-00:15:14.032 --> 00:15:15.408
+00:15:13.672 --> 00:15:15.048
 Is the chain too short?
 
 255
-00:15:15.408 --> 00:15:20.258
+00:15:15.048 --> 00:15:19.898
 Do the records come from fixture runs, when
 only live records count toward a stage?
 
 256
-00:15:20.258 --> 00:15:22.633
+00:15:19.898 --> 00:15:22.273
 Are the key security indicators wrong?
 
 257
-00:15:22.633 --> 00:15:24.770
+00:15:22.273 --> 00:15:24.410
 Or were the metrics not recorded?
 
 258
-00:15:28.520 --> 00:15:32.226
+00:15:28.160 --> 00:15:31.866
 The answer to check eight: the
 records come from fixture runs,
 
 259
-00:15:32.226 --> 00:15:34.820
+00:15:31.866 --> 00:15:34.460
 and only live records
 count toward a stage.
 
 260
-00:15:34.820 --> 00:15:36.733
+00:15:34.460 --> 00:15:36.373
 Scene nine, the runbook.
 
 261
-00:15:36.733 --> 00:15:40.811
+00:15:36.373 --> 00:15:40.451
 It's one ordered set of commands,
 run against a test subscription,
 
 262
-00:15:40.811 --> 00:15:44.120
+00:15:40.451 --> 00:15:43.760
 then production, and only
 the settings file changes.
 
 263
-00:15:44.120 --> 00:15:46.295
+00:15:43.760 --> 00:15:45.935
 The weekly run needs only Reader.
 
 264
-00:15:46.295 --> 00:15:51.116
+00:15:45.935 --> 00:15:50.756
 The kit's one write is the security initiative's
 assignment at the intermediate root
 
 265
-00:15:51.116 --> 00:15:54.146
+00:15:50.756 --> 00:15:53.786
 in DoNotEnforce, which
 evaluates without enforcing,
 
 266
-00:15:54.146 --> 00:15:57.520
+00:15:53.786 --> 00:15:57.160
 as Microsoft Learn's assignment
 structure page describes.
 
 267
-00:15:57.520 --> 00:16:00.454
+00:15:57.160 --> 00:16:00.094
 It's a plan, applied only
 with its approved hash,
 
 268
-00:16:00.454 --> 00:16:04.082
+00:16:00.094 --> 00:16:03.722
 and its rollback is rehearsed
 in test before production.
 
 269
-00:16:04.082 --> 00:16:07.245
+00:16:03.722 --> 00:16:06.885
 Go or no-go is the test
 stage's live evidence.
 
 270
-00:16:07.245 --> 00:16:12.310
+00:16:06.885 --> 00:16:11.950
 One honest label: nobody has run this
 runbook against a live subscription.
 
 271
-00:16:16.060 --> 00:16:16.785
+00:16:15.700 --> 00:16:16.425
 Try it.
 
 272
-00:16:16.785 --> 00:16:19.685
+00:16:16.425 --> 00:16:19.325
 The runbook's own
 rehearsal on the fixtures.
 
 273
-00:16:19.685 --> 00:16:24.633
+00:16:19.325 --> 00:16:24.273
 The first weekly run reads every
 area, records itself as the baseline,
 
 274
-00:16:24.633 --> 00:16:27.672
+00:16:24.273 --> 00:16:27.312
 and covers every area
 step and the metrics.
 
 275
-00:16:27.672 --> 00:16:31.536
+00:16:27.312 --> 00:16:31.176
 A week later, the second run
 finds last week's, compares them,
 
 276
-00:16:31.536 --> 00:16:35.722
+00:16:31.176 --> 00:16:35.362
 thirteen fixed and four new, and
 its record adds the comparison.
 
 277
-00:16:35.722 --> 00:16:38.896
+00:16:35.362 --> 00:16:38.536
 Then the rollback for
 production, back to audit:
 
 278
-00:16:38.896 --> 00:16:42.722
+00:16:38.536 --> 00:16:42.362
 one command, printed with its
 plan's hash, and nothing sent.
 
 279
-00:16:42.722 --> 00:16:47.800
+00:16:42.362 --> 00:16:47.440
 In a live stage, a second person approves
 that hash before anyone applies it.
 
 280
-00:16:51.550 --> 00:16:53.400
+00:16:51.190 --> 00:16:53.040
 Check nine, the last one.
 
 281
-00:16:53.400 --> 00:16:56.300
+00:16:53.040 --> 00:16:55.940
 An operator runs production's
 preflight before
 
 282
-00:16:56.300 --> 00:16:59.200
+00:16:55.940 --> 00:16:58.840
 the test stage's evidence
 passes its stage check.
 
 283
-00:16:59.200 --> 00:17:03.322
+00:16:58.840 --> 00:17:02.962
 Does it pass anyway, fail on the
 check that reads the test evidence,
 
 284
-00:17:03.322 --> 00:17:08.120
+00:17:02.962 --> 00:17:07.760
 warn and let the operator decide, or
 assign the initiative regardless?
 
 285
-00:17:11.870 --> 00:17:15.331
+00:17:11.510 --> 00:17:14.971
 The answer to check nine: the
 preflight's last check fails,
 
 286
-00:17:15.331 --> 00:17:19.308
+00:17:14.971 --> 00:17:18.948
 because production needs the test
 stage's evidence to pass first.
 
 287
-00:17:19.308 --> 00:17:24.145
+00:17:18.948 --> 00:17:23.785
 That's the portal, end to end: its baseline
 read back, every public face owned,
 
 288
-00:17:24.145 --> 00:17:27.238
+00:17:23.785 --> 00:17:26.878
 its protection traced to
 the network behind it,
 
 289
-00:17:27.238 --> 00:17:32.630
+00:17:26.878 --> 00:17:32.270
 a web application firewall switched by a
 person, origins locked to the edge, egress
 
 290
-00:17:32.630 --> 00:17:37.944
+00:17:32.270 --> 00:17:37.584
 through the firewall, its vault fixed, and
 every week's drift recorded as evidence.
 
 291
-00:17:37.944 --> 00:17:39.082
+00:17:37.584 --> 00:17:38.722
 Now it's your turn.
 
 292
-00:17:39.082 --> 00:17:43.725
+00:17:38.722 --> 00:17:43.365
 Each chapter has a second lab in your
 own test subscription, never production,
 
 293
-00:17:43.725 --> 00:17:47.570
+00:17:43.365 --> 00:17:47.210
 with Reader and the guide's own
 Validate commands beside the kit.
 
 294
-00:17:47.570 --> 00:17:51.348
-Then go deeper: the draft chapters
+00:17:47.210 --> 00:17:50.654
+Then go deeper: the chapters
 and their narrated tours,
 
 295
-00:17:51.348 --> 00:17:54.432
+00:17:50.654 --> 00:17:53.785
 the learning path, and
 the implementation guide.
 
 296
-00:17:54.432 --> 00:17:55.600
+00:17:53.785 --> 00:17:54.950
 Thanks for watching.

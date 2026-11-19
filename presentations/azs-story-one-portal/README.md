@@ -13,4 +13,4 @@ Every value comes from [`examples/azure-security/tests/fixtures`](../../examples
 | `narration.json` | The spoken narration per slide, which `narrate.py` reads |
 | `build.js` | The slides, the narration and the notes |
 
-Build (Git Bash): `source /c/tmp/deckenv.sh && node presentations/azs-story-one-portal/build.js presentations/azs-story-one-portal/AZS_Story_One_Portal.pptx`, then `narrate.py`, `captions.py`, `build_narrated.ps1` and `export_mp4.ps1`, as in the kit's README. The workbook's chapters are drafts awaiting the owner's review, and the deck says so.
+Build (Git Bash): `source /c/tmp/deckenv.sh && node presentations/azs-story-one-portal/build.js presentations/azs-story-one-portal/AZS_Story_One_Portal.pptx`, then `narrate.py`, `captions.py`, `build_narrated.ps1` and `export_mp4.ps1`, as in the kit's README. The workbook's chapters have been reviewed and approved, and the deck says so.

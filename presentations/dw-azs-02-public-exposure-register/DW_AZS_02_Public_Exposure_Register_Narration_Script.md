@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 02: The Public Exposure Register
 
-Welcome back to Building Azure Security, the Federal Modernization Workbook's developer workbook for the Azure Security Engineering guide. This is Chapter 2: the public exposure register. DDoS protection, the web application firewall and origin lock-down can't be proved complete without a list of what is exposed. So the list is code, it runs every week, and it notices what is new. We'll start from the guide's Resource Graph queries, built from Microsoft Learn's starter sample, see what they leave to you, read the register and its rules, then walk two labs a week apart. The chapter is a draft, and the code is illustrative.
+Welcome back to Building Azure Security, the Federal Modernization Workbook's developer workbook for the Azure Security Engineering guide. This is Chapter 2: the public exposure register. DDoS protection, the web application firewall and origin lock-down can't be proved complete without a list of what is exposed. So the list is code, it runs every week, and it notices what is new. We'll start from the guide's Resource Graph queries, built from Microsoft Learn's starter sample, see what they leave to you, read the register and its rules, then walk two labs a week apart. The chapter has been reviewed and approved, and the code is illustrative.
 
 ## Slide 2 — Why the exposure list comes before the controls
 

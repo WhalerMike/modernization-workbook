@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 09: Deploying to Test and Production
 
-Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook. This is Chapter 9: deploying to test and production. The same commands run in both stages; only the settings file changes, and production waits until the test stage's own evidence says go. This chapter is a runbook, not a gate, so it has no labs of its own. Every step is a command, and the outputs on these slides are from fixture mode on November 17, 2026. Nothing in it has been run against a live tenant, and the chapter is a draft awaiting the owner's review.
+Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook. This is Chapter 9: deploying to test and production. The same commands run in both stages; only the settings file changes, and production waits until the test stage's own evidence says go. This chapter is a runbook, not a gate, so it has no labs of its own. Every step is a command, and the outputs on these slides are from fixture mode on November 17, 2026. Nothing in it has been run against a live tenant, and the chapter has been reviewed and approved.
 
 ## Slide 2 — Why the same commands in both stages
 

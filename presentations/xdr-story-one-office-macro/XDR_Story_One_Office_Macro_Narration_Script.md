@@ -2,7 +2,7 @@
 
 ## Slide 1 — One Office Macro, End to End
 
-Welcome to the story deck for Building Defender XDR, a developer workbook in the Federal Modernization Workbook. Instead of nine chapters one at a time, we'll follow one case all the way through. A macro document, an invoice, is opened on a ring 0 workstation, and tries to start encoded PowerShell. An attack surface reduction rule blocks it, an incident opens, and a custom detection finds it. It's fictional: every value comes from the kit's test fixtures, and every output on a slide is what the kit really printed. The workbook is a draft awaiting review, and the code is illustrative, tested against fixtures, not a live tenant.
+Welcome to the story deck for Building Defender XDR, a developer workbook in the Federal Modernization Workbook. Instead of nine chapters one at a time, we'll follow one case all the way through. A macro document, an invoice, is opened on a ring 0 workstation, and tries to start encoded PowerShell. An attack surface reduction rule blocks it, an incident opens, and a custom detection finds it. It's fictional: every value comes from the kit's test fixtures, and every output on a slide is what the kit really printed. The workbook has been reviewed and approved, and the code is illustrative, tested against fixtures, not a live tenant.
 
 ## Slide 2 — The macro's path through the nine chapters
 

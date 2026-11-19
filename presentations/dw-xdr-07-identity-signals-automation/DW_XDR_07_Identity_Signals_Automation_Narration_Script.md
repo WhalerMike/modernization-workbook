@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 07: Identity Signals and Automation Boundaries
 
-Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook. This is Chapter 7: identity signals and automation boundaries. The same account seen by the endpoint, the domain controller and a cloud app is one story. What Defender may do about it on its own is a decision the authorizing official made, and the settings have to match it. We'll start from the guide's cross-source query and Learn's automation levels and exclusions, read both checks, and walk two labs. The chapter is a draft awaiting review; the code is illustrative, tested against fixtures.
+Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook. This is Chapter 7: identity signals and automation boundaries. The same account seen by the endpoint, the domain controller and a cloud app is one story. What Defender may do about it on its own is a decision the authorizing official made, and the settings have to match it. We'll start from the guide's cross-source query and Learn's automation levels and exclusions, read both checks, and walk two labs. The chapter has been reviewed and approved; the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why signals and automation share a chapter
 

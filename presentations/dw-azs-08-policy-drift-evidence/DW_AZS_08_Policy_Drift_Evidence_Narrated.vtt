@@ -41,687 +41,687 @@ its comparison of two runs, its metrics and
 its evidence records, and walk two labs.
 
 9
-00:00:31.224 --> 00:00:34.240
-The chapter is a draft
-awaiting the owner's review,
+00:00:31.224 --> 00:00:33.910
+The chapter has been
+reviewed and approved,
 
 10
-00:00:34.240 --> 00:00:38.510
+00:00:33.910 --> 00:00:38.220
 and the code is illustrative,
 tested against a fictional estate.
 
 11
-00:00:42.260 --> 00:00:43.373
+00:00:41.970 --> 00:00:43.083
 Why this chapter?
 
 12
-00:00:43.373 --> 00:00:47.200
+00:00:43.083 --> 00:00:46.910
 Because policy holds everything
 the earlier chapters checked,
 
 13
-00:00:47.200 --> 00:00:49.511
+00:00:46.910 --> 00:00:49.221
 and evidence is what an assessor reads.
 
 14
-00:00:49.511 --> 00:00:54.146
+00:00:49.221 --> 00:00:53.856
 By the end you can check the security
 initiative and its exemptions every week,
 
 15
-00:00:54.146 --> 00:00:56.856
+00:00:53.856 --> 00:00:56.566
 say what changed since
 last week in every area,
 
 16
-00:00:56.856 --> 00:01:00.136
+00:00:56.566 --> 00:00:59.846
 report the guide's metrics
 with the numbers behind them,
 
 17
-00:01:00.136 --> 00:01:04.630
+00:00:59.846 --> 00:01:04.340
 and hand the security officer an evidence
 folder whose every file is hashed,
 
 18
-00:01:04.630 --> 00:01:06.199
+00:01:04.340 --> 00:01:05.909
 whose records form a chain,
 
 19
-00:01:06.199 --> 00:01:10.335
+00:01:05.909 --> 00:01:10.045
 and whose records name the controls
 and indicators each run supports.
 
 20
-00:01:10.335 --> 00:01:14.987
+00:01:10.045 --> 00:01:14.697
 It's for policy owners and security
 officers, for the platform owners who run the
 
 21
-00:01:14.987 --> 00:01:20.070
+00:01:14.697 --> 00:01:19.780
 weekly job, and for the developers who keep
 the comparison and the records honest.
 
 22
-00:01:23.820 --> 00:01:25.695
+00:01:23.530 --> 00:01:25.405
 Here's Microsoft's starting point.
 
 23
-00:01:25.695 --> 00:01:29.727
+00:01:25.405 --> 00:01:29.437
 Learn's Resource Graph samples
 for Azure Policy read assignments,
 
 24
-00:01:29.727 --> 00:01:32.732
+00:01:29.437 --> 00:01:32.442
 exemptions and compliance
 states from one table.
 
 25
-00:01:32.732 --> 00:01:36.813
+00:01:32.442 --> 00:01:36.523
 Its compliance-by-assignment query
 gives each assignment's state,
 
 26
-00:01:36.813 --> 00:01:40.671
+00:01:36.523 --> 00:01:40.381
 percentage and counts, and the
 kit uses it exactly as published.
 
 27
-00:01:40.671 --> 00:01:45.045
+00:01:40.381 --> 00:01:44.755
 Another sample lists the exemptions
 due to expire within ninety days.
 
 28
-00:01:45.045 --> 00:01:49.858
+00:01:44.755 --> 00:01:49.568
 Learn's exemption structure says an
 exemption is either mitigated or a waiver,
 
 29
-00:01:49.858 --> 00:01:54.745
+00:01:49.568 --> 00:01:54.455
 can carry an expiry, and once expired is
 kept for the record but no longer honored.
 
 30
-00:01:54.745 --> 00:01:58.988
+00:01:54.455 --> 00:01:58.698
 And DoNotEnforce evaluates without
 enforcing, which is where the guide's
 
 31
-00:01:58.988 --> 00:02:03.720
+00:01:58.698 --> 00:02:03.430
 Step 9 starts before switching to
 enforcement after the compliance review.
 
 32
-00:02:07.470 --> 00:02:09.695
+00:02:07.180 --> 00:02:09.405
 What do Learn and the guide leave to you?
 
 33
-00:02:09.695 --> 00:02:14.845
+00:02:09.405 --> 00:02:14.555
 The ninety-day list misses an exemption
 with no expiry, and one already expired.
 
 34
-00:02:14.845 --> 00:02:18.406
+00:02:14.555 --> 00:02:18.116
 "Switch to enforcement after
 the review" is a sentence,
 
 35
-00:02:18.406 --> 00:02:21.320
+00:02:18.116 --> 00:02:21.030
 so an assignment can
 sit in audit for months.
 
 36
-00:02:21.320 --> 00:02:24.282
+00:02:21.030 --> 00:02:23.992
 So is "no excluded
 scopes for convenience".
 
 37
-00:02:24.282 --> 00:02:28.658
+00:02:23.992 --> 00:02:28.368
 One month's compliance export alone
 can't show whether anything got better.
 
 38
-00:02:28.658 --> 00:02:31.870
+00:02:28.368 --> 00:02:31.580
 The guide's metrics each need
 numbers from a different step.
 
 39
-00:02:31.870 --> 00:02:35.190
+00:02:31.580 --> 00:02:34.900
 And a folder of exports doesn't
 show that nothing changed
 
 40
-00:02:35.190 --> 00:02:38.157
+00:02:34.900 --> 00:02:37.867
 after it was filed, or which
 control a file supports.
 
 41
-00:02:38.157 --> 00:02:42.160
+00:02:37.867 --> 00:02:41.870
 The kit answers each, and
 a test pins each answer.
 
 42
-00:02:45.910 --> 00:02:48.436
+00:02:45.620 --> 00:02:48.146
 The policy check reads the assignments,
 
 43
-00:02:48.436 --> 00:02:52.647
+00:02:48.146 --> 00:02:52.357
 the exemptions and Learn's compliance
 query, and reports six rules.
 
 44
-00:02:52.647 --> 00:02:56.247
+00:02:52.357 --> 00:02:55.957
 The security initiative must be
 assigned at the intermediate root.
 
 45
-00:02:56.247 --> 00:02:58.681
+00:02:55.957 --> 00:02:58.391
 It's a warning if it's
 still in DoNotEnforce
 
 46
-00:02:58.681 --> 00:03:01.185
+00:02:58.391 --> 00:03:00.895
 after the enforce-by
 date the settings give.
 
 47
-00:03:01.185 --> 00:03:06.595
+00:03:00.895 --> 00:03:06.305
 Every exemption needs an expiry; one past
 its expiry is a finding, because Learn
 
 48
-00:03:06.595 --> 00:03:11.673
+00:03:06.305 --> 00:03:11.383
 says it's kept but no longer honored;
 one due within thirty days is a warning.
 
 49
-00:03:11.673 --> 00:03:15.747
+00:03:11.383 --> 00:03:15.457
 And an assignment that excludes
 scopes with notScopes is a finding.
 
 50
-00:03:15.747 --> 00:03:20.910
+00:03:15.457 --> 00:03:20.620
 Most of these are the program's design
 guidance; the expiry rule is Learn's.
 
 51
-00:03:24.660 --> 00:03:25.823
+00:03:24.370 --> 00:03:25.533
 Three more tools.
 
 52
-00:03:25.823 --> 00:03:28.698
+00:03:25.533 --> 00:03:28.408
 The comparison takes
 two runs and, per area,
 
 53
-00:03:28.698 --> 00:03:33.710
+00:03:28.408 --> 00:03:33.420
 compares findings and warnings by
 fingerprint, the rule and the resource.
 
 54
-00:03:33.710 --> 00:03:39.460
+00:03:33.420 --> 00:03:39.170
 Only in the later run is new; only in the
 earlier is fixed; in both, still open.
 
 55
-00:03:39.460 --> 00:03:44.125
+00:03:39.170 --> 00:03:43.835
 The metrics tool computes eight of the
 guide's twelve metrics from one run,
 
 56
-00:03:44.125 --> 00:03:47.795
+00:03:43.835 --> 00:03:47.505
 with the numbers behind each;
 private PaaS reports a count,
 
 57
-00:03:47.795 --> 00:03:50.931
+00:03:47.505 --> 00:03:50.641
 because Resource Graph's
 list has no denominator;
 
 58
-00:03:50.931 --> 00:03:55.060
+00:03:50.641 --> 00:03:54.770
 and three come from exercise records
 and the workspace, and say so.
 
 59
-00:03:55.060 --> 00:03:59.544
+00:03:54.770 --> 00:03:59.254
 And the evidence tool records any run:
 every file's hash, the hash of the
 
 60
-00:03:59.544 --> 00:04:04.185
+00:03:59.254 --> 00:04:03.895
 record before it, and the controls
 and indicators of the steps it covers.
 
 61
-00:04:04.185 --> 00:04:07.290
+00:04:03.895 --> 00:04:07.000
 A fixture run never counts toward a stage.
 
 62
-00:04:11.040 --> 00:04:12.090
+00:04:10.750 --> 00:04:11.800
 Who's involved?
 
 63
-00:04:12.090 --> 00:04:15.484
+00:04:11.800 --> 00:04:15.194
 The policy owner owns the
 initiative and its exemptions,
 
 64
-00:04:15.484 --> 00:04:19.890
+00:04:15.194 --> 00:04:19.600
 and reads the drift report at the weekly
 review with the security officer.
 
 65
-00:04:19.890 --> 00:04:24.115
+00:04:19.600 --> 00:04:23.825
 The platform owner runs the weekly
 job and answers for new rows.
 
 66
-00:04:24.115 --> 00:04:27.458
+00:04:23.825 --> 00:04:27.168
 And the security officer
 keeps the evidence folder,
 
 67
-00:04:27.458 --> 00:04:29.790
+00:04:27.168 --> 00:04:29.500
 on agency storage, and runs its check.
 
 68
-00:04:29.790 --> 00:04:31.677
+00:04:29.500 --> 00:04:31.387
 Every read is still Reader.
 
 69
-00:04:31.677 --> 00:04:36.606
+00:04:31.387 --> 00:04:36.316
 Findings from a Zero Trust assessment
 enter the workbook's closure chain,
 
 70
-00:04:36.606 --> 00:04:41.130
+00:04:36.316 --> 00:04:40.840
 and the Zero Trust Assessment results
 kit files them under its DDoS,
 
 71
-00:04:41.130 --> 00:04:43.231
+00:04:40.840 --> 00:04:42.941
 WAF and public exposure family,
 
 72
-00:04:43.231 --> 00:04:48.440
+00:04:42.941 --> 00:04:48.150
 whose ready-for-closure evidence is
 this kit's register, DDoS and WAF runs.
 
 73
-00:04:52.190 --> 00:04:56.665
+00:04:51.900 --> 00:04:56.375
 Lab 1 needs only PowerShell 7
 with Pester, in the kit's folder.
 
 74
-00:04:56.665 --> 00:05:01.501
+00:04:56.375 --> 00:05:01.211
 Between the two weeks, Contoso's platform
 team switched the WAF to prevention,
 
 75
-00:05:01.501 --> 00:05:06.563
+00:05:01.211 --> 00:05:06.273
 moved the firewall to deny, routed a subnet
 to the firewall, added a missing header,
 
 76
-00:05:06.563 --> 00:05:11.324
+00:05:06.273 --> 00:05:11.034
 turned on purge protection, enforced
 the security initiative and required
 
 77
-00:05:11.324 --> 00:05:13.968
+00:05:11.034 --> 00:05:13.678
 authorization for new management groups;
 
 78
-00:05:13.968 --> 00:05:16.915
+00:05:13.678 --> 00:05:16.625
 a new public IP appeared
 and an orphan went away.
 
 79
-00:05:16.915 --> 00:05:21.853
+00:05:16.625 --> 00:05:21.563
 Step 1 runs every area on week
 one: forty-eight findings in all.
 
 80
-00:05:21.853 --> 00:05:26.643
+00:05:21.563 --> 00:05:26.353
 Step 2 reads the policy findings:
 an assignment with excluded scopes,
 
 81
-00:05:26.643 --> 00:05:32.190
+00:05:26.353 --> 00:05:31.900
 an exemption expired on October 31, one
 with no expiry, one due within thirty days,
 
 82
-00:05:32.190 --> 00:05:37.420
+00:05:31.900 --> 00:05:37.130
 and the initiative still in audit
 after its November 1 enforce-by date.
 
 83
-00:05:41.170 --> 00:05:44.019
+00:05:40.880 --> 00:05:43.729
 Step 3 runs every area on the second week,
 
 84
-00:05:44.019 --> 00:05:47.558
+00:05:43.729 --> 00:05:47.268
 with the first week's
 register: forty findings now.
 
 85
-00:05:47.558 --> 00:05:49.846
+00:05:47.268 --> 00:05:49.556
 Step 4 compares the two weeks.
 
 86
-00:05:49.846 --> 00:05:55.113
+00:05:49.556 --> 00:05:54.823
 Thirteen fixed, four new, and all four
 new rows come from the two public IPs that
 
 87
-00:05:55.113 --> 00:06:00.298
+00:05:54.823 --> 00:06:00.008
 changed: the new one has no log, no owner
 and no DDoS protection, and the one that
 
 88
-00:06:00.298 --> 00:06:05.895
+00:06:00.008 --> 00:06:05.605
 went away leaves a reminder to remove any
 DNS record still pointing at its address.
 
 89
-00:06:05.895 --> 00:06:10.951
+00:06:05.605 --> 00:06:10.661
 Among the fixed: the hierarchy setting,
 the WAF in detection, the firewall's threat
 
 90
-00:06:10.951 --> 00:06:16.510
+00:06:10.661 --> 00:06:16.220
 intelligence and intrusion detection, and
 the security initiative's enforcement.
 
 91
-00:06:20.260 --> 00:06:23.235
+00:06:19.970 --> 00:06:22.945
 Step 5 computes the metrics
 for the second week.
 
 92
-00:06:23.235 --> 00:06:28.364
+00:06:22.945 --> 00:06:28.074
 DDoS coverage is fifty-seven percent,
 WAF prevention coverage sixty-seven,
 
 93
-00:06:28.364 --> 00:06:34.073
+00:06:28.074 --> 00:06:33.783
 egress inspection sixty, vault posture
 thirty-three, and one exemption has expired.
 
 94
-00:06:34.073 --> 00:06:38.873
+00:06:33.783 --> 00:06:38.583
 The rows that come from exercise records
 say so instead of inventing a number.
 
 95
-00:06:38.873 --> 00:06:40.322
+00:06:38.583 --> 00:06:40.032
 Step 6 records the run,
 
 96
-00:06:40.322 --> 00:06:44.748
+00:06:40.032 --> 00:06:44.458
 the comparison and the metrics as
 evidence, then checks the folder.
 
 97
-00:06:44.748 --> 00:06:49.698
+00:06:44.458 --> 00:06:49.408
 The first record covers all nine area
 steps and lists sixteen controls.
 
 98
-00:06:49.698 --> 00:06:53.173
+00:06:49.408 --> 00:06:52.883
 The comparison and the metrics
 each get their own record,
 
 99
-00:06:53.173 --> 00:06:56.130
+00:06:52.883 --> 00:06:55.840
 and the chain of three
 records is unbroken.
 
 100
-00:06:59.880 --> 00:07:04.705
+00:06:59.590 --> 00:07:04.415
 Step 7 asks whether this evidence could
 pass the test stage's go or no-go.
 
 101
-00:07:04.705 --> 00:07:09.080
+00:07:04.415 --> 00:07:08.790
 Every step fails, with the same
 reason: no passing live record.
 
 102
-00:07:09.080 --> 00:07:10.280
+00:07:08.790 --> 00:07:09.990
 That's on purpose.
 
 103
-00:07:10.280 --> 00:07:12.632
+00:07:09.990 --> 00:07:12.342
 Lab evidence can't promote anything,
 
 104
-00:07:12.632 --> 00:07:16.317
+00:07:12.342 --> 00:07:16.027
 so nobody can take a fixture
 run to production by mistake.
 
 105
-00:07:16.317 --> 00:07:21.300
+00:07:16.027 --> 00:07:21.010
 Step 8 runs this chapter's tests:
 ten pass, covering the policy check,
 
 106
-00:07:21.300 --> 00:07:25.830
+00:07:21.010 --> 00:07:25.540
 the run folders, the comparison,
 the metrics and the evidence.
 
 107
-00:07:25.830 --> 00:07:28.620
+00:07:25.540 --> 00:07:28.330
 When you're done, delete
 the output folder.
 
 108
-00:07:32.370 --> 00:07:35.708
+00:07:32.080 --> 00:07:35.418
 Lab 2 moves to a test management
 group with at least one
 
 109
-00:07:35.708 --> 00:07:39.120
+00:07:35.418 --> 00:07:38.830
 policy assignment and one
 exemption, never production.
 
 110
-00:07:39.120 --> 00:07:44.770
+00:07:38.830 --> 00:07:44.480
 Sign in, write the settings file, and run
 every area twice, a few minutes apart.
 
 111
-00:07:44.770 --> 00:07:46.848
+00:07:44.480 --> 00:07:46.558
 With nothing changed between them,
 
 112
-00:07:46.848 --> 00:07:49.858
+00:07:46.558 --> 00:07:49.568
 the comparison should show
 no new and no fixed rows.
 
 113
-00:07:49.858 --> 00:07:54.281
+00:07:49.568 --> 00:07:53.991
 Then compare the policy rows with the
 guide's compliance export and Learn's
 
 114
-00:07:54.281 --> 00:07:58.633
+00:07:53.991 --> 00:07:58.343
 exemption list: every exemption should
 appear, in the state the kit gave it.
 
 115
-00:07:58.633 --> 00:08:02.745
+00:07:58.343 --> 00:08:02.454
 Record the second run: its mode is
 live, but the stage check still
 
 116
-00:08:02.745 --> 00:08:06.857
+00:08:02.454 --> 00:08:06.567
 lacks the preflight and the
 scheduled run, which Chapter 9 adds.
 
 117
-00:08:06.857 --> 00:08:10.996
+00:08:06.567 --> 00:08:10.706
 Nothing changed in Azure, so backing
 out is deleting what the lab wrote.
 
 118
-00:08:10.996 --> 00:08:13.350
+00:08:10.706 --> 00:08:13.060
 The authors haven't run this lab.
 
 119
-00:08:17.100 --> 00:08:20.698
+00:08:16.810 --> 00:08:20.408
 Each output supports specific
 controls from NIST's catalog,
 
 120
-00:08:20.698 --> 00:08:23.288
+00:08:20.408 --> 00:08:22.998
 as the guide's requirements
 table maps them.
 
 121
-00:08:23.288 --> 00:08:26.462
+00:08:22.998 --> 00:08:26.172
 The policy folder supports
 baseline configuration,
 
 122
-00:08:26.462 --> 00:08:29.637
+00:08:26.172 --> 00:08:29.347
 configuration settings
 and continuous monitoring.
 
 123
-00:08:29.637 --> 00:08:34.188
+00:08:29.347 --> 00:08:33.898
 The drift report supports configuration
 settings and continuous monitoring.
 
 124
-00:08:34.188 --> 00:08:38.224
+00:08:33.898 --> 00:08:37.934
 The metrics support continuous
 monitoring and audit record review.
 
 125
-00:08:38.224 --> 00:08:41.265
+00:08:37.934 --> 00:08:40.975
 And the chained, hashed
 records support continuous
 
 126
-00:08:41.265 --> 00:08:44.375
+00:08:40.975 --> 00:08:44.085
 monitoring and the protection
 of audit information.
 
 127
-00:08:44.375 --> 00:08:48.463
+00:08:44.085 --> 00:08:48.173
 The kit's output supports those
 controls; the assessor decides.
 
 128
-00:08:48.463 --> 00:08:52.879
+00:08:48.173 --> 00:08:52.589
 The key security indicators are
 FedRAMP's indicators for cloud providers:
 
 129
-00:08:52.879 --> 00:08:56.938
+00:08:52.589 --> 00:08:56.648
 the agency lines its own evidence up
 with them and doesn't report them.
 
 130
-00:08:56.938 --> 00:09:00.418
+00:08:56.648 --> 00:09:00.128
 The exercise and after-action
 records the guide's Step
 
 131
-00:09:00.418 --> 00:09:03.960
+00:09:00.128 --> 00:09:03.670
 10 asks for are people's
 work, filed beside the runs.
 
 132
-00:09:07.710 --> 00:09:09.973
+00:09:07.420 --> 00:09:09.683
 What breaks, and what guards against it?
 
 133
-00:09:09.973 --> 00:09:14.009
+00:09:09.683 --> 00:09:13.719
 An exemption with no expiry
 accepts non-compliance forever,
 
 134
-00:09:14.009 --> 00:09:15.947
+00:09:13.719 --> 00:09:15.657
 so the kit flags it every week.
 
 135
-00:09:15.947 --> 00:09:19.376
+00:09:15.657 --> 00:09:19.086
 An expired exemption can look
 current in an old report,
 
 136
-00:09:19.376 --> 00:09:23.109
+00:09:19.086 --> 00:09:22.819
 so the kit names it, because
 Learn says it's no longer honored.
 
 137
-00:09:23.109 --> 00:09:27.270
+00:09:22.819 --> 00:09:26.980
 A changed query can make rows look
 fixed when they only disappeared;
 
 138
-00:09:27.270 --> 00:09:32.247
+00:09:26.980 --> 00:09:31.957
 that shows as many fixed rows at once, which
 the reviewer reads in the drift report.
 
 139
-00:09:32.247 --> 00:09:34.548
+00:09:31.957 --> 00:09:34.258
 Lab evidence can't promote anything,
 
 140
-00:09:34.548 --> 00:09:37.847
+00:09:34.258 --> 00:09:37.557
 because fixture records
 never count toward a stage.
 
 141
-00:09:37.847 --> 00:09:40.898
+00:09:37.557 --> 00:09:40.608
 And evidence edited after
 filing fails the check,
 
 142
-00:09:40.898 --> 00:09:44.220
+00:09:40.608 --> 00:09:43.930
 because the hashes and
 the chain no longer match.
 
 143
-00:09:47.970 --> 00:09:49.320
+00:09:47.680 --> 00:09:49.030
 Here's what done looks like.
 
 144
-00:09:49.320 --> 00:09:54.758
+00:09:49.030 --> 00:09:54.468
 The security initiative is enforcing, or
 its enforce-by date is still in the future.
 
 145
-00:09:54.758 --> 00:09:59.733
+00:09:54.468 --> 00:09:59.443
 Every exemption has an expiry, and none
 is past it without a renewal decision.
 
 146
-00:09:59.733 --> 00:10:04.557
+00:09:59.443 --> 00:10:04.267
 The drift report is read at the weekly
 review, and every new row has an owner.
 
 147
-00:10:04.557 --> 00:10:08.207
+00:10:04.267 --> 00:10:07.917
 The metrics report carries
 the numbers behind each value.
 
 148
-00:10:08.207 --> 00:10:12.671
+00:10:07.917 --> 00:10:12.381
 And the evidence check passes on a
 folder that lives on agency storage.
 
 149
-00:10:12.671 --> 00:10:15.699
+00:10:12.381 --> 00:10:15.409
 Next, Chapter 9 is the
 runbook that takes all of
 
 150
-00:10:15.699 --> 00:10:18.860
+00:10:15.409 --> 00:10:18.570
 this to a test subscription,
 then to production.

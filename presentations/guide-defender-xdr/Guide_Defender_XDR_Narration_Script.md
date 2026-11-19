@@ -2,7 +2,7 @@
 
 ## Slide 1 — Defender XDR: from a license to a defended endpoint
 
-Welcome. This is the narrated briefing for a companion guide in the Federal Modernization Workbook: Defender X D R Engineering and Operations, an implementation guide. One thing first: the guide is a draft, awaiting the editor's review, so recheck it after the review. Its idea fits in a sentence. A Defender license is not a defended endpoint: the sensor has to be on every device and healthy, the prevention settings have to be enforced and not just configured, and every alert has to end in a decision someone can show. The guide covers Windows clients and Windows Server only, for a civilian agency at fed-ramp Moderate in Microsoft three sixty-five G C C. Its facts were read on Microsoft Learn on November eleventh, 2026, and nothing in it was run in a tenant. We'll go in four parts: why, what, who, and how.
+Welcome. This is the narrated briefing for a companion guide in the Federal Modernization Workbook: Defender X D R Engineering and Operations, an implementation guide. One thing first: the guide has been reviewed and approved. Its idea fits in a sentence. A Defender license is not a defended endpoint: the sensor has to be on every device and healthy, the prevention settings have to be enforced and not just configured, and every alert has to end in a decision someone can show. The guide covers Windows clients and Windows Server only, for a civilian agency at fed-ramp Moderate in Microsoft three sixty-five G C C. Its facts were read on Microsoft Learn on November eleventh, 2026, and nothing in it was run in a tenant. We'll go in four parts: why, what, who, and how.
 
 ## Slide 2 — Why this matters: a license is not a defended endpoint
 

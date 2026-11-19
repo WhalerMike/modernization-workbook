@@ -2,7 +2,7 @@
   {
     "slide": 1,
     "title": "One Portal, End to End",
-    "say": "Welcome to the story deck for Building Azure Security, a developer workbook in the Federal Modernization Workbook. Instead of nine chapters one at a time, we'll follow one application all the way through: Contoso's public portal, its subscription, its Front Door and gateway, its network, its key vault, and the hub that serves it. It's fictional: every value comes from the kit's own test fixtures, and every output on a slide is what the kit really printed. Two notes before we begin. The chapters are drafts awaiting the owner's review. And the code is illustrative, tested against fixtures, not against a live subscription."
+    "say": "Welcome to the story deck for Building Azure Security, a developer workbook in the Federal Modernization Workbook. Instead of nine chapters one at a time, we'll follow one application all the way through: Contoso's public portal, its subscription, its Front Door and gateway, its network, its key vault, and the hub that serves it. It's fictional: every value comes from the kit's own test fixtures, and every output on a slide is what the kit really printed. Two notes before we begin. The chapters have been reviewed and approved. And the code is illustrative, tested against fixtures, not against a live subscription."
   },
   {
     "slide": 2,
@@ -147,6 +147,6 @@
   {
     "slide": 30,
     "title": "Your turn: Lab 2, and where to go next",
-    "say": "The answer to check nine: the preflight's last check fails, because production needs the test stage's evidence to pass first. That's the portal, end to end: its baseline read back, every public face owned, its protection traced to the network behind it, a web application firewall switched by a person, origins locked to the edge, egress through the firewall, its vault fixed, and every week's drift recorded as evidence. Now it's your turn. Each chapter has a second lab in your own test subscription, never production, with Reader and the guide's own Validate commands beside the kit. Then go deeper: the draft chapters and their narrated tours, the learning path, and the implementation guide. Thanks for watching."
+    "say": "The answer to check nine: the preflight's last check fails, because production needs the test stage's evidence to pass first. That's the portal, end to end: its baseline read back, every public face owned, its protection traced to the network behind it, a web application firewall switched by a person, origins locked to the edge, egress through the firewall, its vault fixed, and every week's drift recorded as evidence. Now it's your turn. Each chapter has a second lab in your own test subscription, never production, with Reader and the guide's own Validate commands beside the kit. Then go deeper: the chapters and their narrated tours, the learning path, and the implementation guide. Thanks for watching."
   }
 ]

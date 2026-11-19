@@ -9,7 +9,7 @@ require("../_build/devwb.js")({
   map: "Why check on the device · Learn's three commands · what they leave · the checks · who · two labs · evidence · dangers",
   slides: [
     {
-      say: `Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook. This is Chapter 3: prevention through audit. A setting in a policy protects nothing until the device enforces it, so the check is on the device, against the stage the ring is meant to be at. We'll start from Learn's three device commands and the guide's event query, read how the kit compares every device with its ring's plan, and walk two labs, the evidence and the dangers. The chapter is a draft awaiting review; the code is illustrative, tested against fixtures.`,
+      say: `Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook. This is Chapter 3: prevention through audit. A setting in a policy protects nothing until the device enforces it, so the check is on the device, against the stage the ring is meant to be at. We'll start from Learn's three device commands and the guide's event query, read how the kit compares every device with its ring's plan, and walk two labs, the evidence and the dangers. The chapter has been reviewed and approved; the code is illustrative, tested against fixtures.`,
       detail: `The code behind the guide's G3 Endpoint prevention. You start with the guide's three device commands and its event query, and what running them by hand leaves to you. Then you read how the kit compares every device's state with its ring's stage. Lab 1 runs the check on eleven fictional devices and finds three drifts. Lab 2 runs it on one test device.`,
       cite: [],
       ref: "Opening; “In this chapter”",

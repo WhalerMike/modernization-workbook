@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 07: Private Link, DNS and Key Vault
 
-Welcome to Building Azure Security, Chapter 7: Private Link, DNS and Key Vault. A private endpoint is an address. Whether anything uses it is a DNS question, and whether the public path is closed is a third one. The code asks all three. We'll start from Microsoft Learn's Private Link commands for Key Vault, the zone group, the Cloud Adoption Framework's central-zone pattern and Learn's Key Vault recommendations, see what they leave to you, read the kit's check, and walk two labs, the evidence and the dangers. The chapter is a draft awaiting the owner's review, and the code is illustrative, tested against a fictional estate.
+Welcome to Building Azure Security, Chapter 7: Private Link, DNS and Key Vault. A private endpoint is an address. Whether anything uses it is a DNS question, and whether the public path is closed is a third one. The code asks all three. We'll start from Microsoft Learn's Private Link commands for Key Vault, the zone group, the Cloud Adoption Framework's central-zone pattern and Learn's Key Vault recommendations, see what they leave to you, read the kit's check, and walk two labs, the evidence and the dangers. The chapter has been reviewed and approved, and the code is illustrative, tested against a fictional estate.
 
 ## Slide 2 — Why an endpoint is three questions, not one
 

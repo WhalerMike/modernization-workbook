@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 06: Azure Firewall and Egress
 
-Welcome to Building Azure Security, Chapter 6: Azure Firewall and egress. A firewall nobody routes to inspects nothing. So the kit reads the policy and the routes together, and it admits what it can't see: the effective route on a running network interface. We'll start from Microsoft Learn's Zero Trust checks, route commands and Draft and Deployment procedure, see what they leave to you, read the kit's check and the plan it writes but never runs, then walk two labs, the evidence and the dangers. The chapter is a draft awaiting the owner's review, and the code is illustrative, tested against a fictional estate.
+Welcome to Building Azure Security, Chapter 6: Azure Firewall and egress. A firewall nobody routes to inspects nothing. So the kit reads the policy and the routes together, and it admits what it can't see: the effective route on a running network interface. We'll start from Microsoft Learn's Zero Trust checks, route commands and Draft and Deployment procedure, see what they leave to you, read the kit's check and the plan it writes but never runs, then walk two labs, the evidence and the dangers. The chapter has been reviewed and approved, and the code is illustrative, tested against a fictional estate.
 
 ## Slide 2 — Why the policy and the routes are read together
 

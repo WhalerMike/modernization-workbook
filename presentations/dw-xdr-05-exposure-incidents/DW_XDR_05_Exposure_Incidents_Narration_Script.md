@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 05: Exposure and Incidents
 
-Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook. This is Chapter 5: exposure and incidents. A vulnerability without an owner is an inventory finding, and an incident without an owner is a clock running. Both checks in this chapter ask the same question: who has this? We'll start from the guide's queries and Learn's incident list, and the government-cloud fact that shapes the exposure gate, then read both checks and walk two labs. The chapter is a draft awaiting review; the code is illustrative, tested against fixtures.
+Welcome to Building Defender XDR, a developer workbook in the Federal Modernization Workbook. This is Chapter 5: exposure and incidents. A vulnerability without an owner is an inventory finding, and an incident without an owner is a clock running. Both checks in this chapter ask the same question: who has this? We'll start from the guide's queries and Learn's incident list, and the government-cloud fact that shapes the exposure gate, then read both checks and walk two labs. The chapter has been reviewed and approved; the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why both checks ask who has it
 

@@ -41,8 +41,8 @@ const WORKBOOKS = {
   hr: { dir: "docs/project-plans/developer-workbooks/hr-driven-identity", name: "Building HR-Driven Identity", kit: "examples/hr-lifecycle" },
   pn: { dir: "docs/project-plans/developer-workbooks/provider-notices", name: "Building Provider Notices", kit: "examples/provider-notices", approved: true },
   gsa: { dir: "docs/project-plans/developer-workbooks/global-secure-access", name: "Building Global Secure Access", kit: "examples/global-secure-access", approved: true },
-  azs: { dir: "docs/project-plans/developer-workbooks/azure-security", name: "Building Azure Security", kit: "examples/azure-security" },
-  xdr: { dir: "docs/project-plans/developer-workbooks/defender-xdr", name: "Building Defender XDR", kit: "examples/defender-xdr" },
+  azs: { dir: "docs/project-plans/developer-workbooks/azure-security", name: "Building Azure Security", kit: "examples/azure-security", approved: true },
+  xdr: { dir: "docs/project-plans/developer-workbooks/defender-xdr", name: "Building Defender XDR", kit: "examples/defender-xdr", approved: true },
   dc: { dir: "docs/project-plans/developer-workbooks/daily-checks", name: "Building the Daily Checks Workbook", kit: "examples/daily-checks-workbook", approved: true },
 };
 const ICONS = new Set(fs.readdirSync(path.join(__dirname, "icons")).map((f) => f.replace(/\.png$/, "")));

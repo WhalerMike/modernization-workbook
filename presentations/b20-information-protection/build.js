@@ -1,7 +1,7 @@
 // Book 20 — Information Protection & Microsoft Purview: the 15-minute Why / What / Who / How deck.
 // Build:  node presentations/b20-information-protection/build.js presentations/b20-information-protection/B20_Information_Protection.pptx
 // Every fact comes from a footnoted chapter of docs/books/b20-information-protection/, named in the notes.
-// Book 20 is a draft awaiting the editor's review (not part of Release 2.0); the title slide says so.
+// Book 20 has been reviewed and approved (not part of Release 2.0); the title slide says so.
 const fs = require("fs");
 const path = require("path");
 const D = require("../_build/lib.js")({ book: "Book 20", title: "Information Protection & Microsoft Purview" });
@@ -115,11 +115,11 @@ const HOW = "How to roll it out and evidence it";
 {
   const T = "Protection That Travels With the Data";
   const s = D.titleSlide(WHY, T, "Book 20 — Information Protection & Microsoft Purview");
-  // The book is a draft: say so before anything else on the slide.
-  box(s, "Draft notice", 0.8, 0.55, 7.4, 0.75, "FFFFFF", HEX.red);
-  txt(s, "Draft notice text", [
-    { text: "DRAFT BOOK, AWAITING THE EDITOR'S REVIEW.  ", options: { bold: true, color: HEX.red } },
-    { text: "Not part of Release 2.0, the baseline edition. Recheck it after the review." },
+  // The book's review status, before anything else on the slide.
+  box(s, "Review status", 0.8, 0.55, 7.4, 0.75, "FFFFFF", HEX.teal);
+  txt(s, "Review status text", [
+    { text: "BOOK REVIEW STATUS: APPROVED.  ", options: { bold: true, color: HEX.teal } },
+    { text: "Not part of Release 2.0, the baseline edition." },
   ], { x: 1.0, y: 0.6, w: 7.05, h: 0.65, fontSize: 14, valign: "middle", color: HEX.ink });
   D.agenda(s, 0.8, 4.7, 6.6);
   txt(s, "Series line", [
@@ -436,7 +436,7 @@ const HOW = "How to roll it out and evidence it";
       { x: x + 1.2, y: y + 0.15, w: 4.6, h: 1.3 });
   });
   callout(s, "Next", 5.15, 1.4, "FaRoute", HEX.navy, "Next step, before anyone sees a label: ",
-    "draft the class register and the decision records, run a dated inventory with what the tenant already licenses, and confirm each feature for the agency's own cloud. The book is a draft: recheck it after the editor's review.");
+    "draft the class register and the decision records, run a dated inventory with what the tenant already licenses, and confirm each feature for the agency's own cloud.");
   sources(s, "Sources: 32 CFR Part 2002; Microsoft Learn (Learn about sensitivity labels; Purview government planning pages), read Nov. 11, 2026. Book 20, Chapters 01–12.");
   narrate(s, T, "Chapters 01 (Key takeaways; Decision record template), 02 and 03 (Key takeaways), 05 (Decide: activation, onboarding and recovery), 11 (The AI data decisions) and 12 (Operating cadence; Key takeaways); index (Status — draft book).");
 }
@@ -452,7 +452,7 @@ const HOW = "How to roll it out and evidence it";
     "Microsoft Learn (read November 11, 2026): Learn about sensitivity labels; Manage sensitivity labels in Office apps; Migrate parent sensitivity labels to label groups; Use sensitivity labels to protect collaborative workspaces; default sharing links; Content Explorer and data explorer; Export-ContentExplorerData; Activate the Azure Rights Management service; super users; Message Encryption and mail flow rules; sensitivity labels in SharePoint and OneDrive.",
     "Microsoft Learn, continued: DLP planning, simulation mode, policy tips and endpoint DLP; sensitive information types, exact data match and auto-labeling; Purview Audit, audit retention and the Management Activity API; Insider Risk Management and Communication Compliance; Data protection and auditing for Microsoft Copilot; DSPM for AI; DLP for Microsoft 365 Copilot; Microsoft Purview service description; Microsoft Copilot service description; Plan for Microsoft Purview: GCC deployments.",
     "Federal: 32 CFR Part 2002 (as in effect October 1, 2026); FIPS 199; NIST SP 800-60 Vol. 1 Rev. 1; NIST SP 800-53 Rev. 5, release 5.2.0; OMB M-22-09; OMB M-26-14; CISA BOD 25-01; CISA ZTMM v2.0 (April 2023); FedRAMP KSIs (Consolidated Rules for 2026).",
-    "Status: a draft awaiting the editor's review, not part of Release 2.0, the baseline edition. Every external claim was checked against a primary source on November 11, 2026; government-cloud feature status is subject to change.",
+    "Status: reviewed and approved, not part of Release 2.0, the baseline edition. Every external claim was checked against a primary source on November 11, 2026; government-cloud feature status is subject to change.",
     "Full footnotes with links and access dates: Book 20, every chapter and Appendix A (whalermike.github.io/modernization-workbook/docs/books/b20-information-protection/).",
   ];
   txt(s, "Source list", bullets(src, 12), { x: 0.6, y: 1.5, w: 12.1, h: 5.05, paraSpaceAfter: 6 });

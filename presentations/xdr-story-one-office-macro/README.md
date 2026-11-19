@@ -37,4 +37,4 @@ Build (Git Bash): `source /c/tmp/deckenv.sh`, then `FIT=1 node presentations/xdr
 
 ## Notes and sourcing
 
-Narration names the original sources (Microsoft Learn, NIST, FedRAMP) or this workbook's guidance, and says "supports", never more. The workbook is a draft awaiting the owner's review; the code is illustrative, tested against fixtures, and Chapter 09's runbook hasn't been run against a live tenant.
+Narration names the original sources (Microsoft Learn, NIST, FedRAMP) or this workbook's guidance, and says "supports", never more. The workbook has been reviewed and approved; the code is illustrative, tested against fixtures, and Chapter 09's runbook hasn't been run against a live tenant.

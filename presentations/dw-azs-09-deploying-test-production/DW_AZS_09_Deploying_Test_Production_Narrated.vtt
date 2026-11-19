@@ -35,677 +35,677 @@ with the same commands and one
 settings file per environment.
 
 8
-00:00:24.112 --> 00:00:27.506
-The chapter is a draft
-awaiting the owner's review,
+00:00:24.112 --> 00:00:27.099
+The chapter has been
+reviewed and approved,
 
 9
-00:00:27.506 --> 00:00:31.479
+00:00:27.099 --> 00:00:31.081
 and nothing in it has been run
 against a live subscription;
 
 10
-00:00:31.479 --> 00:00:36.470
+00:00:31.081 --> 00:00:36.080
 the output you'll see comes from
 fixture mode, dated November 17, 2026.
 
 11
-00:00:40.220 --> 00:00:41.270
+00:00:39.830 --> 00:00:40.880
 Why a runbook?
 
 12
-00:00:41.270 --> 00:00:45.460
+00:00:40.880 --> 00:00:45.070
 Because the kit's weekly reads need
 only Reader, but it makes one write:
 
 13
-00:00:45.460 --> 00:00:49.356
+00:00:45.070 --> 00:00:48.966
 the security initiative's assignment
 at the intermediate root,
 
 14
-00:00:49.356 --> 00:00:51.708
+00:00:48.966 --> 00:00:51.318
 in DoNotEnforce, from the guide's Step 9.
 
 15
-00:00:51.708 --> 00:00:55.812
+00:00:51.318 --> 00:00:55.422
 That write is a plan, applied only
 with the hash a reviewer approved,
 
 16
-00:00:55.812 --> 00:00:59.319
+00:00:55.422 --> 00:00:58.929
 and its rollback is rehearsed
 in test before production.
 
 17
-00:00:59.319 --> 00:01:03.757
+00:00:58.929 --> 00:01:03.367
 The runbook has two stages: a live
 test subscription, then production,
 
 18
-00:01:03.757 --> 00:01:07.882
+00:01:03.367 --> 00:01:07.492
 with the same commands and each
 environment's own settings file.
 
 19
-00:01:07.882 --> 00:01:12.994
+00:01:07.492 --> 00:01:12.604
 Between them sits the go or no-go,
 decided on the test stage's live evidence.
 
 20
-00:01:12.994 --> 00:01:16.490
+00:01:12.604 --> 00:01:16.100
 None of it has been run against
 a live subscription yet.
 
 21
-00:01:20.240 --> 00:01:24.827
+00:01:19.850 --> 00:01:24.437
 Before you start, finish Lab 2 of
 Chapters 1 to 8 in the test subscription,
 
 22
-00:01:24.827 --> 00:01:28.715
+00:01:24.437 --> 00:01:28.325
 and check every unverified call's
 output against the portal.
 
 23
-00:01:28.715 --> 00:01:30.290
+00:01:28.325 --> 00:01:29.900
 You need two identities.
 
 24
-00:01:30.290 --> 00:01:35.103
+00:01:29.900 --> 00:01:34.713
 A reader for the weekly run, with Reader
 on the intermediate root and the tenant
 
 25
-00:01:35.103 --> 00:01:40.065
+00:01:34.713 --> 00:01:39.675
 root group, as a managed identity or a
 federated workload identity, never a secret.
 
 26
-00:01:40.065 --> 00:01:41.629
+00:01:39.675 --> 00:01:41.239
 And an operator for the plan,
 
 27
-00:01:41.629 --> 00:01:45.028
+00:01:41.239 --> 00:01:44.638
 with Resource Policy Contributor
 at the intermediate root,
 
 28
-00:01:45.028 --> 00:01:48.768
+00:01:44.638 --> 00:01:48.378
 eligible through privileged
 identity management and activated
 
 29
-00:01:48.768 --> 00:01:52.303
+00:01:48.378 --> 00:01:51.913
 only for the change window, as
 the guide's prerequisites set out.
 
 30
-00:01:52.303 --> 00:01:57.364
+00:01:51.913 --> 00:01:56.974
 You need PowerShell 7 and the Azure
 CLI on commercial Azure, output folders
 
 31
-00:01:57.364 --> 00:02:03.280
+00:01:56.974 --> 00:02:02.890
 inside the boundary but outside any
 repository, and a change record for each stage.
 
 32
-00:02:07.030 --> 00:02:10.197
+00:02:06.640 --> 00:02:09.807
 Step 1 writes one settings
 file per environment,
 
 33
-00:02:10.197 --> 00:02:12.730
+00:02:09.807 --> 00:02:12.340
 from the kit's template, with no secrets.
 
 34
-00:02:12.730 --> 00:02:16.959
+00:02:12.340 --> 00:02:16.569
 The command sets the environment,
 the tenant, the intermediate root,
 
 35
-00:02:16.959 --> 00:02:20.736
+00:02:16.569 --> 00:02:20.346
 the platform workspace, the hub,
 the workload subscriptions,
 
 36
-00:02:20.736 --> 00:02:25.796
+00:02:20.346 --> 00:02:25.406
 the required assignments, the security
 initiative's name, the narrowest role its
 
 37
-00:02:25.796 --> 00:02:30.705
+00:02:25.406 --> 00:02:30.315
 policies need and its enforce-by date,
 the output folders and the change record.
 
 38
-00:02:30.705 --> 00:02:36.192
+00:02:30.315 --> 00:02:35.802
 The loader refuses a placeholder left
 unfilled, and any key that names a secret.
 
 39
-00:02:36.192 --> 00:02:42.200
+00:02:35.802 --> 00:02:41.810
 Test and production each get their own
 file, and both live outside any repository.
 
 40
-00:02:45.950 --> 00:02:48.863
+00:02:45.560 --> 00:02:48.473
 Step 2 is the preflight, seven checks.
 
 41
-00:02:48.863 --> 00:02:53.300
+00:02:48.473 --> 00:02:52.910
 The settings are complete, name
 commercial Azure and have no placeholder.
 
 42
-00:02:53.300 --> 00:02:55.000
+00:02:52.910 --> 00:02:54.610
 No key names a secret.
 
 43
-00:02:55.000 --> 00:02:58.639
+00:02:54.610 --> 00:02:58.249
 The output root isn't inside
 the kit's own repository,
 
 44
-00:02:58.639 --> 00:03:02.025
+00:02:58.249 --> 00:03:01.635
 which fails, or any other
 repository, which warns.
 
 45
-00:03:02.025 --> 00:03:06.440
+00:03:01.635 --> 00:03:06.050
 With the live switch, the Azure CLI is
 on commercial Azure and signed in to the
 
 46
-00:03:06.440 --> 00:03:09.032
+00:03:06.050 --> 00:03:08.642
 right tenant, and Resource
 Graph returns the
 
 47
-00:03:09.032 --> 00:03:11.625
+00:03:08.642 --> 00:03:11.235
 subscriptions under the intermediate root.
 
 48
-00:03:11.625 --> 00:03:15.362
+00:03:11.235 --> 00:03:14.972
 The unverified calls are allowed
 for the stage, or listed.
 
 49
-00:03:15.362 --> 00:03:20.187
+00:03:14.972 --> 00:03:19.797
 And in production only, the test stage's
 evidence must pass its stage check.
 
 50
-00:03:20.187 --> 00:03:25.460
+00:03:19.797 --> 00:03:25.070
 Any fail stops the stage, and the
 result is recorded as evidence.
 
 51
-00:03:29.210 --> 00:03:30.260
+00:03:28.820 --> 00:03:29.870
 Who's involved?
 
 52
-00:03:30.260 --> 00:03:34.948
+00:03:29.870 --> 00:03:34.558
 The reader identity runs the weekly job
 and the preflight, with Reader only.
 
 53
-00:03:34.948 --> 00:03:39.566
+00:03:34.558 --> 00:03:39.176
 The operator applies the approved plan,
 with Resource Policy Contributor activated
 
 54
-00:03:39.566 --> 00:03:44.185
+00:03:39.176 --> 00:03:43.795
 through privileged identity management for
 the change window, and nothing standing.
 
 55
-00:03:44.185 --> 00:03:47.279
+00:03:43.795 --> 00:03:46.889
 The security officer and
 the policy owner review
 
 56
-00:03:47.279 --> 00:03:50.297
+00:03:46.889 --> 00:03:49.907
 the plan and its hash
 before anything is applied.
 
 57
-00:03:50.297 --> 00:03:54.906
+00:03:49.907 --> 00:03:54.516
 And at the go or no-go, the security
 officer and the platform owner record
 
 58
-00:03:54.906 --> 00:04:00.040
+00:03:54.516 --> 00:03:59.650
 the decision in the change record, with
 the open findings and their owners.
 
 59
-00:04:03.790 --> 00:04:06.490
+00:04:03.400 --> 00:04:06.100
 Stage 1 begins with the
 first scheduled run.
 
 60
-00:04:06.490 --> 00:04:10.437
+00:04:06.100 --> 00:04:10.047
 One command runs every area's
 check into a dated run folder,
 
 61
-00:04:10.437 --> 00:04:15.453
+00:04:10.047 --> 00:04:15.063
 computes the metrics, writes one
 manifest, and records an evidence record.
 
 62
-00:04:15.453 --> 00:04:20.784
+00:04:15.063 --> 00:04:20.394
 In fixture mode, on week one of the Contoso
 estate, it found forty-eight findings,
 
 63
-00:04:20.784 --> 00:04:25.787
+00:04:20.394 --> 00:04:25.397
 said this run is the baseline, and wrote
 evidence record 1 covering the run,
 
 64
-00:04:25.787 --> 00:04:28.166
+00:04:25.397 --> 00:04:27.776
 all nine area steps and the metrics.
 
 65
-00:04:28.166 --> 00:04:31.817
+00:04:27.776 --> 00:04:31.427
 In the live test, read each
 area's findings with its owner,
 
 66
-00:04:31.817 --> 00:04:35.865
+00:04:31.427 --> 00:04:35.475
 and for every unverified call
 compare one row with the portal,
 
 67
-00:04:35.865 --> 00:04:40.760
+00:04:35.475 --> 00:04:40.370
 as each chapter's Lab 2 does, and
 record the result in the change record.
 
 68
-00:04:44.510 --> 00:04:46.560
+00:04:44.120 --> 00:04:46.170
 Step 4 plans the one write.
 
 69
-00:04:46.560 --> 00:04:48.855
+00:04:46.170 --> 00:04:48.465
 The script reads the assignments first,
 
 70
-00:04:48.855 --> 00:04:52.472
+00:04:48.465 --> 00:04:52.082
 and plans nothing if the security
 initiative is already there.
 
 71
-00:04:52.472 --> 00:04:56.268
+00:04:52.082 --> 00:04:55.878
 Otherwise its plan holds the one
 command from the guide's Step 9:
 
 72
-00:04:56.268 --> 00:05:00.574
+00:04:55.878 --> 00:05:00.184
 assign the initiative at the intermediate
 root in DoNotEnforce, with a
 
 73
-00:05:00.574 --> 00:05:03.275
+00:05:00.184 --> 00:05:02.885
 system-assigned identity and the narrowest
 
 74
-00:05:03.275 --> 00:05:06.122
+00:05:02.885 --> 00:05:05.732
 role its policies need,
 instead of Contributor.
 
 75
-00:05:06.122 --> 00:05:07.678
+00:05:05.732 --> 00:05:07.288
 It prints the plan's hash,
 
 76
-00:05:07.678 --> 00:05:11.410
+00:05:07.288 --> 00:05:11.020
 and the security officer and
 the policy owner review both.
 
 77
-00:05:11.410 --> 00:05:16.349
+00:05:11.020 --> 00:05:15.959
 Step 5 applies it, with the role activated
 for the window and the approved hash;
 
 78
-00:05:16.349 --> 00:05:21.210
+00:05:15.959 --> 00:05:20.820
 a plan whose hash changed is refused,
 and fixture mode refuses to apply at all.
 
 79
-00:05:21.210 --> 00:05:26.560
+00:05:20.820 --> 00:05:26.170
 Step 6 is the smoke test: the policy
 check shows the initiative is assigned.
 
 80
-00:05:26.560 --> 00:05:30.360
+00:05:26.170 --> 00:05:29.970
 Learn says DoNotEnforce
 evaluates without enforcing.
 
 81
-00:05:34.110 --> 00:05:36.935
+00:05:33.720 --> 00:05:36.545
 Step 7 rehearses the rollback in test.
 
 82
-00:05:36.935 --> 00:05:40.970
+00:05:36.545 --> 00:05:40.580
 Plan the removal, apply it with
 its own hash, see the policy check
 
 83
-00:05:40.970 --> 00:05:45.548
+00:05:40.580 --> 00:05:45.158
 notice the initiative is gone, then
 plan and apply the assignment again.
 
 84
-00:05:45.548 --> 00:05:49.211
+00:05:45.158 --> 00:05:48.821
 Resources a remediation
 created stay until removed.
 
 85
-00:05:49.211 --> 00:05:53.711
+00:05:48.821 --> 00:05:53.321
 In production the rollback is different:
 once the initiative enforces,
 
 86
-00:05:53.711 --> 00:05:58.060
+00:05:53.321 --> 00:05:57.670
 you set it back to DoNotEnforce, back
 to audit, rather than removing it.
 
 87
-00:05:58.060 --> 00:06:02.285
+00:05:57.670 --> 00:06:01.895
 In fixture mode, that plan printed
 the update command and sent nothing.
 
 88
-00:06:02.285 --> 00:06:05.861
+00:06:01.895 --> 00:06:05.471
 Step 8, a week later, is
 the second scheduled run:
 
 89
-00:06:05.861 --> 00:06:08.685
+00:06:05.471 --> 00:06:08.295
 it finds last week's run and compares.
 
 90
-00:06:08.685 --> 00:06:12.140
+00:06:08.295 --> 00:06:11.750
 In fixture mode, thirteen
 fixed and four new.
 
 91
-00:06:15.890 --> 00:06:18.102
+00:06:15.500 --> 00:06:17.712
 Step 9 is the go or no-go.
 
 92
-00:06:18.102 --> 00:06:21.241
+00:06:17.712 --> 00:06:20.851
 One command checks the test
 stage's evidence folder.
 
 93
-00:06:21.241 --> 00:06:25.912
+00:06:20.851 --> 00:06:25.522
 Go when the hashes match every file,
 the chain of records is unbroken,
 
 94
-00:06:25.912 --> 00:06:29.751
+00:06:25.522 --> 00:06:29.361
 and each step the test stage
 needs, the preflight, the run,
 
 95
-00:06:29.751 --> 00:06:34.590
+00:06:29.361 --> 00:06:34.200
 the nine area steps and the metrics,
 has a passing record from a live run.
 
 96
-00:06:34.590 --> 00:06:39.044
+00:06:34.200 --> 00:06:38.654
 Fixture records never count, so a
 rehearsal can't promote anything:
 
 97
-00:06:39.044 --> 00:06:43.740
+00:06:38.654 --> 00:06:43.350
 in fixture mode the folder's own checks
 pass, and every stage step fails.
 
 98
-00:06:43.740 --> 00:06:47.956
+00:06:43.350 --> 00:06:47.566
 Then the security officer and the
 platform owner record the decision
 
 99
-00:06:47.956 --> 00:06:51.950
+00:06:47.566 --> 00:06:51.560
 in the change record, with the
 open findings and their owners.
 
 100
-00:06:55.700 --> 00:06:59.012
+00:06:55.310 --> 00:06:58.622
 Stage 2 is production,
 with the same commands.
 
 101
-00:06:59.012 --> 00:07:03.262
+00:06:58.622 --> 00:07:02.872
 Write production's settings file,
 pointing it at the test stage's evidence.
 
 102
-00:07:03.262 --> 00:07:08.187
+00:07:02.872 --> 00:07:07.797
 Run the preflight live: its seventh check
 fails unless that test evidence passes.
 
 103
-00:07:08.187 --> 00:07:09.936
+00:07:07.797 --> 00:07:09.546
 In the change window, plan,
 
 104
-00:07:09.936 --> 00:07:14.099
+00:07:09.546 --> 00:07:13.709
 have the reviewers approve the
 hash, and apply only that plan.
 
 105
-00:07:14.099 --> 00:07:19.205
+00:07:13.709 --> 00:07:18.815
 Schedule the weekly run under the reader
 identity in the agency's own scheduler; the
 
 106
-00:07:19.205 --> 00:07:24.162
+00:07:18.815 --> 00:07:23.772
 first production run is the baseline, and
 every run after carries its comparison.
 
 107
-00:07:24.162 --> 00:07:28.165
+00:07:23.772 --> 00:07:27.775
 Production's own evidence check
 adds the plan and the comparison,
 
 108
-00:07:28.165 --> 00:07:30.537
+00:07:27.775 --> 00:07:30.147
 so it passes from the second weekly run.
 
 109
-00:07:30.537 --> 00:07:33.211
+00:07:30.147 --> 00:07:32.821
 Switching the initiative to enforcing,
 
 110
-00:07:33.211 --> 00:07:38.840
+00:07:32.821 --> 00:07:38.450
 remediation and exemptions are the guide's
 Step 9, each its own reviewed change.
 
 111
-00:07:42.590 --> 00:07:46.329
+00:07:42.200 --> 00:07:45.939
 Each runbook step leaves a record
 the security officer keeps,
 
 112
-00:07:46.329 --> 00:07:49.702
+00:07:45.939 --> 00:07:49.312
 mapped to NIST's controls in
 the kit's requirements file.
 
 113
-00:07:49.702 --> 00:07:53.814
+00:07:49.312 --> 00:07:53.424
 The preflight supports least
 privilege and configuration settings.
 
 114
-00:07:53.814 --> 00:07:58.240
+00:07:53.424 --> 00:07:57.850
 The plan supports configuration
 change control and impact analysis.
 
 115
-00:07:58.240 --> 00:08:02.090
+00:07:57.850 --> 00:08:01.700
 The rollback supports change
 control and the contingency plan.
 
 116
-00:08:02.090 --> 00:08:05.527
+00:08:01.700 --> 00:08:05.137
 Each scheduled run supports
 continuous monitoring,
 
 117
-00:08:05.527 --> 00:08:08.965
+00:08:05.137 --> 00:08:08.575
 the component inventory and
 each area's own controls.
 
 118
-00:08:08.965 --> 00:08:13.315
+00:08:08.575 --> 00:08:12.925
 The comparison supports configuration
 settings and continuous monitoring.
 
 119
-00:08:13.315 --> 00:08:15.905
+00:08:12.925 --> 00:08:15.515
 And the chain of records
 supports continuous
 
 120
-00:08:15.905 --> 00:08:18.903
+00:08:15.515 --> 00:08:18.513
 monitoring and the protection
 of audit information.
 
 121
-00:08:18.903 --> 00:08:22.815
+00:08:18.513 --> 00:08:22.425
 The evidence supports those
 controls; the assessor decides.
 
 122
-00:08:22.815 --> 00:08:27.378
+00:08:22.425 --> 00:08:26.988
 The key security indicators are
 FedRAMP's indicators for cloud providers,
 
 123
-00:08:27.378 --> 00:08:31.700
+00:08:26.988 --> 00:08:31.310
 which the agency lines its own
 evidence up with and doesn't report.
 
 124
-00:08:35.450 --> 00:08:37.713
+00:08:35.060 --> 00:08:37.323
 What breaks, and what guards against it?
 
 125
-00:08:37.713 --> 00:08:41.644
+00:08:37.323 --> 00:08:41.254
 A plan applied after it changed
 would send a command nobody reviewed,
 
 126
-00:08:41.644 --> 00:08:44.749
+00:08:41.254 --> 00:08:44.359
 so applying needs the approved
 hash of the plan on disk.
 
 127
-00:08:44.749 --> 00:08:48.103
+00:08:44.359 --> 00:08:47.713
 Lab evidence could start
 production on fixture results,
 
 128
-00:08:48.103 --> 00:08:53.025
+00:08:47.713 --> 00:08:52.635
 so fixture records never count, and the
 production preflight checks the test stage.
 
 129
-00:08:53.025 --> 00:08:56.587
+00:08:52.635 --> 00:08:56.197
 A standing write role would let
 the reader change the estate,
 
 130
-00:08:56.587 --> 00:08:59.864
+00:08:56.197 --> 00:08:59.474
 so reads need only Reader and
 the plan's role is eligible
 
 131
-00:08:59.864 --> 00:09:03.213
+00:08:59.474 --> 00:09:02.823
 through privileged identity
 management, for the window.
 
 132
-00:09:03.213 --> 00:09:06.469
+00:09:02.823 --> 00:09:06.079
 Output in a repository
 would publish the register,
 
 133
-00:09:06.469 --> 00:09:10.812
+00:09:06.079 --> 00:09:10.422
 so the preflight fails in the kit's
 repository and warns in any other.
 
 134
-00:09:10.812 --> 00:09:15.855
+00:09:10.422 --> 00:09:15.465
 And removal as production's rollback would
 lose remediated resources and history,
 
 135
-00:09:15.855 --> 00:09:18.780
+00:09:15.465 --> 00:09:18.390
 so production rolls back to audit instead.
 
 136
-00:09:22.530 --> 00:09:26.827
+00:09:22.140 --> 00:09:26.437
 You can rehearse the runbook's
 offline half on the fictional estate:
 
 137
-00:09:26.827 --> 00:09:31.662
+00:09:26.437 --> 00:09:31.272
 copy the test settings, point the outputs
 at a folder outside any repository,
 
 138
-00:09:31.662 --> 00:09:34.271
+00:09:31.272 --> 00:09:33.881
 and run the preflight, two scheduled runs,
 
 139
-00:09:34.271 --> 00:09:37.417
+00:09:33.881 --> 00:09:37.027
 the plan, the rollback plan
 and the evidence check.
 
 140
-00:09:37.417 --> 00:09:39.442
+00:09:37.027 --> 00:09:39.052
 The plan says there's nothing to do,
 
 141
-00:09:39.442 --> 00:09:42.768
+00:09:39.052 --> 00:09:42.378
 because the fixture estate
 already has the initiative.
 
 142
-00:09:42.768 --> 00:09:45.793
+00:09:42.378 --> 00:09:45.403
 The runbook's scripts have
 eleven tests of their own.
 
 143
-00:09:45.793 --> 00:09:48.450
+00:09:45.403 --> 00:09:48.060
 And here's what done looks
 like: the labs passed,
 
 144
-00:09:48.450 --> 00:09:51.388
+00:09:48.060 --> 00:09:50.998
 one settings file per
 environment with no secrets,
 
 145
-00:09:51.388 --> 00:09:54.466
+00:09:50.998 --> 00:09:54.076
 the plan's hash approved
 before anything was applied,
 
 146
-00:09:54.466 --> 00:09:58.663
+00:09:54.076 --> 00:09:58.273
 the rollback rehearsed in test, the
 test stage's evidence passing before
 
 147
-00:09:58.663 --> 00:10:03.330
+00:09:58.273 --> 00:10:02.940
 production's preflight, and the weekly
 run scheduled under the reader identity.

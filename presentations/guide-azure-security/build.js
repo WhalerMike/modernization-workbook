@@ -1,5 +1,5 @@
-// Companion guide — Azure Security Engineering (an implementation guide). The guide is a DRAFT awaiting the editor's
-// review; the title slide and its narration say so.
+// Companion guide — Azure Security Engineering (an implementation guide). The guide has been reviewed and approved
+// (review-status: approved); the title slide and its narration say so.
 // A narrated Why / What / Who / How deck of about 15 minutes (17 narrated slides, then a backup section).
 //   Why:   a landing zone doesn't decide what the internet reaches; what the books own and what the guide adds.
 //   What:  the ten steps on one page; commercial Azure for a GCC tenant, service by service;
@@ -18,7 +18,7 @@
 //                      presentations/guide-azure-security/Guide_Azure_Security.pptx
 const P = require("../attribute-driven-migration-technical-part-1/slides.js")({
   title: "Azure Security Engineering: An Implementation Guide",
-  footer: "Federal Modernization Workbook  ·  Companion guide: Azure Security Engineering (draft)",
+  footer: "Federal Modernization Workbook  ·  Companion guide: Azure Security Engineering",
 });
 const { HEX, txt, box, tag, content, titleSlide, notes, endModule, table, panel, callout, sources, sourceSlide, backup, finish } = P;
 const OUT = process.argv[2] || "Guide_Azure_Security.pptx";
@@ -65,11 +65,11 @@ const W3 = 3.9, G3 = 0.225;
 // ================================================================== 1 Title
 {
   const s = titleSlide(SWHY, "Azure security, engineered one service at a time", "An implementation guide: ten steps from the landing-zone baseline to the evidence an assessor reads");
-  // The guide is a draft: say so before anything else on the slide.
-  box(s, "Draft notice", 0.8, 0.55, 7.4, 0.75, "FFFFFF", HEX.red);
-  txt(s, "Draft notice text", [
-    { text: "DRAFT GUIDE, AWAITING THE EDITOR'S REVIEW.  ", options: { bold: true, color: HEX.red } },
-    { text: "Recheck it after the review." },
+  // The guide's review status, before anything else on the slide.
+  box(s, "Review status", 0.8, 0.55, 7.4, 0.75, "FFFFFF", HEX.teal);
+  txt(s, "Review status text", [
+    { text: "GUIDE REVIEW STATUS: APPROVED.  ", options: { bold: true, color: HEX.teal } },
+    { text: "Nothing in it was run in a subscription." },
   ], { x: 1.0, y: 0.6, w: 7.05, h: 0.65, fontSize: 14, valign: "middle", color: HEX.ink });
   txt(s, "Session map", [
     { text: "Why: a landing zone doesn't decide what the internet reaches   ·   What: ten steps, two clouds, four providers", options: { color: HEX.navy, bold: true, breakLine: true } },
@@ -77,8 +77,8 @@ const W3 = 3.9, G3 = 0.225;
     { text: "How: baseline, exposure, DDoS, WAF, ingress, firewall, Private Link, Key Vault, policy, operations", options: { color: HEX.ink } },
   ], { x: 0.8, y: 5.05, w: 11.0, h: 1.15, fontSize: 14, paraSpaceAfter: 2 });
   notes(s,
-`Welcome. This is the narrated briefing for a companion guide in the Federal Modernization Workbook: Azure Security Engineering. One thing first: the guide is a draft, awaiting the editor's review, so recheck it after that review. The guide engineers the security of an agency's Azure estate on top of the landing zone, as ten gated steps an operator can run: from the security baseline and an inventory of public exposure, through DDoS protection, the web application firewall, ingress, Azure Firewall, Private Link and Key Vault, to policy, operations and evidence. Its commands and service behavior come from Microsoft Learn, read on November eleventh, 2026, and its control statements from NIST. The program's own choices are called design guidance. Nothing in it was run against a live subscription. We'll go in four parts: why, what, who, and how.`,
-  `${G} — opening statement, "In this guide," "How to read this guide" (Where the facts come from); status: draft.`);
+`Welcome. This is the narrated briefing for a companion guide in the Federal Modernization Workbook: Azure Security Engineering. One thing first: the guide has been reviewed and approved. The guide engineers the security of an agency's Azure estate on top of the landing zone, as ten gated steps an operator can run: from the security baseline and an inventory of public exposure, through DDoS protection, the web application firewall, ingress, Azure Firewall, Private Link and Key Vault, to policy, operations and evidence. Its commands and service behavior come from Microsoft Learn, read on November eleventh, 2026, and its control statements from NIST. The program's own choices are called design guidance. Nothing in it was run against a live subscription. We'll go in four parts: why, what, who, and how.`,
+  `${G} — opening statement, "In this guide," "How to read this guide" (Where the facts come from); review status: approved.`);
 }
 
 // ================================================================== 2 Why: a landing zone isn't exposure control
@@ -506,13 +506,13 @@ endModule(SWHO);
     "Shield Advanced in GovCloud; OCI Government Cloud WAF and firewall; nothing run in a subscription",
   ], 11.5);
   const p2 = panel(s, "Next", 0.6 + W2 + G2, tb + 0.15, W2, null, HEX.teal, HEX.tealTint, "WHAT COMES NEXT", null, [
-    "A draft guide: recheck after the editor's review",
+    "The guide has been reviewed and approved",
     "Planned: a developer workbook with labs, and a training path",
   ], 11.5);
   fit("Close panels", Math.max(p1, p2));
   sources(s, "Sources: Guide, \"Dangers and how to avoid them,\" \"What couldn't be verified,\" \"The guide's pieces.\"");
   notes(s,
-`To close, the dangers. A web application firewall left in detection mode, logging attacks that reach the backend. An origin reachable around the edge, or protected only by a service tag every Front Door customer shares. A public I P nobody knows about. A firewall draft deployed over newer changes. Private D N S zones scattered in workload subscriptions, so resolution fails or goes public. And disabling a key to contain a compromise, which takes its dependents offline. Each has its guard in the steps. The guide is plain about what it couldn't verify: Azure Firewall Premium's regions, which Learn leaves to the products-by-region page; built-in policy names, which change version; and, on the other clouds, Shield Advanced in GovCloud and Oracle's firewall services in its Government Cloud. Nothing was run in a subscription. Remember that the guide is a draft awaiting the editor's review. Its developer workbook with labs and its training path are planned. Thank you.`,
+`To close, the dangers. A web application firewall left in detection mode, logging attacks that reach the backend. An origin reachable around the edge, or protected only by a service tag every Front Door customer shares. A public I P nobody knows about. A firewall draft deployed over newer changes. Private D N S zones scattered in workload subscriptions, so resolution fails or goes public. And disabling a key to contain a compromise, which takes its dependents offline. Each has its guard in the steps. The guide is plain about what it couldn't verify: Azure Firewall Premium's regions, which Learn leaves to the products-by-region page; built-in policy names, which change version; and, on the other clouds, Shield Advanced in GovCloud and Oracle's firewall services in its Government Cloud. Nothing was run in a subscription. Its developer workbook with labs and its training path are planned. Thank you.`,
   `${G} — "Dangers and how to avoid them," "What couldn't be verified," "The pieces" (the guide's pieces table).`);
 }
 endModule(SHOW);
@@ -520,7 +520,7 @@ endModule(SHOW);
 // ================================================================== Backup
 backup();
 sourceSlide("Sources: the guide and Microsoft Learn", [
-  "Azure Security Engineering (companion guide, draft): \"How to read this guide,\" \"Where each topic is covered,\" \"The track at a glance,\" \"Prerequisites,\" \"Availability in commercial Azure,\" Steps 1 to 10, \"RACI,\" \"Metrics,\" \"Federal requirements and KSIs,\" \"Dangers,\" \"What couldn't be verified.\" Its verification log lists every claim.",
+  "Azure Security Engineering (companion guide): \"How to read this guide,\" \"Where each topic is covered,\" \"The track at a glance,\" \"Prerequisites,\" \"Availability in commercial Azure,\" Steps 1 to 10, \"RACI,\" \"Metrics,\" \"Federal requirements and KSIs,\" \"Dangers,\" \"What couldn't be verified.\" Its verification log lists every claim.",
   "Microsoft Learn, read November 11, 2026: Azure network security Zero Trust recommendations; Zero Trust recommendations for Application Gateway WAF; Zero Trust recommendations for Azure Firewall; Application Gateway WAF FAQ; Secure your Azure Application Gateway.",
   "Microsoft Learn: Azure DDoS Protection tier comparison; Secure your Azure DDoS Protection deployment; DDoS simulation testing; Secure traffic to Azure Front Door origins; Front Door Private Link origins; Internet ingress; Migrate Azure Front Door (classic).",
   "Microsoft Learn: Azure Firewall Draft + Deployment; Azure Firewall Premium features; Integrate Key Vault with Azure Private Link; Private Link and DNS integration at scale; Private Endpoint private DNS zone values; Secure your Azure Key Vault; Enable Key Vault logging.",

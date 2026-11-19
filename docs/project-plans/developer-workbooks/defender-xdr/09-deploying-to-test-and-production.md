@@ -29,7 +29,7 @@ A runbook, not a gate, so it has no labs of its own. It runs the kit's `deploy/`
 ## Narrated tour
 {{< fmw-video DW_XDR_09_Deploying_Test_Production_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-09-deploying-test-production) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-09-deploying-test-production) (about 9 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-09-deploying-test-production/DW_XDR_09_Deploying_Test_Production_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-09-deploying-test-production/DW_XDR_09_Deploying_Test_Production_Narrated.vtt). Recorded on November 17, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-09-deploying-test-production) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-09-deploying-test-production) (about 9 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-09-deploying-test-production/DW_XDR_09_Deploying_Test_Production_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-09-deploying-test-production/DW_XDR_09_Deploying_Test_Production_Narrated.vtt). Recorded on November 19, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

@@ -29,7 +29,7 @@ The code behind the guide's [G1 Service architecture and access](../../../books/
 ## Narrated tour
 {{< fmw-video DW_XDR_01_Access_Graph_Read_Path_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-01-access-graph-read-path) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-01-access-graph-read-path) (about 8 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-01-access-graph-read-path/DW_XDR_01_Access_Graph_Read_Path_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-01-access-graph-read-path/DW_XDR_01_Access_Graph_Read_Path_Narrated.vtt). Recorded on November 17, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-01-access-graph-read-path) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-01-access-graph-read-path) (about 8 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-01-access-graph-read-path/DW_XDR_01_Access_Graph_Read_Path_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-01-access-graph-read-path/DW_XDR_01_Access_Graph_Read_Path_Narrated.vtt). Recorded on November 19, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->
