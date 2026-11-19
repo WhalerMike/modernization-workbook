@@ -1,0 +1,7 @@
+PS> ./Show-DcManifest.ps1 -Id entra-health
+Entra Health alerts (entra-health): link-out, fit link-out
+Daily check: Entra Health alerts (by-family table, Identity)
+Tables:      none (link-out)
+Link-out:    Microsoft Entra Health: https://entra.microsoft.com > Entra ID > Monitoring & health > Health > Health Monitoring
+GCC:         Not yet specified. Health monitoring is a preview shown in the admin center, by e-mail and through Graph beta; it isn't in Log Analytics.
+Action:      Each active alert opens a task; dismissing one is a closure with its reason.

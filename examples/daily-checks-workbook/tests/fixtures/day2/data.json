@@ -1,0 +1,5 @@
+{
+  "_comment": "No DLP or label alerts in the last day.",
+  "sources": { "SecurityAlert": "2026-11-16T22:47:00Z" },
+  "rows": []
+}

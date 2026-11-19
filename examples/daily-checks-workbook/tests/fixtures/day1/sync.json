@@ -1,0 +1,7 @@
+{
+  "_comment": "The probe's latest row is from yesterday morning: today's run didn't write.",
+  "sources": { "DailySyncProbe_CL": "2026-11-15T06:30:00Z" },
+  "rows": [
+    { "query": "sync-1", "TimeGenerated": "2026-11-15T06:30:00Z", "ProbeAgeMin": 1500, "SyncEnabled": true, "LastSyncUtc": "2026-11-15T06:12:00Z", "AgeMinutes": 18, "SyncLate": false, "ConflictCount": 0, "Verdict": "compliant" }
+  ]
+}

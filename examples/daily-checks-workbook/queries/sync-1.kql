@@ -1,0 +1,7 @@
+// The morning synchronization probe's latest result (Book 15, Chapter 12, task 6), written to a custom table
+// through the Logs Ingestion API. A missing row means the probe didn't run: the tab shows NO DATA, never green.
+DailySyncProbe_CL
+| where TimeGenerated > ago(2d)
+| summarize arg_max(TimeGenerated, *)
+| extend ProbeAgeMin = datetime_diff('minute', now(), TimeGenerated)
+| project TimeGenerated, ProbeAgeMin, SyncEnabled, LastSyncUtc, AgeMinutes, SyncLate, ConflictCount, Verdict

@@ -1,0 +1,9 @@
+// Consents, app role assignments, delegated grants and role assignments in the last day, by Learn's
+// audit activity names. Matching each row to its ticket happens in the ITSM tool, not here.
+AuditLogs
+| where TimeGenerated > ago(1d)
+| where ActivityDisplayName in ("Consent to application", "Add delegated permission grant", "Add app role assignment to service principal", "Add member to role", "Add eligible member to role")
+| extend Actor = coalesce(tostring(InitiatedBy.user.userPrincipalName), tostring(InitiatedBy.app.displayName))
+| extend Target = tostring(TargetResources[0].displayName)
+| project TimeGenerated, ActivityDisplayName, Actor, Target, Result, CorrelationId
+| order by TimeGenerated desc

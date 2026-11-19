@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "description": "The Daily checks Azure Monitor workbook, one tab per daily check. Same resource as main.bicep. Shape from Microsoft Learn's workbook ARM template sample and the Microsoft.Insights/workbooks 2023-06-01 reference. The name is a deterministic GUID (what-if can't evaluate newGuid()), so a redeploy updates the same workbook."
+  },
+  "parameters": {
+    "workbookDisplayName": { "type": "string", "metadata": { "description": "The workbook's name in the gallery; unique in the resource group and source." } },
+    "workbookSourceId": { "type": "string", "metadata": { "description": "The Sentinel Log Analytics workspace's resource ID: the workbook shows under that workspace's Workbooks." } },
+    "serializedData": { "type": "string", "metadata": { "description": "The gallery template with this environment's workspace and parameter values, as the kit's plan writes it." } },
+    "location": { "type": "string", "defaultValue": "[resourceGroup().location]", "metadata": { "description": "The workbook resource's region." } }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Insights/workbooks",
+      "apiVersion": "2023-06-01",
+      "name": "[guid(resourceGroup().id, parameters('workbookDisplayName'))]",
+      "location": "[parameters('location')]",
+      "kind": "shared",
+      "properties": {
+        "displayName": "[parameters('workbookDisplayName')]",
+        "serializedData": "[parameters('serializedData')]",
+        "version": "Notebook/1.0",
+        "sourceId": "[parameters('workbookSourceId')]",
+        "category": "workbook"
+      }
+    }
+  ],
+  "outputs": {
+    "workbookId": { "type": "string", "value": "[resourceId('Microsoft.Insights/workbooks', guid(resourceGroup().id, parameters('workbookDisplayName')))]" }
+  }
+}

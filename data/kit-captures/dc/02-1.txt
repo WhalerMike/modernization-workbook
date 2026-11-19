@@ -1,0 +1,2 @@
+PS> ./New-DcWorkbookTemplate.ps1 -Check
+workbook/daily-checks.workbook.json matches the manifest and queries

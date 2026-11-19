@@ -1,0 +1,7 @@
+{
+  "_comment": "One DLP alert overnight. SecurityAlert is event-driven, so the tab has no freshness limit of its own: the telemetry tab watches it.",
+  "sources": { "SecurityAlert": "2026-11-16T05:12:00Z" },
+  "rows": [
+    { "query": "data-1", "TimeGenerated": "2026-11-16T05:12:00Z", "AlertName": "Sensitive data shared externally", "AlertSeverity": "Medium", "Status": "New", "ProductName": "Microsoft Data Loss Prevention", "CompromisedEntity": "morgan.patel@contoso.example" }
+  ]
+}

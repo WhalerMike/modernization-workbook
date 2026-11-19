@@ -1,0 +1,8 @@
+// Open incidents, latest state per incident, newest first: the queue the daily log review starts from.
+SecurityIncident
+| where TimeGenerated > ago(14d)
+| summarize arg_max(TimeGenerated, *) by IncidentNumber
+| where Status in ("New", "Active")
+| extend AssignedTo = tostring(Owner.assignedTo)
+| project CreatedTime, IncidentNumber, Title, Severity, Status, AssignedTo
+| order by CreatedTime desc

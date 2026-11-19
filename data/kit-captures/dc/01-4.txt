@@ -1,0 +1,9 @@
+PS> Import-Module ./powershell/DailyChecks/DailyChecks.psm1
+PS> Get-DcTab | Group-Object Fit | Sort-Object Name | Select-Object Name, Count
+Name     Count
+----     -----
+good         2
+link-out     1
+partial      2
+strong       4
+weak         1

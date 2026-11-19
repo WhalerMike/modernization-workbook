@@ -1,0 +1,558 @@
+{
+  "fallbackResourceIds": [
+    "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-contoso-sentinel/providers/Microsoft.OperationalInsights/workspaces/law-contoso-sentinel"
+  ],
+  "isLocked": false,
+  "items": [
+    {
+      "content": {
+        "json": "# Daily checks\n\n**This workbook is a view, not evidence. The evidence is the stored record each check writes and the tracked task each finding opens.**\n\nOne tab per daily check in the operator runbook. A tab that reads CLEAR only means its query returned nothing: check the Telemetry completeness tab first."
+      },
+      "name": "header",
+      "type": 1
+    },
+    {
+      "content": {
+        "parameters": [
+          {
+            "description": "The Sentinel Log Analytics workspace every query reads",
+            "id": "param-workspace",
+            "isRequired": true,
+            "label": "Workspace",
+            "name": "Workspace",
+            "type": 5,
+            "typeSettings": {
+              "additionalResourceOptions": [],
+              "resourceTypeFilter": {
+                "microsoft.operationalinsights/workspaces": true
+              }
+            },
+            "value": null,
+            "version": "KqlParameterItem/1.0"
+          },
+          {
+            "description": "The emergency access accounts' object IDs, quoted and comma-separated",
+            "id": "param-emergencyaccessids",
+            "isHiddenWhenLocked": true,
+            "isRequired": true,
+            "label": "EmergencyAccessIds",
+            "name": "EmergencyAccessIds",
+            "type": 1,
+            "value": null,
+            "version": "KqlParameterItem/1.0"
+          },
+          {
+            "description": "The ComplianceState value your workspace records for a compliant device",
+            "id": "param-compliantstatevalue",
+            "isHiddenWhenLocked": true,
+            "isRequired": true,
+            "label": "CompliantStateValue",
+            "name": "CompliantStateValue",
+            "type": 1,
+            "value": null,
+            "version": "KqlParameterItem/1.0"
+          },
+          {
+            "description": "The ProductName values of DLP and label alerts in SecurityAlert, quoted and comma-separated",
+            "id": "param-dlpproductnames",
+            "isHiddenWhenLocked": true,
+            "isRequired": true,
+            "label": "DlpProductNames",
+            "name": "DlpProductNames",
+            "type": 1,
+            "value": null,
+            "version": "KqlParameterItem/1.0"
+          },
+          {
+            "description": "The ITSM tool's own queue page for catalog and remediation tasks",
+            "id": "param-itsmqueueurl",
+            "isHiddenWhenLocked": true,
+            "isRequired": true,
+            "label": "ItsmQueueUrl",
+            "name": "ItsmQueueUrl",
+            "type": 1,
+            "value": null,
+            "version": "KqlParameterItem/1.0"
+          }
+        ],
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "style": "pills",
+        "version": "KqlParameterItem/1.0"
+      },
+      "name": "parameters",
+      "type": 9
+    },
+    {
+      "content": {
+        "links": [
+          {
+            "cellValue": "selectedTab",
+            "id": "link-telemetry",
+            "linkLabel": "Telemetry completeness",
+            "linkTarget": "parameter",
+            "style": "link",
+            "subTarget": "telemetry"
+          },
+          {
+            "cellValue": "selectedTab",
+            "id": "link-sync",
+            "linkLabel": "Synchronization probe",
+            "linkTarget": "parameter",
+            "style": "link",
+            "subTarget": "sync"
+          },
+          {
+            "cellValue": "selectedTab",
+            "id": "link-entra-health",
+            "linkLabel": "Entra Health alerts",
+            "linkTarget": "parameter",
+            "style": "link",
+            "subTarget": "entra-health"
+          },
+          {
+            "cellValue": "selectedTab",
+            "id": "link-risk",
+            "linkLabel": "Risky users and sign-ins",
+            "linkTarget": "parameter",
+            "style": "link",
+            "subTarget": "risk"
+          },
+          {
+            "cellValue": "selectedTab",
+            "id": "link-emergency-access",
+            "linkLabel": "Emergency access sign-ins",
+            "linkTarget": "parameter",
+            "style": "link",
+            "subTarget": "emergency-access"
+          },
+          {
+            "cellValue": "selectedTab",
+            "id": "link-devices",
+            "linkLabel": "Noncompliant devices",
+            "linkTarget": "parameter",
+            "style": "link",
+            "subTarget": "devices"
+          },
+          {
+            "cellValue": "selectedTab",
+            "id": "link-grants",
+            "linkLabel": "Consents, roles and grants",
+            "linkTarget": "parameter",
+            "style": "link",
+            "subTarget": "grants"
+          },
+          {
+            "cellValue": "selectedTab",
+            "id": "link-data",
+            "linkLabel": "DLP and label alerts",
+            "linkTarget": "parameter",
+            "style": "link",
+            "subTarget": "data"
+          },
+          {
+            "cellValue": "selectedTab",
+            "id": "link-tasks",
+            "linkLabel": "Catalog and remediation tasks",
+            "linkTarget": "parameter",
+            "style": "link",
+            "subTarget": "tasks"
+          },
+          {
+            "cellValue": "selectedTab",
+            "id": "link-log-review",
+            "linkLabel": "Log review queue",
+            "linkTarget": "parameter",
+            "style": "link",
+            "subTarget": "log-review"
+          }
+        ],
+        "style": "tabs",
+        "version": "LinkItem/1.0"
+      },
+      "name": "tabs",
+      "type": 11
+    },
+    {
+      "conditionalVisibility": {
+        "comparison": "isEqualTo",
+        "parameterName": "selectedTab",
+        "value": "telemetry"
+      },
+      "content": {
+        "groupType": "editable",
+        "items": [
+          {
+            "content": {
+              "json": "## Telemetry completeness\n\n**This workbook is a view, not evidence. The evidence is the stored record each check writes and the tracked task each finding opens.**\n\n**Daily check:** Telemetry-completeness check, network sources included (cadence table, Daily; by-family table, Network).\n\n**What to do:** Each dark source opens a high-severity task; the completeness alert rule, not this tab, is the record.\n\n**Where else to look:**\n- [Sentinel Data collection health monitoring workbook](https://portal.azure.com): Microsoft Sentinel > Threat management > Workbooks > Templates > Data collection health monitoring\n\n**GCC:** Available: the workspace is in commercial Azure, where Sentinel workbooks are GA. The Defender portal's Data & connectors Overview tab is a commercial-cloud preview and isn't used."
+            },
+            "name": "telemetry-text",
+            "type": 1
+          },
+          {
+            "content": {
+              "crossComponentResources": [
+                "{Workspace}"
+              ],
+              "query": "// Telemetry completeness: every expected table and the age of its newest record. Read-only.\n// The pattern is Book 15, Chapter 12's harness query; the list is config/manifest.json's expectedTables.\n// Limits are illustrative: set each from the source's own cadence (the Intune export is daily, up to 48 hours late).\nlet expected = datatable(TableName: string, SlaMinutes: long) [\n    \"SigninLogs\", 60,\n    \"AuditLogs\", 60,\n    \"AADRiskyUsers\", 1440,\n    \"SecurityAlert\", 1440,\n    \"SecurityIncident\", 1440,\n    \"IntuneDeviceComplianceOrg\", 2880,\n    \"CommonSecurityLog\", 60,\n    \"DailySyncProbe_CL\", 1440\n];\nlet lastSeen =\n    union isfuzzy=true withsource=TableName\n        SigninLogs, AuditLogs, AADRiskyUsers, SecurityAlert, SecurityIncident, IntuneDeviceComplianceOrg, CommonSecurityLog, DailySyncProbe_CL\n    | where TimeGenerated > ago(3d)\n    | summarize LastSeen = max(TimeGenerated) by TableName;\nexpected\n| join kind=leftouter lastSeen on TableName\n| extend AgeMin = datetime_diff('minute', now(), LastSeen)\n| extend State = iff(isnull(LastSeen) or AgeMin > SlaMinutes, \"Dark\", \"Delivering\")\n| project TableName, State, LastSeen, AgeMin, SlaMinutes\n| order by State asc, TableName asc",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "size": 0,
+              "title": "Every expected table and the age of its newest record",
+              "version": "KqlItem/1.0",
+              "visualization": "table"
+            },
+            "name": "telemetry-1",
+            "type": 3
+          },
+          {
+            "content": {
+              "crossComponentResources": [
+                "{Workspace}"
+              ],
+              "query": "// Microsoft's \"latest failure events per connector\" query (Monitor the health of your Microsoft Sentinel data connectors).\n// SentinelHealth covers only the connectors Learn lists, and only after health monitoring is turned on.\nSentinelHealth\n| where TimeGenerated > ago(3d)\n| where OperationName == 'Data fetch status change'\n| where Status in ('Success', 'Failure')\n| summarize TimeGenerated = arg_max(TimeGenerated,*) by SentinelResourceName, SentinelResourceId\n| where Status == 'Failure'\n| project TimeGenerated, SentinelResourceName, Status, Description",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "size": 0,
+              "title": "Connectors whose latest SentinelHealth status is Failure",
+              "version": "KqlItem/1.0",
+              "visualization": "table"
+            },
+            "name": "telemetry-2",
+            "type": 3
+          }
+        ],
+        "version": "NotebookGroup/1.0"
+      },
+      "name": "tab-telemetry",
+      "type": 12
+    },
+    {
+      "conditionalVisibility": {
+        "comparison": "isEqualTo",
+        "parameterName": "selectedTab",
+        "value": "sync"
+      },
+      "content": {
+        "groupType": "editable",
+        "items": [
+          {
+            "content": {
+              "json": "## Synchronization probe\n\n**This workbook is a view, not evidence. The evidence is the stored record each check writes and the tracked task each finding opens.**\n\n**Daily check:** Synchronization and service-health probe (task 6, the morning synchronization check).\n\n**What to do:** A drift verdict or a missed probe opens a task; the probe's own stored result is the record.\n\n**Where else to look:**\n- [Microsoft Entra Connect Health](https://entra.microsoft.com): Microsoft Entra Connect Health (left menu: Microsoft Entra Connect Sync)\n- [Microsoft 365 service health](https://admin.microsoft.com): Health > Service health\n\n**GCC:** The Logs Ingestion API that writes the probe's table is available in commercial Azure. Connect Health's GCC availability is not yet specified."
+            },
+            "name": "sync-text",
+            "type": 1
+          },
+          {
+            "content": {
+              "crossComponentResources": [
+                "{Workspace}"
+              ],
+              "query": "// The morning synchronization probe's latest result (Book 15, Chapter 12, task 6), written to a custom table\n// through the Logs Ingestion API. A missing row means the probe didn't run: the tab shows NO DATA, never green.\nDailySyncProbe_CL\n| where TimeGenerated > ago(2d)\n| summarize arg_max(TimeGenerated, *)\n| extend ProbeAgeMin = datetime_diff('minute', now(), TimeGenerated)\n| project TimeGenerated, ProbeAgeMin, SyncEnabled, LastSyncUtc, AgeMinutes, SyncLate, ConflictCount, Verdict",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "size": 0,
+              "title": "The probe's latest result",
+              "version": "KqlItem/1.0",
+              "visualization": "table"
+            },
+            "name": "sync-1",
+            "type": 3
+          }
+        ],
+        "version": "NotebookGroup/1.0"
+      },
+      "name": "tab-sync",
+      "type": 12
+    },
+    {
+      "conditionalVisibility": {
+        "comparison": "isEqualTo",
+        "parameterName": "selectedTab",
+        "value": "entra-health"
+      },
+      "content": {
+        "groupType": "editable",
+        "items": [
+          {
+            "content": {
+              "json": "## Entra Health alerts\n\n**This workbook is a view, not evidence. The evidence is the stored record each check writes and the tracked task each finding opens.**\n\n**Daily check:** Entra Health alerts (by-family table, Identity).\n\n**What to do:** Each active alert opens a task; dismissing one is a closure with its reason.\n\n**Where else to look:**\n- [Microsoft Entra Health](https://entra.microsoft.com): Entra ID > Monitoring & health > Health > Health Monitoring\n\n**GCC:** Not yet specified. Health monitoring is a preview shown in the admin center, by e-mail and through Graph beta; it isn't in Log Analytics."
+            },
+            "name": "entra-health-text",
+            "type": 1
+          }
+        ],
+        "version": "NotebookGroup/1.0"
+      },
+      "name": "tab-entra-health",
+      "type": 12
+    },
+    {
+      "conditionalVisibility": {
+        "comparison": "isEqualTo",
+        "parameterName": "selectedTab",
+        "value": "risk"
+      },
+      "content": {
+        "groupType": "editable",
+        "items": [
+          {
+            "content": {
+              "json": "## Risky users and sign-ins\n\n**This workbook is a view, not evidence. The evidence is the stored record each check writes and the tracked task each finding opens.**\n\n**Daily check:** Risky-user and risky-sign-in triage (by-family table, Identity).\n\n**What to do:** Each user at risk is triaged in the incident path; the triage record is the evidence.\n\n**Where else to look:**\n- [ID Protection risky users](https://entra.microsoft.com): ID Protection > Risky activities > Risky users\n\n**GCC:** Available: Entra diagnostic settings send RiskyUsers and SignInLogs to the commercial workspace."
+            },
+            "name": "risk-text",
+            "type": 1
+          },
+          {
+            "content": {
+              "crossComponentResources": [
+                "{Workspace}"
+              ],
+              "query": "// Users ID Protection holds at medium or high risk, latest state per user. Read-only.\nAADRiskyUsers\n| where TimeGenerated > ago(2d)\n| summarize arg_max(TimeGenerated, *) by Id\n| where RiskState == \"atRisk\" and RiskLevel in (\"medium\", \"high\")\n| project RiskLastUpdatedDateTime, UserPrincipalName, RiskLevel, RiskState, RiskDetail\n| order by RiskLastUpdatedDateTime desc",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "size": 0,
+              "title": "Users at medium or high risk",
+              "version": "KqlItem/1.0",
+              "visualization": "table"
+            },
+            "name": "risk-1",
+            "type": 3
+          },
+          {
+            "content": {
+              "crossComponentResources": [
+                "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-contoso-sentinel/providers/Microsoft.OperationalInsights/workspaces/law-contoso-sentinel"
+              ],
+              "query": "// Interactive sign-ins with medium or high risk that are still at risk. Read-only.\nSigninLogs\n| where TimeGenerated > ago(1d)\n| where RiskLevelDuringSignIn in (\"medium\", \"high\") and RiskState == \"atRisk\"\n| project TimeGenerated, UserPrincipalName, AppDisplayName, IPAddress, RiskLevelDuringSignIn, RiskState, ResultType\n| order by TimeGenerated desc",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "size": 0,
+              "title": "Risky sign-ins in the last day",
+              "version": "KqlItem/1.0",
+              "visualization": "table"
+            },
+            "name": "risk-2",
+            "type": 3
+          }
+        ],
+        "version": "NotebookGroup/1.0"
+      },
+      "name": "tab-risk",
+      "type": 12
+    },
+    {
+      "conditionalVisibility": {
+        "comparison": "isEqualTo",
+        "parameterName": "selectedTab",
+        "value": "emergency-access"
+      },
+      "content": {
+        "groupType": "editable",
+        "items": [
+          {
+            "content": {
+              "json": "## Emergency access sign-ins\n\n**This workbook is a view, not evidence. The evidence is the stored record each check writes and the tracked task each finding opens.**\n\n**Daily check:** Emergency access alert reviewed for any firing (by-family table, Identity).\n\n**What to do:** Any row is reviewed as a drill, a real emergency or misuse, and the review is recorded.\n\n**Where else to look:**\n- [Azure Monitor alert rules](https://portal.azure.com): Monitor > Alerts > Alert rules\n\n**GCC:** Available. The Azure Monitor alert rule on these sign-ins is the control; this tab only shows them."
+            },
+            "name": "emergency-access-text",
+            "type": 1
+          },
+          {
+            "content": {
+              "crossComponentResources": [
+                "{Workspace}"
+              ],
+              "query": "// Microsoft's emergency access sign-in query (Manage emergency access admin accounts), with the accounts'\n// object IDs from the EmergencyAccessIds parameter instead of literals. The alert rule is the control.\nlet ids = dynamic([{EmergencyAccessIds}]);\nSigninLogs\n| where TimeGenerated > ago(1d)\n| where UserId in (ids)\n| project TimeGenerated, UserPrincipalName, UserId, IPAddress, ResultType, ResultDescription\n| order by TimeGenerated desc",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "size": 0,
+              "title": "Sign-ins by the emergency access accounts",
+              "version": "KqlItem/1.0",
+              "visualization": "table"
+            },
+            "name": "emergency-access-1",
+            "type": 3
+          }
+        ],
+        "version": "NotebookGroup/1.0"
+      },
+      "name": "tab-emergency-access",
+      "type": 12
+    },
+    {
+      "conditionalVisibility": {
+        "comparison": "isEqualTo",
+        "parameterName": "selectedTab",
+        "value": "devices"
+      },
+      "content": {
+        "groupType": "editable",
+        "items": [
+          {
+            "content": {
+              "json": "## Noncompliant devices\n\n**This workbook is a view, not evidence. The evidence is the stored record each check writes and the tracked task each finding opens.**\n\n**Daily check:** Noncompliant-device queue worked (by-family table, Devices).\n\n**What to do:** The queue is worked in Intune and the ITSM tool; the export arrives once a day, up to 48 hours late.\n\n**Where else to look:**\n- [Intune noncompliant devices report](https://intune.microsoft.com): Devices > Monitor > Noncompliant devices\n\n**GCC:** Available: Intune in GCC is the commercial service instance, and its diagnostic settings send DeviceComplianceOrg to the workspace."
+            },
+            "name": "devices-text",
+            "type": 1
+          },
+          {
+            "content": {
+              "crossComponentResources": [
+                "{Workspace}"
+              ],
+              "query": "// Devices not compliant in Intune's latest daily organizational export. Read-only.\n// The compliant state string comes from the CompliantStateValue parameter: check your workspace's values first.\nIntuneDeviceComplianceOrg\n| where TimeGenerated > ago(30d)\n| summarize arg_max(TimeGenerated, *) by DeviceId\n| where ComplianceState != \"{CompliantStateValue}\"\n| project TimeGenerated, DeviceName, ComplianceState, OS, UPN, LastContact, InGracePeriodUntil\n| order by DeviceName asc",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "size": 0,
+              "title": "Devices not compliant in the latest daily export",
+              "version": "KqlItem/1.0",
+              "visualization": "table"
+            },
+            "name": "devices-1",
+            "type": 3
+          }
+        ],
+        "version": "NotebookGroup/1.0"
+      },
+      "name": "tab-devices",
+      "type": 12
+    },
+    {
+      "conditionalVisibility": {
+        "comparison": "isEqualTo",
+        "parameterName": "selectedTab",
+        "value": "grants"
+      },
+      "content": {
+        "groupType": "editable",
+        "items": [
+          {
+            "content": {
+              "json": "## Consents, roles and grants\n\n**Daily check:** Any consent, role or access grant with no ticket alerted (by-family table, Applications).\n\n**What to do:** Each row is matched to its ticket in the ITSM tool; a grant with no ticket opens a finding.\n\n**Where else to look:**\n- [Entra audit logs](https://entra.microsoft.com): Entra ID > Monitoring & health > Audit logs\n\n**GCC:** Available. The match to a ticket isn't in the workbook: the ticket data stays in the ITSM tool."
+            },
+            "name": "grants-text",
+            "type": 1
+          },
+          {
+            "content": {
+              "crossComponentResources": [
+                "{Workspace}"
+              ],
+              "query": "// Consents, app role assignments, delegated grants and role assignments in the last day, by Learn's\n// audit activity names. Matching each row to its ticket happens in the ITSM tool, not here.\nAuditLogs\n| where TimeGenerated > ago(1d)\n| where ActivityDisplayName in (\"Consent to application\", \"Add delegated permission grant\", \"Add app role assignment to service principal\", \"Add member to role\", \"Add eligible member to role\")\n| extend Actor = coalesce(tostring(InitiatedBy.user.userPrincipalName), tostring(InitiatedBy.app.displayName))\n| extend Target = tostring(TargetResources[0].displayName)\n| project TimeGenerated, ActivityDisplayName, Actor, Target, Result, CorrelationId\n| order by TimeGenerated desc",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "size": 0,
+              "title": "Consents, role assignments and grants in the last day",
+              "version": "KqlItem/1.0",
+              "visualization": "table"
+            },
+            "name": "grants-1",
+            "type": 3
+          }
+        ],
+        "version": "NotebookGroup/1.0"
+      },
+      "name": "tab-grants",
+      "type": 12
+    },
+    {
+      "conditionalVisibility": {
+        "comparison": "isEqualTo",
+        "parameterName": "selectedTab",
+        "value": "data"
+      },
+      "content": {
+        "groupType": "editable",
+        "items": [
+          {
+            "content": {
+              "json": "## DLP and label alerts\n\n**This workbook is a view, not evidence. The evidence is the stored record each check writes and the tracked task each finding opens.**\n\n**Daily check:** Data loss prevention and label-change alerts triaged (by-family table, Data).\n\n**What to do:** Each alert is triaged in Purview or the Defender portal; the triage is the record.\n\n**Where else to look:**\n- [Purview DLP alerts](https://purview.microsoft.com): Data loss prevention > Alerts\n\n**GCC:** Available: Defender XDR alerts in SecurityAlert are GA for Commercial and GCC, and Defender XDR collects Purview DLP alerts."
+            },
+            "name": "data-text",
+            "type": 1
+          },
+          {
+            "content": {
+              "crossComponentResources": [
+                "{Workspace}"
+              ],
+              "query": "// DLP and label alerts from SecurityAlert, latest state per alert. The ProductName values come from the\n// DlpProductNames parameter: confirm them in your workspace before relying on the tab.\nSecurityAlert\n| where TimeGenerated > ago(1d)\n| where ProductName in ({DlpProductNames})\n| summarize arg_max(TimeGenerated, *) by SystemAlertId\n| project TimeGenerated, AlertName, AlertSeverity, Status, ProductName, CompromisedEntity\n| order by TimeGenerated desc",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "size": 0,
+              "title": "DLP and label alerts in the last day",
+              "version": "KqlItem/1.0",
+              "visualization": "table"
+            },
+            "name": "data-1",
+            "type": 3
+          }
+        ],
+        "version": "NotebookGroup/1.0"
+      },
+      "name": "tab-data",
+      "type": 12
+    },
+    {
+      "conditionalVisibility": {
+        "comparison": "isEqualTo",
+        "parameterName": "selectedTab",
+        "value": "tasks"
+      },
+      "content": {
+        "groupType": "editable",
+        "items": [
+          {
+            "content": {
+              "json": "## Catalog and remediation tasks\n\n**This workbook is a view, not evidence. The evidence is the stored record each check writes and the tracked task each finding opens.**\n\n**Daily check:** Catalog and remediation tasks (cadence table, Daily).\n\n**What to do:** Tasks close with their proof in the ITSM tool (Chapter 11's evidence contract).\n\n**Where else to look:**\n- [The ITSM tool's task queue]({ItsmQueueUrl}): The queue the settings file names\n\n**GCC:** Not applicable: the tasks live in the ITSM tool, whose own dashboards show them."
+            },
+            "name": "tasks-text",
+            "type": 1
+          }
+        ],
+        "version": "NotebookGroup/1.0"
+      },
+      "name": "tab-tasks",
+      "type": 12
+    },
+    {
+      "conditionalVisibility": {
+        "comparison": "isEqualTo",
+        "parameterName": "selectedTab",
+        "value": "log-review"
+      },
+      "content": {
+        "groupType": "editable",
+        "items": [
+          {
+            "content": {
+              "json": "## Log review queue\n\n**This workbook is a view, not evidence. The evidence is the stored record each check writes and the tracked task each finding opens.**\n\n**Daily check:** Log review findings (cadence table, Daily; task 7).\n\n**What to do:** The review is done and recorded in the incident path; the tab is where it starts.\n\n**Where else to look:**\n- [Defender portal incidents](https://security.microsoft.com): Investigation & response > Incidents & alerts > Incidents\n\n**GCC:** Available: incidents from Defender XDR are GA for Commercial and GCC. The tab shows the queue; the review stays a recorded procedure."
+            },
+            "name": "log-review-text",
+            "type": 1
+          },
+          {
+            "content": {
+              "crossComponentResources": [
+                "{Workspace}"
+              ],
+              "query": "// Open incidents, latest state per incident, newest first: the queue the daily log review starts from.\nSecurityIncident\n| where TimeGenerated > ago(14d)\n| summarize arg_max(TimeGenerated, *) by IncidentNumber\n| where Status in (\"New\", \"Active\")\n| extend AssignedTo = tostring(Owner.assignedTo)\n| project CreatedTime, IncidentNumber, Title, Severity, Status, AssignedTo\n| order by CreatedTime desc",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "size": 0,
+              "title": "Open incidents, newest first",
+              "version": "KqlItem/1.0",
+              "visualization": "table"
+            },
+            "name": "log-review-1",
+            "type": 3
+          }
+        ],
+        "version": "NotebookGroup/1.0"
+      },
+      "name": "tab-log-review",
+      "type": 12
+    }
+  ],
+  "version": "Notebook/1.0"
+}

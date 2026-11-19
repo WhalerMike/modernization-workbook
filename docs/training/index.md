@@ -1,7 +1,7 @@
 ---
 title: "Training"
 subtitle: "Learning paths: modules to work through in order, and the vendors' own training mapped to the workbook's roles"
-description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in four modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in eleven modules, the Provider Notices learning path in nine modules, the Zero Trust Assessment learning path in four modules, the Defender XDR learning path in five modules, the Global Secure Access learning path in six modules, the Azure Security Engineering learning path in five modules, and external learning paths from product vendors."
+description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in four modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in eleven modules, the Provider Notices learning path in nine modules, the Zero Trust Assessment learning path in four modules, the Defender XDR learning path in five modules, the Global Secure Access learning path in six modules, the Azure Security Engineering learning path in five modules, the Daily Checks Dashboard learning path in two modules, and external learning paths from product vendors."
 doc-type: section-landing
 fmw-eyebrow: "Training"
 listing:
@@ -41,6 +41,7 @@ listing:
       - "!defender-xdr/**"
       - "!global-secure-access/**"
       - "!azure-security/**"
+      - "!daily-checks-dashboard/**"
     type: table
     fields: [title, research-status, last-reviewed, description]
     field-display-names: *names
@@ -155,6 +156,10 @@ Six modules on deploying Microsoft Entra Internet Access and Private Access as t
 Five modules on engineering and proving the security of an agency's Azure estate, in the order of the ten steps of the [Azure Security Engineering implementation guide](../books/guides/azure-security-implementation.md): the security baseline in audit and the exposure register; DDoS protection on every public IP and the web application firewall from detection to prevention; an origin nothing can reach around Front Door or Application Gateway, and egress through Azure Firewall; Private Link, private DNS and Key Vault; and the security initiative, expiring exemptions, the operating model and the evidence. GCC Moderate with commercial Azure, and the AWS, Google Cloud and Oracle Cloud Infrastructure equivalents. The guide has no kit or developer workbook yet, so each module's lab runs the guide's own checks in your test subscription; each module ends with a knowledge check. Start at the [learning path](azure-security/index.md).
 
 **Watch:** each module has a narrated deck, about 11 to 13 minutes, linked from the module's page.
+
+## Daily Checks Dashboard learning path
+
+Two modules on putting the operator runbook's daily checks on one Azure Monitor workbook in the Sentinel workspace, from the [Daily Checks Dashboard implementation guide](../books/guides/daily-checks-dashboard-implementation.md): which checks fit a workbook and from which table, which ones link out, GCC availability, and the template kept as reviewed code with its validator; then reading each tab (a stale source never shows clear), the reachability check, deployment with what-if and an approved hash, and the evidence, which never includes the workbook itself. Each module links its chapters' Lab 1 on fixtures and Lab 2 in a test workspace, and ends with a knowledge check. Start at the [learning path](daily-checks-dashboard/index.md).
 
 ## External learning paths
 

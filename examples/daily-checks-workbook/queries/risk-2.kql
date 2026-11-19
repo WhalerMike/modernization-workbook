@@ -1,0 +1,6 @@
+// Interactive sign-ins with medium or high risk that are still at risk. Read-only.
+SigninLogs
+| where TimeGenerated > ago(1d)
+| where RiskLevelDuringSignIn in ("medium", "high") and RiskState == "atRisk"
+| project TimeGenerated, UserPrincipalName, AppDisplayName, IPAddress, RiskLevelDuringSignIn, RiskState, ResultType
+| order by TimeGenerated desc

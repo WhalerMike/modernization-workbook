@@ -1,0 +1,16 @@
+PS> ./deploy/Test-DcReachability.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/reach-day1.json -OutputPath out/reach -AsOf 2026-11-16T07:30:00Z
+Table                     State      AgeMinutes LimitMinutes Records Detail
+-----                     -----      ---------- ------------ ------- ------
+AADRiskyUsers             Delivering        875         1440      14
+AuditLogs                 Late              860           60   18233
+CommonSecurityLog         Delivering          4           60  940211
+DailySyncProbe_CL         Late             1500         1440       2
+IntuneDeviceComplianceOrg Delivering       1790         2880    3610
+SecurityAlert             Delivering        138         1440      37
+SecurityIncident          Delivering        136         1440      52
+SentinelHealth            Missing                                  0 table not found
+SigninLogs                Late              860           60   64120
+
+
+Written to out/reach: reach.json, manifest.json
+(exit code 1)

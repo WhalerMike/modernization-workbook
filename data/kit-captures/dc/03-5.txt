@@ -1,0 +1,2 @@
+PS> ./Invoke-DcEvidence.ps1 -EvidencePath out/evidence -RunPath out/day1 -AsOf 2026-11-16T07:31:00Z
+Exception: A rendered view is not evidence. Record the check's own output instead (the probe's result, the alert, the closed task), or the kit's validate, plan, deploy and reachability runs.

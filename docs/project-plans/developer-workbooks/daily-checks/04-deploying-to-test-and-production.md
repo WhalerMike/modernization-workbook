@@ -1,0 +1,185 @@
+---
+title: "Chapter 04 — Deploying to Test and Production"
+description: "The runbook for the guide's Steps 3, 4 and 6: one settings file per environment, preflight PF-01 to PF-06, the validation, the deployment plan with its what-if and the SHA-256 a second person approves, the deployment by that hash only, the reachability check, the go/no-go on the test stage's evidence, production with the same commands, and the rollback. Every command is exact; the fixture-mode output shown is labeled with its date; nothing here has been run against a live subscription."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-daily-checks
+part: How
+series-order: 4
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+---
+# Chapter 04 — Deploying to Test and Production
+
+*The same commands twice, with a different settings file, and a record of each step in between.*
+
+::: {.callout-note}
+## In this chapter
+The runbook that takes the workbook from the repository to a test subscription, then production: settings per environment, preflight, the validation, the plan with what-if and an approved SHA-256, the deployment, the reachability check, the go/no-go, production and the rollback. It runs Chapters 02 and 03's entry scripts and the kit's `deploy/` scripts. It is a runbook, not a lab: the output shown comes from the kit's fixture mode on November 16, 2026; the authors haven't run it against a live subscription.
+:::
+
+::: {.callout-warning}
+## Not run against a live subscription
+Every command below has been run in fixture mode and by the kit's 19 deploy tests, with a stand-in for the Azure CLI. None has been run against a live subscription. Run the test stage first, read every what-if, and keep the evidence.
+:::
+
+## Before you start
+
+**Roles.** The deployer needs **Workbook Contributor** (it can save shared workbooks: `microsoft.insights/workbooks/write`) and `Microsoft.Resources/deployments/*` on the workbook's resource group, because a Resource Manager deployment and its what-if both need deployment rights.[^dc04-roles][^dc04-whatif] Grant both through PIM for the deployment window only. The reachability check needs **Log Analytics Reader** on the workspace.[^dc04-access] Readers of the workbook need **Workbook Reader** and their own read access to the data; a workbook shows only what its reader can query.[^dc04-overview]
+
+**Tools.** PowerShell 7.1 or later, the Azure CLI with the `log-analytics` extension, signed in with `az login` to commercial Azure (`AzureCloud`). The kit deploys `deploy/main.json`; `deploy/main.bicep` is the same resource, kept for reading and kept equal by a test.
+
+**Placeholders**, listed once: `<tenant-id>`; `<settings-test>` and `<settings-production>` (your filled copies of `deploy/settings.template.json`); `<out-test>` and `<out-production>` (output folders outside any repository); `<evidence-test>` and `<evidence-production>` (the evidence folders the settings name); `<change-record-id>`; `<plan-sha256>` (printed by step 4, approved by a second person).
+
+## Stage 1: the test environment
+
+Work in `examples/daily-checks-workbook`.
+
+1. **Sign in to commercial Azure:**
+
+   ```powershell
+   az cloud set --name AzureCloud
+   az login --tenant <tenant-id>
+   az extension add --name log-analytics
+   ```
+
+2. **Preflight.** PF-01 settings complete, PF-02 no secret, PF-03 output and evidence outside any repository, PF-04 AzureCloud and the settings' tenant and subscription, PF-05 the template validates, PF-06 (production only) the test stage's evidence passes:
+
+   ```powershell
+   ./deploy/Test-DcPreflight.ps1 -SettingsPath <settings-test> -OutputPath <out-test>/preflight -Live
+   ```
+
+3. **Validate the template for this stage:**
+
+   ```powershell
+   ./Test-DcWorkbook.ps1 -OutputPath <out-test>/validate -Environment test
+   ```
+
+4. **Plan, with what-if.** The plan writes the parameters (this environment's workspace and parameter values), runs what-if, and prints the create command and the SHA-256 to approve:
+
+   ```powershell
+   ./deploy/New-DcDeploymentPlan.ps1 -SettingsPath <settings-test> -OutputPath <out-test>/plan -RunWhatIf -ChangeRecord <change-record-id>
+   ```
+
+   In fixture mode (the saved what-if result, November 16, 2026) the plan prints:
+
+   ```text
+   Plan (Fixture): out/plan/plan.json
+     what-if: Create   Microsoft.Insights/workbooks/6e1c2b74-3f0d-5a59-9b8e-0c4f2d1a7b31
+   Create command: az deployment group create --name daily-checks-lab --resource-group rg-contoso-monitoring --subscription aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e --template-file deploy/main.json --parameters @out/plan/parameters.json
+   Approve with:   -ApprovedSha256 <the plan's SHA-256>
+   ```
+
+   A first deployment shows one **Create**; a redeploy shows a **Modify** of the same workbook. Anything else, and any **Delete**, stops the stage.
+
+5. **Approve.** A second person reads `<out-test>/plan/plan.json` and `whatif.json`, and records the SHA-256 in the change record.
+
+6. **Deploy the approved plan.** Without `-Apply` the command prints what it would run and changes nothing; with it, it deploys:
+
+   ```powershell
+   ./deploy/Invoke-DcDeploy.ps1 -PlanPath <out-test>/plan -ApprovedSha256 <plan-sha256> -OutputPath <out-test>/deploy
+   ./deploy/Invoke-DcDeploy.ps1 -PlanPath <out-test>/plan -ApprovedSha256 <plan-sha256> -OutputPath <out-test>/deploy -Apply
+   ```
+
+   The kit refuses a plan folder that changed, a SHA-256 that isn't the approved one, a plan with no what-if or with a Delete, and a plan not made against the live environment.
+
+7. **Smoke test.** In the Azure portal: **Monitor** > **Workbooks**, open **Daily checks** under the test workspace, and confirm the ten tabs open, each with the banner, and the telemetry tab lists every expected table.
+
+8. **Reachability:**
+
+   ```powershell
+   ./deploy/Test-DcReachability.ps1 -SettingsPath <settings-test> -OutputPath <out-test>/reach
+   ```
+
+9. **Plan the rollback before you need it:**
+
+   ```powershell
+   ./deploy/Invoke-DcRollback.ps1 -SettingsPath <settings-test> -OutputPath <out-test>/rollback
+   ```
+
+10. **Record the evidence:**
+
+    ```powershell
+    ./Invoke-DcEvidence.ps1 -EvidencePath <evidence-test> -RunPath <out-test>/preflight -ChangeRecord <change-record-id>
+    ./Invoke-DcEvidence.ps1 -EvidencePath <evidence-test> -RunPath <out-test>/validate -ChangeRecord <change-record-id>
+    ./Invoke-DcEvidence.ps1 -EvidencePath <evidence-test> -RunPath <out-test>/plan -ChangeRecord <change-record-id>
+    ./Invoke-DcEvidence.ps1 -EvidencePath <evidence-test> -RunPath <out-test>/deploy -ChangeRecord <change-record-id>
+    ./Invoke-DcEvidence.ps1 -EvidencePath <evidence-test> -RunPath <out-test>/reach -ChangeRecord <change-record-id>
+    ./Invoke-DcEvidence.ps1 -EvidencePath <evidence-test> -RunPath <out-test>/rollback -ChangeRecord <change-record-id>
+    ```
+
+## Go or no-go
+
+The test stage is a go when its evidence passes: every file matches `SHA256SUMS`, the chain is unbroken, and the preflight, validation, plan, deployment and reachability each have a passing live record. Fixture records never count.
+
+```powershell
+./Invoke-DcEvidence.ps1 -EvidencePath <evidence-test> -Check -Stage test
+```
+
+A no-go is a finding with an owner; the stage is repeated after the fix.
+
+## Stage 2: production
+
+The same commands with `<settings-production>`, `<out-production>` and `<evidence-production>`. The production settings file names the test stage's evidence folder (`testEvidencePath`), and PF-06 refuses production until that evidence passes:
+
+```powershell
+./deploy/Test-DcPreflight.ps1 -SettingsPath <settings-production> -OutputPath <out-production>/preflight -Live
+./Test-DcWorkbook.ps1 -OutputPath <out-production>/validate -Environment production
+./deploy/New-DcDeploymentPlan.ps1 -SettingsPath <settings-production> -OutputPath <out-production>/plan -RunWhatIf -ChangeRecord <change-record-id>
+```
+
+After the second person approves the production plan's SHA-256:
+
+```powershell
+./deploy/Invoke-DcDeploy.ps1 -PlanPath <out-production>/plan -ApprovedSha256 <plan-sha256> -OutputPath <out-production>/deploy -Apply
+./deploy/Test-DcReachability.ps1 -SettingsPath <settings-production> -OutputPath <out-production>/reach
+./deploy/Invoke-DcRollback.ps1 -SettingsPath <settings-production> -OutputPath <out-production>/rollback -PreviousPlanPath <out-test>/plan
+```
+
+Record each folder with `Invoke-DcEvidence.ps1` as in step 10, then check the production evidence with `-Stage production`.
+
+## Rollback
+
+Two ways back, both planned in step 9. **Redeploy the previous approved plan** when the content is wrong: its SHA-256 is already approved. **Delete the workbook** when it shouldn't exist: the plan's `find` command lists it by display name (read-only), and the `delete` command removes it. Deleting the workbook removes a view only; no log data, alert rule or task changes. A rollback is a change: it gets its own change record and evidence record.
+
+## Day two
+
+- **A portal edit.** Export the gallery template from the **Advanced Editor**, validate it (Chapter 02), replace the committed template through a reviewed change, and redeploy from a new plan.
+- **A new daily check.** Add its row to the manifest, its query to `queries/`, rebuild the template and redeploy.
+- **The settings.** When an emergency access account changes, update `emergencyAccessObjectIds` and redeploy; the emergency access alert rule changes through its own change.
+
+## Federal requirements and evidence
+
+| Step | What its record shows | NIST SP 800-53 Rev 5 | KSIs |
+|---|---|---|---|
+| 2: Preflight | Settings, cloud, sign-in and scope were right | AC-6, CM-6 | KSI-IAM-ELP, KSI-SVC-ACM |
+| 3: Validate | The template matches the manifest and carries no IDs | CM-2, CM-3 | KSI-SVC-ACM, KSI-CMT-LMC |
+| 4, 5: Plan and approval | The change was previewed and approved by hash | CM-3, CM-4 | KSI-CMT-LMC, KSI-CMT-RVP |
+| 6: Deploy | The approved plan, and only it, was deployed | CM-3, CM-2 | KSI-CMT-LMC, KSI-SVC-ACM |
+| 8: Reachability | Each tab's tables answer, with their age | CA-7, SI-4 | KSI-MLA-EVC, KSI-MLA-LET |
+| 9: Rollback plan | The way back was written before the change | CM-3, CP-2 | KSI-CMT-LMC, KSI-RPL-ARP |
+| 10: Evidence | The records are hashed and chained | CA-7, AU-9 | KSI-MLA-EVC, KSI-MLA-OSM |
+
+The kit's records support these controls; the agency's assessor decides them. KSIs are FedRAMP 20x indicators for cloud service providers, framed as in Chapter 01. The workbook itself, and any screenshot of it, is never on this list.
+
+## Checklist
+
+- [ ] One settings file per environment, filled at work, with no secret, kept outside any repository.
+- [ ] Preflight passes for each stage; PF-06 passes for production.
+- [ ] Each plan's what-if was read, showed no Delete, and its SHA-256 was approved by a second person.
+- [ ] The deployer's roles were activated for the window only.
+- [ ] The test stage's evidence passes `-Check -Stage test` before production.
+- [ ] The rollback plan exists for each stage.
+
+::: {.callout-tip}
+## Continue the book
+[← Chapter 03 — What Each Tab Would Show](03-what-each-tab-would-show.md) · [Workbook index](index.md)
+:::
+
+[^dc04-roles]: Microsoft Learn, "Azure built-in roles for Monitor," Workbook Contributor and Workbook Reader, <https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/monitor> (accessed November 18, 2026).
+[^dc04-whatif]: Microsoft Learn, "Bicep What-If: Preview Changes Before Deployment," Required permissions and change types, <https://learn.microsoft.com/azure/azure-resource-manager/bicep/deploy-what-if> (accessed November 18, 2026).
+[^dc04-access]: Microsoft Learn, "Manage access to Log Analytics workspaces," Log Analytics Reader, <https://learn.microsoft.com/azure/azure-monitor/logs/manage-access> (accessed November 18, 2026).
+[^dc04-overview]: Microsoft Learn, "Azure Workbooks overview," Access control, <https://learn.microsoft.com/azure/azure-monitor/visualize/workbooks-overview> (accessed November 18, 2026).

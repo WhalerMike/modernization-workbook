@@ -1,0 +1,3 @@
+PS> Import-Module ./powershell/DailyChecks/DailyChecks.psm1
+PS> (Read-DcJson -Path tests/fixtures/exported/edited.workbook.json).fallbackResourceIds
+/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-contoso-sentinel/providers/Microsoft.OperationalInsights/workspaces/law-contoso-sentinel

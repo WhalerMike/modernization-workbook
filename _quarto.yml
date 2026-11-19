@@ -152,6 +152,8 @@ website:
             text: "Guide: Azure Security Engineering"
           - href: docs/books/guides/global-secure-access-implementation.md
             text: "Guide: Global Secure Access Implementation"
+          - href: docs/books/guides/daily-checks-dashboard-implementation.md
+            text: "Guide: Daily Checks Dashboard"
           - href: docs/books/guides/zero-trust-assessment-implementation.md
             text: "Guide: Zero Trust Assessment Implementation"
           - href: docs/books/guides/ansible-configuration-automation.md
@@ -202,6 +204,8 @@ website:
             text: "Building Global Secure Access"
           - href: docs/project-plans/developer-workbooks/azure-security/index.md
             text: "Building Azure Security"
+          - href: docs/project-plans/developer-workbooks/daily-checks/index.md
+            text: "Building the Daily Checks Workbook"
       - href: docs/evaluations/index.md
         text: "Evaluations"
       - href: docs/training/index.md
@@ -366,6 +370,11 @@ website:
             - docs/training/azure-security/03-the-edge-and-the-egress.md
             - docs/training/azure-security/04-private-link-dns-and-key-vault.md
             - docs/training/azure-security/05-policy-drift-and-evidence.md
+        - section: "Daily Checks Dashboard learning path"
+          href: docs/training/daily-checks-dashboard/index.md
+          contents:
+            - docs/training/daily-checks-dashboard/01-one-workbook-one-tab-per-check.md
+            - docs/training/daily-checks-dashboard/02-reading-deploying-and-the-evidence.md
         - section: "External learning paths"
           contents:
             - docs/training/infoblox-training.md
@@ -431,6 +440,10 @@ website:
               href: docs/project-plans/developer-workbooks/azure-security/index.md
               contents:
                 - auto: "docs/project-plans/developer-workbooks/azure-security/*-*.md"
+            - section: "Building the Daily Checks Workbook"
+              href: docs/project-plans/developer-workbooks/daily-checks/index.md
+              contents:
+                - auto: "docs/project-plans/developer-workbooks/daily-checks/*-*.md"
     - id: books
       title: "The Workbook Books"
       style: docked
@@ -534,6 +547,7 @@ website:
             - docs/books/guides/defender-xdr-implementation.md
             - docs/books/guides/azure-security-implementation.md
             - docs/books/guides/global-secure-access-implementation.md
+            - docs/books/guides/daily-checks-dashboard-implementation.md
             - docs/books/guides/zero-trust-assessment-implementation.md
             - docs/books/guides/ansible-configuration-automation.md
             - docs/books/guides/effective-meetings.md

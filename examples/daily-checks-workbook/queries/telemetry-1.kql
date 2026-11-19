@@ -1,0 +1,24 @@
+// Telemetry completeness: every expected table and the age of its newest record. Read-only.
+// The pattern is Book 15, Chapter 12's harness query; the list is config/manifest.json's expectedTables.
+// Limits are illustrative: set each from the source's own cadence (the Intune export is daily, up to 48 hours late).
+let expected = datatable(TableName: string, SlaMinutes: long) [
+    "SigninLogs", 60,
+    "AuditLogs", 60,
+    "AADRiskyUsers", 1440,
+    "SecurityAlert", 1440,
+    "SecurityIncident", 1440,
+    "IntuneDeviceComplianceOrg", 2880,
+    "CommonSecurityLog", 60,
+    "DailySyncProbe_CL", 1440
+];
+let lastSeen =
+    union isfuzzy=true withsource=TableName
+        SigninLogs, AuditLogs, AADRiskyUsers, SecurityAlert, SecurityIncident, IntuneDeviceComplianceOrg, CommonSecurityLog, DailySyncProbe_CL
+    | where TimeGenerated > ago(3d)
+    | summarize LastSeen = max(TimeGenerated) by TableName;
+expected
+| join kind=leftouter lastSeen on TableName
+| extend AgeMin = datetime_diff('minute', now(), LastSeen)
+| extend State = iff(isnull(LastSeen) or AgeMin > SlaMinutes, "Dark", "Delivering")
+| project TableName, State, LastSeen, AgeMin, SlaMinutes
+| order by State asc, TableName asc

@@ -1,0 +1,7 @@
+{
+  "_comment": "Today's probe ran at 06:30: synchronization is on time, but one user carries a PropertyConflict, so the verdict is drift.",
+  "sources": { "DailySyncProbe_CL": "2026-11-17T06:30:00Z" },
+  "rows": [
+    { "query": "sync-1", "TimeGenerated": "2026-11-17T06:30:00Z", "ProbeAgeMin": 60, "SyncEnabled": true, "LastSyncUtc": "2026-11-17T06:14:00Z", "AgeMinutes": 16, "SyncLate": false, "ConflictCount": 1, "Verdict": "drift" }
+  ]
+}
