@@ -1,6 +1,6 @@
 # Companion guide — The Daily Checks on One Dashboard: An Implementation Guide
 
-**Deck name: Guide_Daily_Checks_Dashboard.** The narrated deck for the companion guide [The Daily Checks on One Dashboard: An Implementation Guide](../../docs/books/guides/daily-checks-dashboard-implementation.md). **The guide is a draft, awaiting the owner's review**, and the title slide says so. It is built with the shared kit in [`../_build/`](../_build/README.md): the slides and notes are data in `build.js`, laid out by [`../_build/devwb.js`](../_build/devwb.js) in page mode. This folder sits outside `docs/`, so the site doesn't render it.
+**Deck name: Guide_Daily_Checks_Dashboard.** The narrated deck for the companion guide [The Daily Checks on One Dashboard: An Implementation Guide](../../docs/books/guides/daily-checks-dashboard-implementation.md). **The guide has been reviewed and approved**, and the title slide says so. It is built with the shared kit in [`../_build/`](../_build/README.md): the slides and notes are data in `build.js`, laid out by [`../_build/devwb.js`](../_build/devwb.js) in page mode. This folder sits outside `docs/`, so the site doesn't render it.
 
 | File | Use |
 |---|---|
@@ -19,4 +19,4 @@ Build (Git Bash): `source /c/tmp/deckenv.sh`, then `DATECODE="YYYY-MM-DD HH:MM E
 
 Each slide's speaker notes have four parts: the narration (the only part spoken), a Detail part for a presenter, the footnotes the slide relies on, in full, and the sections it draws on. Every fact comes from the guide and the sources they footnote (Microsoft Learn, read November 18, 2026); the deck adds none. The narration names each source by its original and each book by its title. Lab slides show what the kit really printed on its fictional fixtures (`data/kit-captures/dc/`); Lab 2 steps say the authors haven't run them. The pages' labels carry over: design guidance, preview stages, *not yet specified* for GCC where Learn is silent, and evidence that *supports* a control, which the assessor decides. The workbook is a view, not evidence, and every deck says so.
 
-The title slide carries the Date Code of the build and the page's review status. The decks were built on November 18, 2026 from the draft pages, before their review; if a page changes, its deck is rebuilt and re-recorded.
+The title slide carries the Date Code of the build and the page's review status. The decks were built on November 18, 2026 from the draft pages; after the pages were reviewed and approved, the title slides were re-recorded on November 19, 2026. If a page changes, its deck is rebuilt and re-recorded.

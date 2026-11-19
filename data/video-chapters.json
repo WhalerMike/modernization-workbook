@@ -5507,7 +5507,7 @@
    "The operator's morning, before the workbook"
   ],
   [
-   71,
+   70,
    "Scene 1: ten checks, ten tabs"
   ],
   [
@@ -5515,7 +5515,7 @@
    "Check 1: what does an empty tab prove?"
   ],
   [
-   127,
+   126,
    "Scene 2: an export edited in the portal"
   ],
   [
@@ -5527,15 +5527,15 @@
    "Scene 3: the morning the logs stopped"
   ],
   [
-   231,
+   230,
    "Try it: render the first morning"
   ],
   [
-   253,
+   252,
    "Scene 4: what the empty queues were hiding"
   ],
   [
-   282,
+   281,
    "Check 2: can the render be the evidence?"
   ],
   [
@@ -6725,7 +6725,7 @@
    "The manifest: ten tabs, one per check"
   ],
   [
-   194,
+   193,
    "Who keeps the manifest, and the data"
   ],
   [
@@ -6755,15 +6755,15 @@
    "Chapter 02: The Workbook Template and Its Validator"
   ],
   [
-   33,
+   32,
    "Why keep the workbook as a file"
   ],
   [
-   67,
+   66,
    "What Microsoft Learn gives you"
   ],
   [
-   109,
+   108,
    "What it leaves to you"
   ],
   [
@@ -6771,7 +6771,7 @@
    "The template, and the ten checks"
   ],
   [
-   193,
+   192,
    "Who edits, who reviews, who deploys"
   ],
   [
@@ -6787,7 +6787,7 @@
    "Lab 1: record the validation"
   ],
   [
-   300,
+   299,
    "Lab 2: round-trip through the portal"
   ],
   [
@@ -6801,7 +6801,7 @@
    "Chapter 03: What Each Tab Would Show"
   ],
   [
-   34,
+   33,
    "Why an empty queue proves nothing"
   ],
   [
@@ -6829,11 +6829,11 @@
    "Lab 1: the next morning"
   ],
   [
-   285,
+   284,
    "Lab 1: reachability, and a refused render"
   ],
   [
-   314,
+   313,
    "Lab 1: record what the check found"
   ],
   [
@@ -6847,19 +6847,19 @@
    "Chapter 04: Deploying to Test and Production"
   ],
   [
-   34,
+   33,
    "Why the same commands twice"
   ],
   [
-   67,
+   66,
    "What the stages hold"
   ],
   [
-   95,
+   94,
    "Who deploys, approves and reads"
   ],
   [
-   129,
+   128,
    "Plan, with what-if"
   ],
   [
@@ -6871,11 +6871,11 @@
    "Reachability, rollback plan and evidence"
   ],
   [
-   236,
+   235,
    "Production, rollback and day two"
   ],
   [
-   276,
+   275,
    "What each record supports"
   ]
  ],
@@ -11111,15 +11111,15 @@
    "The daily checks on one dashboard"
   ],
   [
-   42,
+   41,
    "A dashboard is a picture of the evidence"
   ],
   [
-   80,
+   79,
    "Dashboards in Azure and Microsoft 365"
   ],
   [
-   123,
+   122,
    "Ten daily checks, ten tabs"
   ],
   [
@@ -11131,7 +11131,7 @@
    "Who does what: the RACI"
   ],
   [
-   245,
+   244,
    "Step 1: connect the sources"
   ],
   [
@@ -11139,15 +11139,15 @@
    "Steps 2 and 3: validate, then preview"
   ],
   [
-   328,
+   327,
    "Step 4: deploy to test, then production"
   ],
   [
-   369,
+   368,
    "Steps 5 and 6: read it, and keep the evidence"
   ],
   [
-   416,
+   415,
    "Requirements, dangers and what's unverified"
   ]
  ],
@@ -14313,7 +14313,7 @@
    "Unit 3: the template as code"
   ],
   [
-   172,
+   171,
    "Who this module is for"
   ],
   [
@@ -14321,11 +14321,11 @@
    "Lab 1: the tabs, and the edited export"
   ],
   [
-   235,
+   234,
    "Lab 2: a test workspace"
   ],
   [
-   262,
+   261,
    "Knowledge check"
   ]
  ],
@@ -14339,7 +14339,7 @@
    "Objectives: what you'll be able to do"
   ],
   [
-   56,
+   55,
    "Unit 1: reading the workbook"
   ],
   [

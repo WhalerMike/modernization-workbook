@@ -12,26 +12,26 @@
   ],
   [
    8.312,
-   4.287,
-   "One thing first: the guide is a draft, awaiting the owner's review."
+   3.675,
+   "One thing first: the guide has been reviewed and approved."
   ],
   [
-   12.6,
+   11.988,
    7.713,
    "It answers a question the operator runbook leaves open: can the operator see all of the daily checks in one place each morning?"
   ],
   [
-   20.312,
+   19.7,
    8.963,
    "Mostly yes, on one Azure Monitor workbook in the Sentinel workspace, with a link out to the portal that holds the data for the checks a workbook can't read."
   ],
   [
-   29.275,
+   28.663,
    5.425,
    "Its facts come from Microsoft Learn, read on November eighteenth, 2026."
   ],
   [
-   34.7,
+   34.087,
    3.5,
    "We'll go in four parts: why, what, who, and how."
   ]

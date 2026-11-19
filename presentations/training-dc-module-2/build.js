@@ -16,7 +16,7 @@ require("../_build/devwb.js")({
   map: "Reading each tab · STALE is not CLEAR · what-if and the approved hash · rollback · the evidence · Lab 1 and Lab 2 · a check",
   slides: [
     {
-      say: `Welcome to Module 2 of The Daily Checks on One Dashboard: reading it, deploying it, and keeping the evidence. A dashboard's most dangerous state isn't red: it's green over a source that stopped arriving. In this module you read the workbook the way an operator should, telemetry first; deploy it the way a change should go, previewed and approved; and keep the evidence the way an assessor needs it. About forty minutes, plus a lab. The module is a draft awaiting the owner's review.`,
+      say: `Welcome to Module 2 of The Daily Checks on One Dashboard: reading it, deploying it, and keeping the evidence. A dashboard's most dangerous state isn't red: it's green over a source that stopped arriving. In this module you read the workbook the way an operator should, telemetry first; deploy it the way a change should go, previewed and approved; and keep the evidence the way an assessor needs it. About forty minutes, plus a lab. The module has been reviewed and approved.`,
       detail: `Module 2 covers guide Steps 3 to 6. About 40 minutes, plus Lab 2. Units: reading the workbook; deploying it; the evidence. Exercises: Lab 1 (Chapter 03 of the developer workbook) and the runbook (Chapter 04, step 4); Lab 2 (Chapter 03's reachability check in a test workspace, then Chapter 04's Stage 1 with a change record).`,
       cite: [],
       ref: "Module 2, introduction",

@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 01: The Daily Checks and Where Each One Lives
 
-Welcome to Building the Daily Checks Workbook. This is Chapter 1: the daily checks, and where each one lives. Before anything is drawn on a dashboard, each daily check in the operator runbook gets one row: what it reads, where else to look, and whether a workbook can show it at all. We'll start from what Microsoft Learn gives you, see what it leaves to you, read the kit's manifest and its ten tabs, and walk two labs. The chapter is a draft awaiting the owner's review, and the code is illustrative, tested against fixtures.
+Welcome to Building the Daily Checks Workbook. This is Chapter 1: the daily checks, and where each one lives. Before anything is drawn on a dashboard, each daily check in the operator runbook gets one row: what it reads, where else to look, and whether a workbook can show it at all. We'll start from what Microsoft Learn gives you, see what it leaves to you, read the kit's manifest and its ten tabs, and walk two labs. The chapter has been reviewed and approved, and the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why one row per daily check
 

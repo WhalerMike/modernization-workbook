@@ -1,5 +1,5 @@
-// Companion guide — The Daily Checks on One Dashboard: An Implementation Guide. The guide is a DRAFT awaiting the
-// owner's review; the title slide says so. A narrated Why / What / Who / How deck, laid out with ../_build/devwb.js in
+// Companion guide — The Daily Checks on One Dashboard: An Implementation Guide. The guide has been reviewed and
+// approved (review-status: approved); the title slide says so. A narrated Why / What / Who / How deck, laid out with ../_build/devwb.js in
 // page mode: every fact comes from docs/books/guides/daily-checks-dashboard-implementation.md, and cite names are that
 // guide's footnotes (Microsoft Learn, read November 18, 2026). The narration names sources by their originals and books
 // by their titles.
@@ -8,15 +8,15 @@ const G = "docs/books/guides/daily-checks-dashboard-implementation.md";
 require("../_build/devwb.js")({
   workbook: "dc", pages: [G], dir: __dirname,
   base: "Guide_Daily_Checks_Dashboard",
-  series: "Companion guide: The Daily Checks on One Dashboard (draft)",
+  series: "Companion guide: The Daily Checks on One Dashboard",
   title: "The Daily Checks on One Dashboard",
   deckTitle: "The daily checks on one dashboard",
   subtitle: "An implementation guide: one Azure Monitor workbook, a tab per daily check",
   map: "Why: a dashboard is a picture of the evidence · What: options, ten tabs, GCC · Who: the RACI · How: six steps, dangers",
   slides: [
     {
-      say: `Welcome. This is the narrated briefing for a companion guide in the Federal Modernization Workbook: The Daily Checks on One Dashboard. One thing first: the guide is a draft, awaiting the owner's review. It answers a question the operator runbook leaves open: can the operator see all of the daily checks in one place each morning? Mostly yes, on one Azure Monitor workbook in the Sentinel workspace, with a link out to the portal that holds the data for the checks a workbook can't read. Its facts come from Microsoft Learn, read on November eighteenth, 2026. We'll go in four parts: why, what, who, and how.`,
-      detail: `The guide puts the daily checks of the operator runbook (Compliance Automation and Day-Two Operations, Chapter 12) on one Azure Monitor workbook in the Sentinel Log Analytics workspace, one tab per check, with a link out to the built-in portal page where a check's data isn't in Log Analytics. Status: draft, review pending. Every product fact, table, column, role and availability statement was read on Microsoft Learn on November 18, 2026. The program's own positions are labeled design guidance. Starting state: a civilian agency at FedRAMP Moderate on Microsoft 365 GCC (Moderate); Sentinel on a Log Analytics workspace in commercial Azure; Entra ID, Intune and the Defender XDR connector sending logs to it; an ITSM tool that holds the tasks.`,
+      say: `Welcome. This is the narrated briefing for a companion guide in the Federal Modernization Workbook: The Daily Checks on One Dashboard. One thing first: the guide has been reviewed and approved. It answers a question the operator runbook leaves open: can the operator see all of the daily checks in one place each morning? Mostly yes, on one Azure Monitor workbook in the Sentinel workspace, with a link out to the portal that holds the data for the checks a workbook can't read. Its facts come from Microsoft Learn, read on November eighteenth, 2026. We'll go in four parts: why, what, who, and how.`,
+      detail: `The guide puts the daily checks of the operator runbook (Compliance Automation and Day-Two Operations, Chapter 12) on one Azure Monitor workbook in the Sentinel Log Analytics workspace, one tab per check, with a link out to the built-in portal page where a check's data isn't in Log Analytics. Review status: approved. Every product fact, table, column, role and availability statement was read on Microsoft Learn on November 18, 2026. The program's own positions are labeled design guidance. Starting state: a civilian agency at FedRAMP Moderate on Microsoft 365 GCC (Moderate); Sentinel on a Log Analytics workspace in commercial Azure; Entra ID, Intune and the Defender XDR connector sending logs to it; an ITSM tool that holds the tasks.`,
       cite: [],
       ref: "Opening; “In this guide”; “How to read this guide”",
     },

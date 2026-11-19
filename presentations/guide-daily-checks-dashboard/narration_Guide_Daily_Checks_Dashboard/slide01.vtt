@@ -15,36 +15,36 @@ Federal Modernization Workbook:
 The Daily Checks on One Dashboard.
 
 4
-00:00:08.312 --> 00:00:12.599
-One thing first: the guide is a
-draft, awaiting the owner's review.
+00:00:08.312 --> 00:00:11.987
+One thing first: the guide has
+been reviewed and approved.
 
 5
-00:00:12.599 --> 00:00:16.045
+00:00:11.987 --> 00:00:15.433
 It answers a question the
 operator runbook leaves open:
 
 6
-00:00:16.045 --> 00:00:20.313
+00:00:15.433 --> 00:00:19.701
 can the operator see all of the daily
 checks in one place each morning?
 
 7
-00:00:20.313 --> 00:00:24.721
+00:00:19.701 --> 00:00:24.109
 Mostly yes, on one Azure Monitor workbook
 in the Sentinel workspace, with a
 
 8
-00:00:24.721 --> 00:00:29.275
+00:00:24.109 --> 00:00:28.663
 link out to the portal that holds the data
 for the checks a workbook can't read.
 
 9
-00:00:29.275 --> 00:00:34.700
+00:00:28.663 --> 00:00:34.088
 Its facts come from Microsoft Learn,
 read on November eighteenth, 2026.
 
 10
-00:00:34.700 --> 00:00:38.260
+00:00:34.088 --> 00:00:37.660
 We'll go in four parts:
 why, what, who, and how.

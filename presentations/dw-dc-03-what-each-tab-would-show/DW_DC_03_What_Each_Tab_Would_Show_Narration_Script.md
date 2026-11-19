@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 03: What Each Tab Would Show
 
-Welcome back to Building the Daily Checks Workbook. This is Chapter 3: what each tab would show. An empty queue over a source that stopped arriving looks exactly like a quiet night, and the renderer in this chapter says which one it is. We'll see what Microsoft Learn and the operator runbook give you, the renderer's rules, and the read-only reachability check, then walk two mornings in the fictional workspace. The chapter is a draft awaiting the owner's review, and the code is illustrative, tested against fixtures.
+Welcome back to Building the Daily Checks Workbook. This is Chapter 3: what each tab would show. An empty queue over a source that stopped arriving looks exactly like a quiet night, and the renderer in this chapter says which one it is. We'll see what Microsoft Learn and the operator runbook give you, the renderer's rules, and the read-only reachability check, then walk two mornings in the fictional workspace. The chapter has been reviewed and approved, and the code is illustrative, tested against fixtures.
 
 ## Slide 2 — Why an empty queue proves nothing
 

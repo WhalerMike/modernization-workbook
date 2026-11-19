@@ -29,7 +29,7 @@ The runbook that takes the workbook from the repository to a test subscription, 
 ## Narrated tour
 {{< fmw-video DW_DC_04_Deploying_Test_Production_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-dc-04-deploying-test-production) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-dc-04-deploying-test-production) (about 5 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-04-deploying-test-production/DW_DC_04_Deploying_Test_Production_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-04-deploying-test-production/DW_DC_04_Deploying_Test_Production_Narrated.vtt). Recorded on November 19, 2026 from the draft chapter, before its review.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-dc-04-deploying-test-production) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-dc-04-deploying-test-production) (about 5 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-04-deploying-test-production/DW_DC_04_Deploying_Test_Production_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-04-deploying-test-production/DW_DC_04_Deploying_Test_Production_Narrated.vtt). Recorded on November 19, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

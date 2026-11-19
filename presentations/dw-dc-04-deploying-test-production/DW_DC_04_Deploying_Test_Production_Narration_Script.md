@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 04: Deploying to Test and Production
 
-Welcome back to Building the Daily Checks Workbook. This is Chapter 4: deploying to test and production. The same commands twice, with a different settings file, and a record of each step in between. It's a runbook, not a lab: it runs Chapters 2 and 3's scripts and the kit's deploy scripts. The output you'll see comes from the kit's fixture mode, on November sixteenth, 2026. Nothing here has been run against a live subscription, and the chapter is a draft awaiting the owner's review.
+Welcome back to Building the Daily Checks Workbook. This is Chapter 4: deploying to test and production. The same commands twice, with a different settings file, and a record of each step in between. It's a runbook, not a lab: it runs Chapters 2 and 3's scripts and the kit's deploy scripts. The output you'll see comes from the kit's fixture mode, on November sixteenth, 2026. Nothing here has been run against a live subscription, and the chapter has been reviewed and approved.
 
 ## Slide 2 — Why the same commands twice
 
