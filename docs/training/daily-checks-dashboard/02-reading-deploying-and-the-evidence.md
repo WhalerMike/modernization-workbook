@@ -7,14 +7,14 @@ research-type: training module
 research-book: "Book 15"
 series-order: 2
 review-status: approved
-reviewed-sha256: 8fac31ee4b35705fa355aaf6bf5d360b75c08dd79306804b7c3b552368c59351
+reviewed-sha256: 11d6c2214e9806e62191a3e2a60afe230adfc2358c8a52e738cfadd54acb584c
 last-reviewed: 2026-11-19
 ---
 # Module 2: Reading it, deploying it and keeping the evidence {.unnumbered}
 
 *Part of the [Daily Checks Dashboard learning path](index.md). Guide [Steps 3](../../books/guides/daily-checks-dashboard-implementation.md#step-3) to [6](../../books/guides/daily-checks-dashboard-implementation.md#step-6). About 40 minutes, plus Lab 2.*
 
-**Watch:** the narrated deck for this module (about 4 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_DC_Module_2_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DC_Module_2_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-dc-module-2) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dc-module-2/Training_DC_Module_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dc-module-2/Training_DC_Module_2_Narrated.vtt). The deck files join the next edition.
+**Watch:** the narrated deck for this module (about 5 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_DC_Module_2_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DC_Module_2_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-dc-module-2) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dc-module-2/Training_DC_Module_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dc-module-2/Training_DC_Module_2_Narrated.vtt). The deck files join the next edition.
 
 ## Introduction (3 minutes) {#dc-m2-intro}
 

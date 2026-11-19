@@ -1,31 +1,4 @@
 {
- "1": [
-  [
-   0.05,
-   2.737,
-   "Welcome back to Building the Daily Checks Workbook."
-  ],
-  [
-   2.788,
-   2.962,
-   "This is Chapter 3: what each tab would show."
-  ],
-  [
-   5.75,
-   7.713,
-   "An empty queue over a source that stopped arriving looks exactly like a quiet night, and the renderer in this chapter says which one it is."
-  ],
-  [
-   13.463,
-   10.037,
-   "We'll see what Microsoft Learn and the operator runbook give you, the renderer's rules, and the read-only reachability check, then walk two mornings in the fictional workspace."
-  ],
-  [
-   23.5,
-   6.237,
-   "The chapter has been reviewed and approved, and the code is illustrative, tested against fixtures."
-  ]
- ],
  "2": [
   [
    0.05,
@@ -56,33 +29,6 @@
    26.475,
    5.662,
    "It's for developers, security operations, and the operators who read the workbook each morning."
-  ]
- ],
- "3": [
-  [
-   0.05,
-   1.275,
-   "Here's what you start with."
-  ],
-  [
-   1.325,
-   11.062,
-   "The operator runbook's completeness check lists each expected table past its freshness limit, and it uses a fuzzy union, so a missing table shows up as a null instead of failing the query."
-  ],
-  [
-   12.387,
-   7.812,
-   "Sentinel's health page gives the query for each connector's latest failure, and recommends Azure Monitor alert rules for health drifts."
-  ],
-  [
-   20.2,
-   8.688,
-   "Microsoft's Intune page says compliance is exported once a day and can take up to forty-eight hours, and not to rely on a fixed completion time."
-  ],
-  [
-   28.887,
-   5.787,
-   "And the Azure command line can run a query against a workspace, from its log analytics extension."
   ]
  ],
  "4": [
@@ -132,6 +78,75 @@
    "The render carries the banner, and the kit refuses to record it as evidence."
   ]
  ],
+ "1": [
+  [
+   0.05,
+   2.737,
+   "Welcome back to Building the Daily Checks Workbook."
+  ],
+  [
+   2.788,
+   2.962,
+   "This is Chapter 3: what each tab would show."
+  ],
+  [
+   5.75,
+   7.713,
+   "An empty queue over a source that stopped arriving looks exactly like a quiet night, and the renderer in this chapter says which one it is."
+  ],
+  [
+   13.463,
+   14.1,
+   "We'll see what Microsoft Learn and the operator runbook give you, the renderer's rules, the read-only reachability check and the replication probe, then walk two mornings in the fictional workspace, one of them with a domain controller gone silent."
+  ],
+  [
+   27.562,
+   6.237,
+   "The chapter has been reviewed and approved, and the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.275,
+   "Here's what you start with."
+  ],
+  [
+   1.325,
+   11.062,
+   "The operator runbook's completeness check lists each expected table past its freshness limit, and it uses a fuzzy union, so a missing table shows up as a null instead of failing the query."
+  ],
+  [
+   12.387,
+   7.812,
+   "Sentinel's health page gives the query for each connector's latest failure, and recommends Azure Monitor alert rules for health drifts."
+  ],
+  [
+   20.2,
+   8.688,
+   "Microsoft's Intune page says compliance is exported once a day and can take up to forty-eight hours, and not to rely on a fixed completion time."
+  ],
+  [
+   28.887,
+   5.7,
+   "The Azure command line can run a query against a workspace, from its log analytics extension."
+  ],
+  [
+   34.587,
+   4.588,
+   "Learn's unavailable-computers query takes each computer's latest heartbeat."
+  ],
+  [
+   39.175,
+   9.4,
+   "The replication report gives each link's last success, last failure and status, and reading it forest-wide needs Enterprise Admins or equivalent."
+  ],
+  [
+   48.575,
+   5.513,
+   "And the Logs Ingestion A P I takes a list of records posted to a collection rule's stream."
+  ]
+ ],
  "5": [
   [
    0.05,
@@ -140,28 +155,33 @@
   ],
   [
    1.275,
-   8.325,
-   "The completeness query lists dark tables, but the other tabs don't know their table is dark, so each tab names its own sources and limits."
+   7.075,
+   "The other tabs don't know their table is dark, so each tab names its own sources and limits, and says what empty means."
   ],
   [
-   9.6,
-   5.537,
-   "A query result is just rows or no rows, so each tab says what empty means."
-  ],
-  [
-   15.137,
+   8.35,
    5.062,
    "Intune's timing is variable, so the devices tab allows forty-eight hours."
   ],
   [
-   20.2,
+   13.412,
    6.225,
    "A screenshot is easy to file as evidence, so the render carries the banner and the kit refuses it."
   ],
   [
-   26.425,
-   9.575,
-   "And nothing proves each tab's tables answer, so the kit asks the workspace for each table's newest record and count: delivering, late or missing."
+   19.637,
+   9.45,
+   "Nothing proves each tab's tables answer, so the kit asks the workspace for each table's newest record and count: delivering, late or missing."
+  ],
+  [
+   29.087,
+   9.912,
+   "Learn's unavailable-computers query lists only servers that once reported, so the sync and Active Directory tabs start from the settings' server lists, one row each."
+  ],
+  [
+   39.0,
+   11.475,
+   "And the replication report is a file in local time on one host, so the kit's probe turns it into one record per link, with a verdict and times in U T C, and sends it to the workspace."
   ]
  ],
  "6": [
@@ -182,18 +202,23 @@
   ],
   [
    12.3,
-   4.438,
-   "And the security officer keeps the reachability record, never the render."
+   5.162,
+   "And the security officer keeps the reachability and probe records, never the render."
   ],
   [
-   16.738,
+   17.462,
    2.55,
    "Lab 1 needs only saved results."
   ],
   [
-   19.288,
+   20.012,
    8.238,
    "Lab 2 needs Log Analytics Reader on a test workspace, which can view and search the monitoring data, and the check sends only queries."
+  ],
+  [
+   28.25,
+   10.738,
+   "The live replication probe is different: reading replication needs Enterprise Admins or equivalent, so Chapter 4 runs it only on a Tier 0 host, or not at all."
   ]
  ],
  "7": [
@@ -219,13 +244,18 @@
   ],
   [
    22.025,
-   4.963,
-   "The sync, risk, emergency access and grants tabs are all STALE."
+   9.325,
+   "The sync, risk, emergency access, grants and admin changes tabs are all STALE, even the sync server's two overnight export errors."
   ],
   [
-   26.988,
-   7.75,
-   "Step 2 shows why the risk tab isn't clear: its query returned no rows, but its source stopped fourteen hours ago."
+   31.35,
+   9.425,
+   "The Active Directory tab's sources are fresh, so it can be read: the third domain controller went silent at seven the evening before, and both links from it are failing."
+  ],
+  [
+   40.775,
+   6.513,
+   "Step 2 shows why the risk tab isn't clear: no rows, but its source stopped fourteen hours ago."
   ]
  ],
  "8": [
@@ -246,60 +276,112 @@
   ],
   [
    17.9,
-   6.35,
-   "Grants and D L P alerts are clear, and this time clear means something, because their sources are fresh."
+   4.8,
+   "The staging synchronization server wrote no backup event, so it's flagged too."
+  ],
+  [
+   22.7,
+   6.263,
+   "The admin changes tab lists yesterday's five request-driven changes, each to be matched to its ticket."
+  ],
+  [
+   28.962,
+   7.513,
+   "Grants, D L P alerts and Active Directory are clear, and this time clear means something, because their sources are fresh."
   ]
  ],
  "9": [
   [
    0.05,
-   5.3,
-   "Step 4 checks each table's reachability on the first morning, from saved answers."
+   5.237,
+   "Step 4 runs the replication probe on the first morning's saved replication report."
   ],
   [
-   5.35,
-   9.875,
-   "Sign-in logs, audit logs and the probe's table are late, and the Sentinel health table is missing altogether: health monitoring was never turned on in this workspace."
+   5.287,
+   3.638,
+   "Without the send switch, it writes its file and sends nothing."
   ],
   [
-   15.225,
-   1.913,
-   "The script exits with an error."
+   8.925,
+   3.038,
+   "Four links between the fictional domain controllers."
   ],
   [
-   17.137,
-   4.287,
-   "Step 5 tries to record the first morning's render as evidence."
+   11.963,
+   1.1,
+   "Two are healthy."
   ],
   [
-   21.425,
-   3.663,
-   "The kit refuses: a rendered view is not evidence."
+   13.062,
+   8.825,
+   "Two are failing, nine failures each, with status seventeen twenty-two, and both come from the third domain controller, the one that went silent."
+  ],
+  [
+   21.887,
+   4.188,
+   "The script exits with an error, because a failing link is a finding."
+  ],
+  [
+   26.075,
+   5.237,
+   "That record, not the tab, is what Chapter 4 sends to the workspace each morning."
   ]
  ],
  "10": [
   [
    0.05,
-   3.112,
-   "Step 6 records the reachability check instead."
+   5.375,
+   "Step 5 checks each table's reachability on the first morning, from saved answers."
   ],
   [
-   3.163,
-   8.65,
-   "Record one, with result Fail: the record keeps what the check found, with continuous monitoring and system monitoring, and their indicators."
+   5.425,
+   9.875,
+   "Sign-in logs, audit logs and the probe's table are late, and the Sentinel health table is missing altogether: health monitoring was never turned on in this workspace."
   ],
   [
-   11.812,
+   15.3,
+   4.763,
+   "The servers' heartbeat, event and security event tables are all delivering."
+  ],
+  [
+   20.062,
+   1.913,
+   "The script exits with an error."
+  ],
+  [
+   21.975,
+   4.338,
+   "Step 6 tries to record the first morning's render as evidence."
+  ],
+  [
+   26.312,
+   3.663,
+   "The kit refuses: a rendered view is not evidence."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.925,
+   "Step 7 records the reachability check and the probe instead."
+  ],
+  [
+   3.975,
+   9.812,
+   "Records one and two, both with result Fail: each record keeps what its check found, with continuous monitoring and system monitoring, and their indicators."
+  ],
+  [
+   13.787,
    3.7,
    "A failing record is still evidence; it's evidence of the gap."
   ],
   [
-   15.512,
-   6.0,
-   "Step 7 runs this chapter's tests and the evidence tests: sixteen passed, none failed."
+   17.488,
+   6.162,
+   "Step 8 runs this chapter's tests and the evidence tests: twenty-seven passed, none failed."
   ]
  ],
- "11": [
+ "12": [
   [
    0.05,
    6.95,
@@ -317,16 +399,16 @@
   ],
   [
    17.837,
-   4.525,
-   "The reachability record supports continuous monitoring and system monitoring."
+   5.75,
+   "The reachability record and the probe's record support continuous monitoring and system monitoring."
   ],
   [
-   22.363,
-   8.137,
-   "The dangers you saw: a missing connector that looks healthy, a missed probe showing yesterday's green, and a render filed as evidence."
+   23.587,
+   10.463,
+   "The dangers you saw: a missing connector that looks healthy, a missed probe showing yesterday's green, a silent server read as a quiet one, and a render filed as evidence."
   ],
   [
-   30.5,
+   34.05,
    2.85,
    "Next, Chapter 4 deploys the workbook."
   ]

@@ -250,159 +250,238 @@ and a plan that wasn't made
 against the live environment.
 
 54
-00:03:06.043 --> 00:03:08.368
+00:03:06.043 --> 00:03:08.350
 Step 7 is the smoke test, in the portal:
 
 55
-00:03:08.368 --> 00:03:13.175
-open the Daily checks workbook under
-the test workspace, check that the ten
+00:03:08.350 --> 00:03:13.351
+open the Daily checks workbook under the
+test workspace, check that the twelve
 
 56
-00:03:13.175 --> 00:03:18.650
+00:03:13.351 --> 00:03:18.800
 tabs open with the banner, and that the
 telemetry tab lists every expected table.
 
 57
-00:03:22.400 --> 00:03:26.488
+00:03:22.550 --> 00:03:26.638
 Step 8 runs the reachability
 check against the test workspace.
 
 58
-00:03:26.488 --> 00:03:29.363
+00:03:26.638 --> 00:03:29.513
 Step 9 plans the rollback
 before you need it.
 
 59
-00:03:29.363 --> 00:03:32.463
+00:03:29.513 --> 00:03:32.613
 Step 10 records each folder as evidence.
 
 60
-00:03:32.463 --> 00:03:37.330
+00:03:32.613 --> 00:03:37.480
 Then the go or no-go: the stage is a go
 when every file matches its hash list,
 
 61
-00:03:37.330 --> 00:03:41.206
+00:03:37.480 --> 00:03:41.356
 the chain is unbroken, and the
 preflight, validation, plan,
 
 62
-00:03:41.206 --> 00:03:45.413
+00:03:41.356 --> 00:03:45.563
 deployment and reachability each
 have a passing live record.
 
 63
-00:03:45.413 --> 00:03:47.249
+00:03:45.563 --> 00:03:47.399
 Fixture records never count.
 
 64
-00:03:47.249 --> 00:03:52.170
+00:03:47.399 --> 00:03:52.320
 A no-go is a finding with an owner, and
 the stage is repeated after the fix.
 
 65
-00:03:55.920 --> 00:03:59.507
+00:03:56.070 --> 00:03:59.657
 Production runs the same commands
 with the production settings file.
 
 66
-00:03:59.507 --> 00:04:02.292
+00:03:59.657 --> 00:04:02.442
 That file names the test
 stage's evidence folder,
 
 67
-00:04:02.292 --> 00:04:06.120
+00:04:02.442 --> 00:04:06.270
 and the preflight refuses production
 until that evidence passes.
 
 68
-00:04:06.120 --> 00:04:09.170
+00:04:06.270 --> 00:04:09.320
 There are two ways back,
 both planned in advance.
 
 69
-00:04:09.170 --> 00:04:13.215
+00:04:09.320 --> 00:04:13.365
 Redeploy the previous approved
 plan when the content is wrong;
 
 70
-00:04:13.215 --> 00:04:15.082
+00:04:13.365 --> 00:04:15.232
 its hash is already approved.
 
 71
-00:04:15.082 --> 00:04:17.794
+00:04:15.232 --> 00:04:17.944
 Or delete the workbook
 when it shouldn't exist.
 
 72
-00:04:17.794 --> 00:04:23.433
+00:04:17.944 --> 00:04:23.583
 Deleting it removes a view only: no
 log data, alert rule or task changes.
 
 73
-00:04:23.433 --> 00:04:27.412
+00:04:23.583 --> 00:04:27.562
 And on day two, a portal edit comes
 back as an export, is validated,
 
 74
-00:04:27.412 --> 00:04:31.910
+00:04:27.562 --> 00:04:31.695
 and replaces the template through
 review before it's redeployed.
 
 75
-00:04:35.660 --> 00:04:37.547
-Here's what each record supports.
+00:04:31.695 --> 00:04:36.300
+When a synchronization server or
+domain controller is added or retired,
 
 76
-00:04:37.547 --> 00:04:41.473
+00:04:36.300 --> 00:04:39.985
+its settings list changes and
+the workbook is redeployed:
+
+77
+00:04:39.985 --> 00:04:44.630
+a retired server left in the list
+shows as a silent one every morning.
+
+78
+00:04:48.380 --> 00:04:52.180
+The Active Directory tab reads
+replication from the probe's table.
+
+79
+00:04:52.180 --> 00:04:57.079
+The probe reads the directory and changes
+nothing in it, but Microsoft names
+
+80
+00:04:57.079 --> 00:04:59.256
+Enterprise Admins, or equivalent,
+
+81
+00:04:59.256 --> 00:05:02.755
+as the minimum to read
+forest-wide replication status.
+
+82
+00:05:02.755 --> 00:05:06.674
+So it runs only as a Tier 0
+identity, on a Tier 0 host,
+
+83
+00:05:06.674 --> 00:05:11.180
+each morning, and only where
+the Tier 0 owner approves it.
+
+84
+00:05:11.180 --> 00:05:15.167
+The first command writes the probe's
+file without sending; read it.
+
+85
+00:05:15.167 --> 00:05:17.786
+The second sends it, as
+an identity that can
+
+86
+00:05:17.786 --> 00:05:20.479
+only publish to the
+probe's collection rule.
+
+87
+00:05:20.479 --> 00:05:23.842
+A failing link is a finding,
+not a failed deployment.
+
+88
+00:05:23.842 --> 00:05:28.257
+Without approval, skip it, and remove
+the replication table and query
+
+89
+00:05:28.257 --> 00:05:32.960
+through a reviewed change, rather
+than read an empty list as healthy.
+
+90
+00:05:36.710 --> 00:05:38.597
+Here's what each record supports.
+
+91
+00:05:38.597 --> 00:05:42.523
 Preflight supports least privilege
 and configuration settings.
 
-77
-00:04:41.473 --> 00:04:44.934
+92
+00:05:42.523 --> 00:05:45.984
 The validation supports the
 baseline and change control.
 
-78
-00:04:44.934 --> 00:04:49.585
+93
+00:05:45.984 --> 00:05:50.635
 The plan and its approval support
 change control and impact analysis.
 
-79
-00:04:49.585 --> 00:04:52.897
+94
+00:05:50.635 --> 00:05:53.947
 The deployment supports change
 control and the baseline.
 
-80
-00:04:52.897 --> 00:04:56.911
+95
+00:05:53.947 --> 00:05:57.961
 Reachability supports continuous
 monitoring and system monitoring.
 
-81
-00:04:56.911 --> 00:05:01.048
+96
+00:05:57.961 --> 00:06:02.098
 The rollback plan supports change
 control and the contingency plan.
 
-82
-00:05:01.048 --> 00:05:03.512
+97
+00:06:02.098 --> 00:06:06.548
+The replication probe's record supports
+continuous and system monitoring.
+
+98
+00:06:06.548 --> 00:06:09.011
 And the evidence step supports continuous
 
-83
-00:05:03.512 --> 00:05:06.523
+99
+00:06:09.011 --> 00:06:12.022
 monitoring and the protection
 of audit information.
 
-84
-00:05:06.523 --> 00:05:10.335
+100
+00:06:12.022 --> 00:06:15.834
 The records support these controls;
 the assessor decides them.
 
-85
-00:05:10.335 --> 00:05:12.764
+101
+00:06:15.834 --> 00:06:18.264
 Thanks for following the four chapters;
 
-86
-00:05:12.764 --> 00:05:16.940
+102
+00:06:18.264 --> 00:06:22.450
 the workbook itself remains a view,
 and the records are the evidence.

@@ -7,14 +7,14 @@ research-type: training module
 research-book: "Book 15"
 series-order: 1
 review-status: approved
-reviewed-sha256: a5a03ca975066838db37c80647b62efe60454e1658c5532afe4fec6ec04d6cd2
+reviewed-sha256: 4d155d5346b7074f61b36cf56aa4f9e0b65258929a47d2e7ca751c0b837eeb60
 last-reviewed: 2026-11-19
 ---
 # Module 1: One workbook, one tab per daily check {.unnumbered}
 
 *Part of the [Daily Checks Dashboard learning path](index.md). Guide [Step 1](../../books/guides/daily-checks-dashboard-implementation.md#step-1) and [Step 2](../../books/guides/daily-checks-dashboard-implementation.md#step-2). About 40 minutes, plus Lab 2.*
 
-**Watch:** the narrated deck for this module (about 5 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_DC_Module_1_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DC_Module_1_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-dc-module-1) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dc-module-1/Training_DC_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dc-module-1/Training_DC_Module_1_Narrated.vtt). The deck files join the next edition.
+**Watch:** the narrated deck for this module (about 6 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_DC_Module_1_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DC_Module_1_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-dc-module-1) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dc-module-1/Training_DC_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dc-module-1/Training_DC_Module_1_Narrated.vtt). The deck files join the next edition.
 
 ## Introduction (3 minutes) {#dc-m1-intro}
 

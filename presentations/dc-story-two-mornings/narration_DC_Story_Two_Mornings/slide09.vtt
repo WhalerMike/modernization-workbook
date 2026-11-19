@@ -28,14 +28,29 @@ quarterly validation drill, and
 the review records it as a drill.
 
 7
-00:00:16.225 --> 00:00:18.363
-And one synchronization conflict.
+00:00:16.225 --> 00:00:18.167
+One synchronization conflict,
 
 8
-00:00:18.363 --> 00:00:20.352
-Grants and D L P alerts are clear,
+00:00:18.167 --> 00:00:22.200
+and a staging synchronization
+server that wrote no backup event.
 
 9
-00:00:20.352 --> 00:00:24.770
+00:00:22.200 --> 00:00:26.673
+And the admin changes tab lists
+yesterday's five request-driven changes,
+
+10
+00:00:26.673 --> 00:00:28.612
+each to be matched to its ticket.
+
+11
+00:00:28.612 --> 00:00:31.756
+Grants, D L P alerts and
+Active Directory are clear,
+
+12
+00:00:31.756 --> 00:00:36.190
 and this time clear means something,
 because their sources are fresh.

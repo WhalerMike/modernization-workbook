@@ -12,7 +12,7 @@ research-status: draft
 research-type: implementation guide
 research-book: "Book 15"
 review-status: approved
-reviewed-sha256: 2c0ad742fd28a336eced76f0a0564c71081e76be577b83ede757573a943569e8
+reviewed-sha256: 4c007ecc0d2721e4d5f05bb08e9958a06b7aa11a4809d0389353f218a21d85f6
 last-reviewed: 2026-11-19
 ---
 # The Daily Checks on One Dashboard: An Implementation Guide
@@ -26,7 +26,7 @@ How an agency on Microsoft 365 GCC (Moderate), with its Microsoft Sentinel works
 
 ::: {.callout-tip}
 ## Watch, present or train
-**Narrated deck (about 8 minutes, captions)**: why a dashboard is a picture of the evidence, what Azure and Microsoft 365 offer for dashboards, the ten daily checks and the tab each one gets, GCC availability source by source, the RACI, then the six steps from connecting the sources to keeping the evidence, the requirements, the dangers and what couldn't be verified, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-daily-checks-dashboard) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Daily_Checks_Dashboard_Narrated). The deck says this guide has been reviewed and approved.
+**Narrated deck (about 9 minutes, captions)**: why a dashboard is a picture of the evidence, what Azure and Microsoft 365 offer for dashboards, the twelve daily checks and the tab each one gets (the synchronization servers, the domain controllers and the request-driven admin changes among them), GCC availability source by source, the RACI, then the six steps from connecting the sources (the servers, the replication probe and its one Tier 0 right among them) to keeping the evidence, the requirements, the dangers and what couldn't be verified, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-daily-checks-dashboard) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Daily_Checks_Dashboard_Narrated). The deck says this guide has been reviewed and approved.
 **Code:** the developer workbook [*Building the Daily Checks Workbook*](../../project-plans/developer-workbooks/daily-checks/index.md) builds the workbook template, its validator, the fixture renderer and the deployment in `examples/daily-checks-workbook`, with labs on fixtures and in a test subscription.
 **Training:** the learning path [*The Daily Checks on One Dashboard*](../../training/daily-checks-dashboard/index.md) teaches this guide in two modules, each with a lab and a knowledge check.
 :::

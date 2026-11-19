@@ -6,11 +6,11 @@ Welcome to the story deck for Building the Daily Checks Workbook. Instead of fou
 
 ## Slide 2 — The operator's morning, before the workbook
 
-Here's the route. The operator runbook asks for ten daily checks, most done one portal at a time, and a quiet portal looks just like a broken feed. Scene one turns ten checks into ten tabs. Scene two catches an export someone edited in the portal. Scene three is the morning of November sixteenth, when the sign-in logs stopped overnight. Scene four is the next morning, and what the empty queues were hiding. Scene five tries to file the picture as evidence. And scene six deploys it, the same way twice.
+Here's the route. The operator runbook asks for twelve daily checks, most done one portal at a time, and a quiet portal looks just like a broken feed. Scene one turns twelve checks into twelve tabs. Scene two catches an export someone edited in the portal. Scene three is the morning of November sixteenth, when the sign-in logs stopped overnight and a domain controller went silent. Scene four is the next morning, and what the empty queues were hiding. Scene five tries to file the picture as evidence. And scene six deploys it, the same way twice.
 
-## Slide 3 — Scene 1: ten checks, ten tabs
+## Slide 3 — Scene 1: twelve checks, twelve tabs
 
-Scene one. The kit's manifest gives each daily check one row, and the workbook one tab. Eight tabs read tables in the Sentinel workspace. Two are link-outs. Entra Health's alerts live in the admin center and in e-mail, not in Log Analytics, and their G C C availability is not yet specified, so the tab sends the operator there instead of pretending. And the catalog tasks live in the I T S M tool. Two more tabs are partial: grants, and the log review queue.
+Scene one. The kit's manifest gives each daily check one row, and the workbook one tab. Ten tabs read tables in the Sentinel workspace, among them the domain controllers on the Active Directory tab, and the request-driven admin changes. Two are link-outs. Entra Health's alerts live in the admin center and in e-mail, not in Log Analytics, and their G C C availability is not yet specified, so the tab sends the operator there instead of pretending. And the catalog tasks live in the I T S M tool. Three more tabs are partial: grants, admin changes, and the log review queue.
 
 ## Slide 4 — Check 1: what does an empty tab prove?
 
@@ -26,7 +26,7 @@ Who reads the workbook? Security operations reads telemetry completeness first, 
 
 ## Slide 7 — Scene 3: the morning the logs stopped
 
-The answer to check one is B: an empty tab proves only that its query returned nothing. Scene three: November sixteenth. At ten past five the evening before, the Entra diagnostic setting stopped, and this morning's probe didn't run. Telemetry flags four rows: three dark tables and a failing connector. And look at risk, emergency access, sync and grants. They're not clear. They're stale. On a plain dashboard, the risk and emergency access tabs would have shown two calm, empty queues.
+The answer to check one is B: an empty tab proves only that its query returned nothing. Scene three: November sixteenth. At ten past five the evening before, the Entra diagnostic setting stopped, and this morning's probe didn't run. Telemetry flags four rows: three dark tables and a failing connector. And look at risk, emergency access, sync, grants and admin changes. They're not clear. They're stale. On a plain dashboard, the risk and emergency access tabs would have shown two calm, empty queues. The Active Directory tab's sources are fresh, and it shows why that matters: the third domain controller stopped sending at seven the evening before, and both replication links from it are failing.
 
 ## Slide 8 — Try it: render the first morning
 
@@ -34,7 +34,7 @@ Try it. From the kit's folder, render the first morning, then read what the risk
 
 ## Slide 9 — Scene 4: what the empty queues were hiding
 
-Scene four: the next morning. The diagnostic setting is back, and telemetry is clear. Now the queues show what they were hiding. One user at high risk. One emergency access sign-in, which turns out to be the quarterly validation drill, and the review records it as a drill. And one synchronization conflict. Grants and D L P alerts are clear, and this time clear means something, because their sources are fresh.
+Scene four: the next morning. The diagnostic setting is back, and telemetry is clear. Now the queues show what they were hiding. One user at high risk. One emergency access sign-in, which turns out to be the quarterly validation drill, and the review records it as a drill. One synchronization conflict, and a staging synchronization server that wrote no backup event. And the admin changes tab lists yesterday's five request-driven changes, each to be matched to its ticket. Grants, D L P alerts and Active Directory are clear, and this time clear means something, because their sources are fresh.
 
 ## Slide 10 — Check 2: can the render be the evidence?
 
@@ -42,8 +42,8 @@ Check two. The first morning's render shows exactly what went wrong. Should it g
 
 ## Slide 11 — Scene 5: a refused render, a kept record
 
-The answer is C. Scene five. The kit refuses to record the render: a rendered view is not evidence. Instead it records the reachability check, which asked the workspace for each table's newest record. Its result is Fail, and that's the point: the record keeps what the check found, tagged with continuous monitoring and system monitoring and their indicators. A failing record is evidence of the gap; a screenshot is only a picture of it.
+The answer is C. Scene five. The kit refuses to record the render: a rendered view is not evidence. Instead it records the reachability check, which asked the workspace for each table's newest record, and the replication probe, which found the third domain controller's two failing links. Both results are Fail, and that's the point: each record keeps what its check found, tagged with continuous monitoring and system monitoring and their indicators. A failing record is evidence of the gap; a screenshot is only a picture of it.
 
 ## Slide 12 — Scene 6: test, then production, by hash
 
-Scene six. The workbook goes to a test subscription, then production, with the same commands and a different settings file. The plan previews the change with what-if, which predicts and changes nothing; on the fixtures it predicts one create, a single workbook. A second person approves the plan's hash, and the kit deploys nothing else, and never a plan that would delete. Production waits until the test stage's evidence passes. That's the story: ten checks on one page, a picture the operator can trust only because the records behind it are kept.
+Scene six. The workbook goes to a test subscription, then production, with the same commands and a different settings file. The plan previews the change with what-if, which predicts and changes nothing; on the fixtures it predicts one create, a single workbook. A second person approves the plan's hash, and the kit deploys nothing else, and never a plan that would delete. Production waits until the test stage's evidence passes. That's the story: twelve checks on one page, a picture the operator can trust only because the records behind it are kept.

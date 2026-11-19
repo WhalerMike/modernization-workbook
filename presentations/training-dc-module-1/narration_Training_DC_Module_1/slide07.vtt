@@ -6,30 +6,30 @@ Lab 1 runs on a laptop with no tenant, in
 the developer workbook's Chapters 1 and 2.
 
 2
-00:00:05.888 --> 00:00:09.547
-You'll list the ten tabs and
-open the Entra Health tab:
+00:00:05.888 --> 00:00:09.726
+You'll list the twelve tabs
+and open the Entra Health tab:
 
 3
-00:00:09.547 --> 00:00:12.950
+00:00:09.726 --> 00:00:13.063
 a link-out, with no table,
 to the Entra admin center.
 
 4
-00:00:12.950 --> 00:00:15.412
+00:00:13.063 --> 00:00:15.524
 Then you'll validate a
 copy someone exported
 
 5
-00:00:15.412 --> 00:00:17.675
+00:00:15.524 --> 00:00:17.787
 after editing the workbook in the portal.
 
 6
-00:00:17.675 --> 00:00:21.355
+00:00:17.787 --> 00:00:21.468
 Four edits, four failures:
 a query on a workspace path,
 
 7
-00:00:21.355 --> 00:00:26.640
+00:00:21.468 --> 00:00:26.740
 a thirty-day look-back, a missing banner,
 and a subscription path in the file.

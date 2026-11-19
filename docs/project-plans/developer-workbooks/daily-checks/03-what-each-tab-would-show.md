@@ -11,7 +11,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: bedd583620d2afa31f9ab95df36d28f17f9967ed90220f1d98eeae971a3f0c9e
+reviewed-sha256: f46e6e724d89685319f6071a4da643d86813d5121ed707899a232fb5ca226eef
 last-reviewed: 2026-11-19
 ---
 # Chapter 03 — What Each Tab Would Show
@@ -29,7 +29,7 @@ The code behind the guide's [Step 5](../../../books/guides/daily-checks-dashboar
 ## Narrated tour
 {{< fmw-video DW_DC_03_What_Each_Tab_Would_Show_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-dc-03-what-each-tab-would-show) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-dc-03-what-each-tab-would-show) (about 6 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-03-what-each-tab-would-show/DW_DC_03_What_Each_Tab_Would_Show_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-03-what-each-tab-would-show/DW_DC_03_What_Each_Tab_Would_Show_Narrated.vtt). Recorded on November 19, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-dc-03-what-each-tab-would-show) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-dc-03-what-each-tab-would-show) (about 8 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-03-what-each-tab-would-show/DW_DC_03_What_Each_Tab_Would_Show_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-03-what-each-tab-would-show/DW_DC_03_What_Each_Tab_Would_Show_Narrated.vtt). Recorded on November 19, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

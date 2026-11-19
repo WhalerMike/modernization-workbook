@@ -30,15 +30,34 @@ is dark, and the Office 365 connector's
 latest health event is a failure.
 
 7
-00:00:22.025 --> 00:00:26.988
-The sync, risk, emergency access
-and grants tabs are all STALE.
+00:00:22.025 --> 00:00:27.584
+The sync, risk, emergency access, grants
+and admin changes tabs are all STALE,
 
 8
-00:00:26.988 --> 00:00:29.775
-Step 2 shows why the risk tab isn't clear:
+00:00:27.584 --> 00:00:31.350
+even the sync server's two
+overnight export errors.
 
 9
-00:00:29.775 --> 00:00:34.800
-its query returned no rows, but its
-source stopped fourteen hours ago.
+00:00:31.350 --> 00:00:34.841
+The Active Directory tab's sources
+are fresh, so it can be read:
+
+10
+00:00:34.841 --> 00:00:38.820
+the third domain controller went
+silent at seven the evening before,
+
+11
+00:00:38.820 --> 00:00:40.775
+and both links from it are failing.
+
+12
+00:00:40.775 --> 00:00:43.630
+Step 2 shows why the risk tab isn't clear:
+
+13
+00:00:43.630 --> 00:00:47.350
+no rows, but its source
+stopped fourteen hours ago.

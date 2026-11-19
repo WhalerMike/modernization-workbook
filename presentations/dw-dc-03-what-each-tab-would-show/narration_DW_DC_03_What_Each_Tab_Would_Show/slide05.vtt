@@ -5,40 +5,60 @@ WEBVTT
 What does it leave to you?
 
 2
-00:00:01.275 --> 00:00:05.362
-The completeness query lists dark
-tables, but the other tabs don't
+00:00:01.275 --> 00:00:04.014
+The other tabs don't know
+their table is dark,
 
 3
-00:00:05.362 --> 00:00:09.600
-know their table is dark, so each
-tab names its own sources and limits.
+00:00:04.014 --> 00:00:08.350
+so each tab names its own sources and
+limits, and says what empty means.
 
 4
-00:00:09.600 --> 00:00:15.137
-A query result is just rows or no rows,
-so each tab says what empty means.
-
-5
-00:00:15.137 --> 00:00:20.199
+00:00:08.350 --> 00:00:13.412
 Intune's timing is variable, so the
 devices tab allows forty-eight hours.
 
-6
-00:00:20.199 --> 00:00:22.834
+5
+00:00:13.412 --> 00:00:16.046
 A screenshot is easy to file as evidence,
 
-7
-00:00:22.834 --> 00:00:26.425
+6
+00:00:16.046 --> 00:00:19.637
 so the render carries the
 banner and the kit refuses it.
 
-8
-00:00:26.425 --> 00:00:31.378
-And nothing proves each tab's tables
+7
+00:00:19.637 --> 00:00:24.404
+Nothing proves each tab's tables
 answer, so the kit asks the workspace
 
-9
-00:00:31.378 --> 00:00:36.050
+8
+00:00:24.404 --> 00:00:29.087
 for each table's newest record and
 count: delivering, late or missing.
+
+9
+00:00:29.087 --> 00:00:34.080
+Learn's unavailable-computers query lists
+only servers that once reported, so the
+
+10
+00:00:34.080 --> 00:00:38.999
+sync and Active Directory tabs start from
+the settings' server lists, one row each.
+
+11
+00:00:38.999 --> 00:00:43.098
+And the replication report is a
+file in local time on one host,
+
+12
+00:00:43.098 --> 00:00:46.459
+so the kit's probe turns it
+into one record per link,
+
+13
+00:00:46.459 --> 00:00:50.540
+with a verdict and times in U T
+C, and sends it to the workspace.

@@ -25,7 +25,7 @@
  },
  {
   "slide": 5,
-  "title": "The manifest: ten tabs, one per check",
+  "title": "The manifest: twelve tabs, one per check",
   "links": [
    {
     "text": "Chapter 01",
@@ -65,7 +65,7 @@
  },
  {
   "slide": 9,
-  "title": "Lab 1: the query and the freshness limits",
+  "title": "Lab 1: the Active Directory tab",
   "links": [
    {
     "text": "Chapter 01",
@@ -75,7 +75,7 @@
  },
  {
   "slide": 10,
-  "title": "Lab 2: which tables does the workspace have?",
+  "title": "Lab 1: the emergency access query",
   "links": [
    {
     "text": "Chapter 01",
@@ -85,6 +85,26 @@
  },
  {
   "slide": 11,
+  "title": "Lab 1: the freshness limits",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Lab 2: which tables does the workspace have?",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
   "title": "Evidence, dangers and the checklist",
   "links": [
    {

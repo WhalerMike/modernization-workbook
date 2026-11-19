@@ -21,26 +21,31 @@ and the renderer in this
 chapter says which one it is.
 
 5
-00:00:13.463 --> 00:00:17.183
+00:00:13.463 --> 00:00:17.163
 We'll see what Microsoft Learn
 and the operator runbook give you,
 
 6
-00:00:17.183 --> 00:00:20.552
-the renderer's rules, and the
-read-only reachability check,
+00:00:17.163 --> 00:00:21.839
+the renderer's rules, the read-only
+reachability check and the replication probe,
 
 7
-00:00:20.552 --> 00:00:23.500
+00:00:21.839 --> 00:00:24.771
 then walk two mornings in
-the fictional workspace.
+the fictional workspace,
 
 8
-00:00:23.500 --> 00:00:26.272
+00:00:24.771 --> 00:00:27.563
+one of them with a domain
+controller gone silent.
+
+9
+00:00:27.563 --> 00:00:30.334
 The chapter has been
 reviewed and approved,
 
-9
-00:00:26.272 --> 00:00:29.810
+10
+00:00:30.334 --> 00:00:33.860
 and the code is illustrative,
 tested against fixtures.

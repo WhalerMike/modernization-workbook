@@ -1,58 +1,60 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.937
-Here's what each record supports.
+00:00:00.050 --> 00:00:03.850
+The Active Directory tab reads
+replication from the probe's table.
 
 2
-00:00:01.937 --> 00:00:05.863
-Preflight supports least privilege
-and configuration settings.
+00:00:03.850 --> 00:00:08.749
+The probe reads the directory and changes
+nothing in it, but Microsoft names
 
 3
-00:00:05.863 --> 00:00:09.324
-The validation supports the
-baseline and change control.
+00:00:08.749 --> 00:00:10.926
+Enterprise Admins, or equivalent,
 
 4
-00:00:09.324 --> 00:00:13.975
-The plan and its approval support
-change control and impact analysis.
+00:00:10.926 --> 00:00:14.425
+as the minimum to read
+forest-wide replication status.
 
 5
-00:00:13.975 --> 00:00:17.287
-The deployment supports change
-control and the baseline.
+00:00:14.425 --> 00:00:18.344
+So it runs only as a Tier 0
+identity, on a Tier 0 host,
 
 6
-00:00:17.287 --> 00:00:21.301
-Reachability supports continuous
-monitoring and system monitoring.
+00:00:18.344 --> 00:00:22.850
+each morning, and only where
+the Tier 0 owner approves it.
 
 7
-00:00:21.301 --> 00:00:25.438
-The rollback plan supports change
-control and the contingency plan.
+00:00:22.850 --> 00:00:26.837
+The first command writes the probe's
+file without sending; read it.
 
 8
-00:00:25.438 --> 00:00:27.902
-And the evidence step supports continuous
+00:00:26.837 --> 00:00:29.456
+The second sends it, as
+an identity that can
 
 9
-00:00:27.902 --> 00:00:30.913
-monitoring and the protection
-of audit information.
+00:00:29.456 --> 00:00:32.149
+only publish to the
+probe's collection rule.
 
 10
-00:00:30.913 --> 00:00:34.725
-The records support these controls;
-the assessor decides them.
+00:00:32.149 --> 00:00:35.512
+A failing link is a finding,
+not a failed deployment.
 
 11
-00:00:34.725 --> 00:00:37.154
-Thanks for following the four chapters;
+00:00:35.512 --> 00:00:39.927
+Without approval, skip it, and remove
+the replication table and query
 
 12
-00:00:37.154 --> 00:00:41.330
-the workbook itself remains a view,
-and the records are the evidence.
+00:00:39.927 --> 00:00:44.330
+through a reviewed change, rather
+than read an empty list as healthy.

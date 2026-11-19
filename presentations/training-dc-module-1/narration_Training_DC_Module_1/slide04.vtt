@@ -5,46 +5,61 @@ WEBVTT
 Unit 2.
 
 2
-00:00:00.888 --> 00:00:07.187
-Eight tabs query tables; two link out:
+00:00:00.888 --> 00:00:07.275
+Ten tabs query tables; two link out:
 Entra Health, and the I T S M task queue.
 
 3
-00:00:07.187 --> 00:00:10.797
-Two of the eight are partial:
-the grants tab lists grants,
+00:00:07.275 --> 00:00:12.110
+Three of the ten are partial: the grants
+and admin changes tabs list changes,
 
 4
-00:00:10.797 --> 00:00:13.778
+00:00:12.110 --> 00:00:15.073
 but the match to a ticket
 stays in the I T S M tool,
 
 5
-00:00:13.778 --> 00:00:19.113
+00:00:15.073 --> 00:00:20.375
 and the log review tab shows the queue
 while the review stays a recorded procedure.
 
 6
-00:00:19.113 --> 00:00:25.494
-On availability: workbooks, Entra and
-Intune logs, Defender X D R alerts and the
+00:00:20.375 --> 00:00:25.054
+The synchronization servers and domain
+controllers send their event logs
 
 7
-00:00:25.494 --> 00:00:31.775
-Logs Ingestion API are all available with
-a G C C tenant and commercial Azure.
+00:00:25.054 --> 00:00:29.287
+through the Azure Monitor Agent, not
+to a file share, one row per server.
 
 8
-00:00:31.775 --> 00:00:34.486
+00:00:29.287 --> 00:00:34.920
+On availability: workbooks, Entra and
+Intune logs, Defender X D R alerts,
+
+9
+00:00:34.920 --> 00:00:39.290
+the Azure Monitor Agent and
+the Logs Ingestion API are
+
+10
+00:00:39.290 --> 00:00:43.563
+all available with a G C C
+tenant and commercial Azure.
+
+11
+00:00:43.563 --> 00:00:46.273
 The Defender portal's
 connector overview is a
 
-9
-00:00:34.486 --> 00:00:37.125
+12
+00:00:46.273 --> 00:00:48.912
 commercial-cloud preview,
 so it isn't assumed.
 
-10
-00:00:37.125 --> 00:00:41.230
+13
+00:00:48.912 --> 00:00:53.020
 And Entra Health monitoring and
 Connect Health are not yet specified.

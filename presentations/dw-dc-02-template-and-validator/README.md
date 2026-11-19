@@ -8,7 +8,7 @@
 | `DW_DC_02_Template_And_Validator_Narrated.pptx` | The self-running edition: narration audio and a caption track on every slide, backup section dropped |
 | `DW_DC_02_Template_And_Validator_Narrated.mp4` | The video, about 6 minutes, on the [videos release](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_DC_02_Template_And_Validator_Narrated.mp4) |
 | `DW_DC_02_Template_And_Validator_Narrated.vtt` | The video's caption track |
-| `DW_DC_02_Template_And_Validator_Narration_Script.md` | The spoken narration, slide by slide (about 923 words) |
+| `DW_DC_02_Template_And_Validator_Narration_Script.md` | The spoken narration, slide by slide (about 937 words) |
 | `build.js` | The slides, the spoken narration (`say`), the presenter detail (`detail`) and the chapter footnotes each slide cites (`cite`) |
 
 Build (Git Bash): `source /c/tmp/deckenv.sh`, then `DATECODE="YYYY-MM-DD HH:MM ET" node presentations/dw-dc-02-template-and-validator/build.js`, with the Eastern time taken from PowerShell. Then `narrate.py`, `captions.py`, `build_narrated.ps1` and `export_mp4.ps1`, as in the kit's README; `qa_export.ps1` checks the layout through PowerPoint.

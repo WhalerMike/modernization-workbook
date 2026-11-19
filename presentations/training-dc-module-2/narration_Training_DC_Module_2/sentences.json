@@ -33,43 +33,6 @@
    "By the end of this module you'll be able to read each tab as attention, clear, stale, no data or link-out; explain why an empty queue over a stale source is stale; run the reachability check and read its result; deploy by an approved hash, and roll back; and say what is, and isn't, evidence."
   ]
  ],
- "3": [
-  [
-   0.05,
-   2.163,
-   "Unit 1: reading the workbook."
-  ],
-  [
-   2.212,
-   8.125,
-   "Telemetry completeness comes first, because every other tab depends on its sources: a dark source is a high-severity task."
-  ],
-  [
-   10.338,
-   6.987,
-   "Then each tab in turn, and each row that needs work becomes, or is matched to, a task with an owner."
-  ],
-  [
-   17.325,
-   3.9,
-   "Entra Health and the I T S M queue are worked where they liv."
-  ],
-  [
-   21.225,
-   4.987,
-   "The workbook never closes a task, pages anyone, or proves a check happened."
-  ],
-  [
-   26.212,
-   5.05,
-   "And the rule: an empty queue over a stale source reads stale, never clear."
-  ],
-  [
-   31.262,
-   4.112,
-   "A missed probe shows yesterday's verdict, so its tab is stale too."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -161,28 +124,6 @@
    "The assessor decides."
   ]
  ],
- "7": [
-  [
-   0.05,
-   5.263,
-   "Lab 1 is in the developer workbook's Chapter 3, on a laptop with no tenant."
-  ],
-  [
-   5.312,
-   12.912,
-   "You render the morning of November sixteenth, when the Entra diagnostic setting stopped overnight and the probe didn't run: four telemetry rows flagged, and sync, risk, emergency access and grants all stale."
-  ],
-  [
-   18.225,
-   3.825,
-   "Then you render the next morning and see what the empty queues were hiding."
-  ],
-  [
-   22.05,
-   4.388,
-   "And when you try to record the first render as evidence, the kit refuses."
-  ]
- ],
  "8": [
   [
    0.05,
@@ -218,6 +159,75 @@
    29.25,
    9.55,
    "In summary: you read the workbook telemetry first, deployed it previewed and approved by hash, and kept the checks' records as the evidence, never the picture."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.163,
+   "Unit 1: reading the workbook."
+  ],
+  [
+   2.212,
+   8.125,
+   "Telemetry completeness comes first, because every other tab depends on its sources: a dark source is a high-severity task."
+  ],
+  [
+   10.338,
+   6.987,
+   "Then each tab in turn, and each row that needs work becomes, or is matched to, a task with an owner."
+  ],
+  [
+   17.325,
+   3.9,
+   "Entra Health and the I T S M queue are worked where they liv."
+  ],
+  [
+   21.225,
+   4.987,
+   "The workbook never closes a task, pages anyone, or proves a check happened."
+  ],
+  [
+   26.212,
+   5.05,
+   "And the rule: an empty queue over a stale source reads stale, never clear."
+  ],
+  [
+   31.262,
+   4.112,
+   "A missed probe shows yesterday's verdict, so its tab is stale too."
+  ],
+  [
+   35.375,
+   8.262,
+   "A synchronization server or domain controller that stops sending isn't an empty list: it's a row with an old heartbeat, flagged."
+  ],
+  [
+   43.638,
+   8.675,
+   "And the replication probe needs Enterprise Admins or equivalent to read replication, so it runs only on a Tier 0 host, or not at all."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   5.263,
+   "Lab 1 is in the developer workbook's Chapter 3, on a laptop with no tenant."
+  ],
+  [
+   5.312,
+   21.5,
+   "You render the morning of November sixteenth, when the Entra diagnostic setting stopped overnight, the probe didn't run and a domain controller went silent: four telemetry rows flagged; sync, risk, emergency access, grants and admin changes all stale; and the Active Directory tab, whose sources are fresh, flagging the silent controller."
+  ],
+  [
+   26.812,
+   6.7,
+   "Then you render the next morning, run the replication probe on a saved replication report, and check reachability."
+  ],
+  [
+   33.513,
+   4.388,
+   "And when you try to record the first render as evidence, the kit refuses."
   ]
  ]
 }

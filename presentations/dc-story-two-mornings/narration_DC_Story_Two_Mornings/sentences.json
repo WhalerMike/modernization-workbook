@@ -21,85 +21,6 @@
    "The workbook has been reviewed and approved, and the code is illustrative, tested against fixtures."
   ]
  ],
- "2": [
-  [
-   0.05,
-   0.988,
-   "Here's the route."
-  ],
-  [
-   1.038,
-   7.825,
-   "The operator runbook asks for ten daily checks, most done one portal at a time, and a quiet portal looks just like a broken feed."
-  ],
-  [
-   8.863,
-   2.85,
-   "Scene one turns ten checks into ten tabs."
-  ],
-  [
-   11.713,
-   3.35,
-   "Scene two catches an export someone edited in the portal."
-  ],
-  [
-   15.062,
-   5.638,
-   "Scene three is the morning of November sixteenth, when the sign-in logs stopped overnight."
-  ],
-  [
-   20.7,
-   3.775,
-   "Scene four is the next morning, and what the empty queues were hiding."
-  ],
-  [
-   24.475,
-   3.05,
-   "Scene five tries to file the picture as evidence."
-  ],
-  [
-   27.525,
-   3.038,
-   "And scene six deploys it, the same way twice."
-  ]
- ],
- "3": [
-  [
-   0.05,
-   0.825,
-   "Scene one."
-  ],
-  [
-   0.875,
-   5.013,
-   "The kit's manifest gives each daily check one row, and the workbook one tab."
-  ],
-  [
-   5.888,
-   3.163,
-   "Eight tabs read tables in the Sentinel workspace."
-  ],
-  [
-   9.05,
-   1.25,
-   "Two are link-outs."
-  ],
-  [
-   10.3,
-   11.637,
-   "Entra Health's alerts liv in the admin center and in e-mail, not in Log Analytics, and their G C C availability is not yet specified, so the tab sends the operator there instead of pretending."
-  ],
-  [
-   21.938,
-   3.837,
-   "And the catalog tasks liv in the I T S M tool."
-  ],
-  [
-   25.775,
-   4.075,
-   "Two more tabs are partial: grants, and the log review queue."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -201,48 +122,6 @@
    "And the security officer reads nothing on the workbook at all: they keep the records, never the picture."
   ]
  ],
- "7": [
-  [
-   0.05,
-   5.588,
-   "The answer to check one is B: an empty tab proves only that its query returned nothing."
-  ],
-  [
-   5.638,
-   2.413,
-   "Scene three: November sixteenth."
-  ],
-  [
-   8.05,
-   6.362,
-   "At ten past five the evening before, the Entra diagnostic setting stopped, and this morning's probe didn't run."
-  ],
-  [
-   14.412,
-   4.938,
-   "Telemetry flags four rows: three dark tables and a failing connector."
-  ],
-  [
-   19.35,
-   3.85,
-   "And look at risk, emergency access, sync and grants."
-  ],
-  [
-   23.2,
-   1.062,
-   "They're not clear."
-  ],
-  [
-   24.262,
-   0.963,
-   "They're stale."
-  ],
-  [
-   25.225,
-   6.25,
-   "On a plain dashboard, the risk and emergency access tabs would have shown two calm, empty queues."
-  ]
- ],
  "8": [
   [
    0.05,
@@ -268,43 +147,6 @@
    12.95,
    5.088,
    "Shown as a quiet queue, this is the morning a risky sign-in goes unseen."
-  ]
- ],
- "9": [
-  [
-   0.05,
-   1.85,
-   "Scene four: the next morning."
-  ],
-  [
-   1.9,
-   3.612,
-   "The diagnostic setting is back, and telemetry is clear."
-  ],
-  [
-   5.513,
-   1.913,
-   "Now the queues show what they were hiding."
-  ],
-  [
-   7.425,
-   1.6,
-   "One user at high risk."
-  ],
-  [
-   9.025,
-   7.2,
-   "One emergency access sign-in, which turns out to be the quarterly validation drill, and the review records it as a drill."
-  ],
-  [
-   16.225,
-   2.138,
-   "And one synchronization conflict."
-  ],
-  [
-   18.363,
-   6.35,
-   "Grants and D L P alerts are clear, and this time clear means something, because their sources are fresh."
   ]
  ],
  "10": [
@@ -344,6 +186,174 @@
    "The next scene shows what the kit does."
   ]
  ],
+ "2": [
+  [
+   0.05,
+   0.988,
+   "Here's the route."
+  ],
+  [
+   1.038,
+   7.975,
+   "The operator runbook asks for twelve daily checks, most done one portal at a time, and a quiet portal looks just like a broken feed."
+  ],
+  [
+   9.012,
+   3.212,
+   "Scene one turns twelve checks into twelve tabs."
+  ],
+  [
+   12.225,
+   3.35,
+   "Scene two catches an export someone edited in the portal."
+  ],
+  [
+   15.575,
+   7.562,
+   "Scene three is the morning of November sixteenth, when the sign-in logs stopped overnight and a domain controller went silent."
+  ],
+  [
+   23.137,
+   3.775,
+   "Scene four is the next morning, and what the empty queues were hiding."
+  ],
+  [
+   26.913,
+   3.05,
+   "Scene five tries to file the picture as evidence."
+  ],
+  [
+   29.962,
+   3.038,
+   "And scene six deploys it, the same way twice."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   0.825,
+   "Scene one."
+  ],
+  [
+   0.875,
+   5.013,
+   "The kit's manifest gives each daily check one row, and the workbook one tab."
+  ],
+  [
+   5.888,
+   8.762,
+   "Ten tabs read tables in the Sentinel workspace, among them the domain controllers on the Active Directory tab, and the request-driven admin changes."
+  ],
+  [
+   14.65,
+   1.25,
+   "Two are link-outs."
+  ],
+  [
+   15.9,
+   11.637,
+   "Entra Health's alerts liv in the admin center and in e-mail, not in Log Analytics, and their G C C availability is not yet specified, so the tab sends the operator there instead of pretending."
+  ],
+  [
+   27.538,
+   3.837,
+   "And the catalog tasks liv in the I T S M tool."
+  ],
+  [
+   31.375,
+   5.412,
+   "Three more tabs are partial: grants, admin changes, and the log review queue."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   5.588,
+   "The answer to check one is B: an empty tab proves only that its query returned nothing."
+  ],
+  [
+   5.638,
+   2.413,
+   "Scene three: November sixteenth."
+  ],
+  [
+   8.05,
+   6.362,
+   "At ten past five the evening before, the Entra diagnostic setting stopped, and this morning's probe didn't run."
+  ],
+  [
+   14.412,
+   4.938,
+   "Telemetry flags four rows: three dark tables and a failing connector."
+  ],
+  [
+   19.35,
+   4.888,
+   "And look at risk, emergency access, sync, grants and admin changes."
+  ],
+  [
+   24.238,
+   1.062,
+   "They're not clear."
+  ],
+  [
+   25.3,
+   0.963,
+   "They're stale."
+  ],
+  [
+   26.262,
+   6.25,
+   "On a plain dashboard, the risk and emergency access tabs would have shown two calm, empty queues."
+  ],
+  [
+   32.513,
+   10.738,
+   "The Active Directory tab's sources are fresh, and it shows why that matters: the third domain controller stopped sending at seven the evening before, and both replication links from it are failing."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.85,
+   "Scene four: the next morning."
+  ],
+  [
+   1.9,
+   3.612,
+   "The diagnostic setting is back, and telemetry is clear."
+  ],
+  [
+   5.513,
+   1.913,
+   "Now the queues show what they were hiding."
+  ],
+  [
+   7.425,
+   1.6,
+   "One user at high risk."
+  ],
+  [
+   9.025,
+   7.2,
+   "One emergency access sign-in, which turns out to be the quarterly validation drill, and the review records it as a drill."
+  ],
+  [
+   16.225,
+   5.975,
+   "One synchronization conflict, and a staging synchronization server that wrote no backup event."
+  ],
+  [
+   22.2,
+   6.412,
+   "And the admin changes tab lists yesterday's five request-driven changes, each to be matched to its ticket."
+  ],
+  [
+   28.613,
+   7.513,
+   "Grants, D L P alerts and Active Directory are clear, and this time clear means something, because their sources are fresh."
+  ]
+ ],
  "11": [
   [
    0.05,
@@ -357,16 +367,16 @@
   ],
   [
    6.963,
-   6.013,
-   "Instead it records the reachability check, which asked the workspace for each table's newest record."
+   11.025,
+   "Instead it records the reachability check, which asked the workspace for each table's newest record, and the replication probe, which found the third domain controller's two failing links."
   ],
   [
-   12.975,
-   9.438,
-   "Its result is Fail, and that's the point: the record keeps what the check found, tagged with continuous monitoring and system monitoring and their indicators."
+   17.988,
+   9.637,
+   "Both results are Fail, and that's the point: each record keeps what its check found, tagged with continuous monitoring and system monitoring and their indicators."
   ],
   [
-   22.413,
+   27.625,
    5.025,
    "A failing record is evidence of the gap; a screenshot is only a picture of it."
   ]
@@ -399,8 +409,8 @@
   ],
   [
    25.887,
-   7.263,
-   "That's the story: ten checks on one page, a picture the operator can trust only because the records behind it are kept."
+   7.275,
+   "That's the story: twelve checks on one page, a picture the operator can trust only because the records behind it are kept."
   ]
  ]
 }
