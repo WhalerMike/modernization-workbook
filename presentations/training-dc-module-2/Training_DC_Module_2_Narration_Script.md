@@ -10,7 +10,7 @@ By the end of this module you'll be able to read each tab as attention, clear, s
 
 ## Slide 3 — Unit 1: reading the workbook
 
-Unit 1: reading the workbook. Telemetry completeness comes first, because every other tab depends on its sources: a dark source is a high-severity task. Then each tab in turn, and each row that needs work becomes, or is matched to, a task with an owner. Entra Health and the I T S M queue are worked where they live. The workbook never closes a task, pages anyone, or proves a check happened. And the rule: an empty queue over a stale source reads stale, never clear. A missed probe shows yesterday's verdict, so its tab is stale too.
+Unit 1: reading the workbook. Telemetry completeness comes first, because every other tab depends on its sources: a dark source is a high-severity task. Then each tab in turn, and each row that needs work becomes, or is matched to, a task with an owner. Entra Health and the I T S M queue are worked where they live. The workbook never closes a task, pages anyone, or proves a check happened. And the rule: an empty queue over a stale source reads stale, never clear. A missed probe shows yesterday's verdict, so its tab is stale too. A synchronization server or domain controller that stops sending isn't an empty list: it's a row with an old heartbeat, flagged. And the replication probe needs Enterprise Admins or equivalent to read replication, so it runs only on a Tier 0 host, or not at all.
 
 ## Slide 4 — Unit 2: deploying it
 
@@ -26,7 +26,7 @@ Who does what? Operators read telemetry first, then their family's tabs, and ope
 
 ## Slide 7 — Lab 1: the morning the logs stopped
 
-Lab 1 is in the developer workbook's Chapter 3, on a laptop with no tenant. You render the morning of November sixteenth, when the Entra diagnostic setting stopped overnight and the probe didn't run: four telemetry rows flagged, and sync, risk, emergency access and grants all stale. Then you render the next morning and see what the empty queues were hiding. And when you try to record the first render as evidence, the kit refuses.
+Lab 1 is in the developer workbook's Chapter 3, on a laptop with no tenant. You render the morning of November sixteenth, when the Entra diagnostic setting stopped overnight, the probe didn't run and a domain controller went silent: four telemetry rows flagged; sync, risk, emergency access, grants and admin changes all stale; and the Active Directory tab, whose sources are fresh, flagging the silent controller. Then you render the next morning, run the replication probe on a saved replication report, and check reachability. And when you try to record the first render as evidence, the kit refuses.
 
 ## Slide 8 — Lab 2, a knowledge check and the summary
 

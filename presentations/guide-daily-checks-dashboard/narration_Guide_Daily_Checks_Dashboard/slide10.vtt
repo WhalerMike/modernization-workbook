@@ -1,56 +1,57 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.088
-Step 5 is the morning read.
+00:00:00.050 --> 00:00:01.413
+Step 4 deploys.
 
 2
-00:00:02.088 --> 00:00:04.576
-Telemetry completeness comes first,
+00:00:01.413 --> 00:00:05.770
+Saving a shared workbook needs the
+workbooks write permission, which Workbook
 
 3
-00:00:04.576 --> 00:00:08.350
-because a dark source makes
-every tab over it unreliable.
+00:00:05.770 --> 00:00:08.147
+Contributor grants, and deploying through
 
 4
-00:00:08.350 --> 00:00:12.607
-Then each tab in turn: each
-row that needs work becomes,
+00:00:08.147 --> 00:00:10.788
+Resource Manager also
+needs deployment rights.
 
 5
-00:00:12.607 --> 00:00:15.412
-or is matched to, a task with an owner.
+00:00:10.788 --> 00:00:15.087
+Grant both on the workbook's resource
+group only, for the deployment window.
 
 6
-00:00:15.412 --> 00:00:19.312
-Entra Health and the I T S M
-queue are worked where they live.
+00:00:15.087 --> 00:00:18.751
+Readers need Workbook Reader and
+their own access to the data.
 
 7
-00:00:19.312 --> 00:00:24.299
-The workbook never closes a task, pages
-anyone, or proves a check happened.
+00:00:18.751 --> 00:00:21.853
+The test stage runs preflight,
+plans with what-if,
 
 8
-00:00:24.299 --> 00:00:29.298
-Step 6 keeps the evidence: the kit
-records the validation, preflight, plan,
+00:00:21.853 --> 00:00:25.188
+deploys the approved plan,
+and checks reachability.
 
 9
-00:00:29.298 --> 00:00:34.462
-deployment, reachability check and
-rollback plan, each hashed and chained.
+00:00:25.188 --> 00:00:28.313
+It's a go when each of those
+has a passing live record.
 
 10
-00:00:34.462 --> 00:00:36.737
-A rendered view is never recorded.
+00:00:28.313 --> 00:00:30.449
+Production runs the same commands,
 
 11
-00:00:36.737 --> 00:00:39.290
-And a portal edit comes back as an export,
+00:00:30.449 --> 00:00:34.575
+and the preflight refuses it until
+the test stage's evidence passes.
 
 12
-00:00:39.290 --> 00:00:42.910
-is validated, and replaces
-the template through review.
+00:00:34.575 --> 00:00:36.840
+Rolling back deletes a view only.

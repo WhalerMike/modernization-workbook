@@ -19,20 +19,30 @@ Security operations treats each dark
 source as a high-severity task.
 
 5
-00:00:12.300 --> 00:00:16.738
-And the security officer keeps the
-reachability record, never the render.
+00:00:12.300 --> 00:00:17.462
+And the security officer keeps the reachability
+and probe records, never the render.
 
 6
-00:00:16.738 --> 00:00:19.288
+00:00:17.462 --> 00:00:20.012
 Lab 1 needs only saved results.
 
 7
-00:00:19.288 --> 00:00:22.568
+00:00:20.012 --> 00:00:23.292
 Lab 2 needs Log Analytics
 Reader on a test workspace,
 
 8
-00:00:22.568 --> 00:00:27.580
+00:00:23.292 --> 00:00:28.250
 which can view and search the monitoring
 data, and the check sends only queries.
+
+9
+00:00:28.250 --> 00:00:33.915
+The live replication probe is different:
+reading replication needs Enterprise
+
+10
+00:00:33.915 --> 00:00:39.050
+Admins or equivalent, so Chapter 4 runs
+it only on a Tier 0 host, or not at all.

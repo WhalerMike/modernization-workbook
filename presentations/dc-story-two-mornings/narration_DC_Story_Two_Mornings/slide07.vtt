@@ -28,24 +28,39 @@ Telemetry flags four rows: three
 dark tables and a failing connector.
 
 7
-00:00:19.350 --> 00:00:23.200
-And look at risk, emergency
-access, sync and grants.
+00:00:19.350 --> 00:00:24.238
+And look at risk, emergency access,
+sync, grants and admin changes.
 
 8
-00:00:23.200 --> 00:00:24.262
+00:00:24.238 --> 00:00:25.300
 They're not clear.
 
 9
-00:00:24.262 --> 00:00:25.225
+00:00:25.300 --> 00:00:26.263
 They're stale.
 
 10
-00:00:25.225 --> 00:00:28.110
+00:00:26.263 --> 00:00:29.147
 On a plain dashboard,
 the risk and emergency
 
 11
-00:00:28.110 --> 00:00:31.540
+00:00:29.147 --> 00:00:32.512
 access tabs would have shown
 two calm, empty queues.
+
+12
+00:00:32.512 --> 00:00:36.581
+The Active Directory tab's sources are
+fresh, and it shows why that matters:
+
+13
+00:00:36.581 --> 00:00:40.650
+the third domain controller stopped
+sending at seven the evening before,
+
+14
+00:00:40.650 --> 00:00:43.320
+and both replication
+links from it are failing.

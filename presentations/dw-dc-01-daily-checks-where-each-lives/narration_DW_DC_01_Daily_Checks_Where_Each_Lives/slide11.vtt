@@ -1,49 +1,35 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.675
-Two outputs support federal requirements.
+00:00:00.050 --> 00:00:04.212
+Step 7 lists the thirteen
+expected tables and their limits.
 
 2
-00:00:02.675 --> 00:00:06.902
-Lab 1 shows every daily check has
-a home, a table or a link-out,
+00:00:04.212 --> 00:00:07.313
+Sign-in and audit logs: sixty minutes.
 
 3
-00:00:06.902 --> 00:00:10.425
-which supports continuous
-monitoring, C A seven.
+00:00:07.313 --> 00:00:10.171
+The servers' heartbeats
+and security events:
 
 4
-00:00:10.425 --> 00:00:14.035
-Lab 2 shows the workspace
-has each table a tab reads,
+00:00:10.171 --> 00:00:14.112
+sixty minutes too, because their
+agents report continuously.
 
 5
-00:00:14.035 --> 00:00:17.388
-which also supports system
-monitoring, S I four.
+00:00:14.112 --> 00:00:18.554
+Intune's compliance export: two thousand
+eight hundred and eighty minutes,
 
 6
-00:00:17.388 --> 00:00:20.464
-The manifest itself is
-design, not evidence;
+00:00:18.554 --> 00:00:22.351
+because it arrives once a day and
+can take up to forty-eight hours.
 
 7
-00:00:20.464 --> 00:00:23.199
-the kit's records in later chapters are.
-
-8
-00:00:23.199 --> 00:00:26.584
-The dangers: a tab built on
-data G C C doesn't have,
-
-9
-00:00:26.584 --> 00:00:31.837
-one freshness limit for every source,
-and a partial tab read as complete.
-
-10
-00:00:31.837 --> 00:00:36.020
-Next, Chapter 2 builds the workbook's
-template and its validator.
+00:00:22.351 --> 00:00:26.860
+Step 8 runs the chapter's
+tests: ten passed, none failed.

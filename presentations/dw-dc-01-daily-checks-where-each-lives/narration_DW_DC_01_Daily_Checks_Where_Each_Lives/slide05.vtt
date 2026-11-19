@@ -5,52 +5,53 @@ WEBVTT
 Here's the manifest.
 
 2
-00:00:01.387 --> 00:00:03.762
-Ten tabs, one per daily check.
+00:00:01.387 --> 00:00:03.949
+Twelve tabs, one per daily check.
 
 3
-00:00:03.762 --> 00:00:08.973
-Eight read tables: telemetry
-completeness, the synchronization probe,
+00:00:03.949 --> 00:00:07.117
+Ten read tables, among them
+the synchronization probe,
 
 4
-00:00:08.973 --> 00:00:12.682
-risky users and sign-ins,
-emergency access sign-ins,
+00:00:07.117 --> 00:00:11.621
+which now also reads the synchronization
+servers' own events and heartbeats,
 
 5
-00:00:12.682 --> 00:00:17.451
-noncompliant devices, grants, D L
-P alerts, and the log review queue.
+00:00:11.621 --> 00:00:16.337
+a new Active Directory tab for the domain
+controllers, and a new admin changes tab.
 
 6
-00:00:17.451 --> 00:00:22.768
+00:00:16.337 --> 00:00:21.655
 Two are link-outs: Entra Health, because
 its alerts aren't in Log Analytics,
 
 7
-00:00:22.768 --> 00:00:26.225
+00:00:21.655 --> 00:00:25.112
 and the catalog tasks, which
 live in the I T S M tool.
 
 8
-00:00:26.225 --> 00:00:28.125
-Two of the eight are partial.
+00:00:25.112 --> 00:00:27.013
+Three of the ten are partial.
 
 9
-00:00:28.125 --> 00:00:30.182
-The grants tab lists grants,
+00:00:27.013 --> 00:00:30.358
+The grants and admin
+changes tabs list changes,
 
 10
-00:00:30.182 --> 00:00:33.937
+00:00:30.358 --> 00:00:33.962
 but matching each to a ticket
 stays in the I T S M tool.
 
 11
-00:00:33.937 --> 00:00:36.279
+00:00:33.962 --> 00:00:36.303
 And the log review tab shows the queue,
 
 12
-00:00:36.279 --> 00:00:39.580
+00:00:36.303 --> 00:00:39.600
 while the review itself
 stays a recorded procedure.

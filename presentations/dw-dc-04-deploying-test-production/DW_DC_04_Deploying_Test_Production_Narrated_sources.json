@@ -71,6 +71,16 @@
  },
  {
   "slide": 9,
+  "title": "The replication probe, on a Tier 0 host",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/04-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
   "title": "What each record supports",
   "links": [
    {

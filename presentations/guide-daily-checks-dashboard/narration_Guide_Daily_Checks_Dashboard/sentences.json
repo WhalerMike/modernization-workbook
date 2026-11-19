@@ -1,41 +1,4 @@
 {
- "1": [
-  [
-   0.05,
-   0.713,
-   "Welcome."
-  ],
-  [
-   0.762,
-   7.55,
-   "This is the narrated briefing for a companion guide in the Federal Modernization Workbook: The Daily Checks on One Dashboard."
-  ],
-  [
-   8.312,
-   3.675,
-   "One thing first: the guide has been reviewed and approved."
-  ],
-  [
-   11.988,
-   7.713,
-   "It answers a question the operator runbook leaves open: can the operator see all of the daily checks in one place each morning?"
-  ],
-  [
-   19.7,
-   8.963,
-   "Mostly yes, on one Azure Monitor workbook in the Sentinel workspace, with a link out to the portal that holds the data for the checks a workbook can't read."
-  ],
-  [
-   28.663,
-   5.425,
-   "Its facts come from Microsoft Learn, read on November eighteenth, 2026."
-  ],
-  [
-   34.087,
-   3.5,
-   "We'll go in four parts: why, what, who, and how."
-  ]
- ],
  "2": [
   [
    0.05,
@@ -105,75 +68,6 @@
    "So the design is one workbook in the Sentinel workspace, and a link out where the data stays elsewhere."
   ]
  ],
- "4": [
-  [
-   0.05,
-   2.825,
-   "Here are the ten tabs, one per daily check."
-  ],
-  [
-   2.875,
-   7.987,
-   "Telemetry completeness, the synchronization probe, risky users and sign-ins, and emergency access sign-ins fit strongly."
-  ],
-  [
-   10.863,
-   3.8,
-   "Noncompliant devices and D L P alerts fit well."
-  ],
-  [
-   14.662,
-   13.188,
-   "Grants and the log review queue are partial: the grants tab lists them, but matching each to a ticket stays in the I T S M tool, and the log review tab shows the queue while the review stays a recorded procedure."
-  ],
-  [
-   27.85,
-   4.45,
-   "Entra Health is a link-out, because its alerts aren't in Log Analytics."
-  ],
-  [
-   32.3,
-   5.05,
-   "And the catalog tasks liv in the I T S M tool's own dashboards."
-  ]
- ],
- "5": [
-  [
-   0.05,
-   2.188,
-   "What's available in G C C?"
-  ],
-  [
-   2.237,
-   11.213,
-   "G C C Moderate uses the commercial Entra service and pairs with commercial Azure, so the workspace, the workbook and the Logs Ingestion A P I are all in commercial Azure."
-  ],
-  [
-   13.45,
-   2.825,
-   "Sentinel workbooks are generally available there."
-  ],
-  [
-   16.275,
-   9.312,
-   "Entra and Intune both send their logs to the workspace; Microsoft says Intune in G C C is the same instance as the commercial service."
-  ],
-  [
-   25.587,
-   5.175,
-   "Defender X D R alerts and incidents are generally available for G C C."
-  ],
-  [
-   30.762,
-   5.35,
-   "The Defender portal's connector overview is a commercial-cloud preview, so it isn't assumed."
-  ],
-  [
-   36.112,
-   5.737,
-   "And Entra Health monitoring and Connect Health are not yet specified, so their tabs are link-outs."
-  ]
- ],
  "6": [
   [
    0.05,
@@ -206,113 +100,7 @@
    "And the security officer is consulted on each plan, approving its hash in the change record, and is accountable for the evidence."
   ]
  ],
- "7": [
-  [
-   0.05,
-   1.312,
-   "Now the six steps."
-  ],
-  [
-   1.363,
-   2.212,
-   "Step 1 connects the sources."
-  ],
-  [
-   3.575,
-   5.263,
-   "An Entra diagnostic setting sends sign-in, audit and risk logs to the workspace."
-  ],
-  [
-   8.838,
-   6.312,
-   "Intune's diagnostic settings send the compliance export, once a day, up to forty-eight hours late."
-  ],
-  [
-   15.15,
-   9.45,
-   "The Defender X D R connector brings incidents and alerts, including those it collects from Purview D L P. Health monitoring is turned on for Sentinel."
-  ],
-  [
-   24.6,
-   6.763,
-   "And the morning synchronization probe gets its own custom table, written through the Logs Ingestion A P I."
-  ],
-  [
-   31.363,
-   6.162,
-   "The check: a read-only reachability test reports each table as delivering, late or missing."
-  ]
- ],
- "8": [
-  [
-   0.05,
-   10.488,
-   "Step 2 fills one settings file per environment, and checks the two values the kit can't know: the compliance state your workspace records, and the product names of D L P alerts."
-  ],
-  [
-   10.537,
-   6.338,
-   "Those values, and every I D, go into the deployed workbook's parameters, never into the template."
-  ],
-  [
-   16.875,
-   8.738,
-   "Then the validator runs ten checks on the template, which matters because Microsoft says an exported template embeds sensitive values that should be masked."
-  ],
-  [
-   25.613,
-   6.55,
-   "Step 3 plans the deployment of one workbook resource and previews it with what-if, which changes nothing."
-  ],
-  [
-   32.163,
-   5.362,
-   "A second person approves the plan's hash, and the kit refuses any plan that would delete."
-  ]
- ],
- "9": [
-  [
-   0.05,
-   1.363,
-   "Step 4 deploys."
-  ],
-  [
-   1.413,
-   9.375,
-   "Saving a shared workbook needs the workbooks write permission, which Workbook Contributor grants, and deploying through Resource Manager also needs deployment rights."
-  ],
-  [
-   10.787,
-   4.3,
-   "Grant both on the workbook's resource group only, for the deployment window."
-  ],
-  [
-   15.088,
-   3.663,
-   "Readers need Workbook Reader and their own access to the data."
-  ],
-  [
-   18.75,
-   6.438,
-   "The test stage runs preflight, plans with what-if, deploys the approved plan, and checks reachability."
-  ],
-  [
-   25.188,
-   3.125,
-   "It's a go when each of those has a passing lyve record."
-  ],
-  [
-   28.312,
-   6.263,
-   "Production runs the same commands, and the preflight refuses it until the test stage's evidence passes."
-  ],
-  [
-   34.575,
-   2.2,
-   "Rolling back deletes a view only."
-  ]
- ],
- "10": [
+ "11": [
   [
    0.05,
    2.038,
@@ -354,7 +142,224 @@
    "And a portal edit comes back as an export, is validated, and replaces the template through review."
   ]
  ],
- "11": [
+ "10": [
+  [
+   0.05,
+   1.363,
+   "Step 4 deploys."
+  ],
+  [
+   1.413,
+   9.375,
+   "Saving a shared workbook needs the workbooks write permission, which Workbook Contributor grants, and deploying through Resource Manager also needs deployment rights."
+  ],
+  [
+   10.787,
+   4.3,
+   "Grant both on the workbook's resource group only, for the deployment window."
+  ],
+  [
+   15.088,
+   3.663,
+   "Readers need Workbook Reader and their own access to the data."
+  ],
+  [
+   18.75,
+   6.438,
+   "The test stage runs preflight, plans with what-if, deploys the approved plan, and checks reachability."
+  ],
+  [
+   25.188,
+   3.125,
+   "It's a go when each of those has a passing lyve record."
+  ],
+  [
+   28.312,
+   6.263,
+   "Production runs the same commands, and the preflight refuses it until the test stage's evidence passes."
+  ],
+  [
+   34.575,
+   2.2,
+   "Rolling back deletes a view only."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   10.488,
+   "Step 2 fills one settings file per environment, and checks the two values the kit can't know: the compliance state your workspace records, and the product names of D L P alerts."
+  ],
+  [
+   10.537,
+   6.338,
+   "Those values, and every I D, go into the deployed workbook's parameters, never into the template."
+  ],
+  [
+   16.875,
+   8.738,
+   "Then the validator runs ten checks on the template, which matters because Microsoft says an exported template embeds sensitive values that should be masked."
+  ],
+  [
+   25.613,
+   6.55,
+   "Step 3 plans the deployment of one workbook resource and previews it with what-if, which changes nothing."
+  ],
+  [
+   32.163,
+   5.362,
+   "A second person approves the plan's hash, and the kit refuses any plan that would delete."
+  ]
+ ],
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   7.55,
+   "This is the narrated briefing for a companion guide in the Federal Modernization Workbook: The Daily Checks on One Dashboard."
+  ],
+  [
+   8.312,
+   3.675,
+   "One thing first: the guide has been reviewed and approved."
+  ],
+  [
+   11.988,
+   7.713,
+   "It answers a question the operator runbook leaves open: can the operator see all of the daily checks in one place each morning?"
+  ],
+  [
+   19.7,
+   8.963,
+   "Mostly yes, on one Azure Monitor workbook in the Sentinel workspace, with a link out to the portal that holds the data for the checks a workbook can't read."
+  ],
+  [
+   28.663,
+   6.138,
+   "Its facts come from Microsoft Learn, read on November eighteenth and nineteenth, 2026."
+  ],
+  [
+   34.8,
+   3.5,
+   "We'll go in four parts: why, what, who, and how."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.025,
+   "Here are the twelve tabs, one per daily check."
+  ],
+  [
+   3.075,
+   13.312,
+   "Telemetry completeness, the synchronization probe, risky users and sign-ins, and emergency access sign-ins fit strongly; the sync tab now also shows the synchronization servers' own errors and their nightly backup."
+  ],
+  [
+   16.387,
+   5.562,
+   "The new Active Directory tab, noncompliant devices and D L P alerts fit well."
+  ],
+  [
+   21.95,
+   10.988,
+   "Grants, the new admin changes tab and the log review queue are partial: matching each change to a ticket stays in the I T S M tool, and the review stays a recorded procedure."
+  ],
+  [
+   32.938,
+   4.45,
+   "Entra Health is a link-out, because its alerts aren't in Log Analytics."
+  ],
+  [
+   37.388,
+   5.05,
+   "And the catalog tasks liv in the I T S M tool's own dashboards."
+  ],
+  [
+   42.438,
+   6.275,
+   "Each server has its own row, so one that stops sending shows as stale, never as a quiet night."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.188,
+   "What's available in G C C?"
+  ],
+  [
+   2.237,
+   11.213,
+   "G C C Moderate uses the commercial Entra service and pairs with commercial Azure, so the workspace, the workbook and the Logs Ingestion A P I are all in commercial Azure."
+  ],
+  [
+   13.45,
+   7.287,
+   "Entra and Intune both send their logs to the workspace; Intune in G C C is the commercial instance."
+  ],
+  [
+   20.738,
+   5.175,
+   "Defender X D R alerts and incidents are generally available for G C C."
+  ],
+  [
+   25.913,
+   5.35,
+   "The Defender portal's connector overview is a commercial-cloud preview, so it isn't assumed."
+  ],
+  [
+   31.262,
+   16.925,
+   "For the servers that stay on premises, the Azure Monitor Agent on Arc-enabled servers, the Windows security events connector and the Azure activity connector are available in commercial Azure, and Defender for Identity alerts are generally available for G C C, with their own license."
+  ],
+  [
+   48.188,
+   7.888,
+   "And Entra Health monitoring and Connect Health, for sync and for A D D S, are not yet specified, so their tabs link out."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.312,
+   "Now the six steps."
+  ],
+  [
+   1.363,
+   2.212,
+   "Step 1 connects the sources."
+  ],
+  [
+   3.575,
+   5.263,
+   "An Entra diagnostic setting sends sign-in, audit and risk logs to the workspace."
+  ],
+  [
+   8.838,
+   6.312,
+   "Intune's diagnostic settings send the compliance export, once a day, up to forty-eight hours late."
+  ],
+  [
+   15.15,
+   9.45,
+   "The Defender X D R connector brings incidents and alerts, including those it collects from Purview D L P. Health monitoring is turned on for Sentinel."
+  ],
+  [
+   24.6,
+   6.763,
+   "And the morning synchronization probe gets its own custom table, written through the Logs Ingestion A P I."
+  ],
+  [
+   31.363,
+   6.162,
+   "The check: a read-only reachability test reports each table as delivering, late or missing."
+  ]
+ ],
+ "12": [
   [
    0.05,
    5.2,
@@ -377,13 +382,55 @@
   ],
   [
    24.288,
-   10.988,
-   "Some things couldn't be verified on Microsoft Learn: the workbook's item format field by field, G C C for Entra Health and Connect Health, and the values your own workspace records."
+   6.412,
+   "A silent server must never read as a quiet one, and the replication probe never runs from a lower tier."
   ],
   [
-   35.275,
+   30.7,
+   16.812,
+   "Some things couldn't be verified on Microsoft Learn: the workbook's item format field by field, G C C for Entra Health and Connect Health, the synchronization service's event I D's, a right narrower than Enterprise Admins for the probe, and the values your own workspace records."
+  ],
+  [
+   47.513,
    3.25,
    "The developer workbook and the learning path take it from here."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.812,
+   "Step 1 has three more sources, added for the servers that stay on premises."
+  ],
+  [
+   4.862,
+   8.812,
+   "The synchronization servers and domain controllers are Arc-enabled, and the Azure Monitor Agent sends their event logs and a heartbeat to the workspace."
+  ],
+  [
+   13.675,
+   4.3,
+   "That replaces any script that copies event logs to a file share."
+  ],
+  [
+   17.975,
+   5.05,
+   "The domain controllers' security events go through the Windows security events connector."
+  ],
+  [
+   23.025,
+   5.525,
+   "A replication probe sends one record per replication link to its own custom table."
+  ],
+  [
+   28.55,
+   5.1,
+   "And the subscription's activity log goes to the workspace, for the admin changes tab."
+  ],
+  [
+   33.65,
+   14.012,
+   "One right in the access request is Tier 0: reading replication forest-wide needs Enterprise Admins or equivalent, so the probe runs only on a Tier 0 host, and the Tier 0 owner decides whether it runs at all."
   ]
  ]
 }

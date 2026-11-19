@@ -1,30 +1,39 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.162
-Step 6 records the
-reachability check instead.
+00:00:00.050 --> 00:00:05.425
+Step 5 checks each table's reachability
+on the first morning, from saved answers.
 
 2
-00:00:03.162 --> 00:00:07.225
-Record one, with result Fail: the
-record keeps what the check found,
+00:00:05.425 --> 00:00:10.068
+Sign-in logs, audit logs and the probe's
+table are late, and the Sentinel health
 
 3
-00:00:07.225 --> 00:00:11.813
-with continuous monitoring and system
-monitoring, and their indicators.
+00:00:10.068 --> 00:00:11.836
+table is missing altogether:
 
 4
-00:00:11.813 --> 00:00:15.512
-A failing record is still
-evidence; it's evidence of the gap.
+00:00:11.836 --> 00:00:15.300
+health monitoring was never
+turned on in this workspace.
 
 5
-00:00:15.512 --> 00:00:19.483
-Step 7 runs this chapter's
-tests and the evidence tests:
+00:00:15.300 --> 00:00:20.063
+The servers' heartbeat, event and
+security event tables are all delivering.
 
 6
-00:00:19.483 --> 00:00:21.580
-sixteen passed, none failed.
+00:00:20.063 --> 00:00:21.975
+The script exits with an error.
+
+7
+00:00:21.975 --> 00:00:26.313
+Step 6 tries to record the first
+morning's render as evidence.
+
+8
+00:00:26.313 --> 00:00:30.020
+The kit refuses: a rendered
+view is not evidence.

@@ -1,46 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.875
-Here are the ten tabs,
+00:00:00.050 --> 00:00:03.075
+Here are the twelve tabs,
 one per daily check.
 
 2
-00:00:02.875 --> 00:00:06.389
-Telemetry completeness,
-the synchronization probe,
+00:00:03.075 --> 00:00:07.888
+Telemetry completeness, the synchronization
+probe, risky users and sign-ins,
 
 3
-00:00:06.389 --> 00:00:10.862
-risky users and sign-ins, and
-emergency access sign-ins fit strongly.
+00:00:07.888 --> 00:00:11.874
+and emergency access sign-ins fit
+strongly; the sync tab now also
 
 4
-00:00:10.862 --> 00:00:14.663
-Noncompliant devices and
-D L P alerts fit well.
+00:00:11.874 --> 00:00:16.387
+shows the synchronization servers'
+own errors and their nightly backup.
 
 5
-00:00:14.663 --> 00:00:19.163
-Grants and the log review queue are
-partial: the grants tab lists them,
+00:00:16.387 --> 00:00:21.949
+The new Active Directory tab, noncompliant
+devices and D L P alerts fit well.
 
 6
-00:00:19.163 --> 00:00:22.480
-but matching each to a ticket
-stays in the I T S M tool,
+00:00:21.949 --> 00:00:26.522
+Grants, the new admin changes tab
+and the log review queue are partial:
 
 7
-00:00:22.480 --> 00:00:27.850
-and the log review tab shows the queue
-while the review stays a recorded procedure.
+00:00:26.522 --> 00:00:30.131
+matching each change to a ticket
+stays in the I T S M tool,
 
 8
-00:00:27.850 --> 00:00:32.300
+00:00:30.131 --> 00:00:32.938
+and the review stays a recorded procedure.
+
+9
+00:00:32.938 --> 00:00:37.388
 Entra Health is a link-out, because
 its alerts aren't in Log Analytics.
 
-9
-00:00:32.300 --> 00:00:37.420
+10
+00:00:37.388 --> 00:00:42.438
 And the catalog tasks live in the
 I T S M tool's own dashboards.
+
+11
+00:00:42.438 --> 00:00:44.329
+Each server has its own row,
+
+12
+00:00:44.329 --> 00:00:48.770
+so one that stops sending shows
+as stale, never as a quiet night.

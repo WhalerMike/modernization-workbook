@@ -39,6 +39,26 @@ And the rule: an empty queue over a
 stale source reads stale, never clear.
 
 9
-00:00:31.262 --> 00:00:35.420
+00:00:31.262 --> 00:00:35.374
 A missed probe shows yesterday's
 verdict, so its tab is stale too.
+
+10
+00:00:35.374 --> 00:00:39.867
+A synchronization server or domain
+controller that stops sending
+
+11
+00:00:39.867 --> 00:00:43.637
+isn't an empty list: it's a row
+with an old heartbeat, flagged.
+
+12
+00:00:43.637 --> 00:00:49.530
+And the replication probe needs Enterprise
+Admins or equivalent to read replication,
+
+13
+00:00:49.530 --> 00:00:52.370
+so it runs only on a Tier
+0 host, or not at all.

@@ -25,21 +25,26 @@ where else to look, and whether
 a workbook can show it at all.
 
 6
-00:00:17.099 --> 00:00:21.645
+00:00:17.099 --> 00:00:21.415
 We'll start from what Microsoft Learn
 gives you, see what it leaves to you,
 
 7
-00:00:21.645 --> 00:00:25.188
+00:00:21.415 --> 00:00:25.438
 read the kit's manifest and its
-ten tabs, and walk two labs.
+twelve tabs, the domain controllers
 
 8
-00:00:25.188 --> 00:00:27.960
+00:00:25.438 --> 00:00:29.387
+and the request-driven admin changes
+among them, and walk two labs.
+
+9
+00:00:29.387 --> 00:00:32.159
 The chapter has been
 reviewed and approved,
 
-9
-00:00:27.960 --> 00:00:31.490
+10
+00:00:32.159 --> 00:00:35.690
 and the code is illustrative,
 tested against fixtures.

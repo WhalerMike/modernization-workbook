@@ -45,6 +45,21 @@ And on day two, a portal edit comes
 back as an export, is validated,
 
 10
-00:00:31.542 --> 00:00:35.740
+00:00:31.542 --> 00:00:35.675
 and replaces the template through
 review before it's redeployed.
+
+11
+00:00:35.675 --> 00:00:40.280
+When a synchronization server or
+domain controller is added or retired,
+
+12
+00:00:40.280 --> 00:00:43.965
+its settings list changes and
+the workbook is redeployed:
+
+13
+00:00:43.965 --> 00:00:48.310
+a retired server left in the list
+shows as a silent one every morning.

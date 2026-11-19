@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.189
+Lab 2 runs the same reachability
+check against a test workspace,
+
+2
+00:00:04.189 --> 00:00:07.000
+never production; the
+authors haven't run it.
+
+3
+00:00:07.000 --> 00:00:08.871
+Sign in to commercial Azure,
+
+4
+00:00:08.871 --> 00:00:12.775
+add the log analytics extension,
+run the check, and sign out.
+
+5
+00:00:12.775 --> 00:00:17.837
+Every table should be delivering; each
+late or missing one becomes a task.
+
+6
+00:00:17.837 --> 00:00:20.475
+The reachability record
+and the probe's record
+
+7
+00:00:20.475 --> 00:00:23.587
+support continuous monitoring
+and system monitoring.
+
+8
+00:00:23.587 --> 00:00:27.357
+The dangers you saw: a missing
+connector that looks healthy,
+
+9
+00:00:27.357 --> 00:00:29.973
+a missed probe showing yesterday's green,
+
+10
+00:00:29.973 --> 00:00:34.050
+a silent server read as a quiet one,
+and a render filed as evidence.
+
+11
+00:00:34.050 --> 00:00:36.960
+Next, Chapter 4 deploys the workbook.

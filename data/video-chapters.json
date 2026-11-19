@@ -5507,43 +5507,43 @@
    "The operator's morning, before the workbook"
   ],
   [
-   70,
-   "Scene 1: ten checks, ten tabs"
+   73,
+   "Scene 1: twelve checks, twelve tabs"
   ],
   [
-   104,
+   113,
    "Check 1: what does an empty tab prove?"
   ],
   [
-   126,
+   136,
    "Scene 2: an export edited in the portal"
   ],
   [
-   160,
+   169,
    "Who reads which tab each morning"
   ],
   [
-   195,
+   204,
    "Scene 3: the morning the logs stopped"
   ],
   [
-   230,
+   251,
    "Try it: render the first morning"
   ],
   [
-   252,
+   274,
    "Scene 4: what the empty queues were hiding"
   ],
   [
-   281,
+   314,
    "Check 2: can the render be the evidence?"
   ],
   [
-   305,
+   337,
    "Scene 5: a refused render, a kept record"
   ],
   [
-   336,
+   374,
    "Scene 6: test, then production, by hash"
   ]
  ],
@@ -6709,43 +6709,51 @@
    "Chapter 01: The Daily Checks and Where Each One Lives"
   ],
   [
-   35,
+   39,
    "Why one row per daily check"
   ],
   [
-   69,
+   73,
    "What Microsoft Learn gives you"
   ],
   [
-   111,
+   122,
    "What it leaves to you"
   ],
   [
-   150,
-   "The manifest: ten tabs, one per check"
+   161,
+   "The manifest: twelve tabs, one per check"
   ],
   [
-   193,
+   205,
    "Who keeps the manifest, and the data"
   ],
   [
-   227,
+   238,
    "Lab 1: list the tabs"
   ],
   [
-   253,
+   266,
    "Lab 1: a link-out tab and a partial one"
   ],
   [
-   286,
-   "Lab 1: the query and the freshness limits"
+   298,
+   "Lab 1: the Active Directory tab"
   ],
   [
-   318,
+   343,
+   "Lab 1: the emergency access query"
+  ],
+  [
+   366,
+   "Lab 1: the freshness limits"
+  ],
+  [
+   397,
    "Lab 2: which tables does the workspace have?"
   ],
   [
-   348,
+   434,
    "Evidence, dangers and the checklist"
   ]
  ],
@@ -6771,27 +6779,27 @@
    "The template, and the ten checks"
   ],
   [
-   192,
+   198,
    "Who edits, who reviews, who deploys"
   ],
   [
-   226,
-   "Lab 1: the build, and all 63 checks"
+   231,
+   "Lab 1: the build, and all 89 checks"
   ],
   [
-   245,
+   250,
    "Lab 1: four edits in a portal export"
   ],
   [
-   278,
+   284,
    "Lab 1: record the validation"
   ],
   [
-   299,
+   305,
    "Lab 2: round-trip through the portal"
   ],
   [
-   337,
+   342,
    "Evidence, dangers and the checklist"
   ]
  ],
@@ -6801,43 +6809,47 @@
    "Chapter 03: What Each Tab Would Show"
   ],
   [
-   33,
+   37,
    "Why an empty queue proves nothing"
   ],
   [
-   70,
+   74,
    "What Learn and the runbook give you"
   ],
   [
-   108,
+   132,
    "The render rules, in order"
   ],
   [
-   146,
+   169,
    "What it leaves to you, and reachability"
   ],
   [
-   186,
+   224,
    "Who reads it, and who fixes the source"
   ],
   [
-   217,
+   267,
    "Lab 1: the morning the logs stopped"
   ],
   [
-   256,
+   318,
    "Lab 1: the next morning"
   ],
   [
-   284,
+   359,
+   "Lab 1: the replication probe"
+  ],
+  [
+   394,
    "Lab 1: reachability, and a refused render"
   ],
   [
-   313,
-   "Lab 1: record what the check found"
+   428,
+   "Lab 1: record what the checks found"
   ],
   [
-   339,
+   456,
    "Lab 2, evidence and dangers"
   ]
  ],
@@ -6871,11 +6883,15 @@
    "Reachability, rollback plan and evidence"
   ],
   [
-   235,
+   236,
    "Production, rollback and day two"
   ],
   [
-   275,
+   288,
+   "The replication probe, on a Tier 0 host"
+  ],
+  [
+   336,
    "What each record supports"
   ]
  ],
@@ -11111,43 +11127,47 @@
    "The daily checks on one dashboard"
   ],
   [
-   41,
+   42,
    "A dashboard is a picture of the evidence"
   ],
   [
-   79,
+   80,
    "Dashboards in Azure and Microsoft 365"
   ],
   [
-   122,
-   "Ten daily checks, ten tabs"
+   123,
+   "Twelve daily checks, twelve tabs"
   ],
   [
-   164,
+   176,
    "GCC availability, source by source"
   ],
   [
-   210,
+   236,
    "Who does what: the RACI"
   ],
   [
-   244,
+   271,
    "Step 1: connect the sources"
   ],
   [
-   286,
+   312,
+   "Step 1: the servers, replication, the activity log"
+  ],
+  [
+   364,
    "Steps 2 and 3: validate, then preview"
   ],
   [
-   327,
+   405,
    "Step 4: deploy to test, then production"
   ],
   [
-   368,
+   446,
    "Steps 5 and 6: read it, and keep the evidence"
   ],
   [
-   415,
+   493,
    "Requirements, dangers and what's unverified"
   ]
  ],
@@ -14306,26 +14326,26 @@
   ],
   [
    95,
-   "Unit 2: ten tabs, and their GCC availability"
+   "Unit 2: twelve tabs, and their GCC availability"
   ],
   [
-   140,
+   152,
    "Unit 3: the template as code"
   ],
   [
-   171,
+   183,
    "Who this module is for"
   ],
   [
-   204,
+   215,
    "Lab 1: the tabs, and the edited export"
   ],
   [
-   234,
+   246,
    "Lab 2: a test workspace"
   ],
   [
-   261,
+   273,
    "Knowledge check"
   ]
  ],
@@ -14343,23 +14363,23 @@
    "Unit 1: reading the workbook"
   ],
   [
-   95,
+   112,
    "Unit 2: deploying it"
   ],
   [
-   127,
+   144,
    "Unit 3: the evidence"
   ],
   [
-   156,
+   173,
    "Who reads, who approves, who keeps"
   ],
   [
-   192,
+   209,
    "Lab 1: the morning the logs stopped"
   ],
   [
-   223,
+   251,
    "Lab 2, a knowledge check and the summary"
   ]
  ],

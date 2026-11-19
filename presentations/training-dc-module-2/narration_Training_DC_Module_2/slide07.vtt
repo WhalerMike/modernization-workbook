@@ -6,26 +6,46 @@ Lab 1 is in the developer workbook's
 Chapter 3, on a laptop with no tenant.
 
 2
-00:00:05.313 --> 00:00:08.215
+00:00:05.313 --> 00:00:08.272
 You render the morning
 of November sixteenth,
 
 3
-00:00:08.215 --> 00:00:13.105
-when the Entra diagnostic setting stopped
-overnight and the probe didn't run:
+00:00:08.272 --> 00:00:11.778
+when the Entra diagnostic
+setting stopped overnight,
 
 4
-00:00:13.105 --> 00:00:18.224
-four telemetry rows flagged, and sync,
-risk, emergency access and grants all stale.
+00:00:11.778 --> 00:00:15.361
+the probe didn't run and a
+domain controller went silent:
 
 5
-00:00:18.224 --> 00:00:22.050
-Then you render the next morning and
-see what the empty queues were hiding.
+00:00:15.361 --> 00:00:19.022
+four telemetry rows flagged;
+sync, risk, emergency access,
 
 6
-00:00:22.050 --> 00:00:26.500
+00:00:19.022 --> 00:00:23.151
+grants and admin changes all stale;
+and the Active Directory tab,
+
+7
+00:00:23.151 --> 00:00:26.812
+whose sources are fresh,
+flagging the silent controller.
+
+8
+00:00:26.812 --> 00:00:29.948
+Then you render the next
+morning, run the replication
+
+9
+00:00:29.948 --> 00:00:33.512
+probe on a saved replication
+report, and check reachability.
+
+10
+00:00:33.512 --> 00:00:37.970
 And when you try to record the first
 render as evidence, the kit refuses.

@@ -15,40 +15,60 @@ the workspace, the workbook and the Logs
 Ingestion API are all in commercial Azure.
 
 4
-00:00:13.450 --> 00:00:16.275
-Sentinel workbooks are
-generally available there.
-
-5
-00:00:16.275 --> 00:00:20.155
+00:00:13.450 --> 00:00:17.601
 Entra and Intune both send
 their logs to the workspace;
 
-6
-00:00:20.155 --> 00:00:25.587
-Microsoft says Intune in G C C is the
-same instance as the commercial service.
+5
+00:00:17.601 --> 00:00:20.737
+Intune in G C C is the
+commercial instance.
 
-7
-00:00:25.587 --> 00:00:30.762
+6
+00:00:20.737 --> 00:00:25.913
 Defender X D R alerts and incidents
 are generally available for G C C.
 
-8
-00:00:30.762 --> 00:00:33.473
+7
+00:00:25.913 --> 00:00:28.624
 The Defender portal's
 connector overview is a
 
-9
-00:00:33.473 --> 00:00:36.112
+8
+00:00:28.624 --> 00:00:31.263
 commercial-cloud preview,
 so it isn't assumed.
 
+9
+00:00:31.263 --> 00:00:33.504
+For the servers that stay on premises,
+
 10
-00:00:36.112 --> 00:00:40.271
-And Entra Health monitoring and
-Connect Health are not yet specified,
+00:00:33.504 --> 00:00:36.325
+the Azure Monitor Agent
+on Arc-enabled servers,
 
 11
-00:00:40.271 --> 00:00:41.900
-so their tabs are link-outs.
+00:00:36.325 --> 00:00:41.605
+the Windows security events connector and
+the Azure activity connector are available
+
+12
+00:00:41.605 --> 00:00:44.860
+in commercial Azure, and
+Defender for Identity alerts
+
+13
+00:00:44.860 --> 00:00:48.187
+are generally available for G
+C C, with their own license.
+
+14
+00:00:48.187 --> 00:00:51.581
+And Entra Health monitoring
+and Connect Health,
+
+15
+00:00:51.581 --> 00:00:56.140
+for sync and for A D D S, are not yet
+specified, so their tabs link out.

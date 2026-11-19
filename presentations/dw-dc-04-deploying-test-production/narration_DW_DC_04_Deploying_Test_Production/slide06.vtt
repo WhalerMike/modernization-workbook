@@ -29,15 +29,15 @@ and a plan that wasn't made
 against the live environment.
 
 7
-00:00:19.563 --> 00:00:21.888
+00:00:19.563 --> 00:00:21.870
 Step 7 is the smoke test, in the portal:
 
 8
-00:00:21.888 --> 00:00:26.695
-open the Daily checks workbook under
-the test workspace, check that the ten
+00:00:21.870 --> 00:00:26.871
+open the Daily checks workbook under the
+test workspace, check that the twelve
 
 9
-00:00:26.695 --> 00:00:31.870
+00:00:26.871 --> 00:00:32.020
 tabs open with the banner, and that the
 telemetry tab lists every expected table.

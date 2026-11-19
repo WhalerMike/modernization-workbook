@@ -29,7 +29,7 @@ The code behind the guide's [Step 5](../../../books/guides/daily-checks-dashboar
 ## Narrated tour
 {{< fmw-video DW_DC_03_What_Each_Tab_Would_Show_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-dc-03-what-each-tab-would-show) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-dc-03-what-each-tab-would-show) (about 6 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-03-what-each-tab-would-show/DW_DC_03_What_Each_Tab_Would_Show_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-03-what-each-tab-would-show/DW_DC_03_What_Each_Tab_Would_Show_Narrated.vtt). Recorded on November 19, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-dc-03-what-each-tab-would-show) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-dc-03-what-each-tab-would-show) (about 8 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-03-what-each-tab-would-show/DW_DC_03_What_Each_Tab_Would_Show_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-03-what-each-tab-would-show/DW_DC_03_What_Each_Tab_Would_Show_Narrated.vtt). Recorded on November 19, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->
