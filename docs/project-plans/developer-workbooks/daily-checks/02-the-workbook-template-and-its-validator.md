@@ -29,7 +29,7 @@ The code behind the guide's [Step 2](../../../books/guides/daily-checks-dashboar
 ## Narrated tour
 {{< fmw-video DW_DC_02_Template_And_Validator_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-dc-02-template-and-validator) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-dc-02-template-and-validator) (about 6 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-02-template-and-validator/DW_DC_02_Template_And_Validator_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-02-template-and-validator/DW_DC_02_Template_And_Validator_Narrated.vtt). Recorded on November 19, 2026 from the draft chapter, before its review.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-dc-02-template-and-validator) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-dc-02-template-and-validator) (about 6 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-02-template-and-validator/DW_DC_02_Template_And_Validator_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-02-template-and-validator/DW_DC_02_Template_And_Validator_Narrated.vtt). Recorded on November 19, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

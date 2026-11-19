@@ -2,7 +2,7 @@
 
 ## Slide 1 — Chapter 02: The Workbook Template and Its Validator
 
-Welcome back to Building the Daily Checks Workbook. This is Chapter 2: the workbook's template, and its validator. A workbook edited in the portal is a change nobody reviewed, so the kit keeps it as a file and checks every copy against the manifest. We'll start from Microsoft Learn's page on workbooks as Resource Manager templates, see what it leaves to you, read how the template is built and the ten checks the validator runs, and walk two labs. The chapter is a draft awaiting the owner's review.
+Welcome back to Building the Daily Checks Workbook. This is Chapter 2: the workbook's template, and its validator. A workbook edited in the portal is a change nobody reviewed, so the kit keeps it as a file and checks every copy against the manifest. We'll start from Microsoft Learn's page on workbooks as Resource Manager templates, see what it leaves to you, read how the template is built and the ten checks the validator runs, and walk two labs. The chapter has been reviewed and approved.
 
 ## Slide 2 — Why keep the workbook as a file
 

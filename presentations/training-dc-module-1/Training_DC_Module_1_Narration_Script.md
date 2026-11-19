@@ -2,7 +2,7 @@
 
 ## Slide 1 — Module 1: One workbook, one tab per check
 
-Welcome to Module 1 of the learning path The Daily Checks on One Dashboard: one workbook, one tab per daily check. In about forty minutes, plus a lab in a test workspace, you'll see which daily checks a workbook can show and from which table, which ones it can only link to, and how the workbook is kept as a reviewed file rather than something edited in the portal. The module is a draft awaiting the owner's review.
+Welcome to Module 1 of the learning path The Daily Checks on One Dashboard: one workbook, one tab per daily check. In about forty minutes, plus a lab in a test workspace, you'll see which daily checks a workbook can show and from which table, which ones it can only link to, and how the workbook is kept as a reviewed file rather than something edited in the portal. The module has been reviewed and approved.
 
 ## Slide 2 — Objectives: what you'll be able to do
 

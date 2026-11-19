@@ -35,435 +35,435 @@ read the kit's manifest and its
 ten tabs, and walk two labs.
 
 8
-00:00:25.188 --> 00:00:28.287
-The chapter is a draft
-awaiting the owner's review,
+00:00:25.188 --> 00:00:27.960
+The chapter has been
+reviewed and approved,
 
 9
-00:00:28.287 --> 00:00:32.050
+00:00:27.960 --> 00:00:31.790
 and the code is illustrative,
 tested against fixtures.
 
 10
-00:00:35.800 --> 00:00:37.112
+00:00:35.540 --> 00:00:36.852
 Why start with a list?
 
 11
-00:00:37.112 --> 00:00:40.458
+00:00:36.852 --> 00:00:40.198
 The operator runbook asks
 for ten checks every morning,
 
 12
-00:00:40.458 --> 00:00:43.076
+00:00:40.198 --> 00:00:42.816
 and most of them are done
 one portal at a time.
 
 13
-00:00:43.076 --> 00:00:47.850
+00:00:42.816 --> 00:00:47.590
 Some of that data is already in the Sentinel
 workspace; some of it never will be.
 
 14
-00:00:47.850 --> 00:00:51.543
+00:00:47.590 --> 00:00:51.283
 So the goal is to say, for every
 daily check, which table shows it,
 
 15
-00:00:51.543 --> 00:00:55.091
+00:00:51.283 --> 00:00:54.831
 where the operator looks when
 Log Analytics doesn't have it,
 
 16
-00:00:55.091 --> 00:00:57.987
+00:00:54.831 --> 00:00:57.727
 and how much a workbook
 tab can be trusted to show.
 
 17
-00:00:57.987 --> 00:01:02.096
+00:00:57.727 --> 00:01:01.836
 It's for the developers who maintain
 the kit and the security operations
 
 18
-00:01:02.096 --> 00:01:06.070
+00:01:01.836 --> 00:01:05.810
 lead who owns the workspace, and
 you don't need a tenant until Lab 2.
 
 19
-00:01:09.820 --> 00:01:11.845
+00:01:09.560 --> 00:01:11.585
 Here's what Microsoft Learn gives you.
 
 20
-00:01:11.845 --> 00:01:15.230
+00:01:11.585 --> 00:01:14.970
 Its guidance on visualizations
 recommends workbooks for
 
 21
-00:01:15.230 --> 00:01:18.545
+00:01:14.970 --> 00:01:18.285
 reports across Azure sources,
 and lists the other options.
 
 22
-00:01:18.545 --> 00:01:22.878
+00:01:18.285 --> 00:01:22.618
 Its table reference pages give
 each source table and its columns,
 
 23
-00:01:22.878 --> 00:01:26.008
+00:01:22.618 --> 00:01:25.748
 from sign-in logs to
 Intune's compliance export.
 
 24
-00:01:26.008 --> 00:01:29.733
+00:01:25.748 --> 00:01:29.473
 Sentinel's health table covers
 only the connectors Learn lists,
 
 25
-00:01:29.733 --> 00:01:32.333
+00:01:29.473 --> 00:01:32.073
 and only once health
 monitoring is turned on.
 
 26
-00:01:32.333 --> 00:01:35.517
+00:01:32.073 --> 00:01:35.257
 The Logs Ingestion API
 sends your own records
 
 27
-00:01:35.517 --> 00:01:38.367
+00:01:35.257 --> 00:01:38.107
 to a custom table ending
 in underscore C L.
 
 28
-00:01:38.367 --> 00:01:43.144
+00:01:38.107 --> 00:01:42.884
 Entra Health monitoring is a preview
 in the admin center and by e-mail.
 
 29
-00:01:43.144 --> 00:01:48.160
+00:01:42.884 --> 00:01:47.900
 And Intune exports compliance once
 a day, up to forty-eight hours late.
 
 30
-00:01:51.910 --> 00:01:53.135
+00:01:51.650 --> 00:01:52.875
 What does it leave to you?
 
 31
-00:01:53.135 --> 00:01:57.423
+00:01:52.875 --> 00:01:57.163
 Learn gives a table per source, and
 the runbook gives the checks in prose,
 
 32
-00:01:57.423 --> 00:02:00.185
+00:01:57.163 --> 00:01:59.925
 but nobody says which
 table shows which check.
 
 33
-00:02:00.185 --> 00:02:03.272
+00:01:59.925 --> 00:02:03.012
 So the kit has one manifest
 row per daily check.
 
 34
-00:02:03.272 --> 00:02:08.351
+00:02:03.012 --> 00:02:08.091
 Some checks have no data in Log Analytics
 at all, and a tab built on missing data
 
 35
-00:02:08.351 --> 00:02:11.049
+00:02:08.091 --> 00:02:10.789
 looks healthy: those become link-out tabs,
 
 36
-00:02:11.049 --> 00:02:13.747
+00:02:10.789 --> 00:02:13.487
 with no tables and the click path instead.
 
 37
-00:02:13.747 --> 00:02:18.247
+00:02:13.487 --> 00:02:17.987
 Freshness is per source, so each
 expected table gets its own limit.
 
 38
-00:02:18.247 --> 00:02:24.147
+00:02:17.987 --> 00:02:23.887
 And because availability is spread across
 pages, each tab carries its GCC note.
 
 39
-00:02:24.147 --> 00:02:26.840
+00:02:23.887 --> 00:02:26.580
 Every row here is pinned by a test.
 
 40
-00:02:30.590 --> 00:02:31.927
+00:02:30.330 --> 00:02:31.667
 Here's the manifest.
 
 41
-00:02:31.927 --> 00:02:34.302
+00:02:31.667 --> 00:02:34.042
 Ten tabs, one per daily check.
 
 42
-00:02:34.302 --> 00:02:39.513
+00:02:34.042 --> 00:02:39.253
 Eight read tables: telemetry
 completeness, the synchronization probe,
 
 43
-00:02:39.513 --> 00:02:43.222
+00:02:39.253 --> 00:02:42.962
 risky users and sign-ins,
 emergency access sign-ins,
 
 44
-00:02:43.222 --> 00:02:47.991
+00:02:42.962 --> 00:02:47.731
 noncompliant devices, grants, D L
 P alerts, and the log review queue.
 
 45
-00:02:47.991 --> 00:02:53.308
+00:02:47.731 --> 00:02:53.048
 Two are link-outs: Entra Health, because
 its alerts aren't in Log Analytics,
 
 46
-00:02:53.308 --> 00:02:56.765
+00:02:53.048 --> 00:02:56.505
 and the catalog tasks, which
 live in the I T S M tool.
 
 47
-00:02:56.765 --> 00:02:58.665
+00:02:56.505 --> 00:02:58.405
 Two of the eight are partial.
 
 48
-00:02:58.665 --> 00:03:00.722
+00:02:58.405 --> 00:03:00.462
 The grants tab lists grants,
 
 49
-00:03:00.722 --> 00:03:04.477
+00:03:00.462 --> 00:03:04.217
 but matching each to a ticket
 stays in the I T S M tool.
 
 50
-00:03:04.477 --> 00:03:06.819
+00:03:04.217 --> 00:03:06.559
 And the log review tab shows the queue,
 
 51
-00:03:06.819 --> 00:03:10.420
+00:03:06.559 --> 00:03:10.160
 while the review itself
 stays a recorded procedure.
 
 52
-00:03:14.170 --> 00:03:15.095
+00:03:13.910 --> 00:03:14.835
 Who does what?
 
 53
-00:03:15.095 --> 00:03:20.595
+00:03:14.835 --> 00:03:20.335
 Security operations owns the workspace,
 the manifest and the freshness limits.
 
 54
-00:03:20.595 --> 00:03:24.245
+00:03:20.335 --> 00:03:23.985
 Developers own the kit,
 its queries and its tests.
 
 55
-00:03:24.245 --> 00:03:27.970
+00:03:23.985 --> 00:03:27.710
 And the operators read their
 own family's tabs each morning.
 
 56
-00:03:27.970 --> 00:03:32.233
+00:03:27.710 --> 00:03:31.973
 Lab 1 needs nothing but PowerShell:
 it reads the kit's own files.
 
 57
-00:03:32.233 --> 00:03:35.940
+00:03:31.973 --> 00:03:35.680
 Lab 2 needs Log Analytics
 Reader on a test workspace;
 
 58
-00:03:35.940 --> 00:03:38.958
+00:03:35.680 --> 00:03:38.698
 it only reads the table
 list, then signs out.
 
 59
-00:03:38.958 --> 00:03:43.800
+00:03:38.698 --> 00:03:43.540
 A reviewer checks that each link-out
 has its click path and an allowed host.
 
 60
-00:03:47.550 --> 00:03:50.850
+00:03:47.290 --> 00:03:50.590
 Lab 1, in the kit's
 folder, with no tenant.
 
 61
-00:03:50.850 --> 00:03:56.425
+00:03:50.590 --> 00:03:56.165
 Step 1 lists the tabs: ten of them, with
 the telemetry row left off the slide.
 
 62
-00:03:56.425 --> 00:03:59.842
+00:03:56.165 --> 00:03:59.582
 Notice that entra health and
 tasks read no table at all,
 
 63
-00:03:59.842 --> 00:04:02.500
+00:03:59.582 --> 00:04:02.240
 and that grants and
 log review are partial.
 
 64
-00:04:02.500 --> 00:04:05.983
+00:04:02.240 --> 00:04:05.723
 Step 4 counts the tabs
 by fit: four strong,
 
 65
-00:04:05.983 --> 00:04:10.240
+00:04:05.723 --> 00:04:09.980
 two good, two partial, one
 weak, and one link-out.
 
 66
-00:04:13.990 --> 00:04:15.978
+00:04:13.730 --> 00:04:15.718
 Step 2 opens a link-out tab.
 
 67
-00:04:15.978 --> 00:04:20.949
+00:04:15.718 --> 00:04:20.689
 Entra Health has no table: the tab sends
 the operator to the Entra admin center,
 
 68
-00:04:20.949 --> 00:04:23.590
+00:04:20.689 --> 00:04:23.330
 under Monitoring and health, then Health.
 
 69
-00:04:23.590 --> 00:04:29.002
+00:04:23.330 --> 00:04:28.742
 Its G C C availability is not yet
 specified, so nothing is built on its data.
 
 70
-00:04:29.002 --> 00:04:31.227
+00:04:28.742 --> 00:04:30.967
 Step 3 opens a partial tab.
 
 71
-00:04:31.227 --> 00:04:36.196
+00:04:30.967 --> 00:04:35.936
 The grants tab reads the Entra audit
 logs, but its action says it plainly:
 
 72
-00:04:36.196 --> 00:04:39.565
+00:04:35.936 --> 00:04:39.305
 each row is matched to its
 ticket in the I T S M tool,
 
 73
-00:04:39.565 --> 00:04:42.780
+00:04:39.305 --> 00:04:42.520
 and a grant with no
 ticket opens a finding.
 
 74
-00:04:46.530 --> 00:04:49.392
+00:04:46.270 --> 00:04:49.132
 Step 5 reads the emergency access query.
 
 75
-00:04:49.392 --> 00:04:54.174
+00:04:49.132 --> 00:04:53.914
 It's Microsoft's own sign-in query from
 its emergency access guidance, with the
 
 76
-00:04:54.174 --> 00:04:58.955
+00:04:53.914 --> 00:04:58.695
 accounts' object I D's taken from a
 parameter instead of written into the query.
 
 77
-00:04:58.955 --> 00:05:02.968
+00:04:58.695 --> 00:05:02.708
 Step 6 lists the eight expected
 tables and their limits.
 
 78
-00:05:02.968 --> 00:05:06.068
+00:05:02.708 --> 00:05:05.808
 Sign-in and audit logs: sixty minutes.
 
 79
-00:05:06.068 --> 00:05:10.508
+00:05:05.808 --> 00:05:10.248
 Intune's compliance export: two thousand
 eight hundred and eighty minutes,
 
 80
-00:05:10.508 --> 00:05:14.670
+00:05:10.248 --> 00:05:14.410
 because it arrives once a day and
 can take up to forty-eight hours.
 
 81
-00:05:18.420 --> 00:05:23.745
+00:05:18.160 --> 00:05:23.485
 Lab 2 runs in a test workspace, never
 production, and the authors haven't run it.
 
 82
-00:05:23.745 --> 00:05:27.271
+00:05:23.485 --> 00:05:27.011
 Sign in to commercial Azure,
 list the workspace's tables,
 
 83
-00:05:27.271 --> 00:05:31.333
+00:05:27.011 --> 00:05:31.073
 and print every table a tab reads
 that the workspace doesn't have.
 
 84
-00:05:31.333 --> 00:05:33.233
+00:05:31.073 --> 00:05:32.973
 It reads and changes nothing.
 
 85
-00:05:33.233 --> 00:05:37.563
+00:05:32.973 --> 00:05:37.303
 Every name it prints is a source the
 guide's first step still has to connect:
 
 86
-00:05:37.563 --> 00:05:40.047
+00:05:37.303 --> 00:05:39.787
 the probe's custom table
 until it's created,
 
 87
-00:05:40.047 --> 00:05:43.596
+00:05:39.787 --> 00:05:43.336
 and the Sentinel health table
 until health monitoring is on.
 
 88
-00:05:43.596 --> 00:05:45.020
+00:05:43.336 --> 00:05:44.760
 Then sign out.
 
 89
-00:05:48.770 --> 00:05:51.395
+00:05:48.510 --> 00:05:51.135
 Two outputs support federal requirements.
 
 90
-00:05:51.395 --> 00:05:55.622
+00:05:51.135 --> 00:05:55.362
 Lab 1 shows every daily check has
 a home, a table or a link-out,
 
 91
-00:05:55.622 --> 00:05:59.145
+00:05:55.362 --> 00:05:58.885
 which supports continuous
 monitoring, C A seven.
 
 92
-00:05:59.145 --> 00:06:02.755
+00:05:58.885 --> 00:06:02.495
 Lab 2 shows the workspace
 has each table a tab reads,
 
 93
-00:06:02.755 --> 00:06:06.108
+00:06:02.495 --> 00:06:05.848
 which also supports system
 monitoring, S I four.
 
 94
-00:06:06.108 --> 00:06:09.184
+00:06:05.848 --> 00:06:08.924
 The manifest itself is
 design, not evidence;
 
 95
-00:06:09.184 --> 00:06:11.919
+00:06:08.924 --> 00:06:11.659
 the kit's records in later chapters are.
 
 96
-00:06:11.919 --> 00:06:15.304
+00:06:11.659 --> 00:06:15.044
 The dangers: a tab built on
 data G C C doesn't have,
 
 97
-00:06:15.304 --> 00:06:20.557
+00:06:15.044 --> 00:06:20.297
 one freshness limit for every source,
 and a partial tab read as complete.
 
 98
-00:06:20.557 --> 00:06:24.740
+00:06:20.297 --> 00:06:24.480
 Next, Chapter 2 builds the workbook's
 template and its validator.

@@ -2,7 +2,7 @@
 
 ## Slide 1 — Module 2: Read it, deploy it, keep the evidence
 
-Welcome to Module 2 of The Daily Checks on One Dashboard: reading it, deploying it, and keeping the evidence. A dashboard's most dangerous state isn't red: it's green over a source that stopped arriving. In this module you read the workbook the way an operator should, telemetry first; deploy it the way a change should go, previewed and approved; and keep the evidence the way an assessor needs it. About forty minutes, plus a lab. The module is a draft awaiting the owner's review.
+Welcome to Module 2 of The Daily Checks on One Dashboard: reading it, deploying it, and keeping the evidence. A dashboard's most dangerous state isn't red: it's green over a source that stopped arriving. In this module you read the workbook the way an operator should, telemetry first; deploy it the way a change should go, previewed and approved; and keep the evidence the way an assessor needs it. About forty minutes, plus a lab. The module has been reviewed and approved.
 
 ## Slide 2 — Objectives: what you'll be able to do
 

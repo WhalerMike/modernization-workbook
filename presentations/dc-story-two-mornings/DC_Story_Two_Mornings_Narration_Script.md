@@ -2,7 +2,7 @@
 
 ## Slide 1 — Two Mornings, One Workspace
 
-Welcome to the story deck for Building the Daily Checks Workbook. Instead of four chapters one at a time, we'll follow one fictional workspace, for contoso dot example, through two mornings: November sixteenth, 2026, when something quietly broke overnight, and the next morning, when it was fixed. Every value comes from the kit's own test fixtures, and every output on a slide is what the kit really printed. The workbook is a draft awaiting the owner's review, and the code is illustrative, tested against fixtures.
+Welcome to the story deck for Building the Daily Checks Workbook. Instead of four chapters one at a time, we'll follow one fictional workspace, for contoso dot example, through two mornings: November sixteenth, 2026, when something quietly broke overnight, and the next morning, when it was fixed. Every value comes from the kit's own test fixtures, and every output on a slide is what the kit really printed. The workbook has been reviewed and approved, and the code is illustrative, tested against fixtures.
 
 ## Slide 2 — The operator's morning, before the workbook
 
