@@ -21,7 +21,7 @@ last-reviewed: 2026-11-19
 
 ::: {.callout-note}
 ## In this guide
-How an agency on Microsoft 365 GCC (Moderate), with its Microsoft Sentinel workspace in commercial Azure, puts the daily checks of the operator runbook on one Azure Monitor workbook. First, how to read the guide, what Azure and Microsoft 365 offer for dashboards, which daily checks fit a workbook and from which table, and government-cloud availability source by source. Then six steps: connect the sources, fill the settings and validate the template, plan the deployment with what-if, deploy to test and production, read the workbook each morning, and keep the evidence. Then the federal requirements and KSIs, the RACI, the dangers, the implementation checklist and what couldn't be verified.
+How an agency on Microsoft 365 GCC (Moderate), with its Microsoft Sentinel workspace in commercial Azure, puts the daily checks of the operator runbook on one Azure Monitor workbook. First, how to read the guide, what Azure and Microsoft 365 offer for dashboards, which daily checks fit a workbook and from which table, government-cloud availability source by source, and the prerequisites as one access request. Then six steps: connect the sources, fill the settings and validate the template, plan the deployment with what-if, deploy to test and production, read the workbook each morning, and keep the evidence. Then the federal requirements and KSIs, the RACI, the dangers, the implementation checklist and what couldn't be verified.
 :::
 
 ::: {.callout-tip}
@@ -104,6 +104,60 @@ GCC (Moderate) uses the commercial Microsoft Entra ID service and pairs with com
 
 Where a source isn't available or isn't specified, the tab is a link out with the click path, never a tab that assumes the data.
 
+## Prerequisites: the access request {#prerequisites}
+
+**Owner:** security operations, who submit it with the change record. **Authority:** *Design guidance*, built on the roles Learn names in each note.
+
+Steps 1 to 4 need the rights, the data sources and the values below. They are the same ones those steps name, collected in one place so the deployer can submit one request. The workbook is a read-only view: it changes no log data, alert rule or task, and deleting it removes only the view. Fill each `<placeholder>` at work and keep the filled copy inside the agency's boundary.
+
+**1. Access rights.**
+
+| # | Right | Scope | Who | Why | Duration |
+|---|---|---|---|---|---|
+| 1 | **Workbook Contributor** | The workbook's resource group only | Deployer | Save a shared workbook (`microsoft.insights/workbooks/write`)[^dcg-overview][^dcg-roles] | Deployment window only (test, then production) |
+| 2 | **`Microsoft.Resources/deployments/*`** (a custom role, or an existing role that includes it) | Same resource group only | Deployer | Run the what-if preview and the deployment; what-if needs the same permissions as a deployment[^dcg-whatif] | Deployment window only |
+| 3 | **Log Analytics Reader** | The Sentinel workspace | Deployer | The read-only reachability check[^dcg-la-access] | Deployment window only |
+| 4 | **Workbook Reader** (or Monitoring Reader) | The workbook's resource group | Daily-check operators | Open the workbook[^dcg-roles] | Standing |
+| 5 | Read access to the tables each tab reads (Log Analytics Reader, or resource-context or table-level access) | The Sentinel workspace | Daily-check operators | A workbook shows only what its reader can already query[^dcg-overview][^dcg-la-access] | Standing, per role |
+| 6 | **Reports Reader** (Microsoft Entra) | The tenant | Daily-check operators | Open Entra Health monitoring from its link-out tab[^dcg-entra-health] | Standing |
+| 7 | **Monitoring Metrics Publisher** | The sync probe's data collection rule | The probe's identity, not a person | Write the probe's result to `DailySyncProbe_CL`[^dcg-ingest] | Standing |
+
+Not requested: Global Administrator, Owner, Microsoft Sentinel Contributor, or any write access to the workspace's data. Grant rows 1 to 3 through PIM for the deployment window, as [Chapter 04](../../project-plans/developer-workbooks/daily-checks/04-deploying-to-test-and-production.md#before-you-start) of the developer workbook says.
+
+**2. One-time setup, only where it isn't already in place.** Step 1 gives each item in full.
+
+| # | Item | Who, with which role | Done when |
+|---|---|---|---|
+| 1 | The Entra diagnostic setting sends `SignInLogs`, `AuditLogs`, `RiskyUsers` and `UserRiskEvents` to the workspace | Security Administrator[^dcg-entra-logs] | `SigninLogs`, `AuditLogs` and `AADRiskyUsers` hold records from the last hour |
+| 2 | Intune **Reports** > **Diagnostics settings** sends **DeviceComplianceOrg** to the workspace | Intune Service Administrator, with Log Analytics Contributor on the workspace[^dcg-intune] | `IntuneDeviceComplianceOrg` holds records from the last 48 hours |
+| 3 | The Defender XDR connector brings incidents and alerts, Purview DLP alerts among them | The workspace's Sentinel owner; nothing new requested[^dcg-xdr] | `SecurityIncident` and `SecurityAlert` hold recent records |
+| 4 | **Auditing and health monitoring** is on in Sentinel's settings, and the **Data collection health monitoring** workbook is installed | The workspace's Sentinel owner; nothing new requested[^dcg-health][^dcg-enable-health] | `_SentinelHealth() \| take 20` returns records |
+| 5 | The custom table `DailySyncProbe_CL` and its data collection rule | Contributor rights on the workspace for the table; Monitoring Contributor on the resource group for the rule, once[^dcg-ingest-tutorial][^dcg-dcr-perms] | The probe writes one row each morning |
+
+**3. Values for the settings file,** one file per environment, from the kit's `deploy/settings.template.json` (Step 2).
+
+| Setting | Where it comes from |
+|---|---|
+| `tenantId`, `subscriptionId`, `resourceGroup`, `location` | The tenant, and the subscription and resource group that will hold the workbook |
+| `workspaceResourceId`, `workspaceCustomerId` | The Log Analytics workspace's **Properties** |
+| `emergencyAccessObjectIds` | The emergency access accounts' object IDs, not their names |
+| `compliantStateValue` | `IntuneDeviceComplianceOrg \| where TimeGenerated > ago(7d) \| distinct ComplianceState`, run in the workspace; take the value that means compliant |
+| `dlpProductNames` | `SecurityAlert \| where TimeGenerated > ago(30d) \| distinct ProductName`, run in the workspace; take the values of Purview DLP and sensitivity label alerts |
+| `itsmQueueUrl` | The ITSM queue that holds the catalog and remediation tasks |
+| `outputRoot`, `evidencePath`, `changeRecord` | Agency storage outside any repository, and the change record |
+
+Learn documents the `ComplianceState` and `ProductName` columns, not their values, so those two come from the agency's own workspace ([What couldn't be verified](#what-couldnt-be-verified)). The kit's [Copilot prompts](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/daily-checks-workbook/copilot-prompts.md) help pick them at work.
+
+**4. Other items.**
+
+| # | Item | Notes |
+|---|---|---|
+| 1 | A change record with a second approver | The approver reads the plan and the what-if result and records the plan's SHA-256 (Step 3) |
+| 2 | A test subscription and workspace | Test first; the kit refuses production without the test stage's evidence (Step 4) |
+| 3 | Workstation tools | PowerShell 7; the Azure CLI with its `log-analytics` extension, signed in to commercial Azure (`AzureCloud`); Pester 5 for the kit's tests |
+| 4 | Evidence storage | An agency folder for the plan, what-if, deployment and reachability records (Step 6) |
+| 5 | A rollback | Redeploy the previous approved plan, or delete the workbook; no data is affected (Step 4) |
+
 ## Step 1: Connect the sources {#step-1}
 
 **Owner:** security operations (the workspace), identity engineering (Entra and the probe), the endpoint platform owner (Intune). **Authority:** *Design guidance*, except where noted.
@@ -140,7 +194,7 @@ Where a source isn't available or isn't specified, the tab is a link out with th
 
 **Owner:** security operations. **Authority:** *Design guidance*.
 
-1. **Least privilege.** To save a shared workbook a person needs `microsoft.insights/workbooks/write`, which the **Workbook Contributor** role grants;[^dcg-overview][^dcg-roles] to deploy through Resource Manager they also need `Microsoft.Resources/deployments/*`.[^dcg-whatif] Grant both on the workbook's resource group only, for the deployment. Readers of the workbook need **Workbook Reader** (or Monitoring Reader) and read access to the data each query reads; a workbook shows only what its reader can already query.[^dcg-overview][^dcg-roles][^dcg-la-access]
+1. **Least privilege.** To save a shared workbook a person needs `microsoft.insights/workbooks/write`, which the **Workbook Contributor** role grants;[^dcg-overview][^dcg-roles] to deploy through Resource Manager they also need `Microsoft.Resources/deployments/*`.[^dcg-whatif] Grant both on the workbook's resource group only, for the deployment. The [access request](#prerequisites) lists every right in one table. Readers of the workbook need **Workbook Reader** (or Monitoring Reader) and read access to the data each query reads; a workbook shows only what its reader can already query.[^dcg-overview][^dcg-roles][^dcg-la-access]
 2. **Test.** Preflight (PF-01 to PF-06), plan with what-if, deploy the approved plan, open the workbook and run the reachability check. The [runbook](../../project-plans/developer-workbooks/daily-checks/04-deploying-to-test-and-production.md) gives every command.
 3. **Go or no-go.** The test stage's evidence holds a passing live record for the preflight, the validation, the plan, the deployment and the reachability check.
 4. **Production.** The same commands with the production settings file; the preflight refuses production without the test stage's evidence.
@@ -273,3 +327,6 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 [^dcg-entra-logs]: Microsoft Learn, "Logs available for streaming from Microsoft Entra ID" (`AuditLogs`, `SignInLogs`, `RiskyUsers`, `UserRiskEvents`; Security Administrator to create or edit a diagnostic setting), <https://learn.microsoft.com/entra/identity/monitoring-health/concept-diagnostic-settings-logs-options> (accessed Nov 18, 2026).
 [^dcg-intune-gov]: Microsoft Learn, "Microsoft Intune Government Service overview" ("GCC is the same instance as Microsoft Intune in the commercial space"), <https://learn.microsoft.com/intune/fundamentals/government-service> (accessed Nov 18, 2026).
 [^dcg-xdr-clouds]: Microsoft Learn, "Support for Microsoft Defender XDR connector data types in Microsoft Sentinel for different clouds" (incidents, and Defender XDR alerts in `SecurityAlert`, generally available for Commercial / GCC), <https://learn.microsoft.com/azure/sentinel/microsoft-365-defender-cloud-support> (accessed Nov 18, 2026).
+[^dcg-enable-health]: Microsoft Learn, "Turn on auditing and health monitoring in Microsoft Sentinel" (Settings > **Auditing and health monitoring** > **Enable**; the `_SentinelHealth()` check; no role named), <https://learn.microsoft.com/azure/sentinel/enable-monitoring> (accessed Nov 19, 2026).
+[^dcg-ingest-tutorial]: Microsoft Learn, "Tutorial: Send data to Azure Monitor Logs with Logs ingestion API (Azure portal)," Prerequisites ("at least contributor rights" on the workspace; permissions to create DCR objects), <https://learn.microsoft.com/azure/azure-monitor/logs/tutorial-logs-ingestion-portal> (accessed Nov 19, 2026).
+[^dcg-dcr-perms]: Microsoft Learn, "Create data collection rules (DCRs) using JSON," Permissions (Monitoring Contributor to create or edit DCRs, on the subscription, resource group or DCR), <https://learn.microsoft.com/azure/azure-monitor/data-collection/data-collection-rule-create-edit> (accessed Nov 19, 2026).
