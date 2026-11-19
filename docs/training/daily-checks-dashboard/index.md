@@ -22,7 +22,7 @@ last-reviewed: 2026-11-19
 ---
 # Learning path: The Daily Checks on One Dashboard {.unnumbered}
 
-The operator runbook has ten daily checks, and most of them are done one portal at a time. This learning path puts them on one Azure Monitor workbook, one tab per check, and teaches the rule that comes with it: the workbook is a view, not evidence. You work through [The Daily Checks on One Dashboard: An Implementation Guide](../../books/guides/daily-checks-dashboard-implementation.md) in two modules, with the labs of its developer workbook, [*Building the Daily Checks Workbook*](../../project-plans/developer-workbooks/daily-checks/index.md).
+The operator runbook has twelve daily checks, the synchronization servers, domain controllers and request-driven admin changes among them, and most of them are done one portal at a time. This learning path puts them on one Azure Monitor workbook, one tab per check, and teaches the rule that comes with it: the workbook is a view, not evidence. You work through [The Daily Checks on One Dashboard: An Implementation Guide](../../books/guides/daily-checks-dashboard-implementation.md) in two modules, with the labs of its developer workbook, [*Building the Daily Checks Workbook*](../../project-plans/developer-workbooks/daily-checks/index.md).
 
 Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), it is a short series of modules, each built on the one before. The modules don't repeat the guide or the chapters. They tell you what to read, in what order, what to run, and what to check you understood.
 
@@ -34,7 +34,7 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 | Operators (identity, devices, applications, data, network) | What each tab shows, what STALE means, and where each finding goes |
 | ISSO reviewer | What the kit records, and why no render or screenshot is in the package; read each module's introduction and summary and skip the labs |
 
-**Level:** intermediate. **Products:** Azure Monitor workbooks, Microsoft Sentinel, Log Analytics, Azure Resource Manager what-if, Microsoft Entra ID, Microsoft Intune, Microsoft Defender XDR. **Scope:** a civilian agency on Microsoft 365 GCC (Moderate) with its Sentinel workspace in commercial Azure, as the guide's [starting state](../../books/guides/daily-checks-dashboard-implementation.md#how-to-read) describes.
+**Level:** intermediate. **Products:** Azure Monitor workbooks, Microsoft Sentinel, Log Analytics, Azure Resource Manager what-if, Microsoft Entra ID, Microsoft Intune, Microsoft Defender XDR, Microsoft Defender for Identity, Azure Monitor Agent on Azure Arc-enabled servers, Active Directory Domain Services. **Scope:** a civilian agency on Microsoft 365 GCC (Moderate) with its Sentinel workspace in commercial Azure, as the guide's [starting state](../../books/guides/daily-checks-dashboard-implementation.md#how-to-read) describes.
 
 ## Prerequisites {#dc-prerequisites}
 

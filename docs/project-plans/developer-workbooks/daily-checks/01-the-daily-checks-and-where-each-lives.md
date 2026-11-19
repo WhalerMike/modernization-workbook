@@ -1,6 +1,6 @@
 ---
 title: "Chapter 01 — The Daily Checks and Where Each One Lives"
-description: "The guide's Step 1 and its tab table as code: a manifest with one tab per daily check in the operator runbook, ten in all, each with the tables it reads, its look-back, the portal page it links out to with the click path, its GCC availability, how well it fits a workbook, and the rule the renderer applies. Where a check's data isn't in Log Analytics (Entra Health, the ITSM task queue), the tab is a link out, never a tab that assumes the data. Labs against the kit's manifest and a test workspace's table list."
+description: "The guide's Step 1 and its tab table as code: a manifest with one tab per daily check in the operator runbook, twelve in all (the domain controllers and the request-driven admin changes among them), each with the tables it reads, its look-back, the portal page it links out to with the click path, its GCC availability, how well it fits a workbook, and the rule the renderer applies. Where a check's data isn't in Log Analytics (Entra Health, the ITSM task queue), the tab is a link out, never a tab that assumes the data. Labs against the kit's manifest and a test workspace's table list."
 doc-type: workbook-chapter
 audience: [Technical]
 family: dw-daily-checks
@@ -44,7 +44,7 @@ The code behind the guide's [tab table](../../../books/guides/daily-checks-dashb
 
 ### What Microsoft gives you
 
-Microsoft's guidance on Azure Monitor visualizations recommends workbooks for reports across Azure sources and lists the other options: portal dashboards, Dashboards with Grafana (preview), Azure Managed Grafana and Power BI.[^dc01-best] Learn's table reference pages give each source table and its columns: `SigninLogs`, `AuditLogs`, `AADRiskyUsers`, `IntuneDeviceComplianceOrg`, `SecurityAlert`, `SecurityIncident`, `CommonSecurityLog`.[^dc01-tables] Sentinel's health page gives `SentinelHealth`, which covers only the connectors it lists and only once health monitoring is on.[^dc01-health] The Logs Ingestion API sends a custom application's records to a custom table whose name ends in `_CL`.[^dc01-ingest] Entra Health monitoring is a preview shown in the Microsoft Entra admin center and by e-mail.[^dc01-entra-health]
+Microsoft's guidance on Azure Monitor visualizations recommends workbooks for reports across Azure sources and lists the other options: portal dashboards, Dashboards with Grafana (preview), Azure Managed Grafana and Power BI.[^dc01-best] Learn's table reference pages give each source table and its columns: `SigninLogs`, `AuditLogs`, `AADRiskyUsers`, `IntuneDeviceComplianceOrg`, `SecurityAlert`, `SecurityIncident`, `CommonSecurityLog`.[^dc01-tables] Sentinel's health page gives `SentinelHealth`, which covers only the connectors it lists and only once health monitoring is on.[^dc01-health] The Logs Ingestion API sends a custom application's records to a custom table whose name ends in `_CL`.[^dc01-ingest] Entra Health monitoring is a preview shown in the Microsoft Entra admin center and by e-mail.[^dc01-entra-health] For the servers that stay on premises, the Azure Monitor Agent runs on Azure Arc-enabled servers and sends Windows event logs to the `Event` table and a heartbeat to `Heartbeat`; the Windows Security Events via AMA connector sends the Security log to `SecurityEvent`; and the subscription's activity log arrives in `AzureActivity`.[^dc01-servers]
 
 ### What it leaves to you
 
@@ -61,19 +61,23 @@ Each row is pinned by a test in the `Chapter 01` block of `tests/DailyChecks.Tes
 
 ### The manifest
 
-`config/manifest.json` has the workbook's name and schema, the not-evidence banner every tab carries, the hosts a link-out may point to, the five workbook parameters (the workspace, the emergency access object IDs, the compliant state value, the DLP product names and the ITSM queue's address), the expected tables with their freshness limits, and the ten tabs. Each tab has an `id`, a `title`, the daily `check` it shows, its `kind` (`workbook` or `link-out`), its `fit` (strong, good, partial, weak or link-out), its `tables`, its `queries` (a file in `queries/` and a look-back in hours each), its `linkOuts` (name, address and click path), its `gcc` note, its `action` (what the operator does with a row) and its `render` rule (Chapter 03).
+`config/manifest.json` has the workbook's name and schema, the not-evidence banner every tab carries, the hosts a link-out may point to, the ten workbook parameters (the workspace, the emergency access object IDs, the compliant state value, the DLP product names, the ITSM queue's address, the synchronization servers, their event sources and backup event sources, the domain controllers, and the Defender for Identity alert product names), the expected tables with their freshness limits, and the twelve tabs. Each tab has an `id`, a `title`, the daily `check` it shows, its `kind` (`workbook` or `link-out`), its `fit` (strong, good, partial, weak or link-out), its `tables`, its `queries` (a file in `queries/` and a look-back in hours each), its `linkOuts` (name, address and click path), its `gcc` note, its `action` (what the operator does with a row) and its `render` rule (Chapter 03).
+
+The servers and domain controllers are never named in a query: the `SyncServers` and `DomainControllers` parameters carry them from the settings file, and each list becomes one row per server, so a server that stops sending shows as a stale heartbeat rather than disappearing. Consents and Entra role assignments live on the `grants` tab only; `admin-changes` holds the other request-driven changes, and a test keeps the two apart.
 
 `Get-DcTab` lists the tabs; `Show-DcManifest.ps1` prints them, or one tab in full with `-Id`.
 
 | Tab | Kind | Fit | Tables |
 |---|---|---|---|
-| `telemetry` | workbook | strong | the eight expected tables, `SentinelHealth` |
-| `sync` | workbook | strong | `DailySyncProbe_CL` |
+| `telemetry` | workbook | strong | the thirteen expected tables, `SentinelHealth` |
+| `sync` | workbook | strong | `DailySyncProbe_CL`, `Event`, `Heartbeat` |
+| `active-directory` | workbook | good | `Heartbeat`, `DcReplicationProbe_CL`, `SecurityEvent`, `Event`, `SecurityAlert` |
 | `entra-health` | link-out | link-out | none |
 | `risk` | workbook | strong | `AADRiskyUsers`, `SigninLogs` |
 | `emergency-access` | workbook | strong | `SigninLogs` |
 | `devices` | workbook | good | `IntuneDeviceComplianceOrg` |
 | `grants` | workbook | partial | `AuditLogs` |
+| `admin-changes` | workbook | partial | `AuditLogs`, `AzureActivity` |
 | `data` | workbook | good | `SecurityAlert` |
 | `tasks` | link-out | weak | none |
 | `log-review` | workbook | partial | `SecurityIncident` |
@@ -102,17 +106,20 @@ Every command in this lab, in order, from `examples/daily-checks-workbook`. Each
 # Step 3: Open a partial tab
 ./Show-DcManifest.ps1 -Id grants
 
-# Step 4: Count the tabs by fit
+# Step 4: Open the Active Directory tab
+./Show-DcManifest.ps1 -Id active-directory
+
+# Step 5: Count the tabs by fit
 Import-Module ./powershell/DailyChecks/DailyChecks.psm1
 Get-DcTab | Group-Object Fit | Sort-Object Name | Select-Object Name, Count
 
-# Step 5: Read the emergency access query
+# Step 6: Read the emergency access query
 Get-Content queries/emergency-access-1.kql
 
-# Step 6: List the expected tables and their freshness limits
+# Step 7: List the expected tables and their freshness limits
 (Get-DcManifest).expectedTables | ForEach-Object { [pscustomobject]$_ } | Format-Table table, slaMinutes
 
-# Step 7: Run this chapter's tests
+# Step 8: Run this chapter's tests
 Invoke-Pester -Path tests/DailyChecks.Tests.ps1 -FullNameFilter 'Chapter 01*' -Output None -PassThru | Select-Object PassedCount, FailedCount
 ```
 
@@ -132,7 +139,7 @@ Invoke-Pester -Path tests/DailyChecks.Tests.ps1 -FullNameFilter 'Chapter 01*' -O
 
    <!-- capture:end -->
 
-   Ten tabs. `entra-health` and `tasks` read no table; `grants` and `log-review` are partial.
+   Twelve tabs. `entra-health` and `tasks` read no table; `grants`, `admin-changes` and `log-review` are partial.
 
 2. **Open a link-out tab.** Entra Health has no table: the tab sends the operator to the admin center:
 
@@ -158,56 +165,68 @@ Invoke-Pester -Path tests/DailyChecks.Tests.ps1 -FullNameFilter 'Chapter 01*' -O
 
    <!-- capture:end -->
 
-4. **Count the tabs by fit:**
+4. **Open the Active Directory tab.** Five queries, one row per domain controller among them, and Connect Health for AD DS as the link-out:
+
+   ```powershell
+   ./Show-DcManifest.ps1 -Id active-directory
+   ```
+
+   <!-- capture:begin 01-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/01-4.txt))](captures/01-4.png){.lightbox fig-alt="Terminal window showing ./Show-DcManifest.ps1 -Id active-directory and what it printed"}
+
+   <!-- capture:end -->
+
+5. **Count the tabs by fit:**
 
    ```powershell
    Import-Module ./powershell/DailyChecks/DailyChecks.psm1
    Get-DcTab | Group-Object Fit | Sort-Object Name | Select-Object Name, Count
    ```
 
-   <!-- capture:begin 01-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+   <!-- capture:begin 01-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
 
-   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/01-4.txt))](captures/01-4.png){.lightbox fig-alt="Terminal window showing Import-Module ./powershell/DailyChecks/DailyChecks.psm1 and what it printed"}
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/01-5.txt))](captures/01-5.png){.lightbox fig-alt="Terminal window showing Import-Module ./powershell/DailyChecks/DailyChecks.psm1 and what it printed"}
 
    <!-- capture:end -->
 
-   Four strong, two good, two partial, one weak and one link-out.
+   Four strong, three good, three partial, one weak and one link-out.
 
-5. **Read the emergency access query.** It is Microsoft's own query, with the object IDs from a parameter instead of literals:
+6. **Read the emergency access query.** It is Microsoft's own query, with the object IDs from a parameter instead of literals:
 
    ```powershell
    Get-Content queries/emergency-access-1.kql
    ```
 
-   <!-- capture:begin 01-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+   <!-- capture:begin 01-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
 
-   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/01-5.txt))](captures/01-5.png){.lightbox fig-alt="Terminal window showing Get-Content queries/emergency-access-1.kql and what it printed"}
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/01-6.txt))](captures/01-6.png){.lightbox fig-alt="Terminal window showing Get-Content queries/emergency-access-1.kql and what it printed"}
 
    <!-- capture:end -->
 
-6. **List the expected tables and their freshness limits:**
+7. **List the expected tables and their freshness limits:**
 
    ```powershell
    (Get-DcManifest).expectedTables | ForEach-Object { [pscustomobject]$_ } | Format-Table table, slaMinutes
    ```
 
-   <!-- capture:begin 01-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+   <!-- capture:begin 01-7 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
 
-   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/01-6.txt))](captures/01-6.png){.lightbox fig-alt="Terminal window showing (Get-DcManifest).expectedTables | ForEach-Object { [pscustomobject]$_ } | For… and what it printed"}
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/01-7.txt))](captures/01-7.png){.lightbox fig-alt="Terminal window showing (Get-DcManifest).expectedTables | ForEach-Object { [pscustomobject]$_ } | For… and what it printed"}
 
    <!-- capture:end -->
 
-   Eight tables. `IntuneDeviceComplianceOrg` has 2,880 minutes, because Intune exports once a day and can take up to 48 hours.
+   Thirteen tables. `Heartbeat` and `SecurityEvent` have 60 minutes, because the servers' agents report continuously; `IntuneDeviceComplianceOrg` has 2,880 minutes, because Intune exports once a day and can take up to 48 hours.
 
-7. **Run this chapter's tests:**
+8. **Run this chapter's tests:**
 
    ```powershell
    Invoke-Pester -Path tests/DailyChecks.Tests.ps1 -FullNameFilter 'Chapter 01*' -Output None -PassThru | Select-Object PassedCount, FailedCount
    ```
 
-   <!-- capture:begin 01-7 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+   <!-- capture:begin 01-8 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
 
-   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/01-7.txt))](captures/01-7.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests/DailyChecks.Tests.ps1 -FullNameFilter 'Chapter 01*'… and what it printed"}
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/01-8.txt))](captures/01-8.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests/DailyChecks.Tests.ps1 -FullNameFilter 'Chapter 01*'… and what it printed"}
 
    <!-- capture:end -->
 
@@ -255,7 +274,7 @@ az logout
    (Get-DcManifest).tabs | ForEach-Object { $_.tables } | Sort-Object -Unique | Where-Object { $_ -notin $have }
    ```
 
-   Every name the second line prints is a source Step 1 of the guide still has to connect. `DailySyncProbe_CL` appears until the probe's table is created; `SentinelHealth` appears until health monitoring is on.
+   Every name the second line prints is a source Step 1 of the guide still has to connect. `DailySyncProbe_CL` and `DcReplicationProbe_CL` appear until the probes' tables are created; `SentinelHealth` appears until health monitoring is on; `Event`, `Heartbeat` and `SecurityEvent` appear until the servers send through the Azure Monitor Agent.
 
 3. **Back it out.** Nothing was changed; sign out:
 
@@ -272,6 +291,7 @@ az logout
 | `SentinelHealth` | Selected connectors only; health monitoring must be turned on | Commercial Azure | [^dc01-health] |
 | Custom table for the probe | Name ends in `_CL`; Logs Ingestion API through a data collection rule | Commercial Azure | [^dc01-ingest] |
 | Entra Health monitoring | Preview; admin center and e-mail | Not yet specified | [^dc01-entra-health] |
+| Server and activity tables | `Event` and `Heartbeat` (Azure Monitor Agent on Arc-enabled servers); `SecurityEvent` (Windows Security Events via AMA); `AzureActivity` (activity log diagnostic setting) | Commercial Azure; both connectors GA in Azure commercial | [^dc01-servers] |
 | Intune export cadence | Once every 24 hours, up to 48 hours | Intune in GCC is the commercial instance | [^dc01-intune] |
 
 ## Federal requirements and evidence
@@ -289,12 +309,13 @@ The manifest itself is design, not evidence; the records the kit writes in later
 |---|---|---|
 | A tab built on data GCC doesn't have | The tab is empty for ever and reads as quiet | Link-out tabs; the GCC note per tab |
 | One freshness limit for every source | Intune's daily export looks stale, or a dark sign-in log looks fine | `expectedTables` with a limit each |
-| A check with no home | It drops out of the morning read | A test that every tab has a check, and the guide's table of all ten |
+| A check with no home | It drops out of the morning read | A test that every tab has a check, and the guide's table of all twelve |
 | A partial tab read as complete | Grants are taken as reviewed because they're listed | `fit: partial` and the tab's action, which sends the match to the ITSM tool |
 
 ## Checklist
 
 - [ ] Every daily check in Book 15, Chapter 12's two tables has a tab.
+- [ ] The settings list every synchronization server and domain controller exactly as `Heartbeat` records them.
 - [ ] Each link-out has its click path, and its host is on the allow list.
 - [ ] Each expected table has a freshness limit set from its own cadence.
 - [ ] Lab 2's list of missing tables is empty, or each missing table has a task under the guide's Step 1.
@@ -310,3 +331,4 @@ The manifest itself is design, not evidence; the records the kit writes in later
 [^dc01-ingest]: Microsoft Learn, "Logs Ingestion API in Azure Monitor," Supported tables, <https://learn.microsoft.com/azure/azure-monitor/logs/logs-ingestion-api-overview> (accessed November 18, 2026).
 [^dc01-entra-health]: Microsoft Learn, "Learn about Microsoft Entra Health monitoring," <https://learn.microsoft.com/entra/identity/monitoring-health/concept-microsoft-entra-health> (accessed November 18, 2026).
 [^dc01-intune]: Microsoft Learn, "Route logs to Azure Monitor using Microsoft Intune," frequently asked questions, <https://learn.microsoft.com/intune/governance/integrate-azure-monitor> (accessed November 18, 2026); Microsoft Learn, "Microsoft Intune Government Service overview," <https://learn.microsoft.com/intune/fundamentals/government-service> (accessed November 18, 2026).
+[^dc01-servers]: Microsoft Learn, "Azure Monitor Agent Overview," <https://learn.microsoft.com/azure/azure-monitor/agents/azure-monitor-agent-overview>; "Collect Windows events from virtual machines with Azure Monitor Agent," <https://learn.microsoft.com/azure/azure-monitor/vm/data-collection-windows-events>; table reference pages "Event," "Heartbeat," "SecurityEvent" and "AzureActivity" under <https://learn.microsoft.com/azure/azure-monitor/reference/tables/>; "Windows security event sets that can be sent to Microsoft Sentinel," <https://learn.microsoft.com/azure/sentinel/windows-security-event-id-reference>; "Microsoft Sentinel feature support for Azure commercial/other clouds" (Windows Security Events via AMA and Azure Activity, GA in Azure commercial), <https://learn.microsoft.com/azure/sentinel/feature-availability> (all accessed November 19, 2026).

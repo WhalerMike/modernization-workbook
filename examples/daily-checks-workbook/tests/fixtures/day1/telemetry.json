@@ -1,5 +1,5 @@
 {
-  "_comment": "What the telemetry tab's two queries return on the morning of November 16, 2026 (fictional). SigninLogs and AuditLogs stopped arriving at 17:10 the day before; the sync probe last wrote 25 hours ago; the Office 365 connector's latest health event is a failure.",
+  "_comment": "What the telemetry tab's two queries return on the morning of November 16, 2026 (fictional). SigninLogs and AuditLogs stopped arriving at 17:10 the day before; the sync probe last wrote 25 hours ago; the Office 365 connector's latest health event is a failure. The tables the Windows servers send (Heartbeat, Event, SecurityEvent), the replication probe's table and AzureActivity are delivering.",
   "sources": {},
   "rows": [
     { "query": "telemetry-1", "TableName": "AADRiskyUsers", "State": "Delivering", "LastSeen": "2026-11-15T16:55:00Z", "AgeMin": 875, "SlaMinutes": 1440 },
@@ -10,6 +10,11 @@
     { "query": "telemetry-1", "TableName": "SecurityAlert", "State": "Delivering", "LastSeen": "2026-11-16T05:12:00Z", "AgeMin": 138, "SlaMinutes": 1440 },
     { "query": "telemetry-1", "TableName": "SecurityIncident", "State": "Delivering", "LastSeen": "2026-11-16T05:14:00Z", "AgeMin": 136, "SlaMinutes": 1440 },
     { "query": "telemetry-1", "TableName": "SigninLogs", "State": "Dark", "LastSeen": "2026-11-15T17:10:00Z", "AgeMin": 860, "SlaMinutes": 60 },
-    { "query": "telemetry-2", "TimeGenerated": "2026-11-16T06:00:00Z", "SentinelResourceName": "Office 365", "Status": "Failure", "Description": "Data fetch failed" }
+    { "query": "telemetry-2", "TimeGenerated": "2026-11-16T06:00:00Z", "SentinelResourceName": "Office 365", "Status": "Failure", "Description": "Data fetch failed" },
+    {"query": "telemetry-1", "TableName": "AzureActivity", "State": "Delivering", "LastSeen": "2026-11-16T06:50:00Z", "AgeMin": 40, "SlaMinutes": 1440},
+    {"query": "telemetry-1", "TableName": "DcReplicationProbe_CL", "State": "Delivering", "LastSeen": "2026-11-16T06:00:00Z", "AgeMin": 90, "SlaMinutes": 1440},
+    {"query": "telemetry-1", "TableName": "Event", "State": "Delivering", "LastSeen": "2026-11-16T07:20:00Z", "AgeMin": 10, "SlaMinutes": 1440},
+    {"query": "telemetry-1", "TableName": "Heartbeat", "State": "Delivering", "LastSeen": "2026-11-16T07:29:00Z", "AgeMin": 1, "SlaMinutes": 60},
+    {"query": "telemetry-1", "TableName": "SecurityEvent", "State": "Delivering", "LastSeen": "2026-11-16T07:28:00Z", "AgeMin": 2, "SlaMinutes": 60}
   ]
 }

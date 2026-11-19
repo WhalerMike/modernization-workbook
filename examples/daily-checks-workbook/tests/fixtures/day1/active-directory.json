@@ -1,0 +1,14 @@
+{
+  "_comment": "The morning of November 16, 2026 (fictional): CTX-DC-03, the only domain controller in Site-West, stopped reporting at 19:00 yesterday (a site outage), so both links from it fail with status 1722 and the knowledge consistency checker logged event 1311 on CTX-DC-01. No High-rated security events and no Defender for Identity alerts. The security events and the probe are fresh, so the tab can be read.",
+  "sources": { "SecurityEvent": "2026-11-16T07:28:00Z", "DcReplicationProbe_CL": "2026-11-16T06:00:00Z" },
+  "rows": [
+    { "query": "ad-1", "Computer": "CTX-DC-01.contoso.example", "LastHeartbeat": "2026-11-16T07:29:00Z", "HeartbeatLimitMin": 60 },
+    { "query": "ad-1", "Computer": "CTX-DC-02.contoso.example", "LastHeartbeat": "2026-11-16T07:29:00Z", "HeartbeatLimitMin": 60 },
+    { "query": "ad-1", "Computer": "CTX-DC-03.contoso.example", "LastHeartbeat": "2026-11-15T19:00:00Z", "HeartbeatLimitMin": 60 },
+    { "query": "ad-2", "TimeGenerated": "2026-11-16T06:00:00Z", "DestinationDc": "CTX-DC-01", "SourceDc": "CTX-DC-03", "NamingContext": "DC=contoso,DC=example", "Failures": 9, "LastSuccessUtc": "2026-11-15T19:02:08Z", "LastFailureUtc": "2026-11-16T05:47:30Z", "LastFailureStatus": "1722", "Verdict": "failing" },
+    { "query": "ad-2", "TimeGenerated": "2026-11-16T06:00:00Z", "DestinationDc": "CTX-DC-02", "SourceDc": "CTX-DC-03", "NamingContext": "DC=contoso,DC=example", "Failures": 9, "LastSuccessUtc": "2026-11-15T19:01:40Z", "LastFailureUtc": "2026-11-16T05:46:58Z", "LastFailureStatus": "1722", "Verdict": "failing" },
+    { "query": "ad-2", "TimeGenerated": "2026-11-16T06:00:00Z", "DestinationDc": "CTX-DC-01", "SourceDc": "CTX-DC-02", "NamingContext": "DC=contoso,DC=example", "Failures": 0, "LastSuccessUtc": "2026-11-16T05:45:12Z", "LastFailureUtc": "", "LastFailureStatus": "0", "Verdict": "healthy" },
+    { "query": "ad-2", "TimeGenerated": "2026-11-16T06:00:00Z", "DestinationDc": "CTX-DC-02", "SourceDc": "CTX-DC-01", "NamingContext": "DC=contoso,DC=example", "Failures": 0, "LastSuccessUtc": "2026-11-16T05:44:51Z", "LastFailureUtc": "", "LastFailureStatus": "0", "Verdict": "healthy" },
+    { "query": "ad-4", "Computer": "CTX-DC-01.contoso.example", "EventLog": "Directory Service", "Source": "NTDS KCC", "EventID": 1311, "EventLevelName": "Error", "Count": 3, "LastSeen": "2026-11-16T06:15:00Z", "Sample": "The Knowledge Consistency Checker located a replication connection that could not be completed (fictional text)." }
+  ]
+}

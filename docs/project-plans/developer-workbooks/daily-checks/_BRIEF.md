@@ -18,12 +18,14 @@ One Azure Monitor workbook, "Daily checks", saved against the Sentinel Log Analy
 | Tab | Daily check (Book 15, Ch 12) | Kind | Tables | GCC (Moderate, commercial Azure) |
 |---|---|---|---|---|
 | `telemetry` | Telemetry completeness, network sources included | Workbook | `SigninLogs`, `AuditLogs`, `AADRiskyUsers`, `SecurityAlert`, `SecurityIncident`, `IntuneDeviceComplianceOrg`, `CommonSecurityLog`, `DailySyncProbe_CL` (expected list); `SentinelHealth` | Available: the workspace is commercial Azure; Sentinel workbooks GA in Azure commercial. The Defender portal's *Data & connectors* Overview tab is preview and commercial cloud only: not assumed |
-| `sync` | Synchronization and service-health probe | Workbook + link-out | `DailySyncProbe_CL` (the probe's output through the Logs Ingestion API) | Logs Ingestion API: available. Connect Health (link-out): not yet specified |
+| `sync` | Synchronization and service-health probe, with the servers' own errors and backup result (added Nov 19) | Workbook + link-out | `DailySyncProbe_CL` (the probe's output through the Logs Ingestion API); `Event`, `Heartbeat` (Azure Monitor Agent) | Logs Ingestion API: available. Connect Health (link-out): not yet specified |
+| `active-directory` (added Nov 19) | Domain controllers while they remain Tier 0; task 7 | Workbook + link-out | `Heartbeat`, `DcReplicationProbe_CL`, `SecurityEvent`, `Event`, `SecurityAlert` | Available in commercial Azure; Defender for Identity alerts GA for GCC; Connect Health for AD DS (link-out): not yet specified |
 | `entra-health` | Entra Health alerts | Link-out | none (portal, email and Graph beta only) | Not yet specified (as Book 15 says) |
 | `risk` | Risky-user and risky-sign-in triage | Workbook | `AADRiskyUsers`, `SigninLogs` | Available (Entra diagnostic settings to the commercial workspace) |
 | `emergency-access` | Emergency access alert reviewed for any firing | Workbook | `SigninLogs` | Available. The Azure Monitor alert rule is the control; the tab only shows |
 | `devices` | Noncompliant-device queue | Workbook + link-out | `IntuneDeviceComplianceOrg` | Available: Intune in GCC is the commercial service instance |
 | `grants` | Consent, role or grant with no ticket | Workbook (partial) | `AuditLogs` | Available. The ticket join isn't in the workbook: ITSM data stays in the ITSM tool |
+| `admin-changes` (added Nov 19) | Request-driven admin changes matched to tickets (tasks 1 to 5 and 8) | Workbook (partial) | `AuditLogs`, `AzureActivity` | Available. Consents and Entra role assignments stay on `grants` |
 | `data` | DLP and label-change alerts | Workbook | `SecurityAlert` | Available: Defender XDR alerts in `SecurityAlert` are GA for Commercial / GCC |
 | `tasks` | Catalog and remediation tasks | Link-out | none (the ITSM tool's own dashboards) | n/a |
 | `log-review` | Log review findings | Workbook (queue only) | `SecurityIncident` | Available. The review stays a recorded procedure |
@@ -44,3 +46,7 @@ PowerShell 7.1 and Pester 5, one module (`powershell/DailyChecks`), entry script
 ## Rules
 
 As the Global Secure Access brief: front matter with `family: dw-daily-checks`, `review-status: pending` (never approve); Learn first, with access dates; exact command blocks in every lab, placeholders listed once; Lab 1 captured by `scripts/kit_captures.py dc`; Lab 2 labeled not run; a requirements table per chapter worded "supports"; footnote keys `[^dcNN-key]`, `[^dcwi-key]` on the index; no agency names; `contoso.example` only; each chapter keeps `_verification/<file>.md`; open questions in `_verification/research-gaps.md`. Chapter 04 is a runbook with no Lab 1 or Lab 2 heading. GCC Moderate and commercial Azure only.
+
+## The three tabs added November 19, 2026
+
+Mike: "Build all three" (the synchronization servers' rows on `sync`, an Active Directory tab, an admin changes tab). Kit additions: queries `sync-2`, `sync-3`, `ad-1` to `ad-5`, `admin-1`, `admin-2`; five parameters (`SyncServers`, `SyncEventSources`, `BackupEventSources`, `DomainControllers`, `IdentityAlertProductNames`); five expected tables (`Heartbeat`, `Event`, `SecurityEvent`, `DcReplicationProbe_CL`, `AzureActivity`); the replication probe (`ConvertFrom-DcRepadminCsv`, `Invoke-DcReplicationProbe.ps1`, step PROBE); fixtures for both mornings and two saved `repadmin` outputs. The decks and videos are updated in a later PR.

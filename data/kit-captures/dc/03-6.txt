@@ -1,5 +1,2 @@
-PS> ./Invoke-DcEvidence.ps1 -EvidencePath out/evidence -RunPath out/reach -AsOf 2026-11-16T07:32:00Z
-Record 1: reachability Fail (REACH, EVIDENCE)
-Controls: AU-9, CA-7, SI-4
-KSIs:     KSI-MLA-EVC, KSI-MLA-LET, KSI-MLA-OSM
-Written to out/evidence: records/, runs/, records.csv, SHA256SUMS
+PS> ./Invoke-DcEvidence.ps1 -EvidencePath out/evidence -RunPath out/day1 -AsOf 2026-11-16T07:31:00Z
+Exception: A rendered view is not evidence. Record the check's own output instead (the probe's result, the alert, the closed task), or the kit's validate, plan, deploy and reachability runs.

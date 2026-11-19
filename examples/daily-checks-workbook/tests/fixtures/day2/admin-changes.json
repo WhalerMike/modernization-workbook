@@ -1,0 +1,11 @@
+{
+  "_comment": "Yesterday's request-driven changes, now that AuditLogs is back: each row is matched to its ticket in the ITSM tool, and a change with no ticket opens a finding.",
+  "sources": { "AuditLogs": "2026-11-17T07:21:00Z" },
+  "rows": [
+    { "query": "admin-1", "TimeGenerated": "2026-11-16T10:02:00Z", "ActivityDisplayName": "Reset password (by admin)", "Actor": "helpdesk-03@contoso.example", "Target": "devon.cruz@contoso.example", "Result": "success", "CorrelationId": "corr-0201" },
+    { "query": "admin-1", "TimeGenerated": "2026-11-16T11:40:00Z", "ActivityDisplayName": "Admin deleted security info", "Actor": "helpdesk-03@contoso.example", "Target": "jamie.hale@contoso.example", "Result": "success", "CorrelationId": "corr-0202" },
+    { "query": "admin-1", "TimeGenerated": "2026-11-16T13:15:00Z", "ActivityDisplayName": "Add user", "Actor": "Contoso Lifecycle Workflow", "Target": "quinn.rivera@contoso.example", "Result": "success", "CorrelationId": "corr-0203" },
+    { "query": "admin-1", "TimeGenerated": "2026-11-16T15:30:00Z", "ActivityDisplayName": "Update user", "Actor": "Contoso Catalog Actuator", "Target": "alex.moreno@contoso.example", "Result": "success", "CorrelationId": "corr-0204" },
+    { "query": "admin-2", "TimeGenerated": "2026-11-16T16:20:00Z", "OperationNameValue": "MICROSOFT.AUTHORIZATION/ROLEASSIGNMENTS/WRITE", "Caller": "platform-ops@contoso.example", "ActivityStatusValue": "Success", "ResourceGroup": "rg-contoso-app", "Scope": "/resourcegroups/rg-contoso-app", "CorrelationId": "corr-0205" }
+  ]
+}

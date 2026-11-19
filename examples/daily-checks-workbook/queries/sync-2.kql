@@ -1,0 +1,10 @@
+// Errors and warnings the Entra Connect Sync servers wrote to their Application log in the last day, sent to the
+// Event table by the Azure Monitor Agent. Learn doesn't list the synchronization service's run-profile event IDs,
+// so the query keeps every error and warning from the sources the SyncEventSources parameter names.
+Event
+| where TimeGenerated > ago(1d)
+| where Computer in ({SyncServers})
+| where EventLog == "Application" and Source in ({SyncEventSources})
+| where EventLevelName in ("Error", "Warning")
+| summarize Count = count(), LastSeen = max(TimeGenerated), Sample = take_any(RenderedDescription) by Computer, Source, EventID, EventLevelName
+| order by LastSeen desc

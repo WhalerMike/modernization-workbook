@@ -71,6 +71,61 @@
             "type": 1,
             "value": null,
             "version": "KqlParameterItem/1.0"
+          },
+          {
+            "description": "The Entra Connect Sync servers (active and staging), quoted and comma-separated, as the workspace's Computer column records them",
+            "id": "param-syncservers",
+            "isHiddenWhenLocked": true,
+            "isRequired": true,
+            "label": "SyncServers",
+            "name": "SyncServers",
+            "type": 1,
+            "value": null,
+            "version": "KqlParameterItem/1.0"
+          },
+          {
+            "description": "The Application-log Source values of the synchronization service's events on those servers, quoted and comma-separated",
+            "id": "param-synceventsources",
+            "isHiddenWhenLocked": true,
+            "isRequired": true,
+            "label": "SyncEventSources",
+            "name": "SyncEventSources",
+            "type": 1,
+            "value": null,
+            "version": "KqlParameterItem/1.0"
+          },
+          {
+            "description": "The Source values of the nightly server backup's events on those servers, quoted and comma-separated",
+            "id": "param-backupeventsources",
+            "isHiddenWhenLocked": true,
+            "isRequired": true,
+            "label": "BackupEventSources",
+            "name": "BackupEventSources",
+            "type": 1,
+            "value": null,
+            "version": "KqlParameterItem/1.0"
+          },
+          {
+            "description": "The domain controllers, quoted and comma-separated, as the workspace's Computer column records them",
+            "id": "param-domaincontrollers",
+            "isHiddenWhenLocked": true,
+            "isRequired": true,
+            "label": "DomainControllers",
+            "name": "DomainControllers",
+            "type": 1,
+            "value": null,
+            "version": "KqlParameterItem/1.0"
+          },
+          {
+            "description": "The ProductName values of Defender for Identity alerts in SecurityAlert, quoted and comma-separated",
+            "id": "param-identityalertproductnames",
+            "isHiddenWhenLocked": true,
+            "isRequired": true,
+            "label": "IdentityAlertProductNames",
+            "name": "IdentityAlertProductNames",
+            "type": 1,
+            "value": null,
+            "version": "KqlParameterItem/1.0"
           }
         ],
         "queryType": 0,
@@ -99,6 +154,14 @@
             "linkTarget": "parameter",
             "style": "link",
             "subTarget": "sync"
+          },
+          {
+            "cellValue": "selectedTab",
+            "id": "link-active-directory",
+            "linkLabel": "Active Directory",
+            "linkTarget": "parameter",
+            "style": "link",
+            "subTarget": "active-directory"
           },
           {
             "cellValue": "selectedTab",
@@ -139,6 +202,14 @@
             "linkTarget": "parameter",
             "style": "link",
             "subTarget": "grants"
+          },
+          {
+            "cellValue": "selectedTab",
+            "id": "link-admin-changes",
+            "linkLabel": "Admin changes",
+            "linkTarget": "parameter",
+            "style": "link",
+            "subTarget": "admin-changes"
           },
           {
             "cellValue": "selectedTab",
@@ -192,7 +263,7 @@
               "crossComponentResources": [
                 "{Workspace}"
               ],
-              "query": "// Telemetry completeness: every expected table and the age of its newest record. Read-only.\n// The pattern is Book 15, Chapter 12's harness query; the list is config/manifest.json's expectedTables.\n// Limits are illustrative: set each from the source's own cadence (the Intune export is daily, up to 48 hours late).\nlet expected = datatable(TableName: string, SlaMinutes: long) [\n    \"SigninLogs\", 60,\n    \"AuditLogs\", 60,\n    \"AADRiskyUsers\", 1440,\n    \"SecurityAlert\", 1440,\n    \"SecurityIncident\", 1440,\n    \"IntuneDeviceComplianceOrg\", 2880,\n    \"CommonSecurityLog\", 60,\n    \"DailySyncProbe_CL\", 1440\n];\nlet lastSeen =\n    union isfuzzy=true withsource=TableName\n        SigninLogs, AuditLogs, AADRiskyUsers, SecurityAlert, SecurityIncident, IntuneDeviceComplianceOrg, CommonSecurityLog, DailySyncProbe_CL\n    | where TimeGenerated > ago(3d)\n    | summarize LastSeen = max(TimeGenerated) by TableName;\nexpected\n| join kind=leftouter lastSeen on TableName\n| extend AgeMin = datetime_diff('minute', now(), LastSeen)\n| extend State = iff(isnull(LastSeen) or AgeMin > SlaMinutes, \"Dark\", \"Delivering\")\n| project TableName, State, LastSeen, AgeMin, SlaMinutes\n| order by State asc, TableName asc",
+              "query": "// Telemetry completeness: every expected table and the age of its newest record. Read-only.\n// The pattern is Book 15, Chapter 12's harness query; the list is config/manifest.json's expectedTables.\n// Limits are illustrative: set each from the source's own cadence (the Intune export is daily, up to 48 hours late).\nlet expected = datatable(TableName: string, SlaMinutes: long) [\n    \"SigninLogs\", 60,\n    \"AuditLogs\", 60,\n    \"AADRiskyUsers\", 1440,\n    \"SecurityAlert\", 1440,\n    \"SecurityIncident\", 1440,\n    \"IntuneDeviceComplianceOrg\", 2880,\n    \"CommonSecurityLog\", 60,\n    \"DailySyncProbe_CL\", 1440,\n    \"Heartbeat\", 60,\n    \"Event\", 1440,\n    \"SecurityEvent\", 60,\n    \"DcReplicationProbe_CL\", 1440,\n    \"AzureActivity\", 1440\n];\nlet lastSeen =\n    union isfuzzy=true withsource=TableName\n        SigninLogs, AuditLogs, AADRiskyUsers, SecurityAlert, SecurityIncident, IntuneDeviceComplianceOrg, CommonSecurityLog, DailySyncProbe_CL,\n        Heartbeat, Event, SecurityEvent, DcReplicationProbe_CL, AzureActivity\n    | where TimeGenerated > ago(3d)\n    | summarize LastSeen = max(TimeGenerated) by TableName;\nexpected\n| join kind=leftouter lastSeen on TableName\n| extend AgeMin = datetime_diff('minute', now(), LastSeen)\n| extend State = iff(isnull(LastSeen) or AgeMin > SlaMinutes, \"Dark\", \"Delivering\")\n| project TableName, State, LastSeen, AgeMin, SlaMinutes\n| order by State asc, TableName asc",
               "queryType": 0,
               "resourceType": "microsoft.operationalinsights/workspaces",
               "size": 0,
@@ -236,7 +307,7 @@
         "items": [
           {
             "content": {
-              "json": "## Synchronization probe\n\n**This workbook is a view, not evidence. The evidence is the stored record each check writes and the tracked task each finding opens.**\n\n**Daily check:** Synchronization and service-health probe (task 6, the morning synchronization check).\n\n**What to do:** A drift verdict or a missed probe opens a task; the probe's own stored result is the record.\n\n**Where else to look:**\n- [Microsoft Entra Connect Health](https://entra.microsoft.com): Microsoft Entra Connect Health (left menu: Microsoft Entra Connect Sync)\n- [Microsoft 365 service health](https://admin.microsoft.com): Health > Service health\n\n**GCC:** The Logs Ingestion API that writes the probe's table is available in commercial Azure. Connect Health's GCC availability is not yet specified."
+              "json": "## Synchronization probe\n\n**This workbook is a view, not evidence. The evidence is the stored record each check writes and the tracked task each finding opens.**\n\n**Daily check:** Synchronization and service-health probe (task 6, the morning synchronization check), with the synchronization servers' own errors and backup result.\n\n**What to do:** A drift verdict, a missed probe, a server error, a silent agent or a failed or missing backup opens a task; the probe's stored result and the servers' forwarded events are the record.\n\n**Where else to look:**\n- [Microsoft Entra Connect Health](https://entra.microsoft.com): Microsoft Entra Connect Health (left menu: Microsoft Entra Connect Sync)\n- [Microsoft 365 service health](https://admin.microsoft.com): Health > Service health\n\n**GCC:** The Logs Ingestion API that writes the probe's table, and the Azure Monitor Agent that sends the servers' Windows event logs to the Event table and their heartbeat to Heartbeat, are in commercial Azure; the servers must be Azure Arc-enabled. The synchronization service's event IDs are not yet specified on Learn: the settings name its event sources. Connect Health's GCC availability is not yet specified."
             },
             "name": "sync-text",
             "type": 1
@@ -256,11 +327,145 @@
             },
             "name": "sync-1",
             "type": 3
+          },
+          {
+            "content": {
+              "crossComponentResources": [
+                "{Workspace}"
+              ],
+              "query": "// Errors and warnings the Entra Connect Sync servers wrote to their Application log in the last day, sent to the\n// Event table by the Azure Monitor Agent. Learn doesn't list the synchronization service's run-profile event IDs,\n// so the query keeps every error and warning from the sources the SyncEventSources parameter names.\nEvent\n| where TimeGenerated > ago(1d)\n| where Computer in ({SyncServers})\n| where EventLog == \"Application\" and Source in ({SyncEventSources})\n| where EventLevelName in (\"Error\", \"Warning\")\n| summarize Count = count(), LastSeen = max(TimeGenerated), Sample = take_any(RenderedDescription) by Computer, Source, EventID, EventLevelName\n| order by LastSeen desc",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "size": 0,
+              "title": "Errors and warnings the synchronization servers logged in the last day",
+              "version": "KqlItem/1.0",
+              "visualization": "table"
+            },
+            "name": "sync-2",
+            "type": 3
+          },
+          {
+            "content": {
+              "crossComponentResources": [
+                "{Workspace}"
+              ],
+              "query": "// One row per synchronization server: when its Azure Monitor Agent last sent a heartbeat, and its latest backup\n// event (the BackupEventSources parameter). A server missing from Heartbeat, or with no backup event, shows\n// with an empty time, which the tab flags: a silent server never reads as healthy.\nlet servers = dynamic([{SyncServers}]);\nlet beats = Heartbeat\n    | where TimeGenerated > ago(2d)\n    | where Computer in (servers)\n    | summarize LastHeartbeat = max(TimeGenerated) by Computer;\nlet backups = Event\n    | where TimeGenerated > ago(2d)\n    | where Computer in (servers) and Source in ({BackupEventSources})\n    | summarize arg_max(TimeGenerated, EventID, EventLevelName) by Computer\n    | project Computer, LastBackupEvent = TimeGenerated, BackupEventID = EventID, BackupLevel = EventLevelName;\nprint Computer = servers\n| mv-expand Computer to typeof(string)\n| join kind=leftouter beats on Computer\n| join kind=leftouter backups on Computer\n| extend HeartbeatLimitMin = 60, BackupLimitMin = 1560\n| project Computer, LastHeartbeat, HeartbeatLimitMin, LastBackupEvent, BackupEventID, BackupLevel, BackupLimitMin\n| order by Computer asc",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "size": 0,
+              "title": "Each synchronization server: its agent's last heartbeat and its latest backup event",
+              "version": "KqlItem/1.0",
+              "visualization": "table"
+            },
+            "name": "sync-3",
+            "type": 3
           }
         ],
         "version": "NotebookGroup/1.0"
       },
       "name": "tab-sync",
+      "type": 12
+    },
+    {
+      "conditionalVisibility": {
+        "comparison": "isEqualTo",
+        "parameterName": "selectedTab",
+        "value": "active-directory"
+      },
+      "content": {
+        "groupType": "editable",
+        "items": [
+          {
+            "content": {
+              "json": "## Active Directory\n\n**This workbook is a view, not evidence. The evidence is the stored record each check writes and the tracked task each finding opens.**\n\n**Daily check:** Domain controllers while they remain Tier 0 (Book 12, Chapter 03): agents reporting, replication, the High-rated security events, directory, SYSVOL and DNS errors, and Defender for Identity alerts (task 7, event-log handling; cadence table, log review findings).\n\n**What to do:** A silent domain controller, a failing replication link or any High-rated event opens a high-severity task in the incident path; the forwarded events and the probe's stored result are the record.\n\n**Where else to look:**\n- [Microsoft Entra Connect Health for AD DS](https://entra.microsoft.com): Microsoft Entra Connect Health (left menu: Active Directory Domain Services)\n- [Defender portal alerts](https://security.microsoft.com): Investigation & response > Incidents & alerts > Alerts\n\n**GCC:** Available for the workspace tables: the Azure Monitor Agent on Azure Arc-enabled domain controllers (Event, Heartbeat), the Windows Security Events via AMA connector (SecurityEvent) and the Logs Ingestion API (the replication probe) are in commercial Azure, and Defender for Identity alerts in SecurityAlert are GA for GCC. Defender for Identity needs its own license. Connect Health's GCC availability is not yet specified: it stays a link-out."
+            },
+            "name": "active-directory-text",
+            "type": 1
+          },
+          {
+            "content": {
+              "crossComponentResources": [
+                "{Workspace}"
+              ],
+              "query": "// One row per domain controller and when its Azure Monitor Agent last sent a heartbeat (Learn's \"Unavailable\n// computers\" pattern, by the DomainControllers parameter). A controller with no heartbeat shows with an empty time.\nlet dcs = dynamic([{DomainControllers}]);\nlet beats = Heartbeat\n    | where TimeGenerated > ago(1d)\n    | where Computer in (dcs)\n    | summarize LastHeartbeat = max(TimeGenerated) by Computer;\nprint Computer = dcs\n| mv-expand Computer to typeof(string)\n| join kind=leftouter beats on Computer\n| extend HeartbeatLimitMin = 60\n| project Computer, LastHeartbeat, HeartbeatLimitMin\n| order by Computer asc",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "size": 0,
+              "title": "Each domain controller and when its agent last reported",
+              "version": "KqlItem/1.0",
+              "visualization": "table"
+            },
+            "name": "ad-1",
+            "type": 3
+          },
+          {
+            "content": {
+              "crossComponentResources": [
+                "{Workspace}"
+              ],
+              "query": "// Every replication link from the probe's latest run (repadmin /showrepl * /csv, written through the Logs\n// Ingestion API). A link whose last attempt failed is \"failing\"; no run in two days leaves the tab stale.\nlet lastRun = toscalar(DcReplicationProbe_CL | where TimeGenerated > ago(2d) | summarize max(TimeGenerated));\nDcReplicationProbe_CL\n| where TimeGenerated > ago(2d) and TimeGenerated == lastRun\n| project TimeGenerated, DestinationDc, SourceDc, NamingContext, Failures, LastSuccessUtc, LastFailureUtc, LastFailureStatus, Verdict\n| order by Verdict asc, DestinationDc asc, SourceDc asc",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "size": 0,
+              "title": "Replication links from the probe's latest run",
+              "version": "KqlItem/1.0",
+              "visualization": "table"
+            },
+            "name": "ad-2",
+            "type": 3
+          },
+          {
+            "content": {
+              "crossComponentResources": [
+                "{Workspace}"
+              ],
+              "query": "// The security events Microsoft rates High (a single occurrence is investigated), and 1102, on the domain\n// controllers in the last day. The list is Book 12, Chapter 03's; the Windows Security Events via AMA\n// connector writes them to SecurityEvent when its event set includes them.\nSecurityEvent\n| where TimeGenerated > ago(1d)\n| where Computer in ({DomainControllers})\n| where EventID in (1102, 4618, 4649, 4719, 4765, 4766, 4794, 4897, 4964, 5124)\n| summarize Count = count(), FirstSeen = min(TimeGenerated), LastSeen = max(TimeGenerated) by Computer, EventID, Activity\n| order by LastSeen desc",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "size": 0,
+              "title": "High-rated security events on the domain controllers in the last day",
+              "version": "KqlItem/1.0",
+              "visualization": "table"
+            },
+            "name": "ad-3",
+            "type": 3
+          },
+          {
+            "content": {
+              "crossComponentResources": [
+                "{Workspace}"
+              ],
+              "query": "// Directory Service, DFS Replication (SYSVOL) and DNS Server events on the domain controllers in the last day:\n// the replication and SYSVOL events Learn's troubleshooting articles name (1311, 1925, 1988, 2042, 2213, 4012,\n// 4013), and every error. Sent to the Event table by the Azure Monitor Agent's data collection rule.\nEvent\n| where TimeGenerated > ago(1d)\n| where Computer in ({DomainControllers})\n| where EventID in (1311, 1925, 1988, 2042, 2213, 4012, 4013) or EventLevelName == \"Error\"\n| summarize Count = count(), LastSeen = max(TimeGenerated), Sample = take_any(RenderedDescription) by Computer, EventLog, Source, EventID, EventLevelName\n| order by LastSeen desc",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "size": 0,
+              "title": "Directory, SYSVOL replication and DNS errors on the domain controllers in the last day",
+              "version": "KqlItem/1.0",
+              "visualization": "table"
+            },
+            "name": "ad-4",
+            "type": 3
+          },
+          {
+            "content": {
+              "crossComponentResources": [
+                "{Workspace}"
+              ],
+              "query": "// Defender for Identity alerts from SecurityAlert (the Defender XDR connector), latest state per alert. The\n// ProductName values come from the IdentityAlertProductNames parameter: confirm them in your workspace first.\nSecurityAlert\n| where TimeGenerated > ago(1d)\n| where ProductName in ({IdentityAlertProductNames})\n| summarize arg_max(TimeGenerated, *) by SystemAlertId\n| project TimeGenerated, AlertName, AlertSeverity, Status, ProductName, CompromisedEntity\n| order by TimeGenerated desc",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "size": 0,
+              "title": "Defender for Identity alerts in the last day",
+              "version": "KqlItem/1.0",
+              "visualization": "table"
+            },
+            "name": "ad-5",
+            "type": 3
+          }
+        ],
+        "version": "NotebookGroup/1.0"
+      },
+      "name": "tab-active-directory",
       "type": 12
     },
     {
@@ -451,6 +656,60 @@
         "version": "NotebookGroup/1.0"
       },
       "name": "tab-grants",
+      "type": 12
+    },
+    {
+      "conditionalVisibility": {
+        "comparison": "isEqualTo",
+        "parameterName": "selectedTab",
+        "value": "admin-changes"
+      },
+      "content": {
+        "groupType": "editable",
+        "items": [
+          {
+            "content": {
+              "json": "## Admin changes\n\n**This workbook is a view, not evidence. The evidence is the stored record each check writes and the tracked task each finding opens.**\n\n**Daily check:** Request-driven admin changes matched to their tickets: password resets, authentication-method changes, accounts created, users updated by catalog scripts, custom role definitions (tasks 1 to 5 and 8; cadence table, catalog and remediation tasks), and Azure role assignments.\n\n**What to do:** Each row is matched to its ticket in the ITSM tool; a change with no ticket opens a finding.\n\n**Where else to look:**\n- [Entra audit logs](https://entra.microsoft.com): Entra ID > Monitoring & health > Audit logs\n- [Azure activity log](https://portal.azure.com): Monitor > Activity log\n\n**GCC:** Available: AuditLogs through the Entra diagnostic setting, and AzureActivity through the subscription's diagnostic setting, both to the commercial workspace. The match to a ticket isn't in the workbook: the ticket data stays in the ITSM tool. Consents and Entra role assignments are on the Consents, roles and grants tab, not repeated here."
+            },
+            "name": "admin-changes-text",
+            "type": 1
+          },
+          {
+            "content": {
+              "crossComponentResources": [
+                "{Workspace}"
+              ],
+              "query": "// Request-driven Entra changes in the last day, by Learn's audit activity names: password resets, authentication\n// methods an administrator registered, updated or deleted, accounts created, users updated by an application\n// (the catalog's scripts act through Graph), and custom role definitions. Consents and role assignments are on\n// the grants tab. Matching each row to its ticket happens in the ITSM tool, not here.\nAuditLogs\n| where TimeGenerated > ago(1d)\n| where ActivityDisplayName in (\"Reset password (by admin)\", \"Reset password\", \"Admin started password reset\", \"Admin registered security info\", \"Admin updated security info\", \"Admin deleted security info\", \"Add user\", \"Add role definition\", \"Update role definition\")\n    or (ActivityDisplayName == \"Update user\" and isnotempty(tostring(InitiatedBy.app.displayName)))\n| extend Actor = coalesce(tostring(InitiatedBy.user.userPrincipalName), tostring(InitiatedBy.app.displayName))\n| extend Target = coalesce(tostring(TargetResources[0].userPrincipalName), tostring(TargetResources[0].displayName))\n| project TimeGenerated, ActivityDisplayName, Actor, Target, Result, CorrelationId\n| order by TimeGenerated desc",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "size": 0,
+              "title": "Request-driven Entra changes in the last day",
+              "version": "KqlItem/1.0",
+              "visualization": "table"
+            },
+            "name": "admin-1",
+            "type": 3
+          },
+          {
+            "content": {
+              "crossComponentResources": [
+                "{Workspace}"
+              ],
+              "query": "// Azure role assignments and custom role definitions written in the last day, latest state per operation, from\n// the subscription activity log (Learn's role assignment alert uses the same operation name).\nAzureActivity\n| where TimeGenerated > ago(1d)\n| where OperationNameValue in~ (\"Microsoft.Authorization/roleAssignments/write\", \"Microsoft.Authorization/roleDefinitions/write\")\n| summarize arg_max(TimeGenerated, *) by CorrelationId\n| project TimeGenerated, OperationNameValue, Caller, ActivityStatusValue, ResourceGroup, Scope = _ResourceId, CorrelationId\n| order by TimeGenerated desc",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "size": 0,
+              "title": "Azure role assignments and custom role definitions written in the last day",
+              "version": "KqlItem/1.0",
+              "visualization": "table"
+            },
+            "name": "admin-2",
+            "type": 3
+          }
+        ],
+        "version": "NotebookGroup/1.0"
+      },
+      "name": "tab-admin-changes",
       "type": 12
     },
     {

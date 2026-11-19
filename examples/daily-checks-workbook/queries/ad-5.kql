@@ -1,0 +1,8 @@
+// Defender for Identity alerts from SecurityAlert (the Defender XDR connector), latest state per alert. The
+// ProductName values come from the IdentityAlertProductNames parameter: confirm them in your workspace first.
+SecurityAlert
+| where TimeGenerated > ago(1d)
+| where ProductName in ({IdentityAlertProductNames})
+| summarize arg_max(TimeGenerated, *) by SystemAlertId
+| project TimeGenerated, AlertName, AlertSeverity, Status, ProductName, CompromisedEntity
+| order by TimeGenerated desc

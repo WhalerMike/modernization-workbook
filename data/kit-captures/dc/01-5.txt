@@ -1,9 +1,9 @@
-PS> Get-Content queries/emergency-access-1.kql
-// Microsoft's emergency access sign-in query (Manage emergency access admin accounts), with the accounts'
-// object IDs from the EmergencyAccessIds parameter instead of literals. The alert rule is the control.
-let ids = dynamic([{EmergencyAccessIds}]);
-SigninLogs
-| where TimeGenerated > ago(1d)
-| where UserId in (ids)
-| project TimeGenerated, UserPrincipalName, UserId, IPAddress, ResultType, ResultDescription
-| order by TimeGenerated desc
+PS> Import-Module ./powershell/DailyChecks/DailyChecks.psm1
+PS> Get-DcTab | Group-Object Fit | Sort-Object Name | Select-Object Name, Count
+Name     Count
+----     -----
+good         3
+link-out     1
+partial      3
+strong       4
+weak         1

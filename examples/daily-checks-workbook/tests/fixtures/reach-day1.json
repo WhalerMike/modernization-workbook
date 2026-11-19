@@ -1,6 +1,11 @@
 {
   "_comment": "What az monitor log-analytics query answers for each table on the morning of November 16, 2026 (fictional): newest record and count over three days. SentinelHealth is absent: health monitoring was never turned on in this workspace.",
   "AADRiskyUsers": { "LastSeen": "2026-11-15T16:55:00Z", "Records": 14 },
+  "AzureActivity": { "LastSeen": "2026-11-16T06:50:00Z", "Records": 5120 },
+  "DcReplicationProbe_CL": { "LastSeen": "2026-11-16T06:00:00Z", "Records": 12 },
+  "Event": { "LastSeen": "2026-11-16T07:20:00Z", "Records": 2210 },
+  "Heartbeat": { "LastSeen": "2026-11-16T07:29:00Z", "Records": 21600 },
+  "SecurityEvent": { "LastSeen": "2026-11-16T07:28:00Z", "Records": 388410 },
   "AuditLogs": { "LastSeen": "2026-11-15T17:10:00Z", "Records": 18233 },
   "CommonSecurityLog": { "LastSeen": "2026-11-16T07:26:00Z", "Records": 940211 },
   "DailySyncProbe_CL": { "LastSeen": "2026-11-15T06:30:00Z", "Records": 2 },

@@ -1,0 +1,8 @@
+{
+  "_comment": "Two admin changes yesterday afternoon, before AuditLogs went dark at 17:10: whatever happened after that isn't here, so the tab is STALE.",
+  "sources": { "AuditLogs": "2026-11-15T17:10:00Z" },
+  "rows": [
+    { "query": "admin-1", "TimeGenerated": "2026-11-15T14:20:00Z", "ActivityDisplayName": "Reset password (by admin)", "Actor": "helpdesk-07@contoso.example", "Target": "taylor.brooks@contoso.example", "Result": "success", "CorrelationId": "corr-0101" },
+    { "query": "admin-2", "TimeGenerated": "2026-11-15T15:05:00Z", "OperationNameValue": "MICROSOFT.AUTHORIZATION/ROLEASSIGNMENTS/WRITE", "Caller": "platform-ops@contoso.example", "ActivityStatusValue": "Success", "ResourceGroup": "rg-contoso-app", "Scope": "/resourcegroups/rg-contoso-app", "CorrelationId": "corr-0102" }
+  ]
+}

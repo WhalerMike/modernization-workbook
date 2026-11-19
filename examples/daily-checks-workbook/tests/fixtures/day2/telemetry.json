@@ -9,6 +9,11 @@
     { "query": "telemetry-1", "TableName": "IntuneDeviceComplianceOrg", "State": "Delivering", "LastSeen": "2026-11-16T02:05:00Z", "AgeMin": 1765, "SlaMinutes": 2880 },
     { "query": "telemetry-1", "TableName": "SecurityAlert", "State": "Delivering", "LastSeen": "2026-11-16T22:47:00Z", "AgeMin": 523, "SlaMinutes": 1440 },
     { "query": "telemetry-1", "TableName": "SecurityIncident", "State": "Delivering", "LastSeen": "2026-11-16T22:48:00Z", "AgeMin": 522, "SlaMinutes": 1440 },
-    { "query": "telemetry-1", "TableName": "SigninLogs", "State": "Delivering", "LastSeen": "2026-11-17T07:24:00Z", "AgeMin": 6, "SlaMinutes": 60 }
+    { "query": "telemetry-1", "TableName": "SigninLogs", "State": "Delivering", "LastSeen": "2026-11-17T07:24:00Z", "AgeMin": 6, "SlaMinutes": 60 },
+    {"query": "telemetry-1", "TableName": "AzureActivity", "State": "Delivering", "LastSeen": "2026-11-17T07:02:00Z", "AgeMin": 28, "SlaMinutes": 1440},
+    {"query": "telemetry-1", "TableName": "DcReplicationProbe_CL", "State": "Delivering", "LastSeen": "2026-11-17T06:00:00Z", "AgeMin": 90, "SlaMinutes": 1440},
+    {"query": "telemetry-1", "TableName": "Event", "State": "Delivering", "LastSeen": "2026-11-17T07:25:00Z", "AgeMin": 5, "SlaMinutes": 1440},
+    {"query": "telemetry-1", "TableName": "Heartbeat", "State": "Delivering", "LastSeen": "2026-11-17T07:29:00Z", "AgeMin": 1, "SlaMinutes": 60},
+    {"query": "telemetry-1", "TableName": "SecurityEvent", "State": "Delivering", "LastSeen": "2026-11-17T07:27:00Z", "AgeMin": 3, "SlaMinutes": 60}
   ]
 }

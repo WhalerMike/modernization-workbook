@@ -1,0 +1,12 @@
+// Request-driven Entra changes in the last day, by Learn's audit activity names: password resets, authentication
+// methods an administrator registered, updated or deleted, accounts created, users updated by an application
+// (the catalog's scripts act through Graph), and custom role definitions. Consents and role assignments are on
+// the grants tab. Matching each row to its ticket happens in the ITSM tool, not here.
+AuditLogs
+| where TimeGenerated > ago(1d)
+| where ActivityDisplayName in ("Reset password (by admin)", "Reset password", "Admin started password reset", "Admin registered security info", "Admin updated security info", "Admin deleted security info", "Add user", "Add role definition", "Update role definition")
+    or (ActivityDisplayName == "Update user" and isnotempty(tostring(InitiatedBy.app.displayName)))
+| extend Actor = coalesce(tostring(InitiatedBy.user.userPrincipalName), tostring(InitiatedBy.app.displayName))
+| extend Target = coalesce(tostring(TargetResources[0].userPrincipalName), tostring(TargetResources[0].displayName))
+| project TimeGenerated, ActivityDisplayName, Actor, Target, Result, CorrelationId
+| order by TimeGenerated desc

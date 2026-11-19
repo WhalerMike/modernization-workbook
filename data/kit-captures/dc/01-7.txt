@@ -1,4 +1,16 @@
-PS> Invoke-Pester -Path tests/DailyChecks.Tests.ps1 -FullNameFilter 'Chapter 01*' -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-          7           0
+PS> (Get-DcManifest).expectedTables | ForEach-Object { [pscustomobject]$_ } | Format-Table table, slaMinutes
+table                     slaMinutes
+-----                     ----------
+SigninLogs                        60
+AuditLogs                         60
+AADRiskyUsers                   1440
+SecurityAlert                   1440
+SecurityIncident                1440
+IntuneDeviceComplianceOrg       2880
+CommonSecurityLog                 60
+DailySyncProbe_CL               1440
+Heartbeat                         60
+Event                           1440
+SecurityEvent                     60
+DcReplicationProbe_CL           1440
+AzureActivity                   1440

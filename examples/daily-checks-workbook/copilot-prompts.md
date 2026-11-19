@@ -10,6 +10,14 @@ The kit ships neutral, fictional settings. The agency's own settings file (its t
 
 > Here are the distinct `ProductName` values from our `SecurityAlert` table and the distinct `ComplianceState` values from our `IntuneDeviceComplianceOrg` table (attached query results). Which `ProductName` values look like Purview data loss prevention or sensitivity label alerts, and which `ComplianceState` value means compliant? List them; say which you are unsure of. Don't change any file.
 
+## Find the server names and event sources
+
+> Here are the distinct `Computer` values from our `Heartbeat` table, the distinct `Source` values from our `Event` table for the synchronization servers, and the distinct `ProductName` values from our `SecurityAlert` table (attached query results). Which computers are our Entra Connect Sync servers and which are domain controllers, going only by the names and the notes attached? Which `Source` values look like the synchronization service and which like the nightly backup? Which `ProductName` looks like Defender for Identity? List them exactly as written; say which you are unsure of. Don't change any file.
+
+## Read the replication probe's output
+
+> This is our replication probe's `probe.json`. List every link whose `Verdict` is `failing`, with its destination, source, `LastFailureStatus` and last success time, and group them by source domain controller. In two sentences, say whether one domain controller explains every failure. Don't suggest a fix.
+
 ## Read the what-if result
 
 > This is the what-if result for our daily checks workbook deployment (`whatif.json`). List every change with its change type and resource. Say plainly whether anything other than one `Microsoft.Insights/workbooks` resource would be created or modified, and whether anything would be deleted.

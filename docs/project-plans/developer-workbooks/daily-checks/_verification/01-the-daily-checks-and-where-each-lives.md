@@ -12,6 +12,7 @@ Lab 1 was run with `python scripts/kit_captures.py dc` on Windows 11, PowerShell
 | 2 | Kit behavior and lab output | verified by running the kit and its tests | `data/kit-captures/dc/`, `examples/daily-checks-workbook/tests`, `deploy/tests` |
 | 3 | Lab 2 behavior | not run | — |
 | 4 | Design guidance (tab fit, freshness limits, render rules, stage steps) | the program's position, labeled | `config/manifest.json`, `config/requirements.json` |
+| 5 | Server and activity tables (`Event`, `Heartbeat`, `SecurityEvent`, `AzureActivity`), the Azure Monitor Agent on Arc-enabled servers, Windows Security Events via AMA and Azure Activity GA in Azure commercial | verified Nov 19, 2026 | dc01-servers |
 
 ## Federal requirements and evidence
 

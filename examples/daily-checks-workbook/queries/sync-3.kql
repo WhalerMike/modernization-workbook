@@ -1,0 +1,20 @@
+// One row per synchronization server: when its Azure Monitor Agent last sent a heartbeat, and its latest backup
+// event (the BackupEventSources parameter). A server missing from Heartbeat, or with no backup event, shows
+// with an empty time, which the tab flags: a silent server never reads as healthy.
+let servers = dynamic([{SyncServers}]);
+let beats = Heartbeat
+    | where TimeGenerated > ago(2d)
+    | where Computer in (servers)
+    | summarize LastHeartbeat = max(TimeGenerated) by Computer;
+let backups = Event
+    | where TimeGenerated > ago(2d)
+    | where Computer in (servers) and Source in ({BackupEventSources})
+    | summarize arg_max(TimeGenerated, EventID, EventLevelName) by Computer
+    | project Computer, LastBackupEvent = TimeGenerated, BackupEventID = EventID, BackupLevel = EventLevelName;
+print Computer = servers
+| mv-expand Computer to typeof(string)
+| join kind=leftouter beats on Computer
+| join kind=leftouter backups on Computer
+| extend HeartbeatLimitMin = 60, BackupLimitMin = 1560
+| project Computer, LastHeartbeat, HeartbeatLimitMin, LastBackupEvent, BackupEventID, BackupLevel, BackupLimitMin
+| order by Computer asc

@@ -18,10 +18,11 @@
     "PLAN": { "title": "Plan the deployment and preview it with what-if", "controls": ["CM-3", "CM-4"], "ksis": ["KSI-CMT-LMC", "KSI-CMT-RVP"] },
     "DEPLOY": { "title": "Deploy the approved plan", "controls": ["CM-3", "CM-2"], "ksis": ["KSI-CMT-LMC", "KSI-SVC-ACM"] },
     "REACH": { "title": "Reachability: each tab's tables answer, and how fresh they are", "controls": ["CA-7", "SI-4"], "ksis": ["KSI-MLA-EVC", "KSI-MLA-LET"] },
+    "PROBE": { "title": "Replication probe: every replication link's last result, sent to the workspace", "controls": ["CA-7", "SI-4"], "ksis": ["KSI-MLA-EVC", "KSI-MLA-LET"] },
     "RB": { "title": "Rollback plan", "controls": ["CM-3", "CP-2"], "ksis": ["KSI-CMT-LMC", "KSI-RPL-ARP"] },
     "EVIDENCE": { "title": "Record the run as hashed, chained evidence", "controls": ["CA-7", "AU-9"], "ksis": ["KSI-MLA-EVC", "KSI-MLA-OSM"] }
   },
-  "tasks": { "validate": ["VALIDATE"], "preflight": ["PRE"], "plan": ["PLAN"], "deploy": ["DEPLOY"], "reachability": ["REACH"], "rollback": ["RB"] },
+  "tasks": { "validate": ["VALIDATE"], "preflight": ["PRE"], "plan": ["PLAN"], "deploy": ["DEPLOY"], "reachability": ["REACH"], "rollback": ["RB"], "probe": ["PROBE"] },
   "stages": {
     "test": ["PRE", "VALIDATE", "PLAN", "DEPLOY", "REACH"],
     "production": ["PRE", "VALIDATE", "PLAN", "DEPLOY", "REACH"]

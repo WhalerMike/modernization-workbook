@@ -24302,6 +24302,7 @@ pages:
   cited_by:
   - docs/books/b02-identity/06-who-owns-the-migration.md
   - docs/books/b02-identity/_verification/06-who-owns-the-migration.md
+  - docs/books/guides/daily-checks-dashboard-implementation.md
 - path: docs/identity/hybrid/connect/how-to-connect-health-adfs-risky-ip-workbook.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-adfs-risky-ip-workbook
   title: Microsoft Entra Connect Health with AD FS risky IP report workbook
@@ -24351,6 +24352,7 @@ pages:
   - docs/books/b02-identity/_verification/06-who-owns-the-migration.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
+  - docs/books/guides/daily-checks-dashboard-implementation.md
 - path: docs/identity/hybrid/connect/how-to-connect-health-alert-catalog.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-alert-catalog
   title: Microsoft Entra Connect Health - Alert Catalog
@@ -25349,6 +25351,7 @@ pages:
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
+  - docs/books/guides/daily-checks-dashboard-implementation.md
 - path: docs/identity/hybrid/connect/reference-connect-adsyncconfig.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-adsyncconfig
   title: 'Microsoft Entra Connect: ADSyncConfig PowerShell Reference'

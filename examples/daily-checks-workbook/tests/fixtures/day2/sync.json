@@ -1,7 +1,9 @@
 {
-  "_comment": "Today's probe ran at 06:30: synchronization is on time, but one user carries a PropertyConflict, so the verdict is drift.",
+  "_comment": "Today's probe ran at 06:30: synchronization is on time, but one user carries a PropertyConflict, so the verdict is drift. No server errors overnight, but the staging server wrote no backup event in two days: a missing backup is flagged, never read as fine.",
   "sources": { "DailySyncProbe_CL": "2026-11-17T06:30:00Z" },
   "rows": [
-    { "query": "sync-1", "TimeGenerated": "2026-11-17T06:30:00Z", "ProbeAgeMin": 60, "SyncEnabled": true, "LastSyncUtc": "2026-11-17T06:14:00Z", "AgeMinutes": 16, "SyncLate": false, "ConflictCount": 1, "Verdict": "drift" }
+    { "query": "sync-1", "TimeGenerated": "2026-11-17T06:30:00Z", "ProbeAgeMin": 60, "SyncEnabled": true, "LastSyncUtc": "2026-11-17T06:14:00Z", "AgeMinutes": 16, "SyncLate": false, "ConflictCount": 1, "Verdict": "drift" },
+    {"query": "sync-3", "Computer": "CTX-SYNC-01.contoso.example", "LastHeartbeat": "2026-11-17T07:29:00Z", "HeartbeatLimitMin": 60, "LastBackupEvent": "2026-11-17T01:11:00Z", "BackupEventID": 4, "BackupLevel": "Information", "BackupLimitMin": 1560},
+    {"query": "sync-3", "Computer": "CTX-SYNC-02.contoso.example", "LastHeartbeat": "2026-11-17T07:28:00Z", "HeartbeatLimitMin": 60, "LastBackupEvent": null, "BackupEventID": null, "BackupLevel": null, "BackupLimitMin": 1560}
   ]
 }

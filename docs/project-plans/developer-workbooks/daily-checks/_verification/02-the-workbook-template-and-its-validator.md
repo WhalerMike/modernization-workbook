@@ -12,6 +12,7 @@ Lab 1 was run with `python scripts/kit_captures.py dc` on Windows 11, PowerShell
 | 2 | Kit behavior and lab output | verified by running the kit and its tests | `data/kit-captures/dc/`, `examples/daily-checks-workbook/tests`, `deploy/tests` |
 | 3 | Lab 2 behavior | not run | — |
 | 4 | Design guidance (tab fit, freshness limits, render rules, stage steps) | the program's position, labeled | `config/manifest.json`, `config/requirements.json` |
+| 5 | Ten parameters and nineteen queries after the three tabs added Nov 19, 2026; DC-V-01 to -10 unchanged | verified by running the kit (89 checks pass) | `data/kit-captures/dc/` |
 
 ## Federal requirements and evidence
 

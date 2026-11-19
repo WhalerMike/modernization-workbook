@@ -1,0 +1,14 @@
+{
+  "_comment": "The next morning: CTX-DC-03 is back, every replication link in the probe's run succeeded, and the domain controllers logged no High-rated security events, no directory, SYSVOL or DNS errors and no Defender for Identity alerts. Sources fresh: CLEAR, and only because they are.",
+  "sources": { "SecurityEvent": "2026-11-17T07:27:00Z", "DcReplicationProbe_CL": "2026-11-17T06:00:00Z" },
+  "rows": [
+    { "query": "ad-1", "Computer": "CTX-DC-01.contoso.example", "LastHeartbeat": "2026-11-17T07:29:00Z", "HeartbeatLimitMin": 60 },
+    { "query": "ad-1", "Computer": "CTX-DC-02.contoso.example", "LastHeartbeat": "2026-11-17T07:28:00Z", "HeartbeatLimitMin": 60 },
+    { "query": "ad-1", "Computer": "CTX-DC-03.contoso.example", "LastHeartbeat": "2026-11-17T07:29:00Z", "HeartbeatLimitMin": 60 },
+    { "query": "ad-2", "TimeGenerated": "2026-11-17T06:00:00Z", "DestinationDc": "CTX-DC-01", "SourceDc": "CTX-DC-02", "NamingContext": "DC=contoso,DC=example", "Failures": 0, "LastSuccessUtc": "2026-11-17T05:45:20Z", "LastFailureUtc": "", "LastFailureStatus": "0", "Verdict": "healthy" },
+    { "query": "ad-2", "TimeGenerated": "2026-11-17T06:00:00Z", "DestinationDc": "CTX-DC-01", "SourceDc": "CTX-DC-03", "NamingContext": "DC=contoso,DC=example", "Failures": 0, "LastSuccessUtc": "2026-11-17T05:47:41Z", "LastFailureUtc": "2026-11-16T09:12:30Z", "LastFailureStatus": "0", "Verdict": "healthy" },
+    { "query": "ad-2", "TimeGenerated": "2026-11-17T06:00:00Z", "DestinationDc": "CTX-DC-02", "SourceDc": "CTX-DC-01", "NamingContext": "DC=contoso,DC=example", "Failures": 0, "LastSuccessUtc": "2026-11-17T05:44:58Z", "LastFailureUtc": "", "LastFailureStatus": "0", "Verdict": "healthy" },
+    { "query": "ad-2", "TimeGenerated": "2026-11-17T06:00:00Z", "DestinationDc": "CTX-DC-02", "SourceDc": "CTX-DC-03", "NamingContext": "DC=contoso,DC=example", "Failures": 0, "LastSuccessUtc": "2026-11-17T05:47:02Z", "LastFailureUtc": "2026-11-16T09:11:02Z", "LastFailureStatus": "0", "Verdict": "healthy" },
+    { "query": "ad-2", "TimeGenerated": "2026-11-17T06:00:00Z", "DestinationDc": "CTX-DC-03", "SourceDc": "CTX-DC-01", "NamingContext": "DC=contoso,DC=example", "Failures": 0, "LastSuccessUtc": "2026-11-17T05:48:10Z", "LastFailureUtc": "", "LastFailureStatus": "0", "Verdict": "healthy" }
+  ]
+}

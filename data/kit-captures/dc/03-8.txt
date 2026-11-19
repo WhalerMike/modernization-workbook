@@ -1,1 +1,4 @@
-PS> Remove-Item -Recurse -Force out
+PS> Invoke-Pester -Path tests/DailyChecks.Tests.ps1 -FullNameFilter 'Chapter 03*', 'Evidence*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+PassedCount FailedCount
+----------- -----------
+         27           0
