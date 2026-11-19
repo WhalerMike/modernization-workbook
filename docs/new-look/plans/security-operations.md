@@ -36,10 +36,10 @@ review-status: pending
 
 ## Week 5: the daily checks on one page
 
-- [The Daily Checks on One Dashboard](../../training/daily-checks-dashboard/index.md) (Learning path, 2 modules, 1 hr 20 min). Two modules: one workbook with a tab per daily check, then reading it, deploying it and keeping the evidence, each with labs and a knowledge check.
+- [The Daily Checks on One Dashboard](../../training/daily-checks-dashboard/index.md) (Learning path, 2 modules, 1 hr 30 min). Two modules: one workbook with a tab per daily check, then reading it, deploying it and keeping the evidence, each with labs and a knowledge check.
 - [Labs: Building the Daily Checks Workbook](../../training/labs.md#dc) (Lab, 6 labs). 6 hands-on labs across 3 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building the Daily Checks Workbook.
 
-*Milestone 5: about 1 hr 20 min.*
+*Milestone 5: about 1 hr 30 min.*
 
-**Whole plan:** about 16 hr 32 min of reading and video, plus the labs.
+**Whole plan:** about 16 hr 42 min of reading and video, plus the labs.
 

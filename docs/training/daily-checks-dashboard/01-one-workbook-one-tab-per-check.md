@@ -12,6 +12,8 @@ review-status: pending
 
 *Part of the [Daily Checks Dashboard learning path](index.md). Guide [Step 1](../../books/guides/daily-checks-dashboard-implementation.md#step-1) and [Step 2](../../books/guides/daily-checks-dashboard-implementation.md#step-2). About 40 minutes, plus Lab 2.*
 
+**Watch:** the narrated deck for this module (about 5 minutes, captions): [▶ Watch](../../presentations/watch.html?v=Training_DC_Module_1_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DC_Module_1_Narrated.mp4) · [Deck source](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-dc-module-1) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dc-module-1/Training_DC_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dc-module-1/Training_DC_Module_1_Narrated.vtt). The deck files join the next edition.
+
 ## Introduction (3 minutes) {#dc-m1-intro}
 
 Each morning the operator runbook asks for ten checks: synchronization, telemetry completeness, Entra Health, risky users and sign-ins, emergency access sign-ins, noncompliant devices, ungoverned grants, DLP and label alerts, catalog tasks, and the log review queue. Most of their data is already in the Sentinel workspace. In this module you see which checks a workbook can show and from which table, which ones it can only link to, and how the workbook is kept as a reviewed file rather than something edited in the portal.

@@ -1,0 +1,431 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.787
+Welcome back to Building
+the Daily Checks Workbook.
+
+2
+00:00:02.787 --> 00:00:06.825
+This is Chapter 2: the workbook's
+template, and its validator.
+
+3
+00:00:06.825 --> 00:00:10.598
+A workbook edited in the portal
+is a change nobody reviewed,
+
+4
+00:00:10.598 --> 00:00:15.063
+so the kit keeps it as a file and
+checks every copy against the manifest.
+
+5
+00:00:15.063 --> 00:00:19.820
+We'll start from Microsoft Learn's page on
+workbooks as Resource Manager templates,
+
+6
+00:00:19.820 --> 00:00:22.922
+see what it leaves to you,
+read how the template is built
+
+7
+00:00:22.922 --> 00:00:26.025
+and the ten checks the validator
+runs, and walk two labs.
+
+8
+00:00:26.025 --> 00:00:29.320
+The chapter is a draft
+awaiting the owner's review.
+
+9
+00:00:33.070 --> 00:00:34.920
+Why keep a dashboard as a file?
+
+10
+00:00:34.920 --> 00:00:40.001
+Because a workbook edited in the portal is
+a change nobody reviewed, and an export
+
+11
+00:00:40.001 --> 00:00:45.082
+of it can carry the subscription, resource
+group and workspace into a repository.
+
+12
+00:00:45.082 --> 00:00:49.568
+By the end of this chapter you can rebuild
+the workbook's template from reviewed
+
+13
+00:00:49.568 --> 00:00:52.967
+files, prove it has one tab per
+daily check and no embedded I D's,
+
+14
+00:00:52.967 --> 00:00:57.657
+and catch the portal edits that would
+otherwise drift into production unreviewed.
+
+15
+00:00:57.657 --> 00:01:00.326
+It's for the developers
+and for the security
+
+16
+00:01:00.326 --> 00:01:03.440
+operations engineer
+who edits the workbook.
+
+17
+00:01:07.190 --> 00:01:09.215
+Here's what Microsoft Learn gives you.
+
+18
+00:01:09.215 --> 00:01:13.257
+Two ways to manage a workbook as a
+template: copy the Gallery Template
+
+19
+00:01:13.257 --> 00:01:17.015
+from the Advanced Editor, or copy
+the Resource Manager template.
+
+20
+00:01:17.015 --> 00:01:22.077
+The instance is a Microsoft dot Insights
+workbooks resource, kind shared,
+
+21
+00:01:22.077 --> 00:01:24.898
+with a display name, a
+source I D, a category,
+
+22
+00:01:24.898 --> 00:01:28.715
+and serialized data, which
+holds the workbook's content.
+
+23
+00:01:28.715 --> 00:01:32.647
+And Learn warns that an exported
+template often embeds the
+
+24
+00:01:32.647 --> 00:01:36.740
+subscription I D and resource
+group: its advice is to mask them.
+
+25
+00:01:36.740 --> 00:01:41.852
+The resource reference gives
+API version 2023-06-01.
+
+26
+00:01:41.852 --> 00:01:45.550
+Queries use the Logs
+data source, with K Q L.
+
+27
+00:01:49.300 --> 00:01:50.525
+What does it leave to you?
+
+28
+00:01:50.525 --> 00:01:53.510
+Learn's way is to export
+from the portal and paste,
+
+29
+00:01:53.510 --> 00:01:58.584
+so the template is whatever someone last
+saved; the kit builds it from the manifest
+
+30
+00:01:58.584 --> 00:02:02.912
+and the K Q L files, and a test keeps
+the committed file equal to the build.
+
+31
+00:02:02.912 --> 00:02:06.739
+Masking I D's by hand
+misses one sooner or later,
+
+32
+00:02:06.739 --> 00:02:11.875
+so a check fails any G U I D,
+subscription path, address or secret.
+
+33
+00:02:11.875 --> 00:02:13.297
+A query is free text,
+
+34
+00:02:13.297 --> 00:02:17.650
+so the kit checks each tab's
+tables and each query's look-back.
+
+35
+00:02:17.650 --> 00:02:21.075
+It checks that every query
+reads the workspace parameter.
+
+36
+00:02:21.075 --> 00:02:25.790
+And because nothing says what a tab
+means, every tab must carry the banner.
+
+37
+00:02:29.540 --> 00:02:30.540
+Here's the code.
+
+38
+00:02:30.540 --> 00:02:34.365
+The template has a header with
+the banner, then the parameters:
+
+39
+00:02:34.365 --> 00:02:38.715
+a workspace picker and four text
+values, all left empty in the template.
+
+40
+00:02:38.715 --> 00:02:40.594
+Then one tab per daily check,
+
+41
+00:02:40.594 --> 00:02:45.660
+and one group per tab that shows when
+its tab is selected, holding the banner,
+
+42
+00:02:45.660 --> 00:02:50.235
+the daily check, what to do, the link-outs
+with click paths, the G C C note,
+
+43
+00:02:50.235 --> 00:02:54.565
+and its queries, each one a Logs
+query on the workspace parameter.
+
+44
+00:02:54.565 --> 00:03:00.650
+The validator runs ten checks: the format,
+one tab per check, tables, look-backs,
+
+45
+00:03:00.650 --> 00:03:04.224
+the workspace, the banner,
+link-outs and hosts,
+
+46
+00:03:04.224 --> 00:03:09.410
+queries per tab kind, the telemetry
+list, and no I D's or secrets.
+
+47
+00:03:13.160 --> 00:03:14.085
+Who does what?
+
+48
+00:03:14.085 --> 00:03:18.352
+The security operations engineer
+edits a test copy in the portal,
+
+49
+00:03:18.352 --> 00:03:20.723
+exports it and validates the export.
+
+50
+00:03:20.723 --> 00:03:24.635
+A second person reviews the change
+before it replaces the template.
+
+51
+00:03:24.635 --> 00:03:27.622
+Developers keep the
+manifest and the queries.
+
+52
+00:03:27.622 --> 00:03:29.497
+Lab 1 needs only files.
+
+53
+00:03:29.497 --> 00:03:33.979
+Lab 2 saves one test workbook, so it
+needs Workbook Contributor on the
+
+54
+00:03:33.979 --> 00:03:38.460
+test resource group, for the lab only,
+and it deletes the copy at the end.
+
+55
+00:03:38.460 --> 00:03:42.620
+A reviewer checks that no export
+with I D's in it was committed.
+
+56
+00:03:46.370 --> 00:03:49.670
+Lab 1, in the kit's
+folder, with no tenant.
+
+57
+00:03:49.670 --> 00:03:52.481
+Step 1 confirms the
+committed template matches
+
+58
+00:03:52.481 --> 00:03:54.870
+the build of the manifest and the queries.
+
+59
+00:03:54.870 --> 00:03:57.168
+Step 2 validates it: ten checks,
+
+60
+00:03:57.168 --> 00:04:01.760
+sixty-three results across the
+tabs, and all of them pass.
+
+61
+00:04:05.510 --> 00:04:07.972
+Step 3 is the one to remember.
+
+62
+00:04:07.972 --> 00:04:11.948
+A copy was exported after someone
+edited the workbook in the portal.
+
+63
+00:04:11.948 --> 00:04:16.983
+Four edits, four failures: one risk query
+reads a workspace path instead of the
+
+64
+00:04:16.983 --> 00:04:21.861
+parameter; the devices query looks back
+seven hundred and twenty hours; the
+
+65
+00:04:21.861 --> 00:04:26.897
+grants tab lost its banner; and the file
+carries a G U I D and a subscription path.
+
+66
+00:04:26.897 --> 00:04:31.849
+Step 4 shows what the export carried:
+the workspace's full resource path,
+
+67
+00:04:31.849 --> 00:04:35.140
+exactly what Microsoft Learn says to mask.
+
+68
+00:04:38.890 --> 00:04:44.004
+Step 5 records a validation of the kit's
+template: the same sixty-three checks pass,
+
+69
+00:04:44.004 --> 00:04:47.286
+and the results go to a folder
+with a hashed manifest,
+
+70
+00:04:47.286 --> 00:04:49.652
+ready for Chapter 4's evidence record.
+
+71
+00:04:49.652 --> 00:04:54.139
+Step 6 runs this chapter's
+tests: ten passed, none failed.
+
+72
+00:04:54.139 --> 00:04:56.350
+Then delete the output folder.
+
+73
+00:05:00.100 --> 00:05:05.387
+Lab 2 runs in a test subscription, never
+production, and the authors haven't run it.
+
+74
+00:05:05.387 --> 00:05:09.246
+Open the template in the portal
+through the Advanced Editor,
+
+75
+00:05:09.246 --> 00:05:12.101
+pick the test workspace,
+and open all ten tabs.
+
+76
+00:05:12.101 --> 00:05:17.038
+Save a test copy, change one look-back,
+and copy the Gallery Template back out.
+
+77
+00:05:17.038 --> 00:05:19.457
+Validate the export: your edit fails,
+
+78
+00:05:19.457 --> 00:05:22.763
+and so does the workspace
+the portal saved into it.
+
+79
+00:05:22.763 --> 00:05:25.987
+Record any other difference
+the portal introduced;
+
+80
+00:05:25.987 --> 00:05:30.562
+that confirms the item format, which
+Learn doesn't document field by field.
+
+81
+00:05:30.562 --> 00:05:33.730
+Then delete the test copy and the export.
+
+82
+00:05:37.480 --> 00:05:38.655
+What does this support?
+
+83
+00:05:38.655 --> 00:05:42.365
+The build check shows the template
+is the reviewed baseline,
+
+84
+00:05:42.365 --> 00:05:44.442
+configuration management C M two.
+
+85
+00:05:44.442 --> 00:05:48.788
+The validation record supports C M
+two and change control, C M three,
+
+86
+00:05:48.788 --> 00:05:53.843
+and catching a portal edit before it
+replaces the template supports C M three.
+
+87
+00:05:53.843 --> 00:05:58.328
+The dangers are the four edits you
+just saw: an export committed as is,
+
+88
+00:05:58.328 --> 00:06:02.893
+a widened look-back, a query on another
+workspace, and a missing banner.
+
+89
+00:06:02.893 --> 00:06:04.080
+Each has its check.
+
+90
+00:06:04.080 --> 00:06:08.850
+Next, Chapter 3 shows what each tab
+would display, without a tenant.

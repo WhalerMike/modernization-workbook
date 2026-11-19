@@ -1,0 +1,482 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.762
+Welcome to the story deck for
+Building the Daily Checks Workbook.
+
+2
+00:00:03.762 --> 00:00:08.876
+Instead of four chapters one at a time,
+we'll follow one fictional workspace,
+
+3
+00:00:08.876 --> 00:00:13.741
+for contoso dot example, through two
+mornings: November sixteenth, 2026,
+
+4
+00:00:13.741 --> 00:00:19.101
+when something quietly broke overnight,
+and the next morning, when it was fixed.
+
+5
+00:00:19.101 --> 00:00:22.175
+Every value comes from the
+kit's own test fixtures,
+
+6
+00:00:22.175 --> 00:00:25.700
+and every output on a slide is
+what the kit really printed.
+
+7
+00:00:25.700 --> 00:00:28.910
+The workbook is a draft
+awaiting the owner's review,
+
+8
+00:00:28.910 --> 00:00:32.700
+and the code is illustrative,
+tested against fixtures.
+
+9
+00:00:36.450 --> 00:00:37.438
+Here's the route.
+
+10
+00:00:37.438 --> 00:00:42.271
+The operator runbook asks for ten daily
+checks, most done one portal at a time,
+
+11
+00:00:42.271 --> 00:00:45.263
+and a quiet portal looks
+just like a broken feed.
+
+12
+00:00:45.263 --> 00:00:48.113
+Scene one turns ten checks into ten tabs.
+
+13
+00:00:48.113 --> 00:00:51.463
+Scene two catches an export
+someone edited in the portal.
+
+14
+00:00:51.463 --> 00:00:54.586
+Scene three is the morning
+of November sixteenth,
+
+15
+00:00:54.586 --> 00:00:57.100
+when the sign-in logs stopped overnight.
+
+16
+00:00:57.100 --> 00:01:00.875
+Scene four is the next morning, and
+what the empty queues were hiding.
+
+17
+00:01:00.875 --> 00:01:03.925
+Scene five tries to file
+the picture as evidence.
+
+18
+00:01:03.925 --> 00:01:07.320
+And scene six deploys
+it, the same way twice.
+
+19
+00:01:11.070 --> 00:01:11.895
+Scene one.
+
+20
+00:01:11.895 --> 00:01:16.908
+The kit's manifest gives each daily
+check one row, and the workbook one tab.
+
+21
+00:01:16.908 --> 00:01:20.071
+Eight tabs read tables in
+the Sentinel workspace.
+
+22
+00:01:20.071 --> 00:01:21.320
+Two are link-outs.
+
+23
+00:01:21.320 --> 00:01:26.220
+Entra Health's alerts live in the admin
+center and in e-mail, not in Log Analytics,
+
+24
+00:01:26.220 --> 00:01:29.282
+and their G C C availability
+is not yet specified,
+
+25
+00:01:29.282 --> 00:01:32.957
+so the tab sends the operator
+there instead of pretending.
+
+26
+00:01:32.957 --> 00:01:36.795
+And the catalog tasks
+live in the I T S M tool.
+
+27
+00:01:36.795 --> 00:01:41.220
+Two more tabs are partial:
+grants, and the log review queue.
+
+28
+00:01:44.970 --> 00:01:45.782
+Check one.
+
+29
+00:01:45.782 --> 00:01:48.533
+The risk tab's query returns no rows.
+
+30
+00:01:48.533 --> 00:01:49.695
+What has it proved?
+
+31
+00:01:49.695 --> 00:01:51.670
+A: nobody is at risk.
+
+32
+00:01:51.670 --> 00:01:54.278
+B: only that its query returned nothing,
+
+33
+00:01:54.278 --> 00:01:57.620
+which means something only
+if its source is fresh.
+
+34
+00:01:57.620 --> 00:02:00.582
+Or C: that I D Protection is turned off.
+
+35
+00:02:00.582 --> 00:02:03.480
+Hold your answer; the
+next scenes answer it.
+
+36
+00:02:07.230 --> 00:02:09.268
+Scene two, before any morning.
+
+37
+00:02:09.268 --> 00:02:12.817
+Someone edited the workbook in
+the portal and exported it.
+
+38
+00:02:12.817 --> 00:02:14.775
+The validator finds four edits:
+
+39
+00:02:14.775 --> 00:02:18.841
+a risk query that reads a workspace
+path instead of the parameter,
+
+40
+00:02:18.841 --> 00:02:21.777
+a devices query that now
+looks back thirty days,
+
+41
+00:02:21.777 --> 00:02:25.993
+a grants tab that lost its banner,
+and a subscription path in the file.
+
+42
+00:02:25.993 --> 00:02:29.842
+Microsoft's own advice is to
+mask the I D's an export embeds;
+
+43
+00:02:29.842 --> 00:02:32.054
+the kit's check simply fails them.
+
+44
+00:02:32.054 --> 00:02:33.218
+Remember the banner.
+
+45
+00:02:33.218 --> 00:02:36.660
+It says the workbook is
+a view, not evidence.
+
+46
+00:02:40.410 --> 00:02:41.785
+Who reads the workbook?
+
+47
+00:02:41.785 --> 00:02:45.629
+Security operations reads
+telemetry completeness first,
+
+48
+00:02:45.629 --> 00:02:48.923
+and opens a high-severity
+task for each dark source.
+
+49
+00:02:48.923 --> 00:02:54.972
+Identity operations reads the sync probe,
+risk, emergency access and grants tabs.
+
+50
+00:02:54.972 --> 00:03:00.323
+Device support works the noncompliant
+devices in Intune and the I T S M tool.
+
+51
+00:03:00.323 --> 00:03:05.672
+The data platform operators triage D L P
+alerts in Purview or the Defender portal.
+
+52
+00:03:05.672 --> 00:03:09.254
+And the security officer reads
+nothing on the workbook at all:
+
+53
+00:03:09.254 --> 00:03:11.930
+they keep the records, never the picture.
+
+54
+00:03:15.680 --> 00:03:17.462
+The answer to check one is B:
+
+55
+00:03:17.462 --> 00:03:21.268
+an empty tab proves only that
+its query returned nothing.
+
+56
+00:03:21.268 --> 00:03:23.681
+Scene three: November sixteenth.
+
+57
+00:03:23.681 --> 00:03:25.753
+At ten past five the evening before,
+
+58
+00:03:25.753 --> 00:03:30.042
+the Entra diagnostic setting stopped,
+and this morning's probe didn't run.
+
+59
+00:03:30.042 --> 00:03:34.980
+Telemetry flags four rows: three
+dark tables and a failing connector.
+
+60
+00:03:34.980 --> 00:03:38.830
+And look at risk, emergency
+access, sync and grants.
+
+61
+00:03:38.830 --> 00:03:39.892
+They're not clear.
+
+62
+00:03:39.892 --> 00:03:40.855
+They're stale.
+
+63
+00:03:40.855 --> 00:03:43.740
+On a plain dashboard,
+the risk and emergency
+
+64
+00:03:43.740 --> 00:03:47.470
+access tabs would have shown
+two calm, empty queues.
+
+65
+00:03:51.220 --> 00:03:51.945
+Try it.
+
+66
+00:03:51.945 --> 00:03:54.737
+From the kit's folder,
+render the first morning,
+
+67
+00:03:54.737 --> 00:03:57.383
+then read what the risk
+tab's query returned.
+
+68
+00:03:57.383 --> 00:03:58.533
+No rows at all.
+
+69
+00:03:58.533 --> 00:04:04.120
+But its source, the sign-in logs, last
+arrived at ten past five the evening before.
+
+70
+00:04:04.120 --> 00:04:09.570
+Shown as a quiet queue, this is the
+morning a risky sign-in goes unseen.
+
+71
+00:04:13.320 --> 00:04:15.170
+Scene four: the next morning.
+
+72
+00:04:15.170 --> 00:04:18.782
+The diagnostic setting is
+back, and telemetry is clear.
+
+73
+00:04:18.782 --> 00:04:20.696
+Now the queues show what they were hiding.
+
+74
+00:04:20.696 --> 00:04:22.295
+One user at high risk.
+
+75
+00:04:22.295 --> 00:04:25.561
+One emergency access sign-in,
+which turns out to be the
+
+76
+00:04:25.561 --> 00:04:29.495
+quarterly validation drill, and
+the review records it as a drill.
+
+77
+00:04:29.495 --> 00:04:31.633
+And one synchronization conflict.
+
+78
+00:04:31.633 --> 00:04:33.622
+Grants and D L P alerts are clear,
+
+79
+00:04:33.622 --> 00:04:38.340
+and this time clear means something,
+because their sources are fresh.
+
+80
+00:04:42.090 --> 00:04:42.915
+Check two.
+
+81
+00:04:42.915 --> 00:04:46.090
+The first morning's render
+shows exactly what went wrong.
+
+82
+00:04:46.090 --> 00:04:48.028
+Should it go in the evidence package?
+
+83
+00:04:48.028 --> 00:04:51.139
+A: yes, it's a dated
+picture of the problem.
+
+84
+00:04:51.139 --> 00:04:54.303
+B: yes, once a second person signs it.
+
+85
+00:04:54.303 --> 00:04:59.227
+Or C: no; record the checks' own
+output, like the reachability check.
+
+86
+00:04:59.227 --> 00:05:01.660
+The next scene shows what the kit does.
+
+87
+00:05:05.410 --> 00:05:06.639
+The answer is C.
+
+88
+00:05:06.639 --> 00:05:07.560
+Scene five.
+
+89
+00:05:07.560 --> 00:05:12.323
+The kit refuses to record the render:
+a rendered view is not evidence.
+
+90
+00:05:12.323 --> 00:05:14.931
+Instead it records the reachability check,
+
+91
+00:05:14.931 --> 00:05:18.336
+which asked the workspace for
+each table's newest record.
+
+92
+00:05:18.336 --> 00:05:22.871
+Its result is Fail, and that's the point:
+the record keeps what the check found,
+
+93
+00:05:22.871 --> 00:05:27.773
+tagged with continuous monitoring and
+system monitoring and their indicators.
+
+94
+00:05:27.773 --> 00:05:33.160
+A failing record is evidence of the gap;
+a screenshot is only a picture of it.
+
+95
+00:05:36.910 --> 00:05:37.948
+Scene six.
+
+96
+00:05:37.948 --> 00:05:41.443
+The workbook goes to a test
+subscription, then production,
+
+97
+00:05:41.443 --> 00:05:44.647
+with the same commands and
+a different settings file.
+
+98
+00:05:44.647 --> 00:05:49.641
+The plan previews the change with what-if,
+which predicts and changes nothing;
+
+99
+00:05:49.641 --> 00:05:53.309
+on the fixtures it predicts
+one create, a single workbook.
+
+100
+00:05:53.309 --> 00:05:55.607
+A second person approves the plan's hash,
+
+101
+00:05:55.607 --> 00:05:59.435
+and the kit deploys nothing else,
+and never a plan that would delete.
+
+102
+00:05:59.435 --> 00:06:02.747
+Production waits until the
+test stage's evidence passes.
+
+103
+00:06:02.747 --> 00:06:05.142
+That's the story: ten checks on one page,
+
+104
+00:06:05.142 --> 00:06:10.080
+a picture the operator can trust only
+because the records behind it are kept.

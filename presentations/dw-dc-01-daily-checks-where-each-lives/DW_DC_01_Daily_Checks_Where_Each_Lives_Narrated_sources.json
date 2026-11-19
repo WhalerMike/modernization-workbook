@@ -1,0 +1,100 @@
+[
+ {
+  "slide": 2,
+  "title": "Why one row per daily check",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What it leaves to you",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.html"
+   },
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The manifest: ten tabs, one per check",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Who keeps the manifest, and the data",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Lab 1: list the tabs",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: a link-out tab and a partial one",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 1: the query and the freshness limits",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2: which tables does the workspace have?",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Evidence, dangers and the checklist",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.html"
+   },
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

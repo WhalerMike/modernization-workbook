@@ -1,0 +1,453 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.787
+Welcome back to Building
+the Daily Checks Workbook.
+
+2
+00:00:02.787 --> 00:00:05.750
+This is Chapter 3: what
+each tab would show.
+
+3
+00:00:05.750 --> 00:00:10.502
+An empty queue over a source that stopped
+arriving looks exactly like a quiet night,
+
+4
+00:00:10.502 --> 00:00:13.463
+and the renderer in this
+chapter says which one it is.
+
+5
+00:00:13.463 --> 00:00:17.183
+We'll see what Microsoft Learn
+and the operator runbook give you,
+
+6
+00:00:17.183 --> 00:00:20.552
+the renderer's rules, and the
+read-only reachability check,
+
+7
+00:00:20.552 --> 00:00:23.500
+then walk two mornings in
+the fictional workspace.
+
+8
+00:00:23.500 --> 00:00:26.599
+The chapter is a draft
+awaiting the owner's review,
+
+9
+00:00:26.599 --> 00:00:30.350
+and the code is illustrative,
+tested against fixtures.
+
+10
+00:00:34.100 --> 00:00:35.213
+Why this chapter?
+
+11
+00:00:35.213 --> 00:00:38.213
+A dashboard's most
+dangerous state isn't red.
+
+12
+00:00:38.213 --> 00:00:40.737
+It's green over a source
+that stopped arriving.
+
+13
+00:00:40.737 --> 00:00:43.819
+A risk queue with no rows
+can mean nobody is at risk,
+
+14
+00:00:43.819 --> 00:00:47.050
+or that the sign-in logs
+stopped coming in last night.
+
+15
+00:00:47.050 --> 00:00:50.187
+By the end of the chapter you
+can show, without a tenant,
+
+16
+00:00:50.187 --> 00:00:52.896
+what each tab would
+display on a given morning;
+
+17
+00:00:52.896 --> 00:00:57.388
+tell an operator which tabs can't be
+trusted because their source went quiet;
+
+18
+00:00:57.388 --> 00:01:00.525
+and prove each tab's tables
+answer in a real workspace.
+
+19
+00:01:00.525 --> 00:01:02.993
+It's for developers, security operations,
+
+20
+00:01:02.993 --> 00:01:06.560
+and the operators who read
+the workbook each morning.
+
+21
+00:01:10.310 --> 00:01:11.585
+Here's what you start with.
+
+22
+00:01:11.585 --> 00:01:16.315
+The operator runbook's completeness
+check lists each expected table past its
+
+23
+00:01:16.315 --> 00:01:18.790
+freshness limit, and
+it uses a fuzzy union,
+
+24
+00:01:18.790 --> 00:01:22.647
+so a missing table shows up as a
+null instead of failing the query.
+
+25
+00:01:22.647 --> 00:01:26.971
+Sentinel's health page gives the query
+for each connector's latest failure,
+
+26
+00:01:26.971 --> 00:01:30.459
+and recommends Azure Monitor
+alert rules for health drifts.
+
+27
+00:01:30.459 --> 00:01:34.842
+Microsoft's Intune page says compliance
+is exported once a day and can
+
+28
+00:01:34.842 --> 00:01:39.148
+take up to forty-eight hours, and not
+to rely on a fixed completion time.
+
+29
+00:01:39.148 --> 00:01:42.883
+And the Azure command line can
+run a query against a workspace,
+
+30
+00:01:42.883 --> 00:01:45.290
+from its log analytics extension.
+
+31
+00:01:49.040 --> 00:01:51.527
+Here are the renderer's rules, in order.
+
+32
+00:01:51.527 --> 00:01:53.541
+A link-out tab shows LINK-OUT.
+
+33
+00:01:53.541 --> 00:01:56.340
+No query result at all shows NO DATA.
+
+34
+00:01:56.340 --> 00:02:00.180
+If any source the tab depends
+on is past its freshness limit,
+
+35
+00:02:00.180 --> 00:02:04.490
+the tab shows STALE, and says the
+rows it does show may be incomplete.
+
+36
+00:02:04.490 --> 00:02:08.165
+Otherwise, any row the tab's
+rule flags shows ATTENTION.
+
+37
+00:02:08.165 --> 00:02:13.040
+No rows where a row is expected, like
+the morning probe, shows NO DATA.
+
+38
+00:02:13.040 --> 00:02:14.927
+And only then, CLEAR.
+
+39
+00:02:14.927 --> 00:02:17.403
+So a stale source never renders clear.
+
+40
+00:02:17.403 --> 00:02:22.630
+The render carries the banner, and the
+kit refuses to record it as evidence.
+
+41
+00:02:26.380 --> 00:02:27.605
+What does it leave to you?
+
+42
+00:02:27.605 --> 00:02:31.692
+The completeness query lists dark
+tables, but the other tabs don't
+
+43
+00:02:31.692 --> 00:02:35.930
+know their table is dark, so each
+tab names its own sources and limits.
+
+44
+00:02:35.930 --> 00:02:41.467
+A query result is just rows or no rows,
+so each tab says what empty means.
+
+45
+00:02:41.467 --> 00:02:46.529
+Intune's timing is variable, so the
+devices tab allows forty-eight hours.
+
+46
+00:02:46.529 --> 00:02:49.164
+A screenshot is easy to file as evidence,
+
+47
+00:02:49.164 --> 00:02:52.755
+so the render carries the
+banner and the kit refuses it.
+
+48
+00:02:52.755 --> 00:02:57.708
+And nothing proves each tab's tables
+answer, so the kit asks the workspace
+
+49
+00:02:57.708 --> 00:03:02.680
+for each table's newest record and
+count: delivering, late or missing.
+
+50
+00:03:06.430 --> 00:03:07.355
+Who does what?
+
+51
+00:03:07.355 --> 00:03:10.021
+Operators read the telemetry tab first,
+
+52
+00:03:10.021 --> 00:03:13.980
+then their own family's tabs,
+and each finding becomes a task.
+
+53
+00:03:13.980 --> 00:03:18.680
+Security operations treats each dark
+source as a high-severity task.
+
+54
+00:03:18.680 --> 00:03:23.118
+And the security officer keeps the
+reachability record, never the render.
+
+55
+00:03:23.118 --> 00:03:25.668
+Lab 1 needs only saved results.
+
+56
+00:03:25.668 --> 00:03:28.948
+Lab 2 needs Log Analytics
+Reader on a test workspace,
+
+57
+00:03:28.948 --> 00:03:34.260
+which can view and search the monitoring
+data, and the check sends only queries.
+
+58
+00:03:38.010 --> 00:03:38.822
+Lab 1.
+
+59
+00:03:38.822 --> 00:03:43.836
+Step 1 renders the morning of November
+sixteenth in the fictional workspace.
+
+60
+00:03:43.836 --> 00:03:46.902
+The Entra diagnostic setting
+stopped at ten past five
+
+61
+00:03:46.902 --> 00:03:49.560
+the evening before, and
+the sync probe didn't run.
+
+62
+00:03:49.560 --> 00:03:54.904
+Telemetry flags four rows: sign-in and
+audit logs are dark, the probe's table
+
+63
+00:03:54.904 --> 00:03:59.985
+is dark, and the Office 365 connector's
+latest health event is a failure.
+
+64
+00:03:59.985 --> 00:04:04.948
+The sync, risk, emergency access
+and grants tabs are all STALE.
+
+65
+00:04:04.948 --> 00:04:07.735
+Step 2 shows why the risk tab isn't clear:
+
+66
+00:04:07.735 --> 00:04:13.060
+its query returned no rows, but its
+source stopped fourteen hours ago.
+
+67
+00:04:16.810 --> 00:04:18.998
+Step 3 renders the next morning.
+
+68
+00:04:18.998 --> 00:04:21.847
+The setting is back,
+and telemetry is clear.
+
+69
+00:04:21.847 --> 00:04:25.540
+Now the queues show what they were
+hiding: one user at high risk,
+
+70
+00:04:25.540 --> 00:04:30.462
+one emergency access sign-in, which turns
+out to be the quarterly validation drill,
+
+71
+00:04:30.462 --> 00:04:34.660
+and the review records it as a drill,
+and one synchronization conflict.
+
+72
+00:04:34.660 --> 00:04:36.649
+Grants and D L P alerts are clear,
+
+73
+00:04:36.649 --> 00:04:41.370
+and this time clear means something,
+because their sources are fresh.
+
+74
+00:04:45.120 --> 00:04:50.420
+Step 4 checks each table's reachability
+on the first morning, from saved answers.
+
+75
+00:04:50.420 --> 00:04:55.063
+Sign-in logs, audit logs and the probe's
+table are late, and the Sentinel health
+
+76
+00:04:55.063 --> 00:04:56.831
+table is missing altogether:
+
+77
+00:04:56.831 --> 00:05:00.295
+health monitoring was never
+turned on in this workspace.
+
+78
+00:05:00.295 --> 00:05:02.208
+The script exits with an error.
+
+79
+00:05:02.208 --> 00:05:06.494
+Step 5 tries to record the first
+morning's render as evidence.
+
+80
+00:05:06.494 --> 00:05:10.520
+The kit refuses: a rendered
+view is not evidence.
+
+81
+00:05:14.270 --> 00:05:17.382
+Step 6 records the
+reachability check instead.
+
+82
+00:05:17.382 --> 00:05:21.445
+Record one, with result Fail: the
+record keeps what the check found,
+
+83
+00:05:21.445 --> 00:05:26.033
+with continuous monitoring and system
+monitoring, and their indicators.
+
+84
+00:05:26.033 --> 00:05:29.732
+A failing record is still
+evidence; it's evidence of the gap.
+
+85
+00:05:29.732 --> 00:05:33.703
+Step 7 runs this chapter's
+tests and the evidence tests:
+
+86
+00:05:33.703 --> 00:05:36.100
+sixteen passed, none failed.
+
+87
+00:05:39.850 --> 00:05:43.989
+Lab 2 runs the same reachability
+check against a test workspace,
+
+88
+00:05:43.989 --> 00:05:46.800
+never production; the
+authors haven't run it.
+
+89
+00:05:46.800 --> 00:05:48.671
+Sign in to commercial Azure,
+
+90
+00:05:48.671 --> 00:05:52.575
+add the log analytics extension,
+run the check, and sign out.
+
+91
+00:05:52.575 --> 00:05:57.637
+Every table should be delivering; each
+late or missing one becomes a task.
+
+92
+00:05:57.637 --> 00:06:02.162
+The reachability record supports continuous
+monitoring and system monitoring.
+
+93
+00:06:02.162 --> 00:06:05.855
+The dangers you saw: a missing
+connector that looks healthy,
+
+94
+00:06:05.855 --> 00:06:10.300
+a missed probe showing yesterday's
+green, and a render filed as evidence.
+
+95
+00:06:10.300 --> 00:06:13.210
+Next, Chapter 4 deploys the workbook.

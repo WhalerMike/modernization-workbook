@@ -11,7 +11,7 @@ require("../_build/devwb.js")({
   series: "Companion guide: The Daily Checks on One Dashboard (draft)",
   title: "The Daily Checks on One Dashboard",
   deckTitle: "The daily checks on one dashboard",
-  subtitle: "An implementation guide: one Azure Monitor workbook, a tab per daily check, and the evidence kept where it lives",
+  subtitle: "An implementation guide: one Azure Monitor workbook, a tab per daily check",
   map: "Why: a dashboard is a picture of the evidence · What: options, ten tabs, GCC · Who: the RACI · How: six steps, dangers",
   slides: [
     {

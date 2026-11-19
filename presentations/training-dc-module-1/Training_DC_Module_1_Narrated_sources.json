@@ -1,0 +1,50 @@
+[
+ {
+  "slide": 5,
+  "title": "Unit 3: the template as code",
+  "links": [
+   {
+    "text": "Ch 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Who this module is for",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Lab 1: the tabs, and the edited export",
+  "links": [
+   {
+    "text": "Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.html"
+   },
+   {
+    "text": "02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 2: a test workspace",
+  "links": [
+   {
+    "text": "Ch 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.html"
+   },
+   {
+    "text": "02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.html"
+   }
+  ]
+ }
+]

@@ -16,7 +16,7 @@ Each plan is a short list of milestones, about a week each, following Microsoft 
 | [ISSO and assessor](isso.md) | What each control area asks for, what evidence the kits produce, and how to read it. | 4 | about 28 hr 52 min |
 | [Identity engineer](identity-engineer.md) | From Active Directory to Entra ID: the target, privileged and non-person identities, and HR-driven lifecycle. | 4 | about 49 hr 26 min |
 | [Endpoint engineer](endpoint-engineer.md) | Devices without Group Policy: Intune first, Arc for servers, and Defender for Endpoint on top. | 4 | about 12 hr 38 min |
-| [Security operations](security-operations.md) | What you can see, what you detect, and what you hand the ISSO. | 5 | about 16 hr 32 min |
+| [Security operations](security-operations.md) | What you can see, what you detect, and what you hand the ISSO. | 5 | about 16 hr 42 min |
 | [Cloud and platform engineer](cloud-platform-engineer.md) | The authorization boundary, the landing zone, the network and DNS, and what the providers tell you. | 4 | about 34 hr 56 min |
 | [Developer](developer.md) | The tested code behind each kit: workbooks with labs on fixtures, then a test tenant. | 4 | about 27 hr |
 | [Program lead and service owner](program-lead.md) | Why, in what order, who owns what, and how the program proves progress. | 4 | about 30 hr 31 min |
