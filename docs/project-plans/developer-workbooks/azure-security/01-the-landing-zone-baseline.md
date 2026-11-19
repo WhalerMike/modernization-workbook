@@ -29,7 +29,7 @@ The code behind the guide's [Step 1, the landing-zone security baseline](../../.
 ## Narrated tour
 {{< fmw-video DW_AZS_01_Landing_Zone_Baseline_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-01-landing-zone-baseline) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-01-landing-zone-baseline) (about 9 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-01-landing-zone-baseline/DW_AZS_01_Landing_Zone_Baseline_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-01-landing-zone-baseline/DW_AZS_01_Landing_Zone_Baseline_Narrated.vtt). Recorded on November 17, 2026 from the draft chapter, before its review.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-01-landing-zone-baseline) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-01-landing-zone-baseline) (about 9 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-01-landing-zone-baseline/DW_AZS_01_Landing_Zone_Baseline_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-01-landing-zone-baseline/DW_AZS_01_Landing_Zone_Baseline_Narrated.vtt). Recorded on November 17, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

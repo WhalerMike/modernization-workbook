@@ -29,7 +29,7 @@ The code behind the guide's [Step 1: Decision and licensing](../../../books/guid
 ## Narrated tour
 {{< fmw-video DW_GSA_01_Decision_Licensing_GCC_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-01-decision-licensing-gcc) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-01-decision-licensing-gcc) (about 8 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-01-decision-licensing-gcc/DW_GSA_01_Decision_Licensing_GCC_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-01-decision-licensing-gcc/DW_GSA_01_Decision_Licensing_GCC_Narrated.vtt). Recorded on November 17, 2026 from the draft chapter, before its review.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-01-decision-licensing-gcc) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-01-decision-licensing-gcc) (about 8 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-01-decision-licensing-gcc/DW_GSA_01_Decision_Licensing_GCC_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-01-decision-licensing-gcc/DW_GSA_01_Decision_Licensing_GCC_Narrated.vtt). Recorded on November 18, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

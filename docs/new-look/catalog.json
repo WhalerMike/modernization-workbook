@@ -410,9 +410,9 @@
     "Azure",
     "Security operations"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "daily-checks-dashboard",
-   "featured": false
+   "featured": true
   },
   {
    "id": "docs/training/zero-trust-assessment/index.md",
@@ -970,7 +970,7 @@
     "Azure",
     "Security operations"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "daily-checks-dashboard",
    "featured": false
   },
@@ -1269,7 +1269,7 @@
    "topics": [
     "Azure"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "daily-checks",
    "featured": false
   },

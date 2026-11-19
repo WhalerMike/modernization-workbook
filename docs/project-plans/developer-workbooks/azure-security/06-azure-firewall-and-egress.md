@@ -29,7 +29,7 @@ The code behind the guide's [Step 6, firewall and segmentation](../../../books/g
 ## Narrated tour
 {{< fmw-video DW_AZS_06_Azure_Firewall_and_Egress_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-06-azure-firewall-and-egress) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-06-azure-firewall-and-egress) (about 9 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-06-azure-firewall-and-egress/DW_AZS_06_Azure_Firewall_and_Egress_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-06-azure-firewall-and-egress/DW_AZS_06_Azure_Firewall_and_Egress_Narrated.vtt). Recorded on November 17, 2026 from the draft chapter, before its review.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-06-azure-firewall-and-egress) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-06-azure-firewall-and-egress) (about 9 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-06-azure-firewall-and-egress/DW_AZS_06_Azure_Firewall_and_Egress_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-06-azure-firewall-and-egress/DW_AZS_06_Azure_Firewall_and_Egress_Narrated.vtt). Recorded on November 17, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

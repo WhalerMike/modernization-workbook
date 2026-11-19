@@ -11,7 +11,9 @@ lifecycle_review: 2027-05-01
 research-status: draft
 research-type: implementation guide
 research-book: "Book 15"
-review-status: pending
+review-status: approved
+reviewed-sha256: 5a64f2b8aa22264e325636da07194f390b7c8697785e66ab8a20c54d83f57a1e
+last-reviewed: 2026-11-19
 ---
 # The Daily Checks on One Dashboard: An Implementation Guide
 

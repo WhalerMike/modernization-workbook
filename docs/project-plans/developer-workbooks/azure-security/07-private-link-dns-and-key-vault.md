@@ -29,7 +29,7 @@ The code behind the guide's [Step 7, Private Link and DNS](../../../books/guides
 ## Narrated tour
 {{< fmw-video DW_AZS_07_Private_Link_DNS_Key_Vault_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-07-private-link-dns-key-vault) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-07-private-link-dns-key-vault) (about 9 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-07-private-link-dns-key-vault/DW_AZS_07_Private_Link_DNS_Key_Vault_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-07-private-link-dns-key-vault/DW_AZS_07_Private_Link_DNS_Key_Vault_Narrated.vtt). Recorded on November 17, 2026 from the draft chapter, before its review.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-07-private-link-dns-key-vault) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-07-private-link-dns-key-vault) (about 9 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-07-private-link-dns-key-vault/DW_AZS_07_Private_Link_DNS_Key_Vault_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-07-private-link-dns-key-vault/DW_AZS_07_Private_Link_DNS_Key_Vault_Narrated.vtt). Recorded on November 17, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

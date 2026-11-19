@@ -29,7 +29,7 @@ The code behind the guide's [G5 Exposure management](../../../books/guides/defen
 ## Narrated tour
 {{< fmw-video DW_XDR_05_Exposure_Incidents_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-05-exposure-incidents) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-05-exposure-incidents) (about 9 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-05-exposure-incidents/DW_XDR_05_Exposure_Incidents_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-05-exposure-incidents/DW_XDR_05_Exposure_Incidents_Narrated.vtt). Recorded on November 17, 2026 from the draft chapter, before its review.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-05-exposure-incidents) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-05-exposure-incidents) (about 9 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-05-exposure-incidents/DW_XDR_05_Exposure_Incidents_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-05-exposure-incidents/DW_XDR_05_Exposure_Incidents_Narrated.vtt). Recorded on November 17, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

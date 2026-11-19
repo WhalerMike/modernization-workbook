@@ -29,7 +29,7 @@ The code behind the guide's [Step 3: Client deployment](../../../books/guides/gl
 ## Narrated tour
 {{< fmw-video DW_GSA_03_Client_Coverage_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-03-client-coverage) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-03-client-coverage) (about 7 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-03-client-coverage/DW_GSA_03_Client_Coverage_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-03-client-coverage/DW_GSA_03_Client_Coverage_Narrated.vtt). Recorded on November 17, 2026 from the draft chapter, before its review.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-03-client-coverage) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-03-client-coverage) (about 7 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-03-client-coverage/DW_GSA_03_Client_Coverage_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-03-client-coverage/DW_GSA_03_Client_Coverage_Narrated.vtt). Recorded on November 18, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

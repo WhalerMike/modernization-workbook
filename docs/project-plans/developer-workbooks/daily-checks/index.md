@@ -18,7 +18,9 @@ listing:
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: a92f6a9786a5c09ff983600ca32cef75532475698308d55f8017b0c811f1ff60
+last-reviewed: 2026-11-19
 ---
 # Building the Daily Checks Workbook {.unnumbered}
 

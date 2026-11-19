@@ -29,7 +29,7 @@ The code behind the guide's [Step 6: Private applications](../../../books/guides
 ## Narrated tour
 {{< fmw-video DW_GSA_06_Private_Apps_Admin_Paths_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-06-private-apps-admin-paths) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-06-private-apps-admin-paths) (about 8 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-06-private-apps-admin-paths/DW_GSA_06_Private_Apps_Admin_Paths_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-06-private-apps-admin-paths/DW_GSA_06_Private_Apps_Admin_Paths_Narrated.vtt). Recorded on November 17, 2026 from the draft chapter, before its review.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-06-private-apps-admin-paths) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-06-private-apps-admin-paths) (about 8 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-06-private-apps-admin-paths/DW_GSA_06_Private_Apps_Admin_Paths_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-06-private-apps-admin-paths/DW_GSA_06_Private_Apps_Admin_Paths_Narrated.vtt). Recorded on November 18, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

@@ -29,7 +29,7 @@ The code behind the guide's [Step 4: Microsoft traffic](../../../books/guides/gl
 ## Narrated tour
 {{< fmw-video DW_GSA_04_Microsoft_Traffic_Plans_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-04-microsoft-traffic-plans) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-04-microsoft-traffic-plans) (about 7 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-04-microsoft-traffic-plans/DW_GSA_04_Microsoft_Traffic_Plans_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-04-microsoft-traffic-plans/DW_GSA_04_Microsoft_Traffic_Plans_Narrated.vtt). Recorded on November 17, 2026 from the draft chapter, before its review.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-04-microsoft-traffic-plans) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-04-microsoft-traffic-plans) (about 7 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-04-microsoft-traffic-plans/DW_GSA_04_Microsoft_Traffic_Plans_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-04-microsoft-traffic-plans/DW_GSA_04_Microsoft_Traffic_Plans_Narrated.vtt). Recorded on November 18, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

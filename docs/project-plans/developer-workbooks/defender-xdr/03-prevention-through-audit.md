@@ -29,7 +29,7 @@ The code behind the guide's [G3 Endpoint prevention](../../../books/guides/defen
 ## Narrated tour
 {{< fmw-video DW_XDR_03_Prevention_Through_Audit_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-03-prevention-through-audit) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-03-prevention-through-audit) (about 8 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-03-prevention-through-audit/DW_XDR_03_Prevention_Through_Audit_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-03-prevention-through-audit/DW_XDR_03_Prevention_Through_Audit_Narrated.vtt). Recorded on November 17, 2026 from the draft chapter, before its review.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-03-prevention-through-audit) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-03-prevention-through-audit) (about 8 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-03-prevention-through-audit/DW_XDR_03_Prevention_Through_Audit_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-03-prevention-through-audit/DW_XDR_03_Prevention_Through_Audit_Narrated.vtt). Recorded on November 17, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

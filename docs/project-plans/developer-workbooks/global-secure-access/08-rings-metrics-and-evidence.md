@@ -29,7 +29,7 @@ The code behind the guide's [Step 11: Coexistence and migration](../../../books/
 ## Narrated tour
 {{< fmw-video DW_GSA_08_Rings_Metrics_Evidence_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-08-rings-metrics-evidence) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-08-rings-metrics-evidence) (about 8 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-08-rings-metrics-evidence/DW_GSA_08_Rings_Metrics_Evidence_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-08-rings-metrics-evidence/DW_GSA_08_Rings_Metrics_Evidence_Narrated.vtt). Recorded on November 17, 2026 from the draft chapter, before its review.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-08-rings-metrics-evidence) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-08-rings-metrics-evidence) (about 8 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-08-rings-metrics-evidence/DW_GSA_08_Rings_Metrics_Evidence_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-08-rings-metrics-evidence/DW_GSA_08_Rings_Metrics_Evidence_Narrated.vtt). Recorded on November 18, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

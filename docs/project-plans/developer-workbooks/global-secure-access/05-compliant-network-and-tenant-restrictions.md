@@ -29,7 +29,7 @@ The code behind the guide's [Step 7: Compliant network](../../../books/guides/gl
 ## Narrated tour
 {{< fmw-video DW_GSA_05_Compliant_Network_Tenant_Restrictions_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-05-compliant-network-tenant-restrictions) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-05-compliant-network-tenant-restrictions) (about 7 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-05-compliant-network-tenant-restrictions/DW_GSA_05_Compliant_Network_Tenant_Restrictions_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-05-compliant-network-tenant-restrictions/DW_GSA_05_Compliant_Network_Tenant_Restrictions_Narrated.vtt). Recorded on November 17, 2026 from the draft chapter, before its review.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-05-compliant-network-tenant-restrictions) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-05-compliant-network-tenant-restrictions) (about 7 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-05-compliant-network-tenant-restrictions/DW_GSA_05_Compliant_Network_Tenant_Restrictions_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-05-compliant-network-tenant-restrictions/DW_GSA_05_Compliant_Network_Tenant_Restrictions_Narrated.vtt). Recorded on November 18, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->
