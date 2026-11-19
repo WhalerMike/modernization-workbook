@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.875
+Why treat a dashboard like this?
+
+2
+00:00:01.875 --> 00:00:04.160
+Because it's still a change to the estate,
+
+3
+00:00:04.160 --> 00:00:08.800
+and an unreviewed change is exactly what
+the rest of the workbook guards against.
+
+4
+00:00:08.800 --> 00:00:11.822
+So every deployment is
+previewed with what-if,
+
+5
+00:00:11.822 --> 00:00:14.525
+which predicts the change and makes none.
+
+6
+00:00:14.525 --> 00:00:18.963
+A second person approves the plan's
+hash, and the kit deploys nothing else.
+
+7
+00:00:18.963 --> 00:00:22.062
+And every step leaves a
+hashed, chained record.
+
+8
+00:00:22.062 --> 00:00:25.234
+One rule holds throughout:
+the workbook itself,
+
+9
+00:00:25.234 --> 00:00:28.870
+and any screenshot of it, is
+never on the evidence list.

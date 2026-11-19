@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.787
+Welcome back to Building
+the Daily Checks Workbook.
+
+2
+00:00:02.787 --> 00:00:06.638
+This is Chapter 4: deploying
+to test and production.
+
+3
+00:00:06.638 --> 00:00:10.003
+The same commands twice, with
+a different settings file,
+
+4
+00:00:10.003 --> 00:00:12.125
+and a record of each step in between.
+
+5
+00:00:12.125 --> 00:00:13.740
+It's a runbook, not a lab:
+
+6
+00:00:13.740 --> 00:00:18.225
+it runs Chapters 2 and 3's scripts
+and the kit's deploy scripts.
+
+7
+00:00:18.225 --> 00:00:22.092
+The output you'll see comes
+from the kit's fixture mode,
+
+8
+00:00:22.092 --> 00:00:24.113
+on November sixteenth, 2026.
+
+9
+00:00:24.113 --> 00:00:27.229
+Nothing here has been run
+against a live subscription,
+
+10
+00:00:27.229 --> 00:00:30.340
+and the chapter is a draft
+awaiting the owner's review.

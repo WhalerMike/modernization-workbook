@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.275
+What does it leave to you?
+
+2
+00:00:01.275 --> 00:00:05.563
+Learn gives a table per source, and
+the runbook gives the checks in prose,
+
+3
+00:00:05.563 --> 00:00:08.325
+but nobody says which
+table shows which check.
+
+4
+00:00:08.325 --> 00:00:11.412
+So the kit has one manifest
+row per daily check.
+
+5
+00:00:11.412 --> 00:00:16.491
+Some checks have no data in Log Analytics
+at all, and a tab built on missing data
+
+6
+00:00:16.491 --> 00:00:19.189
+looks healthy: those become link-out tabs,
+
+7
+00:00:19.189 --> 00:00:21.887
+with no tables and the click path instead.
+
+8
+00:00:21.887 --> 00:00:26.387
+Freshness is per source, so each
+expected table gets its own limit.
+
+9
+00:00:26.387 --> 00:00:32.287
+And because availability is spread across
+pages, each tab carries its GCC note.
+
+10
+00:00:32.287 --> 00:00:34.680
+Every row here is pinned by a test.

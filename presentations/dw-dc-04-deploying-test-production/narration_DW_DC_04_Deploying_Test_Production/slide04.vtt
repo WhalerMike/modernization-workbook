@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.975
+Who does what?
+
+2
+00:00:00.975 --> 00:00:04.974
+The deployer needs Workbook Contributor,
+which can save shared workbooks,
+
+3
+00:00:04.974 --> 00:00:07.360
+and deployment rights
+on the resource group,
+
+4
+00:00:07.360 --> 00:00:11.037
+because a Resource Manager deployment
+and its what-if both need them.
+
+5
+00:00:11.037 --> 00:00:14.189
+Both are granted through
+privileged identity management,
+
+6
+00:00:14.189 --> 00:00:15.862
+for the deployment window only.
+
+7
+00:00:15.862 --> 00:00:19.213
+A second person reads the
+plan and approves its hash.
+
+8
+00:00:19.213 --> 00:00:22.674
+The reachability check needs
+only Log Analytics Reader.
+
+9
+00:00:22.674 --> 00:00:26.315
+And readers need Workbook Reader
+and their own access to the data,
+
+10
+00:00:26.315 --> 00:00:29.950
+because a workbook shows only what
+its reader can already query.

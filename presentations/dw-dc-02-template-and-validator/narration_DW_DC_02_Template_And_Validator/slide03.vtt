@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.075
+Here's what Microsoft Learn gives you.
+
+2
+00:00:02.075 --> 00:00:06.117
+Two ways to manage a workbook as a
+template: copy the Gallery Template
+
+3
+00:00:06.117 --> 00:00:09.875
+from the Advanced Editor, or copy
+the Resource Manager template.
+
+4
+00:00:09.875 --> 00:00:14.937
+The instance is a Microsoft dot Insights
+workbooks resource, kind shared,
+
+5
+00:00:14.937 --> 00:00:17.758
+with a display name, a
+source I D, a category,
+
+6
+00:00:17.758 --> 00:00:21.575
+and serialized data, which
+holds the workbook's content.
+
+7
+00:00:21.575 --> 00:00:25.507
+And Learn warns that an exported
+template often embeds the
+
+8
+00:00:25.507 --> 00:00:29.600
+subscription I D and resource
+group: its advice is to mask them.
+
+9
+00:00:29.600 --> 00:00:34.712
+The resource reference gives
+API version 2023-06-01.
+
+10
+00:00:34.712 --> 00:00:38.110
+Queries use the Logs
+data source, with K Q L.

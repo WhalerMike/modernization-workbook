@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.825
+Step 4 is the heart of it.
+
+2
+00:00:01.825 --> 00:00:04.596
+The plan writes this
+environment's parameters,
+
+3
+00:00:04.596 --> 00:00:08.504
+the workspace and the parameter
+values the template leaves empty,
+
+4
+00:00:08.504 --> 00:00:12.625
+then runs what-if and prints the create
+command and the hash to approve.
+
+5
+00:00:12.625 --> 00:00:18.588
+In fixture mode, on November sixteenth, it
+predicts one create: a single workbook.
+
+6
+00:00:18.588 --> 00:00:20.900
+A first deployment shows one create,
+
+7
+00:00:20.900 --> 00:00:24.062
+and a redeploy shows a
+modify of the same workbook.
+
+8
+00:00:24.062 --> 00:00:27.637
+Anything else, and any
+delete, stops the stage.
+
+9
+00:00:27.637 --> 00:00:31.046
+Then a second person reads the
+plan and the what-if result,
+
+10
+00:00:31.046 --> 00:00:33.580
+and records the hash in the change record.

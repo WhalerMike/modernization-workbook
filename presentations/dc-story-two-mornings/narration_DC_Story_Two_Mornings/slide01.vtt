@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.762
+Welcome to the story deck for
+Building the Daily Checks Workbook.
+
+2
+00:00:03.762 --> 00:00:08.876
+Instead of four chapters one at a time,
+we'll follow one fictional workspace,
+
+3
+00:00:08.876 --> 00:00:13.741
+for contoso dot example, through two
+mornings: November sixteenth, 2026,
+
+4
+00:00:13.741 --> 00:00:19.101
+when something quietly broke overnight,
+and the next morning, when it was fixed.
+
+5
+00:00:19.101 --> 00:00:22.175
+Every value comes from the
+kit's own test fixtures,
+
+6
+00:00:22.175 --> 00:00:25.700
+and every output on a slide is
+what the kit really printed.
+
+7
+00:00:25.700 --> 00:00:28.910
+The workbook is a draft
+awaiting the owner's review,
+
+8
+00:00:28.910 --> 00:00:32.400
+and the code is illustrative,
+tested against fixtures.

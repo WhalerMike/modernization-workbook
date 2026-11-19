@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.050
+Here's the code.
+
+2
+00:00:01.050 --> 00:00:04.875
+The template has a header with
+the banner, then the parameters:
+
+3
+00:00:04.875 --> 00:00:09.225
+a workspace picker and four text
+values, all left empty in the template.
+
+4
+00:00:09.225 --> 00:00:11.104
+Then one tab per daily check,
+
+5
+00:00:11.104 --> 00:00:16.170
+and one group per tab that shows when
+its tab is selected, holding the banner,
+
+6
+00:00:16.170 --> 00:00:20.745
+the daily check, what to do, the link-outs
+with click paths, the G C C note,
+
+7
+00:00:20.745 --> 00:00:25.075
+and its queries, each one a Logs
+query on the workspace parameter.
+
+8
+00:00:25.075 --> 00:00:31.160
+The validator runs ten checks: the format,
+one tab per check, tables, look-backs,
+
+9
+00:00:31.160 --> 00:00:34.734
+the workspace, the banner,
+link-outs and hosts,
+
+10
+00:00:34.734 --> 00:00:39.620
+queries per tab kind, the telemetry
+list, and no I D's or secrets.

@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.362
+Why start with a list?
+
+2
+00:00:01.362 --> 00:00:04.708
+The operator runbook asks
+for ten checks every morning,
+
+3
+00:00:04.708 --> 00:00:07.326
+and most of them are done
+one portal at a time.
+
+4
+00:00:07.326 --> 00:00:12.100
+Some of that data is already in the Sentinel
+workspace; some of it never will be.
+
+5
+00:00:12.100 --> 00:00:15.793
+So the goal is to say, for every
+daily check, which table shows it,
+
+6
+00:00:15.793 --> 00:00:19.341
+where the operator looks when
+Log Analytics doesn't have it,
+
+7
+00:00:19.341 --> 00:00:22.237
+and how much a workbook
+tab can be trusted to show.
+
+8
+00:00:22.237 --> 00:00:26.346
+It's for the developers who maintain
+the kit and the security operations
+
+9
+00:00:26.346 --> 00:00:30.020
+lead who owns the workspace, and
+you don't need a tenant until Lab 2.

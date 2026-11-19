@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.951
+Step 2 fills one settings
+file per environment,
+
+2
+00:00:02.951 --> 00:00:05.554
+and checks the two values
+the kit can't know:
+
+3
+00:00:05.554 --> 00:00:10.538
+the compliance state your workspace records,
+and the product names of D L P alerts.
+
+4
+00:00:10.538 --> 00:00:12.266
+Those values, and every I D,
+
+5
+00:00:12.266 --> 00:00:16.875
+go into the deployed workbook's
+parameters, never into the template.
+
+6
+00:00:16.875 --> 00:00:20.944
+Then the validator runs ten checks on
+the template, which matters because
+
+7
+00:00:20.944 --> 00:00:25.613
+Microsoft says an exported template embeds
+sensitive values that should be masked.
+
+8
+00:00:25.613 --> 00:00:28.964
+Step 3 plans the deployment
+of one workbook resource
+
+9
+00:00:28.964 --> 00:00:32.163
+and previews it with what-if,
+which changes nothing.
+
+10
+00:00:32.163 --> 00:00:34.655
+A second person approves the plan's hash,
+
+11
+00:00:34.655 --> 00:00:37.580
+and the kit refuses any
+plan that would delete.

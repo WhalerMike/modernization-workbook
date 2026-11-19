@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.900
+Why keep a dashboard as a file?
+
+2
+00:00:01.900 --> 00:00:06.981
+Because a workbook edited in the portal is
+a change nobody reviewed, and an export
+
+3
+00:00:06.981 --> 00:00:12.062
+of it can carry the subscription, resource
+group and workspace into a repository.
+
+4
+00:00:12.062 --> 00:00:16.548
+By the end of this chapter you can rebuild
+the workbook's template from reviewed
+
+5
+00:00:16.548 --> 00:00:19.947
+files, prove it has one tab per
+daily check and no embedded I D's,
+
+6
+00:00:19.947 --> 00:00:24.637
+and catch the portal edits that would
+otherwise drift into production unreviewed.
+
+7
+00:00:24.637 --> 00:00:27.306
+It's for the developers
+and for the security
+
+8
+00:00:27.306 --> 00:00:30.120
+operations engineer
+who edits the workbook.

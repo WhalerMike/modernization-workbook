@@ -1,0 +1,223 @@
+{
+ "1": [
+  [
+   0.05,
+   6.963,
+   "Welcome to Module 2 of The Daily Checks on One Dashboard: reading it, deploying it, and keeping the evidence."
+  ],
+  [
+   7.013,
+   5.525,
+   "A dashboard's most dangerous state isn't red: it's green over a source that stopped arriving."
+  ],
+  [
+   12.537,
+   11.113,
+   "In this module you read the workbook the way an operator should, telemetry first; deploy it the way a change should go, previewed and approved; and keep the evidence the way an assessor needs it."
+  ],
+  [
+   23.65,
+   2.288,
+   "About forty minutes, plus a lab."
+  ],
+  [
+   25.938,
+   2.938,
+   "The module is a draft awaiting the owner's review."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   19.137,
+   "By the end of this module you'll be able to read each tab as attention, clear, stale, no data or link-out; explain why an empty queue over a stale source is stale; run the reachability check and read its result; deploy by an approved hash, and roll back; and say what is, and isn't, evidence."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.163,
+   "Unit 1: reading the workbook."
+  ],
+  [
+   2.212,
+   8.125,
+   "Telemetry completeness comes first, because every other tab depends on its sources: a dark source is a high-severity task."
+  ],
+  [
+   10.338,
+   6.987,
+   "Then each tab in turn, and each row that needs work becomes, or is matched to, a task with an owner."
+  ],
+  [
+   17.325,
+   3.9,
+   "Entra Health and the I T S M queue are worked where they liv."
+  ],
+  [
+   21.225,
+   4.987,
+   "The workbook never closes a task, pages anyone, or proves a check happened."
+  ],
+  [
+   26.212,
+   5.05,
+   "And the rule: an empty queue over a stale source reads stale, never clear."
+  ],
+  [
+   31.262,
+   4.112,
+   "A missed probe shows yesterday's verdict, so its tab is stale too."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.738,
+   "Unit 2: deploying it."
+  ],
+  [
+   1.788,
+   6.388,
+   "What-if previews the change and makes none, and it needs the same deployment rights as the deployment itself."
+  ],
+  [
+   8.175,
+   7.325,
+   "The plan's hash is what a second person approves, and the kit deploys nothing else; it refuses any plan that would delete."
+  ],
+  [
+   15.5,
+   5.85,
+   "The deployer holds Workbook Contributor and deployment rights on the resource group only, for the window."
+  ],
+  [
+   21.35,
+   6.65,
+   "Rollback is a redeploy of the previous approved plan, or a delete that removes a view and nothing else."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.062,
+   "Unit 3: the evidence."
+  ],
+  [
+   2.112,
+   11.463,
+   "The kit records the validation, the preflight, the plan, the deployment, the reachability check and the rollback plan, each hashed and chained, with its controls and indicators."
+  ],
+  [
+   13.575,
+   4.8,
+   "It refuses a render, with the words: a rendered view is not evidence."
+  ],
+  [
+   18.375,
+   2.8,
+   "A screenshot of a tab isn't evidence either."
+  ],
+  [
+   21.175,
+   3.487,
+   "And at the go or no-go, only lyve records count."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   0.925,
+   "Who does what?"
+  ],
+  [
+   0.975,
+   5.325,
+   "Operators read telemetry first, then their family's tabs, and open the tasks."
+  ],
+  [
+   6.3,
+   4.062,
+   "Security operations plans, deploys and checks reachability."
+  ],
+  [
+   10.363,
+   3.438,
+   "A second person approves the plan's hash in the change record."
+  ],
+  [
+   13.8,
+   5.112,
+   "And the security officer keeps the evidence folder, never a render or a screenshot."
+  ],
+  [
+   18.913,
+   11.938,
+   "The plan and what-if support change control and impact analysis; the reachability record supports continuous and system monitoring; and the chained records support the protection of audit information."
+  ],
+  [
+   30.85,
+   1.525,
+   "The assessor decides."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   5.263,
+   "Lab 1 is in the developer workbook's Chapter 3, on a laptop with no tenant."
+  ],
+  [
+   5.312,
+   12.912,
+   "You render the morning of November sixteenth, when the Entra diagnostic setting stopped overnight and the probe didn't run: four telemetry rows flagged, and sync, risk, emergency access and grants all stale."
+  ],
+  [
+   18.225,
+   3.825,
+   "Then you render the next morning and see what the empty queues were hiding."
+  ],
+  [
+   22.05,
+   4.388,
+   "And when you try to record the first render as evidence, the kit refuses."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   11.662,
+   "Lab 2 runs the reachability check against a test workspace, then, with a change record, the runbook's first stage in a test subscription: never production, and the authors haven't run it."
+  ],
+  [
+   11.713,
+   1.125,
+   "Two questions."
+  ],
+  [
+   12.838,
+   5.612,
+   "On the morning the sign-in logs stopped, the risk tab returns no rows: what does it show?"
+  ],
+  [
+   18.45,
+   3.775,
+   "Stale, because its source is past its sixty-minute limit."
+  ],
+  [
+   22.225,
+   3.112,
+   "And when the what-if shows a delete, what does the kit do?"
+  ],
+  [
+   25.337,
+   3.913,
+   "It refuses the plan: the workbook deployment never deletes."
+  ],
+  [
+   29.25,
+   9.55,
+   "In summary: you read the workbook telemetry first, deployed it previewed and approved by hash, and kept the checks' records as the evidence, never the picture."
+  ]
+ ]
+}

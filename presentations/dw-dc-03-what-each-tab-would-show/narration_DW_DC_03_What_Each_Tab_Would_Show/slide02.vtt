@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.163
+Why this chapter?
+
+2
+00:00:01.163 --> 00:00:04.163
+A dashboard's most
+dangerous state isn't red.
+
+3
+00:00:04.163 --> 00:00:06.687
+It's green over a source
+that stopped arriving.
+
+4
+00:00:06.687 --> 00:00:09.769
+A risk queue with no rows
+can mean nobody is at risk,
+
+5
+00:00:09.769 --> 00:00:13.000
+or that the sign-in logs
+stopped coming in last night.
+
+6
+00:00:13.000 --> 00:00:16.137
+By the end of the chapter you
+can show, without a tenant,
+
+7
+00:00:16.137 --> 00:00:18.846
+what each tab would
+display on a given morning;
+
+8
+00:00:18.846 --> 00:00:23.338
+tell an operator which tabs can't be
+trusted because their source went quiet;
+
+9
+00:00:23.338 --> 00:00:26.475
+and prove each tab's tables
+answer in a real workspace.
+
+10
+00:00:26.475 --> 00:00:28.943
+It's for developers, security operations,
+
+11
+00:00:28.943 --> 00:00:32.210
+and the operators who read
+the workbook each morning.

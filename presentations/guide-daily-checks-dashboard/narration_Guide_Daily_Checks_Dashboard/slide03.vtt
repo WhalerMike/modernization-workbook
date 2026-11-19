@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.375
+What does Azure offer?
+
+2
+00:00:01.375 --> 00:00:04.000
+Microsoft's guidance compares the options.
+
+3
+00:00:04.000 --> 00:00:08.950
+Workbooks are a flexible canvas over the
+most complete set of Azure data sources,
+
+4
+00:00:08.950 --> 00:00:12.275
+and they can be managed as
+Resource Manager templates.
+
+5
+00:00:12.275 --> 00:00:16.863
+Portal dashboards give a single pane
+of glass, but a workbook is richer.
+
+6
+00:00:16.863 --> 00:00:21.730
+Dashboards with Grafana is a free
+preview; Azure Managed Grafana is for
+
+7
+00:00:21.730 --> 00:00:26.763
+external sources and private networking;
+Power BI suits long-term trends.
+
+8
+00:00:26.763 --> 00:00:30.241
+Microsoft 365 has no
+single custom dashboard:
+
+9
+00:00:30.241 --> 00:00:33.537
+each admin center has
+its own built-in views.
+
+10
+00:00:33.537 --> 00:00:36.621
+So the design is one workbook
+in the Sentinel workspace,
+
+11
+00:00:36.621 --> 00:00:39.170
+and a link out where the
+data stays elsewhere.

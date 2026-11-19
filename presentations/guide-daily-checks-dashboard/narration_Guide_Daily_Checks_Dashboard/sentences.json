@@ -1,0 +1,389 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   7.55,
+   "This is the narrated briefing for a companion guide in the Federal Modernization Workbook: The Daily Checks on One Dashboard."
+  ],
+  [
+   8.312,
+   4.287,
+   "One thing first: the guide is a draft, awaiting the owner's review."
+  ],
+  [
+   12.6,
+   7.713,
+   "It answers a question the operator runbook leaves open: can the operator see all of the daily checks in one place each morning?"
+  ],
+  [
+   20.312,
+   8.963,
+   "Mostly yes, on one Azure Monitor workbook in the Sentinel workspace, with a link out to the portal that holds the data for the checks a workbook can't read."
+  ],
+  [
+   29.275,
+   5.425,
+   "Its facts come from Microsoft Learn, read on November eighteenth, 2026."
+  ],
+  [
+   34.7,
+   3.5,
+   "We'll go in four parts: why, what, who, and how."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.925,
+   "Here's the rule the guide keeps."
+  ],
+  [
+   1.975,
+   9.95,
+   "The Security Operations book says it plainly: a dashboard is a picture of the evidence; what an assessor relies on is regenerating the numbers from the stored records."
+  ],
+  [
+   11.925,
+   6.975,
+   "The Compliance Automation book says the same of tests: one that reads a dashboard tile is a screenshot with a schedule."
+  ],
+  [
+   18.9,
+   2.513,
+   "So the workbook in this guide is a view."
+  ],
+  [
+   21.413,
+   5.463,
+   "Every tab says so, and the kit refuses to record a rendered view as evidence."
+  ],
+  [
+   26.875,
+   6.975,
+   "The evidence stays where it already lives: in the record each check writes, and the task each finding opens."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.325,
+   "What does Azure offer?"
+  ],
+  [
+   1.375,
+   2.625,
+   "Microsoft's guidance compares the options."
+  ],
+  [
+   4.0,
+   8.275,
+   "Workbooks are a flexible canvas over the most complete set of Azure data sources, and they can be managed as Resource Manager templates."
+  ],
+  [
+   12.275,
+   4.588,
+   "Portal dashboards give a single pane of glass, but a workbook is richer."
+  ],
+  [
+   16.863,
+   9.9,
+   "Dashboards with Grafana is a free preview; Azure Managed Grafana is for external sources and private networking; Power BI suits long-term trends."
+  ],
+  [
+   26.762,
+   6.775,
+   "Microsoft 365 has no single custom dashboard: each admin center has its own built-in views."
+  ],
+  [
+   33.538,
+   5.562,
+   "So the design is one workbook in the Sentinel workspace, and a link out where the data stays elsewhere."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.825,
+   "Here are the ten tabs, one per daily check."
+  ],
+  [
+   2.875,
+   7.987,
+   "Telemetry completeness, the synchronization probe, risky users and sign-ins, and emergency access sign-ins fit strongly."
+  ],
+  [
+   10.863,
+   3.8,
+   "Noncompliant devices and D L P alerts fit well."
+  ],
+  [
+   14.662,
+   13.188,
+   "Grants and the log review queue are partial: the grants tab lists them, but matching each to a ticket stays in the I T S M tool, and the log review tab shows the queue while the review stays a recorded procedure."
+  ],
+  [
+   27.85,
+   4.45,
+   "Entra Health is a link-out, because its alerts aren't in Log Analytics."
+  ],
+  [
+   32.3,
+   5.05,
+   "And the catalog tasks liv in the I T S M tool's own dashboards."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.188,
+   "What's available in G C C?"
+  ],
+  [
+   2.237,
+   11.213,
+   "G C C Moderate uses the commercial Entra service and pairs with commercial Azure, so the workspace, the workbook and the Logs Ingestion A P I are all in commercial Azure."
+  ],
+  [
+   13.45,
+   2.825,
+   "Sentinel workbooks are generally available there."
+  ],
+  [
+   16.275,
+   9.312,
+   "Entra and Intune both send their logs to the workspace; Microsoft says Intune in G C C is the same instance as the commercial service."
+  ],
+  [
+   25.587,
+   5.175,
+   "Defender X D R alerts and incidents are generally available for G C C."
+  ],
+  [
+   30.762,
+   5.35,
+   "The Defender portal's connector overview is a commercial-cloud preview, so it isn't assumed."
+  ],
+  [
+   36.112,
+   5.737,
+   "And Entra Health monitoring and Connect Health are not yet specified, so their tabs are link-outs."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   0.925,
+   "Who does what?"
+  ],
+  [
+   0.975,
+   7.0,
+   "Security operations is accountable for the sources, the template and the deployment, and for the telemetry tab each morning."
+  ],
+  [
+   7.975,
+   7.013,
+   "Identity engineering connects the Entra logs and the probe, and supplies the emergency access object I D's."
+  ],
+  [
+   14.988,
+   5.162,
+   "The endpoint platform owner connects Intune and supplies the compliance state value."
+  ],
+  [
+   20.15,
+   2.888,
+   "The operators read their own family's tabs."
+  ],
+  [
+   23.038,
+   7.575,
+   "And the security officer is consulted on each plan, approving its hash in the change record, and is accountable for the evidence."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.312,
+   "Now the six steps."
+  ],
+  [
+   1.363,
+   2.212,
+   "Step 1 connects the sources."
+  ],
+  [
+   3.575,
+   5.263,
+   "An Entra diagnostic setting sends sign-in, audit and risk logs to the workspace."
+  ],
+  [
+   8.838,
+   6.312,
+   "Intune's diagnostic settings send the compliance export, once a day, up to forty-eight hours late."
+  ],
+  [
+   15.15,
+   9.45,
+   "The Defender X D R connector brings incidents and alerts, including those it collects from Purview D L P. Health monitoring is turned on for Sentinel."
+  ],
+  [
+   24.6,
+   6.763,
+   "And the morning synchronization probe gets its own custom table, written through the Logs Ingestion A P I."
+  ],
+  [
+   31.363,
+   6.162,
+   "The check: a read-only reachability test reports each table as delivering, late or missing."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   10.488,
+   "Step 2 fills one settings file per environment, and checks the two values the kit can't know: the compliance state your workspace records, and the product names of D L P alerts."
+  ],
+  [
+   10.537,
+   6.338,
+   "Those values, and every I D, go into the deployed workbook's parameters, never into the template."
+  ],
+  [
+   16.875,
+   8.738,
+   "Then the validator runs ten checks on the template, which matters because Microsoft says an exported template embeds sensitive values that should be masked."
+  ],
+  [
+   25.613,
+   6.55,
+   "Step 3 plans the deployment of one workbook resource and previews it with what-if, which changes nothing."
+  ],
+  [
+   32.163,
+   5.362,
+   "A second person approves the plan's hash, and the kit refuses any plan that would delete."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.363,
+   "Step 4 deploys."
+  ],
+  [
+   1.413,
+   9.375,
+   "Saving a shared workbook needs the workbooks write permission, which Workbook Contributor grants, and deploying through Resource Manager also needs deployment rights."
+  ],
+  [
+   10.787,
+   4.3,
+   "Grant both on the workbook's resource group only, for the deployment window."
+  ],
+  [
+   15.088,
+   3.663,
+   "Readers need Workbook Reader and their own access to the data."
+  ],
+  [
+   18.75,
+   6.438,
+   "The test stage runs preflight, plans with what-if, deploys the approved plan, and checks reachability."
+  ],
+  [
+   25.188,
+   3.125,
+   "It's a go when each of those has a passing lyve record."
+  ],
+  [
+   28.312,
+   6.263,
+   "Production runs the same commands, and the preflight refuses it until the test stage's evidence passes."
+  ],
+  [
+   34.575,
+   2.2,
+   "Rolling back deletes a view only."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.038,
+   "Step 5 is the morning read."
+  ],
+  [
+   2.087,
+   6.263,
+   "Telemetry completeness comes first, because a dark source makes every tab over it unreliable."
+  ],
+  [
+   8.35,
+   7.062,
+   "Then each tab in turn: each row that needs work becomes, or is matched to, a task with an owner."
+  ],
+  [
+   15.412,
+   3.9,
+   "Entra Health and the I T S M queue are worked where they liv."
+  ],
+  [
+   19.312,
+   4.987,
+   "The workbook never closes a task, pages anyone, or proves a check happened."
+  ],
+  [
+   24.3,
+   10.162,
+   "Step 6 keeps the evidence: the kit records the validation, preflight, plan, deployment, reachability check and rollback plan, each hashed and chained."
+  ],
+  [
+   34.462,
+   2.275,
+   "A rendered view is never recorded."
+  ],
+  [
+   36.737,
+   6.112,
+   "And a portal edit comes back as an export, is validated, and replaces the template through review."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   5.2,
+   "The workbook supports the monitoring the daily checks already do; it doesn't add a control."
+  ],
+  [
+   5.25,
+   9.25,
+   "Its records support configuration and change control for the template and the deployment, and continuous monitoring for the reachability check; the assessor decides."
+  ],
+  [
+   14.5,
+   5.388,
+   "The biggest dangers are a dashboard taken as evidence, and a missing connector that looks healthy."
+  ],
+  [
+   19.887,
+   4.4,
+   "The guards are the banner, the refused render, and stale shown as stale."
+  ],
+  [
+   24.288,
+   10.988,
+   "Some things couldn't be verified on Microsoft Learn: the workbook's item format field by field, G C C for Entra Health and Connect Health, and the values your own workspace records."
+  ],
+  [
+   35.275,
+   3.25,
+   "The developer workbook and the learning path take it from here."
+  ]
+ ]
+}

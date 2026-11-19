@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.362
+Now the six steps.
+
+2
+00:00:01.362 --> 00:00:03.575
+Step 1 connects the sources.
+
+3
+00:00:03.575 --> 00:00:08.838
+An Entra diagnostic setting sends sign-in,
+audit and risk logs to the workspace.
+
+4
+00:00:08.838 --> 00:00:12.673
+Intune's diagnostic settings
+send the compliance export,
+
+5
+00:00:12.673 --> 00:00:15.150
+once a day, up to forty-eight hours late.
+
+6
+00:00:15.150 --> 00:00:18.791
+The Defender X D R connector
+brings incidents and alerts,
+
+7
+00:00:18.791 --> 00:00:21.734
+including those it collects
+from Purview D L P.
+
+8
+00:00:21.734 --> 00:00:24.600
+Health monitoring is
+turned on for Sentinel.
+
+9
+00:00:24.600 --> 00:00:28.798
+And the morning synchronization
+probe gets its own custom table,
+
+10
+00:00:28.798 --> 00:00:31.363
+written through the Logs Ingestion API.
+
+11
+00:00:31.363 --> 00:00:34.694
+The check: a read-only
+reachability test reports
+
+12
+00:00:34.694 --> 00:00:37.580
+each table as delivering, late or missing.

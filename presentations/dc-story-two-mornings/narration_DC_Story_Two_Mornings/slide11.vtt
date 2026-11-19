@@ -1,0 +1,38 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.279
+The answer is C.
+
+2
+00:00:01.279 --> 00:00:02.200
+Scene five.
+
+3
+00:00:02.200 --> 00:00:06.963
+The kit refuses to record the render:
+a rendered view is not evidence.
+
+4
+00:00:06.963 --> 00:00:09.571
+Instead it records the reachability check,
+
+5
+00:00:09.571 --> 00:00:12.976
+which asked the workspace for
+each table's newest record.
+
+6
+00:00:12.976 --> 00:00:17.511
+Its result is Fail, and that's the point:
+the record keeps what the check found,
+
+7
+00:00:17.511 --> 00:00:22.413
+tagged with continuous monitoring and
+system monitoring and their indicators.
+
+8
+00:00:22.413 --> 00:00:27.500
+A failing record is evidence of the gap;
+a screenshot is only a picture of it.

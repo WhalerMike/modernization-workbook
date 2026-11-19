@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.937
+Here's what each record supports.
+
+2
+00:00:01.937 --> 00:00:05.863
+Preflight supports least privilege
+and configuration settings.
+
+3
+00:00:05.863 --> 00:00:09.324
+The validation supports the
+baseline and change control.
+
+4
+00:00:09.324 --> 00:00:13.975
+The plan and its approval support
+change control and impact analysis.
+
+5
+00:00:13.975 --> 00:00:17.287
+The deployment supports change
+control and the baseline.
+
+6
+00:00:17.287 --> 00:00:21.301
+Reachability supports continuous
+monitoring and system monitoring.
+
+7
+00:00:21.301 --> 00:00:25.438
+The rollback plan supports change
+control and the contingency plan.
+
+8
+00:00:25.438 --> 00:00:27.902
+And the evidence step supports continuous
+
+9
+00:00:27.902 --> 00:00:30.913
+monitoring and the protection
+of audit information.
+
+10
+00:00:30.913 --> 00:00:34.725
+The records support these controls;
+the assessor decides them.
+
+11
+00:00:34.725 --> 00:00:37.154
+Thanks for following the four chapters;
+
+12
+00:00:37.154 --> 00:00:41.330
+the workbook itself remains a view,
+and the records are the evidence.

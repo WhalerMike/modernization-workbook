@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.875
+Here are the ten tabs,
+one per daily check.
+
+2
+00:00:02.875 --> 00:00:06.389
+Telemetry completeness,
+the synchronization probe,
+
+3
+00:00:06.389 --> 00:00:10.862
+risky users and sign-ins, and
+emergency access sign-ins fit strongly.
+
+4
+00:00:10.862 --> 00:00:14.663
+Noncompliant devices and
+D L P alerts fit well.
+
+5
+00:00:14.663 --> 00:00:19.163
+Grants and the log review queue are
+partial: the grants tab lists them,
+
+6
+00:00:19.163 --> 00:00:22.480
+but matching each to a ticket
+stays in the I T S M tool,
+
+7
+00:00:22.480 --> 00:00:27.850
+and the log review tab shows the queue
+while the review stays a recorded procedure.
+
+8
+00:00:27.850 --> 00:00:32.300
+Entra Health is a link-out, because
+its alerts aren't in Log Analytics.
+
+9
+00:00:32.300 --> 00:00:37.420
+And the catalog tasks live in the
+I T S M tool's own dashboards.

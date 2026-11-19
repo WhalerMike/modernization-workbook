@@ -43,6 +43,7 @@ const WORKBOOKS = {
   gsa: { dir: "docs/project-plans/developer-workbooks/global-secure-access", name: "Building Global Secure Access", kit: "examples/global-secure-access", approved: true },
   azs: { dir: "docs/project-plans/developer-workbooks/azure-security", name: "Building Azure Security", kit: "examples/azure-security" },
   xdr: { dir: "docs/project-plans/developer-workbooks/defender-xdr", name: "Building Defender XDR", kit: "examples/defender-xdr" },
+  dc: { dir: "docs/project-plans/developer-workbooks/daily-checks", name: "Building the Daily Checks Workbook", kit: "examples/daily-checks-workbook" },
 };
 const ICONS = new Set(fs.readdirSync(path.join(__dirname, "icons")).map((f) => f.replace(/\.png$/, "")));
 const BANNED = /\bUIAO\b|\bSSA\b|Social Security|Mainframe PIN|\bDISA\b|\bSTIGs?\b/i;
@@ -66,18 +67,39 @@ function readChapter(wb, n) {
   for (const k of Object.keys(notes)) notes[k] = plain(notes[k]);
   return { file, rel: path.relative(ROOT, path.join(dir, file)).split(path.sep).join("/"), title, review, status, notes };
 }
+// Page mode (a guide's, story's or training module's deck in this layout): pass { workbook, pages: [repo-relative
+// .md paths], series, deckTitle, subtitle, base, title, slides } instead of chapter. The first page gives the review
+// status; every page's footnotes are merged (names must be unique) and are what `cite` names. Lab captures still
+// come from data/kit-captures/<workbook>/.
+function readPages(pages) {
+  const notes = {};
+  let first = null;
+  for (const rel of pages) {
+    const md = fs.readFileSync(path.join(ROOT, ...rel.split("/")), "utf8");
+    const fm = md.match(/^---\n([\s\S]*?)\n---/)[1];
+    if (!first) first = { rel, title: fm.match(/^title:\s*"(.*)"\s*$/m)[1], review: (fm.match(/^review-status:\s*(\S+)/m) || [])[1] || "unknown",
+      status: (fm.match(/^status:\s*(\S+)/m) || [])[1] || "draft" };
+    for (const m of md.matchAll(/^\[\^([^\]]+)\]:\s*(.+)$/gm)) {
+      if (m[1] in notes) throw new Error(`footnote ${m[1]} is on two pages`);
+      notes[m[1]] = plain(m[2].trim());
+    }
+  }
+  return Object.assign(first, { notes });
+}
 const plain = (t) => String(t).replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/<(https?:[^>]+)>/g, "$1")
   .replace(/`([^`]+)`/g, "$1").replace(/\*\*([^*]+)\*\*/g, "$1").replace(/\*([^*]+)\*/g, "$1");
 
 module.exports = function build(spec) {
   const wb = WORKBOOKS[spec.workbook];
   if (!wb) throw new Error(`unknown workbook ${spec.workbook}`);
-  const ch = readChapter(spec.workbook, spec.chapter);
-  const NN = String(spec.chapter).padStart(2, "0");
-  const D = require("./lib.js")({ book: wb.name, title: spec.title,
-    footer: `Federal Modernization Workbook  ·  ${wb.name}  ·  Chapter ${NN}` });
+  const PAGE = !!spec.pages;
+  const ch = PAGE ? readPages(spec.pages) : readChapter(spec.workbook, spec.chapter);
+  const NN = PAGE ? "" : String(spec.chapter).padStart(2, "0");
+  const SERIES = PAGE ? spec.series : `${wb.name}, Chapter ${NN}`;   // what the notes name
+  const D = require("./lib.js")({ book: PAGE ? spec.series : wb.name, title: spec.title,
+    footer: PAGE ? `Federal Modernization Workbook  ·  ${spec.series}` : `Federal Modernization Workbook  ·  ${wb.name}  ·  Chapter ${NN}` });
   const { pres, HEX, PART, txt, box, icon, tag, tableOpts, head } = D;
-  pres.title = `${wb.name}, Chapter ${NN} — ${spec.title}`;
+  pres.title = PAGE ? `${spec.series} — ${spec.title}` : `${wb.name}, Chapter ${NN} — ${spec.title}`;
   const DATECODE = process.env.DATECODE;
   if (!/^\d{4}-\d\d-\d\d \d\d:\d\d ET$/.test(DATECODE || "")) throw new Error("set DATECODE to 'YYYY-MM-DD HH:MM ET' (Eastern, from PowerShell)");
 
@@ -322,8 +344,8 @@ module.exports = function build(spec) {
     const wc = say.split(" ").length;
     if (n.title && wc > 150) fail(`narration over 150 words (${wc}) on "${n.title}"`);
     const parts = [say, `Detail: ${n.detail.trim()}`];
-    parts.push(`Sources: ${src.length ? src.join(" · ") : `${wb.name}, Chapter ${NN}, ${ch.rel}`}`);
-    parts.push(`Workbook: ${wb.name}, Chapter ${NN} — ${n.ref || "the chapter as a whole"}.`);
+    parts.push(`Sources: ${src.length ? src.join(" · ") : `${SERIES}, ${ch.rel}`}`);
+    parts.push(`Workbook: ${SERIES} — ${n.ref || (PAGE ? "the page as a whole" : "the chapter as a whole")}.`);
     [say, n.detail].forEach((t) => neutral(`notes of "${n.title}"`, t));
     sl.addNotes(parts.join("\n\n"));
   };
@@ -331,19 +353,19 @@ module.exports = function build(spec) {
   // Title slide
   const t0 = spec.slides[0];
   {
-    const tt = `Chapter ${NN}: ${spec.title}`;
+    const tt = PAGE ? (spec.deckTitle || spec.title) : `Chapter ${NN}: ${spec.title}`;
     checkTitle(tt);
-    const sl = D.titleSlide("Introduction", tt, `${wb.name} — a narrated tour of the chapter`);
+    const sl = D.titleSlide("Introduction", tt, PAGE ? spec.subtitle : `${wb.name} — a narrated tour of the chapter`);
     txt(sl, "Tour map", [
       { text: spec.map || "", options: { color: HEX.navy, bold: true, breakLine: true } },
       // A draft chapter says so first: the tour is of a page still awaiting the owner's review.
       ch.status === "draft" && !wb.approved
-        ? { text: "Draft chapter, awaiting the owner's review  ·  Illustrative code, tested against fixtures", options: { color: HEX.red, bold: true, breakLine: true } }
-        : { text: `Chapter review status: ${ch.review}  ·  Illustrative code, tested against fixtures`, options: { color: HEX.ink, breakLine: true } },
+        ? { text: `Draft ${PAGE ? "page" : "chapter"}, awaiting the owner's review  ·  Illustrative code, tested against fixtures`, options: { color: HEX.red, bold: true, breakLine: true } }
+        : { text: `${PAGE ? "Page" : "Chapter"} review status: ${ch.review}  ·  Illustrative code, tested against fixtures`, options: { color: HEX.ink, breakLine: true } },
       { text: `Date Code ${DATECODE}`, options: { color: HEX.teal, bold: true } },
     ], { x: 0.8, y: 4.85, w: 7.0, h: 1.4, fontSize: 14, paraSpaceAfter: 4 });
     neutral("title", tt + (spec.map || ""));
-    notesFor(sl, Object.assign({ title: tt, ref: "the opening callout, “In this chapter”" }, t0));
+    notesFor(sl, Object.assign({ title: tt, ref: PAGE ? "the opening" : "the opening callout, “In this chapter”" }, t0));
   }
 
   // Content slides, Why then What then Who then How (each part at least once).
@@ -385,7 +407,7 @@ module.exports = function build(spec) {
         runs.push({ text: t, options: { color: HEX.ink, breakLine: j < page.length - 1 } });
       });
       txt(sl, "Source list", runs, { x: 0.6, y: TOP, w: 12.1, h: cap, fontSize: pt, paraSpaceAfter: 3 });
-      sl.addNotes(`The chapter's footnotes in full, from ${ch.rel}.`);
+      sl.addNotes(PAGE ? `The footnotes in full, from ${spec.pages.join(", ")}.` : `The chapter's footnotes in full, from ${ch.rel}.`);
       page = []; used = 0;
     };
     for (const [name, t] of all) {

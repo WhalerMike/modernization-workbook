@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.915
+The workbook supports the monitoring
+the daily checks already do;
+
+2
+00:00:03.915 --> 00:00:05.250
+it doesn't add a control.
+
+3
+00:00:05.250 --> 00:00:09.611
+Its records support configuration and
+change control for the template and the
+
+4
+00:00:09.611 --> 00:00:11.989
+deployment, and continuous monitoring for
+
+5
+00:00:11.989 --> 00:00:14.500
+the reachability check;
+the assessor decides.
+
+6
+00:00:14.500 --> 00:00:17.493
+The biggest dangers are a
+dashboard taken as evidence,
+
+7
+00:00:17.493 --> 00:00:19.888
+and a missing connector
+that looks healthy.
+
+8
+00:00:19.888 --> 00:00:24.287
+The guards are the banner, the refused
+render, and stale shown as stale.
+
+9
+00:00:24.287 --> 00:00:27.547
+Some things couldn't be
+verified on Microsoft Learn:
+
+10
+00:00:27.547 --> 00:00:31.411
+the workbook's item format field
+by field, G C C for Entra Health
+
+11
+00:00:31.411 --> 00:00:35.276
+and Connect Health, and the values
+your own workspace records.
+
+12
+00:00:35.276 --> 00:00:38.590
+The developer workbook and the
+learning path take it from here.

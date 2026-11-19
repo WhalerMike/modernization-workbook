@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.125
+Two questions.
+
+2
+00:00:01.125 --> 00:00:05.437
+First: Entra Health's alerts are a daily
+check, so what does their tab show?
+
+3
+00:00:05.437 --> 00:00:10.313
+A query over the sign-in logs, a link out
+to the Entra admin center, or nothing?
+
+4
+00:00:10.313 --> 00:00:13.410
+It's a link out, because
+the alerts aren't in Log
+
+5
+00:00:13.410 --> 00:00:17.512
+Analytics and their G C C
+availability is not yet specified.
+
+6
+00:00:17.512 --> 00:00:22.624
+Second: an export has the workspace's
+path saved in it; which check fails?
+
+7
+00:00:22.624 --> 00:00:25.400
+Check ten, because the
+deployment plan fills
+
+8
+00:00:25.400 --> 00:00:27.875
+I D's per environment, never the template.
+
+9
+00:00:27.875 --> 00:00:31.426
+In summary: every daily check
+now has a tab or a link-out,
+
+10
+00:00:31.426 --> 00:00:36.187
+every source its availability, and
+the workbook is a reviewed template.
+
+11
+00:00:36.187 --> 00:00:40.130
+Module 2 reads it, deploys
+it, and keeps the evidence.

@@ -1,0 +1,30 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.375
+Lab 2 runs in a test workspace, never
+production, and the authors haven't run it.
+
+2
+00:00:05.375 --> 00:00:10.004
+From Chapter 1, list which of the
+manifest's tables the test workspace has;
+
+3
+00:00:10.004 --> 00:00:13.013
+each missing table is a
+source still to connect.
+
+4
+00:00:13.013 --> 00:00:17.996
+From Chapter 2, open the template in
+the portal through the Advanced Editor,
+
+5
+00:00:17.996 --> 00:00:21.774
+save a test copy, edit it, export
+it, and validate the export.
+
+6
+00:00:21.774 --> 00:00:23.230
+Then delete the copy.

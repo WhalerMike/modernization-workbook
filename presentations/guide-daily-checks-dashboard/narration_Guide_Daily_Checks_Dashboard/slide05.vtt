@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.238
+What's available in G C C?
+
+2
+00:00:02.238 --> 00:00:07.884
+G C C Moderate uses the commercial Entra
+service and pairs with commercial Azure, so
+
+3
+00:00:07.884 --> 00:00:13.450
+the workspace, the workbook and the Logs
+Ingestion API are all in commercial Azure.
+
+4
+00:00:13.450 --> 00:00:16.275
+Sentinel workbooks are
+generally available there.
+
+5
+00:00:16.275 --> 00:00:20.155
+Entra and Intune both send
+their logs to the workspace;
+
+6
+00:00:20.155 --> 00:00:25.587
+Microsoft says Intune in G C C is the
+same instance as the commercial service.
+
+7
+00:00:25.587 --> 00:00:30.762
+Defender X D R alerts and incidents
+are generally available for G C C.
+
+8
+00:00:30.762 --> 00:00:33.473
+The Defender portal's
+connector overview is a
+
+9
+00:00:33.473 --> 00:00:36.112
+commercial-cloud preview,
+so it isn't assumed.
+
+10
+00:00:36.112 --> 00:00:40.271
+And Entra Health monitoring and
+Connect Health are not yet specified,
+
+11
+00:00:40.271 --> 00:00:41.900
+so their tabs are link-outs.

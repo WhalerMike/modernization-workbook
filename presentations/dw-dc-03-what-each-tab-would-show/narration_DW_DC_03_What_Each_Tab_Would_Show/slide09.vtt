@@ -1,0 +1,34 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.350
+Step 4 checks each table's reachability
+on the first morning, from saved answers.
+
+2
+00:00:05.350 --> 00:00:09.993
+Sign-in logs, audit logs and the probe's
+table are late, and the Sentinel health
+
+3
+00:00:09.993 --> 00:00:11.761
+table is missing altogether:
+
+4
+00:00:11.761 --> 00:00:15.225
+health monitoring was never
+turned on in this workspace.
+
+5
+00:00:15.225 --> 00:00:17.138
+The script exits with an error.
+
+6
+00:00:17.138 --> 00:00:21.424
+Step 5 tries to record the first
+morning's render as evidence.
+
+7
+00:00:21.424 --> 00:00:25.150
+The kit refuses: a rendered
+view is not evidence.

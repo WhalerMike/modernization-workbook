@@ -1,0 +1,38 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.600
+Here's what a stage holds.
+
+2
+00:00:01.600 --> 00:00:03.562
+Preflight runs six checks.
+
+3
+00:00:03.562 --> 00:00:07.100
+The validation records the
+template's checks and its hash.
+
+4
+00:00:07.100 --> 00:00:11.337
+The plan writes the parameters, the
+what-if result and the plan file.
+
+5
+00:00:11.337 --> 00:00:14.675
+The deployment writes its result
+beside the approved plan.
+
+6
+00:00:14.675 --> 00:00:17.400
+Reachability records each table's age.
+
+7
+00:00:17.400 --> 00:00:20.125
+The rollback plan is
+written before it's needed.
+
+8
+00:00:20.125 --> 00:00:24.220
+And the evidence step records
+each folder, hashed and chained.

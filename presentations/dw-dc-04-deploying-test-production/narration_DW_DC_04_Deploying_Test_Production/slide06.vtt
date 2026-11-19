@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.088
+Step 6 deploys, and
+only the approved plan.
+
+2
+00:00:03.088 --> 00:00:07.574
+Without the Apply switch, the command prints
+what it would run and changes nothing.
+
+3
+00:00:07.574 --> 00:00:09.212
+With it, it deploys.
+
+4
+00:00:09.212 --> 00:00:13.821
+And it refuses a plan folder that changed,
+a hash that isn't the approved one,
+
+5
+00:00:13.821 --> 00:00:16.088
+a plan with no what-if or with a delete,
+
+6
+00:00:16.088 --> 00:00:19.563
+and a plan that wasn't made
+against the live environment.
+
+7
+00:00:19.563 --> 00:00:21.888
+Step 7 is the smoke test, in the portal:
+
+8
+00:00:21.888 --> 00:00:26.695
+open the Daily checks workbook under
+the test workspace, check that the ten
+
+9
+00:00:26.695 --> 00:00:31.870
+tabs open with the banner, and that the
+telemetry tab lists every expected table.

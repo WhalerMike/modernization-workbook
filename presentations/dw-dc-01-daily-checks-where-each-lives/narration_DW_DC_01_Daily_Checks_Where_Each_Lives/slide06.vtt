@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.975
+Who does what?
+
+2
+00:00:00.975 --> 00:00:06.475
+Security operations owns the workspace,
+the manifest and the freshness limits.
+
+3
+00:00:06.475 --> 00:00:10.125
+Developers own the kit,
+its queries and its tests.
+
+4
+00:00:10.125 --> 00:00:13.850
+And the operators read their
+own family's tabs each morning.
+
+5
+00:00:13.850 --> 00:00:18.113
+Lab 1 needs nothing but PowerShell:
+it reads the kit's own files.
+
+6
+00:00:18.113 --> 00:00:21.820
+Lab 2 needs Log Analytics
+Reader on a test workspace;
+
+7
+00:00:21.820 --> 00:00:24.838
+it only reads the table
+list, then signs out.
+
+8
+00:00:24.838 --> 00:00:29.380
+A reviewer checks that each link-out
+has its click path and an allowed host.

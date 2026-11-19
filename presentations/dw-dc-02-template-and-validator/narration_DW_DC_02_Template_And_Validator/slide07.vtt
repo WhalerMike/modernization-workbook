@@ -1,0 +1,24 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.350
+Lab 1, in the kit's
+folder, with no tenant.
+
+2
+00:00:03.350 --> 00:00:06.161
+Step 1 confirms the
+committed template matches
+
+3
+00:00:06.161 --> 00:00:08.550
+the build of the manifest and the queries.
+
+4
+00:00:08.550 --> 00:00:10.848
+Step 2 validates it: ten checks,
+
+5
+00:00:10.848 --> 00:00:15.140
+sixty-three results across the
+tabs, and all of them pass.

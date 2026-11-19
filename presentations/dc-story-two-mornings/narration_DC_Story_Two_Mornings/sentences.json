@@ -1,0 +1,406 @@
+{
+ "1": [
+  [
+   0.05,
+   3.712,
+   "Welcome to the story deck for Building the Daily Checks Workbook."
+  ],
+  [
+   3.763,
+   15.338,
+   "Instead of four chapters one at a time, we'll follow one fictional workspace, for contoso dot example, through two mornings: November sixteenth, 2026, when something quietly broke overnight, and the next morning, when it was fixed."
+  ],
+  [
+   19.1,
+   6.6,
+   "Every value comes from the kit's own test fixtures, and every output on a slide is what the kit really printed."
+  ],
+  [
+   25.7,
+   6.65,
+   "The workbook is a draft awaiting the owner's review, and the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   0.988,
+   "Here's the route."
+  ],
+  [
+   1.038,
+   7.825,
+   "The operator runbook asks for ten daily checks, most done one portal at a time, and a quiet portal looks just like a broken feed."
+  ],
+  [
+   8.863,
+   2.85,
+   "Scene one turns ten checks into ten tabs."
+  ],
+  [
+   11.713,
+   3.35,
+   "Scene two catches an export someone edited in the portal."
+  ],
+  [
+   15.062,
+   5.638,
+   "Scene three is the morning of November sixteenth, when the sign-in logs stopped overnight."
+  ],
+  [
+   20.7,
+   3.775,
+   "Scene four is the next morning, and what the empty queues were hiding."
+  ],
+  [
+   24.475,
+   3.05,
+   "Scene five tries to file the picture as evidence."
+  ],
+  [
+   27.525,
+   3.038,
+   "And scene six deploys it, the same way twice."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   0.825,
+   "Scene one."
+  ],
+  [
+   0.875,
+   5.013,
+   "The kit's manifest gives each daily check one row, and the workbook one tab."
+  ],
+  [
+   5.888,
+   3.163,
+   "Eight tabs read tables in the Sentinel workspace."
+  ],
+  [
+   9.05,
+   1.25,
+   "Two are link-outs."
+  ],
+  [
+   10.3,
+   11.637,
+   "Entra Health's alerts liv in the admin center and in e-mail, not in Log Analytics, and their G C C availability is not yet specified, so the tab sends the operator there instead of pretending."
+  ],
+  [
+   21.938,
+   3.837,
+   "And the catalog tasks liv in the I T S M tool."
+  ],
+  [
+   25.775,
+   4.075,
+   "Two more tabs are partial: grants, and the log review queue."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   0.812,
+   "Check one."
+  ],
+  [
+   0.863,
+   2.75,
+   "The risk tab's query returns no rows."
+  ],
+  [
+   3.612,
+   1.163,
+   "What has it proved?"
+  ],
+  [
+   4.775,
+   1.975,
+   "A: nobody is at risk."
+  ],
+  [
+   6.75,
+   5.95,
+   "B: only that its query returned nothing, which means something only if its source is fresh."
+  ],
+  [
+   12.7,
+   2.962,
+   "Or C: that I D Protection is turned off."
+  ],
+  [
+   15.662,
+   2.538,
+   "Hold your answer; the next scenes answer it."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.038,
+   "Scene two, before any morning."
+  ],
+  [
+   2.087,
+   3.55,
+   "Someone edited the workbook in the portal and exported it."
+  ],
+  [
+   5.638,
+   13.175,
+   "The validator finds four edits: a risk query that reads a workspace path instead of the parameter, a devices query that now looks back thirty days, a grants tab that lost its banner, and a subscription path in the file."
+  ],
+  [
+   18.812,
+   6.062,
+   "Microsoft's own advice is to mask the I D's an export embeds; the kit's check simply fails them."
+  ],
+  [
+   24.875,
+   1.163,
+   "Remember the banner."
+  ],
+  [
+   26.038,
+   3.087,
+   "It says the workbook is a view, not evidence."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.375,
+   "Who reads the workbook?"
+  ],
+  [
+   1.425,
+   7.138,
+   "Security operations reads telemetry completeness first, and opens a high-severity task for each dark source."
+  ],
+  [
+   8.562,
+   6.05,
+   "Identity operations reads the sync probe, risk, emergency access and grants tabs."
+  ],
+  [
+   14.613,
+   5.35,
+   "Device support works the noncompliant devices in Intune and the I T S M tool."
+  ],
+  [
+   19.962,
+   5.35,
+   "The data platform operators triage D L P alerts in Purview or the Defender portal."
+  ],
+  [
+   25.312,
+   5.9,
+   "And the security officer reads nothing on the workbook at all: they keep the records, never the picture."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   5.588,
+   "The answer to check one is B: an empty tab proves only that its query returned nothing."
+  ],
+  [
+   5.638,
+   2.413,
+   "Scene three: November sixteenth."
+  ],
+  [
+   8.05,
+   6.362,
+   "At ten past five the evening before, the Entra diagnostic setting stopped, and this morning's probe didn't run."
+  ],
+  [
+   14.412,
+   4.938,
+   "Telemetry flags four rows: three dark tables and a failing connector."
+  ],
+  [
+   19.35,
+   3.85,
+   "And look at risk, emergency access, sync and grants."
+  ],
+  [
+   23.2,
+   1.062,
+   "They're not clear."
+  ],
+  [
+   24.262,
+   0.963,
+   "They're stale."
+  ],
+  [
+   25.225,
+   6.25,
+   "On a plain dashboard, the risk and emergency access tabs would have shown two calm, empty queues."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   5.438,
+   "From the kit's folder, render the first morning, then read what the risk tab's query returned."
+  ],
+  [
+   6.213,
+   1.15,
+   "No rows at all."
+  ],
+  [
+   7.362,
+   5.588,
+   "But its source, the sign-in logs, last arrived at ten past five the evening before."
+  ],
+  [
+   12.95,
+   5.088,
+   "Shown as a quiet queue, this is the morning a risky sign-in goes unseen."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.85,
+   "Scene four: the next morning."
+  ],
+  [
+   1.9,
+   3.612,
+   "The diagnostic setting is back, and telemetry is clear."
+  ],
+  [
+   5.513,
+   1.913,
+   "Now the queues show what they were hiding."
+  ],
+  [
+   7.425,
+   1.6,
+   "One user at high risk."
+  ],
+  [
+   9.025,
+   7.2,
+   "One emergency access sign-in, which turns out to be the quarterly validation drill, and the review records it as a drill."
+  ],
+  [
+   16.225,
+   2.138,
+   "And one synchronization conflict."
+  ],
+  [
+   18.363,
+   6.35,
+   "Grants and D L P alerts are clear, and this time clear means something, because their sources are fresh."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   0.825,
+   "Check two."
+  ],
+  [
+   0.875,
+   3.175,
+   "The first morning's render shows exactly what went wrong."
+  ],
+  [
+   4.05,
+   1.938,
+   "Should it go in the evidence package?"
+  ],
+  [
+   5.987,
+   3.112,
+   "A: yes, it's a dated picture of the problem."
+  ],
+  [
+   9.1,
+   3.163,
+   "B: yes, once a second person signs it."
+  ],
+  [
+   12.262,
+   4.925,
+   "Or C: no; record the checks' own output, like the reachability check."
+  ],
+  [
+   17.188,
+   2.075,
+   "The next scene shows what the kit does."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.15,
+   "The answer is C. Scene five."
+  ],
+  [
+   2.2,
+   4.763,
+   "The kit refuses to record the render: a rendered view is not evidence."
+  ],
+  [
+   6.963,
+   6.013,
+   "Instead it records the reachability check, which asked the workspace for each table's newest record."
+  ],
+  [
+   12.975,
+   9.438,
+   "Its result is Fail, and that's the point: the record keeps what the check found, tagged with continuous monitoring and system monitoring and their indicators."
+  ],
+  [
+   22.413,
+   5.025,
+   "A failing record is evidence of the gap; a screenshot is only a picture of it."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.038,
+   "Scene six."
+  ],
+  [
+   1.087,
+   6.7,
+   "The workbook goes to a test subscription, then production, with the same commands and a different settings file."
+  ],
+  [
+   7.787,
+   8.662,
+   "The plan previews the change with what-if, which predicts and changes nothing; on the fixtures it predicts one create, a single workbook."
+  ],
+  [
+   16.45,
+   6.125,
+   "A second person approves the plan's hash, and the kit deploys nothing else, and never a plan that would delete."
+  ],
+  [
+   22.575,
+   3.312,
+   "Production waits until the test stage's evidence passes."
+  ],
+  [
+   25.887,
+   7.263,
+   "That's the story: ten checks on one page, a picture the operator can trust only because the records behind it are kept."
+  ]
+ ]
+}
