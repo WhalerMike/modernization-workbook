@@ -4,11 +4,11 @@
 
 | File | Use |
 |---|---|
-| `DW_DC_03_What_Each_Tab_Would_Show.pptx` | The deck: 11 narrated slides (the title and 10 content slides in Why, What, Who and How order), then a backup section with the chapter's footnotes in full |
+| `DW_DC_03_What_Each_Tab_Would_Show.pptx` | The deck: 12 narrated slides (the title and 11 content slides in Why, What, Who and How order), then a backup section with the chapter's footnotes in full |
 | `DW_DC_03_What_Each_Tab_Would_Show_Narrated.pptx` | The self-running edition: narration audio and a caption track on every slide, backup section dropped |
-| `DW_DC_03_What_Each_Tab_Would_Show_Narrated.mp4` | The video, about 6 minutes, on the [videos release](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_DC_03_What_Each_Tab_Would_Show_Narrated.mp4) |
+| `DW_DC_03_What_Each_Tab_Would_Show_Narrated.mp4` | The video, about 8 minutes, on the [videos release](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_DC_03_What_Each_Tab_Would_Show_Narrated.mp4) |
 | `DW_DC_03_What_Each_Tab_Would_Show_Narrated.vtt` | The video's caption track |
-| `DW_DC_03_What_Each_Tab_Would_Show_Narration_Script.md` | The spoken narration, slide by slide (about 914 words) |
+| `DW_DC_03_What_Each_Tab_Would_Show_Narration_Script.md` | The spoken narration, slide by slide (about 1,226 words) |
 | `build.js` | The slides, the spoken narration (`say`), the presenter detail (`detail`) and the chapter footnotes each slide cites (`cite`) |
 
 Build (Git Bash): `source /c/tmp/deckenv.sh`, then `DATECODE="YYYY-MM-DD HH:MM ET" node presentations/dw-dc-03-what-each-tab-would-show/build.js`, with the Eastern time taken from PowerShell. Then `narrate.py`, `captions.py`, `build_narrated.ps1` and `export_mp4.ps1`, as in the kit's README; `qa_export.ps1` checks the layout through PowerPoint.

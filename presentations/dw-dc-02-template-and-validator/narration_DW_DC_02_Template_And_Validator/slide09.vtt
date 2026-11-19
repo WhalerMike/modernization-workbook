@@ -1,24 +1,24 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.164
+00:00:00.050 --> 00:00:05.104
 Step 5 records a validation of the kit's
-template: the same sixty-three checks pass,
+template: the same eighty-nine checks pass,
 
 2
-00:00:05.164 --> 00:00:08.446
+00:00:05.104 --> 00:00:08.348
 and the results go to a folder
 with a hashed manifest,
 
 3
-00:00:08.446 --> 00:00:10.812
+00:00:08.348 --> 00:00:10.687
 ready for Chapter 4's evidence record.
 
 4
-00:00:10.812 --> 00:00:15.299
+00:00:10.687 --> 00:00:15.175
 Step 6 runs this chapter's
 tests: ten passed, none failed.
 
 5
-00:00:15.299 --> 00:00:17.210
+00:00:15.175 --> 00:00:17.060
 Then delete the output folder.

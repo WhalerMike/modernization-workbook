@@ -40,10 +40,34 @@ take up to forty-eight hours, and not
 to rely on a fixed completion time.
 
 9
-00:00:28.888 --> 00:00:32.623
-And the Azure command line can
-run a query against a workspace,
+00:00:28.888 --> 00:00:32.487
+The Azure command line can run
+a query against a workspace,
 
 10
-00:00:32.623 --> 00:00:34.730
+00:00:32.487 --> 00:00:34.587
 from its log analytics extension.
+
+11
+00:00:34.587 --> 00:00:39.175
+Learn's unavailable-computers query
+takes each computer's latest heartbeat.
+
+12
+00:00:39.175 --> 00:00:44.267
+The replication report gives each link's
+last success, last failure and status,
+
+13
+00:00:44.267 --> 00:00:48.575
+and reading it forest-wide needs
+Enterprise Admins or equivalent.
+
+14
+00:00:48.575 --> 00:00:51.215
+And the Logs Ingestion API takes a list of
+
+15
+00:00:51.215 --> 00:00:54.140
+records posted to a
+collection rule's stream.

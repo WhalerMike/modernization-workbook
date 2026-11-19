@@ -169,33 +169,6 @@
    "Then a second person reads the plan and the what-if result, and records the hash in the change record."
   ]
  ],
- "6": [
-  [
-   0.05,
-   3.038,
-   "Step 6 deploys, and only the approved plan."
-  ],
-  [
-   3.087,
-   4.487,
-   "Without the Apply switch, the command prints what it would run and changes nothing."
-  ],
-  [
-   7.575,
-   1.637,
-   "With it, it deploys."
-  ],
-  [
-   9.213,
-   10.35,
-   "And it refuses a plan folder that changed, a hash that isn't the approved one, a plan with no what-if or with a delete, and a plan that wasn't made against the lyve environment."
-  ],
-  [
-   19.562,
-   12.25,
-   "Step 7 is the smoke test, in the portal: open the Daily checks workbook under the test workspace, check that the ten tabs open with the banner, and that the telemetry tab lists every expected table."
-  ]
- ],
  "7": [
   [
    0.05,
@@ -226,6 +199,33 @@
    24.9,
    4.562,
    "A no-go is a finding with an owner, and the stage is repeated after the fix."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.038,
+   "Step 6 deploys, and only the approved plan."
+  ],
+  [
+   3.087,
+   4.487,
+   "Without the Apply switch, the command prints what it would run and changes nothing."
+  ],
+  [
+   7.575,
+   1.637,
+   "With it, it deploys."
+  ],
+  [
+   9.213,
+   10.35,
+   "And it refuses a plan folder that changed, a hash that isn't the approved one, a plan with no what-if or with a delete, and a plan that wasn't made against the lyve environment."
+  ],
+  [
+   19.562,
+   12.387,
+   "Step 7 is the smoke test, in the portal: open the Daily checks workbook under the test workspace, check that the twelve tabs open with the banner, and that the telemetry tab lists every expected table."
   ]
  ],
  "8": [
@@ -263,9 +263,51 @@
    27.562,
    8.113,
    "And on day two, a portal edit comes back as an export, is validated, and replaces the template through review before it's redeployed."
+  ],
+  [
+   35.675,
+   12.588,
+   "When a synchronization server or domain controller is added or retired, its settings list changes and the workbook is redeployed: a retired server left in the list shows as a silent one every morning."
   ]
  ],
  "9": [
+  [
+   0.05,
+   3.8,
+   "The Active Directory tab reads replication from the probe's table."
+  ],
+  [
+   3.85,
+   10.575,
+   "The probe reads the directory and changes nothing in it, but Microsoft names Enterprise Admins, or equivalent, as the minimum to read forest-wide replication status."
+  ],
+  [
+   14.425,
+   8.425,
+   "So it runs only as a Tier 0 identity, on a Tier 0 host, each morning, and only where the Tier 0 owner approves it."
+  ],
+  [
+   22.85,
+   3.987,
+   "The first command writes the probe's file without sending; read it."
+  ],
+  [
+   26.837,
+   5.312,
+   "The second sends it, as an identity that can only publish to the probe's collection rule."
+  ],
+  [
+   32.15,
+   3.362,
+   "A failing link is a finding, not a failed deployment."
+  ],
+  [
+   35.513,
+   8.75,
+   "Without approval, skip it, and remove the replication table and query through a reviewed change, rather than read an empty list as healthy."
+  ]
+ ],
+ "10": [
   [
    0.05,
    1.887,
@@ -303,16 +345,21 @@
   ],
   [
    25.438,
+   4.45,
+   "The replication probe's record supports continuous and system monitoring."
+  ],
+  [
+   29.887,
    5.475,
    "And the evidence step supports continuous monitoring and the protection of audit information."
   ],
   [
-   30.913,
+   35.362,
    3.812,
    "The records support these controls; the assessor decides them."
   ],
   [
-   34.725,
+   39.175,
    6.55,
    "Thanks for following the four chapters; the workbook itself remains a view, and the records are the evidence."
   ]

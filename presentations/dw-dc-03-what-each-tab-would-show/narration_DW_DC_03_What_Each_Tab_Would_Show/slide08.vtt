@@ -25,10 +25,25 @@ and the review records it as a drill,
 and one synchronization conflict.
 
 6
-00:00:17.900 --> 00:00:19.889
-Grants and D L P alerts are clear,
+00:00:17.900 --> 00:00:22.700
+The staging synchronization server wrote
+no backup event, so it's flagged too.
 
 7
-00:00:19.889 --> 00:00:24.310
+00:00:22.700 --> 00:00:27.001
+The admin changes tab lists yesterday's
+five request-driven changes,
+
+8
+00:00:27.001 --> 00:00:28.963
+each to be matched to its ticket.
+
+9
+00:00:28.963 --> 00:00:32.105
+Grants, D L P alerts and
+Active Directory are clear,
+
+10
+00:00:32.105 --> 00:00:36.530
 and this time clear means something,
 because their sources are fresh.

@@ -1,90 +1,4 @@
 {
- "1": [
-  [
-   0.05,
-   2.562,
-   "Welcome to Building the Daily Checks Workbook."
-  ],
-  [
-   2.612,
-   4.2,
-   "This is Chapter 1: the daily checks, and where each one lives."
-  ],
-  [
-   6.812,
-   10.287,
-   "Before anything is drawn on a dashboard, each daily check in the operator runbook gets one row: what it reads, where else to look, and whether a workbook can show it at all."
-  ],
-  [
-   17.1,
-   8.088,
-   "We'll start from what Microsoft Learn gives you, see what it leaves to you, read the kit's manifest and its ten tabs, and walk two labs."
-  ],
-  [
-   25.188,
-   6.237,
-   "The chapter has been reviewed and approved, and the code is illustrative, tested against fixtures."
-  ]
- ],
- "2": [
-  [
-   0.05,
-   1.312,
-   "Why start with a list?"
-  ],
-  [
-   1.363,
-   5.963,
-   "The operator runbook asks for ten checks every morning, and most of them are done one portal at a time."
-  ],
-  [
-   7.325,
-   4.775,
-   "Some of that data is already in the Sentinel workspace; some of it never will be."
-  ],
-  [
-   12.1,
-   10.137,
-   "So the goal is to say, for every daily check, which table shows it, where the operator looks when Log Analytics doesn't have it, and how much a workbook tab can be trusted to show."
-  ],
-  [
-   22.238,
-   7.737,
-   "It's for the developers who maintain the kit and the security operations lead who owns the workspace, and you don't need a tenant until Lab 2."
-  ]
- ],
- "3": [
-  [
-   0.05,
-   2.025,
-   "Here's what Microsoft Learn gives you."
-  ],
-  [
-   2.075,
-   6.7,
-   "Its guidance on visualizations recommends workbooks for reports across Azure sources, and lists the other options."
-  ],
-  [
-   8.775,
-   7.463,
-   "Its table reference pages give each source table and its columns, from sign-in logs to Intune's compliance export."
-  ],
-  [
-   16.238,
-   6.325,
-   "Sentinel's health table covers only the connectors Learn lists, and only once health monitoring is turned on."
-  ],
-  [
-   22.562,
-   10.812,
-   "The Logs Ingestion A P I sends your own records to a custom table ending in underscore C L. Entra Health monitoring is a preview in the admin center and by e-mail."
-  ],
-  [
-   33.375,
-   4.65,
-   "And Intune exports compliance once a day, up to forty-eight hours late."
-  ]
- ],
  "4": [
   [
    0.05,
@@ -120,43 +34,6 @@
    32.288,
    2.337,
    "Every row here is pinned by a test."
-  ]
- ],
- "5": [
-  [
-   0.05,
-   1.337,
-   "Here's the manifest."
-  ],
-  [
-   1.387,
-   2.375,
-   "Ten tabs, one per daily check."
-  ],
-  [
-   3.763,
-   13.688,
-   "Eight read tables: telemetry completeness, the synchronization probe, risky users and sign-ins, emergency access sign-ins, noncompliant devices, grants, D L P alerts, and the log review queue."
-  ],
-  [
-   17.45,
-   8.775,
-   "Two are link-outs: Entra Health, because its alerts aren't in Log Analytics, and the catalog tasks, which liv in the I T S M tool."
-  ],
-  [
-   26.225,
-   1.9,
-   "Two of the eight are partial."
-  ],
-  [
-   28.125,
-   5.812,
-   "The grants tab lists grants, but matching each to a ticket stays in the I T S M tool."
-  ],
-  [
-   33.938,
-   5.588,
-   "And the log review tab shows the queue, while the review itself stays a recorded procedure."
   ]
  ],
  "6": [
@@ -196,28 +73,6 @@
    "A reviewer checks that each link-out has its click path and an allowed host."
   ]
  ],
- "7": [
-  [
-   0.05,
-   3.3,
-   "Lab 1, in the kit's folder, with no tenant."
-  ],
-  [
-   3.35,
-   5.575,
-   "Step 1 lists the tabs: ten of them, with the telemetry row left off the slide."
-  ],
-  [
-   8.925,
-   6.075,
-   "Notice that entra health and tasks read no table at all, and that grants and log review are partial."
-  ],
-  [
-   15.0,
-   7.388,
-   "Step 4 counts the tabs by fit: four strong, two good, two partial, one weak, and one link-out."
-  ]
- ],
  "8": [
   [
    0.05,
@@ -245,61 +100,7 @@
    "The grants tab reads the Entra audit logs, but its action says it plainly: each row is matched to its ticket in the I T S M tool, and a grant with no ticket opens a finding."
   ]
  ],
- "9": [
-  [
-   0.05,
-   2.862,
-   "Step 5 reads the emergency access query."
-  ],
-  [
-   2.913,
-   9.562,
-   "It's Microsoft's own sign-in query from its emergency access guidance, with the accounts' object I D's taken from a parameter instead of written into the query."
-  ],
-  [
-   12.475,
-   4.013,
-   "Step 6 lists the eight expected tables and their limits."
-  ],
-  [
-   16.488,
-   3.1,
-   "Sign-in and audit logs: sixty minutes."
-  ],
-  [
-   19.587,
-   8.238,
-   "Intune's compliance export: two thousand eight hundred and eighty minutes, because it arrives once a day and can take up to forty-eight hours."
-  ]
- ],
- "10": [
-  [
-   0.05,
-   5.325,
-   "Lab 2 runs in a test workspace, never production, and the authors haven't run it."
-  ],
-  [
-   5.375,
-   7.588,
-   "Sign in to commercial Azure, list the workspace's tables, and print every table a tab reads that the workspace doesn't have."
-  ],
-  [
-   12.963,
-   1.9,
-   "It reads and changes nothing."
-  ],
-  [
-   14.863,
-   10.363,
-   "Every name it prints is a source the guide's first step still has to connect: the probe's custom table until it's created, and the Sentinel health table until health monitoring is on."
-  ],
-  [
-   25.225,
-   1.075,
-   "Then sign out."
-  ]
- ],
- "11": [
+ "13": [
   [
    0.05,
    2.625,
@@ -329,6 +130,259 @@
    31.837,
    4.138,
    "Next, Chapter 2 builds the workbook's template and its validator."
+  ]
+ ],
+ "1": [
+  [
+   0.05,
+   2.562,
+   "Welcome to Building the Daily Checks Workbook."
+  ],
+  [
+   2.612,
+   4.2,
+   "This is Chapter 1: the daily checks, and where each one lives."
+  ],
+  [
+   6.812,
+   10.287,
+   "Before anything is drawn on a dashboard, each daily check in the operator runbook gets one row: what it reads, where else to look, and whether a workbook can show it at all."
+  ],
+  [
+   17.1,
+   12.287,
+   "We'll start from what Microsoft Learn gives you, see what it leaves to you, read the kit's manifest and its twelve tabs, the domain controllers and the request-driven admin changes among them, and walk two labs."
+  ],
+  [
+   29.387,
+   6.237,
+   "The chapter has been reviewed and approved, and the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.312,
+   "Why start with a list?"
+  ],
+  [
+   1.363,
+   6.1,
+   "The operator runbook asks for twelve checks every morning, and most of them are done one portal at a time."
+  ],
+  [
+   7.463,
+   4.775,
+   "Some of that data is already in the Sentinel workspace; some of it never will be."
+  ],
+  [
+   12.238,
+   10.137,
+   "So the goal is to say, for every daily check, which table shows it, where the operator looks when Log Analytics doesn't have it, and how much a workbook tab can be trusted to show."
+  ],
+  [
+   22.375,
+   7.737,
+   "It's for the developers who maintain the kit and the security operations lead who owns the workspace, and you don't need a tenant until Lab 2."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.025,
+   "Here's what Microsoft Learn gives you."
+  ],
+  [
+   2.075,
+   6.7,
+   "Its guidance on visualizations recommends workbooks for reports across Azure sources, and lists the other options."
+  ],
+  [
+   8.775,
+   7.463,
+   "Its table reference pages give each source table and its columns, from sign-in logs to Intune's compliance export."
+  ],
+  [
+   16.238,
+   6.325,
+   "Sentinel's health table covers only the connectors Learn lists, and only once health monitoring is turned on."
+  ],
+  [
+   22.562,
+   10.812,
+   "The Logs Ingestion A P I sends your own records to a custom table ending in underscore C L. Entra Health monitoring is a preview in the admin center and by e-mail."
+  ],
+  [
+   33.375,
+   4.475,
+   "Intune exports compliance once a day, up to forty-eight hours late."
+  ],
+  [
+   37.85,
+   7.025,
+   "And for the servers that stay on premises, the Azure Monitor Agent sends their event logs and a heartbeat to the workspace."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.337,
+   "Here's the manifest."
+  ],
+  [
+   1.387,
+   2.562,
+   "Twelve tabs, one per daily check."
+  ],
+  [
+   3.95,
+   12.387,
+   "Ten read tables, among them the synchronization probe, which now also reads the synchronization servers' own events and heartbeats, a new Active Directory tab for the domain controllers, and a new admin changes tab."
+  ],
+  [
+   16.337,
+   8.775,
+   "Two are link-outs: Entra Health, because its alerts aren't in Log Analytics, and the catalog tasks, which liv in the I T S M tool."
+  ],
+  [
+   25.113,
+   1.9,
+   "Three of the ten are partial."
+  ],
+  [
+   27.012,
+   6.95,
+   "The grants and admin changes tabs list changes, but matching each to a ticket stays in the I T S M tool."
+  ],
+  [
+   33.962,
+   5.588,
+   "And the log review tab shows the queue, while the review itself stays a recorded procedure."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.3,
+   "Lab 1, in the kit's folder, with no tenant."
+  ],
+  [
+   3.35,
+   5.688,
+   "Step 1 lists the tabs: twelve of them, with the telemetry row left off the slide."
+  ],
+  [
+   9.037,
+   7.237,
+   "Notice that entra health and tasks read no table at all, and that grants, admin changes and log review are partial."
+  ],
+  [
+   16.275,
+   7.575,
+   "Step 5 counts the tabs by fit: four strong, three good, three partial, one weak, and one link-out."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.95,
+   "Step 4 opens the new Active Directory tab."
+  ],
+  [
+   3.0,
+   12.938,
+   "Five queries: each domain controller's heartbeat, the replication probe's result, the high-rated security events, the directory, replication and D N S errors, and Defender for Identity alerts."
+  ],
+  [
+   15.938,
+   4.638,
+   "Its link-outs are Connect Health for A D D S and the Defender portal's alerts."
+  ],
+  [
+   20.575,
+   13.925,
+   "Its G C C note says the workspace tables are available in commercial Azure, Defender for Identity alerts are generally available for G C C with their own license, and Connect Health is not yet specified, so it stays a link-out."
+  ],
+  [
+   34.5,
+   5.8,
+   "And the domain controllers are never named in a query: they come from the settings, one row each."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.888,
+   "Step 6 reads the emergency access query."
+  ],
+  [
+   2.938,
+   9.562,
+   "It's Microsoft's own sign-in query from its emergency access guidance, with the accounts' object I D's taken from a parameter instead of written into the query."
+  ],
+  [
+   12.5,
+   3.913,
+   "And the comment says what matters: the alert rule is the control."
+  ],
+  [
+   16.413,
+   2.575,
+   "The tab only shows what the query found."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.162,
+   "Step 7 lists the thirteen expected tables and their limits."
+  ],
+  [
+   4.213,
+   3.1,
+   "Sign-in and audit logs: sixty minutes."
+  ],
+  [
+   7.312,
+   6.8,
+   "The servers' heartbeats and security events: sixty minutes too, because their agents report continuously."
+  ],
+  [
+   14.113,
+   8.238,
+   "Intune's compliance export: two thousand eight hundred and eighty minutes, because it arrives once a day and can take up to forty-eight hours."
+  ],
+  [
+   22.35,
+   4.45,
+   "Step 8 runs the chapter's tests: ten passed, none failed."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   5.325,
+   "Lab 2 runs in a test workspace, never production, and the authors haven't run it."
+  ],
+  [
+   5.375,
+   7.588,
+   "Sign in to commercial Azure, list the workspace's tables, and print every table a tab reads that the workspace doesn't have."
+  ],
+  [
+   12.963,
+   1.9,
+   "It reads and changes nothing."
+  ],
+  [
+   14.863,
+   17.038,
+   "Every name it prints is a source the guide's first step still has to connect: the two probes' custom tables until they're created, the Sentinel health table until health monitoring is on, and the servers' event, heartbeat and security event tables until the servers send through the Azure Monitor Agent."
+  ],
+  [
+   31.9,
+   1.075,
+   "Then sign out."
   ]
  ]
 }

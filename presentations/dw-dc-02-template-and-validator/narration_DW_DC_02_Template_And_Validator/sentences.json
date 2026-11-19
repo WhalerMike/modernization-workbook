@@ -112,28 +112,6 @@
    "And because nothing says what a tab means, every tab must carry the banner."
   ]
  ],
- "5": [
-  [
-   0.05,
-   1.0,
-   "Here's the code."
-  ],
-  [
-   1.05,
-   8.175,
-   "The template has a header with the banner, then the parameters: a workspace picker and four text values, all left empty in the template."
-  ],
-  [
-   9.225,
-   15.85,
-   "Then one tab per daily check, and one group per tab that shows when its tab is selected, holding the banner, the daily check, what to do, the link-outs with click paths, the G C C note, and its queries, each one a Logs query on the workspace parameter."
-  ],
-  [
-   25.075,
-   14.488,
-   "The validator runs ten checks: the format, one tab per check, tables, look-backs, the workspace, the banner, link-outs and hosts, queries per tab kind, the telemetry list, and no I D's or secrets."
-  ]
- ],
  "6": [
   [
    0.05,
@@ -171,23 +149,6 @@
    "A reviewer checks that no export with I D's in it was committed."
   ]
  ],
- "7": [
-  [
-   0.05,
-   3.3,
-   "Lab 1, in the kit's folder, with no tenant."
-  ],
-  [
-   3.35,
-   5.2,
-   "Step 1 confirms the committed template matches the build of the manifest and the queries."
-  ],
-  [
-   8.55,
-   6.525,
-   "Step 2 validates it: ten checks, sixty-three results across the tabs, and all of them pass."
-  ]
- ],
  "8": [
   [
    0.05,
@@ -208,55 +169,6 @@
    21.438,
    7.888,
    "Step 4 shows what the export carried: the workspace's full resource path, exactly what Microsoft Learn says to mask."
-  ]
- ],
- "9": [
-  [
-   0.05,
-   10.762,
-   "Step 5 records a validation of the kit's template: the same sixty-three checks pass, and the results go to a folder with a hashed manifest, ready for Chapter 4's evidence record."
-  ],
-  [
-   10.812,
-   4.487,
-   "Step 6 runs this chapter's tests: ten passed, none failed."
-  ],
-  [
-   15.3,
-   1.837,
-   "Then delete the output folder."
-  ]
- ],
- "10": [
-  [
-   0.05,
-   5.287,
-   "Lab 2 runs in a test subscription, never production, and the authors haven't run it."
-  ],
-  [
-   5.338,
-   6.713,
-   "Open the template in the portal through the Advanced Editor, pick the test workspace, and open all ten tabs."
-  ],
-  [
-   12.05,
-   4.938,
-   "Save a test copy, change one look-back, and copy the Gallery Template back out."
-  ],
-  [
-   16.988,
-   5.725,
-   "Validate the export: your edit fails, and so does the workspace the portal saved into it."
-  ],
-  [
-   22.712,
-   7.8,
-   "Record any other difference the portal introduced; that confirms the item format, which Learn doesn't document field by field."
-  ],
-  [
-   30.512,
-   2.8,
-   "Then delete the test copy and the export."
   ]
  ],
  "11": [
@@ -289,6 +201,94 @@
    26.65,
    4.713,
    "Next, Chapter 3 shows what each tab would display, without a tenant."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.0,
+   "Here's the code."
+  ],
+  [
+   1.05,
+   13.525,
+   "The template has a header with the banner, then the parameters: a workspace picker and nine text values, from the emergency access accounts to the synchronization servers and the domain controllers, all left empty in the template."
+  ],
+  [
+   14.575,
+   15.85,
+   "Then one tab per daily check, and one group per tab that shows when its tab is selected, holding the banner, the daily check, what to do, the link-outs with click paths, the G C C note, and its queries, each one a Logs query on the workspace parameter."
+  ],
+  [
+   30.425,
+   14.488,
+   "The validator runs ten checks: the format, one tab per check, tables, look-backs, the workspace, the banner, link-outs and hosts, queries per tab kind, the telemetry list, and no I D's or secrets."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.3,
+   "Lab 1, in the kit's folder, with no tenant."
+  ],
+  [
+   3.35,
+   5.2,
+   "Step 1 confirms the committed template matches the build of the manifest and the queries."
+  ],
+  [
+   8.55,
+   6.7,
+   "Step 2 validates it: ten checks, eighty-nine results across the twelve tabs, and all of them pass."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   10.637,
+   "Step 5 records a validation of the kit's template: the same eighty-nine checks pass, and the results go to a folder with a hashed manifest, ready for Chapter 4's evidence record."
+  ],
+  [
+   10.688,
+   4.487,
+   "Step 6 runs this chapter's tests: ten passed, none failed."
+  ],
+  [
+   15.175,
+   1.837,
+   "Then delete the output folder."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   5.287,
+   "Lab 2 runs in a test subscription, never production, and the authors haven't run it."
+  ],
+  [
+   5.338,
+   6.763,
+   "Open the template in the portal through the Advanced Editor, pick the test workspace, and open all twelve tabs."
+  ],
+  [
+   12.1,
+   4.938,
+   "Save a test copy, change one look-back, and copy the Gallery Template back out."
+  ],
+  [
+   17.038,
+   5.725,
+   "Validate the export: your edit fails, and so does the workspace the portal saved into it."
+  ],
+  [
+   22.762,
+   7.8,
+   "Record any other difference the portal introduced; that confirms the item format, which Learn doesn't document field by field."
+  ],
+  [
+   30.562,
+   2.8,
+   "Then delete the test copy and the export."
   ]
  ]
 }

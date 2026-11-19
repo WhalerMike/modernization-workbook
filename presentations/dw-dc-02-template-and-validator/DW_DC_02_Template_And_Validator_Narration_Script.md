@@ -18,15 +18,15 @@ What does it leave to you? Learn's way is to export from the portal and paste, s
 
 ## Slide 5 — The template, and the ten checks
 
-Here's the code. The template has a header with the banner, then the parameters: a workspace picker and four text values, all left empty in the template. Then one tab per daily check, and one group per tab that shows when its tab is selected, holding the banner, the daily check, what to do, the link-outs with click paths, the G C C note, and its queries, each one a Logs query on the workspace parameter. The validator runs ten checks: the format, one tab per check, tables, look-backs, the workspace, the banner, link-outs and hosts, queries per tab kind, the telemetry list, and no I D's or secrets.
+Here's the code. The template has a header with the banner, then the parameters: a workspace picker and nine text values, from the emergency access accounts to the synchronization servers and the domain controllers, all left empty in the template. Then one tab per daily check, and one group per tab that shows when its tab is selected, holding the banner, the daily check, what to do, the link-outs with click paths, the G C C note, and its queries, each one a Logs query on the workspace parameter. The validator runs ten checks: the format, one tab per check, tables, look-backs, the workspace, the banner, link-outs and hosts, queries per tab kind, the telemetry list, and no I D's or secrets.
 
 ## Slide 6 — Who edits, who reviews, who deploys
 
 Who does what? The security operations engineer edits a test copy in the portal, exports it and validates the export. A second person reviews the change before it replaces the template. Developers keep the manifest and the queries. Lab 1 needs only files. Lab 2 saves one test workbook, so it needs Workbook Contributor on the test resource group, for the lab only, and it deletes the copy at the end. A reviewer checks that no export with I D's in it was committed.
 
-## Slide 7 — Lab 1: the build, and all 63 checks
+## Slide 7 — Lab 1: the build, and all 89 checks
 
-Lab 1, in the kit's folder, with no tenant. Step 1 confirms the committed template matches the build of the manifest and the queries. Step 2 validates it: ten checks, sixty-three results across the tabs, and all of them pass.
+Lab 1, in the kit's folder, with no tenant. Step 1 confirms the committed template matches the build of the manifest and the queries. Step 2 validates it: ten checks, eighty-nine results across the twelve tabs, and all of them pass.
 
 ## Slide 8 — Lab 1: four edits in a portal export
 
@@ -34,11 +34,11 @@ Step 3 is the one to remember. A copy was exported after someone edited the work
 
 ## Slide 9 — Lab 1: record the validation
 
-Step 5 records a validation of the kit's template: the same sixty-three checks pass, and the results go to a folder with a hashed manifest, ready for Chapter 4's evidence record. Step 6 runs this chapter's tests: ten passed, none failed. Then delete the output folder.
+Step 5 records a validation of the kit's template: the same eighty-nine checks pass, and the results go to a folder with a hashed manifest, ready for Chapter 4's evidence record. Step 6 runs this chapter's tests: ten passed, none failed. Then delete the output folder.
 
 ## Slide 10 — Lab 2: round-trip through the portal
 
-Lab 2 runs in a test subscription, never production, and the authors haven't run it. Open the template in the portal through the Advanced Editor, pick the test workspace, and open all ten tabs. Save a test copy, change one look-back, and copy the Gallery Template back out. Validate the export: your edit fails, and so does the workspace the portal saved into it. Record any other difference the portal introduced; that confirms the item format, which Learn doesn't document field by field. Then delete the test copy and the export.
+Lab 2 runs in a test subscription, never production, and the authors haven't run it. Open the template in the portal through the Advanced Editor, pick the test workspace, and open all twelve tabs. Save a test copy, change one look-back, and copy the Gallery Template back out. Validate the export: your edit fails, and so does the workspace the portal saved into it. Record any other difference the portal introduced; that confirms the item format, which Learn doesn't document field by field. Then delete the test copy and the export.
 
 ## Slide 11 — Evidence, dangers and the checklist
 

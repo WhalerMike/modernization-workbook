@@ -10,35 +10,40 @@ The kit's manifest gives each daily
 check one row, and the workbook one tab.
 
 3
-00:00:05.888 --> 00:00:09.051
-Eight tabs read tables in
-the Sentinel workspace.
+00:00:05.888 --> 00:00:09.982
+Ten tabs read tables in the Sentinel
+workspace, among them the domain
 
 4
-00:00:09.051 --> 00:00:10.300
-Two are link-outs.
+00:00:09.982 --> 00:00:14.650
+controllers on the Active Directory tab,
+and the request-driven admin changes.
 
 5
-00:00:10.300 --> 00:00:15.200
+00:00:14.650 --> 00:00:15.900
+Two are link-outs.
+
+6
+00:00:15.900 --> 00:00:20.800
 Entra Health's alerts live in the admin
 center and in e-mail, not in Log Analytics,
 
-6
-00:00:15.200 --> 00:00:18.262
+7
+00:00:20.800 --> 00:00:23.862
 and their G C C availability
 is not yet specified,
 
-7
-00:00:18.262 --> 00:00:21.937
+8
+00:00:23.862 --> 00:00:27.537
 so the tab sends the operator
 there instead of pretending.
 
-8
-00:00:21.937 --> 00:00:25.775
+9
+00:00:27.537 --> 00:00:31.375
 And the catalog tasks
 live in the I T S M tool.
 
-9
-00:00:25.775 --> 00:00:29.900
-Two more tabs are partial:
-grants, and the log review queue.
+10
+00:00:31.375 --> 00:00:36.840
+Three more tabs are partial: grants,
+admin changes, and the log review queue.

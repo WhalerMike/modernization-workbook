@@ -50,6 +50,15 @@ Entra Health monitoring is a preview
 in the admin center and by e-mail.
 
 11
-00:00:33.374 --> 00:00:38.090
-And Intune exports compliance once
-a day, up to forty-eight hours late.
+00:00:33.374 --> 00:00:37.850
+Intune exports compliance once a
+day, up to forty-eight hours late.
+
+12
+00:00:37.850 --> 00:00:40.239
+And for the servers that stay on premises,
+
+13
+00:00:40.239 --> 00:00:44.930
+the Azure Monitor Agent sends their event
+logs and a heartbeat to the workspace.

@@ -1,54 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.125
-Two questions.
+00:00:00.050 --> 00:00:01.137
+Three questions.
 
 2
-00:00:01.125 --> 00:00:05.437
+00:00:01.137 --> 00:00:05.449
 First: Entra Health's alerts are a daily
 check, so what does their tab show?
 
 3
-00:00:05.437 --> 00:00:10.313
+00:00:05.449 --> 00:00:10.325
 A query over the sign-in logs, a link out
 to the Entra admin center, or nothing?
 
 4
-00:00:10.313 --> 00:00:13.410
+00:00:10.325 --> 00:00:13.423
 It's a link out, because
 the alerts aren't in Log
 
 5
-00:00:13.410 --> 00:00:17.512
+00:00:13.423 --> 00:00:17.525
 Analytics and their G C C
 availability is not yet specified.
 
 6
-00:00:17.512 --> 00:00:22.624
+00:00:17.525 --> 00:00:22.637
 Second: an export has the workspace's
 path saved in it; which check fails?
 
 7
-00:00:22.624 --> 00:00:25.400
+00:00:22.637 --> 00:00:25.412
 Check ten, because the
 deployment plan fills
 
 8
-00:00:25.400 --> 00:00:27.875
+00:00:25.412 --> 00:00:27.887
 I D's per environment, never the template.
 
 9
-00:00:27.875 --> 00:00:31.426
+00:00:27.887 --> 00:00:32.999
+Third: a password reset is in yesterday's
+audit log; which tab lists it?
+
+10
+00:00:32.999 --> 00:00:37.127
+The admin changes tab, where the
+operator matches it to its ticket,
+
+11
+00:00:37.127 --> 00:00:39.725
+and a reset with no
+ticket opens a finding.
+
+12
+00:00:39.725 --> 00:00:43.276
 In summary: every daily check
 now has a tab or a link-out,
 
-10
-00:00:31.426 --> 00:00:36.187
+13
+00:00:43.276 --> 00:00:48.037
 every source its availability, and
 the workbook is a reviewed template.
 
-11
-00:00:36.187 --> 00:00:40.130
+14
+00:00:48.037 --> 00:00:51.980
 Module 2 reads it, deploys
 it, and keeps the evidence.

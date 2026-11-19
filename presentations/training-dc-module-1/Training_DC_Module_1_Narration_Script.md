@@ -12,9 +12,9 @@ Here's what you'll be able to do. Name the dashboard options in Azure, and say w
 
 Unit 1. Microsoft's guidance compares workbooks, portal dashboards, Dashboards with Grafana, which is a preview, Azure Managed Grafana and Power BI. Workbooks read the widest set of Azure data and can be managed as Resource Manager templates. Microsoft 365 has built-in views in each admin center, but no single custom dashboard: a view across them needs their logs in Log Analytics. So the design is one workbook in the Sentinel workspace, and a link out where a check's data stays in another portal.
 
-## Slide 4 — Unit 2: ten tabs, and their GCC availability
+## Slide 4 — Unit 2: twelve tabs, and their GCC availability
 
-Unit 2. Eight tabs query tables; two link out: Entra Health, and the I T S M task queue. Two of the eight are partial: the grants tab lists grants, but the match to a ticket stays in the I T S M tool, and the log review tab shows the queue while the review stays a recorded procedure. On availability: workbooks, Entra and Intune logs, Defender X D R alerts and the Logs Ingestion API are all available with a G C C tenant and commercial Azure. The Defender portal's connector overview is a commercial-cloud preview, so it isn't assumed. And Entra Health monitoring and Connect Health are not yet specified.
+Unit 2. Ten tabs query tables; two link out: Entra Health, and the I T S M task queue. Three of the ten are partial: the grants and admin changes tabs list changes, but the match to a ticket stays in the I T S M tool, and the log review tab shows the queue while the review stays a recorded procedure. The synchronization servers and domain controllers send their event logs through the Azure Monitor Agent, not to a file share, one row per server. On availability: workbooks, Entra and Intune logs, Defender X D R alerts, the Azure Monitor Agent and the Logs Ingestion API are all available with a G C C tenant and commercial Azure. The Defender portal's connector overview is a commercial-cloud preview, so it isn't assumed. And Entra Health monitoring and Connect Health are not yet specified.
 
 ## Slide 5 — Unit 3: the template as code
 
@@ -26,7 +26,7 @@ Who is this for? Security operations takes the sources, the template and its val
 
 ## Slide 7 — Lab 1: the tabs, and the edited export
 
-Lab 1 runs on a laptop with no tenant, in the developer workbook's Chapters 1 and 2. You'll list the ten tabs and open the Entra Health tab: a link-out, with no table, to the Entra admin center. Then you'll validate a copy someone exported after editing the workbook in the portal. Four edits, four failures: a query on a workspace path, a thirty-day look-back, a missing banner, and a subscription path in the file.
+Lab 1 runs on a laptop with no tenant, in the developer workbook's Chapters 1 and 2. You'll list the twelve tabs and open the Entra Health tab: a link-out, with no table, to the Entra admin center. Then you'll validate a copy someone exported after editing the workbook in the portal. Four edits, four failures: a query on a workspace path, a thirty-day look-back, a missing banner, and a subscription path in the file.
 
 ## Slide 8 — Lab 2: a test workspace
 
@@ -34,4 +34,4 @@ Lab 2 runs in a test workspace, never production, and the authors haven't run it
 
 ## Slide 9 — Knowledge check
 
-Two questions. First: Entra Health's alerts are a daily check, so what does their tab show? A query over the sign-in logs, a link out to the Entra admin center, or nothing? It's a link out, because the alerts aren't in Log Analytics and their G C C availability is not yet specified. Second: an export has the workspace's path saved in it; which check fails? Check ten, because the deployment plan fills I D's per environment, never the template. In summary: every daily check now has a tab or a link-out, every source its availability, and the workbook is a reviewed template. Module 2 reads it, deploys it, and keeps the evidence.
+Three questions. First: Entra Health's alerts are a daily check, so what does their tab show? A query over the sign-in logs, a link out to the Entra admin center, or nothing? It's a link out, because the alerts aren't in Log Analytics and their G C C availability is not yet specified. Second: an export has the workspace's path saved in it; which check fails? Check ten, because the deployment plan fills I D's per environment, never the template. Third: a password reset is in yesterday's audit log; which tab lists it? The admin changes tab, where the operator matches it to its ticket, and a reset with no ticket opens a finding. In summary: every daily check now has a tab or a link-out, every source its availability, and the workbook is a reviewed template. Module 2 reads it, deploys it, and keeps the evidence.

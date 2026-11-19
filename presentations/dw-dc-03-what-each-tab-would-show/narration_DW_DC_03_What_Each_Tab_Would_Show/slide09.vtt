@@ -1,34 +1,40 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.350
-Step 4 checks each table's reachability
-on the first morning, from saved answers.
+00:00:00.050 --> 00:00:05.287
+Step 4 runs the replication probe on the
+first morning's saved replication report.
 
 2
-00:00:05.350 --> 00:00:09.993
-Sign-in logs, audit logs and the probe's
-table are late, and the Sentinel health
+00:00:05.287 --> 00:00:08.925
+Without the send switch, it writes
+its file and sends nothing.
 
 3
-00:00:09.993 --> 00:00:11.761
-table is missing altogether:
+00:00:08.925 --> 00:00:11.963
+Four links between the
+fictional domain controllers.
 
 4
-00:00:11.761 --> 00:00:15.225
-health monitoring was never
-turned on in this workspace.
+00:00:11.963 --> 00:00:13.063
+Two are healthy.
 
 5
-00:00:15.225 --> 00:00:17.138
-The script exits with an error.
+00:00:13.063 --> 00:00:17.398
+Two are failing, nine failures each,
+with status seventeen twenty-two,
 
 6
-00:00:17.138 --> 00:00:21.424
-Step 5 tries to record the first
-morning's render as evidence.
+00:00:17.398 --> 00:00:21.887
+and both come from the third domain
+controller, the one that went silent.
 
 7
-00:00:21.424 --> 00:00:25.150
-The kit refuses: a rendered
-view is not evidence.
+00:00:21.887 --> 00:00:26.075
+The script exits with an error,
+because a failing link is a finding.
+
+8
+00:00:26.075 --> 00:00:31.370
+That record, not the tab, is what Chapter
+4 sends to the workspace each morning.

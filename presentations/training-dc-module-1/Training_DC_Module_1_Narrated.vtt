@@ -118,237 +118,267 @@ data stays in another portal.
 Unit 2.
 
 26
-00:01:36.248 --> 00:01:42.547
-Eight tabs query tables; two link out:
+00:01:36.248 --> 00:01:42.635
+Ten tabs query tables; two link out:
 Entra Health, and the I T S M task queue.
 
 27
-00:01:42.547 --> 00:01:46.157
-Two of the eight are partial:
-the grants tab lists grants,
+00:01:42.635 --> 00:01:47.470
+Three of the ten are partial: the grants
+and admin changes tabs list changes,
 
 28
-00:01:46.157 --> 00:01:49.138
+00:01:47.470 --> 00:01:50.433
 but the match to a ticket
 stays in the I T S M tool,
 
 29
-00:01:49.138 --> 00:01:54.473
+00:01:50.433 --> 00:01:55.735
 and the log review tab shows the queue
 while the review stays a recorded procedure.
 
 30
-00:01:54.473 --> 00:02:00.854
-On availability: workbooks, Entra and
-Intune logs, Defender X D R alerts and the
+00:01:55.735 --> 00:02:00.414
+The synchronization servers and domain
+controllers send their event logs
 
 31
-00:02:00.854 --> 00:02:07.135
-Logs Ingestion API are all available with
-a G C C tenant and commercial Azure.
+00:02:00.414 --> 00:02:04.647
+through the Azure Monitor Agent, not
+to a file share, one row per server.
 
 32
-00:02:07.135 --> 00:02:09.846
+00:02:04.647 --> 00:02:10.280
+On availability: workbooks, Entra and
+Intune logs, Defender X D R alerts,
+
+33
+00:02:10.280 --> 00:02:14.650
+the Azure Monitor Agent and
+the Logs Ingestion API are
+
+34
+00:02:14.650 --> 00:02:18.923
+all available with a G C C
+tenant and commercial Azure.
+
+35
+00:02:18.923 --> 00:02:21.633
 The Defender portal's
 connector overview is a
 
-33
-00:02:09.846 --> 00:02:12.485
+36
+00:02:21.633 --> 00:02:24.272
 commercial-cloud preview,
 so it isn't assumed.
 
-34
-00:02:12.485 --> 00:02:16.890
+37
+00:02:24.272 --> 00:02:28.680
 And Entra Health monitoring and
 Connect Health are not yet specified.
 
-35
-00:02:20.640 --> 00:02:21.515
+38
+00:02:32.430 --> 00:02:33.305
 Unit 3.
 
-36
-00:02:21.515 --> 00:02:25.989
+39
+00:02:33.305 --> 00:02:37.779
 The template is built from the
 manifest and one K Q L file per query,
 
-37
-00:02:25.989 --> 00:02:30.628
+40
+00:02:37.779 --> 00:02:42.418
 and a validator runs ten checks on
 it, or on any export from the portal.
 
-38
-00:02:30.628 --> 00:02:32.402
+41
+00:02:42.418 --> 00:02:44.192
 Four matter most in practice.
 
-39
-00:02:32.402 --> 00:02:35.714
+42
+00:02:44.192 --> 00:02:47.504
 A widened look-back makes a
 month of data look like today's.
 
-40
-00:02:35.714 --> 00:02:39.115
+43
+00:02:47.504 --> 00:02:50.905
 One query on another
 workspace mixes environments.
 
-41
-00:02:39.115 --> 00:02:41.990
+44
+00:02:50.905 --> 00:02:53.780
 Without the banner, a tab reads as proof.
 
-42
-00:02:41.990 --> 00:02:45.793
+45
+00:02:53.780 --> 00:02:57.583
 And an export embeds I D's:
 Microsoft says to mask them,
 
-43
-00:02:45.793 --> 00:02:48.270
+46
+00:02:57.583 --> 00:03:00.060
 and the kit simply fails them.
 
-44
-00:02:52.020 --> 00:02:53.082
+47
+00:03:03.810 --> 00:03:04.872
 Who is this for?
 
-45
-00:02:53.082 --> 00:02:57.483
+48
+00:03:04.872 --> 00:03:09.273
 Security operations takes the sources,
 the template and its validator.
 
-46
-00:02:57.483 --> 00:03:01.895
+49
+00:03:09.273 --> 00:03:13.685
 Operators learn which tab shows their
 family's check, and which ones link out.
 
-47
-00:03:01.895 --> 00:03:07.070
+50
+00:03:13.685 --> 00:03:18.860
 An I S S O reviewer can read the
 introduction and summary and skip the labs.
 
-48
-00:03:07.070 --> 00:03:11.841
+51
+00:03:18.860 --> 00:03:23.631
 Two federal requirements: the reachability
 record supports continuous and system
 
-49
-00:03:11.841 --> 00:03:16.408
+52
+00:03:23.631 --> 00:03:28.198
 monitoring, and the validation record
 supports the baseline and change control.
 
-50
-00:03:16.408 --> 00:03:20.370
+53
+00:03:28.198 --> 00:03:32.160
 The steps support these
 controls; the assessor decides.
 
-51
-00:03:24.120 --> 00:03:29.958
+54
+00:03:35.910 --> 00:03:41.748
 Lab 1 runs on a laptop with no tenant, in
 the developer workbook's Chapters 1 and 2.
 
-52
-00:03:29.958 --> 00:03:33.617
-You'll list the ten tabs and
-open the Entra Health tab:
+55
+00:03:41.748 --> 00:03:45.586
+You'll list the twelve tabs
+and open the Entra Health tab:
 
-53
-00:03:33.617 --> 00:03:37.020
+56
+00:03:45.586 --> 00:03:48.923
 a link-out, with no table,
 to the Entra admin center.
 
-54
-00:03:37.020 --> 00:03:39.482
+57
+00:03:48.923 --> 00:03:51.384
 Then you'll validate a
 copy someone exported
 
-55
-00:03:39.482 --> 00:03:41.745
+58
+00:03:51.384 --> 00:03:53.647
 after editing the workbook in the portal.
 
-56
-00:03:41.745 --> 00:03:45.425
+59
+00:03:53.647 --> 00:03:57.328
 Four edits, four failures:
 a query on a workspace path,
 
-57
-00:03:45.425 --> 00:03:51.010
+60
+00:03:57.328 --> 00:04:02.900
 a thirty-day look-back, a missing banner,
 and a subscription path in the file.
 
-58
-00:03:54.760 --> 00:04:00.085
+61
+00:04:06.650 --> 00:04:11.975
 Lab 2 runs in a test workspace, never
 production, and the authors haven't run it.
 
-59
-00:04:00.085 --> 00:04:04.714
+62
+00:04:11.975 --> 00:04:16.604
 From Chapter 1, list which of the
 manifest's tables the test workspace has;
 
-60
-00:04:04.714 --> 00:04:07.723
+63
+00:04:16.604 --> 00:04:19.613
 each missing table is a
 source still to connect.
 
-61
-00:04:07.723 --> 00:04:12.706
+64
+00:04:19.613 --> 00:04:24.596
 From Chapter 2, open the template in
 the portal through the Advanced Editor,
 
-62
-00:04:12.706 --> 00:04:16.484
+65
+00:04:24.596 --> 00:04:28.374
 save a test copy, edit it, export
 it, and validate the export.
 
-63
-00:04:16.484 --> 00:04:18.240
+66
+00:04:28.374 --> 00:04:30.130
 Then delete the copy.
 
-64
-00:04:21.990 --> 00:04:23.065
-Two questions.
+67
+00:04:33.880 --> 00:04:34.967
+Three questions.
 
-65
-00:04:23.065 --> 00:04:27.377
+68
+00:04:34.967 --> 00:04:39.279
 First: Entra Health's alerts are a daily
 check, so what does their tab show?
 
-66
-00:04:27.377 --> 00:04:32.253
+69
+00:04:39.279 --> 00:04:44.155
 A query over the sign-in logs, a link out
 to the Entra admin center, or nothing?
 
-67
-00:04:32.253 --> 00:04:35.350
+70
+00:04:44.155 --> 00:04:47.253
 It's a link out, because
 the alerts aren't in Log
 
-68
-00:04:35.350 --> 00:04:39.452
+71
+00:04:47.253 --> 00:04:51.355
 Analytics and their G C C
 availability is not yet specified.
 
-69
-00:04:39.452 --> 00:04:44.564
+72
+00:04:51.355 --> 00:04:56.467
 Second: an export has the workspace's
 path saved in it; which check fails?
 
-70
-00:04:44.564 --> 00:04:47.340
+73
+00:04:56.467 --> 00:04:59.242
 Check ten, because the
 deployment plan fills
 
-71
-00:04:47.340 --> 00:04:49.815
+74
+00:04:59.242 --> 00:05:01.717
 I D's per environment, never the template.
 
-72
-00:04:49.815 --> 00:04:53.366
+75
+00:05:01.717 --> 00:05:06.829
+Third: a password reset is in yesterday's
+audit log; which tab lists it?
+
+76
+00:05:06.829 --> 00:05:10.957
+The admin changes tab, where the
+operator matches it to its ticket,
+
+77
+00:05:10.957 --> 00:05:13.555
+and a reset with no
+ticket opens a finding.
+
+78
+00:05:13.555 --> 00:05:17.106
 In summary: every daily check
 now has a tab or a link-out,
 
-73
-00:04:53.366 --> 00:04:58.127
+79
+00:05:17.106 --> 00:05:21.867
 every source its availability, and
 the workbook is a reviewed template.
 
-74
-00:04:58.127 --> 00:05:02.070
+80
+00:05:21.867 --> 00:05:25.810
 Module 2 reads it, deploys
 it, and keeps the evidence.

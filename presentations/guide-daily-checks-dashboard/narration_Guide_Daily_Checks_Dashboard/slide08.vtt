@@ -1,54 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.951
-Step 2 fills one settings
-file per environment,
+00:00:00.050 --> 00:00:04.862
+Step 1 has three more sources, added
+for the servers that stay on premises.
 
 2
-00:00:02.951 --> 00:00:05.554
-and checks the two values
-the kit can't know:
+00:00:04.862 --> 00:00:08.886
+The synchronization servers and
+domain controllers are Arc-enabled,
 
 3
-00:00:05.554 --> 00:00:10.538
-the compliance state your workspace records,
-and the product names of D L P alerts.
+00:00:08.886 --> 00:00:13.674
+and the Azure Monitor Agent sends their
+event logs and a heartbeat to the workspace.
 
 4
-00:00:10.538 --> 00:00:12.266
-Those values, and every I D,
+00:00:13.674 --> 00:00:17.975
+That replaces any script that
+copies event logs to a file share.
 
 5
-00:00:12.266 --> 00:00:16.875
-go into the deployed workbook's
-parameters, never into the template.
+00:00:17.975 --> 00:00:20.367
+The domain controllers' security events go
 
 6
-00:00:16.875 --> 00:00:20.944
-Then the validator runs ten checks on
-the template, which matters because
+00:00:20.367 --> 00:00:23.025
+through the Windows
+security events connector.
 
 7
-00:00:20.944 --> 00:00:25.613
-Microsoft says an exported template embeds
-sensitive values that should be masked.
+00:00:23.025 --> 00:00:28.550
+A replication probe sends one record per
+replication link to its own custom table.
 
 8
-00:00:25.613 --> 00:00:28.964
-Step 3 plans the deployment
-of one workbook resource
+00:00:28.550 --> 00:00:32.098
+And the subscription's activity
+log goes to the workspace,
 
 9
-00:00:28.964 --> 00:00:32.163
-and previews it with what-if,
-which changes nothing.
+00:00:32.098 --> 00:00:33.650
+for the admin changes tab.
 
 10
-00:00:32.163 --> 00:00:34.655
-A second person approves the plan's hash,
+00:00:33.650 --> 00:00:36.452
+One right in the access request is Tier 0:
 
 11
-00:00:34.655 --> 00:00:37.580
-and the kit refuses any
-plan that would delete.
+00:00:36.452 --> 00:00:42.482
+reading replication forest-wide needs
+Enterprise Admins or equivalent, so the probe
+
+12
+00:00:42.482 --> 00:00:47.710
+runs only on a Tier 0 host, and the Tier
+0 owner decides whether it runs at all.

@@ -1,44 +1,30 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.189
-Lab 2 runs the same reachability
-check against a test workspace,
+00:00:00.050 --> 00:00:03.975
+Step 7 records the reachability
+check and the probe instead.
 
 2
-00:00:04.189 --> 00:00:07.000
-never production; the
-authors haven't run it.
+00:00:03.975 --> 00:00:09.074
+Records one and two, both with result Fail:
+each record keeps what its check found,
 
 3
-00:00:07.000 --> 00:00:08.871
-Sign in to commercial Azure,
+00:00:09.074 --> 00:00:13.787
+with continuous monitoring and system
+monitoring, and their indicators.
 
 4
-00:00:08.871 --> 00:00:12.775
-add the log analytics extension,
-run the check, and sign out.
+00:00:13.787 --> 00:00:17.487
+A failing record is still
+evidence; it's evidence of the gap.
 
 5
-00:00:12.775 --> 00:00:17.837
-Every table should be delivering; each
-late or missing one becomes a task.
+00:00:17.487 --> 00:00:21.339
+Step 8 runs this chapter's
+tests and the evidence tests:
 
 6
-00:00:17.837 --> 00:00:22.362
-The reachability record supports continuous
-monitoring and system monitoring.
-
-7
-00:00:22.362 --> 00:00:26.055
-The dangers you saw: a missing
-connector that looks healthy,
-
-8
-00:00:26.055 --> 00:00:30.500
-a missed probe showing yesterday's
-green, and a render filed as evidence.
-
-9
-00:00:30.500 --> 00:00:33.410
-Next, Chapter 4 deploys the workbook.
+00:00:21.339 --> 00:00:23.710
+twenty-seven passed, none failed.

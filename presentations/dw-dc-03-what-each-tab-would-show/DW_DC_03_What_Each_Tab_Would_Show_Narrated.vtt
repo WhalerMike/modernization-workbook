@@ -21,433 +21,579 @@ and the renderer in this
 chapter says which one it is.
 
 5
-00:00:13.463 --> 00:00:17.183
+00:00:13.463 --> 00:00:17.163
 We'll see what Microsoft Learn
 and the operator runbook give you,
 
 6
-00:00:17.183 --> 00:00:20.552
-the renderer's rules, and the
-read-only reachability check,
+00:00:17.163 --> 00:00:21.839
+the renderer's rules, the read-only
+reachability check and the replication probe,
 
 7
-00:00:20.552 --> 00:00:23.500
+00:00:21.839 --> 00:00:24.771
 then walk two mornings in
-the fictional workspace.
+the fictional workspace,
 
 8
-00:00:23.500 --> 00:00:26.272
+00:00:24.771 --> 00:00:27.563
+one of them with a domain
+controller gone silent.
+
+9
+00:00:27.563 --> 00:00:30.334
 The chapter has been
 reviewed and approved,
 
-9
-00:00:26.272 --> 00:00:30.110
+10
+00:00:30.334 --> 00:00:34.160
 and the code is illustrative,
 tested against fixtures.
 
-10
-00:00:33.860 --> 00:00:34.973
+11
+00:00:37.910 --> 00:00:39.023
 Why this chapter?
 
-11
-00:00:34.973 --> 00:00:37.973
+12
+00:00:39.023 --> 00:00:42.023
 A dashboard's most
 dangerous state isn't red.
 
-12
-00:00:37.973 --> 00:00:40.497
+13
+00:00:42.023 --> 00:00:44.547
 It's green over a source
 that stopped arriving.
 
-13
-00:00:40.497 --> 00:00:43.579
+14
+00:00:44.547 --> 00:00:47.629
 A risk queue with no rows
 can mean nobody is at risk,
 
-14
-00:00:43.579 --> 00:00:46.810
+15
+00:00:47.629 --> 00:00:50.860
 or that the sign-in logs
 stopped coming in last night.
 
-15
-00:00:46.810 --> 00:00:49.947
+16
+00:00:50.860 --> 00:00:53.997
 By the end of the chapter you
 can show, without a tenant,
 
-16
-00:00:49.947 --> 00:00:52.656
+17
+00:00:53.997 --> 00:00:56.706
 what each tab would
 display on a given morning;
 
-17
-00:00:52.656 --> 00:00:57.148
+18
+00:00:56.706 --> 00:01:01.198
 tell an operator which tabs can't be
 trusted because their source went quiet;
 
-18
-00:00:57.148 --> 00:01:00.285
+19
+00:01:01.198 --> 00:01:04.335
 and prove each tab's tables
 answer in a real workspace.
 
-19
-00:01:00.285 --> 00:01:02.753
+20
+00:01:04.335 --> 00:01:06.803
 It's for developers, security operations,
 
-20
-00:01:02.753 --> 00:01:06.320
+21
+00:01:06.803 --> 00:01:10.370
 and the operators who read
 the workbook each morning.
 
-21
-00:01:10.070 --> 00:01:11.345
+22
+00:01:14.120 --> 00:01:15.395
 Here's what you start with.
 
-22
-00:01:11.345 --> 00:01:16.075
+23
+00:01:15.395 --> 00:01:20.125
 The operator runbook's completeness
 check lists each expected table past its
 
-23
-00:01:16.075 --> 00:01:18.550
+24
+00:01:20.125 --> 00:01:22.600
 freshness limit, and
 it uses a fuzzy union,
 
-24
-00:01:18.550 --> 00:01:22.407
+25
+00:01:22.600 --> 00:01:26.457
 so a missing table shows up as a
 null instead of failing the query.
 
-25
-00:01:22.407 --> 00:01:26.732
+26
+00:01:26.457 --> 00:01:30.781
 Sentinel's health page gives the query
 for each connector's latest failure,
 
-26
-00:01:26.732 --> 00:01:30.219
+27
+00:01:30.781 --> 00:01:34.269
 and recommends Azure Monitor
 alert rules for health drifts.
 
-27
-00:01:30.219 --> 00:01:34.602
+28
+00:01:34.269 --> 00:01:38.652
 Microsoft's Intune page says compliance
 is exported once a day and can
 
-28
-00:01:34.602 --> 00:01:38.908
+29
+00:01:38.652 --> 00:01:42.958
 take up to forty-eight hours, and not
 to rely on a fixed completion time.
 
-29
-00:01:38.908 --> 00:01:42.643
-And the Azure command line can
-run a query against a workspace,
-
 30
-00:01:42.643 --> 00:01:45.050
-from its log analytics extension.
+00:01:42.958 --> 00:01:46.557
+The Azure command line can run
+a query against a workspace,
 
 31
-00:01:48.800 --> 00:01:51.287
-Here are the renderer's rules, in order.
+00:01:46.557 --> 00:01:48.657
+from its log analytics extension.
 
 32
-00:01:51.287 --> 00:01:53.301
-A link-out tab shows LINK-OUT.
+00:01:48.657 --> 00:01:53.245
+Learn's unavailable-computers query
+takes each computer's latest heartbeat.
 
 33
-00:01:53.301 --> 00:01:56.100
-No query result at all shows NO DATA.
+00:01:53.245 --> 00:01:58.337
+The replication report gives each link's
+last success, last failure and status,
 
 34
-00:01:56.100 --> 00:01:59.940
+00:01:58.337 --> 00:02:02.645
+and reading it forest-wide needs
+Enterprise Admins or equivalent.
+
+35
+00:02:02.645 --> 00:02:05.285
+And the Logs Ingestion API takes a list of
+
+36
+00:02:05.285 --> 00:02:08.510
+records posted to a
+collection rule's stream.
+
+37
+00:02:12.260 --> 00:02:14.747
+Here are the renderer's rules, in order.
+
+38
+00:02:14.747 --> 00:02:16.761
+A link-out tab shows LINK-OUT.
+
+39
+00:02:16.761 --> 00:02:19.560
+No query result at all shows NO DATA.
+
+40
+00:02:19.560 --> 00:02:23.400
 If any source the tab depends
 on is past its freshness limit,
 
-35
-00:01:59.940 --> 00:02:04.250
+41
+00:02:23.400 --> 00:02:27.710
 the tab shows STALE, and says the
 rows it does show may be incomplete.
 
-36
-00:02:04.250 --> 00:02:07.925
+42
+00:02:27.710 --> 00:02:31.385
 Otherwise, any row the tab's
 rule flags shows ATTENTION.
 
-37
-00:02:07.925 --> 00:02:12.800
+43
+00:02:31.385 --> 00:02:36.260
 No rows where a row is expected, like
 the morning probe, shows NO DATA.
 
-38
-00:02:12.800 --> 00:02:14.687
+44
+00:02:36.260 --> 00:02:38.147
 And only then, CLEAR.
 
-39
-00:02:14.687 --> 00:02:17.163
+45
+00:02:38.147 --> 00:02:40.623
 So a stale source never renders clear.
 
-40
-00:02:17.163 --> 00:02:22.390
+46
+00:02:40.623 --> 00:02:45.850
 The render carries the banner, and the
 kit refuses to record it as evidence.
 
-41
-00:02:26.140 --> 00:02:27.365
+47
+00:02:49.600 --> 00:02:50.825
 What does it leave to you?
 
-42
-00:02:27.365 --> 00:02:31.452
-The completeness query lists dark
-tables, but the other tabs don't
+48
+00:02:50.825 --> 00:02:53.564
+The other tabs don't know
+their table is dark,
 
-43
-00:02:31.452 --> 00:02:35.690
-know their table is dark, so each
-tab names its own sources and limits.
+49
+00:02:53.564 --> 00:02:57.900
+so each tab names its own sources and
+limits, and says what empty means.
 
-44
-00:02:35.690 --> 00:02:41.227
-A query result is just rows or no rows,
-so each tab says what empty means.
-
-45
-00:02:41.227 --> 00:02:46.289
+50
+00:02:57.900 --> 00:03:02.962
 Intune's timing is variable, so the
 devices tab allows forty-eight hours.
 
-46
-00:02:46.289 --> 00:02:48.924
+51
+00:03:02.962 --> 00:03:05.596
 A screenshot is easy to file as evidence,
 
-47
-00:02:48.924 --> 00:02:52.515
+52
+00:03:05.596 --> 00:03:09.187
 so the render carries the
 banner and the kit refuses it.
 
-48
-00:02:52.515 --> 00:02:57.468
-And nothing proves each tab's tables
+53
+00:03:09.187 --> 00:03:13.954
+Nothing proves each tab's tables
 answer, so the kit asks the workspace
 
-49
-00:02:57.468 --> 00:03:02.440
+54
+00:03:13.954 --> 00:03:18.637
 for each table's newest record and
 count: delivering, late or missing.
 
-50
-00:03:06.190 --> 00:03:07.115
+55
+00:03:18.637 --> 00:03:23.630
+Learn's unavailable-computers query lists
+only servers that once reported, so the
+
+56
+00:03:23.630 --> 00:03:28.549
+sync and Active Directory tabs start from
+the settings' server lists, one row each.
+
+57
+00:03:28.549 --> 00:03:32.648
+And the replication report is a
+file in local time on one host,
+
+58
+00:03:32.648 --> 00:03:36.009
+so the kit's probe turns it
+into one record per link,
+
+59
+00:03:36.009 --> 00:03:40.390
+with a verdict and times in U T
+C, and sends it to the workspace.
+
+60
+00:03:44.140 --> 00:03:45.065
 Who does what?
 
-51
-00:03:07.115 --> 00:03:09.781
+61
+00:03:45.065 --> 00:03:47.731
 Operators read the telemetry tab first,
 
-52
-00:03:09.781 --> 00:03:13.740
+62
+00:03:47.731 --> 00:03:51.690
 then their own family's tabs,
 and each finding becomes a task.
 
-53
-00:03:13.740 --> 00:03:18.440
+63
+00:03:51.690 --> 00:03:56.390
 Security operations treats each dark
 source as a high-severity task.
 
-54
-00:03:18.440 --> 00:03:22.878
-And the security officer keeps the
-reachability record, never the render.
+64
+00:03:56.390 --> 00:04:01.552
+And the security officer keeps the reachability
+and probe records, never the render.
 
-55
-00:03:22.878 --> 00:03:25.428
+65
+00:04:01.552 --> 00:04:04.102
 Lab 1 needs only saved results.
 
-56
-00:03:25.428 --> 00:03:28.708
+66
+00:04:04.102 --> 00:04:07.382
 Lab 2 needs Log Analytics
 Reader on a test workspace,
 
-57
-00:03:28.708 --> 00:03:34.020
+67
+00:04:07.382 --> 00:04:12.340
 which can view and search the monitoring
 data, and the check sends only queries.
 
-58
-00:03:37.770 --> 00:03:38.582
+68
+00:04:12.340 --> 00:04:18.005
+The live replication probe is different:
+reading replication needs Enterprise
+
+69
+00:04:18.005 --> 00:04:23.440
+Admins or equivalent, so Chapter 4 runs
+it only on a Tier 0 host, or not at all.
+
+70
+00:04:27.190 --> 00:04:28.002
 Lab 1.
 
-59
-00:03:38.582 --> 00:03:43.596
+71
+00:04:28.002 --> 00:04:33.016
 Step 1 renders the morning of November
 sixteenth in the fictional workspace.
 
-60
-00:03:43.596 --> 00:03:46.662
+72
+00:04:33.016 --> 00:04:36.082
 The Entra diagnostic setting
 stopped at ten past five
 
-61
-00:03:46.662 --> 00:03:49.320
+73
+00:04:36.082 --> 00:04:38.740
 the evening before, and
 the sync probe didn't run.
 
-62
-00:03:49.320 --> 00:03:54.664
+74
+00:04:38.740 --> 00:04:44.084
 Telemetry flags four rows: sign-in and
 audit logs are dark, the probe's table
 
-63
-00:03:54.664 --> 00:03:59.745
+75
+00:04:44.084 --> 00:04:49.165
 is dark, and the Office 365 connector's
 latest health event is a failure.
 
-64
-00:03:59.745 --> 00:04:04.708
-The sync, risk, emergency access
-and grants tabs are all STALE.
+76
+00:04:49.165 --> 00:04:54.724
+The sync, risk, emergency access, grants
+and admin changes tabs are all STALE,
 
-65
-00:04:04.708 --> 00:04:07.495
+77
+00:04:54.724 --> 00:04:58.490
+even the sync server's two
+overnight export errors.
+
+78
+00:04:58.490 --> 00:05:01.981
+The Active Directory tab's sources
+are fresh, so it can be read:
+
+79
+00:05:01.981 --> 00:05:05.960
+the third domain controller went
+silent at seven the evening before,
+
+80
+00:05:05.960 --> 00:05:07.915
+and both links from it are failing.
+
+81
+00:05:07.915 --> 00:05:10.770
 Step 2 shows why the risk tab isn't clear:
 
-66
-00:04:07.495 --> 00:04:12.820
-its query returned no rows, but its
-source stopped fourteen hours ago.
+82
+00:05:10.770 --> 00:05:14.790
+no rows, but its source
+stopped fourteen hours ago.
 
-67
-00:04:16.570 --> 00:04:18.758
+83
+00:05:18.540 --> 00:05:20.728
 Step 3 renders the next morning.
 
-68
-00:04:18.758 --> 00:04:21.607
+84
+00:05:20.728 --> 00:05:23.577
 The setting is back,
 and telemetry is clear.
 
-69
-00:04:21.607 --> 00:04:25.300
+85
+00:05:23.577 --> 00:05:27.270
 Now the queues show what they were
 hiding: one user at high risk,
 
-70
-00:04:25.300 --> 00:04:30.222
+86
+00:05:27.270 --> 00:05:32.192
 one emergency access sign-in, which turns
 out to be the quarterly validation drill,
 
-71
-00:04:30.222 --> 00:04:34.420
+87
+00:05:32.192 --> 00:05:36.390
 and the review records it as a drill,
 and one synchronization conflict.
 
-72
-00:04:34.420 --> 00:04:36.409
-Grants and D L P alerts are clear,
+88
+00:05:36.390 --> 00:05:41.190
+The staging synchronization server wrote
+no backup event, so it's flagged too.
 
-73
-00:04:36.409 --> 00:04:41.130
+89
+00:05:41.190 --> 00:05:45.491
+The admin changes tab lists yesterday's
+five request-driven changes,
+
+90
+00:05:45.491 --> 00:05:47.453
+each to be matched to its ticket.
+
+91
+00:05:47.453 --> 00:05:50.595
+Grants, D L P alerts and
+Active Directory are clear,
+
+92
+00:05:50.595 --> 00:05:55.320
 and this time clear means something,
 because their sources are fresh.
 
-74
-00:04:44.880 --> 00:04:50.180
-Step 4 checks each table's reachability
+93
+00:05:59.070 --> 00:06:04.307
+Step 4 runs the replication probe on the
+first morning's saved replication report.
+
+94
+00:06:04.307 --> 00:06:07.945
+Without the send switch, it writes
+its file and sends nothing.
+
+95
+00:06:07.945 --> 00:06:10.983
+Four links between the
+fictional domain controllers.
+
+96
+00:06:10.983 --> 00:06:12.083
+Two are healthy.
+
+97
+00:06:12.083 --> 00:06:16.418
+Two are failing, nine failures each,
+with status seventeen twenty-two,
+
+98
+00:06:16.418 --> 00:06:20.907
+and both come from the third domain
+controller, the one that went silent.
+
+99
+00:06:20.907 --> 00:06:25.095
+The script exits with an error,
+because a failing link is a finding.
+
+100
+00:06:25.095 --> 00:06:30.690
+That record, not the tab, is what Chapter
+4 sends to the workspace each morning.
+
+101
+00:06:34.440 --> 00:06:39.815
+Step 5 checks each table's reachability
 on the first morning, from saved answers.
 
-75
-00:04:50.180 --> 00:04:54.823
+102
+00:06:39.815 --> 00:06:44.458
 Sign-in logs, audit logs and the probe's
 table are late, and the Sentinel health
 
-76
-00:04:54.823 --> 00:04:56.591
+103
+00:06:44.458 --> 00:06:46.226
 table is missing altogether:
 
-77
-00:04:56.591 --> 00:05:00.055
+104
+00:06:46.226 --> 00:06:49.690
 health monitoring was never
 turned on in this workspace.
 
-78
-00:05:00.055 --> 00:05:01.968
+105
+00:06:49.690 --> 00:06:54.453
+The servers' heartbeat, event and
+security event tables are all delivering.
+
+106
+00:06:54.453 --> 00:06:56.365
 The script exits with an error.
 
-79
-00:05:01.968 --> 00:05:06.254
-Step 5 tries to record the first
+107
+00:06:56.365 --> 00:07:00.703
+Step 6 tries to record the first
 morning's render as evidence.
 
-80
-00:05:06.254 --> 00:05:10.280
+108
+00:07:00.703 --> 00:07:04.710
 The kit refuses: a rendered
 view is not evidence.
 
-81
-00:05:14.030 --> 00:05:17.142
-Step 6 records the
-reachability check instead.
+109
+00:07:08.460 --> 00:07:12.385
+Step 7 records the reachability
+check and the probe instead.
 
-82
-00:05:17.142 --> 00:05:21.205
-Record one, with result Fail: the
-record keeps what the check found,
+110
+00:07:12.385 --> 00:07:17.484
+Records one and two, both with result Fail:
+each record keeps what its check found,
 
-83
-00:05:21.205 --> 00:05:25.793
+111
+00:07:17.484 --> 00:07:22.197
 with continuous monitoring and system
 monitoring, and their indicators.
 
-84
-00:05:25.793 --> 00:05:29.492
+112
+00:07:22.197 --> 00:07:25.897
 A failing record is still
 evidence; it's evidence of the gap.
 
-85
-00:05:29.492 --> 00:05:33.463
-Step 7 runs this chapter's
+113
+00:07:25.897 --> 00:07:29.749
+Step 8 runs this chapter's
 tests and the evidence tests:
 
-86
-00:05:33.463 --> 00:05:35.860
-sixteen passed, none failed.
+114
+00:07:29.749 --> 00:07:32.420
+twenty-seven passed, none failed.
 
-87
-00:05:39.610 --> 00:05:43.749
+115
+00:07:36.170 --> 00:07:40.309
 Lab 2 runs the same reachability
 check against a test workspace,
 
-88
-00:05:43.749 --> 00:05:46.560
+116
+00:07:40.309 --> 00:07:43.120
 never production; the
 authors haven't run it.
 
-89
-00:05:46.560 --> 00:05:48.431
+117
+00:07:43.120 --> 00:07:44.991
 Sign in to commercial Azure,
 
-90
-00:05:48.431 --> 00:05:52.335
+118
+00:07:44.991 --> 00:07:48.895
 add the log analytics extension,
 run the check, and sign out.
 
-91
-00:05:52.335 --> 00:05:57.397
+119
+00:07:48.895 --> 00:07:53.957
 Every table should be delivering; each
 late or missing one becomes a task.
 
-92
-00:05:57.397 --> 00:06:01.922
-The reachability record supports continuous
-monitoring and system monitoring.
+120
+00:07:53.957 --> 00:07:56.595
+The reachability record
+and the probe's record
 
-93
-00:06:01.922 --> 00:06:05.615
+121
+00:07:56.595 --> 00:07:59.707
+support continuous monitoring
+and system monitoring.
+
+122
+00:07:59.707 --> 00:08:03.477
 The dangers you saw: a missing
 connector that looks healthy,
 
-94
-00:06:05.615 --> 00:06:10.060
-a missed probe showing yesterday's
-green, and a render filed as evidence.
+123
+00:08:03.477 --> 00:08:06.093
+a missed probe showing yesterday's green,
 
-95
-00:06:10.060 --> 00:06:12.970
+124
+00:08:06.093 --> 00:08:10.170
+a silent server read as a quiet one,
+and a render filed as evidence.
+
+125
+00:08:10.170 --> 00:08:13.080
 Next, Chapter 4 deploys the workbook.

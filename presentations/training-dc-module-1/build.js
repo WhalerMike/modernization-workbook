@@ -1,6 +1,6 @@
 // Daily Checks Dashboard learning path, Module 1: One workbook, one tab per daily check — the module's narrated deck.
 // Teaches docs/training/daily-checks-dashboard/01-one-workbook-one-tab-per-check.md, Learn-style: objectives, the
-// units, Lab 1 (real kit output from data/kit-captures/dc/), Lab 2, the federal requirement, a two-question check and
+// units, Lab 1 (real kit output from data/kit-captures/dc/), Lab 2, the federal requirement, a three-question check and
 // the summary. Every fact comes from the module page and the guide it sends the learner to
 // (docs/books/guides/daily-checks-dashboard-implementation.md, whose footnotes are the cite names). Laid out with
 // ../_build/devwb.js in page mode.
@@ -13,11 +13,11 @@ require("../_build/devwb.js")({
   title: "Module 1: One workbook, one tab per daily check",
   deckTitle: "Module 1: One workbook, one tab per check",
   subtitle: "The Daily Checks on One Dashboard · guide Steps 1 and 2",
-  map: "The options · ten tabs and where each lives · GCC · the template as code · Lab 1 and Lab 2 · a knowledge check",
+  map: "The options · twelve tabs and where each lives · GCC · the template as code · Lab 1 and Lab 2 · a knowledge check",
   slides: [
     {
       say: `Welcome to Module 1 of the learning path The Daily Checks on One Dashboard: one workbook, one tab per daily check. In about forty minutes, plus a lab in a test workspace, you'll see which daily checks a workbook can show and from which table, which ones it can only link to, and how the workbook is kept as a reviewed file rather than something edited in the portal. The module has been reviewed and approved.`,
-      detail: `Module 1 covers guide Steps 1 and 2. About 40 minutes, plus Lab 2. Units: dashboards in Azure and Microsoft 365; the ten tabs and where each lives; the template as code. Exercises: Lab 1 (Chapters 01 and 02 of the developer workbook), Lab 2 (a test workspace). Then a knowledge check and the summary.`,
+      detail: `Module 1 covers guide Steps 1 and 2. About 40 minutes, plus Lab 2. Units: dashboards in Azure and Microsoft 365; the twelve tabs and where each lives; the template as code. Exercises: Lab 1 (Chapters 01 and 02 of the developer workbook), Lab 2 (a test workspace). Then a knowledge check and the summary.`,
       cite: [],
       ref: "Module 1, introduction",
     },
@@ -56,22 +56,23 @@ require("../_build/devwb.js")({
       ref: "Module 1, Unit 1",
     },
     {
-      part: "What", title: "Unit 2: ten tabs, and their GCC availability",
+      part: "What", title: "Unit 2: twelve tabs, and their GCC availability",
       body: [
         { cols: [[{ bullets: [
-          "**Eight** tabs query tables in the workspace",
+          "**Ten** tabs query tables in the workspace",
           "**Two** link out: Entra Health and the ITSM task queue",
-          "**Two partial**: grants (the ticket match stays in ITSM); log review (the review stays a procedure)",
-        ], label: "The tabs", color: "navy", pt: 14 }], [{ bullets: [
-          "Workbooks, Entra and Intune logs, Defender XDR alerts, Logs Ingestion API: **available**",
+          "**Three partial**: grants and admin changes (the ticket match stays in ITSM); log review (the review stays a procedure)",
+          "Sync servers and domain controllers: **one row each**, through the Azure Monitor Agent, never a file share",
+        ], label: "The tabs", color: "navy", pt: 13 }], [{ bullets: [
+          "Workbooks, Entra and Intune logs, Defender XDR and Defender for Identity alerts, the Azure Monitor Agent, Logs Ingestion API: **available**",
           "Defender portal's connector overview: a commercial preview, **not assumed**",
           "Entra Health, Connect Health: **not yet specified**, so link-outs",
-        ], label: "GCC (Moderate), commercial Azure", color: "teal", pt: 14 }]] },
+        ], label: "GCC (Moderate), commercial Azure", color: "teal", pt: 13 }]] },
       ],
       sources: "Sources: Module 1, Unit 2; the guide, “What each daily check can show,” “GCC availability.”",
-      say: `Unit 2. Eight tabs query tables; two link out: Entra Health, and the I T S M task queue. Two of the eight are partial: the grants tab lists grants, but the match to a ticket stays in the I T S M tool, and the log review tab shows the queue while the review stays a recorded procedure. On availability: workbooks, Entra and Intune logs, Defender X D R alerts and the Logs Ingestion API are all available with a G C C tenant and commercial Azure. The Defender portal's connector overview is a commercial-cloud preview, so it isn't assumed. And Entra Health monitoring and Connect Health are not yet specified.`,
-      detail: `Eight tabs query tables; two (Entra Health and the ITSM task queue) link out. Two of the eight are partial: grants, and the log review queue. Availability from Learn: Sentinel workbooks GA in Azure commercial; Entra diagnostic settings; Intune in GCC is the commercial instance; Defender XDR alerts and incidents GA for Commercial and GCC; the Logs Ingestion API in commercial Azure; the Defender portal's Data & connectors Overview tab a public preview in commercial cloud environments, not assumed; Entra Health monitoring and Connect Health not yet specified.`,
-      cite: ["dcg-sentinel-clouds", "dcg-intune-gov", "dcg-xdr-clouds", "dcg-health", "dcg-entra-health", "dcg-connect"],
+      say: `Unit 2. Ten tabs query tables; two link out: Entra Health, and the I T S M task queue. Three of the ten are partial: the grants and admin changes tabs list changes, but the match to a ticket stays in the I T S M tool, and the log review tab shows the queue while the review stays a recorded procedure. The synchronization servers and domain controllers send their event logs through the Azure Monitor Agent, not to a file share, one row per server. On availability: workbooks, Entra and Intune logs, Defender X D R alerts, the Azure Monitor Agent and the Logs Ingestion API are all available with a G C C tenant and commercial Azure. The Defender portal's connector overview is a commercial-cloud preview, so it isn't assumed. And Entra Health monitoring and Connect Health are not yet specified.`,
+      detail: `Ten tabs query tables; two (Entra Health and the ITSM task queue) link out. Three of the ten are partial: grants and admin changes (consents and Entra role assignments on grants, everything else request-driven on admin changes, never both), and the log review queue. The synchronization servers and domain controllers send their event logs and heartbeats through the Azure Monitor Agent, not to a file share, and each server has its own row, so one that stops sending is flagged. Availability from Learn: Sentinel workbooks GA in Azure commercial; Entra diagnostic settings; Intune in GCC is the commercial instance; Defender XDR alerts and incidents GA for Commercial and GCC, Defender for Identity alerts among them (with its own license); the Azure Monitor Agent on Arc-enabled servers, Windows Security Events via AMA and Azure Activity in commercial Azure; the Logs Ingestion API in commercial Azure; the Defender portal's Data & connectors Overview tab a public preview in commercial cloud environments, not assumed; Entra Health monitoring and Connect Health not yet specified.`,
+      cite: ["dcg-sentinel-clouds", "dcg-intune-gov", "dcg-xdr-clouds", "dcg-mdi-gov", "dcg-ama", "dcg-health", "dcg-entra-health", "dcg-connect", "dcg-connect-adds"],
       ref: "Module 1, Unit 2",
     },
     {
@@ -117,8 +118,8 @@ require("../_build/devwb.js")({
         { terminal: "02-3", lines: "1,12-17" },
       ],
       sources: "Sources: Building the Daily Checks Workbook, Ch 01 and 02, “Lab 1” (fictional fixtures).",
-      say: `Lab 1 runs on a laptop with no tenant, in the developer workbook's Chapters 1 and 2. You'll list the ten tabs and open the Entra Health tab: a link-out, with no table, to the Entra admin center. Then you'll validate a copy someone exported after editing the workbook in the portal. Four edits, four failures: a query on a workspace path, a thirty-day look-back, a missing banner, and a subscription path in the file.`,
-      detail: `Chapter 01, Lab 1 step 2: ./Show-DcManifest.ps1 -Id entra-health (link-out; no table; Microsoft Entra Health, https://entra.microsoft.com > Entra ID > Monitoring & health > Health > Health Monitoring). Chapter 02, Lab 1 step 3: ./Test-DcWorkbook.ps1 -TemplatePath tests/fixtures/exported/edited.workbook.json: FAIL DC-V-05 risk; DC-V-04 devices 720 h of 72 h; DC-V-06 grants; DC-V-10; 4 of 63 checks failed.`,
+      say: `Lab 1 runs on a laptop with no tenant, in the developer workbook's Chapters 1 and 2. You'll list the twelve tabs and open the Entra Health tab: a link-out, with no table, to the Entra admin center. Then you'll validate a copy someone exported after editing the workbook in the portal. Four edits, four failures: a query on a workspace path, a thirty-day look-back, a missing banner, and a subscription path in the file.`,
+      detail: `Chapter 01, Lab 1 step 2: ./Show-DcManifest.ps1 -Id entra-health (link-out; no table; Microsoft Entra Health, https://entra.microsoft.com > Entra ID > Monitoring & health > Health > Health Monitoring). Chapter 02, Lab 1 step 3: ./Test-DcWorkbook.ps1 -TemplatePath tests/fixtures/exported/edited.workbook.json: FAIL DC-V-05 risk; DC-V-04 devices 720 h of 72 h; DC-V-06 grants; DC-V-10; 4 of 89 checks failed. Chapter 01's Lab 1 also opens a partial tab and the Active Directory tab, reads the emergency access query and lists the freshness limits.`,
       cite: [],
       ref: "Module 1, “Exercise: Lab 1”",
     },
@@ -143,12 +144,13 @@ require("../_build/devwb.js")({
         { steps: [
           { title: "1", text: "Entra Health's alerts are a daily check. What does their tab show? A: a query over SigninLogs. B: a link out to the Entra admin center. C: nothing." },
           { title: "2", text: "An export has the workspace's path in fallbackResourceIds. Which check fails? A: DC-V-10. B: DC-V-02. C: none." },
+          { title: "3", text: "A password reset is in yesterday's audit log. Which tab lists it? A: grants, closed there. B: admin changes, matched to its ticket in ITSM. C: neither." },
         ] },
-        { callout: "1 is B: the alerts aren't in Log Analytics and their GCC availability is not yet specified. 2 is A: the plan fills IDs per environment, never the template.", label: "Answers: ", color: "teal", icon: "FaListCheck" },
+        { callout: "1 is B: the alerts aren't in Log Analytics; GCC not yet specified. 2 is A: the plan fills IDs per environment. 3 is B: a reset with no ticket opens a finding.", label: "Answers: ", color: "teal", icon: "FaListCheck" },
       ],
-      sources: "Sources: Module 1, “Knowledge check,” questions 2 and 4, and “Check your answers.”",
-      say: `Two questions. First: Entra Health's alerts are a daily check, so what does their tab show? A query over the sign-in logs, a link out to the Entra admin center, or nothing? It's a link out, because the alerts aren't in Log Analytics and their G C C availability is not yet specified. Second: an export has the workspace's path saved in it; which check fails? Check ten, because the deployment plan fills I D's per environment, never the template. In summary: every daily check now has a tab or a link-out, every source its availability, and the workbook is a reviewed template. Module 2 reads it, deploys it, and keeps the evidence.`,
-      detail: `Knowledge check question 2: answer b, a link out to the Microsoft Entra admin center, because the alerts aren't in Log Analytics and their GCC availability is not yet specified. Question 4: answer a, DC-V-10: the template carries a subscription path; the deployment plan fills IDs per environment. Summary: you placed every daily check on a tab or a link-out, gave each source its GCC availability, and kept the workbook as a reviewed template that a validator checks. Evidence an ISSO keeps: the validation record (results.json and the template's SHA-256), recorded in Module 2.`,
+      sources: "Sources: Module 1, “Knowledge check,” questions 2, 4 and 5, and “Check your answers.”",
+      say: `Three questions. First: Entra Health's alerts are a daily check, so what does their tab show? A query over the sign-in logs, a link out to the Entra admin center, or nothing? It's a link out, because the alerts aren't in Log Analytics and their G C C availability is not yet specified. Second: an export has the workspace's path saved in it; which check fails? Check ten, because the deployment plan fills I D's per environment, never the template. Third: a password reset is in yesterday's audit log; which tab lists it? The admin changes tab, where the operator matches it to its ticket, and a reset with no ticket opens a finding. In summary: every daily check now has a tab or a link-out, every source its availability, and the workbook is a reviewed template. Module 2 reads it, deploys it, and keeps the evidence.`,
+      detail: `Knowledge check question 2: answer b, a link out to the Microsoft Entra admin center, because the alerts aren't in Log Analytics and their GCC availability is not yet specified. Question 4: answer a, DC-V-10: the template carries a subscription path; the deployment plan fills IDs per environment. Question 5: answer b, the admin changes tab: the operator matches it to its ticket in the ITSM tool, and a reset with no ticket opens a finding. Summary: you placed every daily check on a tab or a link-out, gave each source its GCC availability, and kept the workbook as a reviewed template that a validator checks. Evidence an ISSO keeps: the validation record (results.json and the template's SHA-256), recorded in Module 2.`,
       cite: [],
       ref: "Module 1, “Knowledge check”; “Summary”",
     },
