@@ -12,6 +12,7 @@ Lab 1 was run with `python scripts/kit_captures.py dc` on Windows 11, PowerShell
 | 2 | Kit behavior and lab output | verified by running the kit and its tests | `data/kit-captures/dc/`, `examples/daily-checks-workbook/tests`, `deploy/tests` |
 | 3 | Lab 2 behavior | not run | — |
 | 4 | Design guidance (tab fit, freshness limits, render rules, stage steps) | the program's position, labeled | `config/manifest.json`, `config/requirements.json` |
+| 5 | Learn facts added Nov 19, 2026 | verified Nov 19, 2026 | dc03-heartbeat (Unavailable computers); dc03-repadmin (repadmin /showrepl * /csv columns; Enterprise Admins or equivalent); dc03-ingest (upload URI, api-version 2023-01-01, audience, JSON array) |
 
 ## Federal requirements and evidence
 

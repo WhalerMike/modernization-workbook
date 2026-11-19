@@ -1,0 +1,13 @@
+// One row per domain controller and when its Azure Monitor Agent last sent a heartbeat (Learn's "Unavailable
+// computers" pattern, by the DomainControllers parameter). A controller with no heartbeat shows with an empty time.
+let dcs = dynamic([{DomainControllers}]);
+let beats = Heartbeat
+    | where TimeGenerated > ago(1d)
+    | where Computer in (dcs)
+    | summarize LastHeartbeat = max(TimeGenerated) by Computer;
+print Computer = dcs
+| mv-expand Computer to typeof(string)
+| join kind=leftouter beats on Computer
+| extend HeartbeatLimitMin = 60
+| project Computer, LastHeartbeat, HeartbeatLimitMin
+| order by Computer asc

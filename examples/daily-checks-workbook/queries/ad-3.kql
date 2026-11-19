@@ -1,0 +1,9 @@
+// The security events Microsoft rates High (a single occurrence is investigated), and 1102, on the domain
+// controllers in the last day. The list is Book 12, Chapter 03's; the Windows Security Events via AMA
+// connector writes them to SecurityEvent when its event set includes them.
+SecurityEvent
+| where TimeGenerated > ago(1d)
+| where Computer in ({DomainControllers})
+| where EventID in (1102, 4618, 4649, 4719, 4765, 4766, 4794, 4897, 4964, 5124)
+| summarize Count = count(), FirstSeen = min(TimeGenerated), LastSeen = max(TimeGenerated) by Computer, EventID, Activity
+| order by LastSeen desc

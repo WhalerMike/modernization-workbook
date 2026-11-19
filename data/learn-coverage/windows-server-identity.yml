@@ -1982,6 +1982,8 @@ pages:
   cited_by:
   - docs/books/b02-identity/07-read-only-discovery.md
   - docs/books/b02-identity/_verification/07-read-only-discovery.md
+  - docs/books/guides/daily-checks-dashboard-implementation.md
+  - docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.md
 - path: WindowsServerDocs/identity/ad-ds/manage/troubleshoot/Verify-DNS-Functionality-to-Support-Directory-Replication.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/troubleshoot/verify-dns-functionality-to-support-directory-replication
   title: Verify DNS Functionality to Support Directory Replication

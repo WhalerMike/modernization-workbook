@@ -1,5 +1,5 @@
 {
-  "_comment": "One tab per daily check in Book 15, Chapter 12 (the cadence table's Daily rows and the by-family table's Daily column). kind 'workbook' tabs query the Sentinel Log Analytics workspace; 'link-out' tabs send the operator to the built-in portal page where the data isn't in Log Analytics. Tables, columns and GCC availability were read on Microsoft Learn on November 18, 2026 (the guide's verification log). Freshness limits and look-backs are design guidance: set each from the source's own cadence. render is the rule Invoke-DcRender.ps1 applies to fixture query results; it never makes the view evidence.",
+  "_comment": "One tab per daily check in Book 15, Chapter 12, with the domain controllers of Book 12, Chapter 03 (the cadence table's Daily rows and the by-family table's Daily column). kind 'workbook' tabs query the Sentinel Log Analytics workspace; 'link-out' tabs send the operator to the built-in portal page where the data isn't in Log Analytics. Tables, columns and GCC availability were read on Microsoft Learn on November 18 and 19, 2026 (the guide's verification log). Freshness limits and look-backs are design guidance: set each from the source's own cadence. render is the rule Invoke-DcRender.ps1 applies to fixture query results; it never makes the view evidence.",
   "version": 1,
   "workbook": { "displayName": "Daily checks", "schema": "Notebook/1.0", "category": "workbook", "resourceType": "microsoft.operationalinsights/workspaces" },
   "banner": "This workbook is a view, not evidence. The evidence is the stored record each check writes and the tracked task each finding opens.",
@@ -9,7 +9,12 @@
     { "name": "EmergencyAccessIds", "type": "text", "source": "emergencyAccessObjectIds", "purpose": "The emergency access accounts' object IDs, quoted and comma-separated" },
     { "name": "CompliantStateValue", "type": "text", "source": "compliantStateValue", "purpose": "The ComplianceState value your workspace records for a compliant device" },
     { "name": "DlpProductNames", "type": "text", "source": "dlpProductNames", "purpose": "The ProductName values of DLP and label alerts in SecurityAlert, quoted and comma-separated" },
-    { "name": "ItsmQueueUrl", "type": "text", "source": "itsmQueueUrl", "purpose": "The ITSM tool's own queue page for catalog and remediation tasks" }
+    { "name": "ItsmQueueUrl", "type": "text", "source": "itsmQueueUrl", "purpose": "The ITSM tool's own queue page for catalog and remediation tasks" },
+    { "name": "SyncServers", "type": "text", "source": "syncServers", "purpose": "The Entra Connect Sync servers (active and staging), quoted and comma-separated, as the workspace's Computer column records them" },
+    { "name": "SyncEventSources", "type": "text", "source": "syncEventSources", "purpose": "The Application-log Source values of the synchronization service's events on those servers, quoted and comma-separated" },
+    { "name": "BackupEventSources", "type": "text", "source": "backupEventSources", "purpose": "The Source values of the nightly server backup's events on those servers, quoted and comma-separated" },
+    { "name": "DomainControllers", "type": "text", "source": "domainControllers", "purpose": "The domain controllers, quoted and comma-separated, as the workspace's Computer column records them" },
+    { "name": "IdentityAlertProductNames", "type": "text", "source": "identityAlertProductNames", "purpose": "The ProductName values of Defender for Identity alerts in SecurityAlert, quoted and comma-separated" }
   ],
   "expectedTables": [
     { "table": "SigninLogs", "slaMinutes": 60 },
@@ -19,13 +24,18 @@
     { "table": "SecurityIncident", "slaMinutes": 1440 },
     { "table": "IntuneDeviceComplianceOrg", "slaMinutes": 2880 },
     { "table": "CommonSecurityLog", "slaMinutes": 60 },
-    { "table": "DailySyncProbe_CL", "slaMinutes": 1440 }
+    { "table": "DailySyncProbe_CL", "slaMinutes": 1440 },
+    { "table": "Heartbeat", "slaMinutes": 60 },
+    { "table": "Event", "slaMinutes": 1440 },
+    { "table": "SecurityEvent", "slaMinutes": 60 },
+    { "table": "DcReplicationProbe_CL", "slaMinutes": 1440 },
+    { "table": "AzureActivity", "slaMinutes": 1440 }
   ],
   "tabs": [
     {
       "id": "telemetry", "title": "Telemetry completeness", "kind": "workbook", "fit": "strong",
       "check": "Telemetry-completeness check, network sources included (cadence table, Daily; by-family table, Network)",
-      "tables": ["SigninLogs", "AuditLogs", "AADRiskyUsers", "SecurityAlert", "SecurityIncident", "IntuneDeviceComplianceOrg", "CommonSecurityLog", "DailySyncProbe_CL", "SentinelHealth"],
+      "tables": ["SigninLogs", "AuditLogs", "AADRiskyUsers", "SecurityAlert", "SecurityIncident", "IntuneDeviceComplianceOrg", "CommonSecurityLog", "DailySyncProbe_CL", "Heartbeat", "Event", "SecurityEvent", "DcReplicationProbe_CL", "AzureActivity", "SentinelHealth"],
       "queries": [
         { "id": "telemetry-1", "file": "telemetry-1.kql", "title": "Every expected table and the age of its newest record", "lookbackHours": 72 },
         { "id": "telemetry-2", "file": "telemetry-2.kql", "title": "Connectors whose latest SentinelHealth status is Failure", "lookbackHours": 72 }
@@ -41,16 +51,49 @@
     },
     {
       "id": "sync", "title": "Synchronization probe", "kind": "workbook", "fit": "strong",
-      "check": "Synchronization and service-health probe (task 6, the morning synchronization check)",
-      "tables": ["DailySyncProbe_CL"],
-      "queries": [ { "id": "sync-1", "file": "sync-1.kql", "title": "The probe's latest result", "lookbackHours": 48 } ],
+      "check": "Synchronization and service-health probe (task 6, the morning synchronization check), with the synchronization servers' own errors and backup result",
+      "tables": ["DailySyncProbe_CL", "Event", "Heartbeat"],
+      "queries": [
+        { "id": "sync-1", "file": "sync-1.kql", "title": "The probe's latest result", "lookbackHours": 48 },
+        { "id": "sync-2", "file": "sync-2.kql", "title": "Errors and warnings the synchronization servers logged in the last day", "lookbackHours": 24 },
+        { "id": "sync-3", "file": "sync-3.kql", "title": "Each synchronization server: its agent's last heartbeat and its latest backup event", "lookbackHours": 48 }
+      ],
       "linkOuts": [
         { "name": "Microsoft Entra Connect Health", "url": "https://entra.microsoft.com", "path": "Microsoft Entra Connect Health (left menu: Microsoft Entra Connect Sync)" },
         { "name": "Microsoft 365 service health", "url": "https://admin.microsoft.com", "path": "Health > Service health" }
       ],
-      "gcc": "The Logs Ingestion API that writes the probe's table is available in commercial Azure. Connect Health's GCC availability is not yet specified.",
-      "action": "A drift verdict or a missed probe opens a task; the probe's own stored result is the record.",
-      "render": { "freshness": { "DailySyncProbe_CL": 1440 }, "emptyMeans": "no-data", "flag": [ { "query": "sync-1", "op": "eq", "column": "Verdict", "value": "drift" } ] }
+      "gcc": "The Logs Ingestion API that writes the probe's table, and the Azure Monitor Agent that sends the servers' Windows event logs to the Event table and their heartbeat to Heartbeat, are in commercial Azure; the servers must be Azure Arc-enabled. The synchronization service's event IDs are not yet specified on Learn: the settings name its event sources. Connect Health's GCC availability is not yet specified.",
+      "action": "A drift verdict, a missed probe, a server error, a silent agent or a failed or missing backup opens a task; the probe's stored result and the servers' forwarded events are the record.",
+      "render": { "freshness": { "DailySyncProbe_CL": 1440 }, "emptyMeans": "no-data", "flag": [
+        { "query": "sync-1", "op": "eq", "column": "Verdict", "value": "drift" },
+        { "query": "sync-2", "op": "any" },
+        { "query": "sync-3", "op": "older-than-column", "column": "LastHeartbeat", "limitColumn": "HeartbeatLimitMin" },
+        { "query": "sync-3", "op": "older-than-column", "column": "LastBackupEvent", "limitColumn": "BackupLimitMin" },
+        { "query": "sync-3", "op": "eq", "column": "BackupLevel", "value": "Error" } ] }
+    },
+    {
+      "id": "active-directory", "title": "Active Directory", "kind": "workbook", "fit": "good",
+      "check": "Domain controllers while they remain Tier 0 (Book 12, Chapter 03): agents reporting, replication, the High-rated security events, directory, SYSVOL and DNS errors, and Defender for Identity alerts (task 7, event-log handling; cadence table, log review findings)",
+      "tables": ["Heartbeat", "DcReplicationProbe_CL", "SecurityEvent", "Event", "SecurityAlert"],
+      "queries": [
+        { "id": "ad-1", "file": "ad-1.kql", "title": "Each domain controller and when its agent last reported", "lookbackHours": 24 },
+        { "id": "ad-2", "file": "ad-2.kql", "title": "Replication links from the probe's latest run", "lookbackHours": 48 },
+        { "id": "ad-3", "file": "ad-3.kql", "title": "High-rated security events on the domain controllers in the last day", "lookbackHours": 24 },
+        { "id": "ad-4", "file": "ad-4.kql", "title": "Directory, SYSVOL replication and DNS errors on the domain controllers in the last day", "lookbackHours": 24 },
+        { "id": "ad-5", "file": "ad-5.kql", "title": "Defender for Identity alerts in the last day", "lookbackHours": 24 }
+      ],
+      "linkOuts": [
+        { "name": "Microsoft Entra Connect Health for AD DS", "url": "https://entra.microsoft.com", "path": "Microsoft Entra Connect Health (left menu: Active Directory Domain Services)" },
+        { "name": "Defender portal alerts", "url": "https://security.microsoft.com", "path": "Investigation & response > Incidents & alerts > Alerts" }
+      ],
+      "gcc": "Available for the workspace tables: the Azure Monitor Agent on Azure Arc-enabled domain controllers (Event, Heartbeat), the Windows Security Events via AMA connector (SecurityEvent) and the Logs Ingestion API (the replication probe) are in commercial Azure, and Defender for Identity alerts in SecurityAlert are GA for GCC. Defender for Identity needs its own license. Connect Health's GCC availability is not yet specified: it stays a link-out.",
+      "action": "A silent domain controller, a failing replication link or any High-rated event opens a high-severity task in the incident path; the forwarded events and the probe's stored result are the record.",
+      "render": { "freshness": { "SecurityEvent": 60, "DcReplicationProbe_CL": 1440 }, "emptyMeans": "clear", "flag": [
+        { "query": "ad-1", "op": "older-than-column", "column": "LastHeartbeat", "limitColumn": "HeartbeatLimitMin" },
+        { "query": "ad-2", "op": "eq", "column": "Verdict", "value": "failing" },
+        { "query": "ad-3", "op": "any" },
+        { "query": "ad-4", "op": "any" },
+        { "query": "ad-5", "op": "any" } ] }
     },
     {
       "id": "entra-health", "title": "Entra Health alerts", "kind": "link-out", "fit": "link-out",
@@ -102,6 +145,22 @@
       "linkOuts": [ { "name": "Entra audit logs", "url": "https://entra.microsoft.com", "path": "Entra ID > Monitoring & health > Audit logs" } ],
       "gcc": "Available. The match to a ticket isn't in the workbook: the ticket data stays in the ITSM tool.",
       "action": "Each row is matched to its ticket in the ITSM tool; a grant with no ticket opens a finding.",
+      "render": { "freshness": { "AuditLogs": 60 }, "emptyMeans": "clear", "flag": [ { "op": "any" } ] }
+    },
+    {
+      "id": "admin-changes", "title": "Admin changes", "kind": "workbook", "fit": "partial",
+      "check": "Request-driven admin changes matched to their tickets: password resets, authentication-method changes, accounts created, users updated by catalog scripts, custom role definitions (tasks 1 to 5 and 8; cadence table, catalog and remediation tasks), and Azure role assignments",
+      "tables": ["AuditLogs", "AzureActivity"],
+      "queries": [
+        { "id": "admin-1", "file": "admin-1.kql", "title": "Request-driven Entra changes in the last day", "lookbackHours": 24 },
+        { "id": "admin-2", "file": "admin-2.kql", "title": "Azure role assignments and custom role definitions written in the last day", "lookbackHours": 24 }
+      ],
+      "linkOuts": [
+        { "name": "Entra audit logs", "url": "https://entra.microsoft.com", "path": "Entra ID > Monitoring & health > Audit logs" },
+        { "name": "Azure activity log", "url": "https://portal.azure.com", "path": "Monitor > Activity log" }
+      ],
+      "gcc": "Available: AuditLogs through the Entra diagnostic setting, and AzureActivity through the subscription's diagnostic setting, both to the commercial workspace. The match to a ticket isn't in the workbook: the ticket data stays in the ITSM tool. Consents and Entra role assignments are on the Consents, roles and grants tab, not repeated here.",
+      "action": "Each row is matched to its ticket in the ITSM tool; a change with no ticket opens a finding.",
       "render": { "freshness": { "AuditLogs": 60 }, "emptyMeans": "clear", "flag": [ { "op": "any" } ] }
     },
     {

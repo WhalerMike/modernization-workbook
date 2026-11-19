@@ -1,0 +1,7 @@
+// Every replication link from the probe's latest run (repadmin /showrepl * /csv, written through the Logs
+// Ingestion API). A link whose last attempt failed is "failing"; no run in two days leaves the tab stale.
+let lastRun = toscalar(DcReplicationProbe_CL | where TimeGenerated > ago(2d) | summarize max(TimeGenerated));
+DcReplicationProbe_CL
+| where TimeGenerated > ago(2d) and TimeGenerated == lastRun
+| project TimeGenerated, DestinationDc, SourceDc, NamingContext, Failures, LastSuccessUtc, LastFailureUtc, LastFailureStatus, Verdict
+| order by Verdict asc, DestinationDc asc, SourceDc asc

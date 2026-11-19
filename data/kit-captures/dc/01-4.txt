@@ -1,9 +1,8 @@
-PS> Import-Module ./powershell/DailyChecks/DailyChecks.psm1
-PS> Get-DcTab | Group-Object Fit | Sort-Object Name | Select-Object Name, Count
-Name     Count
-----     -----
-good         2
-link-out     1
-partial      2
-strong       4
-weak         1
+PS> ./Show-DcManifest.ps1 -Id active-directory
+Active Directory (active-directory): workbook, fit good
+Daily check: Domain controllers while they remain Tier 0 (Book 12, Chapter 03): agents reporting, replication, the High-rated security events, directory, SYSVOL and DNS errors, and Defender for Identity alerts (task 7, event-log handling; cadence table, log review findings)
+Tables:      Heartbeat, DcReplicationProbe_CL, SecurityEvent, Event, SecurityAlert
+Link-out:    Microsoft Entra Connect Health for AD DS: https://entra.microsoft.com > Microsoft Entra Connect Health (left menu: Active Directory Domain Services)
+Link-out:    Defender portal alerts: https://security.microsoft.com > Investigation & response > Incidents & alerts > Alerts
+GCC:         Available for the workspace tables: the Azure Monitor Agent on Azure Arc-enabled domain controllers (Event, Heartbeat), the Windows Security Events via AMA connector (SecurityEvent) and the Logs Ingestion API (the replication probe) are in commercial Azure, and Defender for Identity alerts in SecurityAlert are GA for GCC. Defender for Identity needs its own license. Connect Health's GCC availability is not yet specified: it stays a link-out.
+Action:      A silent domain controller, a failing replication link or any High-rated event opens a high-severity task in the incident path; the forwarded events and the probe's stored result are the record.

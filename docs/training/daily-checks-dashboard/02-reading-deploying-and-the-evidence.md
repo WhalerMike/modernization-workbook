@@ -42,7 +42,7 @@ After this module, you'll be able to:
 
 ## Unit 1: Reading the workbook (10 minutes) {#dc-m2-reading}
 
-Read the guide's [Step 5](../../books/guides/daily-checks-dashboard-implementation.md#step-5) and [Chapter 03](../../project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.md)'s *The code*. Telemetry completeness comes first, because every other tab depends on its sources. A tab with no rows has only proved its query returned nothing: if its source has gone quiet, the renderer shows STALE, and so should the operator's reading. A missed probe shows yesterday's verdict, so its tab is STALE too. Each finding becomes a task; the workbook never closes one.
+Read the guide's [Step 5](../../books/guides/daily-checks-dashboard-implementation.md#step-5) and [Chapter 03](../../project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.md)'s *The code*. Telemetry completeness comes first, because every other tab depends on its sources. A tab with no rows has only proved its query returned nothing: if its source has gone quiet, the renderer shows STALE, and so should the operator's reading. A missed probe shows yesterday's verdict, so its tab is STALE too. A synchronization server or domain controller that stops sending isn't an empty list: it is a row with an old heartbeat, flagged. The replication probe needs Enterprise Admins or equivalent to read replication, so it runs only on a Tier 0 host, or not at all ([Chapter 04](../../project-plans/developer-workbooks/daily-checks/04-deploying-to-test-and-production.md#the-replication-probe-where-the-tier-0-owner-approves-it)). Each finding becomes a task; the workbook never closes one.
 
 ## Unit 2: Deploying it (10 minutes) {#dc-m2-deploying}
 
@@ -55,7 +55,7 @@ Read the guide's [Step 6](../../books/guides/daily-checks-dashboard-implementati
 ## Exercise: Lab 1, fixtures, no tenant {#dc-m2-lab-1}
 *About 15 minutes. No tenant: it runs on a laptop.*
 
-- [Chapter 03, Lab 1](../../project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.md#lab-1-fixtures-no-tenant): the morning SigninLogs stopped and the next morning, the reachability check, and the refused render.
+- [Chapter 03, Lab 1](../../project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.md#lab-1-fixtures-no-tenant): the morning SigninLogs stopped and a domain controller went silent, and the next morning; the replication probe on saved `repadmin` output; the reachability check; and the refused render.
 - [Chapter 04](../../project-plans/developer-workbooks/daily-checks/04-deploying-to-test-and-production.md), step 4: read the fixture-mode plan output, the one **Create** and the SHA-256 to approve.
 
 ## Exercise: Lab 2, a test workspace {#dc-m2-lab-2}

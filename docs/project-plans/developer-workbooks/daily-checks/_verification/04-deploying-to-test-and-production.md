@@ -12,6 +12,7 @@ This chapter is a runbook with no Lab 1 or Lab 2. Its fixture-mode output (step 
 | 2 | Kit behavior and lab output | verified by running the kit and its tests | `data/kit-captures/dc/`, `examples/daily-checks-workbook/tests`, `deploy/tests` |
 | 3 | Lab 2 behavior | not run | — |
 | 4 | Design guidance (tab fit, freshness limits, render rules, stage steps) | the program's position, labeled | `config/manifest.json`, `config/requirements.json` |
+| 5 | The replication probe section: Tier 0 identity on a Tier 0 host (Enterprise Admins or equivalent per Learn, cited in the guide's dcg-repadmin); Monitoring Metrics Publisher on the probe's rule | verified Nov 19, 2026 (through the guide's footnotes); where it runs is design guidance, for the owner to decide | guide `dcg-repadmin`, `dcg-ingest` |
 
 ## Federal requirements and evidence
 

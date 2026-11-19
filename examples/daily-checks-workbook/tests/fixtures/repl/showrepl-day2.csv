@@ -1,0 +1,6 @@
+showrepl_COLUMNS,Destination DSA Site,Destination DSA,Naming Context,Source DSA Site,Source DSA,Transport Type,Number of Failures,Last Failure Time,Last Success Time,Last Failure Status
+showrepl_INFO,Site-East,CTX-DC-01,"DC=contoso,DC=example",Site-East,CTX-DC-02,RPC,0,0,2026-11-17 05:45:20,0
+showrepl_INFO,Site-East,CTX-DC-01,"DC=contoso,DC=example",Site-West,CTX-DC-03,RPC,0,2026-11-16 09:12:30,2026-11-17 05:47:41,0
+showrepl_INFO,Site-East,CTX-DC-02,"DC=contoso,DC=example",Site-East,CTX-DC-01,RPC,0,0,2026-11-17 05:44:58,0
+showrepl_INFO,Site-East,CTX-DC-02,"DC=contoso,DC=example",Site-West,CTX-DC-03,RPC,0,2026-11-16 09:11:02,2026-11-17 05:47:02,0
+showrepl_INFO,Site-West,CTX-DC-03,"DC=contoso,DC=example",Site-East,CTX-DC-01,RPC,0,0,2026-11-17 05:48:10,0

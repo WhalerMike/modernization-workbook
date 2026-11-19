@@ -99,7 +99,7 @@ Work in `examples/daily-checks-workbook`.
 
    The kit refuses a plan folder that changed, a SHA-256 that isn't the approved one, a plan with no what-if or with a Delete, and a plan not made against the live environment.
 
-7. **Smoke test.** In the Azure portal: **Monitor** > **Workbooks**, open **Daily checks** under the test workspace, and confirm the ten tabs open, each with the banner, and the telemetry tab lists every expected table.
+7. **Smoke test.** In the Azure portal: **Monitor** > **Workbooks**, open **Daily checks** under the test workspace, and confirm the twelve tabs open, each with the banner, and the telemetry tab lists every expected table.
 
 8. **Reachability:**
 
@@ -158,11 +158,25 @@ Record each folder with `Invoke-DcEvidence.ps1` as in step 10, then check the pr
 
 Two ways back, both planned in step 9. **Redeploy the previous approved plan** when the content is wrong: its SHA-256 is already approved. **Delete the workbook** when it shouldn't exist: the plan's `find` command lists it by display name (read-only), and the `delete` command removes it. Deleting the workbook removes a view only; no log data, alert rule or task changes. A rollback is a change: it gets its own change record and evidence record.
 
+## The replication probe, where the Tier 0 owner approves it
+
+The Active Directory tab reads replication from `DcReplicationProbe_CL`. The probe reads the directory and changes nothing in it, but Learn names Enterprise Admins, or equivalent, as the minimum to read forest-wide replication status, so it runs only as a Tier 0 identity, on a Tier 0 host, scheduled each morning ([access request](../../../books/guides/daily-checks-dashboard-implementation.md#prerequisites), access row 9). Without that approval, skip this section: the tab still shows the domain controllers' heartbeats, events and Defender for Identity alerts, and links out to Connect Health for AD DS, but its replication query stays empty and the kit's renderer shows the tab STALE: remove `DcReplicationProbe_CL` from the tab's `freshness` and `tables` in the manifest, and the query from the tab, through a reviewed change, rather than read an empty replication list as healthy.
+
+On the Tier 0 host, from `examples/daily-checks-workbook`, signed in with `az login` as the probe's sending identity (Monitoring Metrics Publisher on the probe's data collection rule only), with the settings file's `replicationIngestionEndpoint`, `replicationDcrImmutableId` and `replicationStreamName` filled:
+
+```powershell
+./Invoke-DcReplicationProbe.ps1 -SettingsPath <settings-test> -OutputPath <out-test>/probe
+./Invoke-DcReplicationProbe.ps1 -SettingsPath <settings-test> -OutputPath <out-test>/probe -Send
+./Invoke-DcEvidence.ps1 -EvidencePath <evidence-test> -RunPath <out-test>/probe -ChangeRecord <change-record-id>
+```
+
+The first command runs `repadmin /showrepl * /csv` and writes `probe.json` without sending; read it. The second sends the records to the Logs Ingestion API. A failing link makes the script exit 1 and the record's result Fail: that is the finding, not a failed deployment. The probe isn't a step the go/no-go requires.
+
 ## Day two
 
 - **A portal edit.** Export the gallery template from the **Advanced Editor**, validate it (Chapter 02), replace the committed template through a reviewed change, and redeploy from a new plan.
 - **A new daily check.** Add its row to the manifest, its query to `queries/`, rebuild the template and redeploy.
-- **The settings.** When an emergency access account changes, update `emergencyAccessObjectIds` and redeploy; the emergency access alert rule changes through its own change.
+- **The settings.** When an emergency access account changes, update `emergencyAccessObjectIds` and redeploy; the emergency access alert rule changes through its own change. When a synchronization server or domain controller is added or retired, update `syncServers` or `domainControllers` and redeploy: a retired server left in the list shows as a silent one every morning.
 
 ## Federal requirements and evidence
 
@@ -174,6 +188,7 @@ Two ways back, both planned in step 9. **Redeploy the previous approved plan** w
 | 6: Deploy | The approved plan, and only it, was deployed | CM-3, CM-2 | KSI-CMT-LMC, KSI-SVC-ACM |
 | 8: Reachability | Each tab's tables answer, with their age | CA-7, SI-4 | KSI-MLA-EVC, KSI-MLA-LET |
 | 9: Rollback plan | The way back was written before the change | CM-3, CP-2 | KSI-CMT-LMC, KSI-RPL-ARP |
+| The replication probe | Every replication link's last result, sent to the workspace | CA-7, SI-4 | KSI-MLA-EVC, KSI-MLA-LET |
 | 10: Evidence | The records are hashed and chained | CA-7, AU-9 | KSI-MLA-EVC, KSI-MLA-OSM |
 
 The kit's records support these controls; the agency's assessor decides them. KSIs are FedRAMP 20x indicators for cloud service providers, framed as in Chapter 01. The workbook itself, and any screenshot of it, is never on this list.
@@ -186,6 +201,7 @@ The kit's records support these controls; the agency's assessor decides them. KS
 - [ ] The deployer's roles were activated for the window only.
 - [ ] The test stage's evidence passes `-Check -Stage test` before production.
 - [ ] The rollback plan exists for each stage.
+- [ ] The Tier 0 owner has decided on the replication probe; where it runs, it runs on a Tier 0 host.
 
 ::: {.callout-tip}
 ## Continue the book

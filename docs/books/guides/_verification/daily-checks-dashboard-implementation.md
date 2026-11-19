@@ -36,10 +36,35 @@ Searched `docs/`, `presentations/`, `examples/` and `data/` for *dashboard*, *da
 | 24 | Turning on Sentinel auditing and health monitoring: Settings > Auditing and health monitoring > Enable; `_SentinelHealth()` check; the page names no role, so the access request names the existing Sentinel owner and requests nothing new | Prerequisites | verified Nov 19, 2026 | `dcg-enable-health` |
 | 25 | Logs Ingestion API tutorial prerequisites: at least contributor rights on the workspace; permissions to create DCR objects | Prerequisites | verified Nov 19, 2026 | `dcg-ingest-tutorial` |
 | 26 | Monitoring Contributor creates or edits DCRs (subscription, resource group or DCR scope) | Prerequisites | verified Nov 19, 2026 | `dcg-dcr-perms` |
+| 27 | AMA on Arc-enabled on-premises servers; collects by associated DCRs | Availability, Step 1 | verified Nov 19, 2026 | `dcg-ama` |
+| 28 | Windows events go only to `Event`; a Security log in a DCR goes to `Event`, the Sentinel connector sends it to `SecurityEvent`; `Event` columns | Tabs, Step 1; `sync-2`, `sync-3`, `ad-4` | verified Nov 19, 2026. The page's XPath examples cover System and Security only: the log names `DFS Replication` and `DNS Server` aren't on Learn (listed as not verified) | `dcg-ama-events` |
+| 29 | `Heartbeat` columns; Learn's "Unavailable computers" query | Tabs; `sync-3`, `ad-1` | verified Nov 19, 2026. The `Category` value for the Azure Monitor Agent isn't documented, so the queries don't filter on it | `dcg-t-heartbeat` |
+| 30 | Windows Security Events via AMA writes to `SecurityEvent`; event sets; Arc before the connector; `SecurityEvent` columns; connector GA in Azure commercial | Tabs, Availability; `ad-3` | verified Nov 19, 2026 (feature-availability page, commercial column only) | `dcg-secevents`, `dcg-sentinel-clouds` |
+| 31 | Event IDs 2042, 1988, 1311, 1925, 2213, 4012, 4013 and what each means | Tabs; `ad-4` | verified Nov 19, 2026 on Learn troubleshooting articles | `dcg-ad-events` |
+| 32 | `repadmin /showrepl * /csv`; columns Source DSA, Last Success Time, Last Failure Time, Last Failure Status; Enterprise Admins or equivalent minimum | Tabs, Prerequisites, Step 1; `ConvertFrom-DcRepadminCsv` | verified Nov 19, 2026; the other column names are the tool's own header, not on Learn (listed) | `dcg-repadmin` |
+| 33 | `dcdiag` needs administrative rights | Step 1 | verified Nov 19, 2026; output format not on Learn, so not parsed | `dcg-dcdiag` |
+| 34 | Connect Health for AD DS: domain controllers, replication status, alerts; P1 or P2 | Tabs, Availability | verified Nov 19, 2026; GCC not stated | `dcg-connect-adds` |
+| 35 | Defender for Identity alerts in the Defender XDR integration; `SecurityAlert (AATP)` GA for GCC; licensing (Defender service description) | Tabs, Availability; `ad-5` | verified Nov 19, 2026; the `ProductName` value isn't on Learn, so it is a setting | `dcg-xdr`, `dcg-xdr-clouds`, `dcg-mdi-gov` |
+| 36 | Windows Server Backup failure: Application log, Microsoft-Windows-Backup, 517 Error | Prerequisites, couldn't verify | verified Nov 19, 2026; the success event ID isn't on Learn | `dcg-backup-event` |
+| 37 | `Get-ADSyncRunProfileResult` exists; output not documented; no Learn list of run-profile event IDs | Couldn't verify | verified Nov 19, 2026 (absence) | `dcg-adsync` |
+| 38 | Audit activity names for the admin changes tab | Tabs; `admin-1` | verified Nov 19, 2026. No activity is named for "require re-registration": the tab uses the admin security-info activities, as Book 12, Appendix B does | `dcg-activities-admin` |
+| 39 | `AzureActivity` columns; `roleAssignments/write` and `roleDefinitions/write`; Learn's privileged role assignment alert query | Tabs; `admin-2` | verified Nov 19, 2026 | `dcg-t-azact`, `dcg-rbac-alert` |
+| 40 | Activity log to the workspace through a diagnostic setting, stored in `AzureActivity`; Azure Activity connector GA in Azure commercial | Availability, Step 1 | verified Nov 19, 2026 | `dcg-activity-log`, `dcg-sentinel-clouds` |
+| 41 | Logs Ingestion upload URI with `api-version=2023-01-01`; token scope `https://monitor.azure.com`; `Custom-` stream | Step 1; `Invoke-DcReplicationProbe` | verified Nov 19, 2026 (Learn's PowerShell sample) | `dcg-ingest-code` |
+| 42 | Azure Connected Machine Onboarding role, or Contributor, to onboard Arc servers | Prerequisites | verified Nov 19, 2026 | `dcg-arc-onboard` |
+| 43 | Service health through Graph: endpoints, `ServiceHealth.Read.All`, global service; GCC uses the worldwide endpoints | Availability | verified Nov 19, 2026; the same facts the provider notices guide verified Nov 9. Kept a link-out: the provider notices kit already collects service health, so the sync probe doesn't store a second copy | `dcg-graph-health` |
+
+## The three tabs added November 19, 2026
+
+The owner asked for all three ("Build all three") after the proposal to add the synchronization servers' rows, an Active Directory tab and an admin changes tab. Search before writing (origin/main, November 19, 2026), by topic and key terms (`repadmin`, `dcdiag`, `Heartbeat`, `roleAssignments/write`, the audit activity names, `Microsoft-Windows-Backup`, `Windows Security Events via AMA`, `ServiceHealth.Read`, Connect Health for AD DS, `DFS Replication`, `_CL`):
+
+- **Reused, linked:** Book 12, Chapter 03's Entra Connect server section (Application log forwarding, Entra Connect Admin Actions) and its domain controller event list (4618, 4649, 4719, 4765, 4766, 4794, 4897, 4964, 5124, 1102), not restated; Book 15, Chapter 12's task 7 (forward to the log platform, never a share), its Connect Sync server checks (weekly; configuration export as the backup of the synchronization policy) and the cadence table's sync row (CP-9 backup result); Book 15, Appendix A and Book 12, Appendix B for the audit activity names; Book 02, Chapter 07 (repadmin's Enterprise Admins requirement) and Chapter 06 (Defender for Identity licensing in GCC); the provider notices guide and kit (service health through Graph).
+- **Overlap avoided:** consents and Entra role assignments stay on the grants tab; the admin changes tab doesn't repeat them, and a test keeps them out of its query.
+- **Conflicts:** none found. One tension is reported to the owner rather than resolved: a "read-only" replication probe needs Enterprise Admins or equivalent per Learn, a Tier 0 right.
 
 ## Federal requirements and KSIs
 
-Controls and KSIs are only the pairs in `examples/daily-checks-workbook/config/requirements.json`, each reused from the Azure security kit's requirements file (read from fedramp.gov's 2026 KSI theme pages and NIST's catalog for that guide, November 11, 2026). No new pair. Claim language: "supports", never "satisfies"; KSIs framed as FedRAMP 20x indicators for cloud service providers.
+The replication probe's step (PROBE: CA-7, SI-4; KSI-MLA-EVC, KSI-MLA-LET) reuses the reachability step's pairs. Controls and KSIs are only the pairs in `examples/daily-checks-workbook/config/requirements.json`, each reused from the Azure security kit's requirements file (read from fedramp.gov's 2026 KSI theme pages and NIST's catalog for that guide, November 11, 2026). No new pair. Claim language: "supports", never "satisfies"; KSIs framed as FedRAMP 20x indicators for cloud service providers.
 
 ## Scope checks
 

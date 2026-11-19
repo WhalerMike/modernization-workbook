@@ -9,11 +9,17 @@ let expected = datatable(TableName: string, SlaMinutes: long) [
     "SecurityIncident", 1440,
     "IntuneDeviceComplianceOrg", 2880,
     "CommonSecurityLog", 60,
-    "DailySyncProbe_CL", 1440
+    "DailySyncProbe_CL", 1440,
+    "Heartbeat", 60,
+    "Event", 1440,
+    "SecurityEvent", 60,
+    "DcReplicationProbe_CL", 1440,
+    "AzureActivity", 1440
 ];
 let lastSeen =
     union isfuzzy=true withsource=TableName
-        SigninLogs, AuditLogs, AADRiskyUsers, SecurityAlert, SecurityIncident, IntuneDeviceComplianceOrg, CommonSecurityLog, DailySyncProbe_CL
+        SigninLogs, AuditLogs, AADRiskyUsers, SecurityAlert, SecurityIncident, IntuneDeviceComplianceOrg, CommonSecurityLog, DailySyncProbe_CL,
+        Heartbeat, Event, SecurityEvent, DcReplicationProbe_CL, AzureActivity
     | where TimeGenerated > ago(3d)
     | summarize LastSeen = max(TimeGenerated) by TableName;
 expected

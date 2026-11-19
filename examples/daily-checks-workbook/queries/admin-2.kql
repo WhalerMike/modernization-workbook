@@ -1,0 +1,8 @@
+// Azure role assignments and custom role definitions written in the last day, latest state per operation, from
+// the subscription activity log (Learn's role assignment alert uses the same operation name).
+AzureActivity
+| where TimeGenerated > ago(1d)
+| where OperationNameValue in~ ("Microsoft.Authorization/roleAssignments/write", "Microsoft.Authorization/roleDefinitions/write")
+| summarize arg_max(TimeGenerated, *) by CorrelationId
+| project TimeGenerated, OperationNameValue, Caller, ActivityStatusValue, ResourceGroup, Scope = _ResourceId, CorrelationId
+| order by TimeGenerated desc

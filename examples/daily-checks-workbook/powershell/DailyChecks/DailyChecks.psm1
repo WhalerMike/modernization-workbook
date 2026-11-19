@@ -282,13 +282,14 @@ function Read-DcSettings {
     }
     $left = @(Get-DcOrdinal -Value @([regex]::Matches(($vals -join "`n"), '<[a-z][a-z0-9-]*>') | ForEach-Object Value) -Unique)
     if ($left.Count) { throw "Settings file $Path still has placeholders: $($left -join ', ')" }
-    foreach ($k in 'environment', 'cloud', 'tenantId', 'subscriptionId', 'resourceGroup', 'location', 'workspaceResourceId', 'workspaceCustomerId', 'workbookDisplayName', 'emergencyAccessObjectIds', 'compliantStateValue', 'dlpProductNames', 'itsmQueueUrl', 'outputRoot', 'evidencePath') {
+    foreach ($k in 'environment', 'cloud', 'tenantId', 'subscriptionId', 'resourceGroup', 'location', 'workspaceResourceId', 'workspaceCustomerId', 'workbookDisplayName', 'emergencyAccessObjectIds', 'compliantStateValue', 'dlpProductNames', 'itsmQueueUrl', 'syncServers', 'syncEventSources', 'backupEventSources', 'domainControllers', 'identityAlertProductNames', 'outputRoot', 'evidencePath') {
         if (-not $s.Contains($k)) { throw "Settings file $Path has no '$k'." }
     }
     if (-not ($script:Clouds.Keys -ccontains $s.cloud)) { throw "Unknown cloud '$($s.cloud)'. The kit deploys to commercial Azure only: use AzureCloud." }
     if ($s.environment -notin 'lab', 'test', 'production') { throw "environment must be lab, test or production, not '$($s.environment)'." }
     if ($s.workspaceResourceId -notmatch '^/subscriptions/[^/]+/resourceGroups/[^/]+/providers/Microsoft\.OperationalInsights/workspaces/[^/]+$') { throw "workspaceResourceId isn't a Log Analytics workspace resource ID." }
     if (@($s.emergencyAccessObjectIds).Count -lt 2) { throw 'emergencyAccessObjectIds needs the two or more emergency access accounts Microsoft recommends.' }
+    foreach ($k in 'syncServers', 'domainControllers') { if (-not @($s[$k]).Count) { throw "$k needs at least one server, as the workspace's Computer column records it." } }
     $s
 }
 
@@ -558,6 +559,80 @@ function Invoke-DcRender {
     Write-DcText -Path (Join-Path $OutputPath 'render.md') -Text (($md -join "`n") + "`n")
     Write-DcManifest -Path $OutputPath -Task 'render' -Meta @{ recordedAt = (Format-DcUtc $AsOf); mode = 'Fixture'; notEvidence = $true }
     $r
+}
+
+# ----------------------------------------------------------------------------- the replication probe
+
+function ConvertFrom-DcRepadminCsv {
+    <#
+    .SYNOPSIS
+        Turns the output of repadmin /showrepl * /csv into one record per replication link for the custom table
+        DcReplicationProbe_CL: the destination and source domain controllers, the naming context, the failure
+        count, the last success and failure times and status, and a verdict, "failing" when the last attempt's
+        status isn't 0 and "healthy" otherwise. repadmin prints the host's local time; -TimeZoneId names that
+        zone (default UTC) and the records carry UTC. Read-only: it parses text.
+    .EXAMPLE
+        ConvertFrom-DcRepadminCsv -Text (Get-Content -Raw tests/fixtures/repl/showrepl-day1.csv) -AsOf 2026-11-16T06:00:00Z
+    #>
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][AllowEmptyString()][string]$Text, [Parameter(Mandatory)][string]$AsOf, [string]$TimeZoneId = 'UTC')
+    $tz = [TimeZoneInfo]::FindSystemTimeZoneById($TimeZoneId)
+    $lines = @(($Text -replace "`r`n", "`n").Split("`n") | Where-Object { $_.Trim() })
+    if (-not $lines.Count) { return @() }
+    $rows = @($lines | ConvertFrom-Csv)
+    $need = 'Destination DSA', 'Source DSA', 'Naming Context', 'Number of Failures', 'Last Failure Time', 'Last Success Time', 'Last Failure Status'
+    $have = @($rows[0].PSObject.Properties.Name)
+    $missing = @($need | Where-Object { $_ -notin $have })
+    if ($missing.Count) { throw "Not repadmin /showrepl /csv output: no column $($missing -join ', ')." }
+    $time = Format-DcUtc $AsOf
+    $utc = { param($v) $v = "$v".Trim(); if (-not $v -or $v -eq '0') { '' } else { Format-DcUtc ([TimeZoneInfo]::ConvertTimeToUtc([datetime]::SpecifyKind([datetime]::Parse($v, [Globalization.CultureInfo]::InvariantCulture), 'Unspecified'), $tz)) } }
+    foreach ($r in $rows) {
+        $status = "$($r.'Last Failure Status')".Trim()
+        [ordered]@{
+            TimeGenerated = $time; DestinationDc = "$($r.'Destination DSA')".Trim(); SourceDc = "$($r.'Source DSA')".Trim()
+            NamingContext = "$($r.'Naming Context')".Trim(); Failures = [int]("0$("$($r.'Number of Failures')".Trim())")
+            LastSuccessUtc = (& $utc $r.'Last Success Time'); LastFailureUtc = (& $utc $r.'Last Failure Time'); LastFailureStatus = $status
+            Verdict = $(if ($status -and $status -ne '0') { 'failing' } else { 'healthy' })
+        }
+    }
+}
+
+function Invoke-DcReplicationProbe {
+    <#
+    .SYNOPSIS
+        The replication probe: reads repadmin /showrepl * /csv (a saved file with -InputPath, or repadmin itself),
+        writes probe.json (the records for DcReplicationProbe_CL) and a hashed manifest (task probe), and with
+        -Send posts the records to the Logs Ingestion API (az rest, token audience https://monitor.azure.com) at
+        the data collection rule the settings file names. It reads the directory and changes nothing in it.
+    .EXAMPLE
+        Invoke-DcReplicationProbe -SettingsPath tests/fixtures/settings.lab.json -InputPath tests/fixtures/repl/showrepl-day1.csv -OutputPath out/probe -AsOf 2026-11-16T06:00:00Z
+    #>
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][string]$SettingsPath, [Parameter(Mandatory)][string]$OutputPath, [Parameter(Mandatory)][string]$AsOf, [string]$InputPath, [string]$TimeZoneId, [switch]$Send)
+    $s = Read-DcSettings -Path $SettingsPath
+    $mode = 'Fixture'
+    if ($InputPath) { $csv = [IO.File]::ReadAllText((Resolve-Path -LiteralPath $InputPath).Path) }
+    else {
+        $out = & repadmin /showrepl * /csv 2>&1
+        if ($LASTEXITCODE -ne 0) { throw "repadmin /showrepl failed: $($out -join ' ')" }
+        $csv = ($out | ForEach-Object { "$_" }) -join "`n"; $mode = 'Live'
+    }
+    if (-not $TimeZoneId) { $TimeZoneId = if ($InputPath) { 'UTC' } else { [TimeZoneInfo]::Local.Id } }
+    $records = @(ConvertFrom-DcRepadminCsv -Text $csv -AsOf $AsOf -TimeZoneId $TimeZoneId)
+    if (Test-Path -LiteralPath $OutputPath) { Remove-Item -Recurse -Force -LiteralPath $OutputPath }
+    New-Item -ItemType Directory -Force -Path $OutputPath | Out-Null
+    $body = Join-Path $OutputPath 'probe.json'
+    Write-DcJson -Path $body -Value $records
+    $sent = $false
+    if ($Send) {
+        foreach ($k in 'replicationIngestionEndpoint', 'replicationDcrImmutableId', 'replicationStreamName') { if (-not ($s.Contains($k) -and $s[$k])) { throw "Settings file has no '$k': -Send needs the data collection rule's endpoint, immutable ID and stream." } }
+        $uri = "$($s.replicationIngestionEndpoint.TrimEnd('/'))/dataCollectionRules/$($s.replicationDcrImmutableId)/streams/$($s.replicationStreamName)?api-version=2023-01-01"
+        $null = Invoke-DcAz -Arguments @('rest', '--method', 'post', '--url', $uri, '--resource', 'https://monitor.azure.com', '--headers', 'Content-Type=application/json', '--body', "@$($body.Replace('\', '/'))")
+        $sent = $true; $mode = 'Live'
+    }
+    $failing = @($records | Where-Object { $_.Verdict -eq 'failing' }).Count
+    Write-DcManifest -Path $OutputPath -Task 'probe' -Meta @{ recordedAt = (Format-DcUtc $AsOf); environment = $s.environment; mode = $mode; sent = $sent; links = $records.Count; failing = $failing; result = $(if ($records.Count -and -not $failing) { 'Pass' } else { 'Fail' }) }
+    [pscustomobject]@{ Links = $records.Count; Failing = $failing; Sent = $sent; Records = $records; Path = $body }
 }
 
 # ----------------------------------------------------------------------------- runner (az), stand-in for tests
@@ -854,7 +929,7 @@ function Update-DcEvidenceSums {
 function Write-DcEvidence {
     <#
     .SYNOPSIS
-        Records one run folder (validate, preflight, plan, deploy, reachability or rollback) as evidence: checks
+        Records one run folder (validate, preflight, plan, deploy, reachability, rollback or the replication probe) as evidence: checks
         its manifest, copies it under runs/, and writes a record with the time, environment, mode, the steps it
         covers with their SP 800-53 controls and FedRAMP 20x KSIs, every file's SHA-256 and the SHA-256 of the
         record before it. A render folder is refused: the view is not evidence.
@@ -944,5 +1019,5 @@ function Test-DcEvidence {
 Export-ModuleMember -Function Read-DcJson, ConvertFrom-DcJsonText, Get-DcOrdinal, ConvertTo-DcSorted, ConvertTo-DcJson, Write-DcJson, Write-DcText, Get-DcFileHash, Get-DcTextHash,
     ConvertTo-DcUtc, Format-DcUtc, Write-DcManifest, Test-DcRunFolder, Get-DcManifest, Get-DcRequirements, Get-DcTab, Read-DcSettings,
     New-DcTemplate, Test-DcTemplate, Invoke-DcValidate, Get-DcRender, Invoke-DcRender, Set-DcRunner, Invoke-DcAz,
-    New-DcSerializedData, New-DcDeploymentPlan, Invoke-DcDeploy, New-DcRollbackPlan, Test-DcReachability, Test-DcPreflight,
+    New-DcSerializedData, New-DcDeploymentPlan, ConvertFrom-DcRepadminCsv, Invoke-DcReplicationProbe, Invoke-DcDeploy, New-DcRollbackPlan, Test-DcReachability, Test-DcPreflight,
     Update-DcEvidenceSums, Write-DcEvidence, Test-DcEvidence

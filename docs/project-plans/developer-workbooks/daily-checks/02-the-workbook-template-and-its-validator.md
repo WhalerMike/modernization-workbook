@@ -1,6 +1,6 @@
 ---
 title: "Chapter 02 — The Workbook Template and Its Validator"
-description: "The guide's Step 2 as code: the workbook's gallery template (Notebook/1.0), built from the manifest and one KQL file per query, with a header, five parameters, one tab per daily check and every query scoped to the workspace parameter; and a validator, DC-V-01 to DC-V-10, that checks the kit's template or any copy exported from the portal's Advanced Editor against the manifest: tabs, tables, look-backs, the workspace scope, the not-evidence banner, link-outs and their hosts, the telemetry list, and no GUIDs, subscription paths, addresses or secrets. Labs against the kit's template, an edited export and a test workspace."
+description: "The guide's Step 2 as code: the workbook's gallery template (Notebook/1.0), built from the manifest and one KQL file per query, with a header, ten parameters, one tab per daily check and every query scoped to the workspace parameter; and a validator, DC-V-01 to DC-V-10, that checks the kit's template or any copy exported from the portal's Advanced Editor against the manifest: tabs, tables, look-backs, the workspace scope, the not-evidence banner, link-outs and their hosts, the telemetry list, and no GUIDs, subscription paths, addresses or secrets. Labs against the kit's template, an edited export and a test workspace."
 doc-type: workbook-chapter
 audience: [Technical]
 family: dw-daily-checks
@@ -62,7 +62,7 @@ Each row is pinned by a test in the `Chapter 02` block of `tests/DailyChecks.Tes
 
 ### The template
 
-`New-DcTemplate` returns the gallery template: a header with the banner; a parameters item (`Workspace`, a resource picker filtered to Log Analytics workspaces, and four text parameters); a links item styled as tabs, one per manifest tab, each setting `selectedTab`; and one group per tab, visible when `selectedTab` is its id, holding a text item (the banner, the daily check, what to do, the link-outs with click paths, the GCC note) and one query item per manifest query, each a `KqlItem/1.0` with `queryType` 0, `resourceType` `microsoft.operationalinsights/workspaces` and `crossComponentResources` `["{Workspace}"]`. Every parameter value is empty and `fallbackResourceIds` is empty: Chapter 04's plan fills them per environment. `New-DcWorkbookTemplate.ps1` writes it to `workbook/daily-checks.workbook.json`; `-Check` compares.
+`New-DcTemplate` returns the gallery template: a header with the banner; a parameters item (`Workspace`, a resource picker filtered to Log Analytics workspaces, and nine text parameters: the emergency access accounts, the compliant state value, the DLP product names, the ITSM queue, the synchronization servers and their event and backup sources, the domain controllers, and the Defender for Identity alert product names); a links item styled as tabs, one per manifest tab, each setting `selectedTab`; and one group per tab, visible when `selectedTab` is its id, holding a text item (the banner, the daily check, what to do, the link-outs with click paths, the GCC note) and one query item per manifest query, each a `KqlItem/1.0` with `queryType` 0, `resourceType` `microsoft.operationalinsights/workspaces` and `crossComponentResources` `["{Workspace}"]`. Every parameter value is empty and `fallbackResourceIds` is empty: Chapter 04's plan fills them per environment. `New-DcWorkbookTemplate.ps1` writes it to `workbook/daily-checks.workbook.json`; `-Check` compares.
 
 ### The validator
 
@@ -150,7 +150,7 @@ Remove-Item -Recurse -Force out
 
    <!-- capture:end -->
 
-   All 63 checks pass.
+   All 89 checks pass.
 
 3. **Validate a copy exported after someone edited the workbook in the portal.** Four edits, four failures:
 
@@ -241,7 +241,7 @@ Remove-Item <downloads-folder>/daily-checks-export.json
 
 <!-- labs:end -->
 
-1. **Open the template in the portal.** In the Azure portal: **Monitor** > **Workbooks** > **New**; open the **Advanced Editor** (the **</>** button); on the **Gallery Template** tab, replace the content with the content of `workbook/daily-checks.workbook.json`; select **Apply**, then **Done Editing**. Select the test workspace in **Workspace** and confirm that each of the ten tabs opens and shows the banner.
+1. **Open the template in the portal.** In the Azure portal: **Monitor** > **Workbooks** > **New**; open the **Advanced Editor** (the **</>** button); on the **Gallery Template** tab, replace the content with the content of `workbook/daily-checks.workbook.json`; select **Apply**, then **Done Editing**. Select the test workspace in **Workspace** and confirm that each of the twelve tabs opens and shows the banner.
 2. **Save, edit, export.** Select **Save** with the title "Daily checks (lab)" in the test resource group. Select **Edit**, change any one query's look-back, **Done Editing**, then open the **Advanced Editor** again and copy the **Gallery Template** tab's content into `<downloads-folder>/daily-checks-export.json`.
 3. **Validate the export.** The edit you made, and the workspace the portal saved into the export, both fail:
 

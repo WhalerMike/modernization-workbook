@@ -1,6 +1,6 @@
 ---
 title: "Module 1: One workbook, one tab per daily check"
-description: "Guide Steps 1 and 2: what Azure and Microsoft 365 offer for dashboards and why the design is one Azure Monitor workbook in the Sentinel workspace; the ten daily checks of the operator runbook and the table or portal each one lives in; GCC availability source by source; and the workbook's template kept as reviewed code, with a validator that catches portal edits and embedded IDs. Lab 1 runs the manifest and the validator on fixtures; Lab 2 lists a test workspace's tables and round-trips the template through the portal. About 40 minutes, plus Lab 2, with a knowledge check."
+description: "Guide Steps 1 and 2: what Azure and Microsoft 365 offer for dashboards and why the design is one Azure Monitor workbook in the Sentinel workspace; the twelve daily checks of the operator runbook, the synchronization servers, domain controllers and request-driven admin changes among them, and the table or portal each one lives in; GCC availability source by source; and the workbook's template kept as reviewed code, with a validator that catches portal edits and embedded IDs. Lab 1 runs the manifest and the validator on fixtures; Lab 2 lists a test workspace's tables and round-trips the template through the portal. About 40 minutes, plus Lab 2, with a knowledge check."
 doc-type: training-module
 research-status: draft
 research-type: training module
@@ -18,7 +18,7 @@ last-reviewed: 2026-11-19
 
 ## Introduction (3 minutes) {#dc-m1-intro}
 
-Each morning the operator runbook asks for ten checks: synchronization, telemetry completeness, Entra Health, risky users and sign-ins, emergency access sign-ins, noncompliant devices, ungoverned grants, DLP and label alerts, catalog tasks, and the log review queue. Most of their data is already in the Sentinel workspace. In this module you see which checks a workbook can show and from which table, which ones it can only link to, and how the workbook is kept as a reviewed file rather than something edited in the portal.
+Each morning the operator runbook asks for twelve checks: synchronization (with the synchronization servers' own errors and backup), telemetry completeness, the domain controllers, Entra Health, risky users and sign-ins, emergency access sign-ins, noncompliant devices, ungoverned grants, request-driven admin changes, DLP and label alerts, catalog tasks, and the log review queue. Most of their data is already in the Sentinel workspace. In this module you see which checks a workbook can show and from which table, which ones it can only link to, and how the workbook is kept as a reviewed file rather than something edited in the portal.
 
 **The federal requirement.** The full table is the guide's [Federal requirements and KSIs, by step](../../books/guides/daily-checks-dashboard-implementation.md#requirements).
 
@@ -42,9 +42,9 @@ After this module, you'll be able to:
 
 Read the guide's [Dashboards in Azure and Microsoft 365](../../books/guides/daily-checks-dashboard-implementation.md#options). Microsoft's guidance compares workbooks, portal dashboards, Dashboards with Grafana (a preview), Azure Managed Grafana and Power BI; workbooks read the widest set of Azure data and can be managed as ARM templates. Microsoft 365 has built-in views in each admin center, but no single custom dashboard: a view across them needs their logs in Log Analytics. So the design is one workbook in the Sentinel workspace, and a link out where a check's data stays in another portal.
 
-## Unit 2: The ten tabs and where each lives (10 minutes) {#dc-m1-tabs}
+## Unit 2: The twelve tabs and where each lives (10 minutes) {#dc-m1-tabs}
 
-Read the guide's [What each daily check can show, and from where](../../books/guides/daily-checks-dashboard-implementation.md#tabs) and [GCC availability](../../books/guides/daily-checks-dashboard-implementation.md#availability). Eight tabs query tables; two (Entra Health and the ITSM task queue) link out. Two of the eight are partial: the grants tab lists grants but the match to a ticket stays in the ITSM tool, and the log review tab shows the queue while the review stays a recorded procedure. Each source's GCC availability is from Learn; Entra Health monitoring and Connect Health are *not yet specified*, so their tabs are link-outs.
+Read the guide's [What each daily check can show, and from where](../../books/guides/daily-checks-dashboard-implementation.md#tabs) and [GCC availability](../../books/guides/daily-checks-dashboard-implementation.md#availability). Ten tabs query tables; two (Entra Health and the ITSM task queue) link out. Three of the ten are partial: the grants and admin changes tabs list changes but the match to a ticket stays in the ITSM tool (consents and Entra role assignments on grants, everything else request-driven on admin changes, never both), and the log review tab shows the queue while the review stays a recorded procedure. The synchronization servers and domain controllers send their event logs and heartbeats through the Azure Monitor Agent, not to a file share, and each server has its own row, so one that stops sending is flagged. Each source's GCC availability is from Learn; Entra Health monitoring and Connect Health are *not yet specified*, so their tabs are link-outs.
 
 ## Unit 3: The template as code (8 minutes) {#dc-m1-template}
 
@@ -55,7 +55,7 @@ Read the guide's [Step 2](../../books/guides/daily-checks-dashboard-implementati
 
 Follow these as written; they aren't repeated here:
 
-- [Chapter 01, Lab 1](../../project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.md#lab-1-fixtures-no-tenant): the ten tabs, a link-out tab, a partial tab, the emergency access query and the freshness limits.
+- [Chapter 01, Lab 1](../../project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.md#lab-1-fixtures-no-tenant): the twelve tabs, a link-out tab, a partial tab, the Active Directory tab, the emergency access query and the freshness limits.
 - [Chapter 02, Lab 1](../../project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.md#lab-1-fixtures-no-tenant): the template is the build, it validates, and an edited export fails four checks.
 
 ## Exercise: Lab 2, a test workspace {#dc-m1-lab-2}
@@ -86,7 +86,12 @@ Follow these as written; they aren't repeated here:
     b. DC-V-02.
     c. None; the portal adds it.
 
-5. Why is the devices tab's freshness limit 48 hours?
+5. A password reset appears in yesterday's audit log. Which tab lists it, and what does the operator do?
+    a. The grants tab; it is closed there.
+    b. The admin changes tab; the operator matches it to its ticket in the ITSM tool, and a reset with no ticket opens a finding.
+    c. Neither; resets aren't logged.
+
+6. Why is the devices tab's freshness limit 48 hours?
     a. To hide late data.
     b. Intune exports compliance once every 24 hours, and it can take up to 48 hours to arrive.
     c. Because devices check in every two days.
@@ -97,7 +102,8 @@ Follow these as written; they aren't repeated here:
 2. **b.** See Unit 2 and the guide's [availability table](../../books/guides/daily-checks-dashboard-implementation.md#availability).
 3. **b.** See Unit 2 and the guide's [tab table](../../books/guides/daily-checks-dashboard-implementation.md#tabs).
 4. **a.** See Unit 3 and [Chapter 02](../../project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.md).
-5. **b.** See Unit 2 and the guide's [Step 1](../../books/guides/daily-checks-dashboard-implementation.md#step-1).
+5. **b.** See Unit 2 and the guide's [tab table](../../books/guides/daily-checks-dashboard-implementation.md#tabs).
+6. **b.** See Unit 2 and the guide's [Step 1](../../books/guides/daily-checks-dashboard-implementation.md#step-1).
 :::
 
 ## Summary (2 minutes) {#dc-m1-summary}

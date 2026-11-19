@@ -1,7 +1,10 @@
 {
-  "_comment": "The probe's latest row is from yesterday morning: today's run didn't write.",
+  "_comment": "The probe's latest row is from yesterday morning: today's run didn't write. Overnight the active server logged two export errors; both servers' agents are reporting and last night's backups ran. Event IDs and text are fictional: Learn doesn't list the synchronization service's events.",
   "sources": { "DailySyncProbe_CL": "2026-11-15T06:30:00Z" },
   "rows": [
-    { "query": "sync-1", "TimeGenerated": "2026-11-15T06:30:00Z", "ProbeAgeMin": 1500, "SyncEnabled": true, "LastSyncUtc": "2026-11-15T06:12:00Z", "AgeMinutes": 18, "SyncLate": false, "ConflictCount": 0, "Verdict": "compliant" }
+    { "query": "sync-1", "TimeGenerated": "2026-11-15T06:30:00Z", "ProbeAgeMin": 1500, "SyncEnabled": true, "LastSyncUtc": "2026-11-15T06:12:00Z", "AgeMinutes": 18, "SyncLate": false, "ConflictCount": 0, "Verdict": "compliant" },
+    {"query": "sync-2", "Computer": "CTX-SYNC-01.contoso.example", "Source": "Directory Synchronization", "EventID": 6100, "EventLevelName": "Error", "Count": 2, "LastSeen": "2026-11-16T03:12:00Z", "Sample": "The management agent completed run profile Export with a status of completed-export-errors (fictional)."},
+    {"query": "sync-3", "Computer": "CTX-SYNC-01.contoso.example", "LastHeartbeat": "2026-11-16T07:29:00Z", "HeartbeatLimitMin": 60, "LastBackupEvent": "2026-11-16T01:10:00Z", "BackupEventID": 4, "BackupLevel": "Information", "BackupLimitMin": 1560},
+    {"query": "sync-3", "Computer": "CTX-SYNC-02.contoso.example", "LastHeartbeat": "2026-11-16T07:28:00Z", "HeartbeatLimitMin": 60, "LastBackupEvent": "2026-11-16T01:15:00Z", "BackupEventID": 4, "BackupLevel": "Information", "BackupLimitMin": 1560}
   ]
 }

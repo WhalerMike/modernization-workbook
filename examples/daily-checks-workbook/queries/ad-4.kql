@@ -1,0 +1,9 @@
+// Directory Service, DFS Replication (SYSVOL) and DNS Server events on the domain controllers in the last day:
+// the replication and SYSVOL events Learn's troubleshooting articles name (1311, 1925, 1988, 2042, 2213, 4012,
+// 4013), and every error. Sent to the Event table by the Azure Monitor Agent's data collection rule.
+Event
+| where TimeGenerated > ago(1d)
+| where Computer in ({DomainControllers})
+| where EventID in (1311, 1925, 1988, 2042, 2213, 4012, 4013) or EventLevelName == "Error"
+| summarize Count = count(), LastSeen = max(TimeGenerated), Sample = take_any(RenderedDescription) by Computer, EventLog, Source, EventID, EventLevelName
+| order by LastSeen desc
