@@ -33,6 +33,9 @@ Searched `docs/`, `presentations/`, `examples/` and `data/` for *dashboard*, *da
 | 21 | Defender XDR incidents and alerts GA for Commercial / GCC | Availability | verified (only the Commercial / GCC column used) | `dcg-xdr-clouds` |
 | 22 | Book 12, Chapter 12 and Book 15, Chapter 11 quotes | How to read | verified against the pages on origin/main | links |
 | 23 | Where agencies are | Requirements | design guidance, labeled | — |
+| 24 | Turning on Sentinel auditing and health monitoring: Settings > Auditing and health monitoring > Enable; `_SentinelHealth()` check; the page names no role, so the access request names the existing Sentinel owner and requests nothing new | Prerequisites | verified Nov 19, 2026 | `dcg-enable-health` |
+| 25 | Logs Ingestion API tutorial prerequisites: at least contributor rights on the workspace; permissions to create DCR objects | Prerequisites | verified Nov 19, 2026 | `dcg-ingest-tutorial` |
+| 26 | Monitoring Contributor creates or edits DCRs (subscription, resource group or DCR scope) | Prerequisites | verified Nov 19, 2026 | `dcg-dcr-perms` |
 
 ## Federal requirements and KSIs
 
