@@ -29,7 +29,7 @@ The code behind the guide's [tab table](../../../books/guides/daily-checks-dashb
 ## Narrated tour
 {{< fmw-video DW_DC_01_Daily_Checks_Where_Each_Lives_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-dc-01-daily-checks-where-each-lives) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-dc-01-daily-checks-where-each-lives) (about 6 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-01-daily-checks-where-each-lives/DW_DC_01_Daily_Checks_Where_Each_Lives_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-01-daily-checks-where-each-lives/DW_DC_01_Daily_Checks_Where_Each_Lives_Narrated.vtt). Recorded on November 19, 2026 from the draft chapter, before its review.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-dc-01-daily-checks-where-each-lives) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-dc-01-daily-checks-where-each-lives) (about 6 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-01-daily-checks-where-each-lives/DW_DC_01_Daily_Checks_Where_Each_Lives_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-01-daily-checks-where-each-lives/DW_DC_01_Daily_Checks_Where_Each_Lives_Narrated.vtt). Recorded on November 19, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

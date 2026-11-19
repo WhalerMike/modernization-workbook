@@ -1,8 +1,8 @@
-# Companion guide: The Daily Checks on One Dashboard (draft) — The Daily Checks on One Dashboard — narration script (practice copy)
+# Companion guide: The Daily Checks on One Dashboard — The Daily Checks on One Dashboard — narration script (practice copy)
 
 ## Slide 1 — The daily checks on one dashboard
 
-Welcome. This is the narrated briefing for a companion guide in the Federal Modernization Workbook: The Daily Checks on One Dashboard. One thing first: the guide is a draft, awaiting the owner's review. It answers a question the operator runbook leaves open: can the operator see all of the daily checks in one place each morning? Mostly yes, on one Azure Monitor workbook in the Sentinel workspace, with a link out to the portal that holds the data for the checks a workbook can't read. Its facts come from Microsoft Learn, read on November eighteenth, 2026. We'll go in four parts: why, what, who, and how.
+Welcome. This is the narrated briefing for a companion guide in the Federal Modernization Workbook: The Daily Checks on One Dashboard. One thing first: the guide has been reviewed and approved. It answers a question the operator runbook leaves open: can the operator see all of the daily checks in one place each morning? Mostly yes, on one Azure Monitor workbook in the Sentinel workspace, with a link out to the portal that holds the data for the checks a workbook can't read. Its facts come from Microsoft Learn, read on November eighteenth, 2026. We'll go in four parts: why, what, who, and how.
 
 ## Slide 2 — A dashboard is a picture of the evidence
 

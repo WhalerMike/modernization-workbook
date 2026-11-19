@@ -16,7 +16,7 @@ require("../_build/devwb.js")({
   map: "The options · ten tabs and where each lives · GCC · the template as code · Lab 1 and Lab 2 · a knowledge check",
   slides: [
     {
-      say: `Welcome to Module 1 of the learning path The Daily Checks on One Dashboard: one workbook, one tab per daily check. In about forty minutes, plus a lab in a test workspace, you'll see which daily checks a workbook can show and from which table, which ones it can only link to, and how the workbook is kept as a reviewed file rather than something edited in the portal. The module is a draft awaiting the owner's review.`,
+      say: `Welcome to Module 1 of the learning path The Daily Checks on One Dashboard: one workbook, one tab per daily check. In about forty minutes, plus a lab in a test workspace, you'll see which daily checks a workbook can show and from which table, which ones it can only link to, and how the workbook is kept as a reviewed file rather than something edited in the portal. The module has been reviewed and approved.`,
       detail: `Module 1 covers guide Steps 1 and 2. About 40 minutes, plus Lab 2. Units: dashboards in Azure and Microsoft 365; the ten tabs and where each lives; the template as code. Exercises: Lab 1 (Chapters 01 and 02 of the developer workbook), Lab 2 (a test workspace). Then a knowledge check and the summary.`,
       cite: [],
       ref: "Module 1, introduction",

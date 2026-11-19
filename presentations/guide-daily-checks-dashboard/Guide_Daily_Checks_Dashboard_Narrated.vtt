@@ -15,554 +15,554 @@ Federal Modernization Workbook:
 The Daily Checks on One Dashboard.
 
 4
-00:00:08.312 --> 00:00:12.599
-One thing first: the guide is a
-draft, awaiting the owner's review.
+00:00:08.312 --> 00:00:11.987
+One thing first: the guide has
+been reviewed and approved.
 
 5
-00:00:12.599 --> 00:00:16.045
+00:00:11.987 --> 00:00:15.433
 It answers a question the
 operator runbook leaves open:
 
 6
-00:00:16.045 --> 00:00:20.313
+00:00:15.433 --> 00:00:19.701
 can the operator see all of the daily
 checks in one place each morning?
 
 7
-00:00:20.313 --> 00:00:24.721
+00:00:19.701 --> 00:00:24.109
 Mostly yes, on one Azure Monitor workbook
 in the Sentinel workspace, with a
 
 8
-00:00:24.721 --> 00:00:29.275
+00:00:24.109 --> 00:00:28.663
 link out to the portal that holds the data
 for the checks a workbook can't read.
 
 9
-00:00:29.275 --> 00:00:34.700
+00:00:28.663 --> 00:00:34.088
 Its facts come from Microsoft Learn,
 read on November eighteenth, 2026.
 
 10
-00:00:34.700 --> 00:00:38.560
+00:00:34.088 --> 00:00:37.960
 We'll go in four parts:
 why, what, who, and how.
 
 11
-00:00:42.310 --> 00:00:44.235
+00:00:41.710 --> 00:00:43.635
 Here's the rule the guide keeps.
 
 12
-00:00:44.235 --> 00:00:48.811
+00:00:43.635 --> 00:00:48.211
 The Security Operations book says it
 plainly: a dashboard is a picture of the
 
 13
-00:00:48.811 --> 00:00:51.135
+00:00:48.211 --> 00:00:50.535
 evidence; what an assessor relies on is
 
 14
-00:00:51.135 --> 00:00:54.185
+00:00:50.535 --> 00:00:53.585
 regenerating the numbers
 from the stored records.
 
 15
-00:00:54.185 --> 00:00:57.421
+00:00:53.585 --> 00:00:56.821
 The Compliance Automation
 book says the same of tests:
 
 16
-00:00:57.421 --> 00:01:01.160
+00:00:56.821 --> 00:01:00.560
 one that reads a dashboard tile
 is a screenshot with a schedule.
 
 17
-00:01:01.160 --> 00:01:03.673
+00:01:00.560 --> 00:01:03.073
 So the workbook in this guide is a view.
 
 18
-00:01:03.673 --> 00:01:09.136
+00:01:03.073 --> 00:01:08.536
 Every tab says so, and the kit refuses
 to record a rendered view as evidence.
 
 19
-00:01:09.136 --> 00:01:11.941
+00:01:08.536 --> 00:01:11.341
 The evidence stays where it already lives:
 
 20
-00:01:11.941 --> 00:01:16.470
+00:01:11.341 --> 00:01:15.870
 in the record each check writes,
 and the task each finding opens.
 
 21
-00:01:20.220 --> 00:01:21.545
+00:01:19.620 --> 00:01:20.945
 What does Azure offer?
 
 22
-00:01:21.545 --> 00:01:24.170
+00:01:20.945 --> 00:01:23.570
 Microsoft's guidance compares the options.
 
 23
-00:01:24.170 --> 00:01:29.120
+00:01:23.570 --> 00:01:28.520
 Workbooks are a flexible canvas over the
 most complete set of Azure data sources,
 
 24
-00:01:29.120 --> 00:01:32.445
+00:01:28.520 --> 00:01:31.845
 and they can be managed as
 Resource Manager templates.
 
 25
-00:01:32.445 --> 00:01:37.033
+00:01:31.845 --> 00:01:36.433
 Portal dashboards give a single pane
 of glass, but a workbook is richer.
 
 26
-00:01:37.033 --> 00:01:41.900
+00:01:36.433 --> 00:01:41.300
 Dashboards with Grafana is a free
 preview; Azure Managed Grafana is for
 
 27
-00:01:41.900 --> 00:01:46.933
+00:01:41.300 --> 00:01:46.333
 external sources and private networking;
 Power BI suits long-term trends.
 
 28
-00:01:46.933 --> 00:01:50.411
+00:01:46.333 --> 00:01:49.811
 Microsoft 365 has no
 single custom dashboard:
 
 29
-00:01:50.411 --> 00:01:53.707
+00:01:49.811 --> 00:01:53.107
 each admin center has
 its own built-in views.
 
 30
-00:01:53.707 --> 00:01:56.791
+00:01:53.107 --> 00:01:56.191
 So the design is one workbook
 in the Sentinel workspace,
 
 31
-00:01:56.791 --> 00:01:59.640
+00:01:56.191 --> 00:01:59.040
 and a link out where the
 data stays elsewhere.
 
 32
-00:02:03.390 --> 00:02:06.215
+00:02:02.790 --> 00:02:05.615
 Here are the ten tabs,
 one per daily check.
 
 33
-00:02:06.215 --> 00:02:09.729
+00:02:05.615 --> 00:02:09.129
 Telemetry completeness,
 the synchronization probe,
 
 34
-00:02:09.729 --> 00:02:14.202
+00:02:09.129 --> 00:02:13.602
 risky users and sign-ins, and
 emergency access sign-ins fit strongly.
 
 35
-00:02:14.202 --> 00:02:18.003
+00:02:13.602 --> 00:02:17.403
 Noncompliant devices and
 D L P alerts fit well.
 
 36
-00:02:18.003 --> 00:02:22.503
+00:02:17.403 --> 00:02:21.903
 Grants and the log review queue are
 partial: the grants tab lists them,
 
 37
-00:02:22.503 --> 00:02:25.820
+00:02:21.903 --> 00:02:25.220
 but matching each to a ticket
 stays in the I T S M tool,
 
 38
-00:02:25.820 --> 00:02:31.190
+00:02:25.220 --> 00:02:30.590
 and the log review tab shows the queue
 while the review stays a recorded procedure.
 
 39
-00:02:31.190 --> 00:02:35.640
+00:02:30.590 --> 00:02:35.040
 Entra Health is a link-out, because
 its alerts aren't in Log Analytics.
 
 40
-00:02:35.640 --> 00:02:41.060
+00:02:35.040 --> 00:02:40.460
 And the catalog tasks live in the
 I T S M tool's own dashboards.
 
 41
-00:02:44.810 --> 00:02:46.998
+00:02:44.210 --> 00:02:46.398
 What's available in G C C?
 
 42
-00:02:46.998 --> 00:02:52.644
+00:02:46.398 --> 00:02:52.044
 G C C Moderate uses the commercial Entra
 service and pairs with commercial Azure, so
 
 43
-00:02:52.644 --> 00:02:58.210
+00:02:52.044 --> 00:02:57.610
 the workspace, the workbook and the Logs
 Ingestion API are all in commercial Azure.
 
 44
-00:02:58.210 --> 00:03:01.035
+00:02:57.610 --> 00:03:00.435
 Sentinel workbooks are
 generally available there.
 
 45
-00:03:01.035 --> 00:03:04.915
+00:03:00.435 --> 00:03:04.315
 Entra and Intune both send
 their logs to the workspace;
 
 46
-00:03:04.915 --> 00:03:10.347
+00:03:04.315 --> 00:03:09.747
 Microsoft says Intune in G C C is the
 same instance as the commercial service.
 
 47
-00:03:10.347 --> 00:03:15.522
+00:03:09.747 --> 00:03:14.922
 Defender X D R alerts and incidents
 are generally available for G C C.
 
 48
-00:03:15.522 --> 00:03:18.233
+00:03:14.922 --> 00:03:17.633
 The Defender portal's
 connector overview is a
 
 49
-00:03:18.233 --> 00:03:20.872
+00:03:17.633 --> 00:03:20.272
 commercial-cloud preview,
 so it isn't assumed.
 
 50
-00:03:20.872 --> 00:03:25.031
+00:03:20.272 --> 00:03:24.431
 And Entra Health monitoring and
 Connect Health are not yet specified,
 
 51
-00:03:25.031 --> 00:03:26.960
+00:03:24.431 --> 00:03:26.360
 so their tabs are link-outs.
 
 52
-00:03:30.710 --> 00:03:31.635
+00:03:30.110 --> 00:03:31.035
 Who does what?
 
 53
-00:03:31.635 --> 00:03:34.625
+00:03:31.035 --> 00:03:34.025
 Security operations is
 accountable for the sources,
 
 54
-00:03:34.625 --> 00:03:38.635
+00:03:34.025 --> 00:03:38.035
 the template and the deployment, and
 for the telemetry tab each morning.
 
 55
-00:03:38.635 --> 00:03:42.620
+00:03:38.035 --> 00:03:42.020
 Identity engineering connects
 the Entra logs and the probe,
 
 56
-00:03:42.620 --> 00:03:45.648
+00:03:42.020 --> 00:03:45.048
 and supplies the emergency
 access object I D's.
 
 57
-00:03:45.648 --> 00:03:50.810
+00:03:45.048 --> 00:03:50.210
 The endpoint platform owner connects Intune
 and supplies the compliance state value.
 
 58
-00:03:50.810 --> 00:03:53.698
+00:03:50.210 --> 00:03:53.098
 The operators read
 their own family's tabs.
 
 59
-00:03:53.698 --> 00:03:56.728
+00:03:53.098 --> 00:03:56.128
 And the security officer
 is consulted on each plan,
 
 60
-00:03:56.728 --> 00:04:01.630
+00:03:56.128 --> 00:04:01.030
 approving its hash in the change record,
 and is accountable for the evidence.
 
 61
-00:04:05.380 --> 00:04:06.692
+00:04:04.780 --> 00:04:06.092
 Now the six steps.
 
 62
-00:04:06.692 --> 00:04:08.905
+00:04:06.092 --> 00:04:08.305
 Step 1 connects the sources.
 
 63
-00:04:08.905 --> 00:04:14.168
+00:04:08.305 --> 00:04:13.568
 An Entra diagnostic setting sends sign-in,
 audit and risk logs to the workspace.
 
 64
-00:04:14.168 --> 00:04:18.003
+00:04:13.568 --> 00:04:17.403
 Intune's diagnostic settings
 send the compliance export,
 
 65
-00:04:18.003 --> 00:04:20.480
+00:04:17.403 --> 00:04:19.880
 once a day, up to forty-eight hours late.
 
 66
-00:04:20.480 --> 00:04:24.121
+00:04:19.880 --> 00:04:23.521
 The Defender X D R connector
 brings incidents and alerts,
 
 67
-00:04:24.121 --> 00:04:27.064
+00:04:23.521 --> 00:04:26.464
 including those it collects
 from Purview D L P.
 
 68
-00:04:27.064 --> 00:04:29.930
+00:04:26.464 --> 00:04:29.330
 Health monitoring is
 turned on for Sentinel.
 
 69
-00:04:29.930 --> 00:04:34.128
+00:04:29.330 --> 00:04:33.528
 And the morning synchronization
 probe gets its own custom table,
 
 70
-00:04:34.128 --> 00:04:36.693
+00:04:33.528 --> 00:04:36.093
 written through the Logs Ingestion API.
 
 71
-00:04:36.693 --> 00:04:40.024
+00:04:36.093 --> 00:04:39.424
 The check: a read-only
 reachability test reports
 
 72
-00:04:40.024 --> 00:04:43.210
+00:04:39.424 --> 00:04:42.610
 each table as delivering, late or missing.
 
 73
-00:04:46.960 --> 00:04:49.861
+00:04:46.360 --> 00:04:49.261
 Step 2 fills one settings
 file per environment,
 
 74
-00:04:49.861 --> 00:04:52.464
+00:04:49.261 --> 00:04:51.864
 and checks the two values
 the kit can't know:
 
 75
-00:04:52.464 --> 00:04:57.448
+00:04:51.864 --> 00:04:56.848
 the compliance state your workspace records,
 and the product names of D L P alerts.
 
 76
-00:04:57.448 --> 00:04:59.176
+00:04:56.848 --> 00:04:58.576
 Those values, and every I D,
 
 77
-00:04:59.176 --> 00:05:03.785
+00:04:58.576 --> 00:05:03.185
 go into the deployed workbook's
 parameters, never into the template.
 
 78
-00:05:03.785 --> 00:05:07.854
+00:05:03.185 --> 00:05:07.254
 Then the validator runs ten checks on
 the template, which matters because
 
 79
-00:05:07.854 --> 00:05:12.523
+00:05:07.254 --> 00:05:11.923
 Microsoft says an exported template embeds
 sensitive values that should be masked.
 
 80
-00:05:12.523 --> 00:05:15.874
+00:05:11.923 --> 00:05:15.274
 Step 3 plans the deployment
 of one workbook resource
 
 81
-00:05:15.874 --> 00:05:19.073
+00:05:15.274 --> 00:05:18.473
 and previews it with what-if,
 which changes nothing.
 
 82
-00:05:19.073 --> 00:05:21.565
+00:05:18.473 --> 00:05:20.965
 A second person approves the plan's hash,
 
 83
-00:05:21.565 --> 00:05:24.790
+00:05:20.965 --> 00:05:24.190
 and the kit refuses any
 plan that would delete.
 
 84
-00:05:28.540 --> 00:05:29.903
+00:05:27.940 --> 00:05:29.303
 Step 4 deploys.
 
 85
-00:05:29.903 --> 00:05:34.260
+00:05:29.303 --> 00:05:33.660
 Saving a shared workbook needs the
 workbooks write permission, which Workbook
 
 86
-00:05:34.260 --> 00:05:36.637
+00:05:33.660 --> 00:05:36.037
 Contributor grants, and deploying through
 
 87
-00:05:36.637 --> 00:05:39.278
+00:05:36.037 --> 00:05:38.678
 Resource Manager also
 needs deployment rights.
 
 88
-00:05:39.278 --> 00:05:43.577
+00:05:38.678 --> 00:05:42.977
 Grant both on the workbook's resource
 group only, for the deployment window.
 
 89
-00:05:43.577 --> 00:05:47.241
+00:05:42.977 --> 00:05:46.641
 Readers need Workbook Reader and
 their own access to the data.
 
 90
-00:05:47.241 --> 00:05:50.343
+00:05:46.641 --> 00:05:49.743
 The test stage runs preflight,
 plans with what-if,
 
 91
-00:05:50.343 --> 00:05:53.678
+00:05:49.743 --> 00:05:53.078
 deploys the approved plan,
 and checks reachability.
 
 92
-00:05:53.678 --> 00:05:56.803
+00:05:53.078 --> 00:05:56.203
 It's a go when each of those
 has a passing live record.
 
 93
-00:05:56.803 --> 00:05:58.939
+00:05:56.203 --> 00:05:58.339
 Production runs the same commands,
 
 94
-00:05:58.939 --> 00:06:03.065
+00:05:58.339 --> 00:06:02.465
 and the preflight refuses it until
 the test stage's evidence passes.
 
 95
-00:06:03.065 --> 00:06:05.630
+00:06:02.465 --> 00:06:05.030
 Rolling back deletes a view only.
 
 96
-00:06:09.380 --> 00:06:11.418
+00:06:08.780 --> 00:06:10.818
 Step 5 is the morning read.
 
 97
-00:06:11.418 --> 00:06:13.906
+00:06:10.818 --> 00:06:13.306
 Telemetry completeness comes first,
 
 98
-00:06:13.906 --> 00:06:17.680
+00:06:13.306 --> 00:06:17.080
 because a dark source makes
 every tab over it unreliable.
 
 99
-00:06:17.680 --> 00:06:21.937
+00:06:17.080 --> 00:06:21.337
 Then each tab in turn: each
 row that needs work becomes,
 
 100
-00:06:21.937 --> 00:06:24.742
+00:06:21.337 --> 00:06:24.142
 or is matched to, a task with an owner.
 
 101
-00:06:24.742 --> 00:06:28.642
+00:06:24.142 --> 00:06:28.042
 Entra Health and the I T S M
 queue are worked where they live.
 
 102
-00:06:28.642 --> 00:06:33.629
+00:06:28.042 --> 00:06:33.029
 The workbook never closes a task, pages
 anyone, or proves a check happened.
 
 103
-00:06:33.629 --> 00:06:38.628
+00:06:33.029 --> 00:06:38.028
 Step 6 keeps the evidence: the kit
 records the validation, preflight, plan,
 
 104
-00:06:38.628 --> 00:06:43.792
+00:06:38.028 --> 00:06:43.192
 deployment, reachability check and
 rollback plan, each hashed and chained.
 
 105
-00:06:43.792 --> 00:06:46.067
+00:06:43.192 --> 00:06:45.467
 A rendered view is never recorded.
 
 106
-00:06:46.067 --> 00:06:48.620
+00:06:45.467 --> 00:06:48.020
 And a portal edit comes back as an export,
 
 107
-00:06:48.620 --> 00:06:52.540
+00:06:48.020 --> 00:06:51.940
 is validated, and replaces
 the template through review.
 
 108
-00:06:56.290 --> 00:07:00.155
+00:06:55.690 --> 00:06:59.555
 The workbook supports the monitoring
 the daily checks already do;
 
 109
-00:07:00.155 --> 00:07:01.490
+00:06:59.555 --> 00:07:00.890
 it doesn't add a control.
 
 110
-00:07:01.490 --> 00:07:05.851
+00:07:00.890 --> 00:07:05.251
 Its records support configuration and
 change control for the template and the
 
 111
-00:07:05.851 --> 00:07:08.229
+00:07:05.251 --> 00:07:07.629
 deployment, and continuous monitoring for
 
 112
-00:07:08.229 --> 00:07:10.740
+00:07:07.629 --> 00:07:10.140
 the reachability check;
 the assessor decides.
 
 113
-00:07:10.740 --> 00:07:13.733
+00:07:10.140 --> 00:07:13.133
 The biggest dangers are a
 dashboard taken as evidence,
 
 114
-00:07:13.733 --> 00:07:16.128
+00:07:13.133 --> 00:07:15.528
 and a missing connector
 that looks healthy.
 
 115
-00:07:16.128 --> 00:07:20.527
+00:07:15.528 --> 00:07:19.927
 The guards are the banner, the refused
 render, and stale shown as stale.
 
 116
-00:07:20.527 --> 00:07:23.787
+00:07:19.927 --> 00:07:23.187
 Some things couldn't be
 verified on Microsoft Learn:
 
 117
-00:07:23.787 --> 00:07:27.651
+00:07:23.187 --> 00:07:27.051
 the workbook's item format field
 by field, G C C for Entra Health
 
 118
-00:07:27.651 --> 00:07:31.516
+00:07:27.051 --> 00:07:30.916
 and Connect Health, and the values
 your own workspace records.
 
 119
-00:07:31.516 --> 00:07:34.830
+00:07:30.916 --> 00:07:34.230
 The developer workbook and the
 learning path take it from here.
