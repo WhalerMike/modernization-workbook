@@ -1,0 +1,312 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.732
+Welcome to Module 2 of The
+Daily Checks on One Dashboard:
+
+2
+00:00:03.732 --> 00:00:07.013
+reading it, deploying it,
+and keeping the evidence.
+
+3
+00:00:07.013 --> 00:00:09.701
+A dashboard's most
+dangerous state isn't red:
+
+4
+00:00:09.701 --> 00:00:12.538
+it's green over a source
+that stopped arriving.
+
+5
+00:00:12.538 --> 00:00:17.239
+In this module you read the workbook the
+way an operator should, telemetry first;
+
+6
+00:00:17.239 --> 00:00:20.729
+deploy it the way a change should
+go, previewed and approved;
+
+7
+00:00:20.729 --> 00:00:23.650
+and keep the evidence the
+way an assessor needs it.
+
+8
+00:00:23.650 --> 00:00:25.938
+About forty minutes, plus a lab.
+
+9
+00:00:25.938 --> 00:00:29.240
+The module is a draft
+awaiting the owner's review.
+
+10
+00:00:32.990 --> 00:00:38.116
+By the end of this module you'll be able
+to read each tab as attention, clear,
+
+11
+00:00:38.116 --> 00:00:43.669
+stale, no data or link-out; explain why an
+empty queue over a stale source is stale;
+
+12
+00:00:43.669 --> 00:00:48.881
+run the reachability check and read
+its result; deploy by an approved hash,
+
+13
+00:00:48.881 --> 00:00:52.490
+and roll back; and say what
+is, and isn't, evidence.
+
+14
+00:00:56.240 --> 00:00:58.403
+Unit 1: reading the workbook.
+
+15
+00:00:58.403 --> 00:01:02.546
+Telemetry completeness comes
+first, because every other tab
+
+16
+00:01:02.546 --> 00:01:06.527
+depends on its sources: a dark
+source is a high-severity task.
+
+17
+00:01:06.527 --> 00:01:10.849
+Then each tab in turn, and each
+row that needs work becomes,
+
+18
+00:01:10.849 --> 00:01:13.515
+or is matched to, a task with an owner.
+
+19
+00:01:13.515 --> 00:01:17.415
+Entra Health and the I T S M
+queue are worked where they live.
+
+20
+00:01:17.415 --> 00:01:22.402
+The workbook never closes a task, pages
+anyone, or proves a check happened.
+
+21
+00:01:22.402 --> 00:01:27.452
+And the rule: an empty queue over a
+stale source reads stale, never clear.
+
+22
+00:01:27.452 --> 00:01:31.910
+A missed probe shows yesterday's
+verdict, so its tab is stale too.
+
+23
+00:01:35.660 --> 00:01:37.398
+Unit 2: deploying it.
+
+24
+00:01:37.398 --> 00:01:39.910
+What-if previews the
+change and makes none,
+
+25
+00:01:39.910 --> 00:01:43.786
+and it needs the same deployment
+rights as the deployment itself.
+
+26
+00:01:43.786 --> 00:01:46.730
+The plan's hash is what
+a second person approves,
+
+27
+00:01:46.730 --> 00:01:51.110
+and the kit deploys nothing else; it
+refuses any plan that would delete.
+
+28
+00:01:51.110 --> 00:01:54.301
+The deployer holds Workbook
+Contributor and deployment
+
+29
+00:01:54.301 --> 00:01:56.960
+rights on the resource
+group only, for the window.
+
+30
+00:01:56.960 --> 00:02:00.485
+Rollback is a redeploy of
+the previous approved plan,
+
+31
+00:02:00.485 --> 00:02:03.970
+or a delete that removes
+a view and nothing else.
+
+32
+00:02:07.720 --> 00:02:09.782
+Unit 3: the evidence.
+
+33
+00:02:09.782 --> 00:02:14.399
+The kit records the validation, the
+preflight, the plan, the deployment,
+
+34
+00:02:14.399 --> 00:02:17.424
+the reachability check
+and the rollback plan,
+
+35
+00:02:17.424 --> 00:02:21.245
+each hashed and chained, with
+its controls and indicators.
+
+36
+00:02:21.245 --> 00:02:26.045
+It refuses a render, with the words:
+a rendered view is not evidence.
+
+37
+00:02:26.045 --> 00:02:28.845
+A screenshot of a tab
+isn't evidence either.
+
+38
+00:02:28.845 --> 00:02:32.690
+And at the go or no-go,
+only live records count.
+
+39
+00:02:36.440 --> 00:02:37.365
+Who does what?
+
+40
+00:02:37.365 --> 00:02:42.690
+Operators read telemetry first, then
+their family's tabs, and open the tasks.
+
+41
+00:02:42.690 --> 00:02:46.752
+Security operations plans,
+deploys and checks reachability.
+
+42
+00:02:46.752 --> 00:02:50.191
+A second person approves the
+plan's hash in the change record.
+
+43
+00:02:50.191 --> 00:02:55.302
+And the security officer keeps the evidence
+folder, never a render or a screenshot.
+
+44
+00:02:55.302 --> 00:02:59.047
+The plan and what-if support change
+control and impact analysis;
+
+45
+00:02:59.047 --> 00:03:03.144
+the reachability record supports
+continuous and system monitoring;
+
+46
+00:03:03.144 --> 00:03:07.241
+and the chained records support the
+protection of audit information.
+
+47
+00:03:07.241 --> 00:03:09.110
+The assessor decides.
+
+48
+00:03:12.860 --> 00:03:18.123
+Lab 1 is in the developer workbook's
+Chapter 3, on a laptop with no tenant.
+
+49
+00:03:18.123 --> 00:03:21.025
+You render the morning
+of November sixteenth,
+
+50
+00:03:21.025 --> 00:03:25.915
+when the Entra diagnostic setting stopped
+overnight and the probe didn't run:
+
+51
+00:03:25.915 --> 00:03:31.034
+four telemetry rows flagged, and sync,
+risk, emergency access and grants all stale.
+
+52
+00:03:31.034 --> 00:03:34.860
+Then you render the next morning and
+see what the empty queues were hiding.
+
+53
+00:03:34.860 --> 00:03:39.610
+And when you try to record the first
+render as evidence, the kit refuses.
+
+54
+00:03:43.360 --> 00:03:47.508
+Lab 2 runs the reachability check
+against a test workspace, then,
+
+55
+00:03:47.508 --> 00:03:51.970
+with a change record, the runbook's
+first stage in a test subscription:
+
+56
+00:03:51.970 --> 00:03:55.022
+never production, and the
+authors haven't run it.
+
+57
+00:03:55.022 --> 00:03:56.148
+Two questions.
+
+58
+00:03:56.148 --> 00:03:58.751
+On the morning the sign-in logs stopped,
+
+59
+00:03:58.751 --> 00:04:01.760
+the risk tab returns no
+rows: what does it show?
+
+60
+00:04:01.760 --> 00:04:05.535
+Stale, because its source is
+past its sixty-minute limit.
+
+61
+00:04:05.535 --> 00:04:08.647
+And when the what-if shows a
+delete, what does the kit do?
+
+62
+00:04:08.647 --> 00:04:12.560
+It refuses the plan: the workbook
+deployment never deletes.
+
+63
+00:04:12.560 --> 00:04:17.260
+In summary: you read the workbook
+telemetry first, deployed it previewed and
+
+64
+00:04:17.260 --> 00:04:22.170
+approved by hash, and kept the checks'
+records as the evidence, never the picture.

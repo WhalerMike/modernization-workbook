@@ -1,0 +1,355 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.994
+Welcome to Module 1 of the learning
+path The Daily Checks on One Dashboard:
+
+2
+00:00:04.994 --> 00:00:07.425
+one workbook, one tab per daily check.
+
+3
+00:00:07.425 --> 00:00:10.460
+In about forty minutes, plus
+a lab in a test workspace,
+
+4
+00:00:10.460 --> 00:00:14.483
+you'll see which daily checks a
+workbook can show and from which table,
+
+5
+00:00:14.483 --> 00:00:17.800
+which ones it can only link to,
+and how the workbook is kept
+
+6
+00:00:17.800 --> 00:00:21.400
+as a reviewed file rather than
+something edited in the portal.
+
+7
+00:00:21.400 --> 00:00:24.710
+The module is a draft
+awaiting the owner's review.
+
+8
+00:00:28.460 --> 00:00:29.960
+Here's what you'll be able to do.
+
+9
+00:00:29.960 --> 00:00:34.710
+Name the dashboard options in Azure,
+and say why the design is one workbook.
+
+10
+00:00:34.710 --> 00:00:39.885
+Say, for each daily check, its table
+or its link-out, and how well it fits.
+
+11
+00:00:39.885 --> 00:00:43.298
+Give each source's availability in G C C.
+
+12
+00:00:43.298 --> 00:00:46.282
+And build the workbook's
+template from the manifest,
+
+13
+00:00:46.282 --> 00:00:48.572
+then validate an export from the portal.
+
+14
+00:00:48.572 --> 00:00:53.165
+You'll need the operator runbook's chapter
+on the daily checks as a prerequisite,
+
+15
+00:00:53.165 --> 00:00:55.830
+and PowerShell 7 with Pester for the lab.
+
+16
+00:00:59.580 --> 00:01:00.405
+Unit 1.
+
+17
+00:01:00.405 --> 00:01:04.389
+Microsoft's guidance compares
+workbooks, portal dashboards,
+
+18
+00:01:04.389 --> 00:01:09.467
+Dashboards with Grafana, which is a preview,
+Azure Managed Grafana and Power BI.
+
+19
+00:01:09.467 --> 00:01:12.418
+Workbooks read the widest
+set of Azure data and
+
+20
+00:01:12.418 --> 00:01:15.293
+can be managed as Resource
+Manager templates.
+
+21
+00:01:15.293 --> 00:01:20.123
+Microsoft 365 has built-in views in
+each admin center, but no single
+
+22
+00:01:20.123 --> 00:01:25.217
+custom dashboard: a view across them
+needs their logs in Log Analytics.
+
+23
+00:01:25.217 --> 00:01:28.378
+So the design is one workbook
+in the Sentinel workspace,
+
+24
+00:01:28.378 --> 00:01:31.970
+and a link out where a check's
+data stays in another portal.
+
+25
+00:01:35.720 --> 00:01:36.558
+Unit 2.
+
+26
+00:01:36.558 --> 00:01:42.857
+Eight tabs query tables; two link out:
+Entra Health, and the I T S M task queue.
+
+27
+00:01:42.857 --> 00:01:46.467
+Two of the eight are partial:
+the grants tab lists grants,
+
+28
+00:01:46.467 --> 00:01:49.448
+but the match to a ticket
+stays in the I T S M tool,
+
+29
+00:01:49.448 --> 00:01:54.783
+and the log review tab shows the queue
+while the review stays a recorded procedure.
+
+30
+00:01:54.783 --> 00:02:01.164
+On availability: workbooks, Entra and
+Intune logs, Defender X D R alerts and the
+
+31
+00:02:01.164 --> 00:02:07.445
+Logs Ingestion API are all available with
+a G C C tenant and commercial Azure.
+
+32
+00:02:07.445 --> 00:02:10.156
+The Defender portal's
+connector overview is a
+
+33
+00:02:10.156 --> 00:02:12.795
+commercial-cloud preview,
+so it isn't assumed.
+
+34
+00:02:12.795 --> 00:02:17.200
+And Entra Health monitoring and
+Connect Health are not yet specified.
+
+35
+00:02:20.950 --> 00:02:21.825
+Unit 3.
+
+36
+00:02:21.825 --> 00:02:26.299
+The template is built from the
+manifest and one K Q L file per query,
+
+37
+00:02:26.299 --> 00:02:30.938
+and a validator runs ten checks on
+it, or on any export from the portal.
+
+38
+00:02:30.938 --> 00:02:32.712
+Four matter most in practice.
+
+39
+00:02:32.712 --> 00:02:36.024
+A widened look-back makes a
+month of data look like today's.
+
+40
+00:02:36.024 --> 00:02:39.425
+One query on another
+workspace mixes environments.
+
+41
+00:02:39.425 --> 00:02:42.300
+Without the banner, a tab reads as proof.
+
+42
+00:02:42.300 --> 00:02:46.103
+And an export embeds I D's:
+Microsoft says to mask them,
+
+43
+00:02:46.103 --> 00:02:48.580
+and the kit simply fails them.
+
+44
+00:02:52.330 --> 00:02:53.392
+Who is this for?
+
+45
+00:02:53.392 --> 00:02:57.793
+Security operations takes the sources,
+the template and its validator.
+
+46
+00:02:57.793 --> 00:03:02.205
+Operators learn which tab shows their
+family's check, and which ones link out.
+
+47
+00:03:02.205 --> 00:03:07.380
+An I S S O reviewer can read the
+introduction and summary and skip the labs.
+
+48
+00:03:07.380 --> 00:03:12.151
+Two federal requirements: the reachability
+record supports continuous and system
+
+49
+00:03:12.151 --> 00:03:16.718
+monitoring, and the validation record
+supports the baseline and change control.
+
+50
+00:03:16.718 --> 00:03:20.680
+The steps support these
+controls; the assessor decides.
+
+51
+00:03:24.430 --> 00:03:30.268
+Lab 1 runs on a laptop with no tenant, in
+the developer workbook's Chapters 1 and 2.
+
+52
+00:03:30.268 --> 00:03:33.927
+You'll list the ten tabs and
+open the Entra Health tab:
+
+53
+00:03:33.927 --> 00:03:37.330
+a link-out, with no table,
+to the Entra admin center.
+
+54
+00:03:37.330 --> 00:03:39.792
+Then you'll validate a
+copy someone exported
+
+55
+00:03:39.792 --> 00:03:42.055
+after editing the workbook in the portal.
+
+56
+00:03:42.055 --> 00:03:45.735
+Four edits, four failures:
+a query on a workspace path,
+
+57
+00:03:45.735 --> 00:03:51.320
+a thirty-day look-back, a missing banner,
+and a subscription path in the file.
+
+58
+00:03:55.070 --> 00:04:00.395
+Lab 2 runs in a test workspace, never
+production, and the authors haven't run it.
+
+59
+00:04:00.395 --> 00:04:05.024
+From Chapter 1, list which of the
+manifest's tables the test workspace has;
+
+60
+00:04:05.024 --> 00:04:08.033
+each missing table is a
+source still to connect.
+
+61
+00:04:08.033 --> 00:04:13.016
+From Chapter 2, open the template in
+the portal through the Advanced Editor,
+
+62
+00:04:13.016 --> 00:04:16.794
+save a test copy, edit it, export
+it, and validate the export.
+
+63
+00:04:16.794 --> 00:04:18.550
+Then delete the copy.
+
+64
+00:04:22.300 --> 00:04:23.375
+Two questions.
+
+65
+00:04:23.375 --> 00:04:27.687
+First: Entra Health's alerts are a daily
+check, so what does their tab show?
+
+66
+00:04:27.687 --> 00:04:32.563
+A query over the sign-in logs, a link out
+to the Entra admin center, or nothing?
+
+67
+00:04:32.563 --> 00:04:35.660
+It's a link out, because
+the alerts aren't in Log
+
+68
+00:04:35.660 --> 00:04:39.762
+Analytics and their G C C
+availability is not yet specified.
+
+69
+00:04:39.762 --> 00:04:44.874
+Second: an export has the workspace's
+path saved in it; which check fails?
+
+70
+00:04:44.874 --> 00:04:47.650
+Check ten, because the
+deployment plan fills
+
+71
+00:04:47.650 --> 00:04:50.125
+I D's per environment, never the template.
+
+72
+00:04:50.125 --> 00:04:53.676
+In summary: every daily check
+now has a tab or a link-out,
+
+73
+00:04:53.676 --> 00:04:58.437
+every source its availability, and
+the workbook is a reviewed template.
+
+74
+00:04:58.437 --> 00:05:02.380
+Module 2 reads it, deploys
+it, and keeps the evidence.

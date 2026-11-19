@@ -1,0 +1,32 @@
+[
+ {
+  "slide": 3,
+  "title": "Unit 1: reading the workbook",
+  "links": [
+   {
+    "text": "Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Who reads, who approves, who keeps",
+  "links": [
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Lab 1: the morning the logs stopped",
+  "links": [
+   {
+    "text": "Ch 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.html"
+   }
+  ]
+ }
+]

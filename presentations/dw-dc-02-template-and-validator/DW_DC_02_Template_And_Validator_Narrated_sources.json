@@ -1,0 +1,100 @@
+[
+ {
+  "slide": 2,
+  "title": "Why keep the workbook as a file",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What it leaves to you",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.html"
+   },
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The template, and the ten checks",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Who edits, who reviews, who deploys",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Lab 1: the build, and all 63 checks",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: four edits in a portal export",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 1: record the validation",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 2: round-trip through the portal",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Evidence, dangers and the checklist",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.html"
+   },
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

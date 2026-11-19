@@ -1,0 +1,116 @@
+[
+ {
+  "slide": 2,
+  "title": "The operator's morning, before the workbook",
+  "links": [
+   {
+    "text": "Chapters 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.html"
+   },
+   {
+    "text": "04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/04-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Scene 1: ten checks, ten tabs",
+  "links": [
+   {
+    "text": "Chapter 01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "Check 1: what does an empty tab prove?",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "Scene 2: an export edited in the portal",
+  "links": [
+   {
+    "text": "Chapter 02",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Who reads which tab each morning",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Scene 3: the morning the logs stopped",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Try it: render the first morning",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Scene 4: what the empty queues were hiding",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Check 2: can the render be the evidence?",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Scene 5: a refused render, a kept record",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Scene 6: test, then production, by hash",
+  "links": [
+   {
+    "text": "Chapter 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/04-deploying-to-test-and-production.html"
+   }
+  ]
+ }
+]

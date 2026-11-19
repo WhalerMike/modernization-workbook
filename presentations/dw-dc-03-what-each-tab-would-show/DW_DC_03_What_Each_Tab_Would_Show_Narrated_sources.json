@@ -1,0 +1,106 @@
+[
+ {
+  "slide": 2,
+  "title": "Why an empty queue proves nothing",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "What Learn and the runbook give you",
+  "links": [
+   {
+    "text": "az monitor log-analytics",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#az-monitor-log-analytics"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The render rules, in order",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What it leaves to you, and reachability",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Who reads it, and who fixes the source",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Lab 1: the morning the logs stopped",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Lab 1: the next morning",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Lab 1: reachability, and a refused render",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Lab 1: record what the check found",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Lab 2, evidence and dangers",
+  "links": [
+   {
+    "text": "Chapter 03",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.html"
+   },
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

@@ -7175,6 +7175,77 @@
   "sources": "presentations/pn-story-one-retirement-notice/PN_Story_One_Retirement_Notice_Narrated_sources.json"
  },
  {
+  "id": "DC_Story_Two_Mornings_Narrated",
+  "title": "Building the Daily Checks Workbook — the story deck: Two Mornings, One Workspace",
+  "group": "book",
+  "minutes": 6,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DC_Story_Two_Mornings_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dc-story-two-mornings/DC_Story_Two_Mornings_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dc-story-two-mornings/DC_Story_Two_Mornings_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/daily-checks/index.html",
+  "source": "docs/project-plans/developer-workbooks/daily-checks/index.md",
+  "kits": [
+   {
+    "name": "daily-checks-workbook",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/daily-checks-workbook",
+    "zip": "downloads/daily-checks-workbook-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Two Mornings, One Workspace"
+   ],
+   [
+    36,
+    "The operator's morning, before the workbook"
+   ],
+   [
+    71,
+    "Scene 1: ten checks, ten tabs"
+   ],
+   [
+    104,
+    "Check 1: what does an empty tab prove?"
+   ],
+   [
+    127,
+    "Scene 2: an export edited in the portal"
+   ],
+   [
+    160,
+    "Who reads which tab each morning"
+   ],
+   [
+    195,
+    "Scene 3: the morning the logs stopped"
+   ],
+   [
+    231,
+    "Try it: render the first morning"
+   ],
+   [
+    253,
+    "Scene 4: what the empty queues were hiding"
+   ],
+   [
+    282,
+    "Check 2: can the render be the evidence?"
+   ],
+   [
+    305,
+    "Scene 5: a refused render, a kept record"
+   ],
+   [
+    336,
+    "Scene 6: test, then production, by hash"
+   ]
+  ],
+  "sources": "presentations/dc-story-two-mornings/DC_Story_Two_Mornings_Narrated_sources.json"
+ },
+ {
   "id": "TTM_Story_One_Drift_Case_Narrated",
   "title": "Building Ticket-to-Machine — One Drift Case, End to End: narrated story deck",
   "group": "book",
@@ -7884,6 +7955,73 @@
    ]
   ],
   "sources": "presentations/guide-service-account-migration/Guide_Service_Account_Migration_Narrated_sources.json"
+ },
+ {
+  "id": "Guide_Daily_Checks_Dashboard_Narrated",
+  "title": "Companion guide — The Daily Checks on One Dashboard: An Implementation Guide",
+  "group": "book",
+  "minutes": 8,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Guide_Daily_Checks_Dashboard_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/guide-daily-checks-dashboard/Guide_Daily_Checks_Dashboard_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-daily-checks-dashboard/Guide_Daily_Checks_Dashboard_Narration_Script.md",
+  "page": "docs/books/guides/daily-checks-dashboard-implementation.html",
+  "source": "docs/books/guides/daily-checks-dashboard-implementation.md",
+  "kits": [
+   {
+    "name": "daily-checks-workbook",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/daily-checks-workbook",
+    "zip": "downloads/daily-checks-workbook-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "The daily checks on one dashboard"
+   ],
+   [
+    42,
+    "A dashboard is a picture of the evidence"
+   ],
+   [
+    80,
+    "Dashboards in Azure and Microsoft 365"
+   ],
+   [
+    123,
+    "Ten daily checks, ten tabs"
+   ],
+   [
+    164,
+    "GCC availability, source by source"
+   ],
+   [
+    210,
+    "Who does what: the RACI"
+   ],
+   [
+    245,
+    "Step 1: connect the sources"
+   ],
+   [
+    286,
+    "Steps 2 and 3: validate, then preview"
+   ],
+   [
+    328,
+    "Step 4: deploy to test, then production"
+   ],
+   [
+    369,
+    "Steps 5 and 6: read it, and keep the evidence"
+   ],
+   [
+    416,
+    "Requirements, dangers and what's unverified"
+   ]
+  ],
+  "sources": "presentations/guide-daily-checks-dashboard/Guide_Daily_Checks_Dashboard_Narrated_sources.json"
  },
  {
   "id": "Guide_Zero_Trust_Assessment_Narrated",
@@ -16082,6 +16220,266 @@
   "sources": "presentations/dw-adm-09-drift-pipelines-evidence/DW_ADM_09_Drift_Pipelines_Evidence_Narrated_sources.json"
  },
  {
+  "id": "DW_DC_01_Daily_Checks_Where_Each_Lives_Narrated",
+  "title": "Building the Daily Checks Workbook, Chapter 01 — The Daily Checks and Where Each One Lives: narrated tour",
+  "group": "developer",
+  "minutes": 6,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_DC_01_Daily_Checks_Where_Each_Lives_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-dc-01-daily-checks-where-each-lives/DW_DC_01_Daily_Checks_Where_Each_Lives_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-01-daily-checks-where-each-lives/DW_DC_01_Daily_Checks_Where_Each_Lives_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.html",
+  "source": "docs/project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.md",
+  "kits": [
+   {
+    "name": "daily-checks-workbook",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/daily-checks-workbook",
+    "zip": "downloads/daily-checks-workbook-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 01: The Daily Checks and Where Each One Lives"
+   ],
+   [
+    35,
+    "Why one row per daily check"
+   ],
+   [
+    69,
+    "What Microsoft Learn gives you"
+   ],
+   [
+    111,
+    "What it leaves to you"
+   ],
+   [
+    150,
+    "The manifest: ten tabs, one per check"
+   ],
+   [
+    194,
+    "Who keeps the manifest, and the data"
+   ],
+   [
+    227,
+    "Lab 1: list the tabs"
+   ],
+   [
+    253,
+    "Lab 1: a link-out tab and a partial one"
+   ],
+   [
+    286,
+    "Lab 1: the query and the freshness limits"
+   ],
+   [
+    318,
+    "Lab 2: which tables does the workspace have?"
+   ],
+   [
+    348,
+    "Evidence, dangers and the checklist"
+   ]
+  ],
+  "sources": "presentations/dw-dc-01-daily-checks-where-each-lives/DW_DC_01_Daily_Checks_Where_Each_Lives_Narrated_sources.json"
+ },
+ {
+  "id": "DW_DC_02_Template_And_Validator_Narrated",
+  "title": "Building the Daily Checks Workbook, Chapter 02 — The Workbook Template and Its Validator: narrated tour",
+  "group": "developer",
+  "minutes": 6,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_DC_02_Template_And_Validator_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-dc-02-template-and-validator/DW_DC_02_Template_And_Validator_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-02-template-and-validator/DW_DC_02_Template_And_Validator_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.html",
+  "source": "docs/project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.md",
+  "kits": [
+   {
+    "name": "daily-checks-workbook",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/daily-checks-workbook",
+    "zip": "downloads/daily-checks-workbook-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 02: The Workbook Template and Its Validator"
+   ],
+   [
+    33,
+    "Why keep the workbook as a file"
+   ],
+   [
+    67,
+    "What Microsoft Learn gives you"
+   ],
+   [
+    109,
+    "What it leaves to you"
+   ],
+   [
+    149,
+    "The template, and the ten checks"
+   ],
+   [
+    193,
+    "Who edits, who reviews, who deploys"
+   ],
+   [
+    226,
+    "Lab 1: the build, and all 63 checks"
+   ],
+   [
+    245,
+    "Lab 1: four edits in a portal export"
+   ],
+   [
+    278,
+    "Lab 1: record the validation"
+   ],
+   [
+    300,
+    "Lab 2: round-trip through the portal"
+   ],
+   [
+    337,
+    "Evidence, dangers and the checklist"
+   ]
+  ],
+  "sources": "presentations/dw-dc-02-template-and-validator/DW_DC_02_Template_And_Validator_Narrated_sources.json"
+ },
+ {
+  "id": "DW_DC_03_What_Each_Tab_Would_Show_Narrated",
+  "title": "Building the Daily Checks Workbook, Chapter 03 — What Each Tab Would Show: narrated tour",
+  "group": "developer",
+  "minutes": 6,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_DC_03_What_Each_Tab_Would_Show_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-dc-03-what-each-tab-would-show/DW_DC_03_What_Each_Tab_Would_Show_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-03-what-each-tab-would-show/DW_DC_03_What_Each_Tab_Would_Show_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.html",
+  "source": "docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.md",
+  "kits": [
+   {
+    "name": "daily-checks-workbook",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/daily-checks-workbook",
+    "zip": "downloads/daily-checks-workbook-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 03: What Each Tab Would Show"
+   ],
+   [
+    34,
+    "Why an empty queue proves nothing"
+   ],
+   [
+    70,
+    "What Learn and the runbook give you"
+   ],
+   [
+    108,
+    "The render rules, in order"
+   ],
+   [
+    146,
+    "What it leaves to you, and reachability"
+   ],
+   [
+    186,
+    "Who reads it, and who fixes the source"
+   ],
+   [
+    217,
+    "Lab 1: the morning the logs stopped"
+   ],
+   [
+    256,
+    "Lab 1: the next morning"
+   ],
+   [
+    285,
+    "Lab 1: reachability, and a refused render"
+   ],
+   [
+    314,
+    "Lab 1: record what the check found"
+   ],
+   [
+    339,
+    "Lab 2, evidence and dangers"
+   ]
+  ],
+  "sources": "presentations/dw-dc-03-what-each-tab-would-show/DW_DC_03_What_Each_Tab_Would_Show_Narrated_sources.json"
+ },
+ {
+  "id": "DW_DC_04_Deploying_Test_Production_Narrated",
+  "title": "Building the Daily Checks Workbook, Chapter 04 — Deploying to Test and Production: narrated tour",
+  "group": "developer",
+  "minutes": 5,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_DC_04_Deploying_Test_Production_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-dc-04-deploying-test-production/DW_DC_04_Deploying_Test_Production_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-dc-04-deploying-test-production/DW_DC_04_Deploying_Test_Production_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/daily-checks/04-deploying-to-test-and-production.html",
+  "source": "docs/project-plans/developer-workbooks/daily-checks/04-deploying-to-test-and-production.md",
+  "kits": [
+   {
+    "name": "daily-checks-workbook",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/daily-checks-workbook",
+    "zip": "downloads/daily-checks-workbook-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 04: Deploying to Test and Production"
+   ],
+   [
+    34,
+    "Why the same commands twice"
+   ],
+   [
+    67,
+    "What the stages hold"
+   ],
+   [
+    95,
+    "Who deploys, approves and reads"
+   ],
+   [
+    129,
+    "Plan, with what-if"
+   ],
+   [
+    166,
+    "Deploy only the approved plan"
+   ],
+   [
+    202,
+    "Reachability, rollback plan and evidence"
+   ],
+   [
+    236,
+    "Production, rollback and day two"
+   ],
+   [
+    276,
+    "What each record supports"
+   ]
+  ],
+  "sources": "presentations/dw-dc-04-deploying-test-production/DW_DC_04_Deploying_Test_Production_Narrated_sources.json"
+ },
+ {
   "id": "DW_TTM_01_Loop_Typed_Task_Narrated",
   "title": "Building Ticket-to-Machine, Chapter 01 — The Loop and the Typed Task: narrated tour",
   "group": "developer",
@@ -17887,6 +18285,108 @@
    ]
   ],
   "sources": "presentations/training-azs-module-5/Training_AZS_Module_5_Narrated_sources.json"
+ },
+ {
+  "id": "Training_DC_Module_1_Narrated",
+  "title": "Daily Checks Dashboard learning path, Module 1: One workbook, one tab per daily check",
+  "group": "training",
+  "minutes": 5,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DC_Module_1_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-dc-module-1/Training_DC_Module_1_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dc-module-1/Training_DC_Module_1_Narration_Script.md",
+  "page": "docs/training/daily-checks-dashboard/01-one-workbook-one-tab-per-check.html",
+  "source": "docs/training/daily-checks-dashboard/01-one-workbook-one-tab-per-check.md",
+  "kits": [],
+  "chapters": [
+   [
+    0,
+    "Module 1: One workbook, one tab per check"
+   ],
+   [
+    28,
+    "Objectives: what you'll be able to do"
+   ],
+   [
+    59,
+    "Unit 1: dashboards in Azure and Microsoft 365"
+   ],
+   [
+    95,
+    "Unit 2: ten tabs, and their GCC availability"
+   ],
+   [
+    140,
+    "Unit 3: the template as code"
+   ],
+   [
+    172,
+    "Who this module is for"
+   ],
+   [
+    204,
+    "Lab 1: the tabs, and the edited export"
+   ],
+   [
+    235,
+    "Lab 2: a test workspace"
+   ],
+   [
+    262,
+    "Knowledge check"
+   ]
+  ],
+  "sources": "presentations/training-dc-module-1/Training_DC_Module_1_Narrated_sources.json"
+ },
+ {
+  "id": "Training_DC_Module_2_Narrated",
+  "title": "Daily Checks Dashboard learning path, Module 2: Reading it, deploying it and keeping the evidence",
+  "group": "training",
+  "minutes": 4,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DC_Module_2_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-dc-module-2/Training_DC_Module_2_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dc-module-2/Training_DC_Module_2_Narration_Script.md",
+  "page": "docs/training/daily-checks-dashboard/02-reading-deploying-and-the-evidence.html",
+  "source": "docs/training/daily-checks-dashboard/02-reading-deploying-and-the-evidence.md",
+  "kits": [],
+  "chapters": [
+   [
+    0,
+    "Module 2: Read it, deploy it, keep the evidence"
+   ],
+   [
+    32,
+    "Objectives: what you'll be able to do"
+   ],
+   [
+    56,
+    "Unit 1: reading the workbook"
+   ],
+   [
+    95,
+    "Unit 2: deploying it"
+   ],
+   [
+    127,
+    "Unit 3: the evidence"
+   ],
+   [
+    156,
+    "Who reads, who approves, who keeps"
+   ],
+   [
+    192,
+    "Lab 1: the morning the logs stopped"
+   ],
+   [
+    223,
+    "Lab 2, a knowledge check and the summary"
+   ]
+  ],
+  "sources": "presentations/training-dc-module-2/Training_DC_Module_2_Narrated_sources.json"
  },
  {
   "id": "Training_XDR_Module_1_Narrated",

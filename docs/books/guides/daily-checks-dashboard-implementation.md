@@ -23,7 +23,8 @@ How an agency on Microsoft 365 GCC (Moderate), with its Microsoft Sentinel works
 :::
 
 ::: {.callout-tip}
-## Code and training
+## Watch, present or train
+**Narrated deck (about 8 minutes, captions)**: why a dashboard is a picture of the evidence, what Azure and Microsoft 365 offer for dashboards, the ten daily checks and the tab each one gets, GCC availability source by source, the RACI, then the six steps from connecting the sources to keeping the evidence, the requirements, the dangers and what couldn't be verified, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-daily-checks-dashboard) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Daily_Checks_Dashboard_Narrated). The deck says this guide is a draft awaiting the owner's review.
 **Code:** the developer workbook [*Building the Daily Checks Workbook*](../../project-plans/developer-workbooks/daily-checks/index.md) builds the workbook template, its validator, the fixture renderer and the deployment in `examples/daily-checks-workbook`, with labs on fixtures and in a test subscription.
 **Training:** the learning path [*The Daily Checks on One Dashboard*](../../training/daily-checks-dashboard/index.md) teaches this guide in two modules, each with a lab and a knowledge check.
 :::

@@ -1,0 +1,408 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.787
+Welcome back to Building
+the Daily Checks Workbook.
+
+2
+00:00:02.787 --> 00:00:06.638
+This is Chapter 4: deploying
+to test and production.
+
+3
+00:00:06.638 --> 00:00:10.003
+The same commands twice, with
+a different settings file,
+
+4
+00:00:10.003 --> 00:00:12.125
+and a record of each step in between.
+
+5
+00:00:12.125 --> 00:00:13.740
+It's a runbook, not a lab:
+
+6
+00:00:13.740 --> 00:00:18.225
+it runs Chapters 2 and 3's scripts
+and the kit's deploy scripts.
+
+7
+00:00:18.225 --> 00:00:22.092
+The output you'll see comes
+from the kit's fixture mode,
+
+8
+00:00:22.092 --> 00:00:24.113
+on November sixteenth, 2026.
+
+9
+00:00:24.113 --> 00:00:27.229
+Nothing here has been run
+against a live subscription,
+
+10
+00:00:27.229 --> 00:00:30.640
+and the chapter is a draft
+awaiting the owner's review.
+
+11
+00:00:34.390 --> 00:00:36.215
+Why treat a dashboard like this?
+
+12
+00:00:36.215 --> 00:00:38.500
+Because it's still a change to the estate,
+
+13
+00:00:38.500 --> 00:00:43.140
+and an unreviewed change is exactly what
+the rest of the workbook guards against.
+
+14
+00:00:43.140 --> 00:00:46.162
+So every deployment is
+previewed with what-if,
+
+15
+00:00:46.162 --> 00:00:48.865
+which predicts the change and makes none.
+
+16
+00:00:48.865 --> 00:00:53.303
+A second person approves the plan's
+hash, and the kit deploys nothing else.
+
+17
+00:00:53.303 --> 00:00:56.402
+And every step leaves a
+hashed, chained record.
+
+18
+00:00:56.402 --> 00:00:59.574
+One rule holds throughout:
+the workbook itself,
+
+19
+00:00:59.574 --> 00:01:03.510
+and any screenshot of it, is
+never on the evidence list.
+
+20
+00:01:07.260 --> 00:01:08.810
+Here's what a stage holds.
+
+21
+00:01:08.810 --> 00:01:10.772
+Preflight runs six checks.
+
+22
+00:01:10.772 --> 00:01:14.310
+The validation records the
+template's checks and its hash.
+
+23
+00:01:14.310 --> 00:01:18.547
+The plan writes the parameters, the
+what-if result and the plan file.
+
+24
+00:01:18.547 --> 00:01:21.885
+The deployment writes its result
+beside the approved plan.
+
+25
+00:01:21.885 --> 00:01:24.610
+Reachability records each table's age.
+
+26
+00:01:24.610 --> 00:01:27.335
+The rollback plan is
+written before it's needed.
+
+27
+00:01:27.335 --> 00:01:31.730
+And the evidence step records
+each folder, hashed and chained.
+
+28
+00:01:35.480 --> 00:01:36.405
+Who does what?
+
+29
+00:01:36.405 --> 00:01:40.404
+The deployer needs Workbook Contributor,
+which can save shared workbooks,
+
+30
+00:01:40.404 --> 00:01:42.791
+and deployment rights
+on the resource group,
+
+31
+00:01:42.791 --> 00:01:46.467
+because a Resource Manager deployment
+and its what-if both need them.
+
+32
+00:01:46.467 --> 00:01:49.619
+Both are granted through
+privileged identity management,
+
+33
+00:01:49.619 --> 00:01:51.292
+for the deployment window only.
+
+34
+00:01:51.292 --> 00:01:54.643
+A second person reads the
+plan and approves its hash.
+
+35
+00:01:54.643 --> 00:01:58.104
+The reachability check needs
+only Log Analytics Reader.
+
+36
+00:01:58.104 --> 00:02:01.745
+And readers need Workbook Reader
+and their own access to the data,
+
+37
+00:02:01.745 --> 00:02:05.680
+because a workbook shows only what
+its reader can already query.
+
+38
+00:02:09.430 --> 00:02:11.205
+Step 4 is the heart of it.
+
+39
+00:02:11.205 --> 00:02:13.976
+The plan writes this
+environment's parameters,
+
+40
+00:02:13.976 --> 00:02:17.884
+the workspace and the parameter
+values the template leaves empty,
+
+41
+00:02:17.884 --> 00:02:22.005
+then runs what-if and prints the create
+command and the hash to approve.
+
+42
+00:02:22.005 --> 00:02:27.968
+In fixture mode, on November sixteenth, it
+predicts one create: a single workbook.
+
+43
+00:02:27.968 --> 00:02:30.280
+A first deployment shows one create,
+
+44
+00:02:30.280 --> 00:02:33.442
+and a redeploy shows a
+modify of the same workbook.
+
+45
+00:02:33.442 --> 00:02:37.017
+Anything else, and any
+delete, stops the stage.
+
+46
+00:02:37.017 --> 00:02:40.426
+Then a second person reads the
+plan and the what-if result,
+
+47
+00:02:40.426 --> 00:02:43.260
+and records the hash in the change record.
+
+48
+00:02:47.010 --> 00:02:50.048
+Step 6 deploys, and
+only the approved plan.
+
+49
+00:02:50.048 --> 00:02:54.534
+Without the Apply switch, the command prints
+what it would run and changes nothing.
+
+50
+00:02:54.534 --> 00:02:56.172
+With it, it deploys.
+
+51
+00:02:56.172 --> 00:03:00.781
+And it refuses a plan folder that changed,
+a hash that isn't the approved one,
+
+52
+00:03:00.781 --> 00:03:03.048
+a plan with no what-if or with a delete,
+
+53
+00:03:03.048 --> 00:03:06.523
+and a plan that wasn't made
+against the live environment.
+
+54
+00:03:06.523 --> 00:03:08.848
+Step 7 is the smoke test, in the portal:
+
+55
+00:03:08.848 --> 00:03:13.655
+open the Daily checks workbook under
+the test workspace, check that the ten
+
+56
+00:03:13.655 --> 00:03:19.130
+tabs open with the banner, and that the
+telemetry tab lists every expected table.
+
+57
+00:03:22.880 --> 00:03:26.968
+Step 8 runs the reachability
+check against the test workspace.
+
+58
+00:03:26.968 --> 00:03:29.843
+Step 9 plans the rollback
+before you need it.
+
+59
+00:03:29.843 --> 00:03:32.943
+Step 10 records each folder as evidence.
+
+60
+00:03:32.943 --> 00:03:37.810
+Then the go or no-go: the stage is a go
+when every file matches its hash list,
+
+61
+00:03:37.810 --> 00:03:41.686
+the chain is unbroken, and the
+preflight, validation, plan,
+
+62
+00:03:41.686 --> 00:03:45.893
+deployment and reachability each
+have a passing live record.
+
+63
+00:03:45.893 --> 00:03:47.729
+Fixture records never count.
+
+64
+00:03:47.729 --> 00:03:52.650
+A no-go is a finding with an owner, and
+the stage is repeated after the fix.
+
+65
+00:03:56.400 --> 00:03:59.987
+Production runs the same commands
+with the production settings file.
+
+66
+00:03:59.987 --> 00:04:02.772
+That file names the test
+stage's evidence folder,
+
+67
+00:04:02.772 --> 00:04:06.600
+and the preflight refuses production
+until that evidence passes.
+
+68
+00:04:06.600 --> 00:04:09.650
+There are two ways back,
+both planned in advance.
+
+69
+00:04:09.650 --> 00:04:13.695
+Redeploy the previous approved
+plan when the content is wrong;
+
+70
+00:04:13.695 --> 00:04:15.562
+its hash is already approved.
+
+71
+00:04:15.562 --> 00:04:18.274
+Or delete the workbook
+when it shouldn't exist.
+
+72
+00:04:18.274 --> 00:04:23.913
+Deleting it removes a view only: no
+log data, alert rule or task changes.
+
+73
+00:04:23.913 --> 00:04:27.892
+And on day two, a portal edit comes
+back as an export, is validated,
+
+74
+00:04:27.892 --> 00:04:32.390
+and replaces the template through
+review before it's redeployed.
+
+75
+00:04:36.140 --> 00:04:38.027
+Here's what each record supports.
+
+76
+00:04:38.027 --> 00:04:41.953
+Preflight supports least privilege
+and configuration settings.
+
+77
+00:04:41.953 --> 00:04:45.414
+The validation supports the
+baseline and change control.
+
+78
+00:04:45.414 --> 00:04:50.065
+The plan and its approval support
+change control and impact analysis.
+
+79
+00:04:50.065 --> 00:04:53.377
+The deployment supports change
+control and the baseline.
+
+80
+00:04:53.377 --> 00:04:57.391
+Reachability supports continuous
+monitoring and system monitoring.
+
+81
+00:04:57.391 --> 00:05:01.528
+The rollback plan supports change
+control and the contingency plan.
+
+82
+00:05:01.528 --> 00:05:03.992
+And the evidence step supports continuous
+
+83
+00:05:03.992 --> 00:05:07.003
+monitoring and the protection
+of audit information.
+
+84
+00:05:07.003 --> 00:05:10.815
+The records support these controls;
+the assessor decides them.
+
+85
+00:05:10.815 --> 00:05:13.244
+Thanks for following the four chapters;
+
+86
+00:05:13.244 --> 00:05:17.420
+the workbook itself remains a view,
+and the records are the evidence.
