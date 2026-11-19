@@ -29,7 +29,7 @@ The code behind the guide's [Step 5, Front Door and Application Gateway](../../.
 ## Narrated tour
 {{< fmw-video DW_AZS_05_Front_Door_and_the_Origin_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-05-front-door-and-the-origin) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-05-front-door-and-the-origin) (about 9 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-05-front-door-and-the-origin/DW_AZS_05_Front_Door_and_the_Origin_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-05-front-door-and-the-origin/DW_AZS_05_Front_Door_and_the_Origin_Narrated.vtt). Recorded on November 17, 2026 from the draft chapter, before its review.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-05-front-door-and-the-origin) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-05-front-door-and-the-origin) (about 9 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-05-front-door-and-the-origin/DW_AZS_05_Front_Door_and_the_Origin_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-05-front-door-and-the-origin/DW_AZS_05_Front_Door_and_the_Origin_Narrated.vtt). Recorded on November 17, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

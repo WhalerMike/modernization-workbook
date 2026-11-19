@@ -29,7 +29,7 @@ The code behind the guide's [G7 Advanced hunting and detections as code](../../.
 ## Narrated tour
 {{< fmw-video DW_XDR_06_Detections_As_Code_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-06-detections-as-code) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-06-detections-as-code) (about 8 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-06-detections-as-code/DW_XDR_06_Detections_As_Code_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-06-detections-as-code/DW_XDR_06_Detections_As_Code_Narrated.vtt). Recorded on November 17, 2026 from the draft chapter, before its review.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-06-detections-as-code) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-xdr-06-detections-as-code) (about 8 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-06-detections-as-code/DW_XDR_06_Detections_As_Code_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-xdr-06-detections-as-code/DW_XDR_06_Detections_As_Code_Narrated.vtt). Recorded on November 17, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

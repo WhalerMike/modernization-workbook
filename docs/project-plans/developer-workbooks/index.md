@@ -13,8 +13,8 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: 57da99f2d7128bad691d16482a0c26b8e1d626caeba1795f7780e36639d77db3
-last-reviewed: 2026-11-18
+reviewed-sha256: f5937ce68a5d0fc37e480f5d06833efdc2feca5b522329cb9900ba70b3580830
+last-reviewed: 2026-11-19
 ---
 # Developer Workbooks {.unnumbered}
 

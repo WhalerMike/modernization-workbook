@@ -16,7 +16,9 @@ listing:
     sort: "series-order asc"
     sort-ui: false
     filter-ui: false
-review-status: pending
+review-status: approved
+reviewed-sha256: 2a1e8422069be3eb44d0b65954997e32a871989ee7ca8d46644921d057387d9d
+last-reviewed: 2026-11-19
 ---
 # Learning path: The Daily Checks on One Dashboard {.unnumbered}
 

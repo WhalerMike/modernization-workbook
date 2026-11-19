@@ -29,7 +29,7 @@ A runbook, not a code chapter: it has no labs of its own. It takes the kit from 
 ## Narrated tour
 {{< fmw-video DW_AZS_09_Deploying_Test_Production_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-09-deploying-test-production) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-09-deploying-test-production) (about 10 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-09-deploying-test-production/DW_AZS_09_Deploying_Test_Production_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-09-deploying-test-production/DW_AZS_09_Deploying_Test_Production_Narrated.vtt). Recorded on November 17, 2026 from the draft chapter, before its review.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-09-deploying-test-production) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-09-deploying-test-production) (about 10 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-09-deploying-test-production/DW_AZS_09_Deploying_Test_Production_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-09-deploying-test-production/DW_AZS_09_Deploying_Test_Production_Narrated.vtt). Recorded on November 17, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

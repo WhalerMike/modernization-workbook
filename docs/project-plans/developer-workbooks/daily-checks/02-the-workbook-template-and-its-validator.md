@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 687cef58d129f27b71276f8332976333533433bfd3c56fc003e4bcace3817001
+last-reviewed: 2026-11-19
 ---
 # Chapter 02 — The Workbook Template and Its Validator
 

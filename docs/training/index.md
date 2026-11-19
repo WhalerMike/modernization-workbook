@@ -49,8 +49,8 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: 4f3564897119eb83e398520c579861b32a124a97fe1ed7007f035efcb55a53d1
-last-reviewed: 2026-11-18
+reviewed-sha256: 3f901861e863c94b633ae0d115da9af49c703b1a01a20895169e8438e001b7f3
+last-reviewed: 2026-11-19
 ---
 # Training {.unnumbered}
 

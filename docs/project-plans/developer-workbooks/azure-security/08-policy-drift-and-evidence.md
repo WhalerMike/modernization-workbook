@@ -29,7 +29,7 @@ The code behind the guide's [Step 9, policy and drift](../../../books/guides/azu
 ## Narrated tour
 {{< fmw-video DW_AZS_08_Policy_Drift_Evidence_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-08-policy-drift-evidence) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-08-policy-drift-evidence) (about 10 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-08-policy-drift-evidence/DW_AZS_08_Policy_Drift_Evidence_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-08-policy-drift-evidence/DW_AZS_08_Policy_Drift_Evidence_Narrated.vtt). Recorded on November 17, 2026 from the draft chapter, before its review.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-08-policy-drift-evidence) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-azs-08-policy-drift-evidence) (about 10 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-08-policy-drift-evidence/DW_AZS_08_Policy_Drift_Evidence_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-azs-08-policy-drift-evidence/DW_AZS_08_Policy_Drift_Evidence_Narrated.vtt). Recorded on November 17, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

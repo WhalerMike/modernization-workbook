@@ -6,7 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 15"
 series-order: 1
-review-status: pending
+review-status: approved
+reviewed-sha256: a5a03ca975066838db37c80647b62efe60454e1658c5532afe4fec6ec04d6cd2
+last-reviewed: 2026-11-19
 ---
 # Module 1: One workbook, one tab per daily check {.unnumbered}
 

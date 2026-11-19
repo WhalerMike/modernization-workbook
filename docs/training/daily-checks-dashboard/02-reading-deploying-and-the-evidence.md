@@ -6,7 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 15"
 series-order: 2
-review-status: pending
+review-status: approved
+reviewed-sha256: 8fac31ee4b35705fa355aaf6bf5d360b75c08dd79306804b7c3b552368c59351
+last-reviewed: 2026-11-19
 ---
 # Module 2: Reading it, deploying it and keeping the evidence {.unnumbered}
 

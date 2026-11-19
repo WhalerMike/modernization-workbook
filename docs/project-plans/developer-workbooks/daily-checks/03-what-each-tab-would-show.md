@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: bedd583620d2afa31f9ab95df36d28f17f9967ed90220f1d98eeae971a3f0c9e
+last-reviewed: 2026-11-19
 ---
 # Chapter 03 — What Each Tab Would Show
 

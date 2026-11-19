@@ -29,7 +29,7 @@ The code behind the guide's [Step 5: Internet traffic](../../../books/guides/glo
 ## Narrated tour
 {{< fmw-video DW_GSA_07_Internet_Access_TLS_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-07-internet-access-tls) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-07-internet-access-tls) (about 8 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-07-internet-access-tls/DW_GSA_07_Internet_Access_TLS_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-07-internet-access-tls/DW_GSA_07_Internet_Access_TLS_Narrated.vtt). Recorded on November 17, 2026 from the draft chapter, before its review.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-07-internet-access-tls) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-gsa-07-internet-access-tls) (about 8 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-07-internet-access-tls/DW_GSA_07_Internet_Access_TLS_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-gsa-07-internet-access-tls/DW_GSA_07_Internet_Access_TLS_Narrated.vtt). Recorded on November 18, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->
