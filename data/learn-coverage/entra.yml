@@ -25790,6 +25790,7 @@ pages:
   cited_by:
   - docs/books/b02-identity/06-who-owns-the-migration.md
   - docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.md
+  - docs/books/guides/daily-checks-dashboard-implementation.md
 - path: docs/identity/hybrid/connect/whatis-fed.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/whatis-fed
   title: What is federation with Microsoft Entra ID?
@@ -26680,6 +26681,7 @@ pages:
   - docs/books/b06-data-platform/_verification/r09-continuous-monitoring-and-closure.md
   - docs/books/b06-data-platform/r09-continuous-monitoring-and-closure.md
   - docs/books/b12-security-operations/03-identity-telemetry.md
+  - docs/books/guides/daily-checks-dashboard-implementation.md
   - docs/books/guides/privileged-access-implementation.md
   - docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md
 - path: docs/identity/monitoring-health/concept-flagged-sign-ins.md
@@ -26757,6 +26759,8 @@ pages:
   - docs/books/b02-identity/06-who-owns-the-migration.md
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
+  - docs/books/guides/daily-checks-dashboard-implementation.md
+  - docs/project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.md
 - path: docs/identity/monitoring-health/concept-noninteractive-sign-ins.md
   url: https://learn.microsoft.com/entra/identity/monitoring-health/concept-noninteractive-sign-ins
   title: Non-interactive sign-in logs
@@ -27345,6 +27349,7 @@ pages:
   - docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md
   - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
   - docs/books/b15-day2-operations/appendix-a-help-desk-task-reference.md
+  - docs/books/guides/daily-checks-dashboard-implementation.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md
   - docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.md
@@ -28454,6 +28459,7 @@ pages:
   - docs/books/b15-day2-operations/appendix-b-recovery-and-escalation-runbooks.md
   - docs/books/b16-people/04-the-implementation-track.md
   - docs/books/b16-people/06-vendor-training-and-labs.md
+  - docs/books/guides/daily-checks-dashboard-implementation.md
   - docs/books/guides/privileged-access-implementation.md
   - docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md
   - docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.md

@@ -1,0 +1,8 @@
+{
+  "_comment": "A what-if result that would delete a workbook (for example a complete-mode deployment): the kit refuses to apply it.",
+  "status": "Succeeded",
+  "changes": [
+    { "changeType": "Modify", "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-contoso-monitoring/providers/Microsoft.Insights/workbooks/6e1c2b74-3f0d-5a59-9b8e-0c4f2d1a7b31" },
+    { "changeType": "Delete", "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-contoso-monitoring/providers/Microsoft.Insights/workbooks/0f9a8b7c-6d5e-5f40-a3b2-c1d0e9f8a7b6" }
+  ]
+}

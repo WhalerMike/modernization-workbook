@@ -1,0 +1,14 @@
+{
+  "_comment": "The next morning, November 17, 2026 (fictional): the Entra diagnostic setting was restored at 09:05 yesterday, the probe ran, and the Office 365 connector's latest health event is a success (so the second query returns nothing).",
+  "sources": {},
+  "rows": [
+    { "query": "telemetry-1", "TableName": "AADRiskyUsers", "State": "Delivering", "LastSeen": "2026-11-17T03:20:00Z", "AgeMin": 250, "SlaMinutes": 1440 },
+    { "query": "telemetry-1", "TableName": "AuditLogs", "State": "Delivering", "LastSeen": "2026-11-17T07:21:00Z", "AgeMin": 9, "SlaMinutes": 60 },
+    { "query": "telemetry-1", "TableName": "CommonSecurityLog", "State": "Delivering", "LastSeen": "2026-11-17T07:28:00Z", "AgeMin": 2, "SlaMinutes": 60 },
+    { "query": "telemetry-1", "TableName": "DailySyncProbe_CL", "State": "Delivering", "LastSeen": "2026-11-17T06:30:00Z", "AgeMin": 60, "SlaMinutes": 1440 },
+    { "query": "telemetry-1", "TableName": "IntuneDeviceComplianceOrg", "State": "Delivering", "LastSeen": "2026-11-16T02:05:00Z", "AgeMin": 1765, "SlaMinutes": 2880 },
+    { "query": "telemetry-1", "TableName": "SecurityAlert", "State": "Delivering", "LastSeen": "2026-11-16T22:47:00Z", "AgeMin": 523, "SlaMinutes": 1440 },
+    { "query": "telemetry-1", "TableName": "SecurityIncident", "State": "Delivering", "LastSeen": "2026-11-16T22:48:00Z", "AgeMin": 522, "SlaMinutes": 1440 },
+    { "query": "telemetry-1", "TableName": "SigninLogs", "State": "Delivering", "LastSeen": "2026-11-17T07:24:00Z", "AgeMin": 6, "SlaMinutes": 60 }
+  ]
+}

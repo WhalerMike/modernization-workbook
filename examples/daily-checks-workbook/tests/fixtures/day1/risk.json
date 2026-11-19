@@ -1,0 +1,5 @@
+{
+  "_comment": "No risky users or sign-ins returned, but SigninLogs stopped at 17:10 yesterday: an empty queue over a dark source.",
+  "sources": { "SigninLogs": "2026-11-15T17:10:00Z", "AADRiskyUsers": "2026-11-15T16:55:00Z" },
+  "rows": []
+}

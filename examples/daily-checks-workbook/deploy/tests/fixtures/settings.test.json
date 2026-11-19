@@ -1,0 +1,20 @@
+{
+  "_comment": "Fictional test settings for the deploy tests; the tests copy this file and point outputRoot, evidencePath and testEvidencePath at a scratch folder.",
+  "environment": "test",
+  "cloud": "AzureCloud",
+  "tenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
+  "subscriptionId": "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e",
+  "resourceGroup": "rg-contoso-monitoring-test",
+  "location": "eastus2",
+  "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-contoso-sentinel-test/providers/Microsoft.OperationalInsights/workspaces/law-contoso-test",
+  "workspaceCustomerId": "bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f",
+  "workbookDisplayName": "Daily checks",
+  "emergencyAccessObjectIds": ["00aa00aa-bb11-cc22-dd33-44ee44ee44ee", "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"],
+  "compliantStateValue": "Compliant",
+  "dlpProductNames": ["Microsoft Data Loss Prevention"],
+  "itsmQueueUrl": "https://itsm.contoso.example/queue/daily",
+  "outputRoot": "SCRATCH/out",
+  "evidencePath": "SCRATCH/evidence-test",
+  "testEvidencePath": "SCRATCH/evidence-test",
+  "changeRecord": "CHG-0002"
+}

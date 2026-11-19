@@ -1,0 +1,29 @@
+{
+  "_comment": "Each scripted step of the daily checks workbook kit, with the NIST SP 800-53 Rev 5 controls whose statements it supports and the FedRAMP 20x Key Security Indicators. Every control-to-KSI pair reuses one the Azure security kit's requirements file already verified (examples/azure-security/config/requirements.json: CM-2 and CM-6 to KSI-SVC-ACM; CM-3 to KSI-CMT-LMC; CM-3 and CM-4 to KSI-CMT-LMC and KSI-CMT-RVP; CP-2 to KSI-RPL-ARP; AC-6 to KSI-IAM-ELP; CA-7 to KSI-MLA-EVC; SI-4 to KSI-MLA-LET; AU-9 to KSI-MLA-OSM). The evidence is of the template, the deployment and the checks' own records, never of the rendered view: the kit refuses to record a render. Which step supports which control is the program's reading (design guidance); the agency's assessor decides. KSIs are FedRAMP's indicators for cloud service providers: the agency lines its own evidence up with what its providers report against them and doesn't report KSIs itself. 'stages' lists the steps each stage's evidence must hold before the go/no-go.",
+  "version": 1,
+  "controls": {
+    "AC-6": { "title": "Least Privilege" },
+    "AU-9": { "title": "Protection of Audit Information" },
+    "CA-7": { "title": "Continuous Monitoring" },
+    "CM-2": { "title": "Baseline Configuration" },
+    "CM-3": { "title": "Configuration Change Control" },
+    "CM-4": { "title": "Impact Analyses" },
+    "CM-6": { "title": "Configuration Settings" },
+    "CP-2": { "title": "Contingency Plan" },
+    "SI-4": { "title": "System Monitoring" }
+  },
+  "steps": {
+    "VALIDATE": { "title": "Validate the workbook template against the manifest", "controls": ["CM-2", "CM-3"], "ksis": ["KSI-SVC-ACM", "KSI-CMT-LMC"] },
+    "PRE": { "title": "Preflight: settings, cloud, sign-in and the deployer's scope", "controls": ["AC-6", "CM-6"], "ksis": ["KSI-IAM-ELP", "KSI-SVC-ACM"] },
+    "PLAN": { "title": "Plan the deployment and preview it with what-if", "controls": ["CM-3", "CM-4"], "ksis": ["KSI-CMT-LMC", "KSI-CMT-RVP"] },
+    "DEPLOY": { "title": "Deploy the approved plan", "controls": ["CM-3", "CM-2"], "ksis": ["KSI-CMT-LMC", "KSI-SVC-ACM"] },
+    "REACH": { "title": "Reachability: each tab's tables answer, and how fresh they are", "controls": ["CA-7", "SI-4"], "ksis": ["KSI-MLA-EVC", "KSI-MLA-LET"] },
+    "RB": { "title": "Rollback plan", "controls": ["CM-3", "CP-2"], "ksis": ["KSI-CMT-LMC", "KSI-RPL-ARP"] },
+    "EVIDENCE": { "title": "Record the run as hashed, chained evidence", "controls": ["CA-7", "AU-9"], "ksis": ["KSI-MLA-EVC", "KSI-MLA-OSM"] }
+  },
+  "tasks": { "validate": ["VALIDATE"], "preflight": ["PRE"], "plan": ["PLAN"], "deploy": ["DEPLOY"], "reachability": ["REACH"], "rollback": ["RB"] },
+  "stages": {
+    "test": ["PRE", "VALIDATE", "PLAN", "DEPLOY", "REACH"],
+    "production": ["PRE", "VALIDATE", "PLAN", "DEPLOY", "REACH"]
+  }
+}

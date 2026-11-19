@@ -1,0 +1,11 @@
+{
+  "_comment": "What az monitor log-analytics query answers for each table on the morning of November 16, 2026 (fictional): newest record and count over three days. SentinelHealth is absent: health monitoring was never turned on in this workspace.",
+  "AADRiskyUsers": { "LastSeen": "2026-11-15T16:55:00Z", "Records": 14 },
+  "AuditLogs": { "LastSeen": "2026-11-15T17:10:00Z", "Records": 18233 },
+  "CommonSecurityLog": { "LastSeen": "2026-11-16T07:26:00Z", "Records": 940211 },
+  "DailySyncProbe_CL": { "LastSeen": "2026-11-15T06:30:00Z", "Records": 2 },
+  "IntuneDeviceComplianceOrg": { "LastSeen": "2026-11-15T01:40:00Z", "Records": 3610 },
+  "SecurityAlert": { "LastSeen": "2026-11-16T05:12:00Z", "Records": 37 },
+  "SecurityIncident": { "LastSeen": "2026-11-16T05:14:00Z", "Records": 52 },
+  "SigninLogs": { "LastSeen": "2026-11-15T17:10:00Z", "Records": 64120 }
+}

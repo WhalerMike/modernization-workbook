@@ -1,0 +1,8 @@
+{
+  "_comment": "Two open incidents in the queue.",
+  "sources": { "SecurityIncident": "2026-11-16T05:14:00Z" },
+  "rows": [
+    { "query": "log-review-1", "CreatedTime": "2026-11-16T05:14:00Z", "IncidentNumber": 412, "Title": "Sensitive data shared externally", "Severity": "Medium", "Status": "New", "AssignedTo": "" },
+    { "query": "log-review-1", "CreatedTime": "2026-11-15T11:20:00Z", "IncidentNumber": 409, "Title": "Unfamiliar sign-in properties", "Severity": "Low", "Status": "Active", "AssignedTo": "soc-analyst-2@contoso.example" }
+  ]
+}

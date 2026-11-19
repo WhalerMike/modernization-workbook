@@ -1,0 +1,7 @@
+PS> ./Show-DcManifest.ps1 -Id grants
+Consents, roles and grants (grants): workbook, fit partial
+Daily check: Any consent, role or access grant with no ticket alerted (by-family table, Applications)
+Tables:      AuditLogs
+Link-out:    Entra audit logs: https://entra.microsoft.com > Entra ID > Monitoring & health > Audit logs
+GCC:         Available. The match to a ticket isn't in the workbook: the ticket data stays in the ITSM tool.
+Action:      Each row is matched to its ticket in the ITSM tool; a grant with no ticket opens a finding.

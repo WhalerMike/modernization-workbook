@@ -1,0 +1,7 @@
+// Users ID Protection holds at medium or high risk, latest state per user. Read-only.
+AADRiskyUsers
+| where TimeGenerated > ago(2d)
+| summarize arg_max(TimeGenerated, *) by Id
+| where RiskState == "atRisk" and RiskLevel in ("medium", "high")
+| project RiskLastUpdatedDateTime, UserPrincipalName, RiskLevel, RiskState, RiskDetail
+| order by RiskLastUpdatedDateTime desc

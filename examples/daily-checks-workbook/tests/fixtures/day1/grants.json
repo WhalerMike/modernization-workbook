@@ -1,0 +1,8 @@
+{
+  "_comment": "Two grants yesterday afternoon, before AuditLogs went dark. The tab shows them; matching each to a ticket is the ITSM tool's job.",
+  "sources": { "AuditLogs": "2026-11-15T17:10:00Z" },
+  "rows": [
+    { "query": "grants-1", "TimeGenerated": "2026-11-15T14:02:00Z", "ActivityDisplayName": "Consent to application", "Actor": "riley.ng@contoso.example", "Target": "Contoso Expense Helper", "Result": "success", "CorrelationId": "corr-0001" },
+    { "query": "grants-1", "TimeGenerated": "2026-11-15T15:40:00Z", "ActivityDisplayName": "Add member to role", "Actor": "pim-requests@contoso.example", "Target": "casey.diaz@contoso.example", "Result": "success", "CorrelationId": "corr-0002" }
+  ]
+}

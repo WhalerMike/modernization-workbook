@@ -1,0 +1,16 @@
+PS> ./Invoke-DcRender.ps1 -FixturePath tests/fixtures/day2 -AsOf 2026-11-17T07:30:00Z -OutputPath out/day2
+Tab                           Status    Detail
+---                           ------    ------
+Telemetry completeness        CLEAR     8 rows, none flagged
+Synchronization probe         ATTENTION 1 of 1 rows need work
+Entra Health alerts           LINK-OUT  Open Microsoft Entra Health
+Risky users and sign-ins      ATTENTION 1 of 1 rows need work
+Emergency access sign-ins     ATTENTION 1 of 1 rows need work
+Noncompliant devices          ATTENTION 1 of 1 rows need work
+Consents, roles and grants    CLEAR     nothing to work, sources fresh
+DLP and label alerts          CLEAR     nothing to work, sources fresh
+Catalog and remediation tasks LINK-OUT  Open The ITSM tool's task queue
+Log review queue              ATTENTION 1 of 1 rows need work
+
+
+Written to out/day2: render.json, render.md (a view, not evidence)

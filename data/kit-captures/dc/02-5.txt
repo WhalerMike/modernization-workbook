@@ -1,0 +1,15 @@
+PS> ./Test-DcWorkbook.ps1 -OutputPath out/validate -AsOf 2026-11-16T07:05:00Z
+DC-V-01   1 checked  pass
+DC-V-02   1 checked  pass
+DC-V-03   8 checked  pass
+DC-V-04  10 checked  pass
+DC-V-05  10 checked  pass
+DC-V-06  10 checked  pass
+DC-V-07  11 checked  pass
+DC-V-08  10 checked  pass
+DC-V-09   1 checked  pass
+DC-V-10   1 checked  pass
+All 63 checks pass
+Written to out/validate: results.json, manifest.json
+PS> (Test-DcRunFolder -Path out/validate).Detail
+1 file matches the manifest

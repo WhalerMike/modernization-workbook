@@ -384,6 +384,37 @@
    "featured": true
   },
   {
+   "id": "docs/training/daily-checks-dashboard/index.md",
+   "type": "Learning path",
+   "title": "Learning path: The Daily Checks on One Dashboard",
+   "description": "Two modules: one workbook with a tab per daily check, then reading it, deploying it and keeping the evidence, each with labs and a knowledge check",
+   "url": "docs/training/daily-checks-dashboard/index.html",
+   "count": 2,
+   "unit": "modules",
+   "reading_minutes": 80,
+   "reading_source": "page",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Identity engineer",
+    "Endpoint engineer",
+    "Security operations",
+    "Cloud and platform engineer"
+   ],
+   "topics": [
+    "Entra ID",
+    "Intune and endpoints",
+    "Defender XDR",
+    "Azure",
+    "Security operations"
+   ],
+   "status": "Draft",
+   "family": "daily-checks-dashboard",
+   "featured": false
+  },
+  {
    "id": "docs/training/zero-trust-assessment/index.md",
    "type": "Learning path",
    "title": "Learning path: The Zero Trust Assessment as Evidence",
@@ -916,6 +947,34 @@
    "featured": false
   },
   {
+   "id": "docs/books/guides/daily-checks-dashboard-implementation.md",
+   "type": "Implementation guide",
+   "title": "The Daily Checks on One Dashboard: An Implementation Guide",
+   "description": "An implementation guide for putting the operator runbook's daily checks on one Azure Monitor workbook in the Sentinel Log Analytics workspace, one tab per check, with a link out to the built-in portal page where a check's data isn't in…",
+   "url": "docs/books/guides/daily-checks-dashboard-implementation.html",
+   "count": 6,
+   "unit": "steps",
+   "reading_minutes": 21,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "audience",
+   "roles": [
+    "Identity engineer",
+    "Endpoint engineer",
+    "Security operations",
+    "Cloud and platform engineer"
+   ],
+   "topics": [
+    "Azure",
+    "Security operations"
+   ],
+   "status": "Draft",
+   "family": "daily-checks-dashboard",
+   "featured": false
+  },
+  {
    "id": "docs/books/guides/ttm-servicenow-sailpoint.md",
    "type": "Implementation guide",
    "title": "Ticket-to-Machine on ServiceNow and SailPoint: An Example Implementation Guide",
@@ -1187,6 +1246,31 @@
    ],
    "status": "Approved",
    "family": "provider-notices",
+   "featured": false
+  },
+  {
+   "id": "docs/project-plans/developer-workbooks/daily-checks/index.md",
+   "type": "Developer workbook",
+   "title": "Building the Daily Checks Workbook",
+   "description": "A developer workbook for the Daily Checks Dashboard implementation guide",
+   "url": "docs/project-plans/developer-workbooks/daily-checks/index.html",
+   "count": 4,
+   "unit": "chapters",
+   "reading_minutes": 39,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Advanced",
+   "level_source": "audience",
+   "roles": [
+    "Cloud and platform engineer",
+    "Developer"
+   ],
+   "topics": [
+    "Azure"
+   ],
+   "status": "Draft",
+   "family": "daily-checks",
    "featured": false
   },
   {
@@ -1619,7 +1703,7 @@
    "url": "docs/books/b15-day2-operations/index.html",
    "count": 16,
    "unit": "chapters",
-   "reading_minutes": 426,
+   "reading_minutes": 427,
    "reading_source": "estimate",
    "videos": 4,
    "video_minutes": 56,
@@ -2242,6 +2326,26 @@
    ],
    "status": "Approved",
    "family": "attribute-driven-migration",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#dc",
+   "type": "Lab",
+   "title": "Labs: Building the Daily Checks Workbook",
+   "description": "6 hands-on labs across 3 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building the Daily Checks Workbook.",
+   "url": "docs/training/labs.html#dc",
+   "count": 6,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Unrated",
+   "level_source": "path",
+   "roles": [],
+   "topics": [],
+   "status": "Approved",
+   "family": "daily-checks",
    "featured": false
   },
   {

@@ -1,0 +1,9 @@
+{
+  "_comment": "Intune's daily export from 01:40 yesterday, inside its 48-hour window: three devices not compliant.",
+  "sources": { "IntuneDeviceComplianceOrg": "2026-11-15T01:40:00Z" },
+  "rows": [
+    { "query": "devices-1", "TimeGenerated": "2026-11-15T01:40:00Z", "DeviceName": "CTX-LT-0142", "ComplianceState": "Noncompliant", "OS": "Windows", "UPN": "avery.lee@contoso.example", "LastContact": "2026-11-14T22:10:00Z", "InGracePeriodUntil": "2026-11-17T22:10:00Z" },
+    { "query": "devices-1", "TimeGenerated": "2026-11-15T01:40:00Z", "DeviceName": "CTX-LT-0388", "ComplianceState": "InGracePeriod", "OS": "Windows", "UPN": "jordan.kim@contoso.example", "LastContact": "2026-11-14T19:45:00Z", "InGracePeriodUntil": "2026-11-16T19:45:00Z" },
+    { "query": "devices-1", "TimeGenerated": "2026-11-15T01:40:00Z", "DeviceName": "CTX-MB-0021", "ComplianceState": "Noncompliant", "OS": "iOS", "UPN": "sam.ortiz@contoso.example", "LastContact": "2026-11-13T08:02:00Z", "InGracePeriodUntil": "" }
+  ]
+}

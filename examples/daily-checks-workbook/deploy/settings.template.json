@@ -1,0 +1,20 @@
+{
+  "_comment": "One copy per environment (settings.test.json, settings.production.json), every <placeholder> filled. No secrets: the kit signs in with az login. The deployer needs Workbook Contributor and Microsoft.Resources/deployments/* on the resource group; the reachability check needs Log Analytics Reader on the workspace. The object IDs and the workspace ID go into the deployed workbook's parameters, never into the template. Keep the filled files, and everything the runs write, inside the agency's boundary.",
+  "environment": "<test-or-production>",
+  "cloud": "AzureCloud",
+  "tenantId": "<tenant-id>",
+  "subscriptionId": "<subscription-id>",
+  "resourceGroup": "<resource-group>",
+  "location": "<location>",
+  "workspaceResourceId": "/subscriptions/<subscription-id>/resourceGroups/<workspace-resource-group>/providers/Microsoft.OperationalInsights/workspaces/<workspace-name>",
+  "workspaceCustomerId": "<workspace-customer-id>",
+  "workbookDisplayName": "Daily checks",
+  "emergencyAccessObjectIds": ["<emergency-access-object-id-1>", "<emergency-access-object-id-2>"],
+  "compliantStateValue": "<compliance-state-value-for-compliant>",
+  "dlpProductNames": ["<dlp-alert-product-name>"],
+  "itsmQueueUrl": "<itsm-queue-url>",
+  "outputRoot": "<folder-outside-any-repository>",
+  "evidencePath": "<evidence-folder>",
+  "testEvidencePath": "<test-stage-evidence-folder-production-only>",
+  "changeRecord": "<change-record-id>"
+}

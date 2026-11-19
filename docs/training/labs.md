@@ -173,6 +173,18 @@ Every lab opens with the list of every command it runs, in order: follow it top 
 
 : Building Azure Security: labs by chapter {.striped .hover}
 
+## Building the Daily Checks Workbook {#dc}
+
+[The workbook](../project-plans/developer-workbooks/daily-checks/index.md) · [its implementation guide](../books/guides/daily-checks-dashboard-implementation.md) · [its learning path](daily-checks-dashboard/index.md) · [the code: daily-checks-workbook-code.zip](../../downloads/daily-checks-workbook-code.zip)
+
+| Chapter | Lab 1, no tenant | You need | Lab 2 runs in | Module |
+|---|---|---|---|---|
+| [01 The Daily Checks and Where Each One Lives](../project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.md) | [Lab 1](../project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.md#lab-1-fixtures-no-tenant) · [commands](../project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.md#lab-1-commands) | PowerShell 7.1 or later with Pester 5 | [a test workspace](../project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.md#lab-2-a-test-workspace) · [commands](../project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.md#lab-2-commands) | [Module 1](daily-checks-dashboard/01-one-workbook-one-tab-per-check.md) |
+| [02 The Workbook Template and Its Validator](../project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.md) | [Lab 1](../project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.md#lab-1-fixtures-no-tenant) · [commands](../project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.md#lab-1-commands) | PowerShell 7.1 or later with Pester 5 | [a test workspace](../project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.md#lab-2-a-test-workspace) · [commands](../project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.md#lab-2-commands) | [Module 1](daily-checks-dashboard/01-one-workbook-one-tab-per-check.md) |
+| [03 What Each Tab Would Show](../project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.md) | [Lab 1](../project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.md#lab-1-fixtures-no-tenant) · [commands](../project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.md#lab-1-commands) | PowerShell 7.1 or later with Pester 5 | [a test workspace](../project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.md#lab-2-a-test-workspace) · [commands](../project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.md#lab-2-commands) | [Module 2](daily-checks-dashboard/02-reading-deploying-and-the-evidence.md) |
+
+: Building the Daily Checks Workbook: labs by chapter {.striped .hover}
+
 ## Microsoft Automation learning path {#ms-automation}
 
 [The learning path](index.md#microsoft-automation-learning-path) · [the code: microsoft-automation-code.zip](../../downloads/microsoft-automation-code.zip)

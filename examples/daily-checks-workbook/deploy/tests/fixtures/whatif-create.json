@@ -1,0 +1,7 @@
+{
+  "_comment": "The shape az deployment group what-if --no-pretty-print returns, for a first deployment to the fictional test resource group: one workbook to create. Saved for the lab and the tests; a live plan writes the real result.",
+  "status": "Succeeded",
+  "changes": [
+    { "changeType": "Create", "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-contoso-monitoring/providers/Microsoft.Insights/workbooks/6e1c2b74-3f0d-5a59-9b8e-0c4f2d1a7b31" }
+  ]
+}

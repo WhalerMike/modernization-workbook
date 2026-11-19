@@ -1,0 +1,8 @@
+// DLP and label alerts from SecurityAlert, latest state per alert. The ProductName values come from the
+// DlpProductNames parameter: confirm them in your workspace before relying on the tab.
+SecurityAlert
+| where TimeGenerated > ago(1d)
+| where ProductName in ({DlpProductNames})
+| summarize arg_max(TimeGenerated, *) by SystemAlertId
+| project TimeGenerated, AlertName, AlertSeverity, Status, ProductName, CompromisedEntity
+| order by TimeGenerated desc

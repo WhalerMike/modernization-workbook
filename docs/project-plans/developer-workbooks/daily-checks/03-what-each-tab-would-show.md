@@ -1,0 +1,313 @@
+---
+title: "Chapter 03 — What Each Tab Would Show"
+description: "The guide's Steps 1 and 5 as code: a renderer that applies each tab's rule to saved query results and prints what the tab would show, ATTENTION, CLEAR, STALE, NO DATA or LINK-OUT, where a tab whose source is past its freshness limit shows STALE and never CLEAR; and a read-only reachability check that asks the workspace for each table's newest record and count. The render is a picture, never evidence: the kit refuses to record it. Labs against a fictional workspace on two mornings and a test workspace."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-daily-checks
+part: How
+series-order: 3
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+review-status: pending
+---
+# Chapter 03 — What Each Tab Would Show
+
+*An empty queue over a source that stopped arriving looks exactly like a quiet night. The renderer says which one it is.*
+
+::: {.callout-note}
+## In this chapter
+The code behind the guide's [Step 5](../../../books/guides/daily-checks-dashboard-implementation.md#step-5) and the validation in its [Step 1](../../../books/guides/daily-checks-dashboard-implementation.md#step-1). You start with what Learn and Book 15 give you: the telemetry-completeness pattern, `SentinelHealth`, and Intune's export timing. Then you read the renderer's rules and the reachability check. Lab 1 renders the fictional workspace on the morning the Entra diagnostic setting stopped and the sync probe didn't run, then the next morning, checks the tables' reachability, and shows that the kit won't record a render as evidence. Lab 2 runs the reachability check against a test workspace.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can show, without a tenant, what each tab would display on a given morning; tell an operator which tabs can't be trusted because their source has gone quiet; and prove each tab's tables answer in a real workspace.
+
+**Audience.** Developers, security operations, and the operators who read the workbook each morning.
+
+## Start with Microsoft's documentation
+
+### What Microsoft gives you
+
+Book 15, Chapter 12's [telemetry-completeness check](../../../books/b15-day2-operations/12-the-day-two-runbook.md#the-telemetry-completeness-check) lists each expected table past its freshness limit, using `union isfuzzy=true` so a missing table shows as a null rather than failing the query. Sentinel's health page gives the `SentinelHealth` query for each connector's latest failure, and recommends Azure Monitor alert rules for health drifts.[^dc03-health] Intune's diagnostic settings export compliance once every 24 hours, and it "can take up to 48 hours" to arrive; Microsoft says not to "rely on a fixed or previously observed completion time."[^dc03-intune] `az monitor log-analytics query` runs a KQL query against a workspace by its GUID; it comes from the Azure CLI's `log-analytics` extension.[^dc03-cli]
+
+### What it leaves to you
+
+Each row is pinned by a test in the `Chapter 03` block of `tests/DailyChecks.Tests.ps1`, or in `deploy/tests`.
+
+| Learn's material, as published | Why it matters | What the kit adds |
+|---|---|---|
+| The completeness query lists dark tables | The other tabs don't know their table is dark | Each tab's render rule names its sources and freshness limits; a stale source makes the tab STALE, never CLEAR |
+| A query result is rows or no rows | No rows can mean "nothing to do" or "no data" | `emptyMeans`: an empty probe result is NO DATA; an empty risk queue over fresh sources is CLEAR |
+| Intune's timing is variable | A day-old export read as live | The devices tab's limit is 48 hours |
+| A screenshot is easy to file | The picture goes into the package | The render carries the banner, and `Write-DcEvidence` refuses it |
+| No reachability check | Nobody proves each tab's tables answer | `Test-DcReachability`: newest record and count per table, Delivering, Late or Missing |
+
+## The code
+
+### The render rules
+
+Each workbook tab's `render` rule in the manifest has `freshness` (source table to limit in minutes), `emptyMeans` (`clear` or `no-data`) and `flag` (the rows that need work: `any`, `eq` a value, or `older-than-column` for the telemetry rows). `Get-DcRender` reads one fixture file per tab (what the tab's queries would return, and when each source last delivered) and decides, in order:
+
+1. a link-out tab shows **LINK-OUT**;
+2. no result shows **NO DATA**;
+3. any source past its limit shows **STALE**, and says the rows shown may be incomplete;
+4. any flagged row shows **ATTENTION**;
+5. no rows where a row is expected shows **NO DATA**;
+6. otherwise **CLEAR**.
+
+`Invoke-DcRender.ps1` writes `render.json` and `render.md`, both with the banner, and a manifest marked `notEvidence`. The output depends only on `-AsOf` and the fixtures: a test renders twice, once under another culture, and compares the hashes.
+
+### The reachability check
+
+`Test-DcReachability` sends, for each table any tab reads, `<table> | where TimeGenerated > ago(3d) | summarize LastSeen = max(TimeGenerated), Records = count()` with `az monitor log-analytics query`, and compares the age with the table's limit. It reads only. `-FixturePath` reads saved answers instead, as Lab 1 does.
+
+::: {.callout-important}
+## Illustrative code
+Lab 1 renders saved results; nothing signs in. The fixtures are a fictional workspace's query results, shaped from the tables' columns on Learn.
+:::
+
+## Lab 1: fixtures, no tenant
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/daily-checks-workbook`.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/daily-checks-workbook`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Render the morning of November 16
+./Invoke-DcRender.ps1 -FixturePath tests/fixtures/day1 -AsOf 2026-11-16T07:30:00Z -OutputPath out/day1
+
+# Step 2: Look at what the risk tab's query returned
+Get-Content tests/fixtures/day1/risk.json
+
+# Step 3: Render the next morning
+./Invoke-DcRender.ps1 -FixturePath tests/fixtures/day2 -AsOf 2026-11-17T07:30:00Z -OutputPath out/day2
+
+# Step 4: Check each table's reachability on day 1
+./deploy/Test-DcReachability.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/reach-day1.json -OutputPath out/reach -AsOf 2026-11-16T07:30:00Z
+
+# Step 5: Try to record the render as evidence
+./Invoke-DcEvidence.ps1 -EvidencePath out/evidence -RunPath out/day1 -AsOf 2026-11-16T07:31:00Z
+
+# Step 6: Record the reachability check instead
+./Invoke-DcEvidence.ps1 -EvidencePath out/evidence -RunPath out/reach -AsOf 2026-11-16T07:32:00Z
+
+# Step 7: Run this chapter's tests
+Invoke-Pester -Path tests/DailyChecks.Tests.ps1 -FullNameFilter 'Chapter 03*', 'Evidence*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+
+# After the steps
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Render the morning of November 16.** The Entra diagnostic setting stopped at 17:10 the day before, and the sync probe didn't run:
+
+   ```powershell
+   ./Invoke-DcRender.ps1 -FixturePath tests/fixtures/day1 -AsOf 2026-11-16T07:30:00Z -OutputPath out/day1
+   ```
+
+   <!-- capture:begin 03-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/03-1.txt))](captures/03-1.png){.lightbox fig-alt="Terminal window showing ./Invoke-DcRender.ps1 -FixturePath tests/fixtures/day1 -AsOf 2026-11-16T07:30… and what it printed"}
+
+   <!-- capture:end -->
+
+   The telemetry tab flags four rows: `SigninLogs`, `AuditLogs` and the probe's table are dark, and the Office 365 connector's latest health event is a failure. The sync, risk, emergency access and grants tabs are STALE: nothing on them can be read as clear.
+
+2. **Look at what the risk tab's query returned.** No rows, but its source stopped fourteen hours ago:
+
+   ```powershell
+   Get-Content tests/fixtures/day1/risk.json
+   ```
+
+   <!-- capture:begin 03-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/03-2.txt))](captures/03-2.png){.lightbox fig-alt="Terminal window showing Get-Content tests/fixtures/day1/risk.json and what it printed"}
+
+   <!-- capture:end -->
+
+   `rows` is empty and `SigninLogs` last arrived at 17:10. Shown as a quiet queue, this is the morning a risky sign-in goes unseen.
+
+3. **Render the next morning.** The setting is back; the queues show what they were hiding:
+
+   ```powershell
+   ./Invoke-DcRender.ps1 -FixturePath tests/fixtures/day2 -AsOf 2026-11-17T07:30:00Z -OutputPath out/day2
+   ```
+
+   <!-- capture:begin 03-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/03-3.txt))](captures/03-3.png){.lightbox fig-alt="Terminal window showing ./Invoke-DcRender.ps1 -FixturePath tests/fixtures/day2 -AsOf 2026-11-17T07:30… and what it printed"}
+
+   <!-- capture:end -->
+
+   Telemetry is CLEAR. One user at high risk, one emergency access sign-in (the quarterly validation drill, which the review records as a drill) and one synchronization conflict now show as ATTENTION.
+
+4. **Check each table's reachability on day 1** (saved answers):
+
+   ```powershell
+   ./deploy/Test-DcReachability.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/reach-day1.json -OutputPath out/reach -AsOf 2026-11-16T07:30:00Z
+   ```
+
+   <!-- capture:begin 03-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/03-4.txt))](captures/03-4.png){.lightbox fig-alt="Terminal window showing ./deploy/Test-DcReachability.ps1 -SettingsPath tests/fixtures/settings.lab.js… and what it printed"}
+
+   <!-- capture:end -->
+
+   `SigninLogs`, `AuditLogs` and the probe's table are Late, and `SentinelHealth` is Missing: health monitoring was never turned on in this workspace. The script exits 1.
+
+5. **Try to record the render as evidence.** The kit refuses:
+
+   ```powershell
+   ./Invoke-DcEvidence.ps1 -EvidencePath out/evidence -RunPath out/day1 -AsOf 2026-11-16T07:31:00Z
+   ```
+
+   <!-- capture:begin 03-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/03-5.txt))](captures/03-5.png){.lightbox fig-alt="Terminal window showing ./Invoke-DcEvidence.ps1 -EvidencePath out/evidence -RunPath out/day1 -AsOf 20… and what it printed"}
+
+   <!-- capture:end -->
+
+   The kit refuses: `A rendered view is not evidence.`
+
+6. **Record the reachability check instead:**
+
+   ```powershell
+   ./Invoke-DcEvidence.ps1 -EvidencePath out/evidence -RunPath out/reach -AsOf 2026-11-16T07:32:00Z
+   ```
+
+   <!-- capture:begin 03-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/03-6.txt))](captures/03-6.png){.lightbox fig-alt="Terminal window showing ./Invoke-DcEvidence.ps1 -EvidencePath out/evidence -RunPath out/reach -AsOf 2… and what it printed"}
+
+   <!-- capture:end -->
+
+   Record 1, with result Fail: the record keeps what the check found, with CA-7 and SI-4 and their KSIs.
+
+7. **Run this chapter's tests:**
+
+   ```powershell
+   Invoke-Pester -Path tests/DailyChecks.Tests.ps1 -FullNameFilter 'Chapter 03*', 'Evidence*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+   ```
+
+   <!-- capture:begin 03-7 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+   ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/03-7.txt))](captures/03-7.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests/DailyChecks.Tests.ps1 -FullNameFilter 'Chapter 03*'… and what it printed"}
+
+   <!-- capture:end -->
+
+**Expected result:** `FailedCount` 0. Delete `out` when you're done:
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 03-8 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/03-8.txt))](captures/03-8.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: a test workspace
+
+Use a test subscription and workspace, never production. **The authors haven't run this lab.** Work in `examples/daily-checks-workbook`, in PowerShell 7 with the Azure CLI, signed in as a person with Log Analytics Reader on the workspace. You'll replace: `<tenant-id>`, `<settings-file>` (your filled copy of `deploy/settings.template.json` for the test environment) and `<output-folder>` (outside any repository).
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order, from `examples/daily-checks-workbook`. Each step below says what it does and what to look for.
+
+```powershell
+# Step 1: Sign in to commercial Azure and add the query extension
+az cloud set --name AzureCloud
+az login --tenant <tenant-id>
+az extension add --name log-analytics
+
+# Step 2: Run the reachability check
+./deploy/Test-DcReachability.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/reach
+
+# Step 3: Back it out
+az logout
+Remove-Item -Recurse -Force <output-folder>/reach
+```
+
+:::
+
+<!-- labs:end -->
+
+1. **Sign in to commercial Azure and add the query extension:**
+
+   ```powershell
+   az cloud set --name AzureCloud
+   az login --tenant <tenant-id>
+   az extension add --name log-analytics
+   ```
+
+2. **Run the reachability check.** It reads each table's newest record and count, and changes nothing:
+
+   ```powershell
+   ./deploy/Test-DcReachability.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/reach
+   ```
+
+   Every table should be Delivering. Record each Late or Missing table as a task under the guide's Step 1.
+
+3. **Back it out.** Nothing was changed; sign out and delete the output if this was a rehearsal:
+
+   ```powershell
+   az logout
+   Remove-Item -Recurse -Force <output-folder>/reach
+   ```
+
+## Verified facts
+
+| Item | Value | GCC | Source |
+|---|---|---|---|
+| Completeness pattern | `union isfuzzy=true withsource=TableName`, newest `TimeGenerated` per table against a limit | — | [Book 15, Chapter 12](../../../books/b15-day2-operations/12-the-day-two-runbook.md#the-telemetry-completeness-check) |
+| `SentinelHealth` latest failure | `OperationName == 'Data fetch status change'`, `arg_max` by connector, `Status == 'Failure'` | Commercial Azure | [^dc03-health] |
+| Intune export | Once every 24 hours, up to 48 hours; possible duplicates | Intune in GCC is the commercial instance | [^dc03-intune] |
+| Query from the CLI | `az monitor log-analytics query --workspace <GUID> --analytics-query`; the `log-analytics` extension | Commercial Azure | [^dc03-cli] |
+| Reader role | Log Analytics Reader: "View and search all monitoring data" | — | [^dc03-access] |
+
+## Federal requirements and evidence
+
+| What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
+|---|---|---|---|
+| Each tab's tables answer, with their age (Lab 1, step 4; Lab 2, step 2: `reach.json`) | CA-7 (continuous monitoring), SI-4 (system monitoring) | KSI-MLA-EVC, KSI-MLA-LET | Security operations; the ISSO keeps the record |
+| A stale source is shown as STALE (Lab 1, steps 1 and 2) | SI-4 | KSI-MLA-LET | The repository's tests |
+| The render is refused as evidence (Lab 1, step 5) | CA-7 (the evidence is the checks' records) | KSI-MLA-EVC | The repository's tests |
+
+The kit's records support these controls; the agency's assessor decides them. KSIs are FedRAMP 20x indicators for cloud service providers, framed as in Chapter 01.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| A missing connector looks healthy | Empty risk and emergency access queues on a morning SigninLogs stopped | STALE over a stale source; the telemetry tab first |
+| A missed probe shows yesterday's green verdict | The operator reads "compliant" from a run that didn't happen today | The sync tab's 24-hour limit makes it STALE |
+| A render filed as evidence | A picture stands in for the checks' records | `Write-DcEvidence` refuses it |
+| A reachability check with write rights | A reader role grows into contributor | Log Analytics Reader only; the check sends only queries |
+
+## Checklist
+
+- [ ] The telemetry tab is read first, and each dark source has a task.
+- [ ] No tab is read as clear while its source is stale.
+- [ ] The reachability check passes in the test workspace, and its record is in the evidence.
+- [ ] No render or screenshot is in the evidence package.
+
+::: {.callout-tip}
+## Continue the book
+[← Chapter 02 — The Workbook Template and Its Validator](02-the-workbook-template-and-its-validator.md) · [Workbook index](index.md) · [Next: Chapter 04 — Deploying to Test and Production →](04-deploying-to-test-and-production.md)
+:::
+
+[^dc03-health]: Microsoft Learn, "Monitor the health of your Microsoft Sentinel data connectors," Run queries to detect health drifts, and Configure alerts and automated actions for health issues, <https://learn.microsoft.com/azure/sentinel/monitor-data-connector-health> (accessed November 18, 2026).
+[^dc03-intune]: Microsoft Learn, "Route logs to Azure Monitor using Microsoft Intune," frequently asked questions and known issues, <https://learn.microsoft.com/intune/governance/integrate-azure-monitor> (accessed November 18, 2026).
+[^dc03-cli]: Microsoft Learn, Azure CLI reference, "az monitor log-analytics," `az monitor log-analytics query` (Extension, GA), <https://learn.microsoft.com/cli/azure/monitor/log-analytics> (accessed November 18, 2026).
+[^dc03-access]: Microsoft Learn, "Manage access to Log Analytics workspaces," Log Analytics Reader, <https://learn.microsoft.com/azure/azure-monitor/logs/manage-access> (accessed November 18, 2026).

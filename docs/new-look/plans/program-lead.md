@@ -33,9 +33,9 @@ review-status: pending
 ## Week 4: people and change
 
 - [Book 16 — People: Training & Education](../../books/b16-people/index.md) (Book, 11 chapters, about 4 hr 30 min). Why people, not tools, close the gap: what federal workforce rules require, the compliance and implementation tracks, assessment and certification, vendor training and labs, end-user training, who owns readiness, and how to run and….
-- [Book 15 — Compliance Automation & Day-2 Operations](../../books/b15-day2-operations/index.md) (Book, 16 chapters, about 8 hr 2 min). Why modernization succeeds or fails at the help desk: intake and triage, help-desk authority in Entra ID, the service catalogs, SaaS integration governance, the CMDB, control compliance automation across clouds, who runs day two….
+- [Book 15 — Compliance Automation & Day-2 Operations](../../books/b15-day2-operations/index.md) (Book, 16 chapters, about 8 hr 3 min). Why modernization succeeds or fails at the help desk: intake and triage, help-desk authority in Entra ID, the service catalogs, SaaS integration governance, the CMDB, control compliance automation across clouds, who runs day two….
 
-*Milestone 4: about 12 hr 32 min.*
+*Milestone 4: about 12 hr 33 min.*
 
-**Whole plan:** about 30 hr 30 min of reading and video, plus the labs.
+**Whole plan:** about 30 hr 31 min of reading and video, plus the labs.
 

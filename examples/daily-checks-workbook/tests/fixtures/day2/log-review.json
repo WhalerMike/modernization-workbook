@@ -1,0 +1,7 @@
+{
+  "_comment": "One incident still open; yesterday's DLP incident was closed with its review.",
+  "sources": { "SecurityIncident": "2026-11-16T22:48:00Z" },
+  "rows": [
+    { "query": "log-review-1", "CreatedTime": "2026-11-15T11:20:00Z", "IncidentNumber": 409, "Title": "Unfamiliar sign-in properties", "Severity": "Low", "Status": "Active", "AssignedTo": "soc-analyst-2@contoso.example" }
+  ]
+}

@@ -1,0 +1,8 @@
+// Devices not compliant in Intune's latest daily organizational export. Read-only.
+// The compliant state string comes from the CompliantStateValue parameter: check your workspace's values first.
+IntuneDeviceComplianceOrg
+| where TimeGenerated > ago(3d)
+| summarize arg_max(TimeGenerated, *) by DeviceId
+| where ComplianceState != "{CompliantStateValue}"
+| project TimeGenerated, DeviceName, ComplianceState, OS, UPN, LastContact, InGracePeriodUntil
+| order by DeviceName asc

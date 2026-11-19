@@ -1,0 +1,14 @@
+PS> ./Show-DcManifest.ps1
+Id               Kind     Fit      Queries Tables
+--               ----     ---      ------- ------
+telemetry        workbook strong         2 SigninLogs, AuditLogs, AADRiskyUsers, SecurityAlert, SecurityIncident, IntuneDeviceComplianceOrg, CommonSecurityLog,
+                                           DailySyncProbe_CL, SentinelHealth
+sync             workbook strong         1 DailySyncProbe_CL
+entra-health     link-out link-out       0
+risk             workbook strong         2 AADRiskyUsers, SigninLogs
+emergency-access workbook strong         1 SigninLogs
+devices          workbook good           1 IntuneDeviceComplianceOrg
+grants           workbook partial        1 AuditLogs
+data             workbook good           1 SecurityAlert
+tasks            link-out weak           0
+log-review       workbook partial        1 SecurityIncident

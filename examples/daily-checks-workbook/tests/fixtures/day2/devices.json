@@ -1,0 +1,7 @@
+{
+  "_comment": "Today's export: two devices fixed, one iPhone still not compliant.",
+  "sources": { "IntuneDeviceComplianceOrg": "2026-11-16T02:05:00Z" },
+  "rows": [
+    { "query": "devices-1", "TimeGenerated": "2026-11-16T02:05:00Z", "DeviceName": "CTX-MB-0021", "ComplianceState": "Noncompliant", "OS": "iOS", "UPN": "sam.ortiz@contoso.example", "LastContact": "2026-11-13T08:02:00Z", "InGracePeriodUntil": "" }
+  ]
+}

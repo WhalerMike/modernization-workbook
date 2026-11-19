@@ -18,6 +18,7 @@ The workbook covers Microsoft 365 GCC (Moderate) with commercial Azure. Pages sa
 | [Azure Arc Track: Implementation Guide](../books/guides/arc-track-implementation.md) | [1.5 Commercial availability](../books/guides/arc-track-implementation.md#commercial-availability) |
 | [Azure Security Engineering](../books/guides/azure-security-implementation.md) | [Availability in commercial Azure](../books/guides/azure-security-implementation.md#gov-availability) |
 | [Building Book 09's SD-WAN Design on Cisco Catalyst SD-WAN](../books/guides/cisco-sdwan-implementation.md) | [Microsoft 365 in GCC](../books/guides/cisco-sdwan-implementation.md#microsoft-365-in-gcc) |
+| [The Daily Checks on One Dashboard: An Implementation Guide](../books/guides/daily-checks-dashboard-implementation.md) | [GCC availability](../books/guides/daily-checks-dashboard-implementation.md#availability) |
 | [Defender XDR Engineering & Operations: An Implementation Guide](../books/guides/defender-xdr-implementation.md) | [GCC availability by feature](../books/guides/defender-xdr-implementation.md#government-cloud-availability) |
 | [Distribution Point Consolidation: An Implementation Guide](../books/guides/dp-consolidation-implementation.md) | [Government cloud availability](../books/guides/dp-consolidation-implementation.md#gcc) |
 | [Distribution Point Consolidation: A Decision Guide Before You Fund a Refresh](../books/guides/dp-consolidation.md) | [GCC availability and the interim path](../books/guides/dp-consolidation.md#gcc-availability) |

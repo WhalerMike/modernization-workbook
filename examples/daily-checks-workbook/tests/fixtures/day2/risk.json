@@ -1,0 +1,7 @@
+{
+  "_comment": "With SigninLogs flowing again, yesterday's gap shows what the empty queue was hiding: one user at high risk.",
+  "sources": { "SigninLogs": "2026-11-17T07:24:00Z", "AADRiskyUsers": "2026-11-17T03:20:00Z" },
+  "rows": [
+    { "query": "risk-1", "RiskLastUpdatedDateTime": "2026-11-16T21:58:00Z", "UserPrincipalName": "taylor.brooks@contoso.example", "RiskLevel": "high", "RiskState": "atRisk", "RiskDetail": "none" }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "_comment": "One tab per daily check in Book 15, Chapter 12 (the cadence table's Daily rows and the by-family table's Daily column). kind 'workbook' tabs query the Sentinel Log Analytics workspace; 'link-out' tabs send the operator to the built-in portal page where the data isn't in Log Analytics. Tables, columns and GCC availability were read on Microsoft Learn on November 18, 2026 (the guide's verification log). Freshness limits and look-backs are design guidance: set each from the source's own cadence. render is the rule Invoke-DcRender.ps1 applies to fixture query results; it never makes the view evidence.",
+  "version": 1,
+  "workbook": { "displayName": "Daily checks", "schema": "Notebook/1.0", "category": "workbook", "resourceType": "microsoft.operationalinsights/workspaces" },
+  "banner": "This workbook is a view, not evidence. The evidence is the stored record each check writes and the tracked task each finding opens.",
+  "allowedHosts": ["portal.azure.com", "entra.microsoft.com", "intune.microsoft.com", "security.microsoft.com", "purview.microsoft.com", "admin.microsoft.com", "learn.microsoft.com"],
+  "parameters": [
+    { "name": "Workspace", "type": "workspace", "source": "workspaceResourceId", "purpose": "The Sentinel Log Analytics workspace every query reads" },
+    { "name": "EmergencyAccessIds", "type": "text", "source": "emergencyAccessObjectIds", "purpose": "The emergency access accounts' object IDs, quoted and comma-separated" },
+    { "name": "CompliantStateValue", "type": "text", "source": "compliantStateValue", "purpose": "The ComplianceState value your workspace records for a compliant device" },
+    { "name": "DlpProductNames", "type": "text", "source": "dlpProductNames", "purpose": "The ProductName values of DLP and label alerts in SecurityAlert, quoted and comma-separated" },
+    { "name": "ItsmQueueUrl", "type": "text", "source": "itsmQueueUrl", "purpose": "The ITSM tool's own queue page for catalog and remediation tasks" }
+  ],
+  "expectedTables": [
+    { "table": "SigninLogs", "slaMinutes": 60 },
+    { "table": "AuditLogs", "slaMinutes": 60 },
+    { "table": "AADRiskyUsers", "slaMinutes": 1440 },
+    { "table": "SecurityAlert", "slaMinutes": 1440 },
+    { "table": "SecurityIncident", "slaMinutes": 1440 },
+    { "table": "IntuneDeviceComplianceOrg", "slaMinutes": 2880 },
+    { "table": "CommonSecurityLog", "slaMinutes": 60 },
+    { "table": "DailySyncProbe_CL", "slaMinutes": 1440 }
+  ],
+  "tabs": [
+    {
+      "id": "telemetry", "title": "Telemetry completeness", "kind": "workbook", "fit": "strong",
+      "check": "Telemetry-completeness check, network sources included (cadence table, Daily; by-family table, Network)",
+      "tables": ["SigninLogs", "AuditLogs", "AADRiskyUsers", "SecurityAlert", "SecurityIncident", "IntuneDeviceComplianceOrg", "CommonSecurityLog", "DailySyncProbe_CL", "SentinelHealth"],
+      "queries": [
+        { "id": "telemetry-1", "file": "telemetry-1.kql", "title": "Every expected table and the age of its newest record", "lookbackHours": 72 },
+        { "id": "telemetry-2", "file": "telemetry-2.kql", "title": "Connectors whose latest SentinelHealth status is Failure", "lookbackHours": 72 }
+      ],
+      "linkOuts": [
+        { "name": "Sentinel Data collection health monitoring workbook", "url": "https://portal.azure.com", "path": "Microsoft Sentinel > Threat management > Workbooks > Templates > Data collection health monitoring" }
+      ],
+      "gcc": "Available: the workspace is in commercial Azure, where Sentinel workbooks are GA. The Defender portal's Data & connectors Overview tab is a commercial-cloud preview and isn't used.",
+      "action": "Each dark source opens a high-severity task; the completeness alert rule, not this tab, is the record.",
+      "render": { "freshness": {}, "emptyMeans": "no-data", "flag": [
+        { "query": "telemetry-1", "op": "older-than-column", "column": "LastSeen", "limitColumn": "SlaMinutes" },
+        { "query": "telemetry-2", "op": "eq", "column": "Status", "value": "Failure" } ] }
+    },
+    {
+      "id": "sync", "title": "Synchronization probe", "kind": "workbook", "fit": "strong",
+      "check": "Synchronization and service-health probe (task 6, the morning synchronization check)",
+      "tables": ["DailySyncProbe_CL"],
+      "queries": [ { "id": "sync-1", "file": "sync-1.kql", "title": "The probe's latest result", "lookbackHours": 48 } ],
+      "linkOuts": [
+        { "name": "Microsoft Entra Connect Health", "url": "https://entra.microsoft.com", "path": "Microsoft Entra Connect Health (left menu: Microsoft Entra Connect Sync)" },
+        { "name": "Microsoft 365 service health", "url": "https://admin.microsoft.com", "path": "Health > Service health" }
+      ],
+      "gcc": "The Logs Ingestion API that writes the probe's table is available in commercial Azure. Connect Health's GCC availability is not yet specified.",
+      "action": "A drift verdict or a missed probe opens a task; the probe's own stored result is the record.",
+      "render": { "freshness": { "DailySyncProbe_CL": 1440 }, "emptyMeans": "no-data", "flag": [ { "query": "sync-1", "op": "eq", "column": "Verdict", "value": "drift" } ] }
+    },
+    {
+      "id": "entra-health", "title": "Entra Health alerts", "kind": "link-out", "fit": "link-out",
+      "check": "Entra Health alerts (by-family table, Identity)",
+      "tables": [], "queries": [],
+      "linkOuts": [ { "name": "Microsoft Entra Health", "url": "https://entra.microsoft.com", "path": "Entra ID > Monitoring & health > Health > Health Monitoring" } ],
+      "gcc": "Not yet specified. Health monitoring is a preview shown in the admin center, by e-mail and through Graph beta; it isn't in Log Analytics.",
+      "action": "Each active alert opens a task; dismissing one is a closure with its reason.",
+      "render": null
+    },
+    {
+      "id": "risk", "title": "Risky users and sign-ins", "kind": "workbook", "fit": "strong",
+      "check": "Risky-user and risky-sign-in triage (by-family table, Identity)",
+      "tables": ["AADRiskyUsers", "SigninLogs"],
+      "queries": [
+        { "id": "risk-1", "file": "risk-1.kql", "title": "Users at medium or high risk", "lookbackHours": 48 },
+        { "id": "risk-2", "file": "risk-2.kql", "title": "Risky sign-ins in the last day", "lookbackHours": 24 }
+      ],
+      "linkOuts": [ { "name": "ID Protection risky users", "url": "https://entra.microsoft.com", "path": "ID Protection > Risky activities > Risky users" } ],
+      "gcc": "Available: Entra diagnostic settings send RiskyUsers and SignInLogs to the commercial workspace.",
+      "action": "Each user at risk is triaged in the incident path; the triage record is the evidence.",
+      "render": { "freshness": { "SigninLogs": 60 }, "emptyMeans": "clear", "flag": [ { "op": "any" } ] }
+    },
+    {
+      "id": "emergency-access", "title": "Emergency access sign-ins", "kind": "workbook", "fit": "strong",
+      "check": "Emergency access alert reviewed for any firing (by-family table, Identity)",
+      "tables": ["SigninLogs"],
+      "queries": [ { "id": "emergency-access-1", "file": "emergency-access-1.kql", "title": "Sign-ins by the emergency access accounts", "lookbackHours": 24 } ],
+      "linkOuts": [ { "name": "Azure Monitor alert rules", "url": "https://portal.azure.com", "path": "Monitor > Alerts > Alert rules" } ],
+      "gcc": "Available. The Azure Monitor alert rule on these sign-ins is the control; this tab only shows them.",
+      "action": "Any row is reviewed as a drill, a real emergency or misuse, and the review is recorded.",
+      "render": { "freshness": { "SigninLogs": 60 }, "emptyMeans": "clear", "flag": [ { "op": "any" } ] }
+    },
+    {
+      "id": "devices", "title": "Noncompliant devices", "kind": "workbook", "fit": "good",
+      "check": "Noncompliant-device queue worked (by-family table, Devices)",
+      "tables": ["IntuneDeviceComplianceOrg"],
+      "queries": [ { "id": "devices-1", "file": "devices-1.kql", "title": "Devices not compliant in the latest daily export", "lookbackHours": 72 } ],
+      "linkOuts": [ { "name": "Intune noncompliant devices report", "url": "https://intune.microsoft.com", "path": "Devices > Monitor > Noncompliant devices" } ],
+      "gcc": "Available: Intune in GCC is the commercial service instance, and its diagnostic settings send DeviceComplianceOrg to the workspace.",
+      "action": "The queue is worked in Intune and the ITSM tool; the export arrives once a day, up to 48 hours late.",
+      "render": { "freshness": { "IntuneDeviceComplianceOrg": 2880 }, "emptyMeans": "clear", "flag": [ { "op": "any" } ] }
+    },
+    {
+      "id": "grants", "title": "Consents, roles and grants", "kind": "workbook", "fit": "partial",
+      "check": "Any consent, role or access grant with no ticket alerted (by-family table, Applications)",
+      "tables": ["AuditLogs"],
+      "queries": [ { "id": "grants-1", "file": "grants-1.kql", "title": "Consents, role assignments and grants in the last day", "lookbackHours": 24 } ],
+      "linkOuts": [ { "name": "Entra audit logs", "url": "https://entra.microsoft.com", "path": "Entra ID > Monitoring & health > Audit logs" } ],
+      "gcc": "Available. The match to a ticket isn't in the workbook: the ticket data stays in the ITSM tool.",
+      "action": "Each row is matched to its ticket in the ITSM tool; a grant with no ticket opens a finding.",
+      "render": { "freshness": { "AuditLogs": 60 }, "emptyMeans": "clear", "flag": [ { "op": "any" } ] }
+    },
+    {
+      "id": "data", "title": "DLP and label alerts", "kind": "workbook", "fit": "good",
+      "check": "Data loss prevention and label-change alerts triaged (by-family table, Data)",
+      "tables": ["SecurityAlert"],
+      "queries": [ { "id": "data-1", "file": "data-1.kql", "title": "DLP and label alerts in the last day", "lookbackHours": 24 } ],
+      "linkOuts": [ { "name": "Purview DLP alerts", "url": "https://purview.microsoft.com", "path": "Data loss prevention > Alerts" } ],
+      "gcc": "Available: Defender XDR alerts in SecurityAlert are GA for Commercial and GCC, and Defender XDR collects Purview DLP alerts.",
+      "action": "Each alert is triaged in Purview or the Defender portal; the triage is the record.",
+      "render": { "freshness": {}, "emptyMeans": "clear", "flag": [ { "op": "any" } ] }
+    },
+    {
+      "id": "tasks", "title": "Catalog and remediation tasks", "kind": "link-out", "fit": "weak",
+      "check": "Catalog and remediation tasks (cadence table, Daily)",
+      "tables": [], "queries": [],
+      "linkOuts": [ { "name": "The ITSM tool's task queue", "url": "{ItsmQueueUrl}", "path": "The queue the settings file names" } ],
+      "gcc": "Not applicable: the tasks live in the ITSM tool, whose own dashboards show them.",
+      "action": "Tasks close with their proof in the ITSM tool (Chapter 11's evidence contract).",
+      "render": null
+    },
+    {
+      "id": "log-review", "title": "Log review queue", "kind": "workbook", "fit": "partial",
+      "check": "Log review findings (cadence table, Daily; task 7)",
+      "tables": ["SecurityIncident"],
+      "queries": [ { "id": "log-review-1", "file": "log-review-1.kql", "title": "Open incidents, newest first", "lookbackHours": 336 } ],
+      "linkOuts": [ { "name": "Defender portal incidents", "url": "https://security.microsoft.com", "path": "Investigation & response > Incidents & alerts > Incidents" } ],
+      "gcc": "Available: incidents from Defender XDR are GA for Commercial and GCC. The tab shows the queue; the review stays a recorded procedure.",
+      "action": "The review is done and recorded in the incident path; the tab is where it starts.",
+      "render": { "freshness": {}, "emptyMeans": "clear", "flag": [ { "op": "any" } ] }
+    }
+  ]
+}

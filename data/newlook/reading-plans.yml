@@ -58,6 +58,8 @@ plans:
         items: [docs/training/global-secure-access/index.md]
       - name: "Week 4: labs"
         items: ["docs/training/labs.md#xdr", "docs/training/labs.md#gsa"]
+      - name: "Week 5: the daily checks on one page"
+        items: [docs/training/daily-checks-dashboard/index.md, "docs/training/labs.md#dc"]
 
   - role: Cloud and platform engineer
     slug: cloud-platform-engineer
