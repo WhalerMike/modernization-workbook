@@ -82,6 +82,10 @@
   "title": "Six dispositions, cheapest first",
   "links": [
    {
+    "text": "AWS (Orban, 2016)",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-6-strategies-orban"
+   },
+   {
     "text": "AWS Prescriptive Guidance",
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#aws-migration-strategies"
    },

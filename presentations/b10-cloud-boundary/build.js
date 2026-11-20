@@ -396,14 +396,14 @@ The 2026 rules add four scope arguments, each with a limit. And buy the capabili
     "The suite's directory is derived: report drift",
   ], 14);
   callout(s, "Record", 5.35, 1.15, "FaPeopleArrows", HEX.navy, "The public record runs both ways: ",
-    "a department's five-year deal of up to $89 million moved 50,000-plus staff to Google Workspace, under a temporary GSA discount.");
-  sources(s, "Sources: FedRAMP Marketplace (October 21, 2026); Microsoft Learn — Google Workspace provisioning and SSO, Conditional Access targets; Google Workspace Admin Help; GSA (April 2025); Nextgov/FCW. Book 10, Chapter 10.");
+    "a department signed a five-year, $89 million Google Workspace agreement days before a temporary GSA discount expired; Google puts it at 50,000-plus staff.");
+  sources(s, "Sources: FedRAMP Marketplace (October 21, 2026); Microsoft Learn — Google Workspace provisioning and SSO, Conditional Access targets; Google Workspace Admin Help; GSA (April 2025); USAspending.gov; Google Cloud blog (Dec. 2025). Book 10, Chapter 10.");
   narrate(s,
 `The third answer is an alternative path: a different certified service for the workload, with the identity plane left where it is.
 
 Read the Marketplace, not the announcement. Google Workspace is listed at Class D, while Gemini for Government is a separate listing at Class B. Which AI features sit inside which certification is a question for the package.
 
-The public record shows one such move. In September 2025 a cabinet-level department awarded a five-year agreement worth up to 89 million dollars to move more than 50,000 employees to Google Workspace, under a GSA agreement with a temporary 71 percent price reduction. The discount was temporary, so a five-year cost model prices the renewal years on terms the agency can see.
+The public record shows one such move. On September 27, 2025 a cabinet-level department signed a five-year enterprise license agreement for Google's productivity suite, about 89 million dollars with all options, three days before a GSA agreement's temporary 71 percent price reduction expired. Google says the department is moving more than 50,000 employees to Google Workspace. The discount was temporary, so a five-year cost model prices the renewal years on terms the agency can see.
 
 Keep Entra ID as the source: provision users, federate sign-in, apply Conditional Access there. Then close the gaps: Google super administrators sign in outside it, and Google's directory is derived, so report drift.`,
   "Book 10, Chapter 10 — Alternative Collaboration Paths.");
@@ -534,7 +534,7 @@ The license says what you bought; the boundary says what you may use. Book 10 ha
     "Microsoft Learn, Microsoft 365: network connectivity, assessment, insights and provider attribution; informed network routing; Adoption Score; Office 365 CDN; IP Address and URL web service; ExpressRoute for Microsoft 365; Office and Intune government service descriptions.",
     "Microsoft Learn, Azure: cloud feature availability for US Government; FedRAMP audit scope; landing zones, management groups, subscription vending; Azure Policy; Virtual Network Manager IPAM; shared responsibility.",
     "AWS: Organizations SCPs; Control Tower in GovCloud (US); Landing Zone Accelerator.  ·  HashiCorp: ServiceNow Catalog for Terraform; sensitive data.  ·  ServiceNow Cloud Provisioning and Governance.",
-    "Google Cloud FedRAMP scope; Google Workspace Admin Help; Microsoft Learn — Google Workspace provisioning and SSO.  ·  GSA (April 10 and August 21, 2025).  ·  Nextgov/FCW.  ·  Stars and Stripes.",
+    "Google Cloud FedRAMP scope; Google Workspace Admin Help; Microsoft Learn — Google Workspace provisioning and SSO.  ·  GSA (April 10 and August 21, 2025).  ·  USAspending.gov award record (task order 693JJ325F00266N).  ·  Google Cloud blog (December 5, 2025).",
     "Full footnotes with links and access dates: Book 10, every chapter (whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/).",
   ];
   txt(s, "Source list", bullets(src, 12.5), { x: 0.6, y: 1.55, w: 12.1, h: 5.0, paraSpaceAfter: 6 });

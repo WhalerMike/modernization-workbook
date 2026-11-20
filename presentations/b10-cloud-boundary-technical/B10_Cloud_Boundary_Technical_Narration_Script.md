@@ -62,7 +62,7 @@ When there's no equivalent, you take an exception, and there are two kinds. The 
 
 ## Slide 16 — Change the suite, keep the identity plane
 
-Sometimes the honest answer is a different collaboration suite. That's only safe if identity stays where it is: the suite is a workload that consumes identity, not a second source of truth. Read the certification, not the press release, because announcements and listings don't always match. The public record shows one such move: a department moved fifty thousand people on a steep temporary discount, and coexistence costs run until the last component moves. Keep Entra ID provisioning and federating sign-in, watch the admin accounts that skip it, and treat stray edits in the second directory as drift. That's Part 1.
+Sometimes the honest answer is a different collaboration suite. That's only safe if identity stays where it is: the suite is a workload that consumes identity, not a second source of truth. Read the certification, not the press release, because announcements and listings don't always match. The public record shows one such move: a department signed a five-year suite agreement days before a steep temporary discount expired, and coexistence costs run until the last component moves. Keep Entra ID provisioning and federating sign-in, watch the admin accounts that skip it, and treat stray edits in the second directory as drift. That's Part 1.
 
 ## Slide 17 — Module 3: Landing zone and front door
 

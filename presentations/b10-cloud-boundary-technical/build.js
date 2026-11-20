@@ -580,13 +580,13 @@ Finally, buy the capability. The Network Provider Program is no longer open to n
     "Super admins use Google credentials, outside Conditional Access: few, 2SV, logged",
     "Anything the provisioning service didn't write is drift",
   ], 13.5);
-  sources(s, "Sources: FedRAMP Marketplace (Oct. 21, 2026); Google FedRAMP scope; Workspace Admin Help; Microsoft Learn — Google provisioning, SSO; Nextgov/FCW. Book 10, Ch 10.");
+  sources(s, "Sources: FedRAMP Marketplace (Oct. 21, 2026); Google FedRAMP scope; Workspace Admin Help; Microsoft Learn — Google provisioning, SSO; USAspending.gov. Book 10, Ch 10.");
   notes(s,
 `The third answer is to change the service that delivers the workload. It's only safe if the identity plane stays put: the collaboration suite is a workload that consumes identity, not a second directory of record.
 
 Read the certification, not the announcement. As of October 21, 2026, Google Workspace is Certified at Class D, Zoom for Government and Webex for Government at Class C, Slack at C and GovSlack at D, Box at D, and Gemini for Government at Class B, Low, certified January 21, 2026. The provider says Workspace, Gemini in Workspace apps and the Gemini app are FedRAMP High authorized, so which AI features fall inside which offering is a question for the package. The Workspace listing says asterisked services don't meet SA-9(5), and the High configuration needs specific editions.
 
-The public record has one such move. In September 2025 a cabinet-level department awarded a five-year agreement of up to 89 million dollars to move more than 50,000 staff to Workspace with Gemini, on a temporary 71 percent discount, so a cost model must price the renewal years. None of the sources describes the identity integration. And speed of first deployment says nothing about the cost of coexistence, which runs until the last component moves.
+The public record has one such move. On September 27, 2025 a cabinet-level department signed a five-year enterprise license agreement for Google's productivity suite, about 89 million dollars with all options, three days before a temporary 71 percent discount expired, so a cost model must price the renewal years. Google says more than 50,000 staff are moving to Workspace with Gemini. None of the sources describes the identity integration. And speed of first deployment says nothing about the cost of coexistence, which runs until the last component moves.
 
 The identity pattern is design guidance. Entra ID provisions users and groups, on custom domains verified in both, with manager, department and OrgUnitPath mapped from governed attributes, and federates sign-in over SAML. Close the gaps: super administrators sign in with Google credentials outside Conditional Access, and the derived directory must be checked for drift.`,
   "Book 10, Chapter 10 — Alternative Collaboration Paths, \"Read the certification, not the announcement,\" \"A public example,\" \"Keep the identity plane where it is.\"");
@@ -1022,7 +1022,7 @@ sourceSlide("Sources behind Module 2 — GCC, the gap, three responses", [
   "Microsoft Learn: Azure ExpressRoute for Microsoft 365; Assessing enterprise network last mile; Microsoft 365 Network Provider Program; Set up your network; Managing Microsoft 365 endpoints.",
   "Google Cloud: FedRAMP compliance scope (Workspace); public-sector blog, Dec. 5, 2025.  ·  Google Workspace Admin Help: Setting up SSO; Super administrator SSO.",
   "Microsoft Learn: Google Workspace automatic user provisioning with Entra ID; Google SSO with Entra ID; Conditional Access target resources.",
-  "Public reporting: Nextgov/FCW (Oct. 29 and Dec. 29, 2025; Oct. 16, 2026); government-wide pricing agreement announcements (Apr. 10 and Aug. 21, 2025).",
+  "Public record: USAspending.gov award record, task order 693JJ325F00266N (signed Sept. 27, 2025); government-wide pricing agreement announcements (Apr. 10 and Aug. 21, 2025).",
   "Full footnotes with links and access dates: Book 10, Chapters 04, 09 and 10.",
 ]);
 sourceSlide("Sources behind Module 3 — Landing zone and front door", [

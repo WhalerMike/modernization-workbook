@@ -494,13 +494,13 @@ The system owner decides whether to make a provider-side request, and acquisitio
   ]);
   decision(s, "Treat a suite change as its own decision, with its own approval and decision record, separate from identity modernization; measure adoption in the pilot.",
     "Sponsor and CIO decide which clouds and services", "Re-read the listing on the day you decide", HEX.teal);
-  sources(s, "Sources: FedRAMP Marketplace (October 21, 2026); Google Cloud FedRAMP scope; Microsoft Learn — Google Workspace provisioning and SSO, Conditional Access; Google Workspace Admin Help; GSA (April 2025); Nextgov/FCW. Book 10, Ch. 08, 10.");
+  sources(s, "Sources: FedRAMP Marketplace (October 21, 2026); Google Cloud FedRAMP scope; Microsoft Learn — Google Workspace provisioning and SSO, Conditional Access; Google Workspace Admin Help; GSA (April 2025); USAspending.gov; Google Cloud blog (Dec. 2025). Book 10, Ch. 08, 10.");
   narrate(s,
 `The third response is a different certified service for the workload. Chapter 10 works through collaboration, and its first rule is to read the certification, not the announcement.
 
 On the Marketplace, Google Workspace is certified at Class D. Gemini for Government is a separate listing at Class B, Low, even though Google says Gemini in Workspace apps is FedRAMP High authorized. Which AI features sit inside which certification is a question for the package. And the Workspace listing marks some services as not meeting a control enhancement, SA-9 five, on where processing and storage happen. Details like those decide what you can turn on.
 
-The public record shows one such move. In September 2025 a cabinet-level department awarded a five-year agreement worth up to 89 million dollars to move more than 50,000 employees to Google Workspace, under a GSA agreement with a temporary 71 percent price reduction. So a five-year cost model has to price the renewal years, not the launch price. And speed of first deployment says nothing about the cost of coexistence, which runs until the last component moves.
+The public record shows one such move. On September 27, 2025 a cabinet-level department signed a five-year agreement, about 89 million dollars with all options, for Google Workspace, three days before a GSA agreement's temporary 71 percent price reduction expired. Google puts the move at more than 50,000 employees. So a five-year cost model has to price the renewal years, not the launch price. And speed of first deployment says nothing about the cost of coexistence, which runs until the last component moves.
 
 The choice is only safe if the identity plane stays put. Entra ID remains the source, and the suite is a workload that consumes identity: provisioned, federated, with Conditional Access applied at sign-in. Then close two gaps. Google super administrators sign in outside it, and Google's own directory is derived, so report its drift.
 
@@ -643,7 +643,7 @@ The license says what you bought; the boundary says what you may use. Book 10 ha
     "Microsoft Learn, service descriptions and Intune: Office 365 GCC; Office application and feature availability in Government plans; Windows release health; Intune for US Government; endpoint analytics; Advanced Analytics.",
     "Microsoft Learn, Azure: cloud feature availability for US Government; services in FedRAMP audit scope; shared responsibility; Azure landing zones and subscription vending; Azure Policy regulatory compliance; Microsoft FedRAMP offering page.",
     "Identity and collaboration: Microsoft Learn — Google Workspace provisioning and SSO tutorials, Conditional Access target resources; Google Cloud FedRAMP compliance scope; Google Workspace Admin Help (SSO, super administrator SSO).  ·  HashiCorp — sensitive data in state.",
-    "Public record: GSA news releases (April 10 and August 21, 2025); Nextgov/FCW (October 29 and December 29, 2025; October 16, 2026); Google Cloud blog (December 5, 2025).",
+    "Public record: GSA news releases (April 10 and August 21, 2025); USAspending.gov award record, task order 693JJ325F00266N (signed September 27, 2025); Google Cloud blog (December 5, 2025).",
     "Full footnotes with links and access dates: Book 10, every chapter (whalermike.github.io/modernization-workbook/docs/books/b10-cloud-boundary/).",
   ];
   txt(s, "Source list 2", bullets(src, 12), { x: 0.6, y: 1.5, w: 12.1, h: 5.1, paraSpaceAfter: 6 });

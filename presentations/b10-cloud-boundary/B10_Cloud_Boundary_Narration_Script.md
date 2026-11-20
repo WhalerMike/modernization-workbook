@@ -46,7 +46,7 @@ So what do you do with a capability that's outside the boundary? NIST gives four
 
 ## Slide 12 — Change the suite, keep the identity plane
 
-The third answer is an alternative path: move the workload to a different certified service, and leave the identity plane where it is. Google Workspace and Gemini for Government are separate listings at different classes, so which AI features sit inside which certification is a question for the package. The public record shows one such move: a cabinet-level department moved more than 50,000 employees to Google Workspace in 2025, on a temporary discount. Whichever way you go, keep Entra ID as the source. Provision users, federate sign-in and apply Conditional Access there. Then close the gaps: Google super administrators sign in outside it, and Google's directory is derived, so report drift. Next, the evidence.
+The third answer is an alternative path: move the workload to a different certified service, and leave the identity plane where it is. Google Workspace and Gemini for Government are separate listings at different classes, so which AI features sit inside which certification is a question for the package. The public record shows one such move: in September 2025 a cabinet-level department signed a five-year Google Workspace agreement, days before a temporary discount expired. Google puts it at more than 50,000 employees. Whichever way you go, keep Entra ID as the source. Provision users, federate sign-in and apply Conditional Access there. Then close the gaps: Google super administrators sign in outside it, and Google's directory is derived, so report drift. Next, the evidence.
 
 ## Slide 13 — Write the boundary once; cite it everywhere
 

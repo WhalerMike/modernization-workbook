@@ -456,7 +456,7 @@ It starts with Federal HR 2.0, because the program fixes the HR side on its own 
   notes(s,
 `Federal HR 2.0 is not the project; it's the opening. The joint OMB and OPM memo of December 10, 2025 moves the government's more than 100 Core HCM systems onto one platform, and says the single system will eventually make eOPF and EHRI redundant and allow their decommissioning. OPM awarded the Core HCM contract on June 10, 2026 for Oracle Fusion Cloud HCM, delivered as SaaS under Oracle's FedRAMP Moderate authorization.
 
-The wave clock: Wave 1 is the agencies that volunteered, about 900,000 FTE; Wave 2 is everyone else, about 1.1 million FTE, transitioning in FY 2027. First agencies were expected to begin onboarding as FY 2027 began, with initial go-lives reported for January to March 2027. The memo's sample timeline runs about eight months, with interconnection go-live and production setup around month five and cutover at month eight.
+The wave clock: Wave 1 is the agencies that volunteered, about 900,000 FTE; Wave 2 is everyone else, about 1.1 million FTE, transitioning in FY 2027. Wave 1 was planned to start in FY 2026 and conclude in FY 2027. The book found no OPM schedule of individual agencies' go-live dates, so confirm them with the program office. The memo's sample timeline runs about eight months, with interconnection go-live and production setup around month five and cutover at month eight.
 
 Now the precise point about SCIM. The solicitation's Functional Requirements Matrix, requirement 5, asks for SCIM 2.0 automated user provisioning from the Government's identity provider into the contractor's system, in near real time or within an SLA such as 15 minutes. That points into the platform: provisioning the HR system's own users. Nothing in it makes the platform the source for the agency's directory. The reverse direction, HR events driving Entra ID, is an agency decision. Microsoft documents it for Oracle Fusion Cloud HCM through API-driven inbound provisioning, which accepts SCIM-formatted payloads built from HCM Extracts or Atom feeds.
 
@@ -1062,9 +1062,9 @@ sourceSlide("Sources behind the orientation and Module 1", [
 ]);
 sourceSlide("Sources behind Module 2 — The provisioning pipeline", [
   "OMB and OPM, Creating \"Federal HR 2.0\" by Consolidating Core Human Capital Management Across the Federal Government (Dec. 10, 2025), §I, §II, Appendices A–C.",
-  "OPM: OPM Awards Contract for First-Ever Governmentwide HR Platform; Core HCM page; HR QSMO.  ·  Oracle press release (June 11, 2026).",
+  "OPM: OPM Awards Contract for First-Ever Governmentwide HR Platform (and its June 10, 2026 email bulletin); Core HCM page; HR QSMO.  ·  Oracle news release, oracle.com (June 11, 2026).",
   "OPM Solicitation 24322626R0007, Federal HRIT Modernization, Amendment 4, PWS Appendix A, Functional Requirements Matrix, Req. 5.",
-  "FedRAMP Marketplace data, product F1603257882, Oracle Fusion Cloud (Moderate).  ·  Trade press on go-live timing: Federal News Network (June 10, 2026); MeriTalk (Sept. 1, 2026).",
+  "FedRAMP Marketplace data, product F1603257882, Oracle Fusion Cloud (Moderate).",
   "Microsoft Learn: API-driven inbound provisioning concepts; FAQs; Grant access to the inbound provisioning API; Configure Oracle HCM for automatic user provisioning.",
   "Microsoft Graph: Perform bulkUpload (rate limit, permissions); National cloud deployments (GCC uses the worldwide endpoints).",
   "Oracle: Introduction to HCM Extracts; Employee ATOM Feeds; Employees REST deprecation notice; Workers REST endpoints; SCIM Users (writeback).",

@@ -13960,6 +13960,57 @@
      "change": "Added: replaces retired row gsa-get-device-usage-summary, which the workbook cites again (Building Global Secure Access, Chapter 03, and the Global Secure Access decks)"
     }
    ]
+  },
+  {
+   "id": "usaspending-693jj325f00266n",
+   "title": "USAspending.gov: award 693JJ325F00266N, Google Productivity Tool Suite 5-Year Enterprise License Agreement",
+   "publisher": "USAspending.gov (Department of the Treasury)",
+   "url": "https://www.usaspending.gov/award/CONT_AWD_693JJ325F00266N_6925_47QSWA18D008F_4732",
+   "status": "active",
+   "added": "2026-11-20",
+   "labels": [
+    "USAspending.gov"
+   ],
+   "history": [
+    {
+     "date": "2026-11-20",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "google-cloud-dot-workspace",
+   "title": "Google Cloud blog: U.S. Department of Transportation selects Google Workspace as new agency-wide collaboration suite",
+   "publisher": "Google Cloud",
+   "url": "https://cloud.google.com/blog/topics/public-sector/driving-the-future-of-government-us-department-of-transportation-selects-google-workspace-as-new-agency-wide-collaboration-suite",
+   "status": "active",
+   "added": "2026-11-20",
+   "labels": [
+    "Google Cloud blog (Dec. 2025)"
+   ],
+   "history": [
+    {
+     "date": "2026-11-20",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
+  },
+  {
+   "id": "aws-6-strategies-orban",
+   "title": "Stephen Orban, \"6 Strategies for Migrating Applications to the Cloud,\" AWS Cloud Enterprise Strategy Blog",
+   "publisher": "Amazon Web Services",
+   "url": "https://aws.amazon.com/blogs/enterprise-strategy/6-strategies-for-migrating-applications-to-the-cloud/",
+   "status": "active",
+   "added": "2026-11-20",
+   "labels": [
+    "AWS (Orban, 2016)"
+   ],
+   "history": [
+    {
+     "date": "2026-11-20",
+     "change": "Added: cited on the narrated deck slides"
+    }
+   ]
   }
  ],
  "phrases": {

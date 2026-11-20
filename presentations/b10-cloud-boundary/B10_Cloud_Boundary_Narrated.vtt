@@ -798,229 +798,238 @@ certification is a
 question for the package.
 
 169
-00:10:30.063 --> 00:10:35.403
+00:10:30.063 --> 00:10:32.528
 The public record shows one such move:
-a cabinet-level department moved more
 
 170
-00:10:35.403 --> 00:10:40.574
-than 50,000 employees to Google Workspace
-in 2025, on a temporary discount.
+00:10:32.528 --> 00:10:36.744
+in September 2025 a cabinet-level
+department signed a five-year
 
 171
-00:10:40.574 --> 00:10:44.075
+00:10:36.744 --> 00:10:41.437
+Google Workspace agreement, days
+before a temporary discount expired.
+
+172
+00:10:41.437 --> 00:10:44.462
+Google puts it at more
+than 50,000 employees.
+
+173
+00:10:44.462 --> 00:10:47.963
 Whichever way you go, keep
 Entra ID as the source.
 
-172
-00:10:44.075 --> 00:10:48.562
+174
+00:10:47.963 --> 00:10:52.449
 Provision users, federate sign-in
 and apply Conditional Access there.
 
-173
-00:10:48.562 --> 00:10:53.187
+175
+00:10:52.449 --> 00:10:57.075
 Then close the gaps: Google super
 administrators sign in outside it,
 
-174
-00:10:53.187 --> 00:10:56.574
+176
+00:10:57.075 --> 00:11:00.462
 and Google's directory is
 derived, so report drift.
 
-175
-00:10:56.574 --> 00:10:58.590
+177
+00:11:00.462 --> 00:11:02.480
 Next, the evidence.
 
-176
-00:11:02.340 --> 00:11:06.377
+178
+00:11:06.230 --> 00:11:10.267
 Finally, the boundary has to show
 up in the agency's own package.
 
-177
-00:11:06.377 --> 00:11:09.526
+179
+00:11:10.267 --> 00:11:13.416
 The agency never authorizes
 a cloud service;
 
-178
-00:11:09.526 --> 00:11:12.503
+180
+00:11:13.416 --> 00:11:16.393
 it authorizes its own
 system that uses one.
 
-179
-00:11:12.503 --> 00:11:16.634
+181
+00:11:16.393 --> 00:11:20.524
 So its plan should hold only what
 the agency is responsible for,
 
-180
-00:11:16.634 --> 00:11:21.003
+182
+00:11:20.524 --> 00:11:24.893
 and FedRAMP is blunt: don't copy
 and paste provider controls into it.
 
-181
-00:11:21.003 --> 00:11:25.732
+183
+00:11:24.893 --> 00:11:29.622
 Instead, write the boundary down once,
 as a record the system owner keeps,
 
-182
-00:11:25.732 --> 00:11:30.382
+184
+00:11:29.622 --> 00:11:34.272
 and cite it everywhere: the system
 description, each external service,
 
-183
-00:11:30.382 --> 00:11:33.990
+185
+00:11:34.272 --> 00:11:37.880
 each crossing, the POA&M and
 the component definitions.
 
-184
-00:11:33.990 --> 00:11:36.102
+186
+00:11:37.880 --> 00:11:39.992
 Know whose package you're reading, too.
 
-185
-00:11:36.102 --> 00:11:41.171
+187
+00:11:39.992 --> 00:11:45.061
 The GCC listing says the service leverages
 Azure Government as its infrastructure,
 
-186
-00:11:41.171 --> 00:11:44.864
+188
+00:11:45.061 --> 00:11:48.754
 so the inheritance chain runs
 through two provider packages.
 
-187
-00:11:44.864 --> 00:11:50.011
+189
+00:11:48.754 --> 00:11:53.901
 And a compensating narrative takes just
 four sentences: what the control needs,
 
-188
-00:11:50.011 --> 00:11:55.002
+190
+00:11:53.901 --> 00:11:58.892
 what's unavailable, what runs instead,
 and where the remaining gap is recorded.
 
-189
-00:11:55.002 --> 00:11:57.790
+191
+00:11:58.892 --> 00:12:01.680
 Next, what to ask your provider for.
 
-190
-00:12:01.540 --> 00:12:05.465
+192
+00:12:05.430 --> 00:12:09.355
 Appendix A turns all of this
 into requests to the provider.
 
-191
-00:12:05.465 --> 00:12:09.679
+193
+00:12:09.355 --> 00:12:13.569
 Three habits make a request
 hard to deflect: name one item,
 
-192
-00:12:09.679 --> 00:12:13.803
+194
+00:12:13.569 --> 00:12:17.693
 cite the basis with a link, and
 ask for data, not documents.
 
-193
-00:12:13.803 --> 00:12:17.164
+195
+00:12:17.693 --> 00:12:21.054
 The book makes eight requests,
 and the slide lists them.
 
-194
-00:12:17.164 --> 00:12:22.118
+196
+00:12:21.054 --> 00:12:26.008
 One number shows why trust centers
 made the list: when the book checked,
 
-195
-00:12:22.118 --> 00:12:26.472
+197
+00:12:26.008 --> 00:12:30.362
 only 110 of 781 Marketplace
 listings had a trust-center entry,
 
-196
-00:12:26.472 --> 00:12:30.315
+198
+00:12:30.362 --> 00:12:34.205
 and none of the Microsoft
 365 government packages did.
 
-197
-00:12:30.315 --> 00:12:35.677
+199
+00:12:34.205 --> 00:12:39.567
 Five of the eight requests rest on obligations
 the rules already place on providers.
 
-198
-00:12:35.677 --> 00:12:39.803
+200
+00:12:39.567 --> 00:12:43.693
 And if the answer is no, a
 documented no is evidence too.
 
-199
-00:12:39.803 --> 00:12:41.990
+201
+00:12:43.693 --> 00:12:45.880
 Let's close with the decisions.
 
-200
-00:12:45.740 --> 00:12:47.115
+202
+00:12:49.630 --> 00:12:51.005
 So, four decisions.
 
-201
-00:12:47.115 --> 00:12:50.244
+203
+00:12:51.005 --> 00:12:54.134
 Build the feature register
 on cited rows only,
 
-202
-00:12:50.244 --> 00:12:53.703
+204
+00:12:54.134 --> 00:12:57.593
 and drop or relabel anything
 without a vendor page.
 
-203
-00:12:53.703 --> 00:12:57.868
+205
+00:12:57.593 --> 00:13:01.758
 Name the boundary owner: the authorizing
 official decides the boundary,
 
-204
-00:12:57.868 --> 00:13:01.964
+206
+00:13:01.758 --> 00:13:05.854
 and the system owner keeps the record
 and gates every new subscription.
 
-205
-00:13:01.964 --> 00:13:06.769
+207
+00:13:05.854 --> 00:13:10.659
 Enforce the boundary in the landing zone,
 with policy at the intermediate root,
 
-206
-00:13:06.769 --> 00:13:09.577
+208
+00:13:10.659 --> 00:13:13.467
 audit before deny, and
 the governed front door.
 
-207
-00:13:09.577 --> 00:13:13.273
+209
+00:13:13.467 --> 00:13:17.163
 And evidence every response,
 whether it's an equivalent,
 
-208
-00:13:13.273 --> 00:13:17.452
+210
+00:13:17.163 --> 00:13:21.342
 an exception or an alternative
 path, in the agency's own package.
 
-209
-00:13:17.452 --> 00:13:19.829
+211
+00:13:21.342 --> 00:13:23.719
 Before your next architecture review,
 
-210
-00:13:19.829 --> 00:13:23.840
+212
+00:13:23.719 --> 00:13:27.730
 list every cloud feature your
 designs depend on, with its package,
 
-211
-00:13:23.840 --> 00:13:27.702
+213
+00:13:27.730 --> 00:13:31.592
 its availability in your environment,
 and the page that says so.
 
-212
-00:13:27.702 --> 00:13:30.665
+214
+00:13:31.592 --> 00:13:34.555
 Then put Appendix A's
 requests to your provider.
 
-213
-00:13:30.665 --> 00:13:34.665
+215
+00:13:34.555 --> 00:13:38.555
 The license says what you bought;
 the boundary says what you may use.
 
-214
-00:13:34.665 --> 00:13:39.540
+216
+00:13:38.555 --> 00:13:43.430
 Cloud Boundary and Landing Zone has
 the detail, every claim footnoted.
 
-215
-00:13:39.540 --> 00:13:40.360
+217
+00:13:43.430 --> 00:13:44.250
 Thank you.

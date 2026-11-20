@@ -153,36 +153,41 @@
   ],
   [
    12.625,
-   9.1,
-   "OPM awarded the platform contract in June 2026, and the first agencies start moving as fiscal 2027 begins."
+   4.275,
+   "OPM awarded the platform contract in June 2026."
   ],
   [
-   21.725,
+   16.9,
+   5.787,
+   "The first wave is planned to finish, and the second wave to move, during fiscal 2027."
+  ],
+  [
+   22.688,
    7.075,
    "The sample timeline is about eight months per agency, with the agency's interconnections going lyve around month five."
   ],
   [
-   28.8,
+   29.762,
    7.05,
    "On the identity side, agencies are already moving to Entra I D, which Identity and Directory covers."
   ],
   [
-   35.85,
+   36.812,
    7.825,
    "There, attributes drive Conditional Access, groups and delegation, and feeding them from an H R system is a supported path."
   ],
   [
-   43.675,
+   44.638,
    8.775,
    "So the window is this: design the identity feed in during H R onboarding, before those interconnections go lyve, not bolted on afterward."
   ],
   [
-   52.45,
+   53.413,
    4.7,
    "One honest limit: H R 2.0 covers federal employees only."
   ],
   [
-   57.15,
+   58.112,
    6.062,
    "Contractors need their own authoritative source, and onboarding is the right time to decide that too."
   ]
