@@ -7,7 +7,7 @@
 //   Who:   the roles, eligible through PIM; the RACI.
 //   How:   Steps 1 and 2 (baseline, exposure inventory); 3 DDoS; 4 WAF; 5 Front Door and Application Gateway;
 //          6 Azure Firewall; 7 Private Link and DNS; 8 Key Vault; 9 policy and drift; 10 operations, metrics;
-//          dangers, what couldn't be verified and the pieces still planned.
+//          dangers, what couldn't be verified, and the developer workbook and training path that go with the guide.
 // Sources: docs/books/guides/azure-security-implementation.md and the sources it footnotes (Microsoft Learn, NIST,
 // FedRAMP, AWS, Google Cloud and Oracle documentation; read November 11, 2026; listed in
 // docs/books/guides/_verification/azure-security-implementation.md). The commands on the slides are the guide's, with
@@ -64,7 +64,10 @@ const W3 = 3.9, G3 = 0.225;
 
 // ================================================================== 1 Title
 {
-  const s = titleSlide(SWHY, "Azure security, engineered one service at a time", "An implementation guide: ten steps from the landing-zone baseline to the evidence an assessor reads");
+  const s = titleSlide(SWHY, "Azure security, engineered one service at a time", [
+    // 18 pt, not the layout's 22, so the subtitle fits its box in two lines.
+    { text: "An implementation guide: ten steps from the landing-zone baseline to the evidence an assessor reads", options: { fontSize: 18 } },
+  ]);
   // The guide's review status, before anything else on the slide.
   box(s, "Review status", 0.8, 0.55, 7.4, 0.75, "FFFFFF", HEX.teal);
   txt(s, "Review status text", [
@@ -507,12 +510,12 @@ endModule(SWHO);
   ], 11.5);
   const p2 = panel(s, "Next", 0.6 + W2 + G2, tb + 0.15, W2, null, HEX.teal, HEX.tealTint, "WHAT COMES NEXT", null, [
     "The guide has been reviewed and approved",
-    "Planned: a developer workbook with labs, and a training path",
+    "Its developer workbook, Building Azure Security, and training path are ready",
   ], 11.5);
   fit("Close panels", Math.max(p1, p2));
   sources(s, "Sources: Guide, \"Dangers and how to avoid them,\" \"What couldn't be verified,\" \"The guide's pieces.\"");
   notes(s,
-`To close, the dangers. A web application firewall left in detection mode, logging attacks that reach the backend. An origin reachable around the edge, or protected only by a service tag every Front Door customer shares. A public I P nobody knows about. A firewall draft deployed over newer changes. Private D N S zones scattered in workload subscriptions, so resolution fails or goes public. And disabling a key to contain a compromise, which takes its dependents offline. Each has its guard in the steps. The guide is plain about what it couldn't verify: Azure Firewall Premium's regions, which Learn leaves to the products-by-region page; built-in policy names, which change version; and, on the other clouds, Shield Advanced in GovCloud and Oracle's firewall services in its Government Cloud. Nothing was run in a subscription. Its developer workbook with labs and its training path are planned. Thank you.`,
+`To close, the dangers. A web application firewall left in detection mode, logging attacks that reach the backend. An origin reachable around the edge, or protected only by a service tag every Front Door customer shares. A public I P nobody knows about. A firewall draft deployed over newer changes. Private D N S zones scattered in workload subscriptions, so resolution fails or goes public. And disabling a key to contain a compromise, which takes its dependents offline. Each has its guard in the steps. The guide is plain about what it couldn't verify: Azure Firewall Premium's regions, which Learn leaves to the products-by-region page; built-in policy names, which change version; and, on the other clouds, Shield Advanced in GovCloud and Oracle's firewall services in its Government Cloud. Nothing was run in a subscription. Next, the developer workbook, Building Azure Security, takes every step into labs, and the training path, Azure Security Engineering, teaches it in five modules. Thank you.`,
   `${G} — "Dangers and how to avoid them," "What couldn't be verified," "The pieces" (the guide's pieces table).`);
 }
 endModule(SHOW);
@@ -530,7 +533,7 @@ sourceSlide("Sources: other clouds, requirements and the books", [
   "AWS: AWS Shield and AWS WAF; AWS WAF in AWS GovCloud (US). Google Cloud: Google Cloud Armor overview; Private Service Connect; Assured Workloads supported products. Oracle: OCI Web Application Firewall; OCI Network Firewall; OCI private access.",
   "Federal requirements: NIST SP 800-53 Rev. 5 and SP 800-53B (SC-5, SC-7, SC-7(5), SC-8, SC-12, SC-28, SI-4, SI-10, AC-4, IA-5, CM-2, CM-6, CM-8, CA-7, IR-4, CP-4); FIPS 200; FedRAMP KSIs (Consolidated Rules for 2026).",
   "Book 10, Ch 04 (GCC and the feature gap), Ch 05 (the landing zone), Ch 07 (the provisioning loop), Ch 08 (who owns the boundary); Book 12, Ch 08 (cloud-native posture); Book 11, Ch 10 (evidence, not verdicts); Book 13, Ch 02 (drift); Book 08; Book 09.",
-  "The service account guide (Migration C, managed identities) and the privileged access guide (PIM for Azure roles). The developer workbook and training path for this guide are planned.",
+  "The service account guide (Migration C, managed identities) and the privileged access guide (PIM for Azure roles). This guide's developer workbook, Building Azure Security, and its training path, Azure Security Engineering, are on the site.",
 ]);
 
 finish(OUT);

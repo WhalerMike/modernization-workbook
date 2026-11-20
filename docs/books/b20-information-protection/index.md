@@ -26,8 +26,8 @@ last-reviewed: 2026-11-18
 # Book 20 — Information Protection & Microsoft Purview: Protection That Travels With the Data {.unnumbered}
 
 ::: {.callout-important appearance="default"}
-## Status — draft book
-This book is new material, written for the Zero Trust Assessment closure update of November 2026, and every page is a draft awaiting the editor's review. It isn't part of Release 2.0, the baseline edition ([Status labels](../../about/sources-and-verification.md#status-labels)). Every external claim was checked against a primary source on November 11, 2026, Microsoft Learn first for product behavior, licensing and government-cloud availability, and each chapter keeps its verification log in the repository. Purview features differ a great deal between the commercial cloud and GCC, and change often: each chapter states availability per feature from Learn as read on that date, and says "not yet specified" where Learn is silent. The commands are taken from Learn and haven't been run against a production tenant; run them against a test tenant first.
+## Status: approved
+This book is new material, written for the Zero Trust Assessment closure update of November 2026. The workbook's editor reviewed and approved every page on November 18, 2026, and a page that changes after its approval goes back on the weekly source watch list until it is approved again. It isn't part of Release 2.0, the baseline edition ([Status labels](../../about/sources-and-verification.md#status-labels)). Every external claim was checked against a primary source on November 11, 2026, Microsoft Learn first for product behavior, licensing and government-cloud availability, and each chapter keeps its verification log in the repository. Purview features differ a great deal between the commercial cloud and GCC, and change often: each chapter states availability per feature from Learn as read on that date, and says "not yet specified" where Learn is silent. The commands are taken from Learn and haven't been run against a production tenant; run them against a test tenant first.
 :::
 
 ::: {.callout-tip}
