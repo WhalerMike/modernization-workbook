@@ -1,6 +1,6 @@
 ---
 title: "Downloads"
-subtitle: "Every file the workbook publishes: the kits, the Ansible examples, a reference implementation, the nineteen books and the developer workbook as Word documents, and the narrated videos"
+subtitle: "Every file the workbook publishes: the kits, the Ansible examples, a reference implementation, the twenty topic books, Book 19 and four other developer workbooks as Word documents, and the narrated videos"
 description: "One place for every Federal Modernization Workbook download: the read-only Start Kit assessment scripts, the read-only validation kit for the track implementation guides, the Copilot agent pack for in-house automation, the Help Desk / Cloud Services Entra ID Operations Kit, the Ansible example playbooks, the application modernization reference implementation, each book as a Word document, and the narrated presentation videos."
 doc-type: section-landing
 ---
@@ -74,6 +74,7 @@ Each book downloads as one Word document with its chapters in reading order, its
 | [Book 17 — AI Identity Governance](books/b17-ai-identity/index.md) | [b17-ai-identity-bundle.docx](../downloads/b17-ai-identity-bundle.docx) |
 | [Book 18 — Application Modernization](books/b18-application-modernization/index.md) | [b18-application-modernization-bundle.docx](../downloads/b18-application-modernization-bundle.docx) |
 | [Book 19 — Building the Attribute-Driven Migration](books/b19-developer-workbook/index.md) | [b19-developer-workbook-bundle.docx](../downloads/b19-developer-workbook-bundle.docx) |
+| [Book 20 — Information Protection & Microsoft Purview](books/b20-information-protection/index.md) | [b20-information-protection-bundle.docx](../downloads/b20-information-protection-bundle.docx) |
 
 ## Companion guides as Word documents
 

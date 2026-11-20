@@ -1,7 +1,7 @@
 ---
 title: "Ticket-to-Machine, Module 4: Sources and the Starting Drift"
 subtitle: "Connect HR, Entra ID and ISC on one key, measure how far the directory is from HR, and compare runs without hiding what wasn't measured"
-description: "Research draft: Module 4 of the Ticket-to-Machine learning path. You learn how Gate 3 connects and correlates the sources, run the kit's read-only drift reconciliation over two days of fixtures, and compare the runs with drift_compare.py, including its refusal to compare runs that computed different classes. Guide Gate 3; workbook Chapter 06."
+description: "Module 4 of the Ticket-to-Machine learning path. You learn how Gate 3 connects and correlates the sources, run the kit's read-only drift reconciliation over two days of fixtures, and compare the runs with drift_compare.py, including its refusal to compare runs that computed different classes. Guide Gate 3; workbook Chapter 06."
 research-status: draft
 research-type: training module
 research-book: "Books 13, 15"

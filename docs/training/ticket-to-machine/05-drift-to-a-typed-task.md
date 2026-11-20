@@ -1,7 +1,7 @@
 ---
 title: "Ticket-to-Machine, Module 5: Drift to a Typed Task"
 subtitle: "See the exact finding an ISC event produces, and test a workflow change before you import it"
-description: "Research draft: Module 5 of the Ticket-to-Machine learning path. You learn how the three ISC workflows turn events into findings or closure signals, resolve each workflow's body against a saved trigger input with workflow_payload.py, and see the two fixes the tool found: multivalued changes reverted and the attribute in the de-duplication key. Guide Gates 3 and 4; workbook Chapter 04."
+description: "Module 5 of the Ticket-to-Machine learning path. You learn how the three ISC workflows turn events into findings or closure signals, resolve each workflow's body against a saved trigger input with workflow_payload.py, and see the two fixes the tool found: multivalued changes reverted and the attribute in the de-duplication key. Guide Gates 3 and 4; workbook Chapter 04."
 research-status: draft
 research-type: training module
 research-book: "Books 13, 15"

@@ -1,7 +1,7 @@
 ---
 title: "Ticket-to-Machine, Module 2: The Boundary and Least Privilege"
 subtitle: "Confirm what runs where, then prove every integration identity holds exactly what its calls need"
-description: "Research draft: Module 2 of the Ticket-to-Machine learning path. You confirm the authorization boundary and the integration identities, then use the kit's call list and kit_calls.py to compare ServiceNow roles, ISC scopes and Graph permissions with what each task needs. Guide Gate 1; workbook Chapters 02 and 03."
+description: "Module 2 of the Ticket-to-Machine learning path. You confirm the authorization boundary and the integration identities, then use the kit's call list and kit_calls.py to compare ServiceNow roles, ISC scopes and Graph permissions with what each task needs. Guide Gate 1; workbook Chapters 02 and 03."
 research-status: draft
 research-type: training module
 research-book: "Books 13, 15"

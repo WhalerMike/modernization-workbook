@@ -1,7 +1,7 @@
 ---
 title: "Attribute-Driven Migration, Module 3: Keep Dynamic Rules as Code"
 subtitle: "Write each dynamic group as a reviewed file with tests, lint it for the guards every user rule needs, show whom a change adds and removes, and pause and resume safely in an incident"
-description: "Research draft: Module 3 of the Attribute-Driven Migration learning path. You learn what Learn's dynamic membership samples leave to you, the rule library's one file per group, the offline evaluator, the linter's guards, the shadow diff and the pause manifest, then lint Book 03's rule table, evaluate a rule, and break a rule on purpose. Guide Gate 4; Book 19, Chapter 04."
+description: "Module 3 of the Attribute-Driven Migration learning path. You learn what Learn's dynamic membership samples leave to you, the rule library's one file per group, the offline evaluator, the linter's guards, the shadow diff and the pause manifest, then lint Book 03's rule table, evaluate a rule, and break a rule on purpose. Guide Gate 4; Book 19, Chapter 04."
 research-status: draft
 research-type: training module
 research-book: "Book 19"
