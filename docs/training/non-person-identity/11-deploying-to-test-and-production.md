@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Books 02, 04"
 series-order: 11
 review-status: approved
-reviewed-sha256: 1611afedc5ee6f9a48fee418ded0e7af2ea0894946d656f45b19a3d50424ae96
-last-reviewed: 2026-11-18
+reviewed-sha256: f31df7a96fb8034a4dfceb5bad20289f70f4bda00798212b4f7ced703fe245c9
+last-reviewed: 2026-11-20
 ---
 # Module 11: Deploy to test, then production {.unnumbered}
 
