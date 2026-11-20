@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 15"
 series-order: 9
 review-status: approved
-reviewed-sha256: 1c4a2b1039717a99d3ed017b84d606223119ac2ecfca2823261cb079a9d9916c
-last-reviewed: 2026-11-18
+reviewed-sha256: 9387690d22fa9b0a9da828f8659f9cf7c65d1838cf197ae9abcba41c651f74c8
+last-reviewed: 2026-11-20
 ---
 # Module 9: Deploying to test and production (optional) {.unnumbered}
 

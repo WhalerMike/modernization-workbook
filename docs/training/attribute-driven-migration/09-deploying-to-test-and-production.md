@@ -8,8 +8,8 @@ research-book: "Book 19"
 series-order: 9
 date-modified: 2026-11-02
 review-status: approved
-reviewed-sha256: 86fbea0f66f842dca11d742a74d8b55a77199362788c53bea183e1a8e1085521
-last-reviewed: 2026-11-18
+reviewed-sha256: f20d09663883f058090b062e17e596d361429cad8c220a7e69a37944ccb0b93e
+last-reviewed: 2026-11-20
 ---
 # Attribute-Driven Migration, Module 9: Deploy to Test, then Production {.unnumbered}
 
