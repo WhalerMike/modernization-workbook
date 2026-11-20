@@ -6,7 +6,7 @@
 |---|---|
 | Introduction | Title; two layers, and a mode that acts; learning objectives and prerequisites |
 | Concepts | The three DDoS tiers and what none covers; the plan, linked networks, logs and the attack alert; exercising the response through approved partners; the WAF and what the Zero Trust recommendations check; detection, tuning, prevention and rollback; what to plan for in commercial Azure, and the other clouds |
-| Lab | Lab 2 steps 1 to 7 in a test subscription: DDoS state, plan, logs and alert; the WAF policy; a test request the WAF blocks and its log row (the module has no Lab 1, because the guide has no kit yet; the lab wasn't run by the authors) |
+| Lab | Lab 2 steps 1 to 7 in a test subscription: DDoS state, plan, logs and alert; the WAF policy; a test request the WAF blocks and its log row (the lab wasn't run by the authors). The module's Lab 1 runs the kit on fictional fixtures, in [*Building Azure Security*](../../docs/project-plans/developer-workbooks/azure-security/index.md), Chapters 03 and 04, Lab 1; the deck doesn't repeat it |
 | Check and summary | The federal requirement (SC-5, SI-4, SC-7, SI-10) and evidence; two knowledge-check questions with answers; the summary and Module 3 |
 
 | File | Use |
@@ -18,7 +18,7 @@
 | `narration_Training_AZS_Module_2/` | `durations.json`, `sentences.json` and the per-slide caption tracks (the MP3s go on the edition's Release, not in git) |
 | `build.js` | The slides and their notes |
 
-The narrated deck, its MP4 and the plain deck aren't published yet: they come with the next edition, and the module page links the video once it is on the videos Release. The narration runs about 13 minutes.
+The MP4 and its captions are on the videos Release, and the [module page](../../docs/training/azure-security/02-ddos-protection-and-the-waf.md) links the video. The narrated deck and the plain deck come with the next edition. The narration runs about 13 minutes.
 
 Build (Git Bash): `source /c/tmp/deckenv.sh`, then `FIT=1 node presentations/training-azs-module-2/build.js presentations/training-azs-module-2/Training_AZS_Module_2.pptx`. Then `link_sources.py`, `narrate.py` and `captions.py`, and on a workstation where PowerPoint is free, `qa_export.ps1`, `build_narrated.ps1` and `export_mp4.ps1`, as in the kit's README. The build runs the shared checks: title length and uniqueness, Sources length, neutrality, and overflow warnings, including the code panel's width and height.
 

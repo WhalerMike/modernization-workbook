@@ -6,74 +6,79 @@ The lab runs the guide's own checks in
 a test subscription, never production.
 
 2
-00:00:04.575 --> 00:00:07.730
-The guide has no kit or
-developer workbook yet,
+00:00:04.575 --> 00:00:09.926
+Lab 1, on the module page, runs the kit on
+fictional fixtures with no subscription,
 
 3
-00:00:07.730 --> 00:00:12.213
-so there's no fixture lab; this is
-Lab 2, and the authors haven't run it.
+00:00:09.926 --> 00:00:13.413
+in the developer workbook,
+Building Azure Security.
 
 4
-00:00:12.213 --> 00:00:15.557
+00:00:13.413 --> 00:00:16.425
+This is Lab 2, and the
+authors haven't run it.
+
+5
+00:00:16.425 --> 00:00:19.769
 You need a test subscription
 where someone has applied Step
 
-5
-00:00:15.557 --> 00:00:18.500
+6
+00:00:19.769 --> 00:00:22.712
 1 to a pilot management group,
 and Reader on that group.
 
-6
-00:00:18.500 --> 00:00:21.212
+7
+00:00:22.712 --> 00:00:25.424
 Values you supply are in angle brackets.
 
-7
-00:00:21.212 --> 00:00:24.981
+8
+00:00:25.424 --> 00:00:29.194
 Step one signs in to the cloud
 the subscription lives in
 
-8
-00:00:24.981 --> 00:00:28.587
+9
+00:00:29.194 --> 00:00:32.800
 and adds the two Azure C L I
 extensions the guide needs.
 
-9
-00:00:28.587 --> 00:00:31.937
+10
+00:00:32.800 --> 00:00:36.150
 Step two lists the policy
 assignments at the pilot group.
 
-10
-00:00:31.937 --> 00:00:34.340
+11
+00:00:36.150 --> 00:00:38.552
 The guide's Validate step says you should
 
-11
-00:00:34.340 --> 00:00:36.813
+12
+00:00:38.552 --> 00:00:41.025
 see the initiatives in
 do-not-enforce mode.
 
-12
-00:00:36.813 --> 00:00:41.490
+13
+00:00:41.025 --> 00:00:45.703
 Step three lists the platform resources
 that need a diagnostic setting:
 
-13
-00:00:41.490 --> 00:00:46.636
+14
+00:00:45.703 --> 00:00:50.849
 firewalls, application gateways, Front
 Door profiles, key vaults and public I Ps.
 
-14
-00:00:46.636 --> 00:00:50.612
+15
+00:00:50.849 --> 00:00:54.825
 Step four takes one of them and
 lists its diagnostic settings.
 
-15
-00:00:50.612 --> 00:00:54.148
+16
+00:00:54.825 --> 00:00:58.361
 Each should send its logs to
 the platform team's workspace;
 
-16
-00:00:54.148 --> 00:00:56.860
+17
+00:00:58.361 --> 00:01:01.080
 one with none is a gap
 for the platform owner.

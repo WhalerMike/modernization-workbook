@@ -2,7 +2,7 @@
 // Teaches docs/training/azure-security/03-the-edge-and-the-egress.md, Learn-style: objectives, the concepts (choosing
 // Front Door Premium, Application Gateway or both; locking the origin; TLS, probes and failover; Azure Firewall egress,
 // the SKUs, alert then deny through a draft, TLS inspection and segmentation), where agencies are, the lab's exact
-// commands in a test subscription (not run by the authors, as the page says; the module has no Lab 1), the federal
+// commands in a test subscription (not run by the authors, as the page says; the module's Lab 1 is in the developer workbook), the federal
 // requirement and evidence, a two-question check, and the summary. Every fact comes from the module page and the Azure
 // Security Engineering implementation guide it sends the learner to (Steps 5 and 6, Availability in commercial Azure, The
 // same controls on AWS, Google Cloud and Oracle Cloud, What couldn't be verified, and their footnotes) or the path's
@@ -27,7 +27,7 @@ const LAB = "LAB 2  ·  A TEST SUBSCRIPTION, NEVER PRODUCTION  ·  NOT RUN BY TH
 
 // ================================================================== 1 Title
 {
-  const s = title(SI, "Module 3: The edge and the egress", "Azure Security Engineering · In through an edge nothing goes around; out through a firewall that denies",
+  const s = title(SI, "Module 3: The edge and the egress", "Azure Security Engineering · In through an edge nothing goes around; out through a firewall",
     ["Front Door or Application Gateway  ·  Locking the origin  ·  TLS, probes and failover", "Azure Firewall egress  ·  Alert, then deny  ·  Lab 2 in a test subscription  ·  Evidence"], 5.0);
   notes(s,
 `Welcome to Module 3 of the Azure Security Engineering learning path: the edge and the egress. Module 2 put a web application firewall in front of each web workload. This module makes sure nothing can go around it, and then turns to the other direction: traffic leaving Azure, through Azure Firewall, with threat intelligence and intrusion detection denying. It covers Steps 5 and 6 of the Azure Security Engineering implementation guide, and takes about fifty-five minutes, plus a lab in your own test subscription.`,
@@ -315,11 +315,11 @@ endModule(SS);
 // ================================================================== Backup
 backup();
 sourceSlide("Sources: Module 3 deck", [
-  "Module page: docs/training/azure-security/03-the-edge-and-the-egress.md (Azure Security Engineering learning path, Module 3), a draft; the path's verification log is docs/training/azure-security/_verification/learning-path.md.",
+  "Module page: docs/training/azure-security/03-the-edge-and-the-egress.md (Azure Security Engineering learning path, Module 3), approved; the path's verification log is docs/training/azure-security/_verification/learning-path.md.",
   "Azure Security Engineering (implementation guide): Steps 5 and 6; Availability in commercial Azure; The same controls on AWS, Google Cloud and Oracle Cloud; Dangers; What couldn't be verified. Its footnotes carry each source, read November 11, 2026: Microsoft Learn, What is Azure Front Door?; Front Door Private Link origins; Secure traffic to Azure Front Door origins; Migrate Azure Front Door (classic); the Front Door CLI quickstart; the multi-region App Service tutorial; Internet ingress; TLS policy on Application Gateway; Zero Trust recommendations for Azure Firewall; Azure Firewall and traffic inspection; Azure Firewall Premium features; az network firewall policy; Integrate NAT gateway with Azure Firewall; Azure Firewall Draft + Deployment; OCI Network Firewall.",
   "Read for the lab, November 13, 2026: Microsoft Learn, Monitoring data reference for Azure Firewall; Azure CLI, az monitor log-analytics.",
   "NIST SP 800-53 Rev. 5 (SC-7, SC-7(5), SC-8, CP-2, SI-4); FedRAMP 20x KSIs, as the guide's requirements table maps them.",
-  "The lab's commands are the page's, with its placeholders; the module has no Lab 1, and the lab wasn't run by the authors.",
+  "Lab 2's commands are the page's, with its placeholders, and the lab wasn't run by the authors. Lab 1 runs the kit on fictional fixtures: Building Azure Security, Chapters 05 and 06, Lab 1; the deck doesn't repeat it.",
 ]);
 
 finish(OUT);

@@ -2,8 +2,8 @@
 // Teaches docs/training/azure-security/05-policy-drift-and-evidence.md, Learn-style: objectives, the concepts (one
 // security initiative at the intermediate root, DoNotEnforce then Default, remediation, exemptions that expire, the
 // monthly export; the DDoS runbook, the recurring reviews, the RACI, the metrics, control states and closure), where
-// agencies are, the lab's exact commands in a test management group (not run by the authors, as the page says; the module
-// has no Lab 1), the federal requirement and evidence, a two-question check, and the summary. Every fact comes from the
+// agencies are, the lab's exact commands in a test management group (not run by the authors, as the page says; the module's
+// Lab 1 is in the developer workbook), the federal requirement and evidence, a two-question check, and the summary. Every fact comes from the
 // module page and the Azure Security Engineering implementation guide it sends the learner to (Steps 9 and 10, RACI,
 // Evidence catalog, Metrics, Control states, Dangers, and their footnotes) or the path's verification log; the deck adds
 // none. Helpers: ../training-azs-module-1/shared.js.
@@ -299,7 +299,7 @@ sourceSlide("Sources: Module 5 deck", [
   "Azure Security Engineering (implementation guide): Steps 9 and 10; RACI; Evidence catalog; Metrics; Control states and assessment mapping; Federal requirements and KSIs; Dangers; Implementation checklist. Its footnotes carry each source, read November 11, 2026: Microsoft Learn, Azure Policy assignment structure; Azure Policy exemption structure; Azure Web Application Firewall and Azure Policy; Secure your Azure DDoS Protection deployment; DDoS fundamental best practices; Layer 7 DDoS protection.",
   "Read for the lab, November 13, 2026: Azure CLI, az policy exemption.",
   "Cloud Boundary and Landing Zone, Chapter 05; Governance, Drift and Evidence, Chapter 02; Zero Trust and Assessment, Chapter 10. NIST SP 800-53 Rev. 5 (CM-2, CM-6, CA-7, IR-4, CP-4, AU-6); FedRAMP 20x KSIs, as the guide's requirements table maps them.",
-  "The lab's commands are the page's, with its placeholders; the module has no Lab 1, and the lab wasn't run by the authors.",
+  "Lab 2's commands are the page's, with its placeholders, and the lab wasn't run by the authors. Lab 1 runs the kit on fictional fixtures: Building Azure Security, Chapter 08, Lab 1; the deck doesn't repeat it.",
 ]);
 
 finish(OUT);

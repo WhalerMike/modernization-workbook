@@ -311,41 +311,46 @@
   ],
   [
    4.575,
-   7.638,
-   "The guide has no kit or developer workbook yet, so there's no fixture lab; this is Lab 2, and the authors haven't run it."
+   8.838,
+   "Lab 1, on the module page, runs the kit on fictional fixtures with no subscription, in the developer workbook, Building Azure Security."
   ],
   [
-   12.213,
+   13.412,
+   3.013,
+   "This is Lab 2, and the authors haven't run it."
+  ],
+  [
+   16.425,
    6.287,
    "You need a test subscription where someone has applied Step 1 to a pilot management group, and Reader on that group."
   ],
   [
-   18.5,
+   22.712,
    2.712,
    "Values you supply are in angle brackets."
   ],
   [
-   21.212,
+   25.425,
    7.375,
    "Step one signs in to the cloud the subscription lives in and adds the two Azure C L I extensions the guide needs."
   ],
   [
-   28.587,
+   32.8,
    3.35,
    "Step two lists the policy assignments at the pilot group."
   ],
   [
-   31.938,
+   36.15,
    4.875,
    "The guide's Validate step says you should see the initiatives in do-not-enforce mode."
   ],
   [
-   36.812,
+   41.025,
    13.8,
    "Step three lists the platform resources that need a diagnostic setting: firewalls, application gateways, Front Door profiles, key vaults and public I Ps. Step four takes one of them and lists its diagnostic settings."
   ],
   [
-   50.612,
+   54.825,
    6.188,
    "Each should send its logs to the platform team's workspace; one with none is a gap for the platform owner."
   ]

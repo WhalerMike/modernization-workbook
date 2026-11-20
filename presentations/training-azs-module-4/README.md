@@ -6,7 +6,7 @@
 |---|---|
 | Introduction | Title; a private endpoint nobody resolves isn't private; learning objectives and prerequisites |
 | Concepts | Zones once, centrally, and a zone group; policy at scale; vaults on RBAC with purge protection, roles at vault scope, rotation and audit logs; a compromised key, recovery, the commercial zone names and the other clouds |
-| Lab | Lab 2 steps 1 to 10 in a test subscription: private and public resolution, the zone group, public PaaS, the vault's posture and rotation policy, an allowed and a denied read and their audit rows (the module has no Lab 1, because the guide has no kit yet; the lab wasn't run by the authors) |
+| Lab | Lab 2 steps 1 to 10 in a test subscription: private and public resolution, the zone group, public PaaS, the vault's posture and rotation policy, an allowed and a denied read and their audit rows (the lab wasn't run by the authors). The module's Lab 1 runs the kit on fictional fixtures, in [*Building Azure Security*](../../docs/project-plans/developer-workbooks/azure-security/index.md), Chapter 07, Lab 1; the deck doesn't repeat it |
 | Check and summary | The federal requirement (SC-7, AC-4, SC-12, SC-28, IA-5) and evidence; two knowledge-check questions with answers; the summary and Module 5 |
 
 | File | Use |
@@ -18,7 +18,7 @@
 | `narration_Training_AZS_Module_4/` | `durations.json`, `sentences.json` and the per-slide caption tracks (the MP3s go on the edition's Release, not in git) |
 | `build.js` | The slides and their notes |
 
-The narrated deck, its MP4 and the plain deck aren't published yet: they come with the next edition, and the module page links the video once it is on the videos Release. The narration runs about 11 minutes.
+The MP4 and its captions are on the videos Release, and the [module page](../../docs/training/azure-security/04-private-link-dns-and-key-vault.md) links the video. The narrated deck and the plain deck come with the next edition. The narration runs about 11 minutes.
 
 Build (Git Bash): `source /c/tmp/deckenv.sh`, then `FIT=1 node presentations/training-azs-module-4/build.js presentations/training-azs-module-4/Training_AZS_Module_4.pptx`. Then `link_sources.py`, `narrate.py` and `captions.py`, and on a workstation where PowerPoint is free, `qa_export.ps1`, `build_narrated.ps1` and `export_mp4.ps1`, as in the kit's README. The build runs the shared checks: title length and uniqueness, Sources length, neutrality, and overflow warnings, including the code panel's width and height.
 

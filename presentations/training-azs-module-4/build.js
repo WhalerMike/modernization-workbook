@@ -3,7 +3,7 @@
 // private endpoints fail at name resolution, central zones and zone groups, policy at scale, public access off, on-premises
 // forwarding and the exfiltration path; vaults on RBAC with purge protection, roles at vault scope, rotation by policy,
 // audit logs and a compromised key), where agencies are, the lab's exact commands in a test subscription (not run by the
-// authors, as the page says; the module has no Lab 1), the federal requirement and evidence, a two-question check, and the
+// authors, as the page says; the module's Lab 1 is in the developer workbook), the federal requirement and evidence, a two-question check, and the
 // summary. Every fact comes from the module page and the Azure Security Engineering implementation guide it sends the
 // learner to (Steps 7 and 8, Availability in commercial Azure, The same controls on AWS, Google Cloud and Oracle Cloud,
 // Dangers, and their footnotes) or the path's verification log; the deck adds none.
@@ -292,11 +292,11 @@ endModule(SS);
 // ================================================================== Backup
 backup();
 sourceSlide("Sources: Module 4 deck", [
-  "Module page: docs/training/azure-security/04-private-link-dns-and-key-vault.md (Azure Security Engineering learning path, Module 4), a draft; the path's verification log is docs/training/azure-security/_verification/learning-path.md.",
+  "Module page: docs/training/azure-security/04-private-link-dns-and-key-vault.md (Azure Security Engineering learning path, Module 4), approved; the path's verification log is docs/training/azure-security/_verification/learning-path.md.",
   "Azure Security Engineering (implementation guide): Steps 7 and 8; Availability in commercial Azure; The same controls on AWS, Google Cloud and Oracle Cloud; Dangers. Its footnotes carry each source, read November 11, 2026: Microsoft Learn, Integrate Key Vault with Azure Private Link; Private Endpoint DNS integration; Private Endpoint private DNS zone values; private endpoint troubleshooting; Cloud Adoption Framework, Private Link and DNS integration at scale; Secure your Azure Key Vault; key autorotation; Enable Key Vault logging; Google Cloud, Private Service Connect; OCI private access.",
   "Read for the lab, November 13, 2026: Microsoft Learn, Monitor Azure Key Vault; Azure CLI, az monitor log-analytics.",
   "Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities, Migration C. NIST SP 800-53 Rev. 5 (SC-7, AC-4, SC-12, SC-28, IA-5); FedRAMP 20x KSIs, as the guide's requirements table maps them.",
-  "The lab's commands are the page's, with its placeholders; the module has no Lab 1, and the lab wasn't run by the authors.",
+  "Lab 2's commands are the page's, with its placeholders, and the lab wasn't run by the authors. Lab 1 runs the kit on fictional fixtures: Building Azure Security, Chapter 07, Lab 1; the deck doesn't repeat it.",
 ]);
 
 finish(OUT);
