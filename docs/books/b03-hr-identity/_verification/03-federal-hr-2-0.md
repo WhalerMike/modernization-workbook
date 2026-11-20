@@ -82,3 +82,17 @@ Applied from the research page `docs/books/guides/hcm-entra-implementation.md`; 
 ## Additions, October 30, 2026
 
 A one-line link was added at the end of the paragraph saying HR 2.0 covers federal employees. It points to the research page `docs/books/explainers/hr2-shared-governance-fedramp-boundary.md`, whose log is `docs/books/explainers/_verification/hr2-shared-governance-fedramp-boundary.md`. The link adds no new claims.
+
+## No news sites, November 20, 2026
+
+The editor ruled on November 20, 2026 that news sites and press-release wires aren't cited ("No news sites..."), applying [Sources and verification](../../../about/sources-and-verification.md): each such footnote is replaced with a primary source, or the fact is removed. Sources opened November 20, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| N1 | OMB moved the HR QSMO role from GSA to OPM in 2022 | Who OPM is; timeline 2022 | corrected and re-sourced: FedScoop replaced. OPM's FY 2024 budget justification (p. 168) says OPM was pre-designated in **May** 2022 (FedScoop had March 30); GSA's June 29, 2020 release (archived) limits GSA's role to civilian HR transaction services (compensation, work schedule, leave); GSA's shared-services site lists OPM as the formally designated HR QSMO with those services | OPM FY 2024 CBJ; GSA release 2020 (web.archive.org copy); ussm.gsa.gov/qsmo |
+| N2 | e-Payroll 26 → 4, migration completed 2009, seven years | Timeline 2002–2009 | narrowed: Nextgov removed. OPM's October 2009 Payroll Benchmarking Report (archived) says e-Payroll launched in 2002 and describes the 26-to-4 consolidation as done; no primary source found for "completed in 2009" or "seven years", so both are removed | OPM HR LOB Payroll Benchmarking Report, Oct 2009 (UNT web archive) |
+| N3 | HR Marketplace launched 2024 | Timeline 2024 | re-sourced: FedScoop replaced by Interior's April 30, 2024 page saying OPM "recently launched" the HR QSMO Marketplace Solutions Catalog; "agencies steered" wording replaced by the OPM page's own description | doi.gov IBC page; OPM HR QSMO page |
+| N4 | Oracle release: Fusion Cloud HCM, $395.8M | c03-oracle | source replaced: PR Newswire URL replaced by Oracle's own newsroom; amount, product and date confirmed | oracle.com/news, June 11, 2026 |
+| N5 | Award June 10, 2026 | Timeline 2026; facts table | re-sourced: the date had leaned on Federal News Network; OPM's own email bulletin of the release is dated June 10, 2026 (added to c03-award) | OPM GovDelivery bulletin 41b65ea |
+| N6 | July 2027 launch target likely to slip at least six months; first wave early FY 2027 | Facts table; timeline 2026 | **fact removed**: Federal News Network only; OPM's release, Core HCM page and the memo don't say it | none |
+| N7 | First agencies start as FY 2027 begins; go-lives January–March 2027 (OPM Director, Aug 31, 2026, as reported) | Facts table row "First onboarding and go-lives"; timeline 2027; Consequence 1 | **fact removed**: MeriTalk only; row deleted; timeline and Consequence 1 now give the memo's wave plan (Wave 1 FY 2026 start, FY 2027 conclusion; Wave 2 FY 2027) and say no OPM schedule of agency go-lives was found | Memo; OPM Core HCM page |

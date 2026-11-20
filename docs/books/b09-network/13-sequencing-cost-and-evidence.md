@@ -115,7 +115,7 @@ An agency building a business case needs numbers, and the honest report on where
 |---|---|
 | Agencies could have saved about $329 million had they transitioned to Networx on time, against savings of 28.4 percent of FTS2001 spending; GSA's transition costs rose $66.4 million, 44 percent over the baseline | GAO-14-63, December 2013[^c13-gao1463] |
 | Billing for six agencies' legacy Networx contracts rose from about $13.4 million in February 2025 to about $40.9 million in March 2025, a 206 percent increase, with their transitions more than three years past GSA's revised deadline | GAO-26-107919, August 2026[^c13-gao26107919] |
-| 37 EIS task orders worth over $7.4 billion in just over a year of the program | ACT-IAC case study, as reported June 2020[^c13-actiac] |
+| 37 EIS task orders worth over $7.4 billion in just over a year of the program | ACT-IAC case study, June 2020[^c13-actiac] |
 | About 80 percent of more than $100 billion in annual federal IT spending goes to operations and maintenance | GAO-25-107795, July 2025[^c13-gao25107795] |
 | Up to $50 billion in combined EIS contract value; about $2.5 billion spent through GSA telecom contracts in FY2019 | CRS IF11668, October 2020[^c13-crs] |
 
@@ -249,7 +249,7 @@ An agency that runs these has either evidence or a disproof, and either is worth
 [^c13-pricer]: General Services Administration, EIS Public Pricer, <https://eis-public-pricer.eos.gsa.gov/> (accessed Oct 21, 2026).
 [^c13-mtips]: General Services Administration, "MTIPS features and price structure," updated May 21, 2025, <https://gsa.gov/node/98938> (accessed Oct 21, 2026).
 [^c13-gao1463]: Government Accountability Office, GAO-14-63, *Telecommunications: GSA Needs to Share and Prioritize Lessons Learned to Avoid Future Transition Delays*, December 5, 2013, <https://www.gao.gov/products/GAO-14-63> (accessed Oct 21, 2026).
-[^c13-actiac]: **Third-party source (trade press).** ExecutiveBiz, "ACT-IAC Study: $7.4B Worth of Task Orders Awarded Through EIS Telecom Contract," June 9, 2020, <https://executivebiz.com/2020/06/act-iac-study-74b-worth-of-task-orders-awarded-through-eis-telecom-contract> (accessed Oct 21, 2026), reporting the ACT-IAC *GSA Enterprise Infrastructure Solutions (EIS) Case Study*. The study itself could not be retrieved.
+[^c13-actiac]: ACT-IAC Institute for Innovation, *GSA Enterprise Infrastructure Solutions (EIS) Case Study: Providing the Government's Future Infrastructure Now*, June 2020, p. 7 ("In just over one year, agencies have released and awarded 37 EIS Task Orders totaling over $7.4 billion"), <https://www.actiac.org/system/files/EIS%20Case%20Study.pdf> (accessed Nov 20, 2026). An industry-government association's study, not a GSA figure.
 [^c13-gao25107795]: Government Accountability Office, GAO-25-107795, *Information Technology: Agencies Need to Plan for Modernizing Critical Decades-Old Legacy Systems*, July 17, 2025, <https://www.gao.gov/products/gao-25-107795> (accessed Oct 21, 2026).
 [^c13-crs]: Congressional Research Service, IF11668, *Federal Telecommunications Modernization: Transitioning from Networx to Enterprise Infrastructure Solutions*, Patricia Moloney Figliola, October 19, 2020, <https://www.everycrsreport.com/reports/IF11668.html> (accessed Oct 21, 2026).
 [^c13-telegeo]: **Third-party source (research firm).** Greg Bryan, "WAN Pricing Mythbusters: Is MPLS Priced Like DIA?", TeleGeography, April 21, 2020, <https://resources.telegeography.com/wan-pricing-mythbusters-is-mpls-is-priced-like-dia> (accessed Oct 21, 2026).
