@@ -1,7 +1,7 @@
 ---
 title: "Attribute-Driven Migration, Module 7: Extend Lifecycle Workflows"
 subtitle: "Build the Logic App a custom task extension calls, so it calls back to the right cloud, reports failure at once, does its work once, and runs only after the leaver is blocked"
-description: "Research draft: Module 7 of the Attribute-Driven Migration learning path. You learn where custom task extensions sit in Book 03's leaver, what Learn's Logic App definition leaves to you, the integration registry, proof-of-possession authorization and the leaver order, then lint and run Learn's definition and the program's for a GCC tenant, through failures and repeat deliveries, build the deployment pieces and check the read-backs. Guide Gates 7 and 8; Book 19, Chapter 05."
+description: "Module 7 of the Attribute-Driven Migration learning path. You learn where custom task extensions sit in Book 03's leaver, what Learn's Logic App definition leaves to you, the integration registry, proof-of-possession authorization and the leaver order, then lint and run Learn's definition and the program's for a GCC tenant, through failures and repeat deliveries, build the deployment pieces and check the read-backs. Guide Gates 7 and 8; Book 19, Chapter 05."
 research-status: draft
 research-type: training module
 research-book: "Book 19"

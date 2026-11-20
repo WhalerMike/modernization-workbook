@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Automation, Module 1: Graph and Azure Foundations"
 subtitle: "Learn which cloud's endpoints a script calls, how it signs in without a secret, which permissions it asks for, and the four request patterns every Graph script has to get right, then prove each one on fixtures"
-description: "Research draft: Module 1 of the Microsoft Automation learning path. You learn the endpoints a commercial or GCC tenant uses, app-only sign-in with managed identities, workload identity federation and certificates, Microsoft Graph permissions and consent, the current Python and PowerShell tools (and the retired modules), and paging, throttling, batching, delta and advanced queries. Lab 1 runs the example Graph client against fixtures with no tenant; Lab 2 registers a one-permission app in your test tenant."
+description: "Module 1 of the Microsoft Automation learning path. You learn the endpoints a commercial or GCC tenant uses, app-only sign-in with managed identities, workload identity federation and certificates, Microsoft Graph permissions and consent, the current Python and PowerShell tools (and the retired modules), and paging, throttling, batching, delta and advanced queries. Lab 1 runs the example Graph client against fixtures with no tenant; Lab 2 registers a one-permission app in your test tenant."
 research-status: draft
 research-type: training module
 research-book: "Books 02, 04, 05, 06, 10, 15"

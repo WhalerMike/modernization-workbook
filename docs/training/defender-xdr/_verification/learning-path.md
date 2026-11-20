@@ -19,3 +19,5 @@ Method:
 ## Review gate
 
 `review-status: pending` on every page. The path waits for the owner's review; it isn't approved here.
+
+Update, November 20, 2026: every page of the path is now `review-status: approved`, approved by the owner on November 18, 2026. The line above records the status when the path was verified.

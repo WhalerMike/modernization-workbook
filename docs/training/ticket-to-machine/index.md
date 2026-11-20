@@ -1,7 +1,7 @@
 ---
 title: "Learning path: Ticket-to-Machine on ServiceNow and SailPoint"
 subtitle: "Seven modules that teach you to build, test and evidence Book 13's Ticket-to-Machine loop on ServiceNow and SailPoint Identity Security Cloud, gate by gate, with labs on fixtures and in your own test instance"
-description: "Research draft: a learning path in seven modules for developers, identity governance engineers, ServiceNow engineers and ISSO reviewers. Each module maps to the example implementation guide's gates and the developer workbook's chapters, runs a lab against the kit's fixtures with no tenant, points to a lab in your own developer instance or sandbox, and ends with a knowledge check."
+description: "A learning path in seven modules for developers, identity governance engineers, ServiceNow engineers and ISSO reviewers. Each module maps to the example implementation guide's gates and the developer workbook's chapters, runs a lab against the kit's fixtures with no tenant, points to a lab in your own developer instance or sandbox, and ends with a knowledge check."
 research-status: draft
 research-type: training module
 research-book: "Books 13, 15"

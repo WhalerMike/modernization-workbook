@@ -1,7 +1,7 @@
 ---
 title: "Ticket-to-Machine, Module 1: The Loop and the Typed Task"
 subtitle: "Where the kit sits in Book 13's five-step loop, and how to check the identity finding before it reaches ServiceNow"
-description: "Research draft: Module 1 of the Ticket-to-Machine learning path. You map the kit's files to the loop's five steps, learn the identity finding's data contract, and validate payloads on a laptop with finding_contract.py. Guide Gate 4; workbook Chapter 01."
+description: "Module 1 of the Ticket-to-Machine learning path. You map the kit's files to the loop's five steps, learn the identity finding's data contract, and validate payloads on a laptop with finding_contract.py. Guide Gate 4; workbook Chapter 01."
 research-status: draft
 research-type: training module
 research-book: "Books 13, 15"

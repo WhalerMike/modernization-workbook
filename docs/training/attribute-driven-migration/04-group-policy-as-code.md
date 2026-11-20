@@ -1,7 +1,7 @@
 ---
 title: "Attribute-Driven Migration, Module 4: Move Group Policy as Code"
 subtitle: "Turn Group Policy analytics into a per-setting move plan, keep settings catalog policies as reviewed files, and create only what a dry run showed, with the least permission that works"
-description: "Research draft: Module 4 of the Attribute-Driven Migration learning path. You learn VK-INT-07 as the gate, the per-setting move plan and its dispositions, one library file per policy with an owner and decisions, the linter, and the dry run, apply and drift actions, then run Microsoft's import sample twice against a fake Graph, build the plan, lint the library, sync it and break it on purpose. Guide Gates 0, 5 and 8; Book 19, Chapter 06."
+description: "Module 4 of the Attribute-Driven Migration learning path. You learn VK-INT-07 as the gate, the per-setting move plan and its dispositions, one library file per policy with an owner and decisions, the linter, and the dry run, apply and drift actions, then run Microsoft's import sample twice against a fake Graph, build the plan, lint the library, sync it and break it on purpose. Guide Gates 0, 5 and 8; Book 19, Chapter 06."
 research-status: draft
 research-type: training module
 research-book: "Book 19"

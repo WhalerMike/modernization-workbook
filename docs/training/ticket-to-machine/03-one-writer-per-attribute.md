@@ -1,7 +1,7 @@
 ---
 title: "Ticket-to-Machine, Module 3: One Writer per Attribute"
 subtitle: "Decide who writes each attribute and who approves each class, then check two provisioning configurations for an attribute with two writers"
-description: "Research draft: Module 3 of the Ticket-to-Machine learning path. You learn Gate 2's decisions, one writer per attribute and one approver system per authority class, and run writer_check.py over Entra inbound provisioning's schema and SailPoint's provisioning policies to find attributes with two writers. Guide Gate 2; workbook Chapter 08."
+description: "Module 3 of the Ticket-to-Machine learning path. You learn Gate 2's decisions, one writer per attribute and one approver system per authority class, and run writer_check.py over Entra inbound provisioning's schema and SailPoint's provisioning policies to find attributes with two writers. Guide Gate 2; workbook Chapter 08."
 research-status: draft
 research-type: training module
 research-book: "Books 13, 15"

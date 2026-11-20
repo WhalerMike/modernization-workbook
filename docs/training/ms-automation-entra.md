@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Automation, Module 2: Microsoft Entra ID through Microsoft Graph"
 subtitle: "Learn the Graph APIs, least-privileged permissions and data shapes behind users, groups, Conditional Access, PIM, applications, logs and authentication methods, then run five read-only checks mapped to ScubaGear on fixtures and in your test tenant"
-description: "Research draft: Module 2 of the Microsoft Automation learning path, for Books 02 and 04. You learn users and sign-in activity, groups and membership, Conditional Access policies and named locations, PIM eligibility and assignment schedules, applications and their credentials, consent grants, audit and sign-in logs and their retention, authentication-method registration and risky users. Lab 1 runs five read-only checks in Python and PowerShell against fixtures; Lab 2 runs them read-only against your test tenant."
+description: "Module 2 of the Microsoft Automation learning path, for Books 02 and 04. You learn users and sign-in activity, groups and membership, Conditional Access policies and named locations, PIM eligibility and assignment schedules, applications and their credentials, consent grants, audit and sign-in logs and their retention, authentication-method registration and risky users. Lab 1 runs five read-only checks in Python and PowerShell against fixtures; Lab 2 runs them read-only against your test tenant."
 research-status: draft
 research-type: training module
 research-book: "Books 02, 04"

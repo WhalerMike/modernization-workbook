@@ -1,7 +1,7 @@
 ---
 title: "Attribute-Driven Migration, Module 1: Send HR Records through a Middleware that Fails Closed"
 subtitle: "Start from Microsoft's CSV2SCIM sample, then run the hardened client that refuses bad rows, orders leavers first, holds a mass disable and ties every batch to its inputs by hash"
-description: "Research draft: Module 1 of the Attribute-Driven Migration learning path. You learn what the HR-to-Entra middleware owns and what the provisioning service owns, why every record is sent whole, and how quarantine, ordering, the mass-disable hold and the provenance manifest work, then run the hardened client on the HR fixture with no tenant. Guide Gates 2 and 3; Book 19, Chapter 01."
+description: "Module 1 of the Attribute-Driven Migration learning path. You learn what the HR-to-Entra middleware owns and what the provisioning service owns, why every record is sent whole, and how quarantine, ordering, the mass-disable hold and the provenance manifest work, then run the hardened client on the HR fixture with no tenant. Guide Gates 2 and 3; Book 19, Chapter 01."
 research-status: draft
 research-type: training module
 research-book: "Book 19"
