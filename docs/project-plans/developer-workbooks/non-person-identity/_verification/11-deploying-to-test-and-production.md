@@ -83,3 +83,17 @@ The kit now prints the plan's NP IDs, Chapter 06 follows Chapter 03's end-date a
 |---|---|---|---|---|
 | K1 | Lab 2 names `D-NP4` and `D-NP5` in the scope commands, with `<d-np4-…>` and `<d-np5-…>` placeholders, the IDs the kit checks | Lab 2 | not run against a tenant; the kit's checks were read | `NpiWorkloadCa.psm1` |
 | K2 | The dry run's rollback plan SHA-256 is `0cb6515f…`; it changed with the settings fixtures in the ring and `pilot.ownerUpn` change, and is the same on every run | Dry run on the kit's fixtures | updated by running the commands as written, twice | local run, November 9, 2026 |
+
+## The managed service account standard (November 20, 2026)
+
+The kit's deploy code changed with decisions [WD-159 to WD-170](../../../../about/decision-register.md#wd-159): the smoke-test gMSA is `gmsa-npismoke` for `NpiSmokeSvc`, its retriever group `DL-gMSA-npismoke-Hosts` is domain local, the settings file gained `ad.gmsaRetrieverGroupPath` and `ad.gmsaRequestId`, `ad.kerberosInputs` holds the forest's Chapter 06 `ad-standard.json`, `deploy/New-NpiDeploySmokeGmsaPlan.ps1` is new, and PF-10 fails on a group that isn't domain local. The page follows the kit; the kit wasn't changed here. Test results on November 20, 2026, Windows 11, PowerShell 7.6 with Pester 5: `deploy/tests/NpiDeploy.Tests.ps1` 60 passed; the kit 549 passed.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| M1 | The smoke-test gMSA is created through a one-account Chapter 06 plan, applied by the pipeline (`-RunAs Pipeline`), or in the test forest before the pipeline exists by a person (`-RunAs Person -TestDomain`); never by hand in production | Roles; Step 1.4; Checklist | restated-as-design (labeled): WD-163, WD-168 | decision register; `deploy/New-NpiDeploySmokeGmsaPlan.ps1` |
+| M2 | The retriever group is created `-GroupScope DomainLocal` in `ad.gmsaRetrieverGroupPath`; PF-10 fails otherwise | Prepare, step 2 | restated-as-design (labeled): WD-160; PF-10 checked by the kit's test | `deploy/NpiDeploy.psm1` |
+| M3 | The dry run's output: PF-01's settings hashes `bea7ef8879f0` (test) and `3c55fa49e63c` (production); PF-10 ends `DL-gMSA-npismoke-Hosts`; the smoke-test gMSA's plan (`Plan SHA-256: 0bcf2917…` with `-AsOf 2026-11-02T12:00:00Z`); rollback plan `00105622…`; the SMOKE record's head and the first `SHA256SUMS` line from the November 20 run | Dry run on the kit's fixtures | updated by running the commands as written | local run, November 20, 2026 |
+| M4 | Step 1.4's expected apply line (`Apply as Pipeline: 1 Sent` and the result row) | Step 1.4 | the format the write path prints, shown with the test fixture's values; the deploy tests apply the same plan against a fake test forest (`Sent`, verified), but no command on the page runs it against a fixture | `Invoke-NpiKerberosIslandAction.ps1`; `deploy/tests/NpiDeploy.Tests.ps1` |
+| M5 | `deploy/tests/NpiDeploy.Tests.ps1` has 60 tests | The code this chapter adds | updated by running it | local run, November 20, 2026 |
+| M6 | Continue the book links to Chapter 12 | Continue the book | link added | — |
+

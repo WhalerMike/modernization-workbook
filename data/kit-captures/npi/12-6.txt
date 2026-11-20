@@ -1,0 +1,16 @@
+PS> (Get-Content out/msa-standard/evidence.json -Raw | ConvertFrom-Json).rows | Format-Table step, control, evidence, @{ n = 'ksi'; e = { $_.ksi -join ', ' } }
+step           control evidence                 ksi
+----           ------- --------                 ---
+request-check  AC-2    request-check.json       KSI-IAM-APM, KSI-IAM-JIT, KSI-IAM-SNU, KSI-IAM-SUS
+request-check  IA-4    request-check.json       KSI-IAM-ELP, KSI-IAM-JIT
+create-inputs  CM-3    kerberos-replatform.csv  KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-RVP, KSI-CMT-VTD
+create-inputs  CM-3    password-retrievers.json KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-RVP, KSI-CMT-VTD
+reconciliation CM-8    reconciliation.json      KSI-PIY-GIV
+reconciliation AC-6    reconciliation.json      KSI-IAM-ELP, KSI-IAM-JIT
+certification  AC-2    certification.json       KSI-IAM-APM, KSI-IAM-JIT, KSI-IAM-SNU, KSI-IAM-SUS
+certification  AC-2    servicenow-findings.json KSI-IAM-APM, KSI-IAM-JIT, KSI-IAM-SNU, KSI-IAM-SUS
+certification  AC-6(7) certification.json       KSI-IAM-AAM, KSI-IAM-JIT
+certification  AC-6(7) servicenow-findings.json KSI-IAM-AAM, KSI-IAM-JIT
+mdi            CA-7    mdi.json                 KSI-MLA-EVC
+mdi            SI-4    mdi.json                 KSI-IAM-SUS, KSI-MLA-RVL, KSI-SVC-EIS
+retirement     AC-2(3) retirement-list.csv      KSI-IAM-AAM, KSI-IAM-JIT, KSI-IAM-SUS

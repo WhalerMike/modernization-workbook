@@ -1,0 +1,9 @@
+SamAccountName,RequestId,AppShortName,AccountType,RiskTier,Owners,Sponsor,CreatedOn,LastCertifiedOn,DisabledOn
+gmsa-intranet$,REQ-2026-0101,intranet,gMSA,R2,intranet.owner@contoso.example;intranet.backup@contoso.example,comms.sponsor@contoso.example,2026-03-02,2026-06-01,
+gmsa-print$,REQ-2025-0102,print,gMSA,R3,print.owner@contoso.example;print.backup@contoso.example,facilities.sponsor@contoso.example,2025-10-01,2025-10-15,
+gmsa-web$,REQ-2025-0410,web,gMSA,R1,web.owner@contoso.example;web.backup@contoso.example,comms.sponsor@contoso.example,2025-04-14,2026-10-01,
+dmsa-hrsync$,REQ-2026-0150,hrsync,dMSA,R1,hr-apps.owner@contoso.example;hr-apps.backup@contoso.example,hr.sponsor@contoso.example,2026-09-18,,
+gmsa-legacy$,REQ-2024-0033,legacy,gMSA,R3,legacy.owner@contoso.example;legacy.backup@contoso.example,ops.sponsor@contoso.example,2024-02-01,2026-01-10,2026-08-01
+gmsa-oldfax$,REQ-2024-0061,oldfax,gMSA,R3,fax.owner@contoso.example;fax.backup@contoso.example,ops.sponsor@contoso.example,2024-06-01,2026-02-10,2026-10-01
+gmsa-batch$,REQ-2024-0078,batch,gMSA,R2,batch.owner@contoso.example;batch.backup@contoso.example,ops.sponsor@contoso.example,2024-08-01,2026-03-01,2026-07-01
+gmsa-report$,REQ-2024-0090,report,gMSA,R2,report.owner@contoso.example;report.backup@contoso.example,comms.sponsor@contoso.example,2024-09-01,2026-03-15,2026-06-01

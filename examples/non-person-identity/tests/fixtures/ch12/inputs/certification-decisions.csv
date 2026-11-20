@@ -1,0 +1,5 @@
+Campaign,Account,Reviewer,Decision,DecidedOn
+CAMP-2026-Q4-R1,gmsa-web$,web.owner@contoso.example,APPROVE,2026-10-01
+CAMP-2026-Q4-R1,gmsa-web$,comms.sponsor@contoso.example,APPROVE,2026-10-02
+CAMP-2026-H1-R2,gmsa-intranet$,intranet.owner@contoso.example,APPROVE,2026-06-01
+CAMP-2026-ANNUAL-R3,gmsa-print$,print.owner@contoso.example,REVOKE,2026-11-18

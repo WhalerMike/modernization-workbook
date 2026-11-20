@@ -1,8 +1,16 @@
-PS> ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-apply -Apply
-Apply: 4 Sent
-  Sent      SetRetrievers         gmsa-web$       Set-ADServiceAccount
-  Sent      CreateGmsa            msa-print01$    New-ADServiceAccount
-  Sent      CompleteDmsaMigration svc-hrsync      Complete-ADServiceAccountMigration
-  Sent      CreateGmsa            svc-intranet    New-ADServiceAccount
-PS> ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-x
-Exception: The plan's SHA-256 is e8fb8355ee0989d9ce9d7b107cd52f45d0eea5f155a49c1667a1bf5840de9cca, not the approved 0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.
+PS> ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -RunAs Pipeline -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-apply -Apply
+Apply as Pipeline: 1 Refused, 4 Sent
+  Sent       pipeline SetRetrievers         gmsa-ops$       Set-ADServiceAccount
+  Sent       pipeline SetRetrievers         gmsa-web$       Set-ADServiceAccount
+  Sent       pipeline CreateGmsa            msa-print01$    New-ADServiceAccount
+  Refused    person   CompleteDmsaMigration svc-hrsync      Complete-ADServiceAccountMigration
+  Sent       pipeline CreateGmsa            svc-intranet    New-ADServiceAccount
+PS> ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -RunAs Person -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-apply-person -Apply
+Apply as Person: 4 Refused, 1 Sent
+  Refused    pipeline SetRetrievers         gmsa-ops$       Set-ADServiceAccount
+  Refused    pipeline SetRetrievers         gmsa-web$       Set-ADServiceAccount
+  Refused    pipeline CreateGmsa            msa-print01$    New-ADServiceAccount
+  Sent       person   CompleteDmsaMigration svc-hrsync      Complete-ADServiceAccountMigration
+  Refused    pipeline CreateGmsa            svc-intranet    New-ADServiceAccount
+PS> ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 ('0' * 64) -RunAs Pipeline -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-x
+Exception: The plan's SHA-256 is 74c66192a61051b6cb2122b36e3fc0d3430c512f89c6feff123fd23b040b43b5, not the approved 0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.

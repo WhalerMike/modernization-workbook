@@ -175,6 +175,7 @@ The prompt sheet `copilot-prompts.md` has copy-paste prompts to turn a task desc
 
 <!-- revisions:end -->
 
+
 [^cat-acw]: Microsoft Learn, "Configure the admin consent workflow" (reviewers; email notifications; expiration reminders; "Consent request expires after (days)"; a reviewer needs the permissions to grant admin consent), <https://learn.microsoft.com/entra/identity/enterprise-apps/configure-admin-consent-workflow> (read November 2, 2026); and "Overview of admin consent workflow" (reviewers are emailed when a request is created, is nearing expiry and expires), <https://learn.microsoft.com/entra/identity/enterprise-apps/admin-consent-workflow-overview> (read November 2, 2026).
 [^cat-grant]: Microsoft Learn, "Grant tenant-wide admin consent to an application" (prerequisites: Privileged Role Administrator for any permission; Cloud Application Administrator, AI Administrator or Application Administrator for any permission except Microsoft Graph app roles; confirm with `GET /oauth2PermissionGrants`), <https://learn.microsoft.com/entra/identity/enterprise-apps/grant-admin-consent> (read November 2, 2026).
 [^cat-acr]: Microsoft Learn, "appConsentRequest resource type," Microsoft Graph v1.0, <https://learn.microsoft.com/graph/api/resources/appconsentrequest> (read November 2, 2026).

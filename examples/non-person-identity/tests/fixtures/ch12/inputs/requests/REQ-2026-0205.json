@@ -1,0 +1,21 @@
+{
+  "requestId": "REQ-2026-0205",
+  "requestedOn": "2026-11-06",
+  "approvedOn": "2026-11-13",
+  "approvers": ["crm.owner@contoso.example", "iam.approver@contoso.example"],
+  "status": "APPROVED",
+  "changeRecord": "CHG0041205",
+  "systemId": "SYS-0815",
+  "appShortName": "crm",
+  "accountType": "dMSA",
+  "proposedName": "dmsa-crm$",
+  "hosts": ["CRM01"],
+  "workload": "Service",
+  "needsSpn": true,
+  "spns": [],
+  "owners": ["crm.owner@contoso.example", "crm.backup@contoso.example"],
+  "sponsor": "sales.sponsor@contoso.example",
+  "sponsorIsFederalEmployee": true,
+  "riskTier": "R4",
+  "supersedes": "svc-crm"
+}

@@ -1,0 +1,8 @@
+{
+  "_comment": "The test forest's Active Directory standard for managed service accounts (Chapter 06's ad-standard.json), read by deploy/New-NpiDeploySmokeGmsaPlan.ps1 from the settings file's ad.kerberosInputs folder. Fictional names.",
+  "serviceAccountOu": "OU=Service Accounts,DC=corp-test,DC=contoso,DC=example",
+  "holdingOu": "OU=Disabled Service Accounts,DC=corp-test,DC=contoso,DC=example",
+  "creatorGroup": "DL-gMSA-Creators",
+  "retrieverGroupPattern": "^CN=DL-gMSA-[A-Za-z0-9-]+-Hosts,",
+  "passwordIntervalDays": 30
+}

@@ -482,3 +482,66 @@ Describe 'Requirements and evidence records' {
         } finally { Pop-Location }
     }
 }
+Describe 'The smoke-test gMSA as a one-account Chapter 06 plan (WD-168)' {
+    BeforeAll {
+        Import-Module (Join-Path $script:Root 'powershell/NpiKerberosIsland/NpiKerberosIsland.psm1') -Force
+        # Chapter 06's fake AD for the test forest: its estate, with the forest's configuration naming context.
+        $j = Get-Content (Join-Path $script:Root 'tests/fixtures/ch06/ad-kerberos.json') -Raw | ConvertFrom-Json -AsHashtable -Depth 50
+        $j.configurationDn = 'CN=Configuration,DC=corp-test,DC=contoso,DC=example'
+        $script:KrbTest = Save-Json $j 'ad-kerberos-test.json'
+        $script:GmsaOut = Join-Path $script:Tmp 'gmsa-plan'
+        Push-Location $script:Root
+        try { $script:GmsaLines = & (Join-Path $script:Root 'deploy/New-NpiDeploySmokeGmsaPlan.ps1') -SettingsPath $script:TestSettings -Stage test -OutputPath $script:GmsaOut -AsOf $script:AsOf } finally { Pop-Location }
+        $script:GmsaPlanPath = Join-Path $script:GmsaOut 'kerberos-plan.json'
+        $script:GmsaPlan = Get-Content $script:GmsaPlanPath -Raw | ConvertFrom-Json
+    }
+    It 'plans one CreateGmsa: gmsa-npismoke$ in the forest''s service-account OU, its DL-gMSA-npismoke-Hosts group, outbound-only, the pipeline''s, with its request and change' {
+        @($script:GmsaPlan.actions) | Should -HaveCount 1
+        $a = $script:GmsaPlan.actions[0]
+        "$($a.Action) $($a.Account) $($a.RunBy)" | Should -Be 'CreateGmsa gmsa-npismoke$ pipeline'
+        $a.Params.Path | Should -Be 'OU=Service Accounts,DC=corp-test,DC=contoso,DC=example'
+        @($a.Params.PrincipalsAllowedToRetrieveManagedPassword) | Should -Be @('CN=DL-gMSA-npismoke-Hosts,OU=Groups,DC=corp-test,DC=contoso,DC=example')
+        $a.Params.RestrictToOutboundAuthenticationOnly | Should -BeTrue
+        $a.Params.ManagedPasswordIntervalInDays | Should -Be 30
+        "$($a.RequestId) $($a.ChangeRecord)" | Should -Be 'SP-REQ-0002001 CHG-2026-1102-T'
+        $script:GmsaPlan.domain | Should -Be 'corp-test.contoso.example'
+        $script:GmsaLines[-1] | Should -Be "Plan SHA-256: $(Get-NpiFileHash -Path $script:GmsaPlanPath)"
+        (Get-Content (Join-Path $script:GmsaOut 'manifest.json') -Raw | ConvertFrom-Json).settingsSha256 | Should -Be (Get-NpiFileHash -Path $script:TestSettings)
+    }
+    It 'is applied by Chapter 06''s write path: as the pipeline, or as a person only in the test forest; the gMSA lands in the service-account OU' {
+        $f = New-NpiKrbFixtureAdInvoker -EstatePath (Join-Path $script:Root 'tests/fixtures/estate.json') -KerberosPath $script:KrbTest -AllowWrite
+        $sha = Get-NpiFileHash -Path $script:GmsaPlanPath
+        $w = New-NpiKrbWriter -TenantId $script:GmsaPlan.tenantId -Domain $script:GmsaPlan.domain -AdInvoke $f.Invoke
+        (Invoke-NpiKrbPlan -PlanPath $script:GmsaPlanPath -ApprovedSha256 $sha -Writer $w -AsOf $script:AsOf -RunAs Person -Apply).Results[0].Outcome | Should -Be 'Refused'
+        $run = Invoke-NpiKrbPlan -PlanPath $script:GmsaPlanPath -ApprovedSha256 $sha -Writer $w -AsOf $script:AsOf -RunAs Person -TestDomain -Apply
+        "$($run.Results[0].Outcome) $($run.Results[0].Verified)" | Should -Be 'Sent True'
+        @($f.Estate.ad.serviceAccounts | Where-Object SamAccountName -EQ 'gmsa-npismoke$')[0].DistinguishedName | Should -Be 'CN=gmsa-npismoke,OU=Service Accounts,DC=corp-test,DC=contoso,DC=example'
+        (Invoke-NpiKrbPlan -PlanPath $script:GmsaPlanPath -ApprovedSha256 $sha -Writer $w -AsOf $script:AsOf -RunAs Pipeline -Apply).Results[0].Detail | Should -Be 'Already exists'
+    }
+    It 'refuses a name, a retriever group or a request outside the standard, and a standard file from another forest' {
+        foreach ($case in @(@('gmsaName', 'gmsa-hrsync-smoke-test', 'ad.gmsaName'), @('gmsaName', 'HRSyncSvc', 'ad.gmsaName'), @('gmsaRetrieverGroup', 'gg-gmsa-hrsync-hosts', 'ad.gmsaRetrieverGroup'), @('gmsaRequestId', '', 'ad.gmsaRequestId'))) {
+            $raw = Get-Raw; $raw.ad[$case[0]] = $case[1]
+            (Test-NpiDeploySettings -Settings $raw -Stage test) -join ' ' | Should -Match ([regex]::Escape($case[2])) -Because "$($case[0]) = '$($case[1])'"
+        }
+        $std = Join-Path $script:Root 'tests/fixtures/deploy/kerberos-production/ad-standard.json'
+        { & (Join-Path $script:Root 'deploy/New-NpiDeploySmokeGmsaPlan.ps1') -SettingsPath $script:TestSettings -Stage test -AdStandardPath $std -OutputPath (Join-Path $script:Tmp 'gmsa-x') -AsOf $script:AsOf } | Should -Throw '*isn''t in corp-test.contoso.example*'
+        { New-NpiKrbGmsaPlan -Name 'gmsa-npismoke$' -RetrieverGroupDn 'CN=APP-TEST-01,OU=Servers,DC=corp-test,DC=contoso,DC=example' -AdStandardPath (Join-Path $script:Root 'tests/fixtures/deploy/kerberos-test/ad-standard.json') -RequestId 'SP-REQ-1' -ChangeRecord 'CHG-1' -TenantId $script:GmsaPlan.tenantId -Domain 'corp-test.contoso.example' -Cloud gcc -AsOf $script:AsOf } | Should -Throw '*never a computer account*'
+        { New-NpiKrbGmsaPlan -Name 'gmsa-npismoke$' -RetrieverGroupDn 'CN=DL-gMSA-npismoke-Hosts,OU=Groups,DC=corp-test,DC=contoso,DC=example' -AdStandardPath (Join-Path $script:Root 'tests/fixtures/deploy/kerberos-test/ad-standard.json') -RequestId '' -ChangeRecord 'CHG-1' -TenantId $script:GmsaPlan.tenantId -Domain 'corp-test.contoso.example' -Cloud gcc -AsOf $script:AsOf } | Should -Throw '*No approved request*'
+    }
+    It 'PF-10 fails when the retriever group is a global group, not domain local' {
+        $t = Get-Content $script:TestTenant -Raw | ConvertFrom-Json -AsHashtable -Depth 50
+        $t.ad['Get-ADGroup|DL-gMSA-npismoke-Hosts'].GroupScope = 'Global'
+        $fake = New-NpiDeployFixtureInvoker -Path (Save-Json $t 'tenant-global-group.json')
+        $r = Invoke-NpiDeployPreflight -Client (New-Client 'deploy-preflight' $fake) -Settings (Get-Settings) -BaselinePath $script:Baseline
+        Get-Status $r.Results 'PF-10' | Should -Be 'Fail'
+        @($r.Results | Where-Object Id -EQ 'PF-10')[0].Actual | Should -Match 'Global group.*domain local'
+    }
+    It 'the production stage plans the same account in the production forest' {
+        $out = Join-Path $script:Tmp 'gmsa-prod'
+        Push-Location $script:Root
+        try { $null = & (Join-Path $script:Root 'deploy/New-NpiDeploySmokeGmsaPlan.ps1') -SettingsPath $script:ProdSettings -Stage production -OutputPath $out -AsOf $script:AsOf } finally { Pop-Location }
+        $a = (Get-Content (Join-Path $out 'kerberos-plan.json') -Raw | ConvertFrom-Json).actions[0]
+        $a.Params.Path | Should -Be 'OU=Service Accounts,DC=corp,DC=contoso,DC=example'
+        "$($a.RequestId) $($a.ChangeRecord)" | Should -Be 'SP-REQ-0002101 CHG-2026-1116-P'
+    }
+}

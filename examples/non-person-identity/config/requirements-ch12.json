@@ -1,0 +1,24 @@
+{
+  "_comment": "Chapter 12's requirements catalog: for each step of the managed service account standard, the NIST SP 800-53 Rev 5 controls its output provides evidence for and the FedRAMP 20x Key Security Indicators whose related controls include them. Control mappings: Book 13, Appendix A and the service-account and Non-Person Identity guides; KSIs: the related-controls lists on https://www.fedramp.gov/2026/reference/key-security-indicators/, re-read on November 20, 2026 (WD-169). 'primaryKsi' is the indicator the program leads with for non-user accounts. KSIs are FedRAMP's indicators for cloud service providers: the agency lines its own evidence up with them and doesn't report them. The alignment is the program's reading (design guidance), to be reconciled with Book 13, Appendix A.",
+  "version": 1,
+  "source": { "title": "FedRAMP, Key Security Indicators", "url": "https://www.fedramp.gov/2026/reference/key-security-indicators/", "accessed": "2026-11-20" },
+  "controls": {
+    "AC-2": { "ksis": ["KSI-IAM-APM", "KSI-IAM-JIT", "KSI-IAM-SNU", "KSI-IAM-SUS"], "primaryKsi": "KSI-IAM-SNU" },
+    "AC-2(3)": { "ksis": ["KSI-IAM-AAM", "KSI-IAM-JIT", "KSI-IAM-SUS"] },
+    "AC-6": { "ksis": ["KSI-IAM-ELP", "KSI-IAM-JIT"] },
+    "AC-6(7)": { "ksis": ["KSI-IAM-AAM", "KSI-IAM-JIT"] },
+    "CA-7": { "ksis": ["KSI-MLA-EVC"] },
+    "CM-3": { "ksis": ["KSI-CMT-LMC", "KSI-CMT-RMV", "KSI-CMT-RVP", "KSI-CMT-VTD"] },
+    "CM-8": { "ksis": ["KSI-PIY-GIV"] },
+    "IA-4": { "ksis": ["KSI-IAM-ELP", "KSI-IAM-JIT"] },
+    "SI-4": { "ksis": ["KSI-IAM-SUS", "KSI-MLA-RVL", "KSI-SVC-EIS"] }
+  },
+  "steps": {
+    "request-check": { "title": "Approved request checked against the standard", "controls": ["AC-2", "IA-4"], "evidence": ["request-check.json"] },
+    "create-inputs": { "title": "Chapter 06's reviewed inputs written from passing requests", "controls": ["CM-3"], "evidence": ["kerberos-replatform.csv", "password-retrievers.json"] },
+    "reconciliation": { "title": "SailPoint's aggregation reconciled with Active Directory", "controls": ["CM-8", "AC-6"], "evidence": ["reconciliation.json"] },
+    "certification": { "title": "Certification cadence and decisions", "controls": ["AC-2", "AC-6(7)"], "evidence": ["certification.json", "servicenow-findings.json"] },
+    "mdi": { "title": "Defender for Identity's service account list compared with the register", "controls": ["CA-7", "SI-4"], "evidence": ["mdi.json"] },
+    "retirement": { "title": "Retirement window for disabled accounts", "controls": ["AC-2(3)"], "evidence": ["retirement-list.csv"] }
+  }
+}

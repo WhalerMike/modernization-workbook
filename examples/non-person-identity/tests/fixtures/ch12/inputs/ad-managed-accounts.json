@@ -1,0 +1,179 @@
+{
+  "_comment": "Chapter 12's Active Directory read of every gMSA and dMSA in the fictional estate, in the kit's import format (Export-NpiStdAdManagedAccount writes the same shape from Get-ADServiceAccount). RestrictToOutboundAuthenticationOnly is the kit's own field: the directory attribute New-ADServiceAccount -RestrictToOutboundAuthenticationOnly sets is not yet specified, so a live read leaves it null. lastLogonTimestamp replicates late (Learn: up to 14 days). Invented names and dates.",
+  "accounts": [
+    {
+      "name": "gmsa-intranet$",
+      "objectClass": "msDS-GroupManagedServiceAccount",
+      "enabled": true,
+      "whenCreated": "2026-03-02T15:00:00Z",
+      "msDS-ManagedPasswordInterval": 30,
+      "KerberosEncryptionType": [
+        "AES256"
+      ],
+      "PrincipalsAllowedToRetrieveManagedPassword": [
+        "CN=DL-gMSA-intranet-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example"
+      ],
+      "ServicePrincipalNames": [
+        "HTTP/intranet.corp.contoso.example"
+      ],
+      "memberOf": [],
+      "distinguishedName": "CN=gmsa-intranet,OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+      "lastLogonTimestamp": "2026-11-19T03:00:00Z",
+      "RestrictToOutboundAuthenticationOnly": false
+    },
+    {
+      "name": "gmsa-print$",
+      "objectClass": "msDS-GroupManagedServiceAccount",
+      "enabled": true,
+      "whenCreated": "2025-10-01T15:00:00Z",
+      "msDS-ManagedPasswordInterval": 30,
+      "KerberosEncryptionType": [
+        "AES256"
+      ],
+      "PrincipalsAllowedToRetrieveManagedPassword": [
+        "CN=PRINT01,OU=Servers,DC=corp,DC=contoso,DC=example"
+      ],
+      "ServicePrincipalNames": [],
+      "memberOf": [],
+      "distinguishedName": "CN=gmsa-print,OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+      "lastLogonTimestamp": "2026-11-19T02:00:00Z",
+      "RestrictToOutboundAuthenticationOnly": false
+    },
+    {
+      "name": "gmsa-web$",
+      "objectClass": "msDS-GroupManagedServiceAccount",
+      "enabled": true,
+      "whenCreated": "2025-04-14T15:00:00Z",
+      "msDS-ManagedPasswordInterval": 45,
+      "KerberosEncryptionType": [
+        "RC4",
+        "AES128",
+        "AES256"
+      ],
+      "PrincipalsAllowedToRetrieveManagedPassword": [
+        "CN=DL-gMSA-web-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example"
+      ],
+      "ServicePrincipalNames": [
+        "HTTP/web2.corp.contoso.example"
+      ],
+      "memberOf": [],
+      "distinguishedName": "CN=gmsa-web,CN=Managed Service Accounts,DC=corp,DC=contoso,DC=example",
+      "lastLogonTimestamp": "2026-11-19T04:00:00Z",
+      "RestrictToOutboundAuthenticationOnly": false
+    },
+    {
+      "name": "gmsa-ops$",
+      "objectClass": "msDS-GroupManagedServiceAccount",
+      "enabled": true,
+      "whenCreated": "2026-05-20T15:00:00Z",
+      "msDS-ManagedPasswordInterval": 30,
+      "KerberosEncryptionType": [
+        "AES256"
+      ],
+      "PrincipalsAllowedToRetrieveManagedPassword": [
+        "CN=DL-gMSA-ops-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example"
+      ],
+      "ServicePrincipalNames": [],
+      "memberOf": [
+        "CN=Domain Admins,CN=Users,DC=corp,DC=contoso,DC=example"
+      ],
+      "distinguishedName": "CN=gmsa-ops,OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+      "lastLogonTimestamp": "2026-11-19T01:00:00Z",
+      "RestrictToOutboundAuthenticationOnly": true
+    },
+    {
+      "name": "dmsa-hrsync$",
+      "objectClass": "msDS-DelegatedManagedServiceAccount",
+      "enabled": true,
+      "whenCreated": "2026-09-18T15:00:00Z",
+      "msDS-ManagedPasswordInterval": 30,
+      "KerberosEncryptionType": [
+        "AES256"
+      ],
+      "PrincipalsAllowedToRetrieveManagedPassword": [
+        "CN=HR01,OU=Servers,DC=corp,DC=contoso,DC=example"
+      ],
+      "ServicePrincipalNames": [
+        "HTTP/hrapp.corp.contoso.example"
+      ],
+      "memberOf": [],
+      "distinguishedName": "CN=dmsa-hrsync,OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+      "lastLogonTimestamp": "2026-11-19T05:00:00Z",
+      "RestrictToOutboundAuthenticationOnly": false
+    },
+    {
+      "name": "gmsa-legacy$",
+      "objectClass": "msDS-GroupManagedServiceAccount",
+      "enabled": false,
+      "whenCreated": "2024-02-01T15:00:00Z",
+      "msDS-ManagedPasswordInterval": 30,
+      "KerberosEncryptionType": [
+        "AES256"
+      ],
+      "PrincipalsAllowedToRetrieveManagedPassword": [
+        "CN=DL-gMSA-legacy-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example"
+      ],
+      "ServicePrincipalNames": [],
+      "memberOf": [],
+      "distinguishedName": "CN=gmsa-legacy,OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+      "lastLogonTimestamp": "2026-07-30T03:00:00Z",
+      "RestrictToOutboundAuthenticationOnly": true
+    },
+    {
+      "name": "gmsa-oldfax$",
+      "objectClass": "msDS-GroupManagedServiceAccount",
+      "enabled": false,
+      "whenCreated": "2024-06-01T15:00:00Z",
+      "msDS-ManagedPasswordInterval": 30,
+      "KerberosEncryptionType": [
+        "AES256"
+      ],
+      "PrincipalsAllowedToRetrieveManagedPassword": [
+        "CN=DL-gMSA-oldfax-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example"
+      ],
+      "ServicePrincipalNames": [],
+      "memberOf": [],
+      "distinguishedName": "CN=gmsa-oldfax,OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+      "lastLogonTimestamp": "2026-09-28T03:00:00Z",
+      "RestrictToOutboundAuthenticationOnly": true
+    },
+    {
+      "name": "gmsa-batch$",
+      "objectClass": "msDS-GroupManagedServiceAccount",
+      "enabled": false,
+      "whenCreated": "2024-08-01T15:00:00Z",
+      "msDS-ManagedPasswordInterval": 30,
+      "KerberosEncryptionType": [
+        "AES256"
+      ],
+      "PrincipalsAllowedToRetrieveManagedPassword": [
+        "CN=DL-gMSA-batch-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example"
+      ],
+      "ServicePrincipalNames": [],
+      "memberOf": [],
+      "distinguishedName": "CN=gmsa-batch,OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+      "lastLogonTimestamp": "2026-09-15T03:00:00Z",
+      "RestrictToOutboundAuthenticationOnly": true
+    },
+    {
+      "name": "gmsa-report$",
+      "objectClass": "msDS-GroupManagedServiceAccount",
+      "enabled": true,
+      "whenCreated": "2024-09-01T15:00:00Z",
+      "msDS-ManagedPasswordInterval": 30,
+      "KerberosEncryptionType": [
+        "AES256"
+      ],
+      "PrincipalsAllowedToRetrieveManagedPassword": [
+        "CN=DL-gMSA-report-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example"
+      ],
+      "ServicePrincipalNames": [
+        "HTTP/report.corp.contoso.example"
+      ],
+      "memberOf": [],
+      "distinguishedName": "CN=gmsa-report,OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+      "lastLogonTimestamp": "2026-11-19T06:00:00Z",
+      "RestrictToOutboundAuthenticationOnly": false
+    }
+  ]
+}

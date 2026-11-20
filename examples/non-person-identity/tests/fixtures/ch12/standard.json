@@ -1,0 +1,6 @@
+{
+  "_comment": "Chapter 12's standard settings for the fictional estate (corp.contoso.example). Reviewed data: the domain, the dedicated service-account OU (WD-161) and the OU that holds the DL-gMSA-<app>-Hosts retriever groups (WD-160). Copy it for Lab 2 and put the agency's own values in a reviewed pull request; the run records its SHA-256.",
+  "domain": "corp.contoso.example",
+  "serviceAccountOu": "OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+  "groupOu": "OU=Groups,DC=corp,DC=contoso,DC=example"
+}

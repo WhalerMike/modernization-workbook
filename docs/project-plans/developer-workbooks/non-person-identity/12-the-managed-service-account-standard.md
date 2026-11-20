@@ -1,0 +1,385 @@
+---
+title: "Chapter 12 — The Managed Service Account Standard"
+description: "Run the managed service account standard as code: check every approved request exported from SailPoint (reached through the agency's system access management tool) against the standard's name, owner, retriever-group and outbound-only rules and write Chapter 06's reviewed inputs for the ones that pass; reconcile SailPoint's aggregated Active Directory accounts with a read of every gMSA and dMSA; list certifications due by risk tier and turn each revoke into a typed ServiceNow finding; compare Defender for Identity's service account list with the register; and list disabled accounts by the 90-day retirement window. Read only, on fixtures in Lab 1 and on a test domain's exports in Lab 2, with an evidence record per step mapped to NIST SP 800-53 controls and FedRAMP 20x KSIs."
+doc-type: workbook-chapter
+audience: [Technical]
+family: dw-non-person-identity
+part: How
+series-order: 12
+status: draft
+lifecycle: active
+tiers_adopted: []
+lifecycle_review: 2027-05-01
+---
+# Chapter 12 — The Managed Service Account Standard
+
+*A standard nobody checks is a suggestion. This chapter checks it every time something changes: a request, an aggregation, a certification, a Defender for Identity scan, a disabled account's ninetieth day.*
+
+::: {.callout-note}
+## In this chapter
+The code half of the [managed service account standard](../../../books/guides/service-account-migration.md#msa-standard): every gMSA and dMSA is asked for in the agency's system access management tool, approved in SailPoint, recorded in ServiceNow, created by the pipeline through [Chapter 06](06-gmsa-dmsa-and-the-kerberos-island.md)'s approved plan, watched with Defender for Identity, certified by its owners and retired after 90 days disabled. Chapter 06 writes Active Directory. This chapter writes nothing anywhere: it checks the requests and writes Chapter 06's reviewed inputs, reconciles SailPoint with Active Directory, works out which certifications are due, turns revokes into ServiceNow findings, reads Defender for Identity's list, and says which disabled accounts a person may now delete. Lab 1 runs on fixtures with no domain; Lab 2 reads a test domain and the exports from SailPoint and Defender for Identity.
+:::
+
+## Goal and audience
+
+**Goal.** By the end of this chapter you can produce, from code and reviewed data, the evidence for each step of the standard that isn't Chapter 06's write: S1's request check, S6's reconciliation, S7's watch, S8's certifications and S10's retirement list ([the standard's steps](../../../books/guides/service-account-migration.md#msa-standard-steps)), each with an `evidence.json` row naming the control it provides evidence for and the KSIs aligned with it.
+
+**Audience.** The identity engineers who run Chapter 06's write path and own the standard; the SailPoint and ServiceNow administrators who export and import the files; and the ISSO who reads the evidence.
+
+## Machines run the steps
+
+The standard's rule is that machines run, check and record every step they can, and people decide, approve and accept risk ([WD-170](../../../about/decision-register.md#wd-170)). In this chapter that means:
+
+- A request reaches SailPoint's approvers only after the code has checked it, so an approver decides on the purpose and the risk, not on whether the name has the right prefix.
+- The code, not a person, writes the rows Chapter 06's plan reads, so the plan creates exactly what was approved, and the plan carries the SailPoint request and the ServiceNow change that approved it.
+- Every account SailPoint aggregates, Active Directory holds and Defender for Identity sees is compared on every run; a gMSA nobody asked for is a finding the same day, not at the next audit.
+- Certifications are scheduled from the register's risk tiers, and a revoke becomes a ServiceNow finding without anyone retyping it.
+- The code never deletes. It says which accounts a person may delete, and why ([WD-163](../../../about/decision-register.md#wd-163)).
+
+## The context the code depends on
+
+- **The standard.** Names, OU, groups, interval, owners and cadences are the [standard's settings](../../../books/guides/service-account-migration.md#msa-standard-settings), decided as WD-159 to WD-170.
+- **SailPoint approves; ServiceNow records.** SailPoint approves every managed service account request ([WD-162](../../../about/decision-register.md#wd-162)); ServiceNow holds the change record (a `CHG` number) and the findings, in the [integration kit's finding contract](../../../books/guides/snow-sailpoint-integration-kit.md).
+- **SailPoint's Active Directory source.** SailPoint's Active Directory connector supports aggregating managed and group managed service accounts, and reading `msDS-GroupMSAMembership` needs IQService with the Active Directory PowerShell module.[^np12-sp-ad] Machine Identity Security assigns an account owner by attribute mapping, and none when several identities match.[^np12-sp-mis]
+- **Defender for Identity.** Its Service Accounts page lists gMSAs, sMSAs and user accounts that have an SPN and a password that never expires, with their type.[^np12-mdi-sa] Its stale service account assessment uses 90 days.[^np12-mdi-posture]
+- **Active Directory.** `Get-ADServiceAccount` reads each gMSA and dMSA with the properties the checks need.[^np12-get-adsa] The interval is set only at creation, and AES should always be configured.[^np12-gmsa-manage]
+
+### The import formats
+
+SailPoint's and Defender for Identity's own export field names weren't specified on the pages read on November 20, 2026, so the kit reads its own import formats and says so in each file's header *(not yet specified: the products' field names)*. Map the products' exports to them in Lab 2, step 2.
+
+| File | What it holds | One row is |
+|---|---|---|
+| `requests/<request-id>.json` | An approved access request from SailPoint | One request: status, approvers, change record, system, app short name, account type, proposed name, hosts, workload, SPNs, two owners, sponsor, risk tier, end date, the account it supersedes |
+| `sailpoint-accounts.csv` | SailPoint's aggregated Active Directory accounts in `<service-account-ou>` | One account and its correlated owner |
+| `ad-managed-accounts.json` | The Active Directory read (Lab 1's fixture; Lab 2 reads it live) | One gMSA or dMSA |
+| `msa-register.csv` | The program's register of managed service accounts | One account: request, owners, sponsor, risk tier, last certified, disabled date |
+| `certification-decisions.csv` | A SailPoint certification campaign's decisions | One decision: campaign, account, reviewer, `APPROVE` or `REVOKE`, date |
+| `mdi-service-accounts.csv` | Defender for Identity's service account list | One account and its type |
+
+: The import formats (the kit's own) {.striped .hover}
+
+## The code: what `examples/non-person-identity` adds
+
+`Invoke-NpiGmsaStandard.ps1` and the module `powershell/NpiGmsaStandard` add one read-only task, `msa-standard`, with one Active Directory call, `std-managed-accounts` (`Get-ADServiceAccount`), declared in `config/calls-ch12.json`. Its controls and KSIs per step are in `config/requirements-ch12.json`. Every run writes a folder with the findings, the generated Chapter 06 inputs, the certification, Defender for Identity and retirement results, `servicenow-findings.json`, `evidence.json` and a `manifest.json` with each input's SHA-256. The same inputs and `-AsOf` date give byte-identical files.
+
+| Check | Findings | What it enforces |
+|---|---|---|
+| Request | NPI-STD-01 to -09 | Approved in SailPoint (WD-162); a ServiceNow change record; the name standard (WD-159); exactly two owners and a federal-employee sponsor who isn't one of them (WD-164); the `DL-gMSA-<app>-Hosts` group (WD-160); SPNs consistent with the request; a dMSA run by a person and superseding an account (WD-163); a known workload, type and risk tier |
+| Reconciliation | NPI-STD-10 to -19 | Every gMSA and dMSA aggregated by SailPoint with one owner; retrievers one domain local group; interval 30; AES256 only; a no-SPN gMSA outbound-only or with a recorded reason (WD-154); no privileged group; in the service-account OU (WD-161); every account explained by a request (the drift rule of [Book 13, Chapter 04](../../../books/b13-governance/04-change-control-and-provenance.md)) |
+| Certification | NPI-STD-20 to -23 | Due by risk tier: R1 every 3 months, R2 every 6, R3 every 12 (WD-166); each `REVOKE` a ServiceNow `stale_access` finding; a decision by someone who isn't an owner doesn't count |
+| Defender for Identity | NPI-STD-24 to -26 | A user account still serving as a service account; an sMSA; an account Defender for Identity sees that the register doesn't |
+| Retirement | NPI-STD-27 to -29 | A delete candidate only after 90 days disabled with no sign-in since (WD-167); a sign-in after the disable; the register and Active Directory disagreeing |
+
+: What Chapter 12 checks {.striped .hover}
+
+**What it hands to Chapter 06.** For each request that passes, a `kerberos-replatform.csv` row with Chapter 06's twelve columns, including `RequestId` and `ChangeRecord`, and, for a gMSA, a `password-retrievers.json` entry naming its one group. They go into Chapter 06's reviewed inputs in a reviewed pull request; Chapter 06's plan refuses a write with no request or change record.
+
+**What it never does.** It writes nothing to Active Directory, SailPoint, ServiceNow or Defender for Identity, and it deletes nothing. `servicenow-findings.json` is the payload a ServiceNow import or the integration kit's client posts; this chapter doesn't post it.
+
+## Lab 1: fixtures, no domain
+
+You need PowerShell 7.1 or later with Pester 5. Work in `examples/non-person-identity`.
+
+<!-- labs:begin lab-1-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-1-commands collapse="false" title="Every command in Lab 1"}
+Every command in this lab, in order, from `examples/non-person-identity`. Each step below says what it does and what to look for.
+
+```powershell
+./Invoke-NpiGmsaStandard.ps1 -InputPath tests/fixtures/ch12/inputs -StandardPath tests/fixtures/ch12/standard.json -OutputPath out/msa-standard -AsOf 2026-11-20
+
+Get-Content out/msa-standard/findings.json -Raw | ConvertFrom-Json | Sort-Object Rule | Format-Table Rule, Severity, ObjectKey
+
+Get-Content out/msa-standard/kerberos-replatform.csv
+Get-Content out/msa-standard/password-retrievers.json
+
+Get-Content out/msa-standard/certification.json -Raw | ConvertFrom-Json | Format-Table Account, RiskTier, LastCertifiedOn, DueOn, Status
+Get-Content out/msa-standard/servicenow-findings.json -Raw | ConvertFrom-Json | Format-Table drift_class, severity, account_name, attribute, observed_value
+
+Import-Csv out/msa-standard/retirement-list.csv | Format-Table SamAccountName, DisabledOn, LastLogon, DaysDisabled, Status
+
+(Get-Content out/msa-standard/evidence.json -Raw | ConvertFrom-Json).rows | Format-Table step, control, evidence, @{ n = 'ksi'; e = { $_.ksi -join ', ' } }
+
+Invoke-Pester -Path tests/NpiGmsaStandard.Tests.ps1
+
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+**Step 1: Run the standard's checks on the fixtures.** Five requests (two pass), nine Active Directory accounts, eight register rows, a certification campaign and a Defender for Identity list, each built to trip one or more rules.
+
+```powershell
+./Invoke-NpiGmsaStandard.ps1 -InputPath tests/fixtures/ch12/inputs -StandardPath tests/fixtures/ch12/standard.json -OutputPath out/msa-standard -AsOf 2026-11-20
+```
+
+<!-- capture:begin 12-1 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/12-1.txt))](captures/12-1.png){.lightbox fig-alt="Terminal window showing ./Invoke-NpiGmsaStandard.ps1 -InputPath tests/fixtures/ch12/inputs -StandardP… and what it printed"}
+
+<!-- capture:end -->
+
+**Expected:** the summary, then one line per rule, then the manifest's SHA-256.
+
+```text
+As of 2026-11-20; 5 request(s), 9 AD managed account(s), 8 register row(s)
+Findings: 25 Finding, 4 Warn, 3 Info
+Requests: 2 passed (REQ-2026-0201, REQ-2026-0202); 3 held
+Chapter 06 inputs: 2 kerberos-replatform.csv row(s), 1 password-retrievers.json gMSA(s)
+Certification: 1 Current, 2 DueSoon, 1 Overdue; 2 ServiceNow finding(s)
+Retirement: 1 DeleteCandidate, 1 EnabledInAd, 1 SignInSinceDisable, 1 Wait; nothing deleted
+  NPI-STD-01  REQ-2026-0203
+  ...
+  NPI-STD-29  gmsa-report$
+Manifest SHA-256: 12ef8d960e8c8d618215f13c007f5d597f3cfda7b6fc60b6b0f8057311b9522d
+```
+
+**Step 2: Read the findings.** Look for `gmsa-ops$`: it's in Domain Admins (NPI-STD-16), SailPoint never aggregated it (NPI-STD-10), and no request explains it (NPI-STD-18).
+
+```powershell
+Get-Content out/msa-standard/findings.json -Raw | ConvertFrom-Json | Sort-Object Rule | Format-Table Rule, Severity, ObjectKey
+```
+
+<!-- capture:begin 12-2 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/12-2.txt))](captures/12-2.png){.lightbox fig-alt="Terminal window showing Get-Content out/msa-standard/findings.json -Raw | ConvertFrom-Json | Sort-Obj… and what it printed"}
+
+<!-- capture:end -->
+
+**Step 3: Read what the code hands to Chapter 06.** The approved gMSA gets its retriever group, and both rows carry the SailPoint request and the ServiceNow change.
+
+```powershell
+Get-Content out/msa-standard/kerberos-replatform.csv
+Get-Content out/msa-standard/password-retrievers.json
+```
+
+<!-- capture:begin 12-3 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/12-3.txt))](captures/12-3.png){.lightbox fig-alt="Terminal window showing Get-Content out/msa-standard/kerberos-replatform.csv and what it printed"}
+
+<!-- capture:end -->
+
+**Expected:**
+
+```text
+"SamAccountName","NewAccount","Workload","Hosts","SpnOwnerUpn","EndDate","Reference","HostChangedOn","MigrationStartedOn","OutboundOnlyReason","RequestId","ChangeRecord"
+"svc-billing","dmsa-billing$","ScheduledTask","BILL01","","2027-09-30","","","","","REQ-2026-0202","CHG0041202"
+"svc-payroll","gmsa-payroll$","Service","PAY01;PAY02","payroll.owner@contoso.example","2028-12-31","","","","","REQ-2026-0201","CHG0041201"
+```
+
+and a `password-retrievers.json` whose `accounts` has `gmsa-payroll$` with `CN=DL-gMSA-payroll-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example`. The dMSA has no entry: a dMSA learns its hosts during its migration.
+
+**Step 4: Read the certifications and the ServiceNow findings.** `gmsa-print$` is overdue (R3, last certified October 2025) and its owner revoked it, so it becomes a `stale_access` finding.
+
+```powershell
+Get-Content out/msa-standard/certification.json -Raw | ConvertFrom-Json | Format-Table Account, RiskTier, LastCertifiedOn, DueOn, Status
+Get-Content out/msa-standard/servicenow-findings.json -Raw | ConvertFrom-Json | Format-Table drift_class, severity, account_name, attribute, observed_value
+```
+
+<!-- capture:begin 12-4 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/12-4.txt))](captures/12-4.png){.lightbox fig-alt="Terminal window showing Get-Content out/msa-standard/certification.json -Raw | ConvertFrom-Json | For… and what it printed"}
+
+<!-- capture:end -->
+
+**Step 5: Read the retirement list.** Only `gmsa-legacy$` may be deleted, and only by a person through the decommission ticket: `gmsa-batch$` signed in after it was disabled, and `gmsa-report$` is still enabled in Active Directory.
+
+```powershell
+Import-Csv out/msa-standard/retirement-list.csv | Format-Table SamAccountName, DisabledOn, LastLogon, DaysDisabled, Status
+```
+
+<!-- capture:begin 12-5 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/12-5.txt))](captures/12-5.png){.lightbox fig-alt="Terminal window showing Import-Csv out/msa-standard/retirement-list.csv | Format-Table SamAccountName… and what it printed"}
+
+<!-- capture:end -->
+
+**Expected:**
+
+```text
+SamAccountName DisabledOn LastLogon  DaysDisabled Status
+-------------- ---------- ---------  ------------ ------
+gmsa-batch$    2026-07-01 2026-09-15 142          SignInSinceDisable
+gmsa-legacy$   2026-08-01 2026-07-30 111          DeleteCandidate
+gmsa-oldfax$   2026-10-01 2026-09-28 50           Wait
+gmsa-report$   2026-06-01 2026-11-19 172          EnabledInAd
+```
+
+**Step 6: Read the evidence.** One row per step and control, with the KSIs aligned with it and the SHA-256 of the file that provides the evidence.
+
+```powershell
+(Get-Content out/msa-standard/evidence.json -Raw | ConvertFrom-Json).rows | Format-Table step, control, evidence, @{ n = 'ksi'; e = { $_.ksi -join ', ' } }
+```
+
+<!-- capture:begin 12-6 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/12-6.txt))](captures/12-6.png){.lightbox fig-alt="Terminal window showing (Get-Content out/msa-standard/evidence.json -Raw | ConvertFrom-Json).rows | F… and what it printed"}
+
+<!-- capture:end -->
+
+**Step 7: Run the tests.**
+
+```powershell
+Invoke-Pester -Path tests/NpiGmsaStandard.Tests.ps1
+```
+
+<!-- capture:begin 12-7 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/12-7.txt))](captures/12-7.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests/NpiGmsaStandard.Tests.ps1 and what it printed"}
+
+<!-- capture:end -->
+
+**Expected:** `Tests Passed: 27, Failed: 0`.
+
+**After the steps:**
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+<!-- capture:begin 12-8 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/12-8.txt))](captures/12-8.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+
+<!-- capture:end -->
+
+## Lab 2: test domain and exports
+
+Use a test Active Directory domain, never production, with Chapter 06's Lab 2 already done (a KDS root key, `<service-account-ou>`, the delegated `DL-gMSA-Creators` and at least one gMSA), a SailPoint sandbox with an Active Directory source scoped to `<service-account-ou>`, and Defender for Identity on the test domain. Lab 2 has not been run by the authors.
+
+<!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
+
+::: {.callout-note #lab-2-commands collapse="false" title="Every command in Lab 2"}
+Every command in this lab, in order. Each step below says what it does and what to look for.
+
+```powershell
+New-Item -ItemType Directory -Force <exports>, <exports>/requests | Out-Null
+@{ domain = '<test-domain>'; serviceAccountOu = '<service-account-ou>'; groupOu = '<groups-ou>' } | ConvertTo-Json | Set-Content <exports>/standard.json
+
+foreach ($f in 'sailpoint-accounts', 'msa-register', 'certification-decisions', 'mdi-service-accounts') { Get-Content tests/fixtures/ch12/inputs/$f.csv -TotalCount 1 | Set-Content <exports>/$f.csv }
+Copy-Item tests/fixtures/ch12/inputs/requests/REQ-2026-0201.json <exports>/requests/<request-id>.json
+code <exports>
+
+./Invoke-NpiGmsaStandard.ps1 -InputPath <exports> -StandardPath <exports>/standard.json -OutputPath out/msa-standard-test -Server <dc>
+
+Get-Content out/msa-standard-test/findings.json -Raw | ConvertFrom-Json | Sort-Object Rule | Format-Table Rule, Severity, ObjectKey
+(Get-Content out/msa-standard-test/manifest.json -Raw | ConvertFrom-Json).requests | Format-Table call, method, target
+
+Remove-Item -Recurse -Force out
+```
+
+:::
+
+<!-- labs:end -->
+
+The values you supply: `<test-domain>` (its DNS name), `<dc>` (a domain controller), `<service-account-ou>`, `<groups-ou>`, and `<exports>` (a folder for this lab's input files).
+
+**Step 1: Write the test domain's standard settings.**
+
+```powershell
+New-Item -ItemType Directory -Force <exports>, <exports>/requests | Out-Null
+@{ domain = '<test-domain>'; serviceAccountOu = '<service-account-ou>'; groupOu = '<groups-ou>' } | ConvertTo-Json | Set-Content <exports>/standard.json
+```
+
+**Step 2: Put the exports in the import formats.** Copy each fixture's header row, then add the test domain's rows from SailPoint's request and account exports, your register and Defender for Identity's Service Accounts page (Identities, then Service accounts, then Export), mapping each product column to the kit's column by hand:
+
+```powershell
+foreach ($f in 'sailpoint-accounts', 'msa-register', 'certification-decisions', 'mdi-service-accounts') { Get-Content tests/fixtures/ch12/inputs/$f.csv -TotalCount 1 | Set-Content <exports>/$f.csv }
+Copy-Item tests/fixtures/ch12/inputs/requests/REQ-2026-0201.json <exports>/requests/<request-id>.json
+code <exports>
+```
+
+Edit each file in the editor that opened; every request needs the fields Step 1 of Lab 1 showed.
+
+**Step 3: Run with a live read of the domain.** `-Server` replaces the fixture's `ad-managed-accounts.json` with `Get-ADServiceAccount` against `<dc>`, recorded in the manifest.
+
+```powershell
+./Invoke-NpiGmsaStandard.ps1 -InputPath <exports> -StandardPath <exports>/standard.json -OutputPath out/msa-standard-test -Server <dc>
+```
+
+**Expected:** the summary as in Lab 1 for the test domain's accounts. A gMSA you created by hand in Chapter 06's Lab 2 with no request in the register is NPI-STD-18, which is the drift rule working.
+
+**Step 4: Read the live findings and the manifest's read.**
+
+```powershell
+Get-Content out/msa-standard-test/findings.json -Raw | ConvertFrom-Json | Sort-Object Rule | Format-Table Rule, Severity, ObjectKey
+(Get-Content out/msa-standard-test/manifest.json -Raw | ConvertFrom-Json).requests | Format-Table call, method, target
+```
+
+**Expected:** one `READ` of `Get-ADServiceAccount`, and nothing else.
+
+**After the steps:**
+
+```powershell
+Remove-Item -Recurse -Force out
+```
+
+## Verified facts
+
+| Fact | Source |
+|---|---|
+| SailPoint's Active Directory connector supports MSAs and gMSAs; `msDS-GroupMSAMembership` needs IQService with the Active Directory PowerShell module | [^np12-sp-ad] |
+| Machine Identity Security assigns an owner by attribute mapping, none when several match; owners review in certifications | [^np12-sp-mis] |
+| Defender for Identity lists gMSAs, sMSAs and user accounts with an SPN and a password that never expires, by type | [^np12-mdi-sa] |
+| Defender for Identity's stale service account assessment uses 90 days | [^np12-mdi-posture] |
+| `Get-ADServiceAccount` reads `PrincipalsAllowedToRetrieveManagedPassword` and the account's properties | [^np12-get-adsa] |
+| The password interval is set only at creation; always configure AES | [^np12-gmsa-manage] |
+
+: Verified facts (read November 20, 2026) {.striped .hover}
+
+**Not yet specified.** SailPoint's and Defender for Identity's export field names; whether Machine Identity Security is a separate SailPoint license; the Active Directory attribute that records `-RestrictToOutboundAuthenticationOnly` (a live read leaves it empty and NPI-STD-15 warns); whether a default read returns a gMSA's retrievers (Chapter 06's research gap, row 53).
+
+## Federal requirements and evidence
+
+KSIs come from [Book 13, Appendix A](../../../books/b13-governance/appendix-a-requirements-mapping.md#controls-behind-service-accounts-and-other-non-person-identities), re-read from FedRAMP on November 20, 2026 ([WD-169](../../../about/decision-register.md#wd-169)). The kit writes each row to `evidence.json`.
+
+| What the output shows | Requirement it supports | KSIs aligned | Evidence the ISSO keeps |
+|---|---|---|---|
+| Every request was approved in SailPoint, has a change record and meets the standard before anything is created (`request-check.json`) | AC-2 Account Management; IA-4 Identifier Management | KSI-IAM-SNU (with APM, JIT, SUS); KSI-IAM-ELP, IAM-JIT | `request-check.json`, the SailPoint approval, the ServiceNow change |
+| Chapter 06's inputs come only from approved requests (`kerberos-replatform.csv`, `password-retrievers.json`) | CM-3 Configuration Change Control | KSI-CMT-LMC, CMT-RMV, CMT-RVP, CMT-VTD | The generated files and the reviewed pull request that merged them |
+| SailPoint, Active Directory and the register agree, and every account meets the standard (`reconciliation.json`) | CM-8 System Component Inventory; AC-6 Least Privilege | KSI-PIY-GIV; KSI-IAM-ELP, IAM-JIT | `reconciliation.json` and the manifest's Active Directory read |
+| Certifications run on the risk tier's cadence, and revokes become findings (`certification.json`, `servicenow-findings.json`) | AC-2; AC-6(7) Review of User Privileges | KSI-IAM-SNU; KSI-IAM-AAM, IAM-JIT | The campaign export and the ServiceNow findings |
+| Defender for Identity's view matches the register (`mdi.json`) | CA-7 Continuous Monitoring; SI-4 System Monitoring | KSI-MLA-EVC; KSI-IAM-SUS, MLA-RVL, SVC-EIS | `mdi.json` and the export it read |
+| Disabled accounts are deleted only after 90 days with no sign-in, by a person (`retirement-list.csv`) | AC-2(3) Disable Accounts | KSI-IAM-AAM, IAM-JIT, IAM-SUS | The retirement list and the decommission ticket |
+| The code passes its tests (Lab 1, step 7, 27 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository and the pull request's checks |
+
+: What Chapter 12's output provides evidence for {.striped .hover}
+
+KSIs are FedRAMP 20x indicators for cloud service providers. The agency lines its own evidence up with what its providers report against them; it doesn't report KSIs itself. A row provides evidence for a control; the assessor decides whether the control is satisfied.
+
+## Dangers
+
+| Danger | What happens | The guard |
+|---|---|---|
+| An approver approves a name, owner or group that breaks the standard | The pipeline creates an account the reconciliation flags the next day | The request check runs before approval; Chapter 06 refuses a write with no request or change |
+| A gMSA created outside the standard, by hand or by another tool | An unowned account with a password some hosts can read | NPI-STD-18, the drift rule, every run |
+| SailPoint correlates no owner, or the wrong one | Certifications go to nobody, or to the wrong person | NPI-STD-11; one correlation attribute that names one owner |
+| A certification decided by someone who isn't an owner | A rubber stamp counts as attestation | NPI-STD-23: it doesn't count |
+| A disabled account deleted while something still uses it | The service fails with no way back | Delete only after 90 days with no sign-in (NPI-STD-27); a sign-in since the disable stops it (NPI-STD-28); a person deletes |
+| The import formats drift from the products' exports | Checks read empty columns and pass | Every file's header is checked; Lab 2, step 2 maps each column by hand |
+
+## Checklist
+
+- [ ] Every managed service account request was checked by Chapter 12 before SailPoint's approvers saw it.
+- [ ] Every row in Chapter 06's reviewed inputs came from an approved request, with its request ID and change record.
+- [ ] SailPoint aggregates every gMSA and dMSA in `<service-account-ou>`, each with one correlated owner.
+- [ ] No finding NPI-STD-10 to -19 is open without a ServiceNow finding and an owner of the fix.
+- [ ] Every account's certification is current for its risk tier, and every revoke has a ServiceNow finding.
+- [ ] Defender for Identity lists no user-type service account the register doesn't plan to convert.
+- [ ] Nothing was deleted that wasn't a delete candidate on the retirement list, and a person deleted it through the decommission ticket.
+- [ ] Each run's `evidence.json` and `manifest.json` are filed with the change record.
+
+::: {.callout-tip}
+## Continue the book
+[← Previous: Chapter 11 — Deploying to Test and Production](11-deploying-to-test-and-production.md) · [Workbook index](index.md) · [The managed service account standard](../../../books/guides/service-account-migration.md#msa-standard)
+:::
+
+[^np12-sp-ad]: SailPoint, "Active Directory Connector: Introduction," supported features (Active Directory Service Accounts: Managed Service Accounts / Group Managed Service Accounts; IQService with the Active Directory PowerShell module), <https://documentation.sailpoint.com/connectors/active_directory/help/integrating_active_directory/intro.html> (accessed Nov 20, 2026).
+[^np12-sp-mis]: SailPoint, "Machine Identity Security" and "Configuring Accounts," <https://documentation.sailpoint.com/saas/help/machine/index.html>, <https://documentation.sailpoint.com/saas/help/machine/account_configuration.html> (accessed Nov 20, 2026).
+[^np12-mdi-sa]: Microsoft Learn, "Investigate and protect service accounts" (Microsoft Defender for Identity), <https://learn.microsoft.com/defender-for-identity/service-account-discovery> (accessed Nov 20, 2026).
+[^np12-mdi-posture]: Microsoft Learn, "Security posture assessments for accounts" (Microsoft Defender for Identity), *Remove Stale Service Accounts*, <https://learn.microsoft.com/defender-for-identity/security-posture-assessments/accounts> (accessed Nov 20, 2026).
+[^np12-get-adsa]: Microsoft Learn, "Get-ADServiceAccount," <https://learn.microsoft.com/powershell/module/activedirectory/get-adserviceaccount> (accessed Nov 20, 2026).
+[^np12-gmsa-manage]: Microsoft Learn, "Manage group Managed Service Accounts," create a gMSA (the interval only at creation), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts>, and "Group Managed Service Accounts overview" (always configure AES), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/group-managed-service-accounts-overview> (accessed Nov 20, 2026).

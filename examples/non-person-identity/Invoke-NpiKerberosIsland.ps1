@@ -7,7 +7,9 @@
     (checked against its manifest) and the program's dates, and write the findings,
     the plan (dry run, for review), the island list for the program's SPN retirement (P4.6) and the
     reconciliation with the provisional end state (D11). Read only: the plan is applied, after
-    review, by Invoke-NpiKerberosIslandAction.ps1.
+    review, by Invoke-NpiKerberosIslandAction.ps1, the pipeline's steps as the pipeline and the dMSA
+    steps by a person. Also reads ad-standard.json from -InputPath (the OU, holding OU, retriever group
+    pattern and password interval new gMSAs follow).
 .EXAMPLE
     # Lab 1: Chapters 01 to 03's fixture runs, then this one, no domain.
     ./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory -MatrixRun out/matrix -ProgramDatesPath tests/fixtures/ch03/inputs/program-dates.json -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -InputPath tests/fixtures/ch06/inputs -OutputPath out/kerberos
@@ -59,6 +61,7 @@ $fs = @($r.Findings); $writes = @($r.Plan.actions | Where-Object Write)
 Write-Output ("Kerberos accounts: {0} in scope; KDS root key {1}" -f @(Get-NpiKrbScope -Rows $register.Rows).Count, $state.Kds.State)
 Write-Output ("Findings: {0} Finding, {1} Warn, {2} Info" -f @($fs | Where-Object Severity -EQ 'Finding').Count, @($fs | Where-Object Severity -EQ 'Warn').Count, @($fs | Where-Object Severity -EQ 'Info').Count)
 Write-Output ("Plan: {0} actions, {1} of them writes ({2}); nothing sent" -f @($r.Plan.actions).Count, $writes.Count, (($writes | Group-Object Action | Sort-Object Name | ForEach-Object { "$($_.Count) $($_.Name)" }) -join ', '))
+Write-Output ("Run by: {0}" -f $(if ($writes.Count) { ($writes | Group-Object RunBy | Sort-Object Name | ForEach-Object { "$($_.Count) $($_.Name)" }) -join ', ' } else { 'nothing to send' }))
 Write-Output ("Island list: {0} accounts, {1} ready for P4.6; hand-off ready: {2}" -f @($r.IslandList).Count, @($r.IslandList | Where-Object ReadyForP46).Count, $r.HandoffReady)
 Write-Output ("Reconciliation (D11 {0}): {1}" -f $inputs.ProgramDates.d11.decision, ((@($r.Reconciliation) | Group-Object Outcome | Sort-Object Name | ForEach-Object { "$($_.Count) $($_.Name)" }) -join ', '))
 Write-Output "Plan SHA-256: $planHash"

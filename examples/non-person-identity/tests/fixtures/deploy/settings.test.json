@@ -54,11 +54,13 @@
   "ad": {
     "domain": "corp-test.contoso.example",
     "server": "dc01.corp-test.contoso.example",
-    "gmsaName": "gmsa-hrsync",
+    "gmsaName": "gmsa-npismoke",
     "gmsaTestHost": "APP-TEST-01",
-    "gmsaRetrieverGroup": "gg-gmsa-hrsync-hosts",
-    "gmsaService": "HRSyncSvc",
-    "kerberosInputs": "inputs/kerberos-test"
+    "gmsaRetrieverGroup": "DL-gMSA-npismoke-Hosts",
+    "gmsaRetrieverGroupPath": "OU=Groups,DC=corp-test,DC=contoso,DC=example",
+    "gmsaService": "NpiSmokeSvc",
+    "gmsaRequestId": "SP-REQ-0002001",
+    "kerberosInputs": "tests/fixtures/deploy/kerberos-test"
   },
   "pilot": {
     "name": "Payroll Export",

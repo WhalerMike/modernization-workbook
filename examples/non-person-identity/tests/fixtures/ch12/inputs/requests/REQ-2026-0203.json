@@ -1,0 +1,19 @@
+{
+  "requestId": "REQ-2026-0203",
+  "requestedOn": "2026-11-12",
+  "approvers": [],
+  "status": "PENDING",
+  "changeRecord": "",
+  "systemId": "SYS-0611",
+  "appShortName": "timesheet",
+  "accountType": "gMSA",
+  "proposedName": "gmsa-timesheet$",
+  "hosts": ["TIME01"],
+  "workload": "IisAppPool",
+  "needsSpn": true,
+  "spns": ["HTTP/timesheet.corp.contoso.example"],
+  "owners": ["time.owner@contoso.example", "time.backup@contoso.example"],
+  "sponsor": "hr.sponsor@contoso.example",
+  "sponsorIsFederalEmployee": true,
+  "riskTier": "R3"
+}
