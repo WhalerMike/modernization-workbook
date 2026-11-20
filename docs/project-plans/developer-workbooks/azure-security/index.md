@@ -15,7 +15,6 @@ listing:
     sort: "series-order asc"
     sort-ui: false
     filter-ui: false
-status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
@@ -28,8 +27,8 @@ last-reviewed: 2026-11-18
 *A developer workbook for the Azure Security Engineering implementation guide*
 
 ::: {.callout-important appearance="default"}
-## Status: draft, awaiting review
-All nine chapters are written as drafts and await the editor's review. The kit's tests pass against a fictional estate; nothing here has been run against a live subscription, and every Lab 2 and the runbook say so. Every external claim carries a note and a read date against Microsoft Learn or the guide, and each chapter keeps its verification log in the repository. Narrated chapter tours follow once the chapters are reviewed.
+## Status: approved
+All nine chapters are written and approved. An approved page that changes goes back on the weekly source watch issue's list for review. The kit's tests pass against a fictional estate; nothing here has been run against a live subscription, and every Lab 2 and the runbook say so. Every external claim carries a note and a read date against Microsoft Learn or the guide, and each chapter keeps its verification log in the repository. Every chapter has a narrated tour, listed under *Narrated chapter tours* below, and the story deck *One Portal, End to End* is listed under *Reading paths*.
 :::
 
 [Azure Security Engineering](../../../books/guides/azure-security-implementation.md) tells an operator how to engineer the security of an agency's Azure estate in ten gated steps: the landing-zone baseline, the public exposure inventory, DDoS protection, the web application firewall, Front Door and Application Gateway, Azure Firewall and segmentation, Private Link and DNS, managed identities and Key Vault, Azure Policy and drift, and operations and evidence. Each step ends with a **Validate** check and an evidence checklist. What the guide doesn't give is the software that runs those checks every week across every subscription, keeps the register, notices what changed, and hands the ISSO evidence a reviewer can check.

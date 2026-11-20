@@ -230,8 +230,8 @@ Before the agency funds a refresh of a distribution point in every office, it sh
 
 | Piece | Status |
 |---|---|
-| This guide, with its worksheet | Draft, held for review |
-| [Implementation guide](dp-consolidation-implementation.md), with the [scripts kit](../../../downloads/dp-consolidation.zip), Lab 1 on fixtures and a Lab 2 outline | Draft, held for review |
+| This guide, with its worksheet | Approved, November 18, 2026 |
+| [Implementation guide](dp-consolidation-implementation.md), with the [scripts kit](../../../downloads/dp-consolidation.zip), Lab 1 on fixtures and a Lab 2 outline | Approved, November 18, 2026 |
 | [Project plan: Content Delivery Modernization](../../project-plans/content-delivery.md) | Sample ready |
 | Narrated deck series at the level of the guide's sections | In progress, on the [Presentations](../../presentations/index.md) page when published |
 | Developer workbook (chapters built on the kit, each with a Lab 1 and a Lab 2) | Planned; the implementation guide's two labs come first |
