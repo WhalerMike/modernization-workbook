@@ -9,8 +9,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 4f1082e3bef1d4a46cc55aa71d8f4224361eaed7316eabe65cd45cd6f6a627a5
-last-reviewed: 2026-11-18
+reviewed-sha256: e87d33b1d3ac08c33fdcd7cbff5bec9091ca91afc58188d71aa897288da61b37
+last-reviewed: 2026-11-20
 ---
 # Non-Person Identity: An Implementation Guide
 

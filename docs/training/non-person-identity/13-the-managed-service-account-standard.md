@@ -6,6 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Books 02, 13"
 series-order: 13
+review-status: approved
+reviewed-sha256: ef7fac2e907ee1d885c36cc9f588b2558ff11d84834afe0f57bac54046d51add
+last-reviewed: 2026-11-20
 ---
 # Module 13: Run the managed service account standard {.unnumbered}
 
