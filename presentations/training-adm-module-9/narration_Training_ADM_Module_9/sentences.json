@@ -27,16 +27,16 @@
   ],
   [
    33.925,
-   7.1,
-   "Chapter 10 is held for review, and nobody has run its runbook against a lyve tenant, subscription or forest."
+   6.625,
+   "Chapter 10 is approved, but nobody has run its runbook against a lyve tenant, subscription or forest."
   ],
   [
-   41.025,
+   40.55,
    4.275,
    "The scripts are tested against fixtures and their dry-run output is real."
   ],
   [
-   45.3,
+   44.825,
    4.662,
    "Every other result in the chapter is an expectation, not an observation."
   ]

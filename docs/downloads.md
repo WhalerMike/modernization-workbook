@@ -103,7 +103,7 @@ The [reference pages](reference/index.md), one Word document each, and all six t
 
 ## Developer workbooks as Word documents
 
-Draft, held for review page by page; see [Developer Workbooks](project-plans/developer-workbooks/index.md).
+Approved: the owner reviewed and approved every page of these four workbooks. An approved page that changes goes back on the weekly source watch issue's list for review. See [Developer Workbooks](project-plans/developer-workbooks/index.md).
 
 | Developer workbook | Word edition |
 |---|---|

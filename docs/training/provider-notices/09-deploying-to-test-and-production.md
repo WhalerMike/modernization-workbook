@@ -19,8 +19,8 @@ last-reviewed: 2026-11-18
 **Also:** the chapter's narrated tour, about 14 minutes: [▶ Watch](../../presentations/watch.html?v=DW_PN_08_Deploying_Test_Production_Narrated).
 
 ::: {.callout-important}
-## Chapter 08 is a runbook nobody has run against a live tenant
-Chapter 08 waits for the owner's review, and **nobody has run its runbook against a live tenant, account, tenancy or project** ([status](../../project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.md#status-a-runbook-nobody-has-run-against-a-live-tenant)). Its deploy scripts have been run only in fixture mode, against a fictional test and production environment, and that dry-run output is real. Every live result in the chapter is labeled **Expected**. This module's Lab 1 runs only the dry run.
+## Chapter 08 is approved, not run against a live tenant
+Chapter 08 is approved, but **nobody has run its runbook against a live tenant, account, tenancy or project** ([status](../../project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.md#status-a-runbook-nobody-has-run-against-a-live-tenant)). Its deploy scripts have been run only in fixture mode, against a fictional test and production environment, and that dry-run output is real. Every live result in the chapter is labeled **Expected**. This module's Lab 1 runs only the dry run.
 :::
 
 ## Introduction (3 minutes)

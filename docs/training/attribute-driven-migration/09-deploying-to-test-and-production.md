@@ -1,7 +1,7 @@
 ---
 title: "Attribute-Driven Migration, Module 9: Deploy to Test, then Production"
 subtitle: "Take the kits past the chapters' test-tenant steps with one settings file per stage, a pre-flight check, a smoke test that says go or no-go, a rollback written from a record of every change, and the evidence the ISSO keeps"
-description: "Research draft: Module 9 of the Attribute-Driven Migration learning path. You learn what the deployment runbook adds to the chapters, its settings file and three identities, the live test stage, the promotion criteria and production in waves, then dry-run the five deploy scripts on fixtures: the pre-flight check, recorded changes and their rollback plan, the smoke test, the evidence check and a production pre-flight that refuses to promote. Every gate, through Book 19, Chapter 10's step-to-gate map; the chapter is held for review and hasn't been run against a live tenant."
+description: "Module 9 of the Attribute-Driven Migration learning path. You learn what the deployment runbook adds to the chapters, its settings file and three identities, the live test stage, the promotion criteria and production in waves, then dry-run the five deploy scripts on fixtures: the pre-flight check, recorded changes and their rollback plan, the smoke test, the evidence check and a production pre-flight that refuses to promote. Every gate, through Book 19, Chapter 10's step-to-gate map; the chapter is approved and hasn't been run against a live tenant."
 research-status: draft
 research-type: training module
 research-book: "Book 19"
@@ -18,8 +18,8 @@ last-reviewed: 2026-11-18
 **Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_ADM_Module_9.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_ADM_Module_9_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_9_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-9/Training_ADM_Module_9_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-9/Training_ADM_Module_9_Narrated.vtt).
 
 ::: {.callout-important}
-## Chapter 10 is held for review
-Chapter 10 waits for the owner's review, and **nobody has run its runbook against a live tenant, subscription or forest.** Its five deploy scripts are tested against fixtures, and their dry-run output is real. Every other result in the chapter is an expectation, not an observation. This module's Lab 1 runs only the dry runs.
+## Chapter 10 is approved, not run against a live tenant
+Chapter 10 is approved, but **nobody has run its runbook against a live tenant, subscription or forest.** Its five deploy scripts are tested against fixtures, and their dry-run output is real. Every other result in the chapter is an expectation, not an observation. This module's Lab 1 runs only the dry runs.
 :::
 
 ## Unit 1: Introduction

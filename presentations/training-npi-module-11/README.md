@@ -4,7 +4,7 @@
 
 | Part | Covers |
 |---|---|
-| Introduction | Title; why a deployment proves what each Lab 2 can't; learning objectives and prerequisites; Chapter 11 held for review and not run against a live tenant |
+| Introduction | Title; why a deployment proves what each Lab 2 can't; learning objectives and prerequisites; Chapter 11 approved but not run against a live tenant |
 | Concepts | The safe order; before you start (PIM roles, approvals, the change record); the settings file's four rules; the five deploy scripts; the stages and the promotion (PF-11, the nine go/no-go rows) |
 | Lab | Try it: Lab 1 steps 1 to 10, the dry run: the template refused and the test preflight, the smoke test, the rollback planned, refused and dry-run, production's preflight, the evidence check's NO-GO and the deploy tests; Lab 2, the live test stage then production (not run by anyone) |
 | Check and summary | The federal requirement (CM-3, CM-5, AC-5, IA-5, IA-9, AC-6, CA-7, CM-2, CM-4(2), AC-2, CM-8, IA-4, AU-2, AU-12, AU-9 and CP-10) and evidence; two knowledge-check questions with answers; the summary and the next module |

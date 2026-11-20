@@ -3,7 +3,7 @@
 // concepts, "Try it" slides with the real Lab 1 commands and output (the deploy scripts' dry runs, run November 3, 2026 in a
 // scratch copy of examples, from an empty out folder), Lab 2, the federal requirement and evidence, a two-question check,
 // and the summary. Every fact comes from the module page, the learning path's verification log, Book 19 Chapter 10, or the
-// kit (examples/drift-pipeline/deploy); the deck adds none. Chapter 10 is held for review and hasn't been run against a live
+// kit (examples/drift-pipeline/deploy); the deck adds none. Chapter 10 is approved and hasn't been run against a live
 // tenant; the deck says so.
 // Helpers: ../training-ms-automation-module-1/shared.js.
 // Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/training-adm-module-9/build.js \
@@ -37,8 +37,8 @@ const SS = "Check and summary";
   const s = title(SI, "Module 9: Deploy to test, then production", "Attribute-Driven Migration learning path · Every gate, with Book 19 Chapter 10",
     ["What the runbook adds  ·  The settings file and three identities  ·  The live test stage", "Promotion and waves  ·  Try it: Lab 1, the dry runs  ·  Lab 2  ·  Evidence"]);
   notes(s,
-`Welcome to Module 9, the last module of the Attribute-Driven Migration learning path: deploy to test, then production. This module serves every gate, through Chapter 10's step-to-gate map, and takes Chapter 10 of Building the Attribute-Driven Migration. You'll see what the deployment runbook adds to the chapters: one settings file per stage, three identities, a record of every change with its rollback, and a go or no-go record before production. Then you'll dry-run its five deploy scripts on your laptop, against the kits' fixtures. One thing first. Chapter 10 is held for review, and nobody has run its runbook against a live tenant, subscription or forest. The scripts are tested against fixtures and their dry-run output is real. Every other result in the chapter is an expectation, not an observation.`,
-  `${M} — Header; "Chapter 10 is held for review"; Unit 1 "Introduction."`);
+`Welcome to Module 9, the last module of the Attribute-Driven Migration learning path: deploy to test, then production. This module serves every gate, through Chapter 10's step-to-gate map, and takes Chapter 10 of Building the Attribute-Driven Migration. You'll see what the deployment runbook adds to the chapters: one settings file per stage, three identities, a record of every change with its rollback, and a go or no-go record before production. Then you'll dry-run its five deploy scripts on your laptop, against the kits' fixtures. One thing first. Chapter 10 is approved, but nobody has run its runbook against a live tenant, subscription or forest. The scripts are tested against fixtures and their dry-run output is real. Every other result in the chapter is an expectation, not an observation.`,
+  `${M} — Header; "Chapter 10 is approved, not run against a live tenant"; Unit 1 "Introduction."`);
 }
 
 // ================================================================== 2 Why
@@ -51,9 +51,9 @@ const SS = "Check and summary";
     ["Backs out what it made, then stops", "Records every change, and writes the rollback from the record, newest first"],
     ["Ends in the test tenant", "A go or no-go record production's pre-flight check verifies; then waves"],
   ], { fontSize: 13, limit: 4.4 });
-  callout(s, "Held", b + 0.35, 0.95, "FaTriangleExclamation", HEX.red, "Held for review: ",
+  callout(s, "Held", b + 0.35, 0.95, "FaTriangleExclamation", HEX.red, "Approved, not run live: ",
     "nobody has run Chapter 10's runbook against a live tenant. This module's Lab 1 runs only the dry runs.");
-  sources(s, "Sources: Module 9, Unit 1; \"Chapter 10 is held for review\"; Book 19, Ch 10 \"What this runbook adds\" (the workbook's own design).");
+  sources(s, "Sources: Module 9, Unit 1; \"Chapter 10 is approved, not run against a live tenant\"; Book 19, Ch 10 \"What this runbook adds\" (the workbook's own design).");
   notes(s,
 `Why does deployment need its own module? Each chapter's Lab 2 changes the smallest thing it can, by hand, and backs it out. That proves one kit in isolation. A deployment differs in four ways. It runs all nine kits in a safe order, and reads every value from one settings file per stage. It signs in with three identities, each with a certificate, and least privilege per step. It records every change as it's made, and writes the rollback from that record, newest first. And it doesn't end in the test tenant: it ends with a go or no-go record that production's pre-flight check verifies, then production in waves. The order is the one this workbook's implementation guide sets: prove the attributes first, build groups and workflows paused or disabled, target by attribute, cut over by wave, then keep the attributes true.`,
   `${M} — Unit 1 "Introduction"; Book 19, Chapter 10 — "What this runbook adds to the chapters."`);
@@ -329,9 +329,9 @@ endModule(SS);
 // ================================================================== Backup
 backup();
 sourceSlide("Sources: Module 9 deck", [
-  "Module page: docs/training/attribute-driven-migration/09-deploying-to-test-and-production.md (Attribute-Driven Migration learning path, Module 9): the held-for-review callout, Units 1 to 7, Lab 1, Lab 2, knowledge check and summary. The learning path index.",
+  "Module page: docs/training/attribute-driven-migration/09-deploying-to-test-and-production.md (Attribute-Driven Migration learning path, Module 9): the status callout, Units 1 to 7, Lab 1, Lab 2, knowledge check and summary. The learning path index.",
   "What the module links: Book 19, Chapter 10 \"What this runbook adds to the chapters,\" \"Before you start,\" \"The identities and what each may do,\" \"One environment settings file,\" \"Try the scripts against fixtures first,\" \"Stage 1: live test,\" \"Promotion go/no-go criteria,\" \"Stage 2: production,\" \"Evidence the ISSO keeps.\"",
-  "Kit: examples/drift-pipeline/deploy (preflight.py, rollback.py, smoke_test.py, evidence.py, requirements.json, tests and tests/fixtures/test.json and production.json). Fictional values. Chapter 10 is held for review and hasn't been run against a live tenant.",
+  "Kit: examples/drift-pipeline/deploy (preflight.py, rollback.py, smoke_test.py, evidence.py, requirements.json, tests and tests/fixtures/test.json and production.json). Fictional values. Chapter 10 is approved and hasn't been run against a live tenant.",
   "Lab output: run November 3, 2026 with Python 3.14.3 in a scratch copy of examples, outside the repository, from an empty out folder; it matches the module page and Chapter 10's dry-run output except the per-run hashes, which the deck doesn't show. Verification: docs/training/attribute-driven-migration/_verification/learning-path.md.",
 ]);
 

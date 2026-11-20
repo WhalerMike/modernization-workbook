@@ -17869,7 +17869,7 @@
     "Module 9: Deploy to test, then production"
    ],
    [
-    54,
+    53,
     "Why a deployment isn't nine Lab 2s in a row"
    ],
    [
@@ -17889,7 +17889,7 @@
     "Promotion, then production in waves"
    ],
    [
-    358,
+    357,
     "Try it: the test stage's pre-flight check"
    ],
    [
@@ -17897,19 +17897,19 @@
     "Try it: record four changes, write the rollback"
    ],
    [
-    471,
+    470,
     "Try it: the smoke test says no-go on fixtures"
    ],
    [
-    532,
+    531,
     "Try it: check the evidence, then try to promote"
    ],
    [
-    589,
+    588,
     "Lab 2: the live test stage"
    ],
    [
-    646,
+    645,
     "The federal requirement and evidence for Module 9"
    ],
    [
@@ -20280,59 +20280,59 @@
     "Module 11: Deploy to test, then production"
    ],
    [
-    48,
+    47,
     "Why a deployment proves what each Lab 2 can't"
    ],
    [
-    91,
+    90,
     "What you'll be able to do in Module 11"
    ],
    [
-    144,
+    143,
     "The safe order: what can block a sign-in comes last"
    ],
    [
-    205,
+    204,
     "Before you start: PIM roles, approvals, a change record"
    ],
    [
-    258,
+    257,
     "The settings file: four rules, checked before any command"
    ],
    [
-    315,
+    314,
     "The code it adds: five scripts, each with a fixture mode"
    ],
    [
-    372,
+    371,
     "The stages and the promotion to production"
    ],
    [
-    423,
+    422,
     "Try it: the template refused, and the test preflight"
    ],
    [
-    476,
+    475,
     "Try it: the smoke test on synthetic objects"
    ],
    [
-    530,
+    529,
     "Try it: the rollback planned, refused, then dry-run"
    ],
    [
-    583,
+    582,
     "Try it: production's preflight, and the evidence check"
    ],
    [
-    636,
+    635,
     "Lab 2: the live test stage, then production"
    ],
    [
-    700,
+    699,
     "The federal requirement and evidence, every gate"
    ],
    [
-    765,
+    764,
     "Check yourself: two questions on the runbook"
    ],
    [

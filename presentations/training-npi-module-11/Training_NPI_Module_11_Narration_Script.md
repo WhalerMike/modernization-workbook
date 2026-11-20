@@ -2,7 +2,7 @@
 
 ## Slide 1 — Module 11: Deploy to test, then production
 
-Welcome to Module 11 of the Non-Person Identity learning path: deploy to test, then production. This is the last module, and it serves every gate: each step of the runbook names the gate it moves forward. It goes with Chapter 11 of the developer workbook, the deployment runbook. One thing first. Chapter 11 is held for the owner's review, and nobody has run its runbook against a live tenant, subscription or forest. Its deploy scripts are tested against fictional tenants served by a fake, and their dry-run output is real. Every live result in the chapter is labeled Expected. So this module's Lab 1 runs only the dry run, on the kit's fixtures, and you'll read the live stages rather than run them.
+Welcome to Module 11 of the Non-Person Identity learning path: deploy to test, then production. This is the last module, and it serves every gate: each step of the runbook names the gate it moves forward. It goes with Chapter 11 of the developer workbook, the deployment runbook. One thing first. Chapter 11 is approved, but nobody has run its runbook against a live tenant, subscription or forest. Its deploy scripts are tested against fictional tenants served by a fake, and their dry-run output is real. Every live result in the chapter is labeled Expected. So this module's Lab 1 runs only the dry run, on the kit's fixtures, and you'll read the live stages rather than run them.
 
 ## Slide 2 — Why a deployment proves what each Lab 2 can't
 
