@@ -60,11 +60,11 @@ How an agency runs Microsoft's Zero Trust Assessment and turns its report into e
 
 | Piece | State |
 |---|---|
-| This guide | Draft, November 11, 2026 |
+| This guide | Approved, November 18, 2026 |
 | The results kit, `examples/zta-results`, with fixtures and Pester tests | Built; [download](../../../downloads/zta-results.zip) |
 | Narrated deck and video | Built, November 11, 2026: 15 narrated slides, about 15 minutes, with captions; see *Watch, present or train* at the top |
-| Labs: Lab 1 on the kit's fixtures, Lab 2 in a test tenant | Draft, November 11, 2026, inside the training path; this guide has no separate developer workbook, because the kit is small enough for the learning path to carry its labs |
-| Training path | Draft, November 11, 2026: [The Zero Trust Assessment as Evidence](../../training/zero-trust-assessment/index.md), four modules |
+| Labs: Lab 1 on the kit's fixtures, Lab 2 in a test tenant | Approved, November 18, 2026, inside the training path; this guide has no separate developer workbook, because the kit is small enough for the learning path to carry its labs |
+| Training path | Approved, November 18, 2026: [The Zero Trust Assessment as Evidence](../../training/zero-trust-assessment/index.md), four modules |
 
 : The guide's pieces {.striped .hover}
 

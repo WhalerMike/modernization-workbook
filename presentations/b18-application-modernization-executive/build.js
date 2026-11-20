@@ -163,7 +163,7 @@ Four questions: why a portfolio and not a rewrite; what each application becomes
 Three labels run through the deck, as through the book. The dispositions, the rubric, the stack, the gates and the wave design are program design, not federal requirements. Product versions, support windows and tool capabilities are dated observations, checked October 28 and 29, 2026. And the reference implementation is illustrative.
 
 Each decision slide names the decision, its owner and when it's needed; undated timings are design guidance. The last slide gathers them.`,
-  "Book 18, index (Status — draft book; Why, what, who, how); Chapter 01 — A Portfolio, Not a Rewrite (The book's argument; Honest limits).");
+  "Book 18, index (Status — baseline book; Why, what, who, how); Chapter 01 — A Portfolio, Not a Rewrite (The book's argument; Honest limits).");
 }
 
 // ------------------------------------------------------------------ Why 1

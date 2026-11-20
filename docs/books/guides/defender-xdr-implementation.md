@@ -55,10 +55,10 @@ The books already own most of this subject; this guide builds what they decide. 
 
 | Piece | State |
 |---|---|
-| This guide | Draft, November 11, 2026 |
+| This guide | Approved, November 18, 2026 |
 | Narrated deck and video | Deck built, November 13, 2026: 16 narrated slides, about 17 minutes, with captions; the video is on the [Presentations](../../presentations/index.md#guide-defender-xdr) page, and each training module has its own |
-| Developer workbook with Lab 1 on fixtures and Lab 2 in a test tenant | Draft, November 17, 2026: [*Building Defender XDR*](../../project-plans/developer-workbooks/defender-xdr/index.md), nine chapters on the kit in `examples/defender-xdr`, each with Lab 1 on fixtures and Lab 2 in a test tenant, and a runbook for test and production |
-| Training path | Draft, November 13, 2026: [Defender XDR Engineering and Operations](../../training/defender-xdr/index.md), five modules |
+| Developer workbook with Lab 1 on fixtures and Lab 2 in a test tenant | Approved, November 18, 2026: [*Building Defender XDR*](../../project-plans/developer-workbooks/defender-xdr/index.md), nine chapters on the kit in `examples/defender-xdr`, each with Lab 1 on fixtures and Lab 2 in a test tenant, and a runbook for test and production |
+| Training path | Approved, November 18, 2026: [Defender XDR Engineering and Operations](../../training/defender-xdr/index.md), five modules |
 
 : The guide's pieces {.striped .hover}
 

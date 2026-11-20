@@ -65,11 +65,11 @@ The guide replaces the separate Azure security book the Zero Trust Assessment cl
 
 | Piece | State |
 |---|---|
-| This guide | Draft, November 11, 2026 |
+| This guide | Approved, November 18, 2026 |
 | Narrated guide deck and video | Built: 17 narrated slides, about 17 minutes, with captions; see *Watch, present or train* at the top |
 | Narrated deck series, one per step | Planned |
-| Developer workbook with Lab 1 on fixtures and Lab 2 in a test subscription | Draft, November 17, 2026: [*Building Azure Security*](../../project-plans/developer-workbooks/azure-security/index.md), nine chapters on the read-only kit [`examples/azure-security`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/azure-security), each with Lab 1 on fixtures and Lab 2 in a test subscription, and the runbook from a test subscription to production |
-| Training path | Draft, November 13, 2026: [Azure Security Engineering](../../training/azure-security/index.md), five modules, each with a lab of this guide's checks in a test subscription |
+| Developer workbook with Lab 1 on fixtures and Lab 2 in a test subscription | Approved, November 18, 2026: [*Building Azure Security*](../../project-plans/developer-workbooks/azure-security/index.md), nine chapters on the read-only kit [`examples/azure-security`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/azure-security), each with Lab 1 on fixtures and Lab 2 in a test subscription, and the runbook from a test subscription to production |
+| Training path | Approved, November 18, 2026: [Azure Security Engineering](../../training/azure-security/index.md), five modules, each with a lab of this guide's checks in a test subscription |
 
 : The guide's pieces {.striped .hover}
 

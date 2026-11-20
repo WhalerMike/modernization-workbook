@@ -77,10 +77,10 @@ Connect-MgGraph -Environment Global -Scopes "NetworkAccess.ReadWrite.All","Polic
 
 | Piece | State |
 |---|---|
-| This guide | Draft, November 11, 2026 |
+| This guide | Approved, November 18, 2026 |
 | Narrated deck | Built, November 13, 2026: 16 narrated slides, about 16 minutes, in [`presentations/guide-global-secure-access`](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/guide-global-secure-access); the video is on the [Presentations](../../presentations/index.md#guide-global-secure-access) page, and each training module has its own |
-| Developer workbook with Lab 1 on fixtures and Lab 2 in a test tenant | Draft, November 17, 2026: [*Building Global Secure Access*](../../project-plans/developer-workbooks/global-secure-access/index.md), nine chapters (eight with Lab 1 on a fictional tenant's fixtures and Lab 2 in a test tenant, and a runbook for test and production), built on the kit in [`examples/global-secure-access`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access); waiting for the editor's review |
-| Training path | Draft, November 13, 2026: [Global Secure Access as the Identity-Aware Network](../../training/global-secure-access/index.md), six modules, each with a lab in a test tenant (the guide's own commands and Validate steps, not run by the authors) and a knowledge check |
+| Developer workbook with Lab 1 on fixtures and Lab 2 in a test tenant | Approved, November 18, 2026: [*Building Global Secure Access*](../../project-plans/developer-workbooks/global-secure-access/index.md), nine chapters (eight with Lab 1 on a fictional tenant's fixtures and Lab 2 in a test tenant, and a runbook for test and production), built on the kit in [`examples/global-secure-access`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access) |
+| Training path | Approved, November 18, 2026: [Global Secure Access as the Identity-Aware Network](../../training/global-secure-access/index.md), six modules, each with a lab in a test tenant (the guide's own commands and Validate steps, not run by the authors) and a knowledge check |
 
 : The guide's pieces {.striped .hover}
 
