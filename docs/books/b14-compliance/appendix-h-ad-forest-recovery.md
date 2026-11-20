@@ -260,7 +260,7 @@ repadmin.exe /options DC_NAME -IS_GC
 
 The guide prints this command with an en dash before `IS_GC`; type a hyphen.
 
-**14. Recreate group managed service accounts** if their password generation details may have been exposed, after creating a new Key Distribution Service root key.[^aH-initial][^aH-determine]
+**14. Recreate group managed service accounts** if their password generation details may have been exposed, after creating a new Key Distribution Service root key.[^aH-initial][^aH-determine] This is the one exception to the program's rule of a single root key per forest: a recovery step that replaces an exposed key, not a second key beside the first ([Service Accounts guide, A2](../guides/service-account-migration.md#migration-a)).
 
 **15. Set the time source.** Configure the forest root PDC emulator to synchronize time from an external source.[^aH-initial]
 

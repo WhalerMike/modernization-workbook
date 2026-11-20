@@ -63,3 +63,9 @@ Checked October 20, 2026. Sources: the existing page (former Book 01, Chapter 1)
 | Claim | Where | Verdict | Source |
 |---|---|---|---|
 | SQL Server supports gMSAs for standalone instances from SQL Server 2014, and for failover cluster instances and availability groups from SQL Server 2016; the domain administrator creates the gMSA before setup uses it | The service account, gMSA bullet | verified (added) | Learn, Configure Windows service accounts and permissions (ms.date 2025-10-14), read Nov 9, 2026 |
+
+## Managed service account standard, November 20, 2026
+
+| Claim | Where | Verdict | Source |
+|---|---|---|---|
+| Who creates the SQL Server gMSA | The service account, gMSA bullet | Learn's fact kept (the gMSA exists before setup; Learn's page has a domain administrator create it); the program's practice added: created through the delegated right by `DL-gMSA-Creators` via the approved plan | WD-154, WD-163; service account guide #msa-standard |

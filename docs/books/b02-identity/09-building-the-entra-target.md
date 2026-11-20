@@ -28,7 +28,7 @@ This chapter and the next are the program's technical reference for moving the f
 
 - User objects: attributes, UPN routing, security identifiers (SIDs), group memberships, OU placement, and lifecycle state.
 - Security and distribution groups: scope, nesting patterns, mail enablement, and dynamic membership.
-- Service accounts: traditional user-object service accounts, managed service accounts (MSAs), and group managed service accounts (gMSAs).
+- Service accounts: traditional user-object service accounts, managed service accounts (MSAs), group managed service accounts (gMSAs) and delegated managed service accounts (dMSAs).
 - Privileged access: AdminSDHolder-protected groups, delegation models, and tiered administration.
 - Conditional Access, replacing Group Policy logon restrictions with policy-driven cloud controls.
 - Identity governance: access reviews, entitlement management, lifecycle workflows, and compliance attestation.
@@ -114,7 +114,7 @@ This section is the **non-person identity track**: a service account's attribute
 |---|---|---|---|
 | Traditional (user object, often an `svc-` prefix) | Password-based, often "password never expires," often allowed to log on interactively | Application registration with a certificate or federated credential; managed identity where the workload runs in Azure | High: static credentials, often over-privileged |
 | Managed service account (MSA) | Automatically managed password, bound to one server | gMSA on-premises; managed identity if the workload moves to Azure | Medium: server-scoped, little governance visibility |
-| Group managed service account (gMSA) | Automatically managed password, usable by several servers | Retain for on-premises Kerberos workloads; workload identity federation when the workload moves | Medium: better than traditional, still AD-dependent |
+| Group managed service account (gMSA) | Automatically managed password, usable by several servers | Retain for on-premises Kerberos workloads; when the workload moves, a managed identity first, then a federated credential, then a certificate ([decision path](../guides/service-account-migration.md#decision-path)) | Medium: better than traditional, still AD-dependent |
 | Delegated managed service account (dMSA) | Needs at least one Windows Server 2025 domain controller and Windows Server 2025 hosts, not a functional level; supersedes a traditional account, binds authentication to mapped machine identities, and disables the original account's password[^c09-dmsa][^c09-dmsa-faq] | Retain for on-premises Kerberos workloads; same cloud path as a gMSA when the workload moves | Low to medium: resists Kerberoasting, still AD-dependent |
 
 ### Computer objects
@@ -668,10 +668,10 @@ The step-by-step path, with a validation check at each gate, is [Non-Person Iden
 |---|---|---|---|---|
 | Traditional | Calls Microsoft 365 or other Entra-protected APIs | Application registration and service principal | Certificate, or federated credential where the host has an OIDC issuer | Certificate rotation (program standard: annual), or no stored secret |
 | Traditional | Azure resource | Managed identity (user-assigned preferred) | Managed by Azure | None |
-| Traditional | On-premises, Kerberos only | gMSA, or a dMSA on a Windows Server 2025 domain | Kerberos | Managed by AD |
+| Traditional | On-premises, Kerberos only | A dMSA where every host that uses the account runs Windows Server 2025, a Windows Server 2025 domain controller is reachable and the account relies on no unconstrained delegation ([Migration B](../guides/service-account-migration.md#migration-b)); a gMSA otherwise | Kerberos | Managed by AD |
 | MSA | On-premises | gMSA (upgrade first; an MSA or gMSA can't be migrated to a dMSA)[^c09-dmsa] | Kerberos | Managed by AD |
 | dMSA | On-premises | Keep the dMSA | Kerberos | Managed by AD |
-| gMSA | Moving to the cloud | Workload identity federation or managed identity | Federated token or managed | No stored secrets |
+| gMSA | Moving to the cloud | A managed identity where it runs on Azure; otherwise workload identity federation; a certificate only where neither applies ([decision path](../guides/service-account-migration.md#decision-path)) | Managed, or a federated token | No stored secrets |
 | gMSA | Hybrid | Keep the gMSA, plus an application registration for cloud calls | Kerberos on-premises; certificate or federated credential to the cloud | Split |
 | IIS application pool identity | On-premises IIS | gMSA now; managed identity once moved to Azure | Kerberos, then managed | Progressive |
 | Scheduled task identity | On-premises | gMSA now; an Azure Automation runbook with a managed identity once moved | Kerberos, then managed | Progressive |
@@ -737,8 +737,8 @@ function Get-FMPServiceAccountInventory {
         $recommendation = switch ($true) {
             (-not $svc.Enabled)                           { 'Disabled: verify and retire'; break }
             ($svc.LastLogonDate -lt $staleCutoff)         { 'Stale: verify use and retire if unused'; break }
-            ($svc.PasswordNeverExpires)                   { 'HIGH RISK: move to a workload identity (federated credential, managed identity, or certificate)'; break }
-            ($spnCount -gt 0)                             { 'Kerberos service: convert to gMSA, then evaluate workload identity federation'; break }
+            ($svc.PasswordNeverExpires)                   { 'HIGH RISK: move to a workload identity (managed identity, then federated credential, then certificate)'; break }
+            ($spnCount -gt 0)                             { 'Kerberos service: convert to a dMSA or gMSA by the decision path; when the workload moves, a managed identity, then a federated credential, then a certificate'; break }
             default                                       { 'Evaluate the workload; target a managed identity or application registration' }
         }
 
@@ -765,14 +765,15 @@ function Get-FMPServiceAccountInventory {
         })
     }
 
-    # --- Managed service accounts (MSA and gMSA) ---
+    # --- Managed service accounts (MSA, gMSA and dMSA) ---
     $msaAccounts = Get-ADServiceAccount -Filter * -SearchBase $SearchBase -Properties Enabled,
         DistinguishedName, ObjectClass, 'msDS-ManagedPasswordInterval', WhenCreated
 
     foreach ($msa in $msaAccounts) {
         $isGmsa = ($msa.ObjectClass -eq 'msDS-GroupManagedServiceAccount')
+        $isDmsa = ($msa.ObjectClass -eq 'msDS-DelegatedManagedServiceAccount')
         $results.Add([PSCustomObject]@{
-            Type                    = if ($isGmsa) { 'gMSA' } else { 'MSA' }
+            Type                    = if ($isDmsa) { 'dMSA' } elseif ($isGmsa) { 'gMSA' } else { 'MSA' }
             SamAccountName          = $msa.SamAccountName
             DisplayName             = $msa.SamAccountName
             Description             = ''
@@ -784,9 +785,11 @@ function Get-FMPServiceAccountInventory {
             LastLogon               = $null
             GroupMembershipCount    = 0
             OU                      = ($msa.DistinguishedName -split ',', 2)[1]
-            RiskLevel               = 'LOW'
-            Recommendation          = if ($isGmsa) {
-                'Keep for on-premises workloads; plan workload identity federation when the workload moves'
+            # The service account table above: a dMSA is low to medium risk (reported
+            # here at its lower bound), a gMSA or MSA is medium.
+            RiskLevel               = if ($isDmsa) { 'LOW' } else { 'MEDIUM' }
+            Recommendation          = if ($isDmsa -or $isGmsa) {
+                'Keep for on-premises Kerberos workloads; when the workload moves, a managed identity, then a federated credential, then a certificate'
             } else {
                 'Upgrade to gMSA first, then evaluate for cloud migration'
             }
@@ -799,6 +802,7 @@ function Get-FMPServiceAccountInventory {
     Write-Host "Traditional: $(($results | Where-Object Type -eq 'TraditionalServiceAccount').Count)"
     Write-Host "MSA:         $(($results | Where-Object Type -eq 'MSA').Count)"
     Write-Host "gMSA:        $(($results | Where-Object Type -eq 'gMSA').Count)"
+    Write-Host "dMSA:        $(($results | Where-Object Type -eq 'dMSA').Count)"
     Write-Host "HIGH risk:   $(($results | Where-Object RiskLevel -eq 'HIGH').Count)" -ForegroundColor Red
     Write-Host "MEDIUM risk: $(($results | Where-Object RiskLevel -eq 'MEDIUM').Count)" -ForegroundColor Yellow
     Write-Host "Export:      $ExportPath" -ForegroundColor Cyan

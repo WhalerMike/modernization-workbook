@@ -94,6 +94,8 @@ $script:VkDefaultOptions = [ordered]@{
     MinOwners                = 2
     MaxPasswordAgeDays       = 365
     ServiceAccountNameHint   = 'svc'
+    # VK-NPI-06: the distinguished name of the OU that holds gMSAs (WD-161). Empty: that rule isn't checked.
+    ServiceAccountOU         = ''
     Subscriptions            = @()
     # VK-ARC-07: CMDB config_owner or ConfigOwner tag values that mean "machine configuration owns it".
     MachineConfigurationOwnerValues = @('machine-configuration', 'machineconfiguration', 'machine configuration', 'azure machine configuration')

@@ -2070,3 +2070,170 @@
   prs: [647, 648, 650]
   status: settled
   note: "Basis: workbook owner decision, November 18, 2026."
+
+- id: WD-159
+  date: 2026-11-20
+  question: How are managed service accounts, their retriever groups and the creator group named?
+  options: ["Keep the svc- prefix for every service account", "A gmsa- or dmsa- prefix and an application short name, with matching group names"]
+  choice: "A gMSA is named gmsa-<app> and a dMSA dmsa-<app>, where <app> is the system's short name, with a role suffix only where one system needs more than one account, and the whole name 15 characters or fewer before the trailing $ (the Non-Person Identity kit already refuses longer names). Each account's retriever group is DL-gMSA-<app>-Hosts. The group delegated the right to create gMSAs is DL-gMSA-Creators, and the pipeline's own gMSA is gmsa-msapipe. A user account kept as a service account keeps its svc- name until it's converted."
+  rationale: "Learn requires a forest-unique name and states no maximum length, so the program keeps the kit's 15-character limit and tests a name in the test domain. A prefix by type lets the inventory, Defender for Identity's service-account list and SailPoint's correlation rules sort accounts without a lookup; the kit's fixtures already use gmsa- and dmsa-."
+  basis: workbook-design
+  sources:
+  - {title: 'Microsoft Learn, Manage group Managed Service Accounts', url: 'https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts'}
+  pages: [docs/books/guides/service-account-migration.md, docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 20, 2026 (the gMSA standardization plan's D-1). Names WD-154's delegated group."
+
+- id: WD-160
+  date: 2026-11-20
+  question: Who may retrieve a gMSA's password?
+  options: ["A computer account or a group", "Always a domain local group of the hosts"]
+  choice: "Always a domain local security group of the hosts that run the workload (DL-gMSA-<app>-Hosts), never a single computer account, so that adding or removing a host is a reviewed group change and the group is the gMSA's blast radius."
+  rationale: "Learn recommends a security group of the hosts, and its containers page creates it as a domain local group. One rule makes the retriever list reviewable in SailPoint and Defender for Identity the same way for every account."
+  basis: microsoft-learn
+  sources:
+  - {title: 'Microsoft Learn, Manage group Managed Service Accounts', url: 'https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts'}
+  - {title: 'Microsoft Learn, Create gMSAs for Windows containers', url: 'https://learn.microsoft.com/virtualization/windowscontainers/manage-containers/manage-serviceaccounts'}
+  pages: [docs/books/guides/service-account-migration.md, docs/books/b02-identity/08-assessing-the-forest.md, docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md, docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 20, 2026 (D-2)."
+
+- id: WD-161
+  date: 2026-11-20
+  question: Where in Active Directory do gMSAs live?
+  options: ["The default Managed Service Accounts container", "A dedicated service-account OU with the create right delegated there"]
+  choice: "A dedicated service-account OU (<service-account-ou>), created with New-ADServiceAccount -Path, with the create right delegated there to DL-gMSA-Creators, as WD-154 set out."
+  rationale: "Learn's two pages differ: the Entra page on securing gMSAs says gMSAs must be in the Managed Service Accounts container, while the New-ADServiceAccount reference takes any OU in -Path and uses that container only as the default. A dedicated OU lets the create right, Group Policy and SailPoint's aggregation scope cover service accounts and nothing else. Pages cite both Learn pages and say why the program uses the OU."
+  basis: workbook-design
+  sources:
+  - {title: 'Microsoft Learn, Secure group managed service accounts', url: 'https://learn.microsoft.com/entra/architecture/service-accounts-group-managed'}
+  - {title: 'Microsoft Learn, New-ADServiceAccount', url: 'https://learn.microsoft.com/powershell/module/activedirectory/new-adserviceaccount'}
+  pages: [docs/books/guides/service-account-migration.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 20, 2026 (D-3). Keeps WD-154 and adds the Learn pages that bear on it."
+
+- id: WD-162
+  date: 2026-11-20
+  question: Which system approves a request for a managed service account?
+  options: ["ServiceNow for low-risk requests and SailPoint for the rest, as the ticket-to-machine guide's example splits them", "SailPoint for every request, reached through the agency's own access-request front end"]
+  choice: "SailPoint approves every managed service account request, created, changed or retired, whatever its risk tier. Requests come in through the agency's system access management tool, its own front end to SailPoint (or SailPoint's request center where an agency has none). ServiceNow keeps the change record, the typed findings and the decommission ticket, and never approves the account."
+  rationale: "The program follows an agency pattern in which identity approvals belong to SailPoint and are reached through an internal access-management tool. One approver system for one kind of request keeps the ticket-to-machine rule of one approver per authority class."
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/guides/service-account-migration.md, docs/books/guides/ttm-servicenow-sailpoint.md, docs/books/guides/ttm-task-catalog.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 20, 2026. Applies to managed service accounts only; the ticket-to-machine guide's split stays as its example for other requests."
+
+- id: WD-163
+  date: 2026-11-20
+  question: Who runs the Active Directory writes for a managed service account once SailPoint approves it?
+  options: ["A person signed in with the delegated rights runs the approved plan", "A pipeline runs the approved plan as its own gMSA with only the delegated rights, and a person runs the steps that need Domain Admins or delete"]
+  choice: "After SailPoint approves and ServiceNow records the change, a pipeline runs the Non-Person Identity kit's hashed Chapter 06 plan as gmsa-msapipe, which holds only the delegated rights on the service-account OU: create gMSAs, write their retriever groups and PrincipalsAllowedToRetrieveManagedPassword, and disable and move superseded accounts in the service-account OUs. The authorizing official accepts that as an autonomous class. A person runs the dMSA steps (Domain Admins), Uninstall-ADServiceAccount on hosts, and every delete. SailPoint reads, correlates and certifies gMSAs and never writes them."
+  rationale: "Automated account management (AC-2(1)) and a plan approved by its hash leave no portal clicks and a complete record, and the pipeline's identity is itself a gMSA with the narrowest rights. Steps that need Domain Admins or that can't be undone stay with a person."
+  basis: workbook-design
+  sources:
+  - {title: 'NIST SP 800-53 Rev. 5, AC-2(1) Automated System Account Management', url: 'https://csrc.nist.gov/projects/cprt/catalog#/cprt/framework/version/SP_800_53_5_2_0/home?element=AC-02(01)'}
+  pages: [docs/books/guides/service-account-migration.md, docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md, examples/non-person-identity/config/calls-ch06.json]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 20, 2026 (D-4, with the automation choice). Replaces the kit's earlier rule that the write path is run by a person and never by a scheduled job or a service account."
+
+- id: WD-164
+  date: 2026-11-20
+  question: How many owners does an Active Directory service account need?
+  options: ["One application owner", "Two named technical owners and a federal-employee sponsor, as for every non-person identity"]
+  choice: "Every non-person identity, Active Directory service accounts included, has two named technical owners and a sponsor who is a federal employee mastered in HR."
+  rationale: "The service-account guide and the Non-Person Identity guide's record already ask for it; the sample plan's NP1.1 and Gate 1 asked for one application owner. One rule removes the conflict."
+  basis: workbook-design
+  sources: []
+  pages: [docs/project-plans/non-person-identity.md, docs/books/guides/non-person-identity-implementation.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 20, 2026 (D-5)."
+
+- id: WD-165
+  date: 2026-11-20
+  question: What end date bounds an Active Directory service account that stays?
+  options: ["Program G5", "D08", "Whatever the authorizing official accepts"]
+  choice: "An end date the authorizing official accepts, recorded by program D08, and never later than program G5 (AD retired), or the Kerberos island's end-of-life date where D11 chooses an island."
+  rationale: "D08 is when the program sets its legacy-authentication end dates and G5 is when AD retires; the Non-Person Identity kit's Chapter 06 already bounds a kept gMSA by G5 and the island by D11."
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/guides/service-account-migration.md, docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 20, 2026 (D-6)."
+
+- id: WD-166
+  date: 2026-11-20
+  question: How often are managed service accounts attested?
+  options: ["Quarterly for all", "By the identity's risk tier"]
+  choice: "Each gMSA, dMSA and remaining service account is certified by its two owners in a SailPoint certification campaign on its risk tier's cadence: quarterly for R1, twice a year for R2 and annually for R3. The owners confirm it's still needed, the owners and sponsor, the retriever group's members, its SPNs and that it's in no privileged group; a revoke opens a ServiceNow task."
+  rationale: "The cadence is the one Access and Privilege already sets for application access by risk tier, so one calendar covers both."
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/guides/service-account-migration.md, docs/books/guides/non-person-identity-implementation.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 20, 2026 (D-7)."
+
+- id: WD-167
+  date: 2026-11-20
+  question: How long is a disabled service account kept before it's deleted?
+  options: ["30 days", "60 days", "90 days"]
+  choice: "90 days after it's disabled, with no sign-in seen in that time, then deleted through the decommission ticket."
+  rationale: "The same 90 days as the program's service principal inactivity rule (VK-NPI-09) and Defender for Identity's stale service account assessment."
+  basis: workbook-design
+  sources:
+  - {title: 'Microsoft Learn, Security posture assessments for accounts (Defender for Identity)', url: 'https://learn.microsoft.com/defender-for-identity/security-posture-assessments/accounts'}
+  pages: [docs/books/guides/service-account-migration.md, docs/books/guides/non-person-identity-implementation.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 20, 2026 (D-8)."
+
+- id: WD-168
+  date: 2026-11-20
+  question: Do production service-account writes ever run by hand, and does the kit move a disabled account to a holding OU?
+  options: ["Allow hand runs in production; leave the move to a person", "Every production write goes through the approved plan, and the plan also moves the disabled account"]
+  choice: "Every production write for a managed service account goes through the approved Chapter 06 plan, including the deploy runbook's smoke-test account. DisableSuperseded disables the old account and moves it to the holding OU in the same plan."
+  rationale: "The service-account guide already says production AD writes go through the write path; the deploy chapter's hand-created account and the guide's move to the holding OU were the exceptions."
+  basis: workbook-design
+  sources: []
+  pages: [docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md, docs/books/guides/service-account-migration.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 20, 2026 (D-9)."
+
+- id: WD-169
+  date: 2026-11-20
+  question: Where do the indicators for the service-account controls without a master row come from?
+  options: ["Each page maps them", "Book 13, Appendix A gets the rows, re-read from FedRAMP, and pages point to them"]
+  choice: "The rows for IA-4, IA-5, IA-9, AC-2(1), AC-2(3), AC-2(4), AC-6(5), AC-6(7) and AU-6 are added to Book 13, Appendix A, from FedRAMP's Key Security Indicators re-read on November 20, 2026, with 'none' where FedRAMP lists none, and the Non-Person Identity and service-account pages use them."
+  rationale: "Book 13, Appendix A is the workbook's one control-to-indicator table; the pages had filled its gaps with mappings that disagreed."
+  basis: requirement
+  sources:
+  - {title: 'FedRAMP, Key Security Indicators', url: 'https://www.fedramp.gov/2026/reference/key-security-indicators/'}
+  pages: [docs/books/b13-governance/appendix-a-requirements-mapping.md, docs/books/guides/non-person-identity-implementation.md, docs/books/guides/service-account-migration.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 20, 2026 (D-10)."
+
+- id: WD-170
+  date: 2026-11-20
+  question: How much of the service-account lifecycle should machines run?
+  options: ["People run the steps in the Microsoft portals and consoles", "Machines run, check and record every step they can; people decide, approve and accept risk"]
+  choice: "Machines and scripts run, verify and record every step they can: the request's checks, the plan, the AD writes, the re-read, the monitoring, the certification campaigns and the evidence. People decide, approve in SailPoint, accept risk and run the few steps that need Domain Admins or delete. Pages say that this supports the federal requirements better than work done by hand in a portal, and say where the limits are."
+  rationale: "NIST SP 800-53 has controls for automated account management, disabling and auditing (AC-2(1), AC-2(3), AC-2(4)), FedRAMP's indicators include automating account and secret management, and CISA's Zero Trust Maturity Model treats automation and orchestration as a cross-cutting capability. Separation of duties, approval by designated people and the governance of the automation's own identity still apply."
+  basis: requirement
+  sources:
+  - {title: 'NIST SP 800-53 Rev. 5, AC-2 Account Management', url: 'https://csrc.nist.gov/projects/cprt/catalog#/cprt/framework/version/SP_800_53_5_2_0/home?element=AC-02'}
+  - {title: 'FedRAMP, Key Security Indicators', url: 'https://www.fedramp.gov/2026/reference/key-security-indicators/'}
+  - {title: 'CISA, Zero Trust Maturity Model', url: 'https://www.cisa.gov/zero-trust-maturity-model'}
+  pages: [docs/books/guides/service-account-migration.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 20, 2026."

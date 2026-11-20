@@ -42,7 +42,7 @@ def test_examples_pass_except_the_practice_rows():
     results = cc.check(cc.read_catalog(EXAMPLES))
     failing = {r["task_id"] for r in results if r["flags"] or r["errors"]}
     assert failing == examples_data.PRACTICE_IDS
-    assert "25 rows: 22 PASS, 3 FIX; 17 sample payloads, 17 accepted by finding_contract" in text
+    assert "27 rows: 24 PASS, 3 FIX; 18 sample payloads, 18 accepted by finding_contract" in text
 
 
 def test_practice_rows_fail_the_rules_they_are_meant_to():
@@ -58,12 +58,17 @@ def test_every_task_type_the_owner_named_has_an_example_and_a_controls_row():
                  "orphan account", "contractor end date", "certificate renewal", "emergency access",
                  "privileged role activation", "group owner", "service account owner", "failed provisioning",
                  "schema drift", "unauthorized direct write", "admin consent", "app registration",
-                 "immutableid", "integration credential", "virtual agent", "ai agent"):
+                 "immutableid", "integration credential", "virtual agent", "ai agent", "new gmsa",
+                 "certification revoke"):
         assert word in names, word
     types = {t[0] for t in cs.TASK_TYPES}
     assert {"Admin consent request triage", "App registration lifecycle request", "ImmutableId update (hard match)",
             "Integration credential issue or rotation", "Automated intake request",
-            "AI agent takes an action"} <= types
+            "AI agent takes an action", "New managed service account (gMSA or dMSA)",
+            "Managed service account retriever change (host added or removed)",
+            "Managed service account certification revoke",
+            "Managed service account decommission (disable, 90 days, delete)",
+            "Unexplained new gMSA (drift)"} <= types
 
 
 @pytest.mark.parametrize("field,value,flag", [
@@ -160,11 +165,11 @@ def test_payloads_are_accepted_by_finding_contract_validate(tmp_path):
     out = io.StringIO()
     cc.main([str(EXAMPLES), "--payloads", str(tmp_path)], out=out)
     every = json.loads((tmp_path / "payloads.json").read_text(encoding="utf-8"))
-    assert len(every) == 17
+    assert len(every) == 18
     assert (tmp_path / "EX-03.json").exists() and not (tmp_path / "EX-01.json").exists()
     check = io.StringIO()
     assert fc.main(["--validate", str(tmp_path / "payloads.json"), "--now", "2026-11-02T12:00:00Z"], out=check) == 0
-    assert "17 accepted, 0 rejected" in check.getvalue()
+    assert "18 accepted, 0 rejected" in check.getvalue()
 
 
 def test_payload_carries_the_row_and_the_shared_vocabulary():

@@ -43,6 +43,8 @@ $script:VkLearn = @{
     AppRoleTo   = 'https://learn.microsoft.com/graph/api/serviceprincipal-list-approleassignedto?view=graph-rest-1.0'
     RoleAssign  = 'https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0'
     AdUser      = 'https://learn.microsoft.com/powershell/module/activedirectory/get-aduser'
+    GmsaManage  = 'https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts'
+    NewAdSvc    = 'https://learn.microsoft.com/powershell/module/activedirectory/new-adserviceaccount'
     Agents      = 'https://learn.microsoft.com/graph/api/agentidentity-list?view=graph-rest-1.0'
     AgentSponsr = 'https://learn.microsoft.com/graph/api/agentidentity-list-sponsors?view=graph-rest-1.0'
     AzRoles     = 'https://learn.microsoft.com/azure/role-based-access-control/built-in-roles'
@@ -137,8 +139,8 @@ $script:VkCatalog = @(
         Source = 'Graph'; GraphPermissions = @('Policy.Read.All', 'Application.Read.All'); DelegatedRole = 'Global Reader'; AzureRole = ''; Stage = 'v1.0'; Learn = @($VkLearn.Ca, $VkLearn.CaWorkload) }
     @{ Id = 'VK-NPI-05'; Track = 'NPI'; Title = 'Service principals with high-privilege Graph app roles or directory roles (a least-privilege review list)'
         Source = 'Graph'; GraphPermissions = @('Application.Read.All', 'RoleManagement.Read.Directory'); DelegatedRole = 'Global Reader'; AzureRole = ''; Stage = 'v1.0'; Learn = @($VkLearn.AppRoleTo, $VkLearn.RoleAssign) }
-    @{ Id = 'VK-NPI-06'; Track = 'NPI'; Title = 'AD service accounts: password never expires, old passwords, SPNs, not gMSA'
-        Source = 'ActiveDirectory (optional) or fixture'; GraphPermissions = @(); DelegatedRole = 'Authenticated domain user (default read)'; AzureRole = ''; Stage = 'n/a'; Learn = @($VkLearn.AdUser) }
+    @{ Id = 'VK-NPI-06'; Track = 'NPI'; Title = 'AD service accounts: password never expires, old passwords, SPNs, not gMSA; gMSAs and dMSAs against the program standard (name, retriever group, interval, AES256, privileged groups, OU)'
+        Source = 'ActiveDirectory (optional) or fixture'; GraphPermissions = @(); DelegatedRole = 'Authenticated domain user (default read)'; AzureRole = ''; Stage = 'n/a'; Learn = @($VkLearn.AdUser, $VkLearn.GmsaManage, $VkLearn.NewAdSvc) }
     @{ Id = 'VK-NPI-07'; Track = 'NPI'; Title = 'Managed identities and their role assignments (for inventory)'
         Source = 'Graph + ResourceGraph'; GraphPermissions = @('Application.Read.All'); DelegatedRole = 'Global Reader'; AzureRole = 'Reader'; Stage = 'v1.0 / GA'; Learn = @($VkLearn.Sps, $VkLearn.ArgTables) }
     @{ Id = 'VK-NPI-08'; Track = 'NPI'; Title = 'AI agent identities, where the tenant exposes them: sponsor present'

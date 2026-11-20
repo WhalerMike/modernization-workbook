@@ -29,7 +29,7 @@ examples/ttm-task-catalog/
   README.md               this file
   catalog_template.xlsx   the workbook (no macros): ReadMe, Tasks, Checks, Examples, Example checks, Controls, Lists
   catalog_template.csv    the Tasks columns, no rows
-  examples.csv            25 fictional tasks, the same rows as the Examples sheet
+  examples.csv            27 fictional tasks, the same rows as the Examples sheet
   copilot-prompts.md      prompts for Microsoft 365 Copilot Chat and, in an agency-hosted repository, GitHub Copilot
   check_catalog.py        checks a CSV export and writes sample ticket contracts
   build_template.py       rebuilds the workbook and the two CSVs (needs openpyxl)
@@ -47,7 +47,7 @@ The checker needs the integration kit's `finding_contract.py`, which the downloa
 | ReadMe | How to use the workbook |
 | Tasks | Your rows. 200 rows are ready, each with drop-downs and the response-window formula |
 | Checks | One line per Tasks row: the seven checks, PASS or FIX, and a summary |
-| Examples | 25 worked rows. EX-P1, EX-P2 and EX-P3 fail on purpose, for practice |
+| Examples | 27 worked rows. EX-P1, EX-P2 and EX-P3 fail on purpose, for practice |
 | Example checks | The same checks over the Examples sheet |
 | Controls | Each task type with its suggested NIST SP 800-53 controls and KSIs, and the control-to-indicator table with its source |
 | Lists | The drop-down values, the default severity per class, and the windows |
@@ -97,7 +97,7 @@ The payloads carry `SAMPLE-` identifiers. Replace them before any real use. Exit
 
 ### Real output on examples.csv
 
-`python check_catalog.py examples.csv`, run on November 2, 2026 (exit code 1, because of the three practice rows):
+`python check_catalog.py examples.csv`, run on November 20, 2026 (exit code 1, because of the three practice rows):
 
 ```
 EX-01: PASS
@@ -152,6 +152,10 @@ EX-21: PASS
     no typed finding (drift class none: a request or a routine event)
 EX-22: PASS
     no typed finding (drift class none: a request or a routine event)
+EX-23: PASS
+    no typed finding (drift class none: a request or a routine event)
+EX-24: PASS
+    payload ok: stale_access P2 priority 2 window 1 hour system isc_account
 EX-P1: FIX - Human-decision class sent to a machine; No evidence named
     payload ok: missing_identity P2 priority 2 window 1 hour system entra_user
     contract warning: intended_state names nothing a re-read can check (expected: Book 13 routes this class to a person, who sets it)
@@ -160,7 +164,7 @@ EX-P2: FIX - Missing owner, approver or re-read; Severity differs, no note; No c
     contract warning: no system: the re-read client won't know where to read the subject
 EX-P3: FIX - High impact, no human approval; AI agent without safeguards
     no typed finding (drift class none: a request or a routine event)
-25 rows: 22 PASS, 3 FIX; 17 sample payloads, 17 accepted by finding_contract
+27 rows: 24 PASS, 3 FIX; 18 sample payloads, 18 accepted by finding_contract
 ```
 
 The three FIX rows are the practice rows. The contract warnings are expected: a class a person decides first has no intended state until the person sets it, and a row whose re-read system is `other` names it in the row, not in the contract.

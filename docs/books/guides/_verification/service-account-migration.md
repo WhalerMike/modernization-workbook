@@ -185,3 +185,25 @@ Mike's approval, Nov 13, 2026 (Windows Server 2025 retirements research). Source
 | W-07 | A password change creates AES keys; `List-AccountKeys.ps1`; ticket types 0x11/0x12 AES, 0x17 RC4 | B0 | verified | `sam-rc4-detect` | Nov 13, 2026 |
 | W-08 | Learn doesn't say whether a dMSA migration repairs an account without AES keys; don't reset the password during migration | B0 | verified (absence checked on the three dMSA pages; FAQ for the reset rule) | `sam-dmsa-faq` | Nov 13, 2026 |
 | W-09 | The `Get-WinEvent` filter (provider name matched as `Kdc` or `Key-Distribution`) | B0 | unverifiable without a domain: KB5073381 names the source "Kdcsvc"; the filter matches either provider name. Test in the test domain | — | Nov 13, 2026 |
+
+## Managed service account standard, 2026-11-20
+
+Added at the program owner's request of November 20, 2026 for a gMSA standardization process using ServiceNow, SailPoint and Microsoft tools, after the Phase 1 comparison of every page that covers managed service accounts. Program rules are decisions WD-159 to WD-170. Every source below was read on November 20, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| S1 | `New-ADServiceAccount -Path` takes any OU and defaults to the Managed Service Accounts container; `-ManagedPasswordIntervalInDays` is read-only after creation; `-RestrictToOutboundAuthenticationOnly`; `-KerberosEncryptionType` | Standard settings; A3 | verified | `sam-new-adsa` |
+| S2 | The Entra "Secure gMSAs" page says gMSAs must be in the Managed Service Accounts container: differs from S1; the program uses an OU (WD-161) and cites both | Standard settings | verified; the two pages differ, recorded | `sam-entra-gmsa`, `sam-new-adsa` |
+| S3 | `Move-ADObject -Identity -TargetPath` | A7 | verified (cmdlet reference) | `sam-move-adobject` |
+| S4 | `dsacls /G <principal>:CC;<object type>` grants create child for one object class; Learn gives no gMSA-specific delegation steps, so the combination is design guidance, run in the test domain first | Set it up once | verified (command reference); combination not on Learn, recorded | `sam-dsacls` |
+| S5 | Defender for Identity's Service Accounts page discovers gMSA, sMSA and user accounts with an SPN and a password that never expires; Type gMSA, sMSA or User; tags; classification rules | Set it up once; S7 | verified | `sam-mdi-sa` |
+| S6 | Defender for Identity posture assessments *Identify service accounts in privileged groups*, *Remove Stale Service Accounts* (90 days), *Unsecure account attributes* | Settings; S7 | verified | `sam-mdi-posture` |
+| S7 | *Log on as a service*: minimize the accounts granted it; *Deny log on as a service* wins (archived page); a gMSA must be in the policy where it's configured (Defender for Identity directory service account page) | S5 | verified (archived page and a product page) | `sam-logon-service` |
+| S8 | SailPoint's Active Directory connector supports MSA and gMSA objects (aggregate, create, update, delete); reading `msDS-GroupMSAMembership` needs IQService with the AD PowerShell module | Set it up once | verified (vendor documentation) | `sam-sp-ad` |
+| S9 | SailPoint Machine Identity Security: owner by attribute mapping; none when several identities match; owners review in certifications; licensing not stated | Set it up once | verified; licensing not yet specified | `sam-sp-mis` |
+| S10 | AC-2(1), AC-2(3), AC-2(4), AC-5 and their Moderate baseline | Machines run the steps | verified (OSCAL baseline profiles, release 5.2.0) | `sam-80053` |
+| S11 | KSI-IAM-AAM *Automating Account Management* and KSI-SVC-ASM *Automating Secret Management*; each step's indicators from Book 13, Appendix A's rows, re-read the same day | Machines run the steps; the steps | verified | `sam-ksi` |
+| S12 | CISA ZTMM v2.0: automation and orchestration is a cross-cutting capability; Identity's optimal stage automates orchestration of all identities | Machines run the steps | verified | `sam-ztmm` |
+| S13 | The page counted eleven kinds of service identity; the table has twelve rows (and the deck said twelve) | In this guide | corrected | — |
+
+**Not verified, so not used.** ServiceNow's Microsoft Active Directory spoke actions and a CMDB class for service accounts: ServiceNow's documentation pages couldn't be read on November 20, 2026, and the standard doesn't depend on either. SailPoint's export field names for access requests and certification decisions: not stated on the pages read; the kit's Chapter 12 reads its own import format.

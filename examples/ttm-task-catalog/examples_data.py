@@ -8,7 +8,9 @@ All names, systems and identities are invented.
 
 Microsoft facts in EX-17 to EX-20 are from Microsoft Learn, and the ServiceNow
 Otto facts in EX-21 and EX-22 from ServiceNow's own pages, all read November 2,
-2026; the guide page footnotes each one.
+2026; the guide page footnotes each one. EX-23 and EX-24 follow the managed
+service account standard (decisions WD-159 to WD-168): SailPoint approves, ServiceNow
+records, and a pipeline runs the approved plan as gmsa-msapipe.
 """
 
 from __future__ import annotations
@@ -242,6 +244,38 @@ _ROWS = [
      "AC-2; AC-6; AC-6(5); AU-2; AU-12; CM-3; CM-8(4)", "Service Desk", "Approved",
      "The agent's actions are logged under its own identity, apart from people's. Confirm availability "
      "in the government cloud with ServiceNow and the FedRAMP Marketplace."),
+    ("EX-23", "New gMSA for an intranet application pool, approved in SailPoint", "Machine, gated", "request",
+     "The agency's system access management tool (SailPoint request)", "AD DS", "none", "P3",
+     "Request from the intranet application's owner at contoso.example for gmsa-intranet, to run the IIS "
+     "application pool on two web servers",
+     "The approvers SailPoint's request names: the application's sponsor and the service-account owner; "
+     "never the requester",
+     "After SailPoint approves and ServiceNow records the change, a pipeline runs the hashed Chapter 06 plan: "
+     "New-ADServiceAccount creates gmsa-intranet in the service-account OU, and the two web servers are "
+     "added to DL-gMSA-intranet-Hosts, its only retriever",
+     "gmsa-msapipe (the pipeline's own gMSA), with only the delegated rights on the service-account OU",
+     "Get-ADServiceAccount gmsa-intranet: exists in the service-account OU, "
+     "PrincipalsAllowedToRetrieveManagedPassword is DL-gMSA-intranet-Hosts, and the group holds the two "
+     "approved hosts; Test-ADServiceAccount returns True on each host",
+     "other", "SailPoint request ID and approvals, ServiceNow change record, plan hash, pipeline run log, "
+     "re-read result",
+     "AC-2; CM-3; AC-6; IA-5", "Identity Operations", "Approved",
+     "ServiceNow keeps the change record and never approves the account. A dMSA's steps need Domain Admins, "
+     "so a person runs them."),
+    ("EX-24", "Certification revoke on a gMSA whose application retired", "Machine, gated", "schedule",
+     "SailPoint certification campaign", "AD DS", "stale_access", "P2",
+     "The R2 certification (twice a year): both owners revoke gmsa-oldrpt because the reporting "
+     "application it ran has retired",
+     "The gMSA's two technical owners, in the SailPoint certification; the revoke opens a ServiceNow task",
+     "The pipeline runs the approved Chapter 06 plan's DisableSuperseded step: disable gmsa-oldrpt and move "
+     "it to the holding OU; the decommission ticket starts the 90-day clock",
+     "gmsa-msapipe (the pipeline's own gMSA), with only the delegated rights on the service-account OUs",
+     "Re-read: Get-ADServiceAccount gmsa-oldrpt shows Enabled False in the holding OU, and the next "
+     "SailPoint aggregation shows the account disabled",
+     "isc_account", "Certification campaign ID and both revoke decisions, ServiceNow task ID, plan hash, "
+     "pipeline run log, re-read result, decommission ticket ID",
+     "AC-2", "Access Governance", "Approved",
+     "The delete waits 90 days with no sign-in, and a person runs it through the decommission ticket."),
     ("EX-P1", "Practice: missing account found by nightly reconciliation", "Machine, gated", "schedule",
      "Drift reconciliation", "Entra ID", "missing_identity", "P2",
      "Drift finding: an HR record with no directory account",
@@ -297,6 +331,8 @@ _SAFEGUARDS = {
     "EX-20": (_SVC, "Integration Team lead", "no", "yes", _IND),
     "EX-21": (_SVC, "Service Desk manager", "no", "yes", _IND),
     "EX-22": (_AI, "Service Desk manager", "no", "yes", _IND),
+    "EX-23": (_MI, "Identity Operations manager", "no", "yes", _IND),
+    "EX-24": (_MI, "Identity Operations manager", "no", "yes", _IND),
     "EX-P1": (_SVC, "Identity Operations manager", "no", "no", _IND),
     "EX-P2": (_SVC, "", "no", "no", _IND),
     "EX-P3": (_AI, "", "yes", "no", _SELF),

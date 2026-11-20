@@ -49,7 +49,7 @@ Facts come from the linked chapters, which rely on their own verification logs. 
 | VK-NPI-03 | Apps using client secrets where a certificate or federated credential is possible |
 | VK-NPI-04 | Single-tenant service principals not covered by Conditional Access for workload identities |
 | VK-NPI-05 | Service principals with high-privilege Graph app roles or directory roles |
-| VK-NPI-06 | AD service accounts: password never expires, old passwords, SPNs, not a gMSA (from a fixture or an optional read-only AD query) |
+| VK-NPI-06 | AD service accounts: password never expires, old passwords, SPNs, not a gMSA. Managed service accounts against the [standard's settings](service-account-migration.md#msa-standard-settings): findings for a gMSA whose retrievers aren't exactly one `DL-gMSA-<app>-Hosts` group, for encryption types other than AES256 only, and for direct membership of a privileged group; warnings for a name that isn't `gmsa-<app>` or `dmsa-<app>` or is over 15 characters, a password interval other than 30 days, and an account outside the configured service-account OU (only when one is configured). Outbound-only isn't checked: Learn names no attribute that records it. From a fixture or an optional read-only AD query |
 | VK-NPI-07 | Managed identities and their role assignments |
 | VK-NPI-08 | AI agent identities, where the tenant exposes them, with a sponsor present |
 | VK-NPI-09 | Service principals with no sign-in activity in N days (*optional, preview*: reads a beta API, off by default, runs only with `-IncludePreview`; see [Step 6](#step-6-run-the-lifecycle)) |
@@ -71,8 +71,8 @@ Every gate's hands-on work is a lab in the developer workbook [*Building Non-Per
 
 **Done when** *(design guidance, from the companion guide's end state)*:
 
-- every service account and service principal has an owner and a sponsor, a reason and a target;
-- each one is retired, re-platformed to a managed identity or gMSA, or made a certificate or federated-credential workload identity;
+- every service account and service principal has two named owners and a sponsor ([WD-164](../../about/decision-register.md#wd-164)), a reason and a target;
+- each one is retired, re-platformed to a managed identity, gMSA or dMSA, made a certificate or federated-credential workload identity, or kept on Kerberos (`Keep` or `KeepKerberos`, including the Kerberos island) with an end date the authorizing official accepts, no later than program G5 or the island's end of life ([WD-165](../../about/decision-register.md#wd-165));
 - none holds a password that never expires, and none is orphaned.
 
 [Book 02's Phase 4](../b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization) is the books' gate for service accounts.
@@ -142,10 +142,10 @@ Consent creates service principals and Microsoft services provision their own, s
 
 ### 1a. AD service accounts, MSAs, gMSAs and dMSAs
 
-1. Run the read-only discovery function `Get-FMPServiceAccountInventory` from [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#discovering-service-accounts), maintained in the [identity assessment module](../b02-identity/appendix-c-identity-assessment-module.md). It finds user objects with SPNs, `svc-` and similar prefixes, or "service account" descriptions. It records `PasswordNeverExpires`, the days since the password last changed, the SPN count, last logon and group count. It lists MSAs and gMSAs separately and gives each a risk level and a suggested target.
-2. Add dMSAs if any domain has a Windows Server 2025 domain controller (no functional level is required). They supersede a traditional account, bind authentication to mapped machine identities and disable the original account's password ([Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#service-accounts)).
+1. Run the read-only discovery function `Get-FMPServiceAccountInventory` from [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#discovering-service-accounts), maintained in the [identity assessment module](../b02-identity/appendix-c-identity-assessment-module.md). It finds user objects with SPNs, `svc-` and similar prefixes, or "service account" descriptions. It records `PasswordNeverExpires`, the days since the password last changed, the SPN count, last logon and group count. It lists MSAs, gMSAs and dMSAs separately and gives each a risk level and a suggested target.
+2. Add dMSAs if any domain has a Windows Server 2025 domain controller, since a dMSA can exist only there (no functional level is required). Using one also needs every host that uses it on Windows Server 2025 and no unconstrained delegation on the account it replaces ([service account guide, Migration B](service-account-migration.md#migration-b)). They supersede a traditional account, bind authentication to mapped machine identities and disable the original account's password ([Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#service-accounts)).
 3. Treat "stale" as a lead, not a verdict. Confirm it against domain controller and Entra sign-in logs before anything is retired (same section).
-4. Record which hosts can retrieve each gMSA's password (`PrincipalsAllowedToRetrieveManagedPassword`). That list is the gMSA's real blast radius. Learn's criteria for finding user accounts used as services are an SPN, delegation and a password that never expires, and a managed service account in a privileged group is a security issue to fix.[^npi-user-svc] [^npi-gmsa-secure]
+4. Record which hosts can retrieve each gMSA's password (`PrincipalsAllowedToRetrieveManagedPassword`). That list is the gMSA's real blast radius; the program's standard is one domain local group of the hosts, `DL-gMSA-<app>-Hosts`, never a single computer account ([WD-160](../../about/decision-register.md#wd-160)). Learn's criteria for finding user accounts used as services are an SPN, delegation and a password that never expires, and a managed service account in a privileged group is a security issue to fix.[^npi-user-svc] [^npi-gmsa-secure]
 
 ### 1b. App registrations and service principals
 
@@ -174,18 +174,18 @@ For every app registration and user-assigned managed identity, export its federa
 
 1. Join every identity from 1a to 1e to a record in the system inventory. For an app registration, use `serviceManagementReference` where it's set. Otherwise search by name and owner, then interview.
 2. Identify the application owner before the account is touched ([Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)). An account nobody will own is a retirement candidate ([companion guide](attribute-driven-migration.md#service-accounts-msas-gmsas-and-dmsas)).
-3. Name two human owners for every app registration and service principal, never service accounts ([Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#governing-service-principals)). The Owners list holds only the people who configure the app. The business approver goes in the registry and in `serviceManagementReference`, because an owner can add a credential and act as the app ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#ownership)).
+3. Name two human technical owners for every non-person identity, AD service accounts, gMSAs and dMSAs included ([WD-164](../../about/decision-register.md#wd-164)). An owner is a person, never a service account ([Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#governing-service-principals)). For an app registration or service principal, the Owners list holds only the people who configure the app. The business approver goes in the registry and in `serviceManagementReference`, because an owner can add a credential and act as the app ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#ownership)).
 4. Record a sponsor who is a federal employee mastered in HR. A contractor can build or run a workload but can't be its only sponsor ([Book 17, Chapter 05](../b17-ai-identity/05-owners-sponsors-and-lifecycle.md#the-programs-rule-two-named-humans-and-a-record); the program applies the rule to all non-person identities, *design guidance*).
 5. Optionally tag service principals with custom security attributes such as `SystemId`, `Environment` and `Tier`. Microsoft suggests it for a filterable inventory and for ABAC decisions.[^npi-rbac-wid] [Step 4](#step-4-cut-privilege) uses the same attributes for Conditional Access filters.
 
 ::: {.callout-important}
 ## Validate (G1 Inventory)
-- **VK-NPI-06** reports every AD account with password never expires, a password older than the program threshold (Book 02's script treats more than 365 days as high risk), an SPN, or a type other than gMSA or dMSA. Every row is joined to a record or listed as unowned.
+- **VK-NPI-06** reports every AD account with password never expires, a password older than the program threshold (Book 02's script treats more than 365 days as high risk), an SPN, or a type other than gMSA or dMSA. For gMSAs and dMSAs it also reports where they depart from the [standard's settings](service-account-migration.md#msa-standard-settings): retrievers, encryption types and direct privileged-group membership as findings; name, password interval and OU as warnings. Every row is joined to a record or listed as unowned.
 - **VK-NPI-01** reports zero service principals and app registrations with no owner. Those with one owner each carry a dated finding.
 - **VK-NPI-07** lists every managed identity with its role assignments, and every user-assigned identity is joined to a record.
 - **VK-NPI-08** lists every agent identity with a sponsor, where the tenant exposes Agent ID. State the availability: Agent ID is generally available in commercial and, with documented gaps, in GCC ([Book 17, Chapter 04](../b17-ai-identity/04-kinds-of-ai-identity.md#release-stage-licensing-and-government-clouds)).
 - Gate owner: the identity governance office, with the CMDB owner signing that the join is complete *(design guidance)*.
-- Requirements: AC-2, IA-4 and CM-8; KSIs KSI-IAM-SNU and KSI-PIY-GIV ([evidence](#evidence)).
+- Requirements: AC-2, IA-4 and CM-8; KSIs KSI-IAM-SNU (AC-2), KSI-IAM-ELP and KSI-IAM-JIT (IA-4), and KSI-PIY-GIV (CM-8) ([evidence](#evidence)).
 :::
 
 <!-- labs:begin try-g1 (generated by scripts/generate_labs.py; not part of the reviewed page) -->
@@ -204,7 +204,7 @@ For every app registration and user-assigned managed identity, export its federa
 
 ## Step 2: Decide each identity's target {#step-2-decide-each-identitys-target}
 
-Each identity ends in one of five places: retire it, convert it to a gMSA (or a dMSA on a Windows Server 2025 domain), or move it to a managed identity, a federated credential or a certificate credential. [Book 02's matrix](../b02-identity/09-building-the-entra-target.md#the-migration-path-matrix) decides by account type and by where the workload runs. Its rule: no stored secrets; managed identities for Azure-hosted workloads; federation where the workload already has a trusted issuer; certificates only where neither applies.
+Each identity ends in one of five places: retire it, convert it to a gMSA (or a dMSA where every host that uses the account runs Windows Server 2025, a Windows Server 2025 domain controller is reachable and the account relies on no unconstrained delegation; [service account guide, Migration B](service-account-migration.md#migration-b)), or move it to a managed identity, a federated credential or a certificate credential. [Book 02's matrix](../b02-identity/09-building-the-entra-target.md#the-migration-path-matrix) decides by account type and by where the workload runs. Its rule: no stored secrets; managed identities for Azure-hosted workloads; federation where the workload already has a trusted issuer; certificates only where neither applies.
 
 | What you found | Where the workload runs | Target |
 |---|---|---|
@@ -212,7 +212,7 @@ Each identity ends in one of five places: retire it, convert it to a gMSA (or a 
 | Traditional account | Azure resource | **Managed identity**, user-assigned preferred |
 | Traditional account calling Microsoft 365 or Entra-protected APIs | A host with an OIDC issuer (GitHub Actions, Kubernetes, Google Cloud, AWS, another OIDC platform) | **App registration with a federated credential** |
 | Traditional account calling Entra-protected APIs | No issuer and not in Azure, such as an on-premises scheduler | **App registration with a certificate**, or a managed identity if the host is Arc-enabled |
-| Traditional account, Kerberos only | On premises | **gMSA**, or a **dMSA** on a Windows Server 2025 domain |
+| Traditional account, Kerberos only | On premises | A **dMSA** where every host that uses the account runs Windows Server 2025, a Windows Server 2025 domain controller is reachable and the account relies on no unconstrained delegation; otherwise a **gMSA** ([decision path](service-account-migration.md#decision-path)) |
 | MSA | On premises | **gMSA**: upgrade first, because an MSA or gMSA can't be migrated to a dMSA |
 | gMSA or dMSA | Staying on premises | **Keep** |
 | gMSA | Hybrid | **Keep the gMSA**, plus an app registration for the cloud calls |
@@ -226,7 +226,7 @@ Microsoft suggests a managed identity instead of an app registration when the se
 
 **Order of work.** High-risk accounts go first: password never expires, or over-privileged ([Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#phase-4-service-account-modernization)).
 
-**Prerequisites for a gMSA.** A gMSA needs a KDS root key, created once for the forest: Learn's Entra page calls it a one-time operation in the forest,[^npi-gmsa-secure] and its containers page says more than one makes gMSAs fail after a password rotation.[^npi-containers] Domain controllers wait up to 10 hours after it's created before they allow a gMSA to be created.[^npi-kds] A gMSA's name must be unique in the forest, its password interval can be set only when it's created, and it can be created by Domain Admins or by an account delegated the right to create `msDS-GroupManagedServiceAccount` objects; each host confirms with `Test-ADServiceAccount` that it can retrieve the password.[^npi-gmsa-manage] In Microsoft Entra Domain Services the root key is pre-created and gMSAs go in a custom OU.[^npi-aadds] Microsoft recommends gMSAs as the account type for on-premises services unless a service doesn't support them, and tells you to test the service with a gMSA before production.[^npi-gmsa-secure] The kinds of service identity compared side by side, and each migration by hand with Learn's commands, are in [*Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities*](service-account-migration.md).
+**Prerequisites for a gMSA.** A gMSA needs a KDS root key, created once for the forest: Learn's Entra page calls it a one-time operation in the forest,[^npi-gmsa-secure] and its containers page says more than one makes gMSAs fail after a password rotation.[^npi-containers] Domain controllers wait up to 10 hours after it's created before they allow a gMSA to be created.[^npi-kds] A gMSA's name must be unique in the forest, its password interval can be set only when it's created, and it can be created by Domain Admins or by an account delegated the right to create `msDS-GroupManagedServiceAccount` objects; each host confirms with `Test-ADServiceAccount` that it can retrieve the password.[^npi-gmsa-manage] In Microsoft Entra Domain Services the root key is pre-created and gMSAs go in a custom OU.[^npi-aadds] Microsoft recommends gMSAs as the account type for on-premises services unless a service doesn't support them, and tells you to test the service with a gMSA before production.[^npi-gmsa-secure] The program uses the delegated right, not Domain Admins: it's delegated on the service-account OU to `DL-gMSA-Creators`, whose only member is the pipeline's gMSA, `gmsa-msapipe`, which runs the approved Chapter 06 plan; Domain Admins are kept for the dMSA steps ([WD-154](../../about/decision-register.md#wd-154), [WD-163](../../about/decision-register.md#wd-163)). Every gMSA and dMSA follows the program's [managed service account standard](service-account-migration.md#msa-standard): its name, OU, retriever group, AES256, outbound-only when it holds no SPN, owners, certification and retirement. The kinds of service identity compared side by side, and each migration by hand with Learn's commands, are in [*Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities*](service-account-migration.md).
 
 ::: {.callout-important}
 ## Validate (G2 Decision)
@@ -234,7 +234,7 @@ Microsoft suggests a managed identity instead of an app registration when the se
 - **VK-NPI-06**: every high-risk AD account (password never expires, or password older than the threshold) is scheduled in the first conversion wave or retired.
 - **VK-NPI-03** lists apps that hold secrets. Each one has a credential target, or an exception record naming why it can't move.
 - Gate owner: the application owner, with the identity governance office.
-- Requirements: AC-2 and IA-5; KSI KSI-IAM-SNU ([evidence](#evidence)).
+- Requirements: AC-2 and IA-5; KSIs KSI-IAM-SNU (AC-2) and KSI-IAM-APM (IA-5) ([evidence](#evidence)).
 :::
 
 <!-- labs:begin try-g2 (generated by scripts/generate_labs.py; not part of the reviewed page) -->
@@ -330,7 +330,7 @@ Steps: for each Tier 1 single-tenant service principal, assign it directly to a 
 - **VK-NPI-05** lists every service principal holding a critical or high Graph application permission, or a privileged directory role. Each row is justified in its record with an approver and a review date, or removed. Read the permission type, not the suffix.
 - **VK-NPI-04** lists single-tenant service principals not assigned directly to a workload identity policy. Pass: no Tier 1 service principal is on the list, and the report-only results have been reviewed before switching to On.
 - **VK-NPI-07**: no managed identity holds Owner, Contributor or User Access Administrator above resource-group scope without a recorded reason.
-- Requirements: AC-6, AC-6(5) and IA-9; KSIs KSI-IAM-ELP, KSI-IAM-JIT and KSI-IAM-SNU ([evidence](#evidence)).
+- Requirements: AC-6, AC-6(5) and IA-9; KSIs KSI-IAM-ELP and KSI-IAM-JIT (AC-6), KSI-IAM-JIT and KSI-IAM-SNU (AC-6(5)), and none for IA-9 ([evidence](#evidence)).
 :::
 
 <!-- labs:begin try-g4 (generated by scripts/generate_labs.py; not part of the reviewed page) -->
@@ -355,8 +355,8 @@ This is [Book 02's Phase 4](../b02-identity/10-migrating-and-governing.md#phase-
    - a managed identity, with its role assignments;
    - a federated credential on the app registration, tested by an actual token exchange;
    - a certificate credential from the vault;
-   - a gMSA installed on the hosts allowed to retrieve it;
-   - or a dMSA on a Windows Server 2025 domain, migrated from the traditional account it replaces. Completing the migration disables the old account and moves its service principal names to the dMSA.[^npi-dmsa]
+   - a gMSA created to the [managed service account standard](service-account-migration.md#msa-standard) (its hosts' domain local group as the only retriever, AES256, outbound-only when it holds no SPN) and installed on those hosts;
+   - or a dMSA where every host that uses the account runs Windows Server 2025, a Windows Server 2025 domain controller is reachable and the account relies on no unconstrained delegation ([service account guide, Migration B](service-account-migration.md#migration-b)), migrated from the traditional account it replaces. Completing the migration disables the old account and moves its service principal names to the dMSA.[^npi-dmsa]
 2. **Give it two human owners and a rotation schedule.**
 3. **Run old and new in parallel for 30 days.** The application uses the new identity, and the legacy account stays enabled. Watch both: the new identity's sign-ins in the Entra service principal sign-in logs, and the legacy account's logons on domain controllers. For a dMSA, the 30 days run between starting and completing the migration. They cover four 7-day ticket lifetimes, which is what Microsoft recommends before completing (at least two).[^npi-dmsa]
 4. **Disable the legacy account.** Don't delete it. For an AD account, disable it and move it to a holding OU. For an app registration losing a secret, remove the secret only after the new credential has carried production traffic.
@@ -364,11 +364,11 @@ This is [Book 02's Phase 4](../b02-identity/10-migrating-and-governing.md#phase-
 
 ::: {.callout-important}
 ## Validate (G5 Conversion)
-- Every high-risk account is converted or retired: **VK-NPI-06** shows none still enabled with password never expires, outside a dated exception.
+- Every high-risk account is converted or retired: **VK-NPI-06** shows none still enabled with password never expires, outside a dated exception, and no finding against the standard's settings for the gMSAs and dMSAs the wave created.
 - **VK-NPI-03** shows the converted apps no longer hold secrets.
 - New identities authenticate without stored secrets where possible, there was no service disruption during the parallel run, and workload identity policies are enforced. These are Book 02's validation criteria.
 - Rollback: re-enable the legacy account and revert the application's configuration (Book 02, same phase). Rollback stays possible until Step 6 deletes the account.
-- Requirements: IA-5, IA-9 and AU-2; KSIs KSI-IAM-SNU and KSI-MLA-LET ([evidence](#evidence)).
+- Requirements: IA-5, IA-9 and AU-2; KSIs KSI-IAM-APM (IA-5, with KSI-IAM-SNU for certificates through IA-5(2)), none for IA-9, and KSI-MLA-LET (AU-2) ([evidence](#evidence)).
 :::
 
 <!-- labs:begin try-g5 (generated by scripts/generate_labs.py; not part of the reviewed page) -->
@@ -412,6 +412,7 @@ An application is orphaned when it has no named owner in the registry or the Own
 - Microsoft recommends reviewing owners every few months, and monitoring so that every app has at least two owners where possible ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#ownership)).
 - Each attestation covers four things: the owners are still valid, the permissions are still needed, unused credentials are removed, and the record matches ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#governing-app-registrations)).
 - Service principals in privileged roles also get the PIM access reviews from [Step 4b](#directory-roles).
+- AD service accounts, gMSAs and dMSAs are certified by their two owners in a SailPoint certification campaign on the risk tier's cadence: quarterly for R1, twice a year for R2 and annually for R3. The owners confirm that the account is still needed, its owners and sponsor, its retriever group's members and its SPNs, and that it's in no privileged group; a revoke opens a ServiceNow task ([WD-166](../../about/decision-register.md#wd-166); the standard's [step S8](service-account-migration.md#msa-standard-steps)).
 
 ### Decommissioning: disable first, then delete
 
@@ -419,7 +420,7 @@ The books' rule is to deactivate first so that nothing breaks silently, then rev
 
 | Identity | Disable | Then delete |
 |---|---|---|
-| AD account or gMSA | Disable; remove SPNs only after the observation period; log the decision | Delete after the observation window. Check for SPN dependencies first ([Book 06, R02](../b06-data-platform/r02-estate-discovery-and-consolidation-gate.md)) and for LDAP-bind dependencies ([Book 06, R08](../b06-data-platform/r08-application-chain-and-connection-strings.md)) |
+| AD account or gMSA | Disable and move it to the holding OU; log the decision. SPNs depend on why it's going: a migration moves them to the replacement at the switch, because an SPN has one owner ([service account guide, A5](service-account-migration.md#migration-a)); a retirement with no replacement leaves them on the disabled account until the 90-day window ends | Delete 90 days after it's disabled, with no sign-in seen in that time, through the decommission ticket ([WD-167](../../about/decision-register.md#wd-167)). Check for SPN dependencies first ([Book 06, R02](../b06-data-platform/r02-estate-discovery-and-consolidation-gate.md)) and for LDAP-bind dependencies ([Book 06, R08](../b06-data-platform/r08-application-chain-and-connection-strings.md)) |
 | App registration (all tenants) | **Deactivate.** New tokens stop at once; existing tokens stay valid until they expire; configuration is kept. Remove other owners first, so only an administrator can reactivate it[^npi-deactivate] | Delete: soft-deleted and restorable for 30 days.[^npi-restore-app] Multitenant app objects aren't hard-deleted automatically after 30 days and must be removed by hand[^npi-recover] |
 | Service principal (this tenant) | Set **Enabled for users to sign-in?** to No (`accountEnabled=false`), which blocks tokens in this tenant only[^npi-deactivate] | Delete. A restore brings the configuration back except its policies, such as Conditional Access[^npi-restore-sp] |
 | User-assigned managed identity | Remove its role assignments | Delete the Azure resource. Soft-deleted managed identity service principals can't be recovered by customers[^npi-restore-sp] |
@@ -436,7 +437,7 @@ In the Entra audit log, a deactivation or reactivation appears as **Update appli
 - **VK-NPI-08**: no agent identity without a confirmed sponsor beyond the ten-business-day grace period ([Book 17, Chapter 05](../b17-ai-identity/05-owners-sponsors-and-lifecycle.md#when-the-sponsor-moves-or-leaves)).
 - **VK-NPI-09** (*optional, preview*; off by default, run it with `-IncludePreview`): every service principal with no sign-in in N days (the program uses 90, *design guidance*) is in an orphan or decommission ticket. The check is preview because its API is.
 - One test owner change and one test decommission have run end to end and left their records.
-- Requirements: AC-2(3), AC-6(7), AU-6 and CA-7; KSIs KSI-IAM-AAM, KSI-MLA-RVL and KSI-MLA-EVC ([evidence](#evidence)).
+- Requirements: AC-2(3), AC-6(7), AU-6 and CA-7; KSIs KSI-IAM-AAM, IAM-JIT and IAM-SUS (AC-2(3)), KSI-IAM-AAM and IAM-JIT (AC-6(7)), KSI-MLA-RVL (AU-6) and KSI-MLA-EVC (CA-7) ([evidence](#evidence)).
 :::
 
 <!-- labs:begin try-g6 (generated by scripts/generate_labs.py; not part of the reviewed page) -->
@@ -460,7 +461,7 @@ SQL Server follows the same logic, and [Book 06](../b06-data-platform/index.md) 
 - **The engine's service account.** A gMSA or domain service account works only while AD is authoritative ([Book 06, Chapter 02](../b06-data-platform/02-why-the-inheritance-must-end.md#driver-three-the-service-account-credential-problem)). Arc doesn't replace the Windows account the service runs as. It changes the identity Entra ID and Azure see ([Book 06, Chapter 09](../b06-data-platform/09-what-arc-provides-to-sql-server.md#the-managed-identity-and-the-service-account)).
 - **The instance's Entra identity.** On SQL Server 2025 it's the Arc server's system-assigned managed identity, with no credential to manage. On SQL Server 2022 it's an app registration whose Key Vault certificate rotates automatically only when both the certificate and the app registration are service-managed, and otherwise needs a named renewal owner (same section). [Runbook R04](../b06-data-platform/r04-arc-deployment-and-managed-identity.md) deploys it.
 - **Application principals.** ETL, reporting and API back ends replace SQL Authentication logins with `FROM EXTERNAL PROVIDER` logins for Entra applications: a managed identity first, a certificate in Key Vault where a credential is unavoidable, and a client secret only as a documented exception ([Book 06, Chapter 11](../b06-data-platform/11-three-principal-types.md#type-3-entra-service-principal-login)).
-- **The same parallel run.** Create, validate, disable, observe for 30 days with audit evidence, then drop ([Book 06, Chapter 11](../b06-data-platform/11-three-principal-types.md#the-parallel-run-migration-pattern)). [Chapter 19](../b06-data-platform/19-connection-string-migration.md) covers connection strings.
+- **The same parallel run, for SQL logins and database principals.** Create the new login, validate it, disable the old SQL login, observe for 30 days with audit evidence, then drop it ([Book 06, Chapter 11](../b06-data-platform/11-three-principal-types.md#the-parallel-run-migration-pattern)). It's the database side of Step 5's 30-day parallel run: the old login is dropped after its 30 days, while an AD service account the change replaces is disabled after its own 30-day run and deleted only after 90 days disabled ([WD-167](../../about/decision-register.md#wd-167)). [Chapter 19](../b06-data-platform/19-connection-string-migration.md) covers connection strings.
 
 Join every SQL application principal to its record in Step 1, and run VK-NPI-02 and VK-NPI-05 over them like any other service principal.
 
@@ -545,7 +546,7 @@ A finding this page addresses is ready for closure when every applicable state h
 |---|---|---|
 | **The owner is a credential holder** | Every name in Owners can add a credential and act as the app ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#ownership)) | Owners hold only the two people who configure the app; business approvers go in the registry; lock sensitive properties |
 | **"Disabled" isn't revoked** | Tokens already issued stay valid after deactivation or grant removal[^npi-deactivate] ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#admin-consent)) | For an incident, deactivate and also rotate or remove credentials; plan for the token lifetime |
-| **Deleting too soon** | A deleted service principal's restore doesn't bring back its Conditional Access policies; managed identity service principals can't be restored by customers[^npi-restore-sp] | Disable first; delete after the observation period with the decision recorded |
+| **Deleting too soon** | A deleted service principal's restore doesn't bring back its Conditional Access policies; managed identity service principals can't be restored by customers[^npi-restore-sp] | Disable first; delete after the observation period with the decision recorded (90 days for an AD service account, [WD-167](../../about/decision-register.md#wd-167)) |
 | **A renewed certificate nobody uploaded** | The vault renews; the app registration keeps the old certificate and fails at expiry[^npi-sql-rotate] | Automate the upload; VK-NPI-02 at 60 days |
 | **Federation trusts too much** | A broad subject lets every workload on that issuer in; a wrong subject fails only at runtime ([Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#workload-identity-federation)) | Exact subjects per branch or environment; approve each credential as a change; test the exchange |
 | **One managed identity, many processes** | On an Arc server every permitted process presents the same principal ([Book 06, Chapter 11](../b06-data-platform/11-three-principal-types.md#type-3-entra-service-principal-login)) | Treat one login per server as the unit of attribution; keep the local group small |
@@ -561,11 +562,11 @@ The mapping is the program's, from the books cited. Where a book maps a control,
 
 | Requirement | Gate | What this track does | Evidence to file | KSI it aligns to | Book |
 |---|---|---|---|---|---|
-| AC-2 Account Management; AC-2(3) Disable Accounts | G1, G6 | Non-person identities are a defined account type with an owner and a sponsor; orphaned and retired identities are disabled | The Step 1 record; owner-change and decommission tickets; VK-NPI-01 and VK-NPI-08 runs | KSI-IAM-SNU, KSI-IAM-JIT (AC-2); KSI-IAM-AAM (AC-2(3)) | [Book 17, App. A](../b17-ai-identity/appendix-a-requirements-mapping.md#account-management-and-access-ac); [Book 02, Ch. 10](../b02-identity/10-migrating-and-governing.md#compliance-manager-and-the-fedramp-20x-indicators) |
-| AC-6 Least Privilege; AC-6(5) Privileged Accounts; AC-6(7) Review | G4, G6 | Scoped grants; no standing privileged roles; reviews of privileged service principals | VK-NPI-05 and VK-NPI-07 runs with justifications; PIM access review results | KSI-IAM-ELP, KSI-IAM-JIT (AC-6); KSI-IAM-SNU (AC-6(5)); KSI-IAM-AAM (AC-6(7)) | [Book 17, App. A](../b17-ai-identity/appendix-a-requirements-mapping.md#account-management-and-access-ac); [Book 02, App. A](../b02-identity/appendix-a-federal-requirements-crosswalk.md#nist-sp-800-53-rev.-5-control-mapping) |
+| AC-2 Account Management; AC-2(3) Disable Accounts | G1, G6 | Non-person identities are a defined account type with an owner and a sponsor; orphaned and retired identities are disabled | The Step 1 record; owner-change and decommission tickets; VK-NPI-01 and VK-NPI-08 runs | KSI-IAM-SNU, KSI-IAM-JIT (AC-2); KSI-IAM-AAM, IAM-JIT, IAM-SUS (AC-2(3)) | [Book 17, App. A](../b17-ai-identity/appendix-a-requirements-mapping.md#account-management-and-access-ac); [Book 02, Ch. 10](../b02-identity/10-migrating-and-governing.md#compliance-manager-and-the-fedramp-20x-indicators) |
+| AC-6 Least Privilege; AC-6(5) Privileged Accounts; AC-6(7) Review | G4, G6 | Scoped grants; no standing privileged roles; reviews of privileged service principals | VK-NPI-05 and VK-NPI-07 runs with justifications; PIM access review results | KSI-IAM-ELP, KSI-IAM-JIT (AC-6); KSI-IAM-JIT, IAM-SNU (AC-6(5)); KSI-IAM-AAM, IAM-JIT (AC-6(7)) | [Book 17, App. A](../b17-ai-identity/appendix-a-requirements-mapping.md#account-management-and-access-ac); [Book 02, App. A](../b02-identity/appendix-a-federal-requirements-crosswalk.md#nist-sp-800-53-rev.-5-control-mapping) |
 | IA-4 Identifier Management | G1 | Each identity has its own identifier, joined to its record and never reused | The record, keyed by object ID and system ID | KSI-IAM-ELP, KSI-IAM-JIT | [Book 17, App. A](../b17-ai-identity/appendix-a-requirements-mapping.md#identification-and-authentication-ia) |
 | CM-8 System Component Inventory | G1 | Every non-person identity is in one register, joined to the system inventory or CMDB | The Step 1 record; VK-NPI-06 and VK-NPI-07 runs | KSI-PIY-GIV | [Book 13, App. A](../b13-governance/appendix-a-requirements-mapping.md) |
-| IA-5 Authenticator Management; IA-5(2) | G2, G3, G5 | Managed identities and federation first; certificates in a vault and rotated; no new secrets | The application management policy export; VK-NPI-02 and VK-NPI-03 runs; the rotation calendar | KSI-IAM-SNU, KSI-SVC-ASM (IA-5(2)) | Same; [Book 04, Ch. 05](../b04-access/05-applications-and-workload-identities.md#governing-app-registrations) |
+| IA-5 Authenticator Management; IA-5(2) | G2, G3, G5 | Managed identities and federation first; certificates in a vault and rotated; no new secrets | The application management policy export; VK-NPI-02 and VK-NPI-03 runs; the rotation calendar | KSI-IAM-APM (IA-5); KSI-IAM-SNU, KSI-SVC-ASM (IA-5(2)) | Same; [Book 04, Ch. 05](../b04-access/05-applications-and-workload-identities.md#governing-app-registrations) |
 | SC-12 Cryptographic Key Establishment and Management; SC-17 Public Key Infrastructure Certificates | G3 | Workload certificates come from the vault and are renewed with an owner's approval | The rotation plan and its applied changes; VK-NPI-02 runs | KSI-SVC-ASM | [Book 13, App. A](../b13-governance/appendix-a-requirements-mapping.md); [Book 07](../b07-pki/index.md) |
 | IA-9 Service Identification and Authentication (in no baseline, so tailored in) | G4, G5 | Services and workloads authenticate as themselves to Entra ID | Graph permission grants per workload identity; the service principal sign-in log | None: no indicator lists IA-9 | [Book 17, App. A](../b17-ai-identity/appendix-a-requirements-mapping.md#identification-and-authentication-ia); [companion guide](attribute-driven-migration.md#federal-requirements) |
 | CM-3 Configuration Change Control | G3 to G6 | Every write is a reviewed plan, approved by its SHA-256, sent by a person and recorded | The approved plan; the apply run's manifest | KSI-CMT-LMC, KSI-CMT-RVP | [Book 13, App. A](../b13-governance/appendix-a-requirements-mapping.md) |
@@ -576,6 +577,8 @@ The mapping is the program's, from the books cited. Where a book maps a control,
 | CISA SCuBA MS.AAD.9.1v1, risky AI agents blocked: marked as a BOD 25-01 requirement in ScubaGear but not on CISA's Required Configurations page on October 26, 2026 | [AI agents](#ai-agents) | Recorded per tenant now; enforced when the agent risk condition is generally available in the agency's cloud | ScubaGear result | KSI-IAM-ELP, through AC-3 (design guidance) | [Book 17, Ch. 06](../b17-ai-identity/06-credentials-and-least-privilege.md#enforcing-the-order) |
 
 : Evidence for the non-person identity track {.striped .hover}
+
+The indicators for IA-4, IA-5, IA-9, AC-2(3), AC-6(5), AC-6(7) and AU-6 are the ones in [Book 13, Appendix A](../b13-governance/appendix-a-requirements-mapping.md#controls-behind-service-accounts-and-other-non-person-identities), the workbook's one control-to-indicator table, re-read from FedRAMP on November 20, 2026 ([WD-169](../../about/decision-register.md#wd-169)); where a row here differs, that table governs.
 
 KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column names the indicators whose related controls, as FedRAMP lists them, include the row's control or one of its enhancements; which evidence supports which indicator is the program's mapping (design guidance).[^npi-ksi] The agency authorizes its own system and lines this evidence up with what its providers report against KSIs; it doesn't report KSIs itself ([Book 00, Appendix B](../b00-orientation/appendix-b-engagement-archetype.md)).
 
