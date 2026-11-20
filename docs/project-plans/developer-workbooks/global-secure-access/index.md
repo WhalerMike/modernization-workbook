@@ -19,8 +19,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 695800734f5c614fc6df108bb68700b793aea794c21628e343f6962c8f394361
-last-reviewed: 2026-11-18
+reviewed-sha256: 3a187491108f215e8f246ad61c824eb978bc0e60a04e8d30b21eacec45f7458b
+last-reviewed: 2026-11-20
 ---
 # Building Global Secure Access {.unnumbered}
 

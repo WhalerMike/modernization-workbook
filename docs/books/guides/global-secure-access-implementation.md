@@ -12,8 +12,8 @@ research-status: draft
 research-type: implementation guide
 research-book: "Book 09"
 review-status: approved
-reviewed-sha256: c2b29e7d04892652e3a394deaf730c54b4afe47d53e3a8340d0f10081c2d8215
-last-reviewed: 2026-11-18
+reviewed-sha256: 0ba89b6a9d84e0367bd92a9d57d33dfab2a38da43560615cad23f69976e9e76c
+last-reviewed: 2026-11-20
 ---
 # Global Secure Access & Zero Trust Network Engineering: An Implementation Guide
 
