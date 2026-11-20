@@ -121,12 +121,12 @@ const HOW = "How to roll it out and evidence it";
     { text: "BOOK REVIEW STATUS: APPROVED.  ", options: { bold: true, color: HEX.teal } },
     { text: "Not part of Release 2.0, the baseline edition." },
   ], { x: 1.0, y: 0.6, w: 7.05, h: 0.65, fontSize: 14, valign: "middle", color: HEX.ink });
-  D.agenda(s, 0.8, 4.7, 6.6);
+  D.agenda(s, 0.8, 4.8, 6.6);
   txt(s, "Series line", [
     { text: "Federal Modernization Workbook", options: { bold: true, color: HEX.navy, breakLine: true } },
     { text: "A 15-minute briefing for CIOs, CISOs, data owners, privacy officials and ISSOs", options: { color: HEX.slate } },
   ], { x: 0.8, y: 5.6, w: 8.6, h: 0.8, fontSize: 16 });
-  narrate(s, T, "index (Status — draft book); Chapter 01 — Data Inventory and Classification (opening).");
+  narrate(s, T, "index (Status: approved); Chapter 01 — Data Inventory and Classification (opening).");
 }
 
 // ------------------------------------------------------------------ Why 1
@@ -342,7 +342,7 @@ const HOW = "How to roll it out and evidence it";
   callout(s, "Read", 5.3, 1.2, "FaLandmark", HEX.navy, "Read on Microsoft Learn on November 11, 2026: ",
     "where a feature is in development or not yet specified for GCC, the decision record carries it and the tenant treats the feature as unavailable.");
   sources(s, "Sources: Microsoft Learn (Plan for Microsoft Purview: GCC deployments; Microsoft Purview service description), Nov. 11, 2026. Book 20, Chapters 01–12.");
-  narrate(s, T, "index (Status — draft book); Chapter 01 (Government-cloud availability for the inventory; Decision record template); Chapters 03, 04, 06, 08, 09 and 10 (Prerequisites, availability tables); Chapter 11 (Prerequisites); Chapter 12 (Reassessment and the assessor's package).");
+  narrate(s, T, "index (Status: approved); Chapter 01 (Government-cloud availability for the inventory; Decision record template); Chapters 03, 04, 06, 08, 09 and 10 (Prerequisites, availability tables); Chapter 11 (Prerequisites); Chapter 12 (Reassessment and the assessor's package).");
 }
 
 // ------------------------------------------------------------------ Who
@@ -438,7 +438,7 @@ const HOW = "How to roll it out and evidence it";
   callout(s, "Next", 5.15, 1.4, "FaRoute", HEX.navy, "Next step, before anyone sees a label: ",
     "draft the class register and the decision records, run a dated inventory with what the tenant already licenses, and confirm each feature for the agency's own cloud.");
   sources(s, "Sources: 32 CFR Part 2002; Microsoft Learn (Learn about sensitivity labels; Purview government planning pages), read Nov. 11, 2026. Book 20, Chapters 01–12.");
-  narrate(s, T, "Chapters 01 (Key takeaways; Decision record template), 02 and 03 (Key takeaways), 05 (Decide: activation, onboarding and recovery), 11 (The AI data decisions) and 12 (Operating cadence; Key takeaways); index (Status — draft book).");
+  narrate(s, T, "Chapters 01 (Key takeaways; Decision record template), 02 and 03 (Key takeaways), 05 (Decide: activation, onboarding and recovery), 11 (The AI data decisions) and 12 (Operating cadence; Key takeaways); index (Status: approved).");
 }
 
 // ------------------------------------------------------------------ Backup

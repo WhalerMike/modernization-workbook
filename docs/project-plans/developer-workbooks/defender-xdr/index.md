@@ -15,7 +15,6 @@ listing:
     sort: "series-order asc"
     sort-ui: false
     filter-ui: false
-status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
@@ -28,8 +27,8 @@ last-reviewed: 2026-11-18
 *A developer workbook for the Defender XDR implementation guide*
 
 ::: {.callout-important appearance="default"}
-## Status: draft, waiting for the owner's review
-All nine chapters are written, and every page waits for the owner's review; until a page is approved it is listed in the weekly source watch issue. Chapter 09, the deployment runbook, hasn't been run against a live tenant. Every external claim was checked against Microsoft Learn (on November 11, 2026 for the guide, and again on November 17, 2026 for the pages this workbook adds), NIST's OSCAL catalog or fedramp.gov, and each chapter keeps its verification log in the repository. The code is illustrative: its tests pass against fictional fixtures and stand-in runners, and it has not been run against a production tenant. A story deck and a narrated tour for each chapter are planned.
+## Status: approved
+All nine chapters are written and approved. An approved page that changes goes back on the weekly source watch issue's list for review. Chapter 09, the deployment runbook, hasn't been run against a live tenant. Every external claim was checked against Microsoft Learn (on November 11, 2026 for the guide, and again on November 17, 2026 for the pages this workbook adds), NIST's OSCAL catalog or fedramp.gov, and each chapter keeps its verification log in the repository. The code is illustrative: its tests pass against fictional fixtures and stand-in runners, and it has not been run against a production tenant. Every chapter has a narrated tour, listed under *Narrated chapter tours* below, and the story deck *One Office Macro, End to End* is listed under *The pieces and how they connect*.
 :::
 
 The [Defender XDR implementation guide](../../../books/guides/defender-xdr-implementation.md) turns a Defender license into defended endpoints in ten gates: access, onboarding, prevention, Attack Surface Reduction, exposure, incidents, detections, identity signals, automation, and operations and evidence. Each gate says what to configure, what to validate with a Learn command or query, and what the ISSO keeps. It doesn't build the software that runs those checks every week, compares them with the agency's plans, and keeps the evidence.
