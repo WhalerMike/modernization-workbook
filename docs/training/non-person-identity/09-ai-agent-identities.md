@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Books 04, 17"
 series-order: 9
 review-status: approved
-reviewed-sha256: 4e5fa05163decfff83574981e9413dc3dbb207f706cd3293518fd8f659dfba8a
-last-reviewed: 2026-11-18
+reviewed-sha256: d6792ba22c481b777249f2ed1a815195059dea8b60fa06972ba3c148cad85feb
+last-reviewed: 2026-11-20
 ---
 # Module 9: Govern AI agent identities {.unnumbered}
 

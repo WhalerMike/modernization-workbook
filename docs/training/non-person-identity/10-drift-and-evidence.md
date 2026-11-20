@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Books 02, 04, 17"
 series-order: 10
 review-status: approved
-reviewed-sha256: 776f8f55f114b97a9a299e32ec58f61343b11e9c94323ab8886f71a4516d93f7
-last-reviewed: 2026-11-18
+reviewed-sha256: 259520add5d855df296f51e8a267ea1e6b5515a8c4d8b0da3701b10f051745be
+last-reviewed: 2026-11-20
 ---
 # Module 10: Find drift and file the evidence {.unnumbered}
 
