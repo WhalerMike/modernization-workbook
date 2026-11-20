@@ -6,7 +6,7 @@
 |---|---|
 | Introduction | Title; a landing zone isn't a defense on its own; learning objectives and prerequisites |
 | Concepts | The books design and the guide engineers; labels, Skipped not Fail, and the order; the landing-zone security baseline in audit; the exposure register from Resource Graph; GCC on commercial Azure, service by service; the same controls on AWS, Google Cloud and Oracle Cloud Infrastructure |
-| Lab | Lab 2 steps 1 to 7 in a test subscription: sign in, the initiatives, platform logs, the four inventory queries, ownerless rows, back out (the module has no Lab 1, because the guide has no kit yet; the lab wasn't run by the authors) |
+| Lab | Lab 2 steps 1 to 7 in a test subscription: sign in, the initiatives, platform logs, the four inventory queries, ownerless rows, back out (the lab wasn't run by the authors). The module's Lab 1 runs the kit on fictional fixtures, in [*Building Azure Security*](../../docs/project-plans/developer-workbooks/azure-security/index.md), Chapters 01 and 02, Lab 1; the deck doesn't repeat it |
 | Check and summary | The federal requirement (CM-2, CM-6, CA-7, CM-8, SC-7) and evidence; two knowledge-check questions with answers; the summary and Module 2 |
 
 | File | Use |
@@ -18,7 +18,7 @@
 | `narration_Training_AZS_Module_1/` | `durations.json`, `sentences.json` and the per-slide caption tracks (the MP3s go on the edition's Release, not in git) |
 | `build.js` | The slides and their notes |
 
-The narrated deck, its MP4 and the plain deck aren't published yet: they come with the next edition, and the module page links the video once it is on the videos Release. The narration runs about 13 minutes.
+The MP4 and its captions are on the videos Release, and the [module page](../../docs/training/azure-security/01-the-baseline-and-the-exposure-register.md) links the video. The narrated deck and the plain deck come with the next edition. The narration runs about 13 minutes.
 
 Build (Git Bash): `source /c/tmp/deckenv.sh`, then `FIT=1 node presentations/training-azs-module-1/build.js presentations/training-azs-module-1/Training_AZS_Module_1.pptx`. Then `link_sources.py`, `narrate.py` and `captions.py`, and on a workstation where PowerPoint is free, `qa_export.ps1`, `build_narrated.ps1` and `export_mp4.ps1`, as in the kit's README. The build runs the shared checks: title length and uniqueness, Sources length, neutrality, and overflow warnings, including the code panel's width and height.
 

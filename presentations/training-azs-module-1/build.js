@@ -2,7 +2,7 @@
 // Teaches docs/training/azure-security/01-the-baseline-and-the-exposure-register.md, Learn-style: objectives, the concepts
 // (how the guide divides the work with the books, its labels and order, the landing-zone security baseline, the public
 // exposure inventory, where agencies are and the other clouds), the lab's exact commands in a test subscription (not run
-// by the authors, as the page says; the module has no Lab 1), the federal requirement and evidence, a two-question check,
+// by the authors, as the page says; the module's Lab 1 is in the developer workbook), the federal requirement and evidence, a two-question check,
 // and the summary. Every fact comes from the module page and the Azure Security Engineering implementation guide it sends
 // the learner to (How to read this guide, Where each topic is covered, Steps 1 and 2, Availability in commercial Azure, The
 // same controls on AWS, Google Cloud and Oracle Cloud, and their footnotes); the deck adds none.
@@ -240,7 +240,7 @@ endModule(SC);
   line(s, "Expect", "Expected (the guide's Validate): the initiatives in DoNotEnforce; each resource has a diagnostic setting to the workspace.", c + 0.2, 0.5, 13.5);
   sources(s, "Sources: Module 1, \"Exercise: Lab 2,\" steps 1 to 4; Guide, Prerequisites, Step 1.");
   notes(s,
-`The lab runs the guide's own checks in a test subscription, never production. The guide has no kit or developer workbook yet, so there's no fixture lab; this is Lab 2, and the authors haven't run it. You need a test subscription where someone has applied Step 1 to a pilot management group, and Reader on that group. Values you supply are in angle brackets. Step one signs in to the cloud the subscription lives in and adds the two Azure C L I extensions the guide needs. Step two lists the policy assignments at the pilot group. The guide's Validate step says you should see the initiatives in do-not-enforce mode. Step three lists the platform resources that need a diagnostic setting: firewalls, application gateways, Front Door profiles, key vaults and public I Ps. Step four takes one of them and lists its diagnostic settings. Each should send its logs to the platform team's workspace; one with none is a gap for the platform owner.`,
+`The lab runs the guide's own checks in a test subscription, never production. Lab 1, on the module page, runs the kit on fictional fixtures with no subscription, in the developer workbook, Building Azure Security. This is Lab 2, and the authors haven't run it. You need a test subscription where someone has applied Step 1 to a pilot management group, and Reader on that group. Values you supply are in angle brackets. Step one signs in to the cloud the subscription lives in and adds the two Azure C L I extensions the guide needs. Step two lists the policy assignments at the pilot group. The guide's Validate step says you should see the initiatives in do-not-enforce mode. Step three lists the platform resources that need a diagnostic setting: firewalls, application gateways, Front Door profiles, key vaults and public I Ps. Step four takes one of them and lists its diagnostic settings. Each should send its logs to the platform team's workspace; one with none is a gap for the platform owner.`,
   `${M} — "Exercise: Lab 2, a test subscription," "You need," steps 1 to 4.`);
 }
 
@@ -321,11 +321,11 @@ endModule(SS);
 // ================================================================== Backup
 backup();
 sourceSlide("Sources: Module 1 deck", [
-  "Module page: docs/training/azure-security/01-the-baseline-and-the-exposure-register.md (Azure Security Engineering learning path, Module 1), a draft; the path's verification log is docs/training/azure-security/_verification/learning-path.md.",
+  "Module page: docs/training/azure-security/01-the-baseline-and-the-exposure-register.md (Azure Security Engineering learning path, Module 1), approved; the path's verification log is docs/training/azure-security/_verification/learning-path.md.",
   "Azure Security Engineering (implementation guide): How to read this guide; Where each topic is covered; Prerequisites; Availability in commercial Azure; The same controls on AWS, Google Cloud and Oracle Cloud; Steps 1 and 2. Its footnotes carry each source, read November 11, 2026: Microsoft Learn, Protect your resource hierarchy; Azure Policy assignment structure; Starter Resource Graph query samples; Secure your Azure DDoS Protection deployment; AWS, Google Cloud and Oracle documentation.",
   "Cloud Boundary and Landing Zone, Chapters 05, 07 and 08; Security Operations and Telemetry, Chapter 08; Zero Trust and Assessment, Chapter 10.",
   "NIST SP 800-53 Rev. 5 (CM-2, CM-6, CA-7, CM-8, SC-7); FedRAMP 20x KSIs, as the guide's requirements table maps them.",
-  "The lab's commands are the page's, with its placeholders; the module has no Lab 1, and the lab wasn't run by the authors.",
+  "Lab 2's commands are the page's, with its placeholders, and the lab wasn't run by the authors. Lab 1 runs the kit on fictional fixtures: Building Azure Security, Chapters 01 and 02, Lab 1; the deck doesn't repeat it.",
 ]);
 
 finish(OUT);

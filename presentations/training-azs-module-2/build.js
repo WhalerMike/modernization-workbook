@@ -2,7 +2,7 @@
 // narrated deck. Teaches docs/training/azure-security/02-ddos-protection-and-the-waf.md, Learn-style: objectives, the
 // concepts (the DDoS tiers and their limits, the plan, logs, alert and exercise; the WAF from detection to prevention, the
 // Zero Trust checks, the rule set, rate limit, tuning and rollback, Front Door), where agencies are, the lab's exact
-// commands in a test subscription (not run by the authors, as the page says; the module has no Lab 1), the federal
+// commands in a test subscription (not run by the authors, as the page says; the module's Lab 1 is in the developer workbook), the federal
 // requirement and evidence, a two-question check, and the summary. Every fact comes from the module page and the Azure
 // Security Engineering implementation guide it sends the learner to (Steps 3 and 4, Availability in commercial Azure, The
 // same controls on AWS, Google Cloud and Oracle Cloud, and their footnotes) or the path's verification log; the deck adds
@@ -321,11 +321,11 @@ endModule(SS);
 // ================================================================== Backup
 backup();
 sourceSlide("Sources: Module 2 deck", [
-  "Module page: docs/training/azure-security/02-ddos-protection-and-the-waf.md (Azure Security Engineering learning path, Module 2), a draft; the path's verification log is docs/training/azure-security/_verification/learning-path.md.",
+  "Module page: docs/training/azure-security/02-ddos-protection-and-the-waf.md (Azure Security Engineering learning path, Module 2), approved; the path's verification log is docs/training/azure-security/_verification/learning-path.md.",
   "Azure Security Engineering (implementation guide): Steps 3 and 4; Availability in commercial Azure; The same controls on AWS, Google Cloud and Oracle Cloud; Dangers. Its footnotes carry each source, read November 11, 2026: Microsoft Learn, About Azure DDoS Protection tier comparison; What is Azure DDoS Protection?; DDoS Network Protection CLI quickstart; Secure your Azure DDoS Protection deployment; DDoS Protection cost optimization principles; DDoS simulation testing; Supported metrics for public IPs; Azure network security Zero Trust recommendations; Zero Trust recommendations for Application Gateway WAF; az network application-gateway waf-policy; rate limit custom rules; Secure your Azure Application Gateway; Application Gateway WAF FAQ; WAF troubleshooting; Azure Verified Modules.",
   "Read for the lab, November 13, 2026: Microsoft Learn, Diagnostic logs for Application Gateway; Azure CLI, az monitor log-analytics.",
   "NIST SP 800-53 Rev. 5 and SP 800-53B (SC-5, SI-4, SC-7, SI-10); FIPS 200; FedRAMP 20x KSIs, as the guide's requirements table maps them.",
-  "The lab's commands are the page's, with its placeholders; the module has no Lab 1, and the lab wasn't run by the authors.",
+  "Lab 2's commands are the page's, with its placeholders, and the lab wasn't run by the authors. Lab 1 runs the kit on fictional fixtures: Building Azure Security, Chapters 03 and 04, Lab 1; the deck doesn't repeat it.",
 ]);
 
 finish(OUT);
