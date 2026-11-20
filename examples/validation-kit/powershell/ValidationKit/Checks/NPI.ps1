@@ -246,11 +246,75 @@ function Invoke-VkNpi05 {
     }
 }
 
+# Privileged built-in groups a managed service account must not be a direct member of.
+$script:VkPrivilegedAdGroups = @('Domain Admins', 'Enterprise Admins', 'Administrators', 'Schema Admins', 'Account Operators', 'Backup Operators', 'Server Operators', 'Print Operators')
+
+function Get-VkAdCommonName {
+    # The first RDN value of a distinguished name (CN=DL-gMSA-web-Hosts,OU=... -> DL-gMSA-web-Hosts); a plain name is returned as is.
+    param([string]$Value)
+    if ($Value -match '^(?:CN|OU)=((?:\\,|[^,])+)') { return ($Matches[1] -replace '\\,', ',') }
+    $Value
+}
+
+function Test-VkAes256Only {
+    # KerberosEncryptionType as Get-ADServiceAccount gives it ('AES256', 'AES128, AES256'), a list,
+    # or the msDS-SupportedEncryptionTypes number (low five bits: DES-CBC-CRC 1, DES-CBC-MD5 2, RC4 4, AES128 8, AES256 16).
+    param($Value)
+    if ($null -eq $Value) { return $false }
+    $items = @($Value | ForEach-Object { "$_" -split '[,\s]+' } | Where-Object { $_ })
+    if ($items.Count -eq 1 -and $items[0] -match '^\d+$') { return (([int64]$items[0]) -band 0x1F) -eq 0x10 }
+    $set = @($items | ForEach-Object { $_.ToUpperInvariant() } | Sort-Object -Unique)
+    ($set.Count -eq 1) -and ($set[0] -eq 'AES256')
+}
+
+function Get-VkManagedAccountIssue {
+    <#
+    The VK-NPI-06 rules for a gMSA or dMSA. Returns @{ Finding = @(...); Warn = @(...) }.
+    gMSA only (decisions scoped to gMSAs): the retriever group (WD-160) and the service-account OU (WD-161).
+    gMSA and dMSA: the name (WD-159), the password interval, AES256 only, privileged group membership.
+    WD-154's outbound-only rule isn't checked: Learn documents -RestrictToOutboundAuthenticationOnly
+    as a New-ADServiceAccount switch but names no attribute that records it, so it can't be read back.
+    #>
+    param($Account, [string]$ServiceAccountOU)
+    $class = "$($Account.ObjectClass)"
+    $isGmsa = $class -eq 'msDS-GroupManagedServiceAccount'
+    $finding = @(); $warn = @()
+
+    $name = "$($Account.SamAccountName)" -replace '\$$', ''
+    $prefix = if ($isGmsa) { 'gmsa' } else { 'dmsa' }
+    if ($name -notmatch "^$prefix-[A-Za-z0-9][A-Za-z0-9-]*$") { $warn += "Name not $prefix-<app> (WD-159)" }
+    if ($name.Length -gt 15) { $warn += "Name $($name.Length) characters before the `$ (WD-159 maximum 15)" }
+
+    $interval = Get-VkValue $Account 'ManagedPasswordIntervalInDays'
+    if (Test-VkBlank $interval) { $warn += 'Password change interval unknown' }
+    elseif ([int]$interval -ne 30) { $warn += "Password change interval $([int]$interval) days, not 30 (set only at creation)" }
+
+    if (-not (Test-VkAes256Only (Get-VkValue $Account 'KerberosEncryptionType'))) {
+        $finding += "Kerberos encryption types not AES256 only ($(@(Get-VkValue $Account 'KerberosEncryptionType') -join ', '))"
+    }
+
+    $privileged = @(@(Get-VkValue $Account 'MemberOf' @()) | ForEach-Object { Get-VkAdCommonName "$_" } | Where-Object { $script:VkPrivilegedAdGroups -contains $_ })
+    if ($privileged.Count -gt 0) { $finding += "Member of a privileged group: $($privileged -join ', ')" }
+
+    if ($isGmsa) {
+        $retrievers = @(@(Get-VkValue $Account 'PrincipalsAllowedToRetrieveManagedPassword' @()) | Where-Object { $_ } | ForEach-Object { Get-VkAdCommonName "$_" })
+        if ($retrievers.Count -ne 1 -or $retrievers[0] -notmatch '^DL-gMSA-[A-Za-z0-9][A-Za-z0-9-]*-Hosts$') {
+            $finding += "Password retrievers not exactly one DL-gMSA-<app>-Hosts group (WD-160): $(if ($retrievers.Count) { $retrievers -join ', ' } else { 'none' })"
+        }
+        if (-not (Test-VkBlank $ServiceAccountOU)) {
+            $dn = "$(Get-VkValue $Account 'DistinguishedName')"
+            if (-not $dn.EndsWith(",$($ServiceAccountOU.Trim())", [System.StringComparison]::OrdinalIgnoreCase)) { $warn += 'Not in the service-account OU (WD-161)' }
+        }
+    }
+    @{ Finding = $finding; Warn = $warn }
+}
+
 function Invoke-VkNpi06 {
     <#
     .SYNOPSIS
         Implements VK-NPI-06: lists AD service accounts that are user objects rather than gMSAs or
-        dMSAs, flagging passwords that never expire, passwords older than MaxPasswordAgeDays, and SPNs.
+        dMSAs, flagging passwords that never expire, passwords older than MaxPasswordAgeDays, and SPNs;
+        and checks each gMSA and dMSA against the program's standard (WD-159, WD-160, WD-161).
     .EXAMPLE
         # In fixture mode it reads adServiceAccounts.json; live, it reads AD unless -SkipAD.
         $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
@@ -260,8 +324,12 @@ function Invoke-VkNpi06 {
     <#
     VK-NPI-06. AD accounts used as service accounts (a servicePrincipalName, or a name starting
     with ServiceAccountNameHint) that are user objects rather than gMSAs or dMSAs, with their
-    flags: password never expires, password older than MaxPasswordAgeDays, SPNs. Live, this is
-    one read-only Get-ADUser and one Get-ADServiceAccount; skip it with -SkipAD.
+    flags: password never expires, password older than MaxPasswordAgeDays, SPNs. Each gMSA and
+    dMSA is checked too (Get-VkManagedAccountIssue): name gmsa-<app> or dmsa-<app>, 15 characters
+    or fewer (WD-159); password interval 30 days; Kerberos AES256 only; no direct membership of a
+    privileged built-in group; for a gMSA, exactly one DL-gMSA-<app>-Hosts retriever group (WD-160)
+    and, when ServiceAccountOU is set, a place under that OU (WD-161). A compliant one is an Info row.
+    Live, this is one read-only Get-ADUser and one Get-ADServiceAccount; skip it with -SkipAD.
     #>
     [CmdletBinding()] param([Parameter(Mandatory)]$Context)
     Invoke-VkCheckBody 'VK-NPI-06' $Context {
@@ -274,15 +342,35 @@ function Invoke-VkNpi06 {
                     if ($u.SamAccountName -eq 'krbtgt') { continue }
                     [pscustomobject]@{ SamAccountName = $u.SamAccountName; ObjectClass = 'user'; Enabled = $u.Enabled; PasswordNeverExpires = $u.PasswordNeverExpires; PasswordLastSet = $u.PasswordLastSet; ServicePrincipalName = @($u.servicePrincipalName) }
                 }
-                foreach ($m in @(Get-ADServiceAccount -Filter * -Properties objectClass)) {
-                    [pscustomobject]@{ SamAccountName = $m.SamAccountName; ObjectClass = "$(@($m.objectClass)[-1])"; Enabled = $m.Enabled; PasswordNeverExpires = $false; PasswordLastSet = $null; ServicePrincipalName = @() }
+                $msaProps = 'objectClass', 'servicePrincipalName', 'PrincipalsAllowedToRetrieveManagedPassword', 'msDS-ManagedPasswordInterval', 'KerberosEncryptionType', 'MemberOf'
+                foreach ($m in @(Get-ADServiceAccount -Filter * -Properties $msaProps)) {
+                    [pscustomobject]@{ SamAccountName = $m.SamAccountName; ObjectClass = "$(@($m.objectClass)[-1])"; Enabled = $m.Enabled; PasswordNeverExpires = $false; PasswordLastSet = $null
+                        ServicePrincipalName = @($m.servicePrincipalName); DistinguishedName = $m.DistinguishedName
+                        PrincipalsAllowedToRetrieveManagedPassword = @($m.PrincipalsAllowedToRetrieveManagedPassword | ForEach-Object { "$_" })
+                        ManagedPasswordIntervalInDays = $m.'msDS-ManagedPasswordInterval'; KerberosEncryptionType = "$($m.KerberosEncryptionType)"; MemberOf = @($m.MemberOf) }
                 }
             })
         if ($accounts.Count -eq 0) { return Get-VkNotApplicable 'No service accounts found' }
         $maxAge = [int]$Context.Options['MaxPasswordAgeDays']
+        $ou = "$($Context.Options['ServiceAccountOU'])"
         $rows = foreach ($a in $accounts) {
             if ("$($a.ObjectClass)" -ne 'user') {
-                ConvertTo-VkFinding -Severity Info -Object $a.SamAccountName -Issue 'Managed service account' -Data ([ordered]@{ ObjectClass = $a.ObjectClass })
+                if (@('msDS-GroupManagedServiceAccount', 'msDS-DelegatedManagedServiceAccount') -notcontains "$($a.ObjectClass)") {
+                    ConvertTo-VkFinding -Severity Info -Object $a.SamAccountName -Issue 'Managed service account' -Data ([ordered]@{ ObjectClass = $a.ObjectClass })
+                    continue
+                }
+                $i = Get-VkManagedAccountIssue -Account $a -ServiceAccountOU $ou
+                $all = @($i.Finding) + @($i.Warn)
+                $sev = if ($i.Finding.Count) { 'Finding' } elseif ($i.Warn.Count) { 'Warn' } else { 'Info' }
+                $data = [ordered]@{
+                    ObjectClass       = $a.ObjectClass
+                    Retrievers        = @(@(Get-VkValue $a 'PrincipalsAllowedToRetrieveManagedPassword' @()) | ForEach-Object { Get-VkAdCommonName "$_" })
+                    PasswordInterval  = Get-VkValue $a 'ManagedPasswordIntervalInDays'
+                    EncryptionTypes   = Get-VkValue $a 'KerberosEncryptionType'
+                    SPNs              = @(@(Get-VkValue $a 'ServicePrincipalName' @()) | Where-Object { $_ })
+                    DistinguishedName = Get-VkValue $a 'DistinguishedName'
+                }
+                ConvertTo-VkFinding -Severity $sev -Object $a.SamAccountName -Issue $(if ($all.Count) { $all -join '; ' } else { 'Managed service account' }) -Data $data
                 continue
             }
             $flags = @('Not a gMSA')
@@ -294,7 +382,8 @@ function Invoke-VkNpi06 {
             if ($spn.Count -gt 0) { $flags += "$($spn.Count) SPN(s)" }
             ConvertTo-VkFinding -Severity Finding -Object $a.SamAccountName -Issue ($flags -join '; ') -Data ([ordered]@{ Enabled = $a.Enabled; SPNs = $spn })
         }
-        Get-VkOutcome -Rows @($rows) -Message ('Name hint "{0}"; maximum password age {1} days' -f $hint, $maxAge)
+        $ouNote = if (Test-VkBlank $ou) { 'service-account OU not set (WD-161 not checked)' } else { "service-account OU $ou" }
+        Get-VkOutcome -Rows @($rows) -Message ('Name hint "{0}"; maximum password age {1} days; {2}; outbound-only (WD-154) not checked: no documented attribute' -f $hint, $maxAge, $ouNote)
     }
 }
 

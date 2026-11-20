@@ -2527,7 +2527,9 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/decisions.yml
   - data/source-register.json
+  - docs/about/decision-register.md
   - docs/books/guides/non-person-identity-implementation.md
   - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md

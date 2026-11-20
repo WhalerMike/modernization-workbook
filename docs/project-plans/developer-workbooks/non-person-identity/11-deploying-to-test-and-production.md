@@ -20,7 +20,7 @@ last-reviewed: 2026-11-18
 
 ::: {.callout-note}
 ## In this chapter
-The runbook that takes the kit from the second lab of Chapters 01 to 10 to a live test environment, then to production. It is one ordered set of copy-paste commands, run twice: once against an Entra test tenant, an Azure test subscription and an Active Directory test forest, and again, unchanged, against the production tenant, subscriptions and forest. Only the environment settings file changes between the two. You prepare the change record and the settings file, run a read-only preflight, deploy in a safe order (inventory and owners, the app management policy scoped to a pilot, a federated credential and a managed identity beside the old secret, a gMSA on a test host, Conditional Access for workload identities report-only), run a smoke test with a synthetic service principal and service account, file the evidence and rehearse the rollback. Then you check the go/no-go criteria and repeat the run in production, enabling Conditional Access ring by ring and watching the first week with the drift run. Each step names the [implementation guide](../../../books/guides/non-person-identity-implementation.md)'s gate it fulfils. Each step has a table of the federal requirements it helps meet, the FedRAMP 20x KSI it aligns to and the evidence the ISSO keeps, and the kit writes that evidence as it runs. The chapter adds a preflight, a smoke test, a rollback and two evidence scripts to `examples/non-person-identity/deploy`, each with a fixture mode and tests.
+The runbook that takes the kit from the second lab of Chapters 01 to 10 to a live test environment, then to production. It is one ordered set of copy-paste commands, run twice: once against an Entra test tenant, an Azure test subscription and an Active Directory test forest, and again, unchanged, against the production tenant, subscriptions and forest. Only the environment settings file changes between the two. You prepare the change record and the settings file, run a read-only preflight, deploy in a safe order (inventory and owners, the app management policy scoped to a pilot, a federated credential and a managed identity beside the old secret, a gMSA on a test host, Conditional Access for workload identities report-only), run a smoke test with a synthetic service principal and service account, file the evidence and rehearse the rollback. Then you check the go/no-go criteria and repeat the run in production, enabling Conditional Access ring by ring and watching the first week with the drift run. Each step names the [implementation guide](../../../books/guides/non-person-identity-implementation.md)'s gate it fulfils. Each step has a table of the federal requirements it helps meet, the FedRAMP 20x KSI it aligns to and the evidence the ISSO keeps, and the kit writes that evidence as it runs. The chapter adds a preflight, a smoke test, a rollback, the smoke-test gMSA's plan and two evidence scripts to `examples/non-person-identity/deploy`, each with a fixture mode and tests.
 :::
 
 ::: {.callout-important}
@@ -81,13 +81,14 @@ Each step below ends with a table of the requirements it helps meet, the FedRAMP
 
 ### Roles
 
-Every write in this runbook is a person's delegated sign-in, with a role activated through Privileged Identity Management for the change window. The scheduled and read steps sign in as an app with a certificate. Nothing signs in with a secret. *Design guidance*, from the kit's write paths.
+Every write in this runbook is a person's delegated sign-in, with a role activated through Privileged Identity Management for the change window, except the smoke-test gMSA's creation: like every production write for a managed service account, it goes through Chapter 06's approved plan, which the pipeline sends as its own gMSA ([WD-163](../../../about/decision-register.md#wd-163), [WD-168](../../../about/decision-register.md#wd-168)). The scheduled and read steps sign in as an app with a certificate. Nothing signs in with a secret. *Design guidance*, from the kit's write paths.
 
 | Who | Role, activated through PIM | Steps | Learn |
 |---|---|---|---|
 | Identity engineer | Cloud Application Administrator and Security Administrator | Prepare, app management policy, federated credentials, smoke test | The app management policy needs Security Administrator plus Cloud Application Administrator or Application Administrator[^np11-amp-configure] |
 | Conditional Access administrator | Conditional Access Administrator; Cloud Application Administrator as well for the rollback | Workload Conditional Access, rollback | Creating and updating a workload policy[^np11-wid] [^np11-ca-update] |
-| Server and AD engineer | Domain Admins in the stage's forest (test in Stage 1, production in Stage 2), or a delegated right to create gMSAs | gMSA | Creating a gMSA[^np11-gmsa] |
+| Server and AD engineer | The right to create groups in the OU named in `ad.gmsaRetrieverGroupPath`; in Stage 1 before the pipeline exists, membership of `DL-gMSA-Creators` (or Domain Admins) in the test forest, to send the smoke-test gMSA's plan with `-RunAs Person -TestDomain`; a local administrator on the gMSA test host | The retriever group, the gMSA's install on the host | Creating a gMSA: Domain Admins or a delegated create right[^np11-gmsa] |
+| The pipeline, as its gMSA `gmsa-msapipe$` | No role: membership of `DL-gMSA-Creators`, delegated the right to create gMSAs in the service-account OU, and write of `msDS-GroupMSAMembership` on the accounts it creates; in no privileged group ([Chapter 06](06-gmsa-dmsa-and-the-kerberos-island.md#the-separate-write-path)) | The smoke-test gMSA in Stage 2, and in Stage 1 once it exists | [WD-163](../../../about/decision-register.md#wd-163); the [standard's set-up](../../../books/guides/service-account-migration.md#msa-standard-setup) |
 | Reader app (certificate) | Graph application permissions `Application.Read.All`, `AuditLog.Read.All`, `Directory.Read.All`, `Policy.Read.All`, `User.Read.All`, `LicenseAssignment.Read.All`, `RoleManagement.Read.Directory`, `RoleEligibilitySchedule.Read.Directory`, `Policy.Read.ConditionalAccess`; Reader on the subscription | Inventory, preflight, VK-NPI, Chapter 08's sign-in summary, drift | Each chapter's call list |
 | Identity engineer, for the Azure resource group | Managed Identity Contributor on the test or production resource group, activated through PIM for Azure resources | Creating the pilot's managed identity (Step 1.3), signed in to the Azure CLI as a person: every write is a person's, and the deployment identity holds no write role | [Chapter 05](05-workload-identity-federation-and-managed-identities.md#verified-facts) |
 
@@ -124,6 +125,7 @@ The rules, which `Read-NpiDeploySettings` enforces before any command runs (*Des
 - **No placeholders.** A value still shaped like `<tenant-id>` stops the run. The synthetic objects' IDs and the pilot policy's ID stay empty until the Prepare step creates the objects and writes their IDs into the file.
 - **An owner who approves, separate from the operators.** `pilot.ownerUpn` names the pilot application's owner, who records the cutover and approves the day-31 disable in Chapter 05's cutover log. The check refuses a file without one, or one that names an operator.
 - **The stage it says it is.** The file's `environment` must match the stage the command is told to run.
+- **The smoke-test gMSA follows the standard.** `ad.gmsaName` is `gmsa-<app>`, 15 characters or fewer (`gmsa-npismoke` in the fixtures, [WD-159](../../../about/decision-register.md#wd-159)); `ad.gmsaRetrieverGroup` is its domain local group `DL-gMSA-<app>-Hosts` ([WD-160](../../../about/decision-register.md#wd-160)), created in the OU `ad.gmsaRetrieverGroupPath`; `ad.gmsaRequestId` is the SailPoint request that approved it ([WD-162](../../../about/decision-register.md#wd-162)); and `ad.kerberosInputs` is the folder holding the forest's Chapter 06 `ad-standard.json`. `ad.gmsaService` names the test service that runs as it (`NpiSmokeSvc` in the fixtures).
 - **The same commands for both stages.** The commands read every value from the file. Moving from test to production changes the file and nothing else.
 
 ### Placeholders
@@ -143,6 +145,7 @@ These are the only values you replace in this chapter's commands:
 | `<reviewer-upn>` | The reviewer's user principal name: a reviewer who is not the operator, as the Approvals table requires |
 | `<sha>` | A plan's SHA-256, as the reviewer passes it back to you |
 | `<test-evidence>` | The test stage's smoke-test folder, `<outputRoot>/smoke-final` from the test settings file |
+| `<service-account-ou>`, `<holding-ou>` | The stage's forest's service-account OU and holding OU, as distinguished names, for its `ad-standard.json` ([Chapter 06](06-gmsa-dmsa-and-the-kerberos-island.md#the-inputs)) |
 | `<gmsa-name>`, `<netbios-domain>` | On the gMSA test host only, which has no session block: `ad.gmsaName` from the settings file, and the forest's NetBIOS domain name |
 
 ### Create and check the file
@@ -223,10 +226,11 @@ The runbook's own code is in [`examples/non-person-identity/deploy`](https://git
 | `Test-NpiDeployPreflight.ps1` | PF-01 to PF-11 below; writes `results.json`, `snapshot.json` (what the rollback restores) and a manifest; exits 1 on any Fail | Graph (8 read permissions), AD (default read) | Nothing |
 | `Invoke-NpiDeploySmokeTest.ps1` | ST-01 to ST-07 below, against the synthetic service principal and service account; exits 1 on any Fail | The register run, Graph, AD, `Test-ADServiceAccount` on the gMSA host | One probe expected to be refused: a new secret on the synthetic app. If it isn't refused, the secret is removed at once by its key ID, its value is never kept, and ST-03 fails |
 | `Invoke-NpiDeployRollback.ps1` | `-Mode Plan` writes `rollback-plan.json` and prints its SHA-256; `-Mode Apply` checks the approved SHA-256, the tenant and a seven-day age, then dry-runs, or sends with `-Apply` | The policies' current state | PATCH on workload policies and app management policies, `accountEnabled` on the synthetic service principal, `Enable-ADAccount` and `Disable-ADAccount`. Never a delete |
+| `New-NpiDeploySmokeGmsaPlan.ps1` | Step 1.4: the smoke-test gMSA as a one-account Chapter 06 plan, checked against the standard (name, `DL-gMSA-<app>-Hosts` group, the forest's `ad-standard.json`, the SailPoint request and the change record); writes `kerberos-plan.json` and a manifest and prints its SHA-256 for the reviewer. Chapter 06's `Invoke-NpiKerberosIslandAction.ps1` applies it ([WD-168](../../../about/decision-register.md#wd-168)) | The settings file, `ad-standard.json` | Nothing |
 | `Write-NpiDeployEvidence.ps1` | Records a step that ran an earlier chapter's script: copies its run folders under `evidence/runs/<step>/`, re-hashes every file their manifests list (and refuses another tenant's run), and writes the step's record | The run folders | Only the evidence folder |
 | `Test-NpiDeployEvidence.ps1` | The go/no-go's evidence check: every requirement row of the stage present and passing, and `SHA256SUMS` matching every file; exits 1 on a gap | The evidence folder | Nothing |
 
-`deploy/tests/NpiDeploy.Tests.ps1` has 55 tests: each task's declaration equals the union of its calls and none is a DELETE; the settings rules; each preflight check failing on a bad tenant (a deployment identity with a secret, no Workload ID Premium, a reader with a ReadWrite permission, an operator with no role, no baseline, a missing gMSA host, production with no test evidence or with evidence from its own tenant); the smoke test's probe sent only to the synthetic app, the removal when a secret gets through, the secret's value absent from every output, a case-only subject difference failing, the wrong Conditional Access state failing; the rollback refusing an unapproved hash, another tenant and an old plan, dry-running with no write, and applying with PATCH and the two AD cmdlets only; the live invoker refusing an app-only sign-in for a write task; and the evidence records: every check and step mapped, only KSI IDs the repository already cites, each record's time, environment, command, result, controls and KSIs, a changed run file or another tenant's run failing the record, and the go/no-go check failing on a missing row, a dry-run rollback, a changed evidence file or the wrong environment.
+`deploy/tests/NpiDeploy.Tests.ps1` has 60 tests: each task's declaration equals the union of its calls and none is a DELETE; the settings rules, the smoke-test gMSA's name, retriever group and request among them; the smoke-test gMSA's one-account Chapter 06 plan in each stage's forest, applied by Chapter 06's write path as the pipeline, or as a person only in the test forest, and refused for a standard file from another forest; PF-10 failing on a retriever group that isn't domain local; each preflight check failing on a bad tenant (a deployment identity with a secret, no Workload ID Premium, a reader with a ReadWrite permission, an operator with no role, no baseline, a missing gMSA host, production with no test evidence or with evidence from its own tenant); the smoke test's probe sent only to the synthetic app, the removal when a secret gets through, the secret's value absent from every output, a case-only subject difference failing, the wrong Conditional Access state failing; the rollback refusing an unapproved hash, another tenant and an old plan, dry-running with no write, and applying with PATCH and the two AD cmdlets only; the live invoker refusing an app-only sign-in for a write task; and the evidence records: every check and step mapped, only KSI IDs the repository already cites, each record's time, environment, command, result, controls and KSIs, a changed run file or another tenant's run failing the record, and the go/no-go check failing on a missing row, a dry-run rollback, a changed evidence file or the wrong environment.
 
 ::: {.callout-warning}
 ## Illustrative code
@@ -235,11 +239,12 @@ The scripts have been run against fictional tenants served by a fake, never agai
 
 ### Dry run on the kit's fixtures
 
-Run the three scripts against the fictional test tenant, then the production preflight against the fictional production tenant with the test smoke test as its evidence. Nothing leaves the machine:
+Run the three scripts and the smoke-test gMSA's plan against the fictional test tenant, then the production preflight against the fictional production tenant with the test smoke test as its evidence. Nothing leaves the machine:
 
 ```powershell
 Set-Location <kit-folder>
 ./deploy/Test-NpiDeployPreflight.ps1 -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -BaselinePath tests/fixtures/deploy/vk-baseline.json -FixturePath tests/fixtures/deploy/tenant-test.json -OutputPath out/dryrun/test-preflight
+./deploy/New-NpiDeploySmokeGmsaPlan.ps1 -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -OutputPath out/dryrun/test-gmsa-plan -AsOf '2026-11-02T12:00:00Z'
 ./deploy/Invoke-NpiDeploySmokeTest.ps1 -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -RegisterRun tests/fixtures/deploy/register-run -ExpectCaState ReportOnly -FixturePath tests/fixtures/deploy/tenant-test.json -OutputPath out/dryrun/test-smoke
 ./deploy/Invoke-NpiDeployRollback.ps1 -Mode Plan -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -SnapshotPath out/dryrun/test-preflight/snapshot.json -To Disabled -IncludeSmokeCleanup -FixturePath tests/fixtures/deploy/tenant-test.json -OutputPath out/dryrun/test-rollback
 $sha = (Get-FileHash out/dryrun/test-rollback/rollback-plan.json -Algorithm SHA256).Hash.ToLower()
@@ -248,11 +253,11 @@ $sha = (Get-FileHash out/dryrun/test-rollback/rollback-plan.json -Algorithm SHA2
 ./deploy/Test-NpiDeployEvidence.ps1 -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -EvidencePath out/dryrun/evidence
 ```
 
-**Dry run, November 2, 2026** (Windows 11, PowerShell 7.6, the kit's fixtures):
+**Dry run, November 20, 2026** (Windows 11, PowerShell 7.6, the kit's fixtures):
 
 ```text
 Preflight (Fixture, test, CHG-2026-1102-T): 12 Pass, 1 Warn
-  PF-01 Pass   All       Settings file: no secret, no placeholder, this stage: test, gcc, sha256 a1aec69cd4fb
+  PF-01 Pass   All       Settings file: no secret, no placeholder, this stage: test, gcc, sha256 bea7ef8879f0
   PF-02 Pass   G3        Deployment identity uses a certificate or federated credential, no secret: 0 secret(s), 1 certificate(s)
   PF-03 Pass   G4        Workload ID Premium, to create or change workload Conditional Access: Workload_Identities_P2, 5 enabled unit(s)
   PF-04 Pass   G6        Entra ID P1 or P2, for the service principal sign-in logs: SPE_E5
@@ -264,10 +269,13 @@ Preflight (Fixture, test, CHG-2026-1102-T): 12 Pass, 1 Warn
   PF-08 Pass   G4        Workload policy CA015-ServiceAccounts-LocationRestriction-Ring1: enabledForReportingButNotEnforced
   PF-08 Pass   G4        Workload policy CA037-WorkloadIdentities-HighRisk-Block-Ring1: enabledForReportingButNotEnforced
   PF-09 Pass   G1-G6     VK-NPI baseline recorded before the change: 01 Fail 4; 02 Fail 2; 03 Fail 1; 04 Fail 3; 05 Warn 3; 06 Fail 2; 07 Warn 1; 08 Fail 1
-  PF-10 Pass   G5        gMSA test host and retriever group exist: app-test-01.corp-test.contoso.example; gg-gmsa-hrsync-hosts
+  PF-10 Pass   G5        gMSA test host and retriever group exist: app-test-01.corp-test.contoso.example; DL-gMSA-npismoke-Hosts
 Evidence: PRE-preflight.json (Warn)
 Evidence: S0-change-record-approvals-and-settings-file.json (Pass)
 Result: GO for this stage. File results.json, snapshot.json and manifest.json with the change record.
+Plan: CreateGmsa gmsa-npismoke$ in OU=Service Accounts,DC=corp-test,DC=contoso,DC=example, retriever CN=DL-gMSA-npismoke-Hosts,OU=Groups,DC=corp-test,DC=contoso,DC=example; runBy pipeline; request SP-REQ-0002001, change CHG-2026-1102-T
+Outbound-only: yes
+Plan SHA-256: 0bcf2917c6845ce4b55f19fa578ee44be84c73166715747d0f89039307734f6a
 Smoke test (Fixture, test, Conditional Access expected ReportOnly): 8 Pass
   ST-01 Pass   G1        Synthetic app is in the register with two owners and no secret: OwnerCount 2, Secrets 0, CredentialKind Federated
   ST-02 Pass   G1        Synthetic service account is detected and rated HIGH: Risk HIGH: password never expires
@@ -287,7 +295,7 @@ Rollback plan (test, to Disabled): 7 action(s)
   RB-05 G5      AdEnable               svc-payexport
   RB-06 Cleanup SpDisable              synthetic service principal
   RB-07 Cleanup AdDisable              svc-npi-smoke
-Plan SHA-256 for the reviewer: 0cb6515f2ee068986f8e097a1f415798757a4dc477d2d91884c987895f873d3d
+Plan SHA-256 for the reviewer: 00105622acf1165bd55d606ea781b908d700f79f9f82cba5e67bd4f0d3081b81
 Rollback DryRun (Fixture, test): 7 WouldApply
   RB-01 WouldApply  ConditionalAccessState CA015-ServiceAccounts-LocationRestriction-Ring1 enabledForReportingButNotEnforced -> disabled
   RB-02 WouldApply  ConditionalAccessState CA037-WorkloadIdentities-HighRisk-Block-Ring1 enabledForReportingButNotEnforced -> disabled
@@ -298,7 +306,7 @@ Rollback DryRun (Fixture, test): 7 WouldApply
   RB-07 WouldApply  AdDisable svc-npi-smoke
 Evidence: ROLLBACK-rollback.json (DryRun)
 Preflight (Fixture, production, CHG-2026-1116-P): 14 Pass
-  PF-01 Pass   All       Settings file: no secret, no placeholder, this stage: production, gcc, sha256 32c7f79976b7
+  PF-01 Pass   All       Settings file: no secret, no placeholder, this stage: production, gcc, sha256 3c55fa49e63c
   PF-02 Pass   G3        Deployment identity uses a certificate or federated credential, no secret: 0 secret(s), 1 certificate(s)
   PF-03 Pass   G4        Workload ID Premium, to create or change workload Conditional Access: Workload_Identities_P2, 5 enabled unit(s)
   PF-04 Pass   G6        Entra ID P1 or P2, for the service principal sign-in logs: SPE_E5
@@ -310,7 +318,7 @@ Preflight (Fixture, production, CHG-2026-1116-P): 14 Pass
   PF-08 Pass   G4        Workload policy CA015-ServiceAccounts-LocationRestriction-Ring1: enabledForReportingButNotEnforced
   PF-08 Pass   G4        Workload policy CA037-WorkloadIdentities-HighRisk-Block-Ring1: enabledForReportingButNotEnforced
   PF-09 Pass   G1-G6     VK-NPI baseline recorded before the change: 01 Fail 4; 02 Fail 2; 03 Fail 1; 04 Fail 3; 05 Warn 3; 06 Fail 2; 07 Warn 1; 08 Fail 1
-  PF-10 Pass   G5        gMSA test host and retriever group exist: app-prd-01.corp.contoso.example; gg-gmsa-hrsync-hosts
+  PF-10 Pass   G5        gMSA test host and retriever group exist: app-prd-01.corp.contoso.example; DL-gMSA-npismoke-Hosts
   PF-11 Pass   Promotion Test stage smoke test passed, in another tenant: test, tenant c0ffee00-0000-4000-8000-0000000000e1, 8/8 Pass
 Evidence: PRE-preflight.json (Pass)
 Evidence: S0-change-record-approvals-and-settings-file.json (Pass)
@@ -340,12 +348,12 @@ The evidence check's `NO-GO` is right for a dry run: Steps 1.1 to 1.5 record the
   "schema": "fmp-npi-deploy-evidence/1",
   "step": "SMOKE",
   "title": "Smoke test",
-  "recordedAt": "2026-11-02T12:28:29.7390594Z",
+  "recordedAt": "2026-11-20T19:10:08.5412911Z",
   "environment": "test",
   "cloud": "gcc",
   "tenantId": "c0ffee00-0000-4000-8000-0000000000e1",
   "changeRecord": "CHG-2026-1102-T",
-  "settingsSha256": "a1aec69cd4fb8efc2050e564790db1c8857d43fb7d92f6abc29827de407af02e",
+  "settingsSha256": "bea7ef8879f0db95cf066f9516c7fb46f823adb20f6db3e55fc586dc61a8c85e",
   "mode": "Fixture",
   "command": "./deploy/Invoke-NpiDeploySmokeTest.ps1 -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -RegisterRun tests/fixtures/deploy/register-run -ExpectCaState ReportOnly -FixturePath tests/fixtures/deploy/tenant-test.json -OutputPath out/dryrun/test-smoke",
   "result": "Pass",
@@ -358,12 +366,12 @@ The evidence check's `NO-GO` is right for a dry run: Steps 1.1 to 1.5 record the
 }
 ```
 
-and `SHA256SUMS` lists every file in the folder, starting with `0c71b3b06453a3776c1934e0f62cf5e7ae51dad18823cfa32a4269c96497976d  PRE-preflight.json`.
+and `SHA256SUMS` lists every file in the folder, starting with `8a60caa10c2197c5b91557d9af966dc61fa9a2666807ca6d1a8e97cc53c1a5a4  PRE-preflight.json`.
 
 The test preflight's one Warn is deliberate: the fixture's Conditional Access administrator holds a standing assignment instead of a PIM-eligible one, which the preflight reports but doesn't block (*Design guidance*). An approved hash other than the plan's stops the rollback before it sends anything:
 
 ```text
-The plan's SHA-256 is 0cb6515f2ee068986f8e097a1f415798757a4dc477d2d91884c987895f873d3d, not the approved 0000000000000000000000000000000000000000000000000000000000000000. Nothing was sent.
+The plan's SHA-256 is 00105622acf1165bd55d606ea781b908d700f79f9f82cba5e67bd4f0d3081b81, not the approved 0000000000000000000000000000000000000000000000000000000000000000. Nothing was sent.
 ```
 
 Delete the dry run's folder when you're done:
@@ -387,15 +395,27 @@ Run once per stage, after the change record is approved and before the preflight
 
    **Expected:** four ownership files and the pipeline identities file. Empty ones are filled by the identity governance office as Chapters 02 and 10 describe; until they are, Chapter 02 reports every identity's record as missing.
 
-2. **Create the gMSA's retriever group and add the test host** (G5), as a member of Domain Admins or with a delegated right to create groups in the stage's OU:
+   Then the forest's `ad-standard.json`, which Step 1.4's plan reads from `ad.kerberosInputs`, from Chapter 06's fixture with the stage forest's OUs, where it doesn't exist yet. AD engineering reviews it and its SHA-256 goes into the change record:
 
    ```powershell
-   New-ADGroup -Name $s.ad.gmsaRetrieverGroup -GroupScope Global -GroupCategory Security -Server $s.ad.server
+   New-Item -ItemType Directory -Force $s.ad.kerberosInputs | Out-Null
+   $std = Join-Path $s.ad.kerberosInputs 'ad-standard.json'
+   if (-not (Test-Path $std)) { $a = Get-Content tests/fixtures/ch06/inputs/ad-standard.json -Raw | ConvertFrom-Json; $a.serviceAccountOu = '<service-account-ou>'; $a.holdingOu = '<holding-ou>'; $a | ConvertTo-Json | Set-Content $std }
+   Get-Content $std -Raw | ConvertFrom-Json | Select-Object serviceAccountOu, holdingOu, creatorGroup, passwordIntervalDays
+   ```
+
+   **Expected:** the stage forest's two OUs, `DL-gMSA-Creators` and `30`. The OUs, the creator group's delegated right and the pipeline's gMSA are made once per forest, as the guide's [Set it up once](../../../books/guides/service-account-migration.md#msa-standard-setup) describes.
+
+2. **Create the gMSA's retriever group and add the test host** (G5), as a member of Domain Admins or with a delegated right to create groups in the OU named in `ad.gmsaRetrieverGroupPath`. It's a domain local security group of the hosts, `DL-gMSA-<app>-Hosts` ([WD-160](../../../about/decision-register.md#wd-160)):
+
+   ```powershell
+   New-ADGroup -Name $s.ad.gmsaRetrieverGroup -GroupScope DomainLocal -GroupCategory Security -Path $s.ad.gmsaRetrieverGroupPath -Server $s.ad.server
    Add-ADGroupMember -Identity $s.ad.gmsaRetrieverGroup -Members "$($s.ad.gmsaTestHost)$" -Server $s.ad.server
+   Get-ADGroup -Identity $s.ad.gmsaRetrieverGroup -Server $s.ad.server | Select-Object Name, GroupScope
    Get-ADGroupMember -Identity $s.ad.gmsaRetrieverGroup -Server $s.ad.server | Select-Object Name, objectClass
    ```
 
-   **Expected:** the test host's computer account, `objectClass computer`. Learn suggests a security group of the hosts allowed to retrieve a gMSA's password.[^np11-gmsa] Restart the test host before Step 1.4, so its new membership takes effect.
+   **Expected:** the group, `GroupScope DomainLocal`, then the test host's computer account, `objectClass computer`. Learn suggests a security group of the hosts allowed to retrieve a gMSA's password.[^np11-gmsa] The preflight's PF-10 fails if the group isn't domain local. Restart the test host before Step 1.4, so its new membership takes effect.
 
 3. **Create the synthetic app registration and service principal** (G1, G3). Sign in as the identity engineer. The app gets two owners, a federated credential for the smoke repository and no secret:
 
@@ -665,11 +685,43 @@ Record the step's evidence:
 
 ### Step 1.4: gMSA on a test host (G5)
 
-Fulfils the AD half of [G5](../../../books/guides/non-person-identity-implementation.md#step-5-convert-with-a-parallel-run). As a member of Domain Admins in the stage's forest, the test forest in Stage 1 and the production forest in Stage 2 (or with a delegated right to create gMSAs), after the KDS root key's 10 hours:
+Fulfils the AD half of [G5](../../../books/guides/non-person-identity-implementation.md#step-5-convert-with-a-parallel-run). The smoke-test gMSA isn't created by hand: every production write for a managed service account goes through [Chapter 06](06-gmsa-dmsa-and-the-kerberos-island.md#the-separate-write-path)'s approved plan, this one included ([WD-168](../../../about/decision-register.md#wd-168)). After the KDS root key's 10 hours, as the identity engineer, build the one-account plan from the settings file and the forest's `ad-standard.json`:
 
 ```powershell
-New-ADServiceAccount -Name $s.ad.gmsaName -DNSHostName "$($s.ad.gmsaName).$($s.ad.domain)" -PrincipalsAllowedToRetrieveManagedPassword $s.ad.gmsaRetrieverGroup -KerberosEncryptionType AES256 -Server $s.ad.server
-Get-ADServiceAccount -Identity $s.ad.gmsaName -Properties PrincipalsAllowedToRetrieveManagedPassword -Server $s.ad.server | Select-Object Name, Enabled, PrincipalsAllowedToRetrieveManagedPassword
+./deploy/New-NpiDeploySmokeGmsaPlan.ps1 -SettingsPath <settings-file> -Stage $stage -OutputPath "$out/gmsa-plan"
+```
+
+**Expected** (the test fixture's values; yours are the stage's):
+
+```text
+Plan: CreateGmsa gmsa-npismoke$ in OU=Service Accounts,DC=corp-test,DC=contoso,DC=example, retriever CN=DL-gMSA-npismoke-Hosts,OU=Groups,DC=corp-test,DC=contoso,DC=example; runBy pipeline; request SP-REQ-0002001, change CHG-2026-1102-T
+Outbound-only: yes
+Plan SHA-256: <sha>
+```
+
+The gMSA is outbound-only because the smoke test's service needs no SPN ([WD-154](../../../about/decision-register.md#wd-154)). A reviewer who isn't the operator reads `kerberos-plan.json` and passes back its SHA-256 as `<sha>`. In Stage 2, and in Stage 1 once the pipeline exists, the pipeline's job runs Chapter 06's write path as its gMSA `gmsa-msapipe$`, against the stage's writable domain controller:
+
+```powershell
+./Invoke-NpiKerberosIslandAction.ps1 -PlanPath "$out/gmsa-plan/kerberos-plan.json" -ApprovedSha256 <sha> -RunAs Pipeline -Server $s.ad.server -OutputPath "$out/gmsa-apply" -Apply
+```
+
+In Stage 1, before the pipeline exists, the server and AD engineer sends the same plan in the test forest instead, as a person with `DL-gMSA-Creators` membership or Domain Admins there; `-TestDomain` is what lets a person send a pipeline step, and it is never used in production:
+
+```powershell
+./Invoke-NpiKerberosIslandAction.ps1 -PlanPath "$out/gmsa-plan/kerberos-plan.json" -ApprovedSha256 <sha> -RunAs Person -TestDomain -Server $s.ad.server -OutputPath "$out/gmsa-apply" -Apply
+```
+
+**Expected,** either way (the second run prints `Apply as Person`):
+
+```text
+Apply as Pipeline: 1 Sent
+  Sent       pipeline CreateGmsa            gmsa-npismoke$  New-ADServiceAccount
+```
+
+`Sent` means the write path read the gMSA back in the service-account OU; `Unverified` means it didn't, so check AD before going on. Read it:
+
+```powershell
+Get-ADServiceAccount -Identity $s.ad.gmsaName -Properties PrincipalsAllowedToRetrieveManagedPassword -Server $s.ad.server | Select-Object Name, Enabled, DistinguishedName, PrincipalsAllowedToRetrieveManagedPassword
 ```
 
 Then, on the test host (restarted after the Prepare step added it to the retriever group), in an elevated PowerShell window:
@@ -681,11 +733,12 @@ Test-ADServiceAccount -Identity <gmsa-name>
 
 Here `<gmsa-name>` is `ad.gmsaName` from the settings file (the host has no session block). Then set the test service to run as the gMSA: **Services** (`services.msc`) > the service named in `ad.gmsaService` > **Properties** > **Log On** > **This account**: `<netbios-domain>\<gmsa-name>$`, with both password boxes empty > **OK**, then restart the service. The console steps are not on Learn's gMSA page, which says only that services using the Service Control Manager support gMSAs (research gaps, row 105).
 
-**Expected:** `Get-ADServiceAccount` shows the retriever group; `Test-ADServiceAccount` prints `True`; the service starts as the gMSA. A gMSA name must be unique in the forest, not only the domain; the password interval can be set only at creation (30 days by default).[^np11-gmsa] A gMSA used too soon after the root key can fail to retrieve its password on a domain controller the key hasn't reached.[^np11-kds] Chapter 06's plan is the path for converting existing accounts, MSAs and dMSAs in production; this step proves the forest, the host and the service accept a gMSA.
+**Expected:** `Get-ADServiceAccount` shows the gMSA in the service-account OU with the retriever group; `Test-ADServiceAccount` prints `True`; the service starts as the gMSA. A gMSA name must be unique in the forest, not only the domain; the password interval can be set only at creation (30 days by default), and the plan states it.[^np11-gmsa] A gMSA used too soon after the root key can fail to retrieve its password on a domain controller the key hasn't reached.[^np11-kds] Chapter 06's plan is also the path for converting existing accounts, MSAs and dMSAs in production; this step proves the forest, the host, the service and the write path accept a gMSA.
 
 | Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
 |---|---|---|---|
 | IA-5, IA-9 | A Kerberos service runs as a gMSA whose password the domain manages | KSI-IAM-SNU | ST-07 in `SMOKE-smoke-test.json`; the `Test-ADServiceAccount` output on the host |
+| CM-3; AC-6; AC-2(1) | The gMSA created only through Chapter 06's approved plan, with its request and change record, by the pipeline's gMSA with only delegated rights (or, in the test forest before the pipeline exists, a person with `-TestDomain`) | KSI-CMT-LMC; KSI-IAM-ELP; KSI-IAM-JIT | `gmsa-plan/kerberos-plan.json` and its SHA-256; `gmsa-apply/results.json` and `manifest.json` |
 
 ### Step 1.5: Conditional Access for workload identities, report-only (G4)
 
@@ -1163,7 +1216,7 @@ Facts carried from earlier chapters, not re-read: the federated credential rules
 - [ ] The VK-NPI baseline is filed before any change.
 - [ ] The pilot app management policy covers only the pilot and the synthetic app in Stage 1.
 - [ ] The pilot's old secret and legacy account stay enabled through the parallel run, and are disabled, never deleted, after it.
-- [ ] The gMSA was created at least 10 hours after the KDS root key, and `Test-ADServiceAccount` returned True on the host.
+- [ ] The gMSA was created at least 10 hours after the KDS root key, through Chapter 06's approved plan with its SailPoint request and change record (by the pipeline's gMSA, or in the test forest before the pipeline existed by a person with `-TestDomain`), with a domain local `DL-gMSA-<app>-Hosts` group as its only retriever, and `Test-ADServiceAccount` returned True on the host.
 - [ ] Every workload policy was created report-only and assigned directly.
 - [ ] The smoke test passed every check, and its expected results were written down before it ran.
 - [ ] The rollback was rehearsed in test and filed, and the after-rollback preflight matches the starting state.
@@ -1174,7 +1227,7 @@ Facts carried from earlier chapters, not re-read: the federated credential rules
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 10 — Drift and Evidence for the ISSO](10-drift-and-evidence.md) · [Workbook index](index.md)
+[← Previous: Chapter 10 — Drift and Evidence for the ISSO](10-drift-and-evidence.md) · [Workbook index](index.md) · [Next: Chapter 12 — The Managed Service Account Standard →](12-the-managed-service-account-standard.md)
 :::
 
 [^np11-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026* (46 indicators; each indicator's name and related SP 800-53 controls; changelog entries of June 24 and October 13, 2026), <https://www.fedramp.gov/2026/reference/key-security-indicators/> (accessed Nov 2, 2026).

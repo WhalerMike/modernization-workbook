@@ -26,7 +26,7 @@ Take it after Module 8, or on its own when you have one account to move. It adds
 
 | Step | Requirement it supports | KSI | Evidence the ISSO keeps |
 |---|---|---|---|
-| A3, B1 Create | AC-6 Least Privilege; IA-5 Authenticator Management; CM-3 Configuration Change Control | KSI-IAM-ELP; KSI-IAM-SNU; KSI-CMT-LMC | The approved plan and the apply run's manifest (Chapter 06); `Get-ADServiceAccount` output |
+| A3, B1 Create | AC-6 Least Privilege; IA-5 Authenticator Management; CM-3 Configuration Change Control | KSI-IAM-ELP; KSI-IAM-APM; KSI-CMT-LMC | The approved plan, with its SailPoint request and ServiceNow change, and the apply run's manifest (Chapter 06); `Get-ADServiceAccount` output |
 | A4 Install and test | AC-6 | KSI-IAM-ELP | `Test-ADServiceAccount` `True` per host; `password-retrievers.json` |
 | A6, B3 Parallel run and complete | AC-2(3) Disable Accounts; IA-5 | KSI-IAM-AAM; KSI-IAM-SNU | `HostChangedOn` or `MigrationStartedOn`; the disable or complete in the apply manifest |
 | C1 to C4 Cloud identity | IA-9 Service Identification and Authentication (tailored in); IA-5; AC-6 | None for IA-9; KSI-IAM-SNU; KSI-IAM-ELP | Chapter 05's plan and apply manifests; Graph grants and role assignments |
@@ -97,9 +97,9 @@ Every command in this lab, in order, from `examples/non-person-identity`. Each s
 # Step 4: Read the two migrations the plan sends
 (Get-Content out/kerberos/kerberos-plan.json -Raw | ConvertFrom-Json).actions | Where-Object Account -in 'svc-intranet', 'svc-hrsync' | Select-Object Action, Account, Cmdlet, Params | ConvertTo-Json -Depth 4
 
-# Step 5: Dry-run the plan with its approved hash
+# Step 5: Dry-run the plan with its approved hash, as the pipeline
 $sha = (Get-FileHash out/kerberos/kerberos-plan.json -Algorithm SHA256).Hash.ToLower()
-./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-dryrun
+./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -RunAs Pipeline -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-dryrun
 
 # Step 6: Build Chapter 05's conversion plan (Migration C)
 ./Invoke-NpiFederation.ps1 -Cloud gcc -ConversionsPath tests/fixtures/ch05/conversions.json -CutoverLogPath tests/fixtures/ch05/cutover-log.csv -FixturePath tests/fixtures/ch05/tenant.json -OutputPath out/federation
@@ -161,11 +161,12 @@ Remove-Item -Recurse -Force out
 
     ```text
     Kerberos accounts: 9 in scope; KDS root key Ready
-    Findings: 5 Finding, 1 Warn, 2 Info
-    Plan: 9 actions, 4 of them writes (1 CompleteDmsaMigration, 2 CreateGmsa, 1 SetRetrievers); nothing sent
+    Findings: 6 Finding, 1 Warn, 2 Info
+    Plan: 10 actions, 5 of them writes (1 CompleteDmsaMigration, 2 CreateGmsa, 2 SetRetrievers); nothing sent
+    Run by: 1 person, 4 pipeline
     Island list: 6 accounts, 4 ready for P4.6; hand-off ready: False
     Reconciliation (D11 KerberosIsland): 1 HandedOff, 4 OnIslandList, 1 Unreconciled
-    Plan SHA-256: e8fb8355ee0989d9ce9d7b107cd52f45d0eea5f155a49c1667a1bf5840de9cca
+    Plan SHA-256: 74c66192a61051b6cb2122b36e3fc0d3430c512f89c6feff123fd23b040b43b5
     ```
 
     `KDS root key Ready` is the guide's step A2: the check reads the key's start time, with a delegated read, and never creates a key.
@@ -194,33 +195,36 @@ Remove-Item -Recurse -Force out
         "Params": {
           "Name": "gmsa-intranet",
           "DNSHostName": "gmsa-intranet.corp.contoso.example",
+          "Path": "OU=Service Accounts,DC=corp,DC=contoso,DC=example",
           "PrincipalsAllowedToRetrieveManagedPassword": [
-            "CN=GG-gMSA-Intranet-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example"
+            "CN=DL-gMSA-intranet-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example"
           ],
-          "KerberosEncryptionType": "AES256"
+          "KerberosEncryptionType": "AES256",
+          "ManagedPasswordIntervalInDays": 30
         }
       }
     ]
     ```
 
-    `CreateGmsa` for `svc-intranet` is the guide's step A3, with the same four parameters: a name, its DNS host name, a group of hosts as the retrievers, and `AES256`. `CompleteDmsaMigration` for `svc-hrsync` is step B3, with the dMSA and the superseded account's distinguished name; its migration started 40 days before, more than the program's 30.
+    `CreateGmsa` for `svc-intranet` is the guide's step A3 under the [managed service account standard](../../books/guides/service-account-migration.md#msa-standard): a name, its DNS host name, the service-account OU (`-Path`), its one domain local group of hosts, `DL-gMSA-intranet-Hosts`, as the retrievers, `AES256` and the 30-day interval stated at creation. It isn't outbound-only, because it takes over `svc-intranet`'s SPNs. `CompleteDmsaMigration` for `svc-hrsync` is step B3, with the dMSA and the superseded account's distinguished name; its migration started 40 days before, more than the program's 30.
 
-5. **Dry-run the plan with its approved hash:**
+5. **Dry-run the plan with its approved hash, as the pipeline:**
 
     ```powershell
     $sha = (Get-FileHash out/kerberos/kerberos-plan.json -Algorithm SHA256).Hash.ToLower()
-    ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-dryrun
+    ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -RunAs Pipeline -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-dryrun
     ```
 
     ```text
-    DryRun: 4 WouldSend
-      WouldSend SetRetrievers         gmsa-web$       Set-ADServiceAccount
-      WouldSend CreateGmsa            msa-print01$    New-ADServiceAccount
-      WouldSend CompleteDmsaMigration svc-hrsync      Complete-ADServiceAccountMigration
-      WouldSend CreateGmsa            svc-intranet    New-ADServiceAccount
+    DryRun as Pipeline: 1 Refused, 4 WouldSend
+      WouldSend  pipeline SetRetrievers         gmsa-ops$       Set-ADServiceAccount
+      WouldSend  pipeline SetRetrievers         gmsa-web$       Set-ADServiceAccount
+      WouldSend  pipeline CreateGmsa            msa-print01$    New-ADServiceAccount
+      Refused    person   CompleteDmsaMigration svc-hrsync      Complete-ADServiceAccountMigration
+      WouldSend  pipeline CreateGmsa            svc-intranet    New-ADServiceAccount
     ```
 
-    The program's rule that changes are reviewed: the write path sends only a plan whose SHA-256 was approved. `msa-print01$` is an sMSA, so it goes to a gMSA, never to a dMSA. No action deletes anything.
+    The program's rule that changes are reviewed: the write path sends only a plan whose SHA-256 was approved. The pipeline's gMSA sends the gMSA creations and retriever changes; the dMSA's completion, step B3, needs Domain Admins, so it's a person's and the pipeline refuses it ([WD-163](../../about/decision-register.md#wd-163)). `msa-print01$` is an sMSA, so it goes to a gMSA, never to a dMSA. No action deletes anything.
 
 6. **Build Chapter 05's conversion plan (Migration C):**
 
@@ -255,7 +259,7 @@ Remove-Item -Recurse -Force out
     conv-08 Legacy Reports secret reports-secret federatedCredential LegacyStillInUse      59
     ```
 
-    Five AD accounts and three client secrets, each going to a managed identity, a federated credential or a certificate, and the plan holds each to Learn's order of preference: `conv-06` gives an Azure Functions app a certificate where a managed identity is available, and Chapter 05 flags it (NPI-WIF-01). `conv-01` has run 40 days on its user-assigned managed identity, so its old account is ready to disable (the guide's step C5). `conv-08`'s old secret still signs in on day 59, so it stays. `svc-intranet` is in both plans: in Chapter 06's fixture it runs an IIS application pool on two hosts and gets a gMSA; in Chapter 05's it also deploys the intranet site from GitHub Actions and gets a federated credential. Each use gets its own target, as the guide's decision path says for a hybrid workload.
+    Five AD accounts and three client secrets, each going to a managed identity, a federated credential or a certificate, and the plan holds each to Learn's order of preference: `conv-06` gives an Azure Functions app a certificate where a managed identity is available, and Chapter 05 flags it (NPI-WIF-01). `conv-01` has run 40 days on its user-assigned managed identity, so Chapter 05 shows its old account ready to disable. That row exercises the parallel run only: the program's target for `svc-hrsync` is a dMSA ([WD-123](../../about/decision-register.md#wd-123)), the `CompleteDmsaMigration` in step 4, so don't take it through the guide's step C5. `conv-08`'s old secret still signs in on day 59, so it stays. `svc-intranet` is in both plans: in Chapter 06's fixture it runs an IIS application pool on two hosts and gets a gMSA; in Chapter 05's it also deploys the intranet site from GitHub Actions and gets a federated credential. Each use gets its own target, as the guide's decision path says for a hybrid workload.
 
 Delete `out` when you're done:
 
@@ -268,7 +272,7 @@ Remove-Item -Recurse -Force out
 *Not run by the authors.* Two ways to do the moves for real, in a test domain, never production:
 
 - **By hand, one account:** the guide's [Migration A](../../books/guides/service-account-migration.md#migration-a), steps A1 to A7, with Learn's commands and the expected output after each one. You need a test domain with a KDS root key older than 10 hours, a test user account with an SPN, and a member server that runs a test service as it. Back out with the guide's **Rollback (A)**.
-- **Through the kit:** the workbook's [Chapter 06, Lab 2](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#lab-2-test-domain), which makes a traditional test account and a test MSA, applies the plan as a person, and runs a dMSA migration to completion on a Windows Server 2025 domain. Its step 6 backs it out.
+- **Through the kit:** the workbook's [Chapter 06, Lab 2](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#lab-2-test-domain), which makes a traditional test account, a test MSA and the gMSA's domain local retriever group, applies the plan as a person in the test domain (`-RunAs Person -TestDomain`), and runs a dMSA migration to completion on a Windows Server 2025 domain. Its step 6 backs it out.
 
 ## Knowledge check (5 minutes)
 

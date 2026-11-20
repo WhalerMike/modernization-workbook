@@ -1,0 +1,7 @@
+PS> Import-Csv out/msa-standard/retirement-list.csv | Format-Table SamAccountName, DisabledOn, LastLogon, DaysDisabled, Status
+SamAccountName DisabledOn LastLogon  DaysDisabled Status
+-------------- ---------- ---------  ------------ ------
+gmsa-batch$    2026-07-01 2026-09-15 142          SignInSinceDisable
+gmsa-legacy$   2026-08-01 2026-07-30 111          DeleteCandidate
+gmsa-oldfax$   2026-10-01 2026-09-28 50           Wait
+gmsa-report$   2026-06-01 2026-11-19 172          EnabledInAd

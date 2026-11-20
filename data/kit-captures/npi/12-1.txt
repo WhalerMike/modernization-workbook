@@ -1,0 +1,37 @@
+PS> ./Invoke-NpiGmsaStandard.ps1 -InputPath tests/fixtures/ch12/inputs -StandardPath tests/fixtures/ch12/standard.json -OutputPath out/msa-standard -AsOf 2026-11-20
+As of 2026-11-20; 5 request(s), 9 AD managed account(s), 8 register row(s)
+Findings: 25 Finding, 4 Warn, 3 Info
+Requests: 2 passed (REQ-2026-0201, REQ-2026-0202); 3 held
+Chapter 06 inputs: 2 kerberos-replatform.csv row(s), 1 password-retrievers.json gMSA(s)
+Certification: 1 Current, 2 DueSoon, 1 Overdue; 2 ServiceNow finding(s)
+Retirement: 1 DeleteCandidate, 1 EnabledInAd, 1 SignInSinceDisable, 1 Wait; nothing deleted
+  NPI-STD-01  REQ-2026-0203
+  NPI-STD-02  REQ-2026-0203
+  NPI-STD-03  REQ-2026-0204
+  NPI-STD-04  REQ-2026-0204
+  NPI-STD-05  REQ-2026-0204
+  NPI-STD-06  REQ-2026-0204
+  NPI-STD-07  REQ-2026-0205
+  NPI-STD-08  REQ-2026-0205
+  NPI-STD-09  REQ-2026-0205
+  NPI-STD-10  gmsa-ops$
+  NPI-STD-11  gmsa-web$
+  NPI-STD-12  gmsa-print$
+  NPI-STD-13  gmsa-web$
+  NPI-STD-14  gmsa-web$
+  NPI-STD-15  gmsa-print$
+  NPI-STD-16  gmsa-ops$
+  NPI-STD-17  gmsa-web$
+  NPI-STD-18  gmsa-ops$
+  NPI-STD-19  gmsa-sql$
+  NPI-STD-20  gmsa-print$
+  NPI-STD-21  dmsa-hrsync$, gmsa-intranet$
+  NPI-STD-22  gmsa-print$|CAMP-2026-ANNUAL-R3
+  NPI-STD-23  gmsa-web$|CAMP-2026-Q4-R1|comms.sponsor@contoso.example
+  NPI-STD-24  svc-backup
+  NPI-STD-25  msa-print01$
+  NPI-STD-26  gmsa-ops$, msa-print01$, svc-backup
+  NPI-STD-27  gmsa-legacy$
+  NPI-STD-28  gmsa-batch$
+  NPI-STD-29  gmsa-report$
+Manifest SHA-256: 12ef8d960e8c8d618215f13c007f5d597f3cfda7b6fc60b6b0f8057311b9522d

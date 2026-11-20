@@ -125,7 +125,7 @@ Nine modules that teach [Book 19, *Building the Attribute-Driven Migration*](../
 
 ## Non-Person Identity learning path
 
-Eleven modules, one per chapter of the developer workbook *Building Non-Person Identity*, in the order of the six gates of the [non-person identity implementation guide](../books/guides/non-person-identity-implementation.md): inventory, ownership and the orphan rule, the decision, credential rules, least privilege and Conditional Access for workload identities, conversion, AI agent identities, drift and evidence, and the deployment to test, then production. Each has a lab on fixtures and a lab in your own test tenant. Start at the [learning path](non-person-identity/index.md).
+Thirteen modules, one per chapter of the developer workbook *Building Non-Person Identity*, in the order of the six gates of the [non-person identity implementation guide](../books/guides/non-person-identity-implementation.md): inventory, ownership and the orphan rule, the decision, credential rules, least privilege and Conditional Access for workload identities, conversion, AI agent identities, drift and evidence, and the deployment to test, then production; then two companions to the [service account guide](../books/guides/service-account-migration.md): one account migrated by hand, and the managed service account standard, from a request approved in SailPoint to retirement. Each has a lab on fixtures and a lab in your own test tenant or domain. Start at the [learning path](non-person-identity/index.md).
 
 ## Provider Notices learning path
 

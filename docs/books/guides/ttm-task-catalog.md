@@ -1,7 +1,7 @@
 ---
 title: "Building an internal Ticket-to-Machine task catalog"
 subtitle: "List your agency's day-to-day Ticket-to-Machine tasks in a workbook you download at work, fill in inside your agency, and never send back"
-description: "A one-page guide to the Ticket-to-Machine task catalog pack: a macro-free Excel workbook, a CSV template, 25 fictional worked examples and a checker that turns each row into a sample ticket contract. It covers the split between the public workbook and the agency's own work, the steps, how to use Microsoft 365 Copilot Chat and an agency-hosted GitHub Copilot to draft and review rows, where to store the filled catalog and how to label it, the common task types, and the rules for tasks an AI agent performs."
+description: "A one-page guide to the Ticket-to-Machine task catalog pack: a macro-free Excel workbook, a CSV template, 27 fictional worked examples and a checker that turns each row into a sample ticket contract. It covers the split between the public workbook and the agency's own work, the steps, how to use Microsoft 365 Copilot Chat and an agency-hosted GitHub Copilot to draft and review rows, where to store the filled catalog and how to label it, the common task types, and the rules for tasks an AI agent performs."
 doc-type: workbook-guide
 audience: [Technical, Customer]
 family: guides
@@ -32,7 +32,7 @@ The lanes, severities and response windows come from [Book 13, Appendix B](../b1
 
 ## Download
 
-**[ticket-to-machine-task-catalog.zip](../../../downloads/ticket-to-machine-task-catalog.zip)**: the workbook `catalog_template.xlsx` (no macros), `catalog_template.csv`, 25 worked examples in `examples.csv`, the Copilot prompt sheet `copilot-prompts.md`, and `check_catalog.py` with its tests. It also carries the [integration kit's](snow-sailpoint-integration-kit.md) Python clients, because the checker reads its vocabulary from the kit's `finding_contract.py`. Rebuilt on every site deploy from [`examples/ttm-task-catalog`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ttm-task-catalog).
+**[ticket-to-machine-task-catalog.zip](../../../downloads/ticket-to-machine-task-catalog.zip)**: the workbook `catalog_template.xlsx` (no macros), `catalog_template.csv`, 27 worked examples in `examples.csv`, the Copilot prompt sheet `copilot-prompts.md`, and `check_catalog.py` with its tests. It also carries the [integration kit's](snow-sailpoint-integration-kit.md) Python clients, because the checker reads its vocabulary from the kit's `finding_contract.py`. Rebuilt on every site deploy from [`examples/ttm-task-catalog`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ttm-task-catalog).
 
 ## Two sides, one direction
 
@@ -47,7 +47,7 @@ Nothing comes back. Don't open an issue or a pull request with your rows, and do
 ## The steps
 
 1. **Download** the pack at work and open `catalog_template.xlsx`.
-2. **Read the examples.** The Examples sheet has 25 rows. EX-P1, EX-P2 and EX-P3 fail on purpose, so you can see each check fire on the Example checks sheet.
+2. **Read the examples.** The Examples sheet has 27 rows. EX-P1, EX-P2 and EX-P3 fail on purpose, so you can see each check fire on the Example checks sheet.
 3. **Add your tasks** on the Tasks sheet, one row per task. Every enumerated column has a drop-down. The values come from the integration kit's [finding contract](snow-sailpoint-integration-kit.md) and from Book 13, Appendix B.
 4. **Name the five clauses** of the [request chain](../b13-governance/appendix-b-ticket-to-machine-reference.md#the-five-clause-request-chain) for each task: who asks (C1), who approves (C2), what runs and as which identity (C3), the re-read that proves closure (C4), and the evidence kept (C5). The response window fills in from the severity: P1 immediate, P2 1 hour, P3 24 hours, P4 72 hours.
 5. **Map controls and KSIs** from the Controls sheet. It suggests NIST SP 800-53 controls for each task type, and the FedRAMP 20x indicators the workbook already maps to them. KSIs are provider-side indicators: your agency doesn't report them, but lines its own evidence up with what its providers report ([Book 00, Appendix B](../b00-orientation/appendix-b-engagement-archetype.md)). Your ISSO decides the final controls.
@@ -65,14 +65,14 @@ Nothing comes back. Don't open an issue or a pull request with your rows, and do
 On the pack's own examples, the checker reports:
 
 ```
-25 rows: 22 PASS, 3 FIX; 17 sample payloads, 17 accepted by finding_contract
+27 rows: 24 PASS, 3 FIX; 18 sample payloads, 18 accepted by finding_contract
 ```
 
 The three FIX rows are the practice rows. The pack's README shows the full output.
 
 ## Common task types
 
-The Controls sheet lists these task types with their usual drift class, lane and controls. Each has a worked example.
+The Controls sheet lists these task types with their usual drift class, lane and controls. Most have a worked example; of the five managed service account rows, the new account (EX-23) and the certification revoke (EX-24) do.
 
 | Task type | Usual lane | Suggested controls |
 |---|---|---|
@@ -94,8 +94,15 @@ The Controls sheet lists these task types with their usual drift class, lane and
 | Integration credential issued or rotated | Machine, gated | IA-5, AC-6, AU-12 |
 | Request through ServiceNow Otto, the Virtual Agent or other intake | Machine, gated | AC-2, AC-5, AU-12 |
 | ServiceNow Otto (or an AI agent it routes to) takes an action | Machine, gated, with human approval | AC-2, AC-6, AC-6(5), AU-2, AU-12, CM-3, CM-8(4) |
+| New managed service account (gMSA or dMSA) | Machine, gated: SailPoint approves, the pipeline runs the approved plan; a person runs dMSA steps | AC-2, CM-3, AC-6, IA-5 |
+| Managed service account retriever change (host added or removed) | Machine, gated | AC-6, CM-3 |
+| Managed service account certification revoke | Machine, gated | AC-2 |
+| Managed service account decommission (disable, 90 days, delete) | Human decision (a person deletes) | AC-2, AC-2(3), CM-8 |
+| Unexplained new gMSA | Human decision | CM-8, CA-7 |
 
 : Task types in the Controls sheet {.striped .hover}
+
+The five managed service account rows follow the [managed service account standard](service-account-migration.md#msa-standard): every request is approved in SailPoint, reached through the agency's system access management tool ([WD-162](../../about/decision-register.md#wd-162)); ServiceNow keeps the change record and the decommission ticket; and a pipeline runs the approved Active Directory plan, leaving the dMSA steps and every delete to a person ([WD-163](../../about/decision-register.md#wd-163)).
 
 Notes on the Microsoft tasks, from Microsoft Learn:
 
@@ -167,6 +174,7 @@ The prompt sheet `copilot-prompts.md` has copy-paste prompts to turn a task desc
 : Versions of this guide, newest first {.striped .hover}
 
 <!-- revisions:end -->
+
 
 [^cat-acw]: Microsoft Learn, "Configure the admin consent workflow" (reviewers; email notifications; expiration reminders; "Consent request expires after (days)"; a reviewer needs the permissions to grant admin consent), <https://learn.microsoft.com/entra/identity/enterprise-apps/configure-admin-consent-workflow> (read November 2, 2026); and "Overview of admin consent workflow" (reviewers are emailed when a request is created, is nearing expiry and expires), <https://learn.microsoft.com/entra/identity/enterprise-apps/admin-consent-workflow-overview> (read November 2, 2026).
 [^cat-grant]: Microsoft Learn, "Grant tenant-wide admin consent to an application" (prerequisites: Privileged Role Administrator for any permission; Cloud Application Administrator, AI Administrator or Application Administrator for any permission except Microsoft Graph app roles; confirm with `GET /oauth2PermissionGrants`), <https://learn.microsoft.com/entra/identity/enterprise-apps/grant-admin-consent> (read November 2, 2026).

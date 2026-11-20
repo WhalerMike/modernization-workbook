@@ -329,3 +329,6 @@ Mike's approval, Nov 13, 2026. Learn read Nov 13, 2026.
 | W3 | Roll over at least every 30 days with `Update-AzureADSSOForest`; once per forest; domain admin not in Protected Users; Hybrid Identity Administrator | Seamless SSO key | verified | Seamless SSO FAQ |
 | W4 | Keep the account in a Domain Admins-only OU with no delegation | Seamless SSO key | verified | Seamless SSO: How it works |
 | W5 | Seamless SSO adds nothing where devices are Entra joined or hybrid joined | Seamless SSO key | carried from Chapter 10 Phase 2 step 3 | c10-choose-authn |
+| W6 | `Get-FMPServiceAccountInventory` rated MSA and gMSA `LOW` while the table rates them medium; dMSAs were reported as MSAs | Service account discovery code | corrected (Nov 20, 2026): MSA and gMSA `MEDIUM`, dMSA its own type at `LOW` (the table's lower bound) | Table in this chapter |
+| W7 | "Plan workload identity federation when the workload moves" | Table, matrix, code | restated-as-design: managed identity first, then federated credential, then certificate | Service account guide #decision-path; Book 04 Ch05 credentials order |
+| W8 | Matrix row "a dMSA on a Windows Server 2025 domain" | Migration path matrix | corrected: every host on WS2025, a reachable WS2025 DC, no unconstrained delegation; gMSA otherwise | c09-dmsa; c09-dmsa-faq; service account guide Migration B |

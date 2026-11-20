@@ -2,6 +2,7 @@ PS> Get-Content out/kerberos/kerberos-plan.json -Raw | ConvertFrom-Json | Select
 Action                Account      Write Cmdlet
 ------                -------      ----- ------
 Island                gmsa-ops$    False
+SetRetrievers         gmsa-ops$     True Set-ADServiceAccount
 HandedOff             gmsa-sql$    False
 Island                gmsa-web$    False
 SetRetrievers         gmsa-web$     True Set-ADServiceAccount
@@ -10,3 +11,11 @@ CompleteDmsaMigration svc-hrsync    True Complete-ADServiceAccountMigration
 CreateGmsa            svc-intranet  True New-ADServiceAccount
 HandedOff             svc-sqlprod  False
 Island                svc-webfront False
+PS> Get-Content out/kerberos/kerberos-plan.json -Raw | ConvertFrom-Json | Select-Object -ExpandProperty actions | Where-Object Write | Format-Table Action, Account, RunBy, RequestId, ChangeRecord, @{ n = 'Controls'; e = { $_.Controls -join ', ' } }
+Action                Account      RunBy    RequestId      ChangeRecord Controls
+------                -------      -----    ---------      ------------ --------
+SetRetrievers         gmsa-ops$    pipeline SP-REQ-0001045 CHG0031045   AC-6
+SetRetrievers         gmsa-web$    pipeline SP-REQ-0001044 CHG0031044   AC-6
+CreateGmsa            msa-print01$ pipeline SP-REQ-0001043 CHG0031043   AC-6, IA-5, CM-3
+CompleteDmsaMigration svc-hrsync   person   SP-REQ-0001041 CHG0031041   AC-2(3), IA-5
+CreateGmsa            svc-intranet pipeline SP-REQ-0001042 CHG0031042   AC-6, IA-5, CM-3

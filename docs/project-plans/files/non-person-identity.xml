@@ -297,7 +297,7 @@ Source: ../books/b02-identity/10-migrating-and-governing.md#phase-4-service-acco
     <Task>
       <UID>12</UID>
       <ID>12</ID>
-      <Name>NP1.1 An application owner found for every service account; two human owners on every app registration and service principal outside the privileged sweep (Privileged Access plan, A3.4); serviceManagementReference set</Name>
+      <Name>NP1.1 Two named technical owners and a federal sponsor mastered in HR for every service account (WD-164); two human owners on every app registration and service principal outside the privileged sweep (Privileged Access plan, A3.4); serviceManagementReference set</Name>
       <OutlineNumber>2.1</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-28T08:00:00</Start>
@@ -399,7 +399,7 @@ Source: ../books/guides/attribute-driven-migration.md#service-accounts-msas-gmsa
       <Milestone>1</Milestone>
       <Contact>CISO</Contact>
       <Notes>Owner or approver: CISO
-Criteria: Every service account has a named application owner; every app registration and service principal outside the privileged sweep (Privileged Access plan, A3.4) has two human owners and a service-management reference; every AI identity has a federal sponsor, a sponsoring group, a technical owner and a matching inventory record; every unowned identity is disabled pending retirement or carries a dated exception
+Criteria: Every service account has two named technical owners and a federal sponsor mastered in HR (WD-164); every app registration and service principal outside the privileged sweep (Privileged Access plan, A3.4) has two human owners and a service-management reference; every AI identity has a federal sponsor, a sponsoring group, a technical owner and a matching inventory record; every unowned identity is disabled pending retirement or carries a dated exception
 Source: ../books/b02-identity/09-building-the-entra-target.md#governing-service-principals</Notes>
       <PredecessorLink>
         <PredecessorUID>13</PredecessorUID>
@@ -712,7 +712,7 @@ Source: program-master-schedule.md</Notes>
     <Task>
       <UID>31</UID>
       <ID>31</ID>
-      <Name>NP3.6 Kerberos accounts that stay: SPN owner and an end date within D08 recorded; the islanded list handed to the program's SPN retirement</Name>
+      <Name>NP3.6 Kerberos accounts that stay: SPN owner and an end date the authorizing official accepts, recorded by D08 and no later than G5 or the island's end of life (WD-165); the islanded list handed to the program's SPN retirement</Name>
       <OutlineNumber>4.8</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-05-06T08:00:00</Start>
@@ -1529,7 +1529,7 @@ Source: ../books/guides/attribute-driven-migration.md#federal-requirements</Note
       <Milestone>1</Milestone>
       <Contact>ISSO</Contact>
       <Notes>Owner or approver: ISSO
-Criteria: Every service account and service principal has an owner and sponsor, a reason and a target; each is retired, re-platformed to a managed identity or gMSA, or a certificate or federated workload identity; none holds a password that never expires and none is orphaned; drift checks and review cycles running; every remaining gMSA and dMSA moved or in the dated Kerberos island
+Criteria: Every service account and service principal has two named owners and a sponsor, a reason and a target; each is retired, re-platformed to a managed identity, gMSA or dMSA, or a certificate or federated workload identity; none holds a password that never expires and none is orphaned; drift checks and review cycles running; every remaining gMSA and dMSA moved or in the dated Kerberos island
 Source: ../books/guides/attribute-driven-migration.md#non-person-identity-track</Notes>
       <PredecessorLink>
         <PredecessorUID>63</PredecessorUID>

@@ -76,3 +76,7 @@ The following commands are often quoted for forest recovery but are not in Micro
 ## Zero Trust closure, Phase 4, November 11, 2026
 
 Added control states, recovery safety (G-07 adapted: no rings for an emergency recovery) and an evidence checklist (G-01, G-02, G-05, G-06). States the program's Windows Server 2019 minimum as an assumption. No new product claim.
+
+## Managed service account standard, November 20, 2026
+
+Step 14 now says that re-creating gMSAs after a new KDS root key is the recovery exception to the one-key-per-forest rule, and links the service account guide's A2, which says the same. No new fact; the one-key rule is the guide's, footnoted there to Learn's containers and KDS pages.

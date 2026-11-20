@@ -1,0 +1,8 @@
+{
+  "_comment": "Reviewed data: the Active Directory standard every planned gMSA and dMSA follows (WD-154, WD-159 to WD-161, WD-168). serviceAccountOu is where New-ADServiceAccount -Path creates them, with the create right delegated there to creatorGroup; holdingOu is where a disabled superseded account is moved before its decommission; retrieverGroupPattern is the only shape a gMSA's reviewed retriever may take (one DL-gMSA-<app>-Hosts group); passwordIntervalDays is -ManagedPasswordIntervalInDays, which can be set only at creation (Learn: 30 by default). Change it in a reviewed pull request; the run records this file's SHA-256. Fictional names.",
+  "serviceAccountOu": "OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+  "holdingOu": "OU=Disabled Service Accounts,DC=corp,DC=contoso,DC=example",
+  "creatorGroup": "DL-gMSA-Creators",
+  "retrieverGroupPattern": "^CN=DL-gMSA-[A-Za-z0-9-]+-Hosts,",
+  "passwordIntervalDays": 30
+}

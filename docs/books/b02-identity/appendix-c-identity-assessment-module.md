@@ -511,8 +511,8 @@ function Get-FMPServiceAccountInventory {
         $recommendation = switch ($true) {
             (-not $svc.Enabled)                   { 'Disabled: verify and retire'; break }
             ($svc.LastLogonDate -lt $staleCutoff) { 'Stale: verify use and retire if unused'; break }
-            ($svc.PasswordNeverExpires)           { 'HIGH RISK: move to a workload identity (federated credential, managed identity, or certificate)'; break }
-            ($spnCount -gt 0)                     { 'Kerberos service: convert to gMSA, then evaluate workload identity federation'; break }
+            ($svc.PasswordNeverExpires)           { 'HIGH RISK: move to a workload identity (managed identity, then federated credential, then certificate)'; break }
+            ($spnCount -gt 0)                     { 'Kerberos service: convert to a dMSA or gMSA by the decision path; when the workload moves, a managed identity, then a federated credential, then a certificate'; break }
             default                               { 'Evaluate the workload; target a managed identity or application registration' }
         }
 
@@ -544,8 +544,9 @@ function Get-FMPServiceAccountInventory {
 
     foreach ($msa in $msaAccounts) {
         $isGmsa = ($msa.ObjectClass -eq 'msDS-GroupManagedServiceAccount')
+        $isDmsa = ($msa.ObjectClass -eq 'msDS-DelegatedManagedServiceAccount')
         $results.Add([PSCustomObject]@{
-            Type                    = if ($isGmsa) { 'gMSA' } else { 'MSA' }
+            Type                    = if ($isDmsa) { 'dMSA' } elseif ($isGmsa) { 'gMSA' } else { 'MSA' }
             SamAccountName          = $msa.SamAccountName
             DisplayName             = $msa.SamAccountName
             Description             = ''
@@ -557,9 +558,11 @@ function Get-FMPServiceAccountInventory {
             LastLogon               = $null
             GroupMembershipCount    = 0
             OU                      = ($msa.DistinguishedName -split ',', 2)[1]
-            RiskLevel               = 'LOW'
-            Recommendation          = if ($isGmsa) {
-                'Keep for on-premises workloads; plan workload identity federation when the workload moves'
+            # Chapter 09's service account table: a dMSA is low to medium risk (reported
+            # here at its lower bound), a gMSA or MSA is medium.
+            RiskLevel               = if ($isDmsa) { 'LOW' } else { 'MEDIUM' }
+            Recommendation          = if ($isDmsa -or $isGmsa) {
+                'Keep for on-premises Kerberos workloads; when the workload moves, a managed identity, then a federated credential, then a certificate'
             } else {
                 'Upgrade to gMSA first, then evaluate for cloud migration'
             }

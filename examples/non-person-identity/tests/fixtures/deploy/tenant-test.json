@@ -282,13 +282,15 @@
       "Name": "APP-TEST-01",
       "DNSHostName": "app-test-01.corp-test.contoso.example"
     },
-    "Get-ADGroup|gg-gmsa-hrsync-hosts": {
-      "Name": "gg-gmsa-hrsync-hosts"
+    "Get-ADGroup|DL-gMSA-npismoke-Hosts": {
+      "Name": "DL-gMSA-npismoke-Hosts",
+      "GroupScope": "DomainLocal",
+      "DistinguishedName": "CN=DL-gMSA-npismoke-Hosts,OU=Groups,DC=corp-test,DC=contoso,DC=example"
     },
     "Get-ADUser|svc-npi-smoke": {
       "SamAccountName": "svc-npi-smoke",
       "Enabled": true
     },
-    "Test-ADServiceAccount|gmsa-hrsync": true
+    "Test-ADServiceAccount|gmsa-npismoke": true
   }
 }

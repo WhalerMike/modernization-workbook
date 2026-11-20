@@ -24,15 +24,17 @@ Some workloads can't leave Kerberos yet. A traditional service account with an S
 
 But a gMSA works only while Active Directory is authoritative. So converting isn't the end. Every gMSA and dMSA must either move to a workload identity, retire, or sit on a dated Kerberos island list with an end date and, where it has SPNs, an SPN owner. In this module you plan all three, and you see the write path refuse a plan nobody approved.
 
-**The federal requirement.** The Kerberos accounts are the on-premises part of Gate G5. The guide's [Validate (G5 Conversion)](../../books/guides/non-person-identity-implementation.md#step-5-convert-with-a-parallel-run) step names IA-5, IA-9 and AU-2. The workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#federal-requirements-and-evidence) table has a row for every lab step.
+**The federal requirement.** The Kerberos accounts are the on-premises part of Gate G5. The guide's [Validate (G5 Conversion)](../../books/guides/non-person-identity-implementation.md#step-5-convert-with-a-parallel-run) step names IA-5, IA-9 and AU-2 for the whole gate. For the Kerberos accounts, the workbook chapter's [Federal requirements and evidence](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#federal-requirements-and-evidence) table has a row for every lab step, and maps them to IA-5, AC-2, AC-2(1), AC-2(3), AC-5, AC-6, CM-3, CM-5 and CM-8; the rows below are its main ones.
 
 | Requirement | KSI | Evidence |
 |---|---|---|
-| IA-5 Authenticator Management; CM-3 Configuration Change Control | KSI-IAM-SNU; KSI-CMT-LMC | `kerberos-plan.json`, with the register's and each input's SHA-256 |
-| AC-2 Account Management; IA-5 | KSI-IAM-SNU | `findings.json`, NPI-KRB-01 to -07 and -09 |
-| AC-6 Least Privilege; CM-5 Access Restrictions for Change | KSI-IAM-ELP, KSI-IAM-JIT (AC-6); KSI-CMT-RVP (CM-5) | `Get-NpiKrbRequiredRight` for the read and write tasks; `password-retrievers.json` |
+| IA-5 Authenticator Management; CM-3 Configuration Change Control | KSI-IAM-APM, KSI-IAM-SNU; KSI-CMT-LMC | `kerberos-plan.json`, with the register's and each input's SHA-256 and the standard it was built with |
+| AC-2 Account Management; IA-5 | KSI-IAM-SNU (AC-2); KSI-IAM-APM (IA-5) | `findings.json`, NPI-KRB-01 to -07, -09 and -10 |
+| AC-6 Least Privilege; CM-5 Access Restrictions for Change | KSI-IAM-ELP, KSI-IAM-JIT (AC-6); KSI-CMT-RVP (CM-5) | `Get-NpiKrbRequiredRight` for the read and write tasks; `runBy` in `calls-ch06.json`; `password-retrievers.json` |
+| AC-2(1) Automated System Account Management; AC-5 Separation of Duties | KSI-IAM-JIT | The `Refused` rows and `runAs` in each apply folder: the pipeline sends only its steps, a person only the dMSA steps |
+| AC-2; CM-3 | KSI-IAM-SNU; KSI-CMT-LMC | `RequestId` and `ChangeRecord` on every write in `kerberos-plan.json` and `results.json` |
 | CM-8 System Component Inventory; AC-2 | KSI-PIY-GIV; KSI-IAM-SNU | `island-list.csv`; `reconciliation.json` |
-| CM-3; AC-2(3) Disable Accounts | KSI-CMT-LMC; KSI-IAM-AAM | `results.json` and `manifest.json` in the apply folder |
+| CM-3; AC-2(3) Disable Accounts | KSI-CMT-LMC; KSI-IAM-AAM | `results.json` and `manifest.json` in each apply folder, each write re-read |
 
 KSIs are FedRAMP 20x indicators for cloud service providers. The agency lines this evidence up with what its providers report against them; it doesn't report KSIs itself. Which file supports which indicator is the program's mapping *(design guidance)*. The guide's [Evidence](../../books/guides/non-person-identity-implementation.md#evidence) section explains both.
 
@@ -43,7 +45,7 @@ After this module, you'll be able to:
 - name the four dispositions a Kerberos account can have, and what each one needs;
 - explain why a dMSA can't be used for an MSA or an account with unconstrained delegation;
 - read the plan, the island list and the reconciliation for a fictional domain;
-- show that the write path runs only a plan whose SHA-256 was approved, and never deletes.
+- show that the write path runs only a plan whose SHA-256 was approved, sends each write only as the pipeline or the person it belongs to, and never deletes.
 
 ## Prerequisites (1 minute)
 
@@ -63,10 +65,10 @@ Read the guide's [Step 5](../../books/guides/non-person-identity-implementation.
 
 Read the workbook chapter in this order:
 
-- [The context the code depends on](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#the-context-the-code-depends-on): what a gMSA and a dMSA are, why the chapter has an end date built in, and the program's five rules *(design guidance)*.
-- [The check and the plan](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#the-check-and-the-plan): NPI-KRB-01 to -09, and one action per account.
+- [The context the code depends on](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#the-context-the-code-depends-on): what a gMSA and a dMSA are, why the chapter has an end date built in, and the program's rules *(design guidance)*, including the [managed service account standard](../../books/guides/service-account-migration.md#msa-standard) every new account follows.
+- [The check and the plan](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#the-check-and-the-plan): NPI-KRB-01 to -10, and one action per account.
 - [The island list and the reconciliation](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#the-island-list-and-the-reconciliation).
-- [The separate write path](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#the-separate-write-path): why the read holds no domain administration and the write is a person's.
+- [The separate write path](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#the-separate-write-path): why the read holds no domain administration, why the pipeline's own gMSA sends the gMSA creations, retriever changes, disables and moves with only delegated rights, and why a person sends the dMSA steps, which need Domain Admins.
 
 ## Exercise: Lab 1, fixtures, no tenant (25 minutes)
 
@@ -104,13 +106,14 @@ Get-Content out/kerberos/kerberos-plan.json -Raw | ConvertFrom-Json | Select-Obj
 Import-Csv out/kerberos/island-list.csv | Format-Table Account, Type, Disposition, SpnOwnerUpn, EndDate, AoAcceptedBy, ReadyForP46
 Get-Content out/kerberos/reconciliation.json -Raw | ConvertFrom-Json | Format-Table Account, Type, Planned, Destination, Outcome
 
-# Step 8: Dry-run the plan with its approved hash
+# Step 8: Dry-run the plan with its approved hash, as the pipeline
 $sha = (Get-FileHash out/kerberos/kerberos-plan.json -Algorithm SHA256).Hash.ToLower()
-./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-dryrun
+./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -RunAs Pipeline -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-dryrun
 
-# Step 9: Apply it to the fake, then try a hash nobody approved
-./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-apply -Apply
-./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-x
+# Step 9: Apply it to the fake, the pipeline's steps then a person's, then try a hash nobody approved
+./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -RunAs Pipeline -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-apply -Apply
+./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -RunAs Person -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-apply-person -Apply
+./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 ('0' * 64) -RunAs Pipeline -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-x
 
 # Step 10: Run the tests
 Invoke-Pester -Path tests
@@ -151,10 +154,10 @@ Remove-Item -Recurse -Force out
 
     ```text
     kerberos-island : Get-ADComputer, Get-ADDomainController, Get-ADObject, Get-ADServiceAccount, Get-ADUser
-    kerberos-apply : Complete-ADServiceAccountMigration, Disable-ADAccount, Get-ADComputer, Get-ADDomainController, Get-ADObject, Get-ADServiceAccount, Get-ADUser, New-ADServiceAccount, Set-ADServiceAccount, Start-ADServiceAccountMigration
+    kerberos-apply : Complete-ADServiceAccountMigration, Disable-ADAccount, Get-ADComputer, Get-ADDomainController, Get-ADObject, Get-ADServiceAccount, Get-ADUser, Move-ADObject, New-ADServiceAccount, Set-ADServiceAccount, Start-ADServiceAccountMigration
     ```
 
-    The read task runs only `Get-AD*` cmdlets. No cmdlet that removes or undoes is on either list.
+    The read task runs only `Get-AD*` cmdlets. No cmdlet that removes or undoes is on either list; `Move-ADObject` moves a disabled account to the holding OU.
 
 4. **Check the Kerberos accounts and build the plan:**
 
@@ -164,14 +167,15 @@ Remove-Item -Recurse -Force out
 
     ```text
     Kerberos accounts: 9 in scope; KDS root key Ready
-    Findings: 5 Finding, 1 Warn, 2 Info
-    Plan: 9 actions, 4 of them writes (1 CompleteDmsaMigration, 2 CreateGmsa, 1 SetRetrievers); nothing sent
+    Findings: 6 Finding, 1 Warn, 2 Info
+    Plan: 10 actions, 5 of them writes (1 CompleteDmsaMigration, 2 CreateGmsa, 2 SetRetrievers); nothing sent
+    Run by: 1 person, 4 pipeline
     Island list: 6 accounts, 4 ready for P4.6; hand-off ready: False
     Reconciliation (D11 KerberosIsland): 1 HandedOff, 4 OnIslandList, 1 Unreconciled
-    Plan SHA-256: e8fb8355ee0989d9ce9d7b107cd52f45d0eea5f155a49c1667a1bf5840de9cca
+    Plan SHA-256: 74c66192a61051b6cb2122b36e3fc0d3430c512f89c6feff123fd23b040b43b5
     ```
 
-    `-MatrixRun` is Chapter 03's run, where the dispositions come from; `-ProgramDatesPath` is the one program-dates file, which the run refuses unless its SHA-256 is the one Chapter 03's run recorded. The plan's hash is the same on every run with these inputs.
+    `-MatrixRun` is Chapter 03's run, where the dispositions come from; `-ProgramDatesPath` is the one program-dates file, which the run refuses unless its SHA-256 is the one Chapter 03's run recorded. The plan's hash is the same on every run with these inputs. `Run by` counts the writes by who sends them.
 
 5. **Read the findings:**
 
@@ -182,6 +186,7 @@ Remove-Item -Recurse -Force out
     ```text
     Rule       Severity ObjectKey
     ----       -------- ---------
+    NPI-KRB-03 Finding  gmsa-ops$
     NPI-KRB-03 Finding  gmsa-web$
     NPI-KRB-05 Finding  svc-intranet
     NPI-KRB-05 Finding  svc-webfront
@@ -192,7 +197,7 @@ Remove-Item -Recurse -Force out
     NPI-KRB-09 Info     svc-sqlprod
     ```
 
-    `svc-webfront` is trusted for unconstrained delegation, which stops working once a dMSA migration completes, so in Chapter 03 its owner kept it on Kerberos (`KeepKerberos`) with the authorizing official's acceptance; NPI-KRB-05 flags it because it has no SPN owner. NPI-KRB-05 and -06 flag `svc-intranet`: Chapter 03 re-platforms it to a gMSA, but it has no SPN owner and its end date (2028) is after program G5. The kept gMSAs `gmsa-ops$` and `gmsa-web$` end August 31, 2027, after D08 but before program G5, which is their bound, as in Chapter 03; `gmsa-ops$` has no SPNs, so it needs no SPN owner. NPI-KRB-08 warns that `gmsa-ops$` is in Domain Admins.
+    `svc-webfront` is trusted for unconstrained delegation, which stops working once a dMSA migration completes, so in Chapter 03 its owner kept it on Kerberos (`KeepKerberos`) with the authorizing official's acceptance; NPI-KRB-05 flags it because it has no SPN owner. NPI-KRB-05 and -06 flag `svc-intranet`: Chapter 03 re-platforms it to a gMSA, but it has no SPN owner and its end date (2028) is after program G5. The kept gMSAs `gmsa-ops$` and `gmsa-web$` end August 31, 2027, after D08 but before program G5, which is their bound, as in Chapter 03; `gmsa-ops$` has no SPNs, so it needs no SPN owner. NPI-KRB-08 warns that `gmsa-ops$` is in Domain Admins. NPI-KRB-03 flags `gmsa-ops$` and `gmsa-web$` because AD still names computer accounts as their retrievers, where the reviewed list names each one's `DL-gMSA-<app>-Hosts` group.
 
 6. **Read the plan:**
 
@@ -204,6 +209,7 @@ Remove-Item -Recurse -Force out
     Action                Account      Write Cmdlet
     ------                -------      ----- ------
     Island                gmsa-ops$    False
+    SetRetrievers         gmsa-ops$     True Set-ADServiceAccount
     HandedOff             gmsa-sql$    False
     Island                gmsa-web$    False
     SetRetrievers         gmsa-web$     True Set-ADServiceAccount
@@ -214,7 +220,7 @@ Remove-Item -Recurse -Force out
     Island                svc-webfront False
     ```
 
-    Four writes: `SetRetrievers` for `gmsa-web$`, `CreateGmsa` for `msa-print01$` and `svc-intranet`, and `CompleteDmsaMigration` for `svc-hrsync`, whose migration started 40 days ago. `gmsa-ops$`, `gmsa-web$` and `svc-webfront` stay on the island, as Chapter 03 decided.
+    Five writes: `SetRetrievers` for `gmsa-ops$` and `gmsa-web$`, `CreateGmsa` for `msa-print01$` (outbound-only, since the MSA holds no SPN) and `svc-intranet`, both in the service-account OU with a 30-day interval, and `CompleteDmsaMigration` for `svc-hrsync`, whose migration started 40 days ago. Each carries its SailPoint request and ServiceNow change, or it wouldn't be planned (NPI-KRB-10). `gmsa-ops$`, `gmsa-web$` and `svc-webfront` stay on the island, as Chapter 03 decided.
 
 7. **Read the island list and the reconciliation:**
 
@@ -245,29 +251,33 @@ Remove-Item -Recurse -Force out
 
     Six island rows, four ready for P4.6. `gmsa-intranet$` has no SPN owner and ends `2028-12-31`, so it isn't ready, and its reconciliation outcome is `Unreconciled`. `svc-webfront` carries the authorizing official's acceptance from Chapter 03, so it becomes ready once it has an SPN owner.
 
-8. **Dry-run the plan with its approved hash:**
+8. **Dry-run the plan with its approved hash, as the pipeline:**
 
     ```powershell
     $sha = (Get-FileHash out/kerberos/kerberos-plan.json -Algorithm SHA256).Hash.ToLower()
-    ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-dryrun
+    ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -RunAs Pipeline -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-dryrun
     ```
 
     ```text
-    DryRun: 4 WouldSend
-      WouldSend SetRetrievers         gmsa-web$       Set-ADServiceAccount
-      WouldSend CreateGmsa            msa-print01$    New-ADServiceAccount
-      WouldSend CompleteDmsaMigration svc-hrsync      Complete-ADServiceAccountMigration
-      WouldSend CreateGmsa            svc-intranet    New-ADServiceAccount
+    DryRun as Pipeline: 1 Refused, 4 WouldSend
+      WouldSend  pipeline SetRetrievers         gmsa-ops$       Set-ADServiceAccount
+      WouldSend  pipeline SetRetrievers         gmsa-web$       Set-ADServiceAccount
+      WouldSend  pipeline CreateGmsa            msa-print01$    New-ADServiceAccount
+      Refused    person   CompleteDmsaMigration svc-hrsync      Complete-ADServiceAccountMigration
+      WouldSend  pipeline CreateGmsa            svc-intranet    New-ADServiceAccount
     ```
 
-9. **Apply it to the fake, then try a hash nobody approved:**
+    The dMSA's completion is a person's step, so the pipeline refuses it.
+
+9. **Apply it to the fake, the pipeline's steps then a person's, then try a hash nobody approved:**
 
     ```powershell
-    ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-apply -Apply
-    ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-x
+    ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -RunAs Pipeline -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-apply -Apply
+    ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -RunAs Person -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-apply-person -Apply
+    ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 ('0' * 64) -RunAs Pipeline -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-x
     ```
 
-    Expect `Apply: 4 Sent`. Then the refusal: `The plan's SHA-256 is e8fb8355…, not the approved 0000…; refusing to run a plan nobody reviewed.`
+    Expect `Apply as Pipeline: 1 Refused, 4 Sent`, then `Apply as Person: 4 Refused, 1 Sent`: each run sends only its own writes and re-reads each one. Then the refusal: `The plan's SHA-256 is 74c66192…, not the approved 0000…; refusing to run a plan nobody reviewed.`
 
 10. **Run the tests:**
 
@@ -275,7 +285,7 @@ Remove-Item -Recurse -Force out
     Invoke-Pester -Path tests
     ```
 
-    Expect 511 tests passed, 0 failed.
+    Expect 549 tests passed, 0 failed.
 
 Delete `out` when you're done:
 
@@ -288,7 +298,7 @@ Remove-Item -Recurse -Force out
 *Not run by the authors.* Follow the workbook's [Chapter 06, Lab 2](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#lab-2-test-domain). It has the exact commands.
 
 - **You need:** a test Active Directory domain, never production, with at least one Windows Server 2025 domain controller, a Windows Server 2025 member server, an existing KDS root key, and Chapter 01's Lab 2 run.
-- **What you do:** make a traditional test account and a test MSA, grant the read only `msKds-UseStartTime` and `msKds-CreateTime`, run the check, then apply the plan as a person with Domain Admins or equivalent rights, start the dMSA migration, and complete it after the 30-day parallel run.
+- **What you do:** make a traditional test account, a test MSA and the gMSA's domain local `DL-gMSA-<app>-Hosts` group, write the three inputs (with a test request and change record, and the test domain's `ad-standard.json`), grant the read only `msKds-UseStartTime` and `msKds-CreateTime`, and run the check. Then apply the plan as a person with Domain Admins or equivalent rights in the test domain, with `-RunAs Person -TestDomain`: the dMSA steps are a person's, and in a test domain before the pipeline exists a person may also send the pipeline's gMSA step, which in production the pipeline's gMSA sends. Start the dMSA migration, and complete it after the 30-day parallel run.
 - **Back-out:** step 6 runs Learn's `Undo-ADServiceAccountMigration` by hand (the code never runs it), re-enables the test account, removes the test objects by hand, and deletes the `out` folders.
 
 ## Knowledge check (5 minutes)
@@ -330,8 +340,8 @@ Remove-Item -Recurse -Force out
 
 ## Summary (2 minutes)
 
-You checked nine Kerberos accounts in a fictional domain, read a plan with four writes, an island list and a reconciliation, applied the plan to a fake by its hash, and saw a plan nobody approved refused.
+You checked nine Kerberos accounts in a fictional domain, read a plan with five writes, each with its request, change record and the identity that sends it, an island list and a reconciliation, applied the plan to a fake by its hash as the pipeline and as a person, and saw a plan nobody approved refused.
 
-**The evidence an ISSO keeps** for G5 from this module: `kerberos-plan.json` with its approved SHA-256, `findings.json`, `island-list.csv`, `reconciliation.json`, and the apply folder's `results.json` and `manifest.json`, dated; and the test result. Before shipping, work through the chapter's [Checklist](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#checklist).
+**The evidence an ISSO keeps** for G5 from this module: `kerberos-plan.json` with its approved SHA-256, `findings.json`, `island-list.csv`, `reconciliation.json`, and the two apply folders' `results.json` and `manifest.json`, dated; and the test result. Before shipping, work through the chapter's [Checklist](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#checklist).
 
 **Next:** [Module 9: Govern AI agent identities](09-ai-agent-identities.md).

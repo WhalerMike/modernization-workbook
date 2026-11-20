@@ -115,24 +115,24 @@ ENUMS = {
 # workbook already maps to it. Most rows are Book 13, Appendix A's, which lists the
 # indicators whose "Related SP 800-53 Controls" cite the control (FedRAMP's page as
 # read on October 21, 2026); a test compares those rows with Appendix A. The others
-# come from other chapters (CONTROL_SOURCES). IA-4, AC-6(5) and CM-8(4) have no
-# indicator in the workbook's mappings, so they map to none. The indicators bind cloud service providers; an
+# come from other chapters (CONTROL_SOURCES). IA-4, AC-6(5) and AC-2(3) are in Appendix A's
+# service-account rows, re-read from FedRAMP on November 20, 2026 (WD-169). CM-8(4) has no
+# indicator in the workbook's mappings yet, so it maps to none. The indicators bind cloud service providers; an
 # agency lines its own evidence up with what its providers report against them.
 APPENDIX_A = "Book 13, Appendix A"
 CONTROL_SOURCES = {
-    "AC-6(5)": "Book 17, Appendix A cites it for AI identities; no indicator is mapped to it in the workbook",
     "AU-2": "Book 12, Chapter 12 (FedRAMP lists AU-2 among the related controls of KSI-MLA-OSM and KSI-MLA-LET)",
     "AU-12": "Book 12, Chapter 12 (FedRAMP lists AU-12 among KSI-MLA-LET's related controls)",
     "CM-8(4)": "Book 17, Appendix A cites it for AI identities; no indicator is mapped to it in the workbook",
-    "IA-4": "No indicator is mapped to IA-4 in the workbook",
     "IA-5": "Book 02, Chapter 10 (the program's mapping: IA-5 to KSI-IAM-APM; IA-5 for non-users to KSI-IAM-SNU)",
 }
 CONTROL_KSIS = {
     "AC-2": ["KSI-IAM-APM", "KSI-IAM-JIT", "KSI-IAM-SNU", "KSI-IAM-SUS"],
+    "AC-2(3)": ["KSI-IAM-AAM", "KSI-IAM-JIT", "KSI-IAM-SUS"],
     "AC-3": ["KSI-IAM-APM", "KSI-IAM-ELP", "KSI-IAM-JIT"],
     "AC-5": ["KSI-IAM-JIT", "KSI-PIY-RIS", "KSI-PIY-RSD"],
     "AC-6": ["KSI-IAM-ELP", "KSI-IAM-JIT"],
-    "AC-6(5)": [],
+    "AC-6(5)": ["KSI-IAM-JIT", "KSI-IAM-SNU"],
     "AU-2": ["KSI-MLA-LET", "KSI-MLA-OSM"],
     "AU-10": ["KSI-IAM-JIT", "KSI-IAM-SNU", "KSI-MLA-LET"],
     "AU-12": ["KSI-MLA-LET"],
@@ -144,7 +144,7 @@ CONTROL_KSIS = {
     "CM-6(2)": ["KSI-CMT-VTD", "KSI-CNA-EIS", "KSI-IAM-SUS"],
     "CM-8": ["KSI-PIY-GIV"],
     "CM-8(4)": [],
-    "IA-4": [],
+    "IA-4": ["KSI-IAM-ELP", "KSI-IAM-JIT"],
     "IA-5": ["KSI-IAM-APM", "KSI-IAM-SNU"],
     "IA-5(2)": ["KSI-IAM-APM", "KSI-IAM-ELP", "KSI-IAM-SNU", "KSI-SVC-ASM"],
     "SC-12": ["KSI-SVC-ASM"],
@@ -152,7 +152,7 @@ CONTROL_KSIS = {
     "SI-4": ["KSI-IAM-SUS", "KSI-MLA-RVL", "KSI-SVC-EIS"],
 }
 CONTROL_TITLES = {
-    "AC-2": "Account Management", "AC-3": "Access Enforcement", "AC-5": "Separation of Duties",
+    "AC-2": "Account Management", "AC-2(3)": "Disable Accounts", "AC-3": "Access Enforcement", "AC-5": "Separation of Duties",
     "AC-6": "Least Privilege", "AC-6(5)": "Privileged Accounts", "AU-2": "Event Logging", "AU-10": "Non-repudiation", "AU-12": "Audit Record Generation", "CA-7": "Continuous Monitoring",
     "CM-3": "Configuration Change Control", "CM-4(2)": "Verification of Controls",
     "CM-5(1)": "Automated Access Enforcement and Audit Records", "CM-6": "Configuration Settings",
@@ -221,6 +221,25 @@ TASK_TYPES = [
      "actions; an independent re-read closes the task."),
     ("Configuration drift", NO_DRIFT, "Machine, gated", ["CM-6", "CM-3", "CA-7"],
      "A setting drifts from its baseline; the fix restores the baseline version."),
+    # Managed service accounts (gMSA and dMSA): SailPoint approves every request, reached through the
+    # agency's system access management tool; ServiceNow keeps the change record, typed findings and
+    # decommission ticket; a pipeline runs the approved plan; a person runs dMSA steps and deletes.
+    ("New managed service account (gMSA or dMSA)", NO_DRIFT, "Machine, gated", ["AC-2", "CM-3", "AC-6", "IA-5"],
+     "SailPoint approves the request; a pipeline runs the hashed create plan as its own gMSA with only the "
+     "delegated create right; a person runs the dMSA steps that need Domain Admins."),
+    ("Managed service account retriever change (host added or removed)", NO_DRIFT, "Machine, gated",
+     ["AC-6", "CM-3"],
+     "The hosts group is the account's blast radius; SailPoint approves each change and the pipeline writes it."),
+    ("Managed service account certification revoke", "stale_access", "Machine, gated", ["AC-2"],
+     "The owners revoke in the risk-tier certification (R1 quarterly, R2 twice a year, R3 annually); the "
+     "revoke opens a ServiceNow task and the pipeline disables and moves the account."),
+    ("Managed service account decommission (disable, 90 days, delete)", "stale_access", "Human decision",
+     ["AC-2", "AC-2(3)", "CM-8"],
+     "Disabled by the pipeline, kept 90 days with no sign-in, then deleted by a person through the "
+     "decommission ticket; the inventory follows."),
+    ("Unexplained new gMSA (drift)", "unauthorized_write", "Human decision", ["CM-8", "CA-7"],
+     "A gMSA with no approved request was created outside the plan; its owner decides keep (with a request) "
+     "or disable."),
 ]
 
 

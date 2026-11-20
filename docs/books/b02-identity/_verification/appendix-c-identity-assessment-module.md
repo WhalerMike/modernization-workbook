@@ -83,3 +83,4 @@ Source: `docs/operational-guides/identity/identity-modernization.md` (Appendices
 | G2 | `mfaServerDeprecation` recommendation flags MFA Server activity in the last seven days and lists client integrations | §MFA Server | verified | recommendation-migrate-to-microsoft-entra-mfa |
 | G3 | AD FS check for the `AzureMfaServerAuthentication` provider in additional authentication rules | §MFA Server | verified | <https://learn.microsoft.com/entra/identity/authentication/how-to-migrate-mfa-server-to-azure-mfa> |
 | G4 | Graph beta recommendations call and property names | §MFA Server | restated-as-design (illustrative; beta endpoint) | — |
+| G5 | Service account inventory: MSA and gMSA `RiskLevel` `LOW`; dMSA reported as MSA; "plan workload identity federation" | Module implementation | corrected (Nov 20, 2026) to match Chapter 09: MSA and gMSA `MEDIUM`, dMSA `LOW` as its own type; managed identity, then federated credential, then certificate | Chapter 09 log W6, W7 |

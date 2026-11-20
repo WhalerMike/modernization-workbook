@@ -111,10 +111,13 @@ Describe 'Checks in live mode' {
     }
     It 'reads AD service accounts with Get-ADUser and Get-ADServiceAccount only' {
         Mock -ModuleName ValidationKit Get-ADUser { @([pscustomobject]@{ SamAccountName = 'svc-web'; Enabled = $true; PasswordNeverExpires = $true; PasswordLastSet = [datetime]'2020-01-01'; servicePrincipalName = @('HTTP/web') }) }
-        Mock -ModuleName ValidationKit Get-ADServiceAccount { @([pscustomobject]@{ SamAccountName = 'gmsa-web$'; Enabled = $true; objectClass = @('top', 'msDS-GroupManagedServiceAccount') }) }
+        Mock -ModuleName ValidationKit Get-ADServiceAccount { @([pscustomobject]@{ SamAccountName = 'gmsa-web$'; Enabled = $true; objectClass = @('top', 'msDS-GroupManagedServiceAccount'); DistinguishedName = 'CN=gmsa-web,OU=Service Accounts,DC=contoso,DC=example'
+                    PrincipalsAllowedToRetrieveManagedPassword = @('CN=DL-gMSA-web-Hosts,OU=Groups,DC=contoso,DC=example'); 'msDS-ManagedPasswordInterval' = 30; KerberosEncryptionType = 'AES256'; MemberOf = @() }) }
         $r = Invoke-VkCheck -CheckId 'VK-NPI-06' -Context (Get-VkRunContext -AsOf '2026-10-29T00:00:00Z')
         $r.Status | Should -Be 'Fail'
         $r.Count | Should -Be 1
+        ($r.Details | Where-Object Object -eq 'gmsa-web$').Severity | Should -Be 'Info'
+        Should -Invoke -ModuleName ValidationKit Get-ADServiceAccount -Times 1 -Exactly -ParameterFilter { $Properties -contains 'PrincipalsAllowedToRetrieveManagedPassword' -and $Properties -contains 'msDS-ManagedPasswordInterval' }
     }
 }
 

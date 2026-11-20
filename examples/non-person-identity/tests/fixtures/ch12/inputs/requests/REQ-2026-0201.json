@@ -1,0 +1,22 @@
+{
+  "requestId": "REQ-2026-0201",
+  "requestedOn": "2026-11-02",
+  "approvedOn": "2026-11-05",
+  "approvers": ["payroll.owner@contoso.example", "iam.approver@contoso.example"],
+  "status": "APPROVED",
+  "changeRecord": "CHG0041201",
+  "systemId": "SYS-0412",
+  "appShortName": "payroll",
+  "accountType": "gMSA",
+  "proposedName": "gmsa-payroll$",
+  "hosts": ["PAY01", "PAY02"],
+  "workload": "Service",
+  "needsSpn": true,
+  "spns": ["HTTP/payroll.corp.contoso.example"],
+  "owners": ["payroll.owner@contoso.example", "payroll.backup@contoso.example"],
+  "sponsor": "finance.sponsor@contoso.example",
+  "sponsorIsFederalEmployee": true,
+  "riskTier": "R2",
+  "endDate": "2028-12-31",
+  "supersedes": "svc-payroll"
+}

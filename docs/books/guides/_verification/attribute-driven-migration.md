@@ -264,3 +264,7 @@ The table added the same day duplicated the [Service Account Migration guide's c
 ## Revision 2026-11-13 — Windows Server 2025 retirements
 
 Mike's approval, Nov 13, 2026. The dates and events for each protocol now live in one place, the status table in Book 02, Chapter 03; this page links there. dMSA wording, where present, now says a dMSA needs a Windows Server 2025 domain controller (and Windows Server 2025 hosts), not a functional level (Learn, Delegated Managed Service Accounts FAQ, read Nov 13, 2026). An RC4 date, where present, follows KB5073381 (read Nov 13, 2026): AES only assumed from the April 14, 2026 updates, rollback no longer read from the July 2026 updates.
+
+## Revision 2026-11-20 — managed service account standard
+
+The non-person identity track's end state and "Done when" now name dMSAs beside gMSAs and the dated Kerberos island (`Keep` or `KeepKerberos` with an end date the authorizing official accepts, WD-165), and ask for two named owners and a sponsor (WD-164). The service-account targets follow the service account guide's decision path: dMSA or gMSA for workloads that stay on Kerberos, then managed identity, federated credential and certificate, in that order, when the workload moves. No new Learn fact; the dMSA prerequisites are the service account guide's, footnoted there.

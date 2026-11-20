@@ -21,7 +21,7 @@ last-reviewed: 2026-11-18
 
 ::: {.callout-note}
 ## In this guide
-How to compare every kind of service identity the program will meet, choose a target for each workload, and move it there. First, how to read the guide and where its facts come from. Then a comparison of eleven kinds of service identity, on premises and in Microsoft Entra ID, and a decision path that lines up with the Non-Person Identity track's dispositions. Then three migrations, each step with Microsoft Learn's own commands: a user account used as a service to a group managed service account (gMSA), the same account to a Windows Server 2025 delegated managed service account (dMSA), and an on-premises account to a Microsoft Entra workload identity once the workload moves or gains a cloud path. Then how a workload that runs as a gMSA sends mail, on premises and to Exchange Online. Then the special cases Learn documents (containers, Microsoft Entra Domain Services, the sync agents, SQL Server, AD FS), the federal requirements and evidence for each step, dangers, rollback, a checklist and what couldn't be verified. The scripted, reviewed versions of the same work are the Non-Person Identity kit's; this guide points to them rather than repeating them.
+How to compare every kind of service identity the program will meet, choose a target for each workload, and move it there. First, how to read the guide and where its facts come from. Then a comparison of twelve kinds of service identity, on premises and in Microsoft Entra ID, and a decision path that lines up with the Non-Person Identity track's dispositions. Then the managed service account standard: how every gMSA and dMSA is requested in the agency's system access management tool, approved in SailPoint, created by a pipeline, watched with Defender for Identity, attested and retired, with machines running every step they can. Then three migrations, each step with Microsoft Learn's own commands: a user account used as a service to a group managed service account (gMSA), the same account to a Windows Server 2025 delegated managed service account (dMSA), and an on-premises account to a Microsoft Entra workload identity once the workload moves or gains a cloud path. Then how a workload that runs as a gMSA sends mail, on premises and to Exchange Online. Then the special cases Learn documents (containers, Microsoft Entra Domain Services, the sync agents, SQL Server, AD FS), the federal requirements and evidence for each step, dangers, rollback, a checklist and what couldn't be verified. The scripted, reviewed versions of the same work are the Non-Person Identity kit's; this guide points to them rather than repeating them.
 :::
 
 ::: {.callout-tip}
@@ -44,7 +44,9 @@ How to compare every kind of service identity the program will meet, choose a ta
 | `<DOMAIN>`, `<domain-fqdn>` | The domain's NetBIOS name and DNS name |
 | `<old-account>`, `<old-account-dn>` | The user account used as a service: its `sAMAccountName` and its distinguished name |
 | `<gmsa-name>` | The new gMSA's name, without the trailing `$`; unique in the forest |
-| `<hosts-group>` | The security group whose members may retrieve the gMSA's password |
+| `<hosts-group>` | The domain local security group whose members may retrieve the gMSA's password; by the standard, `DL-gMSA-<app>-Hosts` |
+| `<app>` | The system's short name, used in the standard's account and group names |
+| `<service-account-ou>`, `<holding-ou>`, `<groups-ou>` | The distinguished names of the OU for managed service accounts, the OU disabled service accounts are moved to, and the OU for the standard's groups |
 | `<host>` | A host's computer name, without the trailing `$` |
 | `<service>` | The Windows service's name, as `sc.exe` knows it |
 | `<task-path>`, `<task-name>` | The scheduled task's folder and name |
@@ -118,10 +120,99 @@ These are the track's rules, carried here so a hand migration follows them too:
 
 - **Two named owners and a sponsor.** Every identity has two named technical owners and a sponsor who is a federal employee mastered in HR; a contractor can build or run a workload but can't be its only sponsor ([Non-Person Identity guide, Step 1f](non-person-identity-implementation.md#step-1-inventory-every-non-person-identity)).
 - **A reviewed disposition first.** No account moves without its Chapter 03 disposition.
-- **A 30-day parallel run, then disable; never delete during the migration.** The old account is disabled, at most, after 30 days, and deleted only later through the decommission process ([Non-Person Identity guide, Step 5](non-person-identity-implementation.md#step-5-convert-with-a-parallel-run) and [Step 6](non-person-identity-implementation.md#step-6-run-the-lifecycle)). Learn's Entra page ends its move to a gMSA by deleting the old account,[^sam-entra-gmsa] and its dMSA page says never to delete the original;[^sam-dmsa-setup] the program follows the stricter reading.
+- **A 30-day parallel run, then disable; never delete during the migration.** The old account is disabled no sooner than 30 days after the switch, and deleted only later through the decommission process ([Non-Person Identity guide, Step 5](non-person-identity-implementation.md#step-5-convert-with-a-parallel-run) and [Step 6](non-person-identity-implementation.md#step-6-run-the-lifecycle)). Learn's Entra page ends its move to a gMSA by deleting the old account,[^sam-entra-gmsa] and its dMSA page says never to delete the original;[^sam-dmsa-setup] the program follows the stricter reading.
 - **No client secrets.** A cloud identity is a managed identity, a federated credential or a certificate, in that order ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#credentials)); Learn says don't use password credentials.[^sam-app-cred]
 - **No privileged groups.** Learn says service accounts shouldn't be members of privileged groups, and each service should have its own account.[^sam-onprem] A gMSA in a privileged group is a finding (Chapter 06's NPI-KRB-08).
 - **Changes are reviewed.** In production, the AD writes go through Chapter 06's write path and the Entra and Azure writes through Chapter 05's, each a plan approved by its SHA-256. The commands below are what those plans send; run them by hand only in a test domain or under an approved change record.
+
+## The managed service account standard {#msa-standard}
+
+The migrations below move one account. This section is the standard every managed service account follows from request to retirement, so that each one is asked for, approved, created, watched, attested and retired the same way, with the same evidence. It's the program's process *(design guidance)*, settled in decisions [WD-159 to WD-170](../../about/decision-register.md#wd-159); the products' facts are footnoted. The scripted version is the Non-Person Identity developer workbook's [Chapter 12](../../project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.md), with [Chapter 06](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md)'s write path.
+
+::: {.callout-important}
+## Machines run the steps; people decide
+Every step a machine or a script can run, it runs: the request's checks, the plan, the Active Directory writes, the re-read that closes the ticket, the monitoring, the certification campaigns and the evidence. People decide, approve in SailPoint, accept risk, and run the few steps that need Domain Admins or that delete something ([WD-170](../../about/decision-register.md#wd-170)). This lines up with the federal requirements better than the same work done by hand in a console or portal:
+
+- NIST SP 800-53 has enhancements written for it: AC-2(1) *Automated System Account Management*, AC-2(3) *Disable Accounts* and AC-2(4) *Automated Audit Actions*, all in the Moderate baseline.[^sam-80053]
+- FedRAMP's indicators name it: KSI-IAM-AAM *Automating Account Management* and KSI-SVC-ASM *Automating Secret Management*, which a gMSA's machine-managed password and the pipeline both serve.[^sam-ksi]
+- CISA's Zero Trust Maturity Model makes automation and orchestration a cross-cutting capability, and its Identity pillar's optimal stage automates orchestration of all identities.[^sam-ztmm]
+- A script leaves a record a person can't: the approved plan's SHA-256, the exact call, the re-read and a hashed evidence file, for every account, every time.
+
+Automation has limits, and the standard keeps them: account approvals still come from the people AC-2 names, separation of duties (AC-5) keeps the approver, the pipeline's owner and the person who deletes apart, the authorizing official accepts the pipeline as an autonomous class, and the pipeline's own identity is a governed non-person identity with the narrowest rights. A requirement is supported, not met, by automation; the assessor decides.
+:::
+
+### Who does what {#msa-standard-roles}
+
+| System | Its job in the standard | Never |
+|---|---|---|
+| The agency's system access management tool | The request front end, where an owner asks for, changes or retires a managed service account; it hands the request to SailPoint | Approves or writes anything itself |
+| SailPoint | Approves every request, whatever its risk tier ([WD-162](../../about/decision-register.md#wd-162)); aggregates gMSAs from the Active Directory source and service principals from the Entra ID source; correlates each account to its owners; runs the certification campaigns | Writes a gMSA in Active Directory ([WD-163](../../about/decision-register.md#wd-163)) |
+| ServiceNow | Holds the change record for each write, the typed findings (drift, a revoke, an orphan) and the decommission ticket; closes a task only on a re-read ([Ticket-to-Machine guide](ttm-servicenow-sailpoint.md)) | Approves the account |
+| The pipeline, as `gmsa-msapipe` | Runs the approved Chapter 06 plan: creates the gMSA, sets its retriever group, and disables and moves a superseded account | Runs a dMSA step, an uninstall or a delete |
+| Active Directory PowerShell, Group Policy, Defender for Identity, Microsoft Entra | The Microsoft tools that create, restrict, watch and, for a workload that moves, replace the account | — |
+| A person | Approves in SailPoint; runs the dMSA steps (Domain Admins), `Uninstall-ADServiceAccount` on the hosts, and every delete; accepts risk | Clicks through a portal to do what the pipeline does |
+
+: Who does what in the standard (design guidance) {.striped .hover}
+
+The pipeline's identity, `gmsa-msapipe`, is itself a gMSA in the service-account OU. It holds only the rights the plan's calls need: membership of `DL-gMSA-Creators`, write of `msDS-GroupMSAMembership` on the accounts it creates, and the right to disable accounts and move them into the holding OU. It has two named owners and a sponsor like every other non-person identity, and its own certification.
+
+### The standard's settings {#msa-standard-settings}
+
+| Setting | The standard | Source |
+|---|---|---|
+| Name | `gmsa-<app>` or `dmsa-<app>`, where `<app>` is the system's short name; a role suffix only where one system needs two accounts; 15 characters or fewer before the `$`; unique in the forest | Forest-unique: Learn.[^sam-gmsa-manage] The rest: [WD-159](../../about/decision-register.md#wd-159). Learn states no maximum length, so the kit keeps 15 and Lab 2 tests one |
+| Where it lives | `<service-account-ou>`, a dedicated OU, created with `New-ADServiceAccount -Path` | [WD-161](../../about/decision-register.md#wd-161). Learn's Entra page says gMSAs must be in the Managed Service Accounts container;[^sam-entra-gmsa] the cmdlet reference takes any OU in `-Path` and uses that container only as the default.[^sam-new-adsa] The program uses the OU so that the create right, Group Policy and SailPoint's aggregation scope cover service accounts and nothing else |
+| Who may create it | `DL-gMSA-Creators`, delegated the right to create `msDS-GroupManagedServiceAccount` objects on that OU; `gmsa-msapipe` is its only member | Learn names the right;[^sam-gmsa-manage] [WD-154](../../about/decision-register.md#wd-154), [WD-159](../../about/decision-register.md#wd-159) |
+| Who may retrieve its password | Always one domain local group, `DL-gMSA-<app>-Hosts`, of the hosts that run the workload | Learn recommends a group of the hosts;[^sam-gmsa-manage] [WD-160](../../about/decision-register.md#wd-160) |
+| Encryption | AES256 only | Learn: always configure AES[^sam-gmsa-overview] |
+| Password interval | 30 days, stated at creation | Learn: default 30, set only at creation[^sam-gmsa-manage] |
+| No SPN | Outbound-only (`-RestrictToOutboundAuthenticationOnly`) unless a recorded reason | [WD-154](../../about/decision-register.md#wd-154) |
+| Owners | Two named technical owners and a federal-employee sponsor | [WD-164](../../about/decision-register.md#wd-164) |
+| Privileged groups | None | Learn[^sam-onprem]; NPI-KRB-08 |
+| Attestation | SailPoint certification by the two owners: quarterly for R1, twice a year for R2, annually for R3 | [WD-166](../../about/decision-register.md#wd-166); the cadence is [Access and Privilege, Chapter 06](../b04-access/06-who-decides-access.md#risk-tiers-set-the-approval-chain)'s |
+| End date, if kept | Accepted by the authorizing official, recorded by program D08, never later than program G5 or the Kerberos island's end of life | [WD-165](../../about/decision-register.md#wd-165) |
+| Disabled before delete | 90 days, with no sign-in seen | [WD-167](../../about/decision-register.md#wd-167); Defender for Identity's stale service account assessment uses 90 days too[^sam-mdi-posture] |
+
+: The standard's settings {.striped .hover}
+
+### Set it up once {#msa-standard-setup}
+
+1. **The KDS root key.** One per forest, at least 10 hours old ([A2](#migration-a)).
+2. **The OUs.** `<service-account-ou>` for managed service accounts and `<holding-ou>` for disabled ones.
+3. **The creator group and its right.** A Domain Admin creates the group and delegates the create right on the OU. Learn names the right but gives no delegation command, so this uses `dsacls`, whose `CC;<object type>` grants create-child for one object class:[^sam-dsacls] *(design guidance: run it in the test domain first, then confirm with the check below)*
+
+    ```powershell
+    New-ADGroup -Name "DL-gMSA-Creators" -SamAccountName "DL-gMSA-Creators" -GroupScope DomainLocal -Path "<groups-ou>"
+    dsacls "<service-account-ou>" /G "<DOMAIN>\DL-gMSA-Creators:CC;msDS-GroupManagedServiceAccount"
+    dsacls "<service-account-ou>" | Select-String "DL-gMSA-Creators"
+    ```
+
+    **Expected:** the last command shows `Allow <DOMAIN>\DL-gMSA-Creators` with `CREATE CHILD` for `msDS-GroupManagedServiceAccount`.
+4. **The pipeline's gMSA.** Created by hand once, by the standard (A3), as `gmsa-msapipe` with its own `DL-gMSA-msapipe-Hosts` group of the pipeline's runner hosts, then added to `DL-gMSA-Creators`. Its other rights (retriever write, disable and move into `<holding-ou>`) are in [Chapter 06](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md)'s call list.
+5. **SailPoint's sources.** The Active Directory source aggregates gMSAs and MSAs: SailPoint's connector lists "Active Directory Service Accounts (Managed Service Accounts / Group Managed Service Accounts)" as supported, and reading `msDS-GroupMSAMembership` needs IQService with the Active Directory PowerShell module.[^sam-sp-ad] Scope it to `<service-account-ou>`. SailPoint's Machine Identity Security assigns an owner to a machine account by attribute mapping and assigns none when several identities match, so the correlation attribute must name one owner.[^sam-sp-mis] Whether Machine Identity Security is a separate license isn't stated on the page read: *not yet specified*.
+6. **Defender for Identity.** Its Service Accounts page discovers gMSAs, sMSAs and user accounts with an SPN and a password that never expires, by type.[^sam-mdi-sa] Its posture assessments include *Identify service accounts in privileged groups*, *Remove Stale Service Accounts* and *Unsecure account attributes*.[^sam-mdi-posture] Chapter 12 reads both.
+
+### The steps {#msa-standard-steps}
+
+Each step names who runs it, what it supports and the evidence it leaves. KSIs come from [Book 13, Appendix A](../b13-governance/appendix-a-requirements-mapping.md#controls-behind-service-accounts-and-other-non-person-identities), the workbook's one control-to-indicator table ([WD-169](../../about/decision-register.md#wd-169)). For IA-5 the rows give KSI-IAM-SNU first: FedRAMP's exact indicator for IA-5 is KSI-IAM-APM, and the program pairs non-user authenticators with KSI-IAM-SNU, which cites IA-5(2) ([Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md)).
+
+| Step | What happens | Runs it | Supports | KSIs | Evidence |
+|---|---|---|---|---|---|
+| S1 Request | The owner asks in the agency's system access management tool: system ID, app short name, workload and hosts, SPNs needed, two owners and a federal sponsor, risk tier, end date if kept. Chapter 12 checks every field against the standard before SailPoint's approvers see it | Owner; Chapter 12's check | AC-2; IA-4; CM-8 | KSI-IAM-SNU; KSI-IAM-ELP, IAM-JIT; KSI-PIY-GIV | The request and Chapter 12's `findings.json` |
+| S2 Decide | The [decision path](#decision-path) gives the target; Chapter 03 records it | Application owner; Chapter 03 | AC-2; IA-5 | KSI-IAM-SNU; KSI-IAM-SNU, IAM-APM | `decisions.json` |
+| S3 Approve | SailPoint approves; ServiceNow opens the change record | Approvers in SailPoint | AC-2; CM-3; AC-5 | KSI-IAM-SNU; KSI-CMT-LMC; KSI-IAM-JIT | The approval and the change record, both on the plan |
+| S4 Create | The approved plan runs: the gMSA in `<service-account-ou>`, AES256, 30 days, outbound-only when it has no SPN, its retriever group | The pipeline | AC-6; IA-5; CM-3; AC-2(1) | KSI-IAM-ELP, IAM-JIT; KSI-IAM-SNU, IAM-APM; KSI-CMT-LMC | The plan's SHA-256, the apply manifest and the re-read |
+| S5 Install and restrict | On each host, `Install-ADServiceAccount` and `Test-ADServiceAccount` ([A4](#migration-a)); Group Policy keeps *Log on as a service* to the accounts that need it;[^sam-logon-service] no privileged group | Host configuration; Group Policy | AC-6; AC-6(5); CM-6 | KSI-IAM-ELP; KSI-IAM-JIT, IAM-SNU; KSI-CMT-LMC | `Test-ADServiceAccount` `True` per host; the Group Policy report; NPI-KRB-08 clear |
+| S6 Register and close | SailPoint aggregates the account and correlates its owners; the ServiceNow task closes only on Chapter 12's re-read of AD and SailPoint | SailPoint; Chapter 12 | CM-8; AC-2 | KSI-PIY-GIV; KSI-IAM-SNU | The re-read's hashed JSON on the task |
+| S7 Watch | Defender for Identity's service accounts and posture assessments; the Validation Kit's VK-NPI-06; Chapter 06's checks; a gMSA nobody asked for is a drift finding ([Book 13, Chapter 04](../b13-governance/04-change-control-and-provenance.md)) | Scheduled runs | CA-7; SI-4; AU-6; AC-2(4) | KSI-MLA-EVC; KSI-IAM-SUS, MLA-RVL; KSI-MLA-RVL; KSI-MLA-LET | Chapter 12's reads; ServiceNow findings |
+| S8 Attest | SailPoint certification by the two owners on the risk tier's cadence; a revoke opens a ServiceNow task | SailPoint; owners | AC-2; AC-6(7) | KSI-IAM-SNU; KSI-IAM-AAM, IAM-JIT | The campaign's decisions export |
+| S9 Owner change and orphans | The departing owner's HR event starts a transfer; an orphan is disabled first, then given 30 days to be claimed ([Non-Person Identity guide, Step 6](non-person-identity-implementation.md#step-6-run-the-lifecycle)) | HR-driven workflow; SailPoint | AC-2; AC-2(3) | KSI-IAM-SNU; KSI-IAM-AAM | The transfer or claim record |
+| S10 Retire | A decommission request; after a replacement's 30-day parallel run the pipeline disables the old account and moves it to `<holding-ou>`; 90 days with no sign-in; a person uninstalls it from the hosts and deletes it; SailPoint's next aggregation confirms it's gone | Pipeline, then a person | AC-2; AC-2(3); CM-8 | KSI-IAM-SNU; KSI-IAM-AAM, IAM-JIT, IAM-SUS; KSI-PIY-GIV | The decommission ticket; the disable manifest; Chapter 12's delete list; the aggregation after |
+| S11 Move to Entra | When the workload moves: [Migration C](#migration-c) | Chapter 05 | IA-9 (tailored in); IA-5; AC-6 | None for IA-9; KSI-IAM-SNU, IAM-APM; KSI-IAM-ELP | Chapter 05's manifests |
+
+: The managed service account standard, step by step (design guidance) {.striped .hover}
+
+**What isn't verified yet.** ServiceNow's Microsoft Active Directory spoke and a CMDB class for service accounts couldn't be confirmed in ServiceNow's documentation on November 20, 2026, so the standard doesn't use them: ServiceNow records and tracks, and the Chapter 06 plan writes. SailPoint's export field names for access requests and certification decisions aren't specified on the pages read, so Chapter 12 reads its own import format and says so.
 
 ## Migration A: a user account to a gMSA {#migration-a}
 
@@ -165,7 +256,7 @@ Confirm the key with the KDS service's Event ID 4004:[^sam-gmsa-manage]
 Get-WinEvent -LogName 'Microsoft-Windows-KdsSvc/Operational' | Where-Object Id -eq 4004 | Select-Object -First 1 TimeCreated, Id, Message
 ```
 
-Learn's KDS page offers a key backdated 10 hours (`Add-KdsRootKey -EffectiveTime ((get-date).addhours(-10))`) for test environments with only one domain controller;[^sam-kds] the containers page says not to use it in production.[^sam-containers] Never use it in production. Create only one root key per forest: Learn's containers page says more than one makes gMSAs start failing after a password rotation,[^sam-containers] and its KDS page says a deleted and re-created key can stay cached, so the KDC has to be restarted on every domain controller.[^sam-kds] Chapter 06's code never creates a key.
+Learn's KDS page offers a key backdated 10 hours (`Add-KdsRootKey -EffectiveTime ((get-date).addhours(-10))`) for test environments with only one domain controller;[^sam-kds] the containers page says not to use it in production.[^sam-containers] Never use it in production. Create only one root key per forest: Learn's containers page says more than one makes gMSAs start failing after a password rotation,[^sam-containers] and its KDS page says a deleted and re-created key can stay cached, so the KDC has to be restarted on every domain controller.[^sam-kds] Chapter 06's code never creates a key. The one time a forest gets a new key is forest recovery after the old one may have been exposed, when [Book 14, Appendix H](../b14-compliance/appendix-h-ad-forest-recovery.md) has the gMSAs re-created after it; that's a recovery step, not a second key alongside the first.
 
 ### A3. Create the gMSA
 
@@ -173,8 +264,9 @@ Before you create it:
 
 - **The name is unique in the forest,** not just the domain; a duplicate fails even in another domain.[^sam-gmsa-manage]
 - **The password interval is set only now.** It defaults to 30 days and can't be changed later; to change it, create a new gMSA.[^sam-gmsa-manage] [^sam-understand]
-- **Who creates it.** Domain Admins, or an account delegated the right to create `msDS-GroupManagedServiceAccount` objects; Account Operators can't by default.[^sam-gmsa-manage] [^sam-containers] The program uses the delegated right, not Domain Admins: a program decision, settled as [WD-154](../../about/decision-register.md#wd-154) ([below](#questions)). Chapter 06's write path today still names either; until it names the delegated group, run it under an account that holds only the delegated right.
-- **Retrievers are a group.** Learn recommends a security group of the hosts; the hosts in it are the gMSA's blast radius.[^sam-gmsa-manage]
+- **Who creates it.** Domain Admins, or an account delegated the right to create `msDS-GroupManagedServiceAccount` objects; Account Operators can't by default.[^sam-gmsa-manage] [^sam-containers] The program uses the delegated right, not Domain Admins: a program decision, settled as [WD-154](../../about/decision-register.md#wd-154) ([below](#questions)). The right is delegated on `<service-account-ou>` to `DL-gMSA-Creators`, whose only member is the pipeline's `gmsa-msapipe` ([the standard](#msa-standard-setup), [WD-163](../../about/decision-register.md#wd-163)); a hand run in the test domain uses an account in the same group.
+- **Retrievers are a group.** Learn recommends a security group of the hosts; the hosts in it are the gMSA's blast radius.[^sam-gmsa-manage] The program's is always one domain local group, `DL-gMSA-<app>-Hosts` ([WD-160](../../about/decision-register.md#wd-160)).
+- **The name and the OU.** `gmsa-<app>`, 15 characters or fewer, in `<service-account-ou>` ([the standard's settings](#msa-standard-settings)).
 
 Create the hosts' group and add the hosts, as Learn's containers page does:[^sam-containers]
 
@@ -270,9 +362,10 @@ After a clean 30 days, disable the old account and move it to the holding OU; do
 
 ```powershell
 Disable-ADAccount -Identity <old-account>
+Move-ADObject -Identity <old-account-dn> -TargetPath "<holding-ou>"
 ```
 
-Chapter 06 plans this as `DisableSuperseded`. Deletion comes after the decommission process's observation window, with its SPN and LDAP-bind dependencies checked first ([Non-Person Identity guide, Step 6](non-person-identity-implementation.md#step-6-run-the-lifecycle)). Learn's own deprovisioning order is the same shape: remove permissions, check related sign-ins, prevent sign-in, wait under a business policy for how long accounts stay disabled, then delete.[^sam-govern] The program's wait is its decommission rule.
+Chapter 06 plans both as `DisableSuperseded`, and the pipeline runs it ([WD-168](../../about/decision-register.md#wd-168)).[^sam-move-adobject] Deletion comes after 90 days disabled with no sign-in seen ([WD-167](../../about/decision-register.md#wd-167)), with its SPN and LDAP-bind dependencies checked first ([Non-Person Identity guide, Step 6](non-person-identity-implementation.md#step-6-run-the-lifecycle)). Learn's own deprovisioning order is the same shape: remove permissions, check related sign-ins, prevent sign-in, wait under a business policy for how long accounts stay disabled, then delete.[^sam-govern] The program's wait is its decommission rule.
 
 **Rollback (A).** Before A7: switch the workload back to the old account with the old password from the vault, move the SPNs back with the same two commands reversed, and leave the gMSA in place. After A7: `Enable-ADAccount -Identity <old-account>`, then the same.
 
@@ -286,7 +379,7 @@ A dMSA supersedes the old account: once the migration completes, the old account
 - You can't migrate an MSA or a gMSA to a dMSA: those go to a gMSA (Migration A) or stay. Each dMSA supersedes one account.
 - Unconstrained delegation stops working once the migration completes, and on a host where Credential Guard protects the dMSA.
 - A KDS root key (A2).
-- Domain Admins or Enterprise Admins, or equivalent rights, to create or migrate to a dMSA.
+- Domain Admins or Enterprise Admins, or equivalent rights, to create or migrate to a dMSA: that is Learn's minimum; the program's rule is stricter, Domain Admins only (below).
 - Every Windows Server 2025 domain controller has the August 2025 update or later (see [Who may create a dMSA](#sam-dmsa-create-right)).
 - The old account has AES keys (B0).
 
@@ -435,7 +528,7 @@ az ad app federated-credential create --id <app-id> --parameters credential.json
 
 ### C5. Retire the on-premises account
 
-When the cloud identity has carried production traffic for the 30-day parallel run, retire whatever on-premises identity the cloud path replaced: disable it (A7), or, for a gMSA the workload no longer needs, record its retirement in Chapter 06's reconciliation (`MovesToWorkloadIdentity`) and remove it from its hosts with Learn's `Uninstall-ADServiceAccount -Identity <gmsa-name>` before the decommission process deletes it.[^sam-gmsa-manage] What still needs Kerberos stays, on the island list.
+When the cloud identity has carried production traffic for the 30-day parallel run, retire whatever on-premises identity the cloud path replaced: disable it (A7), or, for a gMSA the workload no longer needs, record its retirement in Chapter 06's reconciliation (`MovesToWorkloadIdentity`) and a person removes it from its hosts with Learn's `Uninstall-ADServiceAccount -Identity <gmsa-name>` before the decommission process deletes it.[^sam-gmsa-manage] Chapter 06's code never uninstalls or deletes; those are the person-run steps of [the standard](#msa-standard-steps)'s S10. What still needs Kerberos stays, on the island list.
 
 **What can't move.** Learn has no Entra identity that a service can use for Kerberos or NTLM to an on-premises resource; a workload that authenticates that way to a file share, a SQL Server login mapped to a Windows account, or a Kerberos-only application keeps its gMSA or dMSA until that resource changes ([Book 06, Chapter 09](../b06-data-platform/09-what-arc-provides-to-sql-server.md#the-managed-identity-and-the-service-account)). Those accounts carry an end date and, where they hold SPNs, an SPN owner on Chapter 06's island list.
 
@@ -590,7 +683,7 @@ The mapping reuses the Non-Person Identity guide's [Evidence](non-person-identit
 | A1 Inventory | Each service account, its SPNs, delegation, groups and hosts, joined to a record with two owners and a sponsor | AC-2 Account Management; CM-8 System Component Inventory | KSI-IAM-SNU; KSI-PIY-GIV | Chapter 01's register and Chapter 02's ownership run, or the A1 output for a single account |
 | Decision | Each account's reviewed disposition | AC-2; IA-5 Authenticator Management | KSI-IAM-SNU | Chapter 03's `decisions.json` and its manifest |
 | A2 KDS root key | One key, usable for at least 10 hours before the first gMSA | IA-5 | KSI-IAM-SNU | Event 4004 and the key's start time (Chapter 06's NPI-KRB-01) |
-| A3, B1 Create | The account was created by a person, on an approved plan, with AES, a forest-unique name and reviewed retrievers | AC-6 Least Privilege; IA-5; CM-3 Configuration Change Control | KSI-IAM-ELP; KSI-IAM-SNU; KSI-CMT-LMC | The approved plan and the apply run's manifest (Chapter 06); `Get-ADServiceAccount` output |
+| A3, B1 Create | The account was created on a plan approved in SailPoint and recorded in ServiceNow, by the pipeline for a gMSA and by a Domain Admin for a dMSA ([WD-163](../../about/decision-register.md#wd-163)), with AES, a forest-unique name and reviewed retrievers | AC-6 Least Privilege; IA-5; CM-3 Configuration Change Control | KSI-IAM-ELP; KSI-IAM-SNU; KSI-CMT-LMC | The approved plan and the apply run's manifest (Chapter 06); `Get-ADServiceAccount` output |
 | A4 Install and test | Only the reviewed hosts can retrieve the password | AC-6 | KSI-IAM-ELP | `Test-ADServiceAccount` `True` per host; `password-retrievers.json` (NPI-KRB-03) |
 | A5 Switch | The workload runs as the managed account; each SPN has one owner; no privileged group | IA-5; AC-6(5) Privileged Accounts | KSI-IAM-SNU; KSI-IAM-JIT | `sc.exe qc` and `qmanagedaccount`; `setspn -L`; NPI-KRB-08 clear |
 | A6, B3 Parallel run and complete | 30 days, then the old account disabled; for a dMSA, its SPNs moved | AC-2(3) Disable Accounts; IA-5 | KSI-IAM-AAM; KSI-IAM-SNU | `HostChangedOn` or `MigrationStartedOn`; the disable or complete in the apply manifest; `Get-ADUser` after it |
@@ -692,7 +785,7 @@ A finding this page addresses is ready for closure when every applicable state h
 
 - [ ] Every service account has a Chapter 03 disposition, two named owners and a federal-employee sponsor.
 - [ ] The forest has exactly one KDS root key, usable for more than 10 hours, and Event 4004 was seen.
-- [ ] Each new gMSA has a forest-unique name, AES256, the password interval decided at creation, and a reviewed group of retrievers, and was created by a person on an approved plan.
+- [ ] Each new gMSA has a forest-unique name, AES256, the password interval decided at creation, and a reviewed domain local group of retrievers, follows the standard's name and OU, and was created by the approved plan (the pipeline for a gMSA, a Domain Admin for a dMSA).
 - [ ] `Test-ADServiceAccount` returned `True` on every host before the switch.
 - [ ] Every SPN moved in the switch window and has one owner.
 - [ ] No gMSA or dMSA is in a privileged group.
@@ -709,6 +802,7 @@ A finding this page addresses is ready for closure when every applicable state h
 - **The commands weren't run against a domain or a tenant for this guide.** Each is Learn's, or a Learn cmdlet with the parameters its reference lists; Chapter 06's harness runs Learn's gMSA, KDS and dMSA procedures against stand-ins, and its Lab 2 runs the write path in a test domain.
 - **The IIS application pool step** combines Learn's IIS PowerShell sample, which sets a user and password, with the blank password of Learn's move-to-gMSA step; Learn has no page that shows a gMSA application pool end to end.
 - **`sc.exe config` with `password= ""`.** The `sc.exe config` reference says a password is required for an account other than LocalSystem, while the Service Control Manager's API reference says the password must be NULL for a managed service account. The step verifies the outcome with `sc.exe qmanagedaccount`, which must report `TRUE`.
+- **Outbound-only with a retriever group.** Learn's *Manage group Managed Service Accounts* creates an outbound-only gMSA with `-DNSHostName`, `-ManagedPasswordIntervalInDays` and `-PrincipalsAllowedToRetrieveManagedPassword`, as A3 does; the `New-ADServiceAccount` reference's outbound-only parameter set lists none of the three (read November 20, 2026).[^sam-gmsa-manage] [^sam-new-adsa] A3 and the kit follow the how-to page, the only one that gives a usable gMSA; create one in the test domain first (Chapter 06's Lab 2) and confirm it with the read-back.
 - **The gMSA name length.** Learn's gMSA pages don't state a maximum name length; keep names short and test the create in the test domain.
 - **A gMSA on an Integrated Windows authentication receive connector (M1).** Learn documents the connector's Kerberos mechanism and the Send As permission, but no page shows a gMSA submitting SMTP end to end, and whether a given application's mail library authenticates with its process's credentials is the application's. Test M1 in the test domain before the switch.
 - **Graph tokens on an Arc-enabled host (M3).** The Arc page documents the local token endpoint; no page read shows `Connect-MgGraph -Identity` against an Arc agent, so the step calls the endpoint as C2 describes rather than giving a PowerShell connection.
@@ -738,6 +832,18 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 
 <!-- revisions:end -->
 
+
+[^sam-move-adobject]: Microsoft Learn, "Move-ADObject," `-Identity`, `-TargetPath`, <https://learn.microsoft.com/powershell/module/activedirectory/move-adobject> (accessed Nov 20, 2026).
+[^sam-new-adsa]: Microsoft Learn, "New-ADServiceAccount," `-Path` (the default is the Managed Service Accounts container), `-ManagedPasswordIntervalInDays` (read-only after creation), `-RestrictToOutboundAuthenticationOnly`, `-KerberosEncryptionType`, <https://learn.microsoft.com/powershell/module/activedirectory/new-adserviceaccount> (accessed Nov 20, 2026).
+[^sam-dsacls]: Microsoft Learn, "dsacls," `/G` with `CC` (create child) for an object type, <https://learn.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc771151(v=ws.11)> (accessed Nov 20, 2026).
+[^sam-mdi-sa]: Microsoft Learn, "Investigate and protect service accounts" (Microsoft Defender for Identity service account discovery: gMSA, sMSA and user accounts with an SPN and a password that never expires; type; tags; classification rules), <https://learn.microsoft.com/defender-for-identity/service-account-discovery> (accessed Nov 20, 2026).
+[^sam-mdi-posture]: Microsoft Learn, "Security posture assessments for accounts" (Microsoft Defender for Identity): *Identify service accounts in privileged groups*, *Remove Stale Service Accounts* (90 days), *Unsecure account attributes*, <https://learn.microsoft.com/defender-for-identity/security-posture-assessments/accounts> (accessed Nov 20, 2026).
+[^sam-logon-service]: Microsoft Learn, "Log on as a service" (security policy setting; minimize the accounts granted this right; *Deny log on as a service* takes precedence), <https://learn.microsoft.com/previous-versions/windows/it-pro/windows-10/security/threat-protection/security-policy-settings/log-on-as-a-service> (archived page; accessed Nov 20, 2026), and "Directory Service Accounts for Microsoft Defender for Identity" (a gMSA must be in *Log on as a service* where that policy is configured), <https://learn.microsoft.com/defender-for-identity/deploy/directory-service-accounts> (accessed Nov 20, 2026).
+[^sam-sp-ad]: SailPoint, "Active Directory Connector: Introduction," supported features (Active Directory Service Accounts: Managed Service Accounts / Group Managed Service Accounts; IQService with the Active Directory PowerShell module for `msDS-GroupMSAMembership`), <https://documentation.sailpoint.com/connectors/active_directory/help/integrating_active_directory/intro.html> (accessed Nov 20, 2026).
+[^sam-sp-mis]: SailPoint, "Machine Identity Security" and "Configuring Accounts" (Identity Security Cloud; owner by attribute mapping; no owner when several identities match; account owners review in certifications), <https://documentation.sailpoint.com/saas/help/machine/index.html>, <https://documentation.sailpoint.com/saas/help/machine/account_configuration.html> (accessed Nov 20, 2026).
+[^sam-80053]: National Institute of Standards and Technology, SP 800-53 Rev. 5, release 5.2.0, AC-2(1), AC-2(3), AC-2(4) and AC-5, and the SP 800-53B Moderate baseline profile, <https://csrc.nist.gov/projects/cprt/catalog#/cprt/framework/version/SP_800_53_5_2_0/home>, <https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5/json> (accessed Nov 20, 2026).
+[^sam-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, KSI-IAM-AAM and KSI-SVC-ASM and their related controls, <https://www.fedramp.gov/2026/reference/key-security-indicators/> (accessed Nov 20, 2026).
+[^sam-ztmm]: Cybersecurity and Infrastructure Security Agency, *Zero Trust Maturity Model*, Version 2.0, April 2023, cross-cutting capabilities and Table 2 (Identity, Automation and Orchestration), <https://www.cisa.gov/sites/default/files/2023-04/zero_trust_maturity_model_v2_508.pdf> (accessed Nov 20, 2026).
 [^sam-govern]: Microsoft Learn, "Govern on-premises service accounts," four types; new service account principles; deprovision, <https://learn.microsoft.com/entra/architecture/service-accounts-govern-on-premises> (accessed Nov 9, 2026).
 [^sam-understand]: Microsoft Learn, "Service accounts" (Active Directory Domain Services), sMSA, gMSA, dMSA, virtual accounts; password policy for service accounts; choosing your service account, <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/understand-service-accounts> (accessed Nov 9, 2026).
 [^sam-onprem]: Microsoft Learn, "Securing on-premises service accounts," types; choose the right type; privileged groups, <https://learn.microsoft.com/entra/architecture/service-accounts-on-premises> (accessed Nov 9, 2026).

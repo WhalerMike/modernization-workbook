@@ -116,3 +116,18 @@ Applied the conventions of Book 00, Appendix D (`docs/books/b00-orientation/appe
 ## Revision 2026-11-13 — Windows Server 2025 retirements
 
 Mike's approval, Nov 13, 2026. The dates and events for each protocol now live in one place, the status table in Book 02, Chapter 03; this page links there. dMSA wording, where present, now says a dMSA needs a Windows Server 2025 domain controller (and Windows Server 2025 hosts), not a functional level (Learn, Delegated Managed Service Accounts FAQ, read Nov 13, 2026). An RC4 date, where present, follows KB5073381 (read Nov 13, 2026): AES only assumed from the April 14, 2026 updates, rollback no longer read from the July 2026 updates.
+
+## Revision 2026-11-20 — managed service account standard
+
+Aligned with the service account guide's [standard](../service-account-migration.md#msa-standard) and decisions WD-159 to WD-170. No new Learn fact: the dMSA prerequisites (every host on Windows Server 2025, a reachable Windows Server 2025 domain controller, no unconstrained delegation) are the service account guide's Migration B, footnoted there.
+
+| Change | Where | Basis |
+|---|---|---|
+| dMSA prerequisite: was "a Windows Server 2025 domain" | Step 1a, Step 2 (text and table), Step 5 | Service account guide, Migration B; decision path |
+| Two named owners for every non-person identity, AD service accounts included; Done when names dMSA and the dated Kerberos island | Step 1f, Done when | WD-164, WD-165 |
+| gMSA creator: the delegated right via `DL-gMSA-Creators` and the pipeline, not Domain Admins; retriever is one domain local group | Step 1a, Step 2 prerequisites, Step 5 | WD-154, WD-160, WD-163 (Learn's fact that either may create one stays footnoted) |
+| Decommission: a migration moves SPNs at the switch; a retirement keeps them until the 90-day window ends; delete after 90 days disabled | Step 6 table; Dangers | WD-167; service account guide A5 |
+| SQL parallel run scoped to SQL logins and database principals, and related to Step 5's account run | SQL Server | Book 06 Ch 11; WD-167 |
+| Managed service account certification by risk tier (R1 quarterly, R2 twice a year, R3 annually) in SailPoint | Step 6 access reviews | WD-166 |
+| KSIs re-mapped from Book 13 App A's new section (IA-4 → IAM-ELP, IAM-JIT; IA-5 → IAM-APM; AC-2(3) → IAM-AAM, IAM-JIT, IAM-SUS; AC-6(5) → IAM-JIT, IAM-SNU; AC-6(7) → IAM-AAM, IAM-JIT; AU-6 → MLA-RVL; IA-9 → none) | G1–G6 boxes; Evidence table and pointer | WD-169; FedRAMP KSIs re-read Nov 20, 2026 (in Book 13 App A) |
+| VK-NPI-06 scope: gMSA and dMSA settings (retrievers, AES256, direct privileged-group membership as findings; name, interval, OU as warnings; outbound-only not checked) | Kit table; G1 and G5 boxes | Validation Kit change (WD-159, WD-160, WD-161) |

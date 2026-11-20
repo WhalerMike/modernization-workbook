@@ -54,7 +54,7 @@ After this module, you'll be able to:
 
 ## Prerequisites (1 minute)
 
-- Modules 1 to 10, or at least their Lab 1s: this module doesn't teach the kit's chapters again. The runbook runs Chapters 01, 02, 04, 05, 08 and 10 in order, and does Chapter 06's gMSA step by hand.
+- Modules 1 to 10, or at least their Lab 1s: this module doesn't teach the kit's chapters again. The runbook runs Chapters 01, 02, 04, 05, 08 and 10 in order, and creates its smoke-test gMSA through a one-account Chapter 06 plan, which the pipeline applies.
 - [Module 10](10-drift-and-evidence.md), for the evidence package and the first-week drift runs that production ends with.
 
 ## Unit 1: What the runbook adds (10 minutes)
@@ -64,7 +64,7 @@ Read the workbook chapter in this order:
 - [What the runbook depends on](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#what-the-runbook-depends-on): the guide's gates, the two environments and the safe order.
 - [Before you start](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#before-you-start): the roles activated through PIM, the approvals and the change record.
 - [The environment settings file](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#the-environment-settings-file): the four rules and the placeholders.
-- [The code this chapter adds](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#the-code-this-chapter-adds): five scripts, each with a fixture mode, and what each may write.
+- [The code this chapter adds](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#the-code-this-chapter-adds): six scripts, each with a fixture mode, and what each may write.
 
 ## Unit 2: The stages and the promotion (10 minutes)
 
@@ -92,29 +92,32 @@ Read-NpiDeploySettings -Path deploy/settings.template.json -Stage test
 # Step 2: Run the test stage's preflight
 ./deploy/Test-NpiDeployPreflight.ps1 -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -BaselinePath tests/fixtures/deploy/vk-baseline.json -FixturePath tests/fixtures/deploy/tenant-test.json -OutputPath out/dryrun/test-preflight
 
-# Step 3: Run the smoke test
+# Step 3: Plan the smoke-test gMSA
+./deploy/New-NpiDeploySmokeGmsaPlan.ps1 -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -OutputPath out/dryrun/test-gmsa-plan -AsOf '2026-11-02T12:00:00Z'
+
+# Step 4: Run the smoke test
 ./deploy/Invoke-NpiDeploySmokeTest.ps1 -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -RegisterRun tests/fixtures/deploy/register-run -ExpectCaState ReportOnly -FixturePath tests/fixtures/deploy/tenant-test.json -OutputPath out/dryrun/test-smoke
 
-# Step 4: Plan the rollback
+# Step 5: Plan the rollback
 ./deploy/Invoke-NpiDeployRollback.ps1 -Mode Plan -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -SnapshotPath out/dryrun/test-preflight/snapshot.json -To Disabled -IncludeSmokeCleanup -FixturePath tests/fixtures/deploy/tenant-test.json -OutputPath out/dryrun/test-rollback
 
-# Step 5: Apply the plan with a hash nobody approved
+# Step 6: Apply the plan with a hash nobody approved
 ./deploy/Invoke-NpiDeployRollback.ps1 -Mode Apply -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -PlanPath out/dryrun/test-rollback/rollback-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/deploy/tenant-test.json -OutputPath out/dryrun/test-rollback-refused
 
-# Step 6: Dry-run the rollback with the approved hash
+# Step 7: Dry-run the rollback with the approved hash
 $sha = (Get-FileHash out/dryrun/test-rollback/rollback-plan.json -Algorithm SHA256).Hash.ToLower()
 ./deploy/Invoke-NpiDeployRollback.ps1 -Mode Apply -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -PlanPath out/dryrun/test-rollback/rollback-plan.json -ApprovedSha256 $sha -FixturePath tests/fixtures/deploy/tenant-test.json -OutputPath out/dryrun/test-rollback-dry
 
-# Step 7: Run production's preflight
+# Step 8: Run production's preflight
 ./deploy/Test-NpiDeployPreflight.ps1 -SettingsPath tests/fixtures/deploy/settings.production.json -Stage production -BaselinePath tests/fixtures/deploy/vk-baseline.json -PromotionEvidencePath out/dryrun/test-smoke -FixturePath tests/fixtures/deploy/tenant-production.json -OutputPath out/dryrun/prod-preflight -EvidencePath out/dryrun/evidence-production
 
-# Step 8: Check the test stage's evidence
+# Step 9: Check the test stage's evidence
 ./deploy/Test-NpiDeployEvidence.ps1 -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -EvidencePath out/dryrun/evidence
 
-# Step 9: Read the evidence records
+# Step 10: Read the evidence records
 Get-ChildItem out/dryrun/evidence -Filter *.json | ForEach-Object { $r = Get-Content $_.FullName -Raw | ConvertFrom-Json; '{0}: {1}; KSIs {2}' -f $_.Name, $r.result, ($r.ksis -join ', ') }
 
-# Step 10: Run the deploy scripts' tests
+# Step 11: Run the deploy scripts' tests
 Invoke-Pester -Path deploy/tests -Output None -PassThru | Select-Object PassedCount, FailedCount, NotRunCount
 
 # After the steps
@@ -142,7 +145,21 @@ Remove-Item -Recurse -Force out
 
     Expect `Preflight (Fixture, test, CHG-2026-1102-T): 12 Pass, 1 Warn`. The Warn is `PF-06`: the fixture's Conditional Access administrator holds a standing assignment, not a PIM-eligible one, which the preflight reports but doesn't block. Then `Evidence: PRE-preflight.json (Warn)`, `Evidence: S0-change-record-approvals-and-settings-file.json (Pass)` and `Result: GO for this stage.`
 
-3. **Run the smoke test** against the synthetic service principal and service account:
+3. **Plan the smoke-test gMSA** as a one-account Chapter 06 plan, the way every production write for a managed service account goes:
+
+    ```powershell
+    ./deploy/New-NpiDeploySmokeGmsaPlan.ps1 -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -OutputPath out/dryrun/test-gmsa-plan -AsOf '2026-11-02T12:00:00Z'
+    ```
+
+    ```text
+    Plan: CreateGmsa gmsa-npismoke$ in OU=Service Accounts,DC=corp-test,DC=contoso,DC=example, retriever CN=DL-gMSA-npismoke-Hosts,OU=Groups,DC=corp-test,DC=contoso,DC=example; runBy pipeline; request SP-REQ-0002001, change CHG-2026-1102-T
+    Outbound-only: yes
+    Plan SHA-256: 0bcf2917c6845ce4b55f19fa578ee44be84c73166715747d0f89039307734f6a
+    ```
+
+    The plan is the pipeline's: in a live stage a reviewer approves its hash and the pipeline's gMSA applies it with Chapter 06's write path. It writes nothing here.
+
+4. **Run the smoke test** against the synthetic service principal and service account:
 
     ```powershell
     ./deploy/Invoke-NpiDeploySmokeTest.ps1 -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -RegisterRun tests/fixtures/deploy/register-run -ExpectCaState ReportOnly -FixturePath tests/fixtures/deploy/tenant-test.json -OutputPath out/dryrun/test-smoke
@@ -150,23 +167,23 @@ Remove-Item -Recurse -Force out
 
     Expect `8 Pass`, ST-01 to ST-07, then `Evidence: SMOKE-smoke-test.json (Pass)` and `Result: PASS.` ST-03's refusal says `(fixture) ... (real code unverified)`: Learn doesn't give the error an app management policy returns.
 
-4. **Plan the rollback** from the preflight's snapshot, with the synthetic objects' cleanup:
+5. **Plan the rollback** from the preflight's snapshot, with the synthetic objects' cleanup:
 
     ```powershell
     ./deploy/Invoke-NpiDeployRollback.ps1 -Mode Plan -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -SnapshotPath out/dryrun/test-preflight/snapshot.json -To Disabled -IncludeSmokeCleanup -FixturePath tests/fixtures/deploy/tenant-test.json -OutputPath out/dryrun/test-rollback
     ```
 
-    Expect `Rollback plan (test, to Disabled): 7 action(s)`, RB-01 to RB-07, and `Plan SHA-256 for the reviewer: 0cb6515f2ee068986f8e097a1f415798757a4dc477d2d91884c987895f873d3d`. No action is a delete.
+    Expect `Rollback plan (test, to Disabled): 7 action(s)`, RB-01 to RB-07, and `Plan SHA-256 for the reviewer: 00105622acf1165bd55d606ea781b908d700f79f9f82cba5e67bd4f0d3081b81`. No action is a delete.
 
-5. **Apply the plan with a hash nobody approved:**
+6. **Apply the plan with a hash nobody approved:**
 
     ```powershell
     ./deploy/Invoke-NpiDeployRollback.ps1 -Mode Apply -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -PlanPath out/dryrun/test-rollback/rollback-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/deploy/tenant-test.json -OutputPath out/dryrun/test-rollback-refused
     ```
 
-    Expect an error: `The plan's SHA-256 is 0cb6515f…, not the approved 00000000…. Nothing was sent.`
+    Expect an error: `The plan's SHA-256 is 00105622…, not the approved 00000000…. Nothing was sent.`
 
-6. **Dry-run the rollback with the approved hash:**
+7. **Dry-run the rollback with the approved hash:**
 
     ```powershell
     $sha = (Get-FileHash out/dryrun/test-rollback/rollback-plan.json -Algorithm SHA256).Hash.ToLower()
@@ -175,7 +192,7 @@ Remove-Item -Recurse -Force out
 
     Expect `Rollback DryRun (Fixture, test): 7 WouldApply`, with both workload policies `enabledForReportingButNotEnforced -> disabled`, and `Evidence: ROLLBACK-rollback.json (DryRun)`. Without `-Apply` it sends nothing. In a real stage, a reviewer who isn't the operator passes you the hash.
 
-7. **Run production's preflight** with the test smoke test as its promotion evidence:
+8. **Run production's preflight** with the test smoke test as its promotion evidence:
 
     ```powershell
     ./deploy/Test-NpiDeployPreflight.ps1 -SettingsPath tests/fixtures/deploy/settings.production.json -Stage production -BaselinePath tests/fixtures/deploy/vk-baseline.json -PromotionEvidencePath out/dryrun/test-smoke -FixturePath tests/fixtures/deploy/tenant-production.json -OutputPath out/dryrun/prod-preflight -EvidencePath out/dryrun/evidence-production
@@ -183,7 +200,7 @@ Remove-Item -Recurse -Force out
 
     Expect `Preflight (Fixture, production, CHG-2026-1116-P): 14 Pass`, with `PF-11 Pass   Promotion Test stage smoke test passed, in another tenant: test, tenant c0ffee00-0000-4000-8000-0000000000e1, 8/8 Pass`. PF-11 runs in production only.
 
-8. **Check the test stage's evidence:**
+9. **Check the test stage's evidence:**
 
     ```powershell
     ./deploy/Test-NpiDeployEvidence.ps1 -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -EvidencePath out/dryrun/evidence
@@ -191,7 +208,7 @@ Remove-Item -Recurse -Force out
 
     Expect `4 of 9 requirement rows present and passing`: `PRE`, `S0`, `SMOKE` and `EVIDENCE` present; `S1.1`, `S1.2`, `S1.3` and `S1.5` missing, because those steps record their evidence only when they run against a tenant; `ROLLBACK` failing on `DryRun`. The last line is `Result: NO-GO on evidence.`, with exit code 1. That's right for a dry run.
 
-9. **Read the evidence records** and the KSIs each one names:
+10. **Read the evidence records** and the KSIs each one names:
 
     ```powershell
     Get-ChildItem out/dryrun/evidence -Filter *.json | ForEach-Object { $r = Get-Content $_.FullName -Raw | ConvertFrom-Json; '{0}: {1}; KSIs {2}' -f $_.Name, $r.result, ($r.ksis -join ', ') }
@@ -199,13 +216,13 @@ Remove-Item -Recurse -Force out
 
     Expect four lines: `PRE-preflight.json: Warn`, `ROLLBACK-rollback.json: DryRun` with `KSI-CMT-RMV, KSI-RPL-ABO`, `S0-change-record-approvals-and-settings-file.json: Pass` with `KSI-CMT-LMC, KSI-IAM-JIT`, and `SMOKE-smoke-test.json: Pass`.
 
-10. **Run the deploy scripts' tests:**
+11. **Run the deploy scripts' tests:**
 
     ```powershell
     Invoke-Pester -Path deploy/tests -Output None -PassThru | Select-Object PassedCount, FailedCount, NotRunCount
     ```
 
-    Expect `PassedCount 55`, `FailedCount 0`, `NotRunCount 0`. The tests sit outside `tests/`, so the 511 every other module's Lab 1 counts doesn't change.
+    Expect `PassedCount 60`, `FailedCount 0`, `NotRunCount 0`. The tests sit outside `tests/`, so the 549 every other module's Lab 1 counts doesn't change.
 
 Delete the dry run's folder when you're done:
 
@@ -218,7 +235,7 @@ Remove-Item -Recurse -Force out
 *Not run by anyone yet.* Follow the workbook's [Stage 1: live test](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#stage-1-live-test), after [Prepare the stage](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#prepare-the-stage) and the [Pre-flight checks](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#pre-flight-checks). It has the exact commands. Then, only when every [go/no-go criterion](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#promotion-gono-go-criteria) is signed, [Stage 2: production](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#stage-2-production).
 
 - **You need:** an Entra test tenant with Workload ID Premium and Entra ID P1 or P2, an Azure test subscription and an Active Directory test forest, never production; an approved change record; the reader app and the deployment identity, each with a certificate; operators eligible for their roles through PIM; and the second labs of Chapters 01, 04, 05, 06 and 08 already run.
-- **What you do:** fill in and check the settings file, create the synthetic objects and the pilot policy, run the preflight, deploy Steps 1.1 to 1.5, run the smoke test, capture the evidence, rehearse the rollback, deploy again and check the evidence.
+- **What you do:** fill in and check the settings file, create the synthetic objects, the gMSA's domain local retriever group and the pilot policy, run the preflight, deploy Steps 1.1 to 1.5 (the gMSA through its approved Chapter 06 plan), run the smoke test, capture the evidence, rehearse the rollback, deploy again and check the evidence.
 - **Back-out:** [Step 1.8](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#step-1.8-roll-back-the-test-stage) applies the approved rollback (workload policies disabled, the tenant default app management policy restored, the pilot policy off, the legacy account re-enabled), uninstalls the gMSA on the host, and checks the tenant against the baseline. The kit never deletes.
 
 ## Knowledge check (5 minutes)
@@ -253,8 +270,8 @@ Remove-Item -Recurse -Force out
 ## Check your answers
 1. **b.** Taught in [What the runbook depends on](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#what-the-runbook-depends-on), the safe order.
 2. **b.** Taught in [What the runbook depends on](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#what-the-runbook-depends-on) and the chapter's [Dangers](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#dangers).
-3. **b.** Taught in the chapter's [dry run](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#dry-run-on-the-kits-fixtures) and step 5 of the lab.
-4. **b.** Taught in the chapter's [dry run](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#dry-run-on-the-kits-fixtures) and step 8 of the lab.
+3. **b.** Taught in the chapter's [dry run](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#dry-run-on-the-kits-fixtures) and step 6 of the lab.
+4. **b.** Taught in the chapter's [dry run](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#dry-run-on-the-kits-fixtures) and step 9 of the lab.
 5. **b.** Taught in [Pre-flight checks](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#pre-flight-checks), PF-11, and the [go/no-go criteria](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#promotion-gono-go-criteria).
 :::
 

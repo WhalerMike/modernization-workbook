@@ -1,0 +1,12 @@
+PS> Get-Content out/msa-standard/certification.json -Raw | ConvertFrom-Json | Format-Table Account, RiskTier, LastCertifiedOn, DueOn, Status
+Account        RiskTier LastCertifiedOn DueOn      Status
+-------        -------- --------------- -----      ------
+dmsa-hrsync$   R1                       2026-12-18 DueSoon
+gmsa-intranet$ R2       2026-06-01      2026-12-01 DueSoon
+gmsa-print$    R3       2025-10-15      2026-10-15 Overdue
+gmsa-web$      R1       2026-10-01      2027-01-01 Current
+PS> Get-Content out/msa-standard/servicenow-findings.json -Raw | ConvertFrom-Json | Format-Table drift_class, severity, account_name, attribute, observed_value
+drift_class    severity account_name attribute             observed_value
+-----------    -------- ------------ ---------             --------------
+stale_access   P2       gmsa-print$  certificationDecision REVOKE
+orphan_account P2       gmsa-web$

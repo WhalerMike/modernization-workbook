@@ -1,5 +1,5 @@
 {
-  "_comment": "Chapter 06: every Active Directory cmdlet NpiKerberosIsland runs, with the Active Directory right from the Learn page for that cmdlet or procedure, read on October 30, 2026 (research gaps, rows 51 to 59, where Learn names no minimum). Same schema as calls.json. The read task runs only Get-AD* cmdlets; the writes belong to kerberos-apply only and are sent only by Invoke-NpiKrbPlan -Apply, after a reviewer approves the plan's SHA-256. No call removes, uninstalls, undoes or resets anything: the old account is never deleted. 'allowedParams' lists the only parameters a write may carry. tests/NpiKerberosIsland.Tests.ps1 fails when a task's declaration isn't exactly the union of its calls.",
+  "_comment": "Chapter 06: every Active Directory cmdlet NpiKerberosIsland runs, with the Active Directory right from the Learn page for that cmdlet or procedure, read on October 30, 2026 (research gaps, rows 51 to 59, where Learn names no minimum). Same schema as calls.json. The read task runs only Get-AD* cmdlets; the writes belong to kerberos-apply only and are sent only by Invoke-NpiKrbPlan -Apply, after a reviewer approves the plan's SHA-256. No call removes, uninstalls, undoes or resets anything: the old account is never deleted. 'allowedParams' lists the only parameters a write may carry. 'runBy' says who sends a write (WD-163): 'pipeline' is the pipeline's own gMSA (kerberos-apply's pipelineIdentity) holding only the delegated rights on the service-account OU, and a person may send it only in a test domain; 'person' is a person signed in with the call's right, and the pipeline never sends it. 'controls' and 'ksis' are the federal requirements a write supports and the KSIs it aligns to, carried into the plan and the run's results. tests/NpiKerberosIsland.Tests.ps1 fails when a task's declaration isn't exactly the union of its calls.",
   "tasks": {
     "kerberos-island": {
       "mode": "read",
@@ -17,15 +17,18 @@
       "graphPermissions": [],
       "azureRoles": [],
       "adRights": [
-        "Create msDS-GroupManagedServiceAccount objects: Domain Admins or Enterprise Admins, or a delegated create right",
-        "Delegated right to disable accounts in the account's OU",
+        "Create msDS-GroupManagedServiceAccount objects in the service-account OU: the right delegated there to DL-gMSA-Creators (the pipeline's gMSA is a member), or Domain Admins",
         "Delegated read of msKds-ProvRootKey objects in CN=Master Root Keys (List Contents; Read msKds-UseStartTime and msKds-CreateTime, never msKds-RootKeyData): the class's default security descriptor grants Enterprise Admins, Domain Admins and SYSTEM only",
+        "Delegated right to disable accounts in the account's OU",
+        "Delegated right to move objects from the account's OU into the holding OU",
         "Domain Admins or Enterprise Admins, or equivalent permissions, to create or migrate to a dMSA, against a read-write domain controller",
         "Read (default for authenticated domain users)",
         "Write msDS-GroupMSAMembership on the managed service account"
       ],
-      "delegatedOnly": true,
-      "delegatedRole": "A person signed in to the domain with the rights above, never a scheduled job or a service account"
+      "runAs": ["Pipeline", "Person"],
+      "pipelineIdentity": "gmsa-msapipe$",
+      "pipelineRole": "The pipeline's own gMSA, run after SailPoint approves the request and ServiceNow records the change (WD-162, WD-163). It holds only delegated rights in the service-account OUs: create msDS-GroupManagedServiceAccount objects in the service-account OU (as a member of DL-gMSA-Creators), write msDS-GroupMSAMembership on those accounts, disable superseded accounts and move them into the holding OU. It is in no privileged group and never writes group membership, a dMSA or a migration.",
+      "personRole": "A person signed in to the domain with the call's right, against a read-write domain controller: the dMSA steps (Domain Admins, Learn), and in a test domain any pipeline step"
     }
   },
   "calls": [
@@ -89,11 +92,15 @@
       "api": "ad",
       "method": "WRITE",
       "cmdlet": "New-ADServiceAccount",
-      "adRight": "Create msDS-GroupManagedServiceAccount objects: Domain Admins or Enterprise Admins, or a delegated create right",
-      "allowedParams": ["Name", "DNSHostName", "PrincipalsAllowedToRetrieveManagedPassword", "KerberosEncryptionType"],
+      "adRight": "Create msDS-GroupManagedServiceAccount objects in the service-account OU: the right delegated there to DL-gMSA-Creators (the pipeline's gMSA is a member), or Domain Admins",
+      "allowedParams": ["Name", "DNSHostName", "Path", "PrincipalsAllowedToRetrieveManagedPassword", "KerberosEncryptionType", "ManagedPasswordIntervalInDays", "RestrictToOutboundAuthenticationOnly"],
       "stage": "GA",
       "tasks": ["kerberos-apply"],
-      "learn": "https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts"
+      "runBy": "pipeline",
+      "controls": ["AC-6", "IA-5", "CM-3"],
+      "ksis": ["KSI-IAM-ELP", "KSI-CMT-LMC"],
+      "learn": "https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts",
+      "note": "Learn's procedure is on Manage group Managed Service Accounts. -Path puts the gMSA in the service-account OU (WD-161); -ManagedPasswordIntervalInDays can be set only at creation; -RestrictToOutboundAuthenticationOnly for a workload that holds no SPN (WD-154)."
     },
     {
       "id": "krb-new-dmsa",
@@ -101,9 +108,12 @@
       "method": "WRITE",
       "cmdlet": "New-ADServiceAccount",
       "adRight": "Domain Admins or Enterprise Admins, or equivalent permissions, to create or migrate to a dMSA, against a read-write domain controller",
-      "allowedParams": ["Name", "DNSHostName", "CreateDelegatedServiceAccount", "KerberosEncryptionType"],
+      "allowedParams": ["Name", "DNSHostName", "Path", "CreateDelegatedServiceAccount", "KerberosEncryptionType"],
       "stage": "GA (Windows Server 2025)",
       "tasks": ["kerberos-apply"],
+      "runBy": "person",
+      "controls": ["IA-5", "CM-3"],
+      "ksis": ["KSI-IAM-SNU", "KSI-CMT-LMC"],
       "learn": "https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-set-up-dmsa"
     },
     {
@@ -115,6 +125,9 @@
       "allowedParams": ["Identity", "PrincipalsAllowedToRetrieveManagedPassword"],
       "stage": "GA",
       "tasks": ["kerberos-apply"],
+      "runBy": "pipeline",
+      "controls": ["AC-6"],
+      "ksis": ["KSI-IAM-ELP"],
       "learn": "https://learn.microsoft.com/powershell/module/activedirectory/set-adserviceaccount",
       "note": "The parameter sets msDS-GroupMSAMembership. Learn names no minimum right for it (research gaps, row 53)."
     },
@@ -127,6 +140,9 @@
       "allowedParams": ["Identity", "SupersededAccount"],
       "stage": "GA (Windows Server 2025)",
       "tasks": ["kerberos-apply"],
+      "runBy": "person",
+      "controls": ["IA-5", "CM-3"],
+      "ksis": ["KSI-IAM-SNU", "KSI-CMT-LMC"],
       "learn": "https://learn.microsoft.com/powershell/module/activedirectory/start-adserviceaccountmigration"
     },
     {
@@ -138,6 +154,9 @@
       "allowedParams": ["Identity", "SupersededAccount"],
       "stage": "GA (Windows Server 2025)",
       "tasks": ["kerberos-apply"],
+      "runBy": "person",
+      "controls": ["AC-2(3)", "IA-5"],
+      "ksis": ["KSI-IAM-AAM", "KSI-IAM-SNU"],
       "learn": "https://learn.microsoft.com/powershell/module/activedirectory/complete-adserviceaccountmigration",
       "note": "Disables the superseded account and moves its SPNs to the dMSA (Learn, dMSA overview). Learn: never delete the original account."
     },
@@ -150,8 +169,26 @@
       "allowedParams": ["Identity"],
       "stage": "GA",
       "tasks": ["kerberos-apply"],
+      "runBy": "pipeline",
+      "controls": ["AC-2(3)"],
+      "ksis": ["KSI-IAM-AAM"],
       "learn": "https://learn.microsoft.com/powershell/module/activedirectory/disable-adaccount",
-      "note": "The old account after a clean 30-day parallel run on its gMSA. Disabled, never deleted."
+      "note": "The old account after a clean 30-day parallel run on its gMSA. Disabled, never deleted; krb-move-superseded then moves it to the holding OU in the same plan (WD-168)."
+    },
+    {
+      "id": "krb-move-superseded",
+      "api": "ad",
+      "method": "WRITE",
+      "cmdlet": "Move-ADObject",
+      "adRight": "Delegated right to move objects from the account's OU into the holding OU",
+      "allowedParams": ["Identity", "TargetPath"],
+      "stage": "GA",
+      "tasks": ["kerberos-apply"],
+      "runBy": "pipeline",
+      "controls": ["AC-2(3)"],
+      "ksis": ["KSI-IAM-AAM"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/move-adobject",
+      "note": "The disabled old account, moved by its objectGUID into the holding OU in ad-standard.json (WD-168). It is moved, never deleted: the delete is a person's step through the decommission ticket, 90 days after the disable (WD-167)."
     }
   ]
 }

@@ -1,0 +1,10 @@
+id,nativeIdentity,name,sourceName,identityId,identityName,uncorrelated
+2c9180a0000000000000000000000101,"CN=gmsa-intranet,OU=Service Accounts,DC=corp,DC=contoso,DC=example",gmsa-intranet$,Active Directory - corp,2c9180a0000000000000000000009101,intranet.owner@contoso.example,false
+2c9180a0000000000000000000000102,"CN=gmsa-print,OU=Service Accounts,DC=corp,DC=contoso,DC=example",gmsa-print$,Active Directory - corp,2c9180a0000000000000000000009102,print.owner@contoso.example,false
+2c9180a0000000000000000000000103,"CN=gmsa-web,CN=Managed Service Accounts,DC=corp,DC=contoso,DC=example",gmsa-web$,Active Directory - corp,,,true
+2c9180a0000000000000000000000105,"CN=dmsa-hrsync,OU=Service Accounts,DC=corp,DC=contoso,DC=example",dmsa-hrsync$,Active Directory - corp,2c9180a0000000000000000000009105,hr-apps.owner@contoso.example,false
+2c9180a0000000000000000000000106,"CN=gmsa-legacy,OU=Service Accounts,DC=corp,DC=contoso,DC=example",gmsa-legacy$,Active Directory - corp,2c9180a0000000000000000000009106,legacy.owner@contoso.example,false
+2c9180a0000000000000000000000107,"CN=gmsa-oldfax,OU=Service Accounts,DC=corp,DC=contoso,DC=example",gmsa-oldfax$,Active Directory - corp,2c9180a0000000000000000000009107,fax.owner@contoso.example,false
+2c9180a0000000000000000000000108,"CN=gmsa-batch,OU=Service Accounts,DC=corp,DC=contoso,DC=example",gmsa-batch$,Active Directory - corp,2c9180a0000000000000000000009108,batch.owner@contoso.example,false
+2c9180a0000000000000000000000109,"CN=gmsa-report,OU=Service Accounts,DC=corp,DC=contoso,DC=example",gmsa-report$,Active Directory - corp,2c9180a0000000000000000000009109,report.owner@contoso.example,false
+2c9180a0000000000000000000000110,"CN=gmsa-sql,CN=Managed Service Accounts,DC=corp,DC=contoso,DC=example",gmsa-sql$,Active Directory - corp,2c9180a0000000000000000000009110,data.owner@contoso.example,false

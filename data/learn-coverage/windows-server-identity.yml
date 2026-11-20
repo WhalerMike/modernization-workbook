@@ -1690,6 +1690,7 @@ pages:
   note: ''
   cited_by:
   - data/source-register.json
+  - docs/books/b02-identity/08-assessing-the-forest.md
   - docs/books/guides/non-person-identity-implementation.md
   - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
@@ -1708,10 +1709,12 @@ pages:
   note: ''
   cited_by:
   - docs/books/b01-transformation-arc/08-access-plane.md
+  - docs/books/b02-identity/08-assessing-the-forest.md
   - docs/books/b06-data-platform/07-the-authentication-audit.md
   - docs/books/b06-data-platform/09-what-arc-provides-to-sql-server.md
   - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
+  - docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.md
 - path: WindowsServerDocs/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts
   title: Manage Group Managed Service Accounts
@@ -1733,11 +1736,14 @@ pages:
   - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
   - docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md
+  - docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.md
   - docs/reference/source-register.md
   - examples/non-person-identity/config/calls-ch06.json
   - examples/non-person-identity/config/calls-ch11.json
   - examples/third_party/windows-server-msa-pages/SNAPSHOT.md
   - examples/third_party/windows-server-msa-pages/snapshot.json
+  - examples/validation-kit/README.md
+  - examples/validation-kit/powershell/ValidationKit/Private/Catalog.ps1
 - path: WindowsServerDocs/identity/ad-ds/manage/group-policy/group-policy-backup-restore.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-policy/group-policy-backup-restore
   title: Back Up and Restore Group Policy in Windows

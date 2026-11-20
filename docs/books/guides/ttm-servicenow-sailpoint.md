@@ -235,7 +235,7 @@ This gate closes gaps 2 and 4 on paper before anything is connected. Every later
    - **SailPoint becomes the provisioning service** and takes on Book 03's middleware duties ([Book 03, Chapter 05](../b03-hr-identity/05-the-provisioning-pipeline.md#the-middleware-five-duties-per-event)).
 
    Not both. Record each attribute's writer in the attribute map, and the [Oracle HCM to Entra guide](hcm-entra-implementation.md#the-two-decisions-to-make-first) for the first pattern's build.
-2. **Choose one approver system per authority class (gap 2).** For example *(design guidance)*: ServiceNow approves A0 and A1 through its Ask for Approval flow ([Book 15, Chapter 03](../b15-day2-operations/03-intake-triage-and-routing.md#routing-two-pipelines-and-an-escalation-lane)); SailPoint approves A2 and A3 through access-request approvals by owner, manager or governance group;[^ttm-appr] and the Service Catalog app only collects A2 and A3 requests. Set every approval's timeout outcome to reject or cancel, never approve.
+2. **Choose one approver system per authority class (gap 2).** For example *(design guidance)*: ServiceNow approves A0 and A1 through its Ask for Approval flow ([Book 15, Chapter 03](../b15-day2-operations/03-intake-triage-and-routing.md#routing-two-pipelines-and-an-escalation-lane)); SailPoint approves A2 and A3 through access-request approvals by owner, manager or governance group;[^ttm-appr] and the Service Catalog app only collects A2 and A3 requests. Set every approval's timeout outcome to reject or cancel, never approve. Managed service accounts are the program's exception to this example split: SailPoint approves every request for one, at any risk tier, reached through the agency's system access management tool, and ServiceNow keeps only the change record, the findings and the decommission ticket ([WD-162](../../about/decision-register.md#wd-162); the [managed service account standard](service-account-migration.md#msa-standard)).
 3. **Assign each operation class a lane** on these products, from Appendix B's [lanes](../b13-governance/appendix-b-ticket-to-machine-reference.md#change-classes-and-their-lanes). The mapping below is the program's *(inference)*; the authorizing official accepts any class run autonomously.
 
 | Lane (Book 13) | On these products | Change record in ServiceNow |
@@ -710,6 +710,7 @@ From public documentation read on November 1, 2026, unless noted:
 : Versions of this guide, newest first {.striped .hover}
 
 <!-- revisions:end -->
+
 
 [^ttm-fr]: FedRAMP Marketplace data, <https://www.fedramp.gov/marketplace/products.json> (last change November 1, 2026): ServiceNow Government Community Cloud (F1305072116: FedRAMP Certified, High, Class D, JAB path, certified August 12, 2019); SailPoint Identity Security Cloud (FR2001938710A: FedRAMP Certified, Moderate, Class C, agency path, certified June 5, 2024); UberEther IAM Advantage (FR2208555094), whose service description lists SailPoint IdentityIQ among its components. No other ServiceNow offering is listed (read November 1, 2026).
 [^ttm-sp-fedramp]: SailPoint, "Identity for government and critical infrastructure" (FedRAMP Moderate ATO; hosted in AWS GovCloud; modules and capabilities included, among them Non-Employee Risk Management; no list of unavailable features), <https://www.sailpoint.com/solutions/fedramp-isc> (read November 1, 2026).

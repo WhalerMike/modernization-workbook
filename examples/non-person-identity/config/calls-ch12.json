@@ -1,0 +1,27 @@
+{
+  "_comment": "Chapter 12: the one Active Directory read NpiGmsaStandard can run, with the right from the Learn page for that cmdlet, read on November 20, 2026. Same schema as calls.json. Everything else the chapter reads is a file: an approved request exported from SailPoint (reached through the agency's system access management tool), SailPoint's aggregated Active Directory accounts and certification decisions, the managed-account register and Defender for Identity's service account list. The chapter writes nothing to any system: its outputs are files a reviewer hands to Chapter 06's plan, ServiceNow and the decommission ticket. tests/NpiGmsaStandard.Tests.ps1 fails when a task's declaration isn't exactly the union of its calls.",
+  "tasks": {
+    "msa-standard": {
+      "mode": "read",
+      "chapter": "12",
+      "graphPermissions": [],
+      "azureRoles": [],
+      "adRights": [
+        "Read (default for authenticated domain users)"
+      ]
+    }
+  },
+  "calls": [
+    {
+      "id": "std-managed-accounts",
+      "api": "ad",
+      "method": "READ",
+      "cmdlet": "Get-ADServiceAccount",
+      "adRight": "Read (default for authenticated domain users)",
+      "stage": "GA",
+      "tasks": ["msa-standard"],
+      "learn": "https://learn.microsoft.com/powershell/module/activedirectory/get-adserviceaccount",
+      "note": "Reads every gMSA and dMSA with msDS-ManagedPasswordInterval, KerberosEncryptionType, PrincipalsAllowedToRetrieveManagedPassword, ServicePrincipalNames, MemberOf, whenCreated and lastLogonTimestamp. Whether a default read returns the retrievers is open (research gaps, row 53), as in Chapter 06. The attribute -RestrictToOutboundAuthenticationOnly sets is not yet specified, so a live read leaves that field null."
+    }
+  ]
+}

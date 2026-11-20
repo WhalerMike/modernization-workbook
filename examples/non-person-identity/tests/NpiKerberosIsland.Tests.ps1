@@ -113,7 +113,11 @@ Describe 'The inputs' {
         (Get-NpiKrbPath $h) | Should -Be 'Convert'
         (Get-NpiKrbPath ([pscustomobject]@{ Disposition = 'Replatform'; Target = 'ManagedIdentity' })) | Should -Be 'WorkloadIdentity'
         (Get-NpiKrbPath ([pscustomobject]@{ Disposition = 'Convert'; Target = 'gMSA' })) | Should -Be ''
-        $i.Hashes.Keys | Should -Be @('decisions.json', 'kerberos-replatform.csv', 'password-retrievers.json', 'program-dates.json')
+        $i.Hashes.Keys | Should -Be @('decisions.json', 'kerberos-replatform.csv', 'password-retrievers.json', 'ad-standard.json', 'program-dates.json')
+        $i.AdStandard.ServiceAccountOu | Should -Be 'OU=Service Accounts,DC=corp,DC=contoso,DC=example'
+        $i.AdStandard.HoldingOu | Should -Be 'OU=Disabled Service Accounts,DC=corp,DC=contoso,DC=example'
+        $i.AdStandard.PasswordIntervalDays | Should -Be 30
+        "$($h.RequestId) $($h.ChangeRecord)" | Should -Be 'SP-REQ-0001041 CHG0031041'
     }
     It 'reads the one program-dates file Chapter 03''s run read, refuses any other, and refuses an end state that isn''t AdRetired or KerberosIsland, with no default' {
         $dir = Join-Path $script:Tmp ("dates-{0}" -f [guid]::NewGuid()); New-Item -ItemType Directory -Force $dir | Out-Null
@@ -177,16 +181,50 @@ Describe 'The dispositions' {
 }
 
 Describe 'gMSAs: MSAs upgraded, traditional accounts moved' {
-    It 'an MSA is upgraded to a new gMSA with its reviewed retrievers and AES256' {
+    It 'an MSA is upgraded to a new gMSA in the service-account OU, with its retriever group, AES256, the password interval and its request' {
         $a = (Get-Act 'msa-print01$')[0]
         $a.Action | Should -Be 'CreateGmsa'
         $a.Params.Name | Should -Be 'gmsa-print'
         $a.Params.DNSHostName | Should -Be 'gmsa-print.corp.contoso.example'
-        @($a.Params.PrincipalsAllowedToRetrieveManagedPassword) | Should -Be @('CN=PRINT01,OU=Servers,DC=corp,DC=contoso,DC=example')
+        $a.Params.Path | Should -Be 'OU=Service Accounts,DC=corp,DC=contoso,DC=example'
+        @($a.Params.PrincipalsAllowedToRetrieveManagedPassword) | Should -Be @('CN=DL-gMSA-print-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example')
         $a.Params.KerberosEncryptionType | Should -Be 'AES256'
+        $a.Params.ManagedPasswordIntervalInDays | Should -Be 30
+        "$($a.RunBy) $($a.RequestId) $($a.ChangeRecord)" | Should -Be 'pipeline SP-REQ-0001043 CHG0031043'
+        @($a.Controls) | Should -Be @('AC-6', 'IA-5', 'CM-3')
+        @($a.Ksis) | Should -Be @('KSI-IAM-ELP', 'KSI-CMT-LMC')
     }
-    It 'an IIS application pool''s account gets a gMSA whose retrievers are a group' {
-        (Get-Act 'svc-intranet')[0].Params.PrincipalsAllowedToRetrieveManagedPassword | Should -Be 'CN=GG-gMSA-Intranet-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example'
+    It 'WD-154: a gMSA for an account with no SPN is outbound-only, unless the owner records why not; one that takes over SPNs never is' {
+        $a = (Get-Act 'msa-print01$')[0]
+        $a.Params.RestrictToOutboundAuthenticationOnly | Should -BeTrue
+        $a.Reason | Should -Match 'Outbound-only: msa-print01\$ holds no SPN'
+        (Get-Act 'svc-intranet')[0].Params.Contains('RestrictToOutboundAuthenticationOnly') | Should -BeFalse
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'msa-print01$' @{ OutboundOnlyReason = 'The print vendor''s console authenticates to the task' } })
+        $b = @($r.Plan.actions | Where-Object Account -EQ 'msa-print01$')[0]
+        $b.Params.Contains('RestrictToOutboundAuthenticationOnly') | Should -BeFalse
+        $b.Reason | Should -Match 'Not outbound-only: The print vendor''s console'
+    }
+    It 'an IIS application pool''s account gets a gMSA whose retriever is its DL-gMSA-<app>-Hosts group' {
+        (Get-Act 'svc-intranet')[0].Params.PrincipalsAllowedToRetrieveManagedPassword | Should -Be 'CN=DL-gMSA-intranet-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example'
+    }
+    It 'WD-159: a planned name that isn''t gmsa-<app> or dmsa-<app> in lowercase, or is longer than 15 characters, blocks the plan (NPI-KRB-04)' {
+        foreach ($bad in 'svc-print2$', 'GMSA-Print$', 'gmsa_print$', 'dmsa-print$', 'gmsa-printservice01$') {
+            $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'msa-print01$' @{ NewAccount = $bad }; $x.Retrievers[$bad] = @('CN=DL-gMSA-print-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example') })
+            @($r.Plan.actions | Where-Object Account -EQ 'msa-print01$')[0].Action | Should -Be 'Blocked' -Because $bad
+            @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-04' -and $_.ObjectKey -eq 'msa-print01$' })[0].Issue | Should -Match 'name standard|15 characters' -Because $bad
+        }
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'svc-hrsync' @{ NewAccount = 'gmsa-hrsync$' } })
+        @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-04' -and $_.ObjectKey -eq 'svc-hrsync' })[0].Issue | Should -Match 'a dMSA is dmsa-<app>'
+    }
+    It 'WD-160: a planned gMSA whose reviewed retriever is a computer, or more than one entry, isn''t planned (NPI-KRB-03)' {
+        $cases = @{ 'a computer' = @('CN=PRINT01,OU=Servers,DC=corp,DC=contoso,DC=example'); 'two groups' = @('CN=DL-gMSA-print-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example', 'CN=DL-gMSA-web-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example') }
+        foreach ($k in $cases.Keys) {
+            $list = $cases[$k]
+            $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) $x.Retrievers['gmsa-print$'] = $list })
+            @($r.Plan.actions | Where-Object Account -EQ 'msa-print01$')[0].Action | Should -Be 'Blocked' -Because $k
+            @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-03' -and $_.ObjectKey -eq 'msa-print01$' }) | Should -HaveCount 1 -Because $k
+            @($r.Reconciliation.Account) | Should -Not -Contain 'gmsa-print$'
+        }
     }
     It 'a gMSA with no reviewed retrievers is blocked, not created open' {
         $i = Get-TestInputs { param($x) $x.Retrievers.Remove('gmsa-print$') }
@@ -204,14 +242,51 @@ Describe 'gMSAs: MSAs upgraded, traditional accounts moved' {
             $f = New-NpiKrbFixtureAdInvoker -EstatePath $est -KerberosPath $p
             $rd = New-NpiKrbReader -AdInvoke $f.Invoke
             $st = Read-NpiKrbDomain -Reader $rd -Rows $script:Register.Rows -Dispositions $Inputs.Dispositions -Domain $script:Domain -AsOf $script:AsOf
-            (@((Test-NpiKerberosIsland -Rows $script:Register.Rows -Domain $st -Inputs $Inputs -AsOf $script:AsOf -DomainName $script:Domain -Cloud gcc -TenantId $script:Tenant).Plan.actions | Where-Object Account -EQ 'msa-print01$'))[0]
+            @((Test-NpiKerberosIsland -Rows $script:Register.Rows -Domain $st -Inputs $Inputs -AsOf $script:AsOf -DomainName $script:Domain -Cloud gcc -TenantId $script:Tenant).Plan.actions | Where-Object Account -EQ 'msa-print01$')
         }
-        (& $check (Get-TestInputs)).Action | Should -Be 'AwaitHostChange'
-        (& $check (Get-TestInputs { param($x) Set-Row $x 'msa-print01$' @{ HostChangedOn = '2026-10-15' } })).Action | Should -Be 'AwaitParallelRun'
-        $a = & $check (Get-TestInputs { param($x) Set-Row $x 'msa-print01$' @{ HostChangedOn = '2026-09-15' } })
-        $a.Action | Should -Be 'DisableSuperseded'
-        $a.Cmdlet | Should -Be 'Disable-ADAccount'
-        $a.Params.Identity | Should -Be 'ad000000-0000-4000-8000-000000000021'
+        (& $check (Get-TestInputs))[0].Action | Should -Be 'AwaitHostChange'
+        (& $check (Get-TestInputs { param($x) Set-Row $x 'msa-print01$' @{ HostChangedOn = '2026-10-15' } }))[0].Action | Should -Be 'AwaitParallelRun'
+        $acts = & $check (Get-TestInputs { param($x) Set-Row $x 'msa-print01$' @{ HostChangedOn = '2026-09-15' } })
+        # WD-168: the disable and the move to the holding OU, in the same plan, both by objectGUID and both the pipeline's.
+        @($acts.Action) | Should -Be @('DisableSuperseded', 'MoveSuperseded')
+        $acts[0].Cmdlet | Should -Be 'Disable-ADAccount'
+        $acts[0].Params.Identity | Should -Be 'ad000000-0000-4000-8000-000000000021'
+        $acts[1].Cmdlet | Should -Be 'Move-ADObject'
+        $acts[1].Params.Identity | Should -Be 'ad000000-0000-4000-8000-000000000021'
+        $acts[1].Params.TargetPath | Should -Be 'OU=Disabled Service Accounts,DC=corp,DC=contoso,DC=example'
+        $acts[1].Before | Should -Be 'CN=msa-print01,CN=Managed Service Accounts,DC=corp,DC=contoso,DC=example'
+        @($acts.RunBy | Sort-Object -Unique) | Should -Be @('pipeline')
+        @($acts | ForEach-Object { "$($_.RequestId) $($_.ChangeRecord)" } | Sort-Object -Unique) | Should -Be @('SP-REQ-0001043 CHG0031043')
+        @($acts[1].Controls) | Should -Be @('AC-2(3)')
+        # Already disabled but still in its OU: only the move; disabled and in the holding OU: nothing to send.
+        & $w.Fake.Invoke 'Disable-ADAccount' @{ Identity = 'ad000000-0000-4000-8000-000000000021' }
+        [IO.File]::WriteAllText($est, ($w.Fake.Estate | ConvertTo-Json -Depth 50))
+        @((& $check (Get-TestInputs { param($x) Set-Row $x 'msa-print01$' @{ HostChangedOn = '2026-09-15' } })).Action) | Should -Be @('MoveSuperseded')
+        & $w.Fake.Invoke 'Move-ADObject' @{ Identity = 'ad000000-0000-4000-8000-000000000021'; TargetPath = 'OU=Disabled Service Accounts,DC=corp,DC=contoso,DC=example' }
+        [IO.File]::WriteAllText($est, ($w.Fake.Estate | ConvertTo-Json -Depth 50))
+        @((& $check (Get-TestInputs { param($x) Set-Row $x 'msa-print01$' @{ HostChangedOn = '2026-09-15' } })).Action) | Should -Be @('Superseded')
+    }
+    It 'WD-168: -Apply disables the old account, moves it to the holding OU and re-reads both; it''s never deleted' {
+        $w = New-TestWriter
+        & $w.Fake.Invoke 'New-ADServiceAccount' @{ Name = 'gmsa-intranet'; DNSHostName = 'gmsa-intranet.corp.contoso.example'; PrincipalsAllowedToRetrieveManagedPassword = @('CN=DL-gMSA-intranet-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example'); KerberosEncryptionType = 'AES256' }
+        $est = Join-Path $script:Tmp ("estate-{0}.json" -f [guid]::NewGuid()); [IO.File]::WriteAllText($est, ($w.Fake.Estate | ConvertTo-Json -Depth 50))
+        $f = New-NpiKrbFixtureAdInvoker -EstatePath $est -KerberosPath $script:Krb -AllowWrite
+        $i = Get-TestInputs { param($x) Set-Row $x 'svc-intranet' @{ HostChangedOn = '2026-09-01' } }
+        $st = Read-NpiKrbDomain -Reader (New-NpiKrbReader -AdInvoke $f.Invoke) -Rows $script:Register.Rows -Dispositions $i.Dispositions -Domain $script:Domain -AsOf $script:AsOf
+        $plan = (Test-NpiKerberosIsland -Rows $script:Register.Rows -Domain $st -Inputs $i -AsOf $script:AsOf -DomainName $script:Domain -Cloud gcc -TenantId $script:Tenant).Plan
+        @($plan.actions | Where-Object Account -EQ 'svc-intranet').Action | Should -Be @('DisableSuperseded', 'MoveSuperseded')
+        $saved = Save-TestPlan $plan
+        $writer = New-NpiKrbWriter -TenantId $script:Tenant -Domain $script:Domain -AdInvoke $f.Invoke
+        $run = Invoke-NpiKrbPlan -PlanPath $saved.Path -ApprovedSha256 $saved.Sha -Writer $writer -AsOf $script:AsOf -RunAs Pipeline -Apply
+        $mine = @($run.Results | Where-Object Account -EQ 'svc-intranet')
+        @($mine | ForEach-Object { "$($_.Action)=$($_.Outcome)/$($_.Verified)" }) | Should -Be @('DisableSuperseded=Sent/True', 'MoveSuperseded=Sent/True')
+        $old = @($f.Estate.ad.objects | Where-Object SamAccountName -EQ 'svc-intranet')[0]
+        ([int64]$old.UserAccountControl -band 2) | Should -Be 2
+        $old.DistinguishedName | Should -Be 'CN=svc-intranet,OU=Disabled Service Accounts,DC=corp,DC=contoso,DC=example'
+        @($f.Calls | Where-Object { $_.Cmdlet -match '^(Remove|Uninstall|Undo|Reset|Clear)-' }) | Should -HaveCount 0
+        # Run again: nothing left to send.
+        $again = Invoke-NpiKrbPlan -PlanPath $saved.Path -ApprovedSha256 $saved.Sha -Writer $writer -AsOf $script:AsOf -RunAs Pipeline -Apply
+        @($again.Results | Where-Object Account -EQ 'svc-intranet').Detail | Should -Be @('Already disabled', 'Already in the holding OU')
     }
 }
 
@@ -222,6 +297,9 @@ Describe 'dMSAs: Windows Server 2025 delegated MSA migration' {
         $a = @($r.Plan.actions | Where-Object Account -EQ 'svc-hrsync')[0]
         $a.Action | Should -Be 'CreateDmsa'
         $a.Params.CreateDelegatedServiceAccount | Should -BeTrue
+        $a.Params.Path | Should -Be 'OU=Service Accounts,DC=corp,DC=contoso,DC=example'
+        # The dMSA steps need Domain Admins (Learn): a person sends them, never the pipeline.
+        $a.RunBy | Should -Be 'person'
         $p = New-TestKrb { param($j) $j.serviceAccountState = @{} }
         $r2 = Invoke-TestCheck -KrbPath $p -Inputs (Get-TestInputs { param($x) Set-Row $x 'svc-hrsync' @{ MigrationStartedOn = '' } })
         $s = @($r2.Plan.actions | Where-Object Account -EQ 'svc-hrsync')[0]
@@ -255,11 +333,24 @@ Describe 'dMSAs: Windows Server 2025 delegated MSA migration' {
 }
 
 Describe 'PrincipalsAllowedToRetrieveManagedPassword as reviewed data' {
-    It 'NPI-KRB-03: AD differing from the reviewed list plans a SetRetrievers with the list as read' {
-        (Get-Rule 'NPI-KRB-03').ObjectKey | Should -Be 'gmsa-web$'
+    It 'NPI-KRB-03: AD differing from the reviewed list plans a SetRetrievers with the list as read, and the request that approved it' {
+        @(Get-Rule 'NPI-KRB-03').ObjectKey | Should -Be @('gmsa-ops$', 'gmsa-web$')
         $a = @(Get-Act 'gmsa-web$' | Where-Object Action -EQ 'SetRetrievers')[0]
-        @($a.Params.PrincipalsAllowedToRetrieveManagedPassword) | Should -HaveCount 3
+        @($a.Params.PrincipalsAllowedToRetrieveManagedPassword) | Should -Be @('CN=DL-gMSA-web-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example')
         @($a.Before) | Should -HaveCount 2
+        "$($a.RunBy) $($a.RequestId) $($a.ChangeRecord)" | Should -Be 'pipeline SP-REQ-0001044 CHG0031044'
+        @($a.Controls) | Should -Be @('AC-6'); @($a.Ksis) | Should -Be @('KSI-IAM-ELP')
+    }
+    It 'WD-160: an existing gMSA''s reviewed list that is a computer, or more than one entry, is a finding with no write; a dMSA keeps the hosts it learned' {
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) $x.Retrievers['gmsa-web$'] = @('CN=WEB01,OU=Servers,DC=corp,DC=contoso,DC=example', 'CN=WEB02,OU=Servers,DC=corp,DC=contoso,DC=example', 'CN=WEB03,OU=Servers,DC=corp,DC=contoso,DC=example') })
+        @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-03' -and $_.ObjectKey -eq 'gmsa-web$' })[0].Issue | Should -Match 'breaks the retriever rule.*3 reviewed retrievers'
+        @($r.Plan.actions | Where-Object { $_.Account -eq 'gmsa-web$' -and $_.Action -eq 'SetRetrievers' }) | Should -HaveCount 0
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) $x.Retrievers['gmsa-ops$'] = @('CN=OPS01,OU=Servers,DC=corp,DC=contoso,DC=example') })
+        @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-03' -and $_.ObjectKey -eq 'gmsa-ops$' })[0].Issue | Should -Match 'never a computer account'
+        # A completed dMSA whose hosts AD learned (HR01, a computer) matches its reviewed list: no finding.
+        $p = New-TestKrb { param($j) $j.serviceAccountState['dmsa-hrsync$']['msDS-DelegatedMSAState'] = 2 }
+        $r = Invoke-TestCheck -KrbPath $p
+        @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-03' -and $_.ObjectKey -eq 'dmsa-hrsync$' }) | Should -HaveCount 0
     }
     It 'an account missing from the reviewed data, or an empty list, is a finding with no write' {
         $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) $x.Retrievers.Remove('gmsa-ops$'); $x.Retrievers['gmsa-web$'] = @() })
@@ -344,25 +435,40 @@ Describe 'The plan' {
         foreach ($c in $script:Run.Fake.Calls) { $c.Cmdlet | Should -Match '^Get-AD' }
         @($script:Run.Reader.Evidence.Call | Sort-Object -Unique) | Should -Be @('krb-domain-controllers', 'krb-host-computers', 'krb-kds-root-keys', 'krb-service-accounts', 'krb-superseded-user')
     }
-    It 'has four writes for the fixture, and the same inputs give the same plan, byte for byte' {
-        @($script:Run.Plan.actions | Where-Object Write).Action | Sort-Object | Should -Be @('CompleteDmsaMigration', 'CreateGmsa', 'CreateGmsa', 'SetRetrievers')
+    It 'has five writes for the fixture, four the pipeline''s and one a person''s, and the same inputs give the same plan, byte for byte' {
+        @($script:Run.Plan.actions | Where-Object Write).Action | Sort-Object | Should -Be @('CompleteDmsaMigration', 'CreateGmsa', 'CreateGmsa', 'SetRetrievers', 'SetRetrievers')
+        @($script:Run.Plan.actions | Where-Object Write | ForEach-Object { "$($_.Action)=$($_.RunBy)" } | Sort-Object -Unique) | Should -Be @('CompleteDmsaMigration=person', 'CreateGmsa=pipeline', 'SetRetrievers=pipeline')
+        $script:Run.Plan.adStandard.holdingOu | Should -Be 'OU=Disabled Service Accounts,DC=corp,DC=contoso,DC=example'
+        $script:Run.Plan.pipelineIdentity | Should -Be 'gmsa-msapipe$'
         (Save-TestPlan $script:Run.Plan).Sha | Should -Be (Save-TestPlan (Invoke-TestCheck).Plan).Sha
+    }
+    It 'NPI-KRB-10: a write with no SailPoint request or no ServiceNow change record is Blocked, not planned' {
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'msa-print01$' @{ RequestId = '' }; Set-Row $x 'svc-hrsync' @{ ChangeRecord = '' }; $x.RetrieverRequests.Remove('gmsa-web$') })
+        @($r.Findings | Where-Object Rule -EQ 'NPI-KRB-10').ObjectKey | Sort-Object | Should -Be @('gmsa-web$', 'msa-print01$', 'svc-hrsync')
+        $a = @($r.Plan.actions | Where-Object Account -EQ 'msa-print01$')[0]
+        "$($a.Action) $($a.Write)" | Should -Be 'Blocked False'
+        $a.Reason | Should -Match 'CreateGmsa: no approved request'
+        @($r.Plan.actions | Where-Object Account -EQ 'svc-hrsync')[0].Reason | Should -Match 'no change record'
+        @($r.Plan.actions | Where-Object { $_.Account -eq 'gmsa-web$' -and $_.Write }) | Should -HaveCount 0
+        @($r.Plan.actions | Where-Object Write).Action | Sort-Object | Should -Be @('CreateGmsa', 'SetRetrievers')
     }
     It 'no action deletes, and every action has a stable ID' {
         foreach ($a in $script:Run.Plan.actions) { "$($a.Cmdlet)" | Should -Not -Match '^(Remove|Uninstall|Undo|Reset)-'; $a.ActionId | Should -Be "$($a.Action):$($a.Account)" }
     }
 }
 
+
 Describe 'The separate write path' {
     BeforeAll { $script:Saved = Save-TestPlan $script:Run.Plan }
     It 'refuses a plan nobody approved, for another tenant or domain, or older than seven days' {
         $w = (New-TestWriter).Writer
-        { Invoke-NpiKrbPlan -PlanPath $script:Saved.Path -ApprovedSha256 ('0' * 64) -Writer $w -AsOf $script:AsOf } | Should -Throw '*nobody reviewed*'
+        { Invoke-NpiKrbPlan -PlanPath $script:Saved.Path -ApprovedSha256 ('0' * 64) -Writer $w -AsOf $script:AsOf -RunAs Pipeline } | Should -Throw '*nobody reviewed*'
         $other = New-NpiKrbWriter -TenantId '00000000-0000-4000-8000-000000000000' -Domain $script:Domain -AdInvoke { }
-        { Invoke-NpiKrbPlan -PlanPath $script:Saved.Path -ApprovedSha256 $script:Saved.Sha -Writer $other -AsOf $script:AsOf } | Should -Throw '*for tenant*'
+        { Invoke-NpiKrbPlan -PlanPath $script:Saved.Path -ApprovedSha256 $script:Saved.Sha -Writer $other -AsOf $script:AsOf -RunAs Pipeline } | Should -Throw '*for tenant*'
         $dom = New-NpiKrbWriter -TenantId $script:Tenant -Domain 'other.contoso.example' -AdInvoke { }
-        { Invoke-NpiKrbPlan -PlanPath $script:Saved.Path -ApprovedSha256 $script:Saved.Sha -Writer $dom -AsOf $script:AsOf } | Should -Throw '*for domain*'
-        { Invoke-NpiKrbPlan -PlanPath $script:Saved.Path -ApprovedSha256 $script:Saved.Sha -Writer $w -AsOf $script:AsOf.AddDays(8) } | Should -Throw '*days old*'
+        { Invoke-NpiKrbPlan -PlanPath $script:Saved.Path -ApprovedSha256 $script:Saved.Sha -Writer $dom -AsOf $script:AsOf -RunAs Pipeline } | Should -Throw '*for domain*'
+        { Invoke-NpiKrbPlan -PlanPath $script:Saved.Path -ApprovedSha256 $script:Saved.Sha -Writer $w -AsOf $script:AsOf.AddDays(8) -RunAs Pipeline } | Should -Throw '*days old*'
+        { Invoke-NpiKrbPlan -PlanPath $script:Saved.Path -ApprovedSha256 $script:Saved.Sha -Writer $w -AsOf $script:AsOf -RunAs Robot } | Should -Throw
     }
     It 'refuses a delete, an undeclared call, a parameter outside the allowed list, or an empty retriever list' {
         $w = (New-TestWriter).Writer
@@ -374,19 +480,56 @@ Describe 'The separate write path' {
         { Assert-NpiKrbPlannedWrite -Writer $w -Action ([pscustomobject]($base + @{ Call = 'krb-new-gmsa'; Cmdlet = 'New-ADServiceAccount'; Params = @{ Name = 'g'; PrincipalsAllowedToRetrieveManagedPassword = @('CN=X,DC=c'); KerberosEncryptionType = 'RC4' } })) } | Should -Throw '*AES256*'
         { Assert-NpiKrbPlannedWrite -Writer $w -Action ([pscustomobject]($base + @{ Call = 'krb-start-migration'; Cmdlet = 'Start-ADServiceAccountMigration'; Params = @{ Identity = 'd$'; SupersededAccount = 'svc-hrsync' } })) } | Should -Throw '*distinguished name*'
     }
+    It 'refuses a gMSA outside the plan''s OU or interval, a move outside its holding OU, and a write with no request or no change record' {
+        $w = (New-TestWriter).Writer
+        $plan = Get-Content $script:Saved.Path -Raw | ConvertFrom-Json
+        $create = @($plan.actions | Where-Object { $_.Action -eq 'CreateGmsa' })[0]
+        $copy = { param([hashtable]$Change, [hashtable]$Params) $a = $create | ConvertTo-Json -Depth 10 | ConvertFrom-Json; foreach ($k in $Change.Keys) { $a.$k = $Change[$k] }; foreach ($k in $Params.Keys) { $a.Params.$k = $Params[$k] }; $a }
+        { Assert-NpiKrbPlannedWrite -Writer $w -Action (& $copy @{} @{}) -Plan $plan } | Should -Not -Throw
+        { Assert-NpiKrbPlannedWrite -Writer $w -Action (& $copy @{} @{ Path = 'OU=Elsewhere,DC=corp,DC=contoso,DC=example' }) -Plan $plan } | Should -Throw '*isn''t the plan''s*'
+        { Assert-NpiKrbPlannedWrite -Writer $w -Action (& $copy @{} @{ Path = 'CN=Managed Service Accounts,DC=corp,DC=contoso,DC=example' }) -Plan $plan } | Should -Throw '*OU''s distinguished name*'
+        { Assert-NpiKrbPlannedWrite -Writer $w -Action (& $copy @{} @{ ManagedPasswordIntervalInDays = 90 }) -Plan $plan } | Should -Throw '*isn''t the plan''s 30*'
+        { Assert-NpiKrbPlannedWrite -Writer $w -Action (& $copy @{} @{ RestrictToOutboundAuthenticationOnly = $false }) -Plan $plan } | Should -Throw '*only as true*'
+        { Assert-NpiKrbPlannedWrite -Writer $w -Action (& $copy @{ RequestId = '' } @{}) -Plan $plan } | Should -Throw '*no approved request*'
+        { Assert-NpiKrbPlannedWrite -Writer $w -Action (& $copy @{ ChangeRecord = '' } @{}) -Plan $plan } | Should -Throw '*no change record*'
+        $move = [pscustomobject]@{ ActionId = 'm'; Write = $true; Call = 'krb-move-superseded'; Cmdlet = 'Move-ADObject'; RequestId = 'SP-REQ-1'; ChangeRecord = 'CHG1'
+            Params = [pscustomobject]@{ Identity = 'ad000000-0000-4000-8000-000000000012'; TargetPath = 'OU=Workstations,DC=corp,DC=contoso,DC=example' } }
+        { Assert-NpiKrbPlannedWrite -Writer $w -Action $move -Plan $plan } | Should -Throw '*isn''t the plan''s OU=Disabled Service Accounts*'
+        $move.Params.TargetPath = 'OU=Disabled Service Accounts,DC=corp,DC=contoso,DC=example'; $move.Params.Identity = 'svc-intranet'
+        { Assert-NpiKrbPlannedWrite -Writer $w -Action $move -Plan $plan } | Should -Throw '*objectGUID*'
+    }
+    It 'WD-163: the pipeline never sends a person''s step; a person sends a pipeline step only in a test domain' {
+        $t = New-TestWriter
+        $run = Invoke-NpiKrbPlan -PlanPath $script:Saved.Path -ApprovedSha256 $script:Saved.Sha -Writer $t.Writer -AsOf $script:AsOf -RunAs Pipeline -Apply
+        @($run.Results | ForEach-Object { "$($_.Action)=$($_.Outcome)" } | Sort-Object -Unique) | Should -Be @('CompleteDmsaMigration=Refused', 'CreateGmsa=Sent', 'SetRetrievers=Sent')
+        @($t.Fake.Calls.Cmdlet) | Should -Not -Contain 'Complete-ADServiceAccountMigration'
+        $p = New-TestWriter
+        $run = Invoke-NpiKrbPlan -PlanPath $script:Saved.Path -ApprovedSha256 $script:Saved.Sha -Writer $p.Writer -AsOf $script:AsOf -RunAs Person -Apply
+        @($run.Results | ForEach-Object { "$($_.Action)=$($_.Outcome)" } | Sort-Object -Unique) | Should -Be @('CompleteDmsaMigration=Sent', 'CreateGmsa=Refused', 'SetRetrievers=Refused')
+        @($run.Results | Where-Object Outcome -EQ 'Refused')[0].Detail | Should -Match 'only in a test domain'
+        @($p.Fake.Calls.Cmdlet) | Should -Not -Contain 'New-ADServiceAccount'
+        $run = Invoke-NpiKrbPlan -PlanPath $script:Saved.Path -ApprovedSha256 $script:Saved.Sha -Writer (New-TestWriter).Writer -AsOf $script:AsOf -RunAs Person -TestDomain
+        @($run.Results.Outcome | Sort-Object -Unique) | Should -Be @('WouldSend')
+        $run.TestDomain | Should -BeTrue
+    }
     It 'dry run: runs every precheck and sends nothing' {
         $t = New-TestWriter
-        $run = Invoke-NpiKrbPlan -PlanPath $script:Saved.Path -ApprovedSha256 $script:Saved.Sha -Writer $t.Writer -AsOf $script:AsOf
-        @($run.Results.Outcome | Sort-Object -Unique) | Should -Be @('WouldSend')
+        $run = Invoke-NpiKrbPlan -PlanPath $script:Saved.Path -ApprovedSha256 $script:Saved.Sha -Writer $t.Writer -AsOf $script:AsOf -RunAs Pipeline
+        @($run.Results | ForEach-Object { "$($_.RunBy)=$($_.Outcome)" } | Sort-Object -Unique) | Should -Be @('person=Refused', 'pipeline=WouldSend')
         @($t.Fake.Calls | Where-Object { $_.Cmdlet -notmatch '^Get-AD' }) | Should -HaveCount 0
     }
-    It '-Apply: creates the gMSAs, sets the retrievers, completes the migration and keeps the old account, disabled' {
+    It '-Apply: creates the gMSAs in the service-account OU, sets the retriever groups, completes the migration and keeps the old account, disabled; each write re-read' {
         $t = New-TestWriter
-        $run = Invoke-NpiKrbPlan -PlanPath $script:Saved.Path -ApprovedSha256 $script:Saved.Sha -Writer $t.Writer -AsOf $script:AsOf -Apply
-        @($run.Results.Outcome | Sort-Object -Unique) | Should -Be @('Sent')
+        $run = Invoke-NpiKrbPlan -PlanPath $script:Saved.Path -ApprovedSha256 $script:Saved.Sha -Writer $t.Writer -AsOf $script:AsOf -RunAs Pipeline -Apply
+        $run = Invoke-NpiKrbPlan -PlanPath $script:Saved.Path -ApprovedSha256 $script:Saved.Sha -Writer $t.Writer -AsOf $script:AsOf -RunAs Person -Apply
+        @($run.Results | Where-Object Outcome -EQ 'Sent').Action | Should -Be @('CompleteDmsaMigration')
+        @($run.Results | Where-Object Outcome -EQ 'Sent')[0].Verified | Should -BeTrue
         $sas = $t.Fake.Estate.ad.serviceAccounts
         @($sas | Where-Object SamAccountName -In 'gmsa-print$', 'gmsa-intranet$' | ForEach-Object ObjectClass | Sort-Object -Unique) | Should -Be @('msDS-GroupManagedServiceAccount')
-        @(@($sas | Where-Object SamAccountName -EQ 'gmsa-web$')[0].PrincipalsAllowedToRetrieveManagedPassword) | Should -HaveCount 3
+        @($sas | Where-Object SamAccountName -In 'gmsa-print$', 'gmsa-intranet$' | ForEach-Object DistinguishedName | Sort-Object) | Should -Be @('CN=gmsa-intranet,OU=Service Accounts,DC=corp,DC=contoso,DC=example', 'CN=gmsa-print,OU=Service Accounts,DC=corp,DC=contoso,DC=example')
+        @($sas | Where-Object SamAccountName -EQ 'gmsa-print$')[0].RestrictToOutboundAuthenticationOnly | Should -BeTrue
+        @($sas | Where-Object SamAccountName -EQ 'gmsa-intranet$')[0].RestrictToOutboundAuthenticationOnly | Should -BeFalse
+        @(@($sas | Where-Object SamAccountName -EQ 'gmsa-web$')[0].PrincipalsAllowedToRetrieveManagedPassword) | Should -Be @('CN=DL-gMSA-web-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example')
         $old = @($t.Fake.Estate.ad.objects | Where-Object SamAccountName -EQ 'svc-hrsync')[0]
         ([int64]$old.UserAccountControl -band 2) | Should -Be 2
         @($old.ServicePrincipalName) | Should -HaveCount 0
@@ -398,32 +541,71 @@ Describe 'The separate write path' {
         $t = New-TestWriter -KrbPath $p
         & $t.Fake.Invoke 'New-ADServiceAccount' @{ Name = 'gmsa-print'; DNSHostName = 'x'; PrincipalsAllowedToRetrieveManagedPassword = @('CN=PRINT01,OU=Servers,DC=corp,DC=contoso,DC=example') } | Out-Null
         & $t.Fake.Invoke 'Set-ADServiceAccount' @{ Identity = 'gmsa-web$'; PrincipalsAllowedToRetrieveManagedPassword = @('CN=WEB01,OU=Servers,DC=corp,DC=contoso,DC=example') } | Out-Null
-        $run = Invoke-NpiKrbPlan -PlanPath $script:Saved.Path -ApprovedSha256 $script:Saved.Sha -Writer $t.Writer -AsOf $script:AsOf -Apply
+        $run = Invoke-NpiKrbPlan -PlanPath $script:Saved.Path -ApprovedSha256 $script:Saved.Sha -Writer $t.Writer -AsOf $script:AsOf -RunAs Person -TestDomain -Apply
         @($run.Results | Where-Object Outcome -EQ 'Skipped').Action | Sort-Object | Should -Be @('CompleteDmsaMigration', 'CreateGmsa', 'SetRetrievers')
     }
     It 'the live invoker refuses any cmdlet the task doesn''t declare' {
         $allowed = @((Get-NpiKrbCall -Task kerberos-apply).cmdlet | Sort-Object -Unique)
         $allowed | Should -Not -Contain 'Remove-ADServiceAccount'
+        $allowed | Should -Not -Contain 'Remove-ADObject'
+        $allowed | Should -Not -Contain 'Add-ADGroupMember'
         $allowed | Should -Not -Contain 'Add-KdsRootKey'
     }
 }
 
+Describe 'Who sends each write (WD-163)' {
+    It 'every write call names runBy: the pipeline for the gMSA creation, retrievers, disable and move; a person for the dMSA steps' {
+        $by = @{}; foreach ($c in @((Get-NpiKrbCall -Task kerberos-apply) | Where-Object { $_.method -eq 'WRITE' })) { $by[$c.id] = $c.runBy }
+        @($by.Keys | Where-Object { $by[$_] -eq 'pipeline' } | Sort-Object) | Should -Be @('krb-disable-superseded', 'krb-move-superseded', 'krb-new-gmsa', 'krb-set-retrievers')
+        @($by.Keys | Where-Object { $by[$_] -eq 'person' } | Sort-Object) | Should -Be @('krb-complete-migration', 'krb-new-dmsa', 'krb-start-migration')
+        $t = Get-NpiKrbTask -Task kerberos-apply
+        $t.pipelineIdentity | Should -Be 'gmsa-msapipe$'
+        @($t.runAs) | Should -Be @('Pipeline', 'Person')
+        $t.ContainsKey('delegatedOnly') | Should -BeFalse
+    }
+    It 'every write call names the controls it supports and the KSIs it aligns to, and the move is Move-ADObject, never a delete' {
+        foreach ($c in @((Get-NpiKrbCall -Task kerberos-apply) | Where-Object { $_.method -eq 'WRITE' })) { @($c.controls).Count | Should -BeGreaterThan 0 -Because $c.id; @($c.ksis).Count | Should -BeGreaterThan 0 -Because $c.id }
+        $m = (Get-NpiKrbCall -Id krb-move-superseded)[0]
+        "$($m.cmdlet) $(@($m.allowedParams) -join ',')" | Should -Be 'Move-ADObject Identity,TargetPath'
+        $m.learn | Should -Be 'https://learn.microsoft.com/powershell/module/activedirectory/move-adobject'
+        @((Get-NpiKrbCall -Id krb-new-gmsa)[0].allowedParams) | Should -Contain 'RestrictToOutboundAuthenticationOnly'
+    }
+    It 'refuses a missing ad-standard.json, a bad OU in it, and a kerberos-replatform.csv without RequestId, ChangeRecord and OutboundOnlyReason' {
+        $dir = Join-Path $script:Tmp ("in-{0}" -f [guid]::NewGuid()); Copy-Item -Recurse $script:Inputs $dir
+        Remove-Item (Join-Path $dir 'ad-standard.json')
+        { Import-NpiKrbInput -InputPath $dir -MatrixRun $script:Matrix -ProgramDatesPath $script:Dates } | Should -Throw '*Missing reviewed input*ad-standard.json*'
+        $s = Get-Content (Join-Path $script:Inputs 'ad-standard.json') -Raw | ConvertFrom-Json -AsHashtable; $s.holdingOu = 'CN=Users,DC=corp,DC=contoso,DC=example'
+        [IO.File]::WriteAllText((Join-Path $dir 'ad-standard.json'), ($s | ConvertTo-Json))
+        { Import-NpiKrbInput -InputPath $dir -MatrixRun $script:Matrix -ProgramDatesPath $script:Dates } | Should -Throw '*holdingOu must be an OU*'
+        Copy-Item (Join-Path $script:Inputs 'ad-standard.json') $dir -Force
+        $csv = Import-Csv (Join-Path $script:Inputs 'kerberos-replatform.csv') | Select-Object SamAccountName, NewAccount, Workload, Hosts, SpnOwnerUpn, EndDate, Reference, HostChangedOn, MigrationStartedOn
+        $csv | Export-Csv -NoTypeInformation (Join-Path $dir 'kerberos-replatform.csv')
+        { Import-NpiKrbInput -InputPath $dir -MatrixRun $script:Matrix -ProgramDatesPath $script:Dates } | Should -Throw '*no OutboundOnlyReason, RequestId, ChangeRecord column*'
+    }
+}
+
 Describe 'The entry scripts' {
-    It 'read, plan, dry-run and apply against the fixtures, with manifests' {
+    It 'read, plan, dry-run and apply against the fixtures, the pipeline''s steps and a person''s, with manifests' {
         $out = Join-Path $script:Tmp 'kerberos'
         $lines = & (Join-Path $script:Root 'Invoke-NpiKerberosIsland.ps1') -Cloud gcc -RegisterRun $script:InvRun -MatrixRun $script:MatRun -ProgramDatesPath $script:Dates -FixturePath $script:Estate -KerberosFixturePath $script:Krb -InputPath $script:Inputs -OutputPath $out
         $lines[0] | Should -Be 'Kerberos accounts: 9 in scope; KDS root key Ready'
+        $lines[3] | Should -Be 'Run by: 1 person, 4 pipeline'
         $m = Get-Content (Join-Path $out 'manifest.json') -Raw | ConvertFrom-Json
         $m.task | Should -Be 'kerberos-island'
         $m.files.'kerberos-plan.json' | Should -Be (Get-NpiFileHash -Path (Join-Path $out 'kerberos-plan.json'))
         $m.inputs.'program-dates.json' | Should -Be (Get-NpiFileHash -Path $script:Dates)
         $m.inputs.'decisions.json' | Should -Be $script:Matrix.Sha256
+        $m.inputs.'ad-standard.json' | Should -Be (Get-NpiFileHash -Path (Join-Path $script:Inputs 'ad-standard.json'))
         $sha = Get-NpiFileHash -Path (Join-Path $out 'kerberos-plan.json')
-        $dry = & (Join-Path $script:Root 'Invoke-NpiKerberosIslandAction.ps1') -PlanPath (Join-Path $out 'kerberos-plan.json') -ApprovedSha256 $sha -FixturePath $script:Estate -KerberosFixturePath $script:Krb -OutputPath (Join-Path $script:Tmp 'dry')
-        $dry[0] | Should -Be 'DryRun: 4 WouldSend'
-        $app = & (Join-Path $script:Root 'Invoke-NpiKerberosIslandAction.ps1') -PlanPath (Join-Path $out 'kerberos-plan.json') -ApprovedSha256 $sha -FixturePath $script:Estate -KerberosFixturePath $script:Krb -OutputPath (Join-Path $script:Tmp 'apply') -Apply
-        $app[0] | Should -Be 'Apply: 4 Sent'
-        (Get-Content (Join-Path $script:Tmp 'apply/manifest.json') -Raw | ConvertFrom-Json).planSha256 | Should -Be $sha
+        $act = { param([string]$Folder, [string]$As, [switch]$Apply) & (Join-Path $script:Root 'Invoke-NpiKerberosIslandAction.ps1') -PlanPath (Join-Path $out 'kerberos-plan.json') -ApprovedSha256 $sha -RunAs $As -FixturePath $script:Estate -KerberosFixturePath $script:Krb -OutputPath (Join-Path $script:Tmp $Folder) -Apply:$Apply }
+        (& $act 'dry' Pipeline)[0] | Should -Be 'DryRun as Pipeline: 1 Refused, 4 WouldSend'
+        (& $act 'apply' Pipeline -Apply)[0] | Should -Be 'Apply as Pipeline: 1 Refused, 4 Sent'
+        (& $act 'apply-person' Person -Apply)[0] | Should -Be 'Apply as Person: 4 Refused, 1 Sent'
+        $am = Get-Content (Join-Path $script:Tmp 'apply/manifest.json') -Raw | ConvertFrom-Json
+        $am.planSha256 | Should -Be $sha
+        $am.runAs | Should -Be 'Pipeline'
+        $res = Get-Content (Join-Path $script:Tmp 'apply/results.json') -Raw | ConvertFrom-Json
+        @($res | Where-Object Outcome -EQ 'Sent' | ForEach-Object { "$($_.RequestId)/$($_.ChangeRecord)" }) | Should -Not -Contain '/'
     }
     It 'refuses a register read in another cloud' {
         { & (Join-Path $script:Root 'Invoke-NpiKerberosIsland.ps1') -Cloud global -RegisterRun $script:InvRun -MatrixRun $script:MatRun -ProgramDatesPath $script:Dates -FixturePath $script:Estate -KerberosFixturePath $script:Krb -InputPath $script:Inputs -OutputPath (Join-Path $script:Tmp 'x') } | Should -Throw '*not ''global''*'

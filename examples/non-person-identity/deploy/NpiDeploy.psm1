@@ -99,6 +99,14 @@ function Test-NpiDeploySettings {
     if (-not $owner) { $p.Add('pilot.ownerUpn: missing; name the pilot application''s owner, who approves its parallel run and the day-31 disable') }
     elseif (-not $AllowPlaceholders -and $owner -notmatch '^[^@\s]+@[^@\s]+\.[^@\s]+$') { $p.Add("pilot.ownerUpn: '$owner' isn't a user principal name") }
     elseif ($owner -in @(@($Settings.operators) | ForEach-Object { "$($_.upn)" })) { $p.Add("pilot.ownerUpn: $owner is an operator; the application owner approves, an operator applies") }
+    # The smoke-test gMSA follows the program's standard (WD-159, WD-160) and is created through a Chapter 06 plan approved by its SailPoint request (WD-168).
+    $ad = if ($Settings.ad -is [Collections.IDictionary]) { $Settings.ad } else { @{} }
+    if (-not $AllowPlaceholders) {
+        if ("$($ad['gmsaName'])" -cnotmatch '^gmsa-[a-z0-9-]{1,10}$') { $p.Add("ad.gmsaName: '$($ad['gmsaName'])' isn't gmsa-<app> in lowercase, 15 characters or fewer (WD-159)") }
+        if ("$($ad['gmsaRetrieverGroup'])" -notmatch '^DL-gMSA-[A-Za-z0-9-]+-Hosts$') { $p.Add("ad.gmsaRetrieverGroup: '$($ad['gmsaRetrieverGroup'])' isn't a DL-gMSA-<app>-Hosts domain local group (WD-160)") }
+        if ("$($ad['gmsaRetrieverGroupPath'])" -notmatch '^OU=.+,DC=') { $p.Add("ad.gmsaRetrieverGroupPath: '$($ad['gmsaRetrieverGroupPath'])' isn't an OU's distinguished name") }
+        if (-not "$($ad['gmsaRequestId'])") { $p.Add('ad.gmsaRequestId: missing; the SailPoint request that approved the smoke-test gMSA') }
+    }
     $p.ToArray()
 }
 
@@ -447,7 +455,10 @@ function Invoke-NpiDeployPreflight {
         try {
             $h = Invoke-NpiDeployAd -Client $Client -CallId 'ad-computer' -Params @{ Identity = $Settings.ad.gmsaTestHost }
             $g = Invoke-NpiDeployAd -Client $Client -CallId 'ad-group' -Params @{ Identity = $Settings.ad.gmsaRetrieverGroup }
-            $out.Add((New-NpiDeployResult 'PF-10' 'G5' 'gMSA test host and retriever group exist' 'Pass' 'Both found' "$($h.DNSHostName); $($g.Name)"))
+            # WD-160: the retriever group is a domain local group of the hosts.
+            $scope = if ($g -is [Collections.IDictionary]) { "$($g['GroupScope'])" } elseif ($g.PSObject.Properties['GroupScope']) { "$($g.GroupScope)" } else { '' }
+            if ($scope -and $scope -ne 'DomainLocal') { $out.Add((New-NpiDeployResult 'PF-10' 'G5' 'gMSA test host and retriever group exist' 'Fail' 'Both found' "$($g.Name) is a $scope group; the retriever group is domain local (WD-160)")) }
+            else { $out.Add((New-NpiDeployResult 'PF-10' 'G5' 'gMSA test host and retriever group exist' 'Pass' 'Both found' "$($h.DNSHostName); $($g.Name)")) }
         } catch { $out.Add((New-NpiDeployResult 'PF-10' 'G5' 'gMSA test host and retriever group exist' 'Fail' 'Both found' "$($_.Exception.Message)")) }
     }
 

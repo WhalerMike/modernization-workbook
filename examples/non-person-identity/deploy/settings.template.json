@@ -1,5 +1,5 @@
 {
-  "_comment": "The environment settings file for Chapter 11's runbook. Copy it once per environment (settings.test.json, settings.production.json), replace every <placeholder>, and file each copy with the change record. It holds names and IDs only, never a secret: the deployment and reader identities sign in with a certificate or a federated credential, and Read-NpiDeploySettings refuses a file with a secret-like name or value, or a placeholder left in it. The runbook's commands are the same for test and production; only this file changes. The synthetic objects' IDs and the pilot policy's ID stay empty until the Prepare step fills them.",
+  "_comment": "The environment settings file for Chapter 11's runbook. Copy it once per environment (settings.test.json, settings.production.json), replace every <placeholder>, and file each copy with the change record. It holds names and IDs only, never a secret: the deployment and reader identities sign in with a certificate or a federated credential, and Read-NpiDeploySettings refuses a file with a secret-like name or value, or a placeholder left in it. The runbook's commands are the same for test and production; only this file changes. The synthetic objects' IDs and the pilot policy's ID stay empty until the Prepare step fills them. The smoke-test gMSA follows the program's standard (WD-159, WD-160): ad.gmsaName is gmsa-<app> (15 characters or fewer, such as gmsa-npismoke), ad.gmsaRetrieverGroup its domain local group DL-gMSA-<app>-Hosts in the OU ad.gmsaRetrieverGroupPath, and ad.gmsaRequestId the SailPoint request that approved it; ad.kerberosInputs is the folder holding the forest's Chapter 06 ad-standard.json. deploy/New-NpiDeploySmokeGmsaPlan.ps1 turns them into a one-account Chapter 06 plan.",
   "environment": "<test-or-production>",
   "cloud": "gcc",
   "tenantId": "<tenant-id>",
@@ -57,7 +57,9 @@
     "gmsaName": "<gmsa-name>",
     "gmsaTestHost": "<gmsa-host>",
     "gmsaRetrieverGroup": "<gmsa-host-group>",
+    "gmsaRetrieverGroupPath": "<gmsa-host-group-ou>",
     "gmsaService": "<gmsa-service>",
+    "gmsaRequestId": "<sailpoint-request-id>",
     "kerberosInputs": "<kerberos-inputs-folder>"
   },
   "pilot": {

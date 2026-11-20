@@ -36,7 +36,7 @@ BeforeDiscovery {
         @{ Id = 'VK-NPI-03'; FailStatus = 'Fail'; FailCount = 1 }
         @{ Id = 'VK-NPI-04'; FailStatus = 'Fail'; FailCount = 3 }
         @{ Id = 'VK-NPI-05'; FailStatus = 'Warn'; FailCount = 3 }
-        @{ Id = 'VK-NPI-06'; FailStatus = 'Fail'; FailCount = 2 }
+        @{ Id = 'VK-NPI-06'; FailStatus = 'Fail'; FailCount = 11 }
         @{ Id = 'VK-NPI-07'; FailStatus = 'Warn'; FailCount = 1 }
         @{ Id = 'VK-NPI-08'; FailStatus = 'Fail'; FailCount = 1 }
         @{ Id = 'VK-NPI-09'; FailStatus = 'Fail'; FailCount = 3 }
@@ -84,6 +84,77 @@ Describe '<Id>' -ForEach $Cases {
 }
 
 Describe 'What the checks find' {
+    Context 'VK-NPI-06 managed service accounts' {
+        BeforeAll {
+            $script:Npi06 = Invoke-VkCheck -CheckId 'VK-NPI-06' -Context $FailCtx
+            function script:Get-Npi06Row([string]$Name) { $Npi06.Details | Where-Object Object -eq $Name }
+        }
+        It 'keeps the user-account flags' {
+            (Get-Npi06Row 'svc-app').Issue | Should -Match 'Not a gMSA; Password never expires'
+            (Get-Npi06Row 'svc-app').Severity | Should -Be 'Finding'
+        }
+        It 'reports a compliant gMSA and dMSA as Info only' {
+            foreach ($n in 'gmsa-sql01$', 'dmsa-app01$') {
+                (Get-Npi06Row $n).Severity | Should -Be 'Info'
+                (Get-Npi06Row $n).Issue | Should -Be 'Managed service account'
+            }
+        }
+        It 'flags a gMSA whose retriever is a computer, not a DL-gMSA-<app>-Hosts group (WD-160)' {
+            (Get-Npi06Row 'gmsa-web01$').Severity | Should -Be 'Finding'
+            (Get-Npi06Row 'gmsa-web01$').Issue | Should -Match 'not exactly one DL-gMSA-<app>-Hosts group \(WD-160\): WEB01'
+        }
+        It 'flags a gMSA with two retriever groups (WD-160)' {
+            (Get-Npi06Row 'gmsa-rpt01$').Issue | Should -Match 'DL-gMSA-rpt01-Hosts, DL-gMSA-web01-Hosts'
+        }
+        It 'doesn''t apply the retriever rule to a dMSA' {
+            (Get-Npi06Row 'dmsa-app01$').Issue | Should -Not -Match 'WD-160'
+        }
+        It 'warns on a name longer than 15 characters before the $ (WD-159)' {
+            (Get-Npi06Row 'gmsa-reporting01$').Severity | Should -Be 'Warn'
+            (Get-Npi06Row 'gmsa-reporting01$').Issue | Should -Be 'Name 16 characters before the $ (WD-159 maximum 15)'
+        }
+        It 'warns on a name without the gmsa- or dmsa- prefix (WD-159)' {
+            (Get-Npi06Row 'msa-files01$').Issue | Should -Be 'Name not gmsa-<app> (WD-159)'
+            (Get-Npi06Row 'app02-dmsa$').Issue | Should -Be 'Name not dmsa-<app> (WD-159)'
+            (Get-Npi06Row 'app02-dmsa$').Severity | Should -Be 'Warn'
+        }
+        It 'warns on a password interval other than 30 days' {
+            (Get-Npi06Row 'gmsa-hr01$').Severity | Should -Be 'Warn'
+            (Get-Npi06Row 'gmsa-hr01$').Issue | Should -Match 'interval 60 days, not 30'
+        }
+        It 'flags Kerberos encryption types other than AES256 only, on a gMSA and a dMSA' {
+            (Get-Npi06Row 'gmsa-pay01$').Severity | Should -Be 'Finding'
+            (Get-Npi06Row 'gmsa-pay01$').Issue | Should -Match 'not AES256 only \(RC4, AES256\)'
+            (Get-Npi06Row 'dmsa-app03$').Issue | Should -Match 'not AES256 only \(AES128, AES256\)'
+        }
+        It 'flags membership of a privileged group' {
+            (Get-Npi06Row 'gmsa-bak01$').Severity | Should -Be 'Finding'
+            (Get-Npi06Row 'gmsa-bak01$').Issue | Should -Be 'Member of a privileged group: Backup Operators'
+        }
+        It 'skips the OU rule when ServiceAccountOU is not set (WD-161), and says so' {
+            (Get-Npi06Row 'gmsa-ftp01$').Severity | Should -Be 'Info'
+            $Npi06.Message | Should -Match 'OU not set'
+            $Npi06.Message | Should -Match 'outbound-only \(WD-154\) not checked'
+        }
+        It 'warns on a gMSA outside ServiceAccountOU when it is set (WD-161)' {
+            $ctx = Get-TestContext 'fail' -Option @{ BaselineAssignmentName = 'server-baseline'; ServiceAccountOU = 'OU=Service Accounts,OU=Tier1,DC=contoso,DC=example' }
+            $r = Invoke-VkCheck -CheckId 'VK-NPI-06' -Context $ctx
+            $ftp = $r.Details | Where-Object Object -eq 'gmsa-ftp01$'
+            $ftp.Severity | Should -Be 'Warn'
+            $ftp.Issue | Should -Be 'Not in the service-account OU (WD-161)'
+            ($r.Details | Where-Object Object -eq 'gmsa-sql01$').Severity | Should -Be 'Info'
+            $r.Count | Should -Be 12
+        }
+        It 'passes the pass fixture with ServiceAccountOU set' {
+            $ctx = Get-TestContext 'pass' -Option @{ BaselineAssignmentName = 'server-baseline'; ServiceAccountOU = 'OU=Service Accounts,OU=Tier1,DC=contoso,DC=example' }
+            (Invoke-VkCheck -CheckId 'VK-NPI-06' -Context $ctx).Status | Should -Be 'Pass'
+        }
+        It 'reads msDS-SupportedEncryptionTypes as a number' {
+            & (Get-Module ValidationKit) { Test-VkAes256Only 16 } | Should -BeTrue
+            & (Get-Module ValidationKit) { Test-VkAes256Only 24 } | Should -BeFalse
+            & (Get-Module ValidationKit) { Test-VkAes256Only $null } | Should -BeFalse
+        }
+    }
     It 'VK-HR-01 names the uncorrelated users and ignores an exception with no owner' {
         $r = Invoke-VkCheck -CheckId 'VK-HR-01' -Context $FailCtx
         @($r.Details.Object | Sort-Object) | Should -Be @('dave@contoso.example', 'frank@contoso.example', 'svcbreak@contoso.example')

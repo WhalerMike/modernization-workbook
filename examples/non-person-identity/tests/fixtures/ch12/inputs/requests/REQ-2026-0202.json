@@ -1,0 +1,23 @@
+{
+  "requestId": "REQ-2026-0202",
+  "requestedOn": "2026-11-03",
+  "approvedOn": "2026-11-09",
+  "approvers": ["billing.owner@contoso.example", "iam.approver@contoso.example"],
+  "status": "APPROVED",
+  "changeRecord": "CHG0041202",
+  "systemId": "SYS-0533",
+  "appShortName": "billing",
+  "accountType": "dMSA",
+  "proposedName": "dmsa-billing$",
+  "hosts": ["BILL01"],
+  "workload": "ScheduledTask",
+  "needsSpn": false,
+  "spns": [],
+  "owners": ["billing.owner@contoso.example", "billing.backup@contoso.example"],
+  "sponsor": "revenue.sponsor@contoso.example",
+  "sponsorIsFederalEmployee": true,
+  "riskTier": "R1",
+  "endDate": "2027-09-30",
+  "supersedes": "svc-billing",
+  "runByPerson": true
+}

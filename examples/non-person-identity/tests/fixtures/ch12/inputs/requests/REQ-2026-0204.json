@@ -1,0 +1,21 @@
+{
+  "requestId": "REQ-2026-0204",
+  "requestedOn": "2026-11-04",
+  "approvedOn": "2026-11-10",
+  "approvers": ["iam.approver@contoso.example"],
+  "status": "APPROVED",
+  "changeRecord": "CHG0041204",
+  "systemId": "SYS-0702",
+  "appShortName": "procurement",
+  "accountType": "gMSA",
+  "proposedName": "gmsa-procurement$",
+  "hosts": ["PROC01"],
+  "workload": "Service",
+  "needsSpn": false,
+  "spns": [],
+  "owners": ["proc.owner@contoso.example"],
+  "sponsor": "proc.owner@contoso.example",
+  "sponsorIsFederalEmployee": false,
+  "riskTier": "R2",
+  "retrieverGroup": "GG-gMSA-procurement-Hosts"
+}
