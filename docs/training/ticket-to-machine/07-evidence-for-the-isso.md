@@ -1,7 +1,7 @@
 ---
 title: "Ticket-to-Machine, Module 7: Evidence for the ISSO"
 subtitle: "Operate the tempo, turn closed findings into Book 13's evidence records, and verify the package the way an ISSO would"
-description: "Research draft: Module 7 of the Ticket-to-Machine learning path. You learn what Gate 7 runs on a schedule and reports, export closed findings as Book 13 evidence records with evidence_export.py, chain one period to the next, and verify a package and catch a removed record. Guide Gate 7; workbook Chapter 07."
+description: "Module 7 of the Ticket-to-Machine learning path. You learn what Gate 7 runs on a schedule and reports, export closed findings as Book 13 evidence records with evidence_export.py, chain one period to the next, and verify a package and catch a removed record. Guide Gate 7; workbook Chapter 07."
 research-status: draft
 research-type: training module
 research-book: "Books 13, 15"

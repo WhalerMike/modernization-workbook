@@ -34,6 +34,7 @@ Method:
 | 15 | Each module's requirement, KSI and evidence rows | Every module's introduction | carried | Each chapter's *Federal requirements and evidence* table; Chapter 10's per-step tables |
 | 16 | Lab 2 steps, prerequisites and back-out | Every module | not verified: not run by the authors, as the chapters mark them | Each chapter's Lab 2 |
 | 17 | Unit and path times | Every module; the path index | design (estimates) | — |
+| 18 | Status update, November 20, 2026: Chapter 10 is approved (November 18, 2026) and still not run against a live tenant; Module 9 says so and was approved on November 20, 2026. Row 10 records the status when the path was verified | Module 9 | carried | Chapter 10 and Module 9 front matter (`review-status: approved`); Module 9's status section |
 
 ## Found while building the path
 

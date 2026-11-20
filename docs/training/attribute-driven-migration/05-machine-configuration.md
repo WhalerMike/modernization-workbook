@@ -1,7 +1,7 @@
 ---
 title: "Attribute-Driven Migration, Module 5: Build Machine Configuration Packages"
 subtitle: "Take a server setting from a DSC configuration to a policy definition with Learn's cmdlets, see what they don't check, and run the build that cleans the MOF, checks the package and definition against a release registry, and records what shipped"
-description: "Research draft: Module 5 of the Attribute-Driven Migration learning path. You learn machine configuration's package, definition and guest assignment, the three assignment types, what Learn's cmdlets leave to you, the release registry, the MOF cleaner and the package and definition checks, then follow Learn's steps offline, run the checked build twice and refuse three bad registry entries. Guide Gate 5; Book 19, Chapter 07."
+description: "Module 5 of the Attribute-Driven Migration learning path. You learn machine configuration's package, definition and guest assignment, the three assignment types, what Learn's cmdlets leave to you, the release registry, the MOF cleaner and the package and definition checks, then follow Learn's steps offline, run the checked build twice and refuse three bad registry entries. Guide Gate 5; Book 19, Chapter 07."
 research-status: draft
 research-type: training module
 research-book: "Book 19"

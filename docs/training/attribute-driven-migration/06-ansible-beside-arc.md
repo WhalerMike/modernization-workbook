@@ -1,7 +1,7 @@
 ---
 title: "Attribute-Driven Migration, Module 6: Onboard Servers with Ansible beside Arc"
 subtitle: "Onboard one wave of servers to Azure Arc with Microsoft's role, from a CMDB export, with every server tagged with the tool that owns its settings and the tool that patches it, and a plan a reviewer reads before anything runs"
-description: "Research draft: Module 6 of the Attribute-Driven Migration learning path. You learn why each server has one configuration owner and one patch owner, what Microsoft's azure_arc role leaves to you, the CMDB inventory that turns owners into groups and tags, the wave plan and the dry run the role can't do, then run the inventory, the role in check mode, the plan and the dry run offline, and break the CMDB on purpose. Guide Gates 5 and 8; Book 19, Chapter 08."
+description: "Module 6 of the Attribute-Driven Migration learning path. You learn why each server has one configuration owner and one patch owner, what Microsoft's azure_arc role leaves to you, the CMDB inventory that turns owners into groups and tags, the wave plan and the dry run the role can't do, then run the inventory, the role in check mode, the plan and the dry run offline, and break the CMDB on purpose. Guide Gates 5 and 8; Book 19, Chapter 08."
 research-status: draft
 research-type: training module
 research-book: "Book 19"

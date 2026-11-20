@@ -1,7 +1,7 @@
 ---
 title: "Ticket-to-Machine, Module 6: Actuation and the Re-read Rule"
 subtitle: "Let the ticket authorize a machine, then close the finding only when a re-read of the target shows the intended state"
-description: "Research draft: Module 6 of the Ticket-to-Machine learning path. You learn how Gate 5 actuates by lane on the products themselves, how the business rule and the re-read client enforce Gate 6's close-only-on-a-re-read rule, and run the re-read client's offline mode over six waiting findings on two days. Guide Gates 5 and 6; workbook Chapter 05."
+description: "Module 6 of the Ticket-to-Machine learning path. You learn how Gate 5 actuates by lane on the products themselves, how the business rule and the re-read client enforce Gate 6's close-only-on-a-re-read rule, and run the re-read client's offline mode over six waiting findings on two days. Guide Gates 5 and 6; workbook Chapter 05."
 research-status: draft
 research-type: training module
 research-book: "Books 13, 15"

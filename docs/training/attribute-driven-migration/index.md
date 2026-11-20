@@ -1,7 +1,7 @@
 ---
 title: "Learning path: Building the Attribute-Driven Migration"
 subtitle: "Nine modules that teach you to build, test and evidence the software the Attribute-Driven Migration runs on, one Book 19 chapter at a time, in the order of the implementation guide's gates"
-description: "Research draft: a learning path in nine modules for developers, platform engineers, identity engineers and ISSO reviewers. Each module maps one chapter of Book 19, Building the Attribute-Driven Migration, to the implementation guide's gates it serves, runs the chapter's Lab 1 on the kit's fixtures with no tenant (Chapter 10 has the fixture dry run instead), points to Lab 2 in a non-production environment, names the federal requirement with its KSI and evidence, and ends with a knowledge check. Chapter 02 is taught by the Microsoft Automation path's Module 1."
+description: "A learning path in nine modules for developers, platform engineers, identity engineers and ISSO reviewers. Each module maps one chapter of Book 19, Building the Attribute-Driven Migration, to the implementation guide's gates it serves, runs the chapter's Lab 1 on the kit's fixtures with no tenant (Chapter 10 has the fixture dry run instead), points to Lab 2 in a non-production environment, names the federal requirement with its KSI and evidence, and ends with a knowledge check. Chapter 02 is taught by the Microsoft Automation path's Module 1."
 doc-type: training-path
 research-status: draft
 research-type: training module

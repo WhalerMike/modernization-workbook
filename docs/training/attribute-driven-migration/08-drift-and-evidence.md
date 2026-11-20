@@ -1,7 +1,7 @@
 ---
 title: "Attribute-Driven Migration, Module 8: Run the Drift Pipeline and Hand Over the Evidence"
 subtitle: "Run the validation kit on a schedule with no stored secret, compare each run with the last without treating a failed read as a fix, open findings without names, and hand the ISSO a package sha256sum verifies"
-description: "Research draft: Module 8 of the Attribute-Driven Migration learning path. You learn where the drift pipeline sits in Book 13's drift engine, what Learn's sample workflows leave to you, the comparison of one run with the last, findings by fingerprint without names, and the chained evidence package, then lint the workflows, record a baseline, compare the next day, draft the findings, package and verify the chain, and break it on purpose. Guide Gate 9; Book 19, Chapter 09."
+description: "Module 8 of the Attribute-Driven Migration learning path. You learn where the drift pipeline sits in Book 13's drift engine, what Learn's sample workflows leave to you, the comparison of one run with the last, findings by fingerprint without names, and the chained evidence package, then lint the workflows, record a baseline, compare the next day, draft the findings, package and verify the chain, and break it on purpose. Guide Gate 9; Book 19, Chapter 09."
 research-status: draft
 research-type: training module
 research-book: "Book 19"

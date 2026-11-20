@@ -1,7 +1,7 @@
 ---
 title: "Integrating ServiceNow and SailPoint: An Implementation Example (Pass 1)"
 subtitle: "Three identity builds behind the Ticket-to-Machine example: drift events become typed findings, findings close only on a re-read, and a read-only reconciliation measures Book 03's drift classes"
-description: "Research draft: an illustrative integration kit for ServiceNow and SailPoint Identity Security Cloud, with an ISC workflow that raises identity findings through a ServiceNow Scripted REST API, a business rule and re-read clients that close a finding only on evidence, and a read-only drift reconciliation of an HR extract, Microsoft Graph and ISC. Unit-tested against mocked responses, not yet proven against live tenants."
+description: "An illustrative integration kit for ServiceNow and SailPoint Identity Security Cloud, with an ISC workflow that raises identity findings through a ServiceNow Scripted REST API, a business rule and re-read clients that close a finding only on evidence, and a read-only drift reconciliation of an HR extract, Microsoft Graph and ISC. Unit-tested against mocked responses, not yet proven against live tenants."
 research-status: draft
 research-type: implementation guide
 research-book: "Books 03, 13, 15"
