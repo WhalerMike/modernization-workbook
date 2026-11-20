@@ -18,10 +18,10 @@ review-status: pending
 
 ## Week 2: evidence over attestation
 
-- [Book 13 — Governance, Drift & Evidence](../../books/b13-governance/index.md) (Book, 16 chapters, about 6 hr 41 min). Why compliance decays the day after the audit: one authoritative record, controlled and provenanced change, deterministic rules, continuous drift detection, system-produced evidence, adapters, and a tempo where routine remediation goes….
+- [Book 13 — Governance, Drift & Evidence](../../books/b13-governance/index.md) (Book, 16 chapters, about 6 hr 44 min). Why compliance decays the day after the audit: one authoritative record, controlled and provenanced change, deterministic rules, continuous drift detection, system-produced evidence, adapters, and a tempo where routine remediation goes….
 - [The Zero Trust Assessment as Evidence](../../training/zero-trust-assessment/index.md) (Learning path, 4 modules, 3 hr 47 min). Four modules: what the assessment is and isn't, running it safely, turning its results into a closure register, and reconciling and re-running it, with labs on fixtures and in your own test tenant.
 
-*Milestone 2: about 10 hr 28 min.*
+*Milestone 2: about 10 hr 31 min.*
 
 ## Week 3: identity evidence
 
@@ -36,5 +36,5 @@ review-status: pending
 
 *Milestone 4: about a short read.*
 
-**Whole plan:** about 28 hr 52 min of reading and video, plus the labs.
+**Whole plan:** about 28 hr 55 min of reading and video, plus the labs.
 
