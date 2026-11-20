@@ -12,7 +12,7 @@ research-status: draft
 research-type: implementation guide
 research-book: "Book 12"
 review-status: approved
-reviewed-sha256: 5a8c5c76c6dd78401d7a8edc741448de7de82aca8df0c6c24ab87f6dfd1b613e
+reviewed-sha256: c16b4a7c47cc178162e123ccac440be259a3c474c7c93404f02b2213fc3bf880
 last-reviewed: 2026-11-20
 ---
 # Defender XDR Engineering & Operations: An Implementation Guide

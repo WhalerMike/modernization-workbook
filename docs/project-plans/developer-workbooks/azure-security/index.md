@@ -19,8 +19,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: c9a36d9667cb56b873215a006d40715fa3438c85c1d9c31c19bd5f9470c78114
-last-reviewed: 2026-11-18
+reviewed-sha256: 448c18f8e7cd23b4c71abd348d0a7087f26b94c06a86287f454a48cecc28ca16
+last-reviewed: 2026-11-20
 ---
 # Building Azure Security {.unnumbered}
 
