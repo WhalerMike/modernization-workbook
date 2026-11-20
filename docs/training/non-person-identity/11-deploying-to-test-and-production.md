@@ -19,8 +19,8 @@ last-reviewed: 2026-11-18
 The chapter has no narrated tour yet.
 
 ::: {.callout-important}
-## Chapter 11 is held for review
-Chapter 11 waits for the owner's review, and **nobody has run its runbook against a live tenant, subscription or forest** ([status](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#status-a-runbook-nobody-has-run-against-a-live-tenant)). Its deploy scripts are tested against fictional tenants served by a fake, and their dry-run output is real. Every live result in the chapter is labeled **Expected**. This module's Lab 1 runs only the dry run.
+## Chapter 11 is approved, not run against a live tenant
+Chapter 11 is approved, but **nobody has run its runbook against a live tenant, subscription or forest** ([status](../../project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md#status-a-runbook-nobody-has-run-against-a-live-tenant)). Its deploy scripts are tested against fictional tenants served by a fake, and their dry-run output is real. Every live result in the chapter is labeled **Expected**. This module's Lab 1 runs only the dry run.
 :::
 
 ## Introduction (3 minutes)

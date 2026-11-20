@@ -22,21 +22,21 @@
   ],
   [
    19.05,
-   7.725,
-   "Chapter 11 is held for the owner's review, and nobody has run its runbook against a lyve tenant, subscription or forest."
+   6.763,
+   "Chapter 11 is approved, but nobody has run its runbook against a lyve tenant, subscription or forest."
   ],
   [
-   26.775,
+   25.812,
    6.6,
    "Its deploy scripts are tested against fictional tenants served by a fake, and their dry-run output is real."
   ],
   [
-   33.375,
+   32.413,
    3.325,
    "Every live result in the chapter is labeled Expected."
   ],
   [
-   36.7,
+   35.737,
    7.45,
    "So this module's Lab 1 runs only the dry run, on the kit's fixtures, and you'll read the live stages rather than run them."
   ]

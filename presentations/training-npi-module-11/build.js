@@ -2,7 +2,7 @@
 // Teaches docs/training/non-person-identity/11-deploying-to-test-and-production.md, Learn-style: objectives, the
 // concepts, four "Try it" slides with the real Lab 1 dry-run commands and output (run November 3, 2026 in a scratch
 // copy of examples/non-person-identity), Lab 2, the federal requirement and evidence, a two-question check, and the
-// summary. Chapter 11 is held for review and nobody has run its runbook against a live tenant; the deck says so.
+// summary. Chapter 11 is approved, but nobody has run its runbook against a live tenant; the deck says so.
 // Every fact comes from the module page, the path's verification log, workbook Chapter 11 that the page sends the
 // learner to, or the kit; the deck adds none. Helpers: ../training-ms-automation-module-1/shared.js.
 // Build (Git Bash):  source /c/tmp/deckenv.sh && FIT=1 node presentations/training-npi-module-11/build.js \
@@ -34,11 +34,11 @@ const SS = "Check and summary";
 
 // ================================================================== 1 Title
 {
-  const s = title(SI, "Module 11: Deploy to test, then production", "Non-Person Identity learning path · Every gate, with workbook Chapter 11 (held for review)",
+  const s = title(SI, "Module 11: Deploy to test, then production", "Non-Person Identity learning path · Every gate, with workbook Chapter 11 (approved)",
     ["What the runbook adds  ·  The safe order  ·  The settings file  ·  The five scripts", "The stages and the promotion  ·  Try it: Lab 1  ·  Lab 2  ·  Evidence"]);
   notes(s,
-`Welcome to Module 11 of the Non-Person Identity learning path: deploy to test, then production. This is the last module, and it serves every gate: each step of the runbook names the gate it moves forward. It goes with Chapter 11 of the developer workbook, the deployment runbook. One thing first. Chapter 11 is held for the owner's review, and nobody has run its runbook against a live tenant, subscription or forest. Its deploy scripts are tested against fictional tenants served by a fake, and their dry-run output is real. Every live result in the chapter is labeled Expected. So this module's Lab 1 runs only the dry run, on the kit's fixtures, and you'll read the live stages rather than run them.`,
-  `${M} — Unit "Introduction"; the "Chapter 11 is held for review" callout; learning path index.`);
+`Welcome to Module 11 of the Non-Person Identity learning path: deploy to test, then production. This is the last module, and it serves every gate: each step of the runbook names the gate it moves forward. It goes with Chapter 11 of the developer workbook, the deployment runbook. One thing first. Chapter 11 is approved, but nobody has run its runbook against a live tenant, subscription or forest. Its deploy scripts are tested against fictional tenants served by a fake, and their dry-run output is real. Every live result in the chapter is labeled Expected. So this module's Lab 1 runs only the dry run, on the kit's fixtures, and you'll read the live stages rather than run them.`,
+  `${M} — Unit "Introduction"; the "Chapter 11 is approved, not run against a live tenant" callout; learning path index.`);
 }
 
 // ================================================================== 2 Why
@@ -362,8 +362,8 @@ endModule(SS);
 // ================================================================== Backup
 backup();
 sourceSlide("Sources: Module 11 deck", [
-  "Module page: docs/training/non-person-identity/11-deploying-to-test-and-production.md (Non-Person Identity learning path, Module 11): the held-for-review callout, Introduction and its requirement table, objectives, prerequisites, Units 1 and 2, Lab 1, Lab 2, knowledge check and summary.",
-  "What the module links: workbook Chapter 11 (held for review; not run against a live tenant), \"What the runbook depends on,\" \"Before you start,\" \"The environment settings file,\" \"The code this chapter adds,\" \"Pre-flight checks,\" Stages 1 and 2, \"Promotion go/no-go criteria,\" \"Evidence the ISSO keeps.\" Its Microsoft Learn footnotes: app management policies; Conditional Access for workload identities; Activate a Microsoft Entra role in PIM. FedRAMP, Key Security Indicators; NIST SP 800-53.",
+  "Module page: docs/training/non-person-identity/11-deploying-to-test-and-production.md (Non-Person Identity learning path, Module 11): the status callout, Introduction and its requirement table, objectives, prerequisites, Units 1 and 2, Lab 1, Lab 2, knowledge check and summary.",
+  "What the module links: workbook Chapter 11 (approved; not run against a live tenant), \"What the runbook depends on,\" \"Before you start,\" \"The environment settings file,\" \"The code this chapter adds,\" \"Pre-flight checks,\" Stages 1 and 2, \"Promotion go/no-go criteria,\" \"Evidence the ISSO keeps.\" Its Microsoft Learn footnotes: app management policies; Conditional Access for workload identities; Activate a Microsoft Entra role in PIM. FedRAMP, Key Security Indicators; NIST SP 800-53.",
   "Kit: examples/non-person-identity/deploy (NpiDeploy.psm1; the five scripts; settings.template.json; tests/NpiDeploy.Tests.ps1) and tests/fixtures/deploy. Fictional tenants served by a fake. Illustrative: tested against fixtures, not run against a live tenant.",
   "Lab output: run November 3, 2026 with PowerShell 7 and Pester 5 in a scratch copy of examples/non-person-identity; output trimmed and reflowed where the slides say so. Step 10 printed 55 passed, run in the same session after step 8, once the test cleared the exit code step 8 leaves (fixed November 3, 2026). Verification: docs/training/non-person-identity/_verification/learning-path.md. Lab 2 not run by anyone.",
 ]);

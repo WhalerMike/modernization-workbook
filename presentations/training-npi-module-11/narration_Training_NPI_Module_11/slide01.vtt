@@ -29,34 +29,35 @@ workbook, the deployment runbook.
 One thing first.
 
 7
-00:00:19.050 --> 00:00:21.705
-Chapter 11 is held for the owner's review,
+00:00:19.050 --> 00:00:22.102
+Chapter 11 is approved,
+but nobody has run its
 
 8
-00:00:21.705 --> 00:00:26.775
-and nobody has run its runbook against
-a live tenant, subscription or forest.
+00:00:22.102 --> 00:00:25.813
+runbook against a live tenant,
+subscription or forest.
 
 9
-00:00:26.775 --> 00:00:31.403
+00:00:25.813 --> 00:00:30.440
 Its deploy scripts are tested against
 fictional tenants served by a fake,
 
 10
-00:00:31.403 --> 00:00:33.375
+00:00:30.440 --> 00:00:32.412
 and their dry-run output is real.
 
 11
-00:00:33.375 --> 00:00:36.700
+00:00:32.412 --> 00:00:35.738
 Every live result in the
 chapter is labeled Expected.
 
 12
-00:00:36.700 --> 00:00:40.785
+00:00:35.738 --> 00:00:39.822
 So this module's Lab 1 runs only
 the dry run, on the kit's fixtures,
 
 13
-00:00:40.785 --> 00:00:44.210
+00:00:39.822 --> 00:00:43.250
 and you'll read the live
 stages rather than run them.

@@ -281,13 +281,13 @@ endModule(SL);
     "Computed two metrics as coverage, toward closure",
   ], 13.5);
   const r = panel(s, "Done", 7.85, 1.45, 4.9, null, HEX.teal, HEX.tealTint, "THE PATH IS COMPLETE", "What's next", [
-    "The guide's implementation checklist; the developer workbook, with fixture labs, is planned",
+    "The guide's implementation checklist; the developer workbook, Building Azure Security, with fixture labs",
   ], 13.5);
   callout(s, "Keep", Math.max(l, r) + 0.3, 1.0, "FaClipboardCheck", HEX.teal, "The ISSO keeps: ",
     "initiative and assignment exports, monthly compliance, deny events, the exemption register, the RACI and calendar, review and exercise records, and signed accepted risks.");
   sources(s, "Sources: Module 5, \"Summary\"; learning path index; Guide, \"Implementation checklist,\" \"The guide's pieces.\"");
   notes(s,
-`To sum up. You checked the security initiative's enforcement mode and exported the month's compliance. You listed the exemptions with their category and expiry. You walked the DDoS runbook and the review calendar. And you computed two of the guide's metrics as coverage, the kind of evidence that gets a finding ready for the assessor's decision. The evidence an I S S O keeps from this module: the initiative and assignment exports, the monthly compliance exports, deny events, the exemption register with its decision records, the RACI and review calendar, review and exercise records, and accepted risks with the authorizing official's signature. That completes the path. The guide's implementation checklist puts all ten steps on one page, and a developer workbook, with labs on fixtures, is planned.`,
+`To sum up. You checked the security initiative's enforcement mode and exported the month's compliance. You listed the exemptions with their category and expiry. You walked the DDoS runbook and the review calendar. And you computed two of the guide's metrics as coverage, the kind of evidence that gets a finding ready for the assessor's decision. The evidence an I S S O keeps from this module: the initiative and assignment exports, the monthly compliance exports, deny events, the exemption register with its decision records, the RACI and review calendar, review and exercise records, and accepted risks with the authorizing official's signature. That completes the path. The guide's implementation checklist puts all ten steps on one page, and the developer workbook, Building Azure Security, takes every step into labs on fixtures.`,
   `${M} — "Summary," "Continue the path"; guide, "Implementation checklist," "How to read this guide" (the guide's pieces).`);
 }
 endModule(SS);
@@ -295,7 +295,7 @@ endModule(SS);
 // ================================================================== Backup
 backup();
 sourceSlide("Sources: Module 5 deck", [
-  "Module page: docs/training/azure-security/05-policy-drift-and-evidence.md (Azure Security Engineering learning path, Module 5), a draft; the path's verification log is docs/training/azure-security/_verification/learning-path.md.",
+  "Module page: docs/training/azure-security/05-policy-drift-and-evidence.md (Azure Security Engineering learning path, Module 5), approved; the path's verification log is docs/training/azure-security/_verification/learning-path.md.",
   "Azure Security Engineering (implementation guide): Steps 9 and 10; RACI; Evidence catalog; Metrics; Control states and assessment mapping; Federal requirements and KSIs; Dangers; Implementation checklist. Its footnotes carry each source, read November 11, 2026: Microsoft Learn, Azure Policy assignment structure; Azure Policy exemption structure; Azure Web Application Firewall and Azure Policy; Secure your Azure DDoS Protection deployment; DDoS fundamental best practices; Layer 7 DDoS protection.",
   "Read for the lab, November 13, 2026: Azure CLI, az policy exemption.",
   "Cloud Boundary and Landing Zone, Chapter 05; Governance, Drift and Evidence, Chapter 02; Zero Trust and Assessment, Chapter 10. NIST SP 800-53 Rev. 5 (CM-2, CM-6, CA-7, IR-4, CP-4, AU-6); FedRAMP 20x KSIs, as the guide's requirements table maps them.",

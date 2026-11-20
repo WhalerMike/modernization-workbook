@@ -49,21 +49,21 @@ against the kits' fixtures.
 One thing first.
 
 11
-00:00:33.925 --> 00:00:37.353
-Chapter 10 is held for
-review, and nobody has run its
+00:00:33.925 --> 00:00:36.914
+Chapter 10 is approved,
+but nobody has run its
 
 12
-00:00:37.353 --> 00:00:41.025
+00:00:36.914 --> 00:00:40.550
 runbook against a live tenant,
 subscription or forest.
 
 13
-00:00:41.025 --> 00:00:45.300
+00:00:40.550 --> 00:00:44.825
 The scripts are tested against fixtures
 and their dry-run output is real.
 
 14
-00:00:45.300 --> 00:00:50.020
+00:00:44.825 --> 00:00:49.540
 Every other result in the chapter is
 an expectation, not an observation.

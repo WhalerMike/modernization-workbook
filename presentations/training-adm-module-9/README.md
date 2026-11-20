@@ -2,7 +2,7 @@
 
 **Deck name: Training_ADM_Module_9.** The narrated deck for [Module 9: Deploy to test, then production](../../docs/training/attribute-driven-migration/09-deploying-to-test-and-production.md), the last module of the [Attribute-Driven Migration learning path](../../docs/training/attribute-driven-migration/index.md). It teaches the module the way Microsoft Learn does: the learning objectives, the concepts, **Try it** slides with the real Lab 1 commands and output, Lab 2, the federal requirement and the evidence an ISSO keeps, a two-question knowledge check, and the summary. It is built with the shared kit in [`../_build/`](../_build/README.md) and the training decks' helpers in [`../training-ms-automation-module-1/shared.js`](../training-ms-automation-module-1/shared.js). This folder sits outside `docs/`, so the site doesn't render it.
 
-Book 19, Chapter 10 is held for review, and nobody has run its runbook against a live tenant, subscription or forest. The deck says so on its title and Why slides, and its Lab 1 slides show only the deploy scripts' dry runs on fixtures.
+Book 19, Chapter 10 is approved, but nobody has run its runbook against a live tenant, subscription or forest. The deck says so on its title and Why slides, and its Lab 1 slides show only the deploy scripts' dry runs on fixtures.
 
 | Part | Covers |
 |---|---|
