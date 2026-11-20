@@ -753,788 +753,792 @@ because announcements and
 listings don't always match.
 
 160
-00:09:55.205 --> 00:10:00.337
-The public record shows one such move: a
-department moved fifty thousand people on a
+00:09:55.205 --> 00:09:57.491
+The public record shows one such move:
 
 161
-00:10:00.337 --> 00:10:05.543
-steep temporary discount, and coexistence
-costs run until the last component moves.
+00:09:57.491 --> 00:10:02.284
+a department signed a five-year suite
+agreement days before a steep temporary
 
 162
-00:10:05.543 --> 00:10:10.328
+00:10:02.284 --> 00:10:06.930
+discount expired, and coexistence costs
+run until the last component moves.
+
+163
+00:10:06.930 --> 00:10:11.715
 Keep Entra ID provisioning and federating
 sign-in, watch the admin accounts
 
-163
-00:10:10.328 --> 00:10:14.506
+164
+00:10:11.715 --> 00:10:15.893
 that skip it, and treat stray edits
 in the second directory as drift.
 
-164
-00:10:14.506 --> 00:10:15.870
+165
+00:10:15.893 --> 00:10:17.240
 That's Part 1.
 
-165
-00:10:19.620 --> 00:10:21.531
+166
+00:10:20.990 --> 00:10:22.901
 Part 2 starts with the landing zone,
 
-166
-00:10:21.531 --> 00:10:25.420
+167
+00:10:22.901 --> 00:10:26.790
 where the boundary becomes something
 the platform actually enforces.
 
-167
-00:10:25.420 --> 00:10:29.106
+168
+00:10:26.790 --> 00:10:30.476
 We'll cover policy, AWS and
 GovCloud, the address plan,
 
-168
-00:10:29.106 --> 00:10:34.170
+169
+00:10:30.476 --> 00:10:35.540
 network as code, and the front door
 every change has to pass through.
 
-169
-00:10:37.920 --> 00:10:41.688
+170
+00:10:39.290 --> 00:10:43.058
 If the boundary says a service
 is out of scope but the landing
 
-170
-00:10:41.688 --> 00:10:45.683
+171
+00:10:43.058 --> 00:10:47.053
 zone lets a team deploy it anyway,
 the boundary is just a document.
 
-171
-00:10:45.683 --> 00:10:49.232
+172
+00:10:47.053 --> 00:10:50.602
 The management group hierarchy
 is where it becomes a control.
 
-172
-00:10:49.232 --> 00:10:52.070
+173
+00:10:50.602 --> 00:10:53.440
 Boundary policy goes on
 an intermediate root,
 
-173
-00:10:52.070 --> 00:10:54.833
+174
+00:10:53.440 --> 00:10:56.203
 and every subscription
 beneath inherits it.
 
-174
-00:10:54.833 --> 00:10:59.827
+175
+00:10:56.203 --> 00:11:01.197
 Keep the tree flat, separate environments
 by subscription so test faces the same
 
-175
-00:10:59.827 --> 00:11:02.735
+176
+00:11:01.197 --> 00:11:04.105
 rules as production, and
 protect the hierarchy
 
-176
-00:11:02.735 --> 00:11:05.344
+177
+00:11:04.105 --> 00:11:06.714
 so new subscriptions
 can't land outside it.
 
-177
-00:11:05.344 --> 00:11:10.201
+178
+00:11:06.714 --> 00:11:11.571
 And deploy it from code: Microsoft's
 accelerators are supported for public Azure,
 
-178
-00:11:10.201 --> 00:11:12.520
+179
+00:11:11.571 --> 00:11:13.890
 where the workbook's landing zone runs.
 
-179
-00:11:12.520 --> 00:11:15.080
+180
+00:11:13.890 --> 00:11:16.450
 Next, the policies themselves.
 
-180
-00:11:18.830 --> 00:11:23.947
+181
+00:11:20.200 --> 00:11:25.317
 Every line in the package's boundary
 description should have a mechanism behind it:
 
-181
-00:11:23.947 --> 00:11:28.842
+182
+00:11:25.317 --> 00:11:30.212
 which cloud, which regions, which services,
 which settings, and which exceptions.
 
-182
-00:11:28.842 --> 00:11:30.317
+183
+00:11:30.212 --> 00:11:31.687
 The fine print matters.
 
-183
-00:11:30.317 --> 00:11:32.978
+184
+00:11:31.687 --> 00:11:34.348
 The built-in allowed-types
 policy skips some
 
-184
-00:11:32.978 --> 00:11:36.142
+185
+00:11:34.348 --> 00:11:37.512
 resource types unless you
 copy it and change its mode.
 
-185
-00:11:36.142 --> 00:11:38.922
+186
+00:11:37.512 --> 00:11:40.292
 And the FedRAMP compliance initiative is,
 
-186
-00:11:38.922 --> 00:11:41.781
+187
+00:11:40.292 --> 00:11:43.151
 in Microsoft's own words,
 only a partial view.
 
-187
-00:11:41.781 --> 00:11:45.180
+188
+00:11:43.151 --> 00:11:46.550
 The rollout is the real
 lesson: audit first,
 
-188
-00:11:45.180 --> 00:11:50.718
+189
+00:11:46.550 --> 00:11:52.088
 review with the system owner and ISSO,
 fix or exempt, and only then deny.
 
-189
-00:11:50.718 --> 00:11:54.880
+190
+00:11:52.088 --> 00:11:56.250
 Block production on day one and
 teams learn to ask for exemptions.
 
-190
-00:11:54.880 --> 00:11:58.080
+191
+00:11:56.250 --> 00:11:59.450
 Next, the same idea on AWS.
 
-191
-00:12:01.830 --> 00:12:04.220
+192
+00:12:03.200 --> 00:12:05.590
 AWS gets to the same place with accounts,
 
-192
-00:12:04.220 --> 00:12:07.406
+193
+00:12:05.590 --> 00:12:08.776
 organizational units and
 service control policies,
 
-193
-00:12:07.406 --> 00:12:12.330
+194
+00:12:08.776 --> 00:12:13.700
 but GovCloud works differently enough that
 you have to plan for it, not discover it.
 
-194
-00:12:12.330 --> 00:12:15.438
+195
+00:12:13.700 --> 00:12:16.808
 Accounts are created in pairs
 from the commercial side,
 
-195
-00:12:15.438 --> 00:12:18.005
+196
+00:12:16.808 --> 00:12:19.375
 and some factory features
 simply aren't there.
 
-196
-00:12:18.005 --> 00:12:20.255
+197
+00:12:19.375 --> 00:12:21.625
 And GovCloud isn't only for High.
 
-197
-00:12:20.255 --> 00:12:25.214
+198
+00:12:21.625 --> 00:12:26.584
 A Moderate system can run there or in
 the commercial Regions, and the program's
 
-198
-00:12:25.214 --> 00:12:29.630
+199
+00:12:26.584 --> 00:12:31.000
 AWS workloads run in GovCloud, so
 check each service, Region by Region.
 
-199
-00:12:29.630 --> 00:12:32.867
+200
+00:12:31.000 --> 00:12:34.237
 The other half of this slide
 is about your own automation.
 
-200
-00:12:32.867 --> 00:12:35.858
+201
+00:12:34.237 --> 00:12:37.228
 A collector calling a
 commercial-only API from
 
-201
-00:12:35.858 --> 00:12:39.080
+202
+00:12:37.228 --> 00:12:40.450
 inside the boundary is a
 crossing nobody approved.
 
-202
-00:12:39.080 --> 00:12:43.244
+203
+00:12:40.450 --> 00:12:44.614
 So every adapter declares its
 boundary, resolves endpoints from it,
 
-203
-00:12:43.244 --> 00:12:46.442
+204
+00:12:44.614 --> 00:12:47.812
 and fails closed when it
 doesn't recognize the cloud.
 
-204
-00:12:46.442 --> 00:12:48.570
+205
+00:12:47.812 --> 00:12:49.940
 Next, the address plan.
 
-205
-00:12:52.320 --> 00:12:54.649
+206
+00:12:53.690 --> 00:12:56.019
 An inventory needs a denominator.
 
-206
-00:12:54.649 --> 00:12:57.186
+207
+00:12:56.019 --> 00:12:58.556
 A scan tells you what
 answered during a window;
 
-207
-00:12:57.186 --> 00:12:59.730
+208
+00:12:58.556 --> 00:13:01.100
 the address plan tells
 you what was handed out.
 
-208
-00:12:59.730 --> 00:13:03.231
+209
+00:13:01.100 --> 00:13:04.601
 Reconcile the two, or your
 scan is just a sample.
 
-209
-00:13:03.231 --> 00:13:06.384
+210
+00:13:04.601 --> 00:13:07.754
 That's why the program
 treats IP address management
 
-210
-00:13:06.384 --> 00:13:09.173
+211
+00:13:07.754 --> 00:13:10.543
 as the join key everything
 else correlates on.
 
-211
-00:13:09.173 --> 00:13:13.938
+212
+00:13:10.543 --> 00:13:15.308
 But it isn't the boundary, and it isn't
 the asset record: it can't see software,
 
-212
-00:13:13.938 --> 00:13:18.537
+213
+00:13:15.308 --> 00:13:19.907
 owners or classification, so a
 configuration database carries those.
 
-213
-00:13:18.537 --> 00:13:22.320
+214
+00:13:19.907 --> 00:13:23.690
 And because cloud fabrics hand
 out addresses with no broadcast,
 
-214
-00:13:22.320 --> 00:13:24.391
+215
+00:13:23.690 --> 00:13:25.761
 the plan has to live above all of them.
 
-215
-00:13:24.391 --> 00:13:26.820
+216
+00:13:25.761 --> 00:13:28.190
 Next, how Azure mirrors it.
 
-216
-00:13:30.570 --> 00:13:34.720
+217
+00:13:31.940 --> 00:13:36.090
 The enterprise address authority
 stays in charge, and Azure mirrors it.
 
-217
-00:13:34.720 --> 00:13:37.891
+218
+00:13:36.090 --> 00:13:39.261
 Reserve the range in the
 enterprise system first,
 
-218
-00:13:37.891 --> 00:13:41.759
+219
+00:13:39.261 --> 00:13:43.129
 mirror it into Azure's pools
 with outside ranges blocked off,
 
-219
-00:13:41.759 --> 00:13:46.632
+220
+00:13:43.129 --> 00:13:48.002
 and use a deny policy so no virtual
 network exists without a pool allocation.
 
-220
-00:13:46.632 --> 00:13:50.408
+221
+00:13:48.002 --> 00:13:51.778
 Then reconcile, and treat
 any mismatch as a finding.
 
-221
-00:13:50.408 --> 00:13:52.929
+222
+00:13:51.778 --> 00:13:54.299
 And here's the book's
 argument in miniature:
 
-222
-00:13:52.929 --> 00:13:57.107
+223
+00:13:54.299 --> 00:13:58.477
 the Azure pool service isn't named
 in Microsoft's FedRAMP scope tables.
 
-223
-00:13:57.107 --> 00:13:59.333
+224
+00:13:58.477 --> 00:14:00.703
 So until that's confirmed in writing,
 
-224
-00:13:59.333 --> 00:14:02.820
+225
+00:14:00.703 --> 00:14:04.190
 record it as a dependency and
 choose a path deliberately.
 
-225
-00:14:02.820 --> 00:14:05.600
+226
+00:14:04.190 --> 00:14:06.970
 Next, building the network from code.
 
-226
-00:14:09.350 --> 00:14:13.285
+227
+00:14:10.720 --> 00:14:14.655
 The network gets built from
 reviewed source as five modules,
 
-227
-00:14:13.285 --> 00:14:17.378
+228
+00:14:14.655 --> 00:14:18.748
 each owning one plane and depending
 only on the layers below it:
 
-228
-00:14:17.378 --> 00:14:21.550
+229
+00:14:18.748 --> 00:14:22.920
 platform, address plan, naming,
 network, and the enforcement edge.
 
-229
-00:14:21.550 --> 00:14:24.690
+230
+00:14:22.920 --> 00:14:26.060
 Naming mechanisms rather
 than products is the point,
 
-230
-00:14:24.690 --> 00:14:28.400
+231
+00:14:26.060 --> 00:14:29.770
 because changing vendors should
 change syntax, not the design.
 
-231
-00:14:28.400 --> 00:14:30.825
+232
+00:14:29.770 --> 00:14:32.195
 And some inputs change
 underneath your code.
 
-232
-00:14:30.825 --> 00:14:36.189
+233
+00:14:32.195 --> 00:14:37.559
 Microsoft's endpoint list is the classic
 case, and GCC uses the worldwide list,
 
-233
-00:14:36.189 --> 00:14:40.212
+234
+00:14:37.559 --> 00:14:41.582
 so blocking commercial endpoints
 would block GCC itself.
 
-234
-00:14:40.212 --> 00:14:43.538
+235
+00:14:41.582 --> 00:14:44.908
 Pull that list on a schedule and
 apply it through the pipeline.
 
-235
-00:14:43.538 --> 00:14:46.990
+236
+00:14:44.908 --> 00:14:48.360
 Which raises the question of
 who gets to run that pipeline.
 
-236
-00:14:50.740 --> 00:14:55.840
+237
+00:14:52.110 --> 00:14:57.210
 Code that anyone with credentials can apply
 is just a click path with extra steps.
 
-237
-00:14:55.840 --> 00:15:00.186
+238
+00:14:57.210 --> 00:15:01.556
 It becomes change control
 only behind a front door:
 
-238
-00:15:00.186 --> 00:15:04.015
+239
+00:15:01.556 --> 00:15:05.385
 request, approve, plan,
 apply, reconcile, close.
 
-239
-00:15:04.015 --> 00:15:06.732
+240
+00:15:05.385 --> 00:15:08.102
 Each step leaves evidence
 for a named control,
 
-240
-00:15:06.732 --> 00:15:09.877
+241
+00:15:08.102 --> 00:15:11.247
 and the requester can never
 approve their own change.
 
-241
-00:15:09.877 --> 00:15:13.003
+242
+00:15:11.247 --> 00:15:14.373
 The step that carries the
 most weight is reconcile.
 
-242
-00:15:13.003 --> 00:15:16.083
+243
+00:15:14.373 --> 00:15:17.453
 An address block the code
 allocated but nobody
 
-243
-00:15:16.083 --> 00:15:19.402
+244
+00:15:17.453 --> 00:15:20.772
 recorded is shadow inventory
 the moment it exists.
 
-244
-00:15:19.402 --> 00:15:22.255
+245
+00:15:20.772 --> 00:15:23.625
 So the pipeline writes
 the allocation back,
 
-245
-00:15:22.255 --> 00:15:26.615
+246
+00:15:23.625 --> 00:15:27.985
 with the request number and owner,
 and fails the run on any mismatch.
 
-246
-00:15:26.615 --> 00:15:28.620
+247
+00:15:27.985 --> 00:15:29.990
 Next, how to build it.
 
-247
-00:15:32.370 --> 00:15:36.790
+248
+00:15:33.740 --> 00:15:38.160
 There are documented ways to build
 this loop on ServiceNow and Terraform,
 
-248
-00:15:36.790 --> 00:15:41.428
+249
+00:15:38.160 --> 00:15:42.798
 and whichever you choose, the approver
 has to see the actual plan that will run.
 
-249
-00:15:41.428 --> 00:15:45.351
+250
+00:15:42.798 --> 00:15:46.721
 The bigger point is that the pipeline
 itself is inside the boundary.
 
-250
-00:15:45.351 --> 00:15:49.656
+251
+00:15:46.721 --> 00:15:51.026
 Terraform state and plans hold
 secrets, even ones marked sensitive,
 
-251
-00:15:49.656 --> 00:15:52.731
+252
+00:15:51.026 --> 00:15:54.101
 so where the runner, the
 state and the repository
 
-252
-00:15:52.731 --> 00:15:56.037
+253
+00:15:54.101 --> 00:15:57.407
 live is a boundary decision,
 not a tooling preference.
 
-253
-00:15:56.037 --> 00:16:00.748
+254
+00:15:57.407 --> 00:16:02.118
 The program's default is a self-hosted
 runner and state inside the boundary.
 
-254
-00:16:00.748 --> 00:16:04.331
+255
+00:16:02.118 --> 00:16:05.701
 And after apply, drift goes back
 through the same front door.
 
-255
-00:16:04.331 --> 00:16:06.080
+256
+00:16:05.701 --> 00:16:07.450
 That's Module 3.
 
-256
-00:16:09.830 --> 00:16:14.060
+257
+00:16:11.200 --> 00:16:15.430
 Module 4 is about people and paper:
 who decides each boundary question,
 
-257
-00:16:14.060 --> 00:16:18.363
+258
+00:16:15.430 --> 00:16:19.733
 and how the boundary gets written
 once into the authorization package,
 
-258
-00:16:18.363 --> 00:16:22.510
+259
+00:16:19.733 --> 00:16:23.880
 kept current, and backed by the
 right questions to the provider.
 
-259
-00:16:26.260 --> 00:16:29.148
+260
+00:16:27.630 --> 00:16:30.518
 Most boundary failures
 aren't engineering errors.
 
-260
-00:16:29.148 --> 00:16:33.980
+261
+00:16:30.518 --> 00:16:35.350
 They're decisions nobody owned: a feature
 designed in before anyone checked it,
 
-261
-00:16:33.980 --> 00:16:38.886
+262
+00:16:35.350 --> 00:16:40.256
 a workload placed in an unrecorded
 subscription, a provider notice nobody read.
 
-262
-00:16:38.886 --> 00:16:40.685
+263
+00:16:40.256 --> 00:16:42.055
 So name one decider per row.
 
-263
-00:16:40.685 --> 00:16:45.148
+264
+00:16:42.055 --> 00:16:46.518
 The authorizing official decides the
 boundary, and that can't be delegated.
 
-264
-00:16:45.148 --> 00:16:49.739
+265
+00:16:46.518 --> 00:16:51.109
 The system owner decides placement, not
 the platform team, because vending an
 
-265
-00:16:49.739 --> 00:16:52.465
+266
+00:16:51.109 --> 00:16:53.835
 unrecorded subscription
 is the cheapest way
 
-266
-00:16:52.465 --> 00:16:55.048
+267
+00:16:53.835 --> 00:16:56.418
 to make an authorized system unauthorized.
 
-267
-00:16:55.048 --> 00:16:57.951
+268
+00:16:56.418 --> 00:16:59.321
 And acquisition matters
 more than people expect:
 
-268
-00:16:57.951 --> 00:17:01.847
+269
+00:16:59.321 --> 00:17:03.217
 the SKU you buy decides whether
 the certification even covers you.
 
-269
-00:17:01.847 --> 00:17:03.660
+270
+00:17:03.217 --> 00:17:05.030
 Next, the record.
 
-270
-00:17:07.410 --> 00:17:10.418
+271
+00:17:08.780 --> 00:17:11.788
 Your agency never
 authorizes a cloud service.
 
-271
-00:17:10.418 --> 00:17:13.547
+272
+00:17:11.788 --> 00:17:14.917
 It authorizes its own
 system that uses one.
 
-272
-00:17:13.547 --> 00:17:17.094
+273
+00:17:14.917 --> 00:17:18.464
 So your package covers only
 what you implement, configure,
 
-273
-00:17:17.094 --> 00:17:21.605
+274
+00:17:18.464 --> 00:17:22.975
 operate or inherit, and you never paste
 the provider's control text into it.
 
-274
-00:17:21.605 --> 00:17:25.766
+275
+00:17:22.975 --> 00:17:27.136
 The program's answer is a single
 boundary record: what's in scope,
 
-275
-00:17:25.766 --> 00:17:30.084
+276
+00:17:27.136 --> 00:17:31.454
 what the probe found, the gaps,
 the equivalents and the exceptions.
 
-276
-00:17:30.084 --> 00:17:33.516
+277
+00:17:31.454 --> 00:17:34.886
 Everything else cites it, so
 when a capability changes,
 
-277
-00:17:33.516 --> 00:17:36.943
+278
+00:17:34.886 --> 00:17:38.313
 one record changes and every
 narrative stays current.
 
-278
-00:17:36.943 --> 00:17:40.006
+279
+00:17:38.313 --> 00:17:41.376
 Information exchanges are
 where most crossings live.
 
-279
-00:17:40.006 --> 00:17:42.580
+280
+00:17:41.376 --> 00:17:43.950
 Next, how to write the narratives.
 
-280
-00:17:46.330 --> 00:17:48.880
+281
+00:17:47.700 --> 00:17:50.250
 Most controls aren't
 touched by the boundary.
 
-281
-00:17:48.880 --> 00:17:51.341
+282
+00:17:50.250 --> 00:17:52.711
 The ones that are fall into four patterns,
 
-282
-00:17:51.341 --> 00:17:54.380
+283
+00:17:52.711 --> 00:17:55.750
 and naming the pattern lets
 an assessor follow you.
 
-283
-00:17:54.380 --> 00:17:56.168
+284
+00:17:55.750 --> 00:17:57.538
 The hard one is compensating.
 
-284
-00:17:56.168 --> 00:17:58.845
+285
+00:17:57.538 --> 00:18:00.215
 Don't describe the missing
 feature as if you had it,
 
-285
-00:17:58.845 --> 00:18:00.805
+286
+00:18:00.215 --> 00:18:02.175
 and don't hide the substitute either.
 
-286
-00:18:00.805 --> 00:18:04.701
+287
+00:18:02.175 --> 00:18:06.071
 Say what the control needs, what's
 unavailable with the citation,
 
-287
-00:18:04.701 --> 00:18:09.480
+288
+00:18:06.071 --> 00:18:10.850
 what you run instead and what it misses,
 and where the remaining gap is recorded.
 
-288
-00:18:09.480 --> 00:18:14.349
+289
+00:18:10.850 --> 00:18:15.719
 Also know whose package you're reading:
 the GCC listing says it leverages Azure
 
-289
-00:18:14.349 --> 00:18:16.521
+290
+00:18:15.719 --> 00:18:17.891
 Government as its infrastructure,
 
-290
-00:18:16.521 --> 00:18:19.742
+291
+00:18:17.891 --> 00:18:21.112
 so your chain runs through
 two packages, plus the SKU.
 
-291
-00:18:19.742 --> 00:18:21.910
+292
+00:18:21.112 --> 00:18:23.280
 Next, keeping it current.
 
-292
-00:18:25.660 --> 00:18:28.939
+293
+00:18:27.030 --> 00:18:30.309
 A package describes the system
 on the day it was signed,
 
-293
-00:18:28.939 --> 00:18:30.760
+294
+00:18:30.309 --> 00:18:32.130
 and the boundary keeps moving.
 
-294
-00:18:30.760 --> 00:18:34.386
+295
+00:18:32.130 --> 00:18:35.756
 Three inputs feed one review:
 provider change notices,
 
-295
-00:18:34.386 --> 00:18:39.060
+296
+00:18:35.756 --> 00:18:40.430
 ongoing certification reports, and
 your own probe and drift findings.
 
-296
-00:18:39.060 --> 00:18:42.604
+297
+00:18:40.430 --> 00:18:43.974
 Each gets one question: does
 this change a disposition,
 
-297
-00:18:42.604 --> 00:18:44.573
+298
+00:18:43.974 --> 00:18:45.943
 an equivalent or an exception?
 
-298
-00:18:44.573 --> 00:18:48.234
+299
+00:18:45.943 --> 00:18:49.604
 If it might change your risk, it
 goes to the authorizing official,
 
-299
-00:18:48.234 --> 00:18:50.859
+300
+00:18:49.604 --> 00:18:52.229
 who decides whether it's
 a significant change.
 
-300
-00:18:50.859 --> 00:18:55.385
+301
+00:18:52.229 --> 00:18:56.755
 A provider removing a capability your
 narrative depends on is exactly that.
 
-301
-00:18:55.385 --> 00:18:58.160
+302
+00:18:56.755 --> 00:18:59.530
 The table is what an assessor
 should be able to find.
 
-302
-00:18:58.160 --> 00:19:00.610
+303
+00:18:59.530 --> 00:19:01.980
 Next, what to ask providers.
 
-303
-00:19:04.360 --> 00:19:07.097
+304
+00:19:05.730 --> 00:19:08.467
 Asking for commercial
 parity can't be answered.
 
-304
-00:19:07.097 --> 00:19:11.323
+305
+00:19:08.467 --> 00:19:12.693
 A specific question tied to a
 published rule or exclusion can.
 
-305
-00:19:11.323 --> 00:19:16.235
+306
+00:19:12.693 --> 00:19:17.605
 So name the item, cite the basis, and
 ask for data rather than documents.
 
-306
-00:19:16.235 --> 00:19:19.403
+307
+00:19:17.605 --> 00:19:20.773
 The eight requests on the
 slide follow that pattern,
 
-307
-00:19:19.403 --> 00:19:24.191
+308
+00:19:20.773 --> 00:19:25.561
 and most of them rest on obligations the
 2026 rules already place on providers,
 
-308
-00:19:24.191 --> 00:19:28.022
+309
+00:19:25.561 --> 00:19:29.392
 like trust center access and
 machine-readable change notices.
 
-309
-00:19:28.022 --> 00:19:32.147
+310
+00:19:29.392 --> 00:19:33.517
 Microsoft's own exception process
 sets the standard you can hold it to.
 
-310
-00:19:32.147 --> 00:19:36.417
+311
+00:19:33.517 --> 00:19:37.787
 Record every request, its date
 and the answer in your package,
 
-311
-00:19:36.417 --> 00:19:39.235
+312
+00:19:37.787 --> 00:19:40.605
 because a documented no is evidence too.
 
-312
-00:19:39.235 --> 00:19:41.310
+313
+00:19:40.605 --> 00:19:42.680
 Let's close with decisions.
 
-313
-00:19:45.060 --> 00:19:48.823
+314
+00:19:46.430 --> 00:19:50.193
 Six decisions, each with an
 owner, and two matter most.
 
-314
-00:19:48.823 --> 00:19:53.169
+315
+00:19:50.193 --> 00:19:54.539
 The authorizing official settles the
 boundary before workloads arrive,
 
-315
-00:19:53.169 --> 00:19:55.734
+316
+00:19:54.539 --> 00:19:57.104
 because discovering it later is expensive.
 
-316
-00:19:55.734 --> 00:19:59.210
+317
+00:19:57.104 --> 00:20:00.580
 And every gap gets a
 deliberate response, recorded.
 
-317
-00:19:59.210 --> 00:20:03.360
+318
+00:20:00.580 --> 00:20:04.730
 You can start this week without buying
 anything: re-cite your gap list,
 
-318
-00:20:03.360 --> 00:20:06.490
+319
+00:20:04.730 --> 00:20:07.860
 read each service's Marketplace
 class with the date,
 
-319
-00:20:06.490 --> 00:20:10.785
+320
+00:20:07.860 --> 00:20:12.155
 put allowed regions in audit, and name
 someone to read provider notices.
 
-320
-00:20:10.785 --> 00:20:14.785
+321
+00:20:12.155 --> 00:20:16.155
 The license says what you bought;
 the boundary says what you may use.
 
-321
-00:20:14.785 --> 00:20:18.073
+322
+00:20:16.155 --> 00:20:19.443
 Write it down once, cite it
 everywhere, keep it current.
 
-322
-00:20:18.073 --> 00:20:21.360
+323
+00:20:19.443 --> 00:20:22.730
 The book has the detail,
 every claim footnoted.
 
-323
-00:20:21.360 --> 00:20:22.190
+324
+00:20:22.730 --> 00:20:23.560
 Thank you.

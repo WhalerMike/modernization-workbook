@@ -280,13 +280,13 @@ So the first deliverable is the inventory, not a target-state design. That's Pha
   ]);
   decision(s, "Fund decisions as well as projects: retire and retain on purpose, and fund the decommissioning work that makes each retirement real",
     "CIO, through capital planning", "Each budget cycle");
-  sources(s, "Sources: Gartner (as reported, 2011); AWS Prescriptive Guidance (7 Rs); Microsoft CAF and the 6 Rs; OMB Circular A-130 §5.a(3). Book 18, Chapters 01 and 02.");
+  sources(s, "Sources: AWS (Orban, 2016); AWS Prescriptive Guidance (7 Rs); Microsoft CAF and the 6 Rs; OMB Circular A-130 §5.a(3). Book 18, Chapters 01 and 02.");
   narrate(s,
 `Six dispositions, in rising order of cost and risk. Retire: switched off, its records kept, transferred or destroyed under the records schedule. Retain: kept on purpose, with a documented reason and a review date. Rehost: new infrastructure, no code change. Replatform: limited change, such as a new database engine, runtime or container. Refactor: restructured onto the target incrementally, behind a stable interface. Rebuild: written again on the target, still in increments.
 
 The ordering is the rubric's first rule: the cheapest disposition that meets the mission need, with every step up justified by the scores.
 
-The names come from Gartner's five options, which AWS dates to 2011, AWS's 7 Rs and the Cloud Adoption Framework's eight strategies; Microsoft's application modernization guidance uses the same six. Replace is treated as retire, because the new service is an acquisition with its own authorization, and A-130 says custom development should start only when no existing source can efficiently meet the need.
+The names come from AWS's 7 Rs, which AWS says build on five options Gartner outlined in 2011, and the Cloud Adoption Framework's eight strategies; Microsoft's application modernization guidance uses the same six. Replace is treated as retire, because the new service is an acquisition with its own authorization, and A-130 says custom development should start only when no existing source can efficiently meet the need.
 
 Two of the six are decisions, not projects. Retire and retain need an owner's agreement and, for retire, a decommissioning checklist, but no engineering team, and they're where most early savings are. A portfolio where nothing is retained has usually not been triaged.
 
@@ -789,7 +789,7 @@ None of these is a rewrite. Book 18 has the detail, with every claim footnoted. 
 {
   const s = content("Backup", "Sources: frameworks, products and patterns");
   const src = [
-    "AWS Prescriptive Guidance: migration strategies; large-migration portfolio playbook (wave planning); phases of a large migration.  ·  Microsoft Cloud Adoption Framework: migration strategies, wave planning, plan your migration; the 6 Rs of application modernization.  ·  Gartner's five options, as reported (2011).",
+    "AWS Prescriptive Guidance: migration strategies; large-migration portfolio playbook (wave planning); phases of a large migration.  ·  Microsoft Cloud Adoption Framework: migration strategies, wave planning, plan your migration; the 6 Rs of application modernization.  ·  Stephen Orban, \"6 Strategies for Migrating Applications to the Cloud,\" AWS (Nov. 1, 2016).",
     "OpenJDK; Microsoft Build of OpenJDK roadmap; Spring Boot generations and system requirements; Spring AI 2.0.2; React versions; Node.js releases; OpenAPI 3.2.1; OCI specifications; Kubernetes releases; The Twelve-Factor App; PostgreSQL versioning (all as of October 28, 2026).",
     "Oracle SQL Language Reference 23ai; PostgreSQL 18 documentation; AWS SCT, DMS Schema Conversion, DMS validation and CDC; Microsoft SSMA for Db2 and for Oracle; Ora2Pg.  ·  Azure Architecture Center: Strangler Fig, Backends for Frontends, Transactional Outbox, Scheduler Agent Supervisor.  ·  M. Fowler, Strangler Fig (2024).",
     "Model Context Protocol specification 2026-07-28; GitHub Copilot modernization and AWS Transform (examples only).  ·  M. Nygard, Documenting Architecture Decisions (2011); DORA; GitHub protected branches; SLSA 1.2.  ·  The Open Group, TOGAF Standard, 10th Edition; Zachman Framework 3.0.",

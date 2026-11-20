@@ -673,26 +673,31 @@
   ],
   [
    16.962,
-   10.512,
-   "The public record shows one such move: a cabinet-level department moved more than 50,000 employees to Google Workspace in 2025, on a temporary discount."
+   11.375,
+   "The public record shows one such move: in September 2025 a cabinet-level department signed a five-year Google Workspace agreement, days before a temporary discount expired."
   ],
   [
-   27.475,
+   28.337,
+   3.025,
+   "Google puts it at more than 50,000 employees."
+  ],
+  [
+   31.363,
    3.5,
    "Whichever way you go, keep Entra I D as the source."
   ],
   [
-   30.975,
+   34.862,
    4.487,
    "Provision users, federate sign-in and apply Conditional Access there."
   ],
   [
-   35.462,
+   39.35,
    8.012,
    "Then close the gaps: Google super administrators sign in outside it, and Google's directory is derived, so report drift."
   ],
   [
-   43.475,
+   47.362,
    1.663,
    "Next, the evidence."
   ]

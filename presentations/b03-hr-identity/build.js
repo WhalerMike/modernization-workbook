@@ -121,7 +121,7 @@ Workbook: Book 03, Chapters 01 and 02; Chapter 07 for the PIV office.`);
     ["FaBuildingColumns", "Federal HR 2.0", HEX.navy, HEX.navyTint, [
       "OMB/OPM memo, December 10, 2025: one government-wide Core HCM",
       "OPM awarded the platform contract June 10, 2026",
-      "First agencies begin as FY 2027 starts; onboarding about 8 months, interconnections live around month 5"]],
+      "Wave 1 concludes and Wave 2 moves in FY 2027; onboarding about 8 months, interconnections live around month 5"]],
     ["FaCloudArrowUp", "The Entra ID migration", HEX.teal, HEX.tealTint, [
       "Identity moves from Active Directory to Entra ID anyway (Book 02)",
       "Attributes now drive Conditional Access, groups and delegation",
@@ -145,7 +145,7 @@ Workbook: Book 03, Chapters 01 and 02; Chapter 07 for the PIV office.`);
   s.addNotes(
 `[2:37–3:48]  Why now? Because two migrations open one design window.
 
-On the HR side: the December 10, 2025 memo from OMB and OPM creates Federal HR 2.0, one government-wide core human capital platform. OPM awarded the platform contract on June 10, 2026, and the first agencies begin moving as fiscal year 2027 starts. The memo's sample timeline runs about eight months per agency, with the agency's interconnections going live around month five.
+On the HR side: the December 10, 2025 memo from OMB and OPM creates Federal HR 2.0, one government-wide core human capital platform. OPM awarded the platform contract on June 10, 2026, Wave 1, planned to start in fiscal year 2026, concludes in fiscal 2027, and Wave 2 transitions during fiscal 2027. The memo's sample timeline runs about eight months per agency, with the agency's interconnections going live around month five.
 
 On the identity side: agencies are moving from Active Directory to Entra ID anyway, which is Book 02. In Entra ID, attributes drive Conditional Access, groups and delegation, and inbound provisioning from an HR system is a documented, supported path.
 

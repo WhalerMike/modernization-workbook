@@ -26,35 +26,44 @@ certification is a
 question for the package.
 
 6
-00:00:16.963 --> 00:00:22.303
+00:00:16.963 --> 00:00:19.428
 The public record shows one such move:
-a cabinet-level department moved more
 
 7
-00:00:22.303 --> 00:00:27.474
-than 50,000 employees to Google Workspace
-in 2025, on a temporary discount.
+00:00:19.428 --> 00:00:23.644
+in September 2025 a cabinet-level
+department signed a five-year
 
 8
-00:00:27.474 --> 00:00:30.975
+00:00:23.644 --> 00:00:28.337
+Google Workspace agreement, days
+before a temporary discount expired.
+
+9
+00:00:28.337 --> 00:00:31.362
+Google puts it at more
+than 50,000 employees.
+
+10
+00:00:31.362 --> 00:00:34.863
 Whichever way you go, keep
 Entra ID as the source.
 
-9
-00:00:30.975 --> 00:00:35.462
+11
+00:00:34.863 --> 00:00:39.349
 Provision users, federate sign-in
 and apply Conditional Access there.
 
-10
-00:00:35.462 --> 00:00:40.087
+12
+00:00:39.349 --> 00:00:43.975
 Then close the gaps: Google super
 administrators sign in outside it,
 
-11
-00:00:40.087 --> 00:00:43.474
+13
+00:00:43.975 --> 00:00:47.362
 and Google's directory is
 derived, so report drift.
 
-12
-00:00:43.474 --> 00:00:45.190
+14
+00:00:47.362 --> 00:00:49.080
 Next, the evidence.

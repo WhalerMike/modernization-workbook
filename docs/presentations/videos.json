@@ -1710,19 +1710,19 @@
     "Why now: two migrations open one design window"
    ],
    [
-    225,
+    226,
     "Four options, weighed against what leadership must balance"
    ],
    [
-    290,
+    291,
     "One owner per fact, one model, one person key"
    ],
    [
-    350,
+    351,
     "Provisioning: personnel records in, governed identities out"
    ],
    [
-    413,
+    414,
     "Who owns, who uses, who guards"
    ],
    [
@@ -1730,15 +1730,15 @@
     "Personnel actions drive joiner, mover and leaver"
    ],
    [
-    531,
+    532,
     "From attributes to access, with evidence built in"
    ],
    [
-    591,
+    592,
     "Seven phases, each gate the next phase's precondition"
    ],
    [
-    648,
+    649,
     "How we'll know it works, and what we need"
    ]
   ],
@@ -4017,15 +4017,15 @@
     "Change the suite, keep the identity plane"
    ],
    [
-    662,
+    666,
     "Write the boundary once; cite it everywhere"
    ],
    [
-    721,
+    725,
     "What to ask a cloud provider for"
    ],
    [
-    765,
+    769,
     "Decisions to make, and next steps"
    ]
   ],
@@ -4110,67 +4110,67 @@
     "Change the suite, keep the identity plane"
    ],
    [
-    619,
+    620,
     "Module 3: Landing zone and front door"
    ],
    [
-    637,
+    639,
     "The hierarchy is where boundary policy lands"
    ],
    [
-    678,
+    680,
     "Five boundary decisions, five enforced mechanisms"
    ],
    [
-    721,
+    723,
     "AWS, GovCloud and automation that declares its boundary"
    ],
    [
-    772,
+    773,
     "The address plan: the denominator every inventory needs"
    ],
    [
-    810,
+    811,
     "Mirror the authority, enforce the pool"
    ],
    [
-    849,
+    850,
     "Network as code: five modules in dependency order"
    ],
    [
-    890,
+    892,
     "The front door: six steps from request to closed change"
    ],
    [
-    932,
+    933,
     "Building the loop, and why the pipeline is in scope"
    ],
    [
-    969,
+    971,
     "Module 4: Who owns it, and the package"
    ],
    [
-    986,
+    987,
     "One decider per row: who owns the boundary"
    ],
    [
-    1027,
+    1028,
     "The boundary record: write it once, cite it everywhere"
    ],
    [
-    1066,
+    1067,
     "Narratives at the boundary, and whose package you read"
    ],
    [
-    1105,
+    1106,
     "Keeping the package current: one review, one decider"
    ],
    [
-    1144,
+    1145,
     "What to ask a cloud provider for, with the basis"
    ],
    [
-    1185,
+    1186,
     "Decisions to make, and the first week's work"
    ]
   ],

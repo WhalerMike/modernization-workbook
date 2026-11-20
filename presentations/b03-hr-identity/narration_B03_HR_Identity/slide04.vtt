@@ -19,65 +19,69 @@ memo creates Federal HR 2.0,
 one government-wide core HR platform.
 
 5
-00:00:12.625 --> 00:00:16.704
+00:00:12.625 --> 00:00:16.900
 OPM awarded the platform
-contract in June 2026,
+contract in June 2026.
 
 6
-00:00:16.704 --> 00:00:21.725
-and the first agencies start
-moving as fiscal 2027 begins.
+00:00:16.900 --> 00:00:19.405
+The first wave is planned to finish,
 
 7
-00:00:21.725 --> 00:00:24.902
+00:00:19.405 --> 00:00:22.687
+and the second wave to
+move, during fiscal 2027.
+
+8
+00:00:22.687 --> 00:00:25.865
 The sample timeline is about
 eight months per agency,
 
-8
-00:00:24.902 --> 00:00:28.800
+9
+00:00:25.865 --> 00:00:29.763
 with the agency's interconnections
 going live around month five.
 
-9
-00:00:28.800 --> 00:00:33.152
+10
+00:00:29.763 --> 00:00:34.114
 On the identity side, agencies
 are already moving to Entra ID,
 
-10
-00:00:33.152 --> 00:00:35.850
+11
+00:00:34.114 --> 00:00:36.812
 which Identity and Directory covers.
 
-11
-00:00:35.850 --> 00:00:40.232
+12
+00:00:36.812 --> 00:00:41.194
 There, attributes drive Conditional
 Access, groups and delegation,
 
-12
-00:00:40.232 --> 00:00:43.675
+13
+00:00:41.194 --> 00:00:44.637
 and feeding them from an HR
 system is a supported path.
 
-13
-00:00:43.675 --> 00:00:48.260
+14
+00:00:44.637 --> 00:00:49.223
 So the window is this: design the
 identity feed in during HR onboarding,
 
-14
-00:00:48.260 --> 00:00:52.450
+15
+00:00:49.223 --> 00:00:53.413
 before those interconnections go
 live, not bolted on afterward.
 
-15
-00:00:52.450 --> 00:00:57.150
+16
+00:00:53.413 --> 00:00:58.113
 One honest limit: HR 2.0
 covers federal employees only.
 
-16
-00:00:57.150 --> 00:01:00.181
+17
+00:00:58.113 --> 00:01:01.143
 Contractors need their
 own authoritative source,
 
-17
-00:01:00.181 --> 00:01:03.260
+18
+00:01:01.143 --> 00:01:04.220
 and onboarding is the right
 time to decide that too.

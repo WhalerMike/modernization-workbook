@@ -1088,7 +1088,7 @@ const sourceSlide = (title, src) => {
 sourceSlide("Sources behind the orientation and Module 1", [
   "GAO-25-107795, Information Technology: Agencies Need to Plan for Modernizing Critical Decades-Old Legacy Systems (July 17, 2025), Highlights and pp. 1–12, 18–22; product page (status as of Feb. 2026).  ·  GAO-19-471 (June 11, 2019).",
   "OMB Circular A-130 (2016 revision): §5.a(1)–(3), §5.d(1)(e)–(g).  ·  FAR 48 CFR 39.103, Modular contracting (FAC 2026-01, Mar. 13, 2026).  ·  40 U.S.C. §11312 (a)–(b).  ·  NIST FIPS 199 (Feb. 2004), §§3–4.",
-  "Martin Fowler, \"Strangler Fig\" (Aug. 22, 2024).  ·  Stephen Orban, \"6 Strategies for Migrating Applications to the Cloud,\" AWS (Nov. 1, 2016).  ·  Help Net Security, reporting Gartner's five options (May 16, 2011).",
+  "Martin Fowler, \"Strangler Fig\" (Aug. 22, 2024).  ·  Stephen Orban, \"6 Strategies for Migrating Applications to the Cloud,\" AWS (Nov. 1, 2016).",
   "AWS Prescriptive Guidance, Guide for AWS large migrations, \"About the migration strategies.\"  ·  Microsoft Learn: CAF, \"Select your cloud migration strategies\"; \"The 6 Rs of application modernization.\"",
   "Technology Modernization Fund: \"Agency and project fit\"; \"2026 Call for Proposals.\"  ·  Workbook cross-references: Book 06, Chapters 05–06.",
   "Full footnotes with links and access dates (Oct. 28, 2026): Book 18, Chapters 01–02.",

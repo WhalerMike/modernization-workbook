@@ -4,7 +4,7 @@ subtitle: "Every source the slides and videos link to: one permanent row each, u
 description: "The Federal Modernization Workbook's register of the sources its slides and videos link to, each with a permanent address, a link to the original, its revision history and its latest weekly check."
 doc-type: reference
 fmw-eyebrow: "Reference"
-date-modified: 2026-11-18
+date-modified: 2026-11-20
 review-status: approved
 reviewed-sha256: 9302b242ac1f209620cc04e2649f320e277866a3c2c0cf6c7b72c4a8402a0a52
 last-reviewed: 2026-11-18
@@ -14,7 +14,7 @@ last-reviewed: 2026-11-18
 
 <!-- Generated from data/source-register.json by scripts/source_watch/register.py. Don't edit this page. -->
 
-This register lists 780 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
+This register lists 783 sources. A slide or a video description links to a source's row here, and the row links to the original. A deck can't change once it's released, but a row can, so a link in a released deck stays right when a publisher moves a page.
 
 ## How the register is controlled
 
@@ -55,6 +55,7 @@ This register lists 780 sources. A slide or a video description links to a sourc
 | [How AWS Shield and Shield Advanced work](https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html){#aws-shield-and-waf} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-shield-and-waf"} |
 | [IAM examples using the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli_iam_code_examples.html){#aws-cli-iam-examples} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-cli-iam-examples"} |
 | [NIST SP 800-53 Revision 5 in Security Hub CSPM](https://docs.aws.amazon.com/securityhub/latest/userguide/standards-reference-nist-800-53.html){#security-hub-cspm-nist-800-53-r5} | Active | November 11, 2026 | [Not read yet]{.fmw-scan data-source="security-hub-cspm-nist-800-53-r5"} |
+| [Stephen Orban, "6 Strategies for Migrating Applications to the Cloud," AWS Cloud Enterprise Strategy Blog](https://aws.amazon.com/blogs/enterprise-strategy/6-strategies-for-migrating-applications-to-the-cloud/){#aws-6-strategies-orban} | Active | November 20, 2026 | [Not read yet]{.fmw-scan data-source="aws-6-strategies-orban"} |
 | [Update the alternate contacts for your AWS account](https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-contact-alternate.html){#aws-alternate-contacts} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="aws-alternate-contacts"} |
 
 ## CISA
@@ -150,6 +151,7 @@ This register lists 780 sources. A slide or a video description links to a sourc
 | [gcloud projects remove-iam-policy-binding](https://docs.cloud.google.com/sdk/gcloud/reference/projects/remove-iam-policy-binding){#gcloud-projects-remove-iam-policy-binding} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="gcloud-projects-remove-iam-policy-binding"} |
 | [gcloud service-health events list](https://docs.cloud.google.com/sdk/gcloud/reference/service-health/events/list){#gcloud-service-health-events-list} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="gcloud-service-health-events-list"} |
 | [Google Cloud Armor overview](https://docs.cloud.google.com/armor/docs/cloud-armor-overview){#google-cloud-armor-overview} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="google-cloud-armor-overview"} |
+| [Google Cloud blog: U.S. Department of Transportation selects Google Workspace as new agency-wide collaboration suite](https://cloud.google.com/blog/topics/public-sector/driving-the-future-of-government-us-department-of-transportation-selects-google-workspace-as-new-agency-wide-collaboration-suite){#google-cloud-dot-workspace} | Active | November 20, 2026 | [Not read yet]{.fmw-scan data-source="google-cloud-dot-workspace"} |
 | [List events (Personalized Service Health)](https://docs.cloud.google.com/service-health/docs/list-events){#personalized-service-health-list-events} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="personalized-service-health-list-events"} |
 | [Managing contacts for notifications (Google Cloud)](https://docs.cloud.google.com/resource-manager/docs/managing-notification-contacts){#google-cloud-notification-contacts} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="google-cloud-notification-contacts"} |
 | [Personalized Service Health REST reference: projects.locations.events.list](https://docs.cloud.google.com/service-health/docs/reference/rest/v1/projects.locations.events/list){#gcp-service-health-events-list} | Active | November 12, 2026 | [Not read yet]{.fmw-scan data-source="gcp-service-health-events-list"} |
@@ -932,10 +934,17 @@ This register lists 780 sources. A slide or a video description links to a sourc
 | [Privacy Act of 1974, 5 U.S.C. 552a (2023 edition, GovInfo)](https://www.govinfo.gov/content/pkg/USCODE-2023-title5/html/USCODE-2023-title5-partI-chap5-subchapII-sec552a.htm){#usc-5-552a-govinfo} | Active | November 6, 2026 | [Not read yet]{.fmw-scan data-source="usc-5-552a-govinfo"} |
 | [Section 508 of the Rehabilitation Act, 29 U.S.C. 794d (2023 edition, GovInfo)](https://www.govinfo.gov/content/pkg/USCODE-2023-title29/html/USCODE-2023-title29-chap16-subchapV-sec794d.htm){#usc-29-794d-govinfo} | Active | November 6, 2026 | [Not read yet]{.fmw-scan data-source="usc-29-794d-govinfo"} |
 
+## USAspending.gov (Department of the Treasury)
+
+| Source | Status | In the register since | Last scan |
+|---|---|---|---|
+| [USAspending.gov: award 693JJ325F00266N, Google Productivity Tool Suite 5-Year Enterprise License Agreement](https://www.usaspending.gov/award/CONT_AWD_693JJ325F00266N_6925_47QSWA18D008F_4732){#usaspending-693jj325f00266n} | Active | November 20, 2026 | [Not read yet]{.fmw-scan data-source="usaspending-693jj325f00266n"} |
+
 ## Revision history
 
 | Date | Source | Change |
 |---|---|---|
+| November 20, 2026 | 3 sources | Added: cited on the narrated deck slides |
 | November 18, 2026 | [AWS Security Hub CSPM in AWS GovCloud (US)](#security-hub-cspm-in-govcloud) | Label moved to the new row aws-security-hub-cspm-govcloud, which replaces this retired row now that the workbook cites the source again |
 | November 18, 2026 | [AWS Security Hub CSPM in AWS GovCloud (US)](#aws-security-hub-cspm-govcloud) | Added: replaces retired row security-hub-cspm-in-govcloud, which the workbook cites again (the Zero Trust Assessment guide and its decks; the program's AWS estate is in AWS GovCloud (US)) |
 | November 18, 2026 | [reports: getDeviceUsageSummary (Microsoft Graph beta)](#gsa-device-usage-summary) | Added: replaces retired row gsa-get-device-usage-summary, which the workbook cites again (Building Global Secure Access, Chapter 03, and the Global Secure Access decks) |
