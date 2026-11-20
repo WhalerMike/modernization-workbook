@@ -68,3 +68,17 @@ Re-checked after the weekly source watch (issue #499) reported a change in a cit
 | Finding | Change |
 |---|---|
 | FedRAMP Marketplace `products.json` re-read Nov 9, 2026 (`last_change` 2026-11-09T05:06Z, 791 listings): `impact_level` reads "Unknown" and `impact_level_number` 0 on every listing; `cert_date` and `fedramp_msg` are empty on every listing; statuses and classes of the listings cited here are unchanged; the Google Workspace description still carries the SA-9(5) note | Gemini for Government impact level dated October 21, 2026; footnote [^c10-marketplace] records the re-read and that the table's impact levels are the October 21 values |
+
+## No news sites, November 20, 2026
+
+The editor ruled on November 20, 2026 that news sites and press-release wires aren't cited ("No news sites..."), applying [Sources and verification](../../../about/sources-and-verification.md): each such footnote is replaced with a primary source, or the fact is removed. Sources opened November 20, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| N1 | Five-year ELA, up to $89M, reseller prime, September 2025 | Public example | re-sourced: Nextgov Oct 29, 2025 replaced by the USAspending award record 693JJ325F00266N (signed Sept 27, 2025; Carahsoft; FFP; 5-year ELA; base and all options $89,096,129.20; potential end Sept 29, 2030; order under GSA FSS 47QSWA18D008F) | USAspending API |
+| N2 | Award ran under GSA's April 2025 agreement | Public example | re-sourced: Google's post says DOT bought through GSA's OneGov strategy and links GSA's April 2025 release | Google Cloud blog, Dec 5, 2025; GSA Apr 10, 2025 |
+| N3 | Deputy CIO: the discount "got us to the table" | Public example | **fact removed**: Nextgov interview only | none |
+| N4 | 50,000+ employees "across the department and its largest component" | Scale row | narrowed to Google's statement (50,000+ across the operating administrations; 12,000+ with access, 40,000 more in 2026) | Google Cloud blog |
+| N5 | Initial users within 30 days, AI tools within 60 | Speed row | **fact removed**: Nextgov only; Google's 22 days kept | Google Cloud blog |
+| N6 | Coexistence period with Microsoft tools | Coexistence row | **fact removed**: Nextgov only; row deleted (Google's post doesn't name Microsoft) | none |
+| N7 | Status October 2026: Gmail migration done, component pending, 50,000+ with Gemini/NotebookLM | Status row | **fact removed**: Nextgov Oct 16, 2026 interview only; DOT's Google Workspace privacy page refused automated access (HTTP 403) and isn't cited | none |

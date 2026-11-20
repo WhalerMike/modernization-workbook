@@ -1,6 +1,6 @@
 ---
 title: "Chapter 02 — Triaging the Portfolio"
-description: "How to give every application in a large federal portfolio a disposition: the six dispositions (retire, retain, rehost, replatform, refactor, rebuild) and where they come from in Gartner's five options, AWS's 7 Rs and the Microsoft Cloud Adoption Framework; the triage criteria of mission criticality, technical condition, data sensitivity, cost, skills and dependencies; an evidence map that records dependencies as typed, sourced and dated relationships; a scored rubric that triages thousands of applications without a study of each; and where capital planning and the Technology Modernization Fund fit."
+description: "How to give every application in a large federal portfolio a disposition: the six dispositions (retire, retain, rehost, replatform, refactor, rebuild) and where they come from in AWS's 7 Rs and the Microsoft Cloud Adoption Framework; the triage criteria of mission criticality, technical condition, data sensitivity, cost, skills and dependencies; an evidence map that records dependencies as typed, sourced and dated relationships; a scored rubric that triages thousands of applications without a study of each; and where capital planning and the Technology Modernization Fund fit."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b18-application-modernization
@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The six dispositions this book uses, and how they line up with Gartner's original five options, AWS's 7 Rs and the Microsoft Cloud Adoption Framework's eight strategies. The six criteria a triage weighs, and an evidence map that turns the dependency criterion from a guess into a sourced, dated record. A scored rubric and a decision table that turn the criteria into a disposition for thousands of applications at once. How the result feeds capital planning and Technology Modernization Fund proposals. Book 06 applies the same discipline to SQL Server instances.
+The six dispositions this book uses, and how they line up with AWS's 7 Rs and the Microsoft Cloud Adoption Framework's eight strategies. The six criteria a triage weighs, and an evidence map that turns the dependency criterion from a guess into a sourced, dated record. A scored rubric and a decision table that turn the criteria into a disposition for thousands of applications at once. How the result feeds capital planning and Technology Modernization Fund proposals. Book 06 applies the same discipline to SQL Server instances.
 :::
 
 [Chapter 01](01-a-portfolio-not-a-rewrite.md) argued that the unit of modernization is the application. This chapter is about deciding what each one becomes. In a portfolio of thousands, that can't be a separate study per application: a three-month assessment of each would take longer than most applications have left to live. It has to be a rubric applied to data, with judgment kept for the exceptions.
@@ -45,19 +45,19 @@ Two of them are decisions rather than projects. Retire and retain need a decisio
 
 The vocabulary is older than this book, and the major cloud providers each use a slightly different list. An agency will meet all of them in vendor proposals, so it helps to know how they line up.
 
-- **Gartner's five options.** Gartner described five ways to move applications to the cloud, reported at the time as rehost, refactor, revise, rebuild and replace; AWS dates them to 2011.[^c02-aws6rs][^c02-gartner-press] Gartner's research note is behind a paywall and wasn't consulted for this chapter. As reported, Gartner's "refactor" meant running the application on a provider's platform, closer to what later lists call replatform, and "revise" meant modifying the code before moving it.
+- **Gartner's five options.** The lists start with Gartner: AWS says its own migration strategies "build upon the 5 R’s that Gartner outlined" in 2011.[^c02-aws6rs] Gartner's research note is behind a paywall and wasn't consulted for this chapter, and the only accounts found of what the five options were are press reports, so this chapter doesn't list them.
 - **AWS's 7 Rs.** AWS Prescriptive Guidance lists retire, retain, rehost, relocate, repurchase, replatform, and refactor or re-architect.[^c02-aws7rs] Relocate moves servers to a cloud version of the same platform without changing the application; repurchase, also called "drop and shop," replaces the application with a different product, typically SaaS. AWS adds a warning worth taking seriously: refactoring is the most complex strategy and isn't recommended for large migrations, so it advises rehosting, relocating or replatforming first and modernizing afterward.
 - **Microsoft's Cloud Adoption Framework.** The framework's planning guidance lists eight strategies: retire, retain, rehost, replatform, refactor, rearchitect, rebuild and replace, each tied to a business driver.[^c02-caf] It cautions against rehosting problematic workloads, since rehosting doesn't fix existing performance, reliability or architectural problems, and suggests rehosting only when a workload won't need modernization for at least two years. Microsoft's separate application modernization guidance uses six: rehost, replatform, refactor, rebuild, retire and retain.[^c02-ms6rs]
 
-| This book | Gartner (five options) | AWS (7 Rs) | Microsoft CAF (eight strategies) |
-|---|---|---|---|
-| Retire | — | Retire | Retire |
-| Retire, function moved to a product or service | Replace | Repurchase | Replace |
-| Retain | — | Retain | Retain |
-| Rehost | Rehost | Rehost; Relocate | Rehost |
-| Replatform | Refactor (on a provider platform) | Replatform | Replatform |
-| Refactor | Revise | Refactor or re-architect | Refactor; Rearchitect |
-| Rebuild | Rebuild | Refactor or re-architect | Rebuild |
+| This book | AWS (7 Rs) | Microsoft CAF (eight strategies) |
+|---|---|---|
+| Retire | Retire | Retire |
+| Retire, function moved to a product or service | Repurchase | Replace |
+| Retain | Retain | Retain |
+| Rehost | Rehost; Relocate | Rehost |
+| Replatform | Replatform | Replatform |
+| Refactor | Refactor or re-architect | Refactor; Rearchitect |
+| Rebuild | Refactor or re-architect | Rebuild |
 
 This book uses the same six as Microsoft's application modernization guidance, with two choices made deliberately.
 
@@ -292,7 +292,6 @@ Triage produces decisions; capital planning funds them. The two have to connect,
 :::
 
 [^c02-aws6rs]: Stephen Orban, "6 Strategies for Migrating Applications to the Cloud," AWS Cloud Enterprise Strategy Blog, November 1, 2016, <https://aws.amazon.com/blogs/enterprise-strategy/6-strategies-for-migrating-applications-to-the-cloud/> (accessed Oct 28, 2026).
-[^c02-gartner-press]: Help Net Security, "Five ways to migrate applications to the cloud," May 16, 2011, reporting Gartner research by Richard Watson, <https://www.helpnetsecurity.com/2011/05/16/five-ways-to-migrate-applications-to-the-cloud/> (search-result summary; the page refused automated retrieval, accessed Oct 28, 2026). Gartner's own research note requires a subscription and was not consulted.
 [^c02-aws7rs]: AWS Prescriptive Guidance, *Guide for AWS large migrations*, "About the migration strategies," <https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html> (accessed Oct 28, 2026).
 [^c02-caf]: Microsoft Learn, Cloud Adoption Framework for Azure, "Select your cloud migration strategies," migration strategy overview and "Select the right migration strategy," <https://learn.microsoft.com/azure/cloud-adoption-framework/plan/select-cloud-migration-strategy> (accessed Oct 28, 2026).
 [^c02-ms6rs]: Microsoft Learn, Application modernization guidance, "The 6 Rs of application modernization," <https://learn.microsoft.com/azure/app-modernization-guidance/plan/the-6-rs-of-application-modernization> (accessed Oct 28, 2026).

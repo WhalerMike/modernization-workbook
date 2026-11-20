@@ -25,3 +25,11 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Source |
 |---|---|---|
 | which SD-WAN and SASE platforms meet the book's requirements today, | which SD-WAN and SASE platforms can do what the book requires today, | no source change |
+
+## No news sites, November 20, 2026
+
+The editor ruled on November 20, 2026 that news sites and press-release wires aren't cited ("No news sites..."), applying [Sources and verification](../../about/sources-and-verification.md): each such footnote is replaced with a primary source, or the fact is removed. Sources opened November 20, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| N1 | Cato announced in March 2026 that it started the FedRAMP High process | Cato bullet | **fact removed** and listed under "What couldn't be verified": the only copy was on PR Newswire; Cato's newsroom blocked automated access (bot protection, not bypassed); FedRAMP Marketplace products.json (last change 2026-11-20) has no Cato listing | products.json |

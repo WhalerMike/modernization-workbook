@@ -87,3 +87,12 @@ New section "Identity and access intake fields" before the evidence map. Fields 
 | I3 | Dangling DNS can be taken over; OAuth credentials sent to a dangling subdomain might be exposed | Same | verified | Learn, "Prevent dangling DNS entries and avoid subdomain takeover," <https://learn.microsoft.com/azure/security/fundamentals/subdomain-takeover> | Nov 11, 2026 |
 | I4 | Nine fields; additive score and thresholds 8 / 4; 90-day retirement-candidate rule | Same | restated-as-design | Program design | Nov 11, 2026 |
 | I5 | Ranking script | Same | not tested against a tenant; uses only the Book 13 Ch14 export and .NET DNS resolution | — | Nov 11, 2026 |
+
+## No news sites, November 20, 2026
+
+The editor ruled on November 20, 2026 that news sites and press-release wires aren't cited ("No news sites..."), applying [Sources and verification](../../../about/sources-and-verification.md): each such footnote is replaced with a primary source, or the fact is removed. Sources opened November 20, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| N1 | Gartner five options named rehost, refactor, revise, rebuild, replace | Names; mapping table | **fact removed**: Help Net Security only (and never opened); Gartner's newsroom blocked automated access; the names, Gartner's meanings of "refactor" and "revise", and the table's Gartner column are removed | none |
+| N2 | Gartner outlined 5 R's in 2011 | Names | kept, quoted from AWS ("build upon the 5 R's that Gartner outlined here in 2011") | AWS blog, Nov 1, 2016 |

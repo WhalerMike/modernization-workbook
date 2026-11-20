@@ -116,3 +116,11 @@ Found by the workbook-wide sweep of federal citations for the Federal Framework 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | TIC Program Guidebook cited as v1.2, July 2025 | Note c13-guidebook | corrected to the September 2026 reissue (v1.2); quoted passage confirmed unchanged | CISA TIC 3.0 Program Guidebook, Sept 2026 |
+
+## No news sites, November 20, 2026
+
+The editor ruled on November 20, 2026 that news sites and press-release wires aren't cited ("No news sites..."), applying [Sources and verification](../../../about/sources-and-verification.md): each such footnote is replaced with a primary source, or the fact is removed. Sources opened November 20, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| N1 | 37 EIS task orders over $7.4B in just over a year | Citable table | re-sourced: ExecutiveBiz replaced by the ACT-IAC study itself (June 2020, p. 7), now retrievable; figure confirmed verbatim | actiac.org EIS Case Study PDF |

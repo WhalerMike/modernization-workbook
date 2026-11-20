@@ -74,3 +74,11 @@ Added the HR-track framing to *Where it doesn't apply as written* (non-person id
 | 2 | HR never describes a device or a server; a device rule can't read its owner's attributes | Where it doesn't apply | carried; verified in Ch 06 this revision (device rule properties are the device's own) | Ch 06 log, row 5 |
 | 3 | End-state goal and how-you-know criteria | What success looks like | restated-as-design, labelled *(design guidance)*; book gates linked in Appendix C | — |
 | 4 | AC-2, PS-4, PS-5, IA-4 mapping | What success looks like | carried; links Chapter 11 #control-support-nist-sp-800-53-rev.-5 (c11-nist-80053, checked Oct 20) — no new footnote | Ch 11 |
+
+## No news sites, November 20, 2026
+
+The editor ruled on November 20, 2026 that news sites and press-release wires aren't cited ("No news sites..."), applying [Sources and verification](../../../about/sources-and-verification.md): each such footnote is replaced with a primary source, or the fact is removed. Sources opened November 20, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| N1 | Oracle names Oracle Fusion Cloud HCM for the Core HCM award | c01-award | source replaced: the PR Newswire copy of Oracle's release replaced by Oracle's own newsroom; product and date confirmed | oracle.com/news, June 11, 2026 |
