@@ -22,7 +22,6 @@ for k, (wide, num, title, body) in enumerate(cards):
         f'  {body.strip()}\n'
         f'</article>')
 
-FNN = "https://web.archive.org/web/20260118195929/https://federalnewsnetwork.com/cio-news/2025/05/federal-cio-outlines-16-operating-principles-for-it-leaders/"
 page = f'''---
 title: "Inspiration"
 pagetitle: "Inspiration — Expectations for Public Tech Leadership"
@@ -120,11 +119,10 @@ format:
   <div class="actions">
     <a class="btn-primary" href="expectations-for-public-tech-leadership.pdf">Download the PDF</a>
     <a class="btn-ghost" href="#the-principles">Read the principles</a>
-    <a class="btn-ghost" href="{FNN}">Published source</a>
   </div>
   <div class="why">
     <div><h2>Why it matters here</h2><p>The workbook exists to show its work. Every claim is checked against a primary source and footnoted, every correction is logged in the open, and every book names the problem plainly before proposing the fix: <a href="#principle-4">Show Your Work</a>, <a href="#principle-5">Truth Over Comfort</a> and <a href="#principle-9">Label the Problem</a>, applied to modernization. Start with <a href="../books/index.html">the books</a>.</p></div>
-    <div><h2>Edition</h2><p>The full text as written, set in the workbook's style by Michael F. Stratton. Published by Federal News Network, May 8, 2025 (<a href="{FNN}">archived copy</a>). Not an official U.S. government publication.</p></div>
+    <div><h2>Edition</h2><p>The full text as written, set in the workbook's style by Michael F. Stratton.. Not an official U.S. government publication.</p></div>
   </div>
 </div></header>
 
@@ -145,7 +143,7 @@ format:
 
 <section class="section"><div class="wrap edition">
   <p class="label">About this edition</p>
-  <p>Text: Gregory J. Barbaccia, <em>Expectations for Public Tech Leadership</em>, sent by email to federal technology leaders in May 2025 and reproduced in full by Federal News Network, "Federal CIO outlines 16 operating principles for IT leaders," Jason Miller, May 8, 2025 (<a href="{FNN}">archived copy</a>). The principles appear in their original order. The email's cover note to staff and the Office of the Federal CIO logo are not reproduced.</p>
+  <p>Text: Gregory J. Barbaccia, <em>Expectations for Public Tech Leadership</em>, sent by email to federal technology leaders in May 2025. The principles appear in their original order. The email's cover note to staff and the Office of the Federal CIO logo are not reproduced.</p>
   <p>Mr. Barbaccia served as Federal CIO from January 2025 to August 2026. This page and its <a href="expectations-for-public-tech-leadership.pdf">PDF edition</a> are not official U.S. government publications, and neither the Office of Management and Budget nor Mr. Barbaccia has reviewed or endorsed the <a href="../../index.html">Federal Modernization Workbook</a>.</p>
 </div></section>
 ```
