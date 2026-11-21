@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+The federal requirement.
+
+2
+00:00:01.437 --> 00:00:04.406
+The guide's evidence table
+has a row for every step,
+
+3
+00:00:04.406 --> 00:00:10.413
+and these are the rows this module
+practices, in NIST SP 800-53.
+
+4
+00:00:10.413 --> 00:00:14.672
+Creating the account supports A
+C six, Least Privilege, I A five,
+
+5
+00:00:14.672 --> 00:00:20.185
+Authenticator Management, and C M three,
+Configuration Change Control, with the
+
+6
+00:00:20.185 --> 00:00:25.949
+approved plan, its SailPoint request and
+ServiceNow change, and the apply manifest.
+
+7
+00:00:25.949 --> 00:00:28.977
+Installing and testing supports A C six,
+
+8
+00:00:28.977 --> 00:00:32.463
+with Test A D Service
+Account true on each host.
+
+9
+00:00:32.463 --> 00:00:37.774
+The parallel run supports A C two,
+enhancement three, Disable Accounts.
+
+10
+00:00:37.774 --> 00:00:40.267
+The cloud identities support I A nine,
+
+11
+00:00:40.267 --> 00:00:44.125
+Service Identification and
+Authentication, tailored in.
+
+12
+00:00:44.125 --> 00:00:46.643
+And the island supports C M eight,
+
+13
+00:00:46.643 --> 00:00:51.025
+System Component Inventory,
+with Chapter 6's island list.
+
+14
+00:00:51.025 --> 00:00:55.132
+K S I's are FedRAMP twenty X indicators
+for cloud service providers,
+
+15
+00:00:55.132 --> 00:00:59.590
+and which file supports which is the
+program's mapping: design guidance.

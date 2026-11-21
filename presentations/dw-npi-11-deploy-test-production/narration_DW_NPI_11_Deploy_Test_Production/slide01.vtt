@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.146
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.146 --> 00:00:05.912
+Building Non-Person Identity.
+
+3
+00:00:05.912 --> 00:00:09.850
+This is Chapter 11: deploying
+to test and production.
+
+4
+00:00:09.850 --> 00:00:14.175
+Each chapter's second lab proves one
+piece in a non-production tenant.
+
+5
+00:00:14.175 --> 00:00:18.768
+This runbook proves them together,
+in an order that can be undone:
+
+6
+00:00:18.768 --> 00:00:23.275
+first in a live test environment,
+then, unchanged, in production.
+
+7
+00:00:23.275 --> 00:00:27.204
+We'll see the safe order,
+the settings file, the code,
+
+8
+00:00:27.204 --> 00:00:32.187
+the evidence, who does what, a dry
+run, both stages and the dangers.
+
+9
+00:00:32.187 --> 00:00:36.163
+One note: nobody has run this
+runbook against a live tenant.
+
+10
+00:00:36.163 --> 00:00:38.980
+The output you'll see comes
+from the kit's fixtures.

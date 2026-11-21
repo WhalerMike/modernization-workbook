@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.577
+Lab 1 reruns parts of the workbook's
+Chapter 6 and Chapter 5 labs,
+
+3
+00:00:05.577 --> 00:00:09.363
+in PowerShell 7, in the
+non-person identity folder.
+
+4
+00:00:09.363 --> 00:00:14.201
+The domain and tenant are fictional,
+nothing signs in, and nothing is sent.
+
+5
+00:00:14.201 --> 00:00:18.675
+Step one makes the runs Chapter
+6 reads: Chapter 1's register,
+
+6
+00:00:18.675 --> 00:00:22.237
+Chapter 2's owners and
+Chapter 3's dispositions.
+
+7
+00:00:22.237 --> 00:00:26.338
+It prints nothing, and no account
+moves without its disposition.
+
+8
+00:00:26.338 --> 00:00:31.577
+Step two runs Learn's G M S A, D M S
+A and K D S steps against stand-ins:
+
+9
+00:00:31.577 --> 00:00:37.537
+seventeen tests, each a fact about
+one of Learn's published procedures.
+
+10
+00:00:37.537 --> 00:00:39.013
+Match them to the guide.
+
+11
+00:00:39.013 --> 00:00:44.351
+B1 skips Learn's delegated M S A state
+step, because it fails as published.
+
+12
+00:00:44.351 --> 00:00:47.656
+B2 restarts only the service
+that uses the account,
+
+13
+00:00:47.656 --> 00:00:50.962
+where Learn's step restarts
+every running service.
+
+14
+00:00:50.962 --> 00:00:57.287
+A3 adds A E S two fifty-six, which
+Learn's G M S A sample leaves out.
+
+15
+00:00:57.287 --> 00:00:59.850
+A4 is a person's step on each host.
+
+16
+00:00:59.850 --> 00:01:04.560
+And A7 disables the old account,
+where Learn's Entra page deletes it.

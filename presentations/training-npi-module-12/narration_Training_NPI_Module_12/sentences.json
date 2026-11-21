@@ -1,0 +1,669 @@
+{
+ "1": [
+  [
+   0.05,
+   11.625,
+   "Welcome to Module 12 of the Non-Person Identity learning path: migrate a service account, from a user account to a G M S A, a D M S A or Microsoft Entra."
+  ],
+  [
+   11.675,
+   5.963,
+   "It teaches the companion guide Service Accounts, with Chapters 6 and 5 of the developer workbook."
+  ],
+  [
+   17.637,
+   6.188,
+   "The module takes about sixty-five minutes, with a lab on fixtures and a lab for a test domain."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.75,
+   "Why does this module exist?"
+  ],
+  [
+   1.8,
+   5.037,
+   "A service account's password is the one nobody changes, because changing it breaks something."
+  ],
+  [
+   6.838,
+   4.6,
+   "Modules 7 and 8 taught the kit's plans for converting those accounts."
+  ],
+  [
+   11.438,
+   9.688,
+   "This module takes one account at a time and walks it through each move by hand, with Microsoft Learn's own commands, so you know what the plans send before you approve one."
+  ],
+  [
+   21.125,
+   15.938,
+   "There are three moves: a user account to a group managed service account, the same account to a Windows Server 2025 delegated managed service account, and an account to a Microsoft Entra workload identity, once the workload moves or gains a cloud path."
+  ],
+  [
+   37.062,
+   3.038,
+   "Then you watch the kit plan the same moves on fixtures."
+  ],
+  [
+   40.1,
+   6.612,
+   "The module adds no gate of its own: its moves are Gate G5's, and its rules are the track's."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.913,
+   "Here's what you'll be able to do by the end of this module."
+  ],
+  [
+   2.962,
+   7.05,
+   "You'll compare the kinds of service identity: who holds the credential, where it runs and how exposed it is to Kerberoasting."
+  ],
+  [
+   10.012,
+   5.112,
+   "You'll choose a target with the guide's decision path, and name its Chapter 3 disposition."
+  ],
+  [
+   15.125,
+   8.175,
+   "You'll follow Learn's steps to a G M S A and to a D M S A, with the checks before the switch and the rollback after it."
+  ],
+  [
+   23.3,
+   6.125,
+   "You'll say what moves to Microsoft Entra I D, what can't, and why a hybrid workload keeps both."
+  ],
+  [
+   29.425,
+   6.425,
+   "And you'll match each step to the kit's plan action, which runs only by its approved hash and never deletes."
+  ],
+  [
+   35.85,
+   3.263,
+   "Take Module 3 first, for the dispositions."
+  ],
+  [
+   39.112,
+   4.537,
+   "Module 8 is recommended: this module reruns part of its lab."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.837,
+   "Unit 1 starts with the guide's comparison table."
+  ],
+  [
+   2.888,
+   5.588,
+   "Read it for two things: who manages each credential, and which kinds speak Kerberos."
+  ],
+  [
+   8.475,
+   8.875,
+   "A user account used as a service has a password an administrator sets by hand, and it's highly exposed to Kerberoasting when it holds an S P N."
+  ],
+  [
+   17.35,
+   14.8,
+   "An S M S A and a G M S A have a long random password that Windows manages; a G M S A's is computed by the domain controllers from the K D S root key, and any host allowed to retrieve it holds it."
+  ],
+  [
+   32.15,
+   7.0,
+   "A D M S A binds the secret to the machine, and Microsoft Learn says it's designed against Kerberoasting."
+  ],
+  [
+   39.15,
+   9.325,
+   "The Microsoft Entra kinds, a managed identity, an app registration with a certificate and a federated credential, speak OAuth, not Kerberos."
+  ],
+  [
+   48.475,
+   2.112,
+   "So the table makes two things plain."
+  ],
+  [
+   50.587,
+   4.075,
+   "Nothing in Microsoft Entra I D speaks Kerberos for a service."
+  ],
+  [
+   54.663,
+   4.487,
+   "And a G M S A is a better password, not a different protocol."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.55,
+   "Next in Unit 1 is the decision path."
+  ],
+  [
+   2.6,
+   7.25,
+   "Answer nine questions in order; the first yes is the target, and each target lines up with a Chapter 3 disposition."
+  ],
+  [
+   9.85,
+   4.425,
+   "An account that's disabled, unused or without an owner is retired."
+  ],
+  [
+   14.275,
+   10.863,
+   "A workload on Azure gets a managed identity; one in CI/CD gets a federated credential; one on premises that calls Graph gets the Arc identity or a certificate."
+  ],
+  [
+   25.137,
+   11.575,
+   "One that needs Kerberos, with every host on Windows Server 2025 and no unconstrained delegation, gets a D M S A. Otherwise, a G M S A."
+  ],
+  [
+   36.712,
+   2.65,
+   "The rest keep what they have, with an end date."
+  ],
+  [
+   39.362,
+   18.025,
+   "Then the track's rules, which a hand migration follows too: two named owners and a sponsor; a reviewed disposition first; a thirty-day parallel run, then disable, and never delete during the migration; no client secrets; no privileged groups; and changes that are reviewed."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.638,
+   "Unit 2 is Migrations A and B, by hand."
+  ],
+  [
+   3.688,
+   5.362,
+   "In Migration A, a user account to a G M S A, watch for the order."
+  ],
+  [
+   9.05,
+   10.125,
+   "There's one K D S root key for the forest, and the domain controllers wait up to ten hours from its creation before they allow a G M S A to be created."
+  ],
+  [
+   19.175,
+   4.8,
+   "Then you create the G M S A, install it and test it on every host."
+  ],
+  [
+   23.975,
+   4.525,
+   "Then you switch the workload and move the S P N's in one change window."
+  ],
+  [
+   28.5,
+   4.912,
+   "After a clean thirty days in parallel, the old account is disabled and moved."
+  ],
+  [
+   33.413,
+   9.45,
+   "Migration B, a user account to a D M S A, starts with Learn's limits: every machine that uses the account must support D M S A."
+  ],
+  [
+   42.862,
+   3.475,
+   "Then you create, start, wait and complete."
+  ],
+  [
+   46.337,
+   5.612,
+   "Learn says to wait at least two ticket lifetimes; the program's thirty days covers four."
+  ],
+  [
+   51.95,
+   4.463,
+   "Learn's D M S A page says never to delete the original account."
+  ],
+  [
+   56.413,
+   6.575,
+   "Then skim the guide's special cases, and stop on failover clusters and Microsoft Entra Domain Services."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   6.2,
+   "Unit 3 is Migration C, from Active Directory to a Microsoft Entra workload identity."
+  ],
+  [
+   6.25,
+   8.05,
+   "It starts when the workload moves to Azure, or gains a call to Graph or an Azure A P I, and only for what it reaches with OAuth."
+  ],
+  [
+   14.3,
+   14.137,
+   "Learn's order of preference for an app's credential is a managed identity whenever possible; federation where the app doesn't run on Azure; otherwise a certificate from a trusted certificate authority, kept in a vault; and never a client secret."
+  ],
+  [
+   28.438,
+   7.638,
+   "The guide has four targets, C1 to C4, and step C5 retires the on-premises account after the parallel run."
+  ],
+  [
+   36.075,
+   1.25,
+   "And what can't move?"
+  ],
+  [
+   37.325,
+   7.025,
+   "Learn has no Entra identity a service can use for Kerberos or N T L M to an on-premises resource."
+  ],
+  [
+   44.35,
+   12.625,
+   "A workload that reaches a file share, a sequel Server login mapped to a Windows account, or a Kerberos-only application that way keeps its G M S A or D M S A until that resource changes."
+  ],
+  [
+   56.975,
+   2.538,
+   "That's why a hybrid workload keeps both."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.725,
+   "Try it."
+  ],
+  [
+   0.775,
+   8.588,
+   "Lab 1 reruns parts of the workbook's Chapter 6 and Chapter 5 labs, in PowerShell 7, in the non-person identity folder."
+  ],
+  [
+   9.363,
+   4.838,
+   "The domain and tenant are fictional, nothing signs in, and nothing is sent."
+  ],
+  [
+   14.2,
+   8.037,
+   "Step one makes the runs Chapter 6 reads: Chapter 1's register, Chapter 2's owners and Chapter 3's dispositions."
+  ],
+  [
+   22.238,
+   4.1,
+   "It prints nothing, and no account moves without its disposition."
+  ],
+  [
+   26.337,
+   11.2,
+   "Step two runs Learn's G M S A, D M S A and K D S steps against stand-ins: seventeen tests, each a fact about one of Learn's published procedures."
+  ],
+  [
+   37.538,
+   1.475,
+   "Match them to the guide."
+  ],
+  [
+   39.013,
+   5.338,
+   "B1 skips Learn's delegated M S A state step, because it fails as published."
+  ],
+  [
+   44.35,
+   6.612,
+   "B2 restarts only the service that uses the account, where Learn's step restarts every running service."
+  ],
+  [
+   50.962,
+   6.325,
+   "A3 adds A E S two fifty-six, which Learn's G M S A sample leaves out."
+  ],
+  [
+   57.288,
+   2.562,
+   "A4 is a person's step on each host."
+  ],
+  [
+   59.85,
+   4.65,
+   "And A7 disables the old account, where Learn's Entra page deletes it."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.75,
+   "Step three checks the Kerberos accounts and builds the plan."
+  ],
+  [
+   3.8,
+   1.512,
+   "Nine accounts are in scope."
+  ],
+  [
+   5.312,
+   9.075,
+   "The plan has ten actions, five of them writes: one D M S A completion, two G M S A creations and two retriever changes."
+  ],
+  [
+   14.387,
+   4.263,
+   "One write is a person's and four are the pipeline's, and nothing is sent."
+  ],
+  [
+   18.65,
+   5.35,
+   "Note the plan's S H A two fifty-six on the last line: it's what someone approves."
+  ],
+  [
+   24.0,
+   2.65,
+   "Look first at K D S root key Ready."
+  ],
+  [
+   26.65,
+   1.7,
+   "That's the guide's step A2."
+  ],
+  [
+   28.35,
+   5.45,
+   "The check reads the key's start time, with a delegated read, and it never creates a key."
+  ],
+  [
+   33.8,
+   6.675,
+   "Learn's K D S page says the forest needs one root key, and the guide says to create only one."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.237,
+   "Step four reads the two migrations the plan sends."
+  ],
+  [
+   3.288,
+   20.725,
+   "Create G M S A, for S V C dash intranet, is the guide's step A3 under the managed service account standard: a name, its D N S host name, the service-account O U, its one domain local group of hosts as the retrievers, A E S two fifty-six, and the thirty-day interval stated at creation."
+  ],
+  [
+   24.012,
+   5.8,
+   "It isn't outbound-only, because it takes over S V C dash intranet's S P N's."
+  ],
+  [
+   29.812,
+   10.912,
+   "Complete D M S A migration, for S V C dash H R sync, is step B3, with the D M S A and the superseded account's distinguished name."
+  ],
+  [
+   40.725,
+   4.45,
+   "Its migration started forty days before, more than the program's thirty."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.237,
+   "Step five dry-runs the plan with its approved hash, as the pipeline."
+  ],
+  [
+   4.287,
+   7.875,
+   "This is the program's rule that changes are reviewed: the write path sends only a plan whose S H A two fifty-six was approved."
+  ],
+  [
+   12.162,
+   5.95,
+   "The pipeline's G M S A would send the G M S A creations and the retriever changes."
+  ],
+  [
+   18.113,
+   7.9,
+   "The D M S A's completion, step B3, needs Domain Admins, so it's a person's step, and the pipeline refuses it."
+  ],
+  [
+   26.012,
+   8.512,
+   "M S A dash print oh one is an S M S A, so it goes to a G M S A, never to a D M S A."
+  ],
+  [
+   34.525,
+   2.125,
+   "And no action deletes anything."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   8.762,
+   "Step six builds Chapter 5's conversion plan: that's Migration C. Step seven reads what each conversion replaces, and its parallel run."
+  ],
+  [
+   8.812,
+   11.45,
+   "There are five Active Directory accounts and three client secrets, each going to a managed identity, a federated credential or a certificate, and the plan holds each to Learn's order of preference."
+  ],
+  [
+   20.262,
+   7.625,
+   "Conversion six gives an Azure Functions app a certificate where a managed identity is available, so Chapter 5 flags it."
+  ],
+  [
+   27.887,
+   7.013,
+   "Conversion one has run forty days on its user-assigned managed identity, so its old account shows ready to disable."
+  ],
+  [
+   34.9,
+   12.225,
+   "That row exercises the parallel run only: the program's target for S V C dash H R sync is a D M S A, the completion in step four, so don't take it through step C5."
+  ],
+  [
+   47.125,
+   5.138,
+   "Conversion eight's old secret still signs in on day fifty-nine, so it stays."
+  ],
+  [
+   52.263,
+   1.613,
+   "Then delete the out folder."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   4.938,
+   "Lab 2 does the moves for real, in a test domain, never production."
+  ],
+  [
+   4.987,
+   1.562,
+   "The authors haven't run it."
+  ],
+  [
+   6.55,
+   1.25,
+   "There are two ways."
+  ],
+  [
+   7.8,
+   9.225,
+   "By hand, for one account: the guide's Migration A, steps A1 to A7, with Learn's commands and the expected output after each one."
+  ],
+  [
+   17.025,
+   9.637,
+   "You need a test domain with a K D S root key older than ten hours, a test user account with an S P N, and a member server that runs a test service as it."
+  ],
+  [
+   26.663,
+   2.875,
+   "Back out with the guide's rollback for Migration A."
+  ],
+  [
+   29.538,
+   3.487,
+   "Or through the kit: the workbook's Chapter 6 Lab 2."
+  ],
+  [
+   33.025,
+   16.125,
+   "It makes a traditional test account, a test M S A and the G M S A's domain local retriever group, applies the plan as a person in the test domain, and runs a D M S A migration to completion on a Windows Server 2025 domain."
+  ],
+  [
+   49.15,
+   1.825,
+   "Its step six backs it out."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.387,
+   "The federal requirement."
+  ],
+  [
+   1.438,
+   8.975,
+   "The guide's evidence table has a row for every step, and these are the rows this module practices, in nist special publication eight hundred fifty-three."
+  ],
+  [
+   10.412,
+   15.537,
+   "Creating the account supports A C six, Least Privilege, I A five, Authenticator Management, and C M three, Configuration Change Control, with the approved plan, its SailPoint request and ServiceNow change, and the apply manifest."
+  ],
+  [
+   25.95,
+   6.513,
+   "Installing and testing supports A C six, with Test A D Service Account true on each host."
+  ],
+  [
+   32.462,
+   5.312,
+   "The parallel run supports A C two, enhancement three, Disable Accounts."
+  ],
+  [
+   37.775,
+   6.35,
+   "The cloud identities support I A nine, Service Identification and Authentication, tailored in."
+  ],
+  [
+   44.125,
+   6.9,
+   "And the island supports C M eight, System Component Inventory, with Chapter 6's island list."
+  ],
+  [
+   51.025,
+   8.512,
+   "K S I's are fed-ramp twenty X indicators for cloud service providers, and which file supports which is the program's mapping: design guidance."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.975,
+   "Check yourself with two questions."
+  ],
+  [
+   2.025,
+   4.062,
+   "First: a workload stays on premises and needs Kerberos."
+  ],
+  [
+   6.088,
+   8.588,
+   "The domain has a Windows Server 2025 domain controller, but one of the two hosts that run the service is on Windows Server 2022."
+  ],
+  [
+   14.675,
+   1.062,
+   "What's the target?"
+  ],
+  [
+   15.738,
+   2.837,
+   "The answer is b, a G M S A."
+  ],
+  [
+   18.575,
+   5.588,
+   "A D M S A needs every host that uses it on Windows Server 2025."
+  ],
+  [
+   24.163,
+   6.088,
+   "Second: Learn's Entra page ends a move to a G M S A by deleting the old account."
+  ],
+  [
+   30.25,
+   1.425,
+   "What does the program do?"
+  ],
+  [
+   31.675,
+   1.225,
+   "The answer is b."
+  ],
+  [
+   32.9,
+   7.562,
+   "It disables the account after a clean thirty-day parallel run, and deletes it only later, through the decommission process."
+  ],
+  [
+   40.462,
+   2.362,
+   "The program follows the stricter reading."
+  ],
+  [
+   42.825,
+   4.925,
+   "The module page has three more questions, each linked to the section that answers it."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   0.825,
+   "To sum up."
+  ],
+  [
+   0.875,
+   12.35,
+   "You compared the kinds of service identity, chose targets with the decision path, and read Learn's steps for a user account to a G M S A, a D M S A and a Microsoft Entra workload identity."
+  ],
+  [
+   13.225,
+   17.438,
+   "Then you saw the kit plan the same moves: a G M S A with the standard's settings, a D M S A migration completed after its parallel run, five Active Directory accounts and three secrets converted in Learn's order of preference, and every plan sent only by its approved hash."
+  ],
+  [
+   30.663,
+   14.4,
+   "The evidence an I S S O keeps for a migration is the guide's evidence table by step, with the kit's two plans and their approved hashes, the apply manifests, Test A D Service Account on each host, and the island list for what stays."
+  ],
+  [
+   45.062,
+   3.388,
+   "Before you move an account, work through the guide's checklist."
+  ],
+  [
+   48.45,
+   7.2,
+   "Next, go back to the learning path, or take Module 11, Deploy to test, then production, if you haven't."
+  ]
+ ]
+}

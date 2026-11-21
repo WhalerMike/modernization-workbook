@@ -16,6 +16,8 @@ last-reviewed: 2026-11-21
 
 **Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-npi-module-13) · [▶ Watch](../../presentations/watch.html?v=Training_NPI_Module_13_Narrated) (about 15 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_13_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-13/Training_NPI_Module_13_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-13/Training_NPI_Module_13_Narrated.vtt).
 
+**Also:** the chapter's narrated tour, about 12 minutes: [▶ Watch](../../presentations/watch.html?v=DW_NPI_12_MSA_Standard_Narrated).
+
 ## Introduction (3 minutes)
 
 Module 12 moved one account by hand. This module is about every account after that: how a gMSA is asked for, approved, created, watched, attested and retired the same way each time, with the same evidence. The standard splits the work three ways. SailPoint approves, reached through the agency's system access management tool. ServiceNow records the change and the findings. Microsoft's tools create and enforce: Active Directory PowerShell through Chapter 06's approved plan, Group Policy, Defender for Identity and, when the workload moves, Microsoft Entra.

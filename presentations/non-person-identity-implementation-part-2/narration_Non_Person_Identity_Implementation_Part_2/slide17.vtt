@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.812
+Keep five dangers in view.
+
+2
+00:00:01.812 --> 00:00:05.099
+Every app owner can add a
+credential and act as the app,
+
+3
+00:00:05.099 --> 00:00:08.087
+so keep owners to the two
+people who configure it.
+
+4
+00:00:08.087 --> 00:00:12.215
+Disabled isn't revoked, because
+issued tokens stay valid,
+
+5
+00:00:12.215 --> 00:00:15.551
+so in an incident, also
+remove the credentials.
+
+6
+00:00:15.551 --> 00:00:20.462
+A privileged service principal is a
+control-plane asset, not an ordinary app.
+
+7
+00:00:20.462 --> 00:00:24.520
+Workload Conditional Access
+silently skips managed identities,
+
+8
+00:00:24.520 --> 00:00:27.987
+multitenant apps, and anything
+assigned through a group.
+
+9
+00:00:27.987 --> 00:00:31.582
+And by default, whoever builds
+an agent becomes its sponsor,
+
+10
+00:00:31.582 --> 00:00:35.176
+so close blueprint creation
+and set the sponsor on purpose.
+
+11
+00:00:35.176 --> 00:00:40.313
+Where to go next: Part 1 covers inventory,
+decisions and credential rules.
+
+12
+00:00:40.313 --> 00:00:43.953
+The developer workbook,
+Building Non-Person Identity,
+
+13
+00:00:43.953 --> 00:00:47.837
+has chapters five to ten for
+these gates, each with its labs.
+
+14
+00:00:47.837 --> 00:00:49.724
+The Labs page lists them all.
+
+15
+00:00:49.724 --> 00:00:51.888
+A person leaves and HR tells you.
+
+16
+00:00:51.888 --> 00:00:54.888
+A service account's owner
+leaves and nothing tells you.
+
+17
+00:00:54.888 --> 00:00:57.140
+These gates build the record that does.

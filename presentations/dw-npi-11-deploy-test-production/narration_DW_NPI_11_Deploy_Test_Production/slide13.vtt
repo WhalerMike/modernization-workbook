@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.063
+Step 1.4 puts a group managed account on
+a test host, and it isn't made by hand:
+
+2
+00:00:05.063 --> 00:00:07.904
+it goes through Chapter 6's approved plan,
+
+3
+00:00:07.904 --> 00:00:11.413
+and the pipeline applies
+it with the reviewed hash.
+
+4
+00:00:11.413 --> 00:00:16.662
+In the test forest only, before the pipeline
+exists, a person may send it instead.
+
+5
+00:00:16.662 --> 00:00:20.201
+On the host, Test A D Service
+Account must print true.
+
+6
+00:00:20.201 --> 00:00:23.562
+Step 1.5 creates the workload policies.
+
+7
+00:00:23.562 --> 00:00:28.166
+Microsoft Learn says they cover only
+single-tenant service principals,
+
+8
+00:00:28.166 --> 00:00:31.312
+assigned directly, with
+block as the only control.
+
+9
+00:00:31.312 --> 00:00:34.700
+Chapter 8's script creates
+every one report-only.

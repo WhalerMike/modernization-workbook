@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.249
+One settings file per stage holds every
+value the commands need: the tenant,
+
+2
+00:00:05.249 --> 00:00:08.687
+the cloud, the identities,
+the operators, the pilot,
+
+3
+00:00:08.687 --> 00:00:12.125
+the synthetic objects, the
+policies and the rings.
+
+4
+00:00:12.125 --> 00:00:15.038
+Before any command
+runs, the kit checks it.
+
+5
+00:00:15.038 --> 00:00:17.705
+A secret, or anything that looks like one,
+
+6
+00:00:17.705 --> 00:00:21.425
+stops the run, and so does a
+placeholder nobody replaced.
+
+7
+00:00:21.425 --> 00:00:23.675
+The pilot's owner can't be an operator.
+
+8
+00:00:23.675 --> 00:00:25.945
+The file must be for the
+stage you're running,
+
+9
+00:00:25.945 --> 00:00:29.412
+and the smoke-test group managed
+account must follow the standard.
+
+10
+00:00:29.412 --> 00:00:32.273
+Reads sign in as an
+app with a certificate,
+
+11
+00:00:32.273 --> 00:00:35.350
+writes as a person, and
+nothing uses a secret.

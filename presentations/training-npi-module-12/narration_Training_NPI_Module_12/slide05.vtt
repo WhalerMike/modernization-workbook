@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.600
+Next in Unit 1 is the decision path.
+
+2
+00:00:02.600 --> 00:00:06.383
+Answer nine questions in order;
+the first yes is the target,
+
+3
+00:00:06.383 --> 00:00:09.850
+and each target lines up with
+a Chapter 3 disposition.
+
+4
+00:00:09.850 --> 00:00:14.275
+An account that's disabled, unused
+or without an owner is retired.
+
+5
+00:00:14.275 --> 00:00:19.282
+A workload on Azure gets a managed
+identity; one in CI/CD gets a federated
+
+6
+00:00:19.282 --> 00:00:25.138
+credential; one on premises that calls Graph
+gets the Arc identity or a certificate.
+
+7
+00:00:25.138 --> 00:00:30.531
+One that needs Kerberos, with
+every host on Windows Server
+
+8
+00:00:30.531 --> 00:00:35.139
+2025 and no unconstrained
+delegation, gets a D M S A.
+
+9
+00:00:35.139 --> 00:00:36.712
+Otherwise, a G M S A.
+
+10
+00:00:36.712 --> 00:00:39.362
+The rest keep what they
+have, with an end date.
+
+11
+00:00:39.362 --> 00:00:43.230
+Then the track's rules, which
+a hand migration follows too:
+
+12
+00:00:43.230 --> 00:00:47.346
+two named owners and a sponsor;
+a reviewed disposition first;
+
+13
+00:00:47.346 --> 00:00:52.613
+a thirty-day parallel run, then disable,
+and never delete during the migration;
+
+14
+00:00:52.613 --> 00:00:57.460
+no client secrets; no privileged
+groups; and changes that are reviewed.

@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.188
+Step six builds Chapter 5's
+conversion plan: that's Migration C.
+
+2
+00:00:04.188 --> 00:00:08.812
+Step seven reads what each conversion
+replaces, and its parallel run.
+
+3
+00:00:08.812 --> 00:00:12.795
+There are five Active Directory
+accounts and three client secrets,
+
+4
+00:00:12.795 --> 00:00:17.133
+each going to a managed identity, a
+federated credential or a certificate,
+
+5
+00:00:17.133 --> 00:00:20.262
+and the plan holds each to
+Learn's order of preference.
+
+6
+00:00:20.262 --> 00:00:24.075
+Conversion six gives an Azure
+Functions app a certificate
+
+7
+00:00:24.075 --> 00:00:27.887
+where a managed identity is
+available, so Chapter 5 flags it.
+
+8
+00:00:27.887 --> 00:00:32.363
+Conversion one has run forty days on
+its user-assigned managed identity,
+
+9
+00:00:32.363 --> 00:00:34.900
+so its old account shows ready to disable.
+
+10
+00:00:34.900 --> 00:00:41.213
+That row exercises the parallel run only:
+the program's target for S V C dash H R
+
+11
+00:00:41.213 --> 00:00:47.125
+sync is a D M S A, the completion in step
+four, so don't take it through step C5.
+
+12
+00:00:47.125 --> 00:00:52.263
+Conversion eight's old secret still
+signs in on day fifty-nine, so it stays.
+
+13
+00:00:52.263 --> 00:00:53.930
+Then delete the out folder.

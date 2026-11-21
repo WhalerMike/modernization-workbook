@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.717
+Stage 1 starts by preparing:
+
+2
+00:00:01.717 --> 00:00:05.774
+the group managed account's retriever
+group with the test host in it,
+
+3
+00:00:05.774 --> 00:00:10.339
+and the synthetic objects, an app with
+two owners and a federated credential,
+
+4
+00:00:10.339 --> 00:00:13.962
+and a service account whose
+random password nobody records.
+
+5
+00:00:13.962 --> 00:00:16.863
+The pilot's policy is created, turned off.
+
+6
+00:00:16.863 --> 00:00:20.006
+The preflight records the
+validation kit's baseline,
+
+7
+00:00:20.006 --> 00:00:22.863
+and checks the root key is
+more than ten hours old.
+
+8
+00:00:22.863 --> 00:00:26.850
+Step 1.1 reads every
+identity and its owners.
+
+9
+00:00:26.850 --> 00:00:30.604
+Step 1.2 turns the pilot
+policy on for just two apps,
+
+10
+00:00:30.604 --> 00:00:33.625
+and plans the tenant-wide one for review.
+
+11
+00:00:33.625 --> 00:00:37.331
+Step 1.3 moves the pilot
+to a federated credential
+
+12
+00:00:37.331 --> 00:00:40.730
+and a managed identity,
+beside its old secret.

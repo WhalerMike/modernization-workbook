@@ -1,65 +1,81 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.025
-The workbook's tenth chapter turns
-this gate into a scheduled run.
+00:00:00.050 --> 00:00:05.675
+Retirement always disables first, so
+nothing breaks silently, and deletes later.
 
 2
-00:00:04.025 --> 00:00:09.288
-Each run compares every identity with a
-baseline that someone approved by its hash.
+00:00:05.675 --> 00:00:07.525
+The mechanics differ by type.
 
 3
-00:00:09.288 --> 00:00:13.868
-On the second fixture day it finds
-seven ownerless orphan candidates,
+00:00:07.525 --> 00:00:11.887
+An Active Directory account is disabled
+and moved to a holding container.
 
 4
-00:00:13.868 --> 00:00:16.475
-and two apps unused for over ninety days.
+00:00:11.887 --> 00:00:15.748
+A migration moves its service
+principal names to the replacement,
 
 5
-00:00:16.475 --> 00:00:19.740
-It finds three accounts
-whose password never expires,
+00:00:15.748 --> 00:00:19.048
+and the account is deleted
+ninety days after the disable,
 
 6
-00:00:19.740 --> 00:00:22.787
-and three credentials
-added outside the pipeline.
+00:00:19.048 --> 00:00:22.137
+with no sign-in seen, through
+the decommission ticket.
 
 7
-00:00:22.787 --> 00:00:27.301
-A credential counts as the pipeline's
-only when two separate records agree.
+00:00:22.137 --> 00:00:24.599
+An app registration is deactivated.
 
 8
-00:00:27.301 --> 00:00:32.263
-The review check finds an app whose last
-owner review was in May, too long ago.
+00:00:24.599 --> 00:00:29.900
+New tokens stop at once, but tokens already
+issued stay valid until they expire.
 
 9
-00:00:32.263 --> 00:00:37.601
-Then each run is packaged with a checksum
-for every file, chained to the day before.
+00:00:29.900 --> 00:00:32.788
+A deleted app can be
+restored for thirty days.
 
 10
-00:00:37.601 --> 00:00:41.138
-So a swapped package or a
-missing day shows up as a break.
+00:00:32.788 --> 00:00:36.326
+A service principal is blocked
+from signing in to this tenant.
 
 11
-00:00:41.138 --> 00:00:44.613
-The period report is
-what the ISSO receives.
+00:00:36.326 --> 00:00:41.125
+If it's deleted and restored, its
+Conditional Access policies don't come back.
 
 12
-00:00:44.613 --> 00:00:48.437
-Here the chain is unbroken,
-but the period isn't complete.
+00:00:41.125 --> 00:00:44.645
+A managed identity loses
+its role assignments first,
 
 13
-00:00:48.437 --> 00:00:51.980
-Orphans and passwords that
-never expire are still open.
+00:00:44.645 --> 00:00:47.125
+and once deleted, it can't be recovered.
+
+14
+00:00:47.125 --> 00:00:50.813
+An agent can be disabled by its
+sponsor, but not re-enabled.
+
+15
+00:00:50.813 --> 00:00:53.612
+Deleting a blueprint
+removes its agents too.
+
+16
+00:00:53.612 --> 00:00:56.562
+Every deactivation shows in the audit log.
+
+17
+00:00:56.562 --> 00:00:58.560
+File that entry with the decision.

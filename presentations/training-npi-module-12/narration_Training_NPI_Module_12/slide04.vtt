@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.887
+Unit 1 starts with the
+guide's comparison table.
+
+2
+00:00:02.887 --> 00:00:08.476
+Read it for two things: who manages each
+credential, and which kinds speak Kerberos.
+
+3
+00:00:08.476 --> 00:00:13.423
+A user account used as a service has a
+password an administrator sets by hand,
+
+4
+00:00:13.423 --> 00:00:17.350
+and it's highly exposed to
+Kerberoasting when it holds an S P N.
+
+5
+00:00:17.350 --> 00:00:22.925
+An S M S A and a G M S A have a long
+random password that Windows manages;
+
+6
+00:00:22.925 --> 00:00:28.501
+a G M S A's is computed by the domain
+controllers from the K D S root key,
+
+7
+00:00:28.501 --> 00:00:32.150
+and any host allowed to
+retrieve it holds it.
+
+8
+00:00:32.150 --> 00:00:34.764
+A D M S A binds the secret to the machine,
+
+9
+00:00:34.764 --> 00:00:39.150
+and Microsoft Learn says it's
+designed against Kerberoasting.
+
+10
+00:00:39.150 --> 00:00:43.934
+The Microsoft Entra kinds, a managed
+identity, an app registration with
+
+11
+00:00:43.934 --> 00:00:48.475
+a certificate and a federated
+credential, speak OAuth, not Kerberos.
+
+12
+00:00:48.475 --> 00:00:50.587
+So the table makes two things plain.
+
+13
+00:00:50.587 --> 00:00:54.662
+Nothing in Microsoft Entra I D
+speaks Kerberos for a service.
+
+14
+00:00:54.662 --> 00:00:59.210
+And a G M S A is a better
+password, not a different protocol.

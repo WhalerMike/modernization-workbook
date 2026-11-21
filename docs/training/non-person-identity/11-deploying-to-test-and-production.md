@@ -16,7 +16,7 @@ last-reviewed: 2026-11-20
 
 **Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_NPI_Module_11.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_NPI_Module_11_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_11_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-11/Training_NPI_Module_11_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-11/Training_NPI_Module_11_Narrated.vtt).
 
-The chapter has no narrated tour yet.
+**Also:** the chapter's narrated tour, about 12 minutes: [▶ Watch](../../presentations/watch.html?v=DW_NPI_11_Deploy_Test_Production_Narrated).
 
 ::: {.callout-important}
 ## Chapter 11 is approved, not run against a live tenant

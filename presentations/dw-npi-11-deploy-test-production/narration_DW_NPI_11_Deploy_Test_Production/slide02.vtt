@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.100
+Why a runbook?
+
+2
+00:00:01.100 --> 00:00:04.488
+Because each second lab
+proved one piece on its own.
+
+3
+00:00:04.488 --> 00:00:08.950
+A deployment proves them together,
+against an environment someone depends on.
+
+4
+00:00:08.950 --> 00:00:13.711
+Stage 1 is a live test: an Entra test
+tenant, an Azure test subscription
+
+5
+00:00:13.711 --> 00:00:18.138
+and an Active Directory test
+forest, with production's licenses.
+
+6
+00:00:18.138 --> 00:00:22.960
+Stage 2 is production, a separate tenant,
+so nothing the test stage does can
+
+7
+00:00:22.960 --> 00:00:27.625
+reach it, and its preflight won't start
+unless the test smoke test passed.
+
+8
+00:00:27.625 --> 00:00:31.920
+The commands are the same both times;
+only the settings file changes.

@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.219
+The order follows the
+implementation guide's gates and
+
+2
+00:00:03.219 --> 00:00:06.525
+what Microsoft Learn says each
+control can and can't break.
+
+3
+00:00:06.525 --> 00:00:09.975
+First, inventory and
+owners, which only read.
+
+4
+00:00:09.975 --> 00:00:14.725
+Second, the app management policy, on
+a pilot app and the synthetic one.
+
+5
+00:00:14.725 --> 00:00:18.561
+It has no report-only mode,
+but it refuses only a create or
+
+6
+00:00:18.561 --> 00:00:22.563
+update that breaks it, so an
+existing secret keeps working.
+
+7
+00:00:22.563 --> 00:00:26.604
+Third, a federated credential
+and a managed identity beside
+
+8
+00:00:26.604 --> 00:00:30.000
+the pilot's old secret, for
+a thirty-day parallel run.
+
+9
+00:00:30.000 --> 00:00:34.213
+Fourth, a group managed account,
+once the root key has replicated.
+
+10
+00:00:34.213 --> 00:00:39.100
+Last, Conditional Access for workload
+identities, in report-only mode.

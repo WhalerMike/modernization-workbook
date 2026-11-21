@@ -1,70 +1,65 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.394
-On the federal side, account management
-calls for the identity record, the
+00:00:00.050 --> 00:00:04.025
+The workbook's tenth chapter turns
+this gate into a scheduled run.
 
 2
-00:00:04.394 --> 00:00:06.744
-owner-change and decommission tickets,
+00:00:04.025 --> 00:00:09.288
+Each run compares every identity with a
+baseline that someone approved by its hash.
 
 3
-00:00:06.744 --> 00:00:09.450
-and the kit runs for
-owners and agent sponsors.
+00:00:09.288 --> 00:00:13.868
+On the second fixture day it finds
+seven ownerless orphan candidates,
 
 4
-00:00:09.450 --> 00:00:14.713
-Identifier management calls for a record
-keyed by object ID, never reused.
+00:00:13.868 --> 00:00:16.475
+and two apps unused for over ninety days.
 
 5
-00:00:14.713 --> 00:00:18.351
-Audit controls call for the
-logs routed out of Entra ID,
+00:00:16.475 --> 00:00:19.740
+It finds three accounts
+whose password never expires,
 
 6
-00:00:18.351 --> 00:00:22.313
-including every credential
-added and every deactivation.
+00:00:19.740 --> 00:00:22.787
+and three credentials
+added outside the pipeline.
 
 7
-00:00:22.313 --> 00:00:26.149
-To validate, run the owner
-and expiry checks every week.
+00:00:22.787 --> 00:00:27.301
+A credential counts as the pipeline's
+only when two separate records agree.
 
 8
-00:00:26.149 --> 00:00:30.050
-A new app with fewer than two
-owners opens a ticket that week.
+00:00:27.301 --> 00:00:32.263
+The review check finds an app whose last
+owner review was in May, too long ago.
 
 9
-00:00:30.050 --> 00:00:34.138
-No agent may go past ten business
-days without a confirmed sponsor.
+00:00:32.263 --> 00:00:37.601
+Then each run is packaged with a checksum
+for every file, chained to the day before.
 
 10
-00:00:34.138 --> 00:00:38.425
-An optional preview check lists service
-principals idle for ninety days.
+00:00:37.601 --> 00:00:41.138
+So a swapped package or a
+missing day shows up as a break.
 
 11
-00:00:38.425 --> 00:00:43.125
-Then run one test owner change and
-one test decommission, end to end.
+00:00:41.138 --> 00:00:44.613
+The period report is
+what the ISSO receives.
 
 12
-00:00:43.125 --> 00:00:48.475
-The sign-in activity report is listed for
-the commercial service, so GCC has it.
+00:00:44.613 --> 00:00:48.437
+Here the chain is unbroken,
+but the period isn't complete.
 
 13
-00:00:48.475 --> 00:00:51.768
-To roll back, reactivate,
-or restore within thirty
-
-14
-00:00:51.768 --> 00:00:55.510
-days and re-create the
-Conditional Access assignments.
+00:00:48.437 --> 00:00:51.980
+Orphans and passwords that
+never expire are still open.

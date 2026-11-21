@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.856
+Each step ends with a table of
+the requirements it supports:
+
+2
+00:00:03.856 --> 00:00:10.071
+NIST SP 800-53 controls at
+the FedRAMP Moderate baseline,
+
+3
+00:00:10.071 --> 00:00:15.509
+plus OMB M-22-09 and CISA's SCuBA
+baselines where they apply, the FedRAMP
+
+4
+00:00:15.509 --> 00:00:19.937
+twenty X K S I it aligns to, and the
+evidence the security officer keeps.
+
+5
+00:00:19.937 --> 00:00:22.904
+That evidence is produced, not only named:
+
+6
+00:00:22.904 --> 00:00:27.876
+each script writes a record with the
+command, the result, the controls,
+
+7
+00:00:27.876 --> 00:00:32.238
+the K S I's and every file's hash,
+and one script checks every row.
+
+8
+00:00:32.238 --> 00:00:37.440
+K S I's belong to cloud providers,
+and the assessor decides each control.

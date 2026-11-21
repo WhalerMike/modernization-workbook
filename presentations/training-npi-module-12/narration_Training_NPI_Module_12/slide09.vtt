@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.800
+Step three checks the Kerberos
+accounts and builds the plan.
+
+2
+00:00:03.800 --> 00:00:05.312
+Nine accounts are in scope.
+
+3
+00:00:05.312 --> 00:00:10.597
+The plan has ten actions, five of
+them writes: one D M S A completion,
+
+4
+00:00:10.597 --> 00:00:14.387
+two G M S A creations and
+two retriever changes.
+
+5
+00:00:14.387 --> 00:00:18.650
+One write is a person's and four are
+the pipeline's, and nothing is sent.
+
+6
+00:00:18.650 --> 00:00:24.000
+Note the plan's S H A two fifty-six on
+the last line: it's what someone approves.
+
+7
+00:00:24.000 --> 00:00:26.650
+Look first at K D S root key Ready.
+
+8
+00:00:26.650 --> 00:00:28.350
+That's the guide's step A2.
+
+9
+00:00:28.350 --> 00:00:30.674
+The check reads the key's start time,
+
+10
+00:00:30.674 --> 00:00:33.800
+with a delegated read, and
+it never creates a key.
+
+11
+00:00:33.800 --> 00:00:37.655
+Learn's K D S page says the
+forest needs one root key,
+
+12
+00:00:37.655 --> 00:00:40.540
+and the guide says to create only one.

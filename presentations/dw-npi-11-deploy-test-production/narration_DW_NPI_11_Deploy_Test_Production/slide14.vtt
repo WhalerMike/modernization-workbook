@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.725
+Step 1.6 is the smoke test.
+
+2
+00:00:02.725 --> 00:00:06.348
+The synthetic app signs in
+twice through a GitHub workflow,
+
+3
+00:00:06.348 --> 00:00:09.750
+once from outside the egress
+range and once from inside.
+
+4
+00:00:09.750 --> 00:00:12.938
+Both succeed, because the
+policies are report-only.
+
+5
+00:00:12.938 --> 00:00:17.863
+After fifteen minutes, so the sign-ins
+reach the log, the smoke test runs.
+
+6
+00:00:17.863 --> 00:00:23.663
+Step 1.7 hashes the evidence folder, which
+says no-go until the rollback is done.
+
+7
+00:00:23.663 --> 00:00:28.963
+Step 1.8 rehearses that rollback,
+which disables and never deletes.
+
+8
+00:00:28.963 --> 00:00:31.685
+Then you deploy again,
+and the second smoke test
+
+9
+00:00:31.685 --> 00:00:34.750
+becomes the evidence
+production's preflight needs.

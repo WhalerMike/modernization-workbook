@@ -1,73 +1,70 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.175
-SQL Server follows the same logic,
-with three kinds of principal.
+00:00:00.050 --> 00:00:04.394
+On the federal side, account management
+calls for the identity record, the
 
 2
-00:00:04.175 --> 00:00:08.650
-The engine's service account works only
-while Active Directory is in charge.
+00:00:04.394 --> 00:00:06.744
+owner-change and decommission tickets,
 
 3
-00:00:08.650 --> 00:00:10.450
-Azure Arc doesn't replace it.
+00:00:06.744 --> 00:00:09.450
+and the kit runs for
+owners and agent sponsors.
 
 4
-00:00:10.450 --> 00:00:13.613
-It only changes what
-Entra ID and Azure see.
+00:00:09.450 --> 00:00:14.713
+Identifier management calls for a record
+keyed by object ID, never reused.
 
 5
-00:00:13.613 --> 00:00:16.938
-The instance's own Entra
-identity is a managed
+00:00:14.713 --> 00:00:18.351
+Audit controls call for the
+logs routed out of Entra ID,
 
 6
-00:00:16.938 --> 00:00:21.051
-identity on SQL Server 2025,
-with no credential at all.
+00:00:18.351 --> 00:00:22.313
+including every credential
+added and every deactivation.
 
 7
-00:00:21.051 --> 00:00:26.053
-On SQL Server 2022 it's an app
-registration with a Key Vault certificate,
+00:00:22.313 --> 00:00:26.149
+To validate, run the owner
+and expiry checks every week.
 
 8
-00:00:26.053 --> 00:00:28.313
-which needs a named renewal owner.
+00:00:26.149 --> 00:00:30.050
+A new app with fewer than two
+owners opens a ticket that week.
 
 9
-00:00:28.313 --> 00:00:33.966
-Application logins move from SQL passwords
-to Entra logins: a managed identity
+00:00:30.050 --> 00:00:34.138
+No agent may go past ten business
+days without a confirmed sponsor.
 
 10
-00:00:33.966 --> 00:00:38.637
-first, then a certificate, and a
-secret only as a documented exception.
+00:00:34.138 --> 00:00:38.425
+An optional preview check lists service
+principals idle for ninety days.
 
 11
-00:00:38.637 --> 00:00:41.475
-And the same thirty-day
-parallel run applies.
+00:00:38.425 --> 00:00:43.125
+Then run one test owner change and
+one test decommission, end to end.
 
 12
-00:00:41.475 --> 00:00:42.987
-Two dangers stand out.
+00:00:43.125 --> 00:00:48.475
+The sign-in activity report is listed for
+the commercial service, so GCC has it.
 
 13
-00:00:42.987 --> 00:00:48.325
-A renewed certificate that nobody uploaded
-fails at expiry, so automate the upload.
+00:00:48.475 --> 00:00:51.768
+To roll back, reactivate,
+or restore within thirty
 
 14
-00:00:48.325 --> 00:00:53.031
-And on an Arc server, every allowed
-process presents the same identity,
-
-15
-00:00:53.031 --> 00:00:56.830
-so treat one login per server
-as the unit of attribution.
+00:00:51.768 --> 00:00:55.962
+days and re-create the
+Conditional Access assignments.

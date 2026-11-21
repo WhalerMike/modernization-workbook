@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.105
+Now the dry run, the chapter's own
+commands on the kit's fixtures,
+
+2
+00:00:04.105 --> 00:00:07.763
+run on November twenty-first
+in a scratch copy of the kit.
+
+3
+00:00:07.763 --> 00:00:09.201
+Nothing leaves the machine.
+
+4
+00:00:09.201 --> 00:00:12.762
+The test preflight prints
+twelve passes and one warning.
+
+5
+00:00:12.762 --> 00:00:17.438
+The settings file is clean, the
+deployment identity uses a certificate,
+
+6
+00:00:17.438 --> 00:00:20.132
+the Workload ID Premium license is there,
+
+7
+00:00:20.132 --> 00:00:24.174
+the baseline is recorded, and the
+test host and its group exist.
+
+8
+00:00:24.174 --> 00:00:27.955
+The warning is deliberate: the
+fixture's Conditional Access
+
+9
+00:00:27.955 --> 00:00:32.113
+administrator holds a standing
+role, not one eligible through PIM.
+
+10
+00:00:32.113 --> 00:00:36.184
+Then the group managed account
+plan: one outbound-only account,
+
+11
+00:00:36.184 --> 00:00:40.460
+run by the pipeline, with its
+SailPoint request and change record.

@@ -58,7 +58,7 @@
   ]
  },
  {
-  "slide": 8,
+  "slide": 9,
   "title": "G5: requirement, evidence, availability, rollback",
   "links": [
    {
@@ -80,7 +80,7 @@
   ]
  },
  {
-  "slide": 9,
+  "slide": 10,
   "title": "G6: owner change, orphans and owner reviews",
   "links": [
    {
@@ -98,7 +98,7 @@
   ]
  },
  {
-  "slide": 10,
+  "slide": 11,
   "title": "G6: disable first, then delete",
   "links": [
    {
@@ -112,7 +112,7 @@
   ]
  },
  {
-  "slide": 13,
+  "slide": 14,
   "title": "SQL Server: the engine, the instance, the applications",
   "links": [
    {
@@ -130,7 +130,7 @@
   ]
  },
  {
-  "slide": 14,
+  "slide": 15,
   "title": "AI agents: sponsors, blueprints and gated creation",
   "links": [
    {
@@ -152,7 +152,7 @@
   ]
  },
  {
-  "slide": 15,
+  "slide": 16,
   "title": "Evidence and rollback across the track",
   "links": [
    {

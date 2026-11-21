@@ -2,7 +2,7 @@
 // privilege, conversion and lifecycle (implementation guide Gates G4–G6, SQL Server, AI agents, evidence, rollback).
 //   Orientation:              G4–G6 on one page.
 //   G4 — Least privilege:     the five surfaces; the permission sweep and workload Conditional Access in code.
-//   G5 — Conversion:          the parallel run; the token exchange test and the Kerberos plan in code.
+//   G5 — Conversion:          the parallel run; the token exchange test and the Kerberos plan in code; the managed service account standard.
 //   G6 — Lifecycle:           owner change, orphans, reviews; disable first, then delete; drift and the evidence chain.
 //   SQL Server and AI agents: the guide's two sections, with Chapter 09's check in code.
 //   Evidence and rollback:    the track's evidence and the rollback by step.
@@ -104,8 +104,8 @@ The program's recommendations are marked design guidance, and preview features c
     ["G5 Conversion", "Converted identities authenticate without stored secrets; legacy accounts are disabled after a clean parallel run", "VK-NPI-03, 06", "Re-enable the legacy account and revert the application's configuration"],
     ["G6 Lifecycle", "Owner change, orphan, review and decommission paths run and leave records", "VK-NPI-01, 02, 08, 09", "Reactivate or re-enable; restore within 30 days, then re-create its Conditional Access assignments"],
   ], { fontSize: 12, limit: 5.3 });
-  callout(s, "Done", tb + 0.3, 1.0, "FaListCheck", HEX.navy, "The track is done when (design guidance): ",
-    "every identity has an owner, a sponsor, a reason and a target; each is retired, re-platformed or a certificate or federated workload identity; none holds a password that never expires or is orphaned.");
+  callout(s, "Done", tb + 0.3, 1.25, "FaListCheck", HEX.navy, "The track is done when (design guidance): ",
+    "every identity has two named owners, a sponsor, a reason and a target; each is retired, re-platformed, a certificate or federated workload identity, or kept on Kerberos to an accepted end date; none holds a password that never expires or is orphaned.");
   sources(s, "Sources: Implementation guide, \"The path on one page,\" \"The track at a glance\" (done when, design guidance), \"Rollback\"; Validate (G4), (G5), (G6).");
   notes(s,
 `Here are the three gates of Part 2 on one page: done when, the validation step, and the rollback.
@@ -116,7 +116,7 @@ G5, conversion, is done when converted identities authenticate without stored se
 
 G6, lifecycle, is done when the owner change, orphan, review and decommission paths run and leave records. VK-NPI-01, 02, 08 and 09 prove it; 09 is optional and preview. Rollback: reactivate the app registration or re-enable the service principal, and restore a deleted object within thirty days, then re-create its Conditional Access assignments, because a restore doesn't bring them back.
 
-Together they finish the track's done-when, which the guide takes from the companion guide's end state as design guidance: every service account and service principal has an owner and a sponsor, a reason and a target; each is retired, re-platformed to a managed identity or gMSA, or made a certificate or federated-credential workload identity; none holds a password that never expires; and none is orphaned.`,
+Together they finish the track's done-when, which the guide takes from the companion guide's end state as design guidance: every service account and service principal has two named owners and a sponsor, a reason and a target, under decision WD-164; each is retired, re-platformed to a managed identity, gMSA or dMSA, made a certificate or federated-credential workload identity, or kept on Kerberos, the Kerberos island included, with an end date the authorizing official accepts, no later than program G5 or the island's end of life, under WD-165; none holds a password that never expires; and none is orphaned.`,
   `${IG}, "The path on one page"; "The track at a glance" — "Done when"; "Rollback"; "Validate (G4 Least privilege)," "Validate (G5 Conversion)," "Validate (G6 Lifecycle)."`);
 }
 endModule(S0);
@@ -239,7 +239,7 @@ endModule(SG4);
   const s = content(SG5, "G5: build the target, run in parallel, then disable");
   tag(s, "What");
   const tb = table(s, "Run", 1.45, [2.6, 9.55], ["Step", "What happens"], [
-    ["1 Build the target", "A managed identity with its role assignments; a federated credential, tested by an actual token exchange; a certificate from the vault; or a gMSA on the hosts allowed to retrieve it"],
+    ["1 Build the target", "A managed identity with its role assignments; a federated credential, tested by an actual token exchange; a certificate from the vault; a gMSA created to the managed service account standard; or a dMSA where every host runs Windows Server 2025"],
     ["2 Owners and rotation", "Two human owners and a rotation schedule"],
     ["3 Run both for 30 days", "The application uses the new identity; the legacy account stays enabled. Watch the new identity's sign-ins in Entra and the legacy account's logons on domain controllers"],
     ["4 Disable, don't delete", "An AD account is disabled and moved to a holding OU. A secret is removed only after the new credential has carried production traffic"],
@@ -247,11 +247,11 @@ endModule(SG4);
   ], { fontSize: 12, limit: 6.6 });
   line(s, "Phase", "This is Book 02's Phase 4: Phase 3 complete, the inventory classified, six to eight weeks. The order is managed identity, then federated credential, then certificate.",
     tb + 0.25, 0.6, 13.5);
-  sources(s, "Sources: Implementation guide, Step 5, steps 1–5; Book 02, Ch 10 (Phase 4); Developer workbook, Ch 05 (what the code depends on: the order).");
+  sources(s, "Sources: Implementation guide, Step 5, steps 1–5; Book 02, Ch 10 (Phase 4); Developer workbook, Ch 05 (what the code depends on: the order); Service accounts guide, Migration B.");
   notes(s,
 `G5 converts each identity to the target G2 chose. It's Book 02's Phase 4: it needs Phase 3 to be complete and the inventory classified, and it takes six to eight weeks. Book 02 converts the high-risk accounts first, and its order is managed identities for Azure-hosted workloads, federated credentials for pipelines and other OIDC-capable hosts, and certificates only where neither applies.
 
-Step 1 builds the target: a managed identity with its role assignments; a federated credential on the app registration, tested by an actual token exchange; a certificate credential from the vault; or a gMSA installed on the hosts allowed to retrieve it.
+Step 1 builds the target: a managed identity with its role assignments; a federated credential on the app registration, tested by an actual token exchange; a certificate credential from the vault; a gMSA created to the managed service account standard, with its hosts' domain local group as the only retriever, AES256, and outbound-only when it holds no SPN, installed on those hosts; or a dMSA where every host that uses the account runs Windows Server 2025, a Windows Server 2025 domain controller is reachable and the account relies on no unconstrained delegation. Completing a dMSA migration disables the old account and moves its SPNs to the dMSA.
 
 Step 2 gives it two human owners and a rotation schedule.
 
@@ -284,16 +284,17 @@ Two dangers belong here. A federated credential with a broad subject lets every 
     "conv-08 federatedCredential Ready    LegacyStillInUse      59",
   ], { label: "CHAPTER 05, LAB 1, STEPS 3 AND 6 (COMMANDS WRAPPED AND SHORTENED; OUTPUT TRIMMED)", pt: 10 });
   const c2 = code(s, "Krb", 0.6, c1 + 0.15, 12.15, [
-    "PS> ./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory -FixturePath tests/fixtures/estate.json `",
+    "PS> ./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory -MatrixRun out/matrix ... -FixturePath tests/fixtures/estate.json `",
     ">>     -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -InputPath tests/fixtures/ch06/inputs -OutputPath out/kerberos",
     "Kerberos accounts: 9 in scope; KDS root key Ready",
-    "Plan: 9 actions, 4 of them writes (1 CompleteDmsaMigration, 2 CreateGmsa, 1 SetRetrievers); nothing sent",
-    "Island list: 5 accounts, 3 ready for P4.6; hand-off ready: False",
-    "Reconciliation (D11 KerberosIsland): 1 HandedOff, 1 MovesToWorkloadIdentity, 3 OnIslandList, 1 Unreconciled",
-  ], { label: "CHAPTER 06, LAB 1, STEP 3 (COMMAND WRAPPED; OUTPUT TRIMMED)", pt: 10 });
+    "Plan: 10 actions, 5 of them writes (1 CompleteDmsaMigration, 2 CreateGmsa, 2 SetRetrievers); nothing sent",
+    "Run by: 1 person, 4 pipeline",
+    "Island list: 6 accounts, 4 ready for P4.6; hand-off ready: False",
+    "Reconciliation (D11 KerberosIsland): 1 HandedOff, 4 OnIslandList, 1 Unreconciled",
+  ], { label: "CHAPTER 06, LAB 1, STEP 3 (COMMAND WRAPPED AND SHORTENED; OUTPUT TRIMMED)", pt: 10 });
   line(s, "Rule", "A wrong subject is created without error and fails only at the exchange, so the test runs before cutover. Every gMSA and dMSA ends moved, retired or on the island with a date.",
     c2 + 0.12, 0.55, 13);
-  sources(s, "Sources: Developer workbook, Ch 05 (NPI-WIF-01 to -09; the plan; Lab 1, steps 3–6) and Ch 06 (NPI-KRB-01 to -09; Lab 1, steps 3–6); data/kit-captures/npi/05-3, 05-6, 06-4.");
+  sources(s, "Sources: Developer workbook, Ch 05 (NPI-WIF-01 to -09; the plan; Lab 1, steps 3–6) and Ch 06 (NPI-KRB-01 to -10; Lab 1, steps 3–6); data/kit-captures/npi/05-3, 05-6, 06-4.");
   notes(s,
 `The workbook's Chapter 05 holds a wave's conversions as one reviewed file, and Chapter 06 plans the Kerberos accounts. This is the kit's real output on its fixtures.
 
@@ -301,8 +302,46 @@ Learn says it twice: a federated credential with the wrong subject is created su
 
 The conversion records track each parallel run. conv-01 has run forty days with the new identity signing in and no logon by the old account, and its owner approved: it's the one disable in the plan, and the account is disabled, never deleted. conv-07 is on day fifteen of thirty. conv-08's old secret still signed in eight weeks after cutover, so its run isn't clean.
 
-Chapter 06 turns each Kerberos account's reviewed disposition into a plan: an MSA and an IIS application pool account each get a new gMSA, a dMSA migration started forty days ago can complete, and one gMSA's password retrievers are set to the reviewed list. Every account that stays on Kerberos goes on the island list with an SPN owner and an end date. Here only three of five are ready for the program's SPN retirement, and one planned gMSA isn't reconciled with the end state. The writes run only from a plan whose SHA-256 a reviewer approved.`,
+Chapter 06 turns each Kerberos account's reviewed disposition into a plan: an MSA and an IIS application pool account each get a new gMSA, a dMSA migration started forty days ago can complete, and two gMSAs' password retrievers are set to the reviewed list, one domain local group of the hosts. Each write names who sends it: four are the pipeline's, and the dMSA completion is a person's. Every account that stays on Kerberos goes on the island list with an SPN owner and an end date. Here four of six are ready for the program's SPN retirement, and one planned gMSA isn't reconciled with the end state. The writes run only from a plan whose SHA-256 a reviewer approved, and each carries the SailPoint request and the ServiceNow change behind it; NPI-KRB-10 blocks one without them.`,
   `${WB}, Chapter 05 — "The checks," "The plan," "Lab 1: fixtures, no tenant," steps 3–6; Chapter 06 — "The check and the plan," "The island list and the reconciliation," "Lab 1," steps 3–6.`);
+}
+
+// ================================================================== 7b G5: the managed service account standard
+{
+  const s = content(SG5, "G5: the managed service account standard");
+  tag(s, "Who");
+  const tb = table(s, "Std", 1.45, [1.9, 7.85, 2.4], ["Step", "What happens", "Who runs it"], [
+    ["Request", "In the agency's system access management tool; Chapter 12 checks it against the standard before anyone approves", "The owner; Chapter 12"],
+    ["Approve", "SailPoint approves every request, whatever its risk tier; ServiceNow keeps the change record and never approves (WD-162)", "Approvers in SailPoint"],
+    ["Create", "The hashed Chapter 06 plan runs as gmsa-msapipe, which holds only delegated rights: create gMSAs, set retrievers, disable and move (WD-163)", "The pipeline"],
+    ["Person-run", "The dMSA steps, which need Domain Admins; uninstalling from hosts; every delete", "A person"],
+    ["Attest", "The two owners certify in SailPoint: quarterly for R1, twice a year for R2, annually for R3 (WD-166)", "The owners"],
+    ["Retire", "After the 30-day run, disable and move to the holding OU; delete 90 days later, with no sign-in seen, through the decommission ticket (WD-167)", "The pipeline, then a person"],
+  ], { fontSize: 10.5, limit: 6.6 });
+  const c1 = code(s, "Apply", 0.6, tb + 0.15, 12.15, [
+    "PS> ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -RunAs Pipeline ... -Apply",
+    "Apply as Pipeline: 1 Refused, 4 Sent",
+    "  Refused    person   CompleteDmsaMigration svc-hrsync      Complete-ADServiceAccountMigration",
+    "PS> ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 $sha -RunAs Person ... -Apply",
+    "Apply as Person: 4 Refused, 1 Sent",
+    "  Sent       person   CompleteDmsaMigration svc-hrsync      Complete-ADServiceAccountMigration",
+  ], { label: "CHAPTER 06, LAB 1, STEP 8 (COMMANDS SHORTENED; OUTPUT TRIMMED)", pt: 10 });
+  line(s, "Rule", "Machines run the steps; people decide. VK-NPI-06 checks every gMSA and dMSA against the standard's settings.",
+    c1 + 0.1, 0.4, 13);
+  sources(s, "Sources: Service accounts guide, \"The managed service account standard\" (steps S1–S11); WD-162, 163, 166, 167; Developer workbook, Ch 06 (Lab 1, step 8), Ch 12; capture 06-9.");
+  notes(s,
+`Every gMSA and dMSA the conversion creates follows the program's managed service account standard, from request to retirement. It's design guidance, settled in decisions WD-159 to WD-170, and the service accounts guide has it in full.
+
+The request. The owner asks in the agency's system access management tool, its own front end to SailPoint. The workbook's Chapter 12 checks every field against the standard before SailPoint's approvers see it: the name, two owners and a federal-employee sponsor, the hosts' group, the SPNs, the risk tier.
+
+The approval. SailPoint approves every managed service account request, created, changed or retired, whatever its risk tier. ServiceNow keeps the change record, the typed findings and the decommission ticket, and never approves the account. That's WD-162. In Chapter 06's plan every write carries both, and NPI-KRB-10 blocks a write without them.
+
+The writes. After SailPoint approves and ServiceNow records the change, a pipeline runs Chapter 06's hashed plan as its own gMSA, gmsa-msapipe, which holds only the delegated rights on the service-account OU: create gMSAs, write their retriever groups, and disable and move superseded accounts. The authorizing official accepts that as an autonomous class. A person runs the dMSA steps, which need Domain Admins, Uninstall-ADServiceAccount on hosts, and every delete. That's WD-163. The kit enforces it with -RunAs: the pipeline's run sends its four writes and refuses the person's dMSA completion, and the person's run does the reverse. -RunAs Person sends a pipeline write only with -TestDomain, in a test domain before the pipeline exists.
+
+Attestation: the two owners certify each account in a SailPoint campaign on its risk tier's cadence, quarterly for R1, twice a year for R2 and annually for R3, and a revoke opens a ServiceNow task. Retirement: after a replacement's thirty-day parallel run, the same plan disables the old account and moves it to the holding OU, DisableSuperseded and MoveSuperseded; ninety days later, with no sign-in seen, a person deletes it through the decommission ticket. That's WD-167.
+
+Machines run, verify and record every step they can; people decide, approve in SailPoint, accept risk and run the few steps that need Domain Admins or delete. VK-NPI-06 checks every gMSA and dMSA against the standard's settings: retrievers, encryption types and privileged groups as findings; name, password interval and OU as warnings.`,
+  `Service accounts guide, "The managed service account standard" — "Machines run the steps; people decide," "Who does what," "The standard's settings," "The steps"; decisions WD-162, WD-163, WD-166, WD-167, WD-170; ${WB}, Chapter 06 — "The separate write path," "Lab 1," steps 7–8; Chapter 12 — "The Managed Service Account Standard."`);
 }
 
 // ================================================================== 8 G5: requirement, evidence, rollback
@@ -316,13 +355,13 @@ Chapter 06 turns each Kerberos account's reviewed disposition into a plan: an MS
   ], { fontSize: 11.5, limit: 6.6 });
   pair(s, "G5", tb + 0.2,
     ["VALIDATE (G5) AND ROLLBACK", [
-      "VK-NPI-06: no high-risk account still enabled with a password that never expires, outside a dated exception",
+      "VK-NPI-06: no high-risk account still enabled with a password that never expires, outside a dated exception; no finding against the standard for the wave's gMSAs and dMSAs",
       "VK-NPI-03: the converted apps no longer hold secrets",
       "Rollback: re-enable the legacy account and revert the app's configuration; possible until G6 deletes the account",
     ]],
     ["AVAILABILITY AND INTERIM PATH", [
       "GCC with commercial Azure: graph.microsoft.com, management.azure.com, login.microsoftonline.com (workbook Ch 05)",
-      "dMSA: Windows Server 2025 on every host and a domain controller (workbook Ch 06)",
+      "dMSA: Windows Server 2025 on every host, a Windows Server 2025 domain controller, no unconstrained delegation",
       "Interim (design guidance): an account that can't move yet stays on the Kerberos island, with an SPN owner and an end date",
     ]]);
   sources(s, "Sources: Implementation guide, Step 5, Validate (G5), \"Evidence,\" \"Rollback\"; Book 02, Ch 10; Developer workbook, Ch 05 (which cloud) and Ch 06 (rules; dangers).");
@@ -331,9 +370,9 @@ Chapter 06 turns each Kerberos account's reviewed disposition into a plan: an MS
 
 IA-5, authenticator management, with enhancement 2: managed identities and federation first, certificates in a vault and rotated, no new secrets. The ISSO keeps the VK-NPI-02 and VK-NPI-03 runs, the application management policy export from Part 1's G3, and the rotation calendar. IA-9, service identification and authentication, is in no baseline, so it's tailored in: services and workloads authenticate as themselves to Entra ID. The evidence is the Graph permission grants per workload identity and the service principal sign-in log, which is also where the parallel run's new sign-ins show. And Book 02's validation criteria for Phase 4: new identities authenticate without stored secrets where possible, there was no service disruption during the parallel run, and workload identity policies are enforced.
 
-Validate. Every high-risk account is converted or retired: VK-NPI-06 shows none still enabled with a password that never expires, outside a dated exception. VK-NPI-03 shows the converted apps no longer hold secrets.
+Validate. Every high-risk account is converted or retired: VK-NPI-06 shows none still enabled with a password that never expires, outside a dated exception, and no finding against the managed service account standard's settings for the gMSAs and dMSAs the wave created. VK-NPI-03 shows the converted apps no longer hold secrets.
 
-Availability, as the workbook states it. The estate is Microsoft 365 GCC with commercial Azure: Graph at graph.microsoft.com, Resource Manager at management.azure.com, and sign-in at login.microsoftonline.com, so the user-assigned identity calls go to commercial Resource Manager. A dMSA needs Windows Server 2025 on every host and at least one domain controller, and no unconstrained delegation.
+Availability, as the workbook states it. The estate is Microsoft 365 GCC with commercial Azure: Graph at graph.microsoft.com, Resource Manager at management.azure.com, and sign-in at login.microsoftonline.com, so the user-assigned identity calls go to commercial Resource Manager. A dMSA needs Windows Server 2025 on every host that uses it, a reachable Windows Server 2025 domain controller, and no unconstrained delegation on the account it replaces.
 
 The interim path, design guidance from Chapter 06: an account that can't move yet stays on the Kerberos island, with an SPN owner and an end date no later than the program's legacy-authentication date. The island list is what the program's SPN retirement works from.
 
@@ -362,6 +401,7 @@ endModule(SG5);
     "App owners review permissions quarterly",
     "At least two owners per app where possible",
     "Owners valid, permissions needed, unused credentials removed, record matches",
+    "AD service accounts, gMSAs, dMSAs: SailPoint certification by risk tier",
   ], 12);
   const top = Math.max(a, b, c);
   const d = panel(s, "Idle", 0.6, top + 0.2, 12.15, null, HEX.amber, HEX.amberTint, "INACTIVITY IS A SECOND ORPHAN SIGNAL", null, [
@@ -379,7 +419,7 @@ Orphans. An application is orphaned when it has no named owner in the registry o
 
 Inactivity is a second orphan signal. Microsoft's service principal sign-in activity report gives the last time each service principal was used. The report is preview and its Graph API is beta. Workload ID Premium adds app health recommendations for unused and inactive workload identities.
 
-Owner reviews. App owners review their delegated and application permissions on a recurring cadence, quarterly by the program's standard. Microsoft recommends reviewing owners every few months and keeping at least two owners per app where possible. Each attestation covers four things: the owners are still valid, the permissions are still needed, unused credentials are removed, and the record matches. Privileged service principals also get G4's PIM access reviews.`,
+Owner reviews. App owners review their delegated and application permissions on a recurring cadence, quarterly by the program's standard. Microsoft recommends reviewing owners every few months and keeping at least two owners per app where possible. Each attestation covers four things: the owners are still valid, the permissions are still needed, unused credentials are removed, and the record matches. Privileged service principals also get G4's PIM access reviews. AD service accounts, gMSAs and dMSAs are certified by their two owners in a SailPoint certification campaign on the risk tier's cadence: quarterly for R1, twice a year for R2 and annually for R3, under WD-166; a revoke opens a ServiceNow task.`,
   `${IG}, Step 6 — "Owner change," "Orphans," "Access reviews of owners"; Book 04, Chapter 05 — "Ownership"; Chapter 06 — "Ownership changes and orphaned apps"; Book 17, Chapter 05 — "When the sponsor moves or leaves," "The orphaned agent."`);
 }
 
@@ -388,7 +428,7 @@ Owner reviews. App owners review their delegated and application permissions on 
   const s = content(SG6, "G6: disable first, then delete");
   tag(s, "How");
   const tb = table(s, "Decom", 1.45, [2.55, 4.85, 4.75], ["Identity", "Disable", "Then delete"], [
-    ["AD account or gMSA", "Disable; remove SPNs only after the observation period; log the decision", "After the observation window; check for SPN dependencies first"],
+    ["AD account or gMSA", "Disable and move to the holding OU. A migration moves its SPNs to the replacement; a retirement leaves them until day 90", "90 days after the disable, no sign-in seen, through the decommission ticket; check SPN dependencies first"],
     ["App registration", "Deactivate: new tokens stop at once, existing ones stay valid until they expire. Remove other owners first", "Soft-deleted, restorable for 30 days; multitenant app objects must be removed by hand"],
     ["Service principal (this tenant)", "Enabled for users to sign-in? set to No: blocks tokens in this tenant only", "A restore brings it back without its policies, such as Conditional Access"],
     ["User-assigned managed identity", "Remove its role assignments", "Delete the Azure resource; customers can't recover it"],
@@ -396,11 +436,11 @@ Owner reviews. App owners review their delegated and application permissions on 
   ], { fontSize: 11.5, limit: 6.6 });
   line(s, "Audit", "File the audit entry with the decision: a deactivation shows as Update application, with the isDisabled property's old and new values.",
     tb + 0.25, 0.6, 13.5);
-  sources(s, "Sources: Implementation guide, Step 6, \"Decommissioning\" (as footnoted: Learn, deactivate an app registration; restore; recover from deletions); Book 04, Ch 05; Book 17, Ch 05.");
+  sources(s, "Sources: Implementation guide, Step 6, \"Decommissioning\" (as footnoted: Learn, deactivate an app registration; restore; recover from deletions); WD-167; Book 04, Ch 05; Book 17, Ch 05.");
   notes(s,
 `Decommissioning follows the books' rule: deactivate first, so that nothing breaks silently, then revoke grants, remove credentials and delete. The mechanics differ by type.
 
-An AD account or gMSA: disable it, remove its SPNs only after the observation period, and log the decision. Delete after the observation window, and check for SPN dependencies first; Book 06's runbook R08 covers the application chain.
+An AD account or gMSA: disable it, move it to the holding OU, and log the decision. Its SPNs depend on why it's going: a migration moves them to the replacement at the switch, because an SPN has one owner; a retirement with no replacement leaves them on the disabled account until the ninety-day window ends. Delete it ninety days after it's disabled, with no sign-in seen in that time, through the decommission ticket, under WD-167. Check for SPN dependencies first, with Book 06's runbook R02, and for LDAP-bind dependencies, with runbook R08.
 
 An app registration: deactivate it. New tokens stop at once, existing tokens stay valid until they expire, and the configuration is kept. Remove the other owners first, so only an administrator can reactivate it. A deleted app registration is soft-deleted and restorable for thirty days, and multitenant application objects aren't hard-deleted automatically after thirty days, so they must be removed by hand.
 
@@ -412,7 +452,7 @@ An agent identity or blueprint: disable it. A sponsor can disable an agent, but 
 
 In the Entra audit log, a deactivation or reactivation appears as Update application, with the isDisabled property's old and new values. File that entry with the decision record.
 
-The dangers here are the guide's: disabled isn't revoked, because tokens already issued stay valid, so for an incident also rotate or remove the credentials; and deleting too soon loses what a restore can't bring back.`,
+The dangers here are the guide's: disabled isn't revoked, because tokens already issued stay valid, so for an incident also rotate or remove the credentials; and deleting too soon loses what a restore can't bring back, which is why an AD service account waits ninety days disabled.`,
   `${IG}, Step 6 — "Decommissioning: disable first, then delete"; "Dangers" — "Disabled isn't revoked," "Deleting too soon"; Book 04, Chapter 05 — "Governing app registrations"; Book 17, Chapter 05 — "Retirement."`);
 }
 
@@ -500,9 +540,9 @@ endModule(SG6);
   tag(s, "What");
   const tb = table(s, "Sql", 1.45, [2.9, 9.25], ["Principal", "The rule"], [
     ["The engine's service account", "A gMSA or domain account works only while AD is authoritative. Arc doesn't replace the Windows account the service runs as; it changes the identity Entra ID and Azure see"],
-    ["The instance's Entra identity", "SQL Server 2025: the Arc server's system-assigned managed identity, with no credential. SQL Server 2022: an app registration whose Key Vault certificate needs a named renewal owner and isn't rotated automatically"],
+    ["The instance's Entra identity", "SQL Server 2025: the Arc server's system-assigned managed identity, with no credential. SQL Server 2022: an app registration whose Key Vault certificate rotates automatically only when both are service-managed, and otherwise needs a named renewal owner"],
     ["Application principals", "ETL, reporting and API back ends move from SQL logins to FROM EXTERNAL PROVIDER logins: a managed identity first, a Key Vault certificate where a credential is unavoidable, a secret only as a documented exception"],
-    ["The same parallel run", "Create, validate, disable, observe for 30 days with audit evidence, then drop"],
+    ["The same parallel run", "For SQL logins: create, validate, disable the old login, observe for 30 days with audit evidence, then drop it. An AD account the change replaces is deleted only after 90 days disabled"],
   ], { fontSize: 11.5, limit: 6.6 });
   const w = 5.95;
   const a = panel(s, "Cert", 0.6, tb + 0.2, w, null, HEX.red, HEX.redTint, "A RENEWED CERTIFICATE NOBODY UPLOADED", null, [
@@ -520,11 +560,11 @@ endModule(SG6);
 
 The engine's service account. A gMSA or a domain service account works only while AD is authoritative. Azure Arc doesn't replace the Windows account the service runs as; it changes the identity that Entra ID and Azure see.
 
-The instance's Entra identity. On SQL Server 2025 it's the Arc server's system-assigned managed identity, with no credential to manage. On SQL Server 2022 it's an app registration whose Key Vault certificate needs a named renewal owner, and isn't rotated automatically. Book 06's runbook R04 deploys it.
+The instance's Entra identity. On SQL Server 2025 it's the Arc server's system-assigned managed identity, with no credential to manage. On SQL Server 2022 it's an app registration whose Key Vault certificate rotates automatically only when both the certificate and the app registration are service-managed, and otherwise needs a named renewal owner. Book 06's runbook R04 deploys it.
 
 Application principals. ETL, reporting and API back ends replace SQL Authentication logins with FROM EXTERNAL PROVIDER logins for Entra applications: a managed identity first, a certificate in Key Vault where a credential is unavoidable, and a client secret only as a documented exception.
 
-And the same parallel run as G5: create, validate, disable, observe for thirty days with audit evidence, then drop. Book 06's Chapter 19 covers the connection strings.
+And the same parallel run, for SQL logins and database principals: create the new login, validate it, disable the old SQL login, observe for thirty days with audit evidence, then drop it. It's the database side of G5's thirty-day parallel run: the old login is dropped after its thirty days, while an AD service account the change replaces is disabled after its own thirty-day run and deleted only after ninety days disabled. Book 06's Chapter 19 covers the connection strings.
 
 Join every SQL application principal to its record in Step 1, and run VK-NPI-02 and VK-NPI-05 over them like any other service principal. The workbook's Chapter 01 hands SQL Server's AD accounts to the Data Platform plan, so they appear in the register as handed off.
 
@@ -616,7 +656,7 @@ endModule(SE);
     ["The agent built by whoever was there", "By default the creator becomes sponsor and owner: blueprint creation set to No; the handshake sets both"],
   ], { fontSize: 11.5, limit: 5.3 });
   callout(s, "Next", tb + 0.2, 1.2, "FaRoute", HEX.teal, "Go next: ",
-    "Part 1 for G1–G3; the developer workbook Building Non-Person Identity, Chapters 05 to 10, with their labs; the Labs page for every lab; Books 02, 04, 06 and 17 for the design.");
+    "Part 1 for G1–G3; the developer workbook Building Non-Person Identity, Chapters 05 to 10, with their labs, and Chapter 12 with the service accounts guide for the managed service account standard; the Labs page; Books 02, 04, 06 and 17.");
   sources(s, "Sources: Implementation guide, \"Dangers,\" \"Checklist,\" \"Back to the books,\" \"Labs for this guide\"; Developer workbook, \"Chapters\"; the Labs page, Building Non-Person Identity.");
   notes(s,
 `Five of the guide's dangers stay in view through all three gates.
@@ -625,7 +665,7 @@ The owner is a credential holder: every name in Owners can add a credential and 
 
 The guide's checklist for these gates: high-privilege grants justified or removed and Tier 1 single-tenant service principals assigned directly to workload policies; the parallel run complete, legacy accounts disabled, not deleted; owner change in the HR mover and leaver workflows, the orphan check weekly, disable before delete; and the ScubaGear MS.AAD.5 results filed with the evidence.
 
-Where to go next. Part 1 covers G1 to G3: inventory, decision and credential rules. To build the code for these gates, the developer workbook Building Non-Person Identity, Chapters 05 to 10, each with a fixture lab and a test-tenant or test-domain step. The Labs page lists every chapter's labs, with what each needs and a direct link. For the design, Book 02, Book 04, Book 06 and Book 17.
+Where to go next. Part 1 covers G1 to G3: inventory, decision and credential rules. To build the code for these gates, the developer workbook Building Non-Person Identity, Chapters 05 to 10, each with a fixture lab and a test-tenant or test-domain step, and Chapter 12, which checks every managed service account against the standard in the service accounts guide's section "The managed service account standard." The Labs page lists every chapter's labs, with what each needs and a direct link. For the design, Book 02, Book 04, Book 06 and Book 17.
 
 A person leaves and HR tells you. A service account's owner leaves and nothing tells you. These gates build the record that does.`,
   `${IG}, "Dangers and how to avoid them," "Checklist," "Back to the books," "Labs for this guide"; ${WB}, "Chapters," "Reading paths"; Labs page — "Building Non-Person Identity."`);
@@ -644,7 +684,8 @@ sourceSlide("Sources: G5 and G6", [
   "Non-Person Identity: An Implementation Guide: Step 5 (steps 1–5, Validate (G5)) and Step 6 (owner change, orphans, access reviews of owners, decommissioning, Validate (G6)); \"Evidence\"; \"Rollback.\"",
   "Microsoft Learn pages the guide footnotes: deactivate an app registration; restore a recently deleted application; recover from deletions; restore a soft-deleted enterprise application; usage and insights report and servicePrincipalSignInActivities (beta).",
   "Book 02, Ch 09 (governing service principals; workload identity federation), Ch 10 (Phase 4; Git-based drift detection). Book 04, Ch 05, 06. Book 06, R08. Book 17, Ch 05 (when the sponsor moves or leaves; the orphaned agent; retirement).",
-  "Developer workbook, Chapter 05 (NPI-WIF-01 to -09; the plan; Lab 1, steps 3–8), Chapter 06 (NPI-KRB-01 to -09; the island list; Lab 1, steps 3–8), Chapter 10 (NPI-DRF, NPI-REV; the package and the period; Lab 1). examples/drift-pipeline/python/npi_evidence.py.",
+  "Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities, \"The managed service account standard\" and Migration B; decision register WD-159 to WD-170. Developer workbook, Chapter 12 (the standard's checks).",
+  "Developer workbook, Chapter 05 (NPI-WIF-01 to -09; the plan; Lab 1, steps 3–8), Chapter 06 (NPI-KRB-01 to -10; the island list; the write path and -RunAs; Lab 1, steps 3–8; capture 06-9), Chapter 10 (NPI-DRF, NPI-REV; the package and the period; Lab 1). examples/drift-pipeline/python/npi_evidence.py.",
 ]);
 sourceSlide("Sources: SQL Server, AI agents and the close", [
   "Non-Person Identity: An Implementation Guide: \"SQL Server service and application principals,\" \"AI agents,\" \"Dangers and how to avoid them,\" \"Evidence,\" \"Checklist,\" \"Back to the books.\" Learn, rotate certificates for SQL Server enabled by Azure Arc (as footnoted).",

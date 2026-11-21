@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Check yourself with two questions.
+
+2
+00:00:02.025 --> 00:00:06.087
+First: a workload stays on
+premises and needs Kerberos.
+
+3
+00:00:06.087 --> 00:00:09.923
+The domain has a Windows
+Server 2025 domain controller,
+
+4
+00:00:09.923 --> 00:00:14.676
+but one of the two hosts that run the
+service is on Windows Server 2022.
+
+5
+00:00:14.676 --> 00:00:15.737
+What's the target?
+
+6
+00:00:15.737 --> 00:00:18.575
+The answer is b, a G M S A.
+
+7
+00:00:18.575 --> 00:00:24.163
+A D M S A needs every host that
+uses it on Windows Server 2025.
+
+8
+00:00:24.163 --> 00:00:30.251
+Second: Learn's Entra page ends a move to
+a G M S A by deleting the old account.
+
+9
+00:00:30.251 --> 00:00:31.675
+What does the program do?
+
+10
+00:00:31.675 --> 00:00:32.900
+The answer is b.
+
+11
+00:00:32.900 --> 00:00:36.718
+It disables the account after a
+clean thirty-day parallel run,
+
+12
+00:00:36.718 --> 00:00:40.462
+and deletes it only later,
+through the decommission process.
+
+13
+00:00:40.462 --> 00:00:42.824
+The program follows the stricter reading.
+
+14
+00:00:42.824 --> 00:00:45.252
+The module page has three more questions,
+
+15
+00:00:45.252 --> 00:00:47.810
+each linked to the
+section that answers it.

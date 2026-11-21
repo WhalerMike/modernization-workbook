@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:03.254
+The change record is approved,
+
+3
+00:00:03.254 --> 00:00:06.887
+the settings file holds no
+secret, and the preflight said go.
+
+4
+00:00:06.887 --> 00:00:11.367
+In test, the pilot policy covered two
+apps, and the old secret and legacy
+
+5
+00:00:11.367 --> 00:00:16.001
+account were kept through the parallel
+run, then disabled, never deleted.
+
+6
+00:00:16.001 --> 00:00:19.538
+The group managed account came
+through Chapter 6's plan,
+
+7
+00:00:19.538 --> 00:00:22.537
+and every workload policy
+started report-only.
+
+8
+00:00:22.537 --> 00:00:25.838
+The smoke test passed, and
+the rollback was rehearsed.
+
+9
+00:00:25.838 --> 00:00:29.780
+Every criterion was signed,
+production rings went one at a time,
+
+10
+00:00:29.780 --> 00:00:33.940
+the first week's drift was clean,
+and every evidence folder checks.
