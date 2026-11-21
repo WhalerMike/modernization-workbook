@@ -98,6 +98,10 @@ opened and parsed when it was added:
 | NIST CSRC publications, draft and final (XLSX) | the same page's spreadsheet of every current FIPS, SP, IR, ITL Bulletin and CSWP. CSRC has no feed of final publications. |
 | Federal Register: OMB, OPM, GSA, DHS (CISA publishes as DHS), Commerce, NIST | the [Federal Register API](https://www.federalregister.gov/developers/documentation/api/v1), filtered by security, identity and cloud search terms |
 | FedRAMP machine-readable rules | commits and releases of [FedRAMP/rules](https://github.com/FedRAMP/rules), which publishes `fedramp-consolidated-rules.json` (the 2026 Consolidated Rules as data) |
+| SailPoint SaaS release notes (RSS) | the [SaaS Release Notes](https://developer.sailpoint.com/discuss/c/announcements/saas-release-notes/182) category of the SailPoint Developer Community, through that category's own feed (`.../saas-release-notes/182.rss`), so no category filter is needed |
+| SailPoint API specifications and CLI | commits to [sailpoint-oss/api-specs](https://github.com/sailpoint-oss/api-specs) (without the daily bot commits that sync the specifications, which the feed's `exclude` drops; the specification files the books cite are watched one by one as cited sources) and releases of [sailpoint-oss/sailpoint-cli](https://github.com/sailpoint-oss/sailpoint-cli) |
+| ServiceNow SDK | releases of [ServiceNow/sdk](https://github.com/ServiceNow/sdk) |
+| ServiceNow family release notes (page check) | the [family release-notes page](https://www.servicenow.com/docs/r/release-notes/family-release-notes.html) of every English release-notes publication, one per family (Xanadu to Brazil on November 21, 2026); see below |
 
 A new item is reported only if its title or summary contains a keyword from
 the topic map in the same file. The keyword's topic names the books
@@ -108,6 +112,19 @@ can also name books of its own, in which case every new item is reported
 (every FedRAMP rules commit goes to B10). Topics may point to planned books
 (B12 Security Operations, B17 AI Identity Governance); the issue marks those
 "(planned)".
+
+**Page checks.** ServiceNow's release notes have no feed, and its docs site
+draws every page with JavaScript, so a plain fetch sees only an empty shell
+("Loading application..."). The `fluidtopics_pages` feed type reads the
+site's public Fluid Topics API instead: the list of publications
+(`/docs/api/khub/maps`), then, for each English publication in the
+release-notes cluster, its table of contents and the text of its
+`family-release-notes.html` page. It hashes that text; a changed page, or a
+release-notes publication for a new family, is reported once under **New
+publications**, for every book the feed names. The first run records the
+hashes silently. The Yokohama and Xanadu release-notes pages Book 15 cites
+are watched as cited sources too, but for the reason above their fingerprint
+is the shell and won't change.
 
 **New and retired Learn pages.** The [Learn Coverage
 Map](../../docs/reference/learn-coverage.md) tracks every Microsoft Learn page
@@ -312,7 +329,7 @@ Files:
 | `netfetch.py` | HTTP: the generic User-Agent, per-host pacing, retries and the redirect record; `curl` for the `curl_hosts`. |
 | `gitsource.py` | Git history from the GitHub API: a Learn page's source repository and its public copy, a cited branch's latest commit, and the commits and changed lines between two commits. Called with the workflow's token. |
 | `watch.py` | Fingerprints and classifies each source, polls the feeds, and writes the state and results. |
-| `feeds.py` | The feed readers and the topic matching. |
+| `feeds.py` | The feed readers (including the ServiceNow page check), the `exclude` filter and the topic matching. |
 | `report.py` | Renders the Markdown digest and opens the issue. |
 | `register.py` | The [Source Register](../../docs/reference/source-register.md): generates the page from `data/source-register.json`, checks its rules, and digests each row's latest result for the page to read. The scan never edits the register: a row whose original moved or went is listed in the issue with the fix it needs. |
 | `learn_pages.py` | The Learn folders the [Learn Coverage Map](../../docs/reference/learn-coverage.md) tracks: which files are pages, each page's URL, and the weekly list of pages added and removed. Shared with `scripts/learn_coverage.py`. |
