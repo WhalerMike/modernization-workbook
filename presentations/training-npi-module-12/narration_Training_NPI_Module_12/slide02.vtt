@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.800
+Why does this module exist?
+
+2
+00:00:01.800 --> 00:00:04.744
+A service account's password
+is the one nobody changes,
+
+3
+00:00:04.744 --> 00:00:06.837
+because changing it breaks something.
+
+4
+00:00:06.837 --> 00:00:11.438
+Modules 7 and 8 taught the kit's
+plans for converting those accounts.
+
+5
+00:00:11.438 --> 00:00:15.893
+This module takes one account at a time
+and walks it through each move by hand,
+
+6
+00:00:15.893 --> 00:00:18.015
+with Microsoft Learn's own commands,
+
+7
+00:00:18.015 --> 00:00:21.126
+so you know what the plans
+send before you approve one.
+
+8
+00:00:21.126 --> 00:00:25.712
+There are three moves: a user account
+to a group managed service account,
+
+9
+00:00:25.712 --> 00:00:30.688
+the same account to a Windows Server
+2025 delegated managed service account,
+
+10
+00:00:30.688 --> 00:00:34.186
+and an account to a Microsoft
+Entra workload identity,
+
+11
+00:00:34.186 --> 00:00:37.063
+once the workload moves
+or gains a cloud path.
+
+12
+00:00:37.063 --> 00:00:40.100
+Then you watch the kit plan
+the same moves on fixtures.
+
+13
+00:00:40.100 --> 00:00:42.725
+The module adds no gate of its own:
+
+14
+00:00:42.725 --> 00:00:46.780
+its moves are Gate G5's, and
+its rules are the track's.

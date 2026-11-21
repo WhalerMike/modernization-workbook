@@ -1,0 +1,67 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.988
+Lab 2 does the moves for real, in
+a test domain, never production.
+
+2
+00:00:04.988 --> 00:00:06.549
+The authors haven't run it.
+
+3
+00:00:06.549 --> 00:00:07.800
+There are two ways.
+
+4
+00:00:07.800 --> 00:00:12.366
+By hand, for one account: the
+guide's Migration A, steps A1 to A7,
+
+5
+00:00:12.366 --> 00:00:17.025
+with Learn's commands and the
+expected output after each one.
+
+6
+00:00:17.025 --> 00:00:21.634
+You need a test domain with a K D S
+root key older than ten hours, a test
+
+7
+00:00:21.634 --> 00:00:26.662
+user account with an S P N, and a member
+server that runs a test service as it.
+
+8
+00:00:26.662 --> 00:00:29.538
+Back out with the guide's
+rollback for Migration A.
+
+9
+00:00:29.538 --> 00:00:33.025
+Or through the kit: the
+workbook's Chapter 6 Lab 2.
+
+10
+00:00:33.025 --> 00:00:35.854
+It makes a traditional test account,
+
+11
+00:00:35.854 --> 00:00:40.003
+a test M S A and the G M S A's
+domain local retriever group,
+
+12
+00:00:40.003 --> 00:00:43.586
+applies the plan as a
+person in the test domain,
+
+13
+00:00:43.586 --> 00:00:49.150
+and runs a D M S A migration to completion
+on a Windows Server 2025 domain.
+
+14
+00:00:49.150 --> 00:00:51.020
+Its step six backs it out.

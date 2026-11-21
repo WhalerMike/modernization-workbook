@@ -1,79 +1,85 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.958
-On the federal side, authenticator management
-calls for the kit runs on expiring
+00:00:00.050 --> 00:00:03.183
+Every group managed or
+delegated managed service
 
 2
-00:00:04.958 --> 00:00:10.013
-secrets and secret use, the app management
-policy export, and the rotation calendar.
+00:00:03.183 --> 00:00:06.763
+account follows one standard,
+from request to retirement.
 
 3
-00:00:10.013 --> 00:00:13.783
-Service identification calls
-for each workload's permission
+00:00:06.763 --> 00:00:11.229
+The owner asks in the agency's system
+access management tool, and the workbook's
 
 4
-00:00:13.783 --> 00:00:17.337
-grants and its sign-in log, which
-also shows the parallel run.
+00:00:11.229 --> 00:00:16.038
+twelfth chapter checks the request against
+the standard before anyone approves it.
 
 5
-00:00:17.337 --> 00:00:21.742
-The workbook adds three tests: no
-stored secrets where possible,
+00:00:16.038 --> 00:00:19.513
+SailPoint approves every
+request, whatever its risk.
 
 6
-00:00:21.742 --> 00:00:25.649
-no outage during the run, and
-workload policies enforced.
+00:00:19.513 --> 00:00:23.012
+ServiceNow keeps the change
+record, and never approves.
 
 7
-00:00:25.649 --> 00:00:28.698
-To validate, one kit check
-confirms no high-risk
+00:00:23.012 --> 00:00:26.812
+Then a pipeline runs the sixth
+chapter's approved plan as its
 
 8
-00:00:28.698 --> 00:00:31.825
-account still has a password
-that never expires.
+00:00:26.812 --> 00:00:30.687
+own group managed account, which
+holds only delegated rights.
 
 9
-00:00:31.825 --> 00:00:35.575
-Another confirms the converted
-apps no longer hold secrets.
+00:00:30.687 --> 00:00:34.160
+It creates the account, sets
+who may retrieve its password,
 
 10
-00:00:35.575 --> 00:00:38.385
-Creating a federated
-credential and reading
+00:00:34.160 --> 00:00:38.500
+and later disables the old account
+and moves it to the holding container.
 
 11
-00:00:38.385 --> 00:00:40.900
-sign-ins work in the US Government clouds.
+00:00:38.500 --> 00:00:42.562
+A person runs the steps that need
+Domain Admins, and every delete.
 
 12
-00:00:40.900 --> 00:00:45.613
-A delegated managed service
-account needs Windows Server 2025.
+00:00:42.562 --> 00:00:47.317
+The kit enforces the split: the
+pipeline's run refuses the person's step,
 
 13
-00:00:45.613 --> 00:00:49.439
-Until an account can move, it
-stays on the Kerberos island,
+00:00:47.317 --> 00:00:50.187
+and the person's run
+refuses the pipeline's.
 
 14
-00:00:49.439 --> 00:00:51.312
-with an owner and an end date.
+00:00:50.187 --> 00:00:54.951
+The two owners certify each account in
+SailPoint on its risk tier's cadence.
 
 15
-00:00:51.312 --> 00:00:54.987
-To roll back, re-enable the
-old account and revert the app.
+00:00:54.951 --> 00:00:59.000
+And a disabled account waits ninety
+days before a person deletes it.
 
 16
-00:00:54.987 --> 00:00:57.940
-That stays possible until
-the account is deleted.
+00:00:59.000 --> 00:01:01.663
+Machines run the steps; people decide.
+
+17
+00:01:01.663 --> 00:01:05.780
+For the whole standard, see Chapter
+12 and the service accounts guide.

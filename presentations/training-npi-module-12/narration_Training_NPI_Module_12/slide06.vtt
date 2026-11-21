@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.688
+Unit 2 is Migrations A and B, by hand.
+
+2
+00:00:03.688 --> 00:00:09.050
+In Migration A, a user account to
+a G M S A, watch for the order.
+
+3
+00:00:09.050 --> 00:00:14.113
+There's one K D S root key for the
+forest, and the domain controllers wait
+
+4
+00:00:14.113 --> 00:00:19.175
+up to ten hours from its creation before
+they allow a G M S A to be created.
+
+5
+00:00:19.175 --> 00:00:23.975
+Then you create the G M S A, install
+it and test it on every host.
+
+6
+00:00:23.975 --> 00:00:28.500
+Then you switch the workload and move
+the S P N's in one change window.
+
+7
+00:00:28.500 --> 00:00:33.412
+After a clean thirty days in parallel,
+the old account is disabled and moved.
+
+8
+00:00:33.412 --> 00:00:38.433
+Migration B, a user account to a D
+M S A, starts with Learn's limits:
+
+9
+00:00:38.433 --> 00:00:42.863
+every machine that uses the
+account must support D M S A.
+
+10
+00:00:42.863 --> 00:00:46.337
+Then you create, start, wait and complete.
+
+11
+00:00:46.337 --> 00:00:49.499
+Learn says to wait at
+least two ticket lifetimes;
+
+12
+00:00:49.499 --> 00:00:51.949
+the program's thirty days covers four.
+
+13
+00:00:51.949 --> 00:00:56.413
+Learn's D M S A page says never
+to delete the original account.
+
+14
+00:00:56.413 --> 00:00:58.656
+Then skim the guide's special cases,
+
+15
+00:00:58.656 --> 00:01:03.050
+and stop on failover clusters and
+Microsoft Entra Domain Services.

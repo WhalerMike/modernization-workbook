@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.850
+Stage 2 runs the same commands
+with the production settings file.
+
+2
+00:00:03.850 --> 00:00:08.550
+The preflight passes only with the test
+smoke test's evidence from another tenant.
+
+3
+00:00:08.550 --> 00:00:10.846
+Steps 1.1 to 1.5 run unchanged,
+
+4
+00:00:10.846 --> 00:00:16.937
+then the tenant-wide app management
+policy goes on, with its approved hash.
+
+5
+00:00:16.937 --> 00:00:21.663
+On day thirty-one, the pilot's legacy
+account is disabled, never deleted.
+
+6
+00:00:21.663 --> 00:00:25.281
+Conditional Access is then
+enforced one ring at a time,
+
+7
+00:00:25.281 --> 00:00:29.301
+each after fourteen days of
+sign-ins and the CISO's decision.
+
+8
+00:00:29.301 --> 00:00:32.938
+The smoke test now expects the
+outside sign-in to be blocked,
+
+9
+00:00:32.938 --> 00:00:35.388
+with the message Microsoft Learn gives.
+
+10
+00:00:35.388 --> 00:00:37.777
+For a week, the drift run checks daily,
+
+11
+00:00:37.777 --> 00:00:41.900
+and a ring that blocks the wrong
+thing goes back to report-only.

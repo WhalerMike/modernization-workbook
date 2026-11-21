@@ -89,16 +89,16 @@
   ],
   [
    35.875,
-   4.775,
-   "Every identity has an owner, a sponsor, a reason and a target."
+   5.175,
+   "Every identity has two named owners, a sponsor, a reason and a target."
   ],
   [
-   40.65,
-   6.25,
-   "Each one is retired, moved to a managed identity, or given a certificate or a federated credential."
+   41.05,
+   10.85,
+   "Each one is retired, moved to a managed identity, given a certificate or a federated credential, or kept on Kerberos until an end date the authorizing official accepts."
   ],
   [
-   46.9,
+   51.9,
    4.7,
    "And none holds a password that never expires, or is left without an owner."
   ]
@@ -371,7 +371,7 @@
    "It creates group managed service accounts, completes one migration, and builds the island list of accounts that stay, each with an owner and an end date."
   ]
  ],
- "8": [
+ "9": [
   [
    0.05,
    9.963,
@@ -389,41 +389,41 @@
   ],
   [
    25.65,
-   6.175,
-   "To validate, one kit check confirms no high-risk account still has a password that never expires."
+   10.412,
+   "To validate, one kit check confirms no high-risk account still has a password that never expires, and that the wave's new managed service accounts follow the standard's settings."
   ],
   [
-   31.825,
+   36.062,
    3.75,
    "Another confirms the converted apps no longer hold secrets."
   ],
   [
-   35.575,
-   5.325,
-   "Creating a federated credential and reading sign-ins work in the U S Government clouds."
+   39.812,
+   7.5,
+   "The estate is G C C with commercial Azure, so Graph, Resource Manager and sign-in use the commercial endpoints."
   ],
   [
-   40.9,
-   4.713,
-   "A delegated managed service account needs Windows Server 2025."
+   47.312,
+   7.037,
+   "A delegated managed service account needs Windows Server 2025 on every host and a domain controller."
   ],
   [
-   45.612,
+   54.35,
    5.7,
    "Until an account can move, it stays on the Kerberos island, with an owner and an end date."
   ],
   [
-   51.312,
+   60.05,
    3.675,
    "To roll back, re-enable the old account and revert the app."
   ],
   [
-   54.987,
+   63.725,
    2.888,
    "That stays possible until the account is deleted."
   ]
  ],
- "9": [
+ "10": [
   [
    0.05,
    5.625,
@@ -475,7 +475,7 @@
    "And owners review their app's permissions every quarter, with at least two owners per app where possible."
   ]
  ],
- "10": [
+ "11": [
   [
    0.05,
    5.625,
@@ -488,61 +488,66 @@
   ],
   [
    7.525,
-   7.1,
-   "An Active Directory account is disabled, and its service principal names are removed only after the observation period."
+   4.362,
+   "An Active Directory account is disabled and moved to a holding container."
   ],
   [
-   14.625,
+   11.887,
+   10.25,
+   "A migration moves its service principal names to the replacement, and the account is deleted ninety days after the disable, with no sign-in seen, through the decommission ticket."
+  ],
+  [
+   22.137,
    2.462,
    "An app registration is deactivated."
   ],
   [
-   17.087,
+   24.6,
    5.3,
    "New tokens stop at once, but tokens already issued stay valid until they expire."
   ],
   [
-   22.387,
+   29.9,
    2.888,
    "A deleted app can be restored for thirty days."
   ],
   [
-   25.275,
+   32.788,
    3.538,
    "A service principal is blocked from signing in to this tenant."
   ],
   [
-   28.812,
+   36.325,
    4.8,
    "If it's deleted and restored, its Conditional Access policies don't come back."
   ],
   [
-   33.612,
+   41.125,
    6.0,
    "A managed identity loses its role assignments first, and once deleted, it can't be recovered."
   ],
   [
-   39.612,
+   47.125,
    3.688,
    "An agent can be disabled by its sponsor, but not re-enabled."
   ],
   [
-   43.3,
+   50.812,
    2.8,
    "Deleting a blueprint removes its agents too."
   ],
   [
-   46.1,
+   53.612,
    2.95,
    "Every deactivation shows in the audit log."
   ],
   [
-   49.05,
+   56.562,
    1.938,
    "File that entry with the decision."
   ]
  ],
- "11": [
+ "12": [
   [
    0.05,
    3.975,
@@ -599,7 +604,7 @@
    "Orphans and passwords that never expire are still open."
   ]
  ],
- "13": [
+ "14": [
   [
    0.05,
    4.125,
@@ -656,7 +661,7 @@
    "And on an Arc server, every allowed process presents the same identity, so treat one login per server as the unit of attribution."
   ]
  ],
- "15": [
+ "16": [
   [
    0.05,
    9.3,
@@ -718,7 +723,7 @@
    "And decommissioning reactivates, or restores within thirty days."
   ]
  ],
- "16": [
+ "17": [
   [
    0.05,
    1.762,
@@ -827,7 +832,7 @@
    "To roll back, set the policy back to report-only, and restore a removed grant through approval."
   ]
  ],
- "12": [
+ "13": [
   [
    0.05,
    9.4,
@@ -879,7 +884,7 @@
    "To roll back, reactivate, or restore within thirty days and re-create the Conditional Access assignments."
   ]
  ],
- "14": [
+ "15": [
   [
    0.05,
    5.9,
@@ -924,6 +929,68 @@
    49.612,
    6.525,
    "Where an agent feature isn't available in G C C, govern the service principals the agents run as."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   6.713,
+   "Every group managed or delegated managed service account follows one standard, from request to retirement."
+  ],
+  [
+   6.763,
+   9.275,
+   "The owner asks in the agency's system access management tool, and the workbook's twelfth chapter checks the request against the standard before anyone approves it."
+  ],
+  [
+   16.038,
+   3.475,
+   "SailPoint approves every request, whatever its risk."
+  ],
+  [
+   19.512,
+   3.5,
+   "ServiceNow keeps the change record, and never approves."
+  ],
+  [
+   23.012,
+   7.675,
+   "Then a pipeline runs the sixth chapter's approved plan as its own group managed account, which holds only delegated rights."
+  ],
+  [
+   30.688,
+   7.812,
+   "It creates the account, sets who may retrieve its password, and later disables the old account and moves it to the holding container."
+  ],
+  [
+   38.5,
+   4.062,
+   "A person runs the steps that need Domain Admins, and every delete."
+  ],
+  [
+   42.562,
+   7.625,
+   "The kit enforces the split: the pipeline's run refuses the person's step, and the person's run refuses the pipeline's."
+  ],
+  [
+   50.188,
+   4.763,
+   "The two owners certify each account in SailPoint on its risk tier's cadence."
+  ],
+  [
+   54.95,
+   4.05,
+   "And a disabled account waits ninety days before a person deletes it."
+  ],
+  [
+   59.0,
+   2.663,
+   "Machines run the steps; people decide."
+  ],
+  [
+   61.663,
+   4.05,
+   "For the whole standard, see Chapter 12 and the service accounts guide."
   ]
  ]
 }

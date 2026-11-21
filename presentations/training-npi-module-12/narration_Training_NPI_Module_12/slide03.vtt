@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Here's what you'll be able to
+do by the end of this module.
+
+2
+00:00:02.963 --> 00:00:07.011
+You'll compare the kinds of service
+identity: who holds the credential,
+
+3
+00:00:07.011 --> 00:00:10.012
+where it runs and how exposed
+it is to Kerberoasting.
+
+4
+00:00:10.012 --> 00:00:13.065
+You'll choose a target with
+the guide's decision path,
+
+5
+00:00:13.065 --> 00:00:15.124
+and name its Chapter 3 disposition.
+
+6
+00:00:15.124 --> 00:00:18.748
+You'll follow Learn's steps to
+a G M S A and to a D M S A,
+
+7
+00:00:18.748 --> 00:00:23.300
+with the checks before the switch
+and the rollback after it.
+
+8
+00:00:23.300 --> 00:00:26.237
+You'll say what moves
+to Microsoft Entra I D,
+
+9
+00:00:26.237 --> 00:00:29.425
+what can't, and why a
+hybrid workload keeps both.
+
+10
+00:00:29.425 --> 00:00:32.449
+And you'll match each step
+to the kit's plan action,
+
+11
+00:00:32.449 --> 00:00:35.850
+which runs only by its approved
+hash and never deletes.
+
+12
+00:00:35.850 --> 00:00:39.113
+Take Module 3 first, for the dispositions.
+
+13
+00:00:39.113 --> 00:00:43.700
+Module 8 is recommended: this
+module reruns part of its lab.

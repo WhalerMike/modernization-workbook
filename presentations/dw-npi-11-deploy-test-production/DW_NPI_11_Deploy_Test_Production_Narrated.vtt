@@ -1,0 +1,865 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.146
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.146 --> 00:00:05.912
+Building Non-Person Identity.
+
+3
+00:00:05.912 --> 00:00:09.850
+This is Chapter 11: deploying
+to test and production.
+
+4
+00:00:09.850 --> 00:00:14.175
+Each chapter's second lab proves one
+piece in a non-production tenant.
+
+5
+00:00:14.175 --> 00:00:18.768
+This runbook proves them together,
+in an order that can be undone:
+
+6
+00:00:18.768 --> 00:00:23.275
+first in a live test environment,
+then, unchanged, in production.
+
+7
+00:00:23.275 --> 00:00:27.204
+We'll see the safe order,
+the settings file, the code,
+
+8
+00:00:27.204 --> 00:00:32.187
+the evidence, who does what, a dry
+run, both stages and the dangers.
+
+9
+00:00:32.187 --> 00:00:36.163
+One note: nobody has run this
+runbook against a live tenant.
+
+10
+00:00:36.163 --> 00:00:39.280
+The output you'll see comes
+from the kit's fixtures.
+
+11
+00:00:43.030 --> 00:00:44.080
+Why a runbook?
+
+12
+00:00:44.080 --> 00:00:47.468
+Because each second lab
+proved one piece on its own.
+
+13
+00:00:47.468 --> 00:00:51.930
+A deployment proves them together,
+against an environment someone depends on.
+
+14
+00:00:51.930 --> 00:00:56.691
+Stage 1 is a live test: an Entra test
+tenant, an Azure test subscription
+
+15
+00:00:56.691 --> 00:01:01.118
+and an Active Directory test
+forest, with production's licenses.
+
+16
+00:01:01.118 --> 00:01:05.940
+Stage 2 is production, a separate tenant,
+so nothing the test stage does can
+
+17
+00:01:05.940 --> 00:01:10.605
+reach it, and its preflight won't start
+unless the test smoke test passed.
+
+18
+00:01:10.605 --> 00:01:15.200
+The commands are the same both times;
+only the settings file changes.
+
+19
+00:01:18.950 --> 00:01:22.119
+The order follows the
+implementation guide's gates and
+
+20
+00:01:22.119 --> 00:01:25.425
+what Microsoft Learn says each
+control can and can't break.
+
+21
+00:01:25.425 --> 00:01:28.875
+First, inventory and
+owners, which only read.
+
+22
+00:01:28.875 --> 00:01:33.625
+Second, the app management policy, on
+a pilot app and the synthetic one.
+
+23
+00:01:33.625 --> 00:01:37.461
+It has no report-only mode,
+but it refuses only a create or
+
+24
+00:01:37.461 --> 00:01:41.463
+update that breaks it, so an
+existing secret keeps working.
+
+25
+00:01:41.463 --> 00:01:45.504
+Third, a federated credential
+and a managed identity beside
+
+26
+00:01:45.504 --> 00:01:48.900
+the pilot's old secret, for
+a thirty-day parallel run.
+
+27
+00:01:48.900 --> 00:01:53.113
+Fourth, a group managed account,
+once the root key has replicated.
+
+28
+00:01:53.113 --> 00:01:58.300
+Last, Conditional Access for workload
+identities, in report-only mode.
+
+29
+00:02:02.050 --> 00:02:07.249
+One settings file per stage holds every
+value the commands need: the tenant,
+
+30
+00:02:07.249 --> 00:02:10.687
+the cloud, the identities,
+the operators, the pilot,
+
+31
+00:02:10.687 --> 00:02:14.125
+the synthetic objects, the
+policies and the rings.
+
+32
+00:02:14.125 --> 00:02:17.038
+Before any command
+runs, the kit checks it.
+
+33
+00:02:17.038 --> 00:02:19.705
+A secret, or anything that looks like one,
+
+34
+00:02:19.705 --> 00:02:23.425
+stops the run, and so does a
+placeholder nobody replaced.
+
+35
+00:02:23.425 --> 00:02:25.675
+The pilot's owner can't be an operator.
+
+36
+00:02:25.675 --> 00:02:27.945
+The file must be for the
+stage you're running,
+
+37
+00:02:27.945 --> 00:02:31.412
+and the smoke-test group managed
+account must follow the standard.
+
+38
+00:02:31.412 --> 00:02:34.273
+Reads sign in as an
+app with a certificate,
+
+39
+00:02:34.273 --> 00:02:37.650
+writes as a person, and
+nothing uses a secret.
+
+40
+00:02:41.400 --> 00:02:46.012
+The runbook's own code is six PowerShell
+scripts in the kit's deploy folder.
+
+41
+00:02:46.012 --> 00:02:50.412
+The preflight runs eleven checks and
+snapshots what the rollback restores.
+
+42
+00:02:50.412 --> 00:02:53.859
+The smoke test runs seven checks
+on the synthetic objects,
+
+43
+00:02:53.859 --> 00:02:56.875
+and its only write is a
+probe that should be refused.
+
+44
+00:02:56.875 --> 00:02:58.385
+The rollback is planned,
+
+45
+00:02:58.385 --> 00:03:02.237
+then applied only with its approved
+hash, and it never deletes.
+
+46
+00:03:02.237 --> 00:03:04.539
+One script builds the smoke-test group
+
+47
+00:03:04.539 --> 00:03:07.200
+managed account's plan
+for Chapter 6 to apply.
+
+48
+00:03:07.200 --> 00:03:09.800
+The last two record
+and check the evidence.
+
+49
+00:03:09.800 --> 00:03:13.400
+Every script has a fixture mode
+that sends nothing anywhere,
+
+50
+00:03:13.400 --> 00:03:15.270
+and there are sixty tests.
+
+51
+00:03:19.020 --> 00:03:23.614
+The smoke test proves the deployment
+end to end on objects nobody depends on,
+
+52
+00:03:23.614 --> 00:03:26.895
+and you write each expected
+result down before it runs.
+
+53
+00:03:26.895 --> 00:03:31.495
+The synthetic app must appear in the
+register with two owners and no secret.
+
+54
+00:03:31.495 --> 00:03:34.220
+The synthetic service
+account must be rated high.
+
+55
+00:03:34.220 --> 00:03:37.839
+A new secret on the synthetic
+app must be refused,
+
+56
+00:03:37.839 --> 00:03:40.282
+and if it isn't, it's removed at once.
+
+57
+00:03:40.282 --> 00:03:43.320
+The federated credential
+must match exactly.
+
+58
+00:03:43.320 --> 00:03:48.345
+Each workload policy must be report-only,
+with the synthetic assigned directly.
+
+59
+00:03:48.345 --> 00:03:52.507
+The sign-ins must show the
+report-only results, from a beta read.
+
+60
+00:03:52.507 --> 00:03:56.730
+And the test host must retrieve the
+group managed account's password.
+
+61
+00:04:00.480 --> 00:04:04.286
+Each step ends with a table of
+the requirements it supports:
+
+62
+00:04:04.286 --> 00:04:10.501
+NIST SP 800-53 controls at
+the FedRAMP Moderate baseline,
+
+63
+00:04:10.501 --> 00:04:15.939
+plus OMB M-22-09 and CISA's SCuBA
+baselines where they apply, the FedRAMP
+
+64
+00:04:15.939 --> 00:04:20.367
+twenty X K S I it aligns to, and the
+evidence the security officer keeps.
+
+65
+00:04:20.367 --> 00:04:23.334
+That evidence is produced, not only named:
+
+66
+00:04:23.334 --> 00:04:28.306
+each script writes a record with the
+command, the result, the controls,
+
+67
+00:04:28.306 --> 00:04:32.668
+the K S I's and every file's hash,
+and one script checks every row.
+
+68
+00:04:32.668 --> 00:04:38.170
+K S I's belong to cloud providers,
+and the assessor decides each control.
+
+69
+00:04:41.920 --> 00:04:42.845
+Who does what?
+
+70
+00:04:42.845 --> 00:04:47.288
+Every write is a person's, with a role
+activated through Privileged Identity
+
+71
+00:04:47.288 --> 00:04:51.732
+Management for the change window, and
+the change record number as the reason.
+
+72
+00:04:51.732 --> 00:04:56.958
+The identity engineer prepares the stage
+and runs the policy and credential steps.
+
+73
+00:04:56.958 --> 00:05:01.870
+The Conditional Access administrator runs
+the workload policies and the rollback.
+
+74
+00:05:01.870 --> 00:05:04.802
+The server and Active
+Directory engineer installs
+
+75
+00:05:04.802 --> 00:05:07.870
+the group managed account,
+which the pipeline creates.
+
+76
+00:05:07.870 --> 00:05:10.758
+A reader app with a
+certificate does the reads.
+
+77
+00:05:10.758 --> 00:05:15.397
+And each write has an approver: the
+change board, the governance officer,
+
+78
+00:05:15.397 --> 00:05:19.780
+the pilot's owner, a second
+reviewer, and the CISO for each ring.
+
+79
+00:05:23.530 --> 00:05:27.585
+Now the dry run, the chapter's own
+commands on the kit's fixtures,
+
+80
+00:05:27.585 --> 00:05:31.243
+run on November twenty-first
+in a scratch copy of the kit.
+
+81
+00:05:31.243 --> 00:05:32.681
+Nothing leaves the machine.
+
+82
+00:05:32.681 --> 00:05:36.242
+The test preflight prints
+twelve passes and one warning.
+
+83
+00:05:36.242 --> 00:05:40.918
+The settings file is clean, the
+deployment identity uses a certificate,
+
+84
+00:05:40.918 --> 00:05:43.612
+the Workload ID Premium license is there,
+
+85
+00:05:43.612 --> 00:05:47.654
+the baseline is recorded, and the
+test host and its group exist.
+
+86
+00:05:47.654 --> 00:05:51.435
+The warning is deliberate: the
+fixture's Conditional Access
+
+87
+00:05:51.435 --> 00:05:55.593
+administrator holds a standing
+role, not one eligible through PIM.
+
+88
+00:05:55.593 --> 00:05:59.664
+Then the group managed account
+plan: one outbound-only account,
+
+89
+00:05:59.664 --> 00:06:04.240
+run by the pipeline, with its
+SailPoint request and change record.
+
+90
+00:06:07.990 --> 00:06:11.390
+The smoke test prints eight
+passes: the seven checks,
+
+91
+00:06:11.390 --> 00:06:15.027
+with the policy check run once
+for each workload policy.
+
+92
+00:06:15.027 --> 00:06:18.265
+The synthetic app has
+two owners and no secret.
+
+93
+00:06:18.265 --> 00:06:22.202
+A new secret is refused, though
+that error is the fixture's own,
+
+94
+00:06:22.202 --> 00:06:24.565
+since Learn doesn't give the real one.
+
+95
+00:06:24.565 --> 00:06:27.377
+The sign-ins show the report-only results.
+
+96
+00:06:27.377 --> 00:06:31.028
+And the test host can retrieve the
+group managed account's password.
+
+97
+00:06:31.028 --> 00:06:35.260
+Then the rollback is planned from the
+preflight's snapshot: seven actions,
+
+98
+00:06:35.260 --> 00:06:39.077
+including the synthetic objects'
+cleanup, and none of them a delete.
+
+99
+00:06:39.077 --> 00:06:43.570
+Applied with its hash but without
+the apply switch, it's a dry run.
+
+100
+00:06:47.320 --> 00:06:51.343
+Production's preflight runs against
+a fictional production tenant,
+
+101
+00:06:51.343 --> 00:06:54.095
+with the test stage's
+smoke test as its evidence.
+
+102
+00:06:54.095 --> 00:06:55.395
+Fourteen passes.
+
+103
+00:06:55.395 --> 00:07:00.504
+The Conditional Access administrator is
+now eligible through PIM, and check eleven,
+
+104
+00:07:00.504 --> 00:07:05.395
+production only, says the test smoke test
+passed eight of eight in another tenant.
+
+105
+00:07:05.395 --> 00:07:08.488
+Then the evidence check on
+the test stage says no-go,
+
+106
+00:07:08.488 --> 00:07:10.182
+and that's right for a dry run.
+
+107
+00:07:10.182 --> 00:07:15.222
+Steps 1.1 to 1.5 record their
+evidence only against a real tenant,
+
+108
+00:07:15.222 --> 00:07:20.745
+and a dry-run rollback records dry run,
+which the go/no-go doesn't accept.
+
+109
+00:07:20.745 --> 00:07:23.970
+A rollback applied with the
+wrong hash sends nothing.
+
+110
+00:07:23.970 --> 00:07:26.910
+And the deploy tests: sixty pass.
+
+111
+00:07:30.660 --> 00:07:32.327
+Stage 1 starts by preparing:
+
+112
+00:07:32.327 --> 00:07:36.384
+the group managed account's retriever
+group with the test host in it,
+
+113
+00:07:36.384 --> 00:07:40.949
+and the synthetic objects, an app with
+two owners and a federated credential,
+
+114
+00:07:40.949 --> 00:07:44.572
+and a service account whose
+random password nobody records.
+
+115
+00:07:44.572 --> 00:07:47.473
+The pilot's policy is created, turned off.
+
+116
+00:07:47.473 --> 00:07:50.616
+The preflight records the
+validation kit's baseline,
+
+117
+00:07:50.616 --> 00:07:53.473
+and checks the root key is
+more than ten hours old.
+
+118
+00:07:53.473 --> 00:07:57.460
+Step 1.1 reads every
+identity and its owners.
+
+119
+00:07:57.460 --> 00:08:01.214
+Step 1.2 turns the pilot
+policy on for just two apps,
+
+120
+00:08:01.214 --> 00:08:04.235
+and plans the tenant-wide one for review.
+
+121
+00:08:04.235 --> 00:08:07.941
+Step 1.3 moves the pilot
+to a federated credential
+
+122
+00:08:07.941 --> 00:08:11.640
+and a managed identity,
+beside its old secret.
+
+123
+00:08:15.390 --> 00:08:20.403
+Step 1.4 puts a group managed account on
+a test host, and it isn't made by hand:
+
+124
+00:08:20.403 --> 00:08:23.244
+it goes through Chapter 6's approved plan,
+
+125
+00:08:23.244 --> 00:08:26.753
+and the pipeline applies
+it with the reviewed hash.
+
+126
+00:08:26.753 --> 00:08:32.002
+In the test forest only, before the pipeline
+exists, a person may send it instead.
+
+127
+00:08:32.002 --> 00:08:35.541
+On the host, Test A D Service
+Account must print true.
+
+128
+00:08:35.541 --> 00:08:38.902
+Step 1.5 creates the workload policies.
+
+129
+00:08:38.902 --> 00:08:43.506
+Microsoft Learn says they cover only
+single-tenant service principals,
+
+130
+00:08:43.506 --> 00:08:46.652
+assigned directly, with
+block as the only control.
+
+131
+00:08:46.652 --> 00:08:50.340
+Chapter 8's script creates
+every one report-only.
+
+132
+00:08:54.090 --> 00:08:56.765
+Step 1.6 is the smoke test.
+
+133
+00:08:56.765 --> 00:09:00.388
+The synthetic app signs in
+twice through a GitHub workflow,
+
+134
+00:09:00.388 --> 00:09:03.790
+once from outside the egress
+range and once from inside.
+
+135
+00:09:03.790 --> 00:09:06.978
+Both succeed, because the
+policies are report-only.
+
+136
+00:09:06.978 --> 00:09:11.903
+After fifteen minutes, so the sign-ins
+reach the log, the smoke test runs.
+
+137
+00:09:11.903 --> 00:09:17.703
+Step 1.7 hashes the evidence folder, which
+says no-go until the rollback is done.
+
+138
+00:09:17.703 --> 00:09:23.003
+Step 1.8 rehearses that rollback,
+which disables and never deletes.
+
+139
+00:09:23.003 --> 00:09:25.725
+Then you deploy again,
+and the second smoke test
+
+140
+00:09:25.725 --> 00:09:29.090
+becomes the evidence
+production's preflight needs.
+
+141
+00:09:32.840 --> 00:09:36.228
+Production starts only when
+nine criteria are signed.
+
+142
+00:09:36.228 --> 00:09:41.103
+The test smoke test passed every check,
+after the rollback and re-deployment.
+
+143
+00:09:41.103 --> 00:09:43.327
+The rollback was rehearsed and filed.
+
+144
+00:09:43.327 --> 00:09:45.902
+Every hash in the evidence folder matches.
+
+145
+00:09:45.902 --> 00:09:49.301
+Fourteen days of report-only
+sign-ins were reviewed,
+
+146
+00:09:49.301 --> 00:09:53.015
+with no unexpected failure
+from inside the egress range.
+
+147
+00:09:53.015 --> 00:09:55.565
+The tenant-wide policy plan was approved.
+
+148
+00:09:55.565 --> 00:10:00.165
+Production's settings, licenses
+and PIM eligibility are in place.
+
+149
+00:10:00.165 --> 00:10:01.990
+The change record is approved.
+
+150
+00:10:01.990 --> 00:10:04.150
+And the evidence check passes.
+
+151
+00:10:07.900 --> 00:10:11.700
+Stage 2 runs the same commands
+with the production settings file.
+
+152
+00:10:11.700 --> 00:10:16.400
+The preflight passes only with the test
+smoke test's evidence from another tenant.
+
+153
+00:10:16.400 --> 00:10:18.696
+Steps 1.1 to 1.5 run unchanged,
+
+154
+00:10:18.696 --> 00:10:24.787
+then the tenant-wide app management
+policy goes on, with its approved hash.
+
+155
+00:10:24.787 --> 00:10:29.513
+On day thirty-one, the pilot's legacy
+account is disabled, never deleted.
+
+156
+00:10:29.513 --> 00:10:33.131
+Conditional Access is then
+enforced one ring at a time,
+
+157
+00:10:33.131 --> 00:10:37.151
+each after fourteen days of
+sign-ins and the CISO's decision.
+
+158
+00:10:37.151 --> 00:10:40.788
+The smoke test now expects the
+outside sign-in to be blocked,
+
+159
+00:10:40.788 --> 00:10:43.238
+with the message Microsoft Learn gives.
+
+160
+00:10:43.238 --> 00:10:45.627
+For a week, the drift run checks daily,
+
+161
+00:10:45.627 --> 00:10:50.050
+and a ring that blocks the wrong
+thing goes back to report-only.
+
+162
+00:10:53.800 --> 00:10:55.250
+Each danger has a guard.
+
+163
+00:10:55.250 --> 00:10:57.991
+The kit refuses a secret
+in the settings file,
+
+164
+00:10:57.991 --> 00:11:00.362
+and a test file run against production.
+
+165
+00:11:00.362 --> 00:11:05.487
+An app management policy has no report-only
+mode, so the scope is the safety.
+
+166
+00:11:05.487 --> 00:11:09.325
+The probe's secret, if it gets
+through, is removed at once.
+
+167
+00:11:09.325 --> 00:11:13.025
+No workload policy is enforced
+before its sign-ins are read.
+
+168
+00:11:13.025 --> 00:11:16.425
+A group managed account waits
+ten hours for the root key.
+
+169
+00:11:16.425 --> 00:11:18.925
+The rollback is rehearsed and recent.
+
+170
+00:11:18.925 --> 00:11:24.790
+And disabled isn't revoked: tokens already
+issued keep working until they expire.
+
+171
+00:11:28.540 --> 00:11:29.890
+Here's what done looks like.
+
+172
+00:11:29.890 --> 00:11:31.744
+The change record is approved,
+
+173
+00:11:31.744 --> 00:11:35.377
+the settings file holds no
+secret, and the preflight said go.
+
+174
+00:11:35.377 --> 00:11:39.857
+In test, the pilot policy covered two
+apps, and the old secret and legacy
+
+175
+00:11:39.857 --> 00:11:44.491
+account were kept through the parallel
+run, then disabled, never deleted.
+
+176
+00:11:44.491 --> 00:11:48.028
+The group managed account came
+through Chapter 6's plan,
+
+177
+00:11:48.028 --> 00:11:51.027
+and every workload policy
+started report-only.
+
+178
+00:11:51.027 --> 00:11:54.328
+The smoke test passed, and
+the rollback was rehearsed.
+
+179
+00:11:54.328 --> 00:11:58.270
+Every criterion was signed,
+production rings went one at a time,
+
+180
+00:11:58.270 --> 00:12:02.430
+the first week's drift was clean,
+and every evidence folder checks.

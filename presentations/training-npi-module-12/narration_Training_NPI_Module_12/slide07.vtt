@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.250
+Unit 3 is Migration C, from Active Directory
+to a Microsoft Entra workload identity.
+
+2
+00:00:06.250 --> 00:00:09.125
+It starts when the
+workload moves to Azure,
+
+3
+00:00:09.125 --> 00:00:14.300
+or gains a call to Graph or an Azure A P I,
+and only for what it reaches with OAuth.
+
+4
+00:00:14.300 --> 00:00:19.131
+Learn's order of preference for an app's
+credential is a managed identity whenever
+
+5
+00:00:19.131 --> 00:00:23.819
+possible; federation where the app doesn't
+run on Azure; otherwise a certificate
+
+6
+00:00:23.819 --> 00:00:28.437
+from a trusted certificate authority, kept
+in a vault; and never a client secret.
+
+7
+00:00:28.437 --> 00:00:31.015
+The guide has four targets, C1 to C4,
+
+8
+00:00:31.015 --> 00:00:36.076
+and step C5 retires the on-premises
+account after the parallel run.
+
+9
+00:00:36.076 --> 00:00:37.325
+And what can't move?
+
+10
+00:00:37.325 --> 00:00:41.022
+Learn has no Entra identity
+a service can use for
+
+11
+00:00:41.022 --> 00:00:44.350
+Kerberos or N T L M to
+an on-premises resource.
+
+12
+00:00:44.350 --> 00:00:46.944
+A workload that reaches a file share,
+
+13
+00:00:46.944 --> 00:00:51.787
+a SQL Server login mapped to a
+Windows account, or a Kerberos-only
+
+14
+00:00:51.787 --> 00:00:56.975
+application that way keeps its G M S A
+or D M S A until that resource changes.
+
+15
+00:00:56.975 --> 00:00:59.570
+That's why a hybrid workload keeps both.

@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.662
+The runbook's own code is six PowerShell
+scripts in the kit's deploy folder.
+
+2
+00:00:04.662 --> 00:00:09.062
+The preflight runs eleven checks and
+snapshots what the rollback restores.
+
+3
+00:00:09.062 --> 00:00:12.509
+The smoke test runs seven checks
+on the synthetic objects,
+
+4
+00:00:12.509 --> 00:00:15.525
+and its only write is a
+probe that should be refused.
+
+5
+00:00:15.525 --> 00:00:17.035
+The rollback is planned,
+
+6
+00:00:17.035 --> 00:00:20.887
+then applied only with its approved
+hash, and it never deletes.
+
+7
+00:00:20.887 --> 00:00:23.189
+One script builds the smoke-test group
+
+8
+00:00:23.189 --> 00:00:25.850
+managed account's plan
+for Chapter 6 to apply.
+
+9
+00:00:25.850 --> 00:00:28.450
+The last two record
+and check the evidence.
+
+10
+00:00:28.450 --> 00:00:32.050
+Every script has a fixture mode
+that sends nothing anywhere,
+
+11
+00:00:32.050 --> 00:00:33.620
+and there are sixty tests.

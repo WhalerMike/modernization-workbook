@@ -1,0 +1,228 @@
+[
+ {
+  "slide": 2,
+  "title": "A deployment proves the pieces together",
+  "links": [
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "The safe order: what can be undone comes first",
+  "links": [
+   {
+    "text": "Conditional Access for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   },
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "One settings file per stage, and no secrets",
+  "links": [
+   {
+    "text": "Connect-MgGraph",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#learn-connect-mggraph"
+   },
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The code this chapter adds: six scripts",
+  "links": [
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.html"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The smoke test: expected results written first",
+  "links": [
+   {
+    "text": "appliedConditionalAccessPolicy",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#appliedconditionalaccesspolicy-resource-type"
+   },
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Requirements, KSIs and the evidence folder",
+  "links": [
+   {
+    "text": "Key Security Indicators",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "CISA BOD 25-01",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#bod-25-01"
+   },
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   },
+   {
+    "text": "KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Who runs each step, and who approves it",
+  "links": [
+   {
+    "text": "PIM",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-microsoft-entra-privileged-identity"
+   },
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Dry run: the test preflight and the gMSA plan",
+  "links": [
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Dry run: the smoke test and the rollback",
+  "links": [
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Dry run: promotion and the evidence check",
+  "links": [
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Prepare, preflight, then Steps 1.1 to 1.3",
+  "links": [
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Steps 1.4 and 1.5: a gMSA, then workload policies",
+  "links": [
+   {
+    "text": "Conditional Access for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   },
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Steps 1.6 to 1.8: smoke test, evidence, rollback",
+  "links": [
+   {
+    "text": "Conditional Access for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   },
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Promotion: nine go/no-go criteria, each signed",
+  "links": [
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Stage 2: production, one ring at a time",
+  "links": [
+   {
+    "text": "Conditional Access for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   },
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 11",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.html"
+   }
+  ]
+ }
+]

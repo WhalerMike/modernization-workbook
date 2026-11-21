@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.287
+Step five dry-runs the plan with
+its approved hash, as the pipeline.
+
+2
+00:00:04.287 --> 00:00:07.707
+This is the program's rule
+that changes are reviewed:
+
+3
+00:00:07.707 --> 00:00:12.162
+the write path sends only a plan whose
+S H A two fifty-six was approved.
+
+4
+00:00:12.162 --> 00:00:18.112
+The pipeline's G M S A would send the G M
+S A creations and the retriever changes.
+
+5
+00:00:18.112 --> 00:00:22.112
+The D M S A's completion,
+step B3, needs Domain Admins,
+
+6
+00:00:22.112 --> 00:00:26.013
+so it's a person's step,
+and the pipeline refuses it.
+
+7
+00:00:26.013 --> 00:00:34.524
+M S A dash print oh one is an S M S A, so
+it goes to a G M S A, never to a D M S A.
+
+8
+00:00:34.524 --> 00:00:36.720
+And no action deletes anything.

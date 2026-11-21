@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.073
+Production's preflight runs against
+a fictional production tenant,
+
+2
+00:00:04.073 --> 00:00:06.825
+with the test stage's
+smoke test as its evidence.
+
+3
+00:00:06.825 --> 00:00:08.125
+Fourteen passes.
+
+4
+00:00:08.125 --> 00:00:13.234
+The Conditional Access administrator is
+now eligible through PIM, and check eleven,
+
+5
+00:00:13.234 --> 00:00:18.125
+production only, says the test smoke test
+passed eight of eight in another tenant.
+
+6
+00:00:18.125 --> 00:00:21.218
+Then the evidence check on
+the test stage says no-go,
+
+7
+00:00:21.218 --> 00:00:22.912
+and that's right for a dry run.
+
+8
+00:00:22.912 --> 00:00:27.952
+Steps 1.1 to 1.5 record their
+evidence only against a real tenant,
+
+9
+00:00:27.952 --> 00:00:33.475
+and a dry-run rollback records dry run,
+which the go/no-go doesn't accept.
+
+10
+00:00:33.475 --> 00:00:36.700
+A rollback applied with the
+wrong hash sends nothing.
+
+11
+00:00:36.700 --> 00:00:39.340
+And the deploy tests: sixty pass.

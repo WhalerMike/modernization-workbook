@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.975
+Who does what?
+
+2
+00:00:00.975 --> 00:00:05.418
+Every write is a person's, with a role
+activated through Privileged Identity
+
+3
+00:00:05.418 --> 00:00:09.862
+Management for the change window, and
+the change record number as the reason.
+
+4
+00:00:09.862 --> 00:00:15.088
+The identity engineer prepares the stage
+and runs the policy and credential steps.
+
+5
+00:00:15.088 --> 00:00:20.000
+The Conditional Access administrator runs
+the workload policies and the rollback.
+
+6
+00:00:20.000 --> 00:00:22.932
+The server and Active
+Directory engineer installs
+
+7
+00:00:22.932 --> 00:00:26.000
+the group managed account,
+which the pipeline creates.
+
+8
+00:00:26.000 --> 00:00:28.888
+A reader app with a
+certificate does the reads.
+
+9
+00:00:28.888 --> 00:00:33.527
+And each write has an approver: the
+change board, the governance officer,
+
+10
+00:00:33.527 --> 00:00:37.610
+the pilot's owner, a second
+reviewer, and the CISO for each ring.

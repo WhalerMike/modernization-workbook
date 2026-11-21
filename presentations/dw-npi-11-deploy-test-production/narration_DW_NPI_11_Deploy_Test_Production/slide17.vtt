@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.500
+Each danger has a guard.
+
+2
+00:00:01.500 --> 00:00:04.241
+The kit refuses a secret
+in the settings file,
+
+3
+00:00:04.241 --> 00:00:06.612
+and a test file run against production.
+
+4
+00:00:06.612 --> 00:00:11.737
+An app management policy has no report-only
+mode, so the scope is the safety.
+
+5
+00:00:11.737 --> 00:00:15.575
+The probe's secret, if it gets
+through, is removed at once.
+
+6
+00:00:15.575 --> 00:00:19.275
+No workload policy is enforced
+before its sign-ins are read.
+
+7
+00:00:19.275 --> 00:00:22.675
+A group managed account waits
+ten hours for the root key.
+
+8
+00:00:22.675 --> 00:00:25.175
+The rollback is rehearsed and recent.
+
+9
+00:00:25.175 --> 00:00:30.740
+And disabled isn't revoked: tokens already
+issued keep working until they expire.

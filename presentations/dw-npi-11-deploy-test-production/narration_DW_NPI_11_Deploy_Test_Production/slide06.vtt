@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.644
+The smoke test proves the deployment
+end to end on objects nobody depends on,
+
+2
+00:00:04.644 --> 00:00:07.925
+and you write each expected
+result down before it runs.
+
+3
+00:00:07.925 --> 00:00:12.525
+The synthetic app must appear in the
+register with two owners and no secret.
+
+4
+00:00:12.525 --> 00:00:15.250
+The synthetic service
+account must be rated high.
+
+5
+00:00:15.250 --> 00:00:18.869
+A new secret on the synthetic
+app must be refused,
+
+6
+00:00:18.869 --> 00:00:21.312
+and if it isn't, it's removed at once.
+
+7
+00:00:21.312 --> 00:00:24.350
+The federated credential
+must match exactly.
+
+8
+00:00:24.350 --> 00:00:29.375
+Each workload policy must be report-only,
+with the synthetic assigned directly.
+
+9
+00:00:29.375 --> 00:00:33.537
+The sign-ins must show the
+report-only results, from a beta read.
+
+10
+00:00:33.537 --> 00:00:37.460
+And the test host must retrieve the
+group managed account's password.

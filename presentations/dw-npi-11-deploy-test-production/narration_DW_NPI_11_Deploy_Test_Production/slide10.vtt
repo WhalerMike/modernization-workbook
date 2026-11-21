@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.450
+The smoke test prints eight
+passes: the seven checks,
+
+2
+00:00:03.450 --> 00:00:07.087
+with the policy check run once
+for each workload policy.
+
+3
+00:00:07.087 --> 00:00:10.325
+The synthetic app has
+two owners and no secret.
+
+4
+00:00:10.325 --> 00:00:14.262
+A new secret is refused, though
+that error is the fixture's own,
+
+5
+00:00:14.262 --> 00:00:16.625
+since Learn doesn't give the real one.
+
+6
+00:00:16.625 --> 00:00:19.437
+The sign-ins show the report-only results.
+
+7
+00:00:19.437 --> 00:00:23.088
+And the test host can retrieve the
+group managed account's password.
+
+8
+00:00:23.088 --> 00:00:27.320
+Then the rollback is planned from the
+preflight's snapshot: seven actions,
+
+9
+00:00:27.320 --> 00:00:31.137
+including the synthetic objects'
+cleanup, and none of them a delete.
+
+10
+00:00:31.137 --> 00:00:35.330
+Applied with its hash but without
+the apply switch, it's a dry run.

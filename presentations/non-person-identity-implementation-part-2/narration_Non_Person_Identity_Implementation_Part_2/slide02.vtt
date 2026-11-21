@@ -49,21 +49,21 @@ that prove it, and each has a rollback.
 Together they finish the track.
 
 11
-00:00:35.875 --> 00:00:40.650
-Every identity has an owner, a
-sponsor, a reason and a target.
+00:00:35.875 --> 00:00:41.050
+Every identity has two named owners,
+a sponsor, a reason and a target.
 
 12
-00:00:40.650 --> 00:00:43.697
-Each one is retired, moved
-to a managed identity,
+00:00:41.050 --> 00:00:46.435
+Each one is retired, moved to a managed
+identity, given a certificate or a federated
 
 13
-00:00:43.697 --> 00:00:46.900
-or given a certificate or
-a federated credential.
+00:00:46.435 --> 00:00:51.900
+credential, or kept on Kerberos until an
+end date the authorizing official accepts.
 
 14
-00:00:46.900 --> 00:00:51.650
+00:00:51.900 --> 00:00:56.660
 And none holds a password that never
 expires, or is left without an owner.
