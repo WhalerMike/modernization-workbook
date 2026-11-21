@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.200
+Three more checks.
+
+2
+00:00:01.200 --> 00:00:06.141
+Certification is due by risk tier:
+every three months for the highest tier,
+
+3
+00:00:06.141 --> 00:00:09.462
+every six for the middle,
+and yearly for the lowest.
+
+4
+00:00:09.462 --> 00:00:12.981
+Each revoke becomes a ServiceNow
+stale access finding,
+
+5
+00:00:12.981 --> 00:00:16.500
+and a decision by someone who
+isn't an owner doesn't count.
+
+6
+00:00:16.500 --> 00:00:21.152
+The Defender for Identity check reads
+its service account list and flags a user
+
+7
+00:00:21.152 --> 00:00:25.945
+account still serving as a service account,
+a standalone managed service account,
+
+8
+00:00:25.945 --> 00:00:29.963
+and any account Defender for Identity
+sees that the register doesn't.
+
+9
+00:00:29.963 --> 00:00:33.463
+And retirement: an account
+becomes a delete candidate
+
+10
+00:00:33.463 --> 00:00:36.940
+only after ninety days disabled
+with no sign-in since.

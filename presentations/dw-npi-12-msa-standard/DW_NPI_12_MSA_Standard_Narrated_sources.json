@@ -1,0 +1,216 @@
+[
+ {
+  "slide": 2,
+  "title": "A standard nobody checks is a suggestion",
+  "links": [
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "Machines run the steps; people decide",
+  "links": [
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What the standard and the products give the code",
+  "links": [
+   {
+    "text": "Get-ADServiceAccount",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-adserviceaccount"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The import formats: the kit's own, mapped by hand",
+  "links": [
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The code: one read-only task, msa-standard",
+  "links": [
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "The request check: NPI-STD-01 to NPI-STD-09",
+  "links": [
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   },
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "The reconciliation: NPI-STD-10 to NPI-STD-19",
+  "links": [
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   },
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   },
+   {
+    "text": "Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Certification, Defender for Identity and retirement",
+  "links": [
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   },
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "What it hands to Chapter 06, and what it never does",
+  "links": [
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "The evidence: one row per step and control",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Who runs it, who exports, who reads the evidence",
+  "links": [
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 1: run the standard's checks on the fixtures",
+  "links": [
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "Lab 1: the findings and the Chapter 06 inputs",
+  "links": [
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   }
+  ]
+ },
+ {
+  "slide": 15,
+  "title": "Lab 1: certifications, retirement, evidence, tests",
+  "links": [
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Lab 2: a test domain and the products' exports",
+  "links": [
+   {
+    "text": "Get-ADServiceAccount",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#get-adserviceaccount"
+   },
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   }
+  ]
+ },
+ {
+  "slide": 17,
+  "title": "Dangers, and the guard for each",
+  "links": [
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.html"
+   }
+  ]
+ },
+ {
+  "slide": 18,
+  "title": "Done when: the chapter's checklist",
+  "links": [
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   }
+  ]
+ }
+]

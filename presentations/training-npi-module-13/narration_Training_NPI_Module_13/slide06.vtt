@@ -1,0 +1,90 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.063
+Unit 2 is the standard's callout:
+machines run the steps, people decide.
+
+2
+00:00:05.063 --> 00:00:10.165
+Every step a machine or a script can run,
+it runs: the request's checks, the plan,
+
+3
+00:00:10.165 --> 00:00:14.444
+the Active Directory writes, the
+re-read that closes the ticket,
+
+4
+00:00:14.444 --> 00:00:18.724
+the monitoring, the certification
+campaigns and the evidence.
+
+5
+00:00:18.724 --> 00:00:21.847
+People decide, approve in
+SailPoint, accept risk,
+
+6
+00:00:21.847 --> 00:00:26.375
+and run the few steps that need Domain
+Admins or that delete something.
+
+7
+00:00:26.375 --> 00:00:29.219
+This lines up with the
+federal requirements better
+
+8
+00:00:29.219 --> 00:00:32.063
+than the same work done by
+hand in a console or portal.
+
+9
+00:00:32.063 --> 00:00:39.488
+NIST SP 800-53 has enhancements for
+automated account management, disabling
+
+10
+00:00:39.488 --> 00:00:44.387
+accounts and automated audit actions: A
+C two, enhancements one, three and four.
+
+11
+00:00:44.387 --> 00:00:50.263
+FedRAMP's K S I dash I A M dash A A
+M is Automating Account Management.
+
+12
+00:00:50.263 --> 00:00:53.781
+And CISA's Zero Trust Maturity
+Model makes automation
+
+13
+00:00:53.781 --> 00:00:56.763
+and orchestration a
+cross-cutting capability.
+
+14
+00:00:56.763 --> 00:00:59.863
+Automation has limits, and
+the standard keeps them.
+
+15
+00:00:59.863 --> 00:01:02.291
+Separation of duties keeps the approver,
+
+16
+00:01:02.291 --> 00:01:06.433
+the pipeline's owner and the person
+who deletes apart, the authorizing
+
+17
+00:01:06.433 --> 00:01:10.862
+official accepts the pipeline, and the
+pipeline's own identity is governed.
+
+18
+00:01:10.862 --> 00:01:14.540
+Automation supports a requirement;
+the assessor decides.

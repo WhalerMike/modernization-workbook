@@ -1,53 +1,63 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.662
-Each account becomes exactly one action.
+00:00:00.050 --> 00:00:02.695
+Each account becomes one action, or,
 
 2
-00:00:02.662 --> 00:00:07.436
-The group account path is: create it,
-wait while the server owner installs it,
+00:00:02.695 --> 00:00:06.800
+for a superseded account, a
+disable and a move together.
 
 3
-00:00:07.436 --> 00:00:10.131
-confirms each host can fetch its password,
+00:00:06.800 --> 00:00:11.466
+The group account path: create it in the
+service account O U with a thirty-day
 
 4
-00:00:10.131 --> 00:00:14.288
-moves the service principal names
-and switches the service over,
+00:00:11.466 --> 00:00:16.358
+interval, outbound-only when the old
+account holds no service principal names;
 
 5
-00:00:14.288 --> 00:00:18.138
-run in parallel for thirty days,
-then disable the old account.
+00:00:16.358 --> 00:00:21.174
+the server owner installs it and switches
+the service over; after a thirty-day
 
 6
-00:00:18.138 --> 00:00:23.179
-The delegated path is: create it, start
-the migration, wait the full thirty days,
+00:00:21.174 --> 00:00:25.238
+parallel run, disable the old account
+and move it to the holding O U.
 
 7
-00:00:23.179 --> 00:00:26.331
-then complete it, which
-disables the old account
+00:00:25.238 --> 00:00:27.251
+The pipeline sends those writes.
 
 8
-00:00:26.331 --> 00:00:29.325
-and moves its service
-principal names across.
+00:00:27.251 --> 00:00:30.830
+The delegated path: create
+it, start the migration,
 
 9
-00:00:29.325 --> 00:00:31.675
-Anything else is recorded with a reason.
+00:00:30.830 --> 00:00:33.275
+wait thirty days, then complete it.
 
 10
-00:00:31.675 --> 00:00:35.436
+00:00:33.275 --> 00:00:36.700
+A person sends those, because
+they need Domain Admins.
+
+11
+00:00:36.700 --> 00:00:41.737
+Each write carries who sends it, its
+request, its change and its controls.
+
+12
+00:00:41.737 --> 00:00:45.498
 And because the same inputs
 always produce the same file,
 
-11
-00:00:35.436 --> 00:00:38.300
+13
+00:00:45.498 --> 00:00:48.360
 byte for byte, a reviewer
 approves one hash.

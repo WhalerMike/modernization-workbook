@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.787
+Lab 1 needs PowerShell 7
+with Pester, and no domain.
+
+2
+00:00:03.787 --> 00:00:09.344
+Step 1 runs the standard's checks on the
+fixtures: five requests, of which two pass;
+
+3
+00:00:09.344 --> 00:00:14.899
+nine Active Directory accounts; eight
+register rows; a certification campaign;
+
+4
+00:00:14.899 --> 00:00:19.613
+and a Defender for Identity list,
+each built to trip one or more rules.
+
+5
+00:00:19.613 --> 00:00:24.551
+The summary says twenty-five findings,
+four warnings, three for information.
+
+6
+00:00:24.551 --> 00:00:27.800
+Two Chapter 6 rows and
+one retriever entry.
+
+7
+00:00:27.800 --> 00:00:29.650
+One certification overdue.
+
+8
+00:00:29.650 --> 00:00:32.688
+One account a person may
+delete, and nothing deleted.
+
+9
+00:00:32.688 --> 00:00:35.950
+Then one line per rule,
+and the manifest's hash.

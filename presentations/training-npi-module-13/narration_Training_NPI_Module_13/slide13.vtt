@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.636
+Lab 2 runs the same checks on a test
+domain's exports from SailPoint
+
+2
+00:00:04.636 --> 00:00:08.388
+and Defender for Identity, with
+a live read of the G M S A's.
+
+3
+00:00:08.388 --> 00:00:09.949
+The authors haven't run it.
+
+4
+00:00:09.949 --> 00:00:16.023
+Use a test Active Directory domain, never
+production, after Chapter 6's Lab 2:
+
+5
+00:00:16.023 --> 00:00:18.961
+a K D S root key, the service-account O U,
+
+6
+00:00:18.961 --> 00:00:23.075
+the delegated creators group
+and at least one G M S A.
+
+7
+00:00:23.075 --> 00:00:27.194
+You also need a SailPoint sandbox
+with an Active Directory source
+
+8
+00:00:27.194 --> 00:00:31.013
+scoped to that O U, and Defender
+for Identity on the test domain.
+
+9
+00:00:31.013 --> 00:00:34.968
+Write the test domain's standard
+settings, then put the exports
+
+10
+00:00:34.968 --> 00:00:38.924
+in the kit's import formats,
+mapping each product column by hand.
+
+11
+00:00:38.924 --> 00:00:42.381
+Run the checks with a
+domain controller named,
+
+12
+00:00:42.381 --> 00:00:44.837
+so the script reads the G M S A's live.
+
+13
+00:00:44.837 --> 00:00:48.284
+A G M S A you created by
+hand in Chapter 6's Lab 2,
+
+14
+00:00:48.284 --> 00:00:54.412
+with no request in the register, is rule
+eighteen: that's the drift rule working.
+
+15
+00:00:54.412 --> 00:00:57.620
+The manifest shows one
+read, and nothing else.

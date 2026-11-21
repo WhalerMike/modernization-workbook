@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.112
+Step 2 reads the findings.
+
+2
+00:00:02.112 --> 00:00:04.537
+Look for the account called gmsa ops.
+
+3
+00:00:04.537 --> 00:00:07.967
+It's in Domain Admins,
+SailPoint never aggregated it,
+
+4
+00:00:07.967 --> 00:00:12.912
+and no request explains it: three findings
+for one account nobody asked for.
+
+5
+00:00:12.912 --> 00:00:16.050
+Step 3 reads what the
+code hands to Chapter 6.
+
+6
+00:00:16.050 --> 00:00:18.336
+Two rows, one per approved request,
+
+7
+00:00:18.336 --> 00:00:22.662
+each carrying its SailPoint
+request and its ServiceNow change.
+
+8
+00:00:22.662 --> 00:00:26.169
+The approved group managed
+account gets its retriever group,
+
+9
+00:00:26.169 --> 00:00:27.613
+named for the payroll app.
+
+10
+00:00:27.613 --> 00:00:30.891
+The delegated managed account
+gets no retriever entry,
+
+11
+00:00:30.891 --> 00:00:33.860
+because it learns its
+hosts during its migration.

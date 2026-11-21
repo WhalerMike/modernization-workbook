@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Here's what done looks like.
+
+2
+00:00:01.400 --> 00:00:04.450
+Every request was checked
+before the approvers saw it.
+
+3
+00:00:04.450 --> 00:00:08.531
+Every row in Chapter 6's inputs
+came from an approved request,
+
+4
+00:00:08.531 --> 00:00:11.388
+with its request number and change record.
+
+5
+00:00:11.388 --> 00:00:15.876
+SailPoint aggregates every managed
+account, each with one owner, and no
+
+6
+00:00:15.876 --> 00:00:21.125
+reconciliation finding is open without a
+ServiceNow finding and someone to fix it.
+
+7
+00:00:21.125 --> 00:00:26.031
+Every certification is current, every
+revoke is a finding, and Defender for
+
+8
+00:00:26.031 --> 00:00:31.175
+Identity shows no user account serving as
+a service account that isn't on a plan.
+
+9
+00:00:31.175 --> 00:00:34.600
+Nothing was deleted except
+by a person, from the list.
+
+10
+00:00:34.600 --> 00:00:38.950
+And each run's evidence and manifest
+are filed with the change record.

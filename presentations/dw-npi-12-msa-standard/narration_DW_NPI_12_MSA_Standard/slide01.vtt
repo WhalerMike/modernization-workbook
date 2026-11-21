@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.146
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.146 --> 00:00:05.912
+Building Non-Person Identity.
+
+3
+00:00:05.912 --> 00:00:09.550
+This is Chapter 12: the managed
+service account standard.
+
+4
+00:00:09.550 --> 00:00:12.272
+A standard nobody checks is a suggestion,
+
+5
+00:00:12.272 --> 00:00:17.636
+so this chapter checks it every time
+something changes: a request, an aggregation,
+
+6
+00:00:17.636 --> 00:00:23.000
+a certification, a Defender for Identity
+scan, a disabled account's ninetieth day.
+
+7
+00:00:23.000 --> 00:00:27.967
+We'll see what the products give the
+code, the import formats, the five checks,
+
+8
+00:00:27.967 --> 00:00:31.492
+what the code hands to Chapter
+6 and what it never does,
+
+9
+00:00:31.492 --> 00:00:33.975
+the evidence, two labs and the dangers.
+
+10
+00:00:33.975 --> 00:00:39.190
+One note before we begin: the code is
+illustrative, tested against fixtures.

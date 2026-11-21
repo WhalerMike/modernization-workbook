@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.775
+Try it.
+
+2
+00:00:00.775 --> 00:00:05.175
+Lab 1 runs in the non-person
+identity folder, with no domain.
+
+3
+00:00:05.175 --> 00:00:07.401
+These are Chapter 12's Lab 1 steps,
+
+4
+00:00:07.401 --> 00:00:10.700
+and the chapter shows each
+one's expected output.
+
+5
+00:00:10.700 --> 00:00:16.090
+Step one runs the standard's checks on
+the fixtures, as of November 20, 2026:
+
+6
+00:00:16.090 --> 00:00:22.020
+five requests, nine Active Directory
+managed accounts and eight register rows,
+
+7
+00:00:22.020 --> 00:00:24.625
+each built to trip one or more rules.
+
+8
+00:00:24.625 --> 00:00:28.625
+Look for the requests line:
+two passed, and three are held.
+
+9
+00:00:28.625 --> 00:00:31.481
+Then the Chapter 6 inputs,
+the certifications,
+
+10
+00:00:31.481 --> 00:00:34.713
+and the retirement list,
+which ends nothing deleted.
+
+11
+00:00:34.713 --> 00:00:37.924
+Then one line per rule,
+and the manifest's hash.
+
+12
+00:00:37.924 --> 00:00:41.301
+The script writes its output
+folder and nothing else:
+
+13
+00:00:41.301 --> 00:00:46.270
+nothing to Active Directory, SailPoint,
+ServiceNow or Defender for Identity.

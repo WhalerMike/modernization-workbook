@@ -1,13 +1,15 @@
 // Companion guide — Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities.
-// A narrated Why / What / Who / How deck of about 17 minutes (14 narrated slides, then a backup section).
+// A narrated Why / What / Who / How deck (18 narrated slides, then a backup section).
 //   Why:   the user account used as a service, and Kerberoasting.
 //   What:  the twelve kinds of service identity compared; what can move to Microsoft Entra ID and what can't; the special cases.
-//   Who:   the decision path and its dispositions; the program's rules; the requirements, KSIs and evidence the ISSO keeps.
-//   How:   Migration A (user account to gMSA), B (to a dMSA), C (to an Entra workload identity); mail from a gMSA workload;
-//          dangers and rollback;
-//          where the Non-Person Identity kit and the labs take over.
-// Sources: docs/books/guides/service-account-migration.md and the Microsoft Learn pages it footnotes (read November 9, 2026, and the
-// mail section and gMSA decisions November 11, 2026;
+//   Who:   the decision path and its dispositions; the program's rules; the managed service account standard (machines run
+//          the steps, people decide; who does what; its settings and one-time setup); the requirements, KSIs and evidence.
+//   How:   the standard's steps S1 to S11 with their controls and KSIs; Migration A (user account to gMSA, disabled and moved
+//          to the holding OU), B (to a dMSA, Domain Admins only), C (to an Entra workload identity; C5's uninstall is a
+//          person's); mail from a gMSA workload; dangers and rollback; where the Non-Person Identity kit and the labs take over.
+// Sources: docs/books/guides/service-account-migration.md and the pages it footnotes (Microsoft Learn read November 9, 2026, the
+// mail section and gMSA decisions November 11, 2026, and the managed service account standard, decisions WD-159 to WD-170,
+// with its NIST, FedRAMP, CISA, SailPoint and Defender for Identity sources, November 20, 2026;
 // listed with their dates in docs/books/guides/_verification/service-account-migration.md). The commands on the slides are
 // the guide's, which are Learn's; long ones are continued PowerShell-style with a backtick. No new facts.
 // The speaker notes are the narration (spoken by narrate.py), written to be heard: acronyms the voice misreads are spelled out,
@@ -62,11 +64,11 @@ const FULL = 12.15;
   const s = titleSlide(SWHY, "Service accounts: from user accounts to gMSAs and Entra ID", "A comparison and migration guide, with Microsoft Learn's own commands");
   txt(s, "Session map", [
     { text: "Why: the password nobody changes   ·   What: twelve kinds of service identity compared", options: { color: HEX.navy, bold: true, breakLine: true } },
-    { text: "Who: the decision path, the program's rules, the evidence", options: { color: HEX.teal, bold: true, breakLine: true } },
-    { text: "How: a user account to a gMSA, to a dMSA, to a Microsoft Entra workload identity; mail; dangers, rollback, the kit", options: { color: HEX.ink } },
+    { text: "Who: the decision path, the program's rules, the managed service account standard, the evidence", options: { color: HEX.teal, bold: true, breakLine: true } },
+    { text: "How: the standard's steps; a user account to a gMSA, a dMSA, an Entra workload identity; mail; dangers, the kit", options: { color: HEX.ink } },
   ], { x: 0.8, y: 4.75, w: 11.0, h: 1.3, fontSize: 15, paraSpaceAfter: 2 });
   notes(s,
-`Welcome. This is the narrated briefing for a companion guide in the Federal Modernization Workbook: Service Accounts, from user accounts to group managed service accounts to Microsoft Entra workload identities. The guide's idea fits in one line. A service account's password is the one nobody changes, because changing it breaks something. Every step in the guide replaces a password someone has to keep with a credential that Windows, or Microsoft Entra I D, keeps instead. Every fact and command in this deck comes from Microsoft Learn, read on November ninth and eleventh, 2026, and the guide footnotes each one. Rules that are the program's own, not Microsoft's, are called design guidance. We'll go in four parts: why this matters, what the kinds of service identity are, who decides and what they keep, and how each migration runs.`,
+`Welcome. This is the narrated briefing for a companion guide in the Federal Modernization Workbook: Service Accounts, from user accounts to group managed service accounts to Microsoft Entra workload identities. The guide's idea fits in one line. A service account's password is the one nobody changes, because changing it breaks something. Every step in the guide replaces a password someone has to keep with a credential that Windows, or Microsoft Entra I D, keeps instead. Every fact and command in this deck comes from the guide, which footnotes each one: Microsoft Learn, read on November ninth and eleventh, 2026, and for the managed service account standard, NIST, FedRAMP, CISA, SailPoint and Microsoft Learn, read on November twentieth. Rules that are the program's own, not Microsoft's, are called design guidance. We'll go in four parts: why this matters, what the kinds of service identity are, who decides and the standard every managed service account follows, and how each step and migration runs.`,
   `${G} — "In this guide," "How to read this guide."`);
 }
 
@@ -187,7 +189,7 @@ endModule(SWHAT);
       "No account moves without the application owner's recorded disposition",
     ], 12),
     panel(s, "Parallel", 0.6 + 2 * (w + g), 1.45, w, 1.5, HEX.amber, HEX.amberTint, "30 DAYS, THEN DISABLE", null, [
-      "Disable the old account after a clean 30-day parallel run; never delete during the migration",
+      "Disable the old account no sooner than 30 days after the switch; never delete during the migration",
     ], 12));
   panel(s, "Secrets", 0.6, row1 + 0.2, w, 1.5, HEX.red, HEX.redTint, "NO CLIENT SECRETS", null, [
     "A managed identity, then a federated credential, then a certificate; Learn says don't use password credentials",
@@ -202,11 +204,95 @@ endModule(SWHAT);
     "one ends a move to a gMSA by deleting the old account; another says never delete the original. The program follows the stricter.");
   sources(s, "Sources: Guide, \"The program's rules for every migration\" (design guidance); Microsoft Learn, \"Securing on-premises service accounts\"; \"Setting up delegated MSAs.\"");
   notes(s,
-`These are the program's rules, design guidance, and they apply to a hand migration too. Every identity has two named technical owners and a sponsor who is a federal employee mastered in H R; a contractor can build or run a workload but can't be its only sponsor. No account moves without its reviewed disposition. The old account runs in parallel for thirty days, then it's disabled, and it's deleted only later, through the decommission process. No client secrets: a cloud identity is a managed identity, a federated credential or a certificate, in that order, and Microsoft Learn says not to use password credentials. No privileged groups: Learn says service accounts shouldn't be members of them, and each service should have its own account. And changes are reviewed: in production, each write is a plan approved by its hash. One place where Learn's own pages differ. Learn's Entra page on group managed service accounts ends its move by deleting the old account, while its page on setting up delegated accounts says never to delete the original. The program follows the stricter reading.`,
+`These are the program's rules, design guidance, and they apply to a hand migration too. Every identity has two named technical owners and a sponsor who is a federal employee mastered in H R; a contractor can build or run a workload but can't be its only sponsor. No account moves without its reviewed disposition. The old account runs in parallel, and it's disabled no sooner than thirty days after the switch; it's deleted only later, through the decommission process. No client secrets: a cloud identity is a managed identity, a federated credential or a certificate, in that order, and Microsoft Learn says not to use password credentials. No privileged groups: Learn says service accounts shouldn't be members of them, and each service should have its own account. And changes are reviewed: in production, each write is a plan approved by its hash. One place where Learn's own pages differ. Learn's Entra page on group managed service accounts ends its move by deleting the old account, while its page on setting up delegated accounts says never to delete the original. The program follows the stricter reading.`,
   `${G} — "The program's rules for every migration"; Microsoft Learn — "Securing on-premises service accounts," "Secure group managed service accounts," "Setting up delegated Managed Service Accounts," "Security best practices for application properties."`);
 }
 
-// ================================================================== 7 Requirements and KSIs
+// ================================================================== 7 The standard: machines run the steps
+{
+  const s = content(SWHO, "The standard: machines run the steps; people decide");
+  tag(s, "Who");
+  const w = 3.9, g = 0.225;
+  const row1 = Math.max(
+    panel(s, "Machines", 0.6, 1.45, w, null, HEX.teal, HEX.tealTint, "WHAT MACHINES RUN", null, [
+      "The request's checks, the plan and the Active Directory writes",
+      "The re-read that closes the ticket",
+      "The monitoring, the certification campaigns and the evidence",
+    ], 12),
+    panel(s, "People", 0.6 + w + g, 1.45, w, null, HEX.navy, HEX.navyTint, "WHAT PEOPLE DO", null, [
+      "Decide, and approve in SailPoint",
+      "Accept risk",
+      "Run the few steps that need Domain Admins or that delete something (WD-170)",
+    ], 12),
+    panel(s, "Why", 0.6 + 2 * (w + g), 1.45, w, null, HEX.amber, HEX.amberTint, "WHY IT LINES UP", null, [
+      "NIST SP 800-53: AC-2(1), AC-2(3), AC-2(4), all Moderate",
+      "FedRAMP: KSI-IAM-AAM, KSI-SVC-ASM",
+      "CISA ZTMM: automation and orchestration, cross-cutting",
+      "A record a person can't leave: plan SHA-256, call, re-read, hashed evidence",
+    ], 12));
+  const p4 = panel(s, "Limits", 0.6, row1 + 0.12, FULL, null, HEX.red, HEX.redTint, "THE LIMITS THE STANDARD KEEPS", null, [
+    "Approvals still come from the people AC-2 names; separation of duties (AC-5) keeps the approver, the pipeline's owner and the person who deletes apart",
+    "The authorizing official accepts the pipeline as an autonomous class; the pipeline's own identity is a governed non-person identity with the narrowest rights",
+  ], 12);
+  callout(s, "Supported", p4 + 0.12, 0.6, "FaScaleBalanced", HEX.navy, "Supported, not met: ",
+    "automation supports a requirement; the assessor decides.");
+  sources(s, "Sources: Guide, \"The managed service account standard\" (WD-159 to WD-170, design guidance); NIST SP 800-53 Rev. 5; FedRAMP KSIs; CISA Zero Trust Maturity Model v2.0.");
+  notes(s,
+`The guide now carries a standard that every managed service account follows, from request to retirement, with the same evidence each time. It's the program's process, design guidance, and its rule fits in one line: machines run the steps; people decide. Every step a script can run, it runs: the request's checks, the plan, the Active Directory writes, the re-read that closes the ticket, the monitoring, the certifications and the evidence. People decide, approve in SailPoint, accept risk, and run the few steps that need Domain Admins or that delete something. Why? NIST special publication eight hundred fifty-three has enhancements written for it, automated account management, disabling accounts and automated audit, all in the Moderate baseline. FedRAMP's indicators name automating account management and secret management. CISA's Zero Trust Maturity Model makes automation and orchestration a cross-cutting capability. And a script leaves a record a person can't: the approved plan's hash, the exact call, the re-read and a hashed evidence file. The standard keeps automation's limits: approvals still come from people, separation of duties keeps the approver, the pipeline's owner and the person who deletes apart, and the pipeline's own identity gets the narrowest rights. Automation supports a requirement; the assessor decides.`,
+  `${G} — "The managed service account standard," "Machines run the steps; people decide"; decision register — WD-159 to WD-170; NIST SP 800-53 Rev. 5 (AC-2(1), AC-2(3), AC-2(4), AC-5); FedRAMP Key Security Indicators (KSI-IAM-AAM, KSI-SVC-ASM); CISA Zero Trust Maturity Model v2.0.`);
+}
+
+// ================================================================== 8 Who does what in the standard
+{
+  const s = content(SWHO, "Who does what in the managed service account standard");
+  tag(s, "Who");
+  const tb = table(s, "Roles", 1.4, [3.0, 6.2, 2.95], ["System", "Its job in the standard", "Never"], [
+    ["The agency's system access management tool", "The request front end: an owner asks for, changes or retires a managed service account; it hands the request to SailPoint", "Approves or writes anything itself"],
+    ["SailPoint", "Approves every request, whatever its risk tier (WD-162); aggregates gMSAs from AD and service principals from Entra ID; correlates owners; runs certifications", "Writes a gMSA in Active Directory (WD-163)"],
+    ["ServiceNow", "The change record for each write; typed findings (drift, a revoke, an orphan); the decommission ticket; closes a task only on a re-read", "Approves the account"],
+    ["The pipeline, as gmsa-msapipe", "Runs the approved Chapter 06 plan: creates the gMSA, sets its retriever group, disables and moves a superseded account", "Runs a dMSA step, an uninstall or a delete"],
+    ["AD PowerShell, Group Policy, Defender for Identity, Entra", "The Microsoft tools that create, restrict, watch and, for a workload that moves, replace the account", "—"],
+    ["A person", "Approves in SailPoint; runs the dMSA steps (Domain Admins), Uninstall-ADServiceAccount on the hosts and every delete; accepts risk", "Clicks through a portal to do what the pipeline does"],
+  ], { fontSize: 11, limit: 5.45 });
+  panel(s, "Pipe", 0.6, tb + 0.2, FULL, null, HEX.navy, HEX.navyTint, "THE PIPELINE'S OWN IDENTITY, gmsa-msapipe: A gMSA IN THE SERVICE-ACCOUNT OU", null, [
+    "Only the rights the plan's calls need: membership of DL-gMSA-Creators, write of msDS-GroupMSAMembership on the accounts it creates, and disable and move into the holding OU",
+    "Two named owners and a sponsor, like every other non-person identity, and its own certification",
+  ], 11.5);
+  sources(s, "Sources: Guide, \"Who does what\" (design guidance; WD-162, WD-163); Ticket-to-Machine guide; Non-Person Identity developer workbook, Chapter 06.");
+  notes(s,
+`Who does what. An owner asks for, changes or retires an account in the agency's system access management tool, which hands the request to SailPoint and never approves or writes anything itself. SailPoint approves every request, whatever its risk tier, aggregates the accounts from Active Directory and Entra I D, correlates their owners, and runs the certifications. It never writes a G M S A. ServiceNow holds the change record, the typed findings and the decommission ticket, and closes a task only on a re-read. The pipeline runs the approved plan: it creates the G M S A, sets its retriever group, and disables and moves a superseded account. It never runs a D M S A step, an uninstall or a delete. Those are a person's: a Domain Admin runs the D M S A steps, and a person uninstalls and deletes. No person clicks through a portal to do what the pipeline does. The pipeline's own identity, G M S A dash M S A pipe, is itself a G M S A, with only the rights its calls need: membership of the creator group, D L G M S A Creators, write of the retriever attribute on the accounts it creates, and disable and move into the holding organizational unit. It has two owners, a sponsor and its own certification.`,
+  `${G} — "Who does what" (table and the pipeline's identity); decision register — WD-162, WD-163; Ticket-to-Machine guide; Developer workbook, Building Non-Person Identity — Chapter 06.`);
+}
+
+// ================================================================== 9 Settings and setup
+{
+  const s = content(SWHO, "The standard's settings, and the one-time setup");
+  tag(s, "Who");
+  const tb = table(s, "Settings", 1.4, [2.35, 6.4, 3.4], ["Setting", "The standard", "Source"], [
+    ["Name", "gmsa-<app> or dmsa-<app>; a role suffix only where one system needs two; 15 characters or fewer before the $; unique in the forest", "Forest-unique: Learn; the rest WD-159"],
+    ["Where it lives", "<service-account-ou>, a dedicated OU, created with New-ADServiceAccount -Path", "WD-161; the cmdlet takes any OU"],
+    ["Who may create it", "DL-gMSA-Creators, delegated the create right on that OU; gmsa-msapipe its only member", "Learn names the right; WD-154, WD-159"],
+    ["Who may retrieve it", "Always one domain local group, DL-gMSA-<app>-Hosts, of the workload's hosts", "Learn: a group of hosts; WD-160"],
+    ["Encryption, interval", "AES256 only; 30 days, stated at creation", "Learn"],
+    ["No SPN", "Outbound-only unless a recorded reason", "WD-154"],
+    ["Owners, groups", "Two technical owners and a federal-employee sponsor; no privileged group", "WD-164; Learn; NPI-KRB-08"],
+    ["Attestation", "SailPoint certification by both owners: quarterly R1, twice a year R2, annually R3", "WD-166"],
+    ["End date, if kept", "Accepted by the authorizing official, recorded by D08, never later than G5 or the island's end of life", "WD-165"],
+    ["Disabled before delete", "90 days, with no sign-in seen", "WD-167; Defender for Identity uses 90 too"],
+  ], { fontSize: 10, minRow: 0.28 });
+  code(s, "Setup", 0.6, tb + 0.12, FULL, [
+    "# Once: one KDS root key (A2); <service-account-ou> and <holding-ou>; then, as a Domain Admin, the creator group and its right",
+    "New-ADGroup -Name \"DL-gMSA-Creators\" -SamAccountName \"DL-gMSA-Creators\" -GroupScope DomainLocal -Path \"<groups-ou>\"",
+    "dsacls \"<service-account-ou>\" /G \"<DOMAIN>\\DL-gMSA-Creators:CC;msDS-GroupManagedServiceAccount\"",
+    "dsacls \"<service-account-ou>\" | Select-String \"DL-gMSA-Creators\"   # expected: Allow, CREATE CHILD for the gMSA class",
+  ], { pt: 10 });
+  sources(s, "Sources: Guide, \"The standard's settings,\" \"Set it up once\" (WD-154, WD-159 to WD-167); Microsoft Learn, Manage gMSAs; New-ADServiceAccount; dsacls; Defender for Identity.");
+  notes(s,
+`The settings. A G M S A is named G M S A dash and the system's short name, fifteen characters or fewer and unique in the forest. It lives in a dedicated service-account organizational unit. Learn's Entra page says G M S As belong in the Managed Service Accounts container, but the cmdlet takes any O U, and the program's own O U keeps the create right, Group Policy and SailPoint's scope on service accounts alone. Only the creator group may create one, and the pipeline is its only member. One domain local group of the workload's hosts retrieves its password. A E S two-fifty-six only; thirty days, stated at creation; outbound-only with no S P N. Two owners and a federal-employee sponsor, no privileged group, and a SailPoint certification on the risk tier's cadence. A disabled account waits ninety days, with no sign-in seen, before it's deleted; Defender for Identity's stale-account assessment uses ninety days too. Setup happens once: the K D S root key, the two O Us, then a Domain Admin creates the creator group and delegates the create right with D S A C L S. Learn gives no delegation command, so run it in the test domain first and confirm it. Then the pipeline's own G M S A, SailPoint's Active Directory source scoped to the O U, and Defender for Identity.`,
+  `${G} — "The standard's settings," "Set it up once"; decision register — WD-154, WD-159 to WD-167; Microsoft Learn — "Manage group Managed Service Accounts," "Secure group managed service accounts," "New-ADServiceAccount," "dsacls," "Investigate and protect service accounts," "Security posture assessments for accounts"; SailPoint — "Active Directory Connector: Introduction."`);
+}
+
+// ================================================================== 10 Requirements and KSIs
 {
   const s = content(SWHO, "Requirements, KSIs and the evidence the ISSO keeps");
   tag(s, "Who");
@@ -228,7 +314,30 @@ endModule(SWHAT);
 }
 endModule(SWHO);
 
-// ================================================================== 8 Migration A, A1 to A4
+// ================================================================== 11 The standard's steps
+{
+  const s = content(SHOW, "The standard step by step, from request to retirement");
+  tag(s, "How");
+  table(s, "Steps", 1.4, [1.55, 5.0, 1.75, 1.8, 2.05], ["Step", "What happens", "Runs it", "Supports", "KSIs (KSI-)"], [
+    ["S1 Request", "The owner asks; Chapter 12 checks every field against the standard", "Owner; Ch. 12", "AC-2; IA-4; CM-8", "IAM-SNU; IAM-ELP, IAM-JIT; PIY-GIV"],
+    ["S2 Decide", "The decision path gives the target; Chapter 03 records it", "App owner", "AC-2; IA-5", "IAM-SNU; IAM-SNU, IAM-APM"],
+    ["S3 Approve", "SailPoint approves; ServiceNow opens the change record", "SailPoint approvers", "AC-2; CM-3; AC-5", "IAM-SNU; CMT-LMC; IAM-JIT"],
+    ["S4 Create", "The approved plan: in its OU, AES256, 30 days, outbound-only with no SPN, one retriever group", "The pipeline", "AC-6; IA-5; CM-3; AC-2(1)", "IAM-ELP, IAM-JIT; IAM-SNU, IAM-APM; CMT-LMC"],
+    ["S5 Install", "Install- and Test-ADServiceAccount per host; Log on as a service limited; no privileged group", "Hosts; Group Policy", "AC-6; AC-6(5); CM-6", "IAM-ELP; IAM-JIT, IAM-SNU; CMT-LMC"],
+    ["S6 Close", "SailPoint aggregates and correlates owners; the task closes only on Chapter 12's re-read", "SailPoint; Ch. 12", "CM-8; AC-2", "PIY-GIV; IAM-SNU"],
+    ["S7 Watch", "Defender for Identity; VK-NPI-06; Chapter 06's checks; an unrequested gMSA is drift", "Scheduled runs", "CA-7; SI-4; AU-6; AC-2(4)", "MLA-EVC; IAM-SUS, MLA-RVL; MLA-RVL; MLA-LET"],
+    ["S8 Attest", "Both owners certify on the tier's cadence; a revoke opens a ServiceNow task", "SailPoint; owners", "AC-2; AC-6(7)", "IAM-SNU; IAM-AAM, IAM-JIT"],
+    ["S9 Orphans", "An HR event starts a transfer; an orphan is disabled, then has 30 days to be claimed", "HR workflow; SailPoint", "AC-2; AC-2(3)", "IAM-SNU; IAM-AAM"],
+    ["S10 Retire", "Pipeline disables and moves to the holding OU; 90 days, no sign-in; a person uninstalls and deletes", "Pipeline, then a person", "AC-2; AC-2(3); CM-8", "IAM-SNU; IAM-AAM, IAM-JIT, IAM-SUS; PIY-GIV"],
+    ["S11 To Entra", "When the workload moves: Migration C", "Chapter 05", "IA-9 (tailored); IA-5; AC-6", "None for IA-9; IAM-SNU, IAM-APM; IAM-ELP"],
+  ], { fontSize: 10, minRow: 0.27, limit: 6.55 });
+  sources(s, "Sources: Guide, \"The steps\" (design guidance; WD-169); NIST SP 800-53 Rev. 5; FedRAMP KSIs; Developer workbook, Building Non-Person Identity, Chapters 03, 05, 06, 12.");
+  notes(s,
+`Now the standard step by step, each with who runs it, the control it supports and its indicators. S1: the owner asks, and the developer workbook's Chapter 12 checks every field before SailPoint's approvers see it. S2: the decision path gives the target. S3: SailPoint approves, and ServiceNow opens the change record. S4: the pipeline runs the approved plan and creates the G M S A to the standard; that supports automated account management. S5: each host installs and tests it, and Group Policy limits log on as a service. S6: SailPoint aggregates it, and the ticket closes only on a re-read. S7: scheduled runs watch it with Defender for Identity; a G M S A nobody asked for is drift. S8: the two owners certify it. S9: an owner's departure starts a transfer; an orphan is disabled, then has thirty days to be claimed. S10: after the parallel run the pipeline disables the old account and moves it to the holding O U; after ninety days with no sign-in, a person uninstalls and deletes it. S11: when the workload moves, Migration C. Two things aren't verified yet: ServiceNow's Active Directory spoke, so ServiceNow records and the plan writes, and SailPoint's export field names.`,
+  `${G} — "The steps," "What isn't verified yet"; decision register — WD-169; Developer workbook, Building Non-Person Identity — Chapters 03, 05, 06 and 12.`);
+}
+
+// ================================================================== 12 Migration A, A1 to A4
 {
   const s = content(SHOW, "Migration A: a user account to a gMSA, steps A1 to A4");
   tag(s, "How");
@@ -252,19 +361,19 @@ endModule(SWHO);
   ], { label: "THE GUIDE'S COMMANDS, FROM MICROSOFT LEARN (PLACEHOLDERS IN ANGLE BRACKETS; LONG LINES CONTINUED WITH `)", pt: 10 });
   const w = 5.95;
   const p1 = panel(s, "Before", 0.6, c + 0.15, w, null, HEX.navy, HEX.navyTint, "BEFORE YOU CREATE IT", null, [
-    "Name unique in the forest; the 30-day password interval is set only now",
-    "Created under the delegated create right, not Domain Admins (WD-154)",
-    "Retrievers are a group of hosts: the gMSA's blast radius",
+    "gmsa-<app>: forest-unique, 15 characters at most, in its OU; 30 days set only now",
+    "Created by DL-gMSA-Creators, only gmsa-msapipe (WD-163)",
+    "Retrievers: DL-gMSA-<app>-Hosts, the blast radius",
   ], 11.5);
   const p2 = panel(s, "Key", 0.6 + w + 0.25, c + 0.15, w, null, HEX.red, HEX.redTint, "THE KDS ROOT KEY", null, [
     "Never the 10-hour backdated key in production; more than one key makes gMSAs fail after a rotation",
     "False from Test-ADServiceAccount: fix the host before the switch",
   ], 11.5);
   if (process.env.FIT) console.log(`  A panels bottom ${Math.max(p1, p2).toFixed(2)}`);
-  sources(s, "Sources: Guide, Migration A, A1 to A4 (WD-154); Microsoft Learn, Manage gMSAs; Create a KDS root key; gMSAs for Windows containers; gMSA overview; SQL Server gMSAs.");
+  sources(s, "Sources: Guide, Migration A, A1 to A4 (WD-154, WD-163); Microsoft Learn, Manage gMSAs; Create a KDS root key; gMSAs for Windows containers; gMSA overview; SQL Server gMSAs.");
   notes(s,
-`Migration A moves a user account to a G M S A, in Microsoft Learn's order: K D S root key, create, install, switch, validate, retire. A1: read the account with Get-A D User, its S P Ns, delegation and groups, and on each host read the service's logon account with S C query config. A2: the forest needs one K D S root key. If there's none, a Domain Admin or Enterprise Admin creates it once, and Learn's K D S page says domain controllers wait up to ten hours before they allow a G M S A, so the key replicates first. Learn offers a key backdated ten hours for a test domain with one domain controller; never use it in production. And Learn's containers page says more than one key makes G M S As fail after a password rotation. A3: create a group of the hosts, then the G M S A with A E S two-fifty-six, which Learn's overview says to always configure. Its name must be unique in the forest, and its password interval can be set only now. For a workload that holds no S P N, the program's default is Learn's outbound-only variant, which restricts the G M S A to outbound authentication; record that choice. And the program creates G M S As under a delegated right to create them on the service-account organizational unit, which Learn allows, not as a Domain Admin. A4: after a restart, install it on each host and test it. Test-A D Service Account must return true on every host before you switch.`,
-  `${G} — Migration A, steps A1–A4; decision register — WD-154; Microsoft Learn — "Manage group Managed Service Accounts," "Create a Key Distribution Service (KDS) root key," "Create gMSAs for Windows containers," "Group Managed Service Accounts overview," "Troubleshoot SQL Server setup, startup, and authentication failures with gMSAs."`);
+`Migration A moves a user account to a G M S A, in Microsoft Learn's order: K D S root key, create, install, switch, validate, retire. A1: read the account with Get-A D User, its S P Ns, delegation and groups, and on each host read the service's logon account with S C query config. A2: the forest needs one K D S root key. If there's none, a Domain Admin or Enterprise Admin creates it once, and Learn's K D S page says domain controllers wait up to ten hours before they allow a G M S A, so the key replicates first. Learn offers a key backdated ten hours for a test domain with one domain controller; never use it in production. And Learn's containers page says more than one key makes G M S As fail after a password rotation. A3: create a group of the hosts, then the G M S A with A E S two-fifty-six, which Learn's overview says to always configure. Its name must be unique in the forest, and its password interval can be set only now; the standard sets the name, the O U and the one retriever group. For a workload that holds no S P N, the program's default is Learn's outbound-only variant; record that choice. And the program creates G M S As under a delegated create right, which Learn allows, not as a Domain Admin: the creator group holds it, and the pipeline is its only member. A4: after a restart, install it on each host and test it. Test-A D Service Account must return true on every host before you switch.`,
+  `${G} — Migration A, steps A1–A4; "The standard's settings"; decision register — WD-154, WD-159, WD-160, WD-163; Microsoft Learn — "Manage group Managed Service Accounts," "Create a Key Distribution Service (KDS) root key," "Create gMSAs for Windows containers," "Group Managed Service Accounts overview," "Troubleshoot SQL Server setup, startup, and authentication failures with gMSAs."`);
 }
 
 // ================================================================== 9 Migration A, A5 to A7
@@ -280,8 +389,9 @@ endModule(SWHO);
     "sc.exe config <service> obj= \"<DOMAIN>\\<gmsa-name>$\" password= \"\"",
     "sc.exe qmanagedaccount <service>",
     "Restart-Service -Name <service>",
-    "# A7  After a clean 30-day parallel run (A6): disable, don't delete",
+    "# A7  After a clean 30-day parallel run (A6): disable and move to the holding OU, don't delete (the pipeline, WD-168)",
     "Disable-ADAccount -Identity <old-account>",
+    "Move-ADObject -Identity <old-account-dn> -TargetPath \"<holding-ou>\"",
   ], { label: "THE GUIDE'S COMMANDS, FROM MICROSOFT LEARN", pt: 10.5 });
   const w = 3.9, g = 0.225;
   const p1 = panel(s, "Other", 0.6, c + 0.15, w, null, HEX.navy, HEX.navyTint, "TASKS AND APPLICATION POOLS", null, [
@@ -299,10 +409,10 @@ endModule(SWHO);
     "After A7: Enable-ADAccount first",
   ], 11.5);
   if (process.env.FIT) console.log(`  A2 panels bottom ${Math.max(p1, p2, p3).toFixed(2)}`);
-  sources(s, "Sources: Guide, Migration A, A5 to A7, Rollback (A); Microsoft Learn, Set-ADServiceAccount; Set-ADUser; sc.exe config; Secure gMSAs; IIS PowerShell snap-in; assessment tasks.");
+  sources(s, "Sources: Guide, Migration A, A5 to A7, Rollback (A) (WD-167, WD-168); Microsoft Learn, Set-ADServiceAccount; Set-ADUser; sc.exe config; Move-ADObject; IIS snap-in.");
   notes(s,
-`A5 happens in one change window, because an S P N left on the old account while the service runs as the G M S A breaks Kerberos to the service. Each S P N must have exactly one owner. Remove it from the old account, add it to the G M S A, and list it with set S P N. Then change the workload's identity. A G M S A logs on with a blank password, which Windows fills in, as Learn's Entra page says. For a Windows service, S C config sets the account, and the managed-account query must report true. A scheduled task gets a new principal with the password logon type, as Learn's assessment pages do it, and an I I S application pool gets identity type three with the blank password. The guide notes that Learn has no single page showing that last one end to end, so verify it. A6 is the thirty-day parallel run: test end to end, keep the old account enabled, and watch its logons stop. A7 disables the old account; deletion comes later, through the decommission process. To roll back, switch the workload back with the old password from the vault, and move the S P Ns back.`,
-  `${G} — Migration A, steps A5–A7, "Rollback (A)," "What couldn't be verified"; Microsoft Learn — "Set-ADServiceAccount," "Set-ADUser," "sc.exe config," "Secure group managed service accounts," "PowerShell snap-in: making simple configuration changes," "Modify and remove assessment tasks."`);
+`A5 happens in one change window, because an S P N left on the old account while the service runs as the G M S A breaks Kerberos to the service. Each S P N must have exactly one owner. Remove it from the old account, add it to the G M S A, and list it with set S P N. Then change the workload's identity. A G M S A logs on with a blank password, which Windows fills in, as Learn's Entra page says. For a Windows service, S C config sets the account, and the managed-account query must report true. A scheduled task gets a new principal with the password logon type, as Learn's assessment pages do it, and an I I S application pool gets identity type three with the blank password. The guide notes that Learn has no single page showing that last one end to end, so verify it. A6 is the thirty-day parallel run: test end to end, keep the old account enabled, and watch its logons stop. A7 disables the old account and moves it to the holding organizational unit; Chapter 6 plans both as one step, and the pipeline runs it. Deletion comes only after ninety days disabled with no sign-in seen, through the decommission process. To roll back, switch the workload back with the old password from the vault, and move the S P Ns back.`,
+  `${G} — Migration A, steps A5–A7, "Rollback (A)," "What couldn't be verified"; decision register — WD-167, WD-168; Microsoft Learn — "Move-ADObject," "Set-ADServiceAccount," "Set-ADUser," "sc.exe config," "Secure group managed service accounts," "PowerShell snap-in: making simple configuration changes," "Modify and remove assessment tasks."`);
 }
 
 // ================================================================== 10 Migration B
@@ -325,6 +435,7 @@ endModule(SWHO);
   const p1 = panel(s, "Limits", 0.6, c + 0.15, w, null, HEX.red, HEX.redTint, "LEARN'S LIMITS, CHECKED FIRST", null, [
     "A Windows Server 2025 domain controller, and every machine that uses the account updated for dMSA",
     "No MSA or gMSA to a dMSA; unconstrained delegation stops working",
+    "Domain Admins only (stricter than Learn; BadSuccessor), and the August 2025 update on every 2025 DC",
   ], 11.5);
   const p2 = panel(s, "Wait", 0.6 + w + 0.25, c + 0.15, w, null, HEX.amber, HEX.amberTint, "WAIT, THEN COMPLETE; NEVER DELETE", null, [
     "Learn: at least two 7-day ticket lifetimes, four recommended; the program's 30 days covers four",
@@ -333,8 +444,8 @@ endModule(SWHO);
   if (process.env.FIT) console.log(`  B panels bottom ${Math.max(p1, p2).toFixed(2)}`);
   sources(s, "Sources: Guide, Migration B, B1 to B3, Rollback (B); Microsoft Learn, \"Delegated Managed Service Accounts overview\"; \"Setting up delegated Managed Service Accounts.\"");
   notes(s,
-`Migration B moves the same kind of account to a delegated managed service account, on Windows Server 2025. A D M S A supersedes the old account: once the migration completes, the old password can't be used, its S P Ns, delegation and authentication policy move to the D M S A, and the old account is disabled. Check Microsoft Learn's limits first. At least one Windows Server 2025 domain controller, and every machine that uses the account updated to support D M S As; one that isn't fails once the old account is disabled. You can't migrate an M S A or a G M S A to a D M S A, and unconstrained delegation stops working. B1 creates the D M S A. Learn's set-up page then sets a state attribute with a parameter the cmdlet doesn't have; for a migration, skip it, because starting the migration sets the state. B2 starts the migration, and on each host sets Learn's registry value and restarts the one service. B3: Learn says to wait at least two ticket lifetimes, fourteen days, and recommends four. The program's thirty days covers four. Then complete it, and never delete the original account.`,
-  `${G} — Migration B, steps B1–B3, "Rollback (B)"; Microsoft Learn — "Delegated Managed Service Accounts overview," "Setting up delegated Managed Service Accounts."`);
+`Migration B moves the same kind of account to a delegated managed service account, on Windows Server 2025. A D M S A supersedes the old account: once the migration completes, the old password can't be used, its S P Ns, delegation and authentication policy move to the D M S A, and the old account is disabled. Check Microsoft Learn's limits first. At least one Windows Server 2025 domain controller, and every machine that uses the account updated to support D M S As; one that isn't fails once the old account is disabled. You can't migrate an M S A or a G M S A to a D M S A, and unconstrained delegation stops working. Learn's minimum to create one is Domain Admins, Enterprise Admins or equivalent rights. After the attack called BadSuccessor, where anyone who could create a D M S A could take over another account, the program is stricter: Domain Admins only, and the August 2025 update on every Windows Server 2025 domain controller. B1 creates the D M S A. Learn's set-up page then sets a state attribute with a parameter the cmdlet doesn't have; for a migration, skip it, because starting the migration sets the state. B2 starts the migration, and on each host sets Learn's registry value and restarts the one service. B3: Learn says to wait at least two ticket lifetimes, fourteen days, and recommends four. The program's thirty days covers four. Then complete it, and never delete the original account.`,
+  `${G} — Migration B, "Who may create a dMSA," steps B1–B3, "Rollback (B)"; decision register — WD-154; Microsoft Learn — "Delegated Managed Service Accounts overview," "Setting up delegated Managed Service Accounts."`);
 }
 
 // ================================================================== 11 Migration C
@@ -351,7 +462,7 @@ endModule(SWHO);
     "a managed identity; then a platform that manages its own (federation); then a certificate from a trusted CA in a vault; never a secret.");
   sources(s, "Sources: Guide, Migration C, C1 to C5; Microsoft Learn, app registration best practices; managed identities; Arc identity; az ad app; workload identity federation.");
   notes(s,
-`Migration C starts when the workload moves to Azure, or gains a call to Graph or an Azure A P I, and only for what it reaches with OAuth. Microsoft Learn's security best practices for application properties set the order: a managed identity whenever possible; where the app doesn't run on Azure, a platform that manages its own credentials, which is federation; otherwise a certificate from a trusted certificate authority, kept in a vault; and never a password credential. C1: a workload moving to Azure gets a user-assigned managed identity, created with the Azure C L I and given the narrowest role at the narrowest scope. It outlives its resources, so it needs an owner. C2: on an Arc-enabled server, use the server's own identity. Learn says only local administrators and one local group can request its tokens, so add the G M S A to that group. C3: on a host with no Arc agent, an app registration with a certificate, with two named owners. C4: for C I C D or another cloud, a federated credential, whose issuer, subject and audience must match exactly. C5: after thirty days carrying traffic, retire what the cloud path replaced.`,
+`Migration C starts when the workload moves to Azure, or gains a call to Graph or an Azure A P I, and only for what it reaches with OAuth. Microsoft Learn's security best practices for application properties set the order: a managed identity whenever possible; where the app doesn't run on Azure, a platform that manages its own credentials, which is federation; otherwise a certificate from a trusted certificate authority, kept in a vault; and never a password credential. C1: a workload moving to Azure gets a user-assigned managed identity, created with the Azure C L I and given the narrowest role at the narrowest scope. It outlives its resources, so it needs an owner. C2: on an Arc-enabled server, use the server's own identity. Learn says only local administrators and one local group can request its tokens, so add the G M S A to that group. C3: on a host with no Arc agent, an app registration with a certificate, with two named owners. C4: for C I C D or another cloud, a federated credential, whose issuer, subject and audience must match exactly. C5: after thirty days carrying traffic, retire what the cloud path replaced. Disable it, or, for a G M S A the workload no longer needs, record its retirement, and a person uninstalls it from its hosts before the decommission process deletes it. The code never uninstalls or deletes.`,
   `${G} — Migration C, steps C1–C5; Microsoft Learn — "Security best practices for application properties," "What are managed identities for Azure resources?," "Managed identity and access control" (Arc), "Managed identity for SQL Server enabled by Azure Arc," "az ad app," "Configure an app to trust an external identity provider."`);
 }
 
@@ -409,25 +520,26 @@ endModule(SWHO);
   tag(s, "How");
   const tb = table(s, "Kit", 1.4, [3.3, 8.85], ["The guide's step", "In the Non-Person Identity developer workbook"], [
     ["Each account's disposition", "Chapter 03: the application owner's decision, the migration path matrix as code"],
-    ["Migration A", "Chapter 06 plans CreateGmsa, waits for the host change and 30 days, then plans DisableSuperseded"],
-    ["Migration B", "Chapter 06's CreateDmsa, StartDmsaMigration and CompleteDmsaMigration, with every Learn limit checked (NPI-KRB-04)"],
+    ["The standard", "Chapter 12 checks each request, reconciles SailPoint with AD, lists certifications due, reads Defender for Identity and the 90-day delete list"],
+    ["Migration A", "Chapter 06 plans CreateGmsa, waits for the host change and 30 days, then DisableSuperseded and MoveSuperseded; the pipeline runs them"],
+    ["Migration B", "Chapter 06's CreateDmsa, StartDmsaMigration and CompleteDmsaMigration, every Learn limit checked (NPI-KRB-04), run by a Domain Admin"],
     ["Migration C", "Chapter 05 for the identity and its credential, with a token exchange test; Chapter 07 for its permissions"],
     ["What stays", "Chapter 06's island list and reconciliation: an end date and, with SPNs, an SPN owner"],
   ], { fontSize: 12, limit: 4.6 });
   const w = 5.95;
   const p1 = panel(s, "Never", 0.6, tb + 0.2, w, null, HEX.navy, HEX.navyTint, "WHAT THE CODE NEVER DOES", null, [
     "Runs a plan nobody approved: each plan is sent only by its SHA-256",
-    "Creates a KDS root key, runs undo or reset, or deletes an account",
+    "Creates a KDS root key, runs undo or reset, uninstalls or deletes an account",
   ], 12);
   const p2 = panel(s, "Labs", 0.6 + w + 0.25, tb + 0.2, w, null, HEX.teal, HEX.tealTint, "TRY IT", null, [
-    "Learning path, Module 12: Learn's steps on stand-ins and the kit's plans on fixtures, no tenant",
+    "Learning path, Modules 12 and 13: the migration and the standard, on fixtures, no tenant",
     "Chapter 06, Lab 2: a dMSA migration in a test domain; then the guide's checklist",
   ], 12);
   if (process.env.FIT) console.log(`  kit panels bottom ${Math.max(p1, p2).toFixed(2)}`);
-  sources(s, "Sources: Guide, \"How to read this guide,\" Migrations A to C, \"Checklist\"; Developer workbook, Building Non-Person Identity, Chapters 03, 05, 06 and 07.");
+  sources(s, "Sources: Guide, \"How to read this guide,\" the standard, Migrations A to C, \"Checklist\"; Developer workbook, Building Non-Person Identity, Chapters 03, 05 to 07, 12.");
   notes(s,
-`In production, the same moves run as reviewed code, in the Non-Person Identity developer workbook. Chapter 3 records each account's disposition. Chapter 6 does Migration A as a plan: create the G M S A, wait for the host change and the thirty days, then disable the superseded account. It does Migration B as three planned actions, create, start and complete, with every limit Microsoft Learn sets checked first. Chapter 5 does Migration C, the identity and its credential, and tests a real token exchange, and Chapter 7 cuts its permissions. Chapter 6 also keeps the island list and the reconciliation for what stays on Kerberos. What the code never does matters as much. It never runs a plan nobody approved, because each plan is sent only by its hash. And it never creates a K D S root key, never runs undo or reset, and never deletes an account. To try it, take Module 12 of the Non-Person Identity learning path, which runs Learn's steps on stand-ins and the kit's plans on fixtures, with no tenant. Then Chapter 6's second lab, in a test domain, and the guide's checklist. Thank you.`,
-  `${G} — "How to read this guide"; Migrations A to C; "Checklist"; Developer workbook, Building Non-Person Identity — Chapters 03, 05, 06 and 07; Non-Person Identity learning path, Module 12.`);
+`In production, the same moves run as reviewed code, in the Non-Person Identity developer workbook. Chapter 12 runs the standard's checks, from the request to the ninety-day delete list. Chapter 3 records each account's disposition. Chapter 6 does Migration A as a plan: create the G M S A, wait for the host change and the thirty days, then disable the superseded account and move it to the holding organizational unit, and the pipeline runs it. It does Migration B as three planned actions, create, start and complete, with every limit Microsoft Learn sets checked first, and a Domain Admin runs them. Chapter 5 does Migration C, the identity and its credential, and tests a real token exchange, and Chapter 7 cuts its permissions. Chapter 6 also keeps the island list and the reconciliation for what stays on Kerberos. What the code never does matters as much. It never runs a plan nobody approved, because each plan is sent only by its hash. And it never creates a K D S root key, never runs undo or reset, and never uninstalls or deletes an account. To try it, take Modules 12 and 13 of the Non-Person Identity learning path: the migration, and the standard, on the kit's fixtures, with no tenant. Then Chapter 6's second lab, in a test domain, and the guide's checklist. Thank you.`,
+  `${G} — "How to read this guide"; "The managed service account standard"; Migrations A to C; "Checklist"; Developer workbook, Building Non-Person Identity — Chapters 03, 05, 06, 07 and 12; Non-Person Identity learning path, Modules 12 and 13.`);
 }
 endModule(SHOW);
 
@@ -444,7 +556,13 @@ sourceSlide("Sources: the migrations", [
   "Migration B, Microsoft Learn: Delegated Managed Service Accounts overview; Setting up delegated Managed Service Accounts.",
   "Migration C, Microsoft Learn: Security best practices for application properties in Microsoft Entra ID; Add and manage application credentials; Use certificates with Microsoft.Identity.Web; az ad app and az ad sp (Azure CLI reference); Create an Azure Functions app in Azure Container Apps (az identity create); Managed identity for SQL Server enabled by Azure Arc; Configure an app to trust an external identity provider.",
   "Federal requirements: NIST SP 800-53 Rev. 5 (Moderate baseline; IA-9 tailored in); FedRAMP 20x Key Security Indicators, as the Non-Person Identity implementation guide's Evidence table maps them (design guidance).",
-  "The scripted versions: Building Non-Person Identity, Chapters 03, 05, 06 and 07, and examples/non-person-identity. Training: the Non-Person Identity learning path, Module 12.",
+  "The scripted versions: Building Non-Person Identity, Chapters 03, 05, 06, 07 and 12, and examples/non-person-identity. Training: the Non-Person Identity learning path, Modules 12 and 13.",
+]);
+sourceSlide("Sources: the managed service account standard", [
+  "The guide's \"The managed service account standard\": \"Machines run the steps; people decide,\" \"Who does what,\" \"The standard's settings,\" \"Set it up once,\" \"The steps.\" Program decisions WD-154 and WD-159 to WD-170 in the decision register (design guidance).",
+  "Federal sources, read November 20, 2026: NIST SP 800-53 Rev. 5, release 5.2.0 (AC-2(1), AC-2(3), AC-2(4), AC-5) and the SP 800-53B Moderate baseline; FedRAMP Key Security Indicators (KSI-IAM-AAM, KSI-SVC-ASM); CISA Zero Trust Maturity Model, Version 2.0.",
+  "Microsoft Learn, read November 20, 2026: Move-ADObject; New-ADServiceAccount; dsacls; Investigate and protect service accounts (Defender for Identity); Security posture assessments for accounts; Log on as a service; Directory Service Accounts for Microsoft Defender for Identity.",
+  "SailPoint, read November 20, 2026: Active Directory Connector: Introduction; Machine Identity Security; Configuring Accounts.",
 ]);
 
 finish(OUT);

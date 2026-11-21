@@ -5,75 +5,103 @@ WEBVTT
 The federal requirement.
 
 2
-00:00:01.437 --> 00:00:05.578
-The Kerberos accounts are the
-on-premises part of Gate 5,
+00:00:01.437 --> 00:00:06.342
+The Kerberos accounts are the on-premises
+part of Gate 5, and the guide's
 
 3
-00:00:05.578 --> 00:00:09.988
-and the guide's validate step names
-I A five, I A nine and A U two.
+00:00:06.342 --> 00:00:10.738
+validate step names I A five, I A
+nine and A U two for the whole gate.
 
 4
-00:00:09.988 --> 00:00:14.050
+00:00:10.738 --> 00:00:14.800
 These are NIST special publication
 eight hundred fifty-three controls.
 
 5
-00:00:14.050 --> 00:00:17.688
-The module's table maps each
-lab step to its evidence.
+00:00:14.800 --> 00:00:18.265
+The module's table gives the
+workbook chapter's main rows,
 
 6
-00:00:17.688 --> 00:00:21.177
+00:00:18.265 --> 00:00:19.813
+with each step's evidence.
+
+7
+00:00:19.813 --> 00:00:23.301
 For authenticator management
 and change control,
 
-7
-00:00:21.177 --> 00:00:24.500
+8
+00:00:23.301 --> 00:00:26.624
 the plan, with the register's
 and each input's hash.
 
-8
-00:00:24.500 --> 00:00:26.775
+9
+00:00:26.624 --> 00:00:28.900
 For account management, the findings.
 
-9
-00:00:26.775 --> 00:00:30.250
-For least privilege and access
-restrictions for change,
-
 10
-00:00:30.250 --> 00:00:34.687
-the rights each task holds, and the
-reviewed list of password retrievers.
+00:00:28.900 --> 00:00:34.180
+For least privilege and access restrictions
+for change, the rights each task holds,
 
 11
-00:00:34.687 --> 00:00:38.338
+00:00:34.180 --> 00:00:38.312
+who sends each call, and the reviewed
+list of password retrievers.
+
+12
+00:00:38.312 --> 00:00:43.140
+For automated system account
+management and separation of duties,
+
+13
+00:00:43.140 --> 00:00:47.278
+the refused rows and the run-as
+record in each apply folder:
+
+14
+00:00:47.278 --> 00:00:51.675
+the pipeline sends only its steps,
+a person only the D M S A steps.
+
+15
+00:00:51.675 --> 00:00:54.427
+For account management and change control,
+
+16
+00:00:54.427 --> 00:00:58.250
+the SailPoint request and
+ServiceNow change on every write.
+
+17
+00:00:58.250 --> 00:01:01.900
 For the inventory, the island
 list and the reconciliation.
 
-12
-00:00:38.338 --> 00:00:41.365
+18
+00:01:01.900 --> 00:01:04.998
 And for change control
 and disabling accounts,
 
-13
-00:00:41.365 --> 00:00:44.237
-the results and manifest
-in the apply folder.
+19
+00:01:04.998 --> 00:01:09.525
+the results and manifest in each
+apply folder, with each write re-read.
 
-14
-00:00:44.237 --> 00:00:48.367
+20
+00:01:09.525 --> 00:01:13.655
 K S I's are FedRAMP twenty X indicators
 for cloud service providers;
 
-15
-00:00:48.367 --> 00:00:50.995
+21
+00:01:13.655 --> 00:01:16.282
 the agency lines its
 evidence up with them,
 
-16
-00:00:50.995 --> 00:00:55.100
+22
+00:01:16.282 --> 00:01:20.400
 and which file supports which
 indicator is the program's mapping.

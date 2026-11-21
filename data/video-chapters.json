@@ -8207,67 +8207,67 @@
    "Why every gMSA and dMSA needs an end date"
   ],
   [
-   89,
+   95,
    "What gMSAs and dMSAs are, and where the code runs"
   ],
   [
-   145,
+   134,
    "Learn's four procedures, pinned and run"
   ],
   [
-   182,
+   172,
    "What the procedures leave to you: the key and the steps"
   ],
   [
-   217,
+   213,
    "What they leave to you: limits, waits and deletes"
   ],
   [
-   256,
-   "The code, Chapter 03's decisions and three inputs"
+   250,
+   "The code, Chapter 03's decisions and four inputs"
   ],
   [
-   300,
-   "The check: nine rules, NPI-KRB-01 to NPI-KRB-09"
+   306,
+   "The check: ten rules, NPI-KRB-01 to NPI-KRB-10"
   ],
   [
-   341,
+   363,
    "The plan: one action per account"
   ],
   [
-   383,
+   415,
    "The island list and the reconciliation"
   ],
   [
-   431,
+   453,
    "The separate write path, and its refusals"
   ],
   [
-   467,
+   509,
    "Who builds, runs and reviews it, and with what rights"
   ],
   [
-   507,
+   560,
    "Lab 1: Learn's procedures, then the check"
   ],
   [
-   546,
+   602,
    "Lab 1: reading the findings and the plan"
   ],
   [
-   590,
+   655,
    "Lab 1: the island list, a dry run and a refusal"
   ],
   [
-   637,
+   703,
    "Lab 2: a test domain, a real migration"
   ],
   [
-   680,
+   756,
    "Dangers, and the guard for each"
   ],
   [
-   716,
+   811,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -8561,6 +8561,80 @@
   [
    626,
    "Done when: the checklist, and the workbook's end"
+  ]
+ ],
+ "DW_NPI_12_MSA_Standard_Narrated": [
+  [
+   0,
+   "Chapter 12: The Managed Service Account Standard"
+  ],
+  [
+   43,
+   "A standard nobody checks is a suggestion"
+  ],
+  [
+   80,
+   "Machines run the steps; people decide"
+  ],
+  [
+   120,
+   "What the standard and the products give the code"
+  ],
+  [
+   163,
+   "The import formats: the kit's own, mapped by hand"
+  ],
+  [
+   201,
+   "The code: one read-only task, msa-standard"
+  ],
+  [
+   239,
+   "The request check: NPI-STD-01 to NPI-STD-09"
+  ],
+  [
+   275,
+   "The reconciliation: NPI-STD-10 to NPI-STD-19"
+  ],
+  [
+   321,
+   "Certification, Defender for Identity and retirement"
+  ],
+  [
+   362,
+   "What it hands to Chapter 06, and what it never does"
+  ],
+  [
+   403,
+   "The evidence: one row per step and control"
+  ],
+  [
+   454,
+   "Who runs it, who exports, who reads the evidence"
+  ],
+  [
+   490,
+   "Lab 1: run the standard's checks on the fixtures"
+  ],
+  [
+   530,
+   "Lab 1: the findings and the Chapter 06 inputs"
+  ],
+  [
+   568,
+   "Lab 1: certifications, retirement, evidence, tests"
+  ],
+  [
+   611,
+   "Lab 2: a test domain and the products' exports"
+  ],
+  [
+   651,
+   "Dangers, and the guard for each"
+  ],
+  [
+   692,
+   "Done when: the chapter's checklist"
   ]
  ],
  "DW_PA_01_Privileged_Inventory_Narrated": [
@@ -11399,55 +11473,71 @@
    "Service accounts: from user accounts to gMSAs and Entra ID"
   ],
   [
-   56,
+   67,
    "Why this matters: the password nobody changes"
   ],
   [
-   115,
+   126,
    "Twelve kinds of service identity, compared"
   ],
   [
-   189,
+   200,
    "What can move to Microsoft Entra ID, and what can't"
   ],
   [
-   263,
+   274,
    "The decision path: the first yes is the target"
   ],
   [
-   341,
+   352,
    "The program's rules for every migration"
   ],
   [
-   411,
+   423,
+   "The standard: machines run the steps; people decide"
+  ],
+  [
+   512,
+   "Who does what in the managed service account standard"
+  ],
+  [
+   599,
+   "The standard's settings, and the one-time setup"
+  ],
+  [
+   688,
    "Requirements, KSIs and the evidence the ISSO keeps"
   ],
   [
-   488,
+   765,
+   "The standard step by step, from request to retirement"
+  ],
+  [
+   851,
    "Migration A: a user account to a gMSA, steps A1 to A4"
   ],
   [
-   590,
+   956,
    "Migration A: switch, move the SPNs, run 30 days, disable"
   ],
   [
-   665,
+   1040,
    "Migration B: a user account to a Windows Server 2025 dMSA"
   ],
   [
-   744,
+   1141,
    "Migration C: to a Microsoft Entra workload identity"
   ],
   [
-   824,
+   1234,
    "Sending mail once the workload runs as a gMSA"
   ],
   [
-   911,
+   1322,
    "Dangers, and how to avoid them"
   ],
   [
-   999,
+   1410,
    "Where the kit and the labs take over"
   ]
  ],
@@ -15525,6 +15615,72 @@
    "Summary: you've finished the learning path"
   ]
  ],
+ "Training_NPI_Module_13_Narrated": [
+  [
+   0,
+   "Module 13: Run the managed service account standard"
+  ],
+  [
+   34,
+   "Why one standard for every managed service account"
+  ],
+  [
+   80,
+   "What you'll be able to do in Module 13"
+  ],
+  [
+   133,
+   "Who does what, and what each system never does"
+  ],
+  [
+   198,
+   "The standard's settings for every account"
+  ],
+  [
+   262,
+   "Machines run the steps; people decide"
+  ],
+  [
+   341,
+   "The steps from request to retirement: S1 to S11"
+  ],
+  [
+   408,
+   "Try it: run the standard's checks on the fixtures"
+  ],
+  [
+   458,
+   "Try it: read the findings, and gmsa-ops$"
+  ],
+  [
+   515,
+   "Try it: what Chapter 12 hands to Chapter 06"
+  ],
+  [
+   565,
+   "Try it: the certifications and the ServiceNow findings"
+  ],
+  [
+   615,
+   "Try it: the retirement list, then clean up"
+  ],
+  [
+   661,
+   "Lab 2: the same checks on a test domain's exports"
+  ],
+  [
+   723,
+   "The federal requirement and the evidence the ISSO keeps"
+  ],
+  [
+   783,
+   "Check yourself: two questions on the standard"
+  ],
+  [
+   830,
+   "Summary: every managed service account, the same way"
+  ]
+ ],
  "Training_NPI_Module_1_Narrated": [
   [
    0,
@@ -15985,55 +16141,55 @@
    "What you'll be able to do in Module 8"
   ],
   [
-   160,
+   164,
    "The gate: a parallel run, then disable, never delete"
   ],
   [
-   238,
+   233,
    "Four dispositions from Module 3, and the program's rules"
   ],
   [
-   297,
-   "The check: NPI-KRB-01 to NPI-KRB-09"
+   335,
+   "The check: NPI-KRB-01 to NPI-KRB-10"
   ],
   [
-   373,
+   431,
    "The plan: one action per account, approved by hash"
   ],
   [
-   433,
+   501,
    "The island list, the reconciliation, the write path"
   ],
   [
-   498,
+   598,
    "Try it: the runs it reads, Learn's steps, the tasks' calls"
   ],
   [
-   558,
+   672,
    "Try it: check nine Kerberos accounts, read the findings"
   ],
   [
-   619,
+   778,
    "Try it: the plan, the island list, the reconciliation"
   ],
   [
-   675,
+   857,
    "Try it: dry-run, apply to the fake, and a refusal"
   ],
   [
-   724,
+   917,
    "Lab 2: a test domain, and a real migration"
   ],
   [
-   784,
+   1002,
    "The federal requirement and evidence for Gate G5"
   ],
   [
-   844,
+   1087,
    "Check yourself: two questions on the Kerberos island"
   ],
   [
-   898,
+   1141,
    "Summary, and next: Module 9, AI agent identities"
   ]
  ],

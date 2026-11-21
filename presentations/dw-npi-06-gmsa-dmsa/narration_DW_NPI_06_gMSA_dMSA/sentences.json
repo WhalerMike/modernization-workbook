@@ -34,38 +34,38 @@
   ],
   [
    2.462,
-   4.612,
-   "Because a group managed service account only works while A D is in charge."
+   10.7,
+   "Because a group managed service account only works while A D is in charge, and anything still running under one of these accounts loses its credential when the last domain controller goes."
   ],
   [
-   7.075,
-   13.625,
-   "The program decides early whether A D is retired or kept as a dated Kerberos island, and the risk register is blunt: anything still running under one of these accounts loses its credential when the last domain controller goes."
+   13.162,
+   6.463,
+   "So every account must end up moving to a workload identity, retiring, or on a dated island list."
   ],
   [
-   20.7,
-   2.312,
-   "So converting isn't the finish line."
+   19.625,
+   6.812,
+   "The program's rules, as design guidance: each account's disposition is the owner's decision from Chapter 3."
   ],
   [
-   23.012,
-   6.188,
-   "Every account must end up moving to a workload identity, retiring, or on a dated island list."
+   26.438,
+   6.675,
+   "New accounts follow the managed service account standard, and a group account's retrievers are one group of its hosts."
   ],
   [
-   29.2,
-   4.375,
-   "The program adds rules of its own, labeled as design guidance."
+   33.112,
+   4.188,
+   "Every write carries its SailPoint request and ServiceNow change."
   ],
   [
-   33.575,
-   6.888,
-   "Each account's disposition isn't decided here: it's the owner's decision from Chapter 3, read from that run."
+   37.3,
+   5.275,
+   "The pipeline's own account sends what it can; a person sends the delegated account steps."
   ],
   [
-   40.462,
-   3.05,
-   "And the strictest rule is simple: never delete."
+   42.575,
+   6.688,
+   "And never delete: the old account is disabled and moved to a holding O U, and a person deletes it later."
   ]
  ],
  "3": [
@@ -150,8 +150,8 @@
   ],
   [
    26.275,
-   4.925,
-   "Placeholder names that change from step to step are replaced by names from reviewed data."
+   11.488,
+   "Placeholder names that change from step to step are replaced by names from reviewed data, held to the program's naming standard, and a group account's retrievers become one reviewed group of its hosts."
   ]
  ],
  "6": [
@@ -199,28 +199,38 @@
   ],
   [
    9.338,
-   7.088,
-   "It builds on Chapter 1's register and on Chapter 3's decisions, and refuses either if its hash doesn't match."
+   6.725,
+   "It builds on Chapter 1's register and Chapter 3's decisions, and refuses either if its hash doesn't match."
   ],
   [
-   16.425,
-   5.112,
-   "The owner's decision for each account comes from Chapter 3, never from a second list."
+   16.062,
+   1.887,
+   "Then four reviewed files."
   ],
   [
-   21.538,
-   12.113,
-   "Then three reviewed files: the new account, workload and hosts for each account being re-platformed, who may fetch each managed password, and the one program dates file Chapter 3 also reads."
+   17.95,
+   12.425,
+   "The first gives each re-platformed account's new account, workload and hosts, and the SailPoint request and ServiceNow change that approved its writes; Chapter 12 writes these rows for approved requests."
   ],
   [
-   33.65,
-   2.438,
-   "Notice that the end state has no default."
+   30.375,
+   3.15,
+   "The second says who may fetch each managed password."
   ],
   [
-   36.087,
-   4.1,
-   "If the decision is missing, the run simply stops rather than guessing."
+   33.525,
+   9.762,
+   "The third is the forest's account standard: the service account O U, the holding O U, the creator group, the retriever group pattern and the thirty-day interval."
+  ],
+  [
+   43.288,
+   2.562,
+   "The fourth is the one program dates file."
+  ],
+  [
+   45.85,
+   5.575,
+   "The end state has no default: if the decision is missing, the run stops rather than guessing."
   ]
  ],
  "8": [
@@ -231,21 +241,26 @@
   ],
   [
    12.588,
-   1.45,
-   "Then nine rules run."
+   1.425,
+   "Then ten rules run."
   ],
   [
-   14.037,
+   14.012,
    9.575,
    "Some come from Learn: the root key must exist and be old enough, the migration's limits must hold, and managed accounts shouldn't sit in privileged groups."
   ],
   [
-   23.613,
+   23.587,
    11.037,
    "Others come from the project plan: every account needs a decision, an owner for its service principal names, an end date inside the program's deadline, and a reconciled destination."
   ],
   [
-   34.65,
+   34.625,
+   16.175,
+   "The account standard adds three checks: a new name must follow the naming standard, a group account's retrievers must be exactly one group of its hosts, and a write with no SailPoint request or ServiceNow change isn't planned at all; the plan records it as blocked."
+  ],
+  [
+   50.8,
    2.1,
    "Every finding gets a stable I D."
   ]
@@ -253,26 +268,36 @@
  "9": [
   [
    0.05,
-   2.612,
-   "Each account becomes exactly one action."
+   6.75,
+   "Each account becomes one action, or, for a superseded account, a disable and a move together."
   ],
   [
-   2.663,
-   15.475,
-   "The group account path is: create it, wait while the server owner installs it, confirms each host can fetch its password, moves the service principal names and switches the service over, run in parallel for thirty days, then disable the old account."
+   6.8,
+   18.438,
+   "The group account path: create it in the service account O U with a thirty-day interval, outbound-only when the old account holds no service principal names; the server owner installs it and switches the service over; after a thirty-day parallel run, disable the old account and move it to the holding O U."
   ],
   [
-   18.137,
-   11.188,
-   "The delegated path is: create it, start the migration, wait the full thirty days, then complete it, which disables the old account and moves its service principal names across."
+   25.238,
+   2.013,
+   "The pipeline sends those writes."
   ],
   [
-   29.325,
-   2.35,
-   "Anything else is recorded with a reason."
+   27.25,
+   6.025,
+   "The delegated path: create it, start the migration, wait thirty days, then complete it."
   ],
   [
-   31.675,
+   33.275,
+   3.425,
+   "A person sends those, because they need Domain Admins."
+  ],
+  [
+   36.7,
+   5.037,
+   "Each write carries who sends it, its request, its change and its controls."
+  ],
+  [
+   41.737,
    6.562,
    "And because the same inputs always produce the same file, byte for byte, a reviewer approves one hash."
   ]
@@ -312,33 +337,43 @@
  "11": [
   [
    0.05,
-   7.325,
-   "Writing to the domain is the dangerous part, so it lives in its own script that refuses to run unless several things are true."
+   6.15,
+   "Writing to the domain lives in its own script, which refuses to run unless several things are true."
   ],
   [
-   7.375,
-   3.95,
-   "The plan must be the exact one a reviewer approved, by hash."
+   6.2,
+   6.35,
+   "The plan must be the exact one a reviewer approved, by hash, for this domain and less than a week old."
   ],
   [
-   11.325,
-   3.0,
-   "It must be for this domain and less than a week old."
+   12.55,
+   12.162,
+   "Every write must be a declared call with only its allowed parameters, in the right O U, carrying its SailPoint request and ServiceNow change, and nothing that deletes or undoes exists to call."
   ],
   [
-   14.325,
-   9.075,
-   "Every write must be a declared call with only its allowed parameters, and nothing that deletes, uninstalls, undoes or resets exists to call."
+   24.712,
+   2.025,
+   "Each call also says who sends it."
   ],
   [
-   23.4,
-   2.513,
-   "It runs as a person, never a job."
+   26.738,
+   9.35,
+   "Run as the pipeline's own account, it sends the creations, retriever changes, disables and moves, and refuses the delegated account steps."
   ],
   [
-   25.913,
-   6.0,
-   "Then, before each write, it checks the target again and skips anything that changed since review."
+   36.087,
+   5.875,
+   "Run as a person, it sends those, and refuses the pipeline's, except in a test domain."
+  ],
+  [
+   41.962,
+   2.975,
+   "So one approved plan is applied in two runs."
+  ],
+  [
+   44.938,
+   7.05,
+   "Before each write it checks the target again; after it, it reads it back, recording sent only when the change shows."
   ]
  ],
  "12": [
@@ -354,28 +389,38 @@
   ],
   [
    2.837,
-   4.475,
-   "Server and directory engineers run the write path and change the hosts."
+   7.7,
+   "Server and directory engineers own the pipeline that runs the write path, run its delegated account steps, and change the hosts."
   ],
   [
-   7.312,
-   8.05,
-   "Application owners name who owns each service principal name and when it ends, and the security officer reviews the island list."
+   10.537,
+   8.012,
+   "Application owners name each service principal name's owner and end date, and the security officer reviews the island list."
   ],
   [
-   15.363,
-   2.3,
-   "The rights split is the important part."
+   18.55,
+   6.75,
+   "The read task holds no domain administration, just a narrow delegated read of the root key's dates."
   ],
   [
-   17.663,
-   6.912,
-   "The read task holds no domain administration at all, just a narrow delegated read of the root key's dates."
+   25.3,
+   1.575,
+   "The write task is split."
   ],
   [
-   24.575,
-   10.825,
-   "The write task does need administrator rights, because Learn's procedure requires them, and that's exactly why it's a separate script, run by a person, on a plan someone else approved."
+   26.875,
+   10.963,
+   "The pipeline's own group managed service account holds only delegated rights on the service account O Us, to create group accounts, set their retrievers, and disable and move old ones."
+  ],
+  [
+   37.837,
+   1.725,
+   "It's in no privileged group."
+  ],
+  [
+   39.562,
+   7.537,
+   "The delegated account steps need Domain Admins under Learn's procedure, so they stay with a person, on a plan someone else approved."
   ]
  ],
  "13": [
@@ -401,11 +446,16 @@
   ],
   [
    27.3,
-   6.4,
-   "Nine accounts are in scope, with five findings, four planned writes, and a hand-off that isn't ready yet."
+   7.85,
+   "Nine accounts are in scope, with six findings and five planned writes: four for the pipeline to send and one for a person."
   ],
   [
-   33.7,
+   35.15,
+   1.975,
+   "And the hand-off isn't ready yet."
+  ],
+  [
+   37.125,
    1.038,
    "Let's see why."
   ]
@@ -428,23 +478,23 @@
   ],
   [
    20.0,
-   5.062,
-   "Another account's reviewed retrievers add a server that Active Directory doesn't have yet."
+   8.675,
+   "Two group accounts still name computer accounts as retrievers, while their reviewed lists name one group of hosts each, so the plan corrects both."
   ],
   [
-   25.062,
+   28.675,
    6.612,
    "An intranet account being re-platformed has no owner and an end date years out, so it can't be reconciled."
   ],
   [
-   31.675,
-   2.025,
-   "One sits in Domain Admins."
+   35.288,
+   9.525,
+   "Meanwhile the plan completes a migration that started forty days ago, and creates two group accounts with a thirty-day interval; the print account's is outbound-only."
   ],
   [
-   33.7,
-   6.325,
-   "Meanwhile the plan completes a migration that started forty days ago, and creates two new group accounts."
+   44.812,
+   3.7,
+   "Each write shows its request, its change, and who sends it."
   ]
  ],
  "16": [
@@ -455,21 +505,36 @@
   ],
   [
    8.125,
-   14.988,
-   "You make two test accounts, one for each path, record their decisions by running Chapters 2 and 3 over them, and grant the reader only a narrow delegated read of the root key's dates, recording whether that really works without exposing the key."
+   10.725,
+   "You make two test accounts, one for each path, record their decisions by running Chapters 2 and 3 over them, and create the group account's retriever group with the member server in it."
   ],
   [
-   23.113,
+   18.85,
+   4.812,
+   "The inputs name a test request, a test change and the test domain's O Us."
+  ],
+  [
+   23.663,
+   4.612,
+   "You grant the reader only a narrow delegated read of the root key's dates."
+  ],
+  [
+   28.275,
    3.438,
    "A second person reviews the plan and hands you its hash."
   ],
   [
-   26.55,
-   8.375,
-   "You apply it as a person, then run the next plan to start the migration, restart only the test service, and watch the Kerberos events."
+   31.712,
+   8.963,
+   "You apply it as a person; the group account is the pipeline's step, so a person sends it only in a test domain, with the test domain switch."
   ],
   [
-   34.925,
+   40.675,
+   4.525,
+   "Then run the next plan to start the migration and watch the Kerberos events."
+  ],
+  [
+   45.2,
    3.575,
    "After thirty days, complete it, or back it out by hand."
   ]
@@ -497,6 +562,11 @@
   ],
   [
    30.075,
+   18.2,
+   "Two come from the account standard: a write identity with more rights than it needs, guarded by giving the pipeline's account only delegated rights and keeping Domain Admins with a person; and a write nobody approved, guarded by refusing any write without its SailPoint request and ServiceNow change."
+  ],
+  [
+   48.275,
    2.663,
    "Each guard is a rule that runs every time."
   ]
@@ -509,36 +579,41 @@
   ],
   [
    1.4,
-   3.075,
-   "Every Kerberos account has a reviewed decision."
+   6.075,
+   "Every Kerberos account has a reviewed decision, and the root key was checked without administrator rights."
   ],
   [
-   4.475,
-   3.788,
-   "The root key was checked without anyone holding administrator rights."
+   7.475,
+   6.475,
+   "Retrievers match the reviewed list, one group per group account, and every new account follows the standard."
   ],
   [
-   8.262,
-   9.588,
-   "Retrievers match the reviewed list, no migration broke the limits or finished early, and every plan was approved by someone other than the person who applied it."
+   13.95,
+   10.125,
+   "Every write carried its SailPoint request and ServiceNow change, the pipeline's account held only its delegated rights, and a person sent the delegated account steps."
   ],
   [
-   17.85,
-   1.25,
-   "Nothing was deleted."
+   24.075,
+   6.775,
+   "No migration broke the limits or finished early, and someone other than the person who applied each plan approved it."
   ],
   [
-   19.1,
+   30.85,
+   1.925,
+   "Nothing was deleted by this code."
+  ],
+  [
+   32.775,
    7.612,
    "Every island account has an owner and an end date inside the deadline, and every managed account has a reconciled destination."
   ],
   [
-   26.712,
-   5.925,
-   "With the Kerberos accounts accounted for, Chapter 7 turns to least privilege for service principals."
+   40.388,
+   8.225,
+   "Next, Chapter 7 turns to least privilege for service principals, and Chapter 12 covers the managed service account standard itself."
   ],
   [
-   32.638,
+   48.612,
    1.1,
    "Thanks for watching."
   ]
@@ -551,48 +626,48 @@
   ],
   [
    4.05,
-   3.413,
-   "Each row now carries its disposition from Chapter 3."
-  ],
-  [
-   7.463,
    3.725,
    "Two rows aren't ready for hand-off, so the flag stays false."
   ],
   [
-   11.188,
+   7.775,
    6.763,
    "The web front end carries the authorizing official's acceptance, so it becomes ready once it has an S P N owner."
   ],
   [
-   17.95,
-   4.388,
-   "That's the point: which is the point: an incomplete list never goes."
+   14.537,
+   3.188,
+   "That's the point: an incomplete list never goes."
   ],
   [
-   22.337,
+   17.725,
    1.325,
    "Then the write path."
   ],
   [
-   23.663,
-   4.213,
-   "A dry run with the approved hash reports the four writes it would send."
+   19.05,
+   7.45,
+   "A dry run as the pipeline reports four writes it would send, and refuses the migration's completion, a person's step."
   ],
   [
-   27.875,
-   7.912,
-   "Applying it to the fake sends them, and the results tell the operator what comes next, such as installing each new account on its hosts."
+   26.5,
+   7.713,
+   "Applying it to the fake as the pipeline sends those four; applying it as a person sends the completion and refuses the rest."
   ],
   [
-   35.788,
+   34.212,
+   2.388,
+   "Each run reads every write back."
+  ],
+  [
+   36.6,
    4.263,
    "Finally you pass a hash nobody approved, and it refuses outright."
   ],
   [
-   40.05,
-   3.15,
-   "The full suite is five hundred eleven passing tests."
+   40.862,
+   3.388,
+   "The full suite is five hundred forty-nine passing tests."
   ]
  ]
 }

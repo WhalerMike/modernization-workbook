@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.087
+Unit 3 follows one G M
+S A through the steps.
+
+2
+00:00:04.087 --> 00:00:07.322
+It's requested, and Chapter
+12 checks every field
+
+3
+00:00:07.322 --> 00:00:10.313
+before SailPoint's
+approvers see it: that's S1.
+
+4
+00:00:10.313 --> 00:00:15.075
+It's decided, with the guide's decision
+path giving the target, in S2.
+
+5
+00:00:15.075 --> 00:00:19.862
+SailPoint approves it, and ServiceNow
+opens the change record, in S3.
+
+6
+00:00:19.862 --> 00:00:24.377
+The pipeline creates it from
+the approved plan, in the O U,
+
+7
+00:00:24.377 --> 00:00:29.088
+A E S two fifty-six, thirty days
+and its retriever group, in S4.
+
+8
+00:00:29.088 --> 00:00:33.675
+It's installed on the hosts and
+restricted with Group Policy, in S5.
+
+9
+00:00:33.675 --> 00:00:35.696
+SailPoint aggregates it,
+
+10
+00:00:35.696 --> 00:00:40.700
+and the ServiceNow task closes only
+on Chapter 12's re-read, in S6.
+
+11
+00:00:40.700 --> 00:00:46.850
+It's watched with Defender for Identity,
+in S7, and certified by its owners, in S8.
+
+12
+00:00:46.850 --> 00:00:50.113
+It's handed over when
+an owner leaves, in S9.
+
+13
+00:00:50.113 --> 00:00:54.417
+And it's retired, in S10: the
+pipeline disables it and moves it,
+
+14
+00:00:54.417 --> 00:00:59.600
+and after ninety days with no sign-in,
+a person uninstalls and deletes it.
+
+15
+00:00:59.600 --> 00:01:03.310
+S11 is the move to Entra,
+when the workload moves.

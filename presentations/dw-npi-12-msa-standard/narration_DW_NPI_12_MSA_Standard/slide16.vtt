@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.967
+Lab 2 uses a test
+domain, never production,
+
+2
+00:00:02.967 --> 00:00:07.771
+with Chapter 6's second lab already
+done, a SailPoint sandbox scoped
+
+3
+00:00:07.771 --> 00:00:12.575
+to the service account unit, and
+Defender for Identity on the domain.
+
+4
+00:00:12.575 --> 00:00:14.137
+The authors haven't run it.
+
+5
+00:00:14.137 --> 00:00:16.099
+Write the test domain's settings.
+
+6
+00:00:16.099 --> 00:00:19.096
+Then put the real exports
+into the kit's formats,
+
+7
+00:00:19.096 --> 00:00:21.400
+mapping each product column by hand.
+
+8
+00:00:21.400 --> 00:00:26.044
+Run with a live read of the domain; a
+group managed account you made by hand in
+
+9
+00:00:26.044 --> 00:00:29.415
+Chapter 6 with no request
+shows up as finding eighteen,
+
+10
+00:00:29.415 --> 00:00:31.363
+which is the drift rule working.
+
+11
+00:00:31.363 --> 00:00:36.600
+Finally, confirm the manifest shows one
+read of Active Directory, and nothing else.

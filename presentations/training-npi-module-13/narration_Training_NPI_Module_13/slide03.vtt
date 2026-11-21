@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.890
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.890 --> 00:00:05.537
+which takes about fifty-five
+minutes with the lab.
+
+3
+00:00:05.537 --> 00:00:09.861
+You'll name who does what in the
+standard: the access management tool,
+
+4
+00:00:09.861 --> 00:00:12.949
+SailPoint, ServiceNow,
+the pipeline and a person.
+
+5
+00:00:12.949 --> 00:00:17.591
+You'll give the standard's settings:
+the name, the O U, the retriever group,
+
+6
+00:00:17.591 --> 00:00:21.591
+encryption, the password interval,
+outbound-only, the owners,
+
+7
+00:00:21.591 --> 00:00:25.112
+the certification cadence
+and the ninety-day window.
+
+8
+00:00:25.112 --> 00:00:30.076
+You'll explain why machines run every step
+they can, and where people still must.
+
+9
+00:00:30.076 --> 00:00:35.087
+And you'll run Chapter 12's checks on
+fixtures, and read the findings, the Chapter
+
+10
+00:00:35.087 --> 00:00:40.100
+6 inputs, the certifications, the ServiceNow
+findings and the retirement list.
+
+11
+00:00:40.100 --> 00:00:43.337
+Before you start, finish Modules 8 and 12.
+
+12
+00:00:43.337 --> 00:00:48.980
+You need PowerShell 7.1 or later with
+Pester 5, and no tenant or domain.

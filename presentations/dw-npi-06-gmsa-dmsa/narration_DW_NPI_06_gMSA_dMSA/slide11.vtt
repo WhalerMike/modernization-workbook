@@ -1,45 +1,74 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.661
+00:00:00.050 --> 00:00:02.894
 Writing to the domain
-is the dangerous part,
+lives in its own script,
 
 2
-00:00:02.661 --> 00:00:07.375
-so it lives in its own script that refuses
-to run unless several things are true.
+00:00:02.894 --> 00:00:06.200
+which refuses to run unless
+several things are true.
 
 3
-00:00:07.375 --> 00:00:11.325
-The plan must be the exact one
-a reviewer approved, by hash.
+00:00:06.200 --> 00:00:09.496
+The plan must be the exact
+one a reviewer approved,
 
 4
-00:00:11.325 --> 00:00:14.325
-It must be for this domain
+00:00:09.496 --> 00:00:12.550
+by hash, for this domain
 and less than a week old.
 
 5
-00:00:14.325 --> 00:00:18.862
+00:00:12.550 --> 00:00:16.994
 Every write must be a declared call
 with only its allowed parameters,
 
 6
-00:00:18.862 --> 00:00:23.400
-and nothing that deletes, uninstalls,
-undoes or resets exists to call.
+00:00:16.994 --> 00:00:21.516
+in the right O U, carrying its
+SailPoint request and ServiceNow change,
 
 7
-00:00:23.400 --> 00:00:25.913
-It runs as a person, never a job.
+00:00:21.516 --> 00:00:24.712
+and nothing that deletes
+or undoes exists to call.
 
 8
-00:00:25.913 --> 00:00:28.647
-Then, before each write,
-it checks the target
+00:00:24.712 --> 00:00:26.737
+Each call also says who sends it.
 
 9
-00:00:28.647 --> 00:00:31.970
-again and skips anything
-that changed since review.
+00:00:26.737 --> 00:00:31.914
+Run as the pipeline's own account, it
+sends the creations, retriever changes,
+
+10
+00:00:31.914 --> 00:00:36.088
+disables and moves, and refuses
+the delegated account steps.
+
+11
+00:00:36.088 --> 00:00:38.256
+Run as a person, it sends those,
+
+12
+00:00:38.256 --> 00:00:41.962
+and refuses the pipeline's,
+except in a test domain.
+
+13
+00:00:41.962 --> 00:00:44.937
+So one approved plan is
+applied in two runs.
+
+14
+00:00:44.937 --> 00:00:48.310
+Before each write it checks
+the target again; after it,
+
+15
+00:00:48.310 --> 00:00:52.060
+it reads it back, recording sent
+only when the change shows.

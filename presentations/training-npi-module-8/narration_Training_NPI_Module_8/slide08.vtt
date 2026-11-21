@@ -48,45 +48,70 @@ existing or planned, and
 says where it ends up.
 
 11
-00:00:34.063 --> 00:00:37.226
+00:00:34.063 --> 00:00:37.141
 Writing to the domain
 lives in a separate script,
 
 12
-00:00:37.226 --> 00:00:42.208
-and it refuses to run unless the plan's
-hash is the approved one, the plan is for
+00:00:37.141 --> 00:00:41.068
+and it refuses to run unless the
+plan's hash is the approved one,
 
 13
-00:00:42.208 --> 00:00:44.976
-this domain and no more
-than seven days old,
+00:00:41.068 --> 00:00:44.686
+the plan is for this domain and
+no more than seven days old,
 
 14
-00:00:44.976 --> 00:00:47.349
-and it's a person's session, never a job.
+00:00:44.686 --> 00:00:49.074
+and each write carries its SailPoint
+request and ServiceNow change.
 
 15
-00:00:47.349 --> 00:00:51.450
+00:00:49.074 --> 00:00:51.063
+Each write also says who sends it.
+
+16
+00:00:51.063 --> 00:00:57.328
+Run as the pipeline, which must be the
+pipeline's own G M S A, it sends the G M S
+
+17
+00:00:57.328 --> 00:01:04.124
+A creations, retriever changes, disables
+and moves, and refuses the D M S A steps.
+
+18
+00:01:04.124 --> 00:01:09.437
+Run as a person, it sends the D M S
+A steps and refuses the pipeline's.
+
+19
+00:01:09.437 --> 00:01:12.413
+So one approved plan is
+applied in two runs.
+
+20
+00:01:12.413 --> 00:01:16.512
 Nothing that removes, undoes
 or resets is ever run.
 
-16
-00:00:51.450 --> 00:00:54.259
+21
+00:01:16.512 --> 00:01:19.322
 And the read holds no
 domain administration:
 
-17
-00:00:54.259 --> 00:00:59.497
+22
+00:01:19.322 --> 00:01:24.560
 Microsoft Learn's page for the root key
 class says its default security descriptor
 
-18
-00:00:59.497 --> 00:01:03.065
+23
+00:01:24.560 --> 00:01:28.128
 grants only Enterprise Admins,
 Domain Admins and SYSTEM,
 
-19
-00:01:03.065 --> 00:01:08.075
+24
+00:01:28.128 --> 00:01:33.190
 so the read gets a delegated read of the
 key's start and create times, nothing more.

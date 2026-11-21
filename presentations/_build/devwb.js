@@ -359,7 +359,7 @@ module.exports = function build(spec) {
     txt(sl, "Tour map", [
       { text: spec.map || "", options: { color: HEX.navy, bold: true, breakLine: true } },
       // A draft chapter says so first: the tour is of a page still awaiting the owner's review.
-      ch.status === "draft" && !wb.approved
+      ch.status === "draft" && ch.review !== "approved" && !wb.approved
         ? { text: `Draft ${PAGE ? "page" : "chapter"}, awaiting the owner's review  ·  Illustrative code, tested against fixtures`, options: { color: HEX.red, bold: true, breakLine: true } }
         : { text: `${PAGE ? "Page" : "Chapter"} review status: ${ch.review}  ·  Illustrative code, tested against fixtures`, options: { color: HEX.ink, breakLine: true } },
       { text: `Date Code ${DATECODE}`, options: { color: HEX.teal, bold: true } },

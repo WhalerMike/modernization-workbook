@@ -15,44 +15,58 @@ one that only reads and one that writes,
 and its own list of allowed calls.
 
 4
-00:00:09.338 --> 00:00:13.459
+00:00:09.338 --> 00:00:13.181
 It builds on Chapter 1's register
-and on Chapter 3's decisions,
+and Chapter 3's decisions,
 
 5
-00:00:13.459 --> 00:00:16.426
+00:00:13.181 --> 00:00:16.063
 and refuses either if
 its hash doesn't match.
 
 6
-00:00:16.426 --> 00:00:20.033
-The owner's decision for each
-account comes from Chapter 3,
+00:00:16.063 --> 00:00:17.949
+Then four reviewed files.
 
 7
-00:00:20.033 --> 00:00:21.537
-never from a second list.
+00:00:17.949 --> 00:00:22.609
+The first gives each re-platformed
+account's new account, workload and hosts,
 
 8
-00:00:21.537 --> 00:00:24.291
-Then three reviewed
-files: the new account,
+00:00:22.609 --> 00:00:27.195
+and the SailPoint request and ServiceNow
+change that approved its writes;
 
 9
-00:00:24.291 --> 00:00:28.853
-workload and hosts for each account
-being re-platformed, who may fetch
+00:00:27.195 --> 00:00:30.375
+Chapter 12 writes these
+rows for approved requests.
 
 10
-00:00:28.853 --> 00:00:33.651
-each managed password, and the one
-program dates file Chapter 3 also reads.
+00:00:30.375 --> 00:00:33.525
+The second says who may
+fetch each managed password.
 
 11
-00:00:33.651 --> 00:00:36.088
-Notice that the end state has no default.
+00:00:33.525 --> 00:00:38.406
+The third is the forest's account standard:
+the service account O U, the holding
 
 12
-00:00:36.088 --> 00:00:40.250
-If the decision is missing, the run
-simply stops rather than guessing.
+00:00:38.406 --> 00:00:43.287
+O U, the creator group, the retriever
+group pattern and the thirty-day interval.
+
+13
+00:00:43.287 --> 00:00:45.850
+The fourth is the one program dates file.
+
+14
+00:00:45.850 --> 00:00:49.240
+The end state has no default:
+if the decision is missing,
+
+15
+00:00:49.240 --> 00:00:51.480
+the run stops rather than guessing.

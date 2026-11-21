@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.062
+Why a standard?
+
+2
+00:00:01.062 --> 00:00:05.157
+Module 12 moved one account,
+with Microsoft Learn's commands,
+
+3
+00:00:05.157 --> 00:00:07.450
+and the kit planned the same moves.
+
+4
+00:00:07.450 --> 00:00:12.672
+The standard makes every managed service
+account after that go the same way:
+
+5
+00:00:12.672 --> 00:00:15.158
+asked for, approved, created, watched,
+
+6
+00:00:15.158 --> 00:00:18.888
+attested and retired, with
+the same evidence each time.
+
+7
+00:00:18.888 --> 00:00:20.937
+It splits the work three ways.
+
+8
+00:00:20.937 --> 00:00:25.788
+SailPoint approves, reached through the
+agency's system access management tool.
+
+9
+00:00:25.788 --> 00:00:29.013
+ServiceNow records the
+change and the findings.
+
+10
+00:00:29.013 --> 00:00:31.846
+And Microsoft's tools create and enforce:
+
+11
+00:00:31.846 --> 00:00:37.182
+Active Directory PowerShell through
+Chapter 6's approved plan, Group Policy,
+
+12
+00:00:37.182 --> 00:00:41.900
+Defender for Identity and, when the
+workload moves, Microsoft Entra.

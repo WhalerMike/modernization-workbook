@@ -30,64 +30,64 @@ No account moves without
 its reviewed disposition.
 
 7
-00:00:19.288 --> 00:00:23.407
-The old account runs in parallel
-for thirty days, then it's disabled,
+00:00:19.288 --> 00:00:23.981
+The old account runs in parallel, and
+it's disabled no sooner than thirty days
 
 8
-00:00:23.407 --> 00:00:27.226
-and it's deleted only later,
-through the decommission process.
+00:00:23.981 --> 00:00:28.600
+after the switch; it's deleted only
+later, through the decommission process.
 
 9
-00:00:27.226 --> 00:00:30.922
+00:00:28.600 --> 00:00:32.297
 No client secrets: a cloud
 identity is a managed identity,
 
 10
-00:00:30.922 --> 00:00:34.461
+00:00:32.297 --> 00:00:35.836
 a federated credential or a
 certificate, in that order,
 
 11
-00:00:34.461 --> 00:00:38.237
+00:00:35.836 --> 00:00:39.612
 and Microsoft Learn says not
 to use password credentials.
 
 12
-00:00:38.237 --> 00:00:42.913
+00:00:39.612 --> 00:00:44.288
 No privileged groups: Learn says service
 accounts shouldn't be members of them,
 
 13
-00:00:42.913 --> 00:00:45.575
+00:00:44.288 --> 00:00:46.950
 and each service should
 have its own account.
 
 14
-00:00:45.575 --> 00:00:50.937
+00:00:46.950 --> 00:00:52.312
 And changes are reviewed: in production,
 each write is a plan approved by its hash.
 
 15
-00:00:50.937 --> 00:00:53.313
+00:00:52.312 --> 00:00:54.687
 One place where Learn's own pages differ.
 
 16
-00:00:53.313 --> 00:00:57.975
+00:00:54.687 --> 00:00:59.351
 Learn's Entra page on group managed service
 accounts ends its move by deleting the
 
 17
-00:00:57.975 --> 00:01:00.855
+00:00:59.351 --> 00:01:02.231
 old account, while its page
 on setting up delegated
 
 18
-00:01:00.855 --> 00:01:03.324
+00:01:02.231 --> 00:01:04.700
 accounts says never to
 delete the original.
 
 19
-00:01:03.324 --> 00:01:05.740
+00:01:04.700 --> 00:01:07.130
 The program follows the stricter reading.

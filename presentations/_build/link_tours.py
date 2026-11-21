@@ -144,7 +144,16 @@ def covered(wb, rows):
     if len(rows) >= len(pages):
         return "Every chapter has"
     nums = sorted(r[0] for r in rows)
-    return f"Chapters {nums[0]} to {nums[-1]} each have"
+    # Runs of consecutive chapters, so a chapter without a tour isn't counted: "Chapters 01 to 10 and 12 each have".
+    runs = []
+    for n in nums:
+        if runs and int(n) == int(runs[-1][-1]) + 1:
+            runs[-1].append(n)
+        else:
+            runs.append([n])
+    parts = [r[0] if len(r) == 1 else f"{r[0]} to {r[-1]}" for r in runs]
+    text = parts[0] if len(parts) == 1 else ", ".join(parts[:-1]) + " and " + parts[-1]
+    return f"Chapters {text} each have" if len(nums) > 1 else f"Chapter {text} has"
 
 
 # Workbook indexes: a "Narrated chapter tours" section before "## How each chapter is built" is replaced or added after the chapter table.

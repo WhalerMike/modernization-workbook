@@ -1,92 +1,125 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.445
-In production, the same
-moves run as reviewed code,
+00:00:00.050 --> 00:00:03.228
+Migration B moves the
+same kind of account to a
 
 2
-00:00:03.445 --> 00:00:06.675
-in the Non-Person Identity
-developer workbook.
+00:00:03.228 --> 00:00:07.325
+delegated managed service
+account, on Windows Server 2025.
 
 3
-00:00:06.675 --> 00:00:09.675
-Chapter 3 records each
-account's disposition.
+00:00:07.325 --> 00:00:12.362
+A D M S A supersedes the old account:
+once the migration completes,
 
 4
-00:00:09.675 --> 00:00:13.591
-Chapter 6 does Migration A as
-a plan: create the G M S A,
+00:00:12.362 --> 00:00:17.874
+the old password can't be used, its
+S P Ns, delegation and authentication
 
 5
-00:00:13.591 --> 00:00:19.837
-wait for the host change and the thirty
-days, then disable the superseded account.
+00:00:17.874 --> 00:00:22.150
+policy move to the D M S A, and
+the old account is disabled.
 
 6
-00:00:19.837 --> 00:00:23.474
-It does Migration B as three
-planned actions, create,
+00:00:22.150 --> 00:00:24.600
+Check Microsoft Learn's limits first.
 
 7
-00:00:23.474 --> 00:00:28.550
-start and complete, with every limit
-Microsoft Learn sets checked first.
+00:00:24.600 --> 00:00:28.209
+At least one Windows Server
+2025 domain controller,
 
 8
-00:00:28.550 --> 00:00:32.726
-Chapter 5 does Migration C, the
-identity and its credential,
+00:00:28.209 --> 00:00:32.741
+and every machine that uses the
+account updated to support D M S As;
 
 9
-00:00:32.726 --> 00:00:37.413
-and tests a real token exchange,
-and Chapter 7 cuts its permissions.
+00:00:32.741 --> 00:00:36.350
+one that isn't fails once
+the old account is disabled.
 
 10
-00:00:37.413 --> 00:00:40.244
-Chapter 6 also keeps
-the island list and the
+00:00:36.350 --> 00:00:40.161
+You can't migrate an M S A
+or a G M S A to a D M S A,
 
 11
-00:00:40.244 --> 00:00:43.075
-reconciliation for what stays on Kerberos.
+00:00:40.161 --> 00:00:44.550
+and unconstrained
+delegation stops working.
 
 12
-00:00:43.075 --> 00:00:45.650
-What the code never does matters as much.
+00:00:44.550 --> 00:00:47.506
+Learn's minimum to create
+one is Domain Admins,
 
 13
-00:00:45.650 --> 00:00:51.012
-It never runs a plan nobody approved,
-because each plan is sent only by its hash.
+00:00:47.506 --> 00:00:50.150
+Enterprise Admins or equivalent rights.
 
 14
-00:00:51.012 --> 00:00:53.832
-And it never creates a K D S root key,
+00:00:50.150 --> 00:00:52.905
+After the attack called BadSuccessor,
 
 15
-00:00:53.832 --> 00:00:58.263
-never runs undo or reset,
-and never deletes an account.
+00:00:52.905 --> 00:00:57.813
+where anyone who could create a D M
+S A could take over another account,
 
 16
-00:00:58.263 --> 00:01:03.223
-To try it, take Module 12 of the Non-Person
-Identity learning path, which runs
+00:00:57.813 --> 00:01:00.912
+the program is stricter:
+Domain Admins only,
 
 17
-00:01:03.223 --> 00:01:07.863
-Learn's steps on stand-ins and the
-kit's plans on fixtures, with no tenant.
+00:01:00.912 --> 00:01:06.250
+and the August 2025 update on every
+Windows Server 2025 domain controller.
 
 18
-00:01:07.863 --> 00:01:13.262
-Then Chapter 6's second lab, in a test
-domain, and the guide's checklist.
+00:01:06.250 --> 00:01:07.591
+B1 creates the D M S A.
 
 19
-00:01:13.262 --> 00:01:14.090
-Thank you.
+00:01:07.591 --> 00:01:13.205
+Learn's set-up page then sets a state
+attribute with a parameter the cmdlet doesn't
+
+20
+00:01:13.205 --> 00:01:18.400
+have; for a migration, skip it, because
+starting the migration sets the state.
+
+21
+00:01:18.400 --> 00:01:21.441
+B2 starts the migration,
+and on each host sets
+
+22
+00:01:21.441 --> 00:01:24.975
+Learn's registry value and
+restarts the one service.
+
+23
+00:01:24.975 --> 00:01:28.776
+B3: Learn says to wait at
+least two ticket lifetimes,
+
+24
+00:01:28.776 --> 00:01:31.400
+fourteen days, and recommends four.
+
+25
+00:01:31.400 --> 00:01:34.025
+The program's thirty days covers four.
+
+26
+00:01:34.025 --> 00:01:37.220
+Then complete it, and never
+delete the original account.

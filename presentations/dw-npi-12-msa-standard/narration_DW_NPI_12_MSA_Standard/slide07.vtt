@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.438
+The first check is the
+request, findings one to nine.
+
+2
+00:00:03.438 --> 00:00:08.113
+A request has to be approved in SailPoint
+and carry a ServiceNow change record.
+
+3
+00:00:08.113 --> 00:00:10.288
+The name has to follow the name standard.
+
+4
+00:00:10.288 --> 00:00:15.225
+It needs exactly two owners, and a
+federal-employee sponsor who isn't one of them.
+
+5
+00:00:15.225 --> 00:00:19.062
+A group managed account needs its
+hosts group, named for the app.
+
+6
+00:00:19.062 --> 00:00:22.174
+The service principal names
+have to match the request.
+
+7
+00:00:22.174 --> 00:00:25.025
+A delegated managed
+account has to be run by
+
+8
+00:00:25.025 --> 00:00:27.875
+a person and supersede
+an existing account.
+
+9
+00:00:27.875 --> 00:00:31.700
+And the workload, type and risk
+tier must be known values.

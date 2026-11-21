@@ -36,10 +36,16 @@ the command simply doesn't
 have, so as published it fails.
 
 8
-00:00:26.275 --> 00:00:28.671
+00:00:26.275 --> 00:00:31.178
 Placeholder names that change from step to
+step are replaced by names from reviewed
 
 9
-00:00:28.671 --> 00:00:31.250
-step are replaced by
-names from reviewed data.
+00:00:31.178 --> 00:00:33.630
+data, held to the
+program's naming standard,
+
+10
+00:00:33.630 --> 00:00:37.820
+and a group account's retrievers become
+one reviewed group of its hosts.

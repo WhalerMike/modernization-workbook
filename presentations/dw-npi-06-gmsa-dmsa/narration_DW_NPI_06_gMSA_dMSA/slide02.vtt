@@ -6,54 +6,69 @@ Why does this chapter have
 an end date built in?
 
 2
-00:00:02.463 --> 00:00:07.074
+00:00:02.463 --> 00:00:06.604
 Because a group managed service account
-only works while A D is in charge.
+only works while A D is in charge,
 
 3
-00:00:07.074 --> 00:00:12.083
-The program decides early whether A D is
-retired or kept as a dated Kerberos island,
+00:00:06.604 --> 00:00:09.779
+and anything still running
+under one of these accounts
 
 4
-00:00:12.083 --> 00:00:16.134
-and the risk register is blunt:
-anything still running under one of
+00:00:09.779 --> 00:00:13.162
+loses its credential when the
+last domain controller goes.
 
 5
-00:00:16.134 --> 00:00:20.700
-these accounts loses its credential
-when the last domain controller goes.
-
-6
-00:00:20.700 --> 00:00:23.012
-So converting isn't the finish line.
-
-7
-00:00:23.012 --> 00:00:26.859
-Every account must end up
+00:00:13.162 --> 00:00:17.244
+So every account must end up
 moving to a workload identity,
 
-8
-00:00:26.859 --> 00:00:29.200
+6
+00:00:17.244 --> 00:00:19.625
 retiring, or on a dated island list.
 
+7
+00:00:19.625 --> 00:00:22.160
+The program's rules, as design guidance:
+
+8
+00:00:22.160 --> 00:00:26.437
+each account's disposition is the
+owner's decision from Chapter 3.
+
 9
-00:00:29.200 --> 00:00:33.575
-The program adds rules of its
-own, labeled as design guidance.
+00:00:26.437 --> 00:00:29.810
+New accounts follow the managed
+service account standard,
 
 10
-00:00:33.575 --> 00:00:36.654
-Each account's disposition
-isn't decided here:
+00:00:29.810 --> 00:00:33.113
+and a group account's retrievers
+are one group of its hosts.
 
 11
-00:00:36.654 --> 00:00:40.463
-it's the owner's decision from
-Chapter 3, read from that run.
+00:00:33.113 --> 00:00:37.300
+Every write carries its SailPoint
+request and ServiceNow change.
 
 12
-00:00:40.463 --> 00:00:43.580
-And the strictest rule
-is simple: never delete.
+00:00:37.300 --> 00:00:39.938
+The pipeline's own
+account sends what it can;
+
+13
+00:00:39.938 --> 00:00:42.575
+a person sends the
+delegated account steps.
+
+14
+00:00:42.575 --> 00:00:45.878
+And never delete: the old
+account is disabled and
+
+15
+00:00:45.878 --> 00:00:49.320
+moved to a holding O U, and
+a person deletes it later.

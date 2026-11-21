@@ -1,0 +1,107 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.445
+In production, the same
+moves run as reviewed code,
+
+2
+00:00:03.445 --> 00:00:06.675
+in the Non-Person Identity
+developer workbook.
+
+3
+00:00:06.675 --> 00:00:09.129
+Chapter 12 runs the standard's checks,
+
+4
+00:00:09.129 --> 00:00:12.138
+from the request to the
+ninety-day delete list.
+
+5
+00:00:12.138 --> 00:00:15.137
+Chapter 3 records each
+account's disposition.
+
+6
+00:00:15.137 --> 00:00:18.687
+Chapter 6 does Migration A as
+a plan: create the G M S A,
+
+7
+00:00:18.687 --> 00:00:23.758
+wait for the host change and the thirty
+days, then disable the superseded
+
+8
+00:00:23.758 --> 00:00:29.337
+account and move it to the holding
+organizational unit, and the pipeline runs it.
+
+9
+00:00:29.337 --> 00:00:34.201
+It does Migration B as three planned
+actions, create, start and complete,
+
+10
+00:00:34.201 --> 00:00:39.724
+with every limit Microsoft Learn sets
+checked first, and a Domain Admin runs them.
+
+11
+00:00:39.724 --> 00:00:43.901
+Chapter 5 does Migration C, the
+identity and its credential,
+
+12
+00:00:43.901 --> 00:00:48.588
+and tests a real token exchange,
+and Chapter 7 cuts its permissions.
+
+13
+00:00:48.588 --> 00:00:51.418
+Chapter 6 also keeps
+the island list and the
+
+14
+00:00:51.418 --> 00:00:54.249
+reconciliation for what stays on Kerberos.
+
+15
+00:00:54.249 --> 00:00:56.825
+What the code never does matters as much.
+
+16
+00:00:56.825 --> 00:01:02.187
+It never runs a plan nobody approved,
+because each plan is sent only by its hash.
+
+17
+00:01:02.187 --> 00:01:06.909
+And it never creates a K D S root
+key, never runs undo or reset,
+
+18
+00:01:06.909 --> 00:01:10.450
+and never uninstalls
+or deletes an account.
+
+19
+00:01:10.450 --> 00:01:15.470
+To try it, take Modules 12 and 13 of
+the Non-Person Identity learning path:
+
+20
+00:01:15.470 --> 00:01:20.150
+the migration, and the standard, on
+the kit's fixtures, with no tenant.
+
+21
+00:01:20.150 --> 00:01:25.550
+Then Chapter 6's second lab, in a test
+domain, and the guide's checklist.
+
+22
+00:01:25.550 --> 00:01:26.380
+Thank you.

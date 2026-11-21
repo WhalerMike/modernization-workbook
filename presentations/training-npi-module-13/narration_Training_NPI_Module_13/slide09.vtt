@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.175
+Step two reads the
+findings, sorted by rule.
+
+2
+00:00:03.175 --> 00:00:05.621
+Rules oh one to oh nine
+check the requests,
+
+3
+00:00:05.621 --> 00:00:09.219
+ten to nineteen reconcile
+SailPoint with Active Directory,
+
+4
+00:00:09.219 --> 00:00:14.039
+twenty to twenty-three are the certifications,
+twenty-four to twenty-six compare
+
+5
+00:00:14.039 --> 00:00:18.788
+Defender for Identity's list, and twenty-seven
+to twenty-nine are the retirement.
+
+6
+00:00:18.788 --> 00:00:22.588
+Find the three findings
+on G M S A dash ops.
+
+7
+00:00:22.588 --> 00:00:26.899
+N P I S T D ten: SailPoint
+never aggregated it.
+
+8
+00:00:26.899 --> 00:00:29.387
+Sixteen: it's in Domain Admins.
+
+9
+00:00:29.387 --> 00:00:31.787
+Eighteen: no request explains it.
+
+10
+00:00:31.787 --> 00:00:34.738
+That's the drift rule,
+and it runs every time.
+
+11
+00:00:34.738 --> 00:00:37.466
+Defender for Identity's rules show up too:
+
+12
+00:00:37.466 --> 00:00:41.960
+S V C dash backup is a user account
+still serving as a service account,
+
+13
+00:00:41.960 --> 00:00:47.336
+M S A dash print oh one is a standalone
+managed service account, and rule twenty-six
+
+14
+00:00:47.336 --> 00:00:52.370
+lists three accounts Defender for
+Identity sees that the register doesn't.

@@ -1,58 +1,77 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.762
-Step eight is the write path's dry run.
+00:00:00.050 --> 00:00:03.713
+Step eight is the write path's
+dry run, as the pipeline.
 
 2
-00:00:02.762 --> 00:00:06.196
+00:00:03.713 --> 00:00:07.145
 You take the plan's hash, which
 in a real run a second person
 
 3
-00:00:06.196 --> 00:00:09.776
+00:00:07.145 --> 00:00:10.725
 would review and pass to you,
 and give it to the action script.
 
 4
-00:00:09.776 --> 00:00:14.587
-It reports four would-send lines, one
-for each write, and sends nothing.
+00:00:10.725 --> 00:00:14.763
+It reports four would-send
+lines, the pipeline's writes,
 
 5
-00:00:14.587 --> 00:00:18.900
-Step nine runs the same command with
-the apply switch, against the fake.
+00:00:14.763 --> 00:00:19.250
+and refuses the fifth: the D M S
+A's completion is a person's step.
 
 6
-00:00:18.900 --> 00:00:24.250
-Four writes are sent, including the
-completed migration for svc h r sync.
+00:00:19.250 --> 00:00:20.363
+It sends nothing.
 
 7
-00:00:24.250 --> 00:00:27.987
+00:00:20.363 --> 00:00:23.982
+Step nine applies it to the
+fake, first as the pipeline,
+
+8
+00:00:23.982 --> 00:00:26.942
+which sends its four
+writes, then as a person,
+
+9
+00:00:26.942 --> 00:00:32.288
+which sends the completed migration for
+svc h r sync and refuses the other four.
+
+10
+00:00:32.288 --> 00:00:34.713
+Each run re-reads every write.
+
+11
+00:00:34.713 --> 00:00:38.449
 Then you pass a hash of zeros,
 a hash nobody approved.
 
-8
-00:00:27.987 --> 00:00:31.737
+12
+00:00:38.449 --> 00:00:42.199
 The script refuses: the plan's
 hash isn't the approved one,
 
-9
-00:00:31.737 --> 00:00:34.263
+13
+00:00:42.199 --> 00:00:44.725
 and it won't run a plan nobody reviewed.
 
-10
-00:00:34.263 --> 00:00:38.263
+14
+00:00:44.725 --> 00:00:48.725
 Pasted line by line, your shell
 carries on after the refusal.
 
-11
-00:00:38.263 --> 00:00:43.101
+15
+00:00:48.725 --> 00:00:53.863
 Step ten runs every test: five
-hundred eleven pass, none fail.
+hundred forty-nine pass, none fail.
 
-12
-00:00:43.101 --> 00:00:45.000
+16
+00:00:53.863 --> 00:00:55.750
 Then delete the output folder.

@@ -1,0 +1,105 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.322
+One more move the guide covers,
+
+2
+00:00:02.322 --> 00:00:06.138
+because mail breaks when an
+account becomes a G M S A.
+
+3
+00:00:06.138 --> 00:00:12.276
+A G M S A has no mailbox and no
+password an S M T P client could type.
+
+4
+00:00:12.276 --> 00:00:17.658
+And Microsoft Learn says basic-authentication
+S M T P submission to Exchange Online
+
+5
+00:00:17.658 --> 00:00:22.888
+is scheduled for deprecation, so a stored
+mailbox password isn't the answer either.
+
+6
+00:00:22.888 --> 00:00:24.762
+Choose by where the mail server is.
+
+7
+00:00:24.762 --> 00:00:30.602
+On-premises Exchange: a dedicated receive
+connector that offers integrated Windows
+
+8
+00:00:30.602 --> 00:00:35.537
+authentication, Kerberos, and Send As
+on a shared mailbox, never a person's.
+
+9
+00:00:35.537 --> 00:00:36.538
+That's M1.
+
+10
+00:00:36.538 --> 00:00:39.904
+A client that can't authenticate
+gets an anonymous relay
+
+11
+00:00:39.904 --> 00:00:43.413
+limited to the workload's hosts'
+addresses, the weakest path.
+
+12
+00:00:43.413 --> 00:00:44.451
+That's M2.
+
+13
+00:00:44.451 --> 00:00:50.335
+Exchange Online: the workload sends through
+Microsoft Graph send mail as a workload
+
+14
+00:00:50.335 --> 00:00:55.212
+identity, the app with a certificate
+from C3, or the Arc identity from C2,
+
+15
+00:00:55.212 --> 00:00:59.163
+scoped to one shared mailbox
+with R B A C for Applications.
+
+16
+00:00:59.163 --> 00:01:01.729
+Don't consent Mail dot Send in Entra I D:
+
+17
+00:01:01.729 --> 00:01:06.613
+Learn says the two grants are a union,
+so an Entra grant removes the scope.
+
+18
+00:01:06.613 --> 00:01:08.587
+Test the scope both ways.
+
+19
+00:01:08.587 --> 00:01:12.048
+In GCC, send mail runs on
+the worldwide Graph host,
+
+20
+00:01:12.048 --> 00:01:17.412
+but Learn doesn't yet specify R B A C
+for Applications for government clouds,
+
+21
+00:01:17.412 --> 00:01:20.526
+so test it in the tenant
+before relying on it.
+
+22
+00:01:20.526 --> 00:01:23.810
+High Volume Email is
+listed for Worldwide only.

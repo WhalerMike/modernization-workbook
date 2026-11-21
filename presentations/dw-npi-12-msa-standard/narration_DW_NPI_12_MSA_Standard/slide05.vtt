@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.711
+The product pages read on
+November twentieth didn't specify
+
+2
+00:00:03.711 --> 00:00:07.225
+SailPoint's or Defender for
+Identity's export field names.
+
+3
+00:00:07.225 --> 00:00:12.025
+So the kit reads its own import formats
+and says so in each file's header.
+
+4
+00:00:12.025 --> 00:00:15.468
+There are six: the approved
+requests, one file each;
+
+5
+00:00:15.468 --> 00:00:19.666
+SailPoint's aggregated accounts;
+the Active Directory read,
+
+6
+00:00:19.666 --> 00:00:24.621
+a fixture in Lab 1 and live in Lab 2;
+the program's register; a certification
+
+7
+00:00:24.621 --> 00:00:29.575
+campaign's decisions; and Defender
+for Identity's service account list.
+
+8
+00:00:29.575 --> 00:00:33.960
+In Lab 2, you map each product
+column to the kit's column by hand.
