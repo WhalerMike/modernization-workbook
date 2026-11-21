@@ -4,6 +4,8 @@ Files: `docs/training/defender-xdr/index.md` and its five modules, `01-architect
 Example code: none. The guide has no kit in `examples/` and no developer workbook yet.
 Verified: 2026-11-13
 
+Update, November 21, 2026: since this log was written, the guide has a kit, [`examples/defender-xdr`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr), and a [developer workbook](../../../project-plans/developer-workbooks/defender-xdr/index.md) (both added November 17, 2026), and the guide is `review-status: approved` (approved November 18, 2026). The modules now point to the developer workbook's fixture labs for the kit's commands; that addition isn't re-verified here. The "Example code" line above and the guide's status in the Method section record the state on November 13, 2026.
+
 Method:
 - The path adds no new facts. Every fact a module states is carried by link from the Defender XDR implementation guide (`docs/books/guides/defender-xdr-implementation.md`, draft of November 11, 2026, review pending, as on `origin/main` on November 13, 2026) or the book chapters it links (Security Operations, Chapters 03, 05, 06, 11 and 12; Devices, Chapters 08 to 10), and relies on the guide's [verification log](../../../books/guides/_verification/defender-xdr-implementation.md) and footnotes (Microsoft Learn's Defender for Endpoint, Defender XDR, Defender for Identity, Defender for Cloud Apps, Security Exposure Management and Microsoft Graph security API pages, read November 11, 2026). New writing is limited to the path, the module framing, objectives, unit glue, knowledge-check questions and time estimates.
 - No Learn page was read again for the path beyond what the guide's verification log records.

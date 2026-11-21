@@ -12,7 +12,7 @@
 | File | Use |
 |---|---|
 | `Guide_Service_Account_Migration.pptx` | The deck: 14 narrated slides (the title and 13 content slides in Why, What, Who and How order), then a backup section with the sources |
-| `Guide_Service_Account_Migration_Narrated.vtt` | The video's caption track. Committed once the MP4 is on the videos release: adding it here lists the video on the Watch page (`scripts/generate_video_manifest.py`) |
+| `Guide_Service_Account_Migration_Narrated.vtt` | The video's caption track, added when the MP4 went on the videos Release; the Watch page reads it from here, and `scripts/generate_video_manifest.py` lists the video because it is here |
 | `Guide_Service_Account_Migration_Narration_Script.md` | The spoken narration, slide by slide (about 2,750 words) |
 | `narration_Guide_Service_Account_Migration/` | `durations.json`, `sentences.json` and the per-slide caption tracks (the MP3s go on the edition's Release, not in git) |
 | `build.js` | The slides and their notes |

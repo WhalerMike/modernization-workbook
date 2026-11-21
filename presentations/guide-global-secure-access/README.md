@@ -12,7 +12,7 @@
 | File | Use |
 |---|---|
 | `Guide_Global_Secure_Access.pptx` | The deck: 16 narrated slides (the title and 15 content slides in Why, What, Who and How order), then a backup section with the sources |
-| `Guide_Global_Secure_Access_Narrated.vtt` | The video's caption track. Added by the export step once the MP4 is on the videos release: adding it here lists the video on the Watch page (`scripts/generate_video_manifest.py`) |
+| `Guide_Global_Secure_Access_Narrated.vtt` | The video's caption track, added when the MP4 went on the videos Release; the Watch page reads it from here, and `scripts/generate_video_manifest.py` lists the video because it is here |
 | `Guide_Global_Secure_Access_Narrated_sources.json` | The slide sources as links, through the [Source Register](../../docs/reference/source-register.md), for the Watch page and the YouTube description (`link_sources.py` on the narrated deck; added by the export step) |
 | `Guide_Global_Secure_Access_Narration_Script.md` | The spoken narration, slide by slide (about 2,400 words) |
 | `narration_Guide_Global_Secure_Access/` | `durations.json`, `sentences.json` and the per-slide caption tracks (the MP3s go on the edition's Release, not in git) |

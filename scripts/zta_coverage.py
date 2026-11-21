@@ -2,8 +2,8 @@
 """Generate the Zero Trust Assessment closure coverage page from its tracker.
 
 data/zta-closure/coverage.yml lists every instruction ID of the Zero Trust
-Assessment closure update (conventions G-01..G-08, book updates, the planned
-Purview book's chapters, the guide items, the closure-map rows CM-01..CM-15 and ZTA-GUIDE),
+Assessment closure update (conventions G-01..G-08, book updates, Book 20's
+chapters (the Purview book), the guide items, the closure-map rows CM-01..CM-15 and ZTA-GUIDE),
 with its wave, book, status, the pages that carry it and the pull request.
 This script checks the file and writes the generated part of
 docs/reference/zta-closure-coverage.md, between the coverage:start and
@@ -35,8 +35,8 @@ ID = re.compile(r"^(?:G-0[1-8]|B\d\d-\d\d|GSA-\d\d|XDR-\d\d|AZS-\d\d|CM-\d\d|ZTA
 GROUPS = (
     ("Global conventions", "Defined once in [Book 00, Appendix D](../books/b00-orientation/appendix-d-control-states-and-evidence.md).", r"^G-"),
     ("Updates to existing books", "", r"^B(?!20)\d\d-"),
-    ("B20: Information Protection & Microsoft Purview (planned book)", "The planned twentieth book. The instructions number it nineteenth; it is numbered 20 because the workbook's Book 19 already exists.", r"^B20-"),
-    ("Implementation guides", "Global Secure Access, Defender XDR and Azure security engineering are implementation guides, not books, by the workbook owner's decision of November 11, 2026, so they don't duplicate Books 09, 10 and 12. The Zero Trust Assessment tool guide is planned too.", r"^(?:GSA|XDR|AZS)-|^ZTA-GUIDE$"),
+    ("B20: Information Protection & Microsoft Purview", "Book 20, [Information Protection & Microsoft Purview](../books/b20-information-protection/index.md). The instructions number it nineteenth; it is numbered 20 because the workbook's Book 19 already exists.", r"^B20-"),
+    ("Implementation guides", "Global Secure Access, Defender XDR and Azure security engineering are implementation guides, not books, by the workbook owner's decision of November 11, 2026, so they don't duplicate Books 09, 10 and 12. The Zero Trust Assessment tool guide is the fourth (ZTA-GUIDE).", r"^(?:GSA|XDR|AZS)-|^ZTA-GUIDE$"),
     ("Closure map", "Each finding family from the instructions' closure map, and the books and guides that carry it.", r"^CM-"),
 )
 LABEL = {"implemented": "Implemented", "partial": "Partial", "planned": "Planned", "deferred": "Deferred",

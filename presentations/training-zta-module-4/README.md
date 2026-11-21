@@ -12,13 +12,13 @@
 | File | Use |
 |---|---|
 | `Training_ZTA_Module_4.pptx` | The deck: 14 narrated slides (the title and 13 content slides in Why, What, Who and How order), then a backup section with the sources |
-| `Training_ZTA_Module_4_Narrated.vtt` | The video's caption track. Held out of git, with the MP4, until both are on a Release: adding it here lists the video on the Watch page (`scripts/generate_video_manifest.py`) |
+| `Training_ZTA_Module_4_Narrated.vtt` | The video's caption track; the Watch page and the module page read it from here, and `scripts/generate_video_manifest.py` lists the video because it is here |
 | `Training_ZTA_Module_4_Narrated_sources.json` | The slide sources as links, through the [Source Register](../../docs/reference/source-register.md), for the Watch page and the YouTube description (`link_sources.py`) |
 | `Training_ZTA_Module_4_Narration_Script.md` | The spoken narration, slide by slide (about 1,800 words) |
 | `narration_Training_ZTA_Module_4/` | `durations.json`, `sentences.json` and the per-slide caption tracks (the MP3s go on the edition's Release, not in git) |
 | `build.js` | The slides and their notes |
 
-The narrated deck, its MP4 and the plain deck aren't published yet: they come with the next edition, and the module page links the video once it is on the videos Release. The narration runs about 11 minutes.
+The MP4 is on the videos Release, and the [module page](../../docs/training/zero-trust-assessment/04-reconcile-re-run-and-keep-the-evidence.md) links the video. The narrated deck and the plain deck come with the next edition. The narration runs about 11 minutes.
 
 Build (Git Bash): `source /c/tmp/deckenv.sh`, then `FIT=1 node presentations/training-zta-module-4/build.js presentations/training-zta-module-4/Training_ZTA_Module_4.pptx`. Then `link_sources.py`, `narrate.py` and `captions.py`, and on a workstation where PowerPoint is free, `qa_export.ps1`, `build_narrated.ps1` and `export_mp4.ps1`, as in the kit's README. The build runs the shared checks: title length and uniqueness, Sources length, neutrality, and overflow warnings, including the code panel's width and height.
 
