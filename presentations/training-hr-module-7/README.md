@@ -12,12 +12,12 @@
 | File | Use |
 |---|---|
 | `Training_HR_Module_7.pptx` | The deck: 16 narrated slides (the title and 15 content slides in Why, What, Who and How order), then a backup section with the sources |
-| `Training_HR_Module_7_Narrated.vtt` | The video's caption track. Held out of git, with the MP4, until both are on a Release: adding it here lists the video on the Watch page (`scripts/generate_video_manifest.py`) |
+| `Training_HR_Module_7_Narrated.vtt` | The video's caption track; the Watch page and the module page read it from here, and `scripts/generate_video_manifest.py` lists the video because it is here |
 | `Training_HR_Module_7_Narration_Script.md` | The spoken narration, slide by slide (about 2,000 words) |
 | `narration_Training_HR_Module_7/` | `durations.json`, `sentences.json` and the per-slide caption tracks (the MP3s are on the edition's Release, not in git) |
 | `build.js` | The slides and their notes |
 
-The narrated deck, its MP4 and the plain deck aren't published yet: they come with the next edition. The narration runs about 13 minutes.
+The MP4 is on the videos Release, and the [module page](../../docs/training/hr-driven-identity/07-drift-and-evidence.md) links the video. The narrated deck and the plain deck are on the edition 2026.11.5 Release. The narration runs about 13 minutes.
 
 Build (Git Bash): `source /c/tmp/deckenv.sh`, then `FIT=1 node presentations/training-hr-module-7/build.js presentations/training-hr-module-7/Training_HR_Module_7.pptx`. Then `narrate.py` and `captions.py`, and on a workstation where PowerPoint is free, `qa_export.ps1`, `build_narrated.ps1` and `export_mp4.ps1`, as in the kit's README. The build runs the shared checks: title length and uniqueness, Sources length, neutrality, and overflow warnings, including the code panel's width and height.
 

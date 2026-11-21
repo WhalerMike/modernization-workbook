@@ -12,12 +12,12 @@
 | File | Use |
 |---|---|
 | `Training_HR_Module_6.pptx` | The deck: 15 narrated slides (the title and 14 content slides in Why, What, Who and How order), then a backup section with the sources |
-| `Training_HR_Module_6_Narrated.vtt` | The video's caption track. Held out of git, with the MP4, until both are on a Release: adding it here lists the video on the Watch page (`scripts/generate_video_manifest.py`) |
+| `Training_HR_Module_6_Narrated.vtt` | The video's caption track; the Watch page and the module page read it from here, and `scripts/generate_video_manifest.py` lists the video because it is here |
 | `Training_HR_Module_6_Narration_Script.md` | The spoken narration, slide by slide (about 1,900 words) |
 | `narration_Training_HR_Module_6/` | `durations.json`, `sentences.json` and the per-slide caption tracks (the MP3s are on the edition's Release, not in git) |
 | `build.js` | The slides and their notes |
 
-The narrated deck, its MP4 and the plain deck aren't published yet: they come with the next edition. The narration runs about 12 minutes.
+The MP4 is on the videos Release, and the [module page](../../docs/training/hr-driven-identity/06-separation-timing.md) links the video. The narrated deck and the plain deck are on the edition 2026.11.5 Release. The narration runs about 12 minutes.
 
 Build (Git Bash): `source /c/tmp/deckenv.sh`, then `FIT=1 node presentations/training-hr-module-6/build.js presentations/training-hr-module-6/Training_HR_Module_6.pptx`. Then `narrate.py` and `captions.py`, and on a workstation where PowerPoint is free, `qa_export.ps1`, `build_narrated.ps1` and `export_mp4.ps1`, as in the kit's README. The build runs the shared checks: title length and uniqueness, Sources length, neutrality, and overflow warnings, including the code panel's width and height.
 

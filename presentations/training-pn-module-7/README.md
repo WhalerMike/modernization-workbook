@@ -12,12 +12,12 @@
 | File | Use |
 |---|---|
 | `Training_PN_Module_7.pptx` | The deck: 13 narrated slides (the title and 12 content slides in Why, What, Who and How order), then a backup section with the sources |
-| `Training_PN_Module_7_Narrated.vtt` | The video's caption track. Held out of git, with the MP4, until both are on a Release: adding it here lists the video on the Watch page (`scripts/generate_video_manifest.py`) |
+| `Training_PN_Module_7_Narrated.vtt` | The video's caption track; the Watch page and the module page read it from here, and `scripts/generate_video_manifest.py` lists the video because it is here |
 | `Training_PN_Module_7_Narration_Script.md` | The spoken narration, slide by slide (about 2,050 words) |
 | `narration_Training_PN_Module_7/` | `durations.json`, `sentences.json` and the per-slide caption tracks (the MP3s are on the edition's Release, not in git) |
 | `build.js` | The slides and their notes, built with the path's shared setup, [`../training-pn-module-1/pn.js`](../training-pn-module-1/pn.js) |
 
-The narrated deck, its MP4 and the plain deck aren't published yet: they come with the next edition, and the module page says so once the video is on the videos Release.
+The MP4 is on the videos Release, and the [module page](../../docs/training/provider-notices/07-routing-to-owners.md) links the video. The narrated deck and the plain deck come with the next edition.
 
 Build (Git Bash): `source /c/tmp/deckenv.sh`, then `FIT=1 node presentations/training-pn-module-7/build.js presentations/training-pn-module-7/Training_PN_Module_7.pptx`. Then `narrate.py`, `captions.py` and `link_sources.py`, and on a workstation where PowerPoint is free, `qa_export.ps1`, `build_narrated.ps1` and `export_mp4.ps1`, as in the kit's README. The build runs the shared checks: title length and uniqueness, Sources length, neutrality, and overflow warnings, including the code panel's width and height.
 

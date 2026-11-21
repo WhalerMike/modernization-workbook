@@ -20,7 +20,7 @@ This page says which workbook pages give guidance for each item. It says nothing
 
 ## How to read it
 
-- **ID** is the instruction's own ID. G-01 to G-08 are the global conventions; B02-01 to B18-02 are additions to existing books; B20-01 to B20-12 are the chapters of the planned twentieth book, Information Protection & Microsoft Purview (the plan numbers it nineteenth; the workbook's Book 19 already exists); GSA, XDR and AZS items are sections of three implementation guides; CM-01 to CM-15 are the closure-map rows; ZTA-GUIDE is the Zero Trust Assessment tool guide.
+- **ID** is the instruction's own ID. G-01 to G-08 are the global conventions; B02-01 to B18-02 are additions to existing books; B20-01 to B20-12 are the chapters of Book 20, [Information Protection & Microsoft Purview](../books/b20-information-protection/index.md) (the plan numbers it nineteenth; the workbook's Book 19 already exists); GSA, XDR and AZS items are sections of three implementation guides; CM-01 to CM-15 are the closure-map rows; ZTA-GUIDE is the Zero Trust Assessment tool guide.
 - **Wave** is the plan's priority, 1 to 4: privileged identity, Conditional Access, application credentials, devices, auditing and assessment evidence first; then information protection; then Zero Trust network access; then Defender XDR and Azure security.
 - **Status** is the workbook's guidance: **Implemented** (the pages carry it), **Partial** (some of it, or defined but not yet applied everywhere), **Planned**, **Deferred** (with a reason), or **Not applicable** (with a reason). macOS hardening is not applicable because macOS and Linux are outside the workbook's scope.
 - **Where** links the pages that carry the item; **PR** is the pull request that added it.
@@ -37,7 +37,7 @@ The data is in [`data/zta-closure/coverage.yml`](https://github.com/WhalerMike/m
 |---|---|---|---|---|---|---|
 | Global conventions | 8 | 8 | 0 | 0 | 0 | 0 |
 | Updates to existing books | 35 | 34 | 0 | 0 | 0 | 1 |
-| B20: Information Protection & Microsoft Purview (planned book) | 12 | 12 | 0 | 0 | 0 | 0 |
+| B20: Information Protection & Microsoft Purview | 12 | 12 | 0 | 0 | 0 | 0 |
 | Implementation guides | 33 | 33 | 0 | 0 | 0 | 0 |
 | Closure map | 15 | 15 | 0 | 0 | 0 | 0 |
 
@@ -102,9 +102,9 @@ Defined once in [Book 00, Appendix D](../books/b00-orientation/appendix-d-contro
 
 : Updates to existing books {.striped .hover}
 
-## B20: Information Protection & Microsoft Purview (planned book)
+## B20: Information Protection & Microsoft Purview
 
-The planned twentieth book. The instructions number it nineteenth; it is numbered 20 because the workbook's Book 19 already exists.
+Book 20, [Information Protection & Microsoft Purview](../books/b20-information-protection/index.md). The instructions number it nineteenth; it is numbered 20 because the workbook's Book 19 already exists.
 
 | ID | Item | Wave | Book | Status | Where | PR | Note |
 |---|---|---|---|---|---|---|---|
@@ -121,11 +121,11 @@ The planned twentieth book. The instructions number it nineteenth; it is numbere
 | B20-11 | AI data security | 2 | B20 | Implemented | [11-ai-data-security.md](../books/b20-information-protection/11-ai-data-security.md) | [#568](https://github.com/WhalerMike/modernization-workbook/pull/568) | Draft chapter; registered in navigation, Books table and Word bundle by #569. |
 | B20-12 | Operations and evidence | 2 | B20 | Implemented | [12-operations-and-evidence.md](../books/b20-information-protection/12-operations-and-evidence.md) | [#568](https://github.com/WhalerMike/modernization-workbook/pull/568) | Draft chapter; registered in navigation, Books table and Word bundle by #569. |
 
-: B20: Information Protection & Microsoft Purview (planned book) {.striped .hover}
+: B20: Information Protection & Microsoft Purview {.striped .hover}
 
 ## Implementation guides
 
-Global Secure Access, Defender XDR and Azure security engineering are implementation guides, not books, by the workbook owner's decision of November 11, 2026, so they don't duplicate Books 09, 10 and 12. The Zero Trust Assessment tool guide is planned too.
+Global Secure Access, Defender XDR and Azure security engineering are implementation guides, not books, by the workbook owner's decision of November 11, 2026, so they don't duplicate Books 09, 10 and 12. The Zero Trust Assessment tool guide is the fourth (ZTA-GUIDE).
 
 | ID | Item | Wave | Book | Status | Where | PR | Note |
 |---|---|---|---|---|---|---|---|

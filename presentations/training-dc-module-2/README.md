@@ -6,12 +6,12 @@
 |---|---|
 | `Training_DC_Module_2.pptx` | The deck: the narrated slides in Why, What, Who and How order, then a backup section with the footnotes in full |
 | `Training_DC_Module_2_Narrated.pptx` | The self-running edition: narration audio and a caption track on every slide, backup section dropped (built by the export step) |
-| `Training_DC_Module_2_Narrated.vtt` | The video's caption track. Held out of git, with the MP4, until both are on a Release: adding it here lists the video on the Watch page (`scripts/generate_video_manifest.py`) |
+| `Training_DC_Module_2_Narrated.vtt` | The video's caption track; the Watch page and the module page read it from here, and `scripts/generate_video_manifest.py` lists the video because it is here |
 | `Training_DC_Module_2_Narration_Script.md` | The spoken narration, slide by slide |
 | `narration_Training_DC_Module_2/` | `durations.json`, `sentences.json` and the per-slide caption tracks (the MP3s go on the edition's Release, not in git) |
 | `build.js` | The slides, the spoken narration (`say`), the presenter detail (`detail`) and the footnotes each slide cites (`cite`) |
 
-The plain and narrated decks and the MP4 join the next edition's Release; until then, build them from this folder.
+The MP4 is on the videos Release. The plain and narrated decks join the next edition's Release; until then, build them from this folder.
 
 Build (Git Bash): `source /c/tmp/deckenv.sh`, then `DATECODE="YYYY-MM-DD HH:MM ET" node presentations/training-dc-module-2/build.js`, with the Eastern time taken from PowerShell. Then `narrate.py`, `captions.py` and `link_sources.py`, and on a workstation where PowerPoint is free, `qa_export.ps1`, `build_narrated.ps1` and `export_mp4.ps1`, as in the kit's README.
 
