@@ -31,15 +31,19 @@ Then you run the check
 against a fictional estate.
 
 7
-00:00:27.300 --> 00:00:30.266
-Nine accounts are in
-scope, with five findings,
+00:00:27.300 --> 00:00:31.913
+Nine accounts are in scope, with six
+findings and five planned writes:
 
 8
-00:00:30.266 --> 00:00:33.700
-four planned writes, and a
-hand-off that isn't ready yet.
+00:00:31.913 --> 00:00:35.150
+four for the pipeline to
+send and one for a person.
 
 9
-00:00:33.700 --> 00:00:34.800
+00:00:35.150 --> 00:00:37.125
+And the hand-off isn't ready yet.
+
+10
+00:00:37.125 --> 00:00:38.230
 Let's see why.

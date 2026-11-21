@@ -43,26 +43,40 @@ a credential that Windows, or
 Microsoft Entra I D, keeps instead.
 
 10
-00:00:28.876 --> 00:00:33.396
-Every fact and command in this
-deck comes from Microsoft Learn,
+00:00:28.876 --> 00:00:34.553
+Every fact and command in this deck comes
+from the guide, which footnotes each one:
 
 11
-00:00:33.396 --> 00:00:38.700
-read on November ninth and eleventh,
-2026, and the guide footnotes each one.
+00:00:34.553 --> 00:00:38.621
+Microsoft Learn, read on November
+ninth and eleventh, 2026,
 
 12
-00:00:38.700 --> 00:00:43.437
+00:00:38.621 --> 00:00:42.774
+and for the managed service
+account standard, NIST, FedRAMP,
+
+13
+00:00:42.774 --> 00:00:47.350
+CISA, SailPoint and Microsoft
+Learn, read on November twentieth.
+
+14
+00:00:47.350 --> 00:00:52.087
 Rules that are the program's own, not
 Microsoft's, are called design guidance.
 
-13
-00:00:43.437 --> 00:00:48.624
+15
+00:00:52.087 --> 00:00:56.886
 We'll go in four parts: why this matters,
 what the kinds of service identity are,
 
-14
-00:00:48.624 --> 00:00:52.630
-who decides and what they keep,
-and how each migration runs.
+16
+00:00:56.886 --> 00:01:01.227
+who decides and the standard every
+managed service account follows,
+
+17
+00:01:01.227 --> 00:01:03.580
+and how each step and migration runs.

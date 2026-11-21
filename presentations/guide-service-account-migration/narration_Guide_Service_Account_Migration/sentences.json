@@ -27,18 +27,18 @@
   ],
   [
    28.875,
-   9.825,
-   "Every fact and command in this deck comes from Microsoft Learn, read on November ninth and eleventh, 2026, and the guide footnotes each one."
+   18.475,
+   "Every fact and command in this deck comes from the guide, which footnotes each one: Microsoft Learn, read on November ninth and eleventh, 2026, and for the managed service account standard, nist, fed-ramp, sis-uh, SailPoint and Microsoft Learn, read on November twentieth."
   ],
   [
-   38.7,
+   47.35,
    4.737,
    "Rules that are the program's own, not Microsoft's, are called design guidance."
   ],
   [
-   43.438,
-   9.137,
-   "We'll go in four parts: why this matters, what the kinds of service identity are, who decides and what they keep, and how each migration runs."
+   52.087,
+   11.425,
+   "We'll go in four parts: why this matters, what the kinds of service identity are, who decides and the standard every managed service account follows, and how each step and migration runs."
   ]
  ],
  "2": [
@@ -277,41 +277,207 @@
   ],
   [
    19.288,
-   7.938,
-   "The old account runs in parallel for thirty days, then it's disabled, and it's deleted only later, through the decommission process."
+   9.312,
+   "The old account runs in parallel, and it's disabled no sooner than thirty days after the switch; it's deleted only later, through the decommission process."
   ],
   [
-   27.225,
+   28.6,
    11.012,
    "No client secrets: a cloud identity is a managed identity, a federated credential or a certificate, in that order, and Microsoft Learn says not to use password credentials."
   ],
   [
-   38.237,
+   39.612,
    7.338,
    "No privileged groups: Learn says service accounts shouldn't be members of them, and each service should have its own account."
   ],
   [
-   45.575,
+   46.95,
    5.362,
    "And changes are reviewed: in production, each write is a plan approved by its hash."
   ],
   [
-   50.938,
+   52.312,
    2.375,
    "One place where Learn's own pages differ."
   ],
   [
-   53.312,
+   54.688,
    10.012,
    "Learn's Entra page on group managed service accounts ends its move by deleting the old account, while its page on setting up delegated accounts says never to delete the original."
   ],
   [
-   63.325,
+   64.7,
    2.362,
    "The program follows the stricter reading."
   ]
  ],
  "7": [
+  [
+   0.05,
+   8.412,
+   "The guide now carries a standard that every managed service account follows, from request to retirement, with the same evidence each time."
+  ],
+  [
+   8.463,
+   7.8,
+   "It's the program's process, design guidance, and its rule fits in one line: machines run the steps; people decide."
+  ],
+  [
+   16.262,
+   12.4,
+   "Every step a script can run, it runs: the request's checks, the plan, the Active Directory writes, the re-read that closes the ticket, the monitoring, the certifications and the evidence."
+  ],
+  [
+   28.663,
+   7.65,
+   "People decide, approve in SailPoint, accept risk, and run the few steps that need Domain Admins or that delete something."
+  ],
+  [
+   36.312,
+   0.688,
+   "Why?"
+  ],
+  [
+   37.0,
+   10.95,
+   "nist special publication eight hundred fifty-three has enhancements written for it, automated account management, disabling accounts and automated audit, all in the Moderate baseline."
+  ],
+  [
+   47.95,
+   4.862,
+   "fed-ramp's indicators name automating account management and secret management."
+  ],
+  [
+   52.812,
+   6.425,
+   "sis-uh's Zero Trust Maturity Model makes automation and orchestration a cross-cutting capability."
+  ],
+  [
+   59.237,
+   7.925,
+   "And a script leaves a record a person can't: the approved plan's hash, the exact call, the re-read and a hashed evidence file."
+  ],
+  [
+   67.162,
+   13.688,
+   "The standard keeps automation's limits: approvals still come from people, separation of duties keeps the approver, the pipeline's owner and the person who deletes apart, and the pipeline's own identity gets the narrowest rights."
+  ],
+  [
+   80.85,
+   3.612,
+   "Automation supports a requirement; the assessor decides."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.95,
+   "Who does what."
+  ],
+  [
+   1.0,
+   11.525,
+   "An owner asks for, changes or retires an account in the agency's system access management tool, which hands the request to SailPoint and never approves or writes anything itself."
+  ],
+  [
+   12.525,
+   11.188,
+   "SailPoint approves every request, whatever its risk tier, aggregates the accounts from Active Directory and Entra I D, correlates their owners, and runs the certifications."
+  ],
+  [
+   23.712,
+   10.588,
+   "It never writes a G M S A. ServiceNow holds the change record, the typed findings and the decommission ticket, and closes a task only on a re-read."
+  ],
+  [
+   34.3,
+   8.912,
+   "The pipeline runs the approved plan: it creates the G M S A, sets its retriever group, and disables and moves a superseded account."
+  ],
+  [
+   43.212,
+   4.65,
+   "It never runs a D M S A step, an uninstall or a delete."
+  ],
+  [
+   47.862,
+   6.925,
+   "Those are a person's: a Domain Admin runs the D M S A steps, and a person uninstalls and deletes."
+  ],
+  [
+   54.788,
+   3.562,
+   "No person clicks through a portal to do what the pipeline does."
+  ],
+  [
+   58.35,
+   21.212,
+   "The pipeline's own identity, G M S A dash M S A pipe, is itself a G M S A, with only the rights its calls need: membership of the creator group, D L G M S A Creators, write of the retriever attribute on the accounts it creates, and disable and move into the holding organizational unit."
+  ],
+  [
+   79.562,
+   3.625,
+   "It has two owners, a sponsor and its own certification."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.975,
+   "The settings."
+  ],
+  [
+   1.025,
+   8.762,
+   "A G M S A is named G M S A dash and the system's short name, fifteen characters or fewer and unique in the forest."
+  ],
+  [
+   9.787,
+   3.688,
+   "It lives in a dedicated service-account organizational unit."
+  ],
+  [
+   13.475,
+   14.238,
+   "Learn's Entra page says G M S As belong in the Managed Service Accounts container, but the cmdlet takes any O U, and the program's own O U keeps the create right, Group Policy and SailPoint's scope on service accounts alone."
+  ],
+  [
+   27.712,
+   4.8,
+   "Only the creator group may create one, and the pipeline is its only member."
+  ],
+  [
+   32.513,
+   4.237,
+   "One domain local group of the workload's hosts retrieves its password."
+  ],
+  [
+   36.75,
+   7.225,
+   "A E S two-fifty-six only; thirty days, stated at creation; outbound-only with no S P N."
+  ],
+  [
+   43.975,
+   7.513,
+   "Two owners and a federal-employee sponsor, no privileged group, and a SailPoint certification on the risk tier's cadence."
+  ],
+  [
+   51.487,
+   9.45,
+   "A disabled account waits ninety days, with no sign-in seen, before it's deleted; Defender for Identity's stale-account assessment uses ninety days too."
+  ],
+  [
+   60.938,
+   16.0,
+   "Setup happens once: the K D S root key, the two O Us, then a Domain Admin creates the creator group and delegates the create right with D S A C L S. Learn gives no delegation command, so run it in the test domain first and confirm it."
+  ],
+  [
+   76.938,
+   7.812,
+   "Then the pipeline's own G M S A, SailPoint's Active Directory source scoped to the O U, and Defender for Identity."
+  ]
+ ],
+ "10": [
   [
    0.05,
    7.3,
@@ -358,7 +524,74 @@
    "K S I's are fed-ramp twenty X indicators for cloud service providers; which evidence supports which indicator is the program's mapping, design guidance."
   ]
  ],
- "8": [
+ "11": [
+  [
+   0.05,
+   6.0,
+   "Now the standard step by step, each with who runs it, the control it supports and its indicators."
+  ],
+  [
+   6.05,
+   7.525,
+   "S1: the owner asks, and the developer workbook's Chapter 12 checks every field before SailPoint's approvers see it."
+  ],
+  [
+   13.575,
+   3.138,
+   "S2: the decision path gives the target."
+  ],
+  [
+   16.712,
+   4.888,
+   "S3: SailPoint approves, and ServiceNow opens the change record."
+  ],
+  [
+   21.6,
+   8.7,
+   "S4: the pipeline runs the approved plan and creates the G M S A to the standard; that supports automated account management."
+  ],
+  [
+   30.3,
+   6.037,
+   "S5: each host installs and tests it, and Group Policy limits log on as a service."
+  ],
+  [
+   36.337,
+   5.162,
+   "S6: SailPoint aggregates it, and the ticket closes only on a re-read."
+  ],
+  [
+   41.5,
+   7.263,
+   "S7: scheduled runs watch it with Defender for Identity; a G M S A nobody asked for is drift."
+  ],
+  [
+   48.763,
+   2.538,
+   "S8: the two owners certify it."
+  ],
+  [
+   51.3,
+   7.112,
+   "S9: an owner's departure starts a transfer; an orphan is disabled, then has thirty days to be claimed."
+  ],
+  [
+   58.413,
+   11.537,
+   "S10: after the parallel run the pipeline disables the old account and moves it to the holding O U; after ninety days with no sign-in, a person uninstalls and deletes it."
+  ],
+  [
+   69.95,
+   3.625,
+   "S11: when the workload moves, Migration C."
+  ],
+  [
+   73.575,
+   9.2,
+   "Two things aren't verified yet: ServiceNow's Active Directory spoke, so ServiceNow records and the plan writes, and SailPoint's export field names."
+  ]
+ ],
+ "12": [
   [
    0.05,
    11.625,
@@ -396,26 +629,31 @@
   ],
   [
    62.413,
-   5.45,
-   "Its name must be unique in the forest, and its password interval can be set only now."
+   9.588,
+   "Its name must be unique in the forest, and its password interval can be set only now; the standard sets the name, the O U and the one retriever group."
   ],
   [
-   67.862,
-   11.662,
-   "For a workload that holds no S P N, the program's default is Learn's outbound-only variant, which restricts the G M S A to outbound authentication; record that choice."
+   72.0,
+   7.75,
+   "For a workload that holds no S P N, the program's default is Learn's outbound-only variant; record that choice."
   ],
   [
-   79.525,
-   14.287,
-   "And the program creates G M S As under a delegated right to create them on the service-account organizational unit, which Learn allows, not as a Domain Admin. A4: after a restart, install it on each host and test it."
+   79.75,
+   11.188,
+   "And the program creates G M S As under a delegated create right, which Learn allows, not as a Domain Admin: the creator group holds it, and the pipeline is its only member."
   ],
   [
-   93.812,
+   90.938,
+   4.463,
+   "A4: after a restart, install it on each host and test it."
+  ],
+  [
+   95.4,
    4.737,
    "Test-A D Service Account must return true on every host before you switch."
   ]
  ],
- "9": [
+ "13": [
   [
    0.05,
    9.613,
@@ -463,16 +701,21 @@
   ],
   [
    58.1,
-   5.688,
-   "A7 disables the old account; deletion comes later, through the decommission process."
+   8.9,
+   "A7 disables the old account and moves it to the holding organizational unit; Chapter 6 plans both as one step, and the pipeline runs it."
   ],
   [
-   63.788,
+   67.0,
+   6.5,
+   "Deletion comes only after ninety days disabled with no sign-in seen, through the decommission process."
+  ],
+  [
+   73.5,
    6.388,
    "To roll back, switch the workload back with the old password from the vault, and move the S P Ns back."
   ]
  ],
- "10": [
+ "14": [
   [
    0.05,
    7.275,
@@ -500,31 +743,41 @@
   ],
   [
    44.55,
+   5.6,
+   "Learn's minimum to create one is Domain Admins, Enterprise Admins or equivalent rights."
+  ],
+  [
+   50.15,
+   16.1,
+   "After the attack called BadSuccessor, where anyone who could create a D M S A could take over another account, the program is stricter: Domain Admins only, and the August 2025 update on every Windows Server 2025 domain controller."
+  ],
+  [
+   66.25,
    12.15,
    "B1 creates the D M S A. Learn's set-up page then sets a state attribute with a parameter the cmdlet doesn't have; for a migration, skip it, because starting the migration sets the state."
   ],
   [
-   56.7,
+   78.4,
    6.575,
    "B2 starts the migration, and on each host sets Learn's registry value and restarts the one service."
   ],
   [
-   63.275,
+   84.975,
    6.425,
    "B3: Learn says to wait at least two ticket lifetimes, fourteen days, and recommends four."
   ],
   [
-   69.7,
+   91.4,
    2.625,
    "The program's thirty days covers four."
   ],
   [
-   72.325,
+   94.025,
    3.15,
    "Then complete it, and never delete the original account."
   ]
  ],
- "11": [
+ "15": [
   [
    0.05,
    8.7,
@@ -569,9 +822,19 @@
    70.15,
    5.312,
    "C5: after thirty days carrying traffic, retire what the cloud path replaced."
+  ],
+  [
+   75.463,
+   11.188,
+   "Disable it, or, for a G M S A the workload no longer needs, record its retirement, and a person uninstalls it from its hosts before the decommission process deletes it."
+  ],
+  [
+   86.65,
+   2.712,
+   "The code never uninstalls or deletes."
   ]
  ],
- "12": [
+ "16": [
   [
    0.05,
    6.088,
@@ -638,7 +901,7 @@
    "High Volume Email is listed for Worldwide only."
   ]
  ],
- "13": [
+ "17": [
   [
    0.05,
    3.087,
@@ -695,7 +958,7 @@
    "And a G M S A left behind when Active Directory retires loses its credential with the last domain controller."
   ]
  ],
- "14": [
+ "18": [
   [
    0.05,
    6.625,
@@ -703,56 +966,61 @@
   ],
   [
    6.675,
+   5.463,
+   "Chapter 12 runs the standard's checks, from the request to the ninety-day delete list."
+  ],
+  [
+   12.137,
    3.0,
    "Chapter 3 records each account's disposition."
   ],
   [
-   9.675,
-   10.162,
-   "Chapter 6 does Migration A as a plan: create the G M S A, wait for the host change and the thirty days, then disable the superseded account."
+   15.137,
+   14.2,
+   "Chapter 6 does Migration A as a plan: create the G M S A, wait for the host change and the thirty days, then disable the superseded account and move it to the holding organizational unit, and the pipeline runs it."
   ],
   [
-   19.837,
-   8.713,
-   "It does Migration B as three planned actions, create, start and complete, with every limit Microsoft Learn sets checked first."
+   29.337,
+   10.387,
+   "It does Migration B as three planned actions, create, start and complete, with every limit Microsoft Learn sets checked first, and a Domain Admin runs them."
   ],
   [
-   28.55,
+   39.725,
    8.863,
    "Chapter 5 does Migration C, the identity and its credential, and tests a real token exchange, and Chapter 7 cuts its permissions."
   ],
   [
-   37.413,
+   48.587,
    5.662,
    "Chapter 6 also keeps the island list and the reconciliation for what stays on Kerberos."
   ],
   [
-   43.075,
+   54.25,
    2.575,
    "What the code never does matters as much."
   ],
   [
-   45.65,
+   56.825,
    5.362,
    "It never runs a plan nobody approved, because each plan is sent only by its hash."
   ],
   [
-   51.013,
-   7.25,
-   "And it never creates a K D S root key, never runs undo or reset, and never deletes an account."
+   62.188,
+   8.262,
+   "And it never creates a K D S root key, never runs undo or reset, and never uninstalls or deletes an account."
   ],
   [
-   58.263,
-   9.6,
-   "To try it, take Module 12 of the Non-Person Identity learning path, which runs Learn's steps on stand-ins and the kit's plans on fixtures, with no tenant."
+   70.45,
+   9.7,
+   "To try it, take Modules 12 and 13 of the Non-Person Identity learning path: the migration, and the standard, on the kit's fixtures, with no tenant."
   ],
   [
-   67.862,
+   80.15,
    5.4,
    "Then Chapter 6's second lab, in a test domain, and the guide's checklist."
   ],
   [
-   73.263,
+   85.55,
    0.762,
    "Thank you."
   ]

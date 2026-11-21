@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.375
+So what does the code add?
+
+2
+00:00:01.375 --> 00:00:05.275
+One script and one module,
+running one read-only task.
+
+3
+00:00:05.275 --> 00:00:10.700
+It makes exactly one Active Directory
+call, Get A D Service Account, and that
+
+4
+00:00:10.700 --> 00:00:16.037
+call is declared in a config file, as are
+the controls and K S I's for each step.
+
+5
+00:00:16.037 --> 00:00:20.931
+Every run writes a folder: the findings,
+the generated inputs for Chapter 6,
+
+6
+00:00:20.931 --> 00:00:25.343
+the certification, Defender for
+Identity and retirement results,
+
+7
+00:00:25.343 --> 00:00:30.638
+the ServiceNow findings, the evidence rows,
+and a manifest with each input's hash.
+
+8
+00:00:30.638 --> 00:00:34.220
+The same inputs and date
+give byte-identical files.

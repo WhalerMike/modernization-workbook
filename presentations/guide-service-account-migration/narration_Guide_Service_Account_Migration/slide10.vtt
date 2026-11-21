@@ -2,96 +2,88 @@ WEBVTT
 
 1
 00:00:00.050 --> 00:00:03.228
-Migration B moves the
-same kind of account to a
+Every step carries its
+federal requirement,
 
 2
-00:00:03.228 --> 00:00:07.325
-delegated managed service
-account, on Windows Server 2025.
+00:00:03.228 --> 00:00:07.350
+the indicator it aligns to, and
+the evidence the I S S O keeps.
 
 3
-00:00:07.325 --> 00:00:12.362
-A D M S A supersedes the old account:
-once the migration completes,
+00:00:07.350 --> 00:00:11.010
+The inventory supports A
+C two, account management,
 
 4
-00:00:12.362 --> 00:00:17.874
-the old password can't be used, its
-S P Ns, delegation and authentication
+00:00:11.010 --> 00:00:13.712
+and C M eight, the component inventory.
 
 5
-00:00:17.874 --> 00:00:22.150
-policy move to the D M S A, and
-the old account is disabled.
+00:00:13.712 --> 00:00:18.227
+The K D S root key supports I A
+five, authenticator management,
 
 6
-00:00:22.150 --> 00:00:24.600
-Check Microsoft Learn's limits first.
+00:00:18.227 --> 00:00:22.651
+with event forty-oh-four and the
+key's start time as evidence.
 
 7
-00:00:24.600 --> 00:00:28.209
-At least one Windows Server
-2025 domain controller,
+00:00:22.651 --> 00:00:28.123
+Creating the account supports A C six,
+least privilege, I A five, and C M three,
 
 8
-00:00:28.209 --> 00:00:32.741
-and every machine that uses the
-account updated to support D M S As;
+00:00:28.123 --> 00:00:34.225
+configuration change control: the evidence
+is the approved plan and the read-back.
 
 9
-00:00:32.741 --> 00:00:36.350
-one that isn't fails once
-the old account is disabled.
+00:00:34.225 --> 00:00:39.164
+Installing and switching supports least
+privilege and privileged accounts:
 
 10
-00:00:36.350 --> 00:00:40.161
-You can't migrate an M S A
-or a G M S A to a D M S A,
+00:00:39.164 --> 00:00:42.431
+Test-A D Service Account on
+each host, the S P N listing,
 
 11
-00:00:40.161 --> 00:00:44.550
-and unconstrained
-delegation stops working.
+00:00:42.431 --> 00:00:44.938
+and the service's managed-account check.
 
 12
-00:00:44.550 --> 00:00:45.891
-B1 creates the D M S A.
+00:00:44.938 --> 00:00:47.826
+The parallel run supports
+disabling accounts.
 
 13
-00:00:45.891 --> 00:00:51.505
-Learn's set-up page then sets a state
-attribute with a parameter the cmdlet doesn't
+00:00:47.826 --> 00:00:53.419
+The cloud identities support I A nine,
+service identification and authentication,
 
 14
-00:00:51.505 --> 00:00:56.700
-have; for a migration, skip it, because
-starting the migration sets the state.
+00:00:53.419 --> 00:00:56.337
+which sits in no baseline
+and is tailored in.
 
 15
-00:00:56.700 --> 00:00:59.741
-B2 starts the migration,
-and on each host sets
+00:00:56.337 --> 00:00:59.834
+The controls are from the NIST
+special publication eight
 
 16
-00:00:59.741 --> 00:01:03.275
-Learn's registry value and
-restarts the one service.
+00:00:59.834 --> 00:01:03.112
+hundred fifty-three, revision
+five, Moderate baseline.
 
 17
-00:01:03.275 --> 00:01:07.076
-B3: Learn says to wait at
-least two ticket lifetimes,
+00:01:03.112 --> 00:01:07.270
+K S I's are fed-ramp twenty X
+indicators for cloud service providers;
 
 18
-00:01:07.076 --> 00:01:09.700
-fourteen days, and recommends four.
-
-19
-00:01:09.700 --> 00:01:12.325
-The program's thirty days covers four.
-
-20
-00:01:12.325 --> 00:01:15.530
-Then complete it, and never
-delete the original account.
+00:01:07.270 --> 00:01:12.550
+which evidence supports which indicator is
+the program's mapping, design guidance.

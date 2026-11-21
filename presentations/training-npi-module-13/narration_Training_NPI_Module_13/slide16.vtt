@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.875
+To sum up.
+
+2
+00:00:00.875 --> 00:00:04.612
+The standard makes every managed
+service account the same:
+
+3
+00:00:04.612 --> 00:00:09.570
+asked for in the agency's system access
+management tool, approved in SailPoint,
+
+4
+00:00:09.570 --> 00:00:14.528
+recorded in ServiceNow, created by the
+pipeline, restricted with Group Policy,
+
+5
+00:00:14.528 --> 00:00:18.951
+watched with Defender for Identity,
+certified by its two owners on its
+
+6
+00:00:18.951 --> 00:00:23.375
+risk tier's cadence, and retired after
+ninety days disabled, by a person.
+
+7
+00:00:23.375 --> 00:00:28.112
+Chapter 12 checks each of those steps
+on every run and writes the evidence.
+
+8
+00:00:28.112 --> 00:00:33.204
+In this module you ran its checks, found
+the drift on G M S A dash ops, read the
+
+9
+00:00:33.204 --> 00:00:38.888
+inputs it hands to Chapter 6, and read the
+certifications and the retirement list.
+
+10
+00:00:38.888 --> 00:00:42.538
+Chapter 12 goes on with its
+evidence file and its tests.
+
+11
+00:00:42.538 --> 00:00:45.430
+Next, go back to the
+learning path's index.

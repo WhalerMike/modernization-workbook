@@ -60,34 +60,55 @@ Or retire, through the plan's
 reviewed decommission process.
 
 13
-00:00:51.887 --> 00:00:57.076
-The program adds five rules of its own,
+00:00:51.887 --> 00:00:56.750
+The program adds rules of its own,
 its design guidance, not Microsoft's.
 
 14
-00:00:57.076 --> 00:00:59.500
+00:00:56.750 --> 00:00:59.175
 The disposition is Chapter 3's.
 
 15
-00:00:59.500 --> 00:01:02.580
-Who may retrieve a managed
-password is reviewed data,
+00:00:59.175 --> 00:01:03.840
+Who may retrieve a managed password
+is reviewed data: for a G M S A,
 
 16
-00:01:02.580 --> 00:01:05.100
-not whatever Active Directory holds today.
+00:01:03.840 --> 00:01:08.325
+one domain local group of its
+hosts, never a computer account.
 
 17
-00:01:05.100 --> 00:01:09.613
+00:01:08.325 --> 00:01:11.700
+Every new account follows the
+managed service account standard.
+
+18
+00:01:11.700 --> 00:01:15.888
+Every write carries its SailPoint
+request and ServiceNow change.
+
+19
+00:01:15.888 --> 00:01:22.300
+The pipeline's own G M S A sends what it
+can, and a person sends the D M S A steps.
+
+20
+00:01:22.300 --> 00:01:26.813
 A D M S A migration runs thirty
 days before it completes.
 
-18
-00:01:09.613 --> 00:01:12.687
+21
+00:01:26.813 --> 00:01:29.887
 Every account that stays
 ends within its bound.
 
-19
-00:01:12.687 --> 00:01:16.076
-And never delete: the old
-account is disabled at most.
+22
+00:01:29.887 --> 00:01:34.136
+And never delete: the old account is
+disabled and moved to a holding O U,
+
+23
+00:01:34.136 --> 00:01:37.700
+and a person deletes it through
+the decommission ticket.

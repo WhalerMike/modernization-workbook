@@ -1,109 +1,103 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:06.626
-Migration A moves a user account to a
-G M S A, in Microsoft Learn's order:
+00:00:00.050 --> 00:00:01.000
+Who does what.
 
 2
-00:00:06.626 --> 00:00:11.675
-K D S root key, create, install,
-switch, validate, retire.
+00:00:01.000 --> 00:00:05.973
+An owner asks for, changes or retires an
+account in the agency's system access
 
 3
-00:00:11.675 --> 00:00:17.046
-A1: read the account with Get-A D User,
-its S P Ns, delegation and groups,
+00:00:05.973 --> 00:00:09.525
+management tool, which hands
+the request to SailPoint
 
 4
-00:00:17.046 --> 00:00:22.613
-and on each host read the service's
-logon account with S C query config.
+00:00:09.525 --> 00:00:12.525
+and never approves or
+writes anything itself.
 
 5
-00:00:22.613 --> 00:00:26.388
-A2: the forest needs one K D S root key.
+00:00:12.525 --> 00:00:16.280
+SailPoint approves every
+request, whatever its risk tier,
 
 6
-00:00:26.388 --> 00:00:30.995
-If there's none, a Domain Admin or
-Enterprise Admin creates it once,
+00:00:16.280 --> 00:00:20.192
+aggregates the accounts from
+Active Directory and Entra I D,
 
 7
-00:00:30.995 --> 00:00:35.091
-and Learn's K D S page says
-domain controllers wait up to ten
+00:00:20.192 --> 00:00:23.713
+correlates their owners,
+and runs the certifications.
 
 8
-00:00:35.091 --> 00:00:39.187
-hours before they allow a G M S
-A, so the key replicates first.
+00:00:23.713 --> 00:00:25.369
+It never writes a G M S A.
 
 9
-00:00:39.187 --> 00:00:42.752
-Learn offers a key backdated
-ten hours for a test domain
+00:00:25.369 --> 00:00:29.881
+ServiceNow holds the change
+record, the typed findings and
 
 10
-00:00:42.752 --> 00:00:46.238
-with one domain controller;
-never use it in production.
+00:00:29.881 --> 00:00:34.300
+the decommission ticket, and
+closes a task only on a re-read.
 
 11
-00:00:46.238 --> 00:00:49.568
-And Learn's containers
-page says more than one
+00:00:34.300 --> 00:00:38.242
+The pipeline runs the approved
+plan: it creates the G M S A,
 
 12
-00:00:49.568 --> 00:00:52.987
-key makes G M S As fail
-after a password rotation.
+00:00:38.242 --> 00:00:43.212
+sets its retriever group, and disables
+and moves a superseded account.
 
 13
-00:00:52.987 --> 00:00:58.358
-A3: create a group of the hosts, then
-the G M S A with A E S two-fifty-six,
+00:00:43.212 --> 00:00:47.862
+It never runs a D M S A step,
+an uninstall or a delete.
 
 14
-00:00:58.358 --> 00:01:02.412
-which Learn's overview
-says to always configure.
+00:00:47.862 --> 00:00:51.980
+Those are a person's: a Domain
+Admin runs the D M S A steps,
 
 15
-00:01:02.412 --> 00:01:04.853
-Its name must be unique in the forest,
+00:00:51.980 --> 00:00:54.787
+and a person uninstalls and deletes.
 
 16
-00:01:04.853 --> 00:01:07.863
-and its password interval
-can be set only now.
+00:00:54.787 --> 00:00:58.350
+No person clicks through a portal
+to do what the pipeline does.
 
 17
-00:01:07.863 --> 00:01:13.516
-For a workload that holds no S P N, the
-program's default is Learn's outbound-only
+00:00:58.350 --> 00:01:03.267
+The pipeline's own identity, G M S A
+dash M S A pipe, is itself a G M S A,
 
 18
-00:01:13.516 --> 00:01:19.524
-variant, which restricts the G M S A to
-outbound authentication; record that choice.
+00:01:03.267 --> 00:01:08.667
+with only the rights its calls need:
+membership of the creator group,
 
 19
-00:01:19.524 --> 00:01:24.736
-And the program creates G M S As under
-a delegated right to create them on the
+00:01:08.667 --> 00:01:14.838
+D L G M S A Creators, write of the retriever
+attribute on the accounts it creates,
 
 20
-00:01:24.736 --> 00:01:30.198
-service-account organizational unit,
-which Learn allows, not as a Domain Admin.
+00:01:14.838 --> 00:01:19.562
+and disable and move into the
+holding organizational unit.
 
 21
-00:01:30.198 --> 00:01:33.812
-A4: after a restart, install
-it on each host and test it.
-
-22
-00:01:33.812 --> 00:01:38.620
-Test-A D Service Account must return
-true on every host before you switch.
+00:01:19.562 --> 00:01:23.260
+It has two owners, a sponsor
+and its own certification.

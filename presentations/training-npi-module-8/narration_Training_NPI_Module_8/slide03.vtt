@@ -35,30 +35,30 @@ You'll read the plan, the island list and
 the reconciliation for a fictional domain.
 
 8
-00:00:22.863 --> 00:00:25.419
-And you'll show that the
-write path runs only a
+00:00:22.863 --> 00:00:27.775
+And you'll show that the write path runs
+only a plan whose hash was approved, sends
 
 9
-00:00:25.419 --> 00:00:28.113
-plan whose hash was
-approved, and never deletes.
+00:00:27.775 --> 00:00:32.463
+each write only as the pipeline or the
+person it belongs to, and never deletes.
 
 10
-00:00:28.113 --> 00:00:34.660
+00:00:32.463 --> 00:00:39.009
 Before you start, finish Module 1, because
 the lab reads Chapter 1's register, and
 
 11
-00:00:34.660 --> 00:00:40.703
+00:00:39.009 --> 00:00:45.052
 Module 3, where the matrix sends Kerberos-only
 accounts to a G M S A or a D M S A.
 
 12
-00:00:40.703 --> 00:00:45.538
+00:00:45.052 --> 00:00:49.887
 Lab 1 needs PowerShell 7.1 or
 later with Pester 5, and a clone.
 
 13
-00:00:45.538 --> 00:00:46.510
+00:00:49.887 --> 00:00:50.880
 No tenant.

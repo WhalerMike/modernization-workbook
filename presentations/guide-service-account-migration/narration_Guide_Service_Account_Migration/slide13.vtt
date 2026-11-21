@@ -1,105 +1,107 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.137
-The guide lists the dangers
-and the guard for each.
+00:00:00.050 --> 00:00:04.986
+A5 happens in one change window,
+because an S P N left on the old account
 
 2
-00:00:03.137 --> 00:00:08.529
-Create a G M S A before the K D S root
-key replicates, and password retrieval
+00:00:04.986 --> 00:00:09.663
+while the service runs as the G M
+S A breaks Kerberos to the service.
 
 3
-00:00:08.529 --> 00:00:13.650
-fails on hosts that ask another domain
-controller: wait the ten hours.
+00:00:09.663 --> 00:00:12.649
+Each S P N must have exactly one owner.
 
 4
-00:00:13.650 --> 00:00:17.122
-Create a second root key,
-and G M S As fail after
+00:00:12.649 --> 00:00:18.800
+Remove it from the old account, add it to
+the G M S A, and list it with set S P N.
 
 5
-00:00:17.122 --> 00:00:20.875
-their next password
-rotation: one key per forest.
+00:00:18.800 --> 00:00:20.788
+Then change the workload's identity.
 
 6
-00:00:20.875 --> 00:00:25.449
-Leave an S P N on the old account,
-and Kerberos to the service
+00:00:20.788 --> 00:00:23.646
+A G M S A logs on with a blank password,
 
 7
-00:00:25.449 --> 00:00:30.213
-fails or falls back to N T L M: move
-the S P Ns in the switch window.
+00:00:23.646 --> 00:00:27.588
+which Windows fills in, as
+Learn's Entra page says.
 
 8
-00:00:30.213 --> 00:00:33.239
-Switch a host that can't
-retrieve the password,
+00:00:27.588 --> 00:00:30.764
+For a Windows service, S
+C config sets the account,
 
 9
-00:00:33.239 --> 00:00:36.425
-and the service won't start:
-test every host first.
+00:00:30.764 --> 00:00:33.862
+and the managed-account
+query must report true.
 
 10
-00:00:36.425 --> 00:00:38.700
-Put a G M S A in a privileged group,
+00:00:33.862 --> 00:00:37.978
+A scheduled task gets a new principal
+with the password logon type,
 
 11
-00:00:38.700 --> 00:00:43.425
-and every host that retrieves its
-password holds that privilege.
+00:00:37.978 --> 00:00:41.420
+as Learn's assessment pages do
+it, and an I I S application
 
 12
-00:00:43.425 --> 00:00:48.990
-Complete a D M S A migration too early, or
-with a host not on Windows Server 2025,
+00:00:41.420 --> 00:00:44.787
+pool gets identity type three
+with the blank password.
 
 13
-00:00:48.990 --> 00:00:52.700
-and the service fails on
-the hosts it hasn't learned.
+00:00:44.787 --> 00:00:47.740
+The guide notes that
+Learn has no single page
 
 14
-00:00:52.700 --> 00:00:56.550
-Delete the old account during the
-migration, and there's no way back.
+00:00:47.740 --> 00:00:50.613
+showing that last one
+end to end, so verify it.
 
 15
-00:00:56.550 --> 00:00:59.381
-Put a client secret on
-the new app registration,
+00:00:50.613 --> 00:00:54.088
+A6 is the thirty-day parallel
+run: test end to end,
 
 16
-00:00:59.381 --> 00:01:02.575
-and you have a password in
-a configuration file again.
+00:00:54.088 --> 00:00:58.099
+keep the old account enabled,
+and watch its logons stop.
 
 17
-00:01:02.575 --> 00:01:05.991
-Run a G M S A container on a
-host that isn't domain-joined,
+00:00:58.099 --> 00:01:03.244
+A7 disables the old account and moves
+it to the holding organizational unit;
 
 18
-00:01:05.991 --> 00:01:10.804
-and Learn's pattern for it keeps a stored
-domain password again; the program
+00:01:03.244 --> 00:01:07.000
+Chapter 6 plans both as one
+step, and the pipeline runs it.
 
 19
-00:01:10.804 --> 00:01:15.850
-allows domain-joined hosts only, and
-anything else needs a reviewed exception.
+00:01:07.000 --> 00:01:11.282
+Deletion comes only after ninety
+days disabled with no sign-in seen,
 
 20
-00:01:15.850 --> 00:01:19.613
-And a G M S A left behind
-when Active Directory retires
+00:01:11.282 --> 00:01:13.500
+through the decommission process.
 
 21
-00:01:19.613 --> 00:01:23.520
-loses its credential with
-the last domain controller.
+00:01:13.500 --> 00:01:16.815
+To roll back, switch the
+workload back with the old
+
+22
+00:01:16.815 --> 00:01:19.940
+password from the vault,
+and move the S P Ns back.

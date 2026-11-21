@@ -1,105 +1,113 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.322
-One more move the guide covers,
+00:00:00.050 --> 00:00:06.626
+Migration A moves a user account to a
+G M S A, in Microsoft Learn's order:
 
 2
-00:00:02.322 --> 00:00:06.138
-because mail breaks when an
-account becomes a G M S A.
+00:00:06.626 --> 00:00:11.675
+K D S root key, create, install,
+switch, validate, retire.
 
 3
-00:00:06.138 --> 00:00:12.276
-A G M S A has no mailbox and no
-password an S M T P client could type.
+00:00:11.675 --> 00:00:17.046
+A1: read the account with Get-A D User,
+its S P Ns, delegation and groups,
 
 4
-00:00:12.276 --> 00:00:17.658
-And Microsoft Learn says basic-authentication
-S M T P submission to Exchange Online
+00:00:17.046 --> 00:00:22.613
+and on each host read the service's
+logon account with S C query config.
 
 5
-00:00:17.658 --> 00:00:22.888
-is scheduled for deprecation, so a stored
-mailbox password isn't the answer either.
+00:00:22.613 --> 00:00:26.388
+A2: the forest needs one K D S root key.
 
 6
-00:00:22.888 --> 00:00:24.762
-Choose by where the mail server is.
+00:00:26.388 --> 00:00:30.995
+If there's none, a Domain Admin or
+Enterprise Admin creates it once,
 
 7
-00:00:24.762 --> 00:00:30.602
-On-premises Exchange: a dedicated receive
-connector that offers integrated Windows
+00:00:30.995 --> 00:00:35.091
+and Learn's K D S page says
+domain controllers wait up to ten
 
 8
-00:00:30.602 --> 00:00:35.537
-authentication, Kerberos, and Send As
-on a shared mailbox, never a person's.
+00:00:35.091 --> 00:00:39.187
+hours before they allow a G M S
+A, so the key replicates first.
 
 9
-00:00:35.537 --> 00:00:36.538
-That's M1.
+00:00:39.187 --> 00:00:42.752
+Learn offers a key backdated
+ten hours for a test domain
 
 10
-00:00:36.538 --> 00:00:39.904
-A client that can't authenticate
-gets an anonymous relay
+00:00:42.752 --> 00:00:46.238
+with one domain controller;
+never use it in production.
 
 11
-00:00:39.904 --> 00:00:43.413
-limited to the workload's hosts'
-addresses, the weakest path.
+00:00:46.238 --> 00:00:49.568
+And Learn's containers
+page says more than one
 
 12
-00:00:43.413 --> 00:00:44.451
-That's M2.
+00:00:49.568 --> 00:00:52.987
+key makes G M S As fail
+after a password rotation.
 
 13
-00:00:44.451 --> 00:00:50.335
-Exchange Online: the workload sends through
-Microsoft Graph send mail as a workload
+00:00:52.987 --> 00:00:58.358
+A3: create a group of the hosts, then
+the G M S A with A E S two-fifty-six,
 
 14
-00:00:50.335 --> 00:00:55.212
-identity, the app with a certificate
-from C3, or the Arc identity from C2,
+00:00:58.358 --> 00:01:02.412
+which Learn's overview
+says to always configure.
 
 15
-00:00:55.212 --> 00:00:59.163
-scoped to one shared mailbox
-with R B A C for Applications.
+00:01:02.412 --> 00:01:07.330
+Its name must be unique in the forest,
+and its password interval can be set
 
 16
-00:00:59.163 --> 00:01:01.729
-Don't consent Mail dot Send in Entra I D:
+00:01:07.330 --> 00:01:12.001
+only now; the standard sets the name,
+the O U and the one retriever group.
 
 17
-00:01:01.729 --> 00:01:06.613
-Learn says the two grants are a union,
-so an Entra grant removes the scope.
+00:01:12.001 --> 00:01:14.316
+For a workload that holds no S P N,
 
 18
-00:01:06.613 --> 00:01:08.587
-Test the scope both ways.
+00:01:14.316 --> 00:01:19.750
+the program's default is Learn's
+outbound-only variant; record that choice.
 
 19
-00:01:08.587 --> 00:01:12.048
-In GCC, send mail runs on
-the worldwide Graph host,
+00:01:19.750 --> 00:01:25.303
+And the program creates G M S As under a
+delegated create right, which Learn allows,
 
 20
-00:01:12.048 --> 00:01:17.412
-but Learn doesn't yet specify R B A C
-for Applications for government clouds,
+00:01:25.303 --> 00:01:28.535
+not as a Domain Admin: the
+creator group holds it,
 
 21
-00:01:17.412 --> 00:01:20.526
-so test it in the tenant
-before relying on it.
+00:01:28.535 --> 00:01:30.938
+and the pipeline is its only member.
 
 22
-00:01:20.526 --> 00:01:23.810
-High Volume Email is
-listed for Worldwide only.
+00:01:30.938 --> 00:01:35.401
+A4: after a restart, install
+it on each host and test it.
+
+23
+00:01:35.401 --> 00:01:40.200
+Test-A D Service Account must return
+true on every host before you switch.

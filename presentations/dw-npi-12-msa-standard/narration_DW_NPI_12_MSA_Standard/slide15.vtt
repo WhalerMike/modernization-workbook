@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.475
+Step 4 reads the certifications.
+
+2
+00:00:02.475 --> 00:00:04.900
+The account gmsa print is overdue:
+
+3
+00:00:04.900 --> 00:00:09.578
+it's in the lowest risk tier and
+was last certified in October 2025,
+
+4
+00:00:09.578 --> 00:00:14.775
+and its owner revoked it, so it becomes
+a ServiceNow stale access finding.
+
+5
+00:00:14.775 --> 00:00:17.025
+Step 5 is the retirement list.
+
+6
+00:00:17.025 --> 00:00:19.128
+Only gmsa legacy may be deleted,
+
+7
+00:00:19.128 --> 00:00:22.687
+and only by a person through
+the decommission ticket.
+
+8
+00:00:22.687 --> 00:00:25.419
+Another account signed in
+after it was disabled,
+
+9
+00:00:25.419 --> 00:00:28.151
+and a third is still
+enabled in Active Directory.
+
+10
+00:00:28.151 --> 00:00:32.739
+Step 6 reads the evidence:
+one row per step and control,
+
+11
+00:00:32.739 --> 00:00:35.450
+with its K S I's and the file's hash.
+
+12
+00:00:35.450 --> 00:00:38.900
+Step 7 runs the tests: twenty-seven pass.

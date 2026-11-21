@@ -9,45 +9,64 @@ Who's involved?
 Developers build the code.
 
 3
-00:00:02.838 --> 00:00:07.312
-Server and directory engineers run
-the write path and change the hosts.
+00:00:02.838 --> 00:00:07.310
+Server and directory engineers own
+the pipeline that runs the write path,
 
 4
-00:00:07.312 --> 00:00:12.248
-Application owners name who owns each
-service principal name and when it ends,
+00:00:07.310 --> 00:00:10.537
+run its delegated account
+steps, and change the hosts.
 
 5
-00:00:12.248 --> 00:00:15.362
+00:00:10.537 --> 00:00:15.328
+Application owners name each service
+principal name's owner and end date,
+
+6
+00:00:15.328 --> 00:00:18.549
 and the security officer
 reviews the island list.
 
-6
-00:00:15.362 --> 00:00:17.663
-The rights split is the important part.
-
 7
-00:00:17.663 --> 00:00:21.160
-The read task holds no domain
-administration at all,
+00:00:18.549 --> 00:00:21.756
+The read task holds no
+domain administration,
 
 8
-00:00:21.160 --> 00:00:24.575
+00:00:21.756 --> 00:00:25.300
 just a narrow delegated read
 of the root key's dates.
 
 9
-00:00:24.575 --> 00:00:27.447
-The write task does need
-administrator rights,
+00:00:25.300 --> 00:00:26.875
+The write task is split.
 
 10
-00:00:27.447 --> 00:00:31.497
-because Learn's procedure requires
-them, and that's exactly why it's
+00:00:26.875 --> 00:00:31.991
+The pipeline's own group managed service
+account holds only delegated rights on the
 
 11
-00:00:31.497 --> 00:00:35.450
-a separate script, run by a person,
-on a plan someone else approved.
+00:00:31.991 --> 00:00:34.768
+service account O Us, to
+create group accounts,
+
+12
+00:00:34.768 --> 00:00:37.838
+set their retrievers, and
+disable and move old ones.
+
+13
+00:00:37.838 --> 00:00:39.562
+It's in no privileged group.
+
+14
+00:00:39.562 --> 00:00:43.788
+The delegated account steps need
+Domain Admins under Learn's procedure,
+
+15
+00:00:43.788 --> 00:00:47.160
+so they stay with a person, on
+a plan someone else approved.

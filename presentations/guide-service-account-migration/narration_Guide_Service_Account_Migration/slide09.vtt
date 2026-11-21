@@ -1,93 +1,103 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.986
-A5 happens in one change window,
-because an S P N left on the old account
+00:00:00.050 --> 00:00:01.025
+The settings.
 
 2
-00:00:04.986 --> 00:00:09.663
-while the service runs as the G M
-S A breaks Kerberos to the service.
+00:00:01.025 --> 00:00:05.304
+A G M S A is named G M S A dash
+and the system's short name,
 
 3
-00:00:09.663 --> 00:00:12.649
-Each S P N must have exactly one owner.
+00:00:05.304 --> 00:00:09.787
+fifteen characters or fewer
+and unique in the forest.
 
 4
-00:00:12.649 --> 00:00:18.800
-Remove it from the old account, add it to
-the G M S A, and list it with set S P N.
+00:00:09.787 --> 00:00:13.475
+It lives in a dedicated
+service-account organizational unit.
 
 5
-00:00:18.800 --> 00:00:20.788
-Then change the workload's identity.
+00:00:13.475 --> 00:00:18.784
+Learn's Entra page says G M S As belong in
+the Managed Service Accounts container,
 
 6
-00:00:20.788 --> 00:00:23.646
-A G M S A logs on with a blank password,
+00:00:18.784 --> 00:00:23.611
+but the cmdlet takes any O U, and the
+program's own O U keeps the create right,
 
 7
-00:00:23.646 --> 00:00:27.588
-which Windows fills in, as
-Learn's Entra page says.
+00:00:23.611 --> 00:00:27.713
+Group Policy and SailPoint's
+scope on service accounts alone.
 
 8
-00:00:27.588 --> 00:00:30.764
-For a Windows service, S
-C config sets the account,
+00:00:27.713 --> 00:00:32.512
+Only the creator group may create one,
+and the pipeline is its only member.
 
 9
-00:00:30.764 --> 00:00:33.862
-and the managed-account
-query must report true.
+00:00:32.512 --> 00:00:36.750
+One domain local group of the workload's
+hosts retrieves its password.
 
 10
-00:00:33.862 --> 00:00:37.978
-A scheduled task gets a new principal
-with the password logon type,
+00:00:36.750 --> 00:00:39.862
+A E S two-fifty-six only; thirty days,
 
 11
-00:00:37.978 --> 00:00:41.420
-as Learn's assessment pages do
-it, and an I I S application
+00:00:39.862 --> 00:00:43.975
+stated at creation;
+outbound-only with no S P N.
 
 12
-00:00:41.420 --> 00:00:44.787
-pool gets identity type three
-with the blank password.
+00:00:43.975 --> 00:00:47.921
+Two owners and a federal-employee
+sponsor, no privileged group,
 
 13
-00:00:44.787 --> 00:00:47.740
-The guide notes that
-Learn has no single page
+00:00:47.921 --> 00:00:51.488
+and a SailPoint certification
+on the risk tier's cadence.
 
 14
-00:00:47.740 --> 00:00:50.613
-showing that last one
-end to end, so verify it.
+00:00:51.488 --> 00:00:56.367
+A disabled account waits ninety days, with
+no sign-in seen, before it's deleted;
 
 15
-00:00:50.613 --> 00:00:54.088
-A6 is the thirty-day parallel
-run: test end to end,
+00:00:56.367 --> 00:01:00.937
+Defender for Identity's stale-account
+assessment uses ninety days too.
 
 16
-00:00:54.088 --> 00:00:58.099
-keep the old account enabled,
-and watch its logons stop.
+00:01:00.937 --> 00:01:05.738
+Setup happens once: the K D S root
+key, the two O Us, then a Domain Admin
 
 17
-00:00:58.099 --> 00:01:03.788
-A7 disables the old account; deletion comes
-later, through the decommission process.
+00:01:05.738 --> 00:01:10.894
+creates the creator group and delegates
+the create right with D S A C L S.
 
 18
-00:01:03.788 --> 00:01:07.103
-To roll back, switch the
-workload back with the old
+00:01:10.894 --> 00:01:13.471
+Learn gives no delegation command,
 
 19
-00:01:07.103 --> 00:01:10.220
-password from the vault,
-and move the S P Ns back.
+00:01:13.471 --> 00:01:16.938
+so run it in the test domain
+first and confirm it.
+
+20
+00:01:16.938 --> 00:01:20.361
+Then the pipeline's own G
+M S A, SailPoint's Active
+
+21
+00:01:20.361 --> 00:01:24.820
+Directory source scoped to the
+O U, and Defender for Identity.

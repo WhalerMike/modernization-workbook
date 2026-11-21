@@ -1,0 +1,1006 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.090
+Welcome to Module 13 of the
+Non-Person Identity learning path:
+
+2
+00:00:04.090 --> 00:00:06.862
+run the managed service account standard.
+
+3
+00:00:06.862 --> 00:00:10.760
+It teaches the standard in the
+companion guide Service Accounts,
+
+4
+00:00:10.760 --> 00:00:13.287
+with Chapter 12 of the developer workbook.
+
+5
+00:00:13.287 --> 00:00:15.937
+Module 12 moved one account by hand.
+
+6
+00:00:15.937 --> 00:00:21.821
+This module is about every account after
+that: how a G M S A is asked for, approved,
+
+7
+00:00:21.821 --> 00:00:26.417
+created, watched, attested and
+retired the same way each time,
+
+8
+00:00:26.417 --> 00:00:28.163
+with the same evidence.
+
+9
+00:00:28.163 --> 00:00:31.120
+Take it after Modules 8 and 12.
+
+10
+00:00:34.870 --> 00:00:35.882
+Why a standard?
+
+11
+00:00:35.882 --> 00:00:39.977
+Module 12 moved one account,
+with Microsoft Learn's commands,
+
+12
+00:00:39.977 --> 00:00:42.270
+and the kit planned the same moves.
+
+13
+00:00:42.270 --> 00:00:47.492
+The standard makes every managed service
+account after that go the same way:
+
+14
+00:00:47.492 --> 00:00:49.978
+asked for, approved, created, watched,
+
+15
+00:00:49.978 --> 00:00:53.708
+attested and retired, with
+the same evidence each time.
+
+16
+00:00:53.708 --> 00:00:55.757
+It splits the work three ways.
+
+17
+00:00:55.757 --> 00:01:00.608
+SailPoint approves, reached through the
+agency's system access management tool.
+
+18
+00:01:00.608 --> 00:01:03.833
+ServiceNow records the
+change and the findings.
+
+19
+00:01:03.833 --> 00:01:06.666
+And Microsoft's tools create and enforce:
+
+20
+00:01:06.666 --> 00:01:12.002
+Active Directory PowerShell through
+Chapter 6's approved plan, Group Policy,
+
+21
+00:01:12.002 --> 00:01:17.020
+Defender for Identity and, when the
+workload moves, Microsoft Entra.
+
+22
+00:01:20.770 --> 00:01:23.610
+Here's what you'll be able to
+do by the end of this module,
+
+23
+00:01:23.610 --> 00:01:26.257
+which takes about fifty-five
+minutes with the lab.
+
+24
+00:01:26.257 --> 00:01:30.581
+You'll name who does what in the
+standard: the access management tool,
+
+25
+00:01:30.581 --> 00:01:33.669
+SailPoint, ServiceNow,
+the pipeline and a person.
+
+26
+00:01:33.669 --> 00:01:38.311
+You'll give the standard's settings:
+the name, the O U, the retriever group,
+
+27
+00:01:38.311 --> 00:01:42.311
+encryption, the password interval,
+outbound-only, the owners,
+
+28
+00:01:42.311 --> 00:01:45.832
+the certification cadence
+and the ninety-day window.
+
+29
+00:01:45.832 --> 00:01:50.796
+You'll explain why machines run every step
+they can, and where people still must.
+
+30
+00:01:50.796 --> 00:01:55.808
+And you'll run Chapter 12's checks on
+fixtures, and read the findings, the Chapter
+
+31
+00:01:55.808 --> 00:02:00.820
+6 inputs, the certifications, the ServiceNow
+findings and the retirement list.
+
+32
+00:02:00.820 --> 00:02:04.057
+Before you start, finish Modules 8 and 12.
+
+33
+00:02:04.057 --> 00:02:10.000
+You need PowerShell 7.1 or later with
+Pester 5, and no tenant or domain.
+
+34
+00:02:13.750 --> 00:02:15.562
+Unit 1 is who does what.
+
+35
+00:02:15.562 --> 00:02:20.902
+The agency's system access management tool
+is the request front end: an owner asks
+
+36
+00:02:20.902 --> 00:02:26.001
+for, changes or retires an account there,
+and it hands the request to SailPoint.
+
+37
+00:02:26.001 --> 00:02:29.150
+It never approves or
+writes anything itself.
+
+38
+00:02:29.150 --> 00:02:34.767
+SailPoint approves every request, whatever
+its risk tier, aggregates the accounts,
+
+39
+00:02:34.767 --> 00:02:39.000
+correlates each one to its owners
+and runs the certifications.
+
+40
+00:02:39.000 --> 00:02:42.950
+It never writes a G M S
+A in Active Directory.
+
+41
+00:02:42.950 --> 00:02:46.852
+ServiceNow holds the change
+record, the typed findings and
+
+42
+00:02:46.852 --> 00:02:50.675
+the decommission ticket, and
+closes a task only on a re-read.
+
+43
+00:02:50.675 --> 00:02:52.487
+It never approves the account.
+
+44
+00:02:52.487 --> 00:02:57.957
+The pipeline runs Chapter 6's approved
+plan as G M S A dash M S A pipe,
+
+45
+00:02:57.957 --> 00:03:01.363
+with only the delegated rights it needs.
+
+46
+00:03:01.363 --> 00:03:07.088
+And a person still runs the D M S A
+steps, the uninstall and every delete.
+
+47
+00:03:07.088 --> 00:03:10.421
+The pipeline's identity
+is itself a G M S A,
+
+48
+00:03:10.421 --> 00:03:15.130
+with two owners, a sponsor
+and its own certification.
+
+49
+00:03:18.880 --> 00:03:20.330
+The standard's settings.
+
+50
+00:03:20.330 --> 00:03:26.092
+The name is G M S A dash app, or D M S
+A dash app, fifteen characters or fewer,
+
+51
+00:03:26.092 --> 00:03:30.742
+and Microsoft Learn says it
+must be unique in the forest.
+
+52
+00:03:30.742 --> 00:03:35.134
+It lives in a dedicated service-account
+O U, where only the creators
+
+53
+00:03:35.134 --> 00:03:39.367
+group may create one, and that
+group's only member is the pipeline.
+
+54
+00:03:39.367 --> 00:03:43.930
+Its password retrievers are always
+one domain local group of the hosts.
+
+55
+00:03:43.930 --> 00:03:49.418
+Encryption is A E S two fifty-six only,
+and the password interval is thirty days,
+
+56
+00:03:49.418 --> 00:03:53.705
+stated at creation, because Learn
+says it can be set only then.
+
+57
+00:03:53.705 --> 00:03:59.517
+A G M S A with no S P N is outbound-only,
+unless there's a recorded reason.
+
+58
+00:03:59.517 --> 00:04:02.555
+Every account has two named
+technical owners and a
+
+59
+00:04:02.555 --> 00:04:05.593
+federal-employee sponsor,
+and no privileged group.
+
+60
+00:04:05.593 --> 00:04:09.785
+The two owners certify it in
+SailPoint: quarterly for R one,
+
+61
+00:04:09.785 --> 00:04:12.755
+twice a year for R two,
+annually for R three.
+
+62
+00:04:12.755 --> 00:04:15.399
+And it stays disabled for ninety days,
+
+63
+00:04:15.399 --> 00:04:18.910
+with no sign-in seen,
+before anyone deletes it.
+
+64
+00:04:22.660 --> 00:04:27.673
+Unit 2 is the standard's callout:
+machines run the steps, people decide.
+
+65
+00:04:27.673 --> 00:04:32.775
+Every step a machine or a script can run,
+it runs: the request's checks, the plan,
+
+66
+00:04:32.775 --> 00:04:37.054
+the Active Directory writes, the
+re-read that closes the ticket,
+
+67
+00:04:37.054 --> 00:04:41.334
+the monitoring, the certification
+campaigns and the evidence.
+
+68
+00:04:41.334 --> 00:04:44.457
+People decide, approve in
+SailPoint, accept risk,
+
+69
+00:04:44.457 --> 00:04:48.985
+and run the few steps that need Domain
+Admins or that delete something.
+
+70
+00:04:48.985 --> 00:04:51.829
+This lines up with the
+federal requirements better
+
+71
+00:04:51.829 --> 00:04:54.673
+than the same work done by
+hand in a console or portal.
+
+72
+00:04:54.673 --> 00:05:02.098
+NIST SP 800-53 has enhancements for
+automated account management, disabling
+
+73
+00:05:02.098 --> 00:05:06.997
+accounts and automated audit actions: A
+C two, enhancements one, three and four.
+
+74
+00:05:06.997 --> 00:05:12.873
+FedRAMP's K S I dash I A M dash A A
+M is Automating Account Management.
+
+75
+00:05:12.873 --> 00:05:16.391
+And CISA's Zero Trust Maturity
+Model makes automation
+
+76
+00:05:16.391 --> 00:05:19.373
+and orchestration a
+cross-cutting capability.
+
+77
+00:05:19.373 --> 00:05:22.473
+Automation has limits, and
+the standard keeps them.
+
+78
+00:05:22.473 --> 00:05:24.901
+Separation of duties keeps the approver,
+
+79
+00:05:24.901 --> 00:05:29.043
+the pipeline's owner and the person
+who deletes apart, the authorizing
+
+80
+00:05:29.043 --> 00:05:33.472
+official accepts the pipeline, and the
+pipeline's own identity is governed.
+
+81
+00:05:33.472 --> 00:05:37.450
+Automation supports a requirement;
+the assessor decides.
+
+82
+00:05:41.200 --> 00:05:45.237
+Unit 3 follows one G M
+S A through the steps.
+
+83
+00:05:45.237 --> 00:05:48.472
+It's requested, and Chapter
+12 checks every field
+
+84
+00:05:48.472 --> 00:05:51.463
+before SailPoint's
+approvers see it: that's S1.
+
+85
+00:05:51.463 --> 00:05:56.225
+It's decided, with the guide's decision
+path giving the target, in S2.
+
+86
+00:05:56.225 --> 00:06:01.012
+SailPoint approves it, and ServiceNow
+opens the change record, in S3.
+
+87
+00:06:01.012 --> 00:06:05.527
+The pipeline creates it from
+the approved plan, in the O U,
+
+88
+00:06:05.527 --> 00:06:10.238
+A E S two fifty-six, thirty days
+and its retriever group, in S4.
+
+89
+00:06:10.238 --> 00:06:14.825
+It's installed on the hosts and
+restricted with Group Policy, in S5.
+
+90
+00:06:14.825 --> 00:06:16.846
+SailPoint aggregates it,
+
+91
+00:06:16.846 --> 00:06:21.850
+and the ServiceNow task closes only
+on Chapter 12's re-read, in S6.
+
+92
+00:06:21.850 --> 00:06:28.000
+It's watched with Defender for Identity,
+in S7, and certified by its owners, in S8.
+
+93
+00:06:28.000 --> 00:06:31.263
+It's handed over when
+an owner leaves, in S9.
+
+94
+00:06:31.263 --> 00:06:35.567
+And it's retired, in S10: the
+pipeline disables it and moves it,
+
+95
+00:06:35.567 --> 00:06:40.750
+and after ninety days with no sign-in,
+a person uninstalls and deletes it.
+
+96
+00:06:40.750 --> 00:06:44.760
+S11 is the move to Entra,
+when the workload moves.
+
+97
+00:06:48.510 --> 00:06:49.235
+Try it.
+
+98
+00:06:49.235 --> 00:06:53.635
+Lab 1 runs in the non-person
+identity folder, with no domain.
+
+99
+00:06:53.635 --> 00:06:55.861
+These are Chapter 12's Lab 1 steps,
+
+100
+00:06:55.861 --> 00:06:59.160
+and the chapter shows each
+one's expected output.
+
+101
+00:06:59.160 --> 00:07:04.550
+Step one runs the standard's checks on
+the fixtures, as of November 20, 2026:
+
+102
+00:07:04.550 --> 00:07:10.480
+five requests, nine Active Directory
+managed accounts and eight register rows,
+
+103
+00:07:10.480 --> 00:07:13.085
+each built to trip one or more rules.
+
+104
+00:07:13.085 --> 00:07:17.085
+Look for the requests line:
+two passed, and three are held.
+
+105
+00:07:17.085 --> 00:07:19.941
+Then the Chapter 6 inputs,
+the certifications,
+
+106
+00:07:19.941 --> 00:07:23.173
+and the retirement list,
+which ends nothing deleted.
+
+107
+00:07:23.173 --> 00:07:26.384
+Then one line per rule,
+and the manifest's hash.
+
+108
+00:07:26.384 --> 00:07:29.761
+The script writes its output
+folder and nothing else:
+
+109
+00:07:29.761 --> 00:07:35.030
+nothing to Active Directory, SailPoint,
+ServiceNow or Defender for Identity.
+
+110
+00:07:38.780 --> 00:07:41.905
+Step two reads the
+findings, sorted by rule.
+
+111
+00:07:41.905 --> 00:07:44.351
+Rules oh one to oh nine
+check the requests,
+
+112
+00:07:44.351 --> 00:07:47.949
+ten to nineteen reconcile
+SailPoint with Active Directory,
+
+113
+00:07:47.949 --> 00:07:52.769
+twenty to twenty-three are the certifications,
+twenty-four to twenty-six compare
+
+114
+00:07:52.769 --> 00:07:57.518
+Defender for Identity's list, and twenty-seven
+to twenty-nine are the retirement.
+
+115
+00:07:57.518 --> 00:08:01.318
+Find the three findings
+on G M S A dash ops.
+
+116
+00:08:01.318 --> 00:08:05.629
+N P I S T D ten: SailPoint
+never aggregated it.
+
+117
+00:08:05.629 --> 00:08:08.117
+Sixteen: it's in Domain Admins.
+
+118
+00:08:08.117 --> 00:08:10.517
+Eighteen: no request explains it.
+
+119
+00:08:10.517 --> 00:08:13.468
+That's the drift rule,
+and it runs every time.
+
+120
+00:08:13.468 --> 00:08:16.196
+Defender for Identity's rules show up too:
+
+121
+00:08:16.196 --> 00:08:20.690
+S V C dash backup is a user account
+still serving as a service account,
+
+122
+00:08:20.690 --> 00:08:26.066
+M S A dash print oh one is a standalone
+managed service account, and rule twenty-six
+
+123
+00:08:26.066 --> 00:08:31.400
+lists three accounts Defender for
+Identity sees that the register doesn't.
+
+124
+00:08:35.150 --> 00:08:38.237
+Step three reads what the
+code hands to Chapter 6.
+
+125
+00:08:38.237 --> 00:08:43.591
+The two requests that passed become
+two rows of the replatform file:
+
+126
+00:08:43.591 --> 00:08:47.701
+a D M S A for the billing account
+and a G M S A for payroll.
+
+127
+00:08:47.701 --> 00:08:51.197
+Check that both rows carry a
+request I D and a change record:
+
+128
+00:08:51.197 --> 00:08:55.350
+the SailPoint request and the
+ServiceNow change that approved them.
+
+129
+00:08:55.350 --> 00:08:58.074
+The retrievers file has one entry,
+
+130
+00:08:58.074 --> 00:09:02.063
+for the payroll G M S A,
+naming its one group of hosts.
+
+131
+00:09:02.063 --> 00:09:08.775
+The D M S A has no entry, because a D M S
+A learns its hosts during its migration.
+
+132
+00:09:08.775 --> 00:09:14.080
+These files go into Chapter 6's reviewed
+inputs in a reviewed pull request,
+
+133
+00:09:14.080 --> 00:09:18.950
+and Chapter 6's plan refuses a write
+with no request or change record.
+
+134
+00:09:18.950 --> 00:09:21.980
+So the plan creates
+exactly what was approved.
+
+135
+00:09:25.730 --> 00:09:29.755
+Step four reads the certifications
+and the ServiceNow findings.
+
+136
+00:09:29.755 --> 00:09:32.716
+Each account is due by its risk tier:
+
+137
+00:09:32.716 --> 00:09:37.718
+R one every three months, R two
+every six, R three every twelve.
+
+138
+00:09:37.718 --> 00:09:44.642
+G M S A dash print is R three, last
+certified in October 2025, so it's overdue.
+
+139
+00:09:44.642 --> 00:09:47.980
+And its owner revoked it, so
+it becomes a stale access
+
+140
+00:09:47.980 --> 00:09:51.317
+finding for ServiceNow,
+without anyone retyping it.
+
+141
+00:09:51.317 --> 00:09:56.242
+The second finding is an orphan
+account, on G M S A dash web.
+
+142
+00:09:56.242 --> 00:09:59.296
+Look back at step two's
+warning on the same account:
+
+143
+00:09:59.296 --> 00:10:03.392
+a certification decided by someone
+who isn't an owner doesn't count.
+
+144
+00:10:03.392 --> 00:10:07.390
+The code writes these findings as
+the payload a ServiceNow import
+
+145
+00:10:07.390 --> 00:10:11.600
+or the integration kit's client
+posts; it doesn't post them itself.
+
+146
+00:10:15.350 --> 00:10:17.613
+Step five reads the retirement list.
+
+147
+00:10:17.613 --> 00:10:21.716
+Only one account is a delete
+candidate: G M S A dash legacy,
+
+148
+00:10:21.716 --> 00:10:26.087
+disabled for a hundred and eleven
+days with no sign-in since.
+
+149
+00:10:26.087 --> 00:10:30.675
+G M S A dash batch signed in after
+it was disabled, so it isn't one.
+
+150
+00:10:30.675 --> 00:10:34.415
+G M S A dash report is still
+enabled in Active Directory,
+
+151
+00:10:34.415 --> 00:10:37.075
+though the register says it's disabled.
+
+152
+00:10:37.075 --> 00:10:41.556
+And G M S A dash oldfax has been
+disabled for only fifty days,
+
+153
+00:10:41.556 --> 00:10:43.237
+so it waits for ninety.
+
+154
+00:10:43.237 --> 00:10:47.451
+Who deletes G M S A dash
+legacy, and through what?
+
+155
+00:10:47.451 --> 00:10:49.863
+A person, through the decommission ticket.
+
+156
+00:10:49.863 --> 00:10:54.612
+The code never deletes: it says which
+accounts a person may delete, and why.
+
+157
+00:10:54.612 --> 00:10:58.100
+Step six cleans up by
+removing the output folder.
+
+158
+00:11:01.850 --> 00:11:06.436
+Lab 2 runs the same checks on a test
+domain's exports from SailPoint
+
+159
+00:11:06.436 --> 00:11:10.188
+and Defender for Identity, with
+a live read of the G M S A's.
+
+160
+00:11:10.188 --> 00:11:11.749
+The authors haven't run it.
+
+161
+00:11:11.749 --> 00:11:17.823
+Use a test Active Directory domain, never
+production, after Chapter 6's Lab 2:
+
+162
+00:11:17.823 --> 00:11:20.761
+a K D S root key, the service-account O U,
+
+163
+00:11:20.761 --> 00:11:24.875
+the delegated creators group
+and at least one G M S A.
+
+164
+00:11:24.875 --> 00:11:28.994
+You also need a SailPoint sandbox
+with an Active Directory source
+
+165
+00:11:28.994 --> 00:11:32.813
+scoped to that O U, and Defender
+for Identity on the test domain.
+
+166
+00:11:32.813 --> 00:11:36.768
+Write the test domain's standard
+settings, then put the exports
+
+167
+00:11:36.768 --> 00:11:40.724
+in the kit's import formats,
+mapping each product column by hand.
+
+168
+00:11:40.724 --> 00:11:44.181
+Run the checks with a
+domain controller named,
+
+169
+00:11:44.181 --> 00:11:46.637
+so the script reads the G M S A's live.
+
+170
+00:11:46.637 --> 00:11:50.084
+A G M S A you created by
+hand in Chapter 6's Lab 2,
+
+171
+00:11:50.084 --> 00:11:56.212
+with no request in the register, is rule
+eighteen: that's the drift rule working.
+
+172
+00:11:56.212 --> 00:11:59.720
+The manifest shows one
+read, and nothing else.
+
+173
+00:12:03.470 --> 00:12:04.857
+The federal requirement.
+
+174
+00:12:04.857 --> 00:12:07.721
+Each step of the standard
+names what it supports,
+
+175
+00:12:07.721 --> 00:12:11.371
+and these are the rows this
+module's lab produces evidence for.
+
+176
+00:12:11.371 --> 00:12:15.879
+The request check in S1 supports A C
+two, Account Management, and I A four,
+
+177
+00:12:15.879 --> 00:12:21.010
+Identifier Management, in NIST SP 800-53,
+
+178
+00:12:21.010 --> 00:12:25.208
+with the SailPoint approval and
+the ServiceNow change beside it.
+
+179
+00:12:25.208 --> 00:12:28.901
+The reconciliation in
+S6 supports C M eight,
+
+180
+00:12:28.901 --> 00:12:33.620
+System Component Inventory,
+and A C six, Least Privilege.
+
+181
+00:12:33.620 --> 00:12:39.662
+The certifications and the ServiceNow
+findings in S8 support A C two and A C six,
+
+182
+00:12:39.662 --> 00:12:43.195
+enhancement seven, Review
+of User Privileges.
+
+183
+00:12:43.195 --> 00:12:47.483
+And the retirement list in S10,
+with the decommission ticket,
+
+184
+00:12:47.483 --> 00:12:51.257
+supports A C two, enhancement
+three, Disable Accounts.
+
+185
+00:12:51.257 --> 00:12:55.895
+K S I's are FedRAMP twenty X indicators
+for cloud service providers.
+
+186
+00:12:55.895 --> 00:13:00.190
+A row provides evidence for a
+control; the assessor decides.
+
+187
+00:13:03.940 --> 00:13:05.915
+Check yourself with two questions.
+
+188
+00:13:05.915 --> 00:13:10.815
+First: who creates a G M S A in
+production under the standard?
+
+189
+00:13:10.815 --> 00:13:14.921
+The answer is b: the pipeline,
+as G M S A dash M S A pipe,
+
+190
+00:13:14.921 --> 00:13:20.465
+running Chapter 6's approved plan
+with only the delegated rights.
+
+191
+00:13:20.465 --> 00:13:22.895
+SailPoint never writes a G M S A,
+
+192
+00:13:22.895 --> 00:13:26.978
+and ServiceNow's Active
+Directory spoke isn't used.
+
+193
+00:13:26.978 --> 00:13:31.802
+Second: an R two G M S A was
+last certified seven months ago.
+
+194
+00:13:31.802 --> 00:13:33.591
+What does Chapter 12 report?
+
+195
+00:13:33.591 --> 00:13:38.107
+The answer is b: N P I S T D
+twenty, certification overdue,
+
+196
+00:13:38.107 --> 00:13:41.803
+because R two is certified
+every six months.
+
+197
+00:13:41.803 --> 00:13:44.230
+The module page has three more questions,
+
+198
+00:13:44.230 --> 00:13:47.080
+each linked to the
+section that answers it.
+
+199
+00:13:50.830 --> 00:13:51.655
+To sum up.
+
+200
+00:13:51.655 --> 00:13:55.392
+The standard makes every managed
+service account the same:
+
+201
+00:13:55.392 --> 00:14:00.350
+asked for in the agency's system access
+management tool, approved in SailPoint,
+
+202
+00:14:00.350 --> 00:14:05.308
+recorded in ServiceNow, created by the
+pipeline, restricted with Group Policy,
+
+203
+00:14:05.308 --> 00:14:09.731
+watched with Defender for Identity,
+certified by its two owners on its
+
+204
+00:14:09.731 --> 00:14:14.155
+risk tier's cadence, and retired after
+ninety days disabled, by a person.
+
+205
+00:14:14.155 --> 00:14:18.892
+Chapter 12 checks each of those steps
+on every run and writes the evidence.
+
+206
+00:14:18.892 --> 00:14:23.984
+In this module you ran its checks, found
+the drift on G M S A dash ops, read the
+
+207
+00:14:23.984 --> 00:14:29.668
+inputs it hands to Chapter 6, and read the
+certifications and the retirement list.
+
+208
+00:14:29.668 --> 00:14:33.318
+Chapter 12 goes on with its
+evidence file and its tests.
+
+209
+00:14:33.318 --> 00:14:36.210
+Next, go back to the
+learning path's index.

@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.075
+Step four reads the certifications
+and the ServiceNow findings.
+
+2
+00:00:04.075 --> 00:00:07.036
+Each account is due by its risk tier:
+
+3
+00:00:07.036 --> 00:00:12.038
+R one every three months, R two
+every six, R three every twelve.
+
+4
+00:00:12.038 --> 00:00:18.962
+G M S A dash print is R three, last
+certified in October 2025, so it's overdue.
+
+5
+00:00:18.962 --> 00:00:22.299
+And its owner revoked it, so
+it becomes a stale access
+
+6
+00:00:22.299 --> 00:00:25.637
+finding for ServiceNow,
+without anyone retyping it.
+
+7
+00:00:25.637 --> 00:00:30.562
+The second finding is an orphan
+account, on G M S A dash web.
+
+8
+00:00:30.562 --> 00:00:33.616
+Look back at step two's
+warning on the same account:
+
+9
+00:00:33.616 --> 00:00:37.712
+a certification decided by someone
+who isn't an owner doesn't count.
+
+10
+00:00:37.712 --> 00:00:41.710
+The code writes these findings as
+the payload a ServiceNow import
+
+11
+00:00:41.710 --> 00:00:45.620
+or the integration kit's client
+posts; it doesn't post them itself.

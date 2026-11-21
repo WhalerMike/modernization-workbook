@@ -1,73 +1,80 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.275
-Each account becomes exactly
-one action in the plan.
+00:00:00.050 --> 00:00:03.415
+Each account becomes one
+action in the plan, or,
 
 2
-00:00:03.275 --> 00:00:05.016
-The G M S A path: create it,
+00:00:03.415 --> 00:00:07.400
+for a superseded account, a
+disable and a move together.
 
 3
-00:00:05.016 --> 00:00:09.413
-once the root key is ready and
-the retrievers are reviewed.
+00:00:07.400 --> 00:00:12.510
+The G M S A path: create it in the service
+account O U with a thirty-day interval,
 
 4
-00:00:09.413 --> 00:00:13.675
+00:00:12.510 --> 00:00:17.125
+once the root key is ready and its
+retrievers are one reviewed group.
+
+5
+00:00:17.125 --> 00:00:21.388
 Wait while the server owner installs
 it and changes the service's identity.
 
-5
-00:00:13.675 --> 00:00:17.048
+6
+00:00:21.388 --> 00:00:24.788
 Then a thirty-day parallel
 run, the program's guidance,
 
-6
-00:00:17.048 --> 00:00:19.425
-and only then disable the old account.
-
 7
-00:00:19.425 --> 00:00:25.350
+00:00:24.788 --> 00:00:28.962
+and only then disable the old account
+and move it to the holding O U.
+
+8
+00:00:28.962 --> 00:00:32.524
+The pipeline's own G M
+S A sends those writes.
+
+9
+00:00:32.524 --> 00:00:38.450
 The D M S A path: create it, if it passes
 every limit, and start the migration.
 
-8
-00:00:25.350 --> 00:00:28.400
+10
+00:00:38.450 --> 00:00:41.500
 After the thirty-day
 parallel run, complete it.
 
-9
-00:00:28.400 --> 00:00:33.102
+11
+00:00:41.500 --> 00:00:46.437
 Microsoft Learn's overview of
 delegated managed service accounts says
 
-10
-00:00:33.102 --> 00:00:37.413
+12
+00:00:46.437 --> 00:00:50.963
 completing disables the old account
 and moves its S P N's to the D M S A.
 
-11
-00:00:37.413 --> 00:00:41.488
+13
+00:00:50.963 --> 00:00:52.862
+A person sends those steps.
+
+14
+00:00:52.862 --> 00:00:56.687
 Set retrievers fixes a list that
 differs from the reviewed one.
 
-12
-00:00:41.488 --> 00:00:44.841
-Anything else, like island,
-blocked or handed off,
-
-13
-00:00:44.841 --> 00:00:48.112
-is recorded with its
-reason, and writes nothing.
-
-14
-00:00:48.112 --> 00:00:50.521
-The plan carries every input's hash,
-
 15
-00:00:50.521 --> 00:00:55.900
-and the same inputs always give the same
+00:00:56.687 --> 00:01:00.338
+Anything else is recorded with
+its reason, and writes nothing.
+
+16
+00:01:00.338 --> 00:01:05.330
+The same inputs always give the same
 bytes, so a reviewer approves one hash.

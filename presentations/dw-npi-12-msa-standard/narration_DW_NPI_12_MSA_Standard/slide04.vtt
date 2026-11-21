@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.538
+What does the code depend on?
+
+2
+00:00:01.538 --> 00:00:06.330
+First, the standard itself: names,
+the organizational unit, groups,
+
+3
+00:00:06.330 --> 00:00:12.276
+the password interval, owners and cadences,
+all decided in the decision register.
+
+4
+00:00:12.276 --> 00:00:14.507
+SailPoint approves every request,
+
+5
+00:00:14.507 --> 00:00:18.125
+and ServiceNow holds the change
+record and the findings.
+
+6
+00:00:18.125 --> 00:00:22.998
+SailPoint's documentation says its Active
+Directory connector can aggregate managed
+
+7
+00:00:22.998 --> 00:00:25.335
+service accounts, and that reading who may
+
+8
+00:00:25.335 --> 00:00:27.738
+retrieve the password needs its IQService.
+
+9
+00:00:27.738 --> 00:00:32.832
+On the Microsoft side, Learn says Defender
+for Identity lists service accounts by
+
+10
+00:00:32.832 --> 00:00:35.679
+type, its stale account
+check uses ninety days,
+
+11
+00:00:35.679 --> 00:00:38.660
+and the password interval
+is fixed at creation.

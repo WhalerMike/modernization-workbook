@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.137
+Step three reads what the
+code hands to Chapter 6.
+
+2
+00:00:03.137 --> 00:00:08.491
+The two requests that passed become
+two rows of the replatform file:
+
+3
+00:00:08.491 --> 00:00:12.601
+a D M S A for the billing account
+and a G M S A for payroll.
+
+4
+00:00:12.601 --> 00:00:16.097
+Check that both rows carry a
+request I D and a change record:
+
+5
+00:00:16.097 --> 00:00:20.250
+the SailPoint request and the
+ServiceNow change that approved them.
+
+6
+00:00:20.250 --> 00:00:22.974
+The retrievers file has one entry,
+
+7
+00:00:22.974 --> 00:00:26.963
+for the payroll G M S A,
+naming its one group of hosts.
+
+8
+00:00:26.963 --> 00:00:33.675
+The D M S A has no entry, because a D M S
+A learns its hosts during its migration.
+
+9
+00:00:33.675 --> 00:00:38.980
+These files go into Chapter 6's reviewed
+inputs in a reviewed pull request,
+
+10
+00:00:38.980 --> 00:00:43.850
+and Chapter 6's plan refuses a write
+with no request or change record.
+
+11
+00:00:43.850 --> 00:00:46.580
+So the plan creates
+exactly what was approved.

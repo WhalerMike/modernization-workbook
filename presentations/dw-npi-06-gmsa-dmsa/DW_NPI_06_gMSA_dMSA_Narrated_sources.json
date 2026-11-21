@@ -123,7 +123,7 @@
  },
  {
   "slide": 7,
-  "title": "The code, Chapter 03's decisions and three inputs",
+  "title": "The code, Chapter 03's decisions and four inputs",
   "links": [
    {
     "text": "Chapter 06",
@@ -138,8 +138,8 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html"
    },
    {
-    "text": "Chapter 03",
-    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.html"
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
    },
    {
     "text": "Chapter 03",
@@ -153,7 +153,7 @@
  },
  {
   "slide": 8,
-  "title": "The check: nine rules, NPI-KRB-01 to NPI-KRB-09",
+  "title": "The check: ten rules, NPI-KRB-01 to NPI-KRB-10",
   "links": [
    {
     "text": "Create a KDS root key",

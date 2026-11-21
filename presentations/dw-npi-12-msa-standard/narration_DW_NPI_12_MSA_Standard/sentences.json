@@ -1,0 +1,618 @@
+{
+ "1": [
+  [
+   0.05,
+   5.862,
+   "Welcome to the Federal Modernization Workbook's developer workbook, Building Non-Person Identity."
+  ],
+  [
+   5.912,
+   3.638,
+   "This is Chapter 12: the managed service account standard."
+  ],
+  [
+   9.55,
+   13.45,
+   "A standard nobody checks is a suggestion, so this chapter checks it every time something changes: a request, an aggregation, a certification, a Defender for Identity scan, a disabled account's ninetieth day."
+  ],
+  [
+   23.0,
+   10.975,
+   "We'll see what the products give the code, the import formats, the five checks, what the code hands to Chapter 6 and what it never does, the evidence, two labs and the dangers."
+  ],
+  [
+   33.975,
+   5.15,
+   "One note before we begin: the code is illustrative, tested against fixtures."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.762,
+   "Why does the standard need code?"
+  ],
+  [
+   1.812,
+   1.9,
+   "Because every step can drift."
+  ],
+  [
+   3.712,
+   19.575,
+   "Each group or delegated managed service account is asked for in the agency's system access management tool, approved in SailPoint, recorded in ServiceNow, created by the pipeline through Chapter 6's approved plan, watched with Defender for Identity, certified by its owners, and retired after ninety days disabled."
+  ],
+  [
+   23.288,
+   3.775,
+   "Chapter 6 is the only part that writes to Active Directory."
+  ],
+  [
+   27.062,
+   2.263,
+   "This chapter writes nothing anywhere."
+  ],
+  [
+   29.325,
+   4.388,
+   "It checks, compares and lists, and leaves the evidence for each step."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   8.525,
+   "The standard's rule is short: machines run, check and record every step they can, and people decide, approve and accept risk."
+  ],
+  [
+   8.575,
+   7.65,
+   "A request reaches the approvers only after the code has checked it, so they decide on purpose and risk, not on a naming prefix."
+  ],
+  [
+   16.225,
+   6.138,
+   "The code writes the rows Chapter 6's plan reads, so the plan creates exactly what was approved."
+  ],
+  [
+   22.363,
+   5.8,
+   "Every account is compared on every run, so an unrequested one is a finding the same day."
+  ],
+  [
+   28.163,
+   2.562,
+   "Certifications follow risk tiers."
+  ],
+  [
+   30.725,
+   4.85,
+   "And the code never deletes: it says which accounts a person may delete, and why."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.488,
+   "What does the code depend on?"
+  ],
+  [
+   1.538,
+   10.738,
+   "First, the standard itself: names, the organizational unit, groups, the password interval, owners and cadences, all decided in the decision register."
+  ],
+  [
+   12.275,
+   5.85,
+   "SailPoint approves every request, and ServiceNow holds the change record and the findings."
+  ],
+  [
+   18.125,
+   9.613,
+   "SailPoint's documentation says its Active Directory connector can aggregate managed service accounts, and that reading who may retrieve the password needs its IQService."
+  ],
+  [
+   27.738,
+   10.863,
+   "On the Microsoft side, Learn says Defender for Identity lists service accounts by type, its stale account check uses ninety days, and the password interval is fixed at creation."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   7.175,
+   "The product pages read on November twentieth didn't specify SailPoint's or Defender for Identity's export field names."
+  ],
+  [
+   7.225,
+   4.8,
+   "So the kit reads its own import formats and says so in each file's header."
+  ],
+  [
+   12.025,
+   17.55,
+   "There are six: the approved requests, one file each; SailPoint's aggregated accounts; the Active Directory read, a fixture in Lab 1 and liv in Lab 2; the program's register; a certification campaign's decisions; and Defender for Identity's service account list."
+  ],
+  [
+   29.575,
+   4.325,
+   "In Lab 2, you map each product column to the kit's column by hand."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.325,
+   "So what does the code add?"
+  ],
+  [
+   1.375,
+   3.9,
+   "One script and one module, running one read-only task."
+  ],
+  [
+   5.275,
+   10.762,
+   "It makes exactly one Active Directory call, Get A D Service Account, and that call is declared in a config file, as are the controls and K S I's for each step."
+  ],
+  [
+   16.038,
+   14.6,
+   "Every run writes a folder: the findings, the generated inputs for Chapter 6, the certification, Defender for Identity and retirement results, the ServiceNow findings, the evidence rows, and a manifest with each input's hash."
+  ],
+  [
+   30.637,
+   3.525,
+   "The same inputs and date give byte-identical files."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.388,
+   "The first check is the request, findings one to nine."
+  ],
+  [
+   3.438,
+   4.675,
+   "A request has to be approved in SailPoint and carry a ServiceNow change record."
+  ],
+  [
+   8.113,
+   2.175,
+   "The name has to follow the name standard."
+  ],
+  [
+   10.287,
+   4.938,
+   "It needs exactly two owners, and a federal-employee sponsor who isn't one of them."
+  ],
+  [
+   15.225,
+   3.837,
+   "A group managed account needs its hosts group, named for the app."
+  ],
+  [
+   19.062,
+   3.112,
+   "The service principal names have to match the request."
+  ],
+  [
+   22.175,
+   5.7,
+   "A delegated managed account has to be run by a person and supersede an existing account."
+  ],
+  [
+   27.875,
+   3.763,
+   "And the workload, type and risk tier must be known values."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   8.662,
+   "The second check, findings ten to nineteen, reconciles what SailPoint aggregated with what Active Directory holds and what the register says."
+  ],
+  [
+   8.713,
+   3.75,
+   "Every account must be aggregated by SailPoint with one owner."
+  ],
+  [
+   12.463,
+   3.837,
+   "Its password retrievers must be a single domain local group."
+  ],
+  [
+   16.3,
+   11.338,
+   "The interval must be thirty days and the encryption A E S two fifty-six only; Learn says the interval can be set only at creation and A E S should always be configured."
+  ],
+  [
+   27.637,
+   5.588,
+   "An account with no service principal name must be outbound-only, or have a recorded reason."
+  ],
+  [
+   33.225,
+   1.512,
+   "No privileged groups."
+  ],
+  [
+   34.737,
+   1.875,
+   "The right organizational unit."
+  ],
+  [
+   36.612,
+   5.5,
+   "And every account must be explained by a request, which is the drift rule from the governance book."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.15,
+   "Three more checks."
+  ],
+  [
+   1.2,
+   8.262,
+   "Certification is due by risk tier: every three months for the highest tier, every six for the middle, and yearly for the lowest."
+  ],
+  [
+   9.463,
+   7.037,
+   "Each revoke becomes a ServiceNow stale access finding, and a decision by someone who isn't an owner doesn't count."
+  ],
+  [
+   16.5,
+   13.463,
+   "The Defender for Identity check reads its service account list and flags a user account still serving as a service account, a standalone managed service account, and any account Defender for Identity sees that the register doesn't."
+  ],
+  [
+   29.962,
+   6.925,
+   "And retirement: an account becomes a delete candidate only after ninety days disabled with no sign-in since."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   10.588,
+   "For each request that passes, the code writes the row Chapter 6's plan reads, with all twelve columns, including the SailPoint request and the ServiceNow change."
+  ],
+  [
+   10.637,
+   5.525,
+   "For a group managed account, it also names the one group allowed to retrieve the password."
+  ],
+  [
+   16.163,
+   10.6,
+   "Those files go into Chapter 6's reviewed inputs through a reviewed pull request, and Chapter 6's plan refuses any write without a request or a change record."
+  ],
+  [
+   26.762,
+   3.05,
+   "And just as important is what this chapter never does."
+  ],
+  [
+   29.812,
+   7.525,
+   "It writes nothing to any of the four products, it deletes nothing, and it builds the ServiceNow findings payload without posting it."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.988,
+   "Every step leaves evidence."
+  ],
+  [
+   2.038,
+   3.625,
+   "The request check supports A C two and I A four."
+  ],
+  [
+   5.662,
+   4.825,
+   "The generated inputs support C M three, configuration change control."
+  ],
+  [
+   10.488,
+   3.737,
+   "The reconciliation supports inventory and least privilege."
+  ],
+  [
+   14.225,
+   4.125,
+   "Certifications support account management and the review of privileges."
+  ],
+  [
+   18.35,
+   3.987,
+   "The Defender for Identity comparison supports continuous monitoring."
+  ],
+  [
+   22.337,
+   2.888,
+   "The retirement list supports disabling accounts."
+  ],
+  [
+   25.225,
+   2.812,
+   "And the passing tests support testing changes."
+  ],
+  [
+   28.038,
+   7.438,
+   "Each row also names the fed-ramp twenty X K S I's aligned with it, re-read from fed-ramp on November twentieth."
+  ],
+  [
+   35.475,
+   5.15,
+   "Two cautions: a row provides evidence for a control, and the assessor decides."
+  ],
+  [
+   40.625,
+   6.138,
+   "And K S I's are indicators for cloud providers; the agency lines its evidence up with theirs."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.05,
+   "Who's involved?"
+  ],
+  [
+   1.1,
+   5.25,
+   "The identity engineers who run Chapter 6's write path and own the standard."
+  ],
+  [
+   6.35,
+   4.938,
+   "The SailPoint and ServiceNow administrators, who export and import the files."
+  ],
+  [
+   11.287,
+   3.175,
+   "And the security officer, who reads the evidence."
+  ],
+  [
+   14.463,
+   5.475,
+   "Approvers in SailPoint decide on purpose and risk, after the code has checked the request."
+  ],
+  [
+   19.938,
+   6.938,
+   "The two owners certify on their tier's cadence, and the code schedules it and turns each revoke into a finding."
+  ],
+  [
+   26.875,
+   4.963,
+   "And a person deletes, through the decommission ticket, from the list the code produced."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   3.737,
+   "Lab 1 needs PowerShell 7 with Pester, and no domain."
+  ],
+  [
+   3.788,
+   15.825,
+   "Step 1 runs the standard's checks on the fixtures: five requests, of which two pass; nine Active Directory accounts; eight register rows; a certification campaign; and a Defender for Identity list, each built to trip one or more rules."
+  ],
+  [
+   19.613,
+   4.938,
+   "The summary says twenty-five findings, four warnings, three for information."
+  ],
+  [
+   24.55,
+   3.25,
+   "Two Chapter 6 rows and one retriever entry."
+  ],
+  [
+   27.8,
+   1.85,
+   "One certification overdue."
+  ],
+  [
+   29.65,
+   3.038,
+   "One account a person may delete, and nothing deleted."
+  ],
+  [
+   32.688,
+   3.212,
+   "Then one line per rule, and the manifest's hash."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   2.062,
+   "Step 2 reads the findings."
+  ],
+  [
+   2.112,
+   2.425,
+   "Look for the account called gmsa ops."
+  ],
+  [
+   4.537,
+   8.375,
+   "It's in Domain Admins, SailPoint never aggregated it, and no request explains it: three findings for one account nobody asked for."
+  ],
+  [
+   12.912,
+   3.138,
+   "Step 3 reads what the code hands to Chapter 6."
+  ],
+  [
+   16.05,
+   6.612,
+   "Two rows, one per approved request, each carrying its SailPoint request and its ServiceNow change."
+  ],
+  [
+   22.663,
+   4.95,
+   "The approved group managed account gets its retriever group, named for the payroll app."
+  ],
+  [
+   27.613,
+   6.2,
+   "The delegated managed account gets no retriever entry, because it learns its hosts during its migration."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.425,
+   "Step 4 reads the certifications."
+  ],
+  [
+   2.475,
+   12.3,
+   "The account gmsa print is overdue: it's in the lowest risk tier and was last certified in October 2025, and its owner revoked it, so it becomes a ServiceNow stale access finding."
+  ],
+  [
+   14.775,
+   2.25,
+   "Step 5 is the retirement list."
+  ],
+  [
+   17.025,
+   5.662,
+   "Only gmsa legacy may be deleted, and only by a person through the decommission ticket."
+  ],
+  [
+   22.688,
+   5.463,
+   "Another account signed in after it was disabled, and a third is still enabled in Active Directory."
+  ],
+  [
+   28.15,
+   7.3,
+   "Step 6 reads the evidence: one row per step and control, with its K S I's and the file's hash."
+  ],
+  [
+   35.45,
+   3.388,
+   "Step 7 runs the tests: twenty-seven pass."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   12.525,
+   "Lab 2 uses a test domain, never production, with Chapter 6's second lab already done, a SailPoint sandbox scoped to the service account unit, and Defender for Identity on the domain."
+  ],
+  [
+   12.575,
+   1.562,
+   "The authors haven't run it."
+  ],
+  [
+   14.137,
+   1.962,
+   "Write the test domain's settings."
+  ],
+  [
+   16.1,
+   5.3,
+   "Then put the real exports into the kit's formats, mapping each product column by hand."
+  ],
+  [
+   21.4,
+   9.963,
+   "Run with a live read of the domain; a group managed account you made by hand in Chapter 6 with no request shows up as finding eighteen, which is the drift rule working."
+  ],
+  [
+   31.363,
+   5.188,
+   "Finally, confirm the manifest shows one read of Active Directory, and nothing else."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   1.45,
+   "Each danger has a guard."
+  ],
+  [
+   1.5,
+   8.213,
+   "An approver might approve a request that breaks the standard, so the check runs before approval, and Chapter 6 refuses a write without a request."
+  ],
+  [
+   9.713,
+   5.175,
+   "A group managed account created by hand is caught by the drift rule on every run."
+  ],
+  [
+   14.887,
+   8.775,
+   "If SailPoint correlates no owner, or the wrong one, certifications go astray, so that's a finding, and one attribute names one owner."
+  ],
+  [
+   23.663,
+   2.862,
+   "A certification by a non-owner doesn't count."
+  ],
+  [
+   26.525,
+   4.95,
+   "A disabled account is deleted only after ninety quiet days, by a person."
+  ],
+  [
+   31.475,
+   5.463,
+   "And because the import formats could drift from the products' exports, every header is checked."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.35,
+   "Here's what done looks like."
+  ],
+  [
+   1.4,
+   3.05,
+   "Every request was checked before the approvers saw it."
+  ],
+  [
+   4.45,
+   6.938,
+   "Every row in Chapter 6's inputs came from an approved request, with its request number and change record."
+  ],
+  [
+   11.387,
+   9.738,
+   "SailPoint aggregates every managed account, each with one owner, and no reconciliation finding is open without a ServiceNow finding and someone to fix it."
+  ],
+  [
+   21.125,
+   10.05,
+   "Every certification is current, every revoke is a finding, and Defender for Identity shows no user account serving as a service account that isn't on a plan."
+  ],
+  [
+   31.175,
+   3.425,
+   "Nothing was deleted except by a person, from the list."
+  ],
+  [
+   34.6,
+   4.287,
+   "And each run's evidence and manifest are filed with the change record."
+  ]
+ ]
+}

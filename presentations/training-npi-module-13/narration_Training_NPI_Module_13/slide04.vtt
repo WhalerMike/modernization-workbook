@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.862
+Unit 1 is who does what.
+
+2
+00:00:01.862 --> 00:00:07.202
+The agency's system access management tool
+is the request front end: an owner asks
+
+3
+00:00:07.202 --> 00:00:12.301
+for, changes or retires an account there,
+and it hands the request to SailPoint.
+
+4
+00:00:12.301 --> 00:00:15.450
+It never approves or
+writes anything itself.
+
+5
+00:00:15.450 --> 00:00:21.067
+SailPoint approves every request, whatever
+its risk tier, aggregates the accounts,
+
+6
+00:00:21.067 --> 00:00:25.300
+correlates each one to its owners
+and runs the certifications.
+
+7
+00:00:25.300 --> 00:00:29.250
+It never writes a G M S
+A in Active Directory.
+
+8
+00:00:29.250 --> 00:00:33.152
+ServiceNow holds the change
+record, the typed findings and
+
+9
+00:00:33.152 --> 00:00:36.975
+the decommission ticket, and
+closes a task only on a re-read.
+
+10
+00:00:36.975 --> 00:00:38.787
+It never approves the account.
+
+11
+00:00:38.787 --> 00:00:44.257
+The pipeline runs Chapter 6's approved
+plan as G M S A dash M S A pipe,
+
+12
+00:00:44.257 --> 00:00:47.663
+with only the delegated rights it needs.
+
+13
+00:00:47.663 --> 00:00:53.388
+And a person still runs the D M S A
+steps, the uninstall and every delete.
+
+14
+00:00:53.388 --> 00:00:56.721
+The pipeline's identity
+is itself a G M S A,
+
+15
+00:00:56.721 --> 00:01:01.130
+with two owners, a sponsor
+and its own certification.

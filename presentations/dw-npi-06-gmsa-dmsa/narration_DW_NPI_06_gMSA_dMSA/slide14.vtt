@@ -26,34 +26,36 @@ with the authorizing official's
 acceptance, but it has no S P N owner.
 
 6
-00:00:20.000 --> 00:00:22.497
-Another account's
-reviewed retrievers add a
+00:00:20.000 --> 00:00:23.831
+Two group accounts still name
+computer accounts as retrievers,
 
 7
-00:00:22.497 --> 00:00:25.062
-server that Active
-Directory doesn't have yet.
+00:00:23.831 --> 00:00:28.675
+while their reviewed lists name one group
+of hosts each, so the plan corrects both.
 
 8
-00:00:25.062 --> 00:00:28.525
+00:00:28.675 --> 00:00:32.138
 An intranet account being
 re-platformed has no owner
 
 9
-00:00:28.525 --> 00:00:31.674
+00:00:32.138 --> 00:00:35.287
 and an end date years out,
 so it can't be reconciled.
 
 10
-00:00:31.674 --> 00:00:33.700
-One sits in Domain Admins.
+00:00:35.287 --> 00:00:40.050
+Meanwhile the plan completes a migration
+that started forty days ago, and creates
 
 11
-00:00:33.700 --> 00:00:37.917
-Meanwhile the plan completes a
-migration that started forty days ago,
+00:00:40.050 --> 00:00:44.813
+two group accounts with a thirty-day interval;
+the print account's is outbound-only.
 
 12
-00:00:37.917 --> 00:00:40.080
-and creates two new group accounts.
+00:00:44.813 --> 00:00:48.580
+Each write shows its request,
+its change, and who sends it.

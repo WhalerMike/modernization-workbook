@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.313
+Step five reads the retirement list.
+
+2
+00:00:02.313 --> 00:00:06.416
+Only one account is a delete
+candidate: G M S A dash legacy,
+
+3
+00:00:06.416 --> 00:00:10.787
+disabled for a hundred and eleven
+days with no sign-in since.
+
+4
+00:00:10.787 --> 00:00:15.375
+G M S A dash batch signed in after
+it was disabled, so it isn't one.
+
+5
+00:00:15.375 --> 00:00:19.115
+G M S A dash report is still
+enabled in Active Directory,
+
+6
+00:00:19.115 --> 00:00:21.775
+though the register says it's disabled.
+
+7
+00:00:21.775 --> 00:00:26.256
+And G M S A dash oldfax has been
+disabled for only fifty days,
+
+8
+00:00:26.256 --> 00:00:27.937
+so it waits for ninety.
+
+9
+00:00:27.937 --> 00:00:32.151
+Who deletes G M S A dash
+legacy, and through what?
+
+10
+00:00:32.151 --> 00:00:34.563
+A person, through the decommission ticket.
+
+11
+00:00:34.563 --> 00:00:39.312
+The code never deletes: it says which
+accounts a person may delete, and why.
+
+12
+00:00:39.312 --> 00:00:42.500
+Step six cleans up by
+removing the output folder.

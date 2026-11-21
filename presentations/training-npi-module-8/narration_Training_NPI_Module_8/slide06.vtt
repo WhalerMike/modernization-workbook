@@ -1,99 +1,109 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.749
-The check runs nine rules, N
-P I K R B oh one to oh nine.
+00:00:00.050 --> 00:00:04.763
+The check runs ten rules,
+N P I K R B oh one to ten.
 
 2
-00:00:04.749 --> 00:00:09.099
+00:00:04.763 --> 00:00:09.288
 Oh one, oh four and oh eight come from
 Microsoft Learn's pages on the root key,
 
 3
-00:00:09.099 --> 00:00:13.850
+00:00:09.288 --> 00:00:14.406
 delegated managed service accounts and
 securing group managed service accounts;
 
 4
-00:00:13.850 --> 00:00:16.398
+00:00:14.406 --> 00:00:17.150
 the others are the
 program's design guidance.
 
 5
-00:00:16.398 --> 00:00:18.104
+00:00:17.150 --> 00:00:19.286
 Oh one: there's no K D S root key,
 
 6
-00:00:18.104 --> 00:00:21.552
+00:00:19.286 --> 00:00:23.000
 or one that became usable
 less than ten hours ago.
 
 7
-00:00:21.552 --> 00:00:24.716
+00:00:23.000 --> 00:00:26.374
 Oh two: a Kerberos
 account has no disposition
 
 8
-00:00:24.716 --> 00:00:27.594
+00:00:26.374 --> 00:00:29.475
 in Chapter 3's decisions,
 or an unknown one.
 
 9
-00:00:27.594 --> 00:00:30.908
-Oh three: the accounts
-allowed to retrieve a managed
+00:00:29.475 --> 00:00:35.158
+Oh three: the accounts allowed to retrieve
+a managed password in Active Directory
 
 10
-00:00:30.908 --> 00:00:34.158
-password in Active Directory
-differ from the reviewed list.
+00:00:35.158 --> 00:00:40.088
+differ from the reviewed list, or a G M
+S A's list isn't one group of its hosts.
 
 11
-00:00:34.158 --> 00:00:36.888
+00:00:40.088 --> 00:00:43.762
 Oh four is the one to
 remember: an unusable target.
 
 12
-00:00:36.888 --> 00:00:41.849
+00:00:43.762 --> 00:00:48.595
 Learn's overview and F A Q for delegated
 managed service accounts say a D M S A
 
 13
-00:00:41.849 --> 00:00:44.308
+00:00:48.595 --> 00:00:51.245
 can't come from a managed service account,
 
 14
-00:00:44.308 --> 00:00:49.083
+00:00:51.245 --> 00:00:56.388
 can't serve an account with unconstrained
 delegation, which stops working once
 
 15
-00:00:49.083 --> 00:00:54.003
+00:00:56.388 --> 00:01:01.688
 the migration completes, and needs Windows
 Server 2025 on the hosts and the domain.
 
 16
-00:00:54.003 --> 00:00:58.734
+00:01:01.688 --> 00:01:07.966
 Oh five and oh six: an account that stays
 with no S P N owner where Chapter 3 asks
 
 17
-00:00:58.734 --> 00:01:01.879
+00:01:07.966 --> 00:01:11.355
 for one, or no end date,
 or one past its bound:
 
 18
-00:01:01.879 --> 00:01:06.319
+00:01:11.355 --> 00:01:16.138
 D oh eight's for an account kept
 on Kerberos, G 5 for any other.
 
 19
-00:01:06.319 --> 00:01:10.390
+00:01:16.138 --> 00:01:19.738
 Oh seven: an account not
 reconciled with the end state.
 
 20
-00:01:10.390 --> 00:01:15.988
+00:01:19.738 --> 00:01:24.724
 Oh eight warns about a privileged group,
 and oh nine hands SQL Server accounts on.
+
+21
+00:01:24.724 --> 00:01:28.490
+And ten: a write with no
+SailPoint request or ServiceNow
+
+22
+00:01:28.490 --> 00:01:32.400
+change isn't planned at all;
+the plan records it as blocked.

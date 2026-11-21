@@ -5,74 +5,89 @@ WEBVTT
 Step six reads the plan.
 
 2
-00:00:01.762 --> 00:00:04.550
-Nine actions, and these
-are the four writes.
+00:00:01.762 --> 00:00:04.450
+Ten actions, and these
+are the five writes.
 
 3
-00:00:04.550 --> 00:00:06.713
-Set retrievers for gmsa web.
+00:00:04.450 --> 00:00:07.588
+Set retrievers for gmsa ops and gmsa web.
 
 4
-00:00:06.713 --> 00:00:09.876
-Create a G M S A for the managed service
+00:00:07.588 --> 00:00:12.278
+Create a G M S A for the managed
+service account msa print oh one,
 
 5
-00:00:09.876 --> 00:00:13.651
-account msa print oh one,
-and for svc intranet.
+00:00:12.278 --> 00:00:16.691
+outbound-only because it holds
+no S P N, and for svc intranet,
 
 6
-00:00:13.651 --> 00:00:17.348
+00:00:16.691 --> 00:00:21.013
+both in the service account O
+U with a thirty-day interval.
+
+7
+00:00:21.013 --> 00:00:24.710
 And complete the D M S A
 migration for svc h r sync,
 
-7
-00:00:17.348 --> 00:00:23.037
+8
+00:00:24.710 --> 00:00:30.399
 whose migration started forty days
 ago, past the thirty-day parallel run.
 
-8
-00:00:23.037 --> 00:00:29.188
+9
+00:00:30.399 --> 00:00:34.349
+Each write carries its SailPoint
+request and ServiceNow change,
+
+10
+00:00:34.349 --> 00:00:35.812
+or it wouldn't be planned.
+
+11
+00:00:35.812 --> 00:00:41.962
 gmsa ops, gmsa web and svc webfront stay
 on the island, as Chapter 3 decided.
 
-9
-00:00:29.188 --> 00:00:32.826
+12
+00:00:41.962 --> 00:00:45.600
 The other actions are recorded with
 their reasons and write nothing.
 
-10
-00:00:32.826 --> 00:00:36.550
+13
+00:00:45.600 --> 00:00:49.325
 Step seven reads the island
 list and the reconciliation.
 
-11
-00:00:36.550 --> 00:00:40.625
+14
+00:00:49.325 --> 00:00:53.400
 Six island rows, each under the
 name the account will end up with
 
-12
-00:00:40.625 --> 00:00:44.700
+15
+00:00:53.400 --> 00:00:57.475
 and with its disposition, four of
 them ready for P four point six.
 
-13
-00:00:44.700 --> 00:00:49.294
+16
+00:00:57.475 --> 00:01:02.069
 gmsa intranet has no S P N owner
 and ends at the end of 2028,
 
-14
-00:00:49.294 --> 00:00:54.688
+17
+00:01:02.069 --> 00:01:07.463
 so it isn't ready, and its
 reconciliation outcome is unreconciled.
 
-15
-00:00:54.688 --> 00:00:59.807
+18
+00:01:07.463 --> 00:01:12.582
 svc webfront carries the authorizing
 official's acceptance from Chapter 3,
 
-16
-00:00:59.807 --> 00:01:02.651
+19
+00:01:12.582 --> 00:01:15.480
 so it becomes ready once
 it has an S P N owner.

@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.500
+The standard's settings.
+
+2
+00:00:01.500 --> 00:00:07.262
+The name is G M S A dash app, or D M S
+A dash app, fifteen characters or fewer,
+
+3
+00:00:07.262 --> 00:00:11.912
+and Microsoft Learn says it
+must be unique in the forest.
+
+4
+00:00:11.912 --> 00:00:16.304
+It lives in a dedicated service-account
+O U, where only the creators
+
+5
+00:00:16.304 --> 00:00:20.537
+group may create one, and that
+group's only member is the pipeline.
+
+6
+00:00:20.537 --> 00:00:25.100
+Its password retrievers are always
+one domain local group of the hosts.
+
+7
+00:00:25.100 --> 00:00:30.588
+Encryption is A E S two fifty-six only,
+and the password interval is thirty days,
+
+8
+00:00:30.588 --> 00:00:34.875
+stated at creation, because Learn
+says it can be set only then.
+
+9
+00:00:34.875 --> 00:00:40.687
+A G M S A with no S P N is outbound-only,
+unless there's a recorded reason.
+
+10
+00:00:40.687 --> 00:00:43.726
+Every account has two named
+technical owners and a
+
+11
+00:00:43.726 --> 00:00:46.763
+federal-employee sponsor,
+and no privileged group.
+
+12
+00:00:46.763 --> 00:00:50.955
+The two owners certify it in
+SailPoint: quarterly for R one,
+
+13
+00:00:50.955 --> 00:00:53.925
+twice a year for R two,
+annually for R three.
+
+14
+00:00:53.925 --> 00:00:56.569
+And it stays disabled for ninety days,
+
+15
+00:00:56.569 --> 00:00:59.780
+with no sign-in seen,
+before anyone deletes it.

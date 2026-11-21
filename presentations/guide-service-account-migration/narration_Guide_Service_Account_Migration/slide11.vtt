@@ -1,90 +1,101 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.579
-Migration C starts when the
-workload moves to Azure,
+00:00:00.050 --> 00:00:03.245
+Now the standard step by
+step, each with who runs it,
 
 2
-00:00:03.579 --> 00:00:08.750
-or gains a call to Graph or an Azure A P I,
-and only for what it reaches with OAuth.
+00:00:03.245 --> 00:00:06.050
+the control it supports
+and its indicators.
 
 3
-00:00:08.750 --> 00:00:13.888
-Microsoft Learn's security best practices
-for application properties set the order:
+00:00:06.050 --> 00:00:09.691
+S1: the owner asks, and the
+developer workbook's Chapter
 
 4
-00:00:13.888 --> 00:00:18.159
-a managed identity whenever possible;
-where the app doesn't run on Azure,
+00:00:09.691 --> 00:00:13.575
+12 checks every field before
+SailPoint's approvers see it.
 
 5
-00:00:18.159 --> 00:00:22.067
-a platform that manages its own
-credentials, which is federation;
+00:00:13.575 --> 00:00:16.713
+S2: the decision path gives the target.
 
 6
-00:00:22.067 --> 00:00:25.902
-otherwise a certificate from a
-trusted certificate authority,
+00:00:16.713 --> 00:00:21.600
+S3: SailPoint approves, and
+ServiceNow opens the change record.
 
 7
-00:00:25.902 --> 00:00:28.725
-kept in a vault; and never
-a password credential.
+00:00:21.600 --> 00:00:26.994
+S4: the pipeline runs the approved plan
+and creates the G M S A to the standard;
 
 8
-00:00:28.725 --> 00:00:33.272
-C1: a workload moving to Azure gets
-a user-assigned managed identity,
+00:00:26.994 --> 00:00:30.300
+that supports automated
+account management.
 
 9
-00:00:33.272 --> 00:00:38.550
-created with the Azure C L I and given
-the narrowest role at the narrowest scope.
+00:00:30.300 --> 00:00:36.337
+S5: each host installs and tests it, and
+Group Policy limits log on as a service.
 
 10
-00:00:38.550 --> 00:00:41.713
-It outlives its resources,
-so it needs an owner.
+00:00:36.337 --> 00:00:41.499
+S6: SailPoint aggregates it, and
+the ticket closes only on a re-read.
 
 11
-00:00:41.713 --> 00:00:46.274
-C2: on an Arc-enabled server,
-use the server's own identity.
+00:00:41.499 --> 00:00:46.103
+S7: scheduled runs watch it
+with Defender for Identity;
 
 12
-00:00:46.274 --> 00:00:50.561
-Learn says only local
-administrators and one local group
+00:00:46.103 --> 00:00:48.763
+a G M S A nobody asked for is drift.
 
 13
-00:00:50.561 --> 00:00:54.312
-can request its tokens, so
-add the G M S A to that group.
+00:00:48.763 --> 00:00:51.301
+S8: the two owners certify it.
 
 14
-00:00:54.312 --> 00:00:56.515
-C3: on a host with no Arc agent,
+00:00:51.301 --> 00:00:54.323
+S9: an owner's departure
+starts a transfer;
 
 15
-00:00:56.515 --> 00:01:01.400
-an app registration with a
-certificate, with two named owners.
+00:00:54.323 --> 00:00:58.412
+an orphan is disabled, then
+has thirty days to be claimed.
 
 16
-00:01:01.400 --> 00:01:05.676
-C4: for C I C D or another
-cloud, a federated credential,
+00:00:58.412 --> 00:01:04.095
+S10: after the parallel run the pipeline
+disables the old account and moves it to
 
 17
-00:01:05.676 --> 00:01:10.150
-whose issuer, subject and
-audience must match exactly.
+00:01:04.095 --> 00:01:07.453
+the holding O U; after
+ninety days with no sign-in,
 
 18
-00:01:10.150 --> 00:01:15.530
-C5: after thirty days carrying traffic,
-retire what the cloud path replaced.
+00:01:07.453 --> 00:01:09.950
+a person uninstalls and deletes it.
+
+19
+00:01:09.950 --> 00:01:13.575
+S11: when the workload moves, Migration C.
+
+20
+00:01:13.575 --> 00:01:17.868
+Two things aren't verified yet:
+ServiceNow's Active Directory spoke,
+
+21
+00:01:17.868 --> 00:01:22.820
+so ServiceNow records and the plan writes,
+and SailPoint's export field names.

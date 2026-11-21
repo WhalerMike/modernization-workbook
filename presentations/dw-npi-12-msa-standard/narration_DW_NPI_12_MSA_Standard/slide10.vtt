@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.980
+For each request that passes, the code
+writes the row Chapter 6's plan reads,
+
+2
+00:00:04.980 --> 00:00:10.638
+with all twelve columns, including the
+SailPoint request and the ServiceNow change.
+
+3
+00:00:10.638 --> 00:00:12.378
+For a group managed account,
+
+4
+00:00:12.378 --> 00:00:16.162
+it also names the one group
+allowed to retrieve the password.
+
+5
+00:00:16.162 --> 00:00:21.672
+Those files go into Chapter 6's reviewed
+inputs through a reviewed pull request,
+
+6
+00:00:21.672 --> 00:00:26.763
+and Chapter 6's plan refuses any write
+without a request or a change record.
+
+7
+00:00:26.763 --> 00:00:29.812
+And just as important is what
+this chapter never does.
+
+8
+00:00:29.812 --> 00:00:33.505
+It writes nothing to any of the
+four products, it deletes nothing,
+
+9
+00:00:33.505 --> 00:00:37.390
+and it builds the ServiceNow
+findings payload without posting it.

@@ -41,5 +41,25 @@ widening retrievers by hand, or
 a plan that changed after review.
 
 9
-00:00:30.074 --> 00:00:32.810
+00:00:30.074 --> 00:00:35.086
+Two come from the account standard: a write
+identity with more rights than it needs,
+
+10
+00:00:35.086 --> 00:00:40.170
+guarded by giving the pipeline's account
+only delegated rights and keeping Domain
+
+11
+00:00:40.170 --> 00:00:43.117
+Admins with a person; and
+a write nobody approved,
+
+12
+00:00:43.117 --> 00:00:48.275
+guarded by refusing any write without its
+SailPoint request and ServiceNow change.
+
+13
+00:00:48.275 --> 00:00:51.000
 Each guard is a rule that runs every time.

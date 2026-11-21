@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.308
+The second check, findings ten to
+nineteen, reconciles what SailPoint
+
+2
+00:00:04.308 --> 00:00:08.712
+aggregated with what Active Directory
+holds and what the register says.
+
+3
+00:00:08.712 --> 00:00:12.463
+Every account must be aggregated
+by SailPoint with one owner.
+
+4
+00:00:12.463 --> 00:00:16.300
+Its password retrievers must be
+a single domain local group.
+
+5
+00:00:16.300 --> 00:00:21.926
+The interval must be thirty days and the
+encryption A E S two fifty-six only; Learn
+
+6
+00:00:21.926 --> 00:00:27.638
+says the interval can be set only at creation
+and A E S should always be configured.
+
+7
+00:00:27.638 --> 00:00:31.639
+An account with no service principal
+name must be outbound-only,
+
+8
+00:00:31.639 --> 00:00:33.225
+or have a recorded reason.
+
+9
+00:00:33.225 --> 00:00:34.737
+No privileged groups.
+
+10
+00:00:34.737 --> 00:00:36.612
+The right organizational unit.
+
+11
+00:00:36.612 --> 00:00:39.362
+And every account must be
+explained by a request,
+
+12
+00:00:39.362 --> 00:00:42.170
+which is the drift rule
+from the governance book.

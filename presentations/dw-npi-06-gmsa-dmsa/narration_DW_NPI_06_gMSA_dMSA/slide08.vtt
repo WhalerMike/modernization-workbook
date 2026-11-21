@@ -16,33 +16,53 @@ for a delegated conversion, the domain
 controllers and each host's operating system.
 
 4
-00:00:12.587 --> 00:00:14.038
-Then nine rules run.
+00:00:12.587 --> 00:00:14.013
+Then ten rules run.
 
 5
-00:00:14.038 --> 00:00:18.902
+00:00:14.013 --> 00:00:18.877
 Some come from Learn: the root key must
 exist and be old enough, the migration's
 
 6
-00:00:18.902 --> 00:00:23.612
+00:00:18.877 --> 00:00:23.587
 limits must hold, and managed accounts
 shouldn't sit in privileged groups.
 
 7
-00:00:23.612 --> 00:00:27.667
+00:00:23.587 --> 00:00:27.641
 Others come from the project plan:
 every account needs a decision,
 
 8
-00:00:27.667 --> 00:00:30.220
+00:00:27.641 --> 00:00:30.194
 an owner for its service principal names,
 
 9
-00:00:30.220 --> 00:00:34.650
+00:00:30.194 --> 00:00:34.624
 an end date inside the program's
 deadline, and a reconciled destination.
 
 10
-00:00:34.650 --> 00:00:36.820
+00:00:34.624 --> 00:00:39.789
+The account standard adds three checks: a
+new name must follow the naming standard,
+
+11
+00:00:39.789 --> 00:00:43.965
+a group account's retrievers must
+be exactly one group of its hosts,
+
+12
+00:00:43.965 --> 00:00:47.687
+and a write with no SailPoint
+request or ServiceNow change
+
+13
+00:00:47.687 --> 00:00:50.800
+isn't planned at all; the
+plan records it as blocked.
+
+14
+00:00:50.800 --> 00:00:52.970
 Every finding gets a stable ID.

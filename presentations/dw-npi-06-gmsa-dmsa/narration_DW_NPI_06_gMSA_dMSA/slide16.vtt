@@ -11,41 +11,51 @@ with a Windows Server 2025 domain
 controller and member server.
 
 3
-00:00:08.125 --> 00:00:10.864
+00:00:08.125 --> 00:00:10.734
 You make two test accounts,
 one for each path,
 
 4
-00:00:10.864 --> 00:00:14.668
+00:00:10.734 --> 00:00:14.357
 record their decisions by running
 Chapters 2 and 3 over them,
 
 5
-00:00:14.668 --> 00:00:19.157
-and grant the reader only a narrow
-delegated read of the root key's dates,
+00:00:14.357 --> 00:00:18.850
+and create the group account's retriever
+group with the member server in it.
 
 6
-00:00:19.157 --> 00:00:23.113
-recording whether that really
-works without exposing the key.
+00:00:18.850 --> 00:00:23.662
+The inputs name a test request, a test
+change and the test domain's O Us.
 
 7
-00:00:23.113 --> 00:00:26.551
+00:00:23.662 --> 00:00:28.275
+You grant the reader only a narrow
+delegated read of the root key's dates.
+
+8
+00:00:28.275 --> 00:00:31.713
 A second person reviews the
 plan and hands you its hash.
 
-8
-00:00:26.551 --> 00:00:30.975
-You apply it as a person, then run
-the next plan to start the migration,
-
 9
-00:00:30.975 --> 00:00:34.925
-restart only the test service,
-and watch the Kerberos events.
+00:00:31.713 --> 00:00:36.028
+You apply it as a person; the group
+account is the pipeline's step,
 
 10
-00:00:34.925 --> 00:00:38.570
+00:00:36.028 --> 00:00:40.675
+so a person sends it only in a test
+domain, with the test domain switch.
+
+11
+00:00:40.675 --> 00:00:45.200
+Then run the next plan to start the
+migration and watch the Kerberos events.
+
+12
+00:00:45.200 --> 00:00:48.840
 After thirty days, complete
 it, or back it out by hand.
