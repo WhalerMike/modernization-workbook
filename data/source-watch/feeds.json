@@ -1,5 +1,5 @@
 {
-  "_comment": "New-publication feeds for scripts/source_watch (see its README). Every URL here was opened and parsed on 2026-10-21. A topic keyword with a capital letter matches case-sensitively; an all-lowercase one ignores case. `match` names the item fields searched (default title + summary); `books` on a feed reports every new item of that feed for those books.",
+  "_comment": "New-publication feeds for scripts/source_watch (see its README). Every URL here was opened and parsed on 2026-10-21. A topic keyword with a capital letter matches case-sensitively; an all-lowercase one ignores case. `match` names the item fields searched (default title + summary); `books` on a feed reports every new item of that feed for those books. Vendor feeds for SailPoint and ServiceNow were opened and parsed on 2026-11-21. `exclude` on a feed is a regular expression; items whose title matches it are marked seen and not reported. A `fluidtopics_pages` feed is a weekly page check of a JavaScript-drawn documentation site (see feeds.py).",
   "topics": [
     {
       "name": "TIC / SASE / network transport",
@@ -1003,6 +1003,68 @@
         "DW"
       ],
       "source": "Commits to the Learn source page that holds the Microsoft Graph PowerShell script and HTTP requests that review and revoke an application's delegated and application permissions, which examples/third_party/entra-review-app-permissions-page pins at one commit (developer workbook Building Non-Person Identity, Chapter 07). A new commit means: review it, rerun examples/non-person-identity/tests/NpiLeastPrivilegeSamples.Tests.ps1 on the new page, and update the snapshot only in a reviewed pull request."
+    },
+    {
+      "id": "sailpoint-saas-release-notes",
+      "name": "SailPoint SaaS release notes (Developer Community)",
+      "type": "rss",
+      "url": "https://developer.sailpoint.com/discuss/c/announcements/saas-release-notes/182.rss",
+      "books": [
+        "B13",
+        "DW"
+      ],
+      "source": "The SaaS Release Notes category of the SailPoint Developer Community (Discourse), opened and parsed on 2026-11-21. The category's own feed carries only that category, so no filter is needed; the site-wide https://developer.sailpoint.com/discuss/latest.rss mixes every category and keeps only the newest 25 topics."
+    },
+    {
+      "id": "sailpoint-api-specs-commits",
+      "name": "SailPoint Identity Security Cloud API specifications",
+      "type": "github_commits",
+      "repo": "sailpoint-oss/api-specs",
+      "books": [
+        "B13",
+        "DW"
+      ],
+      "exclude": ": (Update dereferenced specifications|Automated commit by github action)",
+      "source": "Commits to main of https://github.com/sailpoint-oss/api-specs (the commits.atom feed of the same branch). The daily bot commits that sync the specifications are not reported; the specification files the workbook cites are watched one by one as cited sources, with their diffs."
+    },
+    {
+      "id": "sailpoint-cli-releases",
+      "name": "SailPoint CLI releases",
+      "type": "github_releases",
+      "repo": "sailpoint-oss/sailpoint-cli",
+      "books": [
+        "B13",
+        "DW"
+      ],
+      "source": "Releases of https://github.com/sailpoint-oss/sailpoint-cli (the releases.atom feed of the same repository)."
+    },
+    {
+      "id": "servicenow-sdk-releases",
+      "name": "ServiceNow SDK releases",
+      "type": "github_releases",
+      "repo": "ServiceNow/sdk",
+      "books": [
+        "B13",
+        "B15",
+        "DW"
+      ],
+      "source": "Releases of https://github.com/ServiceNow/sdk (the releases.atom feed of the same repository). The SDK only; ServiceNow's platform release notes are the next feed."
+    },
+    {
+      "id": "servicenow-family-release-notes",
+      "name": "ServiceNow family release notes (page check)",
+      "type": "fluidtopics_pages",
+      "url": "https://www.servicenow.com/docs/r/release-notes/family-release-notes.html",
+      "base": "https://www.servicenow.com/docs",
+      "cluster": "rn",
+      "locale": "en-US",
+      "page": "family-release-notes.html",
+      "books": [
+        "B13",
+        "B15",
+        "DW"
+      ],
+      "source": "ServiceNow's release notes have no feed, and the docs site draws its pages with JavaScript, so a plain fetch sees only an empty shell. The page check reads the site's public Fluid Topics API instead (/api/khub/maps, then each map's toc and topic content): for every en-US release-notes publication (one per family: Xanadu, Yokohama, Zurich, Australia, Brazil on 2026-11-21) it hashes the text of the family release-notes page. A changed page, or a new family, is reported once."
     }
   ]
 }

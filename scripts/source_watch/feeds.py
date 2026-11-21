@@ -18,6 +18,18 @@ Feed types:
 - `federal_register`: the Federal Register API, by agency and search term.
 - `github_commits`:   commits to a GitHub repository (optionally one path).
 - `github_releases`:  releases of a GitHub repository.
+- `fluidtopics_pages`: a page check for a documentation site built on Fluid
+                      Topics (ServiceNow's docs), whose pages are drawn by
+                      JavaScript and have no feed. Through the site's public
+                      API it finds every publication in one cluster and
+                      locale (ServiceNow's release notes, one per family),
+                      reads the named page of each (the family release-notes
+                      page) and hashes its text. A new hash, or a new
+                      family, is a new item.
+
+A feed may also name `exclude`, a regular expression: items whose title
+matches it are marked seen but never reported (the bot commits that sync
+SailPoint's API specifications every day).
 
 Seen item ids are kept per feed in the state file. A feed seen for the first
 time is baselined silently (all current items marked seen), unless
@@ -30,9 +42,11 @@ from __future__ import annotations
 
 import datetime as dt
 import email.utils
+import hashlib
 import html
 import json
 import re
+import time
 import xml.etree.ElementTree as ET
 import zipfile
 from io import BytesIO
@@ -246,6 +260,62 @@ def fetch_github_releases(feed: dict, since: str) -> list[dict]:
     ]
 
 
+ARTICLE = re.compile(r"<article\b.*?</article>", re.S | re.I)
+UPDATED = re.compile(r"\bUpdated\s+([A-Z][a-z]+ \d{1,2}, \d{4})")
+
+
+def _toc_find(entries: list[dict], page: str) -> dict | None:
+    for e in entries:
+        if (e.get("prettyUrl") or "").rsplit("/", 1)[-1] == page:
+            return e
+        hit = _toc_find(e.get("children") or [], page)
+        if hit:
+            return hit
+    return None
+
+
+def fetch_fluidtopics_pages(feed: dict, since: str) -> list[dict]:
+    """One item per publication: the named page's text hash (see the module docstring)."""
+    base = feed["base"].rstrip("/")
+    pause = float(feed.get("delay_s", 1.0))
+    out = []
+    for m in json.loads(_get(f"{base}/api/khub/maps")):
+        meta = {x.get("key"): x.get("values") or [] for x in m.get("metadata", [])}
+        if feed["cluster"] not in meta.get("ft:clusterId", []) or feed["locale"] not in meta.get("ft:locale", []):
+            continue
+        time.sleep(pause)
+        entry = _toc_find(json.loads(_get(f"{base}/api/khub/maps/{m['id']}/toc")), feed["page"])
+        if not entry:
+            raise RuntimeError(f"{feed['page']} not found in the contents of {m.get('title', m['id'])}")
+        time.sleep(pause)
+        body = _get(f"{base}/api/khub/maps/{m['id']}/topics/{entry['contentId']}/content").decode("utf-8", "replace")
+        art = ARTICLE.search(body)
+        text = plain(art.group(0) if art else body, 10**9)
+        updated = UPDATED.search(text)
+        date = ""
+        if updated:
+            try:
+                date = dt.datetime.strptime(updated.group(1), "%B %d, %Y").date().isoformat()
+            except ValueError:
+                pass
+        origin = (meta.get("ft:originId") or [m["id"]])[0]
+        digest = hashlib.sha256(text.encode("utf-8")).hexdigest()[:16]
+        out.append(
+            {
+                "id": f"{origin}|{digest}",
+                "title": f"{m.get('title', origin)}: {entry.get('title', feed['page'])}"
+                + (f" (updated {updated.group(1)})" if updated else "")
+                + f", page text {digest[:8]}",
+                "url": base + entry.get("prettyUrl", ""),
+                "date": date,
+                "summary": plain(text),
+            }
+        )
+    if not out:
+        raise RuntimeError(f"no {feed['locale']} publications in cluster {feed['cluster']!r} at {base}")
+    return out
+
+
 FETCHERS = {
     "rss": fetch_rss,
     "cisa_kev": fetch_cisa_kev,
@@ -253,6 +323,7 @@ FETCHERS = {
     "federal_register": fetch_federal_register,
     "github_commits": fetch_github_commits,
     "github_releases": fetch_github_releases,
+    "fluidtopics_pages": fetch_fluidtopics_pages,
 }
 
 # ------------------------------------------------------------------ topics
@@ -323,8 +394,11 @@ def poll_all(cfg: dict, feed_state: dict, now: dt.datetime, only: list[str], sin
         cutoff = (today - dt.timedelta(days=since_days)).isoformat()
         report_new = new if not first else [i for i in new if since_days and i.get("date", "") >= cutoff]
         fields = feed.get("match", ["title", "summary"])
+        exclude = re.compile(feed["exclude"]) if feed.get("exclude") else None
         shown = 0
         for i in report_new:
+            if exclude and exclude.search(i.get("title", "")):
+                continue
             books, hits = match(i, fields, topics)
             books += [b for b in feed.get("books", []) if b not in books]
             if not books:
