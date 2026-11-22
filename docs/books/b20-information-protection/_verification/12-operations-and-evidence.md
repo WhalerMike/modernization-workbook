@@ -17,6 +17,7 @@ Writer: Book 20 build (Nov 11, 2026). Learn pages read: 10. Sources opened Nov 1
 | 10 | Audit Standard 180 days; Premium one year default (Entra, Exchange, OneDrive, SharePoint) for E5-level users; up to 10 years with add-on; non-user records one year | Evidence catalog | verified | "Learn about auditing solutions in Microsoft Purview"; "Manage audit log retention policies" | Nov 11, 2026 |
 | 11 | Audit Premium incl. 1-year and 10-year retention available in GCC | Evidence catalog | verified | Purview GCC planning page, Step 4 | Nov 11, 2026 |
 | 12 | Implementation checklist, RACI, cadence, evidence retention (3 years), metrics formulas | Artifacts | restated-as-design | Program design | Nov 11, 2026 |
+| 13 | Figure reused from Book 13, Chapter 06 (`ch06-drift-pipeline`): the drift engine the chapter hands its exports to | Drift detection | restated-as-design | Book 13, Chapter 06 | Nov 22, 2026 |
 
 ## GCC gaps
 - None new beyond Chapter 11's; every feature this chapter relies on (audit, labels, DLP, auto-labeling, IRM configuration, AIPService) is listed on the GCC page or is PowerShell that GCC reaches with the commercial connection values.

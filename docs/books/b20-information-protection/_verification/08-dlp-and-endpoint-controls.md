@@ -33,6 +33,7 @@ Writer: Book 20 build (Nov 11, 2026). Learn pages read: 18. Sources opened Nov 1
 | 26 | Set-DlpCompliancePolicy has ExchangeSenderMemberOf and Mode; Disable example | Enforcement, Rollback | verified | Set-DlpCompliancePolicy, <https://learn.microsoft.com/powershell/module/exchangepowershell/set-dlpcompliancepolicy> | Nov 11, 2026 |
 | 27 | EndpointDlpLocation requires Compliance Administrator or Compliance Data Administrator in Entra ID | Prerequisites (endpoint) | verified | New-DlpCompliancePolicy | Nov 11, 2026 |
 | 28 | Control requirement rows (AC-4, SI-4, MP-7, CM-3) | Requirements | restated-as-design | Mapping is the program's; control titles checked against SP 800-53 Rev. 5 OSCAL 5.2.0 | Nov 11, 2026 |
+| 29 | Figure `ch08-dlp-simulation-to-incident`: outcome, simulation rings 0 to 3, endpoint ladder on Windows 10/11 and Server 2019+, incident steps and tuning | Simulation is the pilot; Endpoint DLP on Windows; DLP incidents | restated-as-design | Program design; Learn, "Learn about simulation mode" (15 days, 30 days, new items only), "Create and deploy DLP policies" (endpoint actions) | Nov 22, 2026 |
 
 ## GCC gaps
 

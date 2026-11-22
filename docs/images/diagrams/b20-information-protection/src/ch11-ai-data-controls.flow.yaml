@@ -1,0 +1,35 @@
+# Book 20 Chapter 11 — the three AI app classes, the four decisions recorded
+# before any policy, the Purview controls that carry them, and where AI events
+# are recorded; GCC availability as the chapter states it. Product behavior as
+# documented on Microsoft Learn (dlp-microsoft365-copilot-location-learn-about,
+# data-security-posture-management-oversharing, ai-m365-copilot-considerations),
+# read Nov 22, 2026.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.45}
+nodes:
+  m365: {tone: blue, width: 200, title: "Microsoft 365 Copilot and Copilot Chat", body: ["=Inside the tenant, in the user's security context"], size: 12}
+  ent: {tone: slate, width: 200, title: "Enterprise AI apps", body: ["=Connected through Microsoft Entra"], size: 12}
+  third: {tone: red, width: 200, title: "Third-party AI sites", body: ["=Reached in a browser; most agencies treat them as unapproved for CUI"], size: 12}
+  dec: {tone: amber, width: 640, title: "The four decisions, recorded before any policy", body: ["1. Which AI apps are approved, and for which data", "2. Which labels Copilot may process", "3. What is done about oversharing before Copilot reaches a population", "4. What is captured, and who may read it"], size: 12, bullets: false}
+  rights: {tone: blue, width: 150, title: "Label usage rights", body: ["=No EXTRACT, no Copilot summary"], size: 12}
+  dlpc: {tone: blue, width: 150, title: "DLP for Microsoft 365 Copilot", body: ["=Items with the chosen labels kept out of responses"], size: 12}
+  over: {tone: blue, width: 150, title: "Oversharing data risk assessment", body: ["=Finds overshared sites first"], size: 12}
+  edlp: {tone: blue, width: 150, title: "Endpoint and browser DLP", body: ["=For AI sites the agency hasn't approved"], size: 12}
+  events: {tone: violet, width: 640, title: "Recorded: AI events in activity explorer and the audit log", body: ["=AI interaction, AI website visit, DLP rule match and sensitive info types; the CopilotInteraction operation in the audit log"], size: 12}
+  gcc: {kind: text, width: 640, text: "In GCC, DSPM for AI sees only Microsoft Copilot and supported AI sites, and the browse-to-URL policy can't be created; check each row of the chapter's availability table."}
+order:
+  - [m365, ent, third]
+  - [rights, dlpc, over, edlp]
+edges:
+  - [m365, dec, {tone: blue}]
+  - [ent, dec]
+  - [third, dec, {tone: red}]
+  - [dec, rights, {tone: amber}]
+  - [dec, dlpc, {tone: amber}]
+  - [dec, over, {tone: amber}]
+  - [dec, edlp, {tone: amber}]
+  - [rights, events, {style: invis}]
+  - [dlpc, events, {tone: violet}]
+  - [over, events, {style: invis}]
+  - [edlp, events, {tone: violet}]
+  - [events, gcc, {style: invis}]

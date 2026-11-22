@@ -1,0 +1,65 @@
+# Book 20 Chapter 08 — a DLP rule from the policy owner's outcome through
+# simulation and enforcement rings, the endpoint action ladder on Windows
+# (the program's scope), and an alert handled from triage to tuning.
+# Product behavior as documented on Microsoft Learn (dlp-simulation-mode-learn,
+# dlp-create-deploy-policy, dlp-configure-endpoint-settings), read Nov 22, 2026.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.45}
+clusters:
+  - id: rings
+    label: "Workload DLP: simulation is the pilot"
+    tone: blue
+    filled: false
+    nodes: [r0, r1, r2, r3]
+  - id: endpoint
+    label: "Endpoint DLP on Windows 10 and 11, and Windows Server 2019 and later"
+    tone: slate
+    filled: false
+    nodes: [e1, e2, e3, e4]
+  - id: incident
+    label: "An alert (severity High on CUI rules)"
+    tone: violet
+    filled: false
+    nodes: [i1, i2, i3, i4, i5]
+nodes:
+  outcome: {tone: amber, width: 480, title: "Outcome statement, owned by the policy owner", body: ["=The data, the boundary, the surface, the action, and who learns of it; carried in the rule's comment"], size: 12}
+  r0: {tone: slate, width: 150, tag: "Ring 0", title: "Simulation", body: ["=Team's mailboxes and sites"], size: 12}
+  r1: {tone: blue, width: 150, tag: "Ring 1", title: "Simulation, then tips", body: ["=Pilot group; false positives at or below the owner's number"], size: 12}
+  r2: {tone: blue, width: 150, tag: "Ring 2", title: "Enforce", body: ["=Early adopters; CUI Basic override with justification"], size: 12}
+  r3: {tone: green, width: 150, tag: "Ring 3", title: "Enforce, v2", body: ["=Everyone in scope; no override for CUI"], size: 12}
+  simnote: {kind: text, width: 600, text: "A simulation runs up to 15 days and keeps its data 30 days. SharePoint and OneDrive are evaluated in full; Exchange, Teams and devices only for new items."}
+  e1: {kind: pill, tone: slate, text: "Allow\n(audit, no notice)", width: 130}
+  e2: {kind: pill, tone: amber, text: "Audit only
+(with notice)", width: 130}
+  e3: {kind: pill, tone: amber, text: "Block with\noverride", width: 130}
+  e4: {kind: pill, tone: green, text: "Block", width: 130}
+  i1: {kind: pill, tone: violet, text: "Triage", width: 90}
+  i2: {kind: pill, tone: violet, text: "Contain", width: 90}
+  i3: {kind: pill, tone: violet, text: "Assess", width: 90}
+  i4: {kind: pill, tone: violet, text: "Support", width: 90}
+  i5: {kind: pill, tone: violet, text: "Close", width: 90}
+  tune: {tone: amber, width: 230, title: "Tune", body: ["=Fix at the right layer; copy, change, simulate, compare, switch"], size: 12}
+order:
+  - [r0, r1, r2, r3]
+  - [e1, e2, e3, e4]
+  - [i1, i2, i3, i4, i5]
+edges:
+  - [outcome, r1, {tone: amber}]
+  - [r0, r1, {tone: blue}]
+  - [r1, r2, {tone: blue}]
+  - [r2, r3, {tone: green}]
+  - [r1, simnote, {style: invis}]
+  - [r2, simnote, {style: invis}]
+  - [simnote, e2, {style: invis}]
+  - [simnote, e3, {style: invis}]
+  - [e1, e2]
+  - [e2, e3]
+  - [e3, e4, {tone: green}]
+  - [e2, i2, {style: invis}]
+  - [e3, i4, {style: invis}]
+  - [i1, i2]
+  - [i2, i3]
+  - [i3, i4]
+  - [i4, i5]
+  - [i1, tune, {tone: amber, style: dashed, label: "false positive", lw: 100}]
+  - [i5, tune, {tone: amber, style: dashed, label: "root cause", lw: 90}]

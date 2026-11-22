@@ -36,6 +36,7 @@ Writer: Book 20 build (Nov 11, 2026). Learn pages read: 24. Sources opened Nov 1
 | 28 | Priority user group review restriction | Exclusions (IRM) | verified | Prioritize user groups for IRM policies | Nov 11, 2026 |
 | 29 | Sharing IRM data with SIEM and Defender XDR | Telemetry (IRM) | verified | Share Insider Risk Management data with other solutions | Nov 11, 2026 |
 | 30 | Control requirement rows (AU-2, AU-6, AU-11, AU-12, PM-12, AC-5) | Requirements | restated-as-design | Mapping is the program's; titles checked against SP 800-53 Rev. 5 OSCAL 5.2.0 | Nov 11, 2026 |
+| 31 | Figure `ch10-audit-floor-and-charter`: audit retention tiers routed to the log platform; six charter questions and deciders gate IRM and Communication Compliance | Audit is the floor; The charter comes first | restated-as-design | Program design; Learn, "Learn about auditing solutions in Microsoft Purview" | Nov 22, 2026 |
 
 ## GCC gaps
 

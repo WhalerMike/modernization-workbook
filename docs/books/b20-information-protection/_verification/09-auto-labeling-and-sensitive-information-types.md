@@ -30,6 +30,7 @@ Writer: Book 20 build (Nov 11, 2026). Learn pages read: 17. Sources opened Nov 1
 | 22 | GCC availability rows | Prerequisites | verified | Learn Purview GCC planning page, Step 4 | Nov 11, 2026 |
 | 23 | Label audit operations and FailureReason | Telemetry | verified | Audit log activities, Sensitivity label activities | Nov 11, 2026 |
 | 24 | Control requirement rows (RA-2, AC-16, CM-3) | Requirements | restated-as-design | Mapping is the program's; titles checked against SP 800-53 Rev. 5 OSCAL 5.2.0 | Nov 11, 2026 |
+| 25 | Figure `ch09-classifier-ladder`: four rungs; client-side recommends, service-side applies; classifier register | The classifier ladder; Client-side and service-side | restated-as-design | Program design; Learn, "Learn about exact data match based sensitive information types," "Apply a sensitivity label to content automatically" | Nov 22, 2026 |
 
 ## GCC gaps
 

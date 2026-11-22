@@ -1,0 +1,30 @@
+# Book 20 Chapter 09 — the classifier ladder (each rung adds precision and
+# effort; climb only as far as the false-positive rate requires), and the two
+# places labels are applied automatically. Product behavior as documented on
+# Microsoft Learn (sit-sensitive-information-type-learn-about,
+# sit-learn-about-exact-data-match-based-sits, apply-sensitivity-label-automatically),
+# read Nov 22, 2026.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.45}
+nodes:
+  b: {tone: slate, width: 165, tag: "Rung 1", title: "Built-in sensitive information type", body: ["=Microsoft's patterns for common identifiers; tune confidence and count"], size: 12}
+  c: {tone: blue, width: 165, tag: "Rung 2", title: "Custom sensitive information type", body: ["=The agency's own format, as a tested rule package"], size: 12}
+  e: {tone: green, width: 165, tag: "Rung 3", title: "Exact data match", body: ["=A real row from the agency's hashed table; lowest false positives"], size: 12}
+  t: {tone: violet, width: 165, tag: "Rung 4", title: "Trainable classifier", body: ["=Documents that resemble a category; needs real samples"], size: 12}
+  rule: {kind: text, tone: amber, bold: true, width: 640, text: "Each rung adds precision and effort. Climb only as far as the false-positive rate requires."}
+  client: {tone: blue, width: 300, title: "Client-side, in Office apps", body: ["=Recommends a label while the user works: CUI Basic, so the author learns the rule"], size: 12}
+  service: {tone: green, width: 300, title: "Service-side auto-labeling policies", body: ["=Applies the label without the user: at rest in SharePoint and OneDrive, in transit in Exchange"], size: 12}
+  register: {kind: text, width: 640, text: "Every classifier has a row in the classifier register: what it detects, which label or rule uses it, its owner, confidence and count, last tuning date and false-positive rate."}
+order:
+  - [b, c, e, t]
+  - [client, service]
+edges:
+  - [b, c, {tone: amber}]
+  - [c, e, {tone: amber}]
+  - [e, t, {tone: amber}]
+  - [b, rule, {style: invis}]
+  - [t, rule, {style: invis}]
+  - [rule, client, {tone: blue}]
+  - [rule, service, {tone: green}]
+  - [client, register, {style: invis}]
+  - [service, register, {style: invis}]

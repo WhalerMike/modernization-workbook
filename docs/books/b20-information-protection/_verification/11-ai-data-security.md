@@ -26,6 +26,7 @@ Writer: Book 20 build (Nov 11, 2026). Learn pages read: 14. Sources opened Nov 1
 | 18 | Auditing verify/turn on commands; value always False in SCC PowerShell; Audit Logs role | Step 1 | verified | "Turn auditing on or off," https://learn.microsoft.com/purview/audit-log-enable-disable | Nov 11, 2026 |
 | 20 | `Search-UnifiedAuditLog -RecordType DLPEndpoint` for endpoint DLP events | Step 6 | unverifiable on the pages read (record type name from the audit schema, not re-read today); the activity explorer step is the primary check | — | Nov 11, 2026 |
 | 21 | AI data decisions, rings, exclusions, backout triggers | Decisions; How | restated-as-design | Program design | Nov 11, 2026 |
+| 22 | Figure `ch11-ai-data-controls`: three AI app classes, four decisions, four controls, AI events; GCC note. The DLP card shows only the label exclusion (on Nov 22 Learn marks "Block sensitive information types in prompts" as preview and rolling out, which the chapter text does not; reported, text unchanged) | The AI data decisions; What Purview provides for AI | restated-as-design | Program design; Learn, "Learn about DLP for Microsoft 365 Copilot," "Data risk assessments for oversharing" | Nov 22, 2026 |
 
 ## GCC gaps
 - Current (non-classic) Data Security Posture Management, AI observability and data risk assessments: Learn's GCC planning page lists only "DSPM for AI"; written "not yet specified" for GCC.

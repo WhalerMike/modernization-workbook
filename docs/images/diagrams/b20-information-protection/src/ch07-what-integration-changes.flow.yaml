@@ -1,0 +1,27 @@
+# Book 20 Chapter 07 — what label integration for Office files in SharePoint
+# and OneDrive changes for an encrypted file, and the ways a protected file
+# still drops out of the services' view, with the program's response to each.
+# Product behavior as documented on Microsoft Learn
+# (sensitivity-labels-sharepoint-onedrive-files, sensitivity-labels-coauthoring),
+# read Nov 22, 2026.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.45}
+nodes:
+  file: {tone: blue, width: 420, title: "An encrypted Word, Excel, PowerPoint or PDF file in SharePoint or OneDrive", body: ["=New or changed after label integration is on; the label encrypts with a cloud-based key"], size: 12}
+  ok: {tone: green, width: 260, title: "Processed by the services", body: ["Label recognized, contents processed", "eDiscovery full-text search; DLP policies", "Opened and edited in Office for the web", "Co-authoring, once turned on for encrypted files", "Label and encryption stay with a download", "Three label audit events: applied, changed, removed"], size: 12}
+  gaps:
+    kind: table
+    tone: red
+    columns: ["Drops out of view", "The program's response"]
+    widths: [210, 210]
+    rows:
+      - ["Encrypted before integration was turned on", "Counted in Validate; touched through the owners' review"]
+      - ["Expiring access or Double Key Encryption", "No expiry on SharePoint labels; DKE kept to the narrowest set"]
+      - ["Password-protected document", "DLP condition on password-protected files"]
+      - ["Over 12 MB, moved to another site", "Move within the site, or relabel"]
+      - ["Label deleted, not retired", "Never delete a production label; retire it in the policy"]
+order:
+  - [ok, gaps]
+edges:
+  - [file, ok, {tone: green}]
+  - [file, gaps, {tone: red, style: dashed}]
