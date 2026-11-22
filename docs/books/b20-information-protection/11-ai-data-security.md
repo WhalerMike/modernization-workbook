@@ -131,7 +131,7 @@ DLP has a policy location for Microsoft Copilot, Copilot Chat and Copilot Cowork
 | Condition | Action | Effect |
 |---|---|---|
 | Content contains a sensitivity label | Prevent Copilot from processing content | Copilot doesn't use the item's content in the response; the item can still appear in citations |
-| Prompt contains sensitive information types | Prevent processing of the prompt | Copilot doesn't respond, and the prompt isn't used for internal or web search |
+| Prompt contains sensitive information types (preview, rolling out; check the tenant) | Prevent processing of the prompt | Copilot doesn't respond, and the prompt isn't used for internal or web search |
 | Prompt contains sensitive information types | Prevent web searches | External web search isn't used as a grounding source for that prompt |
 | Email received from external users (preview) | Prevent Copilot from processing content | External email is excluded from grounding, summarization and citation |
 
@@ -167,7 +167,7 @@ GCC availability, read Nov 11, 2026:
 | Purview controls for Microsoft Copilot and Copilot Chat | Available | Available | [^c11-copilot-sd] |
 | DSPM for AI: create policies and view analytics for AI apps | Available | Available; no "browse to URL" policy; only Microsoft Copilot and supported AI sites | [^c11-gcc] |
 | Data Security Posture Management (current version), AI observability, data risk assessments | Available | not yet specified | [^c11-dspm-new] |
-| DLP for Microsoft 365 Copilot location (labels, prompts) | Available | not yet specified as its own row; covered by the Purview controls row above | [^c11-dlp-copilot][^c11-copilot-sd] |
+| DLP for Microsoft 365 Copilot location (labels, prompts) | Available; blocking sensitive information types in prompts is in preview and rolling out | not yet specified as its own row; covered by the Purview controls row above | [^c11-dlp-copilot][^c11-copilot-sd] |
 | DLP to restrict Copilot from processing external email | Preview | not yet specified | [^c11-dlp-copilot] |
 | Endpoint DLP (needed for third-party AI sites) | Available | Available | [^c11-gcc] |
 | Insider Risk Management (risky AI usage, AI site visits) | Available | Available (core) | [^c11-gcc] |
