@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Books 02, 04"
 series-order: 3
 review-status: approved
-reviewed-sha256: 00ee86df362f04bc804bdf5d27ff8f8d52d8af55c403f06dca0014ebf19f138c
+reviewed-sha256: b4438b21f6b34aea8cda175700af848b1ab493309219fd1a4b823eb98b4751e1
 last-reviewed: 2026-11-22
 ---
 # Module 3: Decide each identity's target {.unnumbered}
