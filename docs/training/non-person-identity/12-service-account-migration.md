@@ -56,7 +56,7 @@ After this module, you'll be able to:
 Read in the guide:
 
 - [The kinds of service identity compared](../../books/guides/service-account-migration.md#comparison): the table, then the three things it makes plain. Note who manages each credential, and which kinds speak Kerberos.
-- [The decision path](../../books/guides/service-account-migration.md#decision-path): nine questions in order, the first "yes" is the target, each with its Chapter 03 disposition.
+- [The decision path](../../books/guides/service-account-migration.md#decision-path): questions 1 to 8 in order, the first "yes" is the target (a hybrid workload at question 4 takes two), then question 9 for the Kerberos island, each with its Chapter 03 disposition.
 - [The program's rules for every migration](../../books/guides/service-account-migration.md#rules): two owners and a sponsor, a reviewed disposition first, a 30-day parallel run, no client secrets, no privileged groups, and reviewed changes.
 
 ## Unit 2: Migrations A and B, by hand (12 minutes)
