@@ -241,6 +241,17 @@ format:
 <section class="section"><div class="wrap edition">
   <p class="label">About this edition</p>
   <p>Text: Gregory J. Barbaccia, <em>Expectations for Public Tech Leadership</em>, sent by email to federal technology leaders in May 2025. The principles appear in their original order. The email's cover note to staff and the Office of the Federal CIO logo are not reproduced.</p>
+  <p>Related federal technology initiatives and bodies, each linked to its official source:</p>
+  <ul>
+    <li><a href="https://www.fedramp.gov/20x/">FedRAMP 20x</a> and <a href="https://www.fedramp.gov/rev5/">FedRAMP Rev. 5</a>.</li>
+    <li>GSA's <a href="https://www.gsa.gov/about-us/newsroom/news-releases/gsa-unveils-onegov-strategy-04292025">OneGov strategy</a>.</li>
+    <li>Consolidation of procurement under GSA, <a href="https://www.whitehouse.gov/presidential-actions/2025/03/eliminating-waste-and-saving-taxpayer-dollars-by-consolidating-procurement/">Executive Order 14240</a>.</li>
+    <li><a href="https://www.whitehouse.gov/presidential-actions/2025/01/establishing-and-implementing-the-presidents-department-of-government-efficiency/">The Department of Government Efficiency and the U.S. DOGE Service</a> (formerly the U.S. Digital Service).</li>
+    <li>Agency <a href="https://github.com/ombegov/2024-Federal-AI-Use-Case-Inventory">AI use case inventories</a> and <a href="https://www.ai.gov/action-plan">America's AI Action Plan</a>.</li>
+    <li>The <a href="https://cio.gov/">Federal CIO Council</a> and the 24 <a href="https://www.law.cornell.edu/uscode/text/31/901">CFO Act agencies</a>.</li>
+    <li>Authority-to-operate practice under the <a href="https://csrc.nist.gov/pubs/sp/800/37/r2/final">NIST Risk Management Framework (SP 800-37)</a>.</li>
+    <li>OPM's <a href="https://techforce.gov/">U.S. Tech Force</a>.</li>
+  </ul>
   <p>Mr. Barbaccia served as Federal CIO from January 2025 to August 2026. This page and its <a href="expectations-for-public-tech-leadership.pdf">PDF edition</a> are not official U.S. government publications, and neither the Office of Management and Budget nor Mr. Barbaccia has reviewed or endorsed the <a href="../../index.html">Federal Modernization Workbook</a>.</p>
 </div></section>
 ```
