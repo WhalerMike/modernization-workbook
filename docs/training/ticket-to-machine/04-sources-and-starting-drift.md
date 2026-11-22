@@ -8,8 +8,8 @@ research-book: "Books 13, 15"
 series-order: 4
 date-modified: 2026-11-01
 review-status: approved
-reviewed-sha256: 74b5d6f730a3d6408a2cb555a8132fdf79d4b91d61b0cb105692a45aaa4f915c
-last-reviewed: 2026-11-07
+reviewed-sha256: 5f4b07d3d6f3b0e9439ba7ba4a10211951edee9b457c91d83f954ce0f60dc9a4
+last-reviewed: 2026-11-22
 ---
 # Ticket-to-Machine, Module 4: Sources and the Starting Drift {.unnumbered}
 

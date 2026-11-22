@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 09"
 series-order: 4
 review-status: approved
-reviewed-sha256: 85587432b88db47c89608557d8faa20f61371d51d6dfeda4ccb78bc276d20a16
-last-reviewed: 2026-11-18
+reviewed-sha256: 678495f8b590b283e07a8f4dc7798e00ea731e934d9f90dab9c9eca88fff1fee
+last-reviewed: 2026-11-22
 ---
 # Module 4: Private applications and administrative paths {.unnumbered}
 

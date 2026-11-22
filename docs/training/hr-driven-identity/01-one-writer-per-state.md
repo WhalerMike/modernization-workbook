@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 03"
 series-order: 1
 review-status: approved
-reviewed-sha256: 42dbf14a48970c569964f4344d39102844f96696e0e82f90ef8a0864038def91
-last-reviewed: 2026-11-08
+reviewed-sha256: fe6f8009037c0e9ef42baabfbe8f61ea9e0a03186ccfc19493ebd40f5ed293ec
+last-reviewed: 2026-11-22
 ---
 # Module 1: Name one writer for every account state {.unnumbered}
 

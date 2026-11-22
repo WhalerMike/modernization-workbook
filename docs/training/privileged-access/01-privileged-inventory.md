@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 04"
 series-order: 1
 review-status: approved
-reviewed-sha256: 24d85f84db7e6cf0a7fcee4bda44e38f70f8aefa6426c70911e2d577f9de171d
-last-reviewed: 2026-11-18
+reviewed-sha256: 84aa7a7b65978d10d9225589113dd009ffb373aab6a1d65bc9134f9916859267
+last-reviewed: 2026-11-22
 ---
 # Module 1: Inventory every privileged assignment {.unnumbered}
 

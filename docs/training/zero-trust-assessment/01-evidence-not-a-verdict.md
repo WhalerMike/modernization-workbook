@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 11"
 series-order: 1
 review-status: approved
-reviewed-sha256: 278b0629f0c2cbe4b885f66c4e60b71af70539503d6cba9eeba136798c382a6a
-last-reviewed: 2026-11-18
+reviewed-sha256: 7854832abcfab161e7351cbe2e7376c69aa0e5cb3e1c04854d62497ecf55772b
+last-reviewed: 2026-11-22
 ---
 # Module 1: Evidence, not a verdict {.unnumbered}
 

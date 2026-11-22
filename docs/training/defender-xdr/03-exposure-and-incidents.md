@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 12"
 series-order: 3
 review-status: approved
-reviewed-sha256: e04ca8ddc6b047c744fadcf2154c4a59289c0a535ec7af03ca2267bef4441f1d
-last-reviewed: 2026-11-18
+reviewed-sha256: 411a385ef30fd65c7aebf13525ec2261bb3507432e47318529f6b600771c18c4
+last-reviewed: 2026-11-22
 ---
 # Module 3: Exposure and incidents {.unnumbered}
 

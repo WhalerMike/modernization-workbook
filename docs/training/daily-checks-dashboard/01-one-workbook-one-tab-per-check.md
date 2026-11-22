@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 15"
 series-order: 1
 review-status: approved
-reviewed-sha256: 9b1546ca06eadb1fa9c8e70b6e72047ec3e6679b9d204458cccaeaa179758580
-last-reviewed: 2026-11-20
+reviewed-sha256: 9b24ff357d245896a645f82d405d32bd093a46ad86fc4cdc182909b321a6562c
+last-reviewed: 2026-11-22
 ---
 # Module 1: One workbook, one tab per daily check {.unnumbered}
 

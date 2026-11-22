@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 03"
 series-order: 7
 review-status: approved
-reviewed-sha256: 91b7f8bc68e9591cfc55664808827a7dd118ef6c4bacbe8a221d7392277e17f7
-last-reviewed: 2026-11-18
+reviewed-sha256: b072b2688face6a02be83efbdb2021518514dde146a45cca08cd53826433cd57
+last-reviewed: 2026-11-22
 ---
 # Module 7: Find lifecycle drift and file the evidence {.unnumbered}
 

@@ -8,8 +8,8 @@ research-book: "Book 19"
 series-order: 5
 date-modified: 2026-11-02
 review-status: approved
-reviewed-sha256: df73d55c3e3e12ec616eab5988d26bbe0b8f110e375147bca85f0d1349037436
-last-reviewed: 2026-11-07
+reviewed-sha256: 97d9a38de7a69d9b6b76c0241cb551d58515db1135b2d366e6ee3323182c25f2
+last-reviewed: 2026-11-22
 ---
 # Attribute-Driven Migration, Module 5: Build Machine Configuration Packages {.unnumbered}
 

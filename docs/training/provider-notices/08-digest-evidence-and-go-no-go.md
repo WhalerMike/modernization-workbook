@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 15"
 series-order: 8
 review-status: approved
-reviewed-sha256: d852920b164ec53672654f2c09a3f408c5c655cd99d32a1d16c53719151ea64c
-last-reviewed: 2026-11-18
+reviewed-sha256: 51ac186dea018dd4adc83dce4de0a850d7ef2ec3719d6be6a1d64b04cdbb2325
+last-reviewed: 2026-11-22
 ---
 # Module 8: Digest, evidence and go/no-go {.unnumbered}
 

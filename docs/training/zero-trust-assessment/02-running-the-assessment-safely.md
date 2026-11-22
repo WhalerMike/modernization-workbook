@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 11"
 series-order: 2
 review-status: approved
-reviewed-sha256: 44611bebc151c7a12b0b513e91fb33777332aa972a6eb0dc879adb924397ea34
-last-reviewed: 2026-11-18
+reviewed-sha256: 806a09e6200b4d3d86d5ddb1699c90de0951fe0c7efecb4b89053be084dc21ed
+last-reviewed: 2026-11-22
 ---
 # Module 2: Running the assessment safely {.unnumbered}
 
