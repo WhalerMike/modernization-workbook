@@ -50,6 +50,8 @@ Once the loop runs, it runs on Book 13's tempo. Gate 7 schedules the reconciliat
 
 The guide's [Validate (G7)](../../books/guides/ttm-servicenow-sailpoint.md#validate-g7-tempo-and-evidence) step names the export as its automated check; Chapter 07 builds its ServiceNow half.
 
+![The tempo from Book 13, Chapter 10: severity sets the window, the class's ceiling sets who approves, and every path, the declared exception included, ends in one closure record.](../../images/diagrams/b13-governance/svg/ch10-tempo-paths.svg){#fig-ch10-tempo-paths fig-alt="A violet card at the top: a classified finding with a severity from P1 to P4 and an operation class. Three arrows lead to a row of three cards. A red arrow leads to a red card, P1 immediate, halt and alert, where a named role decides. A green arrow leads to a green card, L3 default, ticket to a machine, where a human approves each instance. A dashed amber arrow leads to an amber card, L4 enumerated, where the machine closes the loop for a class approved in advance. A dashed arrow labeled no actuator leads from the L3 card to an amber card below: no machine can reach the surface, so the fallback is a declared exception through an approved, time-boxed, proxied, recorded privileged session. All four paths lead to a blue card at the bottom: one closure record with the owner, clock, approval, execution and re-test, written to the evidence chain."}
+
 ## Unit 3: Evidence records and the package
 
 *10 minutes*

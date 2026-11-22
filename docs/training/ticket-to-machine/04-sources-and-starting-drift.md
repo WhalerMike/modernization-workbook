@@ -49,6 +49,8 @@ SailPoint aggregates HR as the authoritative source, connects Entra ID and Activ
 - [Book 03, Chapter 11: drift between HR and the directory](../../books/b03-hr-identity/11-drift-metrics-and-evidence.md#drift-between-hr-and-the-directory), for the drift classes and their severities.
 - The implementation example's [Build 3](../../books/guides/snow-sailpoint-integration-kit.md#build-3-drift-reconciliation).
 
+![Where the starting drift comes from, from Book 13, Chapter 02: five sources make the estate diverge from the record, silently, until a scheduled comparison turns the divergence into a classified finding.](../../images/diagrams/b13-governance/svg/ch02-drift-sources.svg){#fig-ch02-drift-sources fig-alt="Five numbered red cards in a row, grouped as where drift comes from: 1, unauthorized change, an attacker or an honest mistake; 2, change not written back, approved or urgent but never recorded; 3, provider change, updates made outside your view; 4, facts decay, people move and roles end; 5, tool and agent updates, new versions and new defaults. All five point to a wide red card: the estate diverges from the authoritative record, and systems keep reporting what they were told, not what is true. From that card a dashed red arrow leads to a red pill reading no comparison: no alarm, no error. A violet arrow leads to a violet card, scheduled comparison against the record, naming the baseline (CM-2), change records (CM-3), settings (CM-6) and the monitoring strategy (CA-7), which leads to a green card, classified finding: class, severity, owner and evidence."}
+
 ## Unit 3: Run over run
 
 *10 minutes*

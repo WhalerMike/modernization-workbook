@@ -15,10 +15,10 @@ Each plan is a short list of milestones, about a week each, following Microsoft 
 |---|---|---:|---|
 | [ISSO and assessor](isso.md) | What each control area asks for, what evidence the kits produce, and how to read it. | 4 | about 28 hr 56 min |
 | [Identity engineer](identity-engineer.md) | From Active Directory to Entra ID: the target, privileged and non-person identities, and HR-driven lifecycle. | 4 | about 50 hr 29 min |
-| [Endpoint engineer](endpoint-engineer.md) | Devices without Group Policy: Intune first, Arc for servers, and Defender for Endpoint on top. | 4 | about 12 hr 44 min |
+| [Endpoint engineer](endpoint-engineer.md) | Devices without Group Policy: Intune first, Arc for servers, and Defender for Endpoint on top. | 4 | about 12 hr 45 min |
 | [Security operations](security-operations.md) | What you can see, what you detect, and what you hand the ISSO. | 5 | about 16 hr 46 min |
 | [Cloud and platform engineer](cloud-platform-engineer.md) | The authorization boundary, the landing zone, the network and DNS, and what the providers tell you. | 4 | about 34 hr 56 min |
-| [Developer](developer.md) | The tested code behind each kit: workbooks with labs on fixtures, then a test tenant. | 4 | about 27 hr |
+| [Developer](developer.md) | The tested code behind each kit: workbooks with labs on fixtures, then a test tenant. | 4 | about 27 hr 1 min |
 | [Program lead and service owner](program-lead.md) | Why, in what order, who owns what, and how the program proves progress. | 4 | about 30 hr 31 min |
 | [HR and governance analyst](hr-governance.md) | How HR and contractor records drive access, and how AI agents get owners. | 4 | about 20 hr 45 min |
 | [Executive](executive.md) | The decisions to bring, the clocks that can't move, and what each book asks of leadership. | 3 | about 9 hr 30 min |

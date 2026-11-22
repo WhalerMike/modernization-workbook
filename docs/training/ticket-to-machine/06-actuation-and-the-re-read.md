@@ -47,6 +47,8 @@ The ticket authorizes a machine. SailPoint's connectors provision owner-governed
 - The guide's [Gate 5](../../books/guides/ttm-servicenow-sailpoint.md#step-5-actuate-on-the-native-surface) and its [Validate (G5)](../../books/guides/ttm-servicenow-sailpoint.md#validate-g5-actuation) step.
 - [Book 13, Chapter 10: when no machine can reach the surface](../../books/b13-governance/10-ticket-to-machine.md#when-no-machine-can-reach-the-surface), for the declared-exception lane.
 
+![A ticket to a human against a ticket to a machine, from Book 13, Chapter 10: the machine path runs an approved plan under a service identity, and the task closes only after a re-read shows the actual state matches the record.](../../images/diagrams/b13-governance/svg/ch10-ticket-to-machine.svg){#fig-ch10-ticket-to-machine fig-alt="A violet card at the top: drift detected against the record, raised as a typed task on the configuration item with an owner, a clock and a severity. A red arrow leads into a red-outlined group labeled ticket to a human: a person opens the console because the ticket said so, changes it by hand under a personal admin account, and replies done, so closure is an assertion. A green arrow leads into a green-outlined group labeled ticket to a machine: a human approves, either the instance or the class in advance; the platform executes from a versioned plan under a service identity after a dry run; a re-read verifies that actual state matches the record; and the task is closed with evidence, the approval, run log, result and re-test."}
+
 ## Unit 3: The business rule and the verifier
 
 *10 minutes*
