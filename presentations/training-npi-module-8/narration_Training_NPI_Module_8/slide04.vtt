@@ -78,21 +78,30 @@ account and revert the
 application's configuration.
 
 17
-00:01:00.250 --> 00:01:02.967
+00:01:00.250 --> 00:01:03.105
 A delegated account runs
 the same thirty days:
 
 18
-00:01:02.967 --> 00:01:07.829
+00:01:03.105 --> 00:01:08.140
 Learn's overview of delegated managed
-service accounts recommends waiting four
+service accounts says to wait at least two
 
 19
-00:01:07.829 --> 00:01:11.761
-ticket lifetimes, and thirty days
-covers four seven-day lifetimes,
+00:01:08.140 --> 00:01:11.070
+ticket lifetimes, equivalent
+to fourteen days,
 
 20
-00:01:11.761 --> 00:01:14.550
-so the program completes
-a migration only then.
+00:01:11.070 --> 00:01:13.475
+and recommends four, twenty-eight days.
+
+21
+00:01:13.475 --> 00:01:16.235
+The program's thirty
+days is its own choice,
+
+22
+00:01:16.235 --> 00:01:19.920
+longer than that, and it
+completes a migration only then.

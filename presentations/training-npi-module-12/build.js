@@ -110,19 +110,20 @@ endModule(SI);
 {
   const s = content(SC, "Unit 1: the decision path, and the track's rules");
   tag(s, "Who");
-  const b = table(s, "Path", 1.45, [0.5, 6.6, 3.55, 1.5], ["#", "Question: the first yes is the target", "Target", "Disposition"], [
+  const b = table(s, "Path", 1.45, [0.5, 6.6, 3.55, 1.5], ["#", "Question: 1 to 8 in order, the first yes is the target", "Target", "Disposition"], [
     ["1", "Disabled, unused, or without an owner after inventory?", "Retire it", "Retire"],
     ["2", "Runs on an Azure resource, or moving to one?", "Managed identity, user-assigned", "Replatform"],
     ["3", "Runs in CI/CD or on a platform with its own OIDC issuer?", "A federated credential", "Replatform"],
-    ["4", "Stays on premises but calls Graph or Azure APIs?", "Arc identity, else a certificate", "Replatform"],
-    ["5", "Needs Kerberos; every host on Windows Server 2025; no unconstrained delegation?", "A dMSA", "Replatform"],
-    ["6", "Needs Kerberos, otherwise?", "A gMSA (an MSA goes to a gMSA)", "Replatform"],
-    ["7, 8, 9", "Already managed; must stay traditional; Kerberos to a resource with no Entra equivalent?", "Keep, with an end date", "Keep, KeepKerberos"],
+    ["4", "Stays on premises but calls Graph or Azure APIs? If it also needs Kerberos, on to 5 to 8 too", "Arc identity, else a certificate", "Replatform"],
+    ["5, 6", "Already a gMSA or dMSA; must stay traditional (no managed account, or unconstrained delegation)?", "Keep, with an end date", "Keep, KeepKerberos"],
+    ["7", "Traditional, needs Kerberos; a 2025 domain controller and every host on 2025?", "A dMSA", "Replatform"],
+    ["8", "Needs Kerberos, any other case, an sMSA included?", "A gMSA (an sMSA is replaced)", "Replatform"],
+    ["9", "For a target from 5 to 8: Kerberos to a resource with no Entra equivalent?", "Also on the island list", "The same"],
   ], { fontSize: 11.5, limit: 5.55 });
   line(s, "Rules", "The rules: two owners and a sponsor; a reviewed disposition first; 30 days in parallel, then disable, never delete; no client secrets; no privileged groups; reviewed changes.", b + 0.15, 0.75, 13);
   sources(s, "Sources: Module 12, Unit 1; Service Accounts guide, \"The decision path,\" \"The program's rules for every migration.\"");
   notes(s,
-`Next in Unit 1 is the decision path. Answer nine questions in order; the first yes is the target, and each target lines up with a Chapter 3 disposition. An account that's disabled, unused or without an owner is retired. A workload on Azure gets a managed identity; one in CI/CD gets a federated credential; one on premises that calls Graph gets the Arc identity or a certificate. One that needs Kerberos, with every host on Windows Server 2025 and no unconstrained delegation, gets a D M S A. Otherwise, a G M S A. The rest keep what they have, with an end date. Then the track's rules, which a hand migration follows too: two named owners and a sponsor; a reviewed disposition first; a thirty-day parallel run, then disable, and never delete during the migration; no client secrets; no privileged groups; and changes that are reviewed.`,
+`Next in Unit 1 is the decision path. Answer questions one to eight in order; the first yes is the target, and each target lines up with a Chapter 3 disposition. An account that's disabled, unused or without an owner is retired. A workload on Azure gets a managed identity; one in CI/CD gets a federated credential; one on premises that calls Graph gets the Arc identity or a certificate, and if it also needs Kerberos, it goes on to question five as well and takes two dispositions. Next come the exceptions. An account that's already a G M S A or D M S A is kept, and one that must stay a traditional account, because the service supports no managed account or relies on unconstrained delegation, is kept on Kerberos; each with an end date. Then a traditional account that needs Kerberos, with a Windows Server 2025 domain controller and every host on 2025, gets a D M S A. Any other case that needs Kerberos, a standalone account included, gets a G M S A. Question nine applies to every target from five to eight: Kerberos to a resource with no Entra equivalent also puts it on the island list. Then the track's rules, which a hand migration follows too: two named owners and a sponsor; a reviewed disposition first; a thirty-day parallel run, then disable, and never delete during the migration; no client secrets; no privileged groups; and changes that are reviewed.`,
   `${M} — Unit 1: Service Accounts guide, "The decision path," "The program's rules for every migration."`);
 }
 

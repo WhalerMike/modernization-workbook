@@ -810,8 +810,13 @@
   ],
   [
    60.25,
-   14.3,
-   "A delegated account runs the same thirty days: Learn's overview of delegated managed service accounts recommends waiting four ticket lifetimes, and thirty days covers four seven-day lifetimes, so the program completes a migration only then."
+   13.225,
+   "A delegated account runs the same thirty days: Learn's overview of delegated managed service accounts says to wait at least two ticket lifetimes, equivalent to fourteen days, and recommends four, twenty-eight days."
+  ],
+  [
+   73.475,
+   6.388,
+   "The program's thirty days is its own choice, longer than that, and it completes a migration only then."
   ]
  ],
  "12": [

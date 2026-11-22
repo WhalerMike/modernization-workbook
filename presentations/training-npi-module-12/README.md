@@ -13,11 +13,11 @@
 |---|---|
 | `Training_NPI_Module_12.pptx` | The deck: 16 narrated slides (the title and 15 content slides in Why, What, Who and How order), then a backup section with the sources |
 | `Training_NPI_Module_12_Narrated.vtt` | The video's caption track; the Watch page and the module page read it from here, and `scripts/generate_video_manifest.py` lists the video because it is here |
-| `Training_NPI_Module_12_Narration_Script.md` | The spoken narration, slide by slide (about 2,200 words) |
+| `Training_NPI_Module_12_Narration_Script.md` | The spoken narration, slide by slide (about 2,350 words) |
 | `narration_Training_NPI_Module_12/` | `durations.json`, `sentences.json` and the per-slide caption tracks (the MP3s are on the edition's Release, not in git) |
 | `build.js` | The slides and their notes |
 
-The narration was recorded on November 21, 2026 from the module as approved. The MP4, the narrated deck and the plain deck aren't on a Release yet. The narration runs about 13 minutes.
+The narration was recorded on November 21, 2026 from the module as approved, and slide 5 again on November 22, 2026, after the guide's decision path was reordered (questions 1 to 8 in order, then question 9 for the Kerberos island). The MP4, the narrated deck and the plain deck aren't on a Release yet. The narration runs about 13 minutes.
 
 Build (Git Bash): `source /c/tmp/deckenv.sh`, then `FIT=1 node presentations/training-npi-module-12/build.js presentations/training-npi-module-12/Training_NPI_Module_12.pptx`. Then `narrate.py` and `captions.py`, and on a workstation where PowerPoint is free, `qa_export.ps1`, `build_narrated.ps1` and `export_mp4.ps1`, as in the kit's README. The build runs the shared checks: title length and uniqueness, Sources length, and overflow warnings, including the code panel's width and height.
 

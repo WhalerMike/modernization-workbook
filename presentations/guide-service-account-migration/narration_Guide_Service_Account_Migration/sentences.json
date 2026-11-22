@@ -190,73 +190,113 @@
   ],
   [
    1.387,
-   6.188,
-   "The guide's decision path is nine questions, asked in order, and the first yes is the target."
+   5.112,
+   "Answer the guide's questions one to eight in order, and the first yes is the target."
   ],
   [
-   7.575,
+   6.5,
    6.5,
    "Each target lines up with a disposition the application owner records in the Non-Person Identity track."
   ],
   [
-   14.075,
+   13.0,
    4.25,
    "One: is the account disabled, unused or without an owner?"
   ],
   [
-   18.325,
+   17.25,
    1.0,
    "Retire it."
   ],
   [
-   19.325,
+   18.25,
    4.662,
    "Two: does the workload run on an Azure resource, or is it moving to one?"
   ],
   [
-   23.988,
+   22.913,
    2.938,
    "A managed identity, user-assigned preferred."
   ],
   [
-   26.925,
+   25.85,
    5.888,
    "Three: does it run in C I C D or on a platform with its own O I D C issuer?"
   ],
   [
-   32.812,
+   31.738,
    1.525,
    "A federated credential."
   ],
   [
-   34.337,
+   33.263,
    4.875,
    "Four: does it stay on premises but call Graph or Azure A P I's?"
   ],
   [
-   39.212,
+   38.138,
    4.825,
    "The Arc-enabled server's identity, or an app registration with a certificate."
   ],
   [
-   44.038,
-   9.938,
-   "Five: does it need Kerberos, with a Windows Server 2025 domain controller, every host on 2025, and no unconstrained delegation?"
+   42.962,
+   6.575,
+   "If it also needs Kerberos, it keeps going at question five, and takes two dispositions, one for each."
   ],
   [
-   53.975,
-   9.575,
-   "A D M S A. Six: otherwise, a G M S A. Seven and eight keep what must stay, with an owner and an end date."
+   49.538,
+   6.162,
+   "Five: is it already a G M S A or D M S A, staying on premises?"
   ],
   [
-   63.55,
-   1.875,
-   "Nine is the Kerberos island."
+   55.7,
+   3.375,
+   "Keep it, with an S P N owner and an end date."
   ],
   [
-   65.425,
-   9.012,
-   "This lines up with Microsoft Learn: use a G M S A unless the service doesn't support one, then a standalone account, then a user account."
+   59.075,
+   8.012,
+   "Six: must it stay a traditional account, because the service supports no managed account or relies on unconstrained delegation?"
+  ],
+  [
+   67.088,
+   3.812,
+   "Keep it on Kerberos, with the authorizing official's acceptance."
+  ],
+  [
+   70.9,
+   8.762,
+   "That comes before the D M S A question, because unconstrained delegation stops working once a D M S A migration completes."
+  ],
+  [
+   79.662,
+   9.075,
+   "Seven: a traditional account that needs Kerberos, with a Windows Server 2025 domain controller and every host on 2025?"
+  ],
+  [
+   88.737,
+   7.787,
+   "A D M S A, through Migration B. Eight: any other case that needs Kerberos, a standalone account included?"
+  ],
+  [
+   96.525,
+   3.05,
+   "A G M S A, through Migration A."
+  ],
+  [
+   99.575,
+   7.338,
+   "Then question nine, for every target from five to eight: does it need Kerberos to a resource with no Entra equivalent?"
+  ],
+  [
+   106.912,
+   2.7,
+   "Then it also goes on the Kerberos island list."
+  ],
+  [
+   109.612,
+   14.213,
+   "This lines up with Microsoft Learn: use a G M S A unless the service doesn't support one, then a standalone account, then a user account; and you can't migrate a standalone account or a G M S A to a D M S A."
   ]
  ],
  "6": [
@@ -277,38 +317,53 @@
   ],
   [
    19.288,
-   9.312,
-   "The old account runs in parallel, and it's disabled no sooner than thirty days after the switch; it's deleted only later, through the decommission process."
+   5.7,
+   "The old account runs in parallel, and it's disabled no sooner than thirty days after the switch."
   ],
   [
-   28.6,
+   24.988,
+   8.863,
+   "An account a G M S A replaced is deleted only later, ninety days after the disable with no sign-in, through the decommission process."
+  ],
+  [
+   33.85,
+   7.975,
+   "An account a D M S A superseded is never deleted: it stays disabled for as long as its D M S A exists."
+  ],
+  [
+   41.825,
    11.012,
    "No client secrets: a cloud identity is a managed identity, a federated credential or a certificate, in that order, and Microsoft Learn says not to use password credentials."
   ],
   [
-   39.612,
+   52.837,
    7.338,
    "No privileged groups: Learn says service accounts shouldn't be members of them, and each service should have its own account."
   ],
   [
-   46.95,
-   5.362,
-   "And changes are reviewed: in production, each write is a plan approved by its hash."
+   60.175,
+   12.488,
+   "And changes are reviewed: in production, each write is a plan approved by its hash, and a hand run happens only in a test domain, or for a request SailPoint approved, under its ServiceNow change record."
   ],
   [
-   52.312,
+   72.662,
+   4.588,
+   "SailPoint approves; ServiceNow records the change and never approves it."
+  ],
+  [
+   77.25,
    2.375,
    "One place where Learn's own pages differ."
   ],
   [
-   54.688,
+   79.625,
    10.012,
    "Learn's Entra page on group managed service accounts ends its move by deleting the old account, while its page on setting up delegated accounts says never to delete the original."
   ],
   [
-   64.7,
-   2.362,
-   "The program follows the stricter reading."
+   89.638,
+   11.613,
+   "The program never deletes during the migration, deletes later only an account a G M S A replaced, and keeps the delegated page's rule for an account a D M S A superseded."
   ]
  ],
  "7": [
@@ -532,61 +587,71 @@
   ],
   [
    6.05,
-   7.525,
-   "S1: the owner asks, and the developer workbook's Chapter 12 checks every field before SailPoint's approvers see it."
+   2.0,
+   "S1: the owner asks."
   ],
   [
-   13.575,
+   8.05,
+   9.325,
+   "Once SailPoint approves, the developer workbook's Chapter 12 checks every field of the approved request against the standard, before anything is created."
+  ],
+  [
+   17.375,
    3.138,
    "S2: the decision path gives the target."
   ],
   [
-   16.712,
-   4.888,
-   "S3: SailPoint approves, and ServiceNow opens the change record."
+   20.512,
+   8.412,
+   "S3: SailPoint approves, and ServiceNow opens the change record; ServiceNow records the change and never approves it."
   ],
   [
-   21.6,
+   28.925,
    8.7,
    "S4: the pipeline runs the approved plan and creates the G M S A to the standard; that supports automated account management."
   ],
   [
-   30.3,
+   37.625,
    6.037,
    "S5: each host installs and tests it, and Group Policy limits log on as a service."
   ],
   [
-   36.337,
+   43.663,
    5.162,
    "S6: SailPoint aggregates it, and the ticket closes only on a re-read."
   ],
   [
-   41.5,
+   48.825,
    7.263,
    "S7: scheduled runs watch it with Defender for Identity; a G M S A nobody asked for is drift."
   ],
   [
-   48.763,
+   56.087,
    2.538,
    "S8: the two owners certify it."
   ],
   [
-   51.3,
+   58.625,
    7.112,
    "S9: an owner's departure starts a transfer; an orphan is disabled, then has thirty days to be claimed."
   ],
   [
-   58.413,
+   65.737,
    11.537,
    "S10: after the parallel run the pipeline disables the old account and moves it to the holding O U; after ninety days with no sign-in, a person uninstalls and deletes it."
   ],
   [
-   69.95,
+   77.275,
+   6.513,
+   "An account a D M S A superseded is the exception: it stays disabled, and it's never deleted."
+  ],
+  [
+   83.787,
    3.625,
    "S11: when the workload moves, Migration C."
   ],
   [
-   73.575,
+   87.412,
    9.2,
    "Two things aren't verified yet: ServiceNow's Active Directory spoke, so ServiceNow records and the plan writes, and SailPoint's export field names."
   ]
@@ -763,16 +828,21 @@
   ],
   [
    84.975,
-   6.425,
-   "B3: Learn says to wait at least two ticket lifetimes, fourteen days, and recommends four."
+   8.188,
+   "B3: Learn says to wait at least two ticket lifetimes, equivalent to fourteen days, and recommends four, twenty-eight days."
   ],
   [
-   91.4,
-   2.625,
-   "The program's thirty days covers four."
+   93.162,
+   8.613,
+   "Delay if domain controllers are partitioned or replication is broken, and watch sites where replication takes longer than the ten-hour ticket renewal."
   ],
   [
-   94.025,
+   101.775,
+   5.338,
+   "The program waits thirty days: that's its own choice, longer than Learn's twenty-eight."
+  ],
+  [
+   107.112,
    3.15,
    "Then complete it, and never delete the original account."
   ]

@@ -231,764 +231,803 @@ password, not a different protocol.
 Next in Unit 1 is the decision path.
 
 49
-00:03:12.170 --> 00:03:15.953
-Answer nine questions in order;
-the first yes is the target,
+00:03:12.170 --> 00:03:16.571
+Answer questions one to eight in
+order; the first yes is the target,
 
 50
-00:03:15.953 --> 00:03:19.420
+00:03:16.571 --> 00:03:20.157
 and each target lines up with
 a Chapter 3 disposition.
 
 51
-00:03:19.420 --> 00:03:23.845
+00:03:20.157 --> 00:03:24.583
 An account that's disabled, unused
 or without an owner is retired.
 
 52
-00:03:23.845 --> 00:03:28.852
-A workload on Azure gets a managed
-identity; one in CI/CD gets a federated
+00:03:24.583 --> 00:03:27.499
+A workload on Azure gets
+a managed identity;
 
 53
-00:03:28.852 --> 00:03:34.708
-credential; one on premises that calls Graph
-gets the Arc identity or a certificate.
+00:03:27.499 --> 00:03:30.173
+one in CI/CD gets a federated credential;
 
 54
-00:03:34.708 --> 00:03:40.101
-One that needs Kerberos, with
-every host on Windows Server
+00:03:30.173 --> 00:03:35.522
+one on premises that calls Graph gets the
+Arc identity or a certificate, and if it
 
 55
-00:03:40.101 --> 00:03:44.709
-2025 and no unconstrained
-delegation, gets a D M S A.
+00:03:35.522 --> 00:03:41.032
+also needs Kerberos, it goes on to question
+five as well and takes two dispositions.
 
 56
-00:03:44.709 --> 00:03:46.282
-Otherwise, a G M S A.
+00:03:41.032 --> 00:03:42.594
+Next come the exceptions.
 
 57
-00:03:46.282 --> 00:03:48.932
-The rest keep what they
-have, with an end date.
+00:03:42.594 --> 00:03:45.834
+An account that's already a
+G M S A or D M S A is kept,
 
 58
-00:03:48.932 --> 00:03:52.800
+00:03:45.834 --> 00:03:48.987
+and one that must stay
+a traditional account,
+
+59
+00:03:48.987 --> 00:03:53.334
+because the service supports no
+managed account or relies on
+
+60
+00:03:53.334 --> 00:03:58.107
+unconstrained delegation, is kept
+on Kerberos; each with an end date.
+
+61
+00:03:58.107 --> 00:04:02.051
+Then a traditional account
+that needs Kerberos,
+
+62
+00:04:02.051 --> 00:04:08.458
+with a Windows Server 2025 domain controller
+and every host on 2025, gets a D M S A.
+
+63
+00:04:08.458 --> 00:04:13.981
+Any other case that needs Kerberos, a
+standalone account included, gets a G M S A.
+
+64
+00:04:13.981 --> 00:04:18.037
+Question nine applies to every
+target from five to eight:
+
+65
+00:04:18.037 --> 00:04:23.646
+Kerberos to a resource with no Entra
+equivalent also puts it on the island list.
+
+66
+00:04:23.646 --> 00:04:27.513
 Then the track's rules, which
 a hand migration follows too:
 
-59
-00:03:52.800 --> 00:03:56.916
+67
+00:04:27.513 --> 00:04:31.629
 two named owners and a sponsor;
 a reviewed disposition first;
 
-60
-00:03:56.916 --> 00:04:02.183
+68
+00:04:31.629 --> 00:04:36.896
 a thirty-day parallel run, then disable,
 and never delete during the migration;
 
-61
-00:04:02.183 --> 00:04:07.330
+69
+00:04:36.896 --> 00:04:42.030
 no client secrets; no privileged
 groups; and changes that are reviewed.
 
-62
-00:04:11.080 --> 00:04:14.718
+70
+00:04:45.780 --> 00:04:49.418
 Unit 2 is Migrations A and B, by hand.
 
-63
-00:04:14.718 --> 00:04:20.080
+71
+00:04:49.418 --> 00:04:54.780
 In Migration A, a user account to
 a G M S A, watch for the order.
 
-64
-00:04:20.080 --> 00:04:25.142
+72
+00:04:54.780 --> 00:04:59.843
 There's one K D S root key for the
 forest, and the domain controllers wait
 
-65
-00:04:25.142 --> 00:04:30.205
+73
+00:04:59.843 --> 00:05:04.905
 up to ten hours from its creation before
 they allow a G M S A to be created.
 
-66
-00:04:30.205 --> 00:04:35.005
+74
+00:05:04.905 --> 00:05:09.705
 Then you create the G M S A, install
 it and test it on every host.
 
-67
-00:04:35.005 --> 00:04:39.530
+75
+00:05:09.705 --> 00:05:14.230
 Then you switch the workload and move
 the S P N's in one change window.
 
-68
-00:04:39.530 --> 00:04:44.442
+76
+00:05:14.230 --> 00:05:19.142
 After a clean thirty days in parallel,
 the old account is disabled and moved.
 
-69
-00:04:44.442 --> 00:04:49.463
+77
+00:05:19.142 --> 00:05:24.163
 Migration B, a user account to a D
 M S A, starts with Learn's limits:
 
-70
-00:04:49.463 --> 00:04:53.893
+78
+00:05:24.163 --> 00:05:28.593
 every machine that uses the
 account must support D M S A.
 
-71
-00:04:53.893 --> 00:04:57.367
+79
+00:05:28.593 --> 00:05:32.067
 Then you create, start, wait and complete.
 
-72
-00:04:57.367 --> 00:05:00.529
+80
+00:05:32.067 --> 00:05:35.229
 Learn says to wait at
 least two ticket lifetimes;
 
-73
-00:05:00.529 --> 00:05:02.979
+81
+00:05:35.229 --> 00:05:37.679
 the program's thirty days covers four.
 
-74
-00:05:02.979 --> 00:05:07.443
+82
+00:05:37.679 --> 00:05:42.143
 Learn's D M S A page says never
 to delete the original account.
 
-75
-00:05:07.443 --> 00:05:09.686
+83
+00:05:42.143 --> 00:05:44.386
 Then skim the guide's special cases,
 
-76
-00:05:09.686 --> 00:05:14.380
+84
+00:05:44.386 --> 00:05:49.080
 and stop on failover clusters and
 Microsoft Entra Domain Services.
 
-77
-00:05:18.130 --> 00:05:24.330
+85
+00:05:52.830 --> 00:05:59.030
 Unit 3 is Migration C, from Active Directory
 to a Microsoft Entra workload identity.
 
-78
-00:05:24.330 --> 00:05:27.205
+86
+00:05:59.030 --> 00:06:01.905
 It starts when the
 workload moves to Azure,
 
-79
-00:05:27.205 --> 00:05:32.380
+87
+00:06:01.905 --> 00:06:07.080
 or gains a call to Graph or an Azure A P I,
 and only for what it reaches with OAuth.
 
-80
-00:05:32.380 --> 00:05:37.211
+88
+00:06:07.080 --> 00:06:11.911
 Learn's order of preference for an app's
 credential is a managed identity whenever
 
-81
-00:05:37.211 --> 00:05:41.899
+89
+00:06:11.911 --> 00:06:16.599
 possible; federation where the app doesn't
 run on Azure; otherwise a certificate
 
-82
-00:05:41.899 --> 00:05:46.517
+90
+00:06:16.599 --> 00:06:21.217
 from a trusted certificate authority, kept
 in a vault; and never a client secret.
 
-83
-00:05:46.517 --> 00:05:49.095
+91
+00:06:21.217 --> 00:06:23.795
 The guide has four targets, C1 to C4,
 
-84
-00:05:49.095 --> 00:05:54.156
+92
+00:06:23.795 --> 00:06:28.856
 and step C5 retires the on-premises
 account after the parallel run.
 
-85
-00:05:54.156 --> 00:05:55.405
+93
+00:06:28.856 --> 00:06:30.105
 And what can't move?
 
-86
-00:05:55.405 --> 00:05:59.102
+94
+00:06:30.105 --> 00:06:33.802
 Learn has no Entra identity
 a service can use for
 
-87
-00:05:59.102 --> 00:06:02.430
+95
+00:06:33.802 --> 00:06:37.130
 Kerberos or N T L M to
 an on-premises resource.
 
-88
-00:06:02.430 --> 00:06:05.024
+96
+00:06:37.130 --> 00:06:39.724
 A workload that reaches a file share,
 
-89
-00:06:05.024 --> 00:06:09.867
+97
+00:06:39.724 --> 00:06:44.567
 a SQL Server login mapped to a
 Windows account, or a Kerberos-only
 
-90
-00:06:09.867 --> 00:06:15.055
+98
+00:06:44.567 --> 00:06:49.755
 application that way keeps its G M S A
 or D M S A until that resource changes.
 
-91
-00:06:15.055 --> 00:06:17.950
+99
+00:06:49.755 --> 00:06:52.650
 That's why a hybrid workload keeps both.
 
-92
-00:06:21.700 --> 00:06:22.425
+100
+00:06:56.400 --> 00:06:57.125
 Try it.
 
-93
-00:06:22.425 --> 00:06:27.227
+101
+00:06:57.125 --> 00:07:01.927
 Lab 1 reruns parts of the workbook's
 Chapter 6 and Chapter 5 labs,
 
-94
-00:06:27.227 --> 00:06:31.013
+102
+00:07:01.927 --> 00:07:05.713
 in PowerShell 7, in the
 non-person identity folder.
 
-95
-00:06:31.013 --> 00:06:35.851
+103
+00:07:05.713 --> 00:07:10.551
 The domain and tenant are fictional,
 nothing signs in, and nothing is sent.
 
-96
-00:06:35.851 --> 00:06:40.325
+104
+00:07:10.551 --> 00:07:15.025
 Step one makes the runs Chapter
 6 reads: Chapter 1's register,
 
-97
-00:06:40.325 --> 00:06:43.887
+105
+00:07:15.025 --> 00:07:18.587
 Chapter 2's owners and
 Chapter 3's dispositions.
 
-98
-00:06:43.887 --> 00:06:47.988
+106
+00:07:18.587 --> 00:07:22.688
 It prints nothing, and no account
 moves without its disposition.
 
-99
-00:06:47.988 --> 00:06:53.227
+107
+00:07:22.688 --> 00:07:27.927
 Step two runs Learn's G M S A, D M S
 A and K D S steps against stand-ins:
 
-100
-00:06:53.227 --> 00:06:59.187
+108
+00:07:27.927 --> 00:07:33.887
 seventeen tests, each a fact about
 one of Learn's published procedures.
 
-101
-00:06:59.187 --> 00:07:00.663
+109
+00:07:33.887 --> 00:07:35.363
 Match them to the guide.
 
-102
-00:07:00.663 --> 00:07:06.001
+110
+00:07:35.363 --> 00:07:40.701
 B1 skips Learn's delegated M S A state
 step, because it fails as published.
 
-103
-00:07:06.001 --> 00:07:09.306
+111
+00:07:40.701 --> 00:07:44.006
 B2 restarts only the service
 that uses the account,
 
-104
-00:07:09.306 --> 00:07:12.612
+112
+00:07:44.006 --> 00:07:47.312
 where Learn's step restarts
 every running service.
 
-105
-00:07:12.612 --> 00:07:18.937
+113
+00:07:47.312 --> 00:07:53.637
 A3 adds A E S two fifty-six, which
 Learn's G M S A sample leaves out.
 
-106
-00:07:18.937 --> 00:07:21.500
+114
+00:07:53.637 --> 00:07:56.200
 A4 is a person's step on each host.
 
-107
-00:07:21.500 --> 00:07:26.510
+115
+00:07:56.200 --> 00:08:01.210
 And A7 disables the old account,
 where Learn's Entra page deletes it.
 
-108
-00:07:30.260 --> 00:07:34.010
+116
+00:08:04.960 --> 00:08:08.710
 Step three checks the Kerberos
 accounts and builds the plan.
 
-109
-00:07:34.010 --> 00:07:35.522
+117
+00:08:08.710 --> 00:08:10.222
 Nine accounts are in scope.
 
-110
-00:07:35.522 --> 00:07:40.807
+118
+00:08:10.222 --> 00:08:15.507
 The plan has ten actions, five of
 them writes: one D M S A completion,
 
-111
-00:07:40.807 --> 00:07:44.597
+119
+00:08:15.507 --> 00:08:19.297
 two G M S A creations and
 two retriever changes.
 
-112
-00:07:44.597 --> 00:07:48.860
+120
+00:08:19.297 --> 00:08:23.560
 One write is a person's and four are
 the pipeline's, and nothing is sent.
 
-113
-00:07:48.860 --> 00:07:54.210
+121
+00:08:23.560 --> 00:08:28.910
 Note the plan's S H A two fifty-six on
 the last line: it's what someone approves.
 
-114
-00:07:54.210 --> 00:07:56.860
+122
+00:08:28.910 --> 00:08:31.560
 Look first at K D S root key Ready.
 
-115
-00:07:56.860 --> 00:07:58.560
+123
+00:08:31.560 --> 00:08:33.260
 That's the guide's step A2.
 
-116
-00:07:58.560 --> 00:08:00.884
+124
+00:08:33.260 --> 00:08:35.584
 The check reads the key's start time,
 
-117
-00:08:00.884 --> 00:08:04.010
+125
+00:08:35.584 --> 00:08:38.710
 with a delegated read, and
 it never creates a key.
 
-118
-00:08:04.010 --> 00:08:07.865
+126
+00:08:38.710 --> 00:08:42.565
 Learn's K D S page says the
 forest needs one root key,
 
-119
-00:08:07.865 --> 00:08:11.050
+127
+00:08:42.565 --> 00:08:45.750
 and the guide says to create only one.
 
-120
-00:08:14.800 --> 00:08:18.037
+128
+00:08:49.500 --> 00:08:52.737
 Step four reads the two
 migrations the plan sends.
 
-121
-00:08:18.037 --> 00:08:20.712
+129
+00:08:52.737 --> 00:08:55.412
 Create G M S A, for S V C dash intranet,
 
-122
-00:08:20.712 --> 00:08:26.347
+130
+00:08:55.412 --> 00:09:01.047
 is the guide's step A3 under the managed
 service account standard: a name,
 
-123
-00:08:26.347 --> 00:08:29.499
+131
+00:09:01.047 --> 00:09:04.199
 its D N S host name,
 the service-account O U,
 
-124
-00:08:29.499 --> 00:08:33.701
+132
+00:09:04.199 --> 00:09:08.401
 its one domain local group
 of hosts as the retrievers,
 
-125
-00:08:33.701 --> 00:08:38.763
+133
+00:09:08.401 --> 00:09:13.463
 A E S two fifty-six, and the thirty-day
 interval stated at creation.
 
-126
-00:08:38.763 --> 00:08:44.562
+134
+00:09:13.463 --> 00:09:19.262
 It isn't outbound-only, because it takes
 over S V C dash intranet's S P N's.
 
-127
-00:08:44.562 --> 00:08:49.624
+135
+00:09:19.262 --> 00:09:24.324
 Complete D M S A migration, for
 S V C dash H R sync, is step B3,
 
-128
-00:08:49.624 --> 00:08:55.474
+136
+00:09:24.324 --> 00:09:30.174
 with the D M S A and the superseded
 account's distinguished name.
 
-129
-00:08:55.474 --> 00:09:00.290
+137
+00:09:30.174 --> 00:09:34.990
 Its migration started forty days
 before, more than the program's thirty.
 
-130
-00:09:04.040 --> 00:09:08.277
+138
+00:09:38.740 --> 00:09:42.977
 Step five dry-runs the plan with
 its approved hash, as the pipeline.
 
-131
-00:09:08.277 --> 00:09:11.697
+139
+00:09:42.977 --> 00:09:46.397
 This is the program's rule
 that changes are reviewed:
 
-132
-00:09:11.697 --> 00:09:16.152
+140
+00:09:46.397 --> 00:09:50.852
 the write path sends only a plan whose
 S H A two fifty-six was approved.
 
-133
-00:09:16.152 --> 00:09:22.102
+141
+00:09:50.852 --> 00:09:56.802
 The pipeline's G M S A would send the G M
 S A creations and the retriever changes.
 
-134
-00:09:22.102 --> 00:09:26.102
+142
+00:09:56.802 --> 00:10:00.802
 The D M S A's completion,
 step B3, needs Domain Admins,
 
-135
-00:09:26.102 --> 00:09:30.003
+143
+00:10:00.802 --> 00:10:04.703
 so it's a person's step,
 and the pipeline refuses it.
 
-136
-00:09:30.003 --> 00:09:38.514
+144
+00:10:04.703 --> 00:10:13.214
 M S A dash print oh one is an S M S A, so
 it goes to a G M S A, never to a D M S A.
 
-137
-00:09:38.514 --> 00:09:41.010
+145
+00:10:13.214 --> 00:10:15.710
 And no action deletes anything.
 
-138
-00:09:44.760 --> 00:09:48.898
+146
+00:10:19.460 --> 00:10:23.598
 Step six builds Chapter 5's
 conversion plan: that's Migration C.
 
-139
-00:09:48.898 --> 00:09:53.522
+147
+00:10:23.598 --> 00:10:28.222
 Step seven reads what each conversion
 replaces, and its parallel run.
 
-140
-00:09:53.522 --> 00:09:57.505
+148
+00:10:28.222 --> 00:10:32.205
 There are five Active Directory
 accounts and three client secrets,
 
-141
-00:09:57.505 --> 00:10:01.843
+149
+00:10:32.205 --> 00:10:36.543
 each going to a managed identity, a
 federated credential or a certificate,
 
-142
-00:10:01.843 --> 00:10:04.972
+150
+00:10:36.543 --> 00:10:39.672
 and the plan holds each to
 Learn's order of preference.
 
-143
-00:10:04.972 --> 00:10:08.784
+151
+00:10:39.672 --> 00:10:43.485
 Conversion six gives an Azure
 Functions app a certificate
 
-144
-00:10:08.784 --> 00:10:12.597
+152
+00:10:43.485 --> 00:10:47.297
 where a managed identity is
 available, so Chapter 5 flags it.
 
-145
-00:10:12.597 --> 00:10:17.073
+153
+00:10:47.297 --> 00:10:51.773
 Conversion one has run forty days on
 its user-assigned managed identity,
 
-146
-00:10:17.073 --> 00:10:19.610
+154
+00:10:51.773 --> 00:10:54.310
 so its old account shows ready to disable.
 
-147
-00:10:19.610 --> 00:10:25.923
+155
+00:10:54.310 --> 00:11:00.623
 That row exercises the parallel run only:
 the program's target for S V C dash H R
 
-148
-00:10:25.923 --> 00:10:31.835
+156
+00:11:00.623 --> 00:11:06.535
 sync is a D M S A, the completion in step
 four, so don't take it through step C5.
 
-149
-00:10:31.835 --> 00:10:36.973
+157
+00:11:06.535 --> 00:11:11.673
 Conversion eight's old secret still
 signs in on day fifty-nine, so it stays.
 
-150
-00:10:36.973 --> 00:10:38.940
+158
+00:11:11.673 --> 00:11:13.640
 Then delete the out folder.
 
-151
-00:10:42.690 --> 00:10:47.628
+159
+00:11:17.390 --> 00:11:22.328
 Lab 2 does the moves for real, in
 a test domain, never production.
 
-152
-00:10:47.628 --> 00:10:49.189
+160
+00:11:22.328 --> 00:11:23.889
 The authors haven't run it.
 
-153
-00:10:49.189 --> 00:10:50.440
+161
+00:11:23.889 --> 00:11:25.140
 There are two ways.
 
-154
-00:10:50.440 --> 00:10:55.006
+162
+00:11:25.140 --> 00:11:29.706
 By hand, for one account: the
 guide's Migration A, steps A1 to A7,
 
-155
-00:10:55.006 --> 00:10:59.665
+163
+00:11:29.706 --> 00:11:34.365
 with Learn's commands and the
 expected output after each one.
 
-156
-00:10:59.665 --> 00:11:04.274
+164
+00:11:34.365 --> 00:11:38.974
 You need a test domain with a K D S
 root key older than ten hours, a test
 
-157
-00:11:04.274 --> 00:11:09.302
+165
+00:11:38.974 --> 00:11:44.002
 user account with an S P N, and a member
 server that runs a test service as it.
 
-158
-00:11:09.302 --> 00:11:12.178
+166
+00:11:44.002 --> 00:11:46.878
 Back out with the guide's
 rollback for Migration A.
 
-159
-00:11:12.178 --> 00:11:15.665
+167
+00:11:46.878 --> 00:11:50.365
 Or through the kit: the
 workbook's Chapter 6 Lab 2.
 
-160
-00:11:15.665 --> 00:11:18.494
+168
+00:11:50.365 --> 00:11:53.194
 It makes a traditional test account,
 
-161
-00:11:18.494 --> 00:11:22.643
+169
+00:11:53.194 --> 00:11:57.343
 a test M S A and the G M S A's
 domain local retriever group,
 
-162
-00:11:22.643 --> 00:11:26.226
+170
+00:11:57.343 --> 00:12:00.926
 applies the plan as a
 person in the test domain,
 
-163
-00:11:26.226 --> 00:11:31.790
+171
+00:12:00.926 --> 00:12:06.490
 and runs a D M S A migration to completion
 on a Windows Server 2025 domain.
 
-164
-00:11:31.790 --> 00:11:33.960
+172
+00:12:06.490 --> 00:12:08.660
 Its step six backs it out.
 
-165
-00:11:37.710 --> 00:11:39.097
+173
+00:12:12.410 --> 00:12:13.797
 The federal requirement.
 
-166
-00:11:39.097 --> 00:11:42.066
+174
+00:12:13.797 --> 00:12:16.766
 The guide's evidence table
 has a row for every step,
 
-167
-00:11:42.066 --> 00:11:48.073
+175
+00:12:16.766 --> 00:12:22.773
 and these are the rows this module
 practices, in NIST SP 800-53.
 
-168
-00:11:48.073 --> 00:11:52.332
+176
+00:12:22.773 --> 00:12:27.032
 Creating the account supports A
 C six, Least Privilege, I A five,
 
-169
-00:11:52.332 --> 00:11:57.845
+177
+00:12:27.032 --> 00:12:32.545
 Authenticator Management, and C M three,
 Configuration Change Control, with the
 
-170
-00:11:57.845 --> 00:12:03.609
+178
+00:12:32.545 --> 00:12:38.309
 approved plan, its SailPoint request and
 ServiceNow change, and the apply manifest.
 
-171
-00:12:03.609 --> 00:12:06.637
+179
+00:12:38.309 --> 00:12:41.337
 Installing and testing supports A C six,
 
-172
-00:12:06.637 --> 00:12:10.123
+180
+00:12:41.337 --> 00:12:44.823
 with Test A D Service
 Account true on each host.
 
-173
-00:12:10.123 --> 00:12:15.434
+181
+00:12:44.823 --> 00:12:50.134
 The parallel run supports A C two,
 enhancement three, Disable Accounts.
 
-174
-00:12:15.434 --> 00:12:17.927
+182
+00:12:50.134 --> 00:12:52.627
 The cloud identities support I A nine,
 
-175
-00:12:17.927 --> 00:12:21.785
+183
+00:12:52.627 --> 00:12:56.485
 Service Identification and
 Authentication, tailored in.
 
-176
-00:12:21.785 --> 00:12:24.303
+184
+00:12:56.485 --> 00:12:59.003
 And the island supports C M eight,
 
-177
-00:12:24.303 --> 00:12:28.685
+185
+00:12:59.003 --> 00:13:03.385
 System Component Inventory,
 with Chapter 6's island list.
 
-178
-00:12:28.685 --> 00:12:32.792
+186
+00:13:03.385 --> 00:13:07.492
 K S I's are FedRAMP twenty X indicators
 for cloud service providers,
 
-179
-00:12:32.792 --> 00:12:37.550
+187
+00:13:07.492 --> 00:13:12.250
 and which file supports which is the
 program's mapping: design guidance.
 
-180
-00:12:41.300 --> 00:12:43.275
+188
+00:13:16.000 --> 00:13:17.975
 Check yourself with two questions.
 
-181
-00:12:43.275 --> 00:12:47.337
+189
+00:13:17.975 --> 00:13:22.037
 First: a workload stays on
 premises and needs Kerberos.
 
-182
-00:12:47.337 --> 00:12:51.173
+190
+00:13:22.037 --> 00:13:25.873
 The domain has a Windows
 Server 2025 domain controller,
 
-183
-00:12:51.173 --> 00:12:55.926
+191
+00:13:25.873 --> 00:13:30.626
 but one of the two hosts that run the
 service is on Windows Server 2022.
 
-184
-00:12:55.926 --> 00:12:56.987
+192
+00:13:30.626 --> 00:13:31.687
 What's the target?
 
-185
-00:12:56.987 --> 00:12:59.825
+193
+00:13:31.687 --> 00:13:34.525
 The answer is b, a G M S A.
 
-186
-00:12:59.825 --> 00:13:05.413
+194
+00:13:34.525 --> 00:13:40.113
 A D M S A needs every host that
 uses it on Windows Server 2025.
 
-187
-00:13:05.413 --> 00:13:11.501
+195
+00:13:40.113 --> 00:13:46.201
 Second: Learn's Entra page ends a move to
 a G M S A by deleting the old account.
 
-188
-00:13:11.501 --> 00:13:12.925
+196
+00:13:46.201 --> 00:13:47.625
 What does the program do?
 
-189
-00:13:12.925 --> 00:13:14.150
+197
+00:13:47.625 --> 00:13:48.850
 The answer is b.
 
-190
-00:13:14.150 --> 00:13:17.968
+198
+00:13:48.850 --> 00:13:52.668
 It disables the account after a
 clean thirty-day parallel run,
 
-191
-00:13:17.968 --> 00:13:21.712
+199
+00:13:52.668 --> 00:13:56.412
 and deletes it only later,
 through the decommission process.
 
-192
-00:13:21.712 --> 00:13:24.074
+200
+00:13:56.412 --> 00:13:58.774
 The program follows the stricter reading.
 
-193
-00:13:24.074 --> 00:13:26.502
+201
+00:13:58.774 --> 00:14:01.202
 The module page has three more questions,
 
-194
-00:13:26.502 --> 00:13:29.360
+202
+00:14:01.202 --> 00:14:04.060
 each linked to the
 section that answers it.
 
-195
-00:13:33.110 --> 00:13:33.935
+203
+00:14:07.810 --> 00:14:08.635
 To sum up.
 
-196
-00:13:33.935 --> 00:13:39.602
+204
+00:14:08.635 --> 00:14:14.302
 You compared the kinds of service identity,
 chose targets with the decision path,
 
-197
-00:13:39.602 --> 00:13:42.986
+205
+00:14:14.302 --> 00:14:17.686
 and read Learn's steps for
 a user account to a G M S A,
 
-198
-00:13:42.986 --> 00:13:46.285
+206
+00:14:17.686 --> 00:14:20.985
 a D M S A and a Microsoft
 Entra workload identity.
 
-199
-00:13:46.285 --> 00:13:51.210
+207
+00:14:20.985 --> 00:14:25.910
 Then you saw the kit plan the same moves:
 a G M S A with the standard's settings,
 
-200
-00:13:51.210 --> 00:13:54.600
+208
+00:14:25.910 --> 00:14:29.300
 a D M S A migration completed
 after its parallel run,
 
-201
-00:13:54.600 --> 00:13:59.363
+209
+00:14:29.300 --> 00:14:34.063
 five Active Directory accounts and
 three secrets converted in Learn's
 
-202
-00:13:59.363 --> 00:14:03.723
+210
+00:14:34.063 --> 00:14:38.423
 order of preference, and every plan
 sent only by its approved hash.
 
-203
-00:14:03.723 --> 00:14:08.894
+211
+00:14:38.423 --> 00:14:43.594
 The evidence an ISSO keeps for a migration
 is the guide's evidence table by step,
 
-204
-00:14:08.894 --> 00:14:13.509
+212
+00:14:43.594 --> 00:14:48.209
 with the kit's two plans and their
 approved hashes, the apply manifests,
 
-205
-00:14:13.509 --> 00:14:18.123
+213
+00:14:48.209 --> 00:14:52.823
 Test A D Service Account on each host,
 and the island list for what stays.
 
-206
-00:14:18.123 --> 00:14:21.510
+214
+00:14:52.823 --> 00:14:56.210
 Before you move an account, work
 through the guide's checklist.
 
-207
-00:14:21.510 --> 00:14:25.295
+215
+00:14:56.210 --> 00:14:59.995
 Next, go back to the learning
 path, or take Module 11,
 
-208
-00:14:25.295 --> 00:14:28.760
+216
+00:14:59.995 --> 00:15:03.460
 Deploy to test, then
 production, if you haven't.

@@ -44,8 +44,8 @@ The code half of the [managed service account standard](../../../books/guides/se
 
 The standard's rule is that machines run, check and record every step they can, and people decide, approve and accept risk ([WD-170](../../../about/decision-register.md#wd-170)). In this chapter that means:
 
-- A request reaches SailPoint's approvers only after the code has checked it, so an approver decides on the purpose and the risk, not on whether the name has the right prefix.
-- The code, not a person, writes the rows Chapter 06's plan reads, so the plan creates exactly what was approved, and the plan carries the SailPoint request and the ServiceNow change that approved it.
+- SailPoint's approvers decide on the purpose and the risk. The code then checks every request SailPoint approved against the standard, field by field, before Chapter 06's plan creates anything, so a name with the wrong prefix is caught by the code, not by an approver.
+- The code, not a person, writes the rows Chapter 06's plan reads, so the plan creates exactly what was approved, and the plan carries the SailPoint request that approved it and the ServiceNow change that records it. SailPoint approves; ServiceNow records the change and never approves it ([WD-162](../../../about/decision-register.md#wd-162)).
 - Every account SailPoint aggregates, Active Directory holds and Defender for Identity sees is compared on every run; a gMSA nobody asked for is a finding the same day, not at the next audit.
 - Certifications are scheduled from the register's risk tiers, and a revoke becomes a ServiceNow finding without anyone retyping it.
 - The code never deletes. It says which accounts a person may delete, and why ([WD-163](../../../about/decision-register.md#wd-163)).
@@ -83,7 +83,7 @@ SailPoint's and Defender for Identity's own export field names weren't specified
 | Reconciliation | NPI-STD-10 to -19 | Every gMSA and dMSA aggregated by SailPoint with one owner; retrievers one domain local group; interval 30; AES256 only; a no-SPN gMSA outbound-only or with a recorded reason (WD-154); no privileged group; in the service-account OU (WD-161); every account explained by a request (the drift rule of [Book 13, Chapter 04](../../../books/b13-governance/04-change-control-and-provenance.md)) |
 | Certification | NPI-STD-20 to -23 | Due by risk tier: R1 every 3 months, R2 every 6, R3 every 12 (WD-166); each `REVOKE` a ServiceNow `stale_access` finding; a decision by someone who isn't an owner doesn't count |
 | Defender for Identity | NPI-STD-24 to -26 | A user account still serving as a service account; an sMSA; an account Defender for Identity sees that the register doesn't |
-| Retirement | NPI-STD-27 to -29 | A delete candidate only after 90 days disabled with no sign-in since (WD-167); a sign-in after the disable; the register and Active Directory disagreeing |
+| Retirement | NPI-STD-27 to -29 | A delete candidate only after 90 days disabled with no sign-in since (WD-167), and never an account a dMSA superseded, which stays disabled because Learn says never to delete it;[^np12-dmsa-setup] a sign-in after the disable; the register and Active Directory disagreeing |
 
 : What Chapter 12 checks {.striped .hover}
 
@@ -341,6 +341,7 @@ Remove-Item -Recurse -Force out
 | Defender for Identity's stale service account assessment uses 90 days | [^np12-mdi-posture] |
 | `Get-ADServiceAccount` reads `PrincipalsAllowedToRetrieveManagedPassword` and the account's properties | [^np12-get-adsa] |
 | The password interval is set only at creation; always configure AES | [^np12-gmsa-manage] |
+| When a dMSA migration is finalized, never delete the original service account, in case you need to revert to it; the dMSA's `msDS-ManagedAccountPrecededByLink` names the account it supersedes | [^np12-dmsa-setup] |
 
 : Verified facts (read November 20, 2026) {.striped .hover}
 
@@ -377,7 +378,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The agency lines it
 
 ## Checklist
 
-- [ ] Every managed service account request was checked by Chapter 12 before SailPoint's approvers saw it.
+- [ ] Every managed service account request SailPoint approved was checked by Chapter 12 before Chapter 06's plan created anything.
 - [ ] Every row in Chapter 06's reviewed inputs came from an approved request, with its request ID and change record.
 - [ ] SailPoint aggregates every gMSA and dMSA in `<service-account-ou>`, each with one correlated owner.
 - [ ] No finding NPI-STD-10 to -19 is open without a ServiceNow finding and an owner of the fix.
@@ -397,3 +398,4 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The agency lines it
 [^np12-mdi-posture]: Microsoft Learn, "Security posture assessments for accounts" (Microsoft Defender for Identity), *Remove Stale Service Accounts*, <https://learn.microsoft.com/defender-for-identity/security-posture-assessments/accounts> (accessed Nov 20, 2026).
 [^np12-get-adsa]: Microsoft Learn, "Get-ADServiceAccount," <https://learn.microsoft.com/powershell/module/activedirectory/get-adserviceaccount> (accessed Nov 20, 2026).
 [^np12-gmsa-manage]: Microsoft Learn, "Manage group Managed Service Accounts," create a gMSA (the interval only at creation), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts>, and "Group Managed Service Accounts overview" (always configure AES), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/group-managed-service-accounts-overview> (accessed Nov 20, 2026).
+[^np12-dmsa-setup]: Microsoft Learn, "Setting up delegated Managed Service Accounts," complete account migration (warning: never delete the original service account), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-set-up-dmsa>, and "Delegated Managed Service Accounts overview," account attributes for dMSA, <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview> (accessed Nov 22, 2026).

@@ -30,64 +30,109 @@ No account moves without
 its reviewed disposition.
 
 7
-00:00:19.288 --> 00:00:23.981
-The old account runs in parallel, and
-it's disabled no sooner than thirty days
+00:00:19.288 --> 00:00:21.287
+The old account runs in parallel,
 
 8
-00:00:23.981 --> 00:00:28.600
-after the switch; it's deleted only
-later, through the decommission process.
+00:00:21.287 --> 00:00:24.988
+and it's disabled no sooner than
+thirty days after the switch.
 
 9
-00:00:28.600 --> 00:00:32.297
+00:00:24.988 --> 00:00:28.333
+An account a G M S A replaced
+is deleted only later,
+
+10
+00:00:28.333 --> 00:00:33.851
+ninety days after the disable with no
+sign-in, through the decommission process.
+
+11
+00:00:33.851 --> 00:00:37.786
+An account a D M S A
+superseded is never deleted:
+
+12
+00:00:37.786 --> 00:00:41.825
+it stays disabled for as
+long as its D M S A exists.
+
+13
+00:00:41.825 --> 00:00:45.522
 No client secrets: a cloud
 identity is a managed identity,
 
-10
-00:00:32.297 --> 00:00:35.836
+14
+00:00:45.522 --> 00:00:49.061
 a federated credential or a
 certificate, in that order,
 
-11
-00:00:35.836 --> 00:00:39.612
+15
+00:00:49.061 --> 00:00:52.837
 and Microsoft Learn says not
 to use password credentials.
 
-12
-00:00:39.612 --> 00:00:44.288
+16
+00:00:52.837 --> 00:00:57.513
 No privileged groups: Learn says service
 accounts shouldn't be members of them,
 
-13
-00:00:44.288 --> 00:00:46.950
+17
+00:00:57.513 --> 00:01:00.175
 and each service should
 have its own account.
 
-14
-00:00:46.950 --> 00:00:52.312
+18
+00:01:00.175 --> 00:01:05.294
 And changes are reviewed: in production,
-each write is a plan approved by its hash.
+each write is a plan approved by its hash,
 
-15
-00:00:52.312 --> 00:00:54.687
+19
+00:01:05.294 --> 00:01:08.009
+and a hand run happens
+only in a test domain,
+
+20
+00:01:08.009 --> 00:01:12.663
+or for a request SailPoint approved,
+under its ServiceNow change record.
+
+21
+00:01:12.663 --> 00:01:17.250
+SailPoint approves; ServiceNow records
+the change and never approves it.
+
+22
+00:01:17.250 --> 00:01:19.625
 One place where Learn's own pages differ.
 
-16
-00:00:54.687 --> 00:00:59.351
+23
+00:01:19.625 --> 00:01:24.288
 Learn's Entra page on group managed service
 accounts ends its move by deleting the
 
-17
-00:00:59.351 --> 00:01:02.231
+24
+00:01:24.288 --> 00:01:27.168
 old account, while its page
 on setting up delegated
 
-18
-00:01:02.231 --> 00:01:04.700
+25
+00:01:27.168 --> 00:01:29.637
 accounts says never to
 delete the original.
 
-19
-00:01:04.700 --> 00:01:07.130
-The program follows the stricter reading.
+26
+00:01:29.637 --> 00:01:33.105
+The program never deletes
+during the migration,
+
+27
+00:01:33.105 --> 00:01:36.398
+deletes later only an
+account a G M S A replaced,
+
+28
+00:01:36.398 --> 00:01:41.300
+and keeps the delegated page's rule
+for an account a D M S A superseded.

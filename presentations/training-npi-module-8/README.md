@@ -13,11 +13,11 @@
 |---|---|
 | `Training_NPI_Module_8.pptx` | The deck: 16 narrated slides (the title and 15 content slides in Why, What, Who and How order), then a backup section with the sources |
 | `Training_NPI_Module_8_Narrated.vtt` | The video's caption track; the Watch page and the module page read it from here, and `scripts/generate_video_manifest.py` lists the video because it is here |
-| `Training_NPI_Module_8_Narration_Script.md` | The spoken narration, slide by slide (about 3,230 words) |
+| `Training_NPI_Module_8_Narration_Script.md` | The spoken narration, slide by slide (about 3,250 words) |
 | `narration_Training_NPI_Module_8/` | `durations.json`, `sentences.json` and the per-slide caption tracks (the MP3s are on the edition's Release, not in git) |
 | `build.js` | The slides and their notes |
 
-The MP4 is on the videos Release, and the [module page](../../docs/training/non-person-identity/08-gmsa-dmsa-and-the-kerberos-island.md) links the video. The narrated deck and the plain deck are on the edition 2026.11.5 Release. The narration runs about 20 minutes. It was re-recorded on November 21, 2026 from the module as approved on November 20, 2026, after the managed service account standard changed the write path; slides whose narration didn't change keep their earlier recording.
+The MP4 is on the videos Release, and the [module page](../../docs/training/non-person-identity/08-gmsa-dmsa-and-the-kerberos-island.md) links the video. The narrated deck and the plain deck are on the edition 2026.11.5 Release. The narration runs about 20 minutes. It was re-recorded on November 21, 2026 from the module as approved on November 20, 2026, after the managed service account standard changed the write path, and slide 4 again on November 22, 2026, to use Learn's wording for the dMSA wait (at least two ticket lifetimes, equivalent to 14 days; four, 28 days, recommended) with the program's 30 days as its own choice (WD-124); slides whose narration didn't change keep their earlier recording.
 
 Build (Git Bash): `source /c/tmp/deckenv.sh`, then `FIT=1 node presentations/training-npi-module-8/build.js presentations/training-npi-module-8/Training_NPI_Module_8.pptx`. Then `narrate.py` and `captions.py`, and on a workstation where PowerPoint is free, `qa_export.ps1`, `build_narrated.ps1` and `export_mp4.ps1`, as in the kit's README. The build runs the shared checks: title length and uniqueness, Sources length, and overflow warnings, including the code panel's width and height.
 

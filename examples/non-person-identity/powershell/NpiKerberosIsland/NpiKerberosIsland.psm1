@@ -30,8 +30,9 @@ Import-Module (Join-Path $PSScriptRoot '../NpiCore/NpiCore.psm1') -Force -Global
 $script:CallsPath = Join-Path $PSScriptRoot '../../config/calls-ch06.json'
 # Learn: domain controllers wait up to 10 hours after a root key's effective time before gMSA passwords are generated.
 $script:KdsReplicationHours = 10
-# Learn: wait at least two ticket lifetimes (14 days) before completing a dMSA migration; four (28 days) is recommended.
-# Design guidance: the program waits 30 days, the same as its parallel run, which covers Learn's four 7-day lifetimes.
+# Learn: wait at least two ticket lifetimes ("equivalent to 14 days") before completing a dMSA migration; four (28 days) is
+# recommended; the default ticket renewal time is 10 hours. Design guidance (WD-124): the program waits 30 days, the same
+# as its parallel run, its own choice and longer than Learn's 28.
 $script:MigrationWaitDays = 30
 $script:LearnMinimumMigrationDays = 14
 # Book 02, Chapter 10, Phase 4: old and new credentials run in parallel for 30 days before the legacy account is disabled.
