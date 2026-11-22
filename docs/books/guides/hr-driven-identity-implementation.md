@@ -98,6 +98,8 @@ This guide assumes the starting state below *(design guidance: the common case, 
 - every entitlement resolves to a rule, an attribute and a record, and a move leaves nothing unreviewed;
 - every separation blocks access within the approved interval, revokes the credential, and leaves evidence an assessor can read.
 
+![What drives every step of this track, from Book 03, Chapter 08: the nature-of-action family on each SF-50 classifies the HR event into one identity event, and nonpay status is not a separation.](../../images/diagrams/b03-hr-identity/svg/ch08-personnel-action-lifecycle.svg){#fig-hri-personnel-action-lifecycle fig-alt="An amber box on the left, SF-50 nature of action: first digit sets the family; effective date sets the time. Seven arrows fan out to: 1xx accessions, joiner; 5xx conversions, conversion; 7xx position, duty station and name changes, mover; 4xx nonpay or nonduty status, not a leaver; 2xx return to duty, reinstate; 3xx separations, leaver, block first; 001 and 002 corrections and cancellations, reverse or re-derive with evidence. The figure is reused from Book 03, Chapter 08."}
+
 ## Prerequisites {#prerequisites}
 
 - **The pipeline, live for the foundation scope.** The Identity Lifecycle plan's Gate 3: the HR feed live, shadow differences explained, zero unmatched creations ([pipeline guide, build phases](hcm-entra-implementation.md#build-phases-mapped-to-book-03)).

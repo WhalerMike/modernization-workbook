@@ -49,6 +49,8 @@ The audience is a civilian agency at FedRAMP Moderate. Baselines come from CIS B
 
 : The Arc track's gates and the checks that prove them {.striped .hover}
 
+![What the track builds, from Book 05, Chapter 09: the Connected Machine agent gives each server an Azure resource and a managed identity, and Gates 4 to 6 attach policy, patching, Defender and sign-in to that resource.](../../images/diagrams/b05-devices/svg/ch09-arc-management-plane.svg){#fig-arc-management-plane fig-alt="Left to right. A slate card for the on-premises or other-cloud server running the Connected Machine agent, still domain joined until a separate decision. An arrow labeled outbound TCP 443 leads to a blue card for the Azure Arc machine resource, Microsoft.HybridCompute/machines, holding resource ID, tags, Azure RBAC and extensions. Below it, a blue card for the system-assigned managed identity in Microsoft Entra ID, connected by a dashed line. From the resource, three arrows lead to three cards on the right: a violet card, Govern, Azure Policy and machine configuration audit the security baseline; a green card, Patch, Azure Update Manager and Extended Security Updates; and a violet card, Protect and sign in, Defender for Servers onboards Defender for Endpoint, and the Entra ID sign-in extension on Windows Server 2025. The figure is reused from Book 05, Chapter 09."}
+
 ## Step 1: Prerequisites {#step-1-prerequisites}
 
 ### 1.1 Choose the Azure cloud

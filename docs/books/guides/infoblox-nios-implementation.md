@@ -36,6 +36,8 @@ last-reviewed: 2026-11-18
 | 3. Sign and harden | DNSSEC parameters and signing; the HSM and DS publication; the agency's NIOS settings baseline, with the NIOS 9.x STIG as an optional cross-check (High only); the FIPS mode procedure; administrator access and the 9.1.0 upgrade gates |
 | 4. Operate and evidence | Upgrades, revert and long-term support; hotfixes and known exploited vulnerabilities; backup, restore and Grid Master recovery; logging to the SIEM; Terraform and Ansible; the build mapped to Book 08's six phases; decisions, vendor asks and next steps |
 
+![Book 08, Chapter 10's six migration phases, which Part 4 maps the build to. The guide's vendor Phase 0, the decisions that can't be undone cheaply, comes before Phase 1.](../../images/diagrams/b08-ddi/svg/ch10-migration-phases.svg){#fig-nimp-migration-phases fig-alt="Six phases top to bottom: inventory and baseline; deploy coexistence; migrate authority; cloud federation; decommission AD DNS and DHCP, which is gated on reconciliation and failover tests and must preserve SRV and _msdcs records for remaining domain controllers; policy and compliance hardening. The figure is reused from Book 08, Chapter 10."}
+
 *High only* marks material that applies to FedRAMP High systems, such as STIGs, not to the Moderate civilian baseline this workbook targets. It's kept as an optional reference.
 
 The backup section holds an assessor's evidence checklist, a risks register, what couldn't be verified or sits behind a login, and the full source list.

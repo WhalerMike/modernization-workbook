@@ -69,6 +69,8 @@ The guide keeps Book 03's architecture unchanged. Chapter 03 has absorbed the co
 | Lifecycle actions | Lifecycle Workflows from `employeeHireDate` and `employeeLeaveDateTime`[^he-ms-concepts] | Entra ID Governance |
 | Evidence | Provenance store; provisioning logs; workflow history | Agency evidence store |
 
+![Book 03, Chapter 05's provisioning pipeline, which the table above realizes on Oracle and Entra: Core HCM through a boundary transformation and the middleware's five duties, into Graph `/bulkUpload`, landing in Active Directory or Entra ID, with provenance in the evidence store.](../../images/diagrams/b03-hr-identity/svg/ch05-provisioning-services.svg){#fig-he-provisioning-services fig-alt="Left to right: Core HCM (extracts, ATOM feeds, REST, SCIM); boundary transformation (source-specific, replaceable); an amber middleware box with five duties: validate (fail closed), sequence, normalize to SCIM, write provenance, reconcile results; Graph /bulkUpload (Entra provisioning service), which writes to Active Directory (hybrid users, via the provisioning agent) and Entra ID (cloud-managed users). A dashed green line from the middleware goes to an evidence store (provenance and provisioning logs). The figure is reused from Book 03, Chapter 05."}
+
 ### What the solicitation says about identity
 
 Book 03 Chapter 03 records the solicitation's SCIM 2.0 requirement, the OPM Entra-based solution and the Steering Committee review. The final amendment's text, read here against the guide's own needs:
