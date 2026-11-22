@@ -158,7 +158,7 @@ None of this is a substitution. For as long as any distribution point exists, it
 | Secondary data center | 1 | Existing disaster recovery facility | Library replica, control plane secondary, breakout |
 | Regional hub | 10 | Existing regional office locations | SD-WAN aggregation, regional internet breakout, pull distribution points |
 
-The hubs use existing facilities, so no new real estate, power or accreditation boundary is needed. Twelve sites puts every office within a reasonable latency of an aggregation point and produces a perimeter that can actually be monitored and accredited. Local breakout at 1,500 offices is a multi-year undertaking; breakout at 12 hubs fits in one package, which is why regional breakout is the usual first step. [Chapter 02](02-transport-is-physics-control-is-compliance.md) makes the physics argument and [Chapter 03](03-what-tic-3-requires.md) the TIC 3.0 one; this chapter doesn't repeat them.
+The hubs use existing facilities, so no new real estate, power or accreditation boundary is needed. Twelve sites (the two data centers and the ten regional hubs) puts every office within a reasonable latency of an aggregation point and produces a perimeter that can actually be monitored and accredited. Local breakout at 1,500 offices is a multi-year undertaking; breakout at 12 hubs fits in one package, which is why regional breakout is the usual first step. [Chapter 02](02-transport-is-physics-control-is-compliance.md) makes the physics argument and [Chapter 03](03-what-tic-3-requires.md) the TIC 3.0 one; this chapter doesn't repeat them.
 
 ### Content tier: 24 distribution points
 
