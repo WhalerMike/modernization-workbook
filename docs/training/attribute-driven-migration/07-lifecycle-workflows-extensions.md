@@ -67,6 +67,8 @@ One parameterized Logic App per integration, not one per component. Block first:
 - [Chapter 05: where the extensions sit](../../books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md#where-the-extensions-sit).
 - [Chapter 05: what Learn's definition leaves to you](../../books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md#what-it-leaves-to-you).
 
+![Where the extensions sit, from Book 03, Chapter 08: inbound provisioning creates and updates the account, and Lifecycle Workflows act on users who already exist and call custom task extensions like the ones this module builds.](../../images/diagrams/b03-hr-identity/svg/ch08-provisioning-and-workflows.svg){#fig-ch08-provisioning-and-workflows fig-alt="Left to right: an amber HR event box (effective-dated personnel action); a blue inbound provisioning box (create the account, keep attributes current, enable or disable from HR status); an arrow labelled dates and status to a green Lifecycle Workflows box (pre-hire and day-one tasks, mover re-evaluation, leaver tasks and extensions); and a violet custom task extensions box (card management, Intune, applications)."}
+
 ## Unit 3: The registry, the tool, authorization and the leaver order
 
 *8 minutes*

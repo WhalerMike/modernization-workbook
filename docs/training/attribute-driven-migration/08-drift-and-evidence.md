@@ -66,6 +66,8 @@ Drift is measured against a versioned record, not a snapshot. No closure counts 
 - [Chapter 09: where the pipeline sits](../../books/b19-developer-workbook/09-drift-pipelines-and-evidence.md#where-the-pipeline-sits).
 - [Chapter 09: what Learn's sample leaves to you](../../books/b19-developer-workbook/09-drift-pipelines-and-evidence.md#what-it-leaves-to-you).
 
+![The drift and evidence loop from Book 03, Chapter 11: a scheduled comparison of the HR record with the directories finds each drift class, the fix goes to the record or the rule, never the copy, and every step leaves evidence.](../../images/diagrams/b03-hr-identity/svg/ch11-drift-evidence-loop.svg){#fig-ch11-drift-evidence-loop fig-alt="An amber HR record box (what should be true) and a blue directories and apps box (what is true) both feed a violet scheduled comparison box (missing, stale, orphan, attribute, write and credential drift). It feeds a green close-at-the-right-end box (fix the record or the rule, never the copy). Dashed lines from both go to a grey evidence box (provenance, workflow runs, findings, metrics)."}
+
 ## Unit 3: Compare, findings and the package
 
 *10 minutes*

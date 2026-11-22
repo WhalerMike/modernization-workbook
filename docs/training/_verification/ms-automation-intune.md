@@ -103,3 +103,11 @@ Re-checked after the weekly source watch (issue #499) reported a new commit in t
 | Finding | Change |
 |---|---|
 | ScubaGear baselines folder now also holds `si.md`, "CISA M365 Secure Configuration Baseline for Super Intelligence (SI) / SI Agents capabilities", added November 4, 2026 (commit `8c954fc`) as a shell: description, assumptions and policies marked TBD. Still no Intune baseline | The baseline list and footnote `m3-scubalist` name the placeholder; "ScubaGear has no Intune baseline" unchanged |
+
+## Figures, November 22, 2026
+
+Each figure is reused from the page named in its caption and carries that page's own verification; the caption restates what the figure shows, and was checked against this module's text.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 65 | Figure `b05-devices/ch08-targeting-layers` (reused): attributes, dynamic groups, assignment with filters, compliance to Conditional Access | Unit 4 | carried | Book 05, Chapter 08 and its log |

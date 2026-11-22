@@ -65,6 +65,8 @@ Every governed rule uses one of two patterns, requires `accountEnabled`, exclude
 - [Chapter 04: where the rules sit](../../books/b19-developer-workbook/04-dynamic-rules-as-code.md#where-the-rules-sit).
 - [Chapter 04: what Learn's samples leave to you](../../books/b19-developer-workbook/04-dynamic-rules-as-code.md#what-they-leave-to-you).
 
+![The derivation chain from Book 03, Chapter 10: the rules this module keeps as code turn the codes HR sets into dynamic group membership and entitlements, and privileged access takes only eligibility from HR.](../../images/diagrams/b03-hr-identity/svg/ch10-derivation-chain.svg){#fig-ch10-derivation-chain fig-alt="Left to right: an amber personnel record box (standard attributes and the action that set them), stamped attributes (codes in native and extension attributes), dynamic groups (rules; nobody joins by hand), and a green entitlements box (apps, access packages, Conditional Access). A dashed red arrow labelled eligibility only goes from stamped attributes to a privileged access box (assigned groups and PIM; HR decides eligibility, never standing)."}
+
 ## Unit 3: The library, the linter, the shadow diff and the pause
 
 *10 minutes*

@@ -137,6 +137,8 @@ In Az PowerShell, `Search-AzGraph` runs a query with `-Subscription` or `-Manage
 
 *10 minutes*
 
+![What the checks read, from Book 05, Chapter 09: an Arc-enabled server becomes an Azure machine resource with a managed identity, and its extensions, policy and patching attach to that resource.](../images/diagrams/b05-devices/svg/ch09-arc-management-plane.svg){#fig-ch09-arc-management-plane fig-alt="Left to right. A slate card for the on-premises or other-cloud server running the Connected Machine agent, still domain joined until a separate decision. An arrow labeled outbound TCP 443 leads to a blue card for the Azure Arc machine resource, Microsoft.HybridCompute/machines, holding resource ID, tags, Azure RBAC and extensions. Below it, a blue card for the system-assigned managed identity in Microsoft Entra ID, connected by a dashed line. From the resource, three arrows lead to three cards on the right: a violet card, Govern, Azure Policy and machine configuration audit the security baseline; a green card, Patch, Azure Update Manager and Extended Security Updates; and a violet card, Protect and sign in, Defender for Servers onboards Defender for Endpoint, and the Entra ID sign-in extension on Windows Server 2025."}
+
 ### The Arc machine
 
 The `microsoft.hybridcompute/machines` record has these properties that the checks read:[^m4-hcmachine]
