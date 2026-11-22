@@ -73,3 +73,9 @@ GCC Moderate and commercial Azure only: no other government cloud is named (the 
 ## Review gate
 
 `review-status: pending`. Not approved here.
+
+## Figures (November 22, 2026)
+
+| Figure | Where | Verdict | Source |
+|---|---|---|---|
+| Figure `daily-checks-sources-and-tabs`: the seven sources and their tables, one workspace, one workbook with the twelve tabs of the tab table, the two link-out tabs, the telemetry tab first | What each daily check can show | restated-as-design | This guide's tab table and Step 1; Learn, "Azure Workbooks overview" and "Azure Workbooks data sources" |

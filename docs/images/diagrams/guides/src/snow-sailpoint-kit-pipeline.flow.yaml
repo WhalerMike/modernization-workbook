@@ -1,0 +1,48 @@
+# ServiceNow and SailPoint integration kit guide (Pass 1), "Architecture":
+# the kit's five steps. Detect: three ISC event triggers; Raise: one ISC
+# workflow per trigger posts to one ServiceNow Scripted REST API; Hold the
+# clock: a typed identity finding with tempo, de-duplication and an intended
+# state; Close on evidence: a business rule turns any close into "Awaiting
+# verification" until the re-read client matches; Measure: the drift client
+# joins the HR extract, Graph and ISC on employeeId and posts to the same
+# endpoint. Vendor documentation as cited on the page (opened Oct 24, 2026);
+# no Learn page applies. Pass 1 actuates nothing.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+clusters:
+  - id: isc
+    label: "SailPoint Identity Security Cloud"
+    tone: blue
+    nodes: [t1, t2, t3, wf]
+  - id: sn
+    label: "ServiceNow"
+    tone: violet
+    nodes: [api, find, br, wait, closed, reopen]
+nodes:
+  t1: {tone: blue, width: 150, tag: "1 Detect", title: "Native Change Account Updated", body: ["=Finding: `unauthorized_write`"], size: 12}
+  t2: {tone: blue, width: 150, tag: "1 Detect", title: "Identity Attributes Changed", body: ["=Finding: `attribute_drift`"], size: 12}
+  t3: {tone: blue, width: 150, tag: "1 Detect", title: "Provisioning Action Completed", body: ["=Closure signal"], size: 12}
+  wf: {tone: blue, width: 500, tag: "2 Raise", title: "One ISC workflow per trigger", body: ["=Its one action, an HTTP Request step, posts the event to ServiceNow"], size: 12}
+  drift: {tone: slate, width: 170, tag: "5 Measure", title: "Drift client", body: ["=Joins the HR extract, Microsoft Graph and ISC on `employeeId`; Book 03's drift classes"], size: 12}
+  api: {tone: violet, width: 300, tag: "One front door", title: "Scripted REST API", body: ["=Three workflows and the drift client post to the same endpoint"], size: 12}
+  find: {tone: violet, width: 300, tag: "3 Hold the clock", title: "Identity finding", body: ["Owner, priority and due date by the program's tempo", "De-duplicated while open", "Intended state: what a re-read must find"], size: 12}
+  br: {tone: amber, width: 300, tag: "4 Close on evidence", title: "Business rule", body: ["=Any close becomes Awaiting verification"], size: 12}
+  wait: {tone: amber, width: 300, title: "Awaiting verification", body: ["=The re-read client reads the subject again: ISC account or identity, or the Entra user"], size: 12}
+  closed: {tone: green, width: 200, tag: "Match", title: "Closed with evidence", body: ["=Evidence hash and a JSON attachment"], size: 12}
+  reopen: {tone: red, width: 200, tag: "Mismatch", title: "Reopened", body: ["=A work note lists what differs"], size: 12}
+ranks:
+  - [drift, api]
+order:
+  - [t1, t2, t3]
+  - [closed, reopen]
+edges:
+  - [t1, wf, {tone: blue}]
+  - [t2, wf, {tone: blue}]
+  - [t3, wf, {tone: blue}]
+  - [wf, api, {tone: blue, label: "HTTP POST", lw: 70}]
+  - [drift, api, {tone: slate, style: dashed, label: "--push-to-servicenow", lw: 130}]
+  - [api, find, {tone: violet}]
+  - [find, br, {tone: amber, label: "a person closes it, or the closure signal arrives", lw: 170}]
+  - [br, wait, {tone: amber}]
+  - [wait, closed, {tone: green}]
+  - [wait, reopen, {tone: red}]
