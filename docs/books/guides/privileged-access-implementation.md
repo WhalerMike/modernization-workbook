@@ -69,8 +69,8 @@ Every gate's hands-on work is a lab in the developer workbook [*Building Privile
 |---|---|---|---|
 | T0 | Control plane | Global, Privileged Role, Privileged Authentication, Security and Conditional Access Administrator | 4 hours, approval by `PIM-Approvers-T0`, context `c1`, eligibility 90 days |
 | T1 | Management plane | Exchange, SharePoint, Intune, Application and Hybrid Identity Administrator | 8 hours, approval by `PIM-Approvers-T1`, context `c1`, eligibility 180 days |
-| T2 | Scoped operations | User, Groups and Helpdesk Administrator, scoped to administrative units | 8 hours, approval optional with a risk acceptance, eligibility 180 days |
-| Read-only | Visibility | Global Reader, Security Reader | 8 hours, no approval, eligibility 365 days |
+| T2 | Scoped operations | User, Groups and Helpdesk Administrator, scoped to administrative units | 8 hours, approval optional with a risk acceptance, context `c1`, eligibility 180 days |
+| Read-only | Visibility | Global Reader, Security Reader | 8 hours, no approval, context `c1`, eligibility 365 days |
 
 : The program's privilege tiers {.striped .hover}
 

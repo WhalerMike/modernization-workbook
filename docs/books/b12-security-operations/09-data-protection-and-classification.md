@@ -212,7 +212,7 @@ DLP acts at three points in the data's life, each with a different reach. All th
 
 : The three DLP enforcement surfaces {.striped .hover}
 
-Endpoint DLP covers onboarded Windows 10 and 11 and macOS devices, and Windows Server 2019 and later, where it's off until turned on for servers.[^c09-device-onboarding][^c09-edlp] A device excluded from onboarding receives no endpoint policy, so check onboarding coverage before relying on endpoint DLP ([Book 05](../b05-devices/index.md)).
+Endpoint DLP covers onboarded Windows 10 and 11 and macOS devices, and Windows Server 2019 and later, where it's off until turned on for servers.[^c09-device-onboarding][^c09-edlp] A device excluded from onboarding receives no endpoint policy, so check onboarding coverage before relying on endpoint DLP ([Book 05](../b05-devices/index.md)). This program's endpoint DLP covers Windows 10 and 11 devices and Windows Server 2019 and later; macOS is out of its scope ([Book 20, Chapter 08](../b20-information-protection/08-dlp-and-endpoint-controls.md#endpoint-dlp-on-windows)).
 
 ### The minimum policy baseline
 
