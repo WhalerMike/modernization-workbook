@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Books 04, 17"
 series-order: 4
 review-status: approved
-reviewed-sha256: 9fe9b16aa58829096e585221c470cdf24b1dc375e9903b4fa63e986a419f9df6
-last-reviewed: 2026-11-20
+reviewed-sha256: 940d16d6f96b786e2b5dda5e5f64d856a123cb86ab6d37dcf1375f7062558b2e
+last-reviewed: 2026-11-22
 ---
 # Module 4: Set the credential rules {.unnumbered}
 

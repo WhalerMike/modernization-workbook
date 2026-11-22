@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Books 13, 15"
 series-order: 7
 review-status: approved
-reviewed-sha256: ca930c26e7faa97a8cf44ecd0569cba2399dfc4505ba31f39dc3a5a7a5353b8b
-last-reviewed: 2026-11-18
+reviewed-sha256: f0315bca15ef5e3465e25ddb3d7f8e553b82dfd5746c27d6d868dd8f6d96fca0
+last-reviewed: 2026-11-22
 ---
 # Module 7: Routing to owners {.unnumbered}
 

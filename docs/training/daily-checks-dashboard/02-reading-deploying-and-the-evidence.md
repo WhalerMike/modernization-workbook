@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 15"
 series-order: 2
 review-status: approved
-reviewed-sha256: aa8b64e6a50530db2442aa12f068898d115ca68006c3824944131d0e2cca7b94
-last-reviewed: 2026-11-20
+reviewed-sha256: 2061837cd474036e5e372dc7b487a64bcd5c9d29e43389d89ebac1511abad5b7
+last-reviewed: 2026-11-22
 ---
 # Module 2: Reading it, deploying it and keeping the evidence {.unnumbered}
 

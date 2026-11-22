@@ -8,8 +8,8 @@ research-book: "Books 13, 15"
 series-order: 5
 date-modified: 2026-11-01
 review-status: approved
-reviewed-sha256: 7dc71edbe04ded237793cea40094ba8ca251683e713e6a5db74ffc1023e79cbd
-last-reviewed: 2026-11-07
+reviewed-sha256: 5584fa7e87377eeee2f31e7ba5d098348a25730a05adb774039e7ad187fcc697
+last-reviewed: 2026-11-22
 ---
 # Ticket-to-Machine, Module 5: Drift to a Typed Task {.unnumbered}
 

@@ -8,8 +8,8 @@ research-book: "Book 19"
 series-order: 6
 date-modified: 2026-11-02
 review-status: approved
-reviewed-sha256: 0158232a76fb62f493fe18dd3b767f7773db26c3e76c54078e7ea2806da2061f
-last-reviewed: 2026-11-18
+reviewed-sha256: a5aca848ae3d9287a564fe981a42221a4fb57e148e02030830dfb2957314c010
+last-reviewed: 2026-11-22
 ---
 # Attribute-Driven Migration, Module 6: Onboard Servers with Ansible beside Arc {.unnumbered}
 

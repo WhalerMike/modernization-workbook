@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 11"
 series-order: 4
 review-status: approved
-reviewed-sha256: a160dcf0fb85a4cc4143ef3e74f66987cff522fe1c81d096462249f451fdebdd
-last-reviewed: 2026-11-18
+reviewed-sha256: 825500101b7681d0b08223bc0e443888d8f1706173797f5c304a7f77fb2e410c
+last-reviewed: 2026-11-22
 ---
 # Module 4: Reconcile, re-run and keep the evidence {.unnumbered}
 

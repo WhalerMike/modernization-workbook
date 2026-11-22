@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 09"
 series-order: 6
 review-status: approved
-reviewed-sha256: 0edd4ea6f05d17cdf71025d1499f81af18973dfeb15dc58758977629835b9a0c
-last-reviewed: 2026-11-18
+reviewed-sha256: 2098eb94ed9d8be3a0fbe9c09f752e8a760c1b166be231b92d7c8163d8e51400
+last-reviewed: 2026-11-22
 ---
 # Module 6: Rings, rollback and the evidence package {.unnumbered}
 
