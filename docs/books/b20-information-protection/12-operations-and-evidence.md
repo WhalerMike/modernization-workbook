@@ -12,8 +12,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 33542fdce54dfae77017df28299c1ba700154b295764431472415fee4ca49da5
-last-reviewed: 2026-11-18
+reviewed-sha256: 9c0aa0d3ab2bda88ec3caee25d132e5d0f181ec732a489d6abd01284355b2664
+last-reviewed: 2026-11-22
 ---
 # Chapter 12 — Operations and Evidence
 

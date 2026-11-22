@@ -12,8 +12,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 551252f0b776d9c3e0c55fd726d36b600df879aeebe12b2bc01351dfc1325df5
-last-reviewed: 2026-11-18
+reviewed-sha256: 5af9732b3c0a77af39df2f9fed1b58d80f2bc9037b23402a13ea3e4a42c3f316
+last-reviewed: 2026-11-22
 ---
 # Chapter 05 — Rights Management and Recovery
 
