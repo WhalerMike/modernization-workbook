@@ -1,0 +1,26 @@
+# Zero Trust Assessment training, Module 2 (Units 1 to 4) — running the
+# assessment safely, in order: the approved decision record; a clean host
+# with PowerShell 7.6 and the pinned module, and a protected report folder;
+# consent once, then a dedicated reader account; connecting in the tenant's
+# own cloud (GCC uses the worldwide endpoints and the default Global
+# environment); the run; and the export hashed before anyone opens it.
+# Follows the Zero Trust Assessment implementation guide's Steps 1 to 5.
+# Product facts as documented on Microsoft Learn (security/zero-trust/assessment:
+# get-started, permissions, connect-services, run-assessment), read Nov 22, 2026.
+# The GCC environment value is the tool's source, as the guide says; Learn's
+# connect-services page names -Environment but defers its values to Get-Help.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  s1: {tone: violet, width: 420, tag: "Step 1", title: "Approved decision record", body: ["=Scope, run account, cadence, pinned version, telemetry and output handling; the CISO approves"], size: 12}
+  s2: {tone: slate, width: 420, tag: "Step 2", title: "Clean host, protected folder", body: ["PowerShell 7.6 or later, a fresh `pwsh -NoProfile` on a dedicated Windows VM", "The module pinned to the record's version", "A new, empty folder per run, readable only by the run account and custodians"], size: 12}
+  s3: {tone: blue, width: 420, tag: "Step 3", title: "Consent once, then a reader", body: ["A consent administrator grants consent and doesn't run the tool", "The run account: Global Reader and the other read roles, activated through PIM", "SharePoint Administrator: the one write-capable role the run needs"], size: 12}
+  s4: {tone: blue, width: 420, tag: "Step 4", title: "Connect in the tenant's own cloud", body: ["GCC uses the worldwide endpoints: `-Environment Global`", "Pass `-SharePointAdminUrl`", "Confirm tenant and cloud with `Get-MgContext`"], size: 12}
+  s5: {tone: blue, width: 420, tag: "Step 5", title: "Run", body: ["=Read-only, in the connected session; `-DisableTelemetry` is the CISO's decision"], size: 12}
+  s6: {tone: green, width: 420, tag: "Step 5", title: "Hash the export", body: ["=SHA-256 of every file as soon as the run ends, before anyone opens or copies it"], size: 12}
+edges:
+  - [s1, s2, {tone: violet}]
+  - [s2, s3, {tone: blue}]
+  - [s3, s4, {tone: blue}]
+  - [s4, s5, {tone: blue}]
+  - [s5, s6, {tone: green}]

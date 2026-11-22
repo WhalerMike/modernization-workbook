@@ -55,6 +55,8 @@ Read the guide's [Step 7](../../books/guides/azure-security-implementation.md#st
 - **Public access off** once the private path works; for Key Vault, the firewall's default action is deny.
 - **The exfiltration path.** Traffic to a private endpoint can bypass the firewall; where inspection is required, Learn's troubleshooting route sends the endpoint's /32 through it.
 
+![Why name resolution decides whether a private endpoint works, from Book 08, Chapter 07: every origin forwards the service's public zone to one resolution point inside Azure.](../../images/diagrams/b08-ddi/svg/ch07-private-endpoint-forwarding.svg){#fig-ch07-private-endpoint-forwarding fig-alt="On-premises resolvers, a Route 53 VPC Resolver outbound rule, a Cloud DNS forwarding zone and the branch SD-WAN path all forward the service's public zone, such as blob.core.windows.net, to the Azure DNS Private Resolver inbound endpoint, which answers from the Private DNS zone privatelink.blob.core.windows.net linked to its virtual network with the private endpoint address."}
+
 ## Unit 2: Key Vault (12 minutes) {#azs-m4-unit-2}
 
 Read the guide's [Step 8](../../books/guides/azure-security-implementation.md#step-8-managed-identities-and-key-vault). Learn recommends one vault per application, region and environment; RBAC, not legacy access policies; PIM for administrators; soft delete and purge protection; autorotation; audit logging, Defender for Key Vault and alerts; private endpoints with public access disabled; and tested backups. Points to take away:

@@ -24,3 +24,14 @@ Labs:
 - The Module 5 metric arithmetic follows the guide's metrics table; the PowerShell is the path's.
 - Time estimates are the program's planning figures *(design guidance)*, not measurements.
 - Claim wording: the steps *support* the controls; the assessor decides them. KSIs are written as indicators for cloud service providers that the agency lines its evidence up with.
+
+## Figures, November 22, 2026
+
+Each figure is reused from the page named in its caption and carries that page's own verification; the caption restates what the figure shows, and was checked against this module's text.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Figure `b10-cloud-boundary/ch05-management-groups` (reused) | Module 1, Unit 2 | carried | Book 10, Chapter 05 and its log |
+| 2 | Figure `guides/azure-security-reference-architecture` (reused) | Module 3, Unit 2 | carried | The Azure security guide and its log |
+| 3 | Figure `b08-ddi/ch07-private-endpoint-forwarding` (reused) | Module 4, Unit 1 | carried | Book 08, Chapter 07 and its log |
+| 4 | Figure `b12-security-operations/ch07-baseline-lifecycle` (reused) | Module 5, Unit 1 | carried | Book 12, Chapter 07 and its log |

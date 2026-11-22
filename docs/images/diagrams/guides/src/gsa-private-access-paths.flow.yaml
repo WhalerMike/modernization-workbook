@@ -1,0 +1,51 @@
+# Global Secure Access training, Module 4 (Units 1 to 3; guide Steps 6 and
+# 10) — the Private Access paths: Quick Access as the bridge versus per-app
+# applications with their own segments, assignment and Conditional Access;
+# administrative hosts as their own apps behind phishing-resistant
+# authentication; connector groups (two or more connectors, outbound only,
+# private DNS); domain controllers with the Private Access sensor while they
+# remain. Names follow gsa-reference-architecture (Client, Service edge,
+# Connectors). Program decisions: Windows Server 2019 or later for
+# connectors, DCs retired. Product behavior as documented on Microsoft Learn
+# (how-to-target-resource-private-access-apps, how-to-configure-quick-access,
+# how-to-configure-connectors, how-to-configure-domain-controllers,
+# reference-current-known-limitations), read Nov 22, 2026.
+rankdir: TB
+graph: {nodesep: 0.12, ranksep: 0.45}
+clusters:
+  - id: entra
+    label: "Microsoft Entra ID: one app per path, own group and CA"
+    tone: blue
+    nodes: [qa, perapp, admin, dcapp]
+  - id: private
+    label: "Private network, any location"
+    tone: slate
+    dashed: true
+    nodes: [conn, hosts, adminhosts, dcs]
+nodes:
+  client: {tone: slate, width: 180, tag: "Client required", title: "Client", body: ["Private Access profile", "No remote networks"], size: 12}
+  sse: {tone: violet, width: 200, title: "Service edge", body: ["Brokers by app segment", "Unassigned user: no path"], size: 12}
+  qa: {tone: amber, width: 150, tag: "Bridge", title: "Quick Access", body: ["Broad segments", "Private DNS suffixes", "Shrinks to nothing"], size: 11}
+  perapp: {tone: green, width: 150, tag: "Target", title: "Per-app app", body: ["One host, its ports", "Group, no nesting", "CA report-only first"], size: 11}
+  admin: {tone: green, width: 150, tag: "Admin path", title: "Admin app", body: ["RDP 3389 per tier", "PIM-granted group", "Phishing-resistant", "Compliant device"], size: 11}
+  dcapp: {tone: amber, width: 150, tag: "Until retired", title: "DC app", body: ["Kerberos TCP 88", "SPNs to protect"], size: 11}
+  conn: {tone: slate, width: 260, tag: "Connector group", title: "Connectors, two or more", body: ["Outbound 443 only, no inbound", "Windows Server 2019 or later", "Resolve private DNS suffixes"], size: 11}
+  hosts: {tone: slate, width: 170, title: "App hosts", body: ["Only the segment's ports"], size: 11}
+  adminhosts: {tone: slate, width: 170, title: "Admin hosts", body: ["RDP via connectors only"], size: 11}
+  dcs: {tone: amber, width: 200, title: "Domain controllers", body: ["Sensor: Audit, then Enforce", "Inbound TCP 1337", "Connector IPs allow-listed", "Break glass mode to roll back"], size: 11}
+order:
+  - [client, sse]
+  - [qa, perapp, admin, dcapp]
+  - [hosts, adminhosts, dcs]
+ranks:
+  - [client, sse]
+edges:
+  - [client, sse, {tone: blue, label: "tunnel"}]
+  - [qa, sse, {tone: amber, style: dashed}]
+  - [perapp, sse, {tone: green}]
+  - [admin, sse, {tone: green}]
+  - [dcapp, sse, {tone: amber, style: dashed}]
+  - [sse, conn, {tone: violet, label: "brokered"}]
+  - [conn, hosts, {tone: slate}]
+  - [conn, adminhosts, {tone: slate}]
+  - [conn, dcs, {tone: slate}]

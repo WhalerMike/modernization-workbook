@@ -13,3 +13,14 @@ Method:
 - Lab 2 runs the real tool in a test tenant and wasn't run by the authors, as the pages say.
 - Time estimates are the program's planning figures *(design guidance)*, not measurements.
 - Claim wording: the outputs *support* the controls; the assessor decides them. KSIs are written as indicators for cloud service providers that the agency lines its evidence up with. Only the control-to-KSI pairs in the kit's `config/requirements.json` and the guide's tables (Book 13, Appendix A's mappings) appear.
+
+## Figures, November 22, 2026
+
+Each figure is reused from the page named in its caption and carries that page's own verification; the caption restates what the figure shows, and was checked against this module's text.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Figure `b11-zero-trust/ch01-evidence-not-verdict` (reused) | Module 1, Unit 1 | carried | Book 11, Chapter 01 and its log |
+| 2 | Figure `guides/zta-safe-run` (new): decision record, clean host with PowerShell 7.6 or later, pinned module, protected folder, consent once, reader roles and SharePoint Administrator, connect in GCC with -Environment Global, run, hash the export | Module 2, Units 1-4 | verified (Learn re-read Nov 22, 2026; -Environment Global from the guide, as Learn lists no values) | Learn, Zero Trust Assessment get started (https://learn.microsoft.com/security/zero-trust/assessment/get-started), connect services, permissions |
+| 3 | Figure `b11-zero-trust/ch08-finding-triage` (reused) | Module 3, Unit 2 | carried | Book 11, Chapter 08 and its log |
+| 4 | Figure `b11-zero-trust/ch10-reassessment-loop` (reused) | Module 4, Unit 3 | carried | Book 11, Chapter 10 and its log |
