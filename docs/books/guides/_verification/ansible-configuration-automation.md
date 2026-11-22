@@ -172,3 +172,9 @@ No new product, licensing or government-cloud claim was added; macOS and Linux c
 ## AWS GovCloud restored (November 16, 2026)
 
 Under WD-157 the program's AWS workloads run in AWS GovCloud (US). The AWS GovCloud changes made on November 15, 2026 under WD-156 (PR #627) were reversed on this page: its GovCloud claims, footnotes and wording are back as verified before that date, and the rest of this record stands.
+
+## Figures (November 22, 2026)
+
+| Figure | Where | Verdict | Source |
+|---|---|---|---|
+| Figure `ansible-one-owner-per-setting`: the CMDB record's `config_owner` and `patch_owner` decide which tool writes and patches; Ansible writes only where it owns; `PatchOwner` tag and Update Manager; job results to the evidence store; the four coverage tiers | One owning tool per setting | restated-as-design | Program design from this guide's rules 1 to 5 and the tier table; Learn, "Connect machines to Azure Arc at scale with Ansible" and "Azure Connected Machine agent deployment options" (Ansible among the at-scale methods) |

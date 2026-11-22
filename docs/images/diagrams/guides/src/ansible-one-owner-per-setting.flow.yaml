@@ -1,0 +1,41 @@
+# Ansible for Configuration Automation guide, "One owning tool per setting"
+# and "Where Ansible fits": the CMDB record names the one tool that owns each
+# asset's settings (config_owner) and patching (patch_owner, mirrored to the
+# Arc PatchOwner tag); Ansible reads anywhere allowed and writes only what it
+# owns; job results go to the evidence store; the four coverage tiers.
+# Program design guidance; Arc onboarding with Ansible as documented on Learn
+# (onboard-ansible-playbooks, deployment-options), read Nov 22, 2026.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.42}
+nodes:
+  cmdb: {tone: violet, width: 460, tag: "The attribute source", title: "CMDB record, one per asset", body: ["`config_owner`: the one tool that writes its settings (Intune, Arc machine configuration, Configuration Manager, Ansible or the platform's controller)", "`patch_owner`: the one tool that patches it"], size: 12}
+  intune: {tone: blue, width: 140, tag: "Tier 1", title: "Intune", body: ["=End-user devices"], size: 12}
+  mc: {tone: blue, width: 140, tag: "Tier 1", title: "Arc machine configuration", body: ["=Servers outside Azure"], size: 12}
+  ans: {tone: green, width: 150, tag: "Tier 2", title: "Ansible", body: ["=Writes only where the record names it: inventory group plus a playbook assertion"], size: 12}
+  plat: {tone: slate, width: 140, tag: "Tier 2", title: "Platform's own tool", body: ["=A vendor controller, such as an SD-WAN manager"], size: 12}
+  patch: {tone: blue, width: 270, tag: "Patching", title: "Arc tags and Update Manager", body: ["=Onboarding writes `patch_owner` to the `PatchOwner` tag; where Ansible patches a fleet, Update Manager only assesses it"], size: 12}
+  ev: {tone: violet, width: 270, tag: "Evidence", title: "Evidence store", body: ["=Every Ansible job's result, keyed by the CMDB record"], size: 12}
+  read: {kind: text, width: 600, text: "Ansible reads anywhere the program allows and writes only what it owns; a write to a setting another tool owns is a dated exception."}
+  tiers:
+    kind: table
+    tone: slate
+    columns: ["Coverage tier", "Ansible's role"]
+    widths: [200, 400]
+    rows:
+      - ["1. Intune or Arc", "Onboards servers to Arc at scale; reads facts; owns no settings"]
+      - ["2. Platform's own tool, with an evidence feed", "Owns configuration where the CMDB names it; posts every job's result"]
+      - ["3. Discovered only", "Reads facts where allowed, to move an asset into tier 1 or 2; never changes it"]
+      - ["4. Segmented or retired", "Nothing: no playbook targets the group"]
+order:
+  - [intune, mc, ans, plat]
+  - [patch, ev]
+edges:
+  - [cmdb, intune, {tone: violet}]
+  - [cmdb, mc, {tone: violet}]
+  - [cmdb, ans, {tone: violet}]
+  - [cmdb, plat, {tone: violet}]
+  - [cmdb, patch, {tone: blue, style: dashed, label: "patch_owner", lw: 80}]
+  - [ans, ev, {tone: violet, label: "job results", lw: 80}]
+  - [patch, read, {style: invis}]
+  - [ev, read, {style: invis}]
+  - [read, tiers, {style: invis}]
