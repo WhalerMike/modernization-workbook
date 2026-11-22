@@ -1539,6 +1539,7 @@ pages:
   - docs/project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md
   - docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.md
   - docs/reference/source-register.md
+  - docs/training/global-secure-access/_verification/learning-path.md
 - path: docs/architecture/gsa-deployment-guide-private-access.md
   url: https://learn.microsoft.com/entra/architecture/gsa-deployment-guide-private-access
   title: Microsoft Global Secure Access Deployment Guide for Microsoft Entra Private Access
@@ -5581,6 +5582,7 @@ pages:
   - docs/books/guides/global-secure-access-implementation.md
   - docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md
   - docs/reference/source-register.md
+  - docs/training/global-secure-access/_verification/learning-path.md
 - path: docs/global-secure-access/concept-universal-conditional-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-universal-conditional-access
   title: Learn about Universal Conditional Access Through Global Secure Access
@@ -5758,6 +5760,7 @@ pages:
   - docs/books/guides/global-secure-access-implementation.md
   - docs/project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.md
   - docs/reference/source-register.md
+  - docs/training/global-secure-access/_verification/learning-path.md
 - path: docs/global-secure-access/how-to-configure-cloud-firewall-clients.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-configure-cloud-firewall-clients
   title: Configure cloud firewall for Global Secure Access clients (preview)
@@ -6494,6 +6497,7 @@ pages:
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/guides/global-secure-access-implementation.md
   - docs/reference/source-register.md
+  - docs/training/global-secure-access/_verification/learning-path.md
 - path: docs/global-secure-access/how-to-transport-layer-security-settings-managed-certificate.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-transport-layer-security-settings-managed-certificate
   title: Configure TLS inspection with a Microsoft-managed certificate
@@ -6542,6 +6546,7 @@ pages:
   - docs/books/guides/global-secure-access-implementation.md
   - docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md
   - docs/reference/source-register.md
+  - docs/training/global-secure-access/_verification/learning-path.md
 - path: docs/global-secure-access/how-to-universal-tenant-restrictions.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-universal-tenant-restrictions
   title: Global Secure Access and Universal Tenant Restrictions
@@ -6560,6 +6565,7 @@ pages:
   - docs/books/guides/global-secure-access-implementation.md
   - docs/project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.md
   - docs/reference/source-register.md
+  - docs/training/global-secure-access/_verification/learning-path.md
 - path: docs/global-secure-access/how-to-use-private-link-with-private-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-use-private-link-with-private-access
   title: How to access an Azure Storage account behind Azure Private Link using Microsoft Entra Private Access

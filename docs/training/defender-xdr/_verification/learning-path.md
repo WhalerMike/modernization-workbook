@@ -23,3 +23,15 @@ Method:
 `review-status: pending` on every page. The path waits for the owner's review; it isn't approved here.
 
 Update, November 20, 2026: every page of the path is now `review-status: approved`, approved by the owner on November 18, 2026. The line above records the status when the path was verified.
+
+## Figures, November 22, 2026
+
+Each figure is reused from the page named in its caption and carries that page's own verification; the caption restates what the figure shows, and was checked against this module's text.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Figure `guides/defender-xdr-architecture` (reused) | Module 1, Unit 1 | carried | The Defender XDR guide and its log |
+| 2 | Figure `guides/xdr-asr-audit-warn-block` (new): clear the slate, audit (2) on ring 1 for 30 days or more, warn (6) 14 days on Windows 10 1809 or later, block (1); the two rules without warn; rollback one stage, exclusion preferred; mode values 0, 1, 2, 5, 6 | Module 2, Unit 2 | verified (Learn re-read Nov 22, 2026); 30 and 14 days are the program's durations (guide Step 4) | Learn, ASR deployment test (https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-deployment-test), configure (https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-configure), reference (https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-reference) |
+| 3 | Figure `b12-security-operations/ch06-scan-to-record` (reused) | Module 3, Unit 1 | carried | Book 12, Chapter 06 and its log |
+| 4 | Figure `b12-security-operations/ch11-rule-lifecycle` (reused) | Module 4, Unit 1 | carried | Book 12, Chapter 11 and its log |
+| 5 | Figure `b12-security-operations/ch11-response-ladder` (reused) | Module 5, Unit 1 | carried | Book 12, Chapter 11 and its log |
