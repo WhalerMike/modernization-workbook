@@ -66,6 +66,8 @@ The provisioning service maps attributes, matches records to users, and writes. 
 - [Chapter 01: what CSV2SCIM leaves to you](../../books/b19-developer-workbook/01-the-hr-to-entra-middleware.md#what-it-leaves-to-you), the table of gaps the hardened client closes.
 - The guide's [Gate 2](../../books/guides/attribute-driven-migration-implementation.md#gate-2-prove-the-attributes), for why the values are proved before anything reads them, and [Gate 3, step 5](../../books/guides/attribute-driven-migration-implementation.md#gate-3-map-the-attributes-through-sync), *send the whole record every time*.
 
+![Where the middleware sits, from Book 03, Chapter 05: HR records cross a replaceable boundary transformation into the middleware, which validates, sequences, normalizes to SCIM, records provenance and reconciles results before Graph /bulkUpload hands them to the provisioning service.](../../images/diagrams/b03-hr-identity/svg/ch05-provisioning-services.svg){#fig-ch05-provisioning-services fig-alt="Left to right: Core HCM (extracts, ATOM feeds, REST, SCIM); boundary transformation (source-specific, replaceable); an amber middleware box with five duties: validate (fail closed), sequence, normalize to SCIM, write provenance, reconcile results; Graph /bulkUpload (Entra provisioning service), which writes to Active Directory (hybrid users, via the provisioning agent) and Entra ID (cloud-managed users). A dashed green line from the middleware goes to an evidence store (provenance and provisioning logs)."}
+
 ## Unit 3: Fail closed, send it whole, and keep the record
 
 *10 minutes*

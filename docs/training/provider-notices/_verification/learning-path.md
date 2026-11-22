@@ -57,4 +57,7 @@ Each figure is reused from the page named in its caption and carries that page's
 
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
-| 25 | Figure `developer-workbooks/deploy-test-to-production` (reused from ADM Module 9) | Module 9 | restated-as-design (no Learn page) | PN workbook Chapter 08 |
+| 25 | Figure `b15-day2-operations/ch14-notice-to-closure` (reused): one record per notice, routing rules, typed task or digest, close on the re-read | Module 1, Unit 2 | carried | Book 15, Chapter 14 and its log |
+| 26 | Figure `b15-day2-operations/ch03-one-front-door` (reused): one triage queue, routed by the authority the task needs | Module 7, Unit 1 | carried | Book 15, Chapter 03 and its log |
+| 27 | Figure `b13-governance/ch07-evidence-chain` (reused) as the pattern the evidence records follow: read-only capture, provenance, hash seal, package | Module 8, Unit 2 | carried; the kit's records hash every file and carry the previous record's hash (workbook Chapter 07, The evidence record) | Book 13, Chapter 07 and its log |
+| 28 | Figure `developer-workbooks/deploy-test-to-production` (reused from ADM Module 9) | Module 9 | restated-as-design (no Learn page) | PN workbook Chapter 08 |

@@ -67,6 +67,8 @@ The operator side is already written: Book 05 runs the GPO sunset, and the Intun
 - [Chapter 06: what Microsoft's samples leave to you](../../books/b19-developer-workbook/06-group-policy-as-code.md#what-it-leaves-to-you).
 - [Read: the gate and the move plan](../../books/b19-developer-workbook/06-group-policy-as-code.md#read-the-gate-and-the-move-plan).
 
+![The GPO analysis from Book 02, Chapter 08: unlinked or empty GPOs retire, overlapping settings are resolved first, and only live settings go on to Intune, where the move plan then works setting by setting.](../../images/diagrams/b02-identity/svg/ch08-gpo-analysis.svg){#fig-ch08-gpo-analysis fig-alt="Left to right. A slate card, Get-GPO -All, Inventory, records name, GUID, status, owner and WMI filter. It feeds two slate cards: Get-GPOReport, XML and HTML reports, one pair per GPO; and Get-GPInheritance, Links and inheritance, with order, enforced, enabled and blocked. Both feed a red card, Unlinked or empty, retire, do not migrate. The reports also feed an amber card, Overlapping settings, resolve before migration, and a green card, Live settings, decomposed by policy area. A blue arrow leads from live settings to a blue card, Intune, Group Policy analytics, MDM support per setting. A dashed arrow also runs from overlapping settings to Group Policy analytics."}
+
 ## Unit 3: The library, the linter and the sync
 
 *8 minutes*

@@ -25,3 +25,16 @@ Method:
 | # | Claim | Where | Verdict | Source |
 |---|---|---|---|---|
 | 5 | The link text "change classes and their lanes" now reads "operation classes and their lanes", matching Book 13 Appendix B; the anchor is unchanged | Module 3, resources list | wording only, no source change | Book 13 Appendix B |
+
+## Figures, November 22, 2026
+
+Each figure is reused from the page named in its caption and carries that page's own verification; the caption restates what the figure shows, and was checked against this module's text.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 6 | Figure `b13-governance/ttm-snow-sailpoint` (reused): the loop on ServiceNow and SailPoint, closed by the re-read | Module 1, Unit 2 | carried | The ServiceNow and SailPoint guide and its log |
+| 7 | Figure `b03-hr-identity/ch07-attribute-ownership-chain` (reused): one writer, consumers read, corrections upstream | Module 3, Unit 2 | carried | Book 03, Chapter 07 and its log |
+| 8 | Figure `b13-governance/ch02-drift-sources` (reused): five drift sources, silent until a scheduled comparison | Module 4, Unit 2 | carried | Book 13, Chapter 02 and its log |
+| 9 | Figure `b13-governance/ch10-ticket-to-machine` (reused): ticket to a human against ticket to a machine; re-read verifies | Module 6, Unit 2 | carried | Book 13, Chapter 10 and its log |
+| 10 | Figure `b13-governance/ch10-tempo-paths` (reused): severity window, approver by class ceiling, one closure record | Module 7, Unit 2 | carried | Book 13, Chapter 10 and its log |
+| 11 | Figure `guides/snow-sailpoint-kit-pipeline` (reused): three workflows, one front door, close on the re-read | Module 5, Unit 2 | carried | The ServiceNow and SailPoint kit guide and its log |
