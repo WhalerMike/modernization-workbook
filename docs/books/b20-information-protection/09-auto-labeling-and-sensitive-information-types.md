@@ -12,8 +12,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 7b5bb919b4bac7cc3a19591f558116b15d0e515b723adb32d6aadf608a5f735a
-last-reviewed: 2026-11-18
+reviewed-sha256: 107839923168709fdbcfbf131c2a14801bf9733db498a50d7f7c15c357dcc36d
+last-reviewed: 2026-11-22
 ---
 # Chapter 09 — Auto-Labeling and Sensitive Information Types
 

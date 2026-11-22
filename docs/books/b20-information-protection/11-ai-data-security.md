@@ -12,8 +12,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: e4968b51dddb33e976bbe75fa5b55de84ca9394de63de03f2cb6590a2dae3eda
-last-reviewed: 2026-11-18
+reviewed-sha256: 49f2dbd2763d66f5d984ab700d5e42c292b2d126cd89a1086c143556e265a631
+last-reviewed: 2026-11-22
 ---
 # Chapter 11 — AI Data Security
 

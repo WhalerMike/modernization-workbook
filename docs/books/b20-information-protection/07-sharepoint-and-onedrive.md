@@ -12,8 +12,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 2ad755c5e5ab2f70fde87bca7ad96983e0765614f966d404578d25deddf49110
-last-reviewed: 2026-11-18
+reviewed-sha256: b534d1f2f6a2e477a95145207054ff0175a42e398c1ab01b5a34aa32329766de
+last-reviewed: 2026-11-22
 ---
 # Chapter 07 — SharePoint and OneDrive
 

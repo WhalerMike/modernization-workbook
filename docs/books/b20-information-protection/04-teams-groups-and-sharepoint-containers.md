@@ -12,8 +12,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 692dd6c336b193015db3011e98c92a230fd8e252abae15d24c74c6eeca2811fe
-last-reviewed: 2026-11-18
+reviewed-sha256: 17cb2de8d2da0737418aaf77ab2b7db6d013a01473e3162877979578727ff498
+last-reviewed: 2026-11-22
 ---
 # Chapter 04 — Teams, Groups and SharePoint Containers
 

@@ -12,8 +12,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 9c9f18266e43c22418160c9d17a85cf16c32a2ea7d1608e960fb3519de6aca58
-last-reviewed: 2026-11-18
+reviewed-sha256: 0d0e514f801578caea07af5a727c7bd0bbf8f52e2a1b67baaf6a5b5c1be41e51
+last-reviewed: 2026-11-22
 ---
 # Chapter 03 — Label Publication and Defaults
 
