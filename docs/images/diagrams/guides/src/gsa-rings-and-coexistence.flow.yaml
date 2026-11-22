@@ -1,0 +1,38 @@
+# Global Secure Access training, Module 6, Unit 1 — the four cutover rings
+# with the guide's exit criteria, what coexists during the move (the VPN in
+# split-include for applications not yet published; DirectAccess removed from
+# a device before Private Access), and the rollback of a wave, newest first.
+# Follows the Global Secure Access implementation guide's Step 11 (11.1, 11.2,
+# 11.4). Ring sizes and durations are the program's. Learn
+# (gsa-deployment-guide-microsoft-traffic: pilot group, waves, a rollback plan;
+# how-to-migrate-direct-access-to-private-access: no coexistence on one
+# device, migrate in waves), read Nov 22, 2026.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.45}
+clusters:
+  - id: coexist
+    label: "During the move"
+    tone: slate
+    filled: false
+    nodes: [vpn, da]
+nodes:
+  r0: {tone: slate, width: 150, tag: "Ring 0", title: "Implementing team", body: ["=Every Validate passed; break-glass rehearsed"], size: 12}
+  r1: {tone: blue, width: 150, tag: "Ring 1", title: "Pilot", body: ["=Fewer than 20 users, 10 business days; no open Sev-2"], size: 12}
+  r2: {tone: blue, width: 150, tag: "Ring 2", title: "Early adopters", body: ["=About 10% of users with one branch, 20 business days; TLS failures under 1%"], size: 12}
+  r3: {tone: green, width: 150, tag: "Ring 3", title: "Everyone in scope", body: ["=In waves; each wave passes the ring 2 criteria"], size: 12}
+  vpn: {tone: amber, width: 280, tag: "Interim", title: "VPN in split-include", body: ["=Only for apps not yet published; a route goes after 10 business days with no VPN traffic for the app"], size: 12}
+  da: {tone: red, width: 280, tag: "Can't coexist", title: "DirectAccess", body: ["=Can't share a device with Private Access: remove it before the device moves"], size: 12}
+  rollback: {kind: text, tone: amber, width: 620, text: "Rollback per ring or wave, newest first: Conditional Access to report-only; security profile links removed; the group removed from the profiles; the VPN route restored; the client uninstalled only if the device can't work with it disabled."}
+order:
+  - [r0, r1, r2, r3]
+  - [vpn, da]
+edges:
+  - [r0, r1, {tone: blue}]
+  - [r1, r2, {tone: blue}]
+  - [r2, r3, {tone: green}]
+  - [r0, vpn, {style: invis}]
+  - [r1, vpn, {style: invis}]
+  - [r2, da, {style: invis}]
+  - [r3, da, {style: invis}]
+  - [vpn, rollback, {style: invis}]
+  - [da, rollback, {style: invis}]

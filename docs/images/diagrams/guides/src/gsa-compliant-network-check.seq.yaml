@@ -1,0 +1,44 @@
+# Global Secure Access training, Module 3 (Units 1 to 3; guide Steps 7 and 8)
+# — the compliant network check in sequence: the client tunnels to the
+# service edge, a sign-in arrives through this tenant's path and passes the
+# Conditional Access policy that blocks every location except All Compliant
+# Network locations; the failure modes; Universal Continuous Access
+# Evaluation; and universal tenant restrictions applied at the edge.
+# Names follow gsa-reference-architecture (Client, Service edge, Conditional
+# Access, Microsoft 365). Product behavior as documented on Microsoft Learn
+# (how-to-compliant-network, how-to-universal-tenant-restrictions,
+# concept-universal-continuous-access-evaluation,
+# reference-current-known-limitations), read Nov 22, 2026.
+column: 165
+gap: 20
+participants:
+  - {id: client, label: "Client", sub: "Windows, Microsoft traffic profile", tone: slate}
+  - {id: edge, label: "Service edge", sub: "this tenant's Global Secure Access", tone: violet}
+  - {id: entra, label: "Conditional Access", sub: "Microsoft Entra ID, signaling on", tone: blue}
+  - {id: app, label: "Microsoft 365", sub: "or any app on Entra sign-in", tone: green}
+steps:
+  - {from: client, to: edge, n: 1, tone: blue, label: "Tunnel the Microsoft traffic"}
+  - {from: edge, to: entra, n: 2, tone: blue, label: "Sign-in arrives on this tenant's path"}
+  - {from: entra, to: entra, n: 3, tone: green, label: "Block any location except All Compliant Network locations: passes"}
+  - {from: entra, to: client, n: 4, dashed: true, tone: green, label: "Tokens issued"}
+  - {from: client, to: app, n: 5, tone: green, label: "Access through the edge"}
+  - frame: "Failure modes"
+    tone: red
+    steps:
+      - {from: client, to: entra, n: 6, tone: red, label: "Client off, or a stolen refresh token replayed elsewhere: blocked at the next sign-in"}
+      - {from: app, to: client, n: 7, dashed: true, tone: red, label: "Stolen access token replayed: a CAE service such as Microsoft Graph rejects it in near real time"}
+  - frame: "Universal CAE (Windows client 1.8.239.0 or later)"
+    tone: violet
+    steps:
+      - {from: entra, to: edge, n: 8, tone: violet, label: "Identity change: account disabled, password reset, sessions revoked"}
+      - {from: edge, to: client, n: 9, tone: violet, label: "Reauthenticate, or the tunnels disconnect"}
+  - frame: "Universal tenant restrictions (tagging on)"
+    tone: blue
+    steps:
+      - {from: client, to: edge, n: 10, tone: blue, label: "Sign-in to another tenant"}
+      - {from: edge, to: entra, n: 11, tone: blue, label: "Tagged with the tenant restrictions v2 policy"}
+      - {from: entra, to: client, n: 12, dashed: true, tone: red, label: "Tenant not allowed: blocked (5000211). Allowed partner: signs in"}
+  - note: "Tenant restrictions reach sign-in and the Microsoft Graph data plane, not the SharePoint or Exchange data plane. Own-tenant members and guests aren't evaluated."
+    tone: blue
+  - note: "In a service outage the check blocks users: rehearse the break-glass scripts. Roll back policies first, signaling last. Not for Private Access apps."
+    tone: amber

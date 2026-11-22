@@ -57,6 +57,8 @@ Read Book 11, [Chapter 05](../../books/b11-zero-trust/05-two-assessment-tools.md
 
 The decision record in the guide's [template](../../books/guides/zero-trust-assessment-implementation.md#zta-decision-record) writes each of these down, with the scope, the run account, the cadence and the pinned version.
 
+![Evidence, not a verdict, from Book 11, Chapter 01: assessment tools feed a control-level reconciliation against one asset and identity record, and the agency, not any tool, owns the resulting posture.](../../images/diagrams/b11-zero-trust/svg/ch01-evidence-not-verdict.svg){#fig-ch01-evidence-not-verdict fig-alt="Left to right. Three input cards: a blue Compliance card, ScubaGear, Microsoft 365 against the SCuBA baselines BOD 25-01 names; a blue Maturity card, Zero Trust Assessment, Microsoft's tenant checks for Entra, Intune, Azure networks and Purview; and a slate Everything else card, Other native tools, for other clouds, network and hypervisors, each seeing only its own platform. All three point to a violet card, Reconcile at the control level: map findings to SP 800-53 controls and resolve every finding to the one asset and identity record. That points to a green card, Agency-owned posture: the verdict, which no single tool or tenant score can issue."}
+
 ## Unit 2: Reading the report (8 minutes)
 
 Read the guide's [Step 6](../../books/guides/zero-trust-assessment-implementation.md#zta-step-6). Each test carries three ratings from Microsoft's rubric: Risk Level (High means potential environment-wide exposure), User Impact (how many non-privileged users act or are told) and Implementation Cost (from targeted actions to programs). Each test ends in one of six statuses:

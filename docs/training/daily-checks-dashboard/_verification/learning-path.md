@@ -9,3 +9,12 @@ The index and both modules now name the synchronization servers' rows, the Activ
 ## Review gate
 
 `review-status: pending` on the index and both modules. Not approved here.
+
+## Figures, November 22, 2026
+
+Each figure is reused from the page named in its caption and carries that page's own verification; the caption restates what the figure shows, and was checked against this module's text.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Figure `guides/daily-checks-sources-and-tabs` (reused, from #699) | Module 1, Unit 2 | carried | The Daily Checks guide and its log |
+| 2 | Figure `b12-security-operations/ch01-silent-gaps` (reused) | Module 2, Unit 1 | carried | Book 12, Chapter 01 and its log |

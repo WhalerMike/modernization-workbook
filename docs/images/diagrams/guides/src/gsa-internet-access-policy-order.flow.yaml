@@ -1,0 +1,56 @@
+# Global Secure Access training, Module 5 (Units 1 to 3; guide Steps 5 and
+# 9) — the Internet Access policy order: Conditional Access links a security
+# profile; the edge evaluates matching profiles by priority (100 highest) and
+# the baseline profile (65,000) last, for all traffic; web content filtering
+# and threat intelligence; QUIC and custom bypass handled before the edge;
+# TLS inspection turned on last, in the pilot profile. Tags carry the guide's
+# step numbers, the order the program turns each piece on. Names follow
+# gsa-reference-architecture (Client, Service edge, Conditional Access).
+# Product behavior as documented on Microsoft Learn (concept-internet-access,
+# how-to-configure-web-content-filtering, concept-transport-layer-security,
+# how-to-transport-layer-security, reference-current-known-limitations),
+# read Nov 22, 2026. All drawn features are generally available and in GCC
+# by Learn's product-wide statement; the cloud firewall path for QUIC is
+# preview (guide availability table, Nov 11, 2026).
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+clusters:
+  - id: decide
+    label: "Microsoft Entra ID decides"
+    tone: blue
+    nodes: [ca]
+  - id: device
+    label: "On the client, before the edge"
+    tone: slate
+    nodes: [quic, bypass]
+  - id: edge
+    label: "Service edge evaluates, in priority order"
+    tone: violet
+    nodes: [pilot, baseline, tls]
+nodes:
+  ca: {tone: blue, width: 250, tag: "Step 5.4", title: "Conditional Access policy", body: ["Target: all internet resources", "Session: security profile", "Pilot group; profile in token"], size: 11}
+  quic: {tone: amber, width: 175, tag: "Step 5.6", title: "QUIC (UDP 443)", body: ["Not forwarded end to end", "Intune firewall rule blocks", "Browsers fall back to TCP"], size: 11}
+  bypass: {tone: amber, width: 175, tag: "Step 5.7", title: "Custom bypass", body: ["Goes direct, not evaluated", "Owner, reason, expiry", "Branches: on CPE"], size: 11}
+  pilot: {tone: green, width: 215, tag: "Steps 5.2, 5.3: priority 100", title: "Pilot security profile", body: ["Web content filtering", "Policies by priority", "First matching rule wins"], size: 11}
+  baseline: {tone: green, width: 215, tag: "Step 5.5: priority 65,000", title: "Baseline profile, last", body: ["All traffic, no CA needed", "Threat intelligence filtering"], size: 11}
+  tls: {tone: amber, width: 215, tag: "Step 9: turned on last", title: "TLS inspection", body: ["Without it: server name only", "With it: full URL, files, content", "Pilot profile, not baseline"], size: 11}
+  allow: {kind: pill, tone: green, text: "Allow: to the site", width: 140}
+  block: {kind: pill, tone: red, text: "Block: connection reset", width: 170}
+order:
+  - [quic, bypass]
+  - [pilot, baseline]
+  - [allow, block]
+edges:
+  - [ca, pilot, {tone: blue, label: "links", lw: 60}]
+  - [ca, tls, {style: invis}]
+  - [quic, tls, {style: invis}]
+  - [bypass, baseline, {style: invis}]
+  - [pilot, baseline, {tone: violet, label: "then"}]
+  - [tls, pilot, {tone: amber, style: dashed, label: "decrypts for", lw: 80}]
+  - [pilot, allow, {tone: green}]
+  - [baseline, allow, {tone: green}]
+  - [baseline, block, {tone: red}]
+  - [pilot, block, {tone: red}]
+ranks:
+  - [ca, quic, bypass]
+  - [pilot, baseline]

@@ -1,0 +1,44 @@
+# Defender XDR training, Module 2, Unit 2 — every Attack Surface Reduction
+# rule from audit through warn into block, ring by ring: turn off related
+# rules already in block or warn first; all rules in audit on ring 1 for at
+# least 30 days; warn (Windows 10 1809 or later) except the two rules that
+# don't support it; block; rollback one stage, with an exclusion preferred.
+# Follows the module's Unit 2 and the Defender XDR implementation guide's
+# Step 4 (Pilot, Audit, Enforcement, Rollback). Product facts as documented on
+# Microsoft Learn (attack-surface-reduction-rules-deployment-test,
+# attack-surface-reduction-rules-configure, attack-surface-reduction-rules-reference,
+# attack-surface-reduction-rules-overview), read Nov 22, 2026. The 30-day and
+# 14-day durations are the program's (risk-based recommended).
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.5}
+nodes:
+  pre: {tone: slate, width: 140, tag: "First", title: "Clear the slate", body: ["=Turn off any related rule already in block or warn"], size: 12}
+  audit: {tone: blue, width: 140, tag: "Audit · 2", title: "Ring 1", body: ["=All rules at once, 30 days or more; each hit gets an exclusion, a fix or a decision"], size: 12}
+  warn: {tone: amber, width: 140, tag: "Warn · 6", title: "Ring 1, then 2", body: ["=14 days; Windows 10 1809 or later; Unblock needs admin approval"], size: 12}
+  block: {tone: green, width: 140, tag: "Block · 1", title: "Rings 1 to 3", body: ["=Blocks per rule stable; help desk under threshold"], size: 12}
+  nowarn: {tone: red, width: 280, tag: "No warn mode", title: "Two rules go audit to block", body: ["LSASS credential stealing", "Office code injection"], size: 12}
+  excl: {tone: amber, width: 300, tag: "Rollback", title: "One stage back", body: ["Block to warn, warn to audit, in the same policy", "Better: a per-rule exclusion, in the register with an owner and expiry"], size: 12}
+  modes:
+    kind: table
+    tone: slate
+    columns: ["Mode value", "Meaning"]
+    widths: [110, 170]
+    rows:
+      - ["`0`", "Off"]
+      - ["`1`", "Block"]
+      - ["`2`", "Audit"]
+      - ["`5`", "Not configured"]
+      - ["`6`", "Warn"]
+order:
+  - [pre, audit, warn, block]
+  - [nowarn, excl]
+edges:
+  - [pre, audit, {tone: blue}]
+  - [audit, warn, {tone: amber}]
+  - [warn, block, {tone: green}]
+  - [audit, nowarn, {tone: red, style: dashed}]
+  - [nowarn, block, {tone: red, style: dashed}]
+  - [warn, excl, {style: invis}]
+  - [block, excl, {tone: amber, style: dashed}]
+  - [excl, modes, {style: invis}]
+  - [nowarn, modes, {style: invis}]
