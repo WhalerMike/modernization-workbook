@@ -1,0 +1,48 @@
+# Developer workbooks — the deployment runbook's shape, shared by three
+# paths: Building the Attribute-Driven Migration (Book 19, Chapter 10), the
+# Non-Person Identity developer workbook (Chapter 11) and the Provider Notices
+# developer workbook (Chapter 08). Read-only pre-flight checks before each
+# stage; Stage 1 deploys to the test environment in a safe order, smoke-tests,
+# captures and checks the evidence and rehearses the rollback; promotion only
+# when every go/no-go row passes and the approvers record the decision;
+# Stage 2 repeats the same commands in production, behind a pre-flight that
+# refuses to run without the test stage's evidence, enables in stages
+# (waves, rings or providers), smoke-tests and watches the first week; the
+# ISSO keeps a hashed evidence folder per stage. No row counts: each runbook
+# has its own go/no-go table. Program design; no Microsoft Learn page.
+# Read Nov 22, 2026.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.4}
+nodes:
+  pre: {tone: slate, width: 580, tag: "Before each stage", title: "Pre-flight checks", body: ["=Read only: the settings file, the tools, the signed-in cloud, tenant and identities. Any failure stops the stage. In production it also refuses to run without the test stage's passing evidence."], size: 12}
+  s1deploy: {tone: blue, width: 140, title: "Deploy in a safe order", body: ["=Each piece starts off, paused, report-only or as a dry run"], size: 12}
+  s1smoke: {tone: blue, width: 140, title: "Smoke test", body: ["=On test objects nobody depends on"], size: 12}
+  s1ev: {tone: blue, width: 140, title: "Capture the evidence", body: ["=One record per step, hashed in `SHA256SUMS`"], size: 12}
+  s1rb: {tone: amber, width: 140, title: "Rehearse the rollback", body: ["=Run for real, then rebuild the test stage as the runbook says"], size: 12}
+  gate: {tone: amber, width: 580, tag: "Promotion", title: "Go/no-go", body: ["=Every row of the runbook's own table passes; the named approvers record the decision with the change record and the test stage's evidence"], size: 12}
+  s2pre: {tone: green, width: 140, title: "Change record and pre-flight", body: ["=The same commands, production settings"], size: 12}
+  s2enable: {tone: green, width: 140, title: "Enable in stages", body: ["=Waves, rings or one provider at a time, smoke-tested"], size: 12}
+  s2watch: {tone: green, width: 140, title: "First-week monitoring", body: ["=Roll back by the rehearsed plan if needed"], size: 12}
+  isso: {tone: violet, width: 140, title: "Evidence the ISSO keeps", body: ["=Each stage's hashed evidence folder, change record and plan hashes"], size: 12}
+clusters:
+  - {id: s1, label: "Stage 1: test", tone: blue, filled: false, nodes: [s1deploy, s1smoke, s1ev, s1rb], order: [s1deploy, s1smoke, s1ev, s1rb]}
+  - {id: s2, label: "Stage 2: production", tone: green, filled: false, nodes: [s2pre, s2enable, s2watch, isso], order: [s2pre, s2enable, s2watch, isso]}
+edges:
+  - [pre, s1deploy]
+  - [s1deploy, s1smoke, {tone: blue}]
+  - [s1smoke, s1ev, {tone: blue}]
+  - [s1ev, s1rb, {tone: blue}]
+  - [s1rb, gate]
+  - [gate, s2pre, {tone: green, label: "go"}]
+  - [s2pre, s2enable, {tone: green}]
+  - [s2enable, s2watch, {tone: green}]
+  - [s2watch, isso, {tone: violet}]
+  - [pre, s1smoke, {style: invis}]
+  - [pre, s1ev, {style: invis}]
+  - [pre, s1rb, {style: invis}]
+  - [s1deploy, gate, {style: invis}]
+  - [s1smoke, gate, {style: invis}]
+  - [s1ev, gate, {style: invis}]
+  - [gate, s2enable, {style: invis}]
+  - [gate, s2watch, {style: invis}]
+  - [gate, isso, {style: invis}]

@@ -58,6 +58,8 @@ Then read why Book 03 treats a writer as an access decision:
 
 As you read, notice the row for deletion: the post-separation workflow writes it, and inbound provisioning never does.
 
+![The authority map from Book 03, Chapter 04: the HR system of record, the identity platform, and card management and PKI each own one class of fact, and consumers only derive, which is why each row in the writer register names one writer.](../../images/diagrams/b03-hr-identity/svg/ch04-authority-map.svg){#fig-ch04-authority-map fig-alt="Three authoritative boxes on the left: HR system of record (person and affiliation keys, worker type and status, position, series and grade, organization and duty station, supervisor); identity platform (accounts and UPN, sessions and authentication, group membership by rule); card management and PKI (PIV and derived credentials, device certificates). HR feeds the identity platform as a governed projection and card management through sponsorship and status. The identity platform and card management feed a green consumers box: applications and token claims, access packages and reviews, Conditional Access, SIEM and audit joins."}
+
 ## Unit 2: The register and the scan (6 minutes)
 
 Read three sections of workbook Chapter 01:

@@ -47,3 +47,18 @@ Method:
 Nothing. Where a fact in a draft couldn't be traced to the workbook, the plan or Book 04, it was cut: a distractor naming a Graph permission that none of the sources mention was replaced with one Chapter 04 names.
 
 *For project use.*
+
+## Figures, November 22, 2026
+
+Each figure is reused from the page named in its caption and carries that page's own verification; the caption restates what the figure shows, and was checked against this module's text.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 16 | Figure `b04-access/ch02-standing-vs-eligible` (reused) | Module 1, Unit 1 | carried | Book 04, Chapter 02 and its log |
+| 17 | Figure `guides/pa-emergency-access` (new): two or more cloud-only *.onmicrosoft.com accounts, passkey or CBA, Global Administrator active and permanent, one exclusion group, severity 0 alert, drill at least every 90 days, built before approval | Module 2, Unit 1 | verified (Learn re-read Nov 22, 2026); "every enforced policy" is the module's PA-EA-08 rule (design guidance), Learn says policies that block or restrict sign-in | Learn, "Manage emergency access admin accounts" (https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access) |
+| 18 | Figure `b04-access/ch08-activation-sequence` (reused) | Module 3, Unit 1 | carried | Book 04, Chapter 08 and its log |
+| 19 | Figure `b04-access/ch04-tier-model` (reused; tier table conflict settled Nov 22, #691) | Module 4, Unit 1 | carried | Book 04, Chapter 04 and its log |
+| 20 | Figure `b04-access/ch04-role-group-pim` (reused); caption says Layer 1, access packages, is deferred (plan task A3.3) | Module 5, Unit 1 | carried | Book 04, Chapter 04 and its log; conflict resolution 2, Nov 22 |
+| 21 | Figure `guides/pa-pim-azure-scopes` (new): Owner, Contributor, User Access Administrator eligible at each governed scope; assignments inherit, role settings don't; at most three subscription Owners; root-scope User Access Administrator removed | Module 6, Unit 1 | verified (Learn re-read Nov 22, 2026); "eligible or active" in the Owner count is the program's PA-AZ-06 rule | Learn, "Configure Azure resource role settings in PIM" (https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-resource-roles-configure-role-settings); Azure RBAC scope overview and best practices |
+| 22 | Figure `b04-access/ch09-review-instance` (reused) | Module 7, Unit 1 | carried | Book 04, Chapter 09 and its log |
+| 23 | Figure `b04-access/ch10-control-evidence-map` (reused) | Module 8, Unit 1 | carried | Book 04, Chapter 10 and its log |

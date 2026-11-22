@@ -28,3 +28,17 @@ Method:
 
 - Workbook Chapter 06's Lab 1 says to keep `out/ch06` for Chapter 07, but Chapter 07's Lab 1, step 1 writes `out/ch06` again, and the tool refuses a folder that already holds a manifest (`error: out\ch06 already holds a manifest.json; write each run to a new folder`). The modules tell the learner to delete `out` first. The workbook chapters weren't changed.
 - `contractor_source.py extract` exits 2 on the fixture (Chapter 02 doesn't state its exit code), and `joiner_workflows.py plan` exits 2 on a run with one Warn and no Finding (Chapter 03 doesn't state it). The modules don't state either code.
+
+## Figures, November 22, 2026
+
+Each figure is reused from the page named in its caption and carries that page's own verification; the caption restates what the figure shows, and was checked against this module's text.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 10 | Figure `b03-hr-identity/ch04-authority-map` (reused) | Module 1, Unit 1 | carried | Book 03, Chapter 04 and its log |
+| 11 | Figure `guides/hr-contractor-earliest-end` (new): contractor register, earliest end, quarantine CS-01/CS-02, same middleware (dry run; --apply), bi-annual sponsor review with Manager reviewer, fallback reviewer, remove access on no response | Module 2, Unit 2 | verified (Learn re-read Nov 22, 2026: review frequencies, Manager needs a fallback, no-response options); the rest restated from the guide's Step 2 and workbook Chapter 02 | Learn, "Create an access review of an access package" (https://learn.microsoft.com/entra/id-governance/entitlement-management-access-reviews-create); `examples/hcm-entra` |
+| 12 | Figure `b03-hr-identity/ch08-provisioning-and-workflows` (reused) | Module 3, Unit 1 | carried | Book 03, Chapter 08 and its log |
+| 13 | Figure `b03-hr-identity/ch10-derivation-chain` (reused) | Module 4, Unit 1 | carried | Book 03, Chapter 10 and its log |
+| 14 | Figure `b03-hr-identity/ch09-credential-assurance` (reused) | Module 5, Unit 1 | carried | Book 03, Chapter 09 and its log |
+| 15 | Figure `b03-hr-identity/ch09-leaver-sequence` (reused) | Module 6, Unit 1 | carried | Book 03, Chapter 09 and its log |
+| 16 | Figure `b03-hr-identity/ch11-drift-evidence-loop` (reused) | Module 7, Unit 2 | carried | Book 03, Chapter 11 and its log |

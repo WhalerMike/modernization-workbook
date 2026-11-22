@@ -1,0 +1,29 @@
+# Privileged Access training, Module 6 (Gate G6 PIM for Azure resources) — the
+# governed scopes, management group to subscription to resource group. Owner,
+# Contributor and User Access Administrator are made eligible; role assignments
+# at a higher scope apply below it, but PIM role settings don't inherit, so
+# every governed scope gets its own. At most three subscription Owners; root
+# scope User Access Administrator removed; service principals and managed
+# identities stay standing with an owner and a reason. Follows the module's
+# Unit 1 and the Privileged Access guide's Step 6. Product behavior as
+# documented on Microsoft Learn, read Nov 22, 2026:
+# pim-resource-roles-configure-role-settings (settings per role and resource,
+# not inherited), azure/role-based-access-control/scope-overview (lower levels
+# inherit role permissions), azure/role-based-access-control/best-practices
+# (a maximum of 3 subscription owners).
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.45}
+nodes:
+  root: {tone: red, width: 300, tag: "Root scope (/)", title: "User Access Administrator: removed", body: ["=A Global Administrator who elevates gets it on every subscription"], size: 12}
+  mg: {tone: blue, width: 300, tag: "Management group", title: "Owner, Contributor, User Access Administrator: eligible", foot: "Role settings set here", size: 12}
+  sub: {tone: blue, width: 300, tag: "Subscription", title: "Owner, Contributor, User Access Administrator: eligible", body: ["At most three Owners, eligible or active"], foot: "Role settings set here", size: 12}
+  rg: {tone: blue, width: 300, tag: "Resource group", title: "Owner, Contributor, User Access Administrator: eligible", foot: "Role settings set here", size: 12}
+  inh: {kind: text, tone: blue, width: 230, text: "Role assignments apply to every scope below. Role settings don't inherit, so each governed scope gets its own; one left out keeps what it has."}
+  sp: {tone: amber, width: 230, title: "Service principals and managed identities", body: ["=Can't be made eligible: left standing, with an owner and a reason"], size: 12}
+order:
+  - [mg, inh]
+  - [rg, sp]
+edges:
+  - [root, mg, {style: invis}]
+  - [mg, sub, {tone: blue, label: "assignments inherit", lw: 120}]
+  - [sub, rg, {tone: blue, label: "assignments inherit", lw: 120}]

@@ -57,6 +57,8 @@ Read the guide's [Step 3](../../books/guides/hr-driven-identity-implementation.m
 
 Then read the design in [Book 03, Chapter 08](../../books/b03-hr-identity/08-joiner-mover-leaver.md): its [guardrails at agency scale](../../books/b03-hr-identity/08-joiner-mover-leaver.md#guardrails-at-agency-scale) and its [triggers and schedule](../../books/b03-hr-identity/08-joiner-mover-leaver.md#triggers-and-schedule).
 
+![Who does what for a joiner, from Book 03, Chapter 08: inbound provisioning creates the account from the HR event, and Lifecycle Workflows make the existing account ready, including the Temporary Access Pass task.](../../images/diagrams/b03-hr-identity/svg/ch08-provisioning-and-workflows.svg){#fig-ch08-provisioning-and-workflows fig-alt="Left to right: an amber HR event box (effective-dated personnel action); a blue inbound provisioning box (create the account, keep attributes current, enable or disable from HR status); an arrow labelled dates and status to a green Lifecycle Workflows box (pre-hire and day-one tasks, mover re-evaluation, leaver tasks and extensions); and a violet custom task extensions box (card management, Intune, applications)."}
+
 ## Unit 2: The lint, the plan and readiness (8 minutes)
 
 Read four sections of workbook Chapter 03:

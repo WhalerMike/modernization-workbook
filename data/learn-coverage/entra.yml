@@ -2518,6 +2518,7 @@ pages:
   - docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md
   - docs/reference/source-register.md
+  - docs/training/non-person-identity/_verification/learning-path.md
 - path: docs/architecture/service-accounts-group-managed.md
   url: https://learn.microsoft.com/entra/architecture/service-accounts-group-managed
   title: Secure group managed service accounts
@@ -2537,6 +2538,7 @@ pages:
   - docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
   - docs/reference/source-register.md
+  - docs/training/non-person-identity/_verification/learning-path.md
   - examples/third_party/entra-service-account-pages/SNAPSHOT.md
   - examples/third_party/entra-service-account-pages/snapshot.json
 - path: docs/architecture/service-accounts-managed-identities.md
@@ -2550,6 +2552,7 @@ pages:
   note: ''
   cited_by:
   - docs/books/guides/non-person-identity-implementation.md
+  - docs/training/non-person-identity/_verification/learning-path.md
 - path: docs/architecture/service-accounts-on-premises.md
   url: https://learn.microsoft.com/entra/architecture/service-accounts-on-premises
   title: Introduction to Active Directory service accounts
@@ -8214,6 +8217,7 @@ pages:
   - docs/books/guides/_verification/hr-driven-identity-implementation.md
   - docs/books/guides/hr-driven-identity-implementation.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.md
+  - docs/training/hr-driven-identity/_verification/learning-path.md
 - path: docs/id-governance/entitlement-management-access-reviews-review-access.md
   url: https://learn.microsoft.com/entra/id-governance/entitlement-management-access-reviews-review-access
   title: Review access of an access package in entitlement management
@@ -9868,6 +9872,7 @@ pages:
   - docs/books/guides/privileged-access-implementation.md
   - docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.md
   - docs/reference/source-register.md
+  - docs/training/privileged-access/_verification/learning-path.md
   - examples/privileged-access/config/calls-ch06.json
 - path: docs/id-governance/privileged-identity-management/pim-resource-roles-discover-resources.md
   url: https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-resource-roles-discover-resources
@@ -10928,6 +10933,7 @@ pages:
   - docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md
   - docs/reference/source-register.md
+  - docs/training/non-person-identity/_verification/learning-path.md
 - path: docs/id-protection/how-to-deploy-identity-protection.md
   url: https://learn.microsoft.com/entra/id-protection/how-to-deploy-identity-protection
   title: Plan a Microsoft Entra ID Protection deployment
@@ -20034,6 +20040,7 @@ pages:
   - docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md
   - docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md
   - docs/reference/source-register.md
+  - docs/training/non-person-identity/_verification/learning-path.md
   - examples/third_party/entra-workload-identity-ca-page/SNAPSHOT.md
   - examples/third_party/entra-workload-identity-ca-page/snapshot.json
   - examples/validation-kit/README.md
@@ -21827,6 +21834,7 @@ pages:
   - docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md
   - docs/reference/graph-practice-crosswalk.md
   - docs/reference/source-register.md
+  - docs/training/non-person-identity/_verification/learning-path.md
   - examples/third_party/entra-app-management-policies-page/SNAPSHOT.md
   - examples/third_party/entra-app-management-policies-page/snapshot.json
 - path: docs/identity/enterprise-apps/configure-authentication-for-federated-users-portal.md
@@ -28476,6 +28484,7 @@ pages:
   - docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.md
   - docs/project-plans/developer-workbooks/privileged-access/09-deploying-to-test-and-production.md
   - docs/reference/source-register.md
+  - docs/training/privileged-access/_verification/learning-path.md
   - examples/third_party/entra-emergency-access-page/SNAPSHOT.md
   - examples/third_party/entra-emergency-access-page/snapshot.json
 - path: docs/identity/role-based-access-control/security-planning.md
@@ -30611,6 +30620,7 @@ pages:
   - docs/project-plans/developer-workbooks/privileged-access/09-deploying-to-test-and-production.md
   - docs/reference/source-register.md
   - docs/training/ms-automation-foundations.md
+  - docs/training/non-person-identity/_verification/learning-path.md
 redirects:
   https://learn.microsoft.com/entra/agent-id/autonomous-agent-request-agent-user-tokens: https://learn.microsoft.com/entra/agent-id/autonomous-agent-authentication-authorization-flow
   https://learn.microsoft.com/entra/agent-id/autonomous-agent-request-authorization-entra-admin: https://learn.microsoft.com/entra/agent-id/autonomous-agent-authentication-authorization-flow

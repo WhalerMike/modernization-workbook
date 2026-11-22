@@ -27,3 +27,11 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 | 9 | Unit and module times | Each unit | design (estimates) | — |
 
 *For project use.*
+
+## Figures, November 22, 2026
+
+Each figure is reused from the page named in its caption and carries that page's own verification; the caption restates what the figure shows, and was checked against this module's text.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 10 | Figure `guides/workload-credential-order` (reused from NPI Module 4): same order as the Unit 3 table; the caption notes the NPI guide blocks new client secrets by policy, where the table says avoid | Unit 3 | carried | NPI guide Steps 2 and 3; NPI Module 4's row |

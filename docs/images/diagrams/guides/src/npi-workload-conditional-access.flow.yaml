@@ -1,0 +1,49 @@
+# Non-Person Identity training, Module 6 — what a Conditional Access policy
+# for workload identities can reach and how the program turns one on. In
+# scope: single-tenant service principals registered in the tenant, assigned
+# directly by the enterprise application's object ID (a policy assigned to a
+# group holding a service principal isn't enforced for it). Out of scope:
+# managed identities (an access review instead), and Microsoft and
+# third-party SaaS apps, multitenant apps included. Conditions: location
+# (CA015, block outside the allowed egress ranges) and service principal risk
+# from ID Protection (CA037, high risk); block is the only grant control; Workload
+# ID Premium to create or change a policy. Rollout: created report-only;
+# service principal sign-ins reviewed for at least 14 days; the CISO's D-NP5
+# decision; enforced ring by ring (NPI guide, Step 4e; workbook Chapter 08,
+# context and enforcement ring by ring). The policy names, the 14-day window and
+# D-NP5 are program design. Microsoft Learn, read Nov 22, 2026: "Microsoft
+# Entra Conditional Access for workload identities" and "Securing workload
+# identities with Microsoft Entra ID Protection".
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.4}
+clusters:
+  - id: scope
+    label: "Who a workload identity policy can target"
+    tone: slate
+    filled: false
+    nodes: [mi, sp, saas]
+nodes:
+  sp: {tone: blue, width: 190, tag: "In scope", title: "Single-tenant service principal", body: ["=Registered in this tenant; assigned directly, not through a group"], size: 12}
+  mi: {tone: red, width: 160, tag: "Not covered", title: "Managed identity", body: ["=Governed by role assignments and access reviews"], size: 12}
+  saas: {tone: red, width: 160, tag: "Not covered", title: "Microsoft, SaaS and multitenant apps", size: 12}
+  loc: {tone: blue, width: 210, tag: "Condition", title: "Location", body: ["=Block outside the networks it runs from (CA015)"], size: 12}
+  risk: {tone: blue, width: 210, tag: "Condition", title: "Service principal risk", body: ["=Block at high risk from ID Protection (CA037)"], size: 12}
+  grant: {kind: text, width: 560, text: "Block is the only grant control. Creating or changing these policies needs Workload ID Premium."}
+  ro: {tone: amber, width: 150, tag: "1", title: "Report-only", body: ["=Every policy is created this way"], size: 12}
+  rev: {tone: violet, width: 150, tag: "2", title: "Sign-in review", body: ["=Service principal sign-ins, at least 14 days"], size: 12}
+  dec: {tone: amber, width: 150, tag: "3", title: "CISO decision", body: ["=D-NP5: enforce, extend, or enforce with exclusions"], size: 12}
+  on: {tone: green, width: 150, tag: "4", title: "Enforce", body: ["=Ring by ring, each after the one before"], size: 12}
+order:
+  - [mi, sp, saas]
+  - [loc, risk]
+  - [ro, rev, dec, on]
+edges:
+  - [sp, loc, {tone: blue}]
+  - [sp, risk, {tone: blue}]
+  - [loc, grant, {style: invis}]
+  - [risk, grant, {style: invis}]
+  - [grant, rev, {style: invis}]
+  - [grant, dec, {style: invis}]
+  - [ro, rev, {tone: amber}]
+  - [rev, dec, {tone: violet}]
+  - [dec, on, {tone: green}]

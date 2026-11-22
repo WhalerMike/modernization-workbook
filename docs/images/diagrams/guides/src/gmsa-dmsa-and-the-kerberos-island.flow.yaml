@@ -1,0 +1,50 @@
+# Non-Person Identity training, Module 8 (Units 1-2) — the pieces of a
+# Kerberos account's move. One KDS root key for the forest feeds both kinds of
+# managed account. A gMSA follows the managed service account standard: name,
+# OU, AES256, 30-day interval set at creation, outbound-only without an SPN,
+# and exactly one domain local group of its hosts as the only retriever. A
+# dMSA is used only where every host and a reachable domain controller run
+# Windows Server 2025 and the old account relies on no unconstrained
+# delegation; it learns its hosts during the migration. The old account is
+# disabled after 30 days and moved to the holding OU, never deleted by code; an account superseded by a dMSA stays disabled and is never deleted (#697, WD-167).
+# What stays on the Kerberos island is listed with an end date.
+# Follows the NPI guide (Step 2, gMSA prerequisites; Step 5), the Service
+# Account Migration guide (Migrations A and B; the managed service account
+# standard, WD-154 and WD-159 to WD-168) and the NPI developer workbook
+# Chapter 06 (The context the code depends on, The check and the plan, The
+# island list). gMSA and dMSA facts as documented on Microsoft Learn
+# (service-accounts-group-managed; delegated-managed-service-accounts-
+# overview), read Nov 22, 2026. Names, OU, retriever group, the 30-day run,
+# end-date bounds and never-delete are program design. The decision path
+# (which target for which account) is drawn elsewhere.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.45}
+nodes:
+  kds: {tone: slate, width: 260, tag: "Once per forest", title: "KDS root key", body: ["=One key only; domain controllers wait up to 10 hours before a gMSA can be created"], size: 12}
+  old: {tone: red, width: 200, tag: "Today", title: "Traditional service account", body: ["=SPN, password that never expires"], size: 12}
+  grp: {tone: green, width: 180, tag: "The only retriever", title: "`DL-gMSA-<app>-Hosts`", body: ["=A domain local group of the hosts, never a computer account. Each host: `Install-ADServiceAccount`, then `Test-ADServiceAccount` True"], size: 12}
+  gmsa: {tone: green, width: 210, tag: "gMSA", title: "`gmsa-<app>$`", body: ["15 characters or fewer, unique in the forest", "Service-account OU; AES256", "30-day interval, set at creation", "Outbound-only with no SPN"], size: 12}
+  dmsa: {tone: amber, width: 220, tag: "dMSA, only where all hold", title: "`dmsa-<app>$`", body: ["Every host on Windows Server 2025", "A Windows Server 2025 domain controller reachable", "No unconstrained delegation", "Not from an MSA or gMSA", "Learns its hosts in the migration", "Domain Admins run its steps"], size: 12}
+  disable: {tone: slate, width: 600, tag: "After the 30-day parallel run", title: "Old account disabled, never deleted by code", body: ["=gMSA: `Disable-ADAccount`, moved to the holding OU; a person deletes it after 90 days with no sign-in, through the decommission ticket.", "=dMSA: `Complete-ADServiceAccountMigration` disables it and moves its SPNs; it stays disabled and is never deleted."], size: 12}
+  island:
+    kind: table
+    tone: violet
+    columns: ["Stays on the Kerberos island", "Needs", "End date no later than"]
+    widths: [220, 220, 160]
+    rows:
+      - ["Keep: a gMSA or dMSA staying on premises", "An SPN owner where it has SPNs", "Program G5, or the island's end of life"]
+      - [{text: "KeepKerberos: a traditional account (no managed account supported, or unconstrained delegation)", tone: amber}, {text: "The authorizing official's acceptance and an SPN owner", tone: amber}, {text: "The legacy-authentication end date D08 sets (Chapter 03's check)", tone: amber}]
+      - [{text: "Every other gMSA and dMSA", tone: green}, {text: "Moves to a workload identity or retires", tone: green}, {text: "Program G5", tone: green}]
+edges:
+  - [kds, gmsa, {label: "needed by"}]
+  - [kds, dmsa, {label: "needed by"}]
+  - [old, gmsa, {label: "replaced by", tone: green}]
+  - [old, dmsa, {label: "superseded by", tone: amber}]
+  - [grp, gmsa, {label: "retrieves", tone: green, lw: 70}]
+  - [gmsa, disable, {style: dashed}]
+  - [dmsa, disable, {style: dashed}]
+  - [disable, island, {style: invis}]
+  - [grp, disable, {style: invis}]
+order:
+  - [old, kds]
+  - [grp, gmsa, dmsa]

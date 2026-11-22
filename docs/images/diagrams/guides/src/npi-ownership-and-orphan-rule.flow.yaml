@@ -1,0 +1,48 @@
+# Non-Person Identity training, Module 2 — who answers for a non-person
+# identity, and the two lifecycle events that ownership drives. Every identity
+# carries two human technical owners, a business approver in the registry and
+# serviceManagementReference, and a sponsor who is a federal employee mastered
+# in HR (NPI guide, Step 1f; the record each identity joins to). An owner's HR
+# mover or leaver event starts a transfer at least ten business days ahead: the
+# business approver nominates a successor and the identity governance office
+# approves (NPI guide, Step 6, Owner change; service account guide, S9). An
+# identity with no named owner is an orphan: Tier 1, interim ownership by the
+# governance office and a ticket; disabled first once the identity governance
+# officer confirms, nothing deleted; then 30 days to claim it, or it's retired
+# through the decommissioning path (NPI guide, Step 6, Orphans; decision D-NP2).
+# The two-owner, sponsor, transfer and D-NP2 rules are program design. Learn's
+# "Govern on-premises service accounts" (an owner who assumes responsibility,
+# recorded in the CMDB; deprovision by preventing sign-in, a disabled period
+# set by business policy, then delete) read Nov 22, 2026.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+clusters:
+  - id: record
+    label: "Every non-person identity's record"
+    tone: blue
+    filled: false
+    nodes: [own, appr, spon]
+nodes:
+  own: {tone: blue, width: 200, tag: "Technical owners", title: "Two named people", body: ["=Never a service account; they manage configuration and credentials"], size: 12}
+  appr: {tone: blue, width: 200, tag: "Business approver", title: "In the registry", body: ["=And in the app's serviceManagementReference"], size: 12}
+  spon: {tone: blue, width: 200, tag: "Sponsor", title: "A federal employee", body: ["=Mastered in HR; answers for purpose and retirement"], size: 12}
+  hr: {tone: violet, width: 230, tag: "Owner change", title: "Owner's HR mover or leaver event", body: ["=Starts a transfer at least 10 business days ahead"], size: 12}
+  xfer: {tone: green, width: 230, title: "Transfer", body: ["Business approver nominates a successor", "Identity governance office approves"], size: 12}
+  orphan: {tone: red, width: 260, tag: "Orphan", title: "No named owner", body: ["=Reclassified Tier 1; the governance office owns it for now; a ticket opens"], size: 12}
+  dis: {tone: amber, width: 260, tag: "Disable first", title: "Disabled, nothing deleted", body: ["=Once the identity governance officer confirms the finding"], size: 12}
+  claim: {tone: amber, width: 260, title: "30 days to claim it", size: 12}
+  claimed: {tone: green, width: 150, title: "Claimed", body: ["=Owners named and recorded"], size: 12}
+  retire: {tone: red, width: 150, title: "Retired", body: ["=Decommission: disable first, then delete"], size: 12}
+order:
+  - [own, appr, spon]
+  - [hr, orphan]
+  - [claimed, retire]
+edges:
+  - [own, hr, {tone: violet}]
+  - [hr, xfer, {tone: green}]
+  - [own, orphan, {label: "none named", style: dashed, tone: red, lw: 80}]
+  - [spon, orphan, {style: invis}]
+  - [orphan, dis, {tone: amber}]
+  - [dis, claim, {tone: amber}]
+  - [claim, claimed, {label: "claimed", tone: green}]
+  - [claim, retire, {label: "nobody claims it", tone: red, lw: 80}]

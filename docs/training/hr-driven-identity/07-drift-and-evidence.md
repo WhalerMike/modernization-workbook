@@ -68,6 +68,8 @@ Read three sections of workbook Chapter 07:
 - [The metrics](../../project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.md#the-metrics): where each value comes from, and why a metric with no input is *not measured*, never zero.
 - [The package, the chain and the period](../../project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.md#the-package-the-chain-and-the-period): `package`, `verify` and `period`.
 
+![The loop this module's run puts into code, from Book 03, Chapter 11: a scheduled comparison of the HR record with the directories finds each drift class, findings close at the right end, and every step leaves evidence.](../../images/diagrams/b03-hr-identity/svg/ch11-drift-evidence-loop.svg){#fig-ch11-drift-evidence-loop fig-alt="An amber HR record box (what should be true) and a blue directories and apps box (what is true) both feed a violet scheduled comparison box (missing, stale, orphan, attribute, write and credential drift). It feeds a green close-at-the-right-end box (fix the record or the rule, never the copy). Dashed lines from both go to a grey evidence box (provenance, workflow runs, findings, metrics)."}
+
 ## Exercise: Lab 1, fixtures, no tenant (30 minutes)
 
 This is the workbook's [Lab 1](../../project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.md#lab-1-fixtures-no-tenant). Work in `examples/hr-lifecycle`. This lab also calls `examples/drift-pipeline` from the same clone.

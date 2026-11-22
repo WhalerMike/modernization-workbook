@@ -68,6 +68,8 @@ Then read [The reviewed JSON](../../project-plans/developer-workbooks/privileged
 - Seven series follow [Book 04, Chapter 09's schedule](../../books/b04-access/09-access-governance.md#cadence): Entra roles, PRV group membership (PIM for Groups reviews are in preview), and an Azure role series through a preview API. The Azure series is a Tier 0 series, so it runs monthly with the other Tier 0 roles; Chapter 09 puts the remaining Azure roles at quarterly.
 - A role series covers users. Groups that hold the role are reviewed through their own membership series, and PA-AR-14 flags a group without one.
 
+![One review instance, from Book 04, Chapter 09: a snapshot of access goes to reviewers, unanswered items fall to the fallback reviewer and then to the no-response default, auto-apply removes denials, and the decisions become evidence.](../../images/diagrams/b04-access/svg/ch09-review-instance.svg){#fig-ch09-review-instance fig-alt="Left to right. A slate box, instance starts, takes a snapshot of who holds the access. It feeds a violet box, reviewers decide, listing owner, manager, sponsor or self, with justification and recommendations. An amber box, fallback reviewer, receives items where there is no manager or owner, and feeds back into the reviewers box. The reviewers box feeds an amber box, no-response default, listing no change, remove, approve, or take recommendations. That feeds a green box, auto-apply, which removes denied access at the end of the instance. A dashed arrow from auto-apply leads to a slate box, evidence: results CSV, review history, audit records."}
+
 ## Unit 2: The checks, the plan and the evidence (10 minutes)
 
 Read three sections:

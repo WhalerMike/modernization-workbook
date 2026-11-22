@@ -72,6 +72,8 @@ Read the chapter's [What the PRV groups have to hold](../../project-plans/develo
 
 The access packages for PRV membership, the plan's A3.3, aren't built here.
 
+![How a role reaches a person, from Book 04, Chapter 04: the group holds an eligible role assignment and a member activates the role through PIM for a bounded window. Target design. Layer 1, access packages, is deferred (plan task A3.3).](../../images/diagrams/b04-access/svg/ch04-role-group-pim.svg){#fig-ch04-role-group-pim fig-alt="A left-to-right flow of three cards with a fourth below. A violet card, layer 1, entitlement management, access package: request with approval, assignment expiry, recurring access review. An arrow labeled grants membership leads to a blue card, role-assignable group, the group that holds the role: isAssignableToRole set at creation, assigned membership only with no nesting, owners and members governed. An arrow labeled eligible assignee leads to a blue card, Microsoft Entra role, eligible role assignment: assigned to the group and never to a person, scope tenant or administrative unit, role settings define the gate. Below, a green card, layer 2, PIM activation, member activates the role: authentication context or MFA, justification and ticket, approval and then a bounded window; an arrow labeled time-bound active points to the role assignment card."}
+
 ## Unit 2: The file, the findings and the guards (10 minutes)
 
 Read three sections of the chapter:

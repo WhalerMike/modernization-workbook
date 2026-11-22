@@ -58,6 +58,8 @@ Then read why revocation matters:
 
 Per-user binding coverage and affinity aren't this module's: they belong to the validation kit's VK-PIV-01 and the [ADM implementation guide's Gate 6](../../books/guides/attribute-driven-migration-implementation.md#gate-6-piv-binding).
 
+![Credentials follow the HR record, from Book 03, Chapter 09: the joiner event starts sponsorship and proofing, card management issues the credential, it is bound to the account, and phishing-resistant sign-in records the assurance achieved.](../../images/diagrams/b03-hr-identity/svg/ch09-credential-assurance.svg){#fig-ch09-credential-assurance fig-alt="Left to right: HR joiner event (sponsorship and position sensitivity); identity proofing (PIV process; proofing level recorded); card management (PIV and derived credentials issued); binding (certificateUserIds on the account); phishing-resistant sign-in (certificate-based authentication; assurance recorded)."}
+
 ## Unit 2: The measurement and the check (6 minutes)
 
 Read the workbook's [Why this gate needs code](../../project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md#why-this-gate-needs-code), which sets out Learn's two sets of CRL limits, then:

@@ -1,0 +1,31 @@
+# Privileged Access training, Module 2 (Gate G2 Emergency access) — the
+# emergency access accounts built to Learn's standard before any role is made
+# eligible or any approval is switched on: two or more cloud-only accounts on
+# *.onmicrosoft.com, phishing-resistant sign-in, Global Administrator active
+# and permanent; one exclusion group kept out of every enforced Conditional
+# Access policy (the kit's check, design guidance; Learn: policies that block
+# or restrict sign-in); an alert on any use; a drill at least every 90 days.
+# Follows the module's Units 1-2 and the Privileged Access guide's Step 2.
+# Product behavior as documented on Microsoft Learn, security-emergency-access,
+# read Nov 22, 2026.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.45}
+nodes:
+  acct: {tone: green, width: 290, tag: "Learn's standard", title: "Two or more emergency accounts", body: ["Cloud-only on `*.onmicrosoft.com`", "Passkey (FIDO2) or certificate-based", "Global Administrator: active, permanent", "Credentials that don't expire"], size: 12}
+  alert: {tone: violet, width: 190, title: "Alert on any use", body: ["Sign-ins, non-interactive sign-ins, audit log", "Matched by object ID", "Severity 0; any result fires"], size: 12}
+  drill: {tone: violet, width: 190, title: "Drill at least every 90 days", body: ["Sign in, do an admin task", "Record it with a ticket", "Tell security operations first"], size: 12}
+  grp: {tone: slate, width: 260, title: "One exclusion group", body: ["=Holds only the emergency accounts"], size: 12}
+  ca: {tone: blue, width: 290, title: "Every enforced Conditional Access policy", body: ["Excludes the group", "Report-only: Info until enforced"], size: 12}
+  gate: {kind: pill, tone: green, text: "G2 passes: no Finding", width: 200}
+  next: {tone: amber, width: 290, tag: "Only then", title: "Eligible roles and approval", body: ["=Modules 3 to 8: Conditional Access, PIM, reviews"], size: 12}
+  lock: {kind: text, tone: red, width: 300, text: "Approval switched on first, with every Global Administrator eligible and no approvers: no one can approve, and administration is locked."}
+order:
+  - [alert, acct, drill]
+edges:
+  - [acct, alert, {tone: violet, style: dashed, attrs: "constraint=false"}]
+  - [drill, acct, {tone: violet, style: dashed, attrs: "constraint=false"}]
+  - [acct, grp, {tone: slate, label: "members", lw: 70}]
+  - [grp, ca, {tone: blue, label: "excluded from", lw: 100}]
+  - [ca, gate, {tone: green}]
+  - [gate, next, {tone: amber}]
+  - [next, lock, {style: invis}]
