@@ -1,0 +1,26 @@
+# Book 20 Chapter 06 — three ways mail reaches Rights Management, and what the
+# recipient sees. Program design; Message Encryption behavior as documented on
+# Microsoft Learn (define-mail-flow-rules-to-encrypt-email, ome,
+# manage-office-365-message-encryption), read Nov 22, 2026.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.5}
+nodes:
+  sender: {tone: blue, width: 185, tag: "Sender decides", title: "Encrypting label or the Encrypt button", body: ["=Classification, markings and encryption travel with the message"], size: 12}
+  auto: {tone: violet, width: 170, tag: "Policy decides", title: "Auto-labeling in transit", body: ["=Applies an encrypting label (Chapter 09)"], size: 12}
+  rule: {tone: amber, width: 200, tag: "Agency decides, once", title: "Mail flow rule for an approved scenario", body: ["=Encrypt, Do Not Forward, or a custom template with branding"], size: 12}
+  rms: {tone: green, width: 420, title: "Rights Management: Message Encryption", body: ["=Encrypts the message and its Office attachments; recipients' replies stay encrypted"], size: 12}
+  inbound: {tone: red, width: 175, title: "Inbound mail from outside", body: ["=A mail flow rule can't encrypt it; it's delivered unencrypted"], size: 12}
+  outlook: {tone: blue, width: 220, title: "Recipient in a supported Outlook client", body: ["=Reads the message inline"], size: 12}
+  portal: {tone: blue, width: 300, title: "Any other recipient: the encrypted message portal", body: ["One-time passcode (kept on)", "Social ID sign-in off where the AO decides", "Expiry and revocation: portal only (Advanced Message Encryption)"], size: 12}
+order:
+  - [sender, auto, rule]
+  - [outlook, portal]
+edges:
+  - [sender, rms, {tone: blue}]
+  - [auto, rms, {tone: violet}]
+  - [rule, rms, {tone: amber}]
+  - [rule, inbound, {tone: red, style: dashed, label: "not inbound", lw: 80, attrs: "constraint=false"}]
+  - [rms, outlook, {tone: green}]
+  - [rms, portal, {tone: green}]
+ranks:
+  - [rms, inbound]

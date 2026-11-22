@@ -29,6 +29,7 @@ Writer: Book 20 build (Nov 11, 2026). Learn pages read for this chapter: 21. Sou
 | 22 | eDiscovery decrypts on export through super user integration with Exchange Online | Recovery prerequisites; Validate | verified | Configure super users page, "Removing encryption from PST files" | Nov 11, 2026 |
 | 23 | Microsoft recommends completing BYOK before setting up Message Encryption | Decide | verified | Set up Message Encryption, "Configure management of your Azure Rights Management tenant key" | Nov 11, 2026 |
 | 25 | Decryption-continuity test steps and ring exit criteria | Validate; Enforcement | restated-as-design | Program design | Nov 11, 2026 |
+| 26 | Figure `ch05-just-in-time-recovery`: PIM-approved role, operator added individually, recover, remove then disable; three-hour group cache; admin and usage logs | How: recover encrypted content | restated-as-design | Program design (procedure order as in the Enforcement code block); Learn, "Configure Azure Rights Management super users for discovery services or data recovery" and "Learn how user accounts and groups use the Azure Rights Management service," Group membership caching | Nov 22, 2026 |
 
 ## Government-cloud gaps
 - Super user feature: not listed on the GCC Purview planning page (written "not yet specified").

@@ -25,6 +25,7 @@ Writer: Book 20 build (Nov 11, 2026). All sources opened Nov 11, 2026. Claims so
 | 18 | Explorer interfaces need E5/A5/G5; aggregation continues for E3; scanner discovery with E3 | Inventory | verified | Learn, "Microsoft Purview service description" | Nov 11, 2026 |
 | 19 | Government availability rows (content explorer, Teams data, activity explorer, EDM, named entities, scanner) | Inventory | verified | Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC deployments", Step 4 | Nov 11, 2026 |
 | 20 | Decision record template fields | Decision record template | restated-as-design | Program design from the closure instructions' required fields | Nov 11, 2026 |
+| 21 | Figure `ch01-class-register`: overlay decisions set the classes; artifacts cite the class ID; inventory and annual review keep rows current; content explorer counts lag up to 7 days (14 for SharePoint files) | The authoritative data classes | restated-as-design | Program design from this chapter; Learn, "Get started with Content Explorer (classic)," Export (counts) | Nov 22, 2026 |
 
 ## Government-cloud gaps
 

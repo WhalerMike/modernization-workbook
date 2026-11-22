@@ -25,6 +25,7 @@ Writer: Book 20 build (Nov 11, 2026). All sources opened Nov 11, 2026. Claims so
 | 17 | Set-Label -Priority | How | verified | Learn, "Set-Label" syntax | Nov 11, 2026 |
 | 18 | Sensitivity labels supported for all platforms in US Government tenants | Prerequisites | verified | Learn, "Learn about sensitivity labels" note | Nov 11, 2026 |
 | 19 | Government availability rows | Prerequisites | verified | Learn, "Plan for Microsoft Purview compliance and risk management solutions – GCC deployments", Step 4 | Nov 11, 2026 |
+| 20 | Figure reused from Book 12, Chapter 09 (`ch09-cui-to-labels`): CUI tiers to label tiers, matching the taxonomy table rows 0 to 4 | The taxonomy | restated-as-design | Book 12, Chapter 09; 32 CFR Part 2002 | Nov 22, 2026 |
 
 ## Government-cloud gaps
 
