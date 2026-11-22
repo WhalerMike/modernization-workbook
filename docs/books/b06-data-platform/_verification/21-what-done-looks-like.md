@@ -49,3 +49,9 @@ Source: the existing page `21-what-done-looks-like.md` (former narrative Book 09
 ## Server standard, November 5, 2026
 
 Tense only; date carried. The standard itself is verified in Book 00's Chapter 01 log, rows S1 to S7.
+
+## Revision 2026-11-22 — IAKerb timing
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| K1 | "Fixes for the common causes of NTLM fallback, due in the second half of 2026" replaced with Microsoft's current word: IAKerb and LocalKDC are in Windows Insider preview builds and will be generally available for Windows Server 2025 and Windows 11 "in the coming months"; new note `[^c21-ntlm-faq]`. The January 29, 2026 roadmap stays the source for the three phases and the "next major" release | No external NTLM deadline falls in 2027 | factual (read Nov 22, 2026) | Retiring NTLM: Frequently asked questions, updated Oct 19, 2026 |
