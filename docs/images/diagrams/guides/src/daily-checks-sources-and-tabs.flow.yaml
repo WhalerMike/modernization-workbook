@@ -1,0 +1,51 @@
+# Daily Checks Dashboard guide, "What each daily check can show, and from
+# where" and Step 1: the sources that reach the Log Analytics workspace, the
+# one Azure Monitor workbook with a tab per daily check (twelve), the
+# link-outs where the data isn't in Log Analytics, and the telemetry-
+# completeness tab that guards the rest. Learn: workbooks-overview,
+# workbooks-data-sources, read Nov 22, 2026.
+rankdir: LR
+graph: {nodesep: 0.16, ranksep: 0.4}
+nodes:
+  entra: {tone: blue, width: 200, title: "Entra ID", body: ["=Diagnostic setting: `SigninLogs`, `AuditLogs`, `AADRiskyUsers`"], size: 12}
+  intune: {tone: blue, width: 200, title: "Intune", body: ["=`IntuneDeviceComplianceOrg`, a daily export (up to 48 hours)"], size: 12}
+  xdr: {tone: blue, width: 200, title: "Defender XDR connector", body: ["=`SecurityAlert`, `SecurityIncident`, with Purview DLP and Defender for Identity alerts"], size: 12}
+  ama: {tone: slate, width: 200, title: "Azure Monitor Agent", body: ["=On the Arc-enabled sync servers and domain controllers: `Event`, `SecurityEvent`, `Heartbeat`"], size: 12}
+  probes: {tone: slate, width: 200, title: "The two probes", body: ["=Logs Ingestion API: `DailySyncProbe_CL`, `DcReplicationProbe_CL`"], size: 12}
+  act: {tone: slate, width: 200, title: "Subscription activity log", body: ["=`AzureActivity`"], size: 12}
+  health: {tone: violet, width: 200, title: "Sentinel health", body: ["=`SentinelHealth`"], size: 12}
+  ws: {tone: violet, width: 120, title: "Log Analytics workspace", body: ["=The Sentinel workspace"], size: 12}
+  wb:
+    kind: table
+    tone: blue
+    columns: ["Daily checks workbook: one tab per check"]
+    widths: [270]
+    first_bold: false
+    rows:
+      - [{text: "1. Telemetry completeness: read first; a dark source makes its tabs stale, never clear", tone: green}]
+      - ["2. Synchronization probe"]
+      - ["3. Active Directory"]
+      - [{text: "4. Entra Health alerts (link-out)", tone: amber}]
+      - ["5. Risky users and sign-ins"]
+      - ["6. Emergency access sign-ins"]
+      - ["7. Noncompliant devices"]
+      - ["8. Consents, roles and grants"]
+      - ["9. Admin changes"]
+      - ["10. DLP and label alerts"]
+      - [{text: "11. Catalog and remediation tasks (link-out)", tone: amber}]
+      - ["12. Log review queue"]
+  links: {tone: amber, width: 270, tag: "Link-outs", title: "Where the data stays in its own view", body: ["Entra Health; Connect Health for sync and AD DS", "The ITSM tool's queue"], size: 12}
+  note: {kind: text, width: 270, text: "An empty tab proves only that its query returned nothing. The workbook closes no task and proves no check happened."}
+edges:
+  - [entra, ws, {tone: blue}]
+  - [intune, ws, {tone: blue}]
+  - [xdr, ws, {tone: blue}]
+  - [ama, ws]
+  - [probes, ws]
+  - [act, ws]
+  - [health, ws, {tone: violet}]
+  - [ws, wb, {tone: violet, label: "KQL", lw: 40}]
+  - [ws, links, {style: invis}]
+  - [ws, note, {style: invis}]
+order:
+  - [wb, links, note]

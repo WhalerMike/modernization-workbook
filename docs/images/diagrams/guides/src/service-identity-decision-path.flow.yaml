@@ -1,0 +1,57 @@
+# Service Account Migration guide, "The decision path", and the Non-Person
+# Identity guide, Step 2: the ordered questions for each service identity.
+# Questions 1 to 8 in order, the first "yes" is the target; a workload at
+# question 4 that also needs Kerberos keeps going at question 5 (two
+# dispositions); question 9 applies to every target that keeps an AD account.
+# Five targets (retire, managed identity, federated credential, certificate
+# or the Arc identity, dMSA or gMSA) plus the time-limited Keep / KeepKerberos
+# exception. Dispositions are Chapter 03's. Learn: service-accounts-on-premises,
+# service-accounts-group-managed, service-accounts-managed-identities, read
+# Nov 22, 2026.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.26}
+nodes:
+  q1: {tone: slate, width: 270, tag: "Question 1", title: "Disabled, unused, or no owner after inventory?", size: 12}
+  q2: {tone: slate, width: 270, tag: "Question 2", title: "Runs on an Azure resource, or moving to one?", size: 12}
+  q3: {tone: slate, width: 270, tag: "Question 3", title: "Runs in CI/CD or on a platform with its own OIDC issuer?", size: 12}
+  q4: {tone: slate, width: 270, tag: "Question 4", title: "Stays on premises but calls Microsoft Graph or Azure APIs?", size: 12}
+  q5: {tone: slate, width: 270, tag: "Question 5", title: "Already a gMSA or dMSA, staying on premises?", size: 12}
+  q6: {tone: slate, width: 270, tag: "Question 6", title: "Must stay a traditional account?", body: ["=The service supports no managed account, or it relies on unconstrained delegation"], size: 12}
+  q7: {tone: slate, width: 270, tag: "Question 7", title: "Needs Kerberos, with a Windows Server 2025 domain controller and every host on 2025?", size: 12}
+  q8: {tone: slate, width: 270, tag: "Question 8", title: "Needs Kerberos, in any other case (an sMSA too)?", size: 12}
+  o1: {tone: slate, width: 240, tag: "Retire", title: "Retire it", body: ["=Through the decommission process"], size: 12}
+  o2: {tone: blue, width: 240, tag: "Replatform", title: "Managed identity", body: ["=User-assigned preferred"], size: 12}
+  o3: {tone: blue, width: 240, tag: "Replatform", title: "Federated credential", body: ["=On an app registration or a user-assigned managed identity"], size: 12}
+  o4: {tone: blue, width: 240, tag: "Replatform", title: "Arc identity, or a certificate", body: ["=The Arc-enabled server's system-assigned managed identity; otherwise an app registration with a certificate"], size: 12}
+  o5: {tone: amber, width: 240, tag: "Keep · time-limited exception", title: "Keep the gMSA or dMSA", body: ["=SPN owner; end date no later than program G5"], size: 12}
+  o6: {tone: amber, width: 240, tag: "KeepKerberos · time-limited exception", title: "Keep it on Kerberos", body: ["=The authorizing official accepts it; SPN owner; end date by the standard's rule"], size: 12}
+  o7: {tone: green, width: 240, tag: "Replatform", title: "dMSA (Migration B)", body: ["=Migrated from the old account"], size: 12}
+  o8: {tone: green, width: 240, tag: "Replatform", title: "gMSA (Migration A)", body: ["=An sMSA is replaced by a gMSA"], size: 12}
+  q9: {tone: violet, width: 530, tag: "Question 9, for every target from questions 5 to 8", title: "Needs Kerberos to a resource with no Entra equivalent?", body: ["=Yes: it also goes on the Kerberos island list, with its end date, until that resource is retired or replatformed"], size: 12}
+ranks:
+  - [q1, o1]
+  - [q2, o2]
+  - [q3, o3]
+  - [q4, o4]
+  - [q5, o5]
+  - [q6, o6]
+  - [q7, o7]
+  - [q8, o8]
+edges:
+  - [q1, o1, {tone: slate, label: "yes"}]
+  - [q2, o2, {tone: blue, label: "yes"}]
+  - [q3, o3, {tone: blue, label: "yes"}]
+  - [q4, o4, {tone: blue, label: "yes"}]
+  - [q5, o5, {tone: amber, label: "yes"}]
+  - [q6, o6, {tone: amber, label: "yes"}]
+  - [q7, o7, {tone: green, label: "yes"}]
+  - [q8, o8, {tone: green, label: "yes"}]
+  - [q1, q2, {label: "no"}]
+  - [q2, q3, {label: "no"}]
+  - [q3, q4, {label: "no"}]
+  - [q4, q5, {label: "no"}]
+  - [q5, q6, {label: "no"}]
+  - [q6, q7, {label: "no"}]
+  - [q7, q8, {label: "no"}]
+  - [o4, q5, {tone: blue, style: dashed, label: "also needs Kerberos: a second disposition", lw: 150}]
+  - [q8, q9, {tone: violet}]

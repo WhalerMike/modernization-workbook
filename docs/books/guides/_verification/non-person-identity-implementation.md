@@ -131,3 +131,9 @@ Aligned with the service account guide's [standard](../service-account-migration
 | Managed service account certification by risk tier (R1 quarterly, R2 twice a year, R3 annually) in SailPoint | Step 6 access reviews | WD-166 |
 | KSIs re-mapped from Book 13 App A's new section (IA-4 → IAM-ELP, IAM-JIT; IA-5 → IAM-APM; AC-2(3) → IAM-AAM, IAM-JIT, IAM-SUS; AC-6(5) → IAM-JIT, IAM-SNU; AC-6(7) → IAM-AAM, IAM-JIT; AU-6 → MLA-RVL; IA-9 → none) | G1–G6 boxes; Evidence table and pointer | WD-169; FedRAMP KSIs re-read Nov 20, 2026 (in Book 13 App A) |
 | VK-NPI-06 scope: gMSA and dMSA settings (retrievers, AES256, direct privileged-group membership as findings; name, interval, OU as warnings; outbound-only not checked) | Kit table; G1 and G5 boxes | Validation Kit change (WD-159, WD-160, WD-161) |
+
+## Figures (November 22, 2026)
+
+| Figure | Where | Source |
+|---|---|---|
+| Figure `service-identity-decision-path`: the service account guide's ordered questions 1 to 9, five targets plus the time-limited `Keep`/`KeepKerberos` exception | Step 2 | Service account guide, decision path; Learn, "Securing on-premises service accounts", "Secure group managed service accounts", "Securing managed identities in Microsoft Entra ID" |
