@@ -130,6 +130,8 @@ Learn's Zero Trust Assessment pages don't mention GCC. GCC uses the worldwide en
 
 : The ten steps {.striped .hover}
 
+![Steps 6 to 10 in one picture, from Book 11, Chapter 10: a tool result becomes a program decision only after it is read, scored, reconciled and owned, and each run is compared with the last.](../../images/diagrams/b11-zero-trust/svg/ch10-finding-to-program.svg){#fig-zta-finding-to-program fig-alt="Top to bottom, five cards joined by arrows. First, slate: tool results from ScubaGear and the Zero Trust Assessment. Second, blue: read before counting; only Fail, Warning, Failed and Investigate are findings, while Skipped, Planned and N/A are recorded as absence of evidence or manual checks. Third, violet: score and rank, with severity from risk and status and priority from severity divided by effort, giving P1 to P4 and quick wins. Fourth, amber: reconcile and decide, mapping each finding to a control, and either remediating it or recording an exception in the configuration file, with expiring exceptions approved by the CISO and standing ones by the authorizing official. Fifth, green: the program, plans of action and milestones per system, pillar owners remediating through change control, and re-assessment. A dashed violet arrow loops from the program back to the tool results, labeled re-run and compare. The figure is reused from Book 11, Chapter 10."}
+
 ## Step 1: Decide and scope {#zta-step-1}
 
 **Authority:** Optional in federal terms, run as Risk-based recommended (the risk: devices, network, data and security operations configuration nobody assesses). **Applies:** every Microsoft cloud tenant the agency operates; License-dependent and Environment-dependent coverage.
