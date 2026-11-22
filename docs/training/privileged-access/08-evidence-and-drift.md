@@ -63,6 +63,8 @@ The run has three parts. The inventory and the emergency check describe the tena
 
 Then read [The run](../../project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.md#the-run), [The audit read](../../project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.md#the-audit-read) and [The audit findings](../../project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.md#the-audit-findings). The audit read refuses a window that starts more than 30 days before the run, and keeps each event as IDs, not names.
 
+![Which records support which controls, from Book 04, Chapter 10: configuration files support enforcement controls, records of use support account-management and review controls, and drift and change records support continuous monitoring.](../../images/diagrams/b04-access/svg/ch10-control-evidence-map.svg){#fig-ch10-control-evidence-map fig-alt="Three boxes on the left feed three green boxes on the right. A slate box, configuration: policy and settings files for Conditional Access, PIM role settings, packages and review definitions, feeds AC-3, AC-6 and IA-2, policies enforced as approved, and by a dashed line AC-2, AC-5 and AC-6(7). A violet box, operation: request and approval audit, review history and applied results, Lifecycle Workflows runs, feeds AC-2, AC-5 and AC-6(7), accounts approved, reviewed and removed. A violet box, monitoring: monitor results and drifts, pull requests and pipeline runs, feeds CA-7, ongoing monitoring and response, and by a dashed line AC-3, AC-6 and IA-2."}
+
 ## Unit 2: Compare, package and the period (10 minutes)
 
 Read four sections:

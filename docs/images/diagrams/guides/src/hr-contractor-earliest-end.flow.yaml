@@ -1,0 +1,32 @@
+# HR-Driven Identity training, Module 2 (Gate G2 Sources) — employees come from
+# Core HCM through the pipeline; contractors come from the agency's own register.
+# The kit's `extract` takes the first end that applies (Book 03, Appendix A,
+# contractor leavers), quarantines a record with no end or no sponsor (CS-01,
+# CS-02), and hands the rows to the same middleware, whose dry run is its
+# default. The sponsor review on the contractor access package is bi-annual,
+# with Manager (the sponsor) as reviewer, a fallback reviewer and remove access
+# on no response. Follows the module's Units 1-2, the HR-driven identity guide's
+# Step 2 and the developer workbook's Chapter 02 (The earliest end; The sponsor
+# review). Review options as documented on Microsoft Learn,
+# entitlement-management-access-reviews-create, read Nov 22, 2026.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.4}
+nodes:
+  emp: {tone: slate, width: 230, tag: "Employees", title: "Core HCM", body: ["=Through the pipeline; hires and separations by published date"], size: 12}
+  reg: {tone: slate, width: 250, tag: "Contractors", title: "The agency's contractor register", body: ["=Joined with the card system and the sponsor's HR record"], size: 12}
+  ext: {tone: green, width: 290, tag: "The kit's extract", title: "The earliest end: first that applies", body: ["Contract end, capped by completion date", "Suitability withdrawn", "Card terminated, revoked or expired", "Sponsor gone past the grace period", "Sponsor recertification due"], size: 12}
+  quar: {tone: amber, width: 180, title: "Quarantined", body: ["CS-01: no contract end", "CS-02: sponsor not in the HR export"], size: 12}
+  mw: {tone: blue, width: 300, tag: "Same middleware as employees", title: "Builds the SCIM requests", body: ["Dry run by default", "Each source has its own provisioning app"], size: 12}
+  entra: {tone: blue, width: 300, title: "Microsoft Entra ID", body: ["Worker type `CTR`, sponsor as manager", "Leave date: the earliest end", "Past its end: `active` false, disabled"], size: 12}
+  rev: {tone: violet, width: 230, tag: "Sponsor review", title: "Contractor access package", body: ["Bi-annual", "Reviewer: Manager (the sponsor)", "Named fallback reviewer", "No response: remove access"], size: 12}
+order:
+  - [emp, reg]
+  - [ext, quar]
+  - [entra, rev]
+edges:
+  - [reg, ext, {tone: slate}]
+  - [ext, quar, {tone: amber, style: dashed}]
+  - [ext, mw, {tone: green, label: "the extract", lw: 80}]
+  - [emp, mw, {tone: slate}]
+  - [mw, entra, {tone: blue, label: "sent only with `--apply`", lw: 110}]
+  - [rev, entra, {tone: violet, label: "removes access", lw: 100}]

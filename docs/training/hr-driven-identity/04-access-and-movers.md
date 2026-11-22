@@ -53,6 +53,8 @@ Read the guide's [Step 4](../../books/guides/hr-driven-identity-implementation.m
 
 Then read the design in [Book 03, Chapter 10](../../books/b03-hr-identity/10-from-attributes-to-access.md): its [rule patterns](../../books/b03-hr-identity/10-from-attributes-to-access.md#rule-patterns), [access packages and access reviews](../../books/b03-hr-identity/10-from-attributes-to-access.md#access-packages-and-access-reviews), and [where dynamic membership stops](../../books/b03-hr-identity/10-from-attributes-to-access.md#where-dynamic-membership-stops). [Book 03, Chapter 08, Mover](../../books/b03-hr-identity/08-joiner-mover-leaver.md#mover) says what a move must start.
 
+![Access from attributes, from Book 03, Chapter 10: the personnel record sets the attributes, rules turn them into dynamic groups and entitlements, and privileged access takes only eligibility from HR, never a standing assignment.](../../images/diagrams/b03-hr-identity/svg/ch10-derivation-chain.svg){#fig-ch10-derivation-chain fig-alt="Left to right: an amber personnel record box (standard attributes and the action that set them), stamped attributes (codes in native and extension attributes), dynamic groups (rules; nobody joins by hand), and a green entitlements box (apps, access packages, Conditional Access). A dashed red arrow labelled eligibility only goes from stamped attributes to a privileged access box (assigned groups and PIM; HR decides eligibility, never standing)."}
+
 ## Unit 2: The lint and the residual review (8 minutes)
 
 Read three sections of workbook Chapter 04:

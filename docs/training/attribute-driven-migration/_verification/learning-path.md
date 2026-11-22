@@ -40,3 +40,11 @@ Method:
 
 - Chapter 10's evidence records are numbered within the stage's `out` folder, so the numbers in its dry-run output (`001-preflight.json` to `007-smoke.json`) hold only from an empty `out`. A run after Chapter 09's tests, which leave an `out` folder behind, printed `003-preflight.json`. Module 9 starts with `rm -rf out`. Chapter 10 wasn't changed.
 - `scripts/generate_labs.py` matched Validate headings written `G1 ...` only. The ADM guide writes `Gate 0: ...`, so the script now accepts both, and gives those blocks the key `try-gN`. The labs blocks sit outside the reviewed body, so the guide's review hash still matches.
+
+## Figures, November 22, 2026
+
+Each figure is reused from the page named in its caption and carries that page's own verification; the caption restates what the figure shows, and was checked against this module's text.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 19 | Figure `developer-workbooks/deploy-test-to-production` (new, home page): pre-flight, test stage, go/no-go, production in stages, evidence; no row counts | Module 9, Unit 3 | restated-as-design (no Learn page) | Book 19, Chapter 10; NPI workbook Chapter 11; PN workbook Chapter 08 |

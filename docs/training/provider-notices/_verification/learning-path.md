@@ -50,3 +50,11 @@ Method:
 - The kit's README says the AWS account needs "Business, Enterprise On-Ramp or Enterprise Support"; the guide, after #532, says "a qualifying AWS Support plan" and cites all three AWS pages. The path follows the guide. The README isn't changed here.
 
 *For project use.*
+
+## Figures, November 22, 2026
+
+Each figure is reused from the page named in its caption and carries that page's own verification; the caption restates what the figure shows, and was checked against this module's text.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 25 | Figure `developer-workbooks/deploy-test-to-production` (reused from ADM Module 9) | Module 9 | restated-as-design (no Learn page) | PN workbook Chapter 08 |

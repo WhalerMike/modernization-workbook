@@ -59,6 +59,8 @@ Read the chapter's [What the inventory has to hold](../../project-plans/develope
 
 Then read [What it leaves to you](../../project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md#what-it-leaves-to-you): the gap table between Learn's sample and the example. The most important row: the sample sees no eligible assignment.
 
+![Why the inventory has to read eligible assignments, from Book 04, Chapter 02: a standing assignment yields the role to a stolen credential at once, while an eligible one yields nothing until an activation checks authentication, justification and approval.](../../images/diagrams/b04-access/svg/ch02-standing-vs-eligible.svg){#fig-ch02-standing-vs-eligible fig-alt="A grey box on the left, an administrator's credential: phished, sprayed, replayed or stolen. Two arrows labelled compromised leave it. The red one leads to a red box, standing assignment, always active: role usable at once and at any hour; no justification and no approval; exposure every hour of the year; the attacker becomes the administrator. The amber one leads to a green box, eligible assignment, activated just in time: the same rights, but only after activation; strong authentication, justification and approval; time-limited and expires without action; every activation is logged."}
+
 ## Unit 2: The reader, the rows and the findings (7 minutes)
 
 Read three sections of the chapter:
