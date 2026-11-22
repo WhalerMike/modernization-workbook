@@ -20,7 +20,7 @@ last-reviewed: 2026-11-20
 
 ## Introduction (3 minutes)
 
-Each identity ends in one of five places: retire it, move it to a gMSA or dMSA, or move it to a managed identity, a federated credential or a certificate. Book 02's matrix decides by account type and by where the workload runs. Its rule: no stored secrets.
+Each identity ends in one of five places: retire it, move it to a gMSA or dMSA, or move it to a managed identity, a federated credential or a certificate. When none of the five fits yet, the account takes a time-limited exception on the Kerberos island (`Keep` or `KeepKerberos`), with the authorizing official's acceptance and an end date. Book 02's matrix decides by account type and by where the workload runs. Its rule: no stored secrets.
 
 Three things are easy to blur, and the code keeps them apart. The matrix *proposes* a target. The application owner *decides* the disposition. The ISSO checks the *gate*. In this module you run all three on the fixtures and read why Gate 2 isn't met yet.
 
