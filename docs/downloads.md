@@ -52,6 +52,8 @@ Every command in these kits is listed, with what it does and the pages that teac
 
 Each book downloads as one Word document with its chapters in reading order, its notes and its diagrams. The [books page](books/index.md) lists each book's chapter and page counts.
 
+To get one chapter, open it and choose **Other Formats > MS Word** under **On this page**. The chapter file is built the same way as the book: a title page, a table of contents, the diagrams and their captions, and the chapter's notes at the end.
+
 | Book | Word edition |
 |---|---|
 | [Book 00 — Orientation & Program](books/b00-orientation/index.md) | [b00-orientation-bundle.docx](../downloads/b00-orientation-bundle.docx) |

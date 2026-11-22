@@ -78,7 +78,11 @@ jobs:
         # Every downloads/*.docx bundle, built directly from the source
         # Markdown. Manifests live in scripts/bundles.yml. Fails on a missing
         # image or on a download link with no matching bundle.
-        run: python3 scripts/build_bundles.py --out _site/downloads
+        # --chapters _site: every page in a bundle also gets its own Word file,
+        # built the same way, written over Quarto's per-page render at
+        # _site/<page>.docx (the page's "Other Formats > MS Word" link). It runs
+        # after "Copy DOCX files into site" so the chapter file wins.
+        run: python3 scripts/build_bundles.py --out _site/downloads --chapters _site
 
       - name: Build the Start Kit download
         # downloads/start-kit.zip: examples/start-kit as committed, linked from the home
