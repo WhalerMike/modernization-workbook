@@ -51,6 +51,8 @@ The loop has five steps: test, detect drift, raise a typed task, actuate on the 
 
 As you read, note which step has no code in Pass 1. You'll meet it again in Module 6.
 
+![The loop on ServiceNow and SailPoint, from the guide: SailPoint governs and provisions, ServiceNow is the front door and the record, and a re-read, not the ticket status, closes the task.](../../images/diagrams/b13-governance/svg/ttm-snow-sailpoint.svg){#fig-ttm-snow-sailpoint fig-alt="Diagram. Core HCM, the source of authority where HR corrects facts, feeds SailPoint Identity Security Cloud by aggregation. SailPoint (identity governance: aggregates HR and runs lifecycle states, access requests and certifications, and native change detection) exchanges tickets and requests with ServiceNow (the front door and record: catalog, cases and change records, approvals per authority class, one closure record). SailPoint provisions Entra ID and AD through connectors; ServiceNow reaches Entra through its Entra spoke for A0 and A1 tasks. Entra and AD lead to a re-read on the next aggregation or a native-change event, not ticket status, and the evidence closes the ServiceNow record. A dashed red line from SailPoint leads to a declared exception: a disconnected application handled by a Service Desk ticket, a recorded session and an end date."}
+
 ## Unit 3: The identity finding and its contract
 
 *10 minutes*

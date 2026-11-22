@@ -40,3 +40,17 @@ Method:
 
 - Chapter 10's evidence records are numbered within the stage's `out` folder, so the numbers in its dry-run output (`001-preflight.json` to `007-smoke.json`) hold only from an empty `out`. A run after Chapter 09's tests, which leave an `out` folder behind, printed `003-preflight.json`. Module 9 starts with `rm -rf out`. Chapter 10 wasn't changed.
 - `scripts/generate_labs.py` matched Validate headings written `G1 ...` only. The ADM guide writes `Gate 0: ...`, so the script now accepts both, and gives those blocks the key `try-gN`. The labs blocks sit outside the reviewed body, so the guide's review hash still matches.
+
+## Figures, November 22, 2026
+
+Each figure is reused from the page named in its caption and carries that page's own verification; the caption restates what the figure shows, and was checked against this module's text.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 19 | Figure `b03-hr-identity/ch05-provisioning-services` (reused): the middleware's five duties before Graph /bulkUpload | Module 1, Unit 2 | carried | Book 03, Chapter 05 and its log |
+| 20 | Figure `b03-hr-identity/ch10-derivation-chain` (reused): attributes to rules to dynamic groups; privileged access takes eligibility only | Module 3, Unit 2 | carried | Book 03, Chapter 10 and its log |
+| 21 | Figure `b02-identity/ch08-gpo-analysis` (reused): inventory, three classifications, only live settings go to Intune | Module 4, Unit 2 | carried | Book 02, Chapter 08 and its log |
+| 22 | Figure `b05-devices/ch09-arc-management-plane` (reused): machine configuration audits the baseline against the Arc machine resource | Module 5, Unit 2 | carried | Book 05, Chapter 09 and its log |
+| 23 | Figure `b03-hr-identity/ch08-provisioning-and-workflows` (reused): provisioning creates; Lifecycle Workflows call custom task extensions | Module 7, Unit 2 | carried | Book 03, Chapter 08 and its log |
+| 24 | Figure `b03-hr-identity/ch11-drift-evidence-loop` (reused): scheduled comparison, drift classes, fix the record or rule, evidence | Module 8, Unit 2 | carried | Book 03, Chapter 11 and its log |
+| 25 | Figure `guides/ansible-one-owner-per-setting` (reused): config_owner and patch_owner in the CMDB record; Ansible writes only where named | Module 6, Unit 2 | carried | The Ansible guide and its log |

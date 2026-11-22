@@ -92,3 +92,11 @@ The module was written on November 3, 2026 and not merged then. Before it was me
 | 65 | The PowerShell step that loads `app.pem` and exports it as PKCS#12 | Unit 9 step 4 | verified locally on 2026-11-11 with a throwaway self-signed PEM and an ephemeral key (the private key loads; the thumbprint prints); adding it to the store wasn't run | — |
 | 66 | Lab 1 output on 2026-11-11 | Unit 8 | verified (run; same counts and findings as 2026-11-03, with the SQL Server 2014 date now 2027-07-09T06:59:59Z) | the kit |
 | 67 | Book 05 Chapter 09 link: the `#monitoring-the-server-estate` anchor no longer exists on main; Unit 1 now links `#the-day-one-baseline` | Unit 1 | verified in the repository | Book 05 |
+
+## Figures, November 22, 2026
+
+Each figure is reused from the page named in its caption and carries that page's own verification; the caption restates what the figure shows, and was checked against this module's text.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 68 | Figure `b05-devices/ch09-arc-management-plane` (reused): the Arc machine resource, its managed identity, and what attaches to it | Unit 4 | carried | Book 05, Chapter 09 and its log |

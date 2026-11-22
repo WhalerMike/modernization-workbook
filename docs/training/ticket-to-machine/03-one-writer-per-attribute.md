@@ -49,6 +49,8 @@ Used as shipped, the two products fall short of the loop in four places. Gate 2 
 - The guide's [Gate 2](../../books/guides/ttm-servicenow-sailpoint.md#step-2-decide-the-writers-and-the-approvers): the two writer patterns, the approver-per-class example and the lane table.
 - [Book 13, Appendix B: operation classes and their lanes](../../books/b13-governance/appendix-b-ticket-to-machine-reference.md#change-classes-and-their-lanes), for the lanes the table maps onto the products.
 
+![One writer per attribute, from Book 03, Chapter 07: HR owns each person's value, the provisioning service is the only writer, consumers only read, and corrections flow back to the owner.](../../images/diagrams/b03-hr-identity/svg/ch07-attribute-ownership-chain.svg){#fig-ch07-attribute-ownership-chain fig-alt="Five cards from left to right joined by arrows. Amber: OPM standard, defines the element and its codes. Amber: HR, owns each person's value and its quality. Blue: data architect, stewards one name, one definition and one owner. Blue: provisioning service, the only writer to Entra ID and AD. Green: consumers, which read the value in rules, access packages and Conditional Access. A red dashed arrow labelled corrections flow upstream runs from the consumers back to HR."}
+
 ## Unit 3: Checking for two writers
 
 *8 minutes*
