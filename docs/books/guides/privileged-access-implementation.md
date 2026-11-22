@@ -12,7 +12,7 @@ research-status: draft
 research-type: implementation guide
 research-book: "Book 04"
 review-status: approved
-reviewed-sha256: 657226c067cdea9cfc98fa8b216277e12004975b2ba93c22e1384587d6a61878
+reviewed-sha256: 5c4d64a5bc5b5830d0edeecd73d99471c10bf01958950655bd9658fb3b49e20c
 last-reviewed: 2026-11-22
 ---
 # Privileged Access: An Implementation Guide
