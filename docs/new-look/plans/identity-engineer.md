@@ -11,10 +11,10 @@ review-status: pending
 
 ## Week 1: the identity books
 
-- [Book 02 — Identity & Directory](../../books/b02-identity/index.md) (Book, 15 chapters, about 8 hr 33 min). Active Directory to Entra ID: why identity matters, what changes, who owns it, and how to do it.
+- [Book 02 — Identity & Directory](../../books/b02-identity/index.md) (Book, 15 chapters, about 8 hr 34 min). Active Directory to Entra ID: why identity matters, what changes, who owns it, and how to do it.
 - [Book 04 — Access & Privilege](../../books/b04-access/index.md) (Book, 14 chapters, about 7 hr 52 min). Conditional Access, privileged roles, applications and access governance: why every access decision is a policy decision, and how to run it.
 
-*Milestone 1: about 16 hr 25 min.*
+*Milestone 1: about 16 hr 26 min.*
 
 ## Week 2: privileged access
 
@@ -33,9 +33,9 @@ review-status: pending
 ## Week 4: non-person identity
 
 - [Non-Person Identity in Microsoft Entra ID](../../training/non-person-identity/index.md) (Learning path, 13 modules, 15 hr 39 min). Thirteen modules: one per chapter of the developer workbook, in the order of the implementation guide's six gates, then the deployment runbook, then one service account migrated by hand, then the managed service account standard, each….
-- [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../../books/guides/service-account-migration.md) (Implementation guide, about 1 hr 36 min). A comparison and migration guide for every kind of service identity, on premises and in the cloud: a user account used as a service, a standalone MSA, a group managed service account (gMSA), a Windows Server 2025 delegated managed….
+- [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../../books/guides/service-account-migration.md) (Implementation guide, about 1 hr 38 min). A comparison and migration guide for every kind of service identity, on premises and in the cloud: a user account used as a service, a standalone MSA, a group managed service account (gMSA), a Windows Server 2025 delegated managed….
 
-*Milestone 4: about 17 hr 15 min.*
+*Milestone 4: about 17 hr 17 min.*
 
-**Whole plan:** about 50 hr 26 min of reading and video, plus the labs.
+**Whole plan:** about 50 hr 29 min of reading and video, plus the labs.
 

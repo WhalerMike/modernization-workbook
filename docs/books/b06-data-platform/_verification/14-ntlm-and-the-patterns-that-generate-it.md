@@ -80,3 +80,10 @@ Book-wide consistency pass. *Design-consistency* rows restate a program choice t
 | # | Change | Where | Kind | Source |
 |---|---|---|---|---|
 | N8-9 | Removed the past date "2026-Q3" from the prose and the figure alt text; the program sets a target date for blocking NTLMv1. Figures `book-06-ch01-ntlmv1-vs-ntlmv2` and `book-06-ntlm-elimination-phases` re-rendered from edited sources | NTLMv1 section; both figures | decision of Nov 8; fact change | Mike's decision of Nov 8, 2026, item 9 |
+
+## Revision 2026-11-22 — IAKerb timing and Windows Server 2028
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| K1 | Row 4's "IAKerb and local KDC in the second half of 2026" removed; the January 29, 2026 plan is kept for the order of the phases. Added Microsoft's current word: IAKerb and LocalKDC are in Windows Insider preview builds and will be generally available for Windows Server 2025 and Windows 11 "in the coming months". The FAQ that row 5 couldn't retrieve was read in full on Nov 22, 2026; new note `[^c14-ntlm-faq]` | Where Microsoft stands | factual (read Nov 22, 2026) | Retiring NTLM: Frequently asked questions, updated Oct 19, 2026 |
+| K2 | Added: Windows Server 2028 is in preview, and Microsoft hasn't said it is the release that turns NTLM off by default; links to Book 02 Chapter 03's note, which carries the sources | Where Microsoft stands | factual (read Nov 22, 2026) | Learn, Features removed or no longer developed in Windows Server (2028 Preview tabs); Learn, Windows Server 2028 Preview: New features (neither mentions NTLM) |

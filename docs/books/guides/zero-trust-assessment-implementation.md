@@ -12,8 +12,8 @@ research-status: draft
 research-type: implementation guide
 research-book: "Book 11"
 review-status: approved
-reviewed-sha256: 55d5e42abc128dbbc01958b300b6abb12eca97394a67260de6dfb5cb2953fc9f
-last-reviewed: 2026-11-20
+reviewed-sha256: 17b162c6f2ae21536fb3018f3bc8bc9a476a9f5434f5944386a632660f005dd1
+last-reviewed: 2026-11-22
 ---
 # Zero Trust Assessment: An Implementation Guide
 

@@ -1,0 +1,40 @@
+# Service Account Migration guide, "The managed service account standard",
+# steps S1 to S11 and who runs each ("Who does what", "The steps"). Blue: a
+# machine or script runs the step; amber: a person decides or acts. Program
+# design (WD-159 to WD-170); gMSA facts as documented on Microsoft Learn
+# (service-accounts-group-managed), read Nov 22, 2026.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.4}
+nodes:
+  s1: {tone: amber, width: 175, tag: "S1 Request", title: "Owner asks", body: ["=In the access management tool; Chapter 12 checks every field"], size: 12}
+  s2: {tone: amber, width: 175, tag: "S2 Decide", title: "Application owner", body: ["=The decision path gives the target; Chapter 03 records it"], size: 12}
+  s3: {tone: amber, width: 175, tag: "S3 Approve", title: "Approvers in SailPoint", body: ["=ServiceNow records the change and never approves"], size: 12}
+  s4: {tone: blue, width: 175, tag: "S4 Create", title: "The pipeline", body: ["=`gmsa-msapipe` runs the approved plan: gMSA, AES256, 30 days, retriever group"], size: 12}
+  s5: {tone: blue, width: 175, tag: "S5 Install and restrict", title: "Hosts and Group Policy", body: ["=`Test-ADServiceAccount` on each host; no privileged group"], size: 12}
+  s6: {tone: blue, width: 175, tag: "S6 Register and close", title: "SailPoint; Chapter 12", body: ["=The task closes only on the re-read of AD and SailPoint"], size: 12}
+  s7: {tone: blue, width: 175, tag: "S7 Watch", title: "Scheduled runs", body: ["=Defender for Identity, VK-NPI-06, Chapter 06; an unrequested gMSA is drift"], size: 12}
+  s8: {tone: amber, width: 175, tag: "S8 Attest", title: "The two owners", body: ["=SailPoint certification by risk tier; a revoke opens a task"], size: 12}
+  s9: {tone: blue, width: 175, tag: "S9 Owner change, orphans", title: "HR-driven workflow", body: ["=Transfer on the owner's HR event; an orphan is disabled, then 30 days to claim"], size: 12}
+  s10: {tone: amber, width: 175, tag: "S10 Retire", title: "Pipeline, then a person", body: ["=Disable and move; after 90 days a person uninstalls and deletes; a dMSA's old account is never deleted"], size: 12}
+  s11: {tone: blue, width: 175, tag: "S11 Move to Entra", title: "Chapter 05", body: ["=Migration C, when the workload moves"], size: 12}
+  key: {kind: text, width: 175, text: "Blue: a machine or script runs the step. Amber: a person decides or acts."}
+order:
+  - [s1, s2, s3]
+  - [s4, s5, s6]
+  - [s7, s8, s9]
+  - [s10, s11, key]
+edges:
+  - [s1, s2, {tone: amber}]
+  - [s2, s3, {tone: amber}]
+  - [s3, s4, {tone: blue, attrs: "constraint=false"}]
+  - [s4, s5, {tone: blue}]
+  - [s5, s6, {tone: blue}]
+  - [s6, s7, {tone: blue, attrs: "constraint=false"}]
+  - [s7, s8, {tone: amber}]
+  - [s8, s9, {tone: blue}]
+  - [s9, s10, {tone: amber, attrs: "constraint=false"}]
+  - [s10, s11, {style: invis}]
+  - [s1, s4, {style: invis}]
+  - [s4, s7, {style: invis}]
+  - [s7, s10, {style: invis}]
+  - [s7, s11, {tone: blue, style: dashed, label: "workload moves", lw: 70, attrs: "constraint=false"}]
