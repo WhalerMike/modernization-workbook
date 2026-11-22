@@ -6,8 +6,8 @@
     accounts, IIS application pools and scheduled tasks moved to a gMSA or a dMSA (Windows Server
     2025's delegated MSA migration); the KDS root key checked read-only; the principals allowed to
     retrieve each managed password held as reviewed data; the Kerberos accounts that stay recorded
-    with an end date (within the program's D08 for an account kept on Kerberos, within G5 for a kept
-    gMSA or dMSA) and, where Chapter 03 requires one, an SPN owner, and exported for the program's SPN
+    with an end date (no later than G5, or the island's end of life where D11 keeps a Kerberos island;
+    WD-165) and, where Chapter 03 requires one, an SPN owner, and exported for the program's SPN
     retirement (P4.6); and every gMSA and dMSA reconciled with the program's provisional end state
     (D11) before AD is retired at G5.
 
@@ -492,6 +492,11 @@ function Test-NpiKerberosIsland {
     $d08 = ConvertTo-NpiKrbDate "$($end.d08LegacyAuthEndDate)"
     $g5 = ConvertTo-NpiKrbDate "$($end.g5AdRetired)"
     $islandEol = ConvertTo-NpiKrbDate "$($end.d11.islandEndOfLife)"
+    # WD-165's ceiling for every account that stays: the island's end of life where D11 keeps one, else G5.
+    $onIsland = $end.d11.decision -eq 'KerberosIsland' -and $islandEol
+    $ceiling = if ($onIsland) { $islandEol } else { $g5 }
+    $ceilingBound = if ($onIsland) { 'IslandEOL' } else { 'G5' }
+    $ceilingName = if ($onIsland) { 'the island''s end of life' } else { 'G5''s (AD retired)' }
     $kdsReady = $Domain.Kds.State -eq 'Ready'
     $ws2025Dc = @($Domain.DomainControllers | Where-Object { Test-NpiWs2025 $_.OperatingSystem }).Count -gt 0
     $std = $Inputs.AdStandard
@@ -525,22 +530,20 @@ function Test-NpiKerberosIsland {
     if ($Domain.Kds.State -eq 'Missing') { $f.Add((New-NpiFinding 'NPI-KRB-01' 'Finding' 'forest' 'KDS root key' 'No KDS root key in the forest: no gMSA or dMSA can be created. Creating one is a one-time, reviewed change by a Domain Admin (Learn), not this code''s')) }
     elseif ($Domain.Kds.State -eq 'Replicating') { $f.Add((New-NpiFinding 'NPI-KRB-01' 'Warn' 'forest' 'KDS root key' "The root key became usable at $($Domain.Kds.EarliestUsable), less than $($script:KdsReplicationHours) hours ago; creations wait for replication (Learn)")) }
 
-    # A stay-on-Kerberos entry (NP3.6), by Chapter 03's rules: an end date within D08 for an account kept on
-    # Kerberos with the authorizing official's acceptance (KeepKerberos), within G5 for every other account
-    # that stays in Active Directory (a kept or planned gMSA or dMSA); and an SPN owner for a KeepKerberos
-    # account or any account with SPNs. A kept account with no SPNs needs no SPN owner.
+    # A stay-on-Kerberos entry (NP3.6), by Chapter 03's rules and WD-165: every account that stays (KeepKerberos,
+    # a kept or planned gMSA or dMSA) has an end date no later than G5, or the island's end of life where D11
+    # keeps a Kerberos island. D08 is only when the program records that date; it bounds no end date. And an
+    # SPN owner for a KeepKerberos account or any account with SPNs. A kept account with no SPNs needs none.
     $stay = {
         param([string]$Name, [string]$Type, [string]$Source, [string]$Spns, $d, [string]$Status)
         $owner = "$($d.SpnOwnerUpn)"; $endDate = ConvertTo-NpiKrbDate "$($d.EndDate)"; $ao = "$($d.AoAcceptedBy)"
         $key = $Source
         $keptOnKerberos = "$($d.Disposition)" -eq 'KeepKerberos'
         $needsOwner = $keptOnKerberos -or [bool]$Spns
-        $bound = if ($keptOnKerberos) { 'D08' } else { 'G5' }
-        $limit = if ($keptOnKerberos) { $d08 } else { $g5 }
-        $limitName = if ($keptOnKerberos) { 'D08''s' } else { 'G5''s (AD retired)' }
+        $bound = $ceilingBound; $limit = $ceiling; $limitName = $ceilingName
         if ($needsOwner -and -not $owner) { $f.Add((New-NpiFinding 'NPI-KRB-05' 'Finding' $key "$Name ($Type)" 'Stays on Kerberos with no SPN owner: name the person who answers for its SPNs (Chapter 03''s dispositions.csv for a kept account, kerberos-replatform.csv for a converted one)')) }
         $within = $false
-        if (-not $endDate) { $f.Add((New-NpiFinding 'NPI-KRB-06' 'Finding' $key "$Name ($Type)" 'Stays on Kerberos with no end date')) }
+        if (-not $endDate) { $f.Add((New-NpiFinding 'NPI-KRB-06' 'Finding' $key "$Name ($Type)" "Stays on Kerberos with no end date$(if ($d08) { "; the program records it by D08, $($d08.ToString('yyyy-MM-dd'))$(if ($d08 -le $AsOf) { ', which has passed' })" })")) }
         elseif (-not $limit) { $f.Add((New-NpiFinding 'NPI-KRB-06' 'Warn' $key "$Name ($Type)" "The program's $bound date isn't set yet: the island list can't be handed to the SPN retirement (P4.6)")) }
         elseif ($endDate -gt $limit) { $f.Add((New-NpiFinding 'NPI-KRB-06' 'Finding' $key "$Name ($Type)" "End date $($endDate.ToString('yyyy-MM-dd')) is after $limitName $($limit.ToString('yyyy-MM-dd'))")) }
         else { $within = $true }

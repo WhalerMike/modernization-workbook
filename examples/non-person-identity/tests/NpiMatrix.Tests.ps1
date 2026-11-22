@@ -223,14 +223,24 @@ Describe 'D-NP3: the owner''s disposition' {
         $d = Set-Row (Get-In 'dispositions.csv') $script:Id.deploy @{ Reason = '' }
         (Get-F 'NPI-MAT-04' (Get-TestDecision -Dispositions $d).Findings).Severity | Should -Be 'Finding'
     }
-    It 'NPI-MAT-05: an account kept in AD ends by G5, one kept on Kerberos by D08 and with the authorizing official''s acceptance' {
+    It 'NPI-MAT-05: every account that stays ends by G5, or the island''s end of life where D11 keeps one (WD-165); one kept on Kerberos needs the authorizing official''s acceptance' {
         (Get-F 'NPI-MAT-05').Object | Should -Be 'dmsa-hrsync$ (dMSA)'
-        # svc-intranet, kept on Kerberos instead of its gMSA.
+        # svc-intranet, kept on Kerberos instead of its gMSA. The fixture's D11 keeps an island that ends 2028-06-30.
         $keep = @{ Disposition = 'KeepKerberos'; Target = ''; Wave = ''; SpnOwnerUpn = 'erin@contoso.example'; AoAcceptedBy = 'ao@contoso.example'; EndDate = '2027-05-31' }
-        $d = Set-Row (Get-In 'dispositions.csv') $script:Id.intranet (& { $h = $keep.Clone(); $h.EndDate = '2027-07-31'; $h.AoAcceptedBy = ''; $h })
+        # After D08 (2027-06-30) and G5 (2027-09-30), within the island's end of life: D08 bounds no end date.
+        $d = Set-Row (Get-In 'dispositions.csv') $script:Id.intranet (& { $h = $keep.Clone(); $h.EndDate = '2027-12-31'; $h })
+        @(Get-F 'NPI-MAT-05' (Get-TestDecision -Dispositions $d).Findings | Where-Object Object -Like 'svc-intranet*').Count | Should -Be 0
+        $d = Set-Row (Get-In 'dispositions.csv') $script:Id.intranet (& { $h = $keep.Clone(); $h.EndDate = '2028-07-31'; $h.AoAcceptedBy = ''; $h })
         $f = @(Get-F 'NPI-MAT-05' (Get-TestDecision -Dispositions $d).Findings | Where-Object Object -Like 'svc-intranet*')
-        ($f.Issue -join ' ') | Should -Match 'D08'
+        ($f.Issue -join ' ') | Should -Match "island's end of life \(D11\), 2028-06-30"
         ($f.Issue -join ' ') | Should -Match 'authorizing official'
+        # Where D11 retires AD, the ceiling is G5.
+        $ad = $script:Dates.Clone(); $ad['d11'] = @{ decision = 'AdRetired'; status = 'Provisional' }
+        $d = Set-Row (Get-In 'dispositions.csv') $script:Id.intranet (& { $h = $keep.Clone(); $h.EndDate = '2027-12-31'; $h })
+        (Get-F 'NPI-MAT-05' (Get-TestDecision -Dates $ad -Dispositions $d).Findings | Where-Object Object -Like 'svc-intranet*').Issue | Should -Match 'after AD retirement \(G5\), 2027-09-30'
+        # No end date: D08 is the date the program records it by.
+        $d = Set-Row (Get-In 'dispositions.csv') $script:Id.intranet (& { $h = $keep.Clone(); $h.EndDate = ''; $h })
+        (Get-F 'NPI-MAT-05' (Get-TestDecision -Dispositions $d).Findings | Where-Object Object -Like 'svc-intranet*').Issue | Should -Match 'records it by D08, 2027-06-30'
         $d2 = Set-Row (Get-In 'dispositions.csv') $script:Id.intranet (& { $h = $keep.Clone(); $h.EndDate = '2026-10-01'; $h })
         (Get-F 'NPI-MAT-05' (Get-TestDecision -Dispositions $d2).Findings | Where-Object Object -Like 'svc-intranet*').Issue | Should -Match 'has passed'
         (Get-F 'NPI-MAT-05' (Get-TestDecision -Dates $null -Dispositions (Set-Row (Get-In 'dispositions.csv') $script:Id.intranet $keep)).Findings | Where-Object Object -Like 'svc-intranet*').Severity | Should -Be 'Warn'

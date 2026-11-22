@@ -79,3 +79,11 @@ The kit now prints the plan's NP IDs, Chapter 06 follows Chapter 03's end-date a
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | K1 | The kit prints `D-NP4` in Lab 1's Workload ID Premium line and Gate 2's criterion; the rest of the run's output is unchanged | Lab 1, step 3 | updated by running the commands as written | local run and capture 03-3, November 9, 2026 |
+
+## End dates follow WD-165 (November 22, 2026)
+
+The owner chose "Rule 1" on November 22, 2026: every end date follows WD-165. An account that stays on Kerberos has an end date the authorizing official accepts, recorded by D08, and no later than program G5, or the island's end of life where D11 keeps a Kerberos island; D08 is no longer a ceiling on any end date. Tests on November 22, 2026, PowerShell 7 with Pester 5: `NpiMatrix.Tests.ps1` and `NpiKerberosIsland.Tests.ps1` 98 passed; the Lab 1 captures were regenerated with `python scripts/kit_captures.py npi`.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| W1 | NPI-MAT-05 bounds every account kept in AD (`Keep` or `KeepKerberos`) by program G5, or the island's end of life where D11 keeps one; D08 is the date the end date is recorded by, named in the finding for a missing end date. Before, a `KeepKerberos` end date was bounded by D08 | The checks (NPI-MAT-05); Dangers; Checklist; the inputs | corrected to WD-165; Lab 1's output is unchanged (the fixture's `svc-webfront` ends May 31, 2027, before D08 and within both bounds; the kept gMSAs end August 31, 2027, within G5; `dmsa-hrsync$` has none) | WD-165; owner decision, November 22, 2026 |
