@@ -98,3 +98,4 @@ Each figure is reused from the page named in its caption and carries that page's
 | 27 | Figure `b13-governance/ch06-drift-pipeline` (reused) | Module 10, Unit 2 | carried | Book 13, Chapter 06 and its log |
 | 28 | Figure `developer-workbooks/deploy-test-to-production` (new): pre-flight, test stage, go/no-go, production in stages, evidence; no row counts | Module 11 | restated-as-design (no Learn page); worded to hold for all three runbooks (ADM 11 rows, NPI 9, PN 7) | Book 19, Chapter 10; NPI workbook Chapter 11; PN workbook Chapter 08 |
 | 29 | Figure `guides/service-identity-decision-path` (reused, from #699) | Module 12, Unit 1 | carried | The service account guide and its log |
+| 30 | Figure `guides/msa-standard-lifecycle` (reused, from #701): S1 to S11 | Module 13, Unit 3 | carried | The service account guide and its log |
