@@ -74,3 +74,9 @@ Tense only; date carried. The standard itself is verified in Book 00's Chapter 0
 | # | Change | Where | Kind | Source |
 |---|---|---|---|---|
 | N8-9 | Removed the past date "targeted for 2026-Q3"; the program sets a target date for blocking NTLMv1. No statement is made about whether any estate reached it | Driver one paragraph | decision of Nov 8; fact change | Mike's decision of Nov 8, 2026, item 9 |
+
+## Revision 2026-11-22 — NTLM auditing on Windows Server 2019 and 2022
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| K1 | Enhanced NTLM auditing now also listed for Windows Server 2019 and 2022, from the updates released on and after October 13, 2026 (was Windows Server 2025 and Windows 11 only), matching Book 02 Chapter 03's NTLM row; new note `[^c02-kb5064479]`. Microsoft's sources disagree: the NTLM FAQ (`c02-ntlm-faq`, updated October 19, 2026) still says Microsoft is "working on bringing back" enhanced auditing to Windows Server 2019 and 2022, while KB5064479 says "Starting October 13, 2026, enhanced NTLM auditing is also available for Windows Server 2022 and Windows Server 2019." The page follows the KB. The KB's change log also names Windows Server 2016, which its body doesn't list; 2016 isn't claimed | Driver one paragraph; new note | factual (read Nov 22, 2026) | <https://support.microsoft.com/help/5064479> |
