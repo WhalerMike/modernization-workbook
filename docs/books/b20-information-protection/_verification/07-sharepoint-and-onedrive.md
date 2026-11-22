@@ -26,6 +26,7 @@ Writer: Book 20 build (Nov 11, 2026). Learn pages read for this chapter: 14. Sou
 | 20 | Unlock-SPOSensitivityLabelEncryptedFile removes label and encryption without site access; justification in audit and usage log; admin-defined permissions only | Validate | verified | Enable sensitivity labels for SPO/ODB, "Remove encryption for a labeled document" | Nov 11, 2026 |
 | 21 | Container labels don't label files (via Book 12 Ch09) | Intro | verified (cross-reference) | Book 12, Chapter 09 | Nov 11, 2026 |
 | 22 | Dispositions, ring criteria, IRM-stays-on in GCC, Unlock held to super-user approval | Decide; procedures | restated-as-design | Program design | Nov 11, 2026 |
+| 23 | Figure `ch07-what-integration-changes`: what integration processes; five ways a protected file drops out of view, with the program's response | What label integration changes | restated-as-design | Learn, "Use sensitivity labels with SharePoint and OneDrive files" (Limitations) and "Enable co-authoring for files encrypted with sensitivity labels" | Nov 22, 2026 |
 
 ## GCC gaps
 - `EnableAIPIntegration` (sensitivity labels for Office files in SharePoint and OneDrive) isn't listed separately on the GCC page (not yet specified); dependent features are listed Available.

@@ -1,0 +1,32 @@
+# Book 20 Chapter 10 — unified audit, on and retained, is the floor, routed to
+# the log platform; the insider risk charter's six questions, each with its
+# decider, gate any Insider Risk Management or Communication Compliance
+# configuration. Program design; Audit and Insider Risk Management behavior as
+# documented on Microsoft Learn (audit-solutions-overview,
+# insider-risk-management), read Nov 22, 2026.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  audit: {tone: green, width: 270, tag: "The floor", title: "Purview Audit on and retained", body: ["Standard: 180 days", "Premium, where licensed: one year; 10 years with the add-on", "Retention follows the license of the user who acted"], size: 12}
+  logs: {tone: violet, width: 250, title: "The agency's log platform (Book 12)", body: ["Keeps records for the evidence contract's full period", "Management Activity API serves only the last 7 days; GCC uses its own endpoint"], size: 12}
+  charter:
+    kind: table
+    tone: amber
+    columns: ["Charter question, settled in writing first", "Who decides"]
+    widths: [330, 220]
+    rows:
+      - ["Purpose, and which policy templates are in scope", "CISO, with the insider threat program lead"]
+      - ["Employee notice; privacy impact assessment or SORN", "Senior agency official for privacy"]
+      - ["Bargaining or notice obligations", "Labor relations office"]
+      - ["What an investigator may view, export or escalate", "General counsel"]
+      - ["Who holds which role; who reviews the reviewers", "CISO, with the privacy officer"]
+      - ["How long alerts, cases and evidence are kept", "Records officer"]
+  gate: {kind: pill, tone: amber, text: "Charter signed", width: 160}
+  tools: {tone: blue, width: 460, title: "Then, and only then: Insider Risk Management and Communication Compliance", body: ["No one both administers and investigates", "Analysts triage on pseudonyms before Investigators open content"], size: 12}
+order:
+  - [audit, logs]
+edges:
+  - [audit, logs, {tone: violet, label: "routed out", lw: 80}]
+  - [audit, charter, {tone: green}]
+  - [charter, gate, {tone: amber}]
+  - [gate, tools, {tone: blue}]
