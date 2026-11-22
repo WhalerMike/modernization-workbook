@@ -1292,6 +1292,7 @@ pages:
   - docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
+  - docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.md
   - docs/reference/source-register.md
   - examples/third_party/windows-server-msa-pages/SNAPSHOT.md
   - examples/third_party/windows-server-msa-pages/snapshot.json
@@ -1310,6 +1311,7 @@ pages:
   - docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
+  - docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.md
   - docs/reference/source-register.md
   - examples/non-person-identity/config/calls-ch06.json
   - examples/third_party/windows-server-msa-pages/SNAPSHOT.md

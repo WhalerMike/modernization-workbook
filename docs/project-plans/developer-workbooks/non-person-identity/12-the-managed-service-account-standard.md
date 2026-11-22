@@ -148,7 +148,7 @@ Retirement: 1 DeleteCandidate, 1 EnabledInAd, 1 SignInSinceDisable, 1 Wait; noth
   NPI-STD-01  REQ-2026-0203
   ...
   NPI-STD-29  gmsa-report$
-Manifest SHA-256: 12ef8d960e8c8d618215f13c007f5d597f3cfda7b6fc60b6b0f8057311b9522d
+Manifest SHA-256: ba82552844d983981a0651d463253e3830707959b23467d73c8acc41d011b2ee
 ```
 
 **Step 2: Read the findings.** Look for `gmsa-ops$`: it's in Domain Admins (NPI-STD-16), SailPoint never aggregated it (NPI-STD-10), and no request explains it (NPI-STD-18).

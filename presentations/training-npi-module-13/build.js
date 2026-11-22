@@ -180,7 +180,7 @@ endModule(SC);
     "  NPI-STD-01  REQ-2026-0203",
     "  ...",
     "  NPI-STD-29  gmsa-report$",
-    "Manifest SHA-256: 12ef8d960e8c8d618215f13c007f5d597f3cfda7b6fc60b6b0f8057311b9522d",
+    "Manifest SHA-256: ba82552844d983981a0651d463253e3830707959b23467d73c8acc41d011b2ee",
   ], { label: `TRY IT  ·  ${CAP} (WRAPPED; "..." MARKS CUTS)`, pt: 10.5 });
   line(s, "Writes", "It writes its output folder and nothing else: nothing to AD, SailPoint, ServiceNow or Defender for Identity.", c + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 13, \"Exercise: Lab 1,\" step 1; Chapter 12, Lab 1, step 1; data/kit-captures/npi/12-1.txt.");
