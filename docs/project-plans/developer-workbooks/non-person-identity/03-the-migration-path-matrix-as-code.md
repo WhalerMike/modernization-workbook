@@ -101,7 +101,7 @@ This chapter's code is `powershell/NpiMatrix/NpiMatrix.psm1`, the entry script `
 | `workloads.csv` | Application owners | For each account: `Location` (`Azure`, `ArcServer`, `OidcIssuer`, `EntraApiNoIssuer`, `OnPremKerberos`, `Hybrid`), `MiSupported`, `Dmsa`, `Issuer` |
 | `dispositions.csv` | Application owners (D-NP3) | `Disposition` (`Retire`, `Replatform`, `Keep`, `KeepKerberos`), `Target`, `Wave`, `DecidedBy`, `DecidedOn`, `EndDate`, `AoAcceptedBy`, `SpnOwnerUpn`, `Reason` |
 | `waves.csv` | Identity engineering (NP2.2) | `Wave`, `Name`, `Starts`, `ParallelRunDays`, `RollbackOwnerUpn`, `RollbackReviewedOn` |
-| `program-dates.json` | The program master schedule | D08 (end dates for legacy authentication), program G5 (AD retired) and D11 (the provisional end state). It is the one program dates file: [Chapter 06](06-gmsa-dmsa-and-the-kerberos-island.md) reads the same file and refuses a copy whose SHA-256 isn't the one this run recorded |
+| `program-dates.json` | The program master schedule | D08 (end dates for legacy authentication: the date by which the program records each kept account's end date), program G5 (AD retired) and D11 (the provisional end state). It is the one program dates file: [Chapter 06](06-gmsa-dmsa-and-the-kerberos-island.md) reads the same file and refuses a copy whose SHA-256 isn't the one this run recorded |
 | `workload-id-premium.json` | The CISO (D-NP4) | `decision` (`Tier1`, `Wide` or `None`), `decidedBy`, `decidedOn`, the Tier 1 identities, compensating controls |
 
 ### The proposal (NP2.1)
@@ -128,7 +128,7 @@ A proposal carries Learn's cautions where they apply: every host must support dM
 | NPI-MAT-02 | Finding | No proposal: the workload facts are missing or incomplete, or no row matches | NP2.1 |
 | NPI-MAT-03 | Finding (Warn for delegation) | A target that doesn't belong to the disposition; an MSA or gMSA sent to a dMSA; a dMSA without the facts that allow one; unconstrained delegation under a dMSA | Learn[^np03-dmsa] [^np03-dmsa-faq] (research gaps, row 29) |
 | NPI-MAT-04 | Warn (Finding with no reason) | The owner chose a target the matrix didn't propose | *Design guidance* |
-| NPI-MAT-05 | Finding (Warn with no program dates) | An account kept in Active Directory with no end date, one past, or one after program G5; one kept on Kerberos after D08 or without the authorizing official's acceptance | D-NP3; NP3.6; NP7.3 (*Design guidance*; research gaps, row 24) |
+| NPI-MAT-05 | Finding (Warn with no program dates) | An account kept in Active Directory (`Keep` or `KeepKerberos`) with no end date, one past, or one after program G5, or after the Kerberos island's end of life where D11 keeps one ([WD-165](../../../about/decision-register.md#wd-165)); one kept on Kerberos without the authorizing official's acceptance. D08 is when the program records the end date, not a bound on it | D-NP3; NP3.6; NP7.3 (*Design guidance*; research gaps, row 24) |
 | NPI-MAT-06 | Finding | An account kept on Kerberos, or a kept account with an SPN, with no SPN owner who is an enabled member | Gate 2; Chapter 02's owner rule |
 | NPI-MAT-07 | Finding (Warn when kept) | A HIGH-risk account re-platformed outside wave 1; a HIGH-risk account kept, whose risk stays until its privilege is cut | NP2.2; Book 02, Chapter 10 |
 | NPI-MAT-08 | Finding | A wave with members and no rollback owner who is an enabled member, no review date, or a parallel run under 30 days | NP2.2; the guide's Step 5 |
@@ -508,7 +508,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 | A guess at where the workload runs | A managed identity proposed for a service that can't use one | No proposal without the owner's workload facts (NPI-MAT-02); `MiSupported`, `Dmsa` and `Issuer` required where they decide |
 | An MSA or gMSA sent to a dMSA | The migration can't be done; the wave stalls | Never allowed (NPI-MAT-03), from Learn |
 | A dMSA where a host can't use it, or with unconstrained delegation | Authentication fails once the old account is disabled; delegation stops | Proposed only with `Dmsa` recorded; both cautions on the proposal; NPI-MAT-03 |
-| A Kerberos account kept forever | It outlives the domain, and the program's SPN retirement has no list | `KeepKerberos` needs an end date by D08, the authorizing official and an SPN owner; any account kept in AD needs an end date by program G5 (NPI-MAT-05, -06) |
+| A Kerberos account kept forever | It outlives the domain, and the program's SPN retirement has no list | `KeepKerberos` needs the authorizing official, an SPN owner and an end date; every account kept in AD needs an end date, recorded by D08 and no later than program G5, or the island's end of life where D11 keeps one ([WD-165](../../../about/decision-register.md#wd-165); NPI-MAT-05, -06) |
 | HIGH-risk accounts left for later | The riskiest credentials live longest | HIGH re-platformed outside wave 1 is a Finding; HIGH kept is a Warning naming the privilege to cut (NPI-MAT-07) |
 | A wave with no way back | A failed conversion becomes an outage | Each wave's rollback from its members' targets, a named rollback owner who is an enabled member, a review date and a 30-day parallel run (NPI-MAT-08) |
 | Workload ID Premium bought for identities it can't cover | Money spent on managed identities or multitenant apps; Tier 1 apps left unprotected after conversion | Eligibility from the register; Tier 1 entries checked now and after conversion; units compared (NPI-MAT-09) |
@@ -520,7 +520,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 - [ ] Every account in the register has a proposal, or a finding naming the missing workload fact, and every out-of-scope row has its reason.
 - [ ] Every account in scope has a disposition from its application owner, with who and when, and every target that differs from the matrix has a reason.
 - [ ] No MSA or gMSA is planned for a dMSA, and every dMSA has its domain and host facts recorded.
-- [ ] Every account kept on Kerberos has an SPN owner who is an enabled member, an end date by D08 and the authorizing official's acceptance; every account kept in AD ends by program G5.
+- [ ] Every account kept on Kerberos has an SPN owner who is an enabled member, and the authorizing official's acceptance; every account kept in AD has an end date, recorded by D08, no later than program G5 or the island's end of life where D11 keeps one (WD-165).
 - [ ] Every HIGH-risk account is in wave 1, retired, or kept with the privilege cut assigned.
 - [ ] Every wave has its rollback, a rollback owner, a review date and a 30-day parallel run.
 - [ ] The D-NP4 decision is the CISO's, its Tier 1 list holds only eligible identities, and the tenant's units cover it.

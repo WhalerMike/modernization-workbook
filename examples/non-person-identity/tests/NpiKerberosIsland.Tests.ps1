@@ -369,23 +369,28 @@ Describe 'The island list (NP3.6) and the SPN retirement hand-off (P4.6)' {
         @(Get-Rule 'NPI-KRB-06').ObjectKey | Sort-Object | Should -Be @('svc-intranet')
         @($script:Run.IslandList | Where-Object ReadyForP46).Account | Should -Be @('dmsa-hrsync$', 'gmsa-ops$', 'gmsa-print$', 'gmsa-web$')
         $script:Run.HandoffReady | Should -BeFalse
-        # The end date's bound, as in Chapter 03: G5 for a kept or planned gMSA or dMSA, D08 only for a KeepKerberos account.
-        @($script:Run.IslandList | Where-Object Account -EQ 'svc-webfront')[0].EndBound | Should -Be 'D08'
-        @($script:Run.IslandList | Where-Object EndBound -EQ 'G5').Account | Should -Be @('dmsa-hrsync$', 'gmsa-intranet$', 'gmsa-ops$', 'gmsa-print$', 'gmsa-web$')
-        # gmsa-web$ ends 2027-08-31: after D08 (2027-06-30), within G5 (2027-09-30).
+        # WD-165, as in Chapter 03: every account that stays ends by the island's end of life where D11 keeps one
+        # (the fixture's, 2028-06-30), else by G5. D08 bounds no end date, a KeepKerberos account's included.
+        @($script:Run.IslandList.EndBound | Sort-Object -Unique) | Should -Be @('IslandEOL')
+        # gmsa-web$ ends 2027-08-31 and svc-webfront, kept on Kerberos, 2027-12-31: after D08 (2027-06-30), within the island's end of life.
         @($script:Run.IslandList | Where-Object Account -EQ 'gmsa-web$')[0].WithinBound | Should -BeTrue
-        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'gmsa-web$' @{ EndDate = '2027-10-31' } })
-        @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-06' -and $_.ObjectKey -eq 'gmsa-web$' }).Issue | Should -Match 'after G5'
-        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'svc-webfront' @{ EndDate = '2027-08-31' } })
-        @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-06' -and $_.ObjectKey -eq 'svc-webfront' }).Issue | Should -Match 'after D08'
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'svc-webfront' @{ EndDate = '2027-12-31' } })
+        @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-06' -and $_.ObjectKey -eq 'svc-webfront' }).Count | Should -Be 0
+        @($r.IslandList | Where-Object Account -EQ 'svc-webfront')[0].WithinBound | Should -BeTrue
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'gmsa-web$' @{ EndDate = '2028-07-31' } })
+        @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-06' -and $_.ObjectKey -eq 'gmsa-web$' }).Issue | Should -Match "after the island's end of life 2028-06-30"
+        # Where D11 retires AD, the bound is G5 (2027-09-30) for every account that stays.
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) $x.ProgramDates.d11.decision = 'AdRetired'; Set-Row $x 'svc-webfront' @{ EndDate = '2027-10-31' } })
+        @($r.IslandList.EndBound | Sort-Object -Unique) | Should -Be @('G5')
+        @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-06' -and $_.ObjectKey -eq 'svc-webfront' }).Issue | Should -Match 'after G5'
         # An SPN owner only for a KeepKerberos account or one with SPNs: gmsa-ops$ is kept with no SPNs and needs none; gmsa-web$ has SPNs.
         @($script:Run.IslandList | Where-Object Account -EQ 'gmsa-ops$')[0].ReadyForP46 | Should -BeTrue
         $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'gmsa-web$' @{ SpnOwnerUpn = '' } })
         @($r.Findings | Where-Object Rule -EQ 'NPI-KRB-05').ObjectKey | Should -Contain 'gmsa-web$'
         @($r.IslandList | Where-Object Account -EQ 'gmsa-web$')[0].ReadyForP46 | Should -BeFalse
     }
-    It 'with no D08 date, nothing can be handed off' {
-        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) $x.ProgramDates.d08LegacyAuthEndDate = $null })
+    It 'with no G5 date where D11 retires AD, nothing can be handed off' {
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) $x.ProgramDates.d11.decision = 'AdRetired'; $x.ProgramDates.g5AdRetired = $null })
         @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-06' -and $_.Severity -eq 'Warn' }).Count | Should -BeGreaterThan 0
         $r.HandoffReady | Should -BeFalse
     }

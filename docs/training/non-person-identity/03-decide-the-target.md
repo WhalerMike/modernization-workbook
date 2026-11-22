@@ -164,7 +164,7 @@ Remove-Item -Recurse -Force out
     Get-Content out/matrix/findings.json -Raw | ConvertFrom-Json | Format-Table Rule, Severity, Object
     ```
 
-    Expect twelve rows. `svc-hrsync` is HIGH-risk but in wave 2 (NPI-MAT-07). `svc-webfront` is kept on Kerberos with no SPN owner (NPI-MAT-06). `dmsa-hrsync$` has no end date before G5 (NPI-MAT-05). Vendor Portal is multitenant, so Conditional Access can't cover it (NPI-MAT-09).
+    Expect twelve rows. `svc-hrsync` is HIGH-risk but in wave 2 (NPI-MAT-07). `svc-webfront` is kept on Kerberos with no SPN owner (NPI-MAT-06). `dmsa-hrsync$` has no end date (NPI-MAT-05): it must end by the island's end of life, recorded by D08. Vendor Portal is multitenant, so Conditional Access can't cover it (NPI-MAT-09).
 
 6. **Read the waves and their rollback:**
 

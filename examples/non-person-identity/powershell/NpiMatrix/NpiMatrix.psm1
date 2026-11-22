@@ -331,6 +331,12 @@ function Test-NpiMigrationDecision {
     $byId = @{}; foreach ($d in $Dispositions) { if ($d.IdentityId) { $byId[$d.IdentityId] = $d } }
     $d08 = if ($ProgramDates) { ConvertTo-NpiMatrixDate $ProgramDates['d08LegacyAuthEndDate'] } else { $null }
     $g5 = if ($ProgramDates) { ConvertTo-NpiMatrixDate $ProgramDates['g5AdRetired'] } else { $null }
+    # WD-165: an account that stays ends no later than G5, or the island's end of life where D11 keeps one.
+    # D08 is only the date by which the program records that end date; it bounds no end date.
+    $d11 = if ($ProgramDates) { $ProgramDates['d11'] } else { $null }
+    $islandEol = if ($d11 -and "$($d11['decision'])" -eq 'KerberosIsland') { ConvertTo-NpiMatrixDate $d11['islandEndOfLife'] } else { $null }
+    $ceiling = if ($islandEol) { $islandEol } else { $g5 }
+    $ceilingName = if ($islandEol) { 'the Kerberos island''s end of life (D11)' } else { 'AD retirement (G5)' }
     $first = [int]$Config.firstWave
 
     foreach ($p in $Proposals) {
@@ -376,9 +382,9 @@ function Test-NpiMigrationDecision {
         if ($disp -eq 'KeepKerberos' -or ($disp -eq 'Keep' -and $isAd)) {
             $end = ConvertTo-NpiMatrixDate $d.EndDate
             $r.EndDate = "$($d.EndDate)"
-            $limit = if ($disp -eq 'KeepKerberos') { $d08 } else { $g5 }
-            $limitName = if ($disp -eq 'KeepKerberos') { 'the program''s legacy-authentication end date (D08)' } else { 'AD retirement (G5)' }
-            if (-not $end) { $f.Add((New-NpiFinding 'NPI-MAT-05' 'Finding' $p.IdentityId $label "Kept on Active Directory with no end date; it must end by $limitName")) }
+            $limit = $ceiling; $limitName = $ceilingName
+            $recordBy = if ($d08) { "; the program records it by D08, $($d08.ToString('yyyy-MM-dd'))$(if ($d08 -le $AsOf) { ', which has passed' })" } else { '' }
+            if (-not $end) { $f.Add((New-NpiFinding 'NPI-MAT-05' 'Finding' $p.IdentityId $label "Kept on Active Directory with no end date; it must end by $limitName$recordBy")) }
             elseif ($end -le $AsOf) { $f.Add((New-NpiFinding 'NPI-MAT-05' 'Finding' $p.IdentityId $label "The end date $($d.EndDate) has passed")) }
             elseif (-not $limit) { $f.Add((New-NpiFinding 'NPI-MAT-05' 'Warn' $p.IdentityId $label "End date $($d.EndDate) can't be checked: $limitName isn't in program-dates.json")) }
             elseif ($end -gt $limit) { $f.Add((New-NpiFinding 'NPI-MAT-05' 'Finding' $p.IdentityId $label "End date $($d.EndDate) is after $limitName, $($limit.ToString('yyyy-MM-dd'))")) }

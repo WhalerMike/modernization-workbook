@@ -124,3 +124,13 @@ The kit's Chapter 06 write path changed with decisions [WD-159 to WD-170](../../
 | S10 | Lab 2's end date: no later than the test program G5, as WD-165 bounds it (the placeholder list said D08) | Lab 2 | corrected to match WD-165 and step 1 | WD-165 |
 | S11 | Lab 2's new steps (the domain local group, `ad-standard.json`, `-RunAs Person -TestDomain`) | Lab 2, steps 1 and 4 to 6 | not run against a domain; the input-file commands were checked locally for the CSV's twelve columns and the JSON's integer interval | — |
 
+
+## End dates follow WD-165 (November 22, 2026)
+
+The owner chose "Rule 1" on November 22, 2026: every end date follows WD-165. An account that stays on Kerberos has an end date the authorizing official accepts, recorded by D08, and no later than program G5, or the island's end of life where D11 keeps a Kerberos island; D08 is no longer a ceiling on any end date. Tests on November 22, 2026, PowerShell 7 with Pester 5: `NpiMatrix.Tests.ps1` and `NpiKerberosIsland.Tests.ps1` 98 passed; the Lab 1 captures were regenerated with `python scripts/kit_captures.py npi`.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| W1 | NPI-KRB-06 bounds every account that stays by the island's end of life where D11 keeps a Kerberos island, program G5 otherwise; the island list's `EndBound` is `IslandEOL` or `G5`, never `D08`. Before, a `KeepKerberos` account was bounded by D08 | The context the code depends on; the checks (NPI-KRB-06); Lab 1, step 4; Checklist | corrected to WD-165; Lab 1's findings are unchanged | WD-165; owner decision, November 22, 2026 |
+| W2 | Lab 1's plan SHA-256 is now `35c1efff…`: the fixture's `program-dates.json` comment changed, and the plan carries that file's hash. S9's other values are unchanged | Lab 1, steps 4 and 9; Module 8 and Module 12's pages | updated by running the commands as written | local run and captures 06-4 and 06-9, November 22, 2026 |
+| W3 | `gmsa-web$` (August 31, 2027) is after D08 and within the island's end of life (June 30, 2028), its bound where D11 keeps an island; `svc-intranet`'s planned gMSA (December 31, 2028) is after both | Lab 1, step 4 | updated from the fixture and the tests | `program-dates.json`, `kerberos-replatform.csv` |

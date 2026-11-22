@@ -228,3 +228,11 @@ Mike's approval, November 22, 2026: "Yes, add it and fix all seven." Learn pages
 | Figure | Where | Verdict | Source |
 |---|---|---|---|
 | Figure `msa-standard-lifecycle`: steps S1 to S11 and who runs each, as in "Who does what" and "The steps"; colored by whether a person or a machine acts | The managed service account standard, The steps | restated-as-design | This guide's steps table (WD-159 to WD-170); Learn, "Secure group managed service accounts" |
+
+## End dates follow WD-165 in the kit (November 22, 2026)
+
+The owner chose "Rule 1" on November 22, 2026.
+
+| # | Fix | Where | Verdict | Source |
+|---|---|---|---|---|
+| J-02a | J-02 recorded Chapter 03's stricter `KeepKerberos` check (an end date after D08 flagged). The kit now follows WD-165 (NPI-MAT-05 and NPI-KRB-06 bound every account that stays by program G5, or the island's end of life where D11 keeps one), so the settings row's note on the stricter check is replaced by one naming both checks | The standard's settings, "End date, if kept" | corrected; the rule itself is unchanged | WD-165; owner decision, November 22, 2026 |

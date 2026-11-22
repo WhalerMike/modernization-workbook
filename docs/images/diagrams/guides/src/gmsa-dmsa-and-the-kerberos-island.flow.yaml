@@ -33,7 +33,7 @@ nodes:
     widths: [220, 220, 160]
     rows:
       - ["Keep: a gMSA or dMSA staying on premises", "An SPN owner where it has SPNs", "Program G5, or the island's end of life"]
-      - [{text: "KeepKerberos: a traditional account (no managed account supported, or unconstrained delegation)", tone: amber}, {text: "The authorizing official's acceptance and an SPN owner", tone: amber}, {text: "The legacy-authentication end date D08 sets (Chapter 03's check)", tone: amber}]
+      - [{text: "KeepKerberos: a traditional account (no managed account supported, or unconstrained delegation)", tone: amber}, {text: "The authorizing official's acceptance and an SPN owner", tone: amber}, {text: "Program G5, or the island's end of life", tone: amber}]
       - [{text: "Every other gMSA and dMSA", tone: green}, {text: "Moves to a workload identity or retires", tone: green}, {text: "Program G5", tone: green}]
 edges:
   - [kds, gmsa, {label: "needed by"}]
