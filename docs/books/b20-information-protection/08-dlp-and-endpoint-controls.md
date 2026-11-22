@@ -12,8 +12,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 4aecbf72c5dcfd3c9f17fb2b935ef9e007cc243c4bd2c4d1eb846235b0075d1b
-last-reviewed: 2026-11-18
+reviewed-sha256: 54045faa1f8bb3037a82b12d7757930d223b2248fa962e075529c13c85c85f23
+last-reviewed: 2026-11-22
 ---
 # Chapter 08 — DLP and Endpoint Controls
 

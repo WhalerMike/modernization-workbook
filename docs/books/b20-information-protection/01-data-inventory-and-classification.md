@@ -12,8 +12,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 030d248d6d6d6ddb9892a726e9d0f23abac5336a31acf959e8c571ef642bb001
-last-reviewed: 2026-11-18
+reviewed-sha256: 6aba4434571916b032cfcbe96c7366bd64dfead8a78be4a110a6540de7df9858
+last-reviewed: 2026-11-22
 ---
 # Chapter 01 — Data Inventory and Classification
 

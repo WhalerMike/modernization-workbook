@@ -12,8 +12,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 76a7e17efc32f4c1be25dd2387a30e413ef6fea2c6da804f7c850b1f22eec149
-last-reviewed: 2026-11-18
+reviewed-sha256: b5dba47b7311b4f7f307f5c62286285297626f9ce6434bb8008503161b1008e2
+last-reviewed: 2026-11-22
 ---
 # Chapter 02 — Sensitivity Label Architecture
 

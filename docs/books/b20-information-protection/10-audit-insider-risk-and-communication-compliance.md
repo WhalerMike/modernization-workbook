@@ -12,8 +12,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 1fef8cc8a0860da658b99110ca46804d755ba3233d0accaef1f2b43ed0638d65
-last-reviewed: 2026-11-18
+reviewed-sha256: eb440bf2d4131ffd6999e00b9daa8c66b70d80363d2ef963f0c278a0af016a86
+last-reviewed: 2026-11-22
 ---
 # Chapter 10 — Audit, Insider Risk and Communication Compliance
 

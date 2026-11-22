@@ -12,8 +12,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: bd18b0dc310d4895ac3dae98470deffbd8e1fdc2bcee1b83d9c2a4cab7278a96
-last-reviewed: 2026-11-18
+reviewed-sha256: 8d2d7205632ff2f3454b7127ec0bdde48f609f7f435f5d7c7f13b2906e63214d
+last-reviewed: 2026-11-22
 ---
 # Chapter 06 — Exchange Message Encryption
 
