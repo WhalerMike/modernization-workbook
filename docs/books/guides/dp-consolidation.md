@@ -12,8 +12,8 @@ research-status: draft
 research-type: decision guide
 research-book: "Book 09"
 review-status: approved
-reviewed-sha256: 531bba69ce996407e8e92fdd8f0bcca1b891139a6018a6d2a8cbe9ab44e26e50
-last-reviewed: 2026-11-20
+reviewed-sha256: c3dcf3bb3f010b0b708f8442fc33aa16c713daec47ff5a99f14a3bda2d735471
+last-reviewed: 2026-11-22
 ---
 # Distribution Point Consolidation: A Decision Guide Before You Fund a Refresh
 

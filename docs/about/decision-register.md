@@ -2202,7 +2202,7 @@ There are **170** workbook decisions: 160 settled, 0 challenged and 10 supersede
 | **Date** | 2026-11-03 |
 | **Status** | settled |
 | **Defined in** | [#321](https://github.com/WhalerMike/modernization-workbook/pull/321) |
-| **Note** | Raised as a discrepancy in #321 and decided by the workbook's editor on 2026-11-03. |
+| **Note** | Raised as a discrepancy in #321 and decided by the workbook's editor on 2026-11-03. Correction, November 22, 2026: the rationale's "default ticket renewal lifetime is 7 days" and the choice's "four 7-day ticket lifetimes" are not what Learn says. Learn's dMSA overview says to wait at least two ticket lifetimes ("equivalent to 14 days") after modifying the security descriptor before completing the migration, recommends keeping the service in the start state for four ticket lifetimes (28 days), and gives the default ticket renewal time as 10 hours. The entry's recorded wording is kept as decided. The decision, 30 days, is unchanged. |
 
 [Agree, disagree or send evidence on WD-124](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-124%3A+)
 

@@ -12,8 +12,8 @@ research-status: draft
 research-type: implementation guide
 research-book: "Book 02"
 review-status: approved
-reviewed-sha256: 6a2f412966037b658f216a20a0bfdf9a6c975bc19295cc6a278372d2edebd025
-last-reviewed: 2026-11-21
+reviewed-sha256: e3d3c12961fa8d65d0c2c8fe50e50967b3cd03be6db1e82f57e32a4927fbe99c
+last-reviewed: 2026-11-22
 ---
 # Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities
 
@@ -197,6 +197,8 @@ The pipeline's identity, `gmsa-msapipe`, is itself a gMSA in the service-account
 ### The steps {#msa-standard-steps}
 
 Each step names who runs it, what it supports and the evidence it leaves. KSIs come from [Book 13, Appendix A](../b13-governance/appendix-a-requirements-mapping.md#controls-behind-service-accounts-and-other-non-person-identities), the workbook's one control-to-indicator table ([WD-169](../../about/decision-register.md#wd-169)). For IA-5 the rows give KSI-IAM-SNU first: FedRAMP's exact indicator for IA-5 is KSI-IAM-APM, and the program pairs non-user authenticators with KSI-IAM-SNU, which cites IA-5(2) ([Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md)).
+
+![The managed service account standard from request to retirement, S1 to S11: people decide and approve, the pipeline and scheduled runs do the rest (design guidance).](../../images/diagrams/guides/svg/msa-standard-lifecycle.svg){#fig-msa-standard-lifecycle fig-alt="Eleven step cards in four rows of three, read left to right, colored by who acts: amber where a person decides or acts, blue where a machine or script runs the step. Row 1: S1 Request, amber, the owner asks in the access management tool and Chapter 12 checks every field; S2 Decide, amber, the application owner, where the decision path gives the target and Chapter 03 records it; S3 Approve, amber, approvers in SailPoint, while ServiceNow records the change and never approves. Row 2: S4 Create, blue, the pipeline, where gmsa-msapipe runs the approved plan: the gMSA, AES256, 30 days and its retriever group; S5 Install and restrict, blue, hosts and Group Policy, with Test-ADServiceAccount on each host and no privileged group; S6 Register and close, blue, SailPoint and Chapter 12, where the task closes only on the re-read of AD and SailPoint. Row 3: S7 Watch, blue, scheduled runs of Defender for Identity, VK-NPI-06 and Chapter 06, where an unrequested gMSA is drift; S8 Attest, amber, the two owners, through SailPoint certification by risk tier, where a revoke opens a task; S9 Owner change and orphans, blue, the HR-driven workflow, a transfer on the owner's HR event, and an orphan disabled first, then 30 days to claim. Row 4: S10 Retire, amber, the pipeline then a person: disable and move, after 90 days a person uninstalls and deletes, and a dMSA's old account is never deleted; S11 Move to Entra, blue, Chapter 05, Migration C, reached by a dashed arrow from S7 labeled workload moves. A note says blue means a machine or script runs the step and amber means a person decides or acts."}
 
 | Step | What happens | Runs it | Supports | KSIs | Evidence |
 |---|---|---|---|---|---|
