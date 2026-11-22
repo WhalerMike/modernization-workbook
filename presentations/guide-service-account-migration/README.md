@@ -13,11 +13,11 @@
 |---|---|
 | `Guide_Service_Account_Migration.pptx` | The deck: 18 narrated slides (the title and 17 content slides in Why, What, Who and How order), then a backup section with the sources |
 | `Guide_Service_Account_Migration_Narrated.vtt` | The video's caption track, added when the MP4 went on the videos Release; the Watch page reads it from here, and `scripts/generate_video_manifest.py` lists the video because it is here |
-| `Guide_Service_Account_Migration_Narration_Script.md` | The spoken narration, slide by slide (about 3,800 words) |
+| `Guide_Service_Account_Migration_Narration_Script.md` | The spoken narration, slide by slide (about 4,100 words) |
 | `narration_Guide_Service_Account_Migration/` | `durations.json`, `sentences.json` and the per-slide caption tracks (the MP3s go on the edition's Release, not in git) |
 | `build.js` | The slides and their notes |
 
-The plain and narrated decks join the next edition's Release; until then, build them from this folder. The video runs about 25 minutes. The narration was re-recorded on November 21, 2026, from the guide as approved on November 20, 2026, when it gained the managed service account standard; if the guide changes, the deck is rebuilt and re-recorded.
+The plain and narrated decks join the next edition's Release; until then, build them from this folder. The video runs about 27 minutes. The narration was re-recorded on November 21, 2026, from the guide as approved on November 20, 2026, when it gained the managed service account standard, and slides 5, 6, 11 and 14 again on November 22, 2026, after the guide's decision path was reordered (questions 1 to 8 in order, with the Keep and KeepKerberos exceptions before the dMSA and gMSA questions), the dMSA wait reworded and the request step made consistent (SailPoint approves; ServiceNow records). If the guide changes, the deck is rebuilt and re-recorded.
 
 Build (Git Bash): `source /c/tmp/deckenv.sh`, then `FIT=1 node presentations/guide-service-account-migration/build.js presentations/guide-service-account-migration/Guide_Service_Account_Migration.pptx`. Then `narrate.py` and `captions.py`, and on a workstation where PowerPoint is free, `qa_export.ps1`, `build_narrated.ps1` and `export_mp4.ps1`, as in the kit's README. The build runs the shared checks: title length and uniqueness, Sources length, and overflow warnings, including the code panels' width and height.
 

@@ -218,7 +218,8 @@ function Test-NpiStdRequest {
         request with no Finding-severity result passes and gets one kerberos-replatform.csv row
         (Chapter 06's columns, with OutboundOnlyReason, RequestId and ChangeRecord); a passing gMSA
         also gets a password-retrievers.json entry naming its DL-gMSA-<app>-Hosts group and the
-        request and change that approved it (Chapter 06's 'requests' section).
+        SailPoint request that approved it and the ServiceNow change that records it (Chapter 06's
+        'requests' section; ServiceNow never approves, WD-162).
     .EXAMPLE
         $in = Import-NpiStdInput -InputPath tests/fixtures/ch12/inputs
         $std = Import-NpiStdStandard -Path tests/fixtures/ch12/standard.json
@@ -586,6 +587,12 @@ function Get-NpiStdRetirementList {
         since it was disabled. Returns @{ Findings; Rows }: a list for a person to act on through
         the decommission ticket. This code never deletes. Findings NPI-STD-27 DeleteCandidate (Info),
         NPI-STD-28 a sign-in after it was disabled, NPI-STD-29 the register and AD disagree.
+        An account a dMSA superseded is never a DeleteCandidate: Learn's "Setting up delegated
+        Managed Service Accounts" says not to delete it, because deleting it causes issues if you
+        need to revert. It's listed as SupersededByDmsa, stays disabled, and is retired only with
+        its dMSA. It's found from the dMSA's msDS-ManagedAccountPrecededByLink, or from the account's
+        own msDS-SupersededManagedServiceAccountLink, or its state (Learn's overview spells it
+        msDS-SupersededAccountState at the start and msDS-SupersededServiceAccountState at completion).
         lastLogonTimestamp replicates late (Learn: up to 14 days), so a person checks the domain
         controllers' lastLogon before deleting.
     .EXAMPLE
@@ -598,6 +605,18 @@ function Get-NpiStdRetirementList {
     $rows = [Collections.Generic.List[object]]::new()
     $byAd = @{}; foreach ($a in $Ad) { $byAd["$(Get-NpiStdProp $a 'name' '')".ToLowerInvariant()] = $a }
     $reg = @{}; foreach ($r in $Register) { $reg["$($r.SamAccountName)".ToLowerInvariant()] = $r }
+    # The accounts a dMSA superseded (Learn: the dMSA's msDS-ManagedAccountPrecededByLink names the account it
+    # supersedes; the superseded account's msDS-SupersededManagedServiceAccountLink names the dMSA). Keyed without the '$'.
+    $cn = { param($dn) if ("$dn" -match '^CN=((?:\\.|[^,])+)') { ($Matches[1] -replace '\\(.)', '$1').TrimEnd('$').ToLowerInvariant() } else { '' } }
+    $superseded = @{}
+    foreach ($a in $Ad) {
+        $self = "$(Get-NpiStdProp $a 'name' '')"
+        $link = "$(Get-NpiStdProp $a 'msDS-ManagedAccountPrecededByLink' '')"
+        if ($link) { $k = & $cn $link; if ($k) { $superseded[$k] = $self } }
+        $back = "$(Get-NpiStdProp $a 'msDS-SupersededManagedServiceAccountLink' '')"
+        $state = @("$(Get-NpiStdProp $a 'msDS-SupersededServiceAccountState' '')", "$(Get-NpiStdProp $a 'msDS-SupersededAccountState' '')")
+        if ($back -or $state -contains '1' -or $state -contains '2') { $superseded[$self.TrimEnd('$').ToLowerInvariant()] = $(if ($back) { "$(& $cn $back)$" } else { 'a dMSA' }) }
+    }
     $names = @(@($Register | Where-Object { "$($_.DisabledOn)" } | ForEach-Object { "$($_.SamAccountName)" }) + @($Ad | Where-Object { (Get-NpiStdProp $_ 'enabled' $true) -eq $false } | ForEach-Object { "$(Get-NpiStdProp $_ 'name' '')" }) | Sort-Object -Unique)
     foreach ($name in $names) {
         $key = $name.ToLowerInvariant()
@@ -607,8 +626,10 @@ function Get-NpiStdRetirementList {
         $last = if ($a) { ConvertTo-NpiStdDate (Get-NpiStdProp $a 'lastLogonTimestamp') } else { $null }
         $enabled = if ($a) { Get-NpiStdProp $a 'enabled' $null } else { $null }
         $days = if ($disabledOn) { [int][Math]::Floor(($AsOf - $disabledOn).TotalDays) } else { $null }
+        $by = $superseded[$key.TrimEnd('$')]
         $status =
-        if (-not $a) { 'NotInAd' }
+        if ($by) { 'SupersededByDmsa' }
+        elseif (-not $a) { 'NotInAd' }
         elseif ($enabled -eq $true) { 'EnabledInAd' }
         elseif (-not $disabledOn) { 'NoDisabledDate' }
         elseif ($last -and $last -gt $disabledOn) { 'SignInSinceDisable' }
@@ -626,9 +647,9 @@ function Get-NpiStdRetirementList {
                 DisabledOn       = $(if ($disabledOn) { $disabledOn.ToString('yyyy-MM-dd') } else { '' })
                 LastLogon        = $(if ($last) { $last.ToString('yyyy-MM-dd') } else { '' })
                 DaysDisabled     = $(if ($null -ne $days) { "$days" } else { '' })
-                EarliestDeleteOn = $(if ($disabledOn) { $disabledOn.AddDays($script:RetirementDays).ToString('yyyy-MM-dd') } else { '' })
+                EarliestDeleteOn = $(if ($disabledOn -and -not $by) { $disabledOn.AddDays($script:RetirementDays).ToString('yyyy-MM-dd') } else { '' })
                 Status           = $status
-                RunBy            = 'A person, through the decommission ticket; this code never deletes'
+                RunBy            = $(if ($by) { "Nobody: superseded by $by, it stays disabled and isn't deleted (Learn); this code never deletes" } else { 'A person, through the decommission ticket; this code never deletes' })
             })
     }
     [pscustomobject]@{ Findings = Get-NpiStdSortedFinding $f.ToArray(); Rows = $rows.ToArray() }
@@ -660,6 +681,7 @@ function ConvertTo-NpiStdAdRecord {
         ServicePrincipalNames                      = @(@(Get-NpiStdProp $Account 'ServicePrincipalNames' @()) | Where-Object { $_ } | ForEach-Object { "$_" })
         memberOf                                   = @(@(Get-NpiStdProp $Account 'MemberOf' @()) | Where-Object { $_ } | ForEach-Object { "$_" })
         distinguishedName                          = "$(Get-NpiStdProp $Account 'DistinguishedName' '')"
+        'msDS-ManagedAccountPrecededByLink'        = $(if ("$(Get-NpiStdProp $Account 'msDS-ManagedAccountPrecededByLink' '')") { "$(Get-NpiStdProp $Account 'msDS-ManagedAccountPrecededByLink')" } else { $null })
         lastLogonTimestamp                         = $llText
         RestrictToOutboundAuthenticationOnly       = $null
     }
@@ -680,7 +702,7 @@ function Export-NpiStdAdManagedAccount {
     param([Parameter(Mandatory)][scriptblock]$AdInvoke, [Parameter(Mandatory)][string]$Path)
     $call = @((Get-NpiStdCallList).calls | Where-Object { $_.id -eq 'std-managed-accounts' })[0]
     if ($call.method -ne 'READ' -or $call.cmdlet -notmatch '^Get-AD[A-Za-z]+$') { throw 'std-managed-accounts must be a declared Get-AD* read.' }
-    $params = @{ Filter = '*'; Properties = @('msDS-ManagedPasswordInterval', 'KerberosEncryptionType', 'PrincipalsAllowedToRetrieveManagedPassword', 'ServicePrincipalNames', 'MemberOf', 'whenCreated', 'lastLogonTimestamp') }
+    $params = @{ Filter = '*'; Properties = @('msDS-ManagedPasswordInterval', 'KerberosEncryptionType', 'PrincipalsAllowedToRetrieveManagedPassword', 'ServicePrincipalNames', 'MemberOf', 'whenCreated', 'lastLogonTimestamp', 'msDS-ManagedAccountPrecededByLink') }
     $shown = ($params.Keys | Sort-Object | ForEach-Object { "-$_ $(@($params[$_]) -join ',')" }) -join ' '
     $ev = [pscustomobject]@{ Call = $call.id; Method = 'READ'; Target = "$($call.cmdlet) $shown"; At = [DateTime]::UtcNow.ToString('o') }
     $rows = @(& $AdInvoke $call.cmdlet $params | Where-Object { "$(Get-NpiStdProp $_ 'ObjectClass' '')" -in 'msDS-GroupManagedServiceAccount', 'msDS-DelegatedManagedServiceAccount' } | ForEach-Object { ConvertTo-NpiStdAdRecord $_ } | Sort-Object { $_.name })

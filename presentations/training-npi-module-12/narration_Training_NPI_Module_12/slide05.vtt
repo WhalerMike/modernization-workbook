@@ -5,65 +5,104 @@ WEBVTT
 Next in Unit 1 is the decision path.
 
 2
-00:00:02.600 --> 00:00:06.383
-Answer nine questions in order;
-the first yes is the target,
+00:00:02.600 --> 00:00:07.001
+Answer questions one to eight in
+order; the first yes is the target,
 
 3
-00:00:06.383 --> 00:00:09.850
+00:00:07.001 --> 00:00:10.587
 and each target lines up with
 a Chapter 3 disposition.
 
 4
-00:00:09.850 --> 00:00:14.275
+00:00:10.587 --> 00:00:15.013
 An account that's disabled, unused
 or without an owner is retired.
 
 5
-00:00:14.275 --> 00:00:19.282
-A workload on Azure gets a managed
-identity; one in CI/CD gets a federated
+00:00:15.013 --> 00:00:17.929
+A workload on Azure gets
+a managed identity;
 
 6
-00:00:19.282 --> 00:00:25.138
-credential; one on premises that calls Graph
-gets the Arc identity or a certificate.
+00:00:17.929 --> 00:00:20.603
+one in CI/CD gets a federated credential;
 
 7
-00:00:25.138 --> 00:00:30.531
-One that needs Kerberos, with
-every host on Windows Server
+00:00:20.603 --> 00:00:25.952
+one on premises that calls Graph gets the
+Arc identity or a certificate, and if it
 
 8
-00:00:30.531 --> 00:00:35.139
-2025 and no unconstrained
-delegation, gets a D M S A.
+00:00:25.952 --> 00:00:31.462
+also needs Kerberos, it goes on to question
+five as well and takes two dispositions.
 
 9
-00:00:35.139 --> 00:00:36.712
-Otherwise, a G M S A.
+00:00:31.462 --> 00:00:33.024
+Next come the exceptions.
 
 10
-00:00:36.712 --> 00:00:39.362
-The rest keep what they
-have, with an end date.
+00:00:33.024 --> 00:00:36.264
+An account that's already a
+G M S A or D M S A is kept,
 
 11
-00:00:39.362 --> 00:00:43.230
+00:00:36.264 --> 00:00:39.417
+and one that must stay
+a traditional account,
+
+12
+00:00:39.417 --> 00:00:43.764
+because the service supports no
+managed account or relies on
+
+13
+00:00:43.764 --> 00:00:48.537
+unconstrained delegation, is kept
+on Kerberos; each with an end date.
+
+14
+00:00:48.537 --> 00:00:52.481
+Then a traditional account
+that needs Kerberos,
+
+15
+00:00:52.481 --> 00:00:58.888
+with a Windows Server 2025 domain controller
+and every host on 2025, gets a D M S A.
+
+16
+00:00:58.888 --> 00:01:04.411
+Any other case that needs Kerberos, a
+standalone account included, gets a G M S A.
+
+17
+00:01:04.411 --> 00:01:08.467
+Question nine applies to every
+target from five to eight:
+
+18
+00:01:08.467 --> 00:01:14.076
+Kerberos to a resource with no Entra
+equivalent also puts it on the island list.
+
+19
+00:01:14.076 --> 00:01:17.943
 Then the track's rules, which
 a hand migration follows too:
 
-12
-00:00:43.230 --> 00:00:47.346
+20
+00:01:17.943 --> 00:01:22.059
 two named owners and a sponsor;
 a reviewed disposition first;
 
-13
-00:00:47.346 --> 00:00:52.613
+21
+00:01:22.059 --> 00:01:27.326
 a thirty-day parallel run, then disable,
 and never delete during the migration;
 
-14
-00:00:52.613 --> 00:00:57.460
+22
+00:01:27.326 --> 00:01:32.160
 no client secrets; no privileged
 groups; and changes that are reviewed.

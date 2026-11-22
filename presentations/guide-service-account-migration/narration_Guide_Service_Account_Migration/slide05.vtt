@@ -5,96 +5,154 @@ WEBVTT
 Now, who decides.
 
 2
-00:00:01.387 --> 00:00:04.439
-The guide's decision
-path is nine questions,
+00:00:01.387 --> 00:00:06.499
+Answer the guide's questions one to eight
+in order, and the first yes is the target.
 
 3
-00:00:04.439 --> 00:00:07.575
-asked in order, and the
-first yes is the target.
-
-4
-00:00:07.575 --> 00:00:11.127
+00:00:06.499 --> 00:00:10.052
 Each target lines up with a
 disposition the application
 
-5
-00:00:11.127 --> 00:00:14.075
+4
+00:00:10.052 --> 00:00:13.000
 owner records in the
 Non-Person Identity track.
 
-6
-00:00:14.075 --> 00:00:18.325
+5
+00:00:13.000 --> 00:00:17.250
 One: is the account disabled,
 unused or without an owner?
 
-7
-00:00:18.325 --> 00:00:19.325
+6
+00:00:17.250 --> 00:00:18.250
 Retire it.
 
-8
-00:00:19.325 --> 00:00:23.987
+7
+00:00:18.250 --> 00:00:22.912
 Two: does the workload run on an Azure
 resource, or is it moving to one?
 
-9
-00:00:23.987 --> 00:00:26.926
+8
+00:00:22.912 --> 00:00:25.851
 A managed identity,
 user-assigned preferred.
 
-10
-00:00:26.926 --> 00:00:32.813
+9
+00:00:25.851 --> 00:00:31.738
 Three: does it run in C I C D or on a
 platform with its own O I D C issuer?
 
-11
-00:00:32.813 --> 00:00:34.337
+10
+00:00:31.738 --> 00:00:33.263
 A federated credential.
 
-12
-00:00:34.337 --> 00:00:39.212
+11
+00:00:33.263 --> 00:00:38.138
 Four: does it stay on premises
 but call Graph or Azure A P I's?
 
-13
-00:00:39.212 --> 00:00:44.037
+12
+00:00:38.138 --> 00:00:42.963
 The Arc-enabled server's identity, or
 an app registration with a certificate.
 
+13
+00:00:42.963 --> 00:00:46.825
+If it also needs Kerberos, it
+keeps going at question five,
+
 14
-00:00:44.037 --> 00:00:49.827
-Five: does it need Kerberos, with a
-Windows Server 2025 domain controller,
+00:00:46.825 --> 00:00:49.537
+and takes two dispositions, one for each.
 
 15
-00:00:49.827 --> 00:00:53.976
-every host on 2025, and no
-unconstrained delegation?
+00:00:49.537 --> 00:00:55.700
+Five: is it already a G M S A or
+D M S A, staying on premises?
 
 16
-00:00:53.976 --> 00:00:54.622
-A D M S A.
+00:00:55.700 --> 00:00:59.075
+Keep it, with an S P N
+owner and an end date.
 
 17
-00:00:54.622 --> 00:00:56.822
-Six: otherwise, a G M S A.
+00:00:59.075 --> 00:01:02.779
+Six: must it stay a traditional
+account, because the service
 
 18
-00:00:56.822 --> 00:01:03.550
-Seven and eight keep what must
-stay, with an owner and an end date.
+00:01:02.779 --> 00:01:07.087
+supports no managed account or
+relies on unconstrained delegation?
 
 19
-00:01:03.550 --> 00:01:05.425
-Nine is the Kerberos island.
+00:01:07.087 --> 00:01:10.900
+Keep it on Kerberos, with the
+authorizing official's acceptance.
 
 20
-00:01:05.425 --> 00:01:09.889
-This lines up with Microsoft Learn:
-use a G M S A unless the service
+00:01:10.900 --> 00:01:13.555
+That comes before the D M S A question,
 
 21
-00:01:09.889 --> 00:01:14.500
-doesn't support one, then a standalone
-account, then a user account.
+00:01:13.555 --> 00:01:19.662
+because unconstrained delegation stops
+working once a D M S A migration completes.
+
+22
+00:01:19.662 --> 00:01:23.498
+Seven: a traditional
+account that needs Kerberos,
+
+23
+00:01:23.498 --> 00:01:28.737
+with a Windows Server 2025 domain
+controller and every host on 2025?
+
+24
+00:01:28.737 --> 00:01:30.826
+A D M S A, through Migration B.
+
+25
+00:01:30.826 --> 00:01:36.524
+Eight: any other case that needs
+Kerberos, a standalone account included?
+
+26
+00:01:36.524 --> 00:01:39.575
+A G M S A, through Migration A.
+
+27
+00:01:39.575 --> 00:01:43.051
+Then question nine, for every
+target from five to eight:
+
+28
+00:01:43.051 --> 00:01:46.913
+does it need Kerberos to a
+resource with no Entra equivalent?
+
+29
+00:01:46.913 --> 00:01:49.612
+Then it also goes on the
+Kerberos island list.
+
+30
+00:01:49.612 --> 00:01:52.254
+This lines up with Microsoft Learn:
+
+31
+00:01:52.254 --> 00:01:57.903
+use a G M S A unless the service doesn't
+support one, then a standalone account,
+
+32
+00:01:57.903 --> 00:02:01.001
+then a user account;
+and you can't migrate a
+
+33
+00:02:01.001 --> 00:02:03.890
+standalone account or
+a G M S A to a D M S A.

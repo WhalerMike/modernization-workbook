@@ -63,7 +63,7 @@ Describe 'The call list (config/calls-ch12.json) and the requirements (config/re
     It 'the live invoker and the AD export run only the declared Get-ADServiceAccount read' {
         (Get-NpiStdRequiredRight).Cmdlets | Should -Be @('Get-ADServiceAccount')
         $seen = [Collections.Generic.List[string]]::new()
-        $fake = { param($Cmdlet, [hashtable]$Params) $seen.Add($Cmdlet)
+        $fake = { param($Cmdlet, [hashtable]$Params) $seen.Add($Cmdlet); $seen.Add("props:$($Params.Properties -join ',')")
             [pscustomobject]@{ SamAccountName = 'gmsa-intranet$'; ObjectClass = 'msDS-GroupManagedServiceAccount'; Enabled = $true; whenCreated = [datetime]'2026-03-02T15:00:00Z'
                 'msDS-ManagedPasswordInterval' = 30; KerberosEncryptionType = 'AES256'; PrincipalsAllowedToRetrieveManagedPassword = @('CN=DL-gMSA-intranet-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example')
                 ServicePrincipalNames = @('HTTP/intranet.corp.contoso.example'); MemberOf = @(); DistinguishedName = 'CN=gmsa-intranet,OU=Service Accounts,DC=corp,DC=contoso,DC=example'; lastLogonTimestamp = [datetime]::Parse('2026-11-19T03:00:00Z').ToFileTimeUtc() }
@@ -71,7 +71,10 @@ Describe 'The call list (config/calls-ch12.json) and the requirements (config/re
         }.GetNewClosure()
         $p = Join-Path $script:Tmp 'ad-read/ad-managed-accounts.json'
         $x = Export-NpiStdAdManagedAccount -AdInvoke $fake -Path $p
-        $seen | Should -Be @('Get-ADServiceAccount')
+        $seen[0] | Should -Be 'Get-ADServiceAccount'
+        $seen[1] | Should -Match 'msDS-ManagedAccountPrecededByLink'   # a dMSA's link to the account it superseded
+        $seen.Count | Should -Be 2
+        @($script:In.Ad | Where-Object { $_.name -eq 'dmsa-hrsync$' })[0].'msDS-ManagedAccountPrecededByLink' | Should -Match '^CN=svc-hrsync,'
         $x.Evidence[0].Call | Should -Be 'std-managed-accounts'
         $rows = @((Get-Content $p -Raw | ConvertFrom-Json -AsHashtable).accounts)
         $rows.Count | Should -Be 1
@@ -226,7 +229,7 @@ Describe 'Defender for Identity (NPI-STD-24 to NPI-STD-26)' {
 }
 
 Describe 'The retirement window (NPI-STD-27 to NPI-STD-29)' {
-    It 'lists a DeleteCandidate only after 90 days disabled with no sign-in since, and never deletes' {
+    It 'lists a DeleteCandidate only after 90 days disabled with no sign-in since, never an account a dMSA superseded, and never deletes' {
         $rows = @{}; foreach ($r in $script:Run.Retirement.Rows) { $rows[$r.SamAccountName] = $r }
         "$($rows['gmsa-legacy$'].Status) $($rows['gmsa-legacy$'].DaysDisabled)" | Should -Be 'DeleteCandidate 111'
         $rows['gmsa-oldfax$'].Status | Should -Be 'Wait'
@@ -237,6 +240,25 @@ Describe 'The retirement window (NPI-STD-27 to NPI-STD-29)' {
         (Get-Rule 'NPI-STD-28').ObjectKey | Should -Be @('gmsa-batch$')
         @((Get-Rule 'NPI-STD-29') | Where-Object Severity -EQ 'Finding').ObjectKey | Should -Be @('gmsa-report$')
         foreach ($r in $script:Run.Retirement.Rows) { $r.RunBy | Should -Match 'never deletes' }
+        # An account a dMSA superseded is never a delete candidate, however long it has been disabled (Learn).
+        $asOf = [datetime]::SpecifyKind([datetime]'2026-11-20', 'Utc')
+        $reg = @([pscustomobject]@{ SamAccountName = 'svc-hrsync'; DisabledOn = '2026-05-01' }, [pscustomobject]@{ SamAccountName = 'gmsa-legacy$'; DisabledOn = '2026-08-01' })
+        $ad = @(@{ name = 'dmsa-hrsync$'; enabled = $true; 'msDS-ManagedAccountPrecededByLink' = 'CN=svc-hrsync,OU=Service Accounts,DC=corp,DC=contoso,DC=example' },
+            @{ name = 'gmsa-legacy$'; enabled = $false; lastLogonTimestamp = '2026-07-30T00:00:00Z' })
+        $r = Get-NpiStdRetirementList -Register $reg -Ad $ad -AsOf $asOf
+        $row = @($r.Rows | Where-Object SamAccountName -EQ 'svc-hrsync')[0]
+        "$($row.Status) $($row.DaysDisabled)" | Should -Be 'SupersededByDmsa 203'
+        $row.EarliestDeleteOn | Should -BeNullOrEmpty
+        $row.RunBy | Should -Match 'dmsa-hrsync\$.*isn''t deleted'
+        @($r.Findings | Where-Object ObjectKey -EQ 'svc-hrsync').Count | Should -Be 0
+        (@($r.Findings | Where-Object Rule -EQ 'NPI-STD-27')).ObjectKey | Should -Be @('gmsa-legacy$')
+        # The same account found from its own attributes, when a read returns it.
+        $ad2 = @(@{ name = 'svc-hrsync'; enabled = $false; 'msDS-SupersededManagedServiceAccountLink' = 'CN=dmsa-hrsync,OU=Service Accounts,DC=corp,DC=contoso,DC=example'; 'msDS-SupersededServiceAccountState' = 2 })
+        $r2 = Get-NpiStdRetirementList -Register @($reg[0]) -Ad $ad2 -AsOf $asOf
+        $r2.Rows[0].Status | Should -Be 'SupersededByDmsa'
+        @($r2.Findings).Count | Should -Be 0
+        $r3 = Get-NpiStdRetirementList -Register @($reg[0]) -Ad @(@{ name = 'svc-hrsync'; enabled = $false; 'msDS-SupersededAccountState' = 1 }) -AsOf $asOf
+        $r3.Rows[0].Status | Should -Be 'SupersededByDmsa'
     }
     It 'at exactly 89 days it waits; disabled in AD with no date in the register is a Warn' {
         $reg = @([pscustomobject]@{ SamAccountName = 'gmsa-oldfax$'; DisabledOn = '2026-08-23' })

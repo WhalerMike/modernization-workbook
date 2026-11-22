@@ -51,6 +51,8 @@ Describe 'Chapter 06: "Setting up delegated Managed Service Accounts" (Learn), r
         @($b.Keys | Sort-Object) | Should -Be @('Identity', 'SupersededAccount')
         [IO.File]::ReadAllText($script:DmsaSetupPage) | Should -Not -Match 'ticket lifetime'
         [IO.File]::ReadAllText($script:DmsaOverviewPage) | Should -Match 'two ticket lifetimes \(equivalent to 14 days\)'
+        [IO.File]::ReadAllText($script:DmsaOverviewPage) | Should -Match 'four ticket lifetimes \(28 days\) is recommended'
+        [IO.File]::ReadAllText($script:DmsaOverviewPage) | Should -Match 'default ticket renewal time of \*\*10 hours\*\*'
     }
     It 'warns never to delete the original account, and offers Undo and Reset' {
         [IO.File]::ReadAllText($script:DmsaSetupPage) | Should -Match '\*\*never\*\* delete the original service account'

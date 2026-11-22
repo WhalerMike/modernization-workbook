@@ -150,31 +150,41 @@
   ],
   [
    2.6,
-   7.25,
-   "Answer nine questions in order; the first yes is the target, and each target lines up with a Chapter 3 disposition."
+   7.987,
+   "Answer questions one to eight in order; the first yes is the target, and each target lines up with a Chapter 3 disposition."
   ],
   [
-   9.85,
+   10.588,
    4.425,
    "An account that's disabled, unused or without an owner is retired."
   ],
   [
-   14.275,
-   10.863,
-   "A workload on Azure gets a managed identity; one in CI/CD gets a federated credential; one on premises that calls Graph gets the Arc identity or a certificate."
+   15.012,
+   16.45,
+   "A workload on Azure gets a managed identity; one in CI/CD gets a federated credential; one on premises that calls Graph gets the Arc identity or a certificate, and if it also needs Kerberos, it goes on to question five as well and takes two dispositions."
   ],
   [
-   25.137,
-   11.575,
-   "One that needs Kerberos, with every host on Windows Server 2025 and no unconstrained delegation, gets a D M S A. Otherwise, a G M S A."
+   31.462,
+   1.562,
+   "Next come the exceptions."
   ],
   [
-   36.712,
-   2.65,
-   "The rest keep what they have, with an end date."
+   33.025,
+   15.512,
+   "An account that's already a G M S A or D M S A is kept, and one that must stay a traditional account, because the service supports no managed account or relies on unconstrained delegation, is kept on Kerberos; each with an end date."
   ],
   [
-   39.362,
+   48.538,
+   10.35,
+   "Then a traditional account that needs Kerberos, with a Windows Server 2025 domain controller and every host on 2025, gets a D M S A."
+  ],
+  [
+   58.888,
+   15.188,
+   "Any other case that needs Kerberos, a standalone account included, gets a G M S A. Question nine applies to every target from five to eight: Kerberos to a resource with no Entra equivalent also puts it on the island list."
+  ],
+  [
+   74.075,
    18.025,
    "Then the track's rules, which a hand migration follows too: two named owners and a sponsor; a reviewed disposition first; a thirty-day parallel run, then disable, and never delete during the migration; no client secrets; no privileged groups; and changes that are reviewed."
   ]

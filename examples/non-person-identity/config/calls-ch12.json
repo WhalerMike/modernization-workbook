@@ -21,7 +21,7 @@
       "stage": "GA",
       "tasks": ["msa-standard"],
       "learn": "https://learn.microsoft.com/powershell/module/activedirectory/get-adserviceaccount",
-      "note": "Reads every gMSA and dMSA with msDS-ManagedPasswordInterval, KerberosEncryptionType, PrincipalsAllowedToRetrieveManagedPassword, ServicePrincipalNames, MemberOf, whenCreated and lastLogonTimestamp. Whether a default read returns the retrievers is open (research gaps, row 53), as in Chapter 06. The attribute -RestrictToOutboundAuthenticationOnly sets is not yet specified, so a live read leaves that field null."
+      "note": "Reads every gMSA and dMSA with msDS-ManagedPasswordInterval, KerberosEncryptionType, PrincipalsAllowedToRetrieveManagedPassword, ServicePrincipalNames, MemberOf, whenCreated, lastLogonTimestamp and msDS-ManagedAccountPrecededByLink (on a dMSA, the account it supersedes, which the retirement list never offers for deletion). Whether a default read returns the retrievers is open (research gaps, row 53), as in Chapter 06. The attribute -RestrictToOutboundAuthenticationOnly sets is not yet specified, so a live read leaves that field null."
     }
   ]
 }

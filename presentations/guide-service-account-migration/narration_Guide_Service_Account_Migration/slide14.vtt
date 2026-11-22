@@ -107,19 +107,35 @@ Learn's registry value and
 restarts the one service.
 
 23
-00:01:24.975 --> 00:01:28.776
+00:01:24.975 --> 00:01:28.484
 B3: Learn says to wait at
 least two ticket lifetimes,
 
 24
-00:01:28.776 --> 00:01:31.400
-fourteen days, and recommends four.
+00:01:28.484 --> 00:01:33.163
+equivalent to fourteen days, and
+recommends four, twenty-eight days.
 
 25
-00:01:31.400 --> 00:01:34.025
-The program's thirty days covers four.
+00:01:33.163 --> 00:01:37.195
+Delay if domain controllers are
+partitioned or replication is broken,
 
 26
-00:01:34.025 --> 00:01:37.220
+00:01:37.195 --> 00:01:41.775
+and watch sites where replication takes
+longer than the ten-hour ticket renewal.
+
+27
+00:01:41.775 --> 00:01:45.024
+The program waits thirty
+days: that's its own choice,
+
+28
+00:01:45.024 --> 00:01:47.113
+longer than Learn's twenty-eight.
+
+29
+00:01:47.113 --> 00:01:50.330
 Then complete it, and never
 delete the original account.
