@@ -22,6 +22,7 @@ Writer: Book 20 build (Nov 11, 2026). All sources opened Nov 11, 2026. Claims so
 | 16 | Don't change published container settings; 24 hours; clearing External user access doesn't remove guests | Rollback | verified | Same, Sensitivity label management | Nov 11, 2026 |
 | 17 | Disabling container labels reverts to the Classification property | Rollback | verified | Same, How to disable | Nov 11, 2026 |
 | 18 | Design values per container class | Container classes | restated-as-design | Program design | Nov 11, 2026 |
+| 19 | Figure `ch04-container-vs-item`: container label sets and locks container settings; items inherit nothing; three container classes | What a container label does; Container classes | restated-as-design | Program design; Learn, "Use sensitivity labels to protect collaborative workspaces (groups and sites)" | Nov 22, 2026 |
 
 ## Government-cloud gaps
 

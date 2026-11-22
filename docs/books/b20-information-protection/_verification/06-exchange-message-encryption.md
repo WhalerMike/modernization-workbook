@@ -29,6 +29,7 @@ Writer: Book 20 build (Nov 11, 2026). Learn pages read for this chapter: 18. Sou
 | 22 | Revocation only for link-based branded messages, not native inline Outlook | Validate | verified | Set-OMEMessageRevocation reference | Nov 11, 2026 |
 | 23 | AME portal activity log and encryption report | Telemetry | verified | Advanced Message Encryption, https://learn.microsoft.com/purview/ome-advanced-message-encryption | Nov 11, 2026 |
 | 24 | Scenario table, recipient-experience positions, ring exit criteria | Decide; Enforcement | restated-as-design | Program design | Nov 11, 2026 |
+| 25 | Figure `ch06-three-paths-to-encryption`: label or Encrypt button, auto-labeling in transit, mail flow rule; replies encrypted; inbound not encrypted by a rule; Outlook inline or portal with passcode | Two mechanisms, one service; Decide | restated-as-design | Program design; Learn, "Message encryption," "Define mail flow rules to encrypt email messages," "Manage message encryption" | Nov 22, 2026 |
 
 ## Government-cloud gaps
 - One-time passcodes, social ID sign-in and the Encrypt button in Outlook on the web: not listed separately on any government page (not yet specified).

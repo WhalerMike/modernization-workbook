@@ -187,6 +187,8 @@ Connect to Security & Compliance PowerShell for the tenant's cloud (commands in 
 
 Allow 24 hours after each change before judging it; label and label-policy changes can take that long to reach every service.[^c03-create]
 
+![The label policy's five default slots, none of them an encrypting label, and how the policy widens ring by ring from the implementing team to everyone in scope.](../../images/diagrams/b20-information-protection/svg/ch03-defaults-and-rings.svg){#fig-ch03-defaults-and-rings fig-alt="A diagram in two parts. At the top, a table with two columns, the default slot in the label policy and the program default: documents, including Loop components and pages, Internal; email, Outlook's own default, Internal; meetings and calendar events, Internal; new groups and sites, Internal site; Power BI content, Internal. A last row, shaded red, says never the default: an encrypting label, because external recipients may not be able to open it. An arrow labeled set in B20-Labels-Pilot, repeated in B20-Labels-All leads down to a row of four ring cards joined left to right by arrows. Ring 0, slate, the implementing team: B20-Labels-Pilot with the team only, and the export matches the design. Ring 1, blue, the pilot group: 25 to 50 users for two weeks, and the labeled sample passes. Ring 2, blue, early adopters: the ring 2 group is added to B20-Labels-Pilot for two weeks. Ring 3, green, everyone in scope: B20-Labels-All and B20-Labels-CUI-SP, with the pilot policy removed. An amber note at the bottom says rollback removes the newest ring's group, or the setting that tripped a backout trigger; labels already applied to content stay applied; allow 24 hours after each change."}
+
 **Change safety**
 
 | Ring | Scope | Exit criteria |

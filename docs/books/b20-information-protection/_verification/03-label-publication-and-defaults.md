@@ -20,6 +20,7 @@ Writer: Book 20 build (Nov 11, 2026). All sources opened Nov 11, 2026. Claims so
 | 12 | Outlook versions for a separate default (Current Channel 2105+, SAEC 2108+) | Prerequisites | verified | Learn, "Minimum versions for sensitivity labels in Office apps" | Nov 11, 2026 |
 | 13 | Pilot size, thresholds, rings | Pilot; Change safety | restated-as-design | Program design | Nov 11, 2026 |
 | 14 | Search-UnifiedAuditLog -RecordType SensitivityLabelAction | Validate | unverifiable | Record type name as used in Chapter 10; the chapter gives a fallback search | Nov 11, 2026 |
+| 15 | Figure `ch03-defaults-and-rings`: five default slots, never an encrypting default; rings 0 to 3 and rollback | Defaults; Enforcement; Rollback | restated-as-design | Program design; Learn, "Learn about sensitivity labels" (default slots; encrypting default caution) and "Manage sensitivity labels in Office apps" (Outlook default; auto-labeling replaces a default) | Nov 22, 2026 |
 
 ## Government-cloud gaps
 

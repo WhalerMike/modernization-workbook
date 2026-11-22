@@ -1,0 +1,35 @@
+# Book 20 Chapter 01 — the class register as the hub: the federal overlay
+# decisions set each class; every artifact cites its class ID; the inventory
+# and the annual review keep the row current. Program design; content
+# explorer behavior as documented on Microsoft Learn
+# (data-classification-content-explorer, sensitivity-labels), read Nov 22, 2026.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.5}
+nodes:
+  overlay: {tone: amber, width: 240, title: "Federal overlay decisions", body: ["CUI categories: 32 CFR Part 2002, the CUI Registry", "Privacy Act records and their SORNs", "Records schedules: how long", "FIPS 199 impact level", "The authorization boundary and cloud"], size: 12}
+  inventory: {tone: slate, width: 200, title: "Inventory", body: ["Content explorer and activity explorer exports, dated", "=A snapshot: counts lag up to 7 days (14 for SharePoint files)"], size: 12}
+  review: {tone: violet, width: 200, title: "Keeping it current", body: ["Annual review by each data owner", "Change trigger: new CUI category, SORN or records schedule"], size: 12}
+  register:
+    tone: violet
+    width: 420
+    penwidth: 2.4
+    title: "Class register: one row per class"
+    body: ["Class ID (stable, cited by every artifact)", "Name, definition and authority", "Data owner: decides handling, approves exceptions", "Handling outcome, written as a testable sentence", "Detection, locations and review date"]
+  label: {kind: pill, tone: blue, text: "Sensitivity label", width: 120}
+  dlp: {kind: pill, tone: blue, text: "DLP rule", width: 120}
+  auto: {kind: pill, tone: blue, text: "Auto-labeling policy", width: 120}
+  ret: {kind: pill, tone: blue, text: "Retention label", width: 120}
+  orphan: {kind: text, width: 560, text: "Each artifact cites its class ID. No orphans: an artifact whose class was retired is removed through change control."}
+order:
+  - [overlay, inventory, review]
+  - [label, dlp, auto, ret]
+edges:
+  - [overlay, register, {tone: amber, label: "sets the classes", lw: 110}]
+  - [inventory, register, {label: "Locations column", lw: 110}]
+  - [review, register, {tone: violet, label: "Review date", lw: 100}]
+  - [register, label, {tone: blue}]
+  - [register, dlp, {tone: blue}]
+  - [register, auto, {tone: blue}]
+  - [register, ret, {tone: blue}]
+  - [dlp, orphan, {style: invis}]
+  - [auto, orphan, {style: invis}]

@@ -1,0 +1,35 @@
+# Book 20 Chapter 04 — what a container label sets and locks, why the items
+# inside inherit nothing, and the program's three container classes.
+# Program design; container label behavior as documented on Microsoft Learn
+# (sensitivity-labels-teams-groups-sites; SharePoint app-enforced
+# restrictions), read Nov 22, 2026.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+clusters:
+  - id: container
+    label: "A labeled team, Microsoft 365 group or SharePoint site"
+    tone: blue
+    filled: false
+    nodes: [sets, items]
+nodes:
+  tenant: {kind: text, width: 470, text: "The tenant's SharePoint and Microsoft Entra settings sit above every container label: a label can only tighten them."}
+  sets: {tone: blue, width: 330, title: "The container label sets and locks", body: ["Privacy, locked: changed only by removing the label", "Guest access and external sharing", "Unmanaged devices: only with the Conditional Access app-enforced restriction", "Authentication context (commercial tenants)", "Default sharing link and who may share"], size: 12}
+  items: {tone: slate, width: 210, title: "Files and items inside", body: ["=Inherit nothing from the container label: no marking, no encryption", "=Each item needs its own file label"], size: 12}
+  out: {tone: red, width: 210, title: "A copy taken out of the site", body: ["=Unprotected unless it carries its own file label"], size: 12}
+  classes:
+    kind: table
+    tone: blue
+    columns: ["Setting", "Internal site", "CUI site", "CUI Specified site"]
+    widths: [140, 155, 155, 180]
+    rows:
+      - ["Privacy", "Private", "Private", "Private"]
+      - ["Guests and external sharing", "New and existing guests", "Existing guests only", {text: "Only people in the organization", tone: green}]
+      - ["Unmanaged devices", "Limited, web-only access", "Limited, web-only access", {text: "Block", tone: green}]
+      - ["Authentication context", "None", "None", "Phishing-resistant MFA, where licensed and available"]
+order:
+  - [sets, items]
+edges:
+  - [tenant, sets, {style: invis}]
+  - [tenant, items, {style: invis}]
+  - [items, out, {tone: red, style: dashed, label: "copied out", lw: 80}]
+  - [sets, classes, {tone: blue, label: "three approved sets of settings", lw: 220, attrs: "minlen=2"}]

@@ -1,0 +1,29 @@
+# Book 20 Chapter 05 — a just-in-time recovery: PIM-approved role, the
+# operator added individually as a super user, the recovery, and the
+# put-back, as in the chapter's procedure. Super user behavior as documented
+# on Microsoft Learn (encryption-super-users, rights-management-users-groups),
+# read Nov 22, 2026.
+column: 165
+gap: 20
+participants:
+  - {id: op, label: "Recovery operator", sub: "eligible, never active", tone: slate}
+  - {id: pim, label: "Privileged Identity Management", sub: "Compliance Administrator or Compliance Data Administrator", tone: blue}
+  - {id: appr, label: "Approver", sub: "policy owner or records officer", tone: violet}
+  - {id: rms, label: "Rights Management service", sub: "super user feature Disabled at rest", tone: green}
+steps:
+  - {from: op, to: pim, n: 1, label: "Activate the role: justification and ticket number"}
+  - {from: pim, to: appr, n: 2, label: "Approval request"}
+  - {from: appr, to: pim, n: 3, label: "Approve (operators can't approve their own)"}
+  - {from: pim, to: op, n: 4, dashed: true, label: "Role active"}
+  - frame: "While the role is active"
+    tone: blue
+    steps:
+      - {from: op, to: rms, n: 5, label: "Record the start: feature Disabled, no super users"}
+      - {from: op, to: rms, n: 6, tone: amber, label: "Add the operator individually (Add-AipServiceSuperUser), then enable the feature"}
+      - {from: op, to: rms, n: 7, tone: amber, label: "Recover: remove the label and protection from the file; eDiscovery export for mail"}
+      - {from: op, to: rms, n: 8, tone: green, label: "Remove the operator first, then disable the feature"}
+      - {from: rms, to: op, n: 9, dashed: true, tone: green, label: "Confirm: Disabled, no super users"}
+  - note: "Not a PIM-managed super user group: Rights Management caches group membership for up to three hours, so access would arrive late and linger."
+    tone: amber
+  - note: "Logged: the admin log records AddSuperUser, SetSuperUserFeatureState and the removal; the usage log records each decryption; the Microsoft Entra audit log records the activation and approval."
+    tone: violet

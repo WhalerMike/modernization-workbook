@@ -1,0 +1,34 @@
+# Book 20 Chapter 03 — the label policy's five default slots (none of them an
+# encrypting label) and how the policy widens ring by ring, with the rollback.
+# Program design; default-label behavior as documented on Microsoft Learn
+# (sensitivity-labels-office-apps, create-sensitivity-labels,
+# sensitivity-labels), read Nov 22, 2026.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.5}
+nodes:
+  defaults:
+    kind: table
+    tone: blue
+    columns: ["Default slot in the label policy", "Program default"]
+    widths: [290, 300]
+    rows:
+      - ["Documents (and Loop components and pages)", "Internal"]
+      - ["Email (Outlook's own default)", "Internal"]
+      - ["Meetings and calendar events", "Internal"]
+      - ["New groups and sites", "Internal site"]
+      - ["Power BI content", "Internal"]
+      - [{text: "Never the default", tone: red}, {text: "An encrypting label: external recipients may not be able to open it", tone: red}]
+  r0: {tone: slate, width: 150, tag: "Ring 0", title: "Implementing team", body: ["=B20-Labels-Pilot with the team only; export matches the design"], size: 12}
+  r1: {tone: blue, width: 150, tag: "Ring 1", title: "Pilot group", body: ["=25 to 50 users, two weeks; the labeled sample passes"], size: 12}
+  r2: {tone: blue, width: 150, tag: "Ring 2", title: "Early adopters", body: ["=Ring 2 group added to B20-Labels-Pilot; two weeks"], size: 12}
+  r3: {tone: green, width: 150, tag: "Ring 3", title: "Everyone in scope", body: ["=B20-Labels-All and B20-Labels-CUI-SP; pilot policy removed"], size: 12}
+  rollback: {kind: text, tone: amber, width: 600, text: "Rollback: remove the newest ring's group, or the setting that tripped a backout trigger. Labels already applied to content stay applied. Allow 24 hours after each change."}
+order:
+  - [r0, r1, r2, r3]
+edges:
+  - [defaults, r1, {tone: blue, label: "set in B20-Labels-Pilot, repeated in B20-Labels-All", lw: 340}]
+  - [r0, r1, {tone: blue}]
+  - [r1, r2, {tone: blue}]
+  - [r2, r3, {tone: green}]
+  - [r1, rollback, {style: invis}]
+  - [r2, rollback, {style: invis}]
