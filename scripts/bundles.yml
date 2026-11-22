@@ -1,5 +1,9 @@
 # Word bundles published under /downloads/ on every site deploy.
 # Built by scripts/build_bundles.py (run it with --list to see each manifest).
+# The deploy also passes --chapters _site: every page listed in a bundle gets
+# its own chapter file at <page path>.docx, built the same way (title page
+# with the page title, "From <bundle title>" as subtitle). That is the file
+# behind the page's "Other Formats > MS Word" link.
 #
 # Manifest rules
 #   output     File name under downloads/. Pages link to it as

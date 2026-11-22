@@ -13,9 +13,19 @@ rsvg-convert if any bundled page uses an SVG image):
     python3 scripts/build_bundles.py --only Book_07-bundle.docx
     python3 scripts/build_bundles.py --list             # show manifests, build nothing
     python3 scripts/build_bundles.py --out DIR --jobs N
+    python3 scripts/build_bundles.py --chapters _site   # also one file per page
 
 Default output directory: _site/downloads (the site's /downloads/ URL).
-The "Deploy Quarto Site" workflow runs `python3 scripts/build_bundles.py`.
+The "Deploy Quarto Site" workflow runs
+`python3 scripts/build_bundles.py --out _site/downloads --chapters _site`.
+
+Chapter files (--chapters SITE): every page that is in a bundle also gets its
+own Word file, built the same way as the bundles (title page, filled table of
+contents, embedded diagrams with captions, web-only navigation removed, a
+Notes section). It is written to SITE/<page path>.docx, the file the page's
+"Other Formats > MS Word" link points at, replacing Quarto's own per-page
+render of that page. The cover shows the page title and, under it, the book
+or bundle the page belongs to (the first bundle that lists the page).
 
 For each bundle the script:
   1. Expands the manifest (see "Manifest rules" in bundles.yml). Only pages
@@ -360,6 +370,7 @@ class Bundle:
     aliases: list[str] = field(default_factory=list)
     image_dir: Path | None = None
     toc_depth: int = 2
+    path: Path | None = None             # set for a chapter file: where it is written
 
 
 def ordered_tree(root: Path, rules: RenderRules, cache: dict) -> list[Path]:
@@ -441,6 +452,30 @@ def load_bundles(rules: RenderRules) -> list[Bundle]:
             toc_depth=spec.get("toc_depth", defaults.get("toc_depth", 2)),
         ))
     return bundles
+
+
+def chapter_bundles(bundles: list[Bundle], site: Path, default_subtitle: str = "") -> list[Bundle]:
+    """One single-page bundle per page the bundles contain (each page once).
+
+    Each is written to site/<page path>.docx, where Quarto puts a page's own
+    Word render and where its "Other Formats > MS Word" link points. The title
+    page names the page; the subtitle names the first bundle listing it.
+    """
+    out, seen = [], set()
+    for b in bundles:
+        for p in b.pages:
+            if p in seen:
+                continue
+            seen.add(p)
+            title = str(split_front_matter(p.read_text(encoding="utf-8"))[0].get("title") or b.title)
+            if b.title and b.title != title:
+                subtitle = f"From {b.title}, Federal Modernization Workbook"
+            else:
+                subtitle = default_subtitle
+            target = p.relative_to(REPO).with_suffix(".docx")
+            out.append(Bundle(output=target.as_posix(), title=title, subtitle=subtitle, root=b.root,
+                              pages=[p], toc_depth=b.toc_depth, path=site / target))
+    return out
 
 
 # ------------------------------------------------------------------- images
@@ -555,6 +590,7 @@ class Builder:
         reference = cfg_defaults.get("reference_doc", "assets/reference-mslearn.docx")
         self.reference_doc = REPO / reference
         self.disclaimer = cfg_defaults.get("disclaimer", "")  # printed under the title of every bundle
+        self.subtitle = cfg_defaults.get("subtitle", "")
 
     # Pages are prepared once and shared by every bundle that uses them.
     def prepare(self, page: Path) -> Prepared:
@@ -632,9 +668,10 @@ class Builder:
                 key = Path(os.path.normpath(os.path.join(pr.staged.parent, urllib.parse.unquote(src)))).as_posix()
                 image_map[key] = str(self.word_ready[resolved])
         unique = {r for _, _, r, _ in refs}
-        map_file = self.work / f"{b.output}.images.json"
+        map_file = self.work / (b.output.replace("/", "__") + ".images.json")
         map_file.write_text(json.dumps(image_map))
-        output = self.out_dir / b.output
+        output = b.path or (self.out_dir / b.output)
+        output.parent.mkdir(parents=True, exist_ok=True)
         env = dict(os.environ, BUNDLE_IMAGE_MAP=str(map_file),
                    BUNDLE_LISTING_IDS=",".join(sorted(listing_ids | {"chapters", "book-chapters"})))
         cmd = self.pandoc + [
@@ -712,6 +749,9 @@ def main() -> None:
     ap.add_argument("--jobs", type=int, default=os.cpu_count() or 2)
     ap.add_argument("--list", action="store_true", help="print each manifest and exit")
     ap.add_argument("--no-link-check", action="store_true", help="skip the download-link check")
+    ap.add_argument("--chapters", type=Path, metavar="SITE",
+                    help="also build one Word file per bundled page at SITE/<page path>.docx "
+                         "(the page's 'Other Formats > MS Word' file)")
     args = ap.parse_args()
     started = time.monotonic()
     rules = RenderRules()
@@ -734,13 +774,15 @@ def main() -> None:
     builder.prepare_all({p for b in bundles for p in b.pages})
     log(f"Prepared {len(builder.prepared)} pages and {len(builder.word_ready)} images "
         f"in {time.monotonic() - started:.1f}s")
+    chapters = chapter_bundles(bundles, args.chapters.resolve(), builder.subtitle) if args.chapters else []
 
-    results, errors = [], []
+    results, chapter_results, errors = [], [], []
     with cf.ThreadPoolExecutor(args.jobs) as ex:
         futures = [ex.submit(builder.build, b) for b in bundles]
-        for fut in futures:
+        chapter_futures = [ex.submit(builder.build, c) for c in chapters]
+        for fut in futures + chapter_futures:
             try:
-                results.append(fut.result())
+                (results if fut in futures else chapter_results).append(fut.result())
             except BuildError as e:
                 errors.append(str(e))
     if errors:
@@ -761,6 +803,12 @@ def main() -> None:
             log(f"  {len(r['unused'])} image(s) in {r['image_dir']}/ are not used by this bundle:")
             for u in r["unused"]:
                 log(f"    {u}")
+    if chapter_results:
+        slowest = max(chapter_results, key=lambda r: r["seconds"])
+        log(f"Chapter files: {len(chapter_results)} under {rel(args.chapters.resolve())}/, "
+            f"{sum(r['refs'] for r in chapter_results)} image placements, "
+            f"{sum(r['size'] for r in chapter_results) / 1e6:.1f} MB; "
+            f"slowest {slowest['output']} ({slowest['seconds']:.1f}s)")
     log(f"Built {len(results)} bundles ({sum(len(r['aliases']) for r in results)} aliases) "
         f"in {time.monotonic() - started:.1f}s")
 
