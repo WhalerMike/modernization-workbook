@@ -57,10 +57,10 @@ The data lives in [`data/learn-coverage/`](https://github.com/WhalerMike/moderni
 |---|---:|---:|---:|---:|---:|---:|
 | Windows Server identity | 561 | 167 | 22 | 12 | 360 | 0 |
 | Microsoft Entra | 2,511 | 1,028 | 444 | 366 | 671 | 2 |
-| Windows Server releases | 44 | 4 | 4 | 7 | 29 | 0 |
+| Windows Server releases | 45 | 5 | 4 | 7 | 29 | 0 |
 | Windows Server security | 47 | 7 | 16 | 10 | 14 | 0 |
 | Windows Server file server and SMB | 26 | 3 | 1 | 11 | 11 | 0 |
-| **All sides** | 3,189 | 1,209 | 487 | 406 | 1,085 | 2 |
+| **All sides** | 3,190 | 1,210 | 487 | 406 | 1,085 | 2 |
 
 ## Windows Server identity {#windows-server-identity}
 
@@ -3372,11 +3372,11 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 
 ## Windows Server releases {#windows-server-get-started}
 
-From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowsserverdocs), folder `WindowsServerDocs/get-started/`, at commit `cceb56b` (2026-11-13).
+From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowsserverdocs), folder `WindowsServerDocs/get-started/`, at commit `b640f2c` (2026-11-23).
 
 | Area | Pages | Cited | Covered, not cited | Not covered | Out of scope | Not reviewed yet |
 |---|---:|---:|---:|---:|---:|---:|
-| [general](#windows-server-get-started-general) | 44 | 4 | 4 | 7 | 29 | 0 |
+| [general](#windows-server-get-started-general) | 45 | 5 | 4 | 7 | 29 | 0 |
 
 ### general {#windows-server-get-started-general}
 
@@ -3425,6 +3425,7 @@ From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowss
 | [What's new in Windows Server 2019](https://learn.microsoft.com/windows-server/get-started/whats-new-in-windows-server-2019) | — | Not covered |
 | [What's New in Windows Server 2022](https://learn.microsoft.com/windows-server/get-started/whats-new-in-windows-server-2022) | — | Not covered |
 | [What's new in Windows Server 2025](https://learn.microsoft.com/windows-server/get-started/whats-new-windows-server-2025) | [Book 01, Chapter 01 — Why Modernization Is Hard](../books/b01-transformation-arc/01-why-modernization-is-hard.md); [Book 01, Chapter 02 — The Problem: Governance Hidden in the Directory](../books/b01-transformation-arc/02-the-problem.md); and 10 more | Cited |
+| [Windows Server 2028 Preview: New features](https://learn.microsoft.com/windows-server/get-started/whats-new-windows-server-2028) | [Book 02, Chapter 03 — Active Directory and Entra ID, Side by Side](../books/b02-identity/03-ad-and-entra-side-by-side.md) | Cited |
 | [Configure Windows Server Pay-as-you-go with Azure Arc](https://learn.microsoft.com/windows-server/get-started/windows-server-pay-as-you-go) | [Book 05, Chapter 09 — Servers Under Azure Arc](../books/b05-devices/09-servers-under-azure-arc.md) | Covered, not cited |
 
 ## Windows Server security {#windows-server-security}
