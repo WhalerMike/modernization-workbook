@@ -1,0 +1,208 @@
+{
+  "_comment": "Microsoft's Azure architecture icons, copied unmodified by vendor.py from the download named below. Used only in the workbook's diagrams, as Microsoft's icon terms permit. Never edit the SVGs; re-run vendor.py.",
+  "download": "Azure_Public_Service_Icons_V25.zip",
+  "documented_at": "https://learn.microsoft.com/azure/architecture/icons/",
+  "terms": "Microsoft permits the use of these icons in architectural diagrams, training materials, or documentation. You can copy, distribute, and display the icons only for the permitted use unless granted explicit permission by Microsoft. Microsoft reserves all other rights.",
+  "files": {
+    "azure/app-gateway.svg": {
+      "source": "networking/10076-icon-service-Application-Gateways.svg",
+      "bytes": 3351,
+      "sha256": "531e668e47cf61872b2811ec67dcc103cee2ecc1d272f07132d6196d68ba6c19"
+    },
+    "azure/app-registrations.svg": {
+      "source": "identity/10232-icon-service-App-Registrations.svg",
+      "bytes": 1376,
+      "sha256": "bad6673e76100221dfeb7adaebb4a6778c255c07afbdef742bf18527fe5115ab"
+    },
+    "azure/app-service.svg": {
+      "source": "app services/10035-icon-service-App-Services.svg",
+      "bytes": 3078,
+      "sha256": "529d83fc80637a96b6d27f6cfac7536e1c5f9b1b67f58aef4e2e3d6f47fd4925"
+    },
+    "azure/arc.svg": {
+      "source": "management + governance/00756-icon-service-Azure-Arc.svg",
+      "bytes": 2870,
+      "sha256": "00f4a57d6e0391bec619a9298d114f783dbb7dd4165d44242202ca37d00d9bfa"
+    },
+    "azure/arc-machines.svg": {
+      "source": "management + governance/10450-icon-service-MachinesAzureArc.svg",
+      "bytes": 980,
+      "sha256": "bce92e5cdd89312fe2aa462bce16a454a87fd7834b831219fdeaddd3684e64ce"
+    },
+    "azure/automation.svg": {
+      "source": "management + governance/00022-icon-service-Automation-Accounts.svg",
+      "bytes": 1676,
+      "sha256": "4ad2825c024842fa6ea8875cf4098a8574b33b329301163282a7c6df43d6d7b4"
+    },
+    "azure/conditional-access.svg": {
+      "source": "security/10233-icon-service-Conditional-Access.svg",
+      "bytes": 1579,
+      "sha256": "a2b134ba1ea7e774a0e493b3e4e4a8d4b72e5dfc6e1b350960360e1f0c26243a"
+    },
+    "azure/defender-for-cloud.svg": {
+      "source": "security/10241-icon-service-Microsoft-Defender-for-Cloud.svg",
+      "bytes": 1622,
+      "sha256": "23ab6fbba1cd0ac5ffdc6ee7084e7cac3029c402dc18b8896331626f135c9513"
+    },
+    "azure/dns-private-resolver.svg": {
+      "source": "networking/02882-icon-service-DNS-Private-Resolver.svg",
+      "bytes": 3933,
+      "sha256": "990d109df8bac6312c886afdf0b521145baa88df78701afca51d7c8f8eaba9ce"
+    },
+    "azure/dns-zones.svg": {
+      "source": "networking/10064-icon-service-DNS-Zones.svg",
+      "bytes": 2495,
+      "sha256": "e6aaa1380e974af7d0aba1bb8380ecfab3f95182a595a28692aa3f963bcf9fac"
+    },
+    "azure/enterprise-apps.svg": {
+      "source": "identity/10225-icon-service-Enterprise-Applications.svg",
+      "bytes": 3655,
+      "sha256": "4588ec82b09e6b48ea889c0a38b3fb3ff81ac67b2ddad0adac464b0fee1e6280"
+    },
+    "azure/entra-connect.svg": {
+      "source": "identity/02854-icon-service-Entra-Connect.svg",
+      "bytes": 3763,
+      "sha256": "a0c2b96d2e960942e8d6a4e1fac4f535fc9ee0ac9ade024e23a2467dff16de62"
+    },
+    "azure/entra-gsa.svg": {
+      "source": "identity/03309-icon-service-Entra-Global-Secure-Access.svg",
+      "bytes": 2544,
+      "sha256": "8581a3f11997daaca3ce01da74a767b50a30b2faf9f30e24fc7f08b28f81dab9"
+    },
+    "azure/entra-internet-access.svg": {
+      "source": "identity/03383-icon-service-Entra-Internet-Access.svg",
+      "bytes": 4123,
+      "sha256": "307d30e178e31465f1acbf8e6cbca48745cd698edb546a7badefc754a2324b42"
+    },
+    "azure/entra-private-access.svg": {
+      "source": "identity/03382-icon-service-Entra-Private-Access.svg",
+      "bytes": 3740,
+      "sha256": "f30b25765b36d0b2ffe0943871e0a2707ea00c2fe0245f10db6f3d95f6f409ea"
+    },
+    "azure/firewall.svg": {
+      "source": "networking/10084-icon-service-Firewalls.svg",
+      "bytes": 1474,
+      "sha256": "154c416cc15b95b7c6c1ab61a5ecb33f14845197b7d163bd9dc6f1968c14be1e"
+    },
+    "azure/front-door.svg": {
+      "source": "networking/10073-icon-service-Front-Door-and-CDN-Profiles.svg",
+      "bytes": 942,
+      "sha256": "b2e9c9a8b091a0694532257354dea94bb8c65b33876826e44dbc9b2aae01cf17"
+    },
+    "azure/groups.svg": {
+      "source": "identity/10223-icon-service-Groups.svg",
+      "bytes": 1357,
+      "sha256": "e9a41be8418dd01a39a810f2a1f7afec638171cc35f51dbeeeefa96d5e876564"
+    },
+    "azure/identity-governance.svg": {
+      "source": "identity/10235-icon-service-Identity-Governance.svg",
+      "bytes": 2225,
+      "sha256": "d10d483115ba36c6ddc4bc8f513f6ce10de185f8f94892135d57759dd312b1df"
+    },
+    "azure/information-protection.svg": {
+      "source": "identity/10229-icon-service-Azure-Information-Protection.svg",
+      "bytes": 2102,
+      "sha256": "8fafc3edf57c3be54259ae9d726c49f3ab1576688c11208b36975aef34181be1"
+    },
+    "azure/intune.svg": {
+      "source": "intune/10329-icon-service-Intune.svg",
+      "bytes": 1737,
+      "sha256": "a90c553f57031340c6ef44e3773c0a49249f9783eb26d83a6590b95c5370fb04"
+    },
+    "azure/key-vault.svg": {
+      "source": "security/10245-icon-service-Key-Vaults.svg",
+      "bytes": 2231,
+      "sha256": "712b426f54f0fc50d0816dc79df709daa7ac5f93ccaf4e9b3527f627f6e9ad97"
+    },
+    "azure/log-analytics.svg": {
+      "source": "monitor/00009-icon-service-Log-Analytics-Workspaces.svg",
+      "bytes": 1295,
+      "sha256": "7a244a8d7260e84be5c904185db7b04994fe6ed345e2b224163bc5f7e3d97ce0"
+    },
+    "azure/managed-identity.svg": {
+      "source": "identity/10227-icon-service-Entra-Managed-Identities.svg",
+      "bytes": 3938,
+      "sha256": "2100bf636095348d0b75220450b5d88672c720f49c79972e95916e41e91ae169"
+    },
+    "azure/management-groups.svg": {
+      "source": "general/10011-icon-service-Management-Groups.svg",
+      "bytes": 2690,
+      "sha256": "d8371735319fa4971c01e682810d0b67207c2c901f4fd19c2374a80c3e328829"
+    },
+    "azure/monitor.svg": {
+      "source": "monitor/00001-icon-service-Monitor.svg",
+      "bytes": 1934,
+      "sha256": "1396f59a7d8fd7505a423842b987c9b343a092263d1ab5c7b0d94d58d8b17448"
+    },
+    "azure/pim.svg": {
+      "source": "identity/02251-icon-service-Entra-Privleged-Identity-Management.svg",
+      "bytes": 2816,
+      "sha256": "dc24256babf9e22aaa67c539e71fb88c0bc67d075826455ed191446c7a924f2c"
+    },
+    "azure/policy.svg": {
+      "source": "management + governance/10316-icon-service-Policy.svg",
+      "bytes": 1472,
+      "sha256": "c3dc70003e793bf73b497f8d8501cdc81f930ce1777fdbfe9b7450afe477771a"
+    },
+    "azure/private-link.svg": {
+      "source": "networking/00427-icon-service-Private-Link.svg",
+      "bytes": 2402,
+      "sha256": "9990bbce78fc1ef3838fbe86e2ff3b297e721b1f6a6d037b4d3f3ce9abf4a5a2"
+    },
+    "azure/resource-graph.svg": {
+      "source": "management + governance/10318-icon-service-Resource-Graph-Explorer.svg",
+      "bytes": 1230,
+      "sha256": "6e9262653086bd4e83184ba6abb2e8b39a29e676107540c1fcfa41b4c8c0db37"
+    },
+    "azure/resource-groups.svg": {
+      "source": "general/10007-icon-service-Resource-Groups.svg",
+      "bytes": 1746,
+      "sha256": "4d2b2eacb37735849d2e556074ac8564f92fada70672b40985c77ea666e82977"
+    },
+    "azure/sentinel.svg": {
+      "source": "security/10248-icon-service-Azure-Sentinel.svg",
+      "bytes": 1222,
+      "sha256": "754537541da48fd4957180d452bd64dfc4a9bbe4de4cbfdfa833ef8af556d16f"
+    },
+    "azure/service-health.svg": {
+      "source": "general/10004-icon-service-Service-Health.svg",
+      "bytes": 1285,
+      "sha256": "52dd1e99f2d75c8a41cce9f256d2e33696236a0c4f88e3817b704347f1c9a411"
+    },
+    "azure/subscriptions.svg": {
+      "source": "general/10002-icon-service-Subscriptions.svg",
+      "bytes": 1505,
+      "sha256": "d69843a70bd38eefa5b70a4d0b803502f95cdf061c59aed48b435170a15919b4"
+    },
+    "azure/update-manager.svg": {
+      "source": "other/02846-icon-service-Update-Management-Center.svg",
+      "bytes": 4234,
+      "sha256": "58009b5092ef202e953f112380f23292682abd08e5bb72721a81fa8adb7b367e"
+    },
+    "azure/users.svg": {
+      "source": "identity/10230-icon-service-Users.svg",
+      "bytes": 1025,
+      "sha256": "7c08aa6365b41e7f0b74833bfd420f174081f6e90ba278e0c01cd988027eb3ca"
+    },
+    "azure/virtual-machine.svg": {
+      "source": "compute/10021-icon-service-Virtual-Machine.svg",
+      "bytes": 1330,
+      "sha256": "092d18ffadec9ec0e5af129186dc7bc2a80544011e55f965604ed4b13873e0fc"
+    },
+    "azure/virtual-network.svg": {
+      "source": "networking/10061-icon-service-Virtual-Networks.svg",
+      "bytes": 1860,
+      "sha256": "64a5e75ecef2f9f69067faa2eb131266cb8f2858706f8ab74bfea5ad0d98b14d"
+    },
+    "azure/waf-policy.svg": {
+      "source": "networking/10362-icon-service-Web-Application-Firewall-Policies(WAF).svg",
+      "bytes": 3249,
+      "sha256": "b790e4e7b7617c8155025ab238cfab39a303df74dc030dbe9943a6eef2732255"
+    },
+    "azure/workbooks.svg": {
+      "source": "monitor/02189-icon-service-Azure-Workbooks.svg",
+      "bytes": 1550,
+      "sha256": "20b3064d62ff3c7944d71f852d34f0ecba8b3bcd2f3ff3e8d14634a116e57da4"
+    }
+  }
+}

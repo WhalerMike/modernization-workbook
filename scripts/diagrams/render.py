@@ -39,6 +39,11 @@ import yaml
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[2]
+# Microsoft's product icons (Azure architecture icons), vendored with their terms in
+# scripts/diagrams/icons/. A card names one with `icon: <name>`; see icons/README.md.
+ICONS = Path(__file__).resolve().parent / "icons"
+ICON_PX = 26
+_icon_tmp: Path | None = None
 SERIES_ROOT = ROOT / "docs" / "images" / "diagrams"
 # Set per folder by use_dir().
 HERE = SRC = SVG = PNG = None
@@ -127,17 +132,39 @@ def plain(s: str) -> str:
 # flow: cards and arrows -> DOT
 
 
+def icon_file(name: str) -> str:
+    """The named icon as a PNG in the render's temp folder, for Graphviz to embed.
+
+    Graphviz misplaces an image it has to scale, and its cairo SVG output can't embed an
+    SVG, so the icon is rasterized at four times its size and tagged at 288 dpi: Graphviz
+    then reads it as exactly ICON_PX points and draws it unscaled, sharp at 2x.
+    """
+    hits = sorted(ICONS.glob(f"*/{name}.svg"))
+    if len(hits) != 1:
+        sys.exit(f"icon {name!r}: expected one scripts/diagrams/icons/*/{name}.svg, found {len(hits)}")
+    out = (_icon_tmp or Path(tempfile.gettempdir())) / f"icon-{name}.png"
+    if not out.exists():
+        subprocess.run(["rsvg-convert", "-w", str(ICON_PX * 4), "-h", str(ICON_PX * 4), "-o", str(out), str(hits[0])], check=True)
+        with Image.open(out) as im:
+            im.load()
+            im.save(out, dpi=(288, 288))
+    return str(out)
+
+
 def card_label(n: dict) -> str:
     tone = TONES[n.get("tone", "plain")]
     width = n.get("width", 200)
     inner = width - 20
     rows = []
+    title_row = None
     if n.get("tag"):
         rows.append(f'<TR><TD ALIGN="LEFT" BALIGN="LEFT"><FONT POINT-SIZE="{SIZE_SMALL-1}" COLOR="{tone[0]}"><B>{esc(n["tag"].upper())}</B></FONT></TD></TR>')
     if n.get("title"):
         tl = []
+        t_inner = inner - (ICON_PX + 6 if n.get("icon") else 0)
         for line in n["title"].split("\n"):
-            tl += wrap(plain(line), inner, SIZE_TITLE, "SemiBold") if "`" not in line else [line]
+            tl += wrap(plain(line), t_inner, SIZE_TITLE, "SemiBold") if "`" not in line else [line]
+        title_row = len(rows)
         title = "<BR/>".join(rich(t) for t in tl)
         align = n.get("align", "LEFT")
         rows.append(f'<TR><TD ALIGN="{align}" BALIGN="{align}"><FONT POINT-SIZE="{SIZE_TITLE}" COLOR="{tone[2]}"><B>{title}</B></FONT></TD></TR>')
@@ -158,6 +185,26 @@ def card_label(n: dict) -> str:
     if n.get("foot"):
         fl = wrap(plain(n["foot"]), inner, SIZE_SMALL)
         rows.append(f'<TR><TD ALIGN="LEFT" BALIGN="LEFT"><FONT POINT-SIZE="{SIZE_SMALL}" COLOR="{MUTED}"><I>{"<BR/>".join(esc(l) for l in fl)}</I></FONT></TD></TR>')
+    if n.get("icon"):
+        # The icon sits left of the title (or the first row), in a borderless table nested
+        # in that row: Graphviz misplaces an image in a cell that spans rows, or one it
+        # aligns to the top. Graphviz also spreads any spare width over the nested cells,
+        # so the title cell is given the card's full measured width up front.
+        i = title_row if title_row is not None else 0
+        widest = inner
+        if n.get("tag"):
+            widest = max(widest, text_width(n["tag"].upper(), SIZE_SMALL - 1, "SemiBold") + 4)
+        for item in n.get("body", []):
+            if "`" in item:
+                widest = max(widest, text_width(plain(item.lstrip("=")), n.get("size", SIZE_BODY)) + 16)
+        img = (f'<TD FIXEDSIZE="TRUE" WIDTH="{ICON_PX}" HEIGHT="{ICON_PX}">'
+               f'<IMG SRC="{icon_file(n["icon"])}"/></TD><TD WIDTH="6"></TD>')
+        if rows:
+            cell = rows[i][len("<TR>"):-len("</TR>")].replace("<TD ", f'<TD WIDTH="{round(widest) - ICON_PX - 6}" ', 1)
+            rows[i] = ('<TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0"><TR>'
+                       + img + cell + "</TR></TABLE></TD></TR>")
+        else:
+            rows = [f"<TR>{img}</TR>"]
     penw = n.get("penwidth", 1.6)
     style = ' STYLE="ROUNDED"' if n.get("rounded", True) else ""
     dash = ""
@@ -487,6 +534,8 @@ def seq_to_svg(spec: dict) -> str:
 
 
 def render(src: Path, tmp: Path) -> Path:
+    global _icon_tmp
+    _icon_tmp = tmp
     name = src.name.split(".")[0]
     raw = tmp / f"{name}.raw.svg"
     if src.name.endswith(".flow.yaml"):

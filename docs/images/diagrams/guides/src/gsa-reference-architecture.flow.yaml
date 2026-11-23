@@ -23,16 +23,16 @@ clusters:
     dashed: true
     nodes: [conn, apps]
 nodes:
-  client: {tone: slate, width: 170, tag: "Windows, via Intune", title: "Client", body: ["Three traffic profiles", "Device compliance"], size: 12}
-  cpe: {tone: slate, width: 170, tag: "Branch, clientless", title: "Remote network", body: ["IPsec and BGP", "No Private Access"], size: 12}
-  entra: {tone: blue, width: 170, title: "Conditional Access", body: ["Compliant network", "Tenant restrictions", "Auth strength, CAE"], size: 12}
-  admin: {tone: blue, width: 170, tag: "Policy plane", title: "GSA settings", body: ["Traffic, security profiles", "TLS, signaling, UTR"], size: 12}
-  sse: {tone: violet, width: 260, tag: "Commercial Azure regions", title: "Service edge", body: ["Microsoft: source IP, tagging", "Internet: TLS, web, threats", "Private: per-app broker"], size: 12}
-  conn: {tone: slate, width: 180, tag: "Two or more per group", title: "Connectors", body: ["Outbound 443 only", "DNS for private suffixes"], size: 12}
-  apps: {tone: slate, width: 180, title: "Apps, admin hosts", body: ["Per-app segments", "DC sensor"], size: 12}
+  client: {icon: entra-gsa, tone: slate, width: 170, tag: "Windows, via Intune", title: "Client", body: ["Three traffic profiles", "Device compliance"], size: 12}
+  cpe: {icon: virtual-network, tone: slate, width: 170, tag: "Branch, clientless", title: "Remote network", body: ["IPsec and BGP", "No Private Access"], size: 12}
+  entra: {icon: conditional-access, tone: blue, width: 170, title: "Conditional Access", body: ["Compliant network", "Tenant restrictions", "Auth strength, CAE"], size: 12}
+  admin: {icon: entra-gsa, tone: blue, width: 170, tag: "Policy plane", title: "GSA settings", body: ["Traffic, security profiles", "TLS, signaling, UTR"], size: 12}
+  sse: {icon: entra-internet-access, tone: violet, width: 260, tag: "Commercial Azure regions", title: "Service edge", body: ["Microsoft: source IP, tagging", "Internet: TLS, web, threats", "Private: per-app broker"], size: 12}
+  conn: {icon: entra-private-access, tone: slate, width: 180, tag: "Two or more per group", title: "Connectors", body: ["Outbound 443 only", "DNS for private suffixes"], size: 12}
+  apps: {icon: virtual-machine, tone: slate, width: 180, title: "Apps, admin hosts", body: ["Per-app segments", "DC sensor"], size: 12}
   m365: {kind: pill, tone: green, text: "Microsoft 365", width: 130}
   web: {kind: pill, tone: amber, text: "Internet, SaaS", width: 120}
-  siem: {tone: green, width: 180, tag: "Evidence", title: "Log Analytics, Sentinel", body: ["Traffic, sign-in, audit", "CISA telemetry (TIC 3.0)"], size: 12}
+  siem: {icon: sentinel, tone: green, width: 180, tag: "Evidence", title: "Log Analytics, Sentinel", body: ["Traffic, sign-in, audit", "CISA telemetry (TIC 3.0)"], size: 12}
 edges:
   - [client, cpe, {style: invis}]
   - [entra, admin, {style: invis}]

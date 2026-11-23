@@ -14,12 +14,12 @@
 rankdir: TB
 graph: {nodesep: 0.35, ranksep: 0.45}
 nodes:
-  root: {tone: red, width: 300, tag: "Root scope (/)", title: "User Access Administrator: removed", body: ["=A Global Administrator who elevates gets it on every subscription"], size: 12}
-  mg: {tone: blue, width: 300, tag: "Management group", title: "Owner, Contributor, User Access Administrator: eligible", foot: "Role settings set here", size: 12}
-  sub: {tone: blue, width: 300, tag: "Subscription", title: "Owner, Contributor, User Access Administrator: eligible", body: ["At most three Owners, eligible or active"], foot: "Role settings set here", size: 12}
-  rg: {tone: blue, width: 300, tag: "Resource group", title: "Owner, Contributor, User Access Administrator: eligible", foot: "Role settings set here", size: 12}
+  root: {icon: management-groups, tone: red, width: 300, tag: "Root scope (/)", title: "User Access Administrator: removed", body: ["=A Global Administrator who elevates gets it on every subscription"], size: 12}
+  mg: {icon: management-groups, tone: blue, width: 300, tag: "Management group", title: "Owner, Contributor, User Access Administrator: eligible", foot: "Role settings set here", size: 12}
+  sub: {icon: subscriptions, tone: blue, width: 300, tag: "Subscription", title: "Owner, Contributor, User Access Administrator: eligible", body: ["At most three Owners, eligible or active"], foot: "Role settings set here", size: 12}
+  rg: {icon: resource-groups, tone: blue, width: 300, tag: "Resource group", title: "Owner, Contributor, User Access Administrator: eligible", foot: "Role settings set here", size: 12}
   inh: {kind: text, tone: blue, width: 230, text: "Role assignments apply to every scope below. Role settings don't inherit, so each governed scope gets its own; one left out keeps what it has."}
-  sp: {tone: amber, width: 230, title: "Service principals and managed identities", body: ["=Can't be made eligible: left standing, with an owner and a reason"], size: 12}
+  sp: {icon: managed-identity, tone: amber, width: 230, title: "Service principals and managed identities", body: ["=Can't be made eligible: left standing, with an owner and a reason"], size: 12}
 order:
   - [mg, inh]
   - [rg, sp]
