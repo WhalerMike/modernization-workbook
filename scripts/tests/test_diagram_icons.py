@@ -1,4 +1,4 @@
-"""The vendored Microsoft icons (scripts/diagrams/icons/) match their manifest, and every
+"""The vendored Microsoft and AWS icons (scripts/diagrams/icons/) match their manifest, and every
 icon a diagram names exists.
 
     python -m unittest discover -s scripts/tests -v
@@ -26,7 +26,8 @@ class DiagramIcons(unittest.TestCase):
         for rel, meta in manifest["files"].items():
             body = (ICONS / rel).read_bytes()
             self.assertEqual(hashlib.sha256(body).hexdigest(), meta["sha256"], f"{rel} differs from Microsoft's file")
-        self.assertIn("architectural diagrams", manifest["terms"])
+        for name, d in manifest["downloads"].items():
+            self.assertIn("diagrams", d["terms"], f"{name}: the vendor's terms for diagram use are missing")
 
     def test_manifest_matches_icons_yml(self):
         want = yaml.safe_load((ICONS / "icons.yml").read_text(encoding="utf-8"))
