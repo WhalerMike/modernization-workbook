@@ -5758,6 +5758,7 @@ pages:
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b09-network/_verification/05-sd-wan-sase-and-governed-transport.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/images/learn/entra-global-secure-access-how-to-compliant-network/snapshot.json
   - docs/project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.md
   - docs/reference/source-register.md
   - docs/training/global-secure-access/_verification/learning-path.md
@@ -6016,6 +6017,8 @@ pages:
   cited_by:
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b09-network/11-field-office-wan-transformation.md
+  - docs/books/guides/cisco-sdwan-implementation.md
+  - docs/images/learn/entra-global-secure-access-how-to-create-remote-networks/snapshot.json
 - path: docs/global-secure-access/how-to-create-traffic-forwarding-profile.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-create-traffic-forwarding-profile
   title: Create a Microsoft Entra Private Access traffic forwarding profile
@@ -6163,6 +6166,7 @@ pages:
   - data/source-register.json
   - docs/books/guides/global-secure-access-implementation.md
   - docs/books/guides/intune-track-implementation.md
+  - docs/images/learn/entra-global-secure-access-how-to-install-windows-client/snapshot.json
   - docs/project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-list-remote-networks.md
@@ -6467,6 +6471,7 @@ pages:
   - docs/books/b04-access/_verification/03-the-conditional-access-model.md
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/images/learn/entra-global-secure-access-how-to-source-ip-restoration/snapshot.json
   - docs/project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-target-resource-microsoft-profile.md
@@ -6544,6 +6549,7 @@ pages:
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/images/learn/entra-global-secure-access-how-to-transport-layer-security/snapshot.json
   - docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md
   - docs/reference/source-register.md
   - docs/training/global-secure-access/_verification/learning-path.md
@@ -7464,6 +7470,7 @@ pages:
   cited_by:
   - data/source-register.json
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/images/learn/entra-global-secure-access-tutorial-microsoft-traffic-enable-profile/snapshot.json
   - docs/project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/tutorial-microsoft-traffic-introduction.md
@@ -7934,6 +7941,8 @@ pages:
   cited_by:
   - docs/books/b03-hr-identity/08-joiner-mover-leaver.md
   - docs/books/b03-hr-identity/11-drift-metrics-and-evidence.md
+  - docs/books/guides/hr-driven-identity-implementation.md
+  - docs/images/learn/entra-id-governance-customize-workflow-schedule/snapshot.json
 - path: docs/id-governance/delegate-approvals-my-access.md
   url: https://learn.microsoft.com/entra/id-governance/delegate-approvals-my-access
   title: Delegate approvals and access reviews in My Access (Preview)
@@ -8028,6 +8037,7 @@ pages:
   - data/source-register.json
   - docs/books/guides/_verification/hr-driven-identity-implementation.md
   - docs/books/guides/hr-driven-identity-implementation.md
+  - docs/images/learn/entra-id-governance-entitlement-management-access-package-auto-assignment-policy/snapshot.json
   - docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.md
   - docs/reference/source-register.md
 - path: docs/id-governance/entitlement-management-access-package-create-app.md
@@ -9060,6 +9070,7 @@ pages:
   - docs/books/guides/_verification/hr-driven-identity-implementation.md
   - docs/books/guides/attribute-driven-migration.md
   - docs/books/guides/hr-driven-identity-implementation.md
+  - docs/images/learn/entra-id-governance-lifecycle-workflow-extensibility/snapshot.json
   - docs/reference/source-register.md
   - examples/third_party/lifecycle-workflows-logic-app/SNAPSHOT.md
 - path: docs/id-governance/lifecycle-workflow-history.md
@@ -9142,6 +9153,7 @@ pages:
   - docs/books/guides/_verification/hr-driven-identity-implementation.md
   - docs/books/guides/hcm-entra-implementation.md
   - docs/books/guides/hr-driven-identity-implementation.md
+  - docs/images/learn/entra-id-governance-lifecycle-workflow-tasks/snapshot.json
   - docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md
   - docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md
@@ -9705,6 +9717,8 @@ pages:
   cited_by:
   - docs/books/b04-access/02-why-standing-privilege-fails.md
   - docs/books/b04-access/08-pim-self-request-with-approval.md
+  - docs/books/guides/ttm-servicenow-sailpoint.md
+  - docs/images/learn/id-governance-privileged-identity-management-pim-how-to-activate-role/snapshot.json
   - docs/project-plans/developer-workbooks/hr-driven-identity/08-deploying-to-test-and-production.md
   - docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md
   - docs/project-plans/developer-workbooks/privileged-access/09-deploying-to-test-and-production.md
@@ -9742,6 +9756,7 @@ pages:
   - docs/books/b15-day2-operations/03-intake-triage-and-routing.md
   - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
   - docs/books/guides/privileged-access-implementation.md
+  - docs/images/learn/id-governance-privileged-identity-management-pim-how-to-change-default-settings/snapshot.json
   - docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.md
   - docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md
   - docs/project-plans/developer-workbooks/privileged-access/09-deploying-to-test-and-production.md
@@ -9780,6 +9795,7 @@ pages:
   cited_by:
   - docs/books/b04-access/08-pim-self-request-with-approval.md
   - docs/books/guides/privileged-access-implementation.md
+  - docs/images/learn/id-governance-privileged-identity-management-pim-how-to-use-audit-log/snapshot.json
   - docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.md
   - examples/third_party/entra-pim-audit-page/SNAPSHOT.md
   - examples/third_party/entra-pim-audit-page/snapshot.json
@@ -11808,6 +11824,9 @@ pages:
   - docs/books/b04-access/05-applications-and-workload-identities.md
   - docs/books/b04-access/_verification/05-applications-and-workload-identities.md
   - docs/books/guides/service-account-migration.md
+  - docs/books/guides/snow-sailpoint-integration-kit.md
+  - docs/books/guides/ttm-servicenow-sailpoint.md
+  - docs/images/learn/entra-identity-platform-how-to-add-credentials/snapshot.json
 - path: docs/identity-platform/how-to-add-redirect-uri.md
   url: https://learn.microsoft.com/entra/identity-platform/how-to-add-redirect-uri
   title: How to add a redirect URI to your application
@@ -15067,6 +15086,7 @@ pages:
   cited_by:
   - docs/books/b03-hr-identity/appendix-a-lifecycle-rules.md
   - docs/books/guides/hcm-entra-implementation.md
+  - docs/images/learn/identity-app-provisioning-application-provisioning-quarantine-status/snapshot.json
 - path: docs/identity/app-provisioning/application-provisioning-when-will-provisioning-finish-specific-user.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/application-provisioning-when-will-provisioning-finish-specific-user
   title: Find out when a specific user is able to access an app in Microsoft Entra Application Provisioning
@@ -15414,6 +15434,8 @@ pages:
   - docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md
   - docs/books/guides/attribute-driven-migration.md
   - docs/books/guides/hcm-entra-implementation.md
+  - docs/books/guides/ttm-servicenow-sailpoint.md
+  - docs/images/learn/identity-app-provisioning-inbound-provisioning-api-concepts/snapshot.json
   - docs/reference/source-register.md
 - path: docs/identity/app-provisioning/inbound-provisioning-api-configure-app.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-configure-app
@@ -15430,6 +15452,7 @@ pages:
   - docs/books/b19-developer-workbook/10-deploying-to-test-and-production.md
   - docs/books/guides/hcm-entra-implementation.md
   - docs/evaluations/oracle-contingent-worker-contractor-source.md
+  - docs/images/learn/identity-app-provisioning-inbound-provisioning-api-configure-app/snapshot.json
   - docs/project-plans/developer-workbooks/hr-driven-identity/08-deploying-to-test-and-production.md
 - path: docs/identity/app-provisioning/inbound-provisioning-api-curl-tutorial.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-curl-tutorial
@@ -15459,6 +15482,7 @@ pages:
   cited_by:
   - docs/books/b03-hr-identity/06-canonical-attribute-schema.md
   - docs/books/guides/hcm-entra-implementation.md
+  - docs/images/learn/identity-app-provisioning-inbound-provisioning-api-custom-attributes/snapshot.json
 - path: docs/identity/app-provisioning/inbound-provisioning-api-faqs.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-faqs
   title: Frequently asked questions (FAQs) about API-driven inbound provisioning
@@ -17165,6 +17189,7 @@ pages:
   - docs/books/b07-pki/appendix-b-template-migration-matrix.md
   - docs/books/guides/_verification/hr-driven-identity-implementation.md
   - docs/books/guides/hr-driven-identity-implementation.md
+  - docs/images/learn/identity-authentication-concept-certificate-based-authentication-certificate-revocation-list/snapshot.json
   - docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md
   - docs/reference/source-register.md
 - path: docs/identity/authentication/concept-certificate-based-authentication-certificateuserids.md
@@ -17185,7 +17210,9 @@ pages:
   - docs/books/b07-pki/05-who-owns-the-certificate-estate.md
   - docs/books/explainers/hybrid-credentials.md
   - docs/books/guides/_verification/attribute-driven-migration-implementation.md
+  - docs/books/guides/attribute-driven-migration-implementation.md
   - docs/books/guides/attribute-driven-migration.md
+  - docs/images/learn/identity-authentication-concept-certificate-based-authentication-certificateuserids/snapshot.json
   - docs/reference/source-register.md
   - examples/validation-kit/README.md
   - examples/validation-kit/powershell/ValidationKit/Private/Catalog.ps1
@@ -17827,7 +17854,9 @@ pages:
   - docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md
   - docs/books/b07-pki/appendix-a-deployment-checklists.md
   - docs/books/explainers/hybrid-credentials.md
+  - docs/books/guides/attribute-driven-migration-implementation.md
   - docs/books/guides/attribute-driven-migration.md
+  - docs/images/learn/identity-authentication-how-to-certificate-based-authentication/snapshot.json
   - docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md
   - docs/reference/source-register.md
 - path: docs/identity/authentication/how-to-configure-certificate-authorities.md
@@ -19131,6 +19160,7 @@ pages:
   - docs/books/b18-application-modernization/_verification/03-the-target-reference-architecture.md
   - docs/books/guides/intune-track-implementation.md
   - docs/books/guides/privileged-access-implementation.md
+  - docs/images/learn/identity-conditional-access-concept-conditional-access-report-only/snapshot.json
   - docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md
   - docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.md
   - docs/project-plans/developer-workbooks/privileged-access/09-deploying-to-test-and-production.md
@@ -19241,6 +19271,7 @@ pages:
   - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/appendix-a-conditional-access-templates.md
   - docs/books/guides/attribute-driven-migration.md
+  - docs/images/learn/identity-conditional-access-concept-filter-for-applications/snapshot.json
 - path: docs/identity/conditional-access/concept-session-lifetime.md
   url: https://learn.microsoft.com/entra/identity/conditional-access/concept-session-lifetime
   title: Conditional Access adaptive session lifetime policies
@@ -20546,6 +20577,7 @@ pages:
   - docs/books/b15-day2-operations/07-the-cmdb-and-asset-identity.md
   - docs/books/guides/attribute-driven-migration.md
   - docs/books/guides/intune-track-implementation.md
+  - docs/images/learn/identity-devices-manage-stale-devices/snapshot.json
   - docs/reference/source-register.md
 - path: docs/identity/devices/overview.md
   url: https://learn.microsoft.com/entra/identity/devices/overview
@@ -21830,6 +21862,7 @@ pages:
   - docs/books/b04-access/_verification/05-applications-and-workload-identities.md
   - docs/books/guides/attribute-driven-migration.md
   - docs/books/guides/non-person-identity-implementation.md
+  - docs/images/learn/identity-enterprise-apps-configure-app-management-policies/snapshot.json
   - docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.md
   - docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md
   - docs/reference/graph-practice-crosswalk.md
@@ -22008,6 +22041,7 @@ pages:
   cited_by:
   - data/source-register.json
   - docs/books/guides/non-person-identity-implementation.md
+  - docs/images/learn/identity-enterprise-apps-deactivate-app-registration/snapshot.json
   - docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md
   - docs/reference/source-register.md
 - path: docs/identity/enterprise-apps/debug-saml-sso-issues.md
@@ -22334,6 +22368,7 @@ pages:
   - docs/books/b04-access/06-who-decides-access.md
   - docs/books/guides/_verification/zero-trust-assessment-implementation.md
   - docs/books/guides/zero-trust-assessment-implementation.md
+  - docs/images/learn/identity-enterprise-apps-manage-application-permissions/snapshot.json
   - docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.md
   - docs/reference/source-register.md
   - examples/third_party/entra-review-app-permissions-page/SNAPSHOT.md
@@ -23241,7 +23276,9 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - docs/books/guides/attribute-driven-migration-implementation.md
   - docs/books/guides/attribute-driven-migration.md
+  - docs/images/learn/hybrid-cloud-sync-custom-attribute-mapping/snapshot.json
 - path: docs/identity/hybrid/cloud-sync/device-sync.md
   url: https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/device-sync
   title: Configure device sync with Microsoft Entra Cloud Sync
@@ -24319,6 +24356,7 @@ pages:
   - docs/books/b02-identity/06-who-owns-the-migration.md
   - docs/books/b02-identity/_verification/06-who-owns-the-migration.md
   - docs/books/guides/daily-checks-dashboard-implementation.md
+  - docs/images/learn/hybrid-connect-how-to-connect-health-adds/snapshot.json
 - path: docs/identity/hybrid/connect/how-to-connect-health-adfs-risky-ip-workbook.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-adfs-risky-ip-workbook
   title: Microsoft Entra Connect Health with AD FS risky IP report workbook
@@ -26454,6 +26492,8 @@ pages:
   cited_by:
   - docs/books/b04-access/05-applications-and-workload-identities.md
   - docs/books/b04-access/_verification/05-applications-and-workload-identities.md
+  - docs/books/guides/service-account-migration.md
+  - docs/images/learn/identity-managed-identities-azure-resources-how-manage-user-assigned-managed-identities/snapshot.json
 - path: docs/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-resource-manager.md
   url: https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-resource-manager
   title: Manage user-assigned managed identities using Azure Resource Manager
@@ -26867,6 +26907,7 @@ pages:
   - docs/books/b13-governance/14-application-secret-and-configuration-governance.md
   - docs/books/b13-governance/_verification/14-application-secret-and-configuration-governance.md
   - docs/books/guides/non-person-identity-implementation.md
+  - docs/images/learn/identity-monitoring-health-concept-usage-insights-report/snapshot.json
 - path: docs/identity/monitoring-health/how-to-view-applied-conditional-access-policies.md
   url: https://learn.microsoft.com/entra/identity/monitoring-health/how-to-view-applied-conditional-access-policies
   title: Conditional Access and Microsoft Entra activity logs
@@ -27929,8 +27970,10 @@ pages:
   - docs/books/b06-data-platform/_verification/16-groups-roles-and-membership.md
   - docs/books/b06-data-platform/_verification/r07-groups-aus-and-the-conditional-access-perimeter.md
   - docs/books/guides/_verification/hr-driven-identity-implementation.md
+  - docs/books/guides/attribute-driven-migration-implementation.md
   - docs/books/guides/attribute-driven-migration.md
   - docs/books/guides/hr-driven-identity-implementation.md
+  - docs/images/learn/identity-role-based-access-control-admin-units-members-dynamic/snapshot.json
   - docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.md
 - path: docs/identity/role-based-access-control/admin-units-members-list.md
   url: https://learn.microsoft.com/entra/identity/role-based-access-control/admin-units-members-list
@@ -28828,8 +28871,10 @@ pages:
   note: ''
   cited_by:
   - docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.md
+  - docs/books/guides/attribute-driven-migration-implementation.md
   - docs/books/guides/attribute-driven-migration.md
   - docs/books/guides/intune-track-implementation.md
+  - docs/images/learn/identity-users-groups-dynamic-rule-validation/snapshot.json
   - examples/validation-kit/README.md
   - examples/validation-kit/powershell/ValidationKit/Private/Catalog.ps1
 - path: docs/identity/users/groups-dynamic-tutorial.md
@@ -30565,6 +30610,7 @@ pages:
   - docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.md
   - docs/books/b19-developer-workbook/10-deploying-to-test-and-production.md
   - docs/books/guides/service-account-migration.md
+  - docs/images/learn/entra-workload-id-workload-identity-federation-create-trust/snapshot.json
   - docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.md
   - docs/reference/source-register.md
   - docs/training/ms-automation-foundations.md
@@ -30615,6 +30661,7 @@ pages:
   - docs/books/b04-access/05-applications-and-workload-identities.md
   - docs/books/b17-ai-identity/04-kinds-of-ai-identity.md
   - docs/books/guides/service-account-migration.md
+  - docs/images/learn/entra-workload-id-workload-identity-federation/snapshot.json
   - docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.md
   - docs/project-plans/developer-workbooks/privileged-access/09-deploying-to-test-and-production.md
