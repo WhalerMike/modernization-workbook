@@ -74,36 +74,36 @@ the migration completes, and needs Windows
 Server 2025 on the hosts and the domain.
 
 16
-00:01:01.688 --> 00:01:07.966
+00:01:01.688 --> 00:01:07.614
 Oh five and oh six: an account that stays
 with no S P N owner where Chapter 3 asks
 
 17
-00:01:07.966 --> 00:01:11.355
-for one, or no end date,
-or one past its bound:
+00:01:07.614 --> 00:01:12.599
+for one, or no end date, or one past
+its bound: G 5, or the island's end of
 
 18
-00:01:11.355 --> 00:01:16.138
-D oh eight's for an account kept
-on Kerberos, G 5 for any other.
+00:01:12.599 --> 00:01:18.525
+life where the program keeps a Kerberos
+island, for every account that stays.
 
 19
-00:01:16.138 --> 00:01:19.738
+00:01:18.525 --> 00:01:22.125
 Oh seven: an account not
 reconciled with the end state.
 
 20
-00:01:19.738 --> 00:01:24.724
+00:01:22.125 --> 00:01:27.112
 Oh eight warns about a privileged group,
 and oh nine hands SQL Server accounts on.
 
 21
-00:01:24.724 --> 00:01:28.490
+00:01:27.112 --> 00:01:30.877
 And ten: a write with no
 SailPoint request or ServiceNow
 
 22
-00:01:28.490 --> 00:01:32.400
+00:01:30.877 --> 00:01:34.780
 change isn't planned at all;
 the plan records it as blocked.

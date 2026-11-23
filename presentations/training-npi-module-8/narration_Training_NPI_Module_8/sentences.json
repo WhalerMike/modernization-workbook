@@ -128,61 +128,61 @@
   ],
   [
    30.825,
-   7.35,
-   "Keep: it stays, with an end date no later than G 5, and an S P N owner if it has S P N's."
+   11.012,
+   "Keep: it stays, with an end date no later than G 5, or the island's end of life where the program keeps a Kerberos island, and an S P N owner if it has S P N's."
   ],
   [
-   38.175,
-   9.85,
-   "Keep Kerberos: it stays on Kerberos with the authorizing official's acceptance, an S P N owner, and an end date no later than decision D oh eight's."
+   41.837,
+   10.825,
+   "Keep Kerberos: it stays on Kerberos with the authorizing official's acceptance, an S P N owner, and an end date with the same bound, recorded by decision D oh eight."
   ],
   [
-   48.025,
+   52.663,
    3.862,
    "Or retire, through the plan's reviewed decommission process."
   ],
   [
-   51.888,
+   56.525,
    4.862,
    "The program adds rules of its own, its design guidance, not Microsoft's."
   ],
   [
-   56.75,
+   61.388,
    2.425,
    "The disposition is Chapter 3's."
   ],
   [
-   59.175,
+   63.812,
    9.15,
    "Who may retrieve a managed password is reviewed data: for a G M S A, one domain local group of its hosts, never a computer account."
   ],
   [
-   68.325,
+   72.963,
    3.375,
    "Every new account follows the managed service account standard."
   ],
   [
-   71.7,
+   76.338,
    4.188,
    "Every write carries its SailPoint request and ServiceNow change."
   ],
   [
-   75.888,
+   80.525,
    6.412,
    "The pipeline's own G M S A sends what it can, and a person sends the D M S A steps."
   ],
   [
-   82.3,
+   86.938,
    4.513,
    "A D M S A migration runs thirty days before it completes."
   ],
   [
-   86.812,
+   91.45,
    3.075,
    "Every account that stays ends within its bound."
   ],
   [
-   89.888,
+   94.525,
    7.75,
    "And never delete: the old account is disabled and moved to a holding O U, and a person deletes it through the decommission ticket."
   ]
@@ -225,21 +225,21 @@
   ],
   [
    61.688,
-   14.45,
-   "Oh five and oh six: an account that stays with no S P N owner where Chapter 3 asks for one, or no end date, or one past its bound: D oh eight's for an account kept on Kerberos, G 5 for any other."
+   16.837,
+   "Oh five and oh six: an account that stays with no S P N owner where Chapter 3 asks for one, or no end date, or one past its bound: G 5, or the island's end of life where the program keeps a Kerberos island, for every account that stays."
   ],
   [
-   76.138,
+   78.525,
    3.6,
    "Oh seven: an account not reconciled with the end state."
   ],
   [
-   79.737,
+   82.125,
    4.987,
    "Oh eight warns about a privileged group, and oh nine hands sequel Server accounts on."
   ],
   [
-   84.725,
+   87.112,
    7.612,
    "And ten: a write with no SailPoint request or ServiceNow change isn't planned at all; the plan records it as blocked."
   ]
@@ -488,16 +488,16 @@
   ],
   [
    77.7,
-   7.875,
-   "The kept G M S A's end in August twenty twenty-seven, after D oh eight but before G 5, which is their bound."
+   10.387,
+   "The kept G M S A's end in August twenty twenty-seven, after D oh eight, which bounds no end date, and before the island's end of life, which is their bound."
   ],
   [
-   85.575,
+   88.088,
    3.575,
    "And oh eight warns that gmsa ops is in Domain Admins."
   ],
   [
-   89.15,
+   91.662,
    12.5,
    "N P I K R B oh three flags gmsa ops and gmsa web, because Active Directory still names computer accounts as their retrievers, where the reviewed list names each one's hosts group."
   ]
@@ -696,41 +696,41 @@
   ],
   [
    7.125,
-   7.675,
-   "The answer is b: the authorizing official's acceptance, an S P N owner and an end date no later than D oh eight's."
+   9.188,
+   "The answer is b: the authorizing official's acceptance, an S P N owner and an end date no later than G 5, or the island's end of life."
   ],
   [
-   14.8,
-   11.738,
-   "That's Chapter 3's rule for an account kept on Kerberos; a kept G M S A or D M S A ends by G 5 instead, and needs an S P N owner only if it has S P N's."
+   16.312,
+   13.025,
+   "That's Chapter 3's rule for an account kept on Kerberos, recorded by D oh eight; a kept G M S A or D M S A has the same bound, and needs an S P N owner only if it has S P N's."
   ],
   [
-   26.538,
+   29.337,
    4.838,
    "The check enforces it with N P I K R B oh five and oh six."
   ],
   [
-   31.375,
+   34.175,
    7.5,
    "Second: why would this chapter block a D M S A for svc webfront, the reason its owner kept it on Kerberos?"
   ],
   [
-   38.875,
+   41.675,
    1.225,
    "The answer is b."
   ],
   [
-   40.1,
+   42.9,
    11.775,
    "The account is trusted for unconstrained delegation, and Microsoft Learn's delegated managed service account documentation says that stops working once a D M S A migration completes."
   ],
   [
-   51.875,
+   54.675,
    7.9,
    "That's N P I K R B oh four, and it's why the owner kept the account on Kerberos instead of planning a D M S A."
   ],
   [
-   59.775,
+   62.575,
    4.925,
    "The module page has three more questions, each linked to the section that answers it."
   ]

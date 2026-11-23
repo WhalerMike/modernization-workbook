@@ -335,1110 +335,1116 @@ to a managed identity or an app
 registration, Chapter 5 moves it.
 
 70
-00:04:39.314 --> 00:04:43.773
-Keep: it stays, with an
-end date no later than G 5,
+00:04:39.314 --> 00:04:44.774
+Keep: it stays, with an end date no later
+than G 5, or the island's end of life
 
 71
-00:04:43.773 --> 00:04:46.665
+00:04:44.774 --> 00:04:50.327
+where the program keeps a Kerberos island,
 and an S P N owner if it has S P N's.
 
 72
-00:04:46.665 --> 00:04:52.269
+00:04:50.327 --> 00:04:55.989
 Keep Kerberos: it stays on Kerberos with
-the authorizing official's acceptance,
+the authorizing official's acceptance, an
 
 73
-00:04:52.269 --> 00:04:56.515
-an S P N owner, and an end date no
-later than decision D oh eight's.
+00:04:55.989 --> 00:05:01.152
+S P N owner, and an end date with the same
+bound, recorded by decision D oh eight.
 
 74
-00:04:56.515 --> 00:05:00.377
+00:05:01.152 --> 00:05:05.015
 Or retire, through the plan's
 reviewed decommission process.
 
 75
-00:05:00.377 --> 00:05:05.240
+00:05:05.015 --> 00:05:09.877
 The program adds rules of its own,
 its design guidance, not Microsoft's.
 
 76
-00:05:05.240 --> 00:05:07.665
+00:05:09.877 --> 00:05:12.303
 The disposition is Chapter 3's.
 
 77
-00:05:07.665 --> 00:05:12.330
+00:05:12.303 --> 00:05:16.967
 Who may retrieve a managed password
 is reviewed data: for a G M S A,
 
 78
-00:05:12.330 --> 00:05:16.815
+00:05:16.967 --> 00:05:21.452
 one domain local group of its
 hosts, never a computer account.
 
 79
-00:05:16.815 --> 00:05:20.190
+00:05:21.452 --> 00:05:24.828
 Every new account follows the
 managed service account standard.
 
 80
-00:05:20.190 --> 00:05:24.378
+00:05:24.828 --> 00:05:29.016
 Every write carries its SailPoint
 request and ServiceNow change.
 
 81
-00:05:24.378 --> 00:05:30.790
+00:05:29.016 --> 00:05:35.427
 The pipeline's own G M S A sends what it
 can, and a person sends the D M S A steps.
 
 82
-00:05:30.790 --> 00:05:35.303
+00:05:35.427 --> 00:05:39.941
 A D M S A migration runs thirty
 days before it completes.
 
 83
-00:05:35.303 --> 00:05:38.377
+00:05:39.941 --> 00:05:43.015
 Every account that stays
 ends within its bound.
 
 84
-00:05:38.377 --> 00:05:42.626
+00:05:43.015 --> 00:05:47.263
 And never delete: the old account is
 disabled and moved to a holding O U,
 
 85
-00:05:42.626 --> 00:05:46.490
+00:05:47.263 --> 00:05:51.130
 and a person deletes it through
 the decommission ticket.
 
 86
-00:05:50.240 --> 00:05:54.953
+00:05:54.880 --> 00:05:59.593
 The check runs ten rules,
 N P I K R B oh one to ten.
 
 87
-00:05:54.953 --> 00:05:59.478
+00:05:59.593 --> 00:06:04.118
 Oh one, oh four and oh eight come from
 Microsoft Learn's pages on the root key,
 
 88
-00:05:59.478 --> 00:06:04.596
+00:06:04.118 --> 00:06:09.236
 delegated managed service accounts and
 securing group managed service accounts;
 
 89
-00:06:04.596 --> 00:06:07.340
+00:06:09.236 --> 00:06:11.980
 the others are the
 program's design guidance.
 
 90
-00:06:07.340 --> 00:06:09.476
+00:06:11.980 --> 00:06:14.116
 Oh one: there's no K D S root key,
 
 91
-00:06:09.476 --> 00:06:13.190
+00:06:14.116 --> 00:06:17.830
 or one that became usable
 less than ten hours ago.
 
 92
-00:06:13.190 --> 00:06:16.564
+00:06:17.830 --> 00:06:21.204
 Oh two: a Kerberos
 account has no disposition
 
 93
-00:06:16.564 --> 00:06:19.665
+00:06:21.204 --> 00:06:24.305
 in Chapter 3's decisions,
 or an unknown one.
 
 94
-00:06:19.665 --> 00:06:25.348
+00:06:24.305 --> 00:06:29.988
 Oh three: the accounts allowed to retrieve
 a managed password in Active Directory
 
 95
-00:06:25.348 --> 00:06:30.278
+00:06:29.988 --> 00:06:34.918
 differ from the reviewed list, or a G M
 S A's list isn't one group of its hosts.
 
 96
-00:06:30.278 --> 00:06:33.952
+00:06:34.918 --> 00:06:38.592
 Oh four is the one to
 remember: an unusable target.
 
 97
-00:06:33.952 --> 00:06:38.785
+00:06:38.592 --> 00:06:43.425
 Learn's overview and F A Q for delegated
 managed service accounts say a D M S A
 
 98
-00:06:38.785 --> 00:06:41.435
+00:06:43.425 --> 00:06:46.075
 can't come from a managed service account,
 
 99
-00:06:41.435 --> 00:06:46.578
+00:06:46.075 --> 00:06:51.218
 can't serve an account with unconstrained
 delegation, which stops working once
 
 100
-00:06:46.578 --> 00:06:51.878
+00:06:51.218 --> 00:06:56.518
 the migration completes, and needs Windows
 Server 2025 on the hosts and the domain.
 
 101
-00:06:51.878 --> 00:06:58.156
+00:06:56.518 --> 00:07:02.444
 Oh five and oh six: an account that stays
 with no S P N owner where Chapter 3 asks
 
 102
-00:06:58.156 --> 00:07:01.545
-for one, or no end date,
-or one past its bound:
+00:07:02.444 --> 00:07:07.429
+for one, or no end date, or one past
+its bound: G 5, or the island's end of
 
 103
-00:07:01.545 --> 00:07:06.328
-D oh eight's for an account kept
-on Kerberos, G 5 for any other.
+00:07:07.429 --> 00:07:13.355
+life where the program keeps a Kerberos
+island, for every account that stays.
 
 104
-00:07:06.328 --> 00:07:09.928
+00:07:13.355 --> 00:07:16.955
 Oh seven: an account not
 reconciled with the end state.
 
 105
-00:07:09.928 --> 00:07:14.914
+00:07:16.955 --> 00:07:21.942
 Oh eight warns about a privileged group,
 and oh nine hands SQL Server accounts on.
 
 106
-00:07:14.914 --> 00:07:18.680
+00:07:21.942 --> 00:07:25.707
 And ten: a write with no
 SailPoint request or ServiceNow
 
 107
-00:07:18.680 --> 00:07:22.890
+00:07:25.707 --> 00:07:29.910
 change isn't planned at all;
 the plan records it as blocked.
 
 108
-00:07:26.640 --> 00:07:30.005
+00:07:33.660 --> 00:07:37.025
 Each account becomes one
 action in the plan, or,
 
 109
-00:07:30.005 --> 00:07:33.990
+00:07:37.025 --> 00:07:41.010
 for a superseded account, a
 disable and a move together.
 
 110
-00:07:33.990 --> 00:07:39.100
+00:07:41.010 --> 00:07:46.120
 The G M S A path: create it in the service
 account O U with a thirty-day interval,
 
 111
-00:07:39.100 --> 00:07:43.715
+00:07:46.120 --> 00:07:50.735
 once the root key is ready and its
 retrievers are one reviewed group.
 
 112
-00:07:43.715 --> 00:07:47.978
+00:07:50.735 --> 00:07:54.998
 Wait while the server owner installs
 it and changes the service's identity.
 
 113
-00:07:47.978 --> 00:07:51.378
+00:07:54.998 --> 00:07:58.398
 Then a thirty-day parallel
 run, the program's guidance,
 
 114
-00:07:51.378 --> 00:07:55.552
+00:07:58.398 --> 00:08:02.572
 and only then disable the old account
 and move it to the holding O U.
 
 115
-00:07:55.552 --> 00:07:59.114
+00:08:02.572 --> 00:08:06.134
 The pipeline's own G M
 S A sends those writes.
 
 116
-00:07:59.114 --> 00:08:05.040
+00:08:06.134 --> 00:08:12.060
 The D M S A path: create it, if it passes
 every limit, and start the migration.
 
 117
-00:08:05.040 --> 00:08:08.090
+00:08:12.060 --> 00:08:15.110
 After the thirty-day
 parallel run, complete it.
 
 118
-00:08:08.090 --> 00:08:13.027
+00:08:15.110 --> 00:08:20.047
 Microsoft Learn's overview of
 delegated managed service accounts says
 
 119
-00:08:13.027 --> 00:08:17.553
+00:08:20.047 --> 00:08:24.573
 completing disables the old account
 and moves its S P N's to the D M S A.
 
 120
-00:08:17.553 --> 00:08:19.452
+00:08:24.573 --> 00:08:26.472
 A person sends those steps.
 
 121
-00:08:19.452 --> 00:08:23.277
+00:08:26.472 --> 00:08:30.297
 Set retrievers fixes a list that
 differs from the reviewed one.
 
 122
-00:08:23.277 --> 00:08:26.928
+00:08:30.297 --> 00:08:33.948
 Anything else is recorded with
 its reason, and writes nothing.
 
 123
-00:08:26.928 --> 00:08:32.220
+00:08:33.948 --> 00:08:39.240
 The same inputs always give the same
 bytes, so a reviewer approves one hash.
 
 124
-00:08:35.970 --> 00:08:37.395
+00:08:42.990 --> 00:08:44.415
 These are the kit's design.
 
 125
-00:08:37.395 --> 00:08:40.007
+00:08:44.415 --> 00:08:47.027
 Two outputs carry the chapter's end date.
 
 126
-00:08:40.007 --> 00:08:43.806
+00:08:47.027 --> 00:08:50.826
 The island list holds every
 account that stays on Kerberos,
 
 127
-00:08:43.806 --> 00:08:46.985
+00:08:50.826 --> 00:08:54.005
 with its disposition from
 Chapter 3, its S P N owner,
 
 128
-00:08:46.985 --> 00:08:49.465
+00:08:54.005 --> 00:08:56.485
 its end date and the date that bounds it,
 
 129
-00:08:49.465 --> 00:08:54.039
+00:08:56.485 --> 00:09:01.059
 the authorizing official's acceptance
 for an account kept on Kerberos,
 
 130
-00:08:54.039 --> 00:08:58.845
+00:09:01.059 --> 00:09:05.865
 and whether it's ready for P four point
 six, the program's S P N retirement work.
 
 131
-00:08:58.845 --> 00:09:01.832
+00:09:05.865 --> 00:09:08.852
 The hand-off is ready
 only when every row is.
 
 132
-00:09:01.832 --> 00:09:06.015
+00:09:08.852 --> 00:09:13.035
 The reconciliation covers
 every G M S A and D M S A,
 
 133
-00:09:06.015 --> 00:09:09.983
+00:09:13.035 --> 00:09:17.003
 existing or planned, and
 says where it ends up.
 
 134
-00:09:09.983 --> 00:09:13.061
+00:09:17.003 --> 00:09:20.081
 Writing to the domain
 lives in a separate script,
 
 135
-00:09:13.061 --> 00:09:16.988
+00:09:20.081 --> 00:09:24.008
 and it refuses to run unless the
 plan's hash is the approved one,
 
 136
-00:09:16.988 --> 00:09:20.606
+00:09:24.008 --> 00:09:27.626
 the plan is for this domain and
 no more than seven days old,
 
 137
-00:09:20.606 --> 00:09:24.994
+00:09:27.626 --> 00:09:32.014
 and each write carries its SailPoint
 request and ServiceNow change.
 
 138
-00:09:24.994 --> 00:09:26.983
+00:09:32.014 --> 00:09:34.003
 Each write also says who sends it.
 
 139
-00:09:26.983 --> 00:09:33.248
+00:09:34.003 --> 00:09:40.268
 Run as the pipeline, which must be the
 pipeline's own G M S A, it sends the G M S
 
 140
-00:09:33.248 --> 00:09:40.044
+00:09:40.268 --> 00:09:47.064
 A creations, retriever changes, disables
 and moves, and refuses the D M S A steps.
 
 141
-00:09:40.044 --> 00:09:45.357
+00:09:47.064 --> 00:09:52.377
 Run as a person, it sends the D M S
 A steps and refuses the pipeline's.
 
 142
-00:09:45.357 --> 00:09:48.333
+00:09:52.377 --> 00:09:55.353
 So one approved plan is
 applied in two runs.
 
 143
-00:09:48.333 --> 00:09:52.432
+00:09:55.353 --> 00:09:59.452
 Nothing that removes, undoes
 or resets is ever run.
 
 144
-00:09:52.432 --> 00:09:55.242
+00:09:59.452 --> 00:10:02.262
 And the read holds no
 domain administration:
 
 145
-00:09:55.242 --> 00:10:00.480
+00:10:02.262 --> 00:10:07.500
 Microsoft Learn's page for the root key
 class says its default security descriptor
 
 146
-00:10:00.480 --> 00:10:04.048
+00:10:07.500 --> 00:10:11.068
 grants only Enterprise Admins,
 Domain Admins and SYSTEM,
 
 147
-00:10:04.048 --> 00:10:09.410
+00:10:11.068 --> 00:10:16.430
 so the read gets a delegated read of the
 key's start and create times, nothing more.
 
 148
-00:10:13.160 --> 00:10:13.885
+00:10:20.180 --> 00:10:20.905
 Try it.
 
 149
-00:10:13.885 --> 00:10:19.560
+00:10:20.905 --> 00:10:26.580
 Lab 1 runs in the non-person identity
 folder of the examples, in PowerShell 7.
 
 150
-00:10:19.560 --> 00:10:24.817
+00:10:26.580 --> 00:10:31.837
 Its step one makes the three runs Chapter
 6 reads: Chapter 1's register, Chapter
 
 151
-00:10:24.817 --> 00:10:29.910
+00:10:31.837 --> 00:10:36.930
 2's owners and Chapter 3's decisions, so
 the chapter's steps are one ahead here.
 
 152
-00:10:29.910 --> 00:10:31.060
+00:10:36.930 --> 00:10:38.080
 It prints nothing.
 
 153
-00:10:31.060 --> 00:10:35.481
+00:10:38.080 --> 00:10:42.501
 The three folders hold the register,
 the owners and the owners' D
 
 154
-00:10:35.481 --> 00:10:40.072
+00:10:42.501 --> 00:10:47.092
 N P three decisions, which Chapter
 6 reads instead of a second list.
 
 155
-00:10:40.072 --> 00:10:43.647
+00:10:47.092 --> 00:10:50.667
 Step two runs Microsoft
 Learn's published gMSA,
 
 156
-00:10:43.647 --> 00:10:49.422
+00:10:50.667 --> 00:10:56.442
 dMSA and root key procedures against the
 stand-ins: seventeen pass, none fail.
 
 157
-00:10:49.422 --> 00:10:52.060
+00:10:56.442 --> 00:10:59.080
 Step three lists what each task runs.
 
 158
-00:10:52.060 --> 00:10:57.226
+00:10:59.080 --> 00:11:04.246
 The read task, kerberos island, runs
 only the directory Get cmdlets:
 
 159
-00:10:57.226 --> 00:11:02.485
+00:11:04.246 --> 00:11:09.505
 computers, domain controllers,
 objects, service accounts and users.
 
 160
-00:11:02.485 --> 00:11:04.511
+00:11:09.505 --> 00:11:11.531
 The write task, kerberos apply,
 
 161
-00:11:04.511 --> 00:11:09.536
+00:11:11.531 --> 00:11:16.556
 adds the cmdlets that create and set a
 service account, start and complete a
 
 162
-00:11:09.536 --> 00:11:14.561
+00:11:16.556 --> 00:11:21.581
 migration, disable an account, and move
 a disabled account to the holding O U.
 
 163
-00:11:14.561 --> 00:11:19.910
+00:11:21.581 --> 00:11:26.930
 Notice what's missing from both lists: no
 cmdlet that removes or undoes anything.
 
 164
-00:11:19.910 --> 00:11:23.510
+00:11:26.930 --> 00:11:30.530
 The output on the slide is
 trimmed and wrapped to fit.
 
 165
-00:11:27.260 --> 00:11:30.885
+00:11:34.280 --> 00:11:37.905
 Step four checks the Kerberos
 accounts and builds the plan.
 
 166
-00:11:30.885 --> 00:11:34.285
+00:11:37.905 --> 00:11:41.305
 Nine accounts are in scope,
 and the root key is ready.
 
 167
-00:11:34.285 --> 00:11:38.247
+00:11:41.305 --> 00:11:45.267
 There are six findings, one
 warning and two information items.
 
 168
-00:11:38.247 --> 00:11:41.662
+00:11:45.267 --> 00:11:48.682
 The plan has ten actions,
 five of them writes:
 
 169
-00:11:41.662 --> 00:11:46.784
+00:11:48.682 --> 00:11:53.804
 one completed migration, two new G
 M S A's, and two retriever changes.
 
 170
-00:11:46.784 --> 00:11:47.960
+00:11:53.804 --> 00:11:54.980
 Nothing is sent.
 
 171
-00:11:47.960 --> 00:11:52.810
+00:11:54.980 --> 00:11:59.830
 Run by counts the writes by who sends
 them: four the pipeline's, one a person's.
 
 172
-00:11:52.810 --> 00:11:55.110
+00:11:59.830 --> 00:12:02.130
 The island list holds six accounts,
 
 173
-00:11:55.110 --> 00:11:59.235
+00:12:02.130 --> 00:12:06.255
 four of them ready for P four point
 six, so the hand-off isn't ready.
 
 174
-00:11:59.235 --> 00:12:02.873
+00:12:06.255 --> 00:12:09.893
 The reconciliation leaves
 one account unreconciled.
 
 175
-00:12:02.873 --> 00:12:05.463
+00:12:09.893 --> 00:12:12.483
 The dispositions come
 from Chapter 3's run,
 
 176
-00:12:05.463 --> 00:12:09.311
+00:12:12.483 --> 00:12:16.331
 and the program dates file must
 have the hash that run recorded.
 
 177
-00:12:09.311 --> 00:12:13.185
+00:12:16.331 --> 00:12:20.205
 The plan's hash is the same on
 every run with these inputs.
 
 178
-00:12:13.185 --> 00:12:15.510
+00:12:20.205 --> 00:12:22.530
 Step five reads the findings.
 
 179
-00:12:15.510 --> 00:12:19.645
+00:12:22.530 --> 00:12:26.665
 svc webfront is trusted for
 unconstrained delegation,
 
 180
-00:12:19.645 --> 00:12:23.600
+00:12:26.665 --> 00:12:30.620
 which stops working once a
 D M S A migration completes,
 
 181
-00:12:23.600 --> 00:12:29.263
+00:12:30.620 --> 00:12:36.283
 so in Chapter 3 its owner kept it on
 Kerberos, with the authorizing official's
 
 182
-00:12:29.263 --> 00:12:33.847
+00:12:36.283 --> 00:12:40.867
 acceptance; N P I K R B oh five flags
 it because it has no S P N owner.
 
 183
-00:12:33.847 --> 00:12:40.348
+00:12:40.867 --> 00:12:47.368
 Oh five and oh six flag svc intranet:
 Chapter 3 re-platforms it to a G M S A,
 
 184
-00:12:40.348 --> 00:12:44.910
+00:12:47.368 --> 00:12:51.930
 but it has no S P N owner and
 its end date is after G 5.
 
 185
-00:12:44.910 --> 00:12:48.799
-The kept G M S A's end in
-August twenty twenty-seven,
+00:12:51.930 --> 00:12:56.595
+The kept G M S A's end in August
+twenty twenty-seven, after D oh eight,
 
 186
-00:12:48.799 --> 00:12:52.785
-after D oh eight but before
-G 5, which is their bound.
+00:12:56.595 --> 00:13:02.317
+which bounds no end date, and before the
+island's end of life, which is their bound.
 
 187
-00:12:52.785 --> 00:12:56.360
+00:13:02.317 --> 00:13:05.893
 And oh eight warns that gmsa
 ops is in Domain Admins.
 
 188
-00:12:56.360 --> 00:12:59.419
+00:13:05.893 --> 00:13:08.951
 N P I K R B oh three flags
 gmsa ops and gmsa web,
 
 189
-00:12:59.419 --> 00:13:05.101
+00:13:08.951 --> 00:13:14.633
 because Active Directory still names
 computer accounts as their retrievers,
 
 190
-00:13:05.101 --> 00:13:09.220
+00:13:14.633 --> 00:13:18.760
 where the reviewed list
 names each one's hosts group.
 
 191
-00:13:12.970 --> 00:13:14.682
+00:13:22.510 --> 00:13:24.222
 Step six reads the plan.
 
 192
-00:13:14.682 --> 00:13:17.370
+00:13:24.222 --> 00:13:26.910
 Ten actions, and these
 are the five writes.
 
 193
-00:13:17.370 --> 00:13:20.508
+00:13:26.910 --> 00:13:30.048
 Set retrievers for gmsa ops and gmsa web.
 
 194
-00:13:20.508 --> 00:13:25.198
+00:13:30.048 --> 00:13:34.738
 Create a G M S A for the managed
 service account msa print oh one,
 
 195
-00:13:25.198 --> 00:13:29.611
+00:13:34.738 --> 00:13:39.151
 outbound-only because it holds
 no S P N, and for svc intranet,
 
 196
-00:13:29.611 --> 00:13:33.933
+00:13:39.151 --> 00:13:43.473
 both in the service account O
 U with a thirty-day interval.
 
 197
-00:13:33.933 --> 00:13:37.630
+00:13:43.473 --> 00:13:47.170
 And complete the D M S A
 migration for svc h r sync,
 
 198
-00:13:37.630 --> 00:13:43.319
+00:13:47.170 --> 00:13:52.859
 whose migration started forty days
 ago, past the thirty-day parallel run.
 
 199
-00:13:43.319 --> 00:13:47.269
+00:13:52.859 --> 00:13:56.809
 Each write carries its SailPoint
 request and ServiceNow change,
 
 200
-00:13:47.269 --> 00:13:48.732
+00:13:56.809 --> 00:13:58.272
 or it wouldn't be planned.
 
 201
-00:13:48.732 --> 00:13:54.882
+00:13:58.272 --> 00:14:04.422
 gmsa ops, gmsa web and svc webfront stay
 on the island, as Chapter 3 decided.
 
 202
-00:13:54.882 --> 00:13:58.520
+00:14:04.422 --> 00:14:08.060
 The other actions are recorded with
 their reasons and write nothing.
 
 203
-00:13:58.520 --> 00:14:02.245
+00:14:08.060 --> 00:14:11.785
 Step seven reads the island
 list and the reconciliation.
 
 204
-00:14:02.245 --> 00:14:06.320
+00:14:11.785 --> 00:14:15.860
 Six island rows, each under the
 name the account will end up with
 
 205
-00:14:06.320 --> 00:14:10.395
+00:14:15.860 --> 00:14:19.935
 and with its disposition, four of
 them ready for P four point six.
 
 206
-00:14:10.395 --> 00:14:14.989
+00:14:19.935 --> 00:14:24.529
 gmsa intranet has no S P N owner
 and ends at the end of 2028,
 
 207
-00:14:14.989 --> 00:14:20.383
+00:14:24.529 --> 00:14:29.923
 so it isn't ready, and its
 reconciliation outcome is unreconciled.
 
 208
-00:14:20.383 --> 00:14:25.502
+00:14:29.923 --> 00:14:35.042
 svc webfront carries the authorizing
 official's acceptance from Chapter 3,
 
 209
-00:14:25.502 --> 00:14:28.700
+00:14:35.042 --> 00:14:38.240
 so it becomes ready once
 it has an S P N owner.
 
 210
-00:14:32.450 --> 00:14:36.113
+00:14:41.990 --> 00:14:45.653
 Step eight is the write path's
 dry run, as the pipeline.
 
 211
-00:14:36.113 --> 00:14:39.545
+00:14:45.653 --> 00:14:49.085
 You take the plan's hash, which
 in a real run a second person
 
 212
-00:14:39.545 --> 00:14:43.125
+00:14:49.085 --> 00:14:52.665
 would review and pass to you,
 and give it to the action script.
 
 213
-00:14:43.125 --> 00:14:47.163
+00:14:52.665 --> 00:14:56.703
 It reports four would-send
 lines, the pipeline's writes,
 
 214
-00:14:47.163 --> 00:14:51.650
+00:14:56.703 --> 00:15:01.190
 and refuses the fifth: the D M S
 A's completion is a person's step.
 
 215
-00:14:51.650 --> 00:14:52.763
+00:15:01.190 --> 00:15:02.303
 It sends nothing.
 
 216
-00:14:52.763 --> 00:14:56.382
+00:15:02.303 --> 00:15:05.922
 Step nine applies it to the
 fake, first as the pipeline,
 
 217
-00:14:56.382 --> 00:14:59.342
+00:15:05.922 --> 00:15:08.882
 which sends its four
 writes, then as a person,
 
 218
-00:14:59.342 --> 00:15:04.688
+00:15:08.882 --> 00:15:14.228
 which sends the completed migration for
 svc h r sync and refuses the other four.
 
 219
-00:15:04.688 --> 00:15:07.113
+00:15:14.228 --> 00:15:16.653
 Each run re-reads every write.
 
 220
-00:15:07.113 --> 00:15:10.849
+00:15:16.653 --> 00:15:20.389
 Then you pass a hash of zeros,
 a hash nobody approved.
 
 221
-00:15:10.849 --> 00:15:14.599
+00:15:20.389 --> 00:15:24.139
 The script refuses: the plan's
 hash isn't the approved one,
 
 222
-00:15:14.599 --> 00:15:17.125
+00:15:24.139 --> 00:15:26.665
 and it won't run a plan nobody reviewed.
 
 223
-00:15:17.125 --> 00:15:21.125
+00:15:26.665 --> 00:15:30.665
 Pasted line by line, your shell
 carries on after the refusal.
 
 224
-00:15:21.125 --> 00:15:26.263
+00:15:30.665 --> 00:15:35.803
 Step ten runs every test: five
 hundred forty-nine pass, none fail.
 
 225
-00:15:26.263 --> 00:15:28.450
+00:15:35.803 --> 00:15:37.990
 Then delete the output folder.
 
 226
-00:15:32.200 --> 00:15:37.071
+00:15:41.740 --> 00:15:46.611
 Lab 2 moves to a test Active
 Directory domain, never production,
 
 227
-00:15:37.071 --> 00:15:42.786
+00:15:46.611 --> 00:15:52.326
 with at least one Windows Server 2025
 domain controller, a Windows Server
 
 228
-00:15:42.786 --> 00:15:47.938
+00:15:52.326 --> 00:15:57.478
 2025 member server, an existing K D S
 root key, and Chapter 1's Lab 2 run.
 
 229
-00:15:47.938 --> 00:15:52.302
+00:15:57.478 --> 00:16:01.842
 Make a traditional test account,
 a test managed service account,
 
 230
-00:15:52.302 --> 00:15:54.937
+00:16:01.842 --> 00:16:04.477
 and the G M S A's domain
 local hosts group.
 
 231
-00:15:54.937 --> 00:15:59.817
+00:16:04.477 --> 00:16:09.357
 Write the three inputs, with a test
 SailPoint request and ServiceNow change,
 
 232
-00:15:59.817 --> 00:16:02.063
+00:16:09.357 --> 00:16:11.603
 and the test domain's standard file.
 
 233
-00:16:02.063 --> 00:16:06.488
+00:16:11.603 --> 00:16:16.028
 Grant the read only the root key's
 two date attributes, nothing else.
 
 234
-00:16:06.488 --> 00:16:09.919
+00:16:16.028 --> 00:16:19.459
 Run the check, then apply the
 plan as a person with Domain
 
 235
-00:16:09.919 --> 00:16:13.425
+00:16:19.459 --> 00:16:22.965
 Admins or equivalent rights,
 with the test domain switch.
 
 236
-00:16:13.425 --> 00:16:19.036
+00:16:22.965 --> 00:16:28.576
 The D M S A steps are a person's; in a
 test domain, before the pipeline exists,
 
 237
-00:16:19.036 --> 00:16:22.651
+00:16:28.576 --> 00:16:32.191
 a person may also send the
 pipeline's G M S A step,
 
 238
-00:16:22.651 --> 00:16:26.550
+00:16:32.191 --> 00:16:36.090
 which in production the
 pipeline's own G M S A sends.
 
 239
-00:16:26.550 --> 00:16:32.087
+00:16:36.090 --> 00:16:41.627
 Start the D M S A migration, and complete
 it after the thirty-day parallel run.
 
 240
-00:16:32.087 --> 00:16:36.850
+00:16:41.627 --> 00:16:46.390
 To back it out, step six runs the undo
 command from Microsoft Learn's page on
 
 241
-00:16:36.850 --> 00:16:40.441
+00:16:46.390 --> 00:16:49.981
 setting up delegated managed
 service accounts, by hand,
 
 242
-00:16:40.441 --> 00:16:44.188
+00:16:49.981 --> 00:16:53.728
 because the code never runs it,
 re-enables the test account,
 
 243
-00:16:44.188 --> 00:16:48.326
+00:16:53.728 --> 00:16:57.866
 removes the test objects by hand,
 and deletes the output folders.
 
 244
-00:16:48.326 --> 00:16:50.475
+00:16:57.866 --> 00:17:00.015
 The authors haven't run Lab 2.
 
 245
-00:16:50.475 --> 00:16:53.980
+00:17:00.015 --> 00:17:03.520
 The workbook's Chapter 6
 has the exact commands.
 
 246
-00:16:57.730 --> 00:16:59.117
+00:17:07.270 --> 00:17:08.657
 The federal requirement.
 
 247
-00:16:59.117 --> 00:17:04.022
+00:17:08.657 --> 00:17:13.562
 The Kerberos accounts are the on-premises
 part of Gate 5, and the guide's
 
 248
-00:17:04.022 --> 00:17:08.418
+00:17:13.562 --> 00:17:17.958
 validate step names I A five, I A
 nine and A U two for the whole gate.
 
 249
-00:17:08.418 --> 00:17:12.480
+00:17:17.958 --> 00:17:22.020
 These are NIST special publication
 eight hundred fifty-three controls.
 
 250
-00:17:12.480 --> 00:17:15.945
+00:17:22.020 --> 00:17:25.485
 The module's table gives the
 workbook chapter's main rows,
 
 251
-00:17:15.945 --> 00:17:17.493
+00:17:25.485 --> 00:17:27.033
 with each step's evidence.
 
 252
-00:17:17.493 --> 00:17:20.981
+00:17:27.033 --> 00:17:30.521
 For authenticator management
 and change control,
 
 253
-00:17:20.981 --> 00:17:24.304
+00:17:30.521 --> 00:17:33.844
 the plan, with the register's
 and each input's hash.
 
 254
-00:17:24.304 --> 00:17:26.580
+00:17:33.844 --> 00:17:36.120
 For account management, the findings.
 
 255
-00:17:26.580 --> 00:17:31.860
+00:17:36.120 --> 00:17:41.400
 For least privilege and access restrictions
 for change, the rights each task holds,
 
 256
-00:17:31.860 --> 00:17:35.992
+00:17:41.400 --> 00:17:45.532
 who sends each call, and the reviewed
 list of password retrievers.
 
 257
-00:17:35.992 --> 00:17:40.820
+00:17:45.532 --> 00:17:50.360
 For automated system account
 management and separation of duties,
 
 258
-00:17:40.820 --> 00:17:44.958
+00:17:50.360 --> 00:17:54.498
 the refused rows and the run-as
 record in each apply folder:
 
 259
-00:17:44.958 --> 00:17:49.355
+00:17:54.498 --> 00:17:58.895
 the pipeline sends only its steps,
 a person only the D M S A steps.
 
 260
-00:17:49.355 --> 00:17:52.107
+00:17:58.895 --> 00:18:01.647
 For account management and change control,
 
 261
-00:17:52.107 --> 00:17:55.930
+00:18:01.647 --> 00:18:05.470
 the SailPoint request and
 ServiceNow change on every write.
 
 262
-00:17:55.930 --> 00:17:59.580
+00:18:05.470 --> 00:18:09.120
 For the inventory, the island
 list and the reconciliation.
 
 263
-00:17:59.580 --> 00:18:02.678
+00:18:09.120 --> 00:18:12.218
 And for change control
 and disabling accounts,
 
 264
-00:18:02.678 --> 00:18:07.205
+00:18:12.218 --> 00:18:16.745
 the results and manifest in each
 apply folder, with each write re-read.
 
 265
-00:18:07.205 --> 00:18:11.335
+00:18:16.745 --> 00:18:20.875
 K S I's are FedRAMP twenty X indicators
 for cloud service providers;
 
 266
-00:18:11.335 --> 00:18:13.963
+00:18:20.875 --> 00:18:23.503
 the agency lines its
 evidence up with them,
 
 267
-00:18:13.963 --> 00:18:18.380
+00:18:23.503 --> 00:18:27.920
 and which file supports which
 indicator is the program's mapping.
 
 268
-00:18:22.130 --> 00:18:24.105
+00:18:31.670 --> 00:18:33.645
 Check yourself with two questions.
 
 269
-00:18:24.105 --> 00:18:28.080
+00:18:33.645 --> 00:18:37.620
 First: an account is kept
 on Kerberos, Keep Kerberos.
 
 270
-00:18:28.080 --> 00:18:29.205
+00:18:37.620 --> 00:18:38.745
 What must it have?
 
 271
-00:18:29.205 --> 00:18:33.175
+00:18:38.745 --> 00:18:42.839
 The answer is b: the authorizing
 official's acceptance,
 
 272
-00:18:33.175 --> 00:18:36.880
-an S P N owner and an end date
-no later than D oh eight's.
+00:18:42.839 --> 00:18:47.933
+an S P N owner and an end date no later
+than G 5, or the island's end of life.
 
 273
-00:18:36.880 --> 00:18:42.914
+00:18:47.933 --> 00:18:54.392
 That's Chapter 3's rule for an account
-kept on Kerberos; a kept G M S A or
+kept on Kerberos, recorded by D oh eight;
 
 274
-00:18:42.914 --> 00:18:48.618
-D M S A ends by G 5 instead, and needs
-an S P N owner only if it has S P N's.
+00:18:54.392 --> 00:18:57.518
+a kept G M S A or D M
+S A has the same bound,
 
 275
-00:18:48.618 --> 00:18:53.456
+00:18:57.518 --> 00:19:00.957
+and needs an S P N owner
+only if it has S P N's.
+
+276
+00:19:00.957 --> 00:19:05.795
 The check enforces it with N
 P I K R B oh five and oh six.
 
-276
-00:18:53.456 --> 00:18:57.937
+277
+00:19:05.795 --> 00:19:10.277
 Second: why would this chapter
 block a D M S A for svc webfront,
 
-277
-00:18:57.937 --> 00:19:00.955
+278
+00:19:10.277 --> 00:19:13.295
 the reason its owner kept it on Kerberos?
 
-278
-00:19:00.955 --> 00:19:02.180
+279
+00:19:13.295 --> 00:19:14.520
 The answer is b.
 
-279
-00:19:02.180 --> 00:19:05.643
+280
+00:19:14.520 --> 00:19:17.983
 The account is trusted for
 unconstrained delegation,
 
-280
-00:19:05.643 --> 00:19:10.338
+281
+00:19:17.983 --> 00:19:22.678
 and Microsoft Learn's delegated
 managed service account documentation
 
-281
-00:19:10.338 --> 00:19:13.955
+282
+00:19:22.678 --> 00:19:26.295
 says that stops working once
 a D M S A migration completes.
 
-282
-00:19:13.955 --> 00:19:17.708
+283
+00:19:26.295 --> 00:19:30.048
 That's N P I K R B oh four,
 and it's why the owner kept
 
-283
-00:19:17.708 --> 00:19:21.855
+284
+00:19:30.048 --> 00:19:34.195
 the account on Kerberos
 instead of planning a D M S A.
 
-284
-00:19:21.855 --> 00:19:24.282
+285
+00:19:34.195 --> 00:19:36.622
 The module page has three more questions,
 
-285
-00:19:24.282 --> 00:19:16.480
+286
+00:19:36.622 --> 00:19:39.480
 each linked to the
 section that answers it.
 
-286
-00:19:16.480 --> 00:19:17.305
+287
+00:19:43.230 --> 00:19:44.055
 To sum up.
 
-287
-00:19:17.305 --> 00:19:21.147
+288
+00:19:44.055 --> 00:19:47.897
 You checked nine Kerberos
 accounts in a fictional domain,
 
-288
-00:19:21.147 --> 00:19:24.429
+289
+00:19:47.897 --> 00:19:51.179
 read a plan with five writes,
 each with its request,
 
-289
-00:19:24.429 --> 00:19:29.791
+290
+00:19:51.179 --> 00:19:56.541
 change record and the identity that sends
 it, an island list and a reconciliation,
 
-290
-00:19:29.791 --> 00:19:32.193
+291
+00:19:56.541 --> 00:19:58.943
 applied the plan to a fake by its hash,
 
-291
-00:19:32.193 --> 00:19:36.755
+292
+00:19:58.943 --> 00:20:03.505
 as the pipeline and as a person, and
 saw a plan nobody approved refused.
 
-292
-00:19:36.755 --> 00:19:42.340
+293
+00:20:03.505 --> 00:20:09.090
 The evidence an ISSO keeps for Gate 5 from
 this module is the plan with its approved
 
-293
-00:19:42.340 --> 00:19:46.036
+294
+00:20:09.090 --> 00:20:12.786
 hash, the findings, the island
 list, the reconciliation,
 
-294
-00:19:46.036 --> 00:19:51.292
+295
+00:20:12.786 --> 00:20:18.042
 and the two apply folders' results and
 manifests, all dated, and the test result.
 
-295
-00:19:51.292 --> 00:19:54.367
+296
+00:20:18.042 --> 00:20:21.117
 Before you ship, work through
 the chapter's checklist.
 
-296
-00:19:54.367 --> 00:19:58.643
+297
+00:20:21.117 --> 00:20:25.393
 Next is Module 9: govern
 AI agent identities.
 
-297
-00:19:58.643 --> 00:20:04.089
+298
+00:20:25.393 --> 00:20:30.839
 Agents follow every gate you've done so far,
 and add three things: an agent can act,
 
-298
-00:20:04.089 --> 00:20:09.180
+299
+00:20:30.839 --> 00:20:35.930
 a blueprint holds every agent's
 credentials, and creation has to be gated.
