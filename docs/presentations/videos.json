@@ -263,6 +263,11 @@
     "name": "ms-automation",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation",
     "zip": "downloads/microsoft-automation-code.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
    }
   ],
   "chapters": [
@@ -374,6 +379,11 @@
     "name": "hcm-entra",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra",
     "zip": null
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
    }
   ],
   "chapters": [
@@ -461,6 +471,11 @@
     "name": "validation-kit",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
     "zip": "downloads/validation-kit.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
    }
   ],
   "chapters": [
@@ -547,7 +562,18 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/attribute-driven-migration-technical-part-1/Attribute_Driven_Migration_Technical_Part_1_Narration_Script.md",
   "page": "docs/books/guides/attribute-driven-migration.html",
   "source": "docs/books/guides/attribute-driven-migration.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   },
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -676,7 +702,18 @@
   "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/attribute-driven-migration-technical-part-2/Attribute_Driven_Migration_Technical_Part_2_Narration_Script.md",
   "page": "docs/books/guides/attribute-driven-migration.html",
   "source": "docs/books/guides/attribute-driven-migration.md",
-  "kits": [],
+  "kits": [
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
+   },
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
+   }
+  ],
   "chapters": [
    [
     0,
@@ -7385,6 +7422,11 @@
     "name": "ansible",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ansible",
     "zip": "downloads/ansible-examples.zip"
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
    }
   ],
   "chapters": [
@@ -8245,6 +8287,11 @@
     "name": "lifecycle-extensions",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/lifecycle-extensions",
     "zip": null
+   },
+   {
+    "name": "drift-pipeline",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
+    "zip": null
    }
   ],
   "chapters": [
@@ -8866,6 +8913,11 @@
     "name": "validation-kit",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
     "zip": "downloads/validation-kit.zip"
+   },
+   {
+    "name": "privileged-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
+    "zip": "downloads/privileged-access-code.zip"
    }
   ],
   "chapters": [
@@ -8962,6 +9014,11 @@
     "name": "validation-kit",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
     "zip": "downloads/validation-kit.zip"
+   },
+   {
+    "name": "privileged-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
+    "zip": "downloads/privileged-access-code.zip"
    }
   ],
   "chapters": [
@@ -10119,6 +10176,11 @@
     "name": "validation-kit",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
     "zip": "downloads/validation-kit.zip"
+   },
+   {
+    "name": "privileged-access",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access",
+    "zip": "downloads/privileged-access-code.zip"
    }
   ],
   "chapters": [
