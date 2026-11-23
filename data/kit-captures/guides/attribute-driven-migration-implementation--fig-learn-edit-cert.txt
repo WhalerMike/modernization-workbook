@@ -1,0 +1,15 @@
+PS> Import-Module ./powershell/ValidationKit/ValidationKit.psd1
+PS> $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+PS> Invoke-VkPiv01 -Context $ctx | Select-Object -ExpandProperty Details | Format-List Severity, Object, Issue
+Severity : Finding
+Object   : bob@contoso.example
+Issue    : Only low-affinity binding values: sign-in fails once high affinity is required
+
+Severity : Finding
+Object   : carol@contoso.example
+Issue    : No certificateUserIds value; the binding comes from altSecurityIdentities in AD (only Entra Connect updates certificateUserIds for synced users)
+
+Severity : Finding
+Object   : dave@contoso.example
+Issue    : Pilot card holder not found in the tenant, or not readable
+

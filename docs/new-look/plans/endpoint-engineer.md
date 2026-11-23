@@ -17,10 +17,10 @@ review-status: pending
 
 ## Week 2: the Intune and Arc tracks
 
-- [Intune Track Implementation: Attribute-Driven Management of End-User Devices](../../books/guides/intune-track-implementation.md) (Implementation guide, 7 gates, about 44 min). A step-by-step guide to the Intune track of the attribute-driven migration: the prerequisites (licensing, the GCC tenant, roles and the coverage matrix), the device sources and their single writer (Autopilot registration and group tags….
-- [Azure Arc Track: Implementation Guide](../../books/guides/arc-track-implementation.md) (Implementation guide, 8 steps, about 44 min). The step-by-step implementation of the companion guide's Azure Arc track: bringing servers on premises and in other clouds under Azure Resource Manager with attribute- and tag-driven governance.
+- [Intune Track Implementation: Attribute-Driven Management of End-User Devices](../../books/guides/intune-track-implementation.md) (Implementation guide, 7 gates, about 45 min). A step-by-step guide to the Intune track of the attribute-driven migration: the prerequisites (licensing, the GCC tenant, roles and the coverage matrix), the device sources and their single writer (Autopilot registration and group tags….
+- [Azure Arc Track: Implementation Guide](../../books/guides/arc-track-implementation.md) (Implementation guide, 8 steps, about 45 min). The step-by-step implementation of the companion guide's Azure Arc track: bringing servers on premises and in other clouds under Azure Resource Manager with attribute- and tag-driven governance.
 
-*Milestone 2: about 1 hr 28 min.*
+*Milestone 2: about 1 hr 30 min.*
 
 ## Week 3: Defender XDR
 
@@ -36,5 +36,5 @@ review-status: pending
 
 *Milestone 4: about 2 hr 42 min.*
 
-**Whole plan:** about 12 hr 53 min of reading and video, plus the labs.
+**Whole plan:** about 12 hr 55 min of reading and video, plus the labs.
 
