@@ -500,224 +500,224 @@ so the authorization package is
 assembled from proof that already exists.
 
 106
-00:06:41.425 --> 00:06:42.870
+00:06:41.425 --> 00:06:39.540
 Let's see it running.
 
 107
-00:06:46.620 --> 00:06:50.607
+00:06:39.540 --> 00:06:43.527
 Arguments about architecture are
 cheap; code that runs is not.
 
 108
-00:06:50.607 --> 00:06:55.936
+00:06:43.527 --> 00:06:48.856
 So the workbook ships a small reference
 implementation: one mission application
 
 109
-00:06:55.936 --> 00:07:00.482
+00:06:48.856 --> 00:06:53.402
 in miniature, with a service, a front
 end, a migration tool and an AI agent.
 
 110
-00:07:00.482 --> 00:07:02.594
+00:06:53.402 --> 00:06:55.514
 Each part shows a pattern from the book.
 
 111
-00:07:02.594 --> 00:07:06.882
+00:06:55.514 --> 00:06:59.802
 A test keeps the A P I contract
 and the code from drifting apart.
 
 112
-00:07:06.882 --> 00:07:10.054
+00:06:59.802 --> 00:07:02.974
 The migration tool proves
 every load three ways,
 
 113
-00:07:10.054 --> 00:07:14.257
+00:07:02.974 --> 00:07:07.177
 and its tests break a value on
 purpose to show the checks catch it.
 
 114
-00:07:14.257 --> 00:07:17.683
+00:07:07.177 --> 00:07:10.603
 The agent can only file
 proposals a person approves.
 
 115
-00:07:17.683 --> 00:07:21.321
+00:07:10.603 --> 00:07:14.241
 It's honest about its limits,
 too: it's illustrative,
 
 116
-00:07:21.321 --> 00:07:25.758
+00:07:14.241 --> 00:07:18.678
 and it hasn't been run against a
 real D B two or Oracle database.
 
 117
-00:07:25.758 --> 00:07:28.490
+00:07:18.678 --> 00:07:21.410
 How does this fit an architecture office?
 
 118
-00:07:32.240 --> 00:07:37.301
+00:07:25.160 --> 00:07:30.221
 Many agencies have an enterprise architecture
 office that speaks TOGAF or Zachman,
 
 119
-00:07:37.301 --> 00:07:40.265
+00:07:30.221 --> 00:07:33.185
 and this slide is about
 not making them translate.
 
 120
-00:07:40.265 --> 00:07:44.130
+00:07:33.185 --> 00:07:37.050
 TOGAF gives the order to do the
 work in, and the book's triage,
 
 121
-00:07:44.130 --> 00:07:48.478
+00:07:37.050 --> 00:07:41.398
 target architecture and wave plan
 drop straight into its phases.
 
 122
-00:07:48.478 --> 00:07:52.884
+00:07:41.398 --> 00:07:45.804
 Zachman is a checklist: it shows
 whether you've described everything,
 
 123
-00:07:52.884 --> 00:07:55.590
+00:07:45.804 --> 00:07:48.510
 and an empty cell is a
 question, not a defect.
 
 124
-00:07:55.590 --> 00:07:59.919
+00:07:48.510 --> 00:07:52.839
 But the federal requirement behind
 both is the architecture itself,
 
 125
-00:07:59.919 --> 00:08:02.502
+00:07:52.839 --> 00:07:55.422
 a baseline, a target
 and a plan to get there.
 
 126
-00:08:02.502 --> 00:08:05.052
+00:07:55.422 --> 00:07:57.972
 No rule requires either framework.
 
 127
-00:08:05.052 --> 00:08:07.440
+00:07:57.972 --> 00:08:00.360
 So file the book's artifacts as they are.
 
 128
-00:08:07.440 --> 00:08:10.240
+00:08:00.360 --> 00:08:03.160
 That brings us to the plan: waves.
 
 129
-00:08:13.990 --> 00:08:18.078
+00:08:06.910 --> 00:08:10.998
 A disposition for every
 application is a list, not a plan.
 
 130
-00:08:18.078 --> 00:08:20.607
+00:08:10.998 --> 00:08:13.527
 Thousands of projects can't start at once,
 
 131
-00:08:20.607 --> 00:08:24.028
+00:08:13.527 --> 00:08:16.948
 and one at a time keeps
 rediscovering the same problems.
 
 132
-00:08:24.028 --> 00:08:25.303
+00:08:16.948 --> 00:08:18.223
 Waves solve both.
 
 133
-00:08:25.303 --> 00:08:29.432
+00:08:18.223 --> 00:08:22.352
 Start with a pilot that includes
 one genuinely hard application,
 
 134
-00:08:29.432 --> 00:08:31.803
+00:08:22.352 --> 00:08:24.723
 so the first real wave isn't a surprise.
 
 135
-00:08:31.803 --> 00:08:34.732
+00:08:24.723 --> 00:08:27.652
 Then run factory waves that
 get cheaper each time,
 
 136
-00:08:34.732 --> 00:08:37.090
+00:08:27.652 --> 00:08:30.010
 and actually switch the old systems off.
 
 137
-00:08:37.090 --> 00:08:39.322
+00:08:30.010 --> 00:08:32.242
 Waves are also how you fund the work:
 
 138
-00:08:39.322 --> 00:08:42.478
+00:08:32.242 --> 00:08:35.398
 one wave's retirement
 savings can pay for the next.
 
 139
-00:08:42.478 --> 00:08:46.711
+00:08:35.398 --> 00:08:39.631
 Size waves by what the factory really
 delivers, not by the schedule,
 
 140
-00:08:46.711 --> 00:08:49.790
+00:08:39.631 --> 00:08:42.710
 and count savings only once
 the old system is off.
 
 141
-00:08:49.790 --> 00:08:51.630
+00:08:42.710 --> 00:08:44.550
 So, what should you decide?
 
 142
-00:08:55.380 --> 00:08:56.755
+00:08:48.300 --> 00:08:49.675
 So, four decisions.
 
 143
-00:08:56.755 --> 00:08:59.285
+00:08:49.675 --> 00:08:52.205
 Ask for the inventory before the program:
 
 144
-00:08:59.285 --> 00:09:02.930
+00:08:52.205 --> 00:08:55.850
 an owner and a proposed
 disposition for every application.
 
 145
-00:09:02.930 --> 00:09:08.042
+00:08:55.850 --> 00:09:00.962
 Approve the rubric once, rather than
 each decision, and fund the retirements.
 
 146
-00:09:08.042 --> 00:09:13.530
+00:09:00.962 --> 00:09:06.450
 Before any cut-over, ask to see the three
 proof results, and forbid dual writes.
 
 147
-00:09:13.530 --> 00:09:16.175
+00:09:06.450 --> 00:09:09.095
 And make sure every AI agent has a sponsor
 
 148
-00:09:16.175 --> 00:09:18.743
+00:09:09.095 --> 00:09:11.663
 and no power to change
 a record on its own.
 
 149
-00:09:18.743 --> 00:09:20.356
+00:09:11.663 --> 00:09:13.276
 The next step is small.
 
 150
-00:09:20.356 --> 00:09:25.060
+00:09:13.276 --> 00:09:17.980
 Score a pilot set of applications your
 architects already know well, calibrate
 
 151
-00:09:25.060 --> 00:09:29.693
+00:09:17.980 --> 00:09:22.613
 the rubric against their judgment, and pick
 a first wave with one hard case in it.
 
 152
-00:09:29.693 --> 00:09:34.367
+00:09:22.613 --> 00:09:27.287
 Application Modernization has the
 detail, every claim footnoted.
 
 153
-00:09:34.367 --> 00:09:35.190
+00:09:27.287 --> 00:09:28.110
 Thank you.

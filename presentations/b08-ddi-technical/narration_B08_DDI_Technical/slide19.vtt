@@ -57,6 +57,6 @@ link a ruleset to the network its own rule
 points at, or it loops,
 
 13
-00:00:45.145 --> 00:00:48.860
+00:00:45.145 --> 00:00:48.800
 and don't list a custom resolver
 beside Azure's built-in one.

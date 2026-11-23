@@ -260,6 +260,10 @@
     "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#advanced-hunting-deviceinfo-table"
    },
    {
+    "text": "runHuntingQuery",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#graph-security-runhuntingquery"
+   },
+   {
     "text": "Book 12, Ch 06",
     "url": "https://whalermike.github.io/modernization-workbook/docs/books/b12-security-operations/06-vulnerability-management.html"
    }

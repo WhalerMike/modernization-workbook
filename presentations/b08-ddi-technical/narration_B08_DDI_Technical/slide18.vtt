@@ -54,6 +54,6 @@ And watch the NXDOMAIN trap: a partner's
 storage account can lead into your empty
 
 12
-00:00:43.719 --> 00:00:48.820
+00:00:43.719 --> 00:00:48.749
 zone and fail, which is fixed by enabling
 fallback to internet on the zone's link.
