@@ -1,0 +1,11 @@
+PS> Import-Module ./powershell/ValidationKit/ValidationKit.psd1
+PS> $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z' -Option @{ MinSupportedAgentVersion = '1.58' }
+PS> Invoke-VkArc02 -Context $ctx | Select-Object -ExpandProperty Details | Format-List Severity, Object, Issue
+Severity : Finding
+Object   : srv-old01
+Issue    : Status Disconnected; Agent 1.40.02664.1 older than 1.58
+
+Severity : Finding
+Object   : srv-exp01
+Issue    : Status Expired
+

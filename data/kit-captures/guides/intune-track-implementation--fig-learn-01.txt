@@ -1,0 +1,11 @@
+PS> Import-Module ./powershell/ValidationKit/ValidationKit.psd1
+PS> $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z' -Option @{ StaleDays = 60 }
+PS> Invoke-VkInt02 -Context $ctx | Select-Object -ExpandProperty Details | Format-List Severity, Object, Issue
+Severity : Finding
+Object   : PC-005
+Issue    : Stale: no sign-in in more than 60 days
+
+Severity : Finding
+Object   : PC-006
+Issue    : Hybrid-joined and Entra-joined objects for the same device name
+

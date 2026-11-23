@@ -1,0 +1,15 @@
+PS> Import-Module ./powershell/ValidationKit/ValidationKit.psd1
+PS> $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+PS> Invoke-VkDg07 -Context $ctx | Select-Object -ExpandProperty Details | Format-List Severity, Object, Issue
+Severity : Finding
+Object   : AU ORG-A
+Issue    : Unit rule differs from the rule of the group it mirrors
+
+Severity : Finding
+Object   : AU HR case files
+Issue    : Restricted management unit with no recorded reason (members fall outside Entra ID Governance)
+
+Severity : Info
+Object   : AU Break-glass
+Issue    : Restricted management unit
+

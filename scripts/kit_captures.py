@@ -190,7 +190,7 @@ def run_bash(blocks: list[tuple[int, str]], cwd: Path, root: Path) -> dict[int, 
 PS_DRIVER = r"""
 $ErrorActionPreference = 'Continue'; $ProgressPreference = 'SilentlyContinue'
 [Console]::OutputEncoding = [Text.UTF8Encoding]::new($false); $OutputEncoding = [Console]::OutputEncoding
-$PSStyle.OutputRendering = 'PlainText'; $ErrorView = 'ConciseView'
+if ($PSVersionTable.PSVersion.Major -ge 7) { $PSStyle.OutputRendering = 'PlainText'; $ErrorView = 'ConciseView' }  # 7 only; Windows PowerShell 5.1 prints plain text
 function python { & $env:__PY @args }
 $__shown = 0
 foreach ($__b in (Get-Content -Raw -LiteralPath $args[0] | ConvertFrom-Json)) {
@@ -217,13 +217,15 @@ foreach ($__b in (Get-Content -Raw -LiteralPath $args[0] | ConvertFrom-Json)) {
 """
 
 
-def run_pwsh(blocks: list[tuple[int, str]], cwd: Path, root: Path) -> dict[int, list[tuple[str, str]]]:
-    """Run PowerShell blocks in one session, statement by statement; per block, (statement, output) pairs."""
+def run_pwsh(blocks: list[tuple[int, str]], cwd: Path, root: Path, exe: str = "pwsh") -> dict[int, list[tuple[str, str]]]:
+    """Run PowerShell blocks in one session, statement by statement; per block, (statement, output) pairs.
+
+    exe is "pwsh" (PowerShell 7) or "powershell" (Windows PowerShell 5.1, for kits that declare it)."""
     with tempfile.TemporaryDirectory() as tmp:
         driver, data = Path(tmp) / "driver.ps1", Path(tmp) / "blocks.json"
         driver.write_text(PS_DRIVER, encoding="utf-8")
         data.write_text(json.dumps([{"k": k, "code": c} for k, c in blocks]), encoding="utf-8")
-        p = subprocess.run(["pwsh", "-NoLogo", "-NoProfile", "-NonInteractive", "-File", str(driver), str(data)],
+        p = subprocess.run([exe, "-NoLogo", "-NoProfile", "-NonInteractive", "-File", str(driver), str(data)],
                            cwd=cwd, capture_output=True, env=env())
     text = (p.stdout + p.stderr).decode("utf-8", "replace").replace("\r\n", "\n")
     shown, parts, cur = [], [], None

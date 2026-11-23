@@ -1,0 +1,15 @@
+PS> Import-Module ./powershell/ValidationKit/ValidationKit.psd1
+PS> $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+PS> Invoke-VkArc05 -Context $ctx | Select-Object -ExpandProperty Details | Format-List Severity, Object, Issue
+Severity : Finding
+Object   : srv-web01
+Issue    : Not in any Update Manager schedule (no assignment or dynamic scope); No patch assessment in the last 7 days
+
+Severity : Finding
+Object   : srv-old01
+Issue    : Not in any Update Manager schedule (no assignment or dynamic scope); No patch assessment in the last 7 days
+
+Severity : Finding
+Object   : srv-exp01
+Issue    : Last patch assessment 18 days ago
+
