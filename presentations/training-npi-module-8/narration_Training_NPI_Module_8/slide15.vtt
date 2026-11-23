@@ -14,73 +14,78 @@ on Kerberos, Keep Kerberos.
 What must it have?
 
 4
-00:00:07.125 --> 00:00:11.095
+00:00:07.125 --> 00:00:11.219
 The answer is b: the authorizing
 official's acceptance,
 
 5
-00:00:11.095 --> 00:00:14.800
-an S P N owner and an end date
-no later than D oh eight's.
+00:00:11.219 --> 00:00:16.313
+an S P N owner and an end date no later
+than G 5, or the island's end of life.
 
 6
-00:00:14.800 --> 00:00:20.834
+00:00:16.313 --> 00:00:22.772
 That's Chapter 3's rule for an account
-kept on Kerberos; a kept G M S A or
+kept on Kerberos, recorded by D oh eight;
 
 7
-00:00:20.834 --> 00:00:26.538
-D M S A ends by G 5 instead, and needs
-an S P N owner only if it has S P N's.
+00:00:22.772 --> 00:00:25.898
+a kept G M S A or D M
+S A has the same bound,
 
 8
-00:00:26.538 --> 00:00:31.376
+00:00:25.898 --> 00:00:29.337
+and needs an S P N owner
+only if it has S P N's.
+
+9
+00:00:29.337 --> 00:00:34.175
 The check enforces it with N
 P I K R B oh five and oh six.
 
-9
-00:00:31.376 --> 00:00:35.857
+10
+00:00:34.175 --> 00:00:38.657
 Second: why would this chapter
 block a D M S A for svc webfront,
 
-10
-00:00:35.857 --> 00:00:38.875
+11
+00:00:38.657 --> 00:00:41.675
 the reason its owner kept it on Kerberos?
 
-11
-00:00:38.875 --> 00:00:40.100
+12
+00:00:41.675 --> 00:00:42.900
 The answer is b.
 
-12
-00:00:40.100 --> 00:00:43.563
+13
+00:00:42.900 --> 00:00:46.363
 The account is trusted for
 unconstrained delegation,
 
-13
-00:00:43.563 --> 00:00:48.258
+14
+00:00:46.363 --> 00:00:51.058
 and Microsoft Learn's delegated
 managed service account documentation
 
-14
-00:00:48.258 --> 00:00:51.875
+15
+00:00:51.058 --> 00:00:54.675
 says that stops working once
 a D M S A migration completes.
 
-15
-00:00:51.875 --> 00:00:55.627
+16
+00:00:54.675 --> 00:00:58.427
 That's N P I K R B oh four,
 and it's why the owner kept
 
-16
-00:00:55.627 --> 00:00:59.775
+17
+00:00:58.427 --> 00:01:02.575
 the account on Kerberos
 instead of planning a D M S A.
 
-17
-00:00:59.775 --> 00:01:02.202
+18
+00:01:02.575 --> 00:01:05.002
 The module page has three more questions,
 
-18
-00:01:02.202 --> 00:01:04.700
+19
+00:01:05.002 --> 00:01:07.560
 each linked to the
 section that answers it.

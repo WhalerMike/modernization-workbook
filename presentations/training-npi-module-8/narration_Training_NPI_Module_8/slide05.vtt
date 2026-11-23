@@ -36,79 +36,80 @@ to a managed identity or an app
 registration, Chapter 5 moves it.
 
 8
-00:00:30.824 --> 00:00:35.283
-Keep: it stays, with an
-end date no later than G 5,
+00:00:30.824 --> 00:00:36.284
+Keep: it stays, with an end date no later
+than G 5, or the island's end of life
 
 9
-00:00:35.283 --> 00:00:38.175
+00:00:36.284 --> 00:00:41.837
+where the program keeps a Kerberos island,
 and an S P N owner if it has S P N's.
 
 10
-00:00:38.175 --> 00:00:43.779
+00:00:41.837 --> 00:00:47.499
 Keep Kerberos: it stays on Kerberos with
-the authorizing official's acceptance,
+the authorizing official's acceptance, an
 
 11
-00:00:43.779 --> 00:00:48.025
-an S P N owner, and an end date no
-later than decision D oh eight's.
+00:00:47.499 --> 00:00:52.662
+S P N owner, and an end date with the same
+bound, recorded by decision D oh eight.
 
 12
-00:00:48.025 --> 00:00:51.887
+00:00:52.662 --> 00:00:56.525
 Or retire, through the plan's
 reviewed decommission process.
 
 13
-00:00:51.887 --> 00:00:56.750
+00:00:56.525 --> 00:01:01.387
 The program adds rules of its own,
 its design guidance, not Microsoft's.
 
 14
-00:00:56.750 --> 00:00:59.175
+00:01:01.387 --> 00:01:03.813
 The disposition is Chapter 3's.
 
 15
-00:00:59.175 --> 00:01:03.840
+00:01:03.813 --> 00:01:08.477
 Who may retrieve a managed password
 is reviewed data: for a G M S A,
 
 16
-00:01:03.840 --> 00:01:08.325
+00:01:08.477 --> 00:01:12.962
 one domain local group of its
 hosts, never a computer account.
 
 17
-00:01:08.325 --> 00:01:11.700
+00:01:12.962 --> 00:01:16.338
 Every new account follows the
 managed service account standard.
 
 18
-00:01:11.700 --> 00:01:15.888
+00:01:16.338 --> 00:01:20.526
 Every write carries its SailPoint
 request and ServiceNow change.
 
 19
-00:01:15.888 --> 00:01:22.300
+00:01:20.526 --> 00:01:26.937
 The pipeline's own G M S A sends what it
 can, and a person sends the D M S A steps.
 
 20
-00:01:22.300 --> 00:01:26.813
+00:01:26.937 --> 00:01:31.451
 A D M S A migration runs thirty
 days before it completes.
 
 21
-00:01:26.813 --> 00:01:29.887
+00:01:31.451 --> 00:01:34.525
 Every account that stays
 ends within its bound.
 
 22
-00:01:29.887 --> 00:01:34.136
+00:01:34.525 --> 00:01:38.773
 And never delete: the old account is
 disabled and moved to a holding O U,
 
 23
-00:01:34.136 --> 00:01:37.700
+00:01:38.773 --> 00:01:42.340
 and a person deletes it through
 the decommission ticket.

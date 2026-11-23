@@ -101,8 +101,8 @@ endModule(SI);
   tag(s, "What");
   const b = table(s, "Disp", 1.45, [2.6, 9.55], ["Disposition", "What it needs"], [
     ["Replatform", "To a gMSA or dMSA, converted here: kerberos-replatform.csv names the new account, workload and hosts; to a workload identity, Chapter 05"],
-    ["Keep", "It stays, with an end date no later than G5; an SPN owner if it has SPNs"],
-    ["KeepKerberos", "It stays on Kerberos with the authorizing official's acceptance, an SPN owner and an end date no later than D08's"],
+    ["Keep", "It stays, with an end date no later than G5 or the island's end of life; an SPN owner if it has SPNs"],
+    ["KeepKerberos", "It stays on Kerberos with the authorizing official's acceptance, an SPN owner and an end date with the same bound"],
     ["Retire", "Through the plan's reviewed decommission process"],
   ], { fontSize: 13, limit: 3.7 });
   panel(s, "Rules", 0.6, b + 0.25, 12.15, null, HEX.teal, HEX.tealTint, "THE PROGRAM'S RULES  ·  DESIGN GUIDANCE", null, [
@@ -114,7 +114,7 @@ endModule(SI);
   ], 11.5);
   sources(s, "Sources: Module 8, Unit 2; the program's design guidance, in workbook Chapter 06, \"The context the code depends on,\" \"The inputs\"; the managed service account standard.");
   notes(s,
-`Unit 2 starts with the context the code depends on. Every Kerberos account has one of four dispositions, and it's the application owner's decision from Module 3, D N P three, which this chapter reads from Chapter 3's run, never from a second list. Replatform: to a G M S A or a D M S A, converted here, with the new account's name, the workload and its hosts in one more reviewed file; to a managed identity or an app registration, Chapter 5 moves it. Keep: it stays, with an end date no later than G 5, and an S P N owner if it has S P N's. Keep Kerberos: it stays on Kerberos with the authorizing official's acceptance, an S P N owner, and an end date no later than decision D oh eight's. Or retire, through the plan's reviewed decommission process. The program adds rules of its own, its design guidance, not Microsoft's. The disposition is Chapter 3's. Who may retrieve a managed password is reviewed data: for a G M S A, one domain local group of its hosts, never a computer account. Every new account follows the managed service account standard. Every write carries its SailPoint request and ServiceNow change. The pipeline's own G M S A sends what it can, and a person sends the D M S A steps. A D M S A migration runs thirty days before it completes. Every account that stays ends within its bound. And never delete: the old account is disabled and moved to a holding O U, and a person deletes it through the decommission ticket.`,
+`Unit 2 starts with the context the code depends on. Every Kerberos account has one of four dispositions, and it's the application owner's decision from Module 3, D N P three, which this chapter reads from Chapter 3's run, never from a second list. Replatform: to a G M S A or a D M S A, converted here, with the new account's name, the workload and its hosts in one more reviewed file; to a managed identity or an app registration, Chapter 5 moves it. Keep: it stays, with an end date no later than G 5, or the island's end of life where the program keeps a Kerberos island, and an S P N owner if it has S P N's. Keep Kerberos: it stays on Kerberos with the authorizing official's acceptance, an S P N owner, and an end date with the same bound, recorded by decision D oh eight. Or retire, through the plan's reviewed decommission process. The program adds rules of its own, its design guidance, not Microsoft's. The disposition is Chapter 3's. Who may retrieve a managed password is reviewed data: for a G M S A, one domain local group of its hosts, never a computer account. Every new account follows the managed service account standard. Every write carries its SailPoint request and ServiceNow change. The pipeline's own G M S A sends what it can, and a person sends the D M S A steps. A D M S A migration runs thirty days before it completes. Every account that stays ends within its bound. And never delete: the old account is disabled and moved to a holding O U, and a person deletes it through the decommission ticket.`,
   `${M} — Unit 2 "The plan and the island": workbook Chapter 06, "The context the code depends on," "The inputs."`);
 }
 
@@ -127,7 +127,7 @@ endModule(SI);
     ["NPI-KRB-02", "Finding", "No disposition in Chapter 03's decisions, or an unknown one; a move to a workload identity with no Reference"],
     ["NPI-KRB-03", "Finding", "Retrievers in AD that differ from the reviewed list; a gMSA's list that isn't one DL-gMSA-<app>-Hosts group"],
     ["NPI-KRB-04", "Finding", "An unusable target: a dMSA from an MSA, or with unconstrained delegation, or no 2025 host or domain; a new name that breaks the name standard"],
-    ["NPI-KRB-05, 06", "Finding", "No SPN owner where Chapter 03 asks; no end date, or one past its bound: D08 for KeepKerberos, G5 for any other"],
+    ["NPI-KRB-05, 06", "Finding", "No SPN owner where Chapter 03 asks; no end date, or one past its bound: G5, or the island's end of life (WD-165)"],
     ["NPI-KRB-07", "Finding", "Not reconciled with the end state, D11"],
     ["NPI-KRB-08", "Warn", "A managed service account in a privileged group"],
     ["NPI-KRB-09", "Info", "A SQL Server account, handed to the Data Platform plan"],
@@ -136,7 +136,7 @@ endModule(SI);
   line(s, "Why", "Unconstrained delegation stops working once a dMSA migration completes, so NPI-KRB-04 blocks that dMSA.", b + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 8, Unit 2; Microsoft Learn, Create a KDS root key; Delegated Managed Service Accounts overview and FAQ; Secure gMSAs. Chapter 06, \"The check and the plan.\"");
   notes(s,
-`The check runs ten rules, N P I K R B oh one to ten. Oh one, oh four and oh eight come from Microsoft Learn's pages on the root key, delegated managed service accounts and securing group managed service accounts; the others are the program's design guidance. Oh one: there's no K D S root key, or one that became usable less than ten hours ago. Oh two: a Kerberos account has no disposition in Chapter 3's decisions, or an unknown one. Oh three: the accounts allowed to retrieve a managed password in Active Directory differ from the reviewed list, or a G M S A's list isn't one group of its hosts. Oh four is the one to remember: an unusable target. Learn's overview and F A Q for delegated managed service accounts say a D M S A can't come from a managed service account, can't serve an account with unconstrained delegation, which stops working once the migration completes, and needs Windows Server 2025 on the hosts and the domain. Oh five and oh six: an account that stays with no S P N owner where Chapter 3 asks for one, or no end date, or one past its bound: D oh eight's for an account kept on Kerberos, G 5 for any other. Oh seven: an account not reconciled with the end state. Oh eight warns about a privileged group, and oh nine hands SQL Server accounts on. And ten: a write with no SailPoint request or ServiceNow change isn't planned at all; the plan records it as blocked.`,
+`The check runs ten rules, N P I K R B oh one to ten. Oh one, oh four and oh eight come from Microsoft Learn's pages on the root key, delegated managed service accounts and securing group managed service accounts; the others are the program's design guidance. Oh one: there's no K D S root key, or one that became usable less than ten hours ago. Oh two: a Kerberos account has no disposition in Chapter 3's decisions, or an unknown one. Oh three: the accounts allowed to retrieve a managed password in Active Directory differ from the reviewed list, or a G M S A's list isn't one group of its hosts. Oh four is the one to remember: an unusable target. Learn's overview and F A Q for delegated managed service accounts say a D M S A can't come from a managed service account, can't serve an account with unconstrained delegation, which stops working once the migration completes, and needs Windows Server 2025 on the hosts and the domain. Oh five and oh six: an account that stays with no S P N owner where Chapter 3 asks for one, or no end date, or one past its bound: G 5, or the island's end of life where the program keeps a Kerberos island, for every account that stays. Oh seven: an account not reconciled with the end state. Oh eight warns about a privileged group, and oh nine hands SQL Server accounts on. And ten: a write with no SailPoint request or ServiceNow change isn't planned at all; the plan records it as blocked.`,
   `${M} — Unit 2 "The plan and the island": workbook Chapter 06, "The check and the plan"; Knowledge check, answer 2.`);
 }
 
@@ -224,7 +224,7 @@ endModule(SC);
     "Island list: 6 accounts, 4 ready for P4.6; hand-off ready: False",
     "Reconciliation (D11 KerberosIsland): 1 HandedOff,",
     "  4 OnIslandList, 1 Unreconciled",
-    "Plan SHA-256: 74c66192a61051b6cb2122b36e3fc0d3...",
+    "Plan SHA-256: 35c1efff8a8030b9e1d784578db67330...",
     "# Step 5: Format-Table Rule, Severity, ObjectKey",
     "NPI-KRB-03 Finding  gmsa-ops$  (and gmsa-web$)",
     "NPI-KRB-05 Finding  svc-intranet",
@@ -238,13 +238,13 @@ endModule(SC);
     "gmsa-ops$, gmsa-web$: AD names computer accounts as retrievers, not the reviewed group",
     "svc-webfront: kept on Kerberos (unconstrained delegation), AO accepted, no SPN owner",
     "svc-intranet: re-platformed, no SPN owner, an end date after G5",
-    "Kept gMSAs end Aug 31, 2027: after D08, before G5, their bound",
+    "Kept gMSAs end Aug 31, 2027: inside their bound, the island's end of life",
     "gmsa-ops$ is in Domain Admins",
     "The hash is the same on every run",
   ], 12.5);
   sources(s, "Sources: Module 8, \"Exercise: Lab 1,\" steps 4 and 5; examples/non-person-identity/tests/fixtures/ch06 (fictional domain).");
   notes(s,
-`Step four checks the Kerberos accounts and builds the plan. Nine accounts are in scope, and the root key is ready. There are six findings, one warning and two information items. The plan has ten actions, five of them writes: one completed migration, two new G M S A's, and two retriever changes. Nothing is sent. Run by counts the writes by who sends them: four the pipeline's, one a person's. The island list holds six accounts, four of them ready for P four point six, so the hand-off isn't ready. The reconciliation leaves one account unreconciled. The dispositions come from Chapter 3's run, and the program dates file must have the hash that run recorded. The plan's hash is the same on every run with these inputs. Step five reads the findings. svc webfront is trusted for unconstrained delegation, which stops working once a D M S A migration completes, so in Chapter 3 its owner kept it on Kerberos, with the authorizing official's acceptance; N P I K R B oh five flags it because it has no S P N owner. Oh five and oh six flag svc intranet: Chapter 3 re-platforms it to a G M S A, but it has no S P N owner and its end date is after G 5. The kept G M S A's end in August twenty twenty-seven, after D oh eight but before G 5, which is their bound. And oh eight warns that gmsa ops is in Domain Admins. N P I K R B oh three flags gmsa ops and gmsa web, because Active Directory still names computer accounts as their retrievers, where the reviewed list names each one's hosts group.`,
+`Step four checks the Kerberos accounts and builds the plan. Nine accounts are in scope, and the root key is ready. There are six findings, one warning and two information items. The plan has ten actions, five of them writes: one completed migration, two new G M S A's, and two retriever changes. Nothing is sent. Run by counts the writes by who sends them: four the pipeline's, one a person's. The island list holds six accounts, four of them ready for P four point six, so the hand-off isn't ready. The reconciliation leaves one account unreconciled. The dispositions come from Chapter 3's run, and the program dates file must have the hash that run recorded. The plan's hash is the same on every run with these inputs. Step five reads the findings. svc webfront is trusted for unconstrained delegation, which stops working once a D M S A migration completes, so in Chapter 3 its owner kept it on Kerberos, with the authorizing official's acceptance; N P I K R B oh five flags it because it has no S P N owner. Oh five and oh six flag svc intranet: Chapter 3 re-platforms it to a G M S A, but it has no S P N owner and its end date is after G 5. The kept G M S A's end in August twenty twenty-seven, after D oh eight, which bounds no end date, and before the island's end of life, which is their bound. And oh eight warns that gmsa ops is in Domain Admins. N P I K R B oh three flags gmsa ops and gmsa web, because Active Directory still names computer accounts as their retrievers, where the reviewed list names each one's hosts group.`,
   `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 4 and 5.`);
 }
 
@@ -291,7 +291,7 @@ endModule(SC);
     "Apply as Pipeline: 1 Refused, 4 Sent",
     "Apply as Person: 4 Refused, 1 Sent",
     "  Sent       person   CompleteDmsaMigration svc-hrsync      Complete-ADServiceAccountMigration   (...)",
-    "The plan's SHA-256 is 74c66192a61051b6cb2122b36e3fc0d3430c512f89c6feff123fd23b040b43b5, not the approved",
+    "The plan's SHA-256 is 35c1efff8a8030b9e1d784578db673302817c3ee34e6e211638c1898b7b15b61, not the approved",
     "  0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.",
   ], { label: "LAB 1 OUTPUT, RE-RUN NOVEMBER 20, 2026 (TRIMMED: \"...\" MARKS CUTS; WRAPPED)", pt: 10.5 });
   line(s, "Tests", "Step 10: Invoke-Pester -Path tests prints 549 passed, 0 failed. Then Remove-Item -Recurse -Force out.", c + 0.25, 0.45, 13.5);
@@ -344,12 +344,12 @@ endModule(SL);
 // ================================================================== 15 Check
 {
   const s = check(SS, "Check yourself: two questions on the Kerberos island", [
-    { q: "An account is kept on Kerberos (KeepKerberos). What must it have?", options: ["a. A client secret in Key Vault", "b. The authorizing official's acceptance, an SPN owner and an end date no later than D08's", "c. Nothing, until G5"] },
+    { q: "An account is kept on Kerberos (KeepKerberos). What must it have?", options: ["a. A client secret in Key Vault", "b. The authorizing official's acceptance, an SPN owner and an end date no later than G5 or the island's end of life", "c. Nothing, until G5"] },
     { q: "Why would this chapter block a dMSA for svc-webfront, the reason its owner kept it on Kerberos?", options: ["a. It's a SQL Server account", "b. It's trusted for unconstrained delegation, which stops working once a dMSA migration completes", "c. Its domain has no KDS root key"] },
   ], "1 b: Chapter 03's rule for KeepKerberos; a kept gMSA or dMSA ends by G5 instead. 2 b: NPI-KRB-04.");
   sources(s, "Sources: Module 8, \"Knowledge check,\" questions 1 and 2, \"Check your answers\"; Microsoft Learn, Delegated Managed Service Accounts overview and FAQ.");
   notes(s,
-`Check yourself with two questions. First: an account is kept on Kerberos, Keep Kerberos. What must it have? The answer is b: the authorizing official's acceptance, an S P N owner and an end date no later than D oh eight's. That's Chapter 3's rule for an account kept on Kerberos; a kept G M S A or D M S A ends by G 5 instead, and needs an S P N owner only if it has S P N's. The check enforces it with N P I K R B oh five and oh six. Second: why would this chapter block a D M S A for svc webfront, the reason its owner kept it on Kerberos? The answer is b. The account is trusted for unconstrained delegation, and Microsoft Learn's delegated managed service account documentation says that stops working once a D M S A migration completes. That's N P I K R B oh four, and it's why the owner kept the account on Kerberos instead of planning a D M S A. The module page has three more questions, each linked to the section that answers it.`,
+`Check yourself with two questions. First: an account is kept on Kerberos, Keep Kerberos. What must it have? The answer is b: the authorizing official's acceptance, an S P N owner and an end date no later than G 5, or the island's end of life. That's Chapter 3's rule for an account kept on Kerberos, recorded by D oh eight; a kept G M S A or D M S A has the same bound, and needs an S P N owner only if it has S P N's. The check enforces it with N P I K R B oh five and oh six. Second: why would this chapter block a D M S A for svc webfront, the reason its owner kept it on Kerberos? The answer is b. The account is trusted for unconstrained delegation, and Microsoft Learn's delegated managed service account documentation says that stops working once a D M S A migration completes. That's N P I K R B oh four, and it's why the owner kept the account on Kerberos instead of planning a D M S A. The module page has three more questions, each linked to the section that answers it.`,
   `${M} — Unit "Knowledge check," questions 1 and 2; "Check your answers."`);
 }
 

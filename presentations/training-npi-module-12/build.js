@@ -218,7 +218,7 @@ endModule(SC);
     "Run by: 1 person, 4 pipeline",
     "Island list: 6 accounts, 4 ready for P4.6; hand-off ready: False",
     "Reconciliation (D11 KerberosIsland): 1 HandedOff, 4 OnIslandList, 1 Unreconciled",
-    "Plan SHA-256: 74c66192a61051b6cb2122b36e3fc0d3430c512f89c6feff123fd23b040b43b5",
+    "Plan SHA-256: 35c1efff8a8030b9e1d784578db673302817c3ee34e6e211638c1898b7b15b61",
   ], { label: `TRY IT  ·  ${CAP} (COMMAND WRAPPED)`, pt: 10.5 });
   line(s, "Kds", "KDS root key Ready is the guide's step A2: the check reads the key's start time, with a delegated read, and never creates a key.", c + 0.25, 0.7, 13.5);
   sources(s, "Sources: Module 12, \"Exercise: Lab 1,\" step 3; Chapter 06, Lab 1; data/kit-captures/npi/06-4.txt.");

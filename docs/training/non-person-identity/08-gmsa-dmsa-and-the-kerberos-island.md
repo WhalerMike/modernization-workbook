@@ -16,7 +16,7 @@ last-reviewed: 2026-11-22
 
 **Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_NPI_Module_8.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_NPI_Module_8_Narrated) (about 20 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_8_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-8/Training_NPI_Module_8_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-8/Training_NPI_Module_8_Narrated.vtt).
 
-**Also:** the chapter's narrated tour, about 11 minutes: [▶ Watch](../../presentations/watch.html?v=DW_NPI_06_gMSA_dMSA_Narrated).
+**Also:** the chapter's narrated tour, about 14 minutes: [▶ Watch](../../presentations/watch.html?v=DW_NPI_06_gMSA_dMSA_Narrated).
 
 ## Introduction (3 minutes)
 
