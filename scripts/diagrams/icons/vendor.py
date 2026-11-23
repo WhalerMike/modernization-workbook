@@ -1,6 +1,6 @@
-"""Copy the product icons the diagrams use out of Microsoft's and AWS's official icon downloads.
+"""Copy the product icons the diagrams use out of Microsoft's, AWS's and Google Cloud's official icon downloads.
 
-    python scripts/diagrams/icons/vendor.py azure=<Azure_Public_Service_Icons_Vnn.zip> entra=<Microsoft Entra architecture icons - ....zip> aws=<AWS Icon-package_MMDDYYYY.zip>
+    python scripts/diagrams/icons/vendor.py azure=<Azure_Public_Service_Icons_Vnn.zip> entra=<Microsoft Entra architecture icons - ....zip> aws=<AWS Icon-package_MMDDYYYY.zip> \n        google-core=<core-products-icons.zip> google-category=<category-icons.zip>
 
 icons.yml names each icon the diagrams use, per set (`name: path inside the zip`). This
 copies those files, unmodified, to scripts/diagrams/icons/<set>/<name>.svg and writes
@@ -11,7 +11,8 @@ Each set's terms are in SETS and are copied into manifest.json. Microsoft's (the
 on Microsoft Learn): "Microsoft permits the use of these icons in architectural diagrams,
 training materials, or documentation." AWS's (the AWS Architecture Icons page): "We allow
 customers and partners to use these toolkits and assets to create architecture diagrams."
-The workbook uses them only in its diagrams, unmodified.
+Google Cloud's (its icon library page): "Here you can find the Google Cloud product icons you
+need for your diagrams, technical documentation, and more." The workbook uses them only in its diagrams, unmodified.
 """
 from __future__ import annotations
 
@@ -29,12 +30,17 @@ MICROSOFT_TERMS = ("Microsoft permits the use of these icons in architectural di
                    "Microsoft reserves all other rights.")
 AWS_TERMS = ("We allow customers and partners to use these toolkits and assets to create architecture diagrams. "
              "You can also put icons in materials like whitepapers, presentations, data sheets, and posters.")
+GOOGLE_TERMS = ("Welcome to the official library for Google Cloud product icons. "
+                "Here you can find the Google Cloud product icons you need for your diagrams, technical documentation, and more.")
 SETS = {
     "azure": {"prefix": "Azure_Public_Service_Icons/Icons/", "page": "https://learn.microsoft.com/azure/architecture/icons/",
               "terms": MICROSOFT_TERMS},
     "entra": {"prefix": "Microsoft Entra architecture icons - Oct 2023/", "page": "https://learn.microsoft.com/entra/architecture/architecture-icons",
               "terms": MICROSOFT_TERMS},
     "aws": {"prefix": "", "page": "https://aws.amazon.com/architecture/icons/", "terms": AWS_TERMS},
+    # Google's 2025 icon system: unique icons for ~20 core products, one category icon for every other product.
+    "google-core": {"prefix": "", "page": "https://cloud.google.com/icons", "terms": GOOGLE_TERMS},
+    "google-category": {"prefix": "", "page": "https://cloud.google.com/icons", "terms": GOOGLE_TERMS},
 }
 
 
@@ -65,7 +71,7 @@ def main(args: list[str]) -> int:
             if f"{set_name}/{stale.name}" not in files:
                 stale.unlink()
     manifest = {
-        "_comment": "Vendor architecture icons (Microsoft, AWS), copied unmodified by vendor.py from the downloads named below. "
+        "_comment": "Vendor architecture icons (Microsoft, AWS, Google Cloud), copied unmodified by vendor.py from the downloads named below. "
                     "Used only in the workbook's diagrams, as each vendor's icon terms (under downloads) permit. Never edit the SVGs; re-run vendor.py.",
         "downloads": downloads,
         "files": dict(sorted(files.items())),

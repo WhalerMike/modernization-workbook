@@ -8,10 +8,10 @@ nodes:
   clm: {tone: amber, width: 240, tag: "Certificate system of record", title: "CyberArk Certificate Manager", body: ["Issues from its CAs and pushes; or requests and monitors"], size: 12}
   akv: {icon: key-vault, tone: blue, width: 190, title: "Azure Key Vault", body: ["CLM pushes", "One renewer per certificate"], size: 12}
   acm: {icon: aws-certificate-manager, tone: blue, width: 190, title: "AWS ACM and Private CA", body: ["Imported: CLM renews", "ACM-issued: ACM renews, CLM monitors"], size: 12}
-  gcp: {tone: blue, width: 190, title: "Google Cloud", body: ["CLM pushes load-balancer certificates", "Google-managed: Google renews"], size: 12}
+  gcp: {icon: gcp-security-identity, tone: blue, width: 190, title: "Google Cloud", body: ["CLM pushes load-balancer certificates", "Google-managed: Google renews"], size: 12}
   akvk: {icon: key-vault, tone: red, width: 190, title: "Key Vault keys and secrets", body: ["Azure RBAC"], size: 12}
   kms: {icon: aws-kms, tone: red, width: 190, title: "AWS KMS, Secrets Manager", body: ["AWS IAM"], size: 12}
-  gkms: {tone: red, width: 190, title: "Cloud KMS, Secret Manager", body: ["Google IAM"], size: 12}
+  gkms: {icon: gcp-security-identity, tone: red, width: 190, title: "Cloud KMS, Secret Manager", body: ["Google IAM"], size: 12}
 edges:
   - [clm, akv]
   - [clm, acm, {both: true}]
