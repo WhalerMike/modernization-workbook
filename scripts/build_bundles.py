@@ -43,6 +43,9 @@ For each bundle the script:
      removes web-only navigation, download callouts and listings, and turns
      links to other pages into plain text.
   5. Verifies that every referenced image is embedded in the .docx.
+  6. For a book (root docs/books/bNN-*), puts the book's cover illustration
+     (docs/images/covers/light/, from scripts/covers/build_covers.py) above
+     the title, on the bundle and on each of its chapter files.
 
 After building everything, the script checks that every download link to
 downloads/*.docx on a published page points at a file that was built, and
@@ -212,6 +215,45 @@ def fill_toc(docx: Path, depth: int) -> int:
             z.writestr(info, parts[info.filename], compress_type=zipfile.ZIP_DEFLATED)
     tmp.replace(docx)
     return len(entries)
+
+
+COVERS = REPO / "docs/images/covers/light"   # scripts/covers/build_covers.py
+COVER_STYLE = "Cover Art"
+
+
+def book_cover(root: Path) -> Path | None:
+    """The light cover illustration of the book a bundle's root folder is, if any."""
+    try:
+        parts = root.resolve().relative_to(REPO / "docs/books").parts
+    except ValueError:
+        return None
+    if len(parts) != 1 or not re.fullmatch(r"b\d\d-[\w-]+", parts[0]):
+        return None
+    svg = COVERS / f"{parts[0]}.svg"
+    return svg if svg.exists() else None
+
+
+def place_cover(docx: Path) -> bool:
+    """Move the cover paragraph (custom style "Cover Art", first in the body) above the title."""
+    with zipfile.ZipFile(docx) as z:
+        infos = z.infolist()
+        parts = {i.filename: z.read(i) for i in infos}
+    doc = parts["word/document.xml"].decode("utf-8")
+    style_id = COVER_STYLE.replace(" ", "")
+    cover = re.search(rf'<w:p>(?:(?!</w:p>).)*?<w:pStyle w:val="{style_id}"\s*/>(?:(?!</w:p>).)*?</w:p>', doc, re.S)
+    title = re.search(r'<w:p>(?:(?!</w:p>).)*?<w:pStyle w:val="Title"\s*/>', doc, re.S)
+    if not cover or not title or title.start() > cover.start():
+        return False
+    para = cover.group(0)
+    doc = doc[:cover.start()] + doc[cover.end():]
+    doc = doc[:title.start()] + para + doc[title.start():]
+    parts["word/document.xml"] = doc.encode("utf-8")
+    tmp = docx.with_name(docx.name + ".tmp")
+    with zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as z:
+        for info in infos:
+            z.writestr(info, parts[info.filename], compress_type=zipfile.ZIP_DEFLATED)
+    tmp.replace(docx)
+    return True
 
 
 def find_pandoc() -> list[str]:
@@ -655,8 +697,24 @@ class Builder:
                 dest = src
             self.word_ready[src] = dest
 
+    def cover_page(self, svg: Path) -> tuple[Path, Path]:
+        """A staged one-image page for a book's cover, and the PNG Word shows (the SVG rides along)."""
+        png = self.media / f"cover-{svg.stem}.png"
+        page = self.stage / f"_cover-{svg.stem}.md"
+        if not page.exists():
+            if not shutil.which("rsvg-convert"):
+                fail(f"{rel(svg)} is SVG and rsvg-convert is not installed (apt-get install librsvg2-bin)")
+            subprocess.run(["rsvg-convert", "-w", "1920", "-f", "png", "-o", str(png), str(svg)], check=True)
+            m = re.search(r"<title>([^<]*)</title>", svg.read_text(encoding="utf-8"))
+            alt = f"Cover illustration: {m.group(1)}" if m else "Cover illustration"
+            page.write_text(f'::: {{custom-style="{COVER_STYLE}"}}\n![{alt}]({png.as_posix()}){{width=6.5in}}\\\n:::\n',
+                            encoding="utf-8")
+        return page, png
+
     def build(self, b: Bundle) -> dict:
         t0 = time.monotonic()
+        cover_svg = book_cover(b.root)
+        cover = self.cover_page(cover_svg) if cover_svg else None
         refs, image_map, listing_ids = [], {}, set()
         for p in b.pages:
             pr = self.prepared[p]
@@ -676,6 +734,7 @@ class Builder:
                    BUNDLE_LISTING_IDS=",".join(sorted(listing_ids | {"chapters", "book-chapters"})))
         cmd = self.pandoc + [
             "--from", "markdown+rebase_relative_paths",
+            *([str(cover[0])] if cover else []),
             *[str(self.prepared[p].staged) for p in b.pages],
             "--output", str(output),
             "--metadata", f"title={b.title}",
@@ -693,7 +752,10 @@ class Builder:
             raise BuildError(f"{b.output}: pandoc failed (exit {res.returncode})\n{res.stderr}")
         if not fill_toc(output, b.toc_depth):
             raise BuildError(f"{b.output}: table of contents has no entries")
-        add_svg_vectors(output, {r: word_png(r) for r in unique if word_png(r)})
+        if cover and not place_cover(output):
+            raise BuildError(f"{b.output}: the cover illustration isn't above the title")
+        add_svg_vectors(output, {**{r: word_png(r) for r in unique if word_png(r)},
+                                 **({cover_svg: cover[1]} if cover else {})})
         with zipfile.ZipFile(output) as z:
             media = [n for n in z.namelist() if n.startswith("word/media/")]
             doc = z.read("word/document.xml").decode("utf-8")
@@ -775,6 +837,9 @@ def main() -> None:
     log(f"Prepared {len(builder.prepared)} pages and {len(builder.word_ready)} images "
         f"in {time.monotonic() - started:.1f}s")
     chapters = chapter_bundles(bundles, args.chapters.resolve(), builder.subtitle) if args.chapters else []
+    # Book covers are drawn once, here, before the builds run in parallel.
+    for svg in sorted({c for c in (book_cover(b.root) for b in bundles + chapters) if c}):
+        builder.cover_page(svg)
 
     results, chapter_results, errors = [], [], []
     with cf.ThreadPoolExecutor(args.jobs) as ex:
