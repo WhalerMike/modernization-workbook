@@ -11,7 +11,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 279b0c4eacb1d4a0fd245948f8248307fb11f98017d7ee17c01f760b24dd2348
+reviewed-sha256: 6f0ddd782af4d96a74b4fc530ea605ad902407a3de379e70876d6030237e13c7
 last-reviewed: 2026-11-23
 ---
 # Chapter 06 — gMSAs, dMSAs and the Kerberos Island
