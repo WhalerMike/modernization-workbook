@@ -4,12 +4,12 @@
 rankdir: TB
 graph: {nodesep: 0.3, ranksep: 0.45}
 nodes:
-  srv: {tone: slate, width: 170, tag: "On-premises or other cloud", title: "Server", body: ["Connected Machine agent", "Still domain joined until a separate decision"], size: 12}
-  res: {tone: blue, width: 190, tag: "Azure Resource Manager", title: "Arc machine resource", body: ["`Microsoft.HybridCompute/machines`", "Resource ID, tags, Azure RBAC, extensions"], size: 12}
-  mi: {tone: blue, width: 190, tag: "Microsoft Entra ID", title: "System-assigned managed identity", body: ["=Machine identity for Azure access"], size: 12}
-  gov: {tone: violet, width: 200, tag: "Govern", title: "Azure Policy and machine configuration", body: ["=Audit the compute security baseline"], size: 12}
-  patch: {tone: green, width: 200, tag: "Patch", title: "Update Manager and ESUs", body: ["=Assess daily, patch in windows; ESU license"], size: 12}
-  prot: {tone: violet, width: 200, tag: "Protect and sign in", title: "Defender for Servers; Entra ID sign-in", body: ["=Defender for Endpoint onboarded; sign-in extension on Server 2025"], size: 12}
+  srv: {icon: virtual-machine, tone: slate, width: 170, tag: "On-premises or other cloud", title: "Server", body: ["Connected Machine agent", "Still domain joined until a separate decision"], size: 12}
+  res: {icon: arc-machines, tone: blue, width: 190, tag: "Azure Resource Manager", title: "Arc machine resource", body: ["`Microsoft.HybridCompute/machines`", "Resource ID, tags, Azure RBAC, extensions"], size: 12}
+  mi: {icon: managed-identity, tone: blue, width: 190, tag: "Microsoft Entra ID", title: "System-assigned managed identity", body: ["=Machine identity for Azure access"], size: 12}
+  gov: {icon: policy, tone: violet, width: 200, tag: "Govern", title: "Azure Policy and machine configuration", body: ["=Audit the compute security baseline"], size: 12}
+  patch: {icon: update-manager, tone: green, width: 200, tag: "Patch", title: "Update Manager and ESUs", body: ["=Assess daily, patch in windows; ESU license"], size: 12}
+  prot: {icon: defender-for-cloud, tone: violet, width: 200, tag: "Protect and sign in", title: "Defender for Servers; Entra ID sign-in", body: ["=Defender for Endpoint onboarded; sign-in extension on Server 2025"], size: 12}
 order: [[res, mi]]
 edges:
   - [srv, res, {label: "outbound TCP 443"}]

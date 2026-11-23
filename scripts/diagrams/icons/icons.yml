@@ -1,0 +1,52 @@
+# The Microsoft product icons the diagrams may use: name -> path inside Microsoft's
+# Azure architecture icon download (Azure_Public_Service_Icons/Icons/...).
+# Add a line, then run: python scripts/diagrams/icons/vendor.py <the zip>
+azure:
+  app-gateway: networking/10076-icon-service-Application-Gateways.svg
+  app-registrations: identity/10232-icon-service-App-Registrations.svg
+  app-service: app services/10035-icon-service-App-Services.svg
+  arc: management + governance/00756-icon-service-Azure-Arc.svg
+  arc-machines: management + governance/10450-icon-service-MachinesAzureArc.svg
+  automation: management + governance/00022-icon-service-Automation-Accounts.svg
+  conditional-access: security/10233-icon-service-Conditional-Access.svg
+  defender-for-cloud: security/10241-icon-service-Microsoft-Defender-for-Cloud.svg
+  dns-private-resolver: networking/02882-icon-service-DNS-Private-Resolver.svg
+  dns-zones: networking/10064-icon-service-DNS-Zones.svg
+  enterprise-apps: identity/10225-icon-service-Enterprise-Applications.svg
+  entra-connect: identity/02854-icon-service-Entra-Connect.svg
+  entra-gsa: identity/03309-icon-service-Entra-Global-Secure-Access.svg
+  entra-internet-access: identity/03383-icon-service-Entra-Internet-Access.svg
+  entra-private-access: identity/03382-icon-service-Entra-Private-Access.svg
+  firewall: networking/10084-icon-service-Firewalls.svg
+  front-door: networking/10073-icon-service-Front-Door-and-CDN-Profiles.svg
+  groups: identity/10223-icon-service-Groups.svg
+  identity-governance: identity/10235-icon-service-Identity-Governance.svg
+  information-protection: identity/10229-icon-service-Azure-Information-Protection.svg
+  intune: intune/10329-icon-service-Intune.svg
+  key-vault: security/10245-icon-service-Key-Vaults.svg
+  log-analytics: monitor/00009-icon-service-Log-Analytics-Workspaces.svg
+  managed-identity: identity/10227-icon-service-Entra-Managed-Identities.svg
+  management-groups: general/10011-icon-service-Management-Groups.svg
+  monitor: monitor/00001-icon-service-Monitor.svg
+  pim: identity/02251-icon-service-Entra-Privleged-Identity-Management.svg
+  policy: management + governance/10316-icon-service-Policy.svg
+  private-link: networking/00427-icon-service-Private-Link.svg
+  resource-groups: general/10007-icon-service-Resource-Groups.svg
+  resource-graph: management + governance/10318-icon-service-Resource-Graph-Explorer.svg
+  sentinel: security/10248-icon-service-Azure-Sentinel.svg
+  service-health: general/10004-icon-service-Service-Health.svg
+  subscriptions: general/10002-icon-service-Subscriptions.svg
+  update-manager: other/02846-icon-service-Update-Management-Center.svg
+  users: identity/10230-icon-service-Users.svg
+  virtual-machine: compute/10021-icon-service-Virtual-Machine.svg
+  virtual-network: networking/10061-icon-service-Virtual-Networks.svg
+  waf-policy: networking/10362-icon-service-Web-Application-Firewall-Policies(WAF).svg
+  workbooks: monitor/02189-icon-service-Azure-Workbooks.svg
+# Microsoft Entra architecture icons (color), Microsoft Entra architecture icons - Oct 2023.zip
+entra:
+  entra-id: Microsoft Entra color icons SVG/Microsoft Entra ID color icon.svg
+  entra-id-governance: Microsoft Entra color icons SVG/Microsoft Entra ID Governance color icon.svg
+  entra-internet: Microsoft Entra color icons SVG/Microsoft Entra Internet Access color icon.svg
+  entra-private: Microsoft Entra color icons SVG/Microsoft Entra Private Access color icon.svg
+  entra-verified-id: Microsoft Entra color icons SVG/Microsoft Entra Verified ID color icon.svg
+  entra-workload-id: Microsoft Entra color icons SVG/Microsoft Entra Workload ID color icon.svg
