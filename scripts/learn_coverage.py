@@ -38,8 +38,8 @@ counts for the page.
 The workbook files scanned for citations are the tracked (and untracked, not
 ignored) text files under docs/, examples/ and data/, and each deck's build.js
 and narration (presentations/*/build.js, narration*.json,
-*Narration_Script.md). The reference page and the data files themselves are
-left out. URLs are compared without locale, query, anchor or trailing slash,
+*Narration_Script.md). The reference page, the data files themselves and
+data/portal-script-pairs.yml (which repeats the guides' Learn image links) are left out. URLs are compared without locale, query, anchor or trailing slash,
 and lower-cased; docs.microsoft.com counts as learn.microsoft.com.
 
 The reference page docs/reference/learn-coverage.md is generated from the
@@ -96,7 +96,8 @@ FIELDS = ("path", "url", "title", "area", "ms_date", "ms_topic", "description",
           "coverage", "note", "workbook", "cited_by", "gone")
 
 SCAN_ROOTS = ("docs/", "examples/", "data/")
-SCAN_SKIP = ("data/learn-coverage/", PAGE_REL)
+# data/portal-script-pairs.yml repeats the Learn image URLs the guides already cite (scripts/portal_script_pairs.py).
+SCAN_SKIP = ("data/learn-coverage/", PAGE_REL, "data/portal-script-pairs.yml")
 TEXT_SUFFIXES = {".md", ".qmd", ".yml", ".yaml", ".json", ".csv", ".tsv", ".txt", ".py", ".ps1", ".psm1",
                  ".psd1", ".js", ".jsx", ".ts", ".java", ".xml", ".sql", ".html", ".sh", ".lua", ".vtt",
                  ".ipynb", ".toml", ".ini", ".cfg", ".mof", ".example"}
