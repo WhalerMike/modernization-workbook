@@ -42,3 +42,11 @@ azure:
   virtual-network: networking/10061-icon-service-Virtual-Networks.svg
   waf-policy: networking/10362-icon-service-Web-Application-Firewall-Policies(WAF).svg
   workbooks: monitor/02189-icon-service-Azure-Workbooks.svg
+# Microsoft Entra architecture icons (color), Microsoft Entra architecture icons - Oct 2023.zip
+entra:
+  entra-id: Microsoft Entra color icons SVG/Microsoft Entra ID color icon.svg
+  entra-id-governance: Microsoft Entra color icons SVG/Microsoft Entra ID Governance color icon.svg
+  entra-internet: Microsoft Entra color icons SVG/Microsoft Entra Internet Access color icon.svg
+  entra-private: Microsoft Entra color icons SVG/Microsoft Entra Private Access color icon.svg
+  entra-verified-id: Microsoft Entra color icons SVG/Microsoft Entra Verified ID color icon.svg
+  entra-workload-id: Microsoft Entra color icons SVG/Microsoft Entra Workload ID color icon.svg

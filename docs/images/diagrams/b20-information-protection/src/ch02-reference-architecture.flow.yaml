@@ -25,12 +25,12 @@ clusters:
     nodes: [ext]
 nodes:
   owners: {tone: amber, width: 250, title: "Decisions (Chapter 01)", body: ["=Class register, data owners, decision records"], size: 11}
-  entra: {tone: blue, width: 250, title: "Identity plane: Microsoft Entra ID", body: ["Groups that labels grant rights to", "PIM for recovery roles", "Conditional Access and authentication contexts"], size: 11}
+  entra: {icon: entra-id, tone: blue, width: 250, title: "Identity plane: Microsoft Entra ID", body: ["Groups that labels grant rights to", "PIM for recovery roles", "Conditional Access and authentication contexts"], size: 11}
   purview: {tone: violet, width: 250, title: "Policy plane: Microsoft Purview", body: ["Labels, label policies, defaults", "Auto-labeling, DLP, insider risk", "DSPM for AI"], size: 11}
-  rms: {tone: green, width: 250, title: "Protection plane: Rights Management", body: ["Encryption and usage rights", "Tenant key: Microsoft-managed or BYOK", "Super user off by default"], size: 11}
+  rms: {icon: information-protection, tone: green, width: 250, title: "Protection plane: Rights Management", body: ["Encryption and usage rights", "Tenant key: Microsoft-managed or BYOK", "Super user off by default"], size: 11}
   work: {tone: blue, width: 250, title: "Data plane: workloads", body: ["Exchange and Message Encryption", "SharePoint, OneDrive, Teams", "Microsoft 365 Copilot"], size: 11}
   audit: {tone: violet, width: 250, title: "Monitoring plane: Purview Audit", body: ["=Label, DLP, encryption and AI events, routed to the log platform (Book 12)"], size: 11}
-  office: {tone: slate, width: 250, title: "Office apps and endpoint DLP", body: ["=Apply labels and markings; enforce print, copy and upload rules"], size: 11}
+  office: {icon: intune, tone: slate, width: 250, title: "Office apps and endpoint DLP", body: ["=Apply labels and markings; enforce print, copy and upload rules"], size: 11}
   ext: {tone: red, width: 250, title: "External recipients and unmanaged devices", body: ["=Reach content only through encryption rights, the message portal or limited web access"], size: 11}
 order:
   - [entra, purview]

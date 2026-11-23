@@ -31,7 +31,7 @@ class DiagramIcons(unittest.TestCase):
     def test_manifest_matches_icons_yml(self):
         want = yaml.safe_load((ICONS / "icons.yml").read_text(encoding="utf-8"))
         manifest = json.loads((ICONS / "manifest.json").read_text(encoding="utf-8"))
-        self.assertEqual({f"azure/{n}.svg" for n in want["azure"]}, set(manifest["files"]))
+        self.assertEqual({f"{s}/{n}.svg" for s, icons in want.items() for n in icons}, set(manifest["files"]))
 
     def test_every_icon_a_diagram_names_exists(self):
         have = {p.stem for p in ICONS.glob("*/*.svg")}

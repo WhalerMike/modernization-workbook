@@ -1,7 +1,15 @@
 {
-  "_comment": "Microsoft's Azure architecture icons, copied unmodified by vendor.py from the download named below. Used only in the workbook's diagrams, as Microsoft's icon terms permit. Never edit the SVGs; re-run vendor.py.",
-  "download": "Azure_Public_Service_Icons_V25.zip",
-  "documented_at": "https://learn.microsoft.com/azure/architecture/icons/",
+  "_comment": "Microsoft's architecture icons, copied unmodified by vendor.py from the downloads named below. Used only in the workbook's diagrams, as Microsoft's icon terms permit. Never edit the SVGs; re-run vendor.py.",
+  "downloads": {
+    "azure": {
+      "download": "Azure_Public_Service_Icons_V25.zip",
+      "documented_at": "https://learn.microsoft.com/azure/architecture/icons/"
+    },
+    "entra": {
+      "download": "entra-icons.zip",
+      "documented_at": "https://learn.microsoft.com/entra/architecture/architecture-icons"
+    }
+  },
   "terms": "Microsoft permits the use of these icons in architectural diagrams, training materials, or documentation. You can copy, distribute, and display the icons only for the permitted use unless granted explicit permission by Microsoft. Microsoft reserves all other rights.",
   "files": {
     "azure/app-gateway.svg": {
@@ -19,15 +27,15 @@
       "bytes": 3078,
       "sha256": "529d83fc80637a96b6d27f6cfac7536e1c5f9b1b67f58aef4e2e3d6f47fd4925"
     },
-    "azure/arc.svg": {
-      "source": "management + governance/00756-icon-service-Azure-Arc.svg",
-      "bytes": 2870,
-      "sha256": "00f4a57d6e0391bec619a9298d114f783dbb7dd4165d44242202ca37d00d9bfa"
-    },
     "azure/arc-machines.svg": {
       "source": "management + governance/10450-icon-service-MachinesAzureArc.svg",
       "bytes": 980,
       "sha256": "bce92e5cdd89312fe2aa462bce16a454a87fd7834b831219fdeaddd3684e64ce"
+    },
+    "azure/arc.svg": {
+      "source": "management + governance/00756-icon-service-Azure-Arc.svg",
+      "bytes": 2870,
+      "sha256": "00f4a57d6e0391bec619a9298d114f783dbb7dd4165d44242202ca37d00d9bfa"
     },
     "azure/automation.svg": {
       "source": "management + governance/00022-icon-service-Automation-Accounts.svg",
@@ -203,6 +211,36 @@
       "source": "monitor/02189-icon-service-Azure-Workbooks.svg",
       "bytes": 1550,
       "sha256": "20b3064d62ff3c7944d71f852d34f0ecba8b3bcd2f3ff3e8d14634a116e57da4"
+    },
+    "entra/entra-id-governance.svg": {
+      "source": "Microsoft Entra color icons SVG/Microsoft Entra ID Governance color icon.svg",
+      "bytes": 2375,
+      "sha256": "b19ae8a696a9c351444d1ae37602a29b8ac2e29a1779089d436f09feb61249e3"
+    },
+    "entra/entra-id.svg": {
+      "source": "Microsoft Entra color icons SVG/Microsoft Entra ID color icon.svg",
+      "bytes": 1301,
+      "sha256": "efd9f54562bfb78bf3c77aecdd5fc31b61fce8a1cec78c4370b41fc470e54eda"
+    },
+    "entra/entra-internet.svg": {
+      "source": "Microsoft Entra color icons SVG/Microsoft Entra Internet Access color icon.svg",
+      "bytes": 3700,
+      "sha256": "9fce0b0555ebadb7d86480e0b7f2c37baff9a3c32cb5fee074b314401aec14af"
+    },
+    "entra/entra-private.svg": {
+      "source": "Microsoft Entra color icons SVG/Microsoft Entra Private Access color icon.svg",
+      "bytes": 4124,
+      "sha256": "63ff1e74681b1e9d3226c86c6bd278a0b38b6d3d5ea4414d37415ce46d7c960b"
+    },
+    "entra/entra-verified-id.svg": {
+      "source": "Microsoft Entra color icons SVG/Microsoft Entra Verified ID color icon.svg",
+      "bytes": 2416,
+      "sha256": "ae1f6e9472ca807c1234b100b82a4122d0f7630bd47b4909528f0d88ba7c3423"
+    },
+    "entra/entra-workload-id.svg": {
+      "source": "Microsoft Entra color icons SVG/Microsoft Entra Workload ID color icon.svg",
+      "bytes": 1408,
+      "sha256": "f060c986a7f0bd0761c210225dc5db6a8bafa18eb1ea411f3417b9a0dadefe51"
     }
   }
 }
