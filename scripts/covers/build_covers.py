@@ -2,20 +2,25 @@
 
     python scripts/covers/build_covers.py          # write the covers
     python scripts/covers/build_covers.py --check  # fail if a cover is out of date
+    python3 scripts/covers/build_covers.py --png   # also the decks' PNGs (needs rsvg-convert: WSL)
 
 Each cover is line art on a transparent background in the site's dark-header colors
 (teal, amber, white), with a motif for the book's topic. The book landing pages show
-it in their dark header (assets/fmw-hero.lua, assets/partials/title-block.html).
+it in their dark header (assets/fmw-hero.lua, assets/partials/title-block.html). A light
+copy (docs/images/covers/light/) goes on white pages: the Word editions' title pages
+(scripts/build_bundles.py) and the decks' title slides (presentations/_build/lib.js).
 Everything is drawn here from basic shapes: no third-party art, no logos, no text.
 """
 from __future__ import annotations
 
 import math
+import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "docs" / "images" / "covers"
+DECK_PNG = ROOT / "presentations" / "_build" / "covers"
 W, H = 960, 360
 
 STYLE = """<style>
@@ -29,6 +34,20 @@ STYLE = """<style>
 .ka{fill:#000;stroke:#f2b950;stroke-width:2.4;stroke-linejoin:round}
 .w{fill:none;stroke:#ffffff;stroke-width:1;opacity:.35}
 .g{fill:#5fc4bf;opacity:.16}
+</style>"""
+
+# The same art for white pages: the Word editions' title pages and the decks' title slides.
+STYLE_LIGHT = """<style>
+.s{fill:none;stroke:#1E8C8C;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.t{fill:none;stroke:#1E8C8C;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;opacity:.55}
+.d{fill:none;stroke:#8fbfbc;stroke-width:1.2;stroke-dasharray:4 5;stroke-linecap:round}
+.a{fill:none;stroke:#C98A12;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.af{fill:#C98A12}
+.sf{fill:#1E8C8C}
+.k{fill:#ffffff;stroke:#1E8C8C;stroke-width:2;stroke-linejoin:round}
+.ka{fill:#ffffff;stroke:#C98A12;stroke-width:2.4;stroke-linejoin:round}
+.w{fill:none;stroke:#0D1B2E;stroke-width:1;opacity:.35}
+.g{fill:#1E8C8C;opacity:.14}
 </style>"""
 
 
@@ -54,12 +73,12 @@ def poly(pts, c="s", closed=True):
     return f'<{tag} class="{c}" points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in pts)}"/>'
 
 
-def dots():
+def dots(color="#ffffff"):
     """A faint dot grid behind the art."""
     out = []
     for y in range(20, H, 30):
         for x in range(20, W, 30):
-            out.append(f'<circle cx="{x}" cy="{y}" r="1" fill="#ffffff" opacity=".10"/>')
+            out.append(f'<circle cx="{x}" cy="{y}" r="1" fill="{color}" opacity=".10"/>')
     return out
 
 
@@ -412,25 +431,37 @@ BOOKS = {
 }
 
 
-def svg(book: str) -> str:
+VARIANTS = {"dark": (OUT, STYLE, "#ffffff"), "light": (OUT / "light", STYLE_LIGHT, "#0D1B2E")}
+
+
+def svg(book: str, variant: str = "dark") -> str:
     fn, desc = BOOKS[book]
-    body = "\n".join(dots() + fn())
+    _out, style, dot = VARIANTS[variant]
+    body = "\n".join(dots(dot) + fn())
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img">\n'
-            f"<title>{desc}</title>\n{STYLE}\n{body}\n</svg>\n")
+            f"<title>{desc}</title>\n{style}\n{body}\n</svg>\n")
 
 
 def main(argv: list[str]) -> int:
     check_only = "--check" in argv
     stale = []
-    OUT.mkdir(parents=True, exist_ok=True)
-    for book in BOOKS:
-        path = OUT / f"{book}.svg"
-        want = svg(book)
-        if check_only:
-            if not path.exists() or path.read_text(encoding="utf-8") != want:
-                stale.append(path.name)
-        else:
-            path.write_text(want, encoding="utf-8", newline="\n")
+    for variant, (out, _style, _dot) in VARIANTS.items():
+        out.mkdir(parents=True, exist_ok=True)
+        for book in BOOKS:
+            path = out / f"{book}.svg"
+            want = svg(book, variant)
+            if check_only:
+                if not path.exists() or path.read_text(encoding="utf-8") != want:
+                    stale.append(f"{variant}/{path.name}")
+            else:
+                path.write_text(want, encoding="utf-8", newline="\n")
+    if "--png" in argv and not check_only:
+        # The decks' title slides take PNGs (presentations/_build/lib.js). Needs rsvg-convert (WSL).
+        DECK_PNG.mkdir(parents=True, exist_ok=True)
+        for book in BOOKS:
+            subprocess.run(["rsvg-convert", "-w", "1560", "-f", "png", "-o", str(DECK_PNG / f"{book}.png"),
+                            str(VARIANTS["light"][0] / f"{book}.svg")], check=True)
+        print(f"{len(BOOKS)} deck PNG(s) written to {DECK_PNG.relative_to(ROOT).as_posix()}")
     if stale:
         print("covers out of date (run scripts/covers/build_covers.py):", ", ".join(stale))
         return 1

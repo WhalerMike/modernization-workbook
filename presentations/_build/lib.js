@@ -29,6 +29,17 @@ const HEX = { navy: "1F2A44", teal: "0F766E", amber: "B45309", red: "B91C1C", sl
 const PART = { Why: HEX.red, What: HEX.navy, Who: HEX.teal, How: HEX.amber };
 const ASSET = (f) => path.join(__dirname, f);
 
+// A book deck (presentations/bNN-*/) shows its book's cover illustration on the title slide:
+// covers/<book>.png, drawn by scripts/covers/build_covers.py --png.
+const bookCover = () => {
+  const main = require.main && require.main.filename;
+  const m = main && path.basename(path.dirname(main)).match(/^(b\d\d)-/);
+  if (!m) return null;
+  const fs = require("fs");
+  const hit = fs.existsSync(ASSET("covers")) && fs.readdirSync(ASSET("covers")).find((f) => f.startsWith(`${m[1]}-`) && f.endsWith(".png"));
+  return hit ? ASSET(`covers/${hit}`) : null;
+};
+
 module.exports = function makeDeck({ book, title, footer, author = "Michael F. Stratton" }) {
   const pres = new pptxgen();
   pres.layout = "LAYOUT_WIDE"; // 13.33 x 7.5
@@ -37,9 +48,10 @@ module.exports = function makeDeck({ book, title, footer, author = "Michael F. S
   pres.theme = { headFontFace: THEME.headFontFace, bodyFontFace: THEME.bodyFontFace };
   const C = pres.SchemeColor;
 
+  const cover = bookCover();
   pres.defineSlideMaster({
     title: "Title",
-    background: { path: ASSET("bg_title.png") },
+    background: { path: ASSET(cover ? "bg_title_cover.png" : "bg_title.png") },
     objects: [
       { placeholder: { options: { name: "title", type: "title", x: 0.8, y: 1.6, w: 6.8, h: 2.1, fontFace: "Cambria",
         fontSize: 44, bold: true, color: C.text1, valign: "bottom", align: "left", margin: 0 }, text: "" } },
@@ -66,6 +78,8 @@ module.exports = function makeDeck({ book, title, footer, author = "Michael F. S
     const s = pres.addSlide({ masterName: "Title", sectionTitle: sectionFor(sec) });
     s.addText(t, { placeholder: "title" });
     s.addText(sub, { placeholder: "body" });
+    // The book's cover illustration, right of the title (decorative: the title says what it is).
+    if (cover) s.addImage({ path: cover, objectName: "Cover illustration", x: 7.75, y: 2.0, w: 5.2, h: 1.95, altText: "" });
     // The presenter, bottom-left of every title slide.
     s.addText([{ text: "Presented by  ", options: { color: HEX.slate } }, { text: author, options: { bold: true, color: HEX.navy } }],
       { objectName: "Presenter", isTextBox: true, x: 0.8, y: 6.45, w: 7.5, h: 0.4, fontSize: 16, margin: 0, valign: "middle" });

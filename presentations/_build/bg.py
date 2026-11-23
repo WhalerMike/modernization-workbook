@@ -57,4 +57,8 @@ content.save(OUT / "bg_content.png", optimize=True)
 title = gradient((247, 250, 253), (232, 239, 246))
 title = network(title, int(W * 0.80), int(H * 0.44), 560, 70, 150, seed=3, hub=True)
 title.save(OUT / "bg_title.png", optimize=True)
+
+# A book deck's title slide shows the book's cover illustration on the right instead of
+# the network motif (lib.js, covers/).
+gradient((247, 250, 253), (232, 239, 246)).save(OUT / "bg_title_cover.png", optimize=True)
 print("ok")

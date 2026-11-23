@@ -20,14 +20,22 @@ class BookCovers(unittest.TestCase):
         self.assertEqual(books, set(covers.BOOKS), "add the new book to BOOKS in scripts/covers/build_covers.py")
 
     def test_covers_are_current(self):
-        for book in covers.BOOKS:
-            with self.subTest(book=book):
-                path = covers.OUT / f"{book}.svg"
-                self.assertTrue(path.exists(), f"run scripts/covers/build_covers.py ({path.name} missing)")
-                self.assertEqual(path.read_text(encoding="utf-8"), covers.svg(book), f"{path.name} is out of date")
+        for variant, (out, _style, _dot) in covers.VARIANTS.items():
+            for book in covers.BOOKS:
+                with self.subTest(variant=variant, book=book):
+                    path = out / f"{book}.svg"
+                    self.assertTrue(path.exists(), f"run scripts/covers/build_covers.py ({variant}/{path.name} missing)")
+                    self.assertEqual(path.read_text(encoding="utf-8"), covers.svg(book, variant), f"{variant}/{path.name} is out of date")
+
+    def test_every_book_has_a_deck_png(self):
+        # PNGs for the decks' title slides (build_covers.py --png, in WSL).
+        self.assertEqual({p.stem for p in covers.DECK_PNG.glob("*.png")}, set(covers.BOOKS),
+                         "run python3 scripts/covers/build_covers.py --png")
 
     def test_no_stray_covers(self):
-        self.assertEqual({p.stem for p in covers.OUT.glob("*.svg")}, set(covers.BOOKS))
+        for variant, (out, _style, _dot) in covers.VARIANTS.items():
+            with self.subTest(variant=variant):
+                self.assertEqual({p.stem for p in out.glob("*.svg")}, set(covers.BOOKS))
 
 
 if __name__ == "__main__":
