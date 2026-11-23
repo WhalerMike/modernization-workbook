@@ -9,7 +9,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 9707446f03cbe86c1cd4cb91fc0e6babec2326b784876fc412d221ccdf1b0818
+reviewed-sha256: 74877bcf62a5ce9994fcc511a4808f0173d1ce9fedc07b88c772dffd3a7db3ca
 last-reviewed: 2026-11-22
 ---
 # Attribute-Driven Migration from Active Directory to Microsoft Entra ID

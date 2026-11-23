@@ -9,7 +9,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 34b2a69d0bf0e1f045fbfd4a28705e85efbe95d8d614abed2c425c2d900c49ed
+reviewed-sha256: 3adc5ac7b0a8c24a62aab4fa1e4cd3be00a201f845575033aad1a338540330c0
 last-reviewed: 2026-11-22
 ---
 # Intune Track Implementation: Attribute-Driven Management of End-User Devices

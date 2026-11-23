@@ -9,8 +9,8 @@ date-modified: 2026-11-01
 aliases:
   - /docs/research/ttm-servicenow-sailpoint.html
 review-status: approved
-reviewed-sha256: 14b1ed7601d84c042c2a571daaf469abb2ee186f27996d786a422a4f8fbb5f44
-last-reviewed: 2026-11-20
+reviewed-sha256: 365d4ce5992ba67bdd5a4852ad543781aff08deceead3cfae484b16bf4879e17
+last-reviewed: 2026-11-22
 ---
 # Ticket-to-Machine on ServiceNow and SailPoint: An Example Implementation Guide {.unnumbered}
 
