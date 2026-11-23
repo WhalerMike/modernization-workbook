@@ -148,6 +148,26 @@ a:focus-visible {
   border-color: #000000;
   border-top-color: #5fc4bf;
 }
+// A book's cover illustration (scripts/covers/build_covers.py): a banner across the
+// top of its dark header, above the eyebrow and title.
+.fmw-hero .fmw-cover {
+  display: block;
+  width: calc(100% + 4rem);
+  max-width: none;
+  height: auto;
+  aspect-ratio: 960 / 360;
+  margin: -2.25rem -2rem 1.25rem;
+  border-bottom: 1px solid #1d2b2b;
+}
+#title-block-header.fmw-hero:has(.fmw-cover) {
+  overflow: hidden;
+}
+@media (max-width: 767.98px) {
+  .fmw-hero .fmw-cover {
+    width: calc(100% + 2.2rem);
+    margin: -1.5rem -1.1rem 1rem;
+  }
+}
 .fmw-hero-dark h1.title {
   color: #ffffff;
 }
