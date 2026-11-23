@@ -159,6 +159,11 @@ a:focus-visible {
   margin: -2.25rem -2rem 1.25rem;
   border-bottom: 1px solid #1d2b2b;
 }
+// A chapter's opener (scripts/covers/build_openers.py): a shorter banner in the light header.
+.fmw-hero .fmw-cover.fmw-opener {
+  aspect-ratio: 960 / 240;
+  border-bottom-color: #dbe6e6;
+}
 #title-block-header.fmw-hero:has(.fmw-cover) {
   overflow: hidden;
 }

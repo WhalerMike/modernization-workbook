@@ -64,6 +64,24 @@ function Pandoc(doc)
     end
   end
 
+  -- A chapter page (docs/books/<book>/<chapter>.md) shows its opener illustration
+  -- across the top of its header when docs/images/openers/<book>/<chapter>.svg exists
+  -- (scripts/covers/build_openers.py draws them).
+  if meta["fmw-cover"] == nil then
+    local input = (quarto.doc.input_file or ""):gsub("\\", "/")
+    local folder, chapter = input:match("docs/books/(b%d%d%-[%w%-]+)/([%w%-]+)%.md$")
+    if folder and chapter ~= "index" then
+      local opener = "docs/images/openers/" .. folder .. "/" .. chapter .. ".svg"
+      local root = quarto.project.directory or "."
+      local f = io.open(pandoc.path.join({ root, opener }), "r")
+      if f then
+        f:close()
+        meta["fmw-cover"] = "../../images/openers/" .. folder .. "/" .. chapter .. ".svg"
+        meta["fmw-cover-class"] = "fmw-opener"
+      end
+    end
+  end
+
   local title = meta.title and norm(stringify(meta.title)) or nil
   if not title then return doc end
 

@@ -50,6 +50,8 @@ project:
     - "docs/inspiration/*.pdf"
     # Book cover illustrations, shown by the header partial (assets/fmw-hero.lua).
     - "docs/images/covers/*.svg"
+    # Chapter opener illustrations, shown the same way (scripts/covers/build_openers.py).
+    - "docs/images/openers/*/*.svg"
     # Caption tracks and the manifest for the in-browser video players
     # (docs/presentations/watch.md, assets/fmw-video.lua). The MP4s stream
     # from the videos release; a caption track must come from the site itself.
