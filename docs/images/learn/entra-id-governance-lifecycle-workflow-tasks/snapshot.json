@@ -1,0 +1,24 @@
+{
+  "_comment": "Pinned, unmodified copies of images from a Microsoft Learn page, reused in the workbook under the repository's own license (Creative Commons Attribution 4.0 International), credited under each figure. Never edit these files: re-pin from a newer upstream commit with scripts/learn_images/pin.py in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn images: Lifecycle Workflows tasks and definitions",
+  "upstream_repo": "https://github.com/MicrosoftDocs/entra-docs",
+  "commit": "3413d1589ffb1f77441636f4c6809d292270003d",
+  "commit_date": "2026-11-22",
+  "retrieved": "2026-11-22",
+  "license": "Creative Commons Attribution 4.0 International, as the repository's README grants for its documentation; the root LICENSE file, copied here, holds the MIT License text, which also permits this reuse.",
+  "documented_at": "https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-tasks",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "tap-task.png": "docs/id-governance/media/lifecycle-workflow-task/tap-task.png"
+  },
+  "files": {
+    "LICENSE": {
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    "tap-task.png": {
+      "bytes": 131323,
+      "sha256": "b3c0b42e252628dc00e8bb5aba3813b1b5f7bc1d07a3d93c8b363b1e6d630f96"
+    }
+  }
+}

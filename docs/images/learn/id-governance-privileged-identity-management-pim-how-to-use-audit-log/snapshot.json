@@ -1,0 +1,24 @@
+{
+  "_comment": "Pinned, unmodified copies of images from a Microsoft Learn page, reused in the workbook under the repository's own license (Creative Commons Attribution 4.0 International), credited under each figure. Never edit these files: re-pin from a newer upstream commit with scripts/learn_images/pin.py in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn images: View audit log report for Microsoft Entra roles in Microsoft Entra PIM",
+  "upstream_repo": "https://github.com/MicrosoftDocs/entra-docs",
+  "commit": "3413d1589ffb1f77441636f4c6809d292270003d",
+  "commit_date": "2026-11-22",
+  "retrieved": "2026-11-22",
+  "license": "Creative Commons Attribution 4.0 International, as the repository's README grants for its documentation; the root LICENSE file, copied here, holds the MIT License text, which also permits this reuse.",
+  "documented_at": "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-use-audit-log",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "resource-audit.png": "docs/id-governance/privileged-identity-management/media/pim-how-use-audit-log/resource-audit.png"
+  },
+  "files": {
+    "LICENSE": {
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    "resource-audit.png": {
+      "bytes": 143855,
+      "sha256": "aeb41bb061bf67b2822a50c799925bb9c025ed895b359c78111fdbdb5c53f12e"
+    }
+  }
+}

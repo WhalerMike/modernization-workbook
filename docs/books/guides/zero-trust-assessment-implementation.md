@@ -293,6 +293,8 @@ The program follows the tool's guide, because it describes the version being run
 
     Existing tokens stay valid for their lifetime after the grant is deleted.[^zta-mg-revoke]
 
+![The same grants in the admin center: an enterprise app's Admin consent tab, where each permission can be revoked. Image: Microsoft Learn, [Review permissions granted to enterprise applications](https://learn.microsoft.com/entra/identity/enterprise-apps/manage-application-permissions), CC BY 4.0.](../../images/learn/identity-enterprise-apps-manage-application-permissions/revoke-permissions.png){#fig-learn-revoke-permissions fig-alt="Screenshot of an enterprise application's permissions list in the Microsoft Entra admin center, on the Admin consent tab (a User consent tab is beside it), with a Search permissions box. Columns: API Name, Claim value, Permission, Type, Granted through, Granted by. Under Microsoft Graph, two rows: offline_access, Maintain access to data, Delegated, Admin consent; and email, View users' email address, Delegated, Admin consent, granted by An administrator. A context menu on the first row shows Revoke Permission, outlined in red."}
+
 **Federal requirements and evidence.**
 
 | Requirement | KSI | What the ISSO keeps |

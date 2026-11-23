@@ -389,6 +389,8 @@ The single region is a physics problem as well as a resilience one. A western of
 
 **Cisco as a partner.** Microsoft lists "Cisco Catalyst" as a template-based remote-network partner.[^cs-gsa-partners] Cisco's integration guide uses the generic SIG tunnel and says that only the Microsoft 365 traffic forwarding profile can be selected.[^cs-msse]
 
+![A Catalyst branch linked to Global Secure Access carries the Microsoft traffic profile. Image: Microsoft Learn, [How to Create Remote Networks](https://learn.microsoft.com/entra/global-secure-access/how-to-create-remote-networks), CC BY 4.0.](../../images/learn/entra-global-secure-access-how-to-create-remote-networks/microsoft-traffic-profile-selected.png){#fig-learn-microsoft-traffic-profile-selected fig-alt="Screenshot of the Create a remote network page, open to the Traffic profiles tab, with Microsoft traffic profile selected. Microsoft Entra admin center, page Create a remote network, with tabs Basics, Connectivity, Traffic profiles (selected) and Review + create, and the text Select traffic profiles you'd like to link to the remote network. The checkbox Microsoft traffic profile, All Microsoft traffic, is checked; the checkbox Internet access profile, All internet traffic except Microsoft traffic profile, is unchecked. Buttons at the bottom read < Previous and Next: Review + create >."}
+
 **Remote-network limits:**[^cs-gsa-limits]
 - Remote networks carry the Microsoft and Internet Access profiles, not Private Access.
 - Conditional Access applies only to users running the client.

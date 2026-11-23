@@ -1,0 +1,24 @@
+{
+  "_comment": "Pinned, unmodified copies of images from a Microsoft Learn page, reused in the workbook under the repository's own license (Creative Commons Attribution 4.0 International), credited under each figure. Never edit these files: re-pin from a newer upstream commit with scripts/learn_images/pin.py in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn images: Connect hybrid machines to Azure at scale",
+  "upstream_repo": "https://github.com/MicrosoftDocs/azure-management-docs",
+  "commit": "2c4d20ed6d2ccb4fb82b0a7f171d06795d8dacd9",
+  "commit_date": "2026-11-20",
+  "retrieved": "2026-11-22",
+  "license": "Creative Commons Attribution 4.0 International (LICENSE, copied from the repository root).",
+  "documented_at": "https://learn.microsoft.com/azure/azure-arc/servers/onboard-service-principal",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "arc-for-servers-successful-onboard.png": "articles/azure-arc/servers/media/onboard-portal/arc-for-servers-successful-onboard.png"
+  },
+  "files": {
+    "LICENSE": {
+      "bytes": 18650,
+      "sha256": "7183ef9749eb9b75e710a81a4c812a9405cc184f087500581a973e5929ac3f5e"
+    },
+    "arc-for-servers-successful-onboard.png": {
+      "bytes": 41138,
+      "sha256": "80f5af2b9446fa3d9c36dc22d343c70b67b80ce52aaf9a2ca3b0460c4e9cb004"
+    }
+  }
+}

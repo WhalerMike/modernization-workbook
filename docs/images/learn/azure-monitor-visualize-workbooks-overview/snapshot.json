@@ -1,0 +1,24 @@
+{
+  "_comment": "Pinned, unmodified copies of images from a Microsoft Learn page, reused in the workbook under the repository's own license (Creative Commons Attribution 4.0 International), credited under each figure. Never edit these files: re-pin from a newer upstream commit with scripts/learn_images/pin.py in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn images: Azure Workbooks",
+  "upstream_repo": "https://github.com/MicrosoftDocs/azure-monitor-docs",
+  "commit": "2d30ba8467d2fc4815b0080796e8e219aab7f335",
+  "commit_date": "2026-11-20",
+  "retrieved": "2026-11-22",
+  "license": "Creative Commons Attribution 4.0 International (LICENSE, copied from the repository root).",
+  "documented_at": "https://learn.microsoft.com/azure/azure-monitor/visualize/workbooks-overview",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "workbooks-log-analytics-icon.png": "articles/azure-monitor/visualize/media/workbooks-overview/workbooks-log-analytics-icon.png"
+  },
+  "files": {
+    "LICENSE": {
+      "bytes": 18652,
+      "sha256": "9a4920e24f6f156667c3dad80ab0ad45922a924be999e1ecccbdaf3dcb0e9a9f"
+    },
+    "workbooks-log-analytics-icon.png": {
+      "bytes": 95933,
+      "sha256": "1f1f32edef2ac98baf12e4df40d411d081d3f6493ae265f6d56ce0d34b838384"
+    }
+  }
+}

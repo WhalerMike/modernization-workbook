@@ -26,9 +26,9 @@ review-status: pending
 ## Week 3: identity evidence
 
 - [Privileged Access in Microsoft Entra ID and Azure](../../training/privileged-access/index.md) (Learning path, 8 modules, 9 hr 14 min). Eight modules, one per chapter of the Privileged Access developer workbook, each with a lab on fixtures and a lab in your own test tenant.
-- [HR-Driven Identity: An Implementation Guide](../../books/guides/hr-driven-identity-implementation.md) (Implementation guide, 7 steps, about 1 hr 18 min). A gated guide for running the HR-driven identity lifecycle in Microsoft Entra ID once the HR pipeline exists: who writes each account state and attribute, employee and contractor sources, joiner workflows and day-one access, access….
+- [HR-Driven Identity: An Implementation Guide](../../books/guides/hr-driven-identity-implementation.md) (Implementation guide, 7 steps, about 1 hr 20 min). A gated guide for running the HR-driven identity lifecycle in Microsoft Entra ID once the HR pipeline exists: who writes each account state and attribute, employee and contractor sources, joiner workflows and day-one access, access….
 
-*Milestone 3: about 10 hr 32 min.*
+*Milestone 3: about 10 hr 34 min.*
 
 ## Week 4: run one kit's labs
 
@@ -36,5 +36,5 @@ review-status: pending
 
 *Milestone 4: about a short read.*
 
-**Whole plan:** about 28 hr 56 min of reading and video, plus the labs.
+**Whole plan:** about 28 hr 58 min of reading and video, plus the labs.
 

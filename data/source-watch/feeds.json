@@ -1065,6 +1065,611 @@
         "DW"
       ],
       "source": "ServiceNow's release notes have no feed, and the docs site draws its pages with JavaScript, so a plain fetch sees only an empty shell. The page check reads the site's public Fluid Topics API instead (/api/khub/maps, then each map's toc and topic content): for every en-US release-notes publication (one per family: Xanadu, Yokohama, Zurich, Australia, Brazil on 2026-11-21) it hashes the text of the family release-notes page. A changed page, or a new family, is reported once."
+    },
+    {
+      "id": "learn-image-azure-arc-servers-agent-overview-connected-machine-agent",
+      "name": "Learn image: Overview of the Azure Connected Machine agent (connected-machine-agent.png, MicrosoftDocs/azure-management-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/azure-management-docs",
+      "path": "articles/azure-arc/servers/media/agent-overview/connected-machine-agent.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/azure-arc-servers-agent-overview/connected-machine-agent.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-azure-update-manager-workflow-update-manager-update-manager-overview",
+      "name": "Learn image: Azure Update Manager Operations (update-manager-overview.png, MicrosoftDocs/azure-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/azure-docs",
+      "path": "articles/update-manager/media/overview/update-manager-overview.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/azure-update-manager-workflow-update-manager/update-manager-overview.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-how-to-assign-security-baselines-deploy-a-baseline-policy-assignment-baseline-",
+      "name": "Learn image: Deploy A Baseline Policy Assignment (baseline-settings-parameter-configuration.png, MicrosoftDocs/azure-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/azure-docs",
+      "path": "articles/governance/machine-configuration/media/deploy-a-baseline-policy-assignment/baseline-settings-parameter-configuration.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/how-to-assign-security-baselines-deploy-a-baseline-policy-assignment/baseline-settings-parameter-configuration.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-azure-update-manager-assessment-options-periodic-assessment-inline",
+      "name": "Learn image: Assessment options in Update Manager (periodic-assessment-inline.png, MicrosoftDocs/azure-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/azure-docs",
+      "path": "articles/update-manager/media/updates-maintenance/periodic-assessment-inline.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/azure-update-manager-assessment-options/periodic-assessment-inline.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-azure-arc-servers-onboard-service-principal-arc-for-servers-successful-onboard",
+      "name": "Learn image: Connect hybrid machines to Azure at scale (arc-for-servers-successful-onboard.png, MicrosoftDocs/azure-management-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/azure-management-docs",
+      "path": "articles/azure-arc/servers/media/onboard-portal/arc-for-servers-successful-onboard.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/azure-arc-servers-onboard-service-principal/arc-for-servers-successful-onboard.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-entra-global-secure-access-how-to-install-windows-client-detection-rule",
+      "name": "Learn image: Install the Global Secure Access Client for Windows (detection-rule.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/global-secure-access/media/how-to-install-windows-client/detection-rule.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/entra-global-secure-access-how-to-install-windows-client/detection-rule.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-entra-global-secure-access-how-to-install-windows-client-global-secure-access-",
+      "name": "Learn image: Install the Global Secure Access Client for Windows (global-secure-access-client-installed-connected.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/global-secure-access/media/how-to-install-windows-client/global-secure-access-client-installed-connected.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/entra-global-secure-access-how-to-install-windows-client/global-secure-access-client-installed-connected.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-identity-devices-manage-stale-devices-01",
+      "name": "Learn image: How To: Manage stale devices in Microsoft Entra ID (01.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/devices/media/manage-stale-devices/01.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/identity-devices-manage-stale-devices/01.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-identity-conditional-access-concept-conditional-access-report-only-report-only",
+      "name": "Learn image: Analyze Conditional Access Policy Impact (report-only-detail-in-sign-in-log.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/conditional-access/media/concept-conditional-access-report-only/report-only-detail-in-sign-in-log.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/identity-conditional-access-concept-conditional-access-report-only/report-only-detail-in-sign-in-log.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-id-governance-privileged-identity-management-pim-how-to-activate-role-activate",
+      "name": "Learn image: Activate a Microsoft Entra role in PIM (activate-page.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/id-governance/privileged-identity-management/media/pim-how-to-activate-role/activate-page.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/id-governance-privileged-identity-management-pim-how-to-activate-role/activate-page.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-identity-app-provisioning-inbound-provisioning-api-concepts-end-to-end-workflo",
+      "name": "Learn image: API-driven inbound provisioning concepts (end-to-end-workflow.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/app-provisioning/media/inbound-provisioning-api-concepts/end-to-end-workflow.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/identity-app-provisioning-inbound-provisioning-api-concepts/end-to-end-workflow.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-entra-identity-platform-how-to-add-credentials-add-client-certificate",
+      "name": "Learn image: Add and manage application credentials in Microsoft Entra ID (add-client-certificate.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity-platform/media/quickstart-register-app/add-client-certificate.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/entra-identity-platform-how-to-add-credentials/add-client-certificate.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-entra-global-secure-access-how-to-create-remote-networks-microsoft-traffic-pro",
+      "name": "Learn image: How to Create Remote Networks (microsoft-traffic-profile-selected.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/global-secure-access/media/how-to-create-remote-networks/microsoft-traffic-profile-selected.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/entra-global-secure-access-how-to-create-remote-networks/microsoft-traffic-profile-selected.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-entra-global-secure-access-tutorial-microsoft-traffic-enable-profile-microsoft",
+      "name": "Learn image: Tutorial: Enable the Microsoft traffic profile (microsoft-traffic-profile.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/global-secure-access/media/tutorial-microsoft-traffic/microsoft-traffic-profile.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/entra-global-secure-access-tutorial-microsoft-traffic-enable-profile/microsoft-traffic-profile.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-entra-global-secure-access-how-to-transport-layer-security-certificate-viewer",
+      "name": "Learn image: Configure Transport Layer Security inspection policies (certificate-viewer.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/global-secure-access/media/how-to-transport-layer-security/certificate-viewer.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/entra-global-secure-access-how-to-transport-layer-security/certificate-viewer.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-entra-global-secure-access-how-to-compliant-network-you-cannot-access-this-rig",
+      "name": "Learn image: Enable compliant network check with Conditional Access (you-cannot-access-this-right-now-error.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/global-secure-access/media/how-to-compliant-network/you-cannot-access-this-right-now-error.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/entra-global-secure-access-how-to-compliant-network/you-cannot-access-this-right-now-error.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-entra-global-secure-access-how-to-install-windows-client-client-download-scree",
+      "name": "Learn image: Install the Global Secure Access client for Microsoft Windows (client-download-screen.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/global-secure-access/media/how-to-install-windows-client/client-download-screen.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/entra-global-secure-access-how-to-install-windows-client/client-download-screen.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-entra-global-secure-access-how-to-source-ip-restoration-user-log-data",
+      "name": "Learn image: Source IP restoration (user-log-data.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/global-secure-access/media/how-to-source-ip-restoration/user-log-data.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/entra-global-secure-access-how-to-source-ip-restoration/user-log-data.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-ready-azure-best-practices-private-link-and-dns-integration-at-scale-private-l",
+      "name": "Learn image: Private Link and DNS integration at scale (private-link-example-central-dns.png, MicrosoftDocs/cloud-adoption-framework commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/cloud-adoption-framework",
+      "path": "docs/ready/azure-best-practices/media/private-link-example-central-dns.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/ready-azure-best-practices-private-link-and-dns-integration-at-scale/private-link-example-central-dns.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-azure-frontdoor-private-link-front-door-private-endpoint-architecture",
+      "name": "Learn image: Secure your origin with Private Link in Azure Front Door Premium (front-door-private-endpoint-architecture.png, MicrosoftDocs/azure-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/azure-docs",
+      "path": "articles/frontdoor/media/private-link/front-door-private-endpoint-architecture.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/azure-frontdoor-private-link/front-door-private-endpoint-architecture.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-azure-ddos-protection-test-through-simulations-ddos-protection-alert-add-condi",
+      "name": "Learn image: Tutorial: Azure DDoS Protection simulation testing (ddos-protection-alert-add-condition.png, MicrosoftDocs/azure-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/azure-docs",
+      "path": "articles/ddos-protection/media/ddos-attack-simulation/ddos-protection-alert-add-condition.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/azure-ddos-protection-test-through-simulations/ddos-protection-alert-add-condition.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-azure-ddos-protection-test-through-simulations-ddos-public-ip-diagnostic-setti",
+      "name": "Learn image: Tutorial: Azure DDoS Protection simulation testing (ddos-public-ip-diagnostic-setting.png, MicrosoftDocs/azure-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/azure-docs",
+      "path": "articles/ddos-protection/media/ddos-attack-simulation/ddos-public-ip-diagnostic-setting.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/azure-ddos-protection-test-through-simulations/ddos-public-ip-diagnostic-setting.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-identity-enterprise-apps-manage-application-permissions-revoke-permissions",
+      "name": "Learn image: Review permissions granted to enterprise applications (revoke-permissions.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/enterprise-apps/media/manage-application-permissions/revoke-permissions.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/identity-enterprise-apps-manage-application-permissions/revoke-permissions.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-azure-service-health-overview-azure-service-health-portal",
+      "name": "Learn image: What is Azure Service Health? (azure-service-health-portal.png, MicrosoftDocs/azure-monitor-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/azure-monitor-docs",
+      "path": "articles/service-health/media/overview/azure-service-health-portal.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/azure-service-health-overview/azure-service-health-portal.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-azure-service-health-service-health-alert-deploy-policy-policy-remediation",
+      "name": "Learn image: Deploy Service Health alerts at scale using Azure Policy (policy-remediation.png, MicrosoftDocs/azure-monitor-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/azure-monitor-docs",
+      "path": "articles/service-health/media/service-health-alerts-deploy/policy-remediation.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/azure-service-health-service-health-alert-deploy-policy/policy-remediation.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-azure-service-health-impacted-resources-security-impact-security",
+      "name": "Learn image: Resource impact from Azure security incidents (impact-security.png, MicrosoftDocs/azure-monitor-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/azure-monitor-docs",
+      "path": "articles/service-health/media/impacted-resource-sec/impact-security.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/azure-service-health-impacted-resources-security/impact-security.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-microsoft-365-enterprise-view-service-health-sh-page-upper-section",
+      "name": "Learn image: How to check Microsoft 365 service health (sh-page-upper-section.png, MicrosoftDocs/microsoft-365-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/microsoft-365-docs",
+      "path": "microsoft-365/media/sh-page-upper-section.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/microsoft-365-enterprise-view-service-health/sh-page-upper-section.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-hybrid-connect-how-to-connect-health-adds-connect-health-adds-overview",
+      "name": "Learn image: Monitor AD DS with Microsoft Entra Connect Health (connect-health-adds-overview.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/hybrid/connect/media/how-to-connect-health-adds/connect-health-adds-overview.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/hybrid-connect-how-to-connect-health-adds/connect-health-adds-overview.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-azure-monitor-logs-tutorial-logs-ingestion-portal-add-role-assignment-select-r",
+      "name": "Learn image: Tutorial: Send data to Azure Monitor Logs with Logs ingestion API (Azure portal) (add-role-assignment-select-role.png, MicrosoftDocs/azure-monitor-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/azure-monitor-docs",
+      "path": "articles/azure-monitor/logs/media/tutorial-logs-ingestion-portal/add-role-assignment-select-role.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/azure-monitor-logs-tutorial-logs-ingestion-portal/add-role-assignment-select-role.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-azure-monitor-visualize-workbooks-overview-workbooks-log-analytics-icon",
+      "name": "Learn image: Azure Workbooks (workbooks-log-analytics-icon.png, MicrosoftDocs/azure-monitor-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/azure-monitor-docs",
+      "path": "articles/azure-monitor/visualize/media/workbooks-overview/workbooks-log-analytics-icon.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/azure-monitor-visualize-workbooks-overview/workbooks-log-analytics-icon.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-entra-workload-id-workload-identity-federation-workflow",
+      "name": "Learn image: Workload Identity Federation (workflow.svg, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/workload-id/media/workload-identity-federation/workflow.svg",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/entra-workload-id-workload-identity-federation/workflow.svg pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-entra-workload-id-workload-identity-federation-create-trust-add-credential",
+      "name": "Learn image: Create a trust relationship between an app and an external identity provider (add-credential.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/workload-id/media/workload-identity-federation-create-trust/add-credential.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/entra-workload-id-workload-identity-federation-create-trust/add-credential.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-identity-managed-identities-azure-resources-how-manage-user-assigned-managed-i",
+      "name": "Learn image: Manage user-assigned managed identities using the Azure portal (create-user-assigned-managed-identity-portal.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/managed-identities-azure-resources/media/how-manage-user-assigned-managed-identities/create-user-assigned-managed-identity-portal.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/identity-managed-identities-azure-resources-how-manage-user-assigned-managed-identities/create-user-assigned-managed-identity-portal.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-identity-enterprise-apps-configure-app-management-policies-restrict-certificat",
+      "name": "Learn image: Configure restrictions on how applications can be configured (restrict-certificate-lifetime.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/enterprise-apps/media/configure-app-management-policies/restrict-certificate-lifetime.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/identity-enterprise-apps-configure-app-management-policies/restrict-certificate-lifetime.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-identity-enterprise-apps-configure-app-management-policies-enable-password-add",
+      "name": "Learn image: Configure restrictions on how applications can be configured (enable-password-addition-restriction.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/enterprise-apps/media/configure-app-management-policies/enable-password-addition-restriction.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/identity-enterprise-apps-configure-app-management-policies/enable-password-addition-restriction.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-identity-monitoring-health-concept-usage-insights-report-service-principal-sig",
+      "name": "Learn image: Usage and insights report (service-principal-sign-ins.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/monitoring-health/media/concept-usage-insights-report/service-principal-sign-ins.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/identity-monitoring-health-concept-usage-insights-report/service-principal-sign-ins.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-identity-enterprise-apps-deactivate-app-registration-deactivate-app-registrati",
+      "name": "Learn image: Deactivate an app registration (deactivate-app-registration.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/enterprise-apps/media/deactivate-app-registration/deactivate-app-registration.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/identity-enterprise-apps-deactivate-app-registration/deactivate-app-registration.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-identity-enterprise-apps-deactivate-app-registration-audit-log-details",
+      "name": "Learn image: Deactivate an app registration (audit-log-details.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/enterprise-apps/media/deactivate-app-registration/audit-log-details.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/identity-enterprise-apps-deactivate-app-registration/audit-log-details.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-id-governance-privileged-identity-management-pim-how-to-change-default-setting",
+      "name": "Learn image: Configure Microsoft Entra role settings in PIM (role-settings-conditional-access-authentication-context.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/id-governance/privileged-identity-management/media/pim-how-to-change-default-settings/role-settings-conditional-access-authentication-context.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/id-governance-privileged-identity-management-pim-how-to-change-default-settings/role-settings-conditional-access-authentication-context.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-id-governance-privileged-identity-management-pim-how-to-use-audit-log-resource",
+      "name": "Learn image: View audit log report for Microsoft Entra roles in Microsoft Entra PIM (resource-audit.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/id-governance/privileged-identity-management/media/pim-how-use-audit-log/resource-audit.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/id-governance-privileged-identity-management-pim-how-to-use-audit-log/resource-audit.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-entra-id-governance-lifecycle-workflow-tasks-tap-task",
+      "name": "Learn image: Lifecycle Workflows tasks and definitions (tap-task.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/id-governance/media/lifecycle-workflow-task/tap-task.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/entra-id-governance-lifecycle-workflow-tasks/tap-task.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-entra-id-governance-customize-workflow-schedule-workflow-schedule-settings",
+      "name": "Learn image: Customize a workflow schedule (workflow-schedule-settings.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/id-governance/media/customize-workflow-schedule/workflow-schedule-settings.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/entra-id-governance-customize-workflow-schedule/workflow-schedule-settings.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-entra-id-governance-entitlement-management-access-package-auto-assignment-poli",
+      "name": "Learn image: Configure an automatic assignment policy for an access package in entitlement management (auto-assignment-rule-configuration.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/id-governance/media/entitlement-management-access-package-auto-assignment-policy/auto-assignment-rule-configuration.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/entra-id-governance-entitlement-management-access-package-auto-assignment-policy/auto-assignment-rule-configuration.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-entra-id-governance-lifecycle-workflow-extensibility-custom-task-launch-wait",
+      "name": "Learn image: Workflow Extensibility (custom-task-launch-wait.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/id-governance/media/lifecycle-workflow-extensibility/custom-task-launch-wait.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/entra-id-governance-lifecycle-workflow-extensibility/custom-task-launch-wait.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-identity-authentication-concept-certificate-based-authentication-certificate-r",
+      "name": "Learn image: Understand Microsoft Entra certificate-based authentication Certificate revocation list (require-validation.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/authentication/media/concept-certificate-based-authentication-certificate-revocation-list/require-validation.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/identity-authentication-concept-certificate-based-authentication-certificate-revocation-list/require-validation.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-identity-app-provisioning-inbound-provisioning-api-configure-app-api-driven-in",
+      "name": "Learn image: Configure API-driven inbound provisioning app (api-driven-inbound-provisioning-apps.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/app-provisioning/media/inbound-provisioning-api-configure-app/api-driven-inbound-provisioning-apps.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/identity-app-provisioning-inbound-provisioning-api-configure-app/api-driven-inbound-provisioning-apps.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-identity-saas-apps-oracle-hcm-provisioning-tutorial-oracle-hcm-provisioning",
+      "name": "Learn image: Configure Oracle Human Capital Management (HCM) for automatic user provisioning (oracle-hcm-provisioning.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/saas-apps/media/oracle-hcm-provisioning/oracle-hcm-provisioning.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/identity-saas-apps-oracle-hcm-provisioning-tutorial/oracle-hcm-provisioning.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-identity-app-provisioning-inbound-provisioning-api-custom-attributes-verify-pr",
+      "name": "Learn image: Extend API-driven provisioning to sync custom attributes (verify-provisioning-logs.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/app-provisioning/media/inbound-provisioning-api-custom-attributes/verify-provisioning-logs.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/identity-app-provisioning-inbound-provisioning-api-custom-attributes/verify-provisioning-logs.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-identity-app-provisioning-application-provisioning-quarantine-status-progress-",
+      "name": "Learn image: Quarantine status in Microsoft Entra Application Provisioning (progress-bar-quarantined.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/app-provisioning/media/application-provisioning-quarantine-status/progress-bar-quarantined.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/identity-app-provisioning-application-provisioning-quarantine-status/progress-bar-quarantined.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-identity-users-groups-dynamic-rule-validation-validate-tab-results",
+      "name": "Learn image: Validate rules for dynamic membership groups (validate-tab-results.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/users/media/groups-dynamic-rule-validation/validate-tab-results.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/identity-users-groups-dynamic-rule-validation/validate-tab-results.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-identity-role-based-access-control-admin-units-members-dynamic-admin-unit-prop",
+      "name": "Learn image: Manage users or devices for an administrative unit with rules for dynamic membership groups (admin-unit-properties.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/role-based-access-control/media/admin-units-members-dynamic/admin-unit-properties.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/identity-role-based-access-control-admin-units-members-dynamic/admin-unit-properties.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-identity-authentication-how-to-certificate-based-authentication-username-bindi",
+      "name": "Learn image: Set Up Microsoft Entra CBA (username-binding-policy.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/authentication/media/how-to-certificate-based-authentication/username-binding-policy.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/identity-authentication-how-to-certificate-based-authentication/username-binding-policy.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-identity-authentication-concept-certificate-based-authentication-certificateus",
+      "name": "Learn image: Mapping to the certificateUserIds attribute in Microsoft Entra ID (edit-cert.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/authentication/media/concept-certificate-based-authentication-certificateuserids/edit-cert.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/identity-authentication-concept-certificate-based-authentication-certificateuserids/edit-cert.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-identity-conditional-access-concept-filter-for-applications-edit-filter-for-ap",
+      "name": "Learn image: Filter for applications in Conditional Access policy (edit-filter-for-applications.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/conditional-access/media/concept-filter-for-applications/edit-filter-for-applications.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/identity-conditional-access-concept-filter-for-applications/edit-filter-for-applications.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
+    },
+    {
+      "id": "learn-image-hybrid-cloud-sync-custom-attribute-mapping-schema-1",
+      "name": "Learn image: Microsoft Entra Cloud Sync directory extensions and custom attribute mapping (schema-1.png, MicrosoftDocs/entra-docs commits)",
+      "type": "github_commits",
+      "repo": "MicrosoftDocs/entra-docs",
+      "path": "docs/identity/hybrid/cloud-sync/media/custom-attribute-mapping/schema-1.png",
+      "books": [
+        "RES"
+      ],
+      "source": "Commits to the Microsoft Learn image docs/images/learn/hybrid-cloud-sync-custom-attribute-mapping/schema-1.png pins at one commit, shown in the guides. A new commit means: look at the new image; if it changed, re-pin it with scripts/learn_images/pin.py in a reviewed pull request and check the figure's alt text."
     }
   ]
 }

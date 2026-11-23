@@ -30,9 +30,9 @@ review-status: pending
 
 ## Week 4: the HCM pipeline
 
-- [Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID](../../books/guides/hcm-entra-implementation.md) (Implementation guide, about 42 min). An implementation guide: reading Core HCM through HCM Extracts and Atom feeds, the middleware's five duties, the /bulkUpload contract, the two landing zones, Lifecycle Workflows, and the evidence the pipeline has to leave.
+- [Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID](../../books/guides/hcm-entra-implementation.md) (Implementation guide, about 45 min). An implementation guide: reading Core HCM through HCM Extracts and Atom feeds, the middleware's five duties, the /bulkUpload contract, the two landing zones, Lifecycle Workflows, and the evidence the pipeline has to leave.
 
-*Milestone 4: about 42 min.*
+*Milestone 4: about 45 min.*
 
-**Whole plan:** about 20 hr 45 min of reading and video, plus the labs.
+**Whole plan:** about 20 hr 48 min of reading and video, plus the labs.
 

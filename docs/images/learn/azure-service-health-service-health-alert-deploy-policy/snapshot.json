@@ -1,0 +1,24 @@
+{
+  "_comment": "Pinned, unmodified copies of images from a Microsoft Learn page, reused in the workbook under the repository's own license (Creative Commons Attribution 4.0 International), credited under each figure. Never edit these files: re-pin from a newer upstream commit with scripts/learn_images/pin.py in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn images: Deploy Service Health alerts at scale using Azure Policy",
+  "upstream_repo": "https://github.com/MicrosoftDocs/azure-monitor-docs",
+  "commit": "2d30ba8467d2fc4815b0080796e8e219aab7f335",
+  "commit_date": "2026-11-20",
+  "retrieved": "2026-11-22",
+  "license": "Creative Commons Attribution 4.0 International (LICENSE, copied from the repository root).",
+  "documented_at": "https://learn.microsoft.com/azure/service-health/service-health-alert-deploy-policy",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "policy-remediation.png": "articles/service-health/media/service-health-alerts-deploy/policy-remediation.png"
+  },
+  "files": {
+    "LICENSE": {
+      "bytes": 18652,
+      "sha256": "9a4920e24f6f156667c3dad80ab0ad45922a924be999e1ecccbdaf3dcb0e9a9f"
+    },
+    "policy-remediation.png": {
+      "bytes": 190728,
+      "sha256": "d085a5d36b6bbeec55f2c27447f46458390cffdc93dbec065d91166a5979a0be"
+    }
+  }
+}

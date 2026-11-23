@@ -1,0 +1,24 @@
+{
+  "_comment": "Pinned, unmodified copies of images from a Microsoft Learn page, reused in the workbook under the repository's own license (Creative Commons Attribution 4.0 International), credited under each figure. Never edit these files: re-pin from a newer upstream commit with scripts/learn_images/pin.py in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn images: Manage users or devices for an administrative unit with rules for dynamic membership groups",
+  "upstream_repo": "https://github.com/MicrosoftDocs/entra-docs",
+  "commit": "3413d1589ffb1f77441636f4c6809d292270003d",
+  "commit_date": "2026-11-22",
+  "retrieved": "2026-11-22",
+  "license": "Creative Commons Attribution 4.0 International, as the repository's README grants for its documentation; the root LICENSE file, copied here, holds the MIT License text, which also permits this reuse.",
+  "documented_at": "https://learn.microsoft.com/entra/identity/role-based-access-control/admin-units-members-dynamic",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "admin-unit-properties.png": "docs/identity/role-based-access-control/media/admin-units-members-dynamic/admin-unit-properties.png"
+  },
+  "files": {
+    "LICENSE": {
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    "admin-unit-properties.png": {
+      "bytes": 59710,
+      "sha256": "f4338199a7c6db37248a52e20f2ec187ec4d3a88f0eeaa71a0ba5209aa19fb53"
+    }
+  }
+}

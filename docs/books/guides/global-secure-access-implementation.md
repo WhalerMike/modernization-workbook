@@ -312,6 +312,8 @@ Learn's prerequisites: a device joined, hybrid joined or registered in the onboa
 
 **3.1 Package the client.** Download it from **Global Secure Access** > **Connect** > **Client download**, put `GlobalSecureAccessClient.exe` beside Learn's installation script (which sets IPv4 preferred, runs the installer with `/quiet`, and returns `3010` when a restart is needed), and wrap both with the Win32 Content Prep Tool:[^gsai-client]
 
+![Global Secure Access > Connect > Client download, where the Windows installer is downloaded. Image: Microsoft Learn, [Install the Global Secure Access client for Microsoft Windows](https://learn.microsoft.com/entra/global-secure-access/how-to-install-windows-client), CC BY 4.0.](../../images/learn/entra-global-secure-access-how-to-install-windows-client/client-download-screen.png){#fig-learn-client-download-screen fig-alt="Screenshot of the Microsoft Entra admin center. In the left menu, under Global Secure Access and Connect, Client download is selected and outlined in red; the menu also shows Dashboard, Applications, Traffic forwarding and Remote networks. The Client download page says a supported client or app can be used to tunnel network traffic from a device to the Global Secure Access service, interactively or silently through a mobile device manager such as Microsoft Intune, with a link to how to download the Windows client. Under Windows 10/11, the Download Client button is outlined in red. System requirements listed beside it: Windows 10/11, Microsoft Entra joined, Local admin permissions. A collapsed Android section is below."}
+
 ```cmd
 IntuneWinAppUtil.exe -c C:\Packages\GSA -s Install-GSAClient.ps1 -o C:\Packages\Out -q
 ```
@@ -379,6 +381,8 @@ Invoke-MgGraphRequest -Method PATCH -Uri "https://graph.microsoft.com/beta/netwo
 
 **4.2 Scope it to the pilot.** Assign `<pilot-group-id>` to the profile in **Global Secure Access** > **Connect** > **Traffic forwarding** > **Microsoft traffic profile** > **User and group assignments** (an Application Administrator role is needed for assignments).[^gsai-ms-tutorial] Learn's pages read give no Graph request for this assignment, so it is a portal step.
 
+![The Traffic forwarding page, where the Microsoft traffic profile is turned on and assigned to users and groups. Image: Microsoft Learn, [Tutorial: Enable the Microsoft traffic profile](https://learn.microsoft.com/entra/global-secure-access/tutorial-microsoft-traffic-enable-profile), CC BY 4.0.](../../images/learn/entra-global-secure-access-tutorial-microsoft-traffic-enable-profile/microsoft-traffic-profile.png){#fig-learn-microsoft-traffic-profile fig-alt="Screenshot of the Traffic forwarding page with the Microsoft traffic profile enabled. Under the heading Manage traffic forwarding profiles, an information banner says one or more profiles are configured and ready to use and links to the Global Secure Access client. Three cards sit side by side. The Microsoft traffic profile card has its toggle on and reads Enabled; it applies to internet traffic to Microsoft services and lists 4 Microsoft traffic policies, 7 linked Conditional Access policies, user and group assignments of 0 users and 1 group, each with a View link, and 1 assigned remote network with an Edit link. The Private access profile card has its toggle off and reads Disabled; it applies to private resources, with Quick Access and 5 applications, no linked Conditional Access policies, and 0 users and 1 group assigned. The Internet access profile card has its toggle off and reads Disabled; it applies to all internet traffic except the Microsoft traffic profile, with 5 policies, 7 linked Conditional Access policies, 0 users and 1 group assigned, and 0 remote networks."}
+
 **4.3 Enable source IP restoration.** It is on by default for tenants that onboarded after June 2025; set it explicitly and record the state:[^gsai-sip][^gsai-ca-settings]
 
 ```powershell
@@ -389,6 +393,8 @@ Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/network
 The same setting is the Conditional Access signaling Step 7 needs. Learn's caution: once Conditional Access policies depend on IP locations or the compliant network, turning signaling off can block users, so those policies come out of enforcement first.[^gsai-sip]
 
 **Validate.** Learn's deployment guide test: compare the IP address in a SharePoint sign-in with the client running and disabled; with source IP restoration they're the same.[^gsai-dg-ms] In the workspace, the share of sign-ins carried by the service:
+
+![In the sign-in logs, the user's own IP address sits beside the Global Secure Access IP address. Image: Microsoft Learn, [Source IP restoration](https://learn.microsoft.com/entra/global-secure-access/how-to-source-ip-restoration), CC BY 4.0.](../../images/learn/entra-global-secure-access-how-to-source-ip-restoration/user-log-data.png){#fig-learn-user-log-data fig-alt="Screenshot of the Microsoft Entra admin center, Monitoring and health > Sign-in logs, on the Sign-in events page, User sign-ins (interactive) tab, date range last 7 days. Three successful sign-ins by Nicole Wagner on 7/18/2024, to Bing, Office 365 SharePoint and Office 365 Exchange, are listed with Date, Request ID, User, Application and Status columns. Two columns at the right are outlined in red: IP address, 198.51.100.36 on every row, and Global Secure Access IP address, 203.0.113.127 on every row."}
 
 ```kusto
 SigninLogs
@@ -621,6 +627,8 @@ If the agency uses the Explicit Forward Proxy (preview), also exclude the `GSA-E
 
 **Validate.** Learn's test: with the client running, sign in to an in-scope app; disable the client from the tray, open a new browser session, and sign in again; expect "You can't access this right now"; re-enable and confirm access.[^gsai-cn-tutorial] In report-only, read the would-be blocks first:
 
+![With the client disabled, the sign-in fails with this message: the expected result of the test. Image: Microsoft Learn, [Enable compliant network check with Conditional Access](https://learn.microsoft.com/entra/global-secure-access/how-to-compliant-network), CC BY 4.0.](../../images/learn/entra-global-secure-access-how-to-compliant-network/you-cannot-access-this-right-now-error.png){#fig-learn-you-cannot-access-this-right-now-error fig-alt="Screenshot of a Microsoft Edge window on login.microsoftonline.com, tab title Sign in to your account. A Microsoft sign-in card for balas@contoso.com reads: You cannot access this right now. Your sign-in was successful but does not meet the criteria to access this resource. For example, you might be signing in from a browser, app, or location that is restricted by your admin. Below are two links, Sign out and sign in with a different account, and More details."}
+
 ```kusto
 SigninLogs
 | where TimeGenerated > ago(7d)
@@ -709,6 +717,8 @@ Learn publishes AD CS and OpenSSL sample scripts for this step.[^gsai-tls-byoc] 
 **9.6 Pinned applications and failures.** Applications that pin certificates fail under inspection; Learn's answer is a custom bypass rule for their destinations, without duplicating the system bypass list.[^gsai-tls-faq] Developer tools with their own certificate stores (Git, Python, Node.js, Docker) need the root added; Learn's troubleshooting page has the commands. Inspection doesn't negotiate HTTP/2 and doesn't follow AIA or OCSP links.[^gsai-tls-concept]
 
 **Validate.** On a pilot device, browse to an inspected site and confirm the issuer is **Microsoft Global Secure Access Intermediate** (or the agency's chain). Then read the outcomes (Learn's traffic logs carry `TlsAction`, Bypassed or Intercepted, and `TlsStatus`):[^gsai-tls-concept]
+
+![On an inspected site, the certificate's issuer is the Global Secure Access intermediate (or your agency's chain). Image: Microsoft Learn, [Configure Transport Layer Security inspection policies](https://learn.microsoft.com/entra/global-secure-access/how-to-transport-layer-security), CC BY 4.0.](../../images/learn/entra-global-secure-access-how-to-transport-layer-security/certificate-viewer.png){#fig-learn-certificate-viewer fig-alt="Screenshot of a browser's Certificate Viewer for www.contoso.com, on the General tab. Under Issued To, the Common Name is www.contoso.com and the Organization and Organizational Unit read Not Part Of Certificate. Under Issued By, the Common Name, Microsoft Global Secure Access Intermediate, is outlined in red, and the Organization and Organizational Unit read Not Part Of Certificate."}
 
 ```kusto
 let T = NetworkAccessTraffic

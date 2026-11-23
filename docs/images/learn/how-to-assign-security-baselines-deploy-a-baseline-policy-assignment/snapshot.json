@@ -1,0 +1,24 @@
+{
+  "_comment": "Pinned, unmodified copies of images from a Microsoft Learn page, reused in the workbook under the repository's own license (Creative Commons Attribution 4.0 International), credited under each figure. Never edit these files: re-pin from a newer upstream commit with scripts/learn_images/pin.py in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn images: Deploy A Baseline Policy Assignment",
+  "upstream_repo": "https://github.com/MicrosoftDocs/azure-docs",
+  "commit": "ead5f13c3ee6b6fe1794e7212194bdc41546875d",
+  "commit_date": "2026-11-22",
+  "retrieved": "2026-11-22",
+  "license": "Creative Commons Attribution 4.0 International (LICENSE, copied from the repository root).",
+  "documented_at": "https://learn.microsoft.com/azure/governance/machine-configuration/how-to/assign-security-baselines/deploy-a-baseline-policy-assignment",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "baseline-settings-parameter-configuration.png": "articles/governance/machine-configuration/media/deploy-a-baseline-policy-assignment/baseline-settings-parameter-configuration.png"
+  },
+  "files": {
+    "LICENSE": {
+      "bytes": 18661,
+      "sha256": "15c406491bac79b9344852d0dc85a3345528dbdadf2c812f9468e0629258be90"
+    },
+    "baseline-settings-parameter-configuration.png": {
+      "bytes": 90697,
+      "sha256": "4ee97969158e83c4140fa5e86068d62ce6714b6417bb37541ae3e2038c01cc84"
+    }
+  }
+}
