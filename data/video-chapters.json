@@ -8651,63 +8651,63 @@
    "Machines run the steps; people decide"
   ],
   [
-   120,
+   122,
    "What the standard and the products give the code"
   ],
   [
-   163,
+   165,
    "The import formats: the kit's own, mapped by hand"
   ],
   [
-   201,
+   203,
    "The code: one read-only task, msa-standard"
   ],
   [
-   239,
+   241,
    "The request check: NPI-STD-01 to NPI-STD-09"
   ],
   [
-   275,
+   277,
    "The reconciliation: NPI-STD-10 to NPI-STD-19"
   ],
   [
-   321,
+   323,
    "Certification, Defender for Identity and retirement"
   ],
   [
-   362,
+   364,
    "What it hands to Chapter 06, and what it never does"
   ],
   [
-   403,
+   405,
    "The evidence: one row per step and control"
   ],
   [
-   454,
+   456,
    "Who runs it, who exports, who reads the evidence"
   ],
   [
-   490,
+   492,
    "Lab 1: run the standard's checks on the fixtures"
   ],
   [
-   530,
+   532,
    "Lab 1: the findings and the Chapter 06 inputs"
   ],
   [
-   568,
+   569,
    "Lab 1: certifications, retirement, evidence, tests"
   ],
   [
-   611,
+   612,
    "Lab 2: a test domain and the products' exports"
   ],
   [
-   651,
+   653,
    "Dangers, and the guard for each"
   ],
   [
-   692,
+   694,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -15789,39 +15789,39 @@
    "The steps from request to retirement: S1 to S11"
   ],
   [
-   408,
+   406,
    "Try it: run the standard's checks on the fixtures"
   ],
   [
-   458,
+   456,
    "Try it: read the findings, and gmsa-ops$"
   ],
   [
-   515,
+   513,
    "Try it: what Chapter 12 hands to Chapter 06"
   ],
   [
-   565,
+   563,
    "Try it: the certifications and the ServiceNow findings"
   ],
   [
-   615,
+   613,
    "Try it: the retirement list, then clean up"
   ],
   [
-   661,
+   659,
    "Lab 2: the same checks on a test domain's exports"
   ],
   [
-   723,
+   721,
    "The federal requirement and the evidence the ISSO keeps"
   ],
   [
-   783,
+   782,
    "Check yourself: two questions on the standard"
   ],
   [
-   830,
+   828,
    "Summary: every managed service account, the same way"
   ]
  ],
