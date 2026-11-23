@@ -12,8 +12,8 @@ research-status: draft
 research-type: implementation guide
 research-book: "Book 10"
 review-status: approved
-reviewed-sha256: 9e326dbfb0f925c9f90b19b3e3add7ee4674d0a45f527b0851716af39b9b767c
-last-reviewed: 2026-11-22
+reviewed-sha256: 61cb585be184d0a8bbdf34b6bc3ef971f3a9c3e996776ccbabf085bf1a1387c3
+last-reviewed: 2026-11-23
 ---
 # Azure Security Engineering
 

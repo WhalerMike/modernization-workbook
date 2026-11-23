@@ -9,8 +9,8 @@ date-modified: 2026-10-25
 aliases:
   - /docs/research/hcm-entra-implementation.html
 review-status: approved
-reviewed-sha256: 83192cfa53a1ff2fcc614853e82eb633fd7a0b5a0530698b75f4af88eb7aae9b
-last-reviewed: 2026-11-22
+reviewed-sha256: 76250338020796858799bec4a7254cdd7caf451b7765655c8753aca45582d2f2
+last-reviewed: 2026-11-23
 ---
 # Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID {.unnumbered}
 
