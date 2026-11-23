@@ -1,0 +1,24 @@
+{
+  "_comment": "Pinned, unmodified copies of images from a Microsoft Learn page, reused in the workbook under the repository's own license (Creative Commons Attribution 4.0 International), credited under each figure. Never edit these files: re-pin from a newer upstream commit with scripts/learn_images/pin.py in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn images: How To: Manage stale devices in Microsoft Entra ID",
+  "upstream_repo": "https://github.com/MicrosoftDocs/entra-docs",
+  "commit": "3413d1589ffb1f77441636f4c6809d292270003d",
+  "commit_date": "2026-11-22",
+  "retrieved": "2026-11-22",
+  "license": "Creative Commons Attribution 4.0 International, as the repository's README grants for its documentation; the root LICENSE file, copied here, holds the MIT License text, which also permits this reuse.",
+  "documented_at": "https://learn.microsoft.com/entra/identity/devices/manage-stale-devices",
+  "path_map": {
+    "01.png": "docs/identity/devices/media/manage-stale-devices/01.png",
+    "LICENSE": "LICENSE (repository root)"
+  },
+  "files": {
+    "01.png": {
+      "bytes": 218141,
+      "sha256": "4d876a0cb90af6e5eb70c681206d8d34bc50d32771ec2687f95b7cf403d79a80"
+    },
+    "LICENSE": {
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    }
+  }
+}

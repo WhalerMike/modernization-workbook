@@ -1,0 +1,29 @@
+{
+  "_comment": "Pinned, unmodified copies of images from a Microsoft Learn page, reused in the workbook under the repository's own license (Creative Commons Attribution 4.0 International), credited under each figure. Never edit these files: re-pin from a newer upstream commit with scripts/learn_images/pin.py in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn images: Configure restrictions on how applications can be configured",
+  "upstream_repo": "https://github.com/MicrosoftDocs/entra-docs",
+  "commit": "3413d1589ffb1f77441636f4c6809d292270003d",
+  "commit_date": "2026-11-22",
+  "retrieved": "2026-11-22",
+  "license": "Creative Commons Attribution 4.0 International, as the repository's README grants for its documentation; the root LICENSE file, copied here, holds the MIT License text, which also permits this reuse.",
+  "documented_at": "https://learn.microsoft.com/entra/identity/enterprise-apps/configure-app-management-policies",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "enable-password-addition-restriction.png": "docs/identity/enterprise-apps/media/configure-app-management-policies/enable-password-addition-restriction.png",
+    "restrict-certificate-lifetime.png": "docs/identity/enterprise-apps/media/configure-app-management-policies/restrict-certificate-lifetime.png"
+  },
+  "files": {
+    "LICENSE": {
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    "enable-password-addition-restriction.png": {
+      "bytes": 87328,
+      "sha256": "ce7c5c9931025241b7941b462697fe16e62dbf547dac2e08afc2a5594a111798"
+    },
+    "restrict-certificate-lifetime.png": {
+      "bytes": 119695,
+      "sha256": "fac30370da5418a109d9a86016f3ae8bb20d93321214da9f174222bcb60d94e2"
+    }
+  }
+}

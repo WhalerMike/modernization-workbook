@@ -99,6 +99,8 @@ The memo's sample onboarding timeline puts "Interconnection(s) go-live and produ
 
 Two gallery applications expose the endpoint: *API-driven provisioning to on-premises Active Directory* for hybrid users, and *API-driven provisioning to Microsoft Entra ID* for cloud-only users. Each app has its own endpoint, so an agency creates one per source and per landing zone.[^he-ms-config][^he-ms-faq]
 
+![The two gallery apps: one for cloud-only users, one for users who land in AD. Image: Microsoft Learn, [Configure API-driven inbound provisioning app](https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-configure-app), CC BY 4.0.](../../images/learn/identity-app-provisioning-inbound-provisioning-api-configure-app/api-driven-inbound-provisioning-apps.png){#fig-learn-api-driven-inbound-provisioning-apps fig-alt="Screenshot of API-driven provisioning apps. Two gallery tiles side by side, each with a purple square labeled API and the publisher Microsoft: API-driven provisioning to Microsoft Entra ID, and API-driven provisioning to on-premises Active Directory."}
+
 | Setup step | What to know |
 |---|---|
 | Roles | Application Administrator; plus Hybrid Identity Administrator for the AD app[^he-ms-config] |
@@ -123,6 +125,8 @@ Two gallery applications expose the endpoint: *API-driven provisioning to on-pre
 | Daily cap | 2,000 calls per 24 hours with Entra ID P1 or P2; 6,000 with Entra ID Governance[^he-ms-concepts] |
 | Licensing | Entra ID P1 for API-driven provisioning;[^he-ms-lic] Entra ID Governance for Lifecycle Workflows |
 
+![Microsoft's end-to-end flow: the client posts a bulk request, gets 202 Accepted, and reads the provisioning logs for the outcome. Image: Microsoft Learn, [API-driven inbound provisioning concepts](https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-concepts), CC BY 4.0.](../../images/learn/identity-app-provisioning-inbound-provisioning-api-concepts/end-to-end-workflow.png){#fig-learn-end-to-end-workflow fig-alt="Diagram of the end-to-end workflow of inbound provisioning. Lanes left to right: IT Admin; API Developer / Partner / System Integrator; Identity system of record; Any automation tool (PowerShell, IAM, Azure Logic Apps), the API client; Microsoft Entra Provisioning Service; Microsoft Entra Admin Portal / Enterprise App Gallery; Microsoft Entra ID or on-premises Active Directory. Steps: 1, configure the API-driven inbound provisioning app in the admin portal and specify the identity data the endpoint accepts using SCIM standard schema and extensions; 2, provide API access details to the developer; 3, use any automation tool to build an API client; 4, periodically read identity data from the source; 5, POST data as an asynchronous HTTP bulk request to the inbound provisioning /bulkUpload API endpoint; 6, Accepted 202 status returned; 7, the provisioning job automatically processes the request and applies attribute mapping rules; 8, identity data automatically provisioned in Entra ID or on-premises AD; 9, query provisioning logs for operation status; 10, review failed operations and include the corresponding user records in the next API call; 11, the IT admin checks the status of the provisioning job and views events in provisioning logs."}
+
 ### Permissions
 
 | Identity | Permission | Note |
@@ -137,6 +141,8 @@ Entra's guidance frames `.OwnedBy` for an HR software vendor that creates its ow
 
 The client reads `GET /auditLogs/provisioning`, filtered on `jobId`, `cycleId`, `changeId`, `sourceIdentity/id` or `activityDateTime`; filters are case-sensitive. Each entry carries `provisioningAction` (`create`, `update`, `delete`, `stageddelete`, `disable`, `other`), `provisioningStatusInfo` with error details, the processing steps and the modified properties.[^he-ms-provlist][^he-ms-provres] The list API is available in the global service and both US Government clouds.[^he-ms-provlist] Match each entry to the source event by `externalId`, retry transient failures with the complete record, and turn permanent ones into owned exceptions (Chapter 05).
 
+![What a provisioning log entry records for each change: the property, its old value and its new value. Image: Microsoft Learn, [Extend API-driven provisioning to sync custom attributes](https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-custom-attributes), CC BY 4.0.](../../images/learn/identity-app-provisioning-inbound-provisioning-api-custom-attributes/verify-provisioning-logs.png){#fig-learn-verify-provisioning-logs fig-alt="Screenshot of provisioning logs. Tabs Steps, Troubleshooting & Recommendations, Modified Properties (selected) and Summary. Table columns Property name, Old value, New value. Rows: employeeHireDate, no old value, new value 2021-05-01T05:00:00.0000000+00:00; jobTitle, old value Tour Guide(), new value Tour Guide(TG-1001); mail, no old value, new value bjensen@example.com."}
+
 ### Job quarantine and the deletion threshold
 
 | Trigger | What happens | Source |
@@ -148,6 +154,8 @@ The client reads `GET /auditLogs/provisioning`, filtered on `jobId`, `cycleId`, 
 | While quarantined | Incremental cycles slow to once a day; after more than four weeks the job is disabled | [^he-ms-quar] |
 
 Set the deletion threshold on both apps, watch the notification mailbox, and poll the job's status *(design guidance)*.[^he-ms-graph-config]
+
+![What a quarantined job looks like on the provisioning page. Image: Microsoft Learn, [Quarantine status in Microsoft Entra Application Provisioning](https://learn.microsoft.com/entra/identity/app-provisioning/application-provisioning-quarantine-status), CC BY 4.0.](../../images/learn/identity-app-provisioning-application-provisioning-quarantine-status/progress-bar-quarantined.png){#fig-learn-progress-bar-quarantined fig-alt="Provisioning status bar showing quarantine status. Left panel Current Status: Initial cycle quarantined, with an information icon, Click refresh to get the latest status, and a Refresh button. Right panel Statistics to date with expandable View provisioning details and View technical information. Warning with an orange triangle: Quarantined due to a high number of errors. Please view the audit logs below to assess the errors and remediate them. Sync interval reduced to once per 24 hours."}
 
 ### Lifecycle Workflows
 
@@ -164,6 +172,8 @@ Set the deletion threshold on both apps, watch the notification mailbox, and pol
 ### Microsoft's Oracle pattern
 
 Microsoft's Oracle HCM guide is the starting point, and Book 03 follows it: an initial load by CSV from HCM Extracts, BI Publisher or Oracle Integration Cloud; deltas by Atom feeds (`newhire`, `empassignment`, `empupdate`, `termination`, `cancelworkrelship`, `workrelshipupdate`), by CSV extracts or by Oracle Integration Cloud; feeds turned on "immediately after your initial sync"; a custom module for validation, unique ID generation, sequencing, conversion and error handling; five to ten records first; hire date from `EffectiveStartDate`, leave date from `EffectiveDate`; optional writeback through the Oracle Fusion ERP gallery connector, Update only.[^he-ms-oracle]
+
+![Microsoft's Oracle HCM pattern; the writeback path at the bottom is optional and deferred in Book 03. Image: Microsoft Learn, [Configure Oracle Human Capital Management (HCM) for automatic user provisioning](https://learn.microsoft.com/entra/identity/saas-apps/oracle-hcm-provisioning-tutorial), CC BY 4.0.](../../images/learn/identity-saas-apps-oracle-hcm-provisioning-tutorial/oracle-hcm-provisioning.png){#fig-learn-oracle-hcm-provisioning fig-alt="Diagram of Oracle HCM driven provisioning plus writeback, titled Oracle HCM driven provisioning + Writeback. Top: Oracle Human Capital Management exports a CSV file for the Initial Sync / Full Sync, which goes through Middleware / Script to the Microsoft Entra provisioning service. Middle: Oracle HCM ATOM API endpoints feed Middleware / Script for the Incremental / Delta Sync into the same service; a dashed line links the CSV file to this path. From the provisioning service, Cloud-only users go to Microsoft Entra ID, and Hybrid users go through a Provisioning Agent to Active Directory on-premises; Microsoft Entra Connect Sync / Cloud Sync links AD and Entra ID. Bottom: Writeback of email / username / phone goes from the service through Writeback using SCIM to Oracle HCM SCIM APIs."}
 
 Treat it as a pattern, not a specification *(design guidance)*:
 - Its introduction says the API can "create, update, and delete users"; the FAQ says `/bulkUpload` doesn't delete.[^he-ms-oracle][^he-ms-faq]

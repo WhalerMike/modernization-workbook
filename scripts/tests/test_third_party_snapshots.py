@@ -1,4 +1,5 @@
-"""Pinned third-party snapshots (examples/third_party/*/snapshot.json) match their files.
+"""Pinned third-party snapshots (examples/third_party/*/snapshot.json and the Microsoft Learn
+images in docs/images/learn/*/snapshot.json) match their files.
 
 A snapshot is an unmodified copy of upstream code at one commit. This test fails when a
 file in a snapshot folder is changed, added or removed without regenerating the manifest.
@@ -15,12 +16,13 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 THIRD_PARTY = ROOT / "examples" / "third_party"
+LEARN_IMAGES = ROOT / "docs" / "images" / "learn"
 OWN_FILES = {"snapshot.json", "SNAPSHOT.md"}
 
 
 class Snapshots(unittest.TestCase):
     def manifests(self) -> list[Path]:
-        found = sorted(THIRD_PARTY.glob("*/snapshot.json"))
+        found = sorted(THIRD_PARTY.glob("*/snapshot.json")) + sorted(LEARN_IMAGES.glob("*/snapshot.json"))
         self.assertTrue(found, "no snapshot.json under examples/third_party")
         return found
 
@@ -45,6 +47,12 @@ class Snapshots(unittest.TestCase):
                 self.assertTrue(data["license"])
                 self.assertIn("LICENSE", data["files"])
                 self.assertTrue(re.match(r"^https://learn\.microsoft\.com/", data.get("documented_at", "")))
+
+    def test_every_learn_image_folder_has_a_manifest(self):
+        if LEARN_IMAGES.exists():
+            for folder in LEARN_IMAGES.iterdir():
+                if folder.is_dir():
+                    self.assertTrue((folder / "snapshot.json").exists(), f"{folder.name}: a Learn image folder needs snapshot.json (scripts/learn_images/pin.py)")
 
 
 if __name__ == "__main__":

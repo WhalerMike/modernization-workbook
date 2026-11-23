@@ -1,0 +1,24 @@
+{
+  "_comment": "Pinned, unmodified copies of images from a Microsoft Learn page, reused in the workbook under the repository's own license (Creative Commons Attribution 4.0 International), credited under each figure. Never edit these files: re-pin from a newer upstream commit with scripts/learn_images/pin.py in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn images: Resource impact from Azure security incidents",
+  "upstream_repo": "https://github.com/MicrosoftDocs/azure-monitor-docs",
+  "commit": "2d30ba8467d2fc4815b0080796e8e219aab7f335",
+  "commit_date": "2026-11-20",
+  "retrieved": "2026-11-22",
+  "license": "Creative Commons Attribution 4.0 International (LICENSE, copied from the repository root).",
+  "documented_at": "https://learn.microsoft.com/azure/service-health/impacted-resources-security",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "impact-security.png": "articles/service-health/media/impacted-resource-sec/impact-security.png"
+  },
+  "files": {
+    "LICENSE": {
+      "bytes": 18652,
+      "sha256": "9a4920e24f6f156667c3dad80ab0ad45922a924be999e1ecccbdaf3dcb0e9a9f"
+    },
+    "impact-security.png": {
+      "bytes": 56151,
+      "sha256": "eae2a33e61fb9e98c33e75b89defd3f5c52f117e5382fd24097bc535efa1daf4"
+    }
+  }
+}

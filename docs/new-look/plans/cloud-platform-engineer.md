@@ -32,10 +32,10 @@ review-status: pending
 
 ## Week 4: Global Secure Access
 
-- [Global Secure Access & Zero Trust Network Engineering: An Implementation Guide](../../books/guides/global-secure-access-implementation.md) (Implementation guide, 12 steps, about 1 hr 23 min). A gated guide for deploying Microsoft Entra Internet Access and Private Access as the agency's identity-aware network layer, in twelve steps that match the twelve network topics of the Zero Trust closure update: the decision and….
+- [Global Secure Access & Zero Trust Network Engineering: An Implementation Guide](../../books/guides/global-secure-access-implementation.md) (Implementation guide, 12 steps, about 1 hr 26 min). A gated guide for deploying Microsoft Entra Internet Access and Private Access as the agency's identity-aware network layer, in twelve steps that match the twelve network topics of the Zero Trust closure update: the decision and….
 - [Labs: Building Azure Security](../../training/labs.md#azs) (Lab, 16 labs). 16 hands-on labs across 8 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building Azure Security.
 
-*Milestone 4: about 1 hr 23 min.*
+*Milestone 4: about 1 hr 26 min.*
 
-**Whole plan:** about 34 hr 56 min of reading and video, plus the labs.
+**Whole plan:** about 34 hr 59 min of reading and video, plus the labs.
 

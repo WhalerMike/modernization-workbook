@@ -1,0 +1,24 @@
+{
+  "_comment": "Pinned, unmodified copies of images from a Microsoft Learn page, reused in the workbook under the repository's own license (Creative Commons Attribution 4.0 International), credited under each figure. Never edit these files: re-pin from a newer upstream commit with scripts/learn_images/pin.py in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn images: How to check Microsoft 365 service health",
+  "upstream_repo": "https://github.com/MicrosoftDocs/microsoft-365-docs",
+  "commit": "ee0f8f75d0045cc6397fe0a9c2c84d2aba1e01d6",
+  "commit_date": "2026-11-04",
+  "retrieved": "2026-11-22",
+  "license": "Creative Commons Attribution 4.0 International (LICENSE, copied from the repository root).",
+  "documented_at": "https://learn.microsoft.com/microsoft-365/enterprise/view-service-health",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "sh-page-upper-section.png": "microsoft-365/media/sh-page-upper-section.png"
+  },
+  "files": {
+    "LICENSE": {
+      "bytes": 18650,
+      "sha256": "7183ef9749eb9b75e710a81a4c812a9405cc184f087500581a973e5929ac3f5e"
+    },
+    "sh-page-upper-section.png": {
+      "bytes": 147286,
+      "sha256": "d14f4257bf628cbf46bc3da8ce36d410306ed2aa73e185fa191f64ac554cfd11"
+    }
+  }
+}

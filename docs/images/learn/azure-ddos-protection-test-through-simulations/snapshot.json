@@ -1,0 +1,29 @@
+{
+  "_comment": "Pinned, unmodified copies of images from a Microsoft Learn page, reused in the workbook under the repository's own license (Creative Commons Attribution 4.0 International), credited under each figure. Never edit these files: re-pin from a newer upstream commit with scripts/learn_images/pin.py in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn images: Tutorial: Azure DDoS Protection simulation testing",
+  "upstream_repo": "https://github.com/MicrosoftDocs/azure-docs",
+  "commit": "ead5f13c3ee6b6fe1794e7212194bdc41546875d",
+  "commit_date": "2026-11-22",
+  "retrieved": "2026-11-22",
+  "license": "Creative Commons Attribution 4.0 International (LICENSE, copied from the repository root).",
+  "documented_at": "https://learn.microsoft.com/azure/ddos-protection/test-through-simulations",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "ddos-protection-alert-add-condition.png": "articles/ddos-protection/media/ddos-attack-simulation/ddos-protection-alert-add-condition.png",
+    "ddos-public-ip-diagnostic-setting.png": "articles/ddos-protection/media/ddos-attack-simulation/ddos-public-ip-diagnostic-setting.png"
+  },
+  "files": {
+    "LICENSE": {
+      "bytes": 18661,
+      "sha256": "15c406491bac79b9344852d0dc85a3345528dbdadf2c812f9468e0629258be90"
+    },
+    "ddos-protection-alert-add-condition.png": {
+      "bytes": 35594,
+      "sha256": "e934b5e7832c6512d003d872d6125dacd9bcf03d2a0a8dd2b360c17c2e05cc05"
+    },
+    "ddos-public-ip-diagnostic-setting.png": {
+      "bytes": 54900,
+      "sha256": "67e9f15158ea6387dd10b3e9f1b9dbc0b6cd9105bae1b5e6e72a9c12ada31f63"
+    }
+  }
+}

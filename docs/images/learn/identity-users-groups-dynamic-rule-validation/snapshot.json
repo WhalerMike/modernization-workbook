@@ -1,0 +1,24 @@
+{
+  "_comment": "Pinned, unmodified copies of images from a Microsoft Learn page, reused in the workbook under the repository's own license (Creative Commons Attribution 4.0 International), credited under each figure. Never edit these files: re-pin from a newer upstream commit with scripts/learn_images/pin.py in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn images: Validate rules for dynamic membership groups",
+  "upstream_repo": "https://github.com/MicrosoftDocs/entra-docs",
+  "commit": "3413d1589ffb1f77441636f4c6809d292270003d",
+  "commit_date": "2026-11-22",
+  "retrieved": "2026-11-22",
+  "license": "Creative Commons Attribution 4.0 International, as the repository's README grants for its documentation; the root LICENSE file, copied here, holds the MIT License text, which also permits this reuse.",
+  "documented_at": "https://learn.microsoft.com/entra/identity/users/groups-dynamic-rule-validation",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "validate-tab-results.png": "docs/identity/users/media/groups-dynamic-rule-validation/validate-tab-results.png"
+  },
+  "files": {
+    "LICENSE": {
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    "validate-tab-results.png": {
+      "bytes": 59680,
+      "sha256": "f913b64e5ec4fb297ea2b17443b710bce9cc7169e7f1115e5fd342ad47e4eae0"
+    }
+  }
+}

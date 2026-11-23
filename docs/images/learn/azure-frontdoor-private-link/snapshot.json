@@ -1,0 +1,24 @@
+{
+  "_comment": "Pinned, unmodified copies of images from a Microsoft Learn page, reused in the workbook under the repository's own license (Creative Commons Attribution 4.0 International), credited under each figure. Never edit these files: re-pin from a newer upstream commit with scripts/learn_images/pin.py in a reviewed pull request. scripts/tests/test_third_party_snapshots.py fails when a file stops matching its hash.",
+  "name": "Learn images: Secure your origin with Private Link in Azure Front Door Premium",
+  "upstream_repo": "https://github.com/MicrosoftDocs/azure-docs",
+  "commit": "ead5f13c3ee6b6fe1794e7212194bdc41546875d",
+  "commit_date": "2026-11-22",
+  "retrieved": "2026-11-22",
+  "license": "Creative Commons Attribution 4.0 International (LICENSE, copied from the repository root).",
+  "documented_at": "https://learn.microsoft.com/azure/frontdoor/private-link",
+  "path_map": {
+    "LICENSE": "LICENSE (repository root)",
+    "front-door-private-endpoint-architecture.png": "articles/frontdoor/media/private-link/front-door-private-endpoint-architecture.png"
+  },
+  "files": {
+    "LICENSE": {
+      "bytes": 18661,
+      "sha256": "15c406491bac79b9344852d0dc85a3345528dbdadf2c812f9468e0629258be90"
+    },
+    "front-door-private-endpoint-architecture.png": {
+      "bytes": 68643,
+      "sha256": "980e5f27e11a73826e5ee89d194084fdfe497ac433122c5a0a83530ed5966d0c"
+    }
+  }
+}
