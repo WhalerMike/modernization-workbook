@@ -48,6 +48,8 @@ project:
     - "presentations/start-here/Start_Here_Narrated.vtt"
     - "presentations/start-here/Start_Here_poster.png"
     - "docs/inspiration/*.pdf"
+    # Book cover illustrations, shown by the header partial (assets/fmw-hero.lua).
+    - "docs/images/covers/*.svg"
     # Caption tracks and the manifest for the in-browser video players
     # (docs/presentations/watch.md, assets/fmw-video.lua). The MP4s stream
     # from the videos release; a caption track must come from the site itself.

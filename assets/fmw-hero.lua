@@ -48,6 +48,20 @@ function Pandoc(doc)
   -- Research, Start Here) get the dark header: black with white text.
   if meta["doc-type"] and stringify(meta["doc-type"]) == "section-landing" then
     meta["fmw-hero-dark"] = true
+    -- A book's landing page (docs/books/<book>/index.md) shows its cover illustration
+    -- in the dark header when docs/images/covers/<book>.svg exists
+    -- (scripts/covers/build_covers.py draws them).
+    local input = (quarto.doc.input_file or ""):gsub("\\", "/")
+    local folder = input:match("docs/books/(b%d%d%-[%w%-]+)/index%.md$")
+    if folder then
+      local cover = "docs/images/covers/" .. folder .. ".svg"
+      local root = quarto.project.directory or "."
+      local f = io.open(pandoc.path.join({ root, cover }), "r")
+      if f then
+        f:close()
+        meta["fmw-cover"] = "../../images/covers/" .. folder .. ".svg"
+      end
+    end
   end
 
   local title = meta.title and norm(stringify(meta.title)) or nil
