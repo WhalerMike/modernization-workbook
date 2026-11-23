@@ -1,0 +1,60 @@
+# Script captures: run the guides' Portal | PowerShell commands on a fresh GitHub-hosted Windows runner.
+#
+# scripts/portal_script_pairs.py --capture runs each `run:` command in data/portal-script-pairs.yml on the
+# kit's own fixtures, in the edition the kit declares (Windows PowerShell 5.1 or PowerShell 7; the runner
+# has both), and draws the terminal images (Consolas). The runner starts clean every time, so a capture
+# shows only what the kit and its fixtures produce. The outputs come back as the "script-captures"
+# artifact; a person commits them (they're reviewed like any other change).
+#
+# Runs by hand (Actions > Script captures > Run workflow) and on pull requests that change the pairs.
+name: Script captures
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - data/portal-script-pairs.yml
+      - scripts/portal_script_pairs.py
+      - scripts/kit_captures.py
+      - .github/workflows/script-captures.yml
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Python packages
+        shell: pwsh
+        run: python -m pip install --disable-pip-version-check pyyaml pillow
+
+      - name: Editions on this runner
+        shell: pwsh
+        run: |
+          "PowerShell 7: $($PSVersionTable.PSVersion)"
+          powershell -NoProfile -Command '"Windows PowerShell: $($PSVersionTable.PSVersion)"'
+
+      - name: Run the commands on the kits' fixtures
+        shell: pwsh
+        env:
+          PYTHONUTF8: "1"
+        run: python scripts/portal_script_pairs.py --capture
+
+      - name: Check the pairs with the new captures
+        shell: pwsh
+        env:
+          PYTHONUTF8: "1"
+        # Pages aren't rewritten here, so "out of date" lines are expected until the captures are committed.
+        run: python scripts/portal_script_pairs.py --check; exit 0
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: script-captures
+          path: |
+            data/kit-captures/guides/
+            docs/books/guides/captures/
+          if-no-files-found: error

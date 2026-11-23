@@ -1,0 +1,15 @@
+PS> Import-Module ./powershell/ValidationKit/ValidationKit.psd1
+PS> $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+PS> Invoke-VkHr06 -Context $ctx | Select-Object -ExpandProperty Details | Format-List Severity, Object, Issue
+Severity : Info
+Object   : Tenant
+Issue    : Tenant-wide execution limits
+
+Severity : Finding
+Object   : Leaver: last day
+Issue    : Scheduled workflow with no execution limit: no tenant-wide threshold and none of its own
+
+Severity : Info
+Object   : Tenant
+Issue    : Workflow count against the default ceiling
+

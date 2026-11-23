@@ -1,0 +1,913 @@
+# Portal | PowerShell pairs: each Microsoft Learn portal image in the guides (fig-learn-*) and the
+# scripted step that does the same thing. scripts/portal_script_pairs.py writes the tabs into the
+# pages and checks this file.
+#
+#   tab: exact     the script does what the screen shows
+#        related   a related script; `relation` says how it differs (shown in the tab)
+#        none      no tab; `reason` says why (a Learn diagram, or no script yet)
+#   capture: wb/NN-k   an existing lab capture (data/kit-captures/, scripts/kit_captures.py)
+#   run:               a command portal_script_pairs.py --capture runs on the kit's fixtures
+#                      (the "Script captures" workflow runs it on a GitHub-hosted Windows runner)
+#   command, needs     a command that needs a live tenant or device: shown, not captured
+#   requirements       copied from the kit's requirements map (file, step); --check compares them
+pairs:
+- page: docs/books/guides/service-account-migration.md
+  figure: fig-learn-create-user-assigned-managed-identity-portal
+  learn: https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities
+  shows: 'Azure portal ''Create User Assigned Managed Identity'' form (subscription, resource group, region, name):
+    creating a user-assigned managed identity'
+  tab: exact
+  capture: npi/05-8
+  requirements:
+    file: examples/non-person-identity/config/requirements-ch11.json
+    step: S1.3
+    controls:
+    - IA-5
+    - IA-9
+    - AC-2(3)
+    ksi:
+    - KSI-IAM-SNU
+    - KSI-CMT-VTD
+    other: []
+- page: docs/books/guides/service-account-migration.md
+  figure: fig-learn-add-client-certificate
+  learn: https://learn.microsoft.com/entra/identity-platform/how-to-add-credentials
+  shows: 'App registration > Certificates & secrets > Certificates tab: a certificate''s public key uploaded to
+    the app registration'
+  tab: related
+  relation: The script attaches a new certificate to the app registration during a rotation, from Key Vault, once
+    the plan is approved by its hash; the screen shows a first upload.
+  capture: npi/04-9
+- page: docs/books/guides/service-account-migration.md
+  figure: fig-learn-workflow
+  learn: https://learn.microsoft.com/entra/workload-id/workload-identity-federation
+  shows: 'Learn diagram, not a portal screen: an external workload trades its IdP token for an Entra token through
+    a federated credential, with no stored secret'
+  tab: none
+  reason: 'A Learn diagram, not a portal screen: there is no portal step for a script to mirror.'
+- page: docs/books/guides/service-account-migration.md
+  figure: fig-learn-add-credential
+  learn: https://learn.microsoft.com/entra/workload-id/workload-identity-federation-create-trust
+  shows: '''Add a credential'' pane on an app registration: a federated credential with issuer, subject, name and
+    audience'
+  tab: exact
+  capture: npi/05-8
+  requirements:
+    file: examples/non-person-identity/config/requirements-ch11.json
+    step: S1.3
+    controls:
+    - IA-5
+    - IA-9
+    - AC-2(3)
+    ksi:
+    - KSI-IAM-SNU
+    - KSI-CMT-VTD
+    other: []
+- page: docs/books/guides/non-person-identity-implementation.md
+  figure: fig-learn-restrict-certificate-lifetime
+  learn: https://learn.microsoft.com/entra/identity/enterprise-apps/configure-app-management-policies
+  shows: 'Application Policies > ''Restrict max certificate lifetime'' (tenant default app management policy): 180
+    days, with the optional ''apps created after'' date'
+  tab: exact
+  capture: npi/04-5
+  requirements:
+    file: examples/non-person-identity/config/requirements-ch11.json
+    step: S1.2
+    controls:
+    - IA-5
+    - CM-6
+    - CM-3
+    ksi:
+    - KSI-IAM-SNU
+    - KSI-CMT-LMC
+    other:
+    - SCuBA MS.AAD.5.5v1 to 5.7v1 (SHOULD)
+- page: docs/books/guides/non-person-identity-implementation.md
+  figure: fig-learn-enable-password-addition-restriction
+  learn: https://learn.microsoft.com/entra/identity/enterprise-apps/configure-app-management-policies
+  shows: Application Policies > 'Password addition' restriction switched On (blocks new client secrets tenant-wide)
+  tab: exact
+  capture: npi/04-5
+  requirements:
+    file: examples/non-person-identity/config/requirements-ch11.json
+    step: S1.2
+    controls:
+    - IA-5
+    - CM-6
+    - CM-3
+    ksi:
+    - KSI-IAM-SNU
+    - KSI-CMT-LMC
+    other:
+    - SCuBA MS.AAD.5.5v1 to 5.7v1 (SHOULD)
+- page: docs/books/guides/non-person-identity-implementation.md
+  figure: fig-learn-service-principal-sign-ins
+  learn: https://learn.microsoft.com/entra/identity/monitoring-health/concept-usage-insights-report
+  shows: 'Usage & insights > Service principal sign-in activity: last sign-in for each service principal (the inactivity
+    signal)'
+  tab: related
+  relation: The drift run reads the same service principal sign-in activity report and flags principals with no
+    recent sign-in.
+  capture: npi/10-3
+  requirements:
+    file: examples/non-person-identity/config/requirements-ch11.json
+    step: S2.5
+    controls:
+    - CA-7
+    - CM-3
+    - AU-6
+    ksi:
+    - KSI-MLA-EVC
+    - KSI-CMT-LMC
+    other: []
+- page: docs/books/guides/non-person-identity-implementation.md
+  figure: fig-learn-deactivate-app-registration
+  learn: https://learn.microsoft.com/entra/identity/enterprise-apps/deactivate-app-registration
+  shows: App registration command bar > Deactivate (sets the app's isDisabled; the State field shows the result)
+  tab: none
+  reason: No script performs this step yet. No script deactivates an app registration.
+- page: docs/books/guides/non-person-identity-implementation.md
+  figure: fig-learn-audit-log-details
+  learn: https://learn.microsoft.com/entra/identity/enterprise-apps/deactivate-app-registration
+  shows: 'Audit Log Details > Modified Properties of an ''Update application'' entry: IsDisabled with old and new
+    values'
+  tab: none
+  reason: No script performs this step yet. No script reads this audit entry.
+- page: docs/books/guides/privileged-access-implementation.md
+  figure: fig-learn-report-only-detail-in-sign-in-log
+  learn: https://learn.microsoft.com/entra/identity/conditional-access/concept-conditional-access-report-only
+  shows: 'Sign-in log entry > Report-only tab: each report-only Conditional Access policy''s result for that sign-in'
+  tab: none
+  reason: No script performs this step yet. The PA kit creates policies report-only (Invoke-PaCaAdmin.ps1) but nothing
+    reads report-only results from administrators' sign-ins.
+- page: docs/books/guides/privileged-access-implementation.md
+  figure: fig-learn-role-settings-conditional-access-authentication-context
+  learn: https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings
+  shows: 'PIM > Microsoft Entra role settings > Activation: ''On activation, require Microsoft Entra Conditional
+    Access authentication context'' selected'
+  tab: exact
+  capture: pa/04-4
+  requirements:
+    file: examples/privileged-access/deploy/requirements.json
+    step: pim-roles
+    controls:
+    - AC-5
+    - AC-6
+    - CM-5
+    ksi:
+    - KSI-IAM-JIT
+    - KSI-IAM-ELP
+    other:
+    - BOD 25-01 MS.AAD.7.4v1 to MS.AAD.7.8v1
+- page: docs/books/guides/privileged-access-implementation.md
+  figure: fig-learn-resource-audit
+  learn: https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-use-audit-log
+  shows: 'PIM > Resource audit: each activation as a request row and a completed row for the same role'
+  tab: related
+  relation: The script reads the PIM audit history and reports findings, such as assignments made outside PIM and
+    activations without approval, rather than each request and completion row.
+  capture: pa/08-4
+  requirements:
+    file: examples/privileged-access/deploy/requirements.json
+    step: evidence
+    controls:
+    - AU-9
+    - CA-7
+    - CM-3
+    ksi:
+    - KSI-MLA-OSM
+    - KSI-MLA-EVC
+    - KSI-CMT-LMC
+    other:
+    - 'FedRAMP: agency use of the authorized cloud service'
+- page: docs/books/guides/hr-driven-identity-implementation.md
+  figure: fig-learn-tap-task
+  learn: https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-tasks
+  shows: Lifecycle Workflows task 'Generate TAP and Send Email' in a pre-hire workflow (TAP lifetime, one-time use)
+  tab: related
+  relation: The kit checks the pre-hire workflow's Temporary Access Pass task (its lifetime and one-time use) in
+    the reviewed configuration before it's deployed.
+  capture: hr/03-3
+- page: docs/books/guides/hr-driven-identity-implementation.md
+  figure: fig-learn-workflow-schedule-settings
+  learn: https://learn.microsoft.com/entra/id-governance/customize-workflow-schedule
+  shows: 'Lifecycle Workflows settings: the tenant-wide workflow schedule interval (default 3 hours)'
+  tab: related
+  relation: VK-HR-06 reads the Lifecycle Workflows settings, including the schedule interval this screen sets, and
+    checks the execution limits.
+  run:
+    cwd: examples/validation-kit
+    edition: '5.1'
+    code: 'Import-Module ./powershell/ValidationKit/ValidationKit.psd1
+
+      $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf ''2026-10-29T00:00:00Z''
+
+      Invoke-VkHr06 -Context $ctx | Select-Object -ExpandProperty Details | Format-List Severity, Object, Issue'
+- page: docs/books/guides/hr-driven-identity-implementation.md
+  figure: fig-learn-auto-assignment-rule-configuration
+  learn: https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-auto-assignment-policy
+  shows: 'Access package automatic assignment policy: the rule built from user attributes'
+  tab: related
+  relation: The kit checks the access packages' automatic assignment rules in the reviewed configuration before
+    they're deployed.
+  capture: hr/04-3
+- page: docs/books/guides/hr-driven-identity-implementation.md
+  figure: fig-learn-require-validation
+  learn: https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list
+  shows: 'CBA configuration: the ''Require CRL validation'' tenant setting (every CA must have a CRL)'
+  tab: exact
+  capture: hr/05-3
+- page: docs/books/guides/hr-driven-identity-implementation.md
+  figure: fig-learn-custom-task-launch-wait
+  learn: https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-extensibility
+  shows: 'Custom task extension behavior: ''Launch and wait'' (callback) selected'
+  tab: related
+  relation: The kit compares the deployed extension's callback settings, the launch-and-wait behavior, with its
+    registry.
+  capture: adm/05-10
+  requirements:
+    file: examples/drift-pipeline/deploy/requirements.json
+    step: R-LCW-1
+    controls:
+    - AC-2
+    ksi:
+    - KSI-IAM-AAM
+    other: []
+- page: docs/books/guides/hcm-entra-implementation.md
+  figure: fig-learn-api-driven-inbound-provisioning-apps
+  learn: https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-configure-app
+  shows: 'Enterprise app gallery: the two API-driven inbound provisioning apps (to Microsoft Entra ID, to on-premises
+    AD)'
+  tab: none
+  reason: No script performs this step yet. Creating the app is a manual portal step (Book 19 Chapter 01, Lab 2
+    step 1).
+- page: docs/books/guides/hcm-entra-implementation.md
+  figure: fig-learn-end-to-end-workflow
+  learn: https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-concepts
+  shows: 'Learn diagram, not a portal screen: the client POSTs a SCIM bulk request, gets 202 Accepted, then reads
+    the provisioning logs'
+  tab: none
+  reason: 'A Learn diagram, not a portal screen: there is no portal step for a script to mirror.'
+- page: docs/books/guides/hcm-entra-implementation.md
+  figure: fig-learn-verify-provisioning-logs
+  learn: https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-custom-attributes
+  shows: 'Provisioning log entry > Modified properties: each attribute with its old and new value'
+  tab: related
+  relation: Microsoft's CSV2SCIM script summarizes the last provisioning cycle's logs for the records the run sent.
+  command: '../third_party/csv2scim/src/CSV2SCIM.ps1 -TenantId <tenant-id> -ServicePrincipalId <provisioning-app-object-id>
+    -GetPreviousCycleLogs
+
+    (Get-Content out-apply/provenance.json -Raw | ConvertFrom-Json).batches.person_keys'
+  edition: PowerShell 7
+  needs: a tenant with the provisioning app
+  requirements:
+    file: examples/drift-pipeline/deploy/requirements.json
+    step: R-HR-1
+    controls:
+    - AC-2
+    ksi:
+    - KSI-IAM-AAM
+    other: []
+- page: docs/books/guides/hcm-entra-implementation.md
+  figure: fig-learn-progress-bar-quarantined
+  learn: https://learn.microsoft.com/entra/identity/app-provisioning/application-provisioning-quarantine-status
+  shows: 'Provisioning page: the job''s status bar showing Quarantine'
+  tab: related
+  relation: The preflight check reads the provisioning job's status and fails on anything but Paused or Not run,
+    so it stops on a quarantined job.
+  command: 'export HRLC_GRAPH_TOKEN=$(hrlc_token reader)
+
+    python deploy/preflight.py --settings "$SETTINGS" --mode tenant --out "$EVIDENCE/preflight" --evidence-dir "$EVIDENCE/records"'
+  edition: PowerShell 7
+  needs: a tenant with the provisioning app
+  requirements:
+    file: examples/hr-lifecycle/deploy/evidence.py
+    step: preflight
+    controls:
+    - AC-2
+    - AC-5
+    - AC-6
+    - CM-3(2)
+    - CM-6
+    ksi:
+    - KSI-IAM-JIT
+    - KSI-IAM-ELP
+    - KSI-CMT-VTD
+    - KSI-MLA-EVC
+    other:
+    - CISA BOD 25-01 MS.AAD.7.5v1
+    - FedRAMP AGU-USE-ABU
+- page: docs/books/guides/hcm-entra-implementation.md
+  figure: fig-learn-oracle-hcm-provisioning
+  learn: https://learn.microsoft.com/entra/identity/saas-apps/oracle-hcm-provisioning-tutorial
+  shows: 'Learn architecture diagram, not a portal screen: Oracle HCM extracts and Atom feeds through a custom module
+    to the bulkUpload API, with optional writeback'
+  tab: none
+  reason: 'A Learn diagram, not a portal screen: there is no portal step for a script to mirror.'
+- page: docs/books/guides/attribute-driven-migration.md
+  figure: fig-learn-validate-tab-results
+  learn: https://learn.microsoft.com/entra/identity/users/groups-dynamic-rule-validation
+  shows: 'Dynamic group > Validate Rules tab: named users, each shown as matching the rule or not'
+  tab: related
+  relation: The script evaluates the same rule offline against the kit's sample population and lists who matches;
+    the live check is Microsoft Graph's evaluateDynamicMembership (Book 19, Chapter 04, Lab 2).
+  capture: adm/04-2
+  requirements:
+    file: examples/drift-pipeline/deploy/requirements.json
+    step: R-DG-1
+    controls:
+    - AC-2
+    - AC-3
+    - CM-3(2)
+    ksi:
+    - KSI-IAM-AAM
+    - KSI-IAM-ELP
+    - KSI-CMT-VTD
+    other: []
+- page: docs/books/guides/attribute-driven-migration.md
+  figure: fig-learn-admin-unit-properties
+  learn: https://learn.microsoft.com/entra/identity/role-based-access-control/admin-units-members-dynamic
+  shows: 'Administrative unit Properties: membership type (dynamic) and the Restricted management setting'
+  tab: related
+  relation: VK-DG-07 reads each administrative unit's dynamic rule and restricted-management setting and checks
+    them against the unit's group.
+  run:
+    cwd: examples/validation-kit
+    edition: '5.1'
+    code: 'Import-Module ./powershell/ValidationKit/ValidationKit.psd1
+
+      $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf ''2026-10-29T00:00:00Z''
+
+      Invoke-VkDg07 -Context $ctx | Select-Object -ExpandProperty Details | Format-List Severity, Object, Issue'
+- page: docs/books/guides/attribute-driven-migration.md
+  figure: fig-learn-edit-filter-for-applications
+  learn: https://learn.microsoft.com/entra/identity/conditional-access/concept-filter-for-applications
+  shows: 'Conditional Access > Target resources > Edit filter: selecting apps by a custom security attribute (string
+    attributes only)'
+  tab: none
+  reason: No script performs this step yet. No policy file uses conditions.applications.applicationFilter.
+- page: docs/books/guides/attribute-driven-migration.md
+  figure: fig-learn-username-binding-policy
+  learn: https://learn.microsoft.com/entra/identity/authentication/how-to-certificate-based-authentication
+  shows: 'CBA settings: the username binding rows (certificate field, affinity, user attribute)'
+  tab: related
+  relation: The kit reads the certificate-based authentication policy export and reports its username binding rows
+    (CB-13); it doesn't read the required affinity value.
+  capture: hr/05-3
+- page: docs/books/guides/attribute-driven-migration.md
+  figure: fig-learn-edit-cert
+  learn: https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids
+  shows: 'User properties > Authorization info: where a cloud-only user''s certificateUserIds is edited'
+  tab: related
+  relation: VK-PIV-01 reads each pilot card holder's certificateUserIds (binding types, never the values); it reads,
+    while the screen also edits.
+  run:
+    cwd: examples/validation-kit
+    edition: '5.1'
+    code: 'Import-Module ./powershell/ValidationKit/ValidationKit.psd1
+
+      $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf ''2026-10-29T00:00:00Z''
+
+      Invoke-VkPiv01 -Context $ctx | Select-Object -ExpandProperty Details | Format-List Severity, Object, Issue'
+- page: docs/books/guides/attribute-driven-migration-implementation.md
+  figure: fig-learn-schema-1
+  learn: https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/custom-attribute-mapping
+  shows: 'Cloud Sync attribute mapping: an AD attribute mapped to employeeHireDate'
+  tab: none
+  reason: No script performs this step yet. No script reads or writes sync attribute mappings.
+- page: docs/books/guides/attribute-driven-migration-implementation.md
+  figure: fig-learn-validate-tab-results
+  learn: https://learn.microsoft.com/entra/identity/users/groups-dynamic-rule-validation
+  shows: 'Dynamic group > Validate Rules tab: named users who should and shouldn''t match'
+  tab: related
+  relation: The script evaluates the same rule offline against the kit's sample population and lists who matches;
+    the live check is Microsoft Graph's evaluateDynamicMembership (Book 19, Chapter 04, Lab 2).
+  capture: adm/04-2
+  requirements:
+    file: examples/drift-pipeline/deploy/requirements.json
+    step: R-DG-1
+    controls:
+    - AC-2
+    - AC-3
+    - CM-3(2)
+    ksi:
+    - KSI-IAM-AAM
+    - KSI-IAM-ELP
+    - KSI-CMT-VTD
+    other: []
+- page: docs/books/guides/attribute-driven-migration-implementation.md
+  figure: fig-learn-admin-unit-properties
+  learn: https://learn.microsoft.com/entra/identity/role-based-access-control/admin-units-members-dynamic
+  shows: 'Administrative unit Properties: membership type and Restricted management (No by default)'
+  tab: related
+  relation: VK-DG-07 reads each administrative unit's dynamic rule and restricted-management setting and checks
+    them against the unit's group.
+  run:
+    cwd: examples/validation-kit
+    edition: '5.1'
+    code: 'Import-Module ./powershell/ValidationKit/ValidationKit.psd1
+
+      $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf ''2026-10-29T00:00:00Z''
+
+      Invoke-VkDg07 -Context $ctx | Select-Object -ExpandProperty Details | Format-List Severity, Object, Issue'
+- page: docs/books/guides/attribute-driven-migration-implementation.md
+  figure: fig-learn-username-binding-policy
+  learn: https://learn.microsoft.com/entra/identity/authentication/how-to-certificate-based-authentication
+  shows: 'CBA settings: Required affinity binding (Low in Learn''s example) and the username binding rows'
+  tab: related
+  relation: The kit reads the certificate-based authentication policy export and reports its username binding rows
+    (CB-13); it doesn't read the required affinity value.
+  capture: hr/05-3
+- page: docs/books/guides/attribute-driven-migration-implementation.md
+  figure: fig-learn-edit-cert
+  learn: https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificateuserids
+  shows: 'User properties > Authorization info: checking a user''s certificateUserIds by hand'
+  tab: related
+  relation: VK-PIV-01 reads each pilot card holder's certificateUserIds (binding types, never the values); it reads,
+    while the screen also edits.
+  run:
+    cwd: examples/validation-kit
+    edition: '5.1'
+    code: 'Import-Module ./powershell/ValidationKit/ValidationKit.psd1
+
+      $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf ''2026-10-29T00:00:00Z''
+
+      Invoke-VkPiv01 -Context $ctx | Select-Object -ExpandProperty Details | Format-List Severity, Object, Issue'
+- page: docs/books/guides/global-secure-access-implementation.md
+  figure: fig-learn-client-download-screen
+  learn: https://learn.microsoft.com/entra/global-secure-access/how-to-install-windows-client
+  shows: 'Entra admin center > Global Secure Access > Connect > Client download: downloading the Windows client
+    installer (guide Step 3.1).'
+  tab: none
+  reason: 'No script performs this step yet. No script downloads the installer; the kit only reads deployment after
+    the fact (capture gsa/03-2, device-usage: activeDeviceCount; tools/Get-GsaClientState.ps1 reads the installed
+    client on a device).'
+- page: docs/books/guides/global-secure-access-implementation.md
+  figure: fig-learn-microsoft-traffic-profile
+  learn: https://learn.microsoft.com/entra/global-secure-access/tutorial-microsoft-traffic-enable-profile
+  shows: 'Traffic forwarding page: the Microsoft traffic profile turned on (Enabled) and assigned to users and groups
+    (guide Step 4.1-4.2).'
+  tab: exact
+  capture: gsa/04-3
+  requirements:
+    file: examples/global-secure-access/config/requirements.json
+    step: TRAFFIC
+    controls:
+    - AC-17
+    - AU-3
+    - SI-4
+    ksi:
+    - KSI-IAM-ELP
+    - KSI-MLA-OSM
+    other: []
+- page: docs/books/guides/global-secure-access-implementation.md
+  figure: fig-learn-user-log-data
+  learn: https://learn.microsoft.com/entra/global-secure-access/how-to-source-ip-restoration
+  shows: 'Entra sign-in logs: the user''s IP address beside the Global Secure Access IP address (source IP restoration,
+    guide Step 4 Validate).'
+  tab: related
+  relation: The script queries the same sign-in log for the share of sign-ins that went through Global Secure Access,
+    rather than the two IP address columns.
+  capture: gsa/04-4
+  requirements:
+    file: examples/global-secure-access/config/requirements.json
+    step: TRAFFIC
+    controls:
+    - AC-17
+    - AU-3
+    - SI-4
+    ksi:
+    - KSI-IAM-ELP
+    - KSI-MLA-OSM
+    other: []
+- page: docs/books/guides/global-secure-access-implementation.md
+  figure: fig-learn-you-cannot-access-this-right-now-error
+  learn: https://learn.microsoft.com/entra/global-secure-access/how-to-compliant-network
+  shows: The user-facing block message when the client is disabled and the compliant network policy applies (guide
+    Step 7 Validate, Learn's test).
+  tab: related
+  relation: The screen is what the user sees; the script reads the same test's report-only results from the sign-in
+    log.
+  capture: gsa/05-4
+  requirements:
+    file: examples/global-secure-access/config/requirements.json
+    step: COMPLIANT
+    controls:
+    - AC-3
+    - AC-12
+    - SC-23
+    ksi:
+    - KSI-IAM-ELP
+    - KSI-CNA-ULN
+    - KSI-IAM-APM
+    other: []
+- page: docs/books/guides/global-secure-access-implementation.md
+  figure: fig-learn-certificate-viewer
+  learn: https://learn.microsoft.com/entra/global-secure-access/how-to-transport-layer-security
+  shows: 'A browser''s Certificate Viewer on an inspected site: issuer is Microsoft Global Secure Access Intermediate
+    (guide Step 9 Validate).'
+  tab: related
+  relation: The script reads the TLS inspection certificate configured in the tenant; the screen shows what a browser
+    sees on an inspected site.
+  capture: gsa/07-6
+  requirements:
+    file: examples/global-secure-access/config/requirements.json
+    step: TLS
+    controls:
+    - SC-8
+    - SC-12
+    - SC-17
+    - SI-4
+    ksi:
+    - KSI-SVC-SIN
+    - KSI-SVC-ASM
+    - KSI-CNA-MAT
+    other: []
+- page: docs/books/guides/azure-security-implementation.md
+  figure: fig-learn-ddos-protection-alert-add-condition
+  learn: https://learn.microsoft.com/azure/ddos-protection/test-through-simulations
+  shows: 'Azure Monitor > Create an alert rule > Condition: the ''Under DDoS attack or not'' (IfUnderDDoSAttack)
+    metric signal on the protected public IP (guide Step 3.4).'
+  tab: related
+  relation: The kit checks that an enabled alert on the DDoS metric exists; the guide's Azure CLI block creates
+    it.
+  capture: azs/03-4
+  requirements:
+    file: examples/azure-security/config/requirements.json
+    step: DDOS
+    controls:
+    - SC-5
+    - SI-4
+    ksi:
+    - KSI-CNA-RVP
+    - KSI-MLA-LET
+    other: []
+- page: docs/books/guides/azure-security-implementation.md
+  figure: fig-learn-ddos-public-ip-diagnostic-setting
+  learn: https://learn.microsoft.com/azure/ddos-protection/test-through-simulations
+  shows: 'Public IP diagnostic setting: allLogs (the three DDoS categories) and AllMetrics sent to the Log Analytics
+    workspace (guide Step 3.3).'
+  tab: related
+  relation: The kit checks that the public IP's DDoS logs and metrics reach the workspace; the guide's Azure CLI
+    block creates the setting.
+  capture: azs/03-4
+  requirements:
+    file: examples/azure-security/config/requirements.json
+    step: DDOS
+    controls:
+    - SC-5
+    - SI-4
+    ksi:
+    - KSI-CNA-RVP
+    - KSI-MLA-LET
+    other: []
+- page: docs/books/guides/azure-security-implementation.md
+  figure: fig-learn-front-door-private-endpoint-architecture
+  learn: https://learn.microsoft.com/azure/frontdoor/private-link
+  shows: 'Architecture diagram (not a portal screen): Front Door Premium reaching origins over Private Link, origin
+    not routable from the internet (guide Step 5).'
+  tab: none
+  reason: 'A Learn diagram, not a portal screen: there is no portal step for a script to mirror.'
+- page: docs/books/guides/azure-security-implementation.md
+  figure: fig-learn-private-link-example-central-dns
+  learn: https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/private-link-and-dns-integration-at-scale
+  shows: 'Architecture diagram (not a portal screen): central privatelink zone, DNS Private Resolver in the hub,
+    forwarders from on premises (guide Step 7).'
+  tab: none
+  reason: 'A Learn diagram, not a portal screen: there is no portal step for a script to mirror.'
+- page: docs/books/guides/zero-trust-assessment-implementation.md
+  figure: fig-learn-revoke-permissions
+  learn: https://learn.microsoft.com/entra/identity/enterprise-apps/manage-application-permissions
+  shows: 'Entra admin center > Enterprise app > Permissions > Admin consent tab: delegated grants with Revoke Permission
+    (guide Step 3, items 2 and 4).'
+  tab: exact
+  command: '$clientId = (Get-MgContext).ClientId
+
+    Connect-MgGraph -Scopes Application.Read.All, DelegatedPermissionGrant.Read.All
+
+    $sp = Get-MgServicePrincipal -Filter "appId eq ''$clientId''"
+
+    Get-MgOauth2PermissionGrant -Filter "clientId eq ''$($sp.Id)''" | Format-List Id, ConsentType, PrincipalId,
+    Scope
+
+    # revoke (item 4)
+
+    Connect-MgGraph -Scopes DelegatedPermissionGrant.ReadWrite.All
+
+    Remove-MgOauth2PermissionGrant -OAuth2PermissionGrantId <grant-id>'
+  edition: PowerShell 7
+  needs: a tenant
+- page: docs/books/guides/provider-notices-implementation.md
+  figure: fig-learn-azure-service-health-portal
+  learn: https://learn.microsoft.com/azure/service-health/overview
+  shows: 'Azure portal > Service Health > Service issues: active events by type (service issues, planned maintenance,
+    health and security advisories).'
+  tab: exact
+  capture: pn/01-4
+  requirements:
+    file: examples/provider-notices/config/requirements.json
+    step: COL-AZURE
+    controls:
+    - SA-9
+    - SI-5
+    ksi:
+    - KSI-SCR-MIT
+    - KSI-SCR-MON
+    other: []
+- page: docs/books/guides/provider-notices-implementation.md
+  figure: fig-learn-impact-security
+  learn: https://learn.microsoft.com/azure/service-health/impacted-resources-security
+  shows: Service Health security incident > Impacted Resources tab (needs Service Health Security Reader).
+  tab: none
+  reason: 'No close scripted twin: The kit reads impacted resources through Resource Graph (Get-PnAzureQuery -Name
+    impacted, call azure-impacted-resources) inside Invoke-PnCollect -Provider azure.'
+- page: docs/books/guides/provider-notices-implementation.md
+  figure: fig-learn-policy-remediation
+  learn: https://learn.microsoft.com/azure/service-health/service-health-alert-deploy-policy
+  shows: 'Azure Policy > Assign policy > Remediation tab: create a remediation task for ''Configure subscriptions
+    to enable service health alert monitoring rule'' with a system-assigned identity.'
+  tab: exact
+  capture: pn/01-7
+  requirements:
+    file: examples/provider-notices/config/requirements.json
+    step: ALERTS
+    controls:
+    - SI-5
+    - CA-7
+    ksi:
+    - KSI-SCR-MON
+    - KSI-MLA-EVC
+    other: []
+- page: docs/books/guides/provider-notices-implementation.md
+  figure: fig-learn-sh-page-upper-section
+  learn: https://learn.microsoft.com/microsoft-365/enterprise/view-service-health
+  shows: 'Microsoft 365 admin center > Service health: active issues (title, type, service, ID).'
+  tab: exact
+  capture: pn/02-4
+  requirements:
+    file: examples/provider-notices/config/requirements.json
+    step: COL-M365
+    controls:
+    - SA-9
+    - SI-5
+    ksi:
+    - KSI-SCR-MIT
+    - KSI-SCR-MON
+    other: []
+- page: docs/books/guides/daily-checks-dashboard-implementation.md
+  figure: fig-learn-add-role-assignment-select-role
+  learn: https://learn.microsoft.com/azure/azure-monitor/logs/tutorial-logs-ingestion-portal
+  shows: 'Azure portal > data collection rule > Add role assignment: Monitoring Metrics Publisher selected (guide
+    Step 1.5).'
+  tab: none
+  reason: No script performs this step yet. No script grants the role; the kit's README and workbook chapter 04
+    assume it is in place.
+- page: docs/books/guides/daily-checks-dashboard-implementation.md
+  figure: fig-learn-workbooks-log-analytics-icon
+  learn: https://learn.microsoft.com/azure/azure-monitor/visualize/workbooks-overview
+  shows: 'Azure portal > Monitor > Log Analytics workspaces > Workbooks: opening the workbook each morning (guide
+    Step 5).'
+  tab: related
+  relation: 'The script prints what each tab of the daily checks workbook shows: the scripted read of the morning
+    view.'
+  capture: dc/03-1
+- page: docs/books/guides/daily-checks-dashboard-implementation.md
+  figure: fig-learn-connect-health-adds-overview
+  learn: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-adds
+  shows: 'Microsoft Entra Connect Health for AD DS overview: domain controllers monitored and replication status
+    (link-out from the Active Directory tab).'
+  tab: exact
+  capture: dc/03-4
+  requirements:
+    file: examples/daily-checks-workbook/config/requirements.json
+    step: PROBE
+    controls:
+    - CA-7
+    - SI-4
+    ksi:
+    - KSI-MLA-EVC
+    - KSI-MLA-LET
+    other: []
+- page: docs/books/guides/arc-track-implementation.md
+  figure: fig-learn-connected-machine-agent
+  learn: https://learn.microsoft.com/azure/azure-arc/servers/agent-overview
+  shows: 'Architecture diagram (not a portal action): the Connected Machine agent''s components (HIMDS, Guest Configuration,
+    Extension Manager) and the HTTPS 443 endpoints each reaches in Entra ID and Azure Resource Manager; placed in
+    step 1.3 ''Open the agent''s network''.'
+  tab: none
+  reason: 'A Learn diagram, not a portal screen: there is no portal step for a script to mirror.'
+- page: docs/books/guides/arc-track-implementation.md
+  figure: fig-learn-arc-for-servers-successful-onboard
+  learn: https://learn.microsoft.com/azure/azure-arc/servers/onboard-service-principal
+  shows: Azure Arc | Machines list after a wave, with the server's Arc agent status Connected.
+  tab: related
+  relation: VK-ARC-02 reads the same agent status the Machines list shows and flags servers that are Disconnected
+    or Expired.
+  run:
+    cwd: examples/validation-kit
+    edition: '5.1'
+    code: 'Import-Module ./powershell/ValidationKit/ValidationKit.psd1
+
+      $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf ''2026-10-29T00:00:00Z'' -Option @{ MinSupportedAgentVersion
+      = ''1.58'' }
+
+      Invoke-VkArc02 -Context $ctx | Select-Object -ExpandProperty Details | Format-List Severity, Object, Issue'
+  requirements:
+    file: examples/drift-pipeline/deploy/requirements.json
+    step: R-SM-1
+    controls:
+    - CM-4(2)
+    - CA-7
+    ksi:
+    - KSI-CMT-LMC
+    - KSI-CMT-VTD
+    - KSI-MLA-EVC
+    other: []
+- page: docs/books/guides/arc-track-implementation.md
+  figure: fig-learn-baseline-settings-parameter-configuration
+  learn: https://learn.microsoft.com/azure/governance/machine-configuration/how-to/assign-security-baselines/deploy-a-baseline-policy-assignment
+  shows: 'Assign policy > Parameters tab for the customizable security baseline: Include Arc connected servers,
+    the uploaded Baseline Settings JSON, and Effect AuditIfNotExists.'
+  tab: none
+  reason: 'No close scripted twin: Same action (an audit-only machine configuration policy assignment with Include
+    Arc machines), different definition: the repo assigns the kit''s own custom package built by Invoke-McBuild.ps1,
+    not Microsoft''s built-in customizable baseline with an uploaded baseline JSON.'
+- page: docs/books/guides/arc-track-implementation.md
+  figure: fig-learn-update-manager-overview
+  learn: https://learn.microsoft.com/azure/update-manager/workflow-update-manager
+  shows: 'Workflow diagram (not a portal action): Update Manager''s extension calls the machine''s own update client,
+    and assessment and install results are stored in Azure Resource Graph.'
+  tab: none
+  reason: 'A Learn diagram, not a portal screen: there is no portal step for a script to mirror.'
+- page: docs/books/guides/arc-track-implementation.md
+  figure: fig-learn-periodic-assessment-inline
+  learn: https://learn.microsoft.com/azure/update-manager/assessment-options
+  shows: 'Update Manager | Machines page: which servers have periodic assessment Yes/No, and the count with no update
+    data.'
+  tab: related
+  relation: VK-ARC-05 finds servers with no recent patch assessment data and servers no schedule covers; it doesn't
+    read the periodic assessment setting itself.
+  run:
+    cwd: examples/validation-kit
+    edition: '5.1'
+    code: 'Import-Module ./powershell/ValidationKit/ValidationKit.psd1
+
+      $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf ''2026-10-29T00:00:00Z''
+
+      Invoke-VkArc05 -Context $ctx | Select-Object -ExpandProperty Details | Format-List Severity, Object, Issue'
+  requirements:
+    file: examples/drift-pipeline/deploy/requirements.json
+    step: R-SM-1
+    controls:
+    - CM-4(2)
+    - CA-7
+    ksi:
+    - KSI-CMT-LMC
+    - KSI-CMT-VTD
+    - KSI-MLA-EVC
+    other: []
+- page: docs/books/guides/intune-track-implementation.md
+  figure: fig-learn-report-only-detail-in-sign-in-log
+  learn: https://learn.microsoft.com/entra/identity/conditional-access/concept-conditional-access-report-only
+  shows: 'Sign-in log > Activity Details > Report-only tab: each report-only Conditional Access policy''s would-be
+    result (Report-only: Success / Not applied) for one sign-in.'
+  tab: none
+  reason: 'No close scripted twin: Same object (report-only results from SigninLogs'' ConditionalAccessPolicies),
+    but for the GSA compliant-network pilot policy NET-CN-Require-Compliant-Network-Pilot, not the Intune track''s
+    compliant-device policies; and it''s a 7-day summary, not one sign-in.'
+- page: docs/books/guides/intune-track-implementation.md
+  figure: fig-learn-detection-rule
+  learn: https://learn.microsoft.com/entra/global-secure-access/how-to-install-windows-client
+  shows: 'Intune Win32 app Detection rule pane for the Global Secure Access client: File, C:\Program Files\Global
+    Secure Access Client\TrayApp, GlobalSecureAccessClient.exe, String (version) >= 2.20.56.'
+  tab: related
+  relation: The command reads the client's file version, the value the detection rule tests; run it on the device.
+  command: (Get-Item "C:\Program Files\Global Secure Access Client\TrayApp\GlobalSecureAccessClient.exe").VersionInfo.FileVersion
+  edition: Windows PowerShell 5.1
+  needs: a device with the client installed
+  requirements:
+    file: examples/global-secure-access/config/requirements.json
+    step: CLIENT
+    controls:
+    - CM-6
+    - CM-7
+    - SI-4
+    ksi:
+    - KSI-MLA-EVC
+    - KSI-CNA-RNT
+    other: []
+- page: docs/books/guides/intune-track-implementation.md
+  figure: fig-learn-global-secure-access-client-installed-connected
+  learn: https://learn.microsoft.com/entra/global-secure-access/how-to-install-windows-client
+  shows: 'Windows tray tooltip: Global Secure Access Client - connected.'
+  tab: exact
+  capture: gsa/03-4
+  requirements:
+    file: examples/global-secure-access/config/requirements.json
+    step: CLIENT
+    controls:
+    - CM-6
+    - CM-7
+    - SI-4
+    ksi:
+    - KSI-MLA-EVC
+    - KSI-CNA-RNT
+    other: []
+- page: docs/books/guides/intune-track-implementation.md
+  figure: fig-learn-01
+  learn: https://learn.microsoft.com/entra/identity/devices/manage-stale-devices
+  shows: Entra admin center Devices list with the Activity column (approximateLastSignInDateTime) used to find stale
+    devices.
+  tab: exact
+  run:
+    cwd: examples/validation-kit
+    edition: '5.1'
+    code: 'Import-Module ./powershell/ValidationKit/ValidationKit.psd1
+
+      $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf ''2026-10-29T00:00:00Z'' -Option @{ StaleDays
+      = 60 }
+
+      Invoke-VkInt02 -Context $ctx | Select-Object -ExpandProperty Details | Format-List Severity, Object, Issue'
+- page: docs/books/guides/ansible-configuration-automation.md
+  figure: fig-learn-arc-for-servers-successful-onboard
+  learn: https://learn.microsoft.com/azure/azure-arc/servers/onboard-service-principal
+  shows: Azure Arc | Machines list after the onboarding playbook, with the target's Arc agent status Connected.
+  tab: related
+  relation: VK-ARC-02 reads the same agent status the Machines list shows and flags servers that are Disconnected
+    or Expired.
+  command: 'ansible-playbook "$ADM_ARC_PLAYBOOK" -e onboarding_wave="$ADM_ARC_WAVE" -e confirm_change=true | tee
+    "$ADM_EVIDENCE_DIR/arc-connect.txt"
+
+    azcmagent show'
+  edition: Bash
+  needs: a tenant or server
+  requirements:
+    file: examples/drift-pipeline/deploy/requirements.json
+    step: R-ARC-1
+    controls:
+    - CM-8
+    - AC-6
+    - CM-3(2)
+    ksi:
+    - KSI-PIY-GIV
+    - KSI-IAM-ELP
+    - KSI-CMT-VTD
+    other: []
+- page: docs/books/guides/ttm-servicenow-sailpoint.md
+  figure: fig-learn-add-client-certificate
+  learn: https://learn.microsoft.com/entra/identity-platform/how-to-add-credentials
+  shows: App registration > Certificates & secrets > Certificates tab > Upload certificate (public key .cer/.pem/.crt).
+  tab: related
+  relation: The script attaches a new certificate to the app registration during a rotation, from Key Vault, once
+    the plan is approved by its hash; the screen shows a first upload.
+  capture: npi/04-9
+- page: docs/books/guides/ttm-servicenow-sailpoint.md
+  figure: fig-learn-end-to-end-workflow
+  learn: https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-concepts
+  shows: 'Diagram (not a portal action): API-driven inbound provisioning, from reading the HR source and POSTing
+    a SCIM bulk request to /bulkUpload, through 202 Accepted, to querying provisioning logs.'
+  tab: none
+  reason: 'A Learn diagram, not a portal screen: there is no portal step for a script to mirror.'
+- page: docs/books/guides/ttm-servicenow-sailpoint.md
+  figure: fig-learn-activate-page
+  learn: https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-activate-role
+  shows: 'PIM > My roles > Microsoft Entra roles > Activate pane: duration and the required Reason (where the ticket
+    number goes).'
+  tab: related
+  relation: 'Activation stays a person''s step by design: the kit refuses self-activation. The smoke test reads
+    the result afterward.'
+  command: 'Connect-MgGraph -Environment $c.GraphEnvironment -TenantId $t -ClientId $app.reader -CertificateThumbprint
+    $tp -NoWelcome
+
+    ./deploy/Invoke-PaSmokeTest.ps1 -SettingsPath $S -Phase Activate -Since (Get-Content "$run/smoke-start.txt")'
+  edition: PowerShell 7
+  needs: a tenant
+  requirements:
+    file: examples/privileged-access/deploy/requirements.json
+    step: smoke-activate
+    controls:
+    - AC-6
+    - CM-4(2)
+    ksi:
+    - KSI-IAM-JIT
+    - KSI-CMT-VTD
+    other: []
+- page: docs/books/guides/snow-sailpoint-integration-kit.md
+  figure: fig-learn-add-client-certificate
+  learn: https://learn.microsoft.com/entra/identity-platform/how-to-add-credentials
+  shows: App registration > Certificates & secrets > Certificates tab > Upload certificate; the kit's Graph clients
+    sign in with this certificate.
+  tab: related
+  relation: The script attaches a new certificate to the app registration during a rotation, from Key Vault, once
+    the plan is approved by its hash; the screen shows a first upload.
+  capture: npi/04-9
+- page: docs/books/guides/cisco-sdwan-implementation.md
+  figure: fig-learn-microsoft-traffic-profile-selected
+  learn: https://learn.microsoft.com/entra/global-secure-access/how-to-create-remote-networks
+  shows: Create a remote network > Traffic profiles tab with Microsoft traffic profile checked (a Catalyst branch
+    linked to Global Secure Access).
+  tab: none
+  reason: 'No script performs this step yet. No script in the repo creates or reads a remote network or its traffic-profile
+    link: examples/cisco-sdwan (sdwan_evidence.py) reads SD-WAN release data only, and the GSA kit''s calls.json
+    reads forwardingProfiles?$expand=policies (Microsoft traffic profile state; capture gsa/04-3, GSA-MS-01 ''Microsoft
+    traffic profile: state: enabled'') but no remoteNetworks call.'
