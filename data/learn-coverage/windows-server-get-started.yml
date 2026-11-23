@@ -6,8 +6,8 @@ name: Windows Server releases
 repo: MicrosoftDocs/windowsserverdocs
 folder: WindowsServerDocs/get-started/
 excluded: []
-commit: cceb56b597a2c1629e00ab6abf6604659c000974
-fetched: '2026-11-13'
+commit: b640f2cf0c08a765e9281dca814d7e3f379e5a52
+fetched: '2026-11-23'
 pages:
 - path: WindowsServerDocs/get-started/activation-rebuild-tokens-dat-file.md
   url: https://learn.microsoft.com/windows-server/get-started/activation-rebuild-tokens-dat-file
@@ -342,7 +342,7 @@ pages:
   url: https://learn.microsoft.com/windows-server/get-started/removed-deprecated-features-windows-server
   title: Features Removed or No Longer Developed in Windows Server
   area: general
-  ms_date: '2025-09-24'
+  ms_date: '2026-11-16'
   ms_topic: concept-article
   description: Learn about the features and functionalities removed or no longer developed in Windows Server.
   coverage: cited
@@ -473,6 +473,17 @@ pages:
   - docs/books/b02-identity/08-assessing-the-forest.md
   - docs/books/b08-ddi/04-active-directory-dns-departure.md
   - docs/reference/source-register.md
+- path: WindowsServerDocs/get-started/whats-new-windows-server-2028.md
+  url: https://learn.microsoft.com/windows-server/get-started/whats-new-windows-server-2028
+  title: 'Windows Server 2028 Preview: New features'
+  area: general
+  ms_date: '2026-11-16'
+  ms_topic: whats-new
+  description: Windows Server 2028 Preview introduces new identity, management, automation, security, recovery, storage, and virtualization features.
+  coverage: cited
+  note: ''
+  cited_by:
+  - docs/books/b02-identity/03-ad-and-entra-side-by-side.md
 - path: WindowsServerDocs/get-started/windows-server-pay-as-you-go.md
   url: https://learn.microsoft.com/windows-server/get-started/windows-server-pay-as-you-go
   title: Configure Windows Server Pay-as-you-go with Azure Arc
