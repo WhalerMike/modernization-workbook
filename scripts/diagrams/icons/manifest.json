@@ -1,17 +1,73 @@
 {
-  "_comment": "Microsoft's architecture icons, copied unmodified by vendor.py from the downloads named below. Used only in the workbook's diagrams, as Microsoft's icon terms permit. Never edit the SVGs; re-run vendor.py.",
+  "_comment": "Vendor architecture icons (Microsoft, AWS), copied unmodified by vendor.py from the downloads named below. Used only in the workbook's diagrams, as each vendor's icon terms (under downloads) permit. Never edit the SVGs; re-run vendor.py.",
   "downloads": {
     "azure": {
       "download": "Azure_Public_Service_Icons_V25.zip",
-      "documented_at": "https://learn.microsoft.com/azure/architecture/icons/"
+      "documented_at": "https://learn.microsoft.com/azure/architecture/icons/",
+      "terms": "Microsoft permits the use of these icons in architectural diagrams, training materials, or documentation. You can copy, distribute, and display the icons only for the permitted use unless granted explicit permission by Microsoft. Microsoft reserves all other rights."
     },
     "entra": {
       "download": "entra-icons.zip",
-      "documented_at": "https://learn.microsoft.com/entra/architecture/architecture-icons"
+      "documented_at": "https://learn.microsoft.com/entra/architecture/architecture-icons",
+      "terms": "Microsoft permits the use of these icons in architectural diagrams, training materials, or documentation. You can copy, distribute, and display the icons only for the permitted use unless granted explicit permission by Microsoft. Microsoft reserves all other rights."
+    },
+    "aws": {
+      "download": "aws-icons.zip",
+      "documented_at": "https://aws.amazon.com/architecture/icons/",
+      "terms": "We allow customers and partners to use these toolkits and assets to create architecture diagrams. You can also put icons in materials like whitepapers, presentations, data sheets, and posters."
     }
   },
-  "terms": "Microsoft permits the use of these icons in architectural diagrams, training materials, or documentation. You can copy, distribute, and display the icons only for the permitted use unless granted explicit permission by Microsoft. Microsoft reserves all other rights.",
   "files": {
+    "aws/aws-certificate-manager.svg": {
+      "source": "Architecture-Service-Icons_07312026/Arch_Security-Identity/48/Arch_AWS-Certificate-Manager_48.svg",
+      "bytes": 2180,
+      "sha256": "ceb602bb370f14c8238d717054c32ae5ab2ef12025d1a2215a910234be69972c"
+    },
+    "aws/aws-config.svg": {
+      "source": "Architecture-Service-Icons_07312026/Arch_Management-Tools/48/Arch_AWS-Config_48.svg",
+      "bytes": 10363,
+      "sha256": "0d7701533e4377a9a1e8f9a4d4a6592d524aca657e00390011e414d3997c1b40"
+    },
+    "aws/aws-iam-identity-center.svg": {
+      "source": "Architecture-Service-Icons_07312026/Arch_Security-Identity/48/Arch_AWS-IAM-Identity-Center_48.svg",
+      "bytes": 5003,
+      "sha256": "4bf31d6fa8b2e8b48faf2cd08bcfb55a00f8ae9d5451c82606fabf5ef2f872e9"
+    },
+    "aws/aws-iam.svg": {
+      "source": "Architecture-Service-Icons_07312026/Arch_Security-Identity/48/Arch_AWS-Identity-and-Access-Management_48.svg",
+      "bytes": 2148,
+      "sha256": "81954dcfb86d5f410f7084345e459cd5c7ca1d76032d34f771ad379c94e062b6"
+    },
+    "aws/aws-kms.svg": {
+      "source": "Architecture-Service-Icons_07312026/Arch_Security-Identity/48/Arch_AWS-Key-Management-Service_48.svg",
+      "bytes": 5511,
+      "sha256": "5655b1815bdfe9ea75a26c702efaac8d884884cccb3b306f75e54d6f542a325e"
+    },
+    "aws/aws-private-ca.svg": {
+      "source": "Architecture-Service-Icons_07312026/Arch_Security-Identity/48/Arch_AWS-Private-Certificate-Authority_48.svg",
+      "bytes": 1877,
+      "sha256": "3fbe1cde23507a3516279d9fc833af0c1fc8b7f30ccd50d023856a5ee630004d"
+    },
+    "aws/aws-secrets-manager.svg": {
+      "source": "Architecture-Service-Icons_07312026/Arch_Security-Identity/48/Arch_AWS-Secrets-Manager_48.svg",
+      "bytes": 2903,
+      "sha256": "0258cbde7033b45683db4e814980f5871d3e88fd8490ad9e9f3f531049fffe40"
+    },
+    "aws/aws-security-hub.svg": {
+      "source": "Architecture-Service-Icons_07312026/Arch_Security-Identity/48/Arch_AWS-Security-Hub_48.svg",
+      "bytes": 4097,
+      "sha256": "5a0f0b6dcd6e1620cc3e3abcaeb71d08a600093874107523a3ddcf8690317be1"
+    },
+    "aws/aws-systems-manager.svg": {
+      "source": "Architecture-Service-Icons_07312026/Arch_Management-Tools/48/Arch_AWS-Systems-Manager_48.svg",
+      "bytes": 6910,
+      "sha256": "b03519f1080a84cc183f7d24d48ee84114834b06f788c6f6459c717527d4df13"
+    },
+    "aws/route-53.svg": {
+      "source": "Architecture-Service-Icons_07312026/Arch_Networking-Content-Delivery/48/Arch_Amazon-Route-53_48.svg",
+      "bytes": 6681,
+      "sha256": "624f55ebfca201a7a69a4037baabed2fafac0a99ea05d5089efb5b6bf1819f5b"
+    },
     "azure/app-gateway.svg": {
       "source": "networking/10076-icon-service-Application-Gateways.svg",
       "bytes": 3351,

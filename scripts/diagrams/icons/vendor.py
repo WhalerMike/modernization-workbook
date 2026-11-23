@@ -1,14 +1,16 @@
-"""Copy the Microsoft product icons the diagrams use out of Microsoft's icon downloads.
+"""Copy the product icons the diagrams use out of Microsoft's and AWS's official icon downloads.
 
-    python scripts/diagrams/icons/vendor.py azure=<Azure_Public_Service_Icons_Vnn.zip> entra=<Microsoft Entra architecture icons - ....zip>
+    python scripts/diagrams/icons/vendor.py azure=<Azure_Public_Service_Icons_Vnn.zip> entra=<Microsoft Entra architecture icons - ....zip> aws=<AWS Icon-package_MMDDYYYY.zip>
 
 icons.yml names each icon the diagrams use, per set (`name: path inside the zip`). This
 copies those files, unmodified, to scripts/diagrams/icons/<set>/<name>.svg and writes
 manifest.json (each download, its page, each file's source path and SHA-256). A card in a
 diagram source names one with `icon: <name>`; names are unique across sets.
 
-Microsoft's terms for these icons (the icon pages on Microsoft Learn): "Microsoft permits
-the use of these icons in architectural diagrams, training materials, or documentation."
+Each set's terms are in SETS and are copied into manifest.json. Microsoft's (the icon pages
+on Microsoft Learn): "Microsoft permits the use of these icons in architectural diagrams,
+training materials, or documentation." AWS's (the AWS Architecture Icons page): "We allow
+customers and partners to use these toolkits and assets to create architecture diagrams."
 The workbook uses them only in its diagrams, unmodified.
 """
 from __future__ import annotations
@@ -22,13 +24,18 @@ from pathlib import Path
 import yaml
 
 HERE = Path(__file__).resolve().parent
+MICROSOFT_TERMS = ("Microsoft permits the use of these icons in architectural diagrams, training materials, or documentation. "
+                   "You can copy, distribute, and display the icons only for the permitted use unless granted explicit permission by Microsoft. "
+                   "Microsoft reserves all other rights.")
+AWS_TERMS = ("We allow customers and partners to use these toolkits and assets to create architecture diagrams. "
+             "You can also put icons in materials like whitepapers, presentations, data sheets, and posters.")
 SETS = {
-    "azure": {"prefix": "Azure_Public_Service_Icons/Icons/", "page": "https://learn.microsoft.com/azure/architecture/icons/"},
-    "entra": {"prefix": "Microsoft Entra architecture icons - Oct 2023/", "page": "https://learn.microsoft.com/entra/architecture/architecture-icons"},
+    "azure": {"prefix": "Azure_Public_Service_Icons/Icons/", "page": "https://learn.microsoft.com/azure/architecture/icons/",
+              "terms": MICROSOFT_TERMS},
+    "entra": {"prefix": "Microsoft Entra architecture icons - Oct 2023/", "page": "https://learn.microsoft.com/entra/architecture/architecture-icons",
+              "terms": MICROSOFT_TERMS},
+    "aws": {"prefix": "", "page": "https://aws.amazon.com/architecture/icons/", "terms": AWS_TERMS},
 }
-TERMS = ("Microsoft permits the use of these icons in architectural diagrams, training materials, or documentation. "
-         "You can copy, distribute, and display the icons only for the permitted use unless granted explicit permission by Microsoft. "
-         "Microsoft reserves all other rights.")
 
 
 def main(args: list[str]) -> int:
@@ -45,7 +52,8 @@ def main(args: list[str]) -> int:
         inside = set(z.namelist())
         out = HERE / set_name
         out.mkdir(exist_ok=True)
-        downloads[set_name] = {"download": Path(zips[set_name]).name, "documented_at": SETS[set_name]["page"]}
+        downloads[set_name] = {"download": Path(zips[set_name]).name, "documented_at": SETS[set_name]["page"],
+                               "terms": SETS[set_name]["terms"]}
         for name, inner in sorted(icons.items()):
             full = SETS[set_name]["prefix"] + inner
             if full not in inside:
@@ -57,10 +65,9 @@ def main(args: list[str]) -> int:
             if f"{set_name}/{stale.name}" not in files:
                 stale.unlink()
     manifest = {
-        "_comment": "Microsoft's architecture icons, copied unmodified by vendor.py from the downloads named below. "
-                    "Used only in the workbook's diagrams, as Microsoft's icon terms permit. Never edit the SVGs; re-run vendor.py.",
+        "_comment": "Vendor architecture icons (Microsoft, AWS), copied unmodified by vendor.py from the downloads named below. "
+                    "Used only in the workbook's diagrams, as each vendor's icon terms (under downloads) permit. Never edit the SVGs; re-run vendor.py.",
         "downloads": downloads,
-        "terms": TERMS,
         "files": dict(sorted(files.items())),
     }
     (HERE / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8", newline="\n")
