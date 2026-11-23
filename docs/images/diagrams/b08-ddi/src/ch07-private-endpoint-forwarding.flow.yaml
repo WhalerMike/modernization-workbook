@@ -4,7 +4,7 @@ graph: {nodesep: 0.3, ranksep: 0.55}
 nodes:
   onp: {tone: slate, width: 150, title: "On-premises resolvers", size: 12}
   aws: {icon: route-53, tone: slate, width: 150, title: "Route 53 VPC Resolver outbound rule", size: 12}
-  gcp: {tone: slate, width: 150, title: "Cloud DNS forwarding zone", size: 12}
+  gcp: {icon: gcp-networking, tone: slate, width: 150, title: "Cloud DNS forwarding zone", size: 12}
   br: {tone: slate, width: 150, title: "Branch / SD-WAN path", size: 12}
   inb: {icon: dns-private-resolver, tone: blue, width: 190, tag: "Azure", title: "DNS Private Resolver inbound endpoint", body: ["=Answers from Private DNS zones linked to the VNet"], size: 12}
   zone: {tone: green, width: 190, title: "privatelink.blob.core.windows.net", body: ["=Resolves to the private endpoint address"], size: 12}
