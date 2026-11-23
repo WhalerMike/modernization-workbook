@@ -1,49 +1,53 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.978
+00:00:00.100 --> 00:00:03.230
 The standard's rule is
 short: machines run,
 
 2
-00:00:02.978 --> 00:00:08.575
+00:00:03.230 --> 00:00:09.213
 check and record every step they can, and
 people decide, approve and accept risk.
 
 3
-00:00:08.575 --> 00:00:12.741
-A request reaches the approvers
-only after the code has checked it,
+00:00:09.213 --> 00:00:11.614
+The approvers decide on purpose and risk,
 
 4
-00:00:12.741 --> 00:00:16.225
-so they decide on purpose and
-risk, not on a naming prefix.
+00:00:11.614 --> 00:00:15.798
+and the code then checks every
+approved request against the standard,
 
 5
-00:00:16.225 --> 00:00:19.294
+00:00:15.798 --> 00:00:19.549
+so a wrong naming prefix is caught
+by the code, not by an approver.
+
+6
+00:00:19.549 --> 00:00:22.588
 The code writes the rows
 Chapter 6's plan reads,
 
-6
-00:00:19.294 --> 00:00:22.363
+7
+00:00:22.588 --> 00:00:25.625
 so the plan creates
 exactly what was approved.
 
-7
-00:00:22.363 --> 00:00:25.014
+8
+00:00:25.625 --> 00:00:27.882
 Every account is compared on every run,
 
-8
-00:00:25.014 --> 00:00:28.163
+9
+00:00:27.882 --> 00:00:30.563
 so an unrequested one is
 a finding the same day.
 
-9
-00:00:28.163 --> 00:00:30.725
+10
+00:00:30.563 --> 00:00:32.862
 Certifications follow risk tiers.
 
-10
-00:00:30.725 --> 00:00:35.640
+11
+00:00:32.862 --> 00:00:37.660
 And the code never deletes: it says which
 accounts a person may delete, and why.

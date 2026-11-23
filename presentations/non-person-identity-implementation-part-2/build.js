@@ -332,7 +332,7 @@ Chapter 06 turns each Kerberos account's reviewed disposition into a plan: an MS
   notes(s,
 `Every gMSA and dMSA the conversion creates follows the program's managed service account standard, from request to retirement. It's design guidance, settled in decisions WD-159 to WD-170, and the service accounts guide has it in full.
 
-The request. The owner asks in the agency's system access management tool, its own front end to SailPoint. The workbook's Chapter 12 checks every field against the standard before SailPoint's approvers see it: the name, two owners and a federal-employee sponsor, the hosts' group, the SPNs, the risk tier.
+The request. The owner asks in the agency's system access management tool, its own front end to SailPoint. SailPoint approves it; the workbook's Chapter 12 then checks every field of the approved request against the standard before anything is created: the name, two owners and a federal-employee sponsor, the hosts' group, the SPNs, the risk tier.
 
 The approval. SailPoint approves every managed service account request, created, changed or retired, whatever its risk tier. ServiceNow keeps the change record, the typed findings and the decommission ticket, and never approves the account. That's WD-162. In Chapter 06's plan every write carries both, and NPI-KRB-10 blocks a write without them.
 

@@ -462,7 +462,7 @@ function Test-NpiKerberosIsland {
         with the provisional end state (D11). Returns @{ Findings; Plan; IslandList; Reconciliation }.
         Findings NPI-KRB-01 to NPI-KRB-10, each with a stable ID (rule:account). Nothing here writes.
         Every write in the plan names its call's runBy (pipeline or person), the SailPoint request
-        (RequestId) and ServiceNow change (ChangeRecord) that approved it, and the controls and KSIs
+        (RequestId) that approved it, the ServiceNow change (ChangeRecord) that records it, and the controls and KSIs
         its call declares; a write with no request or no change record is Blocked (NPI-KRB-10).
     .EXAMPLE
         # Check the accounts and build the plan from what Read-NpiKrbDomain returned.
@@ -828,7 +828,7 @@ function Assert-NpiKrbPlannedWrite {
         Throws unless a plan action is a write declared for kerberos-apply, with the declared
         cmdlet, only that call's allowed parameters, the values its rule requires (with -Plan, the
         service-account OU, password interval and holding OU the plan was built with), and the
-        SailPoint request and ServiceNow change that approved it. A Remove-, Uninstall-, Undo-,
+        SailPoint request that approved it and the ServiceNow change that records it. A Remove-, Uninstall-, Undo-,
         Reset- or Clear- cmdlet always throws. Returns nothing when the action passes.
     .EXAMPLE
         # Check every write in a saved Kerberos plan before anything runs.

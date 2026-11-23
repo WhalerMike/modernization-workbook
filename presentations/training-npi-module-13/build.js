@@ -147,7 +147,7 @@ endModule(SI);
   const s = content(SC, "The steps from request to retirement: S1 to S11");
   tag(s, "How");
   const b = table(s, "Steps", 1.45, [2.6, 7.0, 2.55], ["Step", "What happens", "Runs it"], [
-    ["S1 Request", "The owner asks; Chapter 12 checks every field before SailPoint's approvers see it", "Owner; Chapter 12"],
+    ["S1 Request", "The owner asks; SailPoint approves (S3); Chapter 12 checks every field of the approved request", "Owner; Chapter 12"],
     ["S2 Decide; S3 Approve", "The decision path gives the target; SailPoint approves; ServiceNow opens the change", "Owner; approvers"],
     ["S4 Create", "The approved plan: the gMSA in the OU, AES256, 30 days, its retriever group", "The pipeline"],
     ["S5 Install and restrict", "Install-ADServiceAccount, Test-ADServiceAccount; Group Policy; no privileged group", "Hosts; Group Policy"],
@@ -158,7 +158,7 @@ endModule(SI);
   ], { fontSize: 11.5, limit: 6.5 });
   sources(s, "Sources: Module 13, Unit 3; Service Accounts guide, \"The steps\" (S1 to S11).");
   notes(s,
-`Unit 3 follows one G M S A through the steps. It's requested, and Chapter 12 checks every field before SailPoint's approvers see it: that's S1. It's decided, with the guide's decision path giving the target, in S2. SailPoint approves it, and ServiceNow opens the change record, in S3. The pipeline creates it from the approved plan, in the O U, A E S two fifty-six, thirty days and its retriever group, in S4. It's installed on the hosts and restricted with Group Policy, in S5. SailPoint aggregates it, and the ServiceNow task closes only on Chapter 12's re-read, in S6. It's watched with Defender for Identity, in S7, and certified by its owners, in S8. It's handed over when an owner leaves, in S9. And it's retired, in S10: the pipeline disables it and moves it, and after ninety days with no sign-in, a person uninstalls and deletes it. S11 is the move to Entra, when the workload moves.`,
+`Unit 3 follows one G M S A through the steps. It's requested, and once SailPoint approves it, Chapter 12 checks every field of the approved request before anything is created: that's S1. It's decided, with the guide's decision path giving the target, in S2. SailPoint approves it, and ServiceNow opens the change record, in S3. The pipeline creates it from the approved plan, in the O U, A E S two fifty-six, thirty days and its retriever group, in S4. It's installed on the hosts and restricted with Group Policy, in S5. SailPoint aggregates it, and the ServiceNow task closes only on Chapter 12's re-read, in S6. It's watched with Defender for Identity, in S7, and certified by its owners, in S8. It's handed over when an owner leaves, in S9. And it's retired, in S10: the pipeline disables it and moves it, and after ninety days with no sign-in, a person uninstalls and deletes it. S11 is the move to Entra, when the workload moves.`,
   `${M} — Unit 3 "The steps from request to retirement": Service Accounts guide, "The steps."`);
 }
 endModule(SC);

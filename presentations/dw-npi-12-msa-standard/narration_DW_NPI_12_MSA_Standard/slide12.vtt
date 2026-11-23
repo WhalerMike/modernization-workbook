@@ -1,48 +1,49 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.100
+00:00:00.100 --> 00:00:01.213
 Who's involved?
 
 2
-00:00:01.100 --> 00:00:06.350
+00:00:01.213 --> 00:00:05.813
 The identity engineers who run Chapter
 6's write path and own the standard.
 
 3
-00:00:06.350 --> 00:00:11.288
+00:00:05.813 --> 00:00:10.637
 The SailPoint and ServiceNow administrators,
 who export and import the files.
 
 4
-00:00:11.288 --> 00:00:14.462
+00:00:10.637 --> 00:00:13.650
 And the security officer,
 who reads the evidence.
 
 5
-00:00:14.462 --> 00:00:17.570
+00:00:13.650 --> 00:00:16.542
 Approvers in SailPoint
 decide on purpose and risk,
 
 6
-00:00:17.570 --> 00:00:19.938
-after the code has checked the request.
+00:00:16.542 --> 00:00:20.812
+and the code then checks each approved
+request before anything is created.
 
 7
-00:00:19.938 --> 00:00:22.900
+00:00:20.812 --> 00:00:23.486
 The two owners certify
 on their tier's cadence,
 
 8
-00:00:22.900 --> 00:00:26.876
+00:00:23.486 --> 00:00:27.075
 and the code schedules it and
 turns each revoke into a finding.
 
 9
-00:00:26.876 --> 00:00:30.021
+00:00:27.075 --> 00:00:29.943
 And a person deletes, through
 the decommission ticket,
 
 10
-00:00:30.021 --> 00:00:31.900
+00:00:29.943 --> 00:00:31.610
 from the list the code produced.

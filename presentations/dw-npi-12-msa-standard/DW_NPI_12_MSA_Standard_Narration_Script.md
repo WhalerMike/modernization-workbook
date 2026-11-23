@@ -10,7 +10,7 @@ Why does the standard need code? Because every step can drift. Each group or del
 
 ## Slide 3 — Machines run the steps; people decide
 
-The standard's rule is short: machines run, check and record every step they can, and people decide, approve and accept risk. A request reaches the approvers only after the code has checked it, so they decide on purpose and risk, not on a naming prefix. The code writes the rows Chapter 6's plan reads, so the plan creates exactly what was approved. Every account is compared on every run, so an unrequested one is a finding the same day. Certifications follow risk tiers. And the code never deletes: it says which accounts a person may delete, and why.
+The standard's rule is short: machines run, check and record every step they can, and people decide, approve and accept risk. The approvers decide on purpose and risk, and the code then checks every approved request against the standard, so a wrong naming prefix is caught by the code, not by an approver. The code writes the rows Chapter 6's plan reads, so the plan creates exactly what was approved. Every account is compared on every run, so an unrequested one is a finding the same day. Certifications follow risk tiers. And the code never deletes: it says which accounts a person may delete, and why.
 
 ## Slide 4 — What the standard and the products give the code
 
@@ -46,7 +46,7 @@ Every step leaves evidence. The request check supports A C two and I A four. The
 
 ## Slide 12 — Who runs it, who exports, who reads the evidence
 
-Who's involved? The identity engineers who run Chapter 6's write path and own the standard. The SailPoint and ServiceNow administrators, who export and import the files. And the security officer, who reads the evidence. Approvers in SailPoint decide on purpose and risk, after the code has checked the request. The two owners certify on their tier's cadence, and the code schedules it and turns each revoke into a finding. And a person deletes, through the decommission ticket, from the list the code produced.
+Who's involved? The identity engineers who run Chapter 6's write path and own the standard. The SailPoint and ServiceNow administrators, who export and import the files. And the security officer, who reads the evidence. Approvers in SailPoint decide on purpose and risk, and the code then checks each approved request before anything is created. The two owners certify on their tier's cadence, and the code schedules it and turns each revoke into a finding. And a person deletes, through the decommission ticket, from the list the code produced.
 
 ## Slide 13 — Lab 1: run the standard's checks on the fixtures
 
@@ -66,8 +66,8 @@ Lab 2 uses a test domain, never production, with Chapter 6's second lab already 
 
 ## Slide 17 — Dangers, and the guard for each
 
-Each danger has a guard. An approver might approve a request that breaks the standard, so the check runs before approval, and Chapter 6 refuses a write without a request. A group managed account created by hand is caught by the drift rule on every run. If SailPoint correlates no owner, or the wrong one, certifications go astray, so that's a finding, and one attribute names one owner. A certification by a non-owner doesn't count. A disabled account is deleted only after ninety quiet days, by a person. And because the import formats could drift from the products' exports, every header is checked.
+Each danger has a guard. An approver might approve a request that breaks the standard, so the code checks every approved request before anything is created, and Chapter 6 refuses a write without a request. A group managed account created by hand is caught by the drift rule on every run. If SailPoint correlates no owner, or the wrong one, certifications go astray, so that's a finding, and one attribute names one owner. A certification by a non-owner doesn't count. A disabled account is deleted only after ninety quiet days, by a person. And because the import formats could drift from the products' exports, every header is checked.
 
 ## Slide 18 — Done when: the chapter's checklist
 
-Here's what done looks like. Every request was checked before the approvers saw it. Every row in Chapter 6's inputs came from an approved request, with its request number and change record. SailPoint aggregates every managed account, each with one owner, and no reconciliation finding is open without a ServiceNow finding and someone to fix it. Every certification is current, every revoke is a finding, and Defender for Identity shows no user account serving as a service account that isn't on a plan. Nothing was deleted except by a person, from the list. And each run's evidence and manifest are filed with the change record.
+Here's what done looks like. Every approved request was checked before anything was created. Every row in Chapter 6's inputs came from an approved request, with its request number and change record. SailPoint aggregates every managed account, each with one owner, and no reconciliation finding is open without a ServiceNow finding and someone to fix it. Every certification is current, every revoke is a finding, and Defender for Identity shows no user account serving as a service account that isn't on a plan. Nothing was deleted except by a person, from the list. And each run's evidence and manifest are filed with the change record.

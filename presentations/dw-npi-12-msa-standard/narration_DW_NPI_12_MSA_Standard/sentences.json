@@ -60,33 +60,33 @@
  ],
  "3": [
   [
-   0.05,
-   8.525,
+   0.1,
+   9.113,
    "The standard's rule is short: machines run, check and record every step they can, and people decide, approve and accept risk."
   ],
   [
-   8.575,
-   7.65,
-   "A request reaches the approvers only after the code has checked it, so they decide on purpose and risk, not on a naming prefix."
+   9.162,
+   10.387,
+   "The approvers decide on purpose and risk, and the code then checks every approved request against the standard, so a wrong naming prefix is caught by the code, not by an approver."
   ],
   [
-   16.225,
-   6.138,
+   19.55,
+   6.075,
    "The code writes the rows Chapter 6's plan reads, so the plan creates exactly what was approved."
   ],
   [
-   22.363,
-   5.8,
+   25.625,
+   4.938,
    "Every account is compared on every run, so an unrequested one is a finding the same day."
   ],
   [
-   28.163,
-   2.562,
+   30.562,
+   2.3,
    "Certifications follow risk tiers."
   ],
   [
-   30.725,
-   4.85,
+   32.862,
+   4.775,
    "And the code never deletes: it says which accounts a person may delete, and why."
   ]
  ],
@@ -363,38 +363,38 @@
  ],
  "12": [
   [
-   0.05,
-   1.05,
+   0.1,
+   1.113,
    "Who's involved?"
   ],
   [
-   1.1,
-   5.25,
+   1.163,
+   4.65,
    "The identity engineers who run Chapter 6's write path and own the standard."
   ],
   [
-   6.35,
-   4.938,
+   5.812,
+   4.825,
    "The SailPoint and ServiceNow administrators, who export and import the files."
   ],
   [
-   11.287,
-   3.175,
+   10.637,
+   3.013,
    "And the security officer, who reads the evidence."
   ],
   [
-   14.463,
-   5.475,
-   "Approvers in SailPoint decide on purpose and risk, after the code has checked the request."
+   13.65,
+   7.162,
+   "Approvers in SailPoint decide on purpose and risk, and the code then checks each approved request before anything is created."
   ],
   [
-   19.938,
-   6.938,
+   20.812,
+   6.263,
    "The two owners certify on their tier's cadence, and the code schedules it and turns each revoke into a finding."
   ],
   [
-   26.875,
-   4.963,
+   27.075,
+   4.525,
    "And a person deletes, through the decommission ticket, from the list the code produced."
   ]
  ],
@@ -543,75 +543,75 @@
  ],
  "17": [
   [
-   0.05,
-   1.45,
+   0.1,
+   1.7,
    "Each danger has a guard."
   ],
   [
-   1.5,
-   8.213,
-   "An approver might approve a request that breaks the standard, so the check runs before approval, and Chapter 6 refuses a write without a request."
+   1.75,
+   10.075,
+   "An approver might approve a request that breaks the standard, so the code checks every approved request before anything is created, and Chapter 6 refuses a write without a request."
   ],
   [
-   9.713,
-   5.175,
+   11.825,
+   4.662,
    "A group managed account created by hand is caught by the drift rule on every run."
   ],
   [
-   14.887,
-   8.775,
+   16.488,
+   8.425,
    "If SailPoint correlates no owner, or the wrong one, certifications go astray, so that's a finding, and one attribute names one owner."
   ],
   [
-   23.663,
-   2.862,
+   24.913,
+   2.788,
    "A certification by a non-owner doesn't count."
   ],
   [
-   26.525,
-   4.95,
+   27.7,
+   4.662,
    "A disabled account is deleted only after ninety quiet days, by a person."
   ],
   [
-   31.475,
-   5.463,
+   32.362,
+   5.213,
    "And because the import formats could drift from the products' exports, every header is checked."
   ]
  ],
  "18": [
   [
-   0.05,
-   1.35,
+   0.1,
+   1.575,
    "Here's what done looks like."
   ],
   [
-   1.4,
-   3.05,
-   "Every request was checked before the approvers saw it."
+   1.625,
+   3.413,
+   "Every approved request was checked before anything was created."
   ],
   [
-   4.45,
-   6.938,
+   5.037,
+   6.362,
    "Every row in Chapter 6's inputs came from an approved request, with its request number and change record."
   ],
   [
-   11.387,
-   9.738,
+   11.4,
+   8.838,
    "SailPoint aggregates every managed account, each with one owner, and no reconciliation finding is open without a ServiceNow finding and someone to fix it."
   ],
   [
-   21.125,
-   10.05,
+   20.238,
+   9.062,
    "Every certification is current, every revoke is a finding, and Defender for Identity shows no user account serving as a service account that isn't on a plan."
   ],
   [
-   31.175,
-   3.425,
+   29.3,
+   3.138,
    "Nothing was deleted except by a person, from the list."
   ],
   [
-   34.6,
-   4.287,
+   32.438,
+   3.9,
    "And each run's evidence and manifest are filed with the change record."
   ]
  ]
