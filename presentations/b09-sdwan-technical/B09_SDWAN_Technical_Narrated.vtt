@@ -103,1345 +103,1345 @@ So the honest claim is narrow.
 Let's see how everything fits in order.
 
 22
-00:01:21.300 --> 00:01:24.615
+00:01:21.830 --> 00:01:25.145
 The book's practical rule
 is an order of operations,
 
 23
-00:01:24.615 --> 00:01:26.825
+00:01:25.145 --> 00:01:27.355
 and each module hangs off one step.
 
 24
-00:01:26.825 --> 00:01:28.537
+00:01:27.355 --> 00:01:29.067
 Secure the governor first.
 
 25
-00:01:28.537 --> 00:01:30.537
+00:01:29.067 --> 00:01:31.067
 Buy the pipe on measured physics.
 
 26
-00:01:30.537 --> 00:01:34.062
+00:01:31.067 --> 00:01:34.592
 Have the governor live and
 logging before production traffic.
 
 27
-00:01:34.062 --> 00:01:36.725
+00:01:34.592 --> 00:01:37.255
 Decide the boundary change before cutover.
 
 28
-00:01:36.725 --> 00:01:40.513
+00:01:37.255 --> 00:01:41.043
 Handle Microsoft 365
 through its own exception.
 
 29
-00:01:40.513 --> 00:01:44.222
+00:01:41.043 --> 00:01:44.752
 And register the evidence,
 including CISA's telemetry,
 
 30
-00:01:44.222 --> 00:01:46.400
+00:01:44.752 --> 00:01:46.930
 before any old circuit goes away.
 
 31
-00:01:46.400 --> 00:01:50.033
+00:01:46.930 --> 00:01:50.563
 The book is clear that this
 is an engineering dependency,
 
 32
-00:01:50.033 --> 00:01:53.512
+00:01:50.563 --> 00:01:54.042
 not a mandate, which is exactly
 why it holds up in review.
 
 33
-00:01:53.512 --> 00:01:57.450
+00:01:54.042 --> 00:01:57.980
 Module 1 starts with the physics
 the pipe is bought against.
 
 34
-00:02:01.200 --> 00:02:03.525
+00:02:01.730 --> 00:02:04.055
 Module 1 is transport physics.
 
 35
-00:02:03.525 --> 00:02:08.153
+00:02:04.055 --> 00:02:08.683
 SD-WAN claims tend to fail in one of
 two ways: promising the impossible,
 
 36
-00:02:08.153 --> 00:02:12.375
+00:02:08.683 --> 00:02:12.905
 or underselling what's real, which
 is mostly in the latency tail.
 
 37
-00:02:12.375 --> 00:02:17.026
+00:02:12.905 --> 00:02:17.556
 We'll separate the floor nothing moves from
 the gap where SD-WAN does its work, and
 
 38
-00:02:17.026 --> 00:02:21.900
+00:02:17.556 --> 00:02:22.430
 finish with what a pipe supports on its
 own, which turns out to be just one thing.
 
 39
-00:02:25.790 --> 00:02:27.902
+00:02:26.180 --> 00:02:28.292
 Every round trip has two parts.
 
 40
-00:02:27.902 --> 00:02:31.477
+00:02:28.292 --> 00:02:31.867
 One is propagation, light in
 fiber covering the distance,
 
 41
-00:02:31.477 --> 00:02:33.378
+00:02:31.867 --> 00:02:33.768
 and nothing you buy changes it.
 
 42
-00:02:33.378 --> 00:02:36.587
+00:02:33.768 --> 00:02:36.977
 The other is everything
 else: queueing, jitter,
 
 43
-00:02:36.587 --> 00:02:39.628
+00:02:36.977 --> 00:02:40.018
 loss, and routes longer
 than a straight line.
 
 44
-00:02:39.628 --> 00:02:43.715
+00:02:40.018 --> 00:02:44.105
 That second part is the only thing
 any SD-WAN feature can touch.
 
 45
-00:02:43.715 --> 00:02:46.052
+00:02:44.105 --> 00:02:46.442
 So the test for a proposal is simple.
 
 46
-00:02:46.052 --> 00:02:48.990
+00:02:46.442 --> 00:02:49.380
 Claim to beat the floor,
 and it hasn't been checked.
 
 47
-00:02:48.990 --> 00:02:52.827
+00:02:49.380 --> 00:02:53.217
 Claim to shrink the gap, and it
 might be true, so measure it.
 
 48
-00:02:52.827 --> 00:02:56.227
+00:02:53.217 --> 00:02:56.617
 The book also asks you to
 label every number you use.
 
 49
-00:02:56.227 --> 00:02:58.200
+00:02:56.617 --> 00:02:58.590
 Now, how big is that gap?
 
 50
-00:03:01.950 --> 00:03:05.425
+00:03:02.340 --> 00:03:05.815
 This is how much of the gap path
 selection can actually win back.
 
 51
-00:03:05.425 --> 00:03:09.850
+00:03:05.815 --> 00:03:10.240
 Measured internet paths run at roughly
 twice the straight-fiber floor.
 
 52
-00:03:09.850 --> 00:03:13.559
+00:03:10.240 --> 00:03:13.949
 A premium provider backbone,
 on the book's worked example
 
 53
-00:03:13.559 --> 00:03:17.425
+00:03:13.949 --> 00:03:17.815
 from London to Virginia, runs
 at about one point three times.
 
 54
-00:03:17.425 --> 00:03:20.173
+00:03:17.815 --> 00:03:20.563
 That ratio, not a vendor's
 claim, is the ceiling:
 
 55
-00:03:20.173 --> 00:03:24.556
+00:03:20.563 --> 00:03:24.946
 steering lean traffic onto a better
 underlay recovers the difference
 
 56
-00:03:24.556 --> 00:03:29.013
+00:03:24.946 --> 00:03:29.403
 between an internet path and a backbone
 path, and nothing below the floor.
 
 57
-00:03:29.013 --> 00:03:32.513
+00:03:29.403 --> 00:03:32.903
 And remember, a faster circuit
 doesn't straighten the route.
 
 58
-00:03:32.513 --> 00:03:34.463
+00:03:32.903 --> 00:03:34.853
 Only where the traffic goes does.
 
 59
-00:03:34.463 --> 00:03:36.620
+00:03:34.853 --> 00:03:37.010
 So which traffic should go where?
 
 60
-00:03:40.370 --> 00:03:45.008
+00:03:40.760 --> 00:03:45.398
 SD-WAN's core move is putting each class
 of traffic on the path built for it.
 
 61
-00:03:45.008 --> 00:03:47.650
+00:03:45.398 --> 00:03:48.040
 Lean traffic is the small, urgent stuff:
 
 62
-00:03:47.650 --> 00:03:53.346
+00:03:48.040 --> 00:03:53.736
 database heartbeats and commit acknowledgements,
 and at a branch, voice and sign-in.
 
 63
-00:03:53.346 --> 00:03:56.670
+00:03:53.736 --> 00:03:57.060
 Bulk is backups, re-syncs and patch waves.
 
 64
-00:03:56.670 --> 00:04:01.145
+00:03:57.060 --> 00:04:01.535
 The insight is that this mirrors a
 choice the data layer already makes,
 
 65
-00:04:01.145 --> 00:04:03.845
+00:04:01.535 --> 00:04:04.235
 between strong and eventual consistency.
 
 66
-00:04:03.845 --> 00:04:08.033
+00:04:04.235 --> 00:04:08.423
 When the two agree, you get the best
 synchronization physics allows.
 
 67
-00:04:08.033 --> 00:04:12.757
+00:04:08.423 --> 00:04:13.147
 And there's a neat clock angle: spend
 clock certainty instead of round trips.
 
 68
-00:04:12.757 --> 00:04:15.108
+00:04:13.147 --> 00:04:15.498
 Clock sync rides the lean path too.
 
 69
-00:04:15.108 --> 00:04:18.230
+00:04:15.498 --> 00:04:18.620
 Next, the part of SD-WAN people underrate.
 
 70
-00:04:21.980 --> 00:04:24.817
+00:04:22.370 --> 00:04:25.207
 This is where SD-WAN
 quietly earns its keep.
 
 71
-00:04:24.817 --> 00:04:29.581
+00:04:25.207 --> 00:04:29.971
 A quorum commit or a voice call is
 only as good as its unluckiest packet,
 
 72
-00:04:29.581 --> 00:04:32.456
+00:04:29.971 --> 00:04:32.846
 so what matters is the
 tail, not the average.
 
 73
-00:04:32.456 --> 00:04:35.573
+00:04:32.846 --> 00:04:35.963
 Forward error correction
 rebuilds lost packets
 
 74
-00:04:35.573 --> 00:04:38.843
+00:04:35.963 --> 00:04:39.233
 without waiting for a retry,
 at the cost of bandwidth.
 
 75
-00:04:38.843 --> 00:04:43.830
+00:04:39.233 --> 00:04:44.220
 Packet duplication sends critical packets
 down two paths, if you have two links.
 
 76
-00:04:43.830 --> 00:04:48.205
+00:04:44.220 --> 00:04:48.595
 Fast failover moves traffic
 before TCP even notices trouble.
 
 77
-00:04:48.205 --> 00:04:52.167
+00:04:48.595 --> 00:04:52.557
 And class separation stops a backup
 from queuing ahead of a call.
 
 78
-00:04:52.167 --> 00:04:54.880
+00:04:52.557 --> 00:04:55.270
 A ragged path can end
 up close to the floor.
 
 79
-00:04:54.880 --> 00:04:56.890
+00:04:55.270 --> 00:04:57.280
 Now, the pipes themselves.
 
 80
-00:05:00.640 --> 00:05:06.790
+00:05:01.030 --> 00:05:07.180
 Every underlay, fiber, MPLS, satellite,
 cellular or broadband, is a pipe.
 
 81
-00:05:06.790 --> 00:05:11.274
+00:05:07.180 --> 00:05:11.664
 Their physics differ enormously,
 and the table makes that concrete: a
 
 82
-00:05:11.274 --> 00:05:16.702
+00:05:11.664 --> 00:05:17.092
 geostationary satellite path alone blows
 the voice budget, while low orbit doesn't.
 
 83
-00:05:16.702 --> 00:05:21.391
+00:05:17.092 --> 00:05:21.781
 But their contribution to the security
 controls is the same, which is nothing.
 
 84
-00:05:21.391 --> 00:05:24.515
+00:05:21.781 --> 00:05:24.905
 MPLS is separation, not encryption.
 
 85
-00:05:24.515 --> 00:05:27.084
+00:05:24.905 --> 00:05:27.474
 What a second pipe does
 give you is diversity,
 
 86
-00:05:27.084 --> 00:05:30.903
+00:05:27.474 --> 00:05:31.293
 and a branch with local internet
 plus diverse cellular can show it.
 
 87
-00:05:30.903 --> 00:05:34.739
+00:05:31.293 --> 00:05:35.129
 Just remember each new circuit
 is another interface to govern.
 
 88
-00:05:34.739 --> 00:05:39.240
+00:05:35.129 --> 00:05:39.630
 So diversity supports one family
 and quietly enlarges another.
 
 89
-00:05:39.240 --> 00:05:41.260
+00:05:39.630 --> 00:05:41.650
 That wraps up Module 1.
 
 90
-00:05:45.080 --> 00:05:47.330
+00:05:45.400 --> 00:05:47.650
 Module 2 is the branch edge.
 
 91
-00:05:47.330 --> 00:05:50.903
+00:05:47.650 --> 00:05:51.223
 Most agencies with local breakout
 already pair it with SASE,
 
 92
-00:05:50.903 --> 00:05:52.655
+00:05:51.223 --> 00:05:52.975
 and that's the right direction.
 
 93
-00:05:52.655 --> 00:05:55.190
+00:05:52.975 --> 00:05:55.510
 But SASE changes where inspection happens,
 
 94
-00:05:55.190 --> 00:05:57.793
+00:05:55.510 --> 00:05:58.113
 not whether the stretch
 before it is governed.
 
 95
-00:05:57.793 --> 00:06:02.626
+00:05:58.113 --> 00:06:02.946
 We'll cover that gap, what TIC
 3.0 asks of the steering policy,
 
 96
-00:06:02.626 --> 00:06:06.476
+00:06:02.946 --> 00:06:06.796
 where SASE should sit, how to
 pick a pattern for each site,
 
 97
-00:06:06.476 --> 00:06:10.270
+00:06:06.796 --> 00:06:10.590
 and the Microsoft 365
 decision every branch faces.
 
 98
-00:06:14.020 --> 00:06:17.908
+00:06:14.340 --> 00:06:18.228
 Here's why a branch-edge layer
 still matters once SASE is in place.
 
 99
-00:06:17.908 --> 00:06:20.329
+00:06:18.228 --> 00:06:20.649
 With just an internet
 circuit and a router,
 
 100
-00:06:20.329 --> 00:06:23.996
+00:06:20.649 --> 00:06:24.316
 nothing at the branch notices a
 link going bad short of an outage.
 
 101
-00:06:23.996 --> 00:06:27.607
+00:06:24.316 --> 00:06:27.927
 Sign-in and backups share
 the same unmanaged queue.
 
 102
-00:06:27.607 --> 00:06:29.357
+00:06:27.927 --> 00:06:29.677
 A second circuit sits idle.
 
 103
-00:06:29.357 --> 00:06:33.445
+00:06:29.677 --> 00:06:33.765
 And interface counters can't tell you
 which application saw which delay.
 
 104
-00:06:33.445 --> 00:06:37.769
+00:06:33.765 --> 00:06:38.089
 The governed branch isn't more secure
 at the point of presence; it's governed
 
 105
-00:06:37.769 --> 00:06:42.232
+00:06:38.089 --> 00:06:42.552
 and measured on the way there, which is
 the least instrumented part of the path.
 
 106
-00:06:42.232 --> 00:06:45.760
+00:06:42.552 --> 00:06:46.080
 Next, what TIC 3.0 asks of that edge.
 
 107
-00:06:49.510 --> 00:06:55.410
+00:06:49.830 --> 00:06:55.730
 TIC 3.0 never requires SD-WAN; it
 names it once, as something to govern.
 
 108
-00:06:55.410 --> 00:06:59.876
+00:06:55.730 --> 00:07:00.196
 But two sentences in the Branch Office
 Use Case bind any steering policy,
 
 109
-00:06:59.876 --> 00:07:01.960
+00:07:00.196 --> 00:07:02.280
 and they're worth reading closely.
 
 110
-00:07:01.960 --> 00:07:07.885
+00:07:02.280 --> 00:07:08.205
 Every path, across redundant links or
 SD-WAN, has to keep the same security parity.
 
 111
-00:07:07.885 --> 00:07:12.785
+00:07:08.205 --> 00:07:13.105
 And the points deciding where flows go
 mustn't be easy to bypass or manipulate.
 
 112
-00:07:12.785 --> 00:07:17.223
+00:07:13.105 --> 00:07:17.543
 Put together, that makes the steering
 decision itself a security control.
 
 113
-00:07:17.223 --> 00:07:21.631
+00:07:17.543 --> 00:07:21.951
 The planning consequence matters too:
 circuits arrive in about a quarter,
 
 114
-00:07:21.631 --> 00:07:25.172
+00:07:21.951 --> 00:07:25.492
 but an authorized breakout
 architecture takes far longer.
 
 115
-00:07:25.172 --> 00:07:27.080
+00:07:25.492 --> 00:07:27.400
 So where does SASE sit?
 
 116
-00:07:30.830 --> 00:07:33.892
+00:07:31.150 --> 00:07:34.212
 Three practical points before
 you name a SASE service.
 
 117
-00:07:33.892 --> 00:07:39.112
+00:07:34.212 --> 00:07:39.432
 First, CISA's model: the security services
 handle traffic to the outside world,
 
 118
-00:07:39.112 --> 00:07:43.529
+00:07:39.432 --> 00:07:43.849
 SD-WAN routes internal traffic,
 and telemetry flows to CISA's CLAW.
 
 119
-00:07:43.529 --> 00:07:46.418
+00:07:43.849 --> 00:07:46.738
 Second, the enforcement
 point has a location.
 
 120
-00:07:46.418 --> 00:07:51.509
+00:07:46.738 --> 00:07:51.829
 A distant or poorly peered point of
 presence is just a hairpin with a new name,
 
 121
-00:07:51.509 --> 00:07:54.742
+00:07:51.829 --> 00:07:55.062
 so measure branch-to-PoP
 latency before cutover.
 
 122
-00:07:54.742 --> 00:07:59.960
+00:07:55.062 --> 00:08:00.280
 Third, buying: FedRAMP status is per
 offering and covers the cloud service,
 
 123
-00:07:59.960 --> 00:08:05.092
+00:08:00.280 --> 00:08:05.412
 not your boxes, and you should confirm
 the EIS line items with GSA up front.
 
 124
-00:08:05.092 --> 00:08:07.780
+00:08:05.412 --> 00:08:08.100
 Next, choosing a pattern per site.
 
 125
-00:08:11.530 --> 00:08:14.255
+00:08:11.850 --> 00:08:14.575
 Every branch ends up in
 one of four patterns.
 
 126
-00:08:14.255 --> 00:08:16.430
+00:08:14.575 --> 00:08:16.750
 The hairpin is assessed but slow.
 
 127
-00:08:16.430 --> 00:08:19.080
+00:08:16.750 --> 00:08:19.400
 Bare breakout is fast, and a regression.
 
 128
-00:08:19.080 --> 00:08:22.746
+00:08:19.400 --> 00:08:23.066
 Governed breakout, with an edge
 and a nearby security service,
 
 129
-00:08:22.746 --> 00:08:24.255
+00:08:23.066 --> 00:08:24.575
 is the reference pattern.
 
 130
-00:08:24.255 --> 00:08:27.610
+00:08:24.575 --> 00:08:27.930
 And agent-based SASE suits
 small or roaming sites,
 
 131
-00:08:27.610 --> 00:08:30.167
+00:08:27.930 --> 00:08:30.487
 if the point of presence really is near.
 
 132
-00:08:30.167 --> 00:08:34.642
+00:08:30.487 --> 00:08:34.962
 The guidance is to choose per site
 from measured latency and device mix,
 
 133
-00:08:34.642 --> 00:08:38.281
+00:08:34.962 --> 00:08:38.601
 never bare breakout, and to
 file the boundary change first.
 
 134
-00:08:38.281 --> 00:08:42.918
+00:08:38.601 --> 00:08:43.238
 Whatever you pick, DNS still has
 to reach the agency's resolver.
 
 135
-00:08:42.918 --> 00:08:47.660
+00:08:43.238 --> 00:08:47.980
 And Microsoft 365 needs its
 own exception, which is next.
 
 136
-00:08:51.410 --> 00:08:54.198
+00:08:51.730 --> 00:08:54.518
 This is the most argued
 decision at a branch.
 
 137
-00:08:54.198 --> 00:08:57.446
+00:08:54.518 --> 00:08:57.766
 Microsoft says don't inspect
 its Optimize traffic;
 
 138
-00:08:57.446 --> 00:08:59.922
+00:08:57.766 --> 00:09:00.242
 the boundary says inspect everything.
 
 139
-00:08:59.922 --> 00:09:02.801
+00:09:00.242 --> 00:09:03.121
 Both hold up, so it's a
 decision someone signs,
 
 140
-00:09:02.801 --> 00:09:05.360
+00:09:03.121 --> 00:09:05.680
 not a setting someone quietly changes.
 
 141
-00:09:05.360 --> 00:09:10.088
+00:09:05.680 --> 00:09:10.408
 Optimize is small: mail, SharePoint
 and OneDrive, and Teams media,
 
 142
-00:09:10.088 --> 00:09:13.835
+00:09:10.408 --> 00:09:14.155
 which has no names and must
 be steered by IP address.
 
 143
-00:09:13.835 --> 00:09:17.859
+00:09:14.155 --> 00:09:18.179
 The program exempts only that,
 narrower than Microsoft asks,
 
 144
-00:09:17.859 --> 00:09:20.435
+00:09:18.179 --> 00:09:20.755
 and keeps sign-in on the inspected path.
 
 145
-00:09:20.435 --> 00:09:23.682
+00:09:20.755 --> 00:09:24.002
 And it names the specific
 controls the bypass affects,
 
 146
-00:09:23.682 --> 00:09:26.135
+00:09:24.002 --> 00:09:26.455
 rather than writing inspection forgone.
 
 147
-00:09:26.135 --> 00:09:28.620
+00:09:26.455 --> 00:09:28.940
 So how is that decision made safely?
 
 148
-00:09:32.370 --> 00:09:35.328
+00:09:32.690 --> 00:09:35.648
 The attack an assessor
 will try is moving agency
 
 149
-00:09:35.328 --> 00:09:38.508
+00:09:35.648 --> 00:09:38.828
 data to some other tenant
 over the uninspected path.
 
 150
-00:09:38.508 --> 00:09:40.720
+00:09:38.828 --> 00:09:41.040
 Tenant restrictions are the control,
 
 151
-00:09:40.720 --> 00:09:45.358
+00:09:41.040 --> 00:09:45.678
 and only the version signaled from the
 Windows device protects the data plane
 
 152
-00:09:45.358 --> 00:09:49.996
+00:09:45.678 --> 00:09:50.316
 for SharePoint and Exchange, so the
 program makes it a precondition to cutover.
 
 153
-00:09:49.996 --> 00:09:54.358
+00:09:50.316 --> 00:09:54.678
 Then three documents, each signed by
 the person whose question it answers:
 
 154
-00:09:54.358 --> 00:09:59.007
+00:09:54.678 --> 00:09:59.327
 the authorizing official, the system
 owner and the architecture review board.
 
 155
-00:09:59.007 --> 00:10:03.300
+00:09:59.327 --> 00:10:03.620
 And the register's egress addresses
 have to be the real post-NAT ones,
 
 156
-00:10:03.300 --> 00:10:05.370
+00:10:03.620 --> 00:10:05.690
 verified from the branch itself.
 
 157
-00:10:05.370 --> 00:10:07.130
+00:10:05.690 --> 00:10:07.450
 That closes Part 1.
 
 158
-00:10:10.880 --> 00:10:13.842
+00:10:11.200 --> 00:10:14.162
 Module 3 turns to the governor itself.
 
 159
-00:10:13.842 --> 00:10:18.868
+00:10:14.162 --> 00:10:19.188
 If we credit SD-WAN with providing controls,
 we owe the controls that protect it.
 
 160
-00:10:18.868 --> 00:10:22.297
+00:10:19.188 --> 00:10:22.617
 We'll walk its attack surface,
 make step zero checkable,
 
 161
-00:10:22.297 --> 00:10:26.489
+00:10:22.617 --> 00:10:26.809
 look ahead to the governed path, pin
 down the evidence it has to emit,
 
 162
-00:10:26.489 --> 00:10:30.950
+00:10:26.809 --> 00:10:31.270
 and end with what the fabric owes
 the applications that ride on it.
 
 163
-00:10:34.730 --> 00:10:38.118
+00:10:35.020 --> 00:10:38.408
 SD-WAN changes the attack
 surface in two ways.
 
 164
-00:10:38.118 --> 00:10:42.363
+00:10:38.408 --> 00:10:42.653
 A single control plane now has
 authority over every branch's routing,
 
 165
-00:10:42.363 --> 00:10:46.981
+00:10:42.653 --> 00:10:47.271
 and a fleet of internet-facing edges
 replaces a few hardened egress points.
 
 166
-00:10:46.981 --> 00:10:49.305
+00:10:47.271 --> 00:10:49.595
 This is real, not hypothetical.
 
 167
-00:10:49.305 --> 00:10:54.314
+00:10:49.595 --> 00:10:54.604
 In February 2026 CISA issued an
 emergency directive for one vendor's
 
 168
-00:10:54.314 --> 00:10:58.805
+00:10:54.604 --> 00:10:59.095
 SD-WAN manager and controller,
 after an authentication bypass.
 
 169
-00:10:58.805 --> 00:11:03.713
+00:10:59.095 --> 00:11:04.003
 Two standing directives cover the fleet:
 one for end-of-support edge devices,
 
 170
-00:11:03.713 --> 00:11:06.830
+00:11:04.003 --> 00:11:07.120
 one setting patch windows
 as short as three days.
 
 171
-00:11:06.830 --> 00:11:10.905
+00:11:07.120 --> 00:11:11.195
 So the working assumption is that edge
 flaws land in the shortest window.
 
 172
-00:11:10.905 --> 00:11:13.260
+00:11:11.195 --> 00:11:13.550
 Let's make step zero concrete.
 
 173
-00:11:17.010 --> 00:11:19.817
+00:11:17.300 --> 00:11:20.107
 Step zero is easy to
 say and hard to check,
 
 174
-00:11:19.817 --> 00:11:24.410
+00:11:20.107 --> 00:11:24.700
 so this slide pairs each control
 area with the evidence to ask for.
 
 175
-00:11:24.410 --> 00:11:29.035
+00:11:24.700 --> 00:11:29.325
 Keep management interfaces off the
 internet, behind phishing-resistant sign-in.
 
 176
-00:11:29.035 --> 00:11:32.847
+00:11:29.325 --> 00:11:33.137
 Onboard edges with certificates,
 so a rogue box can't join.
 
 177
-00:11:32.847 --> 00:11:37.709
+00:11:33.137 --> 00:11:37.999
 Treat any routing-policy change as a
 reviewed change, not a console edit.
 
 178
-00:11:37.709 --> 00:11:41.535
+00:11:37.999 --> 00:11:41.825
 Patch on the federal clocks and
 track every edge's support date.
 
 179
-00:11:41.535 --> 00:11:43.410
+00:11:41.825 --> 00:11:43.700
 Keep logs off the devices.
 
 180
-00:11:43.410 --> 00:11:46.445
+00:11:43.700 --> 00:11:46.735
 The best single test is
 whether you could inventory,
 
 181
-00:11:46.445 --> 00:11:49.197
+00:11:46.735 --> 00:11:49.487
 pull logs and patch the
 whole fleet within a day.
 
 182
-00:11:49.197 --> 00:11:51.960
+00:11:49.487 --> 00:11:52.250
 Now, where the path itself is heading.
 
 183
-00:11:55.710 --> 00:11:58.498
+00:11:56.000 --> 00:11:58.788
 This one is a proposal,
 and it's labeled that way.
 
 184
-00:11:58.498 --> 00:12:03.444
+00:11:58.788 --> 00:12:03.734
 Put a well-tuned edge on a flat network
 and its value is capped: its identity
 
 185
-00:12:03.444 --> 00:12:08.472
+00:12:03.734 --> 00:12:08.762
 signals have nowhere to land, and a
 hijacked session inherits all the trust.
 
 186
-00:12:08.472 --> 00:12:13.048
+00:12:08.762 --> 00:12:13.338
 The proposal treats the path like
 a token: leased for one purpose and
 
 187
-00:12:13.048 --> 00:12:17.460
+00:12:13.338 --> 00:12:17.750
 expiring with it, so a flow with no
 token behind it shows up as drift.
 
 188
-00:12:17.460 --> 00:12:19.898
+00:12:17.750 --> 00:12:20.188
 It's careful about lane discipline, too.
 
 189
-00:12:19.898 --> 00:12:24.786
+00:12:20.188 --> 00:12:25.076
 The program observes and records; it
 doesn't route packets or pick a vendor.
 
 190
-00:12:24.786 --> 00:12:28.000
+00:12:25.076 --> 00:12:28.290
 But one part applies
 right now: the evidence.
 
 191
-00:12:31.750 --> 00:12:37.563
+00:12:32.040 --> 00:12:37.853
 Whether or not the governed path is adopted,
 every SD-WAN and SASE decision should
 
 192
-00:12:37.563 --> 00:12:42.863
+00:12:37.853 --> 00:12:43.153
 land as a record: who decided, under which
 policy, for which identity, and when.
 
 193
-00:12:42.863 --> 00:12:47.289
+00:12:43.153 --> 00:12:47.579
 Each adapter declares what it does and
 where it sits relative to the boundary,
 
 194
-00:12:47.289 --> 00:12:51.024
+00:12:47.579 --> 00:12:51.314
 and one that fits nowhere needs a
 decision before it's registered.
 
 195
-00:12:51.024 --> 00:12:53.436
+00:12:51.314 --> 00:12:53.726
 The table shows the drift worth watching,
 
 196
-00:12:53.436 --> 00:12:57.337
+00:12:53.726 --> 00:12:57.627
 like a telemetry chain that quietly
 breaks at a boundary crossing.
 
 197
-00:12:57.337 --> 00:13:01.596
+00:12:57.627 --> 00:13:01.886
 The book is candid about the limits:
 some products don't emit records,
 
 198
-00:13:01.596 --> 00:13:05.474
+00:13:01.886 --> 00:13:05.764
 so you may have to derive them from
 logs, and label them that way.
 
 199
-00:13:05.474 --> 00:13:07.860
+00:13:05.764 --> 00:13:08.150
 Next, what applications need.
 
 200
-00:13:11.610 --> 00:13:13.835
+00:13:11.900 --> 00:13:14.125
 The obligations run both ways.
 
 201
-00:13:13.835 --> 00:13:17.020
+00:13:14.125 --> 00:13:17.310
 Re-routing a branch doesn't
 break TCP on its own;
 
 202
-00:13:17.020 --> 00:13:21.798
+00:13:17.310 --> 00:13:22.088
 changing the source address does, so
 keep each branch's egress stable.
 
 203
-00:13:21.798 --> 00:13:25.524
+00:13:22.088 --> 00:13:25.814
 Give every branch a defined
 path to a domain controller,
 
 204
-00:13:25.524 --> 00:13:27.954
+00:13:25.814 --> 00:13:28.244
 or sign-ins quietly fall back to NTLM.
 
 205
-00:13:27.954 --> 00:13:32.815
+00:13:28.244 --> 00:13:33.105
 Keep sign-in and resource traffic
 leaving from the same known addresses,
 
 206
-00:13:32.815 --> 00:13:36.298
+00:13:33.105 --> 00:13:36.588
 or location policies weaken
 and tokens get shorter.
 
 207
-00:13:36.298 --> 00:13:39.823
+00:13:36.588 --> 00:13:40.113
 Prioritize small identity
 exchanges over backups.
 
 208
-00:13:39.823 --> 00:13:42.809
+00:13:40.113 --> 00:13:43.099
 And watch for stalled
 transfers after a path change.
 
 209
-00:13:42.809 --> 00:13:47.785
+00:13:43.099 --> 00:13:48.075
 The thread is address continuity, the one
 fix here a branch edge really delivers.
 
 210
-00:13:47.785 --> 00:13:50.000
+00:13:48.075 --> 00:13:50.290
 That closes Module 3.
 
 211
-00:13:53.750 --> 00:13:58.650
+00:13:54.040 --> 00:13:58.940
 Module 4 is the book's worked case: about
 fifteen hundred field offices, and a
 
 212
-00:13:58.650 --> 00:14:04.025
+00:13:58.940 --> 00:14:04.315
 proposal to spend fifty million dollars
 refreshing a content server in every one.
 
 213
-00:14:04.025 --> 00:14:07.313
+00:14:04.315 --> 00:14:07.603
 Every cost here is an
 illustrative planning estimate.
 
 214
-00:14:07.313 --> 00:14:11.999
+00:14:07.603 --> 00:14:12.289
 We'll test the request, lay out the network
 alternative, walk through its sizing,
 
 215
-00:14:11.999 --> 00:14:16.680
+00:14:12.289 --> 00:14:16.970
 cost and roadmap, and then look at the
 interim most agencies are really in.
 
 216
-00:14:20.430 --> 00:14:21.530
+00:14:20.720 --> 00:14:21.820
 Here's the case.
 
 217
-00:14:21.530 --> 00:14:25.822
+00:14:21.820 --> 00:14:26.112
 The proposal works out to about
 thirty-three thousand dollars an office,
 
 218
-00:14:25.822 --> 00:14:27.968
+00:14:26.112 --> 00:14:28.258
 roughly twice a fully loaded server.
 
 219
-00:14:27.968 --> 00:14:31.193
+00:14:28.258 --> 00:14:31.483
 So the first question is what
 that number really includes.
 
 220
-00:14:31.193 --> 00:14:33.042
+00:14:31.483 --> 00:14:33.332
 But the published limits settle it.
 
 221
-00:14:33.042 --> 00:14:36.397
+00:14:33.332 --> 00:14:36.687
 One distribution point serves
 up to four thousand clients,
 
 222
-00:14:36.397 --> 00:14:40.642
+00:14:36.687 --> 00:14:40.932
 so seventy thousand endpoints need
 about twenty-four, not fifteen hundred.
 
 223
-00:14:40.642 --> 00:14:43.418
+00:14:40.932 --> 00:14:43.708
 The other fourteen hundred
 and seventy-six exist
 
 224
-00:14:43.418 --> 00:14:46.330
+00:14:43.708 --> 00:14:46.620
 only because the branch
 circuits were once too slow.
 
 225
-00:14:46.330 --> 00:14:49.297
+00:14:46.620 --> 00:14:49.587
 The timing is off too,
 since the money lands on
 
 226
-00:14:49.297 --> 00:14:52.505
+00:14:49.587 --> 00:14:52.795
 a tier the device strategy
 is already shrinking.
 
 227
-00:14:52.505 --> 00:14:55.492
+00:14:52.795 --> 00:14:55.782
 The role isn't obsolete;
 one per office is.
 
 228
-00:14:55.492 --> 00:14:57.740
+00:14:55.782 --> 00:14:58.030
 So what does the alternative look like?
 
 229
-00:15:01.490 --> 00:15:04.997
+00:15:01.780 --> 00:15:05.287
 The alternative sizes content
 to clients, not offices,
 
 230
-00:15:04.997 --> 00:15:07.802
+00:15:05.287 --> 00:15:08.092
 and fixes transport at
 the transport layer.
 
 231
-00:15:07.802 --> 00:15:13.067
+00:15:08.092 --> 00:15:13.357
 Twelve hubs in existing facilities carry
 SD-WAN aggregation, regional breakout,
 
 232
-00:15:13.067 --> 00:15:16.367
+00:15:13.357 --> 00:15:16.657
 security inspection and
 two content servers each:
 
 233
-00:15:16.367 --> 00:15:19.589
+00:15:16.657 --> 00:15:19.879
 twenty-four in all, about
 three quarters utilized.
 
 234
-00:15:19.589 --> 00:15:25.015
+00:15:19.879 --> 00:15:25.305
 Offices get a right-sized internet circuit,
 a five G backup and no local server.
 
 235
-00:15:25.015 --> 00:15:30.463
+00:15:25.305 --> 00:15:30.753
 Peer caching keeps most bytes off the WAN,
 with one SD-WAN detail worth catching:
 
 236
-00:15:30.463 --> 00:15:34.822
+00:15:30.753 --> 00:15:35.112
 behind a hub, Delivery Optimization
 needs group or subnet mode,
 
 237
-00:15:34.822 --> 00:15:37.253
+00:15:35.112 --> 00:15:37.543
 or every office looks like one site.
 
 238
-00:15:37.253 --> 00:15:40.520
+00:15:37.543 --> 00:15:40.810
 Next, the branch hardware and its cost.
 
 239
-00:15:44.270 --> 00:15:47.205
+00:15:44.560 --> 00:15:47.495
 Offices fall into three
 tiers by seat count,
 
 240
-00:15:47.205 --> 00:15:51.445
+00:15:47.495 --> 00:15:51.735
 and the book uses one vendor's
 line purely as a costable example.
 
 241
-00:15:51.445 --> 00:15:55.787
+00:15:51.735 --> 00:15:56.077
 Year one capital, edges, hubs,
 the control plane and services,
 
 242
-00:15:55.787 --> 00:15:58.357
+00:15:56.077 --> 00:15:58.647
 comes to about ten million dollars.
 
 243
-00:15:58.357 --> 00:16:01.532
+00:15:58.647 --> 00:16:01.822
 The design rules are where
 these projects usually go wrong.
 
 244
-00:16:01.532 --> 00:16:06.082
+00:16:01.822 --> 00:16:06.372
 A small office needs a symmetric,
 SLA-backed circuit, not a gigabit.
 
 245
-00:16:06.082 --> 00:16:09.808
+00:16:06.372 --> 00:16:10.098
 Five G is for continuity,
 not feature-update waves.
 
 246
-00:16:09.808 --> 00:16:13.207
+00:16:10.098 --> 00:16:13.497
 Check that two fiber providers
 aren't sharing one conduit.
 
 247
-00:16:13.207 --> 00:16:16.521
+00:16:13.497 --> 00:16:16.811
 And license encrypted throughput
 to match the circuit,
 
 248
-00:16:16.521 --> 00:16:20.770
+00:16:16.811 --> 00:16:21.060
 because that's the most expensive
 costing mistake in this class of edge.
 
 249
-00:16:20.770 --> 00:16:22.920
+00:16:21.060 --> 00:16:23.210
 Now, the running costs.
 
 250
-00:16:26.670 --> 00:16:28.547
+00:16:26.960 --> 00:16:28.837
 On the program's assumptions,
 
 251
-00:16:28.547 --> 00:16:33.004
+00:16:28.837 --> 00:16:33.294
 the new network costs about fifteen
 point seven million a year to run,
 
 252
-00:16:33.004 --> 00:16:38.008
+00:16:33.294 --> 00:16:38.298
 and retiring MPLS saves about twenty-one
 point six, so it pays back by year four.
 
 253
-00:16:38.008 --> 00:16:40.185
+00:16:38.298 --> 00:16:40.475
 Notice the security service line:
 
 254
-00:16:40.185 --> 00:16:44.307
+00:16:40.475 --> 00:16:44.597
 per-user SASE licensing is the
 cost most comparisons leave out.
 
 255
-00:16:44.307 --> 00:16:48.282
+00:16:44.597 --> 00:16:48.572
 But the whole case turns on one
 number the analysis doesn't have,
 
 256
-00:16:48.282 --> 00:16:50.345
+00:16:48.572 --> 00:16:50.635
 what MPLS costs per office today.
 
 257
-00:16:50.345 --> 00:16:53.770
+00:16:50.635 --> 00:16:54.060
 Breakeven is about eight hundred
 seventy-three dollars a month.
 
 258
-00:16:53.770 --> 00:16:56.245
+00:16:54.060 --> 00:16:56.535
 Above it, the program funds itself.
 
 259
-00:16:56.245 --> 00:16:58.908
+00:16:56.535 --> 00:16:59.198
 Below it, argue capability instead.
 
 260
-00:16:58.908 --> 00:17:00.446
+00:16:59.198 --> 00:17:00.736
 Validate that first.
 
 261
-00:17:00.446 --> 00:17:02.680
+00:17:00.736 --> 00:17:02.970
 Then, the order of work.
 
 262
-00:17:06.430 --> 00:17:09.737
+00:17:06.720 --> 00:17:10.027
 The roadmap starts with
 accreditation, because that,
 
 263
-00:17:09.737 --> 00:17:12.368
+00:17:10.027 --> 00:17:12.658
 not buying equipment,
 is the critical path.
 
 264
-00:17:12.368 --> 00:17:15.767
+00:17:12.658 --> 00:17:16.057
 Hubs come first: twelve sites
 instead of fifteen hundred
 
 265
-00:17:15.767 --> 00:17:19.529
+00:17:16.057 --> 00:17:19.819
 shrinks the accreditation problem
 by two orders of magnitude.
 
 266
-00:17:19.529 --> 00:17:23.291
+00:17:19.819 --> 00:17:23.581
 Offices then move in waves as
 their MPLS contracts renew,
 
 267
-00:17:23.291 --> 00:17:27.692
+00:17:23.581 --> 00:17:27.982
 and no circuit ends until its
 replacement telemetry is confirmed.
 
 268
-00:17:27.692 --> 00:17:31.355
+00:17:27.982 --> 00:17:31.645
 And the last content server
 retires on gates, not a date.
 
 269
-00:17:31.355 --> 00:17:32.888
+00:17:31.645 --> 00:17:33.178
 Apps, updates, imaging,
 
 270
-00:17:32.888 --> 00:17:37.230
+00:17:33.178 --> 00:17:37.520
 caching and compliance evidence
 all have to move off it first.
 
 271
-00:17:37.230 --> 00:17:40.380
+00:17:37.520 --> 00:17:40.670
 Close the gates in month
 thirty, retire it then.
 
 272
-00:17:40.380 --> 00:17:42.730
+00:17:40.670 --> 00:17:43.020
 But what if no program is funded?
 
 273
-00:17:46.480 --> 00:17:51.250
+00:17:46.770 --> 00:17:51.540
 For many agencies the target is years
 away: acquisition, budget cycles,
 
 274
-00:17:51.250 --> 00:17:55.280
+00:17:51.540 --> 00:17:55.570
 site logistics, and the same
 staff on three other deadlines.
 
 275
-00:17:55.280 --> 00:17:56.805
+00:17:55.570 --> 00:17:57.095
 That interval isn't empty.
 
 276
-00:17:56.805 --> 00:18:00.934
+00:17:57.095 --> 00:18:01.224
 Four of the six things a branch edge
 provides are partly available now,
 
 277
-00:18:00.934 --> 00:18:03.355
+00:18:01.224 --> 00:18:03.645
 like path measurement and stable egress.
 
 278
-00:18:03.355 --> 00:18:07.035
+00:18:03.645 --> 00:18:07.325
 And there's a fork coming
 whether you plan for it or not:
 
 279
-00:18:07.035 --> 00:18:11.718
+00:18:07.325 --> 00:18:12.008
 a directive requires end-of-support
 edge devices out by August 2027.
 
 280
-00:18:11.718 --> 00:18:15.818
+00:18:12.008 --> 00:18:16.108
 Replace like for like, and you've closed
 the architecture question for years.
 
 281
-00:18:15.818 --> 00:18:19.010
+00:18:16.108 --> 00:18:19.300
 Write the target attributes
 into that purchase instead;
 
 282
-00:18:19.010 --> 00:18:21.592
+00:18:19.300 --> 00:18:21.882
 it costs almost nothing
 at requirements time.
 
 283
-00:18:21.592 --> 00:18:23.710
+00:18:21.882 --> 00:18:24.000
 Finally, proving it paid.
 
 284
-00:18:27.460 --> 00:18:30.492
+00:18:27.750 --> 00:18:30.782
 The cost structure
 changes what you pay for:
 
 285
-00:18:30.492 --> 00:18:35.460
+00:18:30.782 --> 00:18:35.750
 MPLS scales with sites and ports,
 internet plus SASE scales with users.
 
 286
-00:18:35.460 --> 00:18:39.285
+00:18:35.750 --> 00:18:39.575
 Price your own circuits rather than
 trusting a marketing multiple.
 
 287
-00:18:39.285 --> 00:18:42.259
+00:18:39.575 --> 00:18:42.549
 Then a warning the book
 labels as its own inference:
 
 288
-00:18:42.259 --> 00:18:45.232
+00:18:42.549 --> 00:18:45.522
 migrate to cloud before
 you can measure transport,
 
 289
-00:18:45.232 --> 00:18:49.197
+00:18:45.522 --> 00:18:49.487
 and slowness gets blamed on the cloud,
 so the fixes raise cloud spend.
 
 290
-00:18:49.197 --> 00:18:50.748
+00:18:49.487 --> 00:18:51.038
 The cure is measurement.
 
 291
-00:18:50.748 --> 00:18:56.472
+00:18:51.038 --> 00:18:56.762
 Pair two similar branches, instrument both
 for thirty days, change one, and compare.
 
 292
-00:18:56.472 --> 00:18:59.385
+00:18:56.762 --> 00:18:59.675
 That's a number a budget
 examiner can't take apart.
 
 293
-00:18:59.385 --> 00:19:01.260
+00:18:59.675 --> 00:19:01.550
 Let's finish with what to do.
 
 294
-00:19:05.010 --> 00:19:07.798
+00:19:05.300 --> 00:19:08.088
 To close: each decision has one owner.
 
 295
-00:19:07.798 --> 00:19:11.336
+00:19:08.088 --> 00:19:11.626
 The CISO on the governor's
 controls and leaving MTIPS,
 
 296
-00:19:11.336 --> 00:19:16.685
+00:19:11.626 --> 00:19:16.975
 the authorizing official on the boundary
 change and the Microsoft 365 exception,
 
 297
-00:19:16.685 --> 00:19:19.359
+00:19:16.975 --> 00:19:19.649
 the system owner on each site's readiness.
 
 298
-00:19:19.359 --> 00:19:22.971
+00:19:19.649 --> 00:19:23.261
 The evidence is the path
 policy, failover results,
 
 299
-00:19:22.971 --> 00:19:26.847
+00:19:23.261 --> 00:19:27.137
 telemetry, decision records
 and honest limitations.
 
 300
-00:19:26.847 --> 00:19:31.806
+00:19:27.137 --> 00:19:32.096
 And plenty starts without a contract:
 write the path policy, stabilize egress,
 
 301
-00:19:31.806 --> 00:19:35.913
+00:19:32.096 --> 00:19:36.203
 put the right attributes in the
 refresh, validate your MPLS cost,
 
 302
-00:19:35.913 --> 00:19:39.322
+00:19:36.203 --> 00:19:39.612
 start CLAW onboarding, and
 measure a pair of branches.
 
 303
-00:19:39.322 --> 00:19:42.306
+00:19:39.612 --> 00:19:42.596
 Physics for the pipe,
 governor before traffic,
 
 304
-00:19:42.306 --> 00:19:45.997
+00:19:42.596 --> 00:19:46.287
 boundary before cutover,
 evidence before a circuit ends.
 
 305
-00:19:45.997 --> 00:19:46.820
+00:19:46.287 --> 00:19:47.110
 Thank you.

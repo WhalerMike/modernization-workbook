@@ -582,471 +582,471 @@ with the enterprise IPAM as the authority
 and the clouds reconciled against it.
 
 124
-00:07:31.212 --> 00:07:34.540
+00:07:31.212 --> 00:07:34.474
 Put it together, and you
 get one governed path.
 
 125
-00:07:38.290 --> 00:07:40.506
+00:07:36.950 --> 00:07:39.166
 Here's the whole path in one picture.
 
 126
-00:07:40.506 --> 00:07:45.103
+00:07:39.166 --> 00:07:43.763
 A branch client's query goes from the
 SD-WAN edge to an agency resolver,
 
 127
-00:07:45.103 --> 00:07:49.620
+00:07:43.763 --> 00:07:48.280
 then through the DDI policy plane,
 then to each cloud's private zones.
 
 128
-00:07:49.620 --> 00:07:53.712
+00:07:48.280 --> 00:07:52.372
 Internet-bound lookups leave
 through CISA's Protective DNS.
 
 129
-00:07:53.712 --> 00:07:57.293
+00:07:52.372 --> 00:07:55.953
 Five decisions carry almost
 all the operational risk.
 
 130
-00:07:57.293 --> 00:08:00.062
+00:07:55.953 --> 00:07:58.722
 The edge points at a real agency resolver.
 
 131
-00:08:00.062 --> 00:08:02.687
+00:07:58.722 --> 00:08:01.347
 That resolver is always the first hop.
 
 132
-00:08:02.687 --> 00:08:05.964
+00:08:01.347 --> 00:08:04.624
 The policy plane holds
 every cloud forwarding rule.
 
 133
-00:08:05.964 --> 00:08:11.517
+00:08:04.624 --> 00:08:10.177
 AD DNS is inventoried and rebuilt
 before any domain controller goes.
 
 134
-00:08:11.517 --> 00:08:14.463
+00:08:10.177 --> 00:08:13.123
 And revocation endpoints
 resolve from everywhere.
 
 135
-00:08:14.463 --> 00:08:18.111
+00:08:13.123 --> 00:08:16.771
 What makes these dangerous is
 that each one fails silently.
 
 136
-00:08:18.111 --> 00:08:22.759
+00:08:16.771 --> 00:08:21.419
 The query still resolves, just outside
 policy or to the wrong address.
 
 137
-00:08:22.759 --> 00:08:25.924
+00:08:21.419 --> 00:08:24.584
 So each decision comes with
 a check, run against the live
 
 138
-00:08:25.924 --> 00:08:30.074
+00:08:24.584 --> 00:08:28.734
 configuration rather than the design
 document, before the next change.
 
 139
-00:08:30.074 --> 00:08:32.590
+00:08:28.734 --> 00:08:31.250
 Which brings us to who owns all this.
 
 140
-00:08:36.340 --> 00:08:41.266
+00:08:35.000 --> 00:08:39.926
 In an AD estate, DNS belonged to
 whoever ran the domain controllers,
 
 141
-00:08:41.266 --> 00:08:43.415
+00:08:39.926 --> 00:08:42.075
 and nobody really chose that.
 
 142
-00:08:43.415 --> 00:08:46.512
+00:08:42.075 --> 00:08:45.172
 A single policy plane
 concentrates that authority,
 
 143
-00:08:46.512 --> 00:08:50.690
+00:08:45.172 --> 00:08:49.350
 so its owners have to be named on
 purpose, with one decider per decision.
 
 144
-00:08:50.690 --> 00:08:53.996
+00:08:49.350 --> 00:08:52.656
 The sponsor and CIO decide the platform
 
 145
-00:08:53.996 --> 00:08:57.703
+00:08:52.656 --> 00:08:56.363
 model and when AD DNS
 and Windows DHCP retire.
 
 146
-00:08:57.703 --> 00:09:00.717
+00:08:56.363 --> 00:08:59.377
 The CISO and ISSO set the requirements,
 
 147
-00:09:00.717 --> 00:09:04.278
+00:08:59.377 --> 00:09:02.938
 like designated resolvers,
 DNSSEC and logging.
 
 148
-00:09:04.278 --> 00:09:09.765
+00:09:02.938 --> 00:09:08.425
 The authorizing official accepts residual
 risk, including every standing exception.
 
 149
-00:09:09.765 --> 00:09:14.865
+00:09:08.425 --> 00:09:13.525
 The DNS and DDI team runs the plane
 and decides what the edge points at.
 
 150
-00:09:14.865 --> 00:09:18.665
+00:09:13.525 --> 00:09:17.325
 Network engineering configures
 it, and cloud teams consume it.
 
 151
-00:09:18.665 --> 00:09:21.027
+00:09:17.325 --> 00:09:19.687
 Record changes come in three classes.
 
 152
-00:09:21.027 --> 00:09:24.690
+00:09:19.687 --> 00:09:23.350
 Routine changes in a delegated
 namespace are pre-approved.
 
 153
-00:09:24.690 --> 00:09:27.915
+00:09:23.350 --> 00:09:26.575
 Policy-driven records follow
 a change-controlled policy.
 
 154
-00:09:27.915 --> 00:09:30.177
+00:09:26.575 --> 00:09:28.837
 And high-impact changes, like zones,
 
 155
-00:09:30.177 --> 00:09:33.452
+00:09:28.837 --> 00:09:32.112
 delegations and forwarding,
 go to the change board.
 
 156
-00:09:33.452 --> 00:09:35.080
+00:09:32.112 --> 00:09:33.740
 So how do we get there?
 
 157
-00:09:38.830 --> 00:09:43.722
+00:09:37.490 --> 00:09:42.382
 The migration runs in six phases,
 from inventory and coexistence
 
 158
-00:09:43.722 --> 00:09:49.156
+00:09:42.382 --> 00:09:47.816
 through to decommissioning AD DNS and
 DHCP, then hardening and evidence.
 
 159
-00:09:49.156 --> 00:09:51.855
+00:09:47.816 --> 00:09:50.515
 Each phase ends with
 a rollback point and a
 
 160
-00:09:51.855 --> 00:09:55.332
+00:09:50.515 --> 00:09:53.992
 resolution test from every
 origin, not a calendar date.
 
 161
-00:09:55.332 --> 00:09:58.674
+00:09:53.992 --> 00:09:57.334
 Every move, whether it's
 a zone, a forwarder,
 
 162
-00:09:58.674 --> 00:10:02.697
+00:09:57.334 --> 00:10:01.357
 a DHCP scope or a wave of
 clients, runs the same loop.
 
 163
-00:10:02.697 --> 00:10:04.734
+00:10:01.357 --> 00:10:03.394
 Lower the time-to-live well ahead.
 
 164
-00:10:04.734 --> 00:10:09.474
+00:10:03.394 --> 00:10:08.134
 Import with a dry run, never moving
 the core zone or locator records.
 
 165
-00:10:09.474 --> 00:10:11.097
+00:10:08.134 --> 00:10:09.757
 Validate from everywhere.
 
 166
-00:10:11.097 --> 00:10:15.013
+00:10:09.757 --> 00:10:13.673
 Then switch, and watch, while the
 old authority keeps answering.
 
 167
-00:10:15.013 --> 00:10:18.529
+00:10:13.673 --> 00:10:17.189
 One warning from Azure: removing
 a network link deletes the
 
 168
-00:10:18.529 --> 00:10:21.900
+00:10:17.189 --> 00:10:20.560
 records registered through it,
 and they can't be restored.
 
 169
-00:10:21.900 --> 00:10:24.715
+00:10:20.560 --> 00:10:23.375
 And decommissioning is
 gated, never scheduled.
 
 170
-00:10:24.715 --> 00:10:29.051
+00:10:23.375 --> 00:10:27.711
 The old servers retire only after
 the records resolve cleanly for a
 
 171
-00:10:29.051 --> 00:10:33.465
+00:10:27.711 --> 00:10:32.125
 sustained period, parallel operation
 passes, and failover is tested.
 
 172
-00:10:33.465 --> 00:10:36.060
+00:10:32.125 --> 00:10:34.720
 Then the plane has to run every day.
 
 173
-00:10:39.810 --> 00:10:42.773
+00:10:38.470 --> 00:10:41.433
 One policy plane is only an
 improvement if divisions
 
 174
-00:10:42.773 --> 00:10:45.198
+00:10:41.433 --> 00:10:43.858
 can still run their own
 networks through it.
 
 175
-00:10:45.198 --> 00:10:48.720
+00:10:43.858 --> 00:10:47.380
 So each division gets a
 scope over its own zones,
 
 176
-00:10:48.720 --> 00:10:53.235
+00:10:47.380 --> 00:10:51.895
 addresses and DHCP, with manager,
 operator and auditor roles.
 
 177
-00:10:53.235 --> 00:10:55.685
+00:10:51.895 --> 00:10:54.345
 Automation is held to the same scopes.
 
 178
-00:10:55.685 --> 00:10:59.903
+00:10:54.345 --> 00:10:58.563
 Infrastructure as code, ticketing
 workflows and certificate
 
 179
-00:10:59.903 --> 00:11:03.472
+00:10:58.563 --> 00:11:02.132
 automation all go through
 one API and one audit trail.
 
 180
-00:11:03.472 --> 00:11:06.282
+00:11:02.132 --> 00:11:04.942
 Locator records are
 checked from every site,
 
 181
-00:11:06.282 --> 00:11:10.384
+00:11:04.942 --> 00:11:09.044
 every fifteen minutes, until the
 last domain controller retires.
 
 182
-00:11:10.384 --> 00:11:14.105
+00:11:09.044 --> 00:11:12.765
 Drift reports compare the source
 of truth with every copy,
 
 183
-00:11:14.105 --> 00:11:17.360
+00:11:12.765 --> 00:11:16.020
 and hygiene jobs catch
 stale and dangling records.
 
 184
-00:11:17.360 --> 00:11:20.148
+00:11:16.020 --> 00:11:18.808
 The evidence floor is
 the federal logging memo.
 
 185
-00:11:20.148 --> 00:11:24.073
+00:11:18.808 --> 00:11:22.733
 It doesn't name DNS, but its
 retention rules apply to it.
 
 186
-00:11:24.073 --> 00:11:26.867
+00:11:22.733 --> 00:11:25.527
 Query logs, including encrypted queries,
 
 187
-00:11:26.867 --> 00:11:30.484
+00:11:25.527 --> 00:11:29.144
 and DHCP lease history are
 how the name layer meets it.
 
 188
-00:11:30.484 --> 00:11:34.123
+00:11:29.144 --> 00:11:32.783
 And lease history is what
 turns an address into a device.
 
 189
-00:11:34.123 --> 00:11:36.360
+00:11:32.783 --> 00:11:35.020
 Now, choosing the platform.
 
 190
-00:11:40.110 --> 00:11:42.985
+00:11:38.770 --> 00:11:41.645
 Choose the platform on
 the evidence it produces
 
 191
-00:11:42.985 --> 00:11:45.285
+00:11:41.645 --> 00:11:43.945
 for your own boundary, not on a brochure.
 
 192
-00:11:45.285 --> 00:11:48.355
+00:11:43.945 --> 00:11:47.015
 Commercial DDI pricing
 is quoted per agency,
 
 193
-00:11:48.355 --> 00:11:51.260
+00:11:47.015 --> 00:11:49.920
 so get every quote on
 the same assumptions.
 
 194
-00:11:51.260 --> 00:11:55.822
+00:11:49.920 --> 00:11:54.482
 The cloud-native pieces have public
 prices and show up in every model.
 
 195
-00:11:55.822 --> 00:12:01.198
+00:11:54.482 --> 00:11:59.858
 As one example, a hub with one inbound
 and one outbound Azure resolver endpoint
 
 196
-00:12:01.198 --> 00:12:06.160
+00:11:59.858 --> 00:12:04.820
 costs about 362 dollars a month per
 region, and a second region doubles it.
 
 197
-00:12:06.160 --> 00:12:10.647
+00:12:04.820 --> 00:12:09.307
 Remember that authorization belongs
 to a specific offering, not a vendor.
 
 198
-00:12:10.647 --> 00:12:13.729
+00:12:09.307 --> 00:12:12.389
 The slide shows which DDI
 offerings have a FedRAMP
 
 199
-00:12:13.729 --> 00:12:17.472
+00:12:12.389 --> 00:12:16.132
 authorization and which run
 inside the agency's own boundary.
 
 200
-00:12:17.472 --> 00:12:20.710
+00:12:16.132 --> 00:12:19.370
 And a Moderate authorization
 doesn't cover High systems.
 
 201
-00:12:20.710 --> 00:12:22.573
+00:12:19.370 --> 00:12:21.233
 Some risk remains either way.
 
 202
-00:12:22.573 --> 00:12:25.685
+00:12:21.233 --> 00:12:24.345
 Sync lag becomes the new
 source of divergence.
 
 203
-00:12:25.685 --> 00:12:29.710
+00:12:24.345 --> 00:12:28.370
 A management outage blocks changes,
 though resolution keeps working.
 
 204
-00:12:29.710 --> 00:12:35.223
+00:12:28.370 --> 00:12:33.883
 And encrypted DNS bypass stays possible
 where endpoint controls are incomplete.
 
 205
-00:12:35.223 --> 00:12:37.220
+00:12:33.883 --> 00:12:36.308
 So, the decisions.
 
 206
-00:12:40.970 --> 00:12:42.570
+00:12:40.730 --> 00:12:42.330
 Here are the four decisions.
 
 207
-00:12:42.570 --> 00:12:47.416
+00:12:42.330 --> 00:12:47.176
 First, authorize a single authoritative
 DDI policy plane and give it an owner,
 
 208
-00:12:47.416 --> 00:12:51.732
+00:12:47.176 --> 00:12:51.492
 typically the enterprise architecture
 or network operations lead.
 
 209
-00:12:51.732 --> 00:12:56.611
+00:12:51.492 --> 00:12:56.371
 Second, have that owner settle the five
 configuration decisions within ninety days,
 
 210
-00:12:56.611 --> 00:12:59.957
+00:12:56.371 --> 00:12:59.717
 and report the residual risk
 to the authorizing official.
 
 211
-00:12:59.957 --> 00:13:02.539
+00:12:59.717 --> 00:13:02.299
 Third, choose the platform on evidence:
 
 212
-00:13:02.539 --> 00:13:07.620
+00:13:02.299 --> 00:13:07.380
 authorization at the right impact level,
 and quotes on the same assumptions.
 
 213
-00:13:07.620 --> 00:13:11.308
+00:13:07.380 --> 00:13:11.068
 And fourth, name the owners,
 one decider per decision.
 
 214
-00:13:11.308 --> 00:13:14.220
+00:13:11.068 --> 00:13:13.980
 The next step is Phase 1, the inventory.
 
 215
-00:13:14.220 --> 00:13:20.186
+00:13:13.980 --> 00:13:19.946
 Export every AD DNS zone, locator record,
 forwarder and DHCP scope, every edge
 
 216
-00:13:20.186 --> 00:13:23.973
+00:13:19.946 --> 00:13:23.733
 redirect target and every
 revocation endpoint,
 
 217
-00:13:23.973 --> 00:13:27.382
+00:13:23.733 --> 00:13:27.142
 before anyone touches a domain controller.
 
 218
-00:13:27.382 --> 00:13:31.857
+00:13:27.142 --> 00:13:31.617
 It's read-only, and it's the one step
 whose omission can't be repaired later.
 
 219
-00:13:31.857 --> 00:13:34.190
+00:13:31.617 --> 00:13:33.950
 Govern the name layer as one plane,
 
 220
-00:13:34.190 --> 00:13:38.270
+00:13:33.950 --> 00:13:38.030
 and it can carry the cloud,
 branch and identity transitions.
 
 221
-00:13:38.270 --> 00:13:43.908
+00:13:38.030 --> 00:13:43.668
 DNS, DHCP and IPAM has the
 detail, every claim footnoted.
 
 222
-00:13:43.908 --> 00:13:44.740
+00:13:43.668 --> 00:13:44.500
 Thank you.

@@ -253,699 +253,699 @@ and no annual training number
 beyond the awareness floor.
 
 55
-00:03:10.812 --> 00:03:13.650
+00:03:10.812 --> 00:03:14.087
 Now, what the program actually teaches.
 
 56
-00:03:17.400 --> 00:03:19.925
+00:03:19.100 --> 00:03:21.625
 The program separates
 education from training.
 
 57
-00:03:19.925 --> 00:03:25.425
+00:03:21.625 --> 00:03:27.125
 Education builds the mental model, for
 everyone, before anyone touches a tool.
 
 58
-00:03:25.425 --> 00:03:29.975
+00:03:27.125 --> 00:03:31.675
 It teaches six ideas in order, because
 each depends on the one before.
 
 59
-00:03:29.975 --> 00:03:33.125
+00:03:31.675 --> 00:03:34.825
 For example: identity
 is the starting point,
 
 60
-00:03:33.125 --> 00:03:38.025
+00:03:34.825 --> 00:03:39.725
 one map replaces many inventories,
 and drift is the feedback signal.
 
 61
-00:03:38.025 --> 00:03:42.497
+00:03:39.725 --> 00:03:44.197
 Someone who holds those ideas understands
 why the help desk now asks for
 
 62
-00:03:42.497 --> 00:03:45.776
+00:03:44.197 --> 00:03:47.476
 verification, why a role is
 activated instead of held,
 
 63
-00:03:45.776 --> 00:03:47.937
+00:03:47.476 --> 00:03:49.637
 and why a screenshot isn't evidence.
 
 64
-00:03:47.937 --> 00:03:51.614
+00:03:49.637 --> 00:03:53.314
 Orientation comes in a few
 forms, including a walkthrough,
 
 65
-00:03:51.614 --> 00:03:56.287
+00:03:53.314 --> 00:03:57.987
 a self-serve written path, and a short
 briefing for auditors and assessors.
 
 66
-00:03:56.287 --> 00:04:00.124
+00:03:57.987 --> 00:04:01.824
 Then training follows, by role,
 in four tracks: compliance,
 
 67
-00:04:00.124 --> 00:04:04.940
+00:04:01.824 --> 00:04:06.640
 for people who evidence controls;
 implementation, for people who build;
 
 68
-00:04:04.940 --> 00:04:09.838
+00:04:06.640 --> 00:04:11.538
 vendor training and labs; and end-user
 training for everyone who signs in.
 
 69
-00:04:09.838 --> 00:04:12.390
+00:04:11.538 --> 00:04:14.090
 Let's take the compliance track first.
 
 70
-00:04:16.140 --> 00:04:21.278
+00:04:17.840 --> 00:04:22.978
 The compliance track is for the people
 who read evidence rather than build it:
 
 71
-00:04:21.278 --> 00:04:25.452
+00:04:22.978 --> 00:04:27.152
 ISSOs, compliance staff, assessors
 and authorizing officials.
 
 72
-00:04:25.452 --> 00:04:28.278
+00:04:27.152 --> 00:04:29.978
 It teaches one skill above all, tracing.
 
 73
-00:04:28.278 --> 00:04:32.721
+00:04:29.978 --> 00:04:34.421
 Given a control, name the mechanism
 that closes it, the book that built it,
 
 74
-00:04:32.721 --> 00:04:37.466
+00:04:34.421 --> 00:04:39.166
 the record it emits, and where that
 record sits in the authorization package.
 
 75
-00:04:37.466 --> 00:04:42.015
+00:04:39.166 --> 00:04:43.715
 Given a record, work back to its control
 and say whether it's still current.
 
 76
-00:04:42.015 --> 00:04:47.313
+00:04:43.715 --> 00:04:49.013
 A foundations module covers the essentials,
 like the Risk Management Framework,
 
 77
-00:04:47.313 --> 00:04:52.453
+00:04:49.013 --> 00:04:54.153
 who owes which proof, and why Moderate and
 FedRAMP's Class C are two facts, not one.
 
 78
-00:04:52.453 --> 00:04:57.140
+00:04:54.153 --> 00:04:58.840
 Then the modules follow the program's evidence
 areas, and each teaches a discipline.
 
 79
-00:04:57.140 --> 00:05:00.596
+00:04:58.840 --> 00:05:02.296
 For example, a policy
 screenshot can't show a sign-in
 
 80
-00:05:00.596 --> 00:05:04.052
+00:05:02.296 --> 00:05:05.752
 was phishing-resistant; only
 the sign-in record can.
 
 81
-00:05:04.052 --> 00:05:08.039
+00:05:05.752 --> 00:05:09.739
 The capstone is a continuous-monitoring
 narrative for one system.
 
 82
-00:05:08.039 --> 00:05:10.030
+00:05:09.739 --> 00:05:11.730
 Next, the builders.
 
 83
-00:05:13.780 --> 00:05:18.414
+00:05:15.480 --> 00:05:20.114
 The implementation track teaches the
 same estate from the engineer's chair,
 
 84
-00:05:18.414 --> 00:05:23.268
+00:05:20.114 --> 00:05:24.968
 in build modules from DNS and address
 management through to day-two operations.
 
 85
-00:05:23.268 --> 00:05:25.542
+00:05:24.968 --> 00:05:27.242
 The order is a real dependency chain.
 
 86
-00:05:25.542 --> 00:05:30.087
+00:05:27.242 --> 00:05:31.787
 You address before you identify,
 identify before you shape transport,
 
 87
-00:05:30.087 --> 00:05:34.867
+00:05:31.787 --> 00:05:36.567
 and so on, and day two comes last because
 it runs what everything else built.
 
 88
-00:05:34.867 --> 00:05:38.279
+00:05:36.567 --> 00:05:39.980
 Every module ends the same
 way: done means it works and
 
 89
-00:05:38.279 --> 00:05:41.692
+00:05:39.980 --> 00:05:43.392
 its evidence has landed where
 an assessor can read it.
 
 90
-00:05:41.692 --> 00:05:44.092
+00:05:43.392 --> 00:05:45.792
 And every lab teaches three habits.
 
 91
-00:05:44.092 --> 00:05:45.930
+00:05:45.792 --> 00:05:47.630
 Observe before you enforce.
 
 92
-00:05:45.930 --> 00:05:50.193
+00:05:47.630 --> 00:05:51.893
 Keep a way back in, with emergency
 access accounts created first.
 
 93
-00:05:50.193 --> 00:05:52.855
+00:05:51.893 --> 00:05:54.555
 And export the record, not a screenshot.
 
 94
-00:05:52.855 --> 00:05:56.705
+00:05:54.555 --> 00:05:58.405
 Certifications are examples,
 not proof, and they change.
 
 95
-00:05:56.705 --> 00:06:00.903
+00:05:58.405 --> 00:06:02.603
 One major Microsoft security exam
 was just retired and replaced,
 
 96
-00:06:00.903 --> 00:06:04.867
+00:06:02.603 --> 00:06:06.567
 so the program re-checks its
 certification list at every gate.
 
 97
-00:06:04.867 --> 00:06:07.380
+00:06:06.567 --> 00:06:09.080
 So how does the program certify people?
 
 98
-00:06:11.130 --> 00:06:13.905
+00:06:12.830 --> 00:06:15.605
 Federal guidance asks
 for more than completion.
 
 99
-00:06:13.905 --> 00:06:16.098
+00:06:15.605 --> 00:06:17.798
 It asks agencies to test knowledge,
 
 100
-00:06:16.098 --> 00:06:20.105
+00:06:17.798 --> 00:06:21.805
 ideally with practical assessments
 that mimic the actual work.
 
 101
-00:06:20.105 --> 00:06:23.137
+00:06:21.805 --> 00:06:24.837
 So the program certifies
 only what a person can show,
 
 102
-00:06:23.137 --> 00:06:25.605
+00:06:24.837 --> 00:06:27.305
 with an artifact someone else could check.
 
 103
-00:06:25.605 --> 00:06:28.955
+00:06:27.305 --> 00:06:30.655
 Every capstone is scored
 on one four-level scale.
 
 104
-00:06:28.955 --> 00:06:30.667
+00:06:30.655 --> 00:06:32.367
 At the bottom, it's missing.
 
 105
-00:06:30.667 --> 00:06:33.702
+00:06:32.367 --> 00:06:35.402
 In the middle, it names the
 right books but gets the
 
 106
-00:06:33.702 --> 00:06:37.404
+00:06:35.402 --> 00:06:39.104
 controls or evidence wrong, or
 it traces the chain correctly.
 
 107
-00:06:37.404 --> 00:06:40.959
+00:06:39.104 --> 00:06:42.659
 At the top, it's assessor-ready:
 a real, dated result,
 
 108
-00:06:40.959 --> 00:06:44.780
+00:06:42.659 --> 00:06:46.480
 with an honest statement of
 what isn't evaluated yet.
 
 109
-00:06:44.780 --> 00:06:47.947
+00:06:46.480 --> 00:06:49.647
 An after-action report with
 no findings scores zero,
 
 110
-00:06:47.947 --> 00:06:52.218
+00:06:49.647 --> 00:06:53.918
 and so does a training percentage
 with no per-person records behind it.
 
 111
-00:06:52.218 --> 00:06:56.387
+00:06:53.918 --> 00:06:58.087
 Two credentials follow, one for
 builders and one for assessors,
 
 112
-00:06:56.387 --> 00:06:58.231
+00:06:58.087 --> 00:06:59.931
 and both expire after a year.
 
 113
-00:06:58.231 --> 00:07:02.318
+00:06:59.931 --> 00:07:04.018
 An industry certification can waive
 a module, but never a capstone.
 
 114
-00:07:02.318 --> 00:07:05.090
+00:07:04.018 --> 00:07:06.790
 Next, vendor training and labs.
 
 115
-00:07:08.840 --> 00:07:10.763
+00:07:10.540 --> 00:07:12.463
 Vendors teach their products,
 
 116
-00:07:10.763 --> 00:07:14.377
+00:07:12.463 --> 00:07:16.077
 and this book names them as
 examples, never endorsements.
 
 117
-00:07:14.377 --> 00:07:18.926
+00:07:16.077 --> 00:07:20.626
 A vendor course earns a place only if it
 maps to a book procedure, it's current,
 
 118
-00:07:18.926 --> 00:07:21.493
+00:07:20.626 --> 00:07:23.193
 the agency can keep the completion record,
 
 119
-00:07:21.493 --> 00:07:24.940
+00:07:23.193 --> 00:07:26.640
 and the agency knows how the
 vendor handles learner data.
 
 120
-00:07:24.940 --> 00:07:27.814
+00:07:26.640 --> 00:07:29.514
 That record point matters,
 because exam records
 
 121
-00:07:27.814 --> 00:07:30.903
+00:07:29.514 --> 00:07:32.603
 tied to a work account vanish
 when the person leaves.
 
 122
-00:07:30.903 --> 00:07:34.490
+00:07:32.603 --> 00:07:36.190
 Lab environments are harder to
 get than most programs expect.
 
 123
-00:07:34.490 --> 00:07:36.215
+00:07:36.190 --> 00:07:37.915
 The free sandboxes are gone,
 
 124
-00:07:36.215 --> 00:07:40.190
+00:07:37.915 --> 00:07:41.890
 and the developer sandbox isn't
 offered in any government cloud.
 
 125
-00:07:40.190 --> 00:07:44.139
+00:07:41.890 --> 00:07:45.839
 So the program office arranges lab
 tenants, and before each gate the
 
 126
-00:07:44.139 --> 00:07:48.440
+00:07:45.839 --> 00:07:50.140
 team rehearses once in the agency's
 own non-production government tenant.
 
 127
-00:07:48.440 --> 00:07:52.760
+00:07:50.140 --> 00:07:54.460
 And every lab follows the same rules,
 starting with never production,
 
 128
-00:07:52.760 --> 00:07:55.640
+00:07:54.460 --> 00:07:57.340
 synthetic data only, and
 tear it down at the end.
 
 129
-00:07:55.640 --> 00:07:57.450
+00:07:57.340 --> 00:07:59.150
 Now, everyone else.
 
 130
-00:08:01.200 --> 00:08:03.304
+00:08:02.900 --> 00:08:05.004
 Every user will sign in differently.
 
 131
-00:08:03.304 --> 00:08:08.068
+00:08:05.004 --> 00:08:09.768
 Federal policy requires phishing-resistant
 sign-in for staff, contractors
 
 132
-00:08:08.068 --> 00:08:12.759
+00:08:09.768 --> 00:08:14.459
 and partners, and passwords, one-time
 codes and push approvals don't qualify.
 
 133
-00:08:12.759 --> 00:08:17.206
+00:08:14.459 --> 00:08:18.906
 So users learn a PIV card, Windows
 Hello for Business or a passkey,
 
 134
-00:08:17.206 --> 00:08:19.808
+00:08:18.906 --> 00:08:21.508
 with at least two methods registered.
 
 135
-00:08:19.808 --> 00:08:23.895
+00:08:21.508 --> 00:08:25.595
 The course is a handful of
 short modules, covering sign-in,
 
 136
-00:08:23.895 --> 00:08:27.633
+00:08:25.595 --> 00:08:29.333
 recovery, devices, where
 files now live, and reporting.
 
 137
-00:08:27.633 --> 00:08:32.178
+00:08:29.333 --> 00:08:33.878
 The last module matters most: what
 the help desk will and won't ask.
 
 138
-00:08:32.178 --> 00:08:35.792
+00:08:33.878 --> 00:08:37.492
 The help desk becomes a target
 the moment users trust it,
 
 139
-00:08:35.792 --> 00:08:39.167
+00:08:37.492 --> 00:08:40.867
 and attackers have posed as
 IT staff to exploit that.
 
 140
-00:08:39.167 --> 00:08:43.995
+00:08:40.867 --> 00:08:45.695
 So users learn that the real help desk
 never asks for a password, a PIN or a code,
 
 141
-00:08:43.995 --> 00:08:46.676
+00:08:45.695 --> 00:08:48.376
 never asks you to approve
 a prompt for them,
 
 142
-00:08:46.676 --> 00:08:50.124
+00:08:48.376 --> 00:08:51.824
 and never sends a pass to an
 address you give on the call.
 
 143
-00:08:50.124 --> 00:08:52.280
+00:08:51.824 --> 00:08:53.980
 Next, who owns all this.
 
 144
-00:08:56.030 --> 00:08:59.480
+00:08:57.730 --> 00:09:01.180
 Ask who owns training and
 three offices answer at once.
 
 145
-00:08:59.480 --> 00:09:04.205
+00:09:01.180 --> 00:09:05.905
 Between them, nobody owns whether people
 can do the new job on the day it changes.
 
 146
-00:09:04.205 --> 00:09:06.705
+00:09:05.905 --> 00:09:08.405
 So the program keeps one decider per row.
 
 147
-00:09:06.705 --> 00:09:12.330
+00:09:08.405 --> 00:09:14.030
 The sponsor and CIO fund the learning program
 and decide each wave's readiness plan.
 
 148
-00:09:12.330 --> 00:09:16.179
+00:09:14.030 --> 00:09:17.879
 The CISO owns the training
 policy, the completion threshold,
 
 149
-00:09:16.179 --> 00:09:20.330
+00:09:17.879 --> 00:09:22.030
 and the exact words users are taught
 about sign-in and the help desk.
 
 150
-00:09:20.330 --> 00:09:23.391
+00:09:22.030 --> 00:09:25.091
 The human capital office
 owns workforce strategy,
 
 151
-00:09:23.391 --> 00:09:26.380
+00:09:25.091 --> 00:09:28.080
 position coding, and the
 facts behind the rosters.
 
 152
-00:09:26.380 --> 00:09:30.017
+00:09:28.080 --> 00:09:31.717
 The training lead builds the
 curriculum and reports the numbers,
 
 153
-00:09:30.017 --> 00:09:31.768
+00:09:31.717 --> 00:09:33.468
 but never declares a wave ready.
 
 154
-00:09:31.768 --> 00:09:33.514
+00:09:33.468 --> 00:09:35.214
 Supervisors own completion,
 
 155
-00:09:33.514 --> 00:09:37.080
+00:09:35.214 --> 00:09:38.780
 and the help desk manager decides
 whether the desk is ready.
 
 156
-00:09:37.080 --> 00:09:39.542
+00:09:38.780 --> 00:09:41.242
 Contractors can build and deliver it all,
 
 157
-00:09:39.542 --> 00:09:42.293
+00:09:41.242 --> 00:09:43.993
 but government officials
 make the decisions.
 
 158
-00:09:42.293 --> 00:09:44.300
+00:09:43.993 --> 00:09:46.000
 Next, the calendar.
 
 159
-00:09:48.050 --> 00:09:52.425
+00:09:49.750 --> 00:09:54.125
 The curriculum runs on the roadmap's
 calendar, and the planning rule is simple.
 
 160
-00:09:52.425 --> 00:09:56.499
+00:09:54.125 --> 00:09:58.199
 No gate is scheduled without its
 training dates, and no wave without
 
 161
-00:09:56.499 --> 00:10:00.500
+00:09:58.199 --> 00:10:02.200
 its training window, so a wave that
 slips moves its training with it.
 
 162
-00:10:00.500 --> 00:10:04.050
+00:10:02.200 --> 00:10:05.750
 Each gate carries a training
 check beside its technical exit.
 
 163
-00:10:04.050 --> 00:10:07.381
+00:10:05.750 --> 00:10:09.081
 Early on, the help desk is
 trained on verification
 
 164
-00:10:07.381 --> 00:10:10.550
+00:10:09.081 --> 00:10:12.250
 and administrators on
 just-in-time activation.
 
 165
-00:10:10.550 --> 00:10:12.825
+00:10:12.250 --> 00:10:14.525
 Users are trained before their waves.
 
 166
-00:10:12.825 --> 00:10:17.312
+00:10:14.525 --> 00:10:19.012
 And by the last gate, no course still
 teaches an Active Directory procedure.
 
 167
-00:10:17.312 --> 00:10:21.100
+00:10:19.012 --> 00:10:22.800
 The help desk goes first: no
 technician gets a help desk role
 
 168
-00:10:21.100 --> 00:10:24.887
+00:10:22.800 --> 00:10:26.587
 until their training and
 verification check are on record.
 
 169
-00:10:24.887 --> 00:10:29.317
+00:10:26.587 --> 00:10:31.017
 Before each wave there's a countdown,
 starting with champions and managers,
 
 170
-00:10:29.317 --> 00:10:33.888
+00:10:31.017 --> 00:10:35.588
 then the help desk, then users with
 reminders, and finally the readiness check.
 
 171
-00:10:33.888 --> 00:10:35.538
+00:10:35.588 --> 00:10:37.238
 The timings are on the slide.
 
 172
-00:10:35.538 --> 00:10:37.330
+00:10:37.238 --> 00:10:39.030
 So how do you know it worked?
 
 173
-00:10:41.080 --> 00:10:43.817
+00:10:42.780 --> 00:10:45.517
 A completion record says
 someone finished a course.
 
 174
-00:10:43.817 --> 00:10:47.456
+00:10:45.517 --> 00:10:49.156
 Readiness says they can do the
 job on the day the change arrives.
 
 175
-00:10:47.456 --> 00:10:52.040
+00:10:49.156 --> 00:10:53.740
 The program measures four levels,
 following NIST's learning guide: how people
 
 176
-00:10:52.040 --> 00:10:55.264
+00:10:53.740 --> 00:10:56.964
 reacted, what they learned,
 how their behavior changed,
 
 177
-00:10:55.264 --> 00:10:57.055
+00:10:56.964 --> 00:10:58.755
 and what results the gates saw.
 
 178
-00:10:57.055 --> 00:11:01.667
+00:10:58.755 --> 00:11:03.367
 The rule is completion for everyone,
 and competence wherever a mistake is
 
 179
-00:11:01.667 --> 00:11:06.505
+00:11:03.367 --> 00:11:08.205
 a security event, like help desk
 technicians and privileged administrators.
 
 180
-00:11:06.505 --> 00:11:10.242
+00:11:08.205 --> 00:11:11.942
 For them, completion without a
 passing assessment doesn't count.
 
 181
-00:11:10.242 --> 00:11:13.832
+00:11:11.942 --> 00:11:15.532
 For end users, the most direct
 measure is sign-in method
 
 182
-00:11:13.832 --> 00:11:17.342
+00:11:15.532 --> 00:11:19.042
 registration by wave, and it
 costs nothing to collect.
 
 183
-00:11:17.342 --> 00:11:21.017
+00:11:19.042 --> 00:11:22.717
 A wave that isn't ready moves
 its date, not its threshold.
 
 184
-00:11:21.017 --> 00:11:25.545
+00:11:22.717 --> 00:11:27.245
 And the steering committee gets one
 page at every meeting, in counts,
 
 185
-00:11:25.545 --> 00:11:30.154
+00:11:27.245 --> 00:11:31.854
 not names, with privileged gaps
 counted, because each one is a finding.
 
 186
-00:11:30.154 --> 00:11:32.380
+00:11:31.854 --> 00:11:34.080
 That brings us to the decisions.
 
 187
-00:11:36.130 --> 00:11:37.505
+00:11:37.830 --> 00:11:39.205
 So, four decisions.
 
 188
-00:11:37.505 --> 00:11:43.363
+00:11:39.205 --> 00:11:45.063
 Put training in every gate, measured against
 a roster from HR and identity records,
 
 189
-00:11:43.363 --> 00:11:48.705
+00:11:45.063 --> 00:11:50.405
 not a headcount, and let a gate pass with
 a gap only as a named, dated exception.
 
 190
-00:11:48.705 --> 00:11:54.393
+00:11:50.405 --> 00:11:56.093
 Train and verify the help desk first,
 before any new role and before every wave.
 
 191
-00:11:54.393 --> 00:11:56.650
+00:11:56.093 --> 00:11:58.350
 Name the owners and keep them apart:
 
 192
-00:11:56.650 --> 00:12:00.154
+00:11:58.350 --> 00:12:01.854
 the human capital office and
 the CIO set competencies,
 
 193
-00:12:00.154 --> 00:12:05.605
+00:12:01.854 --> 00:12:07.305
 the CISO owns the security words, and the
 training lead reports while others decide.
 
 194
-00:12:05.605 --> 00:12:09.018
+00:12:07.305 --> 00:12:10.718
 And certify with artifacts,
 renewed every year.
 
 195
-00:12:09.018 --> 00:12:11.218
+00:12:10.718 --> 00:12:12.918
 The next step needs no procurement.
 
 196
-00:12:11.218 --> 00:12:15.001
+00:12:12.918 --> 00:12:16.701
 Build the role roster from HR
 records and role assignments,
 
 197
-00:12:15.001 --> 00:12:20.019
+00:12:16.701 --> 00:12:21.719
 name a training lead and an owner for each
 track, and brief the workforce office,
 
 198
-00:12:20.019 --> 00:12:24.806
+00:12:21.719 --> 00:12:26.506
 labor relations and the Section 508
 program manager before the first gate.
 
 199
-00:12:24.806 --> 00:12:27.568
+00:12:26.506 --> 00:12:29.268
 People, not tools, close the gap.
 
 200
-00:12:27.568 --> 00:12:32.429
+00:12:29.268 --> 00:12:34.129
 People: Training and Education has
 the detail, every claim footnoted.
 
 201
-00:12:32.429 --> 00:12:33.250
+00:12:34.129 --> 00:12:34.950
 Thank you.
