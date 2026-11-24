@@ -1,25 +1,26 @@
 <script>
 /* Tables that adapt to the screen. On a desktop a table stays a table. On a phone, a table of 4 to 10
    columns becomes stacked cards: each row a card, each value labelled with its column name. Wider
-   tables (more than 10 columns, such as a coverage matrix) stay a grid and scroll sideways inside their
-   own box. CSS in assets/fmw-theme.scss does the switch at phone width; this script adds the labels
-   and the scroll box. */
+   tables (more than 10 columns, such as a coverage matrix) stay a grid on phones too. Every table sits
+   in its own scroll box, so a table wider than the text column scrolls sideways inside the column
+   instead of running under the "On this page" list. The header row stays in view while you scroll
+   down a table: below the site's top bar for a table that fits the column, at the top of its own box
+   (which then also scrolls up and down) for one that doesn't. CSS in assets/fmw-theme.scss does the
+   switch at phone width; this script adds the labels, the scroll box and the header offset. */
 (function () {
   document.querySelectorAll("main table").forEach(function (table) {
+    if (!table.parentElement.classList.contains("fmw-table-scroll")) {
+      var box = document.createElement("div");
+      box.className = "fmw-table-scroll";
+      table.parentNode.insertBefore(box, table);
+      box.appendChild(table);
+    }
     var head = table.querySelector("thead tr");
     if (!head) return;
     var names = Array.prototype.map.call(head.children, function (th) { return th.textContent.trim(); });
     var cols = names.length;
     if (cols >= 6) table.classList.add("fmw-dense");
-    if (cols > 10) {
-      if (!table.parentElement.classList.contains("fmw-table-scroll")) {
-        var box = document.createElement("div");
-        box.className = "fmw-table-scroll";
-        table.parentNode.insertBefore(box, table);
-        box.appendChild(table);
-      }
-      return;
-    }
+    if (cols > 10) return;
     if (cols < 4) return;
     table.classList.add("fmw-stack");
     // A table whose first column is "Book" shows that value as the card's title bar (navy, white text).
@@ -30,5 +31,36 @@
       });
     });
   });
+
+  // A box gets "fmw-wide" when its table is wider than the column. A sticky header can't follow the
+  // page out of a box that scrolls sideways, so a wide table's box also scrolls up and down.
+  function fit() {
+    document.querySelectorAll(".fmw-table-scroll").forEach(function (box) {
+      box.classList.remove("fmw-wide");
+      if (box.scrollWidth > box.clientWidth + 1) box.classList.add("fmw-wide");
+    });
+  }
+  // Keep headers below the top bar while it shows (it slides away as you scroll down).
+  var bar = document.querySelector("#quarto-header");
+  function offset() {
+    var top = 0;
+    if (bar) top = Math.max(0, Math.round(bar.getBoundingClientRect().bottom));
+    document.documentElement.style.setProperty("--fmw-sticky-top", top + "px");
+  }
+  var timer;
+  window.addEventListener("resize", function () {
+    clearTimeout(timer);
+    timer = setTimeout(function () { fit(); offset(); }, 150);
+  });
+  // The bar slides in and out, so measure again once it has finished moving.
+  var settle;
+  window.addEventListener("scroll", function () {
+    offset();
+    clearTimeout(settle);
+    settle = setTimeout(offset, 350);
+  }, { passive: true });
+  if (bar) bar.addEventListener("transitionend", offset);
+  fit();
+  offset();
 })();
 </script>
