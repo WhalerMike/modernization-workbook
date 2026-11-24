@@ -237,6 +237,12 @@ The owner chose "Rule 1" on November 22, 2026.
 |---|---|---|---|---|
 | J-02a | J-02 recorded Chapter 03's stricter `KeepKerberos` check (an end date after D08 flagged). The kit now follows WD-165 (NPI-MAT-05 and NPI-KRB-06 bound every account that stays by program G5, or the island's end of life where D11 keeps one), so the settings row's note on the stricter check is replaced by one naming both checks | The standard's settings, "End date, if kept" | corrected; the rule itself is unchanged | WD-165; owner decision, November 22, 2026 |
 
+## Who creates gMSAs follows WD-163 (November 24, 2026)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| J-08 | "Questions for the program owner", item 3, still gave the delegated create right to the identity engineers (WD-154). Since WD-163 the pipeline's own gMSA holds it and runs the approved Chapter 06 plan after SailPoint approves; a person runs the dMSA steps, `Uninstall-ADServiceAccount` and every delete | Questions for the program owner | corrected to WD-163; WD-154's history kept | WD-154; WD-163 |
+
 ## CyberArk and managed service accounts (November 24, 2026)
 
 Mike asked on November 24, 2026 for CyberArk's part in the gMSA process to be researched and drafted. CyberArk's pages were read in a browser on November 24, 2026; docs.cyberark.com refused the automated fetch.
