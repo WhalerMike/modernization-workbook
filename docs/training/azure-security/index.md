@@ -46,6 +46,34 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 - The guide's [prerequisites](../../books/guides/azure-security-implementation.md#prerequisites): the roles, eligible through PIM, and Azure CLI with the `resource-graph` and `azure-firewall` extensions, and the Az PowerShell module.
 - For the labs: a test tenant and test subscription, never production, where the guide's steps have been applied to a pilot management group, a test application and a pilot spoke, as each lab lists; and a Windows machine with PowerShell 7.
 
+## Get the code {#get-the-code}
+
+Download [azure-security-code.zip](../../../downloads/azure-security-code.zip) to your Downloads folder. It holds `azure-security`, the kit the labs use. Unzip it into `Downloads\azure-security-code`, the folder Windows' **Extract All** suggests, so you work in `Downloads\azure-security-code\azure-security-code\azure-security`: the zip's name appears twice. Every lab command runs from there, as it does from `examples/azure-security` in a clone of the repository. The kit is PowerShell 7.1 or later, with Pester 5; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
+
+In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
+
+```powershell
+Expand-Archive -Path $HOME\Downloads\azure-security-code.zip -DestinationPath $HOME\Downloads\azure-security-code -Force
+Set-Location $HOME\Downloads\azure-security-code\azure-security-code\azure-security
+Get-ChildItem $HOME\Downloads\azure-security-code -Recurse -File | Unblock-File
+```
+
+In Bash on Linux or macOS, or Git Bash on Windows:
+
+```bash
+unzip -o ~/Downloads/azure-security-code.zip -d ~/Downloads/azure-security-code
+cd ~/Downloads/azure-security-code/azure-security-code/azure-security
+```
+
+Check it works, in PowerShell 7.1 or later, with Step 1 of [Chapter 01's Lab 1](../../project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.md#lab-1-fixtures-no-subscription):
+
+```powershell
+Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
+Get-AzsRequiredRole -Area baseline | ForEach-Object { "{0,-26} {1,-28} verified: {2}" -f $_.Call, $_.Role, $_.Verified }
+```
+
+It prints one line per call, starting with `arg-subscriptions          Reader                       verified: True`.
+
 ## What you'll be able to do
 
 When you finish the path, you'll be able to:

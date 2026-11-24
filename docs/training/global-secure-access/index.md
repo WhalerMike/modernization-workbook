@@ -46,6 +46,34 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 - [Book 04, Chapter 07's network traffic family](../../books/b04-access/07-the-conditional-access-policy-library.md#optional-family-conditional-access-on-network-traffic) and [emergency access accounts](../../books/b04-access/04-privileged-roles-and-tiers.md#emergency-access-accounts): every policy in this path excludes them.
 - PowerShell 7 with the Microsoft Graph PowerShell SDK, and Azure CLI in a Bash shell, on an administrator workstation.
 
+## Get the code {#get-the-code}
+
+Download [global-secure-access-code.zip](../../../downloads/global-secure-access-code.zip) to your Downloads folder. It holds `global-secure-access`, the kit the labs use. Unzip it into `Downloads\global-secure-access-code`, the folder Windows' **Extract All** suggests, so you work in `Downloads\global-secure-access-code\global-secure-access-code\global-secure-access`: the zip's name appears twice. Every lab command runs from there, as it does from `examples/global-secure-access` in a clone of the repository. The kit is PowerShell 7.1 or later, with Pester 5, and has no Python steps; only `tools/Get-GsaClientState.ps1`, which runs on a test device, also runs in Windows PowerShell 5.1. [Get a path's code](../index.md#get-the-code) says why each step is there.
+
+In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
+
+```powershell
+Expand-Archive -Path $HOME\Downloads\global-secure-access-code.zip -DestinationPath $HOME\Downloads\global-secure-access-code -Force
+Set-Location $HOME\Downloads\global-secure-access-code\global-secure-access-code\global-secure-access
+Get-ChildItem $HOME\Downloads\global-secure-access-code -Recurse -File | Unblock-File
+```
+
+In Bash on Linux or macOS, or Git Bash on Windows:
+
+```bash
+unzip -o ~/Downloads/global-secure-access-code.zip -d ~/Downloads/global-secure-access-code
+cd ~/Downloads/global-secure-access-code/global-secure-access-code/global-secure-access
+```
+
+Check it works, in PowerShell 7.1 or later, with Step 1 of [Chapter 01's Lab 1](../../project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.md#lab-1-fixtures-no-tenant):
+
+```powershell
+Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
+Get-GsaRequiredPermission -Area decision | Format-Table
+```
+
+It prints two calls: `licenses` with `LicenseAssignment.Read.All`, and `tenant-status` with `NetworkAccessPolicy.Read.All`.
+
 ## What you'll be able to do {#gsa-outcomes}
 
 When you finish the path, you'll be able to:

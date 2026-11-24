@@ -322,6 +322,7 @@ website:
       contents:
         - docs/training/index.md
         - docs/training/labs.md
+        - docs/training/lab-setup.md
         - section: "Microsoft Automation learning path"
           contents:
             - docs/training/ms-automation-foundations.md

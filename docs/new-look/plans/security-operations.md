@@ -17,9 +17,9 @@ review-status: pending
 
 ## Week 2: Defender XDR
 
-- [Defender XDR Engineering and Operations](../../training/defender-xdr/index.md) (Learning path, 5 modules, about 1 hr 54 min). Five modules: architecture, access and onboarding; prevention and Attack Surface Reduction; exposure and incidents; hunting, detections as code and identity signals; and automation, operations and evidence, each with a lab in your own….
+- [Defender XDR Engineering and Operations](../../training/defender-xdr/index.md) (Learning path, 5 modules, about 1 hr 55 min). Five modules: architecture, access and onboarding; prevention and Attack Surface Reduction; exposure and incidents; hunting, detections as code and identity signals; and automation, operations and evidence, each with a lab in your own….
 
-*Milestone 2: about 1 hr 54 min.*
+*Milestone 2: about 1 hr 55 min.*
 
 ## Week 3: the identity-aware network
 
@@ -41,5 +41,5 @@ review-status: pending
 
 *Milestone 5: about 1 hr 30 min.*
 
-**Whole plan:** about 16 hr 46 min of reading and video, plus the labs.
+**Whole plan:** about 16 hr 47 min of reading and video, plus the labs.
 

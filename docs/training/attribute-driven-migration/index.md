@@ -58,6 +58,41 @@ When you finish this path, you'll be able to:
 - **Microsoft Graph in GCC.** Work through [Microsoft Automation, Module 1: Graph and Azure Foundations](../ms-automation-foundations.md) first. It is this path's lesson for [Book 19, Chapter 02](../../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md): see [Chapter 02 is taught elsewhere](#chapter-02-is-taught-elsewhere).
 - **Code.** You can read PowerShell 7 and Python, run commands in a terminal, and read JSON. Module 6 also reads Ansible playbooks, and Module 8 a GitHub Actions workflow.
 
+## Get the code {#get-the-code}
+
+Download [attribute-driven-migration-code.zip](../../../downloads/attribute-driven-migration-code.zip) to your Downloads folder. It holds every folder the chapters use: `hcm-entra`, `ms-automation`, `validation-kit`, `dynamic-rules`, `lifecycle-extensions`, `group-policy-as-code`, `machine-configuration`, `ansible` and `drift-pipeline`, and in `third_party` the Microsoft samples they start from, pinned unmodified. Each module names the folder it works in, `examples/<folder>` in a clone; in the zip it's `Downloads\attribute-driven-migration-code\attribute-driven-migration-code\<folder>`. The commands below go to Module 1's, `hcm-entra`. Module 3 needs a clone instead, because its steps call `git`. Modules use Python and PowerShell 7.2 or later with Pester 5, as each one says. [Get a path's code](../index.md#get-the-code) says why each step is there.
+
+In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
+
+```powershell
+Expand-Archive -Path $HOME\Downloads\attribute-driven-migration-code.zip -DestinationPath $HOME\Downloads\attribute-driven-migration-code -Force
+Set-Location $HOME\Downloads\attribute-driven-migration-code\attribute-driven-migration-code\hcm-entra
+Get-ChildItem $HOME\Downloads\attribute-driven-migration-code -Recurse -File | Unblock-File
+```
+
+In Bash on Linux or macOS, or Git Bash on Windows:
+
+```bash
+unzip -o ~/Downloads/attribute-driven-migration-code.zip -d ~/Downloads/attribute-driven-migration-code
+cd ~/Downloads/attribute-driven-migration-code/attribute-driven-migration-code/hcm-entra
+```
+
+Check the Python code, with Module 1, Lab 1, Step 1 (it runs the same in PowerShell or Bash):
+
+```bash
+python python/hcm_to_scim.py --extract tests/fixtures/hcm_extract_sample.csv --as-of 2026-10-25 --out out
+```
+
+It prints `{"counts": {"ready": 9, "quarantined": 9, "superseded": 1}, "batches": 1, "disables": 3, "held": false, "hold_reason": ""}` and writes `out`.
+
+Check the PowerShell code, in PowerShell 7.2 or later, with the kit's Pester tests:
+
+```powershell
+Invoke-Pester -Path tests/powershell -Output None -PassThru | Select-Object PassedCount, FailedCount
+```
+
+It prints `PassedCount` 63 and `FailedCount` 0.
+
 ## Modules
 
 Work through the modules in order. The times are estimates for the reading, the Lab 1 exercise and the knowledge check.

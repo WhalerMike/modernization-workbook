@@ -46,6 +46,34 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 - PowerShell 7.1 or later and Pester 5 on your laptop for Lab 1; the kit's zip, [zta-results.zip](../../../downloads/zta-results.zip), extracted, or this repository cloned.
 - For Lab 2: a test tenant, never production, where you can get consent granted and a reader account with the roles of the guide's [Step 3](../../books/guides/zero-trust-assessment-implementation.md#zta-step-3).
 
+## Get the code {#get-the-code}
+
+Download [zta-results.zip](../../../downloads/zta-results.zip) to your Downloads folder. It holds the results kit itself, in one folder, `zta-results`. Unzip it into `Downloads\zta-results`, the folder Windows' **Extract All** suggests, so you work in `Downloads\zta-results\zta-results`: the zip's name appears twice. Every lab command runs from there, as it does from `examples/zta-results` in a clone of the repository. The kit is PowerShell 7.1 or later, with Pester 5; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
+
+In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
+
+```powershell
+Expand-Archive -Path $HOME\Downloads\zta-results.zip -DestinationPath $HOME\Downloads\zta-results -Force
+Set-Location $HOME\Downloads\zta-results\zta-results
+Get-ChildItem $HOME\Downloads\zta-results -Recurse -File | Unblock-File
+```
+
+In Bash on Linux or macOS, or Git Bash on Windows:
+
+```bash
+unzip -o ~/Downloads/zta-results.zip -d ~/Downloads/zta-results
+cd ~/Downloads/zta-results/zta-results
+```
+
+Check it works, in PowerShell 7.1 or later, with Module 1, Lab 1, Step 1:
+
+```powershell
+$e = Get-Content -Raw tests/fixtures/run-2026-10-27/zt-export/ZeroTrustAssessmentReport.json | ConvertFrom-Json
+$e | Select-Object CurrentVersion, TenantName, @{ n = 'Tests'; e = { $_.Tests.Count } }, EndOfJson | Format-List
+```
+
+It prints `CurrentVersion : 3.1.0`, `TenantName : Contoso` and `Tests : 33`.
+
 ## What you'll be able to do
 
 When you finish the path, you'll be able to:
