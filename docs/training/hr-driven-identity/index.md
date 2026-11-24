@@ -45,6 +45,33 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 - Python basics: you can run a script from a shell and read JSON. If you're new to Python, start with [the Python tutorial](https://docs.python.org/3/tutorial/).
 - The guide's [path on one page](../../books/guides/hr-driven-identity-implementation.md#the-path-on-one-page): five minutes, and every module refers back to it.
 
+## Get the code {#get-the-code}
+
+Download [hr-driven-identity-code.zip](../../../downloads/hr-driven-identity-code.zip) to your Downloads folder. It holds `hr-lifecycle`, the kit the labs use, with `hcm-entra`, `lifecycle-extensions`, `dynamic-rules`, `drift-pipeline` and `validation-kit` beside it, and in `third_party` the Microsoft samples they start from, pinned unmodified. Unzip it into `Downloads\hr-driven-identity-code`, the folder Windows' **Extract All** suggests, so you work in `Downloads\hr-driven-identity-code\hr-driven-identity-code\hr-lifecycle`: the zip's name appears twice. Every lab command runs from there, as it does from `examples/hr-lifecycle` in a clone of the repository. Where a module says `examples/hcm-entra` or `examples/drift-pipeline`, use the folder of that name beside `hr-lifecycle`. The kit is Python; it has no PowerShell steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
+
+In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
+
+```powershell
+Expand-Archive -Path $HOME\Downloads\hr-driven-identity-code.zip -DestinationPath $HOME\Downloads\hr-driven-identity-code -Force
+Set-Location $HOME\Downloads\hr-driven-identity-code\hr-driven-identity-code\hr-lifecycle
+Get-ChildItem $HOME\Downloads\hr-driven-identity-code -Recurse -File | Unblock-File
+```
+
+In Bash on Linux or macOS, or Git Bash on Windows:
+
+```bash
+unzip -o ~/Downloads/hr-driven-identity-code.zip -d ~/Downloads/hr-driven-identity-code
+cd ~/Downloads/hr-driven-identity-code/hr-driven-identity-code/hr-lifecycle
+```
+
+Check it works, with Module 1, Lab 1, Step 2 (it runs the same in PowerShell or Bash):
+
+```bash
+python python/writer_register.py check --register config/writer-register.json
+```
+
+It prints `Register: 0 Finding, 0 Warn, 0 Info`.
+
 ## What you'll be able to do
 
 When you finish the path, you'll be able to:

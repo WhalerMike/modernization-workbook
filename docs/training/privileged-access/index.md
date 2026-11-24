@@ -74,6 +74,34 @@ So Module 2 checks the emergency access accounts before any module changes a set
 - [Microsoft Automation, Module 2: Microsoft Entra ID through Microsoft Graph](../ms-automation-entra.md): reading Conditional Access, PIM and logs through Graph.
 - PowerShell 7: you can run a script and read its output. Module 8 also uses Python and a POSIX shell.
 
+## Get the code {#get-the-code}
+
+Download [privileged-access-code.zip](../../../downloads/privileged-access-code.zip) to your Downloads folder. It holds `privileged-access`, the kit the labs use, with `drift-pipeline` and `validation-kit` beside it, and in `third_party` the Learn pages and samples the chapters start from, pinned unmodified. Unzip it into `Downloads\privileged-access-code`, the folder Windows' **Extract All** suggests, so you work in `Downloads\privileged-access-code\privileged-access-code\privileged-access`: the zip's name appears twice. Every lab command runs from there, as it does from `examples/privileged-access` in a clone of the repository. Module 8's POSIX steps run in the `drift-pipeline` folder beside `privileged-access`. The kit is PowerShell 7.1 or later, with Pester 5; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
+
+In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
+
+```powershell
+Expand-Archive -Path $HOME\Downloads\privileged-access-code.zip -DestinationPath $HOME\Downloads\privileged-access-code -Force
+Set-Location $HOME\Downloads\privileged-access-code\privileged-access-code\privileged-access
+Get-ChildItem $HOME\Downloads\privileged-access-code -Recurse -File | Unblock-File
+```
+
+In Bash on Linux or macOS, or Git Bash on Windows:
+
+```bash
+unzip -o ~/Downloads/privileged-access-code.zip -d ~/Downloads/privileged-access-code
+cd ~/Downloads/privileged-access-code/privileged-access-code/privileged-access
+```
+
+Check it works, in PowerShell 7.1 or later, with Module 1, Lab 1, Step 1:
+
+```powershell
+Invoke-Pester -Path tests/MicrosoftSamples.Tests.ps1 -FullNameFilter '*Chapter 01*' -Output None -PassThru |
+    Select-Object PassedCount, FailedCount, NotRunCount
+```
+
+It prints `PassedCount` 9, `FailedCount` 0 and `NotRunCount` 7 (the other chapters' samples, which the filter skips).
+
 ## What you'll be able to do
 
 When you finish the path, you'll be able to:

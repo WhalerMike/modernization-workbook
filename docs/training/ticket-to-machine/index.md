@@ -52,6 +52,41 @@ When you finish this path, you'll be able to:
 - **Microsoft Graph, for the modules that read it.** Modules 2, 3, 4 and 6 involve Microsoft Graph permissions or reads. If you haven't scripted Graph before, work through [Microsoft Automation, Module 1](../ms-automation-foundations.md) first: [the clouds and endpoints](../ms-automation-foundations.md#clouds-and-endpoints), [signing in as a workload](../ms-automation-foundations.md#signing-in-as-a-workload) and [permissions](../ms-automation-foundations.md#permissions).
 - **Code.** You can read Python and JSON, run commands in a terminal, and read a little JavaScript. PowerShell is optional: the kit has a PowerShell client and Pester tests, but the labs here use the Python tools.
 
+## Get the code {#get-the-code}
+
+Download [ticket-to-machine-code.zip](../../../downloads/ticket-to-machine-code.zip) to your Downloads folder. It holds `servicenow-sailpoint`, the kit the labs use. Unzip it into `Downloads\ticket-to-machine-code`, the folder Windows' **Extract All** suggests, so you work in `Downloads\ticket-to-machine-code\ticket-to-machine-code\servicenow-sailpoint`: the zip's name appears twice. Every lab command runs from there, as it does from `examples/servicenow-sailpoint` in a clone of the repository. The labs use the kit's Python tools; its PowerShell client needs PowerShell 7.2 or later with Pester 5. [Get a path's code](../index.md#get-the-code) says why each step is there.
+
+In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
+
+```powershell
+Expand-Archive -Path $HOME\Downloads\ticket-to-machine-code.zip -DestinationPath $HOME\Downloads\ticket-to-machine-code -Force
+Set-Location $HOME\Downloads\ticket-to-machine-code\ticket-to-machine-code\servicenow-sailpoint
+Get-ChildItem $HOME\Downloads\ticket-to-machine-code -Recurse -File | Unblock-File
+```
+
+In Bash on Linux or macOS, or Git Bash on Windows:
+
+```bash
+unzip -o ~/Downloads/ticket-to-machine-code.zip -d ~/Downloads/ticket-to-machine-code
+cd ~/Downloads/ticket-to-machine-code/ticket-to-machine-code/servicenow-sailpoint
+```
+
+Check the Python code, with Module 1, Lab 1, Step 1:
+
+```bash
+python -m pytest tests/python/test_finding_contract.py -q
+```
+
+It ends with `26 passed`.
+
+Check the PowerShell client, in PowerShell 7.2 or later, with the kit's own Pester tests (the labs don't run them):
+
+```powershell
+Invoke-Pester -Path tests/powershell -Output None -PassThru | Select-Object PassedCount, FailedCount
+```
+
+It prints `PassedCount` 38 and `FailedCount` 0.
+
 ## Watch first (optional)
 
 - The workbook's story deck, *One Drift Case, End to End*: one fictional person's drifted department followed through every module's gate, with the Lab 1 command and a knowledge check for each scene, about 21 minutes: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/TTM_Story_One_Drift_Case.pptx) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/TTM_Story_One_Drift_Case_Narrated.pptx) (about 21 minutes, captions) · [▶ Watch](../../presentations/watch.html?v=TTM_Story_One_Drift_Case_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/TTM_Story_One_Drift_Case_Narrated.mp4).

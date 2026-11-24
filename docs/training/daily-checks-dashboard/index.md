@@ -41,6 +41,33 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 - [Book 15, Chapter 12: The Day-Two Operator Runbook and Validation](../../books/b15-day2-operations/12-the-day-two-runbook.md), its cadence tables and the telemetry-completeness check. About 20 minutes.
 - PowerShell 7.1 or later with Pester 5 for Lab 1; the Azure CLI for Lab 2.
 
+## Get the code {#get-the-code}
+
+Download [daily-checks-workbook-code.zip](../../../downloads/daily-checks-workbook-code.zip) to your Downloads folder. It holds `daily-checks-workbook`, the kit the labs use. Unzip it into `Downloads\daily-checks-workbook-code`, the folder Windows' **Extract All** suggests, so you work in `Downloads\daily-checks-workbook-code\daily-checks-workbook-code\daily-checks-workbook`: the zip's name appears twice. Every lab command runs from there, as it does from `examples/daily-checks-workbook` in a clone of the repository. The kit is PowerShell 7.1 or later, with Pester 5; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
+
+In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
+
+```powershell
+Expand-Archive -Path $HOME\Downloads\daily-checks-workbook-code.zip -DestinationPath $HOME\Downloads\daily-checks-workbook-code -Force
+Set-Location $HOME\Downloads\daily-checks-workbook-code\daily-checks-workbook-code\daily-checks-workbook
+Get-ChildItem $HOME\Downloads\daily-checks-workbook-code -Recurse -File | Unblock-File
+```
+
+In Bash on Linux or macOS, or Git Bash on Windows:
+
+```bash
+unzip -o ~/Downloads/daily-checks-workbook-code.zip -d ~/Downloads/daily-checks-workbook-code
+cd ~/Downloads/daily-checks-workbook-code/daily-checks-workbook-code/daily-checks-workbook
+```
+
+Check it works, in PowerShell 7.1 or later, with Step 1 of [Chapter 01's Lab 1](../../project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.md#lab-1-fixtures-no-tenant):
+
+```powershell
+./Show-DcManifest.ps1
+```
+
+It prints a table of the workbook's tabs, from `telemetry` to `log-review`.
+
 ## What you'll be able to do {#dc-outcomes}
 
 When you finish the path, you'll be able to:

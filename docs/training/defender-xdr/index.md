@@ -45,6 +45,33 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 - The guide's [prerequisites](../../books/guides/defender-xdr-implementation.md#prerequisites): the licenses, roles and tools, and the decisions that come first.
 - For the labs: a **test tenant, never production**, licensed for Defender for Endpoint Plan 2 (advanced hunting needs it), with at least one Windows test device enrolled in Intune; PowerShell 7 on your workstation.
 
+## Get the code {#get-the-code}
+
+Download [defender-xdr-code.zip](../../../downloads/defender-xdr-code.zip) to your Downloads folder. It holds `defender-xdr`, the kit the labs use, and `zta-results/config`, the Zero Trust Assessment results kit's configuration that its exposure check reads. Unzip it into `Downloads\defender-xdr-code`, the folder Windows' **Extract All** suggests, so you work in `Downloads\defender-xdr-code\defender-xdr-code\defender-xdr`: the zip's name appears twice. Every lab command runs from there, as it does from `examples/defender-xdr` in a clone of the repository. The kit is PowerShell 7.1 or later, with Pester 5; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
+
+In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
+
+```powershell
+Expand-Archive -Path $HOME\Downloads\defender-xdr-code.zip -DestinationPath $HOME\Downloads\defender-xdr-code -Force
+Set-Location $HOME\Downloads\defender-xdr-code\defender-xdr-code\defender-xdr
+Get-ChildItem $HOME\Downloads\defender-xdr-code -Recurse -File | Unblock-File
+```
+
+In Bash on Linux or macOS, or Git Bash on Windows:
+
+```bash
+unzip -o ~/Downloads/defender-xdr-code.zip -d ~/Downloads/defender-xdr-code
+cd ~/Downloads/defender-xdr-code/defender-xdr-code/defender-xdr
+```
+
+Check it works, in PowerShell 7.1 or later, with Step 1 of [Chapter 01's Lab 1](../../project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.md#lab-1-fixtures-no-tenant):
+
+```powershell
+./Invoke-XdrAccess.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/access -AsOf 2026-11-16T12:00:00Z
+```
+
+It prints a table of 14 checks and ends with `Access: 14 checks, 3 failed.` The three failures are in the fixtures on purpose; the chapter's lab explains each.
+
 ## What you'll be able to do {#xdr-outcomes}
 
 When you finish the path, you'll be able to:

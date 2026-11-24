@@ -45,6 +45,34 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 - [Microsoft Automation, Module 1: Graph and Azure Foundations](../ms-automation-foundations.md): the clouds and endpoints, signing in as a workload, and permissions.
 - PowerShell basics: you can run a script, import a module and read the objects it returns. Module 10 also runs Python.
 
+## Get the code {#get-the-code}
+
+Download [non-person-identity-code.zip](../../../downloads/non-person-identity-code.zip) to your Downloads folder. It holds `non-person-identity`, the kit the labs use, with `drift-pipeline` and `validation-kit` beside it, and in `third_party` the Learn pages and samples the chapters start from, pinned unmodified. Unzip it into `Downloads\non-person-identity-code`, the folder Windows' **Extract All** suggests, so you work in `Downloads\non-person-identity-code\non-person-identity-code\non-person-identity`: the zip's name appears twice. Every lab command runs from there, as it does from `examples/non-person-identity` in a clone of the repository. Module 10's steps 7 to 11 run in the `drift-pipeline` folder beside `non-person-identity`. The kit is PowerShell 7.1 or later, with Pester 5; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
+
+In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
+
+```powershell
+Expand-Archive -Path $HOME\Downloads\non-person-identity-code.zip -DestinationPath $HOME\Downloads\non-person-identity-code -Force
+Set-Location $HOME\Downloads\non-person-identity-code\non-person-identity-code\non-person-identity
+Get-ChildItem $HOME\Downloads\non-person-identity-code -Recurse -File | Unblock-File
+```
+
+In Bash on Linux or macOS, or Git Bash on Windows:
+
+```bash
+unzip -o ~/Downloads/non-person-identity-code.zip -d ~/Downloads/non-person-identity-code
+cd ~/Downloads/non-person-identity-code/non-person-identity-code/non-person-identity
+```
+
+Check it works, in PowerShell 7.1 or later, with Module 1, Lab 1, Step 1:
+
+```powershell
+Invoke-Pester -Path tests/MicrosoftSamples.Tests.ps1 -FullNameFilter '*Chapter 01*' -Output None -PassThru |
+    Select-Object PassedCount, FailedCount, NotRunCount
+```
+
+It prints `PassedCount` 20, `FailedCount` 0 and `NotRunCount` 10 (the other chapters' samples, which the filter skips).
+
 ## What you'll be able to do
 
 When you finish the path, you'll be able to:
