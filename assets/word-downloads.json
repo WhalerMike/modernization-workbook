@@ -1795,6 +1795,9 @@
  "docs/books/guides/non-person-identity-implementation.md": {
   "page": "non-person-identity-implementation.docx"
  },
+ "docs/books/guides/non-person-identity-zero-trust-sase.md": {
+  "page": "non-person-identity-zero-trust-sase.docx"
+ },
  "docs/books/guides/one-page-ask.md": {
   "bundle": "meeting-templates-and-briefs.docx",
   "page": "one-page-ask.docx",
@@ -2658,6 +2661,11 @@
  "docs/training/non-person-identity/13-the-managed-service-account-standard.md": {
   "bundle": "training-non-person-identity-bundle.docx",
   "page": "13-the-managed-service-account-standard.docx",
+  "title": "Learning path: Non-Person Identity in Microsoft Entra ID"
+ },
+ "docs/training/non-person-identity/14-workload-identity-across-aws-govcloud-and-oci.md": {
+  "bundle": "training-non-person-identity-bundle.docx",
+  "page": "14-workload-identity-across-aws-govcloud-and-oci.docx",
   "title": "Learning path: Non-Person Identity in Microsoft Entra ID"
  },
  "docs/training/non-person-identity/index.md": {

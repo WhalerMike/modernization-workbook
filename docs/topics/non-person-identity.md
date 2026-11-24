@@ -134,6 +134,7 @@ Word editions and code, rebuilt on every site deploy.
 | File | What it is |
 |---|---|
 | [non-person-identity-implementation-guide.docx](../../downloads/non-person-identity-implementation-guide.docx) | Word edition: Non-Person Identity: An Implementation Guide |
+| [non-person-identity-zero-trust-sase-guide.docx](../../downloads/non-person-identity-zero-trust-sase-guide.docx) | Word edition: Non-Person Identity: Zero Trust, SASE and Other Clouds |
 | [building-non-person-identity-bundle.docx](../../downloads/building-non-person-identity-bundle.docx) | Word edition: Building Non-Person Identity |
 | [b17-ai-identity-bundle.docx](../../downloads/b17-ai-identity-bundle.docx) | Word edition: Book 17 — AI Identity Governance |
 | [non-person-identity-code.zip](../../downloads/non-person-identity-code.zip) | Code: the scripts, tests and fixtures, as committed |
