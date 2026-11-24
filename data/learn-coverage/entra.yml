@@ -30580,6 +30580,7 @@ pages:
   - data/source-register.json
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.md
+  - docs/books/guides/non-person-identity-implementation.md
   - docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.md
   - docs/reference/source-register.md
 - path: docs/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity.md
@@ -30657,9 +30658,11 @@ pages:
   note: ''
   cited_by:
   - data/source-register.json
+  - docs/about/decision-register.md
   - docs/books/b01-transformation-arc/08-access-plane.md
   - docs/books/b04-access/05-applications-and-workload-identities.md
   - docs/books/b17-ai-identity/04-kinds-of-ai-identity.md
+  - docs/books/guides/non-person-identity-implementation.md
   - docs/books/guides/service-account-migration.md
   - docs/images/learn/entra-workload-id-workload-identity-federation/snapshot.json
   - docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md
