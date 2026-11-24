@@ -12,7 +12,7 @@ research-status: draft
 research-type: implementation guide
 research-book: "Book 02"
 review-status: approved
-reviewed-sha256: b5591a7a43a0b6f7d56a13825dab69f8d410e67cca788dd61a6848cfe94ca6c1
+reviewed-sha256: cbb5f872388fba5fd879b44c2d4b246d959eb8487399edd69cde6071ebb90232
 last-reviewed: 2026-11-24
 ---
 # Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities
@@ -95,6 +95,26 @@ Three things the table makes plain:
 - **Nothing in Entra ID speaks Kerberos for a service.** A workload that must authenticate with Kerberos or NTLM to an on-premises resource keeps an AD identity until that resource changes. That is why Chapter 06 ends in a dated island list, not in "converted".
 - **A gMSA is a better password, not a different protocol.** Its password is long, random and rotated, but it still exists, any host allowed to retrieve it holds it, and it works only while AD does.[^sam-dmsa-overview] A dMSA binds the secret to the machine.
 - **Managed identities are the end state only for workloads on Azure or on an Arc-enabled server.** A managed identity can be assigned only to an Azure resource, or used through an Arc-enabled server's agent ([Book 02, Chapter 08](../b02-identity/08-assessing-the-forest.md#service-accounts)).
+
+## SPNs and service accounts {#spns}
+
+A service principal name (SPN) is how Kerberos finds the account behind a service. Most of this guide's steps touch one, so this section explains what it is, what goes wrong, and who answers for it.
+
+**What it is.** Learn defines an SPN as "a unique identifier of a service instance", which Kerberos uses to associate the service with the account it signs in as.[^sam-spn] Its form is `<service class>/<host>:<port>/<service name>`; the service class and host are required, the port and service name optional.[^sam-spn-compose] `MSSQLSvc/sql01.contoso.example:1433` and `HTTP/app01.contoso.example` are typical. An SPN is a name written on an account object in Active Directory. It isn't a password or a certificate ([Passwords, certificates or neither](#credentials)).
+
+**How a client uses it.** The client composes the SPN from what it knows, such as the server's name and port,[^sam-spn-compose] and asks the domain for a service ticket for that service.[^sam-kerberos-overview] The domain issues the ticket for whichever account holds the SPN. The client never needs to know that account's name.[^sam-spn]
+
+**One SPN, one account.** "A given SPN can be registered on only one account", and it has to be the account the service runs as.[^sam-spn] For SQL Server, Learn's table gives the two failures: an SPN on the wrong account makes authentication fail, and an SPN that isn't found sends connections to NTLM, silently.[^sam-sql-spn-register] That's why A5 moves each SPN from the old account to the gMSA in the same change window as the switch, and why `setspn -S`, which "verifies that there are no duplicate SPNs" before adding one, and `setspn -X`, which searches for duplicates, are the checks to run.[^sam-setspn]
+
+**Why an SPN makes a user account a target.** Defender for Identity's alert for Kerberoasting describes the attack: attackers "enumerate service accounts and their respective SPNs", request service tickets, extract their hashes and keep them "for later use in an offline brute force attack".[^sam-mdi-spn] A password a person chose years ago is what that attack is after. Defender for Identity's advice is long and complex passwords for accounts with SPNs,[^sam-mdi-spn] and a gMSA's or dMSA's password is long, generated and rotated by Active Directory; Learn's dMSA overview names Kerberoasting as "a common issue with traditional service accounts" that a dMSA helps prevent.[^sam-dmsa-overview] This is why Book 02 ranks a user account with SPNs as the highest priority to replace ([Book 02, Chapter 08](../b02-identity/08-assessing-the-forest.md#service-accounts)).
+
+**No SPN, no inbound Kerberos.** An account with no SPN can't be the target of a service ticket, so nothing authenticates to it; it only signs in outward. The standard creates such a gMSA outbound-only ([The standard's settings](#msa-standard-settings); [WD-154](../../about/decision-register.md#wd-154)).
+
+**Who registers it.** The account the SQL Server service runs as can register its own SPN at startup if it has the right to, which Learn's steps grant as "Validated write to service principal name"; otherwise a domain administrator registers it by hand.[^sam-sql-spn-register] This guide's steps move SPNs explicitly instead (A5), so the change is in the reviewed plan.
+
+**Two meanings of "owner".** The account an SPN is written on *holds* it, and only one account may. The program's **SPN owner** is a person: a named, enabled member who answers for an account's SPNs. Chapter 03 requires one for every account kept on Kerberos and every kept account with an SPN (NPI-MAT-06), and Chapter 06 checks it (NPI-KRB-05). The SPN owner confirms which services and clients use each SPN, approves moving it, is the person called when Kerberos to that service breaks, and makes sure it's removed when the account retires. The island list carries each kept account's SPNs and SPN owner to the program's SPN retirement (P4.6), which removes the SPNs that still depend on AD before AD is retired (design guidance for the duties; the requirement is Chapter 03's).
+
+**The commands.** `setspn -L <account>` lists an account's SPNs; `setspn -Q <spn>` finds the account that holds one; `setspn -X` searches for duplicates.[^sam-setspn] The PowerShell equivalents for a move are A5's `Set-ADUser` and `Set-ADServiceAccount` with `-ServicePrincipalNames`.
 
 ## The decision path {#decision-path}
 
@@ -367,7 +387,7 @@ Test-ADServiceAccount -Identity <gmsa-name>
 
 ### A5. Switch the workload, and move the SPNs
 
-Do this in one change window, because an SPN left on the old account while the service runs as the gMSA breaks Kerberos to the service: each SPN must have exactly one owner ([Book 02, Chapter 11](../b02-identity/11-reference-deployment.md)).
+Do this in one change window, because an SPN left on the old account while the service runs as the gMSA breaks Kerberos to the service: each SPN must be on exactly one account, the one the service runs as ([SPNs and service accounts](#spns); [Book 02, Chapter 11](../b02-identity/11-reference-deployment.md)).
 
 Move each SPN from the old account to the gMSA, removing it first:[^sam-set-adsa] [^sam-set-aduser]
 
@@ -1040,6 +1060,10 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 [^sam-sql-spn]: Microsoft Learn, "Troubleshoot SQL Server Kerberos and authentication failures with gMSAs," `setspn -L` on the gMSA, <https://learn.microsoft.com/troubleshoot/sql/database-engine/startup-shutdown/gmsa-kerberos-authentication-failures> (accessed Nov 9, 2026).
 [^sam-spn]: Microsoft Learn, "Service principal names" (Win32 apps, Active Directory Domain Services), <https://learn.microsoft.com/windows/win32/ad/service-principal-names> (accessed Nov 24, 2026).
 [^sam-sql-spn-register]: Microsoft Learn, "Register a Service Principal Name for Kerberos Connections," authentication defaults (an SPN mapped to an incorrect account: authentication fails; SPN lookup fails: NTLM); permissions to register an SPN, <https://learn.microsoft.com/sql/database-engine/configure-windows/register-a-service-principal-name-for-kerberos-connections> (accessed Nov 24, 2026).
+[^sam-spn-compose]: Microsoft Learn, "How Clients Compose a Service's SPN" (the SPN form; the service class and host required), <https://learn.microsoft.com/windows/win32/ad/how-clients-compose-a-serviceampaposs-spn> (accessed Nov 24, 2026).
+[^sam-kerberos-overview]: Microsoft Learn, "Kerberos authentication overview in Windows Server," <https://learn.microsoft.com/windows-server/security/kerberos/kerberos-authentication-overview> (accessed Nov 24, 2026).
+[^sam-setspn]: Microsoft Learn, "Setspn" (`-L`, `-Q`, `-S` after verifying that no duplicates exist, `-X`), <https://learn.microsoft.com/windows-server/administration/windows-commands/setspn> (accessed Nov 24, 2026).
+[^sam-mdi-spn]: Microsoft Learn, "Microsoft Defender for Identity classic security alerts," Suspected Kerberos SPN exposure (external ID 2410), <https://learn.microsoft.com/defender-for-identity/alerts-mdi-classic> (accessed Nov 24, 2026).
 [^sam-sql-gmsa]: Microsoft Learn, "Troubleshoot SQL Server setup, startup, and authentication failures with gMSAs," quick validation checklist (`sc.exe qc`, `Get-ADServiceAccount`, `Test-ADServiceAccount`, `sc.exe qmanagedaccount`), <https://learn.microsoft.com/troubleshoot/sql/database-engine/startup-shutdown/sql-server-setup-startup-authentication-issues-with-gmsas> (accessed Nov 9, 2026).
 [^sam-sc-config]: Microsoft Learn, "sc.exe config," `obj=` and `password=`, <https://learn.microsoft.com/windows-server/administration/windows-commands/sc-config>, and "ChangeServiceConfigA function," `lpPassword` for a managed service account, <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-changeserviceconfiga> (accessed Nov 9, 2026).
 [^sam-task]: Microsoft Learn, "Modify and remove assessment tasks," modify existing assessment tasks (`New-ScheduledTaskPrincipal -LogonType Password` with a gMSA), <https://learn.microsoft.com/services-hub/microsoft-engage-center/health/modify-and-remove-assessment-tasks> (accessed Nov 9, 2026).
