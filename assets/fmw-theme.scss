@@ -397,11 +397,51 @@ figure img[src$=".svg"] {
 }
 
 // Tables that adapt to the screen (labels and scroll boxes added by assets/table-cards.html).
+// A table that fits the column keeps its header row in view below the top bar as the page scrolls.
+// A table wider than the column ("fmw-wide") scrolls sideways (and, above phone width, up and down)
+// inside its own box, with the header row pinned to the top of the box.
 .fmw-table-scroll {
-  overflow-x: auto;
+  max-width: 100%;
+}
+.fmw-table-scroll.fmw-wide {
+  overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
+// On phones a wide table only scrolls sideways (a box inside the page that also scrolls up and down
+// is awkward to use by touch), so its header row scrolls away with the page.
+@media (min-width: 641px) {
+  .fmw-table-scroll.fmw-wide {
+    max-height: calc(100vh - 7rem);
+    border-bottom: 1px solid $fmw-line;
+  }
+}
+#quarto-document-content .fmw-table-scroll table thead th {
+  position: sticky;
+  top: var(--fmw-sticky-top, 0px);
+  z-index: 2;
+  box-shadow: inset 0 -2px 0 $fmw-teal;
+}
+#quarto-document-content .fmw-table-scroll.fmw-wide table thead th {
+  top: 0;
+}
+.fmw-table-scroll > table {
+  margin-bottom: 0.5rem;
+}
+// Long code names (msDS-GroupManagedServiceAccount) may break inside a table cell, so one token
+// doesn't force a column (and the table) wider than the page.
+#quarto-document-content table td code {
+  overflow-wrap: anywhere;
+}
 @media (max-width: 640px) {
+  // On phones any long word in a cell may break, so small tables fit the screen.
+  #quarto-document-content table td {
+    overflow-wrap: anywhere;
+  }
+  table.fmw-stack caption {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
   table.fmw-stack thead {
     display: none;
   }
@@ -458,5 +498,8 @@ figure img[src$=".svg"] {
 @media (min-width: 641px) {
   table.fmw-dense {
     font-size: 0.86rem;
+  }
+  #quarto-document-content table.fmw-dense thead th {
+    letter-spacing: 0.04em;
   }
 }
