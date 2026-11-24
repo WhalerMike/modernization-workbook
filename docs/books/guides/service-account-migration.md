@@ -12,7 +12,7 @@ research-status: draft
 research-type: implementation guide
 research-book: "Book 02"
 review-status: approved
-reviewed-sha256: 649370674343e72c6952d3257f4147c815699d84b58a70419fe536795cfc74b8
+reviewed-sha256: 03165932fe472afaf1552ae2f85f95b8dd91e950e5fac8c71cb74609e6829f70
 last-reviewed: 2026-11-24
 ---
 # Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities
@@ -135,7 +135,7 @@ A service principal name (SPN) is how Kerberos finds the account behind a servic
 
 : Common SPN service classes (design guidance for the last column) {.striped .hover}
 
-**Delegation names SPNs too.** Constrained delegation lists, on the account that delegates, the SPNs it may get tickets to: the `msDS-AllowedToDelegateTo` attribute "contains a list of Service Principal Names".[^sam-a2d2] Resource-based constrained delegation is set the other way round, on the back-end resource's account, naming the front-end accounts allowed to delegate to it (`PrincipalsAllowedToDelegateToAccount`).[^sam-kcd] So a move can break delegation in two ways: the old account delegated to something and the gMSA doesn't, or a back-end resource trusted the old account and doesn't trust the gMSA. A5's delegation check carries both across. An account with unconstrained delegation isn't moved this way at all: it's `KeepKerberos` (question 6).
+**Delegation names SPNs too.** Constrained delegation lists, on the account that delegates, the SPNs it may get tickets to: the `msDS-AllowedToDelegateTo` attribute "contains a list of Service Principal Names".[^sam-a2d2] Resource-based constrained delegation is set the other way round, on the back-end resource's account, naming the front-end accounts allowed to delegate to it (`PrincipalsAllowedToDelegateToAccount`).[^sam-kcd-overview] So a move can break delegation in two ways: the old account delegated to something and the gMSA doesn't, or a back-end resource trusted the old account and doesn't trust the gMSA. A5's delegation check carries both across. An account with unconstrained delegation isn't moved this way at all: it's `KeepKerberos` (question 6).
 
 **The commands.** `setspn -L <account>` lists an account's SPNs; `setspn -Q <spn>` finds the account that holds one; `setspn -X` searches for duplicates.[^sam-setspn] The PowerShell equivalents for a move are A5's `Set-ADUser` and `Set-ADServiceAccount` with `-ServicePrincipalNames`.
 
@@ -410,7 +410,7 @@ Test-ADServiceAccount -Identity <gmsa-name>
 
 ### A5. Switch the workload, and move the SPNs
 
-Before moving the SPNs, check the old account's delegation and carry it to the gMSA in the same change ([SPNs and service accounts](#spns)):[^sam-a2d2][^sam-kcd][^sam-set-adsa][^sam-set-adac]
+Before moving the SPNs, check the old account's delegation and carry it to the gMSA in the same change ([SPNs and service accounts](#spns)):[^sam-a2d2][^sam-kcd-overview][^sam-set-adsa][^sam-set-adac]
 
 ```powershell
 # What the old account may delegate to (constrained delegation), and whether it uses protocol transition
@@ -1117,7 +1117,7 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 [^sam-localsystem]: Microsoft Learn, "LocalSystem Account" and "NetworkService Account" (each "acts as the computer on the network"), <https://learn.microsoft.com/windows/win32/services/localsystem-account>, <https://learn.microsoft.com/windows/win32/services/networkservice-account> (accessed Nov 24, 2026).
 [^sam-spnmappings]: Microsoft Learn, "SPN-Mappings attribute" (`ldap/` SPNs mapped as equivalent to `host/`), <https://learn.microsoft.com/windows/win32/adschema/a-spnmappings> (accessed Nov 24, 2026).
 [^sam-a2d2]: Microsoft Learn, "ms-DS-Allowed-To-Delegate-To attribute," <https://learn.microsoft.com/windows/win32/adschema/a-msds-allowedtodelegateto> (accessed Nov 24, 2026).
-[^sam-kcd]: Microsoft Learn, "Kerberos Constrained Delegation Overview in Windows Server" (resource-based delegation set on the back-end account; `PrincipalsAllowedToDelegateToAccount` on `Set-ADComputer`, `Set-ADServiceAccount` and `Set-ADUser`), <https://learn.microsoft.com/windows-server/security/kerberos/kerberos-constrained-delegation-overview> (accessed Nov 24, 2026).
+[^sam-kcd-overview]: Microsoft Learn, "Kerberos Constrained Delegation Overview in Windows Server" (resource-based delegation set on the back-end account; `PrincipalsAllowedToDelegateToAccount` on `Set-ADComputer`, `Set-ADServiceAccount` and `Set-ADUser`), <https://learn.microsoft.com/windows-server/security/kerberos/kerberos-constrained-delegation-overview> (accessed Nov 24, 2026).
 [^sam-set-adac]: Microsoft Learn, "Set-ADAccountControl," `-TrustedToAuthForDelegation`, <https://learn.microsoft.com/powershell/module/activedirectory/set-adaccountcontrol> (accessed Nov 24, 2026).
 [^sam-mdi-spn]: Microsoft Learn, "Microsoft Defender for Identity classic security alerts," Suspected Kerberos SPN exposure (external ID 2410), <https://learn.microsoft.com/defender-for-identity/alerts-mdi-classic> (accessed Nov 24, 2026).
 [^sam-sql-gmsa]: Microsoft Learn, "Troubleshoot SQL Server setup, startup, and authentication failures with gMSAs," quick validation checklist (`sc.exe qc`, `Get-ADServiceAccount`, `Test-ADServiceAccount`, `sc.exe qmanagedaccount`), <https://learn.microsoft.com/troubleshoot/sql/database-engine/startup-shutdown/sql-server-setup-startup-authentication-issues-with-gmsas> (accessed Nov 9, 2026).
