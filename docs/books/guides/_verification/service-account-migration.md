@@ -236,3 +236,14 @@ The owner chose "Rule 1" on November 22, 2026.
 | # | Fix | Where | Verdict | Source |
 |---|---|---|---|---|
 | J-02a | J-02 recorded Chapter 03's stricter `KeepKerberos` check (an end date after D08 flagged). The kit now follows WD-165 (NPI-MAT-05 and NPI-KRB-06 bound every account that stays by program G5, or the island's end of life where D11 keeps one), so the settings row's note on the stricter check is replaced by one naming both checks | The standard's settings, "End date, if kept" | corrected; the rule itself is unchanged | WD-165; owner decision, November 22, 2026 |
+
+## CyberArk and managed service accounts (November 24, 2026)
+
+Mike asked on November 24, 2026 for CyberArk's part in the gMSA process to be researched and drafted. CyberArk's pages were read in a browser on November 24, 2026; docs.cyberark.com refused the automated fetch.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| J-09 | The certificate platform (Trust Protection Foundation - Self-Hosted) can use a gMSA for its database owner and operational database accounts, entered as `<domain>\<account>$`, with the password field disabled; the gMSA must be provisioned and replicated first (up to a full business day) | CyberArk and managed service accounts | supported by the source | CyberArk, "Using Group Managed Service Accounts (gMSAs)", 25.3 |
+| J-10 | The CPM changes a Windows account's password in every Windows service that uses it, can restart the service, and uses Kerberos for a domain target | CyberArk and managed service accounts | supported by the source | CyberArk, plugins, "Windows Services" |
+| J-11 | The Windows service account scan covers Windows services, COM+ applications, IIS anonymous user, scheduled tasks and IIS application pools | CyberArk and managed service accounts | supported by the source | CyberArk, "Automatically manage the full life-cycle of accounts" |
+| J-12 | Removing a moved workload's usage, keeping the account vaulted until its delete, never onboarding a managed account, and vaulting a `KeepKerberos` account until its end date | CyberArk and managed service accounts; Who does what | design guidance; CyberArk's pages don't mention managed accounts | the program's PAM book (CyberArk vaults standing service accounts); WD-167 |
