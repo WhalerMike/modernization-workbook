@@ -142,49 +142,49 @@
  ],
  "4": [
   [
-   0.05,
-   3.875,
+   0.1,
+   3.65,
    "Unit 1 is the guide's Step 1, which has six sub-steps."
   ],
   [
-   3.925,
-   6.65,
+   3.7,
+   6.188,
    "One a: Active Directory service accounts, managed service accounts, and the group and delegated kinds."
   ],
   [
-   10.575,
-   9.15,
+   9.887,
+   8.838,
    "Stale is a lead, not a verdict, and for a group managed account you record which hosts can retrieve its password, because that's its real blast radius."
   ],
   [
-   19.725,
-   5.925,
+   18.725,
+   5.388,
    "One b: app registrations and service principals, with each one's service principal type."
   ],
   [
-   25.65,
-   9.8,
+   24.113,
+   8.512,
    "One c: managed identities and their role assignments; a user-assigned identity outlives the resources it's attached to, so it's the type that orphans."
   ],
   [
-   35.45,
-   5.013,
+   32.625,
+   4.662,
    "One d: every federated credential's issuer, subject and audience."
   ],
   [
-   40.462,
-   5.575,
+   37.288,
+   5.025,
    "One e: A I agent identities and their sponsors, where the tenant exposes them."
   ],
   [
-   46.038,
-   7.025,
+   42.312,
+   6.188,
    "And one f joins each identity to its record in the system inventory, with two human owners and a sponsor."
   ],
   [
-   53.062,
-   5.3,
-   "The validation kit's read-only checks one, six, seven and eight prove the gate."
+   48.5,
+   10.863,
+   "The validation kit's read-only checks one, six, seven and eight prove the gate, and for the program's workload identities in AWS GovCloud and O C I, check ten."
   ]
  ],
  "5": [

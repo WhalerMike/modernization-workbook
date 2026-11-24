@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.050
+Step two reads the findings.
+
+2
+00:00:02.050 --> 00:00:05.025
+Find S V C dash report dash export.
+
+3
+00:00:05.025 --> 00:00:09.777
+It trips four rules: oh one, an
+active key with no exception, twice,
+
+4
+00:00:09.777 --> 00:00:15.168
+once for each key; oh two, two active
+keys on one user, one of them never used;
+
+5
+00:00:15.168 --> 00:00:20.925
+oh four, a console password beside the
+keys; and oh eight, only one owner tagged.
+
+6
+00:00:20.925 --> 00:00:25.025
+Then find D G dash everything,
+a dynamic group in O C I.
+
+7
+00:00:25.025 --> 00:00:28.449
+It has no tags, no policy
+names it, and its matching rule
+
+8
+00:00:28.449 --> 00:00:32.262
+names the whole tenancy, so
+every instance would be a member.
+
+9
+00:00:32.262 --> 00:00:36.430
+Notice the first line: S V C dash
+app dash sync's key is a warning,
+
+10
+00:00:36.430 --> 00:00:40.030
+not a finding, because it's
+under a current exception.

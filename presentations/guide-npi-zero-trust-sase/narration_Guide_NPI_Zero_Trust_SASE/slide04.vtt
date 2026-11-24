@@ -1,0 +1,109 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.513
+Risk assessments.
+
+2
+00:00:01.513 --> 00:00:04.850
+CISA's Optimal stage
+determines risk in real time.
+
+3
+00:00:04.850 --> 00:00:10.084
+For a user account or a G M S A, the
+only signal is Defender for Identity,
+
+4
+00:00:10.084 --> 00:00:14.850
+on domain controller traffic; a G
+M S A gets no Entra risk signal.
+
+5
+00:00:14.850 --> 00:00:19.009
+A workload identity gets Entra I D
+Protection's risk, and Conditional
+
+6
+00:00:19.009 --> 00:00:23.313
+Access for workload identities, for
+single-tenant service principals.
+
+7
+00:00:23.313 --> 00:00:24.737
+Access management.
+
+8
+00:00:24.737 --> 00:00:28.181
+Traditional is permanent
+access with periodic review;
+
+9
+00:00:28.181 --> 00:00:31.025
+Optimal is just-in-time
+and just-enough access.
+
+10
+00:00:31.025 --> 00:00:34.475
+A user account has standing
+group memberships and delegation.
+
+11
+00:00:34.475 --> 00:00:39.712
+A G M S A is standing too, scoped by its
+retriever group and the account's rights.
+
+12
+00:00:39.712 --> 00:00:44.026
+A workload identity's role assignments
+and app roles are still standing,
+
+13
+00:00:44.026 --> 00:00:48.412
+but they're visible, scoped per resource,
+and reviewable in Entra and Azure.
+
+14
+00:00:48.412 --> 00:00:50.975
+So what does this mean
+for the program's scores?
+
+15
+00:00:50.975 --> 00:00:55.164
+Every account kept on Kerberos, with
+the disposition Keep or Keep Kerberos,
+
+16
+00:00:55.164 --> 00:00:59.285
+holds the Identity pillar's identity
+stores function at Traditional for
+
+17
+00:00:59.285 --> 00:01:03.338
+that workload until its end date,
+whatever the rest of the estate reaches.
+
+18
+00:01:03.338 --> 00:01:06.987
+That's the program's
+decision W D one sixty-five.
+
+19
+00:01:06.987 --> 00:01:11.062
+The Zero Trust assessment guide, and
+the chapter Close Before You Assess,
+
+20
+00:01:11.062 --> 00:01:15.749
+already count legacy authentication that
+service accounts still use as a finding.
+
+21
+00:01:15.749 --> 00:01:20.834
+The island list, from the Non-Person
+Identity developer workbook's chapter
+
+22
+00:01:20.834 --> 00:01:25.270
+on G M S As, D M S As and the Kerberos
+island, is that finding's evidence.

@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.700
+The federal requirement.
+
+2
+00:00:01.700 --> 00:00:05.113
+Chapter 13 writes one evidence
+row per step and control,
+
+3
+00:00:05.113 --> 00:00:08.125
+and these are the rows this
+module's lab produces.
+
+4
+00:00:08.125 --> 00:00:12.572
+The identities file supports A C
+two, Account Management, C M eight,
+
+5
+00:00:12.572 --> 00:00:20.725
+System Component Inventory, and I A four,
+Identifier Management, in NIST SP 800-53.
+
+6
+00:00:20.725 --> 00:00:23.059
+The credentials file supports I A five,
+
+7
+00:00:23.059 --> 00:00:26.925
+Authenticator Management, with
+the exception records it names.
+
+8
+00:00:26.925 --> 00:00:30.391
+The trust anchors and their
+C R Ls support I A five
+
+9
+00:00:30.391 --> 00:00:34.550
+enhancement two and S C seventeen,
+the public key controls.
+
+10
+00:00:34.550 --> 00:00:38.588
+The trust and reach of every role
+and dynamic group support A C six,
+
+11
+00:00:38.588 --> 00:00:42.925
+Least Privilege, with the owner's
+justification for each finding kept.
+
+12
+00:00:42.925 --> 00:00:46.209
+And the orphan leads support
+A C two enhancement three,
+
+13
+00:00:46.209 --> 00:00:49.712
+Disable Accounts, with the
+orphan or decommission ticket.
+
+14
+00:00:49.712 --> 00:00:54.337
+K S Is are FedRAMP twenty X indicators
+for cloud service providers.
+
+15
+00:00:54.337 --> 00:00:58.150
+A row provides evidence for a
+control; the assessor decides.

@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.312
+Twenty-six checks in five groups.
+
+2
+00:00:02.312 --> 00:00:06.031
+AWS long-lived credentials, N
+P I A W S oh one to oh seven:
+
+3
+00:00:06.031 --> 00:00:10.412
+every active key with its age and
+last use, two keys on one user,
+
+4
+00:00:10.412 --> 00:00:15.932
+a key unused for ninety days, which is
+design guidance, a password beside a key,
+
+5
+00:00:15.932 --> 00:00:20.225
+service-specific credentials,
+certificates and a root key.
+
+6
+00:00:20.225 --> 00:00:25.154
+Owners and trust, oh eight to thirteen:
+missing tags, O I D C trusts with no
+
+7
+00:00:25.154 --> 00:00:30.762
+subject condition, outside accounts,
+everyone as principal, another partition.
+
+8
+00:00:30.762 --> 00:00:33.550
+Then trust anchors with no imported CRL.
+
+9
+00:00:33.550 --> 00:00:38.263
+On O C I, N P I O C I oh one to ten:
+every API key, keys past ninety days,
+
+10
+00:00:38.263 --> 00:00:42.505
+tokens and secret keys that
+never expire, missing tags,
+
+11
+00:00:42.505 --> 00:00:46.275
+and dynamic groups that
+reach the whole tenancy.
+
+12
+00:00:46.275 --> 00:00:50.215
+A user with no long-lived
+credential is treated as a person,
+
+13
+00:00:50.215 --> 00:00:54.240
+or unknown, and skipped by the
+owner checks: design guidance.

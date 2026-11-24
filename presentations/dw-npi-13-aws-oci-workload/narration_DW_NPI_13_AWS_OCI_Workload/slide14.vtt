@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.801
+Step 5 runs without
+the two optional files,
+
+2
+00:00:02.801 --> 00:00:07.200
+as an export made before the guide
+added the tag and CRL reads would be.
+
+3
+00:00:07.200 --> 00:00:09.969
+The kit still runs, and says
+what it couldn't check:
+
+4
+00:00:09.969 --> 00:00:14.267
+the two files are listed as not read,
+there's one owner warning for the whole
+
+5
+00:00:14.267 --> 00:00:18.988
+account instead of a finding per identity,
+and a CRL warning for each trust anchor.
+
+6
+00:00:18.988 --> 00:00:23.463
+With no exception list given, svc
+app sync's key is back to a finding.
+
+7
+00:00:23.463 --> 00:00:27.164
+Step 6 reads the evidence:
+one row per step and control,
+
+8
+00:00:27.164 --> 00:00:30.362
+with its K S I's and the
+hash of the file behind it.
+
+9
+00:00:30.362 --> 00:00:33.475
+Step 7 runs the tests: thirty-four pass.
+
+10
+00:00:33.475 --> 00:00:35.048
+They sit in their own folder,
+
+11
+00:00:35.048 --> 00:00:37.990
+so the counts in the other
+chapters' labs don't change.

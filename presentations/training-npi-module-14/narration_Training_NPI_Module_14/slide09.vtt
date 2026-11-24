@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:05.314
+Step three reads the long-lived
+credentials: one row per active access key,
+
+2
+00:00:05.314 --> 00:00:10.442
+service-specific credential, API key,
+auth token and customer secret key,
+
+3
+00:00:10.442 --> 00:00:14.288
+with its age, its last use for
+AWS keys, and its exception.
+
+4
+00:00:14.288 --> 00:00:17.276
+Two are under exceptions until 2027:
+
+5
+00:00:17.276 --> 00:00:23.351
+S V C dash app dash sync's access key and
+H R dash report dash reader's API key.
+
+6
+00:00:23.351 --> 00:00:24.737
+Look at the ages.
+
+7
+00:00:24.737 --> 00:00:29.574
+S V C dash legacy dash F T P's key
+is more than nine hundred days old,
+
+8
+00:00:29.574 --> 00:00:34.875
+and was last used in December 2025, so
+it's also a ninety-day unused lead.
+
+9
+00:00:34.875 --> 00:00:38.167
+H R dash build dash push's
+auth token is five hundred
+
+10
+00:00:38.167 --> 00:00:41.537
+and eighty-two days old, and
+auth tokens never expire.
+
+11
+00:00:41.537 --> 00:00:45.050
+The file holds identifiers
+only, never a secret.

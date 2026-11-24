@@ -1,0 +1,90 @@
+[
+ {
+  "slide": 2,
+  "title": "A gMSA fixes the password, not the protocol",
+  "links": [
+   {
+    "text": "Conditional Access for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   }
+  ]
+ },
+ {
+  "slide": 3,
+  "title": "The Zero Trust scorecard: authentication and stores",
+  "links": [
+   {
+    "text": "Zero Trust Maturity Model v2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+   },
+   {
+    "text": "Conditional Access for workload identities",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#conditional-access-for-workload-identities"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "The scorecard: risk, access, and the program's scores",
+  "links": [
+   {
+    "text": "Zero Trust Maturity Model v2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What SASE does and doesn't do for a service account",
+  "links": [
+   {
+    "text": "Private Access for domain controllers",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#gsa-private-access-domain-controllers"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The workloads: SQL Server, its callers, and IIS",
+  "links": [
+   {
+    "text": "Microsoft Entra authentication for SQL Server",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#microsoft-entra-authentication-for-sql"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "The certificate map: SQL Server and IIS",
+  "links": [
+   {
+    "text": "AD CS",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#what-is-active-directory-certificate"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "NTLM: the program's date, and Microsoft's position",
+  "links": [
+   {
+    "text": "NTLM overview",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#ntlm-overview"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Extend Entra ID across clouds? For people, yes",
+  "links": [
+   {
+    "text": "OMB M-22-09",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#m-22-09"
+   },
+   {
+    "text": "CISA ZTMM v2.0",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#cisa-ztmm"
+   }
+  ]
+ }
+]

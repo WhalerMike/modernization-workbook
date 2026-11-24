@@ -11,7 +11,7 @@ The workbook's menus list things by kind: books, projects, training, labs, prese
 
 | Topic | Book chapters | Guides | Developer workbook | Learning path | Videos | Downloads |
 |---|---|---|---|---|---|---|
-| [Non-Person Identity](non-person-identity.md) | 8 | 2 | 13 chapters | 13 modules | 33 | 5 |
+| [Non-Person Identity](non-person-identity.md) | 8 | 2 | 13 chapters | 14 modules | 35 | 5 |
 
 : Topic hubs {.striped .hover}
 

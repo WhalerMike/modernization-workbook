@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.687
+Now the rest of the map.
+
+2
+00:00:01.687 --> 00:00:05.398
+An application that calls
+Microsoft Graph as a user account,
+
+3
+00:00:05.398 --> 00:00:09.686
+moved to an app registration, gains
+an app-registration certificate,
+
+4
+00:00:09.686 --> 00:00:13.899
+at most a hundred and eighty days,
+renewed by its owner or by Key Vault.
+
+5
+00:00:13.899 --> 00:00:18.159
+The same application on Azure or on
+an Arc-enabled server moves to a
+
+6
+00:00:18.159 --> 00:00:22.650
+managed identity instead: none before,
+none after, and Azure handles it.
+
+7
+00:00:22.650 --> 00:00:27.731
+A workload outside AWS that uses an I A M
+user's secret key can move to I A M Roles
+
+8
+00:00:27.731 --> 00:00:31.360
+Anywhere, which needs an X
+dot five-oh-nine certificate
+
+9
+00:00:31.360 --> 00:00:34.425
+from the program's public
+key infrastructure.
+
+10
+00:00:34.425 --> 00:00:36.403
+The certificate platform issues it,
+
+11
+00:00:36.403 --> 00:00:39.700
+and GovCloud needs certificate
+revocation lists imported.
+
+12
+00:00:39.700 --> 00:00:42.883
+And a R H E L host's
+Active Directory keytab,
+
+13
+00:00:42.883 --> 00:00:48.032
+moved to the platform's workload
+identity, needs no certificate at
+
+14
+00:00:48.032 --> 00:00:52.525
+all for an I A M role or an O C I
+principal; AWS or O C I handles it.
+
+15
+00:00:52.525 --> 00:00:55.137
+So certificates change shape, not count.
+
+16
+00:00:55.137 --> 00:00:59.191
+A managed identity, an I A M role
+and an O C I principal need none;
+
+17
+00:00:59.191 --> 00:01:03.500
+an app registration and Roles
+Anywhere each need a certificate.

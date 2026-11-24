@@ -1,90 +1,95 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.958
+00:00:00.100 --> 00:00:05.022
 On the federal side, authenticator management
 calls for the kit runs on expiring
 
 2
-00:00:04.958 --> 00:00:10.013
-secrets and secret use, the app management
-policy export, and the rotation calendar.
+00:00:05.022 --> 00:00:09.798
+secrets and secret use, the tenth check's
+runs on long-lived keys in AWS GovCloud
 
 3
-00:00:10.013 --> 00:00:13.783
+00:00:09.798 --> 00:00:14.500
+and Oracle Cloud, the app management
+policy export, and the rotation calendar.
+
+4
+00:00:14.500 --> 00:00:18.067
 Service identification calls
 for each workload's permission
 
-4
-00:00:13.783 --> 00:00:17.337
+5
+00:00:18.067 --> 00:00:21.475
 grants and its sign-in log, which
 also shows the parallel run.
 
-5
-00:00:17.337 --> 00:00:21.742
+6
+00:00:21.475 --> 00:00:25.596
 The workbook adds three tests: no
 stored secrets where possible,
 
-6
-00:00:21.742 --> 00:00:25.649
+7
+00:00:25.596 --> 00:00:29.250
 no outage during the run, and
 workload policies enforced.
 
-7
-00:00:25.649 --> 00:00:30.461
+8
+00:00:29.250 --> 00:00:33.848
 To validate, one kit check confirms no
 high-risk account still has a password that
 
-8
-00:00:30.461 --> 00:00:33.118
+9
+00:00:33.848 --> 00:00:36.387
 never expires, and that
 the wave's new managed
 
-9
-00:00:33.118 --> 00:00:36.062
+10
+00:00:36.387 --> 00:00:39.200
 service accounts follow
 the standard's settings.
 
-10
-00:00:36.062 --> 00:00:39.812
+11
+00:00:39.200 --> 00:00:42.900
 Another confirms the converted
 apps no longer hold secrets.
 
-11
-00:00:39.812 --> 00:00:43.183
+12
+00:00:42.900 --> 00:00:46.131
 The estate is GCC with
 commercial Azure, so Graph,
 
-12
-00:00:43.183 --> 00:00:47.312
+13
+00:00:46.131 --> 00:00:50.088
 Resource Manager and sign-in
 use the commercial endpoints.
 
-13
-00:00:47.312 --> 00:00:50.914
+14
+00:00:50.088 --> 00:00:53.414
 A delegated managed service
 account needs Windows
 
-14
-00:00:50.914 --> 00:00:54.349
+15
+00:00:53.414 --> 00:00:56.587
 Server 2025 on every host
 and a domain controller.
 
-15
-00:00:54.349 --> 00:00:58.177
+16
+00:00:56.587 --> 00:01:00.196
 Until an account can move, it
 stays on the Kerberos island,
 
-16
-00:00:58.177 --> 00:01:00.050
+17
+00:01:00.196 --> 00:01:01.962
 with an owner and an end date.
 
-17
-00:01:00.050 --> 00:01:03.725
+18
+00:01:01.962 --> 00:01:05.512
 To roll back, re-enable the
 old account and revert the app.
 
-18
-00:01:03.725 --> 00:01:06.670
+19
+00:01:05.512 --> 00:01:08.420
 That stays possible until
 the account is deleted.

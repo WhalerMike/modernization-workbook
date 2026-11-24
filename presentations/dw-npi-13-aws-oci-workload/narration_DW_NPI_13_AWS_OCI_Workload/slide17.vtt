@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.675
+Here's what done looks like.
+
+2
+00:00:01.675 --> 00:00:04.403
+The guide's exports,
+tags and CRLs included,
+
+3
+00:00:04.403 --> 00:00:08.450
+run in every GovCloud account,
+and in the tenancy's home region.
+
+4
+00:00:08.450 --> 00:00:13.614
+Every role, workload user, O C I user
+with a credential, and dynamic group
+
+5
+00:00:13.614 --> 00:00:18.600
+carries a system I D, two owners and
+a sponsor, or is in an orphan ticket.
+
+6
+00:00:18.600 --> 00:00:21.440
+Every long-lived credential
+has an exception with
+
+7
+00:00:21.440 --> 00:00:23.875
+a replacement date, or
+a ticket to replace it.
+
+8
+00:00:23.875 --> 00:00:28.537
+No O C I key is older than ninety
+days, and no root access key is active.
+
+9
+00:00:28.537 --> 00:00:31.121
+Every O I D C trust names its workload,
+
+10
+00:00:31.121 --> 00:00:35.426
+and every outside or open
+principal is removed or justified.
+
+11
+00:00:35.426 --> 00:00:38.075
+Every trust anchor has an imported CRL.
+
+12
+00:00:38.075 --> 00:00:41.425
+No dynamic group reaches the
+whole tenancy without a reason.
+
+13
+00:00:41.425 --> 00:00:45.340
+And each run's evidence and manifest
+are filed with the change record.

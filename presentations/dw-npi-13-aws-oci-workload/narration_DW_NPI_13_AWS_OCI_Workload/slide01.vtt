@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.057
+Welcome to the Federal Modernization
+Workbook's developer workbook,
+
+2
+00:00:04.057 --> 00:00:05.762
+Building Non-Person Identity.
+
+3
+00:00:05.762 --> 00:00:09.639
+This is Chapter 13: workload
+identity across AWS
+
+4
+00:00:09.639 --> 00:00:13.663
+GovCloud and Oracle Cloud
+Infrastructure, or O C I.
+
+5
+00:00:13.663 --> 00:00:18.608
+A workload in AWS or O C I that holds
+an access key is a service account with
+
+6
+00:00:18.608 --> 00:00:24.049
+a password that never expires, in a console
+nobody in identity governance opens.
+
+7
+00:00:24.049 --> 00:00:26.312
+This chapter reads both clouds' exports
+
+8
+00:00:26.312 --> 00:00:28.712
+with the same rules as
+the rest of the track.
+
+9
+00:00:28.712 --> 00:00:31.586
+We'll see what AWS,
+Oracle and Microsoft say,
+
+10
+00:00:31.586 --> 00:00:36.678
+what the kit adds to the vendors' own
+reads, the inputs, the code and its checks,
+
+11
+00:00:36.678 --> 00:00:40.374
+what's still open, the evidence,
+two labs and the dangers.
+
+12
+00:00:40.374 --> 00:00:45.170
+One note before we begin: the code is
+illustrative, tested against fixtures.

@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.825
+Should agencies extend Microsoft
+Entra I D across clouds?
+
+2
+00:00:03.825 --> 00:00:05.600
+For people, yes.
+
+3
+00:00:05.600 --> 00:00:10.543
+O M B memorandum M twenty-two oh-nine says
+agencies must employ centralized identity
+
+4
+00:00:10.543 --> 00:00:13.368
+management systems for
+agency users that can be
+
+5
+00:00:13.368 --> 00:00:16.475
+integrated into applications
+and common platforms.
+
+6
+00:00:16.475 --> 00:00:19.682
+And CISA's Optimal identity
+store securely integrates
+
+7
+00:00:19.682 --> 00:00:22.275
+stores across all partners
+and environments.
+
+8
+00:00:22.275 --> 00:00:26.950
+Entra I D can be that one store for the
+program's people in every cloud it uses.
+
+9
+00:00:26.950 --> 00:00:33.500
+In AWS GovCloud U S, I A M Identity Center
+connects your existing identity provider,
+
+10
+00:00:33.500 --> 00:00:38.413
+and it runs in GovCloud with FIPS
+endpoints and A W S U S Gov A R Ns.
+
+11
+00:00:38.413 --> 00:00:41.392
+The program's chapter on
+privileged roles and tiers
+
+12
+00:00:41.392 --> 00:00:44.301
+already uses its permission
+sets for human access.
+
+13
+00:00:44.301 --> 00:00:49.787
+In O C I, Oracle documents single
+sign-on and identity lifecycle management
+
+14
+00:00:49.787 --> 00:00:55.362
+between O C I I A M and Microsoft Entra
+I D, for tenancies with identity domains.
+
+15
+00:00:55.362 --> 00:01:00.212
+The program's O C two tenancy still
+has to confirm it has identity domains.
+
+16
+00:01:00.212 --> 00:01:03.618
+And on Linux hosts, Entra
+sign-in for S S H on
+
+17
+00:01:03.618 --> 00:01:07.130
+Azure and Arc-enabled
+Linux, R H E L included.

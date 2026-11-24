@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.437
+Why does this matter?
+
+2
+00:00:01.437 --> 00:00:06.249
+A workload in AWS or O C I that holds an
+access key is a service account with a
+
+3
+00:00:06.249 --> 00:00:08.161
+password that never expires,
+
+4
+00:00:08.161 --> 00:00:11.987
+sitting in a console nobody
+in identity governance opens.
+
+5
+00:00:11.987 --> 00:00:16.338
+This module brings those identities under
+the same rules as the rest of the track.
+
+6
+00:00:16.338 --> 00:00:20.562
+Each one is listed and joined to a
+record with two owners and a sponsor.
+
+7
+00:00:20.562 --> 00:00:24.387
+Every long-lived credential is an
+exception with a replace-by date.
+
+8
+00:00:24.387 --> 00:00:27.525
+And every trust is no wider
+than its workload needs.
+
+9
+00:00:27.525 --> 00:00:30.733
+The program decided to extend
+the track to both clouds,
+
+10
+00:00:30.733 --> 00:00:34.030
+and named the tags that join
+each identity to its record.

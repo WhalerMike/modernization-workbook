@@ -32,7 +32,7 @@ A two-part narrated deck series follows this guide at the level of its gates: fo
 
 | Part | Gates | Deck and video | Narration script |
 |---|---|---|---|
-| Part 1: inventory, decisions and credential rules (about 16 minutes) | G1–G3 | [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/non-person-identity-implementation-part-1) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Non_Person_Identity_Implementation_Part_1_Narrated) (about 16 min, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Non_Person_Identity_Implementation_Part_1_Narrated.mp4) | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/non-person-identity-implementation-part-1/Non_Person_Identity_Implementation_Part_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/non-person-identity-implementation-part-1/Non_Person_Identity_Implementation_Part_1_Narrated.vtt) |
+| Part 1: inventory, decisions and credential rules (about 17 minutes) | G1–G3 | [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/non-person-identity-implementation-part-1) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Non_Person_Identity_Implementation_Part_1_Narrated) (about 17 min, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Non_Person_Identity_Implementation_Part_1_Narrated.mp4) | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/non-person-identity-implementation-part-1/Non_Person_Identity_Implementation_Part_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/non-person-identity-implementation-part-1/Non_Person_Identity_Implementation_Part_1_Narrated.vtt) |
 | Part 2: privilege, conversion and lifecycle (about 17 minutes) | G4–G6 | [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/non-person-identity-implementation-part-2) (the deck files come with the next edition) · [▶ Watch](../../presentations/watch.html?v=Non_Person_Identity_Implementation_Part_2_Narrated) (about 17 min, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Non_Person_Identity_Implementation_Part_2_Narrated.mp4) | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/non-person-identity-implementation-part-2/Non_Person_Identity_Implementation_Part_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/non-person-identity-implementation-part-2/Non_Person_Identity_Implementation_Part_2_Narrated.vtt) |
 
 : The implementation deck series {.striped .hover}
@@ -265,6 +265,9 @@ Join every AWS and OCI identity to a record and name its owners and sponsor as i
 - **On a laptop, no tenant:** [Chapter 02, Lab 1](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md#lab-1-fixtures-no-tenant) of *Ownership and the Orphan Rule*
 - **In test tenant:** [Chapter 02, Lab 2](../../project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md#lab-2-test-tenant)
 - **As training:** [Module 2: Owners, sponsors and the orphan rule](../../training/non-person-identity/02-owners-and-the-orphan-rule.md), with a knowledge check
+- **On a laptop, no tenant:** [Chapter 13, Lab 1](../../project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.md#lab-1-fixtures-no-account-or-tenancy) of *Workload Identity Across AWS GovCloud (US) and OCI*
+- **In test account and tenancy:** [Chapter 13, Lab 2](../../project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.md#lab-2-test-account-and-tenancy)
+- **As training:** [Module 14: Workload identity across AWS GovCloud (US) and OCI](../../training/non-person-identity/14-workload-identity-across-aws-govcloud-and-oci.md), with a knowledge check
 :::
 
 <!-- labs:end -->
@@ -412,6 +415,9 @@ From Lab 1 of [Chapter 04 — App Management Policies and Certificate Rotation](
 - **On a laptop, no tenant:** [Chapter 04, Lab 1](../../project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.md#lab-1-fixtures-no-tenant) of *App Management Policies and Certificate Rotation*
 - **In test tenant:** [Chapter 04, Lab 2](../../project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.md#lab-2-test-tenant)
 - **As training:** [Module 4: Set the credential rules](../../training/non-person-identity/04-credential-rules.md), with a knowledge check
+- **On a laptop, no tenant:** [Chapter 13, Lab 1](../../project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.md#lab-1-fixtures-no-account-or-tenancy) of *Workload Identity Across AWS GovCloud (US) and OCI*
+- **In test account and tenancy:** [Chapter 13, Lab 2](../../project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.md#lab-2-test-account-and-tenancy)
+- **As training:** [Module 14: Workload identity across AWS GovCloud (US) and OCI](../../training/non-person-identity/14-workload-identity-across-aws-govcloud-and-oci.md), with a knowledge check
 :::
 
 <!-- labs:end -->
@@ -476,6 +482,9 @@ Steps: for each Tier 1 single-tenant service principal, assign it directly to a 
 - **On a laptop, no tenant:** [Chapter 08, Lab 1](../../project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md#lab-1-fixtures-no-tenant) of *Conditional Access for Workload Identities*
 - **In test tenant:** [Chapter 08, Lab 2](../../project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md#lab-2-test-tenant)
 - **As training:** [Module 6: Conditional Access for workload identities](../../training/non-person-identity/06-conditional-access.md), with a knowledge check
+- **On a laptop, no tenant:** [Chapter 13, Lab 1](../../project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.md#lab-1-fixtures-no-account-or-tenancy) of *Workload Identity Across AWS GovCloud (US) and OCI*
+- **In test account and tenancy:** [Chapter 13, Lab 2](../../project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.md#lab-2-test-account-and-tenancy)
+- **As training:** [Module 14: Workload identity across AWS GovCloud (US) and OCI](../../training/non-person-identity/14-workload-identity-across-aws-govcloud-and-oci.md), with a knowledge check
 :::
 
 <!-- labs:end -->
@@ -618,6 +627,9 @@ In the Entra audit log, a deactivation or reactivation appears as **Update appli
 - **On a laptop, no tenant:** [Chapter 10, Lab 1](../../project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.md#lab-1-fixtures-no-tenant) of *Drift and Evidence for the ISSO*
 - **In test tenant:** [Chapter 10, Lab 2](../../project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.md#lab-2-test-tenant)
 - **As training:** [Module 10: Find drift and file the evidence](../../training/non-person-identity/10-drift-and-evidence.md), with a knowledge check
+- **On a laptop, no tenant:** [Chapter 13, Lab 1](../../project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.md#lab-1-fixtures-no-account-or-tenancy) of *Workload Identity Across AWS GovCloud (US) and OCI*
+- **In test account and tenancy:** [Chapter 13, Lab 2](../../project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.md#lab-2-test-account-and-tenancy)
+- **As training:** [Module 14: Workload identity across AWS GovCloud (US) and OCI](../../training/non-person-identity/14-workload-identity-across-aws-govcloud-and-oci.md), with a knowledge check
 :::
 
 <!-- labs:end -->

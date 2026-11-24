@@ -133,9 +133,9 @@ Two labels apply throughout. The program's own recommendations are marked design
   const s = content(S0, "The six gates on one page: done when, proved by");
   tag(s, "What");
   const tb = table(s, "Gates", 1.45, [2.3, 7.35, 2.5], ["Gate", "Done when", "Validate with"], [
-    ["G1 Inventory", "Every non-person identity is listed, typed and joined to a record with an owner and a sponsor", "VK-NPI-01, 06, 07, 08"],
+    ["G1 Inventory", "Every non-person identity is listed, typed and joined to a record with an owner and a sponsor", "VK-NPI-01, 06, 07, 08, 10"],
     ["G2 Decision", "Every identity has a target and a date; high-risk accounts are first", "VK-NPI-03, 06"],
-    ["G3 Credential rules", "The tenant blocks new secrets and caps lifetimes; existing credentials are on a rotation calendar in a vault", "VK-NPI-02, 03"],
+    ["G3 Credential rules", "The tenant blocks new secrets and caps lifetimes; existing credentials are on a rotation calendar in a vault", "VK-NPI-02, 03, 10"],
     ["G4 Least privilege", "High-privilege grants are justified or removed; Tier 1 single-tenant service principals have a workload identity policy", "VK-NPI-04, 05, 07"],
     ["G5 Conversion", "Converted identities authenticate without stored secrets; legacy accounts are disabled after a clean parallel run", "VK-NPI-03, 06"],
     ["G6 Lifecycle", "Owner change, orphan, review and decommission paths run and leave records", "VK-NPI-01, 02, 08, 09"],
@@ -146,11 +146,11 @@ Two labels apply throughout. The program's own recommendations are marked design
   notes(s,
 `Here are all six gates on one page, as the guide lays them out, with the validation kit checks each one names. The checks are read-only: they read Microsoft Graph, Azure Resource Graph or an export, and report. None of them changes the tenant or the forest.
 
-G1, inventory, is done when every non-person identity is listed, typed and joined to a record with an owner and a sponsor, proved with VK-NPI-01, 06, 07 and 08.
+G1, inventory, is done when every non-person identity is listed, typed and joined to a record with an owner and a sponsor, proved with VK-NPI-01, 06, 07, 08 and 10.
 
 G2, decision, is done when every identity has a target and a date, with high-risk accounts first, proved with VK-NPI-03 and 06.
 
-G3, credential rules, is done when the tenant blocks new secrets and caps lifetimes, and existing credentials are on a rotation calendar in a vault, proved with VK-NPI-02 and 03.
+G3, credential rules, is done when the tenant blocks new secrets and caps lifetimes, and existing credentials are on a rotation calendar in a vault, proved with VK-NPI-02, 03 and 10. VK-NPI-10 reads the AWS GovCloud (US) and OCI exports from the guide's Steps 1g and 1h.
 
 Part 2 then takes G4, least privilege; G5, conversion with a clean parallel run; and G6, the lifecycle paths for owner change, orphans, reviews and decommissioning.
 
@@ -331,6 +331,7 @@ Two notes for the gate. The workbook follows the plan's decision D-NP2, disable 
     "VK-NPI-06: AD accounts with password never expires, a password over the threshold (365 days), an SPN, or not a gMSA or dMSA: each joined or listed as unowned",
     "VK-NPI-01: zero apps and service principals with no owner; one owner carries a dated finding",
     "VK-NPI-07: every managed identity with its role assignments; VK-NPI-08: every agent identity with a sponsor",
+    "VK-NPI-10: AWS GovCloud (US) and OCI identities tagged SystemId, Owner1, Owner2 and Sponsor",
     "Owner: the identity governance office; the CMDB owner signs the join (design guidance)",
   ], 11.5);
   const p2 = panel(s, "Avail", 0.6 + w + 0.25, tb + 0.2, w, null, HEX.teal, HEX.tealTint, "AVAILABILITY AND ROLLBACK", null, [
@@ -345,7 +346,7 @@ Two notes for the gate. The workbook follows the plan's decision D-NP2, disable 
 
 AC-2, account management: non-person identities are a defined account type with an owner and a sponsor. The evidence is the Step 1 record and the VK-NPI-01 and VK-NPI-08 runs. IA-4, identifier management: each identity has its own identifier, joined to its record and never reused. The evidence is the record, keyed by object ID and system ID.
 
-Validate. VK-NPI-06 reports every AD account with password never expires, a password older than the threshold, where Book 02's script treats more than 365 days as high risk, an SPN, or a type other than gMSA or dMSA; every row is joined to a record or listed as unowned. VK-NPI-01 reports zero service principals and app registrations with no owner, and those with one owner each carry a dated finding. VK-NPI-07 lists every managed identity with its role assignments, with every user-assigned one joined to a record. VK-NPI-08 lists every agent identity with a sponsor, where the tenant exposes Agent ID. The gate owner is the identity governance office, with the CMDB owner signing that the join is complete; that's design guidance.
+Validate. VK-NPI-06 reports every AD account with password never expires, a password older than the threshold, where the identity book's discovery script treats more than 365 days as high risk, an SPN, or a type other than gMSA or dMSA; every row is joined to a record or listed as unowned. VK-NPI-01 reports zero service principals and app registrations with no owner, and those with one owner each carry a dated finding. VK-NPI-07 lists every managed identity with its role assignments, with every user-assigned one joined to a record. VK-NPI-08 lists every agent identity with a sponsor, where the tenant exposes Agent ID. VK-NPI-10 reads the guide's AWS GovCloud (US) and OCI exports, Steps 1g and 1h, and reports every role, workload IAM user, OCI user holding a credential or dynamic group missing the SystemId, Owner1, Owner2 or Sponsor tag. The gate owner is the identity governance office, with the CMDB owner signing that the join is complete; that's design guidance.
 
 Availability. The workbook's Chapter 01 says the Graph calls whose pages carry a national cloud table list the global service, which GCC uses, on the worldwide hosts. Agent ID is generally available in commercial and, with documented gaps, in GCC.
 
@@ -542,7 +543,7 @@ Step 7: Vendor Portal's certificate is renewed in Key Vault; Deploy Bot's new on
   const s = content(SG3, "G3: requirement, evidence, availability, rollback");
   tag(s, "What");
   const tb = table(s, "Req", 1.45, [5.85, 6.3], ["Requirement", "What the ISSO keeps"], [
-    ["IA-5 Authenticator Management; IA-5(2): managed identities and federation first, certificates in a vault and rotated, no new secrets", "The app management policy export; VK-NPI-02 and VK-NPI-03 runs; the rotation calendar"],
+    ["IA-5 Authenticator Management; IA-5(2): managed identities and federation first, certificates in a vault and rotated, no new secrets", "The app management policy export; VK-NPI-02 and VK-NPI-03 runs, and VK-NPI-10 runs for AWS GovCloud (US) and OCI; the rotation calendar"],
     ["CISA SCuBA MS.AAD.5.5v1 to 5.7v1 (SHOULD, ScubaGear 2.0.0)", "The ScubaGear report; VK-NPI-02"],
     ["AU-2, AU-6, AU-12: credential changes are logged and reviewed", "Audit entries for credential adds, in logs routed to the SIEM"],
   ], { fontSize: 11.5, limit: 6.6 });
@@ -550,6 +551,7 @@ Step 7: Vendor Portal's certificate is renewed in Key Vault; Deploy Bot's new on
   const p1 = panel(s, "Validate", 0.6, tb + 0.2, w, null, HEX.amber, HEX.amberTint, "VALIDATE (G3)", null, [
     "VK-NPI-02: nothing issued after the effective date runs past the cap; every credential expiring within 60 days (design guidance) has an owner and a renewal date",
     "VK-NPI-03: every app still on secrets is in a Step 5 wave or has an exception with an end date",
+    "VK-NPI-10: every AWS and OCI long-lived credential under a current exception; no OCI API key over 90 days; a CRL for every trust anchor",
     "The ScubaGear result for MS.AAD.5.5v1 to 5.7v1, filed with the gate",
   ], 11.5);
   const p2 = panel(s, "Avail", 0.6 + w + 0.25, tb + 0.2, w, null, HEX.teal, HEX.tealTint, "AVAILABILITY, INTERIM PATH, ROLLBACK", null, [
@@ -563,9 +565,9 @@ Step 7: Vendor Portal's certificate is renewed in Key Vault; Deploy Bot's new on
   notes(s,
 `G3's federal side.
 
-IA-5, authenticator management, and IA-5 enhancement 2: managed identities and federation first, certificates in a vault and rotated, no new secrets. The ISSO keeps the application management policy export, the VK-NPI-02 and VK-NPI-03 runs, and the rotation calendar. CISA's SCuBA policies MS.AAD.5.5v1 to 5.7v1 are SHOULD policies in ScubaGear 2.0.0: no app passwords, password and certificate lifetimes capped; the evidence is the ScubaGear report and VK-NPI-02. And AU-2, AU-6 and AU-12 cover credential changes: the evidence is the audit entries for credential adds, in logs routed out of Entra ID to the SIEM.
+IA-5, authenticator management, and IA-5 enhancement 2: managed identities and federation first, certificates in a vault and rotated, no new secrets. The ISSO keeps the application management policy export, the VK-NPI-02 and VK-NPI-03 runs, the VK-NPI-10 runs for AWS GovCloud (US) and OCI, and the rotation calendar. CISA's SCuBA policies MS.AAD.5.5v1 to 5.7v1 are SHOULD policies in ScubaGear 2.0.0: no app passwords, password and certificate lifetimes capped; the evidence is the ScubaGear report and VK-NPI-02. And AU-2, AU-6 and AU-12 cover credential changes: the evidence is the audit entries for credential adds, in logs routed out of Entra ID to the SIEM.
 
-Validate. VK-NPI-02 reports each secret and certificate with its lifetime and days to expiry. Pass: no credential issued after the policy's effective date runs longer than the cap, 180 days for certificates and no new secrets, and every credential that expires within N days, where the program uses 60, design guidance, has an owner and a renewal date. VK-NPI-03 reports apps that still use secrets; each is either in a Step 5 wave or has an exception with an end date. The ScubaGear result for MS.AAD.5.5v1 to 5.7v1 is filed with the gate.
+Validate. VK-NPI-02 reports each secret and certificate with its lifetime and days to expiry. Pass: no credential issued after the policy's effective date runs longer than the cap, 180 days for certificates and no new secrets, and every credential that expires within N days, where the program uses 60, design guidance, has an owner and a renewal date. VK-NPI-03 reports apps that still use secrets; each is either in a Step 5 wave or has an exception with an end date. VK-NPI-10 reports every active AWS access key or service-specific credential and every OCI API signing key, auth token or customer secret key. Pass: each has an exception with a replace-by date that hasn't passed, no OCI API key is older than 90 days, and every enabled IAM Roles Anywhere trust anchor has an imported CRL. The ScubaGear result for MS.AAD.5.5v1 to 5.7v1 is filed with the gate.
 
 Availability. The guide lists application management policies as free, and the workbook's Chapter 04 says every policy page it calls lists the global service, which GCC uses. Key Vault's host is vault.azure.net in commercial Azure, which GCC's estate uses.
 

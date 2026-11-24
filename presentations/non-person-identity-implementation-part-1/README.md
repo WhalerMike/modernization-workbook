@@ -22,6 +22,8 @@ The series follows the guide's six gates. For each gate it gives what done means
 
 Build (Git Bash): `source /c/tmp/deckenv.sh`, then `FIT=1 node presentations/non-person-identity-implementation-part-1/build.js presentations/non-person-identity-implementation-part-1/Non_Person_Identity_Implementation_Part_1.pptx`. The narrated edition is generated separately by `narrate.py`, `captions.py` and `build_narrated.ps1`, and the MP4 by `export_mp4.ps1`.
 
+Slides 2, 8 and 15 were re-recorded on November 24, 2026, when the guide added VK-NPI-10 for AWS GovCloud (US) and OCI to G1 and G3 (the gate table, G1's and G3's Validate lists and the IA-5 evidence row); the other clips are unchanged. The video now runs about 17 minutes.
+
 The speaker notes are the live script: about 4,250 words, about 30 minutes. Each note has a timing cue at 142 words a minute and ends with a `Workbook:` reference. The build runs the technical deep dive's checks (title length and uniqueness, Sources length, overflow warnings) and the deeper dive's width and height check on every code panel. `FIT=1` prints the estimated bottom edge of each element.
 
 ## Labels and sourcing

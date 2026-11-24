@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.462
+Unit 2 is the exports and the join.
+
+2
+00:00:02.462 --> 00:00:05.663
+Every command in the guide's
+two export steps is a read.
+
+3
+00:00:05.663 --> 00:00:09.405
+In AWS, the credential
+report lists every IAM user,
+
+4
+00:00:09.405 --> 00:00:12.600
+its password and its
+first two access keys.
+
+5
+00:00:12.600 --> 00:00:17.150
+It leaves out service-specific credentials
+and any key beyond the first two,
+
+6
+00:00:17.150 --> 00:00:21.412
+so the export also lists access keys
+and service-specific credentials.
+
+7
+00:00:21.412 --> 00:00:25.862
+Then the roles, with their trust
+policies, the instance profiles,
+
+8
+00:00:25.862 --> 00:00:31.067
+the O I D C providers, and the Roles
+Anywhere trust anchors, profiles and C R Ls.
+
+9
+00:00:31.067 --> 00:00:34.005
+List users and list
+roles don't return tags,
+
+10
+00:00:34.005 --> 00:00:37.363
+so the export reads each
+user's and role's tags too.
+
+11
+00:00:37.363 --> 00:00:41.149
+In O C I, against the tenancy's
+home region, it reads the users,
+
+12
+00:00:41.149 --> 00:00:44.778
+each user's credentials, which
+come back as identifiers,
+
+13
+00:00:44.778 --> 00:00:48.249
+never the secret, the dynamic
+groups and the policies.
+
+14
+00:00:48.249 --> 00:00:53.862
+The join is four tags: system I D,
+owner one, owner two and sponsor.
+
+15
+00:00:53.862 --> 00:00:55.718
+Each owner gets its own key,
+
+16
+00:00:55.718 --> 00:00:59.599
+because an AWS tag value can't
+hold a comma or a semicolon.
+
+17
+00:00:59.599 --> 00:01:05.350
+An identity with no tags or record is an
+orphan: disable first, then a person acts.
