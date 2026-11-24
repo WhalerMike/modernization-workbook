@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.050
+Step 2 reads the findings.
+
+2
+00:00:02.050 --> 00:00:04.875
+Look for the user called
+svc report export.
+
+3
+00:00:04.875 --> 00:00:07.629
+It has two active keys,
+one of them never used,
+
+4
+00:00:07.629 --> 00:00:11.225
+a console password beside them,
+and only one owner tagged.
+
+5
+00:00:11.225 --> 00:00:14.641
+Then the dynamic group called
+dg everything: no tags,
+
+6
+00:00:14.641 --> 00:00:18.375
+no policy names it, and its
+rule matches the whole tenancy.
+
+7
+00:00:18.375 --> 00:00:22.914
+Step 3 reads the long-lived
+credentials, one row per active key,
+
+8
+00:00:22.914 --> 00:00:27.541
+service-specific credential, API
+key, auth token and secret key,
+
+9
+00:00:27.541 --> 00:00:31.012
+with its age, last use for
+AWS keys, and exception.
+
+10
+00:00:31.012 --> 00:00:33.993
+The oldest AWS key is
+nine hundred and five
+
+11
+00:00:33.993 --> 00:00:36.975
+days old and was last
+used almost a year ago.
+
+12
+00:00:36.975 --> 00:00:40.965
+Two credentials are under
+exceptions until 2027:
+
+13
+00:00:40.965 --> 00:00:44.663
+svc app sync's key, and hr
+report reader's API key.

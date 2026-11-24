@@ -1,0 +1,126 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:05.749
+CISA's Zero Trust Maturity Model defines
+an identity as attributes that describe,
+
+2
+00:00:05.749 --> 00:00:09.925
+quote, an agency user or entity,
+including non-person entities.
+
+3
+00:00:09.925 --> 00:00:13.900
+So service accounts are inside the
+Identity pillar, not beside it.
+
+4
+00:00:13.900 --> 00:00:18.477
+The guide scores three kinds of service
+identity against the pillar's functions:
+
+5
+00:00:18.477 --> 00:00:22.712
+authentication, identity stores, risk
+assessments and access management.
+
+6
+00:00:22.712 --> 00:00:24.097
+The stages are CISA's;
+
+7
+00:00:24.097 --> 00:00:28.100
+where each kind lands is the
+program's reading, design guidance.
+
+8
+00:00:28.100 --> 00:00:29.338
+Authentication.
+
+9
+00:00:29.338 --> 00:00:33.790
+CISA's Traditional stage is passwords
+or multi-factor authentication;
+
+10
+00:00:33.790 --> 00:00:36.462
+Optimal continuously validates identity.
+
+11
+00:00:36.462 --> 00:00:40.923
+A user account used as a service
+is Traditional: a static password,
+
+12
+00:00:40.923 --> 00:00:45.137
+often never expiring, and crackable
+offline if it holds an S P N.
+
+13
+00:00:45.137 --> 00:00:49.458
+A G M S A or a D M S A is better
+than Traditional on the credential,
+
+14
+00:00:49.458 --> 00:00:53.259
+because it's generated,
+rotated and unknown to people,
+
+15
+00:00:53.259 --> 00:00:57.925
+but its Kerberos access is static,
+with no continuous evaluation.
+
+16
+00:00:57.925 --> 00:01:02.011
+An Entra workload identity is
+token-based, short-lived and logged,
+
+17
+00:01:02.011 --> 00:01:05.113
+and a managed identity has
+no credential to steal.
+
+18
+00:01:05.113 --> 00:01:09.449
+Microsoft Learn says workloads can't
+perform multifactor authentication,
+
+19
+00:01:09.449 --> 00:01:12.340
+so the workload equivalent
+of phishing-resistant
+
+20
+00:01:12.340 --> 00:01:15.575
+multifactor authentication
+is having no stored secret.
+
+21
+00:01:15.575 --> 00:01:16.950
+Identity stores.
+
+22
+00:01:16.950 --> 00:01:19.831
+Traditional is self-managed,
+on-premises stores;
+
+23
+00:01:19.831 --> 00:01:24.225
+Optimal securely integrates them
+across all partners and environments.
+
+24
+00:01:24.225 --> 00:01:29.725
+The user account and the G M S A both live
+only in on-premises Active Directory.
+
+25
+00:01:29.725 --> 00:01:32.282
+The workload identity lives in Entra I D,
+
+26
+00:01:32.282 --> 00:01:36.720
+the program's integrated store, and
+federation reaches other clouds.

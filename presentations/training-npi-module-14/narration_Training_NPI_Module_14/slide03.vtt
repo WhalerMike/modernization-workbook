@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.850
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.850 --> 00:00:05.162
+which takes about sixty
+minutes with the lab.
+
+3
+00:00:05.162 --> 00:00:09.469
+You'll say why an access key, an
+API key, an auth token or a customer
+
+4
+00:00:09.469 --> 00:00:14.412
+secret key is a long-lived secret, and
+what the program does with each one.
+
+5
+00:00:14.412 --> 00:00:17.149
+You'll name what the
+guide's export steps read,
+
+6
+00:00:17.149 --> 00:00:20.625
+and what AWS's credential report
+and list calls leave out.
+
+7
+00:00:20.625 --> 00:00:23.687
+You'll join an identity to
+its record with four tags.
+
+8
+00:00:23.687 --> 00:00:27.800
+You'll run Chapter 13's checks on
+fixtures and read what they find.
+
+9
+00:00:27.800 --> 00:00:31.713
+And you'll name what's still unknown,
+and why the kit doesn't assume an answer.
+
+10
+00:00:31.713 --> 00:00:34.799
+Before you start, finish Modules 1 and 4.
+
+11
+00:00:34.799 --> 00:00:38.734
+You need PowerShell 7.1
+or later with Pester 5,
+
+12
+00:00:38.734 --> 00:00:42.790
+and no AWS account, O C I
+tenancy or Entra tenant.

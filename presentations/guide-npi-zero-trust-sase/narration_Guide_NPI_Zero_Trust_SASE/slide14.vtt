@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.138
+The guide lists five dangers.
+
+2
+00:00:02.138 --> 00:00:06.912
+Counting a G M S A as done for Zero Trust
+leaves the Identity pillar at Traditional
+
+3
+00:00:06.912 --> 00:00:11.017
+for that workload, unseen: score
+kept accounts against the scorecard,
+
+4
+00:00:11.017 --> 00:00:13.825
+and let the island list
+carry them to an end date.
+
+5
+00:00:13.825 --> 00:00:19.027
+Publishing a Kerberos application through
+Private Access and forgetting its service
+
+6
+00:00:19.027 --> 00:00:21.806
+account leaves the back
+end outside Zero Trust,
+
+7
+00:00:21.806 --> 00:00:23.943
+and an S P N move breaks single sign-on:
+
+8
+00:00:23.943 --> 00:00:28.219
+record the application's service account
+and S P N with the published app,
+
+9
+00:00:28.219 --> 00:00:31.425
+and move the connector's
+delegation in step A5's change.
+
+10
+00:00:31.425 --> 00:00:36.101
+Enforcing the domain controller sensor
+on an S P N a service uses blocks
+
+11
+00:00:36.101 --> 00:00:38.954
+service-to-service
+Kerberos: start in audit,
+
+12
+00:00:38.954 --> 00:00:42.837
+add S P N exclusions to the
+exception register, then enforce.
+
+13
+00:00:42.837 --> 00:00:48.360
+Treating a R H E L keytab like a G M S A
+leaves a long-lived key on disk unrotated:
+
+14
+00:00:48.360 --> 00:00:54.062
+inventory keytabs as secrets, and move
+the workload to its platform identity.
+
+15
+00:00:54.062 --> 00:00:58.655
+And one Entra identity for every cloud's
+workloads puts secrets or certificates
+
+16
+00:00:58.655 --> 00:01:02.974
+where the platform would issue temporary
+credentials: use native workload
+
+17
+00:01:02.974 --> 00:01:07.224
+identities, one governance record, and
+federation only to cross platforms.

@@ -29,6 +29,11 @@ The Non-Person Identity track has three guides. [*Non-Person Identity: An Implem
 The answer in brief; the Zero Trust scorecard; what SASE does and doesn't do for a service account; the workloads one by one (SQL Server, IIS, scheduled tasks and Windows services, RHEL and Linux, AWS GovCloud (US), OCI); the certificate map from each service account and SPN to its Entra target; NTLM; whether to extend Microsoft Entra ID across clouds; dangers; checklist.
 :::
 
+::: {.callout-tip}
+## Watch or present
+**Narrated deck (about 20 minutes, captions)**: the answer in brief, the Zero Trust scorecard, what SASE does and doesn't do, the workloads one by one, RHEL and Linux sign-in, the certificate map, NTLM, extending Entra ID across clouds, the dangers and the checklist, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-npi-zero-trust-sase) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_NPI_Zero_Trust_SASE_Narrated) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Guide_NPI_Zero_Trust_SASE_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-npi-zero-trust-sase/Guide_NPI_Zero_Trust_SASE_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-npi-zero-trust-sase/Guide_NPI_Zero_Trust_SASE_Narrated.vtt). **Training:** [Module 14](../../training/non-person-identity/14-workload-identity-across-aws-govcloud-and-oci.md) of the Non-Person Identity learning path covers the AWS GovCloud (US) and OCI workload identities this page scores.
+:::
+
 ## The answer in brief {#in-brief}
 
 - **A gMSA or dMSA is a better password, not a Zero Trust identity.** It removes the human-known password, which is the Kerberoasting risk ([SPNs and service accounts](service-account-migration.md#spns)), but the workload still authenticates with Kerberos against Active Directory. Nothing in Entra ID evaluates that sign-in, so Conditional Access, Entra's risk signals and the sign-in logs never see it.

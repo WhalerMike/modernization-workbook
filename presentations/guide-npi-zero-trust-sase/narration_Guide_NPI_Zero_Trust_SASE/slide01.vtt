@@ -1,0 +1,99 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.012
+Welcome.
+
+2
+00:00:01.012 --> 00:00:05.293
+This is the narrated briefing for
+a companion guide in the Federal
+
+3
+00:00:05.293 --> 00:00:10.488
+Modernization Workbook: Non-Person
+Identity, Zero Trust, SASE and Other Clouds.
+
+4
+00:00:10.488 --> 00:00:12.725
+The guide's idea fits in one line.
+
+5
+00:00:12.725 --> 00:00:15.474
+A G M S A fixes the
+password, not the protocol:
+
+6
+00:00:15.474 --> 00:00:20.816
+the service still speaks Kerberos to Active
+Directory, where Conditional Access,
+
+7
+00:00:20.816 --> 00:00:25.137
+Global Secure Access and the Zero
+Trust Maturity Model can't see it.
+
+8
+00:00:25.137 --> 00:00:28.137
+The Non-Person Identity
+track has three guides.
+
+9
+00:00:28.137 --> 00:00:31.012
+The implementation guide
+runs the track as gates.
+
+10
+00:00:31.012 --> 00:00:34.037
+The service accounts guide
+moves one account at a time.
+
+11
+00:00:34.037 --> 00:00:39.100
+This one is the why: what each choice does
+to the program's Zero Trust maturity and
+
+12
+00:00:39.100 --> 00:00:42.705
+its SASE design, workload by
+workload and cloud by cloud,
+
+13
+00:00:42.705 --> 00:00:45.850
+and which certificates
+each move adds or removes.
+
+14
+00:00:45.850 --> 00:00:51.934
+Every fact in this deck comes from the
+guide, which footnotes each one: CISA,
+
+15
+00:00:51.934 --> 00:00:58.313
+Microsoft Learn, Red Hat, OMB, AWS and
+Oracle, read on November twenty-fourth, 2026.
+
+16
+00:00:58.313 --> 00:01:02.321
+Where the guide gives the program's
+own reading rather than a source's,
+
+17
+00:01:02.321 --> 00:01:04.924
+it says design guidance,
+and so does this deck.
+
+18
+00:01:04.924 --> 00:01:08.027
+We'll go in four parts: why
+a G M S A isn't the end,
+
+19
+00:01:08.027 --> 00:01:13.255
+what the Zero Trust scorecard and
+SASE say, which workloads it touches,
+
+20
+00:01:13.255 --> 00:01:17.780
+and how certificates, N T L M and
+other clouds change the answer.

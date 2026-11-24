@@ -1,0 +1,91 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.088
+Unit 1 is what the vendors say.
+
+2
+00:00:02.088 --> 00:00:06.725
+AWS says to require workloads to use
+temporary credentials with IAM roles,
+
+3
+00:00:06.725 --> 00:00:09.900
+and where possible not to
+create access keys at all.
+
+4
+00:00:09.900 --> 00:00:12.584
+Oracle recommends instance principals,
+
+5
+00:00:12.584 --> 00:00:15.663
+and rotating API keys
+every ninety days or less.
+
+6
+00:00:15.663 --> 00:00:18.062
+AWS GovCloud isn't commercial AWS:
+
+7
+00:00:18.062 --> 00:00:23.120
+it has one IAM control plane and no
+global S T S endpoint, no role between a
+
+8
+00:00:23.120 --> 00:00:28.350
+GovCloud account and a standard one,
+and a root user with no console sign-in.
+
+9
+00:00:28.350 --> 00:00:32.555
+IAM Roles Anywhere works there,
+but it can't fetch revocation
+
+10
+00:00:32.555 --> 00:00:37.012
+lists from a certificate, so AWS
+says to import your C R Ls instead.
+
+11
+00:00:37.012 --> 00:00:41.354
+In O C I, instance and resource
+principals act through a dynamic group,
+
+12
+00:00:41.354 --> 00:00:44.401
+which has no permissions
+until a policy names it.
+
+13
+00:00:44.401 --> 00:00:47.750
+Auth tokens and customer
+secret keys never expire.
+
+14
+00:00:47.750 --> 00:00:52.458
+And Microsoft Learn says Entra
+accepts tokens from workloads in AWS,
+
+15
+00:00:52.458 --> 00:00:54.688
+signed with R S two fifty-six only.
+
+16
+00:00:54.688 --> 00:00:58.837
+Whether a GovCloud account's tokens
+work with Entra hasn't been tested,
+
+17
+00:00:58.837 --> 00:01:01.413
+so the guide uses that
+path only after a test.
+
+18
+00:01:01.413 --> 00:01:02.938
+The program's rule follows:
+
+19
+00:01:02.938 --> 00:01:06.890
+every long-lived credential is an
+exception with a replacement date.

@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.213
+Who's involved?
+
+2
+00:00:01.213 --> 00:00:05.707
+The cloud engineers who run the exports
+in each account and the tenancy, the
+
+3
+00:00:05.707 --> 00:00:10.325
+identity engineers who own the findings,
+and the I S S O, who reads the evidence.
+
+4
+00:00:10.325 --> 00:00:12.575
+Each output supports a NIST control.
+
+5
+00:00:12.575 --> 00:00:17.600
+The identity list supports account management,
+inventory and identifier management.
+
+6
+00:00:17.600 --> 00:00:20.831
+The credentials list supports
+authenticator management,
+
+7
+00:00:20.831 --> 00:00:24.788
+and the trust anchors and their CRLs
+support public key authentication.
+
+8
+00:00:24.788 --> 00:00:27.083
+Trust and reach support least privilege,
+
+9
+00:00:27.083 --> 00:00:29.850
+and the orphan leads
+support disabling accounts.
+
+10
+00:00:29.850 --> 00:00:32.550
+The passing tests support testing changes.
+
+11
+00:00:32.550 --> 00:00:36.021
+Each row names the fed-ramp
+twenty X K S I's aligned with it,
+
+12
+00:00:36.021 --> 00:00:38.738
+re-read from FedRAMP
+on November twentieth.
+
+13
+00:00:38.738 --> 00:00:43.487
+Two cautions: a row provides evidence
+for a control, and the assessor decides.
+
+14
+00:00:43.487 --> 00:00:46.343
+And K S I's are indicators
+for cloud providers;
+
+15
+00:00:46.343 --> 00:00:49.200
+the agency lines its
+evidence up with theirs.

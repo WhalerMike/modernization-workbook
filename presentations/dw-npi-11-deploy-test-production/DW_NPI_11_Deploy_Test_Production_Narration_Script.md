@@ -46,7 +46,7 @@ Production's preflight runs against a fictional production tenant, with the test
 
 ## Slide 12 — Prepare, preflight, then Steps 1.1 to 1.3
 
-Stage 1 starts by preparing: the group managed account's retriever group with the test host in it, and the synthetic objects, an app with two owners and a federated credential, and a service account whose random password nobody records. The pilot's policy is created, turned off. The preflight records the validation kit's baseline, and checks the root key is more than ten hours old. Step 1.1 reads every identity and its owners. Step 1.2 turns the pilot policy on for just two apps, and plans the tenant-wide one for review. Step 1.3 moves the pilot to a federated credential and a managed identity, beside its old secret.
+Stage 1 starts by preparing: the group managed account's retriever group with the test host in it, and the synthetic objects, an app with two owners and a federated credential, and a service account whose random password nobody records. The pilot's policy is created, turned off. The preflight records the validation kit's baseline, checks one to ten; check ten, for AWS GovCloud and O C I, doesn't apply in this Entra runbook. And it checks the root key is more than ten hours old. Step 1.1 reads every identity and its owners. Step 1.2 turns the pilot policy on for just two apps, and plans the tenant-wide one for review. Step 1.3 moves the pilot to a federated credential and a managed identity, beside its old secret.
 
 ## Slide 13 — Steps 1.4 and 1.5: a gMSA, then workload policies
 
