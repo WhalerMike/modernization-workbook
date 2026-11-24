@@ -919,11 +919,11 @@ A finding this page addresses is ready for closure when every applicable state h
 
 ## Questions for the program owner {#questions}
 
-These were design choices the guide left to the program owner. All three are now program decisions, taken as recommended on November 11, 2026 and recorded as [WD-154](../../about/decision-register.md#wd-154):
+These were design choices the guide left to the program owner. All three are now program decisions, taken as recommended on November 11, 2026 and recorded as [WD-154](../../about/decision-register.md#wd-154); WD-163 later changed who holds the create right (item 3):
 
 1. **Non-domain-joined container hosts.** Learn's pattern for them keeps a standard user account's password in a secret store for `ccg.exe`. *Decision:* gMSA containers run only on domain-joined hosts; a non-domain-joined host needs a reviewed exception.
 2. **Outbound-only gMSAs.** Learn offers `-RestrictToOutboundAuthenticationOnly` for services nothing authenticates to. *Decision:* it is the default for a gMSA whose workload holds no SPN, recorded in `kerberos-replatform.csv` (step A3 of [Migration A](#migration-a)).
-3. **Who creates gMSAs.** Learn allows a delegated right to create `msDS-GroupManagedServiceAccount` objects instead of Domain Admins. *Decision:* that right is delegated on the service-account OU to the identity engineers who run Chapter 06's write path, and Domain Admins are kept only for the dMSA steps Learn says need it.
+3. **Who creates gMSAs.** Learn allows a delegated right to create `msDS-GroupManagedServiceAccount` objects instead of Domain Admins. *Decision:* that right is delegated on the service-account OU, and Domain Admins are kept only for the dMSA steps Learn says need it. WD-154 gave the right to the identity engineers who run Chapter 06's write path; since [WD-163](../../about/decision-register.md#wd-163) (November 20, 2026), the pipeline's own gMSA holds it and runs Chapter 06's approved plan once SailPoint approves the request. A person still runs the dMSA steps, `Uninstall-ADServiceAccount` on hosts, and every delete ([the standard](#msa-standard-roles)).
 
 ## Back to the books
 
