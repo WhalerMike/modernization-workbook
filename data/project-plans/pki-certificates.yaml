@@ -1,0 +1,198 @@
+# Sample project plan: PKI and Certificates.
+# scripts/project_plans/build.py reads this file and writes the page, the
+# Gantt chart and the downloads. Edit this file, never the outputs.
+#
+# Durations are working days and illustrative. The phases are Book 07,
+# Chapter 07's six waves, and their weeks already match the program's gates:
+# Assess ends at G0, Foundation at G1, Pilot at G2, Cutover at G3 and
+# Decommission at G4. The program keeps the tasks it already owns (the root
+# of trust D04, the Cloud PKI issuing CA P1.8, pilot issuance P2.7, PIV CBA
+# P2.8, issuance off AD CS P4.5); this plan carries everything around them
+# and meets them as linked milestones.
+
+slug: pki-certificates
+title: "PKI and Certificates: Hardening, Cloud PKI and the Lifecycle Platform"
+short_title: "PKI and Certificates"
+subtitle: "A sample project plan for Book 07's six waves: harden and classify what AD CS holds up, stand up the cloud chain and the lifecycle platform, pilot and scale cloud-issued certificates and Entra CBA, cut over, then retire what only migrating workloads used"
+description: "A sample PMP-style project plan for the PKI and certificate estate, built from Book 07: a work breakdown by Chapter 07's six waves, a computed critical path tied to the program's own certificate tasks, a gate per wave with its approver and criteria, and the decisions (server-certificate issuer and lifecycle platform, device and user rings, domain conversion, AD CS retirement) with owners and decide-by weeks."
+plan_type: "Project"
+covers: "Book 07's six waves, from the AD CS assessment and hardening gate to the decommissioning of MIGRATE-only components"
+books: "Book 07"
+sponsor: "Executive sponsor and CIO; CISO"
+manager: "PKI lead, with the identity, endpoint engineering and CLM platform leads"
+start_label: "Week 1 = the program's Phase 0 approval"
+project_start: 2027-01-04
+
+purpose: |
+  This plan schedules [Book 07](../books/b07-pki/index.md)'s move of the certificate estate: AD CS assessed and hardened, a cloud chain beside it, device and user certificates moved to Microsoft Cloud PKI and Entra certificate-based authentication (CBA), server certificates put under one lifecycle platform, and the AD CS components that only migrating workloads used retired. Its phases are the six waves of [Chapter 07's migration playbook](../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook), with each wave's exit gate as written there, and its roles are [Chapter 05](../books/b07-pki/05-who-owns-the-certificate-estate.md)'s.
+
+  The waves' weeks already line up with the [program master schedule](program-master-schedule.md), so the plan doesn't restate the program's own certificate tasks; it meets them as linked milestones. The program decides the root of trust (D04), creates the Cloud PKI issuing CA (P1.8), issues the pilot's certificates (P2.7), turns on CBA for PIV holders (P2.8) and moves user and device issuance off AD CS (P4.5). This plan's assessment and hardening gate must pass before the program's root signs a cloud issuing CA, its foundation must be in place before pilot issuance, and its cutover must finish before P4.5 starts. The PIV card itself stays with the credentialing office and the Federal PKI ([Chapter 09](../books/b07-pki/09-federal-workforce-credentials.md)); the binding that ties each card to its user is the [Attribute-Driven Migration plan](attribute-driven-migration.md)'s.
+
+critical_path_note: |
+  The computed path is short, and the program sets it. Decommissioning can't start until the program has moved user and device issuance off AD CS (P4.5, end of week 39) and the 30-day AD FS rollback window (K5.4) has closed; from there each MIGRATE-only CA is retired in Chapter 08's order to Gate 6 in week 43, nine working days before the program's G4. Every earlier wave carries float or margin, and the margins are what to watch. The tightest come first: the inventory, hardening and classification have five days of float against the start of the program's P1.8, because under BYOCA the root mustn't sign a cloud issuing CA before its hierarchy passes the hardening gate, so a Critical finding that takes longer than two weeks to fix moves a program date. The PIV acceptance settings (K3.1) have seven days of margin before the program turns on CBA for PIV holders, and the pilot observation and Gate 3 have five before the program's G2. Scale and cutover follow the program's rollout waves and finish in week 31, five weeks before P4.5 starts.
+
+assumptions:
+  - "The agency has an established AD CS hierarchy with an offline root, so the target is Book 07's recommended BYOCA model: the cloud issuing CA signed by the offline root ([Chapter 04](../books/b07-pki/04-the-target-pki.md#the-programs-recommendation)). The program confirms it at D04. With a Cloud PKI root instead, every relying party needs the new root, and Wave 2 grows."
+  - "A single forest. Durations are Chapter 07's planning figures for a single-forest estate; scale them to the Wave 1 inventory."
+  - "The tenant is GCC-Moderate. GCC tenants use the commercial Intune service, so Cloud PKI availability follows it; the Cloud PKI license (the add-on or the Intune Suite) is confirmed in Wave 2's entry gate ([Chapter 04](../books/b07-pki/04-the-target-pki.md#cloud-availability))."
+  - "The lifecycle platform is CyberArk Certificate Manager, Self-Hosted, inside the agency's boundary, because no certificate-management package is FedRAMP authorized as of October 20, 2026 ([Chapter 04](../books/b07-pki/04-the-target-pki.md#certificate-lifecycle-management); decision WD-029)."
+  - "Federated domains run on AD FS today. If they're already managed, Wave 5 is only the confirmation that no AD CS certificates remain for migrating use cases, and the rollback window doesn't apply."
+  - "Platforms in scope are Windows, iOS/iPadOS and Android; macOS is out of scope for the workbook."
+
+risks:
+  - risk: "Wave 1 finds a Critical ESC finding that takes longer to fix than planned"
+    impact: "Gate 1 slips, and under BYOCA the program's root can't sign the cloud issuing CA (P1.8)"
+    response: "Run the read-only checks in week 2 (K1.2) and fix Critical and High findings first; re-baseline with the program at G0 if a finding needs a template rebuild"
+  - risk: "A relying party rejects the cloud chain during the pilot"
+    impact: "Gate 3 fails; the program's G2 waits"
+    response: "Validate a test certificate on every relying-party type in Wave 2 (K2.5); keep AD CS autoenrollment on for pilot devices so removing the SCEP assignment rolls back"
+  - risk: "A CRL or AIA location can't be reached from where relying parties or Entra ID sit"
+    impact: "CBA sign-ins and Wi-Fi authentication fail at scale"
+    response: "Check every CRL from inside the network, the internet and a test CBA sign-in (K2.5); monitor CRL freshness (Chapter 08)"
+  - risk: "Staged rollout's 10-group limit can't hold every population"
+    impact: "Wave 4 stretches while users wait for CBA"
+    response: "Cut over domain by domain in Wave 5 rather than stretching staged rollout (Chapter 07)"
+  - risk: "An issuing CA is revoked or retired while a BRIDGE or RETAIN workload still depends on it"
+    impact: "Every certificate under it fails validation"
+    response: "Retire only after the CLM inventory and the CA database show no dependents; keep the root, and under BYOCA the CA that signed the cloud issuing CA (Chapter 07, Wave 6)"
+
+tasks:
+  # ------------------------------------------------- Wave 1 — Assess (weeks 1–4)
+  - {id: K1.1, phase: 1, name: "Every CA inventoried (host, key and signature algorithms, validity, root or issuing); every template's configuration and permissions exported", dur: 5, owner: "PKI and CA administrators",
+     source: "../books/b07-pki/02-what-ad-cs-holds-up.md#what-the-certificate-inventory-collects"}
+  - {id: X-D04, kind: external, phase: 1, name: "Root of trust for device certificates decided (program D04)", ref: "program-master-schedule:D04", after: [K1.1],
+     late: "The root of trust is chosen without the CA inventory, so BYOCA can't be weighed against the hierarchy that exists",
+     source: "program-master-schedule.md"}
+  - {id: K1.2, phase: 1, name: "Hardening checks (ESC1 to ESC8) run against templates, CA settings and PKI object ACLs; CA auditing on", dur: 5, after: [K1.1], owner: "PKI and CA administrators",
+     source: "../books/b07-pki/03-hardening-what-stays.md#the-esc-taxonomy"}
+  - {id: K1.3, phase: 1, name: "Issued certificates inventoried by template with expiry; every relying party and the chains and CRLs it uses; strong-mapping sweep on every domain controller", dur: 10, after: [K1.1], owner: "PKI and CA administrators",
+     source: "../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook"}
+  - {id: K1.4, phase: 1, name: "Every template classified MIGRATE, BRIDGE, RETAIN or RETIRE against the template migration matrix", dur: 5, after: [K1.3], owner: "PKI and CA administrators",
+     source: "../books/b07-pki/appendix-b-template-migration-matrix.md"}
+  - {id: K1.5, phase: 1, name: "Critical and High hardening findings remediated and re-tested", dur: 10, after: [K1.2], owner: "PKI and CA administrators",
+     source: "../books/b07-pki/03-hardening-what-stays.md#the-migration-gate"}
+  - {id: KG1, kind: gate, phase: 1, name: "Gate 1 — Assessed and hardened", after: [K1.4, K1.5], owner: "CISO and ISSO",
+     criteria: "Assessment approved by the PKI and CA administrators and the CISO and ISSO; no unclassified templates; every Critical and High finding remediated and re-tested (Chapter 03's migration gate); assessment record committed to the evidence repository",
+     source: "../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook"}
+  - {id: X-P18S, kind: external, phase: 1, name: "Program starts the Cloud PKI design and issuing CA (start of P1.8)", ref: "program-master-schedule:P1.8:start", after: [KG1],
+     late: "Under BYOCA, the root would sign a cloud issuing CA before its hierarchy passed the hardening gate",
+     source: "program-master-schedule.md"}
+  # ------------------------------------------------- Wave 2 — Foundation (weeks 5–8)
+  - {id: D-K1, kind: decision, phase: 2, name: "Issuer for internal server certificates, and the lifecycle platform's edition", after: [K1.4], owner: "Executive sponsor and CIO",
+     options: "Retained AD CS through the CLM platform, moving to a standalone issuing CA under the same root when the forest retires, and a public CA for names the internet trusts (Book 07's position); Certificate Manager, Self-Hosted, inside the boundary until a certificate-management package is FedRAMP authorized",
+     late: "Server certificates keep renewing by hand, and the Data Platform plan's replacement-CA decision (D-D9) has no issuer to name",
+     source: "../books/b07-pki/04-the-target-pki.md#the-issuer-decision-for-internal-server-certificates"}
+  - {id: X-DD9, kind: external, phase: 2, name: "Replacement CA for SQL Server's certificates decided (Data Platform D-D9)", ref: "data-platform:D-D9", after: [D-K1],
+     late: "SQL Server's certificates are given an issuer before the PKI plan has named one",
+     source: "data-platform.md"}
+  - {id: X-P18, kind: external, phase: 2, name: "Cloud PKI design done; issuing CA created (program P1.8)", ref: "program-master-schedule:P1.8",
+     late: "There's no cloud chain to export or deploy, and the foundation waits",
+     source: "program-master-schedule.md"}
+  - {id: K2.1, phase: 2, name: "Full chain exported; CRL and AIA reachable over HTTP from where relying parties sit; LDAP-only AIA replaced; root CRL on a published schedule", dur: 3, after: [X-P18], owner: "PKI and CA administrators",
+     source: "../books/b07-pki/07-coexistence-and-migration.md#crl-availability"}
+  - {id: K2.2, phase: 2, name: "Certificate Connector, current release, on its own servers wherever AD CS still serves SCEP or PKCS", dur: 3, after: [KG1], owner: "Endpoint engineering",
+     source: "../books/b07-pki/06-device-and-user-certificates.md#keep-the-connector-current"}
+  - {id: K2.3, phase: 2, name: "Every CA that issues user certificates, and the Federal PKI chain for PIV, uploaded to the Entra trust store with its CRL URL", dur: 2, after: [K2.1], owner: "Identity engineering",
+     source: "../books/b07-pki/06-device-and-user-certificates.md#the-trust-store"}
+  - {id: K2.4, phase: 2, name: "Trusted certificate profiles for the cloud chain and the federal root on managed devices; the chain to domain-joined relying parties; NTAuth only for logon issuers", dur: 5, after: [K2.1], owner: "Endpoint engineering",
+     source: "../books/b07-pki/06-device-and-user-certificates.md#the-trusted-certificate-profile-comes-first"}
+  - {id: K2.5, phase: 2, name: "Test certificate validated on every relying-party type; each CRL and AIA URL checked from inside, from the internet and in a test CBA sign-in", dur: 3, after: [K2.2, K2.3, K2.4], owner: "PKI and CA administrators",
+     source: "../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook"}
+  - {id: K2.6, phase: 2, name: "CLM platform deployed inside the boundary; its CA account scoped under the ESC7 review; Microsoft CA integration connected", dur: 20, after: [D-K1], owner: "CLM platform owner",
+     source: "../books/b07-pki/04-the-target-pki.md#certificate-lifecycle-management"}
+  - {id: KG2, kind: gate, phase: 2, name: "Gate 2 — Foundation in place", after: [K2.5], owner: "CISO and ISSO",
+     criteria: "Issuing CA active; trusted certificate profiles successful on at least 99% of managed devices; connector healthy; test certificate validated by every relying-party type; every CRL reachable from all three locations; the wave's rollback rehearsed in a test scope",
+     source: "../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook"}
+  # ------------------------------------------------- Wave 3 — Pilot (weeks 9–16)
+  - {id: K3.1, phase: 3, name: "CBA method policy for PIV acceptance: the four settings, high-affinity bindings, the authentication strength, staged rollout for pilot users within its limits", dur: 5, after: [K2.3], owner: "Identity engineering",
+     source: "../books/b07-pki/09-federal-workforce-credentials.md#how-entra-cba-uses-the-piv-authentication-certificate"}
+  - {id: X-P28S, kind: external, phase: 3, name: "Program starts CBA for PIV holders (start of P2.8)", ref: "program-master-schedule:P2.8:start", after: [K3.1],
+     late: "Pilot PIV holders are turned on for CBA before the method policy and bindings are set",
+     source: "program-master-schedule.md"}
+  - {id: X-P27S, kind: external, phase: 3, name: "Program starts pilot certificate issuance (start of P2.7)", ref: "program-master-schedule:P2.7:start", after: [KG2],
+     late: "Pilot devices receive certificates no relying party has been shown to accept",
+     source: "program-master-schedule.md"}
+  - {id: X-P27, kind: external, phase: 3, name: "Cloud PKI certificates issued; Wi-Fi and VPN verified (program P2.7)", ref: "program-master-schedule:P2.7",
+     late: "The pilot has nothing to observe, and Gate 3 waits",
+     source: "program-master-schedule.md"}
+  - {id: X-P28, kind: external, phase: 3, name: "Certificate-based authentication for PIV holders (program P2.8)", ref: "program-master-schedule:P2.8",
+     late: "Pilot users aren't on CBA, and Gate 3 waits",
+     source: "program-master-schedule.md"}
+  - {id: K3.2, phase: 3, name: "Pilot observed: Intune certificate reports and Entra sign-in logs read; binding and authentication level confirmed; failures to the troubleshooting runbook", dur: 5, after: [X-P27, X-P28], owner: "Endpoint engineering",
+     source: "../books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md#monitoring"}
+  - {id: KG3, kind: gate, phase: 3, name: "Gate 3 — Pilot authenticates with cloud certificates and CBA", after: [K3.2], owner: "CISO and ISSO",
+     criteria: "At least 95% issuance success on pilot devices; no authentication failures caused by certificate configuration; pilot users on CBA at the intended authentication level; every pilot relying party accepts the cloud chain; AD CS autoenrollment still on for pilot devices",
+     source: "../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook"}
+  - {id: X-G2, kind: external, phase: 3, name: "Program G2 — Pilot Clean", ref: "program-master-schedule:G2", after: [KG3],
+     late: "The program's pilot closes without the certificate pilot's evidence",
+     source: "program-master-schedule.md"}
+  # ------------------------------------------------- Wave 4 — Scale (weeks 17–28)
+  - {id: D-K2, kind: decision, phase: 4, name: "Device rings for SCEP and user populations for CBA", after: [KG3], owner: "Endpoint engineering, with identity engineering",
+     options: "Follow the program's rollout waves; by site, region or device tier. Dynamic groups built from governed attributes",
+     late: "Production profiles can't be assigned, and Wave 4 waits",
+     source: "../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook"}
+  - {id: X-P31S, kind: external, phase: 4, name: "Program starts rollout wave 1 (start of P3.1)", ref: "program-master-schedule:P3.1:start",
+     late: "The device rings have no divisions to follow",
+     source: "program-master-schedule.md"}
+  - {id: K4.1, phase: 4, name: "SCEP profiles extended to production device groups, ring by ring, with the program's waves", dur: 50, after: [D-K2, X-P31S], owner: "Endpoint engineering",
+     source: "../books/b07-pki/06-device-and-user-certificates.md#scep-profiles"}
+  - {id: K4.2, phase: 4, name: "PKCS and imported PKCS profiles for S/MIME and the remaining application certificates", dur: 15, after: [KG3], owner: "Endpoint engineering",
+     source: "../books/b07-pki/06-device-and-user-certificates.md#pkcs-and-imported-pkcs-profiles"}
+  - {id: K4.3, phase: 4, name: "Staged rollout extended to further user populations as sign-in data supports, within the 10-group limit", dur: 30, after: [KG3], owner: "Identity engineering",
+     source: "../books/b07-pki/06-device-and-user-certificates.md#staged-rollout"}
+  - {id: K4.4, phase: 4, name: "AD CS autoenrollment for MIGRATE templates removed on each ring once its devices hold valid cloud certificates", dur: 45, after: ["K4.1:SS+10"], owner: "PKI and CA administrators",
+     source: "../books/b07-pki/07-coexistence-and-migration.md#renewal-while-two-issuers-overlap"}
+  - {id: K4.5, phase: 4, name: "Server certificates (internal TLS, RADIUS, VPN gateways, SQL Server) discovered and enrolled for automated renewal; renewal owner recorded per class", dur: 30, after: [K2.6], owner: "Server and network teams",
+     source: "../books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md#inventory-and-renewal-through-cyberark-certificate-manager"}
+  - {id: KG4, kind: gate, phase: 4, name: "Gate 4 — Every managed device on cloud certificates", after: [K4.1, K4.2, K4.3, K4.4, K4.5], owner: "CISO and ISSO",
+     criteria: "Every managed device holds cloud-issued certificates for its MIGRATE use cases; every user intended for CBA on it; AD CS autoenrollment for MIGRATE templates removed on every migrated ring; server certificates renewing through the CLM platform",
+     source: "../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook"}
+  # ------------------------------------------------- Wave 5 — Cutover (weeks 29–36)
+  - {id: D-K3, kind: decision, phase: 5, name: "Convert the federated domains to managed authentication, and in what order", after: [KG4], owner: "Executive sponsor and CIO",
+     options: "A test domain or the domain with the fewest users first, then the rest; hold a domain on federation as a dated exception",
+     late: "AD FS stays in the sign-in path with certificate authentication on, and Gate 5 waits",
+     source: "../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook"}
+  - {id: K5.1, phase: 5, name: "No unexpired AD CS certificates left on managed devices for MIGRATE use cases; federation settings recorded; AD FS backed up with Rapid Restore", dur: 5, after: [KG4], owner: "Identity engineering",
+     source: "../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook"}
+  - {id: K5.2, phase: 5, name: "Domains converted one at a time; staged rollout groups removed; AD FS certificate authentication off", dur: 10, after: [K5.1, D-K3], owner: "Identity engineering",
+     source: "../books/b07-pki/06-device-and-user-certificates.md#migrating-from-ad-fs-certificate-authentication"}
+  - {id: K5.3, phase: 5, name: "AD CS procedures revised to BRIDGE and RETAIN scope only: domain controllers, LDAPS, NPS, server TLS", dur: 5, after: [K5.2], owner: "PKI and CA administrators",
+     source: "../books/b07-pki/04-the-target-pki.md#ad-cs-retained-for-what-only-it-can-do"}
+  - {id: KG5, kind: gate, phase: 5, name: "Gate 5 — Cut over", after: [K5.3], owner: "CISO and ISSO",
+     criteria: "All target domains managed; AD FS certificate authentication off; CBA working for all users; no AD CS certificates on managed endpoints for MIGRATE templates; BRIDGE and RETAIN templates documented and running",
+     source: "../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook"}
+  - {id: K5.4, phase: 5, name: "Rollback window: AD FS restorable but out of the sign-in path for 30 days; application use watched in Connect Health and the sign-in logs", dur: 22, after: [K5.2], owner: "Identity engineering",
+     source: "../books/b07-pki/07-coexistence-and-migration.md#rollback-rules-that-hold-across-waves"}
+  - {id: X-P45S, kind: external, phase: 5, name: "Program starts moving user and device issuance off AD CS (start of P4.5)", ref: "program-master-schedule:P4.5:start", after: [KG5],
+     late: "The program retires smart-card logon and AD CS issuance before the cutover has proved the cloud path",
+     source: "program-master-schedule.md"}
+  # ------------------------------------------------- Wave 6 — Decommission (weeks 37–44)
+  - {id: X-P45, kind: external, phase: 6, name: "User and device issuance off AD CS; smart-card logon GPO retired (program P4.5)", ref: "program-master-schedule:P4.5",
+     late: "MIGRATE-only components still issue, and decommissioning can't start",
+     source: "program-master-schedule.md"}
+  - {id: D-K4, kind: decision, phase: 6, name: "Retire each MIGRATE-only AD CS component", after: [K5.4, X-P45], owner: "Executive sponsor and CIO",
+     options: "Retire, starting with the CA with the fewest dependents, once nothing depends on it; keep it as a dated exception under the hardening baseline",
+     late: "NDES, CES/CEP and MIGRATE-only issuing CAs stay in service into the program's AD retirement",
+     source: "../books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md#decommissioning-ad-cs"}
+  - {id: K6.1, phase: 6, name: "Nothing depends on the CA, from the CLM inventory and the CA database; issuance stopped; events 4886 and 4888 read for a week", dur: 5, after: [D-K4], owner: "PKI and CA administrators",
+     source: "../books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md#decommissioning-ad-cs"}
+  - {id: K6.2, phase: 6, name: "CA database and key backed up and archived; outstanding certificates revoked; the final CRL published to outlive them", dur: 3, after: [K6.1], owner: "PKI and CA administrators",
+     source: "../books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md#decommissioning-ad-cs"}
+  - {id: K6.3, phase: 6, name: "Role services uninstalled before the CA role; the CA removed from the Entra trust store, Intune profiles and NTAuth", dur: 5, after: [K6.2], owner: "PKI and CA administrators",
+     source: "../books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md#decommissioning-ad-cs"}
+  - {id: K6.4, phase: 6, name: "Decommission record committed; the archive's disposition set under the records schedule", dur: 3, after: [K6.3], owner: "Records officer",
+     source: "../books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md#the-evidence-an-assessor-reads"}
+  - {id: KG6, kind: gate, phase: 6, name: "Gate 6 — MIGRATE-only components retired", after: [K6.4], owner: "CISO and ISSO",
+     criteria: "MIGRATE-only AD CS components retired or archived; offline root retained and documented, with the CA that signed the cloud issuing CA under BYOCA; no orphaned autoenrollment GPOs; HTTP CDP and AIA kept until the last certificate expires; decommission record in the evidence repository",
+     source: "../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook"}
+  - {id: X-G4, kind: external, phase: 6, name: "Program G4 — Legacy Quiet", ref: "program-master-schedule:G4", after: [KG6],
+     late: "The program reaches Legacy Quiet with MIGRATE-only CAs still running",
+     source: "program-master-schedule.md"}
+
+phases:
+  1: "Wave 1 — Assess"
+  2: "Wave 2 — Foundation"
+  3: "Wave 3 — Pilot"
+  4: "Wave 4 — Scale"
+  5: "Wave 5 — Cutover"
+  6: "Wave 6 — Decommission"

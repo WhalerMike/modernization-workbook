@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="1009" viewBox="0 0 980 1009" role="img" aria-labelledby="t d" font-family="Inter, 'DM Sans', Arial, sans-serif">
+<title id="t">PKI and Certificates: schedule</title>
+<desc id="d">Gantt chart of 49 tasks over 43 weeks. Critical-path tasks are red; other tasks are blue, with a grey line for their float. Gates are violet diamonds, decisions amber diamonds, and milestones from another plan green diamonds.</desc>
+<rect width="980" height="1009" fill="#ffffff"/>
+<line x1="360.0" y1="28" x2="360.0" y2="969" stroke="#e2e8f0" stroke-width="1"/>
+<text x="362.0" y="22" font-size="10" fill="#64748b">wk 1</text>
+<line x1="415.8" y1="28" x2="415.8" y2="969" stroke="#e2e8f0" stroke-width="1"/>
+<text x="417.8" y="22" font-size="10" fill="#64748b">wk 5</text>
+<line x1="471.6" y1="28" x2="471.6" y2="969" stroke="#e2e8f0" stroke-width="1"/>
+<text x="473.6" y="22" font-size="10" fill="#64748b">wk 9</text>
+<line x1="527.4" y1="28" x2="527.4" y2="969" stroke="#e2e8f0" stroke-width="1"/>
+<text x="529.4" y="22" font-size="10" fill="#64748b">wk 13</text>
+<line x1="583.3" y1="28" x2="583.3" y2="969" stroke="#e2e8f0" stroke-width="1"/>
+<text x="585.3" y="22" font-size="10" fill="#64748b">wk 17</text>
+<line x1="639.1" y1="28" x2="639.1" y2="969" stroke="#e2e8f0" stroke-width="1"/>
+<text x="641.1" y="22" font-size="10" fill="#64748b">wk 21</text>
+<line x1="694.9" y1="28" x2="694.9" y2="969" stroke="#e2e8f0" stroke-width="1"/>
+<text x="696.9" y="22" font-size="10" fill="#64748b">wk 25</text>
+<line x1="750.7" y1="28" x2="750.7" y2="969" stroke="#e2e8f0" stroke-width="1"/>
+<text x="752.7" y="22" font-size="10" fill="#64748b">wk 29</text>
+<line x1="806.5" y1="28" x2="806.5" y2="969" stroke="#e2e8f0" stroke-width="1"/>
+<text x="808.5" y="22" font-size="10" fill="#64748b">wk 33</text>
+<line x1="862.3" y1="28" x2="862.3" y2="969" stroke="#e2e8f0" stroke-width="1"/>
+<text x="864.3" y="22" font-size="10" fill="#64748b">wk 37</text>
+<line x1="918.1" y1="28" x2="918.1" y2="969" stroke="#e2e8f0" stroke-width="1"/>
+<text x="920.1" y="22" font-size="10" fill="#64748b">wk 41</text>
+<rect x="0" y="34" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="46.5" font-size="11" font-weight="600" fill="#1e293b">Wave 1 — Assess</text>
+<text x="14" y="63" font-size="10.5" fill="#64748b">K1.1  Every CA inventoried (host, key and signature algo…</text>
+<line x1="374.0" y1="59.5" x2="387.9" y2="59.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="55" width="14.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="80" font-size="10.5" fill="#64748b">X-D04  Root of trust for device certificates decided (pr…</text>
+<path d="M415.8 71.0 L421.3 76.5 L415.8 82.0 L410.3 76.5 Z" fill="#059669"/>
+<text x="14" y="97" font-size="10.5" fill="#64748b">K1.2  Hardening checks (ESC1 to ESC8) run against templa…</text>
+<line x1="387.9" y1="93.5" x2="401.9" y2="93.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="374.0" y="89" width="14.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="114" font-size="10.5" fill="#64748b">K1.3  Issued certificates inventoried by template with e…</text>
+<line x1="401.9" y1="110.5" x2="415.8" y2="110.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="374.0" y="106" width="27.9" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="131" font-size="10.5" fill="#64748b">K1.4  Every template classified MIGRATE, BRIDGE, RETAIN…</text>
+<line x1="415.8" y1="127.5" x2="429.8" y2="127.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="401.9" y="123" width="14.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="148" font-size="10.5" fill="#64748b">K1.5  Critical and High hardening findings remediated an…</text>
+<line x1="415.8" y1="144.5" x2="429.8" y2="144.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="387.9" y="140" width="27.9" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="165" font-size="10.5" fill="#64748b">KG1  Gate 1 — Assessed and hardened</text>
+<path d="M415.8 156.0 L421.3 161.5 L415.8 167.0 L410.3 161.5 Z" fill="#7C3AED"/>
+<text x="14" y="182" font-size="10.5" fill="#64748b">X-P18S  Program starts the Cloud PKI design and issuing…</text>
+<path d="M429.8 173.0 L435.3 178.5 L429.8 184.0 L424.3 178.5 Z" fill="#059669"/>
+<rect x="0" y="187" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="199.5" font-size="11" font-weight="600" fill="#1e293b">Wave 2 — Foundation</text>
+<text x="14" y="216" font-size="10.5" fill="#64748b">D-K1  Issuer for internal server certificates, and the l…</text>
+<path d="M415.8 207.0 L421.3 212.5 L415.8 218.0 L410.3 212.5 Z" fill="#D97706"/>
+<text x="14" y="233" font-size="10.5" fill="#64748b">X-DD9  Replacement CA for SQL Server&#x27;s certificates deci…</text>
+<path d="M505.1 224.0 L510.6 229.5 L505.1 235.0 L499.6 229.5 Z" fill="#059669"/>
+<text x="14" y="250" font-size="10.5" fill="#64748b">X-P18  Cloud PKI design done; issuing CA created (progra…</text>
+<path d="M452.1 241.0 L457.6 246.5 L452.1 252.0 L446.6 246.5 Z" fill="#059669"/>
+<text x="14" y="267" font-size="10.5" fill="#64748b">K2.1  Full chain exported; CRL and AIA reachable over HT…</text>
+<line x1="460.5" y1="263.5" x2="480.0" y2="263.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="452.1" y="259" width="8.4" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="284" font-size="10.5" fill="#64748b">K2.2  Certificate Connector, current release, on its own…</text>
+<line x1="424.2" y1="280.5" x2="527.4" y2="280.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="415.8" y="276" width="8.4" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="301" font-size="10.5" fill="#64748b">K2.3  Every CA that issues user certificates, and the Fe…</text>
+<line x1="466.0" y1="297.5" x2="485.6" y2="297.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="460.5" y="293" width="5.6" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="318" font-size="10.5" fill="#64748b">K2.4  Trusted certificate profiles for the cloud chain a…</text>
+<line x1="474.4" y1="314.5" x2="527.4" y2="314.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="460.5" y="310" width="14.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="335" font-size="10.5" fill="#64748b">K2.5  Test certificate validated on every relying-party…</text>
+<line x1="482.8" y1="331.5" x2="535.8" y2="331.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="474.4" y="327" width="8.4" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="352" font-size="10.5" fill="#64748b">K2.6  CLM platform deployed inside the boundary; its CA…</text>
+<line x1="471.6" y1="348.5" x2="717.2" y2="348.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="415.8" y="344" width="55.8" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="369" font-size="10.5" fill="#64748b">KG2  Gate 2 — Foundation in place</text>
+<path d="M482.8 360.0 L488.3 365.5 L482.8 371.0 L477.3 365.5 Z" fill="#7C3AED"/>
+<rect x="0" y="374" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="386.5" font-size="11" font-weight="600" fill="#1e293b">Wave 3 — Pilot</text>
+<text x="14" y="403" font-size="10.5" fill="#64748b">K3.1  CBA method policy for PIV acceptance: the four set…</text>
+<line x1="480.0" y1="399.5" x2="499.5" y2="399.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="466.0" y="395" width="14.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="420" font-size="10.5" fill="#64748b">X-P28S  Program starts CBA for PIV holders (start of P2.8)</text>
+<path d="M499.5 411.0 L505.0 416.5 L499.5 422.0 L494.0 416.5 Z" fill="#059669"/>
+<text x="14" y="437" font-size="10.5" fill="#64748b">X-P27S  Program starts pilot certificate issuance (start…</text>
+<path d="M535.8 428.0 L541.3 433.5 L535.8 439.0 L530.3 433.5 Z" fill="#059669"/>
+<text x="14" y="454" font-size="10.5" fill="#64748b">X-P27  Cloud PKI certificates issued; Wi-Fi and VPN veri…</text>
+<path d="M555.3 445.0 L560.8 450.5 L555.3 456.0 L549.8 450.5 Z" fill="#059669"/>
+<text x="14" y="471" font-size="10.5" fill="#64748b">X-P28  Certificate-based authentication for PIV holders…</text>
+<path d="M521.9 462.0 L527.4 467.5 L521.9 473.0 L516.4 467.5 Z" fill="#059669"/>
+<text x="14" y="488" font-size="10.5" fill="#64748b">K3.2  Pilot observed: Intune certificate reports and Ent…</text>
+<line x1="569.3" y1="484.5" x2="583.3" y2="484.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="555.3" y="480" width="14.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="505" font-size="10.5" fill="#64748b">KG3  Gate 3 — Pilot authenticates with cloud certificate…</text>
+<path d="M569.3 496.0 L574.8 501.5 L569.3 507.0 L563.8 501.5 Z" fill="#7C3AED"/>
+<text x="14" y="522" font-size="10.5" fill="#64748b">X-G2  Program G2 — Pilot Clean</text>
+<path d="M583.3 513.0 L588.8 518.5 L583.3 524.0 L577.8 518.5 Z" fill="#059669"/>
+<rect x="0" y="527" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="539.5" font-size="11" font-weight="600" fill="#1e293b">Wave 4 — Scale</text>
+<text x="14" y="556" font-size="10.5" fill="#64748b">D-K2  Device rings for SCEP and user populations for CBA</text>
+<path d="M569.3 547.0 L574.8 552.5 L569.3 558.0 L563.8 552.5 Z" fill="#D97706"/>
+<text x="14" y="573" font-size="10.5" fill="#64748b">X-P31S  Program starts rollout wave 1 (start of P3.1)</text>
+<path d="M583.3 564.0 L588.8 569.5 L583.3 575.0 L577.8 569.5 Z" fill="#059669"/>
+<text x="14" y="590" font-size="10.5" fill="#64748b">K4.1  SCEP profiles extended to production device groups…</text>
+<line x1="722.8" y1="586.5" x2="787.0" y2="586.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="583.3" y="582" width="139.5" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="607" font-size="10.5" fill="#64748b">K4.2  PKCS and imported PKCS profiles for S/MIME and the…</text>
+<line x1="611.2" y1="603.5" x2="800.9" y2="603.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="569.3" y="599" width="41.9" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="624" font-size="10.5" fill="#64748b">K4.3  Staged rollout extended to further user population…</text>
+<line x1="653.0" y1="620.5" x2="800.9" y2="620.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="569.3" y="616" width="83.7" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="641" font-size="10.5" fill="#64748b">K4.4  AD CS autoenrollment for MIGRATE templates removed…</text>
+<line x1="736.7" y1="637.5" x2="800.9" y2="637.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="611.2" y="633" width="125.6" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="658" font-size="10.5" fill="#64748b">K4.5  Server certificates (internal TLS, RADIUS, VPN gat…</text>
+<line x1="555.3" y1="654.5" x2="800.9" y2="654.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="471.6" y="650" width="83.7" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="675" font-size="10.5" fill="#64748b">KG4  Gate 4 — Every managed device on cloud certificates</text>
+<path d="M736.7 666.0 L742.2 671.5 L736.7 677.0 L731.2 671.5 Z" fill="#7C3AED"/>
+<rect x="0" y="680" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="692.5" font-size="11" font-weight="600" fill="#1e293b">Wave 5 — Cutover</text>
+<text x="14" y="709" font-size="10.5" fill="#64748b">D-K3  Convert the federated domains to managed authentic…</text>
+<path d="M736.7 700.0 L742.2 705.5 L736.7 711.0 L731.2 705.5 Z" fill="#D97706"/>
+<text x="14" y="726" font-size="10.5" fill="#64748b">K5.1  No unexpired AD CS certificates left on managed de…</text>
+<line x1="750.7" y1="722.5" x2="814.9" y2="722.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="736.7" y="718" width="14.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="743" font-size="10.5" fill="#64748b">K5.2  Domains converted one at a time; staged rollout gr…</text>
+<line x1="778.6" y1="739.5" x2="842.8" y2="739.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="750.7" y="735" width="27.9" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="760" font-size="10.5" fill="#64748b">K5.3  AD CS procedures revised to BRIDGE and RETAIN scop…</text>
+<line x1="792.6" y1="756.5" x2="862.3" y2="756.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="778.6" y="752" width="14.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="777" font-size="10.5" fill="#64748b">KG5  Gate 5 — Cut over</text>
+<path d="M792.6 768.0 L798.1 773.5 L792.6 779.0 L787.1 773.5 Z" fill="#7C3AED"/>
+<text x="14" y="794" font-size="10.5" fill="#64748b">K5.4  Rollback window: AD FS restorable but out of the s…</text>
+<line x1="840.0" y1="790.5" x2="904.2" y2="790.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="778.6" y="786" width="61.4" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="811" font-size="10.5" fill="#64748b">X-P45S  Program starts moving user and device issuance o…</text>
+<path d="M862.3 802.0 L867.8 807.5 L862.3 813.0 L856.8 807.5 Z" fill="#059669"/>
+<rect x="0" y="816" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="828.5" font-size="11" font-weight="600" fill="#1e293b">Wave 6 — Decommission</text>
+<text x="14" y="845" font-size="10.5" fill="#64748b">X-P45  User and device issuance off AD CS; smart-card lo…</text>
+<path d="M904.2 836.0 L909.7 841.5 L904.2 847.0 L898.7 841.5 Z" fill="#059669"/>
+<text x="14" y="862" font-size="10.5" fill="#1e293b">D-K4  Retire each MIGRATE-only AD CS component</text>
+<path d="M904.2 853.0 L909.7 858.5 L904.2 864.0 L898.7 858.5 Z" fill="#D97706" stroke="#DC2626" stroke-width="1.6"/>
+<text x="14" y="879" font-size="10.5" fill="#1e293b">K6.1  Nothing depends on the CA, from the CLM inventory…</text>
+<rect x="904.2" y="871" width="14.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="896" font-size="10.5" fill="#1e293b">K6.2  CA database and key backed up and archived; outsta…</text>
+<rect x="918.1" y="888" width="8.4" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="913" font-size="10.5" fill="#1e293b">K6.3  Role services uninstalled before the CA role; the…</text>
+<rect x="926.5" y="905" width="14.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="930" font-size="10.5" fill="#1e293b">K6.4  Decommission record committed; the archive&#x27;s dispo…</text>
+<rect x="940.5" y="922" width="8.4" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="947" font-size="10.5" fill="#1e293b">KG6  Gate 6 — MIGRATE-only components retired</text>
+<path d="M948.8 938.0 L954.3 943.5 L948.8 949.0 L943.3 943.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<text x="14" y="964" font-size="10.5" fill="#64748b">X-G4  Program G4 — Legacy Quiet</text>
+<path d="M974.0 955.0 L979.5 960.5 L974.0 966.0 L968.5 960.5 Z" fill="#059669"/>
+<rect x="14" y="982" width="18" height="9" rx="2" fill="#DC2626"/>
+<text x="38" y="991" font-size="10.5" fill="#1e293b">Critical path</text>
+<rect x="140.60000000000002" y="982" width="18" height="9" rx="2" fill="#2563EB"/>
+<text x="164.60000000000002" y="991" font-size="10.5" fill="#1e293b">Other task</text>
+<line x1="248.60000000000002" y1="986.5" x2="266.6" y2="986.5" stroke="#cbd5e1" stroke-width="2"/>
+<text x="272.6" y="991" font-size="10.5" fill="#1e293b">Float</text>
+<path d="M334.6 981 L340.1 986.5 L334.6 992 L329.1 986.5 Z" fill="#7C3AED"/>
+<text x="349.6" y="991" font-size="10.5" fill="#1e293b">Gate</text>
+<path d="M405.40000000000003 981 L410.90000000000003 986.5 L405.40000000000003 992 L399.90000000000003 986.5 Z" fill="#D97706"/>
+<text x="420.40000000000003" y="991" font-size="10.5" fill="#1e293b">Decision</text>
+<path d="M501.0 981 L506.5 986.5 L501.0 992 L495.5 986.5 Z" fill="#059669"/>
+<text x="516.0" y="991" font-size="10.5" fill="#1e293b">From another plan</text>
+<text x="966" y="991" font-size="10.5" fill="#64748b" text-anchor="end">A red outline marks a milestone on the critical path</text>
+</svg>
