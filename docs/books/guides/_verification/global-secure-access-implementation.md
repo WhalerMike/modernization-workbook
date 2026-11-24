@@ -123,3 +123,7 @@ Every Microsoft fact and command was read on Microsoft Learn on November 11, 202
 
 1. **QUIC.** The TLS inspection policies page blocks UDP 443 with Windows Firewall; the client and limitations pages (both `ms.date` 2026-11-03) keep QUIC on and block it with the preview cloud firewall for clients. The guide uses the generally available path.
 2. **`TlsStatus` values.** Success and Failure on the concept page; `Inspected` in the operations page's query. The guide's query groups by the values the workspace holds.
+
+## Revision 2026-11-24 — service accounts behind SPNs
+
+A paragraph in Step 10 says that service accounts sit behind the protected SPNs, that service-to-service Kerberos needs SPN exclusions, and that an application published with Kerberos SSO keeps its own service account; it links *Non-Person Identity: Zero Trust, SASE and Other Clouds* and the service accounts guide's SPN section. Learn's domain controller page names synchronized users and doesn't say whether service accounts are covered (see that page's log, ZS-04).

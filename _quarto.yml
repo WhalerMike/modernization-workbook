@@ -199,6 +199,8 @@ website:
             text: "Guide: Non-Person Identity Implementation"
           - href: docs/books/guides/service-account-migration.md
             text: "Guide: Non-Person Identity — Service Accounts"
+          - href: docs/books/guides/non-person-identity-zero-trust-sase.md
+            text: "Guide: Non-Person Identity — Zero Trust, SASE and Other Clouds"
           - href: docs/books/guides/privileged-access-implementation.md
             text: "Guide: Privileged Access Implementation"
           - href: docs/books/guides/provider-notices-implementation.md
@@ -601,6 +603,7 @@ website:
               contents:
                 - docs/books/guides/non-person-identity-implementation.md
                 - docs/books/guides/service-account-migration.md
+                - docs/books/guides/non-person-identity-zero-trust-sase.md
             - docs/books/guides/privileged-access-implementation.md
             - docs/books/guides/provider-notices-implementation.md
             - docs/books/guides/defender-xdr-implementation.md
@@ -669,6 +672,9 @@ format:
       - assets/fmw-hero.lua
       # "Topic: <hub>" under the title of pages that belong to a topic (data/topics.yml).
       - assets/fmw-topics.lua
+      # "Download (Word)" under the title of every page with a built Word file
+      # (assets/word-downloads.json, from scripts/build_bundles.py --word-index).
+      - assets/fmw-word-download.lua
     include-in-header:
       - text: |
           <link rel="preconnect" href="https://fonts.googleapis.com">

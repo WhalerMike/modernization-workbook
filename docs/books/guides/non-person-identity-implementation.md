@@ -9,7 +9,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: b0329c8f860737f345b92b8f4a5c1456f2226368b90e113c1ca5ec169d9bb891
+reviewed-sha256: 50c2bdc56ddbaa50915f2c95cdaeb08c1fe3068012f695fe53b41e302a1eb6ae
 last-reviewed: 2026-11-24
 ---
 # Non-Person Identity: An Implementation Guide
@@ -18,7 +18,7 @@ last-reviewed: 2026-11-24
 
 ::: {.callout-tip}
 ## Which guide?
-The Non-Person Identity track has two guides. [*Non-Person Identity: An Implementation Guide*](non-person-identity-implementation.md) runs the whole track as gates G1 to G6, for every non-person identity: AD service accounts, app registrations, managed identities, AI agents, and the workload identities in AWS GovCloud (US) and OCI, with the tenant's credential and privilege rules. [*Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities*](service-account-migration.md) is part of the same track: the detail under the implementation guide's Steps 2 and 5, one account at a time, with the kinds compared, SPNs, the decision path, the managed service account standard, CyberArk's part and each migration by hand. Run the track and its gates from the first guide; migrate or standardize one account with the second. The gate checklist is the implementation guide's; the service accounts guide's checklist is the per-account one.
+The Non-Person Identity track has three guides. [*Non-Person Identity: An Implementation Guide*](non-person-identity-implementation.md) runs the whole track as gates G1 to G6, for every non-person identity: AD service accounts, app registrations, managed identities, AI agents, and the workload identities in AWS GovCloud (US) and OCI, with the tenant's credential and privilege rules. [*Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities*](service-account-migration.md) is part of the same track: the detail under the implementation guide's Steps 2 and 5, one account at a time, with the kinds compared, SPNs, the decision path, the managed service account standard, CyberArk's part and each migration by hand. Run the track and its gates from the first guide; migrate or standardize one account with the second. The gate checklist is the implementation guide's; the service accounts guide's checklist is the per-account one. The third, [*Non-Person Identity: Zero Trust, SASE and Other Clouds*](non-person-identity-zero-trust-sase.md), is the *why*: what keeping a service account costs in Zero Trust and SASE terms, workload by workload and cloud by cloud, and which certificates each move adds or removes.
 :::
 
 ::: {.callout-note}

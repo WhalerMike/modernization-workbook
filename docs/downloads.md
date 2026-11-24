@@ -1,6 +1,6 @@
 ---
 title: "Downloads"
-subtitle: "Every file the workbook publishes: the kits, the Ansible examples, a reference implementation, the twenty topic books, Book 19 and four other developer workbooks as Word documents, and the narrated videos"
+subtitle: "Every file the workbook publishes: the kits, the Ansible examples, a reference implementation, the twenty topic books, Book 19, nine other developer workbooks, the guides and the training paths as Word documents, and the narrated videos"
 description: "One place for every Federal Modernization Workbook download: the read-only Start Kit assessment scripts, the read-only validation kit for the track implementation guides, the Copilot agent pack for in-house automation, the Help Desk / Cloud Services Entra ID Operations Kit, the Ansible example playbooks, the application modernization reference implementation, each book as a Word document, and the narrated presentation videos."
 doc-type: section-landing
 ---
@@ -52,7 +52,7 @@ Every command in these kits is listed, with what it does and the pages that teac
 
 Each book downloads as one Word document with its chapters in reading order, its notes and its diagrams. The [books page](books/index.md) lists each book's chapter and page counts.
 
-To get one chapter, open it and choose **Other Formats > MS Word** under **On this page**. The chapter file is built the same way as the book: a title page, a table of contents, the diagrams and their captions, and the chapter's notes at the end.
+To get one chapter, open it and choose **Download (Word): this page** under its title (or **Other Formats > MS Word** under **On this page**). The chapter file is built the same way as the book: a title page, a table of contents, the diagrams and their captions, and the chapter's notes at the end.
 
 | Book | Word edition |
 |---|---|
@@ -89,6 +89,24 @@ To get one chapter, open it and choose **Other Formats > MS Word** under **On th
 | [Non-Person Identity: An Implementation Guide](books/guides/non-person-identity-implementation.md) | [non-person-identity-implementation-guide.docx](../downloads/non-person-identity-implementation-guide.docx) |
 | [Distribution Point Consolidation: A Decision Guide Before You Fund a Refresh](books/guides/dp-consolidation.md) | [dp-consolidation-guide.docx](../downloads/dp-consolidation-guide.docx) |
 | [Distribution Point Consolidation: An Implementation Guide](books/guides/dp-consolidation-implementation.md) | [dp-consolidation-implementation-guide.docx](../downloads/dp-consolidation-implementation-guide.docx) |
+| [Ansible for Configuration Automation](books/guides/ansible-configuration-automation.md) | [ansible-configuration-automation-guide.docx](../downloads/ansible-configuration-automation-guide.docx) |
+| [Azure Security Engineering](books/guides/azure-security-implementation.md) | [azure-security-implementation-guide.docx](../downloads/azure-security-implementation-guide.docx) |
+| [Building Book 09's SD-WAN Design on Cisco Catalyst SD-WAN](books/guides/cisco-sdwan-implementation.md) | [cisco-sdwan-implementation-guide.docx](../downloads/cisco-sdwan-implementation-guide.docx) |
+| [Certificate Lifecycle on CyberArk Certificate Manager](books/guides/cyberark-certificate-lifecycle.md) | [cyberark-certificate-lifecycle-guide.docx](../downloads/cyberark-certificate-lifecycle-guide.docx) |
+| [The Daily Checks on One Dashboard: An Implementation Guide](books/guides/daily-checks-dashboard-implementation.md) | [daily-checks-dashboard-implementation-guide.docx](../downloads/daily-checks-dashboard-implementation-guide.docx) |
+| [Defender XDR Engineering & Operations: An Implementation Guide](books/guides/defender-xdr-implementation.md) | [defender-xdr-implementation-guide.docx](../downloads/defender-xdr-implementation-guide.docx) |
+| [Global Secure Access & Zero Trust Network Engineering: An Implementation Guide](books/guides/global-secure-access-implementation.md) | [global-secure-access-implementation-guide.docx](../downloads/global-secure-access-implementation-guide.docx) |
+| [Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID](books/guides/hcm-entra-implementation.md) | [hcm-entra-implementation-guide.docx](../downloads/hcm-entra-implementation-guide.docx) |
+| [HR-Driven Identity: An Implementation Guide](books/guides/hr-driven-identity-implementation.md) | [hr-driven-identity-implementation-guide.docx](../downloads/hr-driven-identity-implementation-guide.docx) |
+| [Implementing Book 08 on Infoblox NIOS](books/guides/infoblox-nios-implementation.md) | [infoblox-nios-implementation-guide.docx](../downloads/infoblox-nios-implementation-guide.docx) |
+| [Privileged Access: An Implementation Guide](books/guides/privileged-access-implementation.md) | [privileged-access-implementation-guide.docx](../downloads/privileged-access-implementation-guide.docx) |
+| [Provider Notices: An Implementation Guide](books/guides/provider-notices-implementation.md) | [provider-notices-implementation-guide.docx](../downloads/provider-notices-implementation-guide.docx) |
+| [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](books/guides/service-account-migration.md) | [service-account-migration-guide.docx](../downloads/service-account-migration-guide.docx) |
+| [Integrating ServiceNow and SailPoint: An Implementation Example (Pass 1)](books/guides/snow-sailpoint-integration-kit.md) | [snow-sailpoint-integration-kit-guide.docx](../downloads/snow-sailpoint-integration-kit-guide.docx) |
+| [Ticket-to-Machine on ServiceNow and SailPoint: An Example Implementation Guide](books/guides/ttm-servicenow-sailpoint.md) | [ttm-servicenow-sailpoint-guide.docx](../downloads/ttm-servicenow-sailpoint-guide.docx) |
+| [Building an internal Ticket-to-Machine task catalog](books/guides/ttm-task-catalog.md) | [ttm-task-catalog-guide.docx](../downloads/ttm-task-catalog-guide.docx) |
+| [Zero Trust Assessment: An Implementation Guide](books/guides/zero-trust-assessment-implementation.md) | [zero-trust-assessment-implementation-guide.docx](../downloads/zero-trust-assessment-implementation-guide.docx) |
+| [Meeting Templates and Leadership Briefs](books/guides/one-page-ask.md) | [meeting-templates-and-briefs.docx](../downloads/meeting-templates-and-briefs.docx) |
 
 ## Reference pages as Word documents
 
@@ -103,10 +121,11 @@ The [reference pages](reference/index.md), one Word document each, and all six t
 | [RMF Map](reference/rmf-map.md) | [reference-rmf-map.docx](../downloads/reference-rmf-map.docx) |
 | [M-19-17 and FICAM Crosswalk](reference/m-19-17-ficam-crosswalk.md) | [reference-m-19-17-ficam-crosswalk.docx](../downloads/reference-m-19-17-ficam-crosswalk.docx) |
 | [Microsoft Practice Crosswalk](reference/graph-practice-crosswalk.md) | [reference-graph-practice-crosswalk.docx](../downloads/reference-graph-practice-crosswalk.docx) |
+| [Zero Trust Closure Coverage](reference/zta-closure-coverage.md) | [reference-zta-closure-coverage.docx](../downloads/reference-zta-closure-coverage.docx) |
 
 ## Developer workbooks as Word documents
 
-Approved: the owner reviewed and approved every page of these four workbooks. An approved page that changes goes back on the weekly source watch issue's list for review. See [Developer Workbooks](project-plans/developer-workbooks/index.md).
+Approved: the owner reviewed and approved every page of the first four workbooks below; each other workbook's pages show their own review status. An approved page that changes goes back on the weekly source watch issue's list for review. See [Developer Workbooks](project-plans/developer-workbooks/index.md).
 
 | Developer workbook | Word edition |
 |---|---|
@@ -114,6 +133,43 @@ Approved: the owner reviewed and approved every page of these four workbooks. An
 | [Building Non-Person Identity](project-plans/developer-workbooks/non-person-identity/index.md) | [building-non-person-identity-bundle.docx](../downloads/building-non-person-identity-bundle.docx) |
 | [Building Ticket-to-Machine](project-plans/developer-workbooks/ticket-to-machine/index.md) | [building-ticket-to-machine-bundle.docx](../downloads/building-ticket-to-machine-bundle.docx) |
 | [Building HR-Driven Identity](project-plans/developer-workbooks/hr-driven-identity/index.md) | [building-hr-driven-identity-bundle.docx](../downloads/building-hr-driven-identity-bundle.docx) |
+| [Building Azure Security](project-plans/developer-workbooks/azure-security/index.md) | [building-azure-security-bundle.docx](../downloads/building-azure-security-bundle.docx) |
+| [Building the Daily Checks Workbook](project-plans/developer-workbooks/daily-checks/index.md) | [building-daily-checks-bundle.docx](../downloads/building-daily-checks-bundle.docx) |
+| [Building Defender XDR](project-plans/developer-workbooks/defender-xdr/index.md) | [building-defender-xdr-bundle.docx](../downloads/building-defender-xdr-bundle.docx) |
+| [Building Global Secure Access](project-plans/developer-workbooks/global-secure-access/index.md) | [building-global-secure-access-bundle.docx](../downloads/building-global-secure-access-bundle.docx) |
+| [Building Provider Notices](project-plans/developer-workbooks/provider-notices/index.md) | [building-provider-notices-bundle.docx](../downloads/building-provider-notices-bundle.docx) |
+
+## Training paths as Word documents
+
+Each learning path downloads as one Word document: its overview and every module, with the labs' commands, the diagrams and the notes. Each module also has its own Word file: **Download (Word): this page** under its title.
+
+| Learning path | Word edition |
+|---|---|
+| [Building the Attribute-Driven Migration](training/attribute-driven-migration/index.md) | [training-attribute-driven-migration-bundle.docx](../downloads/training-attribute-driven-migration-bundle.docx) |
+| [Azure Security Engineering](training/azure-security/index.md) | [training-azure-security-bundle.docx](../downloads/training-azure-security-bundle.docx) |
+| [The Daily Checks on One Dashboard](training/daily-checks-dashboard/index.md) | [training-daily-checks-dashboard-bundle.docx](../downloads/training-daily-checks-dashboard-bundle.docx) |
+| [Defender XDR Engineering and Operations](training/defender-xdr/index.md) | [training-defender-xdr-bundle.docx](../downloads/training-defender-xdr-bundle.docx) |
+| [Global Secure Access as the Identity-Aware Network](training/global-secure-access/index.md) | [training-global-secure-access-bundle.docx](../downloads/training-global-secure-access-bundle.docx) |
+| [HR-Driven Identity in Microsoft Entra ID](training/hr-driven-identity/index.md) | [training-hr-driven-identity-bundle.docx](../downloads/training-hr-driven-identity-bundle.docx) |
+| [Non-Person Identity in Microsoft Entra ID](training/non-person-identity/index.md) | [training-non-person-identity-bundle.docx](../downloads/training-non-person-identity-bundle.docx) |
+| [Privileged Access in Microsoft Entra ID and Azure](training/privileged-access/index.md) | [training-privileged-access-bundle.docx](../downloads/training-privileged-access-bundle.docx) |
+| [Provider Notices](training/provider-notices/index.md) | [training-provider-notices-bundle.docx](../downloads/training-provider-notices-bundle.docx) |
+| [Ticket-to-Machine on ServiceNow and SailPoint](training/ticket-to-machine/index.md) | [training-ticket-to-machine-bundle.docx](../downloads/training-ticket-to-machine-bundle.docx) |
+| [The Zero Trust Assessment as Evidence](training/zero-trust-assessment/index.md) | [training-zero-trust-assessment-bundle.docx](../downloads/training-zero-trust-assessment-bundle.docx) |
+| [Microsoft Automation: Graph, Entra ID, Intune and Azure Arc](training/ms-automation-foundations.md) | [training-microsoft-automation-bundle.docx](../downloads/training-microsoft-automation-bundle.docx) |
+| [Infoblox Training and Learning Paths](training/infoblox-training.md) | [training-infoblox.docx](../downloads/training-infoblox.docx) |
+
+## Project plans, explainers, evaluations and About pages as Word documents
+
+| Pages | Word edition |
+|---|---|
+| [Projects](project-plans/index.md) | [project-plans-bundle.docx](../downloads/project-plans-bundle.docx) |
+| [Explainers](books/explainers/index.md) | [explainers-bundle.docx](../downloads/explainers-bundle.docx) |
+| [Evaluations](evaluations/index.md) | [evaluations-bundle.docx](../downloads/evaluations-bundle.docx) |
+| [About the Workbook](about/sources-and-verification.md) | [about-the-workbook.docx](../downloads/about-the-workbook.docx) |
+| [Inspiration](inspiration/index.md) | [inspiration.docx](../downloads/inspiration.docx) |
+
+Every other page of the workbook also has its own Word file, built the same way: **Download (Word): this page** under its title. Navigation pages (the home page, section landing pages, the Labs and Videos lists, the topic hubs, the Archive and this page) and the Learn Coverage Map's generated tables are web only.
 
 ## For AI tools
 

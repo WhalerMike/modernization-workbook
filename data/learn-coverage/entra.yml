@@ -5346,6 +5346,7 @@ pages:
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   cited_by:
   - docs/books/b01-transformation-arc/08-access-plane.md
+  - docs/books/guides/non-person-identity-zero-trust-sase.md
 - path: docs/global-secure-access/concept-connector-groups.md
   url: https://learn.microsoft.com/entra/global-secure-access/concept-connector-groups
   title: Microsoft Entra Private Network Connector Groups
@@ -5842,6 +5843,7 @@ pages:
   - docs/books/b02-identity/01-why-identity-matters.md
   - docs/books/b02-identity/_verification/01-02-why.md
   - docs/books/guides/global-secure-access-implementation.md
+  - docs/books/guides/non-person-identity-zero-trust-sase.md
   - docs/project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-configure-explicit-forward-proxy-headers.md
@@ -5906,6 +5908,7 @@ pages:
   cited_by:
   - data/source-register.json
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
+  - docs/books/guides/non-person-identity-zero-trust-sase.md
   - docs/reference/source-register.md
 - path: docs/global-secure-access/how-to-configure-mcp-firewall.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-configure-mcp-firewall
@@ -16619,6 +16622,7 @@ pages:
   - docs/books/b01-transformation-arc/07-compute-transformation.md
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
   - docs/books/b06-data-platform/18-the-four-class-pattern-for-applications.md
+  - docs/books/guides/non-person-identity-zero-trust-sase.md
 - path: docs/identity/app-proxy/how-to-configure-sso.md
   url: https://learn.microsoft.com/entra/identity/app-proxy/how-to-configure-sso
   title: Understand single sign-on with an on-premises app using application proxy
@@ -20067,6 +20071,7 @@ pages:
   - docs/books/b17-ai-identity/04-kinds-of-ai-identity.md
   - docs/books/b17-ai-identity/06-credentials-and-least-privilege.md
   - docs/books/guides/attribute-driven-migration.md
+  - docs/books/guides/non-person-identity-zero-trust-sase.md
   - docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md
   - docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md
@@ -20423,6 +20428,7 @@ pages:
   - docs/books/b04-access/04-privileged-roles-and-tiers.md
   - docs/books/b04-access/_verification/04-privileged-roles-and-tiers.md
   - docs/books/b05-devices/09-servers-under-azure-arc.md
+  - docs/books/guides/non-person-identity-zero-trust-sase.md
 - path: docs/identity/devices/howto-vm-sign-in-azure-ad-windows.md
   url: https://learn.microsoft.com/entra/identity/devices/howto-vm-sign-in-azure-ad-windows
   title: Sign in to a Windows virtual machine in Azure by using Microsoft Entra ID

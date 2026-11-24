@@ -1,0 +1,2828 @@
+{
+ "docs/about/decision-register.md": {
+  "bundle": "about-the-workbook.docx",
+  "page": "decision-register.docx",
+  "title": "About the Workbook"
+ },
+ "docs/about/reviewers-guide.md": {
+  "bundle": "about-the-workbook.docx",
+  "page": "reviewers-guide.docx",
+  "title": "About the Workbook"
+ },
+ "docs/about/sources-and-verification.md": {
+  "bundle": "about-the-workbook.docx",
+  "page": "sources-and-verification.docx",
+  "title": "About the Workbook"
+ },
+ "docs/books/b00-orientation/01-why-modernize-now.md": {
+  "bundle": "b00-orientation-bundle.docx",
+  "page": "01-why-modernize-now.docx",
+  "title": "Book 00 — Orientation & Program"
+ },
+ "docs/books/b00-orientation/02-how-to-use-this-workbook.md": {
+  "bundle": "b00-orientation-bundle.docx",
+  "page": "02-how-to-use-this-workbook.docx",
+  "title": "Book 00 — Orientation & Program"
+ },
+ "docs/books/b00-orientation/03-the-charter.md": {
+  "bundle": "b00-orientation-bundle.docx",
+  "page": "03-the-charter.docx",
+  "title": "Book 00 — Orientation & Program"
+ },
+ "docs/books/b00-orientation/04-the-principles.md": {
+  "bundle": "b00-orientation-bundle.docx",
+  "page": "04-the-principles.docx",
+  "title": "Book 00 — Orientation & Program"
+ },
+ "docs/books/b00-orientation/05-the-program-plan.md": {
+  "bundle": "b00-orientation-bundle.docx",
+  "page": "05-the-program-plan.docx",
+  "title": "Book 00 — Orientation & Program"
+ },
+ "docs/books/b00-orientation/06-the-project-portfolio.md": {
+  "bundle": "b00-orientation-bundle.docx",
+  "page": "06-the-project-portfolio.docx",
+  "title": "Book 00 — Orientation & Program"
+ },
+ "docs/books/b00-orientation/07-who-runs-the-program.md": {
+  "bundle": "b00-orientation-bundle.docx",
+  "page": "07-who-runs-the-program.docx",
+  "title": "Book 00 — Orientation & Program"
+ },
+ "docs/books/b00-orientation/08-pre-flight-and-assessment.md": {
+  "bundle": "b00-orientation-bundle.docx",
+  "page": "08-pre-flight-and-assessment.docx",
+  "title": "Book 00 — Orientation & Program"
+ },
+ "docs/books/b00-orientation/09-design-pilot-and-rollout.md": {
+  "bundle": "b00-orientation-bundle.docx",
+  "page": "09-design-pilot-and-rollout.docx",
+  "title": "Book 00 — Orientation & Program"
+ },
+ "docs/books/b00-orientation/10-retirement-steady-state-and-success.md": {
+  "bundle": "b00-orientation-bundle.docx",
+  "page": "10-retirement-steady-state-and-success.docx",
+  "title": "Book 00 — Orientation & Program"
+ },
+ "docs/books/b00-orientation/appendix-a-risk-register-and-traceability.md": {
+  "bundle": "b00-orientation-bundle.docx",
+  "page": "appendix-a-risk-register-and-traceability.docx",
+  "title": "Book 00 — Orientation & Program"
+ },
+ "docs/books/b00-orientation/appendix-b-engagement-archetype.md": {
+  "bundle": "b00-orientation-bundle.docx",
+  "page": "appendix-b-engagement-archetype.docx",
+  "title": "Book 00 — Orientation & Program"
+ },
+ "docs/books/b00-orientation/appendix-c-funding-and-acquisition.md": {
+  "bundle": "b00-orientation-bundle.docx",
+  "page": "appendix-c-funding-and-acquisition.docx",
+  "title": "Book 00 — Orientation & Program"
+ },
+ "docs/books/b00-orientation/appendix-d-control-states-and-evidence.md": {
+  "bundle": "b00-orientation-bundle.docx",
+  "page": "appendix-d-control-states-and-evidence.docx",
+  "title": "Book 00 — Orientation & Program"
+ },
+ "docs/books/b00-orientation/index.md": {
+  "bundle": "b00-orientation-bundle.docx",
+  "page": "index.docx",
+  "title": "Book 00 — Orientation & Program"
+ },
+ "docs/books/b01-transformation-arc/01-why-modernization-is-hard.md": {
+  "bundle": "b01-transformation-arc-bundle.docx",
+  "page": "01-why-modernization-is-hard.docx",
+  "title": "Book 01 — The Transformation Arc"
+ },
+ "docs/books/b01-transformation-arc/02-the-problem.md": {
+  "bundle": "b01-transformation-arc-bundle.docx",
+  "page": "02-the-problem.docx",
+  "title": "Book 01 — The Transformation Arc"
+ },
+ "docs/books/b01-transformation-arc/03-platform-foundation.md": {
+  "bundle": "b01-transformation-arc-bundle.docx",
+  "page": "03-platform-foundation.docx",
+  "title": "Book 01 — The Transformation Arc"
+ },
+ "docs/books/b01-transformation-arc/04-identity-transformation.md": {
+  "bundle": "b01-transformation-arc-bundle.docx",
+  "page": "04-identity-transformation.docx",
+  "title": "Book 01 — The Transformation Arc"
+ },
+ "docs/books/b01-transformation-arc/05-policy-transformation.md": {
+  "bundle": "b01-transformation-arc-bundle.docx",
+  "page": "05-policy-transformation.docx",
+  "title": "Book 01 — The Transformation Arc"
+ },
+ "docs/books/b01-transformation-arc/06-network-services.md": {
+  "bundle": "b01-transformation-arc-bundle.docx",
+  "page": "06-network-services.docx",
+  "title": "Book 01 — The Transformation Arc"
+ },
+ "docs/books/b01-transformation-arc/07-compute-transformation.md": {
+  "bundle": "b01-transformation-arc-bundle.docx",
+  "page": "07-compute-transformation.docx",
+  "title": "Book 01 — The Transformation Arc"
+ },
+ "docs/books/b01-transformation-arc/08-access-plane.md": {
+  "bundle": "b01-transformation-arc-bundle.docx",
+  "page": "08-access-plane.docx",
+  "title": "Book 01 — The Transformation Arc"
+ },
+ "docs/books/b01-transformation-arc/09-who-leads-the-transformation.md": {
+  "bundle": "b01-transformation-arc-bundle.docx",
+  "page": "09-who-leads-the-transformation.docx",
+  "title": "Book 01 — The Transformation Arc"
+ },
+ "docs/books/b01-transformation-arc/10-analyzing-the-estate.md": {
+  "bundle": "b01-transformation-arc-bundle.docx",
+  "page": "10-analyzing-the-estate.docx",
+  "title": "Book 01 — The Transformation Arc"
+ },
+ "docs/books/b01-transformation-arc/11-analysis-plan-delivery.md": {
+  "bundle": "b01-transformation-arc-bundle.docx",
+  "page": "11-analysis-plan-delivery.docx",
+  "title": "Book 01 — The Transformation Arc"
+ },
+ "docs/books/b01-transformation-arc/12-migration-roadmap.md": {
+  "bundle": "b01-transformation-arc-bundle.docx",
+  "page": "12-migration-roadmap.docx",
+  "title": "Book 01 — The Transformation Arc"
+ },
+ "docs/books/b01-transformation-arc/appendix-a-requirements-mapping.md": {
+  "bundle": "b01-transformation-arc-bundle.docx",
+  "page": "appendix-a-requirements-mapping.docx",
+  "title": "Book 01 — The Transformation Arc"
+ },
+ "docs/books/b01-transformation-arc/appendix-b-applicability.md": {
+  "bundle": "b01-transformation-arc-bundle.docx",
+  "page": "appendix-b-applicability.docx",
+  "title": "Book 01 — The Transformation Arc"
+ },
+ "docs/books/b01-transformation-arc/index.md": {
+  "bundle": "b01-transformation-arc-bundle.docx",
+  "page": "index.docx",
+  "title": "Book 01 — The Transformation Arc"
+ },
+ "docs/books/b02-identity/01-why-identity-matters.md": {
+  "bundle": "b02-identity-bundle.docx",
+  "page": "01-why-identity-matters.docx",
+  "title": "Book 02 — Identity & Directory"
+ },
+ "docs/books/b02-identity/02-the-structural-problem.md": {
+  "bundle": "b02-identity-bundle.docx",
+  "page": "02-the-structural-problem.docx",
+  "title": "Book 02 — Identity & Directory"
+ },
+ "docs/books/b02-identity/03-ad-and-entra-side-by-side.md": {
+  "bundle": "b02-identity-bundle.docx",
+  "page": "03-ad-and-entra-side-by-side.docx",
+  "title": "Book 02 — Identity & Directory"
+ },
+ "docs/books/b02-identity/04-the-hidden-migration-surface.md": {
+  "bundle": "b02-identity-bundle.docx",
+  "page": "04-the-hidden-migration-surface.docx",
+  "title": "Book 02 — Identity & Directory"
+ },
+ "docs/books/b02-identity/05-delegation-without-ous.md": {
+  "bundle": "b02-identity-bundle.docx",
+  "page": "05-delegation-without-ous.docx",
+  "title": "Book 02 — Identity & Directory"
+ },
+ "docs/books/b02-identity/06-who-owns-the-migration.md": {
+  "bundle": "b02-identity-bundle.docx",
+  "page": "06-who-owns-the-migration.docx",
+  "title": "Book 02 — Identity & Directory"
+ },
+ "docs/books/b02-identity/07-read-only-discovery.md": {
+  "bundle": "b02-identity-bundle.docx",
+  "page": "07-read-only-discovery.docx",
+  "title": "Book 02 — Identity & Directory"
+ },
+ "docs/books/b02-identity/08-assessing-the-forest.md": {
+  "bundle": "b02-identity-bundle.docx",
+  "page": "08-assessing-the-forest.docx",
+  "title": "Book 02 — Identity & Directory"
+ },
+ "docs/books/b02-identity/09-building-the-entra-target.md": {
+  "bundle": "b02-identity-bundle.docx",
+  "page": "09-building-the-entra-target.docx",
+  "title": "Book 02 — Identity & Directory"
+ },
+ "docs/books/b02-identity/10-migrating-and-governing.md": {
+  "bundle": "b02-identity-bundle.docx",
+  "page": "10-migrating-and-governing.docx",
+  "title": "Book 02 — Identity & Directory"
+ },
+ "docs/books/b02-identity/11-reference-deployment.md": {
+  "bundle": "b02-identity-bundle.docx",
+  "page": "11-reference-deployment.docx",
+  "title": "Book 02 — Identity & Directory"
+ },
+ "docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.md": {
+  "bundle": "b02-identity-bundle.docx",
+  "page": "appendix-a-federal-requirements-crosswalk.docx",
+  "title": "Book 02 — Identity & Directory"
+ },
+ "docs/books/b02-identity/appendix-b-forest-assessment-module.md": {
+  "bundle": "b02-identity-bundle.docx",
+  "page": "appendix-b-forest-assessment-module.docx",
+  "title": "Book 02 — Identity & Directory"
+ },
+ "docs/books/b02-identity/appendix-c-identity-assessment-module.md": {
+  "bundle": "b02-identity-bundle.docx",
+  "page": "appendix-c-identity-assessment-module.docx",
+  "title": "Book 02 — Identity & Directory"
+ },
+ "docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md": {
+  "bundle": "b02-identity-bundle.docx",
+  "page": "appendix-d-migrating-ad-fs-applications.docx",
+  "title": "Book 02 — Identity & Directory"
+ },
+ "docs/books/b02-identity/index.md": {
+  "bundle": "b02-identity-bundle.docx",
+  "page": "index.docx",
+  "title": "Book 02 — Identity & Directory"
+ },
+ "docs/books/b03-hr-identity/01-overview-and-applicability.md": {
+  "bundle": "b03-hr-identity-bundle.docx",
+  "page": "01-overview-and-applicability.docx",
+  "title": "Book 03 — HR-Driven Identity"
+ },
+ "docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.md": {
+  "bundle": "b03-hr-identity-bundle.docx",
+  "page": "02-why-hr-is-the-source-of-authority.docx",
+  "title": "Book 03 — HR-Driven Identity"
+ },
+ "docs/books/b03-hr-identity/03-federal-hr-2-0.md": {
+  "bundle": "b03-hr-identity-bundle.docx",
+  "page": "03-federal-hr-2-0.docx",
+  "title": "Book 03 — HR-Driven Identity"
+ },
+ "docs/books/b03-hr-identity/04-attribute-authority.md": {
+  "bundle": "b03-hr-identity-bundle.docx",
+  "page": "04-attribute-authority.docx",
+  "title": "Book 03 — HR-Driven Identity"
+ },
+ "docs/books/b03-hr-identity/05-the-provisioning-pipeline.md": {
+  "bundle": "b03-hr-identity-bundle.docx",
+  "page": "05-the-provisioning-pipeline.docx",
+  "title": "Book 03 — HR-Driven Identity"
+ },
+ "docs/books/b03-hr-identity/06-canonical-attribute-schema.md": {
+  "bundle": "b03-hr-identity-bundle.docx",
+  "page": "06-canonical-attribute-schema.docx",
+  "title": "Book 03 — HR-Driven Identity"
+ },
+ "docs/books/b03-hr-identity/07-who-owns-workforce-identity.md": {
+  "bundle": "b03-hr-identity-bundle.docx",
+  "page": "07-who-owns-workforce-identity.docx",
+  "title": "Book 03 — HR-Driven Identity"
+ },
+ "docs/books/b03-hr-identity/08-joiner-mover-leaver.md": {
+  "bundle": "b03-hr-identity-bundle.docx",
+  "page": "08-joiner-mover-leaver.docx",
+  "title": "Book 03 — HR-Driven Identity"
+ },
+ "docs/books/b03-hr-identity/09-credentials-and-certificates.md": {
+  "bundle": "b03-hr-identity-bundle.docx",
+  "page": "09-credentials-and-certificates.docx",
+  "title": "Book 03 — HR-Driven Identity"
+ },
+ "docs/books/b03-hr-identity/10-from-attributes-to-access.md": {
+  "bundle": "b03-hr-identity-bundle.docx",
+  "page": "10-from-attributes-to-access.docx",
+  "title": "Book 03 — HR-Driven Identity"
+ },
+ "docs/books/b03-hr-identity/11-drift-metrics-and-evidence.md": {
+  "bundle": "b03-hr-identity-bundle.docx",
+  "page": "11-drift-metrics-and-evidence.docx",
+  "title": "Book 03 — HR-Driven Identity"
+ },
+ "docs/books/b03-hr-identity/12-execution-plan.md": {
+  "bundle": "b03-hr-identity-bundle.docx",
+  "page": "12-execution-plan.docx",
+  "title": "Book 03 — HR-Driven Identity"
+ },
+ "docs/books/b03-hr-identity/13-reference-deployment.md": {
+  "bundle": "b03-hr-identity-bundle.docx",
+  "page": "13-reference-deployment.docx",
+  "title": "Book 03 — HR-Driven Identity"
+ },
+ "docs/books/b03-hr-identity/14-privacy-for-workforce-identity.md": {
+  "bundle": "b03-hr-identity-bundle.docx",
+  "page": "14-privacy-for-workforce-identity.docx",
+  "title": "Book 03 — HR-Driven Identity"
+ },
+ "docs/books/b03-hr-identity/15-external-partner-identity.md": {
+  "bundle": "b03-hr-identity-bundle.docx",
+  "page": "15-external-partner-identity.docx",
+  "title": "Book 03 — HR-Driven Identity"
+ },
+ "docs/books/b03-hr-identity/appendix-a-lifecycle-rules.md": {
+  "bundle": "b03-hr-identity-bundle.docx",
+  "page": "appendix-a-lifecycle-rules.docx",
+  "title": "Book 03 — HR-Driven Identity"
+ },
+ "docs/books/b03-hr-identity/appendix-b-security-and-privacy.md": {
+  "bundle": "b03-hr-identity-bundle.docx",
+  "page": "appendix-b-security-and-privacy.docx",
+  "title": "Book 03 — HR-Driven Identity"
+ },
+ "docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.md": {
+  "bundle": "b03-hr-identity-bundle.docx",
+  "page": "appendix-c-acceptance-and-cutover.docx",
+  "title": "Book 03 — HR-Driven Identity"
+ },
+ "docs/books/b03-hr-identity/appendix-d-partner-identity-record.md": {
+  "bundle": "b03-hr-identity-bundle.docx",
+  "page": "appendix-d-partner-identity-record.docx",
+  "title": "Book 03 — HR-Driven Identity"
+ },
+ "docs/books/b03-hr-identity/index.md": {
+  "bundle": "b03-hr-identity-bundle.docx",
+  "page": "index.docx",
+  "title": "Book 03 — HR-Driven Identity"
+ },
+ "docs/books/b04-access/01-access-is-a-policy-decision.md": {
+  "bundle": "b04-access-bundle.docx",
+  "page": "01-access-is-a-policy-decision.docx",
+  "title": "Book 04 — Access & Privilege"
+ },
+ "docs/books/b04-access/02-why-standing-privilege-fails.md": {
+  "bundle": "b04-access-bundle.docx",
+  "page": "02-why-standing-privilege-fails.docx",
+  "title": "Book 04 — Access & Privilege"
+ },
+ "docs/books/b04-access/03-the-conditional-access-model.md": {
+  "bundle": "b04-access-bundle.docx",
+  "page": "03-the-conditional-access-model.docx",
+  "title": "Book 04 — Access & Privilege"
+ },
+ "docs/books/b04-access/04-privileged-roles-and-tiers.md": {
+  "bundle": "b04-access-bundle.docx",
+  "page": "04-privileged-roles-and-tiers.docx",
+  "title": "Book 04 — Access & Privilege"
+ },
+ "docs/books/b04-access/05-applications-and-workload-identities.md": {
+  "bundle": "b04-access-bundle.docx",
+  "page": "05-applications-and-workload-identities.docx",
+  "title": "Book 04 — Access & Privilege"
+ },
+ "docs/books/b04-access/06-who-decides-access.md": {
+  "bundle": "b04-access-bundle.docx",
+  "page": "06-who-decides-access.docx",
+  "title": "Book 04 — Access & Privilege"
+ },
+ "docs/books/b04-access/07-the-conditional-access-policy-library.md": {
+  "bundle": "b04-access-bundle.docx",
+  "page": "07-the-conditional-access-policy-library.docx",
+  "title": "Book 04 — Access & Privilege"
+ },
+ "docs/books/b04-access/08-pim-self-request-with-approval.md": {
+  "bundle": "b04-access-bundle.docx",
+  "page": "08-pim-self-request-with-approval.docx",
+  "title": "Book 04 — Access & Privilege"
+ },
+ "docs/books/b04-access/09-access-governance.md": {
+  "bundle": "b04-access-bundle.docx",
+  "page": "09-access-governance.docx",
+  "title": "Book 04 — Access & Privilege"
+ },
+ "docs/books/b04-access/10-access-as-code-and-evidence.md": {
+  "bundle": "b04-access-bundle.docx",
+  "page": "10-access-as-code-and-evidence.docx",
+  "title": "Book 04 — Access & Privilege"
+ },
+ "docs/books/b04-access/appendix-a-conditional-access-templates.md": {
+  "bundle": "b04-access-bundle.docx",
+  "page": "appendix-a-conditional-access-templates.docx",
+  "title": "Book 04 — Access & Privilege"
+ },
+ "docs/books/b04-access/appendix-b-pim-role-settings.md": {
+  "bundle": "b04-access-bundle.docx",
+  "page": "appendix-b-pim-role-settings.docx",
+  "title": "Book 04 — Access & Privilege"
+ },
+ "docs/books/b04-access/appendix-c-partner-access-profile-entra.md": {
+  "bundle": "b04-access-bundle.docx",
+  "page": "appendix-c-partner-access-profile-entra.docx",
+  "title": "Book 04 — Access & Privilege"
+ },
+ "docs/books/b04-access/appendix-d-phishing-resistant-authentication-runbooks.md": {
+  "bundle": "b04-access-bundle.docx",
+  "page": "appendix-d-phishing-resistant-authentication-runbooks.docx",
+  "title": "Book 04 — Access & Privilege"
+ },
+ "docs/books/b04-access/index.md": {
+  "bundle": "b04-access-bundle.docx",
+  "page": "index.docx",
+  "title": "Book 04 — Access & Privilege"
+ },
+ "docs/books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.md": {
+  "bundle": "b05-devices-bundle.docx",
+  "page": "01-why-group-policy-cant-come-to-the-cloud.docx",
+  "title": "Book 05 — Devices & Endpoints"
+ },
+ "docs/books/b05-devices/02-the-hybrid-join-trap.md": {
+  "bundle": "b05-devices-bundle.docx",
+  "page": "02-the-hybrid-join-trap.docx",
+  "title": "Book 05 — Devices & Endpoints"
+ },
+ "docs/books/b05-devices/03-where-device-and-server-data-lives.md": {
+  "bundle": "b05-devices-bundle.docx",
+  "page": "03-where-device-and-server-data-lives.docx",
+  "title": "Book 05 — Devices & Endpoints"
+ },
+ "docs/books/b05-devices/04-intune-first-onboarding.md": {
+  "bundle": "b05-devices-bundle.docx",
+  "page": "04-intune-first-onboarding.docx",
+  "title": "Book 05 — Devices & Endpoints"
+ },
+ "docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.md": {
+  "bundle": "b05-devices-bundle.docx",
+  "page": "05-the-governed-manual-and-retrofit-paths.docx",
+  "title": "Book 05 — Devices & Endpoints"
+ },
+ "docs/books/b05-devices/06-who-owns-the-endpoint.md": {
+  "bundle": "b05-devices-bundle.docx",
+  "page": "06-who-owns-the-endpoint.docx",
+  "title": "Book 05 — Devices & Endpoints"
+ },
+ "docs/books/b05-devices/07-the-gpo-sunset-program.md": {
+  "bundle": "b05-devices-bundle.docx",
+  "page": "07-the-gpo-sunset-program.docx",
+  "title": "Book 05 — Devices & Endpoints"
+ },
+ "docs/books/b05-devices/08-gpo-to-intune-policy-migration.md": {
+  "bundle": "b05-devices-bundle.docx",
+  "page": "08-gpo-to-intune-policy-migration.docx",
+  "title": "Book 05 — Devices & Endpoints"
+ },
+ "docs/books/b05-devices/09-servers-under-azure-arc.md": {
+  "bundle": "b05-devices-bundle.docx",
+  "page": "09-servers-under-azure-arc.docx",
+  "title": "Book 05 — Devices & Endpoints"
+ },
+ "docs/books/b05-devices/10-operating-and-evidencing-the-fleet.md": {
+  "bundle": "b05-devices-bundle.docx",
+  "page": "10-operating-and-evidencing-the-fleet.docx",
+  "title": "Book 05 — Devices & Endpoints"
+ },
+ "docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.md": {
+  "bundle": "b05-devices-bundle.docx",
+  "page": "appendix-a-gpo-to-intune-crosswalk.docx",
+  "title": "Book 05 — Devices & Endpoints"
+ },
+ "docs/books/b05-devices/index.md": {
+  "bundle": "b05-devices-bundle.docx",
+  "page": "index.docx",
+  "title": "Book 05 — Devices & Endpoints"
+ },
+ "docs/books/b06-data-platform/01-what-windows-authentication-actually-is.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "01-what-windows-authentication-actually-is.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/02-why-the-inheritance-must-end.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "02-why-the-inheritance-must-end.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/03-the-shape-of-twenty-years.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "03-the-shape-of-twenty-years.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/04-the-estate-inventory.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "04-the-estate-inventory.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/05-rationalization.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "05-rationalization.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/06-retain-consolidate-retire.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "06-retain-consolidate-retire.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/07-the-authentication-audit.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "07-the-authentication-audit.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/08-reading-the-audit.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "08-reading-the-audit.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/09-what-arc-provides-to-sql-server.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "09-what-arc-provides-to-sql-server.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/10-arc-deployment-sequencing.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "10-arc-deployment-sequencing.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/11-three-principal-types.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "11-three-principal-types.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/12-the-engine-authentication-decision.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "12-the-engine-authentication-decision.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/13-who-owns-the-data-platform.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "13-who-owns-the-data-platform.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/14-ntlm-and-the-patterns-that-generate-it.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "14-ntlm-and-the-patterns-that-generate-it.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "15-the-three-phases-of-ntlm-elimination.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/16-groups-roles-and-membership.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "16-groups-roles-and-membership.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "17-dynamic-membership-delegation-and-privilege.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/18-the-four-class-pattern-for-applications.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "18-the-four-class-pattern-for-applications.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/19-connection-string-migration.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "19-connection-string-migration.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/20-the-closure-condition.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "20-the-closure-condition.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/21-what-done-looks-like.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "21-what-done-looks-like.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/22-where-sql-server-touches-adcs.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "22-where-sql-server-touches-adcs.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/23-epilogue-the-platform-question.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "23-epilogue-the-platform-question.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/appendix-a-requirements-mapping.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "appendix-a-requirements-mapping.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/appendix-b-ato-kit.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "appendix-b-ato-kit.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/appendix-c-applicability.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "appendix-c-applicability.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/index.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "index.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/r01-prerequisites.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "r01-prerequisites.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "r02-estate-discovery-and-consolidation-gate.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/r03-the-authentication-audit.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "r03-the-authentication-audit.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/r04-arc-deployment-and-managed-identity.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "r04-arc-deployment-and-managed-identity.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/r05-login-migration-and-parallel-run.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "r05-login-migration-and-parallel-run.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/r06-ntlm-detection-and-remediation.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "r06-ntlm-detection-and-remediation.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/r07-groups-aus-and-the-conditional-access-perimeter.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "r07-groups-aus-and-the-conditional-access-perimeter.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/r08-application-chain-and-connection-strings.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "r08-application-chain-and-connection-strings.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/r09-continuous-monitoring-and-closure.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "r09-continuous-monitoring-and-closure.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b06-data-platform/r10-certificate-discovery-for-adcs.md": {
+  "bundle": "b06-data-platform-bundle.docx",
+  "page": "r10-certificate-discovery-for-adcs.docx",
+  "title": "Book 06 — Data Platform: SQL Server Identity"
+ },
+ "docs/books/b07-pki/01-why-certificates-outlive-every-migration.md": {
+  "bundle": "b07-pki-bundle.docx",
+  "page": "01-why-certificates-outlive-every-migration.docx",
+  "title": "Book 07 — PKI & Certificates"
+ },
+ "docs/books/b07-pki/02-what-ad-cs-holds-up.md": {
+  "bundle": "b07-pki-bundle.docx",
+  "page": "02-what-ad-cs-holds-up.docx",
+  "title": "Book 07 — PKI & Certificates"
+ },
+ "docs/books/b07-pki/03-hardening-what-stays.md": {
+  "bundle": "b07-pki-bundle.docx",
+  "page": "03-hardening-what-stays.docx",
+  "title": "Book 07 — PKI & Certificates"
+ },
+ "docs/books/b07-pki/04-the-target-pki.md": {
+  "bundle": "b07-pki-bundle.docx",
+  "page": "04-the-target-pki.docx",
+  "title": "Book 07 — PKI & Certificates"
+ },
+ "docs/books/b07-pki/05-who-owns-the-certificate-estate.md": {
+  "bundle": "b07-pki-bundle.docx",
+  "page": "05-who-owns-the-certificate-estate.docx",
+  "title": "Book 07 — PKI & Certificates"
+ },
+ "docs/books/b07-pki/06-device-and-user-certificates.md": {
+  "bundle": "b07-pki-bundle.docx",
+  "page": "06-device-and-user-certificates.docx",
+  "title": "Book 07 — PKI & Certificates"
+ },
+ "docs/books/b07-pki/07-coexistence-and-migration.md": {
+  "bundle": "b07-pki-bundle.docx",
+  "page": "07-coexistence-and-migration.docx",
+  "title": "Book 07 — PKI & Certificates"
+ },
+ "docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md": {
+  "bundle": "b07-pki-bundle.docx",
+  "page": "08-lifecycle-monitoring-and-decommissioning.docx",
+  "title": "Book 07 — PKI & Certificates"
+ },
+ "docs/books/b07-pki/09-federal-workforce-credentials.md": {
+  "bundle": "b07-pki-bundle.docx",
+  "page": "09-federal-workforce-credentials.docx",
+  "title": "Book 07 — PKI & Certificates"
+ },
+ "docs/books/b07-pki/appendix-a-deployment-checklists.md": {
+  "bundle": "b07-pki-bundle.docx",
+  "page": "appendix-a-deployment-checklists.docx",
+  "title": "Book 07 — PKI & Certificates"
+ },
+ "docs/books/b07-pki/appendix-b-template-migration-matrix.md": {
+  "bundle": "b07-pki-bundle.docx",
+  "page": "appendix-b-template-migration-matrix.docx",
+  "title": "Book 07 — PKI & Certificates"
+ },
+ "docs/books/b07-pki/appendix-c-anatomy-of-the-clm-platform.md": {
+  "bundle": "b07-pki-bundle.docx",
+  "page": "appendix-c-anatomy-of-the-clm-platform.docx",
+  "title": "Book 07 — PKI & Certificates"
+ },
+ "docs/books/b07-pki/index.md": {
+  "bundle": "b07-pki-bundle.docx",
+  "page": "index.docx",
+  "title": "Book 07 — PKI & Certificates"
+ },
+ "docs/books/b08-ddi/01-dns-is-the-control-plane.md": {
+  "bundle": "b08-ddi-bundle.docx",
+  "page": "01-dns-is-the-control-plane.docx",
+  "title": "Book 08 — DNS, DHCP & IPAM"
+ },
+ "docs/books/b08-ddi/02-split-brain-dns.md": {
+  "bundle": "b08-ddi-bundle.docx",
+  "page": "02-split-brain-dns.docx",
+  "title": "Book 08 — DNS, DHCP & IPAM"
+ },
+ "docs/books/b08-ddi/03-federal-requirements.md": {
+  "bundle": "b08-ddi-bundle.docx",
+  "page": "03-federal-requirements.docx",
+  "title": "Book 08 — DNS, DHCP & IPAM"
+ },
+ "docs/books/b08-ddi/04-active-directory-dns-departure.md": {
+  "bundle": "b08-ddi-bundle.docx",
+  "page": "04-active-directory-dns-departure.docx",
+  "title": "Book 08 — DNS, DHCP & IPAM"
+ },
+ "docs/books/b08-ddi/05-edge-interception-and-bypass.md": {
+  "bundle": "b08-ddi-bundle.docx",
+  "page": "05-edge-interception-and-bypass.docx",
+  "title": "Book 08 — DNS, DHCP & IPAM"
+ },
+ "docs/books/b08-ddi/06-dns-identity-and-dnssec.md": {
+  "bundle": "b08-ddi-bundle.docx",
+  "page": "06-dns-identity-and-dnssec.docx",
+  "title": "Book 08 — DNS, DHCP & IPAM"
+ },
+ "docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.md": {
+  "bundle": "b08-ddi-bundle.docx",
+  "page": "07-cloud-private-endpoints-and-ipam.docx",
+  "title": "Book 08 — DNS, DHCP & IPAM"
+ },
+ "docs/books/b08-ddi/08-reference-architecture.md": {
+  "bundle": "b08-ddi-bundle.docx",
+  "page": "08-reference-architecture.docx",
+  "title": "Book 08 — DNS, DHCP & IPAM"
+ },
+ "docs/books/b08-ddi/09-who-owns-dns.md": {
+  "bundle": "b08-ddi-bundle.docx",
+  "page": "09-who-owns-dns.docx",
+  "title": "Book 08 — DNS, DHCP & IPAM"
+ },
+ "docs/books/b08-ddi/10-migration-sequence.md": {
+  "bundle": "b08-ddi-bundle.docx",
+  "page": "10-migration-sequence.docx",
+  "title": "Book 08 — DNS, DHCP & IPAM"
+ },
+ "docs/books/b08-ddi/11-operating-the-control-plane.md": {
+  "bundle": "b08-ddi-bundle.docx",
+  "page": "11-operating-the-control-plane.docx",
+  "title": "Book 08 — DNS, DHCP & IPAM"
+ },
+ "docs/books/b08-ddi/12-selection-cost-and-residual-risk.md": {
+  "bundle": "b08-ddi-bundle.docx",
+  "page": "12-selection-cost-and-residual-risk.docx",
+  "title": "Book 08 — DNS, DHCP & IPAM"
+ },
+ "docs/books/b08-ddi/appendix-a-dns-record-types.md": {
+  "bundle": "b08-ddi-bundle.docx",
+  "page": "appendix-a-dns-record-types.docx",
+  "title": "Book 08 — DNS, DHCP & IPAM"
+ },
+ "docs/books/b08-ddi/appendix-b-requirements-mapping.md": {
+  "bundle": "b08-ddi-bundle.docx",
+  "page": "appendix-b-requirements-mapping.docx",
+  "title": "Book 08 — DNS, DHCP & IPAM"
+ },
+ "docs/books/b08-ddi/appendix-c-applicability.md": {
+  "bundle": "b08-ddi-bundle.docx",
+  "page": "appendix-c-applicability.docx",
+  "title": "Book 08 — DNS, DHCP & IPAM"
+ },
+ "docs/books/b08-ddi/index.md": {
+  "bundle": "b08-ddi-bundle.docx",
+  "page": "index.docx",
+  "title": "Book 08 — DNS, DHCP & IPAM"
+ },
+ "docs/books/b09-network/01-why-physics-decides-the-architecture.md": {
+  "bundle": "b09-network-bundle.docx",
+  "page": "01-why-physics-decides-the-architecture.docx",
+  "title": "Book 09 — Network & Transport"
+ },
+ "docs/books/b09-network/02-transport-is-physics-control-is-compliance.md": {
+  "bundle": "b09-network-bundle.docx",
+  "page": "02-transport-is-physics-control-is-compliance.docx",
+  "title": "Book 09 — Network & Transport"
+ },
+ "docs/books/b09-network/03-what-tic-3-requires.md": {
+  "bundle": "b09-network-bundle.docx",
+  "page": "03-what-tic-3-requires.docx",
+  "title": "Book 09 — Network & Transport"
+ },
+ "docs/books/b09-network/04-logical-centralization-and-token-security.md": {
+  "bundle": "b09-network-bundle.docx",
+  "page": "04-logical-centralization-and-token-security.docx",
+  "title": "Book 09 — Network & Transport"
+ },
+ "docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md": {
+  "bundle": "b09-network-bundle.docx",
+  "page": "05-sd-wan-sase-and-governed-transport.docx",
+  "title": "Book 09 — Network & Transport"
+ },
+ "docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md": {
+  "bundle": "b09-network-bundle.docx",
+  "page": "06-legacy-protocols-on-re-routed-paths.docx",
+  "title": "Book 09 — Network & Transport"
+ },
+ "docs/books/b09-network/07-network-access-control.md": {
+  "bundle": "b09-network-bundle.docx",
+  "page": "07-network-access-control.docx",
+  "title": "Book 09 — Network & Transport"
+ },
+ "docs/books/b09-network/08-reference-architecture.md": {
+  "bundle": "b09-network-bundle.docx",
+  "page": "08-reference-architecture.docx",
+  "title": "Book 09 — Network & Transport"
+ },
+ "docs/books/b09-network/09-who-owns-the-network.md": {
+  "bundle": "b09-network-bundle.docx",
+  "page": "09-who-owns-the-network.docx",
+  "title": "Book 09 — Network & Transport"
+ },
+ "docs/books/b09-network/10-the-long-interim.md": {
+  "bundle": "b09-network-bundle.docx",
+  "page": "10-the-long-interim.docx",
+  "title": "Book 09 — Network & Transport"
+ },
+ "docs/books/b09-network/11-field-office-wan-transformation.md": {
+  "bundle": "b09-network-bundle.docx",
+  "page": "11-field-office-wan-transformation.docx",
+  "title": "Book 09 — Network & Transport"
+ },
+ "docs/books/b09-network/12-microsoft-365-traffic.md": {
+  "bundle": "b09-network-bundle.docx",
+  "page": "12-microsoft-365-traffic.docx",
+  "title": "Book 09 — Network & Transport"
+ },
+ "docs/books/b09-network/13-sequencing-cost-and-evidence.md": {
+  "bundle": "b09-network-bundle.docx",
+  "page": "13-sequencing-cost-and-evidence.docx",
+  "title": "Book 09 — Network & Transport"
+ },
+ "docs/books/b09-network/appendix-a-optimize-exemption-instruments.md": {
+  "bundle": "b09-network-bundle.docx",
+  "page": "appendix-a-optimize-exemption-instruments.docx",
+  "title": "Book 09 — Network & Transport"
+ },
+ "docs/books/b09-network/appendix-b-requirements-mapping.md": {
+  "bundle": "b09-network-bundle.docx",
+  "page": "appendix-b-requirements-mapping.docx",
+  "title": "Book 09 — Network & Transport"
+ },
+ "docs/books/b09-network/appendix-c-glossary.md": {
+  "bundle": "b09-network-bundle.docx",
+  "page": "appendix-c-glossary.docx",
+  "title": "Book 09 — Network & Transport"
+ },
+ "docs/books/b09-network/index.md": {
+  "bundle": "b09-network-bundle.docx",
+  "page": "index.docx",
+  "title": "Book 09 — Network & Transport"
+ },
+ "docs/books/b10-cloud-boundary/01-why-the-boundary-decides.md": {
+  "bundle": "b10-cloud-boundary-bundle.docx",
+  "page": "01-why-the-boundary-decides.docx",
+  "title": "Book 10 — Cloud Boundary & Landing Zone"
+ },
+ "docs/books/b10-cloud-boundary/02-the-invisible-boundary.md": {
+  "bundle": "b10-cloud-boundary-bundle.docx",
+  "page": "02-the-invisible-boundary.docx",
+  "title": "Book 10 — Cloud Boundary & Landing Zone"
+ },
+ "docs/books/b10-cloud-boundary/03-what-changed-at-fedramp.md": {
+  "bundle": "b10-cloud-boundary-bundle.docx",
+  "page": "03-what-changed-at-fedramp.docx",
+  "title": "Book 10 — Cloud Boundary & Landing Zone"
+ },
+ "docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md": {
+  "bundle": "b10-cloud-boundary-bundle.docx",
+  "page": "04-gcc-and-the-feature-gap.docx",
+  "title": "Book 10 — Cloud Boundary & Landing Zone"
+ },
+ "docs/books/b10-cloud-boundary/05-the-landing-zone.md": {
+  "bundle": "b10-cloud-boundary-bundle.docx",
+  "page": "05-the-landing-zone.docx",
+  "title": "Book 10 — Cloud Boundary & Landing Zone"
+ },
+ "docs/books/b10-cloud-boundary/06-ipam-and-network-as-code.md": {
+  "bundle": "b10-cloud-boundary-bundle.docx",
+  "page": "06-ipam-and-network-as-code.docx",
+  "title": "Book 10 — Cloud Boundary & Landing Zone"
+ },
+ "docs/books/b10-cloud-boundary/07-the-front-door.md": {
+  "bundle": "b10-cloud-boundary-bundle.docx",
+  "page": "07-the-front-door.docx",
+  "title": "Book 10 — Cloud Boundary & Landing Zone"
+ },
+ "docs/books/b10-cloud-boundary/08-who-owns-the-boundary.md": {
+  "bundle": "b10-cloud-boundary-bundle.docx",
+  "page": "08-who-owns-the-boundary.docx",
+  "title": "Book 10 — Cloud Boundary & Landing Zone"
+ },
+ "docs/books/b10-cloud-boundary/09-equivalents-and-exceptions.md": {
+  "bundle": "b10-cloud-boundary-bundle.docx",
+  "page": "09-equivalents-and-exceptions.docx",
+  "title": "Book 10 — Cloud Boundary & Landing Zone"
+ },
+ "docs/books/b10-cloud-boundary/10-alternative-collaboration-paths.md": {
+  "bundle": "b10-cloud-boundary-bundle.docx",
+  "page": "10-alternative-collaboration-paths.docx",
+  "title": "Book 10 — Cloud Boundary & Landing Zone"
+ },
+ "docs/books/b10-cloud-boundary/11-the-authorization-package.md": {
+  "bundle": "b10-cloud-boundary-bundle.docx",
+  "page": "11-the-authorization-package.docx",
+  "title": "Book 10 — Cloud Boundary & Landing Zone"
+ },
+ "docs/books/b10-cloud-boundary/appendix-a-what-to-ask-for.md": {
+  "bundle": "b10-cloud-boundary-bundle.docx",
+  "page": "appendix-a-what-to-ask-for.docx",
+  "title": "Book 10 — Cloud Boundary & Landing Zone"
+ },
+ "docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md": {
+  "bundle": "b10-cloud-boundary-bundle.docx",
+  "page": "appendix-b-platform-host-interfaces.docx",
+  "title": "Book 10 — Cloud Boundary & Landing Zone"
+ },
+ "docs/books/b10-cloud-boundary/index.md": {
+  "bundle": "b10-cloud-boundary-bundle.docx",
+  "page": "index.docx",
+  "title": "Book 10 — Cloud Boundary & Landing Zone"
+ },
+ "docs/books/b11-zero-trust/01-a-whole-agency-property.md": {
+  "bundle": "b11-zero-trust-bundle.docx",
+  "page": "01-a-whole-agency-property.docx",
+  "title": "Book 11 — Zero Trust & Assessment"
+ },
+ "docs/books/b11-zero-trust/02-governance-principles.md": {
+  "bundle": "b11-zero-trust-bundle.docx",
+  "page": "02-governance-principles.docx",
+  "title": "Book 11 — Zero Trust & Assessment"
+ },
+ "docs/books/b11-zero-trust/03-what-the-mandates-require.md": {
+  "bundle": "b11-zero-trust-bundle.docx",
+  "page": "03-what-the-mandates-require.docx",
+  "title": "Book 11 — Zero Trust & Assessment"
+ },
+ "docs/books/b11-zero-trust/04-scuba-and-bod-25-01.md": {
+  "bundle": "b11-zero-trust-bundle.docx",
+  "page": "04-scuba-and-bod-25-01.docx",
+  "title": "Book 11 — Zero Trust & Assessment"
+ },
+ "docs/books/b11-zero-trust/05-two-assessment-tools.md": {
+  "bundle": "b11-zero-trust-bundle.docx",
+  "page": "05-two-assessment-tools.docx",
+  "title": "Book 11 — Zero Trust & Assessment"
+ },
+ "docs/books/b11-zero-trust/06-beyond-microsoft-365.md": {
+  "bundle": "b11-zero-trust-bundle.docx",
+  "page": "06-beyond-microsoft-365.docx",
+  "title": "Book 11 — Zero Trust & Assessment"
+ },
+ "docs/books/b11-zero-trust/07-who-owns-zero-trust.md": {
+  "bundle": "b11-zero-trust-bundle.docx",
+  "page": "07-who-owns-zero-trust.docx",
+  "title": "Book 11 — Zero Trust & Assessment"
+ },
+ "docs/books/b11-zero-trust/08-close-before-you-assess.md": {
+  "bundle": "b11-zero-trust-bundle.docx",
+  "page": "08-close-before-you-assess.docx",
+  "title": "Book 11 — Zero Trust & Assessment"
+ },
+ "docs/books/b11-zero-trust/09-running-the-assessment.md": {
+  "bundle": "b11-zero-trust-bundle.docx",
+  "page": "09-running-the-assessment.docx",
+  "title": "Book 11 — Zero Trust & Assessment"
+ },
+ "docs/books/b11-zero-trust/10-evidence-not-verdicts.md": {
+  "bundle": "b11-zero-trust-bundle.docx",
+  "page": "10-evidence-not-verdicts.docx",
+  "title": "Book 11 — Zero Trust & Assessment"
+ },
+ "docs/books/b11-zero-trust/appendix-a-requirements-mapping.md": {
+  "bundle": "b11-zero-trust-bundle.docx",
+  "page": "appendix-a-requirements-mapping.docx",
+  "title": "Book 11 — Zero Trust & Assessment"
+ },
+ "docs/books/b11-zero-trust/index.md": {
+  "bundle": "b11-zero-trust-bundle.docx",
+  "page": "index.docx",
+  "title": "Book 11 — Zero Trust & Assessment"
+ },
+ "docs/books/b12-security-operations/01-you-cant-defend-what-you-cant-see.md": {
+  "bundle": "b12-security-operations-bundle.docx",
+  "page": "01-you-cant-defend-what-you-cant-see.docx",
+  "title": "Book 12 — Security Operations & Telemetry"
+ },
+ "docs/books/b12-security-operations/02-the-evidence-contract.md": {
+  "bundle": "b12-security-operations-bundle.docx",
+  "page": "02-the-evidence-contract.docx",
+  "title": "Book 12 — Security Operations & Telemetry"
+ },
+ "docs/books/b12-security-operations/03-identity-telemetry.md": {
+  "bundle": "b12-security-operations-bundle.docx",
+  "page": "03-identity-telemetry.docx",
+  "title": "Book 12 — Security Operations & Telemetry"
+ },
+ "docs/books/b12-security-operations/04-platform-and-m365-telemetry.md": {
+  "bundle": "b12-security-operations-bundle.docx",
+  "page": "04-platform-and-m365-telemetry.docx",
+  "title": "Book 12 — Security Operations & Telemetry"
+ },
+ "docs/books/b12-security-operations/05-from-log-warehouse-to-detection.md": {
+  "bundle": "b12-security-operations-bundle.docx",
+  "page": "05-from-log-warehouse-to-detection.docx",
+  "title": "Book 12 — Security Operations & Telemetry"
+ },
+ "docs/books/b12-security-operations/06-vulnerability-management.md": {
+  "bundle": "b12-security-operations-bundle.docx",
+  "page": "06-vulnerability-management.docx",
+  "title": "Book 12 — Security Operations & Telemetry"
+ },
+ "docs/books/b12-security-operations/07-patch-configuration-and-baselines.md": {
+  "bundle": "b12-security-operations-bundle.docx",
+  "page": "07-patch-configuration-and-baselines.docx",
+  "title": "Book 12 — Security Operations & Telemetry"
+ },
+ "docs/books/b12-security-operations/08-cloud-native-posture.md": {
+  "bundle": "b12-security-operations-bundle.docx",
+  "page": "08-cloud-native-posture.docx",
+  "title": "Book 12 — Security Operations & Telemetry"
+ },
+ "docs/books/b12-security-operations/09-data-protection-and-classification.md": {
+  "bundle": "b12-security-operations-bundle.docx",
+  "page": "09-data-protection-and-classification.docx",
+  "title": "Book 12 — Security Operations & Telemetry"
+ },
+ "docs/books/b12-security-operations/10-who-runs-security-operations.md": {
+  "bundle": "b12-security-operations-bundle.docx",
+  "page": "10-who-runs-security-operations.docx",
+  "title": "Book 12 — Security Operations & Telemetry"
+ },
+ "docs/books/b12-security-operations/11-detection-engineering-and-response.md": {
+  "bundle": "b12-security-operations-bundle.docx",
+  "page": "11-detection-engineering-and-response.docx",
+  "title": "Book 12 — Security Operations & Telemetry"
+ },
+ "docs/books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md": {
+  "bundle": "b12-security-operations-bundle.docx",
+  "page": "12-evidence-metrics-and-continuous-monitoring.docx",
+  "title": "Book 12 — Security Operations & Telemetry"
+ },
+ "docs/books/b12-security-operations/appendix-a-requirements-mapping.md": {
+  "bundle": "b12-security-operations-bundle.docx",
+  "page": "appendix-a-requirements-mapping.docx",
+  "title": "Book 12 — Security Operations & Telemetry"
+ },
+ "docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md": {
+  "bundle": "b12-security-operations-bundle.docx",
+  "page": "appendix-b-identity-and-application-detections.docx",
+  "title": "Book 12 — Security Operations & Telemetry"
+ },
+ "docs/books/b12-security-operations/index.md": {
+  "bundle": "b12-security-operations-bundle.docx",
+  "page": "index.docx",
+  "title": "Book 12 — Security Operations & Telemetry"
+ },
+ "docs/books/b13-governance/01-why-governance-decays.md": {
+  "bundle": "b13-governance-bundle.docx",
+  "page": "01-why-governance-decays.docx",
+  "title": "Book 13 — Governance, Drift & Evidence"
+ },
+ "docs/books/b13-governance/02-drift-is-the-primary-threat.md": {
+  "bundle": "b13-governance-bundle.docx",
+  "page": "02-drift-is-the-primary-threat.docx",
+  "title": "Book 13 — Governance, Drift & Evidence"
+ },
+ "docs/books/b13-governance/03-one-authoritative-record.md": {
+  "bundle": "b13-governance-bundle.docx",
+  "page": "03-one-authoritative-record.docx",
+  "title": "Book 13 — Governance, Drift & Evidence"
+ },
+ "docs/books/b13-governance/04-change-control-and-provenance.md": {
+  "bundle": "b13-governance-bundle.docx",
+  "page": "04-change-control-and-provenance.docx",
+  "title": "Book 13 — Governance, Drift & Evidence"
+ },
+ "docs/books/b13-governance/05-deterministic-governance.md": {
+  "bundle": "b13-governance-bundle.docx",
+  "page": "05-deterministic-governance.docx",
+  "title": "Book 13 — Governance, Drift & Evidence"
+ },
+ "docs/books/b13-governance/06-the-drift-engine.md": {
+  "bundle": "b13-governance-bundle.docx",
+  "page": "06-the-drift-engine.docx",
+  "title": "Book 13 — Governance, Drift & Evidence"
+ },
+ "docs/books/b13-governance/07-evidence-over-attestation.md": {
+  "bundle": "b13-governance-bundle.docx",
+  "page": "07-evidence-over-attestation.docx",
+  "title": "Book 13 — Governance, Drift & Evidence"
+ },
+ "docs/books/b13-governance/08-the-adapter-model.md": {
+  "bundle": "b13-governance-bundle.docx",
+  "page": "08-the-adapter-model.docx",
+  "title": "Book 13 — Governance, Drift & Evidence"
+ },
+ "docs/books/b13-governance/09-who-governs.md": {
+  "bundle": "b13-governance-bundle.docx",
+  "page": "09-who-governs.docx",
+  "title": "Book 13 — Governance, Drift & Evidence"
+ },
+ "docs/books/b13-governance/10-ticket-to-machine.md": {
+  "bundle": "b13-governance-bundle.docx",
+  "page": "10-ticket-to-machine.docx",
+  "title": "Book 13 — Governance, Drift & Evidence"
+ },
+ "docs/books/b13-governance/11-reciprocity-and-one-authorization.md": {
+  "bundle": "b13-governance-bundle.docx",
+  "page": "11-reciprocity-and-one-authorization.docx",
+  "title": "Book 13 — Governance, Drift & Evidence"
+ },
+ "docs/books/b13-governance/12-governance-at-scale.md": {
+  "bundle": "b13-governance-bundle.docx",
+  "page": "12-governance-at-scale.docx",
+  "title": "Book 13 — Governance, Drift & Evidence"
+ },
+ "docs/books/b13-governance/13-records-evidence-and-retention.md": {
+  "bundle": "b13-governance-bundle.docx",
+  "page": "13-records-evidence-and-retention.docx",
+  "title": "Book 13 — Governance, Drift & Evidence"
+ },
+ "docs/books/b13-governance/14-application-secret-and-configuration-governance.md": {
+  "bundle": "b13-governance-bundle.docx",
+  "page": "14-application-secret-and-configuration-governance.docx",
+  "title": "Book 13 — Governance, Drift & Evidence"
+ },
+ "docs/books/b13-governance/appendix-a-requirements-mapping.md": {
+  "bundle": "b13-governance-bundle.docx",
+  "page": "appendix-a-requirements-mapping.docx",
+  "title": "Book 13 — Governance, Drift & Evidence"
+ },
+ "docs/books/b13-governance/appendix-b-ticket-to-machine-reference.md": {
+  "bundle": "b13-governance-bundle.docx",
+  "page": "appendix-b-ticket-to-machine-reference.docx",
+  "title": "Book 13 — Governance, Drift & Evidence"
+ },
+ "docs/books/b13-governance/index.md": {
+  "bundle": "b13-governance-bundle.docx",
+  "page": "index.docx",
+  "title": "Book 13 — Governance, Drift & Evidence"
+ },
+ "docs/books/b14-compliance/01-proof-not-a-promise.md": {
+  "bundle": "b14-compliance-bundle.docx",
+  "page": "01-proof-not-a-promise.docx",
+  "title": "Book 14 — Federal Compliance & Authorization"
+ },
+ "docs/books/b14-compliance/02-the-federal-clock.md": {
+  "bundle": "b14-compliance-bundle.docx",
+  "page": "02-the-federal-clock.docx",
+  "title": "Book 14 — Federal Compliance & Authorization"
+ },
+ "docs/books/b14-compliance/03-the-baseline-and-the-crosswalk.md": {
+  "bundle": "b14-compliance-bundle.docx",
+  "page": "03-the-baseline-and-the-crosswalk.docx",
+  "title": "Book 14 — Federal Compliance & Authorization"
+ },
+ "docs/books/b14-compliance/04-closure-with-proof.md": {
+  "bundle": "b14-compliance-bundle.docx",
+  "page": "04-closure-with-proof.docx",
+  "title": "Book 14 — Federal Compliance & Authorization"
+ },
+ "docs/books/b14-compliance/05-program-management-controls.md": {
+  "bundle": "b14-compliance-bundle.docx",
+  "page": "05-program-management-controls.docx",
+  "title": "Book 14 — Federal Compliance & Authorization"
+ },
+ "docs/books/b14-compliance/06-contingency-and-continuity.md": {
+  "bundle": "b14-compliance-bundle.docx",
+  "page": "06-contingency-and-continuity.docx",
+  "title": "Book 14 — Federal Compliance & Authorization"
+ },
+ "docs/books/b14-compliance/07-supply-chain-risk-management.md": {
+  "bundle": "b14-compliance-bundle.docx",
+  "page": "07-supply-chain-risk-management.docx",
+  "title": "Book 14 — Federal Compliance & Authorization"
+ },
+ "docs/books/b14-compliance/08-privacy-pii-processing.md": {
+  "bundle": "b14-compliance-bundle.docx",
+  "page": "08-privacy-pii-processing.docx",
+  "title": "Book 14 — Federal Compliance & Authorization"
+ },
+ "docs/books/b14-compliance/09-training-and-awareness-controls.md": {
+  "bundle": "b14-compliance-bundle.docx",
+  "page": "09-training-and-awareness-controls.docx",
+  "title": "Book 14 — Federal Compliance & Authorization"
+ },
+ "docs/books/b14-compliance/10-who-owns-compliance.md": {
+  "bundle": "b14-compliance-bundle.docx",
+  "page": "10-who-owns-compliance.docx",
+  "title": "Book 14 — Federal Compliance & Authorization"
+ },
+ "docs/books/b14-compliance/11-the-authorization-package.md": {
+  "bundle": "b14-compliance-bundle.docx",
+  "page": "11-the-authorization-package.docx",
+  "title": "Book 14 — Federal Compliance & Authorization"
+ },
+ "docs/books/b14-compliance/12-the-series-as-a-map.md": {
+  "bundle": "b14-compliance-bundle.docx",
+  "page": "12-the-series-as-a-map.docx",
+  "title": "Book 14 — Federal Compliance & Authorization"
+ },
+ "docs/books/b14-compliance/appendix-a-control-crosswalk.md": {
+  "bundle": "b14-compliance-bundle.docx",
+  "page": "appendix-a-control-crosswalk.docx",
+  "title": "Book 14 — Federal Compliance & Authorization"
+ },
+ "docs/books/b14-compliance/appendix-b-product-inventory-questionnaire.md": {
+  "bundle": "b14-compliance-bundle.docx",
+  "page": "appendix-b-product-inventory-questionnaire.docx",
+  "title": "Book 14 — Federal Compliance & Authorization"
+ },
+ "docs/books/b14-compliance/appendix-c-security-assessment-plan-template.md": {
+  "bundle": "b14-compliance-bundle.docx",
+  "page": "appendix-c-security-assessment-plan-template.docx",
+  "title": "Book 14 — Federal Compliance & Authorization"
+ },
+ "docs/books/b14-compliance/appendix-d-security-assessment-report-template.md": {
+  "bundle": "b14-compliance-bundle.docx",
+  "page": "appendix-d-security-assessment-report-template.docx",
+  "title": "Book 14 — Federal Compliance & Authorization"
+ },
+ "docs/books/b14-compliance/appendix-e-security-impact-analysis-template.md": {
+  "bundle": "b14-compliance-bundle.docx",
+  "page": "appendix-e-security-impact-analysis-template.docx",
+  "title": "Book 14 — Federal Compliance & Authorization"
+ },
+ "docs/books/b14-compliance/appendix-f-categorization-walkthrough.md": {
+  "bundle": "b14-compliance-bundle.docx",
+  "page": "appendix-f-categorization-walkthrough.docx",
+  "title": "Book 14 — Federal Compliance & Authorization"
+ },
+ "docs/books/b14-compliance/appendix-g-prepare-step-templates.md": {
+  "bundle": "b14-compliance-bundle.docx",
+  "page": "appendix-g-prepare-step-templates.docx",
+  "title": "Book 14 — Federal Compliance & Authorization"
+ },
+ "docs/books/b14-compliance/appendix-h-ad-forest-recovery.md": {
+  "bundle": "b14-compliance-bundle.docx",
+  "page": "appendix-h-ad-forest-recovery.docx",
+  "title": "Book 14 — Federal Compliance & Authorization"
+ },
+ "docs/books/b14-compliance/index.md": {
+  "bundle": "b14-compliance-bundle.docx",
+  "page": "index.docx",
+  "title": "Book 14 — Federal Compliance & Authorization"
+ },
+ "docs/books/b15-day2-operations/01-the-help-desk-decides.md": {
+  "bundle": "b15-day2-operations-bundle.docx",
+  "page": "01-the-help-desk-decides.docx",
+  "title": "Book 15 — Compliance Automation & Day-2 Operations"
+ },
+ "docs/books/b15-day2-operations/02-day-two-is-where-compliance-lives.md": {
+  "bundle": "b15-day2-operations-bundle.docx",
+  "page": "02-day-two-is-where-compliance-lives.docx",
+  "title": "Book 15 — Compliance Automation & Day-2 Operations"
+ },
+ "docs/books/b15-day2-operations/03-intake-triage-and-routing.md": {
+  "bundle": "b15-day2-operations-bundle.docx",
+  "page": "03-intake-triage-and-routing.docx",
+  "title": "Book 15 — Compliance Automation & Day-2 Operations"
+ },
+ "docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md": {
+  "bundle": "b15-day2-operations-bundle.docx",
+  "page": "04-help-desk-authority-in-entra.docx",
+  "title": "Book 15 — Compliance Automation & Day-2 Operations"
+ },
+ "docs/books/b15-day2-operations/05-the-service-catalogs.md": {
+  "bundle": "b15-day2-operations-bundle.docx",
+  "page": "05-the-service-catalogs.docx",
+  "title": "Book 15 — Compliance Automation & Day-2 Operations"
+ },
+ "docs/books/b15-day2-operations/06-saas-integration-governance.md": {
+  "bundle": "b15-day2-operations-bundle.docx",
+  "page": "06-saas-integration-governance.docx",
+  "title": "Book 15 — Compliance Automation & Day-2 Operations"
+ },
+ "docs/books/b15-day2-operations/07-the-cmdb-and-asset-identity.md": {
+  "bundle": "b15-day2-operations-bundle.docx",
+  "page": "07-the-cmdb-and-asset-identity.docx",
+  "title": "Book 15 — Compliance Automation & Day-2 Operations"
+ },
+ "docs/books/b15-day2-operations/08-control-automation-m365-and-azure.md": {
+  "bundle": "b15-day2-operations-bundle.docx",
+  "page": "08-control-automation-m365-and-azure.docx",
+  "title": "Book 15 — Compliance Automation & Day-2 Operations"
+ },
+ "docs/books/b15-day2-operations/09-control-automation-aws-and-vmware.md": {
+  "bundle": "b15-day2-operations-bundle.docx",
+  "page": "09-control-automation-aws-and-vmware.docx",
+  "title": "Book 15 — Compliance Automation & Day-2 Operations"
+ },
+ "docs/books/b15-day2-operations/10-who-runs-day-two.md": {
+  "bundle": "b15-day2-operations-bundle.docx",
+  "page": "10-who-runs-day-two.docx",
+  "title": "Book 15 — Compliance Automation & Day-2 Operations"
+ },
+ "docs/books/b15-day2-operations/11-attestation-and-the-compliance-app.md": {
+  "bundle": "b15-day2-operations-bundle.docx",
+  "page": "11-attestation-and-the-compliance-app.docx",
+  "title": "Book 15 — Compliance Automation & Day-2 Operations"
+ },
+ "docs/books/b15-day2-operations/12-the-day-two-runbook.md": {
+  "bundle": "b15-day2-operations-bundle.docx",
+  "page": "12-the-day-two-runbook.docx",
+  "title": "Book 15 — Compliance Automation & Day-2 Operations"
+ },
+ "docs/books/b15-day2-operations/13-building-day-two-automation-in-house.md": {
+  "bundle": "b15-day2-operations-bundle.docx",
+  "page": "13-building-day-two-automation-in-house.docx",
+  "title": "Book 15 — Compliance Automation & Day-2 Operations"
+ },
+ "docs/books/b15-day2-operations/14-provider-notices.md": {
+  "bundle": "b15-day2-operations-bundle.docx",
+  "page": "14-provider-notices.docx",
+  "title": "Book 15 — Compliance Automation & Day-2 Operations"
+ },
+ "docs/books/b15-day2-operations/appendix-a-help-desk-task-reference.md": {
+  "bundle": "b15-day2-operations-bundle.docx",
+  "page": "appendix-a-help-desk-task-reference.docx",
+  "title": "Book 15 — Compliance Automation & Day-2 Operations"
+ },
+ "docs/books/b15-day2-operations/appendix-b-recovery-and-escalation-runbooks.md": {
+  "bundle": "b15-day2-operations-bundle.docx",
+  "page": "appendix-b-recovery-and-escalation-runbooks.docx",
+  "title": "Book 15 — Compliance Automation & Day-2 Operations"
+ },
+ "docs/books/b15-day2-operations/index.md": {
+  "bundle": "b15-day2-operations-bundle.docx",
+  "page": "index.docx",
+  "title": "Book 15 — Compliance Automation & Day-2 Operations"
+ },
+ "docs/books/b16-people/01-people-close-the-gap.md": {
+  "bundle": "b16-people-bundle.docx",
+  "page": "01-people-close-the-gap.docx",
+  "title": "Book 16 — People: Training & Education"
+ },
+ "docs/books/b16-people/02-what-the-workforce-rules-require.md": {
+  "bundle": "b16-people-bundle.docx",
+  "page": "02-what-the-workforce-rules-require.docx",
+  "title": "Book 16 — People: Training & Education"
+ },
+ "docs/books/b16-people/03-the-compliance-track.md": {
+  "bundle": "b16-people-bundle.docx",
+  "page": "03-the-compliance-track.docx",
+  "title": "Book 16 — People: Training & Education"
+ },
+ "docs/books/b16-people/04-the-implementation-track.md": {
+  "bundle": "b16-people-bundle.docx",
+  "page": "04-the-implementation-track.docx",
+  "title": "Book 16 — People: Training & Education"
+ },
+ "docs/books/b16-people/05-assessment-and-certification.md": {
+  "bundle": "b16-people-bundle.docx",
+  "page": "05-assessment-and-certification.docx",
+  "title": "Book 16 — People: Training & Education"
+ },
+ "docs/books/b16-people/06-vendor-training-and-labs.md": {
+  "bundle": "b16-people-bundle.docx",
+  "page": "06-vendor-training-and-labs.docx",
+  "title": "Book 16 — People: Training & Education"
+ },
+ "docs/books/b16-people/07-end-user-training.md": {
+  "bundle": "b16-people-bundle.docx",
+  "page": "07-end-user-training.docx",
+  "title": "Book 16 — People: Training & Education"
+ },
+ "docs/books/b16-people/08-who-owns-workforce-readiness.md": {
+  "bundle": "b16-people-bundle.docx",
+  "page": "08-who-owns-workforce-readiness.docx",
+  "title": "Book 16 — People: Training & Education"
+ },
+ "docs/books/b16-people/09-building-and-running-the-curriculum.md": {
+  "bundle": "b16-people-bundle.docx",
+  "page": "09-building-and-running-the-curriculum.docx",
+  "title": "Book 16 — People: Training & Education"
+ },
+ "docs/books/b16-people/10-measuring-readiness.md": {
+  "bundle": "b16-people-bundle.docx",
+  "page": "10-measuring-readiness.docx",
+  "title": "Book 16 — People: Training & Education"
+ },
+ "docs/books/b16-people/appendix-a-curriculum-map.md": {
+  "bundle": "b16-people-bundle.docx",
+  "page": "appendix-a-curriculum-map.docx",
+  "title": "Book 16 — People: Training & Education"
+ },
+ "docs/books/b16-people/index.md": {
+  "bundle": "b16-people-bundle.docx",
+  "page": "index.docx",
+  "title": "Book 16 — People: Training & Education"
+ },
+ "docs/books/b17-ai-identity/01-ai-agents-need-identities.md": {
+  "bundle": "b17-ai-identity-bundle.docx",
+  "page": "01-ai-agents-need-identities.docx",
+  "title": "Book 17 — AI Identity Governance"
+ },
+ "docs/books/b17-ai-identity/02-what-federal-ai-rules-require.md": {
+  "bundle": "b17-ai-identity-bundle.docx",
+  "page": "02-what-federal-ai-rules-require.docx",
+  "title": "Book 17 — AI Identity Governance"
+ },
+ "docs/books/b17-ai-identity/03-the-inventory-as-an-identity-source.md": {
+  "bundle": "b17-ai-identity-bundle.docx",
+  "page": "03-the-inventory-as-an-identity-source.docx",
+  "title": "Book 17 — AI Identity Governance"
+ },
+ "docs/books/b17-ai-identity/04-kinds-of-ai-identity.md": {
+  "bundle": "b17-ai-identity-bundle.docx",
+  "page": "04-kinds-of-ai-identity.docx",
+  "title": "Book 17 — AI Identity Governance"
+ },
+ "docs/books/b17-ai-identity/05-owners-sponsors-and-lifecycle.md": {
+  "bundle": "b17-ai-identity-bundle.docx",
+  "page": "05-owners-sponsors-and-lifecycle.docx",
+  "title": "Book 17 — AI Identity Governance"
+ },
+ "docs/books/b17-ai-identity/06-credentials-and-least-privilege.md": {
+  "bundle": "b17-ai-identity-bundle.docx",
+  "page": "06-credentials-and-least-privilege.docx",
+  "title": "Book 17 — AI Identity Governance"
+ },
+ "docs/books/b17-ai-identity/07-monitoring-drift-and-shadow-ai.md": {
+  "bundle": "b17-ai-identity-bundle.docx",
+  "page": "07-monitoring-drift-and-shadow-ai.docx",
+  "title": "Book 17 — AI Identity Governance"
+ },
+ "docs/books/b17-ai-identity/08-who-owns-ai-identity.md": {
+  "bundle": "b17-ai-identity-bundle.docx",
+  "page": "08-who-owns-ai-identity.docx",
+  "title": "Book 17 — AI Identity Governance"
+ },
+ "docs/books/b17-ai-identity/09-running-the-inventory-scan.md": {
+  "bundle": "b17-ai-identity-bundle.docx",
+  "page": "09-running-the-inventory-scan.docx",
+  "title": "Book 17 — AI Identity Governance"
+ },
+ "docs/books/b17-ai-identity/10-evidence-and-authorization.md": {
+  "bundle": "b17-ai-identity-bundle.docx",
+  "page": "10-evidence-and-authorization.docx",
+  "title": "Book 17 — AI Identity Governance"
+ },
+ "docs/books/b17-ai-identity/appendix-a-requirements-mapping.md": {
+  "bundle": "b17-ai-identity-bundle.docx",
+  "page": "appendix-a-requirements-mapping.docx",
+  "title": "Book 17 — AI Identity Governance"
+ },
+ "docs/books/b17-ai-identity/index.md": {
+  "bundle": "b17-ai-identity-bundle.docx",
+  "page": "index.docx",
+  "title": "Book 17 — AI Identity Governance"
+ },
+ "docs/books/b18-application-modernization/01-a-portfolio-not-a-rewrite.md": {
+  "bundle": "b18-application-modernization-bundle.docx",
+  "page": "01-a-portfolio-not-a-rewrite.docx",
+  "title": "Book 18 — Application Modernization"
+ },
+ "docs/books/b18-application-modernization/02-triaging-the-portfolio.md": {
+  "bundle": "b18-application-modernization-bundle.docx",
+  "page": "02-triaging-the-portfolio.docx",
+  "title": "Book 18 — Application Modernization"
+ },
+ "docs/books/b18-application-modernization/03-the-target-reference-architecture.md": {
+  "bundle": "b18-application-modernization-bundle.docx",
+  "page": "03-the-target-reference-architecture.docx",
+  "title": "Book 18 — Application Modernization"
+ },
+ "docs/books/b18-application-modernization/04-moving-the-data.md": {
+  "bundle": "b18-application-modernization-bundle.docx",
+  "page": "04-moving-the-data.docx",
+  "title": "Book 18 — Application Modernization"
+ },
+ "docs/books/b18-application-modernization/05-generative-and-agentic-ai.md": {
+  "bundle": "b18-application-modernization-bundle.docx",
+  "page": "05-generative-and-agentic-ai.docx",
+  "title": "Book 18 — Application Modernization"
+ },
+ "docs/books/b18-application-modernization/06-compliance-by-design.md": {
+  "bundle": "b18-application-modernization-bundle.docx",
+  "page": "06-compliance-by-design.docx",
+  "title": "Book 18 — Application Modernization"
+ },
+ "docs/books/b18-application-modernization/07-who-governs-the-architecture.md": {
+  "bundle": "b18-application-modernization-bundle.docx",
+  "page": "07-who-governs-the-architecture.docx",
+  "title": "Book 18 — Application Modernization"
+ },
+ "docs/books/b18-application-modernization/08-the-reference-implementation.md": {
+  "bundle": "b18-application-modernization-bundle.docx",
+  "page": "08-the-reference-implementation.docx",
+  "title": "Book 18 — Application Modernization"
+ },
+ "docs/books/b18-application-modernization/09-togaf-and-zachman.md": {
+  "bundle": "b18-application-modernization-bundle.docx",
+  "page": "09-togaf-and-zachman.docx",
+  "title": "Book 18 — Application Modernization"
+ },
+ "docs/books/b18-application-modernization/10-running-the-portfolio-in-waves.md": {
+  "bundle": "b18-application-modernization-bundle.docx",
+  "page": "10-running-the-portfolio-in-waves.docx",
+  "title": "Book 18 — Application Modernization"
+ },
+ "docs/books/b18-application-modernization/appendix-a-identity-remediation-work-packages.md": {
+  "bundle": "b18-application-modernization-bundle.docx",
+  "page": "appendix-a-identity-remediation-work-packages.docx",
+  "title": "Book 18 — Application Modernization"
+ },
+ "docs/books/b18-application-modernization/index.md": {
+  "bundle": "b18-application-modernization-bundle.docx",
+  "page": "index.docx",
+  "title": "Book 18 — Application Modernization"
+ },
+ "docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md": {
+  "bundle": "b19-developer-workbook-bundle.docx",
+  "page": "01-the-hr-to-entra-middleware.docx",
+  "title": "Book 19 — Building the Attribute-Driven Migration"
+ },
+ "docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.md": {
+  "bundle": "b19-developer-workbook-bundle.docx",
+  "page": "02-graph-clients-for-government-clouds.docx",
+  "title": "Book 19 — Building the Attribute-Driven Migration"
+ },
+ "docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.md": {
+  "bundle": "b19-developer-workbook-bundle.docx",
+  "page": "03-writing-a-validation-kit-check.docx",
+  "title": "Book 19 — Building the Attribute-Driven Migration"
+ },
+ "docs/books/b19-developer-workbook/04-dynamic-rules-as-code.md": {
+  "bundle": "b19-developer-workbook-bundle.docx",
+  "page": "04-dynamic-rules-as-code.docx",
+  "title": "Book 19 — Building the Attribute-Driven Migration"
+ },
+ "docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md": {
+  "bundle": "b19-developer-workbook-bundle.docx",
+  "page": "05-lifecycle-workflows-custom-extensions.docx",
+  "title": "Book 19 — Building the Attribute-Driven Migration"
+ },
+ "docs/books/b19-developer-workbook/06-group-policy-as-code.md": {
+  "bundle": "b19-developer-workbook-bundle.docx",
+  "page": "06-group-policy-as-code.docx",
+  "title": "Book 19 — Building the Attribute-Driven Migration"
+ },
+ "docs/books/b19-developer-workbook/07-machine-configuration-packages.md": {
+  "bundle": "b19-developer-workbook-bundle.docx",
+  "page": "07-machine-configuration-packages.docx",
+  "title": "Book 19 — Building the Attribute-Driven Migration"
+ },
+ "docs/books/b19-developer-workbook/08-ansible-beside-arc.md": {
+  "bundle": "b19-developer-workbook-bundle.docx",
+  "page": "08-ansible-beside-arc.docx",
+  "title": "Book 19 — Building the Attribute-Driven Migration"
+ },
+ "docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.md": {
+  "bundle": "b19-developer-workbook-bundle.docx",
+  "page": "09-drift-pipelines-and-evidence.docx",
+  "title": "Book 19 — Building the Attribute-Driven Migration"
+ },
+ "docs/books/b19-developer-workbook/10-deploying-to-test-and-production.md": {
+  "bundle": "b19-developer-workbook-bundle.docx",
+  "page": "10-deploying-to-test-and-production.docx",
+  "title": "Book 19 — Building the Attribute-Driven Migration"
+ },
+ "docs/books/b19-developer-workbook/index.md": {
+  "bundle": "b19-developer-workbook-bundle.docx",
+  "page": "index.docx",
+  "title": "Book 19 — Building the Attribute-Driven Migration"
+ },
+ "docs/books/b20-information-protection/01-data-inventory-and-classification.md": {
+  "bundle": "b20-information-protection-bundle.docx",
+  "page": "01-data-inventory-and-classification.docx",
+  "title": "Book 20 — Information Protection & Microsoft Purview"
+ },
+ "docs/books/b20-information-protection/02-sensitivity-label-architecture.md": {
+  "bundle": "b20-information-protection-bundle.docx",
+  "page": "02-sensitivity-label-architecture.docx",
+  "title": "Book 20 — Information Protection & Microsoft Purview"
+ },
+ "docs/books/b20-information-protection/03-label-publication-and-defaults.md": {
+  "bundle": "b20-information-protection-bundle.docx",
+  "page": "03-label-publication-and-defaults.docx",
+  "title": "Book 20 — Information Protection & Microsoft Purview"
+ },
+ "docs/books/b20-information-protection/04-teams-groups-and-sharepoint-containers.md": {
+  "bundle": "b20-information-protection-bundle.docx",
+  "page": "04-teams-groups-and-sharepoint-containers.docx",
+  "title": "Book 20 — Information Protection & Microsoft Purview"
+ },
+ "docs/books/b20-information-protection/05-rights-management-and-recovery.md": {
+  "bundle": "b20-information-protection-bundle.docx",
+  "page": "05-rights-management-and-recovery.docx",
+  "title": "Book 20 — Information Protection & Microsoft Purview"
+ },
+ "docs/books/b20-information-protection/06-exchange-message-encryption.md": {
+  "bundle": "b20-information-protection-bundle.docx",
+  "page": "06-exchange-message-encryption.docx",
+  "title": "Book 20 — Information Protection & Microsoft Purview"
+ },
+ "docs/books/b20-information-protection/07-sharepoint-and-onedrive.md": {
+  "bundle": "b20-information-protection-bundle.docx",
+  "page": "07-sharepoint-and-onedrive.docx",
+  "title": "Book 20 — Information Protection & Microsoft Purview"
+ },
+ "docs/books/b20-information-protection/08-dlp-and-endpoint-controls.md": {
+  "bundle": "b20-information-protection-bundle.docx",
+  "page": "08-dlp-and-endpoint-controls.docx",
+  "title": "Book 20 — Information Protection & Microsoft Purview"
+ },
+ "docs/books/b20-information-protection/09-auto-labeling-and-sensitive-information-types.md": {
+  "bundle": "b20-information-protection-bundle.docx",
+  "page": "09-auto-labeling-and-sensitive-information-types.docx",
+  "title": "Book 20 — Information Protection & Microsoft Purview"
+ },
+ "docs/books/b20-information-protection/10-audit-insider-risk-and-communication-compliance.md": {
+  "bundle": "b20-information-protection-bundle.docx",
+  "page": "10-audit-insider-risk-and-communication-compliance.docx",
+  "title": "Book 20 — Information Protection & Microsoft Purview"
+ },
+ "docs/books/b20-information-protection/11-ai-data-security.md": {
+  "bundle": "b20-information-protection-bundle.docx",
+  "page": "11-ai-data-security.docx",
+  "title": "Book 20 — Information Protection & Microsoft Purview"
+ },
+ "docs/books/b20-information-protection/12-operations-and-evidence.md": {
+  "bundle": "b20-information-protection-bundle.docx",
+  "page": "12-operations-and-evidence.docx",
+  "title": "Book 20 — Information Protection & Microsoft Purview"
+ },
+ "docs/books/b20-information-protection/appendix-a-requirements-mapping.md": {
+  "bundle": "b20-information-protection-bundle.docx",
+  "page": "appendix-a-requirements-mapping.docx",
+  "title": "Book 20 — Information Protection & Microsoft Purview"
+ },
+ "docs/books/b20-information-protection/index.md": {
+  "bundle": "b20-information-protection-bundle.docx",
+  "page": "index.docx",
+  "title": "Book 20 — Information Protection & Microsoft Purview"
+ },
+ "docs/books/explainers/ddi-platform-requirements.md": {
+  "bundle": "explainers-bundle.docx",
+  "page": "ddi-platform-requirements.docx",
+  "title": "Explainers"
+ },
+ "docs/books/explainers/device-naming-after-ad.md": {
+  "bundle": "explainers-bundle.docx",
+  "page": "device-naming-after-ad.docx",
+  "title": "Explainers"
+ },
+ "docs/books/explainers/hr-identity-dns.md": {
+  "bundle": "explainers-bundle.docx",
+  "page": "hr-identity-dns.docx",
+  "title": "Explainers"
+ },
+ "docs/books/explainers/hr2-shared-governance-fedramp-boundary.md": {
+  "bundle": "explainers-bundle.docx",
+  "page": "hr2-shared-governance-fedramp-boundary.docx",
+  "title": "Explainers"
+ },
+ "docs/books/explainers/hybrid-credentials.md": {
+  "bundle": "explainers-bundle.docx",
+  "page": "hybrid-credentials.docx",
+  "title": "Explainers"
+ },
+ "docs/books/explainers/identity-maintenance.md": {
+  "bundle": "explainers-bundle.docx",
+  "page": "identity-maintenance.docx",
+  "title": "Explainers"
+ },
+ "docs/books/explainers/omb-ai-memos-m-25-21-m-25-22.md": {
+  "bundle": "explainers-bundle.docx",
+  "page": "omb-ai-memos-m-25-21-m-25-22.docx",
+  "title": "Explainers"
+ },
+ "docs/books/guides/ansible-configuration-automation.md": {
+  "page": "ansible-configuration-automation.docx"
+ },
+ "docs/books/guides/arc-track-implementation.md": {
+  "page": "arc-track-implementation.docx"
+ },
+ "docs/books/guides/attribute-driven-migration-implementation.md": {
+  "page": "attribute-driven-migration-implementation.docx"
+ },
+ "docs/books/guides/attribute-driven-migration.md": {
+  "page": "attribute-driven-migration.docx"
+ },
+ "docs/books/guides/azure-security-implementation.md": {
+  "page": "azure-security-implementation.docx"
+ },
+ "docs/books/guides/brief-authorizing-official.md": {
+  "bundle": "meeting-templates-and-briefs.docx",
+  "page": "brief-authorizing-official.docx",
+  "title": "Meeting Templates and Leadership Briefs"
+ },
+ "docs/books/guides/brief-chco.md": {
+  "bundle": "meeting-templates-and-briefs.docx",
+  "page": "brief-chco.docx",
+  "title": "Meeting Templates and Leadership Briefs"
+ },
+ "docs/books/guides/brief-cio.md": {
+  "bundle": "meeting-templates-and-briefs.docx",
+  "page": "brief-cio.docx",
+  "title": "Meeting Templates and Leadership Briefs"
+ },
+ "docs/books/guides/brief-ciso.md": {
+  "bundle": "meeting-templates-and-briefs.docx",
+  "page": "brief-ciso.docx",
+  "title": "Meeting Templates and Leadership Briefs"
+ },
+ "docs/books/guides/charter-sign-off-sheet.md": {
+  "bundle": "meeting-templates-and-briefs.docx",
+  "page": "charter-sign-off-sheet.docx",
+  "title": "Meeting Templates and Leadership Briefs"
+ },
+ "docs/books/guides/cisco-sdwan-implementation.md": {
+  "page": "cisco-sdwan-implementation.docx"
+ },
+ "docs/books/guides/cyberark-certificate-lifecycle.md": {
+  "page": "cyberark-certificate-lifecycle.docx"
+ },
+ "docs/books/guides/daily-checks-dashboard-implementation.md": {
+  "page": "daily-checks-dashboard-implementation.docx"
+ },
+ "docs/books/guides/defender-xdr-implementation.md": {
+  "page": "defender-xdr-implementation.docx"
+ },
+ "docs/books/guides/dp-consolidation-implementation.md": {
+  "page": "dp-consolidation-implementation.docx"
+ },
+ "docs/books/guides/dp-consolidation.md": {
+  "page": "dp-consolidation.docx"
+ },
+ "docs/books/guides/effective-meetings.md": {
+  "bundle": "meeting-templates-and-briefs.docx",
+  "page": "effective-meetings.docx",
+  "title": "Meeting Templates and Leadership Briefs"
+ },
+ "docs/books/guides/global-secure-access-implementation.md": {
+  "page": "global-secure-access-implementation.docx"
+ },
+ "docs/books/guides/hcm-entra-implementation.md": {
+  "page": "hcm-entra-implementation.docx"
+ },
+ "docs/books/guides/hr-driven-identity-implementation.md": {
+  "page": "hr-driven-identity-implementation.docx"
+ },
+ "docs/books/guides/infoblox-nios-implementation.md": {
+  "page": "infoblox-nios-implementation.docx"
+ },
+ "docs/books/guides/intune-track-implementation.md": {
+  "page": "intune-track-implementation.docx"
+ },
+ "docs/books/guides/non-person-identity-implementation.md": {
+  "page": "non-person-identity-implementation.docx"
+ },
+ "docs/books/guides/one-page-ask.md": {
+  "bundle": "meeting-templates-and-briefs.docx",
+  "page": "one-page-ask.docx",
+  "title": "Meeting Templates and Leadership Briefs"
+ },
+ "docs/books/guides/privileged-access-implementation.md": {
+  "page": "privileged-access-implementation.docx"
+ },
+ "docs/books/guides/provider-notices-implementation.md": {
+  "page": "provider-notices-implementation.docx"
+ },
+ "docs/books/guides/service-account-migration.md": {
+  "page": "service-account-migration.docx"
+ },
+ "docs/books/guides/snow-sailpoint-integration-kit.md": {
+  "page": "snow-sailpoint-integration-kit.docx"
+ },
+ "docs/books/guides/ttm-servicenow-sailpoint.md": {
+  "page": "ttm-servicenow-sailpoint.docx"
+ },
+ "docs/books/guides/ttm-task-catalog.md": {
+  "page": "ttm-task-catalog.docx"
+ },
+ "docs/books/guides/zero-trust-assessment-implementation.md": {
+  "page": "zero-trust-assessment-implementation.docx"
+ },
+ "docs/evaluations/cloud-dns-resolvers-infoblox-bind.md": {
+  "bundle": "evaluations-bundle.docx",
+  "page": "cloud-dns-resolvers-infoblox-bind.docx",
+  "title": "Evaluations"
+ },
+ "docs/evaluations/infoblox-ddi-federal.md": {
+  "bundle": "evaluations-bundle.docx",
+  "page": "infoblox-ddi-federal.docx",
+  "title": "Evaluations"
+ },
+ "docs/evaluations/oracle-contingent-worker-contractor-source.md": {
+  "bundle": "evaluations-bundle.docx",
+  "page": "oracle-contingent-worker-contractor-source.docx",
+  "title": "Evaluations"
+ },
+ "docs/evaluations/sdwan-platform-deep-dive.md": {
+  "bundle": "evaluations-bundle.docx",
+  "page": "sdwan-platform-deep-dive.docx",
+  "title": "Evaluations"
+ },
+ "docs/evaluations/trinzic-multicloud-ddi.md": {
+  "bundle": "evaluations-bundle.docx",
+  "page": "trinzic-multicloud-ddi.docx",
+  "title": "Evaluations"
+ },
+ "docs/inspiration/index.md": {
+  "page": "index.docx"
+ },
+ "docs/project-plans/attribute-driven-migration.md": {
+  "bundle": "project-plans-bundle.docx",
+  "page": "attribute-driven-migration.docx",
+  "title": "Projects"
+ },
+ "docs/project-plans/content-delivery.md": {
+  "bundle": "project-plans-bundle.docx",
+  "page": "content-delivery.docx",
+  "title": "Projects"
+ },
+ "docs/project-plans/continuous-monitoring.md": {
+  "bundle": "project-plans-bundle.docx",
+  "page": "continuous-monitoring.docx",
+  "title": "Projects"
+ },
+ "docs/project-plans/data-platform.md": {
+  "bundle": "project-plans-bundle.docx",
+  "page": "data-platform.docx",
+  "title": "Projects"
+ },
+ "docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.md": {
+  "bundle": "building-azure-security-bundle.docx",
+  "page": "01-the-landing-zone-baseline.docx",
+  "title": "Building Azure Security"
+ },
+ "docs/project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.md": {
+  "bundle": "building-azure-security-bundle.docx",
+  "page": "02-the-public-exposure-register.docx",
+  "title": "Building Azure Security"
+ },
+ "docs/project-plans/developer-workbooks/azure-security/03-ddos-protection.md": {
+  "bundle": "building-azure-security-bundle.docx",
+  "page": "03-ddos-protection.docx",
+  "title": "Building Azure Security"
+ },
+ "docs/project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.md": {
+  "bundle": "building-azure-security-bundle.docx",
+  "page": "04-the-web-application-firewall.docx",
+  "title": "Building Azure Security"
+ },
+ "docs/project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.md": {
+  "bundle": "building-azure-security-bundle.docx",
+  "page": "05-front-door-application-gateway-and-the-origin.docx",
+  "title": "Building Azure Security"
+ },
+ "docs/project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.md": {
+  "bundle": "building-azure-security-bundle.docx",
+  "page": "06-azure-firewall-and-egress.docx",
+  "title": "Building Azure Security"
+ },
+ "docs/project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.md": {
+  "bundle": "building-azure-security-bundle.docx",
+  "page": "07-private-link-dns-and-key-vault.docx",
+  "title": "Building Azure Security"
+ },
+ "docs/project-plans/developer-workbooks/azure-security/08-policy-drift-and-evidence.md": {
+  "bundle": "building-azure-security-bundle.docx",
+  "page": "08-policy-drift-and-evidence.docx",
+  "title": "Building Azure Security"
+ },
+ "docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.md": {
+  "bundle": "building-azure-security-bundle.docx",
+  "page": "09-deploying-to-test-and-production.docx",
+  "title": "Building Azure Security"
+ },
+ "docs/project-plans/developer-workbooks/azure-security/index.md": {
+  "bundle": "building-azure-security-bundle.docx",
+  "page": "index.docx",
+  "title": "Building Azure Security"
+ },
+ "docs/project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.md": {
+  "bundle": "building-daily-checks-bundle.docx",
+  "page": "01-the-daily-checks-and-where-each-lives.docx",
+  "title": "Building the Daily Checks Workbook"
+ },
+ "docs/project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.md": {
+  "bundle": "building-daily-checks-bundle.docx",
+  "page": "02-the-workbook-template-and-its-validator.docx",
+  "title": "Building the Daily Checks Workbook"
+ },
+ "docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.md": {
+  "bundle": "building-daily-checks-bundle.docx",
+  "page": "03-what-each-tab-would-show.docx",
+  "title": "Building the Daily Checks Workbook"
+ },
+ "docs/project-plans/developer-workbooks/daily-checks/04-deploying-to-test-and-production.md": {
+  "bundle": "building-daily-checks-bundle.docx",
+  "page": "04-deploying-to-test-and-production.docx",
+  "title": "Building the Daily Checks Workbook"
+ },
+ "docs/project-plans/developer-workbooks/daily-checks/index.md": {
+  "bundle": "building-daily-checks-bundle.docx",
+  "page": "index.docx",
+  "title": "Building the Daily Checks Workbook"
+ },
+ "docs/project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.md": {
+  "bundle": "building-defender-xdr-bundle.docx",
+  "page": "01-access-and-the-graph-read-path.docx",
+  "title": "Building Defender XDR"
+ },
+ "docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.md": {
+  "bundle": "building-defender-xdr-bundle.docx",
+  "page": "02-onboarding-coverage-and-sensor-health.docx",
+  "title": "Building Defender XDR"
+ },
+ "docs/project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.md": {
+  "bundle": "building-defender-xdr-bundle.docx",
+  "page": "03-prevention-through-audit.docx",
+  "title": "Building Defender XDR"
+ },
+ "docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.md": {
+  "bundle": "building-defender-xdr-bundle.docx",
+  "page": "04-attack-surface-reduction-audit-warn-block.docx",
+  "title": "Building Defender XDR"
+ },
+ "docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.md": {
+  "bundle": "building-defender-xdr-bundle.docx",
+  "page": "05-exposure-and-incidents.docx",
+  "title": "Building Defender XDR"
+ },
+ "docs/project-plans/developer-workbooks/defender-xdr/06-detections-as-code.md": {
+  "bundle": "building-defender-xdr-bundle.docx",
+  "page": "06-detections-as-code.docx",
+  "title": "Building Defender XDR"
+ },
+ "docs/project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.md": {
+  "bundle": "building-defender-xdr-bundle.docx",
+  "page": "07-identity-signals-and-automation-boundaries.docx",
+  "title": "Building Defender XDR"
+ },
+ "docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.md": {
+  "bundle": "building-defender-xdr-bundle.docx",
+  "page": "08-the-monthly-evidence-run.docx",
+  "title": "Building Defender XDR"
+ },
+ "docs/project-plans/developer-workbooks/defender-xdr/09-deploying-to-test-and-production.md": {
+  "bundle": "building-defender-xdr-bundle.docx",
+  "page": "09-deploying-to-test-and-production.docx",
+  "title": "Building Defender XDR"
+ },
+ "docs/project-plans/developer-workbooks/defender-xdr/index.md": {
+  "bundle": "building-defender-xdr-bundle.docx",
+  "page": "index.docx",
+  "title": "Building Defender XDR"
+ },
+ "docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.md": {
+  "bundle": "building-global-secure-access-bundle.docx",
+  "page": "01-decision-licensing-and-gcc-availability.docx",
+  "title": "Building Global Secure Access"
+ },
+ "docs/project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.md": {
+  "bundle": "building-global-secure-access-bundle.docx",
+  "page": "02-configuration-export-and-logs-first.docx",
+  "title": "Building Global Secure Access"
+ },
+ "docs/project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.md": {
+  "bundle": "building-global-secure-access-bundle.docx",
+  "page": "03-the-client-and-its-coverage.docx",
+  "title": "Building Global Secure Access"
+ },
+ "docs/project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md": {
+  "bundle": "building-global-secure-access-bundle.docx",
+  "page": "04-microsoft-traffic-and-change-plans.docx",
+  "title": "Building Global Secure Access"
+ },
+ "docs/project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.md": {
+  "bundle": "building-global-secure-access-bundle.docx",
+  "page": "05-compliant-network-and-tenant-restrictions.docx",
+  "title": "Building Global Secure Access"
+ },
+ "docs/project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.md": {
+  "bundle": "building-global-secure-access-bundle.docx",
+  "page": "06-private-apps-and-admin-paths.docx",
+  "title": "Building Global Secure Access"
+ },
+ "docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md": {
+  "bundle": "building-global-secure-access-bundle.docx",
+  "page": "07-internet-access-and-tls-inspection.docx",
+  "title": "Building Global Secure Access"
+ },
+ "docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.md": {
+  "bundle": "building-global-secure-access-bundle.docx",
+  "page": "08-rings-metrics-and-evidence.docx",
+  "title": "Building Global Secure Access"
+ },
+ "docs/project-plans/developer-workbooks/global-secure-access/09-deploying-to-test-and-production.md": {
+  "bundle": "building-global-secure-access-bundle.docx",
+  "page": "09-deploying-to-test-and-production.docx",
+  "title": "Building Global Secure Access"
+ },
+ "docs/project-plans/developer-workbooks/global-secure-access/index.md": {
+  "bundle": "building-global-secure-access-bundle.docx",
+  "page": "index.docx",
+  "title": "Building Global Secure Access"
+ },
+ "docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.md": {
+  "bundle": "building-hr-driven-identity-bundle.docx",
+  "page": "01-the-writer-register-as-code.docx",
+  "title": "Building HR-Driven Identity"
+ },
+ "docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.md": {
+  "bundle": "building-hr-driven-identity-bundle.docx",
+  "page": "02-contractor-sources-and-end-dates.docx",
+  "title": "Building HR-Driven Identity"
+ },
+ "docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md": {
+  "bundle": "building-hr-driven-identity-bundle.docx",
+  "page": "03-joiner-workflows-as-code.docx",
+  "title": "Building HR-Driven Identity"
+ },
+ "docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.md": {
+  "bundle": "building-hr-driven-identity-bundle.docx",
+  "page": "04-access-from-attributes-and-the-mover-review.docx",
+  "title": "Building HR-Driven Identity"
+ },
+ "docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md": {
+  "bundle": "building-hr-driven-identity-bundle.docx",
+  "page": "05-certificate-based-authentication-checks.docx",
+  "title": "Building HR-Driven Identity"
+ },
+ "docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md": {
+  "bundle": "building-hr-driven-identity-bundle.docx",
+  "page": "06-separation-timing.docx",
+  "title": "Building HR-Driven Identity"
+ },
+ "docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.md": {
+  "bundle": "building-hr-driven-identity-bundle.docx",
+  "page": "07-lifecycle-drift-and-evidence.docx",
+  "title": "Building HR-Driven Identity"
+ },
+ "docs/project-plans/developer-workbooks/hr-driven-identity/08-deploying-to-test-and-production.md": {
+  "bundle": "building-hr-driven-identity-bundle.docx",
+  "page": "08-deploying-to-test-and-production.docx",
+  "title": "Building HR-Driven Identity"
+ },
+ "docs/project-plans/developer-workbooks/hr-driven-identity/index.md": {
+  "bundle": "building-hr-driven-identity-bundle.docx",
+  "page": "index.docx",
+  "title": "Building HR-Driven Identity"
+ },
+ "docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md": {
+  "bundle": "building-non-person-identity-bundle.docx",
+  "page": "01-non-person-identity-inventory-as-code.docx",
+  "title": "Building Non-Person Identity"
+ },
+ "docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md": {
+  "bundle": "building-non-person-identity-bundle.docx",
+  "page": "02-ownership-and-the-orphan-rule.docx",
+  "title": "Building Non-Person Identity"
+ },
+ "docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md": {
+  "bundle": "building-non-person-identity-bundle.docx",
+  "page": "03-the-migration-path-matrix-as-code.docx",
+  "title": "Building Non-Person Identity"
+ },
+ "docs/project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.md": {
+  "bundle": "building-non-person-identity-bundle.docx",
+  "page": "04-app-management-policies-and-certificate-rotation.docx",
+  "title": "Building Non-Person Identity"
+ },
+ "docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.md": {
+  "bundle": "building-non-person-identity-bundle.docx",
+  "page": "05-workload-identity-federation-and-managed-identities.docx",
+  "title": "Building Non-Person Identity"
+ },
+ "docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md": {
+  "bundle": "building-non-person-identity-bundle.docx",
+  "page": "06-gmsa-dmsa-and-the-kerberos-island.docx",
+  "title": "Building Non-Person Identity"
+ },
+ "docs/project-plans/developer-workbooks/non-person-identity/07-least-privilege-for-service-principals.md": {
+  "bundle": "building-non-person-identity-bundle.docx",
+  "page": "07-least-privilege-for-service-principals.docx",
+  "title": "Building Non-Person Identity"
+ },
+ "docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md": {
+  "bundle": "building-non-person-identity-bundle.docx",
+  "page": "08-conditional-access-for-workload-identities.docx",
+  "title": "Building Non-Person Identity"
+ },
+ "docs/project-plans/developer-workbooks/non-person-identity/09-ai-agent-identities.md": {
+  "bundle": "building-non-person-identity-bundle.docx",
+  "page": "09-ai-agent-identities.docx",
+  "title": "Building Non-Person Identity"
+ },
+ "docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.md": {
+  "bundle": "building-non-person-identity-bundle.docx",
+  "page": "10-drift-and-evidence.docx",
+  "title": "Building Non-Person Identity"
+ },
+ "docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md": {
+  "bundle": "building-non-person-identity-bundle.docx",
+  "page": "11-deploying-to-test-and-production.docx",
+  "title": "Building Non-Person Identity"
+ },
+ "docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.md": {
+  "bundle": "building-non-person-identity-bundle.docx",
+  "page": "12-the-managed-service-account-standard.docx",
+  "title": "Building Non-Person Identity"
+ },
+ "docs/project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.md": {
+  "bundle": "building-non-person-identity-bundle.docx",
+  "page": "13-workload-identity-across-aws-govcloud-and-oci.docx",
+  "title": "Building Non-Person Identity"
+ },
+ "docs/project-plans/developer-workbooks/non-person-identity/index.md": {
+  "bundle": "building-non-person-identity-bundle.docx",
+  "page": "index.docx",
+  "title": "Building Non-Person Identity"
+ },
+ "docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md": {
+  "bundle": "building-privileged-access-bundle.docx",
+  "page": "01-privileged-inventory-as-code.docx",
+  "title": "Building Privileged Access"
+ },
+ "docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md": {
+  "bundle": "building-privileged-access-bundle.docx",
+  "page": "02-emergency-access-as-code.docx",
+  "title": "Building Privileged Access"
+ },
+ "docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.md": {
+  "bundle": "building-privileged-access-bundle.docx",
+  "page": "03-conditional-access-for-administrators.docx",
+  "title": "Building Privileged Access"
+ },
+ "docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md": {
+  "bundle": "building-privileged-access-bundle.docx",
+  "page": "04-pim-for-entra-roles-as-code.docx",
+  "title": "Building Privileged Access"
+ },
+ "docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md": {
+  "bundle": "building-privileged-access-bundle.docx",
+  "page": "05-pim-for-groups.docx",
+  "title": "Building Privileged Access"
+ },
+ "docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.md": {
+  "bundle": "building-privileged-access-bundle.docx",
+  "page": "06-pim-for-azure-resources.docx",
+  "title": "Building Privileged Access"
+ },
+ "docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.md": {
+  "bundle": "building-privileged-access-bundle.docx",
+  "page": "07-access-reviews-of-privileged-roles.docx",
+  "title": "Building Privileged Access"
+ },
+ "docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.md": {
+  "bundle": "building-privileged-access-bundle.docx",
+  "page": "08-evidence-and-drift.docx",
+  "title": "Building Privileged Access"
+ },
+ "docs/project-plans/developer-workbooks/privileged-access/09-deploying-to-test-and-production.md": {
+  "bundle": "building-privileged-access-bundle.docx",
+  "page": "09-deploying-to-test-and-production.docx",
+  "title": "Building Privileged Access"
+ },
+ "docs/project-plans/developer-workbooks/privileged-access/index.md": {
+  "bundle": "building-privileged-access-bundle.docx",
+  "page": "index.docx",
+  "title": "Building Privileged Access"
+ },
+ "docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.md": {
+  "bundle": "building-provider-notices-bundle.docx",
+  "page": "01-the-notice-record-and-azure-service-health.docx",
+  "title": "Building Provider Notices"
+ },
+ "docs/project-plans/developer-workbooks/provider-notices/02-microsoft-365-message-center-and-service-health.md": {
+  "bundle": "building-provider-notices-bundle.docx",
+  "page": "02-microsoft-365-message-center-and-service-health.docx",
+  "title": "Building Provider Notices"
+ },
+ "docs/project-plans/developer-workbooks/provider-notices/03-oracle-cloud-infrastructure-announcements.md": {
+  "bundle": "building-provider-notices-bundle.docx",
+  "page": "03-oracle-cloud-infrastructure-announcements.docx",
+  "title": "Building Provider Notices"
+ },
+ "docs/project-plans/developer-workbooks/provider-notices/04-aws-health.md": {
+  "bundle": "building-provider-notices-bundle.docx",
+  "page": "04-aws-health.docx",
+  "title": "Building Provider Notices"
+ },
+ "docs/project-plans/developer-workbooks/provider-notices/05-google-cloud-personalized-service-health.md": {
+  "bundle": "building-provider-notices-bundle.docx",
+  "page": "05-google-cloud-personalized-service-health.docx",
+  "title": "Building Provider Notices"
+ },
+ "docs/project-plans/developer-workbooks/provider-notices/06-routing-to-owners-and-ticket-to-machine-tasks.md": {
+  "bundle": "building-provider-notices-bundle.docx",
+  "page": "06-routing-to-owners-and-ticket-to-machine-tasks.docx",
+  "title": "Building Provider Notices"
+ },
+ "docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.md": {
+  "bundle": "building-provider-notices-bundle.docx",
+  "page": "07-the-weekly-digest-and-evidence.docx",
+  "title": "Building Provider Notices"
+ },
+ "docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.md": {
+  "bundle": "building-provider-notices-bundle.docx",
+  "page": "08-deploying-to-test-and-production.docx",
+  "title": "Building Provider Notices"
+ },
+ "docs/project-plans/developer-workbooks/provider-notices/index.md": {
+  "bundle": "building-provider-notices-bundle.docx",
+  "page": "index.docx",
+  "title": "Building Provider Notices"
+ },
+ "docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.md": {
+  "bundle": "building-ticket-to-machine-bundle.docx",
+  "page": "01-the-loop-and-the-typed-task.docx",
+  "title": "Building Ticket-to-Machine"
+ },
+ "docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.md": {
+  "bundle": "building-ticket-to-machine-bundle.docx",
+  "page": "02-servicenow-client-and-least-privilege.docx",
+  "title": "Building Ticket-to-Machine"
+ },
+ "docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.md": {
+  "bundle": "building-ticket-to-machine-bundle.docx",
+  "page": "03-sailpoint-client-and-scopes.docx",
+  "title": "Building Ticket-to-Machine"
+ },
+ "docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.md": {
+  "bundle": "building-ticket-to-machine-bundle.docx",
+  "page": "04-drift-to-a-typed-task.docx",
+  "title": "Building Ticket-to-Machine"
+ },
+ "docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.md": {
+  "bundle": "building-ticket-to-machine-bundle.docx",
+  "page": "05-the-re-read-rule.docx",
+  "title": "Building Ticket-to-Machine"
+ },
+ "docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.md": {
+  "bundle": "building-ticket-to-machine-bundle.docx",
+  "page": "06-drift-reconciliation.docx",
+  "title": "Building Ticket-to-Machine"
+ },
+ "docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.md": {
+  "bundle": "building-ticket-to-machine-bundle.docx",
+  "page": "07-evidence-records.docx",
+  "title": "Building Ticket-to-Machine"
+ },
+ "docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.md": {
+  "bundle": "building-ticket-to-machine-bundle.docx",
+  "page": "08-one-writer-per-attribute.docx",
+  "title": "Building Ticket-to-Machine"
+ },
+ "docs/project-plans/developer-workbooks/ticket-to-machine/09-deploying-to-test-and-production.md": {
+  "bundle": "building-ticket-to-machine-bundle.docx",
+  "page": "09-deploying-to-test-and-production.docx",
+  "title": "Building Ticket-to-Machine"
+ },
+ "docs/project-plans/developer-workbooks/ticket-to-machine/index.md": {
+  "bundle": "building-ticket-to-machine-bundle.docx",
+  "page": "index.docx",
+  "title": "Building Ticket-to-Machine"
+ },
+ "docs/project-plans/endpoint-device.md": {
+  "bundle": "project-plans-bundle.docx",
+  "page": "endpoint-device.docx",
+  "title": "Projects"
+ },
+ "docs/project-plans/identity-lifecycle.md": {
+  "bundle": "project-plans-bundle.docx",
+  "page": "identity-lifecycle.docx",
+  "title": "Projects"
+ },
+ "docs/project-plans/network-access.md": {
+  "bundle": "project-plans-bundle.docx",
+  "page": "network-access.docx",
+  "title": "Projects"
+ },
+ "docs/project-plans/non-person-identity.md": {
+  "bundle": "project-plans-bundle.docx",
+  "page": "non-person-identity.docx",
+  "title": "Projects"
+ },
+ "docs/project-plans/privileged-access.md": {
+  "bundle": "project-plans-bundle.docx",
+  "page": "privileged-access.docx",
+  "title": "Projects"
+ },
+ "docs/project-plans/program-master-schedule.md": {
+  "bundle": "project-plans-bundle.docx",
+  "page": "program-master-schedule.docx",
+  "title": "Projects"
+ },
+ "docs/project-plans/supply-chain-sbom.md": {
+  "bundle": "project-plans-bundle.docx",
+  "page": "supply-chain-sbom.docx",
+  "title": "Projects"
+ },
+ "docs/reference/commands.md": {
+  "bundle": "reference-set.docx",
+  "page": "commands.docx",
+  "title": "Reference Set"
+ },
+ "docs/reference/federal-framework-crosswalk.md": {
+  "bundle": "reference-set.docx",
+  "page": "federal-framework-crosswalk.docx",
+  "title": "Reference Set"
+ },
+ "docs/reference/graph-practice-crosswalk.md": {
+  "bundle": "reference-set.docx",
+  "page": "graph-practice-crosswalk.docx",
+  "title": "Reference Set"
+ },
+ "docs/reference/m-19-17-ficam-crosswalk.md": {
+  "bundle": "reference-set.docx",
+  "page": "m-19-17-ficam-crosswalk.docx",
+  "title": "Reference Set"
+ },
+ "docs/reference/rmf-map.md": {
+  "bundle": "reference-set.docx",
+  "page": "rmf-map.docx",
+  "title": "Reference Set"
+ },
+ "docs/reference/source-register.md": {
+  "bundle": "reference-set.docx",
+  "page": "source-register.docx",
+  "title": "Reference Set"
+ },
+ "docs/reference/zta-closure-coverage.md": {
+  "page": "zta-closure-coverage.docx"
+ },
+ "docs/training/attribute-driven-migration/01-the-hr-middleware.md": {
+  "bundle": "training-attribute-driven-migration-bundle.docx",
+  "page": "01-the-hr-middleware.docx",
+  "title": "Learning path: Building the Attribute-Driven Migration"
+ },
+ "docs/training/attribute-driven-migration/02-a-validation-kit-check.md": {
+  "bundle": "training-attribute-driven-migration-bundle.docx",
+  "page": "02-a-validation-kit-check.docx",
+  "title": "Learning path: Building the Attribute-Driven Migration"
+ },
+ "docs/training/attribute-driven-migration/03-dynamic-rules-as-code.md": {
+  "bundle": "training-attribute-driven-migration-bundle.docx",
+  "page": "03-dynamic-rules-as-code.docx",
+  "title": "Learning path: Building the Attribute-Driven Migration"
+ },
+ "docs/training/attribute-driven-migration/04-group-policy-as-code.md": {
+  "bundle": "training-attribute-driven-migration-bundle.docx",
+  "page": "04-group-policy-as-code.docx",
+  "title": "Learning path: Building the Attribute-Driven Migration"
+ },
+ "docs/training/attribute-driven-migration/05-machine-configuration.md": {
+  "bundle": "training-attribute-driven-migration-bundle.docx",
+  "page": "05-machine-configuration.docx",
+  "title": "Learning path: Building the Attribute-Driven Migration"
+ },
+ "docs/training/attribute-driven-migration/06-ansible-beside-arc.md": {
+  "bundle": "training-attribute-driven-migration-bundle.docx",
+  "page": "06-ansible-beside-arc.docx",
+  "title": "Learning path: Building the Attribute-Driven Migration"
+ },
+ "docs/training/attribute-driven-migration/07-lifecycle-workflows-extensions.md": {
+  "bundle": "training-attribute-driven-migration-bundle.docx",
+  "page": "07-lifecycle-workflows-extensions.docx",
+  "title": "Learning path: Building the Attribute-Driven Migration"
+ },
+ "docs/training/attribute-driven-migration/08-drift-and-evidence.md": {
+  "bundle": "training-attribute-driven-migration-bundle.docx",
+  "page": "08-drift-and-evidence.docx",
+  "title": "Learning path: Building the Attribute-Driven Migration"
+ },
+ "docs/training/attribute-driven-migration/09-deploying-to-test-and-production.md": {
+  "bundle": "training-attribute-driven-migration-bundle.docx",
+  "page": "09-deploying-to-test-and-production.docx",
+  "title": "Learning path: Building the Attribute-Driven Migration"
+ },
+ "docs/training/attribute-driven-migration/index.md": {
+  "bundle": "training-attribute-driven-migration-bundle.docx",
+  "page": "index.docx",
+  "title": "Learning path: Building the Attribute-Driven Migration"
+ },
+ "docs/training/azure-security/01-the-baseline-and-the-exposure-register.md": {
+  "bundle": "training-azure-security-bundle.docx",
+  "page": "01-the-baseline-and-the-exposure-register.docx",
+  "title": "Learning path: Azure Security Engineering"
+ },
+ "docs/training/azure-security/02-ddos-protection-and-the-waf.md": {
+  "bundle": "training-azure-security-bundle.docx",
+  "page": "02-ddos-protection-and-the-waf.docx",
+  "title": "Learning path: Azure Security Engineering"
+ },
+ "docs/training/azure-security/03-the-edge-and-the-egress.md": {
+  "bundle": "training-azure-security-bundle.docx",
+  "page": "03-the-edge-and-the-egress.docx",
+  "title": "Learning path: Azure Security Engineering"
+ },
+ "docs/training/azure-security/04-private-link-dns-and-key-vault.md": {
+  "bundle": "training-azure-security-bundle.docx",
+  "page": "04-private-link-dns-and-key-vault.docx",
+  "title": "Learning path: Azure Security Engineering"
+ },
+ "docs/training/azure-security/05-policy-drift-and-evidence.md": {
+  "bundle": "training-azure-security-bundle.docx",
+  "page": "05-policy-drift-and-evidence.docx",
+  "title": "Learning path: Azure Security Engineering"
+ },
+ "docs/training/azure-security/index.md": {
+  "bundle": "training-azure-security-bundle.docx",
+  "page": "index.docx",
+  "title": "Learning path: Azure Security Engineering"
+ },
+ "docs/training/daily-checks-dashboard/01-one-workbook-one-tab-per-check.md": {
+  "bundle": "training-daily-checks-dashboard-bundle.docx",
+  "page": "01-one-workbook-one-tab-per-check.docx",
+  "title": "Learning path: The Daily Checks on One Dashboard"
+ },
+ "docs/training/daily-checks-dashboard/02-reading-deploying-and-the-evidence.md": {
+  "bundle": "training-daily-checks-dashboard-bundle.docx",
+  "page": "02-reading-deploying-and-the-evidence.docx",
+  "title": "Learning path: The Daily Checks on One Dashboard"
+ },
+ "docs/training/daily-checks-dashboard/index.md": {
+  "bundle": "training-daily-checks-dashboard-bundle.docx",
+  "page": "index.docx",
+  "title": "Learning path: The Daily Checks on One Dashboard"
+ },
+ "docs/training/defender-xdr/01-architecture-access-and-onboarding.md": {
+  "bundle": "training-defender-xdr-bundle.docx",
+  "page": "01-architecture-access-and-onboarding.docx",
+  "title": "Learning path: Defender XDR Engineering and Operations"
+ },
+ "docs/training/defender-xdr/02-prevention-and-attack-surface-reduction.md": {
+  "bundle": "training-defender-xdr-bundle.docx",
+  "page": "02-prevention-and-attack-surface-reduction.docx",
+  "title": "Learning path: Defender XDR Engineering and Operations"
+ },
+ "docs/training/defender-xdr/03-exposure-and-incidents.md": {
+  "bundle": "training-defender-xdr-bundle.docx",
+  "page": "03-exposure-and-incidents.docx",
+  "title": "Learning path: Defender XDR Engineering and Operations"
+ },
+ "docs/training/defender-xdr/04-hunting-detections-and-identity-signals.md": {
+  "bundle": "training-defender-xdr-bundle.docx",
+  "page": "04-hunting-detections-and-identity-signals.docx",
+  "title": "Learning path: Defender XDR Engineering and Operations"
+ },
+ "docs/training/defender-xdr/05-automation-operations-and-evidence.md": {
+  "bundle": "training-defender-xdr-bundle.docx",
+  "page": "05-automation-operations-and-evidence.docx",
+  "title": "Learning path: Defender XDR Engineering and Operations"
+ },
+ "docs/training/defender-xdr/index.md": {
+  "bundle": "training-defender-xdr-bundle.docx",
+  "page": "index.docx",
+  "title": "Learning path: Defender XDR Engineering and Operations"
+ },
+ "docs/training/global-secure-access/01-decide-design-and-log-first.md": {
+  "bundle": "training-global-secure-access-bundle.docx",
+  "page": "01-decide-design-and-log-first.docx",
+  "title": "Learning path: Global Secure Access as the Identity-Aware Network"
+ },
+ "docs/training/global-secure-access/02-the-client-and-microsoft-traffic.md": {
+  "bundle": "training-global-secure-access-bundle.docx",
+  "page": "02-the-client-and-microsoft-traffic.docx",
+  "title": "Learning path: Global Secure Access as the Identity-Aware Network"
+ },
+ "docs/training/global-secure-access/03-compliant-network-and-tenant-restrictions.md": {
+  "bundle": "training-global-secure-access-bundle.docx",
+  "page": "03-compliant-network-and-tenant-restrictions.docx",
+  "title": "Learning path: Global Secure Access as the Identity-Aware Network"
+ },
+ "docs/training/global-secure-access/04-private-apps-and-admin-paths.md": {
+  "bundle": "training-global-secure-access-bundle.docx",
+  "page": "04-private-apps-and-admin-paths.docx",
+  "title": "Learning path: Global Secure Access as the Identity-Aware Network"
+ },
+ "docs/training/global-secure-access/05-internet-access-and-tls-inspection.md": {
+  "bundle": "training-global-secure-access-bundle.docx",
+  "page": "05-internet-access-and-tls-inspection.docx",
+  "title": "Learning path: Global Secure Access as the Identity-Aware Network"
+ },
+ "docs/training/global-secure-access/06-rings-rollback-and-the-evidence-package.md": {
+  "bundle": "training-global-secure-access-bundle.docx",
+  "page": "06-rings-rollback-and-the-evidence-package.docx",
+  "title": "Learning path: Global Secure Access as the Identity-Aware Network"
+ },
+ "docs/training/global-secure-access/index.md": {
+  "bundle": "training-global-secure-access-bundle.docx",
+  "page": "index.docx",
+  "title": "Learning path: Global Secure Access as the Identity-Aware Network"
+ },
+ "docs/training/hr-driven-identity/01-one-writer-per-state.md": {
+  "bundle": "training-hr-driven-identity-bundle.docx",
+  "page": "01-one-writer-per-state.docx",
+  "title": "Learning path: HR-Driven Identity in Microsoft Entra ID"
+ },
+ "docs/training/hr-driven-identity/02-contractor-sources.md": {
+  "bundle": "training-hr-driven-identity-bundle.docx",
+  "page": "02-contractor-sources.docx",
+  "title": "Learning path: HR-Driven Identity in Microsoft Entra ID"
+ },
+ "docs/training/hr-driven-identity/03-joiners-and-the-temporary-access-pass.md": {
+  "bundle": "training-hr-driven-identity-bundle.docx",
+  "page": "03-joiners-and-the-temporary-access-pass.docx",
+  "title": "Learning path: HR-Driven Identity in Microsoft Entra ID"
+ },
+ "docs/training/hr-driven-identity/04-access-and-movers.md": {
+  "bundle": "training-hr-driven-identity-bundle.docx",
+  "page": "04-access-and-movers.docx",
+  "title": "Learning path: HR-Driven Identity in Microsoft Entra ID"
+ },
+ "docs/training/hr-driven-identity/05-certificate-based-authentication.md": {
+  "bundle": "training-hr-driven-identity-bundle.docx",
+  "page": "05-certificate-based-authentication.docx",
+  "title": "Learning path: HR-Driven Identity in Microsoft Entra ID"
+ },
+ "docs/training/hr-driven-identity/06-separation-timing.md": {
+  "bundle": "training-hr-driven-identity-bundle.docx",
+  "page": "06-separation-timing.docx",
+  "title": "Learning path: HR-Driven Identity in Microsoft Entra ID"
+ },
+ "docs/training/hr-driven-identity/07-drift-and-evidence.md": {
+  "bundle": "training-hr-driven-identity-bundle.docx",
+  "page": "07-drift-and-evidence.docx",
+  "title": "Learning path: HR-Driven Identity in Microsoft Entra ID"
+ },
+ "docs/training/hr-driven-identity/index.md": {
+  "bundle": "training-hr-driven-identity-bundle.docx",
+  "page": "index.docx",
+  "title": "Learning path: HR-Driven Identity in Microsoft Entra ID"
+ },
+ "docs/training/infoblox-training.md": {
+  "page": "infoblox-training.docx"
+ },
+ "docs/training/ms-automation-arc.md": {
+  "bundle": "training-microsoft-automation-bundle.docx",
+  "page": "ms-automation-arc.docx",
+  "title": "Microsoft Automation: Graph, Entra ID, Intune and Azure Arc"
+ },
+ "docs/training/ms-automation-entra.md": {
+  "bundle": "training-microsoft-automation-bundle.docx",
+  "page": "ms-automation-entra.docx",
+  "title": "Microsoft Automation: Graph, Entra ID, Intune and Azure Arc"
+ },
+ "docs/training/ms-automation-foundations.md": {
+  "bundle": "training-microsoft-automation-bundle.docx",
+  "page": "ms-automation-foundations.docx",
+  "title": "Microsoft Automation: Graph, Entra ID, Intune and Azure Arc"
+ },
+ "docs/training/ms-automation-intune.md": {
+  "bundle": "training-microsoft-automation-bundle.docx",
+  "page": "ms-automation-intune.docx",
+  "title": "Microsoft Automation: Graph, Entra ID, Intune and Azure Arc"
+ },
+ "docs/training/non-person-identity/01-inventory.md": {
+  "bundle": "training-non-person-identity-bundle.docx",
+  "page": "01-inventory.docx",
+  "title": "Learning path: Non-Person Identity in Microsoft Entra ID"
+ },
+ "docs/training/non-person-identity/02-owners-and-the-orphan-rule.md": {
+  "bundle": "training-non-person-identity-bundle.docx",
+  "page": "02-owners-and-the-orphan-rule.docx",
+  "title": "Learning path: Non-Person Identity in Microsoft Entra ID"
+ },
+ "docs/training/non-person-identity/03-decide-the-target.md": {
+  "bundle": "training-non-person-identity-bundle.docx",
+  "page": "03-decide-the-target.docx",
+  "title": "Learning path: Non-Person Identity in Microsoft Entra ID"
+ },
+ "docs/training/non-person-identity/04-credential-rules.md": {
+  "bundle": "training-non-person-identity-bundle.docx",
+  "page": "04-credential-rules.docx",
+  "title": "Learning path: Non-Person Identity in Microsoft Entra ID"
+ },
+ "docs/training/non-person-identity/05-least-privilege.md": {
+  "bundle": "training-non-person-identity-bundle.docx",
+  "page": "05-least-privilege.docx",
+  "title": "Learning path: Non-Person Identity in Microsoft Entra ID"
+ },
+ "docs/training/non-person-identity/06-conditional-access.md": {
+  "bundle": "training-non-person-identity-bundle.docx",
+  "page": "06-conditional-access.docx",
+  "title": "Learning path: Non-Person Identity in Microsoft Entra ID"
+ },
+ "docs/training/non-person-identity/07-federation-and-managed-identities.md": {
+  "bundle": "training-non-person-identity-bundle.docx",
+  "page": "07-federation-and-managed-identities.docx",
+  "title": "Learning path: Non-Person Identity in Microsoft Entra ID"
+ },
+ "docs/training/non-person-identity/08-gmsa-dmsa-and-the-kerberos-island.md": {
+  "bundle": "training-non-person-identity-bundle.docx",
+  "page": "08-gmsa-dmsa-and-the-kerberos-island.docx",
+  "title": "Learning path: Non-Person Identity in Microsoft Entra ID"
+ },
+ "docs/training/non-person-identity/09-ai-agent-identities.md": {
+  "bundle": "training-non-person-identity-bundle.docx",
+  "page": "09-ai-agent-identities.docx",
+  "title": "Learning path: Non-Person Identity in Microsoft Entra ID"
+ },
+ "docs/training/non-person-identity/10-drift-and-evidence.md": {
+  "bundle": "training-non-person-identity-bundle.docx",
+  "page": "10-drift-and-evidence.docx",
+  "title": "Learning path: Non-Person Identity in Microsoft Entra ID"
+ },
+ "docs/training/non-person-identity/11-deploying-to-test-and-production.md": {
+  "bundle": "training-non-person-identity-bundle.docx",
+  "page": "11-deploying-to-test-and-production.docx",
+  "title": "Learning path: Non-Person Identity in Microsoft Entra ID"
+ },
+ "docs/training/non-person-identity/12-service-account-migration.md": {
+  "bundle": "training-non-person-identity-bundle.docx",
+  "page": "12-service-account-migration.docx",
+  "title": "Learning path: Non-Person Identity in Microsoft Entra ID"
+ },
+ "docs/training/non-person-identity/13-the-managed-service-account-standard.md": {
+  "bundle": "training-non-person-identity-bundle.docx",
+  "page": "13-the-managed-service-account-standard.docx",
+  "title": "Learning path: Non-Person Identity in Microsoft Entra ID"
+ },
+ "docs/training/non-person-identity/index.md": {
+  "bundle": "training-non-person-identity-bundle.docx",
+  "page": "index.docx",
+  "title": "Learning path: Non-Person Identity in Microsoft Entra ID"
+ },
+ "docs/training/privileged-access/01-privileged-inventory.md": {
+  "bundle": "training-privileged-access-bundle.docx",
+  "page": "01-privileged-inventory.docx",
+  "title": "Learning path: Privileged Access in Microsoft Entra ID and Azure"
+ },
+ "docs/training/privileged-access/02-emergency-access-first.md": {
+  "bundle": "training-privileged-access-bundle.docx",
+  "page": "02-emergency-access-first.docx",
+  "title": "Learning path: Privileged Access in Microsoft Entra ID and Azure"
+ },
+ "docs/training/privileged-access/03-conditional-access-and-the-activation-gate.md": {
+  "bundle": "training-privileged-access-bundle.docx",
+  "page": "03-conditional-access-and-the-activation-gate.docx",
+  "title": "Learning path: Privileged Access in Microsoft Entra ID and Azure"
+ },
+ "docs/training/privileged-access/04-pim-for-entra-roles.md": {
+  "bundle": "training-privileged-access-bundle.docx",
+  "page": "04-pim-for-entra-roles.docx",
+  "title": "Learning path: Privileged Access in Microsoft Entra ID and Azure"
+ },
+ "docs/training/privileged-access/05-pim-for-groups.md": {
+  "bundle": "training-privileged-access-bundle.docx",
+  "page": "05-pim-for-groups.docx",
+  "title": "Learning path: Privileged Access in Microsoft Entra ID and Azure"
+ },
+ "docs/training/privileged-access/06-pim-for-azure-resources.md": {
+  "bundle": "training-privileged-access-bundle.docx",
+  "page": "06-pim-for-azure-resources.docx",
+  "title": "Learning path: Privileged Access in Microsoft Entra ID and Azure"
+ },
+ "docs/training/privileged-access/07-access-reviews.md": {
+  "bundle": "training-privileged-access-bundle.docx",
+  "page": "07-access-reviews.docx",
+  "title": "Learning path: Privileged Access in Microsoft Entra ID and Azure"
+ },
+ "docs/training/privileged-access/08-evidence-and-drift.md": {
+  "bundle": "training-privileged-access-bundle.docx",
+  "page": "08-evidence-and-drift.docx",
+  "title": "Learning path: Privileged Access in Microsoft Entra ID and Azure"
+ },
+ "docs/training/privileged-access/index.md": {
+  "bundle": "training-privileged-access-bundle.docx",
+  "page": "index.docx",
+  "title": "Learning path: Privileged Access in Microsoft Entra ID and Azure"
+ },
+ "docs/training/provider-notices/01-why-provider-notices-go-unread.md": {
+  "bundle": "training-provider-notices-bundle.docx",
+  "page": "01-why-provider-notices-go-unread.docx",
+  "title": "Learning path: Provider Notices"
+ },
+ "docs/training/provider-notices/02-azure-service-health-and-alerts.md": {
+  "bundle": "training-provider-notices-bundle.docx",
+  "page": "02-azure-service-health-and-alerts.docx",
+  "title": "Learning path: Provider Notices"
+ },
+ "docs/training/provider-notices/03-microsoft-365-message-center.md": {
+  "bundle": "training-provider-notices-bundle.docx",
+  "page": "03-microsoft-365-message-center.docx",
+  "title": "Learning path: Provider Notices"
+ },
+ "docs/training/provider-notices/04-oci-announcements.md": {
+  "bundle": "training-provider-notices-bundle.docx",
+  "page": "04-oci-announcements.docx",
+  "title": "Learning path: Provider Notices"
+ },
+ "docs/training/provider-notices/05-aws-health-and-the-support-plan.md": {
+  "bundle": "training-provider-notices-bundle.docx",
+  "page": "05-aws-health-and-the-support-plan.docx",
+  "title": "Learning path: Provider Notices"
+ },
+ "docs/training/provider-notices/06-google-incidents-and-the-maintenance-gap.md": {
+  "bundle": "training-provider-notices-bundle.docx",
+  "page": "06-google-incidents-and-the-maintenance-gap.docx",
+  "title": "Learning path: Provider Notices"
+ },
+ "docs/training/provider-notices/07-routing-to-owners.md": {
+  "bundle": "training-provider-notices-bundle.docx",
+  "page": "07-routing-to-owners.docx",
+  "title": "Learning path: Provider Notices"
+ },
+ "docs/training/provider-notices/08-digest-evidence-and-go-no-go.md": {
+  "bundle": "training-provider-notices-bundle.docx",
+  "page": "08-digest-evidence-and-go-no-go.docx",
+  "title": "Learning path: Provider Notices"
+ },
+ "docs/training/provider-notices/09-deploying-to-test-and-production.md": {
+  "bundle": "training-provider-notices-bundle.docx",
+  "page": "09-deploying-to-test-and-production.docx",
+  "title": "Learning path: Provider Notices"
+ },
+ "docs/training/provider-notices/index.md": {
+  "bundle": "training-provider-notices-bundle.docx",
+  "page": "index.docx",
+  "title": "Learning path: Provider Notices"
+ },
+ "docs/training/ticket-to-machine/01-the-loop-and-the-typed-task.md": {
+  "bundle": "training-ticket-to-machine-bundle.docx",
+  "page": "01-the-loop-and-the-typed-task.docx",
+  "title": "Learning path: Ticket-to-Machine on ServiceNow and SailPoint"
+ },
+ "docs/training/ticket-to-machine/02-boundary-and-least-privilege.md": {
+  "bundle": "training-ticket-to-machine-bundle.docx",
+  "page": "02-boundary-and-least-privilege.docx",
+  "title": "Learning path: Ticket-to-Machine on ServiceNow and SailPoint"
+ },
+ "docs/training/ticket-to-machine/03-one-writer-per-attribute.md": {
+  "bundle": "training-ticket-to-machine-bundle.docx",
+  "page": "03-one-writer-per-attribute.docx",
+  "title": "Learning path: Ticket-to-Machine on ServiceNow and SailPoint"
+ },
+ "docs/training/ticket-to-machine/04-sources-and-starting-drift.md": {
+  "bundle": "training-ticket-to-machine-bundle.docx",
+  "page": "04-sources-and-starting-drift.docx",
+  "title": "Learning path: Ticket-to-Machine on ServiceNow and SailPoint"
+ },
+ "docs/training/ticket-to-machine/05-drift-to-a-typed-task.md": {
+  "bundle": "training-ticket-to-machine-bundle.docx",
+  "page": "05-drift-to-a-typed-task.docx",
+  "title": "Learning path: Ticket-to-Machine on ServiceNow and SailPoint"
+ },
+ "docs/training/ticket-to-machine/06-actuation-and-the-re-read.md": {
+  "bundle": "training-ticket-to-machine-bundle.docx",
+  "page": "06-actuation-and-the-re-read.docx",
+  "title": "Learning path: Ticket-to-Machine on ServiceNow and SailPoint"
+ },
+ "docs/training/ticket-to-machine/07-evidence-for-the-isso.md": {
+  "bundle": "training-ticket-to-machine-bundle.docx",
+  "page": "07-evidence-for-the-isso.docx",
+  "title": "Learning path: Ticket-to-Machine on ServiceNow and SailPoint"
+ },
+ "docs/training/ticket-to-machine/index.md": {
+  "bundle": "training-ticket-to-machine-bundle.docx",
+  "page": "index.docx",
+  "title": "Learning path: Ticket-to-Machine on ServiceNow and SailPoint"
+ },
+ "docs/training/zero-trust-assessment/01-evidence-not-a-verdict.md": {
+  "bundle": "training-zero-trust-assessment-bundle.docx",
+  "page": "01-evidence-not-a-verdict.docx",
+  "title": "Learning path: The Zero Trust Assessment as Evidence"
+ },
+ "docs/training/zero-trust-assessment/02-running-the-assessment-safely.md": {
+  "bundle": "training-zero-trust-assessment-bundle.docx",
+  "page": "02-running-the-assessment-safely.docx",
+  "title": "Learning path: The Zero Trust Assessment as Evidence"
+ },
+ "docs/training/zero-trust-assessment/03-from-results-to-a-closure-register.md": {
+  "bundle": "training-zero-trust-assessment-bundle.docx",
+  "page": "03-from-results-to-a-closure-register.docx",
+  "title": "Learning path: The Zero Trust Assessment as Evidence"
+ },
+ "docs/training/zero-trust-assessment/04-reconcile-re-run-and-keep-the-evidence.md": {
+  "bundle": "training-zero-trust-assessment-bundle.docx",
+  "page": "04-reconcile-re-run-and-keep-the-evidence.docx",
+  "title": "Learning path: The Zero Trust Assessment as Evidence"
+ },
+ "docs/training/zero-trust-assessment/index.md": {
+  "bundle": "training-zero-trust-assessment-bundle.docx",
+  "page": "index.docx",
+  "title": "Learning path: The Zero Trust Assessment as Evidence"
+ }
+}

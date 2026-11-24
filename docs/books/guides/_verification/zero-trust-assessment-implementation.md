@@ -63,3 +63,7 @@ GCC on Learn's Zero Trust Assessment pages; AIP's environment on Learn; Learn's 
 ## AWS GovCloud restored (November 16, 2026)
 
 Under WD-157 the program's AWS workloads run in AWS GovCloud (US). The AWS GovCloud changes made on November 15, 2026 under WD-156 (PR #627) were reversed on this page: its GovCloud claims, footnotes and wording are back as verified before that date, and the rest of this record stands.
+
+## Revision 2026-11-24 — service accounts
+
+A row in the closure table: service accounts on Kerberos and NTLM, closed through the Non-Person Identity track, with the island list and the WD-027 NTLM backstop as evidence.

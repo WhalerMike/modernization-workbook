@@ -288,3 +288,9 @@ Mike asked on November 24, 2026 how much the guide explains the relationship bet
 | J-28 | AWS and OCI rows in "Passwords, certificates or neither" and "CyberArk across the migration" (WD-171) | Both tables | supported by the implementation guide's sources (R-24d to R-24i); the "who manages it" column is design guidance | Implementation guide, 1g and 1h |
 | J-29 | CyberArk's AWS access keys plugin verifies and changes keys, "works with standard and government cloud environments", and lists `us-gov-west-1` (not `us-gov-east-1`) among its Region codes; the guide doesn't use it, for the same reasons as the Azure plugin. No OCI key plugin was found in the plugin index | CyberArk across the migration | supported by the source (read in a browser) | CyberArk, plugins, "AWS access keys" |
 
+## Zero Trust, SASE and NTLM (November 24, 2026)
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| J-30 | The program's rules add WD-027's NTLM backstop (April 1, 2027) for service accounts; the "Which guide?" box names the third guide | The program's rules; Which guide? | added (Mike chose "Apply WD-027") | WD-027 |
+| J-31 | A blank line split the passwords table and the CyberArk table, so their AWS and OCI rows rendered outside the tables; removed | Passwords, certificates or neither; CyberArk across the migration | fixed | — |
