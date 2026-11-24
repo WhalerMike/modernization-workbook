@@ -145,6 +145,7 @@ pages:
   - docs/books/b02-identity/08-assessing-the-forest.md
   - docs/books/b02-identity/appendix-b-forest-assessment-module.md
   - docs/books/b06-data-platform/14-ntlm-and-the-patterns-that-generate-it.md
+  - docs/books/guides/service-account-migration.md
 - path: WindowsServerDocs/security/kerberos/ntlm-overview.md
   url: https://learn.microsoft.com/windows-server/security/kerberos/ntlm-overview
   title: NTLM overview in Windows Server
