@@ -1,0 +1,41 @@
+{
+  "InstanceProfiles": [
+    {
+      "Path": "/",
+      "InstanceProfileName": "app-billing-ec2",
+      "InstanceProfileId": "AIPAEXAMPLEBILLING01",
+      "Arn": "arn:aws-us-gov:iam::111122223333:instance-profile/app-billing-ec2",
+      "CreateDate": "2025-05-01T10:00:00+00:00",
+      "Roles": [
+        {
+          "Path": "/",
+          "RoleName": "app-billing-ec2",
+          "RoleId": "AROAEXAMPLEAPPBILLIN",
+          "Arn": "arn:aws-us-gov:iam::111122223333:role/app-billing-ec2",
+          "CreateDate": "2025-05-01T10:00:00+00:00",
+          "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": {
+                  "Service": "ec2.amazonaws.com"
+                },
+                "Action": "sts:AssumeRole"
+              }
+            ]
+          },
+          "MaxSessionDuration": 3600
+        }
+      ]
+    },
+    {
+      "Path": "/",
+      "InstanceProfileName": "old-batch-host",
+      "InstanceProfileId": "AIPAEXAMPLEOLDBATCH1",
+      "Arn": "arn:aws-us-gov:iam::111122223333:instance-profile/old-batch-host",
+      "CreateDate": "2024-02-01T10:00:00+00:00",
+      "Roles": []
+    }
+  ]
+}

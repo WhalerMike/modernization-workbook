@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 4ce351c84676485ef55433451d155f6b76b5fb1c69640301000d94e1f554ed37
-last-reviewed: 2026-11-21
+reviewed-sha256: 8da0d88f8482c29af4d1c2e93b33ad6760ad00e365583dc6f317ec4074f52f07
+last-reviewed: 2026-11-24
 ---
 # Chapter 11 — Deploying to Test and Production
 
@@ -494,7 +494,7 @@ Run these before each stage, in the session block, after the Prepare step.
    $baseline
    ```
 
-   **Expected:** one line per check, VK-NPI-01 to VK-NPI-09, each `Pass`, `Fail` or `Warn`, and the path of `ValidationResults.json`. A `Fail` is a baseline, not a blocker: it is what the stage sets out to change. An `Error` is a blocker. `-SkipAD` isn't used, so VK-NPI-06 reads the forest; run it on a domain-joined host. VK-NPI-09 reads a beta API.
+   **Expected:** one line per check, VK-NPI-01 to VK-NPI-10, each `Pass`, `Fail` or `Warn`, and the path of `ValidationResults.json`. VK-NPI-10, the AWS GovCloud (US) and OCI check, is `NotApplicable` here: it reads the implementation guide's Step 1g and 1h exports, which this Entra runbook doesn't make ([Chapter 13](13-workload-identity-across-aws-govcloud-and-oci.md)). A `Fail` is a baseline, not a blocker: it is what the stage sets out to change. An `Error` is a blocker. `-SkipAD` isn't used, so VK-NPI-06 reads the forest; run it on a domain-joined host. VK-NPI-09 reads a beta API.
 
 2. **Run the preflight** (all gates). Still signed in as the reader app, on a domain-joined host with the ActiveDirectory module. In Stage 2, add `-PromotionEvidencePath <test-evidence>`:
 

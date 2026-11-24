@@ -11,7 +11,7 @@ doc-type: section-landing
 
 This register lists the decisions behind the workbook, from the repository's first pull request on, one entry each. Each entry gives the question, the options that were considered, the choice, the reason for it, its basis, its sources and the pages it shaped. The [Reviewers' Guide](reviewers-guide.md) explains how to check an entry and how to tell us you agree or disagree with it. Use the entry's ID when you do.
 
-There are **171** workbook decisions: 161 settled, 0 challenged and 10 superseded. Below them are the **90** decision points the sample project plans leave to the agency that adopts them.
+There are **172** workbook decisions: 162 settled, 0 challenged and 10 superseded. Below them are the **90** decision points the sample project plans leave to the agency that adopts them.
 
 ::: {.callout-note}
 ## How to read the basis
@@ -205,6 +205,7 @@ There are **171** workbook decisions: 161 settled, 0 challenged and 10 supersede
 | [WD-169](#wd-169) | 2026-11-20 | Where do the indicators for the service-account controls without a master row come from? | External requirement | settled |
 | [WD-170](#wd-170) | 2026-11-20 | How much of the service-account lifecycle should machines run? | External requirement | settled |
 | [WD-171](#wd-171) | 2026-11-24 | Does the Non-Person Identity track cover workload identities in AWS GovCloud (US) and Oracle Cloud? | Workbook design | settled |
+| [WD-172](#wd-172) | 2026-11-24 | Which tags join an AWS GovCloud (US) or OCI workload identity to its record, and does the validation kit check those identities? | Workbook design | settled |
 
 : Workbook decisions, oldest first {.striped .hover}
 
@@ -2994,6 +2995,23 @@ There are **171** workbook decisions: 161 settled, 0 challenged and 10 supersede
 | **Note** | Basis: workbook owner decision, November 24, 2026 ("Yes, extend the track to AWS GovCloud and OCI"). The developer workbook's read-only AWS and OCI inventory kit and the training module follow in later changes. |
 
 [Agree, disagree or send evidence on WD-171](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-171%3A+)
+
+### WD-172: Which tags join an AWS GovCloud (US) or OCI workload identity to its record, and does the validation kit check those identities? {#wd-172}
+
+| | |
+|---|---|
+| **Options considered** | Tag keys left to each platform team, checked only by the developer workbook's Chapter 13 kit; The program's tag keys SystemId, Owner1, Owner2 and Sponsor on every AWS and OCI workload identity, exported by the guide's Step 1g and checked by a validation kit check, VK-NPI-10 |
+| **Choice** | Every IAM role, workload IAM user, OCI user that holds a credential and OCI dynamic group carries four tags: `SystemId` (the system record), `Owner1` and `Owner2` (the two human technical owners) and `Sponsor` (the federal sponsor). One key per owner: AWS tag values allow letters, numbers, spaces and `_ . : / = + - @`, so no comma or semicolon to list two people in one value. In OCI they're freeform tags or defined tags. The implementation guide's Step 1g exports them (`list-user-tags`, `list-role-tags`), because `ListUsers` and `ListRoles` return no tags, and the validation kit's VK-NPI-10 checks them, with the long-lived credentials, OIDC trusts and IAM Roles Anywhere CRLs, from the Step 1g and 1h exports |
+| **Rationale** | Step 1f names two owners and a sponsor for every non-person identity, and the AWS and OCI identities are joined to their records by tag, so the keys have to be fixed for a check to read them. Every other gate in the track names a VK-NPI check; without VK-NPI-10 the AWS and OCI identities would be proved only by a developer workbook kit |
+| **Basis** | Workbook design |
+| **Sources** | [AWS, IAM API Reference, ListRoles](https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListRoles.html); [AWS, IAM API Reference, ListRoleTags](https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListRoleTags.html); [Oracle, OCI Python SDK, DynamicGroup model](https://docs.oracle.com/en-us/iaas/tools/python/latest/api/identity/models/oci.identity.models.DynamicGroup.html) |
+| **Pages affected** | [Non-Person Identity: An Implementation Guide](../books/guides/non-person-identity-implementation.md), [Chapter 13 — Workload Identity Across AWS GovCloud (US) and OCI](../project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.md) |
+| **Date** | 2026-11-24 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 24, 2026, answering three questions from the Chapter 13 change: "VK-NPI-10 … - Yes", "Step 1g: whether its commands should also export tags. - Yes", "Tag names: the proposed SystemId, Owner1, Owner2 and Sponsor. - Yes"; asked to confirm, he chose "Add VK-NPI-10". |
+
+[Agree, disagree or send evidence on WD-172](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-172%3A+)
 
 ## Decision points in the sample project plans {#plan-decisions}
 

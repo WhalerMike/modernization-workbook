@@ -1,0 +1,251 @@
+{
+  "Roles": [
+    {
+      "Path": "/",
+      "RoleName": "app-billing-ec2",
+      "RoleId": "AROAEXAMPLEAPPBILLIN",
+      "Arn": "arn:aws-us-gov:iam::111122223333:role/app-billing-ec2",
+      "CreateDate": "2025-05-01T10:00:00+00:00",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "ec2.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "MaxSessionDuration": 3600
+    },
+    {
+      "Path": "/",
+      "RoleName": "app-orders-task",
+      "RoleId": "AROAEXAMPLEAPPORDERS",
+      "Arn": "arn:aws-us-gov:iam::111122223333:role/app-orders-task",
+      "CreateDate": "2025-05-01T10:00:00+00:00",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "ecs-tasks.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "MaxSessionDuration": 3600
+    },
+    {
+      "Path": "/",
+      "RoleName": "app-etl-lambda",
+      "RoleId": "AROAEXAMPLEAPPETLLAM",
+      "Arn": "arn:aws-us-gov:iam::111122223333:role/app-etl-lambda",
+      "CreateDate": "2025-05-01T10:00:00+00:00",
+      "AssumeRolePolicyDocument": "%7B%22Version%22%3A%222012-10-17%22%2C%22Statement%22%3A%5B%7B%22Effect%22%3A%22Allow%22%2C%22Principal%22%3A%7B%22Service%22%3A%22lambda.amazonaws.com%22%7D%2C%22Action%22%3A%22sts%3AAssumeRole%22%7D%5D%7D",
+      "MaxSessionDuration": 3600
+    },
+    {
+      "Path": "/",
+      "RoleName": "eks-payments-pod",
+      "RoleId": "AROAEXAMPLEEKSPAYMEN",
+      "Arn": "arn:aws-us-gov:iam::111122223333:role/eks-payments-pod",
+      "CreateDate": "2025-05-01T10:00:00+00:00",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "pods.eks.amazonaws.com"
+            },
+            "Action": [
+              "sts:AssumeRole",
+              "sts:TagSession"
+            ]
+          }
+        ]
+      },
+      "MaxSessionDuration": 3600
+    },
+    {
+      "Path": "/",
+      "RoleName": "eks-irsa-reports",
+      "RoleId": "AROAEXAMPLEEKSIRSARE",
+      "Arn": "arn:aws-us-gov:iam::111122223333:role/eks-irsa-reports",
+      "CreateDate": "2025-05-01T10:00:00+00:00",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Federated": "arn:aws-us-gov:iam::111122223333:oidc-provider/oidc.eks.us-gov-west-1.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+              "StringEquals": {
+                "oidc.eks.us-gov-west-1.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE:sub": "system:serviceaccount:reports:report-writer",
+                "oidc.eks.us-gov-west-1.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE:aud": "sts.amazonaws.com"
+              }
+            }
+          }
+        ]
+      },
+      "MaxSessionDuration": 3600
+    },
+    {
+      "Path": "/",
+      "RoleName": "ci-pipeline-oidc",
+      "RoleId": "AROAEXAMPLECIPIPELIN",
+      "Arn": "arn:aws-us-gov:iam::111122223333:role/ci-pipeline-oidc",
+      "CreateDate": "2025-05-01T10:00:00+00:00",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Federated": "arn:aws-us-gov:iam::111122223333:oidc-provider/token.actions.githubusercontent.com"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+              "StringEquals": {
+                "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
+              }
+            }
+          }
+        ]
+      },
+      "MaxSessionDuration": 3600
+    },
+    {
+      "Path": "/",
+      "RoleName": "partner-audit-readonly",
+      "RoleId": "AROAEXAMPLEPARTNERAU",
+      "Arn": "arn:aws-us-gov:iam::111122223333:role/partner-audit-readonly",
+      "CreateDate": "2025-05-01T10:00:00+00:00",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "AWS": "arn:aws-us-gov:iam::999988887777:root"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "MaxSessionDuration": 3600
+    },
+    {
+      "Path": "/",
+      "RoleName": "shared-logging-writer",
+      "RoleId": "AROAEXAMPLESHAREDLOG",
+      "Arn": "arn:aws-us-gov:iam::111122223333:role/shared-logging-writer",
+      "CreateDate": "2025-05-01T10:00:00+00:00",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "AWS": "arn:aws-us-gov:iam::444455556666:root"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "MaxSessionDuration": 3600
+    },
+    {
+      "Path": "/",
+      "RoleName": "legacy-open-role",
+      "RoleId": "AROAEXAMPLELEGACYOPE",
+      "Arn": "arn:aws-us-gov:iam::111122223333:role/legacy-open-role",
+      "CreateDate": "2025-05-01T10:00:00+00:00",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "AWS": "*"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "MaxSessionDuration": 3600
+    },
+    {
+      "Path": "/",
+      "RoleName": "commercial-bridge",
+      "RoleId": "AROAEXAMPLECOMMERCIA",
+      "Arn": "arn:aws-us-gov:iam::111122223333:role/commercial-bridge",
+      "CreateDate": "2025-05-01T10:00:00+00:00",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "AWS": "arn:aws:iam::777788889999:root"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "MaxSessionDuration": 3600
+    },
+    {
+      "Path": "/",
+      "RoleName": "onprem-scheduler-ra",
+      "RoleId": "AROAEXAMPLEONPREMSCH",
+      "Arn": "arn:aws-us-gov:iam::111122223333:role/onprem-scheduler-ra",
+      "CreateDate": "2025-05-01T10:00:00+00:00",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "rolesanywhere.amazonaws.com"
+            },
+            "Action": [
+              "sts:AssumeRole",
+              "sts:TagSession",
+              "sts:SetSourceIdentity"
+            ]
+          }
+        ]
+      },
+      "MaxSessionDuration": 3600
+    },
+    {
+      "Path": "/aws-service-role/support.amazonaws.com/",
+      "RoleName": "AWSServiceRoleForSupport",
+      "RoleId": "AROAEXAMPLEAWSSERVIC",
+      "Arn": "arn:aws-us-gov:iam::111122223333:role/aws-service-role/support.amazonaws.com/AWSServiceRoleForSupport",
+      "CreateDate": "2025-05-01T10:00:00+00:00",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "support.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "MaxSessionDuration": 3600
+    }
+  ]
+}

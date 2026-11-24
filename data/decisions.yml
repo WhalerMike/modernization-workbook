@@ -2253,3 +2253,18 @@
   prs: []
   status: settled
   note: "Basis: workbook owner decision, November 24, 2026 (\"Yes, extend the track to AWS GovCloud and OCI\"). The developer workbook's read-only AWS and OCI inventory kit and the training module follow in later changes."
+- id: WD-172
+  date: 2026-11-24
+  question: Which tags join an AWS GovCloud (US) or OCI workload identity to its record, and does the validation kit check those identities?
+  options: ["Tag keys left to each platform team, checked only by the developer workbook's Chapter 13 kit", "The program's tag keys SystemId, Owner1, Owner2 and Sponsor on every AWS and OCI workload identity, exported by the guide's Step 1g and checked by a validation kit check, VK-NPI-10"]
+  choice: "Every IAM role, workload IAM user, OCI user that holds a credential and OCI dynamic group carries four tags: `SystemId` (the system record), `Owner1` and `Owner2` (the two human technical owners) and `Sponsor` (the federal sponsor). One key per owner: AWS tag values allow letters, numbers, spaces and `_ . : / = + - @`, so no comma or semicolon to list two people in one value. In OCI they're freeform tags or defined tags. The implementation guide's Step 1g exports them (`list-user-tags`, `list-role-tags`), because `ListUsers` and `ListRoles` return no tags, and the validation kit's VK-NPI-10 checks them, with the long-lived credentials, OIDC trusts and IAM Roles Anywhere CRLs, from the Step 1g and 1h exports"
+  rationale: "Step 1f names two owners and a sponsor for every non-person identity, and the AWS and OCI identities are joined to their records by tag, so the keys have to be fixed for a check to read them. Every other gate in the track names a VK-NPI check; without VK-NPI-10 the AWS and OCI identities would be proved only by a developer workbook kit"
+  basis: workbook-design
+  sources:
+  - {title: 'AWS, IAM API Reference, ListRoles', url: 'https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListRoles.html'}
+  - {title: 'AWS, IAM API Reference, ListRoleTags', url: 'https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListRoleTags.html'}
+  - {title: 'Oracle, OCI Python SDK, DynamicGroup model', url: 'https://docs.oracle.com/en-us/iaas/tools/python/latest/api/identity/models/oci.identity.models.DynamicGroup.html'}
+  pages: [docs/books/guides/non-person-identity-implementation.md, docs/project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 24, 2026, answering three questions from the Chapter 13 change: \"VK-NPI-10 … - Yes\", \"Step 1g: whether its commands should also export tags. - Yes\", \"Tag names: the proposed SystemId, Owner1, Owner2 and Sponsor. - Yes\"; asked to confirm, he chose \"Add VK-NPI-10\"."

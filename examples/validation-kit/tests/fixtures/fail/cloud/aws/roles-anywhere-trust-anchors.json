@@ -1,0 +1,32 @@
+{
+  "trustAnchors": [
+    {
+      "trustAnchorId": "0a1b2c3d-0000-4000-8000-000000000001",
+      "trustAnchorArn": "arn:aws-us-gov:rolesanywhere:us-gov-west-1:111122223333:trust-anchor/0a1b2c3d-0000-4000-8000-000000000001",
+      "name": "ta-program-pki",
+      "source": {
+        "sourceType": "CERTIFICATE_BUNDLE",
+        "sourceData": {
+          "x509CertificateData": "-----BEGIN CERTIFICATE-----(fixture)-----END CERTIFICATE-----"
+        }
+      },
+      "enabled": true,
+      "createdAt": "2026-02-01T10:00:00+00:00",
+      "updatedAt": "2026-02-01T10:00:00+00:00"
+    },
+    {
+      "trustAnchorId": "0a1b2c3d-0000-4000-8000-000000000002",
+      "trustAnchorArn": "arn:aws-us-gov:rolesanywhere:us-gov-west-1:111122223333:trust-anchor/0a1b2c3d-0000-4000-8000-000000000002",
+      "name": "ta-lab-ca",
+      "source": {
+        "sourceType": "CERTIFICATE_BUNDLE",
+        "sourceData": {
+          "x509CertificateData": "-----BEGIN CERTIFICATE-----(fixture)-----END CERTIFICATE-----"
+        }
+      },
+      "enabled": true,
+      "createdAt": "2026-04-01T10:00:00+00:00",
+      "updatedAt": "2026-04-01T10:00:00+00:00"
+    }
+  ]
+}

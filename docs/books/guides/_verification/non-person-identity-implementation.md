@@ -163,8 +163,19 @@ Mike, November 24, 2026: "Yes, extend the track to AWS GovCloud and OCI". The ve
 | R-24j | The CLI commands in 1g and 1h exist on the vendors' references; OCI's output fields weren't checked against the API reference | 1g; 1h | commands supported; output fields unverified | AWS and OCI CLI references |
 | R-24k | SCP denying access-key creation, owner tags as the join, the orphan rule for AWS and OCI | Step 3; Orphans | design guidance | WD-171 |
 
+
+## Revision 2026-11-24 — VK-NPI-10 and the tag keys (WD-172)
+
+Mike, November 24, 2026, answering the Chapter 13 change's three questions: "VK-NPI-10 … - Yes", "Step 1g: whether its commands should also export tags. - Yes", "Tag names: the proposed SystemId, Owner1, Owner2 and Sponsor. - Yes"; asked to confirm, he chose "Add VK-NPI-10".
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| R-24l | `ListRoles` and `ListUsers` don't return tags; `ListRoleTags` and `ListUserTags` do; `rolesanywhere list-crls` lists imported CRLs with their trust anchor | 1g (commands and item 6) | supported (AWS API reference, read Nov 24, 2026) | `npi-aws-tags` |
+| R-24m | Tag keys `SystemId`, `Owner1`, `Owner2`, `Sponsor`; one key per owner, because AWS tag keys and values allow only letters, numbers, spaces and `_ . : / = + - @` (no comma or semicolon) | 1f note under 1h; VK-NPI-10 | program decision (WD-172); the character set verified on AWS's "Tags for AWS Identity and Access Management resources" page, read Nov 24, 2026 | WD-172; `npi-aws-tagrules` |
+| R-24n | VK-NPI-10: what it reads and reports, and its pass criteria at G1 and G3 | Validation kit table; G1 and G3 Validate; checklist; evidence | matches `examples/validation-kit` (`Invoke-VkNpi10`, its tests) | The validation kit |
+
 ## Revision 2026-11-24 — a third guide
 
 | # | Change | Where | Verdict | Source |
 |---|---|---|---|---|
-| R-24l | The "Which guide?" box names *Non-Person Identity: Zero Trust, SASE and Other Clouds* | Which guide? | added | Mike, November 24, 2026 |
+| R-24o | The "Which guide?" box names *Non-Person Identity: Zero Trust, SASE and Other Clouds* | Which guide? | added | Mike, November 24, 2026 |
