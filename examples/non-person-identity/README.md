@@ -100,6 +100,8 @@ tests/SentinelRuleHarness.ps1
 tests/test_deploy.py
 tests/test_cloud_workload.py            runs tests-ch13/NpiCloudWorkload.Tests.ps1 (kept out of tests/ for the same reason)
 tests-ch13/NpiCloudWorkload.Tests.ps1   Chapter 13's Pester tests
+tests/test_first_gmsa.py                runs tests-m15/NpiFirstGmsa.Tests.ps1 (kept out of tests/ for the same reason)
+tests-m15/NpiFirstGmsa.Tests.ps1        the learning path's Module 15: a new gMSA for a new workload (fixtures in tests/fixtures/m15)
 tests/fixtures/                         a fictional estate (contoso.example, corp.contoso.example); one folder per chapter from 03
 ```
 
@@ -145,6 +147,7 @@ tests/fixtures/                         a fictional estate (contoso.example, cor
 Invoke-Pester -Path tests
 Invoke-Pester -Path deploy/tests
 Invoke-Pester -Path tests-ch13
+Invoke-Pester -Path tests-m15
 ```
 
 The second line is Chapter 11's suite; `python -m pytest tests` runs it too, as `scripts/run_example_tests.py` does in CI.

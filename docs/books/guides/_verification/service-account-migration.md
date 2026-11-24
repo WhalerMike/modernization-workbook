@@ -294,3 +294,13 @@ Mike asked on November 24, 2026 how much the guide explains the relationship bet
 |---|---|---|---|---|
 | J-30 | The program's rules add WD-027's NTLM backstop (April 1, 2027) for service accounts; the "Which guide?" box names the third guide | The program's rules; Which guide? | added (Mike chose "Apply WD-027") | WD-027 |
 | J-31 | A blank line split the passwords table and the CyberArk table, so their AWS and OCI rows rendered outside the tables; removed | Passwords, certificates or neither; CyberArk across the migration | fixed | — |
+
+## A new gMSA for a new workload (November 24, 2026)
+
+Mike approved adding the section (relayed by the gMSA standardization session, November 24, 2026: "Yes, do both that way"). It restates the guide's own steps and adds no new Learn fact; each footnote is one the guide already carries.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| J-32 | New section: a gMSA for a workload with no old account, S1 to S6 by the standard; A3's outbound-only command with `-Path`, the 30 days and AES256; A4's install and test; A5's workload commands; no delegation, no SPN move, no parallel run, nothing to disable | A new gMSA for a new workload | added | Learn: Manage gMSAs; gMSA overview; KDS root key; gMSAs for Windows containers; sc.exe config; assessment tasks; IIS PowerShell snap-in; Secure gMSAs |
+| J-33 | An SPN only when the new workload needs one: the gMSA isn't outbound-only, the reason is recorded, and `setspn -S` registers the SPN after checking for a duplicate; `setspn -L` confirms it | A new gMSA for a new workload, step 5 | added | Learn: Setspn (`-S`, `-L`); Troubleshoot SQL Server Kerberos with gMSAs (`setspn -L`) |
+| J-34 | Chapter 06's one-account plan (`New-NpiKrbGmsaPlan`) creates a gMSA that replaces no account; its dry run skips the create with "KDS root key Missing" in a forest with no key, and would send `New-ADServiceAccount` once one exists | A new gMSA for a new workload, step 2 | confirmed by running the kit (`tests-m15/NpiFirstGmsa.Tests.ps1`, 9 passed) | examples/non-person-identity |

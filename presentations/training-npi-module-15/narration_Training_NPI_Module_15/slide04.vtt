@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.013
+Unit 1 is the setup,
+and the order matters.
+
+2
+00:00:03.013 --> 00:00:06.662
+First, the K D S root key, one per forest.
+
+3
+00:00:06.662 --> 00:00:11.279
+A Domain Admin or Enterprise Admin
+creates it on a domain controller,
+
+4
+00:00:11.279 --> 00:00:15.978
+confirms it with the K D S service's
+event forty oh oh four, and then waits:
+
+5
+00:00:15.978 --> 00:00:19.866
+domain controllers wait up to
+ten hours before they allow
+
+6
+00:00:19.866 --> 00:00:23.025
+a G M S A to be created, so
+the key replicates first.
+
+7
+00:00:23.025 --> 00:00:26.127
+Second, the O Us: one for
+managed service accounts,
+
+8
+00:00:26.127 --> 00:00:29.850
+and a holding O U for the disabled
+ones a migration retires.
+
+9
+00:00:29.850 --> 00:00:35.100
+Third, the creators group, and the right
+to create G M S A objects on that O U.
+
+10
+00:00:35.100 --> 00:00:40.794
+Microsoft Learn names the right but gives
+no command, so the guide uses D S A C L S,
+
+11
+00:00:40.794 --> 00:00:45.688
+which is design guidance: run it in
+a test domain first, then check it.
+
+12
+00:00:45.688 --> 00:00:49.257
+Fourth, the pipeline's own
+G M S A, made once by hand,
+
+13
+00:00:49.257 --> 00:00:52.826
+by the standard, and then
+the group's only member.
+
+14
+00:00:52.826 --> 00:00:57.190
+After that, nobody needs Domain
+Admins to create a G M S A.

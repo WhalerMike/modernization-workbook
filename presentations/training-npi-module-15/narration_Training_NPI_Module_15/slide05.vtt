@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.150
+The K D S root key deserves its own slide.
+
+2
+00:00:03.150 --> 00:00:08.872
+In any forest, you create it with Add K
+D S Root Key, dash Effective Immediately,
+
+3
+00:00:08.872 --> 00:00:13.362
+and then you wait, up to ten hours,
+before a G M S A can be created.
+
+4
+00:00:13.362 --> 00:00:16.298
+Learn's K D S page offers
+a key backdated ten hours,
+
+5
+00:00:16.298 --> 00:00:19.893
+but only for a test environment
+with one domain controller,
+
+6
+00:00:19.893 --> 00:00:23.488
+and Learn's containers page says
+not to use it in production.
+
+7
+00:00:23.488 --> 00:00:25.300
+So: never in production.
+
+8
+00:00:25.300 --> 00:00:26.775
+And create only one.
+
+9
+00:00:26.775 --> 00:00:32.090
+Learn says more than one key makes G M S As
+start failing after a password rotation,
+
+10
+00:00:32.090 --> 00:00:35.184
+and a deleted and re-created
+key can stay cached,
+
+11
+00:00:35.184 --> 00:00:38.930
+so the K D C has to be restarted
+on every domain controller.

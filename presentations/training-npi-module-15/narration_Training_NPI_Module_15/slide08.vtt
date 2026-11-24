@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:00.987
+Try it.
+
+2
+00:00:00.987 --> 00:00:04.876
+Lab 1 runs in the non-person
+identity folder, with no domain.
+
+3
+00:00:04.876 --> 00:00:10.053
+Step one runs the kit's tests of Microsoft
+Learn's own K D S and G M S A procedures,
+
+4
+00:00:10.053 --> 00:00:13.588
+against stand-ins for the
+Active Directory cmdlets.
+
+5
+00:00:13.588 --> 00:00:16.575
+Six pass, each a fact about Learn's pages.
+
+6
+00:00:16.575 --> 00:00:19.567
+Get K D S Root Key returns
+the key's value itself,
+
+7
+00:00:19.567 --> 00:00:22.637
+so only an admin who would
+create the key runs it.
+
+8
+00:00:22.637 --> 00:00:26.712
+The backdated key is for a test
+environment with one domain controller.
+
+9
+00:00:26.712 --> 00:00:31.147
+Learn's G M S A sample sets its
+retrievers at creation, and sets no
+
+10
+00:00:31.147 --> 00:00:36.349
+Kerberos encryption type, which is why
+the standard adds A E S two fifty-six.
+
+11
+00:00:36.349 --> 00:00:40.340
+And installing the G M S A on
+each host is a person's step.

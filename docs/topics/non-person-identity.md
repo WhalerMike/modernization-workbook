@@ -61,7 +61,7 @@ The learning path and its hands-on labs.
 
 | Page | What it is |
 |---|---|
-| [Learning path: Non-Person Identity in Microsoft Entra ID](../training/non-person-identity/index.md) | A learning path in fourteen modules for identity engineers, Active Directory engineers, developers, AI governance staff and ISSO reviewers: inventory every service account and workload identity, give each one owners and a sponsor, decide… |
+| [Learning path: Non-Person Identity in Microsoft Entra ID](../training/non-person-identity/index.md) | A learning path in fifteen modules for identity engineers, Active Directory engineers, developers, AI governance staff and ISSO reviewers: inventory every service account and workload identity, give each one owners and a sponsor, decide… |
 | [Labs](../training/labs.md#npi) | Every lab in Building Non-Person Identity: what each needs, where it runs, and its commands. |
 
 : Learn {.striped .hover}
@@ -116,6 +116,7 @@ Narrated videos. Each opens in the site's player, with chapters and captions.
 | [Non-Person Identity learning path, Module 12: Migrate a service account](../presentations/watch.html?v=Training_NPI_Module_12_Narrated) | 15 |
 | [Non-Person Identity learning path, Module 13: Run the managed service account standard](../presentations/watch.html?v=Training_NPI_Module_13_Narrated) | 15 |
 | [Non-Person Identity learning path, Module 14: Workload identity across AWS GovCloud (US) and OCI](../presentations/watch.html?v=Training_NPI_Module_14_Narrated) | 13 |
+| [Non-Person Identity learning path, Module 15: Your first gMSA: set up the forest, then create a new gMSA](../presentations/watch.html?v=Training_NPI_Module_15_Narrated) | 12 |
 
 : Learning path modules {.striped .hover}
 

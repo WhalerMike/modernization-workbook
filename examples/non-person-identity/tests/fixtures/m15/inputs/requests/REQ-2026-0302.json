@@ -1,0 +1,21 @@
+{
+  "requestId": "REQ-2026-0302",
+  "requestedOn": "2026-11-16",
+  "approvedOn": "2026-11-19",
+  "approvers": ["visitor.owner@contoso.example", "iam.approver@contoso.example"],
+  "status": "APPROVED",
+  "changeRecord": "CHG0041302",
+  "systemId": "SYS-0621",
+  "appShortName": "visitor",
+  "accountType": "gMSA",
+  "proposedName": "gmsa-visitor$",
+  "hosts": ["VIS01"],
+  "workload": "IisAppPool",
+  "needsSpn": true,
+  "spns": ["HTTP/visitor.corp.contoso.example"],
+  "owners": ["visitor.owner@contoso.example", "visitor.backup@contoso.example"],
+  "sponsor": "facilities.sponsor@contoso.example",
+  "sponsorIsFederalEmployee": true,
+  "riskTier": "R2",
+  "endDate": ""
+}
