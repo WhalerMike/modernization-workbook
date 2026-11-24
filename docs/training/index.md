@@ -43,6 +43,7 @@ listing:
       - "!global-secure-access/**"
       - "!azure-security/**"
       - "!daily-checks-dashboard/**"
+      - "!pki/**"
     type: table
     fields: [title, research-status, last-reviewed, description]
     field-display-names: *names
@@ -75,6 +76,7 @@ Each learning path's code downloads as one zip, rebuilt from the repository on e
 | Non-Person Identity | [non-person-identity-code.zip](../../downloads/non-person-identity-code.zip) | `Downloads\non-person-identity-code\non-person-identity-code\non-person-identity` | PowerShell 7.1 |
 | Provider Notices | [provider-notices-code.zip](../../downloads/provider-notices-code.zip) | `Downloads\provider-notices-code\provider-notices-code\provider-notices` | PowerShell 7.1 |
 | Zero Trust Assessment | [zta-results.zip](../../downloads/zta-results.zip) | `Downloads\zta-results\zta-results` | PowerShell 7.1 |
+| PKI and Certificates | [start-kit.zip](../../downloads/start-kit.zip) | `Downloads\start-kit\start-kit` | Windows PowerShell 5.1 |
 | Defender XDR | [defender-xdr-code.zip](../../downloads/defender-xdr-code.zip) | `Downloads\defender-xdr-code\defender-xdr-code\defender-xdr` | PowerShell 7.1 |
 | Global Secure Access | [global-secure-access-code.zip](../../downloads/global-secure-access-code.zip) | `Downloads\global-secure-access-code\global-secure-access-code\global-secure-access` | PowerShell 7.1 |
 | Azure Security Engineering | [azure-security-code.zip](../../downloads/azure-security-code.zip) | `Downloads\azure-security-code\azure-security-code\azure-security` | PowerShell 7.1 |
@@ -218,6 +220,12 @@ Four modules on running Microsoft's Zero Trust Assessment as evidence rather tha
 **Code:** [zta-results.zip](../../downloads/zta-results.zip), or [`examples/zta-results`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/zta-results) in the repository. The path's page says [how to unzip it and where](zero-trust-assessment/index.md#get-the-code).
 
 **Watch:** each module has a narrated deck, about 12 minutes, linked from the module's page.
+
+## PKI and Certificates learning path
+
+Modules on the certificate estate that outlives every migration, in the order of [Book 07, PKI & Certificates](../books/b07-pki/index.md): what AD CS holds up, from the Public Key Services objects to a starting MIGRATE, BRIDGE, RETAIN or RETIRE class for every template; and hardening what stays, from the ESC misconfigurations the Start Kit checks and CA auditing to a remediation proven by a second run. Lab 1 runs the Start Kit's AD CS assessment on a fictional PKI snapshot with no directory; Lab 2 runs it in your own test forest; each module ends with a knowledge check. Five more modules are planned: the target PKI and who owns it, device and user certificates through Intune and Entra certificate-based authentication, coexistence and migration, lifecycle and decommissioning, and PIV. Start at the [learning path](pki/index.md).
+
+**Code:** [start-kit.zip](../../downloads/start-kit.zip), or [`examples/start-kit`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit) in the repository. The path's page says [how to unzip it and where](pki/index.md#get-the-code).
 
 ## Defender XDR learning path
 

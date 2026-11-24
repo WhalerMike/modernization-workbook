@@ -520,6 +520,12 @@ bundles:
     root: docs/training/zero-trust-assessment
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: training-pki-bundle.docx
+    title: "Learning path: PKI and Certificates"
+    subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
+    root: docs/training/pki
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
   - output: training-microsoft-automation-bundle.docx
     title: "Microsoft Automation: Graph, Entra ID, Intune and Azure Arc"
     subtitle: "Four training modules — Federal Modernization Workbook training, combined edition"

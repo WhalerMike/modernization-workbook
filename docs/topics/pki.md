@@ -58,6 +58,17 @@ The implementation guides, the developer workbook and its code.
 
 The code is in [`examples/start-kit`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit) on GitHub, and in the code zip under [Download](#download).
 
+## Learn {#learn}
+
+The learning path and its hands-on labs.
+
+| Page | What it is |
+|---|---|
+| [Learning path: PKI and Certificates](../training/pki/index.md) | A learning path for PKI owners, AD CS administrators, identity and endpoint engineers and ISSO reviewers, built from Book 07, PKI & Certificates, and the Start Kit's AD CS assessment: inventorying the CAs, templates and Public Key… |
+| [Labs](../training/labs.md#pki) | Every lab in the PKI and Certificates learning path: what each needs, where it runs, and its commands. |
+
+: Learn {.striped .hover}
+
 ## Watch {#watch}
 
 Narrated videos. Each opens in the site's player, with chapters and captions.
@@ -85,6 +96,7 @@ Word editions and code, rebuilt on every site deploy.
 |---|---|
 | [start-kit.zip](../../downloads/start-kit.zip) | Code: the scripts, tests and fixtures, as committed |
 | [b07-pki-bundle.docx](../../downloads/b07-pki-bundle.docx) | Word edition: Book 07 — PKI & Certificates |
+| [training-pki-bundle.docx](../../downloads/training-pki-bundle.docx) | Word edition: Learning path: PKI and Certificates |
 
 : Downloads {.striped .hover}
 
@@ -97,8 +109,6 @@ What the workbook doesn't have on PKI and certificates, and whether it should. [
 | Missing | Why |
 |---|---|
 | Project plan | Needed: no project plan sequences AD CS hardening, Cloud PKI and the lifecycle platform; the other plans schedule only their own certificates. |
-| Developer workbook | Not needed, because the only code today is the Start Kit's AD CS checks (ESC1, ESC2, ESC4, ESC6); revisit when its learning path is planned. |
-| Learning path | Needed: ranked in the learning path plan. |
-| Labs | Needed: they come with the learning path. |
+| Developer workbook | Not needed, because the learning path's labs run the Start Kit's AD CS assessment directly, with Lab 1 on its fictional PKI snapshot; revisit if a module needs code the kit can't hold. |
 
 : Not here {.striped .hover}

@@ -2678,6 +2678,21 @@
   "page": "index.docx",
   "title": "Learning path: Non-Person Identity in Microsoft Entra ID"
  },
+ "docs/training/pki/01-what-ad-cs-holds-up.md": {
+  "bundle": "training-pki-bundle.docx",
+  "page": "01-what-ad-cs-holds-up.docx",
+  "title": "Learning path: PKI and Certificates"
+ },
+ "docs/training/pki/02-hardening-what-stays.md": {
+  "bundle": "training-pki-bundle.docx",
+  "page": "02-hardening-what-stays.docx",
+  "title": "Learning path: PKI and Certificates"
+ },
+ "docs/training/pki/index.md": {
+  "bundle": "training-pki-bundle.docx",
+  "page": "index.docx",
+  "title": "Learning path: PKI and Certificates"
+ },
  "docs/training/privileged-access/01-privileged-inventory.md": {
   "bundle": "training-privileged-access-bundle.docx",
   "page": "01-privileged-inventory.docx",

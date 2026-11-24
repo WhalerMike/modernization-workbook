@@ -742,6 +742,50 @@ function Get-FMPCAEditFlags {
     $out
 }
 
+function Get-FMPCAAuditFilter {
+    # The CA's audit filter (127 audits every category), read with certutil -getreg. Returns $null when unreadable.
+    param([Parameter(Mandatory)][string]$Config)
+    try { $out = & certutil.exe -config $Config -getreg 'CA\AuditFilter' 2>&1 | Out-String } catch { return $null }
+    if ($LASTEXITCODE -ne 0) { return $null }
+    ConvertFrom-FMPAuditFilter -Text $out
+}
+
+function ConvertFrom-FMPAuditFilter {
+    # certutil prints the value as "AuditFilter REG_DWORD = 7f (127)", or "= 0" with no decimal for small values.
+    param([AllowNull()][string]$Text)
+    if ($Text -match 'AuditFilter REG_DWORD = ([0-9a-fA-F]+)(?: \((\d+)\))?') {
+        if ($Matches[2]) { return [int]$Matches[2] }
+        return [Convert]::ToInt32($Matches[1], 16)
+    }
+    $null
+}
+
+function Read-FMPPkiSnapshot {
+    # A PKI snapshot file: the configuration partition's CAs, templates, CDP and AIA objects, and
+    # each CA's certutil -getreg output, in the shape of tests\fixtures\pki-contoso.json.
+    param([Parameter(Mandatory)][string]$Path)
+    if (-not (Test-Path -LiteralPath $Path)) { throw "PKI snapshot not found: $Path" }
+    $s = Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json
+    if (-not $s.domain) { throw "PKI snapshot $Path has no 'domain'." }
+    [pscustomobject]@{
+        CAs = @($s.cas); Templates = @($s.templates); PksDN = "$($s.pksDN)"; Domain = "$($s.domain)"
+        CDP = @($s.cdp); AIA = @($s.aia); Snapshot = $true
+    }
+}
+
+function Get-FMPCARegistryText {
+    # From a snapshot, the recorded certutil -getreg output; live, certutil itself.
+    param([Parameter(Mandatory)]$CA, [Parameter(Mandatory)][ValidateSet('EditFlags', 'AuditFilter')][string]$Value, [switch]$Snapshot)
+    $config = "$($CA.dNSHostName)\$($CA.cn)"
+    if ($Snapshot) {
+        $p = $CA.PSObject.Properties[$(if ($Value -eq 'EditFlags') { 'editFlags' } else { 'auditFilter' })]
+        if (-not $p -or $null -eq $p.Value) { return $null }
+        if ($Value -eq 'AuditFilter') { return ConvertFrom-FMPAuditFilter -Text "$($p.Value)" }
+        return "$($p.Value)"
+    }
+    if ($Value -eq 'EditFlags') { Get-FMPCAEditFlags -Config $config } else { Get-FMPCAAuditFilter -Config $config }
+}
+
 function Get-PKISecurityFindings {
     <#
     .SYNOPSIS
@@ -792,7 +836,7 @@ function Get-PKISecurityFindings {
 
     foreach ($ca in $PkiData.CAs) {
         $config = "$($ca.dNSHostName)\$($ca.cn)"
-        $out = Get-FMPCAEditFlags -Config $config
+        $out = Get-FMPCARegistryText -CA $ca -Value EditFlags -Snapshot:([bool]$PkiData.PSObject.Properties['Snapshot'])
         if ($null -eq $out) {
             $findings += [pscustomobject]@{ Finding = 'CA-UNREADABLE'; Severity = 'Info'; Template = "N/A ($config)"
                 Description = 'Could not read policy EditFlags.'; Remediation = 'Check RPC reachability and rights on the CA (Tier B).' }
@@ -812,21 +856,38 @@ function Get-FMPPKIAssessment {
     .DESCRIPTION
         Each CA's certificate comes from the cACertificate attribute of its Enrollment
         Services object, a directory read, rather than certutil -ca.cert, which writes a file.
+        Each CA's policy EditFlags and audit filter are read with certutil -getreg.
+
+        With -PkiDataPath, nothing is read from a directory or a CA: the same objects and the
+        certutil output come from a snapshot file, such as the fictional
+        tests\fixtures\pki-contoso.json the learning path's labs use.
     .OUTPUTS
         PKIInventory.json, PKISecurityReport.json, <CA name>.cer
     .EXAMPLE
         Get-FMPPKIAssessment -OutputPath D:\Assessment\run1 -Domain contoso.example
 
         Run against the forest root domain, as Invoke-FMPADAssessment does.
+    .EXAMPLE
+        Get-FMPPKIAssessment -OutputPath .\out\run1 -PkiDataPath .\tests\fixtures\pki-contoso.json
+
+        Run on a snapshot, with no directory.
     #>
-    [CmdletBinding()]
+    [CmdletBinding(DefaultParameterSetName = 'Directory')]
     param(
         [Parameter(Mandatory)][string]$OutputPath,
-        [string]$Domain = (Get-ADDomain).DNSRoot
+        [Parameter(ParameterSetName = 'Directory')][string]$Domain,
+        [Parameter(Mandatory, ParameterSetName = 'Snapshot')][string]$PkiDataPath
     )
+    if ($PSCmdlet.ParameterSetName -eq 'Snapshot') {
+        $pki = Read-FMPPkiSnapshot -Path $PkiDataPath
+        $Domain = $pki.Domain
+    } else {
+        if (-not $Domain) { $Domain = (Get-ADDomain).DNSRoot }
+        $pki = Get-FMPPkiData -Server $Domain
+    }
+    $snapshot = $PSCmdlet.ParameterSetName -eq 'Snapshot'
     $null = Resolve-FMPOutputRoot -OutputPath $OutputPath
     $pkiPath = Get-FMPDomainPath -OutputPath $OutputPath -Domain $Domain -Area 'PKI'
-    $pki = Get-FMPPkiData -Server $Domain
 
     $caInventory = foreach ($ca in $pki.CAs) {
         $config = "$($ca.dNSHostName)\$($ca.cn)"
@@ -834,7 +895,7 @@ function Get-FMPPKIAssessment {
         $raw = @($ca.cACertificate) | Select-Object -First 1
         if ($raw) {
             try {
-                $bytes = [byte[]]$raw
+                [byte[]]$bytes = if ($raw -is [string]) { [Convert]::FromBase64String($raw) } else { [byte[]]$raw }
                 $cert = [System.Security.Cryptography.X509Certificates.X509Certificate2]::new($bytes)
                 Write-FMPBytes -Bytes $bytes -Path (Join-Path $pkiPath ("{0}.cer" -f ($ca.cn -replace '[^\w\-]', '_')))
             } catch { $cert = $null }
@@ -847,28 +908,43 @@ function Get-FMPPKIAssessment {
             ComputerName       = $ca.dNSHostName
             ConfigString       = $config
             PublishedTemplates = @($ca.certificateTemplates)
+            AuditFilter        = Get-FMPCARegistryText -CA $ca -Value AuditFilter -Snapshot:$snapshot
             CertSubject        = $(if ($cert) { $cert.Subject })
-            NotBefore          = $(if ($cert) { $cert.NotBefore.ToString('o') })
-            NotAfter           = $(if ($cert) { $cert.NotAfter.ToString('o') })
+            CertIssuer         = $(if ($cert) { $cert.Issuer })
+            NotBefore          = $(if ($cert) { $cert.NotBefore.ToUniversalTime().ToString('o') })
+            NotAfter           = $(if ($cert) { $cert.NotAfter.ToUniversalTime().ToString('o') })
             KeySize            = $keySize
             SignatureAlgorithm = $(if ($cert) { $cert.SignatureAlgorithm.FriendlyName })
         }
     }
 
-    $templates = $pki.Templates | Select-Object @{ N = 'Name'; E = { $_.cn } }, @{ N = 'DisplayName'; E = { $_.displayName } },
-        @{ N = 'OID';            E = { $_.'msPKI-Cert-Template-OID' } },
-        @{ N = 'SchemaVersion';  E = { $_.'msPKI-Template-Schema-Version' } },
-        @{ N = 'NameFlag';       E = { $_.'msPKI-Certificate-Name-Flag' } },
-        @{ N = 'EnrollmentFlag'; E = { $_.'msPKI-Enrollment-Flag' } },
-        @{ N = 'RASignatures';   E = { $_.'msPKI-RA-Signature' } },
-        @{ N = 'EKU';            E = { @(@($_.pKIExtendedKeyUsage) + @($_.'msPKI-Certificate-Application-Policy') | Where-Object { $_ }) } },
-        @{ N = 'Published';      E = { $n = $_.cn; @($pki.CAs | Where-Object { @($_.certificateTemplates) -contains $n }).Count -gt 0 } }
+    # Built as objects, not with Select-Object's calculated properties, so the EKU list stays an
+    # array in Windows PowerShell 5.1's JSON instead of a {value, Count} wrapper.
+    $templates = foreach ($t in $pki.Templates) {
+        $n = $t.cn
+        [pscustomobject]@{
+            Name           = $n
+            DisplayName    = $t.displayName
+            OID            = $t.'msPKI-Cert-Template-OID'
+            SchemaVersion  = $t.'msPKI-Template-Schema-Version'
+            NameFlag       = $t.'msPKI-Certificate-Name-Flag'
+            EnrollmentFlag = $t.'msPKI-Enrollment-Flag'
+            RASignatures   = $t.'msPKI-RA-Signature'
+            EKU            = [string[]]@(@($t.pKIExtendedKeyUsage) + @($t.'msPKI-Certificate-Application-Policy') | Where-Object { $_ } | Select-Object -Unique)
+            Published      = @($pki.CAs | Where-Object { @($_.certificateTemplates) -contains $n }).Count -gt 0
+        }
+    }
 
     # CRL and AIA publication objects in the directory; HTTP and file locations are in each CA's registry.
-    $cdp = Get-ADObject -SearchBase "CN=CDP,$($pki.PksDN)" -Server $Domain -LDAPFilter '(objectClass=cRLDistributionPoint)' |
-        Select-Object Name, DistinguishedName
-    $aia = Get-ADObject -SearchBase "CN=AIA,$($pki.PksDN)" -Server $Domain -LDAPFilter '(objectClass=certificationAuthority)' |
-        Select-Object Name, DistinguishedName
+    if ($snapshot) {
+        $cdp = $pki.CDP | Select-Object Name, DistinguishedName
+        $aia = $pki.AIA | Select-Object Name, DistinguishedName
+    } else {
+        $cdp = Get-ADObject -SearchBase "CN=CDP,$($pki.PksDN)" -Server $Domain -LDAPFilter '(objectClass=cRLDistributionPoint)' |
+            Select-Object Name, DistinguishedName
+        $aia = Get-ADObject -SearchBase "CN=AIA,$($pki.PksDN)" -Server $Domain -LDAPFilter '(objectClass=certificationAuthority)' |
+            Select-Object Name, DistinguishedName
+    }
 
     $inventory = [pscustomobject]@{
         AssessmentTimestamp      = (Get-Date -Format 'o')
@@ -882,6 +958,49 @@ function Get-FMPPKIAssessment {
     Write-FMPJson -InputObject $inventory -Path (Join-Path $pkiPath 'PKIInventory.json') -Depth 8
     Write-FMPJson -InputObject $findings  -Path (Join-Path $pkiPath 'PKISecurityReport.json')
     Write-Verbose "PKI assessment written to $pkiPath with $($findings.Count) findings."
+}
+
+function Get-FMPTemplateClassification {
+    <#
+    .SYNOPSIS
+        Each template in a PKI inventory with its starting class from Book 07, Appendix B.
+    .DESCRIPTION
+        Reads <OutputPath>\<Domain>\PKI\PKIInventory.json, which Get-FMPPKIAssessment wrote, and
+        matches each template's name (cn) against TemplateMatrix.csv, Appendix B's rows for the
+        AD CS default templates. A matched template gets the row's class and target as a starting
+        point, with Status 'Owner confirms'; a custom template, or a default the matrix splits by
+        use, gets Status 'Owner classifies'. The template's owner makes every call (Chapter 02).
+        Writes TemplateClassification.csv beside the inventory, and returns the rows.
+    .EXAMPLE
+        Get-FMPTemplateClassification -OutputPath .\out\run1 -Domain contoso.example
+    #>
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string]$OutputPath,
+        [Parameter(Mandatory)][string]$Domain,
+        [string]$MatrixPath = (Join-Path $PSScriptRoot 'TemplateMatrix.csv')
+    )
+    $null = Resolve-FMPOutputRoot -OutputPath $OutputPath
+    $pkiPath = Get-FMPDomainPath -OutputPath $OutputPath -Domain $Domain -Area 'PKI'
+    $inv = Read-FMPJsonFile -Path (Join-Path $pkiPath 'PKIInventory.json')
+    if ($null -eq $inv) { throw "No PKIInventory.json under $pkiPath. Run Get-FMPPKIAssessment first." }
+    $matrix = @{}
+    foreach ($r in (Read-FMPCsvFile -Path $MatrixPath)) { $matrix[$r.Template] = $r }
+
+    $rows = foreach ($t in @($inv.CertificateTemplates | Sort-Object Name)) {
+        $m = $matrix["$($t.Name)"]
+        [pscustomobject]@{
+            Template      = $t.Name
+            DisplayName   = $t.DisplayName
+            Published     = [bool]$t.Published
+            StartingClass = $(if ($m) { $m.Class } else { '' })
+            Target        = $(if ($m) { $m.Target } else { '' })
+            Owner         = ''
+            Status        = $(if ($m -and $m.Class) { 'Owner confirms' } else { 'Owner classifies' })
+        }
+    }
+    Write-FMPCsv -InputObject @($rows) -Path (Join-Path $pkiPath 'TemplateClassification.csv')
+    $rows
 }
 
 function Get-FMPComputerInventory {
@@ -1577,8 +1696,9 @@ function Compare-FMPAssessments {
         'Objects\UserInventory.json'     = 'SID'
         'Objects\GroupInventory.json'    = 'SID'
         'GPOs\GPOInventory.json'         = 'Id'
+        'PKI\PKISecurityReport.json'     = 'Finding', 'Template'
     }
-    $hashOnly = 'Forest\ForestTopology.json', 'Trusts\TrustMap.json', 'PKI\PKISecurityReport.json'
+    $hashOnly = 'Forest\ForestTopology.json', 'Trusts\TrustMap.json'
 
     $drift = @()
     foreach ($file in @($keyed.Keys) + $hashOnly) {
@@ -1592,8 +1712,10 @@ function Compare-FMPAssessments {
 
         if ($keyed.Contains($file)) {
             $key = $keyed[$file]
-            $bKeys = [System.Collections.Generic.HashSet[string]]::new([string[]]@((Get-Content $b -Raw | ConvertFrom-Json) | ForEach-Object { "$($_.$key)" }))
-            $cKeys = [System.Collections.Generic.HashSet[string]]::new([string[]]@((Get-Content $c -Raw | ConvertFrom-Json) | ForEach-Object { "$($_.$key)" }))
+            # A key of several properties (a finding and its template) is joined with ' | '.
+            $keyOf = { param($o) (@($key | ForEach-Object { "$($o.$_)" }) -join ' | ') }
+            $bKeys = [System.Collections.Generic.HashSet[string]]::new([string[]]@((Get-Content $b -Raw | ConvertFrom-Json) | ForEach-Object { & $keyOf $_ }))
+            $cKeys = [System.Collections.Generic.HashSet[string]]::new([string[]]@((Get-Content $c -Raw | ConvertFrom-Json) | ForEach-Object { & $keyOf $_ }))
             $drift += [pscustomobject]@{
                 File    = $file
                 Status  = 'Changed'
@@ -1853,5 +1975,5 @@ Export-ModuleMember -Function @(
     'Export-FMPGPOSettings', 'Get-FMPDNSAssessment', 'Get-FMPPKIAssessment', 'Get-FMPComputerInventory',
     'Get-FMPUserInventory', 'Get-FMPGroupInventory', 'Get-FMPTrustMap', 'Get-FMPSchemaExtensions', 'Get-FMPDHCPInventory',
     'Get-FMPKerberosSpnMap', 'Get-FMPLdapBindingEvent', 'Invoke-FMPADAssessment', 'Compare-FMPAssessments',
-    'Get-FMPStartKitSummary'
+    'Get-FMPTemplateClassification', 'Get-FMPStartKitSummary'
 )

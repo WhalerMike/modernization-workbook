@@ -213,6 +213,17 @@ Every lab opens with the list of every command it runs, in order: follow it top 
 
 : The Zero Trust Assessment: labs by module {.striped .hover}
 
+## The PKI and Certificates learning path {#pki}
+
+[The learning path](pki/index.md) · [Book 07](../books/b07-pki/index.md) · [the code: start-kit.zip](../../downloads/start-kit.zip)
+
+| Module | Lab 1, no directory | Lab 2 |
+|---|---|---|
+| [Module 1: What AD CS holds up: the inventory](pki/01-what-ad-cs-holds-up.md) | [Lab 1](pki/01-what-ad-cs-holds-up.md#pki-lab-1) | [Lab 2](pki/01-what-ad-cs-holds-up.md#pki-lab-2) |
+| [Module 2: Hardening what stays](pki/02-hardening-what-stays.md) | [Lab 1](pki/02-hardening-what-stays.md#pki-lab-1) | [Lab 2](pki/02-hardening-what-stays.md#pki-lab-2) |
+
+: PKI and Certificates: labs by module {.striped .hover}
+
 ## What Lab 2 needs {#lab-2-environments}
 
 Each Lab 2 names its environment and its prerequisites in its first paragraph. Use synthetic data like the kit's fixtures, and never production:

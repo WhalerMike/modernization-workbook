@@ -3159,6 +3159,12 @@
    "title": "DNS, DHCP and IPAM"
   }
  ],
+ "docs/training/lab-setup.md": [
+  {
+   "id": "microsoft-automation",
+   "title": "Microsoft Automation"
+  }
+ ],
  "docs/training/ms-automation-arc.md": [
   {
    "id": "microsoft-automation",
@@ -3293,6 +3299,24 @@
   {
    "id": "non-person-identity",
    "title": "Non-Person Identity"
+  }
+ ],
+ "docs/training/pki/01-what-ad-cs-holds-up.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/training/pki/02-hardening-what-stays.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/training/pki/index.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
   }
  ],
  "docs/training/privileged-access/01-privileged-inventory.md": [

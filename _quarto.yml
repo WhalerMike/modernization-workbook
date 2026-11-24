@@ -405,6 +405,11 @@ website:
             - docs/training/zero-trust-assessment/02-running-the-assessment-safely.md
             - docs/training/zero-trust-assessment/03-from-results-to-a-closure-register.md
             - docs/training/zero-trust-assessment/04-reconcile-re-run-and-keep-the-evidence.md
+        - section: "PKI and Certificates learning path"
+          href: docs/training/pki/index.md
+          contents:
+            - docs/training/pki/01-what-ad-cs-holds-up.md
+            - docs/training/pki/02-hardening-what-stays.md
         - section: "Defender XDR learning path"
           href: docs/training/defender-xdr/index.md
           contents:
