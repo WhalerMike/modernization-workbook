@@ -332,3 +332,7 @@ Mike's approval, Nov 13, 2026. Learn read Nov 13, 2026.
 | W6 | `Get-FMPServiceAccountInventory` rated MSA and gMSA `LOW` while the table rates them medium; dMSAs were reported as MSAs | Service account discovery code | corrected (Nov 20, 2026): MSA and gMSA `MEDIUM`, dMSA its own type at `LOW` (the table's lower bound) | Table in this chapter |
 | W7 | "Plan workload identity federation when the workload moves" | Table, matrix, code | restated-as-design: managed identity first, then federated credential, then certificate | Service account guide #decision-path; Book 04 Ch05 credentials order |
 | W8 | Matrix row "a dMSA on a Windows Server 2025 domain" | Migration path matrix | corrected: every host on WS2025, a reachable WS2025 DC, no unconstrained delegation; gMSA otherwise | c09-dmsa; c09-dmsa-faq; service account guide Migration B |
+
+## Revision 2026-11-24 — the traditional account's target
+
+The first service-account table sent a traditional account to "Application registration with a certificate or federated credential; managed identity where the workload runs in Azure", while the second table sent a Kerberos-only one to a dMSA or gMSA. Mike chose on November 24, 2026 to match the service accounts guide's decision path: the row now gives the target by what the workload needs (Azure → managed identity; Entra-protected APIs → Arc managed identity, otherwise a certificate, or a federated credential with an OIDC issuer; Kerberos on premises → dMSA or gMSA) and links the decision path.

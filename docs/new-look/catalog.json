@@ -865,6 +865,34 @@
    "featured": false
   },
   {
+   "id": "docs/books/guides/non-person-identity-zero-trust-sase.md",
+   "type": "Implementation guide",
+   "title": "Non-Person Identity: Zero Trust, SASE and Other Clouds",
+   "description": "What keeping a service account (a user account used as a service, an sMSA, a gMSA or a dMSA) costs in Zero Trust and SASE terms, compared with moving the workload to a Microsoft Entra workload identity, for SQL Server, IIS, scheduled…",
+   "url": "docs/books/guides/non-person-identity-zero-trust-sase.html",
+   "count": null,
+   "unit": "steps",
+   "reading_minutes": 14,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Unrated",
+   "level_source": "none",
+   "roles": [
+    "Identity engineer",
+    "Developer",
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Non-person identity",
+    "Zero Trust"
+   ],
+   "status": "Approved",
+   "family": "non-person-identity-zero-trust-sase",
+   "featured": false
+  },
+  {
    "id": "docs/books/guides/privileged-access-implementation.md",
    "type": "Implementation guide",
    "title": "Privileged Access: An Implementation Guide",
@@ -1361,7 +1389,7 @@
    "url": "docs/books/b02-identity/index.html",
    "count": 15,
    "unit": "chapters",
-   "reading_minutes": 462,
+   "reading_minutes": 463,
    "reading_source": "estimate",
    "videos": 3,
    "video_minutes": 52,
