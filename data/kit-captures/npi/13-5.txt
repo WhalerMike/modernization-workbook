@@ -1,0 +1,23 @@
+PS> Copy-Item -Recurse tests/fixtures/ch13/aws out/aws-min
+PS> Remove-Item out/aws-min/iam-tags.json, out/aws-min/roles-anywhere-crls.json
+PS> ./Invoke-NpiCloudWorkload.ps1 -AwsPath out/aws-min -SettingsPath tests/fixtures/ch13/settings.json -OutputPath out/cloud-workload-min -AsOf 2026-11-24
+As of 2026-11-24; AWS account 111122223333 (aws-us-gov): 7 IAM user(s), 11 role(s), 2 trust anchor(s)
+Findings: 11 Finding, 9 Warn, 1 Info
+Long-lived credentials: 7 AWS, 0 OCI; 0 under a current exception
+Not read: aws/iam-tags.json, aws/roles-anywhere-crls.json
+  NPI-AWS-01  svc-app-sync, svc-ci-deploy, svc-legacy-ftp, svc-report-export
+  NPI-AWS-02  svc-report-export
+  NPI-AWS-03  svc-legacy-ftp
+  NPI-AWS-04  svc-report-export
+  NPI-AWS-05  svc-bedrock-batch, svc-git-mirror
+  NPI-AWS-06  svc-legacy-ftp
+  NPI-AWS-08  AWS account 111122223333
+  NPI-AWS-09  ci-pipeline-oidc
+  NPI-AWS-10  gitlab.example.com
+  NPI-AWS-11  partner-audit-readonly
+  NPI-AWS-12  legacy-open-role
+  NPI-AWS-13  commercial-bridge
+  NPI-AWS-14  ta-program-pki, ta-lab-ca
+  NPI-AWS-15  prof-retired-batch
+  NPI-AWS-16  old-batch-host
+Manifest SHA-256: 76d836adbe97f68d42d4f51b93c74bff5a88d1baf61906df02bae506726241ff

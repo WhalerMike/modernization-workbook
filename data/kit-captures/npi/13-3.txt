@@ -1,0 +1,15 @@
+PS> Import-Csv out/cloud-workload/credentials.csv | Format-Table Cloud, Identity, Kind, AgeDays, LastUsedOn, Exception
+Cloud Identity          Kind                          AgeDays LastUsedOn Exception
+----- --------          ----                          ------- ---------- ---------
+aws   svc-app-sync      Access key                    161     2026-11-23 EXC-2026-031
+aws   svc-bedrock-batch Service-specific (bedrock)    145
+aws   svc-ci-deploy     Access key                    623     2026-11-22
+aws   svc-git-mirror    Service-specific (codecommit) 387
+aws   svc-legacy-ftp    Access key                    905     2025-12-01
+aws   svc-report-export Access key                    83      2026-11-20
+aws   svc-report-export Access key                    39
+oci   hr-build-push     Auth token                    582
+oci   hr-integration    API signing key               295
+oci   hr-integration    API signing key               53
+oci   hr-object-sync    Customer secret key           357
+oci   hr-report-reader  API signing key               69                 EXC-2026-044

@@ -1,0 +1,38 @@
+[
+  {
+    "UserName": "svc-app-sync",
+    "AccessKeyId": "AKIAEXAMPLE000000006",
+    "Status": "Active",
+    "CreateDate": "2026-06-15T10:00:00+00:00"
+  },
+  {
+    "UserName": "svc-ci-deploy",
+    "AccessKeyId": "AKIAEXAMPLE000000001",
+    "Status": "Active",
+    "CreateDate": "2025-03-10T09:05:00+00:00"
+  },
+  {
+    "UserName": "svc-git-mirror",
+    "AccessKeyId": "AKIAEXAMPLE000000007",
+    "Status": "Inactive",
+    "CreateDate": "2025-11-01T10:05:00+00:00"
+  },
+  {
+    "UserName": "svc-legacy-ftp",
+    "AccessKeyId": "AKIAEXAMPLE000000002",
+    "Status": "Active",
+    "CreateDate": "2024-06-01T08:10:00+00:00"
+  },
+  {
+    "UserName": "svc-report-export",
+    "AccessKeyId": "AKIAEXAMPLE000000003",
+    "Status": "Active",
+    "CreateDate": "2026-09-01T10:00:00+00:00"
+  },
+  {
+    "UserName": "svc-report-export",
+    "AccessKeyId": "AKIAEXAMPLE000000004",
+    "Status": "Active",
+    "CreateDate": "2026-10-15T10:00:00+00:00"
+  }
+]

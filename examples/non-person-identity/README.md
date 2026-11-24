@@ -14,6 +14,7 @@ Code for the [developer workbook *Building Non-Person Identity*](../../docs/proj
 - **Chapter 10, drift and evidence:** Chapters 01 and 02 run again and compared with an approved baseline (NPI-DRF-01 to NPI-DRF-09), the review records from Chapters 07 and 09 (NPI-REV-01 to NPI-REV-04), the annual vintage comparison (`Invoke-NpiVintage.ps1`), and the input contract for the other chapters' findings (`docs/ch10-contract.md`). The evidence package is written by `examples/drift-pipeline`.
 - **Chapter 11, deploying to test and production:** the runbook's own code in `deploy/`: one environment settings file per stage (`deploy/settings.template.json`; names and IDs only, never a secret), a read-only preflight (`deploy/Test-NpiDeployPreflight.ps1`: licenses, the deployment identity's credential, the reader's permissions, the operators' roles, the pilot and synthetic objects, the VK-NPI baseline, and in production the test stage's evidence), a smoke test with a synthetic service principal and service account (`deploy/Invoke-NpiDeploySmokeTest.ps1`), and a rollback plan applied only with an approved SHA-256 and `-Apply` (`deploy/Invoke-NpiDeployRollback.ps1`; PATCH and enable or disable only, never a delete). Each writes an evidence record per step (time, environment, command, result, and the SP 800-53 controls and FedRAMP 20x KSIs from `config/requirements-ch11.json`) to an `evidence` folder with a `SHA256SUMS`; `deploy/Write-NpiDeployEvidence.ps1` records the steps that run earlier chapters' scripts, and `deploy/Test-NpiDeployEvidence.ps1` checks a stage's coverage before promotion. The smoke-test gMSA (`gmsa-npismoke`) is created through a one-account Chapter 06 plan (`deploy/New-NpiDeploySmokeGmsaPlan.ps1`), applied with Chapter 06's write path, not by hand (WD-168). Each has a fixture mode (`-FixturePath`) that sends nothing; `deploy/tests/NpiDeploy.Tests.ps1` runs them against a fictional test and production tenant.
 - **Chapter 12, the managed service account standard:** approved requests exported from SailPoint (reached through the agency's system access management tool) checked against the naming, owner, retriever-group and outbound-only rules, with Chapter 06's `kerberos-replatform.csv` rows and `password-retrievers.json` entries written for those that pass; SailPoint's aggregated AD accounts reconciled with a read of every gMSA and dMSA; certifications due by risk tier, each REVOKE turned into a typed ServiceNow finding; Defender for Identity's service account list compared with the register; and the 90-day retirement list for a person to act on. Findings NPI-STD-01 to NPI-STD-29, and an `evidence.json` row per step and control (`config/requirements-ch12.json`). Read only; nothing is deleted.
+- **Chapter 13, workload identity across AWS GovCloud (US) and OCI:** the files the implementation guide's Steps 1g and 1h write (the IAM credential report, access keys, service-specific credentials, roles and their trust policies, instance profiles, OIDC providers and IAM Roles Anywhere trust anchors and profiles; OCI users with their API signing keys, auth tokens and customer secret keys, dynamic groups and policies), plus two optional AWS files (`iam-tags.json`, `roles-anywhere-crls.json`). Long-lived credentials with their age, last use and exception; identities without a system ID, two owners and a sponsor; roles trusting OIDC providers, other accounts or `*`; trust anchors with no imported CRL; dynamic groups and broad policy statements. Findings NPI-AWS-01 to NPI-AWS-16 and NPI-OCI-01 to NPI-OCI-10, and an `evidence.json` row per step and control (`config/requirements-ch13.json`). Read only and offline: it never runs the AWS CLI or the OCI CLI and calls no AWS or OCI API; `config/calls-ch13.json` lists the read-only export commands an operator runs.
 
 Illustrative: tested against fixtures and fakes of Microsoft Graph, Resource Manager and Active Directory, not against a production tenant or domain. Nobody has run Chapter 11's deployment code against a live tenant, subscription or forest.
 
@@ -26,6 +27,7 @@ The chapters start from Learn's own procedures and scripts, pinned unmodified in
 ```
 Invoke-NpiAgentCaAction.ps1
 Invoke-NpiAgentId.ps1
+Invoke-NpiCloudWorkload.ps1
 Invoke-NpiCredentialAction.ps1
 Invoke-NpiCredentialPolicy.ps1
 Invoke-NpiDriftRun.ps1
@@ -57,7 +59,10 @@ deploy/tests/NpiDeploy.Tests.ps1        Chapter 11's Pester tests, run by tests/
 config/requirements-ch11.json           Chapter 11: controls, other requirements and KSIs per check and step
 config/calls-ch12.json                  Chapter 12: its one AD read, std-managed-accounts (Get-ADServiceAccount)
 config/requirements-ch12.json           Chapter 12: controls and KSIs per step
+config/calls-ch13.json                  Chapter 13: the read-only AWS CLI and OCI CLI export commands an operator runs; the module runs none
+config/requirements-ch13.json           Chapter 13: controls and KSIs per step
 powershell/NpiAgentId/
+powershell/NpiCloudWorkload/
 powershell/NpiCore/
 powershell/NpiCredentialPolicy/
 powershell/NpiDrift/
@@ -93,6 +98,8 @@ tests/NpiOwnership.Tests.ps1
 tests/NpiWorkloadCa.Tests.ps1
 tests/SentinelRuleHarness.ps1
 tests/test_deploy.py
+tests/test_cloud_workload.py            runs tests-ch13/NpiCloudWorkload.Tests.ps1 (kept out of tests/ for the same reason)
+tests-ch13/NpiCloudWorkload.Tests.ps1   Chapter 13's Pester tests
 tests/fixtures/                         a fictional estate (contoso.example, corp.contoso.example); one folder per chapter from 03
 ```
 
@@ -126,6 +133,7 @@ tests/fixtures/                         a fictional estate (contoso.example, cor
 | `deploy-smoke` | 11 | write, delegated only (Cloud Application Administrator): one probe expected to be refused | `Application.Read.All`, `Application.ReadWrite.All`, `AuditLog.Read.All`, `Policy.Read.All` | none | Read (default for authenticated domain users); Run on a host allowed to retrieve the gMSA's password (PrincipalsAllowedToRetrieveManagedPassword) |
 | `deploy-rollback` | 11 | write, delegated only (Conditional Access Administrator and Cloud Application Administrator) | `Application.ReadWrite.All`, `Policy.Read.All`, `Policy.ReadWrite.ApplicationConfiguration`, `Policy.ReadWrite.ConditionalAccess` | none | Delegated right to enable and disable accounts in the account's OU |
 | `msa-standard` | 12 | read | none | none | Read (default for authenticated domain users) |
+| `cloud-workload` | 13 | read, from files only: the operator's read-only AWS and OCI exports | none | none | none |
 
 ## Clouds
 
@@ -136,6 +144,7 @@ tests/fixtures/                         a fictional estate (contoso.example, cor
 ```powershell
 Invoke-Pester -Path tests
 Invoke-Pester -Path deploy/tests
+Invoke-Pester -Path tests-ch13
 ```
 
 The second line is Chapter 11's suite; `python -m pytest tests` runs it too, as `scripts/run_example_tests.py` does in CI.

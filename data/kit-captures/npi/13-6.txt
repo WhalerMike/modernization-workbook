@@ -1,0 +1,11 @@
+PS> (Get-Content out/cloud-workload/evidence.json -Raw | ConvertFrom-Json).rows | Format-Table step, control, evidence, @{ n = 'ksi'; e = { $_.ksi -join ', ' } }
+step                control evidence        ksi
+----                ------- --------        ---
+inventory           AC-2    identities.json KSI-IAM-APM, KSI-IAM-JIT, KSI-IAM-SNU, KSI-IAM-SUS
+inventory           CM-8    identities.json KSI-PIY-GIV
+inventory           IA-4    identities.json KSI-IAM-ELP, KSI-IAM-JIT
+credentials         IA-5    credentials.csv KSI-IAM-APM
+certificates        IA-5(2) trust.json      KSI-IAM-APM, KSI-IAM-ELP, KSI-IAM-SNU, KSI-SVC-ASM
+certificates        SC-17   trust.json      KSI-SVC-ASM
+trust-and-privilege AC-6    trust.json      KSI-IAM-ELP, KSI-IAM-JIT
+lifecycle           AC-2(3) findings.json   KSI-IAM-AAM, KSI-IAM-JIT, KSI-IAM-SUS

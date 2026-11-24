@@ -1,0 +1,72 @@
+[
+  {
+    "id": "ocid1.user.oc2..aaaaexampleuser0001",
+    "name": "hr-integration",
+    "description": "hr-integration",
+    "compartment-id": "ocid1.tenancy.oc2..aaaaexampletenancy",
+    "lifecycle-state": "ACTIVE",
+    "time-created": "2025-01-10T10:00:00.000000+00:00",
+    "defined-tags": {
+      "Program": {
+        "SystemId": "SYS-0412",
+        "Owner1": "alex.owner@contoso.example",
+        "Owner2": "sam.owner@contoso.example",
+        "Sponsor": "pat.sponsor@contoso.example"
+      }
+    },
+    "freeform-tags": {}
+  },
+  {
+    "id": "ocid1.user.oc2..aaaaexampleuser0002",
+    "name": "hr-object-sync",
+    "description": "hr-object-sync",
+    "compartment-id": "ocid1.tenancy.oc2..aaaaexampletenancy",
+    "lifecycle-state": "ACTIVE",
+    "time-created": "2025-01-10T10:00:00.000000+00:00",
+    "defined-tags": {
+      "Program": {
+        "SystemId": "SYS-0413",
+        "Owner1": "alex.owner@contoso.example",
+        "Owner2": "sam.owner@contoso.example"
+      }
+    },
+    "freeform-tags": {}
+  },
+  {
+    "id": "ocid1.user.oc2..aaaaexampleuser0003",
+    "name": "hr-build-push",
+    "description": "hr-build-push",
+    "compartment-id": "ocid1.tenancy.oc2..aaaaexampletenancy",
+    "lifecycle-state": "ACTIVE",
+    "time-created": "2025-01-10T10:00:00.000000+00:00",
+    "defined-tags": {},
+    "freeform-tags": {}
+  },
+  {
+    "id": "ocid1.user.oc2..aaaaexampleuser0004",
+    "name": "hr-report-reader",
+    "description": "hr-report-reader",
+    "compartment-id": "ocid1.tenancy.oc2..aaaaexampletenancy",
+    "lifecycle-state": "ACTIVE",
+    "time-created": "2025-01-10T10:00:00.000000+00:00",
+    "defined-tags": {
+      "Program": {
+        "SystemId": "SYS-0414",
+        "Owner1": "alex.owner@contoso.example",
+        "Owner2": "sam.owner@contoso.example",
+        "Sponsor": "pat.sponsor@contoso.example"
+      }
+    },
+    "freeform-tags": {}
+  },
+  {
+    "id": "ocid1.user.oc2..aaaaexampleuser0005",
+    "name": "admin.person",
+    "description": "admin.person",
+    "compartment-id": "ocid1.tenancy.oc2..aaaaexampletenancy",
+    "lifecycle-state": "ACTIVE",
+    "time-created": "2025-01-10T10:00:00.000000+00:00",
+    "defined-tags": {},
+    "freeform-tags": {}
+  }
+]

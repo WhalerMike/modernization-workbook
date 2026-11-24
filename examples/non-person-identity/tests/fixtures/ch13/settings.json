@@ -1,0 +1,25 @@
+{
+  "_comment": "Chapter 13's fixture settings: one fictional AWS GovCloud (US) account and one fictional OC2 tenancy. The tag keys are the program's (design guidance): a system ID, two owners and a sponsor, on every role, IAM user, OCI user and dynamic group.",
+  "aws": {
+    "accountId": "111122223333",
+    "partition": "aws-us-gov",
+    "region": "us-gov-west-1",
+    "programAccounts": [
+      "111122223333",
+      "444455556666"
+    ]
+  },
+  "oci": {
+    "realm": "oc2",
+    "tenancyOcid": "ocid1.tenancy.oc2..aaaaexampletenancy",
+    "definedTagNamespace": "Program"
+  },
+  "tags": {
+    "systemId": "SystemId",
+    "owners": [
+      "Owner1",
+      "Owner2"
+    ],
+    "sponsor": "Sponsor"
+  }
+}

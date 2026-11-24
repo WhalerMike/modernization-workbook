@@ -30582,6 +30582,7 @@ pages:
   - docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.md
   - docs/books/guides/non-person-identity-implementation.md
   - docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.md
+  - docs/project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.md
   - docs/reference/source-register.md
 - path: docs/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity.md
   url: https://learn.microsoft.com/entra/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity
@@ -30668,6 +30669,7 @@ pages:
   - docs/images/learn/entra-workload-id-workload-identity-federation/snapshot.json
   - docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.md
+  - docs/project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.md
   - docs/project-plans/developer-workbooks/privileged-access/09-deploying-to-test-and-production.md
   - docs/reference/source-register.md
   - docs/training/ms-automation-foundations.md
