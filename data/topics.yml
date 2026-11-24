@@ -10,10 +10,14 @@
 #
 # Each topic:
 #   id, title, summary   The hub's file name, its title and its opening paragraph.
+#   subject              The title as it reads mid-sentence, when lower case would be wrong.
 #   workbook             A key in scripts/generate_labs.py WORKBOOKS. The hub takes the developer
 #                        workbook, its implementation guide, its learning path, its labs and its
 #                        code zip from there, so they're never listed twice.
-#   kit                  The examples/ folder that holds the topic's code (linked on GitHub).
+#   learning_path, labs  For a learning path with no developer workbook behind it: the path's page
+#                        (its folder's index.md, or a page#anchor; a string or a {page, note}
+#                        entry) and its anchor on the Labs page.
+#   kit                  The examples/ folder, or a list of them, that holds the topic's code.
 #   sections             Extra entries, by section: understand, plan, build, learn, evidence.
 #                        Each entry is a page (path, with an optional #anchor) and an optional
 #                        note; the hub uses the page's own title and description otherwise.
@@ -22,6 +26,14 @@
 #   downloads            Files under /downloads/ (Word bundles from scripts/bundles.yml, code zips).
 #   members              Globs of pages that belong to the topic as a whole. Every page the hub
 #                        lists belongs too. A page that belongs shows the topic under its title.
+#   gaps                 For each column of the Topics page the topic has nothing in (book, plan,
+#                        guide, workbook, path, labs, videos, code): "Needed: ..." for a gap readers
+#                        need, or "Not needed, because ...". The test fails on a missing or stale one.
+#
+# Two lists follow the topics:
+#   folded               Subjects with pages of their own but no hub, because a hub holds them.
+#   outside_topics       Guides, learning paths, developer workbooks and code zips that belong to no
+#                        topic on purpose, each with its reason. Everything else must belong to one.
 
 topics:
   - id: non-person-identity
@@ -72,3 +84,838 @@ topics:
       - docs/project-plans/developer-workbooks/non-person-identity/*.md
       - docs/training/non-person-identity/*.md
       - docs/books/b17-ai-identity/*.md
+
+  - id: attribute-driven-migration
+    title: Attribute-Driven Migration
+    workbook: adm
+    kit: [hcm-entra, ms-automation, validation-kit, dynamic-rules, lifecycle-extensions, group-policy-as-code, machine-configuration, ansible, drift-pipeline]
+    summary: >-
+      Moving identity, policy and device management from Active Directory to Microsoft Entra ID,
+      Intune and Azure Arc by attribute rather than by organizational unit: HR attributes drive
+      groups, policy and access, Group Policy becomes code, servers come under Arc and Ansible, and
+      a drift pipeline keeps the evidence.
+    sections:
+      understand:
+        - page: docs/books/b02-identity/index.md
+        - page: docs/books/b02-identity/09-building-the-entra-target.md
+          note: The Entra ID target the migration builds, cited more than any other chapter by the implementation guide.
+        - page: docs/books/b01-transformation-arc/04-identity-transformation.md
+        - page: docs/books/b03-hr-identity/06-canonical-attribute-schema.md
+          note: The attributes the migration keys on, and which system writes each.
+        - page: docs/books/b04-access/03-the-conditional-access-model.md
+        - page: docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
+        - page: docs/books/guides/attribute-driven-migration.md
+          note: The original guide to the method, behind the five-part narrated deep dive.
+      plan:
+        - page: docs/project-plans/attribute-driven-migration.md
+        - page: docs/about/decision-register.md#wd-016
+          note: The attribute that anchors a person across systems.
+        - page: docs/about/decision-register.md#wd-034
+          note: Which book defines what each extensionAttribute slot holds.
+        - page: docs/about/decision-register.md#wd-078
+          note: How overlaps between Intune, Arc, Ansible and Configuration Manager are prevented.
+        - page: docs/about/decision-register.md#wd-104
+          note: Where the developer workbook and implementation guide live.
+      build:
+        - page: docs/books/guides/intune-track-implementation.md
+          note: The Intune track's gates, for end-user devices.
+        - page: docs/books/guides/arc-track-implementation.md
+          note: The Azure Arc track's gates, for servers.
+        - page: docs/books/guides/ansible-configuration-automation.md
+          note: Ansible beside Arc, for the configuration Arc doesn't manage.
+      learn:
+        - page: docs/training/ms-automation-foundations.md
+          note: Teaches Book 19's Chapter 02, the Graph client for government clouds.
+      evidence:
+        - page: docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.md
+        - page: docs/books/b03-hr-identity/11-drift-metrics-and-evidence.md
+    downloads:
+      - attribute-driven-migration-implementation-guide.docx
+      - attribute-driven-migration-guide.docx
+      - intune-track-implementation-guide.docx
+      - arc-track-implementation-guide.docx
+      - b19-developer-workbook-bundle.docx
+      - b02-identity-bundle.docx
+      - ansible-examples.zip
+      - validation-kit.zip
+    members:
+      - docs/books/b02-identity/*.md
+
+  - id: provider-notices
+    title: Provider Notices
+    workbook: pn
+    kit: provider-notices
+    summary: >-
+      The notices cloud providers send about the agency's own estate (Azure Service Health, the
+      Microsoft 365 Message center, Oracle Cloud Infrastructure announcements, AWS Health and
+      Google Cloud): turning every notice into one record, routing it to an owner as a
+      Ticket-to-Machine task, and keeping the weekly digest and its evidence.
+    sections:
+      understand:
+        - page: docs/books/b15-day2-operations/14-provider-notices.md
+        - page: docs/books/b15-day2-operations/03-intake-triage-and-routing.md
+        - page: docs/books/b13-governance/10-ticket-to-machine.md
+          note: The loop a routed notice joins.
+        - page: docs/books/b12-security-operations/04-platform-and-m365-telemetry.md
+        - page: docs/books/b14-compliance/06-contingency-and-continuity.md
+          note: Where a provider's planned maintenance or retirement meets contingency planning.
+      evidence:
+        - page: docs/books/b13-governance/appendix-a-requirements-mapping.md
+    gaps:
+      plan: >-
+        Not needed, because the implementation guide's seven gates and the developer workbook's
+        chapters already sequence the work, and it runs inside day-two operations (Book 15).
+
+  - id: privileged-access
+    title: Privileged Access
+    workbook: pa
+    kit: privileged-access
+    summary: >-
+      Administrative identity without standing privilege: emergency access first, privileged roles
+      by tier, Conditional Access for administrators, Privileged Identity Management for Entra
+      roles, groups and Azure resources, access reviews, phishing-resistant authentication, and the
+      evidence and drift checks that prove it.
+    sections:
+      understand:
+        - page: docs/books/b04-access/index.md
+        - page: docs/books/b04-access/02-why-standing-privilege-fails.md
+        - page: docs/books/b04-access/04-privileged-roles-and-tiers.md
+        - page: docs/books/b04-access/07-the-conditional-access-policy-library.md
+        - page: docs/books/b04-access/08-pim-self-request-with-approval.md
+        - page: docs/books/b04-access/09-access-governance.md
+        - page: docs/books/b04-access/appendix-b-pim-role-settings.md
+        - page: docs/books/b04-access/appendix-d-phishing-resistant-authentication-runbooks.md
+      plan:
+        - page: docs/project-plans/privileged-access.md
+        - page: docs/about/decision-register.md#wd-045
+          note: Whether emergency access accounts are excluded from Conditional Access.
+        - page: docs/about/decision-register.md#wd-114
+          note: The order of the privileged access guide's gates.
+        - page: docs/about/decision-register.md#wd-121
+          note: How the kit checks CISA's global administrator count and PIM alert baselines.
+        - page: docs/about/decision-register.md#wd-146
+          note: Where the Tenant Creator role sits in the PIM tiers.
+      evidence:
+        - page: docs/books/b04-access/10-access-as-code-and-evidence.md
+    downloads:
+      - building-privileged-access-bundle.docx
+      - b04-access-bundle.docx
+    members:
+      - docs/books/b04-access/*.md
+
+  - id: ticket-to-machine
+    title: Ticket-to-Machine
+    subject: Ticket-to-Machine
+    workbook: ttm
+    kit: [servicenow-sailpoint, ttm-task-catalog]
+    summary: >-
+      Closing drift by machine instead of by hand: a drift finding becomes a typed task in
+      ServiceNow, SailPoint Identity Security Cloud acts on it within its approval ceiling, the
+      result is re-read from the source, and every step leaves an evidence record. Includes the
+      integration example and an internal task catalog.
+    sections:
+      understand:
+        - page: docs/books/b13-governance/10-ticket-to-machine.md
+        - page: docs/books/b13-governance/appendix-b-ticket-to-machine-reference.md
+        - page: docs/books/b15-day2-operations/03-intake-triage-and-routing.md
+        - page: docs/books/b15-day2-operations/13-building-day-two-automation-in-house.md
+        - page: docs/books/explainers/identity-maintenance.md
+      plan:
+        - page: docs/project-plans/continuous-monitoring.md
+          note: Its decision D-M4 sets the actuation ceiling for each pilot operation class, the limit Ticket-to-Machine acts within.
+        - page: docs/about/decision-register.md#wd-058
+          note: When a drift task may be closed.
+        - page: docs/about/decision-register.md#wd-059
+          note: The role email plays in ticket intake.
+        - page: docs/about/decision-register.md#wd-113
+          note: How a practitioner builds a task catalog without sending agency data to a public repository.
+      build:
+        - page: docs/books/guides/snow-sailpoint-integration-kit.md
+          note: The integration example the developer workbook builds on.
+        - page: docs/books/guides/ttm-task-catalog.md
+      evidence:
+        - page: docs/books/b13-governance/appendix-a-requirements-mapping.md
+    downloads:
+      - building-ticket-to-machine-bundle.docx
+      - ticket-to-machine-task-catalog.zip
+
+  - id: hr-driven-identity
+    title: HR-Driven Identity
+    subject: HR-driven identity
+    workbook: hr
+    kit: [hr-lifecycle, hcm-entra]
+    summary: >-
+      HR as the source of workforce identity: the Oracle Fusion Cloud HCM to Microsoft Entra ID
+      pipeline, the canonical attribute schema and who writes each attribute, contractors and
+      external partners, joiner, mover and leaver, credentials across the lifecycle, access from
+      attributes, privacy, and the drift and evidence that prove it.
+    sections:
+      understand:
+        - page: docs/books/b03-hr-identity/index.md
+        - page: docs/books/b03-hr-identity/06-canonical-attribute-schema.md
+        - page: docs/books/b03-hr-identity/08-joiner-mover-leaver.md
+        - page: docs/books/b03-hr-identity/09-credentials-and-certificates.md
+        - page: docs/books/b03-hr-identity/14-privacy-for-workforce-identity.md
+        - page: docs/books/b03-hr-identity/15-external-partner-identity.md
+        - page: docs/books/b04-access/09-access-governance.md
+        - page: docs/books/explainers/identity-maintenance.md
+        - page: docs/books/explainers/hr2-shared-governance-fedramp-boundary.md
+        - page: docs/books/explainers/hr-identity-dns.md
+      plan:
+        - page: docs/project-plans/identity-lifecycle.md
+        - page: docs/evaluations/oracle-contingent-worker-contractor-source.md
+        - page: docs/about/decision-register.md#wd-015
+          note: The order in which a leaver's access ends.
+        - page: docs/about/decision-register.md#wd-073
+          note: Where contractor identities are sourced from.
+        - page: docs/about/decision-register.md#wd-101
+          note: CISA's Hybrid Identity Solutions Guidance and what "source of identity" means.
+        - page: docs/about/decision-register.md#wd-134
+          note: The Entra user type external partner persons receive.
+      build:
+        - page: docs/books/guides/hcm-entra-implementation.md
+          note: The Oracle Fusion Cloud HCM to Microsoft Entra ID pipeline, step by step.
+      evidence:
+        - page: docs/books/b03-hr-identity/11-drift-metrics-and-evidence.md
+        - page: docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.md
+    downloads:
+      - building-hr-driven-identity-bundle.docx
+      - b03-hr-identity-bundle.docx
+    members:
+      - docs/books/b03-hr-identity/*.md
+
+  - id: global-secure-access
+    title: Global Secure Access
+    subject: Global Secure Access
+    workbook: gsa
+    kit: global-secure-access
+    summary: >-
+      Microsoft Entra Internet Access and Private Access as the agency's identity-aware network
+      layer: logs before enforcement, the client and the Microsoft traffic profile, the compliant
+      network check and tenant restrictions, per-app private access and administrative paths, TLS
+      inspection within a privacy scope, and cutover rings with their evidence.
+    sections:
+      understand:
+        - page: docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
+        - page: docs/books/b09-network/03-what-tic-3-requires.md
+        - page: docs/books/b09-network/12-microsoft-365-traffic.md
+        - page: docs/books/b12-security-operations/03-identity-telemetry.md
+        - page: docs/books/b04-access/07-the-conditional-access-policy-library.md
+        - page: docs/books/b04-access/appendix-c-partner-access-profile-entra.md
+        - page: docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md
+      evidence:
+        - page: docs/books/b11-zero-trust/10-evidence-not-verdicts.md
+    gaps:
+      plan: >-
+        Needed: no project plan schedules the rollout. The nearest, the
+        [Network & Access plan](../project-plans/network-access.md), covers the governed-transport
+        pilot but not Global Secure Access.
+
+  - id: defender-xdr
+    title: Defender XDR
+    subject: Defender XDR
+    workbook: xdr
+    kit: defender-xdr
+    summary: >-
+      Engineering and operating Microsoft Defender XDR on Windows clients and Windows Server:
+      unified roles and onboarding with proof of sensor health, prevention and Attack Surface
+      Reduction through audit, warn and block, exposure and incidents, detections as code, identity
+      and cloud-app signals, automation levels, and the monthly evidence run.
+    sections:
+      understand:
+        - page: docs/books/b12-security-operations/index.md
+        - page: docs/books/b12-security-operations/05-from-log-warehouse-to-detection.md
+        - page: docs/books/b12-security-operations/06-vulnerability-management.md
+        - page: docs/books/b12-security-operations/11-detection-engineering-and-response.md
+        - page: docs/books/b05-devices/10-operating-and-evidencing-the-fleet.md
+      evidence:
+        - page: docs/books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md
+    downloads:
+      - b12-security-operations-bundle.docx
+    members:
+      - docs/books/b12-security-operations/*.md
+    gaps:
+      plan: >-
+        Not needed, because the implementation guide's ten gates sequence the rollout, and it is an
+        operating capability of security operations (Book 12) rather than a project with an end.
+
+  - id: azure-security
+    title: Azure Security
+    subject: Azure security
+    workbook: azs
+    kit: azure-security
+    summary: >-
+      Engineering and proving the security of the agency's Azure estate: the landing-zone baseline
+      and the public exposure register, DDoS protection and the web application firewall, an origin
+      nothing can reach around Front Door or Application Gateway, egress through Azure Firewall,
+      Private Link, private DNS and Key Vault, and policy, exemptions and evidence.
+    sections:
+      understand:
+        - page: docs/books/b10-cloud-boundary/index.md
+        - page: docs/books/b10-cloud-boundary/05-the-landing-zone.md
+        - page: docs/books/b10-cloud-boundary/07-the-front-door.md
+        - page: docs/books/b10-cloud-boundary/08-who-owns-the-boundary.md
+        - page: docs/books/b12-security-operations/08-cloud-native-posture.md
+        - page: docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.md
+          note: Private endpoints and their DNS, which Private Link depends on.
+      plan:
+        - page: docs/about/decision-register.md#wd-085
+          note: The Azure cloud an agency with a Microsoft 365 GCC (Moderate) tenant uses.
+        - page: docs/about/decision-register.md#wd-157
+          note: Where the program's AWS estate runs and where other providers' government clouds may appear.
+      evidence:
+        - page: docs/books/b10-cloud-boundary/11-the-authorization-package.md
+    downloads:
+      - b10-cloud-boundary-bundle.docx
+    members:
+      - docs/books/b10-cloud-boundary/*.md
+    gaps:
+      plan: >-
+        Not needed, because the implementation guide's ten steps sequence the work and the landing
+        zone it hardens is Book 10's; a project plan would repeat the guide.
+
+  - id: microsoft-automation
+    title: Microsoft Automation
+    subject: Microsoft automation
+    learning_path:
+      page: docs/training/index.md#microsoft-automation-learning-path
+      note: The four modules in order, who each is for, and what the labs need.
+    labs: ms-automation
+    kit: ms-automation
+    summary: >-
+      Automating Microsoft Entra ID, Intune and Azure Arc safely from code: signing in without a
+      secret in the right cloud, permissions and consent, paging, throttling, batching and delta,
+      then read-only checks for each service mapped to ScubaGear or NIST SP 800-53 Moderate. The
+      foundation the developer workbooks' Graph clients build on.
+    sections:
+      understand:
+        - page: docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.md
+          note: The Graph client the developer workbooks share, which Module 1 teaches.
+        - page: docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md
+          note: Which endpoints and features a GCC tenant has.
+        - page: docs/reference/graph-practice-crosswalk.md
+        - page: docs/reference/learn-coverage.md
+      plan:
+        - page: docs/about/decision-register.md#wd-091
+          note: Which government clouds the developer workbooks must fully resolve.
+        - page: docs/about/decision-register.md#wd-092
+          note: How the example code kits change a tenant.
+      build:
+        - page: docs/reference/commands.md
+          note: Every command in the kits, from the commands' own help.
+      learn:
+        - page: docs/training/ms-automation-foundations.md
+        - page: docs/training/ms-automation-entra.md
+        - page: docs/training/ms-automation-intune.md
+        - page: docs/training/ms-automation-arc.md
+    downloads:
+      - microsoft-automation-code.zip
+      - reference-graph-practice-crosswalk.docx
+    gaps:
+      plan: Not needed, because this is a learning path for the people who build the other topics, not a project.
+      guide: >-
+        Not needed, because each module is its own guide, and the services it automates have their
+        guides in the other topics.
+      workbook: >-
+        Not needed, because the modules carry their own exercises, and Book 19's Chapter 02 is the
+        developer chapter they teach.
+
+  - id: zero-trust-assessment
+    title: Zero Trust Assessment
+    subject: the Zero Trust Assessment
+    learning_path: docs/training/zero-trust-assessment/index.md
+    labs: zta
+    kit: zta-results
+    summary: >-
+      Running Microsoft's Zero Trust Assessment as evidence rather than a verdict: what it checks
+      and why a skipped test is neither a failure nor a pass, running it safely in GCC, normalizing
+      the results into a closure register routed to the pages that remediate each finding, comparing
+      runs, reconciling with ScubaGear and AWS Security Hub CSPM, and sealing the evidence.
+    sections:
+      understand:
+        - page: docs/books/b11-zero-trust/index.md
+        - page: docs/books/b11-zero-trust/03-what-the-mandates-require.md
+        - page: docs/books/b11-zero-trust/05-two-assessment-tools.md
+        - page: docs/books/b11-zero-trust/07-who-owns-zero-trust.md
+        - page: docs/books/b11-zero-trust/08-close-before-you-assess.md
+        - page: docs/books/b11-zero-trust/09-running-the-assessment.md
+      plan:
+        - page: docs/about/decision-register.md#wd-066
+          note: Which governs when the assessment tool and a directive's published list conflict.
+      build:
+        - page: docs/books/guides/zero-trust-assessment-implementation.md
+        - page: docs/reference/zta-closure-coverage.md
+      evidence:
+        - page: docs/books/b11-zero-trust/10-evidence-not-verdicts.md
+    downloads:
+      - zta-results.zip
+      - b11-zero-trust-bundle.docx
+    members:
+      - docs/books/b11-zero-trust/*.md
+    gaps:
+      plan: >-
+        Not needed, because the guide's ten steps are the plan, and each finding is closed by the
+        topic whose page the closure register routes it to.
+      workbook: >-
+        Not needed, because the learning path's four modules teach the results kit directly, with
+        Lab 1 on its fixtures.
+
+  - id: daily-checks-dashboard
+    title: Daily Checks Dashboard
+    subject: the daily checks dashboard
+    workbook: dc
+    kit: daily-checks-workbook
+    summary: >-
+      The operator runbook's daily checks on one Azure Monitor workbook in the Sentinel workspace:
+      which checks fit a workbook and from which table, which ones link out, the template kept as
+      reviewed code with its validator, reading each tab (a stale source never shows clear), and
+      deploying it with what-if and an approved hash.
+    sections:
+      understand:
+        - page: docs/books/b15-day2-operations/12-the-day-two-runbook.md
+          note: The daily checks the dashboard shows.
+        - page: docs/books/b15-day2-operations/11-attestation-and-the-compliance-app.md
+        - page: docs/books/b12-security-operations/03-identity-telemetry.md
+        - page: docs/books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md
+    gaps:
+      plan: Not needed, because it is one workbook template with a four-chapter build, and the guide sequences it.
+
+  - id: data-platform
+    title: Data Platform and SQL Server
+    subject: the data platform and SQL Server
+    kit: start-kit
+    summary: >-
+      Ending SQL Server's inheritance of Windows Authentication: the estate inventory and the
+      retain, consolidate or retire decision, the authentication audit, Azure Arc and a managed
+      identity for each instance, Microsoft Entra principals, NTLM elimination, the application
+      chain and its connection strings, AD CS dependencies, and the closure record.
+    sections:
+      understand:
+        - page: docs/books/b06-data-platform/index.md
+        - page: docs/books/b06-data-platform/01-what-windows-authentication-actually-is.md
+        - page: docs/books/b06-data-platform/04-the-estate-inventory.md
+        - page: docs/books/b06-data-platform/06-retain-consolidate-retire.md
+        - page: docs/books/b06-data-platform/07-the-authentication-audit.md
+        - page: docs/books/b06-data-platform/09-what-arc-provides-to-sql-server.md
+        - page: docs/books/b06-data-platform/12-the-engine-authentication-decision.md
+        - page: docs/books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.md
+        - page: docs/books/b06-data-platform/19-connection-string-migration.md
+        - page: docs/books/b06-data-platform/20-the-closure-condition.md
+        - page: docs/books/b06-data-platform/22-where-sql-server-touches-adcs.md
+      plan:
+        - page: docs/project-plans/data-platform.md
+        - page: docs/about/decision-register.md#wd-007
+          note: How the database series defines "closed" to legacy authentication.
+        - page: docs/about/decision-register.md#wd-027
+          note: Whether an external deadline drives NTLM retirement in 2027.
+        - page: docs/about/decision-register.md#wd-028
+          note: Which cloud subscription hosts Arc for SQL Server in a GCC tenant.
+      build:
+        - page: docs/books/b06-data-platform/r01-prerequisites.md
+          note: Where the ten runbooks (R01 to R10) start; they are the book's step-by-step build.
+        - page: docs/books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.md
+        - page: docs/books/b06-data-platform/r04-arc-deployment-and-managed-identity.md
+        - page: docs/books/b06-data-platform/r05-login-migration-and-parallel-run.md
+        - page: docs/books/b06-data-platform/r06-ntlm-detection-and-remediation.md
+        - page: docs/books/b06-data-platform/r08-application-chain-and-connection-strings.md
+      learn:
+        - page: docs/training/ms-automation-arc.md
+          note: Microsoft Automation, Module 4, reads Arc-enabled SQL Server through Azure Resource Graph.
+      evidence:
+        - page: docs/books/b06-data-platform/r09-continuous-monitoring-and-closure.md
+        - page: docs/books/b06-data-platform/appendix-a-requirements-mapping.md
+        - page: docs/books/b06-data-platform/appendix-b-ato-kit.md
+    downloads:
+      - start-kit.zip
+      - b06-data-platform-bundle.docx
+      - b06-data-platform-runbooks.docx
+    members:
+      - docs/books/b06-data-platform/*.md
+    gaps:
+      guide: >-
+        Not needed, because Book 06's ten runbooks (R01 to R10), listed under Build, are its
+        step-by-step implementation guide.
+      workbook: >-
+        Needed: decide with the learning path plan. The Start Kit's SQL Server discovery is the only
+        code in examples/; nothing there runs the login migration, the parallel run or NTLM
+        remediation.
+      path: "Needed: the first new learning path to be planned (decided Nov 24, 2026)."
+      labs: "Needed: they come with the learning path."
+
+  - id: pki
+    title: PKI and Certificates
+    subject: PKI and certificates
+    kit: start-kit
+    summary: >-
+      The certificate estate that outlives every migration: what AD CS holds up and hardening what
+      stays, the target of Cloud PKI, AD CS and Federal PKI, device and user certificates through
+      Intune and Entra certificate-based authentication, PIV and derived PIV, coexistence, and a
+      certificate lifecycle platform with monitoring and decommissioning.
+    sections:
+      understand:
+        - page: docs/books/b07-pki/index.md
+        - page: docs/books/b07-pki/02-what-ad-cs-holds-up.md
+        - page: docs/books/b07-pki/03-hardening-what-stays.md
+        - page: docs/books/b07-pki/04-the-target-pki.md
+        - page: docs/books/b07-pki/06-device-and-user-certificates.md
+        - page: docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md
+        - page: docs/books/b07-pki/09-federal-workforce-credentials.md
+        - page: docs/books/explainers/hybrid-credentials.md
+        - page: docs/books/b03-hr-identity/09-credentials-and-certificates.md
+          note: Certificates across joiner, mover and leaver.
+      plan:
+        - page: docs/about/decision-register.md#wd-029
+          note: How many certificate-lifecycle platforms the PKI book recommends.
+        - page: docs/about/decision-register.md#wd-052
+          note: How certificates are handled outside the PKI book.
+        - page: docs/about/decision-register.md#wd-119
+          note: How the PKI book frames PIV and cloud authentication.
+      build:
+        - page: docs/books/guides/cyberark-certificate-lifecycle.md
+        - page: docs/books/b07-pki/appendix-a-deployment-checklists.md
+        - page: docs/books/b07-pki/appendix-b-template-migration-matrix.md
+        - page: docs/books/b06-data-platform/r10-certificate-discovery-for-adcs.md
+          note: Finding the AD CS certificates SQL Server depends on.
+    downloads:
+      - start-kit.zip
+      - b07-pki-bundle.docx
+    members:
+      - docs/books/b07-pki/*.md
+    gaps:
+      plan: >-
+        Needed: no project plan sequences AD CS hardening, Cloud PKI and the lifecycle platform;
+        the other plans schedule only their own certificates.
+      workbook: >-
+        Not needed, because the only code today is the Start Kit's AD CS checks (ESC1, ESC2, ESC4,
+        ESC6); revisit when its learning path is planned.
+      path: "Needed: ranked in the learning path plan."
+      labs: "Needed: they come with the learning path."
+
+  - id: dns-dhcp-ipam
+    title: DNS, DHCP and IPAM
+    subject: DNS, DHCP and IPAM
+    kit: start-kit
+    summary: >-
+      DNS as the control plane: the split-brain problem, NIST SP 800-81 and federal requirements,
+      leaving Active Directory DNS, encrypted DNS and rogue DHCP at the edge, DNSSEC, cloud private
+      endpoints and IPAM consistency across Azure, AWS and Oracle Cloud, platform selection, and
+      operating the naming plane with evidence.
+    sections:
+      understand:
+        - page: docs/books/b08-ddi/index.md
+        - page: docs/books/b08-ddi/01-dns-is-the-control-plane.md
+        - page: docs/books/b08-ddi/02-split-brain-dns.md
+        - page: docs/books/b08-ddi/04-active-directory-dns-departure.md
+        - page: docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.md
+        - page: docs/books/b08-ddi/08-reference-architecture.md
+        - page: docs/books/b08-ddi/10-migration-sequence.md
+        - page: docs/books/explainers/ddi-platform-requirements.md
+        - page: docs/books/explainers/hr-identity-dns.md
+        - page: docs/books/explainers/device-naming-after-ad.md
+        - page: docs/books/b10-cloud-boundary/06-ipam-and-network-as-code.md
+      plan:
+        - page: docs/project-plans/network-access.md
+          note: Its naming and addressing plane and the gated retirement of AD DNS and DHCP.
+        - page: docs/evaluations/infoblox-ddi-federal.md
+        - page: docs/evaluations/trinzic-multicloud-ddi.md
+        - page: docs/evaluations/cloud-dns-resolvers-infoblox-bind.md
+        - page: docs/about/decision-register.md#wd-099
+          note: Whether the cloud DNS comparison covers Oracle Cloud as well as AWS and Azure.
+      build:
+        - page: docs/books/guides/infoblox-nios-implementation.md
+      learn:
+        - page: docs/training/infoblox-training.md
+          note: The vendor's own training, arranged as paths by role; not a workbook learning path.
+      evidence:
+        - page: docs/books/b08-ddi/11-operating-the-control-plane.md
+        - page: docs/books/b08-ddi/appendix-b-requirements-mapping.md
+    downloads:
+      - start-kit.zip
+      - b08-ddi-bundle.docx
+    members:
+      - docs/books/b08-ddi/*.md
+    gaps:
+      workbook: >-
+        Not needed, because the only code today is the Start Kit's DNS and DHCP inventory; revisit
+        when its learning path is planned.
+      path: >-
+        Needed: ranked in the learning path plan. Until then the Infoblox training page, under
+        Learn, lists the vendor's paths.
+      labs: "Needed: they come with the learning path."
+
+  - id: network-sd-wan
+    title: Network and SD-WAN
+    subject: the network and SD-WAN
+    kit: cisco-sdwan
+    summary: >-
+      Network and transport for a cloud-first agency: what TIC 3.0 and federal policy require,
+      SD-WAN, SASE and governed-path transport, legacy protocols on re-routed paths, 802.1X and
+      RADIUS, field-office WAN transformation, Microsoft 365 traffic and the Optimize exemption, and
+      the sequence, cost and evidence of the change.
+    sections:
+      understand:
+        - page: docs/books/b09-network/index.md
+        - page: docs/books/b09-network/02-transport-is-physics-control-is-compliance.md
+        - page: docs/books/b09-network/03-what-tic-3-requires.md
+        - page: docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
+        - page: docs/books/b09-network/07-network-access-control.md
+        - page: docs/books/b09-network/08-reference-architecture.md
+        - page: docs/books/b09-network/11-field-office-wan-transformation.md
+        - page: docs/books/b09-network/12-microsoft-365-traffic.md
+      plan:
+        - page: docs/project-plans/network-access.md
+        - page: docs/evaluations/sdwan-platform-deep-dive.md
+        - page: docs/about/decision-register.md#wd-060
+          note: What must be true before an SD-WAN fabric carries traffic.
+      build:
+        - page: docs/books/guides/cisco-sdwan-implementation.md
+        - page: docs/books/guides/dp-consolidation.md
+          note: Configuration Manager distribution points in field offices, from Book 09's Chapter 11.
+        - page: docs/books/guides/dp-consolidation-implementation.md
+      evidence:
+        - page: docs/books/b09-network/13-sequencing-cost-and-evidence.md
+        - page: docs/books/b09-network/appendix-b-requirements-mapping.md
+    downloads:
+      - cisco-sdwan.zip
+      - b09-network-bundle.docx
+    members:
+      - docs/books/b09-network/*.md
+    gaps:
+      workbook: >-
+        Not needed, because the Cisco kit is one read-only collector; revisit when its learning path
+        is planned.
+      path: "Needed: ranked in the learning path plan."
+      labs: "Needed: they come with the learning path."
+
+  - id: endpoints
+    title: Endpoints
+    kit: [dp-consolidation, group-policy-as-code, machine-configuration, ansible, validation-kit]
+    summary: >-
+      Devices and servers after Group Policy: the hybrid-join trap, Intune-first onboarding, the
+      governed, manual and retrofit paths, the GPO sunset and policy migration to Intune, servers
+      under Azure Arc and Ansible, content delivery without branch distribution points, and
+      operating and evidencing the fleet.
+    sections:
+      understand:
+        - page: docs/books/b05-devices/index.md
+        - page: docs/books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.md
+        - page: docs/books/b05-devices/02-the-hybrid-join-trap.md
+        - page: docs/books/b05-devices/04-intune-first-onboarding.md
+        - page: docs/books/b05-devices/07-the-gpo-sunset-program.md
+        - page: docs/books/b05-devices/08-gpo-to-intune-policy-migration.md
+        - page: docs/books/b05-devices/09-servers-under-azure-arc.md
+        - page: docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.md
+        - page: docs/books/explainers/device-naming-after-ad.md
+      plan:
+        - page: docs/project-plans/endpoint-device.md
+        - page: docs/project-plans/content-delivery.md
+        - page: docs/about/decision-register.md#wd-078
+          note: How overlaps between Intune, Arc, Ansible and Configuration Manager are prevented.
+        - page: docs/about/decision-register.md#wd-083
+          note: How Group Policy moves to Intune and Azure Policy.
+        - page: docs/about/decision-register.md#wd-153
+          note: Windows LAPS automatic account management.
+      build:
+        - page: docs/books/guides/intune-track-implementation.md
+        - page: docs/books/guides/arc-track-implementation.md
+        - page: docs/books/guides/ansible-configuration-automation.md
+        - page: docs/books/guides/dp-consolidation.md
+          note: The decision before funding a distribution point refresh.
+        - page: docs/books/guides/dp-consolidation-implementation.md
+        - page: docs/books/b19-developer-workbook/06-group-policy-as-code.md
+          note: Book 19's chapter on Group Policy as code (the Attribute-Driven Migration developer workbook).
+        - page: docs/books/b19-developer-workbook/07-machine-configuration-packages.md
+        - page: docs/books/b19-developer-workbook/08-ansible-beside-arc.md
+      learn:
+        - page: docs/training/attribute-driven-migration/04-group-policy-as-code.md
+        - page: docs/training/attribute-driven-migration/05-machine-configuration.md
+        - page: docs/training/attribute-driven-migration/06-ansible-beside-arc.md
+        - page: docs/training/ms-automation-intune.md
+        - page: docs/training/ms-automation-arc.md
+      evidence:
+        - page: docs/books/b05-devices/10-operating-and-evidencing-the-fleet.md
+    videos:
+      - Guide_DP_Consolidation_Executive_Narrated
+    downloads:
+      - b05-devices-bundle.docx
+      - intune-track-implementation-guide.docx
+      - arc-track-implementation-guide.docx
+      - dp-consolidation-guide.docx
+      - dp-consolidation-implementation-guide.docx
+      - dp-consolidation.zip
+      - ansible-examples.zip
+      - validation-kit.zip
+    members:
+      - docs/books/b05-devices/*.md
+    gaps:
+      workbook: >-
+        Not needed, because Book 19's Chapters 06 to 08, listed under Build, are the Intune, Arc and
+        Ansible build.
+      path: >-
+        Not needed, because the modules listed under Learn (three from the Attribute-Driven
+        Migration path, two from Microsoft Automation) already teach it.
+      labs: Not needed, because those modules carry the labs.
+
+  - id: information-protection
+    title: Information Protection
+    subject: information protection
+    summary: >-
+      Classifying and protecting the agency's data in Microsoft Purview: the data inventory,
+      sensitivity labels and their defaults, Teams, groups and SharePoint containers, rights
+      management and message encryption, DLP and endpoint controls, auto-labeling, audit and insider
+      risk, AI data security, and operating it with evidence.
+    sections:
+      understand:
+        - page: docs/books/b20-information-protection/index.md
+        - page: docs/books/b20-information-protection/01-data-inventory-and-classification.md
+        - page: docs/books/b20-information-protection/02-sensitivity-label-architecture.md
+        - page: docs/books/b20-information-protection/08-dlp-and-endpoint-controls.md
+        - page: docs/books/b20-information-protection/11-ai-data-security.md
+        - page: docs/books/b12-security-operations/09-data-protection-and-classification.md
+      evidence:
+        - page: docs/books/b20-information-protection/12-operations-and-evidence.md
+        - page: docs/books/b20-information-protection/appendix-a-requirements-mapping.md
+    downloads:
+      - b20-information-protection-bundle.docx
+    members:
+      - docs/books/b20-information-protection/*.md
+    gaps:
+      plan: "Needed: no project plan sequences Book 20's rollout."
+      guide: "Needed: Book 20 has no step-by-step guide with Validate commands."
+      workbook: "Needed: decide with the learning path plan; there is no code to build on."
+      path: "Needed: ranked in the learning path plan."
+      labs: "Needed: they come with the learning path."
+      code: "Needed: no kit collects Book 20's label, DLP or audit evidence yet."
+
+  - id: compliance-evidence
+    title: Compliance and Evidence
+    kit: [validation-kit, drift-pipeline, copilot-agent-pack]
+    summary: >-
+      Proof, not a promise: the control baseline and crosswalk, closure only with proof, the
+      authorization package and continuous monitoring, supply chain risk, drift and evidence over
+      attestation, records and retention, and the day-two operations, help desk and compliance
+      automation that keep the evidence current.
+    sections:
+      understand:
+        - page: docs/books/b14-compliance/index.md
+        - page: docs/books/b14-compliance/01-proof-not-a-promise.md
+        - page: docs/books/b14-compliance/03-the-baseline-and-the-crosswalk.md
+        - page: docs/books/b14-compliance/04-closure-with-proof.md
+        - page: docs/books/b14-compliance/11-the-authorization-package.md
+        - page: docs/books/b14-compliance/12-the-series-as-a-map.md
+        - page: docs/books/b15-day2-operations/index.md
+        - page: docs/books/b15-day2-operations/02-day-two-is-where-compliance-lives.md
+        - page: docs/books/b15-day2-operations/08-control-automation-m365-and-azure.md
+        - page: docs/books/b15-day2-operations/11-attestation-and-the-compliance-app.md
+        - page: docs/books/b13-governance/index.md
+        - page: docs/books/b13-governance/07-evidence-over-attestation.md
+        - page: docs/books/b13-governance/13-records-evidence-and-retention.md
+      plan:
+        - page: docs/project-plans/continuous-monitoring.md
+        - page: docs/project-plans/supply-chain-sbom.md
+        - page: docs/about/decision-register.md#wd-110
+          note: How lab steps and kit outputs are tied to federal requirements.
+        - page: docs/about/decision-register.md#wd-116
+          note: When audit evidence is a federal record.
+        - page: docs/about/decision-register.md#wd-118
+          note: How the workbook shows federal traceability to an ISSO, assessor or authorizing official.
+      build:
+        - page: docs/books/b15-day2-operations/12-the-day-two-runbook.md
+        - page: docs/books/b15-day2-operations/13-building-day-two-automation-in-house.md
+          note: The method the Copilot agent pack drafts and reviews.
+        - page: docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.md
+        - page: docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.md
+      learn:
+        - page: docs/training/attribute-driven-migration/02-a-validation-kit-check.md
+        - page: docs/training/attribute-driven-migration/08-drift-and-evidence.md
+      evidence:
+        - page: docs/reference/rmf-map.md
+        - page: docs/reference/federal-framework-crosswalk.md
+        - page: docs/books/b14-compliance/appendix-a-control-crosswalk.md
+    downloads:
+      - validation-kit.zip
+      - copilot-agent-pack.zip
+      - b14-compliance-bundle.docx
+      - b15-day2-operations-bundle.docx
+      - b13-governance-bundle.docx
+      - reference-rmf-map.docx
+      - reference-federal-framework-crosswalk.docx
+    members:
+      - docs/books/b13-governance/*.md
+      - docs/books/b14-compliance/*.md
+      - docs/books/b15-day2-operations/*.md
+    gaps:
+      guide: >-
+        Not needed, because every implementation guide carries its own Evidence section, and
+        Book 15's day-two runbook, under Build, is the operating guide.
+      workbook: >-
+        Not needed, because Book 19's Chapters 03 and 09, under Build, are the validation kit and
+        drift pipeline build.
+      path: >-
+        Not needed, because the two modules under Learn teach the validation kit and the drift
+        pipeline, and each topic's own path teaches that topic's evidence.
+      labs: Not needed, because those modules carry the labs.
+
+  - id: application-modernization
+    title: Application Modernization
+    subject: application modernization
+    kit: app-modernization
+    summary: >-
+      Modernizing an application portfolio, not rewriting it: triage, the target reference
+      architecture, moving the data from Db2 and Oracle to PostgreSQL or SQL Server, generative and
+      agentic AI in the architecture, compliance and Section 508 by design, governance, TOGAF and
+      Zachman, running the portfolio in waves, and a runnable reference implementation.
+    sections:
+      understand:
+        - page: docs/books/b18-application-modernization/index.md
+        - page: docs/books/b18-application-modernization/01-a-portfolio-not-a-rewrite.md
+        - page: docs/books/b18-application-modernization/02-triaging-the-portfolio.md
+        - page: docs/books/b18-application-modernization/03-the-target-reference-architecture.md
+        - page: docs/books/b18-application-modernization/04-moving-the-data.md
+        - page: docs/books/b18-application-modernization/05-generative-and-agentic-ai.md
+        - page: docs/books/b18-application-modernization/06-compliance-by-design.md
+        - page: docs/books/explainers/omb-ai-memos-m-25-21-m-25-22.md
+          note: Governing and buying AI, for the AI in the target architecture.
+      plan:
+        - page: docs/books/b18-application-modernization/10-running-the-portfolio-in-waves.md
+        - page: docs/about/decision-register.md#wd-070
+          note: How application modernization is framed.
+        - page: docs/about/decision-register.md#wd-072
+          note: How a team shows an application's transactions are reduced before its data is separated.
+        - page: docs/about/decision-register.md#wd-082
+          note: How application dependencies are recorded for triage.
+        - page: docs/about/decision-register.md#wd-115
+          note: How the workbook treats Section 508 in application modernization.
+      build:
+        - page: docs/books/b18-application-modernization/08-the-reference-implementation.md
+        - page: docs/books/b18-application-modernization/appendix-a-identity-remediation-work-packages.md
+    downloads:
+      - app-modernization.zip
+      - b18-application-modernization-bundle.docx
+    members:
+      - docs/books/b18-application-modernization/*.md
+    gaps:
+      plan: >-
+        Not needed, because Book 18's Chapter 10, listed under Plan, runs the portfolio in waves,
+        and each application gets its own plan from the triage.
+      guide: >-
+        Not needed, because Book 18's Chapter 08 and the kit's README are the build guide for the
+        reference implementation.
+      workbook: "Needed: decide with the learning path plan."
+      path: "Needed: ranked in the learning path plan."
+      labs: "Needed: they come with the learning path."
+
+folded:
+  - title: AI identity (Book 17)
+    into: non-person-identity
+    reason: >-
+      Agent identities are non-person identities. The Non-Person Identity guide cites Book 17
+      throughout, its developer workbook's Chapter 09 and learning path's Module 9 build and teach
+      AI agent identities, its kit holds the Microsoft Entra Agent ID samples, and all of Book 17
+      already belongs to that hub. A second hub would repeat it.
+
+outside_topics:
+  - path: docs/books/guides/effective-meetings.md
+    reason: A program practice guide for running any project's meetings, not one subject's.
+  - path: docs/books/guides/one-page-ask.md
+    reason: The Start series' fill-in page for the pre-flight approval; Start here links it.

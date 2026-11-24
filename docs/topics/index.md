@@ -1,7 +1,7 @@
 ---
 title: "Topics"
 subtitle: "Everything the workbook has on a topic, in one place"
-description: "Topic hubs: for each topic, the book chapters, project plan, guides, developer workbook, learning path, labs, videos and downloads on one page."
+description: "Topic hubs: for each topic, the book chapters, project plan, guides, developer workbook, learning path, labs, videos and downloads on one page, and what each topic lacks."
 doc-type: section-landing
 fmw-eyebrow: "Topics"
 ---
@@ -9,9 +9,91 @@ fmw-eyebrow: "Topics"
 
 The workbook's menus list things by kind: books, projects, training, labs, presentations, videos and downloads. A topic hub lists them by subject instead. Each hub starts with the design in the books and works down through the plan, the build, the training, the videos, the downloads and the evidence. Every page that belongs to a topic shows a link to its hub under its title.
 
-| Topic | Book chapters | Guides | Developer workbook | Learning path | Videos | Downloads |
-|---|---|---|---|---|---|---|
-| [Non-Person Identity](non-person-identity.md) | 8 | 2 | 13 chapters | 13 modules | 33 | 5 |
+Each row shows what a topic has. A cell that says **gap** is something readers need and the workbook doesn't have yet; **not needed** is a deliberate absence. [What each topic lacks](#gaps) gives the reason for each.
+
+| Topic | Book chapters | Project plan | Guide | Developer workbook | Learning path | Labs | Videos | Code |
+|---|---|---|---|---|---|---|---|---|
+| [Non-Person Identity](non-person-identity.md) | 7 | 1 | 2 | 13 chapters | 13 modules | yes | 33 | 2 zips |
+| [Attribute-Driven Migration](attribute-driven-migration.md) | 6 | 1 | 4 | 10 chapters | 9 modules | yes | 28 | 3 zips |
+| [Provider Notices](provider-notices.md) | 5 | [not needed](#gaps) | 1 | 8 chapters | 9 modules | yes | 20 | 1 zip |
+| [Privileged Access](privileged-access.md) | 8 | 1 | 1 | 9 chapters | 8 modules | yes | 19 | 1 zip |
+| [Ticket-to-Machine](ticket-to-machine.md) | 4 | 1 | 3 | 9 chapters | 7 modules | yes | 21 | 2 zips |
+| [HR-Driven Identity](hr-driven-identity.md) | 7 | 1 | 2 | 8 chapters | 7 modules | yes | 25 | 1 zip |
+| [Global Secure Access](global-secure-access.md) | 7 | [gap](#gaps) | 1 | 9 chapters | 6 modules | yes | 17 | 1 zip |
+| [Defender XDR](defender-xdr.md) | 5 | [not needed](#gaps) | 1 | 9 chapters | 5 modules | yes | 19 | 1 zip |
+| [Azure Security](azure-security.md) | 6 | [not needed](#gaps) | 1 | 9 chapters | 5 modules | yes | 19 | 1 zip |
+| [Microsoft Automation](microsoft-automation.md) | 2 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 4 modules | yes | 5 | 1 zip |
+| [Zero Trust Assessment](zero-trust-assessment.md) | 6 | [not needed](#gaps) | 1 | [not needed](#gaps) | 4 modules | yes | 8 | 1 zip |
+| [Daily Checks Dashboard](daily-checks-dashboard.md) | 4 | [not needed](#gaps) | 1 | 4 chapters | 2 modules | yes | 8 | 1 zip |
+| [Data Platform and SQL Server](data-platform.md) | 11 | 1 | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | 4 | 1 zip |
+| [PKI and Certificates](pki.md) | 8 | [gap](#gaps) | 1 | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | 5 | 1 zip |
+| [DNS, DHCP and IPAM](dns-dhcp-ipam.md) | 8 | 1 | 1 | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | 11 | 1 zip |
+| [Network and SD-WAN](network-sd-wan.md) | 8 | 1 | 3 | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | 7 | 1 zip |
+| [Endpoints](endpoints.md) | 8 | 2 | 5 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 14 | 3 zips |
+| [Information Protection](information-protection.md) | 6 | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | 1 | [gap](#gaps) |
+| [Compliance and Evidence](compliance-evidence.md) | 13 | 2 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 14 | 2 zips |
+| [Application Modernization](application-modernization.md) | 7 | [not needed](#gaps) | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | 3 | 1 zip |
 
 : Topic hubs {.striped .hover}
+
+## What each topic lacks {#gaps}
+
+A gap is filled only where readers need it. Where nothing is needed, the note says why.
+
+| Topic | Missing | Why |
+|---|---|---|
+| [Provider Notices](provider-notices.md#gaps) | Project plan | Not needed, because the implementation guide's seven gates and the developer workbook's chapters already sequence the work, and it runs inside day-two operations (Book 15). |
+| [Global Secure Access](global-secure-access.md#gaps) | Project plan | Needed: no project plan schedules the rollout. The nearest, the [Network & Access plan](../project-plans/network-access.md), covers the governed-transport pilot but not Global Secure Access. |
+| [Defender XDR](defender-xdr.md#gaps) | Project plan | Not needed, because the implementation guide's ten gates sequence the rollout, and it is an operating capability of security operations (Book 12) rather than a project with an end. |
+| [Azure Security](azure-security.md#gaps) | Project plan | Not needed, because the implementation guide's ten steps sequence the work and the landing zone it hardens is Book 10's; a project plan would repeat the guide. |
+| [Microsoft Automation](microsoft-automation.md#gaps) | Project plan | Not needed, because this is a learning path for the people who build the other topics, not a project. |
+| [Microsoft Automation](microsoft-automation.md#gaps) | Guide | Not needed, because each module is its own guide, and the services it automates have their guides in the other topics. |
+| [Microsoft Automation](microsoft-automation.md#gaps) | Developer workbook | Not needed, because the modules carry their own exercises, and Book 19's Chapter 02 is the developer chapter they teach. |
+| [Zero Trust Assessment](zero-trust-assessment.md#gaps) | Project plan | Not needed, because the guide's ten steps are the plan, and each finding is closed by the topic whose page the closure register routes it to. |
+| [Zero Trust Assessment](zero-trust-assessment.md#gaps) | Developer workbook | Not needed, because the learning path's four modules teach the results kit directly, with Lab 1 on its fixtures. |
+| [Daily Checks Dashboard](daily-checks-dashboard.md#gaps) | Project plan | Not needed, because it is one workbook template with a four-chapter build, and the guide sequences it. |
+| [Data Platform and SQL Server](data-platform.md#gaps) | Guide | Not needed, because Book 06's ten runbooks (R01 to R10), listed under Build, are its step-by-step implementation guide. |
+| [Data Platform and SQL Server](data-platform.md#gaps) | Developer workbook | Needed: decide with the learning path plan. The Start Kit's SQL Server discovery is the only code in examples/; nothing there runs the login migration, the parallel run or NTLM remediation. |
+| [Data Platform and SQL Server](data-platform.md#gaps) | Learning path | Needed: the first new learning path to be planned (decided Nov 24, 2026). |
+| [Data Platform and SQL Server](data-platform.md#gaps) | Labs | Needed: they come with the learning path. |
+| [PKI and Certificates](pki.md#gaps) | Project plan | Needed: no project plan sequences AD CS hardening, Cloud PKI and the lifecycle platform; the other plans schedule only their own certificates. |
+| [PKI and Certificates](pki.md#gaps) | Developer workbook | Not needed, because the only code today is the Start Kit's AD CS checks (ESC1, ESC2, ESC4, ESC6); revisit when its learning path is planned. |
+| [PKI and Certificates](pki.md#gaps) | Learning path | Needed: ranked in the learning path plan. |
+| [PKI and Certificates](pki.md#gaps) | Labs | Needed: they come with the learning path. |
+| [DNS, DHCP and IPAM](dns-dhcp-ipam.md#gaps) | Developer workbook | Not needed, because the only code today is the Start Kit's DNS and DHCP inventory; revisit when its learning path is planned. |
+| [DNS, DHCP and IPAM](dns-dhcp-ipam.md#gaps) | Learning path | Needed: ranked in the learning path plan. Until then the Infoblox training page, under Learn, lists the vendor's paths. |
+| [DNS, DHCP and IPAM](dns-dhcp-ipam.md#gaps) | Labs | Needed: they come with the learning path. |
+| [Network and SD-WAN](network-sd-wan.md#gaps) | Developer workbook | Not needed, because the Cisco kit is one read-only collector; revisit when its learning path is planned. |
+| [Network and SD-WAN](network-sd-wan.md#gaps) | Learning path | Needed: ranked in the learning path plan. |
+| [Network and SD-WAN](network-sd-wan.md#gaps) | Labs | Needed: they come with the learning path. |
+| [Endpoints](endpoints.md#gaps) | Developer workbook | Not needed, because Book 19's Chapters 06 to 08, listed under Build, are the Intune, Arc and Ansible build. |
+| [Endpoints](endpoints.md#gaps) | Learning path | Not needed, because the modules listed under Learn (three from the Attribute-Driven Migration path, two from Microsoft Automation) already teach it. |
+| [Endpoints](endpoints.md#gaps) | Labs | Not needed, because those modules carry the labs. |
+| [Information Protection](information-protection.md#gaps) | Project plan | Needed: no project plan sequences Book 20's rollout. |
+| [Information Protection](information-protection.md#gaps) | Guide | Needed: Book 20 has no step-by-step guide with Validate commands. |
+| [Information Protection](information-protection.md#gaps) | Developer workbook | Needed: decide with the learning path plan; there is no code to build on. |
+| [Information Protection](information-protection.md#gaps) | Learning path | Needed: ranked in the learning path plan. |
+| [Information Protection](information-protection.md#gaps) | Labs | Needed: they come with the learning path. |
+| [Information Protection](information-protection.md#gaps) | Code | Needed: no kit collects Book 20's label, DLP or audit evidence yet. |
+| [Compliance and Evidence](compliance-evidence.md#gaps) | Guide | Not needed, because every implementation guide carries its own Evidence section, and Book 15's day-two runbook, under Build, is the operating guide. |
+| [Compliance and Evidence](compliance-evidence.md#gaps) | Developer workbook | Not needed, because Book 19's Chapters 03 and 09, under Build, are the validation kit and drift pipeline build. |
+| [Compliance and Evidence](compliance-evidence.md#gaps) | Learning path | Not needed, because the two modules under Learn teach the validation kit and the drift pipeline, and each topic's own path teaches that topic's evidence. |
+| [Compliance and Evidence](compliance-evidence.md#gaps) | Labs | Not needed, because those modules carry the labs. |
+| [Application Modernization](application-modernization.md#gaps) | Project plan | Not needed, because Book 18's Chapter 10, listed under Plan, runs the portfolio in waves, and each application gets its own plan from the triage. |
+| [Application Modernization](application-modernization.md#gaps) | Guide | Not needed, because Book 18's Chapter 08 and the kit's README are the build guide for the reference implementation. |
+| [Application Modernization](application-modernization.md#gaps) | Developer workbook | Needed: decide with the learning path plan. |
+| [Application Modernization](application-modernization.md#gaps) | Learning path | Needed: ranked in the learning path plan. |
+| [Application Modernization](application-modernization.md#gaps) | Labs | Needed: they come with the learning path. |
+
+: What each topic lacks {.striped .hover}
+
+## Covered inside another topic {#folded}
+
+These subjects have pages of their own but no hub, because another hub already holds them.
+
+| Subject | Hub | Why |
+|---|---|---|
+| AI identity (Book 17) | [Non-Person Identity](non-person-identity.md) | Agent identities are non-person identities. The Non-Person Identity guide cites Book 17 throughout, its developer workbook's Chapter 09 and learning path's Module 9 build and teach AI agent identities, its kit holds the Microsoft Entra Agent ID samples, and all of Book 17 already belongs to that hub. A second hub would repeat it. |
+
+: Covered inside another topic {.striped .hover}
 

@@ -40,5 +40,6 @@ function Meta(meta)
     }))
   end
   meta["fmw-topics"] = pandoc.MetaList(list)
+  if #list > 1 then meta["fmw-topics-many"] = true end
   return meta
 end

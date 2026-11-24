@@ -37,7 +37,7 @@ The project plan and the decisions the program has made.
 | Page | What it is |
 |---|---|
 | [Non-Person Identity Modernization: Service Accounts, Workload Identities and AI Agents](../project-plans/non-person-identity.md) | A sample PMP-style project plan for the Non-Person Identity Modernization project, built from Book 02, Chapters 09 and 10, Book 04, Chapter 05, Book 06, Book 17 and the companion guide's non-person identity track: a work breakdown from… |
-| [Decision Register](../about/decision-register.md#wd-159) | The managed service account standard, decided as WD-159 to WD-170. |
+| [Decision WD-159](../about/decision-register.md#wd-159) | The managed service account standard, decided as WD-159 to WD-170. |
 
 : Plan {.striped .hover}
 
