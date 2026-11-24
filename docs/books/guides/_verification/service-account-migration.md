@@ -242,3 +242,14 @@ The owner chose "Rule 1" on November 22, 2026.
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | J-08 | "Questions for the program owner", item 3, still gave the delegated create right to the identity engineers (WD-154). Since WD-163 the pipeline's own gMSA holds it and runs the approved Chapter 06 plan after SailPoint approves; a person runs the dMSA steps, `Uninstall-ADServiceAccount` and every delete | Questions for the program owner | corrected to WD-163; WD-154's history kept | WD-154; WD-163 |
+
+## CyberArk and managed service accounts (November 24, 2026)
+
+Mike asked on November 24, 2026 for CyberArk's part in the gMSA process to be researched and drafted. CyberArk's pages were read in a browser on November 24, 2026; docs.cyberark.com refused the automated fetch.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| J-09 | The certificate platform (Trust Protection Foundation - Self-Hosted) can use a gMSA for its database owner and operational database accounts, entered as `<domain>\<account>$`, with the password field disabled; the gMSA must be provisioned and replicated first (up to a full business day) | CyberArk and managed service accounts | supported by the source | CyberArk, "Using Group Managed Service Accounts (gMSAs)", 25.3 |
+| J-10 | The CPM changes a Windows account's password in every Windows service that uses it, can restart the service, and uses Kerberos for a domain target | CyberArk and managed service accounts | supported by the source | CyberArk, plugins, "Windows Services" |
+| J-11 | The Windows service account scan covers Windows services, COM+ applications, IIS anonymous user, scheduled tasks and IIS application pools | CyberArk and managed service accounts | supported by the source | CyberArk, "Automatically manage the full life-cycle of accounts" |
+| J-12 | Removing a moved workload's usage, keeping the account vaulted until its delete, never onboarding a managed account, and vaulting a `KeepKerberos` account until its end date | CyberArk and managed service accounts; Who does what | design guidance; CyberArk's pages don't mention managed accounts | the program's PAM book (CyberArk vaults standing service accounts); WD-167 |
