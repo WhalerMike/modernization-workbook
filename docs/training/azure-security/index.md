@@ -65,7 +65,7 @@ unzip -o ~/Downloads/azure-security-code.zip -d ~/Downloads/azure-security-code
 cd ~/Downloads/azure-security-code/azure-security-code/azure-security
 ```
 
-Check it works, in PowerShell 7.1 or later, with Step 1 of [Chapter 01's Lab 1](../../project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.md#lab-1-fixtures-no-tenant):
+Check it works, in PowerShell 7.1 or later, with Step 1 of [Chapter 01's Lab 1](../../project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.md#lab-1-fixtures-no-subscription):
 
 ```powershell
 Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
