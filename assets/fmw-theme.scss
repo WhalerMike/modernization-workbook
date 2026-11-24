@@ -514,3 +514,14 @@ figure img[src$=".svg"] {
   font-weight: 400;
   opacity: 0.8;
 }
+
+// "Download (Word)" under the title (assets/fmw-word-download.lua, scripts/bundles.yml).
+.fmw-hero .fmw-word {
+  margin: 0.4rem 0 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+.fmw-hero .fmw-word .fmw-word-note {
+  font-weight: 400;
+  opacity: 0.8;
+}

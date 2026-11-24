@@ -626,6 +626,9 @@ format:
       - assets/fmw-hero.lua
       # "Topic: <hub>" under the title of pages that belong to a topic (data/topics.yml).
       - assets/fmw-topics.lua
+      # "Download (Word)" under the title of every page with a built Word file
+      # (assets/word-downloads.json, from scripts/build_bundles.py --word-index).
+      - assets/fmw-word-download.lua
     include-in-header:
       - text: |
           <link rel="preconnect" href="https://fonts.googleapis.com">

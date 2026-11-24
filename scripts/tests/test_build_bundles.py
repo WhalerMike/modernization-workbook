@@ -55,5 +55,56 @@ class ChapterBundles(unittest.TestCase):
         self.assertEqual(c.subtitle, "From First, Federal Modernization Workbook")
 
 
+class UniqueIds(unittest.TestCase):
+    def test_a_later_page_repeating_an_explicit_id_gets_a_renamed_copy(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            a, b, c = (Path(d) / n for n in ("a.md", "b.md", "c.md"))
+            a.write_text("## Lab {#lab-1}\n\nSee [the lab](#lab-1).\n", encoding="utf-8")
+            b.write_text("## Lab {#lab-1 .unnumbered}\n\nSee [the lab](#lab-1) and [x](#lab-10).\n", encoding="utf-8")
+            c.write_text("## Other {#other}\n", encoding="utf-8")
+            out = bb.unique_ids([a, b, c], "t")
+            self.assertEqual(out[0], a)
+            self.assertEqual(out[2], c)
+            self.assertNotEqual(out[1], b)
+            self.assertEqual(out[1].parent, b.parent)   # relative image paths still resolve
+            self.assertEqual(out[1].read_text(encoding="utf-8"),
+                             "## Lab {#lab-1-2 .unnumbered}\n\nSee [the lab](#lab-1-2) and [x](#lab-10).\n")
+            self.assertIn("{#lab-1 .unnumbered}", b.read_text(encoding="utf-8"))
+
+
+class WordCoverage(unittest.TestCase):
+    """Every published page has a built Word file, and its Download (Word) link is current."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.rules = bb.RenderRules()
+        cls.bundles = bb.load_bundles(cls.rules)
+
+    def test_every_published_page_is_bundled_or_site_only(self):
+        self.assertEqual(bb.uncovered_pages(self.rules, self.bundles), [],
+                         "add the page to a bundle in scripts/bundles.yml, or to site_only")
+
+    def test_site_only_entries_match_published_pages(self):
+        pages = [bb.rel(p) for p in bb.published_pages(self.rules)]
+        stale = [rx.pattern for rx in bb.site_only_patterns() if not any(rx.match(p) for p in pages)]
+        self.assertEqual(stale, [], "site_only in scripts/bundles.yml names a page the site no longer publishes")
+
+    def test_word_index_is_current(self):
+        current = bb.WORD_INDEX.read_text(encoding="utf-8") if bb.WORD_INDEX.exists() else ""
+        self.assertEqual(current, bb.word_index(self.bundles), "run: python scripts/build_bundles.py --word-index")
+
+    def test_word_index_links_the_chapter_file_and_its_edition(self):
+        import json
+        index = json.loads(bb.word_index(self.bundles))
+        self.assertEqual(index["docs/training/non-person-identity/index.md"],
+                         {"page": "index.docx", "bundle": "training-non-person-identity-bundle.docx",
+                          "title": "Learning path: Non-Person Identity in Microsoft Entra ID"})
+        # A one-page edition is the chapter file, so only the page link shows.
+        self.assertEqual(index["docs/books/guides/service-account-migration.md"],
+                         {"page": "service-account-migration.docx"})
+        self.assertNotIn("docs/downloads.md", index)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -14,6 +14,7 @@ rsvg-convert if any bundled page uses an SVG image):
     python3 scripts/build_bundles.py --list             # show manifests, build nothing
     python3 scripts/build_bundles.py --out DIR --jobs N
     python3 scripts/build_bundles.py --chapters _site   # also one file per page
+    python3 scripts/build_bundles.py --word-index       # rewrite assets/word-downloads.json
 
 Default output directory: _site/downloads (the site's /downloads/ URL).
 The "Deploy Quarto Site" workflow runs
@@ -47,6 +48,13 @@ For each bundle the script:
      (docs/images/covers/light/, from scripts/covers/build_covers.py) above
      the title, on the bundle and on each of its chapter files.
 
+Download (Word) links: assets/word-downloads.json maps each bundled page to
+its chapter file and its bundle. assets/fmw-word-download.lua reads it and
+assets/partials/title-block.html shows "Download (Word)" under the page title.
+Rewrite it with --word-index after changing bundles.yml (a unit test checks it
+is current). Published pages no bundle lists must be named under `site_only`
+in bundles.yml; any other is reported (see uncovered_pages).
+
 After building everything, the script checks that every download link to
 downloads/*.docx on a published page points at a file that was built, and
 fails if one does not.
@@ -76,6 +84,7 @@ CONFIG = REPO / "scripts/bundles.yml"
 FILTER = REPO / "scripts/bundle-filter.lua"
 TABLES = REPO / "assets/landscape.lua"   # balanced table widths; landscape for wide tables
 DEFAULT_OUT = REPO / "_site/downloads"
+WORD_INDEX = REPO / "assets/word-downloads.json"   # read by assets/fmw-word-download.lua
 IMAGE_EXTS = {".png", ".jpg", ".jpeg", ".gif", ".svg", ".bmp", ".tif", ".tiff", ".emf", ".wmf"}
 GLOB_CHARS = set("*?[")
 
@@ -442,7 +451,7 @@ def ordered_tree(root: Path, rules: RenderRules, cache: dict) -> list[Path]:
 
 
 def load_bundles(rules: RenderRules) -> list[Bundle]:
-    cfg = yaml.safe_load(CONFIG.read_text())
+    cfg = yaml.safe_load(CONFIG.read_text(encoding="utf-8"))
     defaults = cfg.get("defaults") or {}
     bundles, seen = [], set()
     fm_cache: dict = {}
@@ -494,6 +503,40 @@ def load_bundles(rules: RenderRules) -> list[Bundle]:
             toc_depth=spec.get("toc_depth", defaults.get("toc_depth", 2)),
         ))
     return bundles
+
+
+def site_only_patterns() -> list[re.Pattern]:
+    cfg = yaml.safe_load(CONFIG.read_text(encoding="utf-8"))
+    return [glob_regex(g) for g in cfg.get("site_only") or []]
+
+
+def published_pages(rules: RenderRules) -> list[Path]:
+    pages = [p for p in (REPO / "docs").rglob("*.md") if rules.published(p)]
+    pages += [p for p in REPO.glob("*.qmd") if rules.published(p)]
+    return sorted(set(pages))
+
+
+def uncovered_pages(rules: RenderRules, bundles: list[Bundle]) -> list[str]:
+    """Published pages in no bundle and not listed as site_only in bundles.yml."""
+    listed = {p for b in bundles for p in b.pages}
+    site_only = site_only_patterns()
+    return [rel(p) for p in published_pages(rules)
+            if p not in listed and not any(rx.match(rel(p)) for rx in site_only)]
+
+
+def word_index(bundles: list[Bundle]) -> str:
+    """assets/word-downloads.json: page -> its chapter file and the first bundle listing it."""
+    index: dict[str, dict] = {}
+    for b in bundles:
+        for p in b.pages:
+            key = rel(p)
+            if key in index:
+                continue
+            entry = {"page": p.with_suffix(".docx").name}
+            if len(b.pages) > 1:
+                entry |= {"bundle": b.output, "title": b.title}
+            index[key] = entry
+    return json.dumps(index, indent=1, ensure_ascii=False, sort_keys=True) + "\n"
 
 
 def chapter_bundles(bundles: list[Bundle], site: Path, default_subtitle: str = "") -> list[Bundle]:
@@ -608,6 +651,39 @@ def add_svg_vectors(docx: Path, svg_to_png: dict) -> int:
                 zout.writestr(name, data)
     tmp.replace(docx)
     return added
+
+
+EXPLICIT_ID = re.compile(r"\{#([A-Za-z][\w:.-]*)(?=[\s}])")
+
+
+def unique_ids(staged: list[Path], tag: str) -> list[Path]:
+    """The bundle's page files, with explicit ids made unique across pages.
+
+    Pages written to stand alone can repeat an explicit id ({#version-history},
+    {#zta-lab-1}); pandoc warns about the repeat and the build fails. A later
+    page that repeats one gets a copy, next to its prepared file, where the id
+    and that page's own links to it carry a -<page number> suffix. The page
+    itself and its other bundles are unchanged.
+    """
+    seen: set[str] = set()
+    out = []
+    for n, path in enumerate(staged, start=1):
+        text = path.read_text(encoding="utf-8")
+        ids = set(EXPLICIT_ID.findall(text))
+        repeated = ids & seen
+        seen |= ids
+        if not repeated:
+            out.append(path)
+            continue
+        for old in sorted(repeated):
+            new = f"{old}-{n}"
+            text = re.sub(r"\{#" + re.escape(old) + r"(?=[\s}])", "{#" + new, text)
+            text = re.sub(r"\]\(#" + re.escape(old) + r"\)", f"](#{new})", text)
+            seen.add(new)
+        copy = path.with_name(f"{path.stem}.{tag}{path.suffix}")
+        copy.write_text(text, encoding="utf-8")
+        out.append(copy)
+    return out
 
 
 @dataclass
@@ -735,7 +811,8 @@ class Builder:
         cmd = self.pandoc + [
             "--from", "markdown+rebase_relative_paths",
             *([str(cover[0])] if cover else []),
-            *[str(self.prepared[p].staged) for p in b.pages],
+            *[str(f) for f in unique_ids([self.prepared[p].staged for p in b.pages],
+                                         hashlib.sha1(b.output.encode()).hexdigest()[:10])],
             "--output", str(output),
             "--metadata", f"title={b.title}",
             *(["--metadata", f"subtitle={b.subtitle}"] if b.subtitle else []),
@@ -811,6 +888,8 @@ def main() -> None:
     ap.add_argument("--jobs", type=int, default=os.cpu_count() or 2)
     ap.add_argument("--list", action="store_true", help="print each manifest and exit")
     ap.add_argument("--no-link-check", action="store_true", help="skip the download-link check")
+    ap.add_argument("--word-index", action="store_true",
+                    help=f"rewrite {WORD_INDEX.relative_to(REPO).as_posix()} (the pages' Download (Word) links) and exit")
     ap.add_argument("--chapters", type=Path, metavar="SITE",
                     help="also build one Word file per bundled page at SITE/<page path>.docx "
                          "(the page's 'Other Formats > MS Word' file)")
@@ -818,6 +897,12 @@ def main() -> None:
     started = time.monotonic()
     rules = RenderRules()
     bundles = load_bundles(rules)
+    for page in uncovered_pages(rules, bundles):
+        warn(f"{page} is published but in no bundle and not site_only in bundles.yml: it has no built Word file")
+    if args.word_index:
+        WORD_INDEX.write_text(word_index(bundles), encoding="utf-8", newline="\n")
+        log(f"Wrote {rel(WORD_INDEX)}")
+        return
     if args.only:
         unknown = set(args.only) - {b.output for b in bundles}
         if unknown:
