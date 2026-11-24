@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.033
+Lab 2 does it for real, in a test
+domain with one domain controller,
+
+2
+00:00:04.033 --> 00:00:08.188
+never production, as a Domain Admin,
+with a member server for the host.
+
+3
+00:00:08.188 --> 00:00:11.624
+Nobody has run it yet, so no
+step's output has been seen.
+
+4
+00:00:11.624 --> 00:00:14.582
+Steps one to four are the
+setup: the K D S root key,
+
+5
+00:00:14.582 --> 00:00:20.029
+backdated only in this single domain controller
+test domain and only if none exists,
+
+6
+00:00:20.029 --> 00:00:24.387
+the two O Us, the creators group with
+its right, and the pipeline's G M S A.
+
+7
+00:00:24.387 --> 00:00:29.162
+Step five creates the timesheet G M S
+A by hand, the way the pipeline would.
+
+8
+00:00:29.162 --> 00:00:31.512
+Step six, on the host after a restart,
+
+9
+00:00:31.512 --> 00:00:35.238
+installs and tests it, and sets
+a test service to run as it.
+
+10
+00:00:35.238 --> 00:00:38.406
+Step seven backs out the
+G M S A and its group,
+
+11
+00:00:38.406 --> 00:00:41.212
+and keeps the setup, which is made once.
+
+12
+00:00:41.212 --> 00:00:44.218
+In any domain with more
+than one domain controller,
+
+13
+00:00:44.218 --> 00:00:46.940
+use Effective Immediately
+and wait ten hours.

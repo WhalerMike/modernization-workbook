@@ -1,0 +1,21 @@
+{
+  "requestId": "REQ-2026-0301",
+  "requestedOn": "2026-11-16",
+  "approvedOn": "2026-11-18",
+  "approvers": ["timesheet.owner@contoso.example", "iam.approver@contoso.example"],
+  "status": "APPROVED",
+  "changeRecord": "CHG0041301",
+  "systemId": "SYS-0618",
+  "appShortName": "timesheet",
+  "accountType": "gMSA",
+  "proposedName": "gmsa-timesheet$",
+  "hosts": ["TIME01", "TIME02"],
+  "workload": "Service",
+  "needsSpn": false,
+  "spns": [],
+  "owners": ["timesheet.owner@contoso.example", "timesheet.backup@contoso.example"],
+  "sponsor": "hr.sponsor@contoso.example",
+  "sponsorIsFederalEmployee": true,
+  "riskTier": "R3",
+  "endDate": ""
+}

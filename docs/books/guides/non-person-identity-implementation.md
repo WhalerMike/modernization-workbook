@@ -523,6 +523,11 @@ This is [Book 02's Phase 4](../b02-identity/10-migrating-and-governing.md#phase-
 - **On a laptop, no tenant:** [Chapter 06, Lab 1](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#lab-1-fixtures-no-tenant) of *gMSAs, dMSAs and the Kerberos Island*
 - **In test domain:** [Chapter 06, Lab 2](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#lab-2-test-domain)
 - **As training:** [Module 8: Convert Kerberos accounts to gMSAs and dMSAs](../../training/non-person-identity/08-gmsa-dmsa-and-the-kerberos-island.md), with a knowledge check
+- **On a laptop, no tenant:** [Chapter 06, Lab 1](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#lab-1-fixtures-no-tenant) of *gMSAs, dMSAs and the Kerberos Island*
+- **In test domain:** [Chapter 06, Lab 2](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#lab-2-test-domain)
+- **On a laptop, no tenant:** [Chapter 12, Lab 1](../../project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.md#lab-1-fixtures-no-domain) of *The Managed Service Account Standard*
+- **In test domain and exports:** [Chapter 12, Lab 2](../../project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.md#lab-2-test-domain-and-exports)
+- **As training:** [Module 15: Your first gMSA: set up the forest, then create a new gMSA](../../training/non-person-identity/15-your-first-gmsa.md), with a knowledge check
 :::
 
 <!-- labs:end -->

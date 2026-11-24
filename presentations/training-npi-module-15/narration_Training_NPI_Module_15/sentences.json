@@ -1,0 +1,594 @@
+{
+ "1": [
+  [
+   0.1,
+   5.525,
+   "Welcome to Module 15 of the Non-Person Identity learning path: your first G M S A."
+  ],
+  [
+   5.575,
+   2.487,
+   "First you set up the forest, once."
+  ],
+  [
+   8.062,
+   3.362,
+   "Then you create a new G M S A for a new application."
+  ],
+  [
+   11.425,
+   10.5,
+   "It teaches two parts of the companion guide Service Accounts: set it up once, and a new G M S A for a new workload, with Chapters 6 and 12 of the developer workbook."
+  ],
+  [
+   21.925,
+   2.888,
+   "Take it after Module 1 and before Module 8."
+  ]
+ ],
+ "2": [
+  [
+   0.1,
+   1.312,
+   "Why this module?"
+  ],
+  [
+   1.363,
+   8.988,
+   "Every other lab in this path starts from an account that already exists: a user account used as a service, a standalone managed service account, or a secret."
+  ],
+  [
+   10.35,
+   3.938,
+   "You move its S P Ns, run in parallel, then disable it."
+  ],
+  [
+   14.287,
+   1.938,
+   "This module starts from nothing."
+  ],
+  [
+   16.225,
+   10.863,
+   "First the forest gets what every G M S A needs, once: a K D S root key, the O Us, a group that may create G M S As, and the pipeline's own G M S A."
+  ],
+  [
+   27.087,
+   10.3,
+   "Then a new application gets its G M S A from the first day, by the managed service account standard, with no S P N to move, no parallel run and no old account to disable."
+  ],
+  [
+   37.388,
+   7.5,
+   "That's why it comes before Module 8: Module 8 converts the accounts that already exist, into the forest this module sets up."
+  ]
+ ],
+ "3": [
+  [
+   0.1,
+   5.075,
+   "Here's what you'll be able to do by the end of this module, which takes about sixty minutes with Lab 1."
+  ],
+  [
+   5.125,
+   3.337,
+   "You'll set up a forest for G M S As in the right order."
+  ],
+  [
+   8.463,
+   5.45,
+   "You'll say when the backdated K D S key is allowed, and why a forest has only one key."
+  ],
+  [
+   13.912,
+   4.763,
+   "You'll follow a new workload's G M S A from the request to a working service."
+  ],
+  [
+   18.675,
+   6.6,
+   "You'll decide whether a new G M S A is outbound-only, and register an S P N when the workload needs one."
+  ],
+  [
+   25.275,
+   5.213,
+   "And you'll run Chapter 12's request check and Chapter 6's one-account plan on fixtures."
+  ],
+  [
+   30.488,
+   4.237,
+   "Before you start, finish Module 1 and read the standard's settings."
+  ],
+  [
+   34.725,
+   5.838,
+   "You need PowerShell 7.1 or later with Pester 5, and no domain or tenant for Lab 1."
+  ]
+ ],
+ "4": [
+  [
+   0.1,
+   2.913,
+   "Unit 1 is the setup, and the order matters."
+  ],
+  [
+   2.962,
+   3.7,
+   "First, the K D S root key, one per forest."
+  ],
+  [
+   6.662,
+   16.363,
+   "A Domain Admin or Enterprise Admin creates it on a domain controller, confirms it with the K D S service's event forty oh oh four, and then waits: domain controllers wait up to ten hours before they allow a G M S A to be created, so the key replicates first."
+  ],
+  [
+   23.025,
+   6.825,
+   "Second, the O Us: one for managed service accounts, and a holding O U for the disabled ones a migration retires."
+  ],
+  [
+   29.85,
+   15.838,
+   "Third, the creators group, and the right to create G M S A objects on that O U. Microsoft Learn names the right but gives no command, so the guide uses D S A C L S, which is design guidance: run it in a test domain first, then check it."
+  ],
+  [
+   45.688,
+   7.138,
+   "Fourth, the pipeline's own G M S A, made once by hand, by the standard, and then the group's only member."
+  ],
+  [
+   52.825,
+   4.362,
+   "After that, nobody needs Domain Admins to create a G M S A."
+  ]
+ ],
+ "5": [
+  [
+   0.1,
+   3.05,
+   "The K D S root key deserves its own slide."
+  ],
+  [
+   3.1,
+   10.262,
+   "In any forest, you create it with Add K D S Root Key, dash Effective Immediately, and then you wait, up to ten hours, before a G M S A can be created."
+  ],
+  [
+   13.363,
+   10.125,
+   "Learn's K D S page offers a key backdated ten hours, but only for a test environment with one domain controller, and Learn's containers page says not to use it in production."
+  ],
+  [
+   23.488,
+   1.812,
+   "So: never in production."
+  ],
+  [
+   25.3,
+   1.475,
+   "And create only one."
+  ],
+  [
+   26.775,
+   12.137,
+   "Learn says more than one key makes G M S As start failing after a password rotation, and a deleted and re-created key can stay cached, so the K D C has to be restarted on every domain controller."
+  ]
+ ],
+ "6": [
+  [
+   0.1,
+   4.9,
+   "Unit 2 follows one new application, timesheet, a service on two hosts."
+  ],
+  [
+   4.95,
+   3.925,
+   "Its owner asks for a G M S A with no account to supersede."
+  ],
+  [
+   8.875,
+   8.838,
+   "SailPoint approves, and Chapter 12 checks every field; the row it writes for Chapter 6 names the new G M S A itself, because there's no old account."
+  ],
+  [
+   17.712,
+   10.2,
+   "The pipeline runs Chapter 6's one-account plan: the service-account O U, A E S two fifty-six, thirty days, its own hosts' group, and outbound-only."
+  ],
+  [
+   27.913,
+   5.088,
+   "Each host restarts to pick up its group, then installs the G M S A and tests it."
+  ],
+  [
+   33.0,
+   5.1,
+   "Then the service is switched to it, with a blank password, and given only the rights it needs."
+  ],
+  [
+   38.1,
+   7.475,
+   "And look at what's skipped: no delegation to carry, no S P N to move, no thirty-day parallel run, no account to disable."
+  ],
+  [
+   45.575,
+   4.463,
+   "Those steps exist to retire an old account, and a new application has none."
+  ]
+ ],
+ "7": [
+  [
+   0.1,
+   2.6,
+   "Does the new G M S A need an S P N?"
+  ],
+  [
+   2.65,
+   5.088,
+   "Timesheet is a service that only calls out, so nothing authenticates to it with Kerberos."
+  ],
+  [
+   7.737,
+   4.188,
+   "Its G M S A is outbound-only, which is the standard's default."
+  ],
+  [
+   11.925,
+   8.488,
+   "Visitor is an I I S site that browsers reach with Kerberos, so its G M S A needs the S P N H T T P slash visitor."
+  ],
+  [
+   20.413,
+   3.775,
+   "It isn't outbound-only, and the reason is recorded in the request."
+  ],
+  [
+   24.188,
+   8.338,
+   "A person registers the S P N once nothing else holds it, with set S P N dash S, which Learn says checks for a duplicate before it adds one."
+  ],
+  [
+   32.525,
+   3.763,
+   "Then set S P N dash L confirms it's on the G M S A."
+  ]
+ ],
+ "8": [
+  [
+   0.1,
+   0.887,
+   "Try it."
+  ],
+  [
+   0.938,
+   3.938,
+   "Lab 1 runs in the non-person identity folder, with no domain."
+  ],
+  [
+   4.875,
+   8.713,
+   "Step one runs the kit's tests of Microsoft Learn's own K D S and G M S A procedures, against stand-ins for the Active Directory cmdlets."
+  ],
+  [
+   13.588,
+   2.987,
+   "Six pass, each a fact about Learn's pages."
+  ],
+  [
+   16.575,
+   6.062,
+   "Get K D S Root Key returns the key's value itself, so only an admin who would create the key runs it."
+  ],
+  [
+   22.637,
+   4.075,
+   "The backdated key is for a test environment with one domain controller."
+  ],
+  [
+   26.712,
+   9.637,
+   "Learn's G M S A sample sets its retrievers at creation, and sets no Kerberos encryption type, which is why the standard adds A E S two fifty-six."
+  ],
+  [
+   36.35,
+   3.975,
+   "And installing the G M S A on each host is a person's step."
+  ]
+ ],
+ "9": [
+  [
+   0.1,
+   5.013,
+   "Step two runs Chapter 12's request check on three approved requests for new workloads."
+  ],
+  [
+   5.062,
+   5.125,
+   "The domain has no G M S A yet, so there's nothing to certify or retire."
+  ],
+  [
+   10.188,
+   3.025,
+   "Two requests pass: timesheet and visitor."
+  ],
+  [
+   13.213,
+   1.012,
+   "One is held."
+  ],
+  [
+   14.225,
+   1.538,
+   "Step three reads why."
+  ],
+  [
+   15.762,
+   5.088,
+   "Its name is nineteen characters before the dollar sign, and the standard allows fifteen."
+  ],
+  [
+   20.85,
+   3.763,
+   "And it names only one owner, where the standard needs exactly two."
+  ],
+  [
+   24.613,
+   2.987,
+   "SailPoint approved it, and the code still holds it."
+  ],
+  [
+   27.6,
+   7.362,
+   "The approvers decide on the purpose and the risk; the code checks the standard, field by field, before anything is created."
+  ]
+ ],
+ "10": [
+  [
+   0.1,
+   3.55,
+   "Step four reads what Chapter 12 hands to Chapter 6."
+  ],
+  [
+   3.6,
+   5.487,
+   "Two rows, one for each request that passed, each with its request and its change record."
+  ],
+  [
+   9.088,
+   1.863,
+   "Look at the first two columns."
+  ],
+  [
+   10.95,
+   2.975,
+   "In a migration, the first one is the old account."
+  ],
+  [
+   13.925,
+   3.837,
+   "Here it's the new G M S A itself, because there's no old account."
+  ],
+  [
+   17.762,
+   5.775,
+   "And the retrievers file gives each G M S A its own domain local group of the hosts that run it."
+  ]
+ ],
+ "11": [
+  [
+   0.1,
+   6.875,
+   "Step five builds Chapter 6's one-account plan, the plan for a G M S A that replaces no account."
+  ],
+  [
+   6.925,
+   6.2,
+   "One action: create G M S A, run by the pipeline, with its request and change record."
+  ],
+  [
+   13.125,
+   7.188,
+   "Its precheck names two things: the K D S root key must be ready, and the G M S A must not exist yet."
+  ],
+  [
+   20.312,
+   9.613,
+   "The parameters are the standard's: the service-account O U, the hosts' group as the only retriever, A E S two fifty-six, thirty days, and outbound-only."
+  ],
+  [
+   29.925,
+   5.15,
+   "A name that breaks the standard, like step three's, makes the plan throw instead of planning."
+  ]
+ ],
+ "12": [
+  [
+   0.1,
+   9.287,
+   "Step six dry-runs the plan, as the pipeline, with its approved hash, in a copy of the fictional forest before its setup, with no K D S root key."
+  ],
+  [
+   9.338,
+   4.737,
+   "The create is skipped, and the detail says why: K D S root key missing."
+  ],
+  [
+   14.075,
+   2.025,
+   "That's why Unit 1 comes first."
+  ],
+  [
+   16.1,
+   5.175,
+   "Step seven runs the same plan, with the same hash, in the forest after its setup."
+  ],
+  [
+   21.275,
+   3.075,
+   "Now the pipeline would send New A D Service Account."
+  ],
+  [
+   24.35,
+   2.862,
+   "Nothing is sent in either run: they're dry runs."
+  ],
+  [
+   27.212,
+   3.362,
+   "Step eight runs the module's nine tests, and cleans up."
+  ]
+ ],
+ "13": [
+  [
+   0.1,
+   8.088,
+   "Lab 2 does it for real, in a test domain with one domain controller, never production, as a Domain Admin, with a member server for the host."
+  ],
+  [
+   8.137,
+   3.487,
+   "Nobody has run it yet, so no step's output has been seen."
+  ],
+  [
+   11.625,
+   12.762,
+   "Steps one to four are the setup: the K D S root key, backdated only in this single domain controller test domain and only if none exists, the two O Us, the creators group with its right, and the pipeline's G M S A."
+  ],
+  [
+   24.387,
+   4.775,
+   "Step five creates the timesheet G M S A by hand, the way the pipeline would."
+  ],
+  [
+   29.163,
+   6.075,
+   "Step six, on the host after a restart, installs and tests it, and sets a test service to run as it."
+  ],
+  [
+   35.237,
+   5.975,
+   "Step seven backs out the G M S A and its group, and keeps the setup, which is made once."
+  ],
+  [
+   41.212,
+   5.725,
+   "In any domain with more than one domain controller, use Effective Immediately and wait ten hours."
+  ]
+ ],
+ "14": [
+  [
+   0.1,
+   1.6,
+   "The federal requirement."
+  ],
+  [
+   1.65,
+   5.925,
+   "The standard's steps each name what they support, and these are the rows this module's labs produce evidence for."
+  ],
+  [
+   7.575,
+   12.838,
+   "The request check in S1 supports A C two, Account Management, I A four, Identifier Management, and C M eight, System Component Inventory, in nist special publication eight hundred fifty-three."
+  ],
+  [
+   20.413,
+   12.012,
+   "The approval in S3 supports A C two, C M three, Configuration Change Control, and A C five, Separation of Duties, with the request and change carried on every write in the plan."
+  ],
+  [
+   32.425,
+   13.75,
+   "The create in S4 supports A C six, Least Privilege, I A five, Authenticator Management, C M three and A C two enhancement one, automated account management, with the plan's hash and its results."
+  ],
+  [
+   46.175,
+   8.062,
+   "And the install in S5 supports A C six, A C six enhancement five, and C M six, Configuration Settings."
+  ],
+  [
+   54.237,
+   4.625,
+   "K S Is are fed-ramp twenty X indicators for cloud service providers."
+  ],
+  [
+   58.862,
+   3.8,
+   "A row provides evidence for a control; the assessor decides."
+  ]
+ ],
+ "15": [
+  [
+   0.1,
+   2.05,
+   "Check yourself with two questions."
+  ],
+  [
+   2.1,
+   4.25,
+   "First: when may you use the K D S root key backdated ten hours?"
+  ],
+  [
+   6.35,
+   5.438,
+   "The answer is b: only in a test environment with one domain controller, never in production."
+  ],
+  [
+   11.787,
+   5.338,
+   "Second: a new I I S site needs the S P N H T T P slash visitor."
+  ],
+  [
+   17.125,
+   1.5,
+   "What does the standard say?"
+  ],
+  [
+   18.625,
+   11.675,
+   "The answer is b: create the G M S A without the outbound-only restriction, record why, and register the S P N with set S P N dash S, which checks for duplicates first."
+  ],
+  [
+   30.3,
+   3.663,
+   "Outbound-only is for a G M S A with no S P N."
+  ],
+  [
+   33.962,
+   4.3,
+   "The module page has three more questions, each linked to the section that answers it."
+  ]
+ ],
+ "16": [
+  [
+   0.1,
+   1.025,
+   "To sum up."
+  ],
+  [
+   1.075,
+   11.35,
+   "A forest is set up for G M S As once: one K D S root key, aged ten hours, the O Us, the creators group with its delegated right, and the pipeline's own G M S A."
+  ],
+  [
+   12.425,
+   5.25,
+   "After that, a new application's G M S A follows the standard from the first day."
+  ],
+  [
+   17.675,
+   9.787,
+   "It's requested and checked, planned and created by the pipeline with the standard's settings, installed and tested on its hosts, and given to the workload with a blank password."
+  ],
+  [
+   27.462,
+   5.275,
+   "It's outbound-only unless the workload needs an S P N, and it has nothing to migrate from."
+  ],
+  [
+   32.737,
+   6.138,
+   "Next, Module 8 converts the Kerberos accounts that already exist, into the forest you just set up."
+  ]
+ ]
+}
