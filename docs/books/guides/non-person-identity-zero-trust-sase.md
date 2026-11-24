@@ -11,6 +11,9 @@ lifecycle_review: 2027-05-01
 research-status: draft
 research-type: implementation guide
 research-book: "Books 02, 04, 06, 09, 11"
+review-status: approved
+reviewed-sha256: 530db19700e026f2781f59bac794e06d485c100b3acf355253f3c17d22aee6f0
+last-reviewed: 2026-11-24
 ---
 # Non-Person Identity: Zero Trust, SASE and Other Clouds
 
