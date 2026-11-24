@@ -12,6 +12,7 @@ New chapter, first pass of 2026-11-20, at the program owner's request of Novembe
 | 6 | Interval only at creation; always configure AES | Context | verified | `np12-gmsa-manage` |
 | 7 | Control-to-KSI rows | Federal requirements | verified against Book 13, Appendix A's rows re-read from FedRAMP the same day | Book 13, Appendix A |
 | 8 | Never delete the original account when a dMSA migration is finalized (in case you need to revert); `msDS-ManagedAccountPrecededByLink` on the dMSA names the superseded account; the superseded account's `msDS-SupersededManagedServiceAccountLink` and state attribute (spelled `msDS-SupersededAccountState` at the start and `msDS-SupersededServiceAccountState` at completion on the same page) | Rules (Retirement); the code | verified Nov 22, 2026 (set-up page ms.date 2025-05-30; overview ms.date 2025-05-30), at the program owner's request of Nov 22, 2026 that the retirement list never offer such an account for deletion | `np12-dmsa-setup` |
+| 9 | Checklist (November 24, 2026): a deleted account's CyberArk vault entry goes in the same decommission ticket; no gMSA or dMSA is onboarded in CyberArk | Checklist | design guidance; CyberArk's pages don't mention managed accounts | Service accounts guide, "CyberArk hand-offs" and "CyberArk across the migration" |
 
 ## Research gaps (rows 111 to 119)
 

@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 9f61f93f168e185806f50169bc0320c5b8bfb30ef9544ab883538492816091e3
-last-reviewed: 2026-11-22
+reviewed-sha256: b2aaab5fa40bc67daeec4e097f706d42398333a5ddf218847ad95b81f63185c3
+last-reviewed: 2026-11-24
 ---
 # Chapter 12 — The Managed Service Account Standard
 
@@ -385,6 +385,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The agency lines it
 - [ ] Every account's certification is current for its risk tier, and every revoke has a ServiceNow finding.
 - [ ] Defender for Identity lists no user-type service account the register doesn't plan to convert.
 - [ ] Nothing was deleted that wasn't a delete candidate on the retirement list, and a person deleted it through the decommission ticket.
+- [ ] Each deleted account that was vaulted in CyberArk had its vault entry deleted or archived in the same decommission ticket, and no gMSA or dMSA is onboarded in CyberArk ([service accounts guide, CyberArk hand-offs](../../../books/guides/service-account-migration.md#msa-standard-cyberark); design guidance).
 - [ ] Each run's `evidence.json` and `manifest.json` are filed with the change record.
 
 ::: {.callout-tip}

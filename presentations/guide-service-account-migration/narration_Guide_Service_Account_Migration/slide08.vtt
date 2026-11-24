@@ -1,103 +1,128 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.000
+00:00:00.100 --> 00:00:01.150
 Who does what.
 
 2
-00:00:01.000 --> 00:00:05.973
+00:00:01.150 --> 00:00:05.577
 An owner asks for, changes or retires an
 account in the agency's system access
 
 3
-00:00:05.973 --> 00:00:09.525
+00:00:05.577 --> 00:00:08.775
 management tool, which hands
 the request to SailPoint
 
 4
-00:00:09.525 --> 00:00:12.525
+00:00:08.775 --> 00:00:11.475
 and never approves or
 writes anything itself.
 
 5
-00:00:12.525 --> 00:00:16.280
+00:00:11.475 --> 00:00:14.936
 SailPoint approves every
 request, whatever its risk tier,
 
 6
-00:00:16.280 --> 00:00:20.192
+00:00:14.936 --> 00:00:18.542
 aggregates the accounts from
 Active Directory and Entra I D,
 
 7
-00:00:20.192 --> 00:00:23.713
+00:00:18.542 --> 00:00:21.787
 correlates their owners,
 and runs the certifications.
 
 8
-00:00:23.713 --> 00:00:25.369
+00:00:21.787 --> 00:00:23.269
 It never writes a G M S A.
 
 9
-00:00:25.369 --> 00:00:29.881
+00:00:23.269 --> 00:00:27.301
 ServiceNow holds the change
 record, the typed findings and
 
 10
-00:00:29.881 --> 00:00:34.300
+00:00:27.301 --> 00:00:31.251
 the decommission ticket, and
 closes a task only on a re-read.
 
 11
-00:00:34.300 --> 00:00:38.242
+00:00:31.251 --> 00:00:35.187
 The pipeline runs the approved
 plan: it creates the G M S A,
 
 12
-00:00:38.242 --> 00:00:43.212
+00:00:35.187 --> 00:00:40.150
 sets its retriever group, and disables
 and moves a superseded account.
 
 13
-00:00:43.212 --> 00:00:47.862
+00:00:40.150 --> 00:00:44.413
 It never runs a D M S A step,
 an uninstall or a delete.
 
 14
-00:00:47.862 --> 00:00:51.980
+00:00:44.413 --> 00:00:48.270
 Those are a person's: a Domain
 Admin runs the D M S A steps,
 
 15
-00:00:51.980 --> 00:00:54.787
+00:00:48.270 --> 00:00:50.900
 and a person uninstalls and deletes.
 
 16
-00:00:54.787 --> 00:00:58.350
+00:00:50.900 --> 00:00:54.375
 No person clicks through a portal
 to do what the pipeline does.
 
 17
-00:00:58.350 --> 00:01:03.267
+00:00:54.375 --> 00:00:58.995
+CyberArk keeps the old account's password
+in its vault until the account is deleted,
+
+18
+00:00:58.995 --> 00:01:02.945
+and an account kept on Kerberos until
+its end date; when a workload moves,
+
+19
+00:01:02.945 --> 00:01:06.762
+its service comes off the vaulted
+account's usages in the same change.
+
+20
+00:01:06.762 --> 00:01:09.485
+CyberArk never holds a
+G M S A or a D M S A,
+
+21
+00:01:09.485 --> 00:01:15.563
+because Active Directory manages their
+passwords and no person ever knows them.
+
+22
+00:01:15.563 --> 00:01:20.085
 The pipeline's own identity, G M S A
 dash M S A pipe, is itself a G M S A,
 
-18
-00:01:03.267 --> 00:01:08.667
+23
+00:01:20.085 --> 00:01:25.052
 with only the rights its calls need:
 membership of the creator group,
 
-19
-00:01:08.667 --> 00:01:14.838
+24
+00:01:25.052 --> 00:01:30.728
 D L G M S A Creators, write of the retriever
 attribute on the accounts it creates,
 
-20
-00:01:14.838 --> 00:01:19.562
+25
+00:01:30.728 --> 00:01:35.074
 and disable and move into the
 holding organizational unit.
 
-21
-00:01:19.562 --> 00:01:23.260
+26
+00:01:35.074 --> 00:01:38.690
 It has two owners, a sponsor
 and its own certification.
