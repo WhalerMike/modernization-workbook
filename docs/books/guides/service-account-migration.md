@@ -33,7 +33,7 @@ How to compare every kind of service identity the program will meet, choose a ta
 
 ::: {.callout-tip}
 ## Watch, present or train
-**Narrated deck (about 27 minutes, captions)**: the problem, the kinds compared, the decision path, the managed service account standard, the three migrations, what can't move, the requirements and the dangers, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-service-account-migration) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Service_Account_Migration_Narrated). **Training:** [Module 12: Migrate a service account](../../training/non-person-identity/12-service-account-migration.md) of the Non-Person Identity learning path teaches this guide with a lab on the kit's fixtures and a knowledge check. **Background video:** [Windows 2012 Active Directory Domain Services Videos (2)](https://learn.microsoft.com/en-us/archive/blogs/nepapfe/windows-2012-active-directory-domain-services-videos-2), Part 3 of a Microsoft premier field engineer's video series on Active Directory in Windows Server 2012, covers group managed service accounts. It's an archived 2014 post on Microsoft Learn, recorded on Windows Server 2012, so its screens and versions are older than the program's Windows Server 2019 minimum; where it differs from this guide, the guide's current Learn pages win.
+**Narrated deck (about 27 minutes, captions)**: the problem, the kinds compared, the decision path, the managed service account standard, the three migrations, what can't move, the requirements and the dangers, as a Why / What / Who / How deck, on the [Presentations](../../presentations/index.md#guide-service-account-migration) page, or [▶ watch it in the browser](../../presentations/watch.html?v=Guide_Service_Account_Migration_Narrated). **Training:** [Module 12: Migrate a service account](../../training/non-person-identity/12-service-account-migration.md) of the Non-Person Identity learning path teaches this guide with a lab on the kit's fixtures and a knowledge check. [Module 15: Your first gMSA](../../training/non-person-identity/15-your-first-gmsa.md) teaches the standard's one-time setup and a new gMSA for a new workload. **Background video:** [Windows 2012 Active Directory Domain Services Videos (2)](https://learn.microsoft.com/en-us/archive/blogs/nepapfe/windows-2012-active-directory-domain-services-videos-2), Part 3 of a Microsoft premier field engineer's video series on Active Directory in Windows Server 2012, covers group managed service accounts. It's an archived 2014 post on Microsoft Learn, recorded on Windows Server 2012, so its screens and versions are older than the program's Windows Server 2019 minimum; where it differs from this guide, the guide's current Learn pages win.
 :::
 
 ## How to read this guide
@@ -325,6 +325,33 @@ Each step names who runs it, what it supports and the evidence it leaves. KSIs c
 : The managed service account standard, step by step (design guidance) {.striped .hover}
 
 **What isn't verified yet.** ServiceNow's Microsoft Active Directory spoke and a CMDB class for service accounts couldn't be confirmed in ServiceNow's documentation on November 20, 2026, so the standard doesn't use them: ServiceNow records and tracks, and the Chapter 06 plan writes. SailPoint's export field names for access requests and certification decisions aren't specified on the pages read, so Chapter 12 reads its own import format and says so.
+
+### A new gMSA for a new workload {#msa-standard-new-gmsa}
+
+Most of this guide moves an account that already exists. A new application, service, IIS site or scheduled task has no old account: it gets a gMSA from the start, by the same standard, with no SPN move, no parallel run and no account to disable. The [one-time setup](#msa-standard-setup) comes first; after that, each new workload is these steps:
+
+1. **Request, decide, approve (S1 to S3).** The owner asks in the agency's system access management tool, with no account to supersede. SailPoint approves; ServiceNow records the change. Chapter 12 checks every field of the approved request (the name, two owners, the sponsor, the hosts, the SPNs it needs) before anything is created, and writes the request's row for Chapter 06, whose old-account column is the new gMSA itself ([Chapter 12](../../project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.md)).
+2. **Create (S4).** The pipeline runs Chapter 06's one-account plan for a gMSA that replaces no account: the hosts' group `DL-gMSA-<app>-Hosts`, then [A3](#migration-a)'s command with the standard's settings, `gmsa-<app>` in `<service-account-ou>`, AES256, 30 days, and outbound-only when the workload needs no SPN.[^sam-gmsa-manage][^sam-gmsa-overview] The plan's precheck refuses to create it while the forest has no KDS root key old enough.[^sam-kds] By hand in the test domain, it's A3's outbound-only command:
+
+    ```powershell
+    New-ADGroup -Name "DL-gMSA-<app>-Hosts" -SamAccountName "DL-gMSA-<app>-Hosts" -GroupScope DomainLocal -Path "<groups-ou>"
+    Add-ADGroupMember -Identity "DL-gMSA-<app>-Hosts" -Members "<host>$"
+    New-ADServiceAccount -Name gmsa-<app> -DNSHostName gmsa-<app>.<domain-fqdn> -Path "<service-account-ou>" -RestrictToOutboundAuthenticationOnly -ManagedPasswordIntervalInDays 30 -PrincipalsAllowedToRetrieveManagedPassword "DL-gMSA-<app>-Hosts" -KerberosEncryptionType AES256
+    ```
+
+3. **Install and test (S5).** After each host restarts to pick up its group membership, [A4](#migration-a)'s `Install-ADServiceAccount` and `Test-ADServiceAccount` on each host; `True` on every host that will run the workload.[^sam-gmsa-manage][^sam-containers]
+4. **Configure the workload.** [A5](#migration-a)'s commands for a Windows service, a scheduled task or an IIS application pool, with the blank password Windows fills in.[^sam-sc-config][^sam-task][^sam-iis][^sam-entra-gmsa] There's no old account, so no delegation to carry and no SPN to move. Grant the gMSA only the rights the workload needs.[^sam-entra-gmsa]
+5. **An SPN only if the new workload needs one.** A workload that something authenticates to by Kerberos needs its SPN on the gMSA. Create that gMSA without `-RestrictToOutboundAuthenticationOnly`, record why in the request, and register the SPN once nothing else holds it; `setspn -S` checks for a duplicate before it adds one:[^sam-setspn]
+
+    ```powershell
+    setspn -S <service-class>/<host-fqdn> <DOMAIN>\gmsa-<app>$
+    setspn -L <DOMAIN>\gmsa-<app>$
+    ```
+
+    **Expected:** `setspn -L` lists the SPN on the gMSA.[^sam-sql-spn]
+6. **Register and close (S6), then run it like any other.** SailPoint aggregates the gMSA, Chapter 12's re-read closes the ServiceNow task, and S7 to S10 apply from then on. There's no parallel run and nothing to disable: those steps exist to retire an old account, and a new workload has none.
+
+The learning path's [Module 15](../../training/non-person-identity/15-your-first-gmsa.md) runs steps 1 and 2 on the kit's fixtures, and the setup and steps 3 to 5 in a test domain.
 
 ## Migration A: a user account to a gMSA {#migration-a}
 

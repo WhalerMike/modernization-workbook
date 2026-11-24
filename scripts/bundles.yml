@@ -80,6 +80,11 @@ bundles:
     subtitle: "A track implementation guide — Federal Modernization Workbook companion guide"
     root: docs/books/guides
     pages: [non-person-identity-implementation.md]
+  - output: non-person-identity-zero-trust-sase-guide.docx
+    title: "Non-Person Identity: Zero Trust, SASE and Other Clouds"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [non-person-identity-zero-trust-sase.md]
   - output: dp-consolidation-guide.docx
     title: "Distribution Point Consolidation: A Decision Guide Before You Fund a Refresh"
     subtitle: "A decision guide — Federal Modernization Workbook companion guide"

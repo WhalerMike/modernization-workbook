@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.650
+Step four reads what Chapter
+12 hands to Chapter 6.
+
+2
+00:00:03.650 --> 00:00:06.265
+Two rows, one for each
+request that passed,
+
+3
+00:00:06.265 --> 00:00:09.087
+each with its request
+and its change record.
+
+4
+00:00:09.087 --> 00:00:10.951
+Look at the first two columns.
+
+5
+00:00:10.951 --> 00:00:13.925
+In a migration, the first
+one is the old account.
+
+6
+00:00:13.925 --> 00:00:17.762
+Here it's the new G M S A itself,
+because there's no old account.
+
+7
+00:00:17.762 --> 00:00:20.571
+And the retrievers file
+gives each G M S A its
+
+8
+00:00:20.571 --> 00:00:23.540
+own domain local group of
+the hosts that run it.

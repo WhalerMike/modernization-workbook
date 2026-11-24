@@ -1,0 +1,21 @@
+{
+  "requestId": "REQ-2026-0303",
+  "requestedOn": "2026-11-17",
+  "approvedOn": "2026-11-19",
+  "approvers": ["kiosk.owner@contoso.example", "iam.approver@contoso.example"],
+  "status": "APPROVED",
+  "changeRecord": "CHG0041303",
+  "systemId": "SYS-0622",
+  "appShortName": "kioskreporting",
+  "accountType": "gMSA",
+  "proposedName": "gmsa-kioskreporting$",
+  "hosts": ["KIOSK01", "KIOSK02"],
+  "workload": "ScheduledTask",
+  "needsSpn": false,
+  "spns": [],
+  "owners": ["kiosk.owner@contoso.example"],
+  "sponsor": "facilities.sponsor@contoso.example",
+  "sponsorIsFederalEmployee": true,
+  "riskTier": "R3",
+  "endDate": ""
+}

@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.575
+Step six dry-runs the plan, as the
+pipeline, with its approved hash,
+
+2
+00:00:04.575 --> 00:00:09.387
+in a copy of the fictional forest before
+its setup, with no K D S root key.
+
+3
+00:00:09.387 --> 00:00:14.075
+The create is skipped, and the detail
+says why: K D S root key missing.
+
+4
+00:00:14.075 --> 00:00:16.100
+That's why Unit 1 comes first.
+
+5
+00:00:16.100 --> 00:00:21.275
+Step seven runs the same plan, with the
+same hash, in the forest after its setup.
+
+6
+00:00:21.275 --> 00:00:24.350
+Now the pipeline would send
+New A D Service Account.
+
+7
+00:00:24.350 --> 00:00:27.212
+Nothing is sent in either
+run: they're dry runs.
+
+8
+00:00:27.212 --> 00:00:30.580
+Step eight runs the module's
+nine tests, and cleans up.

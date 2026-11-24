@@ -51,6 +51,7 @@ After this module, you'll be able to:
 
 - [Module 1](01-inventory.md): the lab reads Chapter 01's register.
 - [Module 3](03-decide-the-target.md): the matrix sends Kerberos-only accounts to a gMSA or a dMSA.
+- [Module 15](15-your-first-gmsa.md): the forest's one-time setup for gMSAs (the KDS root key, the OUs, the creators group and the pipeline's gMSA), which this module's conversions assume.
 
 ## Unit 1: The gate and the end date (8 minutes)
 

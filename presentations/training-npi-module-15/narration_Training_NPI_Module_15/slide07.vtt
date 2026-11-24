@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.700
+Does the new G M S A need an S P N?
+
+2
+00:00:02.700 --> 00:00:05.089
+Timesheet is a service
+that only calls out,
+
+3
+00:00:05.089 --> 00:00:07.738
+so nothing authenticates
+to it with Kerberos.
+
+4
+00:00:07.738 --> 00:00:11.925
+Its G M S A is outbound-only,
+which is the standard's default.
+
+5
+00:00:11.925 --> 00:00:16.731
+Visitor is an I I S site that
+browsers reach with Kerberos,
+
+6
+00:00:16.731 --> 00:00:20.413
+so its G M S A needs the S
+P N H T T P slash visitor.
+
+7
+00:00:20.413 --> 00:00:24.188
+It isn't outbound-only, and the
+reason is recorded in the request.
+
+8
+00:00:24.188 --> 00:00:28.786
+A person registers the S P N once nothing
+else holds it, with set S P N dash S,
+
+9
+00:00:28.786 --> 00:00:32.526
+which Learn says checks for a
+duplicate before it adds one.
+
+10
+00:00:32.526 --> 00:00:36.290
+Then set S P N dash L
+confirms it's on the G M S A.

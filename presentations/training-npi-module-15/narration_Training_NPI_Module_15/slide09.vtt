@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.571
+Step two runs Chapter
+12's request check on
+
+2
+00:00:02.571 --> 00:00:05.113
+three approved requests for new workloads.
+
+3
+00:00:05.113 --> 00:00:10.187
+The domain has no G M S A yet, so
+there's nothing to certify or retire.
+
+4
+00:00:10.187 --> 00:00:13.213
+Two requests pass: timesheet and visitor.
+
+5
+00:00:13.213 --> 00:00:14.225
+One is held.
+
+6
+00:00:14.225 --> 00:00:15.763
+Step three reads why.
+
+7
+00:00:15.763 --> 00:00:18.968
+Its name is nineteen characters
+before the dollar sign,
+
+8
+00:00:18.968 --> 00:00:20.850
+and the standard allows fifteen.
+
+9
+00:00:20.850 --> 00:00:24.613
+And it names only one owner, where
+the standard needs exactly two.
+
+10
+00:00:24.613 --> 00:00:27.600
+SailPoint approved it, and
+the code still holds it.
+
+11
+00:00:27.600 --> 00:00:30.575
+The approvers decide on
+the purpose and the risk;
+
+12
+00:00:30.575 --> 00:00:34.970
+the code checks the standard, field
+by field, before anything is created.
