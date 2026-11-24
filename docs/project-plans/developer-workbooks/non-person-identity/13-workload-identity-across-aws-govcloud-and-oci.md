@@ -11,7 +11,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 3df3d087d4685063fa1489e978b2220abb1ae3a77b70110187788fb60deffc5b
+reviewed-sha256: 9e8fd053b3365960e9e2f5488f18f58c23eddda1a7615461485d2a7e3b301d87
 last-reviewed: 2026-11-24
 ---
 # Chapter 13 — Workload Identity Across AWS GovCloud (US) and OCI
