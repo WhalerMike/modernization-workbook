@@ -66,6 +66,8 @@ topics:
       build:
         - page: docs/books/guides/service-account-migration.md
           note: One service account at a time, from a user account to a gMSA, a dMSA or a Microsoft Entra workload identity; the detail under the implementation guide's Steps 2 and 5.
+        - page: docs/books/guides/non-person-identity-zero-trust-sase.md
+          note: What keeping a service account costs in Zero Trust and SASE terms, against moving the workload to a Microsoft Entra workload identity, including AWS GovCloud (US) and Oracle Cloud.
       evidence:
         - page: docs/books/guides/non-person-identity-implementation.md#evidence
           note: The evidence each gate keeps for the ISSO.

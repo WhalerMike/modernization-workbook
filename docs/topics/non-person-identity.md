@@ -50,6 +50,7 @@ The implementation guides, the developer workbook and its code.
 | [Non-Person Identity: An Implementation Guide](../books/guides/non-person-identity-implementation.md) | A step-by-step guide to governing service accounts and workload identities in the non-person identity track: inventory AD service accounts, MSAs and gMSAs, app registrations and service principals, managed identities, federated… |
 | [Building Non-Person Identity](../project-plans/developer-workbooks/non-person-identity/index.md) | A developer workbook for the Non-Person Identity Modernization project: a code-first companion for the developers who build its register of service accounts, service principals, managed identities and AI agents, the ownership check and… |
 | [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../books/guides/service-account-migration.md) | One service account at a time, from a user account to a gMSA, a dMSA or a Microsoft Entra workload identity; the detail under the implementation guide's Steps 2 and 5. |
+| [Non-Person Identity: Zero Trust, SASE and Other Clouds](../books/guides/non-person-identity-zero-trust-sase.md) | What keeping a service account costs in Zero Trust and SASE terms, against moving the workload to a Microsoft Entra workload identity, including AWS GovCloud (US) and Oracle Cloud. |
 
 : Build {.striped .hover}
 
