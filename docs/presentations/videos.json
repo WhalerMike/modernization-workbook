@@ -7972,43 +7972,43 @@
     "Who does what in the managed service account standard"
    ],
    [
-    683,
+    698,
     "The standard's settings, and the one-time setup"
    ],
    [
-    772,
+    787,
     "Requirements, KSIs and the evidence the ISSO keeps"
    ],
    [
-    848,
+    864,
     "The standard step by step, from request to retirement"
    ],
    [
-    949,
+    964,
     "Migration A: a user account to a gMSA, steps A1 to A4"
    ],
    [
-    1053,
+    1068,
     "Migration A: switch, move the SPNs, run 30 days, disable"
    ],
    [
-    1137,
+    1152,
     "Migration B: a user account to a Windows Server 2025 dMSA"
    ],
    [
-    1251,
+    1267,
     "Migration C: to a Microsoft Entra workload identity"
    ],
    [
-    1345,
+    1360,
     "Sending mail once the workload runs as a gMSA"
    ],
    [
-    1433,
+    1448,
     "Dangers, and how to avoid them"
    ],
    [
-    1520,
+    1535,
     "Where the kit and the labs take over"
    ]
   ],
@@ -20588,27 +20588,27 @@
     "Try it: the smoke test on synthetic objects"
    ],
    [
-    529,
+    551,
     "Try it: the rollback planned, refused, then dry-run"
    ],
    [
-    582,
+    603,
     "Try it: production's preflight, and the evidence check"
    ],
    [
-    635,
+    654,
     "Lab 2: the live test stage, then production"
    ],
    [
-    699,
+    721,
     "The federal requirement and evidence, every gate"
    ],
    [
-    764,
+    786,
     "Check yourself: two questions on the runbook"
    ],
    [
-    808,
+    829,
     "Summary: you've finished the learning path"
    ]
   ],

@@ -425,53 +425,63 @@
  ],
  "8": [
   [
-   0.05,
-   0.95,
+   0.1,
+   1.05,
    "Who does what."
   ],
   [
-   1.0,
-   11.525,
+   1.1,
+   10.375,
    "An owner asks for, changes or retires an account in the agency's system access management tool, which hands the request to SailPoint and never approves or writes anything itself."
   ],
   [
-   12.525,
-   11.188,
+   11.475,
+   10.312,
    "SailPoint approves every request, whatever its risk tier, aggregates the accounts from Active Directory and Entra I D, correlates their owners, and runs the certifications."
   ],
   [
-   23.712,
-   10.588,
+   21.788,
+   9.463,
    "It never writes a G M S A. ServiceNow holds the change record, the typed findings and the decommission ticket, and closes a task only on a re-read."
   ],
   [
-   34.3,
-   8.912,
+   31.25,
+   8.9,
    "The pipeline runs the approved plan: it creates the G M S A, sets its retriever group, and disables and moves a superseded account."
   ],
   [
-   43.212,
-   4.65,
+   40.15,
+   4.263,
    "It never runs a D M S A step, an uninstall or a delete."
   ],
   [
-   47.862,
-   6.925,
+   44.413,
+   6.487,
    "Those are a person's: a Domain Admin runs the D M S A steps, and a person uninstalls and deletes."
   ],
   [
-   54.788,
-   3.562,
+   50.9,
+   3.475,
    "No person clicks through a portal to do what the pipeline does."
   ],
   [
-   58.35,
-   21.212,
+   54.375,
+   12.387,
+   "CyberArk keeps the old account's password in its vault until the account is deleted, and an account kept on Kerberos until its end date; when a workload moves, its service comes off the vaulted account's usages in the same change."
+  ],
+  [
+   66.763,
+   8.8,
+   "CyberArk never holds a G M S A or a D M S A, because Active Directory manages their passwords and no person ever knows them."
+  ],
+  [
+   75.562,
+   19.512,
    "The pipeline's own identity, G M S A dash M S A pipe, is itself a G M S A, with only the rights its calls need: membership of the creator group, D L G M S A Creators, write of the retriever attribute on the accounts it creates, and disable and move into the holding organizational unit."
   ],
   [
-   79.562,
-   3.625,
+   95.075,
+   3.612,
    "It has two owners, a sponsor and its own certification."
   ]
  ],
