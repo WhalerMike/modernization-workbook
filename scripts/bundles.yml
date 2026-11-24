@@ -710,6 +710,7 @@ site_only:
   - docs/books/explainers/index.md
   - docs/training/index.md
   - docs/training/labs.md
+  - docs/training/lab-setup.md
   - docs/project-plans/index.md
   - docs/project-plans/developer-workbooks/index.md
   - docs/evaluations/index.md

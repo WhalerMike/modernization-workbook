@@ -31,6 +31,7 @@ listing:
       - "!index.md"
       - "!ms-automation-*.md"
       - "!labs.md"
+      - "!lab-setup.md"
       - "!ticket-to-machine/**"
       - "!hr-driven-identity/**"
       - "!privileged-access/**"
@@ -81,10 +82,10 @@ Each learning path's code downloads as one zip, rebuilt from the repository on e
 
 : Each learning path's code, and the folder its labs run from {.striped .hover}
 
-The PowerShell versions are the ones the kits' scripts declare with `#Requires -Version`. Each path's page has its exact commands under **Get the code**; the Microsoft Automation commands are [below](#get-the-microsoft-automation-code). They do three things:
+The PowerShell versions are the ones the kits' scripts declare with `#Requires -Version`. **First time?** [Set Up for the Labs](lab-setup.md) installs PowerShell 7, Python and Git, sets the execution policy, and has a Git Bash command guide. Each path's page has its exact commands under **Get the code**; the Microsoft Automation commands are [below](#get-the-microsoft-automation-code). They do three things:
 
 - **Unzip.** `Expand-Archive` in PowerShell, or `unzip -d` in Bash, puts the files where the table says. If you already used **Extract All**, the files are already there.
-- **Unblock.** Windows marks a downloaded zip as coming from the internet, and **Extract All** copies that mark onto every file. Under the default RemoteSigned execution policy, PowerShell then refuses to load the kit's scripts and modules (`Import-Module` says the file is not digitally signed). `Unblock-File` removes the mark. Run it only on a kit you downloaded from this site.
+- **Unblock.** Windows marks a downloaded zip as coming from the internet, and **Extract All** copies that mark onto every file. Under the RemoteSigned execution policy the labs need, PowerShell then refuses to load the kit's scripts and modules (`Import-Module` says the file is not digitally signed). `Unblock-File` removes the mark. Run it only on a kit you downloaded from this site.
 - **Check.** One command from the path's first lab, with the output it prints, so you know the kit runs before you start.
 
 Each zip also holds a `.txt` copy of every script, for mail systems and Microsoft 365 Copilot, which refuse `.ps1` and `.py` files. The labs use the originals. The Attribute-Driven Migration path's Module 3 needs a clone of the repository instead, because its steps call `git`.
