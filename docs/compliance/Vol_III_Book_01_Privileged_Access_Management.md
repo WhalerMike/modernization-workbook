@@ -988,13 +988,22 @@ is therefore where the cross-vendor coordinators earn the role:
 | Function (control) | Microsoft-native | Cross-vendor / multi-cloud |
 |---|---|---|
 | JIT elevation (AC-6) | Entra PIM (Azure/Entra) | AWS IAM Identity Center permission sets; OCI IAM policies |
-| Entitlement governance & access review (AC-2, AC-6) | Entra ID Governance | **SailPoint Identity Security Cloud** *(owned, FedRAMP Moderate)* — certifies privileged entitlements across CSPs + on-prem, on the HRIT identity SSOT |
+| Entitlement governance & access review (AC-2, AC-6) | Entra ID Governance | **SailPoint Identity Security Cloud** *(owned, FedRAMP Moderate)* — certifies privileged entitlements across Azure, AWS and on-prem, on the HRIT identity SSOT; OCI isn't covered by a documented connector (below) |
 | Credential vaulting, session isolation, rotation (AC-6, IA-5) | Key Vault (secrets) | **CyberArk** — vaults and brokers the standing accounts JIT cannot eliminate |
 | Cloud entitlement right-sizing (CIEM, AC-6) | Defender for Cloud CIEM *(Moderate)* | Prisma Cloud CIEM *(Moderate and High offerings)* / Wiz CIEM *(High)* |
 
 **SailPoint ISC** (owned, Moderate) is the cross-cloud entitlement-governance
-layer — it reviews and certifies who holds privileged access across Azure, AWS,
-OCI, and on-prem, sitting *on* the HRIT identity SSOT rather than replacing it;
+layer — it reviews and certifies who holds privileged access across Azure, AWS
+and on-prem, sitting *on* the HRIT identity SSOT rather than replacing it. Its
+[AWS connector](https://documentation.sailpoint.com/connectors/aws/help/integrating_aws/supported_features.html)
+aggregates IAM users, groups, policies and roles, and its
+[CIEM](https://documentation.sailpoint.com/saas/help/ciem/index.html) covers AWS,
+Azure and Google Cloud. SailPoint's documentation, read November 24, 2026, lists
+no Identity Security Cloud connector for OCI and leaves OCI out of CIEM; only
+[SailPoint Entro](https://documentation.sailpoint.com/entro/help/integrations/cloud-infrastructure/oracle-cloud-infrastructure-oci/index.html),
+a separate product, discovers OCI user API keys, read-only. Until a supported
+source exists, OCI IAM access is reviewed from OCI's own exports, or through a
+custom source the program builds (design guidance);
 **SailPoint NERM** governs non-employee privileged access (series carve-out).
 **CyberArk** vaults and session-isolates the standing privileged accounts JIT
 cannot remove — break-glass, service, and appliance-admin credentials. Verify

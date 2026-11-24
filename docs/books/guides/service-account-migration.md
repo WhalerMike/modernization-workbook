@@ -55,6 +55,8 @@ How to compare every kind of service identity the program will meet, choose a ta
 | `<app>` | The system's short name, used in the standard's account and group names |
 | `<service-account-ou>`, `<holding-ou>`, `<groups-ou>` | The distinguished names of the OU for managed service accounts, the OU disabled service accounts are moved to, and the OU for the standard's groups |
 | `<host>` | A host's computer name, without the trailing `$` |
+| `<delegated-spn>` | One SPN in the old account's `msDS-AllowedToDelegateTo` list, if it has one |
+| `<resource-computer>`, `<gmsa-dn>` | A back-end computer whose resource-based delegation trusts the old account, and the gMSA's distinguished name |
 | `<service>` | The Windows service's name, as `sc.exe` knows it |
 | `<task-path>`, `<task-name>` | The scheduled task's folder and name |
 | `<app-pool>` | The IIS application pool's name |
@@ -120,6 +122,20 @@ A service principal name (SPN) is how Kerberos finds the account behind a servic
 **Who registers it.** The account the SQL Server service runs as can register its own SPN at startup if it has the right to, which Learn's steps grant as "Validated write to service principal name"; otherwise a domain administrator registers it by hand.[^sam-sql-spn-register] This guide's steps move SPNs explicitly instead (A5), so the change is in the reviewed plan.
 
 **Two meanings of "owner".** The account an SPN is written on *holds* it, and only one account may. The program's **SPN owner** is a person: a named, enabled member who answers for an account's SPNs. Chapter 03 requires one for every account kept on Kerberos and every kept account with an SPN (NPI-MAT-06), and Chapter 06 checks it (NPI-KRB-05). The SPN owner confirms which services and clients use each SPN, approves moving it, is the person called when Kerberos to that service breaks, and makes sure it's removed when the account retires. The island list carries each kept account's SPNs and SPN owner to the program's SPN retirement (P4.6), which removes the SPNs that still depend on AD before AD is retired (design guidance for the duties; the requirement is Chapter 03's).
+
+**Common service classes, and where each matters here.**
+
+| Service class | What uses it | Which account holds it | Where it matters in this guide |
+|---|---|---|---|
+| `MSSQLSvc` | SQL Server's Database Engine, `MSSQLSvc/<host>:<port>` | The account the engine runs as: a gMSA after A5 | A5 moves it; a wrong mapping fails, a missing one falls back to NTLM[^sam-sql-spn-register] |
+| `HTTP` | IIS sites and other web services | The application pool's account when the pool runs as a domain account or gMSA; otherwise the computer | A5's IIS step. IIS does Windows authentication in kernel mode by default, and Learn says not to turn that off when a custom pool identity uses Kerberos.[^sam-iis-winauth] Which account decrypts the ticket, and the `useAppPoolCredentials` setting, are in Microsoft's archived IIS guidance only ([what couldn't be verified](#what-couldnt-be-verified)) |
+| `HOST`, and the classes mapped to it | The computer's own services | The computer account. A service running as LocalSystem or NetworkService "acts as the computer on the network",[^sam-localsystem] so it needs no SPN of its own; Active Directory can map other classes, such as `ldap`, to `host`[^sam-spnmappings] | Not moved: the computer keeps them. Don't copy a `HOST` SPN to a gMSA |
+| `ldap` | Directory services; on a domain controller, LDAP itself | The domain controller's computer account | LDAP-bind applications are an A7 and P4.6 dependency, not an SPN to move |
+| A custom class | An application that composes its own SPN | The account its installer or administrator registered it on[^sam-spn] | A1 finds it with `setspn -L`; A5 moves it like any other |
+
+: Common SPN service classes (design guidance for the last column) {.striped .hover}
+
+**Delegation names SPNs too.** Constrained delegation lists, on the account that delegates, the SPNs it may get tickets to: the `msDS-AllowedToDelegateTo` attribute "contains a list of Service Principal Names".[^sam-a2d2] Resource-based constrained delegation is set the other way round, on the back-end resource's account, naming the front-end accounts allowed to delegate to it (`PrincipalsAllowedToDelegateToAccount`).[^sam-kcd] So a move can break delegation in two ways: the old account delegated to something and the gMSA doesn't, or a back-end resource trusted the old account and doesn't trust the gMSA. A5's delegation check carries both across. An account with unconstrained delegation isn't moved this way at all: it's `KeepKerberos` (question 6).
 
 **The commands.** `setspn -L <account>` lists an account's SPNs; `setspn -Q <spn>` finds the account that holds one; `setspn -X` searches for duplicates.[^sam-setspn] The PowerShell equivalents for a move are A5's `Set-ADUser` and `Set-ADServiceAccount` with `-ServicePrincipalNames`.
 
@@ -393,6 +409,29 @@ Test-ADServiceAccount -Identity <gmsa-name>
 **Expected:** `True` on every host that will run the service. `False` means the host isn't an allowed retriever, its group membership isn't current, or it doesn't support the account's Kerberos encryption types;[^sam-gmsa-manage] fix that before going on.
 
 ### A5. Switch the workload, and move the SPNs
+
+Before moving the SPNs, check the old account's delegation and carry it to the gMSA in the same change ([SPNs and service accounts](#spns)):[^sam-a2d2][^sam-kcd][^sam-set-adsa][^sam-set-adac]
+
+```powershell
+# What the old account may delegate to (constrained delegation), and whether it uses protocol transition
+Get-ADUser -Identity <old-account> -Properties msDS-AllowedToDelegateTo, TrustedToAuthForDelegation, TrustedForDelegation |
+    Select-Object SamAccountName, TrustedForDelegation, TrustedToAuthForDelegation, msDS-AllowedToDelegateTo
+
+# Back-end resources that trust the old account (resource-based constrained delegation)
+Get-ADComputer -Filter * -Properties PrincipalsAllowedToDelegateToAccount |
+    Where-Object { $_.PrincipalsAllowedToDelegateToAccount -contains '<old-account-dn>' } |
+    Select-Object Name, PrincipalsAllowedToDelegateToAccount
+```
+
+**Expected:** `TrustedForDelegation` is `False`; if it's `True`, stop: the account is `KeepKerberos` (question 6). If `msDS-AllowedToDelegateTo` lists SPNs, give the gMSA the same list, and protocol transition if the old account had it; for each back-end resource listed, add the gMSA to its trusted accounts, keeping the old account until A7:
+
+```powershell
+Set-ADServiceAccount -Identity <gmsa-name> -Add @{'msDS-AllowedToDelegateTo' = @('<delegated-spn>')}
+Set-ADAccountControl -Identity '<gmsa-name>$' -TrustedToAuthForDelegation $true   # only if the old account had it
+Set-ADComputer -Identity <resource-computer> -PrincipalsAllowedToDelegateToAccount @('<old-account-dn>', '<gmsa-dn>')
+```
+
+Each is a write Chapter 06's plan doesn't make yet, so in production it's a person's step under the change record, reviewed like the plan (design guidance).
 
 Do this in one change window, because an SPN left on the old account while the service runs as the gMSA breaks Kerberos to the service: each SPN must be on exactly one account, the one the service runs as ([SPNs and service accounts](#spns); [Book 02, Chapter 11](../b02-identity/11-reference-deployment.md)).
 
@@ -998,6 +1037,7 @@ The per-account checklist. The track's gate checklist is the [implementation gui
 - **`sc.exe config` with `password= ""`.** The `sc.exe config` reference says a password is required for an account other than LocalSystem, while the Service Control Manager's API reference says the password must be NULL for a managed service account. The step verifies the outcome with `sc.exe qmanagedaccount`, which must report `TRUE`.
 - **Outbound-only with a retriever group.** Learn's *Manage group Managed Service Accounts* creates an outbound-only gMSA with `-DNSHostName`, `-ManagedPasswordIntervalInDays` and `-PrincipalsAllowedToRetrieveManagedPassword`, as A3 does; the `New-ADServiceAccount` reference's outbound-only parameter set lists none of the three (read November 20, 2026).[^sam-gmsa-manage] [^sam-new-adsa] A3 and the kit follow the how-to page, the only one that gives a usable gMSA; create one in the test domain first (Chapter 06's Lab 2) and confirm it with the read-back.
 - **CyberArk and managed service accounts.** CyberArk's privileged access manager pages read on November 24, 2026 (the Windows Services plugin and automatic life-cycle management) don't mention gMSAs or dMSAs, and don't say what the CPM does with a usage whose service now runs as a managed account. Nor do they say whether the scan lists a managed account. The guidance in [CyberArk and managed service accounts](#msa-standard-cyberark) avoids both questions: it removes the usage when the workload moves, and never onboards a managed account. Test both in the test domain. Only the certificate platform's page documents a gMSA; the pages read don't say whether CyberArk's own components can run as gMSAs.
+- **Which account decrypts an IIS site's Kerberos ticket.** Learn's current IIS reference documents kernel-mode authentication but not `useAppPoolCredentials`. Microsoft's archived IIS guidance (2011) says that with kernel mode on, a domain application pool account needs `useAppPoolCredentials="true"` so IIS decrypts the ticket with that account's password.[^sam-iis-archive] Whether a gMSA pool needs it, with its blank password, isn't documented: test Kerberos to the site in the test domain after A5, with `klist` on a client.
 - **The gMSA name length.** Learn's gMSA pages don't state a maximum name length; keep names short and test the create in the test domain.
 - **A gMSA on an Integrated Windows authentication receive connector (M1).** Learn documents the connector's Kerberos mechanism and the Send As permission, but no page shows a gMSA submitting SMTP end to end, and whether a given application's mail library authenticates with its process's credentials is the application's. Test M1 in the test domain before the switch.
 - **Graph tokens on an Arc-enabled host (M3).** The Arc page documents the local token endpoint; no page read shows `Connect-MgGraph -Identity` against an Arc agent, so the step calls the endpoint as C2 describes rather than giving a PowerShell connection.
@@ -1072,6 +1112,13 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 [^sam-spn-compose]: Microsoft Learn, "How Clients Compose a Service's SPN" (the SPN form; the service class and host required), <https://learn.microsoft.com/windows/win32/ad/how-clients-compose-a-serviceampaposs-spn> (accessed Nov 24, 2026).
 [^sam-kerberos-overview]: Microsoft Learn, "Kerberos authentication overview in Windows Server," <https://learn.microsoft.com/windows-server/security/kerberos/kerberos-authentication-overview> (accessed Nov 24, 2026).
 [^sam-setspn]: Microsoft Learn, "Setspn" (`-L`, `-Q`, `-S` after verifying that no duplicates exist, `-X`), <https://learn.microsoft.com/windows-server/administration/windows-commands/setspn> (accessed Nov 24, 2026).
+[^sam-iis-winauth]: Microsoft Learn, IIS configuration reference, "Windows Authentication <windowsAuthentication>" (`useKernelMode`, default true; don't disable it with Kerberos and a custom application pool identity), <https://learn.microsoft.com/iis/configuration/system.webserver/security/authentication/windowsauthentication/> (accessed Nov 24, 2026).
+[^sam-iis-archive]: Microsoft, archived blog on Learn, "Kernel-mode authentication" (May 5, 2011; `useAppPoolCredentials`), <https://learn.microsoft.com/archive/blogs/autz_auth_stuff/kernel-mode-authentication> (accessed Nov 24, 2026). Archived guidance, not a current product reference.
+[^sam-localsystem]: Microsoft Learn, "LocalSystem Account" and "NetworkService Account" (each "acts as the computer on the network"), <https://learn.microsoft.com/windows/win32/services/localsystem-account>, <https://learn.microsoft.com/windows/win32/services/networkservice-account> (accessed Nov 24, 2026).
+[^sam-spnmappings]: Microsoft Learn, "SPN-Mappings attribute" (`ldap/` SPNs mapped as equivalent to `host/`), <https://learn.microsoft.com/windows/win32/adschema/a-spnmappings> (accessed Nov 24, 2026).
+[^sam-a2d2]: Microsoft Learn, "ms-DS-Allowed-To-Delegate-To attribute," <https://learn.microsoft.com/windows/win32/adschema/a-msds-allowedtodelegateto> (accessed Nov 24, 2026).
+[^sam-kcd]: Microsoft Learn, "Kerberos Constrained Delegation Overview in Windows Server" (resource-based delegation set on the back-end account; `PrincipalsAllowedToDelegateToAccount` on `Set-ADComputer`, `Set-ADServiceAccount` and `Set-ADUser`), <https://learn.microsoft.com/windows-server/security/kerberos/kerberos-constrained-delegation-overview> (accessed Nov 24, 2026).
+[^sam-set-adac]: Microsoft Learn, "Set-ADAccountControl," `-TrustedToAuthForDelegation`, <https://learn.microsoft.com/powershell/module/activedirectory/set-adaccountcontrol> (accessed Nov 24, 2026).
 [^sam-mdi-spn]: Microsoft Learn, "Microsoft Defender for Identity classic security alerts," Suspected Kerberos SPN exposure (external ID 2410), <https://learn.microsoft.com/defender-for-identity/alerts-mdi-classic> (accessed Nov 24, 2026).
 [^sam-sql-gmsa]: Microsoft Learn, "Troubleshoot SQL Server setup, startup, and authentication failures with gMSAs," quick validation checklist (`sc.exe qc`, `Get-ADServiceAccount`, `Test-ADServiceAccount`, `sc.exe qmanagedaccount`), <https://learn.microsoft.com/troubleshoot/sql/database-engine/startup-shutdown/sql-server-setup-startup-authentication-issues-with-gmsas> (accessed Nov 9, 2026).
 [^sam-sc-config]: Microsoft Learn, "sc.exe config," `obj=` and `password=`, <https://learn.microsoft.com/windows-server/administration/windows-commands/sc-config>, and "ChangeServiceConfigA function," `lpPassword` for a managed service account, <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-changeserviceconfiga> (accessed Nov 9, 2026).
