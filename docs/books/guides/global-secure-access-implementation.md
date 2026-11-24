@@ -875,6 +875,8 @@ cd "C:\Program Files\Private Access Sensor\bin"
 
 The sensor installs in **Audit** mode. Learn's advice is to test with application SPNs first and protect the DC's own SPN only later, "to avoid any issues of admin lockout," and to assess NTLM use before restricting it.[^gsai-dc] The token is a credential: acquire it on a privileged access workstation, use it once, and clear the session *(Risk-based recommended)*.
 
+Service accounts sit behind these SPNs. A service that calls a protected SPN from a server without the Global Secure Access client needs an SPN exclusion, and an application published with Kerberos SSO keeps its own service account and SPN behind the connector: [*Non-Person Identity: Zero Trust, SASE and Other Clouds*](non-person-identity-zero-trust-sase.md#sase) covers both, and the [service accounts guide](service-account-migration.md#spns) covers SPNs.
+
 **Validate.** Learn's sensor test: with client and sensor off, `klist purge` then `klist get cifs/<server-fqdn>` succeeds; with the sensor on and the client off, SMB to the share is blocked; with both on, the ticket is issued after the Conditional Access prompt.[^gsai-dc]
 
 ```cmd

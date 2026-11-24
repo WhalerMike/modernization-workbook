@@ -637,7 +637,7 @@ There are **171** workbook decisions: 161 settled, 0 challenged and 10 supersede
 | **Rationale** | The cited federal notice does not exist. |
 | **Basis** | Workbook design |
 | **Sources** | None external: the choice rests on the pages it shaped. |
-| **Pages affected** | [Data Platform: SQL Server Identity](../books/b06-data-platform/index.md), [Devices and Endpoints](../books/b05-devices/index.md) |
+| **Pages affected** | [Data Platform: SQL Server Identity](../books/b06-data-platform/index.md), [Devices and Endpoints](../books/b05-devices/index.md), [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../books/guides/service-account-migration.md), [Non-Person Identity: Zero Trust, SASE and Other Clouds](../books/guides/non-person-identity-zero-trust-sase.md) |
 | **Date** | 2026-10-20 |
 | **Status** | settled |
 | **Defined in** | [#60](https://github.com/WhalerMike/modernization-workbook/pull/60), [#61](https://github.com/WhalerMike/modernization-workbook/pull/61) |

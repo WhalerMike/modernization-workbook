@@ -163,3 +163,8 @@ Mike, November 24, 2026: "Yes, extend the track to AWS GovCloud and OCI". The ve
 | R-24j | The CLI commands in 1g and 1h exist on the vendors' references; OCI's output fields weren't checked against the API reference | 1g; 1h | commands supported; output fields unverified | AWS and OCI CLI references |
 | R-24k | SCP denying access-key creation, owner tags as the join, the orphan rule for AWS and OCI | Step 3; Orphans | design guidance | WD-171 |
 
+## Revision 2026-11-24 — a third guide
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R-24l | The "Which guide?" box names *Non-Person Identity: Zero Trust, SASE and Other Clouds* | Which guide? | added | Mike, November 24, 2026 |

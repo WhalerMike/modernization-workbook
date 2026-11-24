@@ -160,6 +160,7 @@ pages:
   - docs/books/b00-orientation/04-the-principles.md
   - docs/books/b06-data-platform/01-what-windows-authentication-actually-is.md
   - docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md
+  - docs/books/guides/non-person-identity-zero-trust-sase.md
   - docs/reference/source-register.md
 - path: WindowsServerDocs/security/kerberos/passwords-overview.md
   url: https://learn.microsoft.com/windows-server/security/kerberos/passwords-overview
