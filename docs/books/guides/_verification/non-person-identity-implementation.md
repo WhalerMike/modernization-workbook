@@ -148,3 +148,18 @@ Mike, November 24, 2026, agreed that the service accounts guide is part of the N
 | R-24b | A "Which guide?" box in both guides; the gate checklist is this guide's | In this guide | added | — |
 | R-24c | Step 3 links to "Passwords, certificates or neither" and "CyberArk across the migration" | Step 3 | added | Service accounts guide |
 
+## Revision 2026-11-24 — AWS GovCloud (US) and OCI (WD-171)
+
+Mike, November 24, 2026: "Yes, extend the track to AWS GovCloud and OCI". The vendors' pages were read on November 24, 2026; each fact is footnoted on the page.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| R-24d | GovCloud: one IAM control plane, no global STS endpoint; no role between a GovCloud and a standard account; Roles Anywhere without CRL distribution points; no Access Analyzer policy generation; root keys only through AWS Support | 1g; 4f | supported by the source | AWS, "IAM in AWS GovCloud (US)" |
+| R-24e | The credential report lists all users, not service-specific credentials or keys beyond the first two, at most every four hours; `list-access-keys` lists the caller's keys unless a user is named; `list-roles` doesn't return `RoleLastUsed` | 1g | supported by the sources | AWS, "Generate credential reports"; AWS CLI reference |
+| R-24f | AWS: require temporary credentials with roles; Pod Identity recommended over IRSA; last accessed information; Access Analyzer unused-access findings are charged | 1g; Step 2; Step 3; 4f | supported by the sources | AWS, "Security best practices in IAM"; EKS service accounts page; "IAM Access Analyzer findings" |
+| R-24g | AWS to Entra: outbound identity federation (`GetWebIdentityToken`, RS256 or ES384); Entra lists AWS workloads and supports RS256-signed tokens only. GovCloud to Entra isn't documented: the Step 2 row says "once tested" | Step 2 | supported by the sources; the GovCloud path is unverified | AWS outbound federation page and CLI; Learn, workload identity federation and considerations |
+| R-24h | OCI: three API keys per user; auth tokens and customer secret keys don't expire, two each; instance principal certificates rotated multiple times a day; dynamic groups; OKE workload identity not with dynamic groups; anyone with access to an instance has its principal's rights; rotate API keys every 90 days or less; instance principals recommended | 1h; Step 2; Step 3; 4f | supported by the sources | Oracle pages cited on the page |
+| R-24i | OC2: home-region IAM calls; identity domains for tenancies created after January 17, 2023; the page doesn't state instance, resource or workload principal availability | 1h | supported by the source; availability unverified | Oracle, "Oracle US Government Cloud" |
+| R-24j | The CLI commands in 1g and 1h exist on the vendors' references; OCI's output fields weren't checked against the API reference | 1g; 1h | commands supported; output fields unverified | AWS and OCI CLI references |
+| R-24k | SCP denying access-key creation, owner tags as the join, the orphan rule for AWS and OCI | Step 3; Orphans | design guidance | WD-171 |
+

@@ -18,7 +18,7 @@ last-reviewed: 2026-11-24
 
 ::: {.callout-tip}
 ## Which guide?
-The Non-Person Identity track has two guides. [*Non-Person Identity: An Implementation Guide*](non-person-identity-implementation.md) runs the whole track as gates G1 to G6, for every non-person identity: AD service accounts, app registrations, managed identities and AI agents, with the tenant's credential and privilege rules. [*Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities*](service-account-migration.md) is part of the same track: the detail under the implementation guide's Steps 2 and 5, one account at a time, with the kinds compared, SPNs, the decision path, the managed service account standard, CyberArk's part and each migration by hand. Run the track and its gates from the first guide; migrate or standardize one account with the second. The gate checklist is the implementation guide's; the service accounts guide's checklist is the per-account one.
+The Non-Person Identity track has two guides. [*Non-Person Identity: An Implementation Guide*](non-person-identity-implementation.md) runs the whole track as gates G1 to G6, for every non-person identity: AD service accounts, app registrations, managed identities, AI agents, and the workload identities in AWS GovCloud (US) and OCI, with the tenant's credential and privilege rules. [*Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities*](service-account-migration.md) is part of the same track: the detail under the implementation guide's Steps 2 and 5, one account at a time, with the kinds compared, SPNs, the decision path, the managed service account standard, CyberArk's part and each migration by hand. Run the track and its gates from the first guide; migrate or standardize one account with the second. The gate checklist is the implementation guide's; the service accounts guide's checklist is the per-account one.
 :::
 
 ::: {.callout-note}
@@ -183,6 +183,59 @@ For every app registration and user-assigned managed identity, export its federa
 4. Record a sponsor who is a federal employee mastered in HR. A contractor can build or run a workload but can't be its only sponsor ([Book 17, Chapter 05](../b17-ai-identity/05-owners-sponsors-and-lifecycle.md#the-programs-rule-two-named-humans-and-a-record); the program applies the rule to all non-person identities, *design guidance*).
 5. Optionally tag service principals with custom security attributes such as `SystemId`, `Environment` and `Tier`. Microsoft suggests it for a filterable inventory and for ABAC decisions.[^npi-rbac-wid] [Step 4](#step-4-cut-privilege) uses the same attributes for Conditional Access filters.
 
+### 1g. AWS GovCloud (US) workload identities {#step-1g-aws}
+
+The program's AWS estate is in AWS GovCloud (US), partition `aws-us-gov` ([WD-157](../../about/decision-register.md#wd-157)), and the track covers its workload identities ([WD-171](../../about/decision-register.md#wd-171)). GovCloud has one IAM control plane and no global STS endpoint, so every call names a GovCloud Region.[^npi-aws-gov-iam] Run these read-only commands in PowerShell 7, in each account, with a role that can read IAM, and keep the files with the run (`list-access-keys` with no user name lists only the caller's own keys, so it runs once per user):[^npi-aws-cli]
+
+```powershell
+$r = 'us-gov-west-1'
+aws iam generate-credential-report --region $r   # run again until State is COMPLETE
+$csv = aws iam get-credential-report --region $r --query Content --output text
+[Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($csv)) | Set-Content credential-report.csv
+$users = (aws iam list-users --region $r --output json | ConvertFrom-Json).Users
+$users | ForEach-Object { (aws iam list-access-keys --user-name $_.UserName --region $r --output json | ConvertFrom-Json).AccessKeyMetadata } |
+    ConvertTo-Json -Depth 4 | Set-Content access-keys.json
+aws iam list-service-specific-credentials --all-users --region $r --output json > service-specific-credentials.json
+aws iam list-roles --region $r --output json > roles.json
+aws iam list-instance-profiles --region $r --output json > instance-profiles.json
+aws iam list-open-id-connect-providers --region $r --output json > oidc-providers.json
+aws rolesanywhere list-trust-anchors --region $r --output json > roles-anywhere-trust-anchors.json
+aws rolesanywhere list-profiles --region $r --output json > roles-anywhere-profiles.json
+```
+
+1. **The credential report** lists every IAM user with its password, its first two access keys (active, last rotated, last used) and its signing certificates. It leaves out service-specific credentials and any access key beyond the first two, which is why `list-access-keys` and `list-service-specific-credentials` run too; AWS generates a new report at most every four hours.[^npi-aws-credreport] Every active access key is a long-lived secret ([Step 3](#step-3-set-the-credential-rules)).
+2. **Roles.** `list-roles` returns each role's trust policy, whose principal says who can assume it: an AWS service such as EC2, ECS tasks, Lambda or EKS Pod Identity, an OIDC provider, or another account. It doesn't return when the role was last used; `aws iam get-role` does.[^npi-aws-cli] A role is a workload identity with no secret: the workload gets temporary credentials, through an instance profile on EC2, a task role on ECS, an execution role on Lambda, or EKS Pod Identity or IRSA on EKS.[^npi-aws-bp][^npi-aws-eks]
+3. **IAM Roles Anywhere** lets a workload outside AWS get a role's temporary credentials by presenting an X.509 certificate from a CA registered as a trust anchor; a profile picks the roles.[^npi-aws-rolesanywhere] Record each trust anchor's CA and each profile's roles. In GovCloud, revocation through the certificate's CRL distribution points isn't available, so CRLs have to be imported.[^npi-aws-gov-iam]
+4. **OIDC providers** are outside issuers the account trusts: an EKS cluster for IRSA, a CI/CD platform, or an Entra tenant. Each one is approved like a federated credential in 1d.
+5. **The root user** of a GovCloud account has no console sign-in, and its access keys come only through AWS Support.[^npi-aws-gov-iam] Record whether any exist.
+
+### 1h. OCI workload identities {#step-1h-oci}
+
+The program's Oracle Cloud tenancy is in Oracle's US Government Cloud (realm OC2), and Oracle says to make every IAM call against the tenancy's home region.[^npi-oci-oc2] Run these read-only commands with a user or principal that can read IAM, in PowerShell 7:[^npi-oci-cli]
+
+```powershell
+$users = (oci iam user list --all | ConvertFrom-Json).data
+$users | ConvertTo-Json -Depth 5 | Set-Content oci-users.json
+$creds = foreach ($u in $users) {
+    [pscustomobject]@{
+        User               = $u.name
+        ApiKeys            = (oci iam user api-key list --user-id $u.id | ConvertFrom-Json).data
+        AuthTokens         = (oci iam auth-token list --user-id $u.id | ConvertFrom-Json).data
+        CustomerSecretKeys = (oci iam customer-secret-key list --user-id $u.id | ConvertFrom-Json).data
+    }
+}
+$creds | ConvertTo-Json -Depth 6 | Set-Content oci-user-credentials.json
+oci iam dynamic-group list > oci-dynamic-groups.json
+oci iam policy list --compartment-id <tenancy-ocid> > oci-policies.json
+```
+
+1. **User credentials.** A user can hold up to three API signing keys; auth tokens and customer secret keys don't expire, two of each per user.[^npi-oci-creds] Every one a workload uses is a long-lived secret ([Step 3](#step-3-set-the-credential-rules)). The list commands return each credential's identifier, never the secret.[^npi-oci-cli]
+2. **Instance and resource principals.** A compute instance authenticates with certificates OCI creates and rotates "multiple times each day"; a function uses a resource principal token. Each is authorized through a dynamic group, whose matching rules decide which instances or resources are its members, and the policies that name that group.[^npi-oci-instance][^npi-oci-functions] Read every dynamic group's matching rules with the policies that use it: together they are the identity's permissions.
+3. **OKE workload identity** gives a pod an identity made of its cluster, namespace and service account, named in policy with `request.principal.type = 'workload'`; it can't be used with dynamic groups, and needs an enhanced cluster.[^npi-oci-oke]
+4. **What Oracle's OC2 page doesn't say.** It doesn't state whether instance principals, resource principals and OKE workload identity are available in OC2, and identity domains apply only to tenancies created after January 17, 2023.[^npi-oci-oc2] Confirm both for the program's tenancy.
+
+Join every AWS and OCI identity to a record and name its owners and sponsor as in 1f, using tags (`SystemId`, owner, sponsor) on the role, user or dynamic group. SailPoint's AWS connector aggregates IAM users and roles; SailPoint's documentation lists no connector for OCI, so OCI identities are reviewed from these exports ([Privileged Access Management book](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_01_Privileged_Access_Management.md)).
+
 ::: {.callout-important}
 ## Validate (G1 Inventory)
 - **VK-NPI-06** reports every AD account with password never expires, a password older than the program threshold (Book 02's script treats more than 365 days as high risk), an SPN, or a type other than gMSA or dMSA. For gMSAs and dMSAs it also reports where they depart from the [standard's settings](service-account-migration.md#msa-standard-settings): retrievers, encryption types and direct privileged-group membership as findings; name, password interval and OU as warnings. Every row is joined to a record or listed as unowned.
@@ -191,6 +244,7 @@ For every app registration and user-assigned managed identity, export its federa
 - **VK-NPI-08** lists every agent identity with a sponsor, where the tenant exposes Agent ID. State the availability: Agent ID is generally available in commercial and, with documented gaps, in GCC ([Book 17, Chapter 04](../b17-ai-identity/04-kinds-of-ai-identity.md#release-stage-licensing-and-government-clouds)).
 - Gate owner: the identity governance office, with the CMDB owner signing that the join is complete *(design guidance)*.
 - Requirements: AC-2, IA-4 and CM-8; KSIs KSI-IAM-SNU (AC-2), KSI-IAM-ELP and KSI-IAM-JIT (IA-4), and KSI-PIY-GIV (CM-8) ([evidence](#evidence)).
+- **AWS GovCloud (US) and OCI** ([1g](#step-1g-aws), [1h](#step-1h-oci)): every IAM user, access key, role, Roles Anywhere profile and OIDC provider, and every OCI user credential and dynamic group, is in the run's files and joined to a record with two owners and a sponsor. The developer workbook's read-only kit checks for them follow ([WD-171](../../about/decision-register.md#wd-171)).
 :::
 
 <!-- labs:begin try-g1 (generated by scripts/generate_labs.py; not part of the reviewed page) -->
@@ -226,6 +280,12 @@ Each identity ends in one of five places: retire it, convert it to a gMSA (or a 
 | gMSA | Moving to the cloud | **Managed identity** or **federated credential** |
 | IIS application pool or scheduled task identity | On premises, moving later | **gMSA now**; a managed identity or an Azure Automation runbook with one once moved |
 | App registration with a client secret | Any | Re-credential to a **managed identity**, then **federation**, then a **certificate** |
+| A workload on EC2, ECS, Lambda or EKS | AWS GovCloud (US) | An **IAM role**: instance profile, task role, execution role, or on EKS **Pod Identity**, which AWS recommends over IRSA[^npi-aws-eks] |
+| A workload outside AWS that calls AWS | On premises or another cloud | **IAM Roles Anywhere** with a certificate from the program's PKI; from Entra, an **OIDC token into an IAM role** once tested in the program's accounts ([WD-171](../../about/decision-register.md#wd-171)) |
+| A workload in AWS that calls Microsoft Graph or Azure | AWS GovCloud (US) | An app registration or user-assigned managed identity with a **federated credential** trusting the account's outbound issuer, tokens signed RS256, once tested; until then, an **app registration with a certificate**[^npi-aws-outbound][^npi-wif-considerations] |
+| An IAM user with an access key | AWS GovCloud (US) | **Replace it with a role**; keep the key only as an exception |
+| A workload on OCI Compute, OCI Functions or OKE | OCI (OC2) | An **instance principal**, a **resource principal**, or **OKE workload identity** ([1h](#step-1h-oci)) |
+| An OCI user's API signing key, auth token or customer secret key used by a workload | OCI (OC2) | **Replace it with a principal**; keep it only as an exception |
 
 : The decision for each identity, condensed from Book 02, Chapter 09; for an identity that starts as an AD account, the service accounts guide's decision path sets the order {.striped .hover}
 
@@ -262,6 +322,8 @@ The program's rules *(design guidance, from the books)*:
 - no long-lived secrets;
 - managed identities first, then federated credentials, then certificates, with client secrets only by documented exception;
 - every certificate in a vault and on a rotation calendar.
+
+**In AWS GovCloud (US) and OCI** ([WD-171](../../about/decision-register.md#wd-171)), the same order applies: AWS says to require workloads to use temporary credentials with IAM roles and, where possible, not to create access keys,[^npi-aws-bp] and Oracle recommends instance principals for software, with IAM passwords and API keys rotated every 90 days or less.[^npi-oci-creds-rules] An IAM user access key, an OCI API signing key, an auth token or a customer secret key that a workload still needs is a client-secret exception under [Book 13, Chapter 14](../b13-governance/14-application-secret-and-configuration-governance.md#secrets-governance), with a replacement date; OCI auth tokens and customer secret keys never expire, so the exception's date is the only limit. A service control policy can deny creating access keys outside a break-glass path (design guidance; [Book 10, Chapter 05](../b10-cloud-boundary/05-the-landing-zone.md) covers SCPs). A Roles Anywhere certificate goes on the certificate calendar like any other.
 
 Which identity holds a password, a certificate or neither, and CyberArk's part for each, are in the service accounts guide: [Passwords, certificates or neither](service-account-migration.md#credentials) and [CyberArk across the migration](service-account-migration.md#cyberark).
 
@@ -382,6 +444,11 @@ A policy can block a service principal from outside known IP ranges, when ID Pro
 
 Steps: for each Tier 1 single-tenant service principal, assign it directly to a location block that allows only the networks it runs from, plus a high-risk block, both report-only first ([Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md)). Govern managed identities through role assignments and access reviews instead.
 
+### 4f. AWS GovCloud (US) and OCI {#step-4f-aws-oci}
+
+- **AWS.** IAM's last accessed information shows the roles, users, permissions and credentials that are no longer used.[^npi-aws-bp] IAM Access Analyzer's unused-access findings report unused roles, unused access keys and passwords, and unused permissions, and AWS charges for them per role and user analyzed.[^npi-aws-aa] Its policy generation isn't available in GovCloud.[^npi-aws-gov-iam] Whether unused-access findings run there isn't stated on the pages read: check in the program's accounts. Roles can't delegate between a GovCloud account and a commercial AWS account.[^npi-aws-gov-iam]
+- **OCI.** Write each dynamic group's matching rules as narrowly as possible, and grant it only the policy statements its workload needs; Oracle warns that anyone who can sign in to an instance acts with its instance principal's rights.[^npi-oci-instance]
+
 ::: {.callout-important}
 ## Validate (G4 Least privilege)
 - **VK-NPI-05** lists every service principal holding a critical or high Graph application permission, or a privileged directory role. Each row is justified in its record with an approver and a review date, or removed. Read the permission type, not the suffix.
@@ -460,6 +527,8 @@ An application is orphaned when it has no named owner in the registry or the Own
 4. there are then 30 days to assign an owner or start decommissioning; an identity nobody claims is retired through the [decommissioning](#decommissioning-disable-first-then-delete) path.
 
 *Access & Privilege*, Chapter 06's policy runs the other way round: 30 days to assign an owner, then access suspended on day 31 ([Access & Privilege, Chapter 06](../b04-access/06-who-decides-access.md#ownership-changes-and-orphaned-apps)). The program takes the stricter order, which *AI Identity Governance* already uses for agents because an agent can act ([AI Identity Governance, Chapter 05](../b17-ai-identity/05-owners-sponsors-and-lifecycle.md#the-orphaned-agent)). For AD service accounts, an account with no owner after Step 1 is a retirement candidate, disabled under the same rule.
+
+**AWS and OCI identities follow the same rule.** An IAM role or user, or an OCI user or dynamic group, with no owner tag or record is an orphan. Disable before deleting where the platform allows it: an AWS access key can be set to inactive with `aws iam update-access-key --status Inactive`, and the key's last-used date from the credential report shows when it was last needed.[^npi-aws-credreport][^npi-aws-cli]
 
 **Inactivity is a second orphan signal.** Microsoft's service principal sign-in activity report gives the last time each service principal was used, as client or resource, app-only or delegated. The report is in preview and its Graph API is in beta. The API page lists it for the global service, so in a GCC tenant, which uses the commercial service, it's available.[^npi-sp-activity] Workload ID Premium adds app health recommendations for unused and inactive workload identities ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#what-workload-id-premium-adds)).
 
@@ -757,3 +826,19 @@ Run the checks on the continuous monitoring cadence and file their output with t
 [^npi-recover]: Microsoft Learn, "Recover from deletions," "Hard deletions" (multitenant application objects not hard-deleted automatically after 30 days), <https://learn.microsoft.com/entra/architecture/recover-from-deletions> (accessed Oct 29, 2026).
 [^npi-restore-sp]: Microsoft Learn, "Restore a soft deleted enterprise application" (30-day window; previous policies such as Conditional Access not restored; soft-deleted managed identity service principals can't be recovered by customers), <https://learn.microsoft.com/entra/identity/enterprise-apps/restore-application> (accessed Oct 29, 2026).
 [^npi-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator statements and "Related SP 800-53 Controls" (no indicator lists IA-9), <https://www.fedramp.gov/2026/reference/key-security-indicators/> (read November 2, 2026).
+[^npi-aws-bp]: AWS, IAM User Guide, "Security best practices in IAM" (require workloads to use temporary credentials with IAM roles; last accessed information), <https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html> (accessed Nov 24, 2026).
+[^npi-aws-gov-iam]: AWS, AWS GovCloud (US) User Guide, "AWS Identity and Access Management in AWS GovCloud (US)" (no global STS endpoint; no role between a GovCloud and a standard account; Roles Anywhere without CRL distribution points; no Access Analyzer policy generation; root user), <https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-iam.html> (accessed Nov 24, 2026).
+[^npi-aws-cli]: AWS CLI Command Reference: `iam generate-credential-report`, `get-credential-report`, `list-users`, `list-access-keys` (the caller's own keys when no user is named), `list-service-specific-credentials`, `list-roles` (no `RoleLastUsed`; use `get-role`), `list-instance-profiles`, `list-open-id-connect-providers`, `update-access-key`; `rolesanywhere list-trust-anchors`, `list-profiles`, <https://docs.aws.amazon.com/cli/latest/reference/iam/> and <https://docs.aws.amazon.com/cli/latest/reference/rolesanywhere/> (accessed Nov 24, 2026).
+[^npi-aws-credreport]: AWS, IAM User Guide, "Generate credential reports" (all users; not service-specific credentials or keys beyond the first two; at most every four hours), <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_getting-report.html> (accessed Nov 24, 2026).
+[^npi-aws-rolesanywhere]: AWS, IAM Roles Anywhere User Guide, "What is AWS Identity and Access Management Roles Anywhere?" (trust anchors, profiles), <https://docs.aws.amazon.com/rolesanywhere/latest/userguide/introduction.html> (accessed Nov 24, 2026).
+[^npi-aws-eks]: AWS, Amazon EKS User Guide, "Grant Kubernetes workloads access to AWS using Kubernetes Service Accounts" (IRSA and EKS Pod Identity; AWS recommends Pod Identity where possible), <https://docs.aws.amazon.com/eks/latest/userguide/service-accounts.html> (accessed Nov 24, 2026).
+[^npi-aws-outbound]: AWS, IAM User Guide, "Federating AWS identities to external services" (IAM outbound identity federation; `GetWebIdentityToken`), <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_outbound.html>, and AWS CLI, `sts get-web-identity-token` (`--signing-algorithm` RS256 or ES384), <https://docs.aws.amazon.com/cli/latest/reference/sts/get-web-identity-token.html> (accessed Nov 24, 2026).
+[^npi-wif-considerations]: Microsoft Learn, "Workload identity federation" (workloads running in AWS) and "Workload identity federation for app considerations" (only RS256-signed issuer tokens supported; at most 20 federated credentials per app), <https://learn.microsoft.com/entra/workload-id/workload-identity-federation> and <https://learn.microsoft.com/entra/workload-id/workload-identity-federation-considerations> (accessed Nov 24, 2026).
+[^npi-aws-aa]: AWS, IAM User Guide, "IAM Access Analyzer findings" (unused access findings; pricing), <https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-findings.html> (accessed Nov 24, 2026).
+[^npi-oci-oc2]: Oracle, OCI documentation, "Oracle US Government Cloud" (realm OC2; home-region IAM calls; identity domains for tenancies created after January 17, 2023), <https://docs.oracle.com/en-us/iaas/Content/gov-cloud/govfedramp.htm> (accessed Nov 24, 2026).
+[^npi-oci-cli]: Oracle, OCI CLI Command Reference: `iam user list`, `iam user api-key list`, `iam auth-token list`, `iam customer-secret-key list` (each returns the credential's OCID, not the secret), `iam dynamic-group list`, `iam policy list`, <https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam.html> (accessed Nov 24, 2026).
+[^npi-oci-creds]: Oracle, OCI documentation, "Working with API Keys" (three per user), "Working with Auth Tokens" and "Working with Customer Secret Keys" (don't expire; two per user), <https://docs.oracle.com/en-us/iaas/Content/Identity/access/working-with-console-passwords-and-API-keys.htm>, <https://docs.oracle.com/en-us/iaas/Content/Identity/access/working-with-auth-tokens.htm>, <https://docs.oracle.com/en-us/iaas/Content/Identity/access/working-with-customer-secret-keys.htm> (accessed Nov 24, 2026).
+[^npi-oci-creds-rules]: Oracle, OCI documentation, Securing IAM, "IAM Credentials" (use instance principals; rotate IAM passwords and API keys every 90 days or less), <https://docs.oracle.com/en-us/iaas/Content/Security/Reference/iam_security_topic-IAM_Credentials.htm> (accessed Nov 24, 2026).
+[^npi-oci-instance]: Oracle, OCI documentation, "Calling Services from an Instance" (instance principals; certificates rotated multiple times each day; dynamic groups; anyone with access to the instance inherits its privileges), <https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/callingservicesfrominstances.htm> (accessed Nov 24, 2026).
+[^npi-oci-functions]: Oracle, OCI documentation, "Accessing Other Oracle Cloud Infrastructure Resources from Running Functions" (resource principals), <https://docs.oracle.com/en-us/iaas/Content/Functions/Tasks/functionsaccessingociresources.htm> (accessed Nov 24, 2026).
+[^npi-oci-oke]: Oracle, OCI documentation, "Granting Workloads Access to OCI Resources" (OKE workload identity; not with dynamic groups; enhanced clusters), <https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contenggrantingworkloadaccesstoresources.htm> (accessed Nov 24, 2026).
