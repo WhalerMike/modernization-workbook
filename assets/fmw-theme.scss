@@ -239,7 +239,7 @@ a:focus-visible {
 .quarto-listing-table thead th {
   font-family: $font-family-monospace;
   font-size: 0.74rem;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: $fmw-navy;
@@ -249,6 +249,16 @@ a:focus-visible {
 }
 #quarto-document-content table td {
   vertical-align: top;
+}
+// Rows alternate white and light grey on every table, striped or not. Bootstrap paints cell
+// backgrounds through --bs-table-bg-type; tables without its classes get background-color.
+#quarto-document-content table > tbody > tr:nth-of-type(odd) > * {
+  --bs-table-bg-type: #ffffff;
+  background-color: #ffffff;
+}
+#quarto-document-content table > tbody > tr:nth-of-type(even) > * {
+  --bs-table-bg-type: #f1f3f5;
+  background-color: #f1f3f5;
 }
 #quarto-document-content table tbody tr:hover,
 .quarto-listing-table tbody tr:hover {
