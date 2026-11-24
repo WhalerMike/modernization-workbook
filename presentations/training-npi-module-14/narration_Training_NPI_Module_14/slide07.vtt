@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:00.987
+Try it.
+
+2
+00:00:00.987 --> 00:00:05.876
+Lab 1 runs in the non-person identity
+folder, with no account and no tenancy.
+
+3
+00:00:05.876 --> 00:00:08.587
+These are Chapter 13's Lab 1 steps.
+
+4
+00:00:08.587 --> 00:00:13.863
+The fixtures are one fictional GovCloud
+account and one fictional O C 2 tenancy.
+
+5
+00:00:13.863 --> 00:00:19.977
+Step one runs the checks as of November
+24, 2026: seven IAM users, eleven roles
+
+6
+00:00:19.977 --> 00:00:25.696
+and two trust anchors in AWS; five
+users and three dynamic groups in O C I.
+
+7
+00:00:25.696 --> 00:00:27.175
+Look for two lines.
+
+8
+00:00:27.175 --> 00:00:31.088
+Twenty-four findings, eleven
+warnings and two information items.
+
+9
+00:00:31.088 --> 00:00:34.611
+And seven AWS and five O C
+I long-lived credentials,
+
+10
+00:00:34.611 --> 00:00:37.275
+two of them under a current exception.
+
+11
+00:00:37.275 --> 00:00:39.987
+Then one line per rule,
+and the manifest's hash.
+
+12
+00:00:39.987 --> 00:00:44.181
+The script reads files and
+writes its output folder:
+
+13
+00:00:44.181 --> 00:00:48.862
+it runs no AWS or O C I command,
+calls no A P I, and changes no key.

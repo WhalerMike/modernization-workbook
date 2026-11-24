@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.388
+To close, the guide's checklist.
+
+2
+00:00:02.388 --> 00:00:06.216
+Every account kept on Kerberos is
+scored against the Identity pillar,
+
+3
+00:00:06.216 --> 00:00:07.687
+with its end date and owner.
+
+4
+00:00:07.687 --> 00:00:12.829
+Every Kerberos application published
+through Private Access or application proxy
+
+5
+00:00:12.829 --> 00:00:14.857
+names its service account and S P N,
+
+6
+00:00:14.857 --> 00:00:18.188
+and the connector's delegation
+entry moves with any S P N.
+
+7
+00:00:18.188 --> 00:00:21.505
+S P N exclusions for
+service-to-service Kerberos are in the
+
+8
+00:00:21.505 --> 00:00:25.513
+exception register before the domain
+controller sensor is enforced.
+
+9
+00:00:25.513 --> 00:00:29.900
+Every SQL Server instance that takes
+Entra logins has a T L S certificate
+
+10
+00:00:29.900 --> 00:00:33.662
+from a certificate authority,
+which the service account can read.
+
+11
+00:00:33.662 --> 00:00:38.775
+No service account uses N T
+L M after April first, 2027.
+
+12
+00:00:38.775 --> 00:00:43.606
+And the program's people sign in to AWS,
+O C I and Linux hosts with Entra I D,
+
+13
+00:00:43.606 --> 00:00:48.437
+while workloads use their platform's
+identity, each joined to a record.
+
+14
+00:00:48.437 --> 00:00:51.109
+For the moves themselves,
+go back to the track:
+
+15
+00:00:51.109 --> 00:00:55.800
+the Non-Person Identity implementation
+guide, and the service accounts guide.
+
+16
+00:00:55.800 --> 00:00:56.690
+Thank you.

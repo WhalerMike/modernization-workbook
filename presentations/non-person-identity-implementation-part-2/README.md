@@ -24,6 +24,8 @@
 
 Build (Git Bash): `source /c/tmp/deckenv.sh`, then `FIT=1 node presentations/non-person-identity-implementation-part-2/build.js presentations/non-person-identity-implementation-part-2/Non_Person_Identity_Implementation_Part_2.pptx`. The narrated edition is generated separately by `narrate.py`, `captions.py` and `build_narrated.ps1`, and the MP4 by `export_mp4.ps1`.
 
+Slide 9 was re-recorded on November 24, 2026, when the guide's IA-5 evidence row added VK-NPI-10 runs for AWS GovCloud (US) and OCI; the other clips are unchanged. The video runs about 17 minutes.
+
 The speaker notes are the live script: about 5,300 words, about 37 minutes. Each note has a timing cue at 142 words a minute and ends with a `Workbook:` reference. The build runs the technical deep dive's checks (title length and uniqueness, Sources length, overflow warnings) and the code panel's width and height check. `FIT=1` prints the estimated bottom edge of each element.
 
 ## Labels and sourcing

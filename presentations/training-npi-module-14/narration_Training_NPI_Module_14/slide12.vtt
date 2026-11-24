@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.561
+Step six reads the evidence:
+one row per step and control,
+
+2
+00:00:03.561 --> 00:00:07.850
+with the K S Is aligned with it and
+the file that provides the evidence.
+
+3
+00:00:07.850 --> 00:00:13.888
+The inventory rows are A C two, C M eight
+and I A four, from the identities file.
+
+4
+00:00:13.888 --> 00:00:16.275
+The credentials row is I A five.
+
+5
+00:00:16.275 --> 00:00:21.175
+The certificates rows are I A five
+enhancement two and S C seventeen,
+
+6
+00:00:21.175 --> 00:00:25.113
+from the trust file, as is A
+C six for trust and privilege.
+
+7
+00:00:25.113 --> 00:00:29.626
+And the lifecycle row is A C two
+enhancement three, from the findings.
+
+8
+00:00:29.626 --> 00:00:33.250
+Match each row to the requirement
+table in the module's introduction.
+
+9
+00:00:33.250 --> 00:00:36.362
+Step seven runs the
+tests: thirty-four pass.
+
+10
+00:00:36.362 --> 00:00:39.260
+Step eight cleans up by
+removing the output folder.

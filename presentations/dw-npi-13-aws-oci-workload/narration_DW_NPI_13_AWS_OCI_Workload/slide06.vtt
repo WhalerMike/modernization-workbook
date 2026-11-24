@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.912
+The guide's export steps write the
+files; the kit only reads them.
+
+2
+00:00:03.912 --> 00:00:06.385
+On the AWS side: the credential report,
+
+3
+00:00:06.385 --> 00:00:09.804
+every access key and
+service-specific credential,
+
+4
+00:00:09.804 --> 00:00:13.548
+the roles with their trust
+policies, instance profiles,
+
+5
+00:00:13.548 --> 00:00:18.024
+O I D C providers, and the Roles
+Anywhere trust anchors and profiles.
+
+6
+00:00:18.024 --> 00:00:22.887
+Two more files are optional to the
+kit: the tags, and the imported CRLs.
+
+7
+00:00:22.887 --> 00:00:28.225
+On the O C I side: users, their
+credentials, dynamic groups and policies.
+
+8
+00:00:28.225 --> 00:00:31.900
+You supply a settings file, and
+optionally the exception list.
+
+9
+00:00:31.900 --> 00:00:36.923
+The tag keys are the program's:
+system I D, two owners and a sponsor,
+
+10
+00:00:36.923 --> 00:00:40.400
+one key each, because
+AWS tags allow no comma.
+
+11
+00:00:40.400 --> 00:00:44.818
+One thing isn't yet specified: the O
+C I command line's output field names,
+
+12
+00:00:44.818 --> 00:00:47.712
+so the kit matches a field
+however it's spelled.

@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.709
+Step five runs on an export
+made before the guide's export
+
+2
+00:00:03.709 --> 00:00:07.087
+step added the tag and C R L
+reads, so it doesn't have them.
+
+3
+00:00:07.087 --> 00:00:10.012
+The kit still runs, and says
+what it couldn't check.
+
+4
+00:00:10.012 --> 00:00:13.062
+The manifest's not-read
+line names both files.
+
+5
+00:00:13.062 --> 00:00:17.082
+N P I A W S oh eight becomes one
+warning for the whole account,
+
+6
+00:00:17.082 --> 00:00:19.762
+instead of a finding for each identity.
+
+7
+00:00:19.762 --> 00:00:22.420
+And oh fourteen warns
+for each trust anchor,
+
+8
+00:00:22.420 --> 00:00:25.299
+because it can't tell
+whether a C R L was imported.
+
+9
+00:00:25.299 --> 00:00:28.188
+A missing file is a warning, never a pass.
+
+10
+00:00:28.188 --> 00:00:32.368
+Notice too that S V C dash app dash
+sync's key is back to a finding,
+
+11
+00:00:32.368 --> 00:00:35.401
+because this run was
+given no exception list.

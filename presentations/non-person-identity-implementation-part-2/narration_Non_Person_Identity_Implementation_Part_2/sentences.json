@@ -373,53 +373,53 @@
  ],
  "9": [
   [
-   0.05,
-   9.963,
-   "On the federal side, authenticator management calls for the kit runs on expiring secrets and secret use, the app management policy export, and the rotation calendar."
+   0.1,
+   14.4,
+   "On the federal side, authenticator management calls for the kit runs on expiring secrets and secret use, the tenth check's runs on long-lived keys in AWS GovCloud and Oracle Cloud, the app management policy export, and the rotation calendar."
   ],
   [
-   10.012,
-   7.325,
+   14.45,
+   7.025,
    "Service identification calls for each workload's permission grants and its sign-in log, which also shows the parallel run."
   ],
   [
-   17.337,
-   8.312,
+   21.475,
+   7.775,
    "The workbook adds three tests: no stored secrets where possible, no outage during the run, and workload policies enforced."
   ],
   [
-   25.65,
-   10.412,
+   29.25,
+   9.95,
    "To validate, one kit check confirms no high-risk account still has a password that never expires, and that the wave's new managed service accounts follow the standard's settings."
   ],
   [
-   36.062,
-   3.75,
+   39.2,
+   3.7,
    "Another confirms the converted apps no longer hold secrets."
   ],
   [
-   39.812,
-   7.5,
+   42.9,
+   7.188,
    "The estate is G C C with commercial Azure, so Graph, Resource Manager and sign-in use the commercial endpoints."
   ],
   [
-   47.312,
-   7.037,
+   50.087,
+   6.5,
    "A delegated managed service account needs Windows Server 2025 on every host and a domain controller."
   ],
   [
-   54.35,
-   5.7,
+   56.587,
+   5.375,
    "Until an account can move, it stays on the Kerberos island, with an owner and an end date."
   ],
   [
-   60.05,
-   3.675,
+   61.962,
+   3.55,
    "To roll back, re-enable the old account and revert the app."
   ],
   [
-   63.725,
-   2.888,
+   65.513,
+   2.9,
    "That stays possible until the account is deleted."
   ]
  ],

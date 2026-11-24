@@ -17,7 +17,7 @@
 | `narration_Training_NPI_Module_1/` | `durations.json`, `sentences.json` and the per-slide caption tracks (the MP3s are on the edition's Release, not in git) |
 | `build.js` | The slides and their notes |
 
-The MP4 is on the videos Release, and the [module page](../../docs/training/non-person-identity/01-inventory.md) links the video. The narrated deck and the plain deck are on the edition 2026.11.5 Release. The narration runs about 13 minutes.
+The MP4 is on the videos Release, and the [module page](../../docs/training/non-person-identity/01-inventory.md) links the video. The narrated deck and the plain deck are on the edition 2026.11.5 Release. The narration runs about 13 minutes. Slide 4 was re-recorded on November 24, 2026, when the guide named VK-NPI-10 for G1's AWS GovCloud (US) and OCI identities; the other clips are unchanged.
 
 Build (Git Bash): `source /c/tmp/deckenv.sh`, then `FIT=1 node presentations/training-npi-module-1/build.js presentations/training-npi-module-1/Training_NPI_Module_1.pptx`. Then `narrate.py` and `captions.py`, and on a workstation where PowerPoint is free, `qa_export.ps1`, `build_narrated.ps1` and `export_mp4.ps1`, as in the kit's README. The build runs the shared checks: title length and uniqueness, Sources length, and overflow warnings, including the code panel's width and height.
 

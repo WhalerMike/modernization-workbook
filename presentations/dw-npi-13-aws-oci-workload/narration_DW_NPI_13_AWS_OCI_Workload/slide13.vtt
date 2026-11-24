@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.738
+Step 4 reads who isn't joined to a record.
+
+2
+00:00:02.738 --> 00:00:08.667
+Seven identities: two AWS users and two
+roles, one of them a role anyone can assume,
+
+3
+00:00:08.667 --> 00:00:12.200
+two O C I users, and the
+dynamic group from before.
+
+4
+00:00:12.200 --> 00:00:13.462
+Then one trust.
+
+5
+00:00:13.462 --> 00:00:17.227
+The role called ci pipeline oidc
+trusts GitHub's token issuer,
+
+6
+00:00:17.227 --> 00:00:21.138
+but its only condition is on the
+token's audience, not its subject.
+
+7
+00:00:21.138 --> 00:00:24.575
+So any repository's workflow
+could present a token for it.
+
+8
+00:00:24.575 --> 00:00:29.002
+That's N P I A W S oh nine, and it's
+exactly what AWS's own examples
+
+9
+00:00:29.002 --> 00:00:33.720
+guard against by limiting the
+subject claim to one repository.

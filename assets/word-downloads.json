@@ -2660,6 +2660,11 @@
   "page": "13-the-managed-service-account-standard.docx",
   "title": "Learning path: Non-Person Identity in Microsoft Entra ID"
  },
+ "docs/training/non-person-identity/14-workload-identity-across-aws-govcloud-and-oci.md": {
+  "bundle": "training-non-person-identity-bundle.docx",
+  "page": "14-workload-identity-across-aws-govcloud-and-oci.docx",
+  "title": "Learning path: Non-Person Identity in Microsoft Entra ID"
+ },
  "docs/training/non-person-identity/index.md": {
   "bundle": "training-non-person-identity-bundle.docx",
   "page": "index.docx",

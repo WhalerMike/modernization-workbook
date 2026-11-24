@@ -1,80 +1,90 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.137
+00:00:00.100 --> 00:00:02.312
 Here are all six gates on one page.
 
 2
-00:00:02.137 --> 00:00:06.028
+00:00:02.312 --> 00:00:05.902
 The first is done when every
 non-person identity is listed,
 
 3
-00:00:06.028 --> 00:00:09.675
+00:00:05.902 --> 00:00:09.313
 typed, and joined to a record
 with an owner and a sponsor.
 
 4
-00:00:09.675 --> 00:00:13.517
+00:00:09.313 --> 00:00:12.987
 The second is done when every
 identity has a target and a date,
 
 5
-00:00:13.517 --> 00:00:15.438
+00:00:12.987 --> 00:00:14.825
 with high-risk accounts first.
 
 6
-00:00:15.438 --> 00:00:20.706
+00:00:14.825 --> 00:00:19.494
 The third is done when the tenant blocks
 new secrets and caps credential lifetimes,
 
 7
-00:00:20.706 --> 00:00:24.676
+00:00:19.494 --> 00:00:23.013
 and existing credentials sit in
 a vault on a rotation calendar.
 
 8
-00:00:24.676 --> 00:00:26.125
+00:00:23.013 --> 00:00:24.700
 Part 2 picks up from there.
 
 9
-00:00:26.125 --> 00:00:29.087
+00:00:24.700 --> 00:00:27.450
 High-privilege grants
 are justified or removed.
 
 10
-00:00:29.087 --> 00:00:34.374
+00:00:27.450 --> 00:00:32.213
 Converted identities sign in without stored
 secrets, after a clean parallel run.
 
 11
-00:00:34.374 --> 00:00:37.056
+00:00:32.213 --> 00:00:34.654
 And the paths for owner changes, orphans,
 
 12
-00:00:37.056 --> 00:00:40.550
+00:00:34.654 --> 00:00:37.837
 reviews and decommissioning
 run and leave records.
 
 13
-00:00:40.550 --> 00:00:44.275
+00:00:37.837 --> 00:00:41.337
 Each gate names the read-only
 validation kit checks that prove it.
 
 14
-00:00:44.275 --> 00:00:45.700
-One note on numbering.
+00:00:41.337 --> 00:00:44.594
+The first and third gates
+also name a tenth check,
 
 15
-00:00:45.700 --> 00:00:48.775
+00:00:44.594 --> 00:00:49.399
+for the program's workload identities
+in AWS GovCloud and Oracle Cloud.
+
+16
+00:00:49.399 --> 00:00:50.875
+One note on numbering.
+
+17
+00:00:50.875 --> 00:00:54.013
 The workbook's chapters use
 the project plan's gates.
 
-16
-00:00:48.775 --> 00:00:53.061
+18
+00:00:54.013 --> 00:00:58.118
 Its Gate 0 and Gate 1 both fall
 inside the guide's first gate,
 
-17
-00:00:53.061 --> 00:00:55.080
+19
+00:00:58.118 --> 00:01:00.000
 and its Gate 2 is the second.

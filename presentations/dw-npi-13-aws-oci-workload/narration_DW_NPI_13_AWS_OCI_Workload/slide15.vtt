@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.895
+Lab 2 uses one GovCloud account and one
+O C I tenancy that aren't production,
+
+2
+00:00:04.895 --> 00:00:09.925
+with a role or user that can read IAM in
+each, and the two command lines signed in.
+
+3
+00:00:09.925 --> 00:00:13.362
+Nobody has run it yet, so no
+step's output has been seen.
+
+4
+00:00:13.362 --> 00:00:18.251
+Write the settings and an empty exception
+list, in a folder outside the repository.
+
+5
+00:00:18.251 --> 00:00:23.400
+Export the AWS account with the guide's
+commands, tags and CRLs included.
+
+6
+00:00:23.400 --> 00:00:27.940
+Export the tenancy against its home
+region; the policy list reads only one
+
+7
+00:00:27.940 --> 00:00:31.289
+compartment, so add each
+child compartment's policies,
+
+8
+00:00:31.289 --> 00:00:33.150
+or a group will show as unnamed.
+
+9
+00:00:33.150 --> 00:00:34.313
+Run the checks.
+
+10
+00:00:34.313 --> 00:00:38.753
+If every O C I user shows no credentials
+while the console shows keys,
+
+11
+00:00:38.753 --> 00:00:41.212
+the field names differ, so record them.
+
+12
+00:00:41.212 --> 00:00:44.346
+Finally, the manifest should
+show no requests at all,
+
+13
+00:00:44.346 --> 00:00:46.390
+and the fourteen export commands.

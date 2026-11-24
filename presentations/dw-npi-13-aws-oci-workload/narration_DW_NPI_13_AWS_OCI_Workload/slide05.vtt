@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.613
+AWS and Oracle each give
+a way to list what exists.
+
+2
+00:00:03.613 --> 00:00:07.184
+AWS gives the credential
+report, but it leaves out roles,
+
+3
+00:00:07.184 --> 00:00:12.302
+keys beyond two and service-specific
+credentials, and it names no key, so the kit
+
+4
+00:00:12.302 --> 00:00:17.262
+reads the key lists too and joins each
+key to a report column by creation date.
+
+5
+00:00:17.262 --> 00:00:19.275
+That join is the kit's own design.
+
+6
+00:00:19.275 --> 00:00:21.558
+The role list comes with trust policies,
+
+7
+00:00:21.558 --> 00:00:25.087
+and the kit reads every principal
+and condition into one file.
+
+8
+00:00:25.087 --> 00:00:28.805
+AWS's Access Analyzer can report
+unused access, for a charge,
+
+9
+00:00:28.805 --> 00:00:32.220
+but the pages read don't say
+whether it runs in GovCloud,
+
+10
+00:00:32.220 --> 00:00:36.849
+so the kit reports keys unused for
+ninety days from the credential report.
+
+11
+00:00:36.849 --> 00:00:41.167
+On Oracle's side the kit makes one
+list of every credential with its age,
+
+12
+00:00:41.167 --> 00:00:43.490
+and joins policies to dynamic groups.

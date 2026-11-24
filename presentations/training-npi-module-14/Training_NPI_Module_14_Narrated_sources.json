@@ -1,0 +1,144 @@
+[
+ {
+  "slide": 2,
+  "title": "Why an access key is a service account's password",
+  "links": [
+   {
+    "text": "Chapter 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.html"
+   }
+  ]
+ },
+ {
+  "slide": 4,
+  "title": "What AWS, Oracle and Microsoft say",
+  "links": [
+   {
+    "text": "Chapter 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The exports, and the join to the record",
+  "links": [
+   {
+    "text": "Chapter 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The checks, VK-NPI-10, and what's still unknown",
+  "links": [
+   {
+    "text": "Chapter 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.html"
+   },
+   {
+    "text": "Chapter 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Try it: run Chapter 13's checks on the fixtures",
+  "links": [
+   {
+    "text": "Chapter 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.html"
+   }
+  ]
+ },
+ {
+  "slide": 8,
+  "title": "Try it: read the findings",
+  "links": [
+   {
+    "text": "Chapter 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Try it: the long-lived credentials",
+  "links": [
+   {
+    "text": "Chapter 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Try it: who isn't joined, and one OIDC trust",
+  "links": [
+   {
+    "text": "Chapter 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Try it: run without the two optional files",
+  "links": [
+   {
+    "text": "Chapter 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.html"
+   }
+  ]
+ },
+ {
+  "slide": 12,
+  "title": "Try it: the evidence, the tests, then clean up",
+  "links": [
+   {
+    "text": "Chapter 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "Lab 2: a test account's and tenancy's exports",
+  "links": [
+   {
+    "text": "Chapter 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The federal requirement and the evidence the ISSO keeps",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   },
+   {
+    "text": "Chapter 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.html"
+   }
+  ]
+ },
+ {
+  "slide": 16,
+  "title": "Summary: the other clouds, under the same rules",
+  "links": [
+   {
+    "text": "Chapter 13",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.html"
+   }
+  ]
+ }
+]

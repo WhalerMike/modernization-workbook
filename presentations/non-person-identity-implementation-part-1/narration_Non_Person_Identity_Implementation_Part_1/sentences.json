@@ -58,63 +58,68 @@
  ],
  "2": [
   [
-   0.05,
-   2.087,
+   0.1,
+   2.212,
    "Here are all six gates on one page."
   ],
   [
-   2.138,
-   7.537,
+   2.263,
+   7.05,
    "The first is done when every non-person identity is listed, typed, and joined to a record with an owner and a sponsor."
   ],
   [
-   9.675,
-   5.763,
+   9.312,
+   5.513,
    "The second is done when every identity has a target and a date, with high-risk accounts first."
   ],
   [
-   15.438,
-   9.238,
+   14.825,
+   8.188,
    "The third is done when the tenant blocks new secrets and caps credential lifetimes, and existing credentials sit in a vault on a rotation calendar."
   ],
   [
-   24.675,
-   1.45,
+   23.012,
+   1.688,
    "Part 2 picks up from there."
   ],
   [
-   26.125,
-   2.962,
+   24.7,
+   2.75,
    "High-privilege grants are justified or removed."
   ],
   [
-   29.087,
-   5.287,
+   27.45,
+   4.763,
    "Converted identities sign in without stored secrets, after a clean parallel run."
   ],
   [
-   34.375,
-   6.175,
+   32.212,
+   5.625,
    "And the paths for owner changes, orphans, reviews and decommissioning run and leave records."
   ],
   [
-   40.55,
-   3.725,
+   37.837,
+   3.5,
    "Each gate names the read-only validation kit checks that prove it."
   ],
   [
-   44.275,
-   1.425,
+   41.337,
+   8.062,
+   "The first and third gates also name a tenth check, for the program's workload identities in AWS GovCloud and Oracle Cloud."
+  ],
+  [
+   49.4,
+   1.475,
    "One note on numbering."
   ],
   [
-   45.7,
-   3.075,
+   50.875,
+   3.138,
    "The workbook's chapters use the project plan's gates."
   ],
   [
-   48.775,
-   6.25,
+   54.013,
+   5.987,
    "Its Gate 0 and Gate 1 both fall inside the guide's first gate, and its Gate 2 is the second."
   ]
  ],
@@ -445,63 +450,68 @@
  ],
  "8": [
   [
-   0.05,
-   2.237,
+   0.1,
+   2.388,
    "Here's the federal side of the first gate."
   ],
   [
-   2.288,
-   6.537,
+   2.438,
+   6.162,
    "Account management treats non-person identities as a defined account type, each with an owner and a sponsor."
   ],
   [
-   8.825,
-   5.438,
+   8.6,
+   5.175,
    "The evidence is this gate's record, plus the kit runs for owners and agent sponsors."
   ],
   [
-   14.262,
-   6.713,
+   13.775,
+   6.338,
    "Identifier management means each identity has its own identifier, joined to its record and never reused."
   ],
   [
-   20.975,
-   2.625,
+   20.113,
+   2.55,
    "To validate, four read-only checks run."
   ],
   [
-   23.6,
-   8.15,
+   22.663,
+   7.737,
    "One lists Active Directory accounts whose passwords never expire or are too old, each joined to a record or listed as unowned."
   ],
   [
-   31.75,
-   5.325,
+   30.4,
+   4.625,
    "One reports zero apps with no owner, and a dated finding for any with just one."
   ],
   [
-   37.075,
-   3.913,
+   35.025,
+   3.65,
    "One lists every managed identity and its role assignments."
   ],
   [
-   40.987,
-   5.013,
+   38.675,
+   4.4,
    "And one lists agent identities with their sponsors, where the tenant exposes them."
   ],
   [
-   46.0,
-   3.737,
-   "The inventory's Graph reads are listed for the government clouds."
+   43.075,
+   10.287,
+   "A tenth check reads the AWS GovCloud and Oracle Cloud exports, and reports every workload identity missing its system I D, two owner tags or sponsor tag."
   ],
   [
-   49.737,
-   6.213,
+   53.362,
+   4.725,
+   "The inventory's Graph reads list the global service, which G C C uses."
+  ],
+  [
+   58.087,
+   5.625,
    "Agent identities are generally available in commercial, and in G C C with documented gaps."
   ],
   [
-   55.95,
-   4.075,
+   63.712,
+   3.638,
    "And there's nothing to roll back, because the inventory only reads."
   ]
  ],
@@ -847,53 +857,58 @@
  ],
  "15": [
   [
-   0.05,
-   4.15,
+   0.1,
+   3.975,
    "On the federal side, authenticator management is the main requirement."
   ],
   [
-   4.2,
-   6.688,
-   "The evidence is the policy export, the kit runs for credentials and secrets, and the rotation calendar."
+   4.025,
+   8.613,
+   "The evidence is the policy export, the kit runs for credentials and secrets, in AWS and Oracle Cloud too, and the rotation calendar."
   ],
   [
-   10.887,
-   7.662,
+   12.637,
+   7.2,
    "The policy also addresses three scuba policies: no app passwords, and capped password and certificate lifetimes."
   ],
   [
-   18.55,
-   6.412,
+   19.837,
+   5.888,
    "They're SHOULD policies in ScubaGear, not required configurations, and their report is filed with the gate."
   ],
   [
-   24.962,
-   6.162,
+   25.725,
+   5.812,
    "Audit requirements cover credential changes, so the entries for added credentials are logged and reviewed."
   ],
   [
-   31.125,
-   6.225,
+   31.538,
+   5.838,
    "To validate, the credential check shows nothing issued after the effective date that runs longer than the cap."
   ],
   [
-   37.35,
-   5.062,
+   37.375,
+   4.662,
    "Every credential that expires within sixty days has an owner and a renewal date."
   ],
   [
-   42.413,
-   6.85,
+   42.038,
+   6.15,
    "The secrets check shows each app still on a secret is in a conversion wave, or has an exception with an end date."
   ],
   [
-   49.263,
-   5.438,
-   "App management policies are free, and Microsoft lists their calls for the government clouds."
+   48.188,
+   17.788,
+   "And for AWS GovCloud and Oracle Cloud, the tenth check shows every access key, A P I key, auth token and customer secret key under a current exception, no Oracle A P I key older than ninety days, and an imported revocation list for every IAM Roles Anywhere trust anchor."
   ],
   [
-   54.7,
-   6.412,
+   65.975,
+   6.162,
+   "App management policies are free, and their calls list the global service, which G C C uses."
+  ],
+  [
+   72.138,
+   5.888,
    "To roll back, give one application a policy exception with an end date, in the exception register."
   ]
  ],

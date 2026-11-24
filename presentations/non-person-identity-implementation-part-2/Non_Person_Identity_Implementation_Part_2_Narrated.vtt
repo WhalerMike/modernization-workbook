@@ -620,702 +620,707 @@ For the whole standard, see Chapter
 12 and the service accounts guide.
 
 130
-00:08:12.080 --> 00:08:16.988
+00:08:12.130 --> 00:08:17.052
 On the federal side, authenticator management
 calls for the kit runs on expiring
 
 131
-00:08:16.988 --> 00:08:22.043
-secrets and secret use, the app management
-policy export, and the rotation calendar.
+00:08:17.052 --> 00:08:21.828
+secrets and secret use, the tenth check's
+runs on long-lived keys in AWS GovCloud
 
 132
-00:08:22.043 --> 00:08:25.813
+00:08:21.828 --> 00:08:26.530
+and Oracle Cloud, the app management
+policy export, and the rotation calendar.
+
+133
+00:08:26.530 --> 00:08:30.097
 Service identification calls
 for each workload's permission
 
-133
-00:08:25.813 --> 00:08:29.367
+134
+00:08:30.097 --> 00:08:33.505
 grants and its sign-in log, which
 also shows the parallel run.
 
-134
-00:08:29.367 --> 00:08:33.772
+135
+00:08:33.505 --> 00:08:37.626
 The workbook adds three tests: no
 stored secrets where possible,
 
-135
-00:08:33.772 --> 00:08:37.679
+136
+00:08:37.626 --> 00:08:41.280
 no outage during the run, and
 workload policies enforced.
 
-136
-00:08:37.679 --> 00:08:42.491
+137
+00:08:41.280 --> 00:08:45.878
 To validate, one kit check confirms no
 high-risk account still has a password that
 
-137
-00:08:42.491 --> 00:08:45.148
+138
+00:08:45.878 --> 00:08:48.417
 never expires, and that
 the wave's new managed
 
-138
-00:08:45.148 --> 00:08:48.092
+139
+00:08:48.417 --> 00:08:51.230
 service accounts follow
 the standard's settings.
 
-139
-00:08:48.092 --> 00:08:51.842
+140
+00:08:51.230 --> 00:08:54.930
 Another confirms the converted
 apps no longer hold secrets.
 
-140
-00:08:51.842 --> 00:08:55.213
+141
+00:08:54.930 --> 00:08:58.161
 The estate is GCC with
 commercial Azure, so Graph,
 
-141
-00:08:55.213 --> 00:08:59.342
+142
+00:08:58.161 --> 00:09:02.118
 Resource Manager and sign-in
 use the commercial endpoints.
 
-142
-00:08:59.342 --> 00:09:02.944
+143
+00:09:02.118 --> 00:09:05.444
 A delegated managed service
 account needs Windows
 
-143
-00:09:02.944 --> 00:09:06.379
+144
+00:09:05.444 --> 00:09:08.617
 Server 2025 on every host
 and a domain controller.
 
-144
-00:09:06.379 --> 00:09:10.207
+145
+00:09:08.617 --> 00:09:12.226
 Until an account can move, it
 stays on the Kerberos island,
 
-145
-00:09:10.207 --> 00:09:12.080
+146
+00:09:12.226 --> 00:09:13.992
 with an owner and an end date.
 
-146
-00:09:12.080 --> 00:09:15.755
+147
+00:09:13.992 --> 00:09:17.542
 To roll back, re-enable the
 old account and revert the app.
 
-147
-00:09:15.755 --> 00:09:19.000
+148
+00:09:17.542 --> 00:09:20.750
 That stays possible until
 the account is deleted.
 
-148
-00:09:22.750 --> 00:09:25.599
+149
+00:09:24.500 --> 00:09:27.349
 A service account's events
 come from its owning
 
-149
-00:09:25.599 --> 00:09:28.375
+150
+00:09:27.349 --> 00:09:30.125
 system and from credential
 expiry, not from HR.
 
-150
-00:09:28.375 --> 00:09:30.300
+151
+00:09:30.125 --> 00:09:32.050
 The one exception is the sponsor.
 
-151
-00:09:30.300 --> 00:09:32.594
+152
+00:09:32.050 --> 00:09:34.344
 When an owner leaves or changes roles,
 
-152
-00:09:32.594 --> 00:09:35.850
+153
+00:09:34.344 --> 00:09:37.600
 the transfer starts at least
 ten business days ahead.
 
-153
-00:09:35.850 --> 00:09:39.729
+154
+00:09:37.600 --> 00:09:41.479
 Make it a step in that person's
 HR mover and leaver workflows,
 
-154
-00:09:39.729 --> 00:09:41.550
+155
+00:09:41.479 --> 00:09:43.300
 so nobody has to remember it.
 
-155
-00:09:41.550 --> 00:09:44.100
+156
+00:09:43.300 --> 00:09:45.850
 An app with no named owner is an orphan.
 
-156
-00:09:44.100 --> 00:09:47.377
+157
+00:09:45.850 --> 00:09:49.127
 It becomes Tier 1, the
 governance office takes it over,
 
-157
-00:09:47.377 --> 00:09:51.175
+158
+00:09:49.127 --> 00:09:52.925
 and there are thirty days to find
 an owner or start retiring it.
 
-158
-00:09:51.175 --> 00:09:54.175
+159
+00:09:52.925 --> 00:09:55.925
 On day thirty-one, access is suspended.
 
-159
-00:09:54.175 --> 00:09:58.101
+160
+00:09:55.925 --> 00:09:59.851
 An AI agent is disabled as soon
 as the finding is confirmed,
 
-160
-00:09:58.101 --> 00:09:59.737
+161
+00:09:59.851 --> 00:10:01.487
 because an agent can act.
 
-161
-00:09:59.737 --> 00:10:02.252
+162
+00:10:01.487 --> 00:10:04.002
 Inactivity is a second orphan signal,
 
-162
-00:10:02.252 --> 00:10:06.388
+163
+00:10:04.002 --> 00:10:08.138
 from a preview report of each
 service principal's last sign-in.
 
-163
-00:10:06.388 --> 00:10:09.776
+164
+00:10:08.138 --> 00:10:11.526
 And owners review their app's
 permissions every quarter,
 
-164
-00:10:09.776 --> 00:10:12.940
+165
+00:10:11.526 --> 00:10:14.690
 with at least two owners
 per app where possible.
 
-165
-00:10:16.690 --> 00:10:22.315
+166
+00:10:18.440 --> 00:10:24.065
 Retirement always disables first, so
 nothing breaks silently, and deletes later.
 
-166
-00:10:22.315 --> 00:10:24.165
+167
+00:10:24.065 --> 00:10:25.915
 The mechanics differ by type.
 
-167
-00:10:24.165 --> 00:10:28.527
+168
+00:10:25.915 --> 00:10:30.277
 An Active Directory account is disabled
 and moved to a holding container.
 
-168
-00:10:28.527 --> 00:10:32.388
+169
+00:10:30.277 --> 00:10:34.138
 A migration moves its service
 principal names to the replacement,
 
-169
-00:10:32.388 --> 00:10:35.688
+170
+00:10:34.138 --> 00:10:37.438
 and the account is deleted
 ninety days after the disable,
 
-170
-00:10:35.688 --> 00:10:38.777
+171
+00:10:37.438 --> 00:10:40.527
 with no sign-in seen, through
 the decommission ticket.
 
-171
-00:10:38.777 --> 00:10:41.239
+172
+00:10:40.527 --> 00:10:42.989
 An app registration is deactivated.
 
-172
-00:10:41.239 --> 00:10:46.540
+173
+00:10:42.989 --> 00:10:48.290
 New tokens stop at once, but tokens already
 issued stay valid until they expire.
 
-173
-00:10:46.540 --> 00:10:49.428
+174
+00:10:48.290 --> 00:10:51.178
 A deleted app can be
 restored for thirty days.
 
-174
-00:10:49.428 --> 00:10:52.966
+175
+00:10:51.178 --> 00:10:54.716
 A service principal is blocked
 from signing in to this tenant.
 
-175
-00:10:52.966 --> 00:10:57.765
+176
+00:10:54.716 --> 00:10:59.515
 If it's deleted and restored, its
 Conditional Access policies don't come back.
 
-176
-00:10:57.765 --> 00:11:01.285
+177
+00:10:59.515 --> 00:11:03.035
 A managed identity loses
 its role assignments first,
 
-177
-00:11:01.285 --> 00:11:03.765
+178
+00:11:03.035 --> 00:11:05.515
 and once deleted, it can't be recovered.
 
-178
-00:11:03.765 --> 00:11:07.453
+179
+00:11:05.515 --> 00:11:09.203
 An agent can be disabled by its
 sponsor, but not re-enabled.
 
-179
-00:11:07.453 --> 00:11:10.252
+180
+00:11:09.203 --> 00:11:12.002
 Deleting a blueprint
 removes its agents too.
 
-180
-00:11:10.252 --> 00:11:13.202
+181
+00:11:12.002 --> 00:11:14.952
 Every deactivation shows in the audit log.
 
-181
-00:11:13.202 --> 00:11:15.500
+182
+00:11:14.952 --> 00:11:17.250
 File that entry with the decision.
 
-182
-00:11:19.250 --> 00:11:23.225
+183
+00:11:21.000 --> 00:11:24.975
 The workbook's tenth chapter turns
 this gate into a scheduled run.
 
-183
-00:11:23.225 --> 00:11:28.488
+184
+00:11:24.975 --> 00:11:30.238
 Each run compares every identity with a
 baseline that someone approved by its hash.
 
-184
-00:11:28.488 --> 00:11:33.068
+185
+00:11:30.238 --> 00:11:34.818
 On the second fixture day it finds
 seven ownerless orphan candidates,
 
-185
-00:11:33.068 --> 00:11:35.675
+186
+00:11:34.818 --> 00:11:37.425
 and two apps unused for over ninety days.
 
-186
-00:11:35.675 --> 00:11:38.940
+187
+00:11:37.425 --> 00:11:40.690
 It finds three accounts
 whose password never expires,
 
-187
-00:11:38.940 --> 00:11:41.987
+188
+00:11:40.690 --> 00:11:43.737
 and three credentials
 added outside the pipeline.
 
-188
-00:11:41.987 --> 00:11:46.501
+189
+00:11:43.737 --> 00:11:48.251
 A credential counts as the pipeline's
 only when two separate records agree.
 
-189
-00:11:46.501 --> 00:11:51.463
+190
+00:11:48.251 --> 00:11:53.213
 The review check finds an app whose last
 owner review was in May, too long ago.
 
-190
-00:11:51.463 --> 00:11:56.801
+191
+00:11:53.213 --> 00:11:58.551
 Then each run is packaged with a checksum
 for every file, chained to the day before.
 
-191
-00:11:56.801 --> 00:12:00.338
+192
+00:11:58.551 --> 00:12:02.088
 So a swapped package or a
 missing day shows up as a break.
 
-192
-00:12:00.338 --> 00:12:03.813
+193
+00:12:02.088 --> 00:12:05.563
 The period report is
 what the ISSO receives.
 
-193
-00:12:03.813 --> 00:12:07.637
+194
+00:12:05.563 --> 00:12:09.387
 Here the chain is unbroken,
 but the period isn't complete.
 
-194
-00:12:07.637 --> 00:12:11.480
+195
+00:12:09.387 --> 00:12:13.230
 Orphans and passwords that
 never expire are still open.
 
-195
-00:12:15.230 --> 00:12:19.574
+196
+00:12:16.980 --> 00:12:21.324
 On the federal side, account management
 calls for the identity record, the
 
-196
-00:12:19.574 --> 00:12:21.924
+197
+00:12:21.324 --> 00:12:23.674
 owner-change and decommission tickets,
 
-197
-00:12:21.924 --> 00:12:24.630
+198
+00:12:23.674 --> 00:12:26.380
 and the kit runs for
 owners and agent sponsors.
 
-198
-00:12:24.630 --> 00:12:29.893
+199
+00:12:26.380 --> 00:12:31.643
 Identifier management calls for a record
 keyed by object ID, never reused.
 
-199
-00:12:29.893 --> 00:12:33.531
+200
+00:12:31.643 --> 00:12:35.281
 Audit controls call for the
 logs routed out of Entra ID,
 
-200
-00:12:33.531 --> 00:12:37.493
+201
+00:12:35.281 --> 00:12:39.243
 including every credential
 added and every deactivation.
 
-201
-00:12:37.493 --> 00:12:41.329
+202
+00:12:39.243 --> 00:12:43.079
 To validate, run the owner
 and expiry checks every week.
 
-202
-00:12:41.329 --> 00:12:45.230
+203
+00:12:43.079 --> 00:12:46.980
 A new app with fewer than two
 owners opens a ticket that week.
 
-203
-00:12:45.230 --> 00:12:49.318
+204
+00:12:46.980 --> 00:12:51.068
 No agent may go past ten business
 days without a confirmed sponsor.
 
-204
-00:12:49.318 --> 00:12:53.605
+205
+00:12:51.068 --> 00:12:55.355
 An optional preview check lists service
 principals idle for ninety days.
 
-205
-00:12:53.605 --> 00:12:58.305
+206
+00:12:55.355 --> 00:13:00.055
 Then run one test owner change and
 one test decommission, end to end.
 
-206
-00:12:58.305 --> 00:13:03.655
+207
+00:13:00.055 --> 00:13:05.405
 The sign-in activity report is listed for
 the commercial service, so GCC has it.
 
-207
-00:13:03.655 --> 00:13:06.948
+208
+00:13:05.405 --> 00:13:08.698
 To roll back, reactivate,
 or restore within thirty
 
-208
-00:13:06.948 --> 00:13:11.442
+209
+00:13:08.698 --> 00:13:13.192
 days and re-create the
 Conditional Access assignments.
 
-209
-00:13:16.830 --> 00:13:20.955
+210
+00:13:18.580 --> 00:13:22.705
 SQL Server follows the same logic,
 with three kinds of principal.
 
-210
-00:13:20.955 --> 00:13:25.430
+211
+00:13:22.705 --> 00:13:27.180
 The engine's service account works only
 while Active Directory is in charge.
 
-211
-00:13:25.430 --> 00:13:27.230
+212
+00:13:27.180 --> 00:13:28.980
 Azure Arc doesn't replace it.
 
-212
-00:13:27.230 --> 00:13:30.393
+213
+00:13:28.980 --> 00:13:32.143
 It only changes what
 Entra ID and Azure see.
 
-213
-00:13:30.393 --> 00:13:33.718
+214
+00:13:32.143 --> 00:13:35.468
 The instance's own Entra
 identity is a managed
 
-214
-00:13:33.718 --> 00:13:37.831
+215
+00:13:35.468 --> 00:13:39.581
 identity on SQL Server 2025,
 with no credential at all.
 
-215
-00:13:37.831 --> 00:13:42.833
+216
+00:13:39.581 --> 00:13:44.583
 On SQL Server 2022 it's an app
 registration with a Key Vault certificate,
 
-216
-00:13:42.833 --> 00:13:45.093
+217
+00:13:44.583 --> 00:13:46.843
 which needs a named renewal owner.
 
-217
-00:13:45.093 --> 00:13:50.746
+218
+00:13:46.843 --> 00:13:52.496
 Application logins move from SQL passwords
 to Entra logins: a managed identity
 
-218
-00:13:50.746 --> 00:13:55.417
+219
+00:13:52.496 --> 00:13:57.167
 first, then a certificate, and a
 secret only as a documented exception.
 
-219
-00:13:55.417 --> 00:13:58.255
+220
+00:13:57.167 --> 00:14:00.005
 And the same thirty-day
 parallel run applies.
 
-220
-00:13:58.255 --> 00:13:59.767
+221
+00:14:00.005 --> 00:14:01.517
 Two dangers stand out.
 
-221
-00:13:59.767 --> 00:14:05.105
+222
+00:14:01.517 --> 00:14:06.855
 A renewed certificate that nobody uploaded
 fails at expiry, so automate the upload.
 
-222
-00:14:05.105 --> 00:14:09.811
+223
+00:14:06.855 --> 00:14:11.561
 And on an Arc server, every allowed
 process presents the same identity,
 
-223
-00:14:09.811 --> 00:14:13.910
+224
+00:14:11.561 --> 00:14:15.660
 so treat one login per server
 as the unit of attribution.
 
-224
-00:14:17.660 --> 00:14:19.356
+225
+00:14:19.410 --> 00:14:21.106
 AI agents follow this guide,
 
-225
-00:14:19.356 --> 00:14:23.560
+226
+00:14:21.106 --> 00:14:25.310
 with a few additions from the
 workbook's AI Identity Governance book.
 
-226
-00:14:23.560 --> 00:14:26.198
+227
+00:14:25.310 --> 00:14:27.948
 Every agent needs a
 sponsor when it's created.
 
-227
-00:14:26.198 --> 00:14:28.383
+228
+00:14:27.948 --> 00:14:30.133
 The blueprint holds the credentials,
 
-228
-00:14:28.383 --> 00:14:32.048
+229
+00:14:30.133 --> 00:14:33.798
 so one action on the blueprint
 reaches every agent made from it.
 
-229
-00:14:32.048 --> 00:14:34.618
+230
+00:14:33.798 --> 00:14:36.368
 Ordinary users can't create blueprints,
 
-230
-00:14:34.618 --> 00:14:38.511
+231
+00:14:36.368 --> 00:14:40.261
 and a production handshake comes
 before any agent goes live.
 
-231
-00:14:38.511 --> 00:14:41.492
+232
+00:14:40.261 --> 00:14:43.242
 No production blueprint holds a secret,
 
-232
-00:14:41.492 --> 00:14:44.835
+233
+00:14:43.242 --> 00:14:46.585
 and every API key is
 recorded as an exception.
 
-233
-00:14:44.835 --> 00:14:47.606
+234
+00:14:46.585 --> 00:14:49.356
 Access comes through
 packages with end dates,
 
-234
-00:14:47.606 --> 00:14:50.523
+235
+00:14:49.356 --> 00:14:52.273
 so a sponsor who does
 nothing lets access expire.
 
-235
-00:14:50.523 --> 00:14:55.259
+236
+00:14:52.273 --> 00:14:57.009
 The agent platform has been
 generally available since April 2026,
 
-236
-00:14:55.259 --> 00:14:57.239
+237
+00:14:57.009 --> 00:14:58.989
 with a partial subset in GCC.
 
-237
-00:14:57.239 --> 00:15:00.511
+238
+00:14:58.989 --> 00:15:02.261
 Agent Conditional Access
 is still in preview.
 
-238
-00:15:00.511 --> 00:15:03.387
+239
+00:15:02.261 --> 00:15:05.137
 The workbook's ninth
 chapter checks all of this,
 
-239
-00:15:03.387 --> 00:15:07.223
+240
+00:15:05.137 --> 00:15:08.973
 and here it finds twenty-two
 findings, four of them top priority.
 
-240
-00:15:07.223 --> 00:15:10.357
+241
+00:15:08.973 --> 00:15:12.107
 Where an agent feature
 isn't available in GCC,
 
-241
-00:15:10.357 --> 00:15:14.547
+242
+00:15:12.107 --> 00:15:16.297
 govern the service principals
 the agents run as.
 
-242
-00:15:19.140 --> 00:15:23.214
+243
+00:15:20.890 --> 00:15:24.964
 Across the whole track, the
 evidence covers account management,
 
-243
-00:15:23.214 --> 00:15:28.440
+244
+00:15:24.964 --> 00:15:30.190
 least privilege, identifiers, authenticators,
 service identification and audit.
 
-244
-00:15:28.440 --> 00:15:33.023
+245
+00:15:30.190 --> 00:15:34.773
 It's the record, the tickets, the
 kit runs with their justifications,
 
-245
-00:15:33.023 --> 00:15:36.940
+246
+00:15:34.773 --> 00:15:38.690
 the access review results, the
 policy export, and the logs.
 
-246
-00:15:36.940 --> 00:15:39.453
+247
+00:15:38.690 --> 00:15:41.203
 Two CISA items sit across the track.
 
-247
-00:15:39.453 --> 00:15:42.467
+248
+00:15:41.203 --> 00:15:44.217
 ScubaGear also checks that
 apps have no passwords,
 
-248
-00:15:42.467 --> 00:15:44.978
+249
+00:15:44.217 --> 00:15:46.728
 and that credential lifetimes are capped.
 
-249
-00:15:44.978 --> 00:15:48.217
+250
+00:15:46.728 --> 00:15:49.967
 And it marks blocking risky
 AI agents as required,
 
-250
-00:15:48.217 --> 00:15:51.852
+251
+00:15:49.967 --> 00:15:53.602
 though CISA's own list didn't
 include it in late October.
 
-251
-00:15:51.852 --> 00:15:54.310
+252
+00:15:53.602 --> 00:15:56.060
 So record it now, and
 enforce it when agent
 
-252
-00:15:54.310 --> 00:15:56.840
+253
+00:15:56.060 --> 00:15:58.590
 risk is generally available in your cloud.
 
-253
-00:15:56.840 --> 00:15:59.374
+254
+00:15:58.590 --> 00:16:01.124
 Run the checks on the monitoring cadence,
 
-254
-00:15:59.374 --> 00:16:02.803
+255
+00:16:01.124 --> 00:16:04.553
 and file each run with its
 date, tenant and check version.
 
-255
-00:16:02.803 --> 00:16:05.315
+256
+00:16:04.553 --> 00:16:07.065
 Rollback is defined for every step.
 
-256
-00:16:05.315 --> 00:16:10.240
+257
+00:16:07.065 --> 00:16:11.990
 Part 1's steps roll back by re-deciding,
 or by an exception with an end date.
 
-257
-00:16:10.240 --> 00:16:12.727
+258
+00:16:11.990 --> 00:16:14.477
 Least privilege goes back to report-only.
 
-258
-00:16:12.727 --> 00:16:15.153
+259
+00:16:14.477 --> 00:16:16.903
 Conversion re-enables the old account.
 
-259
-00:16:15.153 --> 00:16:19.850
+260
+00:16:16.903 --> 00:16:21.600
 And decommissioning reactivates,
 or restores within thirty days.
 
-260
-00:16:23.600 --> 00:16:25.362
+261
+00:16:25.350 --> 00:16:27.112
 Keep five dangers in view.
 
-261
-00:16:25.362 --> 00:16:28.649
+262
+00:16:27.112 --> 00:16:30.399
 Every app owner can add a
 credential and act as the app,
 
-262
-00:16:28.649 --> 00:16:31.637
+263
+00:16:30.399 --> 00:16:33.387
 so keep owners to the two
 people who configure it.
 
-263
-00:16:31.637 --> 00:16:35.765
+264
+00:16:33.387 --> 00:16:37.515
 Disabled isn't revoked, because
 issued tokens stay valid,
 
-264
-00:16:35.765 --> 00:16:39.101
+265
+00:16:37.515 --> 00:16:40.851
 so in an incident, also
 remove the credentials.
 
-265
-00:16:39.101 --> 00:16:44.012
+266
+00:16:40.851 --> 00:16:45.762
 A privileged service principal is a
 control-plane asset, not an ordinary app.
 
-266
-00:16:44.012 --> 00:16:48.070
+267
+00:16:45.762 --> 00:16:49.820
 Workload Conditional Access
 silently skips managed identities,
 
-267
-00:16:48.070 --> 00:16:51.537
+268
+00:16:49.820 --> 00:16:53.287
 multitenant apps, and anything
 assigned through a group.
 
-268
-00:16:51.537 --> 00:16:55.132
+269
+00:16:53.287 --> 00:16:56.882
 And by default, whoever builds
 an agent becomes its sponsor,
 
-269
-00:16:55.132 --> 00:16:58.726
+270
+00:16:56.882 --> 00:17:00.476
 so close blueprint creation
 and set the sponsor on purpose.
 
-270
-00:16:58.726 --> 00:17:03.863
+271
+00:17:00.476 --> 00:17:05.613
 Where to go next: Part 1 covers inventory,
 decisions and credential rules.
 
-271
-00:17:03.863 --> 00:17:07.503
+272
+00:17:05.613 --> 00:17:09.253
 The developer workbook,
 Building Non-Person Identity,
 
-272
-00:17:07.503 --> 00:17:11.387
+273
+00:17:09.253 --> 00:17:13.137
 has chapters five to ten for
 these gates, each with its labs.
 
-273
-00:17:11.387 --> 00:17:13.274
+274
+00:17:13.137 --> 00:17:15.024
 The Labs page lists them all.
 
-274
-00:17:13.274 --> 00:17:15.438
+275
+00:17:15.024 --> 00:17:17.188
 A person leaves and HR tells you.
 
-275
-00:17:15.438 --> 00:17:18.438
+276
+00:17:17.188 --> 00:17:20.188
 A service account's owner
 leaves and nothing tells you.
 
-276
-00:17:18.438 --> 00:17:20.690
+277
+00:17:20.188 --> 00:17:22.440
 These gates build the record that does.

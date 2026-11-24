@@ -1,0 +1,644 @@
+{
+ "1": [
+  [
+   0.1,
+   8.188,
+   "Welcome to Module 14 of the Non-Person Identity learning path: workload identity across AWS GovCloud and O C I."
+  ],
+  [
+   8.238,
+   7.138,
+   "It teaches the implementation guide's steps for the program's other two clouds, with Chapter 13 of the developer workbook."
+  ],
+  [
+   15.375,
+   9.262,
+   "The program's AWS estate is in AWS GovCloud, and its Oracle Cloud tenancy is in Oracle's U S Government Cloud, realm O C 2."
+  ],
+  [
+   24.637,
+   5.325,
+   "In November 2026 the program added both clouds' workload identities to this track."
+  ],
+  [
+   29.962,
+   2.875,
+   "Take this module after Modules 1 and 4."
+  ]
+ ],
+ "2": [
+  [
+   0.1,
+   1.337,
+   "Why does this matter?"
+  ],
+  [
+   1.387,
+   10.6,
+   "A workload in AWS or O C I that holds an access key is a service account with a password that never expires, sitting in a console nobody in identity governance opens."
+  ],
+  [
+   11.988,
+   4.35,
+   "This module brings those identities under the same rules as the rest of the track."
+  ],
+  [
+   16.337,
+   4.225,
+   "Each one is listed and joined to a record with two owners and a sponsor."
+  ],
+  [
+   20.562,
+   3.825,
+   "Every long-lived credential is an exception with a replace-by date."
+  ],
+  [
+   24.387,
+   3.138,
+   "And every trust is no wider than its workload needs."
+  ],
+  [
+   27.525,
+   6.487,
+   "The program decided to extend the track to both clouds, and named the tags that join each identity to its record."
+  ]
+ ],
+ "3": [
+  [
+   0.1,
+   5.062,
+   "Here's what you'll be able to do by the end of this module, which takes about sixty minutes with the lab."
+  ],
+  [
+   5.112,
+   9.3,
+   "You'll say why an access key, an A P I key, an auth token or a customer secret key is a long-lived secret, and what the program does with each one."
+  ],
+  [
+   14.412,
+   6.213,
+   "You'll name what the guide's export steps read, and what AWS's credential report and list calls leave out."
+  ],
+  [
+   20.625,
+   3.062,
+   "You'll join an identity to its record with four tags."
+  ],
+  [
+   23.688,
+   4.112,
+   "You'll run Chapter 13's checks on fixtures and read what they find."
+  ],
+  [
+   27.8,
+   3.913,
+   "And you'll name what's still unknown, and why the kit doesn't assume an answer."
+  ],
+  [
+   31.712,
+   3.087,
+   "Before you start, finish Modules 1 and 4."
+  ],
+  [
+   34.8,
+   7.975,
+   "You need PowerShell 7.1 or later with Pester 5, and no AWS account, O C I tenancy or Entra tenant."
+  ]
+ ],
+ "4": [
+  [
+   0.1,
+   1.988,
+   "Unit 1 is what the vendors say."
+  ],
+  [
+   2.038,
+   7.862,
+   "AWS says to require workloads to use temporary credentials with IAM roles, and where possible not to create access keys at all."
+  ],
+  [
+   9.9,
+   5.763,
+   "Oracle recommends instance principals, and rotating A P I keys every ninety days or less."
+  ],
+  [
+   15.662,
+   12.688,
+   "AWS GovCloud isn't commercial AWS: it has one IAM control plane and no global S T S endpoint, no role between a GovCloud account and a standard one, and a root user with no console sign-in."
+  ],
+  [
+   28.35,
+   8.662,
+   "IAM Roles Anywhere works there, but it can't fetch revocation lists from a certificate, so AWS says to import your C R Ls instead."
+  ],
+  [
+   37.013,
+   7.388,
+   "In O C I, instance and resource principals act through a dynamic group, which has no permissions until a policy names it."
+  ],
+  [
+   44.4,
+   3.35,
+   "Auth tokens and customer secret keys never expire."
+  ],
+  [
+   47.75,
+   6.938,
+   "And Microsoft Learn says Entra accepts tokens from workloads in AWS, signed with R S two fifty-six only."
+  ],
+  [
+   54.688,
+   6.725,
+   "Whether a GovCloud account's tokens work with Entra hasn't been tested, so the guide uses that path only after a test."
+  ],
+  [
+   61.413,
+   5.475,
+   "The program's rule follows: every long-lived credential is an exception with a replacement date."
+  ]
+ ],
+ "5": [
+  [
+   0.1,
+   2.362,
+   "Unit 2 is the exports and the join."
+  ],
+  [
+   2.413,
+   3.25,
+   "Every command in the guide's two export steps is a read."
+  ],
+  [
+   5.662,
+   6.938,
+   "In AWS, the credential report lists every IAM user, its password and its first two access keys."
+  ],
+  [
+   12.6,
+   8.812,
+   "It leaves out service-specific credentials and any key beyond the first two, so the export also lists access keys and service-specific credentials."
+  ],
+  [
+   21.413,
+   15.95,
+   "Then the roles, with their trust policies, the instance profiles, the O I D C providers, and the Roles Anywhere trust anchors, profiles and C R Ls. List users and list roles don't return tags, so the export reads each user's and role's tags too."
+  ],
+  [
+   37.362,
+   10.887,
+   "In O C I, against the tenancy's home region, it reads the users, each user's credentials, which come back as identifiers, never the secret, the dynamic groups and the policies."
+  ],
+  [
+   48.25,
+   5.612,
+   "The join is four tags: system I D, owner one, owner two and sponsor."
+  ],
+  [
+   53.862,
+   5.737,
+   "Each owner gets its own key, because an AWS tag value can't hold a comma or a semicolon."
+  ],
+  [
+   59.6,
+   5.75,
+   "An identity with no tags or record is an orphan: disable first, then a person acts."
+  ]
+ ],
+ "6": [
+  [
+   0.1,
+   1.825,
+   "Unit 3 is the checks."
+  ],
+  [
+   1.875,
+   15.287,
+   "N P I A W S oh one to oh seven are the long-lived credentials: every active access key and service-specific credential against its exception, two keys on one user, a key unused for ninety days, which is design guidance, and a root user key."
+  ],
+  [
+   17.163,
+   13.25,
+   "Oh eight to sixteen are owners and trust: missing tags, an O I D C trust with no subject condition, an outside account, a star or another partition as the principal, and a trust anchor with no imported C R L."
+  ],
+  [
+   30.413,
+   8.275,
+   "N P I O C I oh one to ten do the same for O C I, and add dynamic groups that match the whole tenancy or hold manage all-resources."
+  ],
+  [
+   38.688,
+   6.125,
+   "The validation kit's V K N P I ten reads the same exports and reports the gate's criteria."
+  ],
+  [
+   44.812,
+   19.3,
+   "And four things are still unknown, so the kit doesn't assume an answer: whether GovCloud and Entra can federate either way, whether Access Analyzer's unused-access findings run in GovCloud, whether O C 2 offers instance, resource and O K E workload principals, and what field names the O C I command line prints."
+  ]
+ ],
+ "7": [
+  [
+   0.1,
+   0.887,
+   "Try it."
+  ],
+  [
+   0.938,
+   4.938,
+   "Lab 1 runs in the non-person identity folder, with no account and no tenancy."
+  ],
+  [
+   5.875,
+   2.712,
+   "These are Chapter 13's Lab 1 steps."
+  ],
+  [
+   8.588,
+   5.275,
+   "The fixtures are one fictional GovCloud account and one fictional O C 2 tenancy."
+  ],
+  [
+   13.863,
+   13.312,
+   "Step one runs the checks as of November 24, 2026: seven IAM users, eleven roles and two trust anchors in AWS; five users and three dynamic groups in O C I. Look for two lines."
+  ],
+  [
+   27.175,
+   3.913,
+   "Twenty-four findings, eleven warnings and two information items."
+  ],
+  [
+   31.087,
+   6.188,
+   "And seven AWS and five O C I long-lived credentials, two of them under a current exception."
+  ],
+  [
+   37.275,
+   2.712,
+   "Then one line per rule, and the manifest's hash."
+  ],
+  [
+   39.987,
+   8.875,
+   "The script reads files and writes its output folder: it runs no AWS or O C I command, calls no A P I, and changes no key."
+  ]
+ ],
+ "8": [
+  [
+   0.1,
+   1.95,
+   "Step two reads the findings."
+  ],
+  [
+   2.0,
+   3.025,
+   "Find S V C dash report dash export."
+  ],
+  [
+   5.025,
+   15.9,
+   "It trips four rules: oh one, an active key with no exception, twice, once for each key; oh two, two active keys on one user, one of them never used; oh four, a console password beside the keys; and oh eight, only one owner tagged."
+  ],
+  [
+   20.925,
+   4.1,
+   "Then find D G dash everything, a dynamic group in O C I."
+  ],
+  [
+   25.025,
+   7.237,
+   "It has no tags, no policy names it, and its matching rule names the whole tenancy, so every instance would be a member."
+  ],
+  [
+   32.263,
+   7.75,
+   "Notice the first line: S V C dash app dash sync's key is a warning, not a finding, because it's under a current exception."
+  ]
+ ],
+ "9": [
+  [
+   0.1,
+   14.188,
+   "Step three reads the long-lived credentials: one row per active access key, service-specific credential, A P I key, auth token and customer secret key, with its age, its last use for AWS keys, and its exception."
+  ],
+  [
+   14.238,
+   9.113,
+   "Two are under exceptions until 2027: S V C dash app dash sync's access key and H R dash report dash reader's A P I key."
+  ],
+  [
+   23.35,
+   1.387,
+   "Look at the ages."
+  ],
+  [
+   24.738,
+   10.137,
+   "S V C dash legacy dash F T P's key is more than nine hundred days old, and was last used in December 2025, so it's also a ninety-day unused lead."
+  ],
+  [
+   34.875,
+   6.662,
+   "H R dash build dash push's auth token is five hundred and eighty-two days old, and auth tokens never expire."
+  ],
+  [
+   41.538,
+   3.5,
+   "The file holds identifiers only, never a secret."
+  ]
+ ],
+ "10": [
+  [
+   0.1,
+   2.638,
+   "Step four reads who isn't joined to a record."
+  ],
+  [
+   2.688,
+   10.875,
+   "Seven identities: two IAM users holding keys, a Lambda execution role, a role anyone can assume, two O C I users holding credentials, and the dynamic group."
+  ],
+  [
+   13.562,
+   2.913,
+   "Each is an orphan lead under the guide's orphan rule."
+  ],
+  [
+   16.475,
+   7.737,
+   "Then it reads one trust: C I dash pipeline dash O I D C trusts GitHub's token issuer with only an audience condition."
+  ],
+  [
+   24.212,
+   4.625,
+   "AWS's examples limit the token's subject claim to the one repository."
+  ],
+  [
+   28.837,
+   4.875,
+   "Without it, workflows from repositories outside your control could assume the role."
+  ],
+  [
+   33.712,
+   2.638,
+   "That's N P I A W S oh nine."
+  ]
+ ],
+ "11": [
+  [
+   0.1,
+   6.987,
+   "Step five runs on an export made before the guide's export step added the tag and C R L reads, so it doesn't have them."
+  ],
+  [
+   7.037,
+   2.975,
+   "The kit still runs, and says what it couldn't check."
+  ],
+  [
+   10.012,
+   3.05,
+   "The manifest's not-read line names both files."
+  ],
+  [
+   13.062,
+   6.7,
+   "N P I A W S oh eight becomes one warning for the whole account, instead of a finding for each identity."
+  ],
+  [
+   19.762,
+   5.537,
+   "And oh fourteen warns for each trust anchor, because it can't tell whether a C R L was imported."
+  ],
+  [
+   25.3,
+   2.888,
+   "A missing file is a warning, never a pass."
+  ],
+  [
+   28.188,
+   7.213,
+   "Notice too that S V C dash app dash sync's key is back to a finding, because this run was given no exception list."
+  ]
+ ],
+ "12": [
+  [
+   0.1,
+   7.75,
+   "Step six reads the evidence: one row per step and control, with the K S Is aligned with it and the file that provides the evidence."
+  ],
+  [
+   7.8,
+   6.088,
+   "The inventory rows are A C two, C M eight and I A four, from the identities file."
+  ],
+  [
+   13.887,
+   2.388,
+   "The credentials row is I A five."
+  ],
+  [
+   16.275,
+   8.838,
+   "The certificates rows are I A five enhancement two and S C seventeen, from the trust file, as is A C six for trust and privilege."
+  ],
+  [
+   25.113,
+   4.513,
+   "And the lifecycle row is A C two enhancement three, from the findings."
+  ],
+  [
+   29.625,
+   3.625,
+   "Match each row to the requirement table in the module's introduction."
+  ],
+  [
+   33.25,
+   3.112,
+   "Step seven runs the tests: thirty-four pass."
+  ],
+  [
+   36.362,
+   2.888,
+   "Step eight cleans up by removing the output folder."
+  ]
+ ],
+ "13": [
+  [
+   0.1,
+   4.162,
+   "Lab 2 runs the same checks on a real account's and tenancy's exports."
+  ],
+  [
+   4.213,
+   3.487,
+   "Nobody has run it yet, so no step's output has been seen."
+  ],
+  [
+   7.7,
+   10.262,
+   "Use one AWS GovCloud account and one O C I tenancy that aren't production, with read access to IAM and Roles Anywhere in the account, and to IAM in the tenancy."
+  ],
+  [
+   17.962,
+   4.888,
+   "Write the settings and an empty exception list, in a folder outside the repository."
+  ],
+  [
+   22.85,
+   7.975,
+   "Run the guide's AWS export commands, the tag and C R L reads included, then the O C I ones against the tenancy's home region."
+  ],
+  [
+   30.825,
+   8.85,
+   "Then run the checks, and read the findings and the manifest: it records no request, because the kit called nothing, and lists the fourteen export commands."
+  ],
+  [
+   39.675,
+   7.513,
+   "If every O C I user shows no credentials while the console shows keys, the command line's field names differ from those the kit reads."
+  ],
+  [
+   47.188,
+   1.363,
+   "Record what they are."
+  ],
+  [
+   48.55,
+   3.763,
+   "Keep the exports with the run's evidence, never in the repository."
+  ]
+ ],
+ "14": [
+  [
+   0.1,
+   1.6,
+   "The federal requirement."
+  ],
+  [
+   1.65,
+   6.475,
+   "Chapter 13 writes one evidence row per step and control, and these are the rows this module's lab produces."
+  ],
+  [
+   8.125,
+   12.6,
+   "The identities file supports A C two, Account Management, C M eight, System Component Inventory, and I A four, Identifier Management, in nist special publication eight hundred fifty-three."
+  ],
+  [
+   20.725,
+   6.2,
+   "The credentials file supports I A five, Authenticator Management, with the exception records it names."
+  ],
+  [
+   26.925,
+   7.625,
+   "The trust anchors and their C R Ls support I A five enhancement two and S C seventeen, the public key controls."
+  ],
+  [
+   34.55,
+   8.375,
+   "The trust and reach of every role and dynamic group support A C six, Least Privilege, with the owner's justification for each finding kept."
+  ],
+  [
+   42.925,
+   6.787,
+   "And the orphan leads support A C two enhancement three, Disable Accounts, with the orphan or decommission ticket."
+  ],
+  [
+   49.712,
+   4.625,
+   "K S Is are fed-ramp twenty X indicators for cloud service providers."
+  ],
+  [
+   54.337,
+   3.8,
+   "A row provides evidence for a control; the assessor decides."
+  ]
+ ],
+ "15": [
+  [
+   0.1,
+   2.05,
+   "Check yourself with two questions."
+  ],
+  [
+   2.1,
+   3.75,
+   "First: how does the program join an IAM role to its record?"
+  ],
+  [
+   5.85,
+   10.338,
+   "The answer is b: four tags, system I D, owner one, owner two and sponsor, with one key per owner, because an AWS tag value can't hold a comma."
+  ],
+  [
+   16.188,
+   3.737,
+   "Second: the AWS export has no tags file."
+  ],
+  [
+   19.925,
+   1.275,
+   "What does the kit do?"
+  ],
+  [
+   21.2,
+   6.112,
+   "The answer is b: it runs, lists the file as not read, and raises one warning for the account."
+  ],
+  [
+   27.312,
+   5.525,
+   "A missing file is a warning, never a pass, and the kit never calls AWS itself."
+  ],
+  [
+   32.837,
+   4.3,
+   "The module page has three more questions, each linked to the section that answers it."
+  ]
+ ],
+ "16": [
+  [
+   0.1,
+   1.025,
+   "To sum up."
+  ],
+  [
+   1.075,
+   5.787,
+   "The program's AWS GovCloud and O C I workload identities follow the track's rules."
+  ],
+  [
+   6.862,
+   4.75,
+   "Every one is listed from read-only exports and joined to a record by four tags."
+  ],
+  [
+   11.613,
+   3.0,
+   "Its long-lived credentials are exceptions with a date."
+  ],
+  [
+   14.613,
+   2.288,
+   "Its trusts are named down to the workload."
+  ],
+  [
+   16.9,
+   3.263,
+   "And its unknowns stay unknowns until the program tests them."
+  ],
+  [
+   20.163,
+   9.262,
+   "Chapter 13 checks the exports on every run, V K N P I ten reports the gate's criteria, and the evidence names the control each row supports."
+  ],
+  [
+   29.425,
+   6.263,
+   "Next, go back to the learning path's index, or on to Chapter 13 for Lab 2 and its dangers."
+  ]
+ ]
+}

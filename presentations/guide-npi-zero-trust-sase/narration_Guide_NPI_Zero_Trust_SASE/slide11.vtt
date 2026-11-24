@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.487
+N T L M.
+
+2
+00:00:01.487 --> 00:00:06.576
+The program's backstop for N
+T L M is April first, 2027.
+
+3
+00:00:06.576 --> 00:00:10.065
+It's the program's own date,
+not an external deadline;
+
+4
+00:00:10.065 --> 00:00:12.225
+that's decision W D twenty-seven.
+
+5
+00:00:12.225 --> 00:00:14.350
+It applies to service accounts too.
+
+6
+00:00:14.350 --> 00:00:19.687
+After that date, an account kept in Active
+Directory, as Keep or Keep Kerberos,
+
+7
+00:00:19.687 --> 00:00:22.906
+authenticates with Kerberos
+only, never N T L M,
+
+8
+00:00:22.906 --> 00:00:26.887
+and its end date still follows
+decision W D one sixty-five.
+
+9
+00:00:26.887 --> 00:00:31.774
+Microsoft's own position, on Microsoft
+Learn, is that N T L M is still supported,
+
+10
+00:00:31.774 --> 00:00:35.575
+and that Kerberos is the
+preferred authentication method.
+
+11
+00:00:35.575 --> 00:00:37.525
+And watch for the quiet failure.
+
+12
+00:00:37.525 --> 00:00:40.310
+An S P N that's missing,
+or on the wrong account,
+
+13
+00:00:40.310 --> 00:00:44.880
+is the usual way a service falls back
+to N T L M without anyone choosing it.

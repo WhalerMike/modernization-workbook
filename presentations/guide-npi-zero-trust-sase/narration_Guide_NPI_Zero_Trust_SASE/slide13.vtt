@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.488
+For workloads, the answer is no
+single store; one record instead.
+
+2
+00:00:04.488 --> 00:00:07.726
+M twenty-two oh-nine's sentence
+is about agency users.
+
+3
+00:00:07.726 --> 00:00:11.625
+A workload is safest with
+its own platform's identity,
+
+4
+00:00:11.625 --> 00:00:15.878
+which has no stored secret and
+never leaves that platform:
+
+5
+00:00:15.878 --> 00:00:20.487
+an I A M role in AWS, a principal in
+O C I, a managed identity in Azure.
+
+6
+00:00:20.487 --> 00:00:24.818
+Forcing an Entra identity onto an
+AWS workload would mean a secret
+
+7
+00:00:24.818 --> 00:00:29.463
+or a certificate where AWS would
+issue temporary credentials for free.
+
+8
+00:00:29.463 --> 00:00:31.854
+What the program extends across clouds for
+
+9
+00:00:31.854 --> 00:00:34.512
+workloads is the governance,
+not the credential.
+
+10
+00:00:34.512 --> 00:00:38.875
+One inventory, joined to a system
+record with two owners and a sponsor.
+
+11
+00:00:38.875 --> 00:00:41.275
+One exception rule for long-lived keys.
+
+12
+00:00:41.275 --> 00:00:45.686
+And federation between platforms
+where a workload must call across,
+
+13
+00:00:45.686 --> 00:00:50.639
+such as an AWS workload calling Microsoft
+Graph with a federated credential,
+
+14
+00:00:50.639 --> 00:00:53.812
+once it's tested; that's
+decision W D one seventy-one.
+
+15
+00:00:53.812 --> 00:00:57.530
+This split is the program's
+recommendation, design guidance.

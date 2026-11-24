@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.225
+Six things are still open, and the kit
+doesn't assume an answer to any of them.
+
+2
+00:00:04.225 --> 00:00:08.237
+First, AWS GovCloud and
+Entra, in either direction.
+
+3
+00:00:08.237 --> 00:00:12.541
+AWS documents GovCloud's outbound
+federation across its own partitions,
+
+4
+00:00:12.541 --> 00:00:16.632
+but no page read walks through Entra
+and GovCloud trusting each other,
+
+5
+00:00:16.632 --> 00:00:19.313
+so the guide uses either
+path only after a test.
+
+6
+00:00:19.313 --> 00:00:23.786
+Second, whether Access Analyzer's
+unused-access findings run in GovCloud;
+
+7
+00:00:23.786 --> 00:00:26.500
+the kit's ninety-day check
+doesn't depend on it.
+
+8
+00:00:26.500 --> 00:00:29.037
+Third, whether instance principals,
+
+9
+00:00:29.037 --> 00:00:34.025
+resource principals and O K E workload
+identity are available in O C two.
+
+10
+00:00:34.025 --> 00:00:37.575
+Fourth, the O C I command
+line's output field names.
+
+11
+00:00:37.575 --> 00:00:41.187
+Fifth, which credential report
+column belongs to which key.
+
+12
+00:00:41.187 --> 00:00:46.490
+And sixth, whether the O C I user list
+returns users in every identity domain.
