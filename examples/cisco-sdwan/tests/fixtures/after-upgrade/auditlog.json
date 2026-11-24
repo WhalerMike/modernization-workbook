@@ -1,0 +1,7 @@
+{
+  "header": {"generatedOn": 1793606400000},
+  "data": [
+    {"logid": "5d0f1c2e-2222-4b3a-8c4d-000000000001", "entry_time": 1793602800000, "statcycletime": 1793602800000, "loguser": "netops-admin@contoso.example", "logusersrcip": "10.250.10.25", "logmodule": "user", "logfeature": "login", "logdeviceid": "10.255.0.1", "logmessage": "Authentication succeeded for user netops-admin@contoso.example", "auditdetails": [], "tenant": "default"},
+    {"logid": "5d0f1c2e-2222-4b3a-8c4d-000000000002", "entry_time": 1793603400000, "statcycletime": 1793603400000, "loguser": "netops-admin@contoso.example", "logusersrcip": "10.250.10.25", "logmodule": "software", "logfeature": "software upgrade", "logdeviceid": "10.255.0.21", "logmessage": "Software upgrade to 20.18.3.1 completed on sdwan-validator-01", "auditdetails": ["upgrade"], "tenant": "default"}
+  ]
+}
