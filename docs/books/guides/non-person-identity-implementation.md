@@ -16,6 +16,11 @@ last-reviewed: 2026-11-23
 
 *A person leaves and HR tells you; a service account's owner leaves and nothing tells you, so this track has to build the record that HR provides for everyone else.*
 
+::: {.callout-tip}
+## Which guide?
+The Non-Person Identity track has two guides. [*Non-Person Identity: An Implementation Guide*](non-person-identity-implementation.md) runs the whole track as gates G1 to G6, for every non-person identity: AD service accounts, app registrations, managed identities and AI agents, with the tenant's credential and privilege rules. [*Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities*](service-account-migration.md) is part of the same track: the detail under the implementation guide's Steps 2 and 5, one account at a time, with the kinds compared, SPNs, the decision path, the managed service account standard, CyberArk's part and each migration by hand. Run the track and its gates from the first guide; migrate or standardize one account with the second. The gate checklist is the implementation guide's; the service accounts guide's checklist is the per-account one.
+:::
+
 ::: {.callout-note}
 ## In this guide
 The non-person identity track of the [Attribute-Driven Migration guide](attribute-driven-migration.md#non-person-identity-track), as steps you can run. Prerequisites: roles, licenses and the system inventory as the source of truth. Then six gated steps: inventory every service account and workload identity and give each an owner and a sponsor; decide each one's target; set the credential rules; cut privilege; convert with a parallel run; and run the lifecycle through owner changes, orphans, reviews and decommissioning. Then SQL Server's service and application principals, AI agents, the dangers and how to avoid them, the evidence an assessor reads, rollback and a checklist. Every gate ends with a **Validate** step that names the read-only validation kit check (`VK-NPI-nn`) that proves it.
@@ -213,16 +218,16 @@ Each identity ends in one of five places: retire it, convert it to a gMSA (or a 
 | Disabled, unused, or no owner after Step 1 | Anywhere | **Retire** ([Step 6](#step-6-run-the-lifecycle)) |
 | Traditional account | Azure resource | **Managed identity**, user-assigned preferred |
 | Traditional account calling Microsoft 365 or Entra-protected APIs | A host with an OIDC issuer (GitHub Actions, Kubernetes, Google Cloud, AWS, another OIDC platform) | **App registration with a federated credential** |
-| Traditional account calling Entra-protected APIs | No issuer and not in Azure, such as an on-premises scheduler | **App registration with a certificate**, or a managed identity if the host is Arc-enabled |
+| Traditional account calling Entra-protected APIs | No issuer and not in Azure, such as an on-premises scheduler | The Arc-enabled server's **managed identity** if the host is Arc-enabled; otherwise an **app registration with a certificate** ([decision path](service-account-migration.md#decision-path), question 4) |
 | Traditional account, Kerberos only | On premises | A **dMSA** where every host that uses the account runs Windows Server 2025, a Windows Server 2025 domain controller is reachable and the account relies on no unconstrained delegation; otherwise a **gMSA** ([decision path](service-account-migration.md#decision-path)) |
 | MSA | On premises | **gMSA**: upgrade first, because an MSA or gMSA can't be migrated to a dMSA |
 | gMSA or dMSA | Staying on premises | **Keep** |
-| gMSA | Hybrid | **Keep the gMSA**, plus an app registration for the cloud calls |
+| gMSA | Hybrid | **Keep the gMSA**; for the cloud calls, the Arc-enabled server's managed identity, otherwise an app registration with a certificate ([decision path](service-account-migration.md#decision-path), question 4) |
 | gMSA | Moving to the cloud | **Managed identity** or **federated credential** |
 | IIS application pool or scheduled task identity | On premises, moving later | **gMSA now**; a managed identity or an Azure Automation runbook with one once moved |
 | App registration with a client secret | Any | Re-credential to a **managed identity**, then **federation**, then a **certificate** |
 
-: The decision for each identity, condensed from Book 02, Chapter 09 {.striped .hover}
+: The decision for each identity, condensed from Book 02, Chapter 09; for an identity that starts as an AD account, the service accounts guide's decision path sets the order {.striped .hover}
 
 Microsoft suggests a managed identity instead of an app registration when the service runs in Azure, doesn't sign users in, isn't a web API and doesn't work across tenants ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#managed-identities)). An Arc-enabled server has one too ([Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#credentials)).
 
@@ -257,6 +262,8 @@ The program's rules *(design guidance, from the books)*:
 - no long-lived secrets;
 - managed identities first, then federated credentials, then certificates, with client secrets only by documented exception;
 - every certificate in a vault and on a rotation calendar.
+
+Which identity holds a password, a certificate or neither, and CyberArk's part for each, are in the service accounts guide: [Passwords, certificates or neither](service-account-migration.md#credentials) and [CyberArk across the migration](service-account-migration.md#cyberark).
 
 [Book 04, Chapter 05](../b04-access/05-applications-and-workload-identities.md#credentials) gives Microsoft's order and its reasons.
 

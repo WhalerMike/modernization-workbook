@@ -137,3 +137,14 @@ Aligned with the service account guide's [standard](../service-account-migration
 | Figure | Where | Source |
 |---|---|---|
 | Figure `service-identity-decision-path`: the service account guide's ordered questions 1 to 9, five targets plus the time-limited `Keep`/`KeepKerberos` exception | Step 2 | Service account guide, decision path; Learn, "Securing on-premises service accounts", "Secure group managed service accounts", "Securing managed identities in Microsoft Entra ID" |
+
+## Revision 2026-11-24 — one track, two guides
+
+Mike, November 24, 2026, agreed that the service accounts guide is part of the Non-Person Identity track and that its decision path wins where Step 2's table differed.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R-24a | Step 2's table, "gMSA, Hybrid": was "Keep the gMSA, plus an app registration for the cloud calls"; now the Arc-enabled server's managed identity, otherwise an app registration with a certificate, as the decision path's question 4 says. The row for a traditional account calling Entra-protected APIs from a host with no issuer now puts the Arc identity first, in the same order. Step 2's own figure already followed the decision path | Step 2 | corrected to the service accounts guide's decision path (approved in #697) | Service accounts guide, "The decision path" |
+| R-24b | A "Which guide?" box in both guides; the gate checklist is this guide's | In this guide | added | — |
+| R-24c | Step 3 links to "Passwords, certificates or neither" and "CyberArk across the migration" | Step 3 | added | Service accounts guide |
+

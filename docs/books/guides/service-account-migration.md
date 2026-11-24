@@ -17,7 +17,14 @@ last-reviewed: 2026-11-24
 ---
 # Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities
 
+*Part of the Non-Person Identity track: the detail under the [implementation guide](non-person-identity-implementation.md)'s [Step 2](non-person-identity-implementation.md#step-2-decide-each-identitys-target) and [Step 5](non-person-identity-implementation.md#step-5-convert-with-a-parallel-run).*
+
 *A service account's password is the one nobody changes, because changing it breaks something; every step in this guide replaces a password someone has to keep with a credential Windows or Microsoft Entra ID keeps instead.*
+
+::: {.callout-tip}
+## Which guide?
+The Non-Person Identity track has two guides. [*Non-Person Identity: An Implementation Guide*](non-person-identity-implementation.md) runs the whole track as gates G1 to G6, for every non-person identity: AD service accounts, app registrations, managed identities and AI agents, with the tenant's credential and privilege rules. [*Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities*](service-account-migration.md) is part of the same track: the detail under the implementation guide's Steps 2 and 5, one account at a time, with the kinds compared, SPNs, the decision path, the managed service account standard, CyberArk's part and each migration by hand. Run the track and its gates from the first guide; migrate or standardize one account with the second. The gate checklist is the implementation guide's; the service accounts guide's checklist is the per-account one.
+:::
 
 ::: {.callout-note}
 ## In this guide
@@ -138,7 +145,7 @@ Where the program's matrix and Learn's guidance line up: Learn says to use gMSAs
 
 ## The program's rules for every migration {#rules}
 
-These are the track's rules, carried here so a hand migration follows them too:
+These are the track's rules, set by the [implementation guide](non-person-identity-implementation.md)'s steps and carried here, one line each, so a hand migration follows them too:
 
 - **Two named owners and a sponsor.** Every identity has two named technical owners and a sponsor who is a federal employee mastered in HR; a contractor can build or run a workload but can't be its only sponsor ([Non-Person Identity guide, Step 1f](non-person-identity-implementation.md#step-1-inventory-every-non-person-identity)).
 - **A reviewed disposition first.** No account moves without its Chapter 03 disposition.
@@ -967,6 +974,8 @@ A finding this page addresses is ready for closure when every applicable state h
 : Dangers {.striped .hover}
 
 ## Checklist
+
+The per-account checklist. The track's gate checklist is the [implementation guide](non-person-identity-implementation.md#checklist)'s.
 
 - [ ] Every service account has a Chapter 03 disposition, two named owners and a federal-employee sponsor.
 - [ ] The forest has exactly one KDS root key, usable for more than 10 hours, and Event 4004 was seen.

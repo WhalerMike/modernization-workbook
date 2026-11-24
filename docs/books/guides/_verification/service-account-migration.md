@@ -265,3 +265,10 @@ Mike asked on November 24, 2026 how much the guide explains the relationship bet
 | J-21 | Kerberoasting: attackers enumerate SPNs, request service tickets, extract hashes for an offline brute-force attack; Defender for Identity advises long, complex passwords for accounts with SPNs; the dMSA overview names Kerberoasting as common with traditional accounts | SPNs and service accounts | supported by the sources. Learn's pages read don't say how a ticket is encrypted, so the guide doesn't | Learn, Defender for Identity classic alerts (2410); dMSA overview |
 | J-22 | The SPN owner's duties (confirm users of each SPN, approve a move, answer when Kerberos breaks, see it removed at retirement); the requirement itself is Chapter 03's NPI-MAT-06 | SPNs and service accounts | design guidance | Chapter 03; Chapter 06 |
 | J-23 | A5 said "each SPN must have exactly one owner"; it now says one account, to keep "owner" for the person | A5 | wording corrected | Learn, "Service principal names" |
+
+## One track, two guides (November 24, 2026)
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| J-24 | The guide is marked as part of the Non-Person Identity track (a line under the title, a "Which guide?" box, a "Non-Person Identity" group in the site's guide navigation); the rules section says the implementation guide sets them; the checklist is the per-account one. The title is unchanged: three narrated decks and other pages quote it | Top of the guide; the program's rules; Checklist | added | Mike, November 24, 2026 |
+

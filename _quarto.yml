@@ -143,7 +143,7 @@ website:
           - href: docs/books/guides/non-person-identity-implementation.md
             text: "Guide: Non-Person Identity Implementation"
           - href: docs/books/guides/service-account-migration.md
-            text: "Guide: Service Account Migration"
+            text: "Guide: Non-Person Identity — Service Accounts"
           - href: docs/books/guides/privileged-access-implementation.md
             text: "Guide: Privileged Access Implementation"
           - href: docs/books/guides/provider-notices-implementation.md
@@ -542,8 +542,10 @@ website:
             - docs/books/guides/attribute-driven-migration-implementation.md
             - docs/books/guides/intune-track-implementation.md
             - docs/books/guides/arc-track-implementation.md
-            - docs/books/guides/non-person-identity-implementation.md
-            - docs/books/guides/service-account-migration.md
+            - section: "Non-Person Identity"
+              contents:
+                - docs/books/guides/non-person-identity-implementation.md
+                - docs/books/guides/service-account-migration.md
             - docs/books/guides/privileged-access-implementation.md
             - docs/books/guides/provider-notices-implementation.md
             - docs/books/guides/defender-xdr-implementation.md
