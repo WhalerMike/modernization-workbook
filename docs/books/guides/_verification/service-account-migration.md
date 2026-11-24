@@ -281,3 +281,10 @@ Mike asked on November 24, 2026 how much the guide explains the relationship bet
 | J-26 | `useAppPoolCredentials` and which account decrypts an IIS ticket: only in Microsoft's archived 2011 guidance; listed under what couldn't be verified, with a `klist` test after A5 | What couldn't be verified | archived source only | Microsoft archived blog, "Kernel-mode authentication" |
 | J-27 | Delegation: `msDS-AllowedToDelegateTo` "contains a list of Service Principal Names"; resource-based delegation is set on the back-end account (`PrincipalsAllowedToDelegateToAccount`); A5 now checks both and carries them to the gMSA (`Set-ADServiceAccount -Add`, `Set-ADAccountControl -TrustedToAuthForDelegation`, `Set-ADComputer -PrincipalsAllowedToDelegateToAccount`); unconstrained delegation stops the move (question 6). Chapter 06's plan writes no delegation, so these are a person's step | SPNs and service accounts; A5; placeholders | supported by the sources; the person's step is design guidance | Learn, "ms-DS-Allowed-To-Delegate-To attribute", "Kerberos Constrained Delegation Overview", "Set-ADServiceAccount", "Set-ADAccountControl" |
 
+## AWS GovCloud (US) and OCI rows (November 24, 2026)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| J-28 | AWS and OCI rows in "Passwords, certificates or neither" and "CyberArk across the migration" (WD-171) | Both tables | supported by the implementation guide's sources (R-24d to R-24i); the "who manages it" column is design guidance | Implementation guide, 1g and 1h |
+| J-29 | CyberArk's AWS access keys plugin verifies and changes keys, "works with standard and government cloud environments", and lists `us-gov-west-1` (not `us-gov-east-1`) among its Region codes; the guide doesn't use it, for the same reasons as the Azure plugin. No OCI key plugin was found in the plugin index | CyberArk across the migration | supported by the source (read in a browser) | CyberArk, plugins, "AWS access keys" |
+

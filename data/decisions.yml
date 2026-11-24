@@ -2237,3 +2237,19 @@
   prs: []
   status: settled
   note: "Basis: workbook owner decision, November 20, 2026."
+- id: WD-171
+  date: 2026-11-24
+  question: Does the Non-Person Identity track cover workload identities in AWS GovCloud (US) and Oracle Cloud?
+  options: ["Microsoft only (AD, Entra ID, Azure, Arc), with AWS and OCI left to each platform's team", "The track also covers the program's AWS GovCloud (US) and OCI (OC2) workload identities through the same six gates"]
+  choice: "The track covers them. Every IAM role, IAM user and its credentials, IAM Roles Anywhere trust anchor and profile, and OIDC provider in the program's AWS GovCloud (US) accounts, and every OCI user's credentials, dynamic group and workload principal in its OC2 tenancy, is inventoried, joined to a system record with two owners and a sponsor, given a target, held to the credential and privilege rules, and run through the lifecycle, like an Entra or AD identity. Platform-issued temporary credentials are the target: an IAM role or an OCI instance, resource or workload principal. A long-lived secret (an IAM user access key; an OCI API signing key, auth token or customer secret key) is an exception under [Book 13, Chapter 14](../books/b13-governance/14-application-secret-and-configuration-governance.md#secrets-governance)'s criteria. Federation between AWS GovCloud (US) and the program's Entra tenant, in either direction, is used only after a test in the program's accounts shows it works"
+  rationale: "AWS says to require workloads to use temporary credentials with IAM roles, and Oracle recommends instance principals for software and rotating API keys every 90 days or less. The program's AWS estate is in AWS GovCloud (US) ([WD-157](#wd-157)) and its HR platform on OCI, so a Microsoft-only track leaves their non-person identities without an owner, a target or a review. AWS documents GovCloud (US) for outbound federation across AWS partitions, not to an outside relying party such as Entra, so that path waits for a test"
+  basis: workbook-design
+  sources:
+  - {title: 'AWS, Security best practices in IAM', url: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html'}
+  - {title: 'AWS, IAM in AWS GovCloud (US)', url: 'https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-iam.html'}
+  - {title: 'Oracle, IAM Credentials (Securing IAM)', url: 'https://docs.oracle.com/en-us/iaas/Content/Security/Reference/iam_security_topic-IAM_Credentials.htm'}
+  - {title: 'Microsoft Learn, Workload identity federation', url: 'https://learn.microsoft.com/entra/workload-id/workload-identity-federation'}
+  pages: [docs/books/guides/non-person-identity-implementation.md, docs/books/guides/service-account-migration.md, docs/books/b13-governance/14-application-secret-and-configuration-governance.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 24, 2026 (\"Yes, extend the track to AWS GovCloud and OCI\"). The developer workbook's read-only AWS and OCI inventory kit and the training module follow in later changes."

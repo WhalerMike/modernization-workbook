@@ -11,7 +11,7 @@ doc-type: section-landing
 
 This register lists the decisions behind the workbook, from the repository's first pull request on, one entry each. Each entry gives the question, the options that were considered, the choice, the reason for it, its basis, its sources and the pages it shaped. The [Reviewers' Guide](reviewers-guide.md) explains how to check an entry and how to tell us you agree or disagree with it. Use the entry's ID when you do.
 
-There are **170** workbook decisions: 160 settled, 0 challenged and 10 superseded. Below them are the **90** decision points the sample project plans leave to the agency that adopts them.
+There are **171** workbook decisions: 161 settled, 0 challenged and 10 superseded. Below them are the **90** decision points the sample project plans leave to the agency that adopts them.
 
 ::: {.callout-note}
 ## How to read the basis
@@ -204,6 +204,7 @@ There are **170** workbook decisions: 160 settled, 0 challenged and 10 supersede
 | [WD-168](#wd-168) | 2026-11-20 | Do production service-account writes ever run by hand, and does the kit move a disabled account to a holding OU? | Workbook design | settled |
 | [WD-169](#wd-169) | 2026-11-20 | Where do the indicators for the service-account controls without a master row come from? | External requirement | settled |
 | [WD-170](#wd-170) | 2026-11-20 | How much of the service-account lifecycle should machines run? | External requirement | settled |
+| [WD-171](#wd-171) | 2026-11-24 | Does the Non-Person Identity track cover workload identities in AWS GovCloud (US) and Oracle Cloud? | Workbook design | settled |
 
 : Workbook decisions, oldest first {.striped .hover}
 
@@ -2976,6 +2977,23 @@ There are **170** workbook decisions: 160 settled, 0 challenged and 10 supersede
 | **Note** | Basis: workbook owner decision, November 20, 2026. |
 
 [Agree, disagree or send evidence on WD-170](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-170%3A+)
+
+### WD-171: Does the Non-Person Identity track cover workload identities in AWS GovCloud (US) and Oracle Cloud? {#wd-171}
+
+| | |
+|---|---|
+| **Options considered** | Microsoft only (AD, Entra ID, Azure, Arc), with AWS and OCI left to each platform's team; The track also covers the program's AWS GovCloud (US) and OCI (OC2) workload identities through the same six gates |
+| **Choice** | The track covers them. Every IAM role, IAM user and its credentials, IAM Roles Anywhere trust anchor and profile, and OIDC provider in the program's AWS GovCloud (US) accounts, and every OCI user's credentials, dynamic group and workload principal in its OC2 tenancy, is inventoried, joined to a system record with two owners and a sponsor, given a target, held to the credential and privilege rules, and run through the lifecycle, like an Entra or AD identity. Platform-issued temporary credentials are the target: an IAM role or an OCI instance, resource or workload principal. A long-lived secret (an IAM user access key; an OCI API signing key, auth token or customer secret key) is an exception under [*Governance, Drift and Evidence*, Chapter 14](../books/b13-governance/14-application-secret-and-configuration-governance.md#secrets-governance)'s criteria. Federation between AWS GovCloud (US) and the program's Entra tenant, in either direction, is used only after a test in the program's accounts shows it works |
+| **Rationale** | AWS says to require workloads to use temporary credentials with IAM roles, and Oracle recommends instance principals for software and rotating API keys every 90 days or less. The program's AWS estate is in AWS GovCloud (US) ([WD-157](#wd-157)) and its HR platform on OCI, so a Microsoft-only track leaves their non-person identities without an owner, a target or a review. AWS documents GovCloud (US) for outbound federation across AWS partitions, not to an outside relying party such as Entra, so that path waits for a test |
+| **Basis** | Workbook design |
+| **Sources** | [AWS, Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html); [AWS, IAM in AWS GovCloud (US)](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-iam.html); [Oracle, IAM Credentials (Securing IAM)](https://docs.oracle.com/en-us/iaas/Content/Security/Reference/iam_security_topic-IAM_Credentials.htm); [Microsoft Learn, Workload identity federation](https://learn.microsoft.com/entra/workload-id/workload-identity-federation) |
+| **Pages affected** | [Non-Person Identity: An Implementation Guide](../books/guides/non-person-identity-implementation.md), [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../books/guides/service-account-migration.md), [Chapter 14 — Applications, Secrets and Configuration Drift](../books/b13-governance/14-application-secret-and-configuration-governance.md) |
+| **Date** | 2026-11-24 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 24, 2026 ("Yes, extend the track to AWS GovCloud and OCI"). The developer workbook's read-only AWS and OCI inventory kit and the training module follow in later changes. |
+
+[Agree, disagree or send evidence on WD-171](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-171%3A+)
 
 ## Decision points in the sample project plans {#plan-decisions}
 
