@@ -18,6 +18,9 @@ $endif$
 $if(fmw-topics)$
 <p class="fmw-topics">Topic: $for(fmw-topics)$<a href="$fmw-topics.href$">$fmw-topics.title$</a>$sep$ · $endfor$ <span class="fmw-topics-note">(every guide, lab, video and download on it)</span></p>
 $endif$
+$if(fmw-word)$
+<p class="fmw-word">Download (Word): <a href="$fmw-word.page$" download>this page</a>$if(fmw-word.bundle)$ · <a href="$fmw-word.bundle$" download>$fmw-word.bundle-title$</a> <span class="fmw-word-note">(the whole edition)</span>$endif$</p>
+$endif$
 $if(categories)$
   $if(quarto-template-params.title-block-categories)$
 <div class="quarto-categories">

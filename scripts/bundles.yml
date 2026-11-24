@@ -445,3 +445,278 @@ bundles:
     subtitle: "Book 03 — HR-Driven Identity: from the HR system of record to Entra ID"
     root: docs/books/b03-hr-identity
     pages: [15-external-partner-identity.md]
+  # ---------------------------------------------------------------------
+  # Training paths: one Word edition per learning path (index + modules).
+  # These and the bundles below give every published content page a built
+  # Word file (see word_coverage at the end of this file).
+  - output: training-attribute-driven-migration-bundle.docx
+    title: "Learning path: Building the Attribute-Driven Migration"
+    subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
+    root: docs/training/attribute-driven-migration
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: training-azure-security-bundle.docx
+    title: "Learning path: Azure Security Engineering"
+    subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
+    root: docs/training/azure-security
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: training-daily-checks-dashboard-bundle.docx
+    title: "Learning path: The Daily Checks on One Dashboard"
+    subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
+    root: docs/training/daily-checks-dashboard
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: training-defender-xdr-bundle.docx
+    title: "Learning path: Defender XDR Engineering and Operations"
+    subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
+    root: docs/training/defender-xdr
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: training-global-secure-access-bundle.docx
+    title: "Learning path: Global Secure Access as the Identity-Aware Network"
+    subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
+    root: docs/training/global-secure-access
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: training-hr-driven-identity-bundle.docx
+    title: "Learning path: HR-Driven Identity in Microsoft Entra ID"
+    subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
+    root: docs/training/hr-driven-identity
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: training-non-person-identity-bundle.docx
+    title: "Learning path: Non-Person Identity in Microsoft Entra ID"
+    subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
+    root: docs/training/non-person-identity
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: training-privileged-access-bundle.docx
+    title: "Learning path: Privileged Access in Microsoft Entra ID and Azure"
+    subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
+    root: docs/training/privileged-access
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: training-provider-notices-bundle.docx
+    title: "Learning path: Provider Notices"
+    subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
+    root: docs/training/provider-notices
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: training-ticket-to-machine-bundle.docx
+    title: "Learning path: Ticket-to-Machine on ServiceNow and SailPoint"
+    subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
+    root: docs/training/ticket-to-machine
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: training-zero-trust-assessment-bundle.docx
+    title: "Learning path: The Zero Trust Assessment as Evidence"
+    subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
+    root: docs/training/zero-trust-assessment
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: training-microsoft-automation-bundle.docx
+    title: "Microsoft Automation: Graph, Entra ID, Intune and Azure Arc"
+    subtitle: "Four training modules — Federal Modernization Workbook training, combined edition"
+    root: docs/training
+    warn_unlisted: ["ms-automation-*.md"]
+    pages: [ms-automation-foundations.md, ms-automation-entra.md, ms-automation-intune.md, ms-automation-arc.md]
+  - output: training-infoblox.docx
+    subtitle: "Training — Federal Modernization Workbook"
+    root: docs/training
+    pages: [infoblox-training.md]
+  # ---------------------------------------------------------------------
+  # Developer workbooks that had no Word edition yet.
+  - output: building-azure-security-bundle.docx
+    title: "Building Azure Security"
+    subtitle: "A developer workbook — Federal Modernization Workbook, combined edition"
+    root: docs/project-plans/developer-workbooks/azure-security
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: building-daily-checks-bundle.docx
+    title: "Building the Daily Checks Workbook"
+    subtitle: "A developer workbook — Federal Modernization Workbook, combined edition"
+    root: docs/project-plans/developer-workbooks/daily-checks
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: building-defender-xdr-bundle.docx
+    title: "Building Defender XDR"
+    subtitle: "A developer workbook — Federal Modernization Workbook, combined edition"
+    root: docs/project-plans/developer-workbooks/defender-xdr
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: building-global-secure-access-bundle.docx
+    title: "Building Global Secure Access"
+    subtitle: "A developer workbook — Federal Modernization Workbook, combined edition"
+    root: docs/project-plans/developer-workbooks/global-secure-access
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: building-provider-notices-bundle.docx
+    title: "Building Provider Notices"
+    subtitle: "A developer workbook — Federal Modernization Workbook, combined edition"
+    root: docs/project-plans/developer-workbooks/provider-notices
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
+  # ---------------------------------------------------------------------
+  # Companion guides that had no Word edition yet: one each, like the guides
+  # above. The meeting templates and leadership briefs share one edition (each
+  # also has its own fill-in template under docs/books/guides/files/).
+  - output: ansible-configuration-automation-guide.docx
+    title: "Ansible for Configuration Automation"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [ansible-configuration-automation.md]
+  - output: azure-security-implementation-guide.docx
+    title: "Azure Security Engineering"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [azure-security-implementation.md]
+  - output: cisco-sdwan-implementation-guide.docx
+    title: "Building Book 09's SD-WAN Design on Cisco Catalyst SD-WAN"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [cisco-sdwan-implementation.md]
+  - output: cyberark-certificate-lifecycle-guide.docx
+    title: "Certificate Lifecycle on CyberArk Certificate Manager"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [cyberark-certificate-lifecycle.md]
+  - output: daily-checks-dashboard-implementation-guide.docx
+    title: "The Daily Checks on One Dashboard: An Implementation Guide"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [daily-checks-dashboard-implementation.md]
+  - output: defender-xdr-implementation-guide.docx
+    title: "Defender XDR Engineering & Operations: An Implementation Guide"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [defender-xdr-implementation.md]
+  - output: global-secure-access-implementation-guide.docx
+    title: "Global Secure Access & Zero Trust Network Engineering: An Implementation Guide"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [global-secure-access-implementation.md]
+  - output: hcm-entra-implementation-guide.docx
+    title: "Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [hcm-entra-implementation.md]
+  - output: hr-driven-identity-implementation-guide.docx
+    title: "HR-Driven Identity: An Implementation Guide"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [hr-driven-identity-implementation.md]
+  - output: infoblox-nios-implementation-guide.docx
+    title: "Implementing Book 08 on Infoblox NIOS"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [infoblox-nios-implementation.md]
+  - output: privileged-access-implementation-guide.docx
+    title: "Privileged Access: An Implementation Guide"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [privileged-access-implementation.md]
+  - output: provider-notices-implementation-guide.docx
+    title: "Provider Notices: An Implementation Guide"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [provider-notices-implementation.md]
+  - output: service-account-migration-guide.docx
+    title: "Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [service-account-migration.md]
+  - output: snow-sailpoint-integration-kit-guide.docx
+    title: "Integrating ServiceNow and SailPoint: An Implementation Example (Pass 1)"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [snow-sailpoint-integration-kit.md]
+  - output: ttm-servicenow-sailpoint-guide.docx
+    title: "Ticket-to-Machine on ServiceNow and SailPoint: An Example Implementation Guide"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [ttm-servicenow-sailpoint.md]
+  - output: ttm-task-catalog-guide.docx
+    title: "Building an internal Ticket-to-Machine task catalog"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [ttm-task-catalog.md]
+  - output: zero-trust-assessment-implementation-guide.docx
+    title: "Zero Trust Assessment: An Implementation Guide"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [zero-trust-assessment-implementation.md]
+  - output: meeting-templates-and-briefs.docx
+    title: "Meeting Templates and Leadership Briefs"
+    subtitle: "The One-Page Ask, the Charter Sign-Off Sheet, effective meetings and four one-page briefs — Federal Modernization Workbook companion guides"
+    root: docs/books/guides
+    warn_unlisted: ["brief-*.md"]
+    pages: [one-page-ask.md, charter-sign-off-sheet.md, effective-meetings.md, brief-cio.md, brief-ciso.md, brief-chco.md, brief-authorizing-official.md]
+  # ---------------------------------------------------------------------
+  # Explainers, evaluations, project plans and the About pages.
+  - output: explainers-bundle.docx
+    title: "Explainers"
+    subtitle: "Short answers to cross-book questions — Federal Modernization Workbook, combined edition"
+    root: docs/books/explainers
+    warn_unlisted: ["*.md"]
+    exclude: [index.md]
+    pages: ["*.md"]
+  - output: evaluations-bundle.docx
+    title: "Evaluations"
+    subtitle: "Platform and product evaluations — Federal Modernization Workbook, combined edition"
+    root: docs/evaluations
+    warn_unlisted: ["*.md"]
+    exclude: [index.md]
+    pages: ["*.md"]
+  - output: project-plans-bundle.docx
+    title: "Projects"
+    subtitle: "The program master schedule and the project plans — Federal Modernization Workbook, combined edition"
+    root: docs/project-plans
+    warn_unlisted: ["*.md"]
+    exclude: [index.md]
+    # A glob's * also matches "/", so the plans are listed by name; the
+    # developer workbooks have their own editions.
+    pages: [program-master-schedule.md, attribute-driven-migration.md, identity-lifecycle.md, privileged-access.md, non-person-identity.md, endpoint-device.md, data-platform.md, network-access.md, content-delivery.md, continuous-monitoring.md, supply-chain-sbom.md]
+  - output: about-the-workbook.docx
+    title: "About the Workbook"
+    subtitle: "How the workbook knows what it says, how to review it, and the decisions behind it — Federal Modernization Workbook"
+    root: docs/about
+    warn_unlisted: ["*.md"]
+    # The archive is a list of release files: site only.
+    exclude: [archive.md]
+    pages: [sources-and-verification.md, reviewers-guide.md, decision-register.md]
+  - output: inspiration.docx
+    subtitle: "Federal Modernization Workbook"
+    root: docs/inspiration
+    pages: [index.md]
+  - output: reference-zta-closure-coverage.docx
+    title: "Zero Trust Closure Coverage"
+    subtitle: "Reference — Federal Modernization Workbook"
+    root: docs/reference
+    pages: [zta-closure-coverage.md]
+
+# Every published page must be in a bundle, so its "Download (Word)" link and
+# its "Other Formats > MS Word" link give the built file, not Quarto's raw
+# export. The pages below are site only: navigation, generated link lists and
+# tables too large for Word. build_bundles.py warns about any other published
+# page that no bundle lists, and scripts/tests/test_build_bundles.py fails on it.
+site_only:
+  - index.qmd
+  - 404.qmd
+  - workbook-map.qmd
+  - docs/start-here.md
+  - docs/downloads.md
+  - docs/books/index.md
+  - docs/books/explainers/index.md
+  - docs/training/index.md
+  - docs/training/labs.md
+  - docs/project-plans/index.md
+  - docs/project-plans/developer-workbooks/index.md
+  - docs/evaluations/index.md
+  - docs/reference/index.md
+  - docs/reference/learn-coverage.md
+  - docs/research/index.md
+  - docs/presentations/index.md
+  - docs/presentations/watch.md
+  - docs/topics/*.md
+  - docs/about/archive.md
