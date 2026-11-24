@@ -1,0 +1,100 @@
+[
+ {
+  "slide": 4,
+  "title": "Set up the forest once, in this order",
+  "links": [
+   {
+    "text": "Create a KDS root key",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-a-key-distribution-service-kds-root"
+   },
+   {
+    "text": "Manage gMSAs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-group-managed-service-accounts"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "The KDS root key: one per forest, and the wait",
+  "links": [
+   {
+    "text": "Create a KDS root key",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#create-a-key-distribution-service-kds-root"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "A new gMSA for a new application",
+  "links": [
+   {
+    "text": "Manage gMSAs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#manage-group-managed-service-accounts"
+   },
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.html"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.html"
+   }
+  ]
+ },
+ {
+  "slide": 9,
+  "title": "Try it: check the three requests (S1)",
+  "links": [
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   },
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   }
+  ]
+ },
+ {
+  "slide": 10,
+  "title": "Try it: what goes to Chapter 06, with no old account",
+  "links": [
+   {
+    "text": "Chapter 12",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.html"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Try it: plan the timesheet gMSA (S4)",
+  "links": [
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The federal requirement and the evidence the ISSO keeps",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

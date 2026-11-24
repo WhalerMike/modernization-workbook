@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.412
+Why this module?
+
+2
+00:00:01.412 --> 00:00:05.572
+Every other lab in this path starts
+from an account that already exists:
+
+3
+00:00:05.572 --> 00:00:10.351
+a user account used as a service, a standalone
+managed service account, or a secret.
+
+4
+00:00:10.351 --> 00:00:14.288
+You move its S P Ns, run in
+parallel, then disable it.
+
+5
+00:00:14.288 --> 00:00:16.225
+This module starts from nothing.
+
+6
+00:00:16.225 --> 00:00:21.604
+First the forest gets what every G
+M S A needs, once: a K D S root key,
+
+7
+00:00:21.604 --> 00:00:27.088
+the O Us, a group that may create G M
+S As, and the pipeline's own G M S A.
+
+8
+00:00:27.088 --> 00:00:30.625
+Then a new application gets
+its G M S A from the first day,
+
+9
+00:00:30.625 --> 00:00:34.478
+by the managed service account
+standard, with no S P N to move,
+
+10
+00:00:34.478 --> 00:00:37.387
+no parallel run and no
+old account to disable.
+
+11
+00:00:37.387 --> 00:00:40.873
+That's why it comes before
+Module 8: Module 8 converts the
+
+12
+00:00:40.873 --> 00:00:44.900
+accounts that already exist, into
+the forest this module sets up.

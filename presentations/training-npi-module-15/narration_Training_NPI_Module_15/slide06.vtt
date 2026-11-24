@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:05.000
+Unit 2 follows one new application,
+timesheet, a service on two hosts.
+
+2
+00:00:05.000 --> 00:00:08.875
+Its owner asks for a G M S A
+with no account to supersede.
+
+3
+00:00:08.875 --> 00:00:13.370
+SailPoint approves, and Chapter 12
+checks every field; the row it writes
+
+4
+00:00:13.370 --> 00:00:17.713
+for Chapter 6 names the new G M S A
+itself, because there's no old account.
+
+5
+00:00:17.713 --> 00:00:22.903
+The pipeline runs Chapter 6's one-account
+plan: the service-account O U,
+
+6
+00:00:22.903 --> 00:00:27.912
+A E S two fifty-six, thirty days, its
+own hosts' group, and outbound-only.
+
+7
+00:00:27.912 --> 00:00:33.001
+Each host restarts to pick up its group,
+then installs the G M S A and tests it.
+
+8
+00:00:33.001 --> 00:00:34.930
+Then the service is switched to it,
+
+9
+00:00:34.930 --> 00:00:38.100
+with a blank password, and
+given only the rights it needs.
+
+10
+00:00:38.100 --> 00:00:41.386
+And look at what's skipped:
+no delegation to carry,
+
+11
+00:00:41.386 --> 00:00:45.575
+no S P N to move, no thirty-day
+parallel run, no account to disable.
+
+12
+00:00:45.575 --> 00:00:50.040
+Those steps exist to retire an old
+account, and a new application has none.

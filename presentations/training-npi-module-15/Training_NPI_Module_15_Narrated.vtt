@@ -1,0 +1,846 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:05.625
+Welcome to Module 15 of the Non-Person
+Identity learning path: your first G M S A.
+
+2
+00:00:05.625 --> 00:00:08.062
+First you set up the forest, once.
+
+3
+00:00:08.062 --> 00:00:11.424
+Then you create a new G M
+S A for a new application.
+
+4
+00:00:11.424 --> 00:00:16.757
+It teaches two parts of the companion
+guide Service Accounts: set it up once, and
+
+5
+00:00:16.757 --> 00:00:21.925
+a new G M S A for a new workload, with
+Chapters 6 and 12 of the developer workbook.
+
+6
+00:00:21.925 --> 00:00:25.120
+Take it after Module
+1 and before Module 8.
+
+7
+00:00:28.920 --> 00:00:30.232
+Why this module?
+
+8
+00:00:30.232 --> 00:00:34.392
+Every other lab in this path starts
+from an account that already exists:
+
+9
+00:00:34.392 --> 00:00:39.171
+a user account used as a service, a standalone
+managed service account, or a secret.
+
+10
+00:00:39.171 --> 00:00:43.108
+You move its S P Ns, run in
+parallel, then disable it.
+
+11
+00:00:43.108 --> 00:00:45.045
+This module starts from nothing.
+
+12
+00:00:45.045 --> 00:00:50.424
+First the forest gets what every G
+M S A needs, once: a K D S root key,
+
+13
+00:00:50.424 --> 00:00:55.908
+the O Us, a group that may create G M
+S As, and the pipeline's own G M S A.
+
+14
+00:00:55.908 --> 00:00:59.445
+Then a new application gets
+its G M S A from the first day,
+
+15
+00:00:59.445 --> 00:01:03.298
+by the managed service account
+standard, with no S P N to move,
+
+16
+00:01:03.298 --> 00:01:06.207
+no parallel run and no
+old account to disable.
+
+17
+00:01:06.207 --> 00:01:09.693
+That's why it comes before
+Module 8: Module 8 converts the
+
+18
+00:01:09.693 --> 00:01:14.020
+accounts that already exist, into
+the forest this module sets up.
+
+19
+00:01:17.820 --> 00:01:20.647
+Here's what you'll be able to
+do by the end of this module,
+
+20
+00:01:20.647 --> 00:01:22.895
+which takes about sixty
+minutes with Lab 1.
+
+21
+00:01:22.895 --> 00:01:26.182
+You'll set up a forest for
+G M S As in the right order.
+
+22
+00:01:26.182 --> 00:01:29.453
+You'll say when the backdated
+K D S key is allowed,
+
+23
+00:01:29.453 --> 00:01:31.633
+and why a forest has only one key.
+
+24
+00:01:31.633 --> 00:01:36.395
+You'll follow a new workload's G M S A
+from the request to a working service.
+
+25
+00:01:36.395 --> 00:01:39.737
+You'll decide whether a new
+G M S A is outbound-only,
+
+26
+00:01:39.737 --> 00:01:42.995
+and register an S P N when
+the workload needs one.
+
+27
+00:01:42.995 --> 00:01:45.488
+And you'll run Chapter 12's request check
+
+28
+00:01:45.488 --> 00:01:48.208
+and Chapter 6's one-account
+plan on fixtures.
+
+29
+00:01:48.208 --> 00:01:52.445
+Before you start, finish Module 1
+and read the standard's settings.
+
+30
+00:01:52.445 --> 00:01:58.600
+You need PowerShell 7.1 or later with Pester
+5, and no domain or tenant for Lab 1.
+
+31
+00:02:02.400 --> 00:02:05.313
+Unit 1 is the setup,
+and the order matters.
+
+32
+00:02:05.313 --> 00:02:08.962
+First, the K D S root key, one per forest.
+
+33
+00:02:08.962 --> 00:02:13.579
+A Domain Admin or Enterprise Admin
+creates it on a domain controller,
+
+34
+00:02:13.579 --> 00:02:18.278
+confirms it with the K D S service's
+event forty oh oh four, and then waits:
+
+35
+00:02:18.278 --> 00:02:22.166
+domain controllers wait up to
+ten hours before they allow
+
+36
+00:02:22.166 --> 00:02:25.325
+a G M S A to be created, so
+the key replicates first.
+
+37
+00:02:25.325 --> 00:02:28.427
+Second, the O Us: one for
+managed service accounts,
+
+38
+00:02:28.427 --> 00:02:32.150
+and a holding O U for the disabled
+ones a migration retires.
+
+39
+00:02:32.150 --> 00:02:37.400
+Third, the creators group, and the right
+to create G M S A objects on that O U.
+
+40
+00:02:37.400 --> 00:02:43.094
+Microsoft Learn names the right but gives
+no command, so the guide uses D S A C L S,
+
+41
+00:02:43.094 --> 00:02:47.988
+which is design guidance: run it in
+a test domain first, then check it.
+
+42
+00:02:47.988 --> 00:02:51.557
+Fourth, the pipeline's own
+G M S A, made once by hand,
+
+43
+00:02:51.557 --> 00:02:55.126
+by the standard, and then
+the group's only member.
+
+44
+00:02:55.126 --> 00:02:59.790
+After that, nobody needs Domain
+Admins to create a G M S A.
+
+45
+00:03:03.590 --> 00:03:06.640
+The K D S root key deserves its own slide.
+
+46
+00:03:06.640 --> 00:03:12.362
+In any forest, you create it with Add K
+D S Root Key, dash Effective Immediately,
+
+47
+00:03:12.362 --> 00:03:16.852
+and then you wait, up to ten hours,
+before a G M S A can be created.
+
+48
+00:03:16.852 --> 00:03:19.788
+Learn's K D S page offers
+a key backdated ten hours,
+
+49
+00:03:19.788 --> 00:03:23.383
+but only for a test environment
+with one domain controller,
+
+50
+00:03:23.383 --> 00:03:26.978
+and Learn's containers page says
+not to use it in production.
+
+51
+00:03:26.978 --> 00:03:28.790
+So: never in production.
+
+52
+00:03:28.790 --> 00:03:30.265
+And create only one.
+
+53
+00:03:30.265 --> 00:03:35.580
+Learn says more than one key makes G M S As
+start failing after a password rotation,
+
+54
+00:03:35.580 --> 00:03:38.674
+and a deleted and re-created
+key can stay cached,
+
+55
+00:03:38.674 --> 00:03:42.720
+so the K D C has to be restarted
+on every domain controller.
+
+56
+00:03:46.520 --> 00:03:51.420
+Unit 2 follows one new application,
+timesheet, a service on two hosts.
+
+57
+00:03:51.420 --> 00:03:55.295
+Its owner asks for a G M S A
+with no account to supersede.
+
+58
+00:03:55.295 --> 00:03:59.790
+SailPoint approves, and Chapter 12
+checks every field; the row it writes
+
+59
+00:03:59.790 --> 00:04:04.133
+for Chapter 6 names the new G M S A
+itself, because there's no old account.
+
+60
+00:04:04.133 --> 00:04:09.323
+The pipeline runs Chapter 6's one-account
+plan: the service-account O U,
+
+61
+00:04:09.323 --> 00:04:14.332
+A E S two fifty-six, thirty days, its
+own hosts' group, and outbound-only.
+
+62
+00:04:14.332 --> 00:04:19.421
+Each host restarts to pick up its group,
+then installs the G M S A and tests it.
+
+63
+00:04:19.421 --> 00:04:21.350
+Then the service is switched to it,
+
+64
+00:04:21.350 --> 00:04:24.520
+with a blank password, and
+given only the rights it needs.
+
+65
+00:04:24.520 --> 00:04:27.806
+And look at what's skipped:
+no delegation to carry,
+
+66
+00:04:27.806 --> 00:04:31.995
+no S P N to move, no thirty-day
+parallel run, no account to disable.
+
+67
+00:04:31.995 --> 00:04:36.760
+Those steps exist to retire an old
+account, and a new application has none.
+
+68
+00:04:40.560 --> 00:04:43.160
+Does the new G M S A need an S P N?
+
+69
+00:04:43.160 --> 00:04:45.549
+Timesheet is a service
+that only calls out,
+
+70
+00:04:45.549 --> 00:04:48.198
+so nothing authenticates
+to it with Kerberos.
+
+71
+00:04:48.198 --> 00:04:52.385
+Its G M S A is outbound-only,
+which is the standard's default.
+
+72
+00:04:52.385 --> 00:04:57.191
+Visitor is an I I S site that
+browsers reach with Kerberos,
+
+73
+00:04:57.191 --> 00:05:00.873
+so its G M S A needs the S
+P N H T T P slash visitor.
+
+74
+00:05:00.873 --> 00:05:04.648
+It isn't outbound-only, and the
+reason is recorded in the request.
+
+75
+00:05:04.648 --> 00:05:09.246
+A person registers the S P N once nothing
+else holds it, with set S P N dash S,
+
+76
+00:05:09.246 --> 00:05:12.986
+which Learn says checks for a
+duplicate before it adds one.
+
+77
+00:05:12.986 --> 00:05:17.050
+Then set S P N dash L
+confirms it's on the G M S A.
+
+78
+00:05:20.850 --> 00:05:21.737
+Try it.
+
+79
+00:05:21.737 --> 00:05:25.626
+Lab 1 runs in the non-person
+identity folder, with no domain.
+
+80
+00:05:25.626 --> 00:05:30.803
+Step one runs the kit's tests of Microsoft
+Learn's own K D S and G M S A procedures,
+
+81
+00:05:30.803 --> 00:05:34.338
+against stand-ins for the
+Active Directory cmdlets.
+
+82
+00:05:34.338 --> 00:05:37.325
+Six pass, each a fact about Learn's pages.
+
+83
+00:05:37.325 --> 00:05:40.317
+Get K D S Root Key returns
+the key's value itself,
+
+84
+00:05:40.317 --> 00:05:43.387
+so only an admin who would
+create the key runs it.
+
+85
+00:05:43.387 --> 00:05:47.462
+The backdated key is for a test
+environment with one domain controller.
+
+86
+00:05:47.462 --> 00:05:51.897
+Learn's G M S A sample sets its
+retrievers at creation, and sets no
+
+87
+00:05:51.897 --> 00:05:57.099
+Kerberos encryption type, which is why
+the standard adds A E S two fifty-six.
+
+88
+00:05:57.099 --> 00:06:01.390
+And installing the G M S A on
+each host is a person's step.
+
+89
+00:06:05.190 --> 00:06:07.661
+Step two runs Chapter
+12's request check on
+
+90
+00:06:07.661 --> 00:06:10.203
+three approved requests for new workloads.
+
+91
+00:06:10.203 --> 00:06:15.277
+The domain has no G M S A yet, so
+there's nothing to certify or retire.
+
+92
+00:06:15.277 --> 00:06:18.303
+Two requests pass: timesheet and visitor.
+
+93
+00:06:18.303 --> 00:06:19.315
+One is held.
+
+94
+00:06:19.315 --> 00:06:20.853
+Step three reads why.
+
+95
+00:06:20.853 --> 00:06:24.058
+Its name is nineteen characters
+before the dollar sign,
+
+96
+00:06:24.058 --> 00:06:25.940
+and the standard allows fifteen.
+
+97
+00:06:25.940 --> 00:06:29.703
+And it names only one owner, where
+the standard needs exactly two.
+
+98
+00:06:29.703 --> 00:06:32.690
+SailPoint approved it, and
+the code still holds it.
+
+99
+00:06:32.690 --> 00:06:35.665
+The approvers decide on
+the purpose and the risk;
+
+100
+00:06:35.665 --> 00:06:40.360
+the code checks the standard, field
+by field, before anything is created.
+
+101
+00:06:44.160 --> 00:06:47.710
+Step four reads what Chapter
+12 hands to Chapter 6.
+
+102
+00:06:47.710 --> 00:06:50.325
+Two rows, one for each
+request that passed,
+
+103
+00:06:50.325 --> 00:06:53.147
+each with its request
+and its change record.
+
+104
+00:06:53.147 --> 00:06:55.011
+Look at the first two columns.
+
+105
+00:06:55.011 --> 00:06:57.985
+In a migration, the first
+one is the old account.
+
+106
+00:06:57.985 --> 00:07:01.822
+Here it's the new G M S A itself,
+because there's no old account.
+
+107
+00:07:01.822 --> 00:07:04.631
+And the retrievers file
+gives each G M S A its
+
+108
+00:07:04.631 --> 00:07:07.900
+own domain local group of
+the hosts that run it.
+
+109
+00:07:11.700 --> 00:07:15.185
+Step five builds Chapter
+6's one-account plan,
+
+110
+00:07:15.185 --> 00:07:18.575
+the plan for a G M S A
+that replaces no account.
+
+111
+00:07:18.575 --> 00:07:24.725
+One action: create G M S A, run by the
+pipeline, with its request and change record.
+
+112
+00:07:24.725 --> 00:07:29.485
+Its precheck names two things:
+the K D S root key must be ready,
+
+113
+00:07:29.485 --> 00:07:31.913
+and the G M S A must not exist yet.
+
+114
+00:07:31.913 --> 00:07:36.842
+The parameters are the standard's: the
+service-account O U, the hosts' group
+
+115
+00:07:36.842 --> 00:07:41.525
+as the only retriever, A E S two
+fifty-six, thirty days, and outbound-only.
+
+116
+00:07:41.525 --> 00:07:44.309
+A name that breaks the
+standard, like step three's,
+
+117
+00:07:44.309 --> 00:07:46.990
+makes the plan throw instead of planning.
+
+118
+00:07:50.790 --> 00:07:55.265
+Step six dry-runs the plan, as the
+pipeline, with its approved hash,
+
+119
+00:07:55.265 --> 00:08:00.077
+in a copy of the fictional forest before
+its setup, with no K D S root key.
+
+120
+00:08:00.077 --> 00:08:04.765
+The create is skipped, and the detail
+says why: K D S root key missing.
+
+121
+00:08:04.765 --> 00:08:06.790
+That's why Unit 1 comes first.
+
+122
+00:08:06.790 --> 00:08:11.965
+Step seven runs the same plan, with the
+same hash, in the forest after its setup.
+
+123
+00:08:11.965 --> 00:08:15.040
+Now the pipeline would send
+New A D Service Account.
+
+124
+00:08:15.040 --> 00:08:17.902
+Nothing is sent in either
+run: they're dry runs.
+
+125
+00:08:17.902 --> 00:08:21.570
+Step eight runs the module's
+nine tests, and cleans up.
+
+126
+00:08:25.370 --> 00:08:29.303
+Lab 2 does it for real, in a test
+domain with one domain controller,
+
+127
+00:08:29.303 --> 00:08:33.458
+never production, as a Domain Admin,
+with a member server for the host.
+
+128
+00:08:33.458 --> 00:08:36.894
+Nobody has run it yet, so no
+step's output has been seen.
+
+129
+00:08:36.894 --> 00:08:39.852
+Steps one to four are the
+setup: the K D S root key,
+
+130
+00:08:39.852 --> 00:08:45.299
+backdated only in this single domain controller
+test domain and only if none exists,
+
+131
+00:08:45.299 --> 00:08:49.657
+the two O Us, the creators group with
+its right, and the pipeline's G M S A.
+
+132
+00:08:49.657 --> 00:08:54.432
+Step five creates the timesheet G M S
+A by hand, the way the pipeline would.
+
+133
+00:08:54.432 --> 00:08:56.782
+Step six, on the host after a restart,
+
+134
+00:08:56.782 --> 00:09:00.508
+installs and tests it, and sets
+a test service to run as it.
+
+135
+00:09:00.508 --> 00:09:03.676
+Step seven backs out the
+G M S A and its group,
+
+136
+00:09:03.676 --> 00:09:06.482
+and keeps the setup, which is made once.
+
+137
+00:09:06.482 --> 00:09:09.488
+In any domain with more
+than one domain controller,
+
+138
+00:09:09.488 --> 00:09:12.510
+use Effective Immediately
+and wait ten hours.
+
+139
+00:09:16.310 --> 00:09:17.910
+The federal requirement.
+
+140
+00:09:17.910 --> 00:09:20.464
+The standard's steps each
+name what they support,
+
+141
+00:09:20.464 --> 00:09:23.785
+and these are the rows this
+module's labs produce evidence for.
+
+142
+00:09:23.785 --> 00:09:28.340
+The request check in S1 supports A
+C two, Account Management, I A four,
+
+143
+00:09:28.340 --> 00:09:36.623
+Identifier Management, and C M eight, System
+Component Inventory, in NIST SP 800-53.
+
+144
+00:09:36.623 --> 00:09:41.894
+The approval in S3 supports A C two, C
+M three, Configuration Change Control,
+
+145
+00:09:41.894 --> 00:09:44.228
+and A C five, Separation of Duties,
+
+146
+00:09:44.228 --> 00:09:48.635
+with the request and change
+carried on every write in the plan.
+
+147
+00:09:48.635 --> 00:09:52.769
+The create in S4 supports A C
+six, Least Privilege, I A five,
+
+148
+00:09:52.769 --> 00:09:57.442
+Authenticator Management, C M
+three and A C two enhancement one,
+
+149
+00:09:57.442 --> 00:10:02.385
+automated account management, with
+the plan's hash and its results.
+
+150
+00:10:02.385 --> 00:10:05.447
+And the install in S5 supports A C six,
+
+151
+00:10:05.447 --> 00:10:10.447
+A C six enhancement five, and C
+M six, Configuration Settings.
+
+152
+00:10:10.447 --> 00:10:15.072
+K S Is are FedRAMP twenty X indicators
+for cloud service providers.
+
+153
+00:10:15.072 --> 00:10:19.172
+A row provides evidence for a
+control; the assessor decides.
+
+154
+00:10:22.970 --> 00:10:25.020
+Check yourself with two questions.
+
+155
+00:10:25.020 --> 00:10:29.220
+First: when may you use the K D
+S root key backdated ten hours?
+
+156
+00:10:29.220 --> 00:10:31.719
+The answer is b: only
+in a test environment
+
+157
+00:10:31.719 --> 00:10:34.658
+with one domain controller,
+never in production.
+
+158
+00:10:34.658 --> 00:10:39.995
+Second: a new I I S site needs
+the S P N H T T P slash visitor.
+
+159
+00:10:39.995 --> 00:10:41.495
+What does the standard say?
+
+160
+00:10:41.495 --> 00:10:47.332
+The answer is b: create the G M S A without
+the outbound-only restriction, record
+
+161
+00:10:47.332 --> 00:10:50.525
+why, and register the S P
+N with set S P N dash S,
+
+162
+00:10:50.525 --> 00:10:53.170
+which checks for duplicates first.
+
+163
+00:10:53.170 --> 00:10:56.833
+Outbound-only is for a
+G M S A with no S P N.
+
+164
+00:10:56.833 --> 00:10:58.951
+The module page has three more questions,
+
+165
+00:10:58.951 --> 00:11:01.450
+each linked to the
+section that answers it.
+
+166
+00:11:05.250 --> 00:11:06.275
+To sum up.
+
+167
+00:11:06.275 --> 00:11:11.802
+A forest is set up for G M S As once: one
+K D S root key, aged ten hours, the O Us,
+
+168
+00:11:11.802 --> 00:11:17.575
+the creators group with its delegated
+right, and the pipeline's own G M S A.
+
+169
+00:11:17.575 --> 00:11:22.825
+After that, a new application's G M S A
+follows the standard from the first day.
+
+170
+00:11:22.825 --> 00:11:24.331
+It's requested and checked,
+
+171
+00:11:24.331 --> 00:11:28.026
+planned and created by the pipeline
+with the standard's settings,
+
+172
+00:11:28.026 --> 00:11:32.612
+installed and tested on its hosts, and
+given to the workload with a blank password.
+
+173
+00:11:32.612 --> 00:11:35.777
+It's outbound-only unless
+the workload needs an S P N,
+
+174
+00:11:35.777 --> 00:11:37.887
+and it has nothing to migrate from.
+
+175
+00:11:37.887 --> 00:11:42.083
+Next, Module 8 converts the Kerberos
+accounts that already exist,
+
+176
+00:11:42.083 --> 00:11:44.030
+into the forest you just set up.

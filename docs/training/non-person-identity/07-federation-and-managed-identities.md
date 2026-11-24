@@ -261,4 +261,4 @@ You planned eight conversions in two waves, caught a trailing slash, a wrong cas
 
 **The evidence an ISSO keeps** for G5 from this module: `conversions.json`, `cutover-log.csv`, `plan.json` with its approved SHA-256, `findings.json`, `exchange-tests.json`, `conversion-records.json`, and the apply folder's `results.json` and `manifest.json`, dated. Before shipping, work through the chapter's [Checklist](../../project-plans/developer-workbooks/non-person-identity/05-workload-identity-federation-and-managed-identities.md#checklist).
 
-**Next:** [Module 8: Convert Kerberos accounts to gMSAs and dMSAs](08-gmsa-dmsa-and-the-kerberos-island.md).
+**Next:** [Module 15: Your first gMSA](15-your-first-gmsa.md), which sets up the forest for gMSAs, then [Module 8: Convert Kerberos accounts to gMSAs and dMSAs](08-gmsa-dmsa-and-the-kerberos-island.md).

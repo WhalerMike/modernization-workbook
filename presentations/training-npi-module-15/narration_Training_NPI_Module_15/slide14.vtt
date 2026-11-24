@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.700
+The federal requirement.
+
+2
+00:00:01.700 --> 00:00:04.254
+The standard's steps each
+name what they support,
+
+3
+00:00:04.254 --> 00:00:07.575
+and these are the rows this
+module's labs produce evidence for.
+
+4
+00:00:07.575 --> 00:00:12.130
+The request check in S1 supports A
+C two, Account Management, I A four,
+
+5
+00:00:12.130 --> 00:00:20.413
+Identifier Management, and C M eight, System
+Component Inventory, in NIST SP 800-53.
+
+6
+00:00:20.413 --> 00:00:25.684
+The approval in S3 supports A C two, C
+M three, Configuration Change Control,
+
+7
+00:00:25.684 --> 00:00:28.018
+and A C five, Separation of Duties,
+
+8
+00:00:28.018 --> 00:00:32.425
+with the request and change
+carried on every write in the plan.
+
+9
+00:00:32.425 --> 00:00:36.559
+The create in S4 supports A C
+six, Least Privilege, I A five,
+
+10
+00:00:36.559 --> 00:00:41.232
+Authenticator Management, C M
+three and A C two enhancement one,
+
+11
+00:00:41.232 --> 00:00:46.175
+automated account management, with
+the plan's hash and its results.
+
+12
+00:00:46.175 --> 00:00:49.237
+And the install in S5 supports A C six,
+
+13
+00:00:49.237 --> 00:00:54.237
+A C six enhancement five, and C
+M six, Configuration Settings.
+
+14
+00:00:54.237 --> 00:00:58.862
+K S Is are FedRAMP twenty X indicators
+for cloud service providers.
+
+15
+00:00:58.862 --> 00:01:02.662
+A row provides evidence for a
+control; the assessor decides.

@@ -21049,6 +21049,93 @@
   "sources": "presentations/training-npi-module-14/Training_NPI_Module_14_Narrated_sources.json"
  },
  {
+  "id": "Training_NPI_Module_15_Narrated",
+  "title": "Non-Person Identity learning path, Module 15: Your first gMSA: set up the forest, then create a new gMSA",
+  "group": "training",
+  "minutes": 12,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_15_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-15/Training_NPI_Module_15_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-15/Training_NPI_Module_15_Narration_Script.md",
+  "page": "docs/training/non-person-identity/15-your-first-gmsa.html",
+  "source": "docs/training/non-person-identity/15-your-first-gmsa.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 15: Your first gMSA"
+   ],
+   [
+    28,
+    "Why start from nothing"
+   ],
+   [
+    77,
+    "What you'll be able to do in Module 15"
+   ],
+   [
+    122,
+    "Set up the forest once, in this order"
+   ],
+   [
+    183,
+    "The KDS root key: one per forest, and the wait"
+   ],
+   [
+    226,
+    "A new gMSA for a new application"
+   ],
+   [
+    280,
+    "An SPN only when the new workload needs one"
+   ],
+   [
+    320,
+    "Try it: Learn's KDS and gMSA steps on the stand-ins"
+   ],
+   [
+    365,
+    "Try it: check the three requests (S1)"
+   ],
+   [
+    404,
+    "Try it: what goes to Chapter 06, with no old account"
+   ],
+   [
+    431,
+    "Try it: plan the timesheet gMSA (S4)"
+   ],
+   [
+    470,
+    "Try it: the same plan, before and after the setup"
+   ],
+   [
+    505,
+    "Lab 2: the setup and the gMSA in a test domain"
+   ],
+   [
+    556,
+    "The federal requirement and the evidence the ISSO keeps"
+   ],
+   [
+    622,
+    "Check yourself: two questions on your first gMSA"
+   ],
+   [
+    665,
+    "Summary: set up once, then the standard from day one"
+   ]
+  ],
+  "sources": "presentations/training-npi-module-15/Training_NPI_Module_15_Narrated_sources.json"
+ },
+ {
   "id": "Training_NPI_Module_1_Narrated",
   "title": "Non-Person Identity learning path, Module 1: Inventory every non-person identity",
   "group": "training",

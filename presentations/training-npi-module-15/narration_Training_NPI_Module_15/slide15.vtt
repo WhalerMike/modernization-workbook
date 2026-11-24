@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.150
+Check yourself with two questions.
+
+2
+00:00:02.150 --> 00:00:06.350
+First: when may you use the K D
+S root key backdated ten hours?
+
+3
+00:00:06.350 --> 00:00:08.849
+The answer is b: only
+in a test environment
+
+4
+00:00:08.849 --> 00:00:11.788
+with one domain controller,
+never in production.
+
+5
+00:00:11.788 --> 00:00:17.125
+Second: a new I I S site needs
+the S P N H T T P slash visitor.
+
+6
+00:00:17.125 --> 00:00:18.625
+What does the standard say?
+
+7
+00:00:18.625 --> 00:00:24.462
+The answer is b: create the G M S A without
+the outbound-only restriction, record
+
+8
+00:00:24.462 --> 00:00:27.655
+why, and register the S P
+N with set S P N dash S,
+
+9
+00:00:27.655 --> 00:00:30.300
+which checks for duplicates first.
+
+10
+00:00:30.300 --> 00:00:33.963
+Outbound-only is for a
+G M S A with no S P N.
+
+11
+00:00:33.963 --> 00:00:36.081
+The module page has three more questions,
+
+12
+00:00:36.081 --> 00:00:38.280
+each linked to the
+section that answers it.

@@ -2668,6 +2668,11 @@
   "page": "14-workload-identity-across-aws-govcloud-and-oci.docx",
   "title": "Learning path: Non-Person Identity in Microsoft Entra ID"
  },
+ "docs/training/non-person-identity/15-your-first-gmsa.md": {
+  "bundle": "training-non-person-identity-bundle.docx",
+  "page": "15-your-first-gmsa.docx",
+  "title": "Learning path: Non-Person Identity in Microsoft Entra ID"
+ },
  "docs/training/non-person-identity/index.md": {
   "bundle": "training-non-person-identity-bundle.docx",
   "page": "index.docx",
