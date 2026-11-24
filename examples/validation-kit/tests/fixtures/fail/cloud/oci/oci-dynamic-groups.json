@@ -1,0 +1,51 @@
+{
+  "data": [
+    {
+      "id": "ocid1.dynamicgroup.oc2..aaaaexampledg01",
+      "name": "dg-hr-batch-instances",
+      "description": "dg-hr-batch-instances",
+      "compartment-id": "ocid1.tenancy.oc2..aaaaexampletenancy",
+      "matching-rule": "ALL {instance.compartment.id = 'ocid1.compartment.oc2..aaaaexamplehrbatch', tag.Program.SystemId.value = 'SYS-0412'}",
+      "lifecycle-state": "ACTIVE",
+      "time-created": "2025-06-01T10:00:00.000000+00:00",
+      "defined-tags": {
+        "Program": {
+          "SystemId": "SYS-0412",
+          "Owner1": "alex.owner@contoso.example",
+          "Owner2": "sam.owner@contoso.example",
+          "Sponsor": "pat.sponsor@contoso.example"
+        }
+      },
+      "freeform-tags": {}
+    },
+    {
+      "id": "ocid1.dynamicgroup.oc2..aaaaexampledg02",
+      "name": "dg-hr-functions",
+      "description": "dg-hr-functions",
+      "compartment-id": "ocid1.tenancy.oc2..aaaaexampletenancy",
+      "matching-rule": "ALL {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc2..aaaaexamplehrfn'}",
+      "lifecycle-state": "ACTIVE",
+      "time-created": "2025-06-01T10:00:00.000000+00:00",
+      "defined-tags": {
+        "Program": {
+          "SystemId": "SYS-0415",
+          "Owner1": "alex.owner@contoso.example",
+          "Owner2": "sam.owner@contoso.example",
+          "Sponsor": "pat.sponsor@contoso.example"
+        }
+      },
+      "freeform-tags": {}
+    },
+    {
+      "id": "ocid1.dynamicgroup.oc2..aaaaexampledg03",
+      "name": "dg-everything",
+      "description": "dg-everything",
+      "compartment-id": "ocid1.tenancy.oc2..aaaaexampletenancy",
+      "matching-rule": "ANY {instance.compartment.id = 'ocid1.tenancy.oc2..aaaaexampletenancy'}",
+      "lifecycle-state": "ACTIVE",
+      "time-created": "2025-06-01T10:00:00.000000+00:00",
+      "defined-tags": {},
+      "freeform-tags": {}
+    }
+  ]
+}

@@ -26,7 +26,9 @@ New chapter, first pass of 2026-11-24, phase 2 of the program owner's decision W
 | 20 | Instance and resource principals, OKE workload identity, OC2 | Context | verified (carried from the guide) | `np13-oci-instance`, `np13-oci-functions`, `np13-oci-oke`, `np13-oci-oc2` |
 | 21 | Entra workload identity federation lists workloads in AWS; RS256 only | Context | verified (carried from the guide) | `np13-wif` |
 | 22 | Control-to-KSI rows | Federal requirements; `config/requirements-ch13.json` | verified against Book 13, Appendix A's rows (re-read from FedRAMP on November 20, 2026); the same KSIs as Chapter 12 for the controls both cite | Book 13, Appendix A |
-| 23 | Tag keys `SystemId`, `Owner1`, `Owner2`, `Sponsor`; the 90-day unused-key window; treating a console-only user as a person | Inputs; the code | design guidance | Guide, Step 1f and Step 6 |
+| 23 | The 90-day unused-key window; treating a console-only user as a person | Inputs; the code | design guidance | Guide, Step 1f and Step 6 |
+| 24 | Tag keys `SystemId`, `Owner1`, `Owner2`, `Sponsor` (November 24, 2026: settled as WD-172, "Tag names: the proposed SystemId, Owner1, Owner2 and Sponsor. - Yes"); the guide's Step 1g now runs `list-user-tags`, `list-role-tags` and `list-crls`; the validation kit's VK-NPI-10 checks the gate criteria from the same files | Inputs; Lab 2, step 2; the code | program decision | WD-172 |
+| 25 | AWS tag keys and values allow only letters, numbers, spaces and `_ . : / = + - @` (no comma or semicolon) | Inputs | verified (read Nov 24, 2026; replaces an earlier, looser "can't hold a list separator") | `np13-aws-tagrules` |
 
 ## Research gaps (rows 121 to 129)
 
@@ -39,5 +41,5 @@ New chapter, first pass of 2026-11-24, phase 2 of the program owner's decision W
 | 125 | Which credential report column is which access key | Open: the report has no key ID. The kit joins on `access_key_N_last_rotated` equal to the key's `CreateDate` (to the second); a key with no match is "last used unknown". Lab 2 confirms the join on real keys |
 | 126 | Whether `oci iam user list` returns every identity domain's users in a tenancy with identity domains | Open: not stated on the page read; identity domains apply to OC2 tenancies created after January 17, 2023 |
 | 127 | Policies in child compartments | Open: `oci iam policy list` reads one compartment; Lab 2, step 3 says to add each compartment whose policy names a dynamic group. A recursive read isn't documented on the page read |
-| 128 | The program's tag keys and the exception register's export format | Open: `SystemId`, `Owner1`, `Owner2`, `Sponsor` and `exceptions.csv` are the kit's (design guidance); the identity governance office decides the keys and the register's columns |
+| 128 | The program's tag keys and the exception register's export format | Tag keys closed November 24, 2026 (WD-172). Open: the exception register's columns; `exceptions.csv` is the kit's format (design guidance) |
 | 129 | How OCI non-person identities reach certification | Open: carried from the guide; SailPoint's documentation lists no connector for OCI, so OCI identities are reviewed from these exports. CyberArk's AWS access keys plugin exists but isn't used for excepted keys (service accounts guide, CyberArk across the migration) |

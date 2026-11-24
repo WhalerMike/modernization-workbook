@@ -1,0 +1,9 @@
+[
+  {
+    "id": "ocid1.user.oc2..aaaaexampleuser0005",
+    "name": "admin.person",
+    "lifecycle-state": "ACTIVE",
+    "defined-tags": {},
+    "freeform-tags": {}
+  }
+]

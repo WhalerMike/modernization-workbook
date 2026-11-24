@@ -58,6 +58,7 @@ Facts come from the linked chapters, which rely on their own verification logs. 
 | VK-NPI-07 | Managed identities and their role assignments |
 | VK-NPI-08 | AI agent identities, where the tenant exposes them, with a sponsor present |
 | VK-NPI-09 | Service principals with no sign-in activity in N days (*optional, preview*: reads a beta API, off by default, runs only with `-IncludePreview`; see [Step 6](#step-6-run-the-lifecycle)) |
+| VK-NPI-10 | AWS GovCloud (US) and OCI workload identities, from the [Step 1g](#step-1g-aws) and [1h](#step-1h-oci) exports: long-lived credentials with no current exception, identities missing the `SystemId`, `Owner1`, `Owner2` or `Sponsor` tag, OIDC trusts without a `sub` condition, and IAM Roles Anywhere trust anchors without an imported CRL. Reads files only, never AWS or OCI |
 
 : Validation kit checks for this track {.striped .hover}
 
@@ -130,9 +131,9 @@ The program licenses Workload ID Premium[^npi-wid-faq] for Tier 1 single-tenant 
 
 | Gate | Done when | Validate with |
 |---|---|---|
-| [G1 Inventory](#step-1-inventory-every-non-person-identity) | Every non-person identity is listed, typed and joined to a record with an owner and a sponsor | VK-NPI-01, 06, 07, 08 |
+| [G1 Inventory](#step-1-inventory-every-non-person-identity) | Every non-person identity is listed, typed and joined to a record with an owner and a sponsor | VK-NPI-01, 06, 07, 08, 10 |
 | [G2 Decision](#step-2-decide-each-identitys-target) | Every identity has a target and a date; high-risk accounts are first | VK-NPI-03, 06 |
-| [G3 Credential rules](#step-3-set-the-credential-rules) | The tenant blocks new secrets and caps lifetimes; existing credentials are on a rotation calendar in a vault | VK-NPI-02, 03 |
+| [G3 Credential rules](#step-3-set-the-credential-rules) | The tenant blocks new secrets and caps lifetimes; existing credentials are on a rotation calendar in a vault | VK-NPI-02, 03, 10 |
 | [G4 Least privilege](#step-4-cut-privilege) | High-privilege grants are justified or removed; Tier 1 single-tenant service principals have a workload identity policy | VK-NPI-04, 05, 07 |
 | [G5 Conversion](#step-5-convert-with-a-parallel-run) | Converted identities authenticate without stored secrets; legacy accounts are disabled after a clean parallel run | VK-NPI-03, 06 |
 | [G6 Lifecycle](#step-6-run-the-lifecycle) | Owner change, orphan, review and decommission paths run and leave records | VK-NPI-01, 02, 08, 09 |
@@ -185,7 +186,7 @@ For every app registration and user-assigned managed identity, export its federa
 
 ### 1g. AWS GovCloud (US) workload identities {#step-1g-aws}
 
-The program's AWS estate is in AWS GovCloud (US), partition `aws-us-gov` ([WD-157](../../about/decision-register.md#wd-157)), and the track covers its workload identities ([WD-171](../../about/decision-register.md#wd-171)). GovCloud has one IAM control plane and no global STS endpoint, so every call names a GovCloud Region.[^npi-aws-gov-iam] Run these read-only commands in PowerShell 7, in each account, with a role that can read IAM, and keep the files with the run (`list-access-keys` with no user name lists only the caller's own keys, so it runs once per user):[^npi-aws-cli]
+The program's AWS estate is in AWS GovCloud (US), partition `aws-us-gov` ([WD-157](../../about/decision-register.md#wd-157)), and the track covers its workload identities ([WD-171](../../about/decision-register.md#wd-171)). GovCloud has one IAM control plane and no global STS endpoint, so every call names a GovCloud Region.[^npi-aws-gov-iam] Run these read-only commands in PowerShell 7, in each account, with a role that can read IAM and IAM Roles Anywhere, and keep the files with the run (`list-access-keys` with no user name lists only the caller's own keys, so it runs once per user; `list-users` and `list-roles` return no tags, so `list-user-tags` and `list-role-tags` run per user and role):[^npi-aws-cli][^npi-aws-tags]
 
 ```powershell
 $r = 'us-gov-west-1'
@@ -201,13 +202,20 @@ aws iam list-instance-profiles --region $r --output json > instance-profiles.jso
 aws iam list-open-id-connect-providers --region $r --output json > oidc-providers.json
 aws rolesanywhere list-trust-anchors --region $r --output json > roles-anywhere-trust-anchors.json
 aws rolesanywhere list-profiles --region $r --output json > roles-anywhere-profiles.json
+aws rolesanywhere list-crls --region $r --output json > roles-anywhere-crls.json
+$tags = @(
+    foreach ($u in $users) { [pscustomobject]@{ Type = 'User'; Name = $u.UserName; Tags = @((aws iam list-user-tags --user-name $u.UserName --region $r --output json | ConvertFrom-Json).Tags) } }
+    foreach ($ro in (Get-Content roles.json -Raw | ConvertFrom-Json).Roles) { [pscustomobject]@{ Type = 'Role'; Name = $ro.RoleName; Tags = @((aws iam list-role-tags --role-name $ro.RoleName --region $r --output json | ConvertFrom-Json).Tags) } }
+)
+ConvertTo-Json -InputObject $tags -Depth 5 | Set-Content iam-tags.json
 ```
 
 1. **The credential report** lists every IAM user with its password, its first two access keys (active, last rotated, last used) and its signing certificates. It leaves out service-specific credentials and any access key beyond the first two, which is why `list-access-keys` and `list-service-specific-credentials` run too; AWS generates a new report at most every four hours.[^npi-aws-credreport] Every active access key is a long-lived secret ([Step 3](#step-3-set-the-credential-rules)).
 2. **Roles.** `list-roles` returns each role's trust policy, whose principal says who can assume it: an AWS service such as EC2, ECS tasks, Lambda or EKS Pod Identity, an OIDC provider, or another account. It doesn't return when the role was last used; `aws iam get-role` does.[^npi-aws-cli] A role is a workload identity with no secret: the workload gets temporary credentials, through an instance profile on EC2, a task role on ECS, an execution role on Lambda, or EKS Pod Identity or IRSA on EKS.[^npi-aws-bp][^npi-aws-eks]
-3. **IAM Roles Anywhere** lets a workload outside AWS get a role's temporary credentials by presenting an X.509 certificate from a CA registered as a trust anchor; a profile picks the roles.[^npi-aws-rolesanywhere] Record each trust anchor's CA and each profile's roles. In GovCloud, revocation through the certificate's CRL distribution points isn't available, so CRLs have to be imported.[^npi-aws-gov-iam]
+3. **IAM Roles Anywhere** lets a workload outside AWS get a role's temporary credentials by presenting an X.509 certificate from a CA registered as a trust anchor; a profile picks the roles.[^npi-aws-rolesanywhere] Record each trust anchor's CA and each profile's roles. In GovCloud, revocation through the certificate's CRL distribution points isn't available, so CRLs have to be imported;[^npi-aws-gov-iam] `list-crls` records which trust anchors have one.
 4. **OIDC providers** are outside issuers the account trusts: an EKS cluster for IRSA, a CI/CD platform, or an Entra tenant. Each one is approved like a federated credential in 1d.
 5. **The root user** of a GovCloud account has no console sign-in, and its access keys come only through AWS Support.[^npi-aws-gov-iam] Record whether any exist.
+6. **Tags.** `iam-tags.json` holds each user's and role's tags, which join it to its record: `SystemId`, `Owner1`, `Owner2` and `Sponsor` ([WD-172](../../about/decision-register.md#wd-172)).
 
 ### 1h. OCI workload identities {#step-1h-oci}
 
@@ -234,7 +242,7 @@ oci iam policy list --compartment-id <tenancy-ocid> > oci-policies.json
 3. **OKE workload identity** gives a pod an identity made of its cluster, namespace and service account, named in policy with `request.principal.type = 'workload'`; it can't be used with dynamic groups, and needs an enhanced cluster.[^npi-oci-oke]
 4. **What Oracle's OC2 page doesn't say.** It doesn't state whether instance principals, resource principals and OKE workload identity are available in OC2, and identity domains apply only to tenancies created after January 17, 2023.[^npi-oci-oc2] Confirm both for the program's tenancy.
 
-Join every AWS and OCI identity to a record and name its owners and sponsor as in 1f, using tags (`SystemId`, owner, sponsor) on the role, user or dynamic group. SailPoint's AWS connector aggregates IAM users and roles; SailPoint's documentation lists no connector for OCI, so OCI identities are reviewed from these exports ([Privileged Access Management book](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_01_Privileged_Access_Management.md)).
+Join every AWS and OCI identity to a record and name its owners and sponsor as in 1f, using four tags on the role, user or dynamic group: `SystemId` (the record), `Owner1` and `Owner2` (the two technical owners) and `Sponsor` ([WD-172](../../about/decision-register.md#wd-172)). Each owner has its own key, because AWS tag values allow only letters, numbers, spaces and `_ . : / = + - @`, so no comma or semicolon;[^npi-aws-tagrules] in OCI they're freeform or defined tags, which `oci iam user list` and `oci iam dynamic-group list` return with each object. SailPoint's AWS connector aggregates IAM users and roles; SailPoint's documentation lists no connector for OCI, so OCI identities are reviewed from these exports ([Privileged Access Management book](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_01_Privileged_Access_Management.md)).
 
 ::: {.callout-important}
 ## Validate (G1 Inventory)
@@ -244,7 +252,7 @@ Join every AWS and OCI identity to a record and name its owners and sponsor as i
 - **VK-NPI-08** lists every agent identity with a sponsor, where the tenant exposes Agent ID. State the availability: Agent ID is generally available in commercial and, with documented gaps, in GCC ([Book 17, Chapter 04](../b17-ai-identity/04-kinds-of-ai-identity.md#release-stage-licensing-and-government-clouds)).
 - Gate owner: the identity governance office, with the CMDB owner signing that the join is complete *(design guidance)*.
 - Requirements: AC-2, IA-4 and CM-8; KSIs KSI-IAM-SNU (AC-2), KSI-IAM-ELP and KSI-IAM-JIT (IA-4), and KSI-PIY-GIV (CM-8) ([evidence](#evidence)).
-- **AWS GovCloud (US) and OCI** ([1g](#step-1g-aws), [1h](#step-1h-oci)): every IAM user, access key, role, Roles Anywhere profile and OIDC provider, and every OCI user credential and dynamic group, is in the run's files and joined to a record with two owners and a sponsor. The developer workbook's [Chapter 13](../../project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.md) checks these files read-only: long-lived credentials, owner tags, trusts and Roles Anywhere CRLs (findings NPI-AWS-01 to -16), and OCI credentials, dynamic groups and policies (NPI-OCI-01 to -10) ([WD-171](../../about/decision-register.md#wd-171)).
+- **AWS GovCloud (US) and OCI** ([1g](#step-1g-aws), [1h](#step-1h-oci)): every IAM user, access key, role, Roles Anywhere profile and OIDC provider, and every OCI user credential and dynamic group, is in the run's files and joined to a record with two owners and a sponsor. **VK-NPI-10** reads the same files and reports any role, workload IAM user, OCI user holding a credential or dynamic group missing a tag ([WD-172](../../about/decision-register.md#wd-172)). The developer workbook's [Chapter 13](../../project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.md) gives the full findings from them: long-lived credentials, owner tags, trusts and Roles Anywhere CRLs (findings NPI-AWS-01 to -16), and OCI credentials, dynamic groups and policies (NPI-OCI-01 to -10) ([WD-171](../../about/decision-register.md#wd-171)).
 :::
 
 <!-- labs:begin try-g1 (generated by scripts/generate_labs.py; not part of the reviewed page) -->
@@ -392,6 +400,7 @@ From Lab 1 of [Chapter 04 — App Management Policies and Certificate Rotation](
 ## Validate (G3 Credential rules)
 - **VK-NPI-02** reports, for every app registration and service principal, each secret and certificate with its lifetime and days to expiry. Pass: no credential issued after the policy's effective date runs longer than the cap (180 days for certificates; no new secrets). Every credential that expires within N days (the program uses 60, *design guidance*) has an owner and a renewal date.
 - **VK-NPI-03** reports apps that still use secrets. Each one is either in a Step 5 wave or has an exception with an end date.
+- **VK-NPI-10** reports every active AWS access key or service-specific credential and every OCI API signing key, auth token or customer secret key. Pass: each one has an exception with a replace-by date that hasn't passed, no OCI API key is older than 90 days, and every enabled IAM Roles Anywhere trust anchor has an imported CRL ([Step 3](#step-3-set-the-credential-rules)).
 - The ScubaGear result for MS.AAD.5.5v1 to 5.7v1 is filed with the gate ([evidence](#evidence)).
 - Requirements: IA-5(2), SC-12, SC-17 and SCuBA MS.AAD.5.5v1 to 5.7v1; KSIs KSI-SVC-ASM and KSI-IAM-SNU ([evidence](#evidence)).
 :::
@@ -656,7 +665,7 @@ The blocks below follow [Book 00, Appendix D](../b00-orientation/appendix-d-cont
 | Designed | [Prerequisites](#prerequisites) (the record and its fields); [G2 Decision](#step-2-decide-each-identitys-target) | The agreed record fields; each identity's target and date, approved by its owner |
 | Configured | [G3 Credential rules](#step-3-set-the-credential-rules); [G4](#step-4-cut-privilege) workload identity policies in report-only | The application management policy export; the policy files and their report-only results |
 | Enforced | G3's policy on from its effective date; G4's workload identity policies switched to On; [G5](#step-5-convert-with-a-parallel-run) legacy accounts disabled after the parallel run | The enforcing state in the exports; the exception register; the disabled objects' IDs in the record |
-| Evidenced | Each gate's **Validate** (VK-NPI-01 to 09) | Each check's output with its date, tenant and check version; ScubaGear MS.AAD.5.x results |
+| Evidenced | Each gate's **Validate** (VK-NPI-01 to 10) | Each check's output with its date, tenant and check version; ScubaGear MS.AAD.5.x results |
 | Operated | [G6 Lifecycle](#step-6-run-the-lifecycle) | Weekly VK-NPI-01 and 02 runs; owner-change, orphan and decommission tickets; access review results |
 
 A finding this page addresses is ready for closure when every applicable state has evidence; the authorizing official or assessor decides.
@@ -725,7 +734,7 @@ The mapping is the program's, from the books cited. Where a book maps a control,
 | AC-6 Least Privilege; AC-6(5) Privileged Accounts; AC-6(7) Review | G4, G6 | Scoped grants; no standing privileged roles; reviews of privileged service principals | VK-NPI-05 and VK-NPI-07 runs with justifications; PIM access review results | KSI-IAM-ELP, KSI-IAM-JIT (AC-6); KSI-IAM-JIT, IAM-SNU (AC-6(5)); KSI-IAM-AAM, IAM-JIT (AC-6(7)) | [Book 17, App. A](../b17-ai-identity/appendix-a-requirements-mapping.md#account-management-and-access-ac); [Book 02, App. A](../b02-identity/appendix-a-federal-requirements-crosswalk.md#nist-sp-800-53-rev.-5-control-mapping) |
 | IA-4 Identifier Management | G1 | Each identity has its own identifier, joined to its record and never reused | The record, keyed by object ID and system ID | KSI-IAM-ELP, KSI-IAM-JIT | [Book 17, App. A](../b17-ai-identity/appendix-a-requirements-mapping.md#identification-and-authentication-ia) |
 | CM-8 System Component Inventory | G1 | Every non-person identity is in one register, joined to the system inventory or CMDB | The Step 1 record; VK-NPI-06 and VK-NPI-07 runs | KSI-PIY-GIV | [Book 13, App. A](../b13-governance/appendix-a-requirements-mapping.md) |
-| IA-5 Authenticator Management; IA-5(2) | G2, G3, G5 | Managed identities and federation first; certificates in a vault and rotated; no new secrets | The application management policy export; VK-NPI-02 and VK-NPI-03 runs; the rotation calendar | KSI-IAM-APM (IA-5); KSI-IAM-SNU, KSI-SVC-ASM (IA-5(2)) | Same; [Book 04, Ch. 05](../b04-access/05-applications-and-workload-identities.md#governing-app-registrations) |
+| IA-5 Authenticator Management; IA-5(2) | G2, G3, G5 | Managed identities and federation first; certificates in a vault and rotated; no new secrets | The application management policy export; VK-NPI-02 and VK-NPI-03 runs, and VK-NPI-10 runs for AWS GovCloud (US) and OCI; the rotation calendar | KSI-IAM-APM (IA-5); KSI-IAM-SNU, KSI-SVC-ASM (IA-5(2)) | Same; [Book 04, Ch. 05](../b04-access/05-applications-and-workload-identities.md#governing-app-registrations) |
 | SC-12 Cryptographic Key Establishment and Management; SC-17 Public Key Infrastructure Certificates | G3 | Workload certificates come from the vault and are renewed with an owner's approval | The rotation plan and its applied changes; VK-NPI-02 runs | KSI-SVC-ASM | [Book 13, App. A](../b13-governance/appendix-a-requirements-mapping.md); [Book 07](../b07-pki/index.md) |
 | IA-9 Service Identification and Authentication (in no baseline, so tailored in) | G4, G5 | Services and workloads authenticate as themselves to Entra ID | Graph permission grants per workload identity; the service principal sign-in log | None: no indicator lists IA-9 | [Book 17, App. A](../b17-ai-identity/appendix-a-requirements-mapping.md#identification-and-authentication-ia); [companion guide](attribute-driven-migration.md#federal-requirements) |
 | CM-3 Configuration Change Control | G3 to G6 | Every write is a reviewed plan, approved by its SHA-256, sent by a person and recorded | The approved plan; the apply run's manifest | KSI-CMT-LMC, KSI-CMT-RVP | [Book 13, App. A](../b13-governance/appendix-a-requirements-mapping.md) |
@@ -767,9 +776,9 @@ Run the checks on the continuous monitoring cadence and file their output with t
 ## Checklist
 
 - [ ] CMDB named as this track's source of truth; record fields agreed
-- [ ] Every non-person identity inventoried and joined to a record with two owners and a federal sponsor (VK-NPI-01, 06, 07, 08)
+- [ ] Every non-person identity inventoried and joined to a record with two owners and a federal sponsor (VK-NPI-01, 06, 07, 08, 10)
 - [ ] A target and date for each; high-risk accounts in the first wave
-- [ ] Application management policy on: no new secrets, certificates capped at 180 days; certificates in a vault with renewal uploaded (VK-NPI-02, 03)
+- [ ] Application management policy on: no new secrets, certificates capped at 180 days; certificates in a vault with renewal uploaded (VK-NPI-02, 03); every AWS and OCI long-lived credential under a dated exception (VK-NPI-10)
 - [ ] High-privilege grants justified or removed; Tier 1 single-tenant service principals assigned directly to workload identity policies (VK-NPI-04, 05)
 - [ ] Parallel run complete; legacy accounts disabled, not deleted
 - [ ] Owner change in the HR mover and leaver workflows; orphan check weekly; disable before delete
@@ -830,6 +839,8 @@ Run the checks on the continuous monitoring cadence and file their output with t
 [^npi-aws-gov-iam]: AWS, AWS GovCloud (US) User Guide, "AWS Identity and Access Management in AWS GovCloud (US)" (no global STS endpoint; no role between a GovCloud and a standard account; Roles Anywhere without CRL distribution points; no Access Analyzer policy generation; root user), <https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-iam.html> (accessed Nov 24, 2026).
 [^npi-aws-cli]: AWS CLI Command Reference: `iam generate-credential-report`, `get-credential-report`, `list-users`, `list-access-keys` (the caller's own keys when no user is named), `list-service-specific-credentials`, `list-roles` (no `RoleLastUsed`; use `get-role`), `list-instance-profiles`, `list-open-id-connect-providers`, `update-access-key`; `rolesanywhere list-trust-anchors`, `list-profiles`, <https://docs.aws.amazon.com/cli/latest/reference/iam/> and <https://docs.aws.amazon.com/cli/latest/reference/rolesanywhere/> (accessed Nov 24, 2026).
 [^npi-aws-credreport]: AWS, IAM User Guide, "Generate credential reports" (all users; not service-specific credentials or keys beyond the first two; at most every four hours), <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_getting-report.html> (accessed Nov 24, 2026).
+[^npi-aws-tags]: AWS, IAM API Reference, "ListRoles" and "ListUsers" (tags aren't returned) and "ListRoleTags" and "ListUserTags", <https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListRoles.html>, <https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListUserTags.html> (accessed Nov 24, 2026); IAM Roles Anywhere API Reference, "ListCrls," <https://docs.aws.amazon.com/rolesanywhere/latest/APIReference/API_ListCrls.html> (accessed Nov 24, 2026).
+[^npi-aws-tagrules]: AWS, IAM User Guide, "Tags for AWS Identity and Access Management resources" (tag keys and values: letters, numbers, spaces and `_ . : / = + - @`), <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html> (accessed Nov 24, 2026).
 [^npi-aws-rolesanywhere]: AWS, IAM Roles Anywhere User Guide, "What is AWS Identity and Access Management Roles Anywhere?" (trust anchors, profiles), <https://docs.aws.amazon.com/rolesanywhere/latest/userguide/introduction.html> (accessed Nov 24, 2026).
 [^npi-aws-eks]: AWS, Amazon EKS User Guide, "Grant Kubernetes workloads access to AWS using Kubernetes Service Accounts" (IRSA and EKS Pod Identity; AWS recommends Pod Identity where possible), <https://docs.aws.amazon.com/eks/latest/userguide/service-accounts.html> (accessed Nov 24, 2026).
 [^npi-aws-outbound]: AWS, IAM User Guide, "Federating AWS identities to external services" (IAM outbound identity federation; `GetWebIdentityToken`), <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_outbound.html>, and AWS CLI, `sts get-web-identity-token` (`--signing-algorithm` RS256 or ES384), <https://docs.aws.amazon.com/cli/latest/reference/sts/get-web-identity-token.html> (accessed Nov 24, 2026).

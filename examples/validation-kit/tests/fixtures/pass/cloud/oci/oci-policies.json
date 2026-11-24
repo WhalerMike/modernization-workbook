@@ -1,0 +1,10 @@
+{
+  "data": [
+    {
+      "name": "hr-batch-policy",
+      "statements": [
+        "Allow dynamic-group dg-hr-batch-instances to read objects in compartment hr-batch"
+      ]
+    }
+  ]
+}

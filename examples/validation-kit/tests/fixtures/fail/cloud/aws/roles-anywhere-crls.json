@@ -1,0 +1,13 @@
+{
+  "crls": [
+    {
+      "crlId": "0a1b2c3d-0000-4000-8000-000000000011",
+      "crlArn": "arn:aws-us-gov:rolesanywhere:us-gov-west-1:111122223333:crl/0a1b2c3d-0000-4000-8000-000000000011",
+      "name": "program-pki-crl",
+      "enabled": true,
+      "trustAnchorArn": "arn:aws-us-gov:rolesanywhere:us-gov-west-1:111122223333:trust-anchor/0a1b2c3d-0000-4000-8000-000000000001",
+      "createdAt": "2026-11-20T10:00:00+00:00",
+      "updatedAt": "2026-11-20T10:00:00+00:00"
+    }
+  ]
+}

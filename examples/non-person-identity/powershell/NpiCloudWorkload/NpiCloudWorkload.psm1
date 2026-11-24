@@ -6,10 +6,10 @@
     implementation guide's Steps 1g and 1h write: the IAM credential report, every user's access
     keys, service-specific credentials, roles with their trust policies, instance profiles, OIDC
     providers and IAM Roles Anywhere trust anchors and profiles; and OCI users with their API
-    signing keys, auth tokens and customer secret keys, dynamic groups and policies. Two optional
-    AWS files the guide's commands don't write, iam-tags.json (ListUserTags and ListRoleTags, because
-    ListUsers and ListRoles return no tags) and roles-anywhere-crls.json (ListCrls), let the owner-tag
-    and CRL checks run; without them those checks warn that they couldn't. Findings NPI-AWS-01 to
+    signing keys, auth tokens and customer secret keys, dynamic groups and policies. Two of Step 1g's
+    files, iam-tags.json (ListUserTags and ListRoleTags, because ListUsers and ListRoles return no
+    tags) and roles-anywhere-crls.json (ListCrls), are optional here: without them the owner-tag and
+    CRL checks warn that they couldn't run. The tag keys are WD-172's. Findings NPI-AWS-01 to
     NPI-AWS-16 and NPI-OCI-01 to NPI-OCI-10.
 
     Read only, and offline: the module never runs the AWS CLI or the OCI CLI, never calls an AWS or

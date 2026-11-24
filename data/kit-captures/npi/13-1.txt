@@ -28,4 +28,4 @@ Not read: nothing
   NPI-OCI-08  dg-everything
   NPI-OCI-09  hr-batch-policy
   NPI-OCI-10  hr-oke-workload
-Manifest SHA-256: 42bd31277cf42740be417b5c4e973f20f1c643e914e546b3c1fb69fd680860f5
+Manifest SHA-256: 03f4376a836b0862512bd084731865ac6617ced980c457928f5c1b352b7f6400

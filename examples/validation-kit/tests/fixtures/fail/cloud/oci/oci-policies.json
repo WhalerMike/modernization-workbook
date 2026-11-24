@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "id": "ocid1.policy.oc2..aaaaexamplepolicy01",
+      "name": "hr-batch-policy",
+      "description": "hr-batch-policy",
+      "compartment-id": "ocid1.tenancy.oc2..aaaaexampletenancy",
+      "statements": [
+        "Allow dynamic-group dg-hr-batch-instances to read objects in compartment hr-batch",
+        "Allow dynamic-group dg-hr-functions to manage all-resources in tenancy"
+      ],
+      "lifecycle-state": "ACTIVE",
+      "time-created": "2025-06-01T10:00:00.000000+00:00",
+      "defined-tags": {},
+      "freeform-tags": {}
+    },
+    {
+      "id": "ocid1.policy.oc2..aaaaexamplepolicy02",
+      "name": "hr-oke-workload",
+      "description": "hr-oke-workload",
+      "compartment-id": "ocid1.tenancy.oc2..aaaaexampletenancy",
+      "statements": [
+        "Allow any-user to read secret-family in compartment hr-apps where all {request.principal.type = 'workload', request.principal.namespace = 'payroll', request.principal.service_account = 'payroll-sa', request.principal.cluster_id = 'ocid1.cluster.oc2..aaaaexamplepayroll'}"
+      ],
+      "lifecycle-state": "ACTIVE",
+      "time-created": "2025-06-01T10:00:00.000000+00:00",
+      "defined-tags": {},
+      "freeform-tags": {}
+    },
+    {
+      "id": "ocid1.policy.oc2..aaaaexamplepolicy03",
+      "name": "hr-admins",
+      "description": "hr-admins",
+      "compartment-id": "ocid1.tenancy.oc2..aaaaexampletenancy",
+      "statements": [
+        "Allow group HR-Admins to manage users in tenancy"
+      ],
+      "lifecycle-state": "ACTIVE",
+      "time-created": "2025-06-01T10:00:00.000000+00:00",
+      "defined-tags": {},
+      "freeform-tags": {}
+    }
+  ]
+}

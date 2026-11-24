@@ -43,6 +43,7 @@ $script:VkLearn = @{
     AppRoleTo   = 'https://learn.microsoft.com/graph/api/serviceprincipal-list-approleassignedto?view=graph-rest-1.0'
     RoleAssign  = 'https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0'
     AdUser      = 'https://learn.microsoft.com/powershell/module/activedirectory/get-aduser'
+    Wif         = 'https://learn.microsoft.com/entra/workload-id/workload-identity-federation'
     GmsaManage  = 'https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts'
     NewAdSvc    = 'https://learn.microsoft.com/powershell/module/activedirectory/new-adserviceaccount'
     Agents      = 'https://learn.microsoft.com/graph/api/agentidentity-list?view=graph-rest-1.0'
@@ -148,6 +149,9 @@ $script:VkCatalog = @(
     @{ Id = 'VK-NPI-09'; Track = 'NPI'; Title = 'Optional, preview: service principals with no sign-in activity in N days (service principal sign-in activity report, beta)'
         Source = 'Graph (beta)'; GraphPermissions = @('AuditLog.Read.All', 'Application.Read.All'); DelegatedRole = 'Reports Reader'; AzureRole = ''
         Stage = 'beta; documented for the global service (which GCC uses)'; Optional = $true; Preview = $true; Learn = @($VkLearn.SpSignIn) }
+    @{ Id = 'VK-NPI-10'; Track = 'NPI'; Title = 'AWS GovCloud (US) and OCI workload identities: long-lived credentials without a current exception, missing owner tags, OIDC trusts without a sub condition, Roles Anywhere trust anchors without an imported CRL'
+        Source = 'Input (the guide''s Step 1g and 1h exports)'; GraphPermissions = @(); DelegatedRole = 'None in Entra; the exports need an AWS role that can read IAM and IAM Roles Anywhere, and an OCI user or principal that can read IAM'; AzureRole = ''; Stage = 'n/a'
+        Learn = @($VkLearn.Wif, 'https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_getting-report.html', 'https://docs.oracle.com/en-us/iaas/Content/Security/Reference/iam_security_topic-IAM_Credentials.htm') }
 
     # ---- Cross-track foundation (Attribute-Driven Migration implementation guide, Gates 3, 5 and 6) ----
     @{ Id = 'VK-SYNC-01'; Track = 'SYNC'; Title = 'Coded slot values in an AD export compared with Entra ID for a sample, joined on employeeId'

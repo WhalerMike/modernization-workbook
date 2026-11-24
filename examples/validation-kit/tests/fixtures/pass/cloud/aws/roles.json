@@ -1,0 +1,64 @@
+{
+  "Roles": [
+    {
+      "Path": "/",
+      "RoleName": "app-billing-ec2",
+      "Arn": "arn:aws-us-gov:iam::111122223333:role/app-billing-ec2",
+      "CreateDate": "2025-05-01T10:00:00+00:00",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "ec2.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      }
+    },
+    {
+      "Path": "/",
+      "RoleName": "eks-irsa-reports",
+      "Arn": "arn:aws-us-gov:iam::111122223333:role/eks-irsa-reports",
+      "CreateDate": "2025-05-01T10:00:00+00:00",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Federated": "arn:aws-us-gov:iam::111122223333:oidc-provider/oidc.eks.us-gov-west-1.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+              "StringEquals": {
+                "oidc.eks.us-gov-west-1.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE:sub": "system:serviceaccount:reports:report-writer",
+                "oidc.eks.us-gov-west-1.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE:aud": "sts.amazonaws.com"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Path": "/aws-service-role/support.amazonaws.com/",
+      "RoleName": "AWSServiceRoleForSupport",
+      "Arn": "arn:aws-us-gov:iam::111122223333:role/aws-service-role/support.amazonaws.com/AWSServiceRoleForSupport",
+      "CreateDate": "2024-01-10T15:00:00+00:00",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "support.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      }
+    }
+  ]
+}
