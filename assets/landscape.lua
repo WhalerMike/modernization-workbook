@@ -13,6 +13,11 @@
 -- 4. Smaller type for large tables. Landscape tables, tables of 6 or more columns and text-heavy
 --    tables set their cell text in the "Table Small" character style (10 pt; body text is 12 pt),
 --    and their columns are balanced for the extra width that gives.
+-- 5. Code names don't widen a column: a long one (msDS-GroupManagedServiceAccount) wraps, so the
+--    other columns keep room for their longest words.
+-- 6. Captions lose their "{.striped .hover}" attributes, which Word would print as text.
+-- (Rows that don't split across pages, the bold header row and the grey banding are in the Table
+-- style of assets/reference-mslearn.docx.)
 --
 -- The added sections number footnotes continuously, like the reference document.
 
@@ -47,7 +52,10 @@ local function landscape_div(el)
   return blocks
 end
 
--- Per column: mean cell length, and the longest single word (header words count a little wider,
+local CODE_CAP = 14
+local CELL_PAD = 3
+
+-- Per column: mean cell length, and the longest single word (header words count 10% wider,
 -- because headers are bold).
 local function measure(tbl)
   local n = #tbl.colspecs
@@ -58,10 +66,22 @@ local function measure(tbl)
       if i <= n then
         local text = pandoc.utils.stringify(cell.contents)
         table.insert(lens[i], #text)
-        for word in text:gmatch("%S+") do
-          local w = bold and math.ceil(#word * 1.3) or #word
+        local function word_width(word, cap)
+          local w = bold and math.ceil(#word * 1.1) or #word
+          if cap and w > cap then w = cap end
           if w > longest[i] then longest[i] = w end
         end
+        -- Ordinary words set the column's floor, so they never break mid-word. A code name
+        -- (msDS-GroupManagedServiceAccount, a cmdlet with its parameters) wraps instead: it counts
+        -- for at most CODE_CAP characters, or one long name would starve every other column.
+        -- Footnotes print at the foot of the page, not in the cell, so their text is skipped.
+        local bare = pandoc.Div(cell.contents):walk({ Note = function() return {} end })
+        bare:walk({
+          Str = function(el) word_width(el.text) end,
+          Code = function(el)
+            for word in el.text:gmatch("%S+") do word_width(word, CODE_CAP) end
+          end,
+        })
       end
     end
   end
@@ -108,8 +128,10 @@ local function shares(mean, longest, capacity)
   local n = #mean
   local minw, extra, sum_min, sum_extra = {}, {}, 0, 0
   for i = 1, n do
-    minw[i] = math.max(longest[i] + 2, 5)
-    extra[i] = math.max(mean[i] - minw[i], 0)
+    -- Each cell also loses its left and right padding (the Table style's 108 twips a side, about
+    -- CELL_PAD characters), the same for every column, so it counts toward each column's share.
+    minw[i] = math.max(longest[i] + 1, 5) + CELL_PAD
+    extra[i] = math.max(mean[i] + CELL_PAD - minw[i], 0)
     sum_min = sum_min + minw[i]
     sum_extra = sum_extra + extra[i]
   end
@@ -125,8 +147,28 @@ local function shares(mean, longest, capacity)
   return out, sum_min
 end
 
+-- A caption written ": Title {.striped .hover}" keeps its attributes as text in Word (the site reads
+-- them as classes). Drop a trailing "{...}" group from the caption.
+local function clean_caption(tbl)
+  local long = tbl.caption and tbl.caption.long
+  if not long or #long == 0 then return end
+  local last = long[#long]
+  if last.t ~= "Plain" and last.t ~= "Para" then return end
+  local inl = last.content
+  local start
+  for j = #inl, 1, -1 do
+    if inl[j].t == "Str" and inl[j].text:match("^{") then start = j; break end
+  end
+  if not start then return end
+  local tail = pandoc.utils.stringify(pandoc.Inlines({ table.unpack(inl, start) }))
+  if not tail:match("^{[^}]*}$") then return end
+  for _ = #inl, start, -1 do inl:remove() end
+  while #inl > 0 and (inl[#inl].t == "Space" or inl[#inl].t == "SoftBreak") do inl:remove() end
+end
+
 -- Pass 2: balance each table's columns; put wide or crowded ones on landscape pages.
 local function layout_table(tbl)
+  clean_caption(tbl)
   local n = #tbl.colspecs
   if n < 3 or widths_set_on_purpose(tbl) then return tbl end
   local mean, longest, lens = measure(tbl)
@@ -139,7 +181,7 @@ local function layout_table(tbl)
   local inside_landscape = tbl.attr.classes:includes(KEEP)
   -- Landscape when there are many columns, when the short columns alone take most of a portrait
   -- page, or when rows carry a lot of text.
-  local wide = n >= 7 or (n >= 5 and (sum_min > 0.6 * PORTRAIT_CHARS or (rows > 0 and chars / rows > 260)))
+  local wide = n >= 7 or (n >= 5 and (sum_min - n * CELL_PAD > 0.6 * PORTRAIT_CHARS or (rows > 0 and chars / rows > 260)))
   local landscape = inside_landscape or wide
   local small = landscape or n >= 6 or (rows > 0 and chars / rows > 180)
   local capacity = (landscape and LANDSCAPE_CHARS or PORTRAIT_CHARS) * (small and SMALL_GAIN or 1)
