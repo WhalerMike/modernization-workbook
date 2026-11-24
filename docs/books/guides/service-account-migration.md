@@ -12,7 +12,7 @@ research-status: draft
 research-type: implementation guide
 research-book: "Book 02"
 review-status: approved
-reviewed-sha256: c1dc053f52cfb1af0c53993378a02fb6a9caefe364f6d2d1a08258c8858f2262
+reviewed-sha256: f22fda0ba5120571ad145c2ba3f55bbbd18b4c08cf8fa60a7dbb6e40f9c2c3b6
 last-reviewed: 2026-11-24
 ---
 # Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities
