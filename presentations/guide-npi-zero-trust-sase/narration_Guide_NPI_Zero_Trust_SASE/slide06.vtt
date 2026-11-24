@@ -1,0 +1,115 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.757
+Now the workloads, one by one,
+
+2
+00:00:01.757 --> 00:00:05.863
+each with its target from the service
+accounts guide's decision path.
+
+3
+00:00:05.863 --> 00:00:11.179
+The SQL Server engine runs as
+a user account or a G M S A,
+
+4
+00:00:11.179 --> 00:00:13.162
+with an M S S Q L S V C S P N.
+
+5
+00:00:13.162 --> 00:00:16.010
+Its G M S A stays the
+Windows logon account,
+
+6
+00:00:16.010 --> 00:00:20.700
+and the instance gets an Entra
+identity: the Arc managed identity on
+
+7
+00:00:20.700 --> 00:00:25.474
+SQL Server 2025, or an app registration
+with a certificate on 2022.
+
+8
+00:00:25.474 --> 00:00:28.472
+Users and applications then
+sign in with Entra logins;
+
+9
+00:00:28.472 --> 00:00:31.936
+Microsoft Learn lists
+non-interactive mechanisms including
+
+10
+00:00:31.936 --> 00:00:35.400
+managed identities for SQL
+Server's Entra authentication.
+
+11
+00:00:35.400 --> 00:00:37.539
+Users reach it through Private Access,
+
+12
+00:00:37.539 --> 00:00:41.750
+but the engine's Kerberos stays on the
+island until its logins are Entra-only.
+
+13
+00:00:41.750 --> 00:00:44.899
+Applications that call SQL Server run as a
+
+14
+00:00:44.899 --> 00:00:47.800
+user account or a G M S
+A with a Windows login.
+
+15
+00:00:47.800 --> 00:00:52.285
+Their target is a managed identity, or
+a service principal with a certificate,
+
+16
+00:00:52.285 --> 00:00:54.388
+with an Entra login in SQL Server,
+
+17
+00:00:54.388 --> 00:00:57.612
+so the connection moves from
+Kerberos to an Entra token.
+
+18
+00:00:57.612 --> 00:01:00.812
+That's server to server, so
+it's not in the SASE path.
+
+19
+00:01:00.812 --> 00:01:04.537
+I I S sites and application pools run as a
+
+20
+00:01:04.537 --> 00:01:08.037
+user account or a G M S
+A with an H T T P S P N.
+
+21
+00:01:08.037 --> 00:01:13.337
+Their target is a G M S A now, and a managed
+identity when the site moves to Azure.
+
+22
+00:01:13.337 --> 00:01:18.403
+Users sign in with Entra through
+application proxy or Private Access,
+
+23
+00:01:18.403 --> 00:01:21.547
+with Kerberos single sign-on
+to the H T T P S P N,
+
+24
+00:01:21.547 --> 00:01:26.090
+and the pool's own calls to Microsoft
+A P Is use an Entra identity.

@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.038
+Here's what AWS says.
+
+2
+00:00:02.038 --> 00:00:06.450
+The IAM credential report lists every
+user, with its console password,
+
+3
+00:00:06.450 --> 00:00:09.988
+its first two access keys
+and its signing certificates.
+
+4
+00:00:09.988 --> 00:00:14.324
+It leaves out service-specific
+credentials, such as CodeCommit passwords,
+
+5
+00:00:14.324 --> 00:00:18.101
+and any key beyond the first two,
+so those need their own list calls.
+
+6
+00:00:18.101 --> 00:00:22.875
+The role and user lists return no tags,
+so the guide runs the tag reads too.
+
+7
+00:00:22.875 --> 00:00:24.863
+GovCloud changes a few things.
+
+8
+00:00:24.863 --> 00:00:26.824
+There's no global S T S endpoint,
+
+9
+00:00:26.824 --> 00:00:30.275
+and no role between a GovCloud
+and a standard account.
+
+10
+00:00:30.275 --> 00:00:35.859
+Roles Anywhere works, but revocation through
+the certificate's CRL address doesn't:
+
+11
+00:00:35.859 --> 00:00:41.200
+AWS says to import your CRLs instead, and
+it doesn't check an imported CRL's expiry.
+
+12
+00:00:41.200 --> 00:00:44.273
+And trust policies should
+never name everyone,
+
+13
+00:00:44.273 --> 00:00:47.425
+and an O I D C role should
+limit the token's subject.

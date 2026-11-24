@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.150
+Check yourself with two questions.
+
+2
+00:00:02.150 --> 00:00:05.850
+First: how does the program
+join an IAM role to its record?
+
+3
+00:00:05.850 --> 00:00:11.117
+The answer is b: four tags, system I
+D, owner one, owner two and sponsor,
+
+4
+00:00:11.117 --> 00:00:16.188
+with one key per owner, because an
+AWS tag value can't hold a comma.
+
+5
+00:00:16.188 --> 00:00:19.925
+Second: the AWS export has no tags file.
+
+6
+00:00:19.925 --> 00:00:21.200
+What does the kit do?
+
+7
+00:00:21.200 --> 00:00:24.557
+The answer is b: it runs,
+lists the file as not read,
+
+8
+00:00:24.557 --> 00:00:27.312
+and raises one warning for the account.
+
+9
+00:00:27.312 --> 00:00:32.837
+A missing file is a warning, never a
+pass, and the kit never calls AWS itself.
+
+10
+00:00:32.837 --> 00:00:34.956
+The module page has three more questions,
+
+11
+00:00:34.956 --> 00:00:37.150
+each linked to the
+section that answers it.

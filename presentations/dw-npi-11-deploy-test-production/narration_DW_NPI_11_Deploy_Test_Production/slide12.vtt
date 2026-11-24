@@ -1,58 +1,63 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.717
+00:00:00.100 --> 00:00:01.699
 Stage 1 starts by preparing:
 
 2
-00:00:01.717 --> 00:00:05.774
+00:00:01.699 --> 00:00:05.593
 the group managed account's retriever
 group with the test host in it,
 
 3
-00:00:05.774 --> 00:00:10.339
+00:00:05.593 --> 00:00:09.973
 and the synthetic objects, an app with
 two owners and a federated credential,
 
 4
-00:00:10.339 --> 00:00:13.962
+00:00:09.973 --> 00:00:13.450
 and a service account whose
 random password nobody records.
 
 5
-00:00:13.962 --> 00:00:16.863
+00:00:13.450 --> 00:00:16.362
 The pilot's policy is created, turned off.
 
 6
-00:00:16.863 --> 00:00:20.006
-The preflight records the
-validation kit's baseline,
+00:00:16.362 --> 00:00:21.425
+The preflight records the validation
+kit's baseline, checks one to ten;
 
 7
-00:00:20.006 --> 00:00:22.863
-and checks the root key is
-more than ten hours old.
+00:00:21.425 --> 00:00:26.400
+check ten, for AWS GovCloud and O C I,
+doesn't apply in this Entra runbook.
 
 8
-00:00:22.863 --> 00:00:26.850
+00:00:26.400 --> 00:00:29.362
+And it checks the root key
+is more than ten hours old.
+
+9
+00:00:29.362 --> 00:00:32.776
 Step 1.1 reads every
 identity and its owners.
 
-9
-00:00:26.850 --> 00:00:30.604
+10
+00:00:32.776 --> 00:00:36.141
 Step 1.2 turns the pilot
 policy on for just two apps,
 
-10
-00:00:30.604 --> 00:00:33.625
+11
+00:00:36.141 --> 00:00:38.850
 and plans the tenant-wide one for review.
 
-11
-00:00:33.625 --> 00:00:37.331
+12
+00:00:38.850 --> 00:00:42.267
 Step 1.3 moves the pilot
 to a federated credential
 
-12
-00:00:37.331 --> 00:00:40.730
+13
+00:00:42.267 --> 00:00:45.360
 and a managed identity,
 beside its old secret.

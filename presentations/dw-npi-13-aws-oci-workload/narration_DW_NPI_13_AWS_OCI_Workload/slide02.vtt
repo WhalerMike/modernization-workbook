@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.963
+Why does this chapter exist?
+
+2
+00:00:01.963 --> 00:00:07.029
+Because a workload in AWS or O C I that
+holds a long-lived key is a service account
+
+3
+00:00:07.029 --> 00:00:09.311
+with a password that never expires,
+
+4
+00:00:09.311 --> 00:00:12.538
+in a console nobody in
+identity governance opens.
+
+5
+00:00:12.538 --> 00:00:14.537
+Both vendors point the same way.
+
+6
+00:00:14.537 --> 00:00:19.709
+AWS says to require workloads to use
+temporary credentials with IAM roles and,
+
+7
+00:00:19.709 --> 00:00:22.812
+where possible, not to
+create access keys at all.
+
+8
+00:00:22.812 --> 00:00:25.496
+Oracle recommends instance principals,
+
+9
+00:00:25.496 --> 00:00:28.575
+and rotating API keys
+every ninety days or less.
+
+10
+00:00:28.575 --> 00:00:33.213
+The program makes every long-lived credential
+an exception with a replacement date.
+
+11
+00:00:33.213 --> 00:00:35.200
+This chapter adds no new rule.
+
+12
+00:00:35.200 --> 00:00:38.663
+It reads the guide's exports,
+checks the rules the guide sets,
+
+13
+00:00:38.663 --> 00:00:40.510
+and never touches either cloud.

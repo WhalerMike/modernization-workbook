@@ -1,0 +1,827 @@
+{
+ "1": [
+  [
+   0.1,
+   0.912,
+   "Welcome."
+  ],
+  [
+   0.963,
+   9.525,
+   "This is the narrated briefing for a companion guide in the Federal Modernization Workbook: Non-Person Identity, Zero Trust, sassy and Other Clouds."
+  ],
+  [
+   10.488,
+   2.237,
+   "The guide's idea fits in one line."
+  ],
+  [
+   12.725,
+   12.412,
+   "A G M S A fixes the password, not the protocol: the service still speaks Kerberos to Active Directory, where Conditional Access, Global Secure Access and the Zero Trust Maturity Model can't see it."
+  ],
+  [
+   25.137,
+   3.0,
+   "The Non-Person Identity track has three guides."
+  ],
+  [
+   28.137,
+   2.875,
+   "The implementation guide runs the track as gates."
+  ],
+  [
+   31.012,
+   3.025,
+   "The service accounts guide moves one account at a time."
+  ],
+  [
+   34.038,
+   11.812,
+   "This one is the why: what each choice does to the program's Zero Trust maturity and its sassy design, workload by workload and cloud by cloud, and which certificates each move adds or removes."
+  ],
+  [
+   45.85,
+   12.463,
+   "Every fact in this deck comes from the guide, which footnotes each one: sis-uh, Microsoft Learn, Red Hat, O M B, AWS and Oracle, read on November twenty-fourth, 2026."
+  ],
+  [
+   58.312,
+   6.612,
+   "Where the guide gives the program's own reading rather than a source's, it says design guidance, and so does this deck."
+  ],
+  [
+   64.925,
+   12.85,
+   "We'll go in four parts: why a G M S A isn't the end, what the Zero Trust scorecard and sassy say, which workloads it touches, and how certificates, N T L M and other clouds change the answer."
+  ]
+ ],
+ "2": [
+  [
+   0.1,
+   2.875,
+   "Here's the answer in brief, in five points."
+  ],
+  [
+   2.925,
+   6.987,
+   "First, a G M S A or a D M S A is a better password, not a Zero Trust identity."
+  ],
+  [
+   9.912,
+   8.287,
+   "It removes the password a person knows, which is the Kerberoasting risk, but the workload still authenticates with Kerberos against Active Directory."
+  ],
+  [
+   18.2,
+   7.85,
+   "Nothing in Entra I D evaluates that sign-in, so Conditional Access, Entra's risk signals and the sign-in logs never see it."
+  ],
+  [
+   26.05,
+   15.55,
+   "Second, a Microsoft Entra workload identity moves the identity into the program's central store, with no secret anyone holds, a managed identity or a federated credential, or with a short-lived certificate, and every token it gets is logged in Entra I D."
+  ],
+  [
+   41.6,
+   8.912,
+   "The limit, from Microsoft Learn: Conditional Access for workload identities covers single-tenant service principals only, not managed identities."
+  ],
+  [
+   50.513,
+   5.05,
+   "Third, sassy protects the people in front of a service, not the service itself."
+  ],
+  [
+   55.562,
+   11.75,
+   "Private Access and application proxy put Entra sign-in and phishing-resistant multifactor authentication in front of a Kerberos application, then reach it with Kerberos constrained delegation to its S P N."
+  ],
+  [
+   67.312,
+   10.463,
+   "The application's own service account and S P N stay where they are, and service-to-service traffic doesn't go through the Global Secure Access client, which runs on end-user devices."
+  ],
+  [
+   77.775,
+   2.925,
+   "Fourth, certificates change shape, not count."
+  ],
+  [
+   80.7,
+   6.6,
+   "Fifth, extend Entra I D for people across every cloud, but don't force one workload identity across them."
+  ],
+  [
+   87.3,
+   3.862,
+   "That last one is the program's recommendation, design guidance."
+  ]
+ ],
+ "3": [
+  [
+   0.1,
+   9.825,
+   "sis-uh's Zero Trust Maturity Model defines an identity as attributes that describe, quote, an agency user or entity, including non-person entities."
+  ],
+  [
+   9.875,
+   4.025,
+   "So service accounts are inside the Identity pillar, not beside it."
+  ],
+  [
+   13.9,
+   8.812,
+   "The guide scores three kinds of service identity against the pillar's functions: authentication, identity stores, risk assessments and access management."
+  ],
+  [
+   22.712,
+   5.388,
+   "The stages are sis-uh's; where each kind lands is the program's reading, design guidance."
+  ],
+  [
+   28.1,
+   1.238,
+   "Authentication."
+  ],
+  [
+   29.337,
+   7.125,
+   "sis-uh's Traditional stage is passwords or multi-factor authentication; Optimal continuously validates identity."
+  ],
+  [
+   36.462,
+   8.675,
+   "A user account used as a service is Traditional: a static password, often never expiring, and crackable offline if it holds an S P N."
+  ],
+  [
+   45.138,
+   12.787,
+   "A G M S A or a D M S A is better than Traditional on the credential, because it's generated, rotated and unknown to people, but its Kerberos access is static, with no continuous evaluation."
+  ],
+  [
+   57.925,
+   7.188,
+   "An Entra workload identity is token-based, short-lived and logged, and a managed identity has no credential to steal."
+  ],
+  [
+   65.112,
+   10.463,
+   "Microsoft Learn says workloads can't perform multifactor authentication, so the workload equivalent of phishing-resistant multifactor authentication is having no stored secret."
+  ],
+  [
+   75.575,
+   1.375,
+   "Identity stores."
+  ],
+  [
+   76.95,
+   7.275,
+   "Traditional is self-managed, on-premises stores; Optimal securely integrates them across all partners and environments."
+  ],
+  [
+   84.225,
+   5.5,
+   "The user account and the G M S A both liv only in on-premises Active Directory."
+  ],
+  [
+   89.725,
+   6.975,
+   "The workload identity lives in Entra I D, the program's integrated store, and federation reaches other clouds."
+  ]
+ ],
+ "4": [
+  [
+   0.1,
+   1.413,
+   "Risk assessments."
+  ],
+  [
+   1.462,
+   3.388,
+   "sis-uh's Optimal stage determines risk in real time."
+  ],
+  [
+   4.85,
+   10.0,
+   "For a user account or a G M S A, the only signal is Defender for Identity, on domain controller traffic; a G M S A gets no Entra risk signal."
+  ],
+  [
+   14.85,
+   8.463,
+   "A workload identity gets Entra I D Protection's risk, and Conditional Access for workload identities, for single-tenant service principals."
+  ],
+  [
+   23.312,
+   1.425,
+   "Access management."
+  ],
+  [
+   24.738,
+   6.287,
+   "Traditional is permanent access with periodic review; Optimal is just-in-time and just-enough access."
+  ],
+  [
+   31.025,
+   3.45,
+   "A user account has standing group memberships and delegation."
+  ],
+  [
+   34.475,
+   5.237,
+   "A G M S A is standing too, scoped by its retriever group and the account's rights."
+  ],
+  [
+   39.712,
+   8.7,
+   "A workload identity's role assignments and app roles are still standing, but they're visible, scoped per resource, and reviewable in Entra and Azure."
+  ],
+  [
+   48.413,
+   2.562,
+   "So what does this mean for the program's scores?"
+  ],
+  [
+   50.975,
+   12.363,
+   "Every account kept on Kerberos, with the disposition Keep or Keep Kerberos, holds the Identity pillar's identity stores function at Traditional for that workload until its end date, whatever the rest of the estate reaches."
+  ],
+  [
+   63.337,
+   3.65,
+   "That's the program's decision W D one sixty-five."
+  ],
+  [
+   66.987,
+   8.762,
+   "The Zero Trust assessment guide, and the chapter Close Before You Assess, already count legacy authentication that service accounts still use as a finding."
+  ],
+  [
+   75.75,
+   9.512,
+   "The island list, from the Non-Person Identity developer workbook's chapter on G M S As, D M S As and the Kerberos island, is that finding's evidence."
+  ]
+ ],
+ "5": [
+  [
+   0.1,
+   5.3,
+   "The program's sassy is Microsoft's security service edge, Global Secure Access."
+  ],
+  [
+   5.35,
+   2.35,
+   "Three of its parts touch service accounts."
+  ],
+  [
+   7.7,
+   5.138,
+   "First, Private Access and application proxy, with Kerberos single sign-on."
+  ],
+  [
+   12.838,
+   3.85,
+   "The user signs in to Entra I D, under Conditional Access."
+  ],
+  [
+   16.688,
+   6.612,
+   "Then, in Microsoft Learn's words, the connector impersonates the user to get a Kerberos token to the application."
+  ],
+  [
+   23.3,
+   7.325,
+   "That needs the connector and the application server domain joined, and the application's S P N in the connector's delegation list."
+  ],
+  [
+   30.625,
+   8.65,
+   "The application keeps running as its service account, which holds the S P N; Learn's example is a web service account that's a user or a computer account."
+  ],
+  [
+   39.275,
+   9.488,
+   "So moving that S P N to a G M S A, at step A5 of the service accounts guide, means updating the connector's delegation entry in the same change."
+  ],
+  [
+   48.763,
+   3.013,
+   "Second, Private Access for domain controllers."
+  ],
+  [
+   51.775,
+   12.225,
+   "It puts Conditional Access and phishing-resistant multifactor authentication in front of Kerberos to on-premises applications, for the users who are synchronized from Active Directory, and its sensor starts in audit mode."
+  ],
+  [
+   64.0,
+   1.488,
+   "It's scoped to users."
+  ],
+  [
+   65.487,
+   10.25,
+   "Once it's enforced, Kerberos to a protected S P N from a device without the Global Secure Access client is blocked, so service-to-service Kerberos needs an S P N exclusion."
+  ],
+  [
+   75.737,
+   5.912,
+   "Third, the Global Secure Access client controls network traffic at the end-user computing device."
+  ],
+  [
+   81.65,
+   7.475,
+   "A server-side workload's own traffic isn't in the sassy path; its protection is its identity and its network segmentation."
+  ],
+  [
+   89.125,
+   3.05,
+   "So sassy and this track meet at the S P N."
+  ],
+  [
+   92.175,
+   8.525,
+   "A Kerberos application published through Private Access is Zero Trust at the front door, and Traditional behind it, until its service account moves."
+  ]
+ ],
+ "6": [
+  [
+   0.1,
+   5.763,
+   "Now the workloads, one by one, each with its target from the service accounts guide's decision path."
+  ],
+  [
+   5.812,
+   7.35,
+   "The sequel Server engine runs as a user account or a G M S A, with an M S S Q L S V C S P N."
+  ],
+  [
+   13.162,
+   12.312,
+   "Its G M S A stays the Windows logon account, and the instance gets an Entra identity: the Arc managed identity on sequel Server 2025, or an app registration with a certificate on 2022."
+  ],
+  [
+   25.475,
+   9.925,
+   "Users and applications then sign in with Entra logins; Microsoft Learn lists non-interactive mechanisms including managed identities for sequel Server's Entra authentication."
+  ],
+  [
+   35.4,
+   6.35,
+   "Users reach it through Private Access, but the engine's Kerberos stays on the island until its logins are Entra-only."
+  ],
+  [
+   41.75,
+   6.05,
+   "Applications that call sequel Server run as a user account or a G M S A with a Windows login."
+  ],
+  [
+   47.8,
+   9.812,
+   "Their target is a managed identity, or a service principal with a certificate, with an Entra login in sequel Server, so the connection moves from Kerberos to an Entra token."
+  ],
+  [
+   57.612,
+   3.2,
+   "That's server to server, so it's not in the sassy path."
+  ],
+  [
+   60.812,
+   7.225,
+   "I I S sites and application pools run as a user account or a G M S A with an H T T P S P N."
+  ],
+  [
+   68.037,
+   5.3,
+   "Their target is a G M S A now, and a managed identity when the site moves to Azure."
+  ],
+  [
+   73.338,
+   12.75,
+   "Users sign in with Entra through application proxy or Private Access, with Kerberos single sign-on to the H T T P S P N, and the pool's own calls to Microsoft A P Is use an Entra identity."
+  ]
+ ],
+ "7": [
+  [
+   0.1,
+   5.95,
+   "Scheduled tasks and Windows services often run as a user account with a password that never expires."
+  ],
+  [
+   6.0,
+   6.513,
+   "Their target is a G M S A now, and an Azure Automation runbook with a managed identity once the job moves."
+  ],
+  [
+   12.512,
+   4.325,
+   "The password goes; the identity moves to Entra only when the job does."
+  ],
+  [
+   16.837,
+   1.913,
+   "They're not in the sassy path."
+  ],
+  [
+   18.75,
+   13.312,
+   "Red Hat Enterprise Linux and other Linux services run on an Active Directory-joined host, with S S S D and realm D and a keytab, or with Red Hat's own Managed Service Account, made with A D C L I create M S A."
+  ],
+  [
+   32.062,
+   10.05,
+   "Their target is the platform's workload identity: an I A M role on E C 2, an instance principal on O C I, or the Arc managed identity for calls to Azure."
+  ],
+  [
+   42.112,
+   8.037,
+   "A keytab on disk is a long-lived Kerberos key, unlike a Windows G M S A; the platform identity has no stored secret."
+  ],
+  [
+   50.15,
+   6.675,
+   "Workloads in AWS GovCloud U S run as I A M roles, or as I A M users with access keys."
+  ],
+  [
+   56.825,
+   10.0,
+   "Their target is an I A M role, and to call Microsoft A P Is, a federated credential, once it's tested; that's the program's decision W D one seventy-one."
+  ],
+  [
+   66.825,
+   7.95,
+   "They get temporary credentials, with keys as exceptions, and people reach AWS through I A M Identity Center federated with Entra."
+  ],
+  [
+   74.775,
+   6.463,
+   "O C I workloads use instance, resource or workload principals, or users with A P I keys."
+  ],
+  [
+   81.237,
+   8.887,
+   "The target is a principal, with keys as exceptions, so there's no stored secret, and people reach O C I through its identity domain federated with Entra."
+  ]
+ ],
+ "8": [
+  [
+   0.1,
+   2.025,
+   "Linux deserves a closer look."
+  ],
+  [
+   2.075,
+   5.838,
+   "Red Hat recommends joining a R H E L host to Active Directory with S S S D and realm."
+  ],
+  [
+   7.912,
+   12.162,
+   "Its Managed Service Account is an Active Directory account that corresponds to a specific computer, created with A D C L I create M S A, and its Kerberos key is written to a keytab on the host."
+  ],
+  [
+   20.075,
+   2.688,
+   "That's a different thing from a Windows G M S A."
+  ],
+  [
+   22.762,
+   4.55,
+   "The key sits in a file, so it's a long-lived secret to protect and rotate."
+  ],
+  [
+   27.312,
+   18.75,
+   "For people, Microsoft Learn says Entra I D can be the sign-in for S S H on Azure Linux virtual machines and on Azure Arc-enabled Linux servers, and it lists R H E L seven point four to seven point nine, eight point three and later, nine point oh and later, and ten point one as supported."
+  ],
+  [
+   46.062,
+   10.537,
+   "An R H E L instance in AWS GovCloud U S or O C I that's onboarded to Arc can use the same Entra sign-in, so operators keep one identity across clouds."
+  ],
+  [
+   56.6,
+   5.3,
+   "That's design guidance, and the Arc track guide covers onboarding other clouds' servers to Arc."
+  ]
+ ],
+ "9": [
+  [
+   0.1,
+   4.95,
+   "Moving a service account or its S P N to Entra changes which certificates exist."
+  ],
+  [
+   5.0,
+   7.487,
+   "Each row starts from what the workload holds today, and an S P N needs no certificate, as the service accounts guide explains."
+  ],
+  [
+   12.488,
+   1.7,
+   "Start with sequel Server."
+  ],
+  [
+   14.188,
+   8.562,
+   "An engine running as a user account or a G M S A, with Windows logins, has an optional T L S certificate; Kerberos needs none."
+  ],
+  [
+   22.75,
+   9.1,
+   "Add Entra logins, and every instance that takes them needs a T L S certificate issued by a certificate authority, with the service account able to read its key."
+  ],
+  [
+   31.85,
+   6.463,
+   "CyberArk Certificate Manager issues and renews it, from the program's Active Directory Certificate Services."
+  ],
+  [
+   38.312,
+   10.113,
+   "A sequel Server 2022 instance's Entra identity adds an app-registration certificate in Key Vault, which Key Vault and the Arc extension handle when it's service-managed."
+  ],
+  [
+   48.425,
+   8.1,
+   "A sequel Server 2025 instance uses the Arc managed identity: no certificate before, none after, and Azure handles it."
+  ],
+  [
+   56.525,
+   7.612,
+   "An I I S pool published through application proxy or Private Access with Kerberos single sign-on keeps the same site certificate."
+  ],
+  [
+   64.138,
+   4.487,
+   "The connector reaches the S P N with Kerberos, so there's no new certificate."
+  ],
+  [
+   68.625,
+   6.912,
+   "CyberArk Certificate Manager handles the site's certificate, and Microsoft handles the application proxy endpoint."
+  ]
+ ],
+ "10": [
+  [
+   0.1,
+   1.587,
+   "Now the rest of the map."
+  ],
+  [
+   1.637,
+   12.262,
+   "An application that calls Microsoft Graph as a user account, moved to an app registration, gains an app-registration certificate, at most a hundred and eighty days, renewed by its owner or by Key Vault."
+  ],
+  [
+   13.9,
+   8.75,
+   "The same application on Azure or on an Arc-enabled server moves to a managed identity instead: none before, none after, and Azure handles it."
+  ],
+  [
+   22.65,
+   11.775,
+   "A workload outside AWS that uses an I A M user's secret key can move to I A M Roles Anywhere, which needs an X dot five-oh-nine certificate from the program's public key infrastructure."
+  ],
+  [
+   34.425,
+   5.275,
+   "The certificate platform issues it, and GovCloud needs certificate revocation lists imported."
+  ],
+  [
+   39.7,
+   12.825,
+   "And a R H E L host's Active Directory keytab, moved to the platform's workload identity, needs no certificate at all for an I A M role or an O C I principal; AWS or O C I handles it."
+  ],
+  [
+   52.525,
+   2.612,
+   "So certificates change shape, not count."
+  ],
+  [
+   55.138,
+   8.35,
+   "A managed identity, an I A M role and an O C I principal need none; an app registration and Roles Anywhere each need a certificate."
+  ]
+ ],
+ "11": [
+  [
+   0.1,
+   1.387,
+   "N T L M."
+  ],
+  [
+   1.438,
+   5.138,
+   "The program's backstop for N T L M is April first, 2027."
+  ],
+  [
+   6.575,
+   5.65,
+   "It's the program's own date, not an external deadline; that's decision W D twenty-seven."
+  ],
+  [
+   12.225,
+   2.125,
+   "It applies to service accounts too."
+  ],
+  [
+   14.35,
+   12.537,
+   "After that date, an account kept in Active Directory, as Keep or Keep Kerberos, authenticates with Kerberos only, never N T L M, and its end date still follows decision W D one sixty-five."
+  ],
+  [
+   26.887,
+   8.688,
+   "Microsoft's own position, on Microsoft Learn, is that N T L M is still supported, and that Kerberos is the preferred authentication method."
+  ],
+  [
+   35.575,
+   1.95,
+   "And watch for the quiet failure."
+  ],
+  [
+   37.525,
+   7.35,
+   "An S P N that's missing, or on the wrong account, is the usual way a service falls back to N T L M without anyone choosing it."
+  ]
+ ],
+ "12": [
+  [
+   0.1,
+   3.725,
+   "Should agencies extend Microsoft Entra I D across clouds?"
+  ],
+  [
+   3.775,
+   1.825,
+   "For people, yes."
+  ],
+  [
+   5.6,
+   10.875,
+   "O M B memorandum M twenty-two oh-nine says agencies must employ centralized identity management systems for agency users that can be integrated into applications and common platforms."
+  ],
+  [
+   16.475,
+   5.8,
+   "And sis-uh's Optimal identity store securely integrates stores across all partners and environments."
+  ],
+  [
+   22.275,
+   4.675,
+   "Entra I D can be that one store for the program's people in every cloud it uses."
+  ],
+  [
+   26.95,
+   11.463,
+   "In AWS GovCloud U S, I A M Identity Center connects your existing identity provider, and it runs in GovCloud with FIPS endpoints and A W S U S Gov A R Ns."
+  ],
+  [
+   38.413,
+   5.888,
+   "The program's chapter on privileged roles and tiers already uses its permission sets for human access."
+  ],
+  [
+   44.3,
+   11.062,
+   "In O C I, Oracle documents single sign-on and identity lifecycle management between O C I I A M and Microsoft Entra I D, for tenancies with identity domains."
+  ],
+  [
+   55.362,
+   4.85,
+   "The program's O C two tenancy still has to confirm it has identity domains."
+  ],
+  [
+   60.212,
+   6.912,
+   "And on Linux hosts, Entra sign-in for S S H on Azure and Arc-enabled Linux, R H E L included."
+  ]
+ ],
+ "13": [
+  [
+   0.1,
+   4.388,
+   "For workloads, the answer is no single store; one record instead."
+  ],
+  [
+   4.438,
+   3.288,
+   "M twenty-two oh-nine's sentence is about agency users."
+  ],
+  [
+   7.725,
+   12.762,
+   "A workload is safest with its own platform's identity, which has no stored secret and never leaves that platform: an I A M role in AWS, a principal in O C I, a managed identity in Azure."
+  ],
+  [
+   20.488,
+   8.975,
+   "Forcing an Entra identity onto an AWS workload would mean a secret or a certificate where AWS would issue temporary credentials for free."
+  ],
+  [
+   29.462,
+   5.05,
+   "What the program extends across clouds for workloads is the governance, not the credential."
+  ],
+  [
+   34.513,
+   4.362,
+   "One inventory, joined to a system record with two owners and a sponsor."
+  ],
+  [
+   38.875,
+   2.4,
+   "One exception rule for long-lived keys."
+  ],
+  [
+   41.275,
+   12.537,
+   "And federation between platforms where a workload must call across, such as an AWS workload calling Microsoft Graph with a federated credential, once it's tested; that's decision W D one seventy-one."
+  ],
+  [
+   53.812,
+   3.7,
+   "This split is the program's recommendation, design guidance."
+  ]
+ ],
+ "14": [
+  [
+   0.1,
+   2.038,
+   "The guide lists five dangers."
+  ],
+  [
+   2.087,
+   11.738,
+   "Counting a G M S A as done for Zero Trust leaves the Identity pillar at Traditional for that workload, unseen: score kept accounts against the scorecard, and let the island list carry them to an end date."
+  ],
+  [
+   13.825,
+   17.6,
+   "Publishing a Kerberos application through Private Access and forgetting its service account leaves the back end outside Zero Trust, and an S P N move breaks single sign-on: record the application's service account and S P N with the published app, and move the connector's delegation in step A5's change."
+  ],
+  [
+   31.425,
+   11.412,
+   "Enforcing the domain controller sensor on an S P N a service uses blocks service-to-service Kerberos: start in audit, add S P N exclusions to the exception register, then enforce."
+  ],
+  [
+   42.837,
+   11.225,
+   "Treating a R H E L keytab like a G M S A leaves a long-lived key on disk unrotated: inventory keytabs as secrets, and move the workload to its platform identity."
+  ],
+  [
+   54.062,
+   13.162,
+   "And one Entra identity for every cloud's workloads puts secrets or certificates where the platform would issue temporary credentials: use native workload identities, one governance record, and federation only to cross platforms."
+  ]
+ ],
+ "15": [
+  [
+   0.1,
+   2.288,
+   "To close, the guide's checklist."
+  ],
+  [
+   2.337,
+   5.35,
+   "Every account kept on Kerberos is scored against the Identity pillar, with its end date and owner."
+  ],
+  [
+   7.688,
+   10.5,
+   "Every Kerberos application published through Private Access or application proxy names its service account and S P N, and the connector's delegation entry moves with any S P N."
+  ],
+  [
+   18.188,
+   7.325,
+   "S P N exclusions for service-to-service Kerberos are in the exception register before the domain controller sensor is enforced."
+  ],
+  [
+   25.512,
+   8.15,
+   "Every sequel Server instance that takes Entra logins has a T L S certificate from a certificate authority, which the service account can read."
+  ],
+  [
+   33.663,
+   5.112,
+   "No service account uses N T L M after April first, 2027."
+  ],
+  [
+   38.775,
+   9.662,
+   "And the program's people sign in to AWS, O C I and Linux hosts with Entra I D, while workloads use their platform's identity, each joined to a record."
+  ],
+  [
+   48.438,
+   7.362,
+   "For the moves themselves, go back to the track: the Non-Person Identity implementation guide, and the service accounts guide."
+  ],
+  [
+   55.8,
+   0.887,
+   "Thank you."
+  ]
+ ]
+}

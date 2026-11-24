@@ -77,1208 +77,1249 @@ It's tested against fixtures,
 not against a live tenant.
 
 17
-00:01:02.130 --> 00:01:04.217
+00:01:02.180 --> 00:01:04.392
 Here are all six gates on one page.
 
 18
-00:01:04.217 --> 00:01:08.108
+00:01:04.392 --> 00:01:07.982
 The first is done when every
 non-person identity is listed,
 
 19
-00:01:08.108 --> 00:01:11.755
+00:01:07.982 --> 00:01:11.393
 typed, and joined to a record
 with an owner and a sponsor.
 
 20
-00:01:11.755 --> 00:01:15.597
+00:01:11.393 --> 00:01:15.067
 The second is done when every
 identity has a target and a date,
 
 21
-00:01:15.597 --> 00:01:17.518
+00:01:15.067 --> 00:01:16.905
 with high-risk accounts first.
 
 22
-00:01:17.518 --> 00:01:22.786
+00:01:16.905 --> 00:01:21.574
 The third is done when the tenant blocks
 new secrets and caps credential lifetimes,
 
 23
-00:01:22.786 --> 00:01:26.756
+00:01:21.574 --> 00:01:25.093
 and existing credentials sit in
 a vault on a rotation calendar.
 
 24
-00:01:26.756 --> 00:01:28.205
+00:01:25.093 --> 00:01:26.780
 Part 2 picks up from there.
 
 25
-00:01:28.205 --> 00:01:31.167
+00:01:26.780 --> 00:01:29.530
 High-privilege grants
 are justified or removed.
 
 26
-00:01:31.167 --> 00:01:36.454
+00:01:29.530 --> 00:01:34.293
 Converted identities sign in without stored
 secrets, after a clean parallel run.
 
 27
-00:01:36.454 --> 00:01:39.136
+00:01:34.293 --> 00:01:36.734
 And the paths for owner changes, orphans,
 
 28
-00:01:39.136 --> 00:01:42.630
+00:01:36.734 --> 00:01:39.917
 reviews and decommissioning
 run and leave records.
 
 29
-00:01:42.630 --> 00:01:46.355
+00:01:39.917 --> 00:01:43.417
 Each gate names the read-only
 validation kit checks that prove it.
 
 30
-00:01:46.355 --> 00:01:47.780
-One note on numbering.
+00:01:43.417 --> 00:01:46.674
+The first and third gates
+also name a tenth check,
 
 31
-00:01:47.780 --> 00:01:50.855
+00:01:46.674 --> 00:01:51.479
+for the program's workload identities
+in AWS GovCloud and Oracle Cloud.
+
+32
+00:01:51.479 --> 00:01:52.955
+One note on numbering.
+
+33
+00:01:52.955 --> 00:01:56.093
 The workbook's chapters use
 the project plan's gates.
 
-32
-00:01:50.855 --> 00:01:55.141
+34
+00:01:56.093 --> 00:02:00.198
 Its Gate 0 and Gate 1 both fall
 inside the guide's first gate,
 
-33
-00:01:55.141 --> 00:01:57.460
+35
+00:02:00.198 --> 00:02:02.380
 and its Gate 2 is the second.
 
-34
-00:02:01.210 --> 00:02:06.185
+36
+00:02:06.130 --> 00:02:11.105
 Before the first gate, agree the record
 that every non-person identity joins to.
 
-35
-00:02:06.185 --> 00:02:11.148
+37
+00:02:11.105 --> 00:02:16.068
 For this track, the source of truth is
 the owning system's record, not HR.
 
-36
-00:02:11.148 --> 00:02:15.236
+38
+00:02:16.068 --> 00:02:20.156
 The system inventory is the
 master, and that's design guidance.
 
-37
-00:02:15.236 --> 00:02:19.660
+39
+00:02:20.156 --> 00:02:24.580
 Each record carries a system or
 application ID as the join key.
 
-38
-00:02:19.660 --> 00:02:23.125
+40
+00:02:24.580 --> 00:02:28.045
 Entra apps point at it through
 a service management reference,
 
-39
-00:02:23.125 --> 00:02:26.923
+41
+00:02:28.045 --> 00:02:31.843
 which Microsoft recommends because
 it survives one person leaving.
 
-40
-00:02:26.923 --> 00:02:31.935
+42
+00:02:31.843 --> 00:02:36.855
 The record also names two technical owners,
 and a sponsor who is a federal employee.
 
-41
-00:02:31.935 --> 00:02:36.750
+43
+00:02:36.855 --> 00:02:41.670
 It holds the identity's type and object
 ID, its target and decision date,
 
-42
-00:02:36.750 --> 00:02:40.485
+44
+00:02:41.670 --> 00:02:45.405
 its credential and where that's
 vaulted, and a risk tier.
 
-43
-00:02:40.485 --> 00:02:43.023
+45
+00:02:45.405 --> 00:02:47.943
 Collecting all this
 needs reader roles only.
 
-44
-00:02:43.023 --> 00:02:47.497
+46
+00:02:47.943 --> 00:02:52.417
 The checks sign in with a certificate
 or a managed identity, never a secret.
 
-45
-00:02:47.497 --> 00:02:49.322
+47
+00:02:52.417 --> 00:02:54.242
 Most of this track is free.
 
-46
-00:02:49.322 --> 00:02:52.436
+48
+00:02:54.242 --> 00:02:57.356
 Workload ID Premium
 adds Conditional Access
 
-47
-00:02:52.436 --> 00:02:55.385
+49
+00:02:57.356 --> 00:03:00.305
 and ID Protection for workload identities.
 
-48
-00:02:55.385 --> 00:03:00.480
+50
+00:03:00.305 --> 00:03:05.400
 And in GCC, Entra ID runs in
 Microsoft's commercial cloud.
 
-49
-00:03:04.230 --> 00:03:06.192
+51
+00:03:09.150 --> 00:03:11.112
 The first gate starts with a warning.
 
-50
-00:03:06.192 --> 00:03:11.193
+52
+00:03:11.112 --> 00:03:16.113
 Consent creates service principals, and
 Microsoft's own services provision more.
 
-51
-00:03:11.193 --> 00:03:15.930
+53
+00:03:16.113 --> 00:03:20.850
 So the inventory is always larger than
 the list of apps anyone asked for.
 
-52
-00:03:15.930 --> 00:03:19.820
+54
+00:03:20.850 --> 00:03:24.740
 In Active Directory, the read finds
 user accounts used as services,
 
-53
-00:03:19.820 --> 00:03:23.992
+55
+00:03:24.740 --> 00:03:28.912
 and the managed, group managed and
 delegated managed service accounts.
 
-54
-00:03:23.992 --> 00:03:29.392
+56
+00:03:28.912 --> 00:03:34.312
 It records passwords that never expire,
 password age and service principal names.
 
-55
-00:03:29.392 --> 00:03:34.129
+57
+00:03:34.312 --> 00:03:39.049
 Treat stale as a lead, not a verdict,
 until sign-in logs confirm it.
 
-56
-00:03:34.129 --> 00:03:38.230
+58
+00:03:39.049 --> 00:03:43.150
 Record which hosts can retrieve each
 group managed account's password.
 
-57
-00:03:38.230 --> 00:03:40.792
+59
+00:03:43.150 --> 00:03:45.712
 That list is its real blast radius.
 
-58
-00:03:40.792 --> 00:03:44.017
+60
+00:03:45.712 --> 00:03:48.937
 In Entra, record each
 service principal's type.
 
-59
-00:03:44.017 --> 00:03:47.819
+61
+00:03:48.937 --> 00:03:52.739
 A legacy one can hold credentials
 with no app registration,
 
-60
-00:03:47.819 --> 00:03:49.992
+62
+00:03:52.739 --> 00:03:54.912
 so an app-only review never sees it.
 
-61
-00:03:49.992 --> 00:03:52.979
+63
+00:03:54.912 --> 00:03:57.899
 List managed identities with
 their role assignments.
 
-62
-00:03:52.979 --> 00:03:57.330
+64
+00:03:57.899 --> 00:04:02.250
 User-assigned ones outlive their resources,
 so they're the type that orphans.
 
-63
-00:03:57.330 --> 00:04:01.218
+65
+00:04:02.250 --> 00:04:06.138
 Export every federated
 credential's issuer and subject.
 
-64
-00:04:01.218 --> 00:04:06.710
+66
+00:04:06.138 --> 00:04:11.630
 And list AI agents, including the ones
 that run as ordinary service principals.
 
-65
-00:04:10.460 --> 00:04:14.735
+67
+00:04:15.380 --> 00:04:19.655
 Next, every identity joins to a
 record in the system inventory.
 
-66
-00:04:14.735 --> 00:04:19.035
+68
+00:04:19.655 --> 00:04:23.955
 For an app registration, use its service
 management reference where it's set.
 
-67
-00:04:19.035 --> 00:04:23.123
+69
+00:04:23.955 --> 00:04:28.043
 Otherwise, search by name and
 owner, and then interview people.
 
-68
-00:04:23.123 --> 00:04:26.786
+70
+00:04:28.043 --> 00:04:31.706
 Find the application owner before
 anyone touches the account.
 
-69
-00:04:26.786 --> 00:04:30.110
+71
+00:04:31.706 --> 00:04:35.030
 An account nobody will own
 becomes a retirement candidate.
 
-70
-00:04:30.110 --> 00:04:32.921
+72
+00:04:35.030 --> 00:04:37.841
 Every app registration
 and service principal
 
-71
-00:04:32.921 --> 00:04:35.660
+73
+00:04:37.841 --> 00:04:40.580
 gets two human owners,
 never service accounts.
 
-72
-00:04:35.660 --> 00:04:40.373
+74
+00:04:40.580 --> 00:04:45.293
 Keep that list short, because an owner
 can add a credential and act as the app.
 
-73
-00:04:40.373 --> 00:04:43.397
+75
+00:04:45.293 --> 00:04:48.317
 The business approver goes
 in the registry instead.
 
-74
-00:04:43.397 --> 00:04:48.759
+76
+00:04:48.317 --> 00:04:53.679
 Every identity also gets a sponsor, who
 is a federal employee mastered in HR.
 
-75
-00:04:48.759 --> 00:04:53.398
+77
+00:04:53.679 --> 00:04:58.318
 A contractor can build or run a
 workload, but can't be its only sponsor.
 
-76
-00:04:53.398 --> 00:04:56.871
+78
+00:04:58.318 --> 00:05:01.791
 The Federal Modernization Workbook
 sets that rule for agents,
 
-77
-00:04:56.871 --> 00:04:59.410
+79
+00:05:01.791 --> 00:05:04.330
 and the program applies
 it to everything here.
 
-78
-00:04:59.410 --> 00:05:02.670
+80
+00:05:04.330 --> 00:05:07.590
 And where the tenant doesn't
 expose the agent features,
 
-79
-00:05:02.670 --> 00:05:06.150
+81
+00:05:07.590 --> 00:05:11.070
 govern agents as the service
 principals they run as.
 
-80
-00:05:09.900 --> 00:05:13.188
+82
+00:05:14.820 --> 00:05:18.108
 The workbook's first chapter
 builds the register in code.
 
-81
-00:05:13.188 --> 00:05:17.021
+83
+00:05:18.108 --> 00:05:21.941
 It starts from Microsoft Learn's
 own commands and export script,
 
-82
-00:05:17.021 --> 00:05:19.987
+84
+00:05:21.941 --> 00:05:24.907
 kept as pinned copies, and
 adds what they leave out.
 
-83
-00:05:19.987 --> 00:05:24.412
+85
+00:05:24.907 --> 00:05:29.332
 Its lab runs on a fictional estate,
 with no tenant and no domain.
 
-84
-00:05:24.412 --> 00:05:28.037
+86
+00:05:29.332 --> 00:05:32.957
 One run reads both directories
 and writes one register.
 
-85
-00:05:28.037 --> 00:05:30.439
+87
+00:05:32.957 --> 00:05:35.359
 Here it finds thirty-five identities,
 
-86
-00:05:30.439 --> 00:05:33.538
+88
+00:05:35.359 --> 00:05:38.458
 fifteen in Active Directory
 and twenty in Entra.
 
-87
-00:05:33.538 --> 00:05:34.988
+89
+00:05:38.458 --> 00:05:39.908
 Eight are high risk.
 
-88
-00:05:34.988 --> 00:05:38.584
+90
+00:05:39.908 --> 00:05:43.504
 There are eight findings, eleven
 warnings, and three accounts
 
-89
-00:05:38.584 --> 00:05:42.675
+91
+00:05:43.504 --> 00:05:47.595
 handed to the Data Platform plan,
 because they belong to SQL Server.
 
-90
-00:05:42.675 --> 00:05:45.400
+92
+00:05:47.595 --> 00:05:50.320
 The second command lists
 the high-risk rows.
 
-91
-00:05:45.400 --> 00:05:49.112
+93
+00:05:50.320 --> 00:05:54.032
 A sync account's password hasn't
 changed in twenty-eight hundred days.
 
-92
-00:05:49.112 --> 00:05:51.838
+94
+00:05:54.032 --> 00:05:56.758
 A backup account sits in Backup Operators.
 
-93
-00:05:51.838 --> 00:05:55.362
+95
+00:05:56.758 --> 00:06:00.282
 A web front end is trusted
 for unconstrained delegation.
 
-94
-00:05:55.362 --> 00:05:58.388
+96
+00:06:00.282 --> 00:06:03.308
 And one app holds a
 directory-wide write permission.
 
-95
-00:05:58.388 --> 00:06:02.233
+97
+00:06:03.308 --> 00:06:07.153
 One account was found only because
 its password never expires,
 
-96
-00:06:02.233 --> 00:06:05.780
+98
+00:06:07.153 --> 00:06:10.700
 so it may be a person, and
 someone confirms that first.
 
-97
-00:06:09.530 --> 00:06:12.742
+99
+00:06:14.450 --> 00:06:17.662
 The second chapter checks
 ownership against that register.
 
-98
-00:06:12.742 --> 00:06:14.556
+100
+00:06:17.662 --> 00:06:19.476
 It reads each owner once,
 
-99
-00:06:14.556 --> 00:06:18.818
+101
+00:06:19.476 --> 00:06:23.738
 and counts an owner only if it's
 a user, a member, and enabled.
 
-100
-00:06:18.818 --> 00:06:21.843
+102
+00:06:23.738 --> 00:06:26.763
 A guest or another service
 principal doesn't count.
 
-101
-00:06:21.843 --> 00:06:23.656
+103
+00:06:26.763 --> 00:06:28.576
 Against the fictional estate,
 
-102
-00:06:23.656 --> 00:06:27.718
+104
+00:06:28.576 --> 00:06:32.638
 it checks twenty-two identities
 and finds seven orphan candidates.
 
-103
-00:06:27.718 --> 00:06:31.243
+105
+00:06:32.638 --> 00:06:36.163
 Two apps have no valid owner,
 and four have only one.
 
-104
-00:06:31.243 --> 00:06:33.831
+106
+00:06:36.163 --> 00:06:38.751
 Six have no service management reference,
 
-105
-00:06:33.831 --> 00:06:37.604
+107
+00:06:38.751 --> 00:06:42.524
 and three point at a record that's
 free text, retired or unknown.
 
-106
-00:06:37.604 --> 00:06:41.342
+108
+00:06:42.524 --> 00:06:46.262
 Five Active Directory accounts
 have no valid application owner.
 
-107
-00:06:41.342 --> 00:06:44.918
+109
+00:06:46.262 --> 00:06:49.838
 Then it writes the orphan rule
 as a plan, and sends nothing.
 
-108
-00:06:44.918 --> 00:06:47.877
+110
+00:06:49.838 --> 00:06:52.797
 There are ten actions,
 and three are writes:
 
-109
-00:06:47.877 --> 00:06:51.006
+111
+00:06:52.797 --> 00:06:55.926
 two disables, and one
 owner added from a claim.
 
-110
-00:06:51.006 --> 00:06:54.280
+112
+00:06:55.926 --> 00:06:59.200
 Another claim is refused,
 because it named a guest.
 
-111
-00:06:54.280 --> 00:06:56.905
+113
+00:06:59.200 --> 00:07:01.825
 A reviewer approves the plan by its hash.
 
-112
-00:06:56.905 --> 00:07:02.460
+114
+00:07:01.825 --> 00:07:07.380
 The writes themselves belong to the orphan
 rule in gate six, which Part 2 covers.
 
-113
-00:07:06.210 --> 00:07:08.447
+115
+00:07:11.180 --> 00:07:13.568
 Here's the federal side of the first gate.
 
-114
-00:07:08.447 --> 00:07:13.075
+116
+00:07:13.568 --> 00:07:17.880
 Account management treats non-person
 identities as a defined account type,
 
-115
-00:07:13.075 --> 00:07:14.985
+117
+00:07:17.880 --> 00:07:19.680
 each with an owner and a sponsor.
 
-116
-00:07:14.985 --> 00:07:20.423
+118
+00:07:19.680 --> 00:07:24.855
 The evidence is this gate's record, plus
 the kit runs for owners and agent sponsors.
 
-117
-00:07:20.423 --> 00:07:24.743
+119
+00:07:24.855 --> 00:07:28.935
 Identifier management means each
 identity has its own identifier,
 
-118
-00:07:24.743 --> 00:07:27.135
+120
+00:07:28.935 --> 00:07:31.193
 joined to its record and never reused.
 
-119
-00:07:27.135 --> 00:07:29.760
+121
+00:07:31.193 --> 00:07:33.743
 To validate, four read-only checks run.
 
-120
-00:07:29.760 --> 00:07:35.061
+122
+00:07:33.743 --> 00:07:38.776
 One lists Active Directory accounts whose
 passwords never expire or are too old,
 
-121
-00:07:35.061 --> 00:07:37.910
+123
+00:07:38.776 --> 00:07:41.480
 each joined to a record
 or listed as unowned.
 
-122
-00:07:37.910 --> 00:07:43.235
+124
+00:07:41.480 --> 00:07:46.105
 One reports zero apps with no owner, and
 a dated finding for any with just one.
 
-123
-00:07:43.235 --> 00:07:47.148
+125
+00:07:46.105 --> 00:07:49.755
 One lists every managed identity
 and its role assignments.
 
-124
-00:07:47.148 --> 00:07:52.160
+126
+00:07:49.755 --> 00:07:54.155
 And one lists agent identities with their
 sponsors, where the tenant exposes them.
 
-125
-00:07:52.160 --> 00:07:55.897
-The inventory's Graph reads are
-listed for the government clouds.
+127
+00:07:54.155 --> 00:07:59.216
+A tenth check reads the AWS GovCloud
+and Oracle Cloud exports, and reports
 
-126
-00:07:55.897 --> 00:07:59.927
+128
+00:07:59.216 --> 00:08:04.442
+every workload identity missing its system
+I D, two owner tags or sponsor tag.
+
+129
+00:08:04.442 --> 00:08:09.167
+The inventory's Graph reads list
+the global service, which GCC uses.
+
+130
+00:08:09.167 --> 00:08:12.816
 Agent identities are generally
 available in commercial,
 
-127
-00:07:59.927 --> 00:08:02.110
+131
+00:08:12.816 --> 00:08:14.792
 and in GCC with documented gaps.
 
-128
-00:08:02.110 --> 00:08:06.560
+132
+00:08:14.792 --> 00:08:18.750
 And there's nothing to roll back,
 because the inventory only reads.
 
-129
-00:08:10.310 --> 00:08:14.110
+133
+00:08:22.500 --> 00:08:26.300
 The second gate gives every
 identity one of five ends.
 
-130
-00:08:14.110 --> 00:08:15.110
+134
+00:08:26.300 --> 00:08:27.300
 Retire it.
 
-131
-00:08:15.110 --> 00:08:18.333
+135
+00:08:27.300 --> 00:08:30.523
 Convert it to a group
 managed service account,
 
-132
-00:08:18.333 --> 00:08:21.810
+136
+00:08:30.523 --> 00:08:34.000
 or a delegated one on a
 Windows Server 2025 domain.
 
-133
-00:08:21.810 --> 00:08:26.710
+137
+00:08:34.000 --> 00:08:38.900
 Or move it to a managed identity, a
 federated credential, or a certificate.
 
-134
-00:08:26.710 --> 00:08:30.055
+138
+00:08:38.900 --> 00:08:42.245
 The workbook's migration matrix
 decides by account type,
 
-135
-00:08:30.055 --> 00:08:31.835
+139
+00:08:42.245 --> 00:08:44.025
 and by where the workload runs.
 
-136
-00:08:31.835 --> 00:08:33.385
+140
+00:08:44.025 --> 00:08:45.575
 No stored secrets.
 
-137
-00:08:33.385 --> 00:08:36.122
+141
+00:08:45.575 --> 00:08:48.312
 Managed identities for workloads in Azure.
 
-138
-00:08:36.122 --> 00:08:40.525
+142
+00:08:48.312 --> 00:08:52.715
 Federation where the workload
 already has a trusted issuer,
 
-139
-00:08:40.525 --> 00:08:44.486
+143
+00:08:52.715 --> 00:08:56.676
 such as GitHub Actions,
 Kubernetes, Google Cloud or AWS.
 
-140
-00:08:44.486 --> 00:08:47.173
+144
+00:08:56.676 --> 00:08:59.363
 And certificates only
 where neither applies.
 
-141
-00:08:47.173 --> 00:08:51.140
+145
+00:08:59.363 --> 00:09:03.330
 A managed service account is upgraded
 to a group managed one first,
 
-142
-00:08:51.140 --> 00:08:54.386
+146
+00:09:03.330 --> 00:09:06.576
 because neither can move to
 a delegated account later.
 
-143
-00:08:54.386 --> 00:08:57.940
+147
+00:09:06.576 --> 00:09:10.130
 An app with a client secret
 moves to a managed identity,
 
-144
-00:08:57.940 --> 00:09:00.310
+148
+00:09:10.130 --> 00:09:12.500
 then federation, then a certificate.
 
-145
-00:09:00.310 --> 00:09:02.072
+149
+00:09:12.500 --> 00:09:14.262
 High-risk accounts go first.
 
-146
-00:09:02.072 --> 00:09:04.384
+150
+00:09:14.262 --> 00:09:16.574
 And plan ahead for group managed accounts.
 
-147
-00:09:04.384 --> 00:09:08.686
+151
+00:09:16.574 --> 00:09:20.876
 They need a key distribution root key,
 created once for the whole forest,
 
-148
-00:09:08.686 --> 00:09:12.923
+152
+00:09:20.876 --> 00:09:25.113
 and domain controllers can wait up
 to ten hours after it's created.
 
-149
-00:09:14.530 --> 00:09:18.327
+153
+00:09:26.720 --> 00:09:30.517
 The workbook's third chapter
 holds the matrix as reviewed data,
 
-150
-00:09:18.327 --> 00:09:20.080
+154
+00:09:30.517 --> 00:09:32.270
 and keeps three things apart.
 
-151
-00:09:20.080 --> 00:09:23.355
+155
+00:09:32.270 --> 00:09:35.545
 The proposal is the matrix's
 target for each account.
 
-152
-00:09:23.355 --> 00:09:27.184
+156
+00:09:35.545 --> 00:09:39.374
 The disposition is the
 application owner's decision:
 
-153
-00:09:27.184 --> 00:09:30.230
+157
+00:09:39.374 --> 00:09:42.420
 retire, re-platform, or
 keep, with an end date.
 
-154
-00:09:30.230 --> 00:09:32.842
+158
+00:09:42.420 --> 00:09:45.032
 And the gate is the ISSO's.
 
-155
-00:09:32.842 --> 00:09:36.430
+159
+00:09:45.032 --> 00:09:48.620
 The lab runs the first two
 chapters, then the matrix.
 
-156
-00:09:36.430 --> 00:09:40.142
+160
+00:09:48.620 --> 00:09:52.332
 Twenty-one identities are in
 scope, and twenty get a proposal.
 
-157
-00:09:40.142 --> 00:09:43.718
+161
+00:09:52.332 --> 00:09:55.908
 Eighteen of twenty-two have a
 decision, and two waves are planned.
 
-158
-00:09:43.718 --> 00:09:46.530
+162
+00:09:55.908 --> 00:09:58.720
 The gate isn't met, and
 the findings say why.
 
-159
-00:09:46.530 --> 00:09:50.142
+163
+00:09:58.720 --> 00:10:02.332
 A high-risk sync account sits
 in wave two, not wave one.
 
-160
-00:09:50.142 --> 00:09:51.918
+164
+00:10:02.332 --> 00:10:04.108
 One account has no decision.
 
-161
-00:09:51.918 --> 00:09:56.168
+165
+00:10:04.108 --> 00:10:08.358
 An account kept on Kerberos has no
 owner for its service principal name.
 
-162
-00:09:56.168 --> 00:10:01.018
+166
+00:10:08.358 --> 00:10:13.208
 A kept delegated account has no end
 date before Active Directory retires.
 
-163
-00:10:01.018 --> 00:10:04.993
+167
+00:10:13.208 --> 00:10:17.183
 One app has no proposal, because
 nobody recorded where it runs.
 
-164
-00:10:04.993 --> 00:10:07.181
+168
+00:10:17.183 --> 00:10:19.371
 Wave two has no rollback owner.
 
-165
-00:10:07.181 --> 00:10:09.732
+169
+00:10:19.371 --> 00:10:21.922
 And a multitenant app
 is on the premium list,
 
-166
-00:10:09.732 --> 00:10:12.500
+170
+00:10:21.922 --> 00:10:24.690
 though Conditional Access can't cover it.
 
-167
-00:10:16.250 --> 00:10:19.987
+171
+00:10:28.440 --> 00:10:32.177
 The guide's evidence table maps
 by requirement, not by gate.
 
-168
-00:10:19.987 --> 00:10:22.651
+172
+00:10:32.177 --> 00:10:34.841
 So which rows this gate
 feeds is our reading.
 
-169
-00:10:22.651 --> 00:10:26.898
+173
+00:10:34.841 --> 00:10:39.088
 The decisions set the order that
 authenticator management asks for:
 
-170
-00:10:26.898 --> 00:10:30.625
+174
+00:10:39.088 --> 00:10:42.815
 managed identities and federation
 first, and no new secrets.
 
-171
-00:10:30.625 --> 00:10:35.475
+175
+00:10:42.815 --> 00:10:47.665
 Retire decisions lead to disabled accounts,
 which account management asks for.
 
-172
-00:10:35.475 --> 00:10:38.179
+176
+00:10:47.665 --> 00:10:50.369
 And the fourth phase of
 the workbook's directory
 
-173
-00:10:38.179 --> 00:10:40.613
+177
+00:10:50.369 --> 00:10:52.803
 migration is its gate
 for service accounts.
 
-174
-00:10:40.613 --> 00:10:45.163
+178
+00:10:52.803 --> 00:10:57.353
 To validate, every row in the record
 has a target and a decide-by date.
 
-175
-00:10:45.163 --> 00:10:48.280
+179
+00:10:57.353 --> 00:11:00.470
 The kit check for Active
 Directory accounts shows
 
-176
-00:10:48.280 --> 00:10:51.175
+180
+00:11:00.470 --> 00:11:03.365
 every high-risk one in the
 first wave, or retired.
 
-177
-00:10:51.175 --> 00:10:54.287
+181
+00:11:03.365 --> 00:11:06.477
 The check for secrets lists
 each app that holds one.
 
-178
-00:10:54.287 --> 00:10:58.449
+182
+00:11:06.477 --> 00:11:10.639
 Each has a credential target, or an
 exception that says why it can't move.
 
-179
-00:10:58.449 --> 00:11:04.288
+183
+00:11:10.639 --> 00:11:16.478
 Whether the Workload ID Premium trial is
 offered to a GCC tenant is a lab check.
 
-180
-00:11:04.288 --> 00:11:07.978
+184
+00:11:16.478 --> 00:11:20.168
 The interim path is an account
 kept on Kerberos, islanded,
 
-181
-00:11:07.978 --> 00:11:12.062
+185
+00:11:20.168 --> 00:11:24.252
 with an owner and an end date
 the authorizing official accepts.
 
-182
-00:11:12.062 --> 00:11:13.937
+186
+00:11:24.252 --> 00:11:26.127
 To roll back, re-decide.
 
-183
-00:11:13.937 --> 00:11:16.070
+187
+00:11:26.127 --> 00:11:28.260
 The record keeps the history.
 
-184
-00:11:20.390 --> 00:11:22.790
+188
+00:11:32.010 --> 00:11:34.410
 The third gate sets the credential rules.
 
-185
-00:11:22.790 --> 00:11:24.765
+189
+00:11:34.410 --> 00:11:36.385
 They're design guidance from the books.
 
-186
-00:11:24.765 --> 00:11:26.590
+190
+00:11:36.385 --> 00:11:38.210
 No long-lived secrets.
 
-187
-00:11:26.590 --> 00:11:31.490
+191
+00:11:38.210 --> 00:11:43.110
 Managed identities first, then federated
 credentials, then certificates.
 
-188
-00:11:31.490 --> 00:11:35.302
+192
+00:11:43.110 --> 00:11:46.922
 And every certificate in a
 vault, on a rotation calendar.
 
-189
-00:11:35.302 --> 00:11:39.003
+193
+00:11:46.922 --> 00:11:50.623
 Step one turns on the tenant's
 default app management policy.
 
-190
-00:11:39.003 --> 00:11:42.056
+194
+00:11:50.623 --> 00:11:53.676
 It blocks new password
 secrets and symmetric keys,
 
-191
-00:11:42.056 --> 00:11:45.328
+195
+00:11:53.676 --> 00:11:56.948
 and caps new certificates at
 a hundred and eighty days.
 
-192
-00:11:45.328 --> 00:11:47.815
+196
+00:11:56.948 --> 00:11:59.435
 Those are Microsoft's
 recommended settings.
 
-193
-00:11:47.815 --> 00:11:51.940
+197
+00:11:59.435 --> 00:12:03.560
 Each restriction applies only to
 apps created after a chosen date,
 
-194
-00:11:51.940 --> 00:11:54.340
+198
+00:12:03.560 --> 00:12:05.960
 so set it to the policy's effective date.
 
-195
-00:11:54.340 --> 00:11:57.890
+199
+00:12:05.960 --> 00:12:09.510
 The panel shows the workbook's
 diff against a fictional tenant.
 
-196
-00:11:57.890 --> 00:12:01.319
+200
+00:12:09.510 --> 00:12:12.939
 Its default policy is off, so
 turning it on is a change,
 
-197
-00:12:01.319 --> 00:12:06.902
+201
+00:12:12.939 --> 00:12:18.522
 and every restriction is an add, for both
 application and service principal objects.
 
-198
-00:12:06.902 --> 00:12:10.652
+202
+00:12:18.522 --> 00:12:22.272
 A restriction the tenant already
 had is kept, never dropped.
 
-199
-00:12:10.652 --> 00:12:14.614
+203
+00:12:22.272 --> 00:12:26.234
 Existing workloads rotate at
 least yearly while they're fixed.
 
-200
-00:12:14.614 --> 00:12:19.340
+204
+00:12:26.234 --> 00:12:30.960
 New ones start under the cap, which
 addresses the SCuBA certificate policy.
 
-201
-00:12:22.970 --> 00:12:26.082
+205
+00:12:34.590 --> 00:12:37.702
 The rest of the third gate is
 about where credentials live.
 
-202
-00:12:26.082 --> 00:12:31.221
+206
+00:12:37.702 --> 00:12:42.841
 Keep private keys in Azure Key Vault or
 a hardware module, never on a file share.
 
-203
-00:12:31.221 --> 00:12:35.747
+207
+00:12:42.841 --> 00:12:47.367
 Key Vault renews a certificate
 automatically only when it's self-signed,
 
-204
-00:12:35.747 --> 00:12:39.520
+208
+00:12:47.367 --> 00:12:51.140
 or comes from a partnered
 authority, DigiCert or GlobalSign.
 
-205
-00:12:39.520 --> 00:12:43.047
+209
+00:12:51.140 --> 00:12:54.667
 Certificates from an agency's
 own authority aren't renewed,
 
-206
-00:12:43.047 --> 00:12:45.783
+210
+00:12:54.667 --> 00:12:57.403
 though the vault can
 email before they expire.
 
-207
-00:12:45.783 --> 00:12:47.932
+211
+00:12:57.403 --> 00:12:59.552
 And a renewed certificate in the vault
 
-208
-00:12:47.932 --> 00:12:50.483
+212
+00:12:59.552 --> 00:13:02.103
 doesn't change the app
 registration by itself.
 
-209
-00:12:50.483 --> 00:12:53.619
+213
+00:13:02.103 --> 00:13:05.239
 Microsoft's own procedure
 for SQL Server on Arc
 
-210
-00:12:53.619 --> 00:12:56.532
+214
+00:13:05.239 --> 00:13:08.152
 uploads the new certificate
 as a separate step.
 
-211
-00:12:56.532 --> 00:13:00.870
+215
+00:13:08.152 --> 00:13:12.490
 So automate that upload, or make it
 a named owner's task with a date.
 
-212
-00:13:00.870 --> 00:13:03.133
+216
+00:13:12.490 --> 00:13:14.753
 A client secret is an exception.
 
-213
-00:13:03.133 --> 00:13:05.951
+217
+00:13:14.753 --> 00:13:17.571
 The governance office
 and the CISO approve it,
 
-214
-00:13:05.951 --> 00:13:09.782
+218
+00:13:17.571 --> 00:13:21.402
 it lasts at most six months, and
 it's never renewed automatically.
 
-215
-00:13:09.782 --> 00:13:12.864
+219
+00:13:21.402 --> 00:13:24.484
 A traditional account that
 has to stay gets a long
 
-216
-00:13:12.864 --> 00:13:15.795
+220
+00:13:24.484 --> 00:13:27.415
 random password in the
 vault, an owner and a date.
 
-217
-00:13:15.795 --> 00:13:19.200
+221
+00:13:27.415 --> 00:13:30.820
 And a new federated credential
 is a credential change,
 
-218
-00:13:19.200 --> 00:13:21.900
+222
+00:13:30.820 --> 00:13:33.520
 approved and recorded like any other.
 
-219
-00:13:25.650 --> 00:13:29.404
+223
+00:13:37.270 --> 00:13:41.024
 The workbook's fourth chapter holds
 the policy as a reviewed file,
 
-220
-00:13:29.404 --> 00:13:32.462
+224
+00:13:41.024 --> 00:13:44.082
 compares it with the tenant,
 and plans the difference.
 
-221
-00:13:32.462 --> 00:13:37.012
+225
+00:13:44.082 --> 00:13:48.632
 Against the fictional tenant, the
 diff has six adds and one change.
 
-222
-00:13:37.012 --> 00:13:39.934
+226
+00:13:48.632 --> 00:13:51.554
 The plan has eight writes:
 the default policy,
 
-223
-00:13:39.934 --> 00:13:45.225
+227
+00:13:51.554 --> 00:13:56.845
 one dated exception policy and its assignment,
 and the property lock on five apps.
 
-224
-00:13:45.225 --> 00:13:49.400
+228
+00:13:56.845 --> 00:14:01.020
 Nothing is sent, and the write path
 can't loosen or drop a restriction.
 
-225
-00:13:49.400 --> 00:13:53.387
+229
+00:14:01.020 --> 00:14:05.007
 Then the rotation plan joins Key
 Vault to the app registrations.
 
-226
-00:13:53.387 --> 00:13:58.175
+230
+00:14:05.007 --> 00:14:09.795
 A rotation is raised sixty days before
 expiry, and an owner approves it.
 
-227
-00:13:58.175 --> 00:13:59.975
+231
+00:14:09.795 --> 00:14:11.595
 The vault makes the next version.
 
-228
-00:13:59.975 --> 00:14:02.725
+232
+00:14:11.595 --> 00:14:14.345
 The new certificate goes
 on beside the old one.
 
-229
-00:14:02.725 --> 00:14:05.739
+233
+00:14:14.345 --> 00:14:17.359
 The owner confirms the
 workload signs in with it,
 
-230
-00:14:05.739 --> 00:14:08.300
+234
+00:14:17.359 --> 00:14:19.920
 and seven days later
 the old one comes off.
 
-231
-00:14:08.300 --> 00:14:13.750
+235
+00:14:19.920 --> 00:14:25.370
 Here, one certificate renews in the vault,
 one is attached, and one is removed.
 
-232
-00:14:13.750 --> 00:14:18.500
+236
+00:14:25.370 --> 00:14:30.120
 One app's certificate isn't in the vault
 at all, and three apps still hold secrets.
 
-233
-00:14:18.500 --> 00:14:21.320
+237
+00:14:30.120 --> 00:14:32.940
 Secrets are replaced, not rotated.
 
-234
-00:14:25.070 --> 00:14:29.220
+238
+00:14:36.740 --> 00:14:40.715
 On the federal side, authenticator
 management is the main requirement.
 
-235
-00:14:29.220 --> 00:14:31.449
-The evidence is the policy export,
+239
+00:14:40.715 --> 00:14:45.703
+The evidence is the policy export, the
+kit runs for credentials and secrets,
 
-236
-00:14:31.449 --> 00:14:35.908
-the kit runs for credentials and
-secrets, and the rotation calendar.
+240
+00:14:45.703 --> 00:14:49.278
+in AWS and Oracle Cloud too,
+and the rotation calendar.
 
-237
-00:14:35.908 --> 00:14:39.167
+241
+00:14:49.278 --> 00:14:52.341
 The policy also addresses
 three SCuBA policies:
 
-238
-00:14:39.167 --> 00:14:43.569
+242
+00:14:52.341 --> 00:14:56.477
 no app passwords, and capped
 password and certificate lifetimes.
 
-239
-00:14:43.569 --> 00:14:47.650
+243
+00:14:56.477 --> 00:15:00.224
 They're SHOULD policies in ScubaGear,
 not required configurations,
 
-240
-00:14:47.650 --> 00:14:49.982
+244
+00:15:00.224 --> 00:15:02.365
 and their report is filed with the gate.
 
-241
-00:14:49.982 --> 00:14:52.652
+245
+00:15:02.365 --> 00:15:04.884
 Audit requirements cover
 credential changes,
 
-242
-00:14:52.652 --> 00:14:56.144
+246
+00:15:04.884 --> 00:15:08.177
 so the entries for added
 credentials are logged and reviewed.
 
-243
-00:14:56.144 --> 00:14:59.292
+247
+00:15:08.177 --> 00:15:11.129
 To validate, the credential
 check shows nothing issued
 
-244
-00:14:59.292 --> 00:15:02.370
+248
+00:15:11.129 --> 00:15:14.016
 after the effective date that
 runs longer than the cap.
 
-245
-00:15:02.370 --> 00:15:07.432
+249
+00:15:14.016 --> 00:15:18.677
 Every credential that expires within sixty
 days has an owner and a renewal date.
 
-246
-00:15:07.432 --> 00:15:12.051
+250
+00:15:18.677 --> 00:15:22.824
 The secrets check shows each app still
 on a secret is in a conversion wave,
 
-247
-00:15:12.051 --> 00:15:14.283
+251
+00:15:22.824 --> 00:15:24.828
 or has an exception with an end date.
 
-248
-00:15:14.283 --> 00:15:16.260
+252
+00:15:24.828 --> 00:15:30.040
+And for AWS GovCloud and Oracle Cloud,
+the tenth check shows every access key,
+
+253
+00:15:30.040 --> 00:15:34.756
+A P I key, auth token and customer
+secret key under a current exception,
+
+254
+00:15:34.756 --> 00:15:37.486
+no Oracle A P I key
+older than ninety days,
+
+255
+00:15:37.486 --> 00:15:42.616
+and an imported revocation list for
+every IAM Roles Anywhere trust anchor.
+
+256
+00:15:42.616 --> 00:15:44.979
 App management policies are free,
 
-249
-00:15:16.260 --> 00:15:19.721
-and Microsoft lists their calls
-for the government clouds.
+257
+00:15:44.979 --> 00:15:48.777
+and their calls list the global
+service, which GCC uses.
 
-250
-00:15:19.721 --> 00:15:22.561
+258
+00:15:48.777 --> 00:15:51.387
 To roll back, give one
 application a policy
 
-251
-00:15:22.561 --> 00:15:26.432
+259
+00:15:51.387 --> 00:15:54.966
 exception with an end date,
 in the exception register.
 
-252
-00:15:30.150 --> 00:15:35.050
+260
+00:15:58.710 --> 00:16:03.610
 To close Part 1, here's what each gate
 leaves behind, and where Part 2 picks it up.
 
-253
-00:15:35.050 --> 00:15:37.986
+261
+00:16:03.610 --> 00:16:06.546
 The first gate leaves
 the record, with owners,
 
-254
-00:15:37.986 --> 00:15:42.350
+262
+00:16:06.546 --> 00:16:10.910
 sponsors and risk, plus the register
 and the SQL Server hand-off.
 
-255
-00:15:42.350 --> 00:15:46.162
+263
+00:16:10.910 --> 00:16:14.722
 Gate four restores a removed
 grant only from that export.
 
-256
-00:15:46.162 --> 00:15:48.387
+264
+00:16:14.722 --> 00:16:16.947
 Gate six runs the orphan rule.
 
-257
-00:15:48.387 --> 00:15:51.673
+265
+00:16:16.947 --> 00:16:20.233
 The second gate leaves a target
 and a date for every row,
 
-258
-00:15:51.673 --> 00:15:55.250
+266
+00:16:20.233 --> 00:16:23.810
 the waves and their rollback,
 and the premium license scope.
 
-259
-00:15:55.250 --> 00:15:58.064
+267
+00:16:23.810 --> 00:16:26.624
 Gate four puts the most
 important single-tenant
 
-260
-00:15:58.064 --> 00:16:00.737
+268
+00:16:26.624 --> 00:16:29.297
 service principals
 under workload policies.
 
-261
-00:16:00.737 --> 00:16:05.200
+269
+00:16:29.297 --> 00:16:33.760
 Gate five converts wave by wave,
 with a thirty-day parallel run.
 
-262
-00:16:05.200 --> 00:16:08.726
+270
+00:16:33.760 --> 00:16:37.286
 The third gate leaves the
 policy, the rotation calendar,
 
-263
-00:16:08.726 --> 00:16:11.025
+271
+00:16:37.286 --> 00:16:39.585
 the exceptions and the SCuBA result.
 
-264
-00:16:11.025 --> 00:16:15.774
+272
+00:16:39.585 --> 00:16:44.334
 Gate five drops a secret only after the
 new credential carries real traffic,
 
-265
-00:16:15.774 --> 00:16:18.488
+273
+00:16:44.334 --> 00:16:47.048
 and gate six checks
 credentials every week.
 
-266
-00:16:18.488 --> 00:16:21.842
+274
+00:16:47.048 --> 00:16:50.402
 To build Part 1's code,
 use the developer workbook,
 
-267
-00:16:21.842 --> 00:16:25.363
+275
+00:16:50.402 --> 00:16:53.923
 Building Non-Person Identity,
 chapters one to four.
 
-268
-00:16:25.363 --> 00:16:28.040
+276
+00:16:53.923 --> 00:16:56.600
 Each has its labs and a narrated tour.

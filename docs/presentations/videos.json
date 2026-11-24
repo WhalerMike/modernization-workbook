@@ -7920,6 +7920,83 @@
   "sources": "presentations/guide-global-secure-access/Guide_Global_Secure_Access_Narrated_sources.json"
  },
  {
+  "id": "Guide_NPI_Zero_Trust_SASE_Narrated",
+  "title": "Companion guide — Non-Person Identity: Zero Trust, SASE and Other Clouds",
+  "group": "book",
+  "minutes": 20,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Guide_NPI_Zero_Trust_SASE_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/guide-npi-zero-trust-sase/Guide_NPI_Zero_Trust_SASE_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/guide-npi-zero-trust-sase/Guide_NPI_Zero_Trust_SASE_Narration_Script.md",
+  "page": "docs/books/guides/non-person-identity-zero-trust-sase.html",
+  "source": "docs/books/guides/non-person-identity-zero-trust-sase.md",
+  "kits": [],
+  "chapters": [
+   [
+    0,
+    "Non-Person Identity: Zero Trust, SASE and Other Clouds"
+   ],
+   [
+    81,
+    "A gMSA fixes the password, not the protocol"
+   ],
+   [
+    176,
+    "The Zero Trust scorecard: authentication and stores"
+   ],
+   [
+    277,
+    "The scorecard: risk, access, and the program's scores"
+   ],
+   [
+    366,
+    "What SASE does and doesn't do for a service account"
+   ],
+   [
+    471,
+    "The workloads: SQL Server, its callers, and IIS"
+   ],
+   [
+    561,
+    "The workloads: tasks, Linux, AWS GovCloud (US) and OCI"
+   ],
+   [
+    655,
+    "RHEL and Linux: a keytab, and Entra sign-in for people"
+   ],
+   [
+    721,
+    "The certificate map: SQL Server and IIS"
+   ],
+   [
+    801,
+    "The certificate map: Graph callers, AWS and RHEL"
+   ],
+   [
+    868,
+    "NTLM: the program's date, and Microsoft's position"
+   ],
+   [
+    917,
+    "Extend Entra ID across clouds? For people, yes"
+   ],
+   [
+    988,
+    "For workloads: no single store; one record instead"
+   ],
+   [
+    1050,
+    "Dangers, and how to avoid them"
+   ],
+   [
+    1121,
+    "Checklist, and back to the track"
+   ]
+  ],
+  "sources": "presentations/guide-npi-zero-trust-sase/Guide_NPI_Zero_Trust_SASE_Narrated_sources.json"
+ },
+ {
   "id": "Guide_Service_Account_Migration_Narrated",
   "title": "Companion guide — Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities",
   "group": "book",
@@ -8498,59 +8575,59 @@
     "The six gates on one page: done when, proved by"
    ],
    [
-    121,
+    126,
     "Before G1: the record, the roles and the licenses"
    ],
    [
-    184,
+    189,
     "G1: inventory every kind of non-person identity"
    ],
    [
-    250,
+    255,
     "G1: join each identity to a record, owner and sponsor"
    ],
    [
-    309,
+    314,
     "G1 in code: one register, and the HIGH-risk rows"
    ],
    [
-    369,
+    374,
     "G1 in code: two human owners and the orphan plan"
    ],
    [
-    426,
+    431,
     "G1: requirement, evidence, availability, rollback"
    ],
    [
-    490,
+    502,
     "G2: five targets, decided by type and where it runs"
    ],
    [
-    554,
+    566,
     "G2 in code: propose, check each decision, plan waves"
    ],
    [
-    616,
+    628,
     "G2: requirement, evidence, availability, rollback"
    ],
    [
-    679,
+    691,
     "G3: the tenant policy blocks secrets, caps certificates"
    ],
    [
-    742,
+    754,
     "G3: the vault, the upload, and secrets by exception"
    ],
    [
-    805,
+    817,
     "G3 in code: compare the policy, plan the rotation"
    ],
    [
-    864,
+    876,
     "G3: requirement, evidence, availability, rollback"
    ],
    [
-    929,
+    958,
     "Handing G1–G3 to Part 2"
    ]
   ],
@@ -8618,35 +8695,35 @@
     "G5: requirement, evidence, availability, rollback"
    ],
    [
-    562,
+    564,
     "G6: owner change, orphans and owner reviews"
    ],
    [
-    616,
+    618,
     "G6: disable first, then delete"
    ],
    [
-    679,
+    680,
     "G6 in code: drift, the review cycle, the evidence chain"
    ],
    [
-    735,
+    736,
     "G6: requirement, evidence, availability, rollback"
    ],
    [
-    796,
+    798,
     "SQL Server: the engine, the instance, the applications"
    ],
    [
-    857,
+    859,
     "AI agents: sponsors, blueprints and gated creation"
    ],
    [
-    919,
+    920,
     "Evidence and rollback across the track"
    ],
    [
-    983,
+    985,
     "The dangers to keep in view, and where to go next"
    ]
   ],
@@ -13961,27 +14038,27 @@
     "Prepare, preflight, then Steps 1.1 to 1.3"
    ],
    [
-    495,
+    499,
     "Steps 1.4 and 1.5: a gMSA, then workload policies"
    ],
    [
-    534,
+    538,
     "Steps 1.6 to 1.8: smoke test, evidence, rollback"
    ],
    [
-    572,
+    577,
     "Promotion: nine go/no-go criteria, each signed"
    ],
    [
-    607,
+    612,
     "Stage 2: production, one ring at a time"
    ],
    [
-    653,
+    658,
     "Dangers, and the guard for each"
    ],
    [
-    688,
+    693,
     "Done when: the chapter's checklist"
    ]
   ],
@@ -14081,6 +14158,102 @@
    ]
   ],
   "sources": "presentations/dw-npi-12-msa-standard/DW_NPI_12_MSA_Standard_Narrated_sources.json"
+ },
+ {
+  "id": "DW_NPI_13_AWS_OCI_Workload_Narrated",
+  "title": "Building Non-Person Identity, Chapter 13 — Workload Identity Across AWS GovCloud (US) and OCI: narrated tour",
+  "group": "developer",
+  "minutes": 14,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/DW_NPI_13_AWS_OCI_Workload_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/dw-npi-13-aws-oci-workload/DW_NPI_13_AWS_OCI_Workload_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-13-aws-oci-workload/DW_NPI_13_AWS_OCI_Workload_Narration_Script.md",
+  "page": "docs/project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.html",
+  "source": "docs/project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   },
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Chapter 13: Workload Identity Across AWS GovCloud and OCI"
+   ],
+   [
+    49,
+    "An access key is a password that never expires"
+   ],
+   [
+    93,
+    "What AWS says, and what GovCloud changes"
+   ],
+   [
+    145,
+    "What Oracle and Microsoft say"
+   ],
+   [
+    200,
+    "The vendors' own reads, and what the kit adds"
+   ],
+   [
+    247,
+    "The inputs: the guide's Step 1g and 1h exports"
+   ],
+   [
+    299,
+    "The code: one read-only task, cloud-workload"
+   ],
+   [
+    349,
+    "The checks: NPI-AWS-01 to -16, NPI-OCI-01 to -10"
+   ],
+   [
+    407,
+    "Not yet specified: six open questions"
+   ],
+   [
+    457,
+    "Who runs it, and the evidence it leaves"
+   ],
+   [
+    511,
+    "Lab 1: run the checks on the fixtures"
+   ],
+   [
+    559,
+    "Lab 1: the findings and the long-lived credentials"
+   ],
+   [
+    607,
+    "Lab 1: who isn't joined, and one OIDC trust"
+   ],
+   [
+    645,
+    "Lab 1: without the optional files, evidence, tests"
+   ],
+   [
+    687,
+    "Lab 2: a test account and a test tenancy"
+   ],
+   [
+    738,
+    "Dangers, and the guard for each"
+   ],
+   [
+    788,
+    "Done when: the chapter's checklist"
+   ]
+  ],
+  "sources": "presentations/dw-npi-13-aws-oci-workload/DW_NPI_13_AWS_OCI_Workload_Narrated_sources.json"
  },
  {
   "id": "DW_PA_01_Privileged_Inventory_Narrated",
@@ -20531,7 +20704,7 @@
   "id": "Training_NPI_Module_11_Narrated",
   "title": "Non-Person Identity learning path, Module 11: Deploy to test, then production",
   "group": "training",
-  "minutes": 14,
+  "minutes": 15,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_11_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/training-npi-module-11/Training_NPI_Module_11_Narrated.vtt",
@@ -20789,6 +20962,93 @@
   "sources": "presentations/training-npi-module-13/Training_NPI_Module_13_Narrated_sources.json"
  },
  {
+  "id": "Training_NPI_Module_14_Narrated",
+  "title": "Non-Person Identity learning path, Module 14: Workload identity across AWS GovCloud (US) and OCI",
+  "group": "training",
+  "minutes": 13,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_NPI_Module_14_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-npi-module-14/Training_NPI_Module_14_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-npi-module-14/Training_NPI_Module_14_Narration_Script.md",
+  "page": "docs/training/non-person-identity/14-workload-identity-across-aws-govcloud-and-oci.html",
+  "source": "docs/training/non-person-identity/14-workload-identity-across-aws-govcloud-and-oci.md",
+  "kits": [
+   {
+    "name": "non-person-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity",
+    "zip": "downloads/non-person-identity-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 14: Workload identity in AWS GovCloud and OCI"
+   ],
+   [
+    36,
+    "Why an access key is a service account's password"
+   ],
+   [
+    74,
+    "What you'll be able to do in Module 14"
+   ],
+   [
+    121,
+    "What AWS, Oracle and Microsoft say"
+   ],
+   [
+    192,
+    "The exports, and the join to the record"
+   ],
+   [
+    261,
+    "The checks, VK-NPI-10, and what's still unknown"
+   ],
+   [
+    330,
+    "Try it: run Chapter 13's checks on the fixtures"
+   ],
+   [
+    382,
+    "Try it: read the findings"
+   ],
+   [
+    426,
+    "Try it: the long-lived credentials"
+   ],
+   [
+    475,
+    "Try it: who isn't joined, and one OIDC trust"
+   ],
+   [
+    516,
+    "Try it: run without the two optional files"
+   ],
+   [
+    555,
+    "Try it: the evidence, the tests, then clean up"
+   ],
+   [
+    599,
+    "Lab 2: a test account's and tenancy's exports"
+   ],
+   [
+    655,
+    "The federal requirement and the evidence the ISSO keeps"
+   ],
+   [
+    717,
+    "Check yourself: two questions on AWS and OCI"
+   ],
+   [
+    758,
+    "Summary: the other clouds, under the same rules"
+   ]
+  ],
+  "sources": "presentations/training-npi-module-14/Training_NPI_Module_14_Narrated_sources.json"
+ },
+ {
   "id": "Training_NPI_Module_1_Narrated",
   "title": "Non-Person Identity learning path, Module 1: Inventory every non-person identity",
   "group": "training",
@@ -20830,47 +21090,47 @@
     "What Gate 1 asks for: six sub-steps, one record"
    ],
    [
-    219,
+    220,
     "The register: two AD reads, nine Graph, one ARM"
    ],
    [
-    276,
+    277,
     "The reader: five rules every call obeys"
    ],
    [
-    336,
+    337,
     "Risk, the candidate target, stale leads, the hand-off"
    ],
    [
-    400,
+    401,
     "The findings: NPI-INV-01 to NPI-INV-09"
    ],
    [
-    456,
+    457,
     "Try it: Learn's samples, and what the inventory needs"
    ],
    [
-    506,
+    507,
     "Try it: run the inventory, read the HIGH-risk rows"
    ],
    [
-    563,
+    564,
     "Try it: the reader refuses, and the hand-off"
    ],
    [
-    614,
+    615,
     "Lab 2: inventory your own test tenant"
    ],
    [
-    667,
+    668,
     "The federal requirement and evidence for Gate G1"
    ],
    [
-    736,
+    737,
     "Check yourself: two questions on the inventory"
    ],
    [
-    790,
+    791,
     "Summary, and next: Module 2, owners and orphans"
    ]
   ],

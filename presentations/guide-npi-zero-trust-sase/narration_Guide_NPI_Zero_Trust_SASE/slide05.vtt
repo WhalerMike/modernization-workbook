@@ -1,0 +1,132 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:05.400
+The program's SASE is Microsoft's security
+service edge, Global Secure Access.
+
+2
+00:00:05.400 --> 00:00:07.700
+Three of its parts touch service accounts.
+
+3
+00:00:07.700 --> 00:00:12.838
+First, Private Access and application
+proxy, with Kerberos single sign-on.
+
+4
+00:00:12.838 --> 00:00:16.688
+The user signs in to Entra I
+D, under Conditional Access.
+
+5
+00:00:16.688 --> 00:00:20.281
+Then, in Microsoft Learn's words,
+the connector impersonates
+
+6
+00:00:20.281 --> 00:00:23.300
+the user to get a Kerberos
+token to the application.
+
+7
+00:00:23.300 --> 00:00:27.170
+That needs the connector and the
+application server domain joined,
+
+8
+00:00:27.170 --> 00:00:30.625
+and the application's S P N in
+the connector's delegation list.
+
+9
+00:00:30.625 --> 00:00:34.950
+The application keeps running as its
+service account, which holds the S P N;
+
+10
+00:00:34.950 --> 00:00:39.275
+Learn's example is a web service account
+that's a user or a computer account.
+
+11
+00:00:39.275 --> 00:00:43.976
+So moving that S P N to a G M S A, at
+step A5 of the service accounts guide,
+
+12
+00:00:43.976 --> 00:00:48.763
+means updating the connector's
+delegation entry in the same change.
+
+13
+00:00:48.763 --> 00:00:51.776
+Second, Private Access
+for domain controllers.
+
+14
+00:00:51.776 --> 00:00:56.376
+It puts Conditional Access and
+phishing-resistant multifactor authentication in
+
+15
+00:00:56.376 --> 00:01:00.056
+front of Kerberos to on-premises
+applications, for the users who are
+
+16
+00:01:00.056 --> 00:01:04.000
+synchronized from Active Directory,
+and its sensor starts in audit mode.
+
+17
+00:01:04.000 --> 00:01:05.488
+It's scoped to users.
+
+18
+00:01:05.488 --> 00:01:10.350
+Once it's enforced, Kerberos to a protected
+S P N from a device without the Global
+
+19
+00:01:10.350 --> 00:01:12.370
+Secure Access client is blocked,
+
+20
+00:01:12.370 --> 00:01:15.737
+so service-to-service Kerberos
+needs an S P N exclusion.
+
+21
+00:01:15.737 --> 00:01:18.657
+Third, the Global Secure
+Access client controls
+
+22
+00:01:18.657 --> 00:01:21.649
+network traffic at the
+end-user computing device.
+
+23
+00:01:21.649 --> 00:01:25.274
+A server-side workload's own
+traffic isn't in the SASE path;
+
+24
+00:01:25.274 --> 00:01:29.125
+its protection is its identity
+and its network segmentation.
+
+25
+00:01:29.125 --> 00:01:32.175
+So SASE and this track meet at the S P N.
+
+26
+00:01:32.175 --> 00:01:36.472
+A Kerberos application published
+through Private Access is Zero Trust at
+
+27
+00:01:36.472 --> 00:01:40.700
+the front door, and Traditional behind
+it, until its service account moves.

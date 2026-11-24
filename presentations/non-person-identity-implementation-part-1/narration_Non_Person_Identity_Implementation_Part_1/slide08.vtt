@@ -1,76 +1,86 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.287
+00:00:00.100 --> 00:00:02.488
 Here's the federal side of the first gate.
 
 2
-00:00:02.287 --> 00:00:06.915
+00:00:02.488 --> 00:00:06.800
 Account management treats non-person
 identities as a defined account type,
 
 3
-00:00:06.915 --> 00:00:08.825
+00:00:06.800 --> 00:00:08.600
 each with an owner and a sponsor.
 
 4
-00:00:08.825 --> 00:00:14.263
+00:00:08.600 --> 00:00:13.775
 The evidence is this gate's record, plus
 the kit runs for owners and agent sponsors.
 
 5
-00:00:14.263 --> 00:00:18.583
+00:00:13.775 --> 00:00:17.855
 Identifier management means each
 identity has its own identifier,
 
 6
-00:00:18.583 --> 00:00:20.975
+00:00:17.855 --> 00:00:20.113
 joined to its record and never reused.
 
 7
-00:00:20.975 --> 00:00:23.600
+00:00:20.113 --> 00:00:22.663
 To validate, four read-only checks run.
 
 8
-00:00:23.600 --> 00:00:28.901
+00:00:22.663 --> 00:00:27.696
 One lists Active Directory accounts whose
 passwords never expire or are too old,
 
 9
-00:00:28.901 --> 00:00:31.750
+00:00:27.696 --> 00:00:30.400
 each joined to a record
 or listed as unowned.
 
 10
-00:00:31.750 --> 00:00:37.075
+00:00:30.400 --> 00:00:35.025
 One reports zero apps with no owner, and
 a dated finding for any with just one.
 
 11
-00:00:37.075 --> 00:00:40.988
+00:00:35.025 --> 00:00:38.675
 One lists every managed identity
 and its role assignments.
 
 12
-00:00:40.988 --> 00:00:46.000
+00:00:38.675 --> 00:00:43.075
 And one lists agent identities with their
 sponsors, where the tenant exposes them.
 
 13
-00:00:46.000 --> 00:00:49.737
-The inventory's Graph reads are
-listed for the government clouds.
+00:00:43.075 --> 00:00:48.136
+A tenth check reads the AWS GovCloud
+and Oracle Cloud exports, and reports
 
 14
-00:00:49.737 --> 00:00:53.767
+00:00:48.136 --> 00:00:53.362
+every workload identity missing its system
+I D, two owner tags or sponsor tag.
+
+15
+00:00:53.362 --> 00:00:58.087
+The inventory's Graph reads list
+the global service, which GCC uses.
+
+16
+00:00:58.087 --> 00:01:01.736
 Agent identities are generally
 available in commercial,
 
-15
-00:00:53.767 --> 00:00:55.950
+17
+00:01:01.736 --> 00:01:03.712
 and in GCC with documented gaps.
 
-16
-00:00:55.950 --> 00:01:00.100
+18
+00:01:03.712 --> 00:01:07.370
 And there's nothing to roll back,
 because the inventory only reads.

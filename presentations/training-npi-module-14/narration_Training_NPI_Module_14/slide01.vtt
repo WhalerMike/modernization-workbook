@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.740
+Welcome to Module 14 of the
+Non-Person Identity learning path:
+
+2
+00:00:04.740 --> 00:00:08.288
+workload identity across
+AWS GovCloud and O C I.
+
+3
+00:00:08.288 --> 00:00:12.878
+It teaches the implementation guide's
+steps for the program's other two clouds,
+
+4
+00:00:12.878 --> 00:00:15.376
+with Chapter 13 of the developer workbook.
+
+5
+00:00:15.376 --> 00:00:18.787
+The program's AWS estate
+is in AWS GovCloud,
+
+6
+00:00:18.787 --> 00:00:24.637
+and its Oracle Cloud tenancy is in
+Oracle's US Government Cloud, realm O C 2.
+
+7
+00:00:24.637 --> 00:00:29.962
+In November 2026 the program added both
+clouds' workload identities to this track.
+
+8
+00:00:29.962 --> 00:00:32.860
+Take this module after Modules 1 and 4.

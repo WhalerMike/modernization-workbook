@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.650
+So what does the code add?
+
+2
+00:00:01.650 --> 00:00:05.225
+One script and one module,
+running one read-only task.
+
+3
+00:00:05.225 --> 00:00:08.994
+A config file declares the export
+commands an operator runs,
+
+4
+00:00:08.994 --> 00:00:12.913
+every one a generate, get or list,
+and the module runs none of them.
+
+5
+00:00:12.913 --> 00:00:16.093
+A test fails if the
+code ever calls the AWS
+
+6
+00:00:16.093 --> 00:00:19.274
+or O C I command line,
+or makes a web request.
+
+7
+00:00:19.274 --> 00:00:22.773
+Every run writes a folder:
+findings, identities, trust,
+
+8
+00:00:22.773 --> 00:00:27.701
+a credentials list with identifiers
+only, never a secret, the evidence rows,
+
+9
+00:00:27.701 --> 00:00:32.550
+and a manifest with each input's hash
+and any optional file it couldn't read.
+
+10
+00:00:32.550 --> 00:00:36.684
+The validation kit's check, V K
+N P I ten, reads the same folder
+
+11
+00:00:36.684 --> 00:00:41.163
+for the guide's gates; this kit
+gives the full findings behind it.
+
+12
+00:00:41.163 --> 00:00:45.501
+And it changes nothing: the findings
+say what to do, and a person does it.

@@ -1,0 +1,1435 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.012
+Welcome.
+
+2
+00:00:01.012 --> 00:00:05.293
+This is the narrated briefing for
+a companion guide in the Federal
+
+3
+00:00:05.293 --> 00:00:10.488
+Modernization Workbook: Non-Person
+Identity, Zero Trust, SASE and Other Clouds.
+
+4
+00:00:10.488 --> 00:00:12.725
+The guide's idea fits in one line.
+
+5
+00:00:12.725 --> 00:00:15.474
+A G M S A fixes the
+password, not the protocol:
+
+6
+00:00:15.474 --> 00:00:20.816
+the service still speaks Kerberos to Active
+Directory, where Conditional Access,
+
+7
+00:00:20.816 --> 00:00:25.137
+Global Secure Access and the Zero
+Trust Maturity Model can't see it.
+
+8
+00:00:25.137 --> 00:00:28.137
+The Non-Person Identity
+track has three guides.
+
+9
+00:00:28.137 --> 00:00:31.012
+The implementation guide
+runs the track as gates.
+
+10
+00:00:31.012 --> 00:00:34.037
+The service accounts guide
+moves one account at a time.
+
+11
+00:00:34.037 --> 00:00:39.100
+This one is the why: what each choice does
+to the program's Zero Trust maturity and
+
+12
+00:00:39.100 --> 00:00:42.705
+its SASE design, workload by
+workload and cloud by cloud,
+
+13
+00:00:42.705 --> 00:00:45.850
+and which certificates
+each move adds or removes.
+
+14
+00:00:45.850 --> 00:00:51.934
+Every fact in this deck comes from the
+guide, which footnotes each one: CISA,
+
+15
+00:00:51.934 --> 00:00:58.313
+Microsoft Learn, Red Hat, OMB, AWS and
+Oracle, read on November twenty-fourth, 2026.
+
+16
+00:00:58.313 --> 00:01:02.321
+Where the guide gives the program's
+own reading rather than a source's,
+
+17
+00:01:02.321 --> 00:01:04.924
+it says design guidance,
+and so does this deck.
+
+18
+00:01:04.924 --> 00:01:08.027
+We'll go in four parts: why
+a G M S A isn't the end,
+
+19
+00:01:08.027 --> 00:01:13.255
+what the Zero Trust scorecard and
+SASE say, which workloads it touches,
+
+20
+00:01:13.255 --> 00:01:18.080
+and how certificates, N T L M and
+other clouds change the answer.
+
+21
+00:01:21.880 --> 00:01:24.755
+Here's the answer in
+brief, in five points.
+
+22
+00:01:24.755 --> 00:01:31.692
+First, a G M S A or a D M S A is a better
+password, not a Zero Trust identity.
+
+23
+00:01:31.692 --> 00:01:35.603
+It removes the password a person knows,
+which is the Kerberoasting risk,
+
+24
+00:01:35.603 --> 00:01:39.979
+but the workload still authenticates
+with Kerberos against Active Directory.
+
+25
+00:01:39.979 --> 00:01:44.350
+Nothing in Entra I D evaluates that
+sign-in, so Conditional Access,
+
+26
+00:01:44.350 --> 00:01:47.830
+Entra's risk signals and the
+sign-in logs never see it.
+
+27
+00:01:47.830 --> 00:01:52.988
+Second, a Microsoft Entra workload identity
+moves the identity into the program's
+
+28
+00:01:52.988 --> 00:01:55.643
+central store, with no
+secret anyone holds,
+
+29
+00:01:55.643 --> 00:02:00.649
+a managed identity or a federated credential,
+or with a short-lived certificate,
+
+30
+00:02:00.649 --> 00:02:03.380
+and every token it gets
+is logged in Entra I D.
+
+31
+00:02:03.380 --> 00:02:08.017
+The limit, from Microsoft Learn:
+Conditional Access for workload identities
+
+32
+00:02:08.017 --> 00:02:12.292
+covers single-tenant service principals
+only, not managed identities.
+
+33
+00:02:12.292 --> 00:02:17.343
+Third, SASE protects the people in front
+of a service, not the service itself.
+
+34
+00:02:17.343 --> 00:02:21.851
+Private Access and application proxy
+put Entra sign-in and phishing-resistant
+
+35
+00:02:21.851 --> 00:02:25.540
+multifactor authentication in
+front of a Kerberos application,
+
+36
+00:02:25.540 --> 00:02:29.092
+then reach it with Kerberos
+constrained delegation to its S P N.
+
+37
+00:02:29.092 --> 00:02:32.936
+The application's own service account
+and S P N stay where they are,
+
+38
+00:02:32.936 --> 00:02:36.067
+and service-to-service
+traffic doesn't go through the
+
+39
+00:02:36.067 --> 00:02:39.555
+Global Secure Access client,
+which runs on end-user devices.
+
+40
+00:02:39.555 --> 00:02:42.480
+Fourth, certificates
+change shape, not count.
+
+41
+00:02:42.480 --> 00:02:45.859
+Fifth, extend Entra I D for
+people across every cloud,
+
+42
+00:02:45.859 --> 00:02:49.080
+but don't force one workload
+identity across them.
+
+43
+00:02:49.080 --> 00:02:53.260
+That last one is the program's
+recommendation, design guidance.
+
+44
+00:02:57.060 --> 00:03:02.709
+CISA's Zero Trust Maturity Model defines
+an identity as attributes that describe,
+
+45
+00:03:02.709 --> 00:03:06.885
+quote, an agency user or entity,
+including non-person entities.
+
+46
+00:03:06.885 --> 00:03:10.860
+So service accounts are inside the
+Identity pillar, not beside it.
+
+47
+00:03:10.860 --> 00:03:15.437
+The guide scores three kinds of service
+identity against the pillar's functions:
+
+48
+00:03:15.437 --> 00:03:19.672
+authentication, identity stores, risk
+assessments and access management.
+
+49
+00:03:19.672 --> 00:03:21.057
+The stages are CISA's;
+
+50
+00:03:21.057 --> 00:03:25.060
+where each kind lands is the
+program's reading, design guidance.
+
+51
+00:03:25.060 --> 00:03:26.298
+Authentication.
+
+52
+00:03:26.298 --> 00:03:30.750
+CISA's Traditional stage is passwords
+or multi-factor authentication;
+
+53
+00:03:30.750 --> 00:03:33.422
+Optimal continuously validates identity.
+
+54
+00:03:33.422 --> 00:03:37.883
+A user account used as a service
+is Traditional: a static password,
+
+55
+00:03:37.883 --> 00:03:42.097
+often never expiring, and crackable
+offline if it holds an S P N.
+
+56
+00:03:42.097 --> 00:03:46.418
+A G M S A or a D M S A is better
+than Traditional on the credential,
+
+57
+00:03:46.418 --> 00:03:50.219
+because it's generated,
+rotated and unknown to people,
+
+58
+00:03:50.219 --> 00:03:54.885
+but its Kerberos access is static,
+with no continuous evaluation.
+
+59
+00:03:54.885 --> 00:03:58.971
+An Entra workload identity is
+token-based, short-lived and logged,
+
+60
+00:03:58.971 --> 00:04:02.073
+and a managed identity has
+no credential to steal.
+
+61
+00:04:02.073 --> 00:04:06.409
+Microsoft Learn says workloads can't
+perform multifactor authentication,
+
+62
+00:04:06.409 --> 00:04:09.300
+so the workload equivalent
+of phishing-resistant
+
+63
+00:04:09.300 --> 00:04:12.535
+multifactor authentication
+is having no stored secret.
+
+64
+00:04:12.535 --> 00:04:13.910
+Identity stores.
+
+65
+00:04:13.910 --> 00:04:16.791
+Traditional is self-managed,
+on-premises stores;
+
+66
+00:04:16.791 --> 00:04:21.185
+Optimal securely integrates them
+across all partners and environments.
+
+67
+00:04:21.185 --> 00:04:26.685
+The user account and the G M S A both live
+only in on-premises Active Directory.
+
+68
+00:04:26.685 --> 00:04:29.243
+The workload identity lives in Entra I D,
+
+69
+00:04:29.243 --> 00:04:33.980
+the program's integrated store, and
+federation reaches other clouds.
+
+70
+00:04:37.780 --> 00:04:39.193
+Risk assessments.
+
+71
+00:04:39.193 --> 00:04:42.530
+CISA's Optimal stage
+determines risk in real time.
+
+72
+00:04:42.530 --> 00:04:47.764
+For a user account or a G M S A, the
+only signal is Defender for Identity,
+
+73
+00:04:47.764 --> 00:04:52.530
+on domain controller traffic; a G
+M S A gets no Entra risk signal.
+
+74
+00:04:52.530 --> 00:04:56.689
+A workload identity gets Entra I D
+Protection's risk, and Conditional
+
+75
+00:04:56.689 --> 00:05:00.993
+Access for workload identities, for
+single-tenant service principals.
+
+76
+00:05:00.993 --> 00:05:02.417
+Access management.
+
+77
+00:05:02.417 --> 00:05:05.861
+Traditional is permanent
+access with periodic review;
+
+78
+00:05:05.861 --> 00:05:08.705
+Optimal is just-in-time
+and just-enough access.
+
+79
+00:05:08.705 --> 00:05:12.155
+A user account has standing
+group memberships and delegation.
+
+80
+00:05:12.155 --> 00:05:17.392
+A G M S A is standing too, scoped by its
+retriever group and the account's rights.
+
+81
+00:05:17.392 --> 00:05:21.706
+A workload identity's role assignments
+and app roles are still standing,
+
+82
+00:05:21.706 --> 00:05:26.092
+but they're visible, scoped per resource,
+and reviewable in Entra and Azure.
+
+83
+00:05:26.092 --> 00:05:28.655
+So what does this mean
+for the program's scores?
+
+84
+00:05:28.655 --> 00:05:32.844
+Every account kept on Kerberos, with
+the disposition Keep or Keep Kerberos,
+
+85
+00:05:32.844 --> 00:05:36.965
+holds the Identity pillar's identity
+stores function at Traditional for
+
+86
+00:05:36.965 --> 00:05:41.018
+that workload until its end date,
+whatever the rest of the estate reaches.
+
+87
+00:05:41.018 --> 00:05:44.667
+That's the program's
+decision W D one sixty-five.
+
+88
+00:05:44.667 --> 00:05:48.742
+The Zero Trust assessment guide, and
+the chapter Close Before You Assess,
+
+89
+00:05:48.742 --> 00:05:53.429
+already count legacy authentication that
+service accounts still use as a finding.
+
+90
+00:05:53.429 --> 00:05:58.514
+The island list, from the Non-Person
+Identity developer workbook's chapter
+
+91
+00:05:58.514 --> 00:06:03.250
+on G M S As, D M S As and the Kerberos
+island, is that finding's evidence.
+
+92
+00:06:07.050 --> 00:06:12.350
+The program's SASE is Microsoft's security
+service edge, Global Secure Access.
+
+93
+00:06:12.350 --> 00:06:14.650
+Three of its parts touch service accounts.
+
+94
+00:06:14.650 --> 00:06:19.788
+First, Private Access and application
+proxy, with Kerberos single sign-on.
+
+95
+00:06:19.788 --> 00:06:23.638
+The user signs in to Entra I
+D, under Conditional Access.
+
+96
+00:06:23.638 --> 00:06:27.231
+Then, in Microsoft Learn's words,
+the connector impersonates
+
+97
+00:06:27.231 --> 00:06:30.250
+the user to get a Kerberos
+token to the application.
+
+98
+00:06:30.250 --> 00:06:34.120
+That needs the connector and the
+application server domain joined,
+
+99
+00:06:34.120 --> 00:06:37.575
+and the application's S P N in
+the connector's delegation list.
+
+100
+00:06:37.575 --> 00:06:41.900
+The application keeps running as its
+service account, which holds the S P N;
+
+101
+00:06:41.900 --> 00:06:46.225
+Learn's example is a web service account
+that's a user or a computer account.
+
+102
+00:06:46.225 --> 00:06:50.926
+So moving that S P N to a G M S A, at
+step A5 of the service accounts guide,
+
+103
+00:06:50.926 --> 00:06:55.713
+means updating the connector's
+delegation entry in the same change.
+
+104
+00:06:55.713 --> 00:06:58.726
+Second, Private Access
+for domain controllers.
+
+105
+00:06:58.726 --> 00:07:03.326
+It puts Conditional Access and
+phishing-resistant multifactor authentication in
+
+106
+00:07:03.326 --> 00:07:07.006
+front of Kerberos to on-premises
+applications, for the users who are
+
+107
+00:07:07.006 --> 00:07:10.950
+synchronized from Active Directory,
+and its sensor starts in audit mode.
+
+108
+00:07:10.950 --> 00:07:12.438
+It's scoped to users.
+
+109
+00:07:12.438 --> 00:07:17.300
+Once it's enforced, Kerberos to a protected
+S P N from a device without the Global
+
+110
+00:07:17.300 --> 00:07:19.320
+Secure Access client is blocked,
+
+111
+00:07:19.320 --> 00:07:22.687
+so service-to-service Kerberos
+needs an S P N exclusion.
+
+112
+00:07:22.687 --> 00:07:25.607
+Third, the Global Secure
+Access client controls
+
+113
+00:07:25.607 --> 00:07:28.599
+network traffic at the
+end-user computing device.
+
+114
+00:07:28.599 --> 00:07:32.224
+A server-side workload's own
+traffic isn't in the SASE path;
+
+115
+00:07:32.224 --> 00:07:36.075
+its protection is its identity
+and its network segmentation.
+
+116
+00:07:36.075 --> 00:07:39.125
+So SASE and this track meet at the S P N.
+
+117
+00:07:39.125 --> 00:07:43.422
+A Kerberos application published
+through Private Access is Zero Trust at
+
+118
+00:07:43.422 --> 00:07:47.950
+the front door, and Traditional behind
+it, until its service account moves.
+
+119
+00:07:51.750 --> 00:07:53.407
+Now the workloads, one by one,
+
+120
+00:07:53.407 --> 00:07:57.513
+each with its target from the service
+accounts guide's decision path.
+
+121
+00:07:57.513 --> 00:08:02.829
+The SQL Server engine runs as
+a user account or a G M S A,
+
+122
+00:08:02.829 --> 00:08:04.812
+with an M S S Q L S V C S P N.
+
+123
+00:08:04.812 --> 00:08:07.660
+Its G M S A stays the
+Windows logon account,
+
+124
+00:08:07.660 --> 00:08:12.350
+and the instance gets an Entra
+identity: the Arc managed identity on
+
+125
+00:08:12.350 --> 00:08:17.124
+SQL Server 2025, or an app registration
+with a certificate on 2022.
+
+126
+00:08:17.124 --> 00:08:20.122
+Users and applications then
+sign in with Entra logins;
+
+127
+00:08:20.122 --> 00:08:23.586
+Microsoft Learn lists
+non-interactive mechanisms including
+
+128
+00:08:23.586 --> 00:08:27.050
+managed identities for SQL
+Server's Entra authentication.
+
+129
+00:08:27.050 --> 00:08:29.189
+Users reach it through Private Access,
+
+130
+00:08:29.189 --> 00:08:33.400
+but the engine's Kerberos stays on the
+island until its logins are Entra-only.
+
+131
+00:08:33.400 --> 00:08:36.549
+Applications that call SQL Server run as a
+
+132
+00:08:36.549 --> 00:08:39.450
+user account or a G M S
+A with a Windows login.
+
+133
+00:08:39.450 --> 00:08:43.935
+Their target is a managed identity, or
+a service principal with a certificate,
+
+134
+00:08:43.935 --> 00:08:46.038
+with an Entra login in SQL Server,
+
+135
+00:08:46.038 --> 00:08:49.262
+so the connection moves from
+Kerberos to an Entra token.
+
+136
+00:08:49.262 --> 00:08:52.462
+That's server to server, so
+it's not in the SASE path.
+
+137
+00:08:52.462 --> 00:08:56.187
+I I S sites and application pools run as a
+
+138
+00:08:56.187 --> 00:08:59.687
+user account or a G M S
+A with an H T T P S P N.
+
+139
+00:08:59.687 --> 00:09:04.987
+Their target is a G M S A now, and a managed
+identity when the site moves to Azure.
+
+140
+00:09:04.987 --> 00:09:10.053
+Users sign in with Entra through
+application proxy or Private Access,
+
+141
+00:09:10.053 --> 00:09:13.197
+with Kerberos single sign-on
+to the H T T P S P N,
+
+142
+00:09:13.197 --> 00:09:18.040
+and the pool's own calls to Microsoft
+A P Is use an Entra identity.
+
+143
+00:09:21.840 --> 00:09:24.851
+Scheduled tasks and Windows
+services often run as
+
+144
+00:09:24.851 --> 00:09:27.790
+a user account with a
+password that never expires.
+
+145
+00:09:27.790 --> 00:09:30.957
+Their target is a G M S A
+now, and an Azure Automation
+
+146
+00:09:30.957 --> 00:09:34.253
+runbook with a managed
+identity once the job moves.
+
+147
+00:09:34.253 --> 00:09:38.577
+The password goes; the identity moves
+to Entra only when the job does.
+
+148
+00:09:38.577 --> 00:09:40.490
+They're not in the SASE path.
+
+149
+00:09:40.490 --> 00:09:46.314
+Red Hat Enterprise Linux and other Linux
+services run on an Active Directory-joined
+
+150
+00:09:46.314 --> 00:09:48.893
+host, with S S S D and
+realm D and a keytab,
+
+151
+00:09:48.893 --> 00:09:53.802
+or with Red Hat's own Managed Service
+Account, made with A D C L I create M S A.
+
+152
+00:09:53.802 --> 00:09:58.526
+Their target is the platform's workload
+identity: an I A M role on E C 2,
+
+153
+00:09:58.526 --> 00:10:03.852
+an instance principal on O C I, or the
+Arc managed identity for calls to Azure.
+
+154
+00:10:03.852 --> 00:10:07.067
+A keytab on disk is a
+long-lived Kerberos key,
+
+155
+00:10:07.067 --> 00:10:11.889
+unlike a Windows G M S A; the platform
+identity has no stored secret.
+
+156
+00:10:11.889 --> 00:10:15.810
+Workloads in AWS GovCloud
+U S run as I A M roles,
+
+157
+00:10:15.810 --> 00:10:18.565
+or as I A M users with access keys.
+
+158
+00:10:18.565 --> 00:10:24.082
+Their target is an I A M role, and to call
+Microsoft A P Is, a federated credential,
+
+159
+00:10:24.082 --> 00:10:28.565
+once it's tested; that's the program's
+decision W D one seventy-one.
+
+160
+00:10:28.565 --> 00:10:32.090
+They get temporary credentials,
+with keys as exceptions,
+
+161
+00:10:32.090 --> 00:10:36.515
+and people reach AWS through I A M
+Identity Center federated with Entra.
+
+162
+00:10:36.515 --> 00:10:38.669
+O C I workloads use instance,
+
+163
+00:10:38.669 --> 00:10:42.978
+resource or workload principals,
+or users with A P I keys.
+
+164
+00:10:42.978 --> 00:10:47.566
+The target is a principal, with keys as
+exceptions, so there's no stored secret,
+
+165
+00:10:47.566 --> 00:10:52.180
+and people reach O C I through its
+identity domain federated with Entra.
+
+166
+00:10:55.980 --> 00:10:58.005
+Linux deserves a closer look.
+
+167
+00:10:58.005 --> 00:11:00.829
+Red Hat recommends joining a R H E L host
+
+168
+00:11:00.829 --> 00:11:03.793
+to Active Directory
+with S S S D and realm.
+
+169
+00:11:03.793 --> 00:11:09.197
+Its Managed Service Account is an Active
+Directory account that corresponds to a
+
+170
+00:11:09.197 --> 00:11:12.456
+specific computer, created
+with A D C L I create M S A,
+
+171
+00:11:12.456 --> 00:11:15.954
+and its Kerberos key is written
+to a keytab on the host.
+
+172
+00:11:15.954 --> 00:11:18.643
+That's a different thing
+from a Windows G M S A.
+
+173
+00:11:18.643 --> 00:11:23.192
+The key sits in a file, so it's a
+long-lived secret to protect and rotate.
+
+174
+00:11:23.192 --> 00:11:28.298
+For people, Microsoft Learn says Entra I
+D can be the sign-in for S S H on Azure
+
+175
+00:11:28.298 --> 00:11:32.651
+Linux virtual machines and on
+Azure Arc-enabled Linux servers,
+
+176
+00:11:32.651 --> 00:11:37.171
+and it lists R H E L seven point four
+to seven point nine, eight point
+
+177
+00:11:37.171 --> 00:11:41.942
+three and later, nine point oh and
+later, and ten point one as supported.
+
+178
+00:11:41.942 --> 00:11:46.798
+An R H E L instance in AWS GovCloud
+U S or O C I that's onboarded to Arc
+
+179
+00:11:46.798 --> 00:11:52.479
+can use the same Entra sign-in, so
+operators keep one identity across clouds.
+
+180
+00:11:52.479 --> 00:11:55.096
+That's design guidance,
+and the Arc track guide
+
+181
+00:11:55.096 --> 00:11:58.100
+covers onboarding other
+clouds' servers to Arc.
+
+182
+00:12:01.900 --> 00:12:06.850
+Moving a service account or its S P N to
+Entra changes which certificates exist.
+
+183
+00:12:06.850 --> 00:12:09.913
+Each row starts from what
+the workload holds today,
+
+184
+00:12:09.913 --> 00:12:14.287
+and an S P N needs no certificate, as
+the service accounts guide explains.
+
+185
+00:12:14.287 --> 00:12:15.988
+Start with SQL Server.
+
+186
+00:12:15.988 --> 00:12:20.666
+An engine running as a user account
+or a G M S A, with Windows logins,
+
+187
+00:12:20.666 --> 00:12:24.550
+has an optional T L S
+certificate; Kerberos needs none.
+
+188
+00:12:24.550 --> 00:12:28.994
+Add Entra logins, and every instance that
+takes them needs a T L S certificate
+
+189
+00:12:28.994 --> 00:12:33.650
+issued by a certificate authority, with
+the service account able to read its key.
+
+190
+00:12:33.650 --> 00:12:36.671
+CyberArk Certificate Manager
+issues and renews it,
+
+191
+00:12:36.671 --> 00:12:40.113
+from the program's Active
+Directory Certificate Services.
+
+192
+00:12:40.113 --> 00:12:45.423
+A SQL Server 2022 instance's Entra identity
+adds an app-registration certificate in
+
+193
+00:12:45.423 --> 00:12:50.225
+Key Vault, which Key Vault and the Arc
+extension handle when it's service-managed.
+
+194
+00:12:50.225 --> 00:12:54.488
+A SQL Server 2025 instance
+uses the Arc managed identity:
+
+195
+00:12:54.488 --> 00:12:58.325
+no certificate before, none
+after, and Azure handles it.
+
+196
+00:12:58.325 --> 00:13:01.882
+An I I S pool published through
+application proxy or Private
+
+197
+00:13:01.882 --> 00:13:05.937
+Access with Kerberos single sign-on
+keeps the same site certificate.
+
+198
+00:13:05.937 --> 00:13:10.425
+The connector reaches the S P N with
+Kerberos, so there's no new certificate.
+
+199
+00:13:10.425 --> 00:13:14.093
+CyberArk Certificate Manager
+handles the site's certificate,
+
+200
+00:13:14.093 --> 00:13:17.650
+and Microsoft handles the
+application proxy endpoint.
+
+201
+00:13:21.450 --> 00:13:23.037
+Now the rest of the map.
+
+202
+00:13:23.037 --> 00:13:26.748
+An application that calls
+Microsoft Graph as a user account,
+
+203
+00:13:26.748 --> 00:13:31.036
+moved to an app registration, gains
+an app-registration certificate,
+
+204
+00:13:31.036 --> 00:13:35.249
+at most a hundred and eighty days,
+renewed by its owner or by Key Vault.
+
+205
+00:13:35.249 --> 00:13:39.509
+The same application on Azure or on
+an Arc-enabled server moves to a
+
+206
+00:13:39.509 --> 00:13:44.000
+managed identity instead: none before,
+none after, and Azure handles it.
+
+207
+00:13:44.000 --> 00:13:49.081
+A workload outside AWS that uses an I A M
+user's secret key can move to I A M Roles
+
+208
+00:13:49.081 --> 00:13:52.710
+Anywhere, which needs an X
+dot five-oh-nine certificate
+
+209
+00:13:52.710 --> 00:13:55.775
+from the program's public
+key infrastructure.
+
+210
+00:13:55.775 --> 00:13:57.753
+The certificate platform issues it,
+
+211
+00:13:57.753 --> 00:14:01.050
+and GovCloud needs certificate
+revocation lists imported.
+
+212
+00:14:01.050 --> 00:14:04.233
+And a R H E L host's
+Active Directory keytab,
+
+213
+00:14:04.233 --> 00:14:09.382
+moved to the platform's workload
+identity, needs no certificate at
+
+214
+00:14:09.382 --> 00:14:13.875
+all for an I A M role or an O C I
+principal; AWS or O C I handles it.
+
+215
+00:14:13.875 --> 00:14:16.487
+So certificates change shape, not count.
+
+216
+00:14:16.487 --> 00:14:20.541
+A managed identity, an I A M role
+and an O C I principal need none;
+
+217
+00:14:20.541 --> 00:14:25.150
+an app registration and Roles
+Anywhere each need a certificate.
+
+218
+00:14:28.950 --> 00:14:30.337
+N T L M.
+
+219
+00:14:30.337 --> 00:14:35.426
+The program's backstop for N
+T L M is April first, 2027.
+
+220
+00:14:35.426 --> 00:14:38.915
+It's the program's own date,
+not an external deadline;
+
+221
+00:14:38.915 --> 00:14:41.075
+that's decision W D twenty-seven.
+
+222
+00:14:41.075 --> 00:14:43.200
+It applies to service accounts too.
+
+223
+00:14:43.200 --> 00:14:48.537
+After that date, an account kept in Active
+Directory, as Keep or Keep Kerberos,
+
+224
+00:14:48.537 --> 00:14:51.756
+authenticates with Kerberos
+only, never N T L M,
+
+225
+00:14:51.756 --> 00:14:55.737
+and its end date still follows
+decision W D one sixty-five.
+
+226
+00:14:55.737 --> 00:15:00.624
+Microsoft's own position, on Microsoft
+Learn, is that N T L M is still supported,
+
+227
+00:15:00.624 --> 00:15:04.425
+and that Kerberos is the
+preferred authentication method.
+
+228
+00:15:04.425 --> 00:15:06.375
+And watch for the quiet failure.
+
+229
+00:15:06.375 --> 00:15:09.160
+An S P N that's missing,
+or on the wrong account,
+
+230
+00:15:09.160 --> 00:15:14.030
+is the usual way a service falls back
+to N T L M without anyone choosing it.
+
+231
+00:15:17.830 --> 00:15:21.555
+Should agencies extend Microsoft
+Entra I D across clouds?
+
+232
+00:15:21.555 --> 00:15:23.330
+For people, yes.
+
+233
+00:15:23.330 --> 00:15:28.273
+O M B memorandum M twenty-two oh-nine says
+agencies must employ centralized identity
+
+234
+00:15:28.273 --> 00:15:31.098
+management systems for
+agency users that can be
+
+235
+00:15:31.098 --> 00:15:34.205
+integrated into applications
+and common platforms.
+
+236
+00:15:34.205 --> 00:15:37.412
+And CISA's Optimal identity
+store securely integrates
+
+237
+00:15:37.412 --> 00:15:40.005
+stores across all partners
+and environments.
+
+238
+00:15:40.005 --> 00:15:44.680
+Entra I D can be that one store for the
+program's people in every cloud it uses.
+
+239
+00:15:44.680 --> 00:15:51.230
+In AWS GovCloud U S, I A M Identity Center
+connects your existing identity provider,
+
+240
+00:15:51.230 --> 00:15:56.143
+and it runs in GovCloud with FIPS
+endpoints and A W S U S Gov A R Ns.
+
+241
+00:15:56.143 --> 00:15:59.122
+The program's chapter on
+privileged roles and tiers
+
+242
+00:15:59.122 --> 00:16:02.031
+already uses its permission
+sets for human access.
+
+243
+00:16:02.031 --> 00:16:07.517
+In O C I, Oracle documents single
+sign-on and identity lifecycle management
+
+244
+00:16:07.517 --> 00:16:13.092
+between O C I I A M and Microsoft Entra
+I D, for tenancies with identity domains.
+
+245
+00:16:13.092 --> 00:16:17.942
+The program's O C two tenancy still
+has to confirm it has identity domains.
+
+246
+00:16:17.942 --> 00:16:21.348
+And on Linux hosts, Entra
+sign-in for S S H on
+
+247
+00:16:21.348 --> 00:16:25.160
+Azure and Arc-enabled
+Linux, R H E L included.
+
+248
+00:16:28.960 --> 00:16:33.348
+For workloads, the answer is no
+single store; one record instead.
+
+249
+00:16:33.348 --> 00:16:36.586
+M twenty-two oh-nine's sentence
+is about agency users.
+
+250
+00:16:36.586 --> 00:16:40.484
+A workload is safest with
+its own platform's identity,
+
+251
+00:16:40.484 --> 00:16:44.738
+which has no stored secret and
+never leaves that platform:
+
+252
+00:16:44.738 --> 00:16:49.347
+an I A M role in AWS, a principal in
+O C I, a managed identity in Azure.
+
+253
+00:16:49.347 --> 00:16:53.678
+Forcing an Entra identity onto an
+AWS workload would mean a secret
+
+254
+00:16:53.678 --> 00:16:58.323
+or a certificate where AWS would
+issue temporary credentials for free.
+
+255
+00:16:58.323 --> 00:17:00.714
+What the program extends across clouds for
+
+256
+00:17:00.714 --> 00:17:03.372
+workloads is the governance,
+not the credential.
+
+257
+00:17:03.372 --> 00:17:07.735
+One inventory, joined to a system
+record with two owners and a sponsor.
+
+258
+00:17:07.735 --> 00:17:10.135
+One exception rule for long-lived keys.
+
+259
+00:17:10.135 --> 00:17:14.546
+And federation between platforms
+where a workload must call across,
+
+260
+00:17:14.546 --> 00:17:19.499
+such as an AWS workload calling Microsoft
+Graph with a federated credential,
+
+261
+00:17:19.499 --> 00:17:22.672
+once it's tested; that's
+decision W D one seventy-one.
+
+262
+00:17:22.672 --> 00:17:26.690
+This split is the program's
+recommendation, design guidance.
+
+263
+00:17:30.490 --> 00:17:32.528
+The guide lists five dangers.
+
+264
+00:17:32.528 --> 00:17:37.302
+Counting a G M S A as done for Zero Trust
+leaves the Identity pillar at Traditional
+
+265
+00:17:37.302 --> 00:17:41.407
+for that workload, unseen: score
+kept accounts against the scorecard,
+
+266
+00:17:41.407 --> 00:17:44.215
+and let the island list
+carry them to an end date.
+
+267
+00:17:44.215 --> 00:17:49.417
+Publishing a Kerberos application through
+Private Access and forgetting its service
+
+268
+00:17:49.417 --> 00:17:52.196
+account leaves the back
+end outside Zero Trust,
+
+269
+00:17:52.196 --> 00:17:54.333
+and an S P N move breaks single sign-on:
+
+270
+00:17:54.333 --> 00:17:58.609
+record the application's service account
+and S P N with the published app,
+
+271
+00:17:58.609 --> 00:18:01.815
+and move the connector's
+delegation in step A5's change.
+
+272
+00:18:01.815 --> 00:18:06.491
+Enforcing the domain controller sensor
+on an S P N a service uses blocks
+
+273
+00:18:06.491 --> 00:18:09.344
+service-to-service
+Kerberos: start in audit,
+
+274
+00:18:09.344 --> 00:18:13.227
+add S P N exclusions to the
+exception register, then enforce.
+
+275
+00:18:13.227 --> 00:18:18.750
+Treating a R H E L keytab like a G M S A
+leaves a long-lived key on disk unrotated:
+
+276
+00:18:18.750 --> 00:18:24.452
+inventory keytabs as secrets, and move
+the workload to its platform identity.
+
+277
+00:18:24.452 --> 00:18:29.045
+And one Entra identity for every cloud's
+workloads puts secrets or certificates
+
+278
+00:18:29.045 --> 00:18:33.364
+where the platform would issue temporary
+credentials: use native workload
+
+279
+00:18:33.364 --> 00:18:37.914
+identities, one governance record, and
+federation only to cross platforms.
+
+280
+00:18:41.710 --> 00:18:43.998
+To close, the guide's checklist.
+
+281
+00:18:43.998 --> 00:18:47.826
+Every account kept on Kerberos is
+scored against the Identity pillar,
+
+282
+00:18:47.826 --> 00:18:49.297
+with its end date and owner.
+
+283
+00:18:49.297 --> 00:18:54.439
+Every Kerberos application published
+through Private Access or application proxy
+
+284
+00:18:54.439 --> 00:18:56.467
+names its service account and S P N,
+
+285
+00:18:56.467 --> 00:18:59.798
+and the connector's delegation
+entry moves with any S P N.
+
+286
+00:18:59.798 --> 00:19:03.115
+S P N exclusions for
+service-to-service Kerberos are in the
+
+287
+00:19:03.115 --> 00:19:07.123
+exception register before the domain
+controller sensor is enforced.
+
+288
+00:19:07.123 --> 00:19:11.510
+Every SQL Server instance that takes
+Entra logins has a T L S certificate
+
+289
+00:19:11.510 --> 00:19:15.272
+from a certificate authority,
+which the service account can read.
+
+290
+00:19:15.272 --> 00:19:20.385
+No service account uses N T
+L M after April first, 2027.
+
+291
+00:19:20.385 --> 00:19:25.216
+And the program's people sign in to AWS,
+O C I and Linux hosts with Entra I D,
+
+292
+00:19:25.216 --> 00:19:30.047
+while workloads use their platform's
+identity, each joined to a record.
+
+293
+00:19:30.047 --> 00:19:32.719
+For the moves themselves,
+go back to the track:
+
+294
+00:19:32.719 --> 00:19:37.410
+the Non-Person Identity implementation
+guide, and the service accounts guide.
+
+295
+00:19:37.410 --> 00:19:38.300
+Thank you.

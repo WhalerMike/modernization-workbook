@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.437
+Oracle's side.
+
+2
+00:00:01.437 --> 00:00:03.961
+A user can hold three API signing keys,
+
+3
+00:00:03.961 --> 00:00:09.025
+and auth tokens and customer secret keys
+never expire, two of each per user.
+
+4
+00:00:09.025 --> 00:00:13.437
+The list commands return each credential's
+identifier, never the secret.
+
+5
+00:00:13.437 --> 00:00:17.508
+An instance principal's certificates
+are created and rotated by O C I,
+
+6
+00:00:17.508 --> 00:00:21.150
+but anyone who can sign in to the
+instance acts with its rights;
+
+7
+00:00:21.150 --> 00:00:23.363
+a function uses a resource principal.
+
+8
+00:00:23.363 --> 00:00:25.886
+Both are authorized
+through a dynamic group,
+
+9
+00:00:25.886 --> 00:00:28.613
+which has no permissions
+until a policy names it.
+
+10
+00:00:28.613 --> 00:00:31.313
+In a policy, manage
+means every permission.
+
+11
+00:00:31.313 --> 00:00:34.220
+The program's tenancy is
+in the O C two realm,
+
+12
+00:00:34.220 --> 00:00:36.962
+so every IAM call goes to the home region.
+
+13
+00:00:36.962 --> 00:00:41.707
+And Microsoft Learn says Entra
+accepts tokens from workloads in AWS,
+
+14
+00:00:41.707 --> 00:00:45.037
+only from issuers that sign
+with R S two fifty-six.
+
+15
+00:00:45.037 --> 00:00:48.693
+Whether GovCloud's tokens work
+with Entra hasn't been tested,
+
+16
+00:00:48.693 --> 00:00:51.340
+so the guide uses that
+path only after a test.

@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.262
+Lab 2 runs the same checks on a real
+account's and tenancy's exports.
+
+2
+00:00:04.262 --> 00:00:07.700
+Nobody has run it yet, so no
+step's output has been seen.
+
+3
+00:00:07.700 --> 00:00:12.831
+Use one AWS GovCloud account and one O
+C I tenancy that aren't production, with
+
+4
+00:00:12.831 --> 00:00:17.962
+read access to IAM and Roles Anywhere in
+the account, and to IAM in the tenancy.
+
+5
+00:00:17.962 --> 00:00:22.850
+Write the settings and an empty exception
+list, in a folder outside the repository.
+
+6
+00:00:22.850 --> 00:00:27.336
+Run the guide's AWS export commands,
+the tag and C R L reads included,
+
+7
+00:00:27.336 --> 00:00:30.825
+then the O C I ones against
+the tenancy's home region.
+
+8
+00:00:30.825 --> 00:00:35.498
+Then run the checks, and read the findings
+and the manifest: it records no request,
+
+9
+00:00:35.498 --> 00:00:39.675
+because the kit called nothing, and
+lists the fourteen export commands.
+
+10
+00:00:39.675 --> 00:00:43.607
+If every O C I user shows no credentials
+while the console shows keys,
+
+11
+00:00:43.607 --> 00:00:47.188
+the command line's field names
+differ from those the kit reads.
+
+12
+00:00:47.188 --> 00:00:48.551
+Record what they are.
+
+13
+00:00:48.551 --> 00:00:52.320
+Keep the exports with the run's
+evidence, never in the repository.

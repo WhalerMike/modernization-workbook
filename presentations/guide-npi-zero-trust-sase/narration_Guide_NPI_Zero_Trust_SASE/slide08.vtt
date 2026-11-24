@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.125
+Linux deserves a closer look.
+
+2
+00:00:02.125 --> 00:00:04.949
+Red Hat recommends joining a R H E L host
+
+3
+00:00:04.949 --> 00:00:07.913
+to Active Directory
+with S S S D and realm.
+
+4
+00:00:07.913 --> 00:00:13.317
+Its Managed Service Account is an Active
+Directory account that corresponds to a
+
+5
+00:00:13.317 --> 00:00:16.576
+specific computer, created
+with A D C L I create M S A,
+
+6
+00:00:16.576 --> 00:00:20.074
+and its Kerberos key is written
+to a keytab on the host.
+
+7
+00:00:20.074 --> 00:00:22.763
+That's a different thing
+from a Windows G M S A.
+
+8
+00:00:22.763 --> 00:00:27.312
+The key sits in a file, so it's a
+long-lived secret to protect and rotate.
+
+9
+00:00:27.312 --> 00:00:32.418
+For people, Microsoft Learn says Entra I
+D can be the sign-in for S S H on Azure
+
+10
+00:00:32.418 --> 00:00:36.771
+Linux virtual machines and on
+Azure Arc-enabled Linux servers,
+
+11
+00:00:36.771 --> 00:00:41.291
+and it lists R H E L seven point four
+to seven point nine, eight point
+
+12
+00:00:41.291 --> 00:00:46.062
+three and later, nine point oh and
+later, and ten point one as supported.
+
+13
+00:00:46.062 --> 00:00:50.918
+An R H E L instance in AWS GovCloud
+U S or O C I that's onboarded to Arc
+
+14
+00:00:50.918 --> 00:00:56.599
+can use the same Entra sign-in, so
+operators keep one identity across clouds.
+
+15
+00:00:56.599 --> 00:00:59.216
+That's design guidance,
+and the Arc track guide
+
+16
+00:00:59.216 --> 00:01:01.920
+covers onboarding other
+clouds' servers to Arc.

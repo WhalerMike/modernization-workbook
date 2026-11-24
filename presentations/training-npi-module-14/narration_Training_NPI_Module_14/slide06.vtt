@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.925
+Unit 3 is the checks.
+
+2
+00:00:01.925 --> 00:00:05.615
+N P I A W S oh one to oh seven
+are the long-lived credentials:
+
+3
+00:00:05.615 --> 00:00:11.063
+every active access key and service-specific
+credential against its exception,
+
+4
+00:00:11.063 --> 00:00:14.235
+two keys on one user, a
+key unused for ninety days,
+
+5
+00:00:14.235 --> 00:00:17.162
+which is design guidance,
+and a root user key.
+
+6
+00:00:17.162 --> 00:00:20.762
+Oh eight to sixteen are owners
+and trust: missing tags,
+
+7
+00:00:20.762 --> 00:00:25.342
+an O I D C trust with no subject
+condition, an outside account, a star or
+
+8
+00:00:25.342 --> 00:00:30.413
+another partition as the principal, and
+a trust anchor with no imported C R L.
+
+9
+00:00:30.413 --> 00:00:33.031
+N P I O C I oh one to ten
+do the same for O C I,
+
+10
+00:00:33.031 --> 00:00:38.688
+and add dynamic groups that match the
+whole tenancy or hold manage all-resources.
+
+11
+00:00:38.688 --> 00:00:41.576
+The validation kit's V
+K N P I ten reads the
+
+12
+00:00:41.576 --> 00:00:44.813
+same exports and reports
+the gate's criteria.
+
+13
+00:00:44.813 --> 00:00:49.135
+And four things are still unknown,
+so the kit doesn't assume an answer:
+
+14
+00:00:49.135 --> 00:00:52.455
+whether GovCloud and Entra
+can federate either way,
+
+15
+00:00:52.455 --> 00:00:56.701
+whether Access Analyzer's
+unused-access findings run in GovCloud,
+
+16
+00:00:56.701 --> 00:01:01.024
+whether O C 2 offers instance, resource
+and O K E workload principals,
+
+17
+00:01:01.024 --> 00:01:04.130
+and what field names the
+O C I command line prints.

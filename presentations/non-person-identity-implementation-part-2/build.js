@@ -349,7 +349,7 @@ Machines run, verify and record every step they can; people decide, approve in S
   const s = content(SG5, "G5: requirement, evidence, availability, rollback");
   tag(s, "What");
   const tb = table(s, "Req", 1.45, [5.6, 6.55], ["Requirement", "What the ISSO keeps"], [
-    ["IA-5 Authenticator Management; IA-5(2)", "VK-NPI-02 and VK-NPI-03 runs; the application management policy export; the rotation calendar"],
+    ["IA-5 Authenticator Management; IA-5(2)", "VK-NPI-02 and VK-NPI-03 runs, and VK-NPI-10 runs for AWS GovCloud (US) and OCI; the application management policy export; the rotation calendar"],
     ["IA-9 Service Identification and Authentication (in no baseline, so tailored in)", "Graph permission grants per workload identity; the service principal sign-in log"],
     ["Book 02's Phase 4 validation criteria", "No stored secrets where possible; no disruption during the parallel run; workload policies enforced"],
   ], { fontSize: 11.5, limit: 6.6 });
@@ -368,7 +368,7 @@ Machines run, verify and record every step they can; people decide, approve in S
   notes(s,
 `G5's federal requirements and evidence.
 
-IA-5, authenticator management, with enhancement 2: managed identities and federation first, certificates in a vault and rotated, no new secrets. The ISSO keeps the VK-NPI-02 and VK-NPI-03 runs, the application management policy export from Part 1's G3, and the rotation calendar. IA-9, service identification and authentication, is in no baseline, so it's tailored in: services and workloads authenticate as themselves to Entra ID. The evidence is the Graph permission grants per workload identity and the service principal sign-in log, which is also where the parallel run's new sign-ins show. And Book 02's validation criteria for Phase 4: new identities authenticate without stored secrets where possible, there was no service disruption during the parallel run, and workload identity policies are enforced.
+IA-5, authenticator management, with enhancement 2: managed identities and federation first, certificates in a vault and rotated, no new secrets. The ISSO keeps the VK-NPI-02 and VK-NPI-03 runs, the VK-NPI-10 runs for AWS GovCloud (US) and OCI, the application management policy export from Part 1's G3, and the rotation calendar. IA-9, service identification and authentication, is in no baseline, so it's tailored in: services and workloads authenticate as themselves to Entra ID. The evidence is the Graph permission grants per workload identity and the service principal sign-in log, which is also where the parallel run's new sign-ins show. And Book 02's validation criteria for Phase 4: new identities authenticate without stored secrets where possible, there was no service disruption during the parallel run, and workload identity policies are enforced.
 
 Validate. Every high-risk account is converted or retired: VK-NPI-06 shows none still enabled with a password that never expires, outside a dated exception, and no finding against the managed service account standard's settings for the gMSAs and dMSAs the wave created. VK-NPI-03 shows the converted apps no longer hold secrets.
 

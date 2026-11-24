@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.613
+Lab 1 needs PowerShell 7 with
+Pester, and no account or tenancy.
+
+2
+00:00:04.613 --> 00:00:09.837
+The fixtures are one fictional GovCloud
+account and one fictional O C two tenancy.
+
+3
+00:00:09.837 --> 00:00:14.542
+Seven IAM users, one of them a person
+and one the root user; eleven roles
+
+4
+00:00:14.542 --> 00:00:19.163
+and a service-linked one; three O I
+D C providers and two trust anchors.
+
+5
+00:00:19.163 --> 00:00:24.438
+On the O C I side, five users, three
+dynamic groups and three policies.
+
+6
+00:00:24.438 --> 00:00:26.653
+Each is built to trip one or more rules,
+
+7
+00:00:26.653 --> 00:00:29.725
+and two credentials are
+under a recorded exception.
+
+8
+00:00:29.725 --> 00:00:31.463
+Step 1 runs the checks.
+
+9
+00:00:31.463 --> 00:00:36.650
+The summary says twenty-four findings,
+eleven warnings and two for information;
+
+10
+00:00:36.650 --> 00:00:41.524
+seven long-lived credentials in AWS and
+five in O C I; and nothing left unread.
+
+11
+00:00:41.524 --> 00:00:44.260
+Then one line per rule,
+and the manifest's hash.

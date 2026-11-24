@@ -1,87 +1,108 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.200
+00:00:00.100 --> 00:00:04.075
 On the federal side, authenticator
 management is the main requirement.
 
 2
-00:00:04.200 --> 00:00:06.429
-The evidence is the policy export,
+00:00:04.075 --> 00:00:09.063
+The evidence is the policy export, the
+kit runs for credentials and secrets,
 
 3
-00:00:06.429 --> 00:00:10.888
-the kit runs for credentials and
-secrets, and the rotation calendar.
+00:00:09.063 --> 00:00:12.638
+in AWS and Oracle Cloud too,
+and the rotation calendar.
 
 4
-00:00:10.888 --> 00:00:14.147
+00:00:12.638 --> 00:00:15.701
 The policy also addresses
 three SCuBA policies:
 
 5
-00:00:14.147 --> 00:00:18.549
+00:00:15.701 --> 00:00:19.837
 no app passwords, and capped
 password and certificate lifetimes.
 
 6
-00:00:18.549 --> 00:00:22.630
+00:00:19.837 --> 00:00:23.584
 They're SHOULD policies in ScubaGear,
 not required configurations,
 
 7
-00:00:22.630 --> 00:00:24.962
+00:00:23.584 --> 00:00:25.725
 and their report is filed with the gate.
 
 8
-00:00:24.962 --> 00:00:27.632
+00:00:25.725 --> 00:00:28.244
 Audit requirements cover
 credential changes,
 
 9
-00:00:27.632 --> 00:00:31.124
+00:00:28.244 --> 00:00:31.537
 so the entries for added
 credentials are logged and reviewed.
 
 10
-00:00:31.124 --> 00:00:34.272
+00:00:31.537 --> 00:00:34.489
 To validate, the credential
 check shows nothing issued
 
 11
-00:00:34.272 --> 00:00:37.350
+00:00:34.489 --> 00:00:37.376
 after the effective date that
 runs longer than the cap.
 
 12
-00:00:37.350 --> 00:00:42.412
+00:00:37.376 --> 00:00:42.037
 Every credential that expires within sixty
 days has an owner and a renewal date.
 
 13
-00:00:42.412 --> 00:00:47.031
+00:00:42.037 --> 00:00:46.184
 The secrets check shows each app still
 on a secret is in a conversion wave,
 
 14
-00:00:47.031 --> 00:00:49.263
+00:00:46.184 --> 00:00:48.188
 or has an exception with an end date.
 
 15
-00:00:49.263 --> 00:00:51.240
-App management policies are free,
+00:00:48.188 --> 00:00:53.400
+And for AWS GovCloud and Oracle Cloud,
+the tenth check shows every access key,
 
 16
-00:00:51.240 --> 00:00:54.701
-and Microsoft lists their calls
-for the government clouds.
+00:00:53.400 --> 00:00:58.116
+A P I key, auth token and customer
+secret key under a current exception,
 
 17
-00:00:54.701 --> 00:00:57.541
+00:00:58.116 --> 00:01:00.846
+no Oracle A P I key
+older than ninety days,
+
+18
+00:01:00.846 --> 00:01:05.976
+and an imported revocation list for
+every IAM Roles Anywhere trust anchor.
+
+19
+00:01:05.976 --> 00:01:08.339
+App management policies are free,
+
+20
+00:01:08.339 --> 00:01:12.137
+and their calls list the global
+service, which GCC uses.
+
+21
+00:01:12.137 --> 00:01:14.747
 To roll back, give one
 application a policy
 
-18
-00:00:57.541 --> 00:01:01.112
+22
+00:01:14.747 --> 00:01:18.026
 exception with an end date,
 in the exception register.

@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.738
+Step four reads who
+isn't joined to a record.
+
+2
+00:00:02.738 --> 00:00:08.126
+Seven identities: two IAM users holding
+keys, a Lambda execution role, a role
+
+3
+00:00:08.126 --> 00:00:13.563
+anyone can assume, two O C I users holding
+credentials, and the dynamic group.
+
+4
+00:00:13.563 --> 00:00:16.475
+Each is an orphan lead under
+the guide's orphan rule.
+
+5
+00:00:16.475 --> 00:00:19.923
+Then it reads one trust: C
+I dash pipeline dash O I D C
+
+6
+00:00:19.923 --> 00:00:24.212
+trusts GitHub's token issuer
+with only an audience condition.
+
+7
+00:00:24.212 --> 00:00:28.837
+AWS's examples limit the token's
+subject claim to the one repository.
+
+8
+00:00:28.837 --> 00:00:33.712
+Without it, workflows from repositories
+outside your control could assume the role.
+
+9
+00:00:33.712 --> 00:00:36.360
+That's N P I A W S oh nine.

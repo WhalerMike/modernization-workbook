@@ -1,0 +1,946 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.740
+Welcome to Module 14 of the
+Non-Person Identity learning path:
+
+2
+00:00:04.740 --> 00:00:08.288
+workload identity across
+AWS GovCloud and O C I.
+
+3
+00:00:08.288 --> 00:00:12.878
+It teaches the implementation guide's
+steps for the program's other two clouds,
+
+4
+00:00:12.878 --> 00:00:15.376
+with Chapter 13 of the developer workbook.
+
+5
+00:00:15.376 --> 00:00:18.787
+The program's AWS estate
+is in AWS GovCloud,
+
+6
+00:00:18.787 --> 00:00:24.637
+and its Oracle Cloud tenancy is in
+Oracle's US Government Cloud, realm O C 2.
+
+7
+00:00:24.637 --> 00:00:29.962
+In November 2026 the program added both
+clouds' workload identities to this track.
+
+8
+00:00:29.962 --> 00:00:33.160
+Take this module after Modules 1 and 4.
+
+9
+00:00:36.960 --> 00:00:38.297
+Why does this matter?
+
+10
+00:00:38.297 --> 00:00:43.109
+A workload in AWS or O C I that holds an
+access key is a service account with a
+
+11
+00:00:43.109 --> 00:00:45.021
+password that never expires,
+
+12
+00:00:45.021 --> 00:00:48.847
+sitting in a console nobody
+in identity governance opens.
+
+13
+00:00:48.847 --> 00:00:53.198
+This module brings those identities under
+the same rules as the rest of the track.
+
+14
+00:00:53.198 --> 00:00:57.422
+Each one is listed and joined to a
+record with two owners and a sponsor.
+
+15
+00:00:57.422 --> 00:01:01.247
+Every long-lived credential is an
+exception with a replace-by date.
+
+16
+00:01:01.247 --> 00:01:04.385
+And every trust is no wider
+than its workload needs.
+
+17
+00:01:04.385 --> 00:01:07.593
+The program decided to extend
+the track to both clouds,
+
+18
+00:01:07.593 --> 00:01:11.190
+and named the tags that join
+each identity to its record.
+
+19
+00:01:14.990 --> 00:01:17.740
+Here's what you'll be able to
+do by the end of this module,
+
+20
+00:01:17.740 --> 00:01:20.052
+which takes about sixty
+minutes with the lab.
+
+21
+00:01:20.052 --> 00:01:24.359
+You'll say why an access key, an
+API key, an auth token or a customer
+
+22
+00:01:24.359 --> 00:01:29.302
+secret key is a long-lived secret, and
+what the program does with each one.
+
+23
+00:01:29.302 --> 00:01:32.039
+You'll name what the
+guide's export steps read,
+
+24
+00:01:32.039 --> 00:01:35.515
+and what AWS's credential report
+and list calls leave out.
+
+25
+00:01:35.515 --> 00:01:38.577
+You'll join an identity to
+its record with four tags.
+
+26
+00:01:38.577 --> 00:01:42.690
+You'll run Chapter 13's checks on
+fixtures and read what they find.
+
+27
+00:01:42.690 --> 00:01:46.603
+And you'll name what's still unknown,
+and why the kit doesn't assume an answer.
+
+28
+00:01:46.603 --> 00:01:49.689
+Before you start, finish Modules 1 and 4.
+
+29
+00:01:49.689 --> 00:01:53.624
+You need PowerShell 7.1
+or later with Pester 5,
+
+30
+00:01:53.624 --> 00:01:57.980
+and no AWS account, O C I
+tenancy or Entra tenant.
+
+31
+00:02:01.780 --> 00:02:03.768
+Unit 1 is what the vendors say.
+
+32
+00:02:03.768 --> 00:02:08.405
+AWS says to require workloads to use
+temporary credentials with IAM roles,
+
+33
+00:02:08.405 --> 00:02:11.580
+and where possible not to
+create access keys at all.
+
+34
+00:02:11.580 --> 00:02:14.264
+Oracle recommends instance principals,
+
+35
+00:02:14.264 --> 00:02:17.343
+and rotating API keys
+every ninety days or less.
+
+36
+00:02:17.343 --> 00:02:19.742
+AWS GovCloud isn't commercial AWS:
+
+37
+00:02:19.742 --> 00:02:24.800
+it has one IAM control plane and no
+global S T S endpoint, no role between a
+
+38
+00:02:24.800 --> 00:02:30.030
+GovCloud account and a standard one,
+and a root user with no console sign-in.
+
+39
+00:02:30.030 --> 00:02:34.235
+IAM Roles Anywhere works there,
+but it can't fetch revocation
+
+40
+00:02:34.235 --> 00:02:38.692
+lists from a certificate, so AWS
+says to import your C R Ls instead.
+
+41
+00:02:38.692 --> 00:02:43.034
+In O C I, instance and resource
+principals act through a dynamic group,
+
+42
+00:02:43.034 --> 00:02:46.081
+which has no permissions
+until a policy names it.
+
+43
+00:02:46.081 --> 00:02:49.430
+Auth tokens and customer
+secret keys never expire.
+
+44
+00:02:49.430 --> 00:02:54.138
+And Microsoft Learn says Entra
+accepts tokens from workloads in AWS,
+
+45
+00:02:54.138 --> 00:02:56.368
+signed with R S two fifty-six only.
+
+46
+00:02:56.368 --> 00:03:00.517
+Whether a GovCloud account's tokens
+work with Entra hasn't been tested,
+
+47
+00:03:00.517 --> 00:03:03.093
+so the guide uses that
+path only after a test.
+
+48
+00:03:03.093 --> 00:03:04.618
+The program's rule follows:
+
+49
+00:03:04.618 --> 00:03:08.870
+every long-lived credential is an
+exception with a replacement date.
+
+50
+00:03:12.670 --> 00:03:15.032
+Unit 2 is the exports and the join.
+
+51
+00:03:15.032 --> 00:03:18.233
+Every command in the guide's
+two export steps is a read.
+
+52
+00:03:18.233 --> 00:03:21.975
+In AWS, the credential
+report lists every IAM user,
+
+53
+00:03:21.975 --> 00:03:25.170
+its password and its
+first two access keys.
+
+54
+00:03:25.170 --> 00:03:29.720
+It leaves out service-specific credentials
+and any key beyond the first two,
+
+55
+00:03:29.720 --> 00:03:33.982
+so the export also lists access keys
+and service-specific credentials.
+
+56
+00:03:33.982 --> 00:03:38.432
+Then the roles, with their trust
+policies, the instance profiles,
+
+57
+00:03:38.432 --> 00:03:43.637
+the O I D C providers, and the Roles
+Anywhere trust anchors, profiles and C R Ls.
+
+58
+00:03:43.637 --> 00:03:46.575
+List users and list
+roles don't return tags,
+
+59
+00:03:46.575 --> 00:03:49.933
+so the export reads each
+user's and role's tags too.
+
+60
+00:03:49.933 --> 00:03:53.719
+In O C I, against the tenancy's
+home region, it reads the users,
+
+61
+00:03:53.719 --> 00:03:57.348
+each user's credentials, which
+come back as identifiers,
+
+62
+00:03:57.348 --> 00:04:00.819
+never the secret, the dynamic
+groups and the policies.
+
+63
+00:04:00.819 --> 00:04:06.432
+The join is four tags: system I D,
+owner one, owner two and sponsor.
+
+64
+00:04:06.432 --> 00:04:08.288
+Each owner gets its own key,
+
+65
+00:04:08.288 --> 00:04:12.169
+because an AWS tag value can't
+hold a comma or a semicolon.
+
+66
+00:04:12.169 --> 00:04:18.220
+An identity with no tags or record is an
+orphan: disable first, then a person acts.
+
+67
+00:04:22.020 --> 00:04:23.845
+Unit 3 is the checks.
+
+68
+00:04:23.845 --> 00:04:27.535
+N P I A W S oh one to oh seven
+are the long-lived credentials:
+
+69
+00:04:27.535 --> 00:04:32.983
+every active access key and service-specific
+credential against its exception,
+
+70
+00:04:32.983 --> 00:04:36.155
+two keys on one user, a
+key unused for ninety days,
+
+71
+00:04:36.155 --> 00:04:39.082
+which is design guidance,
+and a root user key.
+
+72
+00:04:39.082 --> 00:04:42.682
+Oh eight to sixteen are owners
+and trust: missing tags,
+
+73
+00:04:42.682 --> 00:04:47.262
+an O I D C trust with no subject
+condition, an outside account, a star or
+
+74
+00:04:47.262 --> 00:04:52.333
+another partition as the principal, and
+a trust anchor with no imported C R L.
+
+75
+00:04:52.333 --> 00:04:54.951
+N P I O C I oh one to ten
+do the same for O C I,
+
+76
+00:04:54.951 --> 00:05:00.608
+and add dynamic groups that match the
+whole tenancy or hold manage all-resources.
+
+77
+00:05:00.608 --> 00:05:03.495
+The validation kit's V
+K N P I ten reads the
+
+78
+00:05:03.495 --> 00:05:06.733
+same exports and reports
+the gate's criteria.
+
+79
+00:05:06.733 --> 00:05:11.055
+And four things are still unknown,
+so the kit doesn't assume an answer:
+
+80
+00:05:11.055 --> 00:05:14.375
+whether GovCloud and Entra
+can federate either way,
+
+81
+00:05:14.375 --> 00:05:18.621
+whether Access Analyzer's
+unused-access findings run in GovCloud,
+
+82
+00:05:18.621 --> 00:05:22.944
+whether O C 2 offers instance, resource
+and O K E workload principals,
+
+83
+00:05:22.944 --> 00:05:26.350
+and what field names the
+O C I command line prints.
+
+84
+00:05:30.150 --> 00:05:31.037
+Try it.
+
+85
+00:05:31.037 --> 00:05:35.926
+Lab 1 runs in the non-person identity
+folder, with no account and no tenancy.
+
+86
+00:05:35.926 --> 00:05:38.637
+These are Chapter 13's Lab 1 steps.
+
+87
+00:05:38.637 --> 00:05:43.913
+The fixtures are one fictional GovCloud
+account and one fictional O C 2 tenancy.
+
+88
+00:05:43.913 --> 00:05:50.027
+Step one runs the checks as of November
+24, 2026: seven IAM users, eleven roles
+
+89
+00:05:50.027 --> 00:05:55.746
+and two trust anchors in AWS; five
+users and three dynamic groups in O C I.
+
+90
+00:05:55.746 --> 00:05:57.225
+Look for two lines.
+
+91
+00:05:57.225 --> 00:06:01.138
+Twenty-four findings, eleven
+warnings and two information items.
+
+92
+00:06:01.138 --> 00:06:04.661
+And seven AWS and five O C
+I long-lived credentials,
+
+93
+00:06:04.661 --> 00:06:07.325
+two of them under a current exception.
+
+94
+00:06:07.325 --> 00:06:10.037
+Then one line per rule,
+and the manifest's hash.
+
+95
+00:06:10.037 --> 00:06:14.231
+The script reads files and
+writes its output folder:
+
+96
+00:06:14.231 --> 00:06:19.212
+it runs no AWS or O C I command,
+calls no A P I, and changes no key.
+
+97
+00:06:23.010 --> 00:06:24.960
+Step two reads the findings.
+
+98
+00:06:24.960 --> 00:06:27.935
+Find S V C dash report dash export.
+
+99
+00:06:27.935 --> 00:06:32.687
+It trips four rules: oh one, an
+active key with no exception, twice,
+
+100
+00:06:32.687 --> 00:06:38.078
+once for each key; oh two, two active
+keys on one user, one of them never used;
+
+101
+00:06:38.078 --> 00:06:43.835
+oh four, a console password beside the
+keys; and oh eight, only one owner tagged.
+
+102
+00:06:43.835 --> 00:06:47.935
+Then find D G dash everything,
+a dynamic group in O C I.
+
+103
+00:06:47.935 --> 00:06:51.359
+It has no tags, no policy
+names it, and its matching rule
+
+104
+00:06:51.359 --> 00:06:55.172
+names the whole tenancy, so
+every instance would be a member.
+
+105
+00:06:55.172 --> 00:06:59.340
+Notice the first line: S V C dash
+app dash sync's key is a warning,
+
+106
+00:06:59.340 --> 00:07:03.240
+not a finding, because it's
+under a current exception.
+
+107
+00:07:07.040 --> 00:07:12.254
+Step three reads the long-lived
+credentials: one row per active access key,
+
+108
+00:07:12.254 --> 00:07:17.382
+service-specific credential, API key,
+auth token and customer secret key,
+
+109
+00:07:17.382 --> 00:07:21.228
+with its age, its last use for
+AWS keys, and its exception.
+
+110
+00:07:21.228 --> 00:07:24.216
+Two are under exceptions until 2027:
+
+111
+00:07:24.216 --> 00:07:30.291
+S V C dash app dash sync's access key and
+H R dash report dash reader's API key.
+
+112
+00:07:30.291 --> 00:07:31.677
+Look at the ages.
+
+113
+00:07:31.677 --> 00:07:36.514
+S V C dash legacy dash F T P's key
+is more than nine hundred days old,
+
+114
+00:07:36.514 --> 00:07:41.815
+and was last used in December 2025, so
+it's also a ninety-day unused lead.
+
+115
+00:07:41.815 --> 00:07:45.107
+H R dash build dash push's
+auth token is five hundred
+
+116
+00:07:45.107 --> 00:07:48.477
+and eighty-two days old, and
+auth tokens never expire.
+
+117
+00:07:48.477 --> 00:07:52.290
+The file holds identifiers
+only, never a secret.
+
+118
+00:07:56.090 --> 00:07:58.728
+Step four reads who
+isn't joined to a record.
+
+119
+00:07:58.728 --> 00:08:04.115
+Seven identities: two IAM users holding
+keys, a Lambda execution role, a role
+
+120
+00:08:04.115 --> 00:08:09.553
+anyone can assume, two O C I users holding
+credentials, and the dynamic group.
+
+121
+00:08:09.553 --> 00:08:12.465
+Each is an orphan lead under
+the guide's orphan rule.
+
+122
+00:08:12.465 --> 00:08:15.913
+Then it reads one trust: C
+I dash pipeline dash O I D C
+
+123
+00:08:15.913 --> 00:08:20.202
+trusts GitHub's token issuer
+with only an audience condition.
+
+124
+00:08:20.202 --> 00:08:24.827
+AWS's examples limit the token's
+subject claim to the one repository.
+
+125
+00:08:24.827 --> 00:08:29.702
+Without it, workflows from repositories
+outside your control could assume the role.
+
+126
+00:08:29.702 --> 00:08:32.650
+That's N P I A W S oh nine.
+
+127
+00:08:36.450 --> 00:08:40.059
+Step five runs on an export
+made before the guide's export
+
+128
+00:08:40.059 --> 00:08:43.437
+step added the tag and C R L
+reads, so it doesn't have them.
+
+129
+00:08:43.437 --> 00:08:46.362
+The kit still runs, and says
+what it couldn't check.
+
+130
+00:08:46.362 --> 00:08:49.412
+The manifest's not-read
+line names both files.
+
+131
+00:08:49.412 --> 00:08:53.432
+N P I A W S oh eight becomes one
+warning for the whole account,
+
+132
+00:08:53.432 --> 00:08:56.112
+instead of a finding for each identity.
+
+133
+00:08:56.112 --> 00:08:58.770
+And oh fourteen warns
+for each trust anchor,
+
+134
+00:08:58.770 --> 00:09:01.649
+because it can't tell
+whether a C R L was imported.
+
+135
+00:09:01.649 --> 00:09:04.538
+A missing file is a warning, never a pass.
+
+136
+00:09:04.538 --> 00:09:08.718
+Notice too that S V C dash app dash
+sync's key is back to a finding,
+
+137
+00:09:08.718 --> 00:09:12.051
+because this run was
+given no exception list.
+
+138
+00:09:15.850 --> 00:09:19.311
+Step six reads the evidence:
+one row per step and control,
+
+139
+00:09:19.311 --> 00:09:23.600
+with the K S Is aligned with it and
+the file that provides the evidence.
+
+140
+00:09:23.600 --> 00:09:29.638
+The inventory rows are A C two, C M eight
+and I A four, from the identities file.
+
+141
+00:09:29.638 --> 00:09:32.025
+The credentials row is I A five.
+
+142
+00:09:32.025 --> 00:09:36.925
+The certificates rows are I A five
+enhancement two and S C seventeen,
+
+143
+00:09:36.925 --> 00:09:40.863
+from the trust file, as is A
+C six for trust and privilege.
+
+144
+00:09:40.863 --> 00:09:45.376
+And the lifecycle row is A C two
+enhancement three, from the findings.
+
+145
+00:09:45.376 --> 00:09:49.000
+Match each row to the requirement
+table in the module's introduction.
+
+146
+00:09:49.000 --> 00:09:52.112
+Step seven runs the
+tests: thirty-four pass.
+
+147
+00:09:52.112 --> 00:09:55.310
+Step eight cleans up by
+removing the output folder.
+
+148
+00:09:59.110 --> 00:10:03.272
+Lab 2 runs the same checks on a real
+account's and tenancy's exports.
+
+149
+00:10:03.272 --> 00:10:06.710
+Nobody has run it yet, so no
+step's output has been seen.
+
+150
+00:10:06.710 --> 00:10:11.841
+Use one AWS GovCloud account and one O
+C I tenancy that aren't production, with
+
+151
+00:10:11.841 --> 00:10:16.972
+read access to IAM and Roles Anywhere in
+the account, and to IAM in the tenancy.
+
+152
+00:10:16.972 --> 00:10:21.860
+Write the settings and an empty exception
+list, in a folder outside the repository.
+
+153
+00:10:21.860 --> 00:10:26.346
+Run the guide's AWS export commands,
+the tag and C R L reads included,
+
+154
+00:10:26.346 --> 00:10:29.835
+then the O C I ones against
+the tenancy's home region.
+
+155
+00:10:29.835 --> 00:10:34.508
+Then run the checks, and read the findings
+and the manifest: it records no request,
+
+156
+00:10:34.508 --> 00:10:38.685
+because the kit called nothing, and
+lists the fourteen export commands.
+
+157
+00:10:38.685 --> 00:10:42.617
+If every O C I user shows no credentials
+while the console shows keys,
+
+158
+00:10:42.617 --> 00:10:46.198
+the command line's field names
+differ from those the kit reads.
+
+159
+00:10:46.198 --> 00:10:47.561
+Record what they are.
+
+160
+00:10:47.561 --> 00:10:51.630
+Keep the exports with the run's
+evidence, never in the repository.
+
+161
+00:10:55.430 --> 00:10:57.030
+The federal requirement.
+
+162
+00:10:57.030 --> 00:11:00.443
+Chapter 13 writes one evidence
+row per step and control,
+
+163
+00:11:00.443 --> 00:11:03.455
+and these are the rows this
+module's lab produces.
+
+164
+00:11:03.455 --> 00:11:07.902
+The identities file supports A C
+two, Account Management, C M eight,
+
+165
+00:11:07.902 --> 00:11:16.055
+System Component Inventory, and I A four,
+Identifier Management, in NIST SP 800-53.
+
+166
+00:11:16.055 --> 00:11:18.389
+The credentials file supports I A five,
+
+167
+00:11:18.389 --> 00:11:22.255
+Authenticator Management, with
+the exception records it names.
+
+168
+00:11:22.255 --> 00:11:25.721
+The trust anchors and their
+C R Ls support I A five
+
+169
+00:11:25.721 --> 00:11:29.880
+enhancement two and S C seventeen,
+the public key controls.
+
+170
+00:11:29.880 --> 00:11:33.918
+The trust and reach of every role
+and dynamic group support A C six,
+
+171
+00:11:33.918 --> 00:11:38.255
+Least Privilege, with the owner's
+justification for each finding kept.
+
+172
+00:11:38.255 --> 00:11:41.539
+And the orphan leads support
+A C two enhancement three,
+
+173
+00:11:41.539 --> 00:11:45.042
+Disable Accounts, with the
+orphan or decommission ticket.
+
+174
+00:11:45.042 --> 00:11:49.667
+K S Is are FedRAMP twenty X indicators
+for cloud service providers.
+
+175
+00:11:49.667 --> 00:11:53.780
+A row provides evidence for a
+control; the assessor decides.
+
+176
+00:11:57.580 --> 00:11:59.630
+Check yourself with two questions.
+
+177
+00:11:59.630 --> 00:12:03.330
+First: how does the program
+join an IAM role to its record?
+
+178
+00:12:03.330 --> 00:12:08.597
+The answer is b: four tags, system I
+D, owner one, owner two and sponsor,
+
+179
+00:12:08.597 --> 00:12:13.668
+with one key per owner, because an
+AWS tag value can't hold a comma.
+
+180
+00:12:13.668 --> 00:12:17.405
+Second: the AWS export has no tags file.
+
+181
+00:12:17.405 --> 00:12:18.680
+What does the kit do?
+
+182
+00:12:18.680 --> 00:12:22.037
+The answer is b: it runs,
+lists the file as not read,
+
+183
+00:12:22.037 --> 00:12:24.792
+and raises one warning for the account.
+
+184
+00:12:24.792 --> 00:12:30.317
+A missing file is a warning, never a
+pass, and the kit never calls AWS itself.
+
+185
+00:12:30.317 --> 00:12:32.436
+The module page has three more questions,
+
+186
+00:12:32.436 --> 00:12:34.930
+each linked to the
+section that answers it.
+
+187
+00:12:38.730 --> 00:12:39.755
+To sum up.
+
+188
+00:12:39.755 --> 00:12:45.492
+The program's AWS GovCloud and O C I workload
+identities follow the track's rules.
+
+189
+00:12:45.492 --> 00:12:50.242
+Every one is listed from read-only exports
+and joined to a record by four tags.
+
+190
+00:12:50.242 --> 00:12:53.243
+Its long-lived credentials
+are exceptions with a date.
+
+191
+00:12:53.243 --> 00:12:55.531
+Its trusts are named down to the workload.
+
+192
+00:12:55.531 --> 00:12:58.793
+And its unknowns stay unknowns
+until the program tests them.
+
+193
+00:12:58.793 --> 00:13:03.256
+Chapter 13 checks the exports on
+every run, V K N P I ten reports the
+
+194
+00:13:03.256 --> 00:13:08.055
+gate's criteria, and the evidence
+names the control each row supports.
+
+195
+00:13:08.055 --> 00:13:11.094
+Next, go back to the
+learning path's index,
+
+196
+00:13:11.094 --> 00:13:14.320
+or on to Chapter 13 for
+Lab 2 and its dangers.

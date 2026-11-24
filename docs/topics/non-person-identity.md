@@ -62,7 +62,7 @@ The learning path and its hands-on labs.
 
 | Page | What it is |
 |---|---|
-| [Learning path: Non-Person Identity in Microsoft Entra ID](../training/non-person-identity/index.md) | A learning path in thirteen modules for identity engineers, Active Directory engineers, developers, AI governance staff and ISSO reviewers: inventory every service account and workload identity, give each one owners and a sponsor, decide… |
+| [Learning path: Non-Person Identity in Microsoft Entra ID](../training/non-person-identity/index.md) | A learning path in fourteen modules for identity engineers, Active Directory engineers, developers, AI governance staff and ISSO reviewers: inventory every service account and workload identity, give each one owners and a sponsor, decide… |
 | [Labs](../training/labs.md#npi) | Every lab in Building Non-Person Identity: what each needs, where it runs, and its commands. |
 
 : Learn {.striped .hover}
@@ -77,6 +77,7 @@ Narrated videos. Each opens in the site's player, with chapters and captions.
 | [Book 17 — AI Identity Governance: executive briefing](../presentations/watch.html?v=B17_AI_Identity_Executive_Narrated) | 15 |
 | [Book 17 — AI Identity Governance: presentation](../presentations/watch.html?v=B17_AI_Identity_Narrated) | 13 |
 | [Book 17 — AI Identity Governance: technical deep dive](../presentations/watch.html?v=B17_AI_Identity_Technical_Narrated) | 21 |
+| [Companion guide — Non-Person Identity: Zero Trust, SASE and Other Clouds](../presentations/watch.html?v=Guide_NPI_Zero_Trust_SASE_Narrated) | 20 |
 | [Companion guide — Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../presentations/watch.html?v=Guide_Service_Account_Migration_Narrated) | 27 |
 | [Non-Person Identity — implementation, Part 1: inventory, decisions and credential rules](../presentations/watch.html?v=Non_Person_Identity_Implementation_Part_1_Narrated) | 17 |
 | [Non-Person Identity — implementation, Part 2: privilege, conversion and lifecycle](../presentations/watch.html?v=Non_Person_Identity_Implementation_Part_2_Narrated) | 17 |
@@ -97,6 +98,7 @@ Narrated videos. Each opens in the site's player, with chapters and captions.
 | [Building Non-Person Identity, Chapter 10 — Drift and Evidence for the ISSO: narrated tour](../presentations/watch.html?v=DW_NPI_10_Drift_Evidence_Narrated) | 11 |
 | [Building Non-Person Identity, Chapter 11 — Deploying to Test and Production: narrated tour](../presentations/watch.html?v=DW_NPI_11_Deploy_Test_Production_Narrated) | 12 |
 | [Building Non-Person Identity, Chapter 12 — The Managed Service Account Standard: narrated tour](../presentations/watch.html?v=DW_NPI_12_MSA_Standard_Narrated) | 12 |
+| [Building Non-Person Identity, Chapter 13 — Workload Identity Across AWS GovCloud (US) and OCI: narrated tour](../presentations/watch.html?v=DW_NPI_13_AWS_OCI_Workload_Narrated) | 14 |
 
 : Developer workbook chapter tours {.striped .hover}
 
@@ -112,9 +114,10 @@ Narrated videos. Each opens in the site's player, with chapters and captions.
 | [Non-Person Identity learning path, Module 8: Convert Kerberos accounts to gMSAs and dMSAs](../presentations/watch.html?v=Training_NPI_Module_8_Narrated) | 21 |
 | [Non-Person Identity learning path, Module 9: Govern AI agent identities](../presentations/watch.html?v=Training_NPI_Module_9_Narrated) | 14 |
 | [Non-Person Identity learning path, Module 10: Find drift and file the evidence](../presentations/watch.html?v=Training_NPI_Module_10_Narrated) | 16 |
-| [Non-Person Identity learning path, Module 11: Deploy to test, then production](../presentations/watch.html?v=Training_NPI_Module_11_Narrated) | 14 |
+| [Non-Person Identity learning path, Module 11: Deploy to test, then production](../presentations/watch.html?v=Training_NPI_Module_11_Narrated) | 15 |
 | [Non-Person Identity learning path, Module 12: Migrate a service account](../presentations/watch.html?v=Training_NPI_Module_12_Narrated) | 15 |
 | [Non-Person Identity learning path, Module 13: Run the managed service account standard](../presentations/watch.html?v=Training_NPI_Module_13_Narrated) | 15 |
+| [Non-Person Identity learning path, Module 14: Workload identity across AWS GovCloud (US) and OCI](../presentations/watch.html?v=Training_NPI_Module_14_Narrated) | 13 |
 
 : Learning path modules {.striped .hover}
 

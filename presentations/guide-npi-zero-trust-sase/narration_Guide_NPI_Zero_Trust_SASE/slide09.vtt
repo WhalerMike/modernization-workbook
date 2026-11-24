@@ -1,0 +1,95 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:05.050
+Moving a service account or its S P N to
+Entra changes which certificates exist.
+
+2
+00:00:05.050 --> 00:00:08.113
+Each row starts from what
+the workload holds today,
+
+3
+00:00:08.113 --> 00:00:12.487
+and an S P N needs no certificate, as
+the service accounts guide explains.
+
+4
+00:00:12.487 --> 00:00:14.188
+Start with SQL Server.
+
+5
+00:00:14.188 --> 00:00:18.866
+An engine running as a user account
+or a G M S A, with Windows logins,
+
+6
+00:00:18.866 --> 00:00:22.750
+has an optional T L S
+certificate; Kerberos needs none.
+
+7
+00:00:22.750 --> 00:00:27.194
+Add Entra logins, and every instance that
+takes them needs a T L S certificate
+
+8
+00:00:27.194 --> 00:00:31.850
+issued by a certificate authority, with
+the service account able to read its key.
+
+9
+00:00:31.850 --> 00:00:34.871
+CyberArk Certificate Manager
+issues and renews it,
+
+10
+00:00:34.871 --> 00:00:38.313
+from the program's Active
+Directory Certificate Services.
+
+11
+00:00:38.313 --> 00:00:43.623
+A SQL Server 2022 instance's Entra identity
+adds an app-registration certificate in
+
+12
+00:00:43.623 --> 00:00:48.425
+Key Vault, which Key Vault and the Arc
+extension handle when it's service-managed.
+
+13
+00:00:48.425 --> 00:00:52.688
+A SQL Server 2025 instance
+uses the Arc managed identity:
+
+14
+00:00:52.688 --> 00:00:56.525
+no certificate before, none
+after, and Azure handles it.
+
+15
+00:00:56.525 --> 00:01:00.082
+An I I S pool published through
+application proxy or Private
+
+16
+00:01:00.082 --> 00:01:04.137
+Access with Kerberos single sign-on
+keeps the same site certificate.
+
+17
+00:01:04.137 --> 00:01:08.625
+The connector reaches the S P N with
+Kerberos, so there's no new certificate.
+
+18
+00:01:08.625 --> 00:01:12.293
+CyberArk Certificate Manager
+handles the site's certificate,
+
+19
+00:01:12.293 --> 00:01:15.550
+and Microsoft handles the
+application proxy endpoint.
