@@ -1,0 +1,22 @@
+{
+  "_comment": "Chapter 13's requirements catalog: for each step of the AWS GovCloud (US) and OCI workload identity check, the NIST SP 800-53 Rev 5 controls its output provides evidence for and the FedRAMP 20x Key Security Indicators whose related controls include them. Control mappings: the Non-Person Identity guide's evidence table and Book 13, Appendix A; KSIs: Book 13, Appendix A's rows, re-read from FedRAMP's related-controls lists on November 20, 2026 (WD-169), the same as config/requirements-ch12.json. 'primaryKsi' is the indicator the program leads with for non-user accounts. KSIs are FedRAMP's indicators for cloud service providers: the agency lines its own evidence up with them and doesn't report them. The alignment is the program's reading (design guidance).",
+  "version": 1,
+  "source": { "title": "FedRAMP, Key Security Indicators", "url": "https://www.fedramp.gov/2026/reference/key-security-indicators/", "accessed": "2026-11-20" },
+  "controls": {
+    "AC-2": { "ksis": ["KSI-IAM-APM", "KSI-IAM-JIT", "KSI-IAM-SNU", "KSI-IAM-SUS"], "primaryKsi": "KSI-IAM-SNU" },
+    "AC-2(3)": { "ksis": ["KSI-IAM-AAM", "KSI-IAM-JIT", "KSI-IAM-SUS"] },
+    "AC-6": { "ksis": ["KSI-IAM-ELP", "KSI-IAM-JIT"] },
+    "CM-8": { "ksis": ["KSI-PIY-GIV"] },
+    "IA-4": { "ksis": ["KSI-IAM-ELP", "KSI-IAM-JIT"] },
+    "IA-5": { "ksis": ["KSI-IAM-APM"] },
+    "IA-5(2)": { "ksis": ["KSI-IAM-APM", "KSI-IAM-ELP", "KSI-IAM-SNU", "KSI-SVC-ASM"] },
+    "SC-17": { "ksis": ["KSI-SVC-ASM"] }
+  },
+  "steps": {
+    "inventory": { "title": "Every AWS and OCI workload identity listed and joined to its record", "controls": ["AC-2", "CM-8", "IA-4"], "evidence": ["identities.json"] },
+    "credentials": { "title": "Long-lived credentials found, aged and matched to their exceptions", "controls": ["IA-5"], "evidence": ["credentials.csv"] },
+    "certificates": { "title": "IAM Roles Anywhere trust anchors and their imported CRLs", "controls": ["IA-5(2)", "SC-17"], "evidence": ["trust.json"] },
+    "trust-and-privilege": { "title": "Who each role, dynamic group and workload statement trusts, and broad grants", "controls": ["AC-6"], "evidence": ["trust.json"] },
+    "lifecycle": { "title": "Unused keys, unowned identities and unused issuers as orphan leads", "controls": ["AC-2(3)"], "evidence": ["findings.json"] }
+  }
+}

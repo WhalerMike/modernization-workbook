@@ -1,0 +1,327 @@
+[
+  {
+    "Type": "User",
+    "Name": "ops.person",
+    "Tags": []
+  },
+  {
+    "Type": "User",
+    "Name": "svc-app-sync",
+    "Tags": [
+      {
+        "Key": "SystemId",
+        "Value": "SYS-0107"
+      },
+      {
+        "Key": "Owner1",
+        "Value": "alex.owner@contoso.example"
+      },
+      {
+        "Key": "Owner2",
+        "Value": "sam.owner@contoso.example"
+      },
+      {
+        "Key": "Sponsor",
+        "Value": "pat.sponsor@contoso.example"
+      }
+    ]
+  },
+  {
+    "Type": "User",
+    "Name": "svc-bedrock-batch",
+    "Tags": [
+      {
+        "Key": "SystemId",
+        "Value": "SYS-0131"
+      },
+      {
+        "Key": "Owner1",
+        "Value": "alex.owner@contoso.example"
+      },
+      {
+        "Key": "Owner2",
+        "Value": "sam.owner@contoso.example"
+      },
+      {
+        "Key": "Sponsor",
+        "Value": "pat.sponsor@contoso.example"
+      }
+    ]
+  },
+  {
+    "Type": "User",
+    "Name": "svc-ci-deploy",
+    "Tags": [
+      {
+        "Key": "SystemId",
+        "Value": "SYS-0101"
+      },
+      {
+        "Key": "Owner1",
+        "Value": "alex.owner@contoso.example"
+      },
+      {
+        "Key": "Owner2",
+        "Value": "sam.owner@contoso.example"
+      },
+      {
+        "Key": "Sponsor",
+        "Value": "pat.sponsor@contoso.example"
+      }
+    ]
+  },
+  {
+    "Type": "User",
+    "Name": "svc-git-mirror",
+    "Tags": [
+      {
+        "Key": "SystemId",
+        "Value": "SYS-0101"
+      },
+      {
+        "Key": "Owner1",
+        "Value": "alex.owner@contoso.example"
+      },
+      {
+        "Key": "Owner2",
+        "Value": "sam.owner@contoso.example"
+      },
+      {
+        "Key": "Sponsor",
+        "Value": "pat.sponsor@contoso.example"
+      }
+    ]
+  },
+  {
+    "Type": "User",
+    "Name": "svc-legacy-ftp",
+    "Tags": []
+  },
+  {
+    "Type": "User",
+    "Name": "svc-report-export",
+    "Tags": [
+      {
+        "Key": "SystemId",
+        "Value": "SYS-0120"
+      },
+      {
+        "Key": "Owner1",
+        "Value": "alex.owner@contoso.example"
+      }
+    ]
+  },
+  {
+    "Type": "Role",
+    "Name": "app-billing-ec2",
+    "Tags": [
+      {
+        "Key": "SystemId",
+        "Value": "SYS-0102"
+      },
+      {
+        "Key": "Owner1",
+        "Value": "alex.owner@contoso.example"
+      },
+      {
+        "Key": "Owner2",
+        "Value": "sam.owner@contoso.example"
+      },
+      {
+        "Key": "Sponsor",
+        "Value": "pat.sponsor@contoso.example"
+      }
+    ]
+  },
+  {
+    "Type": "Role",
+    "Name": "app-orders-task",
+    "Tags": [
+      {
+        "Key": "SystemId",
+        "Value": "SYS-0103"
+      },
+      {
+        "Key": "Owner1",
+        "Value": "alex.owner@contoso.example"
+      },
+      {
+        "Key": "Owner2",
+        "Value": "sam.owner@contoso.example"
+      },
+      {
+        "Key": "Sponsor",
+        "Value": "pat.sponsor@contoso.example"
+      }
+    ]
+  },
+  {
+    "Type": "Role",
+    "Name": "app-etl-lambda",
+    "Tags": []
+  },
+  {
+    "Type": "Role",
+    "Name": "eks-payments-pod",
+    "Tags": [
+      {
+        "Key": "SystemId",
+        "Value": "SYS-0104"
+      },
+      {
+        "Key": "Owner1",
+        "Value": "alex.owner@contoso.example"
+      },
+      {
+        "Key": "Owner2",
+        "Value": "sam.owner@contoso.example"
+      },
+      {
+        "Key": "Sponsor",
+        "Value": "pat.sponsor@contoso.example"
+      }
+    ]
+  },
+  {
+    "Type": "Role",
+    "Name": "eks-irsa-reports",
+    "Tags": [
+      {
+        "Key": "SystemId",
+        "Value": "SYS-0120"
+      },
+      {
+        "Key": "Owner1",
+        "Value": "alex.owner@contoso.example"
+      },
+      {
+        "Key": "Owner2",
+        "Value": "sam.owner@contoso.example"
+      },
+      {
+        "Key": "Sponsor",
+        "Value": "pat.sponsor@contoso.example"
+      }
+    ]
+  },
+  {
+    "Type": "Role",
+    "Name": "ci-pipeline-oidc",
+    "Tags": [
+      {
+        "Key": "SystemId",
+        "Value": "SYS-0101"
+      },
+      {
+        "Key": "Owner1",
+        "Value": "alex.owner@contoso.example"
+      },
+      {
+        "Key": "Owner2",
+        "Value": "sam.owner@contoso.example"
+      },
+      {
+        "Key": "Sponsor",
+        "Value": "pat.sponsor@contoso.example"
+      }
+    ]
+  },
+  {
+    "Type": "Role",
+    "Name": "partner-audit-readonly",
+    "Tags": [
+      {
+        "Key": "SystemId",
+        "Value": "SYS-0140"
+      },
+      {
+        "Key": "Owner1",
+        "Value": "alex.owner@contoso.example"
+      },
+      {
+        "Key": "Owner2",
+        "Value": "sam.owner@contoso.example"
+      },
+      {
+        "Key": "Sponsor",
+        "Value": "pat.sponsor@contoso.example"
+      }
+    ]
+  },
+  {
+    "Type": "Role",
+    "Name": "shared-logging-writer",
+    "Tags": [
+      {
+        "Key": "SystemId",
+        "Value": "SYS-0141"
+      },
+      {
+        "Key": "Owner1",
+        "Value": "alex.owner@contoso.example"
+      },
+      {
+        "Key": "Owner2",
+        "Value": "sam.owner@contoso.example"
+      },
+      {
+        "Key": "Sponsor",
+        "Value": "pat.sponsor@contoso.example"
+      }
+    ]
+  },
+  {
+    "Type": "Role",
+    "Name": "legacy-open-role",
+    "Tags": []
+  },
+  {
+    "Type": "Role",
+    "Name": "commercial-bridge",
+    "Tags": [
+      {
+        "Key": "SystemId",
+        "Value": "SYS-0142"
+      },
+      {
+        "Key": "Owner1",
+        "Value": "alex.owner@contoso.example"
+      },
+      {
+        "Key": "Owner2",
+        "Value": "sam.owner@contoso.example"
+      },
+      {
+        "Key": "Sponsor",
+        "Value": "pat.sponsor@contoso.example"
+      }
+    ]
+  },
+  {
+    "Type": "Role",
+    "Name": "onprem-scheduler-ra",
+    "Tags": [
+      {
+        "Key": "SystemId",
+        "Value": "SYS-0105"
+      },
+      {
+        "Key": "Owner1",
+        "Value": "alex.owner@contoso.example"
+      },
+      {
+        "Key": "Owner2",
+        "Value": "sam.owner@contoso.example"
+      },
+      {
+        "Key": "Sponsor",
+        "Value": "pat.sponsor@contoso.example"
+      }
+    ]
+  },
+  {
+    "Type": "Role",
+    "Name": "AWSServiceRoleForSupport",
+    "Tags": []
+  }
+]

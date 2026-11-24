@@ -1,0 +1,15 @@
+PS> Get-Content out/cloud-workload/identities.json -Raw | ConvertFrom-Json | Where-Object Joined -EQ 'no' | Format-Table Cloud, Type, Name, WorkloadKind
+Cloud Type         Name              WorkloadKind
+----- ----         ----              ------------
+aws   IamUser      svc-legacy-ftp    IAM user (long-lived credentials)
+aws   IamUser      svc-report-export IAM user (long-lived credentials)
+aws   IamRole      app-etl-lambda    Lambda execution role
+aws   IamRole      legacy-open-role  Anyone
+oci   OciUser      hr-build-push     OCI user (long-lived credentials)
+oci   OciUser      hr-object-sync    OCI user (long-lived credentials)
+oci   DynamicGroup dg-everything     Instance principal
+PS> (Get-Content out/cloud-workload/trust.json -Raw | ConvertFrom-Json | Where-Object Object -EQ 'ci-pipeline-oidc').Principals | Format-List type, value, kind, conditions
+type       : Federated
+value      : arn:aws-us-gov:iam::111122223333:oidc-provider/token.actions.githubusercontent.com
+kind       : OIDC federation
+conditions : {StringEquals token.actions.githubusercontent.com:aud = sts.amazonaws.com}

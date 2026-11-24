@@ -390,7 +390,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The agency lines it
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 11 — Deploying to Test and Production](11-deploying-to-test-and-production.md) · [Workbook index](index.md) · [The managed service account standard](../../../books/guides/service-account-migration.md#msa-standard)
+[← Previous: Chapter 11 — Deploying to Test and Production](11-deploying-to-test-and-production.md) · [Workbook index](index.md) · [The managed service account standard](../../../books/guides/service-account-migration.md#msa-standard) · [Next: Chapter 13 — Workload Identity Across AWS GovCloud (US) and OCI →](13-workload-identity-across-aws-govcloud-and-oci.md)
 :::
 
 [^np12-sp-ad]: SailPoint, "Active Directory Connector: Introduction," supported features (Active Directory Service Accounts: Managed Service Accounts / Group Managed Service Accounts; IQService with the Active Directory PowerShell module), <https://documentation.sailpoint.com/connectors/active_directory/help/integrating_active_directory/intro.html> (accessed Nov 20, 2026).

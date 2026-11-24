@@ -1,0 +1,31 @@
+PS> ./Invoke-NpiCloudWorkload.ps1 -AwsPath tests/fixtures/ch13/aws -OciPath tests/fixtures/ch13/oci -SettingsPath tests/fixtures/ch13/settings.json -ExceptionsPath tests/fixtures/ch13/exceptions.csv -OutputPath out/cloud-workload -AsOf 2026-11-24
+As of 2026-11-24; AWS account 111122223333 (aws-us-gov): 7 IAM user(s), 11 role(s), 2 trust anchor(s); OCI tenancy (oc2): 5 user(s), 3 dynamic group(s)
+Findings: 24 Finding, 11 Warn, 2 Info
+Long-lived credentials: 7 AWS, 5 OCI; 2 under a current exception
+Not read: nothing
+  NPI-AWS-01  svc-app-sync, svc-ci-deploy, svc-legacy-ftp, svc-report-export
+  NPI-AWS-02  svc-report-export
+  NPI-AWS-03  svc-legacy-ftp
+  NPI-AWS-04  svc-report-export
+  NPI-AWS-05  svc-bedrock-batch, svc-git-mirror
+  NPI-AWS-06  svc-legacy-ftp
+  NPI-AWS-08  app-etl-lambda, legacy-open-role, svc-legacy-ftp, svc-report-export
+  NPI-AWS-09  ci-pipeline-oidc
+  NPI-AWS-10  gitlab.example.com
+  NPI-AWS-11  partner-audit-readonly
+  NPI-AWS-12  legacy-open-role
+  NPI-AWS-13  commercial-bridge
+  NPI-AWS-14  ta-lab-ca
+  NPI-AWS-15  prof-retired-batch
+  NPI-AWS-16  old-batch-host
+  NPI-OCI-01  hr-integration, hr-report-reader
+  NPI-OCI-02  hr-integration
+  NPI-OCI-03  hr-integration
+  NPI-OCI-04  hr-build-push
+  NPI-OCI-05  hr-object-sync
+  NPI-OCI-06  dg-everything, hr-build-push, hr-object-sync
+  NPI-OCI-07  dg-everything
+  NPI-OCI-08  dg-everything
+  NPI-OCI-09  hr-batch-policy
+  NPI-OCI-10  hr-oke-workload
+Manifest SHA-256: 42bd31277cf42740be417b5c4e973f20f1c643e914e546b3c1fb69fd680860f5
