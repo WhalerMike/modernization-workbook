@@ -6,7 +6,7 @@ doc-type: reference
 fmw-eyebrow: "Reference"
 date-modified: 2026-11-09
 review-status: approved
-reviewed-sha256: b840073b0c09910ab4db279232e919a94ab1e34e2544e13854643c2360b9d976
+reviewed-sha256: 9de7ecdcbd3736fae693b76b40166cd9c4ed4a8b95f06403a7a04b9d67accd96
 last-reviewed: 2026-11-24
 ---
 # Learn Coverage Map {.unnumbered}
@@ -3368,7 +3368,7 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [Create a trust relationship between an app and an external identity provider](https://learn.microsoft.com/entra/workload-id/workload-identity-federation-create-trust) | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md); [Book 19, Chapter 09 — Drift Pipelines and Evidence to the ISSO](../books/b19-developer-workbook/09-drift-pipelines-and-evidence.md); and 9 more | Cited |
 | [Federate a Google Cloud workload identity](https://learn.microsoft.com/entra/workload-id/workload-identity-federation-google-cloud) | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md#managed-identities-and-workload-identity-federation); [Module 7: Convert to managed identities and federation](../training/non-person-identity/07-federation-and-managed-identities.md); and 3 more | Cited |
 | [Federate a SPIFFE/SPIRE workload identity](https://learn.microsoft.com/entra/workload-id/workload-identity-federation-spiffe-spire) | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md#managed-identities-and-workload-identity-federation); [Module 7: Convert to managed identities and federation](../training/non-person-identity/07-federation-and-managed-identities.md); and 1 more | Covered, not cited |
-| [Workload Identity Federation](https://learn.microsoft.com/entra/workload-id/workload-identity-federation) | [Book 01, Chapter 08 — The Access Plane](../books/b01-transformation-arc/08-access-plane.md); [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md); and 14 more | Cited |
+| [Workload Identity Federation](https://learn.microsoft.com/entra/workload-id/workload-identity-federation) | [Book 01, Chapter 08 — The Access Plane](../books/b01-transformation-arc/08-access-plane.md); [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md); and 16 more | Cited |
 
 ## Windows Server releases {#windows-server-get-started}
 

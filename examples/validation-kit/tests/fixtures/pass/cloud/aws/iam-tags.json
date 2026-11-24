@@ -1,0 +1,51 @@
+[
+  {
+    "Type": "Role",
+    "Name": "app-billing-ec2",
+    "Tags": [
+      {
+        "Key": "SystemId",
+        "Value": "SYS-0102"
+      },
+      {
+        "Key": "Owner1",
+        "Value": "alex.owner@contoso.example"
+      },
+      {
+        "Key": "Owner2",
+        "Value": "sam.owner@contoso.example"
+      },
+      {
+        "Key": "Sponsor",
+        "Value": "pat.sponsor@contoso.example"
+      }
+    ]
+  },
+  {
+    "Type": "Role",
+    "Name": "eks-irsa-reports",
+    "Tags": [
+      {
+        "Key": "SystemId",
+        "Value": "SYS-0102"
+      },
+      {
+        "Key": "Owner1",
+        "Value": "alex.owner@contoso.example"
+      },
+      {
+        "Key": "Owner2",
+        "Value": "sam.owner@contoso.example"
+      },
+      {
+        "Key": "Sponsor",
+        "Value": "pat.sponsor@contoso.example"
+      }
+    ]
+  },
+  {
+    "Type": "Role",
+    "Name": "AWSServiceRoleForSupport",
+    "Tags": []
+  }
+]

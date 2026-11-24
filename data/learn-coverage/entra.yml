@@ -30674,6 +30674,8 @@ pages:
   - docs/reference/source-register.md
   - docs/training/ms-automation-foundations.md
   - docs/training/non-person-identity/_verification/learning-path.md
+  - examples/validation-kit/README.md
+  - examples/validation-kit/powershell/ValidationKit/Private/Catalog.ps1
 redirects:
   https://learn.microsoft.com/entra/agent-id/autonomous-agent-request-agent-user-tokens: https://learn.microsoft.com/entra/agent-id/autonomous-agent-authentication-authorization-flow
   https://learn.microsoft.com/entra/agent-id/autonomous-agent-request-authorization-entra-admin: https://learn.microsoft.com/entra/agent-id/autonomous-agent-authentication-authorization-flow

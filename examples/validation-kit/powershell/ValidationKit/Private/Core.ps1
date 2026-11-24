@@ -101,6 +101,14 @@ $script:VkDefaultOptions = [ordered]@{
     MachineConfigurationOwnerValues = @('machine-configuration', 'machineconfiguration', 'machine configuration', 'azure machine configuration')
     # VK-NPI-09 (preview): days without a service principal sign-in.
     SpInactiveDays           = 90
+    # VK-NPI-10: the folder holding the guide's Step 1g and 1h exports (its aws and oci folders); empty: <input or fixture>\cloud.
+    CloudExportPath          = ''
+    # VK-NPI-10: the program's tag keys (WD-172), the OCI defined-tag namespace (empty: freeform tags and every namespace),
+    # the exception list (Cloud, CredentialId, ExceptionRecord, ReplaceBy) and Oracle's API key rotation window.
+    CloudTagKeys             = @('SystemId', 'Owner1', 'Owner2', 'Sponsor')
+    OciTagNamespace          = ''
+    CloudExceptionsFile      = 'cloud-exceptions.csv'
+    OciApiKeyMaxAgeDays      = 90
 }
 
 # ---------------------------------------------------------------------------------------------

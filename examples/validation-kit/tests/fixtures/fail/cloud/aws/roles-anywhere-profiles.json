@@ -1,0 +1,26 @@
+{
+  "profiles": [
+    {
+      "profileId": "0a1b2c3d-0000-4000-8000-000000000021",
+      "profileArn": "arn:aws-us-gov:rolesanywhere:us-gov-west-1:111122223333:profile/0a1b2c3d-0000-4000-8000-000000000021",
+      "name": "prof-onprem-scheduler",
+      "enabled": true,
+      "roleArns": [
+        "arn:aws-us-gov:iam::111122223333:role/onprem-scheduler-ra"
+      ],
+      "durationSeconds": 3600,
+      "createdAt": "2026-02-01T10:00:00+00:00"
+    },
+    {
+      "profileId": "0a1b2c3d-0000-4000-8000-000000000022",
+      "profileArn": "arn:aws-us-gov:rolesanywhere:us-gov-west-1:111122223333:profile/0a1b2c3d-0000-4000-8000-000000000022",
+      "name": "prof-retired-batch",
+      "enabled": true,
+      "roleArns": [
+        "arn:aws-us-gov:iam::111122223333:role/retired-batch-ra"
+      ],
+      "durationSeconds": 3600,
+      "createdAt": "2025-08-01T10:00:00+00:00"
+    }
+  ]
+}

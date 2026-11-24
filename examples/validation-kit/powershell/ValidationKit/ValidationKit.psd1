@@ -12,7 +12,7 @@
         'Invoke-VkDg01', 'Invoke-VkDg02', 'Invoke-VkDg03', 'Invoke-VkDg04', 'Invoke-VkDg05', 'Invoke-VkDg06', 'Invoke-VkDg07',
         'Invoke-VkInt01', 'Invoke-VkInt02', 'Invoke-VkInt03', 'Invoke-VkInt04', 'Invoke-VkInt05', 'Invoke-VkInt06', 'Invoke-VkInt07',
         'Invoke-VkArc01', 'Invoke-VkArc02', 'Invoke-VkArc03', 'Invoke-VkArc04', 'Invoke-VkArc05', 'Invoke-VkArc06', 'Invoke-VkArc07',
-        'Invoke-VkNpi01', 'Invoke-VkNpi02', 'Invoke-VkNpi03', 'Invoke-VkNpi04', 'Invoke-VkNpi05', 'Invoke-VkNpi06', 'Invoke-VkNpi07', 'Invoke-VkNpi08', 'Invoke-VkNpi09',
+        'Invoke-VkNpi01', 'Invoke-VkNpi02', 'Invoke-VkNpi03', 'Invoke-VkNpi04', 'Invoke-VkNpi05', 'Invoke-VkNpi06', 'Invoke-VkNpi07', 'Invoke-VkNpi08', 'Invoke-VkNpi09', 'Invoke-VkNpi10',
         'Invoke-VkSync01', 'Invoke-VkSync02', 'Invoke-VkSync03', 'Invoke-VkCa01', 'Invoke-VkPiv01'
     )
     CmdletsToExport   = @()

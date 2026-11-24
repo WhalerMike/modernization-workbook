@@ -11,7 +11,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 3df3d087d4685063fa1489e978b2220abb1ae3a77b70110187788fb60deffc5b
+reviewed-sha256: 9e8fd053b3365960e9e2f5488f18f58c23eddda1a7615461485d2a7e3b301d87
 last-reviewed: 2026-11-24
 ---
 # Chapter 13 — Workload Identity Across AWS GovCloud (US) and OCI
@@ -35,7 +35,7 @@ The rules come from the vendors, through the guide. This chapter adds no new rul
 
 - **The target is temporary credentials.** AWS says to require workloads to use temporary credentials with IAM roles and, where possible, not to create long-term credentials such as access keys.[^np13-aws-bp] Oracle recommends instance principals when software needs to call OCI, and rotating IAM passwords and API keys every 90 days or less.[^np13-oci-rules] The program makes every long-lived credential an exception under [Book 13, Chapter 14](../../../books/b13-governance/14-application-secret-and-configuration-governance.md#secrets-governance) with a replacement date ([WD-171](../../../about/decision-register.md#wd-171)).
 - **What the credential report covers.** AWS's credential report lists every IAM user with its console password, its first two access keys (active, when last rotated, when last used) and its signing certificates. It leaves out service-specific credentials (such as CodeCommit passwords and Amazon Bedrock or CloudWatch Logs long-term API keys) and any access key beyond the first two, which AWS points to `ListServiceSpecificCredentials` and `ListAccessKeys` for. A field that doesn't apply reads `N/A`, a password never used `no_information`.[^np13-aws-credreport]
-- **What the list calls leave out.** `ListRoles` doesn't return a role's tags or when it was last used, and `ListUsers` doesn't return a user's tags; `ListRoleTags` and `ListUserTags` do.[^np13-aws-tags] The guide joins every AWS identity to its record by tag (Step 1f), so Lab 2 adds the two tag reads to the guide's commands.
+- **What the list calls leave out.** `ListRoles` doesn't return a role's tags or when it was last used, and `ListUsers` doesn't return a user's tags; `ListRoleTags` and `ListUserTags` do.[^np13-aws-tags] The guide joins every AWS identity to its record by tag (Step 1f), so the guide's Step 1g runs the two tag reads too ([WD-172](../../../about/decision-register.md#wd-172)).
 - **AWS GovCloud (US).** One IAM control plane, no global STS endpoint, no role that delegates access between a GovCloud account and a standard AWS account, and a root user with no console sign-in whose access keys come only through AWS Support. IAM Roles Anywhere is supported, but automatic revocation through CRL distribution points isn't: "import your CRLs instead".[^np13-aws-gov-iam] Roles Anywhere uses an imported CRL only for certificates from the same CA, and doesn't check an imported CRL's expiry date.[^np13-ra-revocation]
 - **Trust policies.** An account in a trust policy's `Principal` is written as its ARN or its 12-digit ID, and the two behave the same. AWS strongly recommends against `*` as the principal of a resource-based policy with an Allow effect, "especially true for IAM role trust policies".[^np13-aws-principal] For OIDC federation, AWS's examples limit the token's `sub` claim to the one repository or workspace; without that condition, GitHub Actions from repositories outside your control can assume the role.[^np13-aws-oidc-role] A service-linked role sits under the path `/aws-service-role/`, and the linked service, not you, defines its permissions.[^np13-aws-slr]
 - **OCI credentials.** A user can hold three API signing keys at a time; auth tokens and customer secret keys don't expire, two of each per user.[^np13-oci-creds] The list commands return each credential's OCID, never the secret.[^np13-oci-cli]
@@ -72,8 +72,8 @@ The guide's Step 1g and 1h commands write the files; Lab 2 runs them. The kit re
 | `aws/instance-profiles.json` | Step 1g: `list-instance-profiles` | One instance profile and its role |
 | `aws/oidc-providers.json` | Step 1g: `list-open-id-connect-providers` | One trusted OIDC issuer's ARN |
 | `aws/roles-anywhere-trust-anchors.json`, `aws/roles-anywhere-profiles.json` | Step 1g: `rolesanywhere list-trust-anchors`, `list-profiles` | One trust anchor (its CA source); one profile (its roles)[^np13-ra-api] |
-| `aws/iam-tags.json` *(optional)* | Lab 2, beyond the guide: `list-user-tags`, `list-role-tags` | One user's or role's tags |
-| `aws/roles-anywhere-crls.json` *(optional)* | Lab 2, beyond the guide: `rolesanywhere list-crls` | One imported CRL and its trust anchor[^np13-ra-api] |
+| `aws/iam-tags.json` *(optional to the kit)* | Step 1g: `list-user-tags`, `list-role-tags` | One user's or role's tags |
+| `aws/roles-anywhere-crls.json` *(optional to the kit)* | Step 1g: `rolesanywhere list-crls` | One imported CRL and its trust anchor[^np13-ra-api] |
 | `oci/oci-users.json` | Step 1h: `oci iam user list` | One user with its tags |
 | `oci/oci-user-credentials.json` | Step 1h: `api-key list`, `auth-token list`, `customer-secret-key list` per user | One user's three credential lists |
 | `oci/oci-dynamic-groups.json`, `oci/oci-policies.json` | Step 1h: `dynamic-group list`, `policy list` | One dynamic group and its matching rule; one policy and its statements |
@@ -82,11 +82,13 @@ The guide's Step 1g and 1h commands write the files; Lab 2 runs them. The kit re
 
 : The inputs {.striped .hover}
 
-The tag keys are the program's *(design guidance)*: `SystemId`, `Owner1`, `Owner2` and `Sponsor` on every role, workload IAM user, OCI user holding a credential and dynamic group, as Step 1f asks for two owners and a sponsor. AWS tag values can't hold a list separator, so each owner gets a key. In OCI they're read from freeform tags or from the settings' defined-tag namespace.
+The tag keys are the program's, settled in [WD-172](../../../about/decision-register.md#wd-172): `SystemId`, `Owner1`, `Owner2` and `Sponsor` on every role, workload IAM user, OCI user holding a credential and dynamic group, as Step 1f asks for two owners and a sponsor. AWS tag keys and values allow only letters, numbers, spaces and `_ . : / = + - @`, so no comma or semicolon, and each owner gets a key.[^np13-aws-tagrules] In OCI they're read from freeform tags or from the settings' defined-tag namespace.
 
 ## The code: what `examples/non-person-identity` adds
 
 `Invoke-NpiCloudWorkload.ps1` and the module `powershell/NpiCloudWorkload` add one read-only task, `cloud-workload`. `config/calls-ch13.json` declares the export commands an operator runs, every one a `generate`, `get` or `list`; the module runs none of them, and a test fails if its code ever calls `aws` or `oci` or makes a web request. Its controls and KSIs per step are in `config/requirements-ch13.json`. Every run writes a folder with `findings.json`, `identities.json`, `credentials.csv` (identifiers only, never a secret), `trust.json`, `evidence.json` and a `manifest.json` with each input's SHA-256, the export commands the inputs came from and any optional file not read. The same inputs and `-AsOf` date give byte-identical files.
+
+**The validation kit's check.** The guide's G1 and G3 gates name **VK-NPI-10** ([WD-172](../../../about/decision-register.md#wd-172)), which reads the same export folder in `examples/validation-kit` and reports the gate's pass criteria: long-lived credentials without a current exception, missing tags, OIDC trusts without a `sub` condition and trust anchors without an imported CRL. This chapter's kit gives the full findings behind it.
 
 | Check | Findings | What it reports |
 |---|---|---|
@@ -197,7 +199,7 @@ Get-Content out/cloud-workload/identities.json -Raw | ConvertFrom-Json | Where-O
 
 <!-- capture:end -->
 
-**Step 5: Run without the two optional files.** The guide's commands alone don't write the tags or the CRLs. The kit still runs, and says what it couldn't check: one NPI-AWS-08 Warn for the account instead of a Finding per identity, and an NPI-AWS-14 Warn for each trust anchor.
+**Step 5: Run without the two optional files.** An export made before the guide's Step 1g added the tag and CRL reads ([WD-172](../../../about/decision-register.md#wd-172)) doesn't have them. The kit still runs, and says what it couldn't check: one NPI-AWS-08 Warn for the account instead of a Finding per identity, and an NPI-AWS-14 Warn for each trust anchor.
 
 ```powershell
 Copy-Item -Recurse tests/fixtures/ch13/aws out/aws-min
@@ -281,12 +283,12 @@ aws iam list-instance-profiles --region $r --output json > instance-profiles.jso
 aws iam list-open-id-connect-providers --region $r --output json > oidc-providers.json
 aws rolesanywhere list-trust-anchors --region $r --output json > roles-anywhere-trust-anchors.json
 aws rolesanywhere list-profiles --region $r --output json > roles-anywhere-profiles.json
+aws rolesanywhere list-crls --region $r --output json > roles-anywhere-crls.json
 $tags = @(
     foreach ($u in $users) { [pscustomobject]@{ Type = 'User'; Name = $u.UserName; Tags = @((aws iam list-user-tags --user-name $u.UserName --region $r --output json | ConvertFrom-Json).Tags) } }
     foreach ($ro in (Get-Content roles.json -Raw | ConvertFrom-Json).Roles) { [pscustomobject]@{ Type = 'Role'; Name = $ro.RoleName; Tags = @((aws iam list-role-tags --role-name $ro.RoleName --region $r --output json | ConvertFrom-Json).Tags) } }
 )
 ConvertTo-Json -InputObject $tags -Depth 5 | Set-Content iam-tags.json
-aws rolesanywhere list-crls --region $r --output json > roles-anywhere-crls.json
 Set-Location $here
 
 $here = Get-Location
@@ -331,7 +333,7 @@ code <exports>/settings.json
 
 Edit `settings.json` in the editor that opened. Add a row to `exceptions.csv` for each credential the exception register already covers.
 
-**Step 2: Export the AWS account.** These are the guide's Step 1g commands, with the credential report's wait written as a loop, then the two reads the guide doesn't have: the tags (`ListUsers` and `ListRoles` return none) and the imported CRLs.
+**Step 2: Export the AWS account.** These are the guide's Step 1g commands, the tag and CRL reads included, with the credential report's wait written as a loop.
 
 ```powershell
 $here = Get-Location
@@ -349,12 +351,12 @@ aws iam list-instance-profiles --region $r --output json > instance-profiles.jso
 aws iam list-open-id-connect-providers --region $r --output json > oidc-providers.json
 aws rolesanywhere list-trust-anchors --region $r --output json > roles-anywhere-trust-anchors.json
 aws rolesanywhere list-profiles --region $r --output json > roles-anywhere-profiles.json
+aws rolesanywhere list-crls --region $r --output json > roles-anywhere-crls.json
 $tags = @(
     foreach ($u in $users) { [pscustomobject]@{ Type = 'User'; Name = $u.UserName; Tags = @((aws iam list-user-tags --user-name $u.UserName --region $r --output json | ConvertFrom-Json).Tags) } }
     foreach ($ro in (Get-Content roles.json -Raw | ConvertFrom-Json).Roles) { [pscustomobject]@{ Type = 'Role'; Name = $ro.RoleName; Tags = @((aws iam list-role-tags --role-name $ro.RoleName --region $r --output json | ConvertFrom-Json).Tags) } }
 )
 ConvertTo-Json -InputObject $tags -Depth 5 | Set-Content iam-tags.json
-aws rolesanywhere list-crls --region $r --output json > roles-anywhere-crls.json
 Set-Location $here
 ```
 
@@ -473,7 +475,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The agency lines it
 
 ## Checklist
 
-- [ ] The guide's Step 1g exports, the tag export and the CRL export run in every AWS GovCloud (US) account; Step 1h runs in the tenancy's home region.
+- [ ] The guide's Step 1g exports, its tag and CRL reads included, run in every AWS GovCloud (US) account; Step 1h runs in the tenancy's home region.
 - [ ] Every role, workload IAM user, OCI user holding a credential and dynamic group carries `SystemId`, two owners and a sponsor, or is in an orphan ticket (NPI-AWS-08, NPI-OCI-06).
 - [ ] Every active long-lived credential has an exception with a replacement date in the exception register, or a ticket to replace it (NPI-AWS-01, -05; NPI-OCI-01, -04, -05).
 - [ ] No OCI API key is older than 90 days (NPI-OCI-02), and no user holds a second active key or access key outside a rotation (NPI-AWS-02, NPI-OCI-03).
@@ -491,6 +493,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The agency lines it
 [^np13-aws-bp]: AWS, IAM User Guide, "Security best practices in IAM" (require workloads to use temporary credentials with IAM roles; rely on temporary credentials instead of access keys where possible; last accessed information), <https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html> (accessed Nov 24, 2026).
 [^np13-aws-credreport]: AWS, IAM User Guide, "Generate credential reports" (columns, including `additional_credentials_info`; `N/A`, `no_information`, `not_supported`; leaves out service-specific credentials and access keys beyond the first two), <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_getting-report.html> (accessed Nov 24, 2026).
 [^np13-aws-tags]: AWS, IAM API Reference, "ListRoles" and "ListUsers" (attributes not returned: tags, and for roles the permissions boundary and `RoleLastUsed`), "ListRoleTags" and "ListUserTags", <https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListRoles.html>, <https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListUsers.html>, <https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListRoleTags.html>, <https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListUserTags.html> (accessed Nov 24, 2026).
+[^np13-aws-tagrules]: AWS, IAM User Guide, "Tags for AWS Identity and Access Management resources" (tag keys and values: letters, numbers, spaces and `_ . : / = + - @`), <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html> (accessed Nov 24, 2026).
 [^np13-aws-keys]: AWS, IAM API Reference, "AccessKeyMetadata" (`AccessKeyId`, `CreateDate`, `Status`: `Active`, `Inactive` or `Expired`; `UserName`), <https://docs.aws.amazon.com/IAM/latest/APIReference/API_AccessKeyMetadata.html> (accessed Nov 24, 2026).
 [^np13-aws-ssc]: AWS, IAM API Reference, "ListServiceSpecificCredentials" (`AllUsers`) and "ServiceSpecificCredentialMetadata" (`ExpirationDate` for Bedrock and CloudWatch Logs API keys created with an expiry), <https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListServiceSpecificCredentials.html>, <https://docs.aws.amazon.com/IAM/latest/APIReference/API_ServiceSpecificCredentialMetadata.html> (accessed Nov 24, 2026).
 [^np13-aws-gov-iam]: AWS, AWS GovCloud (US) User Guide, "AWS Identity and Access Management in AWS GovCloud (US)" (no global STS endpoint; no role between a GovCloud and a standard account; the root user; IAM Roles Anywhere supported, automatic revocation through CRL distribution points not available, import CRLs instead; no Access Analyzer policy generation), <https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-iam.html> (accessed Nov 24, 2026).

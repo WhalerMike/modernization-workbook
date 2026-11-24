@@ -20,4 +20,4 @@ Not read: aws/iam-tags.json, aws/roles-anywhere-crls.json
   NPI-AWS-14  ta-program-pki, ta-lab-ca
   NPI-AWS-15  prof-retired-batch
   NPI-AWS-16  old-batch-host
-Manifest SHA-256: 76d836adbe97f68d42d4f51b93c74bff5a88d1baf61906df02bae506726241ff
+Manifest SHA-256: a9720a04ac5c5e13671fa52bd42881bdbaae05547b25d2a8aebe7394f285f056

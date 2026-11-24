@@ -25,7 +25,7 @@ BeforeAll {
     $script:ForbiddenCommands = @('Out-File', 'Set-Content', 'Add-Content', 'Export-Csv', 'Export-Clixml', 'Tee-Object', 'Invoke-Command', 'Invoke-Expression',
         'Invoke-WebRequest', 'Invoke-RestMethod', 'Invoke-AzRestMethod', 'Invoke-Item', 'Invoke-CimMethod', 'Invoke-WmiMethod', 'Invoke-AzResourceAction',
         'Invoke-AzVMRunCommand', 'Invoke-AzConnectedMachineRunCommand', 'Start-Process', 'Start-Job', 'iex', 'ni', 'rm', 'del', 'mv', 'cp', 'sc', 'ac',
-        'azcmagent', 'az', 'curl', 'wget', 'reg', 'netsh', 'dsacls', 'setspn')
+        'azcmagent', 'az', 'aws', 'oci', 'curl', 'wget', 'reg', 'netsh', 'dsacls', 'setspn')
     $script:Writers = 'Resolve-VkOutputRoot', 'Assert-VkWritePath', 'Write-VkJson', 'Write-VkCsv', 'Write-VkText'
     $script:WriteMembers = 'WriteAllText|WriteAllBytes|WriteAllLines|AppendAllText|AppendAllLines|AppendText|CreateText|Create|CreateDirectory|Delete|Move|Copy|Replace|Encrypt|Decrypt|SetAccessControl|SetAttributes|OpenWrite'
     # The only Graph beta reads the kit makes, each marked beta in the catalog and the README.

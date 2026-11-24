@@ -40,6 +40,7 @@ BeforeDiscovery {
         @{ Id = 'VK-NPI-07'; FailStatus = 'Warn'; FailCount = 1 }
         @{ Id = 'VK-NPI-08'; FailStatus = 'Fail'; FailCount = 1 }
         @{ Id = 'VK-NPI-09'; FailStatus = 'Fail'; FailCount = 3 }
+        @{ Id = 'VK-NPI-10'; FailStatus = 'Fail'; FailCount = 22 }
         @{ Id = 'VK-SYNC-01'; FailStatus = 'Fail'; FailCount = 3 }
         @{ Id = 'VK-SYNC-02'; FailStatus = 'Fail'; FailCount = 2 }
         @{ Id = 'VK-SYNC-03'; FailStatus = 'Fail'; FailCount = 5 }
@@ -310,6 +311,47 @@ Describe 'Beta check VK-INT-07 (Group Policy analytics)' {
     }
 }
 
+Describe 'VK-NPI-10 AWS GovCloud (US) and OCI exports' {
+    BeforeAll { $script:Npi10 = Invoke-VkCheck -CheckId 'VK-NPI-10' -Context $FailCtx }
+    It 'reads only the export files, never AWS or OCI' {
+        @($Npi10.Evidence.Queries.Source | Sort-Object -Unique) | Should -Be @('Input')
+        @($Npi10.Evidence.Queries.Query) | Should -Contain 'cloud export: aws/credential-report.csv'
+        @($Npi10.Evidence.Queries.Query) | Should -Contain 'cloud export: oci/oci-user-credentials.json'
+    }
+    It 'a recorded exception turns a long-lived credential into a Warn until its date' {
+        @($Npi10.Details | Where-Object Severity -eq 'Warn' | ForEach-Object Object) | Should -Be @('svc-app-sync', 'hr-report-reader')
+        $late = Get-VkRunContext -FixturePath (Join-Path $global:VkTestFixtureRoot 'fail') -AsOf '2027-04-01T00:00:00Z'
+        @((Invoke-VkCheck -CheckId 'VK-NPI-10' -Context $late).Details | Where-Object Severity -eq 'Warn').Count | Should -Be 0
+    }
+    It 'flags the root user''s key, missing tags, an OIDC trust without sub, a trust anchor without a CRL, an old OCI key' {
+        $i = @($Npi10.Details.Issue)
+        @($i | Where-Object { $_ -like 'Trusts OIDC provider*' }).Count | Should -Be 1
+        @($i | Where-Object { $_ -like '*no enabled imported CRL*' }).Count | Should -Be 1
+        @($i | Where-Object { $_ -like '*older than 90 days*' }).Count | Should -Be 1
+        @($Npi10.Details | Where-Object { $_.Issue -like '*missing tag*' } | ForEach-Object Object | Sort-Object) | Should -Be @('app-etl-lambda', 'dg-everything', 'hr-build-push', 'hr-object-sync', 'legacy-open-role', 'svc-legacy-ftp', 'svc-report-export')
+        $root = Join-Path $TestDrive 'root'
+        Copy-Item -Recurse (Join-Path (Join-Path $global:VkTestFixtureRoot 'pass') 'cloud') $root
+        $p = Join-Path $root 'aws/credential-report.csv'
+        $rows = @(Import-Csv $p); $rows[0].access_key_1_active = 'true'
+        [System.IO.File]::WriteAllText($p, (($rows | ConvertTo-Csv -NoTypeInformation) -join "`n"))
+        $r = Invoke-VkCheck -CheckId 'VK-NPI-10' -Context (Get-TestContext 'pass' -Option @{ CloudExportPath = $root })
+        "$($r.Status) $(@($r.Details).Count) $($r.Details[0].Issue)" | Should -Be 'Fail 1 Root user access key 1 is active'
+    }
+    It 'warns, rather than passing, when the tag and CRL exports are missing' {
+        $root = Join-Path $TestDrive 'nooptional'
+        Copy-Item -Recurse (Join-Path (Join-Path $global:VkTestFixtureRoot 'pass') 'cloud') $root
+        Remove-Item -LiteralPath (Join-Path $root 'aws/iam-tags.json')
+        Remove-Item -LiteralPath (Join-Path $root 'aws/roles-anywhere-crls.json')
+        $r = Invoke-VkCheck -CheckId 'VK-NPI-10' -Context (Get-TestContext 'pass' -Option @{ CloudExportPath = $root })
+        "$($r.Status) $($r.Count)" | Should -Be 'Warn 2'
+    }
+    It 'is NotApplicable with no aws or oci folder' {
+        $empty = Join-Path $TestDrive 'nocloud'
+        $null = New-Item -ItemType Directory -Path $empty
+        (Invoke-VkCheck -CheckId 'VK-NPI-10' -Context (Get-TestContext 'pass' -Option @{ CloudExportPath = $empty })).Status | Should -Be 'NotApplicable'
+    }
+}
+
 Describe 'Optional preview check VK-NPI-09' {
     It 'is not selected by default' {
         @((Get-VkCheckCatalog).Id) | Should -Not -Contain 'VK-NPI-09'
@@ -366,7 +408,7 @@ Describe 'The catalog' {
     It 'implements every check ID in the guides list, one function each, named after the ID' {
         $ids = @('VK-HR-01', 'VK-HR-02', 'VK-HR-03', 'VK-HR-04', 'VK-HR-05', 'VK-HR-06', 'VK-HR-07', 'VK-DG-01', 'VK-DG-02', 'VK-DG-03', 'VK-DG-04', 'VK-DG-05', 'VK-DG-06', 'VK-DG-07',
             'VK-INT-01', 'VK-INT-02', 'VK-INT-03', 'VK-INT-04', 'VK-INT-05', 'VK-INT-06', 'VK-INT-07', 'VK-ARC-01', 'VK-ARC-02', 'VK-ARC-03', 'VK-ARC-04', 'VK-ARC-05', 'VK-ARC-06', 'VK-ARC-07',
-            'VK-NPI-01', 'VK-NPI-02', 'VK-NPI-03', 'VK-NPI-04', 'VK-NPI-05', 'VK-NPI-06', 'VK-NPI-07', 'VK-NPI-08', 'VK-NPI-09',
+            'VK-NPI-01', 'VK-NPI-02', 'VK-NPI-03', 'VK-NPI-04', 'VK-NPI-05', 'VK-NPI-06', 'VK-NPI-07', 'VK-NPI-08', 'VK-NPI-09', 'VK-NPI-10',
             'VK-SYNC-01', 'VK-SYNC-02', 'VK-SYNC-03', 'VK-CA-01', 'VK-PIV-01')
         $cat = @(Get-VkCheckCatalog -IncludeOptional)
         @($cat.Id) | Should -Be $ids

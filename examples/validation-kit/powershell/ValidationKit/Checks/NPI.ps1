@@ -499,3 +499,236 @@ function Invoke-VkNpi09 {
         Get-VkOutcome -Rows @($rows) -Message ('Microsoft Graph beta report; inactivity threshold {0} days' -f $days)
     }
 }
+
+# ---------------------------------------------------------------------------------------------
+# VK-NPI-10: AWS GovCloud (US) and OCI workload identities, from the guide's Step 1g and 1h exports
+# ---------------------------------------------------------------------------------------------
+
+function Get-VkCloudValue {
+    # A property whatever its case, hyphens or underscores (time-created, timeCreated and time_created
+    # match): the OCI CLI's output field names aren't shown on its reference pages.
+    param($Object, [string]$Name)
+    if ($null -eq $Object) { return $null }
+    $want = ($Name -replace '[-_]', '').ToLowerInvariant()
+    if ($Object -is [System.Collections.IDictionary]) {
+        foreach ($k in @($Object.Keys)) { if ((("$k" -replace '[-_]', '').ToLowerInvariant()) -eq $want) { return $Object[$k] } }
+        return $null
+    }
+    foreach ($p in @($Object.PSObject.Properties)) { if ((($p.Name -replace '[-_]', '').ToLowerInvariant()) -eq $want) { return $p.Value } }
+    $null
+}
+
+function Read-VkCloudExport {
+    # One export file under the cloud export folder, logged as evidence: @{ Items = <the array under
+    # -Key, or the file's array> }, with no items for an empty file; $null when an -Optional file is absent.
+    param([Parameter(Mandatory)][string]$Root, [Parameter(Mandatory)][string]$File, [string]$Key, [switch]$Optional)
+    $p = Join-Path $Root $File
+    if (-not (Test-Path -LiteralPath $p -PathType Leaf)) {
+        if ($Optional) { return $null }
+        throw "Missing export $File (the implementation guide's Step 1g or 1h writes it)"
+    }
+    Trace-VkQuery -Source 'Input' -Query "cloud export: $($File -replace '\\', '/')"
+    $text = [System.IO.File]::ReadAllText($p)
+    if (Test-VkBlank $text) { return @{ Items = @() } }
+    # Assigned first: Windows PowerShell 5.1's ConvertFrom-Json writes a JSON array as one object.
+    $o = ConvertFrom-Json -InputObject $text
+    # A one-item JSON array comes back as the item itself, so the key counts only when the object has it.
+    $want = ($Key -replace '[-_]', '').ToLowerInvariant()
+    if ($Key -and $o -isnot [array] -and @($o.PSObject.Properties | Where-Object { (($_.Name -replace '[-_]', '').ToLowerInvariant()) -eq $want }).Count) {
+        $v = Get-VkCloudValue $o $Key
+        return @{ Items = @(@($v) | Where-Object { $null -ne $_ }) }
+    }
+    @{ Items = @(@($o) | Where-Object { $null -ne $_ }) }
+}
+
+function Get-VkCloudTagGap {
+    # The program's tag keys (WD-172: SystemId, Owner1, Owner2, Sponsor) missing from an AWS tag list
+    # (Key, Value pairs) or from an OCI object's freeform tags and defined tags (any namespace, or the
+    # one OciTagNamespace names).
+    param($AwsTags, $OciObject, [string[]]$Keys, [string]$Namespace)
+    $have = @{}
+    foreach ($t in @($AwsTags)) { if ($null -ne $t -and -not (Test-VkBlank (Get-VkValue $t 'Value'))) { $have["$(Get-VkValue $t 'Key')"] = $true } }
+    if ($null -ne $OciObject) {
+        $free = Get-VkCloudValue $OciObject 'freeformTags'
+        if ($null -ne $free) { foreach ($p in @($free.PSObject.Properties)) { if (-not (Test-VkBlank $p.Value)) { $have[$p.Name] = $true } } }
+        $defined = Get-VkCloudValue $OciObject 'definedTags'
+        if ($null -ne $defined) {
+            foreach ($ns in @($defined.PSObject.Properties)) {
+                if (-not (Test-VkBlank $Namespace) -and $ns.Name -ne $Namespace) { continue }
+                foreach ($p in @($ns.Value.PSObject.Properties)) { if (-not (Test-VkBlank $p.Value)) { $have[$p.Name] = $true } }
+            }
+        }
+    }
+    @($Keys | Where-Object { -not $have.ContainsKey($_) })
+}
+
+function Get-VkCloudCredentialSeverity {
+    # Finding with no recorded exception or after its replace-by date; Warn while a recorded one runs.
+    param($Exceptions, [string]$Cloud, [string]$CredentialId, $AsOf)
+    $e = $null
+    foreach ($x in @($Exceptions)) { if ($null -ne $x -and "$($x.Cloud)" -eq $Cloud -and "$($x.CredentialId)" -eq $CredentialId) { $e = $x; break } }
+    if ($null -eq $e) { return @{ Severity = 'Finding'; Note = 'no exception recorded' } }
+    if (Test-VkBlank $e.ReplaceBy) { return @{ Severity = 'Finding'; Note = "exception $($e.ExceptionRecord) has no replace-by date" } }
+    $by = ConvertTo-VkUtc $e.ReplaceBy
+    if ($by -lt (ConvertTo-VkUtc $AsOf)) { return @{ Severity = 'Finding'; Note = "exception $($e.ExceptionRecord) ended $($by.ToString('yyyy-MM-dd'))" } }
+    @{ Severity = 'Warn'; Note = "under exception $($e.ExceptionRecord) until $($by.ToString('yyyy-MM-dd'))" }
+}
+
+function Invoke-VkNpi10 {
+    <#
+    .SYNOPSIS
+        Implements VK-NPI-10: the AWS GovCloud (US) and OCI gate criteria from the files the
+        implementation guide's Steps 1g and 1h export (WD-171). Reads files only; never calls AWS or OCI.
+    .EXAMPLE
+        # Fixture mode reads <fixture>\cloud\aws and <fixture>\cloud\oci.
+        $ctx = Get-VkRunContext -FixturePath .\tests\fixtures\fail -AsOf '2026-10-29T00:00:00Z'
+        Invoke-VkNpi10 -Context $ctx
+    .EXAMPLE
+        # Live: point it at the folder that holds the exports' aws and oci folders.
+        $ctx = Get-VkRunContext -InputPath D:\Inputs -Option @{ CloudExportPath = 'D:\Exports\2026-11-24' }
+        Invoke-VkNpi10 -Context $ctx
+    .DESCRIPTION
+    #>
+    <#
+    VK-NPI-10. Findings: every active IAM access key, service-specific credential, OCI API signing key,
+    auth token and customer secret key with no current exception in CloudExceptionsFile (a Warn while
+    one runs); an active root user access key; an OCI API key older than OciApiKeyMaxAgeDays (Oracle:
+    rotate every 90 days or less); a customer-managed role, a workload IAM user, an OCI user holding a
+    credential or a dynamic group missing any of CloudTagKeys (WD-172); a role trusting an OIDC provider
+    with no sub condition; an enabled IAM Roles Anywhere trust anchor with no enabled imported CRL
+    (GovCloud has no CRL distribution point checking). A Warn when iam-tags.json or
+    roles-anywhere-crls.json wasn't exported. Developer workbook Chapter 13's kit gives the full
+    findings (NPI-AWS-01 to -16, NPI-OCI-01 to -10) from the same files.
+    #>
+    [CmdletBinding()] param([Parameter(Mandatory)]$Context)
+    Invoke-VkCheckBody 'VK-NPI-10' $Context {
+        param($Context)
+        $root = "$($Context.Options['CloudExportPath'])"
+        if (Test-VkBlank $root) {
+            if ($Context.Mode -eq 'Fixture') { $root = Join-Path $Context.FixturePath 'cloud' }
+            elseif ($Context.InputPath) { $root = Join-Path $Context.InputPath 'cloud' }
+            else { return Get-VkNotApplicable 'No AWS or OCI exports: set -Option @{ CloudExportPath = ''<folder with aws and oci>'' }' }
+        } else { $root = ConvertTo-VkFullPath $root }
+        $hasAws = Test-Path -LiteralPath (Join-Path $root 'aws') -PathType Container
+        $hasOci = Test-Path -LiteralPath (Join-Path $root 'oci') -PathType Container
+        if (-not ($hasAws -or $hasOci)) { return Get-VkNotApplicable "No aws or oci export folder under $root" }
+        $keys = @($Context.Options['CloudTagKeys'])
+        $ns = "$($Context.Options['OciTagNamespace'])"
+        $maxAge = [int]$Context.Options['OciApiKeyMaxAgeDays']
+        $exceptions = Read-VkInputCsv -Context $Context -Option 'CloudExceptionsFile'
+        if ($null -eq $exceptions) { $exceptions = @() }
+        $rows = [System.Collections.Generic.List[object]]::new()
+        $notes = [System.Collections.Generic.List[string]]::new()
+
+        if ($hasAws) {
+            $reportPath = Join-Path $root 'aws/credential-report.csv'
+            if (-not (Test-Path -LiteralPath $reportPath -PathType Leaf)) { throw 'Missing export aws/credential-report.csv (the implementation guide''s Step 1g writes it)' }
+            Trace-VkQuery -Source 'Input' -Query 'cloud export: aws/credential-report.csv'
+            $reportRows = @(Import-Csv -LiteralPath $reportPath)
+            $keysFile = @((Read-VkCloudExport -Root $root -File 'aws/access-keys.json' -Key 'AccessKeyMetadata').Items)
+            $ssc = @((Read-VkCloudExport -Root $root -File 'aws/service-specific-credentials.json' -Key 'ServiceSpecificCredentials').Items)
+            $roles = @((Read-VkCloudExport -Root $root -File 'aws/roles.json' -Key 'Roles').Items)
+            $anchors = @((Read-VkCloudExport -Root $root -File 'aws/roles-anywhere-trust-anchors.json' -Key 'trustAnchors').Items)
+            $tagDoc = Read-VkCloudExport -Root $root -File 'aws/iam-tags.json' -Optional
+            $crls = Read-VkCloudExport -Root $root -File 'aws/roles-anywhere-crls.json' -Key 'crls' -Optional
+            $tags = @{}
+            if ($null -ne $tagDoc) { foreach ($t in @($tagDoc.Items)) { $tags["$(Get-VkValue $t 'Type')|$(Get-VkValue $t 'Name')"] = @(Get-VkValue $t 'Tags' @()) } }
+            else { $rows.Add((ConvertTo-VkFinding -Severity Warn -Object 'AWS account' -Issue 'aws/iam-tags.json not exported: no role or user was checked for the program''s tags (ListUsers and ListRoles return none; the guide''s Step 1g writes the file)')) }
+
+            foreach ($r in $reportRows) {
+                if ("$($r.arn)" -match ':root$') {
+                    foreach ($n in 1, 2) { if ("$(Get-VkValue $r "access_key_$($n)_active")" -eq 'true') { $rows.Add((ConvertTo-VkFinding -Severity Finding -Object 'root user' -ObjectId "$($r.arn)" -Issue "Root user access key $n is active")) } }
+                }
+            }
+            $workloadUsers = @{}
+            foreach ($k in $keysFile) {
+                if ("$(Get-VkValue $k 'Status')" -ne 'Active') { continue }
+                $u = "$(Get-VkValue $k 'UserName')"; $id = "$(Get-VkValue $k 'AccessKeyId')"; $workloadUsers[$u] = $true
+                $s = Get-VkCloudCredentialSeverity -Exceptions $exceptions -Cloud aws -CredentialId $id -AsOf $Context.AsOf
+                $rows.Add((ConvertTo-VkFinding -Severity $s.Severity -Object $u -ObjectId $id -Issue "Active IAM access key, a long-lived secret: $($s.Note)" -Data ([ordered]@{ Created = (Format-VkUtc (Get-VkValue $k 'CreateDate')); AgeDays = (Get-VkDays (Get-VkValue $k 'CreateDate') $Context.AsOf) })))
+            }
+            foreach ($c in $ssc) {
+                if ("$(Get-VkValue $c 'Status')" -ne 'Active') { continue }
+                $u = "$(Get-VkValue $c 'UserName')"; $id = "$(Get-VkValue $c 'ServiceSpecificCredentialId')"; $workloadUsers[$u] = $true
+                $s = Get-VkCloudCredentialSeverity -Exceptions $exceptions -Cloud aws -CredentialId $id -AsOf $Context.AsOf
+                $rows.Add((ConvertTo-VkFinding -Severity $s.Severity -Object $u -ObjectId $id -Issue "Active service-specific credential for $(Get-VkValue $c 'ServiceName'): $($s.Note)"))
+            }
+            if ($null -ne $tagDoc) {
+                foreach ($u in @($workloadUsers.Keys | Sort-Object)) {
+                    $gap = @(Get-VkCloudTagGap -AwsTags $tags["User|$u"] -Keys $keys)
+                    if ($gap.Count) { $rows.Add((ConvertTo-VkFinding -Severity Finding -Object $u -Issue "IAM user with a long-lived credential is missing tag(s) $($gap -join ', ')")) }
+                }
+            }
+            $oidcRoles = 0
+            foreach ($role in $roles) {
+                $name = "$(Get-VkValue $role 'RoleName')"
+                if ("$(Get-VkValue $role 'Path')".StartsWith('/aws-service-role/')) { continue }
+                if ($null -ne $tagDoc) {
+                    $gap = @(Get-VkCloudTagGap -AwsTags $tags["Role|$name"] -Keys $keys)
+                    if ($gap.Count) { $rows.Add((ConvertTo-VkFinding -Severity Finding -Object $name -ObjectId "$(Get-VkValue $role 'Arn')" -Issue "Role is missing tag(s) $($gap -join ', ')")) }
+                }
+                $doc = Get-VkValue $role 'AssumeRolePolicyDocument'
+                if ($doc -is [string]) { $doc = ConvertFrom-Json -InputObject ([uri]::UnescapeDataString($doc)) }
+                foreach ($st in @(Get-VkValue $doc 'Statement' @())) {
+                    if ("$(Get-VkValue $st 'Effect')" -ne 'Allow') { continue }
+                    foreach ($fed in @(Get-VkValue (Get-VkValue $st 'Principal') 'Federated' @())) {
+                        if ("$fed" -notmatch ':oidc-provider/(.+)$') { continue }
+                        $iss = $Matches[1]; $oidcRoles++
+                        $hasSub = $false
+                        $cond = Get-VkValue $st 'Condition'
+                        if ($null -ne $cond) { foreach ($op in @($cond.PSObject.Properties)) { foreach ($ck in @($op.Value.PSObject.Properties)) { if ($ck.Name -ieq "$($iss):sub") { $hasSub = $true } } } }
+                        if (-not $hasSub) { $rows.Add((ConvertTo-VkFinding -Severity Finding -Object $name -ObjectId "$fed" -Issue "Trusts OIDC provider $iss with no $($iss):sub condition")) }
+                    }
+                }
+            }
+            foreach ($a in $anchors) {
+                if ((Get-VkValue $a 'enabled') -ne $true) { continue }
+                $arn = "$(Get-VkValue $a 'trustAnchorArn')"
+                if ($null -eq $crls) { $rows.Add((ConvertTo-VkFinding -Severity Warn -Object "$(Get-VkValue $a 'name')" -ObjectId $arn -Issue 'aws/roles-anywhere-crls.json not exported: can''t tell whether a CRL is imported')); continue }
+                $ok = @(@($crls.Items) | Where-Object { "$(Get-VkValue $_ 'trustAnchorArn')" -eq $arn -and (Get-VkValue $_ 'enabled') -eq $true })
+                if (-not $ok.Count) { $rows.Add((ConvertTo-VkFinding -Severity Finding -Object "$(Get-VkValue $a 'name')" -ObjectId $arn -Issue 'Enabled IAM Roles Anywhere trust anchor with no enabled imported CRL (GovCloud has no CRL distribution point checking)')) }
+            }
+            $notes.Add("AWS: $($roles.Count) role(s), $($keysFile.Count) access key(s), $oidcRoles OIDC trust(s), $($anchors.Count) trust anchor(s)")
+        }
+
+        if ($hasOci) {
+            $users = @((Read-VkCloudExport -Root $root -File 'oci/oci-users.json' -Key 'data').Items)
+            $creds = @((Read-VkCloudExport -Root $root -File 'oci/oci-user-credentials.json' -Key 'data').Items)
+            $groups = @((Read-VkCloudExport -Root $root -File 'oci/oci-dynamic-groups.json' -Key 'data').Items)
+            $byName = @{}
+            foreach ($u in $users) { $byName["$(Get-VkCloudValue $u 'name')"] = $u }
+            foreach ($entry in $creds) {
+                $name = "$(Get-VkCloudValue $entry 'User')"
+                $held = 0
+                foreach ($k in @(Get-VkCloudValue $entry 'ApiKeys')) {
+                    if ($null -eq $k -or "$(Get-VkCloudValue $k 'lifecycleState')" -ne 'ACTIVE') { continue }
+                    $held++
+                    $fp = "$(Get-VkCloudValue $k 'fingerprint')"
+                    $age = Get-VkDays (Get-VkCloudValue $k 'timeCreated') $Context.AsOf
+                    $s = Get-VkCloudCredentialSeverity -Exceptions $exceptions -Cloud oci -CredentialId $fp -AsOf $Context.AsOf
+                    $rows.Add((ConvertTo-VkFinding -Severity $s.Severity -Object $name -ObjectId $fp -Issue "Active OCI API signing key, $age days old: $($s.Note)"))
+                    if ($age -gt $maxAge) { $rows.Add((ConvertTo-VkFinding -Severity Finding -Object $name -ObjectId $fp -Issue "OCI API signing key older than $maxAge days (Oracle: rotate every 90 days or less)")) }
+                }
+                foreach ($kind in @(@('AuthTokens', 'auth token'), @('CustomerSecretKeys', 'customer secret key'))) {
+                    foreach ($t in @(Get-VkCloudValue $entry $kind[0])) {
+                        if ($null -eq $t -or "$(Get-VkCloudValue $t 'lifecycleState')" -ne 'ACTIVE') { continue }
+                        $held++
+                        $id = "$(Get-VkCloudValue $t 'id')"
+                        $s = Get-VkCloudCredentialSeverity -Exceptions $exceptions -Cloud oci -CredentialId $id -AsOf $Context.AsOf
+                        $rows.Add((ConvertTo-VkFinding -Severity $s.Severity -Object $name -ObjectId $id -Issue "Active OCI $($kind[1]), which doesn't expire: $($s.Note)"))
+                    }
+                }
+                if ($held) {
+                    $gap = @(Get-VkCloudTagGap -OciObject $byName[$name] -Keys $keys -Namespace $ns)
+                    if ($gap.Count) { $rows.Add((ConvertTo-VkFinding -Severity Finding -Object $name -Issue "OCI user with a long-lived credential is missing tag(s) $($gap -join ', ')")) }
+                }
+            }
+            foreach ($g in $groups) {
+                $gap = @(Get-VkCloudTagGap -OciObject $g -Keys $keys -Namespace $ns)
+                if ($gap.Count) { $rows.Add((ConvertTo-VkFinding -Severity Finding -Object "$(Get-VkCloudValue $g 'name')" -ObjectId "$(Get-VkCloudValue $g 'id')" -Issue "Dynamic group is missing tag(s) $($gap -join ', ')")) }
+            }
+            $notes.Add("OCI: $($users.Count) user(s), $($groups.Count) dynamic group(s)")
+        }
+        Get-VkOutcome -Rows $rows.ToArray() -Message ("{0}; tags {1}; exceptions {2}" -f ($notes -join '; '), ($keys -join ', '), $(if (@($exceptions).Count) { @($exceptions).Count } else { 'none' }))
+    }
+}
