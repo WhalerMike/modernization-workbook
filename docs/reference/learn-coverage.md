@@ -6,8 +6,8 @@ doc-type: reference
 fmw-eyebrow: "Reference"
 date-modified: 2026-11-09
 review-status: approved
-reviewed-sha256: 4d9d05116cff512cde4045e706231f250d8abedb04126e8210b76a3b31f4927e
-last-reviewed: 2026-11-23
+reviewed-sha256: 55cbdcd7c84c2a52b1f0dc98f9680654e81276928e2abd92e4b9a46e04ec6f34
+last-reviewed: 2026-11-24
 ---
 # Learn Coverage Map {.unnumbered}
 
@@ -3474,7 +3474,7 @@ From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowss
 | [Detect and Remediate RC4 Usage in Kerberos](https://learn.microsoft.com/windows-server/security/kerberos/detect-remediate-rc4-kerberos) | [Book 02, Chapter 03 — Active Directory and Entra ID, Side by Side](../books/b02-identity/03-ad-and-entra-side-by-side.md); [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../books/guides/service-account-migration.md) | Cited |
 | [Domain-joined Device Public Key Authentication](https://learn.microsoft.com/windows-server/security/kerberos/domain-joined-device-public-key-authentication) | — | Not covered |
 | [Kerberos authentication overview in Windows Server](https://learn.microsoft.com/windows-server/security/kerberos/kerberos-authentication-overview) | [Book 01, Chapter 04 — Identity Transformation](../books/b01-transformation-arc/04-identity-transformation.md); [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md); and 2 more | Cited |
-| [Kerberos Constrained Delegation Overview in Windows Server](https://learn.microsoft.com/windows-server/security/kerberos/kerberos-constrained-delegation-overview) | [Book 02, Chapter 08 — Assessing the Forest](../books/b02-identity/08-assessing-the-forest.md); [Book 02, Appendix B — Forest Assessment Module](../books/b02-identity/appendix-b-forest-assessment-module.md); and 1 more | Cited |
+| [Kerberos Constrained Delegation Overview in Windows Server](https://learn.microsoft.com/windows-server/security/kerberos/kerberos-constrained-delegation-overview) | [Book 02, Chapter 08 — Assessing the Forest](../books/b02-identity/08-assessing-the-forest.md); [Book 02, Appendix B — Forest Assessment Module](../books/b02-identity/appendix-b-forest-assessment-module.md); and 2 more | Cited |
 | [NTLM overview in Windows Server](https://learn.microsoft.com/windows-server/security/kerberos/ntlm-overview) | [Book 00, Chapter 04 — The Modernization Principles](../books/b00-orientation/04-the-principles.md); [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md); and 3 more | Cited |
 | [Passwords Overview](https://learn.microsoft.com/windows-server/security/kerberos/passwords-overview) | [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md) | Covered, not cited |
 | [Passwords technical overview](https://learn.microsoft.com/windows-server/security/kerberos/passwords-technical-overview) | [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md) | Cited |
