@@ -42,6 +42,8 @@ project:
     # Sample project plans, generated from data/project-plans/ by
     # scripts/project_plans/build.py (see docs/project-plans/index.md).
     - "docs/project-plans/**/*.md"
+    # Topic hubs, generated from data/topics.yml by scripts/build_topics.py.
+    - "docs/topics/**/*.md"
   # The decks are on the current edition's Release (scripts/deck_assets.py), not the site.
   resources:
     - "presentations/start-here/Start_Here_720p.mp4"
@@ -86,6 +88,13 @@ website:
         text: "Home"
       - href: docs/start-here.md
         text: "Start here"
+      # Topic hubs: everything on one subject (data/topics.yml, scripts/build_topics.py).
+      - text: "Topics"
+        menu:
+          - href: docs/topics/index.md
+            text: "All topics"
+          - href: docs/topics/non-person-identity.md
+            text: "Non-Person Identity"
       - text: "Books"
         menu:
           - href: docs/books/index.md
@@ -612,6 +621,8 @@ format:
     filters:
       - assets/research-banner.lua
       - assets/fmw-hero.lua
+      # "Topic: <hub>" under the title of pages that belong to a topic (data/topics.yml).
+      - assets/fmw-topics.lua
     include-in-header:
       - text: |
           <link rel="preconnect" href="https://fonts.googleapis.com">
