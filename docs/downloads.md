@@ -99,6 +99,7 @@ To get one chapter, open it and choose **Download (Word): this page** under its 
 | [Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID](books/guides/hcm-entra-implementation.md) | [hcm-entra-implementation-guide.docx](../downloads/hcm-entra-implementation-guide.docx) |
 | [HR-Driven Identity: An Implementation Guide](books/guides/hr-driven-identity-implementation.md) | [hr-driven-identity-implementation-guide.docx](../downloads/hr-driven-identity-implementation-guide.docx) |
 | [Implementing Book 08 on Infoblox NIOS](books/guides/infoblox-nios-implementation.md) | [infoblox-nios-implementation-guide.docx](../downloads/infoblox-nios-implementation-guide.docx) |
+| [Information Protection with Microsoft Purview: An Implementation Guide](books/guides/information-protection-implementation.md) | [information-protection-implementation-guide.docx](../downloads/information-protection-implementation-guide.docx) |
 | [Privileged Access: An Implementation Guide](books/guides/privileged-access-implementation.md) | [privileged-access-implementation-guide.docx](../downloads/privileged-access-implementation-guide.docx) |
 | [Provider Notices: An Implementation Guide](books/guides/provider-notices-implementation.md) | [provider-notices-implementation-guide.docx](../downloads/provider-notices-implementation-guide.docx) |
 | [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](books/guides/service-account-migration.md) | [service-account-migration-guide.docx](../downloads/service-account-migration-guide.docx) |

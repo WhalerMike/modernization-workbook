@@ -2169,6 +2169,12 @@
    "title": "DNS, DHCP and IPAM"
   }
  ],
+ "docs/books/guides/information-protection-implementation.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
  "docs/books/guides/intune-track-implementation.md": [
   {
    "id": "attribute-driven-migration",
@@ -3157,6 +3163,12 @@
   {
    "id": "dns-dhcp-ipam",
    "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/training/lab-setup.md": [
+  {
+   "id": "microsoft-automation",
+   "title": "Microsoft Automation"
   }
  ],
  "docs/training/ms-automation-arc.md": [

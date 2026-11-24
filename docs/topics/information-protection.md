@@ -28,6 +28,16 @@ The design, in the books: why this topic matters and what the target is.
 
 : Understand {.striped .hover}
 
+## Build {#build}
+
+The implementation guides, the developer workbook and its code.
+
+| Page | What it is |
+|---|---|
+| [Information Protection with Microsoft Purview: An Implementation Guide](../books/guides/information-protection-implementation.md) | A gated guide for building Book 20's information protection in a Microsoft 365 GCC tenant: twelve gates, one for each chapter of the book, from the data classes and the inventory through the label taxonomy, publication and defaults,… |
+
+: Build {.striped .hover}
+
 ## Watch {#watch}
 
 Narrated videos. Each opens in the site's player, with chapters and captions.
@@ -45,6 +55,7 @@ Word editions and code, rebuilt on every site deploy.
 | File | What it is |
 |---|---|
 | [b20-information-protection-bundle.docx](../../downloads/b20-information-protection-bundle.docx) | Word edition: Book 20 — Information Protection & Microsoft Purview |
+| [information-protection-implementation-guide.docx](../../downloads/information-protection-implementation-guide.docx) | Word edition: Information Protection with Microsoft Purview: An Implementation Guide |
 
 : Downloads {.striped .hover}
 
@@ -68,8 +79,7 @@ What the workbook doesn't have on information protection, and whether it should.
 | Missing | Why |
 |---|---|
 | Project plan | Needed: no project plan sequences Book 20's rollout. |
-| Guide | Needed: Book 20 has no step-by-step guide with Validate commands. |
-| Developer workbook | Needed: decide with the learning path plan; there is no code to build on. |
+| Developer workbook | Needed: the implementation guide's twelve gates have no kit or developer workbook yet. |
 | Learning path | Needed: ranked in the learning path plan. |
 | Labs | Needed: they come with the learning path. |
 | Code | Needed: no kit collects Book 20's label, DLP or audit evidence yet. |

@@ -30,7 +30,7 @@ Each row shows what a topic has. A cell that says **gap** is something readers n
 | [DNS, DHCP and IPAM](dns-dhcp-ipam.md) | 8 | 1 | 1 | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | 11 | 1 zip |
 | [Network and SD-WAN](network-sd-wan.md) | 8 | 1 | 3 | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | 7 | 1 zip |
 | [Endpoints](endpoints.md) | 8 | 2 | 5 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 14 | 3 zips |
-| [Information Protection](information-protection.md) | 6 | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | 1 | [gap](#gaps) |
+| [Information Protection](information-protection.md) | 6 | [gap](#gaps) | 1 | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | 1 | [gap](#gaps) |
 | [Compliance and Evidence](compliance-evidence.md) | 13 | 2 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 14 | 2 zips |
 | [Application Modernization](application-modernization.md) | 7 | [not needed](#gaps) | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | 3 | 1 zip |
 
@@ -70,8 +70,7 @@ A gap is filled only where readers need it. Where nothing is needed, the note sa
 | [Endpoints](endpoints.md#gaps) | Learning path | Not needed, because the modules listed under Learn (three from the Attribute-Driven Migration path, two from Microsoft Automation) already teach it. |
 | [Endpoints](endpoints.md#gaps) | Labs | Not needed, because those modules carry the labs. |
 | [Information Protection](information-protection.md#gaps) | Project plan | Needed: no project plan sequences Book 20's rollout. |
-| [Information Protection](information-protection.md#gaps) | Guide | Needed: Book 20 has no step-by-step guide with Validate commands. |
-| [Information Protection](information-protection.md#gaps) | Developer workbook | Needed: decide with the learning path plan; there is no code to build on. |
+| [Information Protection](information-protection.md#gaps) | Developer workbook | Needed: the implementation guide's twelve gates have no kit or developer workbook yet. |
 | [Information Protection](information-protection.md#gaps) | Learning path | Needed: ranked in the learning path plan. |
 | [Information Protection](information-protection.md#gaps) | Labs | Needed: they come with the learning path. |
 | [Information Protection](information-protection.md#gaps) | Code | Needed: no kit collects Book 20's label, DLP or audit evidence yet. |

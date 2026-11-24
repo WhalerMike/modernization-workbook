@@ -207,6 +207,8 @@ website:
             text: "Guide: Provider Notices Implementation"
           - href: docs/books/guides/defender-xdr-implementation.md
             text: "Guide: Defender XDR Engineering & Operations"
+          - href: docs/books/guides/information-protection-implementation.md
+            text: "Guide: Information Protection with Microsoft Purview"
           - href: docs/books/guides/azure-security-implementation.md
             text: "Guide: Azure Security Engineering"
           - href: docs/books/guides/global-secure-access-implementation.md
@@ -608,6 +610,7 @@ website:
             - docs/books/guides/privileged-access-implementation.md
             - docs/books/guides/provider-notices-implementation.md
             - docs/books/guides/defender-xdr-implementation.md
+            - docs/books/guides/information-protection-implementation.md
             - docs/books/guides/azure-security-implementation.md
             - docs/books/guides/global-secure-access-implementation.md
             - docs/books/guides/daily-checks-dashboard-implementation.md
