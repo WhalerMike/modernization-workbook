@@ -503,3 +503,14 @@ figure img[src$=".svg"] {
     letter-spacing: 0.04em;
   }
 }
+
+// "Topic: <hub>" under the title (assets/fmw-topics.lua, data/topics.yml).
+.fmw-hero .fmw-topics {
+  margin: 0.4rem 0 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+.fmw-hero .fmw-topics .fmw-topics-note {
+  font-weight: 400;
+  opacity: 0.8;
+}
