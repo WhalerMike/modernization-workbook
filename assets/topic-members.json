@@ -3,42 +3,1688 @@
   {
    "id": "non-person-identity",
    "title": "Non-Person Identity"
+  },
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  },
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  },
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  },
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  },
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  },
+  {
+   "id": "microsoft-automation",
+   "title": "Microsoft Automation"
+  },
+  {
+   "id": "zero-trust-assessment",
+   "title": "Zero Trust Assessment"
+  },
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  },
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  },
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  },
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  },
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  },
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  },
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/books/b01-transformation-arc/04-identity-transformation.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/books/b02-identity/01-why-identity-matters.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/books/b02-identity/02-the-structural-problem.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/books/b02-identity/03-ad-and-entra-side-by-side.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/books/b02-identity/04-the-hidden-migration-surface.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/books/b02-identity/05-delegation-without-ous.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/books/b02-identity/06-who-owns-the-migration.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/books/b02-identity/07-read-only-discovery.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
   }
  ],
  "docs/books/b02-identity/08-assessing-the-forest.md": [
   {
    "id": "non-person-identity",
    "title": "Non-Person Identity"
+  },
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
   }
  ],
  "docs/books/b02-identity/09-building-the-entra-target.md": [
   {
    "id": "non-person-identity",
    "title": "Non-Person Identity"
+  },
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
   }
  ],
  "docs/books/b02-identity/10-migrating-and-governing.md": [
   {
    "id": "non-person-identity",
    "title": "Non-Person Identity"
+  },
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/books/b02-identity/11-reference-deployment.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/books/b02-identity/appendix-b-forest-assessment-module.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/books/b02-identity/appendix-c-identity-assessment-module.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/books/b02-identity/appendix-d-migrating-ad-fs-applications.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/books/b02-identity/index.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/books/b03-hr-identity/01-overview-and-applicability.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/b03-hr-identity/03-federal-hr-2-0.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/b03-hr-identity/04-attribute-authority.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/b03-hr-identity/05-the-provisioning-pipeline.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/b03-hr-identity/06-canonical-attribute-schema.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  },
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/b03-hr-identity/07-who-owns-workforce-identity.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/b03-hr-identity/08-joiner-mover-leaver.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/b03-hr-identity/09-credentials-and-certificates.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  },
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/books/b03-hr-identity/10-from-attributes-to-access.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/b03-hr-identity/11-drift-metrics-and-evidence.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  },
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/b03-hr-identity/12-execution-plan.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/b03-hr-identity/13-reference-deployment.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/b03-hr-identity/14-privacy-for-workforce-identity.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/b03-hr-identity/15-external-partner-identity.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/b03-hr-identity/appendix-a-lifecycle-rules.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/b03-hr-identity/appendix-b-security-and-privacy.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/b03-hr-identity/appendix-d-partner-identity-record.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/b03-hr-identity/index.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/b04-access/01-access-is-a-policy-decision.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/books/b04-access/02-why-standing-privilege-fails.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/books/b04-access/03-the-conditional-access-model.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  },
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/books/b04-access/04-privileged-roles-and-tiers.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
   }
  ],
  "docs/books/b04-access/05-applications-and-workload-identities.md": [
   {
    "id": "non-person-identity",
    "title": "Non-Person Identity"
+  },
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/books/b04-access/06-who-decides-access.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/books/b04-access/07-the-conditional-access-policy-library.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  },
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  }
+ ],
+ "docs/books/b04-access/08-pim-self-request-with-approval.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/books/b04-access/09-access-governance.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  },
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/b04-access/10-access-as-code-and-evidence.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/books/b04-access/appendix-a-conditional-access-templates.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/books/b04-access/appendix-b-pim-role-settings.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/books/b04-access/appendix-c-partner-access-profile-entra.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  },
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  }
+ ],
+ "docs/books/b04-access/appendix-d-phishing-resistant-authentication-runbooks.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/books/b04-access/index.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.md": [
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/books/b05-devices/02-the-hybrid-join-trap.md": [
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/books/b05-devices/03-where-device-and-server-data-lives.md": [
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/books/b05-devices/04-intune-first-onboarding.md": [
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.md": [
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/books/b05-devices/06-who-owns-the-endpoint.md": [
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/books/b05-devices/07-the-gpo-sunset-program.md": [
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/books/b05-devices/08-gpo-to-intune-policy-migration.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  },
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/books/b05-devices/09-servers-under-azure-arc.md": [
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/books/b05-devices/10-operating-and-evidencing-the-fleet.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  },
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.md": [
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/books/b05-devices/index.md": [
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/books/b06-data-platform/01-what-windows-authentication-actually-is.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/02-why-the-inheritance-must-end.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/03-the-shape-of-twenty-years.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/04-the-estate-inventory.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/05-rationalization.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/06-retain-consolidate-retire.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/07-the-authentication-audit.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/08-reading-the-audit.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/09-what-arc-provides-to-sql-server.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/10-arc-deployment-sequencing.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/11-three-principal-types.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/12-the-engine-authentication-decision.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/13-who-owns-the-data-platform.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/14-ntlm-and-the-patterns-that-generate-it.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/16-groups-roles-and-membership.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/18-the-four-class-pattern-for-applications.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
   }
  ],
  "docs/books/b06-data-platform/19-connection-string-migration.md": [
   {
    "id": "non-person-identity",
    "title": "Non-Person Identity"
+  },
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/20-the-closure-condition.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/21-what-done-looks-like.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/22-where-sql-server-touches-adcs.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/23-epilogue-the-platform-question.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/appendix-a-requirements-mapping.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/appendix-b-ato-kit.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/appendix-c-applicability.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/index.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/r01-prerequisites.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/r03-the-authentication-audit.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/r04-arc-deployment-and-managed-identity.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/r05-login-migration-and-parallel-run.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/r06-ntlm-detection-and-remediation.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/r07-groups-aus-and-the-conditional-access-perimeter.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/r08-application-chain-and-connection-strings.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/r09-continuous-monitoring-and-closure.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/books/b06-data-platform/r10-certificate-discovery-for-adcs.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  },
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/books/b07-pki/01-why-certificates-outlive-every-migration.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/books/b07-pki/02-what-ad-cs-holds-up.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/books/b07-pki/03-hardening-what-stays.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/books/b07-pki/04-the-target-pki.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/books/b07-pki/05-who-owns-the-certificate-estate.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/books/b07-pki/06-device-and-user-certificates.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/books/b07-pki/07-coexistence-and-migration.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/books/b07-pki/09-federal-workforce-credentials.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/books/b07-pki/appendix-a-deployment-checklists.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/books/b07-pki/appendix-b-template-migration-matrix.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/books/b07-pki/appendix-c-anatomy-of-the-clm-platform.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/books/b07-pki/index.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/books/b08-ddi/01-dns-is-the-control-plane.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/books/b08-ddi/02-split-brain-dns.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/books/b08-ddi/03-federal-requirements.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/books/b08-ddi/04-active-directory-dns-departure.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/books/b08-ddi/05-edge-interception-and-bypass.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/books/b08-ddi/06-dns-identity-and-dnssec.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  },
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/books/b08-ddi/08-reference-architecture.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/books/b08-ddi/09-who-owns-dns.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/books/b08-ddi/10-migration-sequence.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/books/b08-ddi/11-operating-the-control-plane.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/books/b08-ddi/12-selection-cost-and-residual-risk.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/books/b08-ddi/appendix-a-dns-record-types.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/books/b08-ddi/appendix-b-requirements-mapping.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/books/b08-ddi/appendix-c-applicability.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/books/b08-ddi/index.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/books/b09-network/01-why-physics-decides-the-architecture.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/books/b09-network/02-transport-is-physics-control-is-compliance.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/books/b09-network/03-what-tic-3-requires.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  },
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/books/b09-network/04-logical-centralization-and-token-security.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  },
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/books/b09-network/06-legacy-protocols-on-re-routed-paths.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/books/b09-network/07-network-access-control.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/books/b09-network/08-reference-architecture.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/books/b09-network/09-who-owns-the-network.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/books/b09-network/10-the-long-interim.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/books/b09-network/11-field-office-wan-transformation.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/books/b09-network/12-microsoft-365-traffic.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  },
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/books/b09-network/13-sequencing-cost-and-evidence.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/books/b09-network/appendix-a-optimize-exemption-instruments.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/books/b09-network/appendix-b-requirements-mapping.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/books/b09-network/appendix-c-glossary.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/books/b09-network/index.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/books/b10-cloud-boundary/01-why-the-boundary-decides.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/books/b10-cloud-boundary/02-the-invisible-boundary.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/books/b10-cloud-boundary/03-what-changed-at-fedramp.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  },
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  },
+  {
+   "id": "microsoft-automation",
+   "title": "Microsoft Automation"
+  }
+ ],
+ "docs/books/b10-cloud-boundary/05-the-landing-zone.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/books/b10-cloud-boundary/06-ipam-and-network-as-code.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  },
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/books/b10-cloud-boundary/07-the-front-door.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/books/b10-cloud-boundary/08-who-owns-the-boundary.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/books/b10-cloud-boundary/09-equivalents-and-exceptions.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/books/b10-cloud-boundary/10-alternative-collaboration-paths.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/books/b10-cloud-boundary/11-the-authorization-package.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/books/b10-cloud-boundary/appendix-a-what-to-ask-for.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/books/b10-cloud-boundary/index.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/books/b11-zero-trust/01-a-whole-agency-property.md": [
+  {
+   "id": "zero-trust-assessment",
+   "title": "Zero Trust Assessment"
+  }
+ ],
+ "docs/books/b11-zero-trust/02-governance-principles.md": [
+  {
+   "id": "zero-trust-assessment",
+   "title": "Zero Trust Assessment"
+  }
+ ],
+ "docs/books/b11-zero-trust/03-what-the-mandates-require.md": [
+  {
+   "id": "zero-trust-assessment",
+   "title": "Zero Trust Assessment"
+  }
+ ],
+ "docs/books/b11-zero-trust/04-scuba-and-bod-25-01.md": [
+  {
+   "id": "zero-trust-assessment",
+   "title": "Zero Trust Assessment"
+  }
+ ],
+ "docs/books/b11-zero-trust/05-two-assessment-tools.md": [
+  {
+   "id": "zero-trust-assessment",
+   "title": "Zero Trust Assessment"
+  }
+ ],
+ "docs/books/b11-zero-trust/06-beyond-microsoft-365.md": [
+  {
+   "id": "zero-trust-assessment",
+   "title": "Zero Trust Assessment"
+  }
+ ],
+ "docs/books/b11-zero-trust/07-who-owns-zero-trust.md": [
+  {
+   "id": "zero-trust-assessment",
+   "title": "Zero Trust Assessment"
+  }
+ ],
+ "docs/books/b11-zero-trust/08-close-before-you-assess.md": [
+  {
+   "id": "zero-trust-assessment",
+   "title": "Zero Trust Assessment"
+  }
+ ],
+ "docs/books/b11-zero-trust/09-running-the-assessment.md": [
+  {
+   "id": "zero-trust-assessment",
+   "title": "Zero Trust Assessment"
+  }
+ ],
+ "docs/books/b11-zero-trust/10-evidence-not-verdicts.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  },
+  {
+   "id": "zero-trust-assessment",
+   "title": "Zero Trust Assessment"
+  }
+ ],
+ "docs/books/b11-zero-trust/appendix-a-requirements-mapping.md": [
+  {
+   "id": "zero-trust-assessment",
+   "title": "Zero Trust Assessment"
+  }
+ ],
+ "docs/books/b11-zero-trust/index.md": [
+  {
+   "id": "zero-trust-assessment",
+   "title": "Zero Trust Assessment"
+  }
+ ],
+ "docs/books/b12-security-operations/01-you-cant-defend-what-you-cant-see.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/books/b12-security-operations/02-the-evidence-contract.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/books/b12-security-operations/03-identity-telemetry.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  },
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  },
+  {
+   "id": "daily-checks-dashboard",
+   "title": "Daily Checks Dashboard"
+  }
+ ],
+ "docs/books/b12-security-operations/04-platform-and-m365-telemetry.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  },
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/books/b12-security-operations/05-from-log-warehouse-to-detection.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/books/b12-security-operations/06-vulnerability-management.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/books/b12-security-operations/07-patch-configuration-and-baselines.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/books/b12-security-operations/08-cloud-native-posture.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  },
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/books/b12-security-operations/09-data-protection-and-classification.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  },
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/books/b12-security-operations/10-who-runs-security-operations.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/books/b12-security-operations/11-detection-engineering-and-response.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/books/b12-security-operations/12-evidence-metrics-and-continuous-monitoring.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  },
+  {
+   "id": "daily-checks-dashboard",
+   "title": "Daily Checks Dashboard"
+  }
+ ],
+ "docs/books/b12-security-operations/appendix-a-requirements-mapping.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/books/b12-security-operations/appendix-b-identity-and-application-detections.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/books/b12-security-operations/index.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/books/b13-governance/01-why-governance-decays.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b13-governance/02-drift-is-the-primary-threat.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b13-governance/03-one-authoritative-record.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b13-governance/04-change-control-and-provenance.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b13-governance/05-deterministic-governance.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b13-governance/06-the-drift-engine.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b13-governance/07-evidence-over-attestation.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b13-governance/08-the-adapter-model.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b13-governance/09-who-governs.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b13-governance/10-ticket-to-machine.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  },
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  },
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b13-governance/11-reciprocity-and-one-authorization.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b13-governance/12-governance-at-scale.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b13-governance/13-records-evidence-and-retention.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
   }
  ],
  "docs/books/b13-governance/14-application-secret-and-configuration-governance.md": [
   {
    "id": "non-person-identity",
    "title": "Non-Person Identity"
+  },
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b13-governance/appendix-a-requirements-mapping.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  },
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  },
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b13-governance/appendix-b-ticket-to-machine-reference.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  },
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b13-governance/index.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b14-compliance/01-proof-not-a-promise.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b14-compliance/02-the-federal-clock.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b14-compliance/03-the-baseline-and-the-crosswalk.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b14-compliance/04-closure-with-proof.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b14-compliance/05-program-management-controls.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b14-compliance/06-contingency-and-continuity.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  },
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b14-compliance/07-supply-chain-risk-management.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b14-compliance/08-privacy-pii-processing.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b14-compliance/09-training-and-awareness-controls.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b14-compliance/10-who-owns-compliance.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b14-compliance/11-the-authorization-package.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b14-compliance/12-the-series-as-a-map.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b14-compliance/appendix-a-control-crosswalk.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b14-compliance/appendix-b-product-inventory-questionnaire.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b14-compliance/appendix-c-security-assessment-plan-template.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b14-compliance/appendix-d-security-assessment-report-template.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b14-compliance/appendix-e-security-impact-analysis-template.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b14-compliance/appendix-f-categorization-walkthrough.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b14-compliance/appendix-g-prepare-step-templates.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b14-compliance/appendix-h-ad-forest-recovery.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b14-compliance/index.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b15-day2-operations/01-the-help-desk-decides.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b15-day2-operations/02-day-two-is-where-compliance-lives.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b15-day2-operations/03-intake-triage-and-routing.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  },
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  },
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b15-day2-operations/05-the-service-catalogs.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b15-day2-operations/06-saas-integration-governance.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b15-day2-operations/07-the-cmdb-and-asset-identity.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b15-day2-operations/08-control-automation-m365-and-azure.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b15-day2-operations/09-control-automation-aws-and-vmware.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b15-day2-operations/10-who-runs-day-two.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b15-day2-operations/11-attestation-and-the-compliance-app.md": [
+  {
+   "id": "daily-checks-dashboard",
+   "title": "Daily Checks Dashboard"
+  },
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b15-day2-operations/12-the-day-two-runbook.md": [
+  {
+   "id": "daily-checks-dashboard",
+   "title": "Daily Checks Dashboard"
+  },
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b15-day2-operations/13-building-day-two-automation-in-house.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  },
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b15-day2-operations/14-provider-notices.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  },
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b15-day2-operations/appendix-a-help-desk-task-reference.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b15-day2-operations/appendix-b-recovery-and-escalation-runbooks.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b15-day2-operations/index.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
   }
  ],
  "docs/books/b17-ai-identity/01-ai-agents-need-identities.md": [
@@ -113,10 +1759,424 @@
    "title": "Non-Person Identity"
   }
  ],
+ "docs/books/b18-application-modernization/01-a-portfolio-not-a-rewrite.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/books/b18-application-modernization/02-triaging-the-portfolio.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/books/b18-application-modernization/03-the-target-reference-architecture.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/books/b18-application-modernization/04-moving-the-data.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/books/b18-application-modernization/05-generative-and-agentic-ai.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/books/b18-application-modernization/06-compliance-by-design.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/books/b18-application-modernization/07-who-governs-the-architecture.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/books/b18-application-modernization/08-the-reference-implementation.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/books/b18-application-modernization/09-togaf-and-zachman.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/books/b18-application-modernization/10-running-the-portfolio-in-waves.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/books/b18-application-modernization/appendix-a-identity-remediation-work-packages.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/books/b18-application-modernization/index.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/books/b19-developer-workbook/02-graph-clients-for-government-clouds.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  },
+  {
+   "id": "microsoft-automation",
+   "title": "Microsoft Automation"
+  }
+ ],
+ "docs/books/b19-developer-workbook/03-writing-a-validation-kit-check.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  },
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b19-developer-workbook/04-dynamic-rules-as-code.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/books/b19-developer-workbook/06-group-policy-as-code.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  },
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/books/b19-developer-workbook/07-machine-configuration-packages.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  },
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/books/b19-developer-workbook/08-ansible-beside-arc.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  },
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  },
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/books/b19-developer-workbook/10-deploying-to-test-and-production.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/books/b19-developer-workbook/index.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/books/b20-information-protection/01-data-inventory-and-classification.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/books/b20-information-protection/02-sensitivity-label-architecture.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/books/b20-information-protection/03-label-publication-and-defaults.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/books/b20-information-protection/04-teams-groups-and-sharepoint-containers.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/books/b20-information-protection/05-rights-management-and-recovery.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/books/b20-information-protection/06-exchange-message-encryption.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/books/b20-information-protection/07-sharepoint-and-onedrive.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/books/b20-information-protection/08-dlp-and-endpoint-controls.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/books/b20-information-protection/09-auto-labeling-and-sensitive-information-types.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/books/b20-information-protection/10-audit-insider-risk-and-communication-compliance.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/books/b20-information-protection/11-ai-data-security.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/books/b20-information-protection/12-operations-and-evidence.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/books/b20-information-protection/appendix-a-requirements-mapping.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/books/b20-information-protection/index.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/books/explainers/ddi-platform-requirements.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/books/explainers/device-naming-after-ad.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  },
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/books/explainers/hr-identity-dns.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  },
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/books/explainers/hr2-shared-governance-fedramp-boundary.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
  "docs/books/explainers/hybrid-credentials.md": [
   {
    "id": "non-person-identity",
    "title": "Non-Person Identity"
+  },
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/books/explainers/identity-maintenance.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  },
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/explainers/omb-ai-memos-m-25-21-m-25-22.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/books/guides/ansible-configuration-automation.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  },
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/books/guides/arc-track-implementation.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  },
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/books/guides/attribute-driven-migration-implementation.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/books/guides/attribute-driven-migration.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/books/guides/azure-security-implementation.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/books/guides/cisco-sdwan-implementation.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/books/guides/cyberark-certificate-lifecycle.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/books/guides/daily-checks-dashboard-implementation.md": [
+  {
+   "id": "daily-checks-dashboard",
+   "title": "Daily Checks Dashboard"
+  }
+ ],
+ "docs/books/guides/defender-xdr-implementation.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/books/guides/dp-consolidation-implementation.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  },
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/books/guides/dp-consolidation.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  },
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/books/guides/global-secure-access-implementation.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  }
+ ],
+ "docs/books/guides/hcm-entra-implementation.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/guides/hr-driven-identity-implementation.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/books/guides/infoblox-nios-implementation.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/books/guides/intune-track-implementation.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  },
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
   }
  ],
  "docs/books/guides/non-person-identity-implementation.md": [
@@ -125,10 +2185,374 @@
    "title": "Non-Person Identity"
   }
  ],
+ "docs/books/guides/non-person-identity-zero-trust-sase.md": [
+  {
+   "id": "non-person-identity",
+   "title": "Non-Person Identity"
+  }
+ ],
+ "docs/books/guides/privileged-access-implementation.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/books/guides/provider-notices-implementation.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  }
+ ],
  "docs/books/guides/service-account-migration.md": [
   {
    "id": "non-person-identity",
    "title": "Non-Person Identity"
+  }
+ ],
+ "docs/books/guides/snow-sailpoint-integration-kit.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  }
+ ],
+ "docs/books/guides/ttm-servicenow-sailpoint.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  }
+ ],
+ "docs/books/guides/ttm-task-catalog.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  }
+ ],
+ "docs/books/guides/zero-trust-assessment-implementation.md": [
+  {
+   "id": "zero-trust-assessment",
+   "title": "Zero Trust Assessment"
+  }
+ ],
+ "docs/evaluations/cloud-dns-resolvers-infoblox-bind.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/evaluations/infoblox-ddi-federal.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/evaluations/oracle-contingent-worker-contractor-source.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/evaluations/sdwan-platform-deep-dive.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/evaluations/trinzic-multicloud-ddi.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/project-plans/attribute-driven-migration.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/project-plans/content-delivery.md": [
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/project-plans/continuous-monitoring.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  },
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/project-plans/data-platform.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/azure-security/02-the-public-exposure-register.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/azure-security/03-ddos-protection.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/azure-security/04-the-web-application-firewall.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/azure-security/05-front-door-application-gateway-and-the-origin.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/azure-security/06-azure-firewall-and-egress.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/azure-security/07-private-link-dns-and-key-vault.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/azure-security/08-policy-drift-and-evidence.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/azure-security/09-deploying-to-test-and-production.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/azure-security/index.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/daily-checks/01-the-daily-checks-and-where-each-lives.md": [
+  {
+   "id": "daily-checks-dashboard",
+   "title": "Daily Checks Dashboard"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.md": [
+  {
+   "id": "daily-checks-dashboard",
+   "title": "Daily Checks Dashboard"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.md": [
+  {
+   "id": "daily-checks-dashboard",
+   "title": "Daily Checks Dashboard"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/daily-checks/04-deploying-to-test-and-production.md": [
+  {
+   "id": "daily-checks-dashboard",
+   "title": "Daily Checks Dashboard"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/daily-checks/index.md": [
+  {
+   "id": "daily-checks-dashboard",
+   "title": "Daily Checks Dashboard"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/defender-xdr/03-prevention-through-audit.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/defender-xdr/04-attack-surface-reduction-audit-warn-block.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/defender-xdr/05-exposure-and-incidents.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/defender-xdr/06-detections-as-code.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/defender-xdr/09-deploying-to-test-and-production.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/defender-xdr/index.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/global-secure-access/01-decision-licensing-and-gcc-availability.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/global-secure-access/02-configuration-export-and-logs-first.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/global-secure-access/08-rings-metrics-and-evidence.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/global-secure-access/09-deploying-to-test-and-production.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/global-secure-access/index.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/hr-driven-identity/03-joiner-workflows-as-code.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/hr-driven-identity/04-access-from-attributes-and-the-mover-review.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/hr-driven-identity/05-certificate-based-authentication-checks.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/hr-driven-identity/06-separation-timing.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/hr-driven-identity/07-lifecycle-drift-and-evidence.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/hr-driven-identity/08-deploying-to-test-and-production.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/hr-driven-identity/index.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
   }
  ],
  "docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md": [
@@ -215,10 +2639,564 @@
    "title": "Non-Person Identity"
   }
  ],
+ "docs/project-plans/developer-workbooks/privileged-access/01-privileged-inventory-as-code.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/privileged-access/02-emergency-access-as-code.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/privileged-access/03-conditional-access-for-administrators.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/privileged-access/04-pim-for-entra-roles-as-code.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/privileged-access/06-pim-for-azure-resources.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/privileged-access/07-access-reviews-of-privileged-roles.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/privileged-access/08-evidence-and-drift.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/privileged-access/09-deploying-to-test-and-production.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/privileged-access/index.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/provider-notices/01-the-notice-record-and-azure-service-health.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/provider-notices/02-microsoft-365-message-center-and-service-health.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/provider-notices/03-oracle-cloud-infrastructure-announcements.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/provider-notices/04-aws-health.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/provider-notices/05-google-cloud-personalized-service-health.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/provider-notices/06-routing-to-owners-and-ticket-to-machine-tasks.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/provider-notices/07-the-weekly-digest-and-evidence.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/provider-notices/index.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/ticket-to-machine/04-drift-to-a-typed-task.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/ticket-to-machine/05-the-re-read-rule.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/ticket-to-machine/06-drift-reconciliation.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/ticket-to-machine/07-evidence-records.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/ticket-to-machine/08-one-writer-per-attribute.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/ticket-to-machine/09-deploying-to-test-and-production.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/ticket-to-machine/index.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  }
+ ],
+ "docs/project-plans/endpoint-device.md": [
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/project-plans/identity-lifecycle.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/project-plans/network-access.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  },
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
  "docs/project-plans/non-person-identity.md": [
   {
    "id": "non-person-identity",
    "title": "Non-Person Identity"
+  }
+ ],
+ "docs/project-plans/privileged-access.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/project-plans/supply-chain-sbom.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/reference/commands.md": [
+  {
+   "id": "microsoft-automation",
+   "title": "Microsoft Automation"
+  }
+ ],
+ "docs/reference/federal-framework-crosswalk.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/reference/graph-practice-crosswalk.md": [
+  {
+   "id": "microsoft-automation",
+   "title": "Microsoft Automation"
+  }
+ ],
+ "docs/reference/learn-coverage.md": [
+  {
+   "id": "microsoft-automation",
+   "title": "Microsoft Automation"
+  }
+ ],
+ "docs/reference/rmf-map.md": [
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/reference/zta-closure-coverage.md": [
+  {
+   "id": "zero-trust-assessment",
+   "title": "Zero Trust Assessment"
+  }
+ ],
+ "docs/training/attribute-driven-migration/01-the-hr-middleware.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/training/attribute-driven-migration/02-a-validation-kit-check.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  },
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/training/attribute-driven-migration/03-dynamic-rules-as-code.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/training/attribute-driven-migration/04-group-policy-as-code.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  },
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/training/attribute-driven-migration/05-machine-configuration.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  },
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/training/attribute-driven-migration/06-ansible-beside-arc.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  },
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/training/attribute-driven-migration/07-lifecycle-workflows-extensions.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/training/attribute-driven-migration/08-drift-and-evidence.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  },
+  {
+   "id": "compliance-evidence",
+   "title": "Compliance and Evidence"
+  }
+ ],
+ "docs/training/attribute-driven-migration/09-deploying-to-test-and-production.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/training/attribute-driven-migration/index.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  }
+ ],
+ "docs/training/azure-security/01-the-baseline-and-the-exposure-register.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/training/azure-security/02-ddos-protection-and-the-waf.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/training/azure-security/03-the-edge-and-the-egress.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/training/azure-security/04-private-link-dns-and-key-vault.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/training/azure-security/05-policy-drift-and-evidence.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/training/azure-security/index.md": [
+  {
+   "id": "azure-security",
+   "title": "Azure Security"
+  }
+ ],
+ "docs/training/daily-checks-dashboard/01-one-workbook-one-tab-per-check.md": [
+  {
+   "id": "daily-checks-dashboard",
+   "title": "Daily Checks Dashboard"
+  }
+ ],
+ "docs/training/daily-checks-dashboard/02-reading-deploying-and-the-evidence.md": [
+  {
+   "id": "daily-checks-dashboard",
+   "title": "Daily Checks Dashboard"
+  }
+ ],
+ "docs/training/daily-checks-dashboard/index.md": [
+  {
+   "id": "daily-checks-dashboard",
+   "title": "Daily Checks Dashboard"
+  }
+ ],
+ "docs/training/defender-xdr/01-architecture-access-and-onboarding.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/training/defender-xdr/02-prevention-and-attack-surface-reduction.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/training/defender-xdr/03-exposure-and-incidents.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/training/defender-xdr/04-hunting-detections-and-identity-signals.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/training/defender-xdr/05-automation-operations-and-evidence.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/training/defender-xdr/index.md": [
+  {
+   "id": "defender-xdr",
+   "title": "Defender XDR"
+  }
+ ],
+ "docs/training/global-secure-access/01-decide-design-and-log-first.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  }
+ ],
+ "docs/training/global-secure-access/02-the-client-and-microsoft-traffic.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  }
+ ],
+ "docs/training/global-secure-access/03-compliant-network-and-tenant-restrictions.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  }
+ ],
+ "docs/training/global-secure-access/04-private-apps-and-admin-paths.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  }
+ ],
+ "docs/training/global-secure-access/05-internet-access-and-tls-inspection.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  }
+ ],
+ "docs/training/global-secure-access/06-rings-rollback-and-the-evidence-package.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  }
+ ],
+ "docs/training/global-secure-access/index.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  }
+ ],
+ "docs/training/hr-driven-identity/01-one-writer-per-state.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/training/hr-driven-identity/02-contractor-sources.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/training/hr-driven-identity/03-joiners-and-the-temporary-access-pass.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/training/hr-driven-identity/04-access-and-movers.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/training/hr-driven-identity/05-certificate-based-authentication.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/training/hr-driven-identity/06-separation-timing.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/training/hr-driven-identity/07-drift-and-evidence.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/training/hr-driven-identity/index.md": [
+  {
+   "id": "hr-driven-identity",
+   "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/training/infoblox-training.md": [
+  {
+   "id": "microsoft-automation",
+   "title": "Microsoft Automation"
+  },
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/training/ms-automation-arc.md": [
+  {
+   "id": "microsoft-automation",
+   "title": "Microsoft Automation"
+  },
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  },
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
+  }
+ ],
+ "docs/training/ms-automation-entra.md": [
+  {
+   "id": "microsoft-automation",
+   "title": "Microsoft Automation"
+  }
+ ],
+ "docs/training/ms-automation-foundations.md": [
+  {
+   "id": "attribute-driven-migration",
+   "title": "Attribute-Driven Migration"
+  },
+  {
+   "id": "microsoft-automation",
+   "title": "Microsoft Automation"
+  }
+ ],
+ "docs/training/ms-automation-intune.md": [
+  {
+   "id": "microsoft-automation",
+   "title": "Microsoft Automation"
+  },
+  {
+   "id": "endpoints",
+   "title": "Endpoints"
   }
  ],
  "docs/training/non-person-identity/01-inventory.md": [
@@ -315,6 +3293,198 @@
   {
    "id": "non-person-identity",
    "title": "Non-Person Identity"
+  }
+ ],
+ "docs/training/privileged-access/01-privileged-inventory.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/training/privileged-access/02-emergency-access-first.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/training/privileged-access/03-conditional-access-and-the-activation-gate.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/training/privileged-access/04-pim-for-entra-roles.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/training/privileged-access/05-pim-for-groups.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/training/privileged-access/06-pim-for-azure-resources.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/training/privileged-access/07-access-reviews.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/training/privileged-access/08-evidence-and-drift.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/training/privileged-access/index.md": [
+  {
+   "id": "privileged-access",
+   "title": "Privileged Access"
+  }
+ ],
+ "docs/training/provider-notices/01-why-provider-notices-go-unread.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  }
+ ],
+ "docs/training/provider-notices/02-azure-service-health-and-alerts.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  }
+ ],
+ "docs/training/provider-notices/03-microsoft-365-message-center.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  }
+ ],
+ "docs/training/provider-notices/04-oci-announcements.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  }
+ ],
+ "docs/training/provider-notices/05-aws-health-and-the-support-plan.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  }
+ ],
+ "docs/training/provider-notices/06-google-incidents-and-the-maintenance-gap.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  }
+ ],
+ "docs/training/provider-notices/07-routing-to-owners.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  }
+ ],
+ "docs/training/provider-notices/08-digest-evidence-and-go-no-go.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  }
+ ],
+ "docs/training/provider-notices/09-deploying-to-test-and-production.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  }
+ ],
+ "docs/training/provider-notices/index.md": [
+  {
+   "id": "provider-notices",
+   "title": "Provider Notices"
+  }
+ ],
+ "docs/training/ticket-to-machine/01-the-loop-and-the-typed-task.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  }
+ ],
+ "docs/training/ticket-to-machine/02-boundary-and-least-privilege.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  }
+ ],
+ "docs/training/ticket-to-machine/03-one-writer-per-attribute.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  }
+ ],
+ "docs/training/ticket-to-machine/04-sources-and-starting-drift.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  }
+ ],
+ "docs/training/ticket-to-machine/05-drift-to-a-typed-task.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  }
+ ],
+ "docs/training/ticket-to-machine/06-actuation-and-the-re-read.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  }
+ ],
+ "docs/training/ticket-to-machine/07-evidence-for-the-isso.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  }
+ ],
+ "docs/training/ticket-to-machine/index.md": [
+  {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  }
+ ],
+ "docs/training/zero-trust-assessment/01-evidence-not-a-verdict.md": [
+  {
+   "id": "zero-trust-assessment",
+   "title": "Zero Trust Assessment"
+  }
+ ],
+ "docs/training/zero-trust-assessment/02-running-the-assessment-safely.md": [
+  {
+   "id": "zero-trust-assessment",
+   "title": "Zero Trust Assessment"
+  }
+ ],
+ "docs/training/zero-trust-assessment/03-from-results-to-a-closure-register.md": [
+  {
+   "id": "zero-trust-assessment",
+   "title": "Zero Trust Assessment"
+  }
+ ],
+ "docs/training/zero-trust-assessment/04-reconcile-re-run-and-keep-the-evidence.md": [
+  {
+   "id": "zero-trust-assessment",
+   "title": "Zero Trust Assessment"
+  }
+ ],
+ "docs/training/zero-trust-assessment/index.md": [
+  {
+   "id": "zero-trust-assessment",
+   "title": "Zero Trust Assessment"
   }
  ]
 }

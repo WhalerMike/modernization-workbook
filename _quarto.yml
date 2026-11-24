@@ -93,8 +93,54 @@ website:
         menu:
           - href: docs/topics/index.md
             text: "All topics"
+          - text: "---"
+          - text: "Identity and access"
           - href: docs/topics/non-person-identity.md
             text: "Non-Person Identity"
+          - href: docs/topics/attribute-driven-migration.md
+            text: "Attribute-Driven Migration"
+          - href: docs/topics/hr-driven-identity.md
+            text: "HR-Driven Identity"
+          - href: docs/topics/privileged-access.md
+            text: "Privileged Access"
+          - href: docs/topics/ticket-to-machine.md
+            text: "Ticket-to-Machine"
+          - text: "---"
+          - text: "Infrastructure"
+          - href: docs/topics/data-platform.md
+            text: "Data Platform and SQL Server"
+          - href: docs/topics/pki.md
+            text: "PKI and Certificates"
+          - href: docs/topics/dns-dhcp-ipam.md
+            text: "DNS, DHCP and IPAM"
+          - href: docs/topics/network-sd-wan.md
+            text: "Network and SD-WAN"
+          - href: docs/topics/endpoints.md
+            text: "Endpoints"
+          - text: "---"
+          - text: "Security"
+          - href: docs/topics/global-secure-access.md
+            text: "Global Secure Access"
+          - href: docs/topics/defender-xdr.md
+            text: "Defender XDR"
+          - href: docs/topics/azure-security.md
+            text: "Azure Security"
+          - href: docs/topics/zero-trust-assessment.md
+            text: "Zero Trust Assessment"
+          - href: docs/topics/information-protection.md
+            text: "Information Protection"
+          - text: "---"
+          - text: "Operations, evidence and applications"
+          - href: docs/topics/provider-notices.md
+            text: "Provider Notices"
+          - href: docs/topics/daily-checks-dashboard.md
+            text: "Daily Checks Dashboard"
+          - href: docs/topics/compliance-evidence.md
+            text: "Compliance and Evidence"
+          - href: docs/topics/microsoft-automation.md
+            text: "Microsoft Automation"
+          - href: docs/topics/application-modernization.md
+            text: "Application Modernization"
       - text: "Books"
         menu:
           - href: docs/books/index.md

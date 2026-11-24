@@ -37,7 +37,7 @@ The project plan and the decisions the program has made.
 | Page | What it is |
 |---|---|
 | [Non-Person Identity Modernization: Service Accounts, Workload Identities and AI Agents](../project-plans/non-person-identity.md) | A sample PMP-style project plan for the Non-Person Identity Modernization project, built from Book 02, Chapters 09 and 10, Book 04, Chapter 05, Book 06, Book 17 and the companion guide's non-person identity track: a work breakdown from… |
-| [Decision Register](../about/decision-register.md#wd-159) | The managed service account standard, decided as WD-159 to WD-170. |
+| [Decision WD-159](../about/decision-register.md#wd-159) | The managed service account standard, decided as WD-159 to WD-170. |
 
 : Plan {.striped .hover}
 
@@ -50,6 +50,7 @@ The implementation guides, the developer workbook and its code.
 | [Non-Person Identity: An Implementation Guide](../books/guides/non-person-identity-implementation.md) | A step-by-step guide to governing service accounts and workload identities in the non-person identity track: inventory AD service accounts, MSAs and gMSAs, app registrations and service principals, managed identities, federated… |
 | [Building Non-Person Identity](../project-plans/developer-workbooks/non-person-identity/index.md) | A developer workbook for the Non-Person Identity Modernization project: a code-first companion for the developers who build its register of service accounts, service principals, managed identities and AI agents, the ownership check and… |
 | [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../books/guides/service-account-migration.md) | One service account at a time, from a user account to a gMSA, a dMSA or a Microsoft Entra workload identity; the detail under the implementation guide's Steps 2 and 5. |
+| [Non-Person Identity: Zero Trust, SASE and Other Clouds](../books/guides/non-person-identity-zero-trust-sase.md) | What keeping a service account costs in Zero Trust and SASE terms, against moving the workload to a Microsoft Entra workload identity, including AWS GovCloud (US) and Oracle Cloud. |
 
 : Build {.striped .hover}
 
@@ -76,6 +77,7 @@ Narrated videos. Each opens in the site's player, with chapters and captions.
 | [Book 17 — AI Identity Governance: executive briefing](../presentations/watch.html?v=B17_AI_Identity_Executive_Narrated) | 15 |
 | [Book 17 — AI Identity Governance: presentation](../presentations/watch.html?v=B17_AI_Identity_Narrated) | 13 |
 | [Book 17 — AI Identity Governance: technical deep dive](../presentations/watch.html?v=B17_AI_Identity_Technical_Narrated) | 21 |
+| [Companion guide — Non-Person Identity: Zero Trust, SASE and Other Clouds](../presentations/watch.html?v=Guide_NPI_Zero_Trust_SASE_Narrated) | 20 |
 | [Companion guide — Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../presentations/watch.html?v=Guide_Service_Account_Migration_Narrated) | 27 |
 | [Non-Person Identity — implementation, Part 1: inventory, decisions and credential rules](../presentations/watch.html?v=Non_Person_Identity_Implementation_Part_1_Narrated) | 17 |
 | [Non-Person Identity — implementation, Part 2: privilege, conversion and lifecycle](../presentations/watch.html?v=Non_Person_Identity_Implementation_Part_2_Narrated) | 17 |
@@ -133,6 +135,7 @@ Word editions and code, rebuilt on every site deploy.
 | File | What it is |
 |---|---|
 | [non-person-identity-implementation-guide.docx](../../downloads/non-person-identity-implementation-guide.docx) | Word edition: Non-Person Identity: An Implementation Guide |
+| [non-person-identity-zero-trust-sase-guide.docx](../../downloads/non-person-identity-zero-trust-sase-guide.docx) | Word edition: Non-Person Identity: Zero Trust, SASE and Other Clouds |
 | [building-non-person-identity-bundle.docx](../../downloads/building-non-person-identity-bundle.docx) | Word edition: Building Non-Person Identity |
 | [b17-ai-identity-bundle.docx](../../downloads/b17-ai-identity-bundle.docx) | Word edition: Book 17 — AI Identity Governance |
 | [non-person-identity-code.zip](../../downloads/non-person-identity-code.zip) | Code: the scripts, tests and fixtures, as committed |
