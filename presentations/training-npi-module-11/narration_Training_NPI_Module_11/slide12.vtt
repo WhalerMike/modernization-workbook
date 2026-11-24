@@ -1,59 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.566
-Step seven runs production's preflight,
+00:00:00.100 --> 00:00:02.437
+Step eight runs production's preflight,
 
 2
-00:00:02.566 --> 00:00:06.225
+00:00:02.437 --> 00:00:05.837
 with the test stage's smoke
 test as its promotion evidence.
 
 3
-00:00:06.225 --> 00:00:10.854
+00:00:05.837 --> 00:00:10.207
 Fourteen passes, including P F
 eleven, which runs in production only:
 
 4
-00:00:10.854 --> 00:00:15.400
+00:00:10.207 --> 00:00:14.549
 the test stage's smoke test passed,
 eight of eight, in another tenant.
 
 5
-00:00:15.400 --> 00:00:19.150
-Step eight checks the test stage's
+00:00:14.549 --> 00:00:18.188
+Step nine checks the test stage's
 evidence, and it says no-go.
 
 6
-00:00:19.150 --> 00:00:22.250
+00:00:18.188 --> 00:00:21.250
 Four of nine requirement rows
 are present and passing.
 
 7
-00:00:22.250 --> 00:00:25.041
+00:00:21.250 --> 00:00:23.942
 Steps 1.1, 1.2, 1.3 and 1.5 are missing,
 
 8
-00:00:25.041 --> 00:00:31.375
+00:00:23.942 --> 00:00:30.050
 because they record their evidence
 only when they run against a tenant.
 
 9
-00:00:31.375 --> 00:00:36.300
+00:00:30.050 --> 00:00:34.738
 And the rollback row fails on dry run,
 which the go or no-go doesn't accept.
 
 10
-00:00:36.300 --> 00:00:39.838
+00:00:34.738 --> 00:00:38.000
 The exit code is one, and
 that's right for a dry run.
 
 11
-00:00:39.838 --> 00:00:45.100
-Step nine lists the four evidence
+00:00:38.000 --> 00:00:42.463
+Step ten lists the four evidence
 records and the K S I's each names.
 
 12
-00:00:45.100 --> 00:00:48.840
-Step ten runs the deploy
-scripts' fifty-five tests.
+00:00:42.463 --> 00:00:46.630
+Step eleven runs the deploy scripts'
+sixty tests, and all of them pass.
