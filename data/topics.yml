@@ -1,0 +1,74 @@
+# Topic hubs: one page per topic that ties together everything the workbook has on it.
+#
+# scripts/build_topics.py turns this file into docs/topics/<id>.md, the Topics page
+# (docs/topics/index.md) and assets/topic-members.json, which assets/fmw-topics.lua reads to put a
+# "Topic" link under the title of every page that belongs to a topic. Run it after editing this
+# file; scripts/tests/test_topics.py fails while the generated files are out of date.
+#
+#     python scripts/build_topics.py           # write the pages
+#     python scripts/build_topics.py --check   # report what is out of date, write nothing
+#
+# Each topic:
+#   id, title, summary   The hub's file name, its title and its opening paragraph.
+#   workbook             A key in scripts/generate_labs.py WORKBOOKS. The hub takes the developer
+#                        workbook, its implementation guide, its learning path, its labs and its
+#                        code zip from there, so they're never listed twice.
+#   kit                  The examples/ folder that holds the topic's code (linked on GitHub).
+#   sections             Extra entries, by section: understand, plan, build, learn, evidence.
+#                        Each entry is a page (path, with an optional #anchor) and an optional
+#                        note; the hub uses the page's own title and description otherwise.
+#   videos               Video ids from docs/presentations/videos.json to add. Every video whose
+#                        source page belongs to the topic is listed without being named here.
+#   downloads            Files under /downloads/ (Word bundles from scripts/bundles.yml, code zips).
+#   members              Globs of pages that belong to the topic as a whole. Every page the hub
+#                        lists belongs too. A page that belongs shows the topic under its title.
+
+topics:
+  - id: non-person-identity
+    title: Non-Person Identity
+    workbook: npi
+    kit: non-person-identity
+    summary: >-
+      Service accounts, managed service accounts (gMSA and dMSA), Microsoft Entra workload
+      identities (applications, service principals and managed identities) and AI agent
+      identities: finding every one, giving it owners and a sponsor, deciding its target,
+      setting its credential rules, cutting its privilege, migrating it and keeping the evidence.
+    sections:
+      understand:
+        - page: docs/books/b02-identity/08-assessing-the-forest.md
+          note: How the forest assessment finds service accounts, and which ones hold SPNs.
+        - page: docs/books/b02-identity/09-building-the-entra-target.md#modernizing-service-accounts
+          note: The design for modernizing service accounts in the Entra ID target.
+        - page: docs/books/b02-identity/10-migrating-and-governing.md
+          note: Phase 4, service account modernization, is the books' gate for this topic.
+        - page: docs/books/b04-access/05-applications-and-workload-identities.md
+        - page: docs/books/b13-governance/14-application-secret-and-configuration-governance.md
+        - page: docs/books/b06-data-platform/19-connection-string-migration.md
+          note: SQL Server's service accounts and the connection strings that name them.
+        - page: docs/books/b17-ai-identity/index.md
+        - page: docs/books/explainers/hybrid-credentials.md
+      plan:
+        - page: docs/project-plans/non-person-identity.md
+        - page: docs/about/decision-register.md#wd-159
+          note: The managed service account standard, decided as WD-159 to WD-170.
+      build:
+        - page: docs/books/guides/service-account-migration.md
+          note: One service account at a time, from a user account to a gMSA, a dMSA or a Microsoft Entra workload identity; the detail under the implementation guide's Steps 2 and 5.
+      evidence:
+        - page: docs/books/guides/non-person-identity-implementation.md#evidence
+          note: The evidence each gate keeps for the ISSO.
+        - page: docs/books/guides/service-account-migration.md#evidence
+          note: Each migration step's federal requirement, KSI and evidence.
+        - page: docs/books/b17-ai-identity/10-evidence-and-authorization.md
+    videos:
+      - Attribute_Driven_Migration_Technical_Part_2_Narrated
+    downloads:
+      - non-person-identity-implementation-guide.docx
+      - building-non-person-identity-bundle.docx
+      - b17-ai-identity-bundle.docx
+      - non-person-identity-code.zip
+      - validation-kit.zip
+    members:
+      - docs/project-plans/developer-workbooks/non-person-identity/*.md
+      - docs/training/non-person-identity/*.md
+      - docs/books/b17-ai-identity/*.md

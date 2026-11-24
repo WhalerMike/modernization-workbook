@@ -30657,6 +30657,7 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/decisions.yml
   - data/source-register.json
   - docs/about/decision-register.md
   - docs/books/b01-transformation-arc/08-access-plane.md
