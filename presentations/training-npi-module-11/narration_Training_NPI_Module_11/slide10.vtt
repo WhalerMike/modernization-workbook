@@ -1,69 +1,108 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.573
-Step three runs the smoke test against the
+00:00:00.100 --> 00:00:04.169
+Step three plans the smoke-test G M
+S A as a one-account Chapter 6 plan,
 
 2
-00:00:02.573 --> 00:00:05.600
+00:00:04.169 --> 00:00:08.239
+the way every production write for
+a managed service account goes:
+
+3
+00:00:08.239 --> 00:00:11.124
+create gmsa npismoke in
+the service account O U,
+
+4
+00:00:11.124 --> 00:00:14.306
+its hosts' group as the only
+retriever, outbound-only,
+
+5
+00:00:14.306 --> 00:00:18.375
+run by the pipeline under its
+SailPoint request and change record.
+
+6
+00:00:18.375 --> 00:00:21.476
+It prints the plan's hash;
+in a live stage a reviewer
+
+7
+00:00:21.476 --> 00:00:24.425
+approves that hash and
+the pipeline applies it.
+
+8
+00:00:24.425 --> 00:00:25.687
+Here it writes nothing.
+
+9
+00:00:25.687 --> 00:00:27.869
+Step four runs the smoke test against the
+
+10
+00:00:27.869 --> 00:00:30.563
 synthetic service principal
 and service account.
 
-3
-00:00:05.600 --> 00:00:09.591
+11
+00:00:30.563 --> 00:00:34.043
 It prints eight passes, for
 checks S T oh one to oh seven,
 
-4
-00:00:09.591 --> 00:00:13.038
+12
+00:00:34.043 --> 00:00:37.049
 with oh five run once
 for each workload policy.
 
-5
-00:00:13.038 --> 00:00:17.137
+13
+00:00:37.049 --> 00:00:40.975
 The synthetic app is in the register
 with two owners and no secret.
 
-6
-00:00:17.137 --> 00:00:20.300
+14
+00:00:40.975 --> 00:00:44.013
 The synthetic service account
 is found and rated high.
 
-7
-00:00:20.300 --> 00:00:24.688
+15
+00:00:44.013 --> 00:00:48.101
 The app management policy refuses
 a new secret on the synthetic app.
 
-8
-00:00:24.688 --> 00:00:28.138
+16
+00:00:48.101 --> 00:00:51.275
 The federated credential
 matches the settings exactly.
 
-9
-00:00:28.138 --> 00:00:32.225
+17
+00:00:51.275 --> 00:00:55.488
 Each workload policy assigns the
 synthetic service principal directly.
 
-10
-00:00:32.225 --> 00:00:35.250
+18
+00:00:55.488 --> 00:00:58.362
 The synthetic sign-ins
 show the policies' result.
 
-11
-00:00:35.250 --> 00:00:38.888
+19
+00:00:58.362 --> 00:01:01.900
 And the test host can retrieve the
 group managed account's password.
 
-12
-00:00:38.888 --> 00:00:41.513
+20
+00:01:01.900 --> 00:01:04.063
 Read S T oh three closely.
 
-13
-00:00:41.513 --> 00:00:46.239
+21
+00:01:04.063 --> 00:01:08.471
 It says the fixture's refusal is real
 code unverified, because Microsoft
 
-14
-00:00:46.239 --> 00:00:50.710
+22
+00:01:08.471 --> 00:01:12.600
 Learn doesn't give the exact error
 an app management policy returns.

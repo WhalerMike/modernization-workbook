@@ -1,6 +1,6 @@
 // Non-Person Identity learning path, Module 11: Deploy to test, then production — the module's narrated deck.
 // Teaches docs/training/non-person-identity/11-deploying-to-test-and-production.md, Learn-style: objectives, the
-// concepts, four "Try it" slides with the real Lab 1 dry-run commands and output (run November 3, 2026 in a scratch
+// concepts, four "Try it" slides with the real Lab 1 dry-run commands and output (run November 24, 2026 in a scratch
 // copy of examples/non-person-identity), Lab 2, the federal requirement and evidence, a two-question check, and the
 // summary. Chapter 11 is approved, but nobody has run its runbook against a live tenant; the deck says so.
 // Every fact comes from the module page, the path's verification log, workbook Chapter 11 that the page sends the
@@ -199,7 +199,7 @@ endModule(SC);
     "Evidence: PRE-preflight.json (Warn)",
     "Evidence: S0-change-record-approvals-and-settings-file.json (Pass)",
     "Result: GO for this stage. File results.json, snapshot.json and manifest.json with the change record.",
-  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED: \"...\" MARKS CUTS)", pt: 10.5 });
+  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 24, 2026 (TRIMMED: \"...\" MARKS CUTS)", pt: 10.5 });
   line(s, "Warn", "The Warn: a standing role assignment, not a PIM-eligible one. The preflight reports it but doesn't block.", c + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 11, \"Exercise: Lab 1,\" steps 1 and 2; examples/non-person-identity/deploy (NpiDeploy.psm1, Test-NpiDeployPreflight.ps1; fixtures).");
   notes(s,
@@ -209,29 +209,29 @@ endModule(SC);
 
 // ================================================================== 10 Try it: smoke test
 {
-  const s = content(SL, "Try it: the smoke test on synthetic objects");
+  const s = content(SL, "Try it: the smoke-test gMSA's plan, then the smoke test");
   tag(s, "How");
   const c = code(s, "Smoke", 0.6, 1.45, 12.15, [
-    "# Step 3: run the smoke test (command trimmed)",
-    "$ ./deploy/Invoke-NpiDeploySmokeTest.ps1 -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test ...",
+    "# Step 3: plan the smoke-test gMSA as a one-account Chapter 06 plan (command trimmed)",
+    "Plan: CreateGmsa gmsa-npismoke$ in OU=Service Accounts,..., retriever CN=DL-gMSA-npismoke-Hosts,...; runBy pipeline;",
+    "      request SP-REQ-0002001, change CHG-2026-1102-T   Outbound-only: yes   Plan SHA-256: 0bcf2917c6845ce4...",
+    "# Step 4: run the smoke test (command trimmed)",
     "Smoke test (Fixture, test, Conditional Access expected ReportOnly): 8 Pass",
     "  ST-01 Pass  G1  Synthetic app is in the register with two owners and no secret: ...",
     "  ST-02 Pass  G1  Synthetic service account is detected and rated HIGH: ...",
-    "  ST-03 Pass  G3  App management policy refuses a new secret on the synthetic app: refused: Graph returned",
-    "                  400 (BadRequest): (fixture) Refused by the app management policy (real code unverified).",
+    "  ST-03 Pass  G3  App management policy refuses a new secret on the synthetic app: refused: ... (real code unverified)",
     "  ST-04 Pass  G5  Synthetic app's federated credential matches the settings exactly: ...",
-    "  ST-05 Pass  G4  Workload policy CA015-... assigns the synthetic service principal directly: ...",
-    "  ST-05 Pass  G4  Workload policy CA037-... assigns the synthetic service principal directly: ...",
+    "  ST-05 Pass  G4  Workload policies CA015-... and CA037-... each assign the synthetic service principal directly",
     "  ST-06 Pass  G4  Synthetic sign-ins show the workload policies' result (Graph beta): ...",
     "  ST-07 Pass  G5  gMSA test host can retrieve the gMSA's password: ...",
     "Evidence: SMOKE-smoke-test.json (Pass)",
     "Result: PASS. File results.json and manifest.json with the change record.",
-  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED AND WRAPPED)", pt: 10.5 });
+  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 24, 2026 (TRIMMED AND REFLOWED: \"...\" MARKS CUTS)", pt: 10.5 });
   line(s, "Unv", "ST-03 says (real code unverified): Learn doesn't give the error an app management policy returns.", c + 0.2, 0.45, 13.5);
-  sources(s, "Sources: Module 11, \"Exercise: Lab 1,\" step 3; Learn, app management policies API overview; examples/non-person-identity/deploy/Invoke-NpiDeploySmokeTest.ps1.");
+  sources(s, "Sources: Module 11, \"Exercise: Lab 1,\" steps 3 and 4; Learn, app management policies API overview; deploy/New-NpiDeploySmokeGmsaPlan.ps1, Invoke-NpiDeploySmokeTest.ps1.");
   notes(s,
-`Step three runs the smoke test against the synthetic service principal and service account. It prints eight passes, for checks S T oh one to oh seven, with oh five run once for each workload policy. The synthetic app is in the register with two owners and no secret. The synthetic service account is found and rated high. The app management policy refuses a new secret on the synthetic app. The federated credential matches the settings exactly. Each workload policy assigns the synthetic service principal directly. The synthetic sign-ins show the policies' result. And the test host can retrieve the group managed account's password. Read S T oh three closely. It says the fixture's refusal is real code unverified, because Microsoft Learn doesn't give the exact error an app management policy returns.`,
-  `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," step 3; workbook Chapter 11 — "Illustrative code."`);
+`Step three plans the smoke-test G M S A as a one-account Chapter 6 plan, the way every production write for a managed service account goes: create gmsa npismoke in the service account O U, its hosts' group as the only retriever, outbound-only, run by the pipeline under its SailPoint request and change record. It prints the plan's hash; in a live stage a reviewer approves that hash and the pipeline applies it. Here it writes nothing. Step four runs the smoke test against the synthetic service principal and service account. It prints eight passes, for checks S T oh one to oh seven, with oh five run once for each workload policy. The synthetic app is in the register with two owners and no secret. The synthetic service account is found and rated high. The app management policy refuses a new secret on the synthetic app. The federated credential matches the settings exactly. Each workload policy assigns the synthetic service principal directly. The synthetic sign-ins show the policies' result. And the test host can retrieve the group managed account's password. Read S T oh three closely. It says the fixture's refusal is real code unverified, because Microsoft Learn doesn't give the exact error an app management policy returns.`,
+  `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 3 and 4; workbook Chapter 11 — "Illustrative code."`);
 }
 
 // ================================================================== 11 Try it: rollback
@@ -239,25 +239,25 @@ endModule(SC);
   const s = content(SL, "Try it: the rollback planned, refused, then dry-run");
   tag(s, "How");
   const c = code(s, "Rb", 0.6, 1.45, 12.15, [
-    "# Step 4: plan the rollback (-Mode Plan ... -To Disabled -IncludeSmokeCleanup ...)",
+    "# Step 5: plan the rollback (-Mode Plan ... -To Disabled -IncludeSmokeCleanup ...)",
     "Rollback plan (test, to Disabled): 7 action(s)",
     "  RB-01 G4  ConditionalAccessState CA015-...   RB-04 G3       AppPolicyOff  npi-pilot-block-secrets",
     "  RB-02 G4  ConditionalAccessState CA037-...   RB-05 G5       AdEnable      svc-payexport",
     "  RB-03 G3  TenantAppPolicyRestore ...         RB-06, RB-07   Cleanup: SpDisable, AdDisable",
-    "Plan SHA-256 for the reviewer: 2d365b3052a6db5e5f134937f011974afe132f790e607b21e9de8d071ca29ed2",
-    "# Step 5: apply it with -ApprovedSha256 ('0' * 64)",
-    "The plan's SHA-256 is 2d365b30..., not the approved 00000000.... Nothing was sent.",
-    "# Step 6: apply it with the plan's own hash, without -Apply",
+    "Plan SHA-256 for the reviewer: 00105622acf1165bd55d606ea781b908d700f79f9f82cba5e67bd4f0d3081b81",
+    "# Step 6: apply it with -ApprovedSha256 ('0' * 64)",
+    "The plan's SHA-256 is 00105622..., not the approved 00000000.... Nothing was sent.",
+    "# Step 7: apply it with the plan's own hash, without -Apply",
     "Rollback DryRun (Fixture, test): 7 WouldApply",
     "  RB-01 WouldApply  ConditionalAccessState CA015-... enabledForReportingButNotEnforced -> disabled",
     "  RB-02 WouldApply  ConditionalAccessState CA037-... enabledForReportingButNotEnforced -> disabled",
     "Evidence: ROLLBACK-rollback.json (DryRun)",
-  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED AND REFLOWED: \"...\" MARKS CUTS)", pt: 10.5 });
+  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 24, 2026 (TRIMMED AND REFLOWED: \"...\" MARKS CUTS)", pt: 10.5 });
   line(s, "Hash", "No action is a delete. In a real stage, a reviewer who isn't the operator passes you the hash.", c + 0.2, 0.45, 13.5);
-  sources(s, "Sources: Module 11, \"Exercise: Lab 1,\" steps 4 to 6; examples/non-person-identity/deploy/Invoke-NpiDeployRollback.ps1.");
+  sources(s, "Sources: Module 11, \"Exercise: Lab 1,\" steps 5 to 7; examples/non-person-identity/deploy/Invoke-NpiDeployRollback.ps1.");
   notes(s,
-`Steps four to six are the rollback. Step four plans it from the preflight's snapshot, with the synthetic objects' cleanup. Seven actions: turn the two workload policies off, restore the tenant's default app management policy, turn the pilot policy off, re-enable the legacy account, and disable the two synthetic objects. No action is a delete. The plan prints its hash for the reviewer. Step five applies the plan with a hash nobody approved, all zeros, and it stops: the plan's hash isn't the approved one, and nothing was sent. Step six applies it with the plan's own hash, but without the apply switch, so it's a dry run: seven would-apply actions, with both workload policies going from report-only to disabled. In a real stage, a reviewer who isn't the operator passes you that hash.`,
-  `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 4 to 6.`);
+`Steps five to seven are the rollback. Step five plans it from the preflight's snapshot, with the synthetic objects' cleanup. Seven actions: turn the two workload policies off, restore the tenant's default app management policy, turn the pilot policy off, re-enable the legacy account, and disable the two synthetic objects. No action is a delete. The plan prints its hash for the reviewer. Step six applies the plan with a hash nobody approved, all zeros, and it stops: the plan's hash isn't the approved one, and nothing was sent. Step seven applies it with the plan's own hash, but without the apply switch, so it's a dry run: seven would-apply actions, with both workload policies going from report-only to disabled. In a real stage, a reviewer who isn't the operator passes you that hash.`,
+  `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 5 to 7.`);
 }
 
 // ================================================================== 12 Try it: promotion and evidence
@@ -265,24 +265,24 @@ endModule(SC);
   const s = content(SL, "Try it: production's preflight, and the evidence check");
   tag(s, "How");
   const c = code(s, "Ev", 0.6, 1.45, 12.15, [
-    "# Step 7: production's preflight, with -PromotionEvidencePath out/dryrun/test-smoke",
+    "# Step 8: production's preflight, with -PromotionEvidencePath out/dryrun/test-smoke",
     "Preflight (Fixture, production, CHG-2026-1116-P): 14 Pass",
     "  PF-11 Pass   Promotion Test stage smoke test passed, in another tenant: test, tenant",
     "               c0ffee00-0000-4000-8000-0000000000e1, 8/8 Pass",
-    "# Step 8: check the test stage's evidence",
+    "# Step 9: check the test stage's evidence",
     "Evidence for the test stage (CHG-2026-1102-T): 4 of 9 requirement rows present and passing",
     "  S1.1  Missing  ...  S1.5  Missing     ROLLBACK  Failing  DryRun  KSI-CMT-RMV, KSI-RPL-ABO",
     "Result: NO-GO on evidence.",
-    "# Step 9: read the evidence records",
+    "# Step 10: read the evidence records",
     "PRE-preflight.json: Warn; ...   ROLLBACK-rollback.json: DryRun; KSIs KSI-CMT-RMV, KSI-RPL-ABO",
     "S0-change-record-approvals-and-settings-file.json: Pass; KSIs KSI-CMT-LMC, KSI-IAM-JIT",
     "SMOKE-smoke-test.json: Pass; ...",
-  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED AND REFLOWED: \"...\" MARKS CUTS)", pt: 10.5 });
-  line(s, "Tests", "Step 10, the deploy tests: 55 passed, 0 failed, 0 not run.", c + 0.2, 0.7, 13.5);
-  sources(s, "Sources: Module 11, \"Exercise: Lab 1,\" steps 7 to 10; examples/non-person-identity/deploy (Test-NpiDeployEvidence.ps1; tests/NpiDeploy.Tests.ps1).");
+  ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 24, 2026 (TRIMMED AND REFLOWED: \"...\" MARKS CUTS)", pt: 10.5 });
+  line(s, "Tests", "Step 11, the deploy tests: 60 passed, 0 failed, 0 not run.", c + 0.2, 0.7, 13.5);
+  sources(s, "Sources: Module 11, \"Exercise: Lab 1,\" steps 8 to 11; examples/non-person-identity/deploy (Test-NpiDeployEvidence.ps1; tests/NpiDeploy.Tests.ps1).");
   notes(s,
-`Step seven runs production's preflight, with the test stage's smoke test as its promotion evidence. Fourteen passes, including P F eleven, which runs in production only: the test stage's smoke test passed, eight of eight, in another tenant. Step eight checks the test stage's evidence, and it says no-go. Four of nine requirement rows are present and passing. Steps 1.1, 1.2, 1.3 and 1.5 are missing, because they record their evidence only when they run against a tenant. And the rollback row fails on dry run, which the go or no-go doesn't accept. The exit code is one, and that's right for a dry run. Step nine lists the four evidence records and the K S I's each names. Step ten runs the deploy scripts' fifty-five tests.`,
-  `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 7 to 10.`);
+`Step eight runs production's preflight, with the test stage's smoke test as its promotion evidence. Fourteen passes, including P F eleven, which runs in production only: the test stage's smoke test passed, eight of eight, in another tenant. Step nine checks the test stage's evidence, and it says no-go. Four of nine requirement rows are present and passing. Steps 1.1, 1.2, 1.3 and 1.5 are missing, because they record their evidence only when they run against a tenant. And the rollback row fails on dry run, which the go or no-go doesn't accept. The exit code is one, and that's right for a dry run. Step ten lists the four evidence records and the K S I's each names. Step eleven runs the deploy scripts' sixty tests, and all of them pass.`,
+  `${M} — Unit "Exercise: Lab 1, fixtures, no tenant," steps 8 to 11.`);
 }
 
 // ================================================================== 13 Lab 2
@@ -292,7 +292,7 @@ endModule(SC);
   const b = table(s, "Lab2", 1.45, [2.3, 9.85], ["Step", "What you do"], [
     ["You need", "An Entra test tenant with Workload ID Premium and Entra ID P1 or P2, an Azure test subscription and an AD test forest, never production"],
     ["And", "An approved change record; the reader app and the deployment identity, each with a certificate; operators eligible through PIM; the earlier Lab 2s"],
-    ["What you do", "Fill in and check the settings file, create the synthetic objects and the pilot policy, run the preflight, deploy Steps 1.1 to 1.5"],
+    ["What you do", "Fill in and check the settings file, create the synthetic objects, the gMSA's retriever group and the pilot policy, run the preflight, deploy Steps 1.1 to 1.5 (the gMSA through its approved Chapter 06 plan)"],
     ["Then", "Run the smoke test, capture the evidence, rehearse the rollback, deploy again, check the evidence"],
     ["Back it out", "Step 1.8: the approved rollback, the gMSA uninstalled, the tenant checked against the baseline. The kit never deletes"],
   ], { fontSize: 12, limit: 5.3 });
@@ -300,7 +300,7 @@ endModule(SC);
     "production only when every go/no-go criterion is signed.");
   sources(s, "Sources: Module 11, \"Exercise: Lab 2, the live test stage, then production\"; workbook Chapter 11, Stage 1, Step 1.8.");
   notes(s,
-`Lab 2 is the live test stage, and then production. Nobody has run it yet. You need an Entra test tenant with Workload ID Premium and Entra ID P1 or P2, an Azure test subscription and an Active Directory test forest, never production. You also need an approved change record, the reader app and the deployment identity, each with a certificate, operators eligible for their roles through P I M, and the second labs of Chapters 1, 4, 5, 6 and 8 already run. Fill in and check the settings file, create the synthetic objects and the pilot policy, run the preflight, and deploy Steps 1.1 to 1.5. Then run the smoke test, capture the evidence, rehearse the rollback, deploy again, and check the evidence. To back it out, Step 1.8 applies the approved rollback and checks the tenant against the baseline. The kit never deletes. Production comes only when every go or no-go criterion is signed.`,
+`Lab 2 is the live test stage, and then production. Nobody has run it yet. You need an Entra test tenant with Workload ID Premium and Entra ID P1 or P2, an Azure test subscription and an Active Directory test forest, never production. You also need an approved change record, the reader app and the deployment identity, each with a certificate, operators eligible for their roles through P I M, and the second labs of Chapters 1, 4, 5, 6 and 8 already run. Fill in and check the settings file, create the synthetic objects, the G M S A's domain local retriever group and the pilot policy, run the preflight, and deploy Steps 1.1 to 1.5, with the G M S A created through its approved Chapter 6 plan. Then run the smoke test, capture the evidence, rehearse the rollback, deploy again, and check the evidence. To back it out, Step 1.8 applies the approved rollback and checks the tenant against the baseline. The kit never deletes. Production comes only when every go or no-go criterion is signed.`,
   `${M} — Unit "Exercise: Lab 2, the live test stage, then production."`);
 }
 endModule(SL);
@@ -332,7 +332,7 @@ endModule(SL);
   ], "1 b: the hash check comes before any request. 2 b: a fixture stage can never pass the evidence check.");
   sources(s, "Sources: Module 11, \"Knowledge check,\" questions 3 and 4, and \"Check your answers.\"");
   notes(s,
-`Check yourself with two questions. First: the rollback's plan hash isn't the one the reviewer approved. What does apply mode do? The answer is b. It stops before it sends anything, and says nothing was sent. You saw it in step five. Second: in the dry run, why does the evidence check end no-go? The answer is b. Steps 1.1 to 1.5 record their evidence only when they run against a tenant, and a dry-run rollback records dry run, which the go or no-go doesn't accept. So a fixture stage can never pass the evidence check, and that's by design. The module page has three more questions, each linked to the section that answers it.`,
+`Check yourself with two questions. First: the rollback's plan hash isn't the one the reviewer approved. What does apply mode do? The answer is b. It stops before it sends anything, and says nothing was sent. You saw it in step six. Second: in the dry run, why does the evidence check end no-go? The answer is b. Steps 1.1 to 1.5 record their evidence only when they run against a tenant, and a dry-run rollback records dry run, which the go or no-go doesn't accept. So a fixture stage can never pass the evidence check, and that's by design. The module page has three more questions, each linked to the section that answers it.`,
   `${M} — Unit "Knowledge check," questions 3 and 4; "Check your answers."`);
 }
 
@@ -365,7 +365,7 @@ sourceSlide("Sources: Module 11 deck", [
   "Module page: docs/training/non-person-identity/11-deploying-to-test-and-production.md (Non-Person Identity learning path, Module 11): the status callout, Introduction and its requirement table, objectives, prerequisites, Units 1 and 2, Lab 1, Lab 2, knowledge check and summary.",
   "What the module links: workbook Chapter 11 (approved; not run against a live tenant), \"What the runbook depends on,\" \"Before you start,\" \"The environment settings file,\" \"The code this chapter adds,\" \"Pre-flight checks,\" Stages 1 and 2, \"Promotion go/no-go criteria,\" \"Evidence the ISSO keeps.\" Its Microsoft Learn footnotes: app management policies; Conditional Access for workload identities; Activate a Microsoft Entra role in PIM. FedRAMP, Key Security Indicators; NIST SP 800-53.",
   "Kit: examples/non-person-identity/deploy (NpiDeploy.psm1; the five scripts; settings.template.json; tests/NpiDeploy.Tests.ps1) and tests/fixtures/deploy. Fictional tenants served by a fake. Illustrative: tested against fixtures, not run against a live tenant.",
-  "Lab output: run November 3, 2026 with PowerShell 7 and Pester 5 in a scratch copy of examples/non-person-identity; output trimmed and reflowed where the slides say so. Step 10 printed 55 passed, run in the same session after step 8, once the test cleared the exit code step 8 leaves (fixed November 3, 2026). Verification: docs/training/non-person-identity/_verification/learning-path.md. Lab 2 not run by anyone.",
+  "Lab output: run November 24, 2026 with PowerShell 7 and Pester 5 in a scratch copy of examples/non-person-identity; output trimmed and reflowed where the slides say so. Step 11 printed 60 passed, run in the same session after step 9, once the test cleared the exit code step 9 leaves (fixed November 3, 2026). Verification: docs/training/non-person-identity/_verification/learning-path.md. Lab 2 not run by anyone.",
 ]);
 
 finish(OUT);

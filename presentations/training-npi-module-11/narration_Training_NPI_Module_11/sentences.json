@@ -273,194 +273,209 @@
  ],
  "10": [
   [
-   0.05,
-   5.55,
-   "Step three runs the smoke test against the synthetic service principal and service account."
+   0.1,
+   18.275,
+   "Step three plans the smoke-test G M S A as a one-account Chapter 6 plan, the way every production write for a managed service account goes: create gmsa npismoke in the service account O U, its hosts' group as the only retriever, outbound-only, run by the pipeline under its SailPoint request and change record."
   ],
   [
-   5.6,
-   7.438,
+   18.375,
+   6.05,
+   "It prints the plan's hash; in a live stage a reviewer approves that hash and the pipeline applies it."
+  ],
+  [
+   24.425,
+   1.262,
+   "Here it writes nothing."
+  ],
+  [
+   25.688,
+   4.875,
+   "Step four runs the smoke test against the synthetic service principal and service account."
+  ],
+  [
+   30.562,
+   6.487,
    "It prints eight passes, for checks S T oh one to oh seven, with oh five run once for each workload policy."
   ],
   [
-   13.037,
-   4.1,
+   37.05,
+   3.925,
    "The synthetic app is in the register with two owners and no secret."
   ],
   [
-   17.137,
-   3.163,
+   40.975,
+   3.038,
    "The synthetic service account is found and rated high."
   ],
   [
-   20.3,
-   4.388,
+   44.013,
+   4.088,
    "The app management policy refuses a new secret on the synthetic app."
   ],
   [
-   24.688,
-   3.45,
+   48.1,
+   3.175,
    "The federated credential matches the settings exactly."
   ],
   [
-   28.137,
-   4.088,
+   51.275,
+   4.213,
    "Each workload policy assigns the synthetic service principal directly."
   ],
   [
-   32.225,
-   3.025,
+   55.487,
+   2.875,
    "The synthetic sign-ins show the policies' result."
   ],
   [
-   35.25,
-   3.638,
+   58.362,
+   3.538,
    "And the test host can retrieve the group managed account's password."
   ],
   [
-   38.888,
-   2.625,
+   61.9,
+   2.163,
    "Read S T oh three closely."
   ],
   [
-   41.513,
-   9.137,
+   64.062,
+   8.525,
    "It says the fixture's refusal is real code unverified, because Microsoft Learn doesn't give the exact error an app management policy returns."
   ]
  ],
  "11": [
   [
-   0.05,
-   2.062,
-   "Steps four to six are the rollback."
+   0.1,
+   2.237,
+   "Steps five to seven are the rollback."
   ],
   [
-   2.112,
+   2.288,
    4.888,
-   "Step four plans it from the preflight's snapshot, with the synthetic objects' cleanup."
+   "Step five plans it from the preflight's snapshot, with the synthetic objects' cleanup."
   ],
   [
-   7.0,
-   12.675,
+   7.175,
+   12.488,
    "Seven actions: turn the two workload policies off, restore the tenant's default app management policy, turn the pilot policy off, re-enable the legacy account, and disable the two synthetic objects."
   ],
   [
-   19.675,
-   1.625,
+   19.663,
+   1.788,
    "No action is a delete."
   ],
   [
-   21.3,
-   2.413,
+   21.45,
+   2.263,
    "The plan prints its hash for the reviewer."
   ],
   [
    23.712,
-   9.15,
-   "Step five applies the plan with a hash nobody approved, all zeros, and it stops: the plan's hash isn't the approved one, and nothing was sent."
+   8.925,
+   "Step six applies the plan with a hash nobody approved, all zeros, and it stops: the plan's hash isn't the approved one, and nothing was sent."
   ],
   [
-   32.862,
-   11.3,
-   "Step six applies it with the plan's own hash, but without the apply switch, so it's a dry run: seven would-apply actions, with both workload policies going from report-only to disabled."
+   32.638,
+   10.725,
+   "Step seven applies it with the plan's own hash, but without the apply switch, so it's a dry run: seven would-apply actions, with both workload policies going from report-only to disabled."
   ],
   [
-   44.163,
-   4.8,
+   43.362,
+   4.275,
    "In a real stage, a reviewer who isn't the operator passes you that hash."
   ]
  ],
  "12": [
   [
-   0.05,
-   6.175,
-   "Step seven runs production's preflight, with the test stage's smoke test as its promotion evidence."
+   0.1,
+   5.737,
+   "Step eight runs production's preflight, with the test stage's smoke test as its promotion evidence."
   ],
   [
-   6.225,
-   9.175,
+   5.787,
+   8.762,
    "Fourteen passes, including P F eleven, which runs in production only: the test stage's smoke test passed, eight of eight, in another tenant."
   ],
   [
-   15.4,
-   3.75,
-   "Step eight checks the test stage's evidence, and it says no-go."
+   14.55,
+   3.638,
+   "Step nine checks the test stage's evidence, and it says no-go."
   ],
   [
-   19.15,
-   3.1,
+   18.188,
+   3.062,
    "Four of nine requirement rows are present and passing."
   ],
   [
-   22.25,
-   9.125,
+   21.25,
+   8.8,
    "Steps 1.1, 1.2, 1.3 and 1.5 are missing, because they record their evidence only when they run against a tenant."
   ],
   [
-   31.375,
-   4.925,
+   30.05,
+   4.688,
    "And the rollback row fails on dry run, which the go or no-go doesn't accept."
   ],
   [
-   36.3,
-   3.538,
+   34.737,
+   3.263,
    "The exit code is one, and that's right for a dry run."
   ],
   [
-   39.837,
-   5.263,
-   "Step nine lists the four evidence records and the K S I's each names."
+   38.0,
+   4.463,
+   "Step ten lists the four evidence records and the K S I's each names."
   ],
   [
-   45.1,
-   3.688,
-   "Step ten runs the deploy scripts' fifty-five tests."
+   42.462,
+   4.162,
+   "Step eleven runs the deploy scripts' sixty tests, and all of them pass."
   ]
  ],
  "13": [
   [
-   0.05,
-   3.6,
+   0.1,
+   3.175,
    "Lab 2 is the lyve test stage, and then production."
   ],
   [
-   3.65,
-   1.488,
+   3.225,
+   1.562,
    "Nobody has run it yet."
   ],
   [
-   5.138,
-   10.887,
+   4.787,
+   10.537,
    "You need an Entra test tenant with Workload I D Premium and Entra I D P1 or P2, an Azure test subscription and an Active Directory test forest, never production."
   ],
   [
-   16.025,
-   15.2,
+   15.325,
+   14.35,
    "You also need an approved change record, the reader app and the deployment identity, each with a certificate, operators eligible for their roles through P I M, and the second labs of Chapters 1, 4, 5, 6 and 8 already run."
   ],
   [
-   31.225,
-   9.312,
-   "Fill in and check the settings file, create the synthetic objects and the pilot policy, run the preflight, and deploy Steps 1.1 to 1.5."
+   29.675,
+   16.175,
+   "Fill in and check the settings file, create the synthetic objects, the G M S A's domain local retriever group and the pilot policy, run the preflight, and deploy Steps 1.1 to 1.5, with the G M S A created through its approved Chapter 6 plan."
   ],
   [
-   40.538,
-   6.763,
+   45.85,
+   6.55,
    "Then run the smoke test, capture the evidence, rehearse the rollback, deploy again, and check the evidence."
   ],
   [
-   47.3,
-   6.237,
+   52.4,
+   5.713,
    "To back it out, Step 1.8 applies the approved rollback and checks the tenant against the baseline."
   ],
   [
-   53.538,
-   1.6,
+   58.112,
+   1.538,
    "The kit never deletes."
   ],
   [
-   55.138,
-   4.3,
+   59.65,
+   4.188,
    "Production comes only when every go or no-go criterion is signed."
   ]
  ],
@@ -518,53 +533,53 @@
  ],
  "15": [
   [
-   0.05,
-   1.975,
+   0.1,
+   2.05,
    "Check yourself with two questions."
   ],
   [
-   2.025,
-   4.287,
+   2.1,
+   4.05,
    "First: the rollback's plan hash isn't the one the reviewer approved."
   ],
   [
-   6.312,
-   1.475,
+   6.15,
+   1.438,
    "What does apply mode do?"
   ],
   [
-   7.787,
-   1.225,
+   7.588,
+   1.375,
    "The answer is b."
   ],
   [
-   9.012,
-   3.65,
+   8.963,
+   3.638,
    "It stops before it sends anything, and says nothing was sent."
   ],
   [
-   12.662,
-   1.55,
-   "You saw it in step five."
+   12.6,
+   1.825,
+   "You saw it in step six."
   ],
   [
-   14.213,
-   4.325,
+   14.425,
+   3.825,
    "Second: in the dry run, why does the evidence check end no-go?"
   ],
   [
-   18.538,
-   11.9,
+   18.25,
+   11.412,
    "The answer is b. Steps 1.1 to 1.5 record their evidence only when they run against a tenant, and a dry-run rollback records dry run, which the go or no-go doesn't accept."
   ],
   [
-   30.438,
-   4.312,
+   29.663,
+   4.475,
    "So a fixture stage can never pass the evidence check, and that's by design."
   ],
   [
-   34.75,
-   4.925,
+   34.138,
+   4.3,
    "The module page has three more questions, each linked to the section that answers it."
   ]
  ],

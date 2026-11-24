@@ -20585,30 +20585,30 @@
    ],
    [
     475,
-    "Try it: the smoke test on synthetic objects"
+    "Try it: the smoke-test gMSA's plan, then the smoke test"
    ],
    [
-    529,
+    551,
     "Try it: the rollback planned, refused, then dry-run"
    ],
    [
-    582,
+    603,
     "Try it: production's preflight, and the evidence check"
    ],
    [
-    635,
+    654,
     "Lab 2: the live test stage, then production"
    ],
    [
-    699,
+    721,
     "The federal requirement and evidence, every gate"
    ],
    [
-    764,
+    786,
     "Check yourself: two questions on the runbook"
    ],
    [
-    808,
+    829,
     "Summary: you've finished the learning path"
    ]
   ],
