@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Book 08"
 series-order: 3
 review-status: approved
-reviewed-sha256: 340eb425c8be957d2cdeb7c52a324fbb712ede46997b5e4c7df5fcc6e0bde529
+reviewed-sha256: 756619e2d52bdf9daf0387045ba76e61a4acf1cf4ec7e7652a606a17889ab04e
 last-reviewed: 2026-11-25
 ---
 # Module 3: DHCP, encrypted DNS and the edge {.unnumbered}

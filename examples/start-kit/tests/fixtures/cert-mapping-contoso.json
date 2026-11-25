@@ -1,0 +1,83 @@
+{
+  "_comment": "Fictional strong certificate mapping snapshot of the Contoso forest for the PKI and Certificates learning path and the Start Kit tests: the domain controllers, the accounts with altSecurityIdentities, the KDC's KB5014754 events and the NTAuth store that Get-FMPCertificateMappingReport reads. Each event message is abbreviated to one opening sentence and the field lines the kit parses (User, Certificate Thumbprint); names, serial numbers and thumbprints are invented. The NTAuth entries are the two issuing CA certificates from pki-contoso.json. Not a real estate.",
+  "domain": "contoso.example",
+  "domainControllers": [
+    {
+      "hostName": "dc01.contoso.example",
+      "operatingSystem": "Windows Server 2022 Datacenter"
+    },
+    {
+      "hostName": "dc02.contoso.example",
+      "operatingSystem": "Windows Server 2019 Standard"
+    }
+  ],
+  "accounts": [
+    {
+      "sAMAccountName": "alice",
+      "objectClass": "user",
+      "altSecurityIdentities": [
+        "X509:<I>DC=example,DC=contoso,CN=Contoso Issuing CA 2<SR>1200000a11c0de0000002b"
+      ]
+    },
+    {
+      "sAMAccountName": "bob",
+      "objectClass": "user",
+      "altSecurityIdentities": [
+        "X509:<I>DC=example,DC=contoso,CN=Contoso Issuing CA 1<S>DC=example,DC=contoso,CN=Users,CN=Bob"
+      ]
+    },
+    {
+      "sAMAccountName": "carol",
+      "objectClass": "user",
+      "altSecurityIdentities": [
+        "X509:<RFC822>carol@contoso.example"
+      ]
+    },
+    {
+      "sAMAccountName": "dave",
+      "objectClass": "user",
+      "altSecurityIdentities": [
+        "X509:<S>DC=example,DC=contoso,CN=Users,CN=Dave",
+        "X509:<SKI>5c3e9a1f0b7d24e6a8c1f3b5d7e9a0c2b4d6f8e1"
+      ]
+    },
+    {
+      "sAMAccountName": "KIOSK01$",
+      "objectClass": "computer",
+      "altSecurityIdentities": [
+        "X509:<S>CN=kiosk01.contoso.example"
+      ]
+    },
+    {
+      "sAMAccountName": "svc-legacy",
+      "objectClass": "user",
+      "altSecurityIdentities": [
+        "Kerberos:svc-legacy@PARTNER.EXAMPLE"
+      ]
+    }
+  ],
+  "kdcEvents": [
+    {
+      "domainController": "dc01.contoso.example",
+      "id": 39,
+      "timeCreated": "2026-11-18T14:02:11Z",
+      "message": "The Key Distribution Center (KDC) encountered a user certificate that was valid but could not be mapped to a user in a strong way.\nUser: CONTOSO\\bob\nCertificate Subject: CN=Bob\nCertificate Issuer: Contoso Issuing CA 1\nCertificate Serial Number: 1200000a4c\nCertificate Thumbprint: 3f7a2c9e1b5d8f0a4c6e2b9d7f1a3c5e8b0d2f4a\n"
+    },
+    {
+      "domainController": "dc02.contoso.example",
+      "id": 40,
+      "timeCreated": "2026-11-19T09:47:30Z",
+      "message": "The Key Distribution Center (KDC) encountered a user certificate that was valid but could not be mapped to a user in a strong way, and the certificate predated the user it mapped to.\nUser: CONTOSO\\erin\nCertificate Subject: CN=Erin\nCertificate Issuer: Contoso Issuing CA 2\nCertificate Serial Number: 1200000b17\nCertificate Thumbprint: 8c1e4a7d0f3b6e9c2a5d8f1b4e7a0c3d6f9b2e5a\n"
+    },
+    {
+      "domainController": "dc02.contoso.example",
+      "id": 41,
+      "timeCreated": "2026-11-20T16:15:05Z",
+      "message": "The Key Distribution Center (KDC) encountered a user certificate that was valid but contained a different SID than the user to which it mapped.\nUser: CONTOSO\\frank\nCertificate Subject: CN=Frank\nCertificate Issuer: Contoso Issuing CA 2\nCertificate Serial Number: 1200000c02\nCertificate Thumbprint: 1d4f7b0e3a6c9f2d5b8e1a4c7f0d3b6e9a2c5f8d\n"
+    }
+  ],
+  "ntAuth": [
+    "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"
+  ]
+}

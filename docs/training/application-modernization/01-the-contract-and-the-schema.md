@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Book 18"
 series-order: 1
 review-status: approved
-reviewed-sha256: a221ee579ced14a3a8618ec5d83553b7b191cfb213f28f87d9635b8c9993717c
+reviewed-sha256: 1da781e79e6b08dcfe6052d08f779869e159fa219ef5cc79ca5b618603304a5e
 last-reviewed: 2026-11-25
 ---
 # Module 1: The contract and the schema {.unnumbered}

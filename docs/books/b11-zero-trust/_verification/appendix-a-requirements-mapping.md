@@ -69,3 +69,11 @@ The front-matter description said a workbook book "closes" each requirement; it 
 |---|---|---|---|---|
 | 1 | RA-7 Risk Response added to the CA-2/CA-5/CA-7 row; "respond to findings ... in accordance with organizational risk tolerance"; RA-7 is in the SP 800-53B Moderate baseline | Controls table | verified | SP 800-53 Rev. 5.2.0 OSCAL catalog; SP 800-53B Moderate profile |
 | 2 | Evidence column names the Chapter 10 register (normalized results, closure chain, weighting) | Controls table | restated-as-design | Book 11 Chapter 10 |
+
+## Revision 2026-11-25 — outside review: wording and crosswalks
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | SP 800-207 Section 2.1 has seven tenets; they are "the ideal goal" and not all may be fully implemented | New tenets section | verified against the PDF, pages 6-7 (Nov 25, 2026) | NIST SP 800-207, Section 2.1 |
+| R2 | Tenet wording, paraphrased from each tenet's bold first sentence | Tenets table | verified | NIST SP 800-207, Section 2.1 |
+| R3 | Addressed in / Closed by for each tenet | Tenets table | design guidance; rows follow the ZTMM table's own Addressed in and Closed by entries | This appendix |

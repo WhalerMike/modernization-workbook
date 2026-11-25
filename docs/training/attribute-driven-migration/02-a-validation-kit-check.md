@@ -8,8 +8,8 @@ research-book: "Book 19"
 series-order: 2
 date-modified: 2026-11-02
 review-status: approved
-reviewed-sha256: 3a67be186262f76e720b6fc7de1ee966cb80c2f58737d215c41e9b63e5c5009a
-last-reviewed: 2026-11-18
+reviewed-sha256: 8269a5df7ffd8907baa9db3ee53068a2c72cdae01b77e840f4e3d4fd4c2d664e
+last-reviewed: 2026-11-25
 ---
 # Attribute-Driven Migration, Module 2: Write a Validation Kit Check {.unnumbered}
 

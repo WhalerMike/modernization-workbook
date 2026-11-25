@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Book 18"
 series-order: 3
 review-status: approved
-reviewed-sha256: f6c271fec2c11f57fb876f9f27278d51d192c57f7d6ad95e3dbaae6fa38679ad
+reviewed-sha256: a83ad229f71d7f0c49413cff6f0564e3f65583d7f0ffe4ce44bc6b54671e0ed2
 last-reviewed: 2026-11-25
 ---
 # Module 3: Proving the move {.unnumbered}

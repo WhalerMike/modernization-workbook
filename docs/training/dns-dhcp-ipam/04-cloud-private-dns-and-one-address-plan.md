@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Books 08, 10"
 series-order: 4
 review-status: approved
-reviewed-sha256: 896c40c9563860f4d215b4308bd782edb9152065cc17b22beeea47fe08063372
+reviewed-sha256: 1970022df06c7260c3dc67f78b2c8a7012a01ea19e366f18389e576fea73b961
 last-reviewed: 2026-11-25
 ---
 # Module 4: Cloud private DNS and one address plan {.unnumbered}
