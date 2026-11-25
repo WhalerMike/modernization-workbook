@@ -102,7 +102,9 @@ Describe 'Partitioned reads' {
         } $run
     }
     It 'splits a domain into the head and its OUs and containers, leaving out leaf objects' {
-        Register-KitAdMocks -ModuleName FMPADAssessment
+        # Only the two reads it makes: the rest of Register-KitAdMocks mocks Windows-only commands.
+        Mock -ModuleName FMPADAssessment Get-ADDomain { $global:FMPFix.domains.(Get-FixDomain $Server) }
+        Mock -ModuleName FMPADAssessment Get-ADObject { @(Get-FixTopLevel (Get-FixDomain $Server)) }
         $p = @(& $M { Get-FMPAdPartition -Domain 'contoso.example' })
         $p[0].Id | Should -Be 'head'
         $p[0].SearchScope | Should -Be 'OneLevel'
@@ -155,7 +157,7 @@ Describe 'Distinguished names and privileged groups' {
         & $M { Get-FMPParentDN -DN 'CN=Smith\, Jo,OU=Staff,DC=contoso,DC=example' } | Should -Be 'OU=Staff,DC=contoso,DC=example'
     }
     It 'looks up privileged groups by well-known SID, Enterprise and Schema Admins in the root domain' {
-        Register-KitAdMocks -ModuleName FMPADAssessment
+        Mock -ModuleName FMPADAssessment Get-ADDomain { $global:FMPFix.domains.(Get-FixDomain $Server) }
         $g = @(& $M { Get-FMPPrivilegedGroupSid -Domain 'child.contoso.example' -RootDomain 'contoso.example' })
         ($g | Where-Object Name -eq 'Domain Admins').Sid | Should -Be 'S-1-5-21-2000-2000-2000-512'
         ($g | Where-Object Name -eq 'Enterprise Admins').Sid | Should -Be 'S-1-5-21-1000-1000-1000-519'
