@@ -74,30 +74,34 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\ticket-to-machine-code\servicenow-sailpoint
 
+$Run = "C:\FMWLabs\results\ticket-to-machine-07-evidence-for-the-isso\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
 # Step 1
 python -m pytest -q -p no:cacheprovider tests/python/test_evidence_export.py
 
 # Step 2
-python clients/python/evidence_export.py --records-json tests/fixtures/evidence/closed_records.json --out-dir out/evidence --period 2026-10 --generated-at 2026-11-01T12:00:00Z
+python clients/python/evidence_export.py --records-json tests/fixtures/evidence/closed_records.json --out-dir "$Run\evidence" --period 2026-10 --generated-at 2026-11-01T12:00:00Z
 
 # Step 2
-python -c "import json; r=json.loads(open('out/evidence/records.jsonl', encoding='utf-8').readline()); [print(k, json.dumps(r[k])) for k in ('approval', 'executing_identity', 'what_ran')]"
+python -c "import json, sys; r=json.loads(open(sys.argv[1], encoding='utf-8').readline()); [print(k, json.dumps(r[k])) for k in ('approval', 'executing_identity', 'what_ran')]" "$Run\evidence\records.jsonl"
 
 # Step 3
-python clients/python/evidence_export.py --verify-dir out/evidence
+python clients/python/evidence_export.py --verify-dir "$Run\evidence"
 
 # Step 4
-python clients/python/evidence_export.py --records-json tests/fixtures/evidence/closed_records.json --out-dir out/evidence-2026-11 --period 2026-11 --previous-manifest out/evidence/manifest.json --generated-at 2026-12-01T12:00:00Z
+python clients/python/evidence_export.py --records-json tests/fixtures/evidence/closed_records.json --out-dir "$Run\evidence-2026-11" --period 2026-11 --previous-manifest "$Run\evidence\manifest.json" --generated-at 2026-12-01T12:00:00Z
 
 # Step 4
-python -m json.tool out/evidence-2026-11/manifest.json
+python -m json.tool "$Run\evidence-2026-11\manifest.json"
 
 # Step 5
-python -c "p='out/evidence/records.jsonl'; l=open(p).readlines(); del l[1]; open(p,'w').writelines(l)"
-python clients/python/evidence_export.py --verify-dir out/evidence
+python -c "import sys; p=sys.argv[1]; l=open(p).readlines(); del l[1]; open(p,'w').writelines(l)" "$Run\evidence\records.jsonl"
+python clients/python/evidence_export.py --verify-dir "$Run\evidence"
 
 # Step 6
-Remove-Item -Recurse -Force out
+Get-ChildItem C:\FMWLabs\results\ticket-to-machine-07-evidence-for-the-isso\lab1 -Name
 ```
 
 :::
@@ -112,7 +116,23 @@ Every step runs in PowerShell 7, the Python commands included, so you can follow
 Set-Location C:\FMWLabs\ticket-to-machine-code\servicenow-sailpoint
 ```
 
-Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/servicenow-sailpoint`; every step except the last one runs the same there, and in Git Bash the last one is `rm -rf out`. In a clone of the repository, use the `examples` folder of the same name.
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
+
+```powershell
+$Run = "C:\FMWLabs\results\ticket-to-machine-07-evidence-for-the-isso\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\ticket-to-machine-07-evidence-for-the-isso\lab1\<run>
+```
+
+The run's date is only the folder's name. The data's dates are `--period` and `--generated-at`, which stay the same, so every run's results match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
+
+Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/servicenow-sailpoint`, make the run folder with `Run=/c/FMWLabs/results/ticket-to-machine-07-evidence-for-the-isso/lab1/$(date -u +%Y-%m-%dT%H%M%SZ); mkdir -p "$Run"`, and Steps 1 to 5 run the same there, with `/` in place of `\` after `$Run`; list the runs with `ls`. In a clone of the repository, use the `examples` folder of the same name.
 
 1. Run the chapter's tests.
 
@@ -125,7 +145,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/ser
 2. Export October's closed findings.
 
    ```powershell
-   python clients/python/evidence_export.py --records-json tests/fixtures/evidence/closed_records.json --out-dir out/evidence --period 2026-10 --generated-at 2026-11-01T12:00:00Z
+   python clients/python/evidence_export.py --records-json tests/fixtures/evidence/closed_records.json --out-dir "$Run\evidence" --period 2026-10 --generated-at 2026-11-01T12:00:00Z
    ```
 
    Expected output (the command exits 1, because three records have problems):
@@ -136,13 +156,13 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/ser
      IDF0000902: closed after its response window
      IDF0000903: evidence doesn't hash to u_evidence_hash: edited after closure, or cut short
      IDF0000905: closed without re-read evidence
-   Chain head 144f5e8494281f83598d2fae5eacac12b9b271c90372c0e503aafc2bd4cf0623; written to out/evidence
+   Chain head 144f5e8494281f83598d2fae5eacac12b9b271c90372c0e503aafc2bd4cf0623; written to C:\FMWLabs\results\ticket-to-machine-07-evidence-for-the-isso\lab1\<run>\evidence
    ```
 
-   Print `approval`, `executing_identity` and `what_ran` from the first line of `out/evidence/records.jsonl`:
+   Print `approval`, `executing_identity` and `what_ran` from the first line of the package's `records.jsonl`:
 
    ```powershell
-   python -c "import json; r=json.loads(open('out/evidence/records.jsonl', encoding='utf-8').readline()); [print(k, json.dumps(r[k])) for k in ('approval', 'executing_identity', 'what_ran')]"
+   python -c "import json, sys; r=json.loads(open(sys.argv[1], encoding='utf-8').readline()); [print(k, json.dumps(r[k])) for k in ('approval', 'executing_identity', 'what_ran')]" "$Run\evidence\records.jsonl"
    ```
 
    Expected output:
@@ -156,7 +176,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/ser
 3. Verify the package as the ISSO would.
 
    ```powershell
-   python clients/python/evidence_export.py --verify-dir out/evidence
+   python clients/python/evidence_export.py --verify-dir "$Run\evidence"
    ```
 
    Expected output:
@@ -168,7 +188,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/ser
 4. Start November's chain from October's head.
 
    ```powershell
-   python clients/python/evidence_export.py --records-json tests/fixtures/evidence/closed_records.json --out-dir out/evidence-2026-11 --period 2026-11 --previous-manifest out/evidence/manifest.json --generated-at 2026-12-01T12:00:00Z
+   python clients/python/evidence_export.py --records-json tests/fixtures/evidence/closed_records.json --out-dir "$Run\evidence-2026-11" --period 2026-11 --previous-manifest "$Run\evidence\manifest.json" --generated-at 2026-12-01T12:00:00Z
    ```
 
    Expected output (the command exits 1, for the same three records):
@@ -179,13 +199,13 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/ser
      IDF0000902: closed after its response window
      IDF0000903: evidence doesn't hash to u_evidence_hash: edited after closure, or cut short
      IDF0000905: closed without re-read evidence
-   Chain head afa59e0f3038613ba36eb4a748da38bb3e76e8427d04038162d08fbdcc167bd1; written to out/evidence-2026-11
+   Chain head afa59e0f3038613ba36eb4a748da38bb3e76e8427d04038162d08fbdcc167bd1; written to C:\FMWLabs\results\ticket-to-machine-07-evidence-for-the-isso\lab1\<run>\evidence-2026-11
    ```
 
    Print November's manifest:
 
    ```powershell
-   python -m json.tool out/evidence-2026-11/manifest.json
+   python -m json.tool "$Run\evidence-2026-11\manifest.json"
    ```
 
    Expected output:
@@ -210,8 +230,8 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/ser
 5. Remove one record from October's package, and verify again.
 
    ```powershell
-   python -c "p='out/evidence/records.jsonl'; l=open(p).readlines(); del l[1]; open(p,'w').writelines(l)"
-   python clients/python/evidence_export.py --verify-dir out/evidence
+   python -c "import sys; p=sys.argv[1]; l=open(p).readlines(); del l[1]; open(p,'w').writelines(l)" "$Run\evidence\records.jsonl"
+   python clients/python/evidence_export.py --verify-dir "$Run\evidence"
    ```
 
    Expected output (the second command exits 1):
@@ -222,10 +242,16 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/ser
    Package does not hold: 2 problem(s).
    ```
 
-6. Delete the `out` folder, so the next run starts clean.
+6. Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
 
    ```powershell
-   Remove-Item -Recurse -Force out
+   Get-ChildItem C:\FMWLabs\results\ticket-to-machine-07-evidence-for-the-isso\lab1 -Name
+   ```
+
+   Expected output: one line per run, oldest first, the last one this run:
+
+   ```text
+   <run>
    ```
 
 **Check your work:** you can produce a package for a period, say what its problems are, and show whether a package you received still holds.

@@ -19,7 +19,9 @@ workbook its kit (--kit global-secure-access-code), the Azure Security Engineeri
 developer workbook their kit (--kit azure-security-code), and the Defender XDR guide and developer
 workbook the Defender XDR kit (--kit defender-xdr-code), and the Daily Checks Dashboard guide and
 developer workbook the daily checks workbook kit (--kit daily-checks-workbook-code), and
-Building SQL Server Identity its kit (--kit sql-server-identity-code).
+Building SQL Server Identity its kit (--kit sql-server-identity-code), and the
+managed service account request guide its pack (--kit msa-request-pack: the forms and checker with
+the Non-Person Identity kit's Chapter 12 module).
 This packs the folder as
 it is in the repository, scripts, README, fixtures and tests, at the top of the zip, with
 no folder of the zip's own name around it (a bundle's top level is its examples folders):
@@ -29,7 +31,8 @@ line endings left as committed, so the same commit always gives the same bytes.
 
 Every script, code and data file also gets a plain-text copy beside it, named with .txt
 added (Get-Thing.ps1 -> Get-Thing.ps1.txt), because Microsoft 365 Copilot and some mail
-systems refuse to take .ps1, .py and similar files. The copies are made here, not
+systems refuse to take .ps1, .py and similar files. Files under a tests' fixtures folder get no
+copy: they are data the tests read, and some tests compare a fixture folder with its manifest. The copies are made here, not
 committed, so they can't drift from the originals.
 
 Usage: python3 scripts/build_start_kit_zip.py [--kit start-kit] [--out _site/downloads]
@@ -52,7 +55,7 @@ KITS = ("start-kit", "copilot-agent-pack", "app-modernization", "ansible", "vali
         "cisco-sdwan", "ticket-to-machine-task-catalog", "dp-consolidation", "provider-notices-code",
         "zta-results", "global-secure-access-code", "azure-security-code", "defender-xdr-code",
         "daily-checks-workbook-code", "information-protection-code",
-        "sql-server-identity-code")
+        "sql-server-identity-code", "msa-request-pack")
 # Kits packed from several examples folders, each kept under its own path, instead of
 # from examples/<kit>. The Attribute-Driven Migration developer workbook's chapters 01-09
 # build on these folders and the Microsoft samples pinned under third_party/.
@@ -115,6 +118,8 @@ BUNDLES = {
     "information-protection-code": ("information-protection",),
     # The SQL Server identity kit (Building SQL Server Identity, Book 06).
     "sql-server-identity-code": ("sql-server-identity",),
+    # The managed service account request pack: the forms and checker, with the Chapter 12 module the checker calls.
+    "msa-request-pack": ("msa-request-pack", "non-person-identity/powershell/NpiGmsaStandard", "non-person-identity/powershell/NpiCore"),
 }
 # Kits whose download name differs from their folder name.
 ZIP_NAMES = {"ansible": "ansible-examples"}
@@ -150,6 +155,10 @@ def kit_files(kit: Path, base: Path | None = None) -> list[Path]:
 
 
 def needs_copy(path: Path) -> bool:
+    # Test fixtures are data the kit's tests read, not files a reader mails: a .txt copy beside them
+    # breaks the tests that compare a fixture folder with its manifest (drift-pipeline's evidence runs).
+    if "fixtures" in path.parts:
+        return False
     return path.suffix.lower() in TXT_COPY or path.name in TXT_COPY_NAMES
 
 

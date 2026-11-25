@@ -286,7 +286,7 @@ rm -rf out
     python -m pytest tests -q
     ```
 
-    Expect 549 Pester tests and 139 pytest tests passed.
+    Expect 554 Pester tests and 139 pytest tests passed.
 
 Delete `out` in both folders when you're done. In `examples/non-person-identity`:
 

@@ -44,7 +44,8 @@ EXAMPLES = ROOT / "examples"
 # Kit -> kits whose suites also run when it changes.
 ALSO = {
     "hr-lifecycle": ["drift-pipeline"],
-    "non-person-identity": ["drift-pipeline"],
+    # The request pack's checker calls the Chapter 12 module.
+    "non-person-identity": ["drift-pipeline", "msa-request-pack"],
     "privileged-access": ["drift-pipeline"],
     # The task catalog reads its vocabulary from the integration kit's finding_contract.py, and the
     # provider notices router mirrors its priorities and windows (a test reads the file).
