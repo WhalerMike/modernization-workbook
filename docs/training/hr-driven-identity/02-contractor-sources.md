@@ -80,33 +80,37 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\hr-driven-identity-code\hr-lifecycle
 
+$Run = "C:\FMWLabs\results\hr-driven-identity-02-contractor-sources\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
 # Step 1
 python python/graph_export.py --task contractor-reconcile --list
 
 # Step 2
-python python/contractor_source.py extract --register tests/fixtures/ch02/contractor-register.csv --cards tests/fixtures/ch02/cards.csv --sponsors tests/fixtures/ch02/hr-sponsors.csv --rules config/contractor-rules.json --as-of 2026-11-01 --out out/ch02/extract
+python python/contractor_source.py extract --register tests/fixtures/ch02/contractor-register.csv --cards tests/fixtures/ch02/cards.csv --sponsors tests/fixtures/ch02/hr-sponsors.csv --rules config/contractor-rules.json --as-of 2026-11-01 --out "$Run\ch02\extract"
 
 # Step 3
-python -c "import json; [print(d['PersonKey'], d['Action'], d['EarliestEnd'], d['Reason']) for d in json.load(open('out/ch02/extract/decisions.json'))]"
+python -c "import json, sys; [print(d['PersonKey'], d['Action'], d['EarliestEnd'], d['Reason']) for d in json.load(open(sys.argv[1]))]" "$Run\ch02\extract\decisions.json"
 
 # Step 4
-python ../hcm-entra/python/hcm_to_scim.py --extract out/ch02/extract/contractors-extract.csv --as-of 2026-11-01 --out out/ch02/scim
+python ../hcm-entra/python/hcm_to_scim.py --extract "$Run\ch02\extract\contractors-extract.csv" --as-of 2026-11-01 --out "$Run\ch02\scim"
 
 # Step 5
-python python/contractor_source.py reconcile --register tests/fixtures/ch02/contractor-register.csv --cards tests/fixtures/ch02/cards.csv --sponsors tests/fixtures/ch02/hr-sponsors.csv --accounts tests/fixtures/ch02/contractor-users.json --rules config/contractor-rules.json --as-of 2026-11-01 --cloud gcc --out out/ch02/reconcile
-python -c "import json; [print(r['Rule'], r['Severity'], r['Object'], '|', r['Issue']) for r in json.load(open('out/ch02/reconcile/findings.json'))]"
+python python/contractor_source.py reconcile --register tests/fixtures/ch02/contractor-register.csv --cards tests/fixtures/ch02/cards.csv --sponsors tests/fixtures/ch02/hr-sponsors.csv --accounts tests/fixtures/ch02/contractor-users.json --rules config/contractor-rules.json --as-of 2026-11-01 --cloud gcc --out "$Run\ch02\reconcile"
+python -c "import json, sys; [print(r['Rule'], r['Severity'], r['Object'], '|', r['Issue']) for r in json.load(open(sys.argv[1]))]" "$Run\ch02\reconcile\findings.json"
 
 # Step 6
-python python/contractor_source.py review --rules config/contractor-rules.json --out out/ch02/review
+python python/contractor_source.py review --rules config/contractor-rules.json --out "$Run\ch02\review"
 
 # Step 6
-python -c "import json; print(json.dumps(json.load(open('out/ch02/review/assignment-policy-review.json')), indent=2))"
+python -c "import json, sys; print(json.dumps(json.load(open(sys.argv[1])), indent=2))" "$Run\ch02\review\assignment-policy-review.json"
 
 # Step 7
 python -m pytest -q -p no:cacheprovider tests
 
 # Step 7
-Remove-Item -Recurse -Force out
+Get-ChildItem C:\FMWLabs\results\hr-driven-identity-02-contractor-sources\lab1 -Name
 ```
 
 :::
@@ -119,7 +123,23 @@ Every step runs in PowerShell 7, the Python commands included, so you can follow
 Set-Location C:\FMWLabs\hr-driven-identity-code\hr-lifecycle
 ```
 
-Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr-lifecycle`; every step runs the same there except the last command, which is `rm -rf out` in Bash. In a clone of the repository, use the `examples` folder of the same name.
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
+
+```powershell
+$Run = "C:\FMWLabs\results\hr-driven-identity-02-contractor-sources\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\hr-driven-identity-02-contractor-sources\lab1\<run>
+```
+
+The run's date is only the folder's name. The data's date is `--as-of`, which stays the same, so every run's results match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
+
+Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr-lifecycle`, make the run folder with `Run=/c/FMWLabs/results/hr-driven-identity-02-contractor-sources/lab1/$(date -u +%Y-%m-%dT%H%M%SZ); mkdir -p "$Run"`, and every step runs the same there. In a clone of the repository, use the `examples` folder of the same name.
 
 1. List the reconciliation's read and permissions:
 
@@ -137,7 +157,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 2. Compute the earliest ends and write the extract:
 
     ```powershell
-    python python/contractor_source.py extract --register tests/fixtures/ch02/contractor-register.csv --cards tests/fixtures/ch02/cards.csv --sponsors tests/fixtures/ch02/hr-sponsors.csv --rules config/contractor-rules.json --as-of 2026-11-01 --out out/ch02/extract
+    python python/contractor_source.py extract --register tests/fixtures/ch02/contractor-register.csv --cards tests/fixtures/ch02/cards.csv --sponsors tests/fixtures/ch02/hr-sponsors.csv --rules config/contractor-rules.json --as-of 2026-11-01 --out "$Run\ch02\extract"
     ```
 
     Expected output:
@@ -145,7 +165,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
     ```text
     Contractors: 9 records: 3 active, 4 inactive (past their earliest end), 2 quarantined
     Source: 2 Finding, 1 Warn, 1 Info
-    Extract written to out/ch02/extract/contractors-extract.csv; build the SCIM requests with examples/hcm-entra/python/hcm_to_scim.py
+    Extract written to C:/FMWLabs/results/hr-driven-identity-02-contractor-sources/lab1/<run>/ch02/extract/contractors-extract.csv; build the SCIM requests with examples/hcm-entra/python/hcm_to_scim.py
     ```
 
     The exit code is 2 (type `$LASTEXITCODE` to see it), because the fixture holds findings. In your unzipped folder, `examples/hcm-entra` is the `hcm-entra` folder beside `hr-lifecycle`; step 4 runs it from there.
@@ -153,7 +173,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 3. Read the decisions:
 
     ```powershell
-    python -c "import json; [print(d['PersonKey'], d['Action'], d['EarliestEnd'], d['Reason']) for d in json.load(open('out/ch02/extract/decisions.json'))]"
+    python -c "import json, sys; [print(d['PersonKey'], d['Action'], d['EarliestEnd'], d['Reason']) for d in json.load(open(sys.argv[1]))]" "$Run\ch02\extract\decisions.json"
     ```
 
     Expected output:
@@ -175,7 +195,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 4. Build the SCIM requests with the middleware, from the `hcm-entra` folder beside this one (you stay in `hr-lifecycle`):
 
     ```powershell
-    python ../hcm-entra/python/hcm_to_scim.py --extract out/ch02/extract/contractors-extract.csv --as-of 2026-11-01 --out out/ch02/scim
+    python ../hcm-entra/python/hcm_to_scim.py --extract "$Run\ch02\extract\contractors-extract.csv" --as-of 2026-11-01 --out "$Run\ch02\scim"
     ```
 
     Expected output:
@@ -189,15 +209,15 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 5. Reconcile the register, the cards and the directory, and read the findings:
 
     ```powershell
-    python python/contractor_source.py reconcile --register tests/fixtures/ch02/contractor-register.csv --cards tests/fixtures/ch02/cards.csv --sponsors tests/fixtures/ch02/hr-sponsors.csv --accounts tests/fixtures/ch02/contractor-users.json --rules config/contractor-rules.json --as-of 2026-11-01 --cloud gcc --out out/ch02/reconcile
-    python -c "import json; [print(r['Rule'], r['Severity'], r['Object'], '|', r['Issue']) for r in json.load(open('out/ch02/reconcile/findings.json'))]"
+    python python/contractor_source.py reconcile --register tests/fixtures/ch02/contractor-register.csv --cards tests/fixtures/ch02/cards.csv --sponsors tests/fixtures/ch02/hr-sponsors.csv --accounts tests/fixtures/ch02/contractor-users.json --rules config/contractor-rules.json --as-of 2026-11-01 --cloud gcc --out "$Run\ch02\reconcile"
+    python -c "import json, sys; [print(r['Rule'], r['Severity'], r['Object'], '|', r['Issue']) for r in json.load(open(sys.argv[1]))]" "$Run\ch02\reconcile\findings.json"
     ```
 
     Expected output:
 
     ```text
     Reconciliation: 7 Finding, 1 Warn, 0 Info
-    Written to out/ch02/reconcile (manifest.json lists every file's SHA-256)
+    Written to C:/FMWLabs/results/hr-driven-identity-02-contractor-sources/lab1/<run>/ch02/reconcile (manifest.json lists every file's SHA-256)
     CR-01 Finding bailey.ortiz@contoso.example | enabled past its earliest end 2026-10-15 (completion date)
     CR-01 Finding cameron.wu@contoso.example | enabled past its earliest end 2026-10-20 (suitability withdrawn)
     CR-01 Finding devon.hale@contoso.example | enabled past its earliest end 2026-10-30 (sponsor gone past the grace period)
@@ -213,19 +233,19 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 6. Write the sponsor review settings:
 
     ```powershell
-    python python/contractor_source.py review --rules config/contractor-rules.json --out out/ch02/review
+    python python/contractor_source.py review --rules config/contractor-rules.json --out "$Run\ch02\review"
     ```
 
     Expected output:
 
     ```text
-    Review settings written to out/ch02/review/assignment-policy-review.json for review; nothing was sent
+    Review settings written to C:/FMWLabs/results/hr-driven-identity-02-contractor-sources/lab1/<run>/ch02/review/assignment-policy-review.json for review; nothing was sent
     ```
 
     Print the file:
 
     ```powershell
-    python -c "import json; print(json.dumps(json.load(open('out/ch02/review/assignment-policy-review.json')), indent=2))"
+    python -c "import json, sys; print(json.dumps(json.load(open(sys.argv[1])), indent=2))" "$Run\ch02\review\assignment-policy-review.json"
     ```
 
     Expected output:
@@ -288,10 +308,16 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 
     Expected: the last line is `57 passed` and the time the run took.
 
-    Then delete the `out` folder this lab wrote, so the next run starts clean:
+    Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
 
     ```powershell
-    Remove-Item -Recurse -Force out
+    Get-ChildItem C:\FMWLabs\results\hr-driven-identity-02-contractor-sources\lab1 -Name
+    ```
+
+    Expected output: one line per run, oldest first, the last one this run:
+
+    ```text
+    <run>
     ```
 
 ## Exercise: Lab 2, your test tenant (5 minutes to read)

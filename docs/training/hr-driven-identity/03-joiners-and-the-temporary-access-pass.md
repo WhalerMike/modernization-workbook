@@ -80,6 +80,10 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\hr-driven-identity-code\hr-lifecycle
 
+$Run = "C:\FMWLabs\results\hr-driven-identity-03-joiners-and-the-temporary-access-pass\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
 # Step 1
 python python/graph_export.py --task joiner-plan --list
 python python/graph_export.py --task joiner-readiness --list
@@ -91,19 +95,19 @@ python python/joiner_workflows.py lint config/workflows --budget 50
 python python/joiner_workflows.py lint tests/fixtures/ch03/bad-workflows --budget 2
 
 # Step 4
-python python/joiner_workflows.py plan config/workflows --current tests/fixtures/ch03/workflows.json --out out/ch03/plan
+python python/joiner_workflows.py plan config/workflows --current tests/fixtures/ch03/workflows.json --out "$Run\ch03\plan"
 
 # Step 4
-python python/joiner_workflows.py plan tests/fixtures/ch03/bad-workflows --current tests/fixtures/ch03/workflows.json --out out/ch03/plan-bad
+python python/joiner_workflows.py plan tests/fixtures/ch03/bad-workflows --current tests/fixtures/ch03/workflows.json --out "$Run\ch03\plan-bad"
 
 # Step 5
-python python/joiner_workflows.py readiness --hires tests/fixtures/ch03/hr-hires.csv --users tests/fixtures/ch03/hire-users.json --prehire-results tests/fixtures/ch03/prehire-results.json --assignments tests/fixtures/ch03/joiner-assignments.json --workflows config/workflows --as-of 2026-11-02T08:00:00Z --cloud gcc --out out/ch03/readiness
+python python/joiner_workflows.py readiness --hires tests/fixtures/ch03/hr-hires.csv --users tests/fixtures/ch03/hire-users.json --prehire-results tests/fixtures/ch03/prehire-results.json --assignments tests/fixtures/ch03/joiner-assignments.json --workflows config/workflows --as-of 2026-11-02T08:00:00Z --cloud gcc --out "$Run\ch03\readiness"
 
 # Step 6
 python -m pytest -q -p no:cacheprovider tests
 
 # Step 6
-Remove-Item -Recurse -Force out/ch03
+Get-ChildItem C:\FMWLabs\results\hr-driven-identity-03-joiners-and-the-temporary-access-pass\lab1 -Name
 ```
 
 :::
@@ -116,7 +120,23 @@ Every step runs in PowerShell 7, the Python commands included, so you can follow
 Set-Location C:\FMWLabs\hr-driven-identity-code\hr-lifecycle
 ```
 
-Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr-lifecycle`; every step runs the same there except the last command, which is `rm -rf out/ch03` in Bash. In a clone of the repository, use the `examples` folder of the same name.
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
+
+```powershell
+$Run = "C:\FMWLabs\results\hr-driven-identity-03-joiners-and-the-temporary-access-pass\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\hr-driven-identity-03-joiners-and-the-temporary-access-pass\lab1\<run>
+```
+
+The run's date is only the folder's name. The data's date is `--as-of`, which stays the same, so every run's results match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
+
+Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr-lifecycle`, make the run folder with `Run=/c/FMWLabs/results/hr-driven-identity-03-joiners-and-the-temporary-access-pass/lab1/$(date -u +%Y-%m-%dT%H%M%SZ); mkdir -p "$Run"`, and every step runs the same there. In a clone of the repository, use the `examples` folder of the same name.
 
 1. List the reads and their permissions:
 
@@ -180,7 +200,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 4. Plan against the tenant's export:
 
     ```powershell
-    python python/joiner_workflows.py plan config/workflows --current tests/fixtures/ch03/workflows.json --out out/ch03/plan
+    python python/joiner_workflows.py plan config/workflows --current tests/fixtures/ch03/workflows.json --out "$Run\ch03\plan"
     ```
 
     Expected output:
@@ -193,13 +213,13 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
       none        JML-Leaver-PostSeparation-Employees
       none        JML-Joiner-PreHire-Employees
     Plan: 0 Finding, 1 Warn, 0 Info
-    Plan written to out/ch03/plan/plan.json; nothing was sent
+    Plan written to C:/FMWLabs/results/hr-driven-identity-03-joiners-and-the-temporary-access-pass/lab1/<run>/ch03/plan/plan.json; nothing was sent
     ```
 
     The Warn is JW-15 for `Onboard Marketing (legacy)`, a portal-made workflow no file defines. Now try the same plan on the broken folder:
 
     ```powershell
-    python python/joiner_workflows.py plan tests/fixtures/ch03/bad-workflows --current tests/fixtures/ch03/workflows.json --out out/ch03/plan-bad
+    python python/joiner_workflows.py plan tests/fixtures/ch03/bad-workflows --current tests/fixtures/ch03/workflows.json --out "$Run\ch03\plan-bad"
     ```
 
     Expected output:
@@ -213,7 +233,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 5. Measure day one:
 
     ```powershell
-    python python/joiner_workflows.py readiness --hires tests/fixtures/ch03/hr-hires.csv --users tests/fixtures/ch03/hire-users.json --prehire-results tests/fixtures/ch03/prehire-results.json --assignments tests/fixtures/ch03/joiner-assignments.json --workflows config/workflows --as-of 2026-11-02T08:00:00Z --cloud gcc --out out/ch03/readiness
+    python python/joiner_workflows.py readiness --hires tests/fixtures/ch03/hr-hires.csv --users tests/fixtures/ch03/hire-users.json --prehire-results tests/fixtures/ch03/prehire-results.json --assignments tests/fixtures/ch03/joiner-assignments.json --workflows config/workflows --as-of 2026-11-02T08:00:00Z --cloud gcc --out "$Run\ch03\readiness"
     ```
 
     Expected output:
@@ -233,10 +253,16 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 
     Expected: the last line is `57 passed` and the time the run took.
 
-    Then delete `out/ch03`, the folder this lab wrote, so the next run starts clean:
+    Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
 
     ```powershell
-    Remove-Item -Recurse -Force out/ch03
+    Get-ChildItem C:\FMWLabs\results\hr-driven-identity-03-joiners-and-the-temporary-access-pass\lab1 -Name
+    ```
+
+    Expected output: one line per run, oldest first, the last one this run:
+
+    ```text
+    <run>
     ```
 
 ## Exercise: Lab 2, your test tenant (5 minutes to read)

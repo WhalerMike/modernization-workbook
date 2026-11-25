@@ -80,23 +80,27 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\hr-driven-identity-code\hr-lifecycle
 
+$Run = "C:\FMWLabs\results\hr-driven-identity-06-separation-timing\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
 # Step 1
 python python/graph_export.py --task separation-read --list
 
 # Step 2
-python python/separation_timing.py measure --separations tests/fixtures/ch06/hr-separations.csv --users tests/fixtures/ch06/leaver-users.json --audits tests/fixtures/ch06/separation-audits.json --results tests/fixtures/ch06/leaver-results.json --cards tests/fixtures/ch06/card-revocations.csv --devices tests/fixtures/ch06/device-actions.csv --role-holders tests/fixtures/ch06/role-holders.csv --config config/separation.json --as-of 2026-11-01T12:00:00Z --cloud gcc --out out/ch06
+python python/separation_timing.py measure --separations tests/fixtures/ch06/hr-separations.csv --users tests/fixtures/ch06/leaver-users.json --audits tests/fixtures/ch06/separation-audits.json --results tests/fixtures/ch06/leaver-results.json --cards tests/fixtures/ch06/card-revocations.csv --devices tests/fixtures/ch06/device-actions.csv --role-holders tests/fixtures/ch06/role-holders.csv --config config/separation.json --as-of 2026-11-01T12:00:00Z --cloud gcc --out "$Run\ch06"
 
 # Step 3
-python -c "import json; [print(r['Rule'], r['Severity'], r['Object']) for r in json.load(open('out/ch06/findings.json'))]"
+python -c "import json, sys; [print(r['Rule'], r['Severity'], r['Object']) for r in json.load(open(sys.argv[1]))]" "$Run\ch06\findings.json"
 
 # Step 4
-Import-Csv out/ch06/intervals.csv | Select-Object PersonNumber, separationToBlockHours, separationToRevocationHours, status | ConvertTo-Csv -UseQuotes Never
+Import-Csv "$Run\ch06\intervals.csv" | Select-Object PersonNumber, separationToBlockHours, separationToRevocationHours, status | ConvertTo-Csv -UseQuotes Never
 
 # Step 5
 python -m pytest -q -p no:cacheprovider tests
 
 # Step 5
-Remove-Item -Recurse -Force out
+Get-ChildItem C:\FMWLabs\results\hr-driven-identity-06-separation-timing\lab1 -Name
 ```
 
 :::
@@ -109,7 +113,23 @@ Every step runs in PowerShell 7, the Python commands included, so you can follow
 Set-Location C:\FMWLabs\hr-driven-identity-code\hr-lifecycle
 ```
 
-Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr-lifecycle`; every step runs the same there except two commands: read the intervals in step 4 with `cut -d, -f1,7,8,10 out/ch06/intervals.csv`, and delete the folder at the end with `rm -rf out`. In a clone of the repository, use the `examples` folder of the same name.
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
+
+```powershell
+$Run = "C:\FMWLabs\results\hr-driven-identity-06-separation-timing\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\hr-driven-identity-06-separation-timing\lab1\<run>
+```
+
+The run's date is only the folder's name. The data's date is `--as-of`, which stays the same, so every run's results match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
+
+Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr-lifecycle`, make the run folder with `Run=/c/FMWLabs/results/hr-driven-identity-06-separation-timing/lab1/$(date -u +%Y-%m-%dT%H%M%SZ); mkdir -p "$Run"`, and every step runs the same there except one command: read the intervals in step 4 with `cut -d, -f1,7,8,10 "$Run/ch06/intervals.csv"`. In a clone of the repository, use the `examples` folder of the same name.
 
 1. List the calls and permissions:
 
@@ -128,7 +148,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 2. Measure the fictional leavers:
 
     ```powershell
-    python python/separation_timing.py measure --separations tests/fixtures/ch06/hr-separations.csv --users tests/fixtures/ch06/leaver-users.json --audits tests/fixtures/ch06/separation-audits.json --results tests/fixtures/ch06/leaver-results.json --cards tests/fixtures/ch06/card-revocations.csv --devices tests/fixtures/ch06/device-actions.csv --role-holders tests/fixtures/ch06/role-holders.csv --config config/separation.json --as-of 2026-11-01T12:00:00Z --cloud gcc --out out/ch06
+    python python/separation_timing.py measure --separations tests/fixtures/ch06/hr-separations.csv --users tests/fixtures/ch06/leaver-users.json --audits tests/fixtures/ch06/separation-audits.json --results tests/fixtures/ch06/leaver-results.json --cards tests/fixtures/ch06/card-revocations.csv --devices tests/fixtures/ch06/device-actions.csv --role-holders tests/fixtures/ch06/role-holders.csv --config config/separation.json --as-of 2026-11-01T12:00:00Z --cloud gcc --out "$Run\ch06"
     ```
 
     Expected output:
@@ -145,7 +165,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 3. Read the findings:
 
     ```powershell
-    python -c "import json; [print(r['Rule'], r['Severity'], r['Object']) for r in json.load(open('out/ch06/findings.json'))]"
+    python -c "import json, sys; [print(r['Rule'], r['Severity'], r['Object']) for r in json.load(open(sys.argv[1]))]" "$Run\ch06\findings.json"
     ```
 
     Expected output:
@@ -170,7 +190,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 4. Read the intervals: the person number, the two measured intervals and the status of each leaver:
 
     ```powershell
-    Import-Csv out/ch06/intervals.csv | Select-Object PersonNumber, separationToBlockHours, separationToRevocationHours, status | ConvertTo-Csv -UseQuotes Never
+    Import-Csv "$Run\ch06\intervals.csv" | Select-Object PersonNumber, separationToBlockHours, separationToRevocationHours, status | ConvertTo-Csv -UseQuotes Never
     ```
 
     Expected output:
@@ -197,10 +217,16 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 
     Expected: the last line is `57 passed` and the time the run took.
 
-    Then delete the `out` folder this lab wrote; Module 7 rebuilds `out/ch06` and reads its `summary.json`:
+    Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
 
     ```powershell
-    Remove-Item -Recurse -Force out
+    Get-ChildItem C:\FMWLabs\results\hr-driven-identity-06-separation-timing\lab1 -Name
+    ```
+
+    Expected output: one line per run, oldest first, the last one this run:
+
+    ```text
+    <run>
     ```
 
 ## Exercise: Lab 2, your test tenant (5 minutes to read)

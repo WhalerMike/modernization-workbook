@@ -75,6 +75,10 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\hr-driven-identity-code\hr-lifecycle
 
+$Run = "C:\FMWLabs\results\hr-driven-identity-04-access-and-movers\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
 # Step 1
 python python/graph_export.py --task access-read --list
 
@@ -88,16 +92,16 @@ python python/access_assignment.py lint tests/fixtures/ch04/bad-access --populat
 python python/access_assignment.py memberof-scan --policies tests/fixtures/ch04/assignment-policies.json
 
 # Step 5
-python python/access_assignment.py residual --mover tests/fixtures/ch04/mover.json --assignments tests/fixtures/ch04/mover-assignments.json --memberships tests/fixtures/ch04/mover-memberships.json --policies config/access --as-of 2026-11-01T12:00:00Z --cloud gcc --out out/ch04/residual
+python python/access_assignment.py residual --mover tests/fixtures/ch04/mover.json --assignments tests/fixtures/ch04/mover-assignments.json --memberships tests/fixtures/ch04/mover-memberships.json --policies config/access --as-of 2026-11-01T12:00:00Z --cloud gcc --out "$Run\ch04\residual"
 
 # Step 5
-Get-Content out/ch04/residual/residual-review.csv
+Get-Content "$Run\ch04\residual\residual-review.csv"
 
 # Step 6
 python -m pytest -q -p no:cacheprovider tests
 
 # Step 6
-Remove-Item -Recurse -Force out/ch04
+Get-ChildItem C:\FMWLabs\results\hr-driven-identity-04-access-and-movers\lab1 -Name
 ```
 
 :::
@@ -110,7 +114,23 @@ Every step runs in PowerShell 7, the Python commands included, so you can follow
 Set-Location C:\FMWLabs\hr-driven-identity-code\hr-lifecycle
 ```
 
-Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr-lifecycle`; every step runs the same there except two commands: print the review sheet in step 5 with `cat out/ch04/residual/residual-review.csv`, and delete the folder at the end with `rm -rf out/ch04`. In a clone of the repository, use the `examples` folder of the same name.
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
+
+```powershell
+$Run = "C:\FMWLabs\results\hr-driven-identity-04-access-and-movers\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\hr-driven-identity-04-access-and-movers\lab1\<run>
+```
+
+The run's date is only the folder's name. The data's date is `--as-of`, which stays the same, so every run's results match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
+
+Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr-lifecycle`, make the run folder with `Run=/c/FMWLabs/results/hr-driven-identity-04-access-and-movers/lab1/$(date -u +%Y-%m-%dT%H%M%SZ); mkdir -p "$Run"`, and every step runs the same there except one command: print the review sheet in step 5 with `cat "$Run/ch04/residual/residual-review.csv"`. In a clone of the repository, use the `examples` folder of the same name.
 
 1. List the reads and their permissions:
 
@@ -178,7 +198,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 5. List a mover's residual:
 
     ```powershell
-    python python/access_assignment.py residual --mover tests/fixtures/ch04/mover.json --assignments tests/fixtures/ch04/mover-assignments.json --memberships tests/fixtures/ch04/mover-memberships.json --policies config/access --as-of 2026-11-01T12:00:00Z --cloud gcc --out out/ch04/residual
+    python python/access_assignment.py residual --mover tests/fixtures/ch04/mover.json --assignments tests/fixtures/ch04/mover-assignments.json --memberships tests/fixtures/ch04/mover-memberships.json --policies config/access --as-of 2026-11-01T12:00:00Z --cloud gcc --out "$Run\ch04\residual"
     ```
 
     Expected output:
@@ -186,13 +206,13 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
     ```text
     Mover jordan.diaz@contoso.example: 8 items held, 3 to the residual review
     Residual: 1 Finding, 3 Warn, 0 Info
-    Written to out/ch04/residual (residual-review.csv goes to the manager of record)
+    Written to C:/FMWLabs/results/hr-driven-identity-04-access-and-movers/lab1/<run>/ch04/residual (residual-review.csv goes to the manager of record)
     ```
 
     Print the review sheet:
 
     ```powershell
-    Get-Content out/ch04/residual/residual-review.csv
+    Get-Content "$Run\ch04\residual\residual-review.csv"
     ```
 
     Expected output:
@@ -214,10 +234,16 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 
     Expected: the last line is `57 passed` and the time the run took.
 
-    Then delete `out/ch04`, the folder this lab wrote, so the next run starts clean:
+    Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
 
     ```powershell
-    Remove-Item -Recurse -Force out/ch04
+    Get-ChildItem C:\FMWLabs\results\hr-driven-identity-04-access-and-movers\lab1 -Name
+    ```
+
+    Expected output: one line per run, oldest first, the last one this run:
+
+    ```text
+    <run>
     ```
 
 ## Exercise: Lab 2, your test tenant (5 minutes to read)

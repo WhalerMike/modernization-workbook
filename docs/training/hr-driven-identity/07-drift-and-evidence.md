@@ -82,38 +82,41 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\hr-driven-identity-code\hr-lifecycle
 
+$Run = "C:\FMWLabs\results\hr-driven-identity-07-drift-and-evidence\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
 # Step 1
-Remove-Item -Recurse -Force out -ErrorAction Ignore
-python python/writer_register.py scan --register config/writer-register.json --audit tests/fixtures/ch01/directory-audits.json --since 2026-10-01 --until 2026-10-31 --cloud gcc --out out/ch01
-python python/contractor_source.py extract --register tests/fixtures/ch02/contractor-register.csv --cards tests/fixtures/ch02/cards.csv --sponsors tests/fixtures/ch02/hr-sponsors.csv --rules config/contractor-rules.json --as-of 2026-11-01 --out out/ch02/extract
-python python/joiner_workflows.py readiness --hires tests/fixtures/ch03/hr-hires.csv --users tests/fixtures/ch03/hire-users.json --prehire-results tests/fixtures/ch03/prehire-results.json --assignments tests/fixtures/ch03/joiner-assignments.json --workflows config/workflows --as-of 2026-11-02T08:00:00Z --cloud gcc --out out/ch03/readiness
-python python/access_assignment.py residual --mover tests/fixtures/ch04/mover.json --assignments tests/fixtures/ch04/mover-assignments.json --memberships tests/fixtures/ch04/mover-memberships.json --policies config/access --as-of 2026-11-01T12:00:00Z --cloud gcc --out out/ch04/residual
-python python/separation_timing.py measure --separations tests/fixtures/ch06/hr-separations.csv --users tests/fixtures/ch06/leaver-users.json --audits tests/fixtures/ch06/separation-audits.json --results tests/fixtures/ch06/leaver-results.json --cards tests/fixtures/ch06/card-revocations.csv --devices tests/fixtures/ch06/device-actions.csv --role-holders tests/fixtures/ch06/role-holders.csv --config config/separation.json --as-of 2026-11-01T12:00:00Z --cloud gcc --out out/ch06
+python python/writer_register.py scan --register config/writer-register.json --audit tests/fixtures/ch01/directory-audits.json --since 2026-10-01 --until 2026-10-31 --cloud gcc --out "$Run\ch01"
+python python/contractor_source.py extract --register tests/fixtures/ch02/contractor-register.csv --cards tests/fixtures/ch02/cards.csv --sponsors tests/fixtures/ch02/hr-sponsors.csv --rules config/contractor-rules.json --as-of 2026-11-01 --out "$Run\ch02\extract"
+python python/joiner_workflows.py readiness --hires tests/fixtures/ch03/hr-hires.csv --users tests/fixtures/ch03/hire-users.json --prehire-results tests/fixtures/ch03/prehire-results.json --assignments tests/fixtures/ch03/joiner-assignments.json --workflows config/workflows --as-of 2026-11-02T08:00:00Z --cloud gcc --out "$Run\ch03\readiness"
+python python/access_assignment.py residual --mover tests/fixtures/ch04/mover.json --assignments tests/fixtures/ch04/mover-assignments.json --memberships tests/fixtures/ch04/mover-memberships.json --policies config/access --as-of 2026-11-01T12:00:00Z --cloud gcc --out "$Run\ch04\residual"
+python python/separation_timing.py measure --separations tests/fixtures/ch06/hr-separations.csv --users tests/fixtures/ch06/leaver-users.json --audits tests/fixtures/ch06/separation-audits.json --results tests/fixtures/ch06/leaver-results.json --cards tests/fixtures/ch06/card-revocations.csv --devices tests/fixtures/ch06/device-actions.csv --role-holders tests/fixtures/ch06/role-holders.csv --config config/separation.json --as-of 2026-11-01T12:00:00Z --cloud gcc --out "$Run\ch06"
 
 # Step 2
-python python/lifecycle_drift.py run --hr tests/fixtures/ch07/hr-export.csv --contractors out/ch02/extract/decisions.json --users tests/fixtures/ch07/workforce-users.json --exceptions tests/fixtures/ch07/exceptions.csv --cards tests/fixtures/ch07/cards.csv --derivation tests/fixtures/ch07/derivation.json --writers out/ch01 --readiness out/ch03/readiness --residual out/ch04/residual --timing out/ch06 --config config/drift.json --since 2026-10-01 --until 2026-11-01 --cloud gcc --tenant-id 00000000-0000-4000-8000-00000000c0de --mode fixture --out out/ch07/runs/2026-11-01T0600Z
+python python/lifecycle_drift.py run --hr tests/fixtures/ch07/hr-export.csv --contractors "$Run\ch02\extract\decisions.json" --users tests/fixtures/ch07/workforce-users.json --exceptions tests/fixtures/ch07/exceptions.csv --cards tests/fixtures/ch07/cards.csv --derivation tests/fixtures/ch07/derivation.json --writers "$Run\ch01" --readiness "$Run\ch03\readiness" --residual "$Run\ch04\residual" --timing "$Run\ch06" --config config/drift.json --since 2026-10-01 --until 2026-11-01 --cloud gcc --tenant-id 00000000-0000-4000-8000-00000000c0de --mode fixture --out "$Run\ch07\runs\2026-11-01T0600Z"
 
 # Step 3
-python -c "import json; [print(r['Rule'], r['Severity'], r['Object']) for r in json.load(open('out/ch07/runs/2026-11-01T0600Z/lifecycle/findings.json'))]"
+python -c "import json, sys; [print(r['Rule'], r['Severity'], r['Object']) for r in json.load(open(sys.argv[1]))]" "$Run\ch07\runs\2026-11-01T0600Z\lifecycle\findings.json"
 
 # Step 4
-python python/lifecycle_drift.py run --hr tests/fixtures/ch07/hr-export.csv --contractors out/ch02/extract/decisions.json --users tests/fixtures/ch07/workforce-users.json --exceptions tests/fixtures/ch07/exceptions.csv --cards tests/fixtures/ch07/cards.csv --derivation tests/fixtures/ch07/derivation.json --writers out/ch01 --readiness out/ch03/readiness --residual out/ch04/residual --timing out/ch06 --config config/drift.json --since 2026-11-01 --until 2026-11-02 --cloud gcc --tenant-id 00000000-0000-4000-8000-00000000c0de --mode fixture --out out/ch07/runs/2026-11-02T0600Z
+python python/lifecycle_drift.py run --hr tests/fixtures/ch07/hr-export.csv --contractors "$Run\ch02\extract\decisions.json" --users tests/fixtures/ch07/workforce-users.json --exceptions tests/fixtures/ch07/exceptions.csv --cards tests/fixtures/ch07/cards.csv --derivation tests/fixtures/ch07/derivation.json --writers "$Run\ch01" --readiness "$Run\ch03\readiness" --residual "$Run\ch04\residual" --timing "$Run\ch06" --config config/drift.json --since 2026-11-01 --until 2026-11-02 --cloud gcc --tenant-id 00000000-0000-4000-8000-00000000c0de --mode fixture --out "$Run\ch07\runs\2026-11-02T0600Z"
 
 # Step 5
-python ../drift-pipeline/python/hr_evidence.py package --run out/ch07/runs/2026-11-01T0600Z --out out/ch07/evidence
-python ../drift-pipeline/python/hr_evidence.py package --run out/ch07/runs/2026-11-02T0600Z --previous-manifest out/ch07/evidence/2026-11-01T0600Z/EVIDENCE-MANIFEST.json --out out/ch07/evidence
-python ../drift-pipeline/python/hr_evidence.py verify out/ch07/evidence/2026-11-02T0600Z
+python ../drift-pipeline/python/hr_evidence.py package --run "$Run\ch07\runs\2026-11-01T0600Z" --out "$Run\ch07\evidence"
+python ../drift-pipeline/python/hr_evidence.py package --run "$Run\ch07\runs\2026-11-02T0600Z" --previous-manifest "$Run\ch07\evidence\2026-11-01T0600Z\EVIDENCE-MANIFEST.json" --out "$Run\ch07\evidence"
+python ../drift-pipeline/python/hr_evidence.py verify "$Run\ch07\evidence\2026-11-02T0600Z"
 
 # Step 5
-Push-Location out/ch07/evidence/2026-11-02T0600Z
+Push-Location "$Run\ch07\evidence\2026-11-02T0600Z"
 Get-Content SHA256SUMS | ForEach-Object { $hash, $file = $_ -split '  ', 2; "${file}: " + $(if ((Get-FileHash $file -Algorithm SHA256).Hash -eq $hash) { 'OK' } else { 'FAILED' }) }
 Pop-Location
 
 # Step 6
-python ../drift-pipeline/python/hr_evidence.py period --evidence out/ch07/evidence --since 2026-10-01 --until 2026-11-02 --out out/ch07/periods
+python ../drift-pipeline/python/hr_evidence.py period --evidence "$Run\ch07\evidence" --since 2026-10-01 --until 2026-11-02 --out "$Run\ch07\periods"
 
 # Step 6
-Get-Content out/ch07/periods/period-2026-10-01_2026-11-02/period-summary.md
+Get-Content "$Run\ch07\periods\period-2026-10-01_2026-11-02\period-summary.md"
 
 # Step 7
 python -m pytest -q -p no:cacheprovider tests
@@ -122,7 +125,9 @@ python -m pytest -q -p no:cacheprovider tests/test_hr_evidence.py
 
 # Step 7
 Set-Location ../hr-lifecycle
-Remove-Item -Recurse -Force out
+
+# Step 7
+Get-ChildItem C:\FMWLabs\results\hr-driven-identity-07-drift-and-evidence\lab1 -Name
 ```
 
 :::
@@ -135,17 +140,32 @@ Every step runs in PowerShell 7, the Python commands included, so you can follow
 Set-Location C:\FMWLabs\hr-driven-identity-code\hr-lifecycle
 ```
 
-The lab also runs the evidence packager from `drift-pipeline`, the folder beside `hr-lifecycle`, with `../drift-pipeline/...` paths, so you stay in `hr-lifecycle` until step 7. Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr-lifecycle`; the Python commands run the same there, and the others are `rm -rf out` (steps 1 and 7), `(cd out/ch07/evidence/2026-11-02T0600Z && sha256sum -c SHA256SUMS)` (step 5), `cat` (step 6) and `cd` (step 7). In a clone of the repository, use the `examples` folders of the same names.
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
 
-1. Write the module outputs the run reads: the scan from Module 1, the extract from Module 2, readiness from Module 3, the residual from Module 4 and the measurement from Module 6, one command each. The tools write each output folder once, so the first command deletes any `out` folder you kept from earlier modules (`-ErrorAction Ignore` keeps it quiet when there is none).
+```powershell
+$Run = "C:\FMWLabs\results\hr-driven-identity-07-drift-and-evidence\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\hr-driven-identity-07-drift-and-evidence\lab1\<run>
+```
+
+The run's date is only the folder's name. The data's dates are the `--as-of`, `--since` and `--until` values and the drift runs' names, such as `2026-11-01T0600Z`, which stay the same, so every run's findings and hashes match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
+
+The lab also runs the evidence packager from `drift-pipeline`, the folder beside `hr-lifecycle`, with `../drift-pipeline/...` paths, so you stay in `hr-lifecycle` until step 7. Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr-lifecycle`, make the run folder with `Run=/c/FMWLabs/results/hr-driven-identity-07-drift-and-evidence/lab1/$(date -u +%Y-%m-%dT%H%M%SZ); mkdir -p "$Run"`, and the Python commands run the same there; the others are `(cd "$Run/ch07/evidence/2026-11-02T0600Z" && sha256sum -c SHA256SUMS)` (step 5), `cat "$Run/ch07/periods/period-2026-10-01_2026-11-02/period-summary.md"` (step 6) and `cd` (step 7). In a clone of the repository, use the `examples` folders of the same names.
+
+1. Write the module outputs the run reads: the scan from Module 1, the extract from Module 2, readiness from Module 3, the residual from Module 4 and the measurement from Module 6, one command each. They write into this run's folder, so outputs you kept from earlier modules don't matter.
 
     ```powershell
-    Remove-Item -Recurse -Force out -ErrorAction Ignore
-    python python/writer_register.py scan --register config/writer-register.json --audit tests/fixtures/ch01/directory-audits.json --since 2026-10-01 --until 2026-10-31 --cloud gcc --out out/ch01
-    python python/contractor_source.py extract --register tests/fixtures/ch02/contractor-register.csv --cards tests/fixtures/ch02/cards.csv --sponsors tests/fixtures/ch02/hr-sponsors.csv --rules config/contractor-rules.json --as-of 2026-11-01 --out out/ch02/extract
-    python python/joiner_workflows.py readiness --hires tests/fixtures/ch03/hr-hires.csv --users tests/fixtures/ch03/hire-users.json --prehire-results tests/fixtures/ch03/prehire-results.json --assignments tests/fixtures/ch03/joiner-assignments.json --workflows config/workflows --as-of 2026-11-02T08:00:00Z --cloud gcc --out out/ch03/readiness
-    python python/access_assignment.py residual --mover tests/fixtures/ch04/mover.json --assignments tests/fixtures/ch04/mover-assignments.json --memberships tests/fixtures/ch04/mover-memberships.json --policies config/access --as-of 2026-11-01T12:00:00Z --cloud gcc --out out/ch04/residual
-    python python/separation_timing.py measure --separations tests/fixtures/ch06/hr-separations.csv --users tests/fixtures/ch06/leaver-users.json --audits tests/fixtures/ch06/separation-audits.json --results tests/fixtures/ch06/leaver-results.json --cards tests/fixtures/ch06/card-revocations.csv --devices tests/fixtures/ch06/device-actions.csv --role-holders tests/fixtures/ch06/role-holders.csv --config config/separation.json --as-of 2026-11-01T12:00:00Z --cloud gcc --out out/ch06
+    python python/writer_register.py scan --register config/writer-register.json --audit tests/fixtures/ch01/directory-audits.json --since 2026-10-01 --until 2026-10-31 --cloud gcc --out "$Run\ch01"
+    python python/contractor_source.py extract --register tests/fixtures/ch02/contractor-register.csv --cards tests/fixtures/ch02/cards.csv --sponsors tests/fixtures/ch02/hr-sponsors.csv --rules config/contractor-rules.json --as-of 2026-11-01 --out "$Run\ch02\extract"
+    python python/joiner_workflows.py readiness --hires tests/fixtures/ch03/hr-hires.csv --users tests/fixtures/ch03/hire-users.json --prehire-results tests/fixtures/ch03/prehire-results.json --assignments tests/fixtures/ch03/joiner-assignments.json --workflows config/workflows --as-of 2026-11-02T08:00:00Z --cloud gcc --out "$Run\ch03\readiness"
+    python python/access_assignment.py residual --mover tests/fixtures/ch04/mover.json --assignments tests/fixtures/ch04/mover-assignments.json --memberships tests/fixtures/ch04/mover-memberships.json --policies config/access --as-of 2026-11-01T12:00:00Z --cloud gcc --out "$Run\ch04\residual"
+    python python/separation_timing.py measure --separations tests/fixtures/ch06/hr-separations.csv --users tests/fixtures/ch06/leaver-users.json --audits tests/fixtures/ch06/separation-audits.json --results tests/fixtures/ch06/leaver-results.json --cards tests/fixtures/ch06/card-revocations.csv --devices tests/fixtures/ch06/device-actions.csv --role-holders tests/fixtures/ch06/role-holders.csv --config config/separation.json --as-of 2026-11-01T12:00:00Z --cloud gcc --out "$Run\ch06"
     ```
 
     Expected output:
@@ -153,15 +173,15 @@ The lab also runs the evidence packager from `drift-pipeline`, the folder beside
     ```text
     Protected writes: 11 (writer 5, backstop 1, second writer 4, forbidden 1)
     Writers: 5 Finding, 1 Warn, 0 Info
-    Written to out/ch01 (manifest.json lists every file's SHA-256)
+    Written to C:/FMWLabs/results/hr-driven-identity-07-drift-and-evidence/lab1/<run>/ch01 (manifest.json lists every file's SHA-256)
     Contractors: 9 records: 3 active, 4 inactive (past their earliest end), 2 quarantined
     Source: 2 Finding, 1 Warn, 1 Info
-    Extract written to out/ch02/extract/contractors-extract.csv; build the SCIM requests with examples/hcm-entra/python/hcm_to_scim.py
+    Extract written to C:/FMWLabs/results/hr-driven-identity-07-drift-and-evidence/lab1/<run>/ch02/extract/contractors-extract.csv; build the SCIM requests with examples/hcm-entra/python/hcm_to_scim.py
     Day one 2026-11-02: 1 of 4 hires ready (25%)
     Readiness: 0 Finding, 3 Warn, 0 Info
     Mover jordan.diaz@contoso.example: 8 items held, 3 to the residual review
     Residual: 1 Finding, 3 Warn, 0 Info
-    Written to out/ch04/residual (residual-review.csv goes to the manager of record)
+    Written to C:/FMWLabs/results/hr-driven-identity-07-drift-and-evidence/lab1/<run>/ch04/residual (residual-review.csv goes to the manager of record)
     Leavers: 7 separated, 1 cancelled, 1 not blocked
     Separation-to-block hours: p50 0.25, p90 5.52, max 84.68 (threshold 4)
     Separation-to-revocation hours: p50 11.0, p90 110.0, max 395.0 (threshold 24)
@@ -173,7 +193,7 @@ The lab also runs the evidence packager from `drift-pipeline`, the folder beside
 2. Write the first run:
 
     ```powershell
-    python python/lifecycle_drift.py run --hr tests/fixtures/ch07/hr-export.csv --contractors out/ch02/extract/decisions.json --users tests/fixtures/ch07/workforce-users.json --exceptions tests/fixtures/ch07/exceptions.csv --cards tests/fixtures/ch07/cards.csv --derivation tests/fixtures/ch07/derivation.json --writers out/ch01 --readiness out/ch03/readiness --residual out/ch04/residual --timing out/ch06 --config config/drift.json --since 2026-10-01 --until 2026-11-01 --cloud gcc --tenant-id 00000000-0000-4000-8000-00000000c0de --mode fixture --out out/ch07/runs/2026-11-01T0600Z
+    python python/lifecycle_drift.py run --hr tests/fixtures/ch07/hr-export.csv --contractors "$Run\ch02\extract\decisions.json" --users tests/fixtures/ch07/workforce-users.json --exceptions tests/fixtures/ch07/exceptions.csv --cards tests/fixtures/ch07/cards.csv --derivation tests/fixtures/ch07/derivation.json --writers "$Run\ch01" --readiness "$Run\ch03\readiness" --residual "$Run\ch04\residual" --timing "$Run\ch06" --config config/drift.json --since 2026-10-01 --until 2026-11-01 --cloud gcc --tenant-id 00000000-0000-4000-8000-00000000c0de --mode fixture --out "$Run\ch07\runs\2026-11-01T0600Z"
     ```
 
     Expected output:
@@ -187,13 +207,13 @@ The lab also runs the evidence packager from `drift-pipeline`, the folder beside
       correlationCoverage                0.5833  min 0.99  out of bounds
       derivationPurity                   0.7637  min 0.8  out of bounds
     Lifecycle drift: 14 Finding, 6 Warn, 0 Info
-    Run written to out/ch07/runs/2026-11-01T0600Z; package it with examples/drift-pipeline/python/hr_evidence.py
+    Run written to C:/FMWLabs/results/hr-driven-identity-07-drift-and-evidence/lab1/<run>/ch07/runs/2026-11-01T0600Z; package it with examples/drift-pipeline/python/hr_evidence.py
     ```
 
 3. Read the findings:
 
     ```powershell
-    python -c "import json; [print(r['Rule'], r['Severity'], r['Object']) for r in json.load(open('out/ch07/runs/2026-11-01T0600Z/lifecycle/findings.json'))]"
+    python -c "import json, sys; [print(r['Rule'], r['Severity'], r['Object']) for r in json.load(open(sys.argv[1]))]" "$Run\ch07\runs\2026-11-01T0600Z\lifecycle\findings.json"
     ```
 
     Expected output:
@@ -223,10 +243,10 @@ The lab also runs the evidence packager from `drift-pipeline`, the folder beside
 
     14 Findings: one LD-01, three LD-02, two LD-03, five LD-04 (Module 1's four second writers and its forbidden delete), one LD-05 and two LD-06. The six Warns are five LD-07 and one LD-08.
 
-4. Write the next day's run, with the window `--since 2026-11-01 --until 2026-11-02` and the folder `out/ch07/runs/2026-11-02T0600Z`:
+4. Write the next day's run, with the window `--since 2026-11-01 --until 2026-11-02` and the folder `ch07\runs\2026-11-02T0600Z` in this run's folder:
 
     ```powershell
-    python python/lifecycle_drift.py run --hr tests/fixtures/ch07/hr-export.csv --contractors out/ch02/extract/decisions.json --users tests/fixtures/ch07/workforce-users.json --exceptions tests/fixtures/ch07/exceptions.csv --cards tests/fixtures/ch07/cards.csv --derivation tests/fixtures/ch07/derivation.json --writers out/ch01 --readiness out/ch03/readiness --residual out/ch04/residual --timing out/ch06 --config config/drift.json --since 2026-11-01 --until 2026-11-02 --cloud gcc --tenant-id 00000000-0000-4000-8000-00000000c0de --mode fixture --out out/ch07/runs/2026-11-02T0600Z
+    python python/lifecycle_drift.py run --hr tests/fixtures/ch07/hr-export.csv --contractors "$Run\ch02\extract\decisions.json" --users tests/fixtures/ch07/workforce-users.json --exceptions tests/fixtures/ch07/exceptions.csv --cards tests/fixtures/ch07/cards.csv --derivation tests/fixtures/ch07/derivation.json --writers "$Run\ch01" --readiness "$Run\ch03\readiness" --residual "$Run\ch04\residual" --timing "$Run\ch06" --config config/drift.json --since 2026-11-01 --until 2026-11-02 --cloud gcc --tenant-id 00000000-0000-4000-8000-00000000c0de --mode fixture --out "$Run\ch07\runs\2026-11-02T0600Z"
     ```
 
     Expected output:
@@ -240,7 +260,7 @@ The lab also runs the evidence packager from `drift-pipeline`, the folder beside
       correlationCoverage                0.5833  min 0.99  out of bounds
       derivationPurity                   0.7637  min 0.8  out of bounds
     Lifecycle drift: 14 Finding, 6 Warn, 0 Info
-    Run written to out/ch07/runs/2026-11-02T0600Z; package it with examples/drift-pipeline/python/hr_evidence.py
+    Run written to C:/FMWLabs/results/hr-driven-identity-07-drift-and-evidence/lab1/<run>/ch07/runs/2026-11-02T0600Z; package it with examples/drift-pipeline/python/hr_evidence.py
     ```
 
     The same metrics and the same counts as the first run.
@@ -248,9 +268,9 @@ The lab also runs the evidence packager from `drift-pipeline`, the folder beside
 5. Package both, chained, and verify:
 
     ```powershell
-    python ../drift-pipeline/python/hr_evidence.py package --run out/ch07/runs/2026-11-01T0600Z --out out/ch07/evidence
-    python ../drift-pipeline/python/hr_evidence.py package --run out/ch07/runs/2026-11-02T0600Z --previous-manifest out/ch07/evidence/2026-11-01T0600Z/EVIDENCE-MANIFEST.json --out out/ch07/evidence
-    python ../drift-pipeline/python/hr_evidence.py verify out/ch07/evidence/2026-11-02T0600Z
+    python ../drift-pipeline/python/hr_evidence.py package --run "$Run\ch07\runs\2026-11-01T0600Z" --out "$Run\ch07\evidence"
+    python ../drift-pipeline/python/hr_evidence.py package --run "$Run\ch07\runs\2026-11-02T0600Z" --previous-manifest "$Run\ch07\evidence\2026-11-01T0600Z\EVIDENCE-MANIFEST.json" --out "$Run\ch07\evidence"
+    python ../drift-pipeline/python/hr_evidence.py verify "$Run\ch07\evidence\2026-11-02T0600Z"
     ```
 
     Expected output:
@@ -264,7 +284,7 @@ The lab also runs the evidence packager from `drift-pipeline`, the folder beside
     Your hashes match these only if your fixtures are the committed ones. Then run the ISSO's check: hash each file listed in the package's `SHA256SUMS` and compare it with the listed hash. `Push-Location` and `Pop-Location` take you into the package folder and back to `hr-lifecycle`:
 
     ```powershell
-    Push-Location out/ch07/evidence/2026-11-02T0600Z
+    Push-Location "$Run\ch07\evidence\2026-11-02T0600Z"
     Get-Content SHA256SUMS | ForEach-Object { $hash, $file = $_ -split '  ', 2; "${file}: " + $(if ((Get-FileHash $file -Algorithm SHA256).Hash -eq $hash) { 'OK' } else { 'FAILED' }) }
     Pop-Location
     ```
@@ -283,7 +303,7 @@ The lab also runs the evidence packager from `drift-pipeline`, the folder beside
 6. Assemble the period:
 
     ```powershell
-    python ../drift-pipeline/python/hr_evidence.py period --evidence out/ch07/evidence --since 2026-10-01 --until 2026-11-02 --out out/ch07/periods
+    python ../drift-pipeline/python/hr_evidence.py period --evidence "$Run\ch07\evidence" --since 2026-10-01 --until 2026-11-02 --out "$Run\ch07\periods"
     ```
 
     Expected output:
@@ -295,7 +315,7 @@ The lab also runs the evidence packager from `drift-pipeline`, the folder beside
     It exits 2. Print `period-summary.md` from the period folder:
 
     ```powershell
-    Get-Content out/ch07/periods/period-2026-10-01_2026-11-02/period-summary.md
+    Get-Content "$Run\ch07\periods\period-2026-10-01_2026-11-02\period-summary.md"
     ```
 
     Expected output:
@@ -335,11 +355,22 @@ The lab also runs the evidence packager from `drift-pipeline`, the folder beside
 
     Expected: the last lines are `57 passed`, then `6 passed`, each with the time the run took. (In a clone of the repository, `python -m pytest -q tests` in `examples/drift-pipeline` runs the folder's whole suite, `139 passed`. In the unzipped folder, run only the packager's tests: the zip adds a `.txt` copy beside each file, and the other suites' fixtures check their folders against manifests that don't list those copies.)
 
-    Then go back to `hr-lifecycle` and delete `out`; it holds fictional names:
+    Then go back to `hr-lifecycle`:
 
     ```powershell
     Set-Location ../hr-lifecycle
-    Remove-Item -Recurse -Force out
+    ```
+
+    Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
+
+    ```powershell
+    Get-ChildItem C:\FMWLabs\results\hr-driven-identity-07-drift-and-evidence\lab1 -Name
+    ```
+
+    Expected output: one line per run, oldest first, the last one this run:
+
+    ```text
+    <run>
     ```
 
 ## Exercise: Lab 2, your test tenant (5 minutes to read)
