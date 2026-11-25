@@ -41,6 +41,7 @@ listing:
       - "!zero-trust-assessment/**"
       - "!defender-xdr/**"
       - "!global-secure-access/**"
+      - "!network-sd-wan/**"
       - "!azure-security/**"
       - "!daily-checks-dashboard/**"
     type: table
@@ -77,6 +78,7 @@ Each learning path's code downloads as one zip, rebuilt from the repository on e
 | Zero Trust Assessment | [zta-results.zip](../../downloads/zta-results.zip) | `Downloads\zta-results\zta-results` | PowerShell 7.1 |
 | Defender XDR | [defender-xdr-code.zip](../../downloads/defender-xdr-code.zip) | `Downloads\defender-xdr-code\defender-xdr-code\defender-xdr` | PowerShell 7.1 |
 | Global Secure Access | [global-secure-access-code.zip](../../downloads/global-secure-access-code.zip) | `Downloads\global-secure-access-code\global-secure-access-code\global-secure-access` | PowerShell 7.1 |
+| SD-WAN Governor | [cisco-sdwan.zip](../../downloads/cisco-sdwan.zip) | `Downloads\cisco-sdwan\cisco-sdwan` | Python 3.10; PowerShell 5.1 or 7 to read the output |
 | Azure Security Engineering | [azure-security-code.zip](../../downloads/azure-security-code.zip) | `Downloads\azure-security-code\azure-security-code\azure-security` | PowerShell 7.1 |
 | Daily Checks Dashboard | [daily-checks-workbook-code.zip](../../downloads/daily-checks-workbook-code.zip) | `Downloads\daily-checks-workbook-code\daily-checks-workbook-code\daily-checks-workbook` | PowerShell 7.1 |
 
@@ -234,6 +236,12 @@ Six modules on deploying Microsoft Entra Internet Access and Private Access as t
 **Code:** [global-secure-access-code.zip](../../downloads/global-secure-access-code.zip), or [`examples/global-secure-access`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access) in the repository. The path's page says [how to unzip it and where](global-secure-access/index.md#get-the-code).
 
 **Watch:** each module has a narrated deck, about 11 to 12 minutes, linked from the module's page.
+
+## SD-WAN Governor learning path
+
+Four modules on securing an SD-WAN fabric before it carries traffic and keeping the evidence, built from [Book 09](../books/b09-network/index.md) and the [Cisco Catalyst SD-WAN implementation guide](../books/guides/cisco-sdwan-implementation.md): why transport is physics and control is compliance, the four branch egress patterns, and the hosted-or-on-premises decision; Gate 0, the fixed-release floor for Emergency Directive 26-03 and the Known Exploited Vulnerabilities catalog, as a gate a pipeline can stop on; validating every control component, reviewing Manager's audit log and getting logs off the box; and path classes, Microsoft 365's Optimize exception, change rings and the evidence package. Lab 1 replays the Cisco kit's fictional Manager responses with no fabric; Lab 2 runs the kit read-only against a test fabric; each module ends with a knowledge check. The guide names one product as an example, not an endorsement. Microsoft's own security service edge has its own path, above. Start at the [learning path](network-sd-wan/index.md).
+
+**Code:** [cisco-sdwan.zip](../../downloads/cisco-sdwan.zip), or [`examples/cisco-sdwan`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/cisco-sdwan) in the repository. The path's page says [how to unzip it and where](network-sd-wan/index.md#get-the-code).
 
 ## Azure Security Engineering learning path
 
