@@ -72,3 +72,9 @@ At the user's request, every certificate-dependent book maps its certificates to
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
+
+## Revision 2026-11-25 — outside review: wording and crosswalks
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Ten Learn course pages (SC-300T00 to MS-102T00) live, each with a course syllabus, none showing a retirement notice | Example certifications table, new column | verified (fetched Nov 25, 2026; all HTTP 200) | Learn course pages, training/courses/<code> |

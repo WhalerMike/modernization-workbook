@@ -336,3 +336,9 @@ Mike's approval, Nov 13, 2026. Learn read Nov 13, 2026.
 ## Revision 2026-11-24 — the traditional account's target
 
 The first service-account table sent a traditional account to "Application registration with a certificate or federated credential; managed identity where the workload runs in Azure", while the second table sent a Kerberos-only one to a dMSA or gMSA. Mike chose on November 24, 2026 to match the service accounts guide's decision path: the row now gives the target by what the workload needs (Azure → managed identity; Entra-protected APIs → Arc managed identity, otherwise a certificate, or a federated credential with an OIDC issuer; Kerberos on premises → dMSA or gMSA) and links the decision path.
+
+## Revision 2026-11-25 — outside review: wording and crosswalks
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Attribute-driven grouping does the organizing OUs did; no container to place an object in | OU table, Logical organization row | restated-as-design (was "replaces the container hierarchy") | Program design |

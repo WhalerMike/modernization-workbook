@@ -286,6 +286,8 @@ Every lab opens with the list of every command it runs, in order: follow it top 
 |---|---|---|
 | [Module 1: What AD CS holds up: the inventory](pki/01-what-ad-cs-holds-up.md) | [Lab 1](pki/01-what-ad-cs-holds-up.md#pki-lab-1) | [Lab 2](pki/01-what-ad-cs-holds-up.md#pki-lab-2) |
 | [Module 2: Hardening what stays](pki/02-hardening-what-stays.md) | [Lab 1](pki/02-hardening-what-stays.md#pki-lab-1) | [Lab 2](pki/02-hardening-what-stays.md#pki-lab-2) |
+| [Module 3: The target PKI and who owns it](pki/03-the-target-pki-and-who-owns-it.md) | [Lab 1](pki/03-the-target-pki-and-who-owns-it.md#pki-lab-1) | [Lab 2](pki/03-the-target-pki-and-who-owns-it.md#pki-lab-2) |
+| [Module 4: Device and user certificates](pki/04-device-and-user-certificates.md) | [Lab 1](pki/04-device-and-user-certificates.md#pki-lab-1) | [Lab 2](pki/04-device-and-user-certificates.md#pki-lab-2) |
 
 : PKI and Certificates: labs by module {.striped .hover}
 
