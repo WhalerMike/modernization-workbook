@@ -55,8 +55,8 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: 99f12d645fa4431d86c81ebeee6f0ccfaa1d1fb190c0f54eb91712f43b05a811
-last-reviewed: 2026-11-20
+reviewed-sha256: 742f4b0c031abd04decac8027bd126ae9486f0e9eeb38215599a96ac9351bbdc
+last-reviewed: 2026-11-25
 ---
 # Training {.unnumbered}
 
