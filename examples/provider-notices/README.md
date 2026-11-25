@@ -8,6 +8,8 @@ Cloud providers send each tenant, account, tenancy or project its own notices: s
 - **Digest.** Markdown and CSV, weekly: open notices by provider and kind, action required by due date, maintenance starting soon, what's new and what closed.
 - **Evidence.** Each run is recorded with its NIST SP 800-53 Rev 5 controls and FedRAMP 20x KSIs, the SHA-256 of every file and the hash of the record before it.
 
+**What it is and where it runs.** This is the workbook's own code, not a Microsoft, Oracle, AWS or Google product: each provider creates its notices, and the kit only reads them. An agency copies, reviews and maintains its copy and runs it inside its boundary, once a week, as a Windows scheduled task on a server it manages, under a gMSA. The runbook's Step 1.7 has the commands ([developer workbook, Chapter 08](../../docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.md#step-1.7-the-weekly-run-on-a-schedule-g7); decision WD-179).
+
 Illustrative: tested against fictional fixtures and stand-in tools, not against a live tenant, account, tenancy or project. Every collector call is a read. The only writes are in `deploy/` (the Azure Policy assignment for Service Health alerts, and rollback), and they run only with `-Apply` and the plan's approved SHA-256.
 
 ## Layout

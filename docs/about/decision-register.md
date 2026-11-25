@@ -11,7 +11,7 @@ doc-type: section-landing
 
 This register lists the decisions behind the workbook, from the repository's first pull request on, one entry each. Each entry gives the question, the options that were considered, the choice, the reason for it, its basis, its sources and the pages it shaped. The [Reviewers' Guide](reviewers-guide.md) explains how to check an entry and how to tell us you agree or disagree with it. Use the entry's ID when you do.
 
-There are **178** workbook decisions: 167 settled, 0 challenged and 11 superseded. Below them are the **109** decision points the sample project plans leave to the agency that adopts them.
+There are **179** workbook decisions: 168 settled, 0 challenged and 11 superseded. Below them are the **109** decision points the sample project plans leave to the agency that adopts them.
 
 ::: {.callout-note}
 ## How to read the basis
@@ -212,6 +212,7 @@ There are **178** workbook decisions: 167 settled, 0 challenged and 11 supersede
 | [WD-176](#wd-176) | 2026-11-25 | Where do WD-175's tags live on the Entra side while no Microsoft Learn page confirms custom security attributes for Microsoft 365 GCC tenants? | Workbook design | settled |
 | [WD-177](#wd-177) | 2026-11-25 | What is the reference design for the host that holds the program's authoritative repository? | Workbook design | settled |
 | [WD-178](#wd-178) | 2026-11-25 | Which standby model does the platform host use? | Workbook design | settled |
+| [WD-179](#wd-179) | 2026-11-25 | Where does the Provider Notices kit run in production, as which identity, and how does each provider's reader sign in without a person? | Workbook design | settled |
 
 : Workbook decisions, oldest first {.striped .hover}
 
@@ -3121,6 +3122,23 @@ There are **178** workbook decisions: 167 settled, 0 challenged and 11 supersede
 | **Note** | Basis: workbook owner decision, November 25, 2026, in the same answer as [WD-177](#wd-177). This records the standby model *The Transformation Arc*, Chapter 03 and *Cloud Boundary and Landing Zone*, Appendix B already describe. |
 
 [Agree, disagree or send evidence on WD-178](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-178%3A+)
+
+### WD-179: Where does the Provider Notices kit run in production, as which identity, and how does each provider's reader sign in without a person? {#wd-179}
+
+| | |
+|---|---|
+| **Options considered** | An operator's workstation, run by hand each week; A Windows scheduled task on an agency-managed server inside the boundary, under a gMSA, with each reader signed in from a protected credential folder; Azure Automation, with a Hybrid Runbook Worker on the same kind of server; An Azure Functions timer or a Container Apps job, after refactoring the kit; The agency's existing enterprise scheduler |
+| **Choice** | The kit runs once a week as a Windows scheduled task on an agency-managed Windows Server member server inside the agency's boundary, not a domain controller or a person's workstation, under a group managed service account named and requested as the managed service account standard sets out (WD-159 to WD-163). The gMSA holds no role in any cloud: it can read only the run's credential folder on that server, which only it and the server's administrators can open, and each provider's reader signs in from that folder. Microsoft 365 and Azure use one Entra app, the reader app, with a certificate: application permissions ServiceMessage.Read.All and ServiceHealth.Read.All for Graph, and Reader and Service Health Security Reader on the subscriptions for Azure Resource Graph. OCI uses an API signing key for a reader user in the group that may read announcements; AWS GovCloud (US) uses IAM Roles Anywhere with a certificate, through AWS's credential helper; Google Cloud, an optional gate, has no unattended sign-in set until an agency enables it. The ServiceNow token stays in the environment variable the settings name. An operator's workstation runs the labs and the guide's Try it boxes only. |
+| **Rationale** | The workbook already runs kit automation this way: the Provider Notices runbook's Step 1.7 and the Defender XDR runbook register a Windows scheduled task, the Daily Checks guide runs its probe as a scheduled task on a server, and WD-163 makes a gMSA the identity of an automated job. Learn lists Task Scheduler tasks among the services a gMSA can run. The kit calls four providers' CLIs and keeps notices inside the boundary, so a server the agency already manages fits it without a rewrite; Azure Automation would still need such a server as a Hybrid Runbook Worker, and Functions or Container Apps would need the kit refactored. Learn documents az login with a service principal's certificate and Connect-MgGraph with a certificate; it documents the Arc agent's identity endpoint but no Learn page says az login --identity works on an Arc-enabled server, so the reader app's certificate is used for Azure until one does. |
+| **Basis** | Workbook design |
+| **Sources** | [Microsoft Learn, Manage group Managed Service Accounts](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts); [Microsoft Learn, Sign in with Azure CLI using a service principal](https://learn.microsoft.com/cli/azure/authenticate-azure-cli-service-principal); [Microsoft Learn, Connect-MgGraph](https://learn.microsoft.com/powershell/module/microsoft.graph.authentication/connect-mggraph); [Microsoft Learn, Authenticate against Azure resources with Azure Arc-enabled servers](https://learn.microsoft.com/azure/azure-arc/servers/managed-identity-authentication); [Oracle, SDK and CLI configuration file](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm); [AWS, IAM Roles Anywhere, Get temporary security credentials (credential helper)](https://docs.aws.amazon.com/rolesanywhere/latest/userguide/credential-helper.html) |
+| **Pages affected** | [Provider Notices: An Implementation Guide](../books/guides/provider-notices-implementation.md), [Chapter 08 — Deploying to Test and Production](../project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.md), [Chapter 14 — Provider Notices in Day-Two Operations](../books/b15-day2-operations/14-provider-notices.md), [`examples/provider-notices/README.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/provider-notices/README.md) |
+| **Date** | 2026-11-25 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 25, 2026. Shown an outside review of the Provider Notices guide, which found it didn't say what the collector is or where it runs in production, and a recommended host, run-as identity and sign-in per provider, he answered "Go with all your recommendations, keep Google G5 optional". Shown that no Learn page confirms az login --identity on an Arc-enabled server, he chose the reader app's certificate for Azure. Not yet run on a live server: the gMSA task principal and each unattended sign-in are proved in the runbook's test stage. |
+
+[Agree, disagree or send evidence on WD-179](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-179%3A+)
 
 ## Decision points in the sample project plans {#plan-decisions}
 
