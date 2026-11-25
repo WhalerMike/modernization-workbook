@@ -142,9 +142,9 @@
    "topics": [
     "Application modernization"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "application-modernization",
-   "featured": false
+   "featured": true
   },
   {
    "id": "docs/training/azure-security/index.md",
@@ -257,9 +257,9 @@
     "Azure",
     "DNS and DDI"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "dns-dhcp-ipam",
-   "featured": false
+   "featured": true
   },
   {
    "id": "docs/training/global-secure-access/index.md",
@@ -344,9 +344,9 @@
     "Information protection",
     "Compliance and authorization"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "information-protection",
-   "featured": false
+   "featured": true
   },
   {
    "id": "path:ms-automation",
@@ -430,9 +430,9 @@
     "Active Directory",
     "PKI and certificates"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "pki",
-   "featured": false
+   "featured": true
   },
   {
    "id": "docs/training/privileged-access/index.md",
@@ -545,9 +545,9 @@
    "topics": [
     "Network"
    ],
-   "status": "Not tracked",
+   "status": "Approved",
    "family": "network-sd-wan",
-   "featured": false
+   "featured": true
   },
   {
    "id": "docs/training/zero-trust-assessment/index.md",
@@ -942,7 +942,7 @@
    "topics": [
     "Information protection"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "information-protection",
    "featured": false
   },
@@ -1114,7 +1114,7 @@
    "url": "docs/books/guides/service-account-migration.html",
    "count": null,
    "unit": "steps",
-   "reading_minutes": 100,
+   "reading_minutes": 108,
    "reading_source": "estimate",
    "videos": 1,
    "video_minutes": 27,
@@ -1270,7 +1270,7 @@
    "topics": [
     "Application modernization"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "application-modernization",
    "featured": false
   },
@@ -1406,7 +1406,7 @@
    "topics": [
     "Information protection"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "information-protection",
    "featured": false
   },
@@ -1654,7 +1654,7 @@
    "url": "docs/books/b03-hr-identity/index.html",
    "count": 19,
    "unit": "chapters",
-   "reading_minutes": 303,
+   "reading_minutes": 308,
    "reading_source": "estimate",
    "videos": 8,
    "video_minutes": 116,
@@ -2385,7 +2385,7 @@
    "topics": [
     "Application modernization"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "application-modernization",
    "featured": false
   },
@@ -2528,7 +2528,7 @@
     "Information protection",
     "Compliance and authorization"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "information-protection",
    "featured": false
   },
@@ -2745,7 +2745,7 @@
     "Azure",
     "DNS and DDI"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "dns-dhcp-ipam",
    "featured": false
   },
@@ -2801,7 +2801,7 @@
     "Active Directory",
     "PKI and certificates"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "pki",
    "featured": false
   },
@@ -2827,7 +2827,7 @@
    "topics": [
     "Network"
    ],
-   "status": "Not tracked",
+   "status": "Approved",
    "family": "network-sd-wan",
    "featured": false
   },

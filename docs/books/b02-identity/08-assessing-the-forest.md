@@ -474,7 +474,7 @@ Assessment data is sensitive. It contains the forest's topology, its privileged 
 
 ### The assessment account
 
-The program's design is a group managed service account, `svc-fmp-assess$`, with delegated read rights and nothing more. Without the delegations below it is the Tier A account (default read) from [Book 01, Chapter 10](../b01-transformation-arc/10-analyzing-the-estate.md); the delegations are what make it Tier B (narrow additions):
+The program's design is a group managed service account, `gmsa-fmpassess$`, with delegated read rights and nothing more. Without the delegations below it is the Tier A account (default read) from [Book 01, Chapter 10](../b01-transformation-arc/10-analyzing-the-estate.md); the delegations are what make it Tier B (narrow additions):
 
 - Read on the domain naming contexts and the configuration partition (default for authenticated users).
 - Read-permissions rights on OUs whose ACLs aren't readable by default.
@@ -493,10 +493,10 @@ The source created a user account with a password typed at a prompt, and then sc
 ```powershell
 New-ADGroup -Name "DL-gMSA-fmpassess-Hosts" -SamAccountName "DL-gMSA-fmpassess-Hosts" -GroupScope DomainLocal -Path "<groups-ou>"
 Add-ADGroupMember -Identity "DL-gMSA-fmpassess-Hosts" -Members "<assessment-host>$"
-New-ADServiceAccount -Name svc-fmp-assess -DNSHostName svc-fmp-assess.<domain-fqdn> -Path "<service-account-ou>" -RestrictToOutboundAuthenticationOnly -ManagedPasswordIntervalInDays 30 -PrincipalsAllowedToRetrieveManagedPassword "DL-gMSA-fmpassess-Hosts" -KerberosEncryptionType AES256
+New-ADServiceAccount -Name gmsa-fmpassess -DNSHostName gmsa-fmpassess.<domain-fqdn> -Path "<service-account-ou>" -RestrictToOutboundAuthenticationOnly -ManagedPasswordIntervalInDays 30 -PrincipalsAllowedToRetrieveManagedPassword "DL-gMSA-fmpassess-Hosts" -KerberosEncryptionType AES256
 ```
 
-A host picks up a new group membership after a restart,[^c08-containers] so restart each assessment host, then install and test the account on it, as [Appendix B](appendix-b-forest-assessment-module.md) does before scheduling the run. The name `svc-fmp-assess` predates the program's naming rule, which would make it `gmsa-fmpassess` ([WD-159](../../about/decision-register.md#wd-159)). It's kept here because the operations runbook's scheduled tasks and Appendix B's code use it; give a new assessment gMSA the standard name *(design guidance)*.
+A host picks up a new group membership after a restart,[^c08-containers] so restart each assessment host, then install and test the account on it, as [Appendix B](appendix-b-forest-assessment-module.md) does before scheduling the run. Its name, `gmsa-fmpassess`, follows the standard's naming rule ([WD-159](../../about/decision-register.md#wd-159), [WD-173](../../about/decision-register.md#wd-173)); the source called it `svc-fmp-assess`.
 
 For interactive runs, use `Get-Credential`; never store a password in a script or a text file.
 

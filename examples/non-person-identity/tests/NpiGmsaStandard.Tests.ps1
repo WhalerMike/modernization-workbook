@@ -119,9 +119,21 @@ Describe 'The request check (NPI-STD-01 to NPI-STD-09)' {
         $q.proposedName = 'gmsa-payroll-api$'
         $r = Test-NpiStdRequest -Requests @([pscustomobject]@{ File = 'x.json'; Request = $q }) -Standard $script:Std -AsOf $script:AsOf
         @($r.Findings | Where-Object Rule -EQ 'NPI-STD-03').Count | Should -Be 1   # 16 characters with the role suffix
-        $q.proposedName = 'gmsa-payroll-a$'
+        $q.proposedName = 'gmsa-payroll-rs$'
         $r = Test-NpiStdRequest -Requests @([pscustomobject]@{ File = 'x.json'; Request = $q }) -Standard $script:Std -AsOf $script:AsOf
         @($r.Findings).Count | Should -Be 0
+    }
+    It 'NPI-STD-03 refuses a role suffix outside the list, capitals and an app short name that starts with a digit (WD-173)' {
+        $q = (Get-Content (Join-Path $script:InputPath 'requests/REQ-2026-0201.json') -Raw | ConvertFrom-Json -AsHashtable)
+        $q.proposedName = 'gmsa-payroll-a$'
+        $r = Test-NpiStdRequest -Requests @([pscustomobject]@{ File = 'x.json'; Request = $q }) -Standard $script:Std -AsOf $script:AsOf
+        @($r.Findings | Where-Object Rule -EQ 'NPI-STD-03')[0].Issue | Should -Match "role suffix '-a' isn't one of -sql"
+        $q.proposedName = 'gmsa-Payroll$'
+        $r = Test-NpiStdRequest -Requests @([pscustomobject]@{ File = 'x.json'; Request = $q }) -Standard $script:Std -AsOf $script:AsOf
+        @($r.Findings | Where-Object Rule -EQ 'NPI-STD-03')[0].Issue | Should -Match 'lowercase letters, digits and hyphens only'
+        $q.proposedName = 'gmsa-9pay$'; $q.appShortName = '9pay'
+        $r = Test-NpiStdRequest -Requests @([pscustomobject]@{ File = 'x.json'; Request = $q }) -Standard $script:Std -AsOf $script:AsOf
+        @($r.Findings | Where-Object Rule -EQ 'NPI-STD-03')[0].Issue | Should -Match 'starting with a letter'
     }
     It 'NPI-STD-07 to 09: needsSpn with no SPN, a dMSA not run by a person, an unknown risk tier' {
         foreach ($rule in 'NPI-STD-07', 'NPI-STD-08', 'NPI-STD-09') { (Get-Rule $rule).ObjectKey | Should -Be @('REQ-2026-0205') -Because $rule }

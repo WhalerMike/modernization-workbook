@@ -11,7 +11,7 @@ doc-type: section-landing
 
 This register lists the decisions behind the workbook, from the repository's first pull request on, one entry each. Each entry gives the question, the options that were considered, the choice, the reason for it, its basis, its sources and the pages it shaped. The [Reviewers' Guide](reviewers-guide.md) explains how to check an entry and how to tell us you agree or disagree with it. Use the entry's ID when you do.
 
-There are **172** workbook decisions: 162 settled, 0 challenged and 10 superseded. Below them are the **109** decision points the sample project plans leave to the agency that adopts them.
+There are **174** workbook decisions: 164 settled, 0 challenged and 10 superseded. Below them are the **109** decision points the sample project plans leave to the agency that adopts them.
 
 ::: {.callout-note}
 ## How to read the basis
@@ -206,6 +206,8 @@ There are **172** workbook decisions: 162 settled, 0 challenged and 10 supersede
 | [WD-170](#wd-170) | 2026-11-20 | How much of the service-account lifecycle should machines run? | External requirement | settled |
 | [WD-171](#wd-171) | 2026-11-24 | Does the Non-Person Identity track cover workload identities in AWS GovCloud (US) and Oracle Cloud? | Workbook design | settled |
 | [WD-172](#wd-172) | 2026-11-24 | Which tags join an AWS GovCloud (US) or OCI workload identity to its record, and does the validation kit check those identities? | Workbook design | settled |
+| [WD-173](#wd-173) | 2026-11-25 | What are the managed service account standard's detailed naming and configuration rules, beyond WD-159's prefixes and 15 characters? | Workbook design | settled |
+| [WD-174](#wd-174) | 2026-11-25 | Where is the managed service account standard enforced? | Workbook design | settled |
 
 : Workbook decisions, oldest first {.striped .hover}
 
@@ -2788,7 +2790,7 @@ There are **172** workbook decisions: 162 settled, 0 challenged and 10 supersede
 | **Date** | 2026-11-20 |
 | **Status** | settled |
 | **Defined in** | — |
-| **Note** | Basis: workbook owner decision, November 20, 2026 (the gMSA standardization plan's D-1). Names [WD-154](#wd-154)'s delegated group. |
+| **Note** | Basis: workbook owner decision, November 20, 2026 (the gMSA standardization plan's D-1). Names [WD-154](#wd-154)'s delegated group. November 25, 2026: Learn's New-ADServiceAccount reference does recommend a sAMAccountName of 15 characters or less for older operating systems; the details are [WD-173](#wd-173). |
 
 [Agree, disagree or send evidence on WD-159](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-159%3A+)
 
@@ -3012,6 +3014,40 @@ There are **172** workbook decisions: 162 settled, 0 challenged and 10 supersede
 | **Note** | Basis: workbook owner decision, November 24, 2026, answering three questions from the Chapter 13 change: "VK-NPI-10 … - Yes", "Step 1g: whether its commands should also export tags. - Yes", "Tag names: the proposed SystemId, Owner1, Owner2 and Sponsor. - Yes"; asked to confirm, he chose "Add VK-NPI-10". |
 
 [Agree, disagree or send evidence on WD-172](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-172%3A+)
+
+### WD-173: What are the managed service account standard's detailed naming and configuration rules, beyond WD-159's prefixes and 15 characters? {#wd-173}
+
+| | |
+|---|---|
+| **Options considered** | Leave the details to each engineer within WD-159; Fix the characters, a role list, a description format, the dMSA rows, the hosts' logon rights and the SPN form in the standard, and rename the forest-assessment gMSA to match |
+| **Choice** | Names use lowercase letters, digits and hyphens only; `<app>` is the short name on the system's record, starts with a letter and has no hyphen; a role suffix comes only from the list -sql, -agt, -rs, -is, -web, -svc and -task; the whole name stays 15 characters or fewer before the $, shortened at `<app>`. Each account's description is `SystemId <system-id>; <request-id>; <change-record>`, and owners stay in SailPoint and the register, not in AD. SPNs are only those named on the request, in Learn's `<service-class>/<host>[:<port>]` form, registered with `setspn -S` after approval. On the hosts, Group Policy grants Log on as a service (services and IIS application pools) or Log on as a batch job (scheduled tasks) and nothing else, and denies Remote Desktop and local sign-in to every managed service account. A dMSA is created only by Domain Admins; its retrievers are the hosts named on the request; `DelegatedMSAEnabled` is set by Group Policy. The forest-assessment gMSA becomes gmsa-fmpassess. |
+| **Rationale** | WD-159 fixed the prefixes and the length but not the characters, the suffixes or the attributes, so two engineers could make two different names for the same system and AD alone couldn't lead to an account's record. Learn's cmdlet reference recommends a sAMAccountName of 15 characters or less, DNS host names take letters, digits and hyphens, and Learn recommends denying Remote Desktop sign-in to all service accounts. Chapter 12's request check enforces the name rules (NPI-STD-03); Chapter 06's plan doesn't write the description yet. |
+| **Basis** | Workbook design |
+| **Sources** | [Microsoft Learn, New-ADServiceAccount](https://learn.microsoft.com/powershell/module/activedirectory/new-adserviceaccount); [Microsoft Learn, Naming conventions in Active Directory for computers, domains, sites, and OUs](https://learn.microsoft.com/troubleshoot/windows-server/active-directory/naming-conventions-for-computer-domain-site-ou); [Microsoft Learn, Deny log on through Remote Desktop Services](https://learn.microsoft.com/previous-versions/windows/it-pro/windows-10/security/threat-protection/security-policy-settings/deny-log-on-through-remote-desktop-services); [Microsoft Learn, Setting up delegated Managed Service Accounts](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-set-up-dmsa) |
+| **Pages affected** | [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../books/guides/service-account-migration.md), [Chapter 12 — The Managed Service Account Standard](../project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.md), [Chapter 08 — Assessing the Forest](../books/b02-identity/08-assessing-the-forest.md), [Appendix B — Forest Assessment Module](../books/b02-identity/appendix-b-forest-assessment-module.md) |
+| **Date** | 2026-11-25 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 25, 2026. Asked which configuration and naming standards gMSAs and dMSAs need, he was shown five gaps and the svc-fmp-assess conflict and answered "Yes, details and clarity. Have SailPoint / ServiceNow enforce." |
+
+[Agree, disagree or send evidence on WD-173](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-173%3A+)
+
+### WD-174: Where is the managed service account standard enforced? {#wd-174}
+
+| | |
+|---|---|
+| **Options considered** | By the approvers and Chapter 12's check after approval; In SailPoint and ServiceNow themselves: the request form, a workflow before approval, the change record's required fields and a daily search after creation, with Chapter 12 as the backstop |
+| **Choice** | SailPoint's request form requires every field and checks the app short name's pattern, the role list and the length; an Access Request Submitted workflow runs Chapter 12's request checks and denies a failing request before an approver sees it; a change for a managed service account can't move to Implement in ServiceNow without the SailPoint request ID, approval date, account name and system ID, and a data policy holds those fields mandatory for import and web service writes too; a saved SailPoint search lists every day the accounts in the service-account OU that break a rule or have no owner; Chapter 12's reconciliation stays the backstop. ServiceNow's required fields record completeness and aren't an approval (WD-162). |
+| **Rationale** | An approver can't be relied on to check a name's characters or a field's presence, and Chapter 12's check runs only after approval. SailPoint's forms validate fields with required flags, lengths and regular expressions, its Access Request Submitted trigger returns a preliminary approval or denial, and ServiceNow's change model transitions and data policies require fields, so each rule can be refused where it's entered. |
+| **Basis** | Workbook design |
+| **Sources** | [SailPoint, Identity Security Cloud, Forms](https://documentation.sailpoint.com/saas/help/forms/index.html); [SailPoint Developer Community, Access Request Submitted trigger](https://developer.sailpoint.com/docs/extensibility/event-triggers/triggers/access-request-submitted); [ServiceNow, Configure change model states](https://www.servicenow.com/docs/r/it-service-management/change-management/configure-change-model-states.html) |
+| **Pages affected** | [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../books/guides/service-account-migration.md) |
+| **Date** | 2026-11-25 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 25, 2026: "Have SailPoint / ServiceNow enforce." The workflow's service that runs Chapter 12's request check isn't built yet. |
+
+[Agree, disagree or send evidence on WD-174](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-174%3A+)
 
 ## Decision points in the sample project plans {#plan-decisions}
 

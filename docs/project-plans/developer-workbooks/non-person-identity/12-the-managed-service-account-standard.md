@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 5206f763786be49588a257ab1dbcd857c1e358fccc1c47d13fef35682436f84a
-last-reviewed: 2026-11-24
+reviewed-sha256: 5d9f27248a03a15d54ca58b26c5b448f4c5827d3ab6284483d60478587f34c85
+last-reviewed: 2026-11-25
 ---
 # Chapter 12 — The Managed Service Account Standard
 
@@ -52,7 +52,7 @@ The standard's rule is that machines run, check and record every step they can, 
 
 ## The context the code depends on
 
-- **The standard.** Names, OU, groups, interval, owners and cadences are the [standard's settings](../../../books/guides/service-account-migration.md#msa-standard-settings), decided as WD-159 to WD-170.
+- **The standard.** Names, OU, groups, interval, owners and cadences are the [standard's settings](../../../books/guides/service-account-migration.md#msa-standard-settings), decided as WD-159 to WD-170, with the naming and configuration details in [WD-173](../../../about/decision-register.md#wd-173). SailPoint and ServiceNow enforce the rules where a request is made and recorded, and this chapter's code is the backstop ([how it's enforced](../../../books/guides/service-account-migration.md#msa-standard-enforcement), [WD-174](../../../about/decision-register.md#wd-174)).
 - **SailPoint approves; ServiceNow records.** SailPoint approves every managed service account request ([WD-162](../../../about/decision-register.md#wd-162)); ServiceNow holds the change record (a `CHG` number) and the findings, in the [integration kit's finding contract](../../../books/guides/snow-sailpoint-integration-kit.md).
 - **SailPoint's Active Directory source.** SailPoint's Active Directory connector supports aggregating managed and group managed service accounts, and reading `msDS-GroupMSAMembership` needs IQService with the Active Directory PowerShell module.[^np12-sp-ad] Machine Identity Security assigns an account owner by attribute mapping, and none when several identities match.[^np12-sp-mis]
 - **Defender for Identity.** Its Service Accounts page lists gMSAs, sMSAs and user accounts that have an SPN and a password that never expires, with their type.[^np12-mdi-sa] Its stale service account assessment uses 90 days.[^np12-mdi-posture]
@@ -79,7 +79,7 @@ SailPoint's and Defender for Identity's own export field names weren't specified
 
 | Check | Findings | What it enforces |
 |---|---|---|
-| Request | NPI-STD-01 to -09 | Approved in SailPoint (WD-162); a ServiceNow change record; the name standard (WD-159); exactly two owners and a federal-employee sponsor who isn't one of them (WD-164); the `DL-gMSA-<app>-Hosts` group (WD-160); SPNs consistent with the request; a dMSA run by a person and superseding an account (WD-163); a known workload, type and risk tier |
+| Request | NPI-STD-01 to -09 | Approved in SailPoint (WD-162); a ServiceNow change record; the name standard (WD-159, and WD-173's lowercase letters, digits and hyphens, an app short name that starts with a letter, and a role suffix only from the list); exactly two owners and a federal-employee sponsor who isn't one of them (WD-164); the `DL-gMSA-<app>-Hosts` group (WD-160); SPNs consistent with the request; a dMSA run by a person and superseding an account (WD-163); a known workload, type and risk tier |
 | Reconciliation | NPI-STD-10 to -19 | Every gMSA and dMSA aggregated by SailPoint with one owner; retrievers one domain local group; interval 30; AES256 only; a no-SPN gMSA outbound-only or with a recorded reason (WD-154); no privileged group; in the service-account OU (WD-161); every account explained by a request (the drift rule of [Book 13, Chapter 04](../../../books/b13-governance/04-change-control-and-provenance.md)) |
 | Certification | NPI-STD-20 to -23 | Due by risk tier: R1 every 3 months, R2 every 6, R3 every 12 (WD-166); each `REVOKE` a ServiceNow `stale_access` finding; a decision by someone who isn't an owner doesn't count |
 | Defender for Identity | NPI-STD-24 to -26 | A user account still serving as a service account; an sMSA; an account Defender for Identity sees that the register doesn't |
