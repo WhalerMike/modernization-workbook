@@ -1,0 +1,3 @@
+"Spn","ServiceClass","Host","Account","AccountClass","Domain","Enabled","LastLogonUtc","HostInDirectory","HostInDns","Orphan","Reason"
+"kadmin/changepw","kadmin","changepw","krbtgt","user","contoso.example","False","","","","True","Disabled; NoRecentLogon"
+"HTTP/retired-app.contoso.example","HTTP","retired-app.contoso.example","svc-legacyapp","user","contoso.example","True","2026-11-20T08:00:00.0000000Z","False","False","True","HostNotFound"
