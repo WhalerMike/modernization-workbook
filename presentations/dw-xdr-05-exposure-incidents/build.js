@@ -122,7 +122,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the exposure check and its record",
       body: [
-        { cols: [[{ terminal: "05-1", lines: "1-6,9-13", pt: 10.5 }], [{ terminal: "05-2", lines: "1-8", pt: 10.5 }]], split: 0.55 },
+        { cols: [[{ terminal: "05-3", lines: "1-6,9-13", pt: 10.5 }], [{ terminal: "05-4", lines: "1-8", pt: 10.5 }]], split: 0.55 },
       ],
       sources: "Sources: examples/defender-xdr (fictional fixtures). Chapter 05, “Lab 1: fixtures, no tenant,” steps 1–2.",
       say: `Lab 1, in the kit's folder. Step 1 runs the exposure check. Three software rows with nine CVEs between them, and three exposed devices. Two have owners. The third sits in a group no owner covers: the same device Chapter 2 found missing from the inventory. Two findings, one cause. Step 2 reads the Exposure Management record: not available in GCC, skipped, not applicable, and the interim path in one sentence. That's what goes in the closure register, not a failed control.`,
@@ -133,8 +133,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the incident check and its findings",
       body: [
-        { terminal: "05-3", lines: "2-10,12", pt: 11 },
-        { terminal: "05-4", pt: 11 },
+        { terminal: "05-5", lines: "2-10,12", pt: 11 },
+        { terminal: "05-6", pt: 11 },
       ],
       sources: "Sources: examples/defender-xdr (fictional fixtures). Chapter 05, “Lab 1: fixtures, no tenant,” steps 3–4.",
       say: `Step 3 runs the incident check. Seven incidents. Incident 1002, high severity, has waited three and a half hours with no owner, against a one-hour window: overdue. Incident 1005 was resolved with its classification still unknown. And incident 1003, medium, has no owner yet, but it's inside its twenty-four hours. Step 4 reads the findings as the security operations lead gets them, each with its containment rung. The high one is the gated rung: the playbook prepares, and a named approver releases.`,

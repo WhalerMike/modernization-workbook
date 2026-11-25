@@ -130,8 +130,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the reads, and the unstated features",
       body: [
-        { terminal: "01-1" },
-        { terminal: "01-2", lines: "1-6", label: "examples/global-secure-access  ·  fixture data  ·  real output (first rows)" },
+        { terminal: "01-3" },
+        { terminal: "01-4", lines: "1-6", label: "examples/global-secure-access  ·  fixture data  ·  real output (first rows)" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 01, “Lab 1: fixtures, no tenant,” steps 1–2.",
       say: `Lab 1 needs only PowerShell 7 with Pester, in the kit's folder, against one fictional tenant, contoso dot example, seen during its pilot and two weeks later. No tenant at all. Step 1 lists what the decision area reads: two calls, each with its least-privileged permission, one of them beta, both verified against their Learn pages. Step 2 lists the features whose GCC availability Learn doesn't state, each with the interim path the kit expects instead. The first rows are on the slide; the chapter shows them all.`,
@@ -142,8 +142,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: four failures in the pilot's records",
       body: [
-        { terminal: "01-4", lines: "1,14-17,20-21,25-26" },
-        { terminal: "01-5" },
+        { terminal: "01-6", lines: "1,14-17,20-21,25-26" },
+        { terminal: "01-7" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 01, “Lab 1,” steps 3–5.",
       say: `Step 3 reads the pilot tenant's licenses and onboarding state. Step 4 checks the four decision records, and finds four failures. The internet decision's availability quote is forty-six days old. Its SKU has twenty-five units for sixty users. It uses the cloud firewall for clients, a preview feature, with no exception. And the branch decision defers remote networks without naming what protects branches meanwhile. Step 5 reads the preview finding in full. Look at the fix: it isn't "enable the preview". It's the guide's interim path, a Windows Firewall rule delivered by Intune.`,
@@ -154,8 +154,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: two weeks later, every check passes",
       body: [
-        { terminal: "01-6", lines: "1,22-26,28-33" },
-        { terminal: "01-7" },
+        { terminal: "01-8", lines: "1,22-26,28-33" },
+        { terminal: "01-9" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 01, “Lab 1,” steps 6–7.",
       say: `Step 6 checks the same records two weeks later. The internet record was re-read on Learn and drops the preview feature, its SKU now has seventy-five units, and the branch record names its compensating controls: branch traffic stays on the current TIC path, and managed devices at branches keep the client. Every check passes. Step 7 runs this chapter's tests: thirteen passed, none failed. Then delete the output folder.`,

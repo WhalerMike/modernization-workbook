@@ -281,9 +281,14 @@ Everything goes under `<OutputPath>\<run-id>`, where the run identifier is Book 
 ├── RunLog.txt                every step, heartbeat, retry and pre-flight check, in UTC
 ├── RunState.json             each step's status, objects and seconds (what -Resume reads)
 ├── Preflight.json            the pre-flight checks
+├── InputManifest.json        written before any read: every input file (catalogs, measurements,
+│                             NPS exports, code lists, wave plans, server lists) and every kit
+│                             script and module, each with its size and SHA-256, and the forest,
+│                             domains and domain controllers read
 ├── AssessmentManifest.json   who, when (UTC), host, forest, the DC that served each domain,
 │                             tier, parameters, PowerShell and module versions, every step's
-│                             status, and the size and SHA-256 of every other file
+│                             status, the size and SHA-256 of every other file, and
+│                             InputsChanged: any input file whose hash changed during the run
 ├── Summary\        StartKitSummary.md, StartKitSummary.json
 ├── Preflight\      ReadAccess.json, DelegationRequest.md
 ├── SQL\            SqlEstate.csv, SqlEstate.json, SqlEstateSummary.json, SqlSignals.json,
@@ -309,7 +314,7 @@ Everything goes under `<OutputPath>\<run-id>`, where the run identifier is Book 
 └── <each domain>\  OUs\, GPOs\, DNS\, Objects\, ServiceAccounts\, Trusts\, Ldap\
 ```
 
-`Objects\` also holds `UserCounts.json`, `ComputerCounts.json` and `GroupCounts.json`, and `Kerberos\` holds `KerberosSpnSummary.json`: the counts without the rows. The `_parts\` folders hold each partition's streamed rows and the checkpoints; the joined files are complete without them, and they can be deleted once the run has its manifest.
+`ServiceAccounts\IdentityEvidence.json` holds one directory evidence record per service identity (each user with an SPN or delegation, each MSA and gMSA): the attributes exactly as the collector read them, the query, the domain and the time, and `AttributesSha256`, the SHA-256 of `AttributesJson`, the exact text hashed, so a record can be checked later without the directory. `Objects\` also holds `UserCounts.json`, `ComputerCounts.json` and `GroupCounts.json`, and `Kerberos\` holds `KerberosSpnSummary.json`: the counts without the rows. The `_parts\` folders hold each partition's streamed rows and the checkpoints; the joined files are complete without them, and they can be deleted once the run has its manifest.
 
 The per-domain layout is Book 02 Appendix B's, so its output schema reference applies. Book 00's deliverable names map onto it: `ForestTopology.json`, `OUHierarchy.json`, `GPOInventory.json`, `DNSInventory.json`, `PKIInventory.json`, `ComputerInventory.json`, `UserInventory.json`, `GroupInventory.json`, `ServiceAccounts.csv`, `TrustMap.json`, `OUDelegations.json`, `SchemaExtensions.json` and `AssessmentManifest.json`; `PKISecurityReport.json` holds the escalation findings Book 00 calls `ESCVulnerabilities.csv`. The set is sensitive (privileged accounts, delegation, PKI weaknesses): store it encrypted and handle it under the agency's data classification policy.
 

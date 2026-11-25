@@ -1,4 +1,8 @@
-PS> Invoke-Pester -Path tests/Core.Tests.ps1 -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-         23           0
+PS> Import-Csv "$Run/access/permissions.csv" | Format-Table Call, Method, Permission, Writes -AutoSize
+Call                  Method Permission                    Writes
+----                  ------ ----------                    ------
+incidents-list        GET    SecurityIncident.Read.All     False
+hunting-query         POST   ThreatHunting.Read.All        False
+detection-rules-list  GET    CustomDetection.Read.All      False
+detection-rule-create POST   CustomDetection.ReadWrite.All True
+detection-rule-update PATCH  CustomDetection.ReadWrite.All True

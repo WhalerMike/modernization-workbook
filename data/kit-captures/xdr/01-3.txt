@@ -1,26 +1,19 @@
-PS> Get-Content out/access/manifest.json
-{
-  "schema": "fmp-xdr-manifest/1",
-  "task": "access",
-  "asOf": "2026-11-16T12:00:00Z",
-  "mode": "Fixture",
-  "environment": "lab",
-  "kit": "examples/defender-xdr",
-  "calls": [
-    {
-      "id": "incidents-list",
-      "method": "GET",
-      "path": "/security/incidents",
-      "permission": "SecurityIncident.Read.All",
-      "doc": "https://learn.microsoft.com/graph/api/security-list-incidents?view=graph-rest-1.0"
-    }
-  ],
-  "files": {
-    "permissions.csv": "59ea30398171f4ab2e98613afbe4a4f1adc919617a5ab66b4fb7354cddaa9fb1",
-    "raw/incidents-top.json": "1cef1dcd9446d6674a596b88a912b5c082d70923942a1c6d955f28a6697b0f30",
-    "results.csv": "15fe8e970320764144c3b4ec9696c89931aaa48cab9c6ada45ef3c2801f46217",
-    "results.json": "f5d3ccb55b3807789db2edf82529cddde353883575e24bc78feab0307210de2e"
-  },
-  "failed": 3,
-  "result": "Fail"
-}
+PS> ./Invoke-XdrAccess.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath "$Run/access" -AsOf 2026-11-16T12:00:00Z
+Id         Status Subject                         Detail
+--         ------ -------                         ------
+CLOUD      Pass   gcc                             Graph https://graph.microsoft.com (environment Global); portal https://security.microsoft.com
+READ       Pass   incidents-list                  5 incident(s) returned with no permission error
+ROLE       Pass   XDR Read                        1 permissions match the design
+ROLE       Pass   XDR Responder                   4 permissions match the design
+ROLE       Fail   XDR Detection Engineer          extra: Advanced live response (Manage)
+ROLE       Pass   XDR Tier 0 Analyst              5 permissions match the design
+ROLE       Warn   Legacy SOC role                 role in the export is not in the design: record a decision or remove it
+RESTRICTED Fail   Advanced live response (Manage) held by XDR Detection Engineer; only XDR Tier 0 Analyst may hold it
+PIM        Pass   XDR Read                        assigned only to PIM-governed groups (SG-XDR-Readers, SG-XDR-Assessor-ReadOnly)
+PIM        Fail   XDR Responder                   assigned to a group PIM doesn't govern: SG-SOC-Standing
+PIM        Pass   XDR Detection Engineer          assigned only to PIM-governed groups (SG-XDR-DetectionEngineers)
+PIM        Pass   XDR Tier 0 Analyst              assigned only to PIM-governed groups (SG-XDR-Tier0)
+PIM        Pass   Legacy SOC role                 assigned only to PIM-governed groups (SG-XDR-Readers)
+EMERGENCY  Pass   Emergency access groups         no emergency access group holds a Defender role
+
+Access: 14 checks, 3 failed. Written to C:/FMWLabs/results/defender-xdr-01/lab1/<run>/access: results.csv, results.json, permissions.csv, raw/, manifest.json

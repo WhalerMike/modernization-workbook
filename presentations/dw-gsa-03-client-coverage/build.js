@@ -110,8 +110,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the fleet count and the four devices",
       body: [
-        { terminal: "03-2", lines: "1-2,4,6-12" },
-        { terminal: "03-3" },
+        { terminal: "03-4", lines: "1-2,4,6-12" },
+        { terminal: "03-5" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 03, “Lab 1: fixtures, no tenant,” steps 2–3.",
       say: `Lab 1, in the kit's folder, no tenant. Step 1 lists one read, the device usage summary. Step 2 reads the pilot tenant's summary: eighteen devices, fifteen active, three inactive. Step 3 reads the four pilot devices' client records, as the device script wrote them. Pilot 3 runs an older client with DisabledComponents zero, so IPv6 is preferred; pilot 4 is disconnected; and only pilot 1 has the hardening values.`,
@@ -122,8 +122,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: five failures, and ring 2's rule",
       body: [
-        { terminal: "03-4", lines: "2,13-15,21,25" },
-        { terminal: "03-5", lines: "3-9" },
+        { terminal: "03-6", lines: "2,13-15,21,25" },
+        { terminal: "03-7", lines: "3-9" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 03, “Lab 1,” steps 4–5.",
       say: `Step 4 runs the client checks. Coverage is eighty-three percent against ninety-eight. Pilot 3 has an old client, IPv6 preferred, and DNS over HTTPS still on in Chrome. Pilot 4 is disconnected. The Hyper-V exclusion has an owner, an approver and an expiry. Hardening is only information in the pilot. Step 5 asks the same devices ring 2's question, where hardening is required: three devices fail, because only pilot 1 has the remediation.`,
@@ -134,8 +134,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the device script, and the tests",
       body: [
-        { terminal: "03-6" },
-        { terminal: "03-7" },
+        { terminal: "03-8" },
+        { terminal: "03-9" },
       ],
       sources: "Sources: examples/global-secure-access. Chapter 03, “Lab 1,” steps 6–7.",
       say: `Step 6 reads the device script's header. It runs on a Windows device, not on the lab laptop, as an administrator, and only reads: the client's file version, the four hardening values, the IPv4 preference and the browsers' DNS-over-HTTPS policy. The health is read from the tray's health check by a person and passed in, because the script can't see it. Step 7 runs this chapter's tests: three passed, none failed. Then delete the output folder.`,

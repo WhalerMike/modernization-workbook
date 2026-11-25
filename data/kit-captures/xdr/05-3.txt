@@ -1,13 +1,16 @@
-PS> ./Invoke-XdrIncidents.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/incidents -AsOf 2026-11-16T12:00:00Z
-Id   Severity      Status     AgeHours TriageWindowHours Classification                Finding
---   --------      ------     -------- ----------------- --------------                -------
-1001 high          active         3.00                 1 unknown                       Triaged
-1002 high          active         3.50                 1 unknown                       OverdueTriage
-1003 medium        active        10.00                24 unknown                       Untriaged
-1004 low           resolved      94.00                72 truePositive                  Closed
-1005 medium        resolved     146.00                24 unknown                       ClosedWithoutClassification
-1006 informational resolved     309.00                72 informationalExpectedActivity Closed
-1007 medium        inProgress    16.00                24 unknown                       Triaged
+PS> ./Invoke-XdrExposure.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath "$Run/exposure" -AsOf 2026-11-16T12:00:00Z
+SoftwareName        RecommendedSecurityUpdate               CVEs Devices
+------------        -------------------------               ---- -------
+fabrikam_pdf_viewer Fabrikam PDF Viewer 24.3 (example)         4       9
+contoso_lob_client  Contoso LOB Client 8.2 (example)           2       5
+windows_server_2019 November 2026 security update (example)    3       1
 
-Incidents: 7 in the window, 4 open; 1 past their triage window, 1 untriaged inside it, 1 closed without a classification.
-Written to out/incidents: incidents.csv, findings.csv, by-severity.csv, summary.json, raw/, manifest.json
+
+DeviceName ExposureLevel IsInternetFacing MachineGroup       Owner                       Status
+---------- ------------- ---------------- ------------       -----                       ------
+SRV-APP01  High          True             Servers            Server operations (example) Owned
+WKS-R2-01  High          False            Ring2-Workstations Desktop support (example)   Owned
+WKS-OLD-07 High          False            Unassigned                                     NoOwner
+
+Exposure: 9 CVE(s) across 3 software row(s); 3 exposed device(s), 1 with no owner. Security Exposure Management in gcc: not available (Skipped-Not-Applicable).
+Written to C:/FMWLabs/results/defender-xdr-05/lab1/<run>/exposure: vulnerabilities.csv, exposed.csv, unowned.csv, exposure-management.json, summary.json, raw/, manifest.json

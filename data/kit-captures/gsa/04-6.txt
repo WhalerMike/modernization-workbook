@@ -1,6 +1,10 @@
-PS> (Read-GsaJson -Path out/plan/plan.json).steps | ForEach-Object { [pscustomobject]$_ } | Select-Object -First 1 | Format-List id, call, method, uri, why
-id     : PL-01
-call   : profile-state
-method : PATCH
-uri    : https://graph.microsoft.com/beta/networkAccess/forwardingProfiles/55555555-5555-4555-8555-000000000003
-why    : internet profile enabled -> disabled
+PS> (Read-GsaCollection -Path "$Run/pilot")['law-query']['signin-share'] | ForEach-Object { [pscustomobject]$_ } | Format-Table TimeGenerated, Total, ThroughGSA, PctThroughGSA
+TimeGenerated        Total ThroughGSA PctThroughGSA
+-------------        ----- ---------- -------------
+2026-11-10T00:00:00Z   400        362         90.50
+2026-11-11T00:00:00Z   400        363         90.80
+2026-11-12T00:00:00Z   400        364         91.00
+2026-11-13T00:00:00Z   400        365         91.20
+2026-11-14T00:00:00Z   400        366         91.50
+2026-11-15T00:00:00Z   400        367         91.80
+2026-11-16T00:00:00Z   400        368         92.00

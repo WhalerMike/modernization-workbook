@@ -1,0 +1,4 @@
+PS> Invoke-Pester -Path tests/SqlIdentity.Tests.ps1 -FullNameFilter 'Chapter 05*' -Output None -PassThru | Select-Object PassedCount, FailedCount | Format-Table
+PassedCount FailedCount
+----------- -----------
+          4           0

@@ -1,13 +1,15 @@
-PS> Import-Csv out/evidence/records.csv | Format-Table sequence, task, result, checkResult, controls -AutoSize
-sequence task       result checkResult controls
--------- ----       ------ ----------- --------
-1        access     Pass   Fail        AC-2 AC-6 AU-9 CA-7
-2        coverage   Pass   Fail        AU-9 CA-7 CM-8 SI-4
-3        prevention Pass   Fail        AU-9 CA-7 CM-6 SC-7 SI-3 SI-7
-4        asr        Pass   Fail        AU-9 CA-7 CM-6 CM-7 SI-3
-5        exposure   Pass   Fail        AU-9 CA-7 CM-8 RA-5 SI-2
-6        incidents  Pass   Fail        AU-6 AU-9 CA-7 IR-4 IR-5 IR-6
-7        detections Pass   Fail        AU-6 AU-9 CA-7 CM-3 SI-4
-8        signals    Pass   Pass        AC-2 AU-6 AU-9 CA-7 SI-4
-9        automation Pass   Fail        AU-9 CA-7 IR-4 SI-4
-10       metrics    Pass   Pass        AU-11 AU-9 CA-7 IR-3
+PS> ./Invoke-XdrMonthlyRun.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -RunRoot "$Run/month" -EvidencePath "$Run/evidence" -AsOf 2026-11-16T12:00:00Z -ChangeRecord CHG-LAB-0001
+Task       Result Record Detail
+----       ------ ------ ------
+access     Fail   0001
+coverage   Fail   0002
+prevention Fail   0003
+asr        Fail   0004
+exposure   Fail   0005
+incidents  Fail   0006
+detections Fail   0007
+signals    Pass   0008
+automation Fail   0009
+metrics    Pass   0010
+
+Monthly run: 10 run folder(s) under C:/FMWLabs/results/defender-xdr-08/lab1/<run>/month; 8 with findings, 0 error(s); recorded in C:/FMWLabs/results/defender-xdr-08/lab1/<run>/evidence.

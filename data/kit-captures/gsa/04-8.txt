@@ -1,4 +1,6 @@
-PS> Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Chapter 04*', 'Plans*' -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-          9           0
+PS> (Read-GsaJson -Path "$Run/plan/plan.json").steps | ForEach-Object { [pscustomobject]$_ } | Select-Object -First 1 | Format-List id, call, method, uri, why
+id     : PL-01
+call   : profile-state
+method : PATCH
+uri    : https://graph.microsoft.com/beta/networkAccess/forwardingProfiles/55555555-5555-4555-8555-000000000003
+why    : internet profile enabled -> disabled

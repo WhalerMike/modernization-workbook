@@ -120,8 +120,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: two bypasses fail",
       body: [
-        { terminal: "07-4", lines: "2-6,8" },
-        { terminal: "07-5" },
+        { terminal: "07-6", lines: "2-6,8" },
+        { terminal: "07-7" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 07, “Lab 1: fixtures, no tenant,” steps 4–5.",
       say: `Lab 1, after listing the reads, reading the GCC rows for Step 5, and collecting the pilot. Step 4 runs the Internet Access checks. The profile, the categories, threat intelligence, the QUIC interim block and the limits all pass. Two bypasses fail: E X 3 expired on November first, and E X 4 has no approver. Step 5 reads the bypass rows of the exception register, the agency's own record: target, reason, owner, approver and expiry.`,
@@ -132,7 +132,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: TLS — a certificate near expiry",
       body: [
-        { terminal: "07-6" },
+        { terminal: "07-8" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 07, “Lab 1,” step 6.",
       say: `Step 6 runs the TLS checks. Three fail. The certificate has seventy-four days left, inside the ninety-day renewal window, and it was issued for only ninety days, short of Learn's six months. The pinned payroll site's bypass is E X 3, which expired. And one and a half percent of sessions failed, above the one percent threshold. Three pass: the issuer is a dedicated inspection authority, not the authentication one; the policy is linked only to the pilot's profile; and the privacy approval and the user notice came before inspection started.`,
@@ -143,8 +143,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: two weeks later, thirteen pass",
       body: [
-        { terminal: "07-7", lines: "33,37-38,41,44,46,48" },
-        { terminal: "07-8" },
+        { terminal: "07-9", lines: "33,37-38,41,44,46,48" },
+        { terminal: "07-10" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 07, “Lab 1,” steps 7–8.",
       say: `Step 7 checks both areas two weeks later, after the certificate was rolled, the bypasses renewed and approved, and the failing destinations bypassed. The certificate has a hundred and eighty days left on two hundred and ten. Both bypasses have an approver and a future date. The failure share is half a percent. All thirteen checks pass. Step 8 runs this chapter's tests: six passed, none failed. Then delete the output folder.`,

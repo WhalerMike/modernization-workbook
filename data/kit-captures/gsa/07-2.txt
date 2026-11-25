@@ -1,7 +1,4 @@
-PS> Get-GsaAvailability | Where-Object step -EQ 5 | Format-Table id, gcc, status, interim -Wrap
-id                     gcc               status  interim
---                     ---               ------  -------
-internet-filtering     available         ga
-cloud-firewall-clients not yet specified preview Block QUIC (outbound UDP 443) with an Intune-delivered Windows Firewall rule, piloted first (the guide's Step 5.6); record it in the architecture record's quicBlock.
-explicit-forward-proxy not yet specified preview Acquire traffic with the client only; where a PAC file stays, exclude every FQDN and IP the client tunnels (the guide's Step 11.2).
-http-method-filtering  not yet specified preview Filter by web category and FQDN in security profiles (generally available).
+PS> $Run = "C:\FMWLabs\results\global-secure-access-07\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+PS> New-Item -ItemType Directory -Path $Run -Force | Out-Null
+PS> $Run
+C:/FMWLabs/results/global-secure-access-07/lab1/<run>

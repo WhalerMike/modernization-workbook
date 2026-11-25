@@ -1,26 +1,4 @@
-PS> ./Invoke-XdrAsr.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/asr -AsOf 2026-11-16T12:00:00Z
-Ring    Ready Hold Block Attention
-----    ----- ---- ----- ---------
-ring0       0    0    14         0
-ring1      12    1     1         0
-ring2      12    1     0         1
-ring3       0   13     0         1
-servers    12    1     0         0
-
-
-Ring    Rule                                     Mode  Days OpenHits Status Why
-----    ----                                     ----  ---- -------- ------ ---
-ring1   Block all Office applications from cr... warn     6        0 Hold   6 of 14 warn days
-ring2   Block all Office applications from cr... audit   37        1 Hold   1 audit hit(s) with no exclusion or decision
-ring2   Block process creations originating f... audit   37        0 Warn   Configuration Manager manages WKS-R2-02: Microsoft says not to enable this rule there
-ring3   Block credential stealing from the Wi... warn    14        0 Fail   this rule does not support warn: plan audit or block
-ring3   Block untrusted and unsigned processe... audit   14        1 Hold   14 of 30 audit days; 1 audit hit(s) with no exclusion or decision
-servers Block process creations originating f... audit   46        1 Hold   1 audit hit(s) with no exclusion or decision
-
-
-DeviceName RulesNotAsPlanned Example
----------- ----------------- -------
-SRV-APP01                 13 audit planned, notConfigured on the device
-
-ASR: 36 rule-ring pair(s) ready for their next stage, 16 held, 15 in block, 1 plan error(s), 1 warning(s); 13 device mismatch(es); 1 expired exclusion(s).
-Written to out/asr: matrix.csv, readiness.csv, device-checks.csv, exclusions-expired.csv, oma-uri/, summary.json, raw/, manifest.json
+PS> $Run = "C:\FMWLabs\results\defender-xdr-04\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+PS> New-Item -ItemType Directory -Path $Run -Force | Out-Null
+PS> $Run
+C:/FMWLabs/results/defender-xdr-04/lab1/<run>

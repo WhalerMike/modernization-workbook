@@ -1,11 +1,1 @@
-PS> ./Invoke-IpDlp.ps1 -SettingsPath tests/fixtures/settings.lab.json -SnapshotPath tests/fixtures/snapshots/2026-11-24 -OutputPath out/dlp -AsOf 2026-11-24T12:00:00Z
-DLP-01     Pass  FMP-DLP-CUI-ExternalEmail-v2: Enable, as stage enforce says
-DLP-02     Fail  FMP-DLP-CUI-ExternalEmail-v1: TestWithNotifications, but the plan's stage is retired (Disable)
-DLP-03     Pass  FMP-DLP-Endpoint-CUI-SP-v1: Enable, as stage enforce says
-DLP-04     Pass  B20-Copilot-Exclude-CUI-SP: TestWithoutNotifications, as stage simulation says
-DLP-EXTRA  Pass  Exported policy not in the plan: none
-EXC-01     Pass  FMP-DLP-CUI-ExternalEmail-v2: partner.example: EXC-001, approved by CUI program manager, expires 2027-06-30
-EXC-02     Fail  FMP-DLP-CUI-ExternalEmail-v2: oldpartner.example: EXC-002 expired 2026-10-31
-EXC-03     Pass  FMP-DLP-CUI-ExternalEmail-v2: dlp-exceptions@contoso.example: EXC-003, approved by Platform owner, expires 2027-03-31
-EXC-EXPIRED Fail  Exception register: past expiry: EXC-002 (dlp-recipient-domain, 2026-10-31)
-dlp: Fail (6 pass, 3 fail, 0 other). Written to ./out/dlp
+PS> Set-Location C:\FMWLabs\information-protection-code\information-protection

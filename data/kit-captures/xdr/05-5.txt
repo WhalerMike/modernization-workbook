@@ -1,1 +1,13 @@
-PS> Remove-Item -Recurse -Force out
+PS> ./Invoke-XdrIncidents.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath "$Run/incidents" -AsOf 2026-11-16T12:00:00Z
+Id   Severity      Status     AgeHours TriageWindowHours Classification                Finding
+--   --------      ------     -------- ----------------- --------------                -------
+1001 high          active         3.00                 1 unknown                       Triaged
+1002 high          active         3.50                 1 unknown                       OverdueTriage
+1003 medium        active        10.00                24 unknown                       Untriaged
+1004 low           resolved      94.00                72 truePositive                  Closed
+1005 medium        resolved     146.00                24 unknown                       ClosedWithoutClassification
+1006 informational resolved     309.00                72 informationalExpectedActivity Closed
+1007 medium        inProgress    16.00                24 unknown                       Triaged
+
+Incidents: 7 in the window, 4 open; 1 past their triage window, 1 untriaged inside it, 1 closed without a classification.
+Written to C:/FMWLabs/results/defender-xdr-05/lab1/<run>/incidents: incidents.csv, findings.csv, by-severity.csv, summary.json, raw/, manifest.json

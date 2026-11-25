@@ -114,8 +114,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: collect the whole pilot tenant",
       body: [
-        { terminal: "02-2", lines: "1-2,4-9,15-21,23" },
-        { terminal: "02-3" },
+        { terminal: "02-4", lines: "1-2,4-9,15-21,23" },
+        { terminal: "02-5" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 02, “Lab 1: fixtures, no tenant,” steps 2–3.",
       say: `Lab 1, again in the kit's folder with no tenant. Step 1 lists what the baseline reads. Step 2 collects the whole pilot tenant: seventeen calls, each with its least-privileged permission and its beta and verified flags. The Private Access apps and the tenant restrictions partners are the two not yet verified against a Learn page. Twenty-four reads in all, eighteen files hashed. Step 3 checks the folder against its manifest: all eighteen files match.`,
@@ -126,8 +126,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the category the setting leaves out",
       body: [
-        { terminal: "02-4" },
-        { terminal: "02-5" },
+        { terminal: "02-6" },
+        { terminal: "02-7" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 02, “Lab 1,” steps 4–5.",
       say: `Step 4 runs the baseline checks. Both connector groups are in the architecture record with two hosts each, the forest is in the DNS suffixes, and the workspace is named. One failure: the diagnostic setting doesn't send the remote network health logs. Step 5 reads the setting's categories as the collector saved them: three on, and remote network health off. No branch is on a remote network yet, but when one is, its health would never reach the workspace.`,
@@ -138,8 +138,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: a changed file stops every later step",
       body: [
-        { terminal: "02-6" },
-        { terminal: "02-7" },
+        { terminal: "02-8" },
+        { terminal: "02-9" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 02, “Lab 1,” steps 6–7.",
       say: `Step 6 is the one to remember. Copy the collection, add one space to one file, and try to read it. The read is refused: the licenses file changed since its manifest. Every later chapter reads the collection through that same check, so an edited export can't quietly become evidence. Step 7 runs this chapter's tests: eight passed, none failed. Then delete the output folder.`,

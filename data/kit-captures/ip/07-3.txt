@@ -1,6 +1,2 @@
-PS> Import-Csv out/audit/synthetic.csv | Format-Table -AutoSize
-Operation                   Found CreationDate         HoursAfterStart
----------                   ----- ------------         ---------------
-FileSensitivityLabelApplied True  2026-11-24T10:12:00Z 1.2
-FileSensitivityLabelRemoved True  2026-11-24T14:30:00Z 5.5
-CopilotInteraction          True  2026-11-24T09:48:00Z 0.8
+PS> ./Search-IpSyntheticEvents.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/tenant -UserId test.user@contoso.example -StartedAt 2026-11-24T09:00:00Z -OutputPath "$Run/synthetic.json" -AsOf 2026-11-24T15:00:00Z
+3 event(s) written to C:/FMWLabs/results/information-protection-07/lab1/<run>/synthetic.json

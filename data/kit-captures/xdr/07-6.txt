@@ -1,0 +1,2 @@
+PS> Get-ChildItem C:\FMWLabs\results\defender-xdr-07\lab1 -Name
+<run>

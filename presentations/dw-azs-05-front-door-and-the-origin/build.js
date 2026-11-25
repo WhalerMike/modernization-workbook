@@ -125,8 +125,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: run the edge check, read each origin",
       body: [
-        { terminal: "05-1", label: "examples/azure-security  ·  fixture data  ·  real output" },
-        { terminal: "05-2" },
+        { terminal: "05-3", label: "examples/azure-security  ·  fixture data  ·  real output" },
+        { terminal: "05-4" },
       ],
       sources: "Sources: examples/azure-security (fictional fixtures). Chapter 05, “Lab 1: fixtures, no subscription,” steps 1–2.",
       say: `Lab 1 needs PowerShell 7 with Pester, in the kit's folder, and no subscription. Contoso's Premium profile has two origin groups: one with two App Service origins, one with a Private Link origin and a public one. The Standard careers profile has a single storage origin. Step 1 runs the edge check: two of five origins locked by configuration. Step 2 reads each origin. The east origin has the tag and the header; the west origin has the tag only. The private API origin reaches its origin over Private Link. And two are unchecked.`,
@@ -137,8 +137,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the findings",
       body: [
-        { terminal: "05-3" },
-        { terminal: "05-4" },
+        { terminal: "05-5" },
+        { terminal: "05-6" },
       ],
       sources: "Sources: examples/azure-security (fictional fixtures). Chapter 05, “Lab 1: fixtures, no subscription,” steps 3–4.",
       say: `Step 3 reads the findings. The API origin group mixes a private and a public origin. The west origin's tag rule has no header. The careers custom domain allows TLS 1.0. The intranet gateway uses an old 2015 TLS policy. The careers origin group has one origin, so it can't fail over. The classic profile is still there. And the two unchecked origins get a warning that says, in plain words, test a direct request by hand. Step 4 runs this chapter's two tests.`,

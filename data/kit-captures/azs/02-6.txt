@@ -1,4 +1,5 @@
-PS> Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'Exposure*' -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-          2           0
+PS> ./Invoke-AzsCheck.ps1 -Area exposure -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week2 -AsOf 2026-11-16T12:00:00Z -OutputPath "$Run/week2/exposure" -PreviousRegisterPath "$Run/week1/exposure/register.json" -DefenderExposurePath tests/fixtures/defender-exposure.csv
+Register: 19 exposures (8 public IPs, 3 Front Door, 2 application gateways, 6 PaaS); 16 with an owner
+Findings: 3 Finding, 2 Warn, 1 Info
+The register is a map of the attack surface: keep it inside the boundary, never in a public repository.
+Written to C:/FMWLabs/results/azure-security-02/lab1/<run>/week2/exposure (9 calls, every one a read; manifest.json lists each file's SHA-256)

@@ -65,6 +65,20 @@ Describe 'Invoke-FMPStartKit.ps1' {
             (Get-FileHash -Path (Join-Path $runDir.FullName $f.RelativePath) -Algorithm SHA256).Hash | Should -Be $f.SHA256
         }
     }
+    It 'records every input, the kit''s own files and the directory sources before reading' {
+        $im = Get-Content -Raw (Join-Path $runDir.FullName 'InputManifest.json') | ConvertFrom-Json
+        $cat = @($im.InputFiles | Where-Object Parameter -eq 'TransactionCatalog')
+        $cat.Count | Should -Be 1
+        $cat[0].SHA256 | Should -Be (Get-FileHash (Join-Path $FMPTxPath 'TransactionCatalog.csv') -Algorithm SHA256).Hash
+        @($im.InputFiles | Where-Object Parameter -eq 'TransactionMeasurementPath').Count | Should -BeGreaterThan 1
+        @($im.KitFiles.RelativePath) | Should -Contain 'Invoke-FMPStartKit.ps1'
+        @($im.KitFiles.RelativePath) | Should -Contain 'powershell/FMPADAssessment/FMPADAssessment.psm1'
+        @($im.KitFiles.RelativePath | Where-Object { $_ -like 'tests/*' }).Count | Should -Be 0
+        @($im.DirectorySources | Where-Object Kind -eq 'Domain').Name | Should -Be @('contoso.example', 'child.contoso.example')
+        ([datetime]$im.CreatedUtc) | Should -BeLessOrEqual ([datetime]$manifest.StartTimeUtc).AddMinutes(30)
+        @($manifest.InputsChanged).Count | Should -Be 0
+        $manifest.InputManifest | Should -Be 'InputManifest.json'
+    }
     It 'writes the summary, the SQL estate, the NPS inventory and the pre-flight' {
         Join-Path $runDir.FullName 'Summary\StartKitSummary.md' | Should -Exist
         Join-Path $runDir.FullName 'SQL\SqlEstate.csv' | Should -Exist

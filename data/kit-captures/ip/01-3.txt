@@ -1,19 +1,6 @@
-PS> Import-Csv out/access/permissions.csv | Format-Table Read, Shell, Cmdlet, Role -AutoSize
-Read              Shell Cmdlet                             Role
-----              ----- ------                             ----
-labels            scc   Get-Label                          Compliance Administrator, or Information Protection Admin
-labelPolicies     scc   Get-LabelPolicy                    Compliance Administrator, or Information Protection Admin
-autoLabelPolicies scc   Get-AutoSensitivityLabelPolicy     Compliance Administrator
-autoLabelRules    scc   Get-AutoSensitivityLabelRule       Compliance Administrator
-dlpPolicies       scc   Get-DlpCompliancePolicy            Compliance Administrator, or the DLP Compliance Management role group
-dlpRules          scc   Get-DlpComplianceRule              Compliance Administrator, or the DLP Compliance Management role group
-sitCatalog        scc   Get-DlpSensitiveInformationType    Compliance Administrator, or the DLP Compliance Management role group
-policyConfig      scc   Get-PolicyConfig                   Compliance Administrator
-auditRetention    scc   Get-UnifiedAuditLogRetentionPolicy Compliance Administrator, or Organization Management
-roleGroups        scc   Get-RoleGroupMember                Compliance Administrator, or Organization Management
-contentExplorer   scc   Export-ContentExplorerData         Content Explorer List viewer
-irmConfiguration  exo   Get-IRMConfiguration               Organization Management, or View-Only Configuration
-auditStatus       exo   Get-AdminAuditLogConfig            Audit Logs, or View-Only Audit Logs
-transportRules    exo   Get-TransportRule                  Organization Management, or View-Only Configuration
-omeConfiguration  exo   Get-OMEConfiguration               Organization Management, or View-Only Configuration
-aipConfiguration  aip   Get-AipServiceConfiguration        Global Reader, or another role Connect-AipService accepts
+PS> ./Invoke-IpAccess.ps1 -SettingsPath tests/fixtures/settings.lab.json -SnapshotPath tests/fixtures/snapshots/2026-11-24 -OutputPath "$Run/access" -AsOf 2026-11-24T12:00:00Z
+ACC-01     Pass  Settings: environment lab, cloud gcc, tenant contoso.example
+ACC-02     Pass  Snapshot: exported 2026-11-24T08:00:00Z from tenant 00000000-0000-4000-8000-0000000000c0 (gcc)
+ROLE-01    Warn  Communication Compliance Investigators: review overdue: cc.one@contoso.example
+ROLE-02    Fail  Insider Risk Management Investigators: not in the register: extra.person@contoso.example
+access: Fail (2 pass, 1 fail, 1 other). Written to ../../results/information-protection-01/lab1/<run>/access

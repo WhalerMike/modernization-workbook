@@ -1,1 +1,3 @@
-PS> Remove-Item -Recurse -Force out
+PS> Import-Csv "$Run/week2/exposure/findings.csv" | Where-Object rule -in 'AZS-EX-03', 'AZS-EX-04' | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+AZS-EX-04 Warn    pip-orphan: was PublicIP 198.51.100.30; remove any DNS record that still points at it
+AZS-EX-03 Info    pip-new-api: new PublicIP 198.51.100.50

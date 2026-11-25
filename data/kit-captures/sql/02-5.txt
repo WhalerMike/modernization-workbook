@@ -1,24 +1,35 @@
-PS> ./Invoke-SqlAuthAudit.ps1 -AuditPath tests/fixtures/audit-day30/audit.json -OutputPath out/audit-day30
-Instance U G S C K E X Disabled Usable
--------- - - - - - - - -------- ------
-SQLPRD01 0 1 0 0 0 2 2        3      5
-SQLPRD02 1 1 0 0 0 0 0        1      2
-SQLFCI04 0 1 2 0 0 0 0        0      3
-SQLPRD06 1 1 0 0 0 1 1        1      4
-
-
-Instance Severity Finding          Detail
--------- -------- -------          ------
-SQLPRD01 medium   Service account  CONTOSO\svc-sqlprd01 is a user account with a password: the Data Platform project converts it (service account guide)
-SQLPRD01 info     Arc-eligibility  Category 1 or 2 (run the Arc check)
-SQLPRD02 medium   Service account  CONTOSO\svc-sqlprd02 is a user account with a password: the Data Platform project converts it (service account guide)
-SQLPRD02 info     Arc-eligibility  Category 1 or 2 (run the Arc check)
-SQLFCI04 highest  sa enabled       sa is enabled under the name 'sa'
-SQLFCI04 critical Usable SQL login vendorhr_app: migrate to an Entra login or record an exception
-SQLFCI04 high     Mixed mode       SQL authentication is accepted (IsIntegratedSecurityOnly = 0)
-SQLFCI04 medium   Service account  CONTOSO\svc-sqlfci04 is a user account with a password: the Data Platform project converts it (service account guide)
-SQLFCI04 info     Arc-eligibility  Category 3 (failover cluster instance)
-SQLPRD06 info     Arc-eligibility  Category 1 or 2 (run the Arc check)
-
-Wrote 4 files and manifest.json to out/audit-day30
-Evidence for AUDIT (Login census, authentication mode, sa and service-account findings): AC-2, IA-5, CM-6; KSI-PIY-GIV, KSI-IAM-SNU, KSI-SVC-ACM
+PS> Get-Content "$Run/audit/manifest.json"
+{
+  "step": "AUDIT",
+  "title": "Login census, authentication mode, sa and service-account findings",
+  "mode": "read-only",
+  "asOf": "2026-11-20",
+  "controls": [
+    "AC-2",
+    "IA-5",
+    "CM-6"
+  ],
+  "ksis": [
+    "KSI-PIY-GIV",
+    "KSI-IAM-SNU",
+    "KSI-SVC-ACM"
+  ],
+  "files": [
+    {
+      "file": "findings.csv",
+      "sha256": "da5b8ba35d5e2bbf58d70c67c0bd90b675b6b60f08f58ee2466e09394b383fa7"
+    },
+    {
+      "file": "findings.json",
+      "sha256": "602f0212f881b4792c3236f271081db984bcbcf7dc1c46e77a93b0b9b27dd493"
+    },
+    {
+      "file": "census.csv",
+      "sha256": "839fa208e96a91fd930de8e06d526e224851acd8ea1543ee0a0ff6b4768c7ba9"
+    },
+    {
+      "file": "census.json",
+      "sha256": "90b7de1333ecff1d0f3ed20299b0cb1f1b30a75871f45a61a37ffe10292367ec"
+    }
+  ]
+}
