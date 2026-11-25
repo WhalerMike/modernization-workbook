@@ -1,7 +1,4 @@
-PS> $s = Get-Content tests/fixtures/settings.lab.json -Raw | ConvertFrom-Json
-PS> $s.detections.deployVia = 'portal'
-PS> $s | ConvertTo-Json -Depth 10 | Set-Content tests/fixtures/settings.portal.json
-PS> ./Invoke-XdrDetections.ps1 -SettingsPath tests/fixtures/settings.portal.json -FixturePath tests/fixtures/graph -OutputPath out/detections-portal -AsOf 2026-11-16T12:00:00Z
+PS> ./Invoke-XdrDetections.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath "$Run/detections" -AsOf 2026-11-16T12:00:00Z
 Subject                  Id            Detail
 -------                  --            ------
 contoso-admin-share-copy NO-AUTOMATION automatedActions set: containment stays on the response ladder (Gate 9); remove them
@@ -24,13 +21,6 @@ contoso-office-encoded-powershell update status
 contoso-admin-share-copy          held   validation failed: NO-AUTOMATION
 contoso-legacy-rdp-rule           orphan deployed (enabled), not in the repository
 
-Detections: 3 rule(s); 1 validation failure(s); tests 5 passed, 1 failed. Plan via portal: 1 create, 1 update, 1 held, 1 orphan(s), 0 unchanged.
-Plan SHA-256: e88d2ff6a8ff2981b27e0ce57a447445c8d72cddfa251d0f2e6f501dcc9ee43c
-Written to out/detections-portal: validation.csv, tests.csv, deployed-rules.json, plan.json, plan.sha256, summary.json, raw/, manifest.json
-PS> Get-Content out/detections-portal/portal-sheet.md
-# Custom detections to make in the Defender portal
-
-Plan e88d2ff6a8ff2981b27e0ce57a447445c8d72cddfa251d0f2e6f501dcc9ee43c, 2026-11-16T12:00:00Z. Hunting > Custom detection rules; enter each rule from its repository file, unchanged.
-
-- **create** `contoso-lsass-dump-tool`: displayName, description, status, queryCondition, schedule, detectionAction (file SHA-256 ec5fda8cfc89096c798d8311e43a52c469e2acbd591669c9a1506ad2d60c7663)
-- **update** `contoso-office-encoded-powershell`: status (file SHA-256 f3d04de2fedd8b3d16304f998e77d928257a531766be740d48a1025dfed571d9)
+Detections: 3 rule(s); 1 validation failure(s); tests 5 passed, 1 failed. Plan via graph: 1 create, 1 update, 1 held, 1 orphan(s), 0 unchanged.
+Plan SHA-256: 2bfe49bb15add13dc7a81654fe5deeee341246a5cd17c19da1275bcf8abd2601
+Written to C:/FMWLabs/results/defender-xdr-06/lab1/<run>/detections: validation.csv, tests.csv, deployed-rules.json, plan.json, plan.sha256, summary.json, raw/, manifest.json

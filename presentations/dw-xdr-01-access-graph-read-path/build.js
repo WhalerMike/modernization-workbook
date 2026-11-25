@@ -123,7 +123,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: run the access check on fixtures",
       body: [
-        { terminal: "01-1", lines: "1-3,5,8,10-11,13,17,19", pt: 11 },
+        { terminal: "01-3", lines: "1-3,5,8,10-11,13,17,19", pt: 11 },
       ],
       sources: "Sources: examples/defender-xdr (fictional fixtures). Chapter 01, “Lab 1: fixtures, no tenant,” step 1.",
       say: `Lab 1 needs PowerShell 7 with Pester, in the kit's folder. Step 1 runs the access check on the fixtures. The read passes: five incidents, no permission error. Then three rows fail. The detection engineer role holds advanced live response, which only the Tier 0 role may hold, so both its role row and the restricted row fail. And the responder role is also assigned to a standing group that Privileged Identity Management doesn't govern. The legacy role is a warning: it isn't in the design, so someone records a decision or removes it. Fourteen checks, three failed.`,
@@ -134,7 +134,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the permissions, the manifest, the tests",
       body: [
-        { cols: [[{ terminal: "01-2" }, { terminal: "01-4" }], [{ terminal: "01-3", lines: "1,3-6,9-16,24-26" }]], split: 0.56 },
+        { cols: [[{ terminal: "01-4" }, { terminal: "01-6" }], [{ terminal: "01-5", lines: "1,3-6,9-16,24-26" }]], split: 0.56 },
       ],
       sources: "Sources: examples/defender-xdr (fictional fixtures; tests). Chapter 01, “Lab 1: fixtures, no tenant,” steps 2–4.",
       say: `Step 2 reads what each call needs: three reads, each with a read permission, and two writes with read-write custom detection. Step 3 reads the manifest: the task, the time, fixture mode, the one call the check made with its permission and Learn page, a hash for every file, and the result Chapter 8's evidence record carries. Step 4 runs the chapter's tests. All pass, none fail. Delete the output folder when you're done.`,

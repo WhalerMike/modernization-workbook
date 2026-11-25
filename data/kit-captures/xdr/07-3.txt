@@ -1,4 +1,9 @@
-PS> (Get-Content config/ladder.json | ConvertFrom-Json).allowed | Format-List
-workstation : {Full - remediate threats automatically}
-pilot       : {Semi - require approval for all folders}
-server      : {Semi - require approval for core folders, Semi - require approval for non-temp folders, Semi - require approval for all folders}
+PS> ./Invoke-XdrSignals.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath "$Run/signals" -AsOf 2026-11-16T12:00:00Z
+AccountUpn                                  Sources Alerts Action
+----------                                  ------- ------ ------
+breakglass01@contosoexample.onmicrosoft.com       2      2 Emergency access account: page the IR lead; a human decides any containment
+j.rivera@contosoexample.onmicrosoft.com           3      5 Priority: three or more sources
+a.chen@contosoexample.onmicrosoft.com             2      2 Review in the weekly hunt
+
+Signals: 3 user(s) with alerts from more than one source; 1 emergency access account(s); identity or cloud-app sources are feeding alerts.
+Written to C:/FMWLabs/results/defender-xdr-07/lab1/<run>/signals: priority.csv, summary.json, raw/, manifest.json

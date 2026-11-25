@@ -1,4 +1,7 @@
-PS> Invoke-Pester -Path tests/Checks.Tests.ps1 -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-         55           0
+PS> (Get-Content "$Run/coverage/raw/coverage-summary.json" | ConvertFrom-Json).results | Format-Table -AutoSize
+Devices OnboardingStatus SensorHealthState
+------- ---------------- -----------------
+      1 Can be onboarded
+     11 Onboarded        Active
+      1 Onboarded        ImpairedCommunication
+      1 Onboarded        Inactive

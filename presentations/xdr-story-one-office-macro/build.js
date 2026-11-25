@@ -198,7 +198,7 @@ const S1 = "Scene 1 — Who may respond";
 }
 tryIt(S1, "Try it: the access check finds three faults",
   "WORKBOOK CH 01, LAB 1, STEP 1, IN examples/defender-xdr (PASSING ROLE ROWS AND WRAPPED LINES LEFT OUT)",
-  [...cap("01-1", [0, 1, 2, 4, 7, 9, 10, 12, 16, 18])],
+  [...cap("01-3", [0, 1, 2, 4, 7, 9, 10, 12, 16, 18])],
   "the detection engineer holds Advanced live response, which only Tier 0 may; and the responder role reaches a standing group.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 01, “Lab 1: fixtures, no tenant,” step 1.",
   `Try it. From the kit's folder, run the access check on the fixtures. The read passes: incidents come back with no permission error. Then three failures. The detection engineer role holds advanced live response, which only Tier 0 may hold, so its role row fails and the restricted row fails. And the responder role, the one that would contain our macro's device, is also assigned to a standing group that Privileged Identity Management doesn't govern. The legacy role is a warning: someone records a decision or removes it.`,
@@ -236,7 +236,7 @@ const S2 = "Scene 2 — Is it seen";
 }
 tryIt(S2, "Try it: coverage, and where WKS-R0-01 stands",
   "WORKBOOK CH 02, LAB 1, STEP 1 (BLANK LINES LEFT OUT)",
-  [...cap("02-1", [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15, 16, 18])],
+  [...cap("02-3", [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15, 16, 18])],
   "ring 0, where WKS-R0-01 sits, is 2 of 2 protected. Nine of fourteen overall; five tickets, one device not in the inventory.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 02, “Lab 1: fixtures, no tenant,” step 1.",
   `Try it. Run the coverage check. Ring 0, where our workstation sits, is two of two protected. Across the estate, nine of fourteen in-scope devices are protected, sixty-four point three percent. The tickets: a sensor with impaired communications, an inactive sensor, a device that was never onboarded, a server whose exception expired, and a device Defender reports that the inventory doesn't list. Our macro was on a device the sensor sees, so the next scenes can tell its story.`,
@@ -274,7 +274,7 @@ const S3 = "Scene 3 — Prevention";
 }
 tryIt(S3, "Try it: three drifts, and the week's events",
   "WORKBOOK CH 03, LAB 1, STEP 2 (BLANK LINES LEFT OUT)",
-  [...cap("03-2", [0, 1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 13, 14])],
+  [...cap("03-4", [0, 1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 13, 14])],
   "WKS-R2-01's network protection is off where its ring audits; WKS-R1-02 has tamper protection off; one tampering attempt this week.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 03, “Lab 1: fixtures, no tenant,” step 2.",
   `Try it. Run the prevention check. Three drifts. Tamper protection off on a ring 1 workstation. Network protection off on the ring 2 workstation, where its ring should be auditing. And datagram processing on at the file server. Below, the week's events: network protection audited and blocked, controlled folder access audited and blocked, and one tampering attempt. A device with tamper protection off and a tampering attempt in the same week is an incident, not a ticket.`,
@@ -312,7 +312,7 @@ const S4 = "Scene 4 — The rule";
 }
 tryIt(S4, "Try it: which rings can move, and ring 1's next value",
   "WORKBOOK CH 04, LAB 1, STEPS 2 AND 4 (OTHER ATTENTION ROWS AND THE SERVER CHECK LEFT OUT)",
-  [...cap("04-2", [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13]), ...cap("04-4", [0, 1, 4, 5, 8])],
+  [...cap("04-4", [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13]), ...cap("04-6", [0, 1, 4, 5, 8])],
   "the Office child-process rule is held on ring 1 (warn days) and ring 2 (an undecided hit); ring 1's next value keeps it at 6.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 04, “Lab 1: fixtures, no tenant,” steps 2 and 4.",
   `Try it. Run the A S R check. Ring 0 is done: fourteen rules in block. Ring 1 has twelve ready for block; our rule is held, six of fourteen warn days. Ring 2 is ready to leave audit, except our rule, with one audit hit that has no exclusion or decision. Then print the value that moves ring 1. Every rule goes to one, block, but our rule stays at six, warn, because its days aren't up. That's the exact string the change board pastes into the ring 1 policy.`,
@@ -350,7 +350,7 @@ const S5 = "Scene 5 — The incident";
 }
 tryIt(S5, "Try it: incident 1001, and the ones that broke the table",
   "WORKBOOK CH 05, LAB 1, STEPS 3 AND 4",
-  [...cap("05-3", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11]), ...cap("05-4", [0, 1, 2, 3, 4, 5])],
+  [...cap("05-5", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11]), ...cap("05-6", [0, 1, 2, 3, 4, 5])],
   "1001 is triaged; 1002 is past its one-hour window; 1005 was closed with its classification still unknown.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 05, “Lab 1: fixtures, no tenant,” steps 3–4.",
   `Try it. Run the incident check. Our incident, 1001, is high, three hours old, with an owner: triaged. Incident 1002, also high, three and a half hours, no owner, against a one-hour window: overdue. Incident 1003 is medium and still inside its twenty-four hours. And 1005 was resolved with its classification still unknown. The findings list is what the security operations lead gets, each with its containment rung. The high one is gated: a named approver releases containment.`,
@@ -388,7 +388,7 @@ const S6 = "Scene 6 — The detection";
 }
 tryIt(S6, "Try it: the rule's test, and the plan for it",
   "WORKBOOK CH 06, LAB 1, STEPS 2 AND 3 (OTHER RULES' TEST ROWS LEFT OUT)",
-  [...cap("06-2", [0, 6, 7, 12, 13, 16, 17, 18, 19, 20, 21]), ...cap("06-3", [0, 1])],
+  [...cap("06-4", [0, 6, 7, 12, 13, 16, 17, 18, 19, 20, 21]), ...cap("06-5", [0, 1])],
   "known-bad 1 row, known-good 0: it passes, so its update (status only) is planned; the plan carries a hash.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 06, “Lab 1: fixtures, no tenant,” steps 2–3.",
   `Try it. Validate, test and plan the repository. Our rule finds one row in its known-bad window and none on its quiet day: it passes. The plan creates the dump-tool rule, and updates our rule's status, and only its status. The admin-share rule is held, because it would isolate devices on its own. And a legacy rule that was made in the portal, and lives in no file, is reported as an orphan. Then read the plan's hash. That's what an approver signs.`,
@@ -426,7 +426,7 @@ const S7 = "Scene 7 — Signals and automation";
 }
 tryIt(S7, "Try it: the ladder check, and what it finds",
   "WORKBOOK CH 07, LAB 1, STEP 2 (BLANK LINES LEFT OUT)",
-  [...cap("07-2", [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 16, 17, 18])],
+  [...cap("07-4", [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 16, 17, 18])],
   "ring 0's group is at Full, as the ladder says; ring 3's isn't; breakglass02 isn't excluded; one sensor is too old for Contain User.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 07, “Lab 1: fixtures, no tenant,” step 2.",
   `Try it. Run the automation check. Ring 0's workstations are at full, as the ladder says, so our workstation's cleanup can run on its own. Ring 3's workstation group is at a semi level with no exception: off the ladder. The scanner subnet's exclusion passed its review date. The second emergency access account isn't excluded, so attack disruption could contain it. And one device runs a sensor too old for Contain User.`,
@@ -464,7 +464,7 @@ const S8 = "Scene 8 — The month's evidence";
 }
 tryIt(S8, "Try it: the month, the metrics, a tampered file",
   "WORKBOOK CH 08, LAB 1, STEPS 1, 2 AND 6 (METRIC ROWS CUT TO THE PANEL'S WIDTH)",
-  [...cap("08-1", [3, 4, 5, 6, 7, 8, 9, 10, 11, 12]), ...cap("08-2", [7, 9, 13]), ...cap("08-6", [0, 1, 2, 3])],
+  [...cap("08-3", [3, 4, 5, 6, 7, 8, 9, 10, 11, 12]), ...cap("08-4", [7, 9, 13]), ...cap("08-8", [0, 1, 2, 3])],
   "ten records; enforcement depth 2 of 11 and detection validity 1 of 1; one edited line, and both checks name tickets.csv.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 08, “Lab 1: fixtures, no tenant,” steps 1, 2 and 6.",
   `Try it. Run the month. Ten records, and only signals and the metrics pass their own checks; every other run found something, as the earlier scenes showed. Read three metrics: protected coverage sixty-four point three percent, enforcement depth two of eleven, and detection validity one of one. Then append one line to a recorded tickets file, and check again. Both checks fail, and name the file. That's what makes this evidence and not a folder.`,
