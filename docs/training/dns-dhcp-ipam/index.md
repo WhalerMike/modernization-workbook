@@ -1,7 +1,7 @@
 ---
 title: "Learning path: DNS, DHCP and IPAM"
-subtitle: "Modules on Book 08's naming plane: read it from the evidence, sort what Active Directory DNS does into where it goes, with a lab on fixtures and a lab in your own test domain"
-description: "A learning path for DNS and DDI engineers, Active Directory engineers, network and cloud engineers and ISSO reviewers, built on Book 08, DNS, DHCP & IPAM, and the Start Kit's DNS and DHCP collectors: read a domain's zones, locator records, zone health and DHCP scopes as one naming plane, then sort every Active Directory DNS component into Chapter 10's target, method and risk, with the findings to clear before anything moves. Each module's Lab 1 runs the Start Kit on a fictional domain's files with no server; its Lab 2 runs the same commands in your own test domain; each module ends with a knowledge check."
+subtitle: "Four modules on Book 08's naming plane: read it from the evidence, sort what Active Directory DNS does into where it goes, check the DHCP edge, and hold every network to one address plan, each with a lab on fixtures and a lab in your own test environment"
+description: "A learning path for DNS and DDI engineers, Active Directory engineers, network and cloud engineers and ISSO reviewers, built on Book 08, DNS, DHCP & IPAM, and the Start Kit's DNS and DHCP collectors: read a domain's zones, locator records, zone health and DHCP scopes as one naming plane, sort every Active Directory DNS component into Chapter 10's target, method and risk, with the findings to clear before anything moves; check the resolvers and options each DHCP scope hands out, failover, the registration settings and DHCP servers nobody authorized, with encrypted DNS at the endpoint; and check every network on premises and in Azure, AWS GovCloud (US) and Oracle Cloud against the IPAM address plan, with the forwarders that carry private DNS between them. Each module's Lab 1 runs the Start Kit on fictional files with no server or subscription; its Lab 2 runs the same commands in your own test domain or cloud accounts; each module ends with a knowledge check."
 doc-type: training-path
 research-status: draft
 research-type: training module
@@ -33,7 +33,7 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 | Network or cloud engineer | The DHCP options and forwarders that decide which resolver a client uses, and where cloud private DNS joins the plane |
 | ISSO reviewer | The federal requirements each module supports, the KSI it lines up with where the workbook has a verified pairing, and the evidence you keep |
 
-**Level:** intermediate. **Products:** Windows Server DNS and DHCP with Active Directory Domain Services (Windows Server 2019 or later), the Windows Server DnsServer and DhcpServer PowerShell modules. **Scope:** a civilian agency at FedRAMP Moderate, in Microsoft 365 GCC with commercial Azure, with an on-premises Active Directory whose domain controllers run DNS, as Book 08 assumes.
+**Level:** intermediate. **Products:** Windows Server DNS and DHCP with Active Directory Domain Services (Windows Server 2019 or later), the Windows Server DnsServer and DhcpServer PowerShell modules; in Module 4, Azure virtual networks and the DNS Private Resolver, Amazon VPC and the Route 53 VPC Resolver in AWS GovCloud (US), and OCI VCNs and the VCN resolver, through each cloud's CLI. **Scope:** a civilian agency at FedRAMP Moderate, in Microsoft 365 GCC with commercial Azure, its AWS workloads in AWS GovCloud (US) and its HR platform on Oracle Cloud, with an on-premises Active Directory whose domain controllers run DNS, as Book 08 assumes.
 
 ## Prerequisites
 
@@ -78,6 +78,9 @@ When you finish the path, you'll be able to:
 - spot what Book 08 says to clear before anything moves: a locator record that doesn't resolve, a DNS server nobody could read, scavenging off, stale and duplicate records, forwarders nobody has tested;
 - sort every Active Directory DNS component into its target, its Azure-native equivalent, its method and its risk, as Chapter 10 does;
 - explain why the locator records stay with a service domain controllers can register in, and why Azure Private DNS can't host them;
+- check every DHCP scope for the resolvers and options it hands out, failover and registration settings, and find DHCP servers nobody authorized;
+- explain why encrypted DNS has to end at the agency's resolvers, and what the network can and can't block;
+- check every network on premises and in Azure, AWS GovCloud (US) and Oracle Cloud against the IPAM address plan, and see where each forwarder carrying private DNS between them points;
 - hand the ISSO a dated inventory and a departure register they can trace to the run that produced them.
 
 ## Modules
@@ -88,18 +91,20 @@ Work through them in order.
 |---|---|---|---|---|
 | 1 | [Read the naming plane](01-read-the-naming-plane.md) | Chapters 01 to 03, and Chapter 10's Phase 1 | Lab 1, Lab 2 | 50 min |
 | 2 | [The Active Directory DNS departure](02-the-active-directory-dns-departure.md) | Chapter 04, and Chapter 10's "Where each component goes" | Lab 1, Lab 2 | 55 min |
+| 3 | [DHCP, encrypted DNS and the edge](03-dhcp-encrypted-dns-and-the-edge.md) | Chapter 05, and Chapter 04's DHCP settings | Lab 1, Lab 2 | 55 min |
+| 4 | [Cloud private DNS and one address plan](04-cloud-private-dns-and-one-address-plan.md) | Chapter 07, and Book 10's Chapter 06 | Lab 1, Lab 2 | 55 min |
 
 : The modules of the DNS, DHCP and IPAM learning path {.striped .hover}
 
-**Total time:** about 1 hour 45 minutes with each module's Lab 1. Lab 2, in your own test domain, isn't counted: building the domain takes most of an hour the first time.
+**Total time:** about 3 hours 35 minutes with each module's Lab 1. Lab 2 isn't counted: building the test domain takes most of an hour the first time, and Module 4's depends on the cloud accounts you have.
 
 Each module follows the same units: an introduction with the federal requirements it supports, learning objectives, prerequisites, two or three concept units, Lab 1, Lab 2, a knowledge check and a summary.
 
 ## What you need for the labs {#what-you-need-for-the-labs}
 
-**Lab 1: a laptop, no server.** Every Lab 1 runs the Start Kit against the files of a fictional domain, `contoso.example`, in `tests/fixtures/ddi/run-2026-11-20`: the files `Get-FMPDNSAssessment` and `Get-FMPDHCPInventory` write, for three domain controllers and two DHCP servers. The kit's tests run the real collector under mocks and read its output with the same checks, so the fixture keeps the collectors' shape. You need the kit and Windows PowerShell 5.1 or PowerShell 7, on Windows, Linux or macOS. Run every command from `examples/start-kit` (or `Downloads\start-kit\start-kit`). A lab that writes anything writes an `out` folder there and deletes it at the end. Nothing in Lab 1 contacts a server. The output shown in each Lab 1 is what the commands printed on November 24, 2026, in PowerShell 7.6 and Windows PowerShell 5.1.
+**Lab 1: a laptop, no server.** Every Lab 1 runs the Start Kit against the files of a fictional domain, `contoso.example`, in `tests/fixtures/ddi/run-2026-11-20`: the files `Get-FMPDNSAssessment` and `Get-FMPDHCPInventory` write, for three domain controllers and two DHCP servers. Module 3 adds a DHCP snooping export, and Module 4 an IPAM export and the JSON the Azure, AWS and OCI CLIs print, all in `tests/fixtures/ddi`. The kit's tests run the real collector under mocks and read its output with the same checks, so the fixture keeps the collectors' shape. You need the kit and Windows PowerShell 5.1 or PowerShell 7, on Windows, Linux or macOS. Run every command from `examples/start-kit` (or `Downloads\start-kit\start-kit`). A lab that writes anything writes an `out` folder there and deletes it at the end. Nothing in Lab 1 contacts a server. The output shown in each Lab 1 is what the commands printed on November 24, 2026, in PowerShell 7.6 and Windows PowerShell 5.1.
 
-**Lab 2: your own test domain.** Lab 2 needs one Windows Server 2019 or later virtual machine that you can checkpoint and throw away, promoted to a new forest with fictional names (the labs use `lab.contoso.example`), with the DNS Server and DHCP Server roles. Module 1's Lab 2 builds it with Microsoft Learn's commands. Never run Lab 2 against a production domain: the collectors only read, but the build steps create a forest. **The authors didn't run the Lab 2 steps.** Each one ends with a way to back it out, and restoring the checkpoint backs out everything.
+**Lab 2: your own test domain.** Lab 2 needs one Windows Server 2019 or later virtual machine that you can checkpoint and throw away, promoted to a new forest with fictional names (the labs use `lab.contoso.example`), with the DNS Server and DHCP Server roles. Module 1's Lab 2 builds it with Microsoft Learn's commands. Never run Lab 2 against a production domain: the collectors only read, but the build steps create a forest. **The authors didn't run the Lab 2 steps.** Each one ends with a way to back it out, and restoring the checkpoint backs out everything. Module 4's Lab 2 instead reads an Azure test subscription, an AWS GovCloud (US) account and an OCI tenancy that aren't production, whichever you have, with their CLIs; it creates nothing in them.
 
 ## How this path fits with the other pieces
 

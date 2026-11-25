@@ -40,7 +40,7 @@ Describe 'Invoke-FMPStartKit.ps1' {
         $manifest.ComputerName | Should -Not -BeNullOrEmpty
         $manifest.StartTimeUtc | Should -Not -BeNullOrEmpty
         $manifest.ServedBy.'child.contoso.example' | Should -Be 'cdc01.child.contoso.example'
-        $manifest.ModuleVersions.FMPADAssessment | Should -Be '1.4.0'
+        $manifest.ModuleVersions.FMPADAssessment | Should -Be '1.5.0'
         $manifest.Parameters.QueryInstances | Should -BeTrue
         $manifest.ModuleVersions.FMPNpsInventory | Should -Be '1.0.0'
         $manifest.ModuleVersions.FMPTransactionProfile | Should -Be '1.0.0'

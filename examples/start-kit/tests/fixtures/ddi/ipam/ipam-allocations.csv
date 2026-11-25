@@ -1,0 +1,8 @@
+Prefix,Name,Use,Owner
+10.0.0.0/16,Headquarters,On-premises,Network team
+10.1.0.0/16,Branch offices,On-premises,Network team
+10.2.0.0/16,Azure hubs and spokes,Azure,Cloud team
+10.3.0.0/16,AWS GovCloud (US) VPCs,AWS,Cloud team
+10.4.0.0/16,OCI VCNs,OCI,HR platform team
+172.16.0.0/16,Legacy lab,On-premises,Network team
+fd12:3456:789a::/48,Azure IPv6,Azure,Cloud team

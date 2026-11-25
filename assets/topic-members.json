@@ -3137,6 +3137,18 @@
    "title": "DNS, DHCP and IPAM"
   }
  ],
+ "docs/training/dns-dhcp-ipam/03-dhcp-encrypted-dns-and-the-edge.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/training/dns-dhcp-ipam/04-cloud-private-dns-and-one-address-plan.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
  "docs/training/dns-dhcp-ipam/index.md": [
   {
    "id": "dns-dhcp-ipam",
