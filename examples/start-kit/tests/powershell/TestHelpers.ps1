@@ -14,7 +14,8 @@ $stubNames = @(
     'Get-GPO', 'Get-GPOReport', 'Get-GPPermission', 'Get-GPInheritance',
     'Get-DnsServerZone', 'Get-DnsServerResourceRecord', 'Get-DnsServerDnsSecZoneSetting', 'Get-DnsServerScavenging',
     'Get-DnsServerForwarder', 'Get-DhcpServerInDC', 'Get-DhcpServerv4Scope', 'Get-DhcpServerv4Reservation',
-    'Get-DhcpServerv6Scope', 'Get-DhcpServerv4OptionValue', 'Get-DhcpServerv4Failover', 'Find-DbaInstance'
+    'Get-DhcpServerv6Scope', 'Get-DhcpServerv4OptionValue', 'Get-DhcpServerv4Failover', 'Get-DhcpServerv4DnsSetting',
+    'Get-DhcpServerDnsCredential', 'Find-DbaInstance'
 )
 $stubBody = {
     [CmdletBinding()]
@@ -145,8 +146,17 @@ function global:Register-KitAdMocks([string]$ModuleName) {
     }
     Mock @m Get-DhcpServerv4Reservation { Get-FixList $global:FMPFix.dhcp.reservations "$ScopeId" }
     Mock @m Get-DhcpServerv6Scope { @() }
-    Mock @m Get-DhcpServerv4OptionValue { @([pscustomobject]@{ OptionId = 6; Name = 'DNS Servers'; Value = @('10.0.0.10') }) }
+    Mock @m Get-DhcpServerv4OptionValue {
+        # Scope-level options only where the fixture sets one: the printers' scope overrides option 6.
+        if ($ScopeId) {
+            if ("$ScopeId" -eq '10.0.6.0') { return @([pscustomobject]@{ OptionId = 6; Name = 'DNS Servers'; Value = @('10.0.0.11') }) }
+            return @()
+        }
+        @([pscustomobject]@{ OptionId = 6; Name = 'DNS Servers'; Value = @('10.0.0.10') })
+    }
     Mock @m Get-DhcpServerv4Failover { @() }
+    Mock @m Get-DhcpServerv4DnsSetting { [pscustomobject]@{ DynamicUpdates = 'OnClientRequest'; DeleteDnsRROnLeaseExpiry = $true; NameProtection = $false } }
+    Mock @m Get-DhcpServerDnsCredential { [pscustomobject]@{ UserName = ''; DomainName = '' } }
     Mock @m Get-WinEvent {
         switch -Wildcard ("$ComputerName") {
             'dc01.*' {

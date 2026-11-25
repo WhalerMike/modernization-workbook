@@ -176,6 +176,15 @@ Describe 'Collector results' {
         $d.ReservationCount | Should -Be 1
         @($d.Servers | Where-Object Server -eq 'dhcp02.contoso.example')[0].Error | Should -Match 'denied'
     }
+    It 'reads each scope''s own options and the DNS registration settings, and the credential''s name only' {
+        $d = Read-Out (Join-Path $root 'DHCP\DHCPInventory.json')
+        $s = @($d.Servers | Where-Object Server -eq 'dhcp01.contoso.example')[0]
+        @($s.Scopes | Where-Object ScopeId -eq '10.0.6.0')[0].Options[0].Value | Should -Be @('10.0.0.11')
+        @($s.Scopes | Where-Object ScopeId -eq '10.0.5.0')[0].Options | Should -BeNullOrEmpty
+        $s.DnsSetting.NameProtection | Should -BeFalse
+        @($s.Scopes)[0].DnsSetting.DynamicUpdates | Should -Be 'OnClientRequest'
+        @($s.DnsCredential.PSObject.Properties.Name) | Should -Be @('UserName', 'DomainName')
+    }
     It 'maps SPNs forest-wide with duplicates and orphans' {
         $k = Read-Out (Join-Path $root 'Kerberos\KerberosSpnMap.json')
         @(Import-Csv (Join-Path $root 'Kerberos\SpnDuplicates.csv')).Spn | Should -Be @('HTTP/web.contoso.example')
