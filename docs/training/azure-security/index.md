@@ -48,21 +48,30 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 
 ## Get the code {#get-the-code}
 
-Download [azure-security-code.zip](../../../downloads/azure-security-code.zip) to your Downloads folder. It holds `azure-security`, the kit the labs use. Unzip it into `Downloads\azure-security-code`, the folder Windows' **Extract All** suggests, so you work in `Downloads\azure-security-code\azure-security-code\azure-security`: the zip's name appears twice. Every lab command runs from there, as it does from `examples/azure-security` in a clone of the repository. The kit is PowerShell 7.1 or later, with Pester 5; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
+Download [azure-security-code.zip](../../../downloads/azure-security-code.zip) to your Downloads folder. It holds `azure-security`, the kit the labs use. Unzip it into `C:\FMWLabs\azure-security-code` (in Windows' **Extract All**, type that folder in place of the one it suggests), so you work in `C:\FMWLabs\azure-security-code\azure-security`. Every lab command runs from there, as it does from `examples/azure-security` in a clone of the repository. The kit is PowerShell 7.1 or later, with Pester 5; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
 
 In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
 
 ```powershell
-Expand-Archive -Path $HOME\Downloads\azure-security-code.zip -DestinationPath $HOME\Downloads\azure-security-code -Force
-Set-Location $HOME\Downloads\azure-security-code\azure-security-code\azure-security
-Get-ChildItem $HOME\Downloads\azure-security-code -Recurse -File | Unblock-File
+Expand-Archive -Path $HOME\Downloads\azure-security-code.zip -DestinationPath C:\FMWLabs\azure-security-code -Force
+Set-Location C:\FMWLabs\azure-security-code\azure-security
+Get-ChildItem C:\FMWLabs\azure-security-code -Recurse -File | Unblock-File
 ```
 
-In Bash on Linux or macOS, or Git Bash on Windows:
+In Git Bash on Windows:
 
 ```bash
-unzip -o ~/Downloads/azure-security-code.zip -d ~/Downloads/azure-security-code
-cd ~/Downloads/azure-security-code/azure-security-code/azure-security
+mkdir -p /c/FMWLabs
+unzip -o ~/Downloads/azure-security-code.zip -d /c/FMWLabs/azure-security-code
+cd /c/FMWLabs/azure-security-code/azure-security
+```
+
+In Bash on Linux or macOS, which use `~/FMWLabs` in place of `C:\FMWLabs`:
+
+```bash
+mkdir -p ~/FMWLabs
+unzip -o ~/Downloads/azure-security-code.zip -d ~/FMWLabs/azure-security-code
+cd ~/FMWLabs/azure-security-code/azure-security
 ```
 
 Check it works, in PowerShell 7.1 or later, with Step 1 of [Chapter 01's Lab 1](../../project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.md#lab-1-fixtures-no-subscription):

@@ -48,21 +48,30 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 
 ## Get the code {#get-the-code}
 
-Download [zta-results.zip](../../../downloads/zta-results.zip) to your Downloads folder. It holds the results kit itself, in one folder, `zta-results`. Unzip it into `Downloads\zta-results`, the folder Windows' **Extract All** suggests, so you work in `Downloads\zta-results\zta-results`: the zip's name appears twice. Every lab command runs from there, as it does from `examples/zta-results` in a clone of the repository. The kit is PowerShell 7.1 or later, with Pester 5; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
+Download [zta-results.zip](../../../downloads/zta-results.zip) to your Downloads folder. It holds the results kit itself. Unzip it into `C:\FMWLabs\zta-results` (in Windows' **Extract All**, type that folder in place of the one it suggests), so you work in `C:\FMWLabs\zta-results`. Every lab command runs from there, as it does from `examples/zta-results` in a clone of the repository. The kit is PowerShell 7.1 or later, with Pester 5; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
 
 In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
 
 ```powershell
-Expand-Archive -Path $HOME\Downloads\zta-results.zip -DestinationPath $HOME\Downloads\zta-results -Force
-Set-Location $HOME\Downloads\zta-results\zta-results
-Get-ChildItem $HOME\Downloads\zta-results -Recurse -File | Unblock-File
+Expand-Archive -Path $HOME\Downloads\zta-results.zip -DestinationPath C:\FMWLabs\zta-results -Force
+Set-Location C:\FMWLabs\zta-results
+Get-ChildItem C:\FMWLabs\zta-results -Recurse -File | Unblock-File
 ```
 
-In Bash on Linux or macOS, or Git Bash on Windows:
+In Git Bash on Windows:
 
 ```bash
-unzip -o ~/Downloads/zta-results.zip -d ~/Downloads/zta-results
-cd ~/Downloads/zta-results/zta-results
+mkdir -p /c/FMWLabs
+unzip -o ~/Downloads/zta-results.zip -d /c/FMWLabs/zta-results
+cd /c/FMWLabs/zta-results
+```
+
+In Bash on Linux or macOS, which use `~/FMWLabs` in place of `C:\FMWLabs`:
+
+```bash
+mkdir -p ~/FMWLabs
+unzip -o ~/Downloads/zta-results.zip -d ~/FMWLabs/zta-results
+cd ~/FMWLabs/zta-results
 ```
 
 Check it works, in PowerShell 7.1 or later, with Module 1, Lab 1, Step 1:

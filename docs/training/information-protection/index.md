@@ -48,21 +48,30 @@ The modules work like a [Microsoft Learn learning path](https://learn.microsoft.
 
 ## Get the code {#get-the-code}
 
-Download [information-protection-code.zip](../../../downloads/information-protection-code.zip) to your Downloads folder. It holds `information-protection`, the kit the labs use. Unzip it into `Downloads\information-protection-code`, the folder Windows' **Extract All** suggests, so you work in `Downloads\information-protection-code\information-protection-code\information-protection`: the zip's name appears twice. Every Lab 1 command runs from there, as it does from `examples/information-protection` in a clone of the repository. The kit is PowerShell 7.1 or later, with Pester 5 for its tests.
+Download [information-protection-code.zip](../../../downloads/information-protection-code.zip) to your Downloads folder. It holds `information-protection`, the kit the labs use. Unzip it into `C:\FMWLabs\information-protection-code` (in Windows' **Extract All**, type that folder in place of the one it suggests), so you work in `C:\FMWLabs\information-protection-code\information-protection`. Every Lab 1 command runs from there, as it does from `examples/information-protection` in a clone of the repository. The kit is PowerShell 7.1 or later, with Pester 5 for its tests.
 
 In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
 
 ```powershell
-Expand-Archive -Path $HOME\Downloads\information-protection-code.zip -DestinationPath $HOME\Downloads\information-protection-code -Force
-Set-Location $HOME\Downloads\information-protection-code\information-protection-code\information-protection
-Get-ChildItem $HOME\Downloads\information-protection-code -Recurse -File | Unblock-File
+Expand-Archive -Path $HOME\Downloads\information-protection-code.zip -DestinationPath C:\FMWLabs\information-protection-code -Force
+Set-Location C:\FMWLabs\information-protection-code\information-protection
+Get-ChildItem C:\FMWLabs\information-protection-code -Recurse -File | Unblock-File
 ```
 
-In Bash on Linux or macOS, or Git Bash on Windows:
+In Git Bash on Windows:
 
 ```bash
-unzip -o ~/Downloads/information-protection-code.zip -d ~/Downloads/information-protection-code
-cd ~/Downloads/information-protection-code/information-protection-code/information-protection
+mkdir -p /c/FMWLabs
+unzip -o ~/Downloads/information-protection-code.zip -d /c/FMWLabs/information-protection-code
+cd /c/FMWLabs/information-protection-code/information-protection
+```
+
+In Bash on Linux or macOS, which use `~/FMWLabs` in place of `C:\FMWLabs`:
+
+```bash
+mkdir -p ~/FMWLabs
+unzip -o ~/Downloads/information-protection-code.zip -d ~/FMWLabs/information-protection-code
+cd ~/FMWLabs/information-protection-code/information-protection
 ```
 
 Check it works, in PowerShell 7.1 or later, with Step 1 of [Chapter 01's Lab 1](../../project-plans/developer-workbooks/information-protection/01-access-and-the-read-path.md#lab-1-fixtures-no-tenant):

@@ -47,21 +47,30 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 
 ## Get the code {#get-the-code}
 
-Download [non-person-identity-code.zip](../../../downloads/non-person-identity-code.zip) to your Downloads folder. It holds `non-person-identity`, the kit the labs use, with `drift-pipeline` and `validation-kit` beside it, and in `third_party` the Learn pages and samples the chapters start from, pinned unmodified. Unzip it into `Downloads\non-person-identity-code`, the folder Windows' **Extract All** suggests, so you work in `Downloads\non-person-identity-code\non-person-identity-code\non-person-identity`: the zip's name appears twice. Every lab command runs from there, as it does from `examples/non-person-identity` in a clone of the repository. Module 10's steps 7 to 11 run in the `drift-pipeline` folder beside `non-person-identity`. The kit is PowerShell 7.1 or later, with Pester 5; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
+Download [non-person-identity-code.zip](../../../downloads/non-person-identity-code.zip) to your Downloads folder. It holds `non-person-identity`, the kit the labs use, with `drift-pipeline` and `validation-kit` beside it, and in `third_party` the Learn pages and samples the chapters start from, pinned unmodified. Unzip it into `C:\FMWLabs\non-person-identity-code` (in Windows' **Extract All**, type that folder in place of the one it suggests), so you work in `C:\FMWLabs\non-person-identity-code\non-person-identity`. Every lab command runs from there, as it does from `examples/non-person-identity` in a clone of the repository. Module 10's steps 7 to 11 run in the `drift-pipeline` folder beside `non-person-identity`. The kit is PowerShell 7.1 or later, with Pester 5; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
 
 In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
 
 ```powershell
-Expand-Archive -Path $HOME\Downloads\non-person-identity-code.zip -DestinationPath $HOME\Downloads\non-person-identity-code -Force
-Set-Location $HOME\Downloads\non-person-identity-code\non-person-identity-code\non-person-identity
-Get-ChildItem $HOME\Downloads\non-person-identity-code -Recurse -File | Unblock-File
+Expand-Archive -Path $HOME\Downloads\non-person-identity-code.zip -DestinationPath C:\FMWLabs\non-person-identity-code -Force
+Set-Location C:\FMWLabs\non-person-identity-code\non-person-identity
+Get-ChildItem C:\FMWLabs\non-person-identity-code -Recurse -File | Unblock-File
 ```
 
-In Bash on Linux or macOS, or Git Bash on Windows:
+In Git Bash on Windows:
 
 ```bash
-unzip -o ~/Downloads/non-person-identity-code.zip -d ~/Downloads/non-person-identity-code
-cd ~/Downloads/non-person-identity-code/non-person-identity-code/non-person-identity
+mkdir -p /c/FMWLabs
+unzip -o ~/Downloads/non-person-identity-code.zip -d /c/FMWLabs/non-person-identity-code
+cd /c/FMWLabs/non-person-identity-code/non-person-identity
+```
+
+In Bash on Linux or macOS, which use `~/FMWLabs` in place of `C:\FMWLabs`:
+
+```bash
+mkdir -p ~/FMWLabs
+unzip -o ~/Downloads/non-person-identity-code.zip -d ~/FMWLabs/non-person-identity-code
+cd ~/FMWLabs/non-person-identity-code/non-person-identity
 ```
 
 Check it works, in PowerShell 7.1 or later, with Module 1, Lab 1, Step 1:

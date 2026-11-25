@@ -66,6 +66,42 @@ In this module, you'll:
 - [Module 1](ms-automation-foundations.md): the right cloud's endpoints, app-only sign-in without a secret, paging and throttling. This module applies them to Resource Manager.
 - For Lab 1: the [lab tools](index.md#what-you-need-for-the-microsoft-automation-labs). No subscription until Lab 2.
 
+### Get the code {#get-the-code}
+
+Download [microsoft-automation-code.zip](../../downloads/microsoft-automation-code.zip) to your Downloads folder and unzip it into `C:\FMWLabs\microsoft-automation-code` (in Windows' **Extract All**, type that folder in place of the one it suggests), so you work in `C:\FMWLabs\microsoft-automation-code\ms-automation`. Every lab command on this page runs from there, as it does from `examples/ms-automation` in a clone of the repository. [Get the Microsoft Automation code](index.md#get-the-microsoft-automation-code) says why each step is there, and [Set Up for the Labs](lab-setup.md) installs Python and PowerShell 7.5.
+
+In PowerShell (Windows PowerShell 5.1 or PowerShell 7 can unzip; the kit's PowerShell steps need 7.5):
+
+```powershell
+Expand-Archive -Path $HOME\Downloads\microsoft-automation-code.zip -DestinationPath C:\FMWLabs\microsoft-automation-code -Force
+Set-Location C:\FMWLabs\microsoft-automation-code\ms-automation
+Get-ChildItem C:\FMWLabs\microsoft-automation-code -Recurse -File | Unblock-File
+```
+
+In Git Bash on Windows:
+
+```bash
+mkdir -p /c/FMWLabs
+unzip -o ~/Downloads/microsoft-automation-code.zip -d /c/FMWLabs/microsoft-automation-code
+cd /c/FMWLabs/microsoft-automation-code/ms-automation
+```
+
+In Bash on Linux or macOS, which use `~/FMWLabs` in place of `C:\FMWLabs`:
+
+```bash
+mkdir -p ~/FMWLabs
+unzip -o ~/Downloads/microsoft-automation-code.zip -d ~/FMWLabs/microsoft-automation-code
+cd ~/FMWLabs/microsoft-automation-code/ms-automation
+```
+
+Check the code with Lab 1, Step 1 (it runs the same in PowerShell or Bash):
+
+```bash
+python python/arc_tasks.py --from-json tests/fixtures/arc.json --as-of 2026-11-03T00:00:00Z arc-extensions
+```
+
+Its result starts with `machinesInScope` 7 and `machinesWithFindings` 4.
+
 ## Unit 2: Resource Manager isn't Graph
 
 *10 minutes*

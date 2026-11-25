@@ -54,21 +54,30 @@ When you finish this path, you'll be able to:
 
 ## Get the code {#get-the-code}
 
-Download [ticket-to-machine-code.zip](../../../downloads/ticket-to-machine-code.zip) to your Downloads folder. It holds `servicenow-sailpoint`, the kit the labs use. Unzip it into `Downloads\ticket-to-machine-code`, the folder Windows' **Extract All** suggests, so you work in `Downloads\ticket-to-machine-code\ticket-to-machine-code\servicenow-sailpoint`: the zip's name appears twice. Every lab command runs from there, as it does from `examples/servicenow-sailpoint` in a clone of the repository. The labs use the kit's Python tools; its PowerShell client needs PowerShell 7.2 or later with Pester 5. [Get a path's code](../index.md#get-the-code) says why each step is there.
+Download [ticket-to-machine-code.zip](../../../downloads/ticket-to-machine-code.zip) to your Downloads folder. It holds `servicenow-sailpoint`, the kit the labs use. Unzip it into `C:\FMWLabs\ticket-to-machine-code` (in Windows' **Extract All**, type that folder in place of the one it suggests), so you work in `C:\FMWLabs\ticket-to-machine-code\servicenow-sailpoint`. Every lab command runs from there, as it does from `examples/servicenow-sailpoint` in a clone of the repository. The labs use the kit's Python tools; its PowerShell client needs PowerShell 7.2 or later with Pester 5. [Get a path's code](../index.md#get-the-code) says why each step is there.
 
 In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
 
 ```powershell
-Expand-Archive -Path $HOME\Downloads\ticket-to-machine-code.zip -DestinationPath $HOME\Downloads\ticket-to-machine-code -Force
-Set-Location $HOME\Downloads\ticket-to-machine-code\ticket-to-machine-code\servicenow-sailpoint
-Get-ChildItem $HOME\Downloads\ticket-to-machine-code -Recurse -File | Unblock-File
+Expand-Archive -Path $HOME\Downloads\ticket-to-machine-code.zip -DestinationPath C:\FMWLabs\ticket-to-machine-code -Force
+Set-Location C:\FMWLabs\ticket-to-machine-code\servicenow-sailpoint
+Get-ChildItem C:\FMWLabs\ticket-to-machine-code -Recurse -File | Unblock-File
 ```
 
-In Bash on Linux or macOS, or Git Bash on Windows:
+In Git Bash on Windows:
 
 ```bash
-unzip -o ~/Downloads/ticket-to-machine-code.zip -d ~/Downloads/ticket-to-machine-code
-cd ~/Downloads/ticket-to-machine-code/ticket-to-machine-code/servicenow-sailpoint
+mkdir -p /c/FMWLabs
+unzip -o ~/Downloads/ticket-to-machine-code.zip -d /c/FMWLabs/ticket-to-machine-code
+cd /c/FMWLabs/ticket-to-machine-code/servicenow-sailpoint
+```
+
+In Bash on Linux or macOS, which use `~/FMWLabs` in place of `C:\FMWLabs`:
+
+```bash
+mkdir -p ~/FMWLabs
+unzip -o ~/Downloads/ticket-to-machine-code.zip -d ~/FMWLabs/ticket-to-machine-code
+cd ~/FMWLabs/ticket-to-machine-code/servicenow-sailpoint
 ```
 
 Check the Python code, with Module 1, Lab 1, Step 1:

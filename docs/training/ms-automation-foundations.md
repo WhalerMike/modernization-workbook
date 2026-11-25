@@ -66,6 +66,42 @@ In this module, you'll:
 - For Lab 1: the [lab tools](index.md#what-you-need-for-the-microsoft-automation-labs). No tenant until Lab 2.
 - Optional background: [Book 10, Chapter 04](../books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md) on what GCC is and isn't.
 
+### Get the code {#get-the-code}
+
+Download [microsoft-automation-code.zip](../../downloads/microsoft-automation-code.zip) to your Downloads folder and unzip it into `C:\FMWLabs\microsoft-automation-code` (in Windows' **Extract All**, type that folder in place of the one it suggests), so you work in `C:\FMWLabs\microsoft-automation-code\ms-automation`. Every lab command on this page runs from there, as it does from `examples/ms-automation` in a clone of the repository. [Get the Microsoft Automation code](index.md#get-the-microsoft-automation-code) says why each step is there, and [Set Up for the Labs](lab-setup.md) installs Python and PowerShell 7.5.
+
+In PowerShell (Windows PowerShell 5.1 or PowerShell 7 can unzip; the kit's PowerShell steps need 7.5):
+
+```powershell
+Expand-Archive -Path $HOME\Downloads\microsoft-automation-code.zip -DestinationPath C:\FMWLabs\microsoft-automation-code -Force
+Set-Location C:\FMWLabs\microsoft-automation-code\ms-automation
+Get-ChildItem C:\FMWLabs\microsoft-automation-code -Recurse -File | Unblock-File
+```
+
+In Git Bash on Windows:
+
+```bash
+mkdir -p /c/FMWLabs
+unzip -o ~/Downloads/microsoft-automation-code.zip -d /c/FMWLabs/microsoft-automation-code
+cd /c/FMWLabs/microsoft-automation-code/ms-automation
+```
+
+In Bash on Linux or macOS, which use `~/FMWLabs` in place of `C:\FMWLabs`:
+
+```bash
+mkdir -p ~/FMWLabs
+unzip -o ~/Downloads/microsoft-automation-code.zip -d ~/FMWLabs/microsoft-automation-code
+cd ~/FMWLabs/microsoft-automation-code/ms-automation
+```
+
+Check the code with Lab 1, Step 1 (it runs the same in PowerShell or Bash):
+
+```bash
+python -c "import sys; sys.path.insert(0, 'python'); from graphkit import endpoints, scope_for; print(endpoints('gcc')); print(scope_for('gcc', 'arm')); print(scope_for('gcc'))"
+```
+
+It prints the GCC endpoints, `{'login': 'https://login.microsoftonline.com', 'graph': 'https://graph.microsoft.com', 'arm': 'https://management.azure.com', 'ps_env': 'Global', 'azure_env': 'AzureCloud'}`, then `https://management.azure.com/.default` and `https://graph.microsoft.com/.default`.
+
 ## Unit 2: Clouds and endpoints {#clouds-and-endpoints}
 
 *10 minutes*

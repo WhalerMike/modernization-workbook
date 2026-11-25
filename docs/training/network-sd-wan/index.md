@@ -50,20 +50,29 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 
 ## Get the code {#get-the-code}
 
-Download [cisco-sdwan.zip](../../../downloads/cisco-sdwan.zip) to your Downloads folder. It holds the Cisco SD-WAN kit itself, in one folder, `cisco-sdwan`. Unzip it into `Downloads\cisco-sdwan`, the folder Windows' **Extract All** suggests, so you work in `Downloads\cisco-sdwan\cisco-sdwan`: the zip's name appears twice. Every lab command runs from there, as it does from `examples/cisco-sdwan` in a clone of the repository. The kit is one Python script, standard library only, with pytest for its tests; the labs read its output in PowerShell. The kit has no PowerShell scripts or modules, so there's nothing to unblock. [Get a path's code](../index.md#get-the-code) says why each step is there.
+Download [cisco-sdwan.zip](../../../downloads/cisco-sdwan.zip) to your Downloads folder. It holds the Cisco SD-WAN kit itself. Unzip it into `C:\FMWLabs\cisco-sdwan` (in Windows' **Extract All**, type that folder in place of the one it suggests), so you work in `C:\FMWLabs\cisco-sdwan`. Every lab command runs from there, as it does from `examples/cisco-sdwan` in a clone of the repository. The kit is one Python script, standard library only, with pytest for its tests; the labs read its output in PowerShell. The kit has no PowerShell scripts or modules, so there's nothing to unblock. [Get a path's code](../index.md#get-the-code) says why each step is there.
 
 In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
 
 ```powershell
-Expand-Archive -Path $HOME\Downloads\cisco-sdwan.zip -DestinationPath $HOME\Downloads\cisco-sdwan -Force
-Set-Location $HOME\Downloads\cisco-sdwan\cisco-sdwan
+Expand-Archive -Path $HOME\Downloads\cisco-sdwan.zip -DestinationPath C:\FMWLabs\cisco-sdwan -Force
+Set-Location C:\FMWLabs\cisco-sdwan
 ```
 
-In Bash on Linux or macOS, or Git Bash on Windows:
+In Git Bash on Windows:
 
 ```bash
-unzip -o ~/Downloads/cisco-sdwan.zip -d ~/Downloads/cisco-sdwan
-cd ~/Downloads/cisco-sdwan/cisco-sdwan
+mkdir -p /c/FMWLabs
+unzip -o ~/Downloads/cisco-sdwan.zip -d /c/FMWLabs/cisco-sdwan
+cd /c/FMWLabs/cisco-sdwan
+```
+
+In Bash on Linux or macOS, which use `~/FMWLabs` in place of `C:\FMWLabs`:
+
+```bash
+mkdir -p ~/FMWLabs
+unzip -o ~/Downloads/cisco-sdwan.zip -d ~/FMWLabs/cisco-sdwan
+cd ~/FMWLabs/cisco-sdwan
 ```
 
 Check it works, with Module 1, Lab 1, Step 3 (use `python3` in Bash on Linux or macOS):
