@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Books 02, 04"
 series-order: 8
 review-status: approved
-reviewed-sha256: b078f788144d98f7d86a518fab93f9202fc3ff71d66373a0a01d4af8d4199834
-last-reviewed: 2026-11-23
+reviewed-sha256: 721182a20b2966c82902c609eb648c8bde1f6f1022ebe85461168a71b8e6d29e
+last-reviewed: 2026-11-25
 ---
 # Module 8: Convert Kerberos accounts to gMSAs and dMSAs {.unnumbered}
 

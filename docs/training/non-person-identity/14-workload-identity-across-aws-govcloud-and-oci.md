@@ -6,6 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Books 02, 04, 13"
 series-order: 14
+review-status: approved
+reviewed-sha256: 3a92cf612cf20db2fae2667ecde18d86b4309962aaf5d91ecc01b77996afa345
+last-reviewed: 2026-11-25
 ---
 # Module 14: Workload identity across AWS GovCloud (US) and OCI {.unnumbered}
 
