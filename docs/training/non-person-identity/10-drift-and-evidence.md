@@ -139,9 +139,9 @@ Get-Content "$Run\periods\period-2026-10-28_2026-10-30\period-summary.md"
 
 # Step 10: Break it on purpose
 Add-Content "$pkg\summary.md" 'edited'
-python python/npi_evidence.py verify $pkg
+python python/npi_evidence.py verify $pkg 2>&1
 "Exit code: $LASTEXITCODE"
-python python/npi_evidence.py package --run $day1 --previous-manifest "$pkg\EVIDENCE-MANIFEST.json" --out "$Run\swap"
+python python/npi_evidence.py package --run $day1 --previous-manifest "$pkg\EVIDENCE-MANIFEST.json" --out "$Run\swap" 2>&1
 "Exit code: $LASTEXITCODE"
 python python/workflow_lint.py workflow/npi-evidence.yml
 
@@ -379,13 +379,13 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
 
     It exits `2`: the period isn't complete. The summary shows AC-2 incomplete without Chapter 03's findings.
 
-10. **Break it on purpose:**
+10. **Break it on purpose.** `2>&1` prints each error in order, before its exit code:
 
     ```powershell
     Add-Content "$pkg\summary.md" 'edited'
-    python python/npi_evidence.py verify $pkg
+    python python/npi_evidence.py verify $pkg 2>&1
     "Exit code: $LASTEXITCODE"
-    python python/npi_evidence.py package --run $day1 --previous-manifest "$pkg\EVIDENCE-MANIFEST.json" --out "$Run\swap"
+    python python/npi_evidence.py package --run $day1 --previous-manifest "$pkg\EVIDENCE-MANIFEST.json" --out "$Run\swap" 2>&1
     "Exit code: $LASTEXITCODE"
     python python/workflow_lint.py workflow/npi-evidence.yml
     ```

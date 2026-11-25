@@ -11,10 +11,10 @@ review-status: pending
 
 ## Week 1: the identity books
 
-- [Book 02 — Identity & Directory](../../books/b02-identity/index.md) (Book, 15 chapters, about 8 hr 35 min). Active Directory to Entra ID: why identity matters, what changes, who owns it, and how to do it.
+- [Book 02 — Identity & Directory](../../books/b02-identity/index.md) (Book, 15 chapters, about 8 hr 36 min). Active Directory to Entra ID: why identity matters, what changes, who owns it, and how to do it.
 - [Book 04 — Access & Privilege](../../books/b04-access/index.md) (Book, 14 chapters, about 7 hr 52 min). Conditional Access, privileged roles, applications and access governance: why every access decision is a policy decision, and how to run it.
 
-*Milestone 1: about 16 hr 27 min.*
+*Milestone 1: about 16 hr 28 min.*
 
 ## Week 2: privileged access
 
@@ -37,5 +37,5 @@ review-status: pending
 
 *Milestone 4: about 20 hr 21 min.*
 
-**Whole plan:** about 53 hr 34 min of reading and video, plus the labs.
+**Whole plan:** about 53 hr 35 min of reading and video, plus the labs.
 
