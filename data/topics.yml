@@ -650,6 +650,8 @@ topics:
   - id: network-sd-wan
     title: Network and SD-WAN
     subject: the network and SD-WAN
+    learning_path: docs/training/network-sd-wan/index.md
+    labs: network-sd-wan
     kit: cisco-sdwan
     summary: >-
       Network and transport for a cloud-first agency: what TIC 3.0 and federal policy require,
@@ -686,10 +688,8 @@ topics:
       - docs/books/b09-network/*.md
     gaps:
       workbook: >-
-        Not needed, because the Cisco kit is one read-only collector; revisit when its learning path
-        is planned.
-      path: "Needed: ranked in the learning path plan."
-      labs: "Needed: they come with the learning path."
+        Not needed, because the Cisco kit is one read-only collector, and the learning path's
+        modules teach it directly, with Lab 1 replaying its fixtures.
 
   - id: endpoints
     title: Endpoints

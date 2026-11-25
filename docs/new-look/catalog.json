@@ -327,6 +327,32 @@
    "featured": true
   },
   {
+   "id": "docs/training/pki/index.md",
+   "type": "Learning path",
+   "title": "Learning path: PKI and Certificates",
+   "description": "Modules on the certificate estate that outlives every migration: what AD CS holds up and hardening what stays, with labs on a fictional PKI snapshot and in your own test forest",
+   "url": "docs/training/pki/index.html",
+   "count": 2,
+   "unit": "modules",
+   "reading_minutes": 105,
+   "reading_source": "page",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Endpoint engineer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Active Directory",
+    "PKI and certificates"
+   ],
+   "status": "Draft",
+   "family": "pki",
+   "featured": false
+  },
+  {
    "id": "docs/training/privileged-access/index.md",
    "type": "Learning path",
    "title": "Learning path: Privileged Access in Microsoft Entra ID and Azure",
@@ -414,6 +440,32 @@
    "status": "Approved",
    "family": "daily-checks-dashboard",
    "featured": true
+  },
+  {
+   "id": "docs/training/network-sd-wan/index.md",
+   "type": "Learning path",
+   "title": "Learning path: The SD-WAN Governor and Its Evidence",
+   "description": "Four modules: the governor before the traffic, the ED 26-03 and KEV gate, the hunt and the logs, and path classes, change rings and the evidence, with labs on the Cisco kit's fixtures and in a test fabric",
+   "url": "docs/training/network-sd-wan/index.html",
+   "count": 2,
+   "unit": "modules",
+   "reading_minutes": 180,
+   "reading_source": "page",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Security operations",
+    "Cloud and platform engineer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Network"
+   ],
+   "status": "Not tracked",
+   "family": "network-sd-wan",
+   "featured": false
   },
   {
    "id": "docs/training/zero-trust-assessment/index.md",
@@ -2432,6 +2484,58 @@
    ],
    "status": "Approved",
    "family": "ms-automation",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#pki",
+   "type": "Lab",
+   "title": "Labs: PKI and Certificates learning path",
+   "description": "4 hands-on labs across 2 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The PKI and Certificates learning path.",
+   "url": "docs/training/labs.html#pki",
+   "count": 4,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "Endpoint engineer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Active Directory",
+    "PKI and certificates"
+   ],
+   "status": "Draft",
+   "family": "pki",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#network-sd-wan",
+   "type": "Lab",
+   "title": "Labs: SD-WAN governor learning path",
+   "description": "4 hands-on labs across 2 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The SD-WAN governor learning path.",
+   "url": "docs/training/labs.html#network-sd-wan",
+   "count": 4,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "Security operations",
+    "Cloud and platform engineer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Network"
+   ],
+   "status": "Not tracked",
+   "family": "network-sd-wan",
    "featured": false
   },
   {
