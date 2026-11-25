@@ -1,0 +1,1246 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Project xmlns="http://schemas.microsoft.com/project">
+  <Name>pki-certificates.xml</Name>
+  <Title>PKI and Certificates: Hardening, Cloud PKI and the Lifecycle Platform</Title>
+  <ScheduleFromStart>1</ScheduleFromStart>
+  <StartDate>2027-01-04T08:00:00</StartDate>
+  <DefaultStartTime>08:00:00</DefaultStartTime>
+  <DefaultFinishTime>17:00:00</DefaultFinishTime>
+  <MinutesPerDay>480</MinutesPerDay>
+  <MinutesPerWeek>2400</MinutesPerWeek>
+  <DaysPerMonth>20</DaysPerMonth>
+  <DurationFormat>7</DurationFormat>
+  <CalendarUID>1</CalendarUID>
+  <Calendars>
+    <Calendar>
+      <UID>1</UID>
+      <Name>Standard</Name>
+      <IsBaseCalendar>1</IsBaseCalendar>
+      <BaseCalendarUID>-1</BaseCalendarUID>
+      <WeekDays>
+        <WeekDay>
+          <DayType>1</DayType>
+          <DayWorking>0</DayWorking>
+        </WeekDay>
+        <WeekDay>
+          <DayType>2</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>3</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>4</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>5</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>6</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>7</DayType>
+          <DayWorking>0</DayWorking>
+        </WeekDay>
+      </WeekDays>
+    </Calendar>
+  </Calendars>
+  <Tasks>
+    <Task>
+      <UID>1</UID>
+      <ID>1</ID>
+      <Name>Wave 1 — Assess</Name>
+      <OutlineNumber>1</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-02-05T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>2</UID>
+      <ID>2</ID>
+      <Name>K1.1 Every CA inventoried (host, key and signature algorithms, validity, root or issuing); every template's configuration and permissions exported</Name>
+      <OutlineNumber>1.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-08T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>PKI and CA administrators</Contact>
+      <Notes>Owner or approver: PKI and CA administrators
+Source: ../books/b07-pki/02-what-ad-cs-holds-up.md#what-the-certificate-inventory-collects</Notes>
+    </Task>
+    <Task>
+      <UID>3</UID>
+      <ID>3</ID>
+      <Name>X-D04 Root of trust for device certificates decided (program D04)</Name>
+      <OutlineNumber>1.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-29T17:00:00</Start>
+      <Finish>2027-01-29T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Program office (program)</Contact>
+      <Notes>Owner or approver: Program office (program)
+If decided late: The root of trust is chosen without the CA inventory, so BYOCA can't be weighed against the hierarchy that exists
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-01-29T17:00:00</ConstraintDate>
+      <PredecessorLink>
+        <PredecessorUID>2</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>4</UID>
+      <ID>4</ID>
+      <Name>K1.2 Hardening checks (ESC1 to ESC8) run against templates, CA settings and PKI object ACLs; CA auditing on</Name>
+      <OutlineNumber>1.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-11T08:00:00</Start>
+      <Finish>2027-01-15T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>PKI and CA administrators</Contact>
+      <Notes>Owner or approver: PKI and CA administrators
+Source: ../books/b07-pki/03-hardening-what-stays.md#the-esc-taxonomy</Notes>
+      <PredecessorLink>
+        <PredecessorUID>2</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>5</UID>
+      <ID>5</ID>
+      <Name>K1.3 Issued certificates inventoried by template with expiry; every relying party and the chains and CRLs it uses; strong-mapping sweep on every domain controller</Name>
+      <OutlineNumber>1.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-11T08:00:00</Start>
+      <Finish>2027-01-22T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>PKI and CA administrators</Contact>
+      <Notes>Owner or approver: PKI and CA administrators
+Source: ../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook</Notes>
+      <PredecessorLink>
+        <PredecessorUID>2</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>6</UID>
+      <ID>6</ID>
+      <Name>K1.4 Every template classified MIGRATE, BRIDGE, RETAIN or RETIRE against the template migration matrix</Name>
+      <OutlineNumber>1.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-25T08:00:00</Start>
+      <Finish>2027-01-29T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>PKI and CA administrators</Contact>
+      <Notes>Owner or approver: PKI and CA administrators
+Source: ../books/b07-pki/appendix-b-template-migration-matrix.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>5</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>7</UID>
+      <ID>7</ID>
+      <Name>K1.5 Critical and High hardening findings remediated and re-tested</Name>
+      <OutlineNumber>1.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-18T08:00:00</Start>
+      <Finish>2027-01-29T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>PKI and CA administrators</Contact>
+      <Notes>Owner or approver: PKI and CA administrators
+Source: ../books/b07-pki/03-hardening-what-stays.md#the-migration-gate</Notes>
+      <PredecessorLink>
+        <PredecessorUID>4</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>8</UID>
+      <ID>8</ID>
+      <Name>KG1 Gate 1 — Assessed and hardened</Name>
+      <OutlineNumber>1.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-29T17:00:00</Start>
+      <Finish>2027-01-29T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO and ISSO</Contact>
+      <Notes>Owner or approver: CISO and ISSO
+Criteria: Assessment approved by the PKI and CA administrators and the CISO and ISSO; no unclassified templates; every Critical and High finding remediated and re-tested (Chapter 03's migration gate); assessment record committed to the evidence repository
+Source: ../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook</Notes>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>7</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>9</UID>
+      <ID>9</ID>
+      <Name>X-P18S Program starts the Cloud PKI design and issuing CA (start of P1.8)</Name>
+      <OutlineNumber>1.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-05T17:00:00</Start>
+      <Finish>2027-02-05T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
+If decided late: Under BYOCA, the root would sign a cloud issuing CA before its hierarchy passed the hardening gate
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-02-05T17:00:00</ConstraintDate>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>10</UID>
+      <ID>10</ID>
+      <Name>Wave 2 — Foundation</Name>
+      <OutlineNumber>2</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-02-01T08:00:00</Start>
+      <Finish>2027-03-16T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>11</UID>
+      <ID>11</ID>
+      <Name>D-K1 Issuer for internal server certificates, and the lifecycle platform's edition</Name>
+      <OutlineNumber>2.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-29T17:00:00</Start>
+      <Finish>2027-01-29T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Executive sponsor and CIO</Contact>
+      <Notes>Owner or approver: Executive sponsor and CIO
+Options: Retained AD CS through the CLM platform, moving to a standalone issuing CA under the same root when the forest retires, and a public CA for names the internet trusts (Book 07's position); Certificate Manager, Self-Hosted, inside the boundary until a certificate-management package is FedRAMP authorized
+If decided late: Server certificates keep renewing by hand, and the Data Platform plan's replacement-CA decision (D-D9) has no issuer to name
+Source: ../books/b07-pki/04-the-target-pki.md#the-issuer-decision-for-internal-server-certificates</Notes>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>12</UID>
+      <ID>12</ID>
+      <Name>X-DD9 Replacement CA for SQL Server's certificates decided (Data Platform D-D9)</Name>
+      <OutlineNumber>2.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-16T17:00:00</Start>
+      <Finish>2027-03-16T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CIO and data leadership (Data Platform Identity Transformation plan)</Contact>
+      <Notes>Owner or approver: CIO and data leadership (Data Platform Identity Transformation plan)
+If decided late: SQL Server's certificates are given an issuer before the PKI plan has named one
+Source: data-platform.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-03-16T17:00:00</ConstraintDate>
+      <PredecessorLink>
+        <PredecessorUID>11</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>13</UID>
+      <ID>13</ID>
+      <Name>X-P18 Cloud PKI design done; issuing CA created (program P1.8)</Name>
+      <OutlineNumber>2.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-17T17:00:00</Start>
+      <Finish>2027-02-17T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
+If decided late: There's no cloud chain to export or deploy, and the foundation waits
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-02-17T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>14</UID>
+      <ID>14</ID>
+      <Name>K2.1 Full chain exported; CRL and AIA reachable over HTTP from where relying parties sit; LDAP-only AIA replaced; root CRL on a published schedule</Name>
+      <OutlineNumber>2.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-18T08:00:00</Start>
+      <Finish>2027-02-22T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>PKI and CA administrators</Contact>
+      <Notes>Owner or approver: PKI and CA administrators
+Source: ../books/b07-pki/07-coexistence-and-migration.md#crl-availability</Notes>
+      <PredecessorLink>
+        <PredecessorUID>13</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>15</UID>
+      <ID>15</ID>
+      <Name>K2.2 Certificate Connector, current release, on its own servers wherever AD CS still serves SCEP or PKCS</Name>
+      <OutlineNumber>2.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-01T08:00:00</Start>
+      <Finish>2027-02-03T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Endpoint engineering</Contact>
+      <Notes>Owner or approver: Endpoint engineering
+Source: ../books/b07-pki/06-device-and-user-certificates.md#keep-the-connector-current</Notes>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>16</UID>
+      <ID>16</ID>
+      <Name>K2.3 Every CA that issues user certificates, and the Federal PKI chain for PIV, uploaded to the Entra trust store with its CRL URL</Name>
+      <OutlineNumber>2.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-23T08:00:00</Start>
+      <Finish>2027-02-24T17:00:00</Finish>
+      <Duration>PT16H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b07-pki/06-device-and-user-certificates.md#the-trust-store</Notes>
+      <PredecessorLink>
+        <PredecessorUID>14</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>17</UID>
+      <ID>17</ID>
+      <Name>K2.4 Trusted certificate profiles for the cloud chain and the federal root on managed devices; the chain to domain-joined relying parties; NTAuth only for logon issuers</Name>
+      <OutlineNumber>2.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-23T08:00:00</Start>
+      <Finish>2027-03-01T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Endpoint engineering</Contact>
+      <Notes>Owner or approver: Endpoint engineering
+Source: ../books/b07-pki/06-device-and-user-certificates.md#the-trusted-certificate-profile-comes-first</Notes>
+      <PredecessorLink>
+        <PredecessorUID>14</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>18</UID>
+      <ID>18</ID>
+      <Name>K2.5 Test certificate validated on every relying-party type; each CRL and AIA URL checked from inside, from the internet and in a test CBA sign-in</Name>
+      <OutlineNumber>2.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-02T08:00:00</Start>
+      <Finish>2027-03-04T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>PKI and CA administrators</Contact>
+      <Notes>Owner or approver: PKI and CA administrators
+Source: ../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook</Notes>
+      <PredecessorLink>
+        <PredecessorUID>15</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>16</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>17</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>19</UID>
+      <ID>19</ID>
+      <Name>K2.6 CLM platform deployed inside the boundary; its CA account scoped under the ESC7 review; Microsoft CA integration connected</Name>
+      <OutlineNumber>2.9</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-01T08:00:00</Start>
+      <Finish>2027-02-26T17:00:00</Finish>
+      <Duration>PT160H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>CLM platform owner</Contact>
+      <Notes>Owner or approver: CLM platform owner
+Source: ../books/b07-pki/04-the-target-pki.md#certificate-lifecycle-management</Notes>
+      <PredecessorLink>
+        <PredecessorUID>11</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>20</UID>
+      <ID>20</ID>
+      <Name>KG2 Gate 2 — Foundation in place</Name>
+      <OutlineNumber>2.10</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-04T17:00:00</Start>
+      <Finish>2027-03-04T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO and ISSO</Contact>
+      <Notes>Owner or approver: CISO and ISSO
+Criteria: Issuing CA active; trusted certificate profiles successful on at least 99% of managed devices; connector healthy; test certificate validated by every relying-party type; every CRL reachable from all three locations; the wave's rollback rehearsed in a test scope
+Source: ../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook</Notes>
+      <PredecessorLink>
+        <PredecessorUID>18</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>21</UID>
+      <ID>21</ID>
+      <Name>Wave 3 — Pilot</Name>
+      <OutlineNumber>3</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-02-25T08:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>22</UID>
+      <ID>22</ID>
+      <Name>K3.1 CBA method policy for PIV acceptance: the four settings, high-affinity bindings, the authentication strength, staged rollout for pilot users within its limits</Name>
+      <OutlineNumber>3.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-25T08:00:00</Start>
+      <Finish>2027-03-03T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b07-pki/09-federal-workforce-credentials.md#how-entra-cba-uses-the-piv-authentication-certificate</Notes>
+      <PredecessorLink>
+        <PredecessorUID>16</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>23</UID>
+      <ID>23</ID>
+      <Name>X-P28S Program starts CBA for PIV holders (start of P2.8)</Name>
+      <OutlineNumber>3.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-12T17:00:00</Start>
+      <Finish>2027-03-12T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
+If decided late: Pilot PIV holders are turned on for CBA before the method policy and bindings are set
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-03-12T17:00:00</ConstraintDate>
+      <PredecessorLink>
+        <PredecessorUID>22</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>24</UID>
+      <ID>24</ID>
+      <Name>X-P27S Program starts pilot certificate issuance (start of P2.7)</Name>
+      <OutlineNumber>3.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-31T17:00:00</Start>
+      <Finish>2027-03-31T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
+If decided late: Pilot devices receive certificates no relying party has been shown to accept
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-03-31T17:00:00</ConstraintDate>
+      <PredecessorLink>
+        <PredecessorUID>20</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>25</UID>
+      <ID>25</ID>
+      <Name>X-P27 Cloud PKI certificates issued; Wi-Fi and VPN verified (program P2.7)</Name>
+      <OutlineNumber>3.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-09T17:00:00</Start>
+      <Finish>2027-04-09T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
+If decided late: The pilot has nothing to observe, and Gate 3 waits
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-04-09T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>26</UID>
+      <ID>26</ID>
+      <Name>X-P28 Certificate-based authentication for PIV holders (program P2.8)</Name>
+      <OutlineNumber>3.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-24T17:00:00</Start>
+      <Finish>2027-03-24T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
+If decided late: Pilot users aren't on CBA, and Gate 3 waits
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-03-24T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>27</UID>
+      <ID>27</ID>
+      <Name>K3.2 Pilot observed: Intune certificate reports and Entra sign-in logs read; binding and authentication level confirmed; failures to the troubleshooting runbook</Name>
+      <OutlineNumber>3.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-12T08:00:00</Start>
+      <Finish>2027-04-16T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Endpoint engineering</Contact>
+      <Notes>Owner or approver: Endpoint engineering
+Source: ../books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md#monitoring</Notes>
+      <PredecessorLink>
+        <PredecessorUID>25</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>26</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>28</UID>
+      <ID>28</ID>
+      <Name>KG3 Gate 3 — Pilot authenticates with cloud certificates and CBA</Name>
+      <OutlineNumber>3.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-16T17:00:00</Start>
+      <Finish>2027-04-16T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO and ISSO</Contact>
+      <Notes>Owner or approver: CISO and ISSO
+Criteria: At least 95% issuance success on pilot devices; no authentication failures caused by certificate configuration; pilot users on CBA at the intended authentication level; every pilot relying party accepts the cloud chain; AD CS autoenrollment still on for pilot devices
+Source: ../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook</Notes>
+      <PredecessorLink>
+        <PredecessorUID>27</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>29</UID>
+      <ID>29</ID>
+      <Name>X-G2 Program G2 — Pilot Clean</Name>
+      <OutlineNumber>3.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-23T17:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Steward and executive sponsor (co-signed; program)</Contact>
+      <Notes>Owner or approver: Steward and executive sponsor (co-signed; program)
+If decided late: The program's pilot closes without the certificate pilot's evidence
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-04-23T17:00:00</ConstraintDate>
+      <PredecessorLink>
+        <PredecessorUID>28</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>30</UID>
+      <ID>30</ID>
+      <Name>Wave 4 — Scale</Name>
+      <OutlineNumber>4</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-03-01T08:00:00</Start>
+      <Finish>2027-07-09T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>31</UID>
+      <ID>31</ID>
+      <Name>D-K2 Device rings for SCEP and user populations for CBA</Name>
+      <OutlineNumber>4.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-16T17:00:00</Start>
+      <Finish>2027-04-16T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Endpoint engineering, with identity engineering</Contact>
+      <Notes>Owner or approver: Endpoint engineering, with identity engineering
+Options: Follow the program's rollout waves; by site, region or device tier. Dynamic groups built from governed attributes
+If decided late: Production profiles can't be assigned, and Wave 4 waits
+Source: ../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook</Notes>
+      <PredecessorLink>
+        <PredecessorUID>28</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>32</UID>
+      <ID>32</ID>
+      <Name>X-P31S Program starts rollout wave 1 (start of P3.1)</Name>
+      <OutlineNumber>4.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-23T17:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
+If decided late: The device rings have no divisions to follow
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-04-23T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>33</UID>
+      <ID>33</ID>
+      <Name>K4.1 SCEP profiles extended to production device groups, ring by ring, with the program's waves</Name>
+      <OutlineNumber>4.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-26T08:00:00</Start>
+      <Finish>2027-07-02T17:00:00</Finish>
+      <Duration>PT400H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Endpoint engineering</Contact>
+      <Notes>Owner or approver: Endpoint engineering
+Source: ../books/b07-pki/06-device-and-user-certificates.md#scep-profiles</Notes>
+      <PredecessorLink>
+        <PredecessorUID>31</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>32</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>34</UID>
+      <ID>34</ID>
+      <Name>K4.2 PKCS and imported PKCS profiles for S/MIME and the remaining application certificates</Name>
+      <OutlineNumber>4.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-19T08:00:00</Start>
+      <Finish>2027-05-07T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Endpoint engineering</Contact>
+      <Notes>Owner or approver: Endpoint engineering
+Source: ../books/b07-pki/06-device-and-user-certificates.md#pkcs-and-imported-pkcs-profiles</Notes>
+      <PredecessorLink>
+        <PredecessorUID>28</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>35</UID>
+      <ID>35</ID>
+      <Name>K4.3 Staged rollout extended to further user populations as sign-in data supports, within the 10-group limit</Name>
+      <OutlineNumber>4.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-19T08:00:00</Start>
+      <Finish>2027-05-28T17:00:00</Finish>
+      <Duration>PT240H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b07-pki/06-device-and-user-certificates.md#staged-rollout</Notes>
+      <PredecessorLink>
+        <PredecessorUID>28</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>36</UID>
+      <ID>36</ID>
+      <Name>K4.4 AD CS autoenrollment for MIGRATE templates removed on each ring once its devices hold valid cloud certificates</Name>
+      <OutlineNumber>4.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-05-10T08:00:00</Start>
+      <Finish>2027-07-09T17:00:00</Finish>
+      <Duration>PT360H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>PKI and CA administrators</Contact>
+      <Notes>Owner or approver: PKI and CA administrators
+Source: ../books/b07-pki/07-coexistence-and-migration.md#renewal-while-two-issuers-overlap</Notes>
+      <PredecessorLink>
+        <PredecessorUID>33</PredecessorUID>
+        <Type>3</Type>
+        <LinkLag>48000</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>37</UID>
+      <ID>37</ID>
+      <Name>K4.5 Server certificates (internal TLS, RADIUS, VPN gateways, SQL Server) discovered and enrolled for automated renewal; renewal owner recorded per class</Name>
+      <OutlineNumber>4.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-01T08:00:00</Start>
+      <Finish>2027-04-09T17:00:00</Finish>
+      <Duration>PT240H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Server and network teams</Contact>
+      <Notes>Owner or approver: Server and network teams
+Source: ../books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md#inventory-and-renewal-through-cyberark-certificate-manager</Notes>
+      <PredecessorLink>
+        <PredecessorUID>19</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>38</UID>
+      <ID>38</ID>
+      <Name>KG4 Gate 4 — Every managed device on cloud certificates</Name>
+      <OutlineNumber>4.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-07-09T17:00:00</Start>
+      <Finish>2027-07-09T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO and ISSO</Contact>
+      <Notes>Owner or approver: CISO and ISSO
+Criteria: Every managed device holds cloud-issued certificates for its MIGRATE use cases; every user intended for CBA on it; AD CS autoenrollment for MIGRATE templates removed on every migrated ring; server certificates renewing through the CLM platform
+Source: ../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook</Notes>
+      <PredecessorLink>
+        <PredecessorUID>33</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>34</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>35</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>36</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>37</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>39</UID>
+      <ID>39</ID>
+      <Name>Wave 5 — Cutover</Name>
+      <OutlineNumber>5</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-07-12T08:00:00</Start>
+      <Finish>2027-09-10T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>40</UID>
+      <ID>40</ID>
+      <Name>D-K3 Convert the federated domains to managed authentication, and in what order</Name>
+      <OutlineNumber>5.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-07-09T17:00:00</Start>
+      <Finish>2027-07-09T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Executive sponsor and CIO</Contact>
+      <Notes>Owner or approver: Executive sponsor and CIO
+Options: A test domain or the domain with the fewest users first, then the rest; hold a domain on federation as a dated exception
+If decided late: AD FS stays in the sign-in path with certificate authentication on, and Gate 5 waits
+Source: ../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook</Notes>
+      <PredecessorLink>
+        <PredecessorUID>38</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>41</UID>
+      <ID>41</ID>
+      <Name>K5.1 No unexpired AD CS certificates left on managed devices for MIGRATE use cases; federation settings recorded; AD FS backed up with Rapid Restore</Name>
+      <OutlineNumber>5.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-07-12T08:00:00</Start>
+      <Finish>2027-07-16T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook</Notes>
+      <PredecessorLink>
+        <PredecessorUID>38</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>42</UID>
+      <ID>42</ID>
+      <Name>K5.2 Domains converted one at a time; staged rollout groups removed; AD FS certificate authentication off</Name>
+      <OutlineNumber>5.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-07-19T08:00:00</Start>
+      <Finish>2027-07-30T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b07-pki/06-device-and-user-certificates.md#migrating-from-ad-fs-certificate-authentication</Notes>
+      <PredecessorLink>
+        <PredecessorUID>41</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>40</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>43</UID>
+      <ID>43</ID>
+      <Name>K5.3 AD CS procedures revised to BRIDGE and RETAIN scope only: domain controllers, LDAPS, NPS, server TLS</Name>
+      <OutlineNumber>5.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-08-02T08:00:00</Start>
+      <Finish>2027-08-06T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>PKI and CA administrators</Contact>
+      <Notes>Owner or approver: PKI and CA administrators
+Source: ../books/b07-pki/04-the-target-pki.md#ad-cs-retained-for-what-only-it-can-do</Notes>
+      <PredecessorLink>
+        <PredecessorUID>42</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>44</UID>
+      <ID>44</ID>
+      <Name>KG5 Gate 5 — Cut over</Name>
+      <OutlineNumber>5.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-08-06T17:00:00</Start>
+      <Finish>2027-08-06T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO and ISSO</Contact>
+      <Notes>Owner or approver: CISO and ISSO
+Criteria: All target domains managed; AD FS certificate authentication off; CBA working for all users; no AD CS certificates on managed endpoints for MIGRATE templates; BRIDGE and RETAIN templates documented and running
+Source: ../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook</Notes>
+      <PredecessorLink>
+        <PredecessorUID>43</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>45</UID>
+      <ID>45</ID>
+      <Name>K5.4 Rollback window: AD FS restorable but out of the sign-in path for 30 days; application use watched in Connect Health and the sign-in logs</Name>
+      <OutlineNumber>5.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-08-02T08:00:00</Start>
+      <Finish>2027-08-31T17:00:00</Finish>
+      <Duration>PT176H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Identity engineering</Contact>
+      <Notes>Owner or approver: Identity engineering
+Source: ../books/b07-pki/07-coexistence-and-migration.md#rollback-rules-that-hold-across-waves</Notes>
+      <PredecessorLink>
+        <PredecessorUID>42</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>46</UID>
+      <ID>46</ID>
+      <Name>X-P45S Program starts moving user and device issuance off AD CS (start of P4.5)</Name>
+      <OutlineNumber>5.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-09-10T17:00:00</Start>
+      <Finish>2027-09-10T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
+If decided late: The program retires smart-card logon and AD CS issuance before the cutover has proved the cloud path
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-09-10T17:00:00</ConstraintDate>
+      <PredecessorLink>
+        <PredecessorUID>44</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>47</UID>
+      <ID>47</ID>
+      <Name>Wave 6 — Decommission</Name>
+      <OutlineNumber>6</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-10-04T08:00:00</Start>
+      <Finish>2027-11-05T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>48</UID>
+      <ID>48</ID>
+      <Name>X-P45 User and device issuance off AD CS; smart-card logon GPO retired (program P4.5)</Name>
+      <OutlineNumber>6.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-10-01T17:00:00</Start>
+      <Finish>2027-10-01T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
+If decided late: MIGRATE-only components still issue, and decommissioning can't start
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-10-01T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>49</UID>
+      <ID>49</ID>
+      <Name>D-K4 Retire each MIGRATE-only AD CS component</Name>
+      <OutlineNumber>6.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-10-01T17:00:00</Start>
+      <Finish>2027-10-01T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Executive sponsor and CIO</Contact>
+      <Notes>Owner or approver: Executive sponsor and CIO
+Options: Retire, starting with the CA with the fewest dependents, once nothing depends on it; keep it as a dated exception under the hardening baseline
+If decided late: NDES, CES/CEP and MIGRATE-only issuing CAs stay in service into the program's AD retirement
+Source: ../books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md#decommissioning-ad-cs</Notes>
+      <PredecessorLink>
+        <PredecessorUID>45</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>48</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>50</UID>
+      <ID>50</ID>
+      <Name>K6.1 Nothing depends on the CA, from the CLM inventory and the CA database; issuance stopped; events 4886 and 4888 read for a week</Name>
+      <OutlineNumber>6.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-10-04T08:00:00</Start>
+      <Finish>2027-10-08T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>PKI and CA administrators</Contact>
+      <Notes>Owner or approver: PKI and CA administrators
+Source: ../books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md#decommissioning-ad-cs</Notes>
+      <PredecessorLink>
+        <PredecessorUID>49</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>51</UID>
+      <ID>51</ID>
+      <Name>K6.2 CA database and key backed up and archived; outstanding certificates revoked; the final CRL published to outlive them</Name>
+      <OutlineNumber>6.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-10-11T08:00:00</Start>
+      <Finish>2027-10-13T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>PKI and CA administrators</Contact>
+      <Notes>Owner or approver: PKI and CA administrators
+Source: ../books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md#decommissioning-ad-cs</Notes>
+      <PredecessorLink>
+        <PredecessorUID>50</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>52</UID>
+      <ID>52</ID>
+      <Name>K6.3 Role services uninstalled before the CA role; the CA removed from the Entra trust store, Intune profiles and NTAuth</Name>
+      <OutlineNumber>6.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-10-14T08:00:00</Start>
+      <Finish>2027-10-20T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>PKI and CA administrators</Contact>
+      <Notes>Owner or approver: PKI and CA administrators
+Source: ../books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md#decommissioning-ad-cs</Notes>
+      <PredecessorLink>
+        <PredecessorUID>51</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>53</UID>
+      <ID>53</ID>
+      <Name>K6.4 Decommission record committed; the archive's disposition set under the records schedule</Name>
+      <OutlineNumber>6.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-10-21T08:00:00</Start>
+      <Finish>2027-10-25T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Records officer</Contact>
+      <Notes>Owner or approver: Records officer
+Source: ../books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md#the-evidence-an-assessor-reads</Notes>
+      <PredecessorLink>
+        <PredecessorUID>52</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>54</UID>
+      <ID>54</ID>
+      <Name>KG6 Gate 6 — MIGRATE-only components retired</Name>
+      <OutlineNumber>6.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-10-25T17:00:00</Start>
+      <Finish>2027-10-25T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO and ISSO</Contact>
+      <Notes>Owner or approver: CISO and ISSO
+Criteria: MIGRATE-only AD CS components retired or archived; offline root retained and documented, with the CA that signed the cloud issuing CA under BYOCA; no orphaned autoenrollment GPOs; HTTP CDP and AIA kept until the last certificate expires; decommission record in the evidence repository
+Source: ../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook</Notes>
+      <PredecessorLink>
+        <PredecessorUID>53</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>55</UID>
+      <ID>55</ID>
+      <Name>X-G4 Program G4 — Legacy Quiet</Name>
+      <OutlineNumber>6.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-11-05T17:00:00</Start>
+      <Finish>2027-11-05T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Steward (backup: executive sponsor; program)</Contact>
+      <Notes>Owner or approver: Steward (backup: executive sponsor; program)
+If decided late: The program reaches Legacy Quiet with MIGRATE-only CAs still running
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-11-05T17:00:00</ConstraintDate>
+      <PredecessorLink>
+        <PredecessorUID>54</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+  </Tasks>
+</Project>

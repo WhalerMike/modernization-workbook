@@ -1,0 +1,200 @@
+﻿Work item ID,Work type,Parent,Summary,Description,Labels,Labels,Labels,Labels,Labels,Labels,Start date,Due date,Blocks,Blocks,Blocks,Blocks
+1,Epic,,PKI and Certificates: Wave 1 — Assess,"Wave 1 — Assess of the sample plan PKI and Certificates: Hardening, Cloud PKI and the Lifecycle Platform.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/pki-certificates.html",fmw,fmw-pki-certificates,phase,,,,2027-01-04,2027-02-05,,,,
+2,Task,1,"K1.1 Every CA inventoried (host, key and signature algorithms, validity, root or issuing); every template's configuration and permissions exported","K1.1 · Task · owner or approver: PKI and CA administrators
+Duration 5 working days · wk 1 · total float 5 d · predecessors: —
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/02-what-ad-cs-holds-up.html#what-the-certificate-inventory-collects",fmw,fmw-pki-certificates,fmw-id-k1.1,task,owner-pki-and-ca-administrators,,2027-01-04,2027-01-08,3,4,5,
+3,Task,1,X-D04 Root of trust for device certificates decided (program D04),"X-D04 · External · owner or approver: Program office (program)
+Duration 0 working days · end of wk 4 · total float fixed date · predecessors: K1.1
+If decided late: The root of trust is chosen without the CA inventory, so BYOCA can't be weighed against the hierarchy that exists
+Comes from program-master-schedule:D04 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-pki-certificates,fmw-id-x-d04,external,owner-program-office-program,,2027-02-01,2027-01-29,,,,
+4,Task,1,"K1.2 Hardening checks (ESC1 to ESC8) run against templates, CA settings and PKI object ACLs; CA auditing on","K1.2 · Task · owner or approver: PKI and CA administrators
+Duration 5 working days · wk 2 · total float 5 d · predecessors: K1.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/03-hardening-what-stays.html#the-esc-taxonomy",fmw,fmw-pki-certificates,fmw-id-k1.2,task,owner-pki-and-ca-administrators,,2027-01-11,2027-01-15,7,,,
+5,Task,1,K1.3 Issued certificates inventoried by template with expiry; every relying party and the chains and CRLs it uses; strong-mapping sweep on every domain controller,"K1.3 · Task · owner or approver: PKI and CA administrators
+Duration 10 working days · wk 2–3 · total float 5 d · predecessors: K1.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html#the-migration-playbook",fmw,fmw-pki-certificates,fmw-id-k1.3,task,owner-pki-and-ca-administrators,,2027-01-11,2027-01-22,6,,,
+6,Task,1,"K1.4 Every template classified MIGRATE, BRIDGE, RETAIN or RETIRE against the template migration matrix","K1.4 · Task · owner or approver: PKI and CA administrators
+Duration 5 working days · wk 4 · total float 5 d · predecessors: K1.3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/appendix-b-template-migration-matrix.html",fmw,fmw-pki-certificates,fmw-id-k1.4,task,owner-pki-and-ca-administrators,,2027-01-25,2027-01-29,8,11,,
+7,Task,1,K1.5 Critical and High hardening findings remediated and re-tested,"K1.5 · Task · owner or approver: PKI and CA administrators
+Duration 10 working days · wk 3–4 · total float 5 d · predecessors: K1.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/03-hardening-what-stays.html#the-migration-gate",fmw,fmw-pki-certificates,fmw-id-k1.5,task,owner-pki-and-ca-administrators,,2027-01-18,2027-01-29,8,,,
+8,Task,1,KG1 Gate 1 — Assessed and hardened,"KG1 · Gate · owner or approver: CISO and ISSO
+Duration 0 working days · end of wk 4 · total float 5 d · predecessors: K1.4, K1.5
+Criteria: Assessment approved by the PKI and CA administrators and the CISO and ISSO; no unclassified templates; every Critical and High finding remediated and re-tested (Chapter 03's migration gate); assessment record committed to the evidence repository
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html#the-migration-playbook",fmw,fmw-pki-certificates,fmw-id-kg1,gate,owner-ciso-and-isso,,2027-02-01,2027-01-29,9,15,,
+9,Task,1,X-P18S Program starts the Cloud PKI design and issuing CA (start of P1.8),"X-P18S · External · owner or approver: Platform teams (program)
+Duration 0 working days · end of wk 5 · total float fixed date · predecessors: KG1
+If decided late: Under BYOCA, the root would sign a cloud issuing CA before its hierarchy passed the hardening gate
+Comes from program-master-schedule:P1.8:start in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-pki-certificates,fmw-id-x-p18s,external,owner-platform-teams-program,,2027-02-08,2027-02-05,,,,
+10,Epic,,PKI and Certificates: Wave 2 — Foundation,"Wave 2 — Foundation of the sample plan PKI and Certificates: Hardening, Cloud PKI and the Lifecycle Platform.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/pki-certificates.html",fmw,fmw-pki-certificates,phase,,,,2027-02-01,2027-03-16,,,,
+11,Task,10,"D-K1 Issuer for internal server certificates, and the lifecycle platform's edition","D-K1 · Decision · owner or approver: Executive sponsor and CIO
+Duration 0 working days · end of wk 4 · total float 32 d · predecessors: K1.4
+Options: Retained AD CS through the CLM platform, moving to a standalone issuing CA under the same root when the forest retires, and a public CA for names the internet trusts (Book 07's position); Certificate Manager, Self-Hosted, inside the boundary until a certificate-management package is FedRAMP authorized
+If decided late: Server certificates keep renewing by hand, and the Data Platform plan's replacement-CA decision (D-D9) has no issuer to name
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/04-the-target-pki.html#the-issuer-decision-for-internal-server-certificates",fmw,fmw-pki-certificates,fmw-id-d-k1,decision,owner-executive-sponsor-and-cio,,2027-02-01,2027-01-29,12,19,,
+12,Task,10,X-DD9 Replacement CA for SQL Server's certificates decided (Data Platform D-D9),"X-DD9 · External · owner or approver: CIO and data leadership (Data Platform Identity Transformation plan)
+Duration 0 working days · end of wk 11 · total float fixed date · predecessors: D-K1
+If decided late: SQL Server's certificates are given an issuer before the PKI plan has named one
+Comes from data-platform:D-D9 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/data-platform.html",fmw,fmw-pki-certificates,fmw-id-x-dd9,external,owner-cio-and-data-leadership-data-platform-identity-transformation-plan,,2027-03-17,2027-03-16,,,,
+13,Task,10,X-P18 Cloud PKI design done; issuing CA created (program P1.8),"X-P18 · External · owner or approver: Platform teams (program)
+Duration 0 working days · end of wk 7 · total float 7 d · predecessors: —
+If decided late: There's no cloud chain to export or deploy, and the foundation waits
+Comes from program-master-schedule:P1.8 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-pki-certificates,fmw-id-x-p18,external,owner-platform-teams-program,,2027-02-18,2027-02-17,14,,,
+14,Task,10,K2.1 Full chain exported; CRL and AIA reachable over HTTP from where relying parties sit; LDAP-only AIA replaced; root CRL on a published schedule,"K2.1 · Task · owner or approver: PKI and CA administrators
+Duration 3 working days · wk 7–8 · total float 7 d · predecessors: X-P18
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html#crl-availability",fmw,fmw-pki-certificates,fmw-id-k2.1,task,owner-pki-and-ca-administrators,,2027-02-18,2027-02-22,16,17,,
+15,Task,10,"K2.2 Certificate Connector, current release, on its own servers wherever AD CS still serves SCEP or PKCS","K2.2 · Task · owner or approver: Endpoint engineering
+Duration 3 working days · wk 5 · total float 37 d · predecessors: KG1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/06-device-and-user-certificates.html#keep-the-connector-current",fmw,fmw-pki-certificates,fmw-id-k2.2,task,owner-endpoint-engineering,,2027-02-01,2027-02-03,18,,,
+16,Task,10,"K2.3 Every CA that issues user certificates, and the Federal PKI chain for PIV, uploaded to the Entra trust store with its CRL URL","K2.3 · Task · owner or approver: Identity engineering
+Duration 2 working days · wk 8 · total float 7 d · predecessors: K2.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/06-device-and-user-certificates.html#the-trust-store",fmw,fmw-pki-certificates,fmw-id-k2.3,task,owner-identity-engineering,,2027-02-23,2027-02-24,18,22,,
+17,Task,10,K2.4 Trusted certificate profiles for the cloud chain and the federal root on managed devices; the chain to domain-joined relying parties; NTAuth only for logon issuers,"K2.4 · Task · owner or approver: Endpoint engineering
+Duration 5 working days · wk 8–9 · total float 19 d · predecessors: K2.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/06-device-and-user-certificates.html#the-trusted-certificate-profile-comes-first",fmw,fmw-pki-certificates,fmw-id-k2.4,task,owner-endpoint-engineering,,2027-02-23,2027-03-01,18,,,
+18,Task,10,"K2.5 Test certificate validated on every relying-party type; each CRL and AIA URL checked from inside, from the internet and in a test CBA sign-in","K2.5 · Task · owner or approver: PKI and CA administrators
+Duration 3 working days · wk 9 · total float 19 d · predecessors: K2.2, K2.3, K2.4
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html#the-migration-playbook",fmw,fmw-pki-certificates,fmw-id-k2.5,task,owner-pki-and-ca-administrators,,2027-03-02,2027-03-04,20,,,
+19,Task,10,K2.6 CLM platform deployed inside the boundary; its CA account scoped under the ESC7 review; Microsoft CA integration connected,"K2.6 · Task · owner or approver: CLM platform owner
+Duration 20 working days · wk 5–8 · total float 88 d · predecessors: D-K1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/04-the-target-pki.html#certificate-lifecycle-management",fmw,fmw-pki-certificates,fmw-id-k2.6,task,owner-clm-platform-owner,,2027-02-01,2027-02-26,37,,,
+20,Task,10,KG2 Gate 2 — Foundation in place,"KG2 · Gate · owner or approver: CISO and ISSO
+Duration 0 working days · end of wk 9 · total float 19 d · predecessors: K2.5
+Criteria: Issuing CA active; trusted certificate profiles successful on at least 99% of managed devices; connector healthy; test certificate validated by every relying-party type; every CRL reachable from all three locations; the wave's rollback rehearsed in a test scope
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html#the-migration-playbook",fmw,fmw-pki-certificates,fmw-id-kg2,gate,owner-ciso-and-isso,,2027-03-05,2027-03-04,24,,,
+21,Epic,,PKI and Certificates: Wave 3 — Pilot,"Wave 3 — Pilot of the sample plan PKI and Certificates: Hardening, Cloud PKI and the Lifecycle Platform.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/pki-certificates.html",fmw,fmw-pki-certificates,phase,,,,2027-02-25,2027-04-23,,,,
+22,Task,21,"K3.1 CBA method policy for PIV acceptance: the four settings, high-affinity bindings, the authentication strength, staged rollout for pilot users within its limits","K3.1 · Task · owner or approver: Identity engineering
+Duration 5 working days · wk 8–9 · total float 7 d · predecessors: K2.3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/09-federal-workforce-credentials.html#how-entra-cba-uses-the-piv-authentication-certificate",fmw,fmw-pki-certificates,fmw-id-k3.1,task,owner-identity-engineering,,2027-02-25,2027-03-03,23,,,
+23,Task,21,X-P28S Program starts CBA for PIV holders (start of P2.8),"X-P28S · External · owner or approver: Platform teams (program)
+Duration 0 working days · end of wk 10 · total float fixed date · predecessors: K3.1
+If decided late: Pilot PIV holders are turned on for CBA before the method policy and bindings are set
+Comes from program-master-schedule:P2.8:start in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-pki-certificates,fmw-id-x-p28s,external,owner-platform-teams-program,,2027-03-15,2027-03-12,,,,
+24,Task,21,X-P27S Program starts pilot certificate issuance (start of P2.7),"X-P27S · External · owner or approver: Platform teams (program)
+Duration 0 working days · end of wk 13 · total float fixed date · predecessors: KG2
+If decided late: Pilot devices receive certificates no relying party has been shown to accept
+Comes from program-master-schedule:P2.7:start in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-pki-certificates,fmw-id-x-p27s,external,owner-platform-teams-program,,2027-04-01,2027-03-31,,,,
+25,Task,21,X-P27 Cloud PKI certificates issued; Wi-Fi and VPN verified (program P2.7),"X-P27 · External · owner or approver: Platform teams (program)
+Duration 0 working days · end of wk 14 · total float 5 d · predecessors: —
+If decided late: The pilot has nothing to observe, and Gate 3 waits
+Comes from program-master-schedule:P2.7 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-pki-certificates,fmw-id-x-p27,external,owner-platform-teams-program,,2027-04-12,2027-04-09,27,,,
+26,Task,21,X-P28 Certificate-based authentication for PIV holders (program P2.8),"X-P28 · External · owner or approver: Platform teams (program)
+Duration 0 working days · end of wk 12 · total float 17 d · predecessors: —
+If decided late: Pilot users aren't on CBA, and Gate 3 waits
+Comes from program-master-schedule:P2.8 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-pki-certificates,fmw-id-x-p28,external,owner-platform-teams-program,,2027-03-25,2027-03-24,27,,,
+27,Task,21,K3.2 Pilot observed: Intune certificate reports and Entra sign-in logs read; binding and authentication level confirmed; failures to the troubleshooting runbook,"K3.2 · Task · owner or approver: Endpoint engineering
+Duration 5 working days · wk 15 · total float 5 d · predecessors: X-P27, X-P28
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html#monitoring",fmw,fmw-pki-certificates,fmw-id-k3.2,task,owner-endpoint-engineering,,2027-04-12,2027-04-16,28,,,
+28,Task,21,KG3 Gate 3 — Pilot authenticates with cloud certificates and CBA,"KG3 · Gate · owner or approver: CISO and ISSO
+Duration 0 working days · end of wk 15 · total float 5 d · predecessors: K3.2
+Criteria: At least 95% issuance success on pilot devices; no authentication failures caused by certificate configuration; pilot users on CBA at the intended authentication level; every pilot relying party accepts the cloud chain; AD CS autoenrollment still on for pilot devices
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html#the-migration-playbook",fmw,fmw-pki-certificates,fmw-id-kg3,gate,owner-ciso-and-isso,,2027-04-19,2027-04-16,29,31,34,35
+29,Task,21,X-G2 Program G2 — Pilot Clean,"X-G2 · External · owner or approver: Steward and executive sponsor (co-signed; program)
+Duration 0 working days · end of wk 16 · total float fixed date · predecessors: KG3
+If decided late: The program's pilot closes without the certificate pilot's evidence
+Comes from program-master-schedule:G2 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-pki-certificates,fmw-id-x-g2,external,owner-steward-and-executive-sponsor-co-signed-program,,2027-04-26,2027-04-23,,,,
+30,Epic,,PKI and Certificates: Wave 4 — Scale,"Wave 4 — Scale of the sample plan PKI and Certificates: Hardening, Cloud PKI and the Lifecycle Platform.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/pki-certificates.html",fmw,fmw-pki-certificates,phase,,,,2027-03-01,2027-07-09,,,,
+31,Task,30,D-K2 Device rings for SCEP and user populations for CBA,"D-K2 · Decision · owner or approver: Endpoint engineering, with identity engineering
+Duration 0 working days · end of wk 15 · total float 28 d · predecessors: KG3
+Options: Follow the program's rollout waves; by site, region or device tier. Dynamic groups built from governed attributes
+If decided late: Production profiles can't be assigned, and Wave 4 waits
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html#the-migration-playbook",fmw,fmw-pki-certificates,fmw-id-d-k2,decision,owner-endpoint-engineering-with-identity-engineering,,2027-04-19,2027-04-16,33,,,
+32,Task,30,X-P31S Program starts rollout wave 1 (start of P3.1),"X-P31S · External · owner or approver: Platform teams (program)
+Duration 0 working days · end of wk 16 · total float 23 d · predecessors: —
+If decided late: The device rings have no divisions to follow
+Comes from program-master-schedule:P3.1:start in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-pki-certificates,fmw-id-x-p31s,external,owner-platform-teams-program,,2027-04-26,2027-04-23,33,,,
+33,Task,30,"K4.1 SCEP profiles extended to production device groups, ring by ring, with the program's waves","K4.1 · Task · owner or approver: Endpoint engineering
+Duration 50 working days · wk 17–26 · total float 23 d · predecessors: D-K2, X-P31S
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/06-device-and-user-certificates.html#scep-profiles",fmw,fmw-pki-certificates,fmw-id-k4.1,task,owner-endpoint-engineering,,2027-04-26,2027-07-02,36,38,,
+34,Task,30,K4.2 PKCS and imported PKCS profiles for S/MIME and the remaining application certificates,"K4.2 · Task · owner or approver: Endpoint engineering
+Duration 15 working days · wk 16–18 · total float 68 d · predecessors: KG3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/06-device-and-user-certificates.html#pkcs-and-imported-pkcs-profiles",fmw,fmw-pki-certificates,fmw-id-k4.2,task,owner-endpoint-engineering,,2027-04-19,2027-05-07,38,,,
+35,Task,30,"K4.3 Staged rollout extended to further user populations as sign-in data supports, within the 10-group limit","K4.3 · Task · owner or approver: Identity engineering
+Duration 30 working days · wk 16–21 · total float 53 d · predecessors: KG3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/06-device-and-user-certificates.html#staged-rollout",fmw,fmw-pki-certificates,fmw-id-k4.3,task,owner-identity-engineering,,2027-04-19,2027-05-28,38,,,
+36,Task,30,K4.4 AD CS autoenrollment for MIGRATE templates removed on each ring once its devices hold valid cloud certificates,"K4.4 · Task · owner or approver: PKI and CA administrators
+Duration 45 working days · wk 19–27 · total float 23 d · predecessors: K4.1 (SS) +10 d
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html#renewal-while-two-issuers-overlap",fmw,fmw-pki-certificates,fmw-id-k4.4,task,owner-pki-and-ca-administrators,,2027-05-10,2027-07-09,38,,,
+37,Task,30,"K4.5 Server certificates (internal TLS, RADIUS, VPN gateways, SQL Server) discovered and enrolled for automated renewal; renewal owner recorded per class","K4.5 · Task · owner or approver: Server and network teams
+Duration 30 working days · wk 9–14 · total float 88 d · predecessors: K2.6
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html#inventory-and-renewal-through-cyberark-certificate-manager",fmw,fmw-pki-certificates,fmw-id-k4.5,task,owner-server-and-network-teams,,2027-03-01,2027-04-09,38,,,
+38,Task,30,KG4 Gate 4 — Every managed device on cloud certificates,"KG4 · Gate · owner or approver: CISO and ISSO
+Duration 0 working days · end of wk 27 · total float 23 d · predecessors: K4.1, K4.2, K4.3, K4.4, K4.5
+Criteria: Every managed device holds cloud-issued certificates for its MIGRATE use cases; every user intended for CBA on it; AD CS autoenrollment for MIGRATE templates removed on every migrated ring; server certificates renewing through the CLM platform
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html#the-migration-playbook",fmw,fmw-pki-certificates,fmw-id-kg4,gate,owner-ciso-and-isso,,2027-07-12,2027-07-09,40,41,,
+39,Epic,,PKI and Certificates: Wave 5 — Cutover,"Wave 5 — Cutover of the sample plan PKI and Certificates: Hardening, Cloud PKI and the Lifecycle Platform.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/pki-certificates.html",fmw,fmw-pki-certificates,phase,,,,2027-07-12,2027-09-10,,,,
+40,Task,39,"D-K3 Convert the federated domains to managed authentication, and in what order","D-K3 · Decision · owner or approver: Executive sponsor and CIO
+Duration 0 working days · end of wk 27 · total float 28 d · predecessors: KG4
+Options: A test domain or the domain with the fewest users first, then the rest; hold a domain on federation as a dated exception
+If decided late: AD FS stays in the sign-in path with certificate authentication on, and Gate 5 waits
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html#the-migration-playbook",fmw,fmw-pki-certificates,fmw-id-d-k3,decision,owner-executive-sponsor-and-cio,,2027-07-12,2027-07-09,42,,,
+41,Task,39,K5.1 No unexpired AD CS certificates left on managed devices for MIGRATE use cases; federation settings recorded; AD FS backed up with Rapid Restore,"K5.1 · Task · owner or approver: Identity engineering
+Duration 5 working days · wk 28 · total float 23 d · predecessors: KG4
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html#the-migration-playbook",fmw,fmw-pki-certificates,fmw-id-k5.1,task,owner-identity-engineering,,2027-07-12,2027-07-16,42,,,
+42,Task,39,K5.2 Domains converted one at a time; staged rollout groups removed; AD FS certificate authentication off,"K5.2 · Task · owner or approver: Identity engineering
+Duration 10 working days · wk 29–30 · total float 23 d · predecessors: K5.1, D-K3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/06-device-and-user-certificates.html#migrating-from-ad-fs-certificate-authentication",fmw,fmw-pki-certificates,fmw-id-k5.2,task,owner-identity-engineering,,2027-07-19,2027-07-30,43,45,,
+43,Task,39,"K5.3 AD CS procedures revised to BRIDGE and RETAIN scope only: domain controllers, LDAPS, NPS, server TLS","K5.3 · Task · owner or approver: PKI and CA administrators
+Duration 5 working days · wk 31 · total float 25 d · predecessors: K5.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/04-the-target-pki.html#ad-cs-retained-for-what-only-it-can-do",fmw,fmw-pki-certificates,fmw-id-k5.3,task,owner-pki-and-ca-administrators,,2027-08-02,2027-08-06,44,,,
+44,Task,39,KG5 Gate 5 — Cut over,"KG5 · Gate · owner or approver: CISO and ISSO
+Duration 0 working days · end of wk 31 · total float 25 d · predecessors: K5.3
+Criteria: All target domains managed; AD FS certificate authentication off; CBA working for all users; no AD CS certificates on managed endpoints for MIGRATE templates; BRIDGE and RETAIN templates documented and running
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html#the-migration-playbook",fmw,fmw-pki-certificates,fmw-id-kg5,gate,owner-ciso-and-isso,,2027-08-09,2027-08-06,46,,,
+45,Task,39,K5.4 Rollback window: AD FS restorable but out of the sign-in path for 30 days; application use watched in Connect Health and the sign-in logs,"K5.4 · Task · owner or approver: Identity engineering
+Duration 22 working days · wk 31–35 · total float 23 d · predecessors: K5.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html#rollback-rules-that-hold-across-waves",fmw,fmw-pki-certificates,fmw-id-k5.4,task,owner-identity-engineering,,2027-08-02,2027-08-31,49,,,
+46,Task,39,X-P45S Program starts moving user and device issuance off AD CS (start of P4.5),"X-P45S · External · owner or approver: Platform teams (program)
+Duration 0 working days · end of wk 36 · total float fixed date · predecessors: KG5
+If decided late: The program retires smart-card logon and AD CS issuance before the cutover has proved the cloud path
+Comes from program-master-schedule:P4.5:start in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-pki-certificates,fmw-id-x-p45s,external,owner-platform-teams-program,,2027-09-13,2027-09-10,,,,
+47,Epic,,PKI and Certificates: Wave 6 — Decommission,"Wave 6 — Decommission of the sample plan PKI and Certificates: Hardening, Cloud PKI and the Lifecycle Platform.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/pki-certificates.html",fmw,fmw-pki-certificates,phase,,,,2027-10-04,2027-11-05,,,,
+48,Task,47,X-P45 User and device issuance off AD CS; smart-card logon GPO retired (program P4.5),"X-P45 · External · owner or approver: Platform teams (program)
+Duration 0 working days · end of wk 39 · total float 0 · predecessors: —
+If decided late: MIGRATE-only components still issue, and decommissioning can't start
+Comes from program-master-schedule:P4.5 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-pki-certificates,fmw-id-x-p45,external,owner-platform-teams-program,,2027-10-04,2027-10-01,49,,,
+49,Task,47,D-K4 Retire each MIGRATE-only AD CS component,"D-K4 · Decision · owner or approver: Executive sponsor and CIO
+Duration 0 working days · end of wk 39 · total float 0 · predecessors: K5.4, X-P45
+Options: Retire, starting with the CA with the fewest dependents, once nothing depends on it; keep it as a dated exception under the hardening baseline
+If decided late: NDES, CES/CEP and MIGRATE-only issuing CAs stay in service into the program's AD retirement
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html#decommissioning-ad-cs",fmw,fmw-pki-certificates,fmw-id-d-k4,decision,owner-executive-sponsor-and-cio,critical-path,2027-10-04,2027-10-01,50,,,
+50,Task,47,"K6.1 Nothing depends on the CA, from the CLM inventory and the CA database; issuance stopped; events 4886 and 4888 read for a week","K6.1 · Task · owner or approver: PKI and CA administrators
+Duration 5 working days · wk 40 · total float 0 · predecessors: D-K4
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html#decommissioning-ad-cs",fmw,fmw-pki-certificates,fmw-id-k6.1,task,owner-pki-and-ca-administrators,critical-path,2027-10-04,2027-10-08,51,,,
+51,Task,47,K6.2 CA database and key backed up and archived; outstanding certificates revoked; the final CRL published to outlive them,"K6.2 · Task · owner or approver: PKI and CA administrators
+Duration 3 working days · wk 41 · total float 0 · predecessors: K6.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html#decommissioning-ad-cs",fmw,fmw-pki-certificates,fmw-id-k6.2,task,owner-pki-and-ca-administrators,critical-path,2027-10-11,2027-10-13,52,,,
+52,Task,47,"K6.3 Role services uninstalled before the CA role; the CA removed from the Entra trust store, Intune profiles and NTAuth","K6.3 · Task · owner or approver: PKI and CA administrators
+Duration 5 working days · wk 41–42 · total float 0 · predecessors: K6.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html#decommissioning-ad-cs",fmw,fmw-pki-certificates,fmw-id-k6.3,task,owner-pki-and-ca-administrators,critical-path,2027-10-14,2027-10-20,53,,,
+53,Task,47,K6.4 Decommission record committed; the archive's disposition set under the records schedule,"K6.4 · Task · owner or approver: Records officer
+Duration 3 working days · wk 42–43 · total float 0 · predecessors: K6.3
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/08-lifecycle-monitoring-and-decommissioning.html#the-evidence-an-assessor-reads",fmw,fmw-pki-certificates,fmw-id-k6.4,task,owner-records-officer,critical-path,2027-10-21,2027-10-25,54,,,
+54,Task,47,KG6 Gate 6 — MIGRATE-only components retired,"KG6 · Gate · owner or approver: CISO and ISSO
+Duration 0 working days · end of wk 43 · total float 0 · predecessors: K6.4
+Criteria: MIGRATE-only AD CS components retired or archived; offline root retained and documented, with the CA that signed the cloud issuing CA under BYOCA; no orphaned autoenrollment GPOs; HTTP CDP and AIA kept until the last certificate expires; decommission record in the evidence repository
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/07-coexistence-and-migration.html#the-migration-playbook",fmw,fmw-pki-certificates,fmw-id-kg6,gate,owner-ciso-and-isso,critical-path,2027-10-26,2027-10-25,55,,,
+55,Task,47,X-G4 Program G4 — Legacy Quiet,"X-G4 · External · owner or approver: Steward (backup: executive sponsor; program)
+Duration 0 working days · end of wk 44 · total float fixed date · predecessors: KG6
+If decided late: The program reaches Legacy Quiet with MIGRATE-only CAs still running
+Comes from program-master-schedule:G4 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-pki-certificates,fmw-id-x-g4,external,owner-steward-backup-executive-sponsor-program,,2027-11-08,2027-11-05,,,,
