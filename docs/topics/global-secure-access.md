@@ -29,6 +29,16 @@ The design, in the books: why this topic matters and what the target is.
 
 : Understand {.striped .hover}
 
+## Plan {#plan}
+
+The project plan and the decisions the program has made.
+
+| Page | What it is |
+|---|---|
+| [Global Secure Access: Identity-Aware Network Access, Ring by Ring](../project-plans/global-secure-access.md) | The rollout ring by ring, as a plan of its own beside the Network & Access plan, which moves sites rather than users and devices. |
+
+: Plan {.striped .hover}
+
 ## Build {#build}
 
 The implementation guides, the developer workbook and its code.
@@ -110,13 +120,3 @@ The federal requirements each step supports, and the evidence it keeps.
 | [Chapter 10 — Evidence, Not Verdicts: From Findings to a Program](../books/b11-zero-trust/10-evidence-not-verdicts.md) | How to read ScubaGear and Zero Trust Assessment results correctly, score and rank the real findings, keep exceptions where the tools and the authorizing official can see them, and turn the worklist into a prioritized, re-assessed Zero… |
 
 : Evidence {.striped .hover}
-
-## Not here {#gaps}
-
-What the workbook doesn't have on Global Secure Access, and whether it should. [All topics](index.md#gaps) shows the same for every topic.
-
-| Missing | Why |
-|---|---|
-| Project plan | Needed: no project plan schedules the rollout. The nearest, the [Network & Access plan](../project-plans/network-access.md), covers the governed-transport pilot but not Global Secure Access. |
-
-: Not here {.striped .hover}

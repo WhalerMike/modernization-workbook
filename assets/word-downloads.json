@@ -2367,9 +2367,19 @@
   "page": "endpoint-device.docx",
   "title": "Projects"
  },
+ "docs/project-plans/global-secure-access.md": {
+  "bundle": "project-plans-bundle.docx",
+  "page": "global-secure-access.docx",
+  "title": "Projects"
+ },
  "docs/project-plans/identity-lifecycle.md": {
   "bundle": "project-plans-bundle.docx",
   "page": "identity-lifecycle.docx",
+  "title": "Projects"
+ },
+ "docs/project-plans/information-protection.md": {
+  "bundle": "project-plans-bundle.docx",
+  "page": "information-protection.docx",
   "title": "Projects"
  },
  "docs/project-plans/network-access.md": {
@@ -2380,6 +2390,11 @@
  "docs/project-plans/non-person-identity.md": {
   "bundle": "project-plans-bundle.docx",
   "page": "non-person-identity.docx",
+  "title": "Projects"
+ },
+ "docs/project-plans/pki-certificates.md": {
+  "bundle": "project-plans-bundle.docx",
+  "page": "pki-certificates.docx",
   "title": "Projects"
  },
  "docs/project-plans/privileged-access.md": {
