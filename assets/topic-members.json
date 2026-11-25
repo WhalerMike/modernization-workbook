@@ -2609,6 +2609,66 @@
    "title": "HR-Driven Identity"
   }
  ],
+ "docs/project-plans/developer-workbooks/information-protection/01-access-and-the-read-path.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/information-protection/02-the-baseline-export.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/information-protection/03-the-data-inventory.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/information-protection/04-labels-policies-and-containers.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/information-protection/05-rights-management-and-message-encryption.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/information-protection/06-dlp-and-auto-labeling.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/information-protection/07-audit-and-the-synthetic-events.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/information-protection/08-drift-metrics-and-the-monthly-evidence-run.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/information-protection/09-deploying-to-test-and-production.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/information-protection/index.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
  "docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md": [
   {
    "id": "non-person-identity",
@@ -3319,6 +3379,42 @@
   {
    "id": "dns-dhcp-ipam",
    "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/training/information-protection/01-classes-access-and-the-baseline.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/training/information-protection/02-labels-publication-and-containers.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/training/information-protection/03-encryption-and-recovery.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/training/information-protection/04-dlp-auto-labeling-and-ai.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/training/information-protection/05-audit-drift-and-evidence.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/training/information-protection/index.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
   }
  ],
  "docs/training/lab-setup.md": [

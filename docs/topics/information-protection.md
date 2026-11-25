@@ -45,8 +45,23 @@ The implementation guides, the developer workbook and its code.
 | Page | What it is |
 |---|---|
 | [Information Protection with Microsoft Purview: An Implementation Guide](../books/guides/information-protection-implementation.md) | A gated guide for building Book 20's information protection in a Microsoft 365 GCC tenant: twelve gates, one for each chapter of the book, from the data classes and the inventory through the label taxonomy, publication and defaults,… |
+| [Building Information Protection](../project-plans/developer-workbooks/information-protection/index.md) | A developer workbook for the information protection implementation guide: a code-first companion for the developers who build the read-only checks that prove Microsoft Purview is doing what Book 20 and the agency's plan say. |
+| [Information Protection with Microsoft Purview: An Implementation Guide](../books/guides/information-protection-implementation.md) | A gated guide for building Book 20's information protection in a Microsoft 365 GCC tenant: twelve gates, one for each chapter of the book, from the data classes and the inventory through the label taxonomy, publication and defaults,… |
 
 : Build {.striped .hover}
+
+The code is in [`examples/information-protection`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/information-protection) on GitHub, and in the code zip under [Download](#download).
+
+## Learn {#learn}
+
+The learning path and its hands-on labs.
+
+| Page | What it is |
+|---|---|
+| [Learning path: Information Protection with Microsoft Purview](../training/information-protection/index.md) | A learning path in five modules for Purview and Microsoft 365 engineers, operators, security monitors, records and privacy officials and ISSO reviewers, built from the information protection implementation guide and Book 20: the data… |
+| [Labs](../training/labs.md#ip) | Every lab in Building Information Protection: what each needs, where it runs, and its commands. |
+
+: Learn {.striped .hover}
 
 ## Watch {#watch}
 
@@ -64,6 +79,7 @@ Word editions and code, rebuilt on every site deploy.
 
 | File | What it is |
 |---|---|
+| [information-protection-code.zip](../../downloads/information-protection-code.zip) | Code: the scripts, tests and fixtures, as committed |
 | [b20-information-protection-bundle.docx](../../downloads/b20-information-protection-bundle.docx) | Word edition: Book 20 — Information Protection & Microsoft Purview |
 | [information-protection-implementation-guide.docx](../../downloads/information-protection-implementation-guide.docx) | Word edition: Information Protection with Microsoft Purview: An Implementation Guide |
 
@@ -81,16 +97,3 @@ The federal requirements each step supports, and the evidence it keeps.
 | [Appendix A — Requirements Mapping: Controls, KSIs and Chapters](../books/b20-information-protection/appendix-a-requirements-mapping.md) | A compliance-enabling map, not a compliance claim: the NIST SP 800-53 Rev. |
 
 : Evidence {.striped .hover}
-
-## Not here {#gaps}
-
-What the workbook doesn't have on information protection, and whether it should. [All topics](index.md#gaps) shows the same for every topic.
-
-| Missing | Why |
-|---|---|
-| Developer workbook | Needed: the implementation guide's twelve gates have no kit or developer workbook yet. |
-| Learning path | Needed: ranked in the learning path plan. |
-| Labs | Needed: they come with the learning path. |
-| Code | Needed: no kit collects Book 20's label, DLP or audit evidence yet. |
-
-: Not here {.striped .hover}

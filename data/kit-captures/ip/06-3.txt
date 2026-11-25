@@ -1,0 +1,6 @@
+PS> ./Invoke-IpAutoLabel.ps1 -SettingsPath tests/fixtures/settings.lab.json -SnapshotPath tests/fixtures/snapshots/2026-11-24 -OutputPath out/autolabel -AsOf 2026-11-24T12:00:00Z
+AUTO-01    Pass  FMP-Auto-CUIBasic-Batch1-v1: Enable, as stage enforce says
+AUTO-02    Fail  FMP-Auto-CUIBasic-Batch2-v1: Enable, but the plan's stage is simulation: enforcing without the approval the plan records
+AUTO-EXTRA Pass  Exported policy not in the plan: none
+SIT-01     Pass  Contoso Case Number: in the catalog, publisher Contoso Information Protection
+autolabel: Fail (3 pass, 1 fail, 0 other). Written to ./out/autolabel

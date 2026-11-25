@@ -82,6 +82,10 @@ WORKBOOKS = [
     Workbook("dc", "Building the Daily Checks Workbook", "docs/project-plans/developer-workbooks/daily-checks",
              "daily-checks-workbook-code.zip", "docs/books/guides/daily-checks-dashboard-implementation.md",
              "docs/training/daily-checks-dashboard"),
+    Workbook("ip", "Building Information Protection", "docs/project-plans/developer-workbooks/information-protection",
+             "information-protection-code.zip", "docs/books/guides/information-protection-implementation.md",
+             "docs/training/information-protection", gates={"1": ["01", "03"], "2": ["04"], "3": ["04"], "4": ["04"], "5": ["05"], "6": ["05"], "7": ["05"],
+                    "8": ["06"], "9": ["06"], "10": ["01", "07"], "11": ["06", "07"], "12": ["02", "08", "09"]}),
     Workbook("am", "Building Application Modernization", "docs/project-plans/developer-workbooks/application-modernization",
              "app-modernization.zip", training="docs/training/application-modernization"),
 ]
@@ -207,7 +211,7 @@ def modules(wb: Workbook) -> list[dict]:
             elif "Lab 2" in text:
                 ex["lab2"] = hid
         out.append({"title": front(md, "title").split(": ", 1)[-1], "path": path, "ex": ex,
-                    "gates": sorted(set(re.findall(r"\bG(\d)\b", cells[1]))),
+                    "gates": sorted(set(re.findall(r"\bG(\d+)\b", cells[1])), key=int),
                     "chapters": re.findall(r"\[(\d\d)\]", cells[2]), "n": len(out) + 1})
     return out
 
@@ -332,7 +336,7 @@ def place(wb: Workbook, md: str) -> str:
     # After each gate's Validate callout: that gate's labs and module, where a learning path maps them.
     # Guides name a gate "G1 Writers" or "Gate 1: schema and slots".
     if any(x["gates"] for x in mods):
-        for m in reversed(list(re.finditer(r"^## Validate \(((?:G|Gate )(\d)[^)]*)\)\n.*?^:::\n\n", md, re.S | re.M))):
+        for m in reversed(list(re.finditer(r"^## Validate \(((?:G|Gate )(\d+)\b[^)]*)\)\n.*?^:::\n\n", md, re.S | re.M))):
             gate, num = m.group(1), m.group(2)
             these = [x for x in mods if num in x["gates"]]
             if not these:
@@ -360,7 +364,7 @@ def place(wb: Workbook, md: str) -> str:
             placed = True
     elif wb.gates:
         # No learning path: each gate's Try it box links its workbook chapter's two labs.
-        for m in reversed(list(re.finditer(r"^## Validate \((G(\d)[^)]*)\)\n.*?^:::\n\n", md, re.S | re.M))):
+        for m in reversed(list(re.finditer(r"^## Validate \((G(\d+)\b[^)]*)\)\n.*?^:::\n\n", md, re.S | re.M))):
             gate, num = m.group(1), m.group(2)
             lines = []
             for nn in wb.gates.get(num, []):

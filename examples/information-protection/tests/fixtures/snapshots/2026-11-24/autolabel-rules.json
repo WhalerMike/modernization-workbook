@@ -1,0 +1,12 @@
+[
+  {
+    "Name": "SSN high confidence in SharePoint",
+    "ParentPolicyName": "FMP-Auto-CUIBasic-Batch1-v1",
+    "Workload": "SharePoint"
+  },
+  {
+    "Name": "SSN high confidence in SharePoint batch 2",
+    "ParentPolicyName": "FMP-Auto-CUIBasic-Batch2-v1",
+    "Workload": "SharePoint"
+  }
+]

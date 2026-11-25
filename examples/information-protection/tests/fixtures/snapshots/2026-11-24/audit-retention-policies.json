@@ -1,0 +1,20 @@
+[
+  {
+    "Name": "FMP-Audit-InfoProtection-1y",
+    "Priority": 200,
+    "RetentionDuration": "TwelveMonths",
+    "RecordTypes": [
+      "SensitivityLabelAction",
+      "MipLabel",
+      "ComplianceDLPExchange",
+      "ComplianceDLPSharePoint",
+      "DLPEndpoint"
+    ]
+  },
+  {
+    "Name": "FMP-Audit-Pilot-TestUser",
+    "Priority": 100,
+    "RetentionDuration": "TwelveMonths",
+    "RecordTypes": []
+  }
+]

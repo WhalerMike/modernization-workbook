@@ -1,0 +1,7 @@
+[
+  {
+    "Identity": "OME Configuration",
+    "OTPEnabled": true,
+    "SocialIdSignIn": true
+  }
+]

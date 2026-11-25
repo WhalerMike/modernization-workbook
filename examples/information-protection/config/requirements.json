@@ -1,0 +1,48 @@
+{
+  "_comment": "Each step of the Information Protection kit, with the NIST SP 800-53 Rev 5 controls it supports and the FedRAMP Key Security Indicators aligned to them. The pairs are the information protection implementation guide's 'Requirements and KSIs' table, which carries them from Book 20, Appendix A (checked there against the NIST catalog and fedramp.gov on Nov 11, 2026). Control parts are short paraphrases, not NIST's text. KSIs are FedRAMP's indicators for cloud service providers: the agency lines its own evidence up with them and doesn't report KSIs itself. Which step supports which control is the program's reading (design guidance); the agency's assessor decides. 'stages' lists the steps each stage's evidence must hold before the go/no-go.",
+  "version": 1,
+  "controls": {
+    "AC-3": { "title": "Access Enforcement", "part": "enforce approved authorizations" },
+    "AC-4": { "title": "Information Flow Enforcement", "part": "enforce approved authorizations for the flow of information within and between systems" },
+    "AC-5": { "title": "Separation of Duties", "part": "identify duties to separate and support them with access authorizations" },
+    "AC-6": { "title": "Least Privilege", "part": "allow only the access users and processes need" },
+    "AC-16": { "title": "Security and Privacy Attributes", "part": "associate security attributes with information and keep them with it" },
+    "AC-21": { "title": "Information Sharing", "part": "help users decide whether a sharing partner's authorizations match the information's restrictions" },
+    "AU-2": { "title": "Event Logging", "part": "identify the events to log" },
+    "AU-6": { "title": "Audit Record Review, Analysis, and Reporting", "part": "review and analyze audit records and report findings" },
+    "AU-11": { "title": "Audit Record Retention", "part": "retain audit records for a defined period" },
+    "AU-12": { "title": "Audit Record Generation", "part": "generate audit records for the events identified" },
+    "CA-7": { "title": "Continuous Monitoring", "part": "a continuous monitoring strategy with metrics and assessment frequencies" },
+    "CM-3": { "title": "Configuration Change Control", "part": "review, approve, document and monitor configuration-controlled changes" },
+    "CM-12": { "title": "Information Location", "part": "identify and document where specified information is processed and stored" },
+    "IR-4": { "title": "Incident Handling", "part": "handle incidents from preparation to recovery" },
+    "MP-3": { "title": "Media Marking", "part": "mark media with distribution limitations and security markings" },
+    "MP-7": { "title": "Media Use", "part": "restrict or prohibit the use of types of media" },
+    "PM-5(1)": { "title": "System Inventory | Inventory of Personally Identifiable Information", "part": "maintain an inventory of what processes PII" },
+    "RA-2": { "title": "Security Categorization", "part": "categorize the system and its information" },
+    "SC-8": { "title": "Transmission Confidentiality and Integrity", "part": "protect transmitted information" },
+    "SC-12": { "title": "Cryptographic Key Establishment and Management", "part": "establish and manage cryptographic keys" },
+    "SC-13": { "title": "Cryptographic Protection", "part": "implement the cryptography the organization requires" },
+    "SC-28": { "title": "Protection of Information at Rest", "part": "protect information at rest" },
+    "SI-4": { "title": "System Monitoring", "part": "monitor for attacks and unauthorized activity" }
+  },
+  "steps": {
+    "EXPORT": { "title": "The configuration baseline export (guide G12)", "controls": ["CM-3", "CA-7"], "ksis": ["KSI-SVC-ACM", "KSI-CMT-LMC"] },
+    "ACCESS": { "title": "The snapshot's tenant and the Purview role register (guide G1, G10)", "controls": ["AC-5", "AC-6"], "ksis": ["KSI-IAM-ELP"] },
+    "INVENTORY": { "title": "Classes, sensitive information types and content counts (guide G1)", "controls": ["RA-2", "CM-12", "PM-5(1)"], "ksis": ["KSI-PIY-GIV"] },
+    "LABELS": { "title": "Labels, label policies and container labels (guide G2 to G4)", "controls": ["AC-16", "MP-3", "AC-3", "AC-21"], "ksis": ["KSI-SVC-ACM", "KSI-MLA-RVL"] },
+    "PROTECTION": { "title": "Rights Management, recovery, message encryption and co-authoring (guide G5 to G7)", "controls": ["SC-12", "SC-13", "SC-28", "SC-8", "AC-5", "AC-6"], "ksis": ["KSI-SVC-SIN", "KSI-SVC-ASM", "KSI-IAM-JIT"] },
+    "DLP": { "title": "DLP stages and the exception register (guide G8, G11)", "controls": ["AC-4", "MP-7", "SI-4", "IR-4"], "ksis": ["KSI-SVC-SIN", "KSI-SVC-RUD", "KSI-MLA-RVL"] },
+    "AUTOLABEL": { "title": "Auto-labeling stages and custom sensitive information types (guide G9)", "controls": ["AC-16", "CM-12"], "ksis": ["KSI-SVC-ACM"] },
+    "AUDIT": { "title": "Audit on, retained, and the synthetic events (guide G10)", "controls": ["AU-2", "AU-12", "AU-6", "AU-11", "SI-4"], "ksis": ["KSI-MLA-LET", "KSI-MLA-OSM"] },
+    "DRIFT": { "title": "Drift between two exports (guide G12)", "controls": ["CM-3", "CA-7"], "ksis": ["KSI-SVC-ACM", "KSI-CMT-LMC"] },
+    "METRICS": { "title": "The metrics (guide G12)", "controls": ["CA-7"], "ksis": ["KSI-CMT-LMC"] },
+    "EVIDENCE": { "title": "The evidence record", "controls": ["CA-7", "CM-3"], "ksis": ["KSI-SVC-ACM"] },
+    "PREFLIGHT": { "title": "The runbook's preflight", "controls": ["CM-3"], "ksis": ["KSI-CMT-LMC"] },
+    "SCHEDULEDRUN": { "title": "The scheduled monthly run", "controls": ["CA-7", "CM-3"], "ksis": ["KSI-CMT-LMC"] }
+  },
+  "stages": {
+    "test": ["PREFLIGHT", "EXPORT", "ACCESS", "LABELS", "PROTECTION", "DLP", "AUTOLABEL", "AUDIT"],
+    "production": ["PREFLIGHT", "EXPORT", "ACCESS", "LABELS", "PROTECTION", "DLP", "AUTOLABEL", "AUDIT", "DRIFT", "SCHEDULEDRUN"]
+  }
+}

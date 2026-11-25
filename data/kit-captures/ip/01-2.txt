@@ -1,0 +1,5 @@
+PS> Import-Csv out/access/role-groups.csv | Format-Table -AutoSize
+RoleGroup                              Member                       Finding
+---------                              ------                       -------
+Communication Compliance Investigators cc.one@contoso.example       review overdue
+Insider Risk Management Investigators  extra.person@contoso.example holds the role but is not in the register

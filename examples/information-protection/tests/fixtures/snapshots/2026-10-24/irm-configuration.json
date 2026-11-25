@@ -1,0 +1,8 @@
+[
+  {
+    "AzureRMSLicensingEnabled": true,
+    "SimplifiedClientAccessEnabled": true,
+    "DecryptAttachmentForEncryptOnly": false,
+    "InternalLicensingEnabled": true
+  }
+]

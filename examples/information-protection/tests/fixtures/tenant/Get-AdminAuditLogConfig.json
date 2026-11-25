@@ -1,0 +1,6 @@
+[
+  {
+    "UnifiedAuditLogIngestionEnabled": true,
+    "AdminAuditLogEnabled": true
+  }
+]

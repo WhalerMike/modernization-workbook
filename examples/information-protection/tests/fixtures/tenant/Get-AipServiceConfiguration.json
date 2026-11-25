@@ -1,0 +1,9 @@
+[
+  {
+    "FunctionalState": "Enabled",
+    "SuperUsersEnabled": "Enabled",
+    "SuperUsers": [
+      "recovery.operator@contoso.example"
+    ]
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "Name": "Encrypt external [secure]",
+    "State": "Enabled",
+    "Mode": "Enforce",
+    "Priority": 0,
+    "ApplyRightsProtectionTemplate": "Encrypt"
+  },
+  {
+    "Name": "Partner Do Not Forward",
+    "State": "Enabled",
+    "Mode": "Audit",
+    "Priority": 1,
+    "ApplyRightsProtectionTemplate": "Do Not Forward"
+  }
+]

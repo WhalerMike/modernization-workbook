@@ -76,6 +76,7 @@ The workbook covers Microsoft 365 GCC (Moderate) with commercial Azure. Pages sa
 | Page | Sections |
 |---|---|
 | [Module 1: Architecture, access and onboarding](../training/defender-xdr/01-architecture-access-and-onboarding.md) | [Unit 2: What GCC has (7 minutes)](../training/defender-xdr/01-architecture-access-and-onboarding.md#xdr-m1-unit-2) |
+| [Module 1: Classes, access and the baseline](../training/information-protection/01-classes-access-and-the-baseline.md) | [Unit 2: What GCC doesn't offer (8 minutes)](../training/information-protection/01-classes-access-and-the-baseline.md#ip-m1-unit-2) |
 | [Module 2: Running the assessment safely](../training/zero-trust-assessment/02-running-the-assessment-safely.md) | [Unit 3: Connecting in GCC (6 minutes)](../training/zero-trust-assessment/02-running-the-assessment-safely.md#unit-3-connecting-in-gcc-6-minutes) |
 
 : Training: GCC availability sections {.striped .hover}

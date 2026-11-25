@@ -1,0 +1,37 @@
+[
+  {
+    "Name": "Block external send of CUI v2",
+    "ParentPolicyName": "FMP-DLP-CUI-ExternalEmail-v2",
+    "Disabled": false,
+    "BlockAccess": true,
+    "NotifyAllowOverride": "",
+    "ExceptIfRecipientDomainIs": [
+      "partner.example",
+      "oldpartner.example"
+    ]
+  },
+  {
+    "Name": "Block external send of CUI",
+    "ParentPolicyName": "FMP-DLP-CUI-ExternalEmail-v1",
+    "Disabled": false,
+    "BlockAccess": true,
+    "NotifyAllowOverride": "WithJustification",
+    "ExceptIfRecipientDomainIs": []
+  },
+  {
+    "Name": "Audit CUI Specified on devices",
+    "ParentPolicyName": "FMP-DLP-Endpoint-CUI-SP-v1",
+    "Disabled": false,
+    "BlockAccess": false,
+    "NotifyAllowOverride": "",
+    "ExceptIfRecipientDomainIs": []
+  },
+  {
+    "Name": "B20-Copilot-Exclude-CUI-SP-Rule",
+    "ParentPolicyName": "B20-Copilot-Exclude-CUI-SP",
+    "Disabled": false,
+    "BlockAccess": false,
+    "NotifyAllowOverride": "",
+    "ExceptIfRecipientDomainIs": []
+  }
+]

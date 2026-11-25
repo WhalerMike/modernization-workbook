@@ -321,6 +321,34 @@
    "featured": true
   },
   {
+   "id": "docs/training/information-protection/index.md",
+   "type": "Learning path",
+   "title": "Learning path: Information Protection with Microsoft Purview",
+   "description": "Five modules: classes, access and the baseline; labels, publication and containers; encryption and recovery; DLP, auto-labeling and AI; and audit, drift and evidence, each with a lab on fixtures and a lab in your own test tenant",
+   "url": "docs/training/information-protection/index.html",
+   "count": 5,
+   "unit": "modules",
+   "reading_minutes": 31,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Cloud and platform engineer",
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Azure",
+    "Information protection",
+    "Compliance and authorization"
+   ],
+   "status": "Draft",
+   "family": "information-protection",
+   "featured": false
+  },
+  {
    "id": "path:ms-automation",
    "type": "Learning path",
    "title": "Learning path: Microsoft Automation",
@@ -900,13 +928,14 @@
    "url": "docs/books/guides/information-protection-implementation.html",
    "count": 12,
    "unit": "steps",
-   "reading_minutes": 36,
+   "reading_minutes": 41,
    "reading_source": "estimate",
    "videos": 0,
    "video_minutes": 0,
    "level": "Intermediate",
    "level_source": "audience",
    "roles": [
+    "Cloud and platform engineer",
     "ISSO and assessor",
     "Program lead and service owner"
    ],
@@ -1352,6 +1381,33 @@
    ],
    "status": "Approved",
    "family": "hr-driven-identity",
+   "featured": false
+  },
+  {
+   "id": "docs/project-plans/developer-workbooks/information-protection/index.md",
+   "type": "Developer workbook",
+   "title": "Building Information Protection",
+   "description": "A developer workbook for the information protection implementation guide",
+   "url": "docs/project-plans/developer-workbooks/information-protection/index.html",
+   "count": 9,
+   "unit": "chapters",
+   "reading_minutes": 68,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Advanced",
+   "level_source": "audience",
+   "roles": [
+    "Cloud and platform engineer",
+    "Developer",
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Information protection"
+   ],
+   "status": "Draft",
+   "family": "information-protection",
    "featured": false
   },
   {
@@ -2421,6 +2477,34 @@
    ],
    "status": "Approved",
    "family": "hr-driven-identity",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#ip",
+   "type": "Lab",
+   "title": "Labs: Building Information Protection",
+   "description": "18 hands-on labs across 9 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building Information Protection.",
+   "url": "docs/training/labs.html#ip",
+   "count": 18,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "Cloud and platform engineer",
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Azure",
+    "Information protection",
+    "Compliance and authorization"
+   ],
+   "status": "Draft",
+   "family": "information-protection",
    "featured": false
   },
   {

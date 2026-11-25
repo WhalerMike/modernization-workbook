@@ -760,6 +760,8 @@ topics:
   - id: information-protection
     title: Information Protection
     subject: information protection
+    workbook: ip
+    kit: information-protection
     summary: >-
       Classifying and protecting the agency's data in Microsoft Purview: the data inventory,
       sensitivity labels and their defaults, Teams, groups and SharePoint containers, rights
@@ -785,11 +787,6 @@ topics:
       - information-protection-implementation-guide.docx
     members:
       - docs/books/b20-information-protection/*.md
-    gaps:
-      workbook: "Needed: the implementation guide's twelve gates have no kit or developer workbook yet."
-      path: "Needed: ranked in the learning path plan."
-      labs: "Needed: they come with the learning path."
-      code: "Needed: no kit collects Book 20's label, DLP or audit evidence yet."
 
   - id: compliance-evidence
     title: Compliance and Evidence

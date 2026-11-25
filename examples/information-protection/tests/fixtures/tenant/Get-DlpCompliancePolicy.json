@@ -1,0 +1,47 @@
+[
+  {
+    "Name": "FMP-DLP-CUI-ExternalEmail-v2",
+    "Mode": "Enable",
+    "Enabled": true,
+    "Workload": "Exchange",
+    "ExchangeLocation": [
+      {
+        "Name": "All"
+      }
+    ],
+    "ExchangeSenderMemberOfException": [
+      {
+        "Name": "dlp-exceptions@contoso.example"
+      }
+    ],
+    "Comment": "Outcome: CUI is not sent outside the tenant except through the approved partner path."
+  },
+  {
+    "Name": "FMP-DLP-CUI-ExternalEmail-v1",
+    "Mode": "TestWithNotifications",
+    "Enabled": true,
+    "Workload": "Exchange",
+    "ExchangeLocation": [
+      {
+        "Name": "All"
+      }
+    ],
+    "ExchangeSenderMemberOfException": []
+  },
+  {
+    "Name": "FMP-DLP-Endpoint-CUI-SP-v1",
+    "Mode": "Enable",
+    "Enabled": true,
+    "Workload": "EndpointDevices",
+    "ExchangeLocation": [],
+    "ExchangeSenderMemberOfException": []
+  },
+  {
+    "Name": "B20-Copilot-Exclude-CUI-SP",
+    "Mode": "TestWithoutNotifications",
+    "Enabled": true,
+    "Workload": "Applications",
+    "ExchangeLocation": [],
+    "ExchangeSenderMemberOfException": []
+  }
+]
