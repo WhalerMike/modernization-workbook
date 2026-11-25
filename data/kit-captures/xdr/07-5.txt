@@ -1,0 +1,4 @@
+PS> (Get-Content config/ladder.json | ConvertFrom-Json).allowed | Format-List | Out-String -Width 250
+workstation : {Full - remediate threats automatically}
+pilot       : {Semi - require approval for all folders}
+server      : {Semi - require approval for core folders, Semi - require approval for non-temp folders, Semi - require approval for all folders}

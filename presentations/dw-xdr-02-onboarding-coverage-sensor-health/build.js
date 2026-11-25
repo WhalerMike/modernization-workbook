@@ -127,7 +127,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: run the coverage check",
       body: [
-        { terminal: "02-1", lines: "1-8,11-17,19" },
+        { terminal: "02-3", lines: "1-8,11-17,19" },
       ],
       sources: "Sources: examples/defender-xdr (fictional fixtures). Chapter 02, “Lab 1: fixtures, no tenant,” step 1.",
       say: `Lab 1, in the kit's folder. Step 1 runs the coverage check. Nine of fourteen in-scope devices are protected: sixty-four point three percent. Ring 0 is whole. Five tickets: a sensor with impaired communications, an inactive sensor, a device Defender can see but that was never onboarded, a server whose exception expired at the end of October, and a device Defender reports that the inventory doesn't list at all. The kiosk in the isolated lab isn't a ticket: its exception runs into next year.`,
@@ -138,7 +138,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: tickets, the guide's count, one device",
       body: [
-        { cols: [[{ terminal: "02-2" }, { terminal: "02-3" }], [{ terminal: "02-4", lines: "1-2,9-21" }]], split: 0.6 },
+        { cols: [[{ terminal: "02-4" }, { terminal: "02-5" }], [{ terminal: "02-6", lines: "1-2,9-21" }]], split: 0.6 },
       ],
       sources: "Sources: examples/defender-xdr (fictional fixtures). Chapter 02, “Lab 1: fixtures, no tenant,” steps 2–4.",
       say: `Step 2 reads the tickets as the operator gets them, each with its note: the expired exception names its reason and date. Step 3 reads the guide's own query for the same estate, as counts. It can't say which device is inactive, or that two in-scope devices aren't there at all. Step 4 reads one device's state, as the collector writes it. Look at tamper protection: false. Chapter 3 finds it. The last step runs the chapter's tests, and they all pass.`,

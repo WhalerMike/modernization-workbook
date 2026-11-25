@@ -1,6 +1,11 @@
-PS> Import-Csv out/incidents/findings.csv | Format-Table Id, Severity, Finding, Rung -AutoSize -Wrap
-Id   Severity Finding                     Rung
---   -------- -------                     ----
-1002 high     OverdueTriage               L3 gated: the playbook prepares, a named approver releases
-1003 medium   Untriaged                   L2 advise: enrich and ticket
-1005 medium   ClosedWithoutClassification L2 advise: enrich and ticket
+PS> Get-Content "$Run/exposure/exposure-management.json"
+{
+  "feature": "Microsoft Security Exposure Management (attack paths, exposure graph, critical asset management)",
+  "cloud": "gcc",
+  "availability": "not available",
+  "source": "https://learn.microsoft.com/security-exposure-management/microsoft-security-exposure-management (read November 11, 2026: available in Public Cloud only, not in US Government clouds)",
+  "normalizedResult": "Skipped-Not-Applicable",
+  "disposition": "not applicable: unavailable in the tenant's cloud; a disposition, not a failed control",
+  "interimPath": "Prioritize by DeviceInfo ExposureLevel, IsInternetFacing and AssetValue and by Defender Vulnerability Management recommendations; use the Tier 0 inventory of the access and privilege book as the critical-asset list.",
+  "recordedAt": "2026-11-16T12:00:00Z"
+}

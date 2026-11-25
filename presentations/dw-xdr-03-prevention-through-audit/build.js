@@ -108,7 +108,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the plan, then the check",
       body: [
-        { cols: [[{ terminal: "03-1", lines: "1,4-12,21-25", pt: 10.5 }], [{ terminal: "03-2", lines: "1-5,15", pt: 10.5 }]], split: 0.36 },
+        { cols: [[{ terminal: "03-3", lines: "1,4-12,21-25", pt: 10.5 }], [{ terminal: "03-4", lines: "1-5,15", pt: 10.5 }]], split: 0.36 },
       ],
       sources: "Sources: examples/defender-xdr (fictional fixtures). Chapter 03, “Lab 1: fixtures, no tenant,” steps 1–2.",
       say: `Lab 1, in the kit's folder. Step 1 reads the plan the devices are checked against. Rings 0 and 1 are in block; rings 2, 3 and the servers are still auditing. Step 2 runs the prevention check, and finds three drifts. One device in ring 1 has tamper protection off. One in ring 2 has network protection off, though its ring should be auditing. And the file server has datagram processing on, which Learn says to turn off on high-UDP roles. Three inventory devices have no state file: the two never onboarded, and the excepted kiosk.`,
@@ -119,7 +119,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: one server's checks, and the week's events",
       body: [
-        { cols: [[{ terminal: "03-3", pt: 10.5 }], [{ terminal: "03-4", pt: 10.5 }]], split: 0.55 },
+        { cols: [[{ terminal: "03-5", pt: 10.5 }], [{ terminal: "03-6", pt: 10.5 }]], split: 0.55 },
         { callout: "a device with tamper protection off and a tampering attempt in the same week is an incident, not a ticket.", label: "Read it: ", icon: "FaTriangleExclamation", color: "red" },
       ],
       sources: "Sources: examples/defender-xdr (fictional fixtures). Chapter 03, “Lab 1: fixtures, no tenant,” steps 3–4.",
