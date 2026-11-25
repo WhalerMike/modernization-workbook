@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Book 18"
 series-order: 7
 review-status: approved
-reviewed-sha256: fd7b02b64c998a04f8abd84600bd7df80b92ec8f3660ba4b2c5c2060892dfa25
+reviewed-sha256: d6eace25a396c6840a719378ff5101a7e76c8b661e2ad5de4cea08ffb65ac891
 last-reviewed: 2026-11-25
 ---
 # Module 7: The evidence pack {.unnumbered}

@@ -17,7 +17,7 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: 48f4da121ca678e559073e01cd79147f5b9f1c467676eaa52c136b06c61ff8bd
+reviewed-sha256: 84b2a741582f80f1dd8e2850176870e5811b22a154f5b5aa7a62c6228e660396
 last-reviewed: 2026-11-25
 ---
 # Learning path: Privileged Access in Microsoft Entra ID and Azure {.unnumbered}

@@ -315,3 +315,11 @@ Mike approved adding the section (relayed by the gMSA standardization session, N
 | J-43 | Tags row replaces the Description row: seven tags as `key=value` pairs in the description with the request and change numbers; owners in AD as a copy of SailPoint; NPI-STD-30 flags a disagreeing tag (WD-175) | The standard's settings, Tags | changed *(design guidance)*; not yet written by Chapter 06 | WD-175 |
 | J-44 | `<app>` is the same short name the system uses in Entra and Azure | The standard's settings, Name | added *(design guidance)* | WD-175; Learn, CAF naming |
 | J-45 | Migration C: carry the tags as custom security attributes (and Azure resource tags on a user-assigned managed identity), and name the managed identity `id-<app>-<environment>-<region>-<###>` | Migration C | added | Learn: custom security attributes overview; Azure resource tags; CAF naming and abbreviations |
+
+## Revision 2026-11-25 — custom security attributes in GCC (WD-176)
+
+Mike, November 25, 2026: "Lets say no until we can confirm yes." Sources read November 25, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| J-46 | The Tags row and Migration C: until a tenant check confirms custom security attributes in GCC, the tags go in the service principal's `tags` and `notes`, or a managed identity's Azure resource tags (on the resource for a system-assigned one); custom security attributes once confirmed. Replaces J-45's custom security attributes | The standard's settings, Tags; Migration C | changed *(design guidance)* | WD-176 |

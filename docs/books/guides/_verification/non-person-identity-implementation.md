@@ -180,3 +180,15 @@ Mike, November 24, 2026, answering the Chapter 13 change's three questions: "VK-
 |---|---|---|---|---|
 | R-24o | The "Which guide?" box names *Non-Person Identity: Zero Trust, SASE and Other Clouds* | Which guide? | added | Mike, November 24, 2026 |
 | R-24p | Step 1f: custom security attributes in the `NonPersonIdentity` set are required, with the seven WD-175 keys; GCC availability not stated | Step 1f | changed *(design guidance)* | WD-175; Learn, custom security attributes overview |
+
+## Revision 2026-11-25 — custom security attributes in GCC (WD-176)
+
+Mike, November 25, 2026: "Lets say no until we can confirm yes." Sources read November 25, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R-25a | Step 1f: until a tenant check confirms custom security attributes in GCC, the seven tags go in a service principal's `tags` (`npi:<Key>=<Value>`) and `notes`, and on managed identities as Azure resource tags (on the resource for a system-assigned one); custom security attributes once confirmed. Replaces R-24p's "required now, check the tenant first" | Step 1f | changed *(design guidance)* | WD-176 |
+| R-25b | `tags`: custom strings, filterable, joined with the application's tags; `notes`: operational free text, at most 1,024 characters; Update servicePrincipal available in the global service, which GCC tenants use | Step 1f | verified | `npi-sp-props` |
+| R-25c | `userAssignedIdentities` supports Azure resource tags; `Identities` doesn't; a managed identity's service principal can't be modified directly | Step 1f | verified | `npi-az-tags`; Book 04, Chapter 05 |
+| R-25d | Step 4d waits for the tenant check: until then policies name their applications and service principals one by one | Step 4d | changed *(design guidance)* | WD-176 |
+| R-25e | Learn's Graph pages list the custom security attribute APIs for the global service, but no page confirms them for GCC | Step 1f | verified: "Create customSecurityAttributeDefinition" lists Global service, US Government L4 and L5, China; the US Government feature-availability page has no row | Learn |

@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Book 18"
 series-order: 4
 review-status: approved
-reviewed-sha256: 7e7abfe8ae7432776f7129921e7845df126f3b4a3f175fd5cd97451beb91c23e
+reviewed-sha256: 6b91c343fe83ef4a97c95be2b69c39e1d3aa4b31b347c2e61a51e9414b029b90
 last-reviewed: 2026-11-25
 ---
 # Module 4: An agent that only proposes {.unnumbered}

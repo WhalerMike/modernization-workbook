@@ -295,7 +295,7 @@ The swap works only if three things hold from Phase 1 *(design guidance)*:
 | Legal employer | The agency | The legal employer | `companyName` / `company` |
 | Hire date | Engagement start | Relationship start date | `employeeHireDate` / `extensionAttribute2` |
 | Leave date | Earliest end | `ActualTerminationDate`, or the earliest end if sooner | `employeeLeaveDateTime` / `extensionAttribute3` |
-| Contract reference | Contract or order number | Kept in B, or a configured Oracle field if one is confirmed | A slot from the [program attribute map](../books/b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map), or a custom security attribute |
+| Contract reference | Contract or order number | Kept in B, or a configured Oracle field if one is confirmed | A slot from the [program attribute map](../books/b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map), or a custom security attribute once a tenant check confirms them in GCC ([WD-176](../about/decision-register.md#wd-176)) |
 
 : Contractor attributes in the canonical schema, before and after the swap *(design guidance)* {.striped .hover}
 

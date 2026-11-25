@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Book 08"
 series-order: 2
 review-status: approved
-reviewed-sha256: 7721210d0fe3795c4721fd7314cd0ff37f3a9e93e4257857e67a01328ba089b3
+reviewed-sha256: dca760b73b655a92956b698ac3b9b83ac74424e6c00d317af71364c7e9d98e78
 last-reviewed: 2026-11-25
 ---
 # Module 2: The Active Directory DNS departure {.unnumbered}
