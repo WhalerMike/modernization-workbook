@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 11"
 series-order: 3
 review-status: approved
-reviewed-sha256: 03af7f63e7d77641100eea54932c98f60509c50d23242acf5e6163d7f934a485
-last-reviewed: 2026-11-22
+reviewed-sha256: 8d965e2ff6958dd15fef895d94134ba9b2dc1dc001d63536219c37777480fca3
+last-reviewed: 2026-11-25
 ---
 # Module 3: From results to a closure register {.unnumbered}
 
