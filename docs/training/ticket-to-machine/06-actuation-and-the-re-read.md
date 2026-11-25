@@ -80,6 +80,10 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\ticket-to-machine-code\servicenow-sailpoint
 
+$Run = "C:\FMWLabs\results\ticket-to-machine-06-actuation-and-the-re-read\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
 # Step 1
 python -m pytest -q -p no:cacheprovider tests/python/test_reread_verification.py tests/python/test_reread_offline.py
 
@@ -87,13 +91,13 @@ python -m pytest -q -p no:cacheprovider tests/python/test_reread_verification.py
 python clients/python/reread_verification.py --records-json tests/fixtures/reread/awaiting_records.json --observations-json tests/fixtures/reread/observations.json --now 2026-11-01T12:00:00Z
 
 # Step 3
-python clients/python/reread_verification.py --records-json tests/fixtures/reread/awaiting_records.json --observations-json tests/fixtures/reread/observations.json --now 2026-11-02T12:00:00Z --out-json out/reread.json
+python clients/python/reread_verification.py --records-json tests/fixtures/reread/awaiting_records.json --observations-json tests/fixtures/reread/observations.json --now 2026-11-02T12:00:00Z --out-json "$Run\reread.json"
 
 # Step 4
 node --test --test-name-pattern="redirected|verifier|exception approver|evidence alone|non-closing|SDIM" tests/servicenow/servicenow_scripts.test.js
 
 # Step 5
-Remove-Item -Recurse -Force out
+Get-ChildItem C:\FMWLabs\results\ticket-to-machine-06-actuation-and-the-re-read\lab1 -Name
 ```
 
 :::
@@ -108,7 +112,23 @@ Every step runs in PowerShell 7, the Python and Node.js commands included, so yo
 Set-Location C:\FMWLabs\ticket-to-machine-code\servicenow-sailpoint
 ```
 
-Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/servicenow-sailpoint`; every step except the last one runs the same there, and in Git Bash the last one is `rm -rf out`. In a clone of the repository, use the `examples` folder of the same name.
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
+
+```powershell
+$Run = "C:\FMWLabs\results\ticket-to-machine-06-actuation-and-the-re-read\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\ticket-to-machine-06-actuation-and-the-re-read\lab1\<run>
+```
+
+The run's date is only the folder's name. The data's date is `--now`, which stays the same, so every run's results match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
+
+Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/servicenow-sailpoint`, make the run folder with `Run=/c/FMWLabs/results/ticket-to-machine-06-actuation-and-the-re-read/lab1/$(date -u +%Y-%m-%dT%H%M%SZ); mkdir -p "$Run"`, and Steps 1 to 4 run the same there, with `"$Run/reread.json"` in place of `"$Run\reread.json"`; list the runs with `ls`. In a clone of the repository, use the `examples` folder of the same name.
 
 1. Run the re-read tests.
 
@@ -136,10 +156,10 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/ser
    1 mismatch, 1 pending, 1 skipped, 3 verified
    ```
 
-3. Run the same records a day later, and keep the results in `out/reread.json` (the client makes the `out` folder).
+3. Run the same records a day later, and keep the results in `reread.json` in this run's folder.
 
    ```powershell
-   python clients/python/reread_verification.py --records-json tests/fixtures/reread/awaiting_records.json --observations-json tests/fixtures/reread/observations.json --now 2026-11-02T12:00:00Z --out-json out/reread.json
+   python clients/python/reread_verification.py --records-json tests/fixtures/reread/awaiting_records.json --observations-json tests/fixtures/reread/observations.json --now 2026-11-02T12:00:00Z --out-json "$Run\reread.json"
    ```
 
    Expected output:
@@ -154,7 +174,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/ser
    2 mismatch, 1 skipped, 3 verified
    ```
 
-   IDF0001003 is now a mismatch. `out/reread.json` holds each result with its evidence hash.
+   IDF0001003 is now a mismatch. `reread.json` holds each result with its evidence hash.
 
 4. Run the business rule's tests.
 
@@ -176,10 +196,16 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/ser
 
    and a last line, `ℹ duration_ms`, with the run's time.
 
-5. Delete the `out` folder, so the next run starts clean.
+5. Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
 
    ```powershell
-   Remove-Item -Recurse -Force out
+   Get-ChildItem C:\FMWLabs\results\ticket-to-machine-06-actuation-and-the-re-read\lab1 -Name
+   ```
+
+   Expected output: one line per run, oldest first, the last one this run:
+
+   ```text
+   <run>
    ```
 
 **Check your work:** for any waiting finding, you can say whether the client verifies it, reopens it, waits or skips it, and why.
