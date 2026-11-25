@@ -13,7 +13,7 @@ research-status: draft
 research-type: implementation guide
 research-book: "Books 02, 04, 13"
 review-status: approved
-reviewed-sha256: 9a1cb64b021bfaa762a82527f7344aa0e88c884542a04984399a87402d78d3fd
+reviewed-sha256: 8250f867279c5d07fa7a33d9d07c1dbb67726257a32561c3455a38d3e03281bb
 last-reviewed: 2026-11-25
 ---
 # Requesting a Managed Service Account {.unnumbered}
