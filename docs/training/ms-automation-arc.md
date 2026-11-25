@@ -9,7 +9,7 @@ research-book: "Books 05, 06"
 series-order: 4
 date-modified: 2026-11-25
 review-status: approved
-reviewed-sha256: b46b7f5190f071484484fac811d71a322c2cefc0f60f7ed9c9763542bf55715c
+reviewed-sha256: ea92c079129edf9243cdae573ab8cc97b648eb50e0c517af0a05ab90897ab2a8
 last-reviewed: 2026-11-25
 ---
 # Microsoft Automation, Module 4: Azure Arc through Azure Resource Manager and Resource Graph {.unnumbered}
