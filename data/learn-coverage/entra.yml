@@ -2967,6 +2967,8 @@ pages:
   note: ''
   cited_by:
   - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b03-hr-identity/15-external-partner-identity.md
+  - docs/books/b03-hr-identity/_verification/15-external-partner-identity.md
 - path: docs/external-id/b2b-fundamentals.md
   url: https://learn.microsoft.com/entra/external-id/b2b-fundamentals
   title: Microsoft Entra B2B best practices and recommendations
@@ -3136,6 +3138,8 @@ pages:
   - data/source-register.json
   - docs/books/b02-identity/08-assessing-the-forest.md
   - docs/books/b02-identity/10-migrating-and-governing.md
+  - docs/books/b03-hr-identity/15-external-partner-identity.md
+  - docs/books/b03-hr-identity/_verification/15-external-partner-identity.md
   - docs/books/b04-access/appendix-c-partner-access-profile-entra.md
   - docs/books/b07-pki/09-federal-workforce-credentials.md
   - docs/reference/source-register.md
@@ -4102,7 +4106,9 @@ pages:
   description: Compare solutions for using Microsoft Entra External ID to work with people outside your organization, including B2B collaboration and Azure AD B2C.
   coverage: out-of-scope
   note: Public self-service sign-up, social identity providers, API connectors, pricing or landing page; the program invites partners, it does not run public sign-up
-  cited_by: []
+  cited_by:
+  - docs/books/b03-hr-identity/15-external-partner-identity.md
+  - docs/books/b03-hr-identity/_verification/15-external-partner-identity.md
 - path: docs/external-id/external-identities-pricing.md
   url: https://learn.microsoft.com/entra/external-id/external-identities-pricing
   title: External ID Pricing
