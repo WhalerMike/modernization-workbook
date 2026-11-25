@@ -4,6 +4,7 @@
 """
 import copy
 import json
+import os
 import sys
 import tempfile
 import unittest
@@ -180,17 +181,20 @@ class Builders(unittest.TestCase):
         self.assertEqual(res["properties"]["parameters"]["operations"]["value"]["0d6f5b1c-3a2e-4f7d-9c1b-1e2a3b4c5d01"], "revoke")
 
     def test_build_writes_both_files_and_refuses_a_definition_with_findings(self):
-        # A temporary folder, so the tests leave the kit's folder as it was
+        # Work in a temporary folder, so the tests leave the kit's folder as it was, with the same
+        # relative paths as before so what the build prints doesn't change
         tmp = tempfile.TemporaryDirectory()
         self.addCleanup(tmp.cleanup)
-        out = Path(tmp.name) / "test-build"
+        self.addCleanup(os.chdir, os.getcwd())
+        os.chdir(tmp.name)
+        out = Path("out") / "test-build"
         out.mkdir(parents=True, exist_ok=True)
         self.assertEqual(lcwext.main(["build", str(HERE / "config" / "integrations.json"), "--name", "cms-revocation",
                                       "--tenant-id", TENANT, "--out", str(out)]), 0)
         self.assertTrue((out / "arm-cms-revocation.json").exists() and (out / "extension-cms-revocation.json").exists())
         (out / "learn.workflow.json").write_text(json.dumps(lcwext.learn_sample()), encoding="utf-8")
         reg = copy.deepcopy(REGISTRY)
-        reg["integrations"][0]["definition"] = str(out / "learn.workflow.json")
+        reg["integrations"][0]["definition"] = str((out / "learn.workflow.json").resolve())
         (out / "registry.json").write_text(json.dumps(reg), encoding="utf-8")
         self.assertEqual(lcwext.main(["build", str(out / "registry.json"), "--name", "cms-revocation",
                                       "--tenant-id", TENANT, "--out", str(out / "refused")]), 2)
