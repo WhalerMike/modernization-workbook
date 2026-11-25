@@ -3739,6 +3739,18 @@
    "title": "PKI and Certificates"
   }
  ],
+ "docs/training/pki/03-the-target-pki-and-who-owns-it.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/training/pki/04-device-and-user-certificates.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
  "docs/training/pki/index.md": [
   {
    "id": "pki",

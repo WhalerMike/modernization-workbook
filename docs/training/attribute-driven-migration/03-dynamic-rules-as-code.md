@@ -8,8 +8,8 @@ research-book: "Book 19"
 series-order: 3
 date-modified: 2026-11-02
 review-status: approved
-reviewed-sha256: 338f120f6b5de4f19d67e650ca4a3feadf8dc58196c831f2b88a88dd62475e47
-last-reviewed: 2026-11-22
+reviewed-sha256: f8710ddf325b7baefa6d891ddcd40d689374463e5f8776a5df675ba05bba97fa
+last-reviewed: 2026-11-25
 ---
 # Attribute-Driven Migration, Module 3: Keep Dynamic Rules as Code {.unnumbered}
 

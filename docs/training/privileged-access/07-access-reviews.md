@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 04"
 series-order: 7
 review-status: approved
-reviewed-sha256: 2f6bef722375a7daed23e988719f9bd94fcd3b9cac46bb306dd1d95ec8d0ebc7
-last-reviewed: 2026-11-22
+reviewed-sha256: ff00ae4d31c11674839689c634c59f568bbcb21a3e6102f620d3e29d1a84a8fb
+last-reviewed: 2026-11-25
 ---
 # Module 7: Access reviews of privileged roles {.unnumbered}
 

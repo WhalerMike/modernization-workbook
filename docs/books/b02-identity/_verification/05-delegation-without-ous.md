@@ -129,3 +129,9 @@ Microsoft Learn pages listed as covered but uncited for this chapter were read o
 | L12 | Custom security attributes protect sensitive values: Global Administrator can't read them by default (c05-csa) | Limits table | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/fundamentals/custom-security-attributes-add> |
 | L13 | Arc-enabled servers are delegated with Azure RBAC, a separate system from Entra roles (c05-azure-rbac) | Tracks line | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/role-based-access-control/concept-understand-roles> |
 | L14 | Same (Azure RBAC assignments for scoped administration of Azure resources) | Tracks line | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/architecture/secure-single-tenant> |
+
+## Revision 2026-11-25 — outside review: wording and crosswalks
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Administrative units take over the OU's delegation job only; they don't link policy or place objects | Opening | restated-as-design (was "AUs are the replacement", which overstated) | Learn, Administrative units in Microsoft Entra ID (already cited as c05-isolation) |

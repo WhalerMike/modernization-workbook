@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 15"
 series-order: 2
 review-status: approved
-reviewed-sha256: 0d81f01b95d86a5f1f25366687aa3563d0b6ccd603563eb2ae7bea88683c8077
-last-reviewed: 2026-11-18
+reviewed-sha256: d0c287f9e5d6df9673946ed98102d73c478071d89635bb6e7427ad05148e9c08
+last-reviewed: 2026-11-25
 ---
 # Module 2: Azure Service Health and alerts {.unnumbered}
 
