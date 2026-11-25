@@ -1,0 +1,4 @@
+Address,SeenOn,Where
+10.0.0.30,2026-11-19,hq-dist-01 DHCP snooping bindings
+10.1.0.30,2026-11-19,br-dist-01 DHCP snooping bindings
+10.0.5.254,2026-11-19,hq-acc-03 Gi1/0/14 DHCP snooping drop
