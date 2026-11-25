@@ -1,0 +1,8 @@
+{
+  "https://cases.contoso.example/signin-oidc": "<html><title>Sign in to your account</title></html>",
+  "https://cases.contoso.example/": "<html><title>Sign in to your account</title></html>",
+  "http://cases-test.contoso.example/signin-oidc": "<html>AADSTS50011: The redirect URI specified in the request does not match the redirect URIs configured for the application.</html>",
+  "https://cases-old.contoso.example/signin-oidc": "<html>AADSTS50011: The redirect URI specified in the request does not match the redirect URIs configured for the application.</html>",
+  "https://cases.fabrikam.example/signin-oidc": "<html>AADSTS50011: The redirect URI specified in the request does not match the redirect URIs configured for the application.</html>",
+  "http://localhost:5173/": "<html>AADSTS50011: The redirect URI specified in the request does not match the redirect URIs configured for the application.</html>"
+}

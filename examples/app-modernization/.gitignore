@@ -10,3 +10,4 @@ embedded-pg/
 .env
 validation-report.json
 *.log
+web/out/

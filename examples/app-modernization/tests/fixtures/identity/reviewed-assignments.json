@@ -1,0 +1,14 @@
+[
+  {
+    "principalId": "a0000000-0000-4000-8000-000000000301",
+    "principalType": "Group",
+    "appRoleId": "00000000-0000-0000-0000-000000000000",
+    "reason": "Case workers who use the application; owner-approved in the change record"
+  },
+  {
+    "principalId": "a0000000-0000-4000-8000-000000000302",
+    "principalType": "ServicePrincipal",
+    "appRoleId": "00000000-0000-0000-0000-000000000000",
+    "reason": "The nightly reports job calls this application as a resource"
+  }
+]

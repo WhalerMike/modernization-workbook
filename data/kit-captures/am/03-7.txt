@@ -1,0 +1,2 @@
+PS> Select-String -Path migration/target/lab/*.json -Pattern 'Applicant-0001', 'Peña' -Quiet
+False

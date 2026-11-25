@@ -1,0 +1,10 @@
+PS> Test-AmRedirectUri -SnapshotDir out/pack -OwnedDomainsPath tests/fixtures/identity/owned-domains.txt -DnsPath tests/fixtures/identity/dns.json -OutDir out/pack | Format-Table Platform, Uri, OwnedDomain, Resolves, CnameTarget, Findings -Wrap
+Platform Uri                                           OwnedDomain Resolves CnameTarget                         Findings
+-------- ---                                           ----------- -------- -----------                         --------
+web      https://cases.contoso.example/signin-oidc            True     True
+web      https://*.contoso.example/signin-oidc                True    False                                     AM-RU-01
+web      http://cases-test.contoso.example/signin-oidc        True     True                                     AM-RU-02
+web      https://cases-old.contoso.example/signin-oidc        True    False contoso-cases-old.azurewebsites.net AM-RU-04 AM-RU-05
+web      https://cases.fabrikam.example/signin-oidc          False     True                                     AM-RU-03
+spa      https://cases.contoso.example/                       True     True
+spa      http://localhost:5173/                               True     True                                     AM-RU-06

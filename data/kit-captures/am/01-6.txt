@@ -1,0 +1,6 @@
+PS> Write-AmEvidenceRecord -Step CONTRACT -Path service/src/main/resources/static/openapi.yaml, service/src/main/resources/db/migration/V1__baseline.sql, service/target/surefire-reports/TEST-gov.example.modernization.OpenApiContractTest.xml, service/target/surefire-reports/TEST-gov.example.modernization.CaseApiTest.xml -OutputPath out/evidence -AsOf 2026-11-24T00:00:00Z | Format-List Record, Step, Files, Controls, KSIs
+Record   : record-001-CONTRACT.json
+Step     : CONTRACT
+Files    : 4
+Controls : CM-2 CM-3(2)
+KSIs     : KSI-SVC-ACM KSI-CMT-VTD

@@ -1,0 +1,11 @@
+PS> New-AmAssignmentPlan -SnapshotDir out/pack -AssignmentsPath tests/fixtures/identity/reviewed-assignments.json -ChangeId CHG-0001 -OutDir out/pack | Format-List
+Plan       : wp5-assignment-plan.json
+Kind       : wp5-assignment
+Commands   : 3
+PlanSha256 : abff2e32f31a61dac348de8631d1434b899eeb8f84dc7b022f7746c38cd1d67f
+PS> ./Invoke-AmIdentityApply.ps1 -PlanPath out/pack/wp5-assignment-plan.json
+Dry run of wp5-assignment for 00001111-aaaa-2222-bbbb-3333cccc4444, change CHG-0001. Plan SHA-256 abff2e32f31a61dac348de8631d1434b899eeb8f84dc7b022f7746c38cd1d67f.
+Nothing was changed. The commands -Apply would run, in order:
+  New-MgServicePrincipalAppRoleAssignedTo -ServicePrincipalId 'a0000000-0000-4000-8000-000000000102' -BodyParameter @{ principalId = 'a0000000-0000-4000-8000-000000000301'; resourceId = 'a0000000-0000-4000-8000-000000000102'; appRoleId = '00000000-0000-0000-0000-000000000000' }
+  New-MgServicePrincipalAppRoleAssignedTo -ServicePrincipalId 'a0000000-0000-4000-8000-000000000102' -BodyParameter @{ principalId = 'a0000000-0000-4000-8000-000000000302'; resourceId = 'a0000000-0000-4000-8000-000000000102'; appRoleId = '00000000-0000-0000-0000-000000000000' }
+  Update-MgServicePrincipal -ServicePrincipalId 'a0000000-0000-4000-8000-000000000102' -AppRoleAssignmentRequired:$true
