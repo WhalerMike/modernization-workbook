@@ -12,9 +12,9 @@ review-status: pending
 ## Week 1: the authorization picture
 
 - [For the Authorizing Official: Evidence over Attestation](../../books/guides/brief-authorizing-official.md) (Companion guide, about 2 min). A one-page brief for the meeting that approves the pre-flight.
-- [Book 14 — Federal Compliance & Authorization](../../books/b14-compliance/index.md) (Book, 20 chapters, about 7 hr 51 min). Why every control needs proof, not a promise: the federal clock, the Moderate baseline and the crosswalk, closure with proof, the program-management, contingency, supply-chain, privacy and training controls, who owns compliance, and the….
+- [Book 14 — Federal Compliance & Authorization](../../books/b14-compliance/index.md) (Book, 20 chapters, about 7 hr 52 min). Why every control needs proof, not a promise: the federal clock, the Moderate baseline and the crosswalk, closure with proof, the program-management, contingency, supply-chain, privacy and training controls, who owns compliance, and the….
 
-*Milestone 1: about 7 hr 53 min.*
+*Milestone 1: about 7 hr 54 min.*
 
 ## Week 2: evidence over attestation
 
@@ -36,5 +36,5 @@ review-status: pending
 
 *Milestone 4: about a short read.*
 
-**Whole plan:** about 29 hr 1 min of reading and video, plus the labs.
+**Whole plan:** about 29 hr 2 min of reading and video, plus the labs.
 

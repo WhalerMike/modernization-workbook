@@ -269,6 +269,7 @@ Every command in this lab, in order. Each step below says what it does and what 
 Get-KdsRootKey | Select-Object KeyId, EffectiveTime, CreationTime
 Add-KdsRootKey -EffectiveTime ((Get-Date).AddHours(-10))
 Get-WinEvent -LogName 'Microsoft-Windows-KdsSvc/Operational' | Where-Object Id -eq 4004 | Select-Object -First 1 TimeCreated, Id, Message
+Get-KdsRootKey | Test-KdsRootKey
 
 New-ADOrganizationalUnit -Name "Service Accounts" -Path "<domain-dn>"
 New-ADOrganizationalUnit -Name "Disabled Service Accounts" -Path "<domain-dn>"
@@ -310,9 +311,10 @@ Remove-ADGroup -Identity "DL-gMSA-timesheet-Hosts" -Confirm:$false
 Get-KdsRootKey | Select-Object KeyId, EffectiveTime, CreationTime
 Add-KdsRootKey -EffectiveTime ((Get-Date).AddHours(-10))
 Get-WinEvent -LogName 'Microsoft-Windows-KdsSvc/Operational' | Where-Object Id -eq 4004 | Select-Object -First 1 TimeCreated, Id, Message
+Get-KdsRootKey | Test-KdsRootKey
 ```
 
-Run `Add-KdsRootKey` only if the first command returned nothing: one key per forest.
+Run `Add-KdsRootKey` only if the first command returned nothing: one key per forest. Look for Event 4004 and `True` from `Test-KdsRootKey`, which checks that the key can generate derived keys ([service account guide, A2](../../books/guides/service-account-migration.md#migration-a)).
 
 **Step 2: The OUs.**
 

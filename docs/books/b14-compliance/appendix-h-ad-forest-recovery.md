@@ -260,7 +260,7 @@ repadmin.exe /options DC_NAME -IS_GC
 
 The guide prints this command with an en dash before `IS_GC`; type a hyphen.
 
-**14. Recreate group managed service accounts** if their password generation details may have been exposed, after creating a new Key Distribution Service root key.[^aH-initial][^aH-determine] This is the one exception to the program's rule of a single root key per forest: a recovery step that replaces an exposed key, not a second key beside the first ([Service Accounts guide, A2](../guides/service-account-migration.md#migration-a)).
+**14. Recreate group managed service accounts** if their password generation details may have been exposed, after creating a new Key Distribution Service root key.[^aH-initial][^aH-determine] This is the one exception to the program's rule of a single root key per forest: a recovery step that replaces an exposed key, not a second key beside the first ([Service Accounts guide, A2](../guides/service-account-migration.md#migration-a)). If the old key is deleted and a new one created, restart the KDC on every domain controller: Learn's KDS page says a deleted key can stay cached and go on being used.[^aH-kds]
 
 **15. Set the time source.** Configure the forest root PDC emulator to synchronize time from an external source.[^aH-initial]
 
@@ -372,6 +372,7 @@ How-section coverage: the pilot is the lab drill; report-only and enforcement ar
 [^aH-plan]: Microsoft Learn, "AD Forest Recovery - Devise a plan," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-devise-a-plan> (accessed Nov 9, 2026).
 [^aH-steps]: Microsoft Learn, "AD Forest Recovery - Steps to restore the forest," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-steps-for-restoring-the-forest> (accessed Nov 9, 2026).
 [^aH-initial]: Microsoft Learn, "AD Forest Recovery - Perform initial recovery" (the step list for the first writable domain controller in each domain; reconnection; adding the global catalog), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-perform-initial-recovery> (accessed Nov 9, 2026).
+[^aH-kds]: Microsoft Learn, "Create a Key Distribution Service (KDS) root key," the note on deleting and re-creating the root key (restart the KDC on all domain controllers), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/create-the-key-distribution-services-kds-root-key> (accessed Nov 25, 2026).
 [^aH-ssbackup]: Microsoft Learn, "AD Forest Recovery - Backing up the System State data," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-backing-up-system-state> (accessed Nov 9, 2026).
 [^aH-fullbackup]: Microsoft Learn, "AD Forest Recovery - Backing up a full server," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-backing-up-a-full-server> (accessed Nov 9, 2026).
 [^aH-faq]: Microsoft Learn, "AD Forest Recovery - FAQ," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-faq> (accessed Nov 9, 2026).

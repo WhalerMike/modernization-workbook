@@ -383,11 +383,21 @@ Get-KdsRootKey
 
 `Get-KdsRootKey` returns each root key's value as well as its identifier ([Chapter 06](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md#what-it-leaves-to-you)); run it only as the Domain Admin or Enterprise Admin who would create the key anyway. Chapter 06's check reads the key's start time only, with a delegated read.
 
-If none exists, a Domain Admin or Enterprise Admin creates one, once per forest, on a Windows Server domain controller, then waits 10 hours before creating any gMSA:[^sam-kds]
+If none exists, a Domain Admin or Enterprise Admin creates one, once per forest, then waits 10 hours before creating any gMSA. Learn's procedure runs on a domain controller running Windows Server 2012 or later, in 64-bit Windows PowerShell with the Active Directory module: the gMSA cmdlets need a 64-bit architecture.[^sam-kds] This guide assumes a Windows Server 2016 baseline with Windows Server 2019 as the minimum, so every domain controller meets the version; a 32-bit PowerShell session on a 64-bit server still doesn't.
 
 ```powershell
 Add-KdsRootKey -EffectiveImmediately
 ```
+
+`-EffectiveImmediately` makes the key usable at once on the domain controller it ran on only; the other domain controllers can't use it until it has replicated to them. A domain controller on a limited replication schedule, or one with a replication problem, can still fail a host's password retrieval.[^sam-kds]
+
+Check that the key can generate derived keys. `Test-KdsRootKey` takes each key's identifier from `Get-KdsRootKey`:[^sam-test-kds]
+
+```powershell
+Get-KdsRootKey | Test-KdsRootKey
+```
+
+**Expected:** `True` for each key.
 
 Confirm the key with the KDS service's Event ID 4004:[^sam-gmsa-manage]
 
@@ -396,6 +406,8 @@ Get-WinEvent -LogName 'Microsoft-Windows-KdsSvc/Operational' | Where-Object Id -
 ```
 
 Learn's KDS page offers a key backdated 10 hours (`Add-KdsRootKey -EffectiveTime ((get-date).addhours(-10))`) for test environments with only one domain controller;[^sam-kds] the containers page says not to use it in production.[^sam-containers] Never use it in production. Create only one root key per forest: Learn's containers page says more than one makes gMSAs start failing after a password rotation,[^sam-containers] and its KDS page says a deleted and re-created key can stay cached, so the KDC has to be restarted on every domain controller.[^sam-kds] Chapter 06's code never creates a key. The one time a forest gets a new key is forest recovery after the old one may have been exposed, when [Book 14, Appendix H](../b14-compliance/appendix-h-ad-forest-recovery.md) has the gMSAs re-created after it; that's a recovery step, not a second key alongside the first.
+
+Each key's `msKds-DomainID` attribute links to the computer account of the domain controller that created it. Once that domain controller is demoted and removed, the value points to its tombstone; Learn says to ignore the broken value, which only helps track a newly created key, or to point it at another domain controller in the forest.[^sam-kds]
 
 ### A3. Create the gMSA
 
@@ -950,7 +962,7 @@ The mapping reuses the Non-Person Identity guide's [Evidence](non-person-identit
 |---|---|---|---|---|
 | A1 Inventory | Each service account, its SPNs, delegation, groups and hosts, joined to a record with two owners and a sponsor | AC-2 Account Management; CM-8 System Component Inventory | KSI-IAM-SNU; KSI-PIY-GIV | Chapter 01's register and Chapter 02's ownership run, or the A1 output for a single account |
 | Decision | Each account's reviewed disposition | AC-2; IA-5 Authenticator Management | KSI-IAM-SNU | Chapter 03's `decisions.json` and its manifest |
-| A2 KDS root key | One key, usable for at least 10 hours before the first gMSA | IA-5 | KSI-IAM-SNU | Event 4004 and the key's start time (Chapter 06's NPI-KRB-01) |
+| A2 KDS root key | One key, usable for at least 10 hours before the first gMSA | IA-5 | KSI-IAM-SNU | Event 4004, `Test-KdsRootKey` `True`, and the key's start time (Chapter 06's NPI-KRB-01) |
 | A3, B1 Create | The account was created on a plan approved in SailPoint and recorded in ServiceNow, by the pipeline for a gMSA and by a Domain Admin for a dMSA ([WD-163](../../about/decision-register.md#wd-163)), with AES, a forest-unique name and reviewed retrievers | AC-6 Least Privilege; IA-5; CM-3 Configuration Change Control | KSI-IAM-ELP; KSI-IAM-SNU; KSI-CMT-LMC | The approved plan and the apply run's manifest (Chapter 06); `Get-ADServiceAccount` output |
 | A4 Install and test | Only the reviewed hosts can retrieve the password | AC-6 | KSI-IAM-ELP | `Test-ADServiceAccount` `True` per host; `password-retrievers.json` (NPI-KRB-03) |
 | A5 Switch | The workload runs as the managed account; each SPN has one owner; no privileged group | IA-5; AC-6(5) Privileged Accounts | KSI-IAM-SNU; KSI-IAM-JIT | `sc.exe qc` and `qmanagedaccount`; `setspn -L`; NPI-KRB-08 clear |
@@ -1030,7 +1042,7 @@ A finding this page addresses is ready for closure when every applicable state h
 
 | Danger | What happens | The guard |
 |---|---|---|
-| A gMSA created before the KDS root key replicates | Password retrieval fails on hosts that ask another domain controller | Wait 10 hours after `Add-KdsRootKey -EffectiveImmediately`; never the backdated key in production (A2) |
+| A gMSA created before the KDS root key replicates, or a domain controller on a limited replication schedule or with a replication problem | Password retrieval fails on hosts that ask another domain controller | Wait 10 hours after `Add-KdsRootKey -EffectiveImmediately`; never the backdated key in production (A2) |
 | A second KDS root key | gMSAs fail after their next password rotation | One key per forest; Chapter 06 never creates one |
 | An SPN left on the old account | Kerberos to the service fails, or falls back to NTLM | Move SPNs in the switch window; `setspn -L` (A5) |
 | A host that can't retrieve the password | The service fails to start after the switch | `Test-ADServiceAccount` `True` on every host first (A4) |
@@ -1133,7 +1145,8 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 [^sam-cyberark-appkeys]: CyberArk, Privileged Access Manager - Self-Hosted, plugins, "Microsoft Azure Application Keys" (how the plugin works; required Microsoft Graph permissions), <https://docs.cyberark.com/plugins-pam-sh/latest/en/pam-sh/pasimp/microsoftazureapplicationkeys/> (accessed Nov 24, 2026).
 [^sam-cyberark-awskeys]: CyberArk, Privileged Access Manager - Self-Hosted, plugins, "AWS access keys" (verify and change; "works with standard and government cloud environments"; Region codes include `us-gov-west-1`), <https://docs.cyberark.com/plugins-pam-sh/latest/en/pam-sh/pasimp/amazonwebservicesaccesskeys/> (accessed Nov 24, 2026).
 [^sam-gmsa-overview]: Microsoft Learn, "Group Managed Service Accounts overview," software requirements (always configure AES), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/group-managed-service-accounts-overview> (accessed Nov 9, 2026).
-[^sam-kds]: Microsoft Learn, "Create a Key Distribution Service (KDS) root key," the 10-hour wait; re-created keys and the KDC restart; `-EffectiveImmediately`; the test-environment backdated key, <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/create-the-key-distribution-services-kds-root-key> (accessed Nov 9, 2026).
+[^sam-kds]: Microsoft Learn, "Create a Key Distribution Service (KDS) root key," the 10-hour wait and replication schedules; re-created keys and the KDC restart; the 64-bit requirement; Windows Server 2012 or later domain controllers; `-EffectiveImmediately` on the target domain controller; `msKds-DomainID`; the test-environment backdated key, <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/create-the-key-distribution-services-kds-root-key> (accessed Nov 9, 2026; re-read Nov 25, 2026).
+[^sam-test-kds]: Microsoft Learn, "Test-KdsRootKey," description (tests that a root key can generate derived keys; returns a Boolean) and the `-KeyId` parameter (accepts pipeline input by property name), <https://learn.microsoft.com/powershell/module/kds/test-kdsrootkey> (accessed Nov 25, 2026).
 [^sam-kcd]: Microsoft Learn, "Configuring Kerberos delegation for group Managed Service Accounts," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/configure-kerberos-delegation-group-managed-service-accounts> (accessed Nov 9, 2026).
 [^sam-dmsa-overview]: Microsoft Learn, "Delegated Managed Service Accounts overview," dMSA and gMSA comparison; migration flow (no MSA or gMSA to dMSA; two ticket lifetimes, equivalent to 14 days, four recommended, 28 days; the default ticket renewal time of 10 hours); account attributes, <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview> (accessed Nov 9 and Nov 22, 2026).
 [^sam-dmsa-setup]: Microsoft Learn, "Setting up delegated Managed Service Accounts," prerequisites; create; migrate; complete; undo and reset; event logs, <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-set-up-dmsa> (accessed Nov 9, 2026).
