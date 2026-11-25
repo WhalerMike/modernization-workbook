@@ -644,7 +644,7 @@ function Invoke-FMPPartitionedRead {
                 & $Read $p $ctx.PageSize | & { process {
                         $row = & $Project $_ $acc
                         if ($null -ne $row) {
-                            if ($js) { $w.WriteLine($js.Serialize($row)) } else { $w.WriteLine((ConvertTo-Json -InputObject $row -Depth 4 -Compress)) }
+                            if ($js -and $row -is [System.Collections.IDictionary]) { $w.WriteLine($js.Serialize($row)) } else { $w.WriteLine((ConvertTo-Json -InputObject $row -Depth 4 -Compress)) }
                             $acc.Count++
                             if ($Derive) { $null = & $Derive $row $acc }
                         }
