@@ -47,6 +47,8 @@ function Write-ZtaJson {
         Write-ZtaJson -Path out/x.json -Value @{ a = 1 }
     #>
     param([Parameter(Mandatory)][string]$Path, [Parameter(Mandatory)]$Value)
+    # .NET resolves a relative path against the process folder, not the PowerShell location: resolve it here
+    $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
     $dir = Split-Path -Parent $Path
     if ($dir) { New-Item -ItemType Directory -Force -Path $dir | Out-Null }
     $json = (ConvertTo-Json -InputObject $Value -Depth 32) -replace "`r`n", "`n"
@@ -55,6 +57,7 @@ function Write-ZtaJson {
 
 function Write-ZtaText {
     param([Parameter(Mandatory)][string]$Path, [Parameter(Mandatory)][AllowEmptyString()][string]$Text)
+    $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
     $dir = Split-Path -Parent $Path
     if ($dir) { New-Item -ItemType Directory -Force -Path $dir | Out-Null }
     [IO.File]::WriteAllText($Path, ($Text -replace "`r`n", "`n"), $script:Utf8)
@@ -615,7 +618,7 @@ function Write-ZtaEvidence {
     }
     $recPath = Join-Path $EvidencePath "records/$name.json"
     Write-ZtaJson -Path $recPath -Value $rec
-    $csv = Join-Path $EvidencePath 'records.csv'
+    $csv = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath((Join-Path $EvidencePath 'records.csv'))
     if (-not (Test-Path -LiteralPath $csv)) { Write-ZtaText -Path $csv -Text "sequence,recordedAt,task,runDate,toolVersion,result,steps,controls,ksis,recordSha256,previousRecordSha256`n" }
     $line = (@($seq, $AsOf, $t.Manifest.task, $t.Manifest.runDate, $t.Manifest.toolVersion, $rec.result, ($steps -join ' '), ($controls -join ' '), ($ksis -join ' '), (Get-ZtaFileHash -Path $recPath), "$prev") | ForEach-Object { '"' + ("$_" -replace '"', '""') + '"' }) -join ','
     [IO.File]::AppendAllText($csv, $line + "`n", $script:Utf8)
