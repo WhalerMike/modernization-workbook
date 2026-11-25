@@ -1,0 +1,2296 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="quarto-1.9.37" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+
+<meta name="description" content="A learning path for DNS and DDI engineers, Active Directory engineers, network and cloud engineers and ISSO reviewers, built on Book 08, DNS, DHCP &amp; IPAM, and the Start Kit’s DNS and DHCP collectors: read a domain’s zones, locator records, zone health and DHCP scopes as one naming plane, then sort every Active Directory DNS component into Chapter 10’s target, method and risk, with the findings to clear before anything moves. Each module’s Lab 1 runs the Start Kit on a fictional domain’s files with no server; its Lab 2 runs the same commands in your own test domain; each module ends with a knowledge check." />
+
+<title>Learning path: DNS, DHCP and IPAM – Federal Modernization Workbook</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<!-- htmldependencies:E3FAD763 -->
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-ddi-modules .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-ddi-modules'] = new List('listing-ddi-modules', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="/index.html">
+    <span class="navbar-title">Federal Modernization Workbook</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+  aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation"
+  onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="/index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/start-here.html"> 
+<span class="menu-text">Start here</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false" >
+ <span class="menu-text">Topics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-topics">    
+        <li>
+    <a class="dropdown-item" href="/docs/topics/index.html">
+ <span class="dropdown-text">All topics</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">
+ Identity and access</li>
+        <li>
+    <a class="dropdown-item" href="/docs/topics/non-person-identity.html">
+ <span class="dropdown-text">Non-Person Identity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/topics/attribute-driven-migration.html">
+ <span class="dropdown-text">Attribute-Driven Migration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/topics/hr-driven-identity.html">
+ <span class="dropdown-text">HR-Driven Identity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/topics/privileged-access.html">
+ <span class="dropdown-text">Privileged Access</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/topics/ticket-to-machine.html">
+ <span class="dropdown-text">Ticket-to-Machine</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">
+ Infrastructure</li>
+        <li>
+    <a class="dropdown-item" href="/docs/topics/data-platform.html">
+ <span class="dropdown-text">Data Platform and SQL Server</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/topics/pki.html">
+ <span class="dropdown-text">PKI and Certificates</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/topics/dns-dhcp-ipam.html">
+ <span class="dropdown-text">DNS, DHCP and IPAM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/topics/network-sd-wan.html">
+ <span class="dropdown-text">Network and SD-WAN</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/topics/endpoints.html">
+ <span class="dropdown-text">Endpoints</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">
+ Security</li>
+        <li>
+    <a class="dropdown-item" href="/docs/topics/global-secure-access.html">
+ <span class="dropdown-text">Global Secure Access</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/topics/defender-xdr.html">
+ <span class="dropdown-text">Defender XDR</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/topics/azure-security.html">
+ <span class="dropdown-text">Azure Security</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/topics/zero-trust-assessment.html">
+ <span class="dropdown-text">Zero Trust Assessment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/topics/information-protection.html">
+ <span class="dropdown-text">Information Protection</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">
+ Operations, evidence and applications</li>
+        <li>
+    <a class="dropdown-item" href="/docs/topics/provider-notices.html">
+ <span class="dropdown-text">Provider Notices</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/topics/daily-checks-dashboard.html">
+ <span class="dropdown-text">Daily Checks Dashboard</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/topics/compliance-evidence.html">
+ <span class="dropdown-text">Compliance and Evidence</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/topics/microsoft-automation.html">
+ <span class="dropdown-text">Microsoft Automation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/topics/application-modernization.html">
+ <span class="dropdown-text">Application Modernization</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-books" role="link" data-bs-toggle="dropdown" aria-expanded="false" >
+ <span class="menu-text">Books</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-books">    
+        <li>
+    <a class="dropdown-item" href="/docs/books/index.html">
+ <span class="dropdown-text">All books</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/b00-orientation/index.html">
+ <span class="dropdown-text">Book 00 — Orientation &amp; Program</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/b01-transformation-arc/index.html">
+ <span class="dropdown-text">Book 01 — The Transformation Arc</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/b02-identity/index.html">
+ <span class="dropdown-text">Book 02 — Identity &amp; Directory</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/b03-hr-identity/index.html">
+ <span class="dropdown-text">Book 03 — HR-Driven Identity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/b04-access/index.html">
+ <span class="dropdown-text">Book 04 — Access &amp; Privilege</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/b05-devices/index.html">
+ <span class="dropdown-text">Book 05 — Devices &amp; Endpoints</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/b06-data-platform/index.html">
+ <span class="dropdown-text">Book 06 — Data Platform: SQL Server Identity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/b07-pki/index.html">
+ <span class="dropdown-text">Book 07 — PKI &amp; Certificates</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/b08-ddi/index.html">
+ <span class="dropdown-text">Book 08 — DNS, DHCP &amp; IPAM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/b09-network/index.html">
+ <span class="dropdown-text">Book 09 — Network &amp; Transport</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/b10-cloud-boundary/index.html">
+ <span class="dropdown-text">Book 10 — Cloud Boundary &amp; Landing Zone</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/b11-zero-trust/index.html">
+ <span class="dropdown-text">Book 11 — Zero Trust &amp; Assessment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/b12-security-operations/index.html">
+ <span class="dropdown-text">Book 12 — Security Operations &amp; Telemetry</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/b13-governance/index.html">
+ <span class="dropdown-text">Book 13 — Governance, Drift &amp; Evidence</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/b14-compliance/index.html">
+ <span class="dropdown-text">Book 14 — Federal Compliance &amp; Authorization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/b15-day2-operations/index.html">
+ <span class="dropdown-text">Book 15 — Compliance Automation &amp; Day-2 Operations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/b16-people/index.html">
+ <span class="dropdown-text">Book 16 — People: Training &amp; Education</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/b17-ai-identity/index.html">
+ <span class="dropdown-text">Book 17 — AI Identity Governance</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/b18-application-modernization/index.html">
+ <span class="dropdown-text">Book 18 — Application Modernization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/b19-developer-workbook/index.html">
+ <span class="dropdown-text">Book 19 — Building the Attribute-Driven Migration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/b20-information-protection/index.html">
+ <span class="dropdown-text">Book 20 — Information Protection &amp; Microsoft Purview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/attribute-driven-migration.html">
+ <span class="dropdown-text">Guide: Attribute-Driven Migration to Entra ID</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/attribute-driven-migration-implementation.html">
+ <span class="dropdown-text">Guide: Attribute-Driven Migration Implementation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/intune-track-implementation.html">
+ <span class="dropdown-text">Guide: Intune Track Implementation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/arc-track-implementation.html">
+ <span class="dropdown-text">Guide: Azure Arc Track Implementation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/non-person-identity-implementation.html">
+ <span class="dropdown-text">Guide: Non-Person Identity Implementation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/service-account-migration.html">
+ <span class="dropdown-text">Guide: Non-Person Identity — Service Accounts</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/non-person-identity-zero-trust-sase.html">
+ <span class="dropdown-text">Guide: Non-Person Identity — Zero Trust, SASE and Other Clouds</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/privileged-access-implementation.html">
+ <span class="dropdown-text">Guide: Privileged Access Implementation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/provider-notices-implementation.html">
+ <span class="dropdown-text">Guide: Provider Notices Implementation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/defender-xdr-implementation.html">
+ <span class="dropdown-text">Guide: Defender XDR Engineering &amp; Operations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/azure-security-implementation.html">
+ <span class="dropdown-text">Guide: Azure Security Engineering</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/global-secure-access-implementation.html">
+ <span class="dropdown-text">Guide: Global Secure Access Implementation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/daily-checks-dashboard-implementation.html">
+ <span class="dropdown-text">Guide: Daily Checks Dashboard</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/zero-trust-assessment-implementation.html">
+ <span class="dropdown-text">Guide: Zero Trust Assessment Implementation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/ansible-configuration-automation.html">
+ <span class="dropdown-text">Guide: Ansible for Configuration Automation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/effective-meetings.html">
+ <span class="dropdown-text">Guide: Effective Meetings</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/hcm-entra-implementation.html">
+ <span class="dropdown-text">Guide: Oracle HCM to Entra ID Pipeline</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/hr-driven-identity-implementation.html">
+ <span class="dropdown-text">Guide: HR-Driven Identity Implementation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/cyberark-certificate-lifecycle.html">
+ <span class="dropdown-text">Guide: Certificate Lifecycle on CyberArk</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/infoblox-nios-implementation.html">
+ <span class="dropdown-text">Guide: Book 08 on Infoblox NIOS</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/cisco-sdwan-implementation.html">
+ <span class="dropdown-text">Guide: Book 09 on Cisco Catalyst SD-WAN</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/ttm-servicenow-sailpoint.html">
+ <span class="dropdown-text">Guide: Ticket-to-Machine on ServiceNow and SailPoint</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/snow-sailpoint-integration-kit.html">
+ <span class="dropdown-text">Guide: ServiceNow and SailPoint Integration Kit</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/ttm-task-catalog.html">
+ <span class="dropdown-text">Guide: Internal Ticket-to-Machine Task Catalog</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/dp-consolidation.html">
+ <span class="dropdown-text">Guide: Distribution Point Consolidation (decision)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/guides/dp-consolidation-implementation.html">
+ <span class="dropdown-text">Guide: Distribution Point Consolidation Implementation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/books/explainers/index.html">
+ <span class="dropdown-text">Explainers</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-projects" role="link" data-bs-toggle="dropdown" aria-expanded="false" >
+ <span class="menu-text">Projects</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-projects">    
+        <li>
+    <a class="dropdown-item" href="/docs/project-plans/index.html">
+ <span class="dropdown-text">Project Plans</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/project-plans/developer-workbooks/index.html">
+ <span class="dropdown-text">Developer Workbooks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/project-plans/developer-workbooks/privileged-access/index.html">
+ <span class="dropdown-text">Building Privileged Access</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/project-plans/developer-workbooks/non-person-identity/index.html">
+ <span class="dropdown-text">Building Non-Person Identity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/project-plans/developer-workbooks/ticket-to-machine/index.html">
+ <span class="dropdown-text">Building Ticket-to-Machine</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/project-plans/developer-workbooks/hr-driven-identity/index.html">
+ <span class="dropdown-text">Building HR-Driven Identity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/project-plans/developer-workbooks/provider-notices/index.html">
+ <span class="dropdown-text">Building Provider Notices</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/project-plans/developer-workbooks/defender-xdr/index.html">
+ <span class="dropdown-text">Building Defender XDR</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/project-plans/developer-workbooks/global-secure-access/index.html">
+ <span class="dropdown-text">Building Global Secure Access</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/project-plans/developer-workbooks/azure-security/index.html">
+ <span class="dropdown-text">Building Azure Security</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/project-plans/developer-workbooks/daily-checks/index.html">
+ <span class="dropdown-text">Building the Daily Checks Workbook</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/evaluations/index.html"> 
+<span class="menu-text">Evaluations</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/training/index.html"> 
+<span class="menu-text">Training</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/training/labs.html"> 
+<span class="menu-text">Labs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/presentations/index.html"> 
+<span class="menu-text">Presentations</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/presentations/watch.html"> 
+<span class="menu-text">Videos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/downloads.html"> 
+<span class="menu-text">Downloads</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference" role="link" data-bs-toggle="dropdown" aria-expanded="false" >
+ <span class="menu-text">Reference</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-reference">    
+        <li>
+    <a class="dropdown-item" href="/docs/reference/index.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/reference/commands.html">
+ <span class="dropdown-text">Commands</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/reference/federal-framework-crosswalk.html">
+ <span class="dropdown-text">Federal Framework Crosswalk</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/reference/source-register.html">
+ <span class="dropdown-text">Source Register</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/reference/rmf-map.html">
+ <span class="dropdown-text">RMF Map</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/reference/m-19-17-ficam-crosswalk.html">
+ <span class="dropdown-text">M-19-17 and FICAM Crosswalk</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/reference/graph-practice-crosswalk.html">
+ <span class="dropdown-text">Microsoft Practice Crosswalk</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/reference/learn-coverage.html">
+ <span class="dropdown-text">Learn Coverage Map</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/reference/zta-closure-coverage.html">
+ <span class="dropdown-text">Zero Trust Closure Coverage</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false" >
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="/docs/inspiration/index.html">
+ <span class="dropdown-text">Inspiration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/about/sources-and-verification.html">
+ <span class="dropdown-text">Sources and Verification</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/about/reviewers-guide.html">
+ <span class="dropdown-text">Reviewers&#39; Guide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/about/decision-register.html">
+ <span class="dropdown-text">Decision Register</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/docs/about/archive.html">
+ <span class="dropdown-text">Archive: every edition</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/workbook-map.html"> 
+<span class="menu-text">Workbook Map</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/WhalerMike/modernization-workbook"> <i 
+  class="bi bi-github" 
+  role="img" 
+>
+</i> 
+<span class="menu-text">GitHub</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn"
+      data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" 
+      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
+      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <h1 class="quarto-secondary-nav-title no-breadcrumbs"></h1>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" role="link"
+        aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
+        onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Training</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/labs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Labs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/lab-setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Set Up for the Labs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1"  role="navigation" aria-expanded="true">
+ <span class="menu-text">Microsoft Automation learning path</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/ms-automation-foundations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Microsoft Automation, Module 1: Graph and Azure Foundations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/ms-automation-entra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Microsoft Automation, Module 2: Microsoft Entra ID through Microsoft Graph</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/ms-automation-intune.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Microsoft Automation, Module 3: Intune through Microsoft Graph</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/ms-automation-arc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Microsoft Automation, Module 4: Azure Arc through Azure Resource Manager and Resource Graph</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="/docs/training/ticket-to-machine/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ticket-to-Machine learning path</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/ticket-to-machine/01-the-loop-and-the-typed-task.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ticket-to-Machine, Module 1: The Loop and the Typed Task</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/ticket-to-machine/02-boundary-and-least-privilege.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ticket-to-Machine, Module 2: The Boundary and Least Privilege</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/ticket-to-machine/03-one-writer-per-attribute.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ticket-to-Machine, Module 3: One Writer per Attribute</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/ticket-to-machine/04-sources-and-starting-drift.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ticket-to-Machine, Module 4: Sources and the Starting Drift</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/ticket-to-machine/05-drift-to-a-typed-task.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ticket-to-Machine, Module 5: Drift to a Typed Task</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/ticket-to-machine/06-actuation-and-the-re-read.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ticket-to-Machine, Module 6: Actuation and the Re-read Rule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/ticket-to-machine/07-evidence-for-the-isso.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ticket-to-Machine, Module 7: Evidence for the ISSO</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="/docs/training/hr-driven-identity/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HR-Driven Identity learning path</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/hr-driven-identity/01-one-writer-per-state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 1: Name one writer for every account state</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/hr-driven-identity/02-contractor-sources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 2: Run contractors from their own source</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/hr-driven-identity/03-joiners-and-the-temporary-access-pass.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 3: Make joiners ready on day one</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/hr-driven-identity/04-access-and-movers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 4: Assign access from attributes and review what a move leaves</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/hr-driven-identity/05-certificate-based-authentication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 5: Check certificate-based authentication</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/hr-driven-identity/06-separation-timing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 6: Time separations from the logs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/hr-driven-identity/07-drift-and-evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 7: Find lifecycle drift and file the evidence</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="/docs/training/privileged-access/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Privileged Access learning path</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/privileged-access/01-privileged-inventory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 1: Inventory every privileged assignment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/privileged-access/02-emergency-access-first.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 2: Emergency access first</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/privileged-access/03-conditional-access-and-the-activation-gate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 3: Conditional Access for administrators and the activation gate</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/privileged-access/04-pim-for-entra-roles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 4: PIM for Microsoft Entra roles as code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/privileged-access/05-pim-for-groups.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 5: PIM for Groups and the PRV groups</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/privileged-access/06-pim-for-azure-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 6: PIM for Azure resources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/privileged-access/07-access-reviews.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 7: Access reviews of privileged roles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/privileged-access/08-evidence-and-drift.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 8: Evidence and drift for the ISSO</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="/docs/training/attribute-driven-migration/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Attribute-Driven Migration learning path</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/attribute-driven-migration/01-the-hr-middleware.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Attribute-Driven Migration, Module 1: Send HR Records through a Middleware that Fails Closed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/attribute-driven-migration/02-a-validation-kit-check.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Attribute-Driven Migration, Module 2: Write a Validation Kit Check</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/attribute-driven-migration/03-dynamic-rules-as-code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Attribute-Driven Migration, Module 3: Keep Dynamic Rules as Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/attribute-driven-migration/04-group-policy-as-code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Attribute-Driven Migration, Module 4: Move Group Policy as Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/attribute-driven-migration/05-machine-configuration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Attribute-Driven Migration, Module 5: Build Machine Configuration Packages</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/attribute-driven-migration/06-ansible-beside-arc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Attribute-Driven Migration, Module 6: Onboard Servers with Ansible beside Arc</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/attribute-driven-migration/07-lifecycle-workflows-extensions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Attribute-Driven Migration, Module 7: Extend Lifecycle Workflows</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/attribute-driven-migration/08-drift-and-evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Attribute-Driven Migration, Module 8: Run the Drift Pipeline and Hand Over the Evidence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/attribute-driven-migration/09-deploying-to-test-and-production.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Attribute-Driven Migration, Module 9: Deploy to Test, then Production</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="/docs/training/non-person-identity/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Non-Person Identity learning path</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/non-person-identity/01-inventory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 1: Inventory every non-person identity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/non-person-identity/02-owners-and-the-orphan-rule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 2: Owners, sponsors and the orphan rule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/non-person-identity/03-decide-the-target.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 3: Decide each identity's target</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/non-person-identity/04-credential-rules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 4: Set the credential rules</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/non-person-identity/05-least-privilege.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 5: Cut the privilege of service principals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/non-person-identity/06-conditional-access.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 6: Conditional Access for workload identities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/non-person-identity/07-federation-and-managed-identities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 7: Convert to managed identities and federation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/non-person-identity/08-gmsa-dmsa-and-the-kerberos-island.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 8: Convert Kerberos accounts to gMSAs and dMSAs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/non-person-identity/09-ai-agent-identities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 9: Govern AI agent identities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/non-person-identity/10-drift-and-evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 10: Find drift and file the evidence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/non-person-identity/11-deploying-to-test-and-production.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 11: Deploy to test, then production</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="/docs/training/provider-notices/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Provider Notices learning path</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/provider-notices/01-why-provider-notices-go-unread.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 1: Why provider notices go unread</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/provider-notices/02-azure-service-health-and-alerts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 2: Azure Service Health and alerts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/provider-notices/03-microsoft-365-message-center.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 3: Microsoft 365 Message center</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/provider-notices/04-oci-announcements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 4: Oracle Cloud Infrastructure announcements</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/provider-notices/05-aws-health-and-the-support-plan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 5: AWS Health and the support plan</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/provider-notices/06-google-incidents-and-the-maintenance-gap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 6: Google incidents and the maintenance gap</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/provider-notices/07-routing-to-owners.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 7: Routing to owners</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/provider-notices/08-digest-evidence-and-go-no-go.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 8: Digest, evidence and go/no-go</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/provider-notices/09-deploying-to-test-and-production.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 9: Deploying to test and production (optional)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="/docs/training/zero-trust-assessment/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Zero Trust Assessment learning path</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/zero-trust-assessment/01-evidence-not-a-verdict.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 1: Evidence, not a verdict</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/zero-trust-assessment/02-running-the-assessment-safely.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 2: Running the assessment safely</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/zero-trust-assessment/03-from-results-to-a-closure-register.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 3: From results to a closure register</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/zero-trust-assessment/04-reconcile-re-run-and-keep-the-evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 4: Reconcile, re-run and keep the evidence</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="/docs/training/defender-xdr/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Defender XDR learning path</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/defender-xdr/01-architecture-access-and-onboarding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 1: Architecture, access and onboarding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/defender-xdr/02-prevention-and-attack-surface-reduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 2: Prevention and Attack Surface Reduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/defender-xdr/03-exposure-and-incidents.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 3: Exposure and incidents</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/defender-xdr/04-hunting-detections-and-identity-signals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 4: Hunting, detections as code and identity signals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/defender-xdr/05-automation-operations-and-evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 5: Automation, operations and evidence</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="/docs/training/global-secure-access/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Global Secure Access learning path</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/global-secure-access/01-decide-design-and-log-first.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 1: Decide, design and log first</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/global-secure-access/02-the-client-and-microsoft-traffic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 2: The client and Microsoft traffic</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/global-secure-access/03-compliant-network-and-tenant-restrictions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 3: The compliant network and tenant restrictions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/global-secure-access/04-private-apps-and-admin-paths.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 4: Private applications and administrative paths</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/global-secure-access/05-internet-access-and-tls-inspection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 5: Internet Access and TLS inspection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/global-secure-access/06-rings-rollback-and-the-evidence-package.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 6: Rings, rollback and the evidence package</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="/docs/training/azure-security/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Azure Security Engineering learning path</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/azure-security/01-the-baseline-and-the-exposure-register.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 1: The baseline and the exposure register</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/azure-security/02-ddos-protection-and-the-waf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 2: DDoS protection and the web application firewall</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/azure-security/03-the-edge-and-the-egress.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 3: The edge and the egress</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/azure-security/04-private-link-dns-and-key-vault.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 4: Private Link, DNS and Key Vault</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/azure-security/05-policy-drift-and-evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 5: Policy, drift and evidence</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="/docs/training/daily-checks-dashboard/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Daily Checks Dashboard learning path</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/daily-checks-dashboard/01-one-workbook-one-tab-per-check.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 1: One workbook, one tab per daily check</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/daily-checks-dashboard/02-reading-deploying-and-the-evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 2: Reading it, deploying it and keeping the evidence</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="/docs/training/dns-dhcp-ipam/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">DNS, DHCP and IPAM learning path</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/dns-dhcp-ipam/01-read-the-naming-plane.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 1: Read the naming plane</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/dns-dhcp-ipam/02-the-active-directory-dns-departure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 2: The Active Directory DNS departure</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14"  role="navigation" aria-expanded="true">
+ <span class="menu-text">External learning paths</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/docs/training/infoblox-training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Infoblox Training and Learning Paths</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" ></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <div id="quarto-toc-target"></div>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<div class="fmw-disclaimer" role="note" aria-label="Site disclaimer" style="background:#fff7e6;color:#5c3b00;border-bottom:1px solid #f0d9a8;font-size:.85rem;line-height:1.45;padding:.45rem 1rem;text-align:center;">
+  <strong style="color:#3d2700;">This is not an official U.S. federal government website.</strong>
+  The Federal Modernization Workbook is independent technical analysis. It does not represent the position of,
+  and has not been reviewed or endorsed by, any federal agency.
+</div>
+
+<header id="title-block-header" class="quarto-title-block default fmw-hero">
+<p class="fmw-eyebrow">Training module · Draft</p>
+<div class="quarto-title">
+<h1 class="title">Learning path: DNS, DHCP and IPAM</h1>
+<p class="subtitle lead">Modules on Book 08’s naming plane: read it from the evidence, sort what Active Directory DNS does into where it goes, with a lab on fixtures and a lab in your own test domain</p>
+<p class="fmw-topics">Topic: <a href="../../../docs/topics/dns-dhcp-ipam.html">DNS, DHCP and IPAM</a> <span class="fmw-topics-note">(every guide, lab, video and download on it)</span></p>
+<p class="fmw-word">Download (Word): <a href="index.docx" download>this page</a> · <a href="../../../downloads/training-dns-dhcp-ipam-bundle.docx" download>Learning path: DNS, DHCP and IPAM</a> <span class="fmw-word-note">(the whole edition)</span></p>
+</div>
+
+<div>
+  <div class="description">
+    A learning path for DNS and DDI engineers, Active Directory engineers, network and cloud engineers and ISSO reviewers, built on Book 08, DNS, DHCP &amp; IPAM, and the Start Kit’s DNS and DHCP collectors: read a domain’s zones, locator records, zone health and DHCP scopes as one naming plane, then sort every Active Directory DNS component into Chapter 10’s target, method and risk, with the findings to clear before anything moves. Each module’s Lab 1 runs the Start Kit on a fictional domain’s files with no server; its Lab 2 runs the same commands in your own test domain; each module ends with a knowledge check.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li>Status — Draft</li>
+  <li><a href="#who-this-path-is-for" id="toc-who-this-path-is-for">Who this path is for</a></li>
+  <li><a href="#prerequisites" id="toc-prerequisites">Prerequisites</a></li>
+  <li><a href="#get-the-code" id="toc-get-the-code">Get the code</a></li>
+  <li><a href="#what-youll-be-able-to-do" id="toc-what-youll-be-able-to-do">What you’ll be able to do</a></li>
+  <li><a href="#modules" id="toc-modules">Modules</a></li>
+  <li><a href="#what-you-need-for-the-labs" id="toc-what-you-need-for-the-labs">What you need for the labs</a></li>
+  <li><a href="#how-this-path-fits-with-the-other-pieces" id="toc-how-this-path-fits-with-the-other-pieces">How this path fits with the other pieces</a></li>
+  <li><a href="#modules-in-this-path" id="toc-modules-in-this-path">Modules in this path</a></li>
+  </ul>
+</nav>
+<section class="level2 callout-warning">
+<h2>Status — Draft</h2>
+<p>This page is still being written. Expect gaps and changes; it is not part of the workbook's production guidance.</p>
+</section>
+<p>In most agencies DNS, DHCP and IPAM grew up as a utility on the domain controllers, and nobody owns the whole of it. <a href="../../books/b08-ddi/index.md">Book 08</a> argues that the naming plane is now a control plane: identity, private cloud connectivity and security policy all depend on a name resolving to the right address from every place a client sits. This learning path teaches you to read that plane from evidence rather than from memory, and to plan its move off Active Directory DNS one component at a time. You run the <a href="https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit">Start Kit</a>’s DNS and DHCP collectors and its readiness checks on your laptop, then in a test domain.</p>
+<p>Like a <a href="https://learn.microsoft.com/training/">Microsoft Learn learning path</a>, it is a short series of modules, each built on the one before. The modules don’t repeat Book 08. They tell you what to read, in what order, what to run, and what to check you understood.</p>
+<section id="who-this-path-is-for" class="level2">
+<h2>Who this path is for</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>What you get from the path</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DNS or DDI engineer</td>
+<td>Every zone, forwarder and scope in one inventory, and each one’s target, method and risk on the new platform</td>
+</tr>
+<tr class="even">
+<td>Active Directory engineer</td>
+<td>The locator records, secure dynamic updates and DHCP registration that AD DNS provides, and what must replace each before the last domain controller goes</td>
+</tr>
+<tr class="odd">
+<td>Network or cloud engineer</td>
+<td>The DHCP options and forwarders that decide which resolver a client uses, and where cloud private DNS joins the plane</td>
+</tr>
+<tr class="even">
+<td>ISSO reviewer</td>
+<td>The federal requirements each module supports, the KSI it lines up with where the workbook has a verified pairing, and the evidence you keep</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Level:</strong> intermediate. <strong>Products:</strong> Windows Server DNS and DHCP with Active Directory Domain Services (Windows Server 2019 or later), the Windows Server DnsServer and DhcpServer PowerShell modules. <strong>Scope:</strong> a civilian agency at FedRAMP Moderate, in Microsoft 365 GCC with commercial Azure, with an on-premises Active Directory whose domain controllers run DNS, as Book 08 assumes.</p>
+</section>
+<section id="prerequisites" class="level2">
+<h2>Prerequisites</h2>
+<ul>
+<li>Book 08, <a href="../../books/b08-ddi/01-dns-is-the-control-plane.md">Chapter 01</a>: fifteen minutes, and every module refers back to it.</li>
+<li>PowerShell basics: you can run a command, import a module and read the objects it returns.</li>
+<li>For Lab 1: Windows PowerShell 5.1 or PowerShell 7, and the Start Kit (below). Nothing else.</li>
+<li>For Lab 2: a test domain you can build and throw away. <a href="#what-you-need-for-the-labs">What you need for the labs</a> says what it holds.</li>
+</ul>
+</section>
+<section id="get-the-code" class="level2">
+<h2>Get the code</h2>
+<p>Download <a href="../../../downloads/start-kit.zip">start-kit.zip</a> to your Downloads folder. It holds the Start Kit, in one folder, <code>start-kit</code>: the DNS and DHCP collectors in <code>FMPADAssessment</code>, the readiness checks in <code>FMPDdiReadiness</code>, their tests, and the fictional domain’s files the labs read, in <code>tests/fixtures/ddi</code>. Unzip it into <code>Downloads\start-kit</code>, the folder Windows’ <strong>Extract All</strong> suggests, so you work in <code>Downloads\start-kit\start-kit</code>: the zip’s name appears twice. Every lab command runs from there, as it does from <code>examples/start-kit</code> in a clone of the repository. The kit is Windows PowerShell 5.1 or PowerShell 7; it has no Python steps. <a href="../index.md#get-the-code">Get a path’s code</a> says why each step is there.</p>
+<p>In PowerShell (Windows PowerShell 5.1 or PowerShell 7):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Expand-Archive <span class="op">-</span>Path <span class="va">$HOME</span>\Downloads\start-kit<span class="op">.</span><span class="fu">zip</span> <span class="op">-</span>DestinationPath <span class="va">$HOME</span>\Downloads\start-kit <span class="op">-</span>Force</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Set-Location</span> <span class="va">$HOME</span>\Downloads\start-kit\start-kit</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Get-ChildItem</span> <span class="va">$HOME</span>\Downloads\start-kit <span class="op">-</span>Recurse <span class="op">-</span>File <span class="op">|</span> <span class="fu">Unblock-File</span></span></code></pre></div>
+<p>In Bash on Linux or macOS, or Git Bash on Windows:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> <span class="at">-o</span> ~/Downloads/start-kit.zip <span class="at">-d</span> ~/Downloads/start-kit</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Downloads/start-kit/start-kit</span></code></pre></div>
+<p>Check it works, in PowerShell, with Module 1, Lab 1, Step 2:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">$inv</span> <span class="op">=</span> <span class="fu">Get-Content</span> <span class="op">-</span>Raw tests<span class="op">/</span>fixtures<span class="op">/</span>ddi<span class="op">/</span>run-2026-11-20<span class="op">/</span>contoso<span class="op">.</span><span class="fu">example</span><span class="op">/</span>DNS<span class="op">/</span>DNSInventory<span class="op">.</span><span class="fu">json</span> <span class="op">|</span> <span class="fu">ConvertFrom-Json</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">$inv</span><span class="op">.</span><span class="fu">DnsServer</span><span class="op">,</span> <span class="va">$inv</span><span class="op">.</span><span class="fu">Zones</span><span class="op">.</span><span class="fu">Count</span></span></code></pre></div>
+<p>It prints <code>dc01.contoso.example</code> and <code>12</code>.</p>
+</section>
+<section id="what-youll-be-able-to-do" class="level2">
+<h2>What you’ll be able to do</h2>
+<p>When you finish the path, you’ll be able to:</p>
+<ul>
+<li>read a domain’s zones, the DNS servers that hold them, its locator records, its zone health and its DHCP scopes from one assessment run, and say what each tells you;</li>
+<li>spot what Book 08 says to clear before anything moves: a locator record that doesn’t resolve, a DNS server nobody could read, scavenging off, stale and duplicate records, forwarders nobody has tested;</li>
+<li>sort every Active Directory DNS component into its target, its Azure-native equivalent, its method and its risk, as Chapter 10 does;</li>
+<li>explain why the locator records stay with a service domain controllers can register in, and why Azure Private DNS can’t host them;</li>
+<li>hand the ISSO a dated inventory and a departure register they can trace to the run that produced them.</li>
+</ul>
+</section>
+<section id="modules" class="level2">
+<h2>Modules</h2>
+<p>Work through them in order.</p>
+<table class="table-striped table-hover caption-top">
+<caption>The modules of the DNS, DHCP and IPAM learning path</caption>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Module</th>
+<th>Book 08</th>
+<th>Labs</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><a href="01-read-the-naming-plane.md">Read the naming plane</a></td>
+<td>Chapters 01 to 03, and Chapter 10’s Phase 1</td>
+<td>Lab 1, Lab 2</td>
+<td>50 min</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><a href="02-the-active-directory-dns-departure.md">The Active Directory DNS departure</a></td>
+<td>Chapter 04, and Chapter 10’s “Where each component goes”</td>
+<td>Lab 1, Lab 2</td>
+<td>55 min</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total time:</strong> about 1 hour 45 minutes with each module’s Lab 1. Lab 2, in your own test domain, isn’t counted: building the domain takes most of an hour the first time.</p>
+<p>Each module follows the same units: an introduction with the federal requirements it supports, learning objectives, prerequisites, two or three concept units, Lab 1, Lab 2, a knowledge check and a summary.</p>
+</section>
+<section id="what-you-need-for-the-labs" class="level2">
+<h2>What you need for the labs</h2>
+<p><strong>Lab 1: a laptop, no server.</strong> Every Lab 1 runs the Start Kit against the files of a fictional domain, <code>contoso.example</code>, in <code>tests/fixtures/ddi/run-2026-11-20</code>: the files <code>Get-FMPDNSAssessment</code> and <code>Get-FMPDHCPInventory</code> write, for three domain controllers and two DHCP servers. The kit’s tests run the real collector under mocks and read its output with the same checks, so the fixture keeps the collectors’ shape. You need the kit and Windows PowerShell 5.1 or PowerShell 7, on Windows, Linux or macOS. Run every command from <code>examples/start-kit</code> (or <code>Downloads\start-kit\start-kit</code>). A lab that writes anything writes an <code>out</code> folder there and deletes it at the end. Nothing in Lab 1 contacts a server. The output shown in each Lab 1 is what the commands printed on November 24, 2026, in PowerShell 7.6 and Windows PowerShell 5.1.</p>
+<p><strong>Lab 2: your own test domain.</strong> Lab 2 needs one Windows Server 2019 or later virtual machine that you can checkpoint and throw away, promoted to a new forest with fictional names (the labs use <code>lab.contoso.example</code>), with the DNS Server and DHCP Server roles. Module 1’s Lab 2 builds it with Microsoft Learn’s commands. Never run Lab 2 against a production domain: the collectors only read, but the build steps create a forest. <strong>The authors didn’t run the Lab 2 steps.</strong> Each one ends with a way to back it out, and restoring the checkpoint backs out everything.</p>
+</section>
+<section id="how-this-path-fits-with-the-other-pieces" class="level2">
+<h2>How this path fits with the other pieces</h2>
+<p>Book 08 has no developer workbook: its only code is the Start Kit’s DNS and DHCP collectors and the readiness checks this path added beside them, so the labs run the kit directly, as the <a href="../zero-trust-assessment/index.md">Zero Trust Assessment path</a> does with its results kit.</p>
+<table class="table-striped table-hover caption-top">
+<caption>Where each piece of DNS, DHCP and IPAM lives</caption>
+<thead>
+<tr class="header">
+<th>Piece</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>The design</td>
+<td><a href="../../books/b08-ddi/index.md">Book 08 — DNS, DHCP &amp; IPAM</a></td>
+</tr>
+<tr class="even">
+<td>A platform build</td>
+<td><a href="../../books/guides/infoblox-nios-implementation.md">Implementing Book 08 on Infoblox NIOS</a>, research under review</td>
+</tr>
+<tr class="odd">
+<td>The code and its tests</td>
+<td><a href="https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit"><code>examples/start-kit</code></a></td>
+</tr>
+<tr class="even">
+<td>The schedule</td>
+<td><a href="../../project-plans/network-access.md">Network &amp; Access Modernization</a>: its naming and addressing plane</td>
+</tr>
+<tr class="odd">
+<td>The vendor’s own training</td>
+<td><a href="../infoblox-training.md">Infoblox Training and Learning Paths</a>: Infoblox’s courses and certifications, arranged by role</td>
+</tr>
+<tr class="even">
+<td>Private Link and its DNS in Azure</td>
+<td><a href="../azure-security/04-private-link-dns-and-key-vault.md">Azure Security Engineering, Module 4</a></td>
+</tr>
+<tr class="odd">
+<td>Everything on the topic</td>
+<td><a href="../../topics/dns-dhcp-ipam.md">Topic: DNS, DHCP and IPAM</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why the Infoblox page stays separate.</strong> It is the vendor’s own curriculum, arranged by role, for an agency that has chosen Infoblox. This path teaches Book 08’s platform-neutral design with the workbook’s own code, before and whatever the platform choice (<a href="../../books/b08-ddi/12-selection-cost-and-residual-risk.md">Chapter 12</a>). Take the Infoblox paths once the platform is chosen; they don’t replace these modules, and these modules don’t teach the product.</p>
+</section>
+<section id="modules-in-this-path" class="level2">
+<h2>Modules in this path</h2>
+<div id="ddi-modules">
+
+</div>
+<div id="quarto-navigation-envelope" class="hidden">
+<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyLXRpdGxl">Training</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXItdGl0bGU=">Federal Modernization Workbook</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uZXh0">Module 1: Read the naming plane</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1wcmV2">Module 2: Reading it, deploying it and keeping the evidence</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2luZGV4Lmh0bWxUcmFpbmluZw==">Training</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2xhYnMuaHRtbExhYnM=">Labs</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2xhYi1zZXR1cC5odG1sU2V0LVVwLWZvci10aGUtTGFicw==">Set Up for the Labs</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tMQ==">Microsoft Automation learning path</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL21zLWF1dG9tYXRpb24tZm91bmRhdGlvbnMuaHRtbE1pY3Jvc29mdC1BdXRvbWF0aW9uLC1Nb2R1bGUtMTotR3JhcGgtYW5kLUF6dXJlLUZvdW5kYXRpb25z">Microsoft Automation, Module 1: Graph and Azure Foundations</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL21zLWF1dG9tYXRpb24tZW50cmEuaHRtbE1pY3Jvc29mdC1BdXRvbWF0aW9uLC1Nb2R1bGUtMjotTWljcm9zb2Z0LUVudHJhLUlELXRocm91Z2gtTWljcm9zb2Z0LUdyYXBo">Microsoft Automation, Module 2: Microsoft Entra ID through Microsoft Graph</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL21zLWF1dG9tYXRpb24taW50dW5lLmh0bWxNaWNyb3NvZnQtQXV0b21hdGlvbiwtTW9kdWxlLTM6LUludHVuZS10aHJvdWdoLU1pY3Jvc29mdC1HcmFwaA==">Microsoft Automation, Module 3: Intune through Microsoft Graph</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL21zLWF1dG9tYXRpb24tYXJjLmh0bWxNaWNyb3NvZnQtQXV0b21hdGlvbiwtTW9kdWxlLTQ6LUF6dXJlLUFyYy10aHJvdWdoLUF6dXJlLVJlc291cmNlLU1hbmFnZXItYW5kLVJlc291cmNlLUdyYXBo">Microsoft Automation, Module 4: Azure Arc through Azure Resource Manager and Resource Graph</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tMg==">Ticket-to-Machine learning path</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3RpY2tldC10by1tYWNoaW5lLzAxLXRoZS1sb29wLWFuZC10aGUtdHlwZWQtdGFzay5odG1sVGlja2V0LXRvLU1hY2hpbmUsLU1vZHVsZS0xOi1UaGUtTG9vcC1hbmQtdGhlLVR5cGVkLVRhc2s=">Ticket-to-Machine, Module 1: The Loop and the Typed Task</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3RpY2tldC10by1tYWNoaW5lLzAyLWJvdW5kYXJ5LWFuZC1sZWFzdC1wcml2aWxlZ2UuaHRtbFRpY2tldC10by1NYWNoaW5lLC1Nb2R1bGUtMjotVGhlLUJvdW5kYXJ5LWFuZC1MZWFzdC1Qcml2aWxlZ2U=">Ticket-to-Machine, Module 2: The Boundary and Least Privilege</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3RpY2tldC10by1tYWNoaW5lLzAzLW9uZS13cml0ZXItcGVyLWF0dHJpYnV0ZS5odG1sVGlja2V0LXRvLU1hY2hpbmUsLU1vZHVsZS0zOi1PbmUtV3JpdGVyLXBlci1BdHRyaWJ1dGU=">Ticket-to-Machine, Module 3: One Writer per Attribute</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3RpY2tldC10by1tYWNoaW5lLzA0LXNvdXJjZXMtYW5kLXN0YXJ0aW5nLWRyaWZ0Lmh0bWxUaWNrZXQtdG8tTWFjaGluZSwtTW9kdWxlLTQ6LVNvdXJjZXMtYW5kLXRoZS1TdGFydGluZy1EcmlmdA==">Ticket-to-Machine, Module 4: Sources and the Starting Drift</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3RpY2tldC10by1tYWNoaW5lLzA1LWRyaWZ0LXRvLWEtdHlwZWQtdGFzay5odG1sVGlja2V0LXRvLU1hY2hpbmUsLU1vZHVsZS01Oi1EcmlmdC10by1hLVR5cGVkLVRhc2s=">Ticket-to-Machine, Module 5: Drift to a Typed Task</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3RpY2tldC10by1tYWNoaW5lLzA2LWFjdHVhdGlvbi1hbmQtdGhlLXJlLXJlYWQuaHRtbFRpY2tldC10by1NYWNoaW5lLC1Nb2R1bGUtNjotQWN0dWF0aW9uLWFuZC10aGUtUmUtcmVhZC1SdWxl">Ticket-to-Machine, Module 6: Actuation and the Re-read Rule</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3RpY2tldC10by1tYWNoaW5lLzA3LWV2aWRlbmNlLWZvci10aGUtaXNzby5odG1sVGlja2V0LXRvLU1hY2hpbmUsLU1vZHVsZS03Oi1FdmlkZW5jZS1mb3ItdGhlLUlTU08=">Ticket-to-Machine, Module 7: Evidence for the ISSO</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tMw==">HR-Driven Identity learning path</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2hyLWRyaXZlbi1pZGVudGl0eS8wMS1vbmUtd3JpdGVyLXBlci1zdGF0ZS5odG1sTW9kdWxlLTE6LU5hbWUtb25lLXdyaXRlci1mb3ItZXZlcnktYWNjb3VudC1zdGF0ZQ==">Module 1: Name one writer for every account state</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2hyLWRyaXZlbi1pZGVudGl0eS8wMi1jb250cmFjdG9yLXNvdXJjZXMuaHRtbE1vZHVsZS0yOi1SdW4tY29udHJhY3RvcnMtZnJvbS10aGVpci1vd24tc291cmNl">Module 2: Run contractors from their own source</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2hyLWRyaXZlbi1pZGVudGl0eS8wMy1qb2luZXJzLWFuZC10aGUtdGVtcG9yYXJ5LWFjY2Vzcy1wYXNzLmh0bWxNb2R1bGUtMzotTWFrZS1qb2luZXJzLXJlYWR5LW9uLWRheS1vbmU=">Module 3: Make joiners ready on day one</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2hyLWRyaXZlbi1pZGVudGl0eS8wNC1hY2Nlc3MtYW5kLW1vdmVycy5odG1sTW9kdWxlLTQ6LUFzc2lnbi1hY2Nlc3MtZnJvbS1hdHRyaWJ1dGVzLWFuZC1yZXZpZXctd2hhdC1hLW1vdmUtbGVhdmVz">Module 4: Assign access from attributes and review what a move leaves</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2hyLWRyaXZlbi1pZGVudGl0eS8wNS1jZXJ0aWZpY2F0ZS1iYXNlZC1hdXRoZW50aWNhdGlvbi5odG1sTW9kdWxlLTU6LUNoZWNrLWNlcnRpZmljYXRlLWJhc2VkLWF1dGhlbnRpY2F0aW9u">Module 5: Check certificate-based authentication</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2hyLWRyaXZlbi1pZGVudGl0eS8wNi1zZXBhcmF0aW9uLXRpbWluZy5odG1sTW9kdWxlLTY6LVRpbWUtc2VwYXJhdGlvbnMtZnJvbS10aGUtbG9ncw==">Module 6: Time separations from the logs</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2hyLWRyaXZlbi1pZGVudGl0eS8wNy1kcmlmdC1hbmQtZXZpZGVuY2UuaHRtbE1vZHVsZS03Oi1GaW5kLWxpZmVjeWNsZS1kcmlmdC1hbmQtZmlsZS10aGUtZXZpZGVuY2U=">Module 7: Find lifecycle drift and file the evidence</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tNA==">Privileged Access learning path</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3ByaXZpbGVnZWQtYWNjZXNzLzAxLXByaXZpbGVnZWQtaW52ZW50b3J5Lmh0bWxNb2R1bGUtMTotSW52ZW50b3J5LWV2ZXJ5LXByaXZpbGVnZWQtYXNzaWdubWVudA==">Module 1: Inventory every privileged assignment</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3ByaXZpbGVnZWQtYWNjZXNzLzAyLWVtZXJnZW5jeS1hY2Nlc3MtZmlyc3QuaHRtbE1vZHVsZS0yOi1FbWVyZ2VuY3ktYWNjZXNzLWZpcnN0">Module 2: Emergency access first</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3ByaXZpbGVnZWQtYWNjZXNzLzAzLWNvbmRpdGlvbmFsLWFjY2Vzcy1hbmQtdGhlLWFjdGl2YXRpb24tZ2F0ZS5odG1sTW9kdWxlLTM6LUNvbmRpdGlvbmFsLUFjY2Vzcy1mb3ItYWRtaW5pc3RyYXRvcnMtYW5kLXRoZS1hY3RpdmF0aW9uLWdhdGU=">Module 3: Conditional Access for administrators and the activation gate</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3ByaXZpbGVnZWQtYWNjZXNzLzA0LXBpbS1mb3ItZW50cmEtcm9sZXMuaHRtbE1vZHVsZS00Oi1QSU0tZm9yLU1pY3Jvc29mdC1FbnRyYS1yb2xlcy1hcy1jb2Rl">Module 4: PIM for Microsoft Entra roles as code</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3ByaXZpbGVnZWQtYWNjZXNzLzA1LXBpbS1mb3ItZ3JvdXBzLmh0bWxNb2R1bGUtNTotUElNLWZvci1Hcm91cHMtYW5kLXRoZS1QUlYtZ3JvdXBz">Module 5: PIM for Groups and the PRV groups</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3ByaXZpbGVnZWQtYWNjZXNzLzA2LXBpbS1mb3ItYXp1cmUtcmVzb3VyY2VzLmh0bWxNb2R1bGUtNjotUElNLWZvci1BenVyZS1yZXNvdXJjZXM=">Module 6: PIM for Azure resources</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3ByaXZpbGVnZWQtYWNjZXNzLzA3LWFjY2Vzcy1yZXZpZXdzLmh0bWxNb2R1bGUtNzotQWNjZXNzLXJldmlld3Mtb2YtcHJpdmlsZWdlZC1yb2xlcw==">Module 7: Access reviews of privileged roles</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3ByaXZpbGVnZWQtYWNjZXNzLzA4LWV2aWRlbmNlLWFuZC1kcmlmdC5odG1sTW9kdWxlLTg6LUV2aWRlbmNlLWFuZC1kcmlmdC1mb3ItdGhlLUlTU08=">Module 8: Evidence and drift for the ISSO</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tNQ==">Attribute-Driven Migration learning path</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2F0dHJpYnV0ZS1kcml2ZW4tbWlncmF0aW9uLzAxLXRoZS1oci1taWRkbGV3YXJlLmh0bWxBdHRyaWJ1dGUtRHJpdmVuLU1pZ3JhdGlvbiwtTW9kdWxlLTE6LVNlbmQtSFItUmVjb3Jkcy10aHJvdWdoLWEtTWlkZGxld2FyZS10aGF0LUZhaWxzLUNsb3NlZA==">Attribute-Driven Migration, Module 1: Send HR Records through a Middleware that Fails Closed</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2F0dHJpYnV0ZS1kcml2ZW4tbWlncmF0aW9uLzAyLWEtdmFsaWRhdGlvbi1raXQtY2hlY2suaHRtbEF0dHJpYnV0ZS1Ecml2ZW4tTWlncmF0aW9uLC1Nb2R1bGUtMjotV3JpdGUtYS1WYWxpZGF0aW9uLUtpdC1DaGVjaw==">Attribute-Driven Migration, Module 2: Write a Validation Kit Check</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2F0dHJpYnV0ZS1kcml2ZW4tbWlncmF0aW9uLzAzLWR5bmFtaWMtcnVsZXMtYXMtY29kZS5odG1sQXR0cmlidXRlLURyaXZlbi1NaWdyYXRpb24sLU1vZHVsZS0zOi1LZWVwLUR5bmFtaWMtUnVsZXMtYXMtQ29kZQ==">Attribute-Driven Migration, Module 3: Keep Dynamic Rules as Code</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2F0dHJpYnV0ZS1kcml2ZW4tbWlncmF0aW9uLzA0LWdyb3VwLXBvbGljeS1hcy1jb2RlLmh0bWxBdHRyaWJ1dGUtRHJpdmVuLU1pZ3JhdGlvbiwtTW9kdWxlLTQ6LU1vdmUtR3JvdXAtUG9saWN5LWFzLUNvZGU=">Attribute-Driven Migration, Module 4: Move Group Policy as Code</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2F0dHJpYnV0ZS1kcml2ZW4tbWlncmF0aW9uLzA1LW1hY2hpbmUtY29uZmlndXJhdGlvbi5odG1sQXR0cmlidXRlLURyaXZlbi1NaWdyYXRpb24sLU1vZHVsZS01Oi1CdWlsZC1NYWNoaW5lLUNvbmZpZ3VyYXRpb24tUGFja2FnZXM=">Attribute-Driven Migration, Module 5: Build Machine Configuration Packages</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2F0dHJpYnV0ZS1kcml2ZW4tbWlncmF0aW9uLzA2LWFuc2libGUtYmVzaWRlLWFyYy5odG1sQXR0cmlidXRlLURyaXZlbi1NaWdyYXRpb24sLU1vZHVsZS02Oi1PbmJvYXJkLVNlcnZlcnMtd2l0aC1BbnNpYmxlLWJlc2lkZS1BcmM=">Attribute-Driven Migration, Module 6: Onboard Servers with Ansible beside Arc</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2F0dHJpYnV0ZS1kcml2ZW4tbWlncmF0aW9uLzA3LWxpZmVjeWNsZS13b3JrZmxvd3MtZXh0ZW5zaW9ucy5odG1sQXR0cmlidXRlLURyaXZlbi1NaWdyYXRpb24sLU1vZHVsZS03Oi1FeHRlbmQtTGlmZWN5Y2xlLVdvcmtmbG93cw==">Attribute-Driven Migration, Module 7: Extend Lifecycle Workflows</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2F0dHJpYnV0ZS1kcml2ZW4tbWlncmF0aW9uLzA4LWRyaWZ0LWFuZC1ldmlkZW5jZS5odG1sQXR0cmlidXRlLURyaXZlbi1NaWdyYXRpb24sLU1vZHVsZS04Oi1SdW4tdGhlLURyaWZ0LVBpcGVsaW5lLWFuZC1IYW5kLU92ZXItdGhlLUV2aWRlbmNl">Attribute-Driven Migration, Module 8: Run the Drift Pipeline and Hand Over the Evidence</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2F0dHJpYnV0ZS1kcml2ZW4tbWlncmF0aW9uLzA5LWRlcGxveWluZy10by10ZXN0LWFuZC1wcm9kdWN0aW9uLmh0bWxBdHRyaWJ1dGUtRHJpdmVuLU1pZ3JhdGlvbiwtTW9kdWxlLTk6LURlcGxveS10by1UZXN0LC10aGVuLVByb2R1Y3Rpb24=">Attribute-Driven Migration, Module 9: Deploy to Test, then Production</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tNg==">Non-Person Identity learning path</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL25vbi1wZXJzb24taWRlbnRpdHkvMDEtaW52ZW50b3J5Lmh0bWxNb2R1bGUtMTotSW52ZW50b3J5LWV2ZXJ5LW5vbi1wZXJzb24taWRlbnRpdHk=">Module 1: Inventory every non-person identity</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL25vbi1wZXJzb24taWRlbnRpdHkvMDItb3duZXJzLWFuZC10aGUtb3JwaGFuLXJ1bGUuaHRtbE1vZHVsZS0yOi1Pd25lcnMsLXNwb25zb3JzLWFuZC10aGUtb3JwaGFuLXJ1bGU=">Module 2: Owners, sponsors and the orphan rule</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL25vbi1wZXJzb24taWRlbnRpdHkvMDMtZGVjaWRlLXRoZS10YXJnZXQuaHRtbE1vZHVsZS0zOi1EZWNpZGUtZWFjaC1pZGVudGl0eSdzLXRhcmdldA==">Module 3: Decide each identity’s target</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL25vbi1wZXJzb24taWRlbnRpdHkvMDQtY3JlZGVudGlhbC1ydWxlcy5odG1sTW9kdWxlLTQ6LVNldC10aGUtY3JlZGVudGlhbC1ydWxlcw==">Module 4: Set the credential rules</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL25vbi1wZXJzb24taWRlbnRpdHkvMDUtbGVhc3QtcHJpdmlsZWdlLmh0bWxNb2R1bGUtNTotQ3V0LXRoZS1wcml2aWxlZ2Utb2Ytc2VydmljZS1wcmluY2lwYWxz">Module 5: Cut the privilege of service principals</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL25vbi1wZXJzb24taWRlbnRpdHkvMDYtY29uZGl0aW9uYWwtYWNjZXNzLmh0bWxNb2R1bGUtNjotQ29uZGl0aW9uYWwtQWNjZXNzLWZvci13b3JrbG9hZC1pZGVudGl0aWVz">Module 6: Conditional Access for workload identities</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL25vbi1wZXJzb24taWRlbnRpdHkvMDctZmVkZXJhdGlvbi1hbmQtbWFuYWdlZC1pZGVudGl0aWVzLmh0bWxNb2R1bGUtNzotQ29udmVydC10by1tYW5hZ2VkLWlkZW50aXRpZXMtYW5kLWZlZGVyYXRpb24=">Module 7: Convert to managed identities and federation</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL25vbi1wZXJzb24taWRlbnRpdHkvMDgtZ21zYS1kbXNhLWFuZC10aGUta2VyYmVyb3MtaXNsYW5kLmh0bWxNb2R1bGUtODotQ29udmVydC1LZXJiZXJvcy1hY2NvdW50cy10by1nTVNBcy1hbmQtZE1TQXM=">Module 8: Convert Kerberos accounts to gMSAs and dMSAs</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL25vbi1wZXJzb24taWRlbnRpdHkvMDktYWktYWdlbnQtaWRlbnRpdGllcy5odG1sTW9kdWxlLTk6LUdvdmVybi1BSS1hZ2VudC1pZGVudGl0aWVz">Module 9: Govern AI agent identities</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL25vbi1wZXJzb24taWRlbnRpdHkvMTAtZHJpZnQtYW5kLWV2aWRlbmNlLmh0bWxNb2R1bGUtMTA6LUZpbmQtZHJpZnQtYW5kLWZpbGUtdGhlLWV2aWRlbmNl">Module 10: Find drift and file the evidence</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL25vbi1wZXJzb24taWRlbnRpdHkvMTEtZGVwbG95aW5nLXRvLXRlc3QtYW5kLXByb2R1Y3Rpb24uaHRtbE1vZHVsZS0xMTotRGVwbG95LXRvLXRlc3QsLXRoZW4tcHJvZHVjdGlvbg==">Module 11: Deploy to test, then production</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tNw==">Provider Notices learning path</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3Byb3ZpZGVyLW5vdGljZXMvMDEtd2h5LXByb3ZpZGVyLW5vdGljZXMtZ28tdW5yZWFkLmh0bWxNb2R1bGUtMTotV2h5LXByb3ZpZGVyLW5vdGljZXMtZ28tdW5yZWFk">Module 1: Why provider notices go unread</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3Byb3ZpZGVyLW5vdGljZXMvMDItYXp1cmUtc2VydmljZS1oZWFsdGgtYW5kLWFsZXJ0cy5odG1sTW9kdWxlLTI6LUF6dXJlLVNlcnZpY2UtSGVhbHRoLWFuZC1hbGVydHM=">Module 2: Azure Service Health and alerts</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3Byb3ZpZGVyLW5vdGljZXMvMDMtbWljcm9zb2Z0LTM2NS1tZXNzYWdlLWNlbnRlci5odG1sTW9kdWxlLTM6LU1pY3Jvc29mdC0zNjUtTWVzc2FnZS1jZW50ZXI=">Module 3: Microsoft 365 Message center</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3Byb3ZpZGVyLW5vdGljZXMvMDQtb2NpLWFubm91bmNlbWVudHMuaHRtbE1vZHVsZS00Oi1PcmFjbGUtQ2xvdWQtSW5mcmFzdHJ1Y3R1cmUtYW5ub3VuY2VtZW50cw==">Module 4: Oracle Cloud Infrastructure announcements</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3Byb3ZpZGVyLW5vdGljZXMvMDUtYXdzLWhlYWx0aC1hbmQtdGhlLXN1cHBvcnQtcGxhbi5odG1sTW9kdWxlLTU6LUFXUy1IZWFsdGgtYW5kLXRoZS1zdXBwb3J0LXBsYW4=">Module 5: AWS Health and the support plan</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3Byb3ZpZGVyLW5vdGljZXMvMDYtZ29vZ2xlLWluY2lkZW50cy1hbmQtdGhlLW1haW50ZW5hbmNlLWdhcC5odG1sTW9kdWxlLTY6LUdvb2dsZS1pbmNpZGVudHMtYW5kLXRoZS1tYWludGVuYW5jZS1nYXA=">Module 6: Google incidents and the maintenance gap</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3Byb3ZpZGVyLW5vdGljZXMvMDctcm91dGluZy10by1vd25lcnMuaHRtbE1vZHVsZS03Oi1Sb3V0aW5nLXRvLW93bmVycw==">Module 7: Routing to owners</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3Byb3ZpZGVyLW5vdGljZXMvMDgtZGlnZXN0LWV2aWRlbmNlLWFuZC1nby1uby1nby5odG1sTW9kdWxlLTg6LURpZ2VzdCwtZXZpZGVuY2UtYW5kLWdvL25vLWdv">Module 8: Digest, evidence and go/no-go</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3Byb3ZpZGVyLW5vdGljZXMvMDktZGVwbG95aW5nLXRvLXRlc3QtYW5kLXByb2R1Y3Rpb24uaHRtbE1vZHVsZS05Oi1EZXBsb3lpbmctdG8tdGVzdC1hbmQtcHJvZHVjdGlvbi0ob3B0aW9uYWwp">Module 9: Deploying to test and production (optional)</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tOA==">Zero Trust Assessment learning path</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3plcm8tdHJ1c3QtYXNzZXNzbWVudC8wMS1ldmlkZW5jZS1ub3QtYS12ZXJkaWN0Lmh0bWxNb2R1bGUtMTotRXZpZGVuY2UsLW5vdC1hLXZlcmRpY3Q=">Module 1: Evidence, not a verdict</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3plcm8tdHJ1c3QtYXNzZXNzbWVudC8wMi1ydW5uaW5nLXRoZS1hc3Nlc3NtZW50LXNhZmVseS5odG1sTW9kdWxlLTI6LVJ1bm5pbmctdGhlLWFzc2Vzc21lbnQtc2FmZWx5">Module 2: Running the assessment safely</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3plcm8tdHJ1c3QtYXNzZXNzbWVudC8wMy1mcm9tLXJlc3VsdHMtdG8tYS1jbG9zdXJlLXJlZ2lzdGVyLmh0bWxNb2R1bGUtMzotRnJvbS1yZXN1bHRzLXRvLWEtY2xvc3VyZS1yZWdpc3Rlcg==">Module 3: From results to a closure register</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL3plcm8tdHJ1c3QtYXNzZXNzbWVudC8wNC1yZWNvbmNpbGUtcmUtcnVuLWFuZC1rZWVwLXRoZS1ldmlkZW5jZS5odG1sTW9kdWxlLTQ6LVJlY29uY2lsZSwtcmUtcnVuLWFuZC1rZWVwLXRoZS1ldmlkZW5jZQ==">Module 4: Reconcile, re-run and keep the evidence</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tOQ==">Defender XDR learning path</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2RlZmVuZGVyLXhkci8wMS1hcmNoaXRlY3R1cmUtYWNjZXNzLWFuZC1vbmJvYXJkaW5nLmh0bWxNb2R1bGUtMTotQXJjaGl0ZWN0dXJlLC1hY2Nlc3MtYW5kLW9uYm9hcmRpbmc=">Module 1: Architecture, access and onboarding</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2RlZmVuZGVyLXhkci8wMi1wcmV2ZW50aW9uLWFuZC1hdHRhY2stc3VyZmFjZS1yZWR1Y3Rpb24uaHRtbE1vZHVsZS0yOi1QcmV2ZW50aW9uLWFuZC1BdHRhY2stU3VyZmFjZS1SZWR1Y3Rpb24=">Module 2: Prevention and Attack Surface Reduction</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2RlZmVuZGVyLXhkci8wMy1leHBvc3VyZS1hbmQtaW5jaWRlbnRzLmh0bWxNb2R1bGUtMzotRXhwb3N1cmUtYW5kLWluY2lkZW50cw==">Module 3: Exposure and incidents</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2RlZmVuZGVyLXhkci8wNC1odW50aW5nLWRldGVjdGlvbnMtYW5kLWlkZW50aXR5LXNpZ25hbHMuaHRtbE1vZHVsZS00Oi1IdW50aW5nLC1kZXRlY3Rpb25zLWFzLWNvZGUtYW5kLWlkZW50aXR5LXNpZ25hbHM=">Module 4: Hunting, detections as code and identity signals</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2RlZmVuZGVyLXhkci8wNS1hdXRvbWF0aW9uLW9wZXJhdGlvbnMtYW5kLWV2aWRlbmNlLmh0bWxNb2R1bGUtNTotQXV0b21hdGlvbiwtb3BlcmF0aW9ucy1hbmQtZXZpZGVuY2U=">Module 5: Automation, operations and evidence</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tMTA=">Global Secure Access learning path</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2dsb2JhbC1zZWN1cmUtYWNjZXNzLzAxLWRlY2lkZS1kZXNpZ24tYW5kLWxvZy1maXJzdC5odG1sTW9kdWxlLTE6LURlY2lkZSwtZGVzaWduLWFuZC1sb2ctZmlyc3Q=">Module 1: Decide, design and log first</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2dsb2JhbC1zZWN1cmUtYWNjZXNzLzAyLXRoZS1jbGllbnQtYW5kLW1pY3Jvc29mdC10cmFmZmljLmh0bWxNb2R1bGUtMjotVGhlLWNsaWVudC1hbmQtTWljcm9zb2Z0LXRyYWZmaWM=">Module 2: The client and Microsoft traffic</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2dsb2JhbC1zZWN1cmUtYWNjZXNzLzAzLWNvbXBsaWFudC1uZXR3b3JrLWFuZC10ZW5hbnQtcmVzdHJpY3Rpb25zLmh0bWxNb2R1bGUtMzotVGhlLWNvbXBsaWFudC1uZXR3b3JrLWFuZC10ZW5hbnQtcmVzdHJpY3Rpb25z">Module 3: The compliant network and tenant restrictions</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2dsb2JhbC1zZWN1cmUtYWNjZXNzLzA0LXByaXZhdGUtYXBwcy1hbmQtYWRtaW4tcGF0aHMuaHRtbE1vZHVsZS00Oi1Qcml2YXRlLWFwcGxpY2F0aW9ucy1hbmQtYWRtaW5pc3RyYXRpdmUtcGF0aHM=">Module 4: Private applications and administrative paths</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2dsb2JhbC1zZWN1cmUtYWNjZXNzLzA1LWludGVybmV0LWFjY2Vzcy1hbmQtdGxzLWluc3BlY3Rpb24uaHRtbE1vZHVsZS01Oi1JbnRlcm5ldC1BY2Nlc3MtYW5kLVRMUy1pbnNwZWN0aW9u">Module 5: Internet Access and TLS inspection</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2dsb2JhbC1zZWN1cmUtYWNjZXNzLzA2LXJpbmdzLXJvbGxiYWNrLWFuZC10aGUtZXZpZGVuY2UtcGFja2FnZS5odG1sTW9kdWxlLTY6LVJpbmdzLC1yb2xsYmFjay1hbmQtdGhlLWV2aWRlbmNlLXBhY2thZ2U=">Module 6: Rings, rollback and the evidence package</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tMTE=">Azure Security Engineering learning path</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2F6dXJlLXNlY3VyaXR5LzAxLXRoZS1iYXNlbGluZS1hbmQtdGhlLWV4cG9zdXJlLXJlZ2lzdGVyLmh0bWxNb2R1bGUtMTotVGhlLWJhc2VsaW5lLWFuZC10aGUtZXhwb3N1cmUtcmVnaXN0ZXI=">Module 1: The baseline and the exposure register</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2F6dXJlLXNlY3VyaXR5LzAyLWRkb3MtcHJvdGVjdGlvbi1hbmQtdGhlLXdhZi5odG1sTW9kdWxlLTI6LUREb1MtcHJvdGVjdGlvbi1hbmQtdGhlLXdlYi1hcHBsaWNhdGlvbi1maXJld2FsbA==">Module 2: DDoS protection and the web application firewall</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2F6dXJlLXNlY3VyaXR5LzAzLXRoZS1lZGdlLWFuZC10aGUtZWdyZXNzLmh0bWxNb2R1bGUtMzotVGhlLWVkZ2UtYW5kLXRoZS1lZ3Jlc3M=">Module 3: The edge and the egress</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2F6dXJlLXNlY3VyaXR5LzA0LXByaXZhdGUtbGluay1kbnMtYW5kLWtleS12YXVsdC5odG1sTW9kdWxlLTQ6LVByaXZhdGUtTGluaywtRE5TLWFuZC1LZXktVmF1bHQ=">Module 4: Private Link, DNS and Key Vault</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2F6dXJlLXNlY3VyaXR5LzA1LXBvbGljeS1kcmlmdC1hbmQtZXZpZGVuY2UuaHRtbE1vZHVsZS01Oi1Qb2xpY3ksLWRyaWZ0LWFuZC1ldmlkZW5jZQ==">Module 5: Policy, drift and evidence</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tMTI=">Daily Checks Dashboard learning path</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2RhaWx5LWNoZWNrcy1kYXNoYm9hcmQvMDEtb25lLXdvcmtib29rLW9uZS10YWItcGVyLWNoZWNrLmh0bWxNb2R1bGUtMTotT25lLXdvcmtib29rLC1vbmUtdGFiLXBlci1kYWlseS1jaGVjaw==">Module 1: One workbook, one tab per daily check</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2RhaWx5LWNoZWNrcy1kYXNoYm9hcmQvMDItcmVhZGluZy1kZXBsb3lpbmctYW5kLXRoZS1ldmlkZW5jZS5odG1sTW9kdWxlLTI6LVJlYWRpbmctaXQsLWRlcGxveWluZy1pdC1hbmQta2VlcGluZy10aGUtZXZpZGVuY2U=">Module 2: Reading it, deploying it and keeping the evidence</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tMTM=">DNS, DHCP and IPAM learning path</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2Rucy1kaGNwLWlwYW0vMDEtcmVhZC10aGUtbmFtaW5nLXBsYW5lLmh0bWxNb2R1bGUtMTotUmVhZC10aGUtbmFtaW5nLXBsYW5l">Module 1: Read the naming plane</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2Rucy1kaGNwLWlwYW0vMDItdGhlLWFjdGl2ZS1kaXJlY3RvcnktZG5zLWRlcGFydHVyZS5odG1sTW9kdWxlLTI6LVRoZS1BY3RpdmUtRGlyZWN0b3J5LUROUy1kZXBhcnR1cmU=">Module 2: The Active Directory DNS departure</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tMTQ=">External learning paths</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9kb2NzL3RyYWluaW5nL2luZm9ibG94LXRyYWluaW5nLmh0bWxJbmZvYmxveC1UcmFpbmluZy1hbmQtTGVhcm5pbmctUGF0aHM=">Infoblox Training and Learning Paths</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6SG9tZQ==">Home</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2luZGV4Lmh0bWw=">/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6U3RhcnQgaGVyZQ==">Start here</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3Mvc3RhcnQtaGVyZS5odG1s">/docs/start-here.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6VG9waWNz">Topics</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QWxsIHRvcGljcw==">All topics</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdG9waWNzL2luZGV4Lmh0bWw=">/docs/topics/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6LS0t">—</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6SWRlbnRpdHkgYW5kIGFjY2Vzcw==">Identity and access</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Tm9uLVBlcnNvbiBJZGVudGl0eQ==">Non-Person Identity</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdG9waWNzL25vbi1wZXJzb24taWRlbnRpdHkuaHRtbA==">/docs/topics/non-person-identity.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QXR0cmlidXRlLURyaXZlbiBNaWdyYXRpb24=">Attribute-Driven Migration</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdG9waWNzL2F0dHJpYnV0ZS1kcml2ZW4tbWlncmF0aW9uLmh0bWw=">/docs/topics/attribute-driven-migration.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6SFItRHJpdmVuIElkZW50aXR5">HR-Driven Identity</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdG9waWNzL2hyLWRyaXZlbi1pZGVudGl0eS5odG1s">/docs/topics/hr-driven-identity.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6UHJpdmlsZWdlZCBBY2Nlc3M=">Privileged Access</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdG9waWNzL3ByaXZpbGVnZWQtYWNjZXNzLmh0bWw=">/docs/topics/privileged-access.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6VGlja2V0LXRvLU1hY2hpbmU=">Ticket-to-Machine</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdG9waWNzL3RpY2tldC10by1tYWNoaW5lLmh0bWw=">/docs/topics/ticket-to-machine.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6SW5mcmFzdHJ1Y3R1cmU=">Infrastructure</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGF0YSBQbGF0Zm9ybSBhbmQgU1FMIFNlcnZlcg==">Data Platform and SQL Server</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdG9waWNzL2RhdGEtcGxhdGZvcm0uaHRtbA==">/docs/topics/data-platform.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6UEtJIGFuZCBDZXJ0aWZpY2F0ZXM=">PKI and Certificates</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdG9waWNzL3BraS5odG1s">/docs/topics/pki.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RE5TLCBESENQIGFuZCBJUEFN">DNS, DHCP and IPAM</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdG9waWNzL2Rucy1kaGNwLWlwYW0uaHRtbA==">/docs/topics/dns-dhcp-ipam.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6TmV0d29yayBhbmQgU0QtV0FO">Network and SD-WAN</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdG9waWNzL25ldHdvcmstc2Qtd2FuLmh0bWw=">/docs/topics/network-sd-wan.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RW5kcG9pbnRz">Endpoints</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdG9waWNzL2VuZHBvaW50cy5odG1s">/docs/topics/endpoints.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6U2VjdXJpdHk=">Security</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R2xvYmFsIFNlY3VyZSBBY2Nlc3M=">Global Secure Access</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdG9waWNzL2dsb2JhbC1zZWN1cmUtYWNjZXNzLmh0bWw=">/docs/topics/global-secure-access.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGVmZW5kZXIgWERS">Defender XDR</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdG9waWNzL2RlZmVuZGVyLXhkci5odG1s">/docs/topics/defender-xdr.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QXp1cmUgU2VjdXJpdHk=">Azure Security</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdG9waWNzL2F6dXJlLXNlY3VyaXR5Lmh0bWw=">/docs/topics/azure-security.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6WmVybyBUcnVzdCBBc3Nlc3NtZW50">Zero Trust Assessment</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdG9waWNzL3plcm8tdHJ1c3QtYXNzZXNzbWVudC5odG1s">/docs/topics/zero-trust-assessment.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6SW5mb3JtYXRpb24gUHJvdGVjdGlvbg==">Information Protection</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdG9waWNzL2luZm9ybWF0aW9uLXByb3RlY3Rpb24uaHRtbA==">/docs/topics/information-protection.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6T3BlcmF0aW9ucywgZXZpZGVuY2UgYW5kIGFwcGxpY2F0aW9ucw==">Operations, evidence and applications</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6UHJvdmlkZXIgTm90aWNlcw==">Provider Notices</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdG9waWNzL3Byb3ZpZGVyLW5vdGljZXMuaHRtbA==">/docs/topics/provider-notices.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGFpbHkgQ2hlY2tzIERhc2hib2FyZA==">Daily Checks Dashboard</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdG9waWNzL2RhaWx5LWNoZWNrcy1kYXNoYm9hcmQuaHRtbA==">/docs/topics/daily-checks-dashboard.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Q29tcGxpYW5jZSBhbmQgRXZpZGVuY2U=">Compliance and Evidence</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdG9waWNzL2NvbXBsaWFuY2UtZXZpZGVuY2UuaHRtbA==">/docs/topics/compliance-evidence.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6TWljcm9zb2Z0IEF1dG9tYXRpb24=">Microsoft Automation</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdG9waWNzL21pY3Jvc29mdC1hdXRvbWF0aW9uLmh0bWw=">/docs/topics/microsoft-automation.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QXBwbGljYXRpb24gTW9kZXJuaXphdGlvbg==">Application Modernization</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdG9waWNzL2FwcGxpY2F0aW9uLW1vZGVybml6YXRpb24uaHRtbA==">/docs/topics/application-modernization.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9va3M=">Books</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QWxsIGJvb2tz">All books</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvaW5kZXguaHRtbA==">/docs/books/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9vayAwMCDigJQgT3JpZW50YXRpb24gJiBQcm9ncmFt">Book 00 — Orientation &amp; Program</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvYjAwLW9yaWVudGF0aW9uL2luZGV4Lmh0bWw=">/docs/books/b00-orientation/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9vayAwMSDigJQgVGhlIFRyYW5zZm9ybWF0aW9uIEFyYw==">Book 01 — The Transformation Arc</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvYjAxLXRyYW5zZm9ybWF0aW9uLWFyYy9pbmRleC5odG1s">/docs/books/b01-transformation-arc/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9vayAwMiDigJQgSWRlbnRpdHkgJiBEaXJlY3Rvcnk=">Book 02 — Identity &amp; Directory</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvYjAyLWlkZW50aXR5L2luZGV4Lmh0bWw=">/docs/books/b02-identity/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9vayAwMyDigJQgSFItRHJpdmVuIElkZW50aXR5">Book 03 — HR-Driven Identity</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvYjAzLWhyLWlkZW50aXR5L2luZGV4Lmh0bWw=">/docs/books/b03-hr-identity/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9vayAwNCDigJQgQWNjZXNzICYgUHJpdmlsZWdl">Book 04 — Access &amp; Privilege</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvYjA0LWFjY2Vzcy9pbmRleC5odG1s">/docs/books/b04-access/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9vayAwNSDigJQgRGV2aWNlcyAmIEVuZHBvaW50cw==">Book 05 — Devices &amp; Endpoints</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvYjA1LWRldmljZXMvaW5kZXguaHRtbA==">/docs/books/b05-devices/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9vayAwNiDigJQgRGF0YSBQbGF0Zm9ybTogU1FMIFNlcnZlciBJZGVudGl0eQ==">Book 06 — Data Platform: SQL Server Identity</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvYjA2LWRhdGEtcGxhdGZvcm0vaW5kZXguaHRtbA==">/docs/books/b06-data-platform/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9vayAwNyDigJQgUEtJICYgQ2VydGlmaWNhdGVz">Book 07 — PKI &amp; Certificates</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvYjA3LXBraS9pbmRleC5odG1s">/docs/books/b07-pki/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9vayAwOCDigJQgRE5TLCBESENQICYgSVBBTQ==">Book 08 — DNS, DHCP &amp; IPAM</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvYjA4LWRkaS9pbmRleC5odG1s">/docs/books/b08-ddi/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9vayAwOSDigJQgTmV0d29yayAmIFRyYW5zcG9ydA==">Book 09 — Network &amp; Transport</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvYjA5LW5ldHdvcmsvaW5kZXguaHRtbA==">/docs/books/b09-network/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9vayAxMCDigJQgQ2xvdWQgQm91bmRhcnkgJiBMYW5kaW5nIFpvbmU=">Book 10 — Cloud Boundary &amp; Landing Zone</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvYjEwLWNsb3VkLWJvdW5kYXJ5L2luZGV4Lmh0bWw=">/docs/books/b10-cloud-boundary/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9vayAxMSDigJQgWmVybyBUcnVzdCAmIEFzc2Vzc21lbnQ=">Book 11 — Zero Trust &amp; Assessment</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvYjExLXplcm8tdHJ1c3QvaW5kZXguaHRtbA==">/docs/books/b11-zero-trust/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9vayAxMiDigJQgU2VjdXJpdHkgT3BlcmF0aW9ucyAmIFRlbGVtZXRyeQ==">Book 12 — Security Operations &amp; Telemetry</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvYjEyLXNlY3VyaXR5LW9wZXJhdGlvbnMvaW5kZXguaHRtbA==">/docs/books/b12-security-operations/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9vayAxMyDigJQgR292ZXJuYW5jZSwgRHJpZnQgJiBFdmlkZW5jZQ==">Book 13 — Governance, Drift &amp; Evidence</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvYjEzLWdvdmVybmFuY2UvaW5kZXguaHRtbA==">/docs/books/b13-governance/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9vayAxNCDigJQgRmVkZXJhbCBDb21wbGlhbmNlICYgQXV0aG9yaXphdGlvbg==">Book 14 — Federal Compliance &amp; Authorization</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvYjE0LWNvbXBsaWFuY2UvaW5kZXguaHRtbA==">/docs/books/b14-compliance/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9vayAxNSDigJQgQ29tcGxpYW5jZSBBdXRvbWF0aW9uICYgRGF5LTIgT3BlcmF0aW9ucw==">Book 15 — Compliance Automation &amp; Day-2 Operations</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvYjE1LWRheTItb3BlcmF0aW9ucy9pbmRleC5odG1s">/docs/books/b15-day2-operations/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9vayAxNiDigJQgUGVvcGxlOiBUcmFpbmluZyAmIEVkdWNhdGlvbg==">Book 16 — People: Training &amp; Education</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvYjE2LXBlb3BsZS9pbmRleC5odG1s">/docs/books/b16-people/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9vayAxNyDigJQgQUkgSWRlbnRpdHkgR292ZXJuYW5jZQ==">Book 17 — AI Identity Governance</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvYjE3LWFpLWlkZW50aXR5L2luZGV4Lmh0bWw=">/docs/books/b17-ai-identity/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9vayAxOCDigJQgQXBwbGljYXRpb24gTW9kZXJuaXphdGlvbg==">Book 18 — Application Modernization</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvYjE4LWFwcGxpY2F0aW9uLW1vZGVybml6YXRpb24vaW5kZXguaHRtbA==">/docs/books/b18-application-modernization/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9vayAxOSDigJQgQnVpbGRpbmcgdGhlIEF0dHJpYnV0ZS1Ecml2ZW4gTWlncmF0aW9u">Book 19 — Building the Attribute-Driven Migration</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvYjE5LWRldmVsb3Blci13b3JrYm9vay9pbmRleC5odG1s">/docs/books/b19-developer-workbook/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Qm9vayAyMCDigJQgSW5mb3JtYXRpb24gUHJvdGVjdGlvbiAmIE1pY3Jvc29mdCBQdXJ2aWV3">Book 20 — Information Protection &amp; Microsoft Purview</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvYjIwLWluZm9ybWF0aW9uLXByb3RlY3Rpb24vaW5kZXguaHRtbA==">/docs/books/b20-information-protection/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IEF0dHJpYnV0ZS1Ecml2ZW4gTWlncmF0aW9uIHRvIEVudHJhIElE">Guide: Attribute-Driven Migration to Entra ID</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL2F0dHJpYnV0ZS1kcml2ZW4tbWlncmF0aW9uLmh0bWw=">/docs/books/guides/attribute-driven-migration.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IEF0dHJpYnV0ZS1Ecml2ZW4gTWlncmF0aW9uIEltcGxlbWVudGF0aW9u">Guide: Attribute-Driven Migration Implementation</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL2F0dHJpYnV0ZS1kcml2ZW4tbWlncmF0aW9uLWltcGxlbWVudGF0aW9uLmh0bWw=">/docs/books/guides/attribute-driven-migration-implementation.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IEludHVuZSBUcmFjayBJbXBsZW1lbnRhdGlvbg==">Guide: Intune Track Implementation</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL2ludHVuZS10cmFjay1pbXBsZW1lbnRhdGlvbi5odG1s">/docs/books/guides/intune-track-implementation.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IEF6dXJlIEFyYyBUcmFjayBJbXBsZW1lbnRhdGlvbg==">Guide: Azure Arc Track Implementation</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL2FyYy10cmFjay1pbXBsZW1lbnRhdGlvbi5odG1s">/docs/books/guides/arc-track-implementation.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IE5vbi1QZXJzb24gSWRlbnRpdHkgSW1wbGVtZW50YXRpb24=">Guide: Non-Person Identity Implementation</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL25vbi1wZXJzb24taWRlbnRpdHktaW1wbGVtZW50YXRpb24uaHRtbA==">/docs/books/guides/non-person-identity-implementation.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IE5vbi1QZXJzb24gSWRlbnRpdHkg4oCUIFNlcnZpY2UgQWNjb3VudHM=">Guide: Non-Person Identity — Service Accounts</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL3NlcnZpY2UtYWNjb3VudC1taWdyYXRpb24uaHRtbA==">/docs/books/guides/service-account-migration.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IE5vbi1QZXJzb24gSWRlbnRpdHkg4oCUIFplcm8gVHJ1c3QsIFNBU0UgYW5kIE90aGVyIENsb3Vkcw==">Guide: Non-Person Identity — Zero Trust, SASE and Other Clouds</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL25vbi1wZXJzb24taWRlbnRpdHktemVyby10cnVzdC1zYXNlLmh0bWw=">/docs/books/guides/non-person-identity-zero-trust-sase.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IFByaXZpbGVnZWQgQWNjZXNzIEltcGxlbWVudGF0aW9u">Guide: Privileged Access Implementation</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL3ByaXZpbGVnZWQtYWNjZXNzLWltcGxlbWVudGF0aW9uLmh0bWw=">/docs/books/guides/privileged-access-implementation.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IFByb3ZpZGVyIE5vdGljZXMgSW1wbGVtZW50YXRpb24=">Guide: Provider Notices Implementation</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL3Byb3ZpZGVyLW5vdGljZXMtaW1wbGVtZW50YXRpb24uaHRtbA==">/docs/books/guides/provider-notices-implementation.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IERlZmVuZGVyIFhEUiBFbmdpbmVlcmluZyAmIE9wZXJhdGlvbnM=">Guide: Defender XDR Engineering &amp; Operations</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL2RlZmVuZGVyLXhkci1pbXBsZW1lbnRhdGlvbi5odG1s">/docs/books/guides/defender-xdr-implementation.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IEF6dXJlIFNlY3VyaXR5IEVuZ2luZWVyaW5n">Guide: Azure Security Engineering</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL2F6dXJlLXNlY3VyaXR5LWltcGxlbWVudGF0aW9uLmh0bWw=">/docs/books/guides/azure-security-implementation.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IEdsb2JhbCBTZWN1cmUgQWNjZXNzIEltcGxlbWVudGF0aW9u">Guide: Global Secure Access Implementation</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL2dsb2JhbC1zZWN1cmUtYWNjZXNzLWltcGxlbWVudGF0aW9uLmh0bWw=">/docs/books/guides/global-secure-access-implementation.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IERhaWx5IENoZWNrcyBEYXNoYm9hcmQ=">Guide: Daily Checks Dashboard</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL2RhaWx5LWNoZWNrcy1kYXNoYm9hcmQtaW1wbGVtZW50YXRpb24uaHRtbA==">/docs/books/guides/daily-checks-dashboard-implementation.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IFplcm8gVHJ1c3QgQXNzZXNzbWVudCBJbXBsZW1lbnRhdGlvbg==">Guide: Zero Trust Assessment Implementation</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL3plcm8tdHJ1c3QtYXNzZXNzbWVudC1pbXBsZW1lbnRhdGlvbi5odG1s">/docs/books/guides/zero-trust-assessment-implementation.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IEFuc2libGUgZm9yIENvbmZpZ3VyYXRpb24gQXV0b21hdGlvbg==">Guide: Ansible for Configuration Automation</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL2Fuc2libGUtY29uZmlndXJhdGlvbi1hdXRvbWF0aW9uLmh0bWw=">/docs/books/guides/ansible-configuration-automation.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IEVmZmVjdGl2ZSBNZWV0aW5ncw==">Guide: Effective Meetings</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL2VmZmVjdGl2ZS1tZWV0aW5ncy5odG1s">/docs/books/guides/effective-meetings.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IE9yYWNsZSBIQ00gdG8gRW50cmEgSUQgUGlwZWxpbmU=">Guide: Oracle HCM to Entra ID Pipeline</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL2hjbS1lbnRyYS1pbXBsZW1lbnRhdGlvbi5odG1s">/docs/books/guides/hcm-entra-implementation.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IEhSLURyaXZlbiBJZGVudGl0eSBJbXBsZW1lbnRhdGlvbg==">Guide: HR-Driven Identity Implementation</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL2hyLWRyaXZlbi1pZGVudGl0eS1pbXBsZW1lbnRhdGlvbi5odG1s">/docs/books/guides/hr-driven-identity-implementation.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IENlcnRpZmljYXRlIExpZmVjeWNsZSBvbiBDeWJlckFyaw==">Guide: Certificate Lifecycle on CyberArk</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL2N5YmVyYXJrLWNlcnRpZmljYXRlLWxpZmVjeWNsZS5odG1s">/docs/books/guides/cyberark-certificate-lifecycle.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IEJvb2sgMDggb24gSW5mb2Jsb3ggTklPUw==">Guide: Book 08 on Infoblox NIOS</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL2luZm9ibG94LW5pb3MtaW1wbGVtZW50YXRpb24uaHRtbA==">/docs/books/guides/infoblox-nios-implementation.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IEJvb2sgMDkgb24gQ2lzY28gQ2F0YWx5c3QgU0QtV0FO">Guide: Book 09 on Cisco Catalyst SD-WAN</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL2Npc2NvLXNkd2FuLWltcGxlbWVudGF0aW9uLmh0bWw=">/docs/books/guides/cisco-sdwan-implementation.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IFRpY2tldC10by1NYWNoaW5lIG9uIFNlcnZpY2VOb3cgYW5kIFNhaWxQb2ludA==">Guide: Ticket-to-Machine on ServiceNow and SailPoint</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL3R0bS1zZXJ2aWNlbm93LXNhaWxwb2ludC5odG1s">/docs/books/guides/ttm-servicenow-sailpoint.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IFNlcnZpY2VOb3cgYW5kIFNhaWxQb2ludCBJbnRlZ3JhdGlvbiBLaXQ=">Guide: ServiceNow and SailPoint Integration Kit</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL3Nub3ctc2FpbHBvaW50LWludGVncmF0aW9uLWtpdC5odG1s">/docs/books/guides/snow-sailpoint-integration-kit.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IEludGVybmFsIFRpY2tldC10by1NYWNoaW5lIFRhc2sgQ2F0YWxvZw==">Guide: Internal Ticket-to-Machine Task Catalog</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL3R0bS10YXNrLWNhdGFsb2cuaHRtbA==">/docs/books/guides/ttm-task-catalog.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IERpc3RyaWJ1dGlvbiBQb2ludCBDb25zb2xpZGF0aW9uIChkZWNpc2lvbik=">Guide: Distribution Point Consolidation (decision)</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL2RwLWNvbnNvbGlkYXRpb24uaHRtbA==">/docs/books/guides/dp-consolidation.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R3VpZGU6IERpc3RyaWJ1dGlvbiBQb2ludCBDb25zb2xpZGF0aW9uIEltcGxlbWVudGF0aW9u">Guide: Distribution Point Consolidation Implementation</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZ3VpZGVzL2RwLWNvbnNvbGlkYXRpb24taW1wbGVtZW50YXRpb24uaHRtbA==">/docs/books/guides/dp-consolidation-implementation.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RXhwbGFpbmVycw==">Explainers</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYm9va3MvZXhwbGFpbmVycy9pbmRleC5odG1s">/docs/books/explainers/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6UHJvamVjdHM=">Projects</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6UHJvamVjdCBQbGFucw==">Project Plans</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcHJvamVjdC1wbGFucy9pbmRleC5odG1s">/docs/project-plans/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGV2ZWxvcGVyIFdvcmtib29rcw==">Developer Workbooks</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcHJvamVjdC1wbGFucy9kZXZlbG9wZXItd29ya2Jvb2tzL2luZGV4Lmh0bWw=">/docs/project-plans/developer-workbooks/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QnVpbGRpbmcgUHJpdmlsZWdlZCBBY2Nlc3M=">Building Privileged Access</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcHJvamVjdC1wbGFucy9kZXZlbG9wZXItd29ya2Jvb2tzL3ByaXZpbGVnZWQtYWNjZXNzL2luZGV4Lmh0bWw=">/docs/project-plans/developer-workbooks/privileged-access/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QnVpbGRpbmcgTm9uLVBlcnNvbiBJZGVudGl0eQ==">Building Non-Person Identity</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcHJvamVjdC1wbGFucy9kZXZlbG9wZXItd29ya2Jvb2tzL25vbi1wZXJzb24taWRlbnRpdHkvaW5kZXguaHRtbA==">/docs/project-plans/developer-workbooks/non-person-identity/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QnVpbGRpbmcgVGlja2V0LXRvLU1hY2hpbmU=">Building Ticket-to-Machine</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcHJvamVjdC1wbGFucy9kZXZlbG9wZXItd29ya2Jvb2tzL3RpY2tldC10by1tYWNoaW5lL2luZGV4Lmh0bWw=">/docs/project-plans/developer-workbooks/ticket-to-machine/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QnVpbGRpbmcgSFItRHJpdmVuIElkZW50aXR5">Building HR-Driven Identity</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcHJvamVjdC1wbGFucy9kZXZlbG9wZXItd29ya2Jvb2tzL2hyLWRyaXZlbi1pZGVudGl0eS9pbmRleC5odG1s">/docs/project-plans/developer-workbooks/hr-driven-identity/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QnVpbGRpbmcgUHJvdmlkZXIgTm90aWNlcw==">Building Provider Notices</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcHJvamVjdC1wbGFucy9kZXZlbG9wZXItd29ya2Jvb2tzL3Byb3ZpZGVyLW5vdGljZXMvaW5kZXguaHRtbA==">/docs/project-plans/developer-workbooks/provider-notices/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QnVpbGRpbmcgRGVmZW5kZXIgWERS">Building Defender XDR</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcHJvamVjdC1wbGFucy9kZXZlbG9wZXItd29ya2Jvb2tzL2RlZmVuZGVyLXhkci9pbmRleC5odG1s">/docs/project-plans/developer-workbooks/defender-xdr/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QnVpbGRpbmcgR2xvYmFsIFNlY3VyZSBBY2Nlc3M=">Building Global Secure Access</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcHJvamVjdC1wbGFucy9kZXZlbG9wZXItd29ya2Jvb2tzL2dsb2JhbC1zZWN1cmUtYWNjZXNzL2luZGV4Lmh0bWw=">/docs/project-plans/developer-workbooks/global-secure-access/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QnVpbGRpbmcgQXp1cmUgU2VjdXJpdHk=">Building Azure Security</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcHJvamVjdC1wbGFucy9kZXZlbG9wZXItd29ya2Jvb2tzL2F6dXJlLXNlY3VyaXR5L2luZGV4Lmh0bWw=">/docs/project-plans/developer-workbooks/azure-security/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QnVpbGRpbmcgdGhlIERhaWx5IENoZWNrcyBXb3JrYm9vaw==">Building the Daily Checks Workbook</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcHJvamVjdC1wbGFucy9kZXZlbG9wZXItd29ya2Jvb2tzL2RhaWx5LWNoZWNrcy9pbmRleC5odG1s">/docs/project-plans/developer-workbooks/daily-checks/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RXZhbHVhdGlvbnM=">Evaluations</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvZXZhbHVhdGlvbnMvaW5kZXguaHRtbA==">/docs/evaluations/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6VHJhaW5pbmc=">Training</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdHJhaW5pbmcvaW5kZXguaHRtbA==">/docs/training/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6TGFicw==">Labs</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvdHJhaW5pbmcvbGFicy5odG1s">/docs/training/labs.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6UHJlc2VudGF0aW9ucw==">Presentations</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcHJlc2VudGF0aW9ucy9pbmRleC5odG1s">/docs/presentations/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6VmlkZW9z">Videos</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcHJlc2VudGF0aW9ucy93YXRjaC5odG1s">/docs/presentations/watch.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RG93bmxvYWRz">Downloads</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvZG93bmxvYWRzLmh0bWw=">/docs/downloads.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6UmVmZXJlbmNl">Reference</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6T3ZlcnZpZXc=">Overview</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcmVmZXJlbmNlL2luZGV4Lmh0bWw=">/docs/reference/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Q29tbWFuZHM=">Commands</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcmVmZXJlbmNlL2NvbW1hbmRzLmh0bWw=">/docs/reference/commands.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RmVkZXJhbCBGcmFtZXdvcmsgQ3Jvc3N3YWxr">Federal Framework Crosswalk</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcmVmZXJlbmNlL2ZlZGVyYWwtZnJhbWV3b3JrLWNyb3Nzd2Fsay5odG1s">/docs/reference/federal-framework-crosswalk.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6U291cmNlIFJlZ2lzdGVy">Source Register</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcmVmZXJlbmNlL3NvdXJjZS1yZWdpc3Rlci5odG1s">/docs/reference/source-register.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Uk1GIE1hcA==">RMF Map</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcmVmZXJlbmNlL3JtZi1tYXAuaHRtbA==">/docs/reference/rmf-map.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6TS0xOS0xNyBhbmQgRklDQU0gQ3Jvc3N3YWxr">M-19-17 and FICAM Crosswalk</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcmVmZXJlbmNlL20tMTktMTctZmljYW0tY3Jvc3N3YWxrLmh0bWw=">/docs/reference/m-19-17-ficam-crosswalk.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6TWljcm9zb2Z0IFByYWN0aWNlIENyb3Nzd2Fsaw==">Microsoft Practice Crosswalk</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcmVmZXJlbmNlL2dyYXBoLXByYWN0aWNlLWNyb3Nzd2Fsay5odG1s">/docs/reference/graph-practice-crosswalk.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6TGVhcm4gQ292ZXJhZ2UgTWFw">Learn Coverage Map</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcmVmZXJlbmNlL2xlYXJuLWNvdmVyYWdlLmh0bWw=">/docs/reference/learn-coverage.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6WmVybyBUcnVzdCBDbG9zdXJlIENvdmVyYWdl">Zero Trust Closure Coverage</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvcmVmZXJlbmNlL3p0YS1jbG9zdXJlLWNvdmVyYWdlLmh0bWw=">/docs/reference/zta-closure-coverage.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QWJvdXQ=">About</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6SW5zcGlyYXRpb24=">Inspiration</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvaW5zcGlyYXRpb24vaW5kZXguaHRtbA==">/docs/inspiration/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6U291cmNlcyBhbmQgVmVyaWZpY2F0aW9u">Sources and Verification</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYWJvdXQvc291cmNlcy1hbmQtdmVyaWZpY2F0aW9uLmh0bWw=">/docs/about/sources-and-verification.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6UmV2aWV3ZXJzJyBHdWlkZQ==">Reviewers’ Guide</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYWJvdXQvcmV2aWV3ZXJzLWd1aWRlLmh0bWw=">/docs/about/reviewers-guide.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6RGVjaXNpb24gUmVnaXN0ZXI=">Decision Register</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYWJvdXQvZGVjaXNpb24tcmVnaXN0ZXIuaHRtbA==">/docs/about/decision-register.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QXJjaGl2ZTogZXZlcnkgZWRpdGlvbg==">Archive: every edition</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2RvY3MvYWJvdXQvYXJjaGl2ZS5odG1s">/docs/about/archive.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6V29ya2Jvb2sgTWFw">Workbook Map</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L3dvcmtib29rLW1hcC5odG1s">/workbook-map.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6R2l0SHVi">GitHub</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6aHR0cHM6Ly9naXRodWIuY29tL1doYWxlck1pa2UvbW9kZXJuaXphdGlvbi13b3JrYm9vaw==">https://github.com/WhalerMike/modernization-workbook</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWJyZWFkY3J1bWJzLUROUywtREhDUC1hbmQtSVBBTS1sZWFybmluZy1wYXRo">DNS, DHCP and IPAM learning path</span></p>
+<div class="hidden quarto-markdown-envelope-contents" data-render-id="Zm9vdGVyLWxlZnQ=">
+<p>Federal Modernization Workbook — topic books for federal IT modernization, each framed Why / What / Who / How.</p>
+</div>
+<div class="hidden quarto-markdown-envelope-contents" data-render-id="Zm9vdGVyLWNlbnRlcg==">
+<p><strong>Not an official U.S. government website.</strong> Independent technical analysis; not reviewed or endorsed by any federal agency.</p>
+</div>
+<div class="hidden quarto-markdown-envelope-contents" data-render-id="Zm9vdGVyLXJpZ2h0LWh0dHBzOi8vZ2l0aHViLmNvbS9XaGFsZXJNaWtlL21vZGVybml6YXRpb24td29ya2Jvb2s=">
+<p>Source</p>
+</div>
+<div class="hidden quarto-markdown-envelope-contents" data-render-id="Zm9vdGVyLXJpZ2h0LWh0dHBzOi8vZ2l0aHViLmNvbS9XaGFsZXJNaWtlL21vZGVybml6YXRpb24td29ya2Jvb2svYmxvYi9tYWluL0xJQ0VOU0UubWQ=">
+<p>© 2026 Michael F. Stratton · License</p>
+</div>
+</div>
+<div id="quarto-listing-pipeline" class="hidden">
+<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWVuYWJsZS1tYXRoLWlubGluZQ=="><span class="math inline">\(e = mC^2\)</span></span></p>
+<div class="hidden quarto-markdown-envelope-contents" data-render-id="cGlwZWxpbmUtbGlzdGluZy1kZGktbW9kdWxlcw==">
+<table class="quarto-listing-table table">
+<thead>
+<tr>
+
+<th>
+Title
+</th>
+
+<th>
+Description
+</th>
+
+</tr>
+</thead>
+<tbody class="list">
+
+<tr data-index='0' data-listing-file-modified-sort='1795563117582' data-listing-reading-time-sort='24' data-listing-word-count-sort='4637' data-listing-title-sort='Module 1: Read the naming plane' data-listing-filename-sort='01-read-the-naming-plane.md'>
+<td>
+<a href="/docs\training\dns-dhcp-ipam\01-read-the-naming-plane.md" class="title listing-title">Module 1: Read the naming plane</a>
+</td>
+<td>
+<span class="listing-description">Book 08, Chapters 01 to 03 and Chapter 10’s Phase 1: why DNS, DHCP and IPAM are now a control plane, how split-brain DNS fails without a DNS error, what the federal requirements ask of the name layer, and what an inventory must collect before anything moves. Lab 1 reads a fictional domain’s zones, DNS servers, locator records, zone health and DHCP scopes from the Start Kit’s files; Lab 2 builds a test domain and collects the same files from it. About 50 minutes, with a knowledge check.</span>
+</td>
+
+</tr>
+
+<tr data-index='1' data-listing-file-modified-sort='1795564123692' data-listing-reading-time-sort='19' data-listing-word-count-sort='3678' data-listing-title-sort='Module 2: The Active Directory DNS departure' data-listing-filename-sort='02-the-active-directory-dns-departure.md'>
+<td>
+<a href="/docs\training\dns-dhcp-ipam\02-the-active-directory-dns-departure.md" class="title listing-title">Module 2: The Active Directory DNS departure</a>
+</td>
+<td>
+<span class="listing-description">Book 08, Chapter 04 and Chapter 10’s “Where each component goes”: what AD-integrated DNS and Windows DHCP actually do for a domain, why the locator records stay with a service domain controllers can register in, and where every other zone, forwarder and registration goes, how, and at what risk. Lab 1 builds the departure register for a fictional domain with the Start Kit’s Get-FMPDnsDepartureRegister and reads its findings; Lab 2 builds it for your test domain and checks the DHCP registration settings by hand. About 55 minutes, with a knowledge check.</span>
+</td>
+
+</tr>
+
+</tbody>
+</table>
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+</div>
+<div id="quarto-meta-markdown" class="hidden">
+<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW1ldGF0aXRsZQ==">Learning path: DNS, DHCP and IPAM – Federal Modernization Workbook</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkdGl0bGU=">Learning path: DNS, DHCP and IPAM – Federal Modernization Workbook</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZHRpdGxl">Learning path: DNS, DHCP and IPAM – Federal Modernization Workbook</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW1ldGFzaXRlbmFtZQ==">Federal Modernization Workbook</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkZGVzYw==">A learning path for DNS and DDI engineers, Active Directory engineers, network and cloud engineers and ISSO reviewers, built on Book 08, DNS, DHCP &amp; IPAM, and the Start Kit’s DNS and DHCP collectors: read a domain’s zones, locator records, zone health and DHCP scopes as one naming plane, then sort every Active Directory DNS component into Chapter 10’s target, method and risk, with the findings to clear before anything moves. Each module’s Lab 1 runs the Start Kit on a fictional domain’s files with no server; its Lab 2 runs the same commands in your own test domain; each module ends with a knowledge check.</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZGRkZXNj">A learning path for DNS and DDI engineers, Active Directory engineers, network and cloud engineers and ISSO reviewers, built on Book 08, DNS, DHCP &amp; IPAM, and the Start Kit’s DNS and DHCP collectors: read a domain’s zones, locator records, zone health and DHCP scopes as one naming plane, then sort every Active Directory DNS component into Chapter 10’s target, method and risk, with the findings to clear before anything moves. Each module’s Lab 1 runs the Start Kit on a fictional domain’s files with no server; its Lab 2 runs the same commands in your own test domain; each module ends with a knowledge check.</span></p>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id = "quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/whalermike\.github\.io\/modernization-workbook\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a  href="/docs/training/daily-checks-dashboard/02-reading-deploying-and-the-evidence.html" class="pagination-link" aria-label="Module 2: Reading it, deploying it and keeping the evidence">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Module 2: Reading it, deploying it and keeping the evidence</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a  href="/docs/training/dns-dhcp-ipam/01-read-the-naming-plane.html" class="pagination-link" aria-label="Module 1: Read the naming plane">
+        <span class="nav-page-text">Module 1: Read the naming plane</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      <div class='footer-contents'>Federal Modernization Workbook — topic books for federal IT modernization, each framed Why / What / Who / How.</div>  
+    </div>   
+    <div class="nav-footer-center">
+      <div class='footer-contents'>**Not an official U.S. government website.** Independent technical analysis; not reviewed or endorsed by any federal agency.</div>  
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://github.com/WhalerMike/modernization-workbook">
+ Source
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://github.com/WhalerMike/modernization-workbook/blob/main/LICENSE.md">
+ © 2026 Michael F. Stratton · License
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+<!-- Copy-link buttons (included after the body on every page).
+     1. "Copy link" next to the page title copies the page's address.
+     2. "Copy link" next to each download link (deck, Word bundle, video, captions, PDF) copies a link to
+        the place on the site that describes the document: its table row's anchor, else its section
+        heading, else the page. A shared link opens that page; it never starts a file download. -->
+<style>
+  .fmw-copy-link {
+    display: inline-flex; align-items: center; gap: .3em;
+    margin-left: .45em; padding: .05em .55em;
+    font-size: .78rem; line-height: 1.5; font-family: inherit;
+    color: #0f5e5c; background: #eef6f5;
+    border: 1px solid #b9dcd8; border-radius: 999px;
+    cursor: pointer; vertical-align: middle; white-space: nowrap;
+  }
+  .fmw-copy-link:hover, .fmw-copy-link:focus-visible { background: #d9eeeb; border-color: #0f5e5c; outline: none; }
+  .fmw-copy-link:focus-visible { box-shadow: 0 0 0 2px #0f5e5c40; }
+  .fmw-copy-link.fmw-copied { color: #1d4d1f; background: #e6f4e6; border-color: #8cc28f; }
+  .fmw-copy-link svg { width: 1em; height: 1em; }
+  .fmw-copy-page { margin: .35rem 0 0; }
+  .fmw-copy-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  @media print { .fmw-copy-link { display: none; } }
+</style>
+<script>
+(function () {
+  var FILE = /\.(pptx|docx|mp4|vtt|pdf|zip|xlsx)(?:[?#].*)?$/i;
+  var ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">' +
+             '<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>';
+
+  var status = document.createElement("div");
+  status.className = "fmw-copy-status";
+  status.setAttribute("role", "status");
+  status.setAttribute("aria-live", "polite");
+  document.body.appendChild(status);
+
+  function pageUrl() { return location.href.split("#")[0]; }
+
+  // The place that describes a download link: its table row's anchor, else the nearest section, else the page.
+  function shareUrlFor(link) {
+    var row = link.closest("tr");
+    if (row) {
+      var anchored = row.querySelector("[id]");
+      if (anchored && anchored.id) return pageUrl() + "#" + anchored.id;
+    }
+    var section = link.closest("section[id]");
+    if (section) return pageUrl() + "#" + section.id;
+    return pageUrl();
+  }
+
+  function copy(text, button, label) {
+    function done(ok) {
+      button.classList.toggle("fmw-copied", ok);
+      button.lastChild.textContent = ok ? " Copied" : " Copy failed";
+      status.textContent = ok ? "Link copied: " + label : "Couldn't copy the link";
+      setTimeout(function () { button.classList.remove("fmw-copied"); button.lastChild.textContent = " Copy link"; }, 1800);
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(fallback(text)); });
+    } else {
+      done(fallback(text));
+    }
+  }
+
+  function fallback(text) {
+    var t = document.createElement("textarea");
+    t.value = text; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.top = "-1000px";
+    document.body.appendChild(t); t.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    document.body.removeChild(t);
+    return ok;
+  }
+
+  function makeButton(getUrl, label, title) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "fmw-copy-link";
+    b.title = title;
+    b.setAttribute("aria-label", "Copy link to " + label);
+    b.innerHTML = ICON + '<span> Copy link</span>';
+    b.addEventListener("click", function (e) { e.preventDefault(); copy(getUrl(), b, label); });
+    return b;
+  }
+
+  // 1. Page link, under the title.
+  var title = document.querySelector("#title-block-header h1.title, header h1.title, main h1");
+  if (title) {
+    var wrap = document.createElement("div");
+    wrap.className = "fmw-copy-page";
+    var name = (title.textContent || document.title).trim();
+    wrap.appendChild(makeButton(pageUrl, "this page: " + name, "Copy a link to this page"));
+    title.insertAdjacentElement("afterend", wrap);
+  }
+
+  // 2. Share links for downloads in the page content. In a table, one button per row, in its first
+  //    cell (a row's deck, narrated edition and captions share one place on the page); elsewhere,
+  //    one button beside each download link.
+  var TIP = "Copy a link to where this document is described on the site (opens the page, not a download)";
+  var main = document.querySelector("main") || document.body;
+  var rowsDone = [];
+  main.querySelectorAll("a[href]").forEach(function (a) {
+    var href = a.getAttribute("href") || "";
+    if (!FILE.test(href) || a.closest("nav, .sidebar, #quarto-header")) return;
+    var row = a.closest("tr");
+    if (row) {
+      if (rowsDone.indexOf(row) !== -1) return;
+      rowsDone.push(row);
+      var first = row.querySelector("td, th");
+      var label = (first ? first.textContent : a.textContent).trim();
+      if (first) first.appendChild(makeButton(function () { return shareUrlFor(a); }, label, TIP));
+      return;
+    }
+    var name = (a.textContent || href).trim();
+    var heading = a.closest("section[id]");
+    var where = heading ? heading.querySelector("h1, h2, h3, h4") : null;
+    a.insertAdjacentElement("afterend", makeButton(function () { return shareUrlFor(a); },
+      name + (where ? " (" + where.textContent.trim() + ")" : ""), TIP));
+  });
+})();
+</script>
+<script>
+/* Tables that adapt to the screen. On a desktop a table stays a table. On a phone, a table of 4 to 10
+   columns becomes stacked cards: each row a card, each value labelled with its column name. Wider
+   tables (more than 10 columns, such as a coverage matrix) stay a grid on phones too. Every table sits
+   in its own scroll box, so a table wider than the text column scrolls sideways inside the column
+   instead of running under the "On this page" list. The header row stays in view while you scroll
+   down a table: below the site's top bar for a table that fits the column, at the top of its own box
+   (which then also scrolls up and down) for one that doesn't. CSS in assets/fmw-theme.scss does the
+   switch at phone width; this script adds the labels, the scroll box and the header offset. */
+(function () {
+  document.querySelectorAll("main table").forEach(function (table) {
+    if (!table.parentElement.classList.contains("fmw-table-scroll")) {
+      var box = document.createElement("div");
+      box.className = "fmw-table-scroll";
+      table.parentNode.insertBefore(box, table);
+      box.appendChild(table);
+    }
+    var head = table.querySelector("thead tr");
+    if (!head) return;
+    var names = Array.prototype.map.call(head.children, function (th) { return th.textContent.trim(); });
+    var cols = names.length;
+    if (cols >= 6) table.classList.add("fmw-dense");
+    if (cols > 10) return;
+    if (cols < 4) return;
+    table.classList.add("fmw-stack");
+    // A table whose first column is "Book" shows that value as the card's title bar (navy, white text).
+    if (names[0] === "Book") table.classList.add("fmw-book-cards");
+    table.querySelectorAll("tbody tr").forEach(function (tr) {
+      Array.prototype.forEach.call(tr.children, function (td, i) {
+        if (names[i]) td.setAttribute("data-label", names[i]);
+      });
+    });
+  });
+
+  // A box gets "fmw-wide" when its table is wider than the column. A sticky header can't follow the
+  // page out of a box that scrolls sideways, so a wide table's box also scrolls up and down.
+  function fit() {
+    document.querySelectorAll(".fmw-table-scroll").forEach(function (box) {
+      box.classList.remove("fmw-wide");
+      if (box.scrollWidth > box.clientWidth + 1) box.classList.add("fmw-wide");
+    });
+  }
+  // Keep headers below the top bar while it shows (it slides away as you scroll down).
+  var bar = document.querySelector("#quarto-header");
+  function offset() {
+    var top = 0;
+    if (bar) top = Math.max(0, Math.round(bar.getBoundingClientRect().bottom));
+    document.documentElement.style.setProperty("--fmw-sticky-top", top + "px");
+  }
+  var timer;
+  window.addEventListener("resize", function () {
+    clearTimeout(timer);
+    timer = setTimeout(function () { fit(); offset(); }, 150);
+  });
+  // The bar slides in and out, so measure again once it has finished moving.
+  var settle;
+  window.addEventListener("scroll", function () {
+    offset();
+    clearTimeout(settle);
+    settle = setTimeout(offset, 350);
+  }, { passive: true });
+  if (bar) bar.addEventListener("transitionend", offset);
+  fit();
+  offset();
+})();
+</script>
+<!--
+  Site search: Pagefind's Component UI (https://pagefind.app/), in the navbar.
+  The deploy workflow builds the index into _site/pagefind/ after the render
+  (see pagefind.yml). Quarto's own search is off (_quarto.yml, website.search),
+  so the browser no longer downloads one large search.json: Pagefind fetches only
+  the index pieces a search needs. Ctrl+K (Cmd+K on a Mac) opens it too.
+  In a local render that skipped Pagefind, the button doesn't appear.
+-->
+<style>
+  /* Quarto orders the navbar: toggler 1, title 2, menus 20, tools 900. The menus are
+     wider than many screens, so the search box goes right after the title (3),
+     where it stays visible, rather than at the far right. */
+  .fmw-search { display: flex; align-items: center; margin: 0 .75rem; order: 3; white-space: nowrap; flex-shrink: 0; }
+</style>
+<script>
+  (function () {
+    var bar = document.querySelector("#quarto-header nav.navbar .navbar-container");
+    if (!bar) return;
+    // The site root, from Quarto's offset meta, or from where site_libs is loaded.
+    var offset = (document.querySelector('meta[name="quarto:offset"]') || {}).content;
+    if (!offset) {
+      var lib = document.querySelector('script[src*="site_libs/"]');
+      offset = lib ? lib.getAttribute("src").split("site_libs/")[0] : "./";
+    }
+    var root = new URL(offset || "./", window.location.href);
+    var bundle = new URL("pagefind/", root);
+    fetch(new URL("pagefind-entry.json", bundle), { method: "HEAD" }).then(function (r) {
+      if (!r.ok) return;
+      var config = document.createElement("pagefind-config");
+      config.setAttribute("bundle-path", bundle.pathname);
+      config.setAttribute("base-url", root.pathname);
+      var wrap = document.createElement("div");
+      wrap.className = "fmw-search";
+      var trigger = document.createElement("pagefind-modal-trigger");
+      trigger.setAttribute("placeholder", "Search");
+      wrap.appendChild(trigger);
+      document.body.appendChild(config);
+      document.body.appendChild(document.createElement("pagefind-modal"));
+      bar.appendChild(wrap);
+      var css = document.createElement("link");
+      css.rel = "stylesheet";
+      css.href = new URL("pagefind-component-ui.css", bundle).href;
+      document.head.appendChild(css);
+      var js = document.createElement("script");
+      js.type = "module";
+      js.src = new URL("pagefind-component-ui.js", bundle).href;
+      document.head.appendChild(js);
+    }).catch(function () {});
+  })();
+</script>
+<script>
+  document.querySelectorAll("section#footnotes").forEach(function (s) {
+    if (s.querySelector("h2")) return;
+    var h = document.createElement("h2");
+    h.id = "notes"; h.className = "fmw-notes-title"; h.textContent = "Notes";
+    var hr = s.querySelector("hr");
+    s.insertBefore(h, hr ? hr.nextSibling : s.firstChild);
+    if (hr) hr.remove();
+  });
+</script>
+
+</body>
+
+</html>

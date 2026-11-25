@@ -65,6 +65,8 @@ The learning path and its hands-on labs.
 
 | Page | What it is |
 |---|---|
+| [Learning path: DNS, DHCP and IPAM](../training/dns-dhcp-ipam/index.md) | A learning path for DNS and DDI engineers, Active Directory engineers, network and cloud engineers and ISSO reviewers, built on Book 08, DNS, DHCP & IPAM, and the Start Kit's DNS and DHCP collectors: read a domain's zones, locator… |
+| [Labs](../training/labs.md#ddi) | Every lab in the DNS, DHCP and IPAM learning path: what each needs, where it runs, and its commands. |
 | [Infoblox Training and Learning Paths](../training/infoblox-training.md) | The vendor's own training, arranged as paths by role; not a workbook learning path. |
 
 : Learn {.striped .hover}
@@ -124,8 +126,6 @@ What the workbook doesn't have on DNS, DHCP and IPAM, and whether it should. [Al
 
 | Missing | Why |
 |---|---|
-| Developer workbook | Not needed, because the only code today is the Start Kit's DNS and DHCP inventory; revisit when its learning path is planned. |
-| Learning path | Needed: ranked in the learning path plan. Until then the Infoblox training page, under Learn, lists the vendor's paths. |
-| Labs | Needed: they come with the learning path. |
+| Developer workbook | Not needed, because the code is the Start Kit's DNS and DHCP collectors and the readiness checks beside them, and the learning path's labs run the kit directly. |
 
 : Not here {.striped .hover}

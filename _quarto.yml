@@ -435,6 +435,11 @@ website:
           contents:
             - docs/training/daily-checks-dashboard/01-one-workbook-one-tab-per-check.md
             - docs/training/daily-checks-dashboard/02-reading-deploying-and-the-evidence.md
+        - section: "DNS, DHCP and IPAM learning path"
+          href: docs/training/dns-dhcp-ipam/index.md
+          contents:
+            - docs/training/dns-dhcp-ipam/01-read-the-naming-plane.md
+            - docs/training/dns-dhcp-ipam/02-the-active-directory-dns-departure.md
         - section: "External learning paths"
           contents:
             - docs/training/infoblox-training.md
