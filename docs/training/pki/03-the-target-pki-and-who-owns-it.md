@@ -39,7 +39,7 @@ After this module, you'll be able to:
 ## Prerequisites (1 minute)
 
 - [Module 1](01-what-ad-cs-holds-up.md) and [Module 2](02-hardening-what-stays.md). This lab runs Module 1's inventory and classification again in its own run folder, so you don't need their output.
-- The Start Kit unzipped as the path's [Get the code](index.md#get-the-code) says, version 1.7.0 or later of `FMPADAssessment`.
+- The Start Kit unzipped as the path's [Get the code](index.md#get-the-code) says, version 1.8.0 or later of `FMPADAssessment`.
 
 ## Unit 1: Four issuers, not one replacement (8 minutes)
 
@@ -174,7 +174,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/start-kit` and make the ru
     Expected output:
 
     ```text
-    1.7.0
+    1.8.0
     ```
 
 2. **Map each published template to its target issuer.** Inventory the snapshot and classify its templates, as in Module 1, then list the published ones by target:

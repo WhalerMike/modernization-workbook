@@ -64,7 +64,7 @@ Import-Module .\powershell\FMPADAssessment -Force
 (Get-Module FMPADAssessment).Version.ToString()
 ```
 
-It prints `1.7.0`. Modules 1 and 2 write their output under `$HOME\fmp-labs\pki`, and Modules 3 and 4 keep each run in its own dated folder under `C:\FMWLabs\results`. Both are outside the kit's folder, so the kit's own tests still pass after you run them.
+It prints `1.8.0`. Modules 1 and 2 write their output under `$HOME\fmp-labs\pki`, and Modules 3 and 4 keep each run in its own dated folder under `C:\FMWLabs\results`. Both are outside the kit's folder, so the kit's own tests still pass after you run them.
 
 ## What you'll be able to do
 

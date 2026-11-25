@@ -82,6 +82,10 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\hr-driven-identity-code\hr-lifecycle
 
+$Run = "C:\FMWLabs\results\hr-driven-identity-01-one-writer-per-state\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
 # Step 1
 python python/graph_export.py --task writers-scan --list
 
@@ -89,19 +93,19 @@ python python/graph_export.py --task writers-scan --list
 python python/writer_register.py check --register config/writer-register.json
 
 # Step 3
-python python/writer_register.py scan --register config/writer-register.json --audit tests/fixtures/ch01/directory-audits.json --since 2026-10-01 --until 2026-10-31 --cloud gcc --out out/ch01
+python python/writer_register.py scan --register config/writer-register.json --audit tests/fixtures/ch01/directory-audits.json --since 2026-10-01 --until 2026-10-31 --cloud gcc --out "$Run\ch01"
 
 # Step 4
-python -c "import json; [print(r['Rule'], r['Severity'], r['Object'], '|', r['Issue']) for r in json.load(open('out/ch01/findings.json'))]"
+python -c "import json, sys; [print(r['Rule'], r['Severity'], r['Object'], '|', r['Issue']) for r in json.load(open(sys.argv[1]))]" "$Run\ch01\findings.json"
 
 # Step 5
-python -c "import json; print(json.load(open('out/ch01/queries.json'))[2])"
+python -c "import json, sys; print(json.load(open(sys.argv[1]))[2])" "$Run\ch01\queries.json"
 
 # Step 6
 python -m pytest -q -p no:cacheprovider tests
 
 # Step 6
-Remove-Item -Recurse -Force out
+Get-ChildItem C:\FMWLabs\results\hr-driven-identity-01-one-writer-per-state\lab1 -Name
 ```
 
 :::
@@ -114,7 +118,23 @@ Every step runs in PowerShell 7, the Python commands included, so you can follow
 Set-Location C:\FMWLabs\hr-driven-identity-code\hr-lifecycle
 ```
 
-Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr-lifecycle`; every step runs the same there except the last command, which is `rm -rf out` in Bash. In a clone of the repository, use the `examples` folder of the same name.
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
+
+```powershell
+$Run = "C:\FMWLabs\results\hr-driven-identity-01-one-writer-per-state\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\hr-driven-identity-01-one-writer-per-state\lab1\<run>
+```
+
+The run's date is only the folder's name. The data's dates are `--since` and `--until`, which stay the same, so every run's findings match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
+
+Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr-lifecycle`, make the run folder with `Run=/c/FMWLabs/results/hr-driven-identity-01-one-writer-per-state/lab1/$(date -u +%Y-%m-%dT%H%M%SZ); mkdir -p "$Run"`, and every step runs the same there. In a clone of the repository, use the `examples` folder of the same name.
 
 1. List what the scan reads, and with what permission:
 
@@ -147,7 +167,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 3. Scan October's audit records:
 
     ```powershell
-    python python/writer_register.py scan --register config/writer-register.json --audit tests/fixtures/ch01/directory-audits.json --since 2026-10-01 --until 2026-10-31 --cloud gcc --out out/ch01
+    python python/writer_register.py scan --register config/writer-register.json --audit tests/fixtures/ch01/directory-audits.json --since 2026-10-01 --until 2026-10-31 --cloud gcc --out "$Run\ch01"
     ```
 
     Expected output:
@@ -155,7 +175,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
     ```text
     Protected writes: 11 (writer 5, backstop 1, second writer 4, forbidden 1)
     Writers: 5 Finding, 1 Warn, 0 Info
-    Written to out/ch01 (manifest.json lists every file's SHA-256)
+    Written to C:/FMWLabs/results/hr-driven-identity-01-one-writer-per-state/lab1/<run>/ch01 (manifest.json lists every file's SHA-256)
     ```
 
     The exit code is 2 (`$LASTEXITCODE`), because the fixture holds findings.
@@ -163,7 +183,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 4. Read the findings:
 
     ```powershell
-    python -c "import json; [print(r['Rule'], r['Severity'], r['Object'], '|', r['Issue']) for r in json.load(open('out/ch01/findings.json'))]"
+    python -c "import json, sys; [print(r['Rule'], r['Severity'], r['Object'], '|', r['Issue']) for r in json.load(open(sys.argv[1]))]" "$Run\ch01\findings.json"
     ```
 
     Expected output:
@@ -182,7 +202,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 5. Read one saved query:
 
     ```powershell
-    python -c "import json; print(json.load(open('out/ch01/queries.json'))[2])"
+    python -c "import json, sys; print(json.load(open(sys.argv[1]))[2])" "$Run\ch01\queries.json"
     ```
 
     Expected output:
@@ -201,10 +221,16 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 
     Expected: the last line is `57 passed` and the time the run took.
 
-    Then delete the `out` folder Step 3 wrote, so the next run starts clean:
+    Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
 
     ```powershell
-    Remove-Item -Recurse -Force out
+    Get-ChildItem C:\FMWLabs\results\hr-driven-identity-01-one-writer-per-state\lab1 -Name
+    ```
+
+    Expected output: one line per run, oldest first, the last one this run:
+
+    ```text
+    <run>
     ```
 
 ## Exercise: Lab 2, your test tenant (5 minutes to read)

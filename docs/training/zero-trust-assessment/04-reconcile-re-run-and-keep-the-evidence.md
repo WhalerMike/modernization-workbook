@@ -67,30 +67,34 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\zta-results
 
-./Invoke-ZtaNormalize.ps1 -ExportPath tests/fixtures/run-2026-10-27 -OutputPath out/run1
-./Invoke-ZtaNormalize.ps1 -ExportPath tests/fixtures/run-2026-11-10 -OutputPath out/run2 -ReviewsPath tests/fixtures/inputs/reviews.csv
-./Invoke-ZtaRegister.ps1 -RunPath out/run2 -OutputPath out/run2-register -ExceptionsPath tests/fixtures/inputs/exceptions.csv
+$Run = "C:\FMWLabs\results\zero-trust-assessment-04-reconcile-re-run-and-keep-the-evidence\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
+./Invoke-ZtaNormalize.ps1 -ExportPath tests/fixtures/run-2026-10-27 -OutputPath "$Run\run1"
+./Invoke-ZtaNormalize.ps1 -ExportPath tests/fixtures/run-2026-11-10 -OutputPath "$Run\run2" -ReviewsPath tests/fixtures/inputs/reviews.csv
+./Invoke-ZtaRegister.ps1 -RunPath "$Run\run2" -OutputPath "$Run\run2-register" -ExceptionsPath tests/fixtures/inputs/exceptions.csv
 
 # Step 1: Compare the two runs
-./Invoke-ZtaCompare.ps1 -PreviousPath out/run1 -CurrentPath out/run2 -OutputPath out/compare
+./Invoke-ZtaCompare.ps1 -PreviousPath "$Run\run1" -CurrentPath "$Run\run2" -OutputPath "$Run\compare"
 
 # Step 2: Read what changed
-(Get-Content -Raw out/compare/comparison.json | ConvertFrom-Json).rows | Where-Object change -In 'no-longer-evaluated', 'regressed', 'new' | Format-Table testId, change, previous, current
+(Get-Content -Raw "$Run\compare\comparison.json" | ConvertFrom-Json).rows | Where-Object change -In 'no-longer-evaluated', 'regressed', 'new' | Format-Table testId, change, previous, current
 
 # Step 3: Seal the second run's evidence
-./Invoke-ZtaEvidence.ps1 -EvidencePath out/evidence -RunPath out/run2 -AsOf 2026-11-10T20:00:00Z
-./Invoke-ZtaEvidence.ps1 -EvidencePath out/evidence -RunPath out/run2-register -AsOf 2026-11-10T20:01:00Z
-./Invoke-ZtaEvidence.ps1 -EvidencePath out/evidence -RunPath out/compare -AsOf 2026-11-10T20:02:00Z
+./Invoke-ZtaEvidence.ps1 -EvidencePath "$Run\evidence" -RunPath "$Run\run2" -AsOf 2026-11-10T20:00:00Z
+./Invoke-ZtaEvidence.ps1 -EvidencePath "$Run\evidence" -RunPath "$Run\run2-register" -AsOf 2026-11-10T20:01:00Z
+./Invoke-ZtaEvidence.ps1 -EvidencePath "$Run\evidence" -RunPath "$Run\compare" -AsOf 2026-11-10T20:02:00Z
 
 # Step 4: Check the package
-./Invoke-ZtaEvidence.ps1 -EvidencePath out/evidence -Check -Package re-run -RunDate 2026-11-10
+./Invoke-ZtaEvidence.ps1 -EvidencePath "$Run\evidence" -Check -Package re-run -RunDate 2026-11-10
 
 # Step 5: Break it on purpose
-Add-Content -Path out/evidence/runs/0002-register-2026-11-10/register.csv -Value 'edited'
-./Invoke-ZtaEvidence.ps1 -EvidencePath out/evidence -Check
+Add-Content -Path "$Run\evidence\runs\0002-register-2026-11-10\register.csv" -Value 'edited'
+./Invoke-ZtaEvidence.ps1 -EvidencePath "$Run\evidence" -Check
 
-# Step 6: Clean up
-Remove-Item -Recurse -Force out
+# Step 6
+Get-ChildItem C:\FMWLabs\results\zero-trust-assessment-04-reconcile-re-run-and-keep-the-evidence\lab1 -Name
 ```
 
 :::
@@ -103,14 +107,30 @@ Every step runs in PowerShell 7 (7.1 or later), so you can follow it top to bott
 Set-Location C:\FMWLabs\zta-results
 ```
 
-Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/zta-results`, then type `pwsh` to start PowerShell 7: every step is a PowerShell command. In a clone of the repository, use the `examples` folder of the same name.
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
+
+```powershell
+$Run = "C:\FMWLabs\results\zero-trust-assessment-04-reconcile-re-run-and-keep-the-evidence\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\zero-trust-assessment-04-reconcile-re-run-and-keep-the-evidence\lab1\<run>
+```
+
+The run's date is only the folder's name. The data's dates are the fixture exports' own, `-AsOf` and `-RunDate`, which stay the same, so every run's results match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
+
+Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/zta-results`, then type `pwsh` to start PowerShell 7 and make the run folder there: every step is a PowerShell command. In a clone of the repository, use the `examples` folder of the same name.
 
 Then rebuild Module 3's two runs, so this lab starts from the same files every time:
 
 ```powershell
-./Invoke-ZtaNormalize.ps1 -ExportPath tests/fixtures/run-2026-10-27 -OutputPath out/run1
-./Invoke-ZtaNormalize.ps1 -ExportPath tests/fixtures/run-2026-11-10 -OutputPath out/run2 -ReviewsPath tests/fixtures/inputs/reviews.csv
-./Invoke-ZtaRegister.ps1 -RunPath out/run2 -OutputPath out/run2-register -ExceptionsPath tests/fixtures/inputs/exceptions.csv
+./Invoke-ZtaNormalize.ps1 -ExportPath tests/fixtures/run-2026-10-27 -OutputPath "$Run\run1"
+./Invoke-ZtaNormalize.ps1 -ExportPath tests/fixtures/run-2026-11-10 -OutputPath "$Run\run2" -ReviewsPath tests/fixtures/inputs/reviews.csv
+./Invoke-ZtaRegister.ps1 -RunPath "$Run\run2" -OutputPath "$Run\run2-register" -ExceptionsPath tests/fixtures/inputs/exceptions.csv
 ```
 
 Expected output, the same as Module 3's Steps 1, 5 and 6:
@@ -125,7 +145,7 @@ Zero Trust Assessment 3.1.0: 33 tests
   Skipped-Not-Applicable      2
   Unable-to-Evaluate          2
 Findings: 17 (1 Investigate)
-Written to out/run1: results.json, results.csv, summary.json, summary.md, dispositions.csv, manifest.json
+Written to C:\FMWLabs\results\zero-trust-assessment-04-reconcile-re-run-and-keep-the-evidence\lab1\<run>\run1: results.json, results.csv, summary.json, summary.md, dispositions.csv, manifest.json
 Zero Trust Assessment 3.1.0: 34 tests
   Pass                       10
   Fail                       15
@@ -135,17 +155,17 @@ Zero Trust Assessment 3.1.0: 34 tests
   Skipped-Not-Applicable      2
   Unable-to-Evaluate          1
 Findings: 15 (1 Investigate)
-Written to out/run2: results.json, results.csv, summary.json, summary.md, dispositions.csv, manifest.json
+Written to C:\FMWLabs\results\zero-trust-assessment-04-reconcile-re-run-and-keep-the-evidence\lab1\<run>\run2: results.json, results.csv, summary.json, summary.md, dispositions.csv, manifest.json
 Register: 15 findings  P1 1  P2 10  P3 4  P4 0
 Governed exceptions: 1
 WARNING: Exceptions to fix (lapsed or wrong approver): 21885
-Written to out/run2-register: register.json, register.csv, manifest.json
+Written to C:\FMWLabs\results\zero-trust-assessment-04-reconcile-re-run-and-keep-the-evidence\lab1\<run>\run2-register: register.json, register.csv, manifest.json
 ```
 
 1. **Compare the two runs.**
 
     ```powershell
-    ./Invoke-ZtaCompare.ps1 -PreviousPath out/run1 -CurrentPath out/run2 -OutputPath out/compare
+    ./Invoke-ZtaCompare.ps1 -PreviousPath "$Run\run1" -CurrentPath "$Run\run2" -OutputPath "$Run\compare"
     ```
 
     Expected output:
@@ -158,13 +178,13 @@ Written to out/run2-register: register.json, register.csv, manifest.json
       no-longer-evaluated     2
       changed                 2
       unchanged              12
-    Written to out/compare: comparison.json, comparison.md, manifest.json
+    Written to C:\FMWLabs\results\zero-trust-assessment-04-reconcile-re-run-and-keep-the-evidence\lab1\<run>\compare: comparison.json, comparison.md, manifest.json
     ```
 
 2. **Read what changed.**
 
     ```powershell
-    (Get-Content -Raw out/compare/comparison.json | ConvertFrom-Json).rows | Where-Object change -In 'no-longer-evaluated', 'regressed', 'new' | Format-Table testId, change, previous, current
+    (Get-Content -Raw "$Run\compare\comparison.json" | ConvertFrom-Json).rows | Where-Object change -In 'no-longer-evaluated', 'regressed', 'new' | Format-Table testId, change, previous, current
     ```
 
     Expected output:
@@ -184,9 +204,9 @@ Written to out/run2-register: register.json, register.csv, manifest.json
 3. **Seal the second run's evidence.**
 
     ```powershell
-    ./Invoke-ZtaEvidence.ps1 -EvidencePath out/evidence -RunPath out/run2 -AsOf 2026-11-10T20:00:00Z
-    ./Invoke-ZtaEvidence.ps1 -EvidencePath out/evidence -RunPath out/run2-register -AsOf 2026-11-10T20:01:00Z
-    ./Invoke-ZtaEvidence.ps1 -EvidencePath out/evidence -RunPath out/compare -AsOf 2026-11-10T20:02:00Z
+    ./Invoke-ZtaEvidence.ps1 -EvidencePath "$Run\evidence" -RunPath "$Run\run2" -AsOf 2026-11-10T20:00:00Z
+    ./Invoke-ZtaEvidence.ps1 -EvidencePath "$Run\evidence" -RunPath "$Run\run2-register" -AsOf 2026-11-10T20:01:00Z
+    ./Invoke-ZtaEvidence.ps1 -EvidencePath "$Run\evidence" -RunPath "$Run\compare" -AsOf 2026-11-10T20:02:00Z
     ```
 
     Expected output:
@@ -195,21 +215,21 @@ Written to out/run2-register: register.json, register.csv, manifest.json
     Record 1: Pass (NORMALIZE, EVIDENCE)
     Controls: AU-9, CA-2, CA-7, CM-6
     KSIs:     KSI-MLA-EVC, KSI-MLA-OSM, KSI-PIY-RIS, KSI-SVC-ACM, KSI-SVC-VRI
-    Written to out/evidence: records/, runs/, records.csv, SHA256SUMS
+    Written to C:\FMWLabs\results\zero-trust-assessment-04-reconcile-re-run-and-keep-the-evidence\lab1\<run>\evidence: records/, runs/, records.csv, SHA256SUMS
     Record 2: Pass (REGISTER, EVIDENCE)
     Controls: AU-9, CA-5, CA-7, RA-7
     KSIs:     KSI-MLA-EVC, KSI-MLA-OSM, KSI-SVC-VRI
-    Written to out/evidence: records/, runs/, records.csv, SHA256SUMS
+    Written to C:\FMWLabs\results\zero-trust-assessment-04-reconcile-re-run-and-keep-the-evidence\lab1\<run>\evidence: records/, runs/, records.csv, SHA256SUMS
     Record 3: Pass (COMPARE, EVIDENCE)
     Controls: AU-9, CA-7, CM-6
     KSIs:     KSI-CMT-RMV, KSI-MLA-EVC, KSI-MLA-OSM, KSI-SVC-ACM, KSI-SVC-VRI
-    Written to out/evidence: records/, runs/, records.csv, SHA256SUMS
+    Written to C:\FMWLabs\results\zero-trust-assessment-04-reconcile-re-run-and-keep-the-evidence\lab1\<run>\evidence: records/, runs/, records.csv, SHA256SUMS
     ```
 
 4. **Check the package.**
 
     ```powershell
-    ./Invoke-ZtaEvidence.ps1 -EvidencePath out/evidence -Check -Package re-run -RunDate 2026-11-10
+    ./Invoke-ZtaEvidence.ps1 -EvidencePath "$Run\evidence" -Check -Package re-run -RunDate 2026-11-10
     ```
 
     Expected output:
@@ -225,8 +245,8 @@ Written to out/run2-register: register.json, register.csv, manifest.json
 5. **Break it on purpose.** Edit one file in the sealed package and check again.
 
     ```powershell
-    Add-Content -Path out/evidence/runs/0002-register-2026-11-10/register.csv -Value 'edited'
-    ./Invoke-ZtaEvidence.ps1 -EvidencePath out/evidence -Check
+    Add-Content -Path "$Run\evidence\runs\0002-register-2026-11-10\register.csv" -Value 'edited'
+    ./Invoke-ZtaEvidence.ps1 -EvidencePath "$Run\evidence" -Check
     ```
 
     Expected output:
@@ -236,10 +256,16 @@ Written to out/run2-register: register.json, register.csv, manifest.json
     CHAIN            Fail  runs/0002-register-2026-11-10/register.csv doesn't match 0002-register-2026-11-10.json
     ```
 
-6. **Clean up.**
+6. Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
 
     ```powershell
-    Remove-Item -Recurse -Force out
+    Get-ChildItem C:\FMWLabs\results\zero-trust-assessment-04-reconcile-re-run-and-keep-the-evidence\lab1 -Name
+    ```
+
+    Expected output: one line per run, oldest first, the last one this run:
+
+    ```text
+    <run>
     ```
 
 ## Exercise: Lab 2, a second run in your test tenant {#zta-lab-2}

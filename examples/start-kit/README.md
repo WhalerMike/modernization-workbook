@@ -227,7 +227,38 @@ Import-Module .\powershell\FMPSqlEstate
 Invoke-FMPSqlEstateDiscovery -OutputPath D:\Assessment\sql -ProbeAllServers -QueryInstances
 ```
 
-Every collector is also a function you can run alone, with `-OutputPath` required. Sign the modules and run them under an `AllSigned` or `RemoteSigned` policy rather than bypassing execution policy.
+Every collector is also a function you can run alone, with `-OutputPath` required. Sign the modules and run them under an `AllSigned` or `RemoteSigned` policy rather than bypassing execution policy. A zip downloaded from the internet marks every file as blocked, and `RemoteSigned` then refuses the modules: unblock the folder once after unzipping with `Get-ChildItem -Recurse C:\FMWLabs\start-kit | Unblock-File` (your folder), or sign the modules.
+
+### Pre-flight checks
+
+Before it reads anything, `Invoke-FMPStartKit.ps1` checks the host and stops with what to do when a check fails: the ActiveDirectory module is missing (with the install command for clients and servers), the execution policy will refuse the kit's files (with the `Unblock-File` command), the forest can't be reached, a domain has no domain controller running Active Directory Web Services (TCP 9389), the output folder can't be written, or the account can't read user objects (with the delegation request). It also records the PowerShell edition, the operating system and the display language. Privileged groups are found by well-known SID and retries are decided by error type and LDAP result code, so a renamed group or a non-English domain controller doesn't change the result. The checks go to `Preflight.json` in the run folder; `-PreflightOnly` runs them and the read-access probe, and stops.
+
+### Large directories
+
+Every directory read is built for a forest of any size:
+
+| What | How |
+|---|---|
+| Paged queries | Every `Get-AD*` search passes `-ResultPageSize` (`-PageSize`, default 256). |
+| Only the properties needed | Each collector names its properties; nothing asks for `-Properties *`. `IPv4Address` is left out unless you pass `-ResolveIPv4`, because the ActiveDirectory module resolves it in DNS one computer at a time. |
+| Partitions | Each domain is read one partition at a time: the domain head (one level), then each OU or container directly under it (subtree). A smaller search finishes before the ADWS enumeration context expires, and a failure costs one partition, not the domain. |
+| Retry with backoff | An ADWS or LDAP timeout, a busy or unavailable server, or an expired enumeration context retries that read after 5, 10, 20 and 40 seconds plus jitter (`-MaxRetries 4`, `-RetryBaseSeconds 5`). Errors are recognized by exception type and LDAP result code (51, 52, 81, 85) first, so the check works on a non-English operating system. Access denied and other permanent errors are not retried. The ActiveDirectory cmdlets take no timeout of their own: the timeouts are ADWS's, and the kit catches them and retries. |
+| Streaming to disk | Users, computers, groups and SPNs are written to disk as they arrive, one object per line, and joined into the usual JSON files at the end without being parsed again. Memory grows with the derived rows (stale, delegation, service accounts), not with the domain. The summary reads small `*Counts.json` files instead of the inventories. |
+| Checkpoints and `-Resume` | `RunState.json` records every step's outcome, and `_parts\<collector>\<collector>.checkpoint.json` every finished partition of the user, computer and group reads. `-Resume` carries on the newest unfinished run under `-OutputPath` (one with `RunState.json` and no manifest): completed steps and partitions are skipped, and the rest are read again. |
+| Run log | `RunLog.txt` at the run root: every step's start and end, every heartbeat and retry, and the pre-flight, with UTC times. |
+| Progress | Each long step shows `Write-Progress` with the count, the rate, the partition, a percentage and the time left, and writes a heartbeat line every 30 seconds (`-HeartbeatSeconds`) or 10,000 objects. The percentage comes from the last finished run's counts under the same `-OutputPath` when there is one, and from the partitions finished when there isn't. Each step ends with a summary line: its status, how many objects, how long. |
+| Unattended runs | `-Quiet` turns off the progress bar, heartbeats and step lines on the console; the run log still has all of them. |
+
+```powershell
+# A large forest, unattended, logging every step; if it stops, run the same line with -Resume.
+.\Invoke-FMPStartKit.ps1 -OutputPath D:\Assessment -Quiet
+.\Invoke-FMPStartKit.ps1 -OutputPath D:\Assessment -Quiet -Resume
+
+# Follow it from another window.
+Get-Content -Wait -Tail 20 (Get-ChildItem D:\Assessment -Directory | Sort-Object Name | Select-Object -Last 1 | ForEach-Object { Join-Path $_.FullName 'RunLog.txt' })
+```
+
+`tests/perf/Measure-FMPScale.ps1` times the user, computer, group, OU and SPN collectors against a synthetic domain made in memory as it is read (500,000 users and 50,000 computers by default; nothing is generated on disk but the collectors' own output). The timings measured for this version are under [Scale timings](#scale-timings).
 
 ## What a run writes
 
@@ -235,6 +266,9 @@ Everything goes under `<OutputPath>\<run-id>`, where the run identifier is Book 
 
 ```text
 <run-id>\
+├── RunLog.txt                every step, heartbeat, retry and pre-flight check, in UTC
+├── RunState.json             each step's status, objects and seconds (what -Resume reads)
+├── Preflight.json            the pre-flight checks
 ├── AssessmentManifest.json   who, when (UTC), host, forest, the DC that served each domain,
 │                             tier, parameters, PowerShell and module versions, every step's
 │                             status, and the size and SHA-256 of every other file
@@ -259,12 +293,14 @@ Everything goes under `<OutputPath>\<run-id>`, where the run identifier is Book 
 └── <each domain>\  OUs\, GPOs\, DNS\, Objects\, ServiceAccounts\, Trusts\, Ldap\
 ```
 
+`Objects\` also holds `UserCounts.json`, `ComputerCounts.json` and `GroupCounts.json`, and `Kerberos\` holds `KerberosSpnSummary.json`: the counts without the rows. The `_parts\` folders hold each partition's streamed rows and the checkpoints; the joined files are complete without them, and they can be deleted once the run has its manifest.
+
 The per-domain layout is Book 02 Appendix B's, so its output schema reference applies. Book 00's deliverable names map onto it: `ForestTopology.json`, `OUHierarchy.json`, `GPOInventory.json`, `DNSInventory.json`, `PKIInventory.json`, `ComputerInventory.json`, `UserInventory.json`, `GroupInventory.json`, `ServiceAccounts.csv`, `TrustMap.json`, `OUDelegations.json`, `SchemaExtensions.json` and `AssessmentManifest.json`; `PKISecurityReport.json` holds the escalation findings Book 00 calls `ESCVulnerabilities.csv`. The set is sensitive (privileged accounts, delegation, PKI weaknesses): store it encrypted and handle it under the agency's data classification policy.
 
 ## How read-only is enforced
 
 - **No write cmdlets.** `tests/powershell/Safety.Tests.ps1` parses every script and module in the kit and fails on any command with a state-changing verb (`Set-`, `New-`, `Remove-`, `Add-`, `Enable-`, `Disable-`, `Clear-`, `Rename-`, `Move-`, `Copy-`, `Install-`, `Register-`, `Grant-`, `Revoke-`, `Reset-`, `Restore-`, `Backup-`, `Start-`, `Stop-`, `Update-`, `Publish-` and more), on `Out-File`, `Export-Csv`, `Set-Content`, `Invoke-Command`, `Invoke-Expression`, `Invoke-WebRequest` and `Invoke-RestMethod`, on any native program but `certutil.exe -getreg`, and on file redirection. A planted-violation test proves the checks catch each kind.
-- **Writes only under `-OutputPath`.** Every file goes through four guarded writers that refuse any path outside a registered output root; the safety test fails if anything else writes, deletes or moves a file.
+- **Writes only under `-OutputPath`.** Every file goes through the guarded writers (the run log and the streamed part files through two more) that refuse any path outside a registered output root; the safety test fails if anything else writes, deletes or moves a file.
 - **SELECT-only T-SQL.** Every statement lives in one catalog; `Invoke-FMPSqlQuery`, the only place T-SQL is sent, refuses anything but a single SELECT (no DML, DDL, `EXEC`, `SELECT INTO`, procedures, `OPENROWSET` or second statement), and the safety test checks every SQL string in the source and that nothing calls `ExecuteNonQuery`.
 - **Transaction measurement reads, never captures.** The kit reads capture exports the team supplies and polls one SQL Server DMV with a SELECT; it installs nothing, starts no trace and changes no setting. It writes only the capture's file name, never the folder it came from.
 - **No secrets in the output.** NPS shared secrets are replaced in memory, before anything is kept, by a length and a per-run label; a test reads every file a run writes and fails if any fixture secret, or the word `Fingerprint`, appears.

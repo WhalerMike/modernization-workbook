@@ -40,7 +40,7 @@ After this module, you'll be able to:
 ## Prerequisites (1 minute)
 
 - [Module 3](03-the-target-pki-and-who-owns-it.md). This lab runs Module 1's inventory and classification again in its own run folder, so you don't need earlier output.
-- The Start Kit unzipped as the path's [Get the code](index.md#get-the-code) says, version 1.7.0 or later of `FMPADAssessment`.
+- The Start Kit unzipped as the path's [Get the code](index.md#get-the-code) says, version 1.8.0 or later of `FMPADAssessment`.
 
 ## Unit 1: Delivery paths, and the profile that comes first (8 minutes)
 
@@ -179,7 +179,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/start-kit` and make the ru
     Expected output:
 
     ```text
-    1.7.0
+    1.8.0
     ```
 
 2. **List the templates whose target is an Intune profile.**
