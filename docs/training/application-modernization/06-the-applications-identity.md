@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Book 18"
 series-order: 6
 review-status: approved
-reviewed-sha256: 66c2de03f1802ccf1d204fb1d1438ec998c2ff1f2ebae9fcff9d8cfae4b8c4ad
+reviewed-sha256: 76b3a08bf8c8b9242f58815aa5bf3c3edf076e7f730b5a03b6e339892db2713c
 last-reviewed: 2026-11-25
 ---
 # Module 6: The application's identity {.unnumbered}
