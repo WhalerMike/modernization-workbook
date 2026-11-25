@@ -31,10 +31,10 @@ review-status: pending
 
 ## Week 4: automation
 
-- [Microsoft Automation](../../training/ms-automation-foundations.md) (Learning path, 4 modules, about 2 hr 50 min). Four modules on calling Microsoft Graph and Azure Resource Manager from scripts: endpoints, sign-in without a secret, permissions and paging, then read-only checks for Entra ID, Intune and Azure Arc on fixtures and in a test tenant.
+- [Microsoft Automation](../../training/ms-automation-foundations.md) (Learning path, 4 modules, about 2 hr 54 min). Four modules on calling Microsoft Graph and Azure Resource Manager from scripts: endpoints, sign-in without a secret, permissions and paging, then read-only checks for Entra ID, Intune and Azure Arc on fixtures and in a test tenant.
 - [Labs: Microsoft Automation learning path](../../training/labs.md#ms-automation) (Lab, 8 labs). 8 hands-on labs across 4 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Microsoft Automation learning path.
 
-*Milestone 4: about 2 hr 50 min.*
+*Milestone 4: about 2 hr 54 min.*
 
-**Whole plan:** about 13 hr 4 min of reading and video, plus the labs.
+**Whole plan:** about 13 hr 8 min of reading and video, plus the labs.
 

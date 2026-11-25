@@ -47,21 +47,30 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 
 ## Get the code {#get-the-code}
 
-Download [provider-notices-code.zip](../../../downloads/provider-notices-code.zip) to your Downloads folder. It holds `provider-notices`, the kit the labs use, and `servicenow-sailpoint/clients/python`, the Ticket-to-Machine finding contract that Module 7's router test reads. Unzip it into `Downloads\provider-notices-code`, the folder Windows' **Extract All** suggests, so you work in `Downloads\provider-notices-code\provider-notices-code\provider-notices`: the zip's name appears twice. Every lab command runs from there, as it does from `examples/provider-notices` in a clone of the repository. The kit is PowerShell 7.1 or later, with Pester 5; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
+Download [provider-notices-code.zip](../../../downloads/provider-notices-code.zip) to your Downloads folder. It holds `provider-notices`, the kit the labs use, and `servicenow-sailpoint/clients/python`, the Ticket-to-Machine finding contract that Module 7's router test reads. Unzip it into `C:\FMWLabs\provider-notices-code` (in Windows' **Extract All**, type that folder in place of the one it suggests), so you work in `C:\FMWLabs\provider-notices-code\provider-notices`. Every lab command runs from there, as it does from `examples/provider-notices` in a clone of the repository. The kit is PowerShell 7.1 or later, with Pester 5; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
 
 In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
 
 ```powershell
-Expand-Archive -Path $HOME\Downloads\provider-notices-code.zip -DestinationPath $HOME\Downloads\provider-notices-code -Force
-Set-Location $HOME\Downloads\provider-notices-code\provider-notices-code\provider-notices
-Get-ChildItem $HOME\Downloads\provider-notices-code -Recurse -File | Unblock-File
+Expand-Archive -Path $HOME\Downloads\provider-notices-code.zip -DestinationPath C:\FMWLabs\provider-notices-code -Force
+Set-Location C:\FMWLabs\provider-notices-code\provider-notices
+Get-ChildItem C:\FMWLabs\provider-notices-code -Recurse -File | Unblock-File
 ```
 
-In Bash on Linux or macOS, or Git Bash on Windows:
+In Git Bash on Windows:
 
 ```bash
-unzip -o ~/Downloads/provider-notices-code.zip -d ~/Downloads/provider-notices-code
-cd ~/Downloads/provider-notices-code/provider-notices-code/provider-notices
+mkdir -p /c/FMWLabs
+unzip -o ~/Downloads/provider-notices-code.zip -d /c/FMWLabs/provider-notices-code
+cd /c/FMWLabs/provider-notices-code/provider-notices
+```
+
+In Bash on Linux or macOS, which use `~/FMWLabs` in place of `C:\FMWLabs`:
+
+```bash
+mkdir -p ~/FMWLabs
+unzip -o ~/Downloads/provider-notices-code.zip -d ~/FMWLabs/provider-notices-code
+cd ~/FMWLabs/provider-notices-code/provider-notices
 ```
 
 Check it works, in PowerShell 7.1 or later, with Module 1, Lab 1, Step 6:

@@ -47,21 +47,30 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 
 ## Get the code {#get-the-code}
 
-Download [hr-driven-identity-code.zip](../../../downloads/hr-driven-identity-code.zip) to your Downloads folder. It holds `hr-lifecycle`, the kit the labs use, with `hcm-entra`, `lifecycle-extensions`, `dynamic-rules`, `drift-pipeline` and `validation-kit` beside it, and in `third_party` the Microsoft samples they start from, pinned unmodified. Unzip it into `Downloads\hr-driven-identity-code`, the folder Windows' **Extract All** suggests, so you work in `Downloads\hr-driven-identity-code\hr-driven-identity-code\hr-lifecycle`: the zip's name appears twice. Every lab command runs from there, as it does from `examples/hr-lifecycle` in a clone of the repository. Where a module says `examples/hcm-entra` or `examples/drift-pipeline`, use the folder of that name beside `hr-lifecycle`. The kit is Python; it has no PowerShell steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
+Download [hr-driven-identity-code.zip](../../../downloads/hr-driven-identity-code.zip) to your Downloads folder. It holds `hr-lifecycle`, the kit the labs use, with `hcm-entra`, `lifecycle-extensions`, `dynamic-rules`, `drift-pipeline` and `validation-kit` beside it, and in `third_party` the Microsoft samples they start from, pinned unmodified. Unzip it into `C:\FMWLabs\hr-driven-identity-code` (in Windows' **Extract All**, type that folder in place of the one it suggests), so you work in `C:\FMWLabs\hr-driven-identity-code\hr-lifecycle`. Every lab command runs from there, as it does from `examples/hr-lifecycle` in a clone of the repository. Where a module says `examples/hcm-entra` or `examples/drift-pipeline`, use the folder of that name beside `hr-lifecycle`. The kit is Python; it has no PowerShell steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
 
 In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
 
 ```powershell
-Expand-Archive -Path $HOME\Downloads\hr-driven-identity-code.zip -DestinationPath $HOME\Downloads\hr-driven-identity-code -Force
-Set-Location $HOME\Downloads\hr-driven-identity-code\hr-driven-identity-code\hr-lifecycle
-Get-ChildItem $HOME\Downloads\hr-driven-identity-code -Recurse -File | Unblock-File
+Expand-Archive -Path $HOME\Downloads\hr-driven-identity-code.zip -DestinationPath C:\FMWLabs\hr-driven-identity-code -Force
+Set-Location C:\FMWLabs\hr-driven-identity-code\hr-lifecycle
+Get-ChildItem C:\FMWLabs\hr-driven-identity-code -Recurse -File | Unblock-File
 ```
 
-In Bash on Linux or macOS, or Git Bash on Windows:
+In Git Bash on Windows:
 
 ```bash
-unzip -o ~/Downloads/hr-driven-identity-code.zip -d ~/Downloads/hr-driven-identity-code
-cd ~/Downloads/hr-driven-identity-code/hr-driven-identity-code/hr-lifecycle
+mkdir -p /c/FMWLabs
+unzip -o ~/Downloads/hr-driven-identity-code.zip -d /c/FMWLabs/hr-driven-identity-code
+cd /c/FMWLabs/hr-driven-identity-code/hr-lifecycle
+```
+
+In Bash on Linux or macOS, which use `~/FMWLabs` in place of `C:\FMWLabs`:
+
+```bash
+mkdir -p ~/FMWLabs
+unzip -o ~/Downloads/hr-driven-identity-code.zip -d ~/FMWLabs/hr-driven-identity-code
+cd ~/FMWLabs/hr-driven-identity-code/hr-lifecycle
 ```
 
 Check it works, with Module 1, Lab 1, Step 2 (it runs the same in PowerShell or Bash):

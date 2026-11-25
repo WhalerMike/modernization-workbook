@@ -290,7 +290,7 @@ Add-DnsServerConditionalForwarderZone -Name partner.example -MasterServers 192.0
 
 # Step 5: Unzip the kit and run the pre-flight
 Expand-Archive -Path C:\fmp-lab\start-kit.zip -DestinationPath C:\fmp-lab\start-kit -Force
-Set-Location C:\fmp-lab\start-kit\start-kit
+Set-Location C:\fmp-lab\start-kit
 Import-Module .\powershell\FMPADAssessment\FMPADAssessment.psd1
 Test-FMPPrerequisites -OutputPath C:\fmp-lab\run1 | Format-Table Check, Status, Detail -AutoSize
 
@@ -355,7 +355,7 @@ Restore-VMSnapshot -VMName fmp-lab-dc01 -Name before-ddi-lab -Confirm:$false
 
     ```powershell
     Expand-Archive -Path C:\fmp-lab\start-kit.zip -DestinationPath C:\fmp-lab\start-kit -Force
-    Set-Location C:\fmp-lab\start-kit\start-kit
+    Set-Location C:\fmp-lab\start-kit
     Import-Module .\powershell\FMPADAssessment\FMPADAssessment.psd1
     Test-FMPPrerequisites -OutputPath C:\fmp-lab\run1 | Format-Table Check, Status, Detail -AutoSize
     ```

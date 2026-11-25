@@ -271,7 +271,7 @@ New-Item -ItemType Directory -Force C:\fmp-lab\evidence | Out-Null
 'run1', 'ddi', 'gate' | Where-Object { Test-Path "C:\fmp-lab\$_" } | ForEach-Object { Copy-Item -Recurse "C:\fmp-lab\$_" C:\fmp-lab\evidence\ }
 
 # Step 2: Index it
-Set-Location C:\fmp-lab\start-kit\start-kit
+Set-Location C:\fmp-lab\start-kit
 Import-Module .\powershell\FMPDdiReadiness\FMPDdiReadiness.psd1
 $index = Get-FMPDdiEvidenceIndex -Path C:\fmp-lab\evidence -OutputPath C:\fmp-lab\evidence-index
 $index.Files | Format-Table File, Kind, KSI
@@ -297,7 +297,7 @@ Remove-Item -Recurse -Force C:\fmp-lab\evidence, C:\fmp-lab\evidence-index
 2. **Index it.**
 
     ```powershell
-    Set-Location C:\fmp-lab\start-kit\start-kit
+    Set-Location C:\fmp-lab\start-kit
     Import-Module .\powershell\FMPDdiReadiness\FMPDdiReadiness.psd1
     $index = Get-FMPDdiEvidenceIndex -Path C:\fmp-lab\evidence -OutputPath C:\fmp-lab\evidence-index
     $index.Files | Format-Table File, Kind, KSI

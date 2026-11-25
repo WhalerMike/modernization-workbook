@@ -68,33 +68,33 @@ Each page keeps its status label (draft or in review) until it is reviewed and p
 
 ## Get a path's code {#get-the-code}
 
-Each learning path's code downloads as one zip, rebuilt from the repository on every site deploy. Every lab command runs from the kit's folder, `examples/<kit>` in a clone of the repository. To get the same folder from the zip, unzip it into your **Downloads** folder, into a folder with the zip's name. That's the folder Windows' **Extract All** suggests. The zip holds a top-level folder with the same name, so the name appears twice in the path:
+Each learning path's code downloads as one zip, rebuilt from the repository on every site deploy. Every lab command runs from the kit's folder, `examples/<kit>` in a clone of the repository. To get the same folder from the zip, download it to your **Downloads** folder and unzip it into `C:\FMWLabs`, into a folder with the zip's name; on Linux or macOS, use `~/FMWLabs`. Windows' **Extract All** suggests a folder in Downloads: type the `C:\FMWLabs` folder in its place.
 
 | Path | Download | The folder you work in | Language |
 |---|---|---|---|
-| Microsoft Automation | [microsoft-automation-code.zip](../../downloads/microsoft-automation-code.zip) | `Downloads\microsoft-automation-code\microsoft-automation-code\ms-automation` | Python and PowerShell 7.5 |
-| Ticket-to-Machine | [ticket-to-machine-code.zip](../../downloads/ticket-to-machine-code.zip) | `Downloads\ticket-to-machine-code\ticket-to-machine-code\servicenow-sailpoint` | Python; PowerShell 7.2 client |
-| HR-Driven Identity | [hr-driven-identity-code.zip](../../downloads/hr-driven-identity-code.zip) | `Downloads\hr-driven-identity-code\hr-driven-identity-code\hr-lifecycle` | Python |
-| Privileged Access | [privileged-access-code.zip](../../downloads/privileged-access-code.zip) | `Downloads\privileged-access-code\privileged-access-code\privileged-access` | PowerShell 7.1 |
-| Attribute-Driven Migration | [attribute-driven-migration-code.zip](../../downloads/attribute-driven-migration-code.zip) | `Downloads\attribute-driven-migration-code\attribute-driven-migration-code\<the folder each module names>` | Python and PowerShell 7.2 |
-| Non-Person Identity | [non-person-identity-code.zip](../../downloads/non-person-identity-code.zip) | `Downloads\non-person-identity-code\non-person-identity-code\non-person-identity` | PowerShell 7.1 |
-| Provider Notices | [provider-notices-code.zip](../../downloads/provider-notices-code.zip) | `Downloads\provider-notices-code\provider-notices-code\provider-notices` | PowerShell 7.1 |
-| Zero Trust Assessment | [zta-results.zip](../../downloads/zta-results.zip) | `Downloads\zta-results\zta-results` | PowerShell 7.1 |
-| PKI and Certificates | [start-kit.zip](../../downloads/start-kit.zip) | `Downloads\start-kit\start-kit` | Windows PowerShell 5.1 |
-| Defender XDR | [defender-xdr-code.zip](../../downloads/defender-xdr-code.zip) | `Downloads\defender-xdr-code\defender-xdr-code\defender-xdr` | PowerShell 7.1 |
-| Global Secure Access | [global-secure-access-code.zip](../../downloads/global-secure-access-code.zip) | `Downloads\global-secure-access-code\global-secure-access-code\global-secure-access` | PowerShell 7.1 |
-| SD-WAN Governor | [cisco-sdwan.zip](../../downloads/cisco-sdwan.zip) | `Downloads\cisco-sdwan\cisco-sdwan` | Python 3.10; PowerShell 5.1 or 7 to read the output |
-| Azure Security Engineering | [azure-security-code.zip](../../downloads/azure-security-code.zip) | `Downloads\azure-security-code\azure-security-code\azure-security` | PowerShell 7.1 |
-| Daily Checks Dashboard | [daily-checks-workbook-code.zip](../../downloads/daily-checks-workbook-code.zip) | `Downloads\daily-checks-workbook-code\daily-checks-workbook-code\daily-checks-workbook` | PowerShell 7.1 |
-| Information Protection | [information-protection-code.zip](../../downloads/information-protection-code.zip) | `Downloads\information-protection-code\information-protection-code\information-protection` | PowerShell 7.1 |
-| DNS, DHCP and IPAM | [start-kit.zip](../../downloads/start-kit.zip) | `Downloads\start-kit\start-kit` | Windows PowerShell 5.1 or PowerShell 7 |
-| Application Modernization | [app-modernization.zip](../../downloads/app-modernization.zip) | `Downloads\app-modernization\app-modernization` | Java 21, Node.js 24 and PowerShell 7.4 |
+| Microsoft Automation | [microsoft-automation-code.zip](../../downloads/microsoft-automation-code.zip) | `C:\FMWLabs\microsoft-automation-code\ms-automation` | Python and PowerShell 7.5 |
+| Ticket-to-Machine | [ticket-to-machine-code.zip](../../downloads/ticket-to-machine-code.zip) | `C:\FMWLabs\ticket-to-machine-code\servicenow-sailpoint` | Python; PowerShell 7.2 client |
+| HR-Driven Identity | [hr-driven-identity-code.zip](../../downloads/hr-driven-identity-code.zip) | `C:\FMWLabs\hr-driven-identity-code\hr-lifecycle` | Python |
+| Privileged Access | [privileged-access-code.zip](../../downloads/privileged-access-code.zip) | `C:\FMWLabs\privileged-access-code\privileged-access` | PowerShell 7.1 |
+| Attribute-Driven Migration | [attribute-driven-migration-code.zip](../../downloads/attribute-driven-migration-code.zip) | `C:\FMWLabs\attribute-driven-migration-code\<the folder each module names>` | Python and PowerShell 7.2 |
+| Non-Person Identity | [non-person-identity-code.zip](../../downloads/non-person-identity-code.zip) | `C:\FMWLabs\non-person-identity-code\non-person-identity` | PowerShell 7.1 |
+| Provider Notices | [provider-notices-code.zip](../../downloads/provider-notices-code.zip) | `C:\FMWLabs\provider-notices-code\provider-notices` | PowerShell 7.1 |
+| Zero Trust Assessment | [zta-results.zip](../../downloads/zta-results.zip) | `C:\FMWLabs\zta-results` | PowerShell 7.1 |
+| PKI and Certificates | [start-kit.zip](../../downloads/start-kit.zip) | `C:\FMWLabs\start-kit` | Windows PowerShell 5.1 |
+| Defender XDR | [defender-xdr-code.zip](../../downloads/defender-xdr-code.zip) | `C:\FMWLabs\defender-xdr-code\defender-xdr` | PowerShell 7.1 |
+| Global Secure Access | [global-secure-access-code.zip](../../downloads/global-secure-access-code.zip) | `C:\FMWLabs\global-secure-access-code\global-secure-access` | PowerShell 7.1 |
+| SD-WAN Governor | [cisco-sdwan.zip](../../downloads/cisco-sdwan.zip) | `C:\FMWLabs\cisco-sdwan` | Python 3.10; PowerShell 5.1 or 7 to read the output |
+| Azure Security Engineering | [azure-security-code.zip](../../downloads/azure-security-code.zip) | `C:\FMWLabs\azure-security-code\azure-security` | PowerShell 7.1 |
+| Daily Checks Dashboard | [daily-checks-workbook-code.zip](../../downloads/daily-checks-workbook-code.zip) | `C:\FMWLabs\daily-checks-workbook-code\daily-checks-workbook` | PowerShell 7.1 |
+| Information Protection | [information-protection-code.zip](../../downloads/information-protection-code.zip) | `C:\FMWLabs\information-protection-code\information-protection` | PowerShell 7.1 |
+| DNS, DHCP and IPAM | [start-kit.zip](../../downloads/start-kit.zip) | `C:\FMWLabs\start-kit` | Windows PowerShell 5.1 or PowerShell 7 |
+| Application Modernization | [app-modernization.zip](../../downloads/app-modernization.zip) | `C:\FMWLabs\app-modernization` | Java 21, Node.js 24 and PowerShell 7.4 |
 
 : Each learning path's code, and the folder its labs run from {.striped .hover}
 
 The PowerShell versions are the ones the kits' scripts declare with `#Requires -Version`. **First time?** [Set Up for the Labs](lab-setup.md) installs PowerShell 7, Python and Git, sets the execution policy, and has a Git Bash command guide. Each path's page has its exact commands under **Get the code**; the Microsoft Automation commands are [below](#get-the-microsoft-automation-code). They do three things:
 
-- **Unzip.** `Expand-Archive` in PowerShell, or `unzip -d` in Bash, puts the files where the table says. If you already used **Extract All**, the files are already there.
+- **Unzip.** `Expand-Archive` in PowerShell, or `unzip -d` in Bash, puts the files where the table says. If you already used **Extract All** with the `C:\FMWLabs` folder, the files are already there. On a standard Windows install you don't need to be an administrator to create `C:\FMWLabs`: signed-in users can create folders at the top of `C:`. If your device blocks it, ask your desktop team for the folder.
 - **Unblock.** Windows marks a downloaded zip as coming from the internet, and **Extract All** copies that mark onto every file. Under the RemoteSigned execution policy the labs need, PowerShell then refuses to load the kit's scripts and modules (`Import-Module` says the file is not digitally signed). `Unblock-File` removes the mark. Run it only on a kit you downloaded from this site.
 - **Check.** One command from the path's first lab, with the output it prints, so you know the kit runs before you start.
 
@@ -135,7 +135,7 @@ Work through them in order: Module 1 sets up what the other three use. The devel
 - PowerShell 7.5 or later with Pester 5, for the PowerShell steps and tests;
 - a Bash-compatible shell for the commands as written.
 
-Run every command from `examples/ms-automation` in a clone, or from `Downloads\microsoft-automation-code\microsoft-automation-code\ms-automation` in the zip. Module 2's lab writes an `out` folder there; delete it afterward.
+Run every command from `examples/ms-automation` in a clone, or from `C:\FMWLabs\microsoft-automation-code\ms-automation` in the zip. Module 2's lab writes an `out` folder there; delete it afterward.
 
 #### Get the Microsoft Automation code {#get-the-microsoft-automation-code}
 
@@ -144,16 +144,25 @@ Download [microsoft-automation-code.zip](../../downloads/microsoft-automation-co
 In PowerShell (Windows PowerShell 5.1 or PowerShell 7 can unzip; the kit's PowerShell steps need 7.5):
 
 ```powershell
-Expand-Archive -Path $HOME\Downloads\microsoft-automation-code.zip -DestinationPath $HOME\Downloads\microsoft-automation-code -Force
-Set-Location $HOME\Downloads\microsoft-automation-code\microsoft-automation-code\ms-automation
-Get-ChildItem $HOME\Downloads\microsoft-automation-code -Recurse -File | Unblock-File
+Expand-Archive -Path $HOME\Downloads\microsoft-automation-code.zip -DestinationPath C:\FMWLabs\microsoft-automation-code -Force
+Set-Location C:\FMWLabs\microsoft-automation-code\ms-automation
+Get-ChildItem C:\FMWLabs\microsoft-automation-code -Recurse -File | Unblock-File
 ```
 
-In Bash on Linux or macOS, or Git Bash on Windows:
+In Git Bash on Windows:
 
 ```bash
-unzip -o ~/Downloads/microsoft-automation-code.zip -d ~/Downloads/microsoft-automation-code
-cd ~/Downloads/microsoft-automation-code/microsoft-automation-code/ms-automation
+mkdir -p /c/FMWLabs
+unzip -o ~/Downloads/microsoft-automation-code.zip -d /c/FMWLabs/microsoft-automation-code
+cd /c/FMWLabs/microsoft-automation-code/ms-automation
+```
+
+In Bash on Linux or macOS, which use `~/FMWLabs` in place of `C:\FMWLabs`:
+
+```bash
+mkdir -p ~/FMWLabs
+unzip -o ~/Downloads/microsoft-automation-code.zip -d ~/FMWLabs/microsoft-automation-code
+cd ~/FMWLabs/microsoft-automation-code/ms-automation
 ```
 
 Check the Python code, with Module 1, Lab 1, Step 1 (it runs the same in PowerShell or Bash):

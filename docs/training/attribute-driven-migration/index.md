@@ -60,21 +60,30 @@ When you finish this path, you'll be able to:
 
 ## Get the code {#get-the-code}
 
-Download [attribute-driven-migration-code.zip](../../../downloads/attribute-driven-migration-code.zip) to your Downloads folder. It holds every folder the chapters use: `hcm-entra`, `ms-automation`, `validation-kit`, `dynamic-rules`, `lifecycle-extensions`, `group-policy-as-code`, `machine-configuration`, `ansible` and `drift-pipeline`, and in `third_party` the Microsoft samples they start from, pinned unmodified. Each module names the folder it works in, `examples/<folder>` in a clone; in the zip it's `Downloads\attribute-driven-migration-code\attribute-driven-migration-code\<folder>`. The commands below go to Module 1's, `hcm-entra`. Module 3 needs a clone instead, because its steps call `git`. Modules use Python and PowerShell 7.2 or later with Pester 5, as each one says. [Get a path's code](../index.md#get-the-code) says why each step is there.
+Download [attribute-driven-migration-code.zip](../../../downloads/attribute-driven-migration-code.zip) to your Downloads folder. It holds every folder the chapters use: `hcm-entra`, `ms-automation`, `validation-kit`, `dynamic-rules`, `lifecycle-extensions`, `group-policy-as-code`, `machine-configuration`, `ansible` and `drift-pipeline`, and in `third_party` the Microsoft samples they start from, pinned unmodified. Each module names the folder it works in, `examples/<folder>` in a clone; in the zip it's `C:\FMWLabs\attribute-driven-migration-code\<folder>`. The commands below go to Module 1's, `hcm-entra`. Module 3 needs a clone instead, because its steps call `git`. Modules use Python and PowerShell 7.2 or later with Pester 5, as each one says. [Get a path's code](../index.md#get-the-code) says why each step is there.
 
 In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
 
 ```powershell
-Expand-Archive -Path $HOME\Downloads\attribute-driven-migration-code.zip -DestinationPath $HOME\Downloads\attribute-driven-migration-code -Force
-Set-Location $HOME\Downloads\attribute-driven-migration-code\attribute-driven-migration-code\hcm-entra
-Get-ChildItem $HOME\Downloads\attribute-driven-migration-code -Recurse -File | Unblock-File
+Expand-Archive -Path $HOME\Downloads\attribute-driven-migration-code.zip -DestinationPath C:\FMWLabs\attribute-driven-migration-code -Force
+Set-Location C:\FMWLabs\attribute-driven-migration-code\hcm-entra
+Get-ChildItem C:\FMWLabs\attribute-driven-migration-code -Recurse -File | Unblock-File
 ```
 
-In Bash on Linux or macOS, or Git Bash on Windows:
+In Git Bash on Windows:
 
 ```bash
-unzip -o ~/Downloads/attribute-driven-migration-code.zip -d ~/Downloads/attribute-driven-migration-code
-cd ~/Downloads/attribute-driven-migration-code/attribute-driven-migration-code/hcm-entra
+mkdir -p /c/FMWLabs
+unzip -o ~/Downloads/attribute-driven-migration-code.zip -d /c/FMWLabs/attribute-driven-migration-code
+cd /c/FMWLabs/attribute-driven-migration-code/hcm-entra
+```
+
+In Bash on Linux or macOS, which use `~/FMWLabs` in place of `C:\FMWLabs`:
+
+```bash
+mkdir -p ~/FMWLabs
+unzip -o ~/Downloads/attribute-driven-migration-code.zip -d ~/FMWLabs/attribute-driven-migration-code
+cd ~/FMWLabs/attribute-driven-migration-code/hcm-entra
 ```
 
 Check the Python code, with Module 1, Lab 1, Step 1 (it runs the same in PowerShell or Bash):
