@@ -120,8 +120,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the morning the logs stopped",
       body: [
-        { terminal: "03-1", lines: "1-15" },
-        { terminal: "03-6" },
+        { terminal: "03-3", lines: "1-15" },
+        { terminal: "03-8" },
       ],
       sources: "Sources: Building the Daily Checks Workbook, Ch 03, “Lab 1,” steps 1 and 6 (fictional fixtures, November 16, 2026).",
       say: `Lab 1 is in the developer workbook's Chapter 3, on a laptop with no tenant. You render the morning of November sixteenth, when the Entra diagnostic setting stopped overnight, the probe didn't run and a domain controller went silent: four telemetry rows flagged; sync, risk, emergency access, grants and admin changes all stale; and the Active Directory tab, whose sources are fresh, flagging the silent controller. Then you render the next morning, run the replication probe on a saved replication report, and check reachability. And when you try to record the first render as evidence, the kit refuses.`,
