@@ -1,0 +1,9 @@
+PS> Test-AmOAuthRegression -PlanPath out/pack/wp4-redirect-plan.json -TenantId aaaabbbb-0000-cccc-1111-dddd2222eeee -FixturePath tests/fixtures/identity/oauth-responses.json -OutDir out/pack | Format-Table
+Uri                                           Expected    Observed    Pass
+---                                           --------    --------    ----
+https://cases.contoso.example/signin-oidc     accepted    accepted    True
+https://cases.contoso.example/                accepted    accepted    True
+http://cases-test.contoso.example/signin-oidc AADSTS50011 AADSTS50011 True
+https://cases-old.contoso.example/signin-oidc AADSTS50011 AADSTS50011 True
+https://cases.fabrikam.example/signin-oidc    AADSTS50011 AADSTS50011 True
+http://localhost:5173/                        AADSTS50011 AADSTS50011 True

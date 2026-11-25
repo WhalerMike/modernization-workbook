@@ -1,0 +1,14 @@
+PS> Import-Csv service/target/lab/audit-guardrails.csv | Format-Table tool, case_number, allowed, detail -Wrap
+tool               case_number allowed detail
+----               ----------- ------- ------
+update_case_status C-000004    false   denied: tool is not on the agent's allow-list
+get_case           C-000004    true    ran
+list_related_cases C-000004    true    ran
+get_case           C-000004    true    ran
+get_case           C-000004    true    ran
+get_case           C-000004    true    ran
+get_case           C-000004    true    ran
+get_case           C-000004    true    ran
+step_limit         C-000004    false   stopped after 5 steps without a final answer
+get_case           C-000004    false   rejected: invalid arguments: case_number must match ^C-[0-9]{6}$
+propose_action     C-000004    false   rejected: invalid arguments: may only propose actions for the case being triaged

@@ -1,0 +1,7 @@
+PS> foreach ($f in 'case-before-decision', 'decision-by-agent', 'case-after-decision', 'decision-twice') { $r = Read-AmJson -Path "service/target/lab/$f.json"; [pscustomobject]@{ Step = $f; Status = $r.httpStatus; Case = $(if ($r.httpStatus -eq 200) { $r.body.status }); Detail = $r.body.detail } }
+Step                 Status Case    Detail
+----                 ------ ----    ------
+case-before-decision    200 OPEN
+decision-by-agent       400         An agent cannot decide on a proposal; a person must
+case-after-decision     200 PENDING
+decision-twice          409         Proposal 1 is already APPROVED

@@ -1,0 +1,2 @@
+PS> New-AmAssignmentPlan -SnapshotDir out/pack -AssignmentsPath tests/fixtures/identity/no-assignments.json -ChangeId CHG-0001 -OutDir out/pack
+Exception: AM-AS-01: nobody would be assigned. Requiring assignment now would refuse every user and client.

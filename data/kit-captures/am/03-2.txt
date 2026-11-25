@@ -1,0 +1,9 @@
+PS> Get-AmValidationSummary -Path migration/target/lab/load-full.json | Format-Table Table, Check, Passed, Detail
+Table       Check           Passed Detail
+-----       -----           ------ ------
+applicant   row_count         True source 20, target 20
+applicant   checksum_sha256   True
+applicant   aggregate         True
+case_record row_count         True source 50, target 50
+case_record checksum_sha256   True
+case_record aggregate         True
