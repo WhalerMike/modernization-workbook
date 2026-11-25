@@ -1279,6 +1279,38 @@ $script:FMPUserProperties = @('UserPrincipalName', 'DisplayName', 'Enabled', 'La
     'PasswordExpired', 'LockedOut', 'AccountExpirationDate', 'MemberOf', 'AdminCount', 'TrustedForDelegation', 'TrustedToAuthForDelegation',
     'AccountNotDelegated', 'msDS-AllowedToDelegateTo', 'ServicePrincipalName', 'Created', 'Modified', 'Description', 'Department', 'Title')
 
+function ConvertTo-FMPIdentityEvidence {
+    <#
+    .SYNOPSIS
+        One directory evidence record for one identity: the attributes exactly as the
+        collector read them, where and when from, with which query, and a SHA-256 of the
+        attributes so the record can be checked later.
+    .EXAMPLE
+        ConvertTo-FMPIdentityEvidence -Row $row -ObjectClass user -Domain contoso.example -Query 'Get-ADUser -Filter *'
+    #>
+    param([Parameter(Mandatory)]$Row, [string]$ObjectClass, [Parameter(Mandatory)][string]$Domain, [string]$Query)
+    $names = 'SamAccountName', 'SID', 'DistinguishedName', 'Enabled', 'Created', 'Modified', 'PasswordLastSet', 'PasswordNeverExpires',
+        'LastLogonDate', 'AdminCount', 'TrustedForDelegation', 'TrustedToAuthForDelegation', 'AccountNotDelegated', 'AllowedToDelegateTo',
+        'SPNs', 'MemberOf', 'PrincipalsAllowedToRetrieveManagedPassword', 'HostComputers', 'Description'
+    $attrs = [ordered]@{}
+    foreach ($n in $names) {
+        $v = if ($Row -is [System.Collections.IDictionary]) { if ($Row.Contains($n)) { $Row[$n] } else { $null } } elseif ($Row.PSObject.Properties[$n]) { $Row.$n } else { $null }
+        if ($null -eq $v) { continue }
+        if ($v -is [datetime]) { $v = $v.ToUniversalTime().ToString('o') }
+        elseif ($v -is [System.Collections.IEnumerable] -and $v -isnot [string]) { $v = @($v | ForEach-Object { "$_" } | Sort-Object) }
+        $attrs[$n] = $v
+    }
+    $canonical = ConvertTo-Json -InputObject $attrs -Depth 4 -Compress
+    $sha = [System.Security.Cryptography.SHA256]::Create()
+    try { $hash = -join ($sha.ComputeHash([System.Text.Encoding]::UTF8.GetBytes($canonical)) | ForEach-Object { $_.ToString('x2') }) } finally { $sha.Dispose() }
+    [pscustomobject][ordered]@{
+        IdentityId = "$($attrs['SID'])"; SamAccountName = $attrs['SamAccountName']; ObjectClass = $ObjectClass; Domain = $Domain
+        ReadAtUtc = [DateTime]::UtcNow.ToString('o'); Query = $Query; Attributes = $attrs
+        # The exact text hashed: check a record with SHA-256 over AttributesJson as UTF-8.
+        AttributesJson = $canonical; AttributesSha256 = $hash
+    }
+}
+
 function Get-FMPUserInventory {
     <#
     .SYNOPSIS
@@ -1289,7 +1321,8 @@ function Get-FMPUserInventory {
     .OUTPUTS
         UserInventory.json, PrivilegedUsers.csv, AdminCountReport.csv, ServiceAccounts.csv,
         UserDelegationReport.csv, PrivilegedDelegable.csv, UserCounts.json,
-        ServiceAccounts\MSAInventory.json, ServiceAccounts\gMSAInventory.json
+        ServiceAccounts\MSAInventory.json, ServiceAccounts\gMSAInventory.json,
+        ServiceAccounts\IdentityEvidence.json (one directory evidence record per service identity)
     .EXAMPLE
         Get-FMPUserInventory -OutputPath D:\Assessment\run1 -Domain contoso.example -StaleThresholdDays 90
     #>
@@ -1384,6 +1417,10 @@ function Get-FMPUserInventory {
                     InPrivilegedGroup = $privileged.ContainsKey($r.SID); OrphanedAdminCount = -not $privileged.ContainsKey($r.SID)
                 })
         }
+        # One directory evidence record per service identity: a user with an SPN or delegation.
+        if (@($r.SPNs).Count -gt 0 -or $r.TrustedForDelegation -or @($r.AllowedToDelegateTo).Count -gt 0) {
+            Join-FMPDerived -Acc $acc -Key 'Evidence' -Row (ConvertTo-FMPIdentityEvidence -Row $r -ObjectClass 'user' -Domain $Domain -Query "Get-ADUser -Filter * -Properties $($script:FMPUserProperties -join ',')")
+        }
         if (@($r.SPNs).Count -gt 0) {
             Join-FMPDerived -Acc $acc -Key 'Service' -Row ([pscustomobject][ordered]@{
                     SamAccountName = $r.SamAccountName; Enabled = $r.Enabled; PasswordNeverExpires = $r.PasswordNeverExpires
@@ -1402,12 +1439,18 @@ function Get-FMPUserInventory {
             @(Get-ADServiceAccount -Filter * -Server $Domain -Properties Enabled, Created, PasswordLastSet, ServicePrincipalName, PrincipalsAllowedToRetrieveManagedPassword, HostComputers -ResultPageSize (Get-FMPRunContext).PageSize -ErrorAction Stop)
         } | ForEach-Object {
             [pscustomobject][ordered]@{
-                SamAccountName = $_.SamAccountName; Enabled = $_.Enabled; Created = $_.Created; PasswordLastSet = $_.PasswordLastSet
+                SamAccountName = $_.SamAccountName; SID = "$($_.SID)"; Enabled = $_.Enabled; Created = $_.Created; PasswordLastSet = $_.PasswordLastSet
                 DistinguishedName = $_.DistinguishedName; ObjectClass = "$($_.ObjectClass)"; SPNs = @($_.ServicePrincipalName)
                 PrincipalsAllowedToRetrieveManagedPassword = @($_.PrincipalsAllowedToRetrieveManagedPassword | Where-Object { $_ })
                 HostComputers = @($_.HostComputers | Where-Object { $_ })
             }
         })
+    $evidence = @(Get-FMPDerivedRows -Parts $parts -Key 'Evidence')
+    $evidence += @($managed | ForEach-Object { ConvertTo-FMPIdentityEvidence -Row $_ -ObjectClass $_.ObjectClass -Domain $Domain -Query 'Get-ADServiceAccount -Filter * -Properties Enabled,Created,PasswordLastSet,ServicePrincipalName,PrincipalsAllowedToRetrieveManagedPassword,HostComputers' })
+    Write-FMPJson -InputObject ([ordered]@{
+            Schema = 'fmp-start-kit/identity-evidence/1'; Domain = $Domain; GeneratedUtc = (Get-Date).ToUniversalTime().ToString('o')
+            RecordCount = $evidence.Count; Records = $evidence
+        }) -Path (Join-Path $saPath 'IdentityEvidence.json') -Depth 6
     Write-FMPJson -InputObject @($managed | Where-Object ObjectClass -eq 'msDS-ManagedServiceAccount')      -Path (Join-Path $saPath 'MSAInventory.json')
     Write-FMPJson -InputObject @($managed | Where-Object ObjectClass -eq 'msDS-GroupManagedServiceAccount') -Path (Join-Path $saPath 'gMSAInventory.json')
 

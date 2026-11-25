@@ -120,13 +120,19 @@ function Get-NpiAdServiceAccount {
         Get-NpiAdServiceAccount -Reader $reader -AsOf '2026-10-30T12:00:00Z'
     #>
     [CmdletBinding()]
-    param([Parameter(Mandatory)]$Reader, [Parameter(Mandatory)][datetime]$AsOf, $Config = (Get-NpiRegisterConfig))
+    param(
+        [Parameter(Mandatory)]$Reader, [Parameter(Mandatory)][datetime]$AsOf, $Config = (Get-NpiRegisterConfig),
+        # Receives one directory evidence record per identity (ConvertTo-NpiDirectoryEvidence).
+        [Collections.Generic.List[object]]$EvidenceSink
+    )
     $rows = [Collections.Generic.List[object]]::new()
     $privileged = @($Config.privilegedAdGroups)
     $privOf = { param($memberOf) @(@($memberOf) | ForEach-Object { if ("$_" -match '^CN=([^,]+),') { $Matches[1] } } | Where-Object { $_ -in $privileged }) }
 
     $users = Invoke-NpiAdRead -Reader $Reader -CallId 'ad-service-users' -Params @{ LDAPFilter = (Get-NpiServiceUserLdapFilter -Config $Config); Properties = $script:AdUserProperties }
+    $userRead = @($Reader.Evidence | Where-Object Call -EQ 'ad-service-users')[-1]
     foreach ($u in $users) {
+        if ($null -ne $EvidenceSink) { $EvidenceSink.Add((ConvertTo-NpiDirectoryEvidence -Object $u -Properties $script:AdUserProperties -Read $userRead)) }
         $spns = @($u.ServicePrincipalName | Where-Object { $_ })
         $named = $false; foreach ($p in $Config.namingPatterns) { if ($u.SamAccountName -like $p) { $named = $true } }
         $described = [bool]($u.Description -and $u.Description -like $Config.descriptionPattern)
@@ -151,7 +157,9 @@ function Get-NpiAdServiceAccount {
     }
 
     $msas = Invoke-NpiAdRead -Reader $Reader -CallId 'ad-managed-service-accounts' -Params @{ Filter = '*'; Properties = $script:AdServiceAccountProperties }
+    $msaRead = @($Reader.Evidence | Where-Object Call -EQ 'ad-managed-service-accounts')[-1]
     foreach ($m in $msas) {
+        if ($null -ne $EvidenceSink) { $EvidenceSink.Add((ConvertTo-NpiDirectoryEvidence -Object $m -Properties $script:AdServiceAccountProperties -Read $msaRead)) }
         $type = switch ($m.ObjectClass) {
             'msDS-ManagedServiceAccount' { 'MSA' }
             'msDS-GroupManagedServiceAccount' { 'gMSA' }
@@ -446,7 +454,8 @@ function Get-NpiRegister {
     <#
     .SYNOPSIS
         The whole register: AD and Entra rows, each with a risk, a candidate target and a Data
-        Platform hand-off where it applies. Returns @{ Rows; Evidence }.
+        Platform hand-off where it applies. Returns @{ Rows; Evidence; DirectoryEvidence }:
+        DirectoryEvidence is one record per AD identity, the attributes as read and their SHA-256.
     .EXAMPLE
         # Build the whole register from the fixture estate.
         $fake = New-NpiFixtureInvoker -Path tests/fixtures/estate.json -Cloud gcc
@@ -468,7 +477,8 @@ function Get-NpiRegister {
         [string]$ServiceInventoryPath
     )
     $rows = [Collections.Generic.List[object]]::new()
-    if (-not $SkipAd) { foreach ($r in (Get-NpiAdServiceAccount -Reader $Reader -AsOf $AsOf -Config $Config)) { $rows.Add($r) } }
+    $directoryEvidence = [Collections.Generic.List[object]]::new()
+    if (-not $SkipAd) { foreach ($r in (Get-NpiAdServiceAccount -Reader $Reader -AsOf $AsOf -Config $Config -EvidenceSink $directoryEvidence)) { $rows.Add($r) } }
     if ($ServiceInventoryPath) {
         $svc = Import-NpiServiceInventory -Path $ServiceInventoryPath
         foreach ($r in $rows) {
@@ -493,7 +503,7 @@ function Get-NpiRegister {
             if ($dp) { $r.Handoff = 'DataPlatform'; $r.CandidateTarget = "Data Platform plan ($dp): $($r.CandidateTarget)" }
         }
     }
-    [pscustomobject]@{ Rows = $rows.ToArray(); Evidence = $Reader.Evidence.ToArray() }
+    [pscustomobject]@{ Rows = $rows.ToArray(); Evidence = $Reader.Evidence.ToArray(); DirectoryEvidence = $directoryEvidence.ToArray() }
 }
 
 function Test-NpiRegister {

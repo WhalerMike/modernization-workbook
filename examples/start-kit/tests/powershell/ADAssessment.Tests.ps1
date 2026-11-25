@@ -186,6 +186,20 @@ Describe 'Collector results' {
         @($s.Scopes)[0].DnsSetting.DynamicUpdates | Should -Be 'OnClientRequest'
         @($s.DnsCredential.PSObject.Properties.Name) | Should -Be @('UserName', 'DomainName')
     }
+    It 'writes one directory evidence record per service identity, with a hash of its attributes' {
+        $e = Get-Content -Raw (Join-Path $root 'ServiceAccounts\IdentityEvidence.json') | ConvertFrom-Json
+        @($e.Records.SamAccountName | Sort-Object) | Should -Be @('gmsa-sql02$', 'krbtgt', 'svc-sql01', 'svc-web')
+        $e.RecordCount | Should -Be 4
+        $r = $e.Records | Where-Object SamAccountName -eq 'svc-sql01'
+        $r.IdentityId | Should -Match '^S-1-5-21-1000-1000-1000-'
+        $r.Query | Should -Match '^Get-ADUser -Filter \* -Properties '
+        @($r.Attributes.SPNs) | Should -Contain 'MSSQLSvc/sql01.contoso.example:1433'
+        foreach ($rec in @($e.Records)) {
+            $sha = [System.Security.Cryptography.SHA256]::Create()
+            (-join ($sha.ComputeHash([System.Text.Encoding]::UTF8.GetBytes($rec.AttributesJson)) | ForEach-Object { $_.ToString('x2') })) | Should -Be $rec.AttributesSha256
+            ($rec.AttributesJson | ConvertFrom-Json).SamAccountName | Should -Be $rec.SamAccountName
+        }
+    }
     It 'maps SPNs forest-wide with duplicates and orphans' {
         $k = Read-Out (Join-Path $root 'Kerberos\KerberosSpnMap.json')
         @(Import-Csv (Join-Path $root 'Kerberos\SpnDuplicates.csv')).Spn | Should -Be @('HTTP/web.contoso.example')
