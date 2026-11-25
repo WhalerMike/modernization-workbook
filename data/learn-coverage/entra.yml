@@ -6864,6 +6864,7 @@ pages:
   - docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.md
   - docs/books/b04-access/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
+  - docs/books/b06-data-platform/appendix-a-requirements-mapping.md
   - docs/books/b09-network/05-sd-wan-sase-and-governed-transport.md
   - docs/books/b09-network/11-field-office-wan-transformation.md
   - docs/books/b09-network/12-microsoft-365-traffic.md
