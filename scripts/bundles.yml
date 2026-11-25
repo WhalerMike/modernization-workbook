@@ -484,6 +484,12 @@ bundles:
     root: docs/training/defender-xdr
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: training-dns-dhcp-ipam-bundle.docx
+    title: "Learning path: DNS, DHCP and IPAM"
+    subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
+    root: docs/training/dns-dhcp-ipam
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
   - output: training-global-secure-access-bundle.docx
     title: "Learning path: Global Secure Access as the Identity-Aware Network"
     subtitle: "A learning path — Federal Modernization Workbook training, combined edition"

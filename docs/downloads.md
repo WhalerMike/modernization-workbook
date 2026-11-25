@@ -153,6 +153,7 @@ Each learning path downloads as one Word document: its overview and every module
 | [The Daily Checks on One Dashboard](training/daily-checks-dashboard/index.md) | [training-daily-checks-dashboard-bundle.docx](../downloads/training-daily-checks-dashboard-bundle.docx) |
 | [Defender XDR Engineering and Operations](training/defender-xdr/index.md) | [training-defender-xdr-bundle.docx](../downloads/training-defender-xdr-bundle.docx) |
 | [Information Protection with Microsoft Purview](training/information-protection/index.md) | [training-information-protection-bundle.docx](../downloads/training-information-protection-bundle.docx) |
+| [DNS, DHCP and IPAM](training/dns-dhcp-ipam/index.md) | [training-dns-dhcp-ipam-bundle.docx](../downloads/training-dns-dhcp-ipam-bundle.docx) |
 | [Global Secure Access as the Identity-Aware Network](training/global-secure-access/index.md) | [training-global-secure-access-bundle.docx](../downloads/training-global-secure-access-bundle.docx) |
 | [HR-Driven Identity in Microsoft Entra ID](training/hr-driven-identity/index.md) | [training-hr-driven-identity-bundle.docx](../downloads/training-hr-driven-identity-bundle.docx) |
 | [Non-Person Identity in Microsoft Entra ID](training/non-person-identity/index.md) | [training-non-person-identity-bundle.docx](../downloads/training-non-person-identity-bundle.docx) |
