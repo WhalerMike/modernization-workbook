@@ -12,9 +12,9 @@ review-status: pending
 ## Week 1: HR as the source
 
 - [For the CHCO: HR 2.0 and the Contractor Source](../../books/guides/brief-chco.md) (Companion guide, about 2 min). A one-page brief for the meeting that approves the pre-flight.
-- [Book 03 — HR-Driven Identity](../../books/b03-hr-identity/index.md) (Book, 19 chapters, about 6 hr 59 min). HR-Driven Identity Modernization — an enterprise data architecture case study: using Federal HR 2.0 and the Entra ID migration to start HR-driven Entra ID, Active Directory and ICAM on OPM standard attributes.
+- [Book 03 — HR-Driven Identity](../../books/b03-hr-identity/index.md) (Book, 19 chapters, about 7 hr 4 min). HR-Driven Identity Modernization — an enterprise data architecture case study: using Federal HR 2.0 and the Entra ID migration to start HR-driven Entra ID, Active Directory and ICAM on OPM standard attributes.
 
-*Milestone 1: about 7 hr 1 min.*
+*Milestone 1: about 7 hr 6 min.*
 
 ## Week 2: the HR-driven path
 
@@ -34,5 +34,5 @@ review-status: pending
 
 *Milestone 4: about 45 min.*
 
-**Whole plan:** about 20 hr 48 min of reading and video, plus the labs.
+**Whole plan:** about 20 hr 53 min of reading and video, plus the labs.
 
