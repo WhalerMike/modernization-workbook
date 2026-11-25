@@ -2681,6 +2681,21 @@
   "page": "ms-automation-intune.docx",
   "title": "Microsoft Automation: Graph, Entra ID, Intune and Azure Arc"
  },
+ "docs/training/network-sd-wan/01-the-governor-before-the-traffic.md": {
+  "bundle": "training-network-sd-wan-bundle.docx",
+  "page": "01-the-governor-before-the-traffic.docx",
+  "title": "Learning path: The SD-WAN Governor and Its Evidence"
+ },
+ "docs/training/network-sd-wan/02-gate-0-the-ed-26-03-and-kev-floor.md": {
+  "bundle": "training-network-sd-wan-bundle.docx",
+  "page": "02-gate-0-the-ed-26-03-and-kev-floor.docx",
+  "title": "Learning path: The SD-WAN Governor and Its Evidence"
+ },
+ "docs/training/network-sd-wan/index.md": {
+  "bundle": "training-network-sd-wan-bundle.docx",
+  "page": "index.docx",
+  "title": "Learning path: The SD-WAN Governor and Its Evidence"
+ },
  "docs/training/non-person-identity/01-inventory.md": {
   "bundle": "training-non-person-identity-bundle.docx",
   "page": "01-inventory.docx",

@@ -3307,6 +3307,24 @@
    "title": "Endpoints"
   }
  ],
+ "docs/training/network-sd-wan/01-the-governor-before-the-traffic.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/training/network-sd-wan/02-gate-0-the-ed-26-03-and-kev-floor.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/training/network-sd-wan/index.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
  "docs/training/non-person-identity/01-inventory.md": [
   {
    "id": "non-person-identity",

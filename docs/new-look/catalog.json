@@ -444,6 +444,32 @@
    "featured": true
   },
   {
+   "id": "docs/training/network-sd-wan/index.md",
+   "type": "Learning path",
+   "title": "Learning path: The SD-WAN Governor and Its Evidence",
+   "description": "Four modules: the governor before the traffic, the ED 26-03 and KEV gate, the hunt and the logs, and path classes, change rings and the evidence, with labs on the Cisco kit's fixtures and in a test fabric",
+   "url": "docs/training/network-sd-wan/index.html",
+   "count": 2,
+   "unit": "modules",
+   "reading_minutes": 180,
+   "reading_source": "page",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Security operations",
+    "Cloud and platform engineer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Network"
+   ],
+   "status": "Not tracked",
+   "family": "network-sd-wan",
+   "featured": false
+  },
+  {
    "id": "docs/training/zero-trust-assessment/index.md",
    "type": "Learning path",
    "title": "Learning path: The Zero Trust Assessment as Evidence",
@@ -2541,6 +2567,32 @@
    ],
    "status": "Approved",
    "family": "ms-automation",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#network-sd-wan",
+   "type": "Lab",
+   "title": "Labs: SD-WAN governor learning path",
+   "description": "4 hands-on labs across 2 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The SD-WAN governor learning path.",
+   "url": "docs/training/labs.html#network-sd-wan",
+   "count": 4,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "Security operations",
+    "Cloud and platform engineer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Network"
+   ],
+   "status": "Not tracked",
+   "family": "network-sd-wan",
    "featured": false
   },
   {
