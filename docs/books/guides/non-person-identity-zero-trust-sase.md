@@ -21,7 +21,7 @@ last-reviewed: 2026-11-25
 
 ::: {.callout-tip}
 ## Which guide?
-The Non-Person Identity track has three guides. [*Non-Person Identity: An Implementation Guide*](non-person-identity-implementation.md) runs the track as gates G1 to G6. [*Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities*](service-account-migration.md) moves one account at a time. This page is the *why*: what each choice does to the program's Zero Trust maturity and its SASE design, workload by workload and cloud by cloud, and which certificates each move adds or removes.
+The Non-Person Identity track has four guides. [*Non-Person Identity: An Implementation Guide*](non-person-identity-implementation.md) runs the track as gates G1 to G6. [*Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities*](service-account-migration.md) moves one account at a time. This page is the *why*: what each choice does to the program's Zero Trust maturity and its SASE design, workload by workload and cloud by cloud, and which certificates each move adds or removes. The fourth, [*Requesting a Managed Service Account*](msa-request-pack.md), is the request pack: the forms, a checker that runs the standard's request check before submission, and the tags every account carries to Entra.
 :::
 
 ::: {.callout-note}
