@@ -1,0 +1,10 @@
+[
+  {
+    "id": "d0000000-0000-4000-8000-000000000701",
+    "clientId": "a0000000-0000-4000-8000-000000000102",
+    "consentType": "AllPrincipals",
+    "principalId": null,
+    "resourceId": "a0000000-0000-4000-8000-000000000401",
+    "scope": "User.Read"
+  }
+]

@@ -1,0 +1,9 @@
+PS> Import-Module ./powershell/AppModernization/AppModernization.psm1
+PS> Get-AmContractOperation -Path service/src/main/resources/static/openapi.yaml | Format-Table
+Method Path                           OperationId
+------ ----                           -----------
+GET    /api/cases                     listCases
+GET    /api/cases/{caseNumber}        getCase
+POST   /api/cases/{caseNumber}/triage triageCase
+GET    /api/proposals                 listProposals
+POST   /api/proposals/{id}/decision   decideProposal

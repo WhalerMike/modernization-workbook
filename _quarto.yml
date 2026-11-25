@@ -265,6 +265,8 @@ website:
             text: "Building Azure Security"
           - href: docs/project-plans/developer-workbooks/daily-checks/index.md
             text: "Building the Daily Checks Workbook"
+          - href: docs/project-plans/developer-workbooks/application-modernization/index.md
+            text: "Building Application Modernization"
       - href: docs/evaluations/index.md
         text: "Evaluations"
       - href: docs/training/index.md
@@ -520,6 +522,10 @@ website:
               href: docs/project-plans/developer-workbooks/daily-checks/index.md
               contents:
                 - auto: "docs/project-plans/developer-workbooks/daily-checks/*-*.md"
+            - section: "Building Application Modernization"
+              href: docs/project-plans/developer-workbooks/application-modernization/index.md
+              contents:
+                - auto: "docs/project-plans/developer-workbooks/application-modernization/*-*.md"
     - id: books
       title: "The Workbook Books"
       style: docked

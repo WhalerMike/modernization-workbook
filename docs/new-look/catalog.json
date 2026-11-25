@@ -1142,6 +1142,31 @@
    "featured": false
   },
   {
+   "id": "docs/project-plans/developer-workbooks/application-modernization/index.md",
+   "type": "Developer workbook",
+   "title": "Building Application Modernization",
+   "description": "A developer workbook for Book 18's reference implementation and its identity remediation work packages",
+   "url": "docs/project-plans/developer-workbooks/application-modernization/index.html",
+   "count": 7,
+   "unit": "chapters",
+   "reading_minutes": 77,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Advanced",
+   "level_source": "audience",
+   "roles": [
+    "Developer",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Application modernization"
+   ],
+   "status": "Draft",
+   "family": "application-modernization",
+   "featured": false
+  },
+  {
    "id": "docs/project-plans/developer-workbooks/azure-security/index.md",
    "type": "Developer workbook",
    "title": "Building Azure Security",

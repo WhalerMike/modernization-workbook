@@ -544,6 +544,12 @@ bundles:
     pages: [infoblox-training.md]
   # ---------------------------------------------------------------------
   # Developer workbooks that had no Word edition yet.
+  - output: building-application-modernization-bundle.docx
+    title: "Building Application Modernization"
+    subtitle: "A developer workbook — Federal Modernization Workbook, combined edition"
+    root: docs/project-plans/developer-workbooks/application-modernization
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
   - output: building-azure-security-bundle.docx
     title: "Building Azure Security"
     subtitle: "A developer workbook — Federal Modernization Workbook, combined edition"
