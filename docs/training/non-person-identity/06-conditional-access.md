@@ -54,7 +54,7 @@ After this module, you'll be able to:
 
 ## Unit 1: What the gate asks for (7 minutes)
 
-Read the guide's [Step 4](../../books/guides/non-person-identity-implementation.md#step-4-cut-privilege), sub-steps 4d (custom security attributes and app filters) and 4e (Conditional Access for workload identities, and its limits). Then read the guide's [licenses](../../books/guides/non-person-identity-implementation.md#licenses) table: Conditional Access for workload identities needs Workload ID Premium.
+Read the guide's [Step 4](../../books/guides/non-person-identity-implementation.md#step-4-cut-privilege), sub-steps 4d (custom security attributes and app filters, which waits for a tenant check in GCC, [WD-176](../../about/decision-register.md#wd-176)) and 4e (Conditional Access for workload identities, and its limits). Then read the guide's [licenses](../../books/guides/non-person-identity-implementation.md#licenses) table: Conditional Access for workload identities needs Workload ID Premium.
 
 ## Unit 2: The limits and the scope (10 minutes)
 

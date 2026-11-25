@@ -100,7 +100,7 @@ tasks:
      late: "The schema can't name a writer for an attribute whose authority isn't decided",
      source: "identity-lifecycle.md"}
   - {id: D-AT1, kind: decision, phase: 1, name: "Attribute schema: the store and the single writer for every attribute that drives access, in all four tracks", after: [AT1.2, X-I12], owner: "Data architect",
-     options: "Native properties first, then extension attributes 1–15 for what rules read, directory extensions for more slots, custom security attributes for sensitive values rules don't need, device properties, Azure tags and certificateUserIds (the store table); or a broader use of directory extensions from the start",
+     options: "Native properties first, then extension attributes 1–15 for what rules read, directory extensions for more slots, custom security attributes for sensitive values rules don't need (once a tenant check confirms them in GCC, WD-176), device properties, Azure tags and certificateUserIds (the store table); or a broader use of directory extensions from the start",
      late: "No slot can be assigned, and every group rule, persona and targeting convention waits",
      source: "../books/guides/attribute-driven-migration.md#attributes"}
   - {id: D-AT2, kind: decision, phase: 1, name: "The coded slot register: which extension attribute carries which code, on users and on devices", after: [D-AT1], owner: "Data architect, with HR for the code lists",
@@ -191,7 +191,7 @@ tasks:
   - {id: X-E42, kind: external, phase: 5, name: "Tag taxonomy fixed from the asset record (Endpoint plan, E4.2)", ref: "endpoint-device:E4.2", after: [AT5.3],
      late: "Arc servers are tagged with a taxonomy the device and user sides don't share",
      source: "endpoint-device.md"}
-  - {id: AT5.4, phase: 5, name: "Non-person conventions: owners and sponsors recorded by the enterprise person key; custom security attributes for service principals (system, environment, tier) defined", dur: 3, after: [D-AT1], owner: "Identity engineering, with the identity governance officer",
+  - {id: AT5.4, phase: 5, name: "Non-person conventions: owners and sponsors recorded by the enterprise person key; the seven non-person tags on service principals defined (tags and notes until a tenant check confirms custom security attributes in GCC, WD-176)", dur: 3, after: [D-AT1], owner: "Identity engineering, with the identity governance officer",
      source: "../books/guides/attribute-driven-migration.md#what-microsoft-documents-for-targeting-service-principals-by-attribute-partly"}
   - {id: X-NP12, kind: external, phase: 5, name: "AI accountability: sponsors mastered in HR (Non-Person Identity plan, NP1.2, its start)", ref: "non-person-identity:NP1.2:start", after: [AT5.4],
      late: "Sponsors are recorded by name rather than by key, and a sponsor's move or departure can't be matched",

@@ -1,4 +1,2 @@
-PS> Invoke-Pester -Path tests/DailyChecks.Tests.ps1 -FullNameFilter 'Chapter 03*', 'Evidence*' -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-         27           0
+PS> try { ./Invoke-DcEvidence.ps1 -EvidencePath "$Run/evidence" -RunPath "$Run/day1" -AsOf 2026-11-16T07:31:00Z } catch { $_.Exception.Message }
+A rendered view is not evidence. Record the check's own output instead (the probe's result, the alert, the closed task), or the kit's validate, plan, deploy and reachability runs.

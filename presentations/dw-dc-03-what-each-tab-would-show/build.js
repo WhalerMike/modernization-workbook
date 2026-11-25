@@ -114,8 +114,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the morning the logs stopped",
       body: [
-        { terminal: "03-1", lines: "1-15" },
-        { terminal: "03-2" },
+        { terminal: "03-3", lines: "1-15" },
+        { terminal: "03-4" },
       ],
       sources: "Sources: examples/daily-checks-workbook (fictional fixtures, November 16, 2026). Chapter 03, “Lab 1,” steps 1–2.",
       say: `Lab 1. Step 1 renders the morning of November sixteenth in the fictional workspace. The Entra diagnostic setting stopped at ten past five the evening before, and the sync probe didn't run. Telemetry flags four rows: sign-in and audit logs are dark, the probe's table is dark, and the Office 365 connector's latest health event is a failure. The sync, risk, emergency access, grants and admin changes tabs are all STALE, even the sync server's two overnight export errors. The Active Directory tab's sources are fresh, so it can be read: the third domain controller went silent at seven the evening before, and both links from it are failing. Step 2 shows why the risk tab isn't clear: no rows, but its source stopped fourteen hours ago.`,
@@ -126,7 +126,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the next morning",
       body: [
-        { terminal: "03-3", lines: "1-15" },
+        { terminal: "03-5", lines: "1-15" },
       ],
       sources: "Sources: examples/daily-checks-workbook (fictional fixtures, November 17, 2026). Chapter 03, “Lab 1,” step 3.",
       say: `Step 3 renders the next morning. The setting is back, and telemetry is clear. Now the queues show what they were hiding: one user at high risk, one emergency access sign-in, which turns out to be the quarterly validation drill, and the review records it as a drill, and one synchronization conflict. The staging synchronization server wrote no backup event, so it's flagged too. The admin changes tab lists yesterday's five request-driven changes, each to be matched to its ticket. Grants, D L P alerts and Active Directory are clear, and this time clear means something, because their sources are fresh.`,
@@ -137,7 +137,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the replication probe",
       body: [
-        { terminal: "03-4" },
+        { terminal: "03-6" },
         { callout: "without -Send it writes probe.json and sends nothing. A failing link makes it exit 1: that is a finding, not a broken script.", label: "Note: ", color: "teal" },
       ],
       sources: "Sources: examples/daily-checks-workbook (fictional fixtures, saved repadmin output). Chapter 03, “Lab 1,” step 4; “The replication probe.”",
@@ -149,8 +149,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: reachability, and a refused render",
       body: [
-        { terminal: "03-5", lines: "1-17" },
-        { terminal: "03-6" },
+        { terminal: "03-7", lines: "1-17" },
+        { terminal: "03-8" },
       ],
       sources: "Sources: examples/daily-checks-workbook (fictional fixtures). Chapter 03, “Lab 1,” steps 5–6.",
       say: `Step 5 checks each table's reachability on the first morning, from saved answers. Sign-in logs, audit logs and the probe's table are late, and the Sentinel health table is missing altogether: health monitoring was never turned on in this workspace. The servers' heartbeat, event and security event tables are all delivering. The script exits with an error. Step 6 tries to record the first morning's render as evidence. The kit refuses: a rendered view is not evidence.`,
@@ -161,8 +161,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: record what the checks found",
       body: [
-        { terminal: "03-7" },
-        { terminal: "03-8" },
+        { terminal: "03-9" },
+        { terminal: "03-10" },
       ],
       sources: "Sources: examples/daily-checks-workbook (fictional fixtures). Chapter 03, “Lab 1,” steps 7–8.",
       say: `Step 7 records the reachability check and the probe instead. Records one and two, both with result Fail: each record keeps what its check found, with continuous monitoring and system monitoring, and their indicators. A failing record is still evidence; it's evidence of the gap. Step 8 runs this chapter's tests and the evidence tests: twenty-seven passed, none failed.`,

@@ -126,3 +126,9 @@ Every footnote was re-checked against raw sources by the independent pass (`docs
 | 11 | Titles as published | cw-opm-award, cw-govt1, cw-govt7-2006, cw-dhs-oig-26 | corrected | OPM, Federal Register, oversight.gov |
 | 12 | EPA quote location: system overview, p. 2 | cw-epa-epacs | corrected | EPA PIA |
 | 13 | DOE OIG printed pp. 1–2, PDF pp. 2–3 | cw-doe-oig | corrected | DOE OIG |
+
+## Revision 2026-11-25 — custom security attributes in GCC (WD-176)
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| CSA-1 | Contract reference: a custom security attribute only once a tenant check confirms them in GCC | see the change | changed *(design guidance)* | WD-176; Mike, November 25, 2026 |
