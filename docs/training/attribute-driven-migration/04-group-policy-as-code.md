@@ -8,8 +8,8 @@ research-book: "Book 19"
 series-order: 4
 date-modified: 2026-11-02
 review-status: approved
-reviewed-sha256: 812addeee591301f4de6ed247f35b1751f885ec8fd63634a7f1b6a1448caa13f
-last-reviewed: 2026-11-22
+reviewed-sha256: 1541fea7878479cdb9f1dd67f42c0c67cc170c672fbd5cddbac69ea9aeee90be
+last-reviewed: 2026-11-25
 ---
 # Attribute-Driven Migration, Module 4: Move Group Policy as Code {.unnumbered}
 
