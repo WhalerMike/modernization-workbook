@@ -25,6 +25,12 @@
       9. Get-FMPStartKitSummary      Summary\StartKitSummary.md and .json
      10. AssessmentManifest.json     who, when, where, module versions, SHA-256 of every file
 
+    Before step 1, InputManifest.json records what the run starts from: every input file
+    (catalogs, measurements, NPS exports, code lists, wave plans, server lists) with its size,
+    time and SHA-256, the SHA-256 of each of the kit's own scripts and modules, and the forest,
+    domains and domain controllers it reads. At the end each input file is hashed again, and
+    any that changed during the run is listed in AssessmentManifest.json as InputsChanged.
+
     Nothing here writes to Active Directory, DNS, DHCP, AD CS, NPS or SQL Server. Every file
     goes under the run folder. Tier B adds the collectors that need the narrow delegations
     (DHCP, LDAP binding events); a Tier A run still records which reads were denied. The
@@ -214,6 +220,13 @@ if ($failedChecks.Count -gt 0) {
     throw ("Start Kit pre-flight failed; see $(Join-Path $runPath 'Preflight.json').`n" + (($failedChecks | ForEach-Object { "$($_.Check): $($_.Detail). $($_.Fix)" }) -join "`n"))
 }
 
+$inputPaths = @{
+    TransactionCatalog = $TransactionCatalog; TransactionMeasurementPath = @($TransactionMeasurementPath); NpsConfigPath = @($NpsConfigPath)
+    CodeListPath = $CodeListPath; WavePlan = $WavePlan; AssetOwnership = $AssetOwnership; ServerListPath = $ServerListPath
+}
+$inputManifest = Write-FMPInputManifest -RunPath $runPath -RunId $runId -KitRoot $PSScriptRoot -InputPath $inputPaths -Forest $adForest.Name -Domains $Domain -ServedBy $servedBy
+Write-FMPLog -Message ("Input manifest: {0} input file(s), {1} kit file(s), {2} directory source(s)" -f @($inputManifest.InputFiles).Count, @($inputManifest.KitFiles).Count, @($inputManifest.DirectorySources).Count)
+
 $steps = @()
 $readAccess = @()
 $steps += Invoke-FMPStep 'Read-access pre-flight' { $script:readAccess = @(Test-FMPReadAccess -OutputPath $runPath -Domain $adForest.RootDomain); [pscustomobject]@{ ObjectCount = $script:readAccess.Count } }
@@ -276,11 +289,13 @@ $parameters = @{
     ServerServices = [bool]($Tier -eq 'B' -or $ServerServices -or $ServerListPath) -and -not $SkipServerServices; ServerList = [bool]$ServerListPath; NoDcom = [bool]$NoDcom
     Resume = [bool]$Resume; Quiet = [bool]$Quiet; PageSize = $PageSize; MaxRetries = $MaxRetries; ResolveIPv4 = [bool]$ResolveIPv4
 }
+$inputsChanged = @(Test-FMPInputManifest -RunPath $runPath)
+foreach ($c in $inputsChanged) { Write-FMPLog -Level WARN -Message "Input changed during the run: $($c.Parameter) $($c.Path)" }
 # The last log line comes before the manifest, which hashes the log with everything else.
 $failedSteps = @($steps | Where-Object Status -eq 'Failed')
 Write-FMPLog -Level STEP -Message ("Run {0}: {1} steps, {2} failed, {3:hh\:mm\:ss}" -f $runId, $steps.Count, $failedSteps.Count, ((Get-Date) - $start))
 $manifest = Write-FMPManifest -RunPath $runPath -RunId $runId -StartTime $start -Tier $Tier -Forest $adForest.Name `
-    -Domains $Domain -ServedBy $servedBy -Steps $steps -Parameters $parameters
+    -Domains $Domain -ServedBy $servedBy -Steps $steps -Parameters $parameters -Extra @{ InputManifest = 'InputManifest.json'; InputsChanged = $inputsChanged }
 
 $failed = @($steps | Where-Object Status -eq 'Failed')
 Write-Host ("Done: {0} files, {1} steps, {2} failed. Summary: {3}" -f $manifest.FileCount, $steps.Count, $failed.Count, (Join-Path (Join-Path $runPath 'Summary') 'StartKitSummary.md'))
