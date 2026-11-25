@@ -249,18 +249,27 @@ function Get-FMPForestTopology {
     $topology
 }
 
+function Get-FMPParentDN {
+    # The parent of a distinguished name, honoring escaped commas (CN=Smith\, Jo,OU=x -> OU=x).
+    param([Parameter(Mandatory)][string]$DN)
+    if ($DN -match $script:FMPParentDNPattern) { $DN.Substring($Matches[0].Length) } else { '' }
+}
+# The first RDN, with escaped characters (\, or \\) inside it, and its comma.
+$script:FMPParentDNPattern = '^(?:\\.|[^,\\])*,'
+
 function Build-OUTree {
-    # Recursive nested tree from a parent DN, with direct object counts and links.
+    # Nested tree from the flat OU list, with direct object counts and links. No queries: the
+    # OUs and the counts by parent are read once, in Get-FMPOUHierarchy.
     param(
         [Parameter(Mandatory)][string]$ParentDN,
-        [Parameter(Mandatory)][string]$Server,
+        [Parameter(Mandatory)][hashtable]$ChildrenOf,
+        [Parameter(Mandatory)][hashtable]$Counts,
         [int]$Depth = 0
     )
-    $children = Get-ADOrganizationalUnit -Filter * -SearchBase $ParentDN -SearchScope OneLevel `
-        -Server $Server -Properties Description, ManagedBy, ProtectedFromAccidentalDeletion, LinkedGroupPolicyObjects
-
-    foreach ($ou in @($children)) {
+    if (-not $ChildrenOf.ContainsKey($ParentDN)) { return }
+    foreach ($ou in @($ChildrenOf[$ParentDN] | Sort-Object Name)) {
         $dn = $ou.DistinguishedName
+        $c = if ($Counts.ContainsKey($dn)) { $Counts[$dn] } else { @{ user = 0; computer = 0; group = 0 } }
         [pscustomobject]@{
             Name                            = $ou.Name
             DistinguishedName               = $dn
@@ -269,12 +278,8 @@ function Build-OUTree {
             ProtectedFromAccidentalDeletion = $ou.ProtectedFromAccidentalDeletion
             LinkedGPOs                      = @($ou.LinkedGroupPolicyObjects)
             Depth                           = $Depth
-            ObjectCounts                    = [pscustomobject]@{
-                Users     = @(Get-ADUser     -Filter * -SearchBase $dn -SearchScope OneLevel -Server $Server).Count
-                Computers = @(Get-ADComputer -Filter * -SearchBase $dn -SearchScope OneLevel -Server $Server).Count
-                Groups    = @(Get-ADGroup    -Filter * -SearchBase $dn -SearchScope OneLevel -Server $Server).Count
-            }
-            Children = @(Build-OUTree -ParentDN $dn -Server $Server -Depth ($Depth + 1))
+            ObjectCounts                    = [pscustomobject]@{ Users = $c.user; Computers = $c.computer; Groups = $c.group }
+            Children = @(Build-OUTree -ParentDN $dn -ChildrenOf $ChildrenOf -Counts $Counts -Depth ($Depth + 1))
         }
     }
 }
@@ -313,10 +318,53 @@ function Get-OUGPOLinks {
     }
 }
 
+function Get-FMPObjectCountByParent {
+    # Users, computers and groups per parent container: one light, paged read of each class
+    # per partition (distinguished name only), retried on timeouts.
+    param([Parameter(Mandatory)][string]$Domain)
+    $counts = @{}
+    $classes = [ordered]@{ user = '(&(objectCategory=person)(objectClass=user))'; computer = '(objectCategory=computer)'; group = '(objectCategory=group)' }
+    $partitions = @(Get-FMPAdPartition -Domain $Domain)
+    $tracker = Initialize-FMPProgress -Activity "OU object counts ($Domain)" -PartitionCount ($partitions.Count * $classes.Count) -Id 2
+    foreach ($class in $classes.Keys) {
+        foreach ($p in $partitions) {
+            $tracker.Partition = "$class, $($p.Label)"
+            $before = $tracker.Count
+            $local = Invoke-FMPWithRetry -Activity "OU object counts ($Domain) $class $($p.Label)" -ScriptBlock {
+                $tracker.Count = $before
+                $m = @{}
+                $rx = [regex]$script:FMPParentDNPattern
+                $seen = @{ n = 0 }
+                Get-ADObject -LDAPFilter $classes[$class] -SearchBase $p.SearchBase -SearchScope $p.SearchScope -Server $Domain -ResultPageSize (Get-FMPRunContext).PageSize -ErrorAction Stop |
+                    & { process {
+                            $dn = "$($_.DistinguishedName)"
+                            $hit = $rx.Match($dn)
+                            $parent = if ($hit.Success) { $dn.Substring($hit.Length) } else { '' }
+                            $m[$parent] = 1 + $m[$parent]
+                            if ((++$seen.n % 256) -eq 0) { Step-FMPProgress -Tracker $tracker -By 256 }
+                        } }
+                if ($seen.n % 256) { Step-FMPProgress -Tracker $tracker -By ($seen.n % 256) }
+                $m
+            }
+            foreach ($k in $local.Keys) {
+                if (-not $counts.ContainsKey($k)) { $counts[$k] = @{ user = 0; computer = 0; group = 0 } }
+                $counts[$k][$class] += $local[$k]
+            }
+            $tracker.PartitionsDone++
+        }
+    }
+    $null = Complete-FMPProgress -Tracker $tracker
+    $counts
+}
+
 function Get-FMPOUHierarchy {
     <#
     .SYNOPSIS
         Extracts the OU tree, flat list, GPO links, delegations and a text rendering.
+    .DESCRIPTION
+        The OUs are read once, paged; the users, computers and groups under each are counted in
+        one light read per class (Get-FMPObjectCountByParent), not three queries per OU. GPO
+        links and ACLs are read per OU, with progress.
     .OUTPUTS
         OUHierarchy.json, OUFlatList.csv, OUFlatExport.json, OUGPOLinks.json, OUDelegations.json, OUTreeVisual.txt
     .EXAMPLE
@@ -329,32 +377,53 @@ function Get-FMPOUHierarchy {
     )
     $null = Resolve-FMPOutputRoot -OutputPath $OutputPath
     $ouPath   = Get-FMPDomainPath -OutputPath $OutputPath -Domain $Domain -Area 'OUs'
-    $domainDN = (Get-ADDomain -Server $Domain).DistinguishedName
+    $domainDN = (Invoke-FMPWithRetry -Activity "Domain ($Domain)" -ScriptBlock { Get-ADDomain -Server $Domain -ErrorAction Stop }).DistinguishedName
 
-    $tree = @(Build-OUTree -ParentDN $domainDN -Server $Domain -Depth 0)
+    $all = @(Invoke-FMPWithRetry -Activity "OUs ($Domain)" -ScriptBlock {
+            @(Get-ADOrganizationalUnit -Filter * -Server $Domain -Properties CanonicalName, Description, ManagedBy,
+                Created, Modified, ProtectedFromAccidentalDeletion, LinkedGroupPolicyObjects, gPOptions -ResultPageSize (Get-FMPRunContext).PageSize -ErrorAction Stop)
+        })
+    Write-FMPLog -Message "OUs ($Domain): $($all.Count) organizational units"
+    $childrenOf = @{}
+    foreach ($ou in $all) {
+        $parent = Get-FMPParentDN -DN "$($ou.DistinguishedName)"
+        if (-not $childrenOf.ContainsKey($parent)) { $childrenOf[$parent] = [System.Collections.Generic.List[object]]::new() }
+        $childrenOf[$parent].Add($ou)
+    }
+    $counts = Get-FMPObjectCountByParent -Domain $Domain
+    $tree = @(Build-OUTree -ParentDN $domainDN -ChildrenOf $childrenOf -Counts $counts -Depth 0)
     Write-FMPJson -InputObject $tree -Path (Join-Path $ouPath 'OUHierarchy.json') -Depth 30
 
-    $all = @(Get-ADOrganizationalUnit -Filter * -Server $Domain -Properties CanonicalName, Description, ManagedBy,
-        Created, Modified, ProtectedFromAccidentalDeletion, LinkedGroupPolicyObjects, gPOptions)
-    $flat = $all | Select-Object Name, DistinguishedName, CanonicalName, Description, ManagedBy,
-        Created, Modified, ProtectedFromAccidentalDeletion,
-        @{ N = 'LinkedGPOs';         E = { @($_.LinkedGroupPolicyObjects) } },
-        @{ N = 'InheritanceBlocked'; E = { $_.gPOptions -eq 1 } },
-        @{ N = 'Depth';              E = { ([regex]::Matches($_.DistinguishedName, '(?i)OU=')).Count } }
+    $flat = foreach ($o in $all) {
+        [pscustomobject][ordered]@{
+            Name = $o.Name; DistinguishedName = $o.DistinguishedName; CanonicalName = $o.CanonicalName; Description = $o.Description
+            ManagedBy = $o.ManagedBy; Created = $o.Created; Modified = $o.Modified; ProtectedFromAccidentalDeletion = $o.ProtectedFromAccidentalDeletion
+            LinkedGPOs = @($o.LinkedGroupPolicyObjects); InheritanceBlocked = $o.gPOptions -eq 1
+            Depth = ([regex]::Matches($o.DistinguishedName, '(?i)OU=')).Count
+        }
+    }
     Write-FMPJson -InputObject @($flat) -Path (Join-Path $ouPath 'OUFlatExport.json')
     Write-FMPCsv -InputObject @($flat | Select-Object Name, CanonicalName, Description, ManagedBy, ProtectedFromAccidentalDeletion, InheritanceBlocked, Depth) `
         -Path (Join-Path $ouPath 'OUFlatList.csv')
 
     if (Test-FMPCommand -Name 'Get-GPInheritance') {
+        $tracker = Initialize-FMPProgress -Activity "OU GPO links ($Domain)" -Total ($all.Count + 1) -Id 2
         $links = @(Get-OUGPOLinks -DistinguishedName $domainDN -Domain $Domain)
-        $links += foreach ($ou in $all) { Get-OUGPOLinks -DistinguishedName $ou.DistinguishedName -Domain $Domain }
+        Step-FMPProgress -Tracker $tracker
+        $links += foreach ($ou in $all) {
+            Invoke-FMPWithRetry -Activity "GPO links $($ou.DistinguishedName)" -ScriptBlock { Get-OUGPOLinks -DistinguishedName $ou.DistinguishedName -Domain $Domain }
+            Step-FMPProgress -Tracker $tracker
+        }
+        $null = Complete-FMPProgress -Tracker $tracker
         Write-FMPJson -InputObject $links -Path (Join-Path $ouPath 'OUGPOLinks.json')
     }
 
     # Non-inherited ACEs only, excluding built-in and well-known principals. The AD: drive
     # comes with the ActiveDirectory module.
+    $tracker = Initialize-FMPProgress -Activity "OU delegations ($Domain)" -Total $all.Count -Id 2
     $delegations = foreach ($ou in $all) {
-        try { $acl = Get-Acl -Path "AD:\$($ou.DistinguishedName)" -ErrorAction Stop }
+        Step-FMPProgress -Tracker $tracker
+        try { $acl = Invoke-FMPWithRetry -Activity "ACL $($ou.DistinguishedName)" -ScriptBlock { Get-Acl -Path "AD:\$($ou.DistinguishedName)" -ErrorAction Stop } }
         catch { [pscustomobject]@{ OU = $ou.Name; DN = $ou.DistinguishedName; Delegations = @(); Error = $_.Exception.Message }; continue }
         [pscustomobject]@{
             OU          = $ou.Name
@@ -374,10 +443,12 @@ function Get-FMPOUHierarchy {
             Error       = $null
         }
     }
+    $null = Complete-FMPProgress -Tracker $tracker
     Write-FMPJson -InputObject @($delegations) -Path (Join-Path $ouPath 'OUDelegations.json')
 
     Write-FMPText -Value @(Show-OUTree -TreeNodes $tree) -Path (Join-Path $ouPath 'OUTreeVisual.txt')
     Write-Verbose "OU hierarchy written to $ouPath"
+    [pscustomobject]@{ ObjectCount = $all.Count }
 }
 
 function Get-FMPXmlChildText {
@@ -1035,12 +1106,37 @@ function Get-FMPTemplateClassification {
     $rows
 }
 
+function Get-FMPDerivedBuckets {
+    # Sums one bucket map (name -> count) across every partition's derived data.
+    param([Parameter(Mandatory)][AllowEmptyCollection()][object[]]$Parts, [Parameter(Mandatory)][string]$Key)
+    $t = @{}
+    foreach ($p in $Parts) {
+        if (-not ($p.Derived -and $p.Derived.PSObject.Properties[$Key])) { continue }
+        foreach ($b in $p.Derived.$Key.PSObject.Properties) {
+            if (-not $t.ContainsKey($b.Name)) { $t[$b.Name] = [long]0 }
+            $t[$b.Name] += [long]$b.Value
+        }
+    }
+    $t
+}
+
+$script:FMPComputerProperties = @('DNSHostName', 'OperatingSystem', 'OperatingSystemVersion', 'Enabled', 'LastLogonDate', 'PasswordLastSet',
+    'Created', 'Modified', 'MemberOf', 'ServicePrincipalName', 'TrustedForDelegation', 'TrustedToAuthForDelegation',
+    'msDS-AllowedToDelegateTo', 'PrincipalsAllowedToDelegateToAccount', 'msDS-SupportedEncryptionTypes', 'Description')
+
 function Get-FMPComputerInventory {
     <#
     .SYNOPSIS
         Computer objects, OS classification, staleness and Kerberos delegation.
+    .DESCRIPTION
+        Reads the domain one partition at a time (Get-FMPAdPartition), paged, and streams each
+        computer to disk, so a domain of any size is read in bounded memory. A partition that
+        hits an ADWS or LDAP timeout is retried; with -Resume, finished partitions are skipped.
+        IPv4Address is filled only with -ResolveIPv4: the ActiveDirectory module resolves it
+        in DNS one computer at a time, which on a large domain takes hours.
     .OUTPUTS
-        ComputerInventory.json, ComputersByOS.csv, StaleComputers.csv, DelegationReport.csv
+        ComputerInventory.json, ComputersByOS.csv, StaleComputers.csv, DelegationReport.csv,
+        ComputerCounts.json
     .EXAMPLE
         Get-FMPComputerInventory -OutputPath D:\Assessment\run1 -Domain contoso.example -StaleThresholdDays 90
     #>
@@ -1049,96 +1145,150 @@ function Get-FMPComputerInventory {
         [Parameter(Mandatory)][string]$OutputPath,
         [string]$Domain = (Get-ADDomain).DNSRoot,
         [int]$StaleThresholdDays = 90,
-        [datetime]$AsOf = (Get-Date)
+        [datetime]$AsOf = (Get-Date),
+        [switch]$ResolveIPv4
     )
     $null = Resolve-FMPOutputRoot -OutputPath $OutputPath
     $objPath = Get-FMPDomainPath -OutputPath $OutputPath -Domain $Domain -Area 'Objects'
     $staleDate = $AsOf.AddDays(-$StaleThresholdDays)
-    $dcNames = @(Get-ADDomainController -Filter * -Server $Domain | ForEach-Object { $_.Name })
+    $dcNames = @{}
+    foreach ($dc in @(Invoke-FMPWithRetry -Activity "Domain controllers ($Domain)" -ScriptBlock { @(Get-ADDomainController -Filter * -Server $Domain) })) { $dcNames["$($dc.Name)"] = $true }
+    $props = @($script:FMPComputerProperties)
+    if ($ResolveIPv4) { $props += 'IPv4Address' }
 
-    $computers = @(Get-ADComputer -Filter * -Server $Domain -Properties DNSHostName, OperatingSystem,
-        OperatingSystemVersion, Enabled, LastLogonDate, PasswordLastSet, Created, Modified,
-        MemberOf, IPv4Address, ServicePrincipalName, TrustedForDelegation, TrustedToAuthForDelegation,
-        'msDS-AllowedToDelegateTo', PrincipalsAllowedToDelegateToAccount, 'msDS-SupportedEncryptionTypes', Description |
-        Select-Object Name, DNSHostName, OperatingSystem, OperatingSystemVersion, Enabled,
-            LastLogonDate, PasswordLastSet, Created, Modified, DistinguishedName, IPv4Address, Description,
-            @{ N = 'SID';                      E = { "$($_.SID)" } },
-            @{ N = 'IsDomainController';       E = { $_.Name -in $dcNames } },
-            @{ N = 'IsServer';                 E = { "$($_.OperatingSystem)" -match '(?i)server' } },
-            @{ N = 'MemberOfCount';            E = { @($_.MemberOf).Count } },
-            @{ N = 'SPNs';                     E = { @($_.ServicePrincipalName) } },
-            TrustedForDelegation, TrustedToAuthForDelegation,
-            @{ N = 'AllowedToDelegateTo';      E = { @($_.'msDS-AllowedToDelegateTo') } },
-            @{ N = 'RBCDPrincipals';           E = { @($_.PrincipalsAllowedToDelegateToAccount) } },
-            @{ N = 'SupportedEncryptionTypes'; E = { $_.'msDS-SupportedEncryptionTypes' } })
+    $read = { param($p, $pageSize) Get-ADComputer -Filter * -SearchBase $p.SearchBase -SearchScope $p.SearchScope -Server $Domain -Properties $props -ResultPageSize $pageSize -ErrorAction Stop }
+    $project = {
+        param($c, $acc)
+        $os = "$($c.OperatingSystem)"
+        $r = [ordered]@{
+            Name = $c.Name; DNSHostName = $c.DNSHostName; OperatingSystem = $c.OperatingSystem; OperatingSystemVersion = $c.OperatingSystemVersion
+            Enabled = $c.Enabled; LastLogonDate = $c.LastLogonDate; PasswordLastSet = $c.PasswordLastSet; Created = $c.Created; Modified = $c.Modified
+            DistinguishedName = $c.DistinguishedName; IPv4Address = if ($ResolveIPv4) { $c.IPv4Address } else { $null }; Description = $c.Description
+            SID = "$($c.SID)"; IsDomainController = $dcNames.ContainsKey("$($c.Name)"); IsServer = $os -match '(?i)server'
+            MemberOfCount = @($c.MemberOf).Count; SPNs = @($c.ServicePrincipalName)
+            TrustedForDelegation = $c.TrustedForDelegation; TrustedToAuthForDelegation = $c.TrustedToAuthForDelegation
+            AllowedToDelegateTo = @($c.'msDS-AllowedToDelegateTo'); RBCDPrincipals = @($c.PrincipalsAllowedToDelegateToAccount)
+            SupportedEncryptionTypes = $c.'msDS-SupportedEncryptionTypes'
+        }
 
-    Write-FMPJson -InputObject @($computers) -Path (Join-Path $objPath 'ComputerInventory.json')
+        # Inline counters, not Measure-FMPDerived: this runs once per computer.
+        $osName = if ("$($r.OperatingSystem)") { "$($r.OperatingSystem)" } else { 'Unknown' }
+        if (-not $acc.OS) { $acc.OS = @{}; $acc.OSEnabled = @{}; $acc.Servers = 0; $acc.EnabledServers = 0; $acc.UnconstrainedHosts = 0 }
+        $acc.OS[$osName] = 1 + $acc.OS[$osName]
+        if ($r.Enabled) { $acc.OSEnabled[$osName] = 1 + $acc.OSEnabled[$osName] }
+        if ($r.IsServer) { $acc.Servers++; if ($r.Enabled) { $acc.EnabledServers++ } }
+        if ($r.TrustedForDelegation -and -not $r.IsDomainController) { $acc.UnconstrainedHosts++ }
+        # Stale only when both lastLogonTimestamp and the machine password are old.
+        if (((-not $r.LastLogonDate) -or [datetime]$r.LastLogonDate -lt $staleDate) -and ((-not $r.PasswordLastSet) -or [datetime]$r.PasswordLastSet -lt $staleDate)) {
+            Join-FMPDerived -Acc $acc -Key 'Stale' -Row ([pscustomobject][ordered]@{
+                    Name = $r.Name; DNSHostName = $r.DNSHostName; OperatingSystem = $r.OperatingSystem; Enabled = $r.Enabled
+                    LastLogonDate = $r.LastLogonDate; PasswordLastSet = $r.PasswordLastSet; DistinguishedName = $r.DistinguishedName
+                    DaysSinceLogon = if ($r.LastLogonDate) { ($AsOf - [datetime]$r.LastLogonDate).Days } else { 'Never' }
+                })
+        }
+        if ($r.TrustedForDelegation -or @($r.AllowedToDelegateTo).Count -gt 0 -or @($r.RBCDPrincipals).Count -gt 0) {
+            Join-FMPDerived -Acc $acc -Key 'Delegation' -Row ([pscustomobject][ordered]@{
+                    Name = $r.Name; DNSHostName = $r.DNSHostName; OperatingSystem = $r.OperatingSystem; IsDomainController = $r.IsDomainController
+                    DelegationType = if ($r.TrustedForDelegation) { 'Unconstrained' }
+                        elseif (@($r.AllowedToDelegateTo).Count -gt 0 -and $r.TrustedToAuthForDelegation) { 'Constrained (protocol transition)' }
+                        elseif (@($r.AllowedToDelegateTo).Count -gt 0) { 'Constrained (Kerberos only)' }
+                        else { 'Resource-based (inbound)' }
+                    DelegationTargets = @($r.AllowedToDelegateTo) -join '; '; RBCDPrincipals = @($r.RBCDPrincipals) -join '; '
+                    DistinguishedName = $r.DistinguishedName
+                })
+        }
+        $r
+    }
+    $parts = @(Invoke-FMPPartitionedRead -Name 'Computers' -Domain $Domain -WorkPath $objPath -Read $read -Project $project)
+    Join-FMPJsonParts -Path (Join-Path $objPath 'ComputerInventory.json') -PartPath @($parts | ForEach-Object { $_.PartFile })
 
-    Write-FMPCsv -InputObject @($computers | Group-Object OperatingSystem | Select-Object @{ N = 'OperatingSystem'; E = { $_.Name } }, Count,
-        @{ N = 'EnabledCount';  E = { @($_.Group | Where-Object Enabled).Count } },
-        @{ N = 'DisabledCount'; E = { @($_.Group | Where-Object { -not $_.Enabled }).Count } } |
-        Sort-Object Count -Descending) -Path (Join-Path $objPath 'ComputersByOS.csv')
-
-    # Stale only when both lastLogonTimestamp and the machine password are old.
-    Write-FMPCsv -InputObject @($computers | Where-Object {
-            ((-not $_.LastLogonDate) -or [datetime]$_.LastLogonDate -lt $staleDate) -and
-            ((-not $_.PasswordLastSet) -or [datetime]$_.PasswordLastSet -lt $staleDate)
-        } | Select-Object Name, DNSHostName, OperatingSystem, Enabled, LastLogonDate, PasswordLastSet, DistinguishedName,
-            @{ N = 'DaysSinceLogon'; E = { if ($_.LastLogonDate) { ($AsOf - [datetime]$_.LastLogonDate).Days } else { 'Never' } } }) `
-        -Path (Join-Path $objPath 'StaleComputers.csv')
-
-    Write-FMPCsv -InputObject @($computers | Where-Object {
-            $_.TrustedForDelegation -or @($_.AllowedToDelegateTo).Count -gt 0 -or @($_.RBCDPrincipals).Count -gt 0
-        } | Select-Object Name, DNSHostName, OperatingSystem, IsDomainController,
-            @{ N = 'DelegationType'; E = {
-                if ($_.TrustedForDelegation) { 'Unconstrained' }
-                elseif (@($_.AllowedToDelegateTo).Count -gt 0 -and $_.TrustedToAuthForDelegation) { 'Constrained (protocol transition)' }
-                elseif (@($_.AllowedToDelegateTo).Count -gt 0) { 'Constrained (Kerberos only)' }
-                else { 'Resource-based (inbound)' } } },
-            @{ N = 'DelegationTargets'; E = { @($_.AllowedToDelegateTo) -join '; ' } },
-            @{ N = 'RBCDPrincipals';    E = { @($_.RBCDPrincipals) -join '; ' } },
-            DistinguishedName) -Path (Join-Path $objPath 'DelegationReport.csv')
-
-    Write-Verbose "Computer inventory: $(@($computers).Count) objects."
+    $os = Get-FMPDerivedBuckets -Parts $parts -Key 'OS'
+    $osEnabled = Get-FMPDerivedBuckets -Parts $parts -Key 'OSEnabled'
+    Write-FMPCsv -InputObject @($os.Keys | ForEach-Object {
+            $en = if ($osEnabled.ContainsKey($_)) { $osEnabled[$_] } else { 0 }
+            [pscustomobject][ordered]@{ OperatingSystem = $_; Count = $os[$_]; EnabledCount = $en; DisabledCount = $os[$_] - $en }
+        } | Sort-Object @{ E = 'Count'; Descending = $true }, OperatingSystem) -Path (Join-Path $objPath 'ComputersByOS.csv')
+    Write-FMPCsv -InputObject @(Get-FMPDerivedRows -Parts $parts -Key 'Stale') -Path (Join-Path $objPath 'StaleComputers.csv')
+    Write-FMPCsv -InputObject @(Get-FMPDerivedRows -Parts $parts -Key 'Delegation') -Path (Join-Path $objPath 'DelegationReport.csv')
+    $counts = [ordered]@{
+        Computers = Get-FMPDerivedSum -Parts $parts -Key 'Count'; Servers = Get-FMPDerivedSum -Parts $parts -Key 'Servers'
+        EnabledServers = Get-FMPDerivedSum -Parts $parts -Key 'EnabledServers'; UnconstrainedHosts = Get-FMPDerivedSum -Parts $parts -Key 'UnconstrainedHosts'
+    }
+    Write-FMPJson -InputObject $counts -Path (Join-Path $objPath 'ComputerCounts.json')
+    Write-Verbose "Computer inventory: $($counts.Computers) objects."
+    [pscustomobject]@{ ObjectCount = $counts.Computers }
 }
 
+# Privileged groups by well-known SID, so a renamed group or a non-English domain controller
+# still resolves: <domain SID>-512 Domain Admins, <root SID>-519 Enterprise Admins, <root SID>-518
+# Schema Admins, and the BUILTIN groups Administrators, Account Operators, Server Operators,
+# Print Operators and Backup Operators. Protected Users is <domain SID>-525.
 $script:FMPPrivilegedGroups = 'Domain Admins', 'Enterprise Admins', 'Schema Admins', 'Administrators',
                               'Account Operators', 'Server Operators', 'Backup Operators', 'Print Operators'
+$script:FMPPrivilegedSids = [ordered]@{
+    'Domain Admins' = @{ Rid = '512'; Scope = 'Domain' }; 'Enterprise Admins' = @{ Rid = '519'; Scope = 'Root' }
+    'Schema Admins' = @{ Rid = '518'; Scope = 'Root' }; 'Administrators' = @{ Sid = 'S-1-5-32-544' }
+    'Account Operators' = @{ Sid = 'S-1-5-32-548' }; 'Server Operators' = @{ Sid = 'S-1-5-32-549' }
+    'Backup Operators' = @{ Sid = 'S-1-5-32-551' }; 'Print Operators' = @{ Sid = 'S-1-5-32-550' }
+}
+
+function Get-FMPPrivilegedGroupSid {
+    # Each privileged group's SID and the domain to ask for it.
+    param([Parameter(Mandatory)][string]$Domain, [string]$RootDomain)
+    if (-not $RootDomain) { $RootDomain = try { (Get-ADForest -Server $Domain -ErrorAction Stop).RootDomain } catch { $Domain } }
+    $sid = "$((Get-ADDomain -Server $Domain -ErrorAction Stop).DomainSID)"
+    $rootSid = if ($RootDomain -eq $Domain) { $sid } else { "$((Get-ADDomain -Server $RootDomain -ErrorAction Stop).DomainSID)" }
+    foreach ($name in $script:FMPPrivilegedSids.Keys) {
+        $g = $script:FMPPrivilegedSids[$name]
+        if ($g.Sid) { [pscustomobject]@{ Name = $name; Sid = $g.Sid; Server = $Domain } }
+        elseif ($g.Scope -eq 'Root') { [pscustomobject]@{ Name = $name; Sid = "$rootSid-$($g.Rid)"; Server = $RootDomain } }
+        else { [pscustomobject]@{ Name = $name; Sid = "$sid-$($g.Rid)"; Server = $Domain } }
+    }
+}
 
 function Find-CircularGroupNesting {
-    # Groups that are members of themselves through nesting.
-    param([Parameter(Mandatory)][string]$Server)
-    $groups = @(Get-ADGroup -Filter * -Server $Server -Properties MemberOf)
-    $parents = @{}
-    foreach ($g in $groups) { $parents[$g.DistinguishedName] = @($g.MemberOf) }
-
-    foreach ($g in $groups) {
-        $start = $g.DistinguishedName
+    # Groups that are members of themselves through nesting. -Parents maps each group's DN to
+    # the DNs of the groups it is a member of; without it, the domain's groups are read.
+    param([string]$Server, [hashtable]$Parents, [hashtable]$Names = @{})
+    if (-not $Parents) {
+        $Parents = @{}
+        foreach ($g in @(Get-ADGroup -Filter * -Server $Server -Properties MemberOf -ResultPageSize (Get-FMPRunContext).PageSize)) {
+            $Parents[$g.DistinguishedName] = @($g.MemberOf); $Names[$g.DistinguishedName] = $g.SamAccountName
+        }
+    }
+    foreach ($start in @($Parents.Keys)) {
         $seen  = @{}
         $queue = [System.Collections.Queue]::new()
-        foreach ($p in $parents[$start]) { $queue.Enqueue($p) }
+        foreach ($p in $Parents[$start]) { $queue.Enqueue($p) }
         while ($queue.Count -gt 0) {
             $current = $queue.Dequeue()
             if ($current -eq $start) {
-                [pscustomobject]@{ Group = $g.SamAccountName; DN = $start }
+                [pscustomobject]@{ Group = $Names[$start]; DN = $start }
                 break
             }
             if ($seen.ContainsKey($current)) { continue }
             $seen[$current] = $true
-            if ($parents.ContainsKey($current)) {
-                foreach ($p in $parents[$current]) { $queue.Enqueue($p) }
+            if ($Parents.ContainsKey($current)) {
+                foreach ($p in $Parents[$current]) { $queue.Enqueue($p) }
             }
         }
     }
 }
 
+$script:FMPUserProperties = @('UserPrincipalName', 'DisplayName', 'Enabled', 'LastLogonDate', 'PasswordLastSet', 'PasswordNeverExpires',
+    'PasswordExpired', 'LockedOut', 'AccountExpirationDate', 'MemberOf', 'AdminCount', 'TrustedForDelegation', 'TrustedToAuthForDelegation',
+    'AccountNotDelegated', 'msDS-AllowedToDelegateTo', 'ServicePrincipalName', 'Created', 'Modified', 'Description', 'Department', 'Title')
+
 function Get-FMPUserInventory {
     <#
     .SYNOPSIS
         Users, privileged membership, AdminSDHolder-protected and orphaned accounts, and service accounts.
+    .DESCRIPTION
+        Privileged groups are found by well-known SID, not by name. Users are read one
+        partition at a time, paged, and streamed to disk (see Get-FMPComputerInventory).
     .OUTPUTS
         UserInventory.json, PrivilegedUsers.csv, AdminCountReport.csv, ServiceAccounts.csv,
-        UserDelegationReport.csv, PrivilegedDelegable.csv,
+        UserDelegationReport.csv, PrivilegedDelegable.csv, UserCounts.json,
         ServiceAccounts\MSAInventory.json, ServiceAccounts\gMSAInventory.json
     .EXAMPLE
         Get-FMPUserInventory -OutputPath D:\Assessment\run1 -Domain contoso.example -StaleThresholdDays 90
@@ -1148,113 +1298,143 @@ function Get-FMPUserInventory {
         [Parameter(Mandatory)][string]$OutputPath,
         [string]$Domain = (Get-ADDomain).DNSRoot,
         [int]$StaleThresholdDays = 90,
-        [datetime]$AsOf = (Get-Date)
+        [datetime]$AsOf = (Get-Date),
+        [string]$RootDomain
     )
     $null = Resolve-FMPOutputRoot -OutputPath $OutputPath
     $objPath = Get-FMPDomainPath -OutputPath $OutputPath -Domain $Domain -Area 'Objects'
     $saPath  = Get-FMPDomainPath -OutputPath $OutputPath -Domain $Domain -Area 'ServiceAccounts'
     $staleDate = $AsOf.AddDays(-$StaleThresholdDays)
+    $domainSid = "$((Invoke-FMPWithRetry -Activity "Domain ($Domain)" -ScriptBlock { Get-ADDomain -Server $Domain -ErrorAction Stop }).DomainSID)"
 
-    $users = @(Get-ADUser -Filter * -Server $Domain -Properties UserPrincipalName, DisplayName, Enabled,
-        LastLogonDate, PasswordLastSet, PasswordNeverExpires, PasswordExpired, LockedOut, AccountExpirationDate,
-        MemberOf, AdminCount, TrustedForDelegation, TrustedToAuthForDelegation, AccountNotDelegated, 'msDS-AllowedToDelegateTo',
-        ServicePrincipalName, Created, Modified, Description, Department, Title |
-        Select-Object SamAccountName, UserPrincipalName, DisplayName, Enabled, LastLogonDate, PasswordLastSet,
-            PasswordNeverExpires, PasswordExpired, LockedOut, AccountExpirationDate, AdminCount, TrustedForDelegation,
-            TrustedToAuthForDelegation, AccountNotDelegated,
-            @{ N = 'AllowedToDelegateTo'; E = { @($_.'msDS-AllowedToDelegateTo' | Where-Object { $_ }) } },
-            Created, Modified, DistinguishedName, Description, Department, Title,
-            @{ N = 'SID';           E = { "$($_.SID)" } },
-            @{ N = 'IsStale';       E = { (-not $_.LastLogonDate) -or [datetime]$_.LastLogonDate -lt $staleDate } },
-            @{ N = 'MemberOfCount'; E = { @($_.MemberOf).Count } },
-            @{ N = 'MemberOf';      E = { @($_.MemberOf) } },
-            @{ N = 'SPNs';          E = { @($_.ServicePrincipalName) } })
-    Write-FMPJson -InputObject @($users) -Path (Join-Path $objPath 'UserInventory.json')
-
-    # Recursive membership of each privileged group.
+    # Recursive membership of each privileged group, this domain's users only.
     $privileged = @{}
-    $privRows = foreach ($groupName in $script:FMPPrivilegedGroups) {
+    $privRows = foreach ($g in @(Get-FMPPrivilegedGroupSid -Domain $Domain -RootDomain $RootDomain)) {
         try {
-            Get-ADGroupMember -Identity $groupName -Recursive -Server $Domain -ErrorAction Stop |
-                Where-Object objectClass -eq 'user' | ForEach-Object {
-                    $privileged["$($_.SID)"] = $true
-                    $u = Get-ADUser -Identity $_.SID -Server $Domain -Properties LastLogonDate, PasswordLastSet, Enabled, AdminCount
-                    [pscustomobject]@{
-                        PrivilegedGroup = $groupName
-                        SamAccountName  = $u.SamAccountName
-                        Enabled         = $u.Enabled
-                        LastLogonDate   = $u.LastLogonDate
-                        PasswordLastSet = $u.PasswordLastSet
-                        AdminCount      = $u.AdminCount
-                    }
+            $members = @(Invoke-FMPWithRetry -Activity "Privileged group $($g.Name) ($Domain)" -ScriptBlock { @(Get-ADGroupMember -Identity $g.Sid -Recursive -Server $g.Server -ErrorAction Stop) })
+            foreach ($m in $members) {
+                if ("$($m.objectClass)" -ne 'user' -or -not "$($m.SID)".StartsWith("$domainSid-")) { continue }
+                $privileged["$($m.SID)"] = $true
+                $u = Get-ADUser -Identity "$($m.SID)" -Server $Domain -Properties LastLogonDate, PasswordLastSet, Enabled, AdminCount
+                [pscustomobject]@{
+                    PrivilegedGroup = $g.Name
+                    SamAccountName  = $u.SamAccountName
+                    Enabled         = $u.Enabled
+                    LastLogonDate   = $u.LastLogonDate
+                    PasswordLastSet = $u.PasswordLastSet
+                    AdminCount      = $u.AdminCount
                 }
+            }
         } catch {
-            Write-Warning "Unable to enumerate ${groupName}: $($_.Exception.Message)"
+            Write-FMPLog -Level WARN -Message "Unable to enumerate $($g.Name) ($($g.Sid)): $($_.Exception.Message)"
         }
     }
     Write-FMPCsv -InputObject @($privRows) -Path (Join-Path $objPath 'PrivilegedUsers.csv')
 
-    # Kerberos delegation on user (service) accounts. Unconstrained delegation on an account
-    # lets any service running as it impersonate every user who connects, to any service.
-    Write-FMPCsv -InputObject @($users | Where-Object { $_.TrustedForDelegation -or @($_.AllowedToDelegateTo).Count -gt 0 } |
-        Select-Object SamAccountName, Enabled,
-            @{ N = 'DelegationType'; E = {
-                if ($_.TrustedForDelegation) { 'Unconstrained' }
-                elseif ($_.TrustedToAuthForDelegation) { 'Constrained (protocol transition)' }
-                else { 'Constrained (Kerberos only)' } } },
-            @{ N = 'DelegationTargets';   E = { @($_.AllowedToDelegateTo) -join '; ' } },
-            @{ N = 'IsSqlServiceAccount'; E = { @($_.SPNs | Where-Object { "$_" -like 'MSSQLSvc/*' }).Count -gt 0 } },
-            @{ N = 'SPNs';                E = { $_.SPNs -join '; ' } },
-            DistinguishedName) -Path (Join-Path $objPath 'UserDelegationReport.csv')
-
-    # Privileged users whose credentials can still be delegated: neither "Account is sensitive
-    # and cannot be delegated" nor a member of Protected Users.
     $protected = @{}
     $protectedRead = $true
     try {
-        Get-ADGroupMember -Identity 'Protected Users' -Recursive -Server $Domain -ErrorAction Stop |
+        Invoke-FMPWithRetry -Activity "Protected Users ($Domain)" -ScriptBlock { @(Get-ADGroupMember -Identity "$domainSid-525" -Recursive -Server $Domain -ErrorAction Stop) } |
             ForEach-Object { $protected["$($_.SID)"] = $true }
     } catch {
         $protectedRead = $false
-        Write-Warning "Unable to enumerate Protected Users: $($_.Exception.Message)"
+        Write-FMPLog -Level WARN -Message "Unable to enumerate Protected Users: $($_.Exception.Message)"
     }
-    Write-FMPCsv -InputObject @($users | Where-Object { $privileged.ContainsKey($_.SID) -and $_.Enabled -and -not $_.AccountNotDelegated -and -not $protected.ContainsKey($_.SID) } |
-        Select-Object SamAccountName, Enabled, AdminCount,
-            @{ N = 'AccountNotDelegated'; E = { [bool]$_.AccountNotDelegated } },
-            @{ N = 'InProtectedUsers';    E = { if ($protectedRead) { $false } else { 'not collected' } } },
-            DistinguishedName) -Path (Join-Path $objPath 'PrivilegedDelegable.csv')
 
-    # adminCount=1 but no longer in any protected group (recursively) = orphaned.
-    Write-FMPCsv -InputObject @($users | Where-Object { $_.AdminCount -eq 1 } | Select-Object SamAccountName, Enabled, LastLogonDate,
-            @{ N = 'InPrivilegedGroup';  E = { $privileged.ContainsKey($_.SID) } },
-            @{ N = 'OrphanedAdminCount'; E = { -not $privileged.ContainsKey($_.SID) } }) `
-        -Path (Join-Path $objPath 'AdminCountReport.csv')
+    $read = { param($p, $pageSize) Get-ADUser -Filter * -SearchBase $p.SearchBase -SearchScope $p.SearchScope -Server $Domain -Properties $script:FMPUserProperties -ResultPageSize $pageSize -ErrorAction Stop }
+    $project = {
+        param($u, $acc)
+        $r = [ordered]@{
+            SamAccountName = $u.SamAccountName; UserPrincipalName = $u.UserPrincipalName; DisplayName = $u.DisplayName; Enabled = $u.Enabled
+            LastLogonDate = $u.LastLogonDate; PasswordLastSet = $u.PasswordLastSet; PasswordNeverExpires = $u.PasswordNeverExpires
+            PasswordExpired = $u.PasswordExpired; LockedOut = $u.LockedOut; AccountExpirationDate = $u.AccountExpirationDate; AdminCount = $u.AdminCount
+            TrustedForDelegation = $u.TrustedForDelegation; TrustedToAuthForDelegation = $u.TrustedToAuthForDelegation; AccountNotDelegated = $u.AccountNotDelegated
+            AllowedToDelegateTo = @(foreach ($x in $u.'msDS-AllowedToDelegateTo') { if ($x) { $x } })
+            Created = $u.Created; Modified = $u.Modified; DistinguishedName = $u.DistinguishedName; Description = $u.Description
+            Department = $u.Department; Title = $u.Title; SID = "$($u.SID)"
+            IsStale = (-not $u.LastLogonDate) -or [datetime]$u.LastLogonDate -lt $staleDate
+            MemberOfCount = @($u.MemberOf).Count; MemberOf = @($u.MemberOf); SPNs = @($u.ServicePrincipalName)
+        }
 
-    $managed = @(Get-ADServiceAccount -Filter * -Server $Domain -Properties Enabled, Created, PasswordLastSet, ServicePrincipalName |
-        Select-Object SamAccountName, Enabled, Created, PasswordLastSet, DistinguishedName,
-            @{ N = 'ObjectClass'; E = { "$($_.ObjectClass)" } },
-            @{ N = 'SPNs';        E = { @($_.ServicePrincipalName) } })
+        if ($r.Enabled) { $acc.Enabled = 1 + $acc.Enabled }
+        if ($r.TrustedForDelegation) { $acc.UnconstrainedAccounts = 1 + $acc.UnconstrainedAccounts }
+        # Kerberos delegation on user (service) accounts. Unconstrained delegation on an account
+        # lets any service running as it impersonate every user who connects, to any service.
+        if ($r.TrustedForDelegation -or @($r.AllowedToDelegateTo).Count -gt 0) {
+            Join-FMPDerived -Acc $acc -Key 'Delegation' -Row ([pscustomobject][ordered]@{
+                    SamAccountName = $r.SamAccountName; Enabled = $r.Enabled
+                    DelegationType = if ($r.TrustedForDelegation) { 'Unconstrained' } elseif ($r.TrustedToAuthForDelegation) { 'Constrained (protocol transition)' } else { 'Constrained (Kerberos only)' }
+                    DelegationTargets = @($r.AllowedToDelegateTo) -join '; '
+                    IsSqlServiceAccount = @($r.SPNs | Where-Object { "$_" -like 'MSSQLSvc/*' }).Count -gt 0
+                    SPNs = $r.SPNs -join '; '; DistinguishedName = $r.DistinguishedName
+                })
+        }
+        # Privileged users whose credentials can still be delegated: neither "Account is sensitive
+        # and cannot be delegated" nor a member of Protected Users.
+        if ($privileged.ContainsKey($r.SID) -and $r.Enabled -and -not $r.AccountNotDelegated -and -not $protected.ContainsKey($r.SID)) {
+            Join-FMPDerived -Acc $acc -Key 'PrivDelegable' -Row ([pscustomobject][ordered]@{
+                    SamAccountName = $r.SamAccountName; Enabled = $r.Enabled; AdminCount = $r.AdminCount; AccountNotDelegated = [bool]$r.AccountNotDelegated
+                    InProtectedUsers = if ($protectedRead) { $false } else { 'not collected' }; DistinguishedName = $r.DistinguishedName
+                })
+        }
+        # adminCount=1 but no longer in any protected group (recursively) = orphaned.
+        if ($r.AdminCount -eq 1) {
+            Join-FMPDerived -Acc $acc -Key 'AdminCount' -Row ([pscustomobject][ordered]@{
+                    SamAccountName = $r.SamAccountName; Enabled = $r.Enabled; LastLogonDate = $r.LastLogonDate
+                    InPrivilegedGroup = $privileged.ContainsKey($r.SID); OrphanedAdminCount = -not $privileged.ContainsKey($r.SID)
+                })
+        }
+        if (@($r.SPNs).Count -gt 0) {
+            Join-FMPDerived -Acc $acc -Key 'Service' -Row ([pscustomobject][ordered]@{
+                    SamAccountName = $r.SamAccountName; Enabled = $r.Enabled; PasswordNeverExpires = $r.PasswordNeverExpires
+                    LastLogonDate = $r.LastLogonDate; Type = 'User with SPN'; SPNs = $r.SPNs -join '; '
+                })
+        }
+        $r
+    }
+    $parts = @(Invoke-FMPPartitionedRead -Name 'Users' -Domain $Domain -WorkPath $objPath -Read $read -Project $project)
+    Join-FMPJsonParts -Path (Join-Path $objPath 'UserInventory.json') -PartPath @($parts | ForEach-Object { $_.PartFile })
+    Write-FMPCsv -InputObject @(Get-FMPDerivedRows -Parts $parts -Key 'Delegation') -Path (Join-Path $objPath 'UserDelegationReport.csv')
+    Write-FMPCsv -InputObject @(Get-FMPDerivedRows -Parts $parts -Key 'PrivDelegable') -Path (Join-Path $objPath 'PrivilegedDelegable.csv')
+    Write-FMPCsv -InputObject @(Get-FMPDerivedRows -Parts $parts -Key 'AdminCount') -Path (Join-Path $objPath 'AdminCountReport.csv')
+
+    $managed = @(Invoke-FMPWithRetry -Activity "Managed service accounts ($Domain)" -ScriptBlock {
+            @(Get-ADServiceAccount -Filter * -Server $Domain -Properties Enabled, Created, PasswordLastSet, ServicePrincipalName, PrincipalsAllowedToRetrieveManagedPassword, HostComputers -ResultPageSize (Get-FMPRunContext).PageSize -ErrorAction Stop)
+        } | ForEach-Object {
+            [pscustomobject][ordered]@{
+                SamAccountName = $_.SamAccountName; Enabled = $_.Enabled; Created = $_.Created; PasswordLastSet = $_.PasswordLastSet
+                DistinguishedName = $_.DistinguishedName; ObjectClass = "$($_.ObjectClass)"; SPNs = @($_.ServicePrincipalName)
+                PrincipalsAllowedToRetrieveManagedPassword = @($_.PrincipalsAllowedToRetrieveManagedPassword | Where-Object { $_ })
+                HostComputers = @($_.HostComputers | Where-Object { $_ })
+            }
+        })
     Write-FMPJson -InputObject @($managed | Where-Object ObjectClass -eq 'msDS-ManagedServiceAccount')      -Path (Join-Path $saPath 'MSAInventory.json')
     Write-FMPJson -InputObject @($managed | Where-Object ObjectClass -eq 'msDS-GroupManagedServiceAccount') -Path (Join-Path $saPath 'gMSAInventory.json')
 
-    $service = @()
-    $service += @($users | Where-Object { @($_.SPNs).Count -gt 0 } |
-        Select-Object SamAccountName, Enabled, PasswordNeverExpires, LastLogonDate,
-            @{ N = 'Type'; E = { 'User with SPN' } }, @{ N = 'SPNs'; E = { $_.SPNs -join '; ' } })
-    $service += @($managed | Select-Object SamAccountName, Enabled,
-            @{ N = 'PasswordNeverExpires'; E = { $null } }, @{ N = 'LastLogonDate'; E = { $null } },
-            @{ N = 'Type'; E = { $_.ObjectClass } }, @{ N = 'SPNs'; E = { $_.SPNs -join '; ' } })
+    $service = @(Get-FMPDerivedRows -Parts $parts -Key 'Service')
+    $service += @($managed | ForEach-Object {
+            [pscustomobject][ordered]@{ SamAccountName = $_.SamAccountName; Enabled = $_.Enabled; PasswordNeverExpires = $null; LastLogonDate = $null; Type = $_.ObjectClass; SPNs = $_.SPNs -join '; ' }
+        })
     Write-FMPCsv -InputObject $service -Path (Join-Path $objPath 'ServiceAccounts.csv')
-
-    Write-Verbose "User inventory: $(@($users).Count) users, $(@($privRows).Count) privileged memberships."
+    $counts = [ordered]@{
+        Users = Get-FMPDerivedSum -Parts $parts -Key 'Count'; EnabledUsers = Get-FMPDerivedSum -Parts $parts -Key 'Enabled'
+        UnconstrainedAccounts = Get-FMPDerivedSum -Parts $parts -Key 'UnconstrainedAccounts'; ServiceAccounts = $service.Count
+        PrivilegedMemberships = @($privRows).Count
+    }
+    Write-FMPJson -InputObject $counts -Path (Join-Path $objPath 'UserCounts.json')
+    Write-Verbose "User inventory: $($counts.Users) users, $(@($privRows).Count) privileged memberships."
+    [pscustomobject]@{ ObjectCount = $counts.Users }
 }
 
 function Get-FMPGroupInventory {
     <#
     .SYNOPSIS
         Groups with category, scope, member counts, empty flag and circular nesting.
+    .DESCRIPTION
+        Read one partition at a time, paged, and streamed to disk. The nesting check uses the
+        memberOf values collected on the way, so groups are read once.
     .OUTPUTS
-        GroupInventory.json, CircularGroups.json
+        GroupInventory.json, CircularGroups.json, GroupCounts.json
     .EXAMPLE
         Get-FMPGroupInventory -OutputPath D:\Assessment\run1 -Domain contoso.example
     #>
@@ -1265,19 +1445,31 @@ function Get-FMPGroupInventory {
     )
     $null = Resolve-FMPOutputRoot -OutputPath $OutputPath
     $objPath = Get-FMPDomainPath -OutputPath $OutputPath -Domain $Domain -Area 'Objects'
-    $groups = @(Get-ADGroup -Filter * -Server $Domain -Properties DisplayName, Description, Members, MemberOf,
-        ManagedBy, Created, Modified, AdminCount |
-        Select-Object SamAccountName, DisplayName, Description,
-            @{ N = 'Category'; E = { "$($_.GroupCategory)" } },
-            @{ N = 'Scope';    E = { "$($_.GroupScope)" } },
-            ManagedBy, Created, Modified, DistinguishedName, AdminCount,
-            @{ N = 'SID';               E = { "$($_.SID)" } },
-            @{ N = 'DirectMemberCount'; E = { @($_.Members).Count } },
-            @{ N = 'IsEmpty';           E = { @($_.Members).Count -eq 0 } },
-            @{ N = 'CountMayBeCapped';  E = { @($_.Members).Count -ge 5000 } })
-    Write-FMPJson -InputObject @($groups) -Path (Join-Path $objPath 'GroupInventory.json')
-    Write-FMPJson -InputObject @(Find-CircularGroupNesting -Server $Domain) -Path (Join-Path $objPath 'CircularGroups.json')
-    Write-Verbose "Group inventory: $(@($groups).Count) groups."
+    $read = { param($p, $pageSize) Get-ADGroup -Filter * -SearchBase $p.SearchBase -SearchScope $p.SearchScope -Server $Domain -Properties DisplayName, Description, Members, MemberOf, ManagedBy, Created, Modified, AdminCount -ResultPageSize $pageSize -ErrorAction Stop }
+    $project = {
+        param($g, $acc)
+        $n = @($g.Members).Count
+        $r = [ordered]@{
+            SamAccountName = $g.SamAccountName; DisplayName = $g.DisplayName; Description = $g.Description
+            Category = "$($g.GroupCategory)"; Scope = "$($g.GroupScope)"; ManagedBy = $g.ManagedBy; Created = $g.Created; Modified = $g.Modified
+            DistinguishedName = $g.DistinguishedName; AdminCount = $g.AdminCount; SID = "$($g.SID)"
+            DirectMemberCount = $n; IsEmpty = $n -eq 0; CountMayBeCapped = $n -ge 5000
+            MemberOf = @($g.MemberOf)
+        }
+
+        if ($r.IsEmpty) { $acc.Empty = 1 + $acc.Empty }
+        if (@($r.MemberOf).Count -gt 0) { Join-FMPDerived -Acc $acc -Key 'Nesting' -Row ([pscustomobject]@{ DN = $r.DistinguishedName; Name = $r.SamAccountName; Parents = @($r.MemberOf) }) }
+        $r
+    }
+    $parts = @(Invoke-FMPPartitionedRead -Name 'Groups' -Domain $Domain -WorkPath $objPath -Read $read -Project $project)
+    Join-FMPJsonParts -Path (Join-Path $objPath 'GroupInventory.json') -PartPath @($parts | ForEach-Object { $_.PartFile })
+    $parents = @{}; $names = @{}
+    foreach ($n in @(Get-FMPDerivedRows -Parts $parts -Key 'Nesting')) { $parents["$($n.DN)"] = @($n.Parents); $names["$($n.DN)"] = $n.Name }
+    Write-FMPJson -InputObject @(Find-CircularGroupNesting -Parents $parents -Names $names) -Path (Join-Path $objPath 'CircularGroups.json')
+    $counts = [ordered]@{ Groups = Get-FMPDerivedSum -Parts $parts -Key 'Count'; EmptyGroups = Get-FMPDerivedSum -Parts $parts -Key 'Empty' }
+    Write-FMPJson -InputObject $counts -Path (Join-Path $objPath 'GroupCounts.json')
+    Write-Verbose "Group inventory: $($counts.Groups) groups."
+    [pscustomobject]@{ ObjectCount = $counts.Groups }
 }
 
 # A plain hashtable: an [ordered] dictionary indexed with an integer reads by position, not
@@ -1317,7 +1509,7 @@ function Get-FMPTrustMap {
     )
     $null = Resolve-FMPOutputRoot -OutputPath $OutputPath
     $trustPath = Get-FMPDomainPath -OutputPath $OutputPath -Domain $Domain -Area 'Trusts'
-    $trusts = foreach ($t in @(Get-ADTrust -Filter * -Server $Domain -Properties *)) {
+    $trusts = foreach ($t in @(Get-ADTrust -Filter * -Server $Domain -Properties TrustAttributes, Direction, TrustType, IntraForest, ForestTransitive, SelectiveAuthentication, SIDFilteringQuarantined, SIDFilteringForestAware, Source, Target, Created, Modified)) {
         $attr = [int]$t.TrustAttributes
         $decoded = @($script:FMPTrustBits.Keys | Sort-Object | Where-Object { $attr -band $_ } | ForEach-Object { $script:FMPTrustBits[$_] })
         $direction = "$($t.Direction)"
@@ -1521,8 +1713,13 @@ function Get-FMPKerberosSpnMap {
         clients to NTLM. An orphan is an SPN on a disabled account or one with no logon in
         -OrphanDays (default 180), usually a decommissioned host: the same definitions as
         the program's Spec1-D1.5 script in Book 06 Runbook R02. Default read rights.
+
+        Each domain is read one partition at a time, paged and retried, and every SPN row is
+        streamed to disk; duplicates and counts are kept in hash tables, so memory grows with
+        the number of distinct SPNs, not with the size of each row.
     .OUTPUTS
-        Kerberos\KerberosSpnMap.json, SpnByServiceClass.csv, SpnDuplicates.csv, SpnOrphans.csv
+        Kerberos\KerberosSpnMap.json, KerberosSpnSummary.json, SpnByServiceClass.csv,
+        SpnDuplicates.csv, SpnOrphans.csv
     .EXAMPLE
         Get-FMPKerberosSpnMap -OutputPath D:\Assessment\run1 -Domain contoso.example, child.contoso.example -RootDomain contoso.example -OrphanDays 180
     #>
@@ -1538,52 +1735,116 @@ function Get-FMPKerberosSpnMap {
     if (-not $Domain) { $Domain = @((Get-ADForest).Domains) }
     if (-not $RootDomain) { $RootDomain = $Domain[0] }
     $path = Get-FMPDomainPath -OutputPath $OutputPath -Domain $RootDomain -Area 'Kerberos'
+    $partsDir = Initialize-FMPPath -Path (Join-Path $path '_parts\Spns')
     $cutoff = $AsOf.ToUniversalTime().AddDays(-$OrphanDays)
 
-    $rows = foreach ($d in $Domain) {
-        foreach ($o in @(Get-ADObject -LDAPFilter '(servicePrincipalName=*)' -Server $d -ErrorAction Stop `
-                    -Properties servicePrincipalName, sAMAccountName, objectClass, userAccountControl, lastLogonTimestamp)) {
-            $enabled = if ($null -ne $o.userAccountControl) { -not (([int64]$o.userAccountControl -band 0x2) -eq 0x2) } else { $null }
-            $last = if ($o.lastLogonTimestamp -and [int64]$o.lastLogonTimestamp -gt 0) { [datetime]::FromFileTimeUtc([int64]$o.lastLogonTimestamp) } else { $null }
-            foreach ($spn in @($o.servicePrincipalName)) {
-                $class, $rest = "$spn".Split('/', 2)
-                $hostPart = if ($rest) { ($rest.Split('/')[0]).Split(':')[0].ToLowerInvariant() } else { $null }
-                [pscustomobject]@{
-                    Spn          = "$spn"
-                    ServiceClass = $class
-                    Host         = $hostPart
-                    Account      = $o.sAMAccountName
-                    AccountClass = "$(@($o.objectClass)[-1])"
-                    Domain       = $d
-                    Enabled      = $enabled
-                    LastLogonUtc = if ($last) { $last.ToString('o') } else { $null }
-                    Orphan       = ($enabled -eq $false) -or (-not $last) -or ($last -lt $cutoff)
-                }
+    $holders = @{}      # spn (lower case) -> first holder, or a list once a second holder appears
+    $firstSpelling = @{}
+    $byClass = @{}      # class -> @{ SpnCount; Accounts }
+    $accounts = @{}
+    $userSpns = [long]0
+    $orphans = [System.Collections.Generic.List[object]]::new()
+    $partFiles = [System.Collections.Generic.List[string]]::new()
+    $spnCount = [long]0
+    $js = Get-FMPFastJson
+
+    foreach ($d in $Domain) {
+        $partitions = @(Get-FMPAdPartition -Domain $d)
+        $tracker = Initialize-FMPProgress -Activity "SPN map ($d)" -PartitionCount $partitions.Count
+        $i = 0
+        foreach ($p in $partitions) {
+            $i++
+            $tracker.Partition = $p.Label
+            $partFile = Join-Path $partsDir ('{0}-{1:D4}.jsonl' -f ($d -replace '[^A-Za-z0-9.-]', '_'), $i)
+            $before = $tracker.Count
+            $local = Invoke-FMPWithRetry -Activity "SPN map ($d) $($p.Label)" -ScriptBlock {
+                $tracker.Count = $before
+                $l = @{ Rows = [System.Collections.Generic.List[object]]::new() }
+                $w = Open-FMPStream -Path $partFile
+                $n = 0
+                try {
+                    Get-ADObject -LDAPFilter '(servicePrincipalName=*)' -SearchBase $p.SearchBase -SearchScope $p.SearchScope -Server $d -ErrorAction Stop `
+                        -Properties servicePrincipalName, sAMAccountName, objectClass, userAccountControl, lastLogonTimestamp, dNSHostName -ResultPageSize (Get-FMPRunContext).PageSize |
+                        ForEach-Object {
+                            $o = $_
+                            $enabled = if ($null -ne $o.userAccountControl) { -not (([int64]$o.userAccountControl -band 0x2) -eq 0x2) } else { $null }
+                            $last = if ($o.lastLogonTimestamp -and [int64]$o.lastLogonTimestamp -gt 0) { [datetime]::FromFileTimeUtc([int64]$o.lastLogonTimestamp) } else { $null }
+                            foreach ($spn in @($o.servicePrincipalName)) {
+                                $class, $rest = "$spn".Split('/', 2)
+                                $hostPart = if ($rest) { ($rest.Split('/')[0]).Split(':')[0].ToLowerInvariant() } else { $null }
+                                $row = [ordered]@{
+                                    Spn          = "$spn"
+                                    ServiceClass = $class
+                                    Host         = $hostPart
+                                    Account      = $o.sAMAccountName
+                                    AccountClass = "$(@($o.objectClass)[-1])"
+                                    Domain       = $d
+                                    Enabled      = $enabled
+                                    LastLogonUtc = if ($last) { $last.ToString('o') } else { $null }
+                                    Orphan       = ($enabled -eq $false) -or (-not $last) -or ($last -lt $cutoff)
+                                }
+                                if ($js) { $w.WriteLine($js.Serialize($row)) } else { $w.WriteLine((ConvertTo-Json -InputObject $row -Compress)) }
+                                $l.Rows.Add($row)
+                                if ((++$n % 256) -eq 0) { Step-FMPProgress -Tracker $tracker -By 256 }
+                            }
+                        }
+                } finally { Close-FMPStream $w }
+                if ($n % 256) { Step-FMPProgress -Tracker $tracker -By ($n % 256) }
+                $l
             }
+            # Merged only once the partition has succeeded, so a retry never counts twice.
+            foreach ($row in $local.Rows) {
+                $spnCount++
+                $holder = "$($row.Domain)\$($row.Account)"
+                $key = $row.Spn.ToLowerInvariant()
+                if (-not $holders.ContainsKey($key)) { $holders[$key] = $holder; $firstSpelling[$key] = $row.Spn }
+                else {
+                    $h = $holders[$key]
+                    if ($h -is [string]) { if ($h -ne $holder) { $list = [System.Collections.Generic.List[string]]::new(); $list.Add($h); $list.Add($holder); $holders[$key] = $list } }
+                    else { $h.Add($holder) }
+                }
+                if (-not $byClass.ContainsKey($row.ServiceClass)) { $byClass[$row.ServiceClass] = @{ SpnCount = [long]0; Accounts = @{} } }
+                $byClass[$row.ServiceClass].SpnCount++
+                $byClass[$row.ServiceClass].Accounts[$holder] = $true
+                $accounts[$holder] = $true
+                if ($row.AccountClass -ne 'computer') { $userSpns++ }
+                if ($row.Orphan) { $orphans.Add([pscustomobject]$row) }
+            }
+            $partFiles.Add($partFile)
+            $tracker.PartitionsDone++
         }
+        $null = Complete-FMPProgress -Tracker $tracker
     }
-    $rows = @($rows)
-    $dupes = @($rows | Group-Object { $_.Spn.ToLowerInvariant() } | Where-Object { @($_.Group | ForEach-Object { "$($_.Domain)\$($_.Account)" } | Select-Object -Unique).Count -gt 1 } |
-        ForEach-Object { [pscustomobject]@{ Spn = $_.Group[0].Spn; Holders = (@($_.Group | ForEach-Object { "$($_.Domain)\$($_.Account)" } | Sort-Object -Unique) -join '; '); Count = $_.Count } })
-    $byClass = @($rows | Group-Object ServiceClass | Sort-Object Count -Descending | ForEach-Object {
-            [pscustomobject]@{ ServiceClass = $_.Name; SpnCount = $_.Count; AccountCount = @($_.Group | ForEach-Object { "$($_.Domain)\$($_.Account)" } | Sort-Object -Unique).Count }
+
+    $dupes = @(foreach ($k in ($holders.Keys | Sort-Object)) {
+            $h = $holders[$k]
+            if ($h -isnot [string]) {
+                [pscustomobject][ordered]@{ Spn = $firstSpelling[$k]; Holders = (@($h | Sort-Object -Unique) -join '; '); Count = $h.Count }
+            }
         })
+    $classRows = @($byClass.Keys | ForEach-Object { [pscustomobject][ordered]@{ ServiceClass = $_; SpnCount = $byClass[$_].SpnCount; AccountCount = $byClass[$_].Accounts.Count } } |
+            Sort-Object @{ E = 'SpnCount'; Descending = $true }, ServiceClass)
     $doc = [ordered]@{
         AssessmentTimestamp = (Get-Date -Format 'o')
         Domains             = @($Domain)
         OrphanDays          = $OrphanDays
-        SpnCount            = $rows.Count
-        AccountCount        = @($rows | ForEach-Object { "$($_.Domain)\$($_.Account)" } | Sort-Object -Unique).Count
-        UserAccountSpnCount = @($rows | Where-Object { $_.AccountClass -ne 'computer' }).Count
+        SpnCount            = $spnCount
+        AccountCount        = $accounts.Count
+        UserAccountSpnCount = $userSpns
         DuplicateCount      = $dupes.Count
-        OrphanCount         = @($rows | Where-Object Orphan).Count
-        ByServiceClass      = $byClass
-        Spns                = $rows
+        OrphanCount         = $orphans.Count
+        ByServiceClass      = $classRows
     }
-    Write-FMPJson -InputObject $doc -Path (Join-Path $path 'KerberosSpnMap.json') -Depth 5
-    Write-FMPCsv -InputObject $byClass -Path (Join-Path $path 'SpnByServiceClass.csv')
+    Write-FMPJson -InputObject $doc -Path (Join-Path $path 'KerberosSpnSummary.json') -Depth 5
+    # KerberosSpnMap.json keeps its shape (the summary fields and every row under Spns), written
+    # as a stream: the rows are copied from the part files, never held as one string.
+    $rowsFile = Join-Path $partsDir 'Spns.json'
+    Join-FMPJsonParts -Path $rowsFile -PartPath $partFiles.ToArray()
+    Join-FMPJsonDocument -Path (Join-Path $path 'KerberosSpnMap.json') -Header $doc -ArrayName 'Spns' -ArrayPath $rowsFile -Depth 5
+    Write-FMPCsv -InputObject $classRows -Path (Join-Path $path 'SpnByServiceClass.csv')
     Write-FMPCsv -InputObject $dupes -Path (Join-Path $path 'SpnDuplicates.csv')
-    Write-FMPCsv -InputObject @($rows | Where-Object Orphan) -Path (Join-Path $path 'SpnOrphans.csv')
+    Write-FMPCsv -InputObject $orphans.ToArray() -Path (Join-Path $path 'SpnOrphans.csv')
+    $doc['ObjectCount'] = $spnCount
     [pscustomobject]$doc
 }
 
@@ -1693,7 +1954,8 @@ function Invoke-FMPADAssessment {
         [string]$Forest,
         [ValidateSet('A', 'B')][string]$Tier = 'A',
         [int]$StaleThresholdDays = 90,
-        [datetime]$AsOf = (Get-Date)
+        [datetime]$AsOf = (Get-Date),
+        [switch]$ResolveIPv4
     )
     Assert-FMPCommand -Name 'Get-ADForest' -Module 'ActiveDirectory'
     $root = Resolve-FMPOutputRoot -OutputPath $OutputPath
@@ -1711,8 +1973,8 @@ function Invoke-FMPADAssessment {
         $steps += Invoke-FMPStep "OU hierarchy ($d)" { Get-FMPOUHierarchy -Domain $d -OutputPath $root }
         $steps += Invoke-FMPStep "Group Policy ($d)" { Get-FMPGPOInventory -Domain $d -OutputPath $root }
         $steps += Invoke-FMPStep "DNS ($d)" { Get-FMPDNSAssessment -Domain $d -OutputPath $root -StaleThresholdDays $StaleThresholdDays -AsOf $AsOf }
-        $steps += Invoke-FMPStep "Computers ($d)" { Get-FMPComputerInventory -Domain $d -OutputPath $root -StaleThresholdDays $StaleThresholdDays -AsOf $AsOf }
-        $steps += Invoke-FMPStep "Users ($d)" { Get-FMPUserInventory -Domain $d -OutputPath $root -StaleThresholdDays $StaleThresholdDays -AsOf $AsOf }
+        $steps += Invoke-FMPStep "Computers ($d)" { Get-FMPComputerInventory -Domain $d -OutputPath $root -StaleThresholdDays $StaleThresholdDays -AsOf $AsOf -ResolveIPv4:$ResolveIPv4 }
+        $steps += Invoke-FMPStep "Users ($d)" { Get-FMPUserInventory -Domain $d -RootDomain $rootDomain -OutputPath $root -StaleThresholdDays $StaleThresholdDays -AsOf $AsOf }
         $steps += Invoke-FMPStep "Groups ($d)" { Get-FMPGroupInventory -Domain $d -OutputPath $root }
         $steps += Invoke-FMPStep "Trusts ($d)" { Get-FMPTrustMap -Domain $d -OutputPath $root }
         if ($Tier -eq 'B') { $steps += Invoke-FMPStep "LDAP binding events ($d)" { Get-FMPLdapBindingEvent -Domain $d -OutputPath $root -AsOf $AsOf } }
@@ -1820,8 +2082,21 @@ function Get-FMPStartKitSummary {
         if ($v.Count -eq 0) { $nc } else { ($v | Measure-Object -Sum).Sum }
     }
     $topo = if ($forestDir) { Read-FMPJsonFile (Join-Path (Join-Path $forestDir.FullName 'Forest') 'ForestTopology.json') } else { $null }
-    $computers = @($domainDirs | ForEach-Object { Read-FMPJsonFile (Join-Path (Join-Path $_.FullName 'Objects') 'ComputerInventory.json') } | ForEach-Object { $_ })
-    $haveComputers = @($domainDirs | Where-Object { Test-Path -LiteralPath (Join-Path (Join-Path $_.FullName 'Objects') 'ComputerInventory.json') }).Count -gt 0
+    # Counts come from the small *Counts.json files the collectors write; a run from an older
+    # kit without them is counted from its inventories, read one object at a time.
+    $objFile = { param($dd, $name) Join-Path (Join-Path $dd.FullName 'Objects') $name }
+    $countOf = {
+        param($dd, $countsFile, $inventoryFile, $field, $filter)
+        $cf = & $objFile $dd $countsFile
+        if (Test-Path -LiteralPath $cf) { $c = Read-FMPJsonFile $cf; if ($c.PSObject.Properties[$field]) { return [long]$c.$field } }
+        $inv = & $objFile $dd $inventoryFile
+        if (-not (Test-Path -LiteralPath $inv)) { return $null }
+        $n = [long]0
+        foreach ($o in (Read-FMPJsonArray -Path $inv)) { if (-not $filter -or (& $filter $o)) { $n++ } }
+        $n
+    }
+    $haveComputers = @($domainDirs | Where-Object { Test-Path -LiteralPath (& $objFile $_ 'ComputerInventory.json') }).Count -gt 0
+    $isServer = { param($o) "$($o.OperatingSystem)" -match '(?i)server' }
 
     $trustPairs = @{}
     $haveTrusts = $false
@@ -1842,7 +2117,10 @@ function Get-FMPStartKitSummary {
         if ($dns) { $haveDns = $true; foreach ($z in @($dns.Zones)) { $zones["$($z.ZoneName)".ToLowerInvariant()] = $true } }
     }
     $pki = if ($forestDir) { Read-FMPJsonFile (Join-Path (Join-Path $forestDir.FullName 'PKI') 'PKIInventory.json') } else { $null }
-    $spn = if ($forestDir) { Read-FMPJsonFile (Join-Path (Join-Path $forestDir.FullName 'Kerberos') 'KerberosSpnMap.json') } else { $null }
+    $spn = if ($forestDir) {
+        $sf = Join-Path (Join-Path $forestDir.FullName 'Kerberos') 'KerberosSpnSummary.json'
+        if (Test-Path -LiteralPath $sf) { Read-FMPJsonFile $sf } else { Read-FMPJsonFile (Join-Path (Join-Path $forestDir.FullName 'Kerberos') 'KerberosSpnMap.json') }
+    } else { $null }
     $dhcp = if ($forestDir) { Read-FMPJsonFile (Join-Path (Join-Path $forestDir.FullName 'DHCP') 'DHCPInventory.json') } else { $null }
     $schema = if ($forestDir) { Read-FMPJsonFile (Join-Path (Join-Path $forestDir.FullName 'Schema') 'SchemaExtensions.json') } else { $null }
     $sql = Read-FMPJsonFile (Join-Path (Join-Path $root 'SQL') 'SqlEstateSummary.json')
@@ -1853,10 +2131,11 @@ function Get-FMPStartKitSummary {
     $waves = Read-FMPJsonFile (Join-Path (Join-Path $root 'Waves') 'WaveSummary.json')
 
     # Unconstrained delegation outside the domain controllers, which are expected to have it.
-    $users = @($domainDirs | ForEach-Object { Read-FMPJsonFile (Join-Path (Join-Path $_.FullName 'Objects') 'UserInventory.json') } | ForEach-Object { $_ })
-    $haveUsers = @($domainDirs | Where-Object { Test-Path -LiteralPath (Join-Path (Join-Path $_.FullName 'Objects') 'UserInventory.json') }).Count -gt 0
-    $ucHosts = @($computers | Where-Object { $_.TrustedForDelegation -and -not $_.IsDomainController })
-    $ucAccounts = @($users | Where-Object TrustedForDelegation)
+    # Both come from the delegation reports, which hold only delegating objects.
+    $haveUsers = @($domainDirs | Where-Object { Test-Path -LiteralPath (& $objFile $_ 'UserInventory.json') }).Count -gt 0
+    $ucHosts = @($domainDirs | ForEach-Object { Read-FMPCsvFile (& $objFile $_ 'DelegationReport.csv') } |
+            Where-Object { $_.DelegationType -eq 'Unconstrained' -and "$($_.IsDomainController)" -ne 'True' })
+    $ucAccounts = @($domainDirs | ForEach-Object { Read-FMPCsvFile (& $objFile $_ 'UserDelegationReport.csv') } | Where-Object DelegationType -eq 'Unconstrained')
     $sqlCsv = Join-Path (Join-Path $root 'SQL') 'SqlEstate.csv'
     $sqlRows = if (Test-Path -LiteralPath $sqlCsv) { @(Read-FMPCsvFile $sqlCsv) } else { $null }
     $sqlUc = @()
@@ -1888,12 +2167,12 @@ function Get-FMPStartKitSummary {
         ExternalTrusts     = if ($haveTrusts) { @($trustPairs.Values | Where-Object { -not $_ }).Count } else { $nc }
         OUs                = & $sumOrNc @($domainDirs | ForEach-Object { $f = Read-FMPJsonFile (Join-Path (Join-Path $_.FullName 'OUs') 'OUFlatExport.json'); if ($null -ne $f) { @($f).Count } })
         GPOs               = & $sumOrNc @($domainDirs | ForEach-Object { $f = Read-FMPJsonFile (Join-Path (Join-Path $_.FullName 'GPOs') 'GPOInventory.json'); if ($null -ne $f) { @($f).Count } })
-        Users              = & $sumOrNc @($domainDirs | ForEach-Object { $f = Read-FMPJsonFile (Join-Path (Join-Path $_.FullName 'Objects') 'UserInventory.json'); if ($null -ne $f) { @($f).Count } })
-        EnabledUsers       = & $sumOrNc @($domainDirs | ForEach-Object { $f = Read-FMPJsonFile (Join-Path (Join-Path $_.FullName 'Objects') 'UserInventory.json'); if ($null -ne $f) { @($f | Where-Object Enabled).Count } })
-        Groups             = & $sumOrNc @($domainDirs | ForEach-Object { $f = Read-FMPJsonFile (Join-Path (Join-Path $_.FullName 'Objects') 'GroupInventory.json'); if ($null -ne $f) { @($f).Count } })
-        Computers          = if ($haveComputers) { $computers.Count } else { $nc }
-        Servers            = if ($haveComputers) { @($computers | Where-Object { "$($_.OperatingSystem)" -match '(?i)server' }).Count } else { $nc }
-        EnabledServers     = if ($haveComputers) { @($computers | Where-Object { "$($_.OperatingSystem)" -match '(?i)server' -and $_.Enabled }).Count } else { $nc }
+        Users              = & $sumOrNc @($domainDirs | ForEach-Object { & $countOf $_ 'UserCounts.json' 'UserInventory.json' 'Users' $null })
+        EnabledUsers       = & $sumOrNc @($domainDirs | ForEach-Object { & $countOf $_ 'UserCounts.json' 'UserInventory.json' 'EnabledUsers' { param($o) $o.Enabled } })
+        Groups             = & $sumOrNc @($domainDirs | ForEach-Object { & $countOf $_ 'GroupCounts.json' 'GroupInventory.json' 'Groups' $null })
+        Computers          = & $sumOrNc @($domainDirs | ForEach-Object { & $countOf $_ 'ComputerCounts.json' 'ComputerInventory.json' 'Computers' $null })
+        Servers            = & $sumOrNc @($domainDirs | ForEach-Object { & $countOf $_ 'ComputerCounts.json' 'ComputerInventory.json' 'Servers' $isServer })
+        EnabledServers     = & $sumOrNc @($domainDirs | ForEach-Object { & $countOf $_ 'ComputerCounts.json' 'ComputerInventory.json' 'EnabledServers' { param($o) (& $isServer $o) -and $o.Enabled } })
         ServiceAccounts    = & $sumOrNc @($domainDirs | ForEach-Object { $p = Join-Path (Join-Path $_.FullName 'Objects') 'ServiceAccounts.csv'; if (Test-Path -LiteralPath $p) { @(Read-FMPCsvFile $p).Count } })
         SPNs               = if ($spn) { $spn.SpnCount } else { $nc }
         DuplicateSPNs      = if ($spn) { $spn.DuplicateCount } else { $nc }
@@ -1929,7 +2208,17 @@ function Get-FMPStartKitSummary {
         WaveUsers          = if ($waves) { $waves.Users } else { $nc }
         WaveExclusions     = if ($waves) { $waves.Excluded } else { $nc }
     }
-    $byOs = if ($haveComputers) { Get-FMPCountTable -Rows $computers -Property OperatingSystem } else { $null }
+    $byOs = $null
+    if ($haveComputers) {
+        $osTotals = @{}
+        foreach ($r in @($domainDirs | ForEach-Object { Read-FMPCsvFile (& $objFile $_ 'ComputersByOS.csv') })) {
+            $name = if ("$($r.OperatingSystem)" -eq '') { 'Unknown' } else { "$($r.OperatingSystem)" }
+            if (-not $osTotals.ContainsKey($name)) { $osTotals[$name] = 0 }
+            $osTotals[$name] += [int]$r.Count
+        }
+        $byOs = [ordered]@{}
+        foreach ($k in ($osTotals.Keys | Sort-Object)) { $byOs[$k] = $osTotals[$k] }
+    }
     $summary = [ordered]@{
         Schema       = 'fmp-start-kit/summary/1'
         GeneratedUtc = (Get-Date).ToUniversalTime().ToString('o')
