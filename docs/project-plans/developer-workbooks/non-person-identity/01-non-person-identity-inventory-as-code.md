@@ -11,7 +11,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: acc2d3830cf47387b0152543487ae78469fe57183407bba0ea7f428ba0ed074d
+reviewed-sha256: 1126b3a8d70d71230fea4f5d8131f84a5a61ff1b22d1a4c210901393a98c0f48
 last-reviewed: 2026-11-25
 ---
 # Chapter 01 — Non-Person Identity Inventory as Code
