@@ -1,0 +1,15 @@
+PS> ./Invoke-IpLabels.ps1 -SettingsPath tests/fixtures/settings.lab.json -SnapshotPath tests/fixtures/snapshots/2026-11-24 -OutputPath out/labels -AsOf 2026-11-24T12:00:00Z
+LBL-01     Pass  Public: as planned
+LBL-02     Pass  Internal: as planned
+LBL-03     Pass  CUI: as planned
+LBL-04     Pass  CUI Basic: as planned
+LBL-05     Fail  CUI//SP-TAX: rights go to fti-holders@contoso.example, j.doe@contoso.example, plan says fti-holders@contoso.example
+LBL-06     Pass  Internal site: as planned
+LBL-07     Pass  CUI site: as planned
+LBL-08     Fail  CUI Specified site: SiteAndGroupProtectionAllowAccessToGuestUsers is 'True', plan says 'False'
+LBL-EXTRA  Fail  Labels not in the plan: Confidential (legacy): unpublish or add to the plan with a decision record; never delete a label
+LBL-ORDER  Pass  Label priority: 8 labels in the planned order
+POL-01     Fail  B20-Labels-All: missing label(s): CUI Specified site
+POL-02     Pass  B20-Labels-CUI-SP: as planned
+POL-ORDER  Pass  Label policy order: policies in the planned order
+labels: Fail (9 pass, 4 fail, 0 other). Written to ./out/labels

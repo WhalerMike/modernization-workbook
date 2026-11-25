@@ -1,0 +1,30 @@
+{
+  "schema": "fmp-ip-manifest/1",
+  "task": "export",
+  "asOf": "2026-11-24T08:00:00Z",
+  "mode": "Fixture",
+  "environment": "lab",
+  "cloud": "gcc",
+  "kit": "examples/information-protection",
+  "result": "Pass",
+  "snapshot": null,
+  "tenantId": "00000000-0000-4000-8000-0000000000c0",
+  "files": {
+    "aipservice-configuration.json": "2c54ea309d1b9d6769403e693913e9fcece0bae1537cac94e9636632d1e2dd96",
+    "audit-retention-policies.json": "298342c19556648d1ebb35ec3697a58ccc5d57b8bf2a2eaaa08e4a518a392f26",
+    "audit-status.json": "1e57b97ebcc1eb82cc379da94c547213db1a5f6af5a231100a0fe33b8d0a1e77",
+    "autolabel-policies.json": "6e402b457746f32443404ae8a631a4a4324e0e375eb23d01f977b8f81d7293f1",
+    "autolabel-rules.json": "a6ecfdf124736153e1afbf9841d73339963bce4140fe7f99dc0642df561b45d9",
+    "content-explorer.json": "ab82a2fc9a446da858924a24581c4e3eb021d21bbee309f4d0194c5c9420b72b",
+    "dlp-policies.json": "9f9d3fbd8bcdf6502aecd77c9076a1d3e83456fbf91a8e0d292eea40a7cc5f28",
+    "dlp-rules.json": "5fb74316f92c7ea061dc804257943ecd6a156b6e8b82bbeddf78faf3b3e4480d",
+    "irm-configuration.json": "a6894fdc828ee5e9505a86bd43ce66367ed2e49c09ed393de85e86f216a33bc9",
+    "label-policies.json": "82f7eac802297ba11588d60a2cea3b74442f254b4261f72f4e29fa9bfa37835c",
+    "labels.json": "da77dd96cbb572814684a5ced54bfd198bcc70bbdbe015a5e1b13eaa063901a9",
+    "ome-configuration.json": "933efebbd647f293354202c2dc2971fd1ac34efca87fde18923c724199be7e98",
+    "policy-config.json": "e00c9f2a263b85132c4afe786cf5ba3c0d3380da939bbb7617a74b67910a1473",
+    "role-groups.json": "b9a24ce8d0db3e836b361f9ab07726c103f3516f5edf649e8fa9347f98e967d6",
+    "sit-catalog.json": "53a762ae0110ad5f29bbf7a9b9bb888b97b364f3bcfdc291a9b1ab97607910dd",
+    "transport-rules.json": "6bcde9f7b099695a48457c2c7ee1b7290d47e69248e2bbe066b04f65e0479aeb"
+  }
+}

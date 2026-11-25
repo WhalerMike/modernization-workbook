@@ -1,0 +1,32 @@
+{
+  "_comment": "The drift signals of Book 20, Chapter 12 ('Drift detection'), and what the kit compares to find them. 'watch' lists, per read in config/calls.json, the properties compared between two exports (items are matched by name); 'raiseWhen' raises a difference to a named signal when its new value (and, where given, its old value) matches. Severity follows Book 13, Chapter 06's ladder: P1 halts and alerts and a named role decides; P2 goes to the platform owner within one business day; info is reported, not failed. The properties named are the cmdlets' parameter names as Learn gives them; Learn doesn't list the cmdlets' output properties, so check them against your first export.",
+  "version": 1,
+  "signals": {
+    "enforcement": { "title": "A DLP or auto-labeling policy changed mode", "action": "explain it with a change ticket or put the policy back in the mode its stage says" },
+    "enforcement-off": { "title": "A policy left enforcement (out of Enable)", "action": "enforcement is silently off: restore it or record the decision" },
+    "rule": { "title": "A DLP rule's action or exception changed", "action": "check the exception register and the rule's decision record" },
+    "rights": { "title": "A label's encryption or rights changed", "action": "content is re-protected as users next open it: restore or approve" },
+    "published": { "title": "A label or scope changed in a label policy", "action": "users may no longer apply the label, or defaults stop applying" },
+    "superuser": { "title": "The super user feature is on, or a super user was added", "action": "a standing ability to decrypt everything: disable it unless a recovery ticket is open" },
+    "audit-off": { "title": "Unified audit ingestion turned off", "action": "every other Purview signal goes dark: turn it on and treat it as an incident" },
+    "retention": { "title": "An audit retention policy changed", "action": "the evidence's reach changed: check it with the records officer" },
+    "mail": { "title": "A mail flow rule's state, mode or template changed", "action": "check the approved message scenarios" },
+    "irm": { "title": "The IRM configuration changed", "action": "rerun Test-IRMConfiguration" },
+    "copilot": { "title": "A Copilot DLP policy or rule changed", "action": "labeled content may be back in Copilot responses" }
+  },
+  "watch": [
+    { "read": "dlpPolicies", "signal": "enforcement", "severity": "P2", "properties": ["Mode", "ExchangeLocation", "ExchangeSenderMemberOfException"],
+      "raiseWhen": [ { "property": "Mode", "oldMatches": "^Enable$", "newMatches": "^(TestWithNotifications|TestWithoutNotifications|Disable)$", "signal": "enforcement-off", "severity": "P2" } ] },
+    { "read": "dlpRules", "signal": "rule", "severity": "P2", "properties": ["Disabled", "BlockAccess", "NotifyAllowOverride", "ExceptIfRecipientDomainIs"] },
+    { "read": "autoLabelPolicies", "signal": "enforcement", "severity": "P2", "properties": ["Mode"] },
+    { "read": "labels", "signal": "rights", "severity": "P2", "properties": ["EncryptionEnabled", "EncryptionRightsDefinitions", "ApplyContentMarkingHeaderText"] },
+    { "read": "labelPolicies", "signal": "published", "severity": "P2", "properties": ["Labels", "ExchangeLocation", "ExchangeLocationException", "Settings"] },
+    { "read": "aipConfiguration", "signal": "superuser", "severity": "info", "key": "_", "properties": ["SuperUsersEnabled", "SuperUsers"],
+      "raiseWhen": [ { "property": "SuperUsersEnabled", "newMatches": "^Enabled$", "signal": "superuser", "severity": "P1" }, { "property": "SuperUsers", "newMatches": ".", "signal": "superuser", "severity": "P1" } ] },
+    { "read": "auditStatus", "signal": "audit-off", "severity": "info", "key": "_", "properties": ["UnifiedAuditLogIngestionEnabled"],
+      "raiseWhen": [ { "property": "UnifiedAuditLogIngestionEnabled", "newMatches": "^(False|removed)$", "signal": "audit-off", "severity": "P1" } ] },
+    { "read": "auditRetention", "signal": "retention", "severity": "P2", "properties": ["RetentionDuration", "RecordTypes", "Priority"] },
+    { "read": "transportRules", "signal": "mail", "severity": "P2", "properties": ["State", "Mode", "ApplyRightsProtectionTemplate"] },
+    { "read": "irmConfiguration", "signal": "irm", "severity": "P2", "key": "_", "properties": ["AzureRMSLicensingEnabled", "SimplifiedClientAccessEnabled", "DecryptAttachmentForEncryptOnly", "InternalLicensingEnabled"] }
+  ]
+}

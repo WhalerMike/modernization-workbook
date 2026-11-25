@@ -1,0 +1,6 @@
+PS> (Get-Content tests/fixtures/snapshots/2026-11-24/label-policies.json | ConvertFrom-Json)[0].Settings
+[mandatory, true]
+[defaultlabelid, 00000000-0000-4000-9000-000000000002]
+[outlookdefaultlabel, 00000000-0000-4000-9000-000000000002]
+[teamworkdefaultlabelid, 00000000-0000-4000-9000-000000000006]
+[teamworkmandatory, true]

@@ -261,6 +261,8 @@ website:
             text: "Building Provider Notices"
           - href: docs/project-plans/developer-workbooks/defender-xdr/index.md
             text: "Building Defender XDR"
+          - href: docs/project-plans/developer-workbooks/information-protection/index.md
+            text: "Building Information Protection"
           - href: docs/project-plans/developer-workbooks/global-secure-access/index.md
             text: "Building Global Secure Access"
           - href: docs/project-plans/developer-workbooks/azure-security/index.md
@@ -424,6 +426,14 @@ website:
             - docs/training/defender-xdr/03-exposure-and-incidents.md
             - docs/training/defender-xdr/04-hunting-detections-and-identity-signals.md
             - docs/training/defender-xdr/05-automation-operations-and-evidence.md
+        - section: "Information Protection learning path"
+          href: docs/training/information-protection/index.md
+          contents:
+            - docs/training/information-protection/01-classes-access-and-the-baseline.md
+            - docs/training/information-protection/02-labels-publication-and-containers.md
+            - docs/training/information-protection/03-encryption-and-recovery.md
+            - docs/training/information-protection/04-dlp-auto-labeling-and-ai.md
+            - docs/training/information-protection/05-audit-drift-and-evidence.md
         - section: "Global Secure Access learning path"
           href: docs/training/global-secure-access/index.md
           contents:
@@ -529,6 +539,10 @@ website:
               href: docs/project-plans/developer-workbooks/defender-xdr/index.md
               contents:
                 - auto: "docs/project-plans/developer-workbooks/defender-xdr/*-*.md"
+            - section: "Building Information Protection"
+              href: docs/project-plans/developer-workbooks/information-protection/index.md
+              contents:
+                - auto: "docs/project-plans/developer-workbooks/information-protection/*-*.md"
             - section: "Building Global Secure Access"
               href: docs/project-plans/developer-workbooks/global-secure-access/index.md
               contents:

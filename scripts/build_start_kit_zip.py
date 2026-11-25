@@ -49,7 +49,8 @@ KITS = ("start-kit", "copilot-agent-pack", "app-modernization", "ansible", "vali
         "privileged-access-code", "non-person-identity-code", "microsoft-automation-code",
         "cisco-sdwan", "ticket-to-machine-task-catalog", "dp-consolidation", "provider-notices-code",
         "zta-results", "global-secure-access-code", "azure-security-code", "defender-xdr-code",
-        "daily-checks-workbook-code", "sql-server-identity-code")
+        "daily-checks-workbook-code", "information-protection-code",
+        "sql-server-identity-code")
 # Kits packed from several examples folders, each kept under its own path, instead of
 # from examples/<kit>. The Attribute-Driven Migration developer workbook's chapters 01-09
 # build on these folders and the Microsoft samples pinned under third_party/.
@@ -108,6 +109,8 @@ BUNDLES = {
     "defender-xdr-code": ("defender-xdr", "zta-results/config"),
     # The daily checks workbook kit (Building the Daily Checks Workbook).
     "daily-checks-workbook-code": ("daily-checks-workbook",),
+    # The information protection kit (Building Information Protection).
+    "information-protection-code": ("information-protection",),
     # The SQL Server identity kit (Building SQL Server Identity, Book 06).
     "sql-server-identity-code": ("sql-server-identity",),
 }

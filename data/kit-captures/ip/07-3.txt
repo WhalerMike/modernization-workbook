@@ -1,0 +1,6 @@
+PS> Import-Csv out/audit/synthetic.csv | Format-Table -AutoSize
+Operation                   Found CreationDate         HoursAfterStart
+---------                   ----- ------------         ---------------
+FileSensitivityLabelApplied True  2026-11-24T10:12:00Z 1.2
+FileSensitivityLabelRemoved True  2026-11-24T14:30:00Z 5.5
+CopilotInteraction          True  2026-11-24T09:48:00Z 0.8

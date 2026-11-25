@@ -1,0 +1,22 @@
+[
+  {
+    "Name": "FMP-Auto-CUIBasic-Batch1-v1",
+    "Mode": "Enable",
+    "Enabled": true,
+    "SharePointLocation": [
+      {
+        "Name": "https://contoso.sharepoint.example/sites/case-files"
+      }
+    ]
+  },
+  {
+    "Name": "FMP-Auto-CUIBasic-Batch2-v1",
+    "Mode": "TestWithoutNotifications",
+    "Enabled": true,
+    "SharePointLocation": [
+      {
+        "Name": "https://contoso.sharepoint.example/sites/benefits"
+      }
+    ]
+  }
+]

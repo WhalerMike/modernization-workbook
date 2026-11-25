@@ -1,0 +1,22 @@
+[
+  {
+    "Name": "U.S. Social Security Number (SSN)",
+    "Id": "a44669fe-0d48-453d-a9b1-2cc83f2cba77",
+    "Publisher": "Microsoft Corporation"
+  },
+  {
+    "Name": "U.S. Individual Taxpayer Identification Number (ITIN)",
+    "Id": "e55e2a32-f92d-4985-a35d-a0b269eb687b",
+    "Publisher": "Microsoft Corporation"
+  },
+  {
+    "Name": "U.S. Bank Account Number",
+    "Id": "a2ce32a8-f935-4bb6-8e96-2a5157672e2c",
+    "Publisher": "Microsoft Corporation"
+  },
+  {
+    "Name": "Contoso Case Number",
+    "Id": "00000000-0000-4000-a000-000000000001",
+    "Publisher": "Contoso Information Protection"
+  }
+]

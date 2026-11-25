@@ -44,6 +44,7 @@ listing:
       - "!network-sd-wan/**"
       - "!azure-security/**"
       - "!daily-checks-dashboard/**"
+      - "!information-protection/**"
       - "!pki/**"
       - "!dns-dhcp-ipam/**"
       - "!application-modernization/**"
@@ -85,6 +86,7 @@ Each learning path's code downloads as one zip, rebuilt from the repository on e
 | SD-WAN Governor | [cisco-sdwan.zip](../../downloads/cisco-sdwan.zip) | `Downloads\cisco-sdwan\cisco-sdwan` | Python 3.10; PowerShell 5.1 or 7 to read the output |
 | Azure Security Engineering | [azure-security-code.zip](../../downloads/azure-security-code.zip) | `Downloads\azure-security-code\azure-security-code\azure-security` | PowerShell 7.1 |
 | Daily Checks Dashboard | [daily-checks-workbook-code.zip](../../downloads/daily-checks-workbook-code.zip) | `Downloads\daily-checks-workbook-code\daily-checks-workbook-code\daily-checks-workbook` | PowerShell 7.1 |
+| Information Protection | [information-protection-code.zip](../../downloads/information-protection-code.zip) | `Downloads\information-protection-code\information-protection-code\information-protection` | PowerShell 7.1 |
 | DNS, DHCP and IPAM | [start-kit.zip](../../downloads/start-kit.zip) | `Downloads\start-kit\start-kit` | Windows PowerShell 5.1 or PowerShell 7 |
 | Application Modernization | [app-modernization.zip](../../downloads/app-modernization.zip) | `Downloads\app-modernization\app-modernization` | Java 21, Node.js 24 and PowerShell 7.4 |
 
@@ -240,6 +242,12 @@ Five modules on engineering and operating Microsoft Defender XDR on Windows clie
 **Code:** [defender-xdr-code.zip](../../downloads/defender-xdr-code.zip), or [`examples/defender-xdr`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr) in the repository. The path's page says [how to unzip it and where](defender-xdr/index.md#get-the-code).
 
 **Watch:** each module has a narrated deck, about 11 to 14 minutes, linked from the module's page.
+
+## Information Protection learning path
+
+Five modules on building and running Microsoft Purview information protection in a Microsoft 365 GCC tenant, in the order of the twelve gates of the [information protection implementation guide](../books/guides/information-protection-implementation.md): the data classes, what GCC doesn't offer, the read path and the configuration baseline; the label taxonomy, its publication with justified defaults, and container labels; Rights Management with just-in-time recovery, message encryption and labeled files in SharePoint and OneDrive; DLP and auto-labeling from simulation to enforcement, and Microsoft 365 Copilot; and audit with synthetic events, drift and the monthly evidence. Each module has a lab on the kit's fixtures and a read-only lab in a test tenant, and a knowledge check. *Draft, awaiting review.*
+
+**Code:** [information-protection-code.zip](../../downloads/information-protection-code.zip), or [`examples/information-protection`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/information-protection) in the repository. The path's page says [how to unzip it and where](information-protection/index.md#get-the-code).
 
 ## Global Secure Access learning path
 

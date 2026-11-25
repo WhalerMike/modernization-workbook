@@ -1,0 +1,46 @@
+[
+  {
+    "Name": "B20-Labels-All",
+    "Priority": 0,
+    "Labels": [
+      "Public",
+      "Internal",
+      "CUI",
+      "CUI Basic",
+      "Internal site",
+      "CUI site",
+      "CUI Specified site"
+    ],
+    "ExchangeLocation": [
+      {
+        "Name": "All"
+      }
+    ],
+    "ExchangeLocationException": [
+      {
+        "Name": "b20-label-exclusions@contoso.example"
+      }
+    ],
+    "Settings": [
+      "[mandatory, true]",
+      "[defaultlabelid, 00000000-0000-4000-9000-000000000002]",
+      "[outlookdefaultlabel, 00000000-0000-4000-9000-000000000002]",
+      "[teamworkdefaultlabelid, 00000000-0000-4000-9000-000000000006]",
+      "[teamworkmandatory, true]"
+    ]
+  },
+  {
+    "Name": "B20-Labels-CUI-SP",
+    "Priority": 1,
+    "Labels": [
+      "CUI-SP-TAX"
+    ],
+    "ExchangeLocation": [
+      {
+        "Name": "fti-holders@contoso.example"
+      }
+    ],
+    "ExchangeLocationException": [],
+    "Settings": []
+  }
+]

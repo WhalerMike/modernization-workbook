@@ -1,0 +1,19 @@
+PS> ./Export-IpBaseline.ps1 -SettingsPath tests/fixtures/settings.lab.json -ListOnly
+Read              Shell Cmdlet                             File                          Role
+----              ----- ------                             ----                          ----
+labels            scc   Get-Label                          labels.json                   Compliance Administrator, or Information Protection Admin
+labelPolicies     scc   Get-LabelPolicy                    label-policies.json           Compliance Administrator, or Information Protection Admin
+autoLabelPolicies scc   Get-AutoSensitivityLabelPolicy     autolabel-policies.json       Compliance Administrator
+autoLabelRules    scc   Get-AutoSensitivityLabelRule       autolabel-rules.json          Compliance Administrator
+dlpPolicies       scc   Get-DlpCompliancePolicy            dlp-policies.json             Compliance Administrator, or the DLP Compliance Management role group
+dlpRules          scc   Get-DlpComplianceRule              dlp-rules.json                Compliance Administrator, or the DLP Compliance Management role group
+sitCatalog        scc   Get-DlpSensitiveInformationType    sit-catalog.json              Compliance Administrator, or the DLP Compliance Management role group
+policyConfig      scc   Get-PolicyConfig                   policy-config.json            Compliance Administrator
+auditRetention    scc   Get-UnifiedAuditLogRetentionPolicy audit-retention-policies.json Compliance Administrator, or Organization Management
+roleGroups        scc   Get-RoleGroupMember                role-groups.json              Compliance Administrator, or Organization Management
+contentExplorer   scc   Export-ContentExplorerData         content-explorer.json         Content Explorer List viewer
+irmConfiguration  exo   Get-IRMConfiguration               irm-configuration.json        Organization Management, or View-Only Configuration
+auditStatus       exo   Get-AdminAuditLogConfig            audit-status.json             Audit Logs, or View-Only Audit Logs
+transportRules    exo   Get-TransportRule                  transport-rules.json          Organization Management, or View-Only Configuration
+omeConfiguration  exo   Get-OMEConfiguration               ome-configuration.json        Organization Management, or View-Only Configuration
+aipConfiguration  aip   Get-AipServiceConfiguration        aipservice-configuration.json Global Reader, or another role Connect-AipService accepts

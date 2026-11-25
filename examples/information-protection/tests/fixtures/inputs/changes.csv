@@ -1,0 +1,4 @@
+"id","file","item","approved","summary"
+"CHG-1042","labels.json","CUI Basic","2026-11-03","CUI Basic adds PRINT, EXTRACT and FORWARD for tenant users"
+"CHG-1050","audit-retention-policies.json","FMP-Audit-InfoProtection-1y","2026-11-05","Information protection audit retention to one year"
+"CHG-0990","dlp-policies.json","FMP-DLP-CUI-ExternalEmail-v2","2026-09-01","Ring 3: production version enforced"

@@ -1,0 +1,10 @@
+PS> ./Invoke-IpProtection.ps1 -SettingsPath tests/fixtures/settings.lab.json -SnapshotPath tests/fixtures/snapshots/2026-11-24 -OutputPath out/protection -AsOf 2026-11-24T12:00:00Z
+RMS-01     Pass  Rights Management service: FunctionalState Enabled
+RMS-02     Fail  Super user feature: Enabled: a standing ability to decrypt everything. Run the recovery procedure's last step, or explain the open recovery ticket
+RMS-03     Fail  Super users: standing super user(s): recovery.operator@contoso.example
+IRM-01     Pass  IRM configuration: as planned
+OME-01     Fail  OME Configuration: SocialIdSignIn is 'True', plan says 'False'
+MFR-01     Pass  Encrypt external [secure]: enforce, as planned
+MFR-02     Fail  Partner Do Not Forward: Mode Audit, stage enforce needs Enforce
+COA-01     Pass  Co-authoring on encrypted files: as planned
+protection: Fail (4 pass, 4 fail, 0 other). Written to ./out/protection

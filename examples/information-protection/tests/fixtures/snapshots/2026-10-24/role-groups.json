@@ -1,0 +1,24 @@
+[
+  {
+    "Name": "Communication Compliance Investigators",
+    "Members": [
+      {
+        "Name": "cc.one",
+        "WindowsLiveID": "cc.one@contoso.example"
+      }
+    ]
+  },
+  {
+    "Name": "Insider Risk Management Investigators",
+    "Members": [
+      {
+        "Name": "inv.one",
+        "WindowsLiveID": "inv.one@contoso.example"
+      },
+      {
+        "Name": "extra.person",
+        "WindowsLiveID": "extra.person@contoso.example"
+      }
+    ]
+  }
+]
