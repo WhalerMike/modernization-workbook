@@ -2267,7 +2267,7 @@
   pages: [docs/books/guides/non-person-identity-implementation.md, docs/project-plans/developer-workbooks/non-person-identity/13-workload-identity-across-aws-govcloud-and-oci.md]
   prs: []
   status: settled
-  note: "Basis: workbook owner decision, November 24, 2026, answering three questions from the Chapter 13 change: \"VK-NPI-10 … - Yes\", \"Step 1g: whether its commands should also export tags. - Yes\", \"Tag names: the proposed SystemId, Owner1, Owner2 and Sponsor. - Yes\"; asked to confirm, he chose \"Add VK-NPI-10\"."
+  note: "Basis: workbook owner decision, November 24, 2026, answering three questions from the Chapter 13 change: \"VK-NPI-10 … - Yes\", \"Step 1g: whether its commands should also export tags. - Yes\", \"Tag names: the proposed SystemId, Owner1, Owner2 and Sponsor. - Yes\"; asked to confirm, he chose \"Add VK-NPI-10\". WD-175 (November 25, 2026) adds Environment, Tier and EntraTarget to these four keys."
 - id: WD-173
   date: 2026-11-25
   question: What are the managed service account standard's detailed naming and configuration rules, beyond WD-159's prefixes and 15 characters?
@@ -2283,7 +2283,7 @@
   pages: [docs/books/guides/service-account-migration.md, docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.md, docs/books/b02-identity/08-assessing-the-forest.md, docs/books/b02-identity/appendix-b-forest-assessment-module.md]
   prs: []
   status: settled
-  note: "Basis: workbook owner decision, November 25, 2026. Asked which configuration and naming standards gMSAs and dMSAs need, he was shown five gaps and the svc-fmp-assess conflict and answered \"Yes, details and clarity. Have SailPoint / ServiceNow enforce.\""
+  note: "Basis: workbook owner decision, November 25, 2026. Asked which configuration and naming standards gMSAs and dMSAs need, he was shown five gaps and the svc-fmp-assess conflict and answered \"Yes, details and clarity. Have SailPoint / ServiceNow enforce.\" The description format is replaced by WD-175's tags, which also put the owners in AD."
 - id: WD-174
   date: 2026-11-25
   question: Where is the managed service account standard enforced?
@@ -2299,3 +2299,19 @@
   prs: []
   status: settled
   note: "Basis: workbook owner decision, November 25, 2026: \"Have SailPoint / ServiceNow enforce.\" The workflow's service that runs Chapter 12's request check isn't built yet."
+- id: WD-175
+  date: 2026-11-25
+  question: Which tags does every non-person identity carry for its move to Microsoft Entra, do owners go into AD, and does Entra's naming inform the managed service account names?
+  options: ["Owners only in SailPoint and the register, tags per platform", "One tag set on AD, Entra, Azure, AWS and OCI, with the owners in AD as a copy of SailPoint, and one short name per system across AD and Entra"]
+  choice: "Every non-person identity carries seven tags: SystemId, Owner1, Owner2, Sponsor, Environment (prod, test, dev), Tier (R1, R2, R3) and EntraTarget (Chapter 03's targets, or Undecided). On an AD gMSA or dMSA they're key=value pairs in the description, with the request and change numbers, replacing WD-173's description format; SailPoint stays the source for owners and Chapter 12 flags an AD tag that disagrees with the register (NPI-STD-30). In Entra they're custom security attributes in the NonPersonIdentity attribute set, required on every service principal and managed identity (the Non-Person Identity guide's Step 1f); a user-assigned managed identity also carries them as Azure resource tags; AWS and OCI identities add Environment, Tier and EntraTarget to WD-172's four. The managed service account request pack's forms and checker collect them at request time. A system keeps one short name: its gMSA is gmsa-<app>, and the managed identity it moves to is id-<app>-<environment>-<region>-<###>, the Cloud Adoption Framework's form."
+  rationale: "Entra Connect's default rules don't sync gMSAs, so an account's record and owners reach Entra only if the step that creates the Entra identity copies them, which needs the same keys on both sides. Entra has no naming policy for workload identities; Learn's governance page asks for a naming convention, and the Cloud Adoption Framework puts constant information in names and the rest in tags. Custom security attributes are free, can be assigned to service principals and, by the Attribute Assignment Administrator role, to managed identities."
+  basis: workbook-design
+  sources:
+  - {title: 'Microsoft Learn, What are custom security attributes in Microsoft Entra ID?', url: 'https://learn.microsoft.com/entra/fundamentals/custom-security-attributes-overview'}
+  - {title: 'Microsoft Learn, Governing Microsoft Entra service accounts', url: 'https://learn.microsoft.com/entra/architecture/govern-service-accounts'}
+  - {title: 'Microsoft Learn, Cloud Adoption Framework, Define your naming convention', url: 'https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming'}
+  - {title: 'Microsoft Learn, Microsoft Entra Connect Sync default configuration', url: 'https://learn.microsoft.com/entra/identity/hybrid/connect/concept-azure-ad-connect-sync-default-configuration'}
+  pages: [docs/books/guides/msa-request-pack.md, docs/books/guides/service-account-migration.md, docs/books/guides/non-person-identity-implementation.md, docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 25, 2026. Asked for a request document set, said \"For future integration, when they move to EntraID, we tag everything\" and asked whether Entra's standards should inform MSA naming; shown one tag set, owners in AD (a change to WD-173) and a request pack, he answered \"Yes to all three\". Not yet in the kits: Chapter 06 writing the tags, and VK-NPI-10 reading the three new keys."

@@ -364,6 +364,10 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\microsoft-automation-code\ms-automation
 
+$Run = "C:\FMWLabs\results\ms-automation-arc\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
 # Step 1
 python python/arc_tasks.py --from-json tests/fixtures/arc.json --as-of 2026-11-03T00:00:00Z arc-extensions
 
@@ -380,10 +384,10 @@ python python/arc_tasks.py --from-json tests/fixtures/arc.json --as-of 2026-11-0
 python python/arc_tasks.py --from-json tests/fixtures/arc.json --as-of 2026-11-03T00:00:00Z sql-inventory
 
 # Step 5
-python python/arc_tasks.py --from-json tests/fixtures/forest-gap.json --as-of 2026-11-25T00:00:00Z sql-inventory --estate tests/fixtures/sql-estate-forest.json --gap-csv sql-not-in-arc.csv
+python python/arc_tasks.py --from-json tests/fixtures/forest-gap.json --as-of 2026-11-25T00:00:00Z sql-inventory --estate tests/fixtures/sql-estate-forest.json --gap-csv "$Run\sql-not-in-arc.csv"
 
 # Step 5
-Get-Content sql-not-in-arc.csv
+Get-Content "$Run\sql-not-in-arc.csv"
 
 # Step 6
 python python/arc_tasks.py --from-json tests/fixtures/arc.json --as-of 2026-11-03T00:00:00Z policy-summary
@@ -401,7 +405,7 @@ $arc = Get-Content -Raw tests/fixtures/arc.json | ConvertFrom-Json -AsHashtable 
 python -m pytest -q -p no:cacheprovider tests/python/test_arc_tasks.py
 
 # Step 9
-Remove-Item sql-not-in-arc.csv
+Get-ChildItem C:\FMWLabs\results\ms-automation-arc\lab1 -Name
 ```
 
 :::
@@ -422,7 +426,23 @@ Every step runs in PowerShell 7, the Python commands included, so you can follow
 Set-Location C:\FMWLabs\microsoft-automation-code\ms-automation
 ```
 
-Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/ms-automation`; steps 1 to 4 and 6 run the same there, and steps 5, 7, 8 and 9 use PowerShell 7 commands (type `pwsh` to start it). In a clone of the repository, use the `examples` folder of the same name.
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
+
+```powershell
+$Run = "C:\FMWLabs\results\ms-automation-arc\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\ms-automation-arc\lab1\<run>
+```
+
+The run's date is only the folder's name. The data's date is `--as-of`, which stays the same, so every run's findings match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
+
+Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/ms-automation`, make the run folder with `Run=/c/FMWLabs/results/ms-automation-arc/lab1/$(date -u +%Y-%m-%dT%H%M%SZ); mkdir -p "$Run"`, and steps 1 to 4 and 6 run the same there; steps 5, 7, 8 and 9 use PowerShell 7 commands (type `pwsh` to start it). In a clone of the repository, use the `examples` folder of the same name.
 
 1. Find servers missing an agent, or with an extension that didn't deploy.
 
@@ -762,7 +782,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/
    Then reconcile a fictional forest's `SqlEstate.json` with the Arc estate beside it, and write the gap list:
 
    ```powershell
-   python python/arc_tasks.py --from-json tests/fixtures/forest-gap.json --as-of 2026-11-25T00:00:00Z sql-inventory --estate tests/fixtures/sql-estate-forest.json --gap-csv sql-not-in-arc.csv
+   python python/arc_tasks.py --from-json tests/fixtures/forest-gap.json --as-of 2026-11-25T00:00:00Z sql-inventory --estate tests/fixtures/sql-estate-forest.json --gap-csv "$Run\sql-not-in-arc.csv"
    ```
 
    Expected output: 182 lines of JSON. The part that matters is the `"hosts"` counts under `"forestGap"`:
@@ -777,10 +797,10 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/
          },
    ```
 
-   Print the gap list the command wrote:
+   Print the gap list the command wrote in this run's folder:
 
    ```powershell
-   Get-Content sql-not-in-arc.csv
+   Get-Content "$Run\sql-not-in-arc.csv"
    ```
 
    Expected output:
@@ -907,10 +927,16 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/
    - `test_queries_page_safely_and_read_no_settings`: every query projects a string `id`, uses no `take` or `limit`, ends sorted by a unique column, and reads no settings;
    - `test_truncated_result_without_token_raises`: a truncated result stops the run.
 
-   Then delete the gap list Step 5 wrote, so the next run starts clean:
+   Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
 
    ```powershell
-   Remove-Item sql-not-in-arc.csv
+   Get-ChildItem C:\FMWLabs\results\ms-automation-arc\lab1 -Name
+   ```
+
+   Expected output: one line per run, oldest first, the last one this run:
+
+   ```text
+   <run>
    ```
 
 **Check your work:** for each finding, you can name the Resource Graph table and property it came from, the control it evidences, and what the check can't see.

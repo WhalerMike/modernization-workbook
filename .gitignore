@@ -12,6 +12,8 @@
 # The reference template stays tracked.
 *.docx
 !/assets/reference-mslearn.docx
+# The managed service account request pack's Word forms are its deliverable (built by build_pack.py).
+!/examples/msa-request-pack/forms/*.docx
 # Word lock files
 ~$*.docx
 # reference-mslearn.docx copies the deploy workflow makes under docs/ are covered by *.docx above

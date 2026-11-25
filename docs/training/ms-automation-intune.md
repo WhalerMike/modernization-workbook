@@ -281,23 +281,27 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\microsoft-automation-code\ms-automation
 
+$Run = "C:\FMWLabs\results\ms-automation-intune\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
 # Step 1
-python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z noncompliant-devices
+python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z noncompliant-devices | Tee-Object "$Run\noncompliant-devices.json"
 
 # Step 2
-python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z compliance-coverage
+python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z compliance-coverage | Tee-Object "$Run\compliance-coverage.json"
 
 # Step 3
-python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z stale-checkin
+python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z stale-checkin | Tee-Object "$Run\stale-checkin.json"
 
 # Step 3
-python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z stale-checkin --validity-days 30
+python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z stale-checkin --validity-days 30 | Tee-Object "$Run\stale-checkin-validity-days-30.json"
 
 # Step 4
-python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z device-posture
+python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z device-posture | Tee-Object "$Run\device-posture.json"
 
 # Step 5
-python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z autopilot-profiles
+python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z autopilot-profiles | Tee-Object "$Run\autopilot-profiles.json"
 
 # Step 6
 Import-Module ./powershell/FmwGraph.psm1
@@ -307,6 +311,9 @@ Test-FmwIntuneStaleCheckin -Devices $intune.managedDevices -AsOf '2026-10-30T00:
 
 # Step 7
 python -m pytest -q -p no:cacheprovider tests/python/test_intune_tasks.py
+
+# Step 7
+Get-ChildItem C:\FMWLabs\results\ms-automation-intune\lab1 -Name
 ```
 
 :::
@@ -321,12 +328,28 @@ Every step runs in PowerShell 7, the Python commands included, so you can follow
 Set-Location C:\FMWLabs\microsoft-automation-code\ms-automation
 ```
 
-Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/ms-automation`; every step except 6 runs the same there, and Step 6 needs PowerShell 7 (type `pwsh` to start it). In a clone of the repository, use the `examples` folder of the same name.
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
 
-1. Find the devices that need attention.
+```powershell
+$Run = "C:\FMWLabs\results\ms-automation-intune\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\ms-automation-intune\lab1\<run>
+```
+
+The run's date is only the folder's name. The data's date is `--as-of`, which stays the same, so every run's findings match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
+
+Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/ms-automation`, make the run folder with `Run=/c/FMWLabs/results/ms-automation-intune/lab1/$(date -u +%Y-%m-%dT%H%M%SZ); mkdir -p "$Run"`, and Steps 1 to 5 run there with `tee` in place of `Tee-Object`; Step 6 and the run listing in Step 7 need PowerShell 7 (type `pwsh` to start it). In a clone of the repository, use the `examples` folder of the same name.
+
+1. Find the devices that need attention. `Tee-Object` prints the report and saves a copy in this run's folder, as Steps 2 to 5 do for theirs.
 
    ```powershell
-   python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z noncompliant-devices
+   python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z noncompliant-devices | Tee-Object "$Run\noncompliant-devices.json"
    ```
 
    Expected output:
@@ -401,7 +424,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/
 2. Find what no policy reaches.
 
    ```powershell
-   python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z compliance-coverage
+   python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z compliance-coverage | Tee-Object "$Run\compliance-coverage.json"
    ```
 
    Expected output:
@@ -474,7 +497,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/
 3. Find devices that stopped checking in.
 
    ```powershell
-   python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z stale-checkin
+   python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z stale-checkin | Tee-Object "$Run\stale-checkin.json"
    ```
 
    Expected output:
@@ -518,7 +541,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/
    `KSK-0001`'s fixture date is a placeholder before 1971, so it counts as no sync. Run it again with `--validity-days 30` after `stale-checkin`:
 
    ```powershell
-   python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z stale-checkin --validity-days 30
+   python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z stale-checkin --validity-days 30 | Tee-Object "$Run\stale-checkin-validity-days-30.json"
    ```
 
    Expected output:
@@ -556,7 +579,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/
 4. Check encryption and the OS floor.
 
    ```powershell
-   python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z device-posture
+   python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z device-posture | Tee-Object "$Run\device-posture.json"
    ```
 
    Expected output:
@@ -616,7 +639,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/
 5. Read Autopilot profile assignment, on beta.
 
    ```powershell
-   python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z autopilot-profiles
+   python python/intune_tasks.py --from-json tests/fixtures/intune.json --as-of 2026-10-30T00:00:00Z autopilot-profiles | Tee-Object "$Run\autopilot-profiles.json"
    ```
 
    Expected output:
@@ -731,6 +754,18 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/
    ```
 
    Expected output: a line of dots, then `17 passed` and the time the run took. Two of the tests, `test_permissions_are_read_only` and `test_fetch_devices_selects_no_personal_fields`, prove the checks ask for no write permission and select no person's name or address.
+
+   Nothing to clean up: the kit's folder is as you unzipped it, and this run's reports stay in `$Run`. List every run you've made of this lab:
+
+   ```powershell
+   Get-ChildItem C:\FMWLabs\results\ms-automation-intune\lab1 -Name
+   ```
+
+   Expected output: one line per run, oldest first, the last one this run:
+
+   ```text
+   <run>
+   ```
 
 **Check your work:** for each finding, you can name the Graph property it came from, the control it evidences, and whether it depends on beta.
 
