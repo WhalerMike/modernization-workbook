@@ -368,7 +368,7 @@ You read the same evidence in the test forest, sweep one domain controller's log
 
     `-viewstore` opens a window listing the certificates; close it when you've compared. Every CA there should be one approved to issue logon certificates for the forest.
 
-3. **Sweep one domain controller's log**, on the domain controller, elevated. This is Chapter 06's read-only sweep, and the kit's report should match it for that domain controller. Its provider filter also matches `Key-Distribution-Center`, as the kit's does, because the KDC's provider can appear by its full name, Microsoft-Windows-Kerberos-Key-Distribution-Center, rather than as Kdcsvc; Chapter 06's version matches `Kdc` only:
+3. **Sweep one domain controller's log**, on the domain controller, elevated. This is Chapter 06's read-only sweep, and the kit's report should match it for that domain controller. Like the kit, it matches `Kdc` or `Key-Distribution-Center`, because the KDC's provider can appear by its full name, Microsoft-Windows-Kerberos-Key-Distribution-Center, rather than as Kdcsvc. Which name a current domain controller reports hasn't been checked against a real one:
 
     ```powershell
     Get-WinEvent -FilterHashtable @{ LogName = 'System'; Id = 39, 40, 41 } -ErrorAction SilentlyContinue |
