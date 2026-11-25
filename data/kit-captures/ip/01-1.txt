@@ -1,6 +1,1 @@
-PS> ./Invoke-IpAccess.ps1 -SettingsPath tests/fixtures/settings.lab.json -SnapshotPath tests/fixtures/snapshots/2026-11-24 -OutputPath out/access -AsOf 2026-11-24T12:00:00Z
-ACC-01     Pass  Settings: environment lab, cloud gcc, tenant contoso.example
-ACC-02     Pass  Snapshot: exported 2026-11-24T08:00:00Z from tenant 00000000-0000-4000-8000-0000000000c0 (gcc)
-ROLE-01    Warn  Communication Compliance Investigators: review overdue: cc.one@contoso.example
-ROLE-02    Fail  Insider Risk Management Investigators: not in the register: extra.person@contoso.example
-access: Fail (2 pass, 1 fail, 1 other). Written to ./out/access
+PS> Set-Location C:\FMWLabs\information-protection-code\information-protection
