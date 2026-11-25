@@ -58,7 +58,14 @@ function ConvertTo-FMPServiceAccount {
 }
 
 function Get-FMPServerList {
-    # Enabled Windows Server computers in each domain, from the directory (paged, retried).
+    <#
+    .SYNOPSIS
+        The servers the inventory reads when none are named: the DNS host name (or name) of
+        every enabled computer whose operating system names a server, in each domain, from a
+        paged and retried directory read.
+    .EXAMPLE
+        Get-FMPServerList -Domain contoso.example, child.contoso.example
+    #>
     param([Parameter(Mandatory)][string[]]$Domain)
     foreach ($d in $Domain) {
         Invoke-FMPWithRetry -Activity "Servers ($d)" -ScriptBlock {

@@ -18,7 +18,7 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: 8f05ac45b7df35ade3885fabe69432dd481dd5fc57252929976b88512410ae66
+reviewed-sha256: dec6f2de73b7b1451742d89f9ed616b4431387f5670cfcd770d8dec86a4eab83
 last-reviewed: 2026-11-25
 ---
 # Learning path: Building the Attribute-Driven Migration {.unnumbered}
@@ -60,7 +60,7 @@ When you finish this path, you'll be able to:
 
 ## Get the code {#get-the-code}
 
-Download [attribute-driven-migration-code.zip](../../../downloads/attribute-driven-migration-code.zip) to your Downloads folder. It holds every folder the chapters use: `hcm-entra`, `ms-automation`, `validation-kit`, `dynamic-rules`, `lifecycle-extensions`, `group-policy-as-code`, `machine-configuration`, `ansible` and `drift-pipeline`, and in `third_party` the Microsoft samples they start from, pinned unmodified. Each module names the folder it works in, `examples/<folder>` in a clone; in the zip it's `C:\FMWLabs\attribute-driven-migration-code\<folder>`. The commands below go to Module 1's, `hcm-entra`. Module 3 needs a clone instead, because its steps call `git`. Modules use Python and PowerShell 7.2 or later with Pester 5, as each one says. [Get a path's code](../index.md#get-the-code) says why each step is there.
+Download [attribute-driven-migration-code.zip](../../../downloads/attribute-driven-migration-code.zip) to your Downloads folder. It holds every folder the chapters use: `hcm-entra`, `ms-automation`, `validation-kit`, `dynamic-rules`, `lifecycle-extensions`, `group-policy-as-code`, `machine-configuration`, `ansible` and `drift-pipeline`, and in `third_party` the Microsoft samples they start from, pinned unmodified. Each module names the folder it works in, `examples/<folder>` in a clone; in the zip it's `C:\FMWLabs\attribute-driven-migration-code\<folder>`. The commands below go to Module 1's, `hcm-entra`. Module 3's steps also call `git`, so they need Git for Windows. Modules use Python and PowerShell 7.2 or later with Pester 5, as each one says. [Get a path's code](../index.md#get-the-code) says why each step is there.
 
 In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
 

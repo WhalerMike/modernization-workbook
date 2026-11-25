@@ -12,7 +12,7 @@ research-status: draft
 research-type: implementation guide
 research-book: "Books 02, 04, 06, 09, 11"
 review-status: approved
-reviewed-sha256: 068d993f46dc05653b2ae4f353f98a4dcb9323eeeb8166266d2ef85cfca67b2e
+reviewed-sha256: 1beb51f962d50e0d80e6bcb91ae435360b738a7953815bcc878fd93207624f0d
 last-reviewed: 2026-11-25
 ---
 # Non-Person Identity: Zero Trust, SASE and Other Clouds

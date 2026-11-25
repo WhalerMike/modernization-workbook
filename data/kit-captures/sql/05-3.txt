@@ -1,8 +1,11 @@
-PS> Import-Module ./powershell/SqlIdentity/SqlIdentity.psd1
-PS> $admins = (Read-SqlJson tests/fixtures/groups/groups.json).groups | Where-Object name -eq 'CONTOSO\SQL-Admins'
-PS> $admins.membershipBasis = 'org-chart'
-PS> Get-SqlGroupPattern -Groups $admins | Format-List Group, Pattern, Target, Flags
-Group   : CONTOSO\SQL-Admins
-Pattern : 1
-Target  : Dynamic group on an HR-maintained code: no code recorded yet, so ask HR for it before writing the rule
-Flags   : privileged role on a dynamic group: use an assigned group under PIM instead
+PS> ./Invoke-SqlGroupMap.ps1 -GroupsPath tests/fixtures/groups/groups.json -OutputPath "$Run/groups"
+Group                    Pattern Target                                                                                                                                                              Flags
+-----                    ------- ------                                                                                                                                                              -----
+CONTOSO\PayrollUsers           1 Dynamic group, rule (user.extensionAttribute10 -in ["FIN-PAY"]) -and (user.accountEnabled -eq true) -and (user.userType -eq "Member"); never department or jobTitle
+CONTOSO\SQL-Admins             2 Assigned group, eligible through PIM (privileged server role)
+CONTOSO\SQL-Agent-Alerts       3 Mail-only group; update the SQL Server Agent operator address; no login
+CONTOSO\ClaimsTeam             4 Split: a mail-only group plus an assigned security group; record the pairing in both descriptions
+CONTOSO\HR-Analysts            1 Dynamic group, rule (user.extensionAttribute10 -in ["HR-ANL"]) -and (user.accountEnabled -eq true) -and (user.userType -eq "Member"); never department or jobTitle  nested: flatten (CONTOSO\HR-Leads)
+
+Wrote 2 files and manifest.json to C:/FMWLabs/results/sql-server-identity-05/lab1/<run>/groups
+Evidence for GROUPS (Map each AD group pattern to its Entra group): AC-2, AC-6; KSI-IAM-ELP

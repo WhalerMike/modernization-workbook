@@ -17,7 +17,7 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: d1e5f710fa482ab037967509a3faf14031f3df9e07f665671e24a1420e14192e
+reviewed-sha256: 3bccf19112f44a9720b855ea3367eee6203ebafae572e6af94c0687fc2b1ba43
 last-reviewed: 2026-11-25
 ---
 # Learning path: Non-Person Identity in Microsoft Entra ID {.unnumbered}
@@ -47,7 +47,7 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 
 ## Get the code {#get-the-code}
 
-Download [non-person-identity-code.zip](../../../downloads/non-person-identity-code.zip) to your Downloads folder. It holds `non-person-identity`, the kit the labs use, with `drift-pipeline` and `validation-kit` beside it, and in `third_party` the Learn pages and samples the chapters start from, pinned unmodified. Unzip it into `C:\FMWLabs\non-person-identity-code` (in Windows' **Extract All**, type that folder in place of the one it suggests), so you work in `C:\FMWLabs\non-person-identity-code\non-person-identity`. Every lab command runs from there, as it does from `examples/non-person-identity` in a clone of the repository. Module 10's steps 7 to 11 run in the `drift-pipeline` folder beside `non-person-identity`. The kit is PowerShell 7.1 or later, with Pester 5; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
+Download [non-person-identity-code.zip](../../../downloads/non-person-identity-code.zip) to your Downloads folder. It holds `non-person-identity`, the kit the labs use, with `drift-pipeline` and `validation-kit` beside it, `servicenow-sailpoint/clients/python` for the finding contract a test reads, and in `third_party` the Learn pages and samples the chapters start from, pinned unmodified. Unzip it into `C:\FMWLabs\non-person-identity-code` (in Windows' **Extract All**, type that folder in place of the one it suggests), so you work in `C:\FMWLabs\non-person-identity-code\non-person-identity`. Every lab command runs from there, as it does from `examples/non-person-identity` in a clone of the repository. Module 10's steps 7 to 11 run in the `drift-pipeline` folder beside `non-person-identity`. The kit is PowerShell 7.1 or later, with Pester 5; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
 
 In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
 
