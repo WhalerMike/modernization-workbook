@@ -6,7 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 20"
 series-order: 2
-review-status: pending
+review-status: approved
+reviewed-sha256: 04ecf193232288a448e954408d560fda9cf43167db460cb82ba8635b4eeae755
+last-reviewed: 2026-11-25
 ---
 # Module 2: Labels, publication and containers {.unnumbered}
 

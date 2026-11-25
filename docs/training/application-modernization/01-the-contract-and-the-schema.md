@@ -6,9 +6,10 @@ research-status: draft
 research-type: training module
 research-book: "Book 18"
 series-order: 1
-review-status: pending
+review-status: approved
+reviewed-sha256: a221ee579ced14a3a8618ec5d83553b7b191cfb213f28f87d9635b8c9993717c
+last-reviewed: 2026-11-25
 ---
-
 # Module 1: The contract and the schema {.unnumbered}
 
 *Part of the [Application Modernization learning path](index.md). Book 18, [Chapter 01](../../books/b18-application-modernization/01-a-portfolio-not-a-rewrite.md), [Chapter 03](../../books/b18-application-modernization/03-the-target-reference-architecture.md) and [Chapter 08](../../books/b18-application-modernization/08-the-reference-implementation.md). Workbook [Chapter 01](../../project-plans/developer-workbooks/application-modernization/01-the-contract-and-the-schema-the-service-owns.md). About 55 minutes.*

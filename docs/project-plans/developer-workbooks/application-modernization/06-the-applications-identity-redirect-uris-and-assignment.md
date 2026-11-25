@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 86720ffc3d51d13a775d32a469b9cec95d322e92403a190d495fd9a38aa36eaa
+last-reviewed: 2026-11-25
 ---
 # Chapter 06 — The Application's Identity: Redirect URIs and Assignment
 

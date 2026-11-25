@@ -6,9 +6,10 @@ research-status: draft
 research-type: training module
 research-book: "Book 18"
 series-order: 4
-review-status: pending
+review-status: approved
+reviewed-sha256: 7e7abfe8ae7432776f7129921e7845df126f3b4a3f175fd5cd97451beb91c23e
+last-reviewed: 2026-11-25
 ---
-
 # Module 4: An agent that only proposes {.unnumbered}
 
 *Part of the [Application Modernization learning path](index.md). Book 18, [Chapter 05](../../books/b18-application-modernization/05-generative-and-agentic-ai.md). Workbook [Chapter 04](../../project-plans/developer-workbooks/application-modernization/04-an-agent-that-only-proposes.md). About 55 minutes.*

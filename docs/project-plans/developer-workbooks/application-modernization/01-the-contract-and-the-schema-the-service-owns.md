@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 1a5d8c5d7b3e0f95f9e47c5a1609276e3723a492b771a57ddddb1a9a67fb1974
+last-reviewed: 2026-11-25
 ---
 # Chapter 01 — The Contract and the Schema the Service Owns
 

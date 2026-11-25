@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: da2dc2ce7539ad35553a74cba4b484898a92d141a660395d10fd8e4f271aa78a
+last-reviewed: 2026-11-25
 ---
 # Chapter 04 — Labels, Policies and Containers
 

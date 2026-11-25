@@ -6,9 +6,10 @@ research-status: draft
 research-type: training module
 research-book: "Book 18"
 series-order: 6
-review-status: pending
+review-status: approved
+reviewed-sha256: 66c2de03f1802ccf1d204fb1d1438ec998c2ff1f2ebae9fcff9d8cfae4b8c4ad
+last-reviewed: 2026-11-25
 ---
-
 # Module 6: The application's identity {.unnumbered}
 
 *Part of the [Application Modernization learning path](index.md). Book 18, [Appendix A](../../books/b18-application-modernization/appendix-a-identity-remediation-work-packages.md) and [Chapter 10](../../books/b18-application-modernization/10-running-the-portfolio-in-waves.md#identity-remediation-factory). Workbook [Chapter 06](../../project-plans/developer-workbooks/application-modernization/06-the-applications-identity-redirect-uris-and-assignment.md). About 70 minutes.*

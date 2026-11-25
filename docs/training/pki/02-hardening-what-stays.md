@@ -6,7 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 07"
 series-order: 2
-review-status: pending
+review-status: approved
+reviewed-sha256: c822f6078c3084ba2c0424da9825c040e999cb1752375f8f738c5b592b1befd2
+last-reviewed: 2026-11-25
 ---
 # Module 2: Hardening what stays {.unnumbered}
 
