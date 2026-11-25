@@ -2676,6 +2676,61 @@
   "page": "index.docx",
   "title": "Learning path: The Daily Checks on One Dashboard"
  },
+ "docs/training/data-platform/01-the-estate-and-the-consolidation-gate.md": {
+  "bundle": "training-data-platform-bundle.docx",
+  "page": "01-the-estate-and-the-consolidation-gate.docx",
+  "title": "Learning path: Data Platform and SQL Server Identity"
+ },
+ "docs/training/data-platform/02-the-authentication-audit.md": {
+  "bundle": "training-data-platform-bundle.docx",
+  "page": "02-the-authentication-audit.docx",
+  "title": "Learning path: Data Platform and SQL Server Identity"
+ },
+ "docs/training/data-platform/03-arc-and-the-engines-identity.md": {
+  "bundle": "training-data-platform-bundle.docx",
+  "page": "03-arc-and-the-engines-identity.docx",
+  "title": "Learning path: Data Platform and SQL Server Identity"
+ },
+ "docs/training/data-platform/04-entra-logins-and-the-parallel-run.md": {
+  "bundle": "training-data-platform-bundle.docx",
+  "page": "04-entra-logins-and-the-parallel-run.docx",
+  "title": "Learning path: Data Platform and SQL Server Identity"
+ },
+ "docs/training/data-platform/05-groups-roles-and-the-perimeter.md": {
+  "bundle": "training-data-platform-bundle.docx",
+  "page": "05-groups-roles-and-the-perimeter.docx",
+  "title": "Learning path: Data Platform and SQL Server Identity"
+ },
+ "docs/training/data-platform/06-ntlm-and-the-spns.md": {
+  "bundle": "training-data-platform-bundle.docx",
+  "page": "06-ntlm-and-the-spns.docx",
+  "title": "Learning path: Data Platform and SQL Server Identity"
+ },
+ "docs/training/data-platform/07-the-application-chain.md": {
+  "bundle": "training-data-platform-bundle.docx",
+  "page": "07-the-application-chain.docx",
+  "title": "Learning path: Data Platform and SQL Server Identity"
+ },
+ "docs/training/data-platform/08-ad-cs-dependencies.md": {
+  "bundle": "training-data-platform-bundle.docx",
+  "page": "08-ad-cs-dependencies.docx",
+  "title": "Learning path: Data Platform and SQL Server Identity"
+ },
+ "docs/training/data-platform/09-closure-drift-and-evidence.md": {
+  "bundle": "training-data-platform-bundle.docx",
+  "page": "09-closure-drift-and-evidence.docx",
+  "title": "Learning path: Data Platform and SQL Server Identity"
+ },
+ "docs/training/data-platform/10-deploying-to-test-and-production.md": {
+  "bundle": "training-data-platform-bundle.docx",
+  "page": "10-deploying-to-test-and-production.docx",
+  "title": "Learning path: Data Platform and SQL Server Identity"
+ },
+ "docs/training/data-platform/index.md": {
+  "bundle": "training-data-platform-bundle.docx",
+  "page": "index.docx",
+  "title": "Learning path: Data Platform and SQL Server Identity"
+ },
  "docs/training/defender-xdr/01-architecture-access-and-onboarding.md": {
   "bundle": "training-defender-xdr-bundle.docx",
   "page": "01-architecture-access-and-onboarding.docx",

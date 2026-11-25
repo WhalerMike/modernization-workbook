@@ -3275,6 +3275,72 @@
    "title": "Daily Checks Dashboard"
   }
  ],
+ "docs/training/data-platform/01-the-estate-and-the-consolidation-gate.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/training/data-platform/02-the-authentication-audit.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/training/data-platform/03-arc-and-the-engines-identity.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/training/data-platform/04-entra-logins-and-the-parallel-run.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/training/data-platform/05-groups-roles-and-the-perimeter.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/training/data-platform/06-ntlm-and-the-spns.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/training/data-platform/07-the-application-chain.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/training/data-platform/08-ad-cs-dependencies.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/training/data-platform/09-closure-drift-and-evidence.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/training/data-platform/10-deploying-to-test-and-production.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/training/data-platform/index.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
  "docs/training/defender-xdr/01-architecture-access-and-onboarding.md": [
   {
    "id": "defender-xdr",
