@@ -117,6 +117,8 @@ website:
             text: "Network and SD-WAN"
           - href: docs/topics/endpoints.md
             text: "Endpoints"
+          - href: docs/topics/platform-host.md
+            text: "Platform Host"
           - text: "---"
           - text: "Security"
           - href: docs/topics/global-secure-access.md
