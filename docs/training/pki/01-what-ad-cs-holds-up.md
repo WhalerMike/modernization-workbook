@@ -168,7 +168,7 @@ In Git Bash, `cd /c/FMWLabs/start-kit` reaches the same folder, but every step i
     Expected output:
 
     ```text
-    1.6.0
+    1.8.0
     ```
 
 2. **Run the PKI assessment on the snapshot.** `-PkiDataPath` reads the snapshot instead of a directory and a CA; everything else is the code that runs against a forest.
