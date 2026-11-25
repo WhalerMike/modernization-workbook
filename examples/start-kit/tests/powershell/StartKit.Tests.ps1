@@ -17,6 +17,8 @@ BeforeAll {
     # The run script itself reads the forest and the DC that serves each domain.
     Mock Get-ADForest { $global:FMPFix.forest }
     Mock Get-ADDomainController { @(Get-FixList $global:FMPFix.dcs $DomainName)[0] }
+    # The pre-flight checks for the RSAT module, which the test hosts don't have.
+    Mock Get-Module -ParameterFilter { $ListAvailable -and $Name -eq 'ActiveDirectory' } { [pscustomobject]@{ Name = 'ActiveDirectory'; Version = [version]'1.0.1.0' } }
 
     $script:Started = Get-Date
     $out = Join-Path $TestDrive 'assess'
@@ -41,13 +43,13 @@ Describe 'Invoke-FMPStartKit.ps1' {
         $manifest.ComputerName | Should -Not -BeNullOrEmpty
         $manifest.StartTimeUtc | Should -Not -BeNullOrEmpty
         $manifest.ServedBy.'child.contoso.example' | Should -Be 'cdc01.child.contoso.example'
-        $manifest.ModuleVersions.FMPADAssessment | Should -Be '1.6.0'
+        $manifest.ModuleVersions.FMPADAssessment | Should -Be '1.7.0'
         $manifest.Parameters.QueryInstances | Should -BeTrue
         $manifest.ModuleVersions.FMPNpsInventory | Should -Be '1.0.0'
         $manifest.ModuleVersions.FMPTransactionProfile | Should -Be '1.0.0'
         $manifest.ModuleVersions.FMPSqlEstate | Should -Be '1.2.0'
         $manifest.Parameters.TransactionCatalog | Should -BeTrue
-        $manifest.KitVersion | Should -Be '1.5.0'
+        $manifest.KitVersion | Should -Be '1.6.0'
     }
     It 'hashes every file in the run, and the hashes match' {
         $files = @(Get-ChildItem -Path $runDir.FullName -Recurse -File | Where-Object Name -ne 'AssessmentManifest.json')

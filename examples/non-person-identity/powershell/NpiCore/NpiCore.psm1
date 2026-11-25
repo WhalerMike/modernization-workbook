@@ -291,6 +291,7 @@ function New-NpiLiveInvoker {
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][string]$TenantId, [switch]$SkipAzure, [switch]$AllowWrite)
     $c = Get-NpiCloud -Cloud $Cloud
+    if (-not $script:NpiProgress.Explicit) { $script:NpiProgress.Quiet = $false }
     $mg = Get-MgContext
     if (-not $mg) { throw 'Not signed in to Microsoft Graph.' }
     if ($mg.Environment -ne $c.GraphEnvironment) { throw "Graph session is in '$($mg.Environment)', not '$($c.GraphEnvironment)'." }
@@ -314,11 +315,108 @@ function New-NpiLiveInvoker {
             if ($null -eq $resp) { @{} } else { $resp }
         } else {
             if ($Method -ne 'GET') { throw "Refusing $Method to Resource Manager" }
-            $resp = Invoke-AzRestMethod -Method GET -Uri $Uri
+            # Resource Manager throttles with 429; retried with backoff, as are 5xx answers.
+            $resp = Invoke-NpiRetry -Activity "GET $Uri" -ScriptBlock {
+                $x = Invoke-AzRestMethod -Method GET -Uri $Uri
+                if ($x.StatusCode -eq 429 -or $x.StatusCode -ge 500) { throw "Resource Manager returned $($x.StatusCode) for $Uri" }
+                $x
+            }
             if ($resp.StatusCode -ge 400) { throw "Resource Manager returned $($resp.StatusCode) for $Uri" }
             $resp.Content | ConvertFrom-Json -AsHashtable -Depth 50
         }
     }.GetNewClosure()
+}
+
+function Test-NpiTransientError {
+    <#
+    .SYNOPSIS
+        True for an error worth retrying: an ADWS or LDAP timeout, a busy or unavailable server,
+        an expired enumeration context, HTTP 429 or a 5xx. Decided by exception type and LDAP
+        result code first (51 busy, 52 unavailable, 81 server down, 85 timeout), which don't
+        depend on the operating system's language, then by English message text.
+    .EXAMPLE
+        Test-NpiTransientError ([TimeoutException]::new('The operation has timed out'))
+    #>
+    param([Parameter(Mandatory)]$ErrorRecord)
+    $e = if ($ErrorRecord -is [Management.Automation.ErrorRecord]) { $ErrorRecord.Exception } else { $ErrorRecord }
+    while ($e) {
+        $type = $e.GetType().FullName
+        if ($type -match 'ADServerDownException|TimeoutException|CommunicationException|EndpointNotFoundException|ServerTooBusyException|SocketException|HttpRequestException') { return $true }
+        $code = $e.PSObject.Properties['ErrorCode']
+        if ($code -and $type -match 'ADException|LdapException|DirectoryServicesCOMException' -and [int]$code.Value -in 51, 52, 81, 85) { return $true }
+        if ($e.Message -match '(?i)time ?out|timed out|server is busy|unavailable|unable to contact the server|enumeration context|operation was aborted|connection was closed|server is not operational|\b(429|500|502|503|504)\b|too many requests') { return $true }
+        $e = $e.InnerException
+    }
+    $false
+}
+
+function Invoke-NpiRetry {
+    <#
+    .SYNOPSIS
+        Runs a read; on a transient error waits base, 2x, 4x... seconds plus jitter and runs it
+        again, up to -MaxRetries more times. Anything else is thrown at once.
+    .EXAMPLE
+        Invoke-NpiRetry -Activity 'Get-ADUser service accounts' -ScriptBlock { Get-ADUser -LDAPFilter '(servicePrincipalName=*)' -ResultPageSize 256 }
+    #>
+    param([Parameter(Mandatory)][string]$Activity, [Parameter(Mandatory)][scriptblock]$ScriptBlock, [int]$MaxRetries = 4, [double]$BaseSeconds = 5)
+    $attempt = 0
+    while ($true) {
+        $attempt++
+        try { return & $ScriptBlock }
+        catch {
+            if ($attempt -gt $MaxRetries -or -not (Test-NpiTransientError $_)) { throw }
+            $delay = [Math]::Min(300, $BaseSeconds * [Math]::Pow(2, $attempt - 1)) + (Get-Random -Minimum 0.0 -Maximum ([Math]::Max(0.001, $BaseSeconds / 2)))
+            Write-Warning ("{0}: attempt {1} of {2} failed ({3}); retrying in {4:N0}s" -f $Activity, $attempt, ($MaxRetries + 1), $_.Exception.Message, $delay)
+            Start-Sleep -Milliseconds ([int]($delay * 1000))
+        }
+    }
+}
+
+# Off until a live invoker is made (New-NpiLiveInvoker, New-NpiLiveAdInvoker), so fixture runs
+# and their lab output stay as they are; Set-NpiProgressPreference decides it outright.
+$script:NpiProgress = @{ Quiet = $true; HeartbeatSeconds = 30; Explicit = $false }
+
+function Set-NpiProgressPreference {
+    <#
+    .SYNOPSIS
+        -Quiet turns off the progress bar and heartbeat lines for unattended runs.
+    .EXAMPLE
+        Set-NpiProgressPreference -Quiet
+    #>
+    param([switch]$Quiet, [int]$HeartbeatSeconds = 30)
+    $script:NpiProgress = @{ Quiet = [bool]$Quiet; HeartbeatSeconds = $HeartbeatSeconds; Explicit = $true }
+}
+
+function Write-NpiProgress {
+    <#
+    .SYNOPSIS
+        Progress for a long loop: Write-Progress with the count, the percentage and the time
+        left at most once a second, a heartbeat line every HeartbeatSeconds, and with
+        -Completed a summary line (count and duration). Pass the same hashtable each time.
+    .EXAMPLE
+        $t = @{ Activity = 'App registrations'; Total = 2 }
+        Write-NpiProgress -Tracker $t; Write-NpiProgress -Tracker $t; Write-NpiProgress -Tracker $t -Completed
+    #>
+    param([Parameter(Mandatory)][hashtable]$Tracker, [switch]$Completed)
+    if (-not $Tracker.ContainsKey('Watch')) { $Tracker.Watch = [Diagnostics.Stopwatch]::StartNew(); $Tracker.Count = 0; $Tracker.LastDraw = -1.0; $Tracker.LastBeat = 0.0 }
+    $q = $script:NpiProgress
+    $secs = $Tracker.Watch.Elapsed.TotalSeconds
+    if ($Completed) {
+        if (-not $q.Quiet) { Write-Progress -Activity $Tracker.Activity -Completed; Write-Host ('{0}: {1:N0} in {2:hh\:mm\:ss}' -f $Tracker.Activity, $Tracker.Count, $Tracker.Watch.Elapsed) }
+        return
+    }
+    $Tracker.Count++
+    $total = [int]$Tracker.Total
+    $pct = if ($total -gt 0) { [Math]::Min(100, [int](100 * $Tracker.Count / $total)) } else { -1 }
+    $left = if ($pct -gt 0 -and $Tracker.Count -gt 0) { [int]($secs * ($total - $Tracker.Count) / $Tracker.Count) } else { -1 }
+    if (-not $q.Quiet -and ($secs - $Tracker.LastDraw) -ge 1) {
+        $Tracker.LastDraw = $secs
+        Write-Progress -Activity $Tracker.Activity -Status ('{0:N0} of {1:N0}' -f $Tracker.Count, $total) -PercentComplete ([Math]::Max(0, $pct)) -SecondsRemaining $left
+    }
+    if (-not $q.Quiet -and ($secs - $Tracker.LastBeat) -ge $q.HeartbeatSeconds) {
+        $Tracker.LastBeat = $secs
+        Write-Host ('{0} {1}: {2:N0} of {3:N0} ({4}%), about {5:N0}s left' -f [DateTime]::UtcNow.ToString('HH:mm:ssZ'), $Tracker.Activity, $Tracker.Count, $total, $pct, $left)
+    }
 }
 
 function New-NpiLiveAdInvoker {
@@ -334,6 +432,7 @@ function New-NpiLiveAdInvoker {
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Server, [switch]$AllowWrite)
     Import-Module ActiveDirectory -ErrorAction Stop
+    if (-not $script:NpiProgress.Explicit) { $script:NpiProgress.Quiet = $false }
     $allowed = @('Get-ADUser', 'Get-ADServiceAccount')
     if ($AllowWrite) { $allowed += 'Disable-ADAccount' }
     $srv = $Server
@@ -341,7 +440,12 @@ function New-NpiLiveAdInvoker {
         param($Cmdlet, [hashtable]$Params)
         if ($Cmdlet -notin $allowed) { throw "Refusing $Cmdlet" }
         $p = @{} + $Params; $p.Server = $srv
-        & $Cmdlet @p
+        if ($Cmdlet -like 'Get-*' -and -not $p.ContainsKey('Identity')) {
+            # Searches are paged and retried on ADWS or LDAP timeouts and busy servers; the
+            # whole search reruns, so nothing is counted twice.
+            $p.ResultPageSize = 256
+            Invoke-NpiRetry -Activity "$Cmdlet on $srv" -ScriptBlock { @(& $Cmdlet @p) }
+        } else { & $Cmdlet @p }
     }.GetNewClosure()
 }
 
@@ -721,4 +825,4 @@ function Export-NpiRun {
 
 Export-ModuleMember -Function Get-NpiCloud, Get-NpiCallList, Get-NpiCall, Get-NpiTask, Get-NpiRequiredPermission, New-NpiReader, Resolve-NpiUri,
     Assert-NpiHost, Invoke-NpiList, Invoke-NpiGetOne, Invoke-NpiAdRead, New-NpiLiveInvoker, New-NpiLiveAdInvoker, New-NpiFixtureInvoker,
-    Invoke-NpiFake, Test-NpiLdapFilter, New-NpiFixtureAdInvoker, Invoke-NpiFakeAd, New-NpiFinding, Write-NpiJson, Get-NpiFileHash, Export-NpiRun
+    Invoke-NpiFake, Test-NpiLdapFilter, Test-NpiTransientError, Invoke-NpiRetry, Set-NpiProgressPreference, Write-NpiProgress, New-NpiFixtureAdInvoker, Invoke-NpiFakeAd, New-NpiFinding, Write-NpiJson, Get-NpiFileHash, Export-NpiRun

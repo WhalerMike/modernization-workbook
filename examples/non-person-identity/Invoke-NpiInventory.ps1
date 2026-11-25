@@ -24,10 +24,13 @@ param(
     [datetime]$AsOf,
     [string]$ConfigPath,
     [switch]$SkipAd,
-    [switch]$SkipAzure
+    [switch]$SkipAzure,
+    # No progress bar or heartbeat lines: for unattended runs.
+    [switch]$Quiet
 )
 $ErrorActionPreference = 'Stop'
 Import-Module (Join-Path $PSScriptRoot 'powershell/NpiInventory/NpiInventory.psm1') -Force
+Set-NpiProgressPreference -Quiet:($Quiet -or [bool]$FixturePath)
 
 $config = if ($ConfigPath) { Get-NpiRegisterConfig -Path $ConfigPath } else { Get-NpiRegisterConfig }
 if ($FixturePath) {
