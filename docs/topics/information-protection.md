@@ -46,6 +46,7 @@ The implementation guides, the developer workbook and its code.
 |---|---|
 | [Information Protection with Microsoft Purview: An Implementation Guide](../books/guides/information-protection-implementation.md) | A gated guide for building Book 20's information protection in a Microsoft 365 GCC tenant: twelve gates, one for each chapter of the book, from the data classes and the inventory through the label taxonomy, publication and defaults,… |
 | [Building Information Protection](../project-plans/developer-workbooks/information-protection/index.md) | A developer workbook for the information protection implementation guide: a code-first companion for the developers who build the read-only checks that prove Microsoft Purview is doing what Book 20 and the agency's plan say. |
+| [Information Protection with Microsoft Purview: An Implementation Guide](../books/guides/information-protection-implementation.md) | A gated guide for building Book 20's information protection in a Microsoft 365 GCC tenant: twelve gates, one for each chapter of the book, from the data classes and the inventory through the label taxonomy, publication and defaults,… |
 
 : Build {.striped .hover}
 

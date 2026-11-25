@@ -776,6 +776,8 @@ topics:
         - page: docs/books/b12-security-operations/09-data-protection-and-classification.md
       plan:
         - page: docs/project-plans/information-protection.md
+      build:
+        - page: docs/books/guides/information-protection-implementation.md
       evidence:
         - page: docs/books/b20-information-protection/12-operations-and-evidence.md
         - page: docs/books/b20-information-protection/appendix-a-requirements-mapping.md
