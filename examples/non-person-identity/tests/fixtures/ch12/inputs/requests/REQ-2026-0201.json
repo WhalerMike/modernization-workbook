@@ -17,6 +17,8 @@
   "sponsor": "finance.sponsor@contoso.example",
   "sponsorIsFederalEmployee": true,
   "riskTier": "R2",
+  "environment": "prod",
+  "entraTarget": "AppRegistrationFederated",
   "endDate": "2028-12-31",
   "supersedes": "svc-payroll"
 }

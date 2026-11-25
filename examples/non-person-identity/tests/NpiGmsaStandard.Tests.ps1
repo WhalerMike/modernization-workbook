@@ -142,12 +142,13 @@ Describe 'The request check (NPI-STD-01 to NPI-STD-09)' {
     }
     It 'writes kerberos-replatform.csv rows with Chapter 06''s exact header and a DL-gMSA-<app>-Hosts retriever per passing request' {
         $csv = ConvertTo-NpiStdReplatformCsv -Rows $script:Run.Requests.Replatform
-        ($csv -split "`n")[0] | Should -BeExactly '"SamAccountName","NewAccount","Workload","Hosts","SpnOwnerUpn","EndDate","Reference","HostChangedOn","MigrationStartedOn","OutboundOnlyReason","RequestId","ChangeRecord"'
+        ($csv -split "`n")[0] | Should -BeExactly '"SamAccountName","NewAccount","Workload","Hosts","SpnOwnerUpn","EndDate","Reference","HostChangedOn","MigrationStartedOn","OutboundOnlyReason","RequestId","ChangeRecord","Tags"'
         (ConvertTo-NpiStdReplatformCsv -Rows @()) | Should -BeExactly (($csv -split "`n")[0] + "`n")
         $rows = @($csv | ConvertFrom-Csv)
         @($rows | ForEach-Object NewAccount) | Should -Be @('dmsa-billing$', 'gmsa-payroll$')
         $p = @($rows | Where-Object NewAccount -EQ 'gmsa-payroll$')[0]
         "$($p.SamAccountName)|$($p.Hosts)|$($p.SpnOwnerUpn)|$($p.RequestId)|$($p.ChangeRecord)" | Should -Be 'svc-payroll|PAY01;PAY02|payroll.owner@contoso.example|REQ-2026-0201|CHG0041201'
+        $p.Tags | Should -Be 'SystemId=SYS-0412; Owner1=payroll.owner@contoso.example; Owner2=payroll.backup@contoso.example; Sponsor=finance.sponsor@contoso.example; Environment=prod; Tier=R2; EntraTarget=AppRegistrationFederated; Request=REQ-2026-0201; Change=CHG0041201'
         @($rows | Where-Object NewAccount -EQ 'dmsa-billing$')[0].SpnOwnerUpn | Should -Be ''
         $script:Run.Requests.Retrievers['gmsa-payroll$'] | Should -Be @('CN=DL-gMSA-payroll-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example')
         @($script:Run.Requests.Retrievers.Keys) | Should -Be @('gmsa-payroll$')   # a dMSA learns its hosts during its migration
@@ -352,7 +353,7 @@ Describe 'The run folder' {
         $doc.accounts['gmsa-payroll$'] | Should -Be @('CN=DL-gMSA-payroll-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example')
         $doc.accounts.ContainsKey('dmsa-billing$') | Should -BeFalse
         $doc.requests['gmsa-payroll$'].changeRecord | Should -Be 'CHG0041201'
-        (Get-Content (Join-Path $script:OutA 'kerberos-replatform.csv') -TotalCount 1) | Should -BeExactly '"SamAccountName","NewAccount","Workload","Hosts","SpnOwnerUpn","EndDate","Reference","HostChangedOn","MigrationStartedOn","OutboundOnlyReason","RequestId","ChangeRecord"'
+        (Get-Content (Join-Path $script:OutA 'kerberos-replatform.csv') -TotalCount 1) | Should -BeExactly '"SamAccountName","NewAccount","Workload","Hosts","SpnOwnerUpn","EndDate","Reference","HostChangedOn","MigrationStartedOn","OutboundOnlyReason","RequestId","ChangeRecord","Tags"'
     }
     It 'evidence.json has one row per step, control and evidence file, with that file''s SHA-256 and the catalog''s KSIs' {
         $ev = (Get-Content (Join-Path $script:OutA 'evidence.json') -Raw | ConvertFrom-Json -AsHashtable).rows

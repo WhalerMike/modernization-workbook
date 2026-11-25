@@ -106,6 +106,9 @@ function Test-NpiDeploySettings {
         if ("$($ad['gmsaRetrieverGroup'])" -notmatch '^DL-gMSA-[A-Za-z0-9-]+-Hosts$') { $p.Add("ad.gmsaRetrieverGroup: '$($ad['gmsaRetrieverGroup'])' isn't a DL-gMSA-<app>-Hosts domain local group (WD-160)") }
         if ("$($ad['gmsaRetrieverGroupPath'])" -notmatch '^OU=.+,DC=') { $p.Add("ad.gmsaRetrieverGroupPath: '$($ad['gmsaRetrieverGroupPath'])' isn't an OU's distinguished name") }
         if (-not "$($ad['gmsaRequestId'])") { $p.Add('ad.gmsaRequestId: missing; the SailPoint request that approved the smoke-test gMSA') }
+        $tags = if ($ad['gmsaTags'] -is [Collections.IDictionary]) { $ad['gmsaTags'] } else { @{} }
+        $noTag = @('SystemId', 'Owner1', 'Owner2', 'Sponsor', 'Environment', 'Tier', 'EntraTarget' | Where-Object { -not "$($tags[$_])" })
+        if ($noTag.Count) { $p.Add("ad.gmsaTags: missing $($noTag -join ', '); the smoke-test gMSA carries the program's tags (WD-175)") }
     }
     $p.ToArray()
 }

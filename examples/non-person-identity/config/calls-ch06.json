@@ -93,14 +93,14 @@
       "method": "WRITE",
       "cmdlet": "New-ADServiceAccount",
       "adRight": "Create msDS-GroupManagedServiceAccount objects in the service-account OU: the right delegated there to DL-gMSA-Creators (the pipeline's gMSA is a member), or Domain Admins",
-      "allowedParams": ["Name", "DNSHostName", "Path", "PrincipalsAllowedToRetrieveManagedPassword", "KerberosEncryptionType", "ManagedPasswordIntervalInDays", "RestrictToOutboundAuthenticationOnly"],
+      "allowedParams": ["Name", "DNSHostName", "Path", "PrincipalsAllowedToRetrieveManagedPassword", "KerberosEncryptionType", "ManagedPasswordIntervalInDays", "RestrictToOutboundAuthenticationOnly", "Description"],
       "stage": "GA",
       "tasks": ["kerberos-apply"],
       "runBy": "pipeline",
       "controls": ["AC-6", "IA-5", "CM-3"],
       "ksis": ["KSI-IAM-ELP", "KSI-CMT-LMC"],
       "learn": "https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts",
-      "note": "Learn's procedure is on Manage group Managed Service Accounts. -Path puts the gMSA in the service-account OU (WD-161); -ManagedPasswordIntervalInDays can be set only at creation; -RestrictToOutboundAuthenticationOnly for a workload that holds no SPN (WD-154)."
+      "note": "Learn's procedure is on Manage group Managed Service Accounts. -Path puts the gMSA in the service-account OU (WD-161); -ManagedPasswordIntervalInDays can be set only at creation; -RestrictToOutboundAuthenticationOnly for a workload that holds no SPN (WD-154); -Description carries the account's tags, naming its request and change (WD-175)."
     },
     {
       "id": "krb-new-dmsa",
@@ -108,7 +108,7 @@
       "method": "WRITE",
       "cmdlet": "New-ADServiceAccount",
       "adRight": "Domain Admins or Enterprise Admins, or equivalent permissions, to create or migrate to a dMSA, against a read-write domain controller",
-      "allowedParams": ["Name", "DNSHostName", "Path", "CreateDelegatedServiceAccount", "KerberosEncryptionType"],
+      "allowedParams": ["Name", "DNSHostName", "Path", "CreateDelegatedServiceAccount", "KerberosEncryptionType", "Description"],
       "stage": "GA (Windows Server 2025)",
       "tasks": ["kerberos-apply"],
       "runBy": "person",

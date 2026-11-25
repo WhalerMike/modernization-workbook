@@ -17,6 +17,8 @@
   "sponsor": "revenue.sponsor@contoso.example",
   "sponsorIsFederalEmployee": true,
   "riskTier": "R1",
+  "environment": "prod",
+  "entraTarget": "Undecided",
   "endDate": "2027-09-30",
   "supersedes": "svc-billing",
   "runByPerson": true

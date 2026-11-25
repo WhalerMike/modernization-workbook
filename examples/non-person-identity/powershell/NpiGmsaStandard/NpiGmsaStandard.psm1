@@ -51,7 +51,7 @@ $script:DueSoonDays = 30
 $script:PasswordIntervalDays = 30                           # the guide's stated default, set only at creation (Learn)
 $script:RetirementDays = 90                                 # WD-167
 $script:PrivilegedGroups = @('Domain Admins', 'Enterprise Admins', 'Administrators', 'Schema Admins', 'Account Operators', 'Backup Operators', 'Server Operators', 'Print Operators')
-$script:ReplatformHeader = @('SamAccountName', 'NewAccount', 'Workload', 'Hosts', 'SpnOwnerUpn', 'EndDate', 'Reference', 'HostChangedOn', 'MigrationStartedOn', 'OutboundOnlyReason', 'RequestId', 'ChangeRecord')
+$script:ReplatformHeader = @('SamAccountName', 'NewAccount', 'Workload', 'Hosts', 'SpnOwnerUpn', 'EndDate', 'Reference', 'HostChangedOn', 'MigrationStartedOn', 'OutboundOnlyReason', 'RequestId', 'ChangeRecord', 'Tags')
 $script:FindingSource = 'npi-msa-standard'
 
 # ----------------------------------------------------------------------------- helpers
@@ -319,6 +319,9 @@ function Test-NpiStdRequest {
         if ("$(Get-NpiStdProp $q 'workload' '')" -notin $script:Workloads) { $v.Add("workload '$(Get-NpiStdProp $q 'workload' '')' isn't Service, IisAppPool or ScheduledTask") }
         if ("$(Get-NpiStdProp $q 'riskTier' '')" -notin @($script:RiskTiers.Keys)) { $v.Add("riskTier '$(Get-NpiStdProp $q 'riskTier' '')' isn't R1, R2 or R3") }
         if (-not "$(Get-NpiStdProp $q 'systemId' '')") { $v.Add('no systemId') }
+        # WD-175: the two tag values the request adds; the rest come from its other fields.
+        if ("$(Get-NpiStdProp $q 'environment' '')" -cnotin $script:TagValues.Environment) { $v.Add("environment '$(Get-NpiStdProp $q 'environment' '')' isn't $($script:TagValues.Environment -join ', ') (WD-175)") }
+        if ("$(Get-NpiStdProp $q 'entraTarget' '')" -cnotin $script:TagValues.EntraTarget) { $v.Add("entraTarget '$(Get-NpiStdProp $q 'entraTarget' '')' isn't one of $($script:TagValues.EntraTarget -join ', ') (WD-175)") }
         $end = "$(Get-NpiStdProp $q 'endDate' '')"
         if ($end) { try { if ((ConvertTo-NpiStdDate $end) -le $AsOf) { $v.Add("endDate $end is already past") } } catch { $v.Add("endDate '$end' isn't a date") } }
         if ($v.Count) { & $add 'NPI-STD-09' 'Finding' ($v -join '; ') }
@@ -341,6 +344,10 @@ function Test-NpiStdRequest {
                 OutboundOnlyReason = $(if ($spns.Count) { '' } else { $outReason })
                 RequestId          = $id
                 ChangeRecord       = $chg
+                # WD-175: the account's tags, which Chapter 06 writes as its AD description.
+                Tags               = (ConvertTo-NpiStdTagString ([ordered]@{ SystemId = "$(Get-NpiStdProp $q 'systemId' '')"; Owner1 = "$(@(Get-NpiStdProp $q 'owners' @())[0])"; Owner2 = "$(@(Get-NpiStdProp $q 'owners' @())[1])"
+                            Sponsor = "$(Get-NpiStdProp $q 'sponsor' '')"; Environment = "$(Get-NpiStdProp $q 'environment' '')"; Tier = "$(Get-NpiStdProp $q 'riskTier' '')"
+                            EntraTarget = "$(Get-NpiStdProp $q 'entraTarget' '')"; Request = $id; Change = $chg }))
             })
         # A gMSA's retriever is its DL group (WD-160). A dMSA learns its hosts during the migration (Learn), so it gets no entry.
         if ($type -eq 'gMSA') {
