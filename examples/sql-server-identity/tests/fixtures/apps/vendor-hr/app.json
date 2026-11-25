@@ -1,0 +1,1 @@
+{ "application": "vendor-hr", "driver": "SQLOLEDB", "driverVersion": null, "host": "on-premises", "vendor": true }

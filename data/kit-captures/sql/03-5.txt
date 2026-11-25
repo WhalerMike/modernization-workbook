@@ -1,0 +1,11 @@
+PS> $arc = Read-SqlJson tests/fixtures/arc/arc.json
+PS> $arc.sqlInstances[0].entraAuthentication.configured = $null
+PS> $arc | ConvertTo-Json -Depth 6 | Set-Content out/arc-unconfirmed.json
+PS> Get-SqlArcCategory -Audit (Read-SqlJson tests/fixtures/audit-day1/audit.json) -Arc (Read-SqlJson out/arc-unconfirmed.json) | Where-Object Instance -eq 'SQLPRD01' | Format-List
+Instance  : SQLPRD01
+Version   : 2022
+Agent     : Connected
+Extension : deployed
+Entra     : not configured
+Category  : 2
+Next      : Deploy Arc (Runbook R04): Entra authentication not configured

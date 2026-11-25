@@ -1,0 +1,6 @@
+PS> Import-Module ./powershell/SqlIdentity/SqlIdentity.psd1
+PS> ConvertFrom-SqlConnectionString 'Server=sqlprd01.contoso.example;Database=Payroll;Authentication=Active Directory Password;User ID=svc-payroll@contoso.example;Password=NotARealOne' | Format-List
+Server         : sqlprd01.contoso.example
+Authentication : entra
+Mode           : Active Directory Password
+Masked         : Server=sqlprd01.contoso.example;Database=Payroll;Authentication=Active Directory Password;User ID=svc-payroll@contoso.example;Password=********

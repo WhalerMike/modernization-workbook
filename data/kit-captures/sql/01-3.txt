@@ -1,0 +1,6 @@
+PS> Import-Module ./powershell/SqlIdentity/SqlIdentity.psd1
+PS> Test-SqlManifest -OutputPath out/estate
+File        Recorded     Now          Match
+----        --------     ---          -----
+estate.csv  b5f09922d757 b5f09922d757  True
+estate.json b9e75284a7ed b9e75284a7ed  True

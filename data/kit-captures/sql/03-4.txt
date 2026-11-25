@@ -1,0 +1,7 @@
+PS> $arc = Read-SqlJson tests/fixtures/arc/arc.json
+PS> $arc.environment = 'not-recorded'
+PS> $arc | ConvertTo-Json -Depth 6 | Set-Content out/arc-unknown-cloud.json
+PS> ./Invoke-SqlArcCheck.ps1 -AuditPath tests/fixtures/audit-day1/audit.json -ArcPath out/arc-unknown-cloud.json -OutputPath out/arc-refused
+Exception: The Arc results came from 'not-recorded'. A GCC (Moderate) tenant's Arc resources are in AzureCloud (WD-028).
+PS> Test-Path out/arc-refused
+False

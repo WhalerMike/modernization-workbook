@@ -1,0 +1,14 @@
+PS> Import-Module ./powershell/SqlIdentity/SqlIdentity.psd1
+PS> $audit = Read-SqlJson tests/fixtures/audit-day1/audit.json
+PS> $short = Import-Csv tests/fixtures/mapping/sqlprd01-mapping.csv | Where-Object WindowsLogin -ne 'payroll_report'
+PS> $plan = New-SqlLoginPlan -Instance $audit.instances[0] -Mapping $short
+PS> $plan.Create | Select-String UNRESOLVED
+-- UNRESOLVED: payroll_report (S): map it, or record why it isn't migrated
+PS> $plan.Cutover
+USE master;
+GO
+DENY CONNECT SQL TO [CONTOSO\PayrollUsers];  -- group: superseded by SQL-Payroll-Users
+ALTER LOGIN [CONTOSO\svc-payroll] DISABLE;  -- superseded by payroll-web-mi
+ALTER SERVER ROLE [sysadmin] DROP MEMBER [CONTOSO\SQL-Admins];  -- DENY doesn't bind sysadmin members
+DENY CONNECT SQL TO [CONTOSO\SQL-Admins];  -- group: superseded by SQL-DBA-Admins
+GO

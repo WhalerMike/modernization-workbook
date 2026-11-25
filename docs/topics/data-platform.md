@@ -52,6 +52,7 @@ The implementation guides, the developer workbook and its code.
 
 | Page | What it is |
 |---|---|
+| [Building SQL Server Identity](../project-plans/developer-workbooks/sql-server-identity/index.md) | A developer workbook for ending SQL Server's dependence on Windows and SQL authentication: a code-first companion to Book 06 and its runbooks for the developers and DBAs who classify the estate, audit each instance's logins, settle Arc… |
 | [Runbook R01 — Prerequisites & Using This Companion](../books/b06-data-platform/r01-prerequisites.md) | Where the ten runbooks (R01 to R10) start; they are the book's step-by-step build. |
 | [Runbook R02 — Estate Discovery & the Consolidation Gate](../books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.md) | How to assess and consolidate a twenty-year SQL Server estate before any login is touched: the discovery the audit family provides (Spec3-D1.8 instance enumeration, the Spec1-D1.5 MSSQLSvc SPN trail), the broader Find-DbaInstance, setspn… |
 | [Runbook R04 — Arc Deployment & the Managed Identity](../books/b06-data-platform/r04-arc-deployment-and-managed-identity.md) | The runbook for giving an on-premises SQL Server instance its Microsoft Entra identity through Azure Arc: which Azure cloud a GCC-Moderate tenant uses, network and permission prerequisites, certificate-based azcmagent onboarding,… |
@@ -61,7 +62,7 @@ The implementation guides, the developer workbook and its code.
 
 : Build {.striped .hover}
 
-The code is in [`examples/start-kit`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit) on GitHub, and in the code zip under [Download](#download).
+The code is in [`examples/sql-server-identity`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/sql-server-identity) and [`examples/start-kit`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit) on GitHub, and in the code zip under [Download](#download).
 
 ## Learn {#learn}
 
@@ -69,6 +70,7 @@ The learning path and its hands-on labs.
 
 | Page | What it is |
 |---|---|
+| [Labs](../training/labs.md#sql) | Every lab in Building SQL Server Identity: what each needs, where it runs, and its commands. |
 | [Microsoft Automation, Module 4: Azure Arc through Azure Resource Manager and Resource Graph](../training/ms-automation-arc.md) | Microsoft Automation, Module 4, reads Arc-enabled SQL Server through Azure Resource Graph. |
 
 : Learn {.striped .hover}
@@ -97,7 +99,9 @@ Word editions and code, rebuilt on every site deploy.
 
 | File | What it is |
 |---|---|
+| [sql-server-identity-code.zip](../../downloads/sql-server-identity-code.zip) | Code: the scripts, tests and fixtures, as committed |
 | [start-kit.zip](../../downloads/start-kit.zip) | Code: the scripts, tests and fixtures, as committed |
+| [building-sql-server-identity-bundle.docx](../../downloads/building-sql-server-identity-bundle.docx) | Word edition: Building SQL Server Identity |
 | [b06-data-platform-bundle.docx](../../downloads/b06-data-platform-bundle.docx) | Word edition: Book 06 — Data Platform: SQL Server Identity |
 | [b06-data-platform-runbooks.docx](../../downloads/b06-data-platform-runbooks.docx) | Word edition: b06-data-platform-runbooks.docx |
 
@@ -124,8 +128,6 @@ What the workbook doesn't have on the data platform and SQL Server, and whether 
 | Missing | Why |
 |---|---|
 | Guide | Not needed, because Book 06's ten runbooks (R01 to R10), listed under Build, are its step-by-step implementation guide. |
-| Developer workbook | Needed: decide with the learning path plan. The Start Kit's SQL Server discovery is the only code in examples/; nothing there runs the login migration, the parallel run or NTLM remediation. |
-| Learning path | Needed: the first new learning path to be planned (decided Nov 24, 2026). |
-| Labs | Needed: they come with the learning path. |
+| Learning path | Needed: the learning path is phase 2 of filling this topic's gaps (decided Nov 24, 2026). |
 
 : Not here {.striped .hover}

@@ -1,0 +1,345 @@
+{
+  "asOf": "2026-11-20",
+  "note": "A fictional audit snapshot in the shape Export-SqlAuditSnapshot.ps1 writes. Microsoft documents auth_scheme only as the SQL Server or Windows authentication scheme; the fixtures record Entra sessions as SQL, and the kit reads only NTLM and KERBEROS rows.",
+  "instances": [
+    {
+      "name": "SQLPRD01",
+      "productVersion": "16.0.4135.4",
+      "isIntegratedSecurityOnly": 0,
+      "registryLoginMode": 1,
+      "isClustered": 0,
+      "isExternalAuthenticationOnly": null,
+      "serviceAccount": "CONTOSO\\svc-sqlprd01",
+      "port": 1433,
+      "logins": [
+        {
+          "name": "sa",
+          "type": "S",
+          "isDisabled": false,
+          "hasConnectSql": true,
+          "serverRoles": [
+            "sysadmin"
+          ],
+          "isSa": true
+        },
+        {
+          "name": "CONTOSO\\PayrollUsers",
+          "type": "G",
+          "isDisabled": false,
+          "hasConnectSql": true,
+          "serverRoles": [],
+          "isSa": false
+        },
+        {
+          "name": "CONTOSO\\svc-payroll",
+          "type": "U",
+          "isDisabled": false,
+          "hasConnectSql": true,
+          "serverRoles": [],
+          "isSa": false
+        },
+        {
+          "name": "payroll_report",
+          "type": "S",
+          "isDisabled": false,
+          "hasConnectSql": true,
+          "serverRoles": [],
+          "isSa": false
+        },
+        {
+          "name": "CONTOSO\\SQL-Admins",
+          "type": "G",
+          "isDisabled": false,
+          "hasConnectSql": true,
+          "serverRoles": [
+            "sysadmin"
+          ],
+          "isSa": false
+        },
+        {
+          "name": "NT SERVICE\\MSSQLSERVER",
+          "type": "U",
+          "isDisabled": false,
+          "hasConnectSql": true,
+          "serverRoles": [
+            "sysadmin"
+          ],
+          "isSa": false
+        }
+      ],
+      "databases": [
+        {
+          "name": "Payroll",
+          "users": [
+            {
+              "name": "CONTOSO\\PayrollUsers",
+              "login": "CONTOSO\\PayrollUsers",
+              "roles": [
+                "db_datareader",
+                "db_datawriter"
+              ]
+            },
+            {
+              "name": "CONTOSO\\svc-payroll",
+              "login": "CONTOSO\\svc-payroll",
+              "roles": [
+                "db_datareader",
+                "db_datawriter",
+                "db_executor"
+              ]
+            },
+            {
+              "name": "payroll_report",
+              "login": "payroll_report",
+              "roles": [
+                "db_datareader"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "PayrollArchive",
+          "users": [
+            {
+              "name": "CONTOSO\\PayrollUsers",
+              "login": "CONTOSO\\PayrollUsers",
+              "roles": [
+                "db_datareader"
+              ]
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "principal": "CONTOSO\\svc-payroll",
+          "authScheme": "NTLM",
+          "local": false,
+          "sessions": 41
+        },
+        {
+          "principal": "CONTOSO\\PayrollUsers",
+          "authScheme": "KERBEROS",
+          "local": false,
+          "sessions": 12
+        },
+        {
+          "principal": "payroll_report",
+          "authScheme": "SQL",
+          "local": false,
+          "sessions": 3
+        },
+        {
+          "principal": "CONTOSO\\SQL-Admins",
+          "authScheme": "NTLM",
+          "local": true,
+          "sessions": 1
+        }
+      ]
+    },
+    {
+      "name": "SQLPRD02",
+      "productVersion": "16.0.4135.4",
+      "isIntegratedSecurityOnly": 1,
+      "registryLoginMode": 1,
+      "isClustered": 0,
+      "isExternalAuthenticationOnly": null,
+      "serviceAccount": "CONTOSO\\svc-sqlprd02",
+      "port": 1433,
+      "logins": [
+        {
+          "name": "sqladmin_disabled",
+          "type": "S",
+          "isDisabled": true,
+          "hasConnectSql": true,
+          "serverRoles": [
+            "sysadmin"
+          ],
+          "isSa": true
+        },
+        {
+          "name": "CONTOSO\\ClaimsTeam",
+          "type": "G",
+          "isDisabled": false,
+          "hasConnectSql": true,
+          "serverRoles": [],
+          "isSa": false
+        },
+        {
+          "name": "CONTOSO\\svc-claims",
+          "type": "U",
+          "isDisabled": false,
+          "hasConnectSql": true,
+          "serverRoles": [],
+          "isSa": false
+        }
+      ],
+      "databases": [
+        {
+          "name": "Claims",
+          "users": [
+            {
+              "name": "CONTOSO\\ClaimsTeam",
+              "login": "CONTOSO\\ClaimsTeam",
+              "roles": [
+                "db_datareader"
+              ]
+            },
+            {
+              "name": "CONTOSO\\svc-claims",
+              "login": "CONTOSO\\svc-claims",
+              "roles": [
+                "db_owner"
+              ]
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "principal": "CONTOSO\\svc-claims",
+          "authScheme": "KERBEROS",
+          "local": false,
+          "sessions": 8
+        }
+      ]
+    },
+    {
+      "name": "SQLFCI04",
+      "productVersion": "15.0.4375.4",
+      "isIntegratedSecurityOnly": 0,
+      "registryLoginMode": 2,
+      "isClustered": 1,
+      "isExternalAuthenticationOnly": null,
+      "serviceAccount": "CONTOSO\\svc-sqlfci04",
+      "port": 1433,
+      "logins": [
+        {
+          "name": "sa",
+          "type": "S",
+          "isDisabled": false,
+          "hasConnectSql": true,
+          "serverRoles": [
+            "sysadmin"
+          ],
+          "isSa": true
+        },
+        {
+          "name": "vendorhr_app",
+          "type": "S",
+          "isDisabled": false,
+          "hasConnectSql": true,
+          "serverRoles": [],
+          "isSa": false
+        },
+        {
+          "name": "CONTOSO\\HR-Analysts",
+          "type": "G",
+          "isDisabled": false,
+          "hasConnectSql": true,
+          "serverRoles": [],
+          "isSa": false
+        }
+      ],
+      "databases": [
+        {
+          "name": "VendorHR",
+          "users": [
+            {
+              "name": "vendorhr_app",
+              "login": "vendorhr_app",
+              "roles": [
+                "db_owner"
+              ]
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "principal": "vendorhr_app",
+          "authScheme": "SQL",
+          "local": false,
+          "sessions": 20
+        }
+      ]
+    },
+    {
+      "name": "SQLPRD06",
+      "productVersion": "17.0.1000.7",
+      "isIntegratedSecurityOnly": 1,
+      "registryLoginMode": 1,
+      "isClustered": 0,
+      "isExternalAuthenticationOnly": 0,
+      "serviceAccount": "CONTOSO\\gmsa-sqlprd06$",
+      "port": 1433,
+      "logins": [
+        {
+          "name": "sqladmin_disabled",
+          "type": "S",
+          "isDisabled": true,
+          "hasConnectSql": true,
+          "serverRoles": [
+            "sysadmin"
+          ],
+          "isSa": true
+        },
+        {
+          "name": "payments-api-mi",
+          "type": "E",
+          "isDisabled": false,
+          "hasConnectSql": true,
+          "serverRoles": [],
+          "isSa": false
+        },
+        {
+          "name": "SQL-DBA-Admins",
+          "type": "X",
+          "isDisabled": false,
+          "hasConnectSql": true,
+          "serverRoles": [
+            "sysadmin"
+          ],
+          "isSa": false
+        },
+        {
+          "name": "CONTOSO\\Reports-Readers",
+          "type": "G",
+          "isDisabled": false,
+          "hasConnectSql": true,
+          "serverRoles": [],
+          "isSa": false
+        }
+      ],
+      "databases": [
+        {
+          "name": "Payments",
+          "users": [
+            {
+              "name": "payments-api-mi",
+              "login": "payments-api-mi",
+              "roles": [
+                "db_datareader",
+                "db_datawriter"
+              ]
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "principal": "payments-api-mi",
+          "authScheme": "SQL",
+          "local": false,
+          "sessions": 30
+        },
+        {
+          "principal": "CONTOSO\\Reports-Readers",
+          "authScheme": "NTLM",
+          "local": false,
+          "sessions": 6
+        }
+      ]
+    }
+  ]
+}

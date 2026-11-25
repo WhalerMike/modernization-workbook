@@ -1,0 +1,5 @@
+WindowsLogin,EntraPrincipal,EntraType,Note
+CONTOSO\PayrollUsers,SQL-Payroll-Users,group,Dynamic group on the payroll organization code (Chapter 05)
+CONTOSO\svc-payroll,payroll-web-mi,application,The payroll web app's managed identity
+CONTOSO\SQL-Admins,SQL-DBA-Admins,group,Assigned group under PIM
+payroll_report,payroll-reporting-app,application,Owner confirmed Nov 18: the report job moves to its own app registration

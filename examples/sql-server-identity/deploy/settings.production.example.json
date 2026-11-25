@@ -1,0 +1,14 @@
+{
+  "_comment": "The runbook's example for Stage 2. Preflight refuses it until the chain holds a sealed test-stage record.",
+  "environment": "production",
+  "cloud": "AzureCloud",
+  "instance": "SQLPRD01",
+  "server": "sqlprd01.contoso.example,1433",
+  "auditPath": "tests/fixtures/audit-day1/audit.json",
+  "arcPath": "tests/fixtures/arc/arc.json",
+  "exceptionsPath": "tests/fixtures/audit-day1/exceptions.json",
+  "mappingPath": "tests/fixtures/mapping/sqlprd01-mapping.csv",
+  "chainPath": "out/evidence/chain.jsonl",
+  "breakGlassLogin": "CONTOSO\\SQL-BreakGlass",
+  "approver": "Change advisory board (fictional)"
+}
