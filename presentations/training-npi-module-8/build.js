@@ -291,10 +291,10 @@ endModule(SC);
     "Apply as Pipeline: 1 Refused, 4 Sent",
     "Apply as Person: 4 Refused, 1 Sent",
     "  Sent       person   CompleteDmsaMigration svc-hrsync      Complete-ADServiceAccountMigration   (...)",
-    "The plan's SHA-256 is 35c1efff8a8030b9e1d784578db673302817c3ee34e6e211638c1898b7b15b61, not the approved",
+    "The plan's SHA-256 is ccd058b368e810f69d7fb728daedb76391dfdaf29bdb46979db9264f96aba00e, not the approved",
     "  0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.",
   ], { label: "LAB 1 OUTPUT, RE-RUN NOVEMBER 20, 2026 (TRIMMED: \"...\" MARKS CUTS; WRAPPED)", pt: 10.5 });
-  line(s, "Tests", "Step 10: Invoke-Pester -Path tests prints 549 passed, 0 failed. Then Remove-Item -Recurse -Force out.", c + 0.25, 0.45, 13.5);
+  line(s, "Tests", "Step 10: Invoke-Pester -Path tests prints 555 passed, 0 failed. Then Remove-Item -Recurse -Force out.", c + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 8, \"Exercise: Lab 1,\" steps 8 to 10; examples/non-person-identity (Invoke-NpiKerberosIslandAction.ps1; tests).");
   notes(s,
 `Step eight is the write path's dry run, as the pipeline. You take the plan's hash, which in a real run a second person would review and pass to you, and give it to the action script. It reports four would-send lines, the pipeline's writes, and refuses the fifth: the D M S A's completion is a person's step. It sends nothing. Step nine applies it to the fake, first as the pipeline, which sends its four writes, then as a person, which sends the completed migration for svc h r sync and refuses the other four. Each run re-reads every write. Then you pass a hash of zeros, a hash nobody approved. The script refuses: the plan's hash isn't the approved one, and it won't run a plan nobody reviewed. Pasted line by line, your shell carries on after the refusal. Step ten runs every test: five hundred forty-nine pass, none fail. Then delete the output folder.`,
@@ -330,7 +330,7 @@ endModule(SL);
     ["AC-2; IA-5", "KSI-IAM-SNU (AC-2); KSI-IAM-APM (IA-5)", "findings.json, NPI-KRB-01 to -07, -09 and -10"],
     ["AC-6; CM-5", "KSI-IAM-ELP, KSI-IAM-JIT; KSI-CMT-RVP", "Get-NpiKrbRequiredRight for both tasks; runBy in calls-ch06.json; password-retrievers.json"],
     ["AC-2(1); AC-5 Separation of Duties", "KSI-IAM-JIT", "The Refused rows and runAs in each apply folder"],
-    ["AC-2; CM-3", "KSI-IAM-SNU; KSI-CMT-LMC", "RequestId and ChangeRecord on every write"],
+    ["AC-2; CM-3", "KSI-IAM-SNU; KSI-CMT-LMC", "RequestId and ChangeRecord on every write; tags on every create (WD-175)"],
     ["CM-8; AC-2", "KSI-PIY-GIV; KSI-IAM-SNU", "island-list.csv; reconciliation.json"],
     ["CM-3; AC-2(3) Disable Accounts", "KSI-CMT-LMC; KSI-IAM-AAM", "results.json and manifest.json in each apply folder, each write re-read"],
   ], { fontSize: 10.5, limit: 5.0 });

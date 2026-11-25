@@ -279,28 +279,28 @@
  ],
  "10": [
   [
-   0.05,
-   10.588,
-   "For each request that passes, the code writes the row Chapter 6's plan reads, with all twelve columns, including the SailPoint request and the ServiceNow change."
+   0.1,
+   13.825,
+   "For each request that passes, the code writes the row Chapter 6's plan reads, with all thirteen columns, including the SailPoint request, the ServiceNow change and the tags, which Chapter 6 writes as the new account's description."
   ],
   [
-   10.637,
-   5.525,
+   13.875,
+   4.862,
    "For a group managed account, it also names the one group allowed to retrieve the password."
   ],
   [
-   16.163,
-   10.6,
-   "Those files go into Chapter 6's reviewed inputs through a reviewed pull request, and Chapter 6's plan refuses any write without a request or a change record."
+   18.738,
+   11.925,
+   "Those files go into Chapter 6's reviewed inputs through a reviewed pull request, and Chapter 6's plan refuses any write without a request or a change record, and any new account without its tags."
   ],
   [
-   26.762,
-   3.05,
+   30.663,
+   2.925,
    "And just as important is what this chapter never does."
   ],
   [
-   29.812,
-   7.525,
+   33.587,
+   7.062,
    "It writes nothing to any of the four products, it deletes nothing, and it builds the ServiceNow findings payload without posting it."
   ]
  ],

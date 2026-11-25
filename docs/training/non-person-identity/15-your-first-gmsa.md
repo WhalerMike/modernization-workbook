@@ -103,7 +103,8 @@ Import-Csv "$Run\first-gmsa\kerberos-replatform.csv" | Format-Table SamAccountNa
 
 # Step 5: Plan the timesheet gMSA (S4)
 Import-Module ./powershell/NpiKerberosIsland/NpiKerberosIsland.psm1 -Force
-$plan = New-NpiKrbGmsaPlan -Name 'gmsa-timesheet$' -RetrieverGroupDn 'CN=DL-gMSA-timesheet-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example' -AdStandardPath tests/fixtures/ch06/inputs/ad-standard.json -RequestId REQ-2026-0301 -ChangeRecord CHG0041301 -TenantId c0ffee00-0000-4000-8000-000000000001 -Domain corp.contoso.example -Cloud gcc -AsOf 2026-11-20 -Workload 'the timesheet service' -Hosts 'TIME01;TIME02'
+$tags = (Import-Csv out/first-gmsa/kerberos-replatform.csv | Where-Object NewAccount -EQ 'gmsa-timesheet$').Tags
+$plan = New-NpiKrbGmsaPlan -Name 'gmsa-timesheet$' -RetrieverGroupDn 'CN=DL-gMSA-timesheet-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example' -AdStandardPath tests/fixtures/ch06/inputs/ad-standard.json -RequestId REQ-2026-0301 -ChangeRecord CHG0041301 -Tags $tags -TenantId c0ffee00-0000-4000-8000-000000000001 -Domain corp.contoso.example -Cloud gcc -AsOf 2026-11-20 -Workload 'the timesheet service' -Hosts 'TIME01;TIME02'
 $null = Export-NpiKrbRun -OutputPath "$Run\timesheet-plan" -Task kerberos-apply -Cloud gcc -Mode Plan -TenantId c0ffee00-0000-4000-8000-000000000001 -Domain corp.contoso.example -AsOf 2026-11-20 -Files @{ 'kerberos-plan.json' = $plan }
 $plan.actions[0] | Select-Object Action, Account, Cmdlet, RunBy, RequestId, ChangeRecord, Precheck | Format-List
 $plan.actions[0].Params
@@ -238,7 +239,8 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
 
     ```powershell
     Import-Module ./powershell/NpiKerberosIsland/NpiKerberosIsland.psm1 -Force
-    $plan = New-NpiKrbGmsaPlan -Name 'gmsa-timesheet$' -RetrieverGroupDn 'CN=DL-gMSA-timesheet-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example' -AdStandardPath tests/fixtures/ch06/inputs/ad-standard.json -RequestId REQ-2026-0301 -ChangeRecord CHG0041301 -TenantId c0ffee00-0000-4000-8000-000000000001 -Domain corp.contoso.example -Cloud gcc -AsOf 2026-11-20 -Workload 'the timesheet service' -Hosts 'TIME01;TIME02'
+    $tags = (Import-Csv out/first-gmsa/kerberos-replatform.csv | Where-Object NewAccount -EQ 'gmsa-timesheet$').Tags
+    $plan = New-NpiKrbGmsaPlan -Name 'gmsa-timesheet$' -RetrieverGroupDn 'CN=DL-gMSA-timesheet-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example' -AdStandardPath tests/fixtures/ch06/inputs/ad-standard.json -RequestId REQ-2026-0301 -ChangeRecord CHG0041301 -Tags $tags -TenantId c0ffee00-0000-4000-8000-000000000001 -Domain corp.contoso.example -Cloud gcc -AsOf 2026-11-20 -Workload 'the timesheet service' -Hosts 'TIME01;TIME02'
     $null = Export-NpiKrbRun -OutputPath "$Run\timesheet-plan" -Task kerberos-apply -Cloud gcc -Mode Plan -TenantId c0ffee00-0000-4000-8000-000000000001 -Domain corp.contoso.example -AsOf 2026-11-20 -Files @{ 'kerberos-plan.json' = $plan }
     $plan.actions[0] | Select-Object Action, Account, Cmdlet, RunBy, RequestId, ChangeRecord, Precheck | Format-List
     $plan.actions[0].Params
@@ -264,10 +266,11 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
     PrincipalsAllowedToRetrieveManagedPassword {CN=DL-gMSA-timesheet-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example}
     KerberosEncryptionType                     AES256
     ManagedPasswordIntervalInDays              30
+    Description                                SystemId=SYS-0618; Owner1=timesheet.owner@contoso.example; Owner2=timesheet.backup@contoso.example; Sponsor=hr.sponsor@contoso.example; Environment=prod; Tier=R3; EntraTarget=ManagedIdentity; Request=REQ-2026-0301; Change=CHG0041301
     RestrictToOutboundAuthenticationOnly       True
     ```
 
-    Every setting is the standard's, and the precheck names the KDS root key. A name that breaks the standard, like step 3's, makes `New-NpiKrbGmsaPlan` throw instead of planning.
+    Every setting is the standard's, and the precheck names the KDS root key. The description is the request's tags, which Chapter 12 wrote into the row's `Tags` column: the plan won't build without them, or with tags that name another request or change ([WD-175](../../about/decision-register.md#wd-175)). A name that breaks the standard, like step 3's, makes `New-NpiKrbGmsaPlan` throw instead of planning.
 
 6. **Dry-run the plan in a forest that isn't set up yet:**
 
@@ -333,7 +336,7 @@ Expected output: one line per run, oldest first, the last one this run:
 
 ## Exercise: Lab 2, your test domain (25 minutes, plus the 10-hour wait)
 
-Run it in a test Active Directory domain with one domain controller, never production, as a Domain Admin, on a domain controller with the Active Directory PowerShell module, and with a member server for `<host>`. **Lab 2 has not been run by anyone:** no step's output below has been seen. The values you supply: `<domain-dn>` (such as `DC=corp-test,DC=contoso,DC=example`), `<domain-fqdn>`, `<DOMAIN>` (the NetBIOS name), `<groups-ou>`, `<runner-host>` and `<host>`.
+Run it in a test Active Directory domain with one domain controller, never production, as a Domain Admin, on a domain controller with the Active Directory PowerShell module, and with a member server for `<host>`. **Lab 2 has not been run by anyone:** no step's output below has been seen. The values you supply: `<domain-dn>` (such as `DC=corp-test,DC=contoso,DC=example`), `<domain-fqdn>`, `<DOMAIN>` (the NetBIOS name), `<groups-ou>`, `<runner-host>`, `<host>`, and `<tags>`: the timesheet request's tags as Lab 1, step 5 printed them (`$tags`), with `Environment=test`.
 
 <!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
 
@@ -360,7 +363,7 @@ Add-ADGroupMember -Identity "DL-gMSA-Creators" -Members "gmsa-msapipe$"
 
 New-ADGroup -Name "DL-gMSA-timesheet-Hosts" -SamAccountName "DL-gMSA-timesheet-Hosts" -GroupScope DomainLocal -Path "<groups-ou>"
 Add-ADGroupMember -Identity "DL-gMSA-timesheet-Hosts" -Members "<host>$"
-New-ADServiceAccount -Name gmsa-timesheet -DNSHostName gmsa-timesheet.<domain-fqdn> -Path "OU=Service Accounts,<domain-dn>" -RestrictToOutboundAuthenticationOnly -ManagedPasswordIntervalInDays 30 -PrincipalsAllowedToRetrieveManagedPassword "DL-gMSA-timesheet-Hosts" -KerberosEncryptionType AES256
+New-ADServiceAccount -Name gmsa-timesheet -DNSHostName gmsa-timesheet.<domain-fqdn> -Path "OU=Service Accounts,<domain-dn>" -RestrictToOutboundAuthenticationOnly -ManagedPasswordIntervalInDays 30 -PrincipalsAllowedToRetrieveManagedPassword "DL-gMSA-timesheet-Hosts" -KerberosEncryptionType AES256 -Description "<tags>"
 Get-ADServiceAccount -Identity "gmsa-timesheet" -Properties PrincipalsAllowedToRetrieveManagedPassword, KerberosEncryptionType, msDS-ManagedPasswordInterval | Select-Object Name, ObjectClass, PrincipalsAllowedToRetrieveManagedPassword, KerberosEncryptionType, msDS-ManagedPasswordInterval
 
 Install-ADServiceAccount -Identity gmsa-timesheet
@@ -422,11 +425,11 @@ Add-ADGroupMember -Identity "DL-gMSA-Creators" -Members "gmsa-msapipe$"
 ```powershell
 New-ADGroup -Name "DL-gMSA-timesheet-Hosts" -SamAccountName "DL-gMSA-timesheet-Hosts" -GroupScope DomainLocal -Path "<groups-ou>"
 Add-ADGroupMember -Identity "DL-gMSA-timesheet-Hosts" -Members "<host>$"
-New-ADServiceAccount -Name gmsa-timesheet -DNSHostName gmsa-timesheet.<domain-fqdn> -Path "OU=Service Accounts,<domain-dn>" -RestrictToOutboundAuthenticationOnly -ManagedPasswordIntervalInDays 30 -PrincipalsAllowedToRetrieveManagedPassword "DL-gMSA-timesheet-Hosts" -KerberosEncryptionType AES256
+New-ADServiceAccount -Name gmsa-timesheet -DNSHostName gmsa-timesheet.<domain-fqdn> -Path "OU=Service Accounts,<domain-dn>" -RestrictToOutboundAuthenticationOnly -ManagedPasswordIntervalInDays 30 -PrincipalsAllowedToRetrieveManagedPassword "DL-gMSA-timesheet-Hosts" -KerberosEncryptionType AES256 -Description "<tags>"
 Get-ADServiceAccount -Identity "gmsa-timesheet" -Properties PrincipalsAllowedToRetrieveManagedPassword, KerberosEncryptionType, msDS-ManagedPasswordInterval | Select-Object Name, ObjectClass, PrincipalsAllowedToRetrieveManagedPassword, KerberosEncryptionType, msDS-ManagedPasswordInterval
 ```
 
-**Expected:** `ObjectClass` `msDS-GroupManagedServiceAccount`, the hosts' group as the retriever, `AES256`, and `30`.
+**Expected:** `ObjectClass` `msDS-GroupManagedServiceAccount`, the hosts' group as the retriever, `AES256`, and `30`. `Get-ADServiceAccount -Identity gmsa-timesheet -Properties Description` shows the tags ([WD-175](../../about/decision-register.md#wd-175)).
 
 **Step 6: Install, test and run a service as it, on `<host>`.** Restart `<host>` first, so it picks up its group membership. Then, in an elevated session on `<host>`, with the RSAT Active Directory module, run a test service as the gMSA:
 

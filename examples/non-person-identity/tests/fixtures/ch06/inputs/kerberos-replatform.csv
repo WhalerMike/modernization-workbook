@@ -1,4 +1,4 @@
-SamAccountName,NewAccount,Workload,Hosts,SpnOwnerUpn,EndDate,Reference,HostChangedOn,MigrationStartedOn,OutboundOnlyReason,RequestId,ChangeRecord
-svc-hrsync,dmsa-hrsync$,Service,HR01,hr-apps.owner@contoso.example,2027-06-30,,,2026-09-20,,SP-REQ-0001041,CHG0031041
-svc-intranet,gmsa-intranet$,IisAppPool,INTRA01;INTRA02,,2028-12-31,,,,,SP-REQ-0001042,CHG0031042
-msa-print01$,gmsa-print$,ScheduledTask,PRINT01,print.owner@contoso.example,2027-06-30,,,,,SP-REQ-0001043,CHG0031043
+SamAccountName,NewAccount,Workload,Hosts,SpnOwnerUpn,EndDate,Reference,HostChangedOn,MigrationStartedOn,OutboundOnlyReason,RequestId,ChangeRecord,Tags
+svc-hrsync,dmsa-hrsync$,Service,HR01,hr-apps.owner@contoso.example,2027-06-30,,,2026-09-20,,SP-REQ-0001041,CHG0031041,"SystemId=SYS-0233; Owner1=hr-apps.owner@contoso.example; Owner2=hr-apps.backup@contoso.example; Sponsor=hr.sponsor@contoso.example; Environment=prod; Tier=R2; EntraTarget=Undecided; Request=SP-REQ-0001041; Change=CHG0031041"
+svc-intranet,gmsa-intranet$,IisAppPool,INTRA01;INTRA02,,2028-12-31,,,,,SP-REQ-0001042,CHG0031042,"SystemId=SYS-0101; Owner1=intranet.owner@contoso.example; Owner2=intranet.backup@contoso.example; Sponsor=comms.sponsor@contoso.example; Environment=prod; Tier=R2; EntraTarget=ManagedIdentity; Request=SP-REQ-0001042; Change=CHG0031042"
+msa-print01$,gmsa-print$,ScheduledTask,PRINT01,print.owner@contoso.example,2027-06-30,,,,,SP-REQ-0001043,CHG0031043,"SystemId=SYS-0150; Owner1=print.owner@contoso.example; Owner2=print.backup@contoso.example; Sponsor=facilities.sponsor@contoso.example; Environment=prod; Tier=R3; EntraTarget=KeepKerberos; Request=SP-REQ-0001043; Change=CHG0031043"

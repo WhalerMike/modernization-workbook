@@ -17,5 +17,7 @@
   "sponsor": "proc.owner@contoso.example",
   "sponsorIsFederalEmployee": false,
   "riskTier": "R2",
+  "environment": "prod",
+  "entraTarget": "Undecided",
   "retrieverGroup": "GG-gMSA-procurement-Hosts"
 }

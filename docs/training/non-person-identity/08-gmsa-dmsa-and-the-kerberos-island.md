@@ -32,7 +32,7 @@ But a gMSA works only while Active Directory is authoritative. So converting isn
 | AC-2 Account Management; IA-5 | KSI-IAM-SNU (AC-2); KSI-IAM-APM (IA-5) | `findings.json`, NPI-KRB-01 to -07, -09 and -10 |
 | AC-6 Least Privilege; CM-5 Access Restrictions for Change | KSI-IAM-ELP, KSI-IAM-JIT (AC-6); KSI-CMT-RVP (CM-5) | `Get-NpiKrbRequiredRight` for the read and write tasks; `runBy` in `calls-ch06.json`; `password-retrievers.json` |
 | AC-2(1) Automated System Account Management; AC-5 Separation of Duties | KSI-IAM-JIT | The `Refused` rows and `runAs` in each apply folder: the pipeline sends only its steps, a person only the dMSA steps |
-| AC-2; CM-3 | KSI-IAM-SNU; KSI-CMT-LMC | `RequestId` and `ChangeRecord` on every write in `kerberos-plan.json` and `results.json` |
+| AC-2; CM-3 | KSI-IAM-SNU; KSI-CMT-LMC | `RequestId` and `ChangeRecord` on every write in `kerberos-plan.json` and `results.json`, and the tags on every create ([WD-175](../../about/decision-register.md#wd-175)) |
 | CM-8 System Component Inventory; AC-2 | KSI-PIY-GIV; KSI-IAM-SNU | `island-list.csv`; `reconciliation.json` |
 | CM-3; AC-2(3) Disable Accounts | KSI-CMT-LMC; KSI-IAM-AAM | `results.json` and `manifest.json` in each apply folder, each write re-read |
 
@@ -225,7 +225,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
     Run by: 1 person, 4 pipeline
     Island list: 6 accounts, 4 ready for P4.6; hand-off ready: False
     Reconciliation (D11 KerberosIsland): 1 HandedOff, 4 OnIslandList, 1 Unreconciled
-    Plan SHA-256: 35c1efff8a8030b9e1d784578db673302817c3ee34e6e211638c1898b7b15b61
+    Plan SHA-256: ccd058b368e810f69d7fb728daedb76391dfdaf29bdb46979db9264f96aba00e
     ```
 
     `-MatrixRun` is Chapter 03's run, where the dispositions come from; `-ProgramDatesPath` is the one program-dates file, which the run refuses unless its SHA-256 is the one Chapter 03's run recorded. The plan's hash is the same on every run with these inputs. `Run by` counts the writes by who sends them.
@@ -354,7 +354,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
       Refused    pipeline CreateGmsa            msa-print01$    New-ADServiceAccount
       Sent       person   CompleteDmsaMigration svc-hrsync      Complete-ADServiceAccountMigration
       Refused    pipeline CreateGmsa            svc-intranet    New-ADServiceAccount
-    The plan's SHA-256 is 35c1efff8a8030b9e1d784578db673302817c3ee34e6e211638c1898b7b15b61, not the approved 0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.
+    The plan's SHA-256 is ccd058b368e810f69d7fb728daedb76391dfdaf29bdb46979db9264f96aba00e, not the approved 0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.
     ```
 
     Each run sends only its own writes and re-reads each one.
@@ -368,7 +368,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
     It prints a line for each test file, with the time it took, then this last line:
 
     ```text
-    Tests Passed: 554, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
+    Tests Passed: 555, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
     ```
 
 Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:

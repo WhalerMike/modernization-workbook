@@ -22,7 +22,7 @@ BeforeAll {
     $script:NewPlan = {
         param([string]$Name, [string]$App, [string]$Req, [string]$Chg, [string]$Reason = '')
         New-NpiKrbGmsaPlan -Name $Name -RetrieverGroupDn "CN=DL-gMSA-$App-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example" -AdStandardPath (Join-Path $script:Fix 'ch06/inputs/ad-standard.json') `
-            -RequestId $Req -ChangeRecord $Chg -TenantId $tenant -Domain 'corp.contoso.example' -Cloud gcc -AsOf $script:AsOf -Workload "the $App service" -OutboundOnlyReason $Reason
+            -RequestId $Req -ChangeRecord $Chg -Tags "$(@($script:Rows | Where-Object RequestId -EQ $Req)[0].Tags)" -TenantId $tenant -Domain 'corp.contoso.example' -Cloud gcc -AsOf $script:AsOf -Workload "the $App service" -OutboundOnlyReason $Reason
     }
     $script:Plan = & $script:NewPlan 'gmsa-timesheet$' 'timesheet' 'REQ-2026-0301' 'CHG0041301'
     $planDir = Join-Path $script:Tmp 'plan'

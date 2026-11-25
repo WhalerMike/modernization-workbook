@@ -457,6 +457,15 @@ Describe 'The plan' {
         @($r.Plan.actions | Where-Object { $_.Account -eq 'gmsa-web$' -and $_.Write }) | Should -HaveCount 0
         @($r.Plan.actions | Where-Object Write).Action | Sort-Object | Should -Be @('CreateGmsa', 'SetRetrievers')
     }
+    It 'WD-175: a create carries the row''s tags as -Description; no tags, or tags naming another change, is Blocked (NPI-KRB-10)' {
+        $c = @($script:Run.Plan.actions | Where-Object { $_.Action -eq 'CreateGmsa' })[0]
+        $c.Params.Description | Should -Match '^SystemId=SYS-0150; Owner1=print.owner@contoso.example; .*Request=SP-REQ-0001043; Change=CHG0031043$'
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'msa-print01$' @{ Tags = '' } })
+        @($r.Plan.actions | Where-Object Account -EQ 'msa-print01$')[0].Reason | Should -Match 'no tags'
+        @($r.Plan.actions | Where-Object { $_.Account -eq 'msa-print01$' -and $_.Write }) | Should -HaveCount 0
+        $r = Invoke-TestCheck -Inputs (Get-TestInputs { param($x) Set-Row $x 'msa-print01$' @{ Tags = 'SystemId=SYS-0150; Owner1=a; Owner2=b; Sponsor=c; Environment=prod; Tier=R3; EntraTarget=KeepKerberos; Request=SP-REQ-0001043; Change=CHG9999999' } })
+        @($r.Findings | Where-Object { $_.Rule -eq 'NPI-KRB-10' -and $_.ObjectKey -eq 'msa-print01$' })[0].Issue | Should -Match 'CreateGmsa not planned: tags name change CHG9999999, not CHG0031043'
+    }
     It 'no action deletes, and every action has a stable ID' {
         foreach ($a in $script:Run.Plan.actions) { "$($a.Cmdlet)" | Should -Not -Match '^(Remove|Uninstall|Undo|Reset)-'; $a.ActionId | Should -Be "$($a.Action):$($a.Account)" }
     }
@@ -483,6 +492,12 @@ Describe 'The separate write path' {
         { Assert-NpiKrbPlannedWrite -Writer $w -Action ([pscustomobject]($base + @{ Call = 'krb-set-retrievers'; Cmdlet = 'Set-ADServiceAccount'; Params = @{ Identity = 'a'; Enabled = $false; PrincipalsAllowedToRetrieveManagedPassword = @('CN=X,DC=c') } })) } | Should -Throw '*-Enabled isn''t allowed*'
         { Assert-NpiKrbPlannedWrite -Writer $w -Action ([pscustomobject]($base + @{ Call = 'krb-set-retrievers'; Cmdlet = 'Set-ADServiceAccount'; Params = @{ Identity = 'a'; PrincipalsAllowedToRetrieveManagedPassword = @() } })) } | Should -Throw '*empty retriever list*'
         { Assert-NpiKrbPlannedWrite -Writer $w -Action ([pscustomobject]($base + @{ Call = 'krb-new-gmsa'; Cmdlet = 'New-ADServiceAccount'; Params = @{ Name = 'g'; PrincipalsAllowedToRetrieveManagedPassword = @('CN=X,DC=c'); KerberosEncryptionType = 'RC4' } })) } | Should -Throw '*AES256*'
+        $ok = @{ Call = 'krb-new-dmsa'; Cmdlet = 'New-ADServiceAccount'; RequestId = 'R-1'; ChangeRecord = 'C-1'; Params = @{ Name = 'dmsa-x'; Path = 'OU=S,DC=c'; CreateDelegatedServiceAccount = $true; KerberosEncryptionType = 'AES256' } }
+        { Assert-NpiKrbPlannedWrite -Writer $w -Action ([pscustomobject]($base + $ok)) } | Should -Throw '*-Description: no tags*'
+        $ok.Params.Description = 'SystemId=S; Owner1=a; Owner2=b; Sponsor=c; Environment=prod; Tier=R1; EntraTarget=Undecided; Request=R-2; Change=C-1'
+        { Assert-NpiKrbPlannedWrite -Writer $w -Action ([pscustomobject]($base + $ok)) } | Should -Throw '*tags name request R-2, not R-1*'
+        $ok.Params.Description = $ok.Params.Description.Replace('Request=R-2', 'Request=R-1')
+        { Assert-NpiKrbPlannedWrite -Writer $w -Action ([pscustomobject]($base + $ok)) } | Should -Not -Throw
         { Assert-NpiKrbPlannedWrite -Writer $w -Action ([pscustomobject]($base + @{ Call = 'krb-start-migration'; Cmdlet = 'Start-ADServiceAccountMigration'; Params = @{ Identity = 'd$'; SupersededAccount = 'svc-hrsync' } })) } | Should -Throw '*distinguished name*'
     }
     It 'refuses a gMSA outside the plan''s OU or interval, a move outside its holding OU, and a write with no request or no change record' {
@@ -585,7 +600,7 @@ Describe 'Who sends each write (WD-163)' {
         Copy-Item (Join-Path $script:Inputs 'ad-standard.json') $dir -Force
         $csv = Import-Csv (Join-Path $script:Inputs 'kerberos-replatform.csv') | Select-Object SamAccountName, NewAccount, Workload, Hosts, SpnOwnerUpn, EndDate, Reference, HostChangedOn, MigrationStartedOn
         $csv | Export-Csv -NoTypeInformation (Join-Path $dir 'kerberos-replatform.csv')
-        { Import-NpiKrbInput -InputPath $dir -MatrixRun $script:Matrix -ProgramDatesPath $script:Dates } | Should -Throw '*no OutboundOnlyReason, RequestId, ChangeRecord column*'
+        { Import-NpiKrbInput -InputPath $dir -MatrixRun $script:Matrix -ProgramDatesPath $script:Dates } | Should -Throw '*no OutboundOnlyReason, RequestId, ChangeRecord, Tags column*'
     }
 }
 

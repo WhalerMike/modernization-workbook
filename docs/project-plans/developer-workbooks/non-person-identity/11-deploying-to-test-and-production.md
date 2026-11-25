@@ -136,7 +136,7 @@ The rules, which `Read-NpiDeploySettings` enforces before any command runs (*Des
 - **No placeholders.** A value still shaped like `<tenant-id>` stops the run. The synthetic objects' IDs and the pilot policy's ID stay empty until the Prepare step creates the objects and writes their IDs into the file.
 - **An owner who approves, separate from the operators.** `pilot.ownerUpn` names the pilot application's owner, who records the cutover and approves the day-31 disable in Chapter 05's cutover log. The check refuses a file without one, or one that names an operator.
 - **The stage it says it is.** The file's `environment` must match the stage the command is told to run.
-- **The smoke-test gMSA follows the standard.** `ad.gmsaName` is `gmsa-<app>`, 15 characters or fewer (`gmsa-npismoke` in the fixtures, [WD-159](../../../about/decision-register.md#wd-159)); `ad.gmsaRetrieverGroup` is its domain local group `DL-gMSA-<app>-Hosts` ([WD-160](../../../about/decision-register.md#wd-160)), created in the OU `ad.gmsaRetrieverGroupPath`; `ad.gmsaRequestId` is the SailPoint request that approved it ([WD-162](../../../about/decision-register.md#wd-162)); and `ad.kerberosInputs` is the folder holding the forest's Chapter 06 `ad-standard.json`. `ad.gmsaService` names the test service that runs as it (`NpiSmokeSvc` in the fixtures).
+- **The smoke-test gMSA follows the standard.** `ad.gmsaName` is `gmsa-<app>`, 15 characters or fewer (`gmsa-npismoke` in the fixtures, [WD-159](../../../about/decision-register.md#wd-159)); `ad.gmsaRetrieverGroup` is its domain local group `DL-gMSA-<app>-Hosts` ([WD-160](../../../about/decision-register.md#wd-160)), created in the OU `ad.gmsaRetrieverGroupPath`; `ad.gmsaRequestId` is the SailPoint request that approved it ([WD-162](../../../about/decision-register.md#wd-162)); `ad.gmsaTags` holds its seven tags (`SystemId`, `Owner1`, `Owner2`, `Sponsor`, `Environment`, `Tier`, `EntraTarget`), which the plan writes as its AD description with the request and the change ([WD-175](../../../about/decision-register.md#wd-175)); and `ad.kerberosInputs` is the folder holding the forest's Chapter 06 `ad-standard.json`. `ad.gmsaService` names the test service that runs as it (`NpiSmokeSvc` in the fixtures).
 - **The same commands for both stages.** The commands read every value from the file. Moving from test to production changes the file and nothing else.
 
 ### Placeholders
@@ -237,7 +237,7 @@ The runbook's own code is in [`examples/non-person-identity/deploy`](https://git
 | `Test-NpiDeployPreflight.ps1` | PF-01 to PF-11 below; writes `results.json`, `snapshot.json` (what the rollback restores) and a manifest; exits 1 on any Fail | Graph (8 read permissions), AD (default read) | Nothing |
 | `Invoke-NpiDeploySmokeTest.ps1` | ST-01 to ST-07 below, against the synthetic service principal and service account; exits 1 on any Fail | The register run, Graph, AD, `Test-ADServiceAccount` on the gMSA host | One probe expected to be refused: a new secret on the synthetic app. If it isn't refused, the secret is removed at once by its key ID, its value is never kept, and ST-03 fails |
 | `Invoke-NpiDeployRollback.ps1` | `-Mode Plan` writes `rollback-plan.json` and prints its SHA-256; `-Mode Apply` checks the approved SHA-256, the tenant and a seven-day age, then dry-runs, or sends with `-Apply` | The policies' current state | PATCH on workload policies and app management policies, `accountEnabled` on the synthetic service principal, `Enable-ADAccount` and `Disable-ADAccount`. Never a delete |
-| `New-NpiDeploySmokeGmsaPlan.ps1` | Step 1.4: the smoke-test gMSA as a one-account Chapter 06 plan, checked against the standard (name, `DL-gMSA-<app>-Hosts` group, the forest's `ad-standard.json`, the SailPoint request and the change record); writes `kerberos-plan.json` and a manifest and prints its SHA-256 for the reviewer. Chapter 06's `Invoke-NpiKerberosIslandAction.ps1` applies it ([WD-168](../../../about/decision-register.md#wd-168)) | The settings file, `ad-standard.json` | Nothing |
+| `New-NpiDeploySmokeGmsaPlan.ps1` | Step 1.4: the smoke-test gMSA as a one-account Chapter 06 plan, checked against the standard (name, `DL-gMSA-<app>-Hosts` group, the forest's `ad-standard.json`, the SailPoint request, the change record and the tags); writes `kerberos-plan.json` and a manifest and prints its SHA-256 for the reviewer. Chapter 06's `Invoke-NpiKerberosIslandAction.ps1` applies it ([WD-168](../../../about/decision-register.md#wd-168)) | The settings file, `ad-standard.json` | Nothing |
 | `Write-NpiDeployEvidence.ps1` | Records a step that ran an earlier chapter's script: copies its run folders under `evidence/runs/<step>/`, re-hashes every file their manifests list (and refuses another tenant's run), and writes the step's record | The run folders | Only the evidence folder |
 | `Test-NpiDeployEvidence.ps1` | The go/no-go's evidence check: every requirement row of the stage present and passing, and `SHA256SUMS` matching every file; exits 1 on a gap | The evidence folder | Nothing |
 
@@ -268,7 +268,7 @@ $sha = (Get-FileHash out/dryrun/test-rollback/rollback-plan.json -Algorithm SHA2
 
 ```text
 Preflight (Fixture, test, CHG-2026-1102-T): 12 Pass, 1 Warn
-  PF-01 Pass   All       Settings file: no secret, no placeholder, this stage: test, gcc, sha256 bea7ef8879f0
+  PF-01 Pass   All       Settings file: no secret, no placeholder, this stage: test, gcc, sha256 e8ba832db418
   PF-02 Pass   G3        Deployment identity uses a certificate or federated credential, no secret: 0 secret(s), 1 certificate(s)
   PF-03 Pass   G4        Workload ID Premium, to create or change workload Conditional Access: Workload_Identities_P2, 5 enabled unit(s)
   PF-04 Pass   G6        Entra ID P1 or P2, for the service principal sign-in logs: SPE_E5
@@ -286,7 +286,7 @@ Evidence: S0-change-record-approvals-and-settings-file.json (Pass)
 Result: GO for this stage. File results.json, snapshot.json and manifest.json with the change record.
 Plan: CreateGmsa gmsa-npismoke$ in OU=Service Accounts,DC=corp-test,DC=contoso,DC=example, retriever CN=DL-gMSA-npismoke-Hosts,OU=Groups,DC=corp-test,DC=contoso,DC=example; runBy pipeline; request SP-REQ-0002001, change CHG-2026-1102-T
 Outbound-only: yes
-Plan SHA-256: 0bcf2917c6845ce4b55f19fa578ee44be84c73166715747d0f89039307734f6a
+Plan SHA-256: 923aa50754993d543c39c342ccbf441373fe3d0ad89a04a16cd7118fc7c15bfe
 Smoke test (Fixture, test, Conditional Access expected ReportOnly): 8 Pass
   ST-01 Pass   G1        Synthetic app is in the register with two owners and no secret: OwnerCount 2, Secrets 0, CredentialKind Federated
   ST-02 Pass   G1        Synthetic service account is detected and rated HIGH: Risk HIGH: password never expires
@@ -306,7 +306,7 @@ Rollback plan (test, to Disabled): 7 action(s)
   RB-05 G5      AdEnable               svc-payexport
   RB-06 Cleanup SpDisable              synthetic service principal
   RB-07 Cleanup AdDisable              svc-npi-smoke
-Plan SHA-256 for the reviewer: 00105622acf1165bd55d606ea781b908d700f79f9f82cba5e67bd4f0d3081b81
+Plan SHA-256 for the reviewer: ec3fb73c41e06d40fd7c5a484564579884dd0fac6f9255a02f2e787d6d940afa
 Rollback DryRun (Fixture, test): 7 WouldApply
   RB-01 WouldApply  ConditionalAccessState CA015-ServiceAccounts-LocationRestriction-Ring1 enabledForReportingButNotEnforced -> disabled
   RB-02 WouldApply  ConditionalAccessState CA037-WorkloadIdentities-HighRisk-Block-Ring1 enabledForReportingButNotEnforced -> disabled
@@ -317,7 +317,7 @@ Rollback DryRun (Fixture, test): 7 WouldApply
   RB-07 WouldApply  AdDisable svc-npi-smoke
 Evidence: ROLLBACK-rollback.json (DryRun)
 Preflight (Fixture, production, CHG-2026-1116-P): 14 Pass
-  PF-01 Pass   All       Settings file: no secret, no placeholder, this stage: production, gcc, sha256 3c55fa49e63c
+  PF-01 Pass   All       Settings file: no secret, no placeholder, this stage: production, gcc, sha256 7cf7da50dd45
   PF-02 Pass   G3        Deployment identity uses a certificate or federated credential, no secret: 0 secret(s), 1 certificate(s)
   PF-03 Pass   G4        Workload ID Premium, to create or change workload Conditional Access: Workload_Identities_P2, 5 enabled unit(s)
   PF-04 Pass   G6        Entra ID P1 or P2, for the service principal sign-in logs: SPE_E5
@@ -382,7 +382,7 @@ and `SHA256SUMS` lists every file in the folder, starting with `8a60caa10c2197c5
 The test preflight's one Warn is deliberate: the fixture's Conditional Access administrator holds a standing assignment instead of a PIM-eligible one, which the preflight reports but doesn't block (*Design guidance*). An approved hash other than the plan's stops the rollback before it sends anything:
 
 ```text
-The plan's SHA-256 is 00105622acf1165bd55d606ea781b908d700f79f9f82cba5e67bd4f0d3081b81, not the approved 0000000000000000000000000000000000000000000000000000000000000000. Nothing was sent.
+The plan's SHA-256 is ec3fb73c41e06d40fd7c5a484564579884dd0fac6f9255a02f2e787d6d940afa, not the approved 0000000000000000000000000000000000000000000000000000000000000000. Nothing was sent.
 ```
 
 Delete the dry run's folder when you're done:
