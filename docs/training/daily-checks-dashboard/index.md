@@ -17,8 +17,8 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: 4b0fed5b9a283e5ee7ff4ab7087b0f679589a376f2b92accb98dcc35ead5bdd8
-last-reviewed: 2026-11-19
+reviewed-sha256: 3b091608960d4671a1390aec513cd82edacc4101803ad92e6c755e714a773d8b
+last-reviewed: 2026-11-25
 ---
 # Learning path: The Daily Checks on One Dashboard {.unnumbered}
 
