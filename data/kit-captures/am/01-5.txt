@@ -1,0 +1,3 @@
+PS> Get-ChildItem -Recurse -Filter 'V*__*.sql' -Path service/src, migration/src | ForEach-Object { $_.FullName.Substring($PWD.Path.Length + 1) -replace '\\', '/' }
+service/src/main/resources/db/migration/V1__baseline.sql
+service/src/main/resources/db/sample/V100__sample_data.sql

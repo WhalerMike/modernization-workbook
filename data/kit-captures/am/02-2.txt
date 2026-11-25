@@ -1,0 +1,7 @@
+PS> ./mvnw -q -pl migration test "-Dtest=MigrationTest,LabReportsTest"
+PS> Import-Module ./powershell/AppModernization/AppModernization.psm1
+PS> Get-AmTestResult -Path migration/target/surefire-reports | Format-Table
+Class          Tests Failures Errors Skipped
+-----          ----- -------- ------ -------
+LabReportsTest     3        0      0       0
+MigrationTest     12        0      0       0

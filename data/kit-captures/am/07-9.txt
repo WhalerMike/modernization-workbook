@@ -1,0 +1,4 @@
+PS> Invoke-Pester -Path tests/Identity.Tests.ps1 -FullNameFilter 'WP6*', 'Evidence records*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+PassedCount FailedCount
+----------- -----------
+          9           0

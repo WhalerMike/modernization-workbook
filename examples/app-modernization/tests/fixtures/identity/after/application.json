@@ -1,0 +1,33 @@
+{
+  "id": "a0000000-0000-4000-8000-000000000101",
+  "appId": "00001111-aaaa-2222-bbbb-3333cccc4444",
+  "displayName": "Case Triage (fictional)",
+  "signInAudience": "AzureADMyOrg",
+  "serviceManagementReference": "SYS-0042",
+  "web": {
+    "redirectUris": [
+      "https://cases.contoso.example/signin-oidc"
+    ]
+  },
+  "spa": {
+    "redirectUris": [
+      "https://cases.contoso.example/"
+    ]
+  },
+  "publicClient": {
+    "redirectUris": []
+  },
+  "requiredResourceAccess": [
+    {
+      "resourceAppId": "00000003-0000-0000-c000-000000000000",
+      "resourceAccess": [
+        {
+          "id": "e1fe6dd8-ba31-4d61-89e7-88639da4683d",
+          "type": "Scope"
+        }
+      ]
+    }
+  ],
+  "passwordCredentials": [],
+  "keyCredentials": []
+}

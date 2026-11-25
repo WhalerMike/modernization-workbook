@@ -1,0 +1,21 @@
+{
+  "cases.contoso.example": {
+    "addresses": [
+      "192.0.2.10"
+    ]
+  },
+  "cases-test.contoso.example": {
+    "addresses": [
+      "192.0.2.11"
+    ]
+  },
+  "cases-old.contoso.example": {
+    "cname": "contoso-cases-old.azurewebsites.net",
+    "addresses": []
+  },
+  "cases.fabrikam.example": {
+    "addresses": [
+      "198.51.100.7"
+    ]
+  }
+}

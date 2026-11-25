@@ -1,0 +1,19 @@
+PS> Import-Module ./powershell/AppModernization/AppModernization.psm1
+PS> $fx = 'tests/fixtures/identity'
+PS> $appId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+PS> Get-AmAppSnapshot -AppId $appId -OutDir out/pack -Stage before -FixturePath $fx | Out-Null
+PS> Test-AmRedirectUri -SnapshotDir out/pack -OwnedDomainsPath $fx/owned-domains.txt -DnsPath $fx/dns.json -OutDir out/pack | Out-Null
+PS> New-AmRedirectPlan -SnapshotDir out/pack -CheckPath out/pack/wp4-redirect-check.csv -Keep 'https://cases.contoso.example/signin-oidc', 'https://cases.contoso.example/' -ChangeId CHG-0001 -OutDir out/pack | Out-Null
+PS> Test-AmOAuthRegression -PlanPath out/pack/wp4-redirect-plan.json -TenantId aaaabbbb-0000-cccc-1111-dddd2222eeee -FixturePath $fx/oauth-responses.json -OutDir out/pack | Out-Null
+PS> New-AmAssignmentPlan -SnapshotDir out/pack -AssignmentsPath $fx/reviewed-assignments.json -ChangeId CHG-0001 -OutDir out/pack | Out-Null
+PS> Get-ChildItem out/pack | ForEach-Object Name
+before-app-permissions.json
+before-application.json
+before-assignments.json
+before-delegated-grants.json
+before-owners.json
+before-serviceprincipal.json
+wp4-oauth-regression.csv
+wp4-redirect-check.csv
+wp4-redirect-plan.json
+wp5-assignment-plan.json

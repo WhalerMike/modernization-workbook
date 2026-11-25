@@ -1,0 +1,11 @@
+PS> New-AmTestRecord -AppId $appId -ChangeId CHG-0001 -WorkPackages WP4, WP5, WP6 -Expected 'kept URIs accepted; removed refused; assigned users sign in; unassigned user gets AADSTS50105' -Observed 'as expected; 50105 explained' -Tester 'application technical owner' -Date 2026-11-19 -OutDir out/pack | Format-List
+AppId        : 00001111-aaaa-2222-bbbb-3333cccc4444
+Change       : CHG-0001
+WorkPackages : WP4 WP5 WP6
+Expected     : kept URIs accepted; removed refused; assigned users sign in; unassigned user gets AADSTS50105
+Observed     : as expected; 50105 explained
+Tester       : application technical owner
+Date         : 2026-11-19
+PS> Protect-AmEvidencePack -OutDir out/pack | Format-List Files, Manifest
+Files    : 19
+Manifest : SHA256SUMS.txt

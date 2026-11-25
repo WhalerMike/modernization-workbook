@@ -1,0 +1,24 @@
+PS> foreach ($f in 'delta-0-full', 'delta-1-drift', 'delta-2-after') { $r = Read-AmJson -Path "migration/target/lab/$f.json"; [pscustomobject]@{ Report = $f; Mode = $r.mode; Since = $r.since; Cases = $r.loaded.case_record; Passed = $r.passed; Failures = $r.failures -join ' '; NextWatermark = $r.nextWatermark } }
+Report        : delta-0-full
+Mode          : full
+Since         :
+Cases         : 50
+Passed        : True
+Failures      :
+NextWatermark : 2026-09-27T02:02:38.032084Z
+
+Report        : delta-1-drift
+Mode          : validate-only
+Since         :
+Cases         :
+Passed        : False
+Failures      : applicant/row_count applicant/checksum_sha256 applicant/aggregate case_record/row_count case_record/checksum_sha256 case_record/aggregate
+NextWatermark : 2026-10-16T08:00:00Z
+
+Report        : delta-2-after
+Mode          : delta
+Since         : 2026-09-27T02:02:38.032084Z
+Cases         : 4
+Passed        : True
+Failures      :
+NextWatermark : 2026-10-16T08:00:00Z

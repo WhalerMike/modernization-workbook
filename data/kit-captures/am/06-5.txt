@@ -1,0 +1,9 @@
+PS> New-AmRedirectPlan -SnapshotDir out/pack -CheckPath out/pack/wp4-redirect-check.csv -Keep 'https://cases.contoso.example/signin-oidc', 'https://cases.contoso.example/' -ChangeId CHG-0001 -OutDir out/pack | Format-List
+Plan       : wp4-redirect-plan.json
+Kind       : wp4-redirect-uris
+Commands   : 1
+PlanSha256 : eaf3eb04ec6cec0b0d0ad762ea79e6da84b82bbc99446c8256a03b0227d84b15
+PS> ./Invoke-AmIdentityApply.ps1 -PlanPath out/pack/wp4-redirect-plan.json
+Dry run of wp4-redirect-uris for 00001111-aaaa-2222-bbbb-3333cccc4444, change CHG-0001. Plan SHA-256 eaf3eb04ec6cec0b0d0ad762ea79e6da84b82bbc99446c8256a03b0227d84b15.
+Nothing was changed. The commands -Apply would run, in order:
+  Update-MgApplication -ApplicationId 'a0000000-0000-4000-8000-000000000101' -Web @{ RedirectUris = @('https://cases.contoso.example/signin-oidc') } -Spa @{ RedirectUris = @('https://cases.contoso.example/') } -PublicClient @{ RedirectUris = @() }

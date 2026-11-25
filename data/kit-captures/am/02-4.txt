@@ -1,0 +1,8 @@
+PS> $r = Read-AmJson -Path migration/target/lab/load-full.json
+PS> [pscustomobject]@{ Mode = $r.mode; SourceZone = $r.sourceZone; Applicants = $r.loaded.applicant; Cases = $r.loaded.case_record; Passed = $r.passed; NextWatermark = $r.nextWatermark } | Format-List
+Mode          : full
+SourceZone    : UTC
+Applicants    : 20
+Cases         : 50
+Passed        : True
+NextWatermark : 2026-09-27T02:02:38.032084Z

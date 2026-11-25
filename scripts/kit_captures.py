@@ -45,6 +45,7 @@ WORKBOOKS = {
     "gsa": ("docs/project-plans/developer-workbooks/global-secure-access", "examples/global-secure-access"),
     "azs": ("docs/project-plans/developer-workbooks/azure-security", "examples/azure-security"),
     "dc": ("docs/project-plans/developer-workbooks/daily-checks", "examples/daily-checks-workbook"),
+    "am": ("docs/project-plans/developer-workbooks/application-modernization", "examples/app-modernization"),
     "hr": ("docs/project-plans/developer-workbooks/hr-driven-identity", "examples/hr-lifecycle"),
     "adm": ("docs/books/b19-developer-workbook", "examples"),
 }
@@ -63,6 +64,9 @@ CHAPTERS: dict[str, dict] = {
     # Labs whose bash steps work in the drift pipeline.
     "npi-10": {"lang_cwd": {"bash": "examples/drift-pipeline"}},
     "pa-08": {"lang_cwd": {"bash": "examples/drift-pipeline"}},
+    # Building Application Modernization: Maven, the PostgreSQL binaries and npm packages download on
+    # a first run, and a service lab takes minutes; captured locally, kept, not rerun in CI.
+    **{f"am-0{n}": {"local": "needs Java 21 and Node.js 24, and downloads Maven artifacts and npm packages"} for n in range(1, 6)},
 }
 OUT = ROOT / "data" / "kit-captures"
 GH = "https://github.com/WhalerMike/modernization-workbook/blob/main"

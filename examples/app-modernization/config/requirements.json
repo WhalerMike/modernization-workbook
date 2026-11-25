@@ -1,0 +1,142 @@
+{
+  "_comment": "Each step of the application modernization kit, with the NIST SP 800-53 Rev. 5 controls whose statements it supports, other federal requirements, and the FedRAMP 20x Key Security Indicators it aligns to. Control names are from NIST's OSCAL catalog, release 5.2.0. Every control-to-KSI pair is one the workbook's other kits already use, read from fedramp.gov's 2026 KSI pages (CM-3(2) and CM-4(2) to KSI-CMT-VTD; CM-2 to KSI-SVC-ACM; CM-3 to KSI-CMT-LMC; AC-6 to KSI-IAM-ELP; AU-2 and AU-12 to KSI-MLA-LET; AC-2 to KSI-IAM-AAM; CM-8 to KSI-PIY-GIV; SC-7 to KSI-CNA-MAT; CA-7 to KSI-MLA-EVC; AU-9 to KSI-MLA-OSM; IA-5 to KSI-IAM-SNU). The WP rows follow Book 18, Appendix A's requirements table. KSIs are FedRAMP's indicators for cloud service providers: the agency lines its own evidence up with them and doesn't report KSIs itself. Which step supports which control is the program's reading (design guidance); the agency's assessor decides.",
+  "version": 1,
+  "controls": {
+    "AC-2": "Account Management",
+    "AC-6": "Least Privilege",
+    "AU-2": "Event Logging",
+    "AU-9": "Protection of Audit Information",
+    "AU-12": "Audit Record Generation",
+    "CA-7": "Continuous Monitoring",
+    "CM-2": "Baseline Configuration",
+    "CM-3": "Configuration Change Control",
+    "CM-3(2)": "Configuration Change Control | Testing, Validation, and Documentation of Changes",
+    "CM-4(2)": "Impact Analyses | Verification of Controls",
+    "CM-8": "System Component Inventory",
+    "IA-5": "Authenticator Management",
+    "SC-7": "Boundary Protection"
+  },
+  "steps": {
+    "CONTRACT": {
+      "title": "The contract and the schema the service owns: contract-versus-code and API tests on PostgreSQL",
+      "chapter": "01",
+      "controls": [
+        "CM-2",
+        "CM-3(2)"
+      ],
+      "ksis": [
+        "KSI-SVC-ACM",
+        "KSI-CMT-VTD"
+      ],
+      "other": []
+    },
+    "LOAD": {
+      "title": "The legacy data loaded by the migration tool's transform rules",
+      "chapter": "02",
+      "controls": [
+        "CM-3",
+        "CM-3(2)"
+      ],
+      "ksis": [
+        "KSI-CMT-LMC",
+        "KSI-CMT-VTD"
+      ],
+      "other": []
+    },
+    "PROVE": {
+      "title": "The move proved three ways, damage caught, and the delta from the watermark",
+      "chapter": "03",
+      "controls": [
+        "CM-3(2)",
+        "CM-4(2)"
+      ],
+      "ksis": [
+        "KSI-CMT-VTD"
+      ],
+      "other": []
+    },
+    "AGENT": {
+      "title": "The agent: allow-listed tools, every call audited, a person decides",
+      "chapter": "04",
+      "controls": [
+        "AC-6",
+        "AU-2",
+        "AU-12"
+      ],
+      "ksis": [
+        "KSI-IAM-ELP",
+        "KSI-MLA-LET"
+      ],
+      "other": [
+        "OMB M-25-21, human oversight of high-impact AI (Book 18, Chapter 05)"
+      ]
+    },
+    "A11Y": {
+      "title": "The front end's tests and its automated WCAG 2.0 A and AA rule check",
+      "chapter": "05",
+      "controls": [
+        "CM-3(2)"
+      ],
+      "ksis": [
+        "KSI-CMT-VTD"
+      ],
+      "other": [
+        "Section 508 (29 U.S.C. 794d); the Revised 508 Standards, 36 CFR part 1194 (WCAG 2.0 Level AA); OMB M-24-08, automated testing alongside manual testing"
+      ]
+    },
+    "SNAPSHOT": {
+      "title": "The application's identity before the change, and the work packages it needs",
+      "chapter": "06",
+      "controls": [
+        "CM-8",
+        "CM-2"
+      ],
+      "ksis": [
+        "KSI-PIY-GIV",
+        "KSI-SVC-ACM"
+      ],
+      "other": []
+    },
+    "WP4": {
+      "title": "Redirect URIs on owned, resolving hosts, with the OAuth regression test",
+      "chapter": "06",
+      "controls": [
+        "SC-7",
+        "CM-3(2)"
+      ],
+      "ksis": [
+        "KSI-CNA-MAT",
+        "KSI-CMT-VTD"
+      ],
+      "other": []
+    },
+    "WP5": {
+      "title": "Assignment required, with the groups and clients assigned first",
+      "chapter": "06",
+      "controls": [
+        "AC-2",
+        "AC-6"
+      ],
+      "ksis": [
+        "KSI-IAM-AAM",
+        "KSI-IAM-ELP"
+      ],
+      "other": []
+    },
+    "WP6": {
+      "title": "The post-change sign-in check and the sealed evidence pack",
+      "chapter": "07",
+      "controls": [
+        "CA-7",
+        "CM-8",
+        "AU-9"
+      ],
+      "ksis": [
+        "KSI-MLA-EVC",
+        "KSI-PIY-GIV",
+        "KSI-MLA-OSM"
+      ],
+      "other": []
+    }
+  }
+}
