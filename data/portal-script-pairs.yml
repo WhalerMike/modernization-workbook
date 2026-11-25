@@ -448,7 +448,7 @@ pairs:
   shows: 'Traffic forwarding page: the Microsoft traffic profile turned on (Enabled) and assigned to users and groups
     (guide Step 4.1-4.2).'
   tab: exact
-  capture: gsa/04-3
+  capture: gsa/04-5
   requirements:
     file: examples/global-secure-access/config/requirements.json
     step: TRAFFIC
@@ -468,7 +468,7 @@ pairs:
   tab: related
   relation: The script queries the same sign-in log for the share of sign-ins that went through Global Secure Access,
     rather than the two IP address columns.
-  capture: gsa/04-4
+  capture: gsa/04-6
   requirements:
     file: examples/global-secure-access/config/requirements.json
     step: TRAFFIC
@@ -488,7 +488,7 @@ pairs:
   tab: related
   relation: The screen is what the user sees; the script reads the same test's report-only results from the sign-in
     log.
-  capture: gsa/05-4
+  capture: gsa/05-6
   requirements:
     file: examples/global-secure-access/config/requirements.json
     step: COMPLIANT
@@ -509,7 +509,7 @@ pairs:
   tab: related
   relation: The script reads the TLS inspection certificate configured in the tenant; the screen shows what a browser
     sees on an inspected site.
-  capture: gsa/07-6
+  capture: gsa/07-8
   requirements:
     file: examples/global-secure-access/config/requirements.json
     step: TLS
@@ -801,7 +801,7 @@ pairs:
   learn: https://learn.microsoft.com/entra/global-secure-access/how-to-install-windows-client
   shows: 'Windows tray tooltip: Global Secure Access Client - connected.'
   tab: exact
-  capture: gsa/03-4
+  capture: gsa/03-6
   requirements:
     file: examples/global-secure-access/config/requirements.json
     step: CLIENT
