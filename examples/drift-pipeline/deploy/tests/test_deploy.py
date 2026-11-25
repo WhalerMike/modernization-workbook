@@ -228,7 +228,7 @@ def test_preflight_production_promotes_only_on_matching_live_pass(tmp_path):
 
 
 def test_preflight_cli_writes_json(tmp_path, capsys):
-    assert pf.main(["--settings", str(TEST), "--out", str(tmp_path)]) == 0
+    assert pf.main(["--settings", str(write_settings(tmp_path, settings())), "--out", str(tmp_path)]) == 0
     doc = json.loads((tmp_path / "preflight.json").read_text(encoding="utf-8"))
     assert doc["result"] == "pass" and doc["live"] is False
     assert "dry run" in capsys.readouterr().out
@@ -291,7 +291,7 @@ def test_smoke_needs_an_input():
 
 
 def test_smoke_cli_writes_report_and_exit_code(tmp_path, capsys):
-    code = sm.main(["--settings", str(TEST), "--fixture", "--kit-run", str(FIXTURE_RUN), "--out", str(tmp_path)])
+    code = sm.main(["--settings", str(write_settings(tmp_path, settings())), "--fixture", "--kit-run", str(FIXTURE_RUN), "--out", str(tmp_path)])
     assert code == 2
     assert json.loads((tmp_path / "smoke-report.json").read_text(encoding="utf-8"))["result"] == "fail"
     assert "NO-GO" in capsys.readouterr().out
