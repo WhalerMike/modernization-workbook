@@ -25,7 +25,7 @@ Each row shows what a topic has. A cell that says **gap** is something readers n
 | [Microsoft Automation](microsoft-automation.md) | 2 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 4 modules | yes | 5 | 1 zip |
 | [Zero Trust Assessment](zero-trust-assessment.md) | 6 | [not needed](#gaps) | 1 | [not needed](#gaps) | 4 modules | yes | 8 | 1 zip |
 | [Daily Checks Dashboard](daily-checks-dashboard.md) | 4 | [not needed](#gaps) | 1 | 4 chapters | 2 modules | yes | 8 | 1 zip |
-| [Data Platform and SQL Server](data-platform.md) | 11 | 1 | [not needed](#gaps) | 10 chapters | [gap](#gaps) | yes | 4 | 2 zips |
+| [Data Platform and SQL Server](data-platform.md) | 11 | 1 | [not needed](#gaps) | 10 chapters | 10 modules | yes | 4 | 2 zips |
 | [PKI and Certificates](pki.md) | 8 | 1 | 1 | [not needed](#gaps) | 4 modules | yes | 5 | 1 zip |
 | [DNS, DHCP and IPAM](dns-dhcp-ipam.md) | 8 | 1 | 1 | [not needed](#gaps) | 6 modules | yes | 11 | 1 zip |
 | [Network and SD-WAN](network-sd-wan.md) | 8 | 1 | 3 | [not needed](#gaps) | 4 modules | yes | 7 | 1 zip |
@@ -52,7 +52,6 @@ A gap is filled only where readers need it. Where nothing is needed, the note sa
 | [Zero Trust Assessment](zero-trust-assessment.md#gaps) | Developer workbook | Not needed, because the learning path's four modules teach the results kit directly, with Lab 1 on its fixtures. |
 | [Daily Checks Dashboard](daily-checks-dashboard.md#gaps) | Project plan | Not needed, because it is one workbook template with a four-chapter build, and the guide sequences it. |
 | [Data Platform and SQL Server](data-platform.md#gaps) | Guide | Not needed, because Book 06's ten runbooks (R01 to R10), listed under Build, are its step-by-step implementation guide. |
-| [Data Platform and SQL Server](data-platform.md#gaps) | Learning path | Needed: the learning path is phase 2 of filling this topic's gaps (decided Nov 24, 2026). |
 | [PKI and Certificates](pki.md#gaps) | Developer workbook | Not needed, because the learning path's labs run the Start Kit's AD CS assessment directly, with Lab 1 on its fictional PKI snapshot; revisit if a module needs code the kit can't hold. |
 | [DNS, DHCP and IPAM](dns-dhcp-ipam.md#gaps) | Developer workbook | Not needed, because the code is the Start Kit's DNS and DHCP collectors and the readiness checks beside them, and the learning path's labs run the kit directly. |
 | [Network and SD-WAN](network-sd-wan.md#gaps) | Developer workbook | Not needed, because the Cisco kit is one read-only collector, and the learning path's modules teach it directly, with Lab 1 replaying its fixtures. |
