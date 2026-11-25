@@ -45,21 +45,30 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 
 ## Get the code {#get-the-code}
 
-Download [app-modernization.zip](../../../downloads/app-modernization.zip) to your Downloads folder. It holds `app-modernization`, the kit every lab uses: the Spring Boot service, the migration tool, the React front end, the PowerShell module and the fixtures. Unzip it into `Downloads\app-modernization`, the folder Windows' **Extract All** suggests, so you work in `Downloads\app-modernization\app-modernization`: the zip's name appears twice. Every lab command runs from there, as it does from `examples/app-modernization` in a clone of the repository. Modules 1 to 4 need Java 21; Module 5 needs Node.js 24; every module needs PowerShell 7.4 or later, and Modules 6 and 7 need Pester 5. [Get a path's code](../index.md#get-the-code) says why each step is there.
+Download [app-modernization.zip](../../../downloads/app-modernization.zip) to your Downloads folder. It holds the kit every lab uses: the Spring Boot service, the migration tool, the React front end, the PowerShell module and the fixtures. Unzip it into `C:\FMWLabs\app-modernization` (in Windows' **Extract All**, type that folder in place of the one it suggests), so you work in `C:\FMWLabs\app-modernization`. Every lab command runs from there, as it does from `examples/app-modernization` in a clone of the repository. Modules 1 to 4 need Java 21; Module 5 needs Node.js 24; every module needs PowerShell 7.4 or later, and Modules 6 and 7 need Pester 5. [Get a path's code](../index.md#get-the-code) says why each step is there.
 
 In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
 
 ```powershell
-Expand-Archive -Path $HOME\Downloads\app-modernization.zip -DestinationPath $HOME\Downloads\app-modernization -Force
-Set-Location $HOME\Downloads\app-modernization\app-modernization
-Get-ChildItem $HOME\Downloads\app-modernization -Recurse -File | Unblock-File
+Expand-Archive -Path $HOME\Downloads\app-modernization.zip -DestinationPath C:\FMWLabs\app-modernization -Force
+Set-Location C:\FMWLabs\app-modernization
+Get-ChildItem C:\FMWLabs\app-modernization -Recurse -File | Unblock-File
 ```
 
-In Bash on Linux or macOS, or Git Bash on Windows:
+In Git Bash on Windows:
 
 ```bash
-unzip -o ~/Downloads/app-modernization.zip -d ~/Downloads/app-modernization
-cd ~/Downloads/app-modernization/app-modernization
+mkdir -p /c/FMWLabs
+unzip -o ~/Downloads/app-modernization.zip -d /c/FMWLabs/app-modernization
+cd /c/FMWLabs/app-modernization
+```
+
+In Bash on Linux or macOS, which use `~/FMWLabs` in place of `C:\FMWLabs`:
+
+```bash
+mkdir -p ~/FMWLabs
+unzip -o ~/Downloads/app-modernization.zip -d ~/FMWLabs/app-modernization
+cd ~/FMWLabs/app-modernization
 chmod +x mvnw
 ```
 

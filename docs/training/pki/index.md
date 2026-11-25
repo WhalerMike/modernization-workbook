@@ -47,14 +47,14 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 
 ## Get the code {#get-the-code}
 
-Download [start-kit.zip](../../../downloads/start-kit.zip) to your Downloads folder. It holds the Start Kit itself, in one folder, `start-kit`. Unzip it into `Downloads\start-kit`, the folder Windows' **Extract All** suggests, so you work in `Downloads\start-kit\start-kit`: the zip's name appears twice. Every lab command runs from there, as it does from `examples/start-kit` in a clone of the repository. The kit is Windows PowerShell 5.1, and its tests also run in PowerShell 7; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
+Download [start-kit.zip](../../../downloads/start-kit.zip) to your Downloads folder. It holds the Start Kit itself. Unzip it into `C:\FMWLabs\start-kit` (in Windows' **Extract All**, type that folder in place of the one it suggests), so you work in `C:\FMWLabs\start-kit`. Every lab command runs from there, as it does from `examples/start-kit` in a clone of the repository. The kit is Windows PowerShell 5.1, and its tests also run in PowerShell 7; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
 
 In Windows PowerShell 5.1:
 
 ```powershell
-Expand-Archive -Path $HOME\Downloads\start-kit.zip -DestinationPath $HOME\Downloads\start-kit -Force
-Set-Location $HOME\Downloads\start-kit\start-kit
-Get-ChildItem $HOME\Downloads\start-kit -Recurse -File | Unblock-File
+Expand-Archive -Path $HOME\Downloads\start-kit.zip -DestinationPath C:\FMWLabs\start-kit -Force
+Set-Location C:\FMWLabs\start-kit
+Get-ChildItem C:\FMWLabs\start-kit -Recurse -File | Unblock-File
 ```
 
 Check it works, with Module 1, Lab 1, Step 1:

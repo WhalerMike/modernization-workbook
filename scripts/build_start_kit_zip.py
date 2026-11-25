@@ -23,13 +23,16 @@ Building SQL Server Identity its kit (--kit sql-server-identity-code), and the
 managed service account request guide its pack (--kit msa-request-pack: the forms and checker with
 the Non-Person Identity kit's Chapter 12 module).
 This packs the folder as
-it is in the repository, scripts, README, fixtures and tests, under a top-level <kit>/
-folder. The archive is reproducible: entries are sorted, timestamps fixed and
+it is in the repository, scripts, README, fixtures and tests, at the top of the zip, with
+no folder of the zip's own name around it (a bundle's top level is its examples folders):
+unzipped into a folder named after the zip, as Windows' Extract All suggests, the path
+doesn't repeat the zip's name. The archive is reproducible: entries are sorted, timestamps fixed and
 line endings left as committed, so the same commit always gives the same bytes.
 
 Every script, code and data file also gets a plain-text copy beside it, named with .txt
 added (Get-Thing.ps1 -> Get-Thing.ps1.txt), because Microsoft 365 Copilot and some mail
-systems refuse to take .ps1, .py and similar files. The copies are made here, not
+systems refuse to take .ps1, .py and similar files. Files under a tests' fixtures folder get no
+copy: they are data the tests read, and some tests compare a fixture folder with its manifest. The copies are made here, not
 committed, so they can't drift from the originals.
 
 Usage: python3 scripts/build_start_kit_zip.py [--kit start-kit] [--out _site/downloads]
@@ -152,6 +155,10 @@ def kit_files(kit: Path, base: Path | None = None) -> list[Path]:
 
 
 def needs_copy(path: Path) -> bool:
+    # Test fixtures are data the kit's tests read, not files a reader mails: a .txt copy beside them
+    # breaks the tests that compare a fixture folder with its manifest (drift-pipeline's evidence runs).
+    if "fixtures" in path.parts:
+        return False
     return path.suffix.lower() in TXT_COPY or path.name in TXT_COPY_NAMES
 
 
@@ -187,7 +194,7 @@ def build(out_dir: Path, name: str = "start-kit") -> Path:
     target = out_dir / f"{zip_name}.zip"
     with zipfile.ZipFile(target, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
         for rel, path in entries(kit, files):
-            info = zipfile.ZipInfo(f"{zip_name}/{rel}", date_time=FIXED_TIME)
+            info = zipfile.ZipInfo(rel, date_time=FIXED_TIME)
             info.compress_type = zipfile.ZIP_DEFLATED
             # Keep shell scripts such as mvnw runnable on Linux and macOS.
             executable = not rel.endswith(".txt") and (

@@ -47,21 +47,30 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 
 ## Get the code {#get-the-code}
 
-Download [defender-xdr-code.zip](../../../downloads/defender-xdr-code.zip) to your Downloads folder. It holds `defender-xdr`, the kit the labs use, and `zta-results/config`, the Zero Trust Assessment results kit's configuration that its exposure check reads. Unzip it into `Downloads\defender-xdr-code`, the folder Windows' **Extract All** suggests, so you work in `Downloads\defender-xdr-code\defender-xdr-code\defender-xdr`: the zip's name appears twice. Every lab command runs from there, as it does from `examples/defender-xdr` in a clone of the repository. The kit is PowerShell 7.1 or later, with Pester 5; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
+Download [defender-xdr-code.zip](../../../downloads/defender-xdr-code.zip) to your Downloads folder. It holds `defender-xdr`, the kit the labs use, and `zta-results/config`, the Zero Trust Assessment results kit's configuration that its exposure check reads. Unzip it into `C:\FMWLabs\defender-xdr-code` (in Windows' **Extract All**, type that folder in place of the one it suggests), so you work in `C:\FMWLabs\defender-xdr-code\defender-xdr`. Every lab command runs from there, as it does from `examples/defender-xdr` in a clone of the repository. The kit is PowerShell 7.1 or later, with Pester 5; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
 
 In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
 
 ```powershell
-Expand-Archive -Path $HOME\Downloads\defender-xdr-code.zip -DestinationPath $HOME\Downloads\defender-xdr-code -Force
-Set-Location $HOME\Downloads\defender-xdr-code\defender-xdr-code\defender-xdr
-Get-ChildItem $HOME\Downloads\defender-xdr-code -Recurse -File | Unblock-File
+Expand-Archive -Path $HOME\Downloads\defender-xdr-code.zip -DestinationPath C:\FMWLabs\defender-xdr-code -Force
+Set-Location C:\FMWLabs\defender-xdr-code\defender-xdr
+Get-ChildItem C:\FMWLabs\defender-xdr-code -Recurse -File | Unblock-File
 ```
 
-In Bash on Linux or macOS, or Git Bash on Windows:
+In Git Bash on Windows:
 
 ```bash
-unzip -o ~/Downloads/defender-xdr-code.zip -d ~/Downloads/defender-xdr-code
-cd ~/Downloads/defender-xdr-code/defender-xdr-code/defender-xdr
+mkdir -p /c/FMWLabs
+unzip -o ~/Downloads/defender-xdr-code.zip -d /c/FMWLabs/defender-xdr-code
+cd /c/FMWLabs/defender-xdr-code/defender-xdr
+```
+
+In Bash on Linux or macOS, which use `~/FMWLabs` in place of `C:\FMWLabs`:
+
+```bash
+mkdir -p ~/FMWLabs
+unzip -o ~/Downloads/defender-xdr-code.zip -d ~/FMWLabs/defender-xdr-code
+cd ~/FMWLabs/defender-xdr-code/defender-xdr
 ```
 
 Check it works, in PowerShell 7.1 or later, with Step 1 of [Chapter 01's Lab 1](../../project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.md#lab-1-fixtures-no-tenant):

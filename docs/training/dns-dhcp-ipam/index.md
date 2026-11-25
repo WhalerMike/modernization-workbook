@@ -46,21 +46,30 @@ Like a [Microsoft Learn learning path](https://learn.microsoft.com/training/), i
 
 ## Get the code {#get-the-code}
 
-Download [start-kit.zip](../../../downloads/start-kit.zip) to your Downloads folder. It holds the Start Kit, in one folder, `start-kit`: the DNS and DHCP collectors in `FMPADAssessment`, the readiness checks in `FMPDdiReadiness`, their tests, and the fictional domain's files the labs read, in `tests/fixtures/ddi`. Unzip it into `Downloads\start-kit`, the folder Windows' **Extract All** suggests, so you work in `Downloads\start-kit\start-kit`: the zip's name appears twice. Every lab command runs from there, as it does from `examples/start-kit` in a clone of the repository. The kit is Windows PowerShell 5.1 or PowerShell 7; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
+Download [start-kit.zip](../../../downloads/start-kit.zip) to your Downloads folder. It holds the Start Kit: the DNS and DHCP collectors in `FMPADAssessment`, the readiness checks in `FMPDdiReadiness`, their tests, and the fictional domain's files the labs read, in `tests/fixtures/ddi`. Unzip it into `C:\FMWLabs\start-kit` (in Windows' **Extract All**, type that folder in place of the one it suggests), so you work in `C:\FMWLabs\start-kit`. Every lab command runs from there, as it does from `examples/start-kit` in a clone of the repository. The kit is Windows PowerShell 5.1 or PowerShell 7; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
 
 In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
 
 ```powershell
-Expand-Archive -Path $HOME\Downloads\start-kit.zip -DestinationPath $HOME\Downloads\start-kit -Force
-Set-Location $HOME\Downloads\start-kit\start-kit
-Get-ChildItem $HOME\Downloads\start-kit -Recurse -File | Unblock-File
+Expand-Archive -Path $HOME\Downloads\start-kit.zip -DestinationPath C:\FMWLabs\start-kit -Force
+Set-Location C:\FMWLabs\start-kit
+Get-ChildItem C:\FMWLabs\start-kit -Recurse -File | Unblock-File
 ```
 
-In Bash on Linux or macOS, or Git Bash on Windows:
+In Git Bash on Windows:
 
 ```bash
-unzip -o ~/Downloads/start-kit.zip -d ~/Downloads/start-kit
-cd ~/Downloads/start-kit/start-kit
+mkdir -p /c/FMWLabs
+unzip -o ~/Downloads/start-kit.zip -d /c/FMWLabs/start-kit
+cd /c/FMWLabs/start-kit
+```
+
+In Bash on Linux or macOS, which use `~/FMWLabs` in place of `C:\FMWLabs`:
+
+```bash
+mkdir -p ~/FMWLabs
+unzip -o ~/Downloads/start-kit.zip -d ~/FMWLabs/start-kit
+cd ~/FMWLabs/start-kit
 ```
 
 Check it works, in PowerShell, with Module 1, Lab 1, Step 2:
@@ -107,7 +116,7 @@ Each module follows the same units: an introduction with the federal requirement
 
 ## What you need for the labs {#what-you-need-for-the-labs}
 
-**Lab 1: a laptop, no server.** Every Lab 1 runs the Start Kit against the files of a fictional domain, `contoso.example`, in `tests/fixtures/ddi/run-2026-11-20`: the files `Get-FMPDNSAssessment` and `Get-FMPDHCPInventory` write, for three domain controllers and two DHCP servers. Module 3 adds a DHCP snooping export, Module 4 an IPAM export and the JSON the Azure, AWS and OCI CLIs print, and Module 5 a month of locator record checks and the other gates' records, all in `tests/fixtures/ddi`. The kit's tests run the real collector under mocks and read its output with the same checks, so the fixture keeps the collectors' shape. You need the kit and Windows PowerShell 5.1 or PowerShell 7, on Windows, Linux or macOS. Run every command from `examples/start-kit` (or `Downloads\start-kit\start-kit`). A lab that writes anything writes an `out` folder there and deletes it at the end. Nothing in Lab 1 contacts a server. The output shown in each Lab 1 is what the commands printed on November 24, 2026, in PowerShell 7.6 and Windows PowerShell 5.1.
+**Lab 1: a laptop, no server.** Every Lab 1 runs the Start Kit against the files of a fictional domain, `contoso.example`, in `tests/fixtures/ddi/run-2026-11-20`: the files `Get-FMPDNSAssessment` and `Get-FMPDHCPInventory` write, for three domain controllers and two DHCP servers. Module 3 adds a DHCP snooping export, Module 4 an IPAM export and the JSON the Azure, AWS and OCI CLIs print, and Module 5 a month of locator record checks and the other gates' records, all in `tests/fixtures/ddi`. The kit's tests run the real collector under mocks and read its output with the same checks, so the fixture keeps the collectors' shape. You need the kit and Windows PowerShell 5.1 or PowerShell 7, on Windows, Linux or macOS. Run every command from `examples/start-kit` (or `C:\FMWLabs\start-kit`). A lab that writes anything writes an `out` folder there and deletes it at the end. Nothing in Lab 1 contacts a server. The output shown in each Lab 1 is what the commands printed on November 24, 2026, in PowerShell 7.6 and Windows PowerShell 5.1.
 
 **Lab 2: your own test domain.** Lab 2 needs one Windows Server 2019 or later virtual machine that you can checkpoint and throw away, promoted to a new forest with fictional names (the labs use `lab.contoso.example`), with the DNS Server and DHCP Server roles. Module 1's Lab 2 builds it with Microsoft Learn's commands. Never run Lab 2 against a production domain: the collectors only read, but the build steps create a forest. **The authors didn't run the Lab 2 steps.** Each one ends with a way to back it out, and restoring the checkpoint backs out everything. Module 4's Lab 2 instead reads an Azure test subscription, an AWS GovCloud (US) account and an OCI tenancy that aren't production, whichever you have, with their CLIs; it creates nothing in them.
 
