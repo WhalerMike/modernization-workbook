@@ -291,6 +291,7 @@ function New-NpiLiveInvoker {
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][string]$TenantId, [switch]$SkipAzure, [switch]$AllowWrite)
     $c = Get-NpiCloud -Cloud $Cloud
+    if (-not $script:NpiProgress.Explicit) { $script:NpiProgress.Quiet = $false }
     $mg = Get-MgContext
     if (-not $mg) { throw 'Not signed in to Microsoft Graph.' }
     if ($mg.Environment -ne $c.GraphEnvironment) { throw "Graph session is in '$($mg.Environment)', not '$($c.GraphEnvironment)'." }
@@ -371,7 +372,9 @@ function Invoke-NpiRetry {
     }
 }
 
-$script:NpiProgress = @{ Quiet = $false; HeartbeatSeconds = 30 }
+# Off until a live invoker is made (New-NpiLiveInvoker, New-NpiLiveAdInvoker), so fixture runs
+# and their lab output stay as they are; Set-NpiProgressPreference decides it outright.
+$script:NpiProgress = @{ Quiet = $true; HeartbeatSeconds = 30; Explicit = $false }
 
 function Set-NpiProgressPreference {
     <#
@@ -381,7 +384,7 @@ function Set-NpiProgressPreference {
         Set-NpiProgressPreference -Quiet
     #>
     param([switch]$Quiet, [int]$HeartbeatSeconds = 30)
-    $script:NpiProgress = @{ Quiet = [bool]$Quiet; HeartbeatSeconds = $HeartbeatSeconds }
+    $script:NpiProgress = @{ Quiet = [bool]$Quiet; HeartbeatSeconds = $HeartbeatSeconds; Explicit = $true }
 }
 
 function Write-NpiProgress {
@@ -429,6 +432,7 @@ function New-NpiLiveAdInvoker {
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Server, [switch]$AllowWrite)
     Import-Module ActiveDirectory -ErrorAction Stop
+    if (-not $script:NpiProgress.Explicit) { $script:NpiProgress.Quiet = $false }
     $allowed = @('Get-ADUser', 'Get-ADServiceAccount')
     if ($AllowWrite) { $allowed += 'Disable-ADAccount' }
     $srv = $Server
