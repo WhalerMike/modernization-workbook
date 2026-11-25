@@ -79,20 +79,24 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\hr-driven-identity-code\hr-lifecycle
 
+$Run = "C:\FMWLabs\results\hr-driven-identity-05-certificate-based-authentication\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
 # Step 1
 python python/graph_export.py --task cba-read --list
 
 # Step 2
-python python/cba_check.py measure --urls tests/fixtures/ch05/crl-urls.txt --out out/ch05/crl-measurements.csv
+python python/cba_check.py measure --urls tests/fixtures/ch05/crl-urls.txt --out "$Run\ch05\crl-measurements.csv"
 
 # Step 3
-python python/cba_check.py check --cloud gcc --exports tests/fixtures/ch05/exports --crl tests/fixtures/ch05/crl-measurements.csv --expected config/cba-expected.json --as-of 2026-11-01 --out out/ch05/check
+python python/cba_check.py check --cloud gcc --exports tests/fixtures/ch05/exports --crl tests/fixtures/ch05/crl-measurements.csv --expected config/cba-expected.json --as-of 2026-11-01 --out "$Run\ch05\check"
 
 # Step 4
 python -m pytest -q -p no:cacheprovider tests
 
 # Step 4
-Remove-Item -Recurse -Force out
+Get-ChildItem C:\FMWLabs\results\hr-driven-identity-05-certificate-based-authentication\lab1 -Name
 ```
 
 :::
@@ -105,7 +109,23 @@ Every step runs in PowerShell 7, the Python commands included, so you can follow
 Set-Location C:\FMWLabs\hr-driven-identity-code\hr-lifecycle
 ```
 
-Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr-lifecycle`; every step runs the same there except the last command, which is `rm -rf out` in Bash. In a clone of the repository, use the `examples` folder of the same name.
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
+
+```powershell
+$Run = "C:\FMWLabs\results\hr-driven-identity-05-certificate-based-authentication\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\hr-driven-identity-05-certificate-based-authentication\lab1\<run>
+```
+
+The run's date is only the folder's name. The data's date is `--as-of`, which stays the same, so every run's results match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
+
+Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr-lifecycle`, make the run folder with `Run=/c/FMWLabs/results/hr-driven-identity-05-certificate-based-authentication/lab1/$(date -u +%Y-%m-%dT%H%M%SZ); mkdir -p "$Run"`, and every step runs the same there. In a clone of the repository, use the `examples` folder of the same name.
 
 1. List the calls and permissions:
 
@@ -129,7 +149,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 2. Measure the fixture CRLs:
 
     ```powershell
-    python python/cba_check.py measure --urls tests/fixtures/ch05/crl-urls.txt --out out/ch05/crl-measurements.csv
+    python python/cba_check.py measure --urls tests/fixtures/ch05/crl-urls.txt --out "$Run\ch05\crl-measurements.csv"
     ```
 
     Expected output:
@@ -138,7 +158,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
              4,096 bytes    0.000 s  tests/fixtures/ch05/crl/piv-ca1.crl
              8,192 bytes    0.000 s  tests/fixtures/ch05/crl/piv-ca2.crl
                  0 bytes    0.000 s  tests/fixtures/ch05/crl/missing.crl  FileNotFoundError
-    Measured 3 CRL(s) -> out/ch05/crl-measurements.csv
+    Measured 3 CRL(s) -> C:/FMWLabs/results/hr-driven-identity-05-certificate-based-authentication/lab1/<run>/ch05/crl-measurements.csv
     ```
 
     The times are how long each file took to read; on a slow disk they may show `0.001 s`. The missing file is recorded, not raised.
@@ -146,7 +166,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 3. Check the fictional tenant for GCC:
 
     ```powershell
-    python python/cba_check.py check --cloud gcc --exports tests/fixtures/ch05/exports --crl tests/fixtures/ch05/crl-measurements.csv --expected config/cba-expected.json --as-of 2026-11-01 --out out/ch05/check
+    python python/cba_check.py check --cloud gcc --exports tests/fixtures/ch05/exports --crl tests/fixtures/ch05/crl-measurements.csv --expected config/cba-expected.json --as-of 2026-11-01 --out "$Run\ch05\check"
     ```
 
     Expected output:
@@ -178,10 +198,16 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/hr-driven-identity-code/hr
 
     Expected: the last line is `57 passed` and the time the run took.
 
-    Then delete the `out` folder this lab wrote, so the next run starts clean:
+    Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
 
     ```powershell
-    Remove-Item -Recurse -Force out
+    Get-ChildItem C:\FMWLabs\results\hr-driven-identity-05-certificate-based-authentication\lab1 -Name
+    ```
+
+    Expected output: one line per run, oldest first, the last one this run:
+
+    ```text
+    <run>
     ```
 
 ## Exercise: Lab 2, your test tenant (5 minutes to read)
