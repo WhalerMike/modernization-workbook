@@ -230,6 +230,10 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\microsoft-automation-code\ms-automation
 
+$Run = "C:\FMWLabs\results\ms-automation-entra\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
 # Step 1
 python python/entra_tasks.py --from-json tests/fixtures/users.json --as-of 2026-10-25T00:00:00Z stale-users
 
@@ -237,7 +241,10 @@ python python/entra_tasks.py --from-json tests/fixtures/users.json --as-of 2026-
 python -c "import json; [print(u['userPrincipalName'], u['accountEnabled'], u['userType'], u['createdDateTime'], (u.get('signInActivity') or {}).get('lastSignInDateTime'), (u.get('signInActivity') or {}).get('lastNonInteractiveSignInDateTime')) for u in json.load(open('tests/fixtures/users.json'))['users']]"
 
 # Step 2
-python python/entra_tasks.py --from-json tests/fixtures/ca.json ca-export --out out/ca
+python python/entra_tasks.py --from-json tests/fixtures/ca.json ca-export --out "$Run\ca"
+
+# Step 2
+Get-ChildItem "$Run\ca" -Name
 
 # Step 3
 python python/entra_tasks.py --from-json tests/fixtures/pim.json pim-report --role e8611ab8-c189-46e8-94e1-60213ab1f814
@@ -259,7 +266,7 @@ Test-FmwStaleUser -Users $u.users -AsOf '2026-10-25T00:00:00Z' -Days 90 | Conver
 python -m pytest -q -p no:cacheprovider tests/python/test_graphkit_and_tasks.py
 
 # Step 7
-Remove-Item -Recurse -Force out
+Get-ChildItem C:\FMWLabs\results\ms-automation-entra\lab1 -Name
 ```
 
 :::
@@ -274,7 +281,23 @@ Every step runs in PowerShell 7, the Python commands included, so you can follow
 Set-Location C:\FMWLabs\microsoft-automation-code\ms-automation
 ```
 
-Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/ms-automation`; every step except 6 and the last one runs the same there, and Step 6 needs PowerShell 7 (type `pwsh` to start it). In a clone of the repository, use the `examples` folder of the same name.
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
+
+```powershell
+$Run = "C:\FMWLabs\results\ms-automation-entra\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\ms-automation-entra\lab1\<run>
+```
+
+The run's date is only the folder's name. The data's date is `--as-of`, which stays the same, so every run's findings match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
+
+Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/ms-automation`, make the run folder with `Run=/c/FMWLabs/results/ms-automation-entra/lab1/$(date -u +%Y-%m-%dT%H%M%SZ); mkdir -p "$Run"`, and Steps 1 to 5 and 7 run the same there; Step 6 needs PowerShell 7 (type `pwsh` to start it). In a clone of the repository, use the `examples` folder of the same name.
 
 1. Find the stale accounts.
 
@@ -330,7 +353,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/
 2. Export Conditional Access.
 
    ```powershell
-   python python/entra_tasks.py --from-json tests/fixtures/ca.json ca-export --out out/ca
+   python python/entra_tasks.py --from-json tests/fixtures/ca.json ca-export --out "$Run\ca"
    ```
 
    Expected output, three policies and their counts:
@@ -375,7 +398,22 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/
    }
    ```
 
-   CA022, phishing-resistant MFA for every member, shows `"reportOnly": true`. The folder `out/ca` now holds `named-locations.json`, `p-legacy.json`, `p-old.json` and `p-pr.json`: one sorted file per policy, ready to diff.
+   CA022, phishing-resistant MFA for every member, shows `"reportOnly": true`. List the files the export wrote in this run's folder:
+
+   ```powershell
+   Get-ChildItem "$Run\ca" -Name
+   ```
+
+   Expected output:
+
+   ```text
+   named-locations.json
+   p-legacy.json
+   p-old.json
+   p-pr.json
+   ```
+
+   One sorted file per policy, ready to diff against another run's.
 
 3. Report privileged assignments for Global Administrator and Privileged Role Administrator.
 
@@ -522,10 +560,16 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/
 
    Expected: `19 passed`.
 
-   Then delete the `out` folder Step 2 wrote, so the next run starts clean:
+   Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
 
    ```powershell
-   Remove-Item -Recurse -Force out
+   Get-ChildItem C:\FMWLabs\results\ms-automation-entra\lab1 -Name
+   ```
+
+   Expected output: one line per run, oldest first, the last one this run:
+
+   ```text
+   <run>
    ```
 
 **Check your work:** for each finding, you can name the ScubaGear policy it evidences and the Graph property it came from.
