@@ -3493,6 +3493,24 @@
    "title": "Non-Person Identity"
   }
  ],
+ "docs/training/pki/01-what-ad-cs-holds-up.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/training/pki/02-hardening-what-stays.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/training/pki/index.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
  "docs/training/privileged-access/01-privileged-inventory.md": [
   {
    "id": "privileged-access",

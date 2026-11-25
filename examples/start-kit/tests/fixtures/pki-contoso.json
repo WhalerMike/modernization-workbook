@@ -1,0 +1,481 @@
+{
+  "_comment": "Fictional PKI snapshot of the Contoso forest for the PKI and Certificates learning path and the Start Kit tests: the Public Key Services objects Get-FMPPKIAssessment reads, and each CA's certutil -getreg output for EditFlags and AuditFilter. The CA certificates are generated, self-contained and fictional. Not a real estate.",
+  "domain": "contoso.example",
+  "pksDN": "CN=Public Key Services,CN=Services,CN=Configuration,DC=contoso,DC=example",
+  "cas": [
+    {
+      "cn": "Contoso Issuing CA 1",
+      "displayName": "Contoso Issuing CA 1",
+      "dNSHostName": "ca01.contoso.example",
+      "certificateTemplates": [
+        "User",
+        "Machine",
+        "WebServer",
+        "KerberosAuthentication",
+        "RASAndIASServer",
+        "EFS",
+        "WebServerLegacy",
+        "ContosoSCEP"
+      ],
+      "cACertificate": "MIIEVjCCAj6gAwIBAgIEGis8ATANBgkqhkiG9w0BAQsFADBFMQswCQYDVQQGEwJVUzEcMBoGA1UEChMTQ29udG9zbyAoZmljdGlvbmFsKTEYMBYGA1UEAxMPQ29udG9zbyBSb290IENBMB4XDTIyMDMwMTAwMDAwMFoXDTI3MDMwMTAwMDAwMFowUTEXMBUGCgmSJomT8ixkARkWB2V4YW1wbGUxFzAVBgoJkiaJk/IsZAEZFgdjb250b3NvMR0wGwYDVQQDExRDb250b3NvIElzc3VpbmcgQ0EgMTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAOqi5tPxRjrcFPgwfHJgHP+RgY8uSwTqalkFGUrFyHojmB4U9iQsfMKvEWack1DQSp0B2vuyIBcgBhLgp0njtInZZcsadFlt5eYNadpFdbskcwtOpxW/s/Wf0/vxna5y7BjJY8EhRiRvMVvw6zpToGiClhPt1C6EFQUa5imdG09Kju6LzSGT93v3c/lAYzv1dPSuU8Y7Ew5ddMbM6qIoHTCwKz1Jv9dZWiVGAafEzPN0m1gNq0CdeKnh6cRaO0JRcdoZUz0CiJeROEYWBpc0q1dUOoy9gYYirz3XkTk2WEsmY/L0r0pmeZFqfbksuVzo+bL3yc5OufXpxoGU4uCKEuECAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0OBBYEFNKD5QmAYtmmY9q0ctzflGutOLwQMA0GCSqGSIb3DQEBCwUAA4ICAQAVWZcrGdMv/AOEbGmQ9bMdJhV8UgxzdydrIc8Dc8urH1q+dUMHcQ2YUl0+VeNAcVIxcOwXxl3ARvf+VSBf7taHt40mIfIgTb7Od72ERRDbE+v3NvGCBQsaBQmnQdYA9LuuV1ScjGx/2s3XDrPXNbsS2OsE9Kp6mMPlGl5xUEp/J7rmSK04Ig+jPZxmX9JPc3ZpW+32FCQZmv3FRhiRzvY1fMbXT4fVnrsvSP49xU/OuOZ+hwAv8ovLJS2TKj5oHKZ/QiASTh3kdzPwfqbILE/OLTyeg8ahm8lUnfL2TcBBb4zNhfAy7mgsZlSymvEGJ8HNVoUjQgWhCm/D1KTk6nR987ClJiOcBH68MwZCcwHr1JibtT1OrwCJplBh6TXZmjxswwjNgjr5DmIGtANewU5lR6WgHHmikWxr134AiJc54VhenCRx2VdI78h5CPA2XkpBaC+cg/DcixkE8iTeMsSI0uV2k28vJHYiV8ehgjQ2QD7Ph/uw+iXt5UuO2S8FsWvKTX8CZr7ujYciOiuIFNL0FxaTkKHzTuxKBOC68D08Ahy2/mMeZYiTyUKYV4xAjt304cazaXgNz1KoI/wIYf4ELKztq90B2lPNtvt01PeRQOznh3w6XGH+fSqgHm2un/C9oATBkiAZpgr3zDqxLILaNso0UY1JS7xET/AvQAjlrw==",
+      "editFlags": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\CertSvc\\Configuration\\Contoso Issuing CA 1\\PolicyModules\\CertificateAuthority_MicrosoftDefault.Policy\\EditFlags:\n\n  EditFlags REG_DWORD = 15014e (1376590)\n    EDITF_REQUESTEXTENSIONLIST -- 2\n    EDITF_DISABLEEXTENSIONLIST -- 4\n    EDITF_ADDOLDKEYUSAGE -- 8\n    EDITF_BASICCONSTRAINTSCRITICAL -- 40 (64)\n    EDITF_ENABLEAKIKEYID -- 100 (256)\n    EDITF_ENABLEDEFAULTSMIME -- 10000 (65536)\n    EDITF_ATTRIBUTESUBJECTALTNAME2 -- 40000 (262144)\n    EDITF_ENABLECHASECLIENTDC -- 100000 (1048576)\nCertUtil: -getreg command completed successfully.\n",
+      "auditFilter": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\CertSvc\\Configuration\\Contoso Issuing CA 1\\AuditFilter:\n\n  AuditFilter REG_DWORD = 0\nCertUtil: -getreg command completed successfully.\n"
+    },
+    {
+      "cn": "Contoso Issuing CA 2",
+      "displayName": "Contoso Issuing CA 2",
+      "dNSHostName": "ca02.contoso.example",
+      "certificateTemplates": [
+        "Machine",
+        "ExchangeUser",
+        "CodeSigning",
+        "ContosoVPNUser",
+        "LegacyAnyPurpose"
+      ],
+      "cACertificate": "MIIEVjCCAj6gAwIBAgIEGis8AjANBgkqhkiG9w0BAQsFADBFMQswCQYDVQQGEwJVUzEcMBoGA1UEChMTQ29udG9zbyAoZmljdGlvbmFsKTEYMBYGA1UEAxMPQ29udG9zbyBSb290IENBMB4XDTI0MDYwMTAwMDAwMFoXDTI5MDYwMTAwMDAwMFowUTEXMBUGCgmSJomT8ixkARkWB2V4YW1wbGUxFzAVBgoJkiaJk/IsZAEZFgdjb250b3NvMR0wGwYDVQQDExRDb250b3NvIElzc3VpbmcgQ0EgMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAM3u9xyQSNbZFW7crJ+U48Kgzo3wq9OWa5woyT25TaA67S6fAmAmKuP2Jn8NPiy+35eE6DAfsSB3QsjerHUpKrOyS17C+IvUdOwPgaobe7DAiqApMzNoershS8AwAZ4MhGZIoK9+DMl+7QPoQLlAiKPnD/Un7aLS+fg1iMsTnT1/+tZ3XquA957SQz1CJenI2p36L318TQcDlYm0N9rnVVLZNIDTkQptm/R++8lTF2YrMeyEQxRQC2ky4pZEvkkg/mHwp8iEjYiL1q/l3byJgQo6AOKZEZ5BFczMb5UYukckqXUFmVefnbA6OlCwx+JTsnPQKRrBy9ImlKL7CKIANxkCAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0OBBYEFOkkrNDa9Zy6xqWrH/9cS7fbojREMA0GCSqGSIb3DQEBCwUAA4ICAQCTwax9obfAuvJPzuCDCUeQG3xg0otXFquoYVMIjteus3z8LYry/q7QBtOYBgo9kyhZXV1/zmSWqa72Cx2tX7jIn2slZJ4fuRNQY7NeVVzGSsBOE/EGtC1qRNTGuQFY/IWNZueM3YFY0J13SfQDf58uK+jnHILwWqMoxx5jFJOQPQ1Vo9Yk5IgznUjb+0ft3LldkaWvD5/yRaC4ZWxNzcGf4sVe9PatezjtoREleJ6CWEO7jq+SvZsjfK8w15rEQa5TCK0qZgs0F95fWcHfJ1eQIktoJVxKktbiZhjRtieq3eQ4l6iatIrbqbvSgstWMudabspETxMb/zXPeKvL/z6Cw/rllppndvGo3Brdumfo4IxBr4WjNiZ/1GdI95REoEBSpmBpB6gfUwbCHKOOzHO9I6nIlob69Xd404PW1HRj7HwbFBVfIhaGhewNq9O30PWQ4zNk7hJ/okzA7jyGZpKnlluvMtEFSzZzgQM6T5A0eGl0uM2rjRC2POfh8hwUqO9hHIRRYm49AxMKmdXRPfOctLfW9HaJjJ5wwo4TEF47du0xKyGb6u7PEo194dVhCVqAWlT9R5lJp0fia6hdeKVB4c9p/BQF5y93BiW73EwMJnGZ/8XteHqNBW9ns90GVCasJehAM41+mMQApYCRBP8kLfKgYsNjcoJXfLgSVQRQ0A==",
+      "editFlags": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\CertSvc\\Configuration\\Contoso Issuing CA 2\\PolicyModules\\CertificateAuthority_MicrosoftDefault.Policy\\EditFlags:\n\n  EditFlags REG_DWORD = 11014e (1114446)\n    EDITF_REQUESTEXTENSIONLIST -- 2\n    EDITF_DISABLEEXTENSIONLIST -- 4\n    EDITF_ADDOLDKEYUSAGE -- 8\n    EDITF_BASICCONSTRAINTSCRITICAL -- 40 (64)\n    EDITF_ENABLEAKIKEYID -- 100 (256)\n    EDITF_ENABLEDEFAULTSMIME -- 10000 (65536)\n    EDITF_ENABLECHASECLIENTDC -- 100000 (1048576)\nCertUtil: -getreg command completed successfully.\n",
+      "auditFilter": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\CertSvc\\Configuration\\Contoso Issuing CA 2\\AuditFilter:\n\n  AuditFilter REG_DWORD = 7f (127)\nCertUtil: -getreg command completed successfully.\n"
+    }
+  ],
+  "templates": [
+    {
+      "cn": "User",
+      "displayName": "User",
+      "msPKI-Cert-Template-OID": "1.3.6.1.4.1.311.21.8.1.1",
+      "msPKI-Template-Schema-Version": 1,
+      "msPKI-Certificate-Name-Flag": -1509949440,
+      "msPKI-Enrollment-Flag": 41,
+      "msPKI-RA-Signature": 0,
+      "pKIExtendedKeyUsage": [
+        "1.3.6.1.4.1.311.10.3.4",
+        "1.3.6.1.5.5.7.3.4",
+        "1.3.6.1.5.5.7.3.2"
+      ],
+      "msPKI-Certificate-Application-Policy": [],
+      "nTSecurityDescriptor": {
+        "Access": [
+          {
+            "IdentityReference": "CONTOSO\\Domain Users",
+            "ActiveDirectoryRights": "ExtendedRight",
+            "AccessControlType": "Allow",
+            "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55"
+          }
+        ]
+      }
+    },
+    {
+      "cn": "Machine",
+      "displayName": "Computer",
+      "msPKI-Cert-Template-OID": "1.3.6.1.4.1.311.21.8.1.2",
+      "msPKI-Template-Schema-Version": 1,
+      "msPKI-Certificate-Name-Flag": 134217728,
+      "msPKI-Enrollment-Flag": 32,
+      "msPKI-RA-Signature": 0,
+      "pKIExtendedKeyUsage": [
+        "1.3.6.1.5.5.7.3.2",
+        "1.3.6.1.5.5.7.3.1"
+      ],
+      "msPKI-Certificate-Application-Policy": [],
+      "nTSecurityDescriptor": {
+        "Access": [
+          {
+            "IdentityReference": "CONTOSO\\Domain Computers",
+            "ActiveDirectoryRights": "ExtendedRight",
+            "AccessControlType": "Allow",
+            "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55"
+          }
+        ]
+      }
+    },
+    {
+      "cn": "WebServer",
+      "displayName": "Web Server",
+      "msPKI-Cert-Template-OID": "1.3.6.1.4.1.311.21.8.1.3",
+      "msPKI-Template-Schema-Version": 1,
+      "msPKI-Certificate-Name-Flag": 1,
+      "msPKI-Enrollment-Flag": 0,
+      "msPKI-RA-Signature": 0,
+      "pKIExtendedKeyUsage": [
+        "1.3.6.1.5.5.7.3.1"
+      ],
+      "msPKI-Certificate-Application-Policy": [],
+      "nTSecurityDescriptor": {
+        "Access": [
+          {
+            "IdentityReference": "CONTOSO\\Domain Admins",
+            "ActiveDirectoryRights": "ExtendedRight",
+            "AccessControlType": "Allow",
+            "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55"
+          },
+          {
+            "IdentityReference": "CONTOSO\\Enterprise Admins",
+            "ActiveDirectoryRights": "ExtendedRight",
+            "AccessControlType": "Allow",
+            "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55"
+          }
+        ]
+      }
+    },
+    {
+      "cn": "KerberosAuthentication",
+      "displayName": "Kerberos Authentication",
+      "msPKI-Cert-Template-OID": "1.3.6.1.4.1.311.21.8.1.4",
+      "msPKI-Template-Schema-Version": 2,
+      "msPKI-Certificate-Name-Flag": 138412032,
+      "msPKI-Enrollment-Flag": 40,
+      "msPKI-RA-Signature": 0,
+      "pKIExtendedKeyUsage": [
+        "1.3.6.1.5.5.7.3.2",
+        "1.3.6.1.5.5.7.3.1",
+        "1.3.6.1.4.1.311.20.2.2",
+        "1.3.6.1.5.2.3.5"
+      ],
+      "msPKI-Certificate-Application-Policy": [
+        "1.3.6.1.5.5.7.3.2",
+        "1.3.6.1.5.5.7.3.1",
+        "1.3.6.1.4.1.311.20.2.2",
+        "1.3.6.1.5.2.3.5"
+      ],
+      "nTSecurityDescriptor": {
+        "Access": [
+          {
+            "IdentityReference": "CONTOSO\\Domain Controllers",
+            "ActiveDirectoryRights": "ExtendedRight",
+            "AccessControlType": "Allow",
+            "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55"
+          },
+          {
+            "IdentityReference": "CONTOSO\\Enterprise Domain Controllers",
+            "ActiveDirectoryRights": "ExtendedRight",
+            "AccessControlType": "Allow",
+            "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55"
+          },
+          {
+            "IdentityReference": "CONTOSO\\Domain Controllers",
+            "ActiveDirectoryRights": "ExtendedRight",
+            "AccessControlType": "Allow",
+            "ObjectType": "a05b8cc2-17bc-4802-a710-e7c15ab866a2"
+          }
+        ]
+      }
+    },
+    {
+      "cn": "DomainController",
+      "displayName": "Domain Controller",
+      "msPKI-Cert-Template-OID": "1.3.6.1.4.1.311.21.8.1.5",
+      "msPKI-Template-Schema-Version": 1,
+      "msPKI-Certificate-Name-Flag": 402653184,
+      "msPKI-Enrollment-Flag": 32,
+      "msPKI-RA-Signature": 0,
+      "pKIExtendedKeyUsage": [
+        "1.3.6.1.5.5.7.3.2",
+        "1.3.6.1.5.5.7.3.1"
+      ],
+      "msPKI-Certificate-Application-Policy": [],
+      "nTSecurityDescriptor": {
+        "Access": [
+          {
+            "IdentityReference": "CONTOSO\\Domain Controllers",
+            "ActiveDirectoryRights": "ExtendedRight",
+            "AccessControlType": "Allow",
+            "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55"
+          },
+          {
+            "IdentityReference": "CONTOSO\\Enterprise Domain Controllers",
+            "ActiveDirectoryRights": "ExtendedRight",
+            "AccessControlType": "Allow",
+            "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55"
+          }
+        ]
+      }
+    },
+    {
+      "cn": "RASAndIASServer",
+      "displayName": "RAS and IAS Server",
+      "msPKI-Cert-Template-OID": "1.3.6.1.4.1.311.21.8.1.6",
+      "msPKI-Template-Schema-Version": 2,
+      "msPKI-Certificate-Name-Flag": 1207959552,
+      "msPKI-Enrollment-Flag": 32,
+      "msPKI-RA-Signature": 0,
+      "pKIExtendedKeyUsage": [
+        "1.3.6.1.5.5.7.3.2",
+        "1.3.6.1.5.5.7.3.1"
+      ],
+      "msPKI-Certificate-Application-Policy": [
+        "1.3.6.1.5.5.7.3.2",
+        "1.3.6.1.5.5.7.3.1"
+      ],
+      "nTSecurityDescriptor": {
+        "Access": [
+          {
+            "IdentityReference": "CONTOSO\\RAS and IAS Servers",
+            "ActiveDirectoryRights": "ExtendedRight",
+            "AccessControlType": "Allow",
+            "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55"
+          },
+          {
+            "IdentityReference": "CONTOSO\\RAS and IAS Servers",
+            "ActiveDirectoryRights": "ExtendedRight",
+            "AccessControlType": "Allow",
+            "ObjectType": "a05b8cc2-17bc-4802-a710-e7c15ab866a2"
+          }
+        ]
+      }
+    },
+    {
+      "cn": "EFS",
+      "displayName": "Basic EFS",
+      "msPKI-Cert-Template-OID": "1.3.6.1.4.1.311.21.8.1.7",
+      "msPKI-Template-Schema-Version": 1,
+      "msPKI-Certificate-Name-Flag": -1509949440,
+      "msPKI-Enrollment-Flag": 41,
+      "msPKI-RA-Signature": 0,
+      "pKIExtendedKeyUsage": [
+        "1.3.6.1.4.1.311.10.3.4"
+      ],
+      "msPKI-Certificate-Application-Policy": [],
+      "nTSecurityDescriptor": {
+        "Access": [
+          {
+            "IdentityReference": "CONTOSO\\Domain Users",
+            "ActiveDirectoryRights": "ExtendedRight",
+            "AccessControlType": "Allow",
+            "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55"
+          }
+        ]
+      }
+    },
+    {
+      "cn": "EFSRecovery",
+      "displayName": "EFS Recovery Agent",
+      "msPKI-Cert-Template-OID": "1.3.6.1.4.1.311.21.8.1.8",
+      "msPKI-Template-Schema-Version": 1,
+      "msPKI-Certificate-Name-Flag": -1509949440,
+      "msPKI-Enrollment-Flag": 0,
+      "msPKI-RA-Signature": 0,
+      "pKIExtendedKeyUsage": [
+        "1.3.6.1.4.1.311.10.3.4.1"
+      ],
+      "msPKI-Certificate-Application-Policy": [],
+      "nTSecurityDescriptor": {
+        "Access": [
+          {
+            "IdentityReference": "CONTOSO\\Domain Admins",
+            "ActiveDirectoryRights": "ExtendedRight",
+            "AccessControlType": "Allow",
+            "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55"
+          }
+        ]
+      }
+    },
+    {
+      "cn": "ExchangeUser",
+      "displayName": "Exchange User",
+      "msPKI-Cert-Template-OID": "1.3.6.1.4.1.311.21.8.1.9",
+      "msPKI-Template-Schema-Version": 1,
+      "msPKI-Certificate-Name-Flag": 1,
+      "msPKI-Enrollment-Flag": 1,
+      "msPKI-RA-Signature": 0,
+      "pKIExtendedKeyUsage": [
+        "1.3.6.1.5.5.7.3.4"
+      ],
+      "msPKI-Certificate-Application-Policy": [],
+      "nTSecurityDescriptor": {
+        "Access": [
+          {
+            "IdentityReference": "CONTOSO\\Domain Users",
+            "ActiveDirectoryRights": "ExtendedRight",
+            "AccessControlType": "Allow",
+            "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55"
+          }
+        ]
+      }
+    },
+    {
+      "cn": "CodeSigning",
+      "displayName": "Code Signing",
+      "msPKI-Cert-Template-OID": "1.3.6.1.4.1.311.21.8.1.10",
+      "msPKI-Template-Schema-Version": 1,
+      "msPKI-Certificate-Name-Flag": -2113929216,
+      "msPKI-Enrollment-Flag": 32,
+      "msPKI-RA-Signature": 0,
+      "pKIExtendedKeyUsage": [
+        "1.3.6.1.5.5.7.3.3"
+      ],
+      "msPKI-Certificate-Application-Policy": [],
+      "nTSecurityDescriptor": {
+        "Access": [
+          {
+            "IdentityReference": "CONTOSO\\Build Signers",
+            "ActiveDirectoryRights": "ExtendedRight",
+            "AccessControlType": "Allow",
+            "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55"
+          }
+        ]
+      }
+    },
+    {
+      "cn": "SubCA",
+      "displayName": "Subordinate Certification Authority",
+      "msPKI-Cert-Template-OID": "1.3.6.1.4.1.311.21.8.1.11",
+      "msPKI-Template-Schema-Version": 1,
+      "msPKI-Certificate-Name-Flag": 1,
+      "msPKI-Enrollment-Flag": 0,
+      "msPKI-RA-Signature": 0,
+      "pKIExtendedKeyUsage": [],
+      "msPKI-Certificate-Application-Policy": [],
+      "nTSecurityDescriptor": {
+        "Access": [
+          {
+            "IdentityReference": "CONTOSO\\Domain Admins",
+            "ActiveDirectoryRights": "ExtendedRight",
+            "AccessControlType": "Allow",
+            "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55"
+          }
+        ]
+      }
+    },
+    {
+      "cn": "ContosoVPNUser",
+      "displayName": "Contoso VPN User",
+      "msPKI-Cert-Template-OID": "1.3.6.1.4.1.311.21.8.1.100",
+      "msPKI-Template-Schema-Version": 2,
+      "msPKI-Certificate-Name-Flag": -2113929216,
+      "msPKI-Enrollment-Flag": 32,
+      "msPKI-RA-Signature": 0,
+      "pKIExtendedKeyUsage": [
+        "1.3.6.1.5.5.7.3.2"
+      ],
+      "msPKI-Certificate-Application-Policy": [
+        "1.3.6.1.5.5.7.3.2"
+      ],
+      "nTSecurityDescriptor": {
+        "Access": [
+          {
+            "IdentityReference": "CONTOSO\\Domain Users",
+            "ActiveDirectoryRights": "ExtendedRight",
+            "AccessControlType": "Allow",
+            "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55"
+          },
+          {
+            "IdentityReference": "CONTOSO\\Domain Users",
+            "ActiveDirectoryRights": "ExtendedRight",
+            "AccessControlType": "Allow",
+            "ObjectType": "a05b8cc2-17bc-4802-a710-e7c15ab866a2"
+          }
+        ]
+      }
+    },
+    {
+      "cn": "WebServerLegacy",
+      "displayName": "Web Server Legacy",
+      "msPKI-Cert-Template-OID": "1.3.6.1.4.1.311.21.8.1.101",
+      "msPKI-Template-Schema-Version": 2,
+      "msPKI-Certificate-Name-Flag": 1,
+      "msPKI-Enrollment-Flag": 0,
+      "msPKI-RA-Signature": 0,
+      "pKIExtendedKeyUsage": [
+        "1.3.6.1.5.5.7.3.1",
+        "1.3.6.1.5.5.7.3.2"
+      ],
+      "msPKI-Certificate-Application-Policy": [
+        "1.3.6.1.5.5.7.3.1",
+        "1.3.6.1.5.5.7.3.2"
+      ],
+      "nTSecurityDescriptor": {
+        "Access": [
+          {
+            "IdentityReference": "CONTOSO\\Domain Users",
+            "ActiveDirectoryRights": "ReadProperty, ExtendedRight",
+            "AccessControlType": "Allow",
+            "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55"
+          }
+        ]
+      }
+    },
+    {
+      "cn": "LegacyAnyPurpose",
+      "displayName": "Legacy Any Purpose",
+      "msPKI-Cert-Template-OID": "1.3.6.1.4.1.311.21.8.1.102",
+      "msPKI-Template-Schema-Version": 2,
+      "msPKI-Certificate-Name-Flag": 0,
+      "msPKI-Enrollment-Flag": 32,
+      "msPKI-RA-Signature": 0,
+      "pKIExtendedKeyUsage": [
+        "2.5.29.37.0"
+      ],
+      "msPKI-Certificate-Application-Policy": [
+        "2.5.29.37.0"
+      ],
+      "nTSecurityDescriptor": {
+        "Access": [
+          {
+            "IdentityReference": "CONTOSO\\Domain Computers",
+            "ActiveDirectoryRights": "ExtendedRight",
+            "AccessControlType": "Allow",
+            "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55"
+          }
+        ]
+      }
+    },
+    {
+      "cn": "ContosoSCEP",
+      "displayName": "Contoso SCEP (NDES)",
+      "msPKI-Cert-Template-OID": "1.3.6.1.4.1.311.21.8.1.103",
+      "msPKI-Template-Schema-Version": 2,
+      "msPKI-Certificate-Name-Flag": 1,
+      "msPKI-Enrollment-Flag": 0,
+      "msPKI-RA-Signature": 0,
+      "pKIExtendedKeyUsage": [
+        "1.3.6.1.5.5.7.3.2"
+      ],
+      "msPKI-Certificate-Application-Policy": [
+        "1.3.6.1.5.5.7.3.2"
+      ],
+      "nTSecurityDescriptor": {
+        "Access": [
+          {
+            "IdentityReference": "CONTOSO\\svc-ndes",
+            "ActiveDirectoryRights": "ExtendedRight",
+            "AccessControlType": "Allow",
+            "ObjectType": "0e10c968-78fb-11d2-90d4-00c04f79dc55"
+          },
+          {
+            "IdentityReference": "CONTOSO\\Authenticated Users",
+            "ActiveDirectoryRights": "GenericWrite",
+            "AccessControlType": "Allow",
+            "ObjectType": "00000000-0000-0000-0000-000000000000"
+          }
+        ]
+      }
+    }
+  ],
+  "cdp": [
+    {
+      "Name": "Contoso Issuing CA 1",
+      "DistinguishedName": "CN=Contoso Issuing CA 1,CN=ca01,CN=CDP,CN=Public Key Services,CN=Services,CN=Configuration,DC=contoso,DC=example"
+    },
+    {
+      "Name": "Contoso Issuing CA 2",
+      "DistinguishedName": "CN=Contoso Issuing CA 2,CN=ca02,CN=CDP,CN=Public Key Services,CN=Services,CN=Configuration,DC=contoso,DC=example"
+    },
+    {
+      "Name": "Contoso Root CA",
+      "DistinguishedName": "CN=Contoso Root CA,CN=root01,CN=CDP,CN=Public Key Services,CN=Services,CN=Configuration,DC=contoso,DC=example"
+    }
+  ],
+  "aia": [
+    {
+      "Name": "Contoso Root CA",
+      "DistinguishedName": "CN=Contoso Root CA,CN=AIA,CN=Public Key Services,CN=Services,CN=Configuration,DC=contoso,DC=example"
+    },
+    {
+      "Name": "Contoso Issuing CA 1",
+      "DistinguishedName": "CN=Contoso Issuing CA 1,CN=AIA,CN=Public Key Services,CN=Services,CN=Configuration,DC=contoso,DC=example"
+    },
+    {
+      "Name": "Contoso Issuing CA 2",
+      "DistinguishedName": "CN=Contoso Issuing CA 2,CN=AIA,CN=Public Key Services,CN=Services,CN=Configuration,DC=contoso,DC=example"
+    }
+  ]
+}

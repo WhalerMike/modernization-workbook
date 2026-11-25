@@ -25,6 +25,7 @@ One run produces a one-page summary (`Summary/StartKitSummary.md`) with these co
 | DNS zones, stale records, DC locator records | `Get-FMPDNSAssessment` | DNS infrastructure (stream 8) |
 | DHCP servers and scopes, reservations, failover (Tier B) | `Get-FMPDHCPInventory` | DHCP (stream 9) |
 | Enterprise CAs, certificate templates, ESC1, ESC2, ESC4 and ESC6 | `Get-FMPPKIAssessment` | PKI and AD CS (stream 10) |
+| Each template's starting class (MIGRATE, BRIDGE, RETAIN, RETIRE) from Book 07, Appendix B, for its owner to confirm | `Get-FMPTemplateClassification` | Book 07, Chapter 02 |
 | Schema version and extensions | `Get-FMPSchemaExtensions` | Schema extensions (stream 1) |
 | **SQL Server instances and hosts**, by version, edition, domain and authentication mode | `Invoke-FMPSqlEstateDiscovery` | Book 06, Runbooks R02 and R03 |
 | **NPS servers, RADIUS clients, network and connection request policies**, the AD groups and certificates each policy authorizes against, and the KB5040268 hardening state | `Invoke-FMPNpsInventory` | RADIUS and NPS inventory (Book 00 Chapter 08, M-009; Book 02 Chapter 04, DM_030; Book 09 Chapter 07) |
@@ -126,11 +127,13 @@ Nothing in the kit is tied to a forest name. `contoso.example`, `child.contoso.e
 | Survey against your own key format, code lists and UPN suffixes | `-KeyPattern '^MP\d{7}$' -CodeListPath D:\Inputs\code-lists.csv -UpnSuffix agency.example` |
 | Build waves from your own plan, with devices and servers | `-WavePlan D:\Inputs\wave-plan.csv -AssetOwnership D:\Inputs\asset-ownership.csv`; or `Get-FMPWaveList -GroupBy City` for candidate waves by location |
 | Read a particular Global Catalog | `Get-FMPAttributeSurvey -OutputPath <folder> -GlobalCatalog gc01.corp.agency.example` |
+| Review AD CS from a snapshot, with no directory or CA | `Get-FMPPKIAssessment -OutputPath <folder> -PkiDataPath <snapshot.json>`, with a snapshot in the shape of `tests/fixtures/pki-contoso.json`: the Public Key Services objects and each CA's `certutil -getreg` output for `policy\EditFlags` and `CA\AuditFilter`. The [PKI and Certificates learning path](../../docs/training/pki/index.md)'s Lab 1 runs it on that fictional fixture |
+| Start each template's classification | `Get-FMPTemplateClassification -OutputPath <folder> -Domain <forest root>` after the PKI assessment; it reads `TemplateMatrix.csv` beside the module, Appendix B's rows for the AD CS default templates, and writes `PKI\TemplateClassification.csv` |
 | Recognize your own schema extensions | Add a line to `$script:FMPKnownExtensions` in `FMPADAssessment.psm1` |
 | Count a different set of privileged groups | Edit `$script:FMPPrivilegedGroups` in `FMPADAssessment.psm1` |
 | Run the tests against your own data shapes | Copy `tests/fixtures/ad-forest.json`, replace the objects with sanitized exports of your own (`Get-ADUser ... \| ConvertTo-Json`), keep the same keys, and adjust the expected counts in `tests/powershell/ADAssessment.Tests.ps1`. Never commit real exports. |
 
-The output folders are named after the real domains (`<run>\corp.agency.example\Objects\...`), so a second run compares file by file with `Compare-FMPAssessments`.
+The output folders are named after the real domains (`<run>\corp.agency.example\Objects\...`), so a second run compares file by file with `Compare-FMPAssessments`. Objects compare by key, and AD CS findings by finding and template, so a remediation shows as the findings it removed.
 
 ## Prerequisites
 
