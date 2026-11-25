@@ -46,7 +46,7 @@ From the `msa-request-pack` folder, in PowerShell 7.1 or later:
 ./Test-MsaRequest.ps1 -Path examples.csv -OutputPath out/check -AsOf 2026-11-25
 ```
 
-It prints one line per request (`Ready` `True` when nothing blocks it) and writes `out/check/<RequestId>/` with `request.json`, `ad-description.txt` and `entra-custom-security-attributes.json`, and `out/check/findings.json`. It exits 1 when any request has a finding. Copy `request_template.csv`, fill in your rows, and run it on your copy with `-StandardPath` pointing at your copy of `standard.json`.
+It prints one line per request (`Ready` `True` when nothing blocks it) and writes `out/check/<RequestId>/` with `request.json`, `ad-description.txt`, `entra-tags.json` and `entra-custom-security-attributes.json`, and `out/check/findings.json`. It exits 1 when any request has a finding. Copy `request_template.csv`, fill in your rows, and run it on your copy with `-StandardPath` pointing at your copy of `standard.json`.
 
 | Check | What it finds |
 |---|---|
@@ -60,7 +60,7 @@ It prints one line per request (`Ready` `True` when nothing blocks it) and write
 
 ## The tags
 
-Every account carries the same seven tags (WD-175): `SystemId`, `Owner1`, `Owner2`, `Sponsor`, `Environment` (`prod`, `test`, `dev`), `Tier` (`R1`, `R2`, `R3`) and `EntraTarget`. In AD they're `key=value` pairs in the account's description, with the request and change numbers. In Entra they're custom security attributes in the `NonPersonIdentity` attribute set, on the service principal or managed identity the workload moves to. SailPoint is the source for owners; Chapter 12 flags an AD tag that disagrees (NPI-STD-30).
+Every account carries the same seven tags (WD-175): `SystemId`, `Owner1`, `Owner2`, `Sponsor`, `Environment` (`prod`, `test`, `dev`), `Tier` (`R1`, `R2`, `R3`) and `EntraTarget`. In AD they're `key=value` pairs in the account's description, with the request and change numbers. In Entra, until a tenant check confirms custom security attributes in GCC (WD-176), they're the service principal's `tags` (`npi:<Key>=<Value>`) and `notes`, or a managed identity's Azure resource tags (`entra-tags.json`); once confirmed, custom security attributes in the `NonPersonIdentity` attribute set (`entra-custom-security-attributes.json`). SailPoint is the source for owners; Chapter 12 flags an AD tag that disagrees (NPI-STD-30).
 
 ## Where to store the filled requests
 

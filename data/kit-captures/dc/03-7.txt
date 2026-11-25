@@ -1,10 +1,21 @@
-PS> ./Invoke-DcEvidence.ps1 -EvidencePath out/evidence -RunPath out/reach -AsOf 2026-11-16T07:32:00Z
-Record 1: reachability Fail (REACH, EVIDENCE)
-Controls: AU-9, CA-7, SI-4
-KSIs:     KSI-MLA-EVC, KSI-MLA-LET, KSI-MLA-OSM
-Written to out/evidence: records/, runs/, records.csv, SHA256SUMS
-PS> ./Invoke-DcEvidence.ps1 -EvidencePath out/evidence -RunPath out/probe -AsOf 2026-11-16T07:33:00Z
-Record 2: probe Fail (PROBE, EVIDENCE)
-Controls: AU-9, CA-7, SI-4
-KSIs:     KSI-MLA-EVC, KSI-MLA-LET, KSI-MLA-OSM
-Written to out/evidence: records/, runs/, records.csv, SHA256SUMS
+PS> ./deploy/Test-DcReachability.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/reach-day1.json -OutputPath "$Run/reach" -AsOf 2026-11-16T07:30:00Z
+Table                     State      AgeMinutes LimitMinutes Records Detail
+-----                     -----      ---------- ------------ ------- ------
+AADRiskyUsers             Delivering        875         1440      14
+AuditLogs                 Late              860           60   18233
+AzureActivity             Delivering         40         1440    5120
+CommonSecurityLog         Delivering          4           60  940211
+DailySyncProbe_CL         Late             1500         1440       2
+DcReplicationProbe_CL     Delivering         90         1440      12
+Event                     Delivering         10         1440    2210
+Heartbeat                 Delivering          1           60   21600
+IntuneDeviceComplianceOrg Delivering       1790         2880    3610
+SecurityAlert             Delivering        138         1440      37
+SecurityEvent             Delivering          2           60  388410
+SecurityIncident          Delivering        136         1440      52
+SentinelHealth            Missing                                  0 table not found
+SigninLogs                Late              860           60   64120
+
+
+Written to C:/FMWLabs/results/daily-checks-03/lab1/<run>/reach: reach.json, manifest.json
+(exit code 1)

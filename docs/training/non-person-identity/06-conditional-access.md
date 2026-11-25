@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Books 02, 04"
 series-order: 6
 review-status: approved
-reviewed-sha256: 43c6383f84d2976d8e5043280cc4a89b2a84444068e8501ff1d381221452849e
+reviewed-sha256: f94c898b3c0d7520e43b56ec9a6021b4fa34d53f0ce0333f31dfc3d9a83f0e63
 last-reviewed: 2026-11-25
 ---
 # Module 6: Conditional Access for workload identities {.unnumbered}
@@ -54,7 +54,7 @@ After this module, you'll be able to:
 
 ## Unit 1: What the gate asks for (7 minutes)
 
-Read the guide's [Step 4](../../books/guides/non-person-identity-implementation.md#step-4-cut-privilege), sub-steps 4d (custom security attributes and app filters) and 4e (Conditional Access for workload identities, and its limits). Then read the guide's [licenses](../../books/guides/non-person-identity-implementation.md#licenses) table: Conditional Access for workload identities needs Workload ID Premium.
+Read the guide's [Step 4](../../books/guides/non-person-identity-implementation.md#step-4-cut-privilege), sub-steps 4d (custom security attributes and app filters, which waits for a tenant check in GCC, [WD-176](../../about/decision-register.md#wd-176)) and 4e (Conditional Access for workload identities, and its limits). Then read the guide's [licenses](../../books/guides/non-person-identity-implementation.md#licenses) table: Conditional Access for workload identities needs Workload ID Premium.
 
 ## Unit 2: The limits and the scope (10 minutes)
 

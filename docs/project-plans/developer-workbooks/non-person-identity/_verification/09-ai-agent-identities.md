@@ -91,3 +91,9 @@ The kit now prints the plan's NP IDs, Chapter 06 follows Chapter 03's end-date a
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | K1 | The kit prints `D-NP6` for the capability decision, and the plan's SHA-256 is now `5a800246…`, because the capability file it hashes names `D-NP6` | Lab 1, steps 4, 7 and 9 | updated by running the commands as written | captures 09-5, 09-8 and 09-10, November 9, 2026 |
+
+## Revision 2026-11-25 — custom security attributes in GCC (WD-176)
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| CSA-1 | NP6.6 and the dangers table: in GCC, approved agents are excluded by name until the tenant check; not yet in the kit, which builds and checks the attribute form | see the change | changed *(design guidance)* | WD-176; Mike, November 25, 2026 |
