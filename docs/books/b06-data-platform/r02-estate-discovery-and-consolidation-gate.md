@@ -149,6 +149,37 @@ Run every depth under one dedicated discovery identity per forest, with no other
 
 These rows support the controls named; they don't by themselves satisfy them. The organization still sets the controls' parameters, policy and procedures, and the assessor decides whether each is satisfied.
 
+### 1d — Reconcile the forest with Azure Arc {#reconcile-the-forest-with-azure-arc}
+
+Depth D is optional for the inventory, but once servers are onboarded, the program needs the opposite list: the SQL Servers in the forest that aren't in Arc yet. That list comes from comparing the Depth A inventory with Arc, host by host, and it needs no rights beyond read access to Active Directory and Azure Reader. Arc registers each machine as a resource and each SQL Server instance on it as another.[^r02-arc-connect] Each machine reports its DNS name, its computer name and its Windows domain.[^r02-arc-machine] So the two sides meet on the host's fully qualified name.
+
+The directory half runs in Windows PowerShell 5.1 on a domain-joined host, as the Start Kit callout above does. Its `SqlEstate.json` now carries a `Hosts` list: each host's computer object, its operating system, and a `DirectoryState` of `Active`, `Stale`, `NoComputerObject` or `Ambiguous`. A host is stale when its computer object is disabled, or when both `lastLogonTimestamp` and the machine password are more than 90 days old (`-StaleThresholdDays`).
+
+```powershell
+# Windows PowerShell 5.1, on a domain-joined host, as the read-only discovery account.
+Import-Module .\powershell\FMPSqlEstate
+Invoke-FMPSqlEstateDiscovery -OutputPath D:\Assessment\sql -ProbeNetwork
+```
+
+The Arc half runs in PowerShell 7 or Python, with the Microsoft Automation kit's `sql-inventory` check and the Reader role. The kit's [Module 4](../../training/ms-automation-arc.md#sql-not-in-arc) explains the matching and the categories:
+
+```powershell
+# PowerShell 7, in examples/ms-automation, signed in with Connect-FmwAzure as an identity that holds Reader.
+Import-Module ./powershell/FmwArm.psm1
+$r = Invoke-FmwArcTask -Task sql-inventory -Subscription <subscription-id> -EstatePath D:\Assessment\sql\SQL\SqlEstate.json
+$r.result.forestGap.hosts
+$r.result.forestGap.gapList | Export-Csv D:\Assessment\sql\sql-not-in-arc.csv -NoTypeInformation
+```
+
+The result sorts every host into one category: `notInArc` (the gap list), `arcWithoutSqlResource`, `inArc`, `arcNotInDirectory` and `excludedStale`. A stale, disabled or missing computer object isn't counted as a gap: retire the object or fix the record instead.
+
+The comparison is only as complete as its directory half. An instance whose service account couldn't register an SPN has none: Kerberos isn't used, and its connections fall back to NTLM.[^r02-sql-spn] A server outside the domain has no directory object at all. Two things narrow that blind spot. The SQL Browser probe and the 1b sweep (`Find-DbaInstance`, Azure Migrate) find instances that registered no SPN. And Arc reports, under `arcNotInDirectory`, the onboarded SQL Servers the directory didn't show. An `inForest` server there is domain-joined but was missed; check its service account's SPN. A `notInForest` server is a workgroup server or belongs to another forest.
+
+| Requirement | What this step does | Evidence the ISSO keeps |
+|---|---|---|
+| NIST SP 800-53 CM-8 and CM-8(1) | Compares two independent inventories of the same estate and lists every SQL Server host one of them lacks, rerun as servers are onboarded or retired | `SqlEstate.json`, the `sql-inventory` result and `sql-not-in-arc.csv` from each run |
+| FedRAMP KSI-PIY-GIV, Generating Inventories (a provider indicator; the same principle) | Generates the inventory from authoritative sources, the directory and Azure Resource Manager, not from a spreadsheet[^r02-ksi-piy] | The same files, with their run dates |
+
 ## Step 2 — Apply the three rationalization lenses (read-only)
 
 An inventory establishes what exists; rationalization establishes what each item is worth keeping. Apply three lenses to every instance and database, and combine them. No single lens decides.
@@ -267,3 +298,11 @@ Every script and query in this runbook reads; none changes a security posture. `
 [^r02-scm-rights]: Microsoft Learn, "Service security and access rights," default rights for the Service Control Manager and for a service object, <https://learn.microsoft.com/windows/win32/services/service-security-and-access-rights> (accessed Nov 13, 2026).
 
 [^r02-jea]: Microsoft Learn, "Overview of Just Enough Administration (JEA)," <https://learn.microsoft.com/powershell/scripting/security/remoting/jea/overview> (accessed Nov 13, 2026).
+
+[^r02-arc-connect]: Microsoft Learn, "Connect your SQL Server to Azure Arc," <https://learn.microsoft.com/sql/sql-server/azure-arc/connect> (accessed Nov 25, 2026). The Connected Machine agent registers the server as a Server - Azure Arc resource, and the Azure extension for SQL Server connects its SQL Server instances as SQL Server - Azure Arc resources.
+
+[^r02-arc-machine]: Microsoft Learn, "Machines - Get," Microsoft.HybridCompute REST API 2026-09-01, <https://learn.microsoft.com/rest/api/hybridcompute/machines/get> (accessed Nov 25, 2026). `properties.dnsFqdn`, `properties.machineFqdn`, `properties.domainName` and `properties.osProfile.computerName`.
+
+[^r02-sql-spn]: Microsoft Learn, "Register a Service Principal Name for Kerberos connections," <https://learn.microsoft.com/sql/database-engine/configure-windows/register-a-service-principal-name-for-kerberos-connections> (accessed Nov 25, 2026). Automatic registration works under a built-in account, a virtual account, a managed service account or an account with permission to register an SPN; otherwise the SPN isn't registered, Kerberos isn't used, and authentication uses NTLM.
+
+[^r02-ksi-piy]: FedRAMP, "Policy and Inventory," Key Security Indicators, *Consolidated Rules for 2026* (KSI-PIY-GIV), <https://fedramp.gov/2026/providers/20x/key-security-indicators/policy-and-inventory/> (accessed Nov 25, 2026). KSIs bind cloud providers, not the agency's own system.

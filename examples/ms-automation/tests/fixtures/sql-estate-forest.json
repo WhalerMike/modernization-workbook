@@ -1,0 +1,141 @@
+{
+  "_comment": "A fictional forest's SqlEstate.json, as the Start Kit's Invoke-FMPSqlEstateDiscovery writes it, cut to the fields sql-inventory --estate reads: Metadata.Domains, InstanceAudits (ServerName, InstanceName) and Hosts (each host's computer object and DirectoryState). rpt01 is a short name, as an MSSQLSvc SPN can carry; old01 is stale.",
+  "Metadata": {
+    "Schema": "fmp-start-kit/sql-estate/1",
+    "GeneratedUtc": "2026-11-25T00:00:00.0000000Z",
+    "Domains": [
+      "contoso.example",
+      "child.contoso.example"
+    ],
+    "StaleThresholdDays": 90
+  },
+  "InstanceAudits": [
+    {
+      "ServerName": "sql01.contoso.example",
+      "InstanceName": "MSSQLSERVER",
+      "Domain": "contoso.example"
+    },
+    {
+      "ServerName": "sql02.contoso.example",
+      "InstanceName": "MSSQLSERVER",
+      "Domain": "contoso.example"
+    },
+    {
+      "ServerName": "sql02.contoso.example",
+      "InstanceName": "REPORTS",
+      "Domain": "contoso.example"
+    },
+    {
+      "ServerName": "sql03.contoso.example",
+      "InstanceName": "MSSQLSERVER",
+      "Domain": "contoso.example"
+    },
+    {
+      "ServerName": "csql01.child.contoso.example",
+      "InstanceName": "SALES",
+      "Domain": "child.contoso.example"
+    },
+    {
+      "ServerName": "app01.contoso.example",
+      "InstanceName": "SQLEXPRESS",
+      "Domain": "contoso.example"
+    },
+    {
+      "ServerName": "rpt01",
+      "InstanceName": "MSSQLSERVER",
+      "Domain": "Unknown"
+    },
+    {
+      "ServerName": "old01.contoso.example",
+      "InstanceName": "MSSQLSERVER",
+      "Domain": "contoso.example"
+    }
+  ],
+  "CandidateHosts": [],
+  "Hosts": [
+    {
+      "Host": "sql01.contoso.example",
+      "DNSHostName": "sql01.contoso.example",
+      "ComputerName": "SQL01",
+      "Domain": "contoso.example",
+      "OperatingSystem": "Windows Server 2022 Standard",
+      "Enabled": true,
+      "LastLogonDate": "2026-10-25T08:00:00.0000000",
+      "PasswordLastSet": "2026-10-01T00:00:00.0000000",
+      "DirectoryState": "Active",
+      "StateReason": ""
+    },
+    {
+      "Host": "sql02.contoso.example",
+      "DNSHostName": "sql02.contoso.example",
+      "ComputerName": "SQL02",
+      "Domain": "contoso.example",
+      "OperatingSystem": "Windows Server 2019 Standard",
+      "Enabled": true,
+      "LastLogonDate": "2026-10-25T08:00:00.0000000",
+      "PasswordLastSet": "2026-10-01T00:00:00.0000000",
+      "DirectoryState": "Active",
+      "StateReason": ""
+    },
+    {
+      "Host": "sql03.contoso.example",
+      "DNSHostName": "sql03.contoso.example",
+      "ComputerName": "SQL03",
+      "Domain": "contoso.example",
+      "OperatingSystem": "Windows Server 2019 Standard",
+      "Enabled": true,
+      "LastLogonDate": "2026-10-25T08:00:00.0000000",
+      "PasswordLastSet": "2026-10-01T00:00:00.0000000",
+      "DirectoryState": "Active",
+      "StateReason": ""
+    },
+    {
+      "Host": "csql01.child.contoso.example",
+      "DNSHostName": "csql01.child.contoso.example",
+      "ComputerName": "CSQL01",
+      "Domain": "child.contoso.example",
+      "OperatingSystem": "Windows Server 2022 Standard",
+      "Enabled": true,
+      "LastLogonDate": "2026-10-25T08:00:00.0000000",
+      "PasswordLastSet": "2026-10-01T00:00:00.0000000",
+      "DirectoryState": "Active",
+      "StateReason": ""
+    },
+    {
+      "Host": "app01.contoso.example",
+      "DNSHostName": "app01.contoso.example",
+      "ComputerName": "APP01",
+      "Domain": "contoso.example",
+      "OperatingSystem": "Windows Server 2022 Standard",
+      "Enabled": true,
+      "LastLogonDate": "2026-10-25T08:00:00.0000000",
+      "PasswordLastSet": "2026-10-01T00:00:00.0000000",
+      "DirectoryState": "Active",
+      "StateReason": ""
+    },
+    {
+      "Host": "rpt01",
+      "DNSHostName": "rpt01.contoso.example",
+      "ComputerName": "RPT01",
+      "Domain": "contoso.example",
+      "OperatingSystem": "Windows Server 2022 Standard",
+      "Enabled": true,
+      "LastLogonDate": "2026-10-25T08:00:00.0000000",
+      "PasswordLastSet": "2026-10-01T00:00:00.0000000",
+      "DirectoryState": "Active",
+      "StateReason": ""
+    },
+    {
+      "Host": "old01.contoso.example",
+      "DNSHostName": "old01.contoso.example",
+      "ComputerName": "OLD01",
+      "Domain": "contoso.example",
+      "OperatingSystem": "Windows Server 2012 R2 Standard",
+      "Enabled": true,
+      "LastLogonDate": "2025-01-10T08:00:00.0000000",
+      "PasswordLastSet": "2025-01-01T00:00:00.0000000",
+      "DirectoryState": "Stale",
+      "StateReason": "No logon or machine password change in 90 days"
+    }
+  ]
+}

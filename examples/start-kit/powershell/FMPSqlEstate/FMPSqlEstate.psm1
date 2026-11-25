@@ -367,6 +367,102 @@ function Get-FMPSqlDirectoryCandidate {
     }
 }
 
+function Resolve-FMPSqlHost {
+    <#
+    .SYNOPSIS
+        Matches each SQL Server host name to its computer object and says whether the object is stale.
+    .DESCRIPTION
+        Pure: takes the host names the signals found and computer objects already read (each with
+        Domain, Name, DNSHostName, OperatingSystem, Enabled, LastLogonDate, PasswordLastSet). A fully
+        qualified name matches DNSHostName, case-insensitively; a short name, as an MSSQLSvc SPN can
+        carry, matches Name or the first label of DNSHostName, and is ambiguous when several domains
+        hold it. Stale uses the same rule as Get-FMPComputerInventory: both lastLogonTimestamp
+        (LastLogonDate) and the machine password are older than -StaleThresholdDays, or the object is
+        disabled. A host with no computer object (an orphaned SPN, a DNS alias, or a host outside the
+        forest) is reported, not dropped.
+    .EXAMPLE
+        Resolve-FMPSqlHost -HostName 'sql01.contoso.example', 'old01' -Computers $computers -AsOf (Get-Date)
+    #>
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][AllowEmptyCollection()][string[]]$HostName,
+        [object[]]$Computers = @(),
+        [int]$StaleThresholdDays = 90,
+        [datetime]$AsOf = (Get-Date)
+    )
+    $staleDate = $AsOf.AddDays(-$StaleThresholdDays)
+    foreach ($h in @($HostName | Where-Object { $_ } | ForEach-Object { "$_".ToLowerInvariant() } | Sort-Object -Unique)) {
+        $short = $h.Split('.')[0]
+        # @() around the whole if: an if statement unrolls a one-item array, and Windows PowerShell
+        # 5.1 can't index the single object that's left.
+        $found = @(if ($h.Contains('.')) {
+                $Computers | Where-Object { "$($_.DNSHostName)".ToLowerInvariant() -eq $h }
+            } else {
+                $Computers | Where-Object { "$($_.Name)".ToLowerInvariant() -eq $short -or "$($_.DNSHostName)".Split('.')[0].ToLowerInvariant() -eq $short }
+            })
+        $c = if ($found.Count -eq 1) { $found[0] } else { $null }
+        $state = 'Active'; $reason = ''
+        if ($found.Count -eq 0) { $state = 'NoComputerObject'; $reason = 'No computer object: an orphaned SPN, a DNS alias, or a host outside the domains read' }
+        elseif ($found.Count -gt 1) { $state = 'Ambiguous'; $reason = "Short name matches $($found.Count) computer objects" }
+        elseif ($c.Enabled -eq $false) { $state = 'Stale'; $reason = 'Computer object disabled' }
+        else {
+            $logon = if ($c.LastLogonDate) { [datetime]$c.LastLogonDate } else { $null }
+            $pwdSet = if ($c.PasswordLastSet) { [datetime]$c.PasswordLastSet } else { $null }
+            if (((-not $logon) -or $logon -lt $staleDate) -and ((-not $pwdSet) -or $pwdSet -lt $staleDate)) {
+                $state = 'Stale'; $reason = "No logon or machine password change in $StaleThresholdDays days"
+            }
+        }
+        [pscustomobject][ordered]@{
+            Host             = $h
+            DNSHostName      = if ($c) { "$($c.DNSHostName)".ToLowerInvariant() } else { $null }
+            ComputerName     = if ($c) { "$($c.Name)" } else { $null }
+            Domain           = if ($c) { $c.Domain } elseif ($h.Contains('.')) { $h.Substring($h.IndexOf('.') + 1) } else { $null }
+            OperatingSystem  = if ($c) { $c.OperatingSystem } else { $null }
+            Enabled          = if ($c) { $c.Enabled } else { $null }
+            LastLogonDate    = if ($c -and $c.LastLogonDate) { ([datetime]$c.LastLogonDate).ToString('o') } else { $null }
+            PasswordLastSet  = if ($c -and $c.PasswordLastSet) { ([datetime]$c.PasswordLastSet).ToString('o') } else { $null }
+            DirectoryState   = $state
+            StateReason      = $reason
+        }
+    }
+}
+
+function Get-FMPSqlHostComputer {
+    <#
+    .SYNOPSIS
+        Reads the computer object of every SQL Server host the signals found, in every domain of the forest.
+    .DESCRIPTION
+        Default read rights: dNSHostName, operatingSystem, lastLogonTimestamp, pwdLastSet and
+        userAccountControl are readable by authenticated users. Queries each domain in batches of
+        host names, then matches with Resolve-FMPSqlHost.
+    .EXAMPLE
+        Get-FMPSqlHostComputer -HostName 'sql01.contoso.example' -Domain contoso.example, child.contoso.example
+    #>
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][AllowEmptyCollection()][string[]]$HostName,
+        [string[]]$Domain,
+        [int]$StaleThresholdDays = 90,
+        [datetime]$AsOf = (Get-Date)
+    )
+    Assert-FMPCommand -Name 'Get-ADComputer' -Module 'ActiveDirectory'
+    $names = @($HostName | Where-Object { $_ } | ForEach-Object { "$_".ToLowerInvariant() } | Sort-Object -Unique)
+    $computers = @()
+    foreach ($d in (Get-FMPForestDomainList -Domain $Domain)) {
+        for ($i = 0; $i -lt $names.Count; $i += 50) {
+            $batch = @($names[$i..([math]::Min($i + 49, $names.Count - 1))])
+            $terms = foreach ($n in $batch) { $v = $n -replace '[\*\(\)\\]', ''; if ($v.Contains('.')) { "(dNSHostName=$v)" } else { "(name=$v)" } }
+            foreach ($c in @(Get-ADComputer -LDAPFilter "(|$($terms -join ''))" -Server $d -ErrorAction Stop `
+                        -Properties DNSHostName, OperatingSystem, Enabled, LastLogonDate, PasswordLastSet)) {
+                $computers += [pscustomobject]@{ Domain = $d; Name = $c.Name; DNSHostName = $c.DNSHostName; OperatingSystem = $c.OperatingSystem
+                    Enabled = $c.Enabled; LastLogonDate = $c.LastLogonDate; PasswordLastSet = $c.PasswordLastSet }
+            }
+        }
+    }
+    $unique = @($computers | Sort-Object Domain, DNSHostName, Name -Unique)
+    Resolve-FMPSqlHost -HostName $names -Computers $unique -StaleThresholdDays $StaleThresholdDays -AsOf $AsOf
+}
+
 function Get-FMPServerComputer {
     # Every enabled Windows Server computer object: the sweep list for -ProbeAllServers,
     # the same population as Find-DbaInstance -DiscoveryType DomainServer.
@@ -782,7 +878,8 @@ function Get-FMPSqlEstateSummary {
     param(
         [Parameter(Mandatory)][AllowEmptyCollection()][object[]]$Instances,
         [object[]]$CandidateHosts = @(),
-        [object[]]$ServiceAccounts = @()
+        [object[]]$ServiceAccounts = @(),
+        [object[]]$Hosts = @()
     )
     [ordered]@{
         InstanceCount                 = @($Instances).Count
@@ -800,6 +897,7 @@ function Get-FMPSqlEstateSummary {
         }
         CandidateHostsWithoutInstance = @($CandidateHosts).Count
         SqlServiceAccounts            = @($ServiceAccounts).Count
+        ByDirectoryState              = Get-FMPCountTable -Rows $Hosts -Property DirectoryState
     }
 }
 
@@ -812,7 +910,10 @@ function Invoke-FMPSqlEstateDiscovery {
         found plus -TargetServers (and every enabled Windows Server with -ProbeAllServers),
         then, with -QueryInstances, the read-only T-SQL pass. Writes, under <OutputPath>\SQL:
           SqlEstate.csv            one row per instance, with SourcesAgree and SourceNotes
-          SqlEstate.json           { Metadata, Summary, InstanceAudits[], CandidateHosts[] }
+          SqlEstate.json           { Metadata, Summary, InstanceAudits[], CandidateHosts[], Hosts[] }
+          SqlHosts.csv             each host's computer object: OS, enabled, last logon, DirectoryState
+                                   (Active, Stale, NoComputerObject, Ambiguous); the input the
+                                   ms-automation kit's sql-inventory --estate reconciles against Azure Arc
           SqlEstateSummary.json    the counts
           SqlSignals.json          what each signal returned, unfused
           SqlServiceAccounts.csv   SQL-named service accounts from the directory
@@ -833,6 +934,7 @@ function Invoke-FMPSqlEstateDiscovery {
         [switch]$TrustServerCertificate,
         [string]$NameHint = 'sql',
         [int]$ZombieThresholdDays = 400,
+        [int]$StaleThresholdDays = 90,
         [datetime]$AsOf = (Get-Date)
     )
     $root = Resolve-FMPOutputRoot -OutputPath $OutputPath
@@ -864,7 +966,8 @@ function Invoke-FMPSqlEstateDiscovery {
     }
     $merged = Merge-FMPSqlEstate -SpnRecords $spn -DirectoryHosts $dir.Hosts -NetworkRecords $net -InstanceDetails $details `
         -SignalsRun $signals -AsOf $AsOf -ZombieThresholdDays $ZombieThresholdDays
-    $summary = Get-FMPSqlEstateSummary -Instances $merged.Instances -CandidateHosts $merged.CandidateHosts -ServiceAccounts $dir.ServiceAccounts
+    $hosts = @(Get-FMPSqlHostComputer -HostName @($merged.Instances | ForEach-Object { $_.ServerName }) -Domain $domains -StaleThresholdDays $StaleThresholdDays -AsOf $AsOf)
+    $summary = Get-FMPSqlEstateSummary -Instances $merged.Instances -CandidateHosts $merged.CandidateHosts -ServiceAccounts $dir.ServiceAccounts -Hosts $hosts
 
     $flat = foreach ($i in $merged.Instances) {
         $o = [ordered]@{}
@@ -889,15 +992,18 @@ function Invoke-FMPSqlEstateDiscovery {
         Metadata       = [ordered]@{
             Schema = 'fmp-start-kit/sql-estate/1'; KitVersion = $script:FMPKitVersion; GeneratedUtc = $AsOf.ToUniversalTime().ToString('o')
             Domains = @($domains); SignalsRun = @($signals); QueryInstances = [bool]$QueryInstances; ZombieThresholdDays = $ZombieThresholdDays
+            StaleThresholdDays = $StaleThresholdDays
         }
         Summary        = $summary
         InstanceAudits = @($audits)
         CandidateHosts = @($merged.CandidateHosts)
+        Hosts          = @($hosts)
     }
     Write-FMPJson -InputObject $doc -Path (Join-Path $sqlPath 'SqlEstate.json') -Depth 8
     Write-FMPJson -InputObject $summary -Path (Join-Path $sqlPath 'SqlEstateSummary.json') -Depth 5
     Write-FMPJson -InputObject ([ordered]@{ SPN = $spn; Directory = $dir.Hosts; Network = $net }) -Path (Join-Path $sqlPath 'SqlSignals.json') -Depth 5
     Write-FMPCsv -InputObject $dir.ServiceAccounts -Path (Join-Path $sqlPath 'SqlServiceAccounts.csv')
+    Write-FMPCsv -InputObject $hosts -Path (Join-Path $sqlPath 'SqlHosts.csv')
 
     if ($QueryInstances) {
         $ok = @($details | Where-Object { $_.QueryStatus -ne 'Query Failed' })
@@ -906,12 +1012,12 @@ function Invoke-FMPSqlEstateDiscovery {
         Write-FMPCsv -InputObject @($ok | ForEach-Object { $d = $_; $d.LinkedServers | Select-Object @{ N = 'ServerName'; E = { $d.ServerName } }, @{ N = 'InstanceName'; E = { $d.InstanceName } }, * }) -Path (Join-Path $sqlPath 'SqlLinkedServers.csv')
     }
     Write-Verbose "SQL estate: $($summary.InstanceCount) instances on $($summary.HostCount) hosts."
-    [pscustomobject]@{ Instances = $merged.Instances; CandidateHosts = $merged.CandidateHosts; Summary = $summary }
+    [pscustomobject]@{ Instances = $merged.Instances; CandidateHosts = $merged.CandidateHosts; Hosts = $hosts; Summary = $summary }
 }
 
 Export-ModuleMember -Function @(
     'Get-FMPSqlQueryCatalog', 'Test-FMPSelectOnly', 'Get-FMPSqlConnectionString', 'Get-FMPSqlSessionCounter', 'Get-FMPSqlVersionName',
     'ConvertFrom-FMPSqlSpn', 'Get-FMPSqlSpnInstance', 'Get-FMPSqlDirectoryCandidate', 'ConvertFrom-FMPSqlBrowserResponse',
     'Find-FMPSqlBrowserInstance', 'Get-FMPSqlInstanceDetail', 'Get-FMPSqlClassification', 'Merge-FMPSqlEstate',
-    'Get-FMPSqlEstateSummary', 'Invoke-FMPSqlEstateDiscovery'
+    'Get-FMPSqlEstateSummary', 'Invoke-FMPSqlEstateDiscovery', 'Resolve-FMPSqlHost', 'Get-FMPSqlHostComputer'
 )

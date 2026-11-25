@@ -45,7 +45,7 @@ Describe 'Invoke-FMPStartKit.ps1' {
         $manifest.Parameters.QueryInstances | Should -BeTrue
         $manifest.ModuleVersions.FMPNpsInventory | Should -Be '1.0.0'
         $manifest.ModuleVersions.FMPTransactionProfile | Should -Be '1.0.0'
-        $manifest.ModuleVersions.FMPSqlEstate | Should -Be '1.1.0'
+        $manifest.ModuleVersions.FMPSqlEstate | Should -Be '1.2.0'
         $manifest.Parameters.TransactionCatalog | Should -BeTrue
         $manifest.KitVersion | Should -Be '1.5.0'
     }

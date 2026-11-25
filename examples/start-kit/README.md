@@ -160,6 +160,8 @@ The assessment never uses Domain Admins, DnsAdmins, the CA administrator role or
 
 **The discovery identity.** Run the kit as one dedicated account per forest with no other elevated memberships, so its activity can be told apart from normal use. When the kit runs on a schedule, run it as a group managed service account, so no password is stored. Grant the Tier B additions below for the assessment window only, and record each grant and its removal.
 
+**Which SQL Servers aren't in Azure Arc.** `SqlHosts.csv`, and the `Hosts` list in `SqlEstate.json`, give each SQL Server host's computer object: operating system, enabled state, last logon, and a `DirectoryState` of `Active`, `Stale` (disabled, or no logon or machine password change in `-StaleThresholdDays`, default 90), `NoComputerObject` or `Ambiguous`. The Microsoft Automation kit's `sql-inventory --estate SqlEstate.json` compares that file with Azure Arc and lists the hosts that aren't in Arc ([Book 06, Runbook R02](../../docs/books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.md#reconcile-the-forest-with-azure-arc)).
+
 **What the SQL Server pass doesn't read.** The kit reads no host: no WMI, no service control manager, no registry. `SqlServiceAccounts.csv` lists the user and managed service accounts whose name or description contains the name hint, and whether each holds an `MSSQLSvc` SPN. It doesn't say which account each SQL Server service actually runs as. Confirming that needs local administrator on each host, or a narrower delegation, which [Book 06, Runbook R02](../../docs/books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.md#the-rights-each-depth-of-discovery-needs) describes, and it's the program's audit in [Runbook R03](../../docs/books/b06-data-platform/r03-the-authentication-audit.md) that reads it. Grant the T-SQL pass's login the permissions in the table, or the `##MS_DefinitionReader##` role, not `##MS_SecurityDefinitionReader##`, which also shows SQL login password hashes.
 
 | Part | Tier A (default read) | Tier B (narrow addition) |
@@ -235,7 +237,7 @@ Everything goes under `<OutputPath>\<run-id>`, where the run identifier is Book 
 ├── Summary\        StartKitSummary.md, StartKitSummary.json
 ├── Preflight\      ReadAccess.json, DelegationRequest.md
 ├── SQL\            SqlEstate.csv, SqlEstate.json, SqlEstateSummary.json, SqlSignals.json,
-│                   SqlServiceAccounts.csv, SqlUnconstrainedDelegation.csv (written by the
+│                   SqlServiceAccounts.csv, SqlHosts.csv, SqlUnconstrainedDelegation.csv (written by the
 │                   summary), and with -QueryInstances SqlLogins.csv,
 │                   SqlDatabases.csv, SqlLinkedServers.csv
 ├── NPS\            NpsServers.csv, RadiusClients.csv, NetworkPolicies.csv, PolicyGroups.csv,

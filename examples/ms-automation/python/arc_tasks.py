@@ -10,6 +10,7 @@ against the same fixtures and expected results.
     python arc_tasks.py ... arc-private-link
     python arc_tasks.py ... lifecycle --window-days 180
     python arc_tasks.py ... sql-inventory
+    python arc_tasks.py ... sql-inventory --estate SqlEstate.json --gap-csv sql-not-in-arc.csv
     python arc_tasks.py ... policy-summary
     python arc_tasks.py --from-json ../tests/fixtures/arc.json --as-of 2026-11-03T00:00:00Z lifecycle
 
@@ -61,7 +62,9 @@ Q_MACHINES = """resources
     privateLinkScopeResourceId = tostring(properties.privateLinkScopeResourceId),
     esuEligibility = tostring(properties.licenseProfile.esuProfile.esuEligibility),
     esuAssignment = tostring(properties.licenseProfile.esuProfile.licenseAssignmentState),
-    sqlDiscovered = coalesce(tobool(properties.detectedProperties.mssqldiscovered), false)
+    sqlDiscovered = coalesce(tobool(properties.detectedProperties.mssqldiscovered), tobool(properties.mssqlDiscovered), false),
+    dnsFqdn = tolower(tostring(properties.dnsFqdn)), machineFqdn = tolower(tostring(properties.machineFqdn)),
+    domainName = tolower(tostring(properties.domainName)), computerName = tolower(tostring(properties.osProfile.computerName))
 | order by id asc"""
 Q_EXTENSIONS = """resources
 | where type =~ 'microsoft.hybridcompute/machines/extensions'
@@ -267,6 +270,130 @@ def evaluate_sql(machines: list[dict], sql_instances: list[dict]) -> dict:
     }
 
 
+# ------------------------------------------------------------ sql-inventory --estate: the forest against Arc
+
+GAP_CATEGORIES = ["notInArc", "arcWithoutSqlResource", "inArc", "arcNotInDirectory", "excludedStale"]
+
+
+def _machine_names(m: dict) -> tuple[set[str], set[str]]:
+    """(fully qualified names, short names) an Arc machine answers to: dnsFqdn, machineFqdn, and
+    the OS computer name with and without the Windows domain name. Lowercase."""
+    fq = {n.lower() for n in (m.get("dnsFqdn"), m.get("machineFqdn")) if n}
+    cn, dom = (m.get("computerName") or "").lower(), (m.get("domainName") or "").lower()
+    if cn and dom:
+        fq.add(f"{cn}.{dom}")
+    short = {n.split(".")[0] for n in fq} | ({cn.split(".")[0]} if cn else set()) | {(m.get("name") or "").lower()}
+    return fq, short - {""}
+
+
+def evaluate_forest_gap(estate: dict, machines: list[dict], sql_instances: list[dict]) -> dict:
+    """Reconcile the forest's SQL Server hosts (the Start Kit's SqlEstate.json) with Azure Arc.
+
+    Each directory host is matched to an Arc machine on its fully qualified name, case-insensitively;
+    a short name (an SPN can carry one) matches when exactly one Arc machine has that short name.
+    Categories, per host:
+      notInArc               in the directory, no Arc machine: the gap list
+      arcWithoutSqlResource  an Arc machine, but no Database Engine instance resource on it
+      inArc                  an Arc machine with at least one Engine instance resource
+      arcNotInDirectory      an Arc machine with SQL Server (an instance resource, or detected) that no
+                             directory host matches: inForest when its Windows domain is one the
+                             discovery read (it registered no SPN, or a signal missed it), else
+                             notInForest (a workgroup server, or another forest)
+      excludedStale          the computer object is stale, disabled, missing or ambiguous: reported,
+                             not counted as a gap
+    """
+    domains = {d.lower() for d in (estate.get("Metadata") or {}).get("Domains") or []}
+    audits = estate.get("InstanceAudits") or []
+    per_host = Counter((a.get("ServerName") or "").lower() for a in audits)
+    hosts = {(h.get("Host") or "").lower(): h for h in estate.get("Hosts") or []}
+    for name in per_host:  # an older SqlEstate.json has no Hosts: staleness unknown
+        hosts.setdefault(name, {"Host": name, "DirectoryState": "Unknown"})
+
+    by_fqdn: dict[str, list[dict]] = {}
+    by_short: dict[str, list[dict]] = {}
+    for m in machines:
+        fq, short = _machine_names(m)
+        for n in fq:
+            by_fqdn.setdefault(n, []).append(m)
+        for n in short:
+            by_short.setdefault(n, []).append(m)
+    engine_hosts = Counter(s.get("hostId", "") for s in sql_instances if is_engine(s) and s.get("hostId"))
+
+    def match(host: str, dns: str | None) -> tuple[dict | None, str]:
+        for n in (host, dns):
+            if n and "." in n and len({x["id"] for x in by_fqdn.get(n, [])}) == 1:
+                return by_fqdn[n][0], "fqdn"
+        cands = {x["id"]: x for x in by_short.get(host.split(".")[0], [])}
+        if "." in host:  # a qualified name may still match a machine that reports only its short name
+            cands = {i: x for i, x in cands.items() if not _machine_names(x)[0]}
+        if len(cands) == 1:
+            return next(iter(cands.values())), "shortName"
+        return None, ("ambiguousShortName" if len(cands) > 1 else "")
+
+    rows, matched = [], set()
+    for name in sorted(hosts):
+        h = hosts[name]
+        m, how = match(name, (h.get("DNSHostName") or "").lower() or None)
+        if m:
+            matched.add(m["id"])
+        state = h.get("DirectoryState") or "Unknown"
+        if state in ("Stale", "NoComputerObject", "Ambiguous"):
+            cat, reason = "excludedStale", h.get("StateReason") or state
+        elif m is None:
+            cat = "notInArc"
+            reason = "Short name matches several Arc machines; match by hand" if how == "ambiguousShortName" else "No Arc machine with this name"
+        elif engine_hosts.get(m["id"]):
+            cat, reason = "inArc", ""
+        else:
+            cat = "arcWithoutSqlResource"
+            reason = ("Arc detected SQL Server, but no Database Engine instance resource: the Azure extension for SQL Server may be missing, or the instances excluded"
+                      if m.get("sqlDiscovered") is True else "No Database Engine instance resource, and Arc didn't detect SQL Server")
+        rows.append({"category": cat, "host": name, "domain": h.get("Domain") or "", "directoryState": state,
+                     "operatingSystem": h.get("OperatingSystem") or "", "directoryInstances": per_host.get(name, 0),
+                     "arcMachine": m["name"] if m else None, "arcStatus": m.get("status", "") if m else None,
+                     "arcInstances": engine_hosts.get(m["id"], 0) if m else 0, "matchedBy": how or None, "reason": reason})
+
+    for m in sorted(machines, key=lambda m: m["name"].lower()):
+        if m["id"] in matched or not (engine_hosts.get(m["id"]) or m.get("sqlDiscovered") is True):
+            continue
+        dom = (m.get("domainName") or "").lower()
+        where = "inForest" if dom in domains else "notInForest"
+        reason = ("Domain-joined in a domain the discovery read, but no SPN or other signal found SQL Server here" if where == "inForest"
+                  else f"Not in a domain the discovery read ({dom or 'no domain'}): a workgroup server or another forest")
+        fq, _ = _machine_names(m)
+        rows.append({"category": "arcNotInDirectory", "host": min(fq) if fq else m["name"].lower(), "domain": dom, "directoryState": where,
+                     "operatingSystem": m.get("osSku") or m.get("osName") or "", "directoryInstances": 0,
+                     "arcMachine": m["name"], "arcStatus": m.get("status", ""), "arcInstances": engine_hosts.get(m["id"], 0),
+                     "matchedBy": None, "reason": reason})
+
+    order = {c: i for i, c in enumerate(GAP_CATEGORIES)}
+    rows.sort(key=lambda r: (order[r["category"]], r["host"]))
+    counts = {c: sum(1 for r in rows if r["category"] == c) for c in GAP_CATEGORIES}
+    return {
+        **_scope_note(machines),
+        "forestDomains": sorted(domains),
+        "directoryHosts": len(hosts),
+        "directoryInstances": sum(per_host.values()),
+        "hosts": counts,
+        "instancesNotInArc": sum(r["directoryInstances"] for r in rows if r["category"] == "notInArc"),
+        "arcNotInDirectory": {w: sum(1 for r in rows if r["category"] == "arcNotInDirectory" and r["directoryState"] == w) for w in ("inForest", "notInForest")},
+        "gapList": rows,
+    }
+
+
+GAP_CSV_FIELDS = ["category", "host", "domain", "directoryState", "operatingSystem", "directoryInstances", "arcMachine", "arcStatus", "arcInstances", "matchedBy", "reason"]
+
+
+def write_gap_csv(result: dict, path: Path) -> None:
+    """The gap list as CSV, one row per host, for the evidence folder."""
+    import csv
+    with path.open("w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=GAP_CSV_FIELDS, lineterminator="\n")
+        w.writeheader()
+        for r in result["gapList"]:
+            w.writerow({k: ("" if r.get(k) is None else r.get(k)) for k in GAP_CSV_FIELDS})
+
+
 # ------------------------------------------------------------ policy-summary
 
 
@@ -303,7 +430,10 @@ def evaluate(task: str, data: dict, as_of: dt.datetime, window_days: int = 180) 
     if task == "lifecycle":
         return evaluate_lifecycle(data["machines"], data["sqlInstances"], load_lifecycle(), as_of, window_days)
     if task == "sql-inventory":
-        return evaluate_sql(data["machines"], data["sqlInstances"])
+        result = evaluate_sql(data["machines"], data["sqlInstances"])
+        if data.get("estate") is not None:
+            result["forestGap"] = evaluate_forest_gap(data["estate"], data["machines"], data["sqlInstances"])
+        return result
     return evaluate_policy(data["assignments"], data["policyStates"])
 
 
@@ -321,7 +451,9 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("arc-private-link")
     lc = sub.add_parser("lifecycle")
     lc.add_argument("--window-days", type=int, default=180, help="report products whose support ends within this many days (default 180)")
-    sub.add_parser("sql-inventory")
+    si = sub.add_parser("sql-inventory")
+    si.add_argument("--estate", type=Path, help="the Start Kit's SqlEstate.json: reconcile the forest's SQL Server hosts with Arc")
+    si.add_argument("--gap-csv", type=Path, help="with --estate, also write the gap list to this CSV file")
     sub.add_parser("policy-summary")
     a = p.parse_args(argv)
     as_of = parse_time(a.as_of) if a.as_of else dt.datetime.now(dt.timezone.utc)
@@ -338,8 +470,15 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         data = {name: arm.resource_graph(q, subscriptions=subs) for name, q in QUERIES[a.task].items()}
 
+    if getattr(a, "estate", None):
+        data["estate"] = json.loads(a.estate.read_text(encoding="utf-8-sig"))
     window = getattr(a, "window_days", 180)
-    print(json.dumps({"task": a.task, "evidences": EVIDENCES[a.task], "result": evaluate(a.task, data, as_of, window)}, indent=2))
+    result = evaluate(a.task, data, as_of, window)
+    if getattr(a, "gap_csv", None):
+        if "forestGap" not in result:
+            p.error("--gap-csv needs --estate")
+        write_gap_csv(result["forestGap"], a.gap_csv)
+    print(json.dumps({"task": a.task, "evidences": EVIDENCES[a.task], "result": result}, indent=2))
     return 0
 
 
