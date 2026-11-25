@@ -65,8 +65,6 @@ Import-Module .\powershell\FMPADAssessment -Force
 ```
 
 It prints `1.8.0`. Each Lab 1 writes its output to a dated run folder under `C:\FMWLabs\results`. Lab 2 writes under `$HOME\fmp-labs\pki` in Modules 1 and 2, and to a dated run folder under `C:\FMWLabs\results` in Modules 3 and 4. All of them are outside the kit's folder, so the kit's own tests still pass after you run them.
-esults`. Lab 2 writes under `$HOMEmp-labs\pki` in Modules 1 and 2, and to a dated run folder under `C:\FMWLabs
-esults` in Modules 3 and 4. All of them are outside the kit's folder, so the kit's own tests still pass after you run them.
 
 ## What you'll be able to do
 
