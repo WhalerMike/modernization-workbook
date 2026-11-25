@@ -11,7 +11,7 @@ doc-type: section-landing
 
 This register lists the decisions behind the workbook, from the repository's first pull request on, one entry each. Each entry gives the question, the options that were considered, the choice, the reason for it, its basis, its sources and the pages it shaped. The [Reviewers' Guide](reviewers-guide.md) explains how to check an entry and how to tell us you agree or disagree with it. Use the entry's ID when you do.
 
-There are **174** workbook decisions: 164 settled, 0 challenged and 10 superseded. Below them are the **109** decision points the sample project plans leave to the agency that adopts them.
+There are **175** workbook decisions: 165 settled, 0 challenged and 10 superseded. Below them are the **109** decision points the sample project plans leave to the agency that adopts them.
 
 ::: {.callout-note}
 ## How to read the basis
@@ -208,6 +208,7 @@ There are **174** workbook decisions: 164 settled, 0 challenged and 10 supersede
 | [WD-172](#wd-172) | 2026-11-24 | Which tags join an AWS GovCloud (US) or OCI workload identity to its record, and does the validation kit check those identities? | Workbook design | settled |
 | [WD-173](#wd-173) | 2026-11-25 | What are the managed service account standard's detailed naming and configuration rules, beyond WD-159's prefixes and 15 characters? | Workbook design | settled |
 | [WD-174](#wd-174) | 2026-11-25 | Where is the managed service account standard enforced? | Workbook design | settled |
+| [WD-175](#wd-175) | 2026-11-25 | Which tags does every non-person identity carry for its move to Microsoft Entra, do owners go into AD, and does Entra's naming inform the managed service account names? | Workbook design | settled |
 
 : Workbook decisions, oldest first {.striped .hover}
 
@@ -3011,7 +3012,7 @@ There are **174** workbook decisions: 164 settled, 0 challenged and 10 supersede
 | **Date** | 2026-11-24 |
 | **Status** | settled |
 | **Defined in** | — |
-| **Note** | Basis: workbook owner decision, November 24, 2026, answering three questions from the Chapter 13 change: "VK-NPI-10 … - Yes", "Step 1g: whether its commands should also export tags. - Yes", "Tag names: the proposed SystemId, Owner1, Owner2 and Sponsor. - Yes"; asked to confirm, he chose "Add VK-NPI-10". |
+| **Note** | Basis: workbook owner decision, November 24, 2026, answering three questions from the Chapter 13 change: "VK-NPI-10 … - Yes", "Step 1g: whether its commands should also export tags. - Yes", "Tag names: the proposed SystemId, Owner1, Owner2 and Sponsor. - Yes"; asked to confirm, he chose "Add VK-NPI-10". [WD-175](#wd-175) (November 25, 2026) adds Environment, Tier and EntraTarget to these four keys. |
 
 [Agree, disagree or send evidence on WD-172](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-172%3A+)
 
@@ -3028,7 +3029,7 @@ There are **174** workbook decisions: 164 settled, 0 challenged and 10 supersede
 | **Date** | 2026-11-25 |
 | **Status** | settled |
 | **Defined in** | — |
-| **Note** | Basis: workbook owner decision, November 25, 2026. Asked which configuration and naming standards gMSAs and dMSAs need, he was shown five gaps and the svc-fmp-assess conflict and answered "Yes, details and clarity. Have SailPoint / ServiceNow enforce." |
+| **Note** | Basis: workbook owner decision, November 25, 2026. Asked which configuration and naming standards gMSAs and dMSAs need, he was shown five gaps and the svc-fmp-assess conflict and answered "Yes, details and clarity. Have SailPoint / ServiceNow enforce." The description format is replaced by [WD-175](#wd-175)'s tags, which also put the owners in AD. |
 
 [Agree, disagree or send evidence on WD-173](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-173%3A+)
 
@@ -3048,6 +3049,23 @@ There are **174** workbook decisions: 164 settled, 0 challenged and 10 supersede
 | **Note** | Basis: workbook owner decision, November 25, 2026: "Have SailPoint / ServiceNow enforce." The workflow's service that runs Chapter 12's request check isn't built yet. |
 
 [Agree, disagree or send evidence on WD-174](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-174%3A+)
+
+### WD-175: Which tags does every non-person identity carry for its move to Microsoft Entra, do owners go into AD, and does Entra's naming inform the managed service account names? {#wd-175}
+
+| | |
+|---|---|
+| **Options considered** | Owners only in SailPoint and the register, tags per platform; One tag set on AD, Entra, Azure, AWS and OCI, with the owners in AD as a copy of SailPoint, and one short name per system across AD and Entra |
+| **Choice** | Every non-person identity carries seven tags: SystemId, Owner1, Owner2, Sponsor, Environment (prod, test, dev), Tier (R1, R2, R3) and EntraTarget (Chapter 03's targets, or Undecided). On an AD gMSA or dMSA they're key=value pairs in the description, with the request and change numbers, replacing WD-173's description format; SailPoint stays the source for owners and Chapter 12 flags an AD tag that disagrees with the register (NPI-STD-30). In Entra they're custom security attributes in the NonPersonIdentity attribute set, required on every service principal and managed identity (the Non-Person Identity guide's Step 1f); a user-assigned managed identity also carries them as Azure resource tags; AWS and OCI identities add Environment, Tier and EntraTarget to WD-172's four. The managed service account request pack's forms and checker collect them at request time. A system keeps one short name: its gMSA is gmsa-<app>, and the managed identity it moves to is id-<app>-<environment>-<region>-<###>, the Cloud Adoption Framework's form. |
+| **Rationale** | Entra Connect's default rules don't sync gMSAs, so an account's record and owners reach Entra only if the step that creates the Entra identity copies them, which needs the same keys on both sides. Entra has no naming policy for workload identities; Learn's governance page asks for a naming convention, and the Cloud Adoption Framework puts constant information in names and the rest in tags. Custom security attributes are free, can be assigned to service principals and, by the Attribute Assignment Administrator role, to managed identities. |
+| **Basis** | Workbook design |
+| **Sources** | [Microsoft Learn, What are custom security attributes in Microsoft Entra ID?](https://learn.microsoft.com/entra/fundamentals/custom-security-attributes-overview); [Microsoft Learn, Governing Microsoft Entra service accounts](https://learn.microsoft.com/entra/architecture/govern-service-accounts); [Microsoft Learn, Cloud Adoption Framework, Define your naming convention](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming); [Microsoft Learn, Microsoft Entra Connect Sync default configuration](https://learn.microsoft.com/entra/identity/hybrid/connect/concept-azure-ad-connect-sync-default-configuration) |
+| **Pages affected** | [Requesting a Managed Service Account](../books/guides/msa-request-pack.md), [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../books/guides/service-account-migration.md), [Non-Person Identity: An Implementation Guide](../books/guides/non-person-identity-implementation.md), [Chapter 12 — The Managed Service Account Standard](../project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.md) |
+| **Date** | 2026-11-25 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 25, 2026. Asked for a request document set, said "For future integration, when they move to EntraID, we tag everything" and asked whether Entra's standards should inform MSA naming; shown one tag set, owners in AD (a change to [WD-173](#wd-173)) and a request pack, he answered "Yes to all three". Not yet in the kits: Chapter 06 writing the tags, and VK-NPI-10 reading the three new keys. |
+
+[Agree, disagree or send evidence on WD-175](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-175%3A+)
 
 ## Decision points in the sample project plans {#plan-decisions}
 
