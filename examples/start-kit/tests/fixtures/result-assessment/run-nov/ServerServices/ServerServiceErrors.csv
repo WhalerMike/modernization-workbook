@@ -1,0 +1,2 @@
+"Server","Reason","Errors"
+"old01.contoso.example","Unreachable","WSMan: WinRM cannot complete the operation. | DCOM: The RPC server is unavailable."

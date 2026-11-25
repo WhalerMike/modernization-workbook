@@ -1,0 +1,3 @@
+"Name","DNSHostName","OperatingSystem","IsDomainController","DelegationType","DelegationTargets","RBCDPrincipals","DistinguishedName"
+"DC01","dc01.contoso.example","Windows Server 2025 Datacenter","True","Unconstrained","","","CN=DC01,OU=Domain Controllers,DC=contoso,DC=example"
+"APP01","app01.contoso.example","Windows Server 2019 Standard","False","Unconstrained","","","CN=APP01,OU=Servers,DC=contoso,DC=example"

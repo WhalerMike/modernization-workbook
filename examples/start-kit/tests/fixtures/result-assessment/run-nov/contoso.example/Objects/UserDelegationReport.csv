@@ -1,0 +1,2 @@
+"SamAccountName","Enabled","DelegationType","DelegationTargets","IsSqlServiceAccount","SPNs","DistinguishedName"
+"svc-sql01","True","Constrained (Kerberos only)","MSSQLSvc/sql02.contoso.example:1433","True","MSSQLSvc/sql01.contoso.example:1433","CN=svc-sql01,CN=Users,DC=contoso,DC=example"

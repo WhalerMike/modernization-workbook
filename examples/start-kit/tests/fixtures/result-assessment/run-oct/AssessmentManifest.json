@@ -1,0 +1,2 @@
+{ "Schema": "fmp-start-kit/assessment-manifest/1", "RunId": "2026-10-28-0200-assess01-tierB", "StartTimeUtc": "2026-10-28T02:00:00.0000000Z",
+  "Steps": [ { "Step": "Users (contoso.example)", "Status": "Completed", "Error": null }, { "Step": "Server services", "Status": "Completed", "Error": null } ], "InputsChanged": [] }
