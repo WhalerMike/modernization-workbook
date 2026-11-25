@@ -500,7 +500,7 @@ function Test-NpiStdReconciliation {
         if (-not $requestId) { $f.Add((New-NpiFinding 'NPI-STD-18' 'Finding' $name $lbl 'Unexplained: no approved request in the register for an account that exists in AD. Drift (Book 13, Chapter 04): find the change that made it, or open a request')) }
 
         # NPI-STD-30: the AD tags (WD-175) disagree with the register, which follows SailPoint. An
-        # account with no tags yet isn't a finding here: Chapter 06's plan doesn't write them yet.
+        # account created before WD-175 has no tags and isn't a finding here; Chapter 06 tags every new one.
         $tags = ConvertFrom-NpiStdTagString "$(Get-NpiStdProp $a 'description' '')"
         if ($tags.Count -and $r) {
             $d = [Collections.Generic.List[string]]::new()

@@ -98,7 +98,7 @@ Every account carries the same seven tags, from the day it's created to the day 
 
 | Where | How the tags are held | Written by |
 |---|---|---|
-| The AD account | `key=value` pairs in its description, with the request and change numbers: `SystemId=SYS-0233; Owner1=…; Owner2=…; Sponsor=…; Environment=prod; Tier=R1; EntraTarget=KeepKerberos; Request=REQ-2026-0403; Change=CHG…` | The pipeline, from the approved request *(not yet in the kit: Chapter 06's plan doesn't write them yet)* |
+| The AD account | `key=value` pairs in its description, with the request and change numbers: `SystemId=SYS-0233; Owner1=…; Owner2=…; Sponsor=…; Environment=prod; Tier=R1; EntraTarget=KeepKerberos; Request=REQ-2026-0403; Change=CHG…` | The pipeline, from the approved request: Chapter 06's plan passes them as `-Description` when it creates the account, and won't create one without them |
 | The Entra identity it moves to | Custom security attributes in the `NonPersonIdentity` attribute set, on the service principal or managed identity. They're free in every edition of Entra ID, can be assigned to service principals, and Attribute Assignment Administrator can set them on managed identities; a value is at most 64 characters[^mrp-csa] [^mrp-csa-role] | Migration C's step that creates the identity ([service accounts guide](service-account-migration.md#migration-c)); the checker writes the body already |
 | A user-assigned managed identity's Azure resource | Azure resource tags with the same keys, which aren't inherited from the resource group[^mrp-azure-tags] | The same step |
 | AWS GovCloud (US) and OCI identities | The tags WD-172 set, with `Environment`, `Tier` and `EntraTarget` added | Their owners, checked by VK-NPI-10 *(the two new keys are not yet in the check)* |

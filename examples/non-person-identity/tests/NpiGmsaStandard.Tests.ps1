@@ -211,7 +211,7 @@ Describe 'SailPoint and Active Directory (NPI-STD-10 to NPI-STD-19)' {
         $i | Should -Match "EntraTarget 'Cloud' isn't one of"
         $a.description = 'Payroll service account'
         $r = Test-NpiStdReconciliation -Ad @($a) -SailPoint $script:In.SailPoint -Register $script:In.Register -Standard $script:Std
-        @($r.Findings | Where-Object Rule -EQ 'NPI-STD-30').Count | Should -Be 0   # untagged: Chapter 06 doesn't write tags yet
+        @($r.Findings | Where-Object Rule -EQ 'NPI-STD-30').Count | Should -Be 0   # untagged: created before WD-175
     }
 }
 
