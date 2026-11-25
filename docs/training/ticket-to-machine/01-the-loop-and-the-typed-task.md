@@ -77,6 +77,10 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\ticket-to-machine-code\servicenow-sailpoint
 
+$Run = "C:\FMWLabs\results\ticket-to-machine-01-the-loop-and-the-typed-task\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
 # Step 1
 python -m pytest -q -p no:cacheprovider tests/python/test_finding_contract.py
 
@@ -87,11 +91,11 @@ python clients/python/finding_contract.py --validate tests/fixtures/payloads/sam
 node --test tests/servicenow/servicenow_scripts.test.js
 
 # Step 4
-python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract.csv --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --entra-audit-json tests/fixtures/entra_audit.json --out-json out/day1.json --out-csv out/day1.csv
-python clients/python/finding_contract.py --from-drift out/day1.json --now 2026-11-01T12:00:00Z
+python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract.csv --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --entra-audit-json tests/fixtures/entra_audit.json --out-json "$Run\day1.json" --out-csv "$Run\day1.csv"
+python clients/python/finding_contract.py --from-drift "$Run\day1.json" --now 2026-11-01T12:00:00Z
 
 # Step 5
-Remove-Item -Recurse -Force out
+Get-ChildItem C:\FMWLabs\results\ticket-to-machine-01-the-loop-and-the-typed-task\lab1 -Name
 ```
 
 :::
@@ -106,7 +110,23 @@ Every step runs in PowerShell 7, the Python and Node.js commands included, so yo
 Set-Location C:\FMWLabs\ticket-to-machine-code\servicenow-sailpoint
 ```
 
-Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/servicenow-sailpoint`; every step except the last one runs the same there, and in Git Bash the last one is `rm -rf out`. In a clone of the repository, use the `examples` folder of the same name.
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
+
+```powershell
+$Run = "C:\FMWLabs\results\ticket-to-machine-01-the-loop-and-the-typed-task\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\ticket-to-machine-01-the-loop-and-the-typed-task\lab1\<run>
+```
+
+The run's date is only the folder's name. The data's date is `--now`, which stays the same, so every run's results match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
+
+Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/servicenow-sailpoint`, make the run folder with `Run=/c/FMWLabs/results/ticket-to-machine-01-the-loop-and-the-typed-task/lab1/$(date -u +%Y-%m-%dT%H%M%SZ); mkdir -p "$Run"`, and Steps 1 to 4 run the same there, with `"$Run/day1.json"` in place of `"$Run\day1.json"`; list the runs with `ls`. In a clone of the repository, use the `examples` folder of the same name.
 
 1. Run the chapter's tests.
 
@@ -157,8 +177,8 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/ser
 4. Run the drift reconciliation over the fixtures, then check the payloads it would post.
 
    ```powershell
-   python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract.csv --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --entra-audit-json tests/fixtures/entra_audit.json --out-json out/day1.json --out-csv out/day1.csv
-   python clients/python/finding_contract.py --from-drift out/day1.json --now 2026-11-01T12:00:00Z
+   python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract.csv --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --entra-audit-json tests/fixtures/entra_audit.json --out-json "$Run\day1.json" --out-csv "$Run\day1.csv"
+   python clients/python/finding_contract.py --from-drift "$Run\day1.json" --now 2026-11-01T12:00:00Z
    ```
 
    Expected output, the drift run's summary and then one line per payload:
@@ -176,8 +196,8 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/ser
        "credential_drift": "needs the card management system and Intune certificate reports",
        "schema_drift": "needs the provisioning middleware's validation output"
      },
-     "out_json": "out/day1.json",
-     "out_csv": "out/day1.csv"
+     "out_json": "C:\\FMWLabs\\results\\ticket-to-machine-01-the-loop-and-the-typed-task\\lab1\\<run>\\day1.json",
+     "out_csv": "C:\\FMWLabs\\results\\ticket-to-machine-01-the-loop-and-the-typed-task\\lab1\\<run>\\day1.csv"
    }
    1f0e34ebf049f163: ok attribute_drift P3 priority 3 due 2026-11-02T12:00:00Z system entra_user
    72cff206ce2db7b6: ok attribute_drift P3 priority 3 due 2026-11-02T12:00:00Z system entra_user
@@ -199,10 +219,16 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/ser
 
    Twelve lines say `ok`, and three carry the warning: the two missing identities and the unauthorized write.
 
-5. Delete the `out` folder, so the next run starts clean.
+5. Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
 
    ```powershell
-   Remove-Item -Recurse -Force out
+   Get-ChildItem C:\FMWLabs\results\ticket-to-machine-01-the-loop-and-the-typed-task\lab1 -Name
+   ```
+
+   Expected output: one line per run, oldest first, the last one this run:
+
+   ```text
+   <run>
    ```
 
 **Check your work:** for any payload, you can say what the Scripted REST resource will do with it.
