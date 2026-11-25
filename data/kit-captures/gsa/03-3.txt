@@ -1,7 +1,5 @@
-PS> (Read-GsaInputs -Path tests/fixtures/pilot/inputs).clients | ForEach-Object { [pscustomobject]@{ Device = $_.device; Version = $_.clientVersion; DisabledComponents = $_.ipv6DisabledComponents; Health = $_.health; Hardening = $_.hardening.Count } } | Format-Table
-Device      Version   DisabledComponents Health       Hardening
-------      -------   ------------------ ------       ---------
-PC-PILOT-01 2.6.112.0                 32 Connected            4
-PC-PILOT-02 2.6.112.0                 32 Connected            0
-PC-PILOT-03 1.7.669.0                  0 Connected            0
-PC-PILOT-04 2.6.112.0                 32 Disconnected         0
+PS> Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
+PS> Get-GsaRequiredPermission -Area client | Format-Table
+Call         Method Permission                   Beta Verified
+----         ------ ----------                   ---- --------
+device-usage GET    NetworkAccessPolicy.Read.All True     True

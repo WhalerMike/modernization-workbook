@@ -126,8 +126,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: telemetry, and the pilot's No-go",
       body: [
-        { terminal: "08-2", lines: "2-7" },
-        { terminal: "08-3", lines: "12-20" },
+        { terminal: "08-4", lines: "2-7" },
+        { terminal: "08-5", lines: "12-20" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 08, “Lab 1: fixtures, no tenant,” steps 2–3.",
       say: `Lab 1. After collecting the pilot, step 2 runs the telemetry checks. The setting misses a category; branch health has no rows because no branch is on a remote network yet; alerts are twenty-seven hours old; and CISA telemetry isn't agreed. Step 3 computes the metrics and the pilot's exit. No metric is met, and the pilot is no-go, for five reasons: five business days in, one severity-two ticket open, eighty-three percent coverage, three report-only failures carried by the service, and one and a half percent TLS failures. The emergency exclusion was tested at ring start and break-glass was rehearsed.`,
@@ -138,8 +138,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: ring 1 says Go; plan its rollback",
       body: [
-        { terminal: "08-4", lines: "24,34-41,43" },
-        { terminal: "08-5", lines: "1-5,17-21" },
+        { terminal: "08-6", lines: "24,34-41,43" },
+        { terminal: "08-7", lines: "1-5,17-21" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 08, “Lab 1,” steps 4–5.",
       say: `Step 4 does the same for ring 1, two weeks later: every metric is met, every criterion passes, and the ring says go. Step 5 plans ring 1's rollback before it's needed. Three enforced policies go to report-only in the guide's order, Step 7, then 6, then 5. Tagging goes off. The profile links and group assignments are portal steps, and the VPN route is the agency's own change. Signaling stays on. The plan's hash is printed, and it's a dry run: nothing changed.`,
@@ -150,8 +150,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: signaling last, and the evidence",
       body: [
-        { terminal: "08-6", lines: "2-7" },
-        { terminal: "08-7", lines: "16-24" },
+        { terminal: "08-8", lines: "2-7" },
+        { terminal: "08-9", lines: "16-24" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 08, “Lab 1,” steps 6–7.",
       say: `Step 6 asks for signaling off as well. The plan adds it as the very last step, after its own steps have moved the enforced compliant network policy to report-only; it would refuse if any compliant network policy stayed enforced. Step 7 records the collection, the metrics and the rollback plan as evidence, and checks the folder: every file matches its hash, the three records form an unbroken chain, and each record lists its steps. Step 8 runs the tests: ten passed, none failed.`,

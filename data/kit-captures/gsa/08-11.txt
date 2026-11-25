@@ -1,0 +1,2 @@
+PS> Get-ChildItem C:\FMWLabs\results\global-secure-access-08\lab1 -Name
+<run>

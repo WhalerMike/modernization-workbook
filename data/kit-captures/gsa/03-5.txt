@@ -1,9 +1,7 @@
-PS> $s = Read-GsaSettings -Path tests/fixtures/settings.lab.json
-PS> $s.ring = 'ring2'
-PS> Test-GsaClient -Collection (Read-GsaCollection -Path out/client) -Inputs (Read-GsaInputs -Path tests/fixtures/pilot/inputs) -Settings $s -AsOf 2026-11-16 | Where-Object Id -EQ 'GSA-CLI-06' | Format-Table Object, Status, Detail
-Object             Status Detail
-------             ------ ------
-device PC-PILOT-01 Pass   4 of 4 hardening values set
-device PC-PILOT-02 Fail   0 of 4 hardening values set
-device PC-PILOT-03 Fail   0 of 4 hardening values set
-device PC-PILOT-04 Fail   0 of 4 hardening values set
+PS> (Read-GsaInputs -Path tests/fixtures/pilot/inputs).clients | ForEach-Object { [pscustomobject]@{ Device = $_.device; Version = $_.clientVersion; DisabledComponents = $_.ipv6DisabledComponents; Health = $_.health; Hardening = $_.hardening.Count } } | Format-Table
+Device      Version   DisabledComponents Health       Hardening
+------      -------   ------------------ ------       ---------
+PC-PILOT-01 2.6.112.0                 32 Connected            4
+PC-PILOT-02 2.6.112.0                 32 Connected            0
+PC-PILOT-03 1.7.669.0                  0 Connected            0
+PC-PILOT-04 2.6.112.0                 32 Disconnected         0

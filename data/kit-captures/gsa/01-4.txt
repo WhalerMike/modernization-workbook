@@ -1,26 +1,11 @@
-PS> ./Invoke-GsaCheck.ps1 -Area decision -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/decision -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-decision -AsOf 2026-11-16T12:00:00Z
-GSA-DEC-01  Pass  tenant: onboardingStatus is 'onboarded'
-GSA-DEC-02  Pass  decision records: one record per function: microsoft-traffic, internet, private, branch
-GSA-DEC-03  Pass  NET-GSA-01 (microsoft-traffic, adopt): availability quote read 2026-11-11, 6 days before the run
-GSA-DEC-04  Pass  NET-GSA-01 (microsoft-traffic, adopt): FIXTURE-ENTRA-ID-P1: 500 enabled, 60 needed for the pilot and first ring
-GSA-DEC-05  Pass  NET-GSA-01 (microsoft-traffic, adopt): approved by Authorizing official (delegated) on 2026-11-12
-GSA-DEC-08  Pass  NET-GSA-01 (microsoft-traffic, adopt): 2 exit criteria
-GSA-DEC-09  Pass  NET-GSA-01 (microsoft-traffic, adopt): review on 2027-11-01
-GSA-DEC-03  Pass  NET-GSA-02 (private, adopt): availability quote read 2026-11-11, 6 days before the run
-GSA-DEC-04  Pass  NET-GSA-02 (private, adopt): FIXTURE-ENTRA-SUITE: 25 enabled, 20 needed for the pilot and first ring
-GSA-DEC-05  Pass  NET-GSA-02 (private, adopt): approved by Authorizing official (delegated) on 2026-11-12
-GSA-DEC-08  Pass  NET-GSA-02 (private, adopt): 2 exit criteria
-GSA-DEC-09  Pass  NET-GSA-02 (private, adopt): review on 2027-11-01
-GSA-DEC-03  Fail  NET-GSA-03 (internet, adopt): availability quote read 2026-10-01, 46 days before the run
-GSA-DEC-04  Fail  NET-GSA-03 (internet, adopt): FIXTURE-ENTRA-SUITE: 25 enabled, 60 needed for the pilot and first ring
-GSA-DEC-05  Pass  NET-GSA-03 (internet, adopt): approved by Authorizing official (delegated) on 2026-11-12
-GSA-DEC-07  Fail  NET-GSA-03 (internet, adopt): uses 'cloud-firewall-clients' (GCC: not yet specified; preview) with no approved exception
-GSA-DEC-08  Pass  NET-GSA-03 (internet, adopt): 2 exit criteria
-GSA-DEC-09  Pass  NET-GSA-03 (internet, adopt): review on 2027-11-01
-GSA-DEC-03  Pass  NET-GSA-04 (branch, defer): availability quote read 2026-11-11, 6 days before the run
-GSA-DEC-05  Pass  NET-GSA-04 (branch, defer): approved by Authorizing official (delegated) on 2026-11-12
-GSA-DEC-06  Fail  NET-GSA-04 (branch, defer): a retain or defer decision names no compensating controls
-GSA-DEC-08  Pass  NET-GSA-04 (branch, defer): 2 exit criteria
-GSA-DEC-09  Pass  NET-GSA-04 (branch, defer): review on 2027-11-01
-
-decision: 23 checks (4 Fail, 19 Pass). Written to out/check-decision: findings.json, findings.csv, manifest.json
+PS> Get-GsaAvailability -NotAvailable | Format-Table id, status, step, interim -Wrap -AutoSize | Out-String -Width 250
+id                       status  step interim
+--                       ------  ---- -------
+registered-devices       preview    3 Deploy the client to Microsoft Entra joined or hybrid joined devices only.
+cloud-firewall-clients   preview    5 Block QUIC (outbound UDP 443) with an Intune-delivered Windows Firewall rule, piloted first (the guide's Step 5.6); record it in the architecture record's quicBlock.
+explicit-forward-proxy   preview    5 Acquire traffic with the client only; where a PAC file stays, exclude every FQDN and IP the client tunnels (the guide's Step 11.2).
+http-method-filtering    preview    5 Filter by web category and FQDN in security profiles (generally available).
+custom-private-profiles  preview    6 Per-app applications, each with its own group assignment and Conditional Access, in the one Private Access profile.
+enriched-m365-logs       preview   12 Not exported; add only by a decision record (the guide's Step 12.1).
+intelligent-local-access preview    6 Not adopted: a Zero Trust Assessment test against it is recorded as not applicable, with the decision record as its exception evidence.
+ai-gateway-prompt-shield preview    9 Not adopted: recorded as not applicable, with the decision record as its exception evidence.

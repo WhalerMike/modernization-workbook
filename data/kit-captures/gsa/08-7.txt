@@ -1,24 +1,12 @@
-PS> ./Invoke-GsaEvidence.ps1 -EvidencePath out/evidence -RunPath out/ring1 -AsOf 2026-11-30T12:01:00Z
-Record 1: Pass (BASELINE, EVIDENCE)
-Controls: AC-4, AU-6, AU-9, CM-2, CM-8, SC-7
-KSIs:     KSI-CNA-ULN, KSI-MLA-OSM, KSI-MLA-RVL, KSI-PIY-GIV
-Written to out/evidence: records/, runs/, records.csv, SHA256SUMS
-PS> ./Invoke-GsaEvidence.ps1 -EvidencePath out/evidence -RunPath out/metrics-ring1 -AsOf 2026-11-30T12:02:00Z
-Record 2: Pass (RINGS, TELEMETRY, EVIDENCE)
-Controls: AU-12, AU-2, AU-6, AU-9, CM-3, CM-4, CP-2, SI-4
-KSIs:     KSI-CMT-LMC, KSI-CMT-VTD, KSI-MLA-LET, KSI-MLA-OSM, KSI-MLA-RVL
-Written to out/evidence: records/, runs/, records.csv, SHA256SUMS
-PS> ./Invoke-GsaEvidence.ps1 -EvidencePath out/evidence -RunPath out/rollback -AsOf 2026-11-30T12:03:00Z
-Record 3: Pass (RB, EVIDENCE)
-Controls: AU-6, AU-9, CM-3, CP-2
-KSIs:     KSI-CMT-LMC, KSI-MLA-OSM, KSI-MLA-RVL
-Written to out/evidence: records/, runs/, records.csv, SHA256SUMS
-PS> ./Invoke-GsaEvidence.ps1 -EvidencePath out/evidence -Check
-SUMS            Pass  29 files match SHA256SUMS
-CHAIN           Pass  3 records, chain unbroken
-PS> Import-Csv out/evidence/records.csv | Format-Table sequence, label, result, steps
-sequence label    result steps
--------- -----    ------ -----
-1        collect  Pass   BASELINE EVIDENCE
-2        metrics  Pass   RINGS TELEMETRY EVIDENCE
-3        rollback Pass   RB EVIDENCE
+PS> ./deploy/Invoke-GsaRollback.ps1 -SettingsPath tests/fixtures/settings.lab-ring1.json -CollectionPath "$Run/ring1" -OutputPath "$Run/rollback" -AsOf 2026-11-30T12:00:00Z
+RB-01      WouldApply  PATCH Step 7: NET-CN-Require-Compliant-Network-Pilot enabled -> report-only
+RB-02      WouldApply  PATCH Step 6: NET-PA-PA-Finance-Device-MFA enabled -> report-only
+RB-03      WouldApply  PATCH Step 5: NET-IA-SecurityProfile-Pilot enabled -> report-only
+RB-04      WouldApply  PATCH Step 8: universal tenant restrictions tagging disabled (the TRv2 policy stays)
+MAN-LINK   Manual      Portal: remove link 55555555-5555-4555-8555-000000000023 from security profile SP-Pilot (Steps 5 and 9; TLS: unlink, delete the policy, then remove the certificate)
+MAN-LINK   Manual      Portal: remove link 55555555-5555-4555-8555-000000000024 from security profile SP-Pilot (Steps 5 and 9; TLS: unlink, delete the policy, then remove the certificate)
+MAN-GROUPS Manual      Portal: remove the ring's groups from the traffic profiles' user and group assignments
+MAN-VPN    Manual      Agency change: restore the VPN route for the affected applications
+
+Plan SHA-256: 1c2f708df47c2d09602aab1df81b0e7ed12615a18465f0fa6448e446d69fd897
+Dry run: nothing changed.

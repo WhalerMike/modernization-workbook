@@ -110,8 +110,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the sign-in share is under target",
       body: [
-        { terminal: "04-3" },
-        { terminal: "04-4" },
+        { terminal: "04-5" },
+        { terminal: "04-6" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 04, “Lab 1: fixtures, no tenant,” steps 3–4.",
       say: `Lab 1. Steps 1 and 2 list the reads and writes and collect the whole pilot tenant, because the plan compares against everything. Step 3 runs the traffic checks. The profile and signaling are on, and the internet and private profiles each have an approved decision. But only two thousand five hundred fifty-five of two thousand eight hundred sign-ins, ninety-one percent, went through the service, under the ninety-five percent target. Step 4 reads the guide's query day by day: rising, but not there yet.`,
@@ -122,8 +122,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: plan the pilot, read a step",
       body: [
-        { terminal: "04-5", lines: "1-3,6-7" },
-        { terminal: "04-6" },
+        { terminal: "04-7", lines: "1-3,6-7" },
+        { terminal: "04-8" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 04, “Lab 1,” steps 5–6.",
       say: `Step 5 plans the pilot from its desired state. Two Graph steps. The internet profile goes off, because the pilot's desired state hasn't adopted Internet Access yet. And the administrative RDP policy goes back to its reviewed file; Chapter 6 says why. Two portal steps assign the pilot group. Then the plan's hash, and dry run, nothing changed. Step 6 reads the plan's first step in full, as the reviewer does before approving the hash: the call, the method, the address on graph dot microsoft dot com, and the reason.`,
@@ -134,8 +134,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: fixture mode refuses to apply",
       body: [
-        { terminal: "04-7" },
-        { terminal: "04-8" },
+        { terminal: "04-9" },
+        { terminal: "04-10" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 04, “Lab 1,” steps 7–8.",
       say: `Step 7 tries to apply the plan in fixture mode, with a made-up hash. It's refused before the hash is even read: apply runs only with a live invoker, and fixture mode never changes anything. The tests also show the other refusals: a live session with the wrong hash is refused, and the right hash sends the steps in order through the Graph runner. Step 8 runs this chapter's tests: nine passed, none failed. Then delete the output folder.`,
