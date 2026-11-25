@@ -75,10 +75,10 @@ unzip -o ~/Downloads/cisco-sdwan.zip -d ~/FMWLabs/cisco-sdwan
 cd ~/FMWLabs/cisco-sdwan
 ```
 
-Check it works, in PowerShell 7, with Module 1, Lab 1, Step 3:
+Check it works, in Windows PowerShell 5.1 or PowerShell 7, with Module 1, Lab 1, Step 3:
 
 ```powershell
-$Run = "C:\FMWLabs\results\network-sd-wan-check\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+$Run = "C:\FMWLabs\results\network-sd-wan-check\$((Get-Date).ToUniversalTime().ToString('yyyy-MM-ddTHHmmssZ'))"
 python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures --out "$Run\out"
 ```
 
