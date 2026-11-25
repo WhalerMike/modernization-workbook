@@ -207,6 +207,35 @@
    "featured": true
   },
   {
+   "id": "docs/training/data-platform/index.md",
+   "type": "Learning path",
+   "title": "Learning path: Data Platform and SQL Server Identity",
+   "description": "Ten modules, one per chapter of Building SQL Server Identity: the estate and its consolidation gate, the authentication audit, Azure Arc, Microsoft Entra logins and the parallel run, groups, NTLM, the application chain, AD CS, closure…",
+   "url": "docs/training/data-platform/index.html",
+   "count": 10,
+   "unit": "modules",
+   "reading_minutes": 525,
+   "reading_source": "page",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Identity engineer",
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Entra ID",
+    "Active Directory",
+    "Azure",
+    "Data platform"
+   ],
+   "status": "Draft",
+   "family": "data-platform",
+   "featured": false
+  },
+  {
    "id": "docs/training/defender-xdr/index.md",
    "type": "Learning path",
    "title": "Learning path: Defender XDR Engineering and Operations",

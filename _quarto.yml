@@ -482,6 +482,19 @@ website:
             - docs/training/application-modernization/05-the-front-end-and-section-508.md
             - docs/training/application-modernization/06-the-applications-identity.md
             - docs/training/application-modernization/07-the-evidence-pack.md
+        - section: "Data Platform and SQL Server Identity learning path"
+          href: docs/training/data-platform/index.md
+          contents:
+            - docs/training/data-platform/01-the-estate-and-the-consolidation-gate.md
+            - docs/training/data-platform/02-the-authentication-audit.md
+            - docs/training/data-platform/03-arc-and-the-engines-identity.md
+            - docs/training/data-platform/04-entra-logins-and-the-parallel-run.md
+            - docs/training/data-platform/05-groups-roles-and-the-perimeter.md
+            - docs/training/data-platform/06-ntlm-and-the-spns.md
+            - docs/training/data-platform/07-the-application-chain.md
+            - docs/training/data-platform/08-ad-cs-dependencies.md
+            - docs/training/data-platform/09-closure-drift-and-evidence.md
+            - docs/training/data-platform/10-deploying-to-test-and-production.md
         - section: "External learning paths"
           contents:
             - docs/training/infoblox-training.md

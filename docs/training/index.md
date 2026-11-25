@@ -1,7 +1,7 @@
 ---
 title: "Training"
 subtitle: "Learning paths: modules to work through in order, and the vendors' own training mapped to the workbook's roles"
-description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in four modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in eleven modules, the Provider Notices learning path in nine modules, the Zero Trust Assessment learning path in four modules, the Defender XDR learning path in five modules, the Global Secure Access learning path in six modules, the Azure Security Engineering learning path in five modules, the Daily Checks Dashboard learning path in two modules, the DNS, DHCP and IPAM learning path in six modules, the Application Modernization learning path in seven modules, and external learning paths from product vendors."
+description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in four modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in eleven modules, the Provider Notices learning path in nine modules, the Zero Trust Assessment learning path in four modules, the Defender XDR learning path in five modules, the Global Secure Access learning path in six modules, the Azure Security Engineering learning path in five modules, the Daily Checks Dashboard learning path in two modules, the DNS, DHCP and IPAM learning path in six modules, the Application Modernization learning path in seven modules, the Data Platform and SQL Server Identity learning path in ten modules, and external learning paths from product vendors."
 doc-type: section-landing
 fmw-eyebrow: "Training"
 listing:
@@ -48,6 +48,7 @@ listing:
       - "!pki/**"
       - "!dns-dhcp-ipam/**"
       - "!application-modernization/**"
+      - "!data-platform/**"
     type: table
     fields: [title, research-status, last-reviewed, description]
     field-display-names: *names
@@ -89,6 +90,7 @@ Each learning path's code downloads as one zip, rebuilt from the repository on e
 | Information Protection | [information-protection-code.zip](../../downloads/information-protection-code.zip) | `C:\FMWLabs\information-protection-code\information-protection` | PowerShell 7.1 |
 | DNS, DHCP and IPAM | [start-kit.zip](../../downloads/start-kit.zip) | `C:\FMWLabs\start-kit` | Windows PowerShell 5.1 or PowerShell 7 |
 | Application Modernization | [app-modernization.zip](../../downloads/app-modernization.zip) | `C:\FMWLabs\app-modernization` | Java 21, Node.js 24 and PowerShell 7.4 |
+| Data Platform and SQL Server Identity | [sql-server-identity-code.zip](../../downloads/sql-server-identity-code.zip) | `C:\FMWLabs\sql-server-identity-code\sql-server-identity` | PowerShell 7.1 |
 
 : Each learning path's code, and the folder its labs run from {.striped .hover}
 
@@ -297,6 +299,12 @@ Six modules on [Book 08](../books/b08-ddi/index.md)'s naming plane, run with the
 Seven modules, one per chapter of the developer workbook [*Building Application Modernization*](../project-plans/developer-workbooks/application-modernization/index.md), built on [Book 18](../books/b18-application-modernization/index.md)'s reference implementation: the API contract and the schema a service owns; loading a legacy Db2 or Oracle schema into PostgreSQL by stated rules, and proving the move three ways; an AI agent that can only propose what a person decides; the React front end with an automated WCAG 2.0 A and AA check and what it can't decide under Section 508; and the application's own Microsoft Entra identity through Book 18 Appendix A's work packages, from redirect URIs and assignment to a sealed evidence pack. Each module runs a chapter's Lab 1 on fixtures, points to its Lab 2 in a test environment, and ends with a knowledge check. Start at the [learning path](application-modernization/index.md).
 
 **Code:** [app-modernization.zip](../../downloads/app-modernization.zip), or [`examples/app-modernization`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/app-modernization) in the repository. The path's page says [how to unzip it and where](application-modernization/index.md#get-the-code).
+
+## Data Platform and SQL Server Identity learning path
+
+Ten modules, one per chapter of the developer workbook [*Building SQL Server Identity*](../project-plans/developer-workbooks/sql-server-identity/index.md), built on [Book 06](../books/b06-data-platform/index.md) and its runbooks R01 to R10: the estate inventory and the retain, consolidate or retire gate; the authentication audit; Azure Arc and each instance's Arc-eligibility category; Microsoft Entra logins written as reviewable T-SQL and judged through a parallel run; Windows groups mapped to Entra groups; NTLM and the SPNs; the application chain and its connection strings; AD CS certificates; the closure record and drift; and a full dry-run rehearsal of a deployment to a test instance, sealed into an evidence chain. Each module's Lab 1 runs on the kit's fictional estate with no instance or subscription and keeps its results in a dated folder; its Lab 2 points to the chapter's lab in a test instance; each module ends with a knowledge check. Start at the [learning path](data-platform/index.md).
+
+**Code:** [sql-server-identity-code.zip](../../downloads/sql-server-identity-code.zip), or [`examples/sql-server-identity`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/sql-server-identity) in the repository. The path's page says [how to unzip it and where](data-platform/index.md#get-the-code).
 
 ## External learning paths
 

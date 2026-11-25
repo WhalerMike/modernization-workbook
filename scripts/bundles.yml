@@ -466,6 +466,12 @@ bundles:
     root: docs/training/application-modernization
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: training-data-platform-bundle.docx
+    title: "Learning path: Data Platform and SQL Server Identity"
+    subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
+    root: docs/training/data-platform
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
   - output: training-azure-security-bundle.docx
     title: "Learning path: Azure Security Engineering"
     subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
