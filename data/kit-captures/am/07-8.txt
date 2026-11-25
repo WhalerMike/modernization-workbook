@@ -1,0 +1,14 @@
+PS> Get-AmRequirement -Step WP6 | Format-List
+Step     : WP6
+Title    : The post-change sign-in check and the sealed evidence pack
+Controls : CA-7 CM-8 AU-9
+KSIs     : KSI-MLA-EVC KSI-PIY-GIV KSI-MLA-OSM
+Other    :
+PS> Write-AmEvidenceRecord -Step WP6 -Path out/pack/SHA256SUMS.txt, out/pack/wp6-signins-after.csv, out/pack/wp6-backout-triggers.csv -OutputPath out/evidence -AsOf 2026-11-24T00:00:00Z | Format-Table Record, Step, Files, KSIs
+Record              Step Files KSIs
+------              ---- ----- ----
+record-001-WP6.json WP6      3 KSI-MLA-EVC KSI-PIY-GIV KSI-MLA-OSM
+PS> Test-AmEvidenceChain -Path out/evidence | Format-Table
+Record              Step ChainOk FilesOk Changed
+------              ---- ------- ------- -------
+record-001-WP6.json WP6     True    True

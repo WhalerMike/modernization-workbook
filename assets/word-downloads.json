@@ -1872,6 +1872,46 @@
   "page": "data-platform.docx",
   "title": "Projects"
  },
+ "docs/project-plans/developer-workbooks/application-modernization/01-the-contract-and-the-schema-the-service-owns.md": {
+  "bundle": "building-application-modernization-bundle.docx",
+  "page": "01-the-contract-and-the-schema-the-service-owns.docx",
+  "title": "Building Application Modernization"
+ },
+ "docs/project-plans/developer-workbooks/application-modernization/02-moving-the-data-the-transform-and-the-load.md": {
+  "bundle": "building-application-modernization-bundle.docx",
+  "page": "02-moving-the-data-the-transform-and-the-load.docx",
+  "title": "Building Application Modernization"
+ },
+ "docs/project-plans/developer-workbooks/application-modernization/03-proving-the-move.md": {
+  "bundle": "building-application-modernization-bundle.docx",
+  "page": "03-proving-the-move.docx",
+  "title": "Building Application Modernization"
+ },
+ "docs/project-plans/developer-workbooks/application-modernization/04-an-agent-that-only-proposes.md": {
+  "bundle": "building-application-modernization-bundle.docx",
+  "page": "04-an-agent-that-only-proposes.docx",
+  "title": "Building Application Modernization"
+ },
+ "docs/project-plans/developer-workbooks/application-modernization/05-the-front-end-its-accessibility-check-and-the-containers.md": {
+  "bundle": "building-application-modernization-bundle.docx",
+  "page": "05-the-front-end-its-accessibility-check-and-the-containers.docx",
+  "title": "Building Application Modernization"
+ },
+ "docs/project-plans/developer-workbooks/application-modernization/06-the-applications-identity-redirect-uris-and-assignment.md": {
+  "bundle": "building-application-modernization-bundle.docx",
+  "page": "06-the-applications-identity-redirect-uris-and-assignment.docx",
+  "title": "Building Application Modernization"
+ },
+ "docs/project-plans/developer-workbooks/application-modernization/07-the-post-change-test-and-the-evidence-pack.md": {
+  "bundle": "building-application-modernization-bundle.docx",
+  "page": "07-the-post-change-test-and-the-evidence-pack.docx",
+  "title": "Building Application Modernization"
+ },
+ "docs/project-plans/developer-workbooks/application-modernization/index.md": {
+  "bundle": "building-application-modernization-bundle.docx",
+  "page": "index.docx",
+  "title": "Building Application Modernization"
+ },
  "docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.md": {
   "bundle": "building-azure-security-bundle.docx",
   "page": "01-the-landing-zone-baseline.docx",
@@ -2676,6 +2716,16 @@
  "docs/training/network-sd-wan/02-gate-0-the-ed-26-03-and-kev-floor.md": {
   "bundle": "training-network-sd-wan-bundle.docx",
   "page": "02-gate-0-the-ed-26-03-and-kev-floor.docx",
+  "title": "Learning path: The SD-WAN Governor and Its Evidence"
+ },
+ "docs/training/network-sd-wan/03-the-hunt-hardening-and-logs-off-the-box.md": {
+  "bundle": "training-network-sd-wan-bundle.docx",
+  "page": "03-the-hunt-hardening-and-logs-off-the-box.docx",
+  "title": "Learning path: The SD-WAN Governor and Its Evidence"
+ },
+ "docs/training/network-sd-wan/04-path-classes-change-rings-and-the-evidence.md": {
+  "bundle": "training-network-sd-wan-bundle.docx",
+  "page": "04-path-classes-change-rings-and-the-evidence.docx",
   "title": "Learning path: The SD-WAN Governor and Its Evidence"
  },
  "docs/training/network-sd-wan/index.md": {

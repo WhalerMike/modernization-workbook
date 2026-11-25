@@ -2291,6 +2291,54 @@
    "title": "Data Platform and SQL Server"
   }
  ],
+ "docs/project-plans/developer-workbooks/application-modernization/01-the-contract-and-the-schema-the-service-owns.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/application-modernization/02-moving-the-data-the-transform-and-the-load.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/application-modernization/03-proving-the-move.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/application-modernization/04-an-agent-that-only-proposes.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/application-modernization/05-the-front-end-its-accessibility-check-and-the-containers.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/application-modernization/06-the-applications-identity-redirect-uris-and-assignment.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/application-modernization/07-the-post-change-test-and-the-evidence-pack.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/application-modernization/index.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
  "docs/project-plans/developer-workbooks/azure-security/01-the-landing-zone-baseline.md": [
   {
    "id": "azure-security",
@@ -3296,6 +3344,18 @@
   }
  ],
  "docs/training/network-sd-wan/02-gate-0-the-ed-26-03-and-kev-floor.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/training/network-sd-wan/03-the-hunt-hardening-and-logs-off-the-box.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/training/network-sd-wan/04-path-classes-change-rings-and-the-evidence.md": [
   {
    "id": "network-sd-wan",
    "title": "Network and SD-WAN"

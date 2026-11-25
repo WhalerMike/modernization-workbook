@@ -1,0 +1,16 @@
+PS> $a = Read-AmJson -Path out/a11y-report.json
+PS> $a.standard
+WCAG 2.0 Level A and AA (axe-core tags wcag2a, wcag2aa)
+PS> $a.engine
+axe-core 4.14.1
+PS> $a.rulesOff
+color-contrast
+--------------
+jsdom has no layout or paint; check contrast in a browser
+PS> $a.states | ForEach-Object { [pscustomobject]@{ State = $_.state; Violations = (@($_.violations) | ForEach-Object { "$($_.rule) ($($_.wcag -join ' '))" }) -join ', ' } } | Format-Table -Wrap
+State                                                        Violations
+-----                                                        ----------
+case list
+case detail, agent result and pending proposal
+case not found
+probe: unnamed button and unlabeled input (expected to fail) button-name (wcag412), label (wcag412)

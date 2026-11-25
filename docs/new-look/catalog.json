@@ -421,7 +421,7 @@
    "title": "Learning path: The SD-WAN Governor and Its Evidence",
    "description": "Four modules: the governor before the traffic, the ED 26-03 and KEV gate, the hunt and the logs, and path classes, change rings and the evidence, with labs on the Cisco kit's fixtures and in a test fabric",
    "url": "docs/training/network-sd-wan/index.html",
-   "count": 2,
+   "count": 4,
    "unit": "modules",
    "reading_minutes": 180,
    "reading_source": "page",
@@ -1111,6 +1111,31 @@
    ],
    "status": "Approved",
    "family": "attribute-driven-migration",
+   "featured": false
+  },
+  {
+   "id": "docs/project-plans/developer-workbooks/application-modernization/index.md",
+   "type": "Developer workbook",
+   "title": "Building Application Modernization",
+   "description": "A developer workbook for Book 18's reference implementation and its identity remediation work packages",
+   "url": "docs/project-plans/developer-workbooks/application-modernization/index.html",
+   "count": 7,
+   "unit": "chapters",
+   "reading_minutes": 77,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Advanced",
+   "level_source": "audience",
+   "roles": [
+    "Developer",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Application modernization"
+   ],
+   "status": "Draft",
+   "family": "application-modernization",
    "featured": false
   },
   {
@@ -2513,9 +2538,9 @@
    "id": "docs/training/labs.md#network-sd-wan",
    "type": "Lab",
    "title": "Labs: SD-WAN governor learning path",
-   "description": "4 hands-on labs across 2 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The SD-WAN governor learning path.",
+   "description": "8 hands-on labs across 4 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The SD-WAN governor learning path.",
    "url": "docs/training/labs.html#network-sd-wan",
-   "count": 4,
+   "count": 8,
    "unit": "labs",
    "reading_minutes": null,
    "reading_source": null,

@@ -1,0 +1,10 @@
+[
+  {
+    "id": "c0000000-0000-4000-8000-000000000601",
+    "principalId": "a0000000-0000-4000-8000-000000000102",
+    "resourceId": "a0000000-0000-4000-8000-000000000401",
+    "resourceDisplayName": "Microsoft Graph",
+    "appRoleId": "df021288-bdef-4463-88db-98f22de89214",
+    "principalType": "ServicePrincipal"
+  }
+]
