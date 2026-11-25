@@ -31,7 +31,8 @@ resources
     osName = tostring(properties.osName), osSku = tostring(properties.osSku), osVersion = tostring(properties.osVersion),
     privateLinkScopeResourceId = tostring(properties.privateLinkScopeResourceId),
     esuEligibility = tostring(properties.licenseProfile.esuProfile.esuEligibility),
-    esuAssignment = tostring(properties.licenseProfile.esuProfile.licenseAssignmentState)
+    esuAssignment = tostring(properties.licenseProfile.esuProfile.licenseAssignmentState),
+    sqlDiscovered = coalesce(tobool(properties.detectedProperties.mssqldiscovered), false)
 | order by id asc
 "@
     extensions    = @"
@@ -45,7 +46,8 @@ resources
     sqlInstances  = @"
 resources
 | where type =~ 'microsoft.azurearcdata/sqlserverinstances'
-| project id = tolower(id), name, version = tostring(properties.version), edition = tostring(properties.edition),
+| project id = tolower(id), name, subscriptionId, resourceGroup, serviceType = tostring(properties.serviceType),
+    version = tostring(properties.version), edition = tostring(properties.edition),
     status = tostring(properties.status), hostId = tolower(tostring(properties.containerResourceId)),
     licenseType = tostring(properties.licenseType), currentVersion = tostring(properties.currentVersion)
 | order by id asc
@@ -103,6 +105,16 @@ function ConvertTo-FmwArmUtc {
 }
 
 function Get-FmwArmDays([datetimeoffset]$From, [datetimeoffset]$To) { [int][math]::Floor(($To - $From).TotalDays) }
+
+# A sqlServerInstances resource is a Database Engine instance unless serviceType names an associated
+# service (SSAS, SSIS, SSRS, PBIRS). Learn gives Engine as the default.
+function Test-FmwSqlEngine($Row) { $t = Get-FmwArmValue $Row 'serviceType' ''; (-not $t) -or $t -eq 'Engine' }
+
+function Get-FmwTally([object[]]$Rows, [scriptblock]$Key) {
+    $o = [ordered]@{}
+    foreach ($v in (@($Rows | Where-Object { $null -ne $_ } | ForEach-Object $Key) | Sort-Object -CaseSensitive)) { $o[$v] = 1 + [int]($o[$v] ?? 0) }
+    $o
+}
 
 function Get-FmwScopeNote([object[]]$Machines) {
     $n = @($Machines | Where-Object { $null -ne $_ }).Count
@@ -249,9 +261,10 @@ function Get-FmwLifecycleState($Row, [datetimeoffset]$AsOf, [int]$Window, $EsuAs
 function Test-FmwArcLifecycle {
     <#
     .SYNOPSIS
-        Arc servers and SQL Server instances on products past, or near, the end of support.
+        Arc servers and SQL Server Database Engine instances on products past, or near, the end of support.
     .DESCRIPTION
-        Matches the OS on osSku, then osName, against arc-lifecycle.json. States: unsupported,
+        Matches the OS on osSku, then osName, against arc-lifecycle.json. Associated services (SSAS, SSIS,
+        SSRS, PBIRS) are left out: their installation's Engine instance already reports its lifecycle. States: unsupported,
         esuNotConfirmed, esuCovered, endingSoon (within -WindowDays) and supported. A product not in
         the table is listed under notInTable, never counted as supported. Evidences SA-22 and SI-2.
     .EXAMPLE
@@ -269,7 +282,7 @@ function Test-FmwArcLifecycle {
         $s = Get-FmwLifecycleState $p $AsOf $WindowDays $assigned
         $rows.Add([ordered]@{ id = $m.id; name = $m.name; kind = 'os'; product = $p.product; state = $s[0]; date = $s[1] })
     }
-    foreach ($q in ($SqlInstances | Sort-Object { $_.name.ToLowerInvariant() })) {
+    foreach ($q in ($SqlInstances | Where-Object { Test-FmwSqlEngine $_ } | Sort-Object { $_.name.ToLowerInvariant() })) {
         $p = & $match (Get-FmwArmValue $q 'version' '') 'sql'
         if (-not $p) { $unknown.Add([ordered]@{ id = $q.id; name = $q.name; kind = 'sql'; label = (Get-FmwArmValue $q 'version' '') }); continue }
         $s = Get-FmwLifecycleState $p $AsOf $WindowDays $null   # a SQL Server ESU subscription isn't read: confirm it separately
@@ -286,15 +299,21 @@ function Test-FmwArcLifecycle {
 function Test-FmwArcSql {
     <#
     .SYNOPSIS
-        SQL Server instances enabled by Arc: counts by version and edition, and instances whose host isn't a connected Arc machine in scope.
+        SQL Server enabled by Arc: Database Engine instances and the machines that host them, counted separately, with breakdowns.
     .DESCRIPTION
-        Evidences NIST SP 800-53 CM-8 and CM-8(1).
+        instances counts Engine resources only; associatedServices counts SSAS, SSIS, SSRS and PBIRS installs by
+        serviceType. hostMachines counts the distinct containerResourceId values among Engine instances: one
+        machine can host several. machinesSqlDiscovered counts Arc machines whose detectedProperties say SQL
+        Server is installed; discoveredWithoutInstance lists those with no instance resource. Breakdowns by
+        version, edition, status, licenseType, subscription and resource group cover Engine instances. Findings:
+        resources whose host isn't a connected Arc machine in scope. Evidences NIST SP 800-53 CM-8 and CM-8(1).
     .EXAMPLE
         $arc = Get-Content -Raw tests/fixtures/arc.json | ConvertFrom-Json -AsHashtable
-        (Test-FmwArcSql -Machines $arc.machines -SqlInstances $arc.sqlInstances).findings.name
+        Test-FmwArcSql -Machines $arc.machines -SqlInstances $arc.sqlInstances | Select-Object -Property instances, hostMachines
     #>
     param([object[]]$Machines = @(), [object[]]$SqlInstances = @())
     $hosts = @{}; foreach ($m in $Machines) { $hosts[$m.id] = $m }
+    $engine = @($SqlInstances | Where-Object { Test-FmwSqlEngine $_ })
     $findings = [System.Collections.Generic.List[object]]::new()
     foreach ($s in ($SqlInstances | Sort-Object { $_.name.ToLowerInvariant() })) {
         $h = $hosts[(Get-FmwArmValue $s 'hostId' '')]
@@ -302,10 +321,29 @@ function Test-FmwArcSql {
         if ((Get-FmwArmValue $s 'status' '') -ne 'Connected') { $reasons.Add("instance status $((Get-FmwArmValue $s 'status' '') ? (Get-FmwArmValue $s 'status' '') : 'missing')") }
         if ($null -eq $h) { $reasons.Add('host not found among the Arc machines in scope') }
         elseif ((Get-FmwArmValue $h 'status' '') -ne 'Connected') { $reasons.Add("host status $((Get-FmwArmValue $h 'status' '') ? (Get-FmwArmValue $h 'status' '') : 'missing')") }
-        if ($reasons.Count) { $findings.Add([ordered]@{ id = $s.id; name = $s.name; version = (Get-FmwArmValue $s 'version' ''); host = ($h ? $h.name : $null); reasons = @($reasons) }) }
+        $svc = Get-FmwArmValue $s 'serviceType' ''; if (-not $svc) { $svc = 'Engine' }
+        if ($reasons.Count) { $findings.Add([ordered]@{ id = $s.id; name = $s.name; serviceType = $svc; version = (Get-FmwArmValue $s 'version' ''); host = ($h ? $h.name : $null); reasons = @($reasons) }) }
     }
-    $count = { param($key) $o = [ordered]@{}; foreach ($v in ($SqlInstances | ForEach-Object { $x = Get-FmwArmValue $_ $key ''; $x ? $x : 'Unknown' } | Sort-Object)) { $o[$v] = 1 + [int]($o[$v] ?? 0) }; $o }
-    [ordered]@{ instances = @($SqlInstances).Count; byVersion = (& $count 'version'); byEdition = (& $count 'edition'); findings = @($findings) }
+    $hostIds = @($SqlInstances | ForEach-Object { Get-FmwArmValue $_ 'hostId' '' } | Where-Object { $_ })
+    $discovered = @($Machines | Where-Object { (Get-FmwArmValue $_ 'sqlDiscovered' $false) -eq $true })
+    $or = { param($row, $key) $x = Get-FmwArmValue $row $key ''; $x ? $x : 'Unknown' }
+    $note = Get-FmwScopeNote $Machines
+    [ordered]@{
+        machinesInScope = $note.machinesInScope; emptyScope = $note.emptyScope
+        resources = @($SqlInstances).Count
+        instances = $engine.Count
+        associatedServices = (Get-FmwTally @($SqlInstances | Where-Object { -not (Test-FmwSqlEngine $_) }) { $_.serviceType })
+        hostMachines = @($engine | ForEach-Object { Get-FmwArmValue $_ 'hostId' '' } | Where-Object { $_ } | Sort-Object -Unique).Count
+        machinesSqlDiscovered = $discovered.Count
+        discoveredWithoutInstance = @($discovered | Where-Object { $hostIds -notcontains $_.id } | ForEach-Object { $_.name } | Sort-Object { $_.ToLowerInvariant() })
+        byVersion = (Get-FmwTally $engine { & $or $_ 'version' })
+        byEdition = (Get-FmwTally $engine { & $or $_ 'edition' })
+        byStatus = (Get-FmwTally $engine { & $or $_ 'status' })
+        byLicenseType = (Get-FmwTally $engine { & $or $_ 'licenseType' })
+        bySubscription = (Get-FmwTally $engine { & $or $_ 'subscriptionId' })
+        byResourceGroup = (Get-FmwTally $engine { '{0}/{1}' -f (& $or $_ 'subscriptionId'), (& $or $_ 'resourceGroup').ToLowerInvariant() })
+        findings = @($findings)
+    }
 }
 
 function Test-FmwArcPolicy {

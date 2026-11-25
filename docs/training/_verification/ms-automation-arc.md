@@ -49,7 +49,7 @@ Verdicts: **verified** (the source says it); **inference** (labelled on the page
 | 29 | Azure Monitor Agent: publisher `Microsoft.Azure.Monitor`, types `AzureMonitorWindowsAgent`, `AzureMonitorLinuxAgent` | Unit 4 | verified | m4-amaov; m4-extlist |
 | 30 | Defender for Endpoint: publisher `Microsoft.Azure.AzureDefenderForServers`, types `MDE.Windows`, `MDE.Linux` | Unit 4 | verified | m4-extlist |
 | 31 | Extension stuck in Creating or Provisioning failed: investigate before retrying | Unit 4 | verified | m4-mdetroubleshoot |
-| 32 | SQL Server instance properties `version` (2012 to 2022, Unknown), `edition`, `status` (Connected, Disconnected, Unknown), `containerResourceId`, `licenseType`, `currentVersion`, `patchLevel` | Unit 4 | verified across the template reference's API versions | m4-sqltpl |
+| 32 | SQL Server instance properties `version` (2012 to 2022, Unknown), `edition`, `status` (Connected, Disconnected, Unknown), `containerResourceId`, `licenseType`, `currentVersion`, `patchLevel` | Unit 4 | verified across the template reference's API versions; superseded on 2026-11-25 by row 69 (`version` now runs to SQL Server 2025) | m4-sqltpl |
 | 33 | An instance whose host isn't in the result needs a look | Unit 4 | inference (labelled) | — |
 | 34 | enforcementMode `Default`, `DoNotEnforce`, `Enroll`; default when unspecified is `Default`; DoNotEnforce still evaluates | Unit 5 | verified | m4-polassign |
 | 35 | complianceState values NonCompliant, Compliant, Conflict, Exempt; states carry the assignment ID | Unit 5 | verified (sample query) | m4-argpolsamples |
@@ -100,3 +100,21 @@ Each figure is reused from the page named in its caption and carries that page's
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | 68 | Figure `b05-devices/ch09-arc-management-plane` (reused): the Arc machine resource, its managed identity, and what attaches to it | Unit 4 | carried | Book 05, Chapter 09 and its log |
+
+## SQL Server inventory, November 25, 2026
+
+A question from practice, how many SQL Server instances are enabled by Arc, was checked against Microsoft Learn. Learn was read on 2026-11-25 in a browser, as page text. The `sql-inventory` check now counts Database Engine instances apart from associated services and from the machines that host them, and `lifecycle` judges Engine instances only. The kit's tests and Lab 1 were run again the same day.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 69 | SQL Server instance properties: `version` values `SQL Server 2012` to `SQL Server 2025` and `Unknown`; `edition` adds `Standard Developer` and `Unknown`; `serviceType` `Engine`, `PBIRS`, `SSAS`, `SSIS`, `SSRS` (template reference, 2026-03-01-preview, updated 07/13/2026). `containerResourceId` ("ARM Resource id of the container resource (Azure Arc for Servers)"), `status` ("The cloud connectivity status"), `licenseType`, `currentVersion` and `patchLevel` are read-only and listed on the REST "Get" page (2026-01-01), not on the current template page | Unit 4 | verified | m4-sqltpl; m4-sqlget |
+| 70 | Each install of SSAS, SSIS, SSRS or PBIRS is a SQL Server instance resource, with `serviceType` naming the service; the default is `Engine` | Unit 4 | verified | m4-sqlinventory |
+| 71 | Learn's version-distribution query (Scenario 6): `summarize count() by tostring(SQLversion)` over `sqlserverinstances` | Unit 4 | verified | m4-sqlinventory |
+| 72 | The agent registers the server as a Server - Azure Arc resource, and the Azure extension for SQL Server connects the SQL Server instances as resources of type SQL Server - Azure Arc; instances can be excluded when several are installed on the server, so one machine can host several instance resources | Unit 4 | verified | m4-sqlconnect |
+| 73 | Microsoft's Arc-servers sample reads `properties.detectedProperties.mssqldiscovered` to list servers with SQL Server installed | Unit 4 | verified | m4-argarcsamples (rechecked 2026-11-25) |
+| 74 | A machine where SQL Server is detected but no instance is registered may lack the extension or have its instances excluded | Unit 4 | inference (labelled) | — |
+| 75 | The two Resource Graph Explorer queries (instance and host-machine counts; breakdown) | Unit 4; Unit 9 step 7 | design; not run against a live tenant (Lab 2 compares them with `sql-inventory`) | — |
+| 76 | Associated services left out of `lifecycle`, since the installation's Engine instance reports its lifecycle | Unit 4 | design (labelled in the kit README) | — |
+| 77 | SQL Server 2025: start Nov 18, 2025; mainstream end 1/7/2031 06:59:59; extended end 1/7/2036 06:59:59 (the instants in the lifecycle page's markup); the table shows the last day of support, January 6, 2036, as for the other rows | Unit 5 table; arc-lifecycle.json | verified | m4-lifecycle (SQL Server 2025 page) |
+| 78 | Lab 1 output on 2026-11-25: `lifecycle` supported 5 (6 with a 60-day window); `sql-inventory` resources 7, instances 6, SSRS 1, hostMachines 5, machinesSqlDiscovered 5, discoveredWithoutInstance `SRV-APP-02` | Unit 8 | verified (run) | the kit |
+| 79 | A common answer, "count `sqlserverinstances` with `summarize count()`", counts associated services too; its source for one machine hosting several instances, a Fabric page about query performance, was replaced with Learn's Connect page and the REST reference | Unit 4 | corrected | m4-sqlinventory; m4-sqlconnect; m4-sqlget |

@@ -7,7 +7,7 @@ research-status: draft
 research-type: training module
 research-book: "Books 05, 06"
 series-order: 4
-date-modified: 2026-11-11
+date-modified: 2026-11-25
 review-status: approved
 reviewed-sha256: 3bb6fa63b92380db79112ddb742df17a90c8396969be730daea8d54e25d1edf2
 last-reviewed: 2026-11-22
@@ -169,15 +169,51 @@ Change the required list to match your baseline. [Book 05](../books/b05-devices/
 
 ### SQL Server enabled by Arc
 
-A SQL Server instance discovered on an Arc machine becomes a `microsoft.azurearcdata/sqlServerInstances` resource. Its properties include:[^m4-sqltpl]
+When a server connected to Arc has SQL Server installed, the Azure extension for SQL Server connects each SQL Server instance as its own resource, `microsoft.azurearcdata/sqlServerInstances`, beside the machine's `microsoft.hybridcompute/machines` resource.[^m4-sqlconnect] Each installation of an associated service is a resource of the same type: SQL Server Analysis Services, Integration Services, Reporting Services and Power BI Report Server. Its `serviceType` property says which: `Engine`, `SSAS`, `SSIS`, `SSRS` or `PBIRS`, with `Engine` the default.[^m4-sqlinventory] Its properties include:[^m4-sqltpl][^m4-sqlget]
 
-- `version`, such as `SQL Server 2016` (the documented values run from `SQL Server 2012` to `SQL Server 2022`, and `Unknown`);
-- `edition`;
+- `serviceType`, as above;
+- `version`, such as `SQL Server 2016` (the documented values run from `SQL Server 2012` to `SQL Server 2025`, and `Unknown`);
+- `edition`, such as `Enterprise`, `Standard`, `Standard Developer` or `Express`;
 - `status`, the "cloud connectivity status": `Connected`, `Disconnected` or `Unknown`;
-- `containerResourceId`, the Resource Manager ID of the Arc machine that hosts the instance;
+- `containerResourceId`, the "ARM Resource id of the container resource (Azure Arc for Servers)": the machine that hosts the instance;
 - `licenseType`, `currentVersion` and `patchLevel`.
 
+The current template reference lists only the properties a template can set. `status`, `containerResourceId`, `licenseType`, `currentVersion` and `patchLevel` are read-only, so they're on the REST API's "Get" page instead.[^m4-sqlget]
+
 The `sql-inventory` check joins each instance to its host through `containerResourceId`. An instance whose host isn't in the result is either on a machine the identity can't read or left behind by a deleted machine. Either way it needs a look *(inference)*.
+
+### Counting instances and machines {#counting-sql-instances}
+
+"How many SQL Servers do we have?" has three answers, and an inventory reports all three:
+
+- **Instances**: `sqlServerInstances` resources whose `serviceType` is `Engine`. A count of every resource of the type also counts each Analysis Services, Integration Services, Reporting Services and Power BI Report Server install.[^m4-sqlinventory]
+- **Machines hosting an instance**: the distinct `containerResourceId` values among those instances. One machine can host several instances,[^m4-sqlconnect] so this number is smaller.
+- **Machines where Arc detected SQL Server**: Arc machines whose `properties.detectedProperties.mssqldiscovered` is true, the flag Microsoft's own sample query reads.[^m4-argarcsamples] A machine counted here with no instance resource may lack the Azure extension for SQL Server, or have its instances excluded from registration *(inference)*.
+
+In the portal, open **Resource Graph Explorer**, set the scope to the subscriptions or management group you're counting, and run this query. It returns the first two answers in one row:
+
+```kusto
+resources
+| where type =~ 'microsoft.azurearcdata/sqlserverinstances'
+| extend serviceType = iff(isempty(tostring(properties.serviceType)), 'Engine', tostring(properties.serviceType))
+| where serviceType =~ 'Engine'
+| summarize instances = count() by hostId = tolower(tostring(properties.containerResourceId))
+| summarize hostMachines = count(), instances = sum(instances)
+```
+
+The breakdown extends Learn's version-distribution sample[^m4-sqlinventory] to the other columns an assessor asks about:
+
+```kusto
+resources
+| where type =~ 'microsoft.azurearcdata/sqlserverinstances'
+| extend serviceType = iff(isempty(tostring(properties.serviceType)), 'Engine', tostring(properties.serviceType))
+| where serviceType =~ 'Engine'
+| summarize instances = count() by subscriptionId, resourceGroup, version = tostring(properties.version),
+    edition = tostring(properties.edition), status = tostring(properties.status), licenseType = tostring(properties.licenseType)
+| order by subscriptionId asc, resourceGroup asc, version asc
+```
+
+The scripted step is the `sql-inventory` check. It fetches the rows with paged queries and counts in code, so the result doesn't depend on a summary query's shape. It reports `resources` and `instances`, `associatedServices` by type, `hostMachines`, `machinesSqlDiscovered` with the `discoveredWithoutInstance` list, and instances `byVersion`, `byEdition`, `byStatus`, `byLicenseType`, `bySubscription` and `byResourceGroup`. Its JSON output is the inventory evidence for CM-8 ([Unit 7](#the-five-checks)). The `lifecycle` check judges Engine instances only: an associated service is part of a SQL Server installation, so its Engine instance already reports that installation's lifecycle. Run both queries above in Lab 2 and compare them with the check's counts.
 
 ## Unit 5: Policy and lifecycle
 
@@ -208,6 +244,7 @@ Running an operating system or database version past its end of support is NIST 
 | SQL Server 2014 | July 9, 2024 | Through July 8, 2027 (the ESU FAQ; the lifecycle page lists July 12, 2027, and the kit uses the earlier date) | ESU years |
 | SQL Server 2016 | July 14, 2026 | Through July 17, 2029 | ESU years |
 | SQL Server 2017, 2019, 2022 | October 12, 2027; January 8, 2030; January 11, 2033 | — | Supported |
+| SQL Server 2025 | January 6, 2036 (mainstream support ends January 6, 2031) | — | Supported |
 
 : Support dates (Microsoft's lifecycle pages, checked November 3, 2026 and rechecked November 11, 2026). The table shows the last day of support; the JSON keeps the instant the page lists, at 06:59:59 UTC the next day. {.striped .hover}
 
@@ -244,8 +281,8 @@ Each check is read-only, needs only Reader, and is tied to the federal requireme
 |---|---|---|---|
 | `arc-extensions` | Servers missing Azure Monitor Agent or Defender for Endpoint, and extensions not `Succeeded`, with their state and version | SI-4, SI-3, AU-12, CM-8 | VK-ARC-02 (agent status and version) |
 | `arc-private-link` | Servers with no Azure Arc private link scope, and how many use each scope | SC-7 | Book 05's [network design](../books/b05-devices/09-servers-under-azure-arc.md#network) |
-| `lifecycle` | Servers and SQL Server instances by support state: `unsupported`, `esuNotConfirmed`, `esuCovered`, `endingSoon` (within 180 days by default); products not in the table | SA-22, SI-2 | VK-ARC-05 (patch assessment) |
-| `sql-inventory` | SQL Server instances by version and edition; instances disconnected, or whose host is disconnected or not in scope | CM-8, CM-8(1) | VK-ARC-04 (CMDB coverage) and Book 06's [Arc deployment](../books/b06-data-platform/r04-arc-deployment-and-managed-identity.md) |
+| `lifecycle` | Servers and SQL Server Database Engine instances by support state: `unsupported`, `esuNotConfirmed`, `esuCovered`, `endingSoon` (within 180 days by default); products not in the table | SA-22, SI-2 | VK-ARC-05 (patch assessment) |
+| `sql-inventory` | Database Engine instances, the machines that host them and the machines where Arc detected SQL Server, counted separately; associated services by type; instances by version, edition, status, license type, subscription and resource group; resources disconnected, or whose host is disconnected or not in scope | CM-8, CM-8(1) | VK-ARC-04 (CMDB coverage) and Book 06's [Arc deployment](../books/b06-data-platform/r04-arc-deployment-and-managed-identity.md) |
 | `policy-summary` | Every assignment's enforcement mode and compliance counts; `DoNotEnforce` assignments; assignments with no states; states from assignments outside the scope | CA-7, CM-6, CM-2 | VK-ARC-03 (baseline compliance per server) |
 
 The role for all five is Reader on the subscriptions or management group in scope. That's a reader's role: none of the five can change a resource. Every result that reads machines starts with `machinesInScope` and `emptyScope`.
@@ -314,7 +351,7 @@ python -m pytest -q -p no:cacheprovider tests/python/test_arc_tasks.py
 You run each check against the kit's fictional estate. It's one subscription holding:
 
 - seven Arc servers (Windows Server 2012 R2 to 2025, and two Linux);
-- five SQL Server instances;
+- seven SQL Server resources: six Database Engine instances on five machines, one of them SQL Server 2025, and one Reporting Services install;
 - four policy assignments.
 
 Work in `examples/ms-automation`. `--from-json` evaluates saved Resource Graph rows instead of calling Azure, and `--as-of` fixes the evaluation time so your output matches this page. Every result starts with the task's name and the controls it evidences.
@@ -349,7 +386,7 @@ Work in `examples/ms-automation`. `--from-json` evaluates saved Resource Graph r
          "esuNotConfirmed": 2,
          "esuCovered": 0,
          "endingSoon": 1,
-         "supported": 4
+         "supported": 5
        },
    ```
 
@@ -359,7 +396,7 @@ Work in `examples/ms-automation`. `--from-json` evaluates saved Resource Graph r
    - `SRV-DB-01_MSSQLSERVER`, SQL Server 2016, and `SRV-LEG-01_MSSQLSERVER`, SQL Server 2014: `esuNotConfirmed`.
    - `SRV-APP-02`, Windows Server 2016: `endingSoon`, with the date `2027-01-13T06:59:59Z`.
 
-   `notInTable` lists the two Linux servers and `SRV-APP-01_SQLEXPRESS`, whose version is `Unknown`. `SRV-APP-02` is the case the workbook's server standard is about: a Windows Server 2016 server that has to be upgraded before January 12, 2027 or become a documented exception.
+   `notInTable` lists the two Linux servers and `SRV-APP-01_SQLEXPRESS`, whose version is `Unknown`. `SRV-NEW-01_MSSQLSERVER`, SQL Server 2025, is among the supported, and `SRV-DB-01_SSRS`, a Reporting Services install, isn't judged at all. `SRV-APP-02` is the case the workbook's server standard is about: a Windows Server 2016 server that has to be upgraded before January 12, 2027 or become a documented exception.
 
 4. Check support dates with a 60-day window instead of the default 180.
 
@@ -367,7 +404,7 @@ Work in `examples/ms-automation`. `--from-json` evaluates saved Resource Graph r
    python python/arc_tasks.py --from-json tests/fixtures/arc.json --as-of 2026-11-03T00:00:00Z lifecycle --window-days 60
    ```
 
-   Expected: `SRV-APP-02` drops out (its support ends in 71 days), so `"endingSoon": 0` and `"supported": 5`. The window decides how early a server shows up as a finding, not whether it's supported.
+   Expected: `SRV-APP-02` drops out (its support ends in 71 days), so `"endingSoon": 0` and `"supported": 6`. The window decides how early a server shows up as a finding, not whether it's supported.
 
 5. Inventory SQL Server.
 
@@ -375,7 +412,7 @@ Work in `examples/ms-automation`. `--from-json` evaluates saved Resource Graph r
    python python/arc_tasks.py --from-json tests/fixtures/arc.json --as-of 2026-11-03T00:00:00Z sql-inventory
    ```
 
-   Expected: `"instances": 5`, with `"byEdition"` of `Enterprise` 1, `Express` 1 and `Standard` 3, and two findings:
+   Expected: `"resources": 7` but `"instances": 6`, because `"associatedServices"` holds `SSRS` 1. `"hostMachines": 5`, because `SRV-DB-01` hosts two instances. `"machinesSqlDiscovered": 5`, and `"discoveredWithoutInstance"` lists `SRV-APP-02`: Arc detected SQL Server there, but no instance is registered. `"byEdition"` is `Enterprise` 1, `Express` 1, `Standard` 3 and `Standard Developer` 1, and `"byStatus"` is `Connected` 5 and `Disconnected` 1. There are two findings:
    - `OLD-SQL-07_MSSQLSERVER`: `"host not found among the Arc machines in scope"`;
    - `SRV-LEG-01_MSSQLSERVER`: `"instance status Disconnected"` and `"host status Disconnected"`.
 
@@ -605,7 +642,7 @@ You run the checks read-only against a test subscription and compare them with t
 7. **Compare** each result with the portal. In the Azure portal:
    1. Open **Azure Arc**, then **Machines**: compare the list, each machine's status and operating system with `machinesInScope`, `arc-private-link` and `lifecycle`.
    2. Open each machine with a finding, then **Extensions**: compare with `arc-extensions`.
-   3. Open **Azure Arc**, then **SQL Server instances**: compare with `sql-inventory`.
+   3. Open **Azure Arc**, then **SQL Server instances**: compare with `sql-inventory`. Then open **Resource Graph Explorer**, run the two queries in [Counting instances and machines](#counting-sql-instances), and compare `instances`, `hostMachines` and the breakdown with `sql-inventory`.
    4. Open **Policy**, then **Compliance**: compare each assignment's counts and enforcement with `policy-summary`.
 
 8. **Back it out.** Remove the role assignment, delete the app registration and its certificate, and delete the saved results: they hold server names and resource IDs. Deleting the app registration also deletes its service principal.
@@ -715,10 +752,16 @@ Related: [Module 1: Foundations](ms-automation-foundations.md), [Module 3: Intun
 [^m4-amaov]: Microsoft Learn, "Install and manage the Azure Monitor Agent" (updated July 8, 2026), <https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-manage>, accessed November 3, 2026.
 [^m4-extlist]: Microsoft Learn, "Virtual machine extension management with Azure Arc-enabled servers" (extension publishers and types), <https://learn.microsoft.com/en-us/azure/azure-arc/servers/manage-vm-extensions>, accessed November 3, 2026.
 [^m4-mdetroubleshoot]: Microsoft Learn, "Enable Defender for Endpoint integration in Microsoft Defender for Cloud" (troubleshoot extension deployment), <https://learn.microsoft.com/en-us/azure/defender-for-cloud/enable-defender-for-endpoint>, accessed November 3, 2026.
-[^m4-sqltpl]: Microsoft Learn, "Microsoft.AzureArcData sqlServerInstances" template reference (properties, including `version`, `status` and `containerResourceId`; updated December 9, 2024), <https://learn.microsoft.com/en-us/azure/templates/microsoft.azurearcdata/sqlserverinstances>, accessed November 3, 2026.
+[^m4-sqltpl]: Microsoft Learn, "Microsoft.AzureArcData sqlServerInstances" template reference (properties, including `serviceType`, `version` to `SQL Server 2025` and `edition`; updated July 13, 2026), <https://learn.microsoft.com/en-us/azure/templates/microsoft.azurearcdata/sqlserverinstances>, accessed November 3, 2026; rechecked November 25, 2026. The 2021-11-01 version of the same reference lists `containerResourceId`, `status` and `licenseType` as settable properties.
+
+[^m4-sqlget]: Microsoft Learn, "Sql Server Instances - Get" (Azure Arc Data REST API, 2026-01-01: `containerResourceId`, "ARM Resource id of the container resource (Azure Arc for Servers)"; `status`, "The cloud connectivity status"; `licenseType`; `serviceType`), <https://learn.microsoft.com/en-us/rest/api/arcdata/sql-server-instances/get>, accessed November 25, 2026.
+
+[^m4-sqlinventory]: Microsoft Learn, "Manage inventory of SQL Server resources with Azure Arc" (Scenario 6, the version-distribution query; "Inventory associated services", the `serviceType` property and its default, `Engine`; updated June 23, 2026), <https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/view-inventory>, accessed November 25, 2026.
+
+[^m4-sqlconnect]: Microsoft Learn, "Connect your SQL Server to Azure Arc" (the Connected Machine agent registers the server as a Server - Azure Arc resource, and the Azure extension for SQL Server connects the SQL Server instances as resources of type SQL Server - Azure Arc; excluding instances "if you have multiple instances installed on the server"), <https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/connect>, accessed November 25, 2026.
 [^m4-polassign]: Microsoft Learn, "Details of the policy assignment structure" (enforcement mode; updated July 30, 2026), <https://learn.microsoft.com/en-us/azure/governance/policy/concepts/assignment-structure>, accessed November 3, 2026; rechecked November 11, 2026.
 [^m4-argpolsamples]: Microsoft Learn, "Azure Resource Graph sample queries for Azure Policy" (updated March 19, 2025), <https://learn.microsoft.com/en-us/azure/governance/policy/samples/resource-graph-samples>, and the samples-by-table page (policy states by assignment), <https://learn.microsoft.com/en-us/previous-versions/azure/governance/resource-graph/samples/samples-by-table>, accessed November 3, 2026.
-[^m4-lifecycle]: Microsoft Learn, lifecycle pages for Windows Server 2012 R2, 2016, 2019, 2022 and 2025, and SQL Server 2012, 2014, 2016, 2017, 2019 and 2022, under <https://learn.microsoft.com/en-us/lifecycle/products/> (each page's Extended End Date and Extended Security Update years), accessed November 3, 2026; rechecked November 11, 2026. `examples/ms-automation/arc-lifecycle.json` names each page.
+[^m4-lifecycle]: Microsoft Learn, lifecycle pages for Windows Server 2012 R2, 2016, 2019, 2022 and 2025, and SQL Server 2012, 2014, 2016, 2017, 2019, 2022 and 2025, under <https://learn.microsoft.com/en-us/lifecycle/products/> (each page's Extended End Date and Extended Security Update years), accessed November 3, 2026; rechecked November 11, 2026; SQL Server 2025 added November 25, 2026. `examples/ms-automation/arc-lifecycle.json` names each page.
 [^m4-ws2012esu]: Microsoft Learn, "Overview of Extended Security Updates for Windows Server 2012 and 2012 R2" (ESU end date October 13, 2026; updated June 5, 2025), <https://learn.microsoft.com/en-us/windows-server/get-started/extended-security-updates-overview>, accessed November 3, 2026; rechecked November 11, 2026.
 [^m4-arcesu]: Microsoft Learn, "Prepare to deliver Extended Security Updates for Windows Server through Azure Arc" (Windows Server 2012 license deactivation; Windows Server 2016 ESUs; updated September 11, 2026), <https://learn.microsoft.com/en-us/azure/azure-arc/servers/prepare-extended-security-updates>, accessed November 3, 2026; rechecked November 11, 2026.
 [^m4-sqlesu]: Microsoft Learn, "What are Extended Security Updates?" (SQL Server; updated June 22, 2026), <https://learn.microsoft.com/en-us/sql/sql-server/end-of-support/sql-server-extended-security-updates>, accessed November 3, 2026; rechecked November 11, 2026.

@@ -95,7 +95,7 @@
       "esuNotConfirmed": 2,
       "esuCovered": 0,
       "endingSoon": 1,
-      "supported": 4
+      "supported": 5
     },
     "findings": [
       {
@@ -161,23 +161,51 @@
     ]
   },
   "sql-inventory": {
-    "instances": 5,
+    "machinesInScope": 7,
+    "emptyScope": false,
+    "resources": 7,
+    "instances": 6,
+    "associatedServices": {
+      "SSRS": 1
+    },
+    "hostMachines": 5,
+    "machinesSqlDiscovered": 5,
+    "discoveredWithoutInstance": [
+      "SRV-APP-02"
+    ],
     "byVersion": {
       "SQL Server 2012": 1,
       "SQL Server 2014": 1,
       "SQL Server 2016": 1,
       "SQL Server 2019": 1,
+      "SQL Server 2025": 1,
       "Unknown": 1
     },
     "byEdition": {
       "Enterprise": 1,
       "Express": 1,
-      "Standard": 3
+      "Standard": 3,
+      "Standard Developer": 1
+    },
+    "byStatus": {
+      "Connected": 5,
+      "Disconnected": 1
+    },
+    "byLicenseType": {
+      "Free": 2,
+      "Paid": 4
+    },
+    "bySubscription": {
+      "00000000-0000-0000-0000-00000000000a": 6
+    },
+    "byResourceGroup": {
+      "00000000-0000-0000-0000-00000000000a/rg-servers": 6
     },
     "findings": [
       {
         "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.azurearcdata/sqlserverinstances/old-sql-07_mssqlserver",
         "name": "OLD-SQL-07_MSSQLSERVER",
+        "serviceType": "Engine",
         "version": "SQL Server 2012",
         "host": null,
         "reasons": [
@@ -187,6 +215,7 @@
       {
         "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.azurearcdata/sqlserverinstances/srv-leg-01_mssqlserver",
         "name": "SRV-LEG-01_MSSQLSERVER",
+        "serviceType": "Engine",
         "version": "SQL Server 2014",
         "host": "SRV-LEG-01",
         "reasons": [

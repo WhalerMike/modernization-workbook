@@ -157,7 +157,7 @@ def test_private_link():
 def test_lifecycle():
     d = load("arc")
     r = at.evaluate_lifecycle(d["machines"], d["sqlInstances"], at.load_lifecycle(), AS_OF)
-    assert r["counts"] == {"unsupported": 2, "esuNotConfirmed": 2, "esuCovered": 0, "endingSoon": 1, "supported": 4}
+    assert r["counts"] == {"unsupported": 2, "esuNotConfirmed": 2, "esuCovered": 0, "endingSoon": 1, "supported": 5}
     states = [(f["name"], f["state"]) for f in r["findings"]]
     assert states == [("SRV-LEG-01", "unsupported"), ("OLD-SQL-07_MSSQLSERVER", "unsupported"),
                       ("SRV-DB-01_MSSQLSERVER", "esuNotConfirmed"), ("SRV-LEG-01_MSSQLSERVER", "esuNotConfirmed"),
@@ -182,17 +182,45 @@ def test_lifecycle_esu_offered_without_an_end_date():
 def test_lifecycle_window():
     d = load("arc")
     r = at.evaluate_lifecycle(d["machines"], d["sqlInstances"], at.load_lifecycle(), AS_OF, window_days=60)
-    assert r["counts"]["endingSoon"] == 0 and r["counts"]["supported"] == 5
+    assert r["counts"]["endingSoon"] == 0 and r["counts"]["supported"] == 6
+
+
+def test_lifecycle_covers_sql_server_2025_and_skips_associated_services():
+    d = load("arc")
+    r = at.evaluate_lifecycle(d["machines"], d["sqlInstances"], at.load_lifecycle(), AS_OF)
+    names = [f["name"] for f in r["findings"]] + [u["name"] for u in r["notInTable"]]
+    assert "SRV-NEW-01_MSSQLSERVER" not in names  # SQL Server 2025: in the table, supported
+    assert "SRV-DB-01_SSRS" not in names  # Reporting Services: not judged as a product of its own
+    row = next(p for p in at.load_lifecycle() if p["product"] == "SQL Server 2025")
+    assert (row["mainstreamEnd"], row["extendedEnd"]) == ("2031-01-07T06:59:59Z", "2036-01-07T06:59:59Z")
 
 
 def test_sql_inventory():
     d = load("arc")
     r = at.evaluate_sql(d["machines"], d["sqlInstances"])
-    assert r["instances"] == 5 and r["byEdition"] == {"Enterprise": 1, "Express": 1, "Standard": 3}
+    # Engine instances and their host machines are separate counts; associated services apart.
+    assert (r["resources"], r["instances"], r["hostMachines"]) == (7, 6, 5)
+    assert r["associatedServices"] == {"SSRS": 1}
+    assert r["machinesSqlDiscovered"] == 5 and r["discoveredWithoutInstance"] == ["SRV-APP-02"]
+    assert r["byEdition"] == {"Enterprise": 1, "Express": 1, "Standard": 3, "Standard Developer": 1}
+    assert r["byStatus"] == {"Connected": 5, "Disconnected": 1} and r["byLicenseType"] == {"Free": 2, "Paid": 4}
+    assert r["bySubscription"] == {SUB: 6} and r["byResourceGroup"] == {f"{SUB}/rg-servers": 6}
     assert {f["name"]: f["reasons"] for f in r["findings"]} == {
         "OLD-SQL-07_MSSQLSERVER": ["host not found among the Arc machines in scope"],
         "SRV-LEG-01_MSSQLSERVER": ["instance status Disconnected", "host status Disconnected"],
     }
+
+
+def test_service_type_defaults_to_engine():
+    assert at.is_engine({}) and at.is_engine({"serviceType": ""}) and at.is_engine({"serviceType": "Engine"})
+    assert not any(at.is_engine({"serviceType": t}) for t in ("SSAS", "SSIS", "SSRS", "PBIRS"))
+
+
+def test_sql_query_reads_service_type_and_scope_columns():
+    for column in ("subscriptionId", "resourceGroup", "serviceType = tostring(properties.serviceType)",
+                   "hostId = tolower(tostring(properties.containerResourceId))", "licenseType"):
+        assert column in at.Q_SQL
+    assert "properties.detectedProperties.mssqldiscovered" in at.Q_MACHINES
 
 
 def test_policy_summary():
