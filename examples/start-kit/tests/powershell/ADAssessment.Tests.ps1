@@ -193,6 +193,14 @@ Describe 'Collector results' {
         $orphans.Account | Sort-Object -Unique | Should -Be @('krbtgt', 'OLD01$', 'svc-legacyapp')
         @($k.ByServiceClass | Where-Object ServiceClass -eq 'MSSQLSvc')[0].SpnCount | Should -Be 5
     }
+    It 'stops asking DNS at -MaxDnsLookups and reports the rest as not checked, not as orphans' {
+        $capped = Join-Path $TestDrive 'capped'
+        $doc = Get-FMPKerberosSpnMap -OutputPath $capped -Domain 'contoso.example' -RootDomain 'contoso.example' -AsOf $FMPAsOf -MaxDnsLookups 0 3>$null 6>$null
+        $doc.DnsLookupsCapped | Should -BeTrue
+        $doc.HostsCheckedInDns | Should -Be 0
+        $o = @(Import-Csv (Join-Path $capped 'contoso.example\Kerberos\SpnOrphans.csv'))
+        $o.Account | Should -Not -Contain 'svc-legacyapp'
+    }
     It 'keeps each orphan''s reasons apart: disabled, no recent logon, host not found' {
         $orphans = @(Import-Csv (Join-Path $root 'Kerberos\SpnOrphans.csv'))
         ($orphans | Where-Object Account -eq 'krbtgt').Reason | Should -Be 'Disabled; NoRecentLogon'
