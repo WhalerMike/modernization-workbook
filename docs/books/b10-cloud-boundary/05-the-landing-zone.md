@@ -32,6 +32,21 @@ Microsoft's Cloud Adoption Framework defines an Azure landing zone as an archite
 
 Before building, Microsoft asks for decisions in eight design areas: Azure billing and Microsoft Entra tenant, identity and access management, resource organization, network topology and connectivity, security, management, governance, and platform automation and DevOps.[^c05-design-areas] For a federal agency, every one of those areas has a boundary dimension. Resource organization decides where boundary policy is assigned; network topology decides how traffic reaches the agency's enforcement points ([Book 09](../b09-network/index.md)); governance decides how the boundary is audited and enforced; platform automation decides whether the whole thing can be rebuilt from reviewed source ([Chapter 06](06-ipam-and-network-as-code.md)).
 
+The workbook doesn't repeat Microsoft's guidance for each design area. It covers the federal decisions each area raises, in these places *(design guidance)*:
+
+| Design area (Microsoft) | Federal decision it raises | Where the workbook covers it |
+|---|---|---|
+| Azure billing and Microsoft Entra tenant | Which tenant the subscriptions pair with: a Microsoft 365 GCC tenant integrates with commercial Azure | [Chapter 04](04-gcc-and-the-feature-gap.md) |
+| Identity and access management | Who administers the platform, and through which roles and activation gates | [Book 02](../b02-identity/index.md), [Book 04](../b04-access/index.md) |
+| Resource organization | Where boundary policy is assigned in the management group hierarchy | This chapter, [The management group hierarchy](#the-management-group-hierarchy) |
+| Network topology and connectivity | How traffic reaches the agency's enforcement points, and where addresses and names come from | [Book 09](../b09-network/index.md), [Book 08](../b08-ddi/index.md), [Chapter 06](06-ipam-and-network-as-code.md), [Chapter 07](07-the-front-door.md) |
+| Security | Posture, detection and evidence for the Azure estate | [Book 12, Chapter 08](../b12-security-operations/08-cloud-native-posture.md), the [Azure Security Engineering guide](../guides/azure-security-implementation.md) |
+| Management | Monitoring, patching and operation of what runs in the landing zone | [Book 12](../b12-security-operations/index.md), [Book 15](../b15-day2-operations/index.md) |
+| Governance | How the boundary is audited and enforced, and how drift is caught | This chapter, [Where each boundary decision lands](#where-each-boundary-decision-lands); [Book 13](../b13-governance/index.md) |
+| Platform automation and DevOps | Whether the platform can be rebuilt from reviewed source | [Chapter 06](06-ipam-and-network-as-code.md); this chapter, [Every automation declares its boundary](#every-automation-declares-its-boundary) |
+
+: The eight landing zone design areas and where the workbook covers each {.striped .hover}
+
 Microsoft publishes accelerators that deploy the platform landing zone from infrastructure as code (Bicep or Terraform, built on Azure Verified Modules), and recommends them over portal deployment.[^c05-impl] Microsoft's portal, Bicep and Terraform deployment options are supported for the public Azure cloud, where the workbook's landing zone runs.[^c05-deploy]
 
 ## The substrate beneath it

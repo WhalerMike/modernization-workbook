@@ -228,22 +228,22 @@ The learner picks one build module and carries it out end to end in a lab, or ag
 
 None of the track depends on an outside certification, and none is endorsed. Certifications are useful as a general signal and as a structured way to learn a product; they don't show that someone can build this estate to this program's evidence standard, which the capstone does. The Microsoft certifications that map to these modules, as Microsoft Learn shows them on October 22, 2026:
 
-| Certification | Exam | Modules | Status |
-|---|---|---|---|
-| Identity and Access Administrator Associate | SC-300 | 2, 4 | Current; English exam update on October 28, 2026[^c04-sc300] |
-| Cloud and AI Security Engineer Associate | SC-500 | 4, 8 | Current; replaced AZ-500[^c04-sc500][^c04-retired] |
-| Endpoint Administrator Associate | MD-102 | 5 | Current; English exam update on October 27, 2026[^c04-md102] |
-| Windows Server Hybrid Administrator Associate | AZ-802 | 5 | Current exam; AZ-800 and AZ-801 retired September 30, 2026[^c04-az802][^c04-retired] |
-| Azure Network Engineer Associate | AZ-700 | 1, 6 | Current[^c04-az700] |
-| Azure Database Administrator Associate | DP-300 | 7 | Current[^c04-dp300] |
-| Azure Administrator Associate | AZ-104 | 8 | Current[^c04-az104] |
-| Security Operations Analyst Associate | SC-200 | 9 | Current[^c04-sc200] |
-| Information Security Administrator Associate | SC-401 | 9 | Current[^c04-sc401] |
-| Microsoft 365 Administrator Expert | MS-102 | 10 | Retiring November 30, 2026; plan around it[^c04-retired] |
+| Certification | Exam | Modules | Self-paced training on Microsoft Learn | Status |
+|---|---|---|---|---|
+| Identity and Access Administrator Associate | SC-300 | 2, 4 | [SC-300T00](https://learn.microsoft.com/training/courses/sc-300t00) | Current; English exam update on October 28, 2026[^c04-sc300] |
+| Cloud and AI Security Engineer Associate | SC-500 | 4, 8 | [SC-500T00](https://learn.microsoft.com/training/courses/sc-500t00) | Current; replaced AZ-500[^c04-sc500][^c04-retired] |
+| Endpoint Administrator Associate | MD-102 | 5 | [MD-102T00](https://learn.microsoft.com/training/courses/md-102t00) | Current; English exam update on October 27, 2026[^c04-md102] |
+| Windows Server Hybrid Administrator Associate | AZ-802 | 5 | [AZ-802T00](https://learn.microsoft.com/training/courses/az-802t00) | Current exam; AZ-800 and AZ-801 retired September 30, 2026[^c04-az802][^c04-retired] |
+| Azure Network Engineer Associate | AZ-700 | 1, 6 | [AZ-700T00](https://learn.microsoft.com/training/courses/az-700t00) | Current[^c04-az700] |
+| Azure Database Administrator Associate | DP-300 | 7 | [DP-300T00](https://learn.microsoft.com/training/courses/dp-300t00) | Current[^c04-dp300] |
+| Azure Administrator Associate | AZ-104 | 8 | [AZ-104T00](https://learn.microsoft.com/training/courses/az-104t00) | Current[^c04-az104] |
+| Security Operations Analyst Associate | SC-200 | 9 | [SC-200T00](https://learn.microsoft.com/training/courses/sc-200t00) | Current[^c04-sc200] |
+| Information Security Administrator Associate | SC-401 | 9 | [SC-401T00](https://learn.microsoft.com/training/courses/sc-401t00) | Current[^c04-sc401] |
+| Microsoft 365 Administrator Expert | MS-102 | 10 | [MS-102T00](https://learn.microsoft.com/training/courses/ms-102t00) | Retiring November 30, 2026; plan around it[^c04-retired] |
 
 : Example Microsoft certifications for the implementation track, with their status on October 22, 2026 {.striped .hover}
 
-Microsoft's associate, expert and specialty certifications expire every year and are renewed by passing a free online assessment on Microsoft Learn.[^c04-renew] Certification names and exams change often, as the four retirements in this table show; the program re-checks the table at each gate, the same way it re-checks federal dates. Network, DDI, identity governance and cloud vendors other than Microsoft have their own programs, which [Chapter 06](06-vendor-training-and-labs.md) covers.
+Each course page on Microsoft Learn carries the self-paced modules for its exam in its syllabus;[^c04-courses-learn] work through them before booking the instructor-led course *(design guidance)*. Microsoft's associate, expert and specialty certifications expire every year and are renewed by passing a free online assessment on Microsoft Learn.[^c04-renew] Certification names and exams change often, as the four retirements in this table show; the program re-checks the table at each gate, the same way it re-checks federal dates. Network, DDI, identity governance and cloud vendors other than Microsoft have their own programs, which [Chapter 06](06-vendor-training-and-labs.md) covers.
 
 ## What changed from the earlier curriculum
 
@@ -286,4 +286,5 @@ The CLM platform owner is a role Book 07 assigns ([Chapter 05](../b07-pki/05-who
 [^c04-az104]: Microsoft Learn, "Study guide for Exam AZ-104: Microsoft Azure Administrator" (skills measured as of April 17, 2026), <https://learn.microsoft.com/credentials/certifications/resources/study-guides/az-104>, and "Microsoft Certified: Azure Administrator Associate," <https://learn.microsoft.com/credentials/certifications/azure-administrator/> (accessed Oct 22, 2026).
 [^c04-sc200]: Microsoft Learn, "Microsoft Certified: Security Operations Analyst Associate" (last updated October 21, 2026), <https://learn.microsoft.com/en-us/credentials/certifications/security-operations-analyst/> (accessed Oct 22, 2026).
 [^c04-sc401]: Microsoft Learn, "Study guide for Exam SC-401: Administering Information Security in Microsoft 365," <https://learn.microsoft.com/credentials/certifications/resources/study-guides/sc-401>, and "Microsoft Certified: Information Security Administrator Associate," <https://learn.microsoft.com/credentials/certifications/information-security-administrator/> (accessed Oct 22, 2026).
+[^c04-courses-learn]: Microsoft Learn, course pages SC-300T00, SC-500T00, MD-102T00, AZ-802T00, AZ-700T00, DP-300T00, AZ-104T00, SC-200T00, SC-401T00 and MS-102T00 (each with a course syllabus of self-paced Learn content; none showed a retirement notice), <https://learn.microsoft.com/training/courses/sc-300t00> and the same address with each course code (accessed Nov 25, 2026).
 [^c04-renew]: Microsoft Learn, study guides for Exams AZ-700 and SC-401, "Useful links" (certification renewal: associate, expert and specialty certifications expire annually and are renewed by passing a free online assessment), <https://learn.microsoft.com/credentials/certifications/resources/study-guides/az-700> (accessed Oct 22, 2026).
