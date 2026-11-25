@@ -6,6 +6,7 @@ BeforeAll {
     Register-KitAdMocks -ModuleName FMPSqlEstate
     Register-KitSqlMocks
     Mock -ModuleName FMPADAssessment Get-FMPCAEditFlags { "EditFlags REG_DWORD = 15014e`n    EDITF_ATTRIBUTESUBJECTALTNAME2 -- 40000 (262144)" }
+    Mock -ModuleName FMPADAssessment Get-FMPCAAuditFilter { 127 }
 
     $run = Join-Path $TestDrive 'run'
     $steps = @(Invoke-FMPADAssessment -OutputPath $run -Tier B -AsOf $FMPAsOf)

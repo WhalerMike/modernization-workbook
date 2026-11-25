@@ -460,6 +460,12 @@ bundles:
     root: docs/training/attribute-driven-migration
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: training-application-modernization-bundle.docx
+    title: "Learning path: Application Modernization"
+    subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
+    root: docs/training/application-modernization
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
   - output: training-azure-security-bundle.docx
     title: "Learning path: Azure Security Engineering"
     subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
@@ -524,6 +530,12 @@ bundles:
     title: "Learning path: The Zero Trust Assessment as Evidence"
     subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
     root: docs/training/zero-trust-assessment
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: training-pki-bundle.docx
+    title: "Learning path: PKI and Certificates"
+    subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
+    root: docs/training/pki
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md"]
   - output: training-network-sd-wan-bundle.docx
@@ -620,6 +632,11 @@ bundles:
     subtitle: "Federal Modernization Workbook companion guide"
     root: docs/books/guides
     pages: [defender-xdr-implementation.md]
+  - output: information-protection-implementation-guide.docx
+    title: "Information Protection with Microsoft Purview: An Implementation Guide"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [information-protection-implementation.md]
   - output: global-secure-access-implementation-guide.docx
     title: "Global Secure Access & Zero Trust Network Engineering: An Implementation Guide"
     subtitle: "Federal Modernization Workbook companion guide"

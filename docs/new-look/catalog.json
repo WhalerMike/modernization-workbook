@@ -121,6 +121,32 @@
    "featured": false
   },
   {
+   "id": "docs/training/application-modernization/index.md",
+   "type": "Learning path",
+   "title": "Learning path: Application Modernization",
+   "description": "Seven modules, one per chapter of Building Application Modernization: the contract and the schema, moving and proving the data, an agent that only proposes, the front end and Section 508, and the application's own identity through to a…",
+   "url": "docs/training/application-modernization/index.html",
+   "count": 7,
+   "unit": "modules",
+   "reading_minutes": 385,
+   "reading_source": "page",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Identity engineer",
+    "Developer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Application modernization"
+   ],
+   "status": "Draft",
+   "family": "application-modernization",
+   "featured": false
+  },
+  {
    "id": "docs/training/azure-security/index.md",
    "type": "Learning path",
    "title": "Learning path: Azure Security Engineering",
@@ -211,11 +237,11 @@
    "id": "docs/training/dns-dhcp-ipam/index.md",
    "type": "Learning path",
    "title": "Learning path: DNS, DHCP and IPAM",
-   "description": "Four modules on Book 08's naming plane: read it from the evidence, sort what Active Directory DNS does into where it goes, check the DHCP edge, and hold every network to one address plan, each with a lab on fixtures and a lab in your…",
+   "description": "Six modules on Book 08's naming plane: read it from the evidence, sort what Active Directory DNS does into where it goes, check the DHCP edge, hold every network to one address plan, move authority through the decommissioning gates, and…",
    "url": "docs/training/dns-dhcp-ipam/index.html",
-   "count": 4,
+   "count": 6,
    "unit": "modules",
-   "reading_minutes": 215,
+   "reading_minutes": 325,
    "reading_source": "page",
    "videos": 0,
    "video_minutes": 0,
@@ -353,6 +379,32 @@
    "status": "Approved",
    "family": "non-person-identity",
    "featured": true
+  },
+  {
+   "id": "docs/training/pki/index.md",
+   "type": "Learning path",
+   "title": "Learning path: PKI and Certificates",
+   "description": "Modules on the certificate estate that outlives every migration: what AD CS holds up and hardening what stays, with labs on a fictional PKI snapshot and in your own test forest",
+   "url": "docs/training/pki/index.html",
+   "count": 2,
+   "unit": "modules",
+   "reading_minutes": 105,
+   "reading_source": "page",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Endpoint engineer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Active Directory",
+    "PKI and certificates"
+   ],
+   "status": "Draft",
+   "family": "pki",
+   "featured": false
   },
   {
    "id": "docs/training/privileged-access/index.md",
@@ -841,6 +893,31 @@
    "featured": false
   },
   {
+   "id": "docs/books/guides/information-protection-implementation.md",
+   "type": "Implementation guide",
+   "title": "Information Protection with Microsoft Purview: An Implementation Guide",
+   "description": "A gated guide for building Book 20's information protection in a Microsoft 365 GCC tenant: twelve gates, one for each chapter of the book, from the data classes and the inventory through the label taxonomy, publication and defaults…",
+   "url": "docs/books/guides/information-protection-implementation.html",
+   "count": 12,
+   "unit": "steps",
+   "reading_minutes": 36,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "audience",
+   "roles": [
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Information protection"
+   ],
+   "status": "Draft",
+   "family": "information-protection",
+   "featured": false
+  },
+  {
    "id": "docs/books/guides/snow-sailpoint-integration-kit.md",
    "type": "Implementation guide",
    "title": "Integrating ServiceNow and SailPoint: An Implementation Example (Pass 1)",
@@ -1156,7 +1233,9 @@
    "level": "Advanced",
    "level_source": "audience",
    "roles": [
+    "Identity engineer",
     "Developer",
+    "ISSO and assessor",
     "Program lead and service owner"
    ],
    "topics": [
@@ -2240,16 +2319,17 @@
    "reading_source": null,
    "videos": 0,
    "video_minutes": 0,
-   "level": "Unrated",
+   "level": "Intermediate",
    "level_source": "path",
    "roles": [
+    "Identity engineer",
     "Developer",
-    "Program lead and service owner"
+    "ISSO and assessor"
    ],
    "topics": [
     "Application modernization"
    ],
-   "status": "Approved",
+   "status": "Draft",
    "family": "application-modernization",
    "featured": false
   },
@@ -2561,9 +2641,9 @@
    "id": "docs/training/labs.md#ddi",
    "type": "Lab",
    "title": "Labs: DNS, DHCP and IPAM learning path",
-   "description": "8 hands-on labs across 4 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The DNS, DHCP and IPAM learning path.",
+   "description": "12 hands-on labs across 6 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The DNS, DHCP and IPAM learning path.",
    "url": "docs/training/labs.html#ddi",
-   "count": 8,
+   "count": 12,
    "unit": "labs",
    "reading_minutes": null,
    "reading_source": null,
@@ -2613,6 +2693,32 @@
    ],
    "status": "Approved",
    "family": "ms-automation",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#pki",
+   "type": "Lab",
+   "title": "Labs: PKI and Certificates learning path",
+   "description": "4 hands-on labs across 2 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The PKI and Certificates learning path.",
+   "url": "docs/training/labs.html#pki",
+   "count": 4,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "Endpoint engineer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Active Directory",
+    "PKI and certificates"
+   ],
+   "status": "Draft",
+   "family": "pki",
    "featured": false
   },
   {

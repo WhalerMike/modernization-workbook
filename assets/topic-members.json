@@ -2169,6 +2169,12 @@
    "title": "DNS, DHCP and IPAM"
   }
  ],
+ "docs/books/guides/information-protection-implementation.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
  "docs/books/guides/intune-track-implementation.md": [
   {
    "id": "attribute-driven-migration",
@@ -3021,6 +3027,54 @@
    "title": "Zero Trust Assessment"
   }
  ],
+ "docs/training/application-modernization/01-the-contract-and-the-schema.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/training/application-modernization/02-moving-the-data.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/training/application-modernization/03-proving-the-move.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/training/application-modernization/04-an-agent-that-only-proposes.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/training/application-modernization/05-the-front-end-and-section-508.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/training/application-modernization/06-the-applications-identity.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/training/application-modernization/07-the-evidence-pack.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/training/application-modernization/index.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
  "docs/training/attribute-driven-migration/01-the-hr-middleware.md": [
   {
    "id": "attribute-driven-migration",
@@ -3210,6 +3264,18 @@
   }
  ],
  "docs/training/dns-dhcp-ipam/04-cloud-private-dns-and-one-address-plan.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/training/dns-dhcp-ipam/05-move-authority-zone-by-zone.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/training/dns-dhcp-ipam/06-operate-the-control-plane-with-evidence.md": [
   {
    "id": "dns-dhcp-ipam",
    "title": "DNS, DHCP and IPAM"
@@ -3491,6 +3557,24 @@
   {
    "id": "non-person-identity",
    "title": "Non-Person Identity"
+  }
+ ],
+ "docs/training/pki/01-what-ad-cs-holds-up.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/training/pki/02-hardening-what-stays.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/training/pki/index.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
   }
  ],
  "docs/training/privileged-access/01-privileged-inventory.md": [

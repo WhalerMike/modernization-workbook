@@ -26,13 +26,13 @@ Each row shows what a topic has. A cell that says **gap** is something readers n
 | [Zero Trust Assessment](zero-trust-assessment.md) | 6 | [not needed](#gaps) | 1 | [not needed](#gaps) | 4 modules | yes | 8 | 1 zip |
 | [Daily Checks Dashboard](daily-checks-dashboard.md) | 4 | [not needed](#gaps) | 1 | 4 chapters | 2 modules | yes | 8 | 1 zip |
 | [Data Platform and SQL Server](data-platform.md) | 11 | 1 | [not needed](#gaps) | 10 chapters | [gap](#gaps) | yes | 4 | 2 zips |
-| [PKI and Certificates](pki.md) | 8 | 1 | 1 | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | 5 | 1 zip |
-| [DNS, DHCP and IPAM](dns-dhcp-ipam.md) | 8 | 1 | 1 | [not needed](#gaps) | 4 modules | yes | 11 | 1 zip |
+| [PKI and Certificates](pki.md) | 8 | 1 | 1 | [not needed](#gaps) | 2 modules | yes | 5 | 1 zip |
+| [DNS, DHCP and IPAM](dns-dhcp-ipam.md) | 8 | 1 | 1 | [not needed](#gaps) | 6 modules | yes | 11 | 1 zip |
 | [Network and SD-WAN](network-sd-wan.md) | 8 | 1 | 3 | [not needed](#gaps) | 4 modules | yes | 7 | 1 zip |
 | [Endpoints](endpoints.md) | 8 | 2 | 5 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 14 | 3 zips |
-| [Information Protection](information-protection.md) | 6 | 1 | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | 1 | [gap](#gaps) |
+| [Information Protection](information-protection.md) | 6 | 1 | 1 | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | 1 | [gap](#gaps) |
 | [Compliance and Evidence](compliance-evidence.md) | 13 | 2 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 14 | 2 zips |
-| [Application Modernization](application-modernization.md) | 7 | [not needed](#gaps) | [not needed](#gaps) | 7 chapters | [gap](#gaps) | yes | 3 | 1 zip |
+| [Application Modernization](application-modernization.md) | 7 | [not needed](#gaps) | [not needed](#gaps) | 7 chapters | 7 modules | yes | 3 | 1 zip |
 
 : Topic hubs {.striped .hover}
 
@@ -53,16 +53,13 @@ A gap is filled only where readers need it. Where nothing is needed, the note sa
 | [Daily Checks Dashboard](daily-checks-dashboard.md#gaps) | Project plan | Not needed, because it is one workbook template with a four-chapter build, and the guide sequences it. |
 | [Data Platform and SQL Server](data-platform.md#gaps) | Guide | Not needed, because Book 06's ten runbooks (R01 to R10), listed under Build, are its step-by-step implementation guide. |
 | [Data Platform and SQL Server](data-platform.md#gaps) | Learning path | Needed: the learning path is phase 2 of filling this topic's gaps (decided Nov 24, 2026). |
-| [PKI and Certificates](pki.md#gaps) | Developer workbook | Not needed, because the only code today is the Start Kit's AD CS checks (ESC1, ESC2, ESC4, ESC6); revisit when its learning path is planned. |
-| [PKI and Certificates](pki.md#gaps) | Learning path | Needed: ranked in the learning path plan. |
-| [PKI and Certificates](pki.md#gaps) | Labs | Needed: they come with the learning path. |
+| [PKI and Certificates](pki.md#gaps) | Developer workbook | Not needed, because the learning path's labs run the Start Kit's AD CS assessment directly, with Lab 1 on its fictional PKI snapshot; revisit if a module needs code the kit can't hold. |
 | [DNS, DHCP and IPAM](dns-dhcp-ipam.md#gaps) | Developer workbook | Not needed, because the code is the Start Kit's DNS and DHCP collectors and the readiness checks beside them, and the learning path's labs run the kit directly. |
 | [Network and SD-WAN](network-sd-wan.md#gaps) | Developer workbook | Not needed, because the Cisco kit is one read-only collector, and the learning path's modules teach it directly, with Lab 1 replaying its fixtures. |
 | [Endpoints](endpoints.md#gaps) | Developer workbook | Not needed, because Book 19's Chapters 06 to 08, listed under Build, are the Intune, Arc and Ansible build. |
 | [Endpoints](endpoints.md#gaps) | Learning path | Not needed, because the modules listed under Learn (three from the Attribute-Driven Migration path, two from Microsoft Automation) already teach it. |
 | [Endpoints](endpoints.md#gaps) | Labs | Not needed, because those modules carry the labs. |
-| [Information Protection](information-protection.md#gaps) | Guide | Needed: Book 20 has no step-by-step guide with Validate commands. |
-| [Information Protection](information-protection.md#gaps) | Developer workbook | Needed: decide with the learning path plan; there is no code to build on. |
+| [Information Protection](information-protection.md#gaps) | Developer workbook | Needed: the implementation guide's twelve gates have no kit or developer workbook yet. |
 | [Information Protection](information-protection.md#gaps) | Learning path | Needed: ranked in the learning path plan. |
 | [Information Protection](information-protection.md#gaps) | Labs | Needed: they come with the learning path. |
 | [Information Protection](information-protection.md#gaps) | Code | Needed: no kit collects Book 20's label, DLP or audit evidence yet. |
@@ -72,7 +69,6 @@ A gap is filled only where readers need it. Where nothing is needed, the note sa
 | [Compliance and Evidence](compliance-evidence.md#gaps) | Labs | Not needed, because those modules carry the labs. |
 | [Application Modernization](application-modernization.md#gaps) | Project plan | Not needed, because Book 18's Chapter 10, listed under Plan, runs the portfolio in waves, and each application gets its own plan from the triage. |
 | [Application Modernization](application-modernization.md#gaps) | Guide | Not needed, because Book 18's Chapter 08 and the kit's README are the build guide for the reference implementation. |
-| [Application Modernization](application-modernization.md#gaps) | Learning path | Needed: the learning path for Building Application Modernization, one module per chapter. |
 
 : What each topic lacks {.striped .hover}
 

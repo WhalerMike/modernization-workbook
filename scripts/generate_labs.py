@@ -86,7 +86,7 @@ WORKBOOKS = [
     Workbook("sql", "Building SQL Server Identity", "docs/project-plans/developer-workbooks/sql-server-identity",
              "sql-server-identity-code.zip"),
     Workbook("am", "Building Application Modernization", "docs/project-plans/developer-workbooks/application-modernization",
-             "app-modernization.zip"),
+             "app-modernization.zip", training="docs/training/application-modernization"),
 ]
 # Learning paths whose modules have their own exercises but no developer workbook behind them.
 MS_AUTOMATION = ["docs/training/ms-automation-foundations.md", "docs/training/ms-automation-entra.md",
@@ -108,6 +108,7 @@ class KitPath:
     guide: str
     zip: str
     caption: str
+    guide_label: str = "its implementation guide"
 
     def modules(self) -> list[str]:
         return sorted(p.relative_to(ROOT).as_posix() for p in (ROOT / self.folder).glob("[0-9][0-9]-*.md"))
@@ -116,6 +117,8 @@ class KitPath:
 KIT_PATHS = [
     KitPath("network-sd-wan", "The SD-WAN governor learning path", "docs/training/network-sd-wan",
             "docs/books/guides/cisco-sdwan-implementation.md", "cisco-sdwan.zip", "The SD-WAN governor"),
+    KitPath("pki", "The PKI and Certificates learning path", "docs/training/pki",
+            "docs/books/b07-pki/index.md", "start-kit.zip", "PKI and Certificates", "Book 07"),
     KitPath("ddi", "The DNS, DHCP and IPAM learning path", "docs/training/dns-dhcp-ipam",
             "docs/books/guides/infoblox-nios-implementation.md", "start-kit.zip", "DNS, DHCP and IPAM"),
 ]
@@ -298,7 +301,7 @@ def page_text() -> str:
     out += ["", ": The Zero Trust Assessment: labs by module {.striped .hover}", ""]
     for kp in KIT_PATHS:
         out += [f"## {kp.heading} {{#{kp.key}}}", "",
-                f"[The learning path]({rel(src, kp.folder + '/index.md')}) · [its implementation guide]({rel(src, kp.guide)})"
+                f"[The learning path]({rel(src, kp.folder + '/index.md')}) · [{kp.guide_label}]({rel(src, kp.guide)})"
                 f" · [the code: {kp.zip}](../../downloads/{kp.zip})", "",
                 "| Module | Lab 1, no tenant | Lab 2 |", "|---|---|---|"]
         for path in kp.modules():
@@ -312,6 +315,7 @@ def page_text() -> str:
             "- **A Microsoft Entra test tenant**, in the worldwide or GCC cloud for learning, with the licenses the lab names; then rehearse in the agency's own cloud, as [Book 16's two-step lab path](../books/b16-people/06-vendor-training-and-labs.md) describes. Some labs add an Azure test subscription or a disposable server.",
             "- **A ServiceNow Personal Developer Instance**, free to members of ServiceNow's Developer Program, or a sub-production instance. [Chapter 01 of Building Ticket-to-Machine](../project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.md#lab-2-a-servicenow-developer-instance) says how its instance is reset.",
             "- **A SailPoint Identity Security Cloud sandbox tenant**, the agency's own.",
+            "- **A test forest with an enterprise CA**, never production, and a domain-joined host with the RSAT Active Directory module, for the PKI and Certificates path; its Lab 2 steps on the CA run as the test CA's administrator.",
             "- **A test Active Directory domain** on a Windows Server 2019 or later virtual machine you can checkpoint and throw away, with the DNS Server and DHCP Server roles, for the DNS, DHCP and IPAM labs. [Module 1](dns-dhcp-ipam/01-read-the-naming-plane.md#ddi-m1-lab-2) builds it. Module 4's Lab 2 reads an Azure test subscription, an AWS GovCloud (US) account and an OCI tenancy that aren't production instead.",
             "- **A Catalyst SD-WAN test fabric**: a Manager in a lab overlay or a vendor sandbox, with a read-only Manager account, for the SD-WAN governor path.", ""]
     return "\n".join(out)

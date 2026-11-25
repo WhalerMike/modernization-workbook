@@ -121,7 +121,7 @@ Remove-Item -Recurse -Force out
 
 <!-- labs:end -->
 
-1. **Import the readiness module.** It reads the collectors' files and nothing else. This module uses its first two commands; Modules 3 and 4 use the other two.
+1. **Import the readiness module.** It reads the collectors' files and nothing else. This module uses `Get-FMPDnsDepartureRegister` and `Read-FMPDdiRun`; Modules 3 to 6 use the others.
 
     ```powershell
     Import-Module ./powershell/FMPDdiReadiness/FMPDdiReadiness.psd1
@@ -133,10 +133,13 @@ Remove-Item -Recurse -Force out
     ```text
     Name                        Version
     ----                        -------
-    Get-FMPDnsDepartureRegister 1.1.0
-    Read-FMPDdiRun              1.1.0
-    Test-FMPAddressPlan         1.1.0
-    Test-FMPDhcpEdge            1.1.0
+    Get-FMPDdiEvidenceIndex     1.2.0
+    Get-FMPDnsDepartureRegister 1.2.0
+    Read-FMPDdiRun              1.2.0
+    Test-FMPAddressPlan         1.2.0
+    Test-FMPDdiDecommissionGate 1.2.0
+    Test-FMPDhcpEdge            1.2.0
+    Test-FMPLocatorResolution   1.2.0
     ```
 
 2. **Build the register,** and count its rows by risk.
