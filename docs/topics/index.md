@@ -30,6 +30,7 @@ Each row shows what a topic has. A cell that says **gap** is something readers n
 | [DNS, DHCP and IPAM](dns-dhcp-ipam.md) | 8 | 1 | 1 | [not needed](#gaps) | 6 modules | yes | 11 | 1 zip |
 | [Network and SD-WAN](network-sd-wan.md) | 8 | 1 | 3 | [not needed](#gaps) | 4 modules | yes | 7 | 1 zip |
 | [Endpoints](endpoints.md) | 8 | 2 | 5 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 14 | 3 zips |
+| [Platform Host](platform-host.md) | 4 | [not needed](#gaps) | [gap](#gaps) | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) |
 | [Information Protection](information-protection.md) | 6 | 1 | 2 | 9 chapters | 5 modules | yes | 1 | 1 zip |
 | [Compliance and Evidence](compliance-evidence.md) | 13 | 2 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 14 | 2 zips |
 | [Application Modernization](application-modernization.md) | 7 | [not needed](#gaps) | [not needed](#gaps) | 7 chapters | 7 modules | yes | 3 | 1 zip |
@@ -58,6 +59,13 @@ A gap is filled only where readers need it. Where nothing is needed, the note sa
 | [Endpoints](endpoints.md#gaps) | Developer workbook | Not needed, because Book 19's Chapters 06 to 08, listed under Build, are the Intune, Arc and Ansible build. |
 | [Endpoints](endpoints.md#gaps) | Learning path | Not needed, because the modules listed under Learn (three from the Attribute-Driven Migration path, two from Microsoft Automation) already teach it. |
 | [Endpoints](endpoints.md#gaps) | Labs | Not needed, because those modules carry the labs. |
+| [Platform Host](platform-host.md#gaps) | Project plan | Not needed, because the build is task P0.2 in the Program master schedule plan, and Book 00, Chapter 08 breaks it into milestones M-001 to M-007 with owners and gate criteria. |
+| [Platform Host](platform-host.md#gaps) | Guide | Needed: a PowerShell-first build guide that follows milestones M-001 to M-007, with the federal requirements, KSIs and evidence for each step. |
+| [Platform Host](platform-host.md#gaps) | Developer workbook | Not needed, because the build guide and the learning path's labs cover building and checking the host; it has no code base of its own to teach. |
+| [Platform Host](platform-host.md#gaps) | Learning path | Needed: a short learning path whose modules are the labs. |
+| [Platform Host](platform-host.md#gaps) | Labs | Needed: labs that build a lab host (Gitea behind IIS, single-host profile) and run the interface check. |
+| [Platform Host](platform-host.md#gaps) | Videos | Needed: a narrated deck for the build guide. |
+| [Platform Host](platform-host.md#gaps) | Code | Needed: a read-only kit that checks the host's interfaces against Appendix B's closed list and writes the evidence. |
 | [Compliance and Evidence](compliance-evidence.md#gaps) | Guide | Not needed, because every implementation guide carries its own Evidence section, and Book 15's day-two runbook, under Build, is the operating guide. |
 | [Compliance and Evidence](compliance-evidence.md#gaps) | Developer workbook | Not needed, because Book 19's Chapters 03 and 09, under Build, are the validation kit and drift pipeline build. |
 | [Compliance and Evidence](compliance-evidence.md#gaps) | Learning path | Not needed, because the two modules under Learn teach the validation kit and the drift pipeline, and each topic's own path teaches that topic's evidence. |

@@ -26,6 +26,8 @@
 #   downloads            Files under /downloads/ (Word bundles from scripts/bundles.yml, code zips).
 #   members              Globs of pages that belong to the topic as a whole. Every page the hub
 #                        lists belongs too. A page that belongs shows the topic under its title.
+#   not_members          Globs taken back out of members, for a page inside a members glob that
+#                        another hub holds instead.
 #   gaps                 For each column of the Topics page the topic has nothing in (book, plan,
 #                        guide, workbook, path, labs, videos, code): "Needed: ..." for a gap readers
 #                        need, or "Not needed, because ...". The test fails on a missing or stale one.
@@ -376,6 +378,8 @@ topics:
       - b10-cloud-boundary-bundle.docx
     members:
       - docs/books/b10-cloud-boundary/*.md
+    not_members:
+      - docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md
     gaps:
       plan: >-
         Not needed, because the implementation guide's ten steps sequence the work and the landing
@@ -757,6 +761,51 @@ topics:
         Not needed, because the modules listed under Learn (three from the Attribute-Driven
         Migration path, two from Microsoft Automation) already teach it.
       labs: Not needed, because those modules carry the labs.
+
+  - id: platform-host
+    title: Platform Host
+    subject: the platform host
+    summary: >-
+      The program's one governed server: Windows Server 2025 running Gitea behind IIS, with a
+      standby, that holds the authoritative repository and runs every analysis, plan, delivery and
+      evidence step. Why there is one host and one writer, how Phase 0 builds it, every interface
+      it exposes and the boundary each sits in, the decisions behind the design, and how it is
+      kept recoverable and in a known state.
+    sections:
+      understand:
+        - page: docs/books/b01-transformation-arc/03-platform-foundation.md
+          note: Why one host, its five roles, and what it is not.
+        - page: docs/books/b00-orientation/08-pre-flight-and-assessment.md#the-platform-host-the-programs-reference-design
+          note: The reference design and the seven build milestones, M-001 to M-007, with owners and gate criteria.
+        - page: docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md
+          note: Every interface the host exposes, in six families, with its boundary, authentication, controls and egress.
+        - page: docs/books/b13-governance/03-one-authoritative-record.md#where-the-record-lives
+          note: Why the authoritative record lives on this host.
+      plan:
+        - page: docs/about/decision-register.md#wd-177
+          note: The reference design for the authoritative repository host.
+        - page: docs/about/decision-register.md#wd-178
+          note: The standby model, cold by default with an opt-in hot standby.
+    members:
+      - docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md
+    gaps:
+      plan: >-
+        Not needed, because the build is task P0.2 in the Program master schedule plan, and Book 00,
+        Chapter 08 breaks it into milestones M-001 to M-007 with owners and gate criteria.
+      guide: >-
+        Needed: a PowerShell-first build guide that follows milestones M-001 to M-007, with the
+        federal requirements, KSIs and evidence for each step.
+      workbook: >-
+        Not needed, because the build guide and the learning path's labs cover building and
+        checking the host; it has no code base of its own to teach.
+      path: "Needed: a short learning path whose modules are the labs."
+      labs: >-
+        Needed: labs that build a lab host (Gitea behind IIS, single-host profile) and run the
+        interface check.
+      videos: "Needed: a narrated deck for the build guide."
+      code: >-
+        Needed: a read-only kit that checks the host's interfaces against Appendix B's closed list
+        and writes the evidence.
 
   - id: information-protection
     title: Information Protection
