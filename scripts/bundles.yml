@@ -693,7 +693,7 @@ bundles:
     exclude: [index.md]
     # A glob's * also matches "/", so the plans are listed by name; the
     # developer workbooks have their own editions.
-    pages: [program-master-schedule.md, attribute-driven-migration.md, identity-lifecycle.md, privileged-access.md, non-person-identity.md, endpoint-device.md, data-platform.md, network-access.md, content-delivery.md, continuous-monitoring.md, supply-chain-sbom.md]
+    pages: [program-master-schedule.md, attribute-driven-migration.md, identity-lifecycle.md, privileged-access.md, non-person-identity.md, endpoint-device.md, data-platform.md, network-access.md, content-delivery.md, global-secure-access.md, pki-certificates.md, information-protection.md, continuous-monitoring.md, supply-chain-sbom.md]
   - output: about-the-workbook.docx
     title: "About the Workbook"
     subtitle: "How the workbook knows what it says, how to review it, and the decisions behind it — Federal Modernization Workbook"
