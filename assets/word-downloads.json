@@ -2676,6 +2676,16 @@
   "page": "02-gate-0-the-ed-26-03-and-kev-floor.docx",
   "title": "Learning path: The SD-WAN Governor and Its Evidence"
  },
+ "docs/training/network-sd-wan/03-the-hunt-hardening-and-logs-off-the-box.md": {
+  "bundle": "training-network-sd-wan-bundle.docx",
+  "page": "03-the-hunt-hardening-and-logs-off-the-box.docx",
+  "title": "Learning path: The SD-WAN Governor and Its Evidence"
+ },
+ "docs/training/network-sd-wan/04-path-classes-change-rings-and-the-evidence.md": {
+  "bundle": "training-network-sd-wan-bundle.docx",
+  "page": "04-path-classes-change-rings-and-the-evidence.docx",
+  "title": "Learning path: The SD-WAN Governor and Its Evidence"
+ },
  "docs/training/network-sd-wan/index.md": {
   "bundle": "training-network-sd-wan-bundle.docx",
   "page": "index.docx",

@@ -298,3 +298,17 @@ def test_replay_refuses_a_folder_without_manager_responses(tmp_path):
         se.ReplayClient(tmp_path)
     assert se.main(["--config", str(ROOT / "config" / "config.example.json"),
                     "--replay", str(tmp_path), "--out", str(tmp_path / "out")]) == 1
+
+
+
+def test_replay_hashes_match_the_learning_path(tmp_path, monkeypatch):
+    """The SD-WAN governor path's Module 4 prints these hashes, captured on Windows; CI runs this on Linux.
+
+    The replay path is given relative to the kit, as the lab gives it, because it is written into the file.
+    """
+    import hashlib
+    monkeypatch.chdir(ROOT)
+    se.main(["--config", "config/config.example.json", "--replay", "tests/fixtures/after-upgrade", "--out", str(tmp_path)])
+    digest = lambda name: hashlib.sha256((tmp_path / name).read_bytes()).hexdigest().upper()  # noqa: E731
+    assert digest("sdwan-evidence.json") == "104C78E28029B7696F5A96684DB18F40F05C9D802DDFD680FAC32CE28AE39B64"
+    assert digest("ed-26-03-gate.csv") == "70289BB5D3C8BD914A759763AC01315F07C1C7A24B4A4CE3848852670AF29F45"
