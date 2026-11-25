@@ -11,7 +11,7 @@ doc-type: section-landing
 
 This register lists the decisions behind the workbook, from the repository's first pull request on, one entry each. Each entry gives the question, the options that were considered, the choice, the reason for it, its basis, its sources and the pages it shaped. The [Reviewers' Guide](reviewers-guide.md) explains how to check an entry and how to tell us you agree or disagree with it. Use the entry's ID when you do.
 
-There are **172** workbook decisions: 162 settled, 0 challenged and 10 superseded. Below them are the **90** decision points the sample project plans leave to the agency that adopts them.
+There are **172** workbook decisions: 162 settled, 0 challenged and 10 superseded. Below them are the **109** decision points the sample project plans leave to the agency that adopts them.
 
 ::: {.callout-note}
 ## How to read the basis
@@ -3104,6 +3104,21 @@ Defined in [the plan's decision points](../project-plans/endpoint-device.md#deci
 
 : Endpoint & Device Modernization: decision points {.striped .hover}
 
+### Global Secure Access {#plan-global-secure-access}
+
+Defined in [the plan's decision points](../project-plans/global-secure-access.md#decision-points) and [`data/project-plans/global-secure-access.yaml`](https://github.com/WhalerMike/modernization-workbook/blob/main/data/project-plans/global-secure-access.yaml).
+
+| ID | Decision | Decides | Options | Basis | Workbook decision |
+|---|---|---|---|---|---|
+| D-GA1 | Adopt Global Secure Access, per function: Microsoft traffic, internet, private, branch | Service owner, approved by the authorizing official | Adopt the function; keep the current VPN or SSE for it; run both with each traffic type sent to one service. Recorded with license count, availability quote, compensating controls and exit criteria | [Source chapter](../books/guides/global-secure-access-implementation.md#step-1-decision-and-licensing) | Left to the agency |
+| D-GA3 | Turn the compliant network policy On for ring 1 | Service owner | On, ring by ring; stay in report-only until every reportOnlyFailure is explained | [Source chapter](../books/guides/global-secure-access-implementation.md#step-7-compliant-network) | Left to the agency |
+| D-GA4 | First private applications, and Quick Access as a bridge or per-app from the start | Service owner | Quick Access over the VPN's ranges as a transition, then per-app; per-app from the start for the VPN's most-used applications. DirectAccess can't coexist with Private Access on the same device | [Source chapter](../books/b09-network/05-sd-wan-sase-and-governed-transport.md#private-access-as-the-vpn-and-directaccess-replacement) | Left to the agency |
+| D-GA5 | Web categories the acceptable-use policy blocks | Service owner, with the ISSO | Block the categories the acceptable-use policy names; decide AI categories separately; every bypass to the exception register | [Source chapter](../books/guides/global-secure-access-implementation.md#step-5-internet-traffic) | Left to the agency |
+| D-GA6 | TLS inspection scope and its certificate authority | Service owner, approved by the privacy officer | Microsoft-managed certificate; the agency's own intermediate signed by a dedicated CA, not the production PKI. Learn's recommended bypass categories kept, plus those the privacy officer names; no prompt or file content capture without a separate decision | [Source chapter](../books/guides/global-secure-access-implementation.md#step-9-tls-inspection) | Left to the agency |
+| D-GA2 | CISA telemetry path for the new access layer, agreed with the TIC delegates | ISSO, with the agency's TIC delegates | CLAW; another path CISA confirms. Agreed before the VPN's web path is retired | [Source chapter](../books/guides/global-secure-access-implementation.md#tic-alignment) | Left to the agency |
+
+: Global Secure Access: decision points {.striped .hover}
+
 ### Identity Lifecycle & Provisioning {#plan-identity-lifecycle}
 
 Defined in [the plan's decision points](../project-plans/identity-lifecycle.md#decision-points) and [`data/project-plans/identity-lifecycle.yaml`](https://github.com/WhalerMike/modernization-workbook/blob/main/data/project-plans/identity-lifecycle.yaml).
@@ -3117,6 +3132,24 @@ Defined in [the plan's decision points](../project-plans/identity-lifecycle.md#d
 | D-I5 | Order of populations to cut over, aligned to the Core HCM onboarding | Executive sponsor and CIO | Follow the program's waves; follow the agency's Core HCM go-live | [Source chapter](../books/b03-hr-identity/12-execution-plan.md#phase-5-cutover-population-by-population) | Left to the agency |
 
 : Identity Lifecycle & Provisioning: decision points {.striped .hover}
+
+### Information Protection {#plan-information-protection}
+
+Defined in [the plan's decision points](../project-plans/information-protection.md#decision-points) and [`data/project-plans/information-protection.yaml`](https://github.com/WhalerMike/modernization-workbook/blob/main/data/project-plans/information-protection.yaml).
+
+| ID | Decision | Decides | Options | Basis | Workbook decision |
+|---|---|---|---|---|---|
+| D-IP1 | Tenant root key for Rights Management | Policy owner, with the CISO | Microsoft-managed key; bring your own key (BYOK), per *Security Operations and Telemetry*, Chapter 09. Decided before the first encrypting label is published | [Source chapter](../books/b20-information-protection/05-rights-management-and-recovery.md#b20-05-decide-activation-onboarding-and-recovery) | Left to the agency |
+| D-IP2 | Default labels and mandatory labeling for files, email, meetings and containers | Policy owner | A non-encrypting default per item type, with mandatory labeling and a justification for every downgrade; mandatory labeling with no default | [Source chapter](../books/b20-information-protection/03-label-publication-and-defaults.md#b20-03-defaults-the-agency-can-justify) | Left to the agency |
+| D-IP4 | Label integration for SharePoint and OneDrive, legacy IRM libraries, PDFs and co-authoring | Policy owner, with the records officer | Integration on before the first encrypting label leaves the pilot; PDFs only after Chapter 09's simulations include them; each IRM library migrated, then IRM off (in GCC, kept until its files are labeled); co-authoring only when every tool that reads labels supports it | [Source chapter](../books/b20-information-protection/07-sharepoint-and-onedrive.md) | Left to the agency |
+| D-IP3 | Container classes and who may create Teams, groups and sites | Policy owner | A container label per class with its privacy, guest and unmanaged-device settings; creation open to all, or limited to a group, for each class | [Source chapter](../books/b20-information-protection/04-teams-groups-and-sharepoint-containers.md#b20-04-who-may-create-containers) | Left to the agency |
+| D-IP5 | Approved message-encryption scenarios, and the recipient experience | Policy owner | Sender opt-in, named offices, Do Not Forward to a partner, expiring mail where Advanced Message Encryption is licensed; one-time passcodes on or off; social IDs on or off; branding | [Source chapter](../books/b20-information-protection/06-exchange-message-encryption.md) | Left to the agency |
+| D-IP6 | DLP outcomes for each class and surface: block, warn, or allow with justification | Policy owner | Outcome statements per class for mail, Teams, SharePoint and OneDrive, and Windows devices, each with its exceptions and their expiry | [Source chapter](../books/b20-information-protection/08-dlp-and-endpoint-controls.md) | Left to the agency |
+| D-IP7 | Move each auto-labeling policy from simulation to labeling | Policy owner | Turn the policy on once its false positives are resolved; keep it in simulation | [Source chapter](../books/b20-information-protection/09-auto-labeling-and-sensitive-information-types.md) | Left to the agency |
+| D-IP8 | Adopt the insider risk charter | CISO, with the senior agency official for privacy and general counsel | Adopt it, then configure; don't configure Insider Risk Management or Communication Compliance | [Source chapter](../books/b20-information-protection/10-audit-insider-risk-and-communication-compliance.md#the-charter-comes-first) | Left to the agency |
+| D-IP9 | AI data decisions: approved AI apps and their data, labels Copilot mustn't process, oversharing remediation, who may read prompts | Policy owner | Per app class (Copilot in the tenant, enterprise AI apps, third-party AI sites): approve for named classes, or block. Prompt and response access settled with the privacy official and counsel | [Source chapter](../books/b20-information-protection/11-ai-data-security.md#the-ai-data-decisions) | Left to the agency |
+
+: Information Protection: decision points {.striped .hover}
 
 ### Network & Access Modernization {#plan-network-access}
 
@@ -3153,6 +3186,19 @@ Defined in [the plan's decision points](../project-plans/non-person-identity.md#
 | D-NP6 | AI identity capabilities the program builds on in the agency's cloud | CIO, with the Chief AI Officer | Agent identities where generally available in the agency's cloud, with GCC's documented subset; service principals and managed identities under the same governance where agent identities aren't available; preview capabilities as watch items | [Source chapter](../books/b17-ai-identity/04-kinds-of-ai-identity.md#release-stage-licensing-and-government-clouds) | Left to the agency |
 
 : Non-Person Identity Modernization: decision points {.striped .hover}
+
+### PKI and Certificates {#plan-pki-certificates}
+
+Defined in [the plan's decision points](../project-plans/pki-certificates.md#decision-points) and [`data/project-plans/pki-certificates.yaml`](https://github.com/WhalerMike/modernization-workbook/blob/main/data/project-plans/pki-certificates.yaml).
+
+| ID | Decision | Decides | Options | Basis | Workbook decision |
+|---|---|---|---|---|---|
+| D-K1 | Issuer for internal server certificates, and the lifecycle platform's edition | Executive sponsor and CIO | Retained AD CS through the CLM platform, moving to a standalone issuing CA under the same root when the forest retires, and a public CA for names the internet trusts (*PKI and Certificates*'s position); Certificate Manager, Self-Hosted, inside the boundary until a certificate-management package is FedRAMP authorized | [Source chapter](../books/b07-pki/04-the-target-pki.md#the-issuer-decision-for-internal-server-certificates) | Left to the agency |
+| D-K2 | Device rings for SCEP and user populations for CBA | Endpoint engineering, with identity engineering | Follow the program's rollout waves; by site, region or device tier. Dynamic groups built from governed attributes | [Source chapter](../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook) | Left to the agency |
+| D-K3 | Convert the federated domains to managed authentication, and in what order | Executive sponsor and CIO | A test domain or the domain with the fewest users first, then the rest; hold a domain on federation as a dated exception | [Source chapter](../books/b07-pki/07-coexistence-and-migration.md#the-migration-playbook) | Left to the agency |
+| D-K4 | Retire each MIGRATE-only AD CS component | Executive sponsor and CIO | Retire, starting with the CA with the fewest dependents, once nothing depends on it; keep it as a dated exception under the hardening baseline | [Source chapter](../books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md#decommissioning-ad-cs) | Left to the agency |
+
+: PKI and Certificates: decision points {.striped .hover}
 
 ### Privileged Access & Administrative Identity {#plan-privileged-access}
 

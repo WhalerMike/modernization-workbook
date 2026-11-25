@@ -2825,10 +2825,22 @@
    "title": "Endpoints"
   }
  ],
+ "docs/project-plans/global-secure-access.md": [
+  {
+   "id": "global-secure-access",
+   "title": "Global Secure Access"
+  }
+ ],
  "docs/project-plans/identity-lifecycle.md": [
   {
    "id": "hr-driven-identity",
    "title": "HR-Driven Identity"
+  }
+ ],
+ "docs/project-plans/information-protection.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
   }
  ],
  "docs/project-plans/network-access.md": [
@@ -2845,6 +2857,12 @@
   {
    "id": "non-person-identity",
    "title": "Non-Person Identity"
+  }
+ ],
+ "docs/project-plans/pki-certificates.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
   }
  ],
  "docs/project-plans/privileged-access.md": [
