@@ -116,8 +116,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: list the tabs",
       body: [
-        { terminal: "01-1", lines: "1-2,6-16" },
-        { terminal: "01-5", lines: "2-9" },
+        { terminal: "01-3", lines: "1-2,6-16" },
+        { terminal: "01-7", lines: "2-9" },
       ],
       sources: "Sources: examples/daily-checks-workbook (fictional fixtures). Chapter 01, “Lab 1: fixtures, no tenant,” steps 1 and 5.",
       say: `Lab 1, in the kit's folder, with no tenant. Step 1 lists the tabs: twelve of them, with the telemetry row left off the slide. Notice that entra health and tasks read no table at all, and that grants, admin changes and log review are partial. Step 5 counts the tabs by fit: four strong, three good, three partial, one weak, and one link-out.`,
@@ -128,8 +128,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: a link-out tab and a partial one",
       body: [
-        { terminal: "01-2" },
-        { terminal: "01-3" },
+        { terminal: "01-4" },
+        { terminal: "01-5" },
       ],
       sources: "Sources: examples/daily-checks-workbook (fictional fixtures). Chapter 01, “Lab 1,” steps 2–3.",
       say: `Step 2 opens a link-out tab. Entra Health has no table: the tab sends the operator to the Entra admin center, under Monitoring and health, then Health. Its G C C availability is not yet specified, so nothing is built on its data. Step 3 opens a partial tab. The grants tab reads the Entra audit logs, but its action says it plainly: each row is matched to its ticket in the I T S M tool, and a grant with no ticket opens a finding.`,
@@ -140,7 +140,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the Active Directory tab",
       body: [
-        { terminal: "01-4" },
+        { terminal: "01-6" },
         { callout: "the domain controllers come from the settings file, one row each, so a controller that stops sending shows as a stale heartbeat, never as a quiet night.", label: "One row per server: ", color: "teal" },
       ],
       sources: "Sources: examples/daily-checks-workbook (fictional fixtures). Chapter 01, “The manifest”; “Lab 1: fixtures, no tenant,” step 4.",
@@ -152,7 +152,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the emergency access query",
       body: [
-        { terminal: "01-6" },
+        { terminal: "01-8" },
         { callout: "the emergency access sign-in alert is an Azure Monitor alert rule, and the rule is the control. The tab only shows what it found.", label: "The alert, not the tab: ", color: "teal" },
       ],
       sources: "Sources: examples/daily-checks-workbook (fictional fixtures). Chapter 01, “Lab 1,” step 6.",
@@ -164,7 +164,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the freshness limits",
       body: [
-        { terminal: "01-7" },
+        { terminal: "01-9" },
       ],
       sources: "Sources: examples/daily-checks-workbook (fictional fixtures). Chapter 01, “Lab 1,” steps 7–8; Learn, Intune to Azure Monitor.",
       say: `Step 7 lists the thirteen expected tables and their limits. Sign-in and audit logs: sixty minutes. The servers' heartbeats and security events: sixty minutes too, because their agents report continuously. Intune's compliance export: two thousand eight hundred and eighty minutes, because it arrives once a day and can take up to forty-eight hours. Step 8 runs the chapter's tests: ten passed, none failed.`,

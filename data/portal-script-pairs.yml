@@ -670,14 +670,14 @@ pairs:
   tab: related
   relation: 'The script prints what each tab of the daily checks workbook shows: the scripted read of the morning
     view.'
-  capture: dc/03-1
+  capture: dc/03-3
 - page: docs/books/guides/daily-checks-dashboard-implementation.md
   figure: fig-learn-connect-health-adds-overview
   learn: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-health-adds
   shows: 'Microsoft Entra Connect Health for AD DS overview: domain controllers monitored and replication status
     (link-out from the Active Directory tab).'
   tab: exact
-  capture: dc/03-4
+  capture: dc/03-6
   requirements:
     file: examples/daily-checks-workbook/config/requirements.json
     step: PROBE

@@ -48,7 +48,7 @@ Describe 'The one-page summary' {
         @{ Item = 'Computers'; Expected = 12 }
         @{ Item = 'Servers'; Expected = 9 }
         @{ Item = 'ServiceAccounts'; Expected = 5 }
-        @{ Item = 'SPNs'; Expected = 15 }
+        @{ Item = 'SPNs'; Expected = 16 }
         @{ Item = 'DuplicateSPNs'; Expected = 1 }
         @{ Item = 'DNSZones'; Expected = 5 }
         @{ Item = 'DHCPServers'; Expected = 2 }
@@ -190,8 +190,32 @@ Describe 'Collector results' {
         $k = Read-Out (Join-Path $root 'Kerberos\KerberosSpnMap.json')
         @(Import-Csv (Join-Path $root 'Kerberos\SpnDuplicates.csv')).Spn | Should -Be @('HTTP/web.contoso.example')
         $orphans = @(Import-Csv (Join-Path $root 'Kerberos\SpnOrphans.csv'))
-        $orphans.Account | Sort-Object -Unique | Should -Be @('krbtgt', 'OLD01$')
+        $orphans.Account | Sort-Object -Unique | Should -Be @('krbtgt', 'OLD01$', 'svc-legacyapp')
         @($k.ByServiceClass | Where-Object ServiceClass -eq 'MSSQLSvc')[0].SpnCount | Should -Be 5
+    }
+    It 'stops asking DNS at -MaxDnsLookups and reports the rest as not checked, not as orphans' {
+        $capped = Join-Path $TestDrive 'capped'
+        $doc = Get-FMPKerberosSpnMap -OutputPath $capped -Domain 'contoso.example' -RootDomain 'contoso.example' -AsOf $FMPAsOf -MaxDnsLookups 0 3>$null 6>$null
+        $doc.DnsLookupsCapped | Should -BeTrue
+        $doc.HostsCheckedInDns | Should -Be 0
+        $o = @(Import-Csv (Join-Path $capped 'contoso.example\Kerberos\SpnOrphans.csv'))
+        $o.Account | Should -Not -Contain 'svc-legacyapp'
+    }
+    It 'keeps each orphan''s reasons apart: disabled, no recent logon, host not found' {
+        $orphans = @(Import-Csv (Join-Path $root 'Kerberos\SpnOrphans.csv'))
+        ($orphans | Where-Object Account -eq 'krbtgt').Reason | Should -Be 'Disabled; NoRecentLogon'
+        @($orphans | Where-Object Account -eq 'OLD01$' | Select-Object -ExpandProperty Reason -Unique) | Should -Be 'NoRecentLogon'
+        $gone = $orphans | Where-Object Account -eq 'svc-legacyapp'
+        $gone.Reason | Should -Be 'HostNotFound'
+        $gone.HostInDirectory | Should -Be 'False'
+        $gone.HostInDns | Should -Be 'False'
+        # An alias that DNS knows is not an orphan, though no computer object has its name.
+        $map = @(Get-Content -Raw (Join-Path $root 'Kerberos\KerberosSpnMap.json') | ConvertFrom-Json).Spns
+        ($map | Where-Object { $_.Account -eq 'svc-web' }).HostInDns | Should -BeTrue
+        ($map | Where-Object { $_.Account -eq 'svc-web' }).Orphan | Should -BeFalse
+        $sum = Get-Content -Raw (Join-Path $root 'Kerberos\KerberosSpnSummary.json') | ConvertFrom-Json
+        $sum.OrphansByReason.HostNotFound | Should -Be 1
+        $sum.OrphansByReason.Disabled | Should -Be 1
     }
     It 'groups unsigned and clear-text LDAP binds by client' {
         $l = Read-Out (Join-Path $root 'Ldap\LdapBindings.json')

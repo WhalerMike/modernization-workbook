@@ -132,3 +132,9 @@ Added for the Zero Trust Assessment closure update (B17-01). Each row uses the v
 ## Zero Trust closure, Phase 4, November 11, 2026 (implementation conventions)
 
 Follow-up: the agent-credential section's Applies line now links Book 04's governed consent process and tenant-creation restriction for AI systems governed as workload identities, where an Agent ID feature isn't available in GCC.
+
+## Revision 2026-11-25 — custom security attributes in GCC (WD-176)
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| CSA-1 | The block-unapproved agent policy excludes approved agents as selected agent identities until the tenant check; the handshake adds each one | see the change | changed *(design guidance)* | WD-176; Mike, November 25, 2026 |

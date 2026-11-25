@@ -1,10 +1,14 @@
-PS> Import-Csv out/ntlm/ntlm.csv | Format-Table Instance, Pattern, Fix -Wrap
-Instance Pattern                   Fix
--------- -------                   ---
-SQLPRD01 Remote NTLM observed      Find each client (the clients rows, or sys.dm_exec_connections client_net_address); local sessions are excluded
-SQLPRD02 Missing SPN               setspn -S MSSQLSvc/sqlprd02.contoso.example:1433 CONTOSO\svc-sqlprd02
-SQLFCI04 SPN on the wrong account  setspn -D MSSQLSvc/sqlfci04.contoso.example:1433 CONTOSO\svc-oldsql; setspn -S MSSQLSvc/sqlfci04.contoso.example:1433 CONTOSO\svc-sqlfci04
-SQLPRD06 Duplicate SPN             setspn -D MSSQLSvc/sqlprd06.contoso.example:1433 CONTOSO\SQLPRD06$
-SQLPRD06 Remote NTLM observed      Find each client (the clients rows, or sys.dm_exec_connections client_net_address); local sessions are excluded
-SQLPRD01 Linked-server passthrough Constrained delegation, a mapped login, or the SQL Server 2025 managed-identity linked server
-SQLPRD06 Non-domain-joined client  Move CONTOSO\Reports-Readers to an Entra login with a token-based connection (Chapter 07)
+PS> ./Invoke-SqlNtlmAudit.ps1 -AuditPath tests/fixtures/audit-day1/audit.json -EstatePath tests/fixtures/estate/estate.json -NtlmPath tests/fixtures/ntlm -OutputPath "$Run/ntlm"
+Instance Pattern                   Effect
+-------- -------                   ------
+SQLPRD01 Remote NTLM observed      41 remote NTLM sessions in the sample
+SQLPRD02 Missing SPN               Remote connections fall back to NTLM
+SQLFCI04 SPN on the wrong account  Held by CONTOSO\svc-oldsql, service runs as CONTOSO\svc-sqlfci04: authentication fails
+SQLPRD06 Duplicate SPN             Held by CONTOSO\gmsa-sqlprd06$ and CONTOSO\SQLPRD06$: Kerberos can't choose
+SQLPRD06 Remote NTLM observed      6 remote NTLM sessions in the sample
+SQLPRD01 Linked-server passthrough Calls to SQLLEG03 pass the caller's credentials: NTLM unless delegation is set
+SQLPRD06 Non-domain-joined client  dmz-web01 (192.0.2.15) can't get a Kerberos ticket
+
+Wrote 3 files and manifest.json to C:/FMWLabs/results/sql-server-identity-06/lab1/<run>/ntlm
+Evidence for NTLM (Find the NTLM patterns and plan the SPN fixes): IA-2, CM-6; KSI-SVC-ACM
+SPN fixes to review: 4, in C:/FMWLabs/results/sql-server-identity-06/lab1/<run>/ntlm/spn-fixes.txt

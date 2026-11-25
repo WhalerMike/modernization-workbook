@@ -207,3 +207,9 @@ New subsection "Rolling out the credential policy" (`#b04-amp-rollout`) under "E
 | P5 | Neither tenant default nor app policies block token issuance for existing apps; only the violating create/update is blocked | Rollout, change safety | verified | [Application management policies API overview](https://learn.microsoft.com/graph/api/resources/applicationauthenticationmethodpolicy?view=graph-rest-1.0) | Nov 11, 2026 |
 | P6 | Application management policies free (Workload ID FAQ) | Applies | verified | [Workload ID FAQ](https://learn.microsoft.com/entra/workload-id/workload-identities-faqs) | Nov 11, 2026 |
 | P8 | Rings, effective-date approach, backout triggers, exception rule | Rollout | restated-as-design | program position | Nov 11, 2026 |
+
+## Revision 2026-11-25 — custom security attributes in GCC (WD-176)
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| CSA-1 | Caller exceptions through a custom security attribute: not used in GCC until the tenant check; the process is fixed before the restriction is enforced | see the change | changed *(design guidance)* | WD-176; Mike, November 25, 2026 |

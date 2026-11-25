@@ -1,11 +1,27 @@
-PS> $arc = Read-SqlJson tests/fixtures/arc/arc.json
-PS> $arc.sqlInstances[0].entraAuthentication.configured = $null
-PS> $arc | ConvertTo-Json -Depth 6 | Set-Content out/arc-unconfirmed.json
-PS> Get-SqlArcCategory -Audit (Read-SqlJson tests/fixtures/audit-day1/audit.json) -Arc (Read-SqlJson out/arc-unconfirmed.json) | Where-Object Instance -eq 'SQLPRD01' | Format-List
-Instance  : SQLPRD01
-Version   : 2022
-Agent     : Connected
-Extension : deployed
-Entra     : not configured
-Category  : 2
-Next      : Deploy Arc (Runbook R04): Entra authentication not configured
+PS> Get-Content "$Run/arc/manifest.json"
+{
+  "step": "ARC",
+  "title": "Arc agent, SQL extension and Entra configuration: the Arc-eligibility category",
+  "mode": "read-only",
+  "asOf": "2026-11-20",
+  "controls": [
+    "CM-8",
+    "CM-6",
+    "IA-5"
+  ],
+  "ksis": [
+    "KSI-PIY-GIV",
+    "KSI-SVC-ACM",
+    "KSI-IAM-SNU"
+  ],
+  "files": [
+    {
+      "file": "arc.csv",
+      "sha256": "366ecdc0a8d24fffd2440bc5c145116296f7048d2454e0ac3518bc94126be565"
+    },
+    {
+      "file": "arc.json",
+      "sha256": "6659fc238edc10a2df5e57479b8996e37bcdb9abcd3fdb5147c151e80e82ddf2"
+    }
+  ]
+}
