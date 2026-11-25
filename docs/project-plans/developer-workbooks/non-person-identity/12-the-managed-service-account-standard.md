@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 5206f763786be49588a257ab1dbcd857c1e358fccc1c47d13fef35682436f84a
-last-reviewed: 2026-11-24
+reviewed-sha256: 5d9f27248a03a15d54ca58b26c5b448f4c5827d3ab6284483d60478587f34c85
+last-reviewed: 2026-11-25
 ---
 # Chapter 12 — The Managed Service Account Standard
 
