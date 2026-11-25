@@ -29,7 +29,8 @@ line endings left as committed, so the same commit always gives the same bytes.
 
 Every script, code and data file also gets a plain-text copy beside it, named with .txt
 added (Get-Thing.ps1 -> Get-Thing.ps1.txt), because Microsoft 365 Copilot and some mail
-systems refuse to take .ps1, .py and similar files. The copies are made here, not
+systems refuse to take .ps1, .py and similar files. Files under a tests' fixtures folder get no
+copy: they are data the tests read, and some tests compare a fixture folder with its manifest. The copies are made here, not
 committed, so they can't drift from the originals.
 
 Usage: python3 scripts/build_start_kit_zip.py [--kit start-kit] [--out _site/downloads]
@@ -150,6 +151,10 @@ def kit_files(kit: Path, base: Path | None = None) -> list[Path]:
 
 
 def needs_copy(path: Path) -> bool:
+    # Test fixtures are data the kit's tests read, not files a reader mails: a .txt copy beside them
+    # breaks the tests that compare a fixture folder with its manifest (drift-pipeline's evidence runs).
+    if "fixtures" in path.parts:
+        return False
     return path.suffix.lower() in TXT_COPY or path.name in TXT_COPY_NAMES
 
 
