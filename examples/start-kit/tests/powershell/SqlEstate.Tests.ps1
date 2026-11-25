@@ -155,9 +155,37 @@ Describe 'Estate discovery against the fictional forest' {
         @($doc.InstanceAudits | Where-Object { $_.ServerName -eq 'sql02.contoso.example' -and $_.InstanceName -eq 'MSSQLSERVER' })[0].SQLLogins | Should -Contain 'app_user'
         @(Import-Csv (Join-Path $sql 'SqlLogins.csv')).LoginType | Should -Contain 'WINDOWS_GROUP'
     }
+    It 'reads each host''s computer object and marks a stale one' {
+        $h = @{}; foreach ($x in $result.Hosts) { $h[$x.Host] = $x }
+        $h.Keys.Count | Should -Be 5
+        $h['old01.contoso.example'].DirectoryState | Should -Be 'Stale'
+        $h['sql01.contoso.example'].DirectoryState | Should -Be 'Active'
+        $h['csql01.child.contoso.example'].Domain | Should -Be 'child.contoso.example'
+        $h['csql01.child.contoso.example'].OperatingSystem | Should -Be 'Windows Server 2022 Standard'
+        $result.Summary.ByDirectoryState.Active | Should -Be 4
+        $result.Summary.ByDirectoryState.Stale | Should -Be 1
+        Join-Path (Join-Path $out 'SQL') 'SqlHosts.csv' | Should -Exist
+        @((Get-Content -Raw (Join-Path (Join-Path $out 'SQL') 'SqlEstate.json') | ConvertFrom-Json).Hosts) | Should -HaveCount 5
+    }
     It 'records a failed connection instead of stopping' {
         (Find-Row $rows 'old01.contoso.example' 'MSSQLSERVER').QueryStatus | Should -Be 'Query Failed'
     }
+}
+
+Describe 'Host resolution' {
+    BeforeAll {
+        $computers = @(
+            [pscustomobject]@{ Domain = 'contoso.example'; Name = 'RPT01'; DNSHostName = 'rpt01.contoso.example'; OperatingSystem = 'Windows Server 2022 Standard'; Enabled = $true; LastLogonDate = '2026-10-20T00:00:00'; PasswordLastSet = '2026-10-01T00:00:00' }
+            [pscustomobject]@{ Domain = 'contoso.example'; Name = 'DUP01'; DNSHostName = 'dup01.contoso.example'; OperatingSystem = 'Windows Server 2019 Standard'; Enabled = $true; LastLogonDate = '2026-10-20T00:00:00'; PasswordLastSet = '2026-10-01T00:00:00' }
+            [pscustomobject]@{ Domain = 'child.contoso.example'; Name = 'DUP01'; DNSHostName = 'dup01.child.contoso.example'; OperatingSystem = 'Windows Server 2019 Standard'; Enabled = $true; LastLogonDate = '2026-10-20T00:00:00'; PasswordLastSet = '2026-10-01T00:00:00' }
+            [pscustomobject]@{ Domain = 'contoso.example'; Name = 'OFF01'; DNSHostName = 'off01.contoso.example'; OperatingSystem = 'Windows Server 2016 Standard'; Enabled = $false; LastLogonDate = '2026-10-20T00:00:00'; PasswordLastSet = '2026-10-01T00:00:00' }
+        )
+        $r = @{}; foreach ($x in (Resolve-FMPSqlHost -HostName 'RPT01', 'dup01', 'off01.contoso.example', 'gone01.contoso.example' -Computers $computers -AsOf $FMPAsOf)) { $r[$x.Host] = $x }
+    }
+    It 'matches a short SPN host name to its computer object' { $r['rpt01'].DNSHostName | Should -Be 'rpt01.contoso.example'; $r['rpt01'].DirectoryState | Should -Be 'Active' }
+    It 'calls a short name in two domains ambiguous' { $r['dup01'].DirectoryState | Should -Be 'Ambiguous' }
+    It 'treats a disabled computer as stale' { $r['off01.contoso.example'].DirectoryState | Should -Be 'Stale' }
+    It 'reports a host with no computer object' { $r['gone01.contoso.example'].DirectoryState | Should -Be 'NoComputerObject' }
 }
 
 Describe 'Signals off' {

@@ -118,3 +118,19 @@ A question from practice, how many SQL Server instances are enabled by Arc, was 
 | 77 | SQL Server 2025: start Nov 18, 2025; mainstream end 1/7/2031 06:59:59; extended end 1/7/2036 06:59:59 (the instants in the lifecycle page's markup); the table shows the last day of support, January 6, 2036, as for the other rows | Unit 5 table; arc-lifecycle.json | verified | m4-lifecycle (SQL Server 2025 page) |
 | 78 | Lab 1 output on 2026-11-25: `lifecycle` supported 5 (6 with a 60-day window); `sql-inventory` resources 7, instances 6, SSRS 1, hostMachines 5, machinesSqlDiscovered 5, discoveredWithoutInstance `SRV-APP-02` | Unit 8 | verified (run) | the kit |
 | 79 | A common answer, "count `sqlserverinstances` with `summarize count()`", counts associated services too; its source for one machine hosting several instances, a Fabric page about query performance, was replaced with Learn's Connect page and the REST reference | Unit 4 | corrected | m4-sqlinventory; m4-sqlconnect; m4-sqlget |
+
+## SQL Servers not in Arc, November 25, 2026
+
+The forest's SQL Server estate is compared with Arc. The Start Kit's `SqlEstate.json` gains each host's computer object, and `sql-inventory --estate` reconciles it with the Arc machines. Learn and FedRAMP were read on 2026-11-25. The kit's tests and the new Lab 1 command were run the same day.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 80 | Arc machine properties `dnsFqdn` ("DNS fully qualified display name"), `machineFqdn` ("the hybrid machine FQDN"), `domainName` ("the Windows domain name"), `osProfile.computerName` ("the host OS name"), and `mssqlDiscovered`, a string ("whether any MS SQL instance is discovered on the machine") | Unit 4 | verified | m4-hcmachine (2026-09-01) |
+| 81 | `lastLogonTimestamp` is updated only when older than `msDS-LogonTimeSyncInterval`, initially 14 days less a random part of 5; in the global catalog from Windows Server 2008 | Unit 4 | verified | m4-lastlogon |
+| 82 | An instance registers its SPN automatically only under a built-in, virtual or managed service account, or one with permission; otherwise no SPN, no Kerberos, and authentication uses NTLM | Unit 4 | verified | m4-sqlspn |
+| 83 | KSI-PIY-GIV, "Authoritative sources are used to automatically generate real-time inventories of all information resources when needed"; related controls include CM-8, CM-8(1), CM-8(2), CM-8(4); a provider indicator | Unit 4 | verified | m4-ksipiy |
+| 84 | Stale: disabled, or both last logon and machine password older than 90 days (the Start Kit's computer-inventory rule) | Unit 4 | design (the kit's own rule) | — |
+| 85 | Matching on fully qualified name, short name when unique; the five categories | Unit 4 | design | — |
+| 86 | `arcWithoutSqlResource` means the extension may be missing or the instances excluded | Unit 4 | inference (labelled) | — |
+| 87 | No portal page shows the directory beside Arc, so the reconciliation is the scripted step; the portal check is looking up gap hosts under Arc machines | Unit 4; Unit 9 step 7 | design | — |
+| 88 | Lab 1 step 5, `--estate`: notInArc 2, arcWithoutSqlResource 2, inArc 2, arcNotInDirectory 2, excludedStale 1 | Unit 8 | verified (run) | the kit |

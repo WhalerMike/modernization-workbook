@@ -1,6 +1,6 @@
 @{
     RootModule        = 'FMPSqlEstate.psm1'
-    ModuleVersion     = '1.1.0'
+    ModuleVersion     = '1.2.0'
     GUID              = '51617e34-58dc-4fed-8468-7214e9ff0ddd'
     Author            = 'Federal Modernization Workbook'
     Description       = 'Read-only SQL Server estate discovery: SPN, directory and network signals fused into one counted inventory, with an optional SELECT-only T-SQL pass. Illustrative; unit-tested against fixtures.'
@@ -11,7 +11,7 @@
         'Get-FMPSqlQueryCatalog', 'Test-FMPSelectOnly', 'Get-FMPSqlConnectionString', 'Get-FMPSqlSessionCounter', 'Get-FMPSqlVersionName',
         'ConvertFrom-FMPSqlSpn', 'Get-FMPSqlSpnInstance', 'Get-FMPSqlDirectoryCandidate', 'ConvertFrom-FMPSqlBrowserResponse',
         'Find-FMPSqlBrowserInstance', 'Get-FMPSqlInstanceDetail', 'Get-FMPSqlClassification', 'Merge-FMPSqlEstate',
-        'Get-FMPSqlEstateSummary', 'Invoke-FMPSqlEstateDiscovery'
+        'Get-FMPSqlEstateSummary', 'Invoke-FMPSqlEstateDiscovery', 'Resolve-FMPSqlHost', 'Get-FMPSqlHostComputer'
     )
     CmdletsToExport   = @()
     VariablesToExport = @()

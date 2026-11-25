@@ -188,7 +188,7 @@ The `sql-inventory` check joins each instance to its host through `containerReso
 
 - **Instances**: `sqlServerInstances` resources whose `serviceType` is `Engine`. A count of every resource of the type also counts each Analysis Services, Integration Services, Reporting Services and Power BI Report Server install.[^m4-sqlinventory]
 - **Machines hosting an instance**: the distinct `containerResourceId` values among those instances. One machine can host several instances,[^m4-sqlconnect] so this number is smaller.
-- **Machines where Arc detected SQL Server**: Arc machines whose `properties.detectedProperties.mssqldiscovered` is true, the flag Microsoft's own sample query reads.[^m4-argarcsamples] A machine counted here with no instance resource may lack the Azure extension for SQL Server, or have its instances excluded from registration *(inference)*.
+- **Machines where Arc detected SQL Server**: Arc machines whose `properties.detectedProperties.mssqldiscovered` is true, the flag Microsoft's own sample query reads.[^m4-argarcsamples] The REST reference also documents a `properties.mssqlDiscovered` string, "whether any MS SQL instance is discovered on the machine";[^m4-hcmachine] the checks read either. A machine counted here with no instance resource may lack the Azure extension for SQL Server, or have its instances excluded from registration *(inference)*.
 
 In the portal, open **Resource Graph Explorer**, set the scope to the subscriptions or management group you're counting, and run this query. It returns the first two answers in one row:
 
@@ -214,6 +214,29 @@ resources
 ```
 
 The scripted step is the `sql-inventory` check. It fetches the rows with paged queries and counts in code, so the result doesn't depend on a summary query's shape. It reports `resources` and `instances`, `associatedServices` by type, `hostMachines`, `machinesSqlDiscovered` with the `discoveredWithoutInstance` list, and instances `byVersion`, `byEdition`, `byStatus`, `byLicenseType`, `bySubscription` and `byResourceGroup`. Its JSON output is the inventory evidence for CM-8 ([Unit 7](#the-five-checks)). The `lifecycle` check judges Engine instances only: an associated service is part of a SQL Server installation, so its Engine instance already reports that installation's lifecycle. Run both queries above in Lab 2 and compare them with the check's counts.
+
+### Which SQL Servers aren't in Arc {#sql-not-in-arc}
+
+Arc counts only what's onboarded. The other half of the question, which SQL Servers in the forest aren't in Arc yet, needs the directory's view of the estate beside Arc's. The `sql-inventory` check takes it as an input file, so the two halves run where each belongs:
+
+1. **The forest, in Windows PowerShell 5.1 on a domain-joined host.** The Start Kit's `Invoke-FMPSqlEstateDiscovery` reads the `MSSQLSvc` SPNs of every domain in the forest, on computer accounts and on the user and managed service accounts that run SQL Server. It resolves each SPN to its host. It reads each host's computer object for its operating system, its enabled state, `lastLogonTimestamp` and the machine password's age. It writes `SqlEstate.json`, with a `Hosts` list that marks each host `Active`, `Stale`, `NoComputerObject` or `Ambiguous`. A standard authenticated account can read all of it ([Book 06, Runbook R02](../books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.md#reconcile-the-forest-with-azure-arc)). `lastLogonTimestamp` is replicated to the global catalog, but only refreshed when it's older than the domain's sync interval, 14 days less a random part of 5 by default,[^m4-lastlogon] so the kit counts a computer as stale only after 90 days without a logon or a machine password change, the same rule as its computer inventory.
+2. **Arc, in PowerShell 7 or Python.** `sql-inventory --estate SqlEstate.json` reads the Arc machines and SQL Server instances as above and reconciles each directory host with an Arc machine. Each machine's names come from `properties.dnsFqdn`, `properties.machineFqdn`, and `properties.osProfile.computerName` with `properties.domainName`.[^m4-hcmachine] A fully qualified name matches case-insensitively. A short name, as an SPN can carry, matches when exactly one Arc machine has it.
+
+Every host lands in one category:
+
+| Category | Meaning | What to do |
+|---|---|---|
+| `notInArc` | In the directory, active, and no Arc machine has its name | The gap list: onboard it, or record why not |
+| `arcWithoutSqlResource` | An Arc machine, but no Database Engine instance resource on it | Check the Azure extension for SQL Server, and whether its instances were excluded *(inference)* |
+| `inArc` | An Arc machine with at least one Engine instance resource | Compare the directory's instance count with Arc's |
+| `arcNotInDirectory` | An Arc machine with SQL Server that no directory host matches: `inForest` when its Windows domain is one the discovery read, `notInForest` otherwise | `inForest`: SPN discovery missed it, so check the instance's service account. `notInForest`: a workgroup server or another forest, outside this forest's discovery |
+| `excludedStale` | The host's computer object is stale, disabled, missing or ambiguous | Not counted as a gap. Retire the object, or fix the record |
+
+: Forest-to-Arc reconciliation categories {.striped .hover}
+
+**What SPN discovery misses.** An instance registers its SPN at startup only when its service account may: a built-in account, a virtual account, a managed service account, or an account granted the right. Otherwise registration fails, Kerberos isn't used, and connections fall back to NTLM.[^m4-sqlspn] Such an instance has no SPN, and a host that isn't domain-joined has no directory object at all. The Start Kit's SQL Browser probe (`-ProbeNetwork`) finds named and Express instances on the hosts it's given, and the Runbook R02 sweep (`Find-DbaInstance`, Azure Migrate) reaches further. Arc itself closes part of the gap from the other side: `arcNotInDirectory` `inForest` is exactly the SQL Server that the directory didn't show.
+
+The JSON result's `forestGap` holds the counts and the gap list, and `--gap-csv` also writes the list as CSV. Together they're the inventory evidence for CM-8 and CM-8(1). They also show the principle behind FedRAMP's KSI-PIY-GIV, inventories generated automatically from authoritative sources; that indicator binds cloud providers, not the agency's own system.[^m4-ksipiy] In the portal, **Azure Arc**, then **SQL Server instances**, lists what Arc has. No portal page shows the directory beside it, so the reconciliation is the scripted step.
 
 ## Unit 5: Policy and lifecycle
 
@@ -282,7 +305,7 @@ Each check is read-only, needs only Reader, and is tied to the federal requireme
 | `arc-extensions` | Servers missing Azure Monitor Agent or Defender for Endpoint, and extensions not `Succeeded`, with their state and version | SI-4, SI-3, AU-12, CM-8 | VK-ARC-02 (agent status and version) |
 | `arc-private-link` | Servers with no Azure Arc private link scope, and how many use each scope | SC-7 | Book 05's [network design](../books/b05-devices/09-servers-under-azure-arc.md#network) |
 | `lifecycle` | Servers and SQL Server Database Engine instances by support state: `unsupported`, `esuNotConfirmed`, `esuCovered`, `endingSoon` (within 180 days by default); products not in the table | SA-22, SI-2 | VK-ARC-05 (patch assessment) |
-| `sql-inventory` | Database Engine instances, the machines that host them and the machines where Arc detected SQL Server, counted separately; associated services by type; instances by version, edition, status, license type, subscription and resource group; resources disconnected, or whose host is disconnected or not in scope | CM-8, CM-8(1) | VK-ARC-04 (CMDB coverage) and Book 06's [Arc deployment](../books/b06-data-platform/r04-arc-deployment-and-managed-identity.md) |
+| `sql-inventory` | Database Engine instances, the machines that host them and the machines where Arc detected SQL Server, counted separately; associated services by type; instances by version, edition, status, license type, subscription and resource group; resources disconnected, or whose host is disconnected or not in scope. With `--estate`, the forest's SQL Server hosts that aren't in Arc | CM-8, CM-8(1) | VK-ARC-04 (CMDB coverage) and Book 06's [Arc deployment](../books/b06-data-platform/r04-arc-deployment-and-managed-identity.md) |
 | `policy-summary` | Every assignment's enforcement mode and compliance counts; `DoNotEnforce` assignments; assignments with no states; states from assignments outside the scope | CA-7, CM-6, CM-2 | VK-ARC-03 (baseline compliance per server) |
 
 The role for all five is Reader on the subscriptions or management group in scope. That's a reader's role: none of the five can change a resource. Every result that reads machines starts with `machinesInScope` and `emptyScope`.
@@ -319,6 +342,9 @@ python python/arc_tasks.py --from-json tests/fixtures/arc.json --as-of 2026-11-0
 
 # Step 5
 python python/arc_tasks.py --from-json tests/fixtures/arc.json --as-of 2026-11-03T00:00:00Z sql-inventory
+
+# Step 5
+python python/arc_tasks.py --from-json tests/fixtures/forest-gap.json --as-of 2026-11-25T00:00:00Z sql-inventory --estate tests/fixtures/sql-estate-forest.json --gap-csv sql-not-in-arc.csv
 
 # Step 6
 python python/arc_tasks.py --from-json tests/fixtures/arc.json --as-of 2026-11-03T00:00:00Z policy-summary
@@ -416,6 +442,14 @@ Work in `examples/ms-automation`. `--from-json` evaluates saved Resource Graph r
    - `OLD-SQL-07_MSSQLSERVER`: `"host not found among the Arc machines in scope"`;
    - `SRV-LEG-01_MSSQLSERVER`: `"instance status Disconnected"` and `"host status Disconnected"`.
 
+   Then reconcile a fictional forest's `SqlEstate.json` with the Arc estate beside it, and write the gap list:
+
+   ```bash
+   python python/arc_tasks.py --from-json tests/fixtures/forest-gap.json --as-of 2026-11-25T00:00:00Z sql-inventory --estate tests/fixtures/sql-estate-forest.json --gap-csv sql-not-in-arc.csv
+   ```
+
+   Expected: under `"forestGap"`, `"hosts"` is `notInArc` 2, `arcWithoutSqlResource` 2, `inArc` 2, `arcNotInDirectory` 2 and `excludedStale` 1. `sql-not-in-arc.csv` lists `csql01.child.contoso.example` and `sql03.contoso.example` first, the two SQL Servers not in Arc. `sql02.contoso.example` is an Arc machine where Arc detected SQL Server but holds no instance resource. `rpt01`, a short SPN name, matched `RPT01`. `web05.contoso.example` is `inForest`: in Arc with SQL Server, but no directory signal found it. `old01.contoso.example` is stale, so it isn't counted as a gap.
+
 6. Summarize policy.
 
    ```bash
@@ -511,6 +545,7 @@ python python/arc_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --
 python python/arc_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem --subscription <subscription-id> arc-private-link | tee out-arc/arc-private-link.json
 python python/arc_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem --subscription <subscription-id> lifecycle | tee out-arc/lifecycle.json
 python python/arc_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem --subscription <subscription-id> sql-inventory | tee out-arc/sql-inventory.json
+python python/arc_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem --subscription <subscription-id> sql-inventory --estate <sqlestate-json-path> --gap-csv out-arc/sql-not-in-arc.csv | tee out-arc/sql-not-in-arc.json
 python python/arc_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem --subscription <subscription-id> policy-summary | tee out-arc/policy-summary.json
 ```
 
@@ -611,6 +646,7 @@ You run the checks read-only against a test subscription and compare them with t
    python python/arc_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem --subscription <subscription-id> arc-private-link | tee out-arc/arc-private-link.json
    python python/arc_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem --subscription <subscription-id> lifecycle | tee out-arc/lifecycle.json
    python python/arc_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem --subscription <subscription-id> sql-inventory | tee out-arc/sql-inventory.json
+   python python/arc_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem --subscription <subscription-id> sql-inventory --estate <sqlestate-json-path> --gap-csv out-arc/sql-not-in-arc.csv | tee out-arc/sql-not-in-arc.json
    python python/arc_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem --subscription <subscription-id> policy-summary | tee out-arc/policy-summary.json
    ```
 
@@ -642,7 +678,7 @@ You run the checks read-only against a test subscription and compare them with t
 7. **Compare** each result with the portal. In the Azure portal:
    1. Open **Azure Arc**, then **Machines**: compare the list, each machine's status and operating system with `machinesInScope`, `arc-private-link` and `lifecycle`.
    2. Open each machine with a finding, then **Extensions**: compare with `arc-extensions`.
-   3. Open **Azure Arc**, then **SQL Server instances**: compare with `sql-inventory`. Then open **Resource Graph Explorer**, run the two queries in [Counting instances and machines](#counting-sql-instances), and compare `instances`, `hostMachines` and the breakdown with `sql-inventory`.
+   3. Open **Azure Arc**, then **SQL Server instances**: compare with `sql-inventory`. Then open **Resource Graph Explorer**, run the two queries in [Counting instances and machines](#counting-sql-instances), and compare `instances`, `hostMachines` and the breakdown with `sql-inventory`. If you ran `--estate`, look up two hosts from `sql-not-in-arc.csv` under **Azure Arc**, then **Machines**, to confirm they aren't there.
    4. Open **Policy**, then **Compliance**: compare each assignment's counts and enforcement with `policy-summary`.
 
 8. **Back it out.** Remove the role assignment, delete the app registration and its certificate, and delete the saved results: they hold server names and resource IDs. Deleting the app registration also deletes its service principal.
@@ -737,7 +773,7 @@ Related: [Module 1: Foundations](ms-automation-foundations.md), [Module 3: Intun
 [^m4-reader]: Microsoft Learn, "Azure built-in roles for General" (Reader, `acdd72a7-3385-48ef-bd42-f606fba81ae7`, actions `*/read`; updated July 1, 2026), <https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/general>, accessed November 3, 2026.
 [^m4-sublist]: Microsoft Learn, "Subscriptions - List" (Resource Management, 2022-12-01; updated October 23, 2026), <https://learn.microsoft.com/en-us/rest/api/resources/subscriptions/list>, accessed November 3, 2026.
 [^m4-argrest]: Microsoft Learn, "Resources" (Azure Resource Graph REST API, 2024-04-01: request body, QueryRequestOptions, `$skipToken`, `$top` maximum 1000; updated October 23, 2026), <https://learn.microsoft.com/en-us/rest/api/azureresourcegraph/resourcegraph/resources/resources>, accessed November 3, 2026.
-[^m4-hcmachine]: Microsoft Learn, "Machines - Get" (Microsoft.HybridCompute, 2026-09-01: `status`, `osSku`, `privateLinkScopeResourceId`, `licenseProfile.esuProfile`; updated October 23, 2026), <https://learn.microsoft.com/en-us/rest/api/hybridcompute/machines/get>, accessed November 3, 2026; rechecked November 11, 2026.
+[^m4-hcmachine]: Microsoft Learn, "Machines - Get" (Microsoft.HybridCompute, 2026-09-01: `status`, `osSku`, `privateLinkScopeResourceId`, `licenseProfile.esuProfile`; and `dnsFqdn`, `machineFqdn`, `domainName`, `osProfile.computerName` and `mssqlDiscovered`, added November 25, 2026; updated October 23, 2026), <https://learn.microsoft.com/en-us/rest/api/hybridcompute/machines/get>, accessed November 3, 2026; rechecked November 11 and November 25, 2026.
 [^m4-permgov]: Microsoft Learn, "Azure permissions for Management and governance" (`Microsoft.ResourceGraph/resources/read`; `Microsoft.PolicyInsights/policyStates/summarize/action` and `/summarize/read`; updated July 1, 2026), <https://learn.microsoft.com/en-us/azure/role-based-access-control/permissions/management-and-governance>, accessed November 3, 2026.
 [^m4-argtables]: Microsoft Learn, "Azure Resource Graph table and resource type reference" (the `resources` and `policyresources` tables), <https://learn.microsoft.com/en-us/azure/governance/resource-graph/reference/supported-tables-resources>, accessed November 3, 2026.
 [^m4-argov]: Microsoft Learn, "Overview of Azure Resource Graph" (permissions; how Resource Graph is kept current; updated June 18, 2024), <https://learn.microsoft.com/en-us/azure/governance/resource-graph/overview>, accessed November 3, 2026.
@@ -759,6 +795,12 @@ Related: [Module 1: Foundations](ms-automation-foundations.md), [Module 3: Intun
 [^m4-sqlinventory]: Microsoft Learn, "Manage inventory of SQL Server resources with Azure Arc" (Scenario 6, the version-distribution query; "Inventory associated services", the `serviceType` property and its default, `Engine`; updated June 23, 2026), <https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/view-inventory>, accessed November 25, 2026.
 
 [^m4-sqlconnect]: Microsoft Learn, "Connect your SQL Server to Azure Arc" (the Connected Machine agent registers the server as a Server - Azure Arc resource, and the Azure extension for SQL Server connects the SQL Server instances as resources of type SQL Server - Azure Arc; excluding instances "if you have multiple instances installed on the server"), <https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/connect>, accessed November 25, 2026.
+
+[^m4-sqlspn]: Microsoft Learn, "Register a Service Principal Name for Kerberos connections" (automatic registration under a built-in account, a virtual account, an MSA or an account with permission to register an SPN; otherwise the SPN isn't registered at startup, Kerberos isn't used, and authentication uses NTLM), <https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/register-a-service-principal-name-for-kerberos-connections>, accessed November 25, 2026.
+
+[^m4-lastlogon]: Microsoft Learn, "Last-Logon-Timestamp attribute" (updated only when older than `msDS-LogonTimeSyncInterval`, initially 14 days less a random part of 5 days; in the global catalog from Windows Server 2008), <https://learn.microsoft.com/en-us/windows/win32/adschema/a-lastlogontimestamp>, accessed November 25, 2026.
+
+[^m4-ksipiy]: FedRAMP, "Policy and Inventory," Key Security Indicators, *Consolidated Rules for 2026* (KSI-PIY-GIV, Generating Inventories; related controls include CM-8, CM-8(1), CM-8(2) and CM-8(4)), <https://fedramp.gov/2026/providers/20x/key-security-indicators/policy-and-inventory/>, accessed November 25, 2026.
 [^m4-polassign]: Microsoft Learn, "Details of the policy assignment structure" (enforcement mode; updated July 30, 2026), <https://learn.microsoft.com/en-us/azure/governance/policy/concepts/assignment-structure>, accessed November 3, 2026; rechecked November 11, 2026.
 [^m4-argpolsamples]: Microsoft Learn, "Azure Resource Graph sample queries for Azure Policy" (updated March 19, 2025), <https://learn.microsoft.com/en-us/azure/governance/policy/samples/resource-graph-samples>, and the samples-by-table page (policy states by assignment), <https://learn.microsoft.com/en-us/previous-versions/azure/governance/resource-graph/samples/samples-by-table>, accessed November 3, 2026.
 [^m4-lifecycle]: Microsoft Learn, lifecycle pages for Windows Server 2012 R2, 2016, 2019, 2022 and 2025, and SQL Server 2012, 2014, 2016, 2017, 2019, 2022 and 2025, under <https://learn.microsoft.com/en-us/lifecycle/products/> (each page's Extended End Date and Extended Security Update years), accessed November 3, 2026; rechecked November 11, 2026; SQL Server 2025 added November 25, 2026. `examples/ms-automation/arc-lifecycle.json` names each page.

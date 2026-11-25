@@ -27,6 +27,11 @@ Describe 'Arc checks match the Python results' {
     It 'arc-private-link' { Assert-SameJson (Test-FmwArcPrivateLink -Machines $arc.machines) $expected.'arc-private-link' }
     It 'lifecycle' { Assert-SameJson (Test-FmwArcLifecycle -Machines $arc.machines -SqlInstances $arc.sqlInstances -AsOf $asOf) $expected.lifecycle }
     It 'sql-inventory' { Assert-SameJson (Test-FmwArcSql -Machines $arc.machines -SqlInstances $arc.sqlInstances) $expected.'sql-inventory' }
+    It 'sql-inventory --estate: the forest against Arc' {
+        $gap = Read-Fixture 'forest-gap'
+        $estate = Read-Fixture 'sql-estate-forest'
+        Assert-SameJson (Test-FmwArcSqlGap -Estate $estate -Machines $gap.machines -SqlInstances $gap.sqlInstances) (Read-Fixture 'expected-forest-gap')
+    }
     It 'policy-summary' { Assert-SameJson (Test-FmwArcPolicy -Assignments $arc.assignments -PolicyStates $arc.policyStates) $expected.'policy-summary' }
 }
 
@@ -60,6 +65,17 @@ Describe 'Rules' {
         $names | Should -Not -Contain 'SRV-DB-01_SSRS'
         $names | Should -Not -Contain 'SRV-NEW-01_MSSQLSERVER'
         $r.counts.supported | Should -Be 5
+    }
+    It 'adds forestGap to sql-inventory only when given an estate' {
+        $gap = Read-Fixture 'forest-gap'
+        (Test-FmwArcSql -Machines $gap.machines -SqlInstances $gap.sqlInstances).Contains('forestGap') | Should -BeFalse
+        $r = Test-FmwArcSql -Machines $gap.machines -SqlInstances $gap.sqlInstances -Estate (Read-Fixture 'sql-estate-forest')
+        $r.forestGap.hosts.notInArc | Should -Be 2
+    }
+    It 'matches a short host name to the one Arc machine that has it' {
+        $m = @(@{ id = 'm1'; name = 'RPT01'; status = 'Connected'; dnsFqdn = 'rpt01.contoso.example' })
+        $r = Test-FmwArcSqlGap -Estate @{ Metadata = @{ Domains = @() }; Hosts = @(@{ Host = 'RPT01'; DirectoryState = 'Active' }) } -Machines $m
+        $r.gapList[0].matchedBy | Should -Be 'shortName'
     }
     It 'reads the lifecycle table longest product first' {
         (Get-FmwArcLifecycleTable)[0].product.Length | Should -BeGreaterOrEqual (Get-FmwArcLifecycleTable)[-1].product.Length

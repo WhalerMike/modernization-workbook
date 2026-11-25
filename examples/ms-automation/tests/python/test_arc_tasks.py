@@ -223,6 +223,57 @@ def test_sql_query_reads_service_type_and_scope_columns():
     assert "properties.detectedProperties.mssqldiscovered" in at.Q_MACHINES
 
 
+def test_forest_gap_categories():
+    """The forest's SQL Server hosts against Arc: every category, from one fictional forest."""
+    d, estate = load("forest-gap"), load("sql-estate-forest")
+    r = at.evaluate_forest_gap(estate, d["machines"], d["sqlInstances"])
+    by = {x["host"]: x for x in r["gapList"]}
+    assert r["hosts"] == {"notInArc": 2, "arcWithoutSqlResource": 2, "inArc": 2, "arcNotInDirectory": 2, "excludedStale": 1}
+    assert [x["host"] for x in r["gapList"] if x["category"] == "notInArc"] == ["csql01.child.contoso.example", "sql03.contoso.example"]
+    assert r["instancesNotInArc"] == 2 and r["arcNotInDirectory"] == {"inForest": 1, "notInForest": 1}
+    assert by["sql02.contoso.example"]["category"] == "arcWithoutSqlResource" and "detected" in by["sql02.contoso.example"]["reason"]
+    assert by["app01.contoso.example"]["matchedBy"] == "fqdn"  # computerName + domainName
+    assert by["old01.contoso.example"]["category"] == "excludedStale"  # stale: not a gap
+    assert by["web05.contoso.example"]["directoryState"] == "inForest" and by["dmz-sql01"]["directoryState"] == "notInForest"
+    assert r == load("expected-forest-gap")  # what the PowerShell tests compare against
+
+
+def test_forest_gap_short_names_and_case():
+    m = [{"id": "m1", "name": "RPT01", "status": "Connected", "dnsFqdn": "rpt01.contoso.example"},
+         {"id": "m2", "name": "DUP01", "status": "Connected", "computerName": "dup01", "domainName": "contoso.example"},
+         {"id": "m3", "name": "DUP01", "status": "Connected", "computerName": "dup01", "domainName": "child.contoso.example"}]
+    est = {"Metadata": {"Domains": ["contoso.example"]},
+           "Hosts": [{"Host": "RPT01", "DirectoryState": "Active"}, {"Host": "dup01", "DirectoryState": "Active"},
+                     {"Host": "SQL09.CONTOSO.EXAMPLE", "DirectoryState": "Active"}]}
+    by = {x["host"]: x for x in at.evaluate_forest_gap(est, m, [])["gapList"]}
+    assert by["rpt01"]["arcMachine"] == "RPT01" and by["rpt01"]["matchedBy"] == "shortName"
+    assert by["dup01"]["category"] == "notInArc" and "several" in by["dup01"]["reason"]
+    assert by["sql09.contoso.example"]["category"] == "notInArc"
+
+
+def test_forest_gap_without_hosts_counts_staleness_as_unknown():
+    est = {"Metadata": {"Domains": []}, "InstanceAudits": [{"ServerName": "sql01.contoso.example", "InstanceName": "MSSQLSERVER"}]}
+    r = at.evaluate_forest_gap(est, [], [])
+    assert r["gapList"][0]["directoryState"] == "Unknown" and r["hosts"]["notInArc"] == 1
+
+
+def test_cli_writes_the_gap_csv(tmp_path, capsys):
+    out = tmp_path / "sql-not-in-arc.csv"
+    assert at.main(["--from-json", str(FIX / "forest-gap.json"), "--as-of", "2026-11-25T00:00:00Z", "sql-inventory",
+                    "--estate", str(FIX / "sql-estate-forest.json"), "--gap-csv", str(out)]) == 0
+    result = json.loads(capsys.readouterr().out)["result"]
+    assert result["forestGap"]["hosts"]["notInArc"] == 2
+    lines = out.read_text(encoding="utf-8").splitlines()
+    assert lines[0].startswith("category,host,domain") and len(lines) == 10
+    assert lines[1].startswith("notInArc,csql01.child.contoso.example")
+
+
+def test_machines_query_reads_the_names_reconciliation_needs():
+    for column in ("dnsFqdn", "machineFqdn", "domainName", "computerName = tolower(tostring(properties.osProfile.computerName))",
+                   "tobool(properties.mssqlDiscovered)"):
+        assert column in at.Q_MACHINES
+
+
 def test_policy_summary():
     d = load("arc")
     r = at.evaluate_policy(d["assignments"], d["policyStates"])

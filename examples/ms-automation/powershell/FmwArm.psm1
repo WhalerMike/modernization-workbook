@@ -32,7 +32,9 @@ resources
     privateLinkScopeResourceId = tostring(properties.privateLinkScopeResourceId),
     esuEligibility = tostring(properties.licenseProfile.esuProfile.esuEligibility),
     esuAssignment = tostring(properties.licenseProfile.esuProfile.licenseAssignmentState),
-    sqlDiscovered = coalesce(tobool(properties.detectedProperties.mssqldiscovered), false)
+    sqlDiscovered = coalesce(tobool(properties.detectedProperties.mssqldiscovered), tobool(properties.mssqlDiscovered), false),
+    dnsFqdn = tolower(tostring(properties.dnsFqdn)), machineFqdn = tolower(tostring(properties.machineFqdn)),
+    domainName = tolower(tostring(properties.domainName)), computerName = tolower(tostring(properties.osProfile.computerName))
 | order by id asc
 "@
     extensions    = @"
@@ -311,7 +313,7 @@ function Test-FmwArcSql {
         $arc = Get-Content -Raw tests/fixtures/arc.json | ConvertFrom-Json -AsHashtable
         Test-FmwArcSql -Machines $arc.machines -SqlInstances $arc.sqlInstances | Select-Object -Property instances, hostMachines
     #>
-    param([object[]]$Machines = @(), [object[]]$SqlInstances = @())
+    param([object[]]$Machines = @(), [object[]]$SqlInstances = @(), $Estate)
     $hosts = @{}; foreach ($m in $Machines) { $hosts[$m.id] = $m }
     $engine = @($SqlInstances | Where-Object { Test-FmwSqlEngine $_ })
     $findings = [System.Collections.Generic.List[object]]::new()
@@ -328,7 +330,7 @@ function Test-FmwArcSql {
     $discovered = @($Machines | Where-Object { (Get-FmwArmValue $_ 'sqlDiscovered' $false) -eq $true })
     $or = { param($row, $key) $x = Get-FmwArmValue $row $key ''; $x ? $x : 'Unknown' }
     $note = Get-FmwScopeNote $Machines
-    [ordered]@{
+    $result = [ordered]@{
         machinesInScope = $note.machinesInScope; emptyScope = $note.emptyScope
         resources = @($SqlInstances).Count
         instances = $engine.Count
@@ -343,6 +345,112 @@ function Test-FmwArcSql {
         bySubscription = (Get-FmwTally $engine { & $or $_ 'subscriptionId' })
         byResourceGroup = (Get-FmwTally $engine { '{0}/{1}' -f (& $or $_ 'subscriptionId'), (& $or $_ 'resourceGroup').ToLowerInvariant() })
         findings = @($findings)
+    }
+    if ($null -ne $Estate) { $result['forestGap'] = Test-FmwArcSqlGap -Estate $Estate -Machines $Machines -SqlInstances $SqlInstances }
+    $result
+}
+
+function Get-FmwMachineName($Machine) {
+    # (fully qualified names, short names) an Arc machine answers to, lowercase.
+    $fq = [System.Collections.Generic.HashSet[string]]::new()
+    foreach ($n in @((Get-FmwArmValue $Machine 'dnsFqdn' ''), (Get-FmwArmValue $Machine 'machineFqdn' ''))) { if ($n) { [void]$fq.Add($n.ToLowerInvariant()) } }
+    $cn = (Get-FmwArmValue $Machine 'computerName' '').ToLowerInvariant(); $dom = (Get-FmwArmValue $Machine 'domainName' '').ToLowerInvariant()
+    if ($cn -and $dom) { [void]$fq.Add("$cn.$dom") }
+    $short = [System.Collections.Generic.HashSet[string]]::new()
+    foreach ($n in $fq) { [void]$short.Add($n.Split('.')[0]) }
+    if ($cn) { [void]$short.Add($cn.Split('.')[0]) }
+    $nm = (Get-FmwArmValue $Machine 'name' '').ToLowerInvariant(); if ($nm) { [void]$short.Add($nm) }
+    , @(@($fq), @($short))
+}
+
+function Test-FmwArcSqlGap {
+    <#
+    .SYNOPSIS
+        Reconciles the forest's SQL Server hosts (the Start Kit's SqlEstate.json) with Azure Arc: the SQL Servers that aren't in Arc.
+    .DESCRIPTION
+        Matches each directory host to an Arc machine on its fully qualified name, case-insensitively, or on
+        its short name when exactly one Arc machine has it. Categories: notInArc (the gap list),
+        arcWithoutSqlResource, inArc, arcNotInDirectory (inForest or notInForest) and excludedStale. The same
+        rules as evaluate_forest_gap in python/arc_tasks.py. Evidences NIST SP 800-53 CM-8 and CM-8(1).
+    .EXAMPLE
+        $arc = Get-Content -Raw tests/fixtures/forest-gap.json | ConvertFrom-Json -AsHashtable
+        $estate = Get-Content -Raw tests/fixtures/sql-estate-forest.json | ConvertFrom-Json -AsHashtable
+        (Test-FmwArcSqlGap -Estate $estate -Machines $arc.machines -SqlInstances $arc.sqlInstances).hosts
+    #>
+    param([Parameter(Mandatory)]$Estate, [object[]]$Machines = @(), [object[]]$SqlInstances = @())
+    $meta = Get-FmwArmValue $Estate 'Metadata'
+    $domains = @(@(Get-FmwArmValue $meta 'Domains' @()) | ForEach-Object { "$_".ToLowerInvariant() } | Sort-Object -Unique)
+    $perHost = @{}
+    foreach ($a in @(Get-FmwArmValue $Estate 'InstanceAudits' @())) { $n = (Get-FmwArmValue $a 'ServerName' '').ToLowerInvariant(); $perHost[$n] = 1 + [int]($perHost[$n] ?? 0) }
+    $hosts = @{}
+    foreach ($h in @(Get-FmwArmValue $Estate 'Hosts' @())) { $hosts[(Get-FmwArmValue $h 'Host' '').ToLowerInvariant()] = $h }
+    foreach ($n in @($perHost.Keys)) { if (-not $hosts.ContainsKey($n)) { $hosts[$n] = @{ Host = $n; DirectoryState = 'Unknown' } } }
+
+    $byFqdn = @{}; $byShort = @{}
+    foreach ($m in $Machines) {
+        $names = Get-FmwMachineName $m
+        foreach ($n in $names[0]) { if (-not $byFqdn.ContainsKey($n)) { $byFqdn[$n] = [System.Collections.Generic.List[object]]::new() }; $byFqdn[$n].Add($m) }
+        foreach ($n in $names[1]) { if (-not $byShort.ContainsKey($n)) { $byShort[$n] = [System.Collections.Generic.List[object]]::new() }; $byShort[$n].Add($m) }
+    }
+    $engineHosts = @{}
+    foreach ($s in $SqlInstances) { $hid = Get-FmwArmValue $s 'hostId' ''; if ($hid -and (Test-FmwSqlEngine $s)) { $engineHosts[$hid] = 1 + [int]($engineHosts[$hid] ?? 0) } }
+    $match = {
+        param([string]$hostName, [string]$dns)
+        foreach ($n in @($hostName, $dns)) {
+            if ($n -and $n.Contains('.') -and $byFqdn.ContainsKey($n) -and @($byFqdn[$n] | ForEach-Object { $_.id } | Sort-Object -Unique).Count -eq 1) { return , @($byFqdn[$n][0], 'fqdn') }
+        }
+        $c = [ordered]@{}
+        $s = $hostName.Split('.')[0]
+        if ($byShort.ContainsKey($s)) { foreach ($x in $byShort[$s]) { $c[$x.id] = $x } }
+        if ($hostName.Contains('.')) { foreach ($k in @($c.Keys)) { if (@((Get-FmwMachineName $c[$k])[0]).Count -gt 0) { $c.Remove($k) } } }
+        if ($c.Count -eq 1) { return , @(@($c.Values)[0], 'shortName') }
+        , @($null, ($c.Count -gt 1 ? 'ambiguousShortName' : ''))
+    }
+
+    $rows = [System.Collections.Generic.List[object]]::new(); $matched = @{}
+    foreach ($name in ($hosts.Keys | Sort-Object)) {
+        $h = $hosts[$name]
+        $r = & $match $name ((Get-FmwArmValue $h 'DNSHostName' '').ToLowerInvariant())
+        $m = $r[0]; $how = $r[1]
+        if ($m) { $matched[$m.id] = $true }
+        $state = Get-FmwArmValue $h 'DirectoryState' 'Unknown'; if (-not $state) { $state = 'Unknown' }
+        if ($state -in 'Stale', 'NoComputerObject', 'Ambiguous') { $cat = 'excludedStale'; $reason = Get-FmwArmValue $h 'StateReason' ''; if (-not $reason) { $reason = $state } }
+        elseif ($null -eq $m) { $cat = 'notInArc'; $reason = ($how -eq 'ambiguousShortName') ? 'Short name matches several Arc machines; match by hand' : 'No Arc machine with this name' }
+        elseif ($engineHosts[$m.id]) { $cat = 'inArc'; $reason = '' }
+        else {
+            $cat = 'arcWithoutSqlResource'
+            $reason = ((Get-FmwArmValue $m 'sqlDiscovered' $false) -eq $true) ? 'Arc detected SQL Server, but no Database Engine instance resource: the Azure extension for SQL Server may be missing, or the instances excluded' : "No Database Engine instance resource, and Arc didn't detect SQL Server"
+        }
+        $rows.Add([ordered]@{ category = $cat; host = $name; domain = (Get-FmwArmValue $h 'Domain' ''); directoryState = $state
+                operatingSystem = (Get-FmwArmValue $h 'OperatingSystem' ''); directoryInstances = [int]($perHost[$name] ?? 0)
+                arcMachine = ($m ? $m.name : $null); arcStatus = ($m ? (Get-FmwArmValue $m 'status' '') : $null)
+                arcInstances = ($m ? [int]($engineHosts[$m.id] ?? 0) : 0); matchedBy = ($how ? $how : $null); reason = $reason })
+    }
+    foreach ($m in ($Machines | Sort-Object { $_.name.ToLowerInvariant() })) {
+        if ($matched[$m.id] -or -not ($engineHosts[$m.id] -or (Get-FmwArmValue $m 'sqlDiscovered' $false) -eq $true)) { continue }
+        $dom = (Get-FmwArmValue $m 'domainName' '').ToLowerInvariant()
+        $where = ($domains -contains $dom) ? 'inForest' : 'notInForest'
+        $reason = ($where -eq 'inForest') ? 'Domain-joined in a domain the discovery read, but no SPN or other signal found SQL Server here' : "Not in a domain the discovery read ($($dom ? $dom : 'no domain')): a workgroup server or another forest"
+        $fq = @((Get-FmwMachineName $m)[0] | Sort-Object -CaseSensitive)
+        $os = Get-FmwArmValue $m 'osSku' ''; if (-not $os) { $os = Get-FmwArmValue $m 'osName' '' }
+        $rows.Add([ordered]@{ category = 'arcNotInDirectory'; host = ($fq.Count ? $fq[0] : $m.name.ToLowerInvariant()); domain = $dom; directoryState = $where
+                operatingSystem = $os; directoryInstances = 0; arcMachine = $m.name; arcStatus = (Get-FmwArmValue $m 'status' '')
+                arcInstances = [int]($engineHosts[$m.id] ?? 0); matchedBy = $null; reason = $reason })
+    }
+    $order = @('notInArc', 'arcWithoutSqlResource', 'inArc', 'arcNotInDirectory', 'excludedStale')
+    $sorted = @($rows | Sort-Object @{ e = { $order.IndexOf($_.category) } }, @{ e = { $_.host } })   # hosts are lowercase
+    $counts = [ordered]@{}; foreach ($o in $order) { $counts[$o] = @($sorted | Where-Object { $_.category -eq $o }).Count }
+    $note = Get-FmwScopeNote $Machines
+    [ordered]@{
+        machinesInScope = $note.machinesInScope; emptyScope = $note.emptyScope
+        forestDomains = $domains
+        directoryHosts = $hosts.Count
+        directoryInstances = [int](($perHost.Values | Measure-Object -Sum).Sum ?? 0)
+        hosts = $counts
+        instancesNotInArc = [int]((@($sorted | Where-Object { $_.category -eq 'notInArc' }) | ForEach-Object { $_.directoryInstances } | Measure-Object -Sum).Sum ?? 0)
+        arcNotInDirectory = [ordered]@{ inForest = @($sorted | Where-Object { $_.category -eq 'arcNotInDirectory' -and $_.directoryState -eq 'inForest' }).Count
+            notInForest = @($sorted | Where-Object { $_.category -eq 'arcNotInDirectory' -and $_.directoryState -eq 'notInForest' }).Count }
+        gapList = $sorted
     }
 }
 
@@ -389,7 +497,9 @@ function Invoke-FmwArcTask {
     param(
         [Parameter(Mandatory)][ValidateSet('arc-extensions', 'arc-private-link', 'lifecycle', 'sql-inventory', 'policy-summary')][string]$Task,
         [string[]]$Subscription,
-        [int]$WindowDays = 180
+        [int]$WindowDays = 180,
+        # sql-inventory only: the Start Kit's SqlEstate.json, to reconcile the forest's SQL Server hosts with Arc.
+        [string]$EstatePath
     )
     if (-not $Subscription) { $Subscription = @(Get-AzSubscription | Where-Object { $_.State -eq 'Enabled' } | ForEach-Object { $_.Id }) }
     if (-not $Subscription) { throw 'The identity can see no subscriptions: assign it Reader on the subscriptions or management group in scope.' }
@@ -399,10 +509,13 @@ function Invoke-FmwArcTask {
         'arc-extensions' { Test-FmwArcExtension -Machines $data.machines -Extensions $data.extensions }
         'arc-private-link' { Test-FmwArcPrivateLink -Machines $data.machines }
         'lifecycle' { Test-FmwArcLifecycle -Machines $data.machines -SqlInstances $data.sqlInstances -AsOf ([datetimeoffset]::UtcNow) -WindowDays $WindowDays }
-        'sql-inventory' { Test-FmwArcSql -Machines $data.machines -SqlInstances $data.sqlInstances }
+        'sql-inventory' {
+            $estate = if ($EstatePath) { Get-Content -Raw -Path $EstatePath | ConvertFrom-Json -AsHashtable -DateKind String } else { $null }
+            Test-FmwArcSql -Machines $data.machines -SqlInstances $data.sqlInstances -Estate $estate
+        }
         'policy-summary' { Test-FmwArcPolicy -Assignments $data.assignments -PolicyStates $data.policyStates }
     }
     [ordered]@{ task = $Task; evidences = $script:Evidences[$Task]; result = $result }
 }
 
-Export-ModuleMember -Function Connect-FmwAzure, Get-FmwArgRows, Get-FmwArcLifecycleTable, Test-FmwArcExtension, Test-FmwArcPrivateLink, Test-FmwArcLifecycle, Test-FmwArcSql, Test-FmwArcPolicy, Invoke-FmwArcTask
+Export-ModuleMember -Function Connect-FmwAzure, Get-FmwArgRows, Get-FmwArcLifecycleTable, Test-FmwArcExtension, Test-FmwArcPrivateLink, Test-FmwArcLifecycle, Test-FmwArcSql, Test-FmwArcSqlGap, Test-FmwArcPolicy, Invoke-FmwArcTask

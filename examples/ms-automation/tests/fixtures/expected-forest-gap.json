@@ -1,0 +1,141 @@
+{
+  "machinesInScope": 7,
+  "emptyScope": false,
+  "forestDomains": [
+    "child.contoso.example",
+    "contoso.example"
+  ],
+  "directoryHosts": 7,
+  "directoryInstances": 8,
+  "hosts": {
+    "notInArc": 2,
+    "arcWithoutSqlResource": 2,
+    "inArc": 2,
+    "arcNotInDirectory": 2,
+    "excludedStale": 1
+  },
+  "instancesNotInArc": 2,
+  "arcNotInDirectory": {
+    "inForest": 1,
+    "notInForest": 1
+  },
+  "gapList": [
+    {
+      "category": "notInArc",
+      "host": "csql01.child.contoso.example",
+      "domain": "child.contoso.example",
+      "directoryState": "Active",
+      "operatingSystem": "Windows Server 2022 Standard",
+      "directoryInstances": 1,
+      "arcMachine": null,
+      "arcStatus": null,
+      "arcInstances": 0,
+      "matchedBy": null,
+      "reason": "No Arc machine with this name"
+    },
+    {
+      "category": "notInArc",
+      "host": "sql03.contoso.example",
+      "domain": "contoso.example",
+      "directoryState": "Active",
+      "operatingSystem": "Windows Server 2019 Standard",
+      "directoryInstances": 1,
+      "arcMachine": null,
+      "arcStatus": null,
+      "arcInstances": 0,
+      "matchedBy": null,
+      "reason": "No Arc machine with this name"
+    },
+    {
+      "category": "arcWithoutSqlResource",
+      "host": "app01.contoso.example",
+      "domain": "contoso.example",
+      "directoryState": "Active",
+      "operatingSystem": "Windows Server 2022 Standard",
+      "directoryInstances": 1,
+      "arcMachine": "APP01",
+      "arcStatus": "Connected",
+      "arcInstances": 0,
+      "matchedBy": "fqdn",
+      "reason": "No Database Engine instance resource, and Arc didn't detect SQL Server"
+    },
+    {
+      "category": "arcWithoutSqlResource",
+      "host": "sql02.contoso.example",
+      "domain": "contoso.example",
+      "directoryState": "Active",
+      "operatingSystem": "Windows Server 2019 Standard",
+      "directoryInstances": 2,
+      "arcMachine": "SQL02",
+      "arcStatus": "Connected",
+      "arcInstances": 0,
+      "matchedBy": "fqdn",
+      "reason": "Arc detected SQL Server, but no Database Engine instance resource: the Azure extension for SQL Server may be missing, or the instances excluded"
+    },
+    {
+      "category": "inArc",
+      "host": "rpt01",
+      "domain": "contoso.example",
+      "directoryState": "Active",
+      "operatingSystem": "Windows Server 2022 Standard",
+      "directoryInstances": 1,
+      "arcMachine": "RPT01",
+      "arcStatus": "Connected",
+      "arcInstances": 1,
+      "matchedBy": "fqdn",
+      "reason": ""
+    },
+    {
+      "category": "inArc",
+      "host": "sql01.contoso.example",
+      "domain": "contoso.example",
+      "directoryState": "Active",
+      "operatingSystem": "Windows Server 2022 Standard",
+      "directoryInstances": 1,
+      "arcMachine": "SQL01",
+      "arcStatus": "Connected",
+      "arcInstances": 1,
+      "matchedBy": "fqdn",
+      "reason": ""
+    },
+    {
+      "category": "arcNotInDirectory",
+      "host": "dmz-sql01",
+      "domain": "",
+      "directoryState": "notInForest",
+      "operatingSystem": "Windows Server 2022 Datacenter",
+      "directoryInstances": 0,
+      "arcMachine": "DMZ-SQL01",
+      "arcStatus": "Connected",
+      "arcInstances": 1,
+      "matchedBy": null,
+      "reason": "Not in a domain the discovery read (no domain): a workgroup server or another forest"
+    },
+    {
+      "category": "arcNotInDirectory",
+      "host": "web05.contoso.example",
+      "domain": "contoso.example",
+      "directoryState": "inForest",
+      "operatingSystem": "Windows Server 2022 Datacenter",
+      "directoryInstances": 0,
+      "arcMachine": "WEB05",
+      "arcStatus": "Connected",
+      "arcInstances": 1,
+      "matchedBy": null,
+      "reason": "Domain-joined in a domain the discovery read, but no SPN or other signal found SQL Server here"
+    },
+    {
+      "category": "excludedStale",
+      "host": "old01.contoso.example",
+      "domain": "contoso.example",
+      "directoryState": "Stale",
+      "operatingSystem": "Windows Server 2012 R2 Standard",
+      "directoryInstances": 1,
+      "arcMachine": null,
+      "arcStatus": null,
+      "arcInstances": 0,
+      "matchedBy": null,
+      "reason": "No logon or machine password change in 90 days"
+    }
+  ]
+}
