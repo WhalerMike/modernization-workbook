@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.869
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.869 --> 00:00:05.450
+which takes about fifty-five
+minutes with the lab.
+
+3
+00:00:05.450 --> 00:00:09.870
+You'll explain what the Arc agent's
+managed identity gives the engine,
+
+4
+00:00:09.870 --> 00:00:15.125
+and what the instance uses as its Entra
+identity on SQL Server 2022 and on 2025.
+
+5
+00:00:15.125 --> 00:00:18.845
+You'll explain why engine
+Entra authentication, Layer 1,
+
+6
+00:00:18.845 --> 00:00:21.838
+doesn't wait for O S level
+Entra sign-in, Layer 2.
+
+7
+00:00:21.838 --> 00:00:23.917
+You'll put the deployment steps in order,
+
+8
+00:00:23.917 --> 00:00:26.312
+and name the checks that
+gate login migration.
+
+9
+00:00:26.312 --> 00:00:29.913
+And you'll settle each audited
+instance's category with the kit,
+
+10
+00:00:29.913 --> 00:00:33.237
+and say why it refuses a snapshot
+from an unrecorded cloud.
+
+11
+00:00:33.237 --> 00:00:35.750
+Before you start, finish Module 2.
+
+12
+00:00:35.750 --> 00:00:37.888
+For Resource Graph and its paging,
+
+13
+00:00:37.888 --> 00:00:41.400
+see Module 4 of the Microsoft
+Automation learning path.

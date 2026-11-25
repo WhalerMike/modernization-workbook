@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.150
+Check yourself with two questions.
+
+2
+00:00:02.150 --> 00:00:06.400
+First: what does the check do with a snapshot
+whose environment isn't Azure Cloud?
+
+3
+00:00:06.400 --> 00:00:10.112
+The answer is a: it refuses
+it, and writes nothing.
+
+4
+00:00:10.112 --> 00:00:15.513
+Second: on SQL Server 2022, what does
+the instance use as its Entra identity?
+
+5
+00:00:15.513 --> 00:00:19.930
+The answer is c: an app registration
+with a certificate in Azure Key Vault,
+
+6
+00:00:19.930 --> 00:00:22.287
+downloaded to the host by the Arc agent.
+
+7
+00:00:22.287 --> 00:00:26.138
+The managed identity method
+is SQL Server 2025's.
+
+8
+00:00:26.138 --> 00:00:30.480
+The module page has two more questions,
+each linked to the section that answers it.

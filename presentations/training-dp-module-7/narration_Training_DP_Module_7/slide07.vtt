@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.650
+Chapter 07 of the workbook names the
+dangers, and the guard against each.
+
+2
+00:00:04.650 --> 00:00:09.228
+A password copied into a report turns
+the scan's output into a secret store,
+
+3
+00:00:09.228 --> 00:00:14.387
+so the kit masks every password, and a test
+checks that no fixture password appears.
+
+4
+00:00:14.387 --> 00:00:17.923
+The password mode counted as
+done would leave a deprecated
+
+5
+00:00:17.923 --> 00:00:21.387
+flow that can't do M F A in
+production, so the finding names it.
+
+6
+00:00:21.387 --> 00:00:25.571
+Active Directory Default in production
+makes the first connection slow,
+
+7
+00:00:25.571 --> 00:00:29.137
+and the identity can change with
+host settings, so name the mode.
+
+8
+00:00:29.137 --> 00:00:32.028
+Every application on a host
+shares the Arc identity,
+
+9
+00:00:32.028 --> 00:00:35.725
+so one login's grants cover everything
+allowed to ask for the token.
+
+10
+00:00:35.725 --> 00:00:39.958
+Keep the Hybrid Agent Extension Applications
+group to the accounts that need it,
+
+11
+00:00:39.958 --> 00:00:43.875
+and give an application its own service
+principal where its grants differ.
+
+12
+00:00:43.875 --> 00:00:47.496
+And a string changed before the
+gates hold fails at sign-in,
+
+13
+00:00:47.496 --> 00:00:50.380
+so Lab 2 checks gates one
+to three, in that order.

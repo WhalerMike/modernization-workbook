@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.150
+Check yourself with two questions.
+
+2
+00:00:02.150 --> 00:00:05.913
+First: why does sequel P R D oh
+one's cutover deny connect sequel
+
+3
+00:00:05.913 --> 00:00:10.025
+to the Contoso payroll users group,
+instead of disabling the login?
+
+4
+00:00:10.025 --> 00:00:11.024
+The answer is a.
+
+5
+00:00:11.024 --> 00:00:14.187
+Alter login disable can't
+deny a Windows group:
+
+6
+00:00:14.187 --> 00:00:16.850
+it returns error fifteen one fifty-one.
+
+7
+00:00:16.850 --> 00:00:18.863
+A server-permission deny can.
+
+8
+00:00:18.863 --> 00:00:22.450
+Second: a legacy login has
+been disabled at cutover.
+
+9
+00:00:22.450 --> 00:00:23.800
+When can it be dropped?
+
+10
+00:00:23.800 --> 00:00:27.800
+The answer is b: after thirty days'
+observation, when the audit record,
+
+11
+00:00:27.800 --> 00:00:32.300
+with failed logins for the disabled
+login, shows nothing still depends on it.
+
+12
+00:00:32.300 --> 00:00:36.650
+The module page has two more questions,
+each linked to the section that answers it.

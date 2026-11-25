@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.350
+Unit 2 is the three places.
+
+2
+00:00:02.350 --> 00:00:05.307
+The data platform book's
+chapter on where sequel
+
+3
+00:00:05.307 --> 00:00:08.238
+server touches A D C S
+names three dependencies.
+
+4
+00:00:08.238 --> 00:00:12.538
+First, the T L S certificate,
+which encrypts client connections.
+
+5
+00:00:12.538 --> 00:00:15.959
+Entra-authenticated connections
+are always encrypted,
+
+6
+00:00:15.959 --> 00:00:18.725
+so the Entra target depends
+on it more, not less.
+
+7
+00:00:18.725 --> 00:00:21.537
+Second, certificate-mapped type C logins.
+
+8
+00:00:21.537 --> 00:00:25.301
+They carry permissions for signed
+modules and can't be used to connect,
+
+9
+00:00:25.301 --> 00:00:29.713
+and certificates of the same kind secure
+Service Broker and mirroring endpoints.
+
+10
+00:00:29.713 --> 00:00:32.465
+So treating type C logins
+as connection logins,
+
+11
+00:00:32.465 --> 00:00:35.925
+and moving them to Entra logins,
+is effort they never needed.
+
+12
+00:00:35.925 --> 00:00:38.125
+Third, certificate-based sign-in.
+
+13
+00:00:38.125 --> 00:00:41.184
+It's the program's interim
+posture for connections that
+
+14
+00:00:41.184 --> 00:00:44.575
+can't reach Entra authentication
+but can negotiate Kerberos.
+
+15
+00:00:44.575 --> 00:00:47.594
+And it usually depends on
+A D C S through the domain
+
+16
+00:00:47.594 --> 00:00:51.290
+controllers' certificates, rather
+than through the piv card.

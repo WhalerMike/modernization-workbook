@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.468
+Step five copies the run's folder,
+
+2
+00:00:02.468 --> 00:00:06.238
+adds a row by hand to the copy's
+C S V, and checks it again.
+
+3
+00:00:06.238 --> 00:00:11.076
+The C S V no longer matches its
+recorded hash; the jay-son still does.
+
+4
+00:00:11.076 --> 00:00:14.562
+That's how the manifest catches
+a file changed after the run.
+
+5
+00:00:14.562 --> 00:00:18.524
+Step six runs this chapter's
+tests: eight pass, none fail.
+
+6
+00:00:18.524 --> 00:00:22.463
+Step seven lists your runs,
+one line per run, oldest first.
+
+7
+00:00:22.463 --> 00:00:25.993
+There's nothing to clean up: the
+kit's folder is as you unzipped it,
+
+8
+00:00:25.993 --> 00:00:28.440
+and this run's results
+stay in its own folder.

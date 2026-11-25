@@ -18854,6 +18854,864 @@
   "sources": "presentations/training-dc-module-2/Training_DC_Module_2_Narrated_sources.json"
  },
  {
+  "id": "Training_DP_Module_10_Narrated",
+  "title": "Data Platform and SQL Server Identity learning path, Module 10: Deploying to Test and Production",
+  "group": "training",
+  "minutes": 13,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DP_Module_10_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-dp-module-10/Training_DP_Module_10_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-10/Training_DP_Module_10_Narration_Script.md",
+  "page": "docs/training/data-platform/10-deploying-to-test-and-production.html",
+  "source": "docs/training/data-platform/10-deploying-to-test-and-production.md",
+  "kits": [
+   {
+    "name": "sql-server-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/sql-server-identity",
+    "zip": "downloads/sql-server-identity-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 10: Deploying to Test and Production"
+   ],
+   [
+    28,
+    "Why the same commands run twice, test then production"
+   ],
+   [
+    64,
+    "What you'll be able to do in Module 10"
+   ],
+   [
+    115,
+    "One settings file per environment, and preflight"
+   ],
+   [
+    174,
+    "The plan, and the three hashes a second person approves"
+   ],
+   [
+    220,
+    "Create, cut over, and the way back"
+   ],
+   [
+    278,
+    "Go or no-go, the seal, then production"
+   ],
+   [
+    340,
+    "Try it: copy the settings and preflight the test stage"
+   ],
+   [
+    386,
+    "Try it: the audit, the Arc check and the plan"
+   ],
+   [
+    426,
+    "Try it: approve the hashes, then dry-run the create"
+   ],
+   [
+    466,
+    "Try it: parallel run, rollback, then cutover"
+   ],
+   [
+    508,
+    "Try it: seal the stage, then seal it as a rehearsal"
+   ],
+   [
+    546,
+    "Try it: production preflight refuses the rehearsal"
+   ],
+   [
+    590,
+    "Lab 2: the real test stage, Chapter 10's Stage 1"
+   ],
+   [
+    650,
+    "The federal requirement and the evidence the ISSO keeps"
+   ],
+   [
+    724,
+    "Check yourself: two questions on the deployment"
+   ],
+   [
+    760,
+    "Summary: test first, then production, by hash"
+   ]
+  ],
+  "sources": "presentations/training-dp-module-10/Training_DP_Module_10_Narrated_sources.json"
+ },
+ {
+  "id": "Training_DP_Module_1_Narrated",
+  "title": "Data Platform and SQL Server Identity learning path, Module 1: The Estate and the Consolidation Gate",
+  "group": "training",
+  "minutes": 12,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DP_Module_1_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-dp-module-1/Training_DP_Module_1_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-1/Training_DP_Module_1_Narration_Script.md",
+  "page": "docs/training/data-platform/01-the-estate-and-the-consolidation-gate.html",
+  "source": "docs/training/data-platform/01-the-estate-and-the-consolidation-gate.md",
+  "kits": [
+   {
+    "name": "sql-server-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/sql-server-identity",
+    "zip": "downloads/sql-server-identity-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 1: The Estate and the Consolidation Gate"
+   ],
+   [
+    26,
+    "Why the count comes before any login moves"
+   ],
+   [
+    65,
+    "What you'll be able to do in Module 1"
+   ],
+   [
+    111,
+    "Finding the estate: three kinds of sprawl"
+   ],
+   [
+    165,
+    "What the inventory must capture"
+   ],
+   [
+    219,
+    "The rights each depth of discovery needs"
+   ],
+   [
+    277,
+    "The three lenses turn the inventory into a judgment"
+   ],
+   [
+    334,
+    "The classifier's first pass, and the constraints"
+   ],
+   [
+    383,
+    "Try it: make the run's folder, classify the estate"
+   ],
+   [
+    455,
+    "Try it: open the manifest, check the folder"
+   ],
+   [
+    493,
+    "Try it: the two instances that don't enter"
+   ],
+   [
+    522,
+    "Try it: change a file, run the tests, list runs"
+   ],
+   [
+    554,
+    "Lab 2: classify a test domain's instances"
+   ],
+   [
+    608,
+    "The federal requirement and the evidence the ISSO keeps"
+   ],
+   [
+    660,
+    "Check yourself: two questions on the gate"
+   ],
+   [
+    702,
+    "Summary: count the estate, then pass the gate"
+   ]
+  ],
+  "sources": "presentations/training-dp-module-1/Training_DP_Module_1_Narrated_sources.json"
+ },
+ {
+  "id": "Training_DP_Module_2_Narrated",
+  "title": "Data Platform and SQL Server Identity learning path, Module 2: The Authentication Audit",
+  "group": "training",
+  "minutes": 12,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DP_Module_2_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-dp-module-2/Training_DP_Module_2_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-2/Training_DP_Module_2_Narration_Script.md",
+  "page": "docs/training/data-platform/02-the-authentication-audit.html",
+  "source": "docs/training/data-platform/02-the-authentication-audit.md",
+  "kits": [
+   {
+    "name": "sql-server-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/sql-server-identity",
+    "zip": "downloads/sql-server-identity-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 2: The Authentication Audit"
+   ],
+   [
+    22,
+    "Why every later step depends on the audit"
+   ],
+   [
+    56,
+    "What you'll be able to do in Module 2"
+   ],
+   [
+    93,
+    "What the audit reads on each instance"
+   ],
+   [
+    150,
+    "The findings, ranked by severity"
+   ],
+   [
+    205,
+    "The Arc-eligibility categories, and the engine's account"
+   ],
+   [
+    261,
+    "What each category asks of you"
+   ],
+   [
+    328,
+    "When the audit degrades instead of failing"
+   ],
+   [
+    375,
+    "Try it: make the run's folder, read the instances"
+   ],
+   [
+    423,
+    "Try it: run the audit"
+   ],
+   [
+    491,
+    "Try it: open the manifest, count by severity"
+   ],
+   [
+    519,
+    "Try it: rerun the audit on day 30"
+   ],
+   [
+    568,
+    "Lab 2: audit a test instance's snapshot"
+   ],
+   [
+    609,
+    "The federal requirement and the evidence the ISSO keeps"
+   ],
+   [
+    658,
+    "Check yourself: two questions on the audit"
+   ],
+   [
+    688,
+    "Summary: measure how each survivor authenticates"
+   ]
+  ],
+  "sources": "presentations/training-dp-module-2/Training_DP_Module_2_Narrated_sources.json"
+ },
+ {
+  "id": "Training_DP_Module_3_Narrated",
+  "title": "Data Platform and SQL Server Identity learning path, Module 3: Arc and the Engine's Identity",
+  "group": "training",
+  "minutes": 12,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DP_Module_3_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-dp-module-3/Training_DP_Module_3_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-3/Training_DP_Module_3_Narration_Script.md",
+  "page": "docs/training/data-platform/03-arc-and-the-engines-identity.html",
+  "source": "docs/training/data-platform/03-arc-and-the-engines-identity.md",
+  "kits": [
+   {
+    "name": "sql-server-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/sql-server-identity",
+    "zip": "downloads/sql-server-identity-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 3: Arc and the Engine's Identity"
+   ],
+   [
+    25,
+    "Why no Arc means no Entra login"
+   ],
+   [
+    60,
+    "What you'll be able to do in Module 3"
+   ],
+   [
+    105,
+    "What Arc gives the engine"
+   ],
+   [
+    157,
+    "Two layers, and the cloud a GCC tenant uses"
+   ],
+   [
+    203,
+    "The deployment sequence, and the gate"
+   ],
+   [
+    252,
+    "How the kit settles the category"
+   ],
+   [
+    297,
+    "What Microsoft Learn leaves to you, and the kit adds"
+   ],
+   [
+    356,
+    "Try it: make the run's folder, read the Arc results"
+   ],
+   [
+    392,
+    "Try it: settle the categories"
+   ],
+   [
+    445,
+    "Try it: the manifest, and a cloud not recorded"
+   ],
+   [
+    481,
+    "Try it: leave SQLPRD01's Entra setting unconfirmed"
+   ],
+   [
+    520,
+    "Lab 2: settle a test subscription's categories"
+   ],
+   [
+    571,
+    "The federal requirement and the evidence the ISSO keeps"
+   ],
+   [
+    627,
+    "Check yourself: two questions on Arc"
+   ],
+   [
+    662,
+    "Summary: settle the category from evidence"
+   ]
+  ],
+  "sources": "presentations/training-dp-module-3/Training_DP_Module_3_Narrated_sources.json"
+ },
+ {
+  "id": "Training_DP_Module_4_Narrated",
+  "title": "Data Platform and SQL Server Identity learning path, Module 4: Entra logins and the parallel run",
+  "group": "training",
+  "minutes": 12,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DP_Module_4_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-dp-module-4/Training_DP_Module_4_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-4/Training_DP_Module_4_Narration_Script.md",
+  "page": "docs/training/data-platform/04-entra-logins-and-the-parallel-run.html",
+  "source": "docs/training/data-platform/04-entra-logins-and-the-parallel-run.md",
+  "kits": [
+   {
+    "name": "sql-server-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/sql-server-identity",
+    "zip": "downloads/sql-server-identity-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 4: Entra logins and the parallel run"
+   ],
+   [
+    26,
+    "Why the old login stays on until the new one is proven"
+   ],
+   [
+    64,
+    "What you'll be able to do in Module 4"
+   ],
+   [
+    106,
+    "Three principal types a login can map to"
+   ],
+   [
+    154,
+    "The kit's login plan: reviewable, and it runs nothing"
+   ],
+   [
+    205,
+    "The parallel run: create, validate, disable, observe, drop"
+   ],
+   [
+    264,
+    "Try it: write SQLPRD01's login plan"
+   ],
+   [
+    323,
+    "Try it: read the cutover and the rollback"
+   ],
+   [
+    358,
+    "Try it: leave one login out of the mapping"
+   ],
+   [
+    389,
+    "Try it: judge the parallel run on day 1"
+   ],
+   [
+    426,
+    "Try it: judge the parallel run on day 30"
+   ],
+   [
+    456,
+    "Try it: the manifest, the re-hash and the tests"
+   ],
+   [
+    495,
+    "Lab 2: one mapping on your test instance"
+   ],
+   [
+    554,
+    "The federal requirement and the evidence the ISSO keeps"
+   ],
+   [
+    619,
+    "Check yourself: two questions on the cutover"
+   ],
+   [
+    659,
+    "Summary: proven first, then turned off"
+   ]
+  ],
+  "sources": "presentations/training-dp-module-4/Training_DP_Module_4_Narrated_sources.json"
+ },
+ {
+  "id": "Training_DP_Module_5_Narrated",
+  "title": "Data Platform and SQL Server Identity learning path, Module 5: Groups, roles and the perimeter",
+  "group": "training",
+  "minutes": 10,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DP_Module_5_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-dp-module-5/Training_DP_Module_5_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-5/Training_DP_Module_5_Narration_Script.md",
+  "page": "docs/training/data-platform/05-groups-roles-and-the-perimeter.html",
+  "source": "docs/training/data-platform/05-groups-roles-and-the-perimeter.md",
+  "kits": [
+   {
+    "name": "sql-server-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/sql-server-identity",
+    "zip": "downloads/sql-server-identity-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 5: Groups, roles and the perimeter"
+   ],
+   [
+    27,
+    "Why the groups change keepers, not purpose"
+   ],
+   [
+    56,
+    "What you'll be able to do in Module 5"
+   ],
+   [
+    99,
+    "One group, one role, flat by design"
+   ],
+   [
+    149,
+    "The four AD group patterns and their Entra targets"
+   ],
+   [
+    206,
+    "The attribute, PIM and the perimeter"
+   ],
+   [
+    260,
+    "Try it: map the fictional estate's five groups"
+   ],
+   [
+    315,
+    "Try it: read what each group grants"
+   ],
+   [
+    352,
+    "Try it: pretend the sysadmin group were org-chart"
+   ],
+   [
+    384,
+    "Try it: the manifest, the tests and your runs"
+   ],
+   [
+    420,
+    "Lab 2: compare the map with a test tenant's groups"
+   ],
+   [
+    471,
+    "The federal requirement and the evidence the ISSO keeps"
+   ],
+   [
+    527,
+    "Check yourself: two questions on groups"
+   ],
+   [
+    566,
+    "Summary: rules for the org chart, PIM for privilege"
+   ]
+  ],
+  "sources": "presentations/training-dp-module-5/Training_DP_Module_5_Narrated_sources.json"
+ },
+ {
+  "id": "Training_DP_Module_6_Narrated",
+  "title": "Data Platform and SQL Server Identity learning path, Module 6: NTLM and the SPNs",
+  "group": "training",
+  "minutes": 12,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DP_Module_6_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-dp-module-6/Training_DP_Module_6_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-6/Training_DP_Module_6_Narration_Script.md",
+  "page": "docs/training/data-platform/06-ntlm-and-the-spns.html",
+  "source": "docs/training/data-platform/06-ntlm-and-the-spns.md",
+  "kits": [
+   {
+    "name": "sql-server-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/sql-server-identity",
+    "zip": "downloads/sql-server-identity-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 6: NTLM and the SPNs"
+   ],
+   [
+    29,
+    "Why most NTLM is a missing or misplaced name"
+   ],
+   [
+    65,
+    "What you'll be able to do in Module 6"
+   ],
+   [
+    105,
+    "What Microsoft gives you: the SPN states"
+   ],
+   [
+    155,
+    "The patterns that generate NTLM at the SQL layer"
+   ],
+   [
+    198,
+    "Discovery first: the NTLM audit and the fix file"
+   ],
+   [
+    254,
+    "Dangers, and the guard against each"
+   ],
+   [
+    313,
+    "Try it: run the NTLM audit on day 1"
+   ],
+   [
+    376,
+    "Try it: read the fix file"
+   ],
+   [
+    417,
+    "Try it: every fix, including those that aren't setspn"
+   ],
+   [
+    453,
+    "Try it: run the audit on day 30"
+   ],
+   [
+    482,
+    "Try it: the manifest, the tests and your runs"
+   ],
+   [
+    518,
+    "Lab 2: your test domain and test instance"
+   ],
+   [
+    564,
+    "The federal requirement and the evidence the ISSO keeps"
+   ],
+   [
+    622,
+    "Check yourself: two questions on NTLM and SPNs"
+   ],
+   [
+    660,
+    "Summary: find the NTLM, review the fixes"
+   ]
+  ],
+  "sources": "presentations/training-dp-module-6/Training_DP_Module_6_Narrated_sources.json"
+ },
+ {
+  "id": "Training_DP_Module_7_Narrated",
+  "title": "Data Platform and SQL Server Identity learning path, Module 7: The Application Chain",
+  "group": "training",
+  "minutes": 12,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DP_Module_7_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-dp-module-7/Training_DP_Module_7_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-7/Training_DP_Module_7_Narration_Script.md",
+  "page": "docs/training/data-platform/07-the-application-chain.html",
+  "source": "docs/training/data-platform/07-the-application-chain.md",
+  "kits": [
+   {
+    "name": "sql-server-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/sql-server-identity",
+    "zip": "downloads/sql-server-identity-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 7: The Application Chain"
+   ],
+   [
+    27,
+    "Why the engine is only half the chain"
+   ],
+   [
+    63,
+    "What you'll be able to do in Module 7"
+   ],
+   [
+    108,
+    "The database axis, and the column the scan sets"
+   ],
+   [
+    166,
+    "What Microsoft gives you: Entra modes by driver"
+   ],
+   [
+    228,
+    "The change, and the three gates in front of it"
+   ],
+   [
+    276,
+    "Dangers, and the guard against each"
+   ],
+   [
+    331,
+    "Try it: scan the four applications"
+   ],
+   [
+    381,
+    "Try it: read the masked strings"
+   ],
+   [
+    417,
+    "Try it: parse a deprecated password-mode string"
+   ],
+   [
+    448,
+    "Try it: read the kit's driver table"
+   ],
+   [
+    489,
+    "Try it: the manifest, the tests and your runs"
+   ],
+   [
+    519,
+    "Lab 2: one column-A test application"
+   ],
+   [
+    575,
+    "The federal requirement and the evidence the ISSO keeps"
+   ],
+   [
+    634,
+    "Check yourself: two questions on connection strings"
+   ],
+   [
+    674,
+    "Summary: every string found, masked and placed"
+   ]
+  ],
+  "sources": "presentations/training-dp-module-7/Training_DP_Module_7_Narrated_sources.json"
+ },
+ {
+  "id": "Training_DP_Module_8_Narrated",
+  "title": "Data Platform and SQL Server Identity learning path, Module 8: AD CS Dependencies",
+  "group": "training",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DP_Module_8_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-dp-module-8/Training_DP_Module_8_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-8/Training_DP_Module_8_Narration_Script.md",
+  "page": "docs/training/data-platform/08-ad-cs-dependencies.html",
+  "source": "docs/training/data-platform/08-ad-cs-dependencies.md",
+  "kits": [
+   {
+    "name": "sql-server-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/sql-server-identity",
+    "zip": "downloads/sql-server-identity-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 8: AD CS Dependencies"
+   ],
+   [
+    28,
+    "Why the certificates nobody sees come first"
+   ],
+   [
+    70,
+    "What you'll be able to do in Module 8"
+   ],
+   [
+    123,
+    "Three places SQL Server touches AD CS"
+   ],
+   [
+    179,
+    "What Microsoft gives you: expiry differs by class"
+   ],
+   [
+    236,
+    "The issuer decision, and the class on every row"
+   ],
+   [
+    291,
+    "Dangers, and the guard against each"
+   ],
+   [
+    348,
+    "Try it: list the certificates"
+   ],
+   [
+    400,
+    "Try it: read the action for each certificate"
+   ],
+   [
+    444,
+    "Try it: widen the warning window"
+   ],
+   [
+    467,
+    "Try it: the manifest, the tests and your runs"
+   ],
+   [
+    496,
+    "Lab 2: R10's reads on your test instance"
+   ],
+   [
+    539,
+    "The federal requirement and the evidence the ISSO keeps"
+   ],
+   [
+    596,
+    "Check yourself: two questions on certificates"
+   ],
+   [
+    637,
+    "Summary: the list goes to the PKI owners first"
+   ]
+  ],
+  "sources": "presentations/training-dp-module-8/Training_DP_Module_8_Narrated_sources.json"
+ },
+ {
+  "id": "Training_DP_Module_9_Narrated",
+  "title": "Data Platform and SQL Server Identity learning path, Module 9: Closure, Drift and Evidence",
+  "group": "training",
+  "minutes": 11,
+  "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DP_Module_9_Narrated.mp4",
+  "youtube": null,
+  "vtt": "presentations/training-dp-module-9/Training_DP_Module_9_Narrated.vtt",
+  "deck": null,
+  "script": "https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-9/Training_DP_Module_9_Narration_Script.md",
+  "page": "docs/training/data-platform/09-closure-drift-and-evidence.html",
+  "source": "docs/training/data-platform/09-closure-drift-and-evidence.md",
+  "kits": [
+   {
+    "name": "sql-server-identity",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/sql-server-identity",
+    "zip": "downloads/sql-server-identity-code.zip"
+   }
+  ],
+  "chapters": [
+   [
+    0,
+    "Module 9: Closure, Drift and Evidence"
+   ],
+   [
+    30,
+    "Why closure is a record, not a one-time action"
+   ],
+   [
+    62,
+    "What you'll be able to do in Module 9"
+   ],
+   [
+    104,
+    "The five closure conditions"
+   ],
+   [
+    173,
+    "The closure record, and what it can't settle"
+   ],
+   [
+    241,
+    "Drift as a compliance finding"
+   ],
+   [
+    298,
+    "Try it: project day 30 onto the closure conditions"
+   ],
+   [
+    355,
+    "Try it: one instance's record, and the registry"
+   ],
+   [
+    395,
+    "Try it: see what the registry does"
+   ],
+   [
+    426,
+    "Try it: compare day 1 with day 30"
+   ],
+   [
+    456,
+    "Try it: the manifest, the tests and your runs"
+   ],
+   [
+    503,
+    "Lab 2: schedule the runs against a test instance"
+   ],
+   [
+    556,
+    "The federal requirement and the evidence the ISSO keeps"
+   ],
+   [
+    618,
+    "Check yourself: two questions on closure"
+   ],
+   [
+    661,
+    "Summary: closure that keeps coming back clean"
+   ]
+  ],
+  "sources": "presentations/training-dp-module-9/Training_DP_Module_9_Narrated_sources.json"
+ },
+ {
   "id": "Training_XDR_Module_1_Narrated",
   "title": "Defender XDR learning path, Module 1: Architecture, access and onboarding",
   "group": "training",

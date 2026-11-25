@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.300
+Then the change.
+
+2
+00:00:01.300 --> 00:00:04.103
+The data platform book's
+chapter on connection string
+
+3
+00:00:04.103 --> 00:00:07.400
+migration gives it for an
+application on an Arc-enabled server.
+
+4
+00:00:07.400 --> 00:00:12.484
+Integrated Security becomes Authentication
+equals Active Directory Managed Identity,
+
+5
+00:00:12.484 --> 00:00:17.025
+and the application's process account must
+be allowed to request the host's token.
+
+6
+00:00:17.025 --> 00:00:19.148
+Off Arc there's no managed identity,
+
+7
+00:00:19.148 --> 00:00:23.613
+so the kit names the service-principal
+mode, with a certificate preferred.
+
+8
+00:00:23.613 --> 00:00:25.313
+It never suggests Default.
+
+9
+00:00:25.313 --> 00:00:27.562
+The change is simple, but gated.
+
+10
+00:00:27.562 --> 00:00:30.112
+Gate one: the Entra login exists.
+
+11
+00:00:30.112 --> 00:00:32.325
+Gate two: the role is granted.
+
+12
+00:00:32.325 --> 00:00:36.400
+Gate three: the change is tested in
+a production-equivalent environment.
+
+13
+00:00:36.400 --> 00:00:39.675
+A string changed before the
+gates hold fails at sign-in.
+
+14
+00:00:39.675 --> 00:00:44.210
+And the scan's target is advice, not
+a change: the kit rewrites nothing.

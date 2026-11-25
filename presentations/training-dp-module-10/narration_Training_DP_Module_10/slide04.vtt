@@ -1,0 +1,88 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.875
+Unit 2 starts with the
+settings and preflight.
+
+2
+00:00:02.875 --> 00:00:04.823
+One settings file per environment,
+
+3
+00:00:04.823 --> 00:00:09.094
+filled from the template and kept inside
+your boundary, names the instance,
+
+4
+00:00:09.094 --> 00:00:12.538
+its snapshots, the exception
+registry, the reviewed mapping,
+
+5
+00:00:12.538 --> 00:00:15.087
+the evidence chain and
+the break-glass group.
+
+6
+00:00:15.087 --> 00:00:16.638
+No secret goes in it.
+
+7
+00:00:16.638 --> 00:00:18.675
+Preflight then checks seven things.
+
+8
+00:00:18.675 --> 00:00:21.363
+P F oh one, the settings are complete.
+
+9
+00:00:21.363 --> 00:00:23.467
+Oh two, the cloud is Azure Cloud,
+
+10
+00:00:23.467 --> 00:00:28.263
+the commercial cloud where a G C C
+Moderate tenant's Arc resources are.
+
+11
+00:00:28.263 --> 00:00:31.862
+Oh three, the instance is in
+Arc-eligibility Category 1.
+
+12
+00:00:31.862 --> 00:00:34.763
+Oh four, the mapping resolves every login.
+
+13
+00:00:34.763 --> 00:00:38.513
+Oh five, the break-glass path
+is in the exception registry.
+
+14
+00:00:38.513 --> 00:00:40.178
+Oh six, for production only,
+
+15
+00:00:40.178 --> 00:00:44.113
+a sealed test stage for the same
+instance that isn't a rehearsal.
+
+16
+00:00:44.113 --> 00:00:47.248
+And oh seven, the S A
+account disabled and renamed,
+
+17
+00:00:47.248 --> 00:00:50.149
+which is a warning and
+doesn't stop the change.
+
+18
+00:00:50.149 --> 00:00:52.465
+Preflight can't see the deployer's rights,
+
+19
+00:00:52.465 --> 00:00:55.462
+so the deployer reads them
+after activating the role.

@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.869
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.869 --> 00:00:05.450
+which takes about fifty-five
+minutes with the lab.
+
+3
+00:00:05.450 --> 00:00:07.681
+You'll name the five
+closure conditions and
+
+4
+00:00:07.681 --> 00:00:10.025
+the fields the closure
+record shows for each.
+
+5
+00:00:10.025 --> 00:00:12.906
+You'll explain why two
+fields are always external,
+
+6
+00:00:12.906 --> 00:00:17.262
+and why a record with nothing not met is
+ready for the assessor, never closed.
+
+7
+00:00:17.262 --> 00:00:20.953
+You'll run the kit's closure record
+and drift comparison on the day-one
+
+8
+00:00:20.953 --> 00:00:24.450
+and day-thirty fixtures, with and
+without the exception registry.
+
+9
+00:00:24.450 --> 00:00:26.818
+And you'll say what the
+drift check catches,
+
+10
+00:00:26.818 --> 00:00:30.200
+and why Arc going offline needs
+an Arc snapshot with each run.
+
+11
+00:00:30.200 --> 00:00:32.662
+Before you start, finish Module 8.
+
+12
+00:00:32.662 --> 00:00:37.780
+The closure record reads the audit from
+Module 2 and the Arc snapshot from Module 3.

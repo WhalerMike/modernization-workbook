@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.838
+Step two runs the audit.
+
+2
+00:00:01.838 --> 00:00:04.138
+First the census: one row per instance,
+
+3
+00:00:04.138 --> 00:00:08.763
+with usable logins counted by type,
+and disabled ones counted separately.
+
+4
+00:00:08.763 --> 00:00:10.050
+Then the findings.
+
+5
+00:00:10.050 --> 00:00:15.318
+Sequel P R D oh one has the full set: S
+A enabled, highest; a usable SQL login,
+
+6
+00:00:15.318 --> 00:00:19.894
+payroll report, critical; mixed
+mode and a mode anomaly, both high,
+
+7
+00:00:19.894 --> 00:00:23.262
+because the mode was
+changed without a restart;
+
+8
+00:00:23.262 --> 00:00:27.925
+and a service account that's a user
+account with a password, medium.
+
+9
+00:00:27.925 --> 00:00:31.807
+The cut rows give sequel F C I
+oh four almost the same list,
+
+10
+00:00:31.807 --> 00:00:35.013
+with its own usable SQL
+login, vendor H R app.
+
+11
+00:00:35.013 --> 00:00:38.974
+That login has a dated exception,
+but the audit reports it anyway;
+
+12
+00:00:38.974 --> 00:00:42.038
+Chapter 9's closure record
+applies the exception.
+
+13
+00:00:42.038 --> 00:00:46.850
+Sequel F C I oh four is Category
+3, as a failover cluster instance.
+
+14
+00:00:46.850 --> 00:00:51.438
+Sequel P R D oh two has only its
+service-account finding and its category.
+
+15
+00:00:51.438 --> 00:00:54.252
+Sequel P R D oh six
+already has Entra logins,
+
+16
+00:00:54.252 --> 00:00:59.238
+runs as a group managed service account,
+and has no finding but its category.
+
+17
+00:00:59.238 --> 00:01:04.825
+The last line names the evidence:
+A C two, I A five and C M six.

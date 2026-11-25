@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.650
+Lab 2 compares the map with a real tenant.
+
+2
+00:00:02.650 --> 00:00:04.388
+It's not run by the authors.
+
+3
+00:00:04.388 --> 00:00:07.045
+Use a test tenant whose
+groups are synchronized
+
+4
+00:00:07.045 --> 00:00:09.038
+from a test domain, never production.
+
+5
+00:00:09.038 --> 00:00:13.488
+You need PowerShell 7 with the Microsoft
+Graph PowerShell S D K's groups module,
+
+6
+00:00:13.488 --> 00:00:17.529
+an account that can consent to the
+delegated group read all permission,
+
+7
+00:00:17.529 --> 00:00:21.912
+and a groups file for your test domain's
+groups, in the shape of the kit's fixture.
+
+8
+00:00:21.912 --> 00:00:23.763
+Map your test groups with the kit.
+
+9
+00:00:23.763 --> 00:00:26.374
+Sign in to Microsoft Graph, read-only.
+
+10
+00:00:26.374 --> 00:00:31.525
+A Microsoft 365 G C C tenant uses
+the worldwide Graph endpoint.
+
+11
+00:00:31.525 --> 00:00:35.916
+List the tenant's groups with the properties
+that decide the pattern, put the kit's
+
+12
+00:00:35.916 --> 00:00:40.175
+answer beside what the tenant has, and
+look for cloud groups that already exist.
+
+13
+00:00:40.175 --> 00:00:42.363
+Nothing in the lab writes to the tenant.
+
+14
+00:00:42.363 --> 00:00:46.390
+To back it out, sign out of Graph
+and delete the lab's output folder.

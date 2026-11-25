@@ -1,0 +1,872 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.871
+Welcome to Module 9 of the
+Data Platform and SQL Server
+
+2
+00:00:03.871 --> 00:00:07.250
+Identity learning path:
+closure, drift and evidence.
+
+3
+00:00:07.250 --> 00:00:10.929
+It teaches Runbook R nine,
+continuous monitoring and closure,
+
+4
+00:00:10.929 --> 00:00:15.462
+with Chapter 9 of the developer
+workbook, Building SQL Server Identity.
+
+5
+00:00:15.462 --> 00:00:20.196
+You'll project an audit run onto the five
+closure conditions, see which fields the
+
+6
+00:00:20.196 --> 00:00:24.788
+audit can't settle by itself, and compare
+two runs so a regression becomes a task.
+
+7
+00:00:24.788 --> 00:00:27.251
+Take this module after Module 8.
+
+8
+00:00:31.050 --> 00:00:32.387
+Why does this matter?
+
+9
+00:00:32.387 --> 00:00:36.074
+An instance brought to the
+Entra-exclusive posture can slide back.
+
+10
+00:00:36.074 --> 00:00:38.831
+An administrator can
+switch it to mixed mode,
+
+11
+00:00:38.831 --> 00:00:41.513
+create a SQL login, or
+add a Windows login.
+
+12
+00:00:41.513 --> 00:00:43.812
+So closure isn't a one-time action.
+
+13
+00:00:43.812 --> 00:00:46.776
+It's a record that keeps coming
+back clean on a schedule,
+
+14
+00:00:46.776 --> 00:00:48.488
+and drift is the run that doesn't.
+
+15
+00:00:48.488 --> 00:00:52.698
+In this module you project an audit
+run onto the five closure conditions,
+
+16
+00:00:52.698 --> 00:00:55.504
+see which fields the audit
+can't settle by itself,
+
+17
+00:00:55.504 --> 00:00:58.751
+and compare two runs so a
+regression becomes a task.
+
+18
+00:01:02.550 --> 00:01:05.319
+Here's what you'll be able to
+do by the end of this module,
+
+19
+00:01:05.319 --> 00:01:07.900
+which takes about fifty-five
+minutes with the lab.
+
+20
+00:01:07.900 --> 00:01:10.131
+You'll name the five
+closure conditions and
+
+21
+00:01:10.131 --> 00:01:12.475
+the fields the closure
+record shows for each.
+
+22
+00:01:12.475 --> 00:01:15.356
+You'll explain why two
+fields are always external,
+
+23
+00:01:15.356 --> 00:01:19.712
+and why a record with nothing not met is
+ready for the assessor, never closed.
+
+24
+00:01:19.712 --> 00:01:23.403
+You'll run the kit's closure record
+and drift comparison on the day-one
+
+25
+00:01:23.403 --> 00:01:26.900
+and day-thirty fixtures, with and
+without the exception registry.
+
+26
+00:01:26.900 --> 00:01:29.268
+And you'll say what the
+drift check catches,
+
+27
+00:01:29.268 --> 00:01:32.650
+and why Arc going offline needs
+an Arc snapshot with each run.
+
+28
+00:01:32.650 --> 00:01:35.112
+Before you start, finish Module 8.
+
+29
+00:01:35.112 --> 00:01:40.530
+The closure record reads the audit from
+Module 2 and the Arc snapshot from Module 3.
+
+30
+00:01:44.330 --> 00:01:47.105
+Unit 2 is the five closure conditions.
+
+31
+00:01:47.105 --> 00:01:50.757
+The data platform book, Data
+Platform: SQL Server Identity,
+
+32
+00:01:50.757 --> 00:01:54.531
+defines the transformation as
+complete when five conditions
+
+33
+00:01:54.531 --> 00:01:57.580
+hold at the same time on
+every production instance.
+
+34
+00:01:57.580 --> 00:01:59.939
+One: no usable Windows-backed principal,
+
+35
+00:01:59.939 --> 00:02:03.442
+other than the break-glass
+group in the exception registry.
+
+36
+00:02:03.442 --> 00:02:06.217
+Two: SQL Authentication eliminated.
+
+37
+00:02:06.217 --> 00:02:11.154
+No SQL logins outside the registry,
+the S A account disabled and renamed,
+
+38
+00:02:11.154 --> 00:02:14.736
+and SQL logins refused,
+which on SQL Server 2025
+
+39
+00:02:14.736 --> 00:02:18.318
+also needs is external
+authentication only set to one.
+
+40
+00:02:18.318 --> 00:02:22.529
+Three: Entra authentication
+observed working, and nothing else:
+
+41
+00:02:22.529 --> 00:02:27.933
+every usable login is an Entra type, the
+sign-in logs and SQL Server Audit show it,
+
+42
+00:02:27.933 --> 00:02:31.430
+and there are no remote N T
+L M or Kerberos connections.
+
+43
+00:02:31.430 --> 00:02:36.587
+Four: a cloud identity for the engine:
+the Arc agent connected, the SQL extension
+
+44
+00:02:36.587 --> 00:02:41.592
+deployed, and Entra configured, which
+failover cluster instances don't support.
+
+45
+00:02:41.592 --> 00:02:43.992
+Five: M F A for every human.
+
+46
+00:02:43.992 --> 00:02:46.118
+None of them is a single engine setting.
+
+47
+00:02:46.118 --> 00:02:50.120
+Login mode one proves only
+that SQL logins are refused.
+
+48
+00:02:53.920 --> 00:02:57.786
+The kit's closure record shows
+eleven fields per instance,
+
+49
+00:02:57.786 --> 00:03:00.282
+and each one is met, not met, or external.
+
+50
+00:03:00.282 --> 00:03:03.171
+Fields the audit can't
+see are external joins:
+
+51
+00:03:03.171 --> 00:03:07.620
+Entra sign-ins and audit, and M F A
+for every human, are always external.
+
+52
+00:03:07.620 --> 00:03:10.558
+The record points at those
+logs and doesn't copy them.
+
+53
+00:03:10.558 --> 00:03:14.708
+Condition four comes from the Arc
+snapshot, and is external without it.
+
+54
+00:03:14.708 --> 00:03:17.160
+The exception registry names a login,
+
+55
+00:03:17.160 --> 00:03:21.432
+an instance or a star for every
+instance, an approver and an expiry.
+
+56
+00:03:21.432 --> 00:03:24.971
+The record is narrower than the
+book's field set in two places,
+
+57
+00:03:24.971 --> 00:03:29.642
+so read those by hand: condition three
+checks login types but doesn't join them to
+
+58
+00:03:29.642 --> 00:03:33.322
+the Entra inventory, and the
+protocol field reads one snapshot,
+
+59
+00:03:33.322 --> 00:03:35.233
+not the whole validation period.
+
+60
+00:03:35.233 --> 00:03:38.453
+An instance with nothing not
+met is ready for the assessor,
+
+61
+00:03:38.453 --> 00:03:39.996
+with the external evidence.
+
+62
+00:03:39.996 --> 00:03:41.345
+It's never closed.
+
+63
+00:03:41.345 --> 00:03:44.045
+The book's Chapter 21,
+What Done Looks Like,
+
+64
+00:03:44.045 --> 00:03:49.604
+names six live evidence sets that close
+the transformation: the compliance records,
+
+65
+00:03:49.604 --> 00:03:53.654
+the Entra sign-in logs, the N T L
+M telemetry, the S A status report,
+
+66
+00:03:53.654 --> 00:03:57.860
+the Conditional Access report
+and the exception registry.
+
+67
+00:04:01.660 --> 00:04:03.323
+Unit 3 is drift.
+
+68
+00:04:03.323 --> 00:04:06.024
+A drift event is a
+regression between two runs,
+
+69
+00:04:06.024 --> 00:04:10.660
+and the book treats each one as a compliance
+violation, not an advisory signal.
+
+70
+00:04:10.660 --> 00:04:15.967
+The kit's comparison returns a row
+for a new usable Windows or SQL login,
+
+71
+00:04:15.967 --> 00:04:21.447
+an Entra login removed, S A re-enabled,
+SQL authentication accepted again,
+
+72
+00:04:21.447 --> 00:04:25.623
+remote N T L M back after none,
+or an instance not seen before.
+
+73
+00:04:25.623 --> 00:04:29.897
+It applies the exception registry, so
+the break-glass group isn't drift.
+
+74
+00:04:29.897 --> 00:04:34.251
+The Arc agent going offline changes
+nothing in the audit, so the comparison
+
+75
+00:04:34.251 --> 00:04:38.184
+reports Arc regressed only when you
+give it both runs' Arc snapshots.
+
+76
+00:04:38.184 --> 00:04:41.935
+And a mode changed in the registry
+but not yet restarted is invisible,
+
+77
+00:04:41.935 --> 00:04:44.172
+because the audit reads the running mode.
+
+78
+00:04:44.172 --> 00:04:47.659
+Runbook R nine adds a registry
+check of login mode for that.
+
+79
+00:04:47.659 --> 00:04:50.548
+Each row is a finding: open a task for it.
+
+80
+00:04:50.548 --> 00:04:55.070
+The workbook Building Ticket-to-Machine
+turns a drift row into a typed task.
+
+81
+00:04:58.870 --> 00:04:59.757
+Try it.
+
+82
+00:04:59.757 --> 00:05:03.170
+Lab 1 runs on the kit's
+fictional estate, with no tenant.
+
+83
+00:05:03.170 --> 00:05:05.666
+Open PowerShell 7, go to the kit's folder,
+
+84
+00:05:05.666 --> 00:05:09.645
+and make this run's results folder,
+named for the time you start.
+
+85
+00:05:09.645 --> 00:05:13.095
+Step one projects day thirty
+onto the closure conditions.
+
+86
+00:05:13.095 --> 00:05:18.140
+Sequel P R D oh one, migrated in Chapter
+4, has nine fields met, none not met,
+
+87
+00:05:18.140 --> 00:05:23.445
+and two external, so it's ready for the
+assessor, with the external evidence.
+
+88
+00:05:23.445 --> 00:05:24.995
+The other three are open.
+
+89
+00:05:24.995 --> 00:05:30.834
+Sequel P R D oh six fails SQL logins refused,
+although is integrated security only
+
+90
+00:05:30.834 --> 00:05:36.757
+is one, because it runs SQL Server 2025 and
+is external authentication only is zero.
+
+91
+00:05:36.757 --> 00:05:40.469
+Sequel F C I oh four is a
+failover cluster instance.
+
+92
+00:05:40.469 --> 00:05:43.207
+It can't take Entra
+authentication as built,
+
+93
+00:05:43.207 --> 00:05:46.020
+so it needs a re-platform
+or a dated exception.
+
+94
+00:05:46.020 --> 00:05:51.580
+The last line names the evidence:
+C A seven, C M six and A C two.
+
+95
+00:05:55.380 --> 00:05:58.717
+Step two reads sequel P R
+D oh one's whole record.
+
+96
+00:05:58.717 --> 00:06:01.068
+Every field the audit can settle is met.
+
+97
+00:06:01.068 --> 00:06:05.220
+The two external rows are condition
+three's Entra sign-ins and audit,
+
+98
+00:06:05.220 --> 00:06:07.667
+and condition five's
+M F A for every human.
+
+99
+00:06:07.667 --> 00:06:11.054
+They're evidence sets two and
+five of the book's Chapter 21:
+
+100
+00:06:11.054 --> 00:06:14.442
+the Entra sign-in logs and
+the Conditional Access report.
+
+101
+00:06:14.442 --> 00:06:17.055
+Step three reads the exception registry.
+
+102
+00:06:17.055 --> 00:06:20.212
+The break-glass group is
+excepted on every instance,
+
+103
+00:06:20.212 --> 00:06:23.443
+with no expiry, approved by
+the authorizing official.
+
+104
+00:06:23.443 --> 00:06:27.919
+The vendor login on sequel
+F C I oh four has a date:
+
+105
+00:06:27.919 --> 00:06:31.320
+June 30, 2027, approved by the I S S O.
+
+106
+00:06:35.120 --> 00:06:37.620
+Step four shows what the registry does.
+
+107
+00:06:37.620 --> 00:06:41.464
+It builds the same instance's
+record with no exception registry
+
+108
+00:06:41.464 --> 00:06:44.770
+and no Arc snapshot, and lists
+every field that isn't met.
+
+109
+00:06:44.770 --> 00:06:49.375
+Without the registry, sequel P R D oh
+one's enabled break-glass group fails
+
+110
+00:06:49.375 --> 00:06:54.133
+conditions one and three: it's a usable
+Windows login, and it isn't an Entra one.
+
+111
+00:06:54.133 --> 00:06:58.758
+Without the Arc snapshot, all three
+fields of condition four become external.
+
+112
+00:06:58.758 --> 00:07:00.733
+Nothing about the instance changed.
+
+113
+00:07:00.733 --> 00:07:02.870
+Only what the record was given.
+
+114
+00:07:06.670 --> 00:07:11.270
+Step five compares day one with day thirty,
+with the exception registry applied.
+
+115
+00:07:11.270 --> 00:07:14.907
+One row comes back: a
+Windows user, contoso J doe,
+
+116
+00:07:14.907 --> 00:07:18.595
+added to the sys-admin role
+on sequel P R D oh six.
+
+117
+00:07:18.595 --> 00:07:23.070
+That's a new legacy login, and a
+compliance finding: open a task for it.
+
+118
+00:07:23.070 --> 00:07:27.658
+The break-glass group is in both runs
+and in the registry, so it isn't drift.
+
+119
+00:07:27.658 --> 00:07:29.696
+Notice what this run wasn't given:
+
+120
+00:07:29.696 --> 00:07:33.250
+either run's Arc snapshot, so
+it doesn't read Arc at all.
+
+121
+00:07:37.050 --> 00:07:39.588
+Step six opens the drift manifest.
+
+122
+00:07:39.588 --> 00:07:45.913
+It records the step, drift; its mode,
+read-only; the snapshot's date; the controls,
+
+123
+00:07:45.913 --> 00:07:49.354
+C A seven and C M six; the
+K S Is to line up with;
+
+124
+00:07:49.354 --> 00:07:53.099
+and the S H A two fifty-six
+of each file it wrote.
+
+125
+00:07:53.099 --> 00:07:57.062
+Step seven runs this chapter's
+tests: eight pass, none fail.
+
+126
+00:07:57.062 --> 00:07:59.738
+Step eight lists your
+runs, one line per run.
+
+127
+00:07:59.738 --> 00:08:01.276
+There's nothing to clean up.
+
+128
+00:08:01.276 --> 00:08:03.332
+The kit's folder is as you unzipped it,
+
+129
+00:08:03.332 --> 00:08:05.800
+and this run's results
+stay in the run folder.
+
+130
+00:08:05.800 --> 00:08:10.713
+Check your work: you can say why sequel P
+R D oh one is ready for the assessor but
+
+131
+00:08:10.713 --> 00:08:14.611
+not closed, why sequel P R D oh
+six fails SQL logins refused,
+
+132
+00:08:14.611 --> 00:08:19.512
+and why the new sys-admin login is
+drift while the break-glass group isn't.
+
+133
+00:08:23.310 --> 00:08:26.885
+Lab 2 schedules the same runs
+against one test instance.
+
+134
+00:08:26.885 --> 00:08:28.635
+It wasn't run by the authors.
+
+135
+00:08:28.635 --> 00:08:32.118
+You need a test job host and a
+test instance, never production,
+
+136
+00:08:32.118 --> 00:08:34.835
+and a group managed service
+account on the host.
+
+137
+00:08:34.835 --> 00:08:39.312
+Its Windows login on the instance holds
+the read rights the audit exporter states,
+
+138
+00:08:39.312 --> 00:08:41.683
+never sys-admin, and it's
+recorded in the test
+
+139
+00:08:41.683 --> 00:08:44.448
+exception registry with an
+approver and an expiry.
+
+140
+00:08:44.448 --> 00:08:47.146
+Write a run script that
+takes one audit snapshot,
+
+141
+00:08:47.146 --> 00:08:51.260
+projects it onto the closure record,
+and compares it with the previous run.
+
+142
+00:08:51.260 --> 00:08:55.698
+Run it once by hand, then schedule it weekly
+as the group managed service account.
+
+143
+00:08:55.698 --> 00:08:57.209
+The runs are read-only.
+
+144
+00:08:57.209 --> 00:09:01.603
+For condition four, someone with Reader
+in commercial Azure exports an Arc
+
+145
+00:09:01.603 --> 00:09:05.997
+snapshot before each run, because the
+service account can't sign in to Azure.
+
+146
+00:09:05.997 --> 00:09:09.161
+Step five backs it out by
+removing the scheduled task.
+
+147
+00:09:09.161 --> 00:09:12.730
+The run folders stay as
+evidence, inside your boundary.
+
+148
+00:09:16.530 --> 00:09:18.130
+The federal requirement.
+
+149
+00:09:18.130 --> 00:09:25.585
+Chapter 9 maps the closure record to
+three NIST SP 800-53 controls: C A seven,
+
+150
+00:09:25.585 --> 00:09:29.577
+continuous monitoring; C M six,
+the authentication settings,
+
+151
+00:09:29.577 --> 00:09:32.930
+read every run; and A C two,
+which accounts can sign in.
+
+152
+00:09:32.930 --> 00:09:36.792
+It maps the drift comparison
+to C A seven and C M six.
+
+153
+00:09:36.792 --> 00:09:40.836
+Keep the closure file and its manifest
+per instance per run, the exception
+
+154
+00:09:40.836 --> 00:09:45.343
+registry with its approvers, and the
+external evidence each external field names.
+
+155
+00:09:45.343 --> 00:09:50.205
+For drift, keep the drift file, its
+manifest, and the task opened for each row.
+
+156
+00:09:50.205 --> 00:09:54.352
+Each manifest records the
+step, its controls and K S Is,
+
+157
+00:09:54.352 --> 00:09:57.180
+and the S H A two fifty-six of each file.
+
+158
+00:09:57.180 --> 00:10:01.693
+Runbook R nine lists the evidence for the
+evidenced and operated control states.
+
+159
+00:10:01.693 --> 00:10:05.890
+K S Is are FedRAMP twenty X indicators
+for cloud service providers:
+
+160
+00:10:05.890 --> 00:10:09.705
+your cloud providers report
+against them, the agency doesn't.
+
+161
+00:10:09.705 --> 00:10:11.702
+The records support these controls;
+
+162
+00:10:11.702 --> 00:10:15.150
+the assessor decides whether
+the closure posture holds.
+
+163
+00:10:18.950 --> 00:10:21.000
+Check yourself with two questions.
+
+164
+00:10:21.000 --> 00:10:25.795
+First: sequel P R D oh one's
+day-thirty record has nine fields met,
+
+165
+00:10:25.795 --> 00:10:28.075
+none not met, and two external.
+
+166
+00:10:28.075 --> 00:10:29.375
+What does the kit call it?
+
+167
+00:10:29.375 --> 00:10:33.763
+The answer is b: ready for the
+assessor, with the external evidence.
+
+168
+00:10:33.763 --> 00:10:38.049
+The two external fields still need their
+evidence, and the assessor decides.
+
+169
+00:10:38.049 --> 00:10:43.250
+Second: sequel P R D oh six has is
+integrated security only set to one,
+
+170
+00:10:43.250 --> 00:10:46.087
+yet SQL logins refused is not met.
+
+171
+00:10:46.087 --> 00:10:46.801
+Why?
+
+172
+00:10:46.801 --> 00:10:49.949
+The answer is a: it runs SQL Server 2025,
+
+173
+00:10:49.949 --> 00:10:53.375
+and is external
+authentication only is zero.
+
+174
+00:10:53.375 --> 00:10:58.030
+The module page has two more questions,
+each linked to the section that answers it.
+
+175
+00:11:01.830 --> 00:11:02.855
+To sum up.
+
+176
+00:11:02.855 --> 00:11:06.223
+You projected an audit run onto
+the five closure conditions,
+
+177
+00:11:06.223 --> 00:11:09.436
+saw which fields wait on
+evidence from outside the audit,
+
+178
+00:11:09.436 --> 00:11:12.854
+saw what the exception registry
+and the Arc snapshot change,
+
+179
+00:11:12.854 --> 00:11:15.930
+and compared two runs so a
+regression became a finding.
+
+180
+00:11:15.930 --> 00:11:19.666
+Closure is the record that keeps
+coming back clean on a schedule,
+
+181
+00:11:19.666 --> 00:11:21.217
+and each drift row is a task.
+
+182
+00:11:21.217 --> 00:11:24.293
+Before shipping, work through
+the Chapter 9 checklist.
+
+183
+00:11:24.293 --> 00:11:27.910
+Next, Module 10: deploying
+to test and production.

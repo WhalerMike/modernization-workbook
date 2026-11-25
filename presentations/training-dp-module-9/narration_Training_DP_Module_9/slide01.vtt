@@ -1,0 +1,35 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.871
+Welcome to Module 9 of the
+Data Platform and SQL Server
+
+2
+00:00:03.871 --> 00:00:07.250
+Identity learning path:
+closure, drift and evidence.
+
+3
+00:00:07.250 --> 00:00:10.929
+It teaches Runbook R nine,
+continuous monitoring and closure,
+
+4
+00:00:10.929 --> 00:00:15.462
+with Chapter 9 of the developer
+workbook, Building SQL Server Identity.
+
+5
+00:00:15.462 --> 00:00:20.196
+You'll project an audit run onto the five
+closure conditions, see which fields the
+
+6
+00:00:20.196 --> 00:00:24.788
+audit can't settle by itself, and compare
+two runs so a regression becomes a task.
+
+7
+00:00:24.788 --> 00:00:26.951
+Take this module after Module 8.

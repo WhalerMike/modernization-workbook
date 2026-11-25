@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.225
+Unit 2 is finding the estate.
+
+2
+00:00:02.225 --> 00:00:04.175
+An estate grows by accretion.
+
+3
+00:00:04.175 --> 00:00:06.675
+A development instance becomes production.
+
+4
+00:00:06.675 --> 00:00:09.438
+A vendor test instance
+is never decommissioned.
+
+5
+00:00:09.438 --> 00:00:13.388
+An installer drops SQL Server
+Express on an application server.
+
+6
+00:00:13.388 --> 00:00:16.875
+The data platform book's chapter,
+The Shape of Twenty Years,
+
+7
+00:00:16.875 --> 00:00:20.145
+names three overlapping
+problems: too many instances,
+
+8
+00:00:20.145 --> 00:00:23.924
+too many databases, and too many
+forest-spanning dependencies.
+
+9
+00:00:23.924 --> 00:00:26.838
+The transformation doesn't
+begin until they're assessed.
+
+10
+00:00:26.838 --> 00:00:29.434
+No single instrument finds every instance,
+
+11
+00:00:29.434 --> 00:00:32.753
+so discovery combines the
+network and directory sweep,
+
+12
+00:00:32.753 --> 00:00:37.226
+the trail of service principal names,
+or S P Ns, that SQL Server registers,
+
+13
+00:00:37.226 --> 00:00:39.391
+and Microsoft's assessment tooling,
+
+14
+00:00:39.391 --> 00:00:43.287
+and fuses them into one inventory
+that counts each instance once.
+
+15
+00:00:43.287 --> 00:00:45.463
+The kit doesn't rebuild discovery.
+
+16
+00:00:45.463 --> 00:00:48.519
+The Start Kit's SQL Server
+count finds the instances,
+
+17
+00:00:48.519 --> 00:00:50.520
+and the kit classifies what it found.

@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.187
+Step two opens the manifest.
+
+2
+00:00:02.187 --> 00:00:05.850
+It names the step, estate, and
+says the run was read-only.
+
+3
+00:00:05.850 --> 00:00:10.492
+It names the step's control, C M
+eight, and its K S I, and the S H A
+
+4
+00:00:10.492 --> 00:00:15.825
+two fifty-six hash of each file the
+run wrote: the C S V and the jay-son.
+
+5
+00:00:15.825 --> 00:00:20.137
+Step three imports the kit's module and
+checks the folder against its manifest.
+
+6
+00:00:20.137 --> 00:00:23.499
+Both files match the hashes
+recorded when the run wrote them.
+
+7
+00:00:23.499 --> 00:00:28.255
+This is why the manifest matters to an
+assessor: the I S S O keeps the run folder,
+
+8
+00:00:28.255 --> 00:00:30.670
+and reruns the check on the stored copy,
+
+9
+00:00:30.670 --> 00:00:33.480
+so the inventory kept is
+the one the run wrote.

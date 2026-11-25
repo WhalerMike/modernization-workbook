@@ -15,6 +15,8 @@ last-reviewed: 2026-11-25
 
 **Learning path:** [Data Platform and SQL Server Identity](index.md) · Module 5 of 10 · 45 minutes · Runbook [R07](../../books/b06-data-platform/r07-groups-aus-and-the-conditional-access-perimeter.md) · Workbook [Chapter 05](../../project-plans/developer-workbooks/sql-server-identity/05-groups-roles-and-the-perimeter.md)
 
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-dp-module-5) · [▶ Watch](../../presentations/watch.html?v=Training_DP_Module_5_Narrated) (about 10 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DP_Module_5_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-5/Training_DP_Module_5_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-5/Training_DP_Module_5_Narrated.vtt).
+
 ## Unit 1: Introduction
 
 *3 minutes, with the objectives and prerequisites*

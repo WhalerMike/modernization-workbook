@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.437
+Why does this matter?
+
+2
+00:00:01.437 --> 00:00:05.612
+An on-premises SQL Server host
+has no cloud identity of its own.
+
+3
+00:00:05.612 --> 00:00:09.818
+Connecting it to Azure Arc gives the
+machine a system-assigned managed identity,
+
+4
+00:00:09.818 --> 00:00:13.899
+and that identity is what lets the instance
+take part in Entra authentication.
+
+5
+00:00:13.899 --> 00:00:16.237
+No Arc, no machine identity.
+
+6
+00:00:16.237 --> 00:00:18.913
+No machine identity, no Entra login.
+
+7
+00:00:18.913 --> 00:00:23.064
+In this module you settle each
+instance's category from evidence:
+
+8
+00:00:23.064 --> 00:00:28.367
+the agent's status, the SQL extension's
+state, and the instance's own Entra setting,
+
+9
+00:00:28.367 --> 00:00:31.300
+read from the cloud a G
+C C Moderate tenant uses.

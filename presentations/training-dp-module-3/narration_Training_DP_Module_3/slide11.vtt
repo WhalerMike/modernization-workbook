@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:06.414
+Step three opens the manifest: the arc
+step, read-only, with its three controls,
+
+2
+00:00:06.414 --> 00:00:11.325
+C M eight, C M six and I A five, its
+three K S Is, and each file's hash.
+
+3
+00:00:11.325 --> 00:00:14.525
+Step four tries a snapshot
+whose cloud isn't recorded.
+
+4
+00:00:14.525 --> 00:00:18.110
+It copies the fixture, sets its
+environment to not recorded,
+
+5
+00:00:18.110 --> 00:00:19.500
+and runs the check on it.
+
+6
+00:00:19.500 --> 00:00:23.956
+The check throws: the Arc results came
+from a cloud that isn't recorded,
+
+7
+00:00:23.956 --> 00:00:27.787
+and a G C C Moderate tenant's
+Arc resources are in Azure Cloud.
+
+8
+00:00:27.787 --> 00:00:29.701
+Then Test-Path shows false.
+
+9
+00:00:29.701 --> 00:00:32.570
+The check refused the
+snapshot and wrote nothing.

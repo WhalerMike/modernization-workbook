@@ -1,0 +1,840 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.826
+Welcome to Module 6 of
+the Data Platform and SQL
+
+2
+00:00:03.826 --> 00:00:07.375
+Server Identity learning
+path: NTLM and the SPNs.
+
+3
+00:00:07.375 --> 00:00:11.851
+It goes with Runbook R oh six and
+Chapter 06 of the developer workbook,
+
+4
+00:00:11.851 --> 00:00:14.075
+Building SQL Server Identity.
+
+5
+00:00:14.075 --> 00:00:19.113
+You'll find every reason an instance's
+connections use NTLM or fail Kerberos,
+
+6
+00:00:19.113 --> 00:00:22.712
+and write each S P N fix for
+review instead of running it.
+
+7
+00:00:22.712 --> 00:00:25.880
+Take this module after Modules 5 and 2.
+
+8
+00:00:29.680 --> 00:00:31.017
+Why does this matter?
+
+9
+00:00:31.017 --> 00:00:33.429
+You can't remove NTLM you haven't found,
+
+10
+00:00:33.429 --> 00:00:37.004
+and most of what you find is
+a missing or misplaced name.
+
+11
+00:00:37.004 --> 00:00:40.043
+Windows Authentication
+tries Kerberos first.
+
+12
+00:00:40.043 --> 00:00:44.868
+When the client can't get a ticket for
+the instance's S P N, it uses NTLM.
+
+13
+00:00:44.868 --> 00:00:49.455
+And when the S P N sits on the wrong
+account, authentication fails outright.
+
+14
+00:00:49.455 --> 00:00:51.941
+In this module you list, per instance,
+
+15
+00:00:51.941 --> 00:00:56.664
+every reason its connections use NTLM
+or fail Kerberos, with the set S
+
+16
+00:00:56.664 --> 00:01:01.370
+P N line that would fix each S P N
+problem, ready for a change window.
+
+17
+00:01:05.170 --> 00:01:07.886
+Here's what you'll be able to
+do by the end of this module,
+
+18
+00:01:07.886 --> 00:01:10.170
+which takes about fifty
+minutes with the lab.
+
+19
+00:01:10.170 --> 00:01:14.353
+You'll name the patterns that make
+sequel server connections use NTLM,
+
+20
+00:01:14.353 --> 00:01:17.857
+and the two S P N problems that
+fail instead of falling back.
+
+21
+00:01:17.857 --> 00:01:21.120
+You'll explain why local connections
+are left out of the count.
+
+22
+00:01:21.120 --> 00:01:24.303
+You'll run the kit's
+NTLM audit over fixtures
+
+23
+00:01:24.303 --> 00:01:27.133
+on day 1 and day 30 and read its findings.
+
+24
+00:01:27.133 --> 00:01:30.469
+And you'll read the fix file and
+say why nothing in it has run.
+
+25
+00:01:30.469 --> 00:01:33.610
+Before you start, finish
+Module 5, and Module 2,
+
+26
+00:01:33.610 --> 00:01:36.495
+whose audit snapshots this module reads.
+
+27
+00:01:36.495 --> 00:01:42.260
+The lab runs in PowerShell 7, in the kit
+you unzipped into the F M W Labs folder.
+
+28
+00:01:46.060 --> 00:01:48.435
+Start with what Microsoft Learn gives you.
+
+29
+00:01:48.435 --> 00:01:51.023
+The client builds an S
+P N for the instance.
+
+30
+00:01:51.023 --> 00:01:55.395
+For T C P it's M S SQL S V C,
+slash, the fully qualified name,
+
+31
+00:01:55.395 --> 00:02:00.434
+colon, the port, registered on the
+account the service runs under.
+
+32
+00:02:00.434 --> 00:02:03.623
+Learn's table of S P N
+states is the triage key.
+
+33
+00:02:03.623 --> 00:02:07.365
+When the S P N maps to the
+account the service runs under,
+
+34
+00:02:07.365 --> 00:02:11.273
+local connections use NTLM
+and remote ones use Kerberos.
+
+35
+00:02:11.273 --> 00:02:14.722
+When it maps to an incorrect
+account, authentication fails.
+
+36
+00:02:14.722 --> 00:02:17.598
+And when the lookup fails,
+or there's no S P N,
+
+37
+00:02:17.598 --> 00:02:20.644
+local and remote
+connections both use NTLM.
+
+38
+00:02:20.644 --> 00:02:26.228
+Notice the first row: a connection made
+on the server itself always reports NTLM,
+
+39
+00:02:26.228 --> 00:02:28.935
+even when Kerberos is set up correctly.
+
+40
+00:02:28.935 --> 00:02:31.640
+So you judge only remote connections.
+
+41
+00:02:35.440 --> 00:02:37.277
+Unit 2 is the patterns.
+
+42
+00:02:37.277 --> 00:02:42.377
+The data platform book's chapter on NTLM
+names four patterns at the sequel layer.
+
+43
+00:02:42.377 --> 00:02:44.088
+A missing or incorrect S P N.
+
+44
+00:02:44.088 --> 00:02:47.977
+Cross-site connections that
+can't reach a domain controller.
+
+45
+00:02:47.977 --> 00:02:49.515
+Linked-server passthrough.
+
+46
+00:02:49.515 --> 00:02:51.577
+And clients that aren't domain-joined.
+
+47
+00:02:51.577 --> 00:02:56.302
+Its triage point matters most: an
+S P N on the wrong account doesn't
+
+48
+00:02:56.302 --> 00:03:01.115
+fall back to NTLM, it fails, and a
+duplicate S P N breaks Kerberos too.
+
+49
+00:03:01.115 --> 00:03:06.477
+That shows up as an error, not as NTLM, so
+it gets triaged as a different problem.
+
+50
+00:03:06.477 --> 00:03:10.422
+And a linked server that passes
+the caller's credentials needs
+
+51
+00:03:10.422 --> 00:03:14.450
+Kerberos delegation, because
+NTLM can't make the second hop.
+
+52
+00:03:18.250 --> 00:03:21.800
+Unit 3 is discovery first,
+and fixes for review.
+
+53
+00:03:21.800 --> 00:03:26.949
+The data platform book's three phases of
+NTLM elimination start with discovery:
+
+54
+00:03:26.949 --> 00:03:30.100
+the baseline that later
+phases measure against.
+
+55
+00:03:30.100 --> 00:03:34.440
+The kit's NTLM audit joins the
+audit snapshot, the estate,
+
+56
+00:03:34.440 --> 00:03:40.100
+the domain's M S SQL S V C S P Ns, the
+linked servers and the client records.
+
+57
+00:03:40.100 --> 00:03:42.631
+It builds the expected
+T C P S P N for each
+
+58
+00:03:42.631 --> 00:03:45.400
+instance and compares
+it with who holds it.
+
+59
+00:03:45.400 --> 00:03:47.857
+For a virtual or built-in service account,
+
+60
+00:03:47.857 --> 00:03:50.387
+it expects the S P N on
+the computer account.
+
+61
+00:03:50.387 --> 00:03:54.699
+It writes each set S P N fix to a
+file for review, and never runs it.
+
+62
+00:03:54.699 --> 00:03:58.650
+Runbook R oh six puts each change
+in a window, with its back-out.
+
+63
+00:03:58.650 --> 00:04:00.462
+Two patterns aren't detected.
+
+64
+00:04:00.462 --> 00:04:03.992
+Cross-site connections look like
+a missing S P N in this data,
+
+65
+00:04:03.992 --> 00:04:06.874
+so confirm with K list
+before changing anything.
+
+66
+00:04:06.874 --> 00:04:10.430
+And only the T C P form
+of the S P N is checked.
+
+67
+00:04:14.230 --> 00:04:18.780
+Chapter 06 of the workbook names the
+dangers, and the guard against each.
+
+68
+00:04:18.780 --> 00:04:23.645
+Running the fix file as a script moves
+every S P N in it at once, outside review;
+
+69
+00:04:23.645 --> 00:04:28.005
+the guard is one reviewed line at a
+time, in a window, with its back-out.
+
+70
+00:04:28.005 --> 00:04:30.236
+For a virtual or built-in service account,
+
+71
+00:04:30.236 --> 00:04:33.912
+the S P N belongs on the computer
+account, and moving it to the service
+
+72
+00:04:33.912 --> 00:04:38.243
+account would break Kerberos, so the kit
+expects the computer account for those.
+
+73
+00:04:38.243 --> 00:04:43.612
+Cross-site NTLM read as a missing S P N
+leads to an S P N that changes nothing;
+
+74
+00:04:43.612 --> 00:04:47.280
+run K list get from the
+client's site before any fix.
+
+75
+00:04:47.280 --> 00:04:52.228
+A linked server fixed with unconstrained
+delegation leaves the first server holding
+
+76
+00:04:52.228 --> 00:04:56.213
+a reusable ticket for every caller;
+Runbook R oh six's options are Entra
+
+77
+00:04:56.213 --> 00:05:01.092
+authentication, constrained delegation, or
+a mapped login as a documented exception.
+
+78
+00:05:01.092 --> 00:05:03.888
+And because only the T
+C P S P N is checked,
+
+79
+00:05:03.888 --> 00:05:09.970
+named pipes or short-name clients can still
+use NTLM, so check those forms by hand.
+
+80
+00:05:13.770 --> 00:05:14.657
+Try it.
+
+81
+00:05:14.657 --> 00:05:19.208
+Lab 1 runs in PowerShell 7 on the
+kit's fictional estate, with no tenant.
+
+82
+00:05:19.208 --> 00:05:22.894
+Go to the kit's folder, and
+make this run's results folder,
+
+83
+00:05:22.894 --> 00:05:27.482
+named for the time you start, in U T
+C, so every run keeps its own results.
+
+84
+00:05:27.482 --> 00:05:31.757
+Step one runs the audit on day 1:
+seven findings on four instances.
+
+85
+00:05:31.757 --> 00:05:37.632
+SQL P R D oh two is missing its S P N,
+so remote connections fall back to NTLM.
+
+86
+00:05:37.632 --> 00:05:41.340
+On SQL F C I oh four, the S P
+N is held by an old account,
+
+87
+00:05:41.340 --> 00:05:45.307
+not the one the service runs
+as, so authentication fails.
+
+88
+00:05:45.307 --> 00:05:50.619
+On SQL P R D oh six, two accounts
+hold it, so Kerberos can't choose.
+
+89
+00:05:50.619 --> 00:05:53.770
+Then there's remote NTLM,
+a linked server passing
+
+90
+00:05:53.770 --> 00:05:57.157
+the caller's credentials,
+and a client off the domain.
+
+91
+00:05:57.157 --> 00:06:03.332
+Look at SQL P R D oh one: its S P N is
+correct, yet forty-one sessions use NTLM.
+
+92
+00:06:03.332 --> 00:06:08.808
+The client file shows that host is
+domain-joined, so look on the client side:
+
+93
+00:06:08.808 --> 00:06:12.630
+aliases, hosts file entries,
+D N S and old drivers.
+
+94
+00:06:16.430 --> 00:06:21.105
+Step two reads the fix file: four lines
+for three instances, and nothing has run.
+
+95
+00:06:21.105 --> 00:06:23.597
+The first line says so: review each line,
+
+96
+00:06:23.597 --> 00:06:27.092
+and run it with Domain Admin
+rights in a change window.
+
+97
+00:06:27.092 --> 00:06:31.180
+SQL P R D oh two gets its S P
+N added on its service account.
+
+98
+00:06:31.180 --> 00:06:35.034
+On SQL F C I oh four, the S P N
+is deleted from the old account,
+
+99
+00:06:35.034 --> 00:06:37.630
+then added to the one the service runs as.
+
+100
+00:06:37.630 --> 00:06:41.285
+And on SQL P R D oh six, the
+S P N stays with the G M S
+
+101
+00:06:41.285 --> 00:06:45.305
+A the service runs as, and
+leaves the computer account.
+
+102
+00:06:45.305 --> 00:06:49.158
+That's the guard against a danger:
+a duplicate removed from the wrong
+
+103
+00:06:49.158 --> 00:06:53.520
+account takes the S P N away from the
+service account, and Kerberos stops.
+
+104
+00:06:57.320 --> 00:07:02.232
+Step three reads every fix, including
+the ones that aren't set S P N lines.
+
+105
+00:07:02.232 --> 00:07:06.600
+For remote NTLM, the fix is to find
+each client, from the client rows or
+
+106
+00:07:06.600 --> 00:07:11.333
+the client address in the connections
+view; local sessions are excluded.
+
+107
+00:07:11.333 --> 00:07:16.196
+For the linked-server passthrough on SQL
+P R D oh one, it's constrained delegation,
+
+108
+00:07:16.196 --> 00:07:18.663
+a mapped login, or the
+sequel server twenty
+
+109
+00:07:18.663 --> 00:07:21.271
+twenty-five managed-identity
+linked server.
+
+110
+00:07:21.271 --> 00:07:25.310
+And for the client off the domain, it's
+moving Reports Readers to an Entra
+
+111
+00:07:25.310 --> 00:07:29.582
+login with a token-based connection,
+which is the next module's subject.
+
+112
+00:07:33.380 --> 00:07:36.830
+Step four runs the same
+audit on the day-30 snapshot.
+
+113
+00:07:36.830 --> 00:07:39.936
+SQL P R D oh one's remote NTLM is gone:
+
+114
+00:07:39.936 --> 00:07:44.517
+its logins moved to Entra in
+Chapter 04 of the workbook.
+
+115
+00:07:44.517 --> 00:07:48.051
+But the S P N problems on the
+other instances are still there,
+
+116
+00:07:48.051 --> 00:07:49.781
+because nobody ran the fixes.
+
+117
+00:07:49.781 --> 00:07:52.355
+The audit finds; it doesn't repair.
+
+118
+00:07:52.355 --> 00:07:55.318
+The linked-server and client
+findings come from the
+
+119
+00:07:55.318 --> 00:07:58.590
+same fixture files on both
+days, so they're unchanged.
+
+120
+00:08:02.390 --> 00:08:04.578
+Step five opens the manifest.
+
+121
+00:08:04.578 --> 00:08:07.902
+It names the step, says
+the run was read-only,
+
+122
+00:08:07.902 --> 00:08:11.952
+and lists the controls, I A two
+and C M six, with one K S I.
+
+123
+00:08:11.952 --> 00:08:16.364
+Then the S H A two fifty-six of
+each file, the fix file included.
+
+124
+00:08:16.364 --> 00:08:19.503
+That's the point: the fix file
+is hashed with the findings,
+
+125
+00:08:19.503 --> 00:08:22.777
+so the lines a change board
+approves are the lines that run.
+
+126
+00:08:22.777 --> 00:08:26.953
+Step six runs this chapter's
+tests: seven pass, none fail.
+
+127
+00:08:26.953 --> 00:08:28.828
+And step seven lists your runs.
+
+128
+00:08:28.828 --> 00:08:32.237
+There's nothing to clean up: the
+kit's folder is as you unzipped it,
+
+129
+00:08:32.237 --> 00:08:35.040
+and each run's results
+stay in their own folder.
+
+130
+00:08:38.840 --> 00:08:43.603
+Lab 2 runs the audit on your own test
+domain and test instance, never production.
+
+131
+00:08:43.603 --> 00:08:45.502
+It was not run by the authors.
+
+132
+00:08:45.502 --> 00:08:50.714
+You need PowerShell 7 on a domain-joined
+machine that isn't the sequel server host,
+
+133
+00:08:50.714 --> 00:08:54.913
+because a connection made on the
+host itself always reports NTLM.
+
+134
+00:08:54.913 --> 00:08:58.879
+Steps one to five only read: query
+the domain's S P Ns with set S P N,
+
+135
+00:08:58.879 --> 00:09:03.390
+snapshot the instance, write the
+audit's other inputs, and run the audit.
+
+136
+00:09:03.390 --> 00:09:05.253
+Step six is a change.
+
+137
+00:09:05.253 --> 00:09:08.278
+Run the one reviewed fix
+only in an approved window,
+
+138
+00:09:08.278 --> 00:09:12.890
+with its back-out line ready, then check
+the auth scheme and K list from a client.
+
+139
+00:09:12.890 --> 00:09:17.482
+If the window's checks fail, the set S
+P N delete line restores the old state,
+
+140
+00:09:17.482 --> 00:09:20.700
+and step seven deletes
+the lab's output folder.
+
+141
+00:09:24.500 --> 00:09:26.100
+The federal requirement.
+
+142
+00:09:26.100 --> 00:09:30.589
+Chapter 06 of the workbook maps
+the audit and fix plan to C M six,
+
+143
+00:09:30.589 --> 00:09:37.975
+Configuration Settings, in NIST SP
+800-53, with the K S I S V C A C M.
+
+144
+00:09:37.975 --> 00:09:42.025
+The evidence is the findings file
+and the fix file with the manifest,
+
+145
+00:09:42.025 --> 00:09:45.063
+and the change record for
+each set S P N line that ran.
+
+146
+00:09:45.063 --> 00:09:49.509
+It maps the same plan to I A two,
+Identification and Authentication
+
+147
+00:09:49.509 --> 00:09:53.551
+for organizational users, which
+has no K S I pairing in the kit.
+
+148
+00:09:53.551 --> 00:09:55.606
+Its evidence is the same findings,
+
+149
+00:09:55.606 --> 00:09:59.938
+and the auth scheme and K list record
+from a remote client after each fix.
+
+150
+00:09:59.938 --> 00:10:03.713
+Runbook R oh six lists the evidence
+for each remediation state.
+
+151
+00:10:03.713 --> 00:10:07.940
+K S Is are FedRAMP twenty X indicators
+for cloud service providers;
+
+152
+00:10:07.940 --> 00:10:11.400
+your providers report against
+them, the agency doesn't.
+
+153
+00:10:11.400 --> 00:10:15.361
+The kit's records support these
+controls and provide evidence for them;
+
+154
+00:10:15.361 --> 00:10:18.413
+the assessor decides whether
+each one is in place.
+
+155
+00:10:22.210 --> 00:10:24.260
+Check yourself with two questions.
+
+156
+00:10:24.260 --> 00:10:28.596
+First: on SQL F C I oh four, the
+S P N is held by the old account,
+
+157
+00:10:28.596 --> 00:10:31.460
+but the service runs as its own account.
+
+158
+00:10:31.460 --> 00:10:33.473
+What happens to remote connections?
+
+159
+00:10:33.473 --> 00:10:36.348
+The answer is b: authentication fails.
+
+160
+00:10:36.348 --> 00:10:40.736
+An S P N on the wrong account fails
+rather than falls back to NTLM.
+
+161
+00:10:40.736 --> 00:10:44.847
+Second: what has happened to the lines
+in the fix file when the audit finishes?
+
+162
+00:10:44.847 --> 00:10:47.823
+The answer is b: nothing
+in the file has run.
+
+163
+00:10:47.823 --> 00:10:51.710
+Each line is reviewed and run in a
+change window, with its back-out.
+
+164
+00:10:51.710 --> 00:10:56.350
+The module page has two more questions,
+each linked to the section that answers it.
+
+165
+00:11:00.150 --> 00:11:01.175
+To sum up.
+
+166
+00:11:01.175 --> 00:11:05.408
+You found the missing, misplaced and
+duplicate S P Ns, the remote NTLM,
+
+167
+00:11:05.408 --> 00:11:10.762
+the linked-server passthrough and the client
+off the domain in the fictional estate.
+
+168
+00:11:10.762 --> 00:11:15.276
+And you saw that the S P N problems stay
+until someone runs the reviewed fixes.
+
+169
+00:11:15.276 --> 00:11:17.510
+The fix file is hashed with the findings,
+
+170
+00:11:17.510 --> 00:11:20.762
+so the lines a change board
+approves are the lines that run.
+
+171
+00:11:20.762 --> 00:11:24.796
+The I S S O keeps the findings and
+the fix file with the manifest,
+
+172
+00:11:24.796 --> 00:11:27.882
+the change record for each
+set S P N line that ran,
+
+173
+00:11:27.882 --> 00:11:32.549
+and the auth scheme and K list record
+from a remote client after each fix.
+
+174
+00:11:32.549 --> 00:11:36.025
+Before shipping, work through
+the Chapter 06 checklist.
+
+175
+00:11:36.025 --> 00:11:39.000
+Next is Module 7, the application chain.

@@ -1,0 +1,35 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.650
+Step four looks at the two instances
+that don't enter the migration.
+
+2
+00:00:03.650 --> 00:00:08.668
+Sequel O L D oh five's only database was
+last used nine hundred and twelve days ago,
+
+3
+00:00:08.668 --> 00:00:12.200
+well past the four-hundred-day
+threshold, so it's retired.
+
+4
+00:00:12.200 --> 00:00:15.333
+Sequel D E V oh eight is
+known only by its S P N:
+
+5
+00:00:15.333 --> 00:00:18.913
+discovery found it, but
+nothing read its version.
+
+6
+00:00:18.913 --> 00:00:23.413
+It stays in review until someone reads
+it, or confirms the host is gone.
+
+7
+00:00:23.413 --> 00:00:25.130
+Review is never retain.

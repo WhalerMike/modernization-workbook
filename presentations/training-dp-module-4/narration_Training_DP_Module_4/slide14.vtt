@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.700
+The federal requirement.
+
+2
+00:00:01.700 --> 00:00:10.143
+Chapter 4's table maps the login plan to
+NIST SP 800-53 A C two, Account Management,
+
+3
+00:00:10.143 --> 00:00:13.003
+C M three, Configuration Change Control,
+
+4
+00:00:13.003 --> 00:00:15.950
+and C M four, Impact
+Analyses, with two K S Is.
+
+5
+00:00:15.950 --> 00:00:20.448
+The plan also supports I A two,
+Identification and Authentication
+
+6
+00:00:20.448 --> 00:00:24.538
+for organizational users, which
+has no K S I pairing in the kit.
+
+7
+00:00:24.538 --> 00:00:28.708
+The evidence is the reviewed create,
+cutover and rollback scripts,
+
+8
+00:00:28.708 --> 00:00:32.651
+the plan file, the mapping, and
+the manifest with each file's hash.
+
+9
+00:00:32.651 --> 00:00:38.075
+The parallel-run judge supports A C two
+and C A seven, Continuous Monitoring.
+
+10
+00:00:38.075 --> 00:00:42.080
+Its evidence is the parallel file
+for each snapshot with its manifest,
+
+11
+00:00:42.080 --> 00:00:46.362
+kept with the Sequel Server Audit files
+runbook R five keeps for the window.
+
+12
+00:00:46.362 --> 00:00:50.590
+K S Is are FedRAMP twenty X indicators
+for cloud service providers;
+
+13
+00:00:50.590 --> 00:00:54.050
+your providers report against
+them, the agency doesn't.
+
+14
+00:00:54.050 --> 00:00:56.686
+The records provide
+evidence for a control;
+
+15
+00:00:56.686 --> 00:01:00.790
+the agency sets each control's
+parameters, and the assessor decides.

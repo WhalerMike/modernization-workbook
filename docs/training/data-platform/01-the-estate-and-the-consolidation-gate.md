@@ -15,6 +15,8 @@ last-reviewed: 2026-11-25
 
 **Learning path:** [Data Platform and SQL Server Identity](index.md) · Module 1 of 10 · 50 minutes · Runbook [R02](../../books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.md) · Workbook [Chapter 01](../../project-plans/developer-workbooks/sql-server-identity/01-the-estate-and-the-consolidation-gate.md)
 
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-dp-module-1) · [▶ Watch](../../presentations/watch.html?v=Training_DP_Module_1_Narrated) (about 12 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DP_Module_1_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-1/Training_DP_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-1/Training_DP_Module_1_Narrated.vtt).
+
 ## Unit 1: Introduction
 
 *3 minutes, with the objectives and prerequisites*

@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.775
+Step two reads the
+cutover and the rollback.
+
+2
+00:00:02.775 --> 00:00:06.913
+The user and the sequel login are
+disabled, and the rollback enables them.
+
+3
+00:00:06.913 --> 00:00:10.902
+Contoso payroll users and Contoso
+sequel admins are Windows groups,
+
+4
+00:00:10.902 --> 00:00:14.612
+so their lines are deny connect
+sequel and grant connect sequel.
+
+5
+00:00:14.612 --> 00:00:19.438
+Alter login disable can't deny a Windows
+group, and a server-permission deny can.
+
+6
+00:00:19.438 --> 00:00:22.522
+Contoso sequel admins is
+also a sys-admin member,
+
+7
+00:00:22.522 --> 00:00:25.451
+and a deny doesn't apply
+to members of sys-admin.
+
+8
+00:00:25.451 --> 00:00:29.788
+So the cutover takes the group out of the
+role first, and the rollback puts it back.
+
+9
+00:00:29.788 --> 00:00:31.130
+Nothing is dropped.

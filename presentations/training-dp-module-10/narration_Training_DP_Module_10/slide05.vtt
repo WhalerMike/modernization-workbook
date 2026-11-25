@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.449
+The plan writes three
+files: create dot sequel,
+
+2
+00:00:03.449 --> 00:00:08.825
+cutover dot sequel and rollback dot
+sequel, each with its S H A two fifty-six.
+
+3
+00:00:08.825 --> 00:00:11.262
+A second person reads
+them line by line and
+
+4
+00:00:11.262 --> 00:00:13.963
+records the three hashes
+in the change record.
+
+5
+00:00:13.963 --> 00:00:18.218
+When the deploy runs, a file that doesn't
+hash to its approved value is refused
+
+6
+00:00:18.218 --> 00:00:22.676
+before anything connects, so the files
+that run are the files that were approved.
+
+7
+00:00:22.676 --> 00:00:25.519
+The deployer signs in as
+its own Entra account,
+
+8
+00:00:25.519 --> 00:00:30.384
+a member of the instance's Entra admin
+group, activated under pim for the change
+
+9
+00:00:30.384 --> 00:00:35.100
+window only, so that sys-admin, alter any
+login and control server all read one.
+
+10
+00:00:35.100 --> 00:00:39.073
+And the book's Chapter 12, What the
+Engine-Authentication Decision Settles,
+
+11
+00:00:39.073 --> 00:00:41.640
+makes the parallel run
+required for production.

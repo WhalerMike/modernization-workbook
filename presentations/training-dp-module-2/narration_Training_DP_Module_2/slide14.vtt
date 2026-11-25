@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.700
+The federal requirement.
+
+2
+00:00:01.700 --> 00:00:07.550
+Chapter 2's table maps the audit to
+three controls in NIST SP 800-53.
+
+3
+00:00:07.550 --> 00:00:11.067
+The login census supports A
+C two, Account Management,
+
+4
+00:00:11.067 --> 00:00:14.425
+with the census files and
+the manifest as evidence.
+
+5
+00:00:14.425 --> 00:00:18.746
+The S A, SQL login and service-account
+findings support I A five,
+
+6
+00:00:18.746 --> 00:00:20.587
+Authenticator Management.
+
+7
+00:00:20.587 --> 00:00:24.762
+And the mode findings support C
+M six, Configuration Settings.
+
+8
+00:00:24.762 --> 00:00:27.729
+Runbook R oh three is
+read-only from start to finish,
+
+9
+00:00:27.729 --> 00:00:30.837
+and its output feeds
+continuous-monitoring closure.
+
+10
+00:00:30.837 --> 00:00:35.110
+K S Is are FedRAMP twenty X indicators
+for cloud service providers:
+
+11
+00:00:35.110 --> 00:00:38.062
+the agency lines its own
+evidence up with them.
+
+12
+00:00:38.062 --> 00:00:41.077
+The run's files provide
+evidence for each control;
+
+13
+00:00:41.077 --> 00:00:44.900
+the agency still sets its
+parameters, and the assessor decides.

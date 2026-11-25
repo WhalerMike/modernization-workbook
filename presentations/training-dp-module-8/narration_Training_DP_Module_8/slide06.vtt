@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.212
+Unit 3 is the issuer
+decision and the order.
+
+2
+00:00:03.212 --> 00:00:05.486
+P K I and Certificates gives each class of
+
+3
+00:00:05.486 --> 00:00:08.150
+certificate one issuer
+and one renewal engine.
+
+4
+00:00:08.150 --> 00:00:13.032
+Sequel server's T L S certificate comes
+from the retained A D C S hierarchy,
+
+5
+00:00:13.032 --> 00:00:16.287
+requested and renewed
+through the C L M platform.
+
+6
+00:00:16.287 --> 00:00:22.025
+Its deadline is the issuing C A it chains
+to being retired, not A D C S as a whole.
+
+7
+00:00:22.025 --> 00:00:26.374
+A certificate-mapped login or endpoint
+isn't renewed by the platform,
+
+8
+00:00:26.374 --> 00:00:30.113
+so it's replaced or re-mapped by
+hand before its C A is retired.
+
+9
+00:00:30.113 --> 00:00:34.843
+Domain controller certificates stay on
+A D C S autoenrollment until the last
+
+10
+00:00:34.843 --> 00:00:39.425
+domain controller retires, so the
+interim posture keeps what it depends on.
+
+11
+00:00:39.425 --> 00:00:43.137
+The kit turns each certificate's
+use into a class and an action.
+
+12
+00:00:43.137 --> 00:00:46.912
+It marks it yes when its issuer
+is one of your enterprise C As,
+
+13
+00:00:46.912 --> 00:00:51.240
+a list the P K I owner supplies, and
+it warns inside a ninety-day window.

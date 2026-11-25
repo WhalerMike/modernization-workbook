@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:00.987
+Try it.
+
+2
+00:00:00.987 --> 00:00:05.938
+Lab 1 runs in PowerShell 7, from the kit's
+folder, on the kit's fictional estate.
+
+3
+00:00:05.938 --> 00:00:10.671
+First, make this run's results folder:
+its name is the time you start,
+
+4
+00:00:10.671 --> 00:00:13.563
+in U T C, so every run
+keeps its own results.
+
+5
+00:00:13.563 --> 00:00:16.774
+Step one writes sequel P
+R D oh one's login plan.
+
+6
+00:00:16.774 --> 00:00:19.925
+Four legacy logins map to
+four Entra principals.
+
+7
+00:00:19.925 --> 00:00:23.875
+The create script starts with a
+dry-run comment: nothing here has run.
+
+8
+00:00:23.875 --> 00:00:27.530
+Notice that S Q L dash D B A
+dash Admins gets sys-admin,
+
+9
+00:00:27.530 --> 00:00:30.750
+because the Windows
+group it replaces had it.
+
+10
+00:00:30.750 --> 00:00:34.312
+The S A account and the built-in
+service login aren't in the plan.
+
+11
+00:00:34.312 --> 00:00:39.325
+Then the summary: four logins mapped, none
+unresolved, and the create script's hash.
+
+12
+00:00:39.325 --> 00:00:40.712
+And three warnings.
+
+13
+00:00:40.712 --> 00:00:45.005
+Payroll web M I and the payroll users
+group would each hold three roles,
+
+14
+00:00:45.005 --> 00:00:47.300
+and the D B A group would hold sys-admin.
+
+15
+00:00:47.300 --> 00:00:48.913
+The plan is still written.
+
+16
+00:00:48.913 --> 00:00:51.342
+Splitting the groups,
+or recording why not,
+
+17
+00:00:51.342 --> 00:00:54.960
+is the identity engineer's call
+before the mapping is approved.

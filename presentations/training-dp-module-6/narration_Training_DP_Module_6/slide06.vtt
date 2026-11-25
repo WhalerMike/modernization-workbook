@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.650
+Unit 3 is discovery first,
+and fixes for review.
+
+2
+00:00:03.650 --> 00:00:08.799
+The data platform book's three phases of
+NTLM elimination start with discovery:
+
+3
+00:00:08.799 --> 00:00:11.950
+the baseline that later
+phases measure against.
+
+4
+00:00:11.950 --> 00:00:16.290
+The kit's NTLM audit joins the
+audit snapshot, the estate,
+
+5
+00:00:16.290 --> 00:00:21.950
+the domain's M S SQL S V C S P Ns, the
+linked servers and the client records.
+
+6
+00:00:21.950 --> 00:00:24.481
+It builds the expected
+T C P S P N for each
+
+7
+00:00:24.481 --> 00:00:27.250
+instance and compares
+it with who holds it.
+
+8
+00:00:27.250 --> 00:00:29.707
+For a virtual or built-in service account,
+
+9
+00:00:29.707 --> 00:00:32.237
+it expects the S P N on
+the computer account.
+
+10
+00:00:32.237 --> 00:00:36.549
+It writes each set S P N fix to a
+file for review, and never runs it.
+
+11
+00:00:36.549 --> 00:00:40.500
+Runbook R oh six puts each change
+in a window, with its back-out.
+
+12
+00:00:40.500 --> 00:00:42.312
+Two patterns aren't detected.
+
+13
+00:00:42.312 --> 00:00:45.842
+Cross-site connections look like
+a missing S P N in this data,
+
+14
+00:00:45.842 --> 00:00:48.724
+so confirm with K list
+before changing anything.
+
+15
+00:00:48.724 --> 00:00:51.980
+And only the T C P form
+of the S P N is checked.

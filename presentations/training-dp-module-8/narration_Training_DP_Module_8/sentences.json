@@ -1,0 +1,552 @@
+{
+ "1": [
+  [
+   0.1,
+   6.763,
+   "Welcome to Module 8 of the Data Platform and sequel Server Identity learning path: A D C S dependencies."
+  ],
+  [
+   6.812,
+   6.263,
+   "It goes with Runbook R ten and Chapter 08 of the developer workbook, Building sequel Server Identity."
+  ],
+  [
+   13.075,
+   8.85,
+   "You'll list every certificate sequel server depends on, by class, issuer and expiry, before anyone dates a change to the certificate authority."
+  ],
+  [
+   21.925,
+   2.3,
+   "Take this module after Module 7."
+  ]
+ ],
+ "2": [
+  [
+   0.1,
+   1.337,
+   "Why does this matter?"
+  ],
+  [
+   1.387,
+   6.05,
+   "Sequel server depends on certificates that most teams planning an A D C S decommission never see."
+  ],
+  [
+   7.438,
+   2.688,
+   "The T L S certificate the engine presents."
+  ],
+  [
+   10.125,
+   3.663,
+   "The certificates behind certificate-mapped logins and endpoints."
+  ],
+  [
+   13.787,
+   4.112,
+   "And the domain controller certificates that certificate-based sign-in needs."
+  ],
+  [
+   17.9,
+   5.325,
+   "The book P K I and Certificates owns the decision about which issuer serves which certificate."
+  ],
+  [
+   23.225,
+   3.237,
+   "This module doesn't restate that decision; it feeds it."
+  ],
+  [
+   26.462,
+   11.65,
+   "Before any certificate authority's date is set, you hand the P K I owner a list of every certificate sequel server depends on, with its class, issuer, expiry and the action each one needs."
+  ]
+ ],
+ "3": [
+  [
+   0.1,
+   5.0,
+   "Here's what you'll be able to do by the end of this module, which takes about forty minutes with the lab."
+  ],
+  [
+   5.05,
+   9.113,
+   "You'll name the three places sequel server can depend on certificates that A D C S issued, and the issuer that P K I and Certificates assigns to each."
+  ],
+  [
+   14.162,
+   7.225,
+   "You'll explain why an expiring T L S certificate breaks clients, while an expiring signing certificate doesn't lock anyone out."
+  ],
+  [
+   21.387,
+   7.237,
+   "You'll run the kit's certificate dependency list over fixtures and read its class, issuer, expiry and action for each row."
+  ],
+  [
+   28.625,
+   5.1,
+   "And you'll say why certificate-mapped, type C, logins aren't migrated to Entra logins."
+  ],
+  [
+   33.725,
+   2.562,
+   "Before you start, finish Module 7."
+  ],
+  [
+   36.288,
+   7.888,
+   "And remember from Module 6: an endpoint that authenticates with N T L M or negotiate is also an N T L M source."
+  ],
+  [
+   44.175,
+   5.45,
+   "The lab runs in PowerShell 7, in the kit you unzipped into the F M W Labs folder."
+  ]
+ ],
+ "4": [
+  [
+   0.1,
+   2.25,
+   "Unit 2 is the three places."
+  ],
+  [
+   2.3,
+   5.938,
+   "The data platform book's chapter on where sequel server touches A D C S names three dependencies."
+  ],
+  [
+   8.238,
+   4.3,
+   "First, the T L S certificate, which encrypts client connections."
+  ],
+  [
+   12.537,
+   6.188,
+   "Entra-authenticated connections are always encrypted, so the Entra target depends on it more, not less."
+  ],
+  [
+   18.725,
+   2.812,
+   "Second, certificate-mapped type C logins."
+  ],
+  [
+   21.538,
+   8.175,
+   "They carry permissions for signed modules and can't be used to connect, and certificates of the same kind secure Service Broker and mirroring endpoints."
+  ],
+  [
+   29.712,
+   6.213,
+   "So treating type C logins as connection logins, and moving them to Entra logins, is effort they never needed."
+  ],
+  [
+   35.925,
+   2.2,
+   "Third, certificate-based sign-in."
+  ],
+  [
+   38.125,
+   6.45,
+   "It's the program's interim posture for connections that can't reach Entra authentication but can negotiate Kerberos."
+  ],
+  [
+   44.575,
+   6.7,
+   "And it usually depends on A D C S through the domain controllers' certificates, rather than through the piv card."
+  ]
+ ],
+ "5": [
+  [
+   0.1,
+   2.038,
+   "Here's what Microsoft Learn gives you."
+  ],
+  [
+   2.087,
+   11.287,
+   "A sequel server T L S certificate needs the Server Authentication enhanced key usage, a key spec of key exchange from a legacy provider, and every client name in the subject alternative name."
+  ],
+  [
+   13.375,
+   5.75,
+   "A certificate from a Key Storage Provider gives a key spec of zero, which sequel server can't use."
+  ],
+  [
+   19.125,
+   7.537,
+   "Sequel server checks the certificate's validity only when it's configured, but clients that validate the certificate fail on an expired one."
+  ],
+  [
+   26.663,
+   1.95,
+   "Signing certificates are different."
+  ],
+  [
+   28.613,
+   10.075,
+   "A certificate-mapped login shows as type C, used only for code signing, and the built-in signing functions don't check expiry, though Service Broker and backup encryption do."
+  ],
+  [
+   38.688,
+   6.6,
+   "So an expiring T L S certificate breaks clients, and an expiring signing certificate doesn't lock anyone out."
+  ],
+  [
+   45.288,
+   7.55,
+   "One more fact: Microsoft Cloud P K I issues only to devices enrolled in Intune, which excludes Windows Server."
+  ]
+ ],
+ "6": [
+  [
+   0.1,
+   3.112,
+   "Unit 3 is the issuer decision and the order."
+  ],
+  [
+   3.163,
+   4.987,
+   "P K I and Certificates gives each class of certificate one issuer and one renewal engine."
+  ],
+  [
+   8.15,
+   8.137,
+   "Sequel server's T L S certificate comes from the retained A D C S hierarchy, requested and renewed through the C L M platform."
+  ],
+  [
+   16.288,
+   5.737,
+   "Its deadline is the issuing C A it chains to being retired, not A D C S as a whole."
+  ],
+  [
+   22.025,
+   8.088,
+   "A certificate-mapped login or endpoint isn't renewed by the platform, so it's replaced or re-mapped by hand before its C A is retired."
+  ],
+  [
+   30.113,
+   9.312,
+   "Domain controller certificates stay on A D C S autoenrollment until the last domain controller retires, so the interim posture keeps what it depends on."
+  ],
+  [
+   39.425,
+   3.712,
+   "The kit turns each certificate's use into a class and an action."
+  ],
+  [
+   43.138,
+   8.088,
+   "It marks it yes when its issuer is one of your enterprise C As, a list the P K I owner supplies, and it warns inside a ninety-day window."
+  ]
+ ],
+ "7": [
+  [
+   0.1,
+   4.45,
+   "Chapter 08 of the workbook names the dangers, and the guard against each."
+  ],
+  [
+   4.5,
+   8.037,
+   "If the T L S certificate expires after its C A goes, clients that validate refuse to connect, and every Entra connection validates."
+  ],
+  [
+   12.537,
+   9.875,
+   "The guard is the class and window on every row, with the lifecycle platform renewing it from the retained A D C S hierarchy before its issuing C A is retired."
+  ],
+  [
+   22.413,
+   9.15,
+   "An empty registry value read as no certificate hides a store certificate or a self-generated one; Lab 2's second step and R ten's error-log check find it."
+  ],
+  [
+   31.562,
+   8.5,
+   "A replacement certificate from a Key Storage Provider has a key spec of zero, which sequel server can't use, so check the key spec before renewal."
+  ],
+  [
+   40.062,
+   4.875,
+   "Type C logins treated as connection logins waste effort, because they sign code."
+  ],
+  [
+   44.938,
+   8.3,
+   "And an issuer missing from the enterprise C A list makes an A D C S certificate read no, so the P K I owner supplies that list."
+  ]
+ ],
+ "8": [
+  [
+   0.1,
+   0.887,
+   "Try it."
+  ],
+  [
+   0.938,
+   5.4,
+   "Lab 1 runs in PowerShell 7 on the kit's fictional certificate inventory, with no tenant."
+  ],
+  [
+   6.338,
+   7.65,
+   "Go to the kit's folder and make this run's results folder, named for the time you start, in U T C. Step one lists the certificates."
+  ],
+  [
+   13.988,
+   5.45,
+   "Four of the five came from the fictional enterprise C A, and two expire inside ninety days."
+  ],
+  [
+   19.438,
+   10.787,
+   "The sequel P R D oh one T L S row matters most: in seventy-two days every client that validates the certificate refuses to connect, and Entra connections always validate."
+  ],
+  [
+   30.225,
+   6.737,
+   "The sequel P R D oh two login row expires sooner, in forty-one days, but signing doesn't check expiry."
+  ],
+  [
+   36.962,
+   2.312,
+   "The reason to replace it is its issuer."
+  ],
+  [
+   39.275,
+   8.825,
+   "The last line counts the rows an enterprise A D C S C A issued: four of five, each needing its action before that C A is retired."
+  ]
+ ],
+ "9": [
+  [
+   0.1,
+   2.825,
+   "Step two reads the action for each certificate."
+  ],
+  [
+   2.875,
+   9.8,
+   "The sequel P R D oh one T L S certificate stays on the retained A D C S, issued through the C L M platform; move it before its C A is retired."
+  ],
+  [
+   12.675,
+   7.987,
+   "The sequel P R D oh six T L S certificate isn't from A D C S at all, so it's tracked in the certificate lifecycle platform."
+  ],
+  [
+   20.663,
+   9.9,
+   "The certificate-mapped login and endpoint on sequel P R D oh two aren't renewed by the C L M platform, so they're replaced or re-mapped before the C A is retired."
+  ],
+  [
+   30.562,
+   9.512,
+   "And the certificate-based sign-in on sequel F C I oh four also depends on the domain controllers' certificates, so it's retired with the N T L M interim posture."
+  ]
+ ],
+ "10": [
+  [
+   0.1,
+   2.025,
+   "Step three widens the window."
+  ],
+  [
+   2.075,
+   5.312,
+   "The ninety days is a default in the kit's thresholds file, and a parameter changes it for one run."
+  ],
+  [
+   7.388,
+   4.713,
+   "With a window of three hundred sixty-five days, four of the five certificates warn."
+  ],
+  [
+   12.1,
+   6.55,
+   "Only sequel P R D oh six's T L S certificate, with four hundred eighty-one days left, stays quiet."
+  ]
+ ],
+ "11": [
+  [
+   0.1,
+   13.2,
+   "Step four opens the manifest: the step, its mode, read-only, its controls, S C eight, S C twelve and S C seventeen, its two K S Is, and the S H A two fifty-six of each file."
+  ],
+  [
+   13.25,
+   4.175,
+   "Step five runs this chapter's tests: three pass, none fail."
+  ],
+  [
+   17.425,
+   1.9,
+   "And step six lists your runs."
+  ],
+  [
+   19.325,
+   5.9,
+   "There's nothing to clean up: the kit's folder is as you unzipped it, and each run's results stay in their own folder."
+  ]
+ ],
+ "12": [
+  [
+   0.1,
+   5.1,
+   "Lab 2 runs Runbook R ten's reads on one test instance and its host, never production."
+  ],
+  [
+   5.15,
+   1.95,
+   "It was not run by the authors."
+  ],
+  [
+   7.1,
+   4.675,
+   "Every step reads: nothing is issued, bound, changed or restarted."
+  ],
+  [
+   11.775,
+   6.675,
+   "Sign in as a test reader whose login holds the view-state and view-definition permissions the page lists, never sysadmin."
+  ],
+  [
+   18.45,
+   6.325,
+   "Read the configured T L S thumbprint, the host's certificates, the certificate-mapped logins and the endpoints."
+  ],
+  [
+   24.775,
+   3.725,
+   "An empty thumbprint means sequel server picked a certificate itself."
+  ],
+  [
+   28.5,
+   4.425,
+   "Save the reads by hand in the fixture's shape, and run the dependency list on them."
+  ],
+  [
+   32.925,
+   5.388,
+   "Then delete the lab folder, or keep the saved reads inside your boundary as R ten's evidence."
+  ]
+ ],
+ "13": [
+  [
+   0.1,
+   1.6,
+   "The federal requirement."
+  ],
+  [
+   1.65,
+   10.8,
+   "Chapter 08 of the workbook maps the dependency list and Runbook R ten's reads to S C eight, S C twelve and S C seventeen in nist special publication eight hundred fifty-three."
+  ],
+  [
+   12.45,
+   12.825,
+   "The list supports S C eight, because the certificate that protects connections is known and dated; S C twelve, key and certificate lifecycle; and S C seventeen, which P K I issued each certificate."
+  ],
+  [
+   25.275,
+   9.338,
+   "R ten notes that S C eight and its enhancement one are in the moderate baseline, and that every Microsoft Entra-authenticated connection to sequel server needs encryption."
+  ],
+  [
+   34.612,
+   6.612,
+   "The I S S O keeps the certificates file and the manifest per instance, and the saved reads with the date and the reader."
+  ],
+  [
+   41.225,
+   7.688,
+   "K S Is are fed-ramp twenty X indicators for cloud service providers; your providers report against them, the agency doesn't."
+  ],
+  [
+   48.913,
+   4.775,
+   "The list supports these controls; the assessor decides whether each one is in place."
+  ]
+ ],
+ "14": [
+  [
+   0.1,
+   2.05,
+   "Check yourself with two questions."
+  ],
+  [
+   2.1,
+   6.688,
+   "First: the certificate behind sequel P R D oh two's certificate-mapped login expires in forty-one days."
+  ],
+  [
+   8.787,
+   1.188,
+   "Why replace it?"
+  ],
+  [
+   9.975,
+   2.6,
+   "The answer is a: because of its issuer."
+  ],
+  [
+   12.575,
+   5.438,
+   "Signing doesn't check expiry, but the certificate came from the enterprise C A that will be retired."
+  ],
+  [
+   18.012,
+   5.213,
+   "Second: the run ends with blocking an A D C S decommission, four of five."
+  ],
+  [
+   23.225,
+   1.113,
+   "What does it count?"
+  ],
+  [
+   24.337,
+   7.912,
+   "The answer is b: the rows an enterprise A D C S C A issued, each needing its action before that C A is retired."
+  ],
+  [
+   32.25,
+   4.338,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "15": [
+  [
+   0.1,
+   1.025,
+   "To sum up."
+  ],
+  [
+   1.075,
+   9.725,
+   "You listed the certificates sequel server depends on, by class, issuer and expiry, and read the action each class needs before its issuing C A is retired."
+  ],
+  [
+   10.8,
+   7.35,
+   "The list goes to the owners of P K I and Certificates before any C A date is set; the issuer decision stays theirs."
+  ],
+  [
+   18.15,
+   7.312,
+   "The I S S O keeps the certificates file and the manifest per instance, and Runbook R ten's saved reads with the date and the reader."
+  ],
+  [
+   25.462,
+   3.475,
+   "Before shipping, work through the Chapter 08 checklist."
+  ],
+  [
+   28.938,
+   4.1,
+   "Next is Module 9: closure, drift and evidence."
+  ]
+ ]
+}

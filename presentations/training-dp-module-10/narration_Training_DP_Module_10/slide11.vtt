@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.500
+Step eight judges the parallel
+run on day thirty's snapshot.
+
+2
+00:00:03.500 --> 00:00:06.636
+In the fixtures, day thirty
+is after the cutover,
+
+3
+00:00:06.636 --> 00:00:11.538
+so each legacy login reads as already
+cut over: cutover-ready, four of four.
+
+4
+00:00:11.538 --> 00:00:16.649
+Step nine dry-runs the rollback, before
+the cutover, so its record exists first.
+
+5
+00:00:16.649 --> 00:00:21.262
+It would grant connect sequel back to the
+groups, and enable the superseded logins.
+
+6
+00:00:21.262 --> 00:00:23.312
+Step ten dry-runs the cutover.
+
+7
+00:00:23.312 --> 00:00:28.099
+Users and SQL logins are disabled,
+and groups are denied connect sequel.
+
+8
+00:00:28.099 --> 00:00:31.495
+The Windows admin group leaves
+the sys-admin role first,
+
+9
+00:00:31.495 --> 00:00:34.225
+because a deny doesn't
+bind sys-admin members.
+
+10
+00:00:34.225 --> 00:00:37.990
+Nothing is dropped, which is why
+the rollback can reverse it at once.

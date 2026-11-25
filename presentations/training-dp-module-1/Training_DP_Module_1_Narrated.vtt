@@ -1,0 +1,921 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:05.013
+Welcome to Module 1 of the Data Platform
+and SQL Server Identity learning path:
+
+2
+00:00:05.013 --> 00:00:07.325
+the estate and the consolidation gate.
+
+3
+00:00:07.325 --> 00:00:08.873
+It teaches Runbook R oh two,
+
+4
+00:00:08.873 --> 00:00:13.375
+with Chapter 1 of the developer
+workbook, Building SQL Server Identity.
+
+5
+00:00:13.375 --> 00:00:16.991
+Before any login moves, you
+count every SQL Server instance,
+
+6
+00:00:16.991 --> 00:00:19.912
+and decide which ones the
+identity work is spent on.
+
+7
+00:00:19.912 --> 00:00:22.450
+This is the first of ten modules.
+
+8
+00:00:26.250 --> 00:00:27.587
+Why does this matter?
+
+9
+00:00:27.587 --> 00:00:30.453
+After twenty years across
+an Active Directory forest,
+
+10
+00:00:30.453 --> 00:00:33.564
+the SQL Server estate is larger
+than anyone's list of it,
+
+11
+00:00:33.564 --> 00:00:36.674
+and part of it shouldn't survive
+the transformation at all.
+
+12
+00:00:36.674 --> 00:00:41.350
+Migrating the logins of an instance you
+retire three months later is wasted work.
+
+13
+00:00:41.350 --> 00:00:45.643
+So the identity work starts with
+a count: one row per instance,
+
+14
+00:00:45.643 --> 00:00:51.137
+classified retain, consolidate, retire
+or review, before any login is touched.
+
+15
+00:00:51.137 --> 00:00:55.388
+Only retained instances and consolidation
+targets go on to the migration.
+
+16
+00:00:55.388 --> 00:00:58.156
+In this module you see
+how that gate is decided,
+
+17
+00:00:58.156 --> 00:01:01.590
+and run the kit's classifier
+over a fictional estate.
+
+18
+00:01:05.390 --> 00:01:08.106
+Here's what you'll be able to
+do by the end of this module,
+
+19
+00:01:08.106 --> 00:01:10.390
+which takes about fifty
+minutes with the lab.
+
+20
+00:01:10.390 --> 00:01:13.534
+You'll name the three forms of
+sprawl in a twenty-year estate,
+
+21
+00:01:13.534 --> 00:01:17.053
+and say why the inventory comes
+before the authentication audit.
+
+22
+00:01:17.053 --> 00:01:20.557
+You'll apply the three
+rationalization lenses, utilization,
+
+23
+00:01:20.557 --> 00:01:24.552
+version and dependencies, and say
+which classes enter the migration.
+
+24
+00:01:24.552 --> 00:01:28.156
+You'll explain how a recorded
+constraint changes a first-pass answer,
+
+25
+00:01:28.156 --> 00:01:31.002
+and why an instance nothing
+could read lands in review.
+
+26
+00:01:31.002 --> 00:01:33.887
+And you'll classify a
+fictional estate with the kit,
+
+27
+00:01:33.887 --> 00:01:37.252
+and show that a changed file no
+longer matches its manifest.
+
+28
+00:01:37.252 --> 00:01:42.121
+Before you start, follow the path's
+get-the-code steps, and read the first chapter
+
+29
+00:01:42.121 --> 00:01:47.590
+of Data Platform: SQL Server Identity,
+What Windows Authentication Actually Is.
+
+30
+00:01:51.390 --> 00:01:53.515
+Unit 2 is finding the estate.
+
+31
+00:01:53.515 --> 00:01:55.465
+An estate grows by accretion.
+
+32
+00:01:55.465 --> 00:01:57.965
+A development instance becomes production.
+
+33
+00:01:57.965 --> 00:02:00.728
+A vendor test instance
+is never decommissioned.
+
+34
+00:02:00.728 --> 00:02:04.678
+An installer drops SQL Server
+Express on an application server.
+
+35
+00:02:04.678 --> 00:02:08.165
+The data platform book's chapter,
+The Shape of Twenty Years,
+
+36
+00:02:08.165 --> 00:02:11.435
+names three overlapping
+problems: too many instances,
+
+37
+00:02:11.435 --> 00:02:15.214
+too many databases, and too many
+forest-spanning dependencies.
+
+38
+00:02:15.214 --> 00:02:18.128
+The transformation doesn't
+begin until they're assessed.
+
+39
+00:02:18.128 --> 00:02:20.724
+No single instrument finds every instance,
+
+40
+00:02:20.724 --> 00:02:24.043
+so discovery combines the
+network and directory sweep,
+
+41
+00:02:24.043 --> 00:02:28.516
+the trail of service principal names,
+or S P Ns, that SQL Server registers,
+
+42
+00:02:28.516 --> 00:02:30.681
+and Microsoft's assessment tooling,
+
+43
+00:02:30.681 --> 00:02:34.577
+and fuses them into one inventory
+that counts each instance once.
+
+44
+00:02:34.577 --> 00:02:36.753
+The kit doesn't rebuild discovery.
+
+45
+00:02:36.753 --> 00:02:39.809
+The Start Kit's SQL Server
+count finds the instances,
+
+46
+00:02:39.809 --> 00:02:42.110
+and the kit classifies what it found.
+
+47
+00:02:45.910 --> 00:02:47.872
+What does the inventory have to hold?
+
+48
+00:02:47.872 --> 00:02:51.052
+The data platform book's
+chapter, The Estate Inventory,
+
+49
+00:02:51.052 --> 00:02:54.711
+lists a consistent set of facts
+for every instance it can find.
+
+50
+00:02:54.711 --> 00:02:59.898
+The version, edition and build number
+establish the support and licensing posture.
+
+51
+00:02:59.898 --> 00:03:04.286
+The host operating system version
+establishes the Arc and upgrade envelope.
+
+52
+00:03:04.286 --> 00:03:06.652
+The domain-join state
+and the owning domain
+
+53
+00:03:06.652 --> 00:03:09.085
+establish the forest-entanglement picture.
+
+54
+00:03:09.085 --> 00:03:13.535
+The service account and its source domain
+establish the credential dependencies.
+
+55
+00:03:13.535 --> 00:03:16.885
+And for every database, the
+size, the last-access timestamp,
+
+56
+00:03:16.885 --> 00:03:20.444
+the recovery model and the
+owning application establish the
+
+57
+00:03:20.444 --> 00:03:24.422
+utilization and zombie picture that
+the lenses turn into a decision.
+
+58
+00:03:24.422 --> 00:03:27.322
+The inventory isn't a
+point-in-time spreadsheet.
+
+59
+00:03:27.322 --> 00:03:31.474
+It's designed to be re-run, because
+instances appear and disappear across a
+
+60
+00:03:31.474 --> 00:03:36.200
+multi-month assessment, and the consolidation
+plan must track a moving estate.
+
+61
+00:03:40.000 --> 00:03:44.662
+Runbook R oh two's first step sets out
+the rights each depth of discovery needs.
+
+62
+00:03:44.662 --> 00:03:49.513
+Read access to Active Directory finds
+candidates; it doesn't complete the inventory.
+
+63
+00:03:49.513 --> 00:03:54.595
+The directory depth gives candidate hosts
+and instances from S P Ns and directory
+
+64
+00:03:54.595 --> 00:03:56.539
+objects, and needs nothing more:
+
+65
+00:03:56.539 --> 00:04:00.126
+the SQL Server Browser probe
+needs only a network path.
+
+66
+00:04:00.126 --> 00:04:04.216
+The host depth gives the instances
+installed and each service's account,
+
+67
+00:04:04.216 --> 00:04:08.512
+and needs local administrator by default,
+or a least-privilege alternative.
+
+68
+00:04:08.512 --> 00:04:12.868
+The instance depth gives the version,
+the mode, every login and the databases,
+
+69
+00:04:12.868 --> 00:04:16.463
+and needs a Windows login with
+the Start Kit's read permissions.
+
+70
+00:04:16.463 --> 00:04:17.712
+Never sysadmin.
+
+71
+00:04:17.712 --> 00:04:20.225
+Azure Arc is an optional fourth depth.
+
+72
+00:04:20.225 --> 00:04:24.128
+Run every depth under one dedicated
+discovery identity per forest,
+
+73
+00:04:24.128 --> 00:04:28.797
+a group managed service account for
+scheduled runs, and add the host and instance
+
+74
+00:04:28.797 --> 00:04:33.500
+rights for the assessment window only,
+recording each grant and its removal.
+
+75
+00:04:37.300 --> 00:04:39.100
+Unit 3 is the gate.
+
+76
+00:04:39.100 --> 00:04:41.887
+Three lenses turn the
+inventory into a judgment.
+
+77
+00:04:41.887 --> 00:04:46.591
+Utilization finds zombies: a database
+with no connections in four hundred
+
+78
+00:04:46.591 --> 00:04:50.838
+or more days, no restores consumed,
+and a retired owning application.
+
+79
+00:04:50.838 --> 00:04:53.982
+Version decides what can
+take Entra logins at all,
+
+80
+00:04:53.982 --> 00:04:58.737
+since the FROM EXTERNAL PROVIDER
+syntax needs SQL Server 2022 or later.
+
+81
+00:04:58.737 --> 00:05:01.591
+And dependencies, such as linked servers,
+
+82
+00:05:01.591 --> 00:05:06.626
+replication and S S I S packages, are
+what most often overturn a naive plan.
+
+83
+00:05:06.626 --> 00:05:12.525
+The result is one class per instance:
+retain, consolidate into a target, or retire.
+
+84
+00:05:12.525 --> 00:05:14.300
+One caution from R oh two.
+
+85
+00:05:14.300 --> 00:05:17.438
+The index-usage counters
+reset when the engine starts,
+
+86
+00:05:17.438 --> 00:05:21.412
+so a database on an instance that
+restarted last week can look unused.
+
+87
+00:05:21.412 --> 00:05:25.798
+Read the start time, and take the
+long-horizon evidence from login auditing,
+
+88
+00:05:25.798 --> 00:05:30.850
+backup history and the application portfolio,
+before you call anything a zombie.
+
+89
+00:05:34.650 --> 00:05:37.732
+The kit's classifier follows
+R oh two's first pass,
+
+90
+00:05:37.732 --> 00:05:40.275
+then applies the recorded constraints.
+
+91
+00:05:40.275 --> 00:05:44.126
+An instance whose every database
+is idle past the zombie threshold,
+
+92
+00:05:44.126 --> 00:05:47.887
+or whose every owning application
+is decommissioned, is retired.
+
+93
+00:05:47.887 --> 00:05:51.551
+An instance with no version goes
+to review, never to retain.
+
+94
+00:05:51.551 --> 00:05:56.810
+A version before SQL Server 2022
+consolidates into a shared target,
+
+95
+00:05:56.810 --> 00:05:58.950
+and 2022 or later is retained.
+
+96
+00:05:58.950 --> 00:06:00.313
+Then the constraints.
+
+97
+00:06:00.313 --> 00:06:05.168
+Collation conflicts, version-locked vendor
+applications, compliance isolation,
+
+98
+00:06:05.168 --> 00:06:09.167
+indivisible dependencies and
+failover cluster instances turn an
+
+99
+00:06:09.167 --> 00:06:13.237
+apparent consolidation into a
+dedicated target, or a retain in place.
+
+100
+00:06:13.237 --> 00:06:19.320
+It's a first pass: the architects confirm
+or override every row, and record why.
+
+101
+00:06:23.120 --> 00:06:24.007
+Try it.
+
+102
+00:06:24.007 --> 00:06:27.478
+Lab 1 runs in PowerShell 7 on
+the kit's fictional estate,
+
+103
+00:06:27.478 --> 00:06:29.433
+with no instance and no tenant.
+
+104
+00:06:29.433 --> 00:06:33.450
+Go to the kit's folder, and make this
+run's results folder, named for the
+
+105
+00:06:33.450 --> 00:06:37.469
+time you start in U T C, so running
+the lab again never overwrites a run.
+
+106
+00:06:37.469 --> 00:06:41.220
+Step one classifies eight
+instances for contoso dot example.
+
+107
+00:06:41.220 --> 00:06:42.570
+Look at the reasons.
+
+108
+00:06:42.570 --> 00:06:48.058
+Sequel P R D oh one and oh two run
+SQL Server 2022 and are retained,
+
+109
+00:06:48.058 --> 00:06:53.745
+and sequel P R D oh six, on 2025, is
+retained as the consolidation target.
+
+110
+00:06:53.745 --> 00:06:57.805
+Sequel L E G oh three, on
+2016, can't take Entra logins,
+
+111
+00:06:57.805 --> 00:07:01.270
+so it consolidates into the shared target.
+
+112
+00:07:01.270 --> 00:07:06.832
+Sequel O L D oh five is retired: every
+database idle four hundred days or more.
+
+113
+00:07:06.832 --> 00:07:11.819
+Sequel L E G oh seven's collation
+conflict sends it to a dedicated target.
+
+114
+00:07:11.819 --> 00:07:15.545
+Sequel D E V oh eight has no
+version, so it's in review.
+
+115
+00:07:15.545 --> 00:07:18.567
+And the denominator
+line counts each class:
+
+116
+00:07:18.567 --> 00:07:22.345
+two consolidate, four retain,
+one retire and one review.
+
+117
+00:07:22.345 --> 00:07:26.645
+Sequel F C I oh four is retained only
+because of its vendor constraint.
+
+118
+00:07:26.645 --> 00:07:31.840
+It's also a failover cluster instance,
+which Chapter 3 puts in Category 3.
+
+119
+00:07:35.640 --> 00:07:37.727
+Step two opens the manifest.
+
+120
+00:07:37.727 --> 00:07:41.390
+It names the step, estate, and
+says the run was read-only.
+
+121
+00:07:41.390 --> 00:07:46.032
+It names the step's control, C M
+eight, and its K S I, and the S H A
+
+122
+00:07:46.032 --> 00:07:51.365
+two fifty-six hash of each file the
+run wrote: the C S V and the jay-son.
+
+123
+00:07:51.365 --> 00:07:55.677
+Step three imports the kit's module and
+checks the folder against its manifest.
+
+124
+00:07:55.677 --> 00:07:59.039
+Both files match the hashes
+recorded when the run wrote them.
+
+125
+00:07:59.039 --> 00:08:03.795
+This is why the manifest matters to an
+assessor: the I S S O keeps the run folder,
+
+126
+00:08:03.795 --> 00:08:06.210
+and reruns the check on the stored copy,
+
+127
+00:08:06.210 --> 00:08:09.320
+so the inventory kept is
+the one the run wrote.
+
+128
+00:08:13.120 --> 00:08:16.670
+Step four looks at the two instances
+that don't enter the migration.
+
+129
+00:08:16.670 --> 00:08:21.688
+Sequel O L D oh five's only database was
+last used nine hundred and twelve days ago,
+
+130
+00:08:21.688 --> 00:08:25.220
+well past the four-hundred-day
+threshold, so it's retired.
+
+131
+00:08:25.220 --> 00:08:28.353
+Sequel D E V oh eight is
+known only by its S P N:
+
+132
+00:08:28.353 --> 00:08:31.933
+discovery found it, but
+nothing read its version.
+
+133
+00:08:31.933 --> 00:08:36.433
+It stays in review until someone reads
+it, or confirms the host is gone.
+
+134
+00:08:36.433 --> 00:08:38.450
+Review is never retain.
+
+135
+00:08:42.250 --> 00:08:44.618
+Step five copies the run's folder,
+
+136
+00:08:44.618 --> 00:08:48.388
+adds a row by hand to the copy's
+C S V, and checks it again.
+
+137
+00:08:48.388 --> 00:08:53.226
+The C S V no longer matches its
+recorded hash; the jay-son still does.
+
+138
+00:08:53.226 --> 00:08:56.712
+That's how the manifest catches
+a file changed after the run.
+
+139
+00:08:56.712 --> 00:09:00.674
+Step six runs this chapter's
+tests: eight pass, none fail.
+
+140
+00:09:00.674 --> 00:09:04.613
+Step seven lists your runs,
+one line per run, oldest first.
+
+141
+00:09:04.613 --> 00:09:08.143
+There's nothing to clean up: the
+kit's folder is as you unzipped it,
+
+142
+00:09:08.143 --> 00:09:10.890
+and this run's results
+stay in its own folder.
+
+143
+00:09:14.690 --> 00:09:17.090
+Lab 2 runs on your own test domain.
+
+144
+00:09:17.090 --> 00:09:19.065
+It hasn't been run by the authors.
+
+145
+00:09:19.065 --> 00:09:24.132
+You need a test domain with at least one
+test SQL Server instance, never production;
+
+146
+00:09:24.132 --> 00:09:27.415
+a repository checkout, so the
+Start Kit is beside the kit;
+
+147
+00:09:27.415 --> 00:09:31.768
+PowerShell 7 with the Active Directory
+module on a domain-joined machine;
+
+148
+00:09:31.768 --> 00:09:35.622
+a network path to the instance's
+port and U D P fourteen thirty-four;
+
+149
+00:09:35.622 --> 00:09:39.190
+and a Windows login holding the
+Start Kit's read permissions.
+
+150
+00:09:39.190 --> 00:09:40.440
+Never sysadmin.
+
+151
+00:09:40.440 --> 00:09:42.206
+Run the Start Kit's discovery,
+
+152
+00:09:42.206 --> 00:09:45.590
+turn its output into the kit's
+inventory, and classify it.
+
+153
+00:09:45.590 --> 00:09:48.542
+Compare each row with the
+Start Kit's own first pass,
+
+154
+00:09:48.542 --> 00:09:52.690
+add the owners' constraints and
+application status, and classify again.
+
+155
+00:09:52.690 --> 00:09:54.715
+The second run is the one to keep.
+
+156
+00:09:54.715 --> 00:09:57.653
+Nothing on the instance or
+in the directory changes.
+
+157
+00:09:57.653 --> 00:10:01.048
+To back it out, delete the lab's
+files, and have the administrator
+
+158
+00:10:01.048 --> 00:10:04.620
+remove the read permissions if
+they were granted for the lab.
+
+159
+00:10:08.420 --> 00:10:10.020
+The federal requirement.
+
+160
+00:10:10.020 --> 00:10:14.650
+Chapter 1's table maps the classification
+and the manifest check to C M eight,
+
+161
+00:10:14.650 --> 00:10:21.708
+System Component Inventory, in NIST SP
+800-53, with the K S I for the inventory.
+
+162
+00:10:21.708 --> 00:10:26.822
+Classifying every instance and counting
+the denominator once supports C M eight,
+
+163
+00:10:26.822 --> 00:10:30.057
+with the C S V, the jay-son
+and the manifest as evidence.
+
+164
+00:10:30.057 --> 00:10:33.505
+Showing that a changed file no
+longer matches its run provides
+
+165
+00:10:33.505 --> 00:10:36.620
+evidence that the inventory
+kept is the one the run wrote.
+
+166
+00:10:36.620 --> 00:10:40.672
+Runbook R oh two also maps the rights
+each depth of discovery needs,
+
+167
+00:10:40.672 --> 00:10:43.030
+and its reconciliation with Azure Arc.
+
+168
+00:10:43.030 --> 00:10:47.082
+K S Is are FedRAMP twenty X indicators
+for cloud service providers:
+
+169
+00:10:47.082 --> 00:10:49.882
+the agency lines its own
+evidence up with them.
+
+170
+00:10:49.882 --> 00:10:52.706
+The run's files provide
+evidence for a control;
+
+171
+00:10:52.706 --> 00:10:56.880
+the agency still sets its
+parameters, and the assessor decides.
+
+172
+00:11:00.680 --> 00:11:02.730
+Check yourself with two questions.
+
+173
+00:11:02.730 --> 00:11:06.504
+First: sequel D E V oh eight
+was found only by its S P N,
+
+174
+00:11:06.504 --> 00:11:08.742
+and nothing read its version.
+
+175
+00:11:08.742 --> 00:11:10.405
+How does the kit classify it?
+
+176
+00:11:10.405 --> 00:11:15.755
+The answer is c: review, until someone
+reads it or confirms the host is gone.
+
+177
+00:11:15.755 --> 00:11:18.467
+No version means review, never retain.
+
+178
+00:11:18.467 --> 00:11:24.842
+Second: sequel F C I oh four runs SQL
+Server 2019, yet the kit retains it.
+
+179
+00:11:24.842 --> 00:11:25.555
+Why?
+
+180
+00:11:25.555 --> 00:11:29.483
+The answer is a: a recorded vendor
+constraint keeps it in place,
+
+181
+00:11:29.483 --> 00:11:32.255
+and an upgrade or
+exception is still needed.
+
+182
+00:11:32.255 --> 00:11:34.393
+That's rule six of the classifier.
+
+183
+00:11:34.393 --> 00:11:39.040
+The module page has two more questions,
+each linked to the section that answers it.
+
+184
+00:11:42.840 --> 00:11:43.865
+To sum up.
+
+185
+00:11:43.865 --> 00:11:48.622
+You learned why the estate is counted
+and rationalized before any login moves,
+
+186
+00:11:48.622 --> 00:11:53.503
+and how the gate sorts every instance into
+retain, consolidate, retire or review.
+
+187
+00:11:53.503 --> 00:11:55.618
+You classified a fictional estate,
+
+188
+00:11:55.618 --> 00:11:58.902
+and saw its manifest catch a
+file changed after the run.
+
+189
+00:11:58.902 --> 00:12:03.387
+The evidence an I S S O keeps from this
+module is the run folder, the C S V,
+
+190
+00:12:03.387 --> 00:12:06.591
+the jay-son and the manifest
+with each file's hash,
+
+191
+00:12:06.591 --> 00:12:10.915
+and the manifest check's output
+beside it, rerun on the stored copy.
+
+192
+00:12:10.915 --> 00:12:13.828
+Before shipping, work through
+Chapter 1's checklist.
+
+193
+00:12:13.828 --> 00:12:16.840
+Next is Module 2, the
+authentication audit.

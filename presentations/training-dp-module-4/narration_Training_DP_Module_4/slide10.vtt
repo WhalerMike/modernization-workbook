@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.825
+Step four judges the
+parallel run on day one.
+
+2
+00:00:02.825 --> 00:00:06.312
+Nothing connects through Entra
+yet, so nothing is ready:
+
+3
+00:00:06.312 --> 00:00:08.850
+zero of four, keep the parallel run going.
+
+4
+00:00:08.850 --> 00:00:10.187
+Read the Why column.
+
+5
+00:00:10.187 --> 00:00:13.188
+Every Entra principal is
+not yet seen connecting.
+
+6
+00:00:13.188 --> 00:00:18.326
+Contoso S V C payroll still has
+forty-one remote N T L M sessions.
+
+7
+00:00:18.326 --> 00:00:22.325
+And three legacy logins still carry
+traffic that arrives nowhere else.
+
+8
+00:00:22.325 --> 00:00:24.675
+Now look at Contoso sequel admins.
+
+9
+00:00:24.675 --> 00:00:26.963
+It shows zero legacy sessions.
+
+10
+00:00:26.963 --> 00:00:28.753
+Its one session was local,
+
+11
+00:00:28.753 --> 00:00:32.780
+and local sessions always report
+N T L M, so they don't count.

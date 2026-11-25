@@ -1,0 +1,58 @@
+[
+ {
+  "slide": 4,
+  "title": "Three places SQL Server touches AD CS",
+  "links": [
+   {
+    "text": "Book 06, Ch 22",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/22-where-sql-server-touches-adcs.html"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/08-reading-the-audit.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The issuer decision, and the class on every row",
+  "links": [
+   {
+    "text": "Book 07, Ch 04",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b07-pki/04-the-target-pki.html"
+   },
+   {
+    "text": "Book 06, Ch 22",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/22-where-sql-server-touches-adcs.html"
+   },
+   {
+    "text": "Chapter 08",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/08-reading-the-audit.html"
+   }
+  ]
+ },
+ {
+  "slide": 7,
+  "title": "Dangers, and the guard against each",
+  "links": [
+   {
+    "text": "Book 06, Ch 22",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/22-where-sql-server-touches-adcs.html"
+   }
+  ]
+ },
+ {
+  "slide": 13,
+  "title": "The federal requirement and the evidence the ISSO keeps",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

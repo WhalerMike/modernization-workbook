@@ -1,0 +1,34 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.482
+Welcome to Module 8 of
+the Data Platform and SQL
+
+2
+00:00:03.482 --> 00:00:06.863
+Server Identity learning
+path: A D C S dependencies.
+
+3
+00:00:06.863 --> 00:00:10.962
+It goes with Runbook R ten and
+Chapter 08 of the developer workbook,
+
+4
+00:00:10.962 --> 00:00:13.075
+Building SQL Server Identity.
+
+5
+00:00:13.075 --> 00:00:17.084
+You'll list every certificate
+sequel server depends on, by class,
+
+6
+00:00:17.084 --> 00:00:21.925
+issuer and expiry, before anyone dates
+a change to the certificate authority.
+
+7
+00:00:21.925 --> 00:00:24.240
+Take this module after Module 7.

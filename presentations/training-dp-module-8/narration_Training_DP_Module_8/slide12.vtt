@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.384
+Lab 2 runs Runbook R ten's reads on one
+
+2
+00:00:02.384 --> 00:00:05.200
+test instance and its
+host, never production.
+
+3
+00:00:05.200 --> 00:00:07.100
+It was not run by the authors.
+
+4
+00:00:07.100 --> 00:00:11.775
+Every step reads: nothing is
+issued, bound, changed or restarted.
+
+5
+00:00:11.775 --> 00:00:15.079
+Sign in as a test reader whose
+login holds the view-state and
+
+6
+00:00:15.079 --> 00:00:18.450
+view-definition permissions
+the page lists, never sysadmin.
+
+7
+00:00:18.450 --> 00:00:21.925
+Read the configured T L S
+thumbprint, the host's certificates,
+
+8
+00:00:21.925 --> 00:00:24.775
+the certificate-mapped
+logins and the endpoints.
+
+9
+00:00:24.775 --> 00:00:28.500
+An empty thumbprint means sequel
+server picked a certificate itself.
+
+10
+00:00:28.500 --> 00:00:32.925
+Save the reads by hand in the fixture's
+shape, and run the dependency list on them.
+
+11
+00:00:32.925 --> 00:00:34.527
+Then delete the lab folder,
+
+12
+00:00:34.527 --> 00:00:38.330
+or keep the saved reads inside
+your boundary as R ten's evidence.

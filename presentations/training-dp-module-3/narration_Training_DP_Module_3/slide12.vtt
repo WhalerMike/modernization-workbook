@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.475
+Step five leaves sequel P R D oh
+one's Entra setting unconfirmed.
+
+2
+00:00:04.475 --> 00:00:08.425
+This is what every instance looks
+like in Lab 2, until you confirm it.
+
+3
+00:00:08.425 --> 00:00:11.440
+The agent is connected and
+the extension is deployed,
+
+4
+00:00:11.440 --> 00:00:15.552
+but with the Entra setting unconfirmed,
+the instance drops to Category 2,
+
+5
+00:00:15.552 --> 00:00:20.212
+and the next column names the missing
+piece: Entra authentication not configured.
+
+6
+00:00:20.212 --> 00:00:23.326
+An instance with two of the
+three looks ready in the portal;
+
+7
+00:00:23.326 --> 00:00:25.012
+the kit doesn't treat it as ready.
+
+8
+00:00:25.012 --> 00:00:29.074
+Step six runs this chapter's
+tests: five pass, none fail.
+
+9
+00:00:29.074 --> 00:00:30.875
+Step seven lists your runs.
+
+10
+00:00:30.875 --> 00:00:34.490
+There's nothing to clean up: the
+results stay in the run's own folder.

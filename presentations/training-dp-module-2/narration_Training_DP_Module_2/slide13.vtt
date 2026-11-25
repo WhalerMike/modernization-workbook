@@ -1,0 +1,60 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.650
+Lab 2 runs on your own test instance.
+
+2
+00:00:02.650 --> 00:00:04.625
+It hasn't been run by the authors.
+
+3
+00:00:04.625 --> 00:00:08.763
+You need a test SQL Server instance,
+never production, PowerShell 7 with
+
+4
+00:00:08.763 --> 00:00:12.700
+the SQL Server module, and read
+permissions granted for the lab only.
+
+5
+00:00:12.700 --> 00:00:13.950
+Never sysadmin.
+
+6
+00:00:13.950 --> 00:00:16.638
+Check the reading login's
+own permissions first.
+
+7
+00:00:16.638 --> 00:00:20.974
+Then export a SELECT-only audit snapshot,
+and compare its login count with one
+
+8
+00:00:20.974 --> 00:00:25.312
+the instance's administrator trusts: a
+short list means a missing permission.
+
+9
+00:00:25.312 --> 00:00:26.337
+Then audit it.
+
+10
+00:00:26.337 --> 00:00:28.224
+Nothing on the instance changes.
+
+11
+00:00:28.224 --> 00:00:30.355
+To back it out, delete the audit run,
+
+12
+00:00:30.355 --> 00:00:33.550
+and have the administrator
+remove the lab's grants.
+
+13
+00:00:33.550 --> 00:00:36.720
+Keep the snapshot if you
+go on to Module 3's Lab 2.

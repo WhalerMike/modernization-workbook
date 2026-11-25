@@ -1,0 +1,912 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.040
+Welcome to Module 2 of
+the Data Platform and SQL
+
+2
+00:00:03.040 --> 00:00:06.400
+Server Identity learning path:
+the authentication audit.
+
+3
+00:00:06.400 --> 00:00:08.108
+It teaches Runbook R oh three,
+
+4
+00:00:08.108 --> 00:00:12.650
+with Chapter 2 of the developer
+workbook, Building SQL Server Identity.
+
+5
+00:00:12.650 --> 00:00:15.438
+Module 1 decided which instances survive.
+
+6
+00:00:15.438 --> 00:00:18.420
+Now you measure how each
+survivor authenticates.
+
+7
+00:00:22.220 --> 00:00:23.557
+Why does this matter?
+
+8
+00:00:23.557 --> 00:00:28.507
+For each instance that survived the gate,
+the audit records its authentication mode,
+
+9
+00:00:28.507 --> 00:00:31.507
+every usable login by type,
+the state of the S A login,
+
+10
+00:00:31.507 --> 00:00:33.507
+and the account the engine runs as.
+
+11
+00:00:33.507 --> 00:00:35.066
+Every later step, Arc,
+
+12
+00:00:35.066 --> 00:00:39.744
+login migration and N T L M
+elimination, depends on that record.
+
+13
+00:00:39.744 --> 00:00:43.008
+And it's re-run after every
+change, to measure progress.
+
+14
+00:00:43.008 --> 00:00:45.941
+In this module you audit
+four fictional instances,
+
+15
+00:00:45.941 --> 00:00:49.294
+rank their findings, and rerun
+the audit thirty days later.
+
+16
+00:00:49.294 --> 00:00:52.920
+Runbook R oh three is
+read-only from start to finish.
+
+17
+00:00:56.720 --> 00:00:59.436
+Here's what you'll be able to
+do by the end of this module,
+
+18
+00:00:59.436 --> 00:01:01.720
+which takes about fifty
+minutes with the lab.
+
+19
+00:01:01.720 --> 00:01:04.783
+You'll explain what the
+audit reads on each instance,
+
+20
+00:01:04.783 --> 00:01:08.620
+and why it runs only on what Module
+1 retained or chose as a target.
+
+21
+00:01:08.620 --> 00:01:10.353
+You'll rank the audit's findings,
+
+22
+00:01:10.353 --> 00:01:13.420
+from an enabled S A down to
+the Arc-eligibility category.
+
+23
+00:01:13.420 --> 00:01:17.276
+You'll say what each Arc-eligibility
+category means for the next step,
+
+24
+00:01:17.276 --> 00:01:21.470
+and why engine Entra authentication
+doesn't wait for O S level Entra sign-in.
+
+25
+00:01:21.470 --> 00:01:24.485
+And you'll explain why a single
+audit run can't show drift,
+
+26
+00:01:24.485 --> 00:01:26.845
+and where the engine's
+service account goes.
+
+27
+00:01:26.845 --> 00:01:29.540
+Before you start, finish Module 1.
+
+28
+00:01:33.340 --> 00:01:35.452
+Unit 2 is what the audit reads.
+
+29
+00:01:35.452 --> 00:01:39.916
+It runs only on instances classified
+retain or consolidation target.
+
+30
+00:01:39.916 --> 00:01:42.649
+For each, it reads the
+authentication mode,
+
+31
+00:01:42.649 --> 00:01:47.882
+and enumerates the logins from the server
+principals view by type: Windows users,
+
+32
+00:01:47.882 --> 00:01:53.193
+Windows groups, SQL logins, logins mapped
+to a certificate or an asymmetric key,
+
+33
+00:01:53.193 --> 00:01:57.177
+and the Entra types, E for a user
+or application and X for a group.
+
+34
+00:01:57.177 --> 00:02:02.266
+It flags the S A account, and captures the
+engine's service account and its S P N.
+
+35
+00:02:02.266 --> 00:02:06.569
+The running mode and the registry login
+mode are read in different places,
+
+36
+00:02:06.569 --> 00:02:10.590
+and a change takes effect only after
+a restart, so the two can disagree.
+
+37
+00:02:10.590 --> 00:02:13.003
+The kit reports that as a mode anomaly.
+
+38
+00:02:13.003 --> 00:02:15.694
+And watch for this: a
+reader without the right
+
+39
+00:02:15.694 --> 00:02:18.603
+permissions gets a short
+login list and no error.
+
+40
+00:02:18.603 --> 00:02:22.189
+A short list means a missing
+permission, not a clean instance.
+
+41
+00:02:22.189 --> 00:02:27.203
+The kit's census leaves out built-in
+principals, and counts only usable logins.
+
+42
+00:02:31.000 --> 00:02:33.185
+The audit returns one row per finding,
+
+43
+00:02:33.185 --> 00:02:37.838
+with a severity from the data platform
+book's chapter, The Authentication Audit.
+
+44
+00:02:37.838 --> 00:02:41.259
+Highest is S A enabled:
+the login whose security
+
+45
+00:02:41.259 --> 00:02:45.176
+identifier is oh x oh one is
+enabled, whatever its name.
+
+46
+00:02:45.176 --> 00:02:47.850
+Critical is any other usable SQL login.
+
+47
+00:02:47.850 --> 00:02:51.403
+High is mixed mode, where SQL
+authentication is accepted,
+
+48
+00:02:51.403 --> 00:02:55.525
+and a mode anomaly, where the registry
+disagrees with the running mode.
+
+49
+00:02:55.525 --> 00:02:59.949
+Medium is the engine running as a domain
+user account or a built-in account,
+
+50
+00:02:59.949 --> 00:03:02.488
+and an S A that's disabled
+but keeps its name.
+
+51
+00:03:02.488 --> 00:03:07.250
+And at the bottom, an information row for
+each instance's Arc-eligibility category.
+
+52
+00:03:07.250 --> 00:03:11.063
+The kit's audit script writes
+the census and the findings,
+
+53
+00:03:11.063 --> 00:03:15.525
+each as a C S V and a jay-son file,
+and one manifest that hashes all four.
+
+54
+00:03:15.525 --> 00:03:18.179
+A disabled login still counts as existing:
+
+55
+00:03:18.179 --> 00:03:21.530
+Chapter 9's closure record
+decides when it's gone.
+
+56
+00:03:25.330 --> 00:03:27.468
+Unit 3 is reading the audit.
+
+57
+00:03:27.468 --> 00:03:31.318
+Its most consequential output is
+the Arc-eligibility category.
+
+58
+00:03:31.318 --> 00:03:34.043
+Category 1 is ready for Entra logins now.
+
+59
+00:03:34.043 --> 00:03:38.642
+Category 2 needs Arc deployed and
+Entra authentication configured first.
+
+60
+00:03:38.642 --> 00:03:41.867
+Within it, instances with
+many Windows logins,
+
+61
+00:03:41.867 --> 00:03:45.092
+active SQL logins or
+missing S P Ns go first.
+
+62
+00:03:45.092 --> 00:03:50.654
+Category 3 is a version before SQL Server
+2022, or a failover cluster instance
+
+63
+00:03:50.654 --> 00:03:55.468
+on any version, and must upgrade,
+re-platform or carry a dated exception.
+
+64
+00:03:55.468 --> 00:04:00.195
+Engine Entra authentication, Layer
+1, proceeds on a domain-joined host,
+
+65
+00:04:00.195 --> 00:04:03.455
+and never waits for O S
+level Entra sign-in, Layer 2.
+
+66
+00:04:03.455 --> 00:04:06.755
+The kit settles only the first pass here,
+
+67
+00:04:06.755 --> 00:04:10.355
+Category 3 or "1 or 2";
+Module 3 settles the rest.
+
+68
+00:04:10.355 --> 00:04:13.530
+And the audit names the engine's
+service account and stops.
+
+69
+00:04:13.530 --> 00:04:18.260
+Converting a user account used as a service
+belongs to the service account guide.
+
+70
+00:04:22.060 --> 00:04:24.122
+What does each category ask of you?
+
+71
+00:04:24.122 --> 00:04:28.384
+The data platform book's chapter,
+Reading the Audit, takes them in turn.
+
+72
+00:04:28.384 --> 00:04:32.657
+For a Category 1 instance, nothing in
+the infrastructure remains to be built:
+
+73
+00:04:32.657 --> 00:04:36.522
+the audit has done its job when it
+delivers a precise login inventory.
+
+74
+00:04:36.522 --> 00:04:40.362
+For Category 2, the Arc deployment
+is a server-level action,
+
+75
+00:04:40.362 --> 00:04:42.122
+not a SQL Server change.
+
+76
+00:04:42.122 --> 00:04:43.890
+The agent connects the server,
+
+77
+00:04:43.890 --> 00:04:48.061
+and Arc installs the Azure extension
+for SQL Server automatically.
+
+78
+00:04:48.061 --> 00:04:51.413
+Once Entra authentication is
+configured on the instance,
+
+79
+00:04:51.413 --> 00:04:53.998
+the next audit re-classifies
+it to Category 1.
+
+80
+00:04:53.998 --> 00:05:00.033
+A Category 3 instance has two paths: upgrade
+the engine to SQL Server 2022 or later
+
+81
+00:05:00.033 --> 00:05:05.723
+and follow the Category 2 path, or document
+a formal exception with a sunset date.
+
+82
+00:05:05.723 --> 00:05:08.407
+A failover cluster
+instance re-platforms to a
+
+83
+00:05:08.407 --> 00:05:11.161
+standalone instance or
+an availability group.
+
+84
+00:05:11.161 --> 00:05:16.397
+And mind the program's N T
+L M backstop, April 1, 2027.
+
+85
+00:05:16.397 --> 00:05:20.602
+A Category 3 instance's remaining
+N T L M connections fail then,
+
+86
+00:05:20.602 --> 00:05:22.498
+whether it's excepted or not.
+
+87
+00:05:22.498 --> 00:05:24.800
+Its Kerberos connections don't.
+
+88
+00:05:28.600 --> 00:05:32.369
+Runbook R oh three's audit script
+degrades rather than crashing,
+
+89
+00:05:32.369 --> 00:05:34.075
+so know what each state means.
+
+90
+00:05:34.075 --> 00:05:38.132
+If the Active Directory module is
+absent, S P N discovery is skipped:
+
+91
+00:05:38.132 --> 00:05:42.537
+only the hosts you name are audited,
+and orphaned logins can't be checked.
+
+92
+00:05:42.537 --> 00:05:45.204
+If the domain controller is unreachable,
+
+93
+00:05:45.204 --> 00:05:48.812
+the S P N query returns nothing,
+so target a reachable one.
+
+94
+00:05:48.812 --> 00:05:51.471
+If a host can't be reached
+for its service details,
+
+95
+00:05:51.471 --> 00:05:54.462
+the service-account fields
+stay unknown for that host.
+
+96
+00:05:54.462 --> 00:05:58.673
+If the SQL connection fails, the
+instance is recorded as query failed,
+
+97
+00:05:58.673 --> 00:06:02.112
+with an empty login inventory,
+rather than aborting the run.
+
+98
+00:06:02.112 --> 00:06:06.800
+And a T C P timeout is recorded as
+timeout, as opposed to yes or no.
+
+99
+00:06:06.800 --> 00:06:11.350
+An empty or unknown field is a
+state to read, not a clean result.
+
+100
+00:06:15.150 --> 00:06:16.037
+Try it.
+
+101
+00:06:16.037 --> 00:06:19.508
+Lab 1 runs in PowerShell 7 on
+the kit's fictional estate,
+
+102
+00:06:19.508 --> 00:06:21.463
+with no instance and no tenant.
+
+103
+00:06:21.463 --> 00:06:24.558
+Go to the kit's folder, and
+make this run's results folder,
+
+104
+00:06:24.558 --> 00:06:28.824
+named for the time you start, so running
+the lab again never overwrites a run.
+
+105
+00:06:28.824 --> 00:06:31.463
+Step one reads the four audited instances.
+
+106
+00:06:31.463 --> 00:06:34.425
+Only the instances Chapter
+1 retained are audited.
+
+107
+00:06:34.425 --> 00:06:37.804
+Look at sequel P R D oh
+one: it runs in mixed mode,
+
+108
+00:06:37.804 --> 00:06:41.275
+zero, while its registry
+says Windows only, one.
+
+109
+00:06:41.275 --> 00:06:45.350
+Sequel F C I oh four is clustered,
+and its registry says mixed.
+
+110
+00:06:45.350 --> 00:06:48.592
+Three of the four engines
+run as domain user accounts,
+
+111
+00:06:48.592 --> 00:06:50.950
+the S V C accounts in the contoso domain.
+
+112
+00:06:50.950 --> 00:06:53.971
+And sequel P R D oh six,
+on SQL Server 2025,
+
+113
+00:06:53.971 --> 00:06:59.370
+runs as a group managed service account,
+whose name ends in a dollar sign.
+
+114
+00:07:03.170 --> 00:07:04.908
+Step two runs the audit.
+
+115
+00:07:04.908 --> 00:07:07.208
+First the census: one row per instance,
+
+116
+00:07:07.208 --> 00:07:11.833
+with usable logins counted by type,
+and disabled ones counted separately.
+
+117
+00:07:11.833 --> 00:07:13.120
+Then the findings.
+
+118
+00:07:13.120 --> 00:07:18.388
+Sequel P R D oh one has the full set: S
+A enabled, highest; a usable SQL login,
+
+119
+00:07:18.388 --> 00:07:22.964
+payroll report, critical; mixed
+mode and a mode anomaly, both high,
+
+120
+00:07:22.964 --> 00:07:26.332
+because the mode was
+changed without a restart;
+
+121
+00:07:26.332 --> 00:07:30.995
+and a service account that's a user
+account with a password, medium.
+
+122
+00:07:30.995 --> 00:07:34.877
+The cut rows give sequel F C I
+oh four almost the same list,
+
+123
+00:07:34.877 --> 00:07:38.083
+with its own usable SQL
+login, vendor H R app.
+
+124
+00:07:38.083 --> 00:07:42.044
+That login has a dated exception,
+but the audit reports it anyway;
+
+125
+00:07:42.044 --> 00:07:45.108
+Chapter 9's closure record
+applies the exception.
+
+126
+00:07:45.108 --> 00:07:49.920
+Sequel F C I oh four is Category
+3, as a failover cluster instance.
+
+127
+00:07:49.920 --> 00:07:54.508
+Sequel P R D oh two has only its
+service-account finding and its category.
+
+128
+00:07:54.508 --> 00:07:57.322
+Sequel P R D oh six
+already has Entra logins,
+
+129
+00:07:57.322 --> 00:08:02.308
+runs as a group managed service account,
+and has no finding but its category.
+
+130
+00:08:02.308 --> 00:08:08.195
+The last line names the evidence:
+A C two, I A five and C M six.
+
+131
+00:08:11.990 --> 00:08:15.060
+Step three opens the manifest: four files,
+
+132
+00:08:15.060 --> 00:08:18.852
+three controls and three K
+S Is, with each file's hash.
+
+133
+00:08:18.852 --> 00:08:20.302
+The run was read-only.
+
+134
+00:08:20.302 --> 00:08:25.638
+Step four counts the findings by severity:
+two highest, the two enabled S A logins;
+
+135
+00:08:25.638 --> 00:08:30.085
+two critical, the two usable SQL
+logins; three high; three medium,
+
+136
+00:08:30.085 --> 00:08:35.810
+the three service accounts; and four
+information rows, one category per instance.
+
+137
+00:08:39.610 --> 00:08:42.285
+Step five reruns the audit on day 30.
+
+138
+00:08:42.285 --> 00:08:45.398
+Sequel P R D oh one has
+moved to Entra logins.
+
+139
+00:08:45.398 --> 00:08:48.689
+Its S A, renamed, a
+Windows login and payroll
+
+140
+00:08:48.689 --> 00:08:51.885
+report are disabled, so disabled is three.
+
+141
+00:08:51.885 --> 00:08:55.827
+Its two superseded Windows groups
+were denied connect SQL instead,
+
+142
+00:08:55.827 --> 00:08:59.435
+so they leave the usable count
+without being counted as disabled.
+
+143
+00:08:59.435 --> 00:09:03.910
+Nothing was dropped, and only its
+service-account finding and category remain.
+
+144
+00:09:03.910 --> 00:09:06.485
+Now look at sequel P R D oh six.
+
+145
+00:09:06.485 --> 00:09:10.623
+Its Windows user count went from
+zero to one, and no finding says so.
+
+146
+00:09:10.623 --> 00:09:14.961
+A single audit doesn't compare
+runs; Chapter 9's drift check does.
+
+147
+00:09:14.961 --> 00:09:18.997
+Step six runs this chapter's
+tests: six pass, none fail.
+
+148
+00:09:18.997 --> 00:09:20.797
+Step seven lists your runs.
+
+149
+00:09:20.797 --> 00:09:24.710
+There's nothing to clean up: the
+results stay in the run's own folder.
+
+150
+00:09:28.510 --> 00:09:31.060
+Lab 2 runs on your own test instance.
+
+151
+00:09:31.060 --> 00:09:33.035
+It hasn't been run by the authors.
+
+152
+00:09:33.035 --> 00:09:37.173
+You need a test SQL Server instance,
+never production, PowerShell 7 with
+
+153
+00:09:37.173 --> 00:09:41.110
+the SQL Server module, and read
+permissions granted for the lab only.
+
+154
+00:09:41.110 --> 00:09:42.360
+Never sysadmin.
+
+155
+00:09:42.360 --> 00:09:45.048
+Check the reading login's
+own permissions first.
+
+156
+00:09:45.048 --> 00:09:49.385
+Then export a SELECT-only audit snapshot,
+and compare its login count with one
+
+157
+00:09:49.385 --> 00:09:53.722
+the instance's administrator trusts: a
+short list means a missing permission.
+
+158
+00:09:53.722 --> 00:09:54.747
+Then audit it.
+
+159
+00:09:54.747 --> 00:09:56.634
+Nothing on the instance changes.
+
+160
+00:09:56.634 --> 00:09:58.765
+To back it out, delete the audit run,
+
+161
+00:09:58.765 --> 00:10:01.960
+and have the administrator
+remove the lab's grants.
+
+162
+00:10:01.960 --> 00:10:05.430
+Keep the snapshot if you
+go on to Module 3's Lab 2.
+
+163
+00:10:09.230 --> 00:10:10.830
+The federal requirement.
+
+164
+00:10:10.830 --> 00:10:16.680
+Chapter 2's table maps the audit to
+three controls in NIST SP 800-53.
+
+165
+00:10:16.680 --> 00:10:20.197
+The login census supports A
+C two, Account Management,
+
+166
+00:10:20.197 --> 00:10:23.555
+with the census files and
+the manifest as evidence.
+
+167
+00:10:23.555 --> 00:10:27.876
+The S A, SQL login and service-account
+findings support I A five,
+
+168
+00:10:27.876 --> 00:10:29.717
+Authenticator Management.
+
+169
+00:10:29.717 --> 00:10:33.892
+And the mode findings support C
+M six, Configuration Settings.
+
+170
+00:10:33.892 --> 00:10:36.859
+Runbook R oh three is
+read-only from start to finish,
+
+171
+00:10:36.859 --> 00:10:39.967
+and its output feeds
+continuous-monitoring closure.
+
+172
+00:10:39.967 --> 00:10:44.240
+K S Is are FedRAMP twenty X indicators
+for cloud service providers:
+
+173
+00:10:44.240 --> 00:10:47.192
+the agency lines its own
+evidence up with them.
+
+174
+00:10:47.192 --> 00:10:50.207
+The run's files provide
+evidence for each control;
+
+175
+00:10:50.207 --> 00:10:54.330
+the agency still sets its
+parameters, and the assessor decides.
+
+176
+00:10:58.130 --> 00:11:00.180
+Check yourself with two questions.
+
+177
+00:11:00.180 --> 00:11:03.018
+First: which finding does
+the audit rank highest?
+
+178
+00:11:03.018 --> 00:11:05.692
+The answer is b: S A enabled.
+
+179
+00:11:05.692 --> 00:11:10.804
+Second: on day 30, sequel P R D oh
+six has gained a Windows login.
+
+180
+00:11:10.804 --> 00:11:13.205
+What does the day-30 audit say about it?
+
+181
+00:11:13.205 --> 00:11:15.530
+The answer is a: nothing.
+
+182
+00:11:15.530 --> 00:11:19.868
+A single audit doesn't compare
+runs; Chapter 9's drift check does.
+
+183
+00:11:19.868 --> 00:11:24.510
+The module page has two more questions,
+each linked to the section that answers it.
+
+184
+00:11:28.310 --> 00:11:29.335
+To sum up.
+
+185
+00:11:29.335 --> 00:11:33.656
+You learned what the audit reads on each
+surviving instance, how its findings rank,
+
+186
+00:11:33.656 --> 00:11:36.998
+and what each Arc-eligibility
+category means for the next step.
+
+187
+00:11:36.998 --> 00:11:39.600
+You audited four fictional instances,
+
+188
+00:11:39.600 --> 00:11:42.935
+and saw why one audit run, on
+its own, can't show drift.
+
+189
+00:11:42.935 --> 00:11:46.754
+The evidence an I S S O keeps from
+this module is the run folder,
+
+190
+00:11:46.754 --> 00:11:51.260
+the census and findings files, and
+the manifest holding each file's hash.
+
+191
+00:11:51.260 --> 00:11:54.185
+Before shipping, work through
+Chapter 2's checklist.
+
+192
+00:11:54.185 --> 00:11:57.635
+Next is Module 3, Arc and
+the engine's identity.

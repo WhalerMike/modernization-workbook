@@ -1,0 +1,664 @@
+{
+ "1": [
+  [
+   0.1,
+   6.3,
+   "Welcome to Module 2 of the Data Platform and sequel Server Identity learning path: the authentication audit."
+  ],
+  [
+   6.35,
+   6.3,
+   "It teaches Runbook R oh three, with Chapter 2 of the developer workbook, Building sequel Server Identity."
+  ],
+  [
+   12.65,
+   2.788,
+   "Module 1 decided which instances survive."
+  ],
+  [
+   15.438,
+   2.663,
+   "Now you measure how each survivor authenticates."
+  ]
+ ],
+ "2": [
+  [
+   0.1,
+   1.337,
+   "Why does this matter?"
+  ],
+  [
+   1.387,
+   10.0,
+   "For each instance that survived the gate, the audit records its authentication mode, every usable login by type, the state of the S A login, and the account the engine runs as."
+  ],
+  [
+   11.387,
+   6.237,
+   "Every later step, Arc, login migration and N T L M elimination, depends on that record."
+  ],
+  [
+   17.625,
+   3.263,
+   "And it's re-run after every change, to measure progress."
+  ],
+  [
+   20.887,
+   6.287,
+   "In this module you audit four fictional instances, rank their findings, and rerun the audit thirty days later."
+  ],
+  [
+   27.175,
+   3.325,
+   "Runbook R oh three is read-only from start to finish."
+  ]
+ ],
+ "3": [
+  [
+   0.1,
+   5.0,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty minutes with the lab."
+  ],
+  [
+   5.05,
+   6.95,
+   "You'll explain what the audit reads on each instance, and why it runs only on what Module 1 retained or chose as a target."
+  ],
+  [
+   12.0,
+   4.8,
+   "You'll rank the audit's findings, from an enabled S A down to the Arc-eligibility category."
+  ],
+  [
+   16.8,
+   8.05,
+   "You'll say what each Arc-eligibility category means for the next step, and why engine Entra authentication doesn't wait for O S level Entra sign-in."
+  ],
+  [
+   24.85,
+   5.375,
+   "And you'll explain why a single audit run can't show drift, and where the engine's service account goes."
+  ],
+  [
+   30.225,
+   2.388,
+   "Before you start, finish Module 1."
+  ]
+ ],
+ "4": [
+  [
+   0.1,
+   2.112,
+   "Unit 2 is what the audit reads."
+  ],
+  [
+   2.163,
+   4.513,
+   "It runs only on instances classified retain or consolidation target."
+  ],
+  [
+   6.675,
+   17.262,
+   "For each, it reads the authentication mode, and enumerates the logins from the server principals view by type: Windows users, Windows groups, sequel logins, logins mapped to a certificate or an asymmetric key, and the Entra types, E for a user or application and X for a group."
+  ],
+  [
+   23.938,
+   5.088,
+   "It flags the S A account, and captures the engine's service account and its S P N."
+  ],
+  [
+   29.025,
+   8.325,
+   "The running mode and the registry login mode are read in different places, and a change takes effect only after a restart, so the two can disagree."
+  ],
+  [
+   37.35,
+   2.413,
+   "The kit reports that as a mode anomaly."
+  ],
+  [
+   39.763,
+   5.6,
+   "And watch for this: a reader without the right permissions gets a short login list and no error."
+  ],
+  [
+   45.362,
+   3.587,
+   "A short list means a missing permission, not a clean instance."
+  ],
+  [
+   48.95,
+   4.713,
+   "The kit's census leaves out built-in principals, and counts only usable logins."
+  ]
+ ],
+ "5": [
+  [
+   0.1,
+   6.838,
+   "The audit returns one row per finding, with a severity from the data platform book's chapter, The Authentication Audit."
+  ],
+  [
+   6.888,
+   7.388,
+   "Highest is S A enabled: the login whose security identifier is oh x oh one is enabled, whatever its name."
+  ],
+  [
+   14.275,
+   2.675,
+   "Critical is any other usable sequel login."
+  ],
+  [
+   16.95,
+   7.675,
+   "High is mixed mode, where sequel authentication is accepted, and a mode anomaly, where the registry disagrees with the running mode."
+  ],
+  [
+   24.625,
+   6.963,
+   "Medium is the engine running as a domain user account or a built-in account, and an S A that's disabled but keeps its name."
+  ],
+  [
+   31.587,
+   4.763,
+   "And at the bottom, an information row for each instance's Arc-eligibility category."
+  ],
+  [
+   36.35,
+   8.275,
+   "The kit's audit script writes the census and the findings, each as a C S V and a jay-son file, and one manifest that hashes all four."
+  ],
+  [
+   44.625,
+   5.688,
+   "A disabled login still counts as existing: Chapter 9's closure record decides when it's gone."
+  ]
+ ],
+ "6": [
+  [
+   0.1,
+   2.138,
+   "Unit 3 is reading the audit."
+  ],
+  [
+   2.188,
+   3.9,
+   "Its most consequential output is the Arc-eligibility category."
+  ],
+  [
+   6.088,
+   2.725,
+   "Category 1 is ready for Entra logins now."
+  ],
+  [
+   8.812,
+   4.6,
+   "Category 2 needs Arc deployed and Entra authentication configured first."
+  ],
+  [
+   13.412,
+   6.45,
+   "Within it, instances with many Windows logins, active sequel logins or missing S P Ns go first."
+  ],
+  [
+   19.863,
+   10.375,
+   "Category 3 is a version before sequel Server 2022, or a failover cluster instance on any version, and must upgrade, re-platform or carry a dated exception."
+  ],
+  [
+   30.238,
+   7.987,
+   "Engine Entra authentication, Layer 1, proceeds on a domain-joined host, and never waits for O S level Entra sign-in, Layer 2."
+  ],
+  [
+   38.225,
+   6.9,
+   "The kit settles only the first pass here, Category 3 or \"1 or 2\"; Module 3 settles the rest."
+  ],
+  [
+   45.125,
+   3.175,
+   "And the audit names the engine's service account and stops."
+  ],
+  [
+   48.3,
+   4.412,
+   "Converting a user account used as a service belongs to the service account guide."
+  ]
+ ],
+ "7": [
+  [
+   0.1,
+   2.062,
+   "What does each category ask of you?"
+  ],
+  [
+   2.112,
+   4.312,
+   "The data platform book's chapter, Reading the Audit, takes them in turn."
+  ],
+  [
+   6.425,
+   8.137,
+   "For a Category 1 instance, nothing in the infrastructure remains to be built: the audit has done its job when it delivers a precise login inventory."
+  ],
+  [
+   14.562,
+   5.6,
+   "For Category 2, the Arc deployment is a server-level action, not a sequel Server change."
+  ],
+  [
+   20.163,
+   5.938,
+   "The agent connects the server, and Arc installs the Azure extension for sequel Server automatically."
+  ],
+  [
+   26.1,
+   5.938,
+   "Once Entra authentication is configured on the instance, the next audit re-classifies it to Category 1."
+  ],
+  [
+   32.038,
+   11.725,
+   "A Category 3 instance has two paths: upgrade the engine to sequel Server 2022 or later and follow the Category 2 path, or document a formal exception with a sunset date."
+  ],
+  [
+   43.763,
+   5.438,
+   "A failover cluster instance re-platforms to a standalone instance or an availability group."
+  ],
+  [
+   49.2,
+   5.237,
+   "And mind the program's N T L M backstop, April 1, 2027."
+  ],
+  [
+   54.438,
+   6.1,
+   "A Category 3 instance's remaining N T L M connections fail then, whether it's excepted or not."
+  ],
+  [
+   60.538,
+   2.0,
+   "Its Kerberos connections don't."
+  ]
+ ],
+ "8": [
+  [
+   0.1,
+   5.475,
+   "Runbook R oh three's audit script degrades rather than crashing, so know what each state means."
+  ],
+  [
+   5.525,
+   8.512,
+   "If the Active Directory module is absent, S P N discovery is skipped: only the hosts you name are audited, and orphaned logins can't be checked."
+  ],
+  [
+   14.037,
+   6.275,
+   "If the domain controller is unreachable, the S P N query returns nothing, so target a reachable one."
+  ],
+  [
+   20.312,
+   5.65,
+   "If a host can't be reached for its service details, the service-account fields stay unknown for that host."
+  ],
+  [
+   25.962,
+   7.65,
+   "If the sequel connection fails, the instance is recorded as query failed, with an empty login inventory, rather than aborting the run."
+  ],
+  [
+   33.612,
+   4.688,
+   "And a T C P timeout is recorded as timeout, as opposed to yes or no."
+  ],
+  [
+   38.3,
+   4.237,
+   "An empty or unknown field is a state to read, not a clean result."
+  ]
+ ],
+ "9": [
+  [
+   0.1,
+   0.887,
+   "Try it."
+  ],
+  [
+   0.938,
+   5.475,
+   "Lab 1 runs in PowerShell 7 on the kit's fictional estate, with no instance and no tenant."
+  ],
+  [
+   6.412,
+   7.362,
+   "Go to the kit's folder, and make this run's results folder, named for the time you start, so running the lab again never overwrites a run."
+  ],
+  [
+   13.775,
+   2.638,
+   "Step one reads the four audited instances."
+  ],
+  [
+   16.413,
+   2.962,
+   "Only the instances Chapter 1 retained are audited."
+  ],
+  [
+   19.375,
+   6.85,
+   "Look at sequel P R D oh one: it runs in mixed mode, zero, while its registry says Windows only, one."
+  ],
+  [
+   26.225,
+   4.075,
+   "Sequel F C I oh four is clustered, and its registry says mixed."
+  ],
+  [
+   30.3,
+   5.6,
+   "Three of the four engines run as domain user accounts, the S V C accounts in the contoso domain."
+  ],
+  [
+   35.9,
+   8.113,
+   "And sequel P R D oh six, on sequel Server 2025, runs as a group managed service account, whose name ends in a dollar sign."
+  ]
+ ],
+ "10": [
+  [
+   0.1,
+   1.738,
+   "Step two runs the audit."
+  ],
+  [
+   1.788,
+   6.975,
+   "First the census: one row per instance, with usable logins counted by type, and disabled ones counted separately."
+  ],
+  [
+   8.762,
+   1.288,
+   "Then the findings."
+  ],
+  [
+   10.05,
+   17.875,
+   "Sequel P R D oh one has the full set: S A enabled, highest; a usable sequel login, payroll report, critical; mixed mode and a mode anomaly, both high, because the mode was changed without a restart; and a service account that's a user account with a password, medium."
+  ],
+  [
+   27.925,
+   7.088,
+   "The cut rows give sequel F C I oh four almost the same list, with its own usable sequel login, vendor H R app."
+  ],
+  [
+   35.013,
+   7.025,
+   "That login has a dated exception, but the audit reports it anyway; Chapter 9's closure record applies the exception."
+  ],
+  [
+   42.038,
+   4.812,
+   "Sequel F C I oh four is Category 3, as a failover cluster instance."
+  ],
+  [
+   46.85,
+   4.588,
+   "Sequel P R D oh two has only its service-account finding and its category."
+  ],
+  [
+   51.438,
+   7.8,
+   "Sequel P R D oh six already has Entra logins, runs as a group managed service account, and has no finding but its category."
+  ],
+  [
+   59.237,
+   5.588,
+   "The last line names the evidence: A C two, I A five and C M six."
+  ]
+ ],
+ "11": [
+  [
+   0.1,
+   6.862,
+   "Step three opens the manifest: four files, three controls and three K S Is, with each file's hash."
+  ],
+  [
+   6.912,
+   1.5,
+   "The run was read-only."
+  ],
+  [
+   8.412,
+   15.2,
+   "Step four counts the findings by severity: two highest, the two enabled S A logins; two critical, the two usable sequel logins; three high; three medium, the three service accounts; and four information rows, one category per instance."
+  ]
+ ],
+ "12": [
+  [
+   0.1,
+   2.675,
+   "Step five reruns the audit on day 30."
+  ],
+  [
+   2.725,
+   3.163,
+   "Sequel P R D oh one has moved to Entra logins."
+  ],
+  [
+   5.888,
+   6.487,
+   "Its S A, renamed, a Windows login and payroll report are disabled, so disabled is three."
+  ],
+  [
+   12.375,
+   7.55,
+   "Its two superseded Windows groups were denied connect sequel instead, so they leave the usable count without being counted as disabled."
+  ],
+  [
+   19.925,
+   4.475,
+   "Nothing was dropped, and only its service-account finding and category remain."
+  ],
+  [
+   24.4,
+   2.575,
+   "Now look at sequel P R D oh six."
+  ],
+  [
+   26.975,
+   4.138,
+   "Its Windows user count went from zero to one, and no finding says so."
+  ],
+  [
+   31.113,
+   4.338,
+   "A single audit doesn't compare runs; Chapter 9's drift check does."
+  ],
+  [
+   35.45,
+   4.037,
+   "Step six runs this chapter's tests: six pass, none fail."
+  ],
+  [
+   39.487,
+   1.8,
+   "Step seven lists your runs."
+  ],
+  [
+   41.288,
+   3.612,
+   "There's nothing to clean up: the results stay in the run's own folder."
+  ]
+ ],
+ "13": [
+  [
+   0.1,
+   2.55,
+   "Lab 2 runs on your own test instance."
+  ],
+  [
+   2.6,
+   2.025,
+   "It hasn't been run by the authors."
+  ],
+  [
+   4.625,
+   8.075,
+   "You need a test sequel Server instance, never production, PowerShell 7 with the sequel Server module, and read permissions granted for the lab only."
+  ],
+  [
+   12.7,
+   1.25,
+   "Never sysadmin."
+  ],
+  [
+   13.95,
+   2.688,
+   "Check the reading login's own permissions first."
+  ],
+  [
+   16.637,
+   8.675,
+   "Then export a SELECT-only audit snapshot, and compare its login count with one the instance's administrator trusts: a short list means a missing permission."
+  ],
+  [
+   25.312,
+   1.025,
+   "Then audit it."
+  ],
+  [
+   26.337,
+   1.887,
+   "Nothing on the instance changes."
+  ],
+  [
+   28.225,
+   5.325,
+   "To back it out, delete the audit run, and have the administrator remove the lab's grants."
+  ],
+  [
+   33.55,
+   3.15,
+   "Keep the snapshot if you go on to Module 3's Lab 2."
+  ]
+ ],
+ "14": [
+  [
+   0.1,
+   1.6,
+   "The federal requirement."
+  ],
+  [
+   1.65,
+   5.9,
+   "Chapter 2's table maps the audit to three controls in nist special publication eight hundred fifty-three."
+  ],
+  [
+   7.55,
+   6.875,
+   "The login census supports A C two, Account Management, with the census files and the manifest as evidence."
+  ],
+  [
+   14.425,
+   6.162,
+   "The S A, sequel login and service-account findings support I A five, Authenticator Management."
+  ],
+  [
+   20.587,
+   4.175,
+   "And the mode findings support C M six, Configuration Settings."
+  ],
+  [
+   24.762,
+   6.075,
+   "Runbook R oh three is read-only from start to finish, and its output feeds continuous-monitoring closure."
+  ],
+  [
+   30.837,
+   7.225,
+   "K S Is are fed-ramp twenty X indicators for cloud service providers: the agency lines its own evidence up with them."
+  ],
+  [
+   38.062,
+   6.838,
+   "The run's files provide evidence for each control; the agency still sets its parameters, and the assessor decides."
+  ]
+ ],
+ "15": [
+  [
+   0.1,
+   2.05,
+   "Check yourself with two questions."
+  ],
+  [
+   2.1,
+   2.888,
+   "First: which finding does the audit rank highest?"
+  ],
+  [
+   4.987,
+   2.675,
+   "The answer is b: S A enabled."
+  ],
+  [
+   7.662,
+   5.112,
+   "Second: on day 30, sequel P R D oh six has gained a Windows login."
+  ],
+  [
+   12.775,
+   2.4,
+   "What does the day-30 audit say about it?"
+  ],
+  [
+   15.175,
+   2.325,
+   "The answer is a: nothing."
+  ],
+  [
+   17.5,
+   4.338,
+   "A single audit doesn't compare runs; Chapter 9's drift check does."
+  ],
+  [
+   21.837,
+   4.338,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "16": [
+  [
+   0.1,
+   1.025,
+   "To sum up."
+  ],
+  [
+   1.075,
+   7.713,
+   "You learned what the audit reads on each surviving instance, how its findings rank, and what each Arc-eligibility category means for the next step."
+  ],
+  [
+   8.787,
+   5.938,
+   "You audited four fictional instances, and saw why one audit run, on its own, can't show drift."
+  ],
+  [
+   14.725,
+   8.325,
+   "The evidence an I S S O keeps from this module is the run folder, the census and findings files, and the manifest holding each file's hash."
+  ],
+  [
+   23.05,
+   2.925,
+   "Before shipping, work through Chapter 2's checklist."
+  ],
+  [
+   25.975,
+   3.45,
+   "Next is Module 3, Arc and the engine's identity."
+  ]
+ ]
+}

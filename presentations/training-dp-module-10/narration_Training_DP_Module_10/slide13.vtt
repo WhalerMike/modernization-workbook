@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.437
+Step fourteen preflights production.
+
+2
+00:00:02.437 --> 00:00:05.750
+P F oh one to oh five
+pass, as they did for test.
+
+3
+00:00:05.750 --> 00:00:08.785
+P F oh six fails: the chain
+holds only a rehearsal,
+
+4
+00:00:08.785 --> 00:00:12.287
+and production needs a sealed
+test stage that isn't one.
+
+5
+00:00:12.287 --> 00:00:15.374
+Preflight says stop here,
+and exits with code one.
+
+6
+00:00:15.374 --> 00:00:19.487
+Step fifteen runs the deployment
+tests: ten pass, none fail.
+
+7
+00:00:19.487 --> 00:00:21.476
+Step sixteen lists your runs.
+
+8
+00:00:21.476 --> 00:00:25.250
+There's nothing to clean up: this
+run's results stay in the run folder.
+
+9
+00:00:25.250 --> 00:00:29.591
+Check your work: you can walk the test
+stage from preflight to the seal,
+
+10
+00:00:29.591 --> 00:00:34.541
+and say why a wrong hash is refused before
+anything connects, why a dry-run stage
+
+11
+00:00:34.541 --> 00:00:39.262
+seals only as a rehearsal, and why
+production preflight then fails P F oh six.

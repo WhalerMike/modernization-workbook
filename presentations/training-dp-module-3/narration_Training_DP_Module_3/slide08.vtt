@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.804
+Chapter 3 lists what Microsoft
+Learn's material leaves to you,
+
+2
+00:00:03.804 --> 00:00:05.038
+and what the kit adds.
+
+3
+00:00:05.038 --> 00:00:06.962
+Each row is pinned by a test.
+
+4
+00:00:06.962 --> 00:00:11.722
+The agent, the extension and the Entra
+setting are three resources and one setting,
+
+5
+00:00:11.722 --> 00:00:15.222
+so an instance with two of the
+three looks ready in the portal;
+
+6
+00:00:15.222 --> 00:00:18.301
+the kit reads all three, and
+names whatever is missing.
+
+7
+00:00:18.301 --> 00:00:22.369
+The category rules are in the
+data platform book, not in Learn,
+
+8
+00:00:22.369 --> 00:00:27.495
+so a pre-2022 instance or a cluster could
+be scheduled for Arc work it can't use;
+
+9
+00:00:27.495 --> 00:00:30.913
+the kit puts it in Category
+3 before Arc is looked at.
+
+10
+00:00:30.913 --> 00:00:35.601
+Resource Graph returns nothing, not an
+error, for what the caller can't read,
+
+11
+00:00:35.601 --> 00:00:39.290
+so the kit reports the agent
+as not installed and keeps the
+
+12
+00:00:39.290 --> 00:00:42.825
+instance in Category 2, and
+Lab 2 checks the sign-in first.
+
+13
+00:00:42.825 --> 00:00:44.642
+The cloud is a sign-in choice,
+
+14
+00:00:44.642 --> 00:00:48.513
+so the kit refuses a snapshot
+from any cloud but Azure Cloud.
+
+15
+00:00:48.513 --> 00:00:52.303
+And the managed identity
+method is SQL Server 2025's:
+
+16
+00:00:52.303 --> 00:00:55.370
+a 2022 instance recorded
+that way gets a note.

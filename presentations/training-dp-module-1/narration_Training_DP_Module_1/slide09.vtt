@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:00.987
+Try it.
+
+2
+00:00:00.987 --> 00:00:04.458
+Lab 1 runs in PowerShell 7 on
+the kit's fictional estate,
+
+3
+00:00:04.458 --> 00:00:06.413
+with no instance and no tenant.
+
+4
+00:00:06.413 --> 00:00:10.431
+Go to the kit's folder, and make this
+run's results folder, named for the
+
+5
+00:00:10.431 --> 00:00:14.449
+time you start in U T C, so running
+the lab again never overwrites a run.
+
+6
+00:00:14.449 --> 00:00:18.200
+Step one classifies eight
+instances for contoso dot example.
+
+7
+00:00:18.200 --> 00:00:19.550
+Look at the reasons.
+
+8
+00:00:19.550 --> 00:00:25.038
+Sequel P R D oh one and oh two run
+SQL Server 2022 and are retained,
+
+9
+00:00:25.038 --> 00:00:30.725
+and sequel P R D oh six, on 2025, is
+retained as the consolidation target.
+
+10
+00:00:30.725 --> 00:00:34.785
+Sequel L E G oh three, on
+2016, can't take Entra logins,
+
+11
+00:00:34.785 --> 00:00:38.250
+so it consolidates into the shared target.
+
+12
+00:00:38.250 --> 00:00:43.812
+Sequel O L D oh five is retired: every
+database idle four hundred days or more.
+
+13
+00:00:43.812 --> 00:00:48.799
+Sequel L E G oh seven's collation
+conflict sends it to a dedicated target.
+
+14
+00:00:48.799 --> 00:00:52.525
+Sequel D E V oh eight has no
+version, so it's in review.
+
+15
+00:00:52.525 --> 00:00:55.547
+And the denominator
+line counts each class:
+
+16
+00:00:55.547 --> 00:00:59.325
+two consolidate, four retain,
+one retire and one review.
+
+17
+00:00:59.325 --> 00:01:03.625
+Sequel F C I oh four is retained only
+because of its vendor constraint.
+
+18
+00:01:03.625 --> 00:01:08.520
+It's also a failover cluster instance,
+which Chapter 3 puts in Category 3.

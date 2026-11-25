@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.816
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.816 --> 00:00:05.100
+which takes about fifty
+minutes with the lab.
+
+3
+00:00:05.100 --> 00:00:08.305
+You'll place a connection
+string in column A, B,
+
+4
+00:00:08.305 --> 00:00:12.175
+C or D of the database axis,
+and say who decides column D.
+
+5
+00:00:12.175 --> 00:00:17.004
+You'll name the managed identity and
+service-principal modes in each driver family,
+
+6
+00:00:17.004 --> 00:00:20.013
+and say why the Entra password
+mode is never a target.
+
+7
+00:00:20.013 --> 00:00:22.885
+You'll run the kit's
+connection scan over fixtures
+
+8
+00:00:22.885 --> 00:00:25.687
+and read its masked strings,
+columns and targets.
+
+9
+00:00:25.687 --> 00:00:29.388
+And you'll list the three gates that
+must hold before a string changes.
+
+10
+00:00:29.388 --> 00:00:32.504
+Before you start, finish
+Module 6, and Module 4,
+
+11
+00:00:32.504 --> 00:00:35.537
+for the Entra login that
+gate one checks for.
+
+12
+00:00:35.537 --> 00:00:40.990
+The lab runs in PowerShell 7, in the kit
+you unzipped into the F M W Labs folder.
