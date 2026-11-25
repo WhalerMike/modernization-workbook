@@ -233,6 +233,10 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\microsoft-automation-code\ms-automation
 
+$Run = "C:\FMWLabs\results\ms-automation-foundations\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
 # Step 1
 python -c "import sys; sys.path.insert(0, 'python'); from graphkit import endpoints, scope_for; print(endpoints('gcc')); print(scope_for('gcc', 'arm')); print(scope_for('gcc'))"
 
@@ -265,9 +269,12 @@ try { Assert-FmwGraphCall -Method GET -Uri 'https://graph.example.invalid/v1.0/u
 try { Get-FmwCloud usgov } catch { $_.Exception.Message }
 
 # Step 7
-python -m pytest -q -p no:cacheprovider tests/python
+python -m pytest -q -p no:cacheprovider tests/python | Tee-Object "$Run\pytest.txt"
 $r = Invoke-Pester -Path tests/powershell -Output None -PassThru
-"Pester: $($r.PassedCount) passed, $($r.FailedCount) failed"
+"Pester: $($r.PassedCount) passed, $($r.FailedCount) failed" | Tee-Object "$Run\pester.txt"
+
+# Step 7
+Get-ChildItem C:\FMWLabs\results\ms-automation-foundations\lab1 -Name
 ```
 
 :::
@@ -282,7 +289,23 @@ Every step runs in PowerShell 7, the Python commands included, so you can follow
 Set-Location C:\FMWLabs\microsoft-automation-code\ms-automation
 ```
 
-Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/ms-automation`; steps 1, 3 and 5 run the same there, and steps 2, 4, 6 and 7 use PowerShell 7 commands (type `pwsh` to start it). In a clone of the repository, use the `examples` folder of the same name.
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
+
+```powershell
+$Run = "C:\FMWLabs\results\ms-automation-foundations\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\ms-automation-foundations\lab1\<run>
+```
+
+The run's date is only the folder's name. This lab reads only the kit's own code and tests, so every run's results match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
+
+Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/ms-automation`, make the run folder with `Run=/c/FMWLabs/results/ms-automation-foundations/lab1/$(date -u +%Y-%m-%dT%H%M%SZ); mkdir -p "$Run"`, and steps 1, 3 and 5 run the same there; steps 2, 4, 6 and 7 use PowerShell 7 commands (type `pwsh` to start it). In a clone of the repository, use the `examples` folder of the same name.
 
 1. Print the endpoints for GCC, and the scopes for Resource Manager and Graph.
 
@@ -423,12 +446,12 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/
    Cannot validate argument on parameter 'Cloud'. The argument "usgov" does not belong to the set "global,gcc" specified by the ValidateSet attribute. Supply an argument that is in the set and then try the command again.
    ```
 
-7. Run the kit's full test suites.
+7. Run the kit's full test suites. `Tee-Object` prints each result and saves a copy in this run's folder, the record that this copy of the kit passed.
 
    ```powershell
-   python -m pytest -q -p no:cacheprovider tests/python
+   python -m pytest -q -p no:cacheprovider tests/python | Tee-Object "$Run\pytest.txt"
    $r = Invoke-Pester -Path tests/powershell -Output None -PassThru
-   "Pester: $($r.PassedCount) passed, $($r.FailedCount) failed"
+   "Pester: $($r.PassedCount) passed, $($r.FailedCount) failed" | Tee-Object "$Run\pester.txt"
    ```
 
    Expected output: pytest prints rows of dots, then `94 passed` and the time it took. Pester runs quietly and then prints its counts:
@@ -438,6 +461,18 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/microsoft-automation-code/
    ```
 
    The counts include Module 3's Intune tests (17 in Python) and Module 4's Arc tests (31 in Python, 17 in Pester).
+
+   Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
+
+   ```powershell
+   Get-ChildItem C:\FMWLabs\results\ms-automation-foundations\lab1 -Name
+   ```
+
+   Expected output: one line per run, oldest first, the last one this run:
+
+   ```text
+   <run>
+   ```
 
 **Check your work:** for any tenant, you can name the hosts, the scope and the PowerShell environment, and show that the client refuses the wrong one.
 
