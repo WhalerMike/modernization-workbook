@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 15"
 series-order: 6
 review-status: approved
-reviewed-sha256: 4309fb32f168f4125ee7820ff86d69b6c7b0dad626b2d8cc6bb98d5311542daa
-last-reviewed: 2026-11-18
+reviewed-sha256: 57a8577e2b42e65127bc98488881bd8c13563c1336c61478f3cf4c0341503372
+last-reviewed: 2026-11-25
 ---
 # Module 6: Google incidents and the maintenance gap {.unnumbered}
 
