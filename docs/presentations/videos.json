@@ -20188,6 +20188,11 @@
     "name": "drift-pipeline",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
     "zip": null
+   },
+   {
+    "name": "hcm-entra",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra",
+    "zip": null
    }
   ],
   "chapters": [
