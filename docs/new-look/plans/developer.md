@@ -11,9 +11,9 @@ review-status: pending
 
 ## Week 1: Graph and Azure foundations
 
-- [Microsoft Automation](../../training/ms-automation-foundations.md) (Learning path, 4 modules, about 2 hr 55 min). Four modules on calling Microsoft Graph and Azure Resource Manager from scripts: endpoints, sign-in without a secret, permissions and paging, then read-only checks for Entra ID, Intune and Azure Arc on fixtures and in a test tenant.
+- [Microsoft Automation](../../training/ms-automation-foundations.md) (Learning path, 4 modules, about 3 hr 4 min). Four modules on calling Microsoft Graph and Azure Resource Manager from scripts: endpoints, sign-in without a secret, permissions and paging, then read-only checks for Entra ID, Intune and Azure Arc on fixtures and in a test tenant.
 
-*Milestone 1: about 2 hr 55 min.*
+*Milestone 1: about 3 hr 4 min.*
 
 ## Week 2: the attribute-driven migration
 
@@ -36,5 +36,5 @@ review-status: pending
 
 *Milestone 4: about 4 hr 52 min.*
 
-**Whole plan:** about 27 hr 15 min of reading and video, plus the labs.
+**Whole plan:** about 27 hr 24 min of reading and video, plus the labs.
 
