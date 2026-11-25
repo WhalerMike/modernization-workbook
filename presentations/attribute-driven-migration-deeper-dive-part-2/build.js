@@ -247,7 +247,7 @@ And plan around processing time. Membership is usually processed within a few ho
   if (process.env.FIT) console.log(`  au: code ${c.toFixed(2)}, panel ${p.toFixed(2)}`);
   sources(s, "Sources: Book 02, Ch 05 (three tiers, registry, code, restriction); Book 03, Ch 10; implementation guide, Gate 4 steps 7–9; validation kit README and Checks/DG.ps1 (VK-DG-07).");
   notes(s,
-`Administrative units replace OU delegation, in Book 02 Chapter 05's three tiers. Plan task AT4.3.
+`Administrative units take over OU delegation, in Book 02 Chapter 05's three tiers. Plan task AT4.3.
 
 Tier 1 is read-only visibility across the tenant. Its roles, Global Reader, Security Reader and Reports Reader, can't be assigned at unit scope, so they're assigned at tenant scope; units don't restrict reading anyway. Tier 2 is the department unit. Its rule lists every organization code in the department, the roll-up form of the node query, and it changes together with the matching group's rule when HR adds a code. Tier 3 is the division unit, created on demand. It reads the division code in slot 6, extensionAttribute6, a copy of the division that rules can read. Where division codes repeat across departments, add the department's organization codes to the rule.
 
