@@ -1,0 +1,20 @@
+PS> Get-Content deploy/settings.template.json
+{
+  "_comment": "One per environment (test, production). No secrets: delegated sign-in uses adminUpn; app-only uses a certificate in the Windows certificate store, named by thumbprint. Inputs resolve against this file's folder. Keep the filled copy inside the agency's boundary.",
+  "environment": "<test | production>",
+  "cloud": "gcc",
+  "tenantId": "<tenant-id>",
+  "tenantDomain": "<tenant-domain>",
+  "adminUpn": "<read-only operator UPN, holding the read roles through PIM>",
+  "app": { "appId": "<app-id, or leave as a placeholder for delegated sign-in>", "certificateThumbprint": "<thumbprint>", "organization": "<tenant>.onmicrosoft.com" },
+  "reads": { "rightsManagement": true, "inventory": false },
+  "outputRoot": "<folder inside the agency's boundary>",
+  "baselinePath": "<the last approved export's folder>",
+  "inputs": {
+    "plan": "<protection-plan.json>",
+    "roleRegister": "<role-register.csv>",
+    "classRegister": "<class-register.csv>",
+    "exceptions": "<exceptions.csv>",
+    "changes": "<changes.csv>"
+  }
+}

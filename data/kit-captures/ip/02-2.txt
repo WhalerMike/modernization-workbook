@@ -1,18 +1,4 @@
-PS> ./Export-IpBaseline.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/tenant -OutputPath out/snapshot -AsOf 2026-11-24T08:00:00Z
-scc  Get-Label                           labels.json                    9 item(s)
-scc  Get-LabelPolicy                     label-policies.json            2 item(s)
-scc  Get-AutoSensitivityLabelPolicy      autolabel-policies.json        2 item(s)
-scc  Get-AutoSensitivityLabelRule        autolabel-rules.json           2 item(s)
-scc  Get-DlpCompliancePolicy             dlp-policies.json              4 item(s)
-scc  Get-DlpComplianceRule               dlp-rules.json                 4 item(s)
-scc  Get-DlpSensitiveInformationType     sit-catalog.json               4 item(s)
-scc  Get-PolicyConfig                    policy-config.json             1 item(s)
-scc  Get-UnifiedAuditLogRetentionPolicy  audit-retention-policies.json  2 item(s)
-scc  Get-RoleGroupMember                 role-groups.json               2 item(s)
-scc  Export-ContentExplorerData          content-explorer.json          9 item(s)
-exo  Get-IRMConfiguration                irm-configuration.json         1 item(s)
-exo  Get-AdminAuditLogConfig             audit-status.json              1 item(s)
-exo  Get-TransportRule                   transport-rules.json           2 item(s)
-exo  Get-OMEConfiguration                ome-configuration.json         1 item(s)
-aip  Get-AipServiceConfiguration         aipservice-configuration.json  1 item(s)
-Exported 16 file(s) to ./out/snapshot (Fixture mode, tenant contoso.example)
+PS> $Run = "C:\FMWLabs\results\information-protection-02\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+PS> New-Item -ItemType Directory -Path $Run -Force | Out-Null
+PS> $Run
+C:/FMWLabs/results/information-protection-02/lab1/<run>
