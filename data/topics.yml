@@ -904,7 +904,6 @@ topics:
       guide: >-
         Not needed, because Book 18's Chapter 08 and the kit's README are the build guide for the
         reference implementation.
-      path: "Needed: the learning path for Building Application Modernization, one module per chapter."
 
 folded:
   - title: AI identity (Book 17)

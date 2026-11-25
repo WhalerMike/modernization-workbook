@@ -41,6 +41,7 @@ The target estate is a civilian agency at FedRAMP Moderate, in Microsoft 365 GCC
 |---|---|---|
 | The book | Why and what: triage, the target architecture, moving the data, AI, compliance, governance, waves, and the identity work packages | [Book 18 — Application Modernization](../../../books/b18-application-modernization/index.md) |
 | This workbook | How, in code: seven chapters, each with a lab on fixtures and a lab in a test environment | This page and its chapters |
+| Training path | Seven modules, one per chapter, each with the chapter's Lab 1 and a knowledge check | [Learning path: Application Modernization](../../../training/application-modernization/index.md) |
 | Code | `examples/app-modernization`: the Spring Boot service, the migration CLI and the React front end (28 service, 15 migration and 10 web tests), and the `AppModernization` PowerShell module with `Invoke-AmIdentityApply.ps1` (37 Pester tests) | [`examples/app-modernization`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/app-modernization) · [app-modernization.zip](../../../../downloads/app-modernization.zip) |
 | The application's identity, WP1 to WP3 | Owners and the orphan rule, least privilege, and the secret-to-managed-identity conversion, already built by another kit | [*Building Non-Person Identity*](../non-person-identity/index.md), Chapters [02](../non-person-identity/02-ownership-and-the-orphan-rule.md), [07](../non-person-identity/07-least-privilege-for-service-principals.md) and [05](../non-person-identity/05-workload-identity-federation-and-managed-identities.md) |
 | The governance record | Where each application's owners, permissions, secrets and exceptions are kept | [Book 13, Chapter 14](../../../books/b13-governance/14-application-secret-and-configuration-governance.md) |
@@ -90,7 +91,7 @@ Chapters 01 to 05 follow the application; read them in order. Chapters 06 and 07
 - **Data engineers moving a database:** Chapters 02 and 03, with Book 18's [Chapter 04](../../../books/b18-application-modernization/04-moving-the-data.md).
 - **Identity engineers running the remediation factory:** Chapters 06 and 07, with *Building Non-Person Identity* for WP1 to WP3.
 - **ISSOs and reviewers of the code:** each chapter's federal requirements and checklist, then Chapter 07.
-- **Learners:** the learning path for this workbook is planned; until it is published, work through the chapters in order.
+- **Learners:** the [Application Modernization learning path](../../../training/application-modernization/index.md), seven modules, one per chapter, each with the chapter's Lab 1 as its exercise and a knowledge check.
 
 ## Where this workbook sits
 
