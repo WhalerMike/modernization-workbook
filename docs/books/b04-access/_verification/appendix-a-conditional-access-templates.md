@@ -97,3 +97,9 @@ Citations added from the Learn coverage map (covered-uncited pages). No content 
 | [Block access for users with insider risk](https://learn.microsoft.com/entra/identity/conditional-access/policy-risk-based-insider-block) | Wave 4, CA036 | Nov 9, 2026 | insider risk block shape |
 | [Use application enforced restrictions for unmanaged devices](https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-app-enforced-restrictions) | Wave 5, CA024 | Nov 9, 2026 | app-enforced restrictions session control |
 | [Require reauthentication and disable browser persistence](https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-persistent-browser) | Wave 5, CA024 | Nov 9, 2026 | persistent browser never |
+
+## Revision 2026-11-25 — custom security attributes in GCC (WD-176)
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| CSA-1 | CA030: the application filter is replaced by the production applications listed by name until the tenant check | see the change | changed *(design guidance)* | WD-176; Mike, November 25, 2026 |

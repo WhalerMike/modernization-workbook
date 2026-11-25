@@ -1,1 +1,28 @@
-PS> Remove-Item -Recurse -Force out
+PS> Get-Content "$Run/ntlm/manifest.json"
+{
+  "step": "NTLM",
+  "title": "Find the NTLM patterns and plan the SPN fixes",
+  "mode": "read-only",
+  "asOf": "2026-11-20",
+  "controls": [
+    "IA-2",
+    "CM-6"
+  ],
+  "ksis": [
+    "KSI-SVC-ACM"
+  ],
+  "files": [
+    {
+      "file": "ntlm.csv",
+      "sha256": "42c98c3f64661de7c2940a4d6823818e5da9742e877064718cef3f688c5b285e"
+    },
+    {
+      "file": "ntlm.json",
+      "sha256": "662a82a45a542c34cb44b20b55c595a6624a1267a8f7b1ba30685e08c27b374f"
+    },
+    {
+      "file": "spn-fixes.txt",
+      "sha256": "5e1709df086a9db913f7a34eaae5231f1057ac361a368cc34b411d872536e521"
+    }
+  ]
+}

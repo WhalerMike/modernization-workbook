@@ -133,3 +133,9 @@ Re-checked after the weekly source watch (issue #499) reported a change on CIS's
 | # | Change | Where | Kind | Source |
 |---|---|---|---|---|
 | SW1 | The Windows Server 2025 benchmark is now listed at version 2.1.1 (it was 2.1.0 in September 2026); the page gives no release date, and CIS's October and November 2026 update posts don't name it, so the text says "listed at version 2.1.1 in November 2026" | Hardening baseline | updated | c08-cis, CIS Microsoft Windows Server Benchmarks, <https://www.cisecurity.org/benchmark/microsoft_windows_server> |
+
+## Platform Host topic, November 25, 2026
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| PH1 | M-007's Arc tags (Region, Site, Department, Role = GitServer) replaced with Book 05's server taxonomy; a sixth correction explains why | Seven build milestones | corrected (conflicted with Book 05 Ch09 and Book 10 Appendix B) | Book 05 Ch09, resource groups and tags |

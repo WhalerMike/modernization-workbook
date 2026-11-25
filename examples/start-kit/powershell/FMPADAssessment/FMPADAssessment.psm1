@@ -2027,9 +2027,18 @@ function Get-FMPKerberosSpnMap {
         service class, with duplicates and orphans.
     .DESCRIPTION
         A duplicate SPN (on more than one object, case-insensitive) breaks Kerberos and pushes
-        clients to NTLM. An orphan is an SPN on a disabled account or one with no logon in
-        -OrphanDays (default 180), usually a decommissioned host: the same definitions as
-        the program's Spec1-D1.5 script in Book 06 Runbook R02. Default read rights.
+        clients to NTLM. An orphan is an SPN with any of these reasons, each in the Reason
+        column: Disabled (the account is disabled), NoRecentLogon (no logon in -OrphanDays,
+        default 180, or never), the same definitions as the program's Spec1-D1.5 script in
+        Book 06 Runbook R02; and HostNotFound (no computer object in the forest has the SPN's
+        host as its name or DNS host name, and DNS has no record of it either), usually a
+        decommissioned host or a retired alias. Hosts that aren't host names (kadmin/changepw,
+        the replication SPNs' GUIDs, IP addresses) aren't checked. DNS is asked with
+        Resolve-DnsName -DnsOnly, once per host, only for hosts the directory doesn't know;
+        -SkipDnsCheck leaves DNS out, and then a host missing from the directory is reported
+        with HostInDns 'not checked', not as an orphan; so is every host past -MaxDnsLookups
+        (10,000). The lookups run after each partition's directory read, never inside it, so a
+        slow resolver can't hold the ADWS enumeration open. Default read rights.
 
         Each domain is read one partition at a time, paged and retried, and every SPN row is
         streamed to disk; duplicates and counts are kept in hash tables, so memory grows with
@@ -2046,12 +2055,54 @@ function Get-FMPKerberosSpnMap {
         [string[]]$Domain,
         [string]$RootDomain,
         [int]$OrphanDays = 180,
-        [datetime]$AsOf = (Get-Date)
+        [datetime]$AsOf = (Get-Date),
+        [switch]$SkipDnsCheck,
+        [string]$DnsServer,
+        # At most this many DNS lookups (one per distinct host the directory doesn't know).
+        [int]$MaxDnsLookups = 10000
     )
     $null = Resolve-FMPOutputRoot -OutputPath $OutputPath
     if (-not $Domain) { $Domain = @((Get-ADForest).Domains) }
     if (-not $RootDomain) { $RootDomain = $Domain[0] }
     $path = Get-FMPDomainPath -OutputPath $OutputPath -Domain $RootDomain -Area 'Kerberos'
+
+    # Every computer's name and DNS host name in the domains read: a light, paged read.
+    $knownHosts = @{}
+    foreach ($d in $Domain) {
+        foreach ($p in @(Get-FMPAdPartition -Domain $d)) {
+            $names = Invoke-FMPWithRetry -Activity "SPN hosts ($d) $($p.Label)" -ScriptBlock {
+                @(Get-ADObject -LDAPFilter '(objectCategory=computer)' -SearchBase $p.SearchBase -SearchScope $p.SearchScope -Server $d -Properties dNSHostName -ResultPageSize (Get-FMPRunContext).PageSize -ErrorAction Stop |
+                        & { process { "$($_.Name)"; "$($_.dNSHostName)" } })
+            }
+            foreach ($n in $names) { if ($n) { $knownHosts[$n.ToLowerInvariant()] = $true } }
+        }
+    }
+    $dnsAvailable = (-not $SkipDnsCheck) -and (Test-FMPCommand -Name 'Resolve-DnsName')
+    $dnsCache = @{}
+    $dnsCapped = [ref]$false
+    $dnsTracker = Initialize-FMPProgress -Activity 'SPN map: DNS lookups for hosts with no computer object' -Id 3
+    $hostState = {
+        # 'Directory', 'Dns', 'NotFound', 'NotInDirectory' (DNS not asked) or $null (not a host name).
+        param([string]$h)
+        if (-not $h -or $h -eq 'changepw' -or $h -match '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}' -or $h -match '^\d{1,3}(\.\d{1,3}){3}$' -or $h.Contains(':')) { return $null }
+        $short = $h.Split('.')[0]
+        if ($knownHosts.ContainsKey($h) -or $knownHosts.ContainsKey($short)) { return 'Directory' }
+        if (-not $dnsAvailable) { return 'NotInDirectory' }
+        if (-not $dnsCache.ContainsKey($h)) {
+            if ($dnsCache.Count -ge $MaxDnsLookups) {
+                if (-not $dnsCapped.Value) { $dnsCapped.Value = $true; Write-FMPLog -Level WARN -Message "SPN map: -MaxDnsLookups ($MaxDnsLookups) reached; further hosts missing from the directory are 'not checked'" }
+                return 'NotInDirectory'
+            }
+            Step-FMPProgress -Tracker $dnsTracker
+            $dnsArgs = @{ Name = $h; DnsOnly = $true; QuickTimeout = $true; ErrorAction = 'Stop' }
+            if ($DnsServer) { $dnsArgs.Server = $DnsServer }
+            $found = $false
+            try { $found = @(Resolve-DnsName @dnsArgs | Where-Object { $_.Type -in 'A', 'AAAA', 'CNAME' }).Count -gt 0 } catch { $found = $false }
+            $dnsCache[$h] = $found
+        }
+        if ($dnsCache[$h]) { 'Dns' } else { 'NotFound' }
+    }
+
     $partsDir = Initialize-FMPPath -Path (Join-Path $path '_parts\Spns')
     $cutoff = $AsOf.ToUniversalTime().AddDays(-$OrphanDays)
 
@@ -2074,41 +2125,56 @@ function Get-FMPKerberosSpnMap {
             $tracker.Partition = $p.Label
             $partFile = Join-Path $partsDir ('{0}-{1:D4}.jsonl' -f ($d -replace '[^A-Za-z0-9.-]', '_'), $i)
             $before = $tracker.Count
-            $local = Invoke-FMPWithRetry -Activity "SPN map ($d) $($p.Label)" -ScriptBlock {
+            # The directory read comes first, with nothing slow inside it: a DNS lookup per row
+            # would hold the ADWS enumeration open. Hosts are checked once the partition is read.
+            $raw = Invoke-FMPWithRetry -Activity "SPN map ($d) $($p.Label)" -ScriptBlock {
                 $tracker.Count = $before
-                $l = @{ Rows = [System.Collections.Generic.List[object]]::new() }
-                $w = Open-FMPStream -Path $partFile
-                $n = 0
-                try {
-                    Get-ADObject -LDAPFilter '(servicePrincipalName=*)' -SearchBase $p.SearchBase -SearchScope $p.SearchScope -Server $d -ErrorAction Stop `
-                        -Properties servicePrincipalName, sAMAccountName, objectClass, userAccountControl, lastLogonTimestamp, dNSHostName -ResultPageSize (Get-FMPRunContext).PageSize |
-                        ForEach-Object {
+                $r = [System.Collections.Generic.List[object]]::new()
+                $seen = @{ n = 0 }
+                Get-ADObject -LDAPFilter '(servicePrincipalName=*)' -SearchBase $p.SearchBase -SearchScope $p.SearchScope -Server $d -ErrorAction Stop `
+                    -Properties servicePrincipalName, sAMAccountName, objectClass, userAccountControl, lastLogonTimestamp, dNSHostName -ResultPageSize (Get-FMPRunContext).PageSize |
+                    & { process {
                             $o = $_
-                            $enabled = if ($null -ne $o.userAccountControl) { -not (([int64]$o.userAccountControl -band 0x2) -eq 0x2) } else { $null }
-                            $last = if ($o.lastLogonTimestamp -and [int64]$o.lastLogonTimestamp -gt 0) { [datetime]::FromFileTimeUtc([int64]$o.lastLogonTimestamp) } else { $null }
-                            foreach ($spn in @($o.servicePrincipalName)) {
-                                $class, $rest = "$spn".Split('/', 2)
-                                $hostPart = if ($rest) { ($rest.Split('/')[0]).Split(':')[0].ToLowerInvariant() } else { $null }
-                                $row = [ordered]@{
-                                    Spn          = "$spn"
-                                    ServiceClass = $class
-                                    Host         = $hostPart
-                                    Account      = $o.sAMAccountName
-                                    AccountClass = "$(@($o.objectClass)[-1])"
-                                    Domain       = $d
-                                    Enabled      = $enabled
-                                    LastLogonUtc = if ($last) { $last.ToString('o') } else { $null }
-                                    Orphan       = ($enabled -eq $false) -or (-not $last) -or ($last -lt $cutoff)
-                                }
-                                if ($js) { $w.WriteLine($js.Serialize($row)) } else { $w.WriteLine((ConvertTo-Json -InputObject $row -Compress)) }
-                                $l.Rows.Add($row)
-                                if ((++$n % 256) -eq 0) { Step-FMPProgress -Tracker $tracker -By 256 }
-                            }
-                        }
-                } finally { Close-FMPStream $w }
-                if ($n % 256) { Step-FMPProgress -Tracker $tracker -By ($n % 256) }
-                $l
+                            $r.Add([pscustomobject]@{ Spns = @($o.servicePrincipalName); Account = $o.sAMAccountName; AccountClass = "$(@($o.objectClass)[-1])"; Uac = $o.userAccountControl; Llt = $o.lastLogonTimestamp })
+                            $seen.n += @($o.servicePrincipalName).Count
+                            if ($seen.n -ge 256) { Step-FMPProgress -Tracker $tracker -By $seen.n; $seen.n = 0 }
+                        } }
+                if ($seen.n) { Step-FMPProgress -Tracker $tracker -By $seen.n }
+                $r
             }
+            $local = @{ Rows = [System.Collections.Generic.List[object]]::new() }
+            $w = Open-FMPStream -Path $partFile
+            try {
+                foreach ($o in $raw) {
+                    $enabled = if ($null -ne $o.Uac) { -not (([int64]$o.Uac -band 0x2) -eq 0x2) } else { $null }
+                    $last = if ($o.Llt -and [int64]$o.Llt -gt 0) { [datetime]::FromFileTimeUtc([int64]$o.Llt) } else { $null }
+                    foreach ($spn in $o.Spns) {
+                        $class, $rest = "$spn".Split('/', 2)
+                        $hostPart = if ($rest) { ($rest.Split('/')[0]).Split(':')[0].ToLowerInvariant() } else { $null }
+                        $state = & $hostState $hostPart
+                        $reasons = @()
+                        if ($enabled -eq $false) { $reasons += 'Disabled' }
+                        if ((-not $last) -or ($last -lt $cutoff)) { $reasons += 'NoRecentLogon' }
+                        if ($state -eq 'NotFound') { $reasons += 'HostNotFound' }
+                        $row = [ordered]@{
+                            Spn          = "$spn"
+                            ServiceClass = $class
+                            Host         = $hostPart
+                            Account      = $o.Account
+                            AccountClass = $o.AccountClass
+                            Domain       = $d
+                            Enabled      = $enabled
+                            LastLogonUtc = if ($last) { $last.ToString('o') } else { $null }
+                            HostInDirectory = if ($null -eq $state) { $null } else { $state -eq 'Directory' }
+                            HostInDns    = switch ($state) { 'Dns' { $true } 'NotFound' { $false } 'NotInDirectory' { 'not checked' } default { $null } }
+                            Orphan       = $reasons.Count -gt 0
+                            Reason       = $reasons -join '; '
+                        }
+                        if ($js) { $w.WriteLine($js.Serialize($row)) } else { $w.WriteLine((ConvertTo-Json -InputObject $row -Compress)) }
+                        $local.Rows.Add($row)
+                    }
+                }
+            } finally { Close-FMPStream $w }
             # Merged only once the partition has succeeded, so a retry never counts twice.
             foreach ($row in $local.Rows) {
                 $spnCount++
@@ -2133,6 +2199,7 @@ function Get-FMPKerberosSpnMap {
         $null = Complete-FMPProgress -Tracker $tracker
     }
 
+    if ($dnsCache.Count) { $null = Complete-FMPProgress -Tracker $dnsTracker -Note "$(@($dnsCache.Values | Where-Object { -not $_ }).Count) not found" }
     $dupes = @(foreach ($k in ($holders.Keys | Sort-Object)) {
             $h = $holders[$k]
             if ($h -isnot [string]) {
@@ -2150,6 +2217,14 @@ function Get-FMPKerberosSpnMap {
         UserAccountSpnCount = $userSpns
         DuplicateCount      = $dupes.Count
         OrphanCount         = $orphans.Count
+        OrphansByReason     = [ordered]@{
+            Disabled      = @($orphans | Where-Object { $_.Reason -match 'Disabled' }).Count
+            NoRecentLogon = @($orphans | Where-Object { $_.Reason -match 'NoRecentLogon' }).Count
+            HostNotFound  = @($orphans | Where-Object { $_.Reason -match 'HostNotFound' }).Count
+        }
+        HostsCheckedInDns   = $dnsCache.Count
+        DnsLookupsCapped    = $dnsCapped.Value
+        DnsChecked          = $dnsAvailable
         ByServiceClass      = $classRows
     }
     Write-FMPJson -InputObject $doc -Path (Join-Path $path 'KerberosSpnSummary.json') -Depth 5
@@ -2441,6 +2516,7 @@ function Get-FMPStartKitSummary {
     $dhcp = if ($forestDir) { Read-FMPJsonFile (Join-Path (Join-Path $forestDir.FullName 'DHCP') 'DHCPInventory.json') } else { $null }
     $schema = if ($forestDir) { Read-FMPJsonFile (Join-Path (Join-Path $forestDir.FullName 'Schema') 'SchemaExtensions.json') } else { $null }
     $sql = Read-FMPJsonFile (Join-Path (Join-Path $root 'SQL') 'SqlEstateSummary.json')
+    $svc = Read-FMPJsonFile (Join-Path (Join-Path $root 'ServerServices') 'ServerServiceSummary.json')
     $nps = Read-FMPJsonFile (Join-Path (Join-Path $root 'NPS') 'NpsSummary.json')
     $tx = Read-FMPJsonFile (Join-Path (Join-Path $root 'transaction-profiles') 'TransactionSummary.json')
     $txRead = $tx -and $tx.Status -eq 'Read'
@@ -2505,6 +2581,9 @@ function Get-FMPStartKitSummary {
         PrivilegedDelegable = & $sumOrNc @($domainDirs | ForEach-Object { $p = Join-Path (Join-Path $_.FullName 'Objects') 'PrivilegedDelegable.csv'; if (Test-Path -LiteralPath $p) { @(Read-FMPCsvFile $p).Count } })
         SQLInstances       = if ($sql) { $sql.InstanceCount } else { $nc }
         SQLHosts           = if ($sql) { $sql.HostCount } else { $nc }
+        ServiceInventoryServers     = if ($svc) { $svc.ServersRead } else { $nc }
+        ServiceInventoryUnreachable = if ($svc) { $svc.ServersUnreachable } else { $nc }
+        DomainAccountsRunningServices = if ($svc) { $svc.DomainServiceAccounts } else { $nc }
         SQLUnconstrainedDelegation = if ($null -ne $sqlRows -and $haveComputers -and $haveUsers) { @($sqlUc).Count } else { $nc }
         NPSServers         = if ($nps) { $nps.NpsServers } else { $nc }
         NPSServersRead     = if ($nps) { $nps.NpsServersRead } else { $nc }
@@ -2565,6 +2644,8 @@ function Get-FMPStartKitSummary {
         UnconstrainedDelegationAccounts = 'User and service accounts with unconstrained delegation'
         PrivilegedDelegable = 'Privileged users whose credentials can be delegated (not sensitive, not in Protected Users)'
         SchemaVersion = 'Schema version'; SQLInstances = 'SQL Server instances'; SQLHosts = 'SQL Server hosts'
+        ServiceInventoryServers = 'Servers whose services were read'; ServiceInventoryUnreachable = 'Servers whose services could not be read'
+        DomainAccountsRunningServices = 'Domain and managed service accounts running a service on a server read'
         SQLUnconstrainedDelegation = 'SQL Server instances whose host or service account has unconstrained delegation'
         NPSServers = 'NPS servers (RAS and IAS Servers members and named)'; NPSServersRead = 'NPS servers whose configuration was read'
         RADIUSClients = 'RADIUS clients (unique addresses)'; NetworkPolicies = 'NPS network policies (all servers)'

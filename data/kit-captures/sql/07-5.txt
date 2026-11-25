@@ -1,25 +1,6 @@
-PS> Get-Content out/connections/manifest.json
-{
-  "step": "CONN",
-  "title": "Find stored credentials and classify each connection string",
-  "mode": "read-only",
-  "asOf": "2026-11-20",
-  "controls": [
-    "IA-5",
-    "CM-6"
-  ],
-  "ksis": [
-    "KSI-IAM-SNU",
-    "KSI-SVC-ACM"
-  ],
-  "files": [
-    {
-      "file": "connections.csv",
-      "sha256": "8d47142466c6cd3d369fb61ecf2c754473a52b245875f23ed141d28e79d11c2a"
-    },
-    {
-      "file": "connections.json",
-      "sha256": "9376f94e5c88dae5dacc3cf3f2758ae7b26cdfa92adbed90333392d7ff19d9ac"
-    }
-  ]
-}
+PS> Import-Module ./powershell/SqlIdentity/SqlIdentity.psd1
+PS> ConvertFrom-SqlConnectionString 'Server=sqlprd01.contoso.example;Database=Payroll;Authentication=Active Directory Password;User ID=svc-payroll@contoso.example;Password=NotARealOne' | Format-List | Out-String -Width 400
+Server         : sqlprd01.contoso.example
+Authentication : entra
+Mode           : Active Directory Password
+Masked         : Server=sqlprd01.contoso.example;Database=Payroll;Authentication=Active Directory Password;User ID=svc-payroll@contoso.example;Password=********

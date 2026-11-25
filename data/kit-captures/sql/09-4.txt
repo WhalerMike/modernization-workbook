@@ -1,12 +1,14 @@
-PS> Import-Module ./powershell/SqlIdentity/SqlIdentity.psd1
-PS> $day30 = Read-SqlJson tests/fixtures/audit-day30/audit.json
-PS> Get-SqlClosureRecord -Audit $day30 -Exceptions @() | Where-Object { $_.Instance -eq 'SQLPRD01' -and $_.Status -ne 'met' } | Format-Table -AutoSize
-Instance Condition                  Status
--------- ---------                  ------
-SQLPRD01 1 No usable Windows login  NOT MET
-SQLPRD01 3 Only Entra logins remain NOT MET
-SQLPRD01 3 Entra sign-ins and audit external
-SQLPRD01 4 Arc agent connected      external
-SQLPRD01 4 SQL extension deployed   external
-SQLPRD01 4 Entra configured         external
-SQLPRD01 5 MFA for every human      external
+PS> Import-Csv "$Run/closure/closure.csv" | Where-Object Instance -eq SQLPRD01 | Format-Table -AutoSize
+Instance Condition                    Status
+-------- ---------                    ------
+SQLPRD01 1 No usable Windows login    met
+SQLPRD01 2 SQL logins refused         met
+SQLPRD01 2 No usable SQL login        met
+SQLPRD01 2 sa disabled and renamed    met
+SQLPRD01 3 Only Entra logins remain   met
+SQLPRD01 3 No remote NTLM or Kerberos met
+SQLPRD01 3 Entra sign-ins and audit   external
+SQLPRD01 4 Arc agent connected        met
+SQLPRD01 4 SQL extension deployed     met
+SQLPRD01 4 Entra configured           met
+SQLPRD01 5 MFA for every human        external
