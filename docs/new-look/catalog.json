@@ -211,11 +211,11 @@
    "id": "docs/training/dns-dhcp-ipam/index.md",
    "type": "Learning path",
    "title": "Learning path: DNS, DHCP and IPAM",
-   "description": "Four modules on Book 08's naming plane: read it from the evidence, sort what Active Directory DNS does into where it goes, check the DHCP edge, and hold every network to one address plan, each with a lab on fixtures and a lab in your…",
+   "description": "Six modules on Book 08's naming plane: read it from the evidence, sort what Active Directory DNS does into where it goes, check the DHCP edge, hold every network to one address plan, move authority through the decommissioning gates, and…",
    "url": "docs/training/dns-dhcp-ipam/index.html",
-   "count": 4,
+   "count": 6,
    "unit": "modules",
-   "reading_minutes": 215,
+   "reading_minutes": 325,
    "reading_source": "page",
    "videos": 0,
    "video_minutes": 0,
@@ -864,6 +864,31 @@
    ],
    "status": "Approved",
    "family": "infoblox-nios",
+   "featured": false
+  },
+  {
+   "id": "docs/books/guides/information-protection-implementation.md",
+   "type": "Implementation guide",
+   "title": "Information Protection with Microsoft Purview: An Implementation Guide",
+   "description": "A gated guide for building Book 20's information protection in a Microsoft 365 GCC tenant: twelve gates, one for each chapter of the book, from the data classes and the inventory through the label taxonomy, publication and defaults…",
+   "url": "docs/books/guides/information-protection-implementation.html",
+   "count": 12,
+   "unit": "steps",
+   "reading_minutes": 36,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "audience",
+   "roles": [
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Information protection"
+   ],
+   "status": "Draft",
+   "family": "information-protection",
    "featured": false
   },
   {
@@ -2538,9 +2563,9 @@
    "id": "docs/training/labs.md#ddi",
    "type": "Lab",
    "title": "Labs: DNS, DHCP and IPAM learning path",
-   "description": "8 hands-on labs across 4 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The DNS, DHCP and IPAM learning path.",
+   "description": "12 hands-on labs across 6 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The DNS, DHCP and IPAM learning path.",
    "url": "docs/training/labs.html#ddi",
-   "count": 8,
+   "count": 12,
    "unit": "labs",
    "reading_minutes": null,
    "reading_source": null,

@@ -620,6 +620,11 @@ bundles:
     subtitle: "Federal Modernization Workbook companion guide"
     root: docs/books/guides
     pages: [defender-xdr-implementation.md]
+  - output: information-protection-implementation-guide.docx
+    title: "Information Protection with Microsoft Purview: An Implementation Guide"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [information-protection-implementation.md]
   - output: global-secure-access-implementation-guide.docx
     title: "Global Secure Access & Zero Trust Network Engineering: An Implementation Guide"
     subtitle: "Federal Modernization Workbook companion guide"

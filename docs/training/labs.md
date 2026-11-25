@@ -263,6 +263,8 @@ Every lab opens with the list of every command it runs, in order: follow it top 
 | [Module 2: The Active Directory DNS departure](dns-dhcp-ipam/02-the-active-directory-dns-departure.md) | [Lab 1](dns-dhcp-ipam/02-the-active-directory-dns-departure.md#ddi-m2-lab-1) | [Lab 2](dns-dhcp-ipam/02-the-active-directory-dns-departure.md#ddi-m2-lab-2) |
 | [Module 3: DHCP, encrypted DNS and the edge](dns-dhcp-ipam/03-dhcp-encrypted-dns-and-the-edge.md) | [Lab 1](dns-dhcp-ipam/03-dhcp-encrypted-dns-and-the-edge.md#ddi-m3-lab-1) | [Lab 2](dns-dhcp-ipam/03-dhcp-encrypted-dns-and-the-edge.md#ddi-m3-lab-2) |
 | [Module 4: Cloud private DNS and one address plan](dns-dhcp-ipam/04-cloud-private-dns-and-one-address-plan.md) | [Lab 1](dns-dhcp-ipam/04-cloud-private-dns-and-one-address-plan.md#ddi-m4-lab-1) | [Lab 2](dns-dhcp-ipam/04-cloud-private-dns-and-one-address-plan.md#ddi-m4-lab-2) |
+| [Module 5: Move authority zone by zone](dns-dhcp-ipam/05-move-authority-zone-by-zone.md) | [Lab 1](dns-dhcp-ipam/05-move-authority-zone-by-zone.md#ddi-m5-lab-1) | [Lab 2](dns-dhcp-ipam/05-move-authority-zone-by-zone.md#ddi-m5-lab-2) |
+| [Module 6: Operate the control plane with evidence](dns-dhcp-ipam/06-operate-the-control-plane-with-evidence.md) | [Lab 1](dns-dhcp-ipam/06-operate-the-control-plane-with-evidence.md#ddi-m6-lab-1) | [Lab 2](dns-dhcp-ipam/06-operate-the-control-plane-with-evidence.md#ddi-m6-lab-2) |
 
 : DNS, DHCP and IPAM: labs by module {.striped .hover}
 

@@ -1789,6 +1789,9 @@
  "docs/books/guides/infoblox-nios-implementation.md": {
   "page": "infoblox-nios-implementation.docx"
  },
+ "docs/books/guides/information-protection-implementation.md": {
+  "page": "information-protection-implementation.docx"
+ },
  "docs/books/guides/intune-track-implementation.md": {
   "page": "intune-track-implementation.docx"
  },
@@ -2573,6 +2576,16 @@
  "docs/training/dns-dhcp-ipam/04-cloud-private-dns-and-one-address-plan.md": {
   "bundle": "training-dns-dhcp-ipam-bundle.docx",
   "page": "04-cloud-private-dns-and-one-address-plan.docx",
+  "title": "Learning path: DNS, DHCP and IPAM"
+ },
+ "docs/training/dns-dhcp-ipam/05-move-authority-zone-by-zone.md": {
+  "bundle": "training-dns-dhcp-ipam-bundle.docx",
+  "page": "05-move-authority-zone-by-zone.docx",
+  "title": "Learning path: DNS, DHCP and IPAM"
+ },
+ "docs/training/dns-dhcp-ipam/06-operate-the-control-plane-with-evidence.md": {
+  "bundle": "training-dns-dhcp-ipam-bundle.docx",
+  "page": "06-operate-the-control-plane-with-evidence.docx",
   "title": "Learning path: DNS, DHCP and IPAM"
  },
  "docs/training/dns-dhcp-ipam/index.md": {
