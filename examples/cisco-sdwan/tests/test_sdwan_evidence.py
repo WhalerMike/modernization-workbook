@@ -252,3 +252,49 @@ def test_main_fails_cleanly_without_credentials(tmp_path, monkeypatch):
     monkeypatch.delenv("SDWAN_API_USERNAME", raising=False)
     monkeypatch.delenv("SDWAN_API_PASSWORD", raising=False)
     assert se.main(["--config", str(path)]) == 1
+
+
+# --- replay: saved Manager responses, no network ----------------------------
+
+def test_replay_runs_the_gate_without_credentials(tmp_path, monkeypatch):
+    monkeypatch.delenv("SDWAN_API_USERNAME", raising=False)
+    monkeypatch.delenv("SDWAN_API_PASSWORD", raising=False)
+    monkeypatch.setattr(se, "urllib_transport", lambda *a, **k: pytest.fail("replay must not open a connection"))
+    code = se.main(["--config", str(ROOT / "config" / "config.example.json"),
+                    "--replay", str(FIXTURES), "--out", str(tmp_path)])
+    assert code == 2
+    result = json.loads((tmp_path / "sdwan-evidence.json").read_text(encoding="utf-8"))
+    assert result["gate"] == "fail"
+    assert result["generated_at"] == "2026-10-26T08:00:00Z"   # the capture's header.generatedOn
+    assert result["replayed_from"].endswith("fixtures")
+    assert "no fabric was contacted" in result["status_note"]
+
+
+def test_replay_after_upgrade_passes_the_gate(tmp_path):
+    code = se.main(["--config", str(ROOT / "config" / "config.example.json"),
+                    "--replay", str(FIXTURES / "after-upgrade"), "--out", str(tmp_path)])
+    assert code == 0
+    rows = list(csv.DictReader((tmp_path / "ed-26-03-gate.csv").open(encoding="utf-8")))
+    assert rows and {r["status"] for r in rows} == {"pass"}
+    assert not any(r["record_kind"] == "unexpected_control_component" for r in rows)
+
+
+def test_replay_output_is_byte_for_byte_repeatable(tmp_path):
+    for name in ("a", "b"):
+        se.main(["--config", str(ROOT / "config" / "config.example.json"),
+                 "--replay", str(FIXTURES), "--out", str(tmp_path / name)])
+    first = (tmp_path / "a" / "sdwan-evidence.json").read_bytes()
+    assert first == (tmp_path / "b" / "sdwan-evidence.json").read_bytes()
+    assert b"\r\n" not in first
+    assert (tmp_path / "a" / "ed-26-03-gate.csv").read_bytes() == (tmp_path / "b" / "ed-26-03-gate.csv").read_bytes()
+
+
+def test_replay_refuses_a_folder_without_manager_responses(tmp_path):
+    with pytest.raises(se.ConfigError):
+        se.ReplayClient(tmp_path)
+    (tmp_path / "devices.json").write_text('{"data": []}', encoding="utf-8")
+    (tmp_path / "auditlog.json").write_text('[1, 2]', encoding="utf-8")
+    with pytest.raises(se.ConfigError):
+        se.ReplayClient(tmp_path)
+    assert se.main(["--config", str(ROOT / "config" / "config.example.json"),
+                    "--replay", str(tmp_path), "--out", str(tmp_path / "out")]) == 1

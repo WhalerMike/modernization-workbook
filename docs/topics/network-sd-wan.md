@@ -56,6 +56,17 @@ The implementation guides, the developer workbook and its code.
 
 The code is in [`examples/cisco-sdwan`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/cisco-sdwan) on GitHub, and in the code zip under [Download](#download).
 
+## Learn {#learn}
+
+The learning path and its hands-on labs.
+
+| Page | What it is |
+|---|---|
+| [Learning path: The SD-WAN Governor and Its Evidence](../training/network-sd-wan/index.md) | A learning path in four modules for network engineers, the fabric owner, security monitors and ISSO reviewers, built from Book 09 and the Cisco Catalyst SD-WAN implementation guide: why transport is physics and control is compliance, and… |
+| [Labs](../training/labs.md#network-sd-wan) | Every lab in the Network and SD-WAN learning path: what each needs, where it runs, and its commands. |
+
+: Learn {.striped .hover}
+
 ## Watch {#watch}
 
 Narrated videos. Each opens in the site's player, with chapters and captions.
@@ -107,8 +118,6 @@ What the workbook doesn't have on the network and SD-WAN, and whether it should.
 
 | Missing | Why |
 |---|---|
-| Developer workbook | Not needed, because the Cisco kit is one read-only collector; revisit when its learning path is planned. |
-| Learning path | Needed: ranked in the learning path plan. |
-| Labs | Needed: they come with the learning path. |
+| Developer workbook | Not needed, because the Cisco kit is one read-only collector, and the learning path's modules teach it directly, with Lab 1 replaying its fixtures. |
 
 : Not here {.striped .hover}
