@@ -761,7 +761,7 @@ function Test-AmEvidenceChain {
     foreach ($f in Get-ChildItem -LiteralPath $Path -Filter 'record-*.json' | Sort-Object Name) {
         $r = Read-AmJson -Path $f.FullName
         $chain = ($r.previous -eq $prev)
-        $changed = @($r.files | Where-Object { $p = Join-Path $BasePath $_.path; -not (Test-Path -LiteralPath $p) -or (Get-AmSha256 -Path $p) -ne $_.sha256 } | ForEach-Object path)
+        $changed = @($r.files | Where-Object { $p = if ([IO.Path]::IsPathRooted($_.path)) { $_.path } else { Join-Path $BasePath $_.path }; -not (Test-Path -LiteralPath $p) -or (Get-AmSha256 -Path $p) -ne $_.sha256 } | ForEach-Object path)
         [pscustomobject]@{ Record = $f.Name; Step = $r.step; ChainOk = $chain; FilesOk = ($changed.Count -eq 0); Changed = ($changed -join ' ') }
         $prev = Get-AmSha256 -Path $f.FullName
     }
