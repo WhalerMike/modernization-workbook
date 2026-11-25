@@ -25,12 +25,15 @@ param(
     [string]$ConfigPath,
     [switch]$SkipAd,
     [switch]$SkipAzure,
+    # The server-to-service inventory (the Start Kit's ServerServices\ServerServices.csv): fills
+    # Hosts and Services for AD user accounts used as service accounts.
+    [string]$ServiceInventoryPath,
     # No progress bar or heartbeat lines: for unattended runs.
     [switch]$Quiet
 )
 $ErrorActionPreference = 'Stop'
 Import-Module (Join-Path $PSScriptRoot 'powershell/NpiInventory/NpiInventory.psm1') -Force
-Set-NpiProgressPreference -Quiet:($Quiet -or [bool]$FixturePath)
+if ($Quiet -or $FixturePath) { Set-NpiProgressPreference -Quiet }
 
 $config = if ($ConfigPath) { Get-NpiRegisterConfig -Path $ConfigPath } else { Get-NpiRegisterConfig }
 if ($FixturePath) {
@@ -51,12 +54,12 @@ if ($FixturePath) {
 }
 
 $reader = New-NpiReader -Cloud $Cloud -Task inventory -Invoke $invoke -AdInvoke $adInvoke
-$register = Get-NpiRegister -Reader $reader -TenantId $TenantId -AsOf $AsOf -Config $config -SkipAd:$SkipAd -SkipAzure:$SkipAzure
+$register = Get-NpiRegister -Reader $reader -TenantId $TenantId -AsOf $AsOf -Config $config -SkipAd:$SkipAd -SkipAzure:$SkipAzure -ServiceInventoryPath $ServiceInventoryPath
 $findings = Test-NpiRegister -Register $register -Config $config
 $rows = @($register.Rows)
 
 $null = Export-NpiRun -OutputPath $OutputPath -Task inventory -Cloud $Cloud -Mode $mode -TenantId $TenantId -Domain $Domain -AsOf $AsOf.ToString('yyyy-MM-dd') `
-    -Evidence $register.Evidence -Extra @{ configSha256 = (Get-NpiFileHash -Path $config['_path']); skipped = @($(if ($SkipAd) { 'ad' }) + $(if ($SkipAzure) { 'azure' }) | Where-Object { $_ }) } -Files @{
+    -Evidence $register.Evidence -Extra @{ configSha256 = (Get-NpiFileHash -Path $config['_path']); serviceInventorySha256 = $(if ($ServiceInventoryPath) { Get-NpiFileHash -Path $ServiceInventoryPath } else { $null }); skipped = @($(if ($SkipAd) { 'ad' }) + $(if ($SkipAzure) { 'azure' }) | Where-Object { $_ }) } -Files @{
     'register.json'               = $rows
     'register.csv'                = $rows
     'findings.json'               = @($findings)

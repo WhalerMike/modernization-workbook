@@ -9,6 +9,13 @@ BeforeAll {
     Import-Module (Join-Path (Join-Path $KitRoot 'powershell') 'FMPAttributeSurvey') -Force
     Register-KitAdMocks -ModuleName FMPADAssessment
     Register-KitAdMocks -ModuleName FMPSqlEstate
+    # Tier B runs the server-service inventory: the servers come from the fixture's directory,
+    # and none answers, so each is reported unreachable.
+    Import-Module (Join-Path (Join-Path $KitRoot 'powershell') 'FMPServerService') -Force
+    Register-KitAdMocks -ModuleName FMPServerService
+    Mock -ModuleName FMPServerService Get-CimInstance -RemoveParameterType CimSession { throw 'WinRM cannot complete the operation.' }
+    Mock -ModuleName FMPServerService New-CimSessionOption { [pscustomobject]@{} }
+    Mock -ModuleName FMPServerService New-CimSession -RemoveParameterType SessionOption { throw 'The RPC server is unavailable.' }
     Register-KitSqlMocks
     Register-KitNpsMocks
     Register-KitSurveyMocks
@@ -34,7 +41,7 @@ Describe 'Invoke-FMPStartKit.ps1' {
     }
     It 'completes every step' {
         @($manifest.Steps | Where-Object Status -ne 'Completed' | ForEach-Object { "$($_.Step): $($_.Error)" }) | Should -BeNullOrEmpty
-        @($manifest.Steps).Count | Should -Be 28
+        @($manifest.Steps).Count | Should -Be 29
     }
     It 'records provenance: who, when, where, with what' {
         $manifest.ReadOnly | Should -BeTrue
