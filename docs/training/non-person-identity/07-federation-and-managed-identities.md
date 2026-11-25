@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Books 02, 04"
 series-order: 7
 review-status: approved
-reviewed-sha256: eb43ec31c98328a3b63dbaddd6edc74648f6406e0aeaf5f0d0f358852d5d1610
+reviewed-sha256: 0f1654b2c67ebd43b2308e8f90a1e120d202a714a9688188d57648a02e65a9ad
 last-reviewed: 2026-11-25
 ---
 # Module 7: Convert to managed identities and federation {.unnumbered}

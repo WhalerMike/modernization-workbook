@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 31633d7ca1f4ca5bb0445ad1a50c0e514e751c1e81759c17b364a46543a98626
-last-reviewed: 2026-11-20
+reviewed-sha256: f642aaf78f71a72ffd6228e75d2674f430ada2da7b1bc1c710f2203ec82b8db1
+last-reviewed: 2026-11-25
 ---
 # Chapter 05 — Workload Identity Federation and Managed Identities
 
