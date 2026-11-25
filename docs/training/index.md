@@ -1,7 +1,7 @@
 ---
 title: "Training"
 subtitle: "Learning paths: modules to work through in order, and the vendors' own training mapped to the workbook's roles"
-description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in four modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in eleven modules, the Provider Notices learning path in nine modules, the Zero Trust Assessment learning path in four modules, the Defender XDR learning path in five modules, the Global Secure Access learning path in six modules, the Azure Security Engineering learning path in five modules, the Daily Checks Dashboard learning path in two modules, the DNS, DHCP and IPAM learning path in six modules, and external learning paths from product vendors."
+description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in four modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in eleven modules, the Provider Notices learning path in nine modules, the Zero Trust Assessment learning path in four modules, the Defender XDR learning path in five modules, the Global Secure Access learning path in six modules, the Azure Security Engineering learning path in five modules, the Daily Checks Dashboard learning path in two modules, the DNS, DHCP and IPAM learning path in six modules, the Application Modernization learning path in seven modules, and external learning paths from product vendors."
 doc-type: section-landing
 fmw-eyebrow: "Training"
 listing:
@@ -45,6 +45,7 @@ listing:
       - "!azure-security/**"
       - "!daily-checks-dashboard/**"
       - "!dns-dhcp-ipam/**"
+      - "!application-modernization/**"
     type: table
     fields: [title, research-status, last-reviewed, description]
     field-display-names: *names
@@ -83,6 +84,7 @@ Each learning path's code downloads as one zip, rebuilt from the repository on e
 | Azure Security Engineering | [azure-security-code.zip](../../downloads/azure-security-code.zip) | `Downloads\azure-security-code\azure-security-code\azure-security` | PowerShell 7.1 |
 | Daily Checks Dashboard | [daily-checks-workbook-code.zip](../../downloads/daily-checks-workbook-code.zip) | `Downloads\daily-checks-workbook-code\daily-checks-workbook-code\daily-checks-workbook` | PowerShell 7.1 |
 | DNS, DHCP and IPAM | [start-kit.zip](../../downloads/start-kit.zip) | `Downloads\start-kit\start-kit` | Windows PowerShell 5.1 or PowerShell 7 |
+| Application Modernization | [app-modernization.zip](../../downloads/app-modernization.zip) | `Downloads\app-modernization\app-modernization` | Java 21, Node.js 24 and PowerShell 7.4 |
 
 : Each learning path's code, and the folder its labs run from {.striped .hover}
 
@@ -264,6 +266,12 @@ Two modules on putting the operator runbook's daily checks on one Azure Monitor 
 Six modules on [Book 08](../books/b08-ddi/index.md)'s naming plane, run with the Start Kit's DNS and DHCP collectors and its readiness checks: reading a domain's zones, DNS servers, locator records, zone health and DHCP scopes as one plane, with what to clear before anything moves; sorting every Active Directory DNS component into Chapter 10's target, method and risk, with the DHCP registration settings to decide; checking the resolvers and options each DHCP scope hands out, failover and DHCP servers nobody authorized, with encrypted DNS at the endpoint; holding every network on premises and in Azure, AWS GovCloud (US) and Oracle Cloud to one IPAM address plan; moving authority zone by zone through Chapter 10's five decommissioning gates; and operating the plane with its roles and an evidence index for the ISSO. Each module's Lab 1 runs on fictional files with no server or subscription; its Lab 2 runs in your own test domain or cloud accounts; each module ends with a knowledge check. Start at the [learning path](dns-dhcp-ipam/index.md). Once the agency has chosen Infoblox, the vendor's own courses are under [External learning paths](#external-learning-paths).
 
 **Code:** [start-kit.zip](../../downloads/start-kit.zip), or [`examples/start-kit`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit) in the repository. The path's page says [how to unzip it and where](dns-dhcp-ipam/index.md#get-the-code).
+
+## Application Modernization learning path
+
+Seven modules, one per chapter of the developer workbook [*Building Application Modernization*](../project-plans/developer-workbooks/application-modernization/index.md), built on [Book 18](../books/b18-application-modernization/index.md)'s reference implementation: the API contract and the schema a service owns; loading a legacy Db2 or Oracle schema into PostgreSQL by stated rules, and proving the move three ways; an AI agent that can only propose what a person decides; the React front end with an automated WCAG 2.0 A and AA check and what it can't decide under Section 508; and the application's own Microsoft Entra identity through Book 18 Appendix A's work packages, from redirect URIs and assignment to a sealed evidence pack. Each module runs a chapter's Lab 1 on fixtures, points to its Lab 2 in a test environment, and ends with a knowledge check. Start at the [learning path](application-modernization/index.md).
+
+**Code:** [app-modernization.zip](../../downloads/app-modernization.zip), or [`examples/app-modernization`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/app-modernization) in the repository. The path's page says [how to unzip it and where](application-modernization/index.md#get-the-code).
 
 ## External learning paths
 

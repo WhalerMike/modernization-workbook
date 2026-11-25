@@ -121,6 +121,32 @@
    "featured": false
   },
   {
+   "id": "docs/training/application-modernization/index.md",
+   "type": "Learning path",
+   "title": "Learning path: Application Modernization",
+   "description": "Seven modules, one per chapter of Building Application Modernization: the contract and the schema, moving and proving the data, an agent that only proposes, the front end and Section 508, and the application's own identity through to a…",
+   "url": "docs/training/application-modernization/index.html",
+   "count": 7,
+   "unit": "modules",
+   "reading_minutes": 385,
+   "reading_source": "page",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Identity engineer",
+    "Developer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Application modernization"
+   ],
+   "status": "Draft",
+   "family": "application-modernization",
+   "featured": false
+  },
+  {
    "id": "docs/training/azure-security/index.md",
    "type": "Learning path",
    "title": "Learning path: Azure Security Engineering",
@@ -1181,7 +1207,9 @@
    "level": "Advanced",
    "level_source": "audience",
    "roles": [
+    "Identity engineer",
     "Developer",
+    "ISSO and assessor",
     "Program lead and service owner"
    ],
    "topics": [
@@ -2240,16 +2268,17 @@
    "reading_source": null,
    "videos": 0,
    "video_minutes": 0,
-   "level": "Unrated",
+   "level": "Intermediate",
    "level_source": "path",
    "roles": [
+    "Identity engineer",
     "Developer",
-    "Program lead and service owner"
+    "ISSO and assessor"
    ],
    "topics": [
     "Application modernization"
    ],
-   "status": "Approved",
+   "status": "Draft",
    "family": "application-modernization",
    "featured": false
   },

@@ -2433,6 +2433,46 @@
  "docs/reference/zta-closure-coverage.md": {
   "page": "zta-closure-coverage.docx"
  },
+ "docs/training/application-modernization/01-the-contract-and-the-schema.md": {
+  "bundle": "training-application-modernization-bundle.docx",
+  "page": "01-the-contract-and-the-schema.docx",
+  "title": "Learning path: Application Modernization"
+ },
+ "docs/training/application-modernization/02-moving-the-data.md": {
+  "bundle": "training-application-modernization-bundle.docx",
+  "page": "02-moving-the-data.docx",
+  "title": "Learning path: Application Modernization"
+ },
+ "docs/training/application-modernization/03-proving-the-move.md": {
+  "bundle": "training-application-modernization-bundle.docx",
+  "page": "03-proving-the-move.docx",
+  "title": "Learning path: Application Modernization"
+ },
+ "docs/training/application-modernization/04-an-agent-that-only-proposes.md": {
+  "bundle": "training-application-modernization-bundle.docx",
+  "page": "04-an-agent-that-only-proposes.docx",
+  "title": "Learning path: Application Modernization"
+ },
+ "docs/training/application-modernization/05-the-front-end-and-section-508.md": {
+  "bundle": "training-application-modernization-bundle.docx",
+  "page": "05-the-front-end-and-section-508.docx",
+  "title": "Learning path: Application Modernization"
+ },
+ "docs/training/application-modernization/06-the-applications-identity.md": {
+  "bundle": "training-application-modernization-bundle.docx",
+  "page": "06-the-applications-identity.docx",
+  "title": "Learning path: Application Modernization"
+ },
+ "docs/training/application-modernization/07-the-evidence-pack.md": {
+  "bundle": "training-application-modernization-bundle.docx",
+  "page": "07-the-evidence-pack.docx",
+  "title": "Learning path: Application Modernization"
+ },
+ "docs/training/application-modernization/index.md": {
+  "bundle": "training-application-modernization-bundle.docx",
+  "page": "index.docx",
+  "title": "Learning path: Application Modernization"
+ },
  "docs/training/attribute-driven-migration/01-the-hr-middleware.md": {
   "bundle": "training-attribute-driven-migration-bundle.docx",
   "page": "01-the-hr-middleware.docx",

@@ -64,6 +64,7 @@ The learning path and its hands-on labs.
 
 | Page | What it is |
 |---|---|
+| [Learning path: Application Modernization](../training/application-modernization/index.md) | A learning path in seven modules for developers, data engineers, identity engineers, accessibility testers and ISSO reviewers, built on Book 18 and its reference implementation: the API contract and the schema a service owns; loading a… |
 | [Labs](../training/labs.md#am) | Every lab in Building Application Modernization: what each needs, where it runs, and its commands. |
 
 : Learn {.striped .hover}
@@ -101,6 +102,5 @@ What the workbook doesn't have on application modernization, and whether it shou
 |---|---|
 | Project plan | Not needed, because Book 18's Chapter 10, listed under Plan, runs the portfolio in waves, and each application gets its own plan from the triage. |
 | Guide | Not needed, because Book 18's Chapter 08 and the kit's README are the build guide for the reference implementation. |
-| Learning path | Needed: the learning path for Building Application Modernization, one module per chapter. |
 
 : Not here {.striped .hover}

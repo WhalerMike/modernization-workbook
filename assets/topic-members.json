@@ -2961,6 +2961,54 @@
    "title": "Zero Trust Assessment"
   }
  ],
+ "docs/training/application-modernization/01-the-contract-and-the-schema.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/training/application-modernization/02-moving-the-data.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/training/application-modernization/03-proving-the-move.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/training/application-modernization/04-an-agent-that-only-proposes.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/training/application-modernization/05-the-front-end-and-section-508.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/training/application-modernization/06-the-applications-identity.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/training/application-modernization/07-the-evidence-pack.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
+ "docs/training/application-modernization/index.md": [
+  {
+   "id": "application-modernization",
+   "title": "Application Modernization"
+  }
+ ],
  "docs/training/attribute-driven-migration/01-the-hr-middleware.md": [
   {
    "id": "attribute-driven-migration",

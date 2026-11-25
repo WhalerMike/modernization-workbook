@@ -455,6 +455,16 @@ website:
             - docs/training/dns-dhcp-ipam/04-cloud-private-dns-and-one-address-plan.md
             - docs/training/dns-dhcp-ipam/05-move-authority-zone-by-zone.md
             - docs/training/dns-dhcp-ipam/06-operate-the-control-plane-with-evidence.md
+        - section: "Application Modernization learning path"
+          href: docs/training/application-modernization/index.md
+          contents:
+            - docs/training/application-modernization/01-the-contract-and-the-schema.md
+            - docs/training/application-modernization/02-moving-the-data.md
+            - docs/training/application-modernization/03-proving-the-move.md
+            - docs/training/application-modernization/04-an-agent-that-only-proposes.md
+            - docs/training/application-modernization/05-the-front-end-and-section-508.md
+            - docs/training/application-modernization/06-the-applications-identity.md
+            - docs/training/application-modernization/07-the-evidence-pack.md
         - section: "External learning paths"
           contents:
             - docs/training/infoblox-training.md
