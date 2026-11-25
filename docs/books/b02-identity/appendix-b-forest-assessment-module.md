@@ -1488,13 +1488,13 @@ Invoke-RestMethod -Uri "$BaseUrl/repos/fmp/fmp/hooks" -Method Post -Headers (Get
 Schedule the run under the gMSA. Install and test the account on the host first; `Install-ADServiceAccount` caches it and proves the host can retrieve the password.[^aB-msa-assess] `Password` is a documented value of `-LogonType`, and Task Scheduler is one of the services that can run under a gMSA.[^aB-taskprincipal] Pairing the two with the account name ending in `$` is the program's configuration; confirm in a test task that it runs without any stored password before relying on it.
 
 ```powershell
-Install-ADServiceAccount -Identity 'svc-fmp-assess$'
-Test-ADServiceAccount   -Identity 'svc-fmp-assess$'
+Install-ADServiceAccount -Identity 'gmsa-fmpassess$'
+Test-ADServiceAccount   -Identity 'gmsa-fmpassess$'
 
 $action    = New-ScheduledTaskAction -Execute 'powershell.exe' `
     -Argument '-NoProfile -Command "Import-Module FMPADAssessment; Invoke-FMPADAssessment"'
 $trigger   = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Monday -At '02:00'
-$principal = New-ScheduledTaskPrincipal -UserId 'CONTOSO\svc-fmp-assess$' -LogonType Password
+$principal = New-ScheduledTaskPrincipal -UserId 'CONTOSO\gmsa-fmpassess$' -LogonType Password
 Register-ScheduledTask -TaskName 'FMP-AD-Assessment' -Action $action -Trigger $trigger -Principal $principal `
     -Description 'Weekly Federal Modernization Program Active Directory assessment'
 ```
@@ -1660,7 +1660,7 @@ Every file is UTF-8 JSON (or CSV, XML, HTML or text where noted). Timestamps are
   "StartTime": "2026-10-19T02:00:00.0000000-04:00",
   "EndTime": "2026-10-19T02:47:31.0000000-04:00",
   "DurationMinutes": 47.52,
-  "ExecutedBy": "CONTOSO\\svc-fmp-assess$",
+  "ExecutedBy": "CONTOSO\\gmsa-fmpassess$",
   "ComputerName": "FMP-ASSESS01",
   "StaleThresholdDays": 90,
   "Steps": [

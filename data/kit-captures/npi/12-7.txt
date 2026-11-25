@@ -1,10 +1,10 @@
 PS> Invoke-Pester -Path tests/NpiGmsaStandard.Tests.ps1
 Starting discovery in 1 files.
-Discovery found 27 tests.
+Discovery found 28 tests.
 Running tests.
 [+] tests/NpiGmsaStandard.Tests.ps1
 Tests completed
-Tests Passed: 27,
+Tests Passed: 28,
 Failed: 0,
 Skipped: 0,
 Inconclusive: 0,
