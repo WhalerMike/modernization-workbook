@@ -32,7 +32,7 @@ But a gMSA works only while Active Directory is authoritative. So converting isn
 | AC-2 Account Management; IA-5 | KSI-IAM-SNU (AC-2); KSI-IAM-APM (IA-5) | `findings.json`, NPI-KRB-01 to -07, -09 and -10 |
 | AC-6 Least Privilege; CM-5 Access Restrictions for Change | KSI-IAM-ELP, KSI-IAM-JIT (AC-6); KSI-CMT-RVP (CM-5) | `Get-NpiKrbRequiredRight` for the read and write tasks; `runBy` in `calls-ch06.json`; `password-retrievers.json` |
 | AC-2(1) Automated System Account Management; AC-5 Separation of Duties | KSI-IAM-JIT | The `Refused` rows and `runAs` in each apply folder: the pipeline sends only its steps, a person only the dMSA steps |
-| AC-2; CM-3 | KSI-IAM-SNU; KSI-CMT-LMC | `RequestId` and `ChangeRecord` on every write in `kerberos-plan.json` and `results.json` |
+| AC-2; CM-3 | KSI-IAM-SNU; KSI-CMT-LMC | `RequestId` and `ChangeRecord` on every write in `kerberos-plan.json` and `results.json`, and the tags on every create ([WD-175](../../about/decision-register.md#wd-175)) |
 | CM-8 System Component Inventory; AC-2 | KSI-PIY-GIV; KSI-IAM-SNU | `island-list.csv`; `reconciliation.json` |
 | CM-3; AC-2(3) Disable Accounts | KSI-CMT-LMC; KSI-IAM-AAM | `results.json` and `manifest.json` in each apply folder, each write re-read |
 
@@ -175,7 +175,7 @@ Remove-Item -Recurse -Force out
     Run by: 1 person, 4 pipeline
     Island list: 6 accounts, 4 ready for P4.6; hand-off ready: False
     Reconciliation (D11 KerberosIsland): 1 HandedOff, 4 OnIslandList, 1 Unreconciled
-    Plan SHA-256: 35c1efff8a8030b9e1d784578db673302817c3ee34e6e211638c1898b7b15b61
+    Plan SHA-256: ccd058b368e810f69d7fb728daedb76391dfdaf29bdb46979db9264f96aba00e
     ```
 
     `-MatrixRun` is Chapter 03's run, where the dispositions come from; `-ProgramDatesPath` is the one program-dates file, which the run refuses unless its SHA-256 is the one Chapter 03's run recorded. The plan's hash is the same on every run with these inputs. `Run by` counts the writes by who sends them.
@@ -280,7 +280,7 @@ Remove-Item -Recurse -Force out
     ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 ('0' * 64) -RunAs Pipeline -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-x
     ```
 
-    Expect `Apply as Pipeline: 1 Refused, 4 Sent`, then `Apply as Person: 4 Refused, 1 Sent`: each run sends only its own writes and re-reads each one. Then the refusal: `The plan's SHA-256 is 35c1efff…, not the approved 0000…; refusing to run a plan nobody reviewed.`
+    Expect `Apply as Pipeline: 1 Refused, 4 Sent`, then `Apply as Person: 4 Refused, 1 Sent`: each run sends only its own writes and re-reads each one. Then the refusal: `The plan's SHA-256 is ccd058b3…, not the approved 0000…; refusing to run a plan nobody reviewed.`
 
 10. **Run the tests:**
 
@@ -288,7 +288,7 @@ Remove-Item -Recurse -Force out
     Invoke-Pester -Path tests
     ```
 
-    Expect 554 tests passed, 0 failed.
+    Expect 555 tests passed, 0 failed.
 
 Delete `out` when you're done:
 

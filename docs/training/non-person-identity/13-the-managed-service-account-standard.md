@@ -114,7 +114,7 @@ Get-Content out/msa-standard/kerberos-replatform.csv
 Get-Content out/msa-standard/password-retrievers.json
 ```
 
-Check that both rows carry a `RequestId` and a `ChangeRecord`, and that only the gMSA has a retriever group.
+Check that both rows carry a `RequestId`, a `ChangeRecord` and their `Tags` (the request's tags, which Chapter 06 writes as the new account's AD description, [WD-175](../../about/decision-register.md#wd-175)), and that only the gMSA has a retriever group.
 
 **Step 4: Read the certifications and the ServiceNow findings.**
 

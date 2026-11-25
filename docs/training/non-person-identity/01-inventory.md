@@ -181,7 +181,7 @@ Remove-Item -Recurse -Force out
     Invoke-Pester -Path tests
     ```
 
-    Expect 554 tests passed, 0 failed.
+    Expect 555 tests passed, 0 failed.
 
 Delete `out` when you're done:
 

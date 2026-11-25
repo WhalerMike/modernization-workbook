@@ -156,7 +156,7 @@ Remove-Item -Recurse -Force out
     ```text
     Plan: CreateGmsa gmsa-npismoke$ in OU=Service Accounts,DC=corp-test,DC=contoso,DC=example, retriever CN=DL-gMSA-npismoke-Hosts,OU=Groups,DC=corp-test,DC=contoso,DC=example; runBy pipeline; request SP-REQ-0002001, change CHG-2026-1102-T
     Outbound-only: yes
-    Plan SHA-256: 0bcf2917c6845ce4b55f19fa578ee44be84c73166715747d0f89039307734f6a
+    Plan SHA-256: 923aa50754993d543c39c342ccbf441373fe3d0ad89a04a16cd7118fc7c15bfe
     ```
 
     The plan is the pipeline's: in a live stage a reviewer approves its hash and the pipeline's gMSA applies it with Chapter 06's write path. It writes nothing here.
@@ -175,7 +175,7 @@ Remove-Item -Recurse -Force out
     ./deploy/Invoke-NpiDeployRollback.ps1 -Mode Plan -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -SnapshotPath out/dryrun/test-preflight/snapshot.json -To Disabled -IncludeSmokeCleanup -FixturePath tests/fixtures/deploy/tenant-test.json -OutputPath out/dryrun/test-rollback
     ```
 
-    Expect `Rollback plan (test, to Disabled): 7 action(s)`, RB-01 to RB-07, and `Plan SHA-256 for the reviewer: 00105622acf1165bd55d606ea781b908d700f79f9f82cba5e67bd4f0d3081b81`. No action is a delete.
+    Expect `Rollback plan (test, to Disabled): 7 action(s)`, RB-01 to RB-07, and `Plan SHA-256 for the reviewer: ec3fb73c41e06d40fd7c5a484564579884dd0fac6f9255a02f2e787d6d940afa`. No action is a delete.
 
 6. **Apply the plan with a hash nobody approved:**
 
@@ -183,7 +183,7 @@ Remove-Item -Recurse -Force out
     ./deploy/Invoke-NpiDeployRollback.ps1 -Mode Apply -SettingsPath tests/fixtures/deploy/settings.test.json -Stage test -PlanPath out/dryrun/test-rollback/rollback-plan.json -ApprovedSha256 ('0' * 64) -FixturePath tests/fixtures/deploy/tenant-test.json -OutputPath out/dryrun/test-rollback-refused
     ```
 
-    Expect an error: `The plan's SHA-256 is 00105622…, not the approved 00000000…. Nothing was sent.`
+    Expect an error: `The plan's SHA-256 is ec3fb73c…, not the approved 00000000…. Nothing was sent.`
 
 7. **Dry-run the rollback with the approved hash:**
 
