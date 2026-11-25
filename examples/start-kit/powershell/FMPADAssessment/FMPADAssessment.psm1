@@ -901,7 +901,12 @@ function Get-FMPPKIAssessment {
             } catch { $cert = $null }
         }
         $keySize = $null
-        if ($cert) { try { $keySize = $cert.PublicKey.Key.KeySize } catch { $keySize = $null } }
+        # PublicKey.Key isn't supported by .NET on Linux or macOS; the RSA extension works on both
+        # editions (called statically, because Windows PowerShell 5.1 doesn't bind extension methods).
+        if ($cert) {
+            try { $rsa = [System.Security.Cryptography.X509Certificates.RSACertificateExtensions]::GetRSAPublicKey($cert); if ($rsa) { $keySize = $rsa.KeySize } } catch { $keySize = $null }
+            if ($null -eq $keySize) { try { $keySize = $cert.PublicKey.Key.KeySize } catch { $keySize = $null } }
+        }
         [pscustomobject]@{
             CAName             = $ca.cn
             DisplayName        = $ca.displayName
