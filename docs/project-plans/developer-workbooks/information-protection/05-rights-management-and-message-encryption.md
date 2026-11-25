@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: da22d2f791194b006ac850c7b8b1d2c5837657f69e9d1845b4724db80fb618d3
+last-reviewed: 2026-11-25
 ---
 # Chapter 05 — Rights Management and Message Encryption
 

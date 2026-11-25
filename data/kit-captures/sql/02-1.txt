@@ -1,0 +1,8 @@
+PS> Import-Module ./powershell/SqlIdentity/SqlIdentity.psd1
+PS> (Read-SqlJson tests/fixtures/audit-day1/audit.json).instances | Select-Object name, productVersion, isIntegratedSecurityOnly, registryLoginMode, isClustered, serviceAccount | Format-Table
+name     productVersion isIntegratedSecurityOnly registryLoginMode isClustered serviceAccount
+----     -------------- ------------------------ ----------------- ----------- --------------
+SQLPRD01 16.0.4135.4                           0                 1           0 CONTOSO\svc-sqlprd01
+SQLPRD02 16.0.4135.4                           1                 1           0 CONTOSO\svc-sqlprd02
+SQLFCI04 15.0.4375.4                           0                 2           1 CONTOSO\svc-sqlfci04
+SQLPRD06 17.0.1000.7                           1                 1           0 CONTOSO\gmsa-sqlprd06$

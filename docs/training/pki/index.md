@@ -16,7 +16,9 @@ listing:
     sort: "series-order asc"
     sort-ui: false
     filter-ui: false
-review-status: pending
+review-status: approved
+reviewed-sha256: 68fa4a3430238e4f5d91b6e20f659dc5eff31bc4d9cfe70cd4d77ce3ce6ef6d8
+last-reviewed: 2026-11-25
 ---
 # Learning path: PKI and Certificates {.unnumbered}
 

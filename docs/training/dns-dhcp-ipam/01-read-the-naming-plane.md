@@ -6,7 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 08"
 series-order: 1
-review-status: pending
+review-status: approved
+reviewed-sha256: b624f2dd8ab2ff0463a189748a3949446cc5e6201c5d8a1d4c4c839f8b784da2
+last-reviewed: 2026-11-25
 ---
 # Module 1: Read the naming plane {.unnumbered}
 

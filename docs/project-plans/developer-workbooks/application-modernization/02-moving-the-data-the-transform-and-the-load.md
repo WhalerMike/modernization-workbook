@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 23ffc186abb16431712b5b18ffe2f41b373f1d79b9d514c1359fb39aa1472e2b
+last-reviewed: 2026-11-25
 ---
 # Chapter 02 — Moving the Data: the Transform and the Load
 

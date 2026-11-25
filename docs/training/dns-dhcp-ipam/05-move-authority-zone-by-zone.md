@@ -6,7 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 08"
 series-order: 5
-review-status: pending
+review-status: approved
+reviewed-sha256: 56dd1f3edc04f7f089b8cae512c189301cd236618fc26d1ff6a4536582dcb2af
+last-reviewed: 2026-11-25
 ---
 # Module 5: Move authority zone by zone {.unnumbered}
 

@@ -6,6 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 09"
 series-order: 1
+review-status: approved
+reviewed-sha256: f9c77077ea900350b311bcc415bf74292f9dd143824a53b673d9277ecc13a37d
+last-reviewed: 2026-11-25
 ---
 # Module 1: The governor before the traffic {.unnumbered}
 

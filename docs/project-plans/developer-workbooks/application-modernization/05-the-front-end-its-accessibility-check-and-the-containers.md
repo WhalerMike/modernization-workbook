@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 72d998aa5ee1893e9601195c1793103616d36ea8c3785c19e0fb5b7eaa4fdb80
+last-reviewed: 2026-11-25
 ---
 # Chapter 05 — The Front End, Its Accessibility Check and the Containers
 

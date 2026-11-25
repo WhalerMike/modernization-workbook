@@ -1,0 +1,9 @@
+PS> Import-Module ./powershell/SqlIdentity/SqlIdentity.psd1
+PS> Test-SqlManifest -OutputPath out/logins | Format-Table
+File                  Recorded     Now          Match
+----                  --------     ---          -----
+plan.csv              757a194ad93b 757a194ad93b  True
+plan.json             0186896b0845 0186896b0845  True
+sqlprd01-create.sql   deed30db5ccc deed30db5ccc  True
+sqlprd01-cutover.sql  0a04162bf925 0a04162bf925  True
+sqlprd01-rollback.sql b2d5964e9a6d b2d5964e9a6d  True

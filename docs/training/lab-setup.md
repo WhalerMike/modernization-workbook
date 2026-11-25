@@ -4,8 +4,10 @@ subtitle: "Git, Git Bash, Python and PowerShell on your machine: the commands to
 description: "What a laptop needs to run the learning paths' Lab 1s: Git and Git Bash, with a short Git Bash command guide; Python 3.10 or later in a virtual environment, with the packages the kits import; PowerShell 7, Pester 5 and the execution policy; and the official documentation and training for each."
 doc-type: section-landing
 fmw-eyebrow: "Training"
+review-status: approved
+reviewed-sha256: 8e3e701e3770fd72025e63c2b9070df39bdc550f59e6674d4bff6f45fbc5059f
+last-reviewed: 2026-11-25
 ---
-
 # Set Up for the Labs {.unnumbered}
 
 Every learning path's Lab 1 runs on a laptop against the kit's fictional fixtures. This page sets up what those labs run on. Install only what your path needs. The [Training page's table](index.md#get-the-code) names each path's language, and [Labs](labs.md) lists what each chapter's lab needs.

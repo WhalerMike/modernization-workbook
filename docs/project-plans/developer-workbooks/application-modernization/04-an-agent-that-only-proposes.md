@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 9cda1c511634c699ab18709017f94ed263899a79e00c92f3d9bcfddcac1a4400
+last-reviewed: 2026-11-25
 ---
 # Chapter 04 — An Agent That Only Proposes
 

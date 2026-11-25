@@ -580,6 +580,12 @@ bundles:
     root: docs/project-plans/developer-workbooks/daily-checks
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: building-sql-server-identity-bundle.docx
+    title: "Building SQL Server Identity"
+    subtitle: "A developer workbook — Federal Modernization Workbook, combined edition"
+    root: docs/project-plans/developer-workbooks/sql-server-identity
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
   - output: building-defender-xdr-bundle.docx
     title: "Building Defender XDR"
     subtitle: "A developer workbook — Federal Modernization Workbook, combined edition"

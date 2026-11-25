@@ -142,9 +142,9 @@
    "topics": [
     "Application modernization"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "application-modernization",
-   "featured": false
+   "featured": true
   },
   {
    "id": "docs/training/azure-security/index.md",
@@ -257,9 +257,9 @@
     "Azure",
     "DNS and DDI"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "dns-dhcp-ipam",
-   "featured": false
+   "featured": true
   },
   {
    "id": "docs/training/global-secure-access/index.md",
@@ -344,9 +344,9 @@
     "Information protection",
     "Compliance and authorization"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "information-protection",
-   "featured": false
+   "featured": true
   },
   {
    "id": "path:ms-automation",
@@ -430,9 +430,9 @@
     "Active Directory",
     "PKI and certificates"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "pki",
-   "featured": false
+   "featured": true
   },
   {
    "id": "docs/training/privileged-access/index.md",
@@ -545,9 +545,9 @@
    "topics": [
     "Network"
    ],
-   "status": "Not tracked",
+   "status": "Approved",
    "family": "network-sd-wan",
-   "featured": false
+   "featured": true
   },
   {
    "id": "docs/training/zero-trust-assessment/index.md",
@@ -942,7 +942,7 @@
    "topics": [
     "Information protection"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "information-protection",
    "featured": false
   },
@@ -1270,7 +1270,7 @@
    "topics": [
     "Application modernization"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "application-modernization",
    "featured": false
   },
@@ -1406,7 +1406,7 @@
    "topics": [
     "Information protection"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "information-protection",
    "featured": false
   },
@@ -1489,6 +1489,31 @@
    ],
    "status": "Approved",
    "family": "provider-notices",
+   "featured": false
+  },
+  {
+   "id": "docs/project-plans/developer-workbooks/sql-server-identity/index.md",
+   "type": "Developer workbook",
+   "title": "Building SQL Server Identity",
+   "description": "A developer workbook for Book 06, Data Platform: SQL Server Identity",
+   "url": "docs/project-plans/developer-workbooks/sql-server-identity/index.html",
+   "count": 10,
+   "unit": "chapters",
+   "reading_minutes": 162,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Advanced",
+   "level_source": "audience",
+   "roles": [
+    "Cloud and platform engineer",
+    "Developer"
+   ],
+   "topics": [
+    "Data platform"
+   ],
+   "status": "Draft",
+   "family": "sql-server-identity",
    "featured": false
   },
   {
@@ -2360,7 +2385,7 @@
    "topics": [
     "Application modernization"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "application-modernization",
    "featured": false
   },
@@ -2503,7 +2528,7 @@
     "Information protection",
     "Compliance and authorization"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "information-protection",
    "featured": false
   },
@@ -2592,6 +2617,30 @@
    ],
    "status": "Approved",
    "family": "provider-notices",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#sql",
+   "type": "Lab",
+   "title": "Labs: Building SQL Server Identity",
+   "description": "18 hands-on labs across 9 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building SQL Server Identity.",
+   "url": "docs/training/labs.html#sql",
+   "count": 18,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Unrated",
+   "level_source": "path",
+   "roles": [
+    "Cloud and platform engineer"
+   ],
+   "topics": [
+    "Data platform"
+   ],
+   "status": "Approved",
+   "family": "sql-server-identity",
    "featured": false
   },
   {
@@ -2696,7 +2745,7 @@
     "Azure",
     "DNS and DDI"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "dns-dhcp-ipam",
    "featured": false
   },
@@ -2752,7 +2801,7 @@
     "Active Directory",
     "PKI and certificates"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "pki",
    "featured": false
   },
@@ -2778,7 +2827,7 @@
    "topics": [
     "Network"
    ],
-   "status": "Not tracked",
+   "status": "Approved",
    "family": "network-sd-wan",
    "featured": false
   },

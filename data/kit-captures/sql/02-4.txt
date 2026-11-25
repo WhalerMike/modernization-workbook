@@ -1,0 +1,8 @@
+PS> Import-Csv out/audit/findings.csv | Group-Object Severity | Select-Object Name, Count
+Name     Count
+----     -----
+critical     2
+high         3
+highest      2
+info         4
+medium       3

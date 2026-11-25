@@ -30,7 +30,9 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    # The full tier renders the site twice (DOCX, then HTML: about 47 minutes for 681 pages) and,
+    # when scripts/kit_captures.py changes, rechecks every workbook's captures; 60 minutes ran out.
+    timeout-minutes: 90
     env:
       # origin/main for a manual run, where there is no pull request base.
       BASE_REF: ${{ github.base_ref || 'main' }}

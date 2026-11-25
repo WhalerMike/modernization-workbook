@@ -6,9 +6,10 @@ research-status: draft
 research-type: training module
 research-book: "Book 18"
 series-order: 7
-review-status: pending
+review-status: approved
+reviewed-sha256: fd7b02b64c998a04f8abd84600bd7df80b92ec8f3660ba4b2c5c2060892dfa25
+last-reviewed: 2026-11-25
 ---
-
 # Module 7: The evidence pack {.unnumbered}
 
 *Part of the [Application Modernization learning path](index.md). Book 18, [Appendix A, WP6](../../books/b18-application-modernization/appendix-a-identity-remediation-work-packages.md#wp6-post-change-test). Workbook [Chapter 07](../../project-plans/developer-workbooks/application-modernization/07-the-post-change-test-and-the-evidence-pack.md). About 55 minutes.*

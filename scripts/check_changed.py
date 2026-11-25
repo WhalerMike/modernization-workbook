@@ -107,6 +107,7 @@ KIT_CAPTURES = {"ttm": ("docs/project-plans/developer-workbooks/ticket-to-machin
                 "gsa": ("docs/project-plans/developer-workbooks/global-secure-access", "examples/global-secure-access"),
                 "dc": ("docs/project-plans/developer-workbooks/daily-checks", "examples/daily-checks-workbook"),
                 "ip": ("docs/project-plans/developer-workbooks/information-protection", "examples/information-protection"),
+                "sql": ("docs/project-plans/developer-workbooks/sql-server-identity", "examples/sql-server-identity"),
                 "adm": ("docs/books/b19-developer-workbook", "examples")}
 
 

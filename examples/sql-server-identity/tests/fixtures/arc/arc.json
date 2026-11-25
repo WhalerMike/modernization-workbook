@@ -1,0 +1,54 @@
+{
+  "asOf": "2026-11-20",
+  "environment": "AzureCloud",
+  "note": "Azure Resource Graph results, saved as the kit's queries return them.",
+  "machines": [
+    {
+      "name": "sqlprd01",
+      "status": "Connected",
+      "agentVersion": "1.58"
+    },
+    {
+      "name": "sqlprd06",
+      "status": "Connected",
+      "agentVersion": "1.58"
+    },
+    {
+      "name": "sqlfci04-n1",
+      "status": "Disconnected",
+      "agentVersion": "1.49"
+    }
+  ],
+  "extensions": [
+    {
+      "machine": "sqlprd01",
+      "type": "WindowsAgent.SqlServer",
+      "provisioningState": "Succeeded"
+    },
+    {
+      "machine": "sqlprd06",
+      "type": "WindowsAgent.SqlServer",
+      "provisioningState": "Succeeded"
+    }
+  ],
+  "sqlInstances": [
+    {
+      "name": "SQLPRD01",
+      "machine": "sqlprd01",
+      "version": "SQL Server 2022",
+      "entraAuthentication": {
+        "configured": true,
+        "method": "appRegistration"
+      }
+    },
+    {
+      "name": "SQLPRD06",
+      "machine": "sqlprd06",
+      "version": "SQL Server 2025",
+      "entraAuthentication": {
+        "configured": true,
+        "method": "managedIdentity"
+      }
+    }
+  ]
+}

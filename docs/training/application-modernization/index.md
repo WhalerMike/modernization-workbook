@@ -16,7 +16,9 @@ listing:
     sort: "series-order asc"
     sort-ui: false
     filter-ui: false
-review-status: pending
+review-status: approved
+reviewed-sha256: 3a534d6d13736e091e48f375b65684f74ab7a9749eb206fdf31a92fad4c5daef
+last-reviewed: 2026-11-25
 ---
 # Learning path: Application Modernization {.unnumbered}
 

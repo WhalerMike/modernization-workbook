@@ -6,7 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 20"
 series-order: 1
-review-status: pending
+review-status: approved
+reviewed-sha256: 37a6df98e9d48a088ab9523761b192035479182dd9492fb27f1d86a4393e6e31
+last-reviewed: 2026-11-25
 ---
 # Module 1: Classes, access and the baseline {.unnumbered}
 

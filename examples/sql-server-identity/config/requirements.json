@@ -1,0 +1,269 @@
+{
+  "_comment": "Each scripted step of the SQL Server identity kit, with the NIST SP 800-53 Rev 5 controls whose statements it supports and the FedRAMP 20x Key Security Indicators. Every control-to-KSI pair reuses one another kit's requirements file already verified: CM-8 to KSI-PIY-GIV (defender-xdr COVERAGE, global-secure-access BASELINE); AC-2, CM-8 and IA-4 to KSI-PIY-GIV and KSI-IAM-SNU, and IA-5 to KSI-IAM-SNU (non-person-identity requirements-ch11 S1.1 to S1.4); CM-6 to KSI-SVC-ACM; AC-6 to KSI-IAM-ELP; CM-3 and CM-4 to KSI-CMT-LMC and KSI-CMT-RVP; SC-8, SC-12 and SC-17 to KSI-SVC-SIN and KSI-SVC-ASM (global-secure-access TLS); CA-7 to KSI-MLA-EVC; AU-9 to KSI-MLA-OSM; CM-3 and CP-2 to KSI-CMT-LMC and KSI-RPL-ARP. A control listed without a KSI (IA-2, AC-3) has no verified pairing in the workbook yet. Which step supports which control is the program's reading (design guidance, from Book 06, Appendix A); the agency's assessor decides. KSIs are FedRAMP's indicators for cloud service providers: the agency lines its own evidence up with what its providers report against them and doesn't report KSIs itself. 'stages' lists the steps each stage's evidence must hold before the go/no-go.",
+  "version": 1,
+  "controls": {
+    "AC-2": {
+      "title": "Account Management"
+    },
+    "AC-3": {
+      "title": "Access Enforcement"
+    },
+    "AC-6": {
+      "title": "Least Privilege"
+    },
+    "AU-9": {
+      "title": "Protection of Audit Information"
+    },
+    "CA-7": {
+      "title": "Continuous Monitoring"
+    },
+    "CM-3": {
+      "title": "Configuration Change Control"
+    },
+    "CM-4": {
+      "title": "Impact Analyses"
+    },
+    "CM-6": {
+      "title": "Configuration Settings"
+    },
+    "CM-8": {
+      "title": "System Component Inventory"
+    },
+    "CP-2": {
+      "title": "Contingency Plan"
+    },
+    "IA-2": {
+      "title": "Identification and Authentication (Organizational Users)"
+    },
+    "IA-4": {
+      "title": "Identifier Management"
+    },
+    "IA-5": {
+      "title": "Authenticator Management"
+    },
+    "SC-8": {
+      "title": "Transmission Confidentiality and Integrity"
+    },
+    "SC-12": {
+      "title": "Cryptographic Key Establishment and Management"
+    },
+    "SC-17": {
+      "title": "Public Key Infrastructure Certificates"
+    }
+  },
+  "steps": {
+    "ESTATE": {
+      "title": "Classify every instance retain, consolidate, retire or review",
+      "chapter": "01",
+      "controls": [
+        "CM-8"
+      ],
+      "ksis": [
+        "KSI-PIY-GIV"
+      ]
+    },
+    "AUDIT": {
+      "title": "Login census, authentication mode, sa and service-account findings",
+      "chapter": "02",
+      "controls": [
+        "AC-2",
+        "IA-5",
+        "CM-6"
+      ],
+      "ksis": [
+        "KSI-PIY-GIV",
+        "KSI-IAM-SNU",
+        "KSI-SVC-ACM"
+      ]
+    },
+    "ARC": {
+      "title": "Arc agent, SQL extension and Entra configuration: the Arc-eligibility category",
+      "chapter": "03",
+      "controls": [
+        "CM-8",
+        "CM-6",
+        "IA-5"
+      ],
+      "ksis": [
+        "KSI-PIY-GIV",
+        "KSI-SVC-ACM",
+        "KSI-IAM-SNU"
+      ]
+    },
+    "LOGINS": {
+      "title": "Plan the Entra logins and database users (dry run)",
+      "chapter": "04",
+      "controls": [
+        "AC-2",
+        "IA-2",
+        "CM-3",
+        "CM-4"
+      ],
+      "ksis": [
+        "KSI-CMT-LMC",
+        "KSI-CMT-RVP"
+      ]
+    },
+    "PARALLEL": {
+      "title": "Judge the parallel run against its exit criteria",
+      "chapter": "04",
+      "controls": [
+        "AC-2",
+        "CA-7"
+      ],
+      "ksis": [
+        "KSI-MLA-EVC"
+      ]
+    },
+    "GROUPS": {
+      "title": "Map each AD group pattern to its Entra group",
+      "chapter": "05",
+      "controls": [
+        "AC-2",
+        "AC-6"
+      ],
+      "ksis": [
+        "KSI-IAM-ELP"
+      ]
+    },
+    "NTLM": {
+      "title": "Find the NTLM patterns and plan the SPN fixes",
+      "chapter": "06",
+      "controls": [
+        "IA-2",
+        "CM-6"
+      ],
+      "ksis": [
+        "KSI-SVC-ACM"
+      ]
+    },
+    "CONN": {
+      "title": "Find stored credentials and classify each connection string",
+      "chapter": "07",
+      "controls": [
+        "IA-5",
+        "CM-6"
+      ],
+      "ksis": [
+        "KSI-IAM-SNU",
+        "KSI-SVC-ACM"
+      ]
+    },
+    "CERTS": {
+      "title": "Find the AD CS certificates SQL Server depends on",
+      "chapter": "08",
+      "controls": [
+        "SC-8",
+        "SC-12",
+        "SC-17"
+      ],
+      "ksis": [
+        "KSI-SVC-SIN",
+        "KSI-SVC-ASM"
+      ]
+    },
+    "CLOSURE": {
+      "title": "Project the audit onto the five closure conditions",
+      "chapter": "09",
+      "controls": [
+        "CA-7",
+        "CM-6",
+        "AC-2"
+      ],
+      "ksis": [
+        "KSI-MLA-EVC",
+        "KSI-SVC-ACM"
+      ]
+    },
+    "DRIFT": {
+      "title": "Compare two audit runs for regressions",
+      "chapter": "09",
+      "controls": [
+        "CA-7",
+        "CM-6"
+      ],
+      "ksis": [
+        "KSI-MLA-EVC",
+        "KSI-SVC-ACM"
+      ]
+    },
+    "PRE": {
+      "title": "Preflight: settings, cloud, Arc eligibility, mapping, break-glass, sa and the earlier stage's evidence",
+      "chapter": "10",
+      "controls": [
+        "AC-6",
+        "CM-6"
+      ],
+      "ksis": [
+        "KSI-IAM-ELP",
+        "KSI-SVC-ACM"
+      ]
+    },
+    "PLAN": {
+      "title": "Plan the change for one environment, with its hash",
+      "chapter": "10",
+      "controls": [
+        "CM-3",
+        "CM-4"
+      ],
+      "ksis": [
+        "KSI-CMT-LMC",
+        "KSI-CMT-RVP"
+      ]
+    },
+    "DEPLOY": {
+      "title": "Run the approved plan",
+      "chapter": "10",
+      "controls": [
+        "CM-3",
+        "AC-2"
+      ],
+      "ksis": [
+        "KSI-CMT-LMC"
+      ]
+    },
+    "RB": {
+      "title": "Rollback plan",
+      "chapter": "10",
+      "controls": [
+        "CM-3",
+        "CP-2"
+      ],
+      "ksis": [
+        "KSI-CMT-LMC",
+        "KSI-RPL-ARP"
+      ]
+    },
+    "EVIDENCE": {
+      "title": "Seal a stage's runs as hashed, chained evidence",
+      "chapter": "10",
+      "controls": [
+        "CA-7",
+        "AU-9"
+      ],
+      "ksis": [
+        "KSI-MLA-EVC",
+        "KSI-MLA-OSM"
+      ]
+    }
+  },
+  "stages": {
+    "test": [
+      "PRE",
+      "AUDIT",
+      "ARC",
+      "PLAN",
+      "DEPLOY",
+      "PARALLEL"
+    ],
+    "production": [
+      "PRE",
+      "AUDIT",
+      "ARC",
+      "PLAN",
+      "DEPLOY",
+      "PARALLEL",
+      "CLOSURE"
+    ]
+  }
+}

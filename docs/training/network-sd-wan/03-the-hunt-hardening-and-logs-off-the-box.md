@@ -6,6 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 09"
 series-order: 3
+review-status: approved
+reviewed-sha256: 099604260eea5e0c883c1ff70143188603a28aa1b250c8e40593612b51630cd6
+last-reviewed: 2026-11-25
 ---
 # Module 3: The hunt, hardening and logs off the box {.unnumbered}
 

@@ -1,0 +1,17 @@
+{
+  "asOf": "2026-11-20",
+  "linkedServers": [
+    {
+      "instance": "SQLPRD01",
+      "linkedServer": "SQLLEG03",
+      "usesSelfCredential": true,
+      "remoteLogin": null
+    },
+    {
+      "instance": "SQLPRD02",
+      "linkedServer": "SQLPRD06",
+      "usesSelfCredential": false,
+      "remoteLogin": "claims_link"
+    }
+  ]
+}

@@ -6,7 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 20"
 series-order: 5
-review-status: pending
+review-status: approved
+reviewed-sha256: f39fca9f028fde4b921ddbc23d65ac1297b1e735c6e50456f5fe98aa5292dfbf
+last-reviewed: 2026-11-25
 ---
 # Module 5: Audit, drift and evidence {.unnumbered}
 

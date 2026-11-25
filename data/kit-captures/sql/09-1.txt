@@ -1,0 +1,32 @@
+PS> ./Invoke-SqlClosure.ps1 -AuditPath tests/fixtures/audit-day30/audit.json -ExceptionsPath tests/fixtures/audit-day30/exceptions.json -ArcPath tests/fixtures/arc/arc.json -OutputPath out/closure
+Instance Met NotMet External Record
+-------- --- ------ -------- ------
+SQLFCI04   2      7        2 open
+SQLPRD01   9      0        2 ready for the assessor, with the external evidence
+SQLPRD02   3      6        2 open
+SQLPRD06   5      4        2 open
+
+Conditions not met:
+
+Instance Condition                    Status
+-------- ---------                    ------
+SQLPRD02 1 No usable Windows login    NOT MET
+SQLPRD02 3 Only Entra logins remain   NOT MET
+SQLPRD02 3 No remote NTLM or Kerberos NOT MET
+SQLPRD02 4 Arc agent connected        NOT MET
+SQLPRD02 4 SQL extension deployed     NOT MET
+SQLPRD02 4 Entra configured           NOT MET
+SQLFCI04 1 No usable Windows login    NOT MET
+SQLFCI04 2 SQL logins refused         NOT MET
+SQLFCI04 2 sa disabled and renamed    NOT MET
+SQLFCI04 3 Only Entra logins remain   NOT MET
+SQLFCI04 4 Arc agent connected        NOT MET
+SQLFCI04 4 SQL extension deployed     NOT MET
+SQLFCI04 4 Entra configured           NOT MET
+SQLPRD06 1 No usable Windows login    NOT MET
+SQLPRD06 2 SQL logins refused         NOT MET
+SQLPRD06 3 Only Entra logins remain   NOT MET
+SQLPRD06 3 No remote NTLM or Kerberos NOT MET
+
+Wrote 2 files and manifest.json to out/closure
+Evidence for CLOSURE (Project the audit onto the five closure conditions): CA-7, CM-6, AC-2; KSI-MLA-EVC, KSI-SVC-ACM

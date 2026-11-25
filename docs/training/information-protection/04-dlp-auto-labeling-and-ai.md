@@ -6,7 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 20"
 series-order: 4
-review-status: pending
+review-status: approved
+reviewed-sha256: 28b16d988a340881f36d23e77d7d9642a26e7eb23363537ebac7515228fb36e8
+last-reviewed: 2026-11-25
 ---
 # Module 4: DLP, auto-labeling and AI {.unnumbered}
 

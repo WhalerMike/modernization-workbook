@@ -6,9 +6,10 @@ research-status: draft
 research-type: training module
 research-book: "Book 18"
 series-order: 5
-review-status: pending
+review-status: approved
+reviewed-sha256: d0c36cdb29f606f703c532fb4e5a4739b16f0b31997c08ce892c8c72f0c4da68
+last-reviewed: 2026-11-25
 ---
-
 # Module 5: The front end and Section 508 {.unnumbered}
 
 *Part of the [Application Modernization learning path](index.md). Book 18, [Chapter 03](../../books/b18-application-modernization/03-the-target-reference-architecture.md#front-ends-react) and [Chapter 06](../../books/b18-application-modernization/06-compliance-by-design.md#section-508-gate). Workbook [Chapter 05](../../project-plans/developer-workbooks/application-modernization/05-the-front-end-its-accessibility-check-and-the-containers.md). About 50 minutes.*
