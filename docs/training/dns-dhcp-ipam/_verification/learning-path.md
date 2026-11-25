@@ -1,6 +1,6 @@
 # Verification — Learning path: DNS, DHCP and IPAM
 
-Files: `docs/training/dns-dhcp-ipam/index.md` and its modules, `01-read-the-naming-plane.md` to `04-cloud-private-dns-and-one-address-plan.md`.
+Files: `docs/training/dns-dhcp-ipam/index.md` and its modules, `01-read-the-naming-plane.md` to `06-operate-the-control-plane-with-evidence.md`.
 Example code: `examples/start-kit` (the `FMPADAssessment` DNS and DHCP collectors, and the `FMPDdiReadiness` module this path added, with its tests and the fixture `tests/fixtures/ddi`).
 Verified: 2026-11-24
 
@@ -23,6 +23,13 @@ Method:
 - Every Lab 1 command of Modules 2, 3 and 4 was run as printed in both editions on November 24, 2026; the expected-output comparison found no differences. Lab 2 wasn't run.
 - Lab 2 facts checked on November 24, 2026: `Set-DhcpServerv4OptionValue -Force` "Specifies that the DNS server validation is skipped" (Learn, Set-DhcpServerv4OptionValue); the DNS client supports DoH starting with Windows Server 2022 (Learn, Secure DNS Client over HTTPS (DoH) on Windows Server); a default VPC's IPv4 block is `172.31.0.0/16` (AWS, Amazon VPC User Guide, default VPC components).
 
+## Phase 3, November 24, 2026: Modules 5 and 6
+
+- Module 5 carries Book 08 Chapter 10's phases, cutover loop, cutover patterns, Azure rollback warning and Phase 5 gates, and Chapter 08's five decisions and their checks, by link; Module 6 carries Chapter 09's roles, Chapter 11's delegation, M-26-14 logging summary and evidence checklist, by link. No new external facts in the units. The gate's thresholds (30 days at 15-minute checks, 90 days of parallel operation, 7-day burn-in) are Chapter 10's.
+- Code: FMPDdiReadiness 1.2.0 adds `Test-FMPLocatorResolution`, `Test-FMPDdiDecommissionGate` and `Get-FMPDdiEvidenceIndex`. The locator records are Chapter 04's table. The evidence index's kinds are Book 00 Appendix D's five, and its KSIs only the pairings already verified (CM-8 to KSI-PIY-GIV, CM-3 to KSI-CMT-LMC, CP-2 to KSI-RPL-ARP, CA-7 to KSI-MLA-EVC); SC-22 shows None. The Start Kit suite (315 tests) passed in PowerShell 7.6 and Windows PowerShell 5.1 with Pester 5.9.
+- The gate fixture's locator record checks are hourly, to keep the fixture small; the labs pass `-IntervalMinutes 60` and say so, and step 6 of Module 5's Lab 1 shows the same history failing at the default 15 minutes.
+- Every Lab 1 command of Modules 2, 5 and 6 was run as printed in both editions on November 24, 2026; the expected-output comparison found no differences. Lab 2 wasn't run. Module 5's Lab 2 relies on Netlogon re-registering a deleted locator record when the service restarts, as Chapter 04 describes Netlogon re-registering its records *(design guidance; check in the test domain)*.
+
 ## Review gate
 
-`review-status: pending` on the index and all four modules. Not approved here.
+`review-status: pending` on the index and all six modules. Not approved here.

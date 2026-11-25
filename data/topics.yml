@@ -548,6 +548,8 @@ topics:
   - id: pki
     title: PKI and Certificates
     subject: PKI and certificates
+    learning_path: docs/training/pki/index.md
+    labs: pki
     kit: start-kit
     summary: >-
       The certificate estate that outlives every migration: what AD CS holds up and hardening what
@@ -584,14 +586,13 @@ topics:
     downloads:
       - start-kit.zip
       - b07-pki-bundle.docx
+      - training-pki-bundle.docx
     members:
       - docs/books/b07-pki/*.md
     gaps:
       workbook: >-
-        Not needed, because the only code today is the Start Kit's AD CS checks (ESC1, ESC2, ESC4,
-        ESC6); revisit when its learning path is planned.
-      path: "Needed: ranked in the learning path plan."
-      labs: "Needed: they come with the learning path."
+        Not needed, because the learning path's labs run the Start Kit's AD CS assessment directly,
+        with Lab 1 on its fictional PKI snapshot; revisit if a module needs code the kit can't hold.
 
   - id: dns-dhcp-ipam
     title: DNS, DHCP and IPAM
@@ -903,7 +904,6 @@ topics:
       guide: >-
         Not needed, because Book 18's Chapter 08 and the kit's README are the build guide for the
         reference implementation.
-      path: "Needed: the learning path for Building Application Modernization, one module per chapter."
 
 folded:
   - title: AI identity (Book 17)
