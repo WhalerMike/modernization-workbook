@@ -8,8 +8,8 @@ research-book: "Books 13, 15"
 series-order: 2
 date-modified: 2026-11-01
 review-status: approved
-reviewed-sha256: 9d837507c2ab110868a8973058d787e9b45f52749b022b9441c457b0ac52eb02
-last-reviewed: 2026-11-07
+reviewed-sha256: b8c925551c1c2ad669948bc9c828142941fe3d4b6c3cdb1ebf8e50afe8093bf0
+last-reviewed: 2026-11-25
 ---
 # Ticket-to-Machine, Module 2: The Boundary and Least Privilege {.unnumbered}
 
