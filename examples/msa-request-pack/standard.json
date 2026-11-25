@@ -1,0 +1,6 @@
+{
+  "_comment": "The standard's settings the checker reads (Chapter 12's format), for the fictional estate corp.contoso.example. Put your agency's domain and OUs in a copy at work.",
+  "domain": "corp.contoso.example",
+  "serviceAccountOu": "OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+  "groupOu": "OU=Groups,DC=corp,DC=contoso,DC=example"
+}
