@@ -40,8 +40,8 @@ function Test-IpPreflight {
         $rows.Add((New-IpCheck -Id 'PF-04' -Status $(if ($ok -and $orgOk) { 'Pass' } else { 'Fail' }) -Subject 'App-only certificate' -Detail $(if (-not $ok) { 'the certificate isn''t in the CurrentUser or LocalMachine store' } elseif (-not $orgOk) { 'app.organization must be the primary .onmicrosoft.com domain' } else { 'certificate found; organization set' })))
     } else { $rows.Add((New-IpCheck -Id 'PF-04' -Status Info -Subject 'App-only certificate' -Detail 'not used: delegated sign-in')) }
     $root = if ($Settings.Contains('outputRoot') -and -not (Test-IpPlaceholder "$($Settings.outputRoot)")) { "$($Settings.outputRoot)" } else { $out }
-    $probe = Join-Path $root ".write-test-$([guid]::NewGuid().ToString('N'))"
-    $w = try { New-Item -ItemType Directory -Force -Path $root | Out-Null; Write-IpText -Path $probe -Text 'x'; Remove-Item -LiteralPath $probe; $true } catch { $false }
+    $probe = Join-Path $root "write-test-$([guid]::NewGuid().ToString('N')).tmp"
+    $w = try { New-Item -ItemType Directory -Force -Path $root | Out-Null; Write-IpText -Path $probe -Text 'x'; Remove-Item -LiteralPath $probe -Force; $true } catch { $false }
     $rows.Add((New-IpCheck -Id 'PF-05' -Status $(if ($w) { 'Pass' } else { 'Fail' }) -Subject 'Output folder' -Detail $(if ($w) { 'writable' } else { "can't write to the output root" })))
     if ($Settings.environment -eq 'production') {
         $g = @(if ($TestEvidencePath -and (Test-Path -LiteralPath $TestEvidencePath)) { Test-IpEvidence -EvidencePath $TestEvidencePath -Stage test })
