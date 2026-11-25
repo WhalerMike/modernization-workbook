@@ -211,11 +211,11 @@
    "id": "docs/training/dns-dhcp-ipam/index.md",
    "type": "Learning path",
    "title": "Learning path: DNS, DHCP and IPAM",
-   "description": "Modules on Book 08's naming plane: read it from the evidence, sort what Active Directory DNS does into where it goes, with a lab on fixtures and a lab in your own test domain",
+   "description": "Four modules on Book 08's naming plane: read it from the evidence, sort what Active Directory DNS does into where it goes, check the DHCP edge, and hold every network to one address plan, each with a lab on fixtures and a lab in your…",
    "url": "docs/training/dns-dhcp-ipam/index.html",
-   "count": 2,
+   "count": 4,
    "unit": "modules",
-   "reading_minutes": 105,
+   "reading_minutes": 215,
    "reading_source": "page",
    "videos": 0,
    "video_minutes": 0,
@@ -228,6 +228,7 @@
    ],
    "topics": [
     "Active Directory",
+    "Azure",
     "DNS and DDI"
    ],
    "status": "Draft",
@@ -2435,9 +2436,9 @@
    "id": "docs/training/labs.md#ddi",
    "type": "Lab",
    "title": "Labs: DNS, DHCP and IPAM learning path",
-   "description": "4 hands-on labs across 2 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The DNS, DHCP and IPAM learning path.",
+   "description": "8 hands-on labs across 4 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The DNS, DHCP and IPAM learning path.",
    "url": "docs/training/labs.html#ddi",
-   "count": 4,
+   "count": 8,
    "unit": "labs",
    "reading_minutes": null,
    "reading_source": null,
@@ -2452,6 +2453,7 @@
    ],
    "topics": [
     "Active Directory",
+    "Azure",
     "DNS and DDI"
    ],
    "status": "Draft",

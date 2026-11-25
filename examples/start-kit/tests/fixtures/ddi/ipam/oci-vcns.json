@@ -1,0 +1,22 @@
+{
+  "data": [
+    {
+      "cidr-block": "10.4.0.0/24",
+      "cidr-blocks": [
+        "10.4.0.0/24"
+      ],
+      "display-name": "vcn-fusion-access",
+      "id": "ocid1.vcn.oc2.us-langley-1.examplevcnfusionaccess",
+      "lifecycle-state": "AVAILABLE"
+    },
+    {
+      "cidr-block": "10.2.16.0/24",
+      "cidr-blocks": [
+        "10.2.16.0/24"
+      ],
+      "display-name": "vcn-test",
+      "id": "ocid1.vcn.oc2.us-langley-1.examplevcntest",
+      "lifecycle-state": "AVAILABLE"
+    }
+  ]
+}

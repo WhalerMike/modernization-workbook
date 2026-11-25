@@ -1,0 +1,53 @@
+{
+  "Vpcs": [
+    {
+      "VpcId": "vpc-0a1b2c3d4e5f60001",
+      "CidrBlock": "10.3.0.0/20",
+      "State": "available",
+      "CidrBlockAssociationSet": [
+        {
+          "AssociationId": "vpc-cidr-assoc-0a1b2c3d4e5f60010",
+          "CidrBlock": "10.3.0.0/20",
+          "CidrBlockState": {
+            "State": "associated"
+          }
+        }
+      ],
+      "IsDefault": false,
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "vpc-shared-services"
+        }
+      ]
+    },
+    {
+      "VpcId": "vpc-0a1b2c3d4e5f60002",
+      "CidrBlock": "10.3.16.0/20",
+      "State": "available",
+      "CidrBlockAssociationSet": [
+        {
+          "AssociationId": "vpc-cidr-assoc-0a1b2c3d4e5f60020",
+          "CidrBlock": "10.3.16.0/20",
+          "CidrBlockState": {
+            "State": "associated"
+          }
+        },
+        {
+          "AssociationId": "vpc-cidr-assoc-0a1b2c3d4e5f60021",
+          "CidrBlock": "100.64.0.0/22",
+          "CidrBlockState": {
+            "State": "associated"
+          }
+        }
+      ],
+      "IsDefault": false,
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "vpc-hr-integration"
+        }
+      ]
+    }
+  ]
+}
