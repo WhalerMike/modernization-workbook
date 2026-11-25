@@ -21,7 +21,7 @@ $stubBody = {
     [CmdletBinding()]
     param($Filter, $LDAPFilter, $Identity, $Server, $Properties, $SearchBase, $SearchScope, $Domain, $DomainName,
         [switch]$All, $Guid, $ReportType, $ComputerName, $ZoneName, [switch]$Recursive, $Target, $ResultSetSize,
-        [switch]$IncludeDeletedObjects, $ScopeId, [switch]$Discover, $Type, $Name, $Service)
+        [switch]$IncludeDeletedObjects, $ScopeId, [switch]$Discover, $Type, $Name, $Service, $ResultPageSize)
     throw "Stub $($MyInvocation.MyCommand.Name) was called without a mock."
 }
 foreach ($n in $stubNames) {
@@ -60,6 +60,7 @@ function global:Select-FixObjects($Objects, $Identity, $SearchBase, $SearchScope
         return @($o | Where-Object { "$($_.SID)" -eq "$Identity" -or "$($_.DistinguishedName)" -eq "$Identity" -or "$($_.SamAccountName)" -eq "$Identity" }) | Select-Object -First 1
     }
     if ($SearchBase -and "$SearchScope" -eq 'OneLevel') { $o = @($o | Where-Object { (Get-ParentDN $_.DistinguishedName) -eq $SearchBase }) }
+    elseif ($SearchBase -and "$SearchScope" -eq 'Subtree') { $o = @($o | Where-Object { "$($_.DistinguishedName)" -eq $SearchBase -or "$($_.DistinguishedName)".EndsWith(",$SearchBase") }) }
     if ($LDAPFilter -and $LDAPFilter -match '\(name=\*([^*]+)\*\)|\(sAMAccountName=\*([^*]+)\*\)') {
         $hint = if ($Matches[1]) { $Matches[1] } else { $Matches[2] }
         $o = @($o | Where-Object { "$($_.Name) $($_.SamAccountName) $($_.Description)" -match [regex]::Escape($hint) })
@@ -68,6 +69,32 @@ function global:Select-FixObjects($Objects, $Identity, $SearchBase, $SearchScope
     }
     if ($ResultSetSize) { $o = @($o | Select-Object -First $ResultSetSize) }
     $o
+}
+
+# Privileged groups are looked up by SID; the fixture keys its members by group name.
+function global:Resolve-FixGroupName($Identity) {
+    $names = @{ '512' = 'Domain Admins'; '519' = 'Enterprise Admins'; '518' = 'Schema Admins'; '525' = 'Protected Users'; '553' = 'RAS and IAS Servers'
+        'S-1-5-32-544' = 'Administrators'; 'S-1-5-32-548' = 'Account Operators'; 'S-1-5-32-549' = 'Server Operators'; 'S-1-5-32-551' = 'Backup Operators'; 'S-1-5-32-550' = 'Print Operators' }
+    $i = "$Identity"
+    if ($names.ContainsKey($i)) { return $names[$i] }
+    if ($i -match '^S-1-5-21-.+-(\d+)$' -and $names.ContainsKey($Matches[1])) { return $names[$Matches[1]] }
+    $i
+}
+# The objects directly under a domain head: the first container below it of every fixture object.
+function global:Get-FixTopLevel([string]$Domain) {
+    $head = $global:FMPFix.domains.$Domain.DistinguishedName
+    $seen = @{}
+    foreach ($kind in 'users', 'computers', 'groups', 'ous') {
+        foreach ($o in (Get-FixList $global:FMPFix.$kind $Domain)) {
+            $dn = "$($o.DistinguishedName)"
+            if (-not $dn.EndsWith(",$head")) { continue }
+            $rdns = $dn.Substring(0, $dn.Length - $head.Length - 1) -split ',(?=(?:CN|OU)=)'
+            $top = "$($rdns[-1]),$head"
+            $cls = if ($rdns.Count -eq 1) { @{ users = 'user'; computers = 'computer'; groups = 'group'; ous = 'organizationalUnit' }[$kind] } elseif ($top -like 'OU=*') { 'organizationalUnit' } else { 'container' }
+            if (-not $seen.ContainsKey($top)) { $seen[$top] = [pscustomobject]@{ DistinguishedName = $top; ObjectClass = $cls; ObjectGUID = [guid]::NewGuid() } }
+        }
+    }
+    @($seen.Values)
 }
 
 function global:Register-KitAdMocks([string]$ModuleName) {
@@ -91,7 +118,8 @@ function global:Register-KitAdMocks([string]$ModuleName) {
     Mock @m Get-ADGroup { Select-FixObjects (Get-FixList $global:FMPFix.groups (Get-FixDomain $Server)) $Identity $SearchBase $SearchScope $LDAPFilter $ResultSetSize }
     Mock @m Get-ADGroupMember {
         $map = $global:FMPFix.groupMembers.(Get-FixDomain $Server)
-        if ($map -and $map.PSObject.Properties[$Identity]) { @($map.$Identity) } else { @() }
+        $id = Resolve-FixGroupName $Identity
+        if ($map -and $map.PSObject.Properties[$id]) { @($map.$id) } else { @() }
     }
     Mock @m Get-ADServiceAccount { Get-FixList $global:FMPFix.serviceAccounts (Get-FixDomain $Server) }
     Mock @m Get-ADTrust { Get-FixList $global:FMPFix.trusts (Get-FixDomain $Server) }
@@ -110,7 +138,16 @@ function global:Register-KitAdMocks([string]$ModuleName) {
             if ($SearchBase -like 'CN=Deleted Objects,*') { throw 'Access is denied.' }
             if ($SearchBase -eq $schemaNC) { return $global:FMPFix.schema.objects }
         }
+        if ($SearchBase -and "$SearchScope" -eq 'OneLevel' -and $LDAPFilter -eq '(objectClass=*)') { return @(Get-FixTopLevel $d) }
+        $classOf = @{ '(&(objectCategory=person)(objectClass=user))' = 'users'; '(objectCategory=computer)' = 'computers'; '(objectCategory=group)' = 'groups' }
+        if ($classOf.ContainsKey("$LDAPFilter")) {
+            return @(Select-FixObjects (Get-FixList $global:FMPFix.($classOf["$LDAPFilter"]) $d) -SearchBase $SearchBase -SearchScope $SearchScope)
+        }
         $objs = Get-FixList $global:FMPFix.spnObjects $d
+        if ($SearchBase -and $LDAPFilter -eq '(servicePrincipalName=*)') {
+            # SPN objects carry no DN in the fixture: all of them belong to the head partition.
+            if ("$SearchScope" -eq 'OneLevel') { return $objs } else { return @() }
+        }
         if ($LDAPFilter -eq '(servicePrincipalName=MSSQLSvc/*)') { return @($objs | Where-Object { @($_.servicePrincipalName | Where-Object { $_ -like 'MSSQLSvc/*' }).Count -gt 0 }) }
         if ($LDAPFilter -eq '(servicePrincipalName=*)') { return $objs }
         throw "Unmocked Get-ADObject call: $LDAPFilter $SearchBase"
