@@ -82,6 +82,8 @@ WORKBOOKS = [
     Workbook("dc", "Building the Daily Checks Workbook", "docs/project-plans/developer-workbooks/daily-checks",
              "daily-checks-workbook-code.zip", "docs/books/guides/daily-checks-dashboard-implementation.md",
              "docs/training/daily-checks-dashboard"),
+    Workbook("am", "Building Application Modernization", "docs/project-plans/developer-workbooks/application-modernization",
+             "app-modernization.zip"),
 ]
 # Learning paths whose modules have their own exercises but no developer workbook behind them.
 MS_AUTOMATION = ["docs/training/ms-automation-foundations.md", "docs/training/ms-automation-entra.md",
