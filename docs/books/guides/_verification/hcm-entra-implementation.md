@@ -29,3 +29,9 @@ Re-checked after the weekly source watch (issue #499) reported a change in a cit
 Added the section `#hcm-control-states` under Book 00, Appendix D's conventions: control states (G-01), How-template coverage (G-02), change safety (G-07), the evidence checklist (G-06) and the assessment-mapping block (G-08), drawn from HCM pipeline: phases 0–6, Parts 1–4, Testing and cutover, Gate G1. The section makes no new product, licensing or availability claim: every row points to text already on the page and footnoted, with the access dates in this log; rings, backout triggers and the emergency-access rule are labelled *(design guidance)*.
 
 Authority labels (G-05): every "must", "shall" and "required" on the page was read. None was relabelled: each is a product constraint from its cited source, a quoted passage, a condition, or a mandate that names its authority (for the SD-WAN guide, CISA ED 26-03). No fact was re-verified, because none was added or changed.
+
+## Revision 2026-11-25 — custom security attributes in GCC (WD-176)
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| CSA-1 | Sensitive HR values aren't provisioned to custom security attributes until a tenant check confirms them in GCC | see the change | changed *(design guidance)* | WD-176; Mike, November 25, 2026 |

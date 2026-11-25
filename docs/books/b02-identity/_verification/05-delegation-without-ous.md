@@ -129,3 +129,9 @@ Microsoft Learn pages listed as covered but uncited for this chapter were read o
 | L12 | Custom security attributes protect sensitive values: Global Administrator can't read them by default (c05-csa) | Limits table | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/fundamentals/custom-security-attributes-add> |
 | L13 | Arc-enabled servers are delegated with Azure RBAC, a separate system from Entra roles (c05-azure-rbac) | Tracks line | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/identity/role-based-access-control/concept-understand-roles> |
 | L14 | Same (Azure RBAC assignments for scoped administration of Azure resources) | Tracks line | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/architecture/secure-single-tenant> |
+
+## Revision 2026-11-25 — custom security attributes in GCC (WD-176)
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| CSA-1 | The AU row: protecting sensitive values with custom security attributes waits for a tenant check in GCC; until then they stay out of Entra | see the change | changed *(design guidance)* | WD-176; Mike, November 25, 2026 |

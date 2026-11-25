@@ -24,15 +24,15 @@ review-status: pending
 
 ## Week 3: AI identity governance
 
-- [Book 17 — AI Identity Governance](../../books/b17-ai-identity/index.md) (Book, 11 chapters, about 5 hr 30 min). Why AI agents need identities and owners: what federal AI rules require and don't, the use-case inventory as an identity source, the kinds of AI identity, owners and lifecycle, credentials and least privilege, monitoring and shadow AI….
+- [Book 17 — AI Identity Governance](../../books/b17-ai-identity/index.md) (Book, 11 chapters, about 5 hr 31 min). Why AI agents need identities and owners: what federal AI rules require and don't, the use-case inventory as an identity source, the kinds of AI identity, owners and lifecycle, credentials and least privilege, monitoring and shadow AI….
 
-*Milestone 3: about 5 hr 30 min.*
+*Milestone 3: about 5 hr 31 min.*
 
 ## Week 4: the HCM pipeline
 
-- [Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID](../../books/guides/hcm-entra-implementation.md) (Implementation guide, about 45 min). An implementation guide: reading Core HCM through HCM Extracts and Atom feeds, the middleware's five duties, the /bulkUpload contract, the two landing zones, Lifecycle Workflows, and the evidence the pipeline has to leave.
+- [Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID](../../books/guides/hcm-entra-implementation.md) (Implementation guide, about 46 min). An implementation guide: reading Core HCM through HCM Extracts and Atom feeds, the middleware's five duties, the /bulkUpload contract, the two landing zones, Lifecycle Workflows, and the evidence the pipeline has to leave.
 
-*Milestone 4: about 45 min.*
+*Milestone 4: about 46 min.*
 
-**Whole plan:** about 20 hr 53 min of reading and video, plus the labs.
+**Whole plan:** about 20 hr 55 min of reading and video, plus the labs.
 
