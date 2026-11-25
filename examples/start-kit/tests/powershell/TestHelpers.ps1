@@ -174,7 +174,12 @@ function global:Register-KitAdMocks([string]$ModuleName) {
     Mock @m Get-DnsServerScavenging { throw 'Access is denied.' }
     Mock @m Get-DnsServerForwarder { [pscustomobject]@{ IPAddress = @('192.0.2.1'); UseRootHint = $true } }
     Mock @m Get-DnsServerDnsSecZoneSetting { @() }
-    Mock @m Resolve-DnsName { @([pscustomobject]@{ Type = 'SRV'; NameTarget = 'dc01.contoso.example' }) }
+    Mock @m Resolve-DnsName {
+        if ("$Type" -eq 'SRV') { return @([pscustomobject]@{ Type = 'SRV'; NameTarget = 'dc01.contoso.example' }) }
+        # web.contoso.example is an alias with no computer object; retired-app has neither.
+        if ($Name -eq 'web.contoso.example') { return @([pscustomobject]@{ Type = 'CNAME'; Name = $Name; NameHost = 'app01.contoso.example' }) }
+        throw "${Name} : DNS name does not exist"
+    }
     Mock @m Get-DhcpServerInDC { $global:FMPFix.dhcp.authorized }
     Mock @m Get-DhcpServerv4Scope {
         $s = $global:FMPFix.dhcp.scopes.PSObject.Properties["$ComputerName"]

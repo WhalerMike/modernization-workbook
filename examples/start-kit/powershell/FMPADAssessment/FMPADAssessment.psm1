@@ -1710,9 +1710,16 @@ function Get-FMPKerberosSpnMap {
         service class, with duplicates and orphans.
     .DESCRIPTION
         A duplicate SPN (on more than one object, case-insensitive) breaks Kerberos and pushes
-        clients to NTLM. An orphan is an SPN on a disabled account or one with no logon in
-        -OrphanDays (default 180), usually a decommissioned host: the same definitions as
-        the program's Spec1-D1.5 script in Book 06 Runbook R02. Default read rights.
+        clients to NTLM. An orphan is an SPN with any of these reasons, each in the Reason
+        column: Disabled (the account is disabled), NoRecentLogon (no logon in -OrphanDays,
+        default 180, or never), the same definitions as the program's Spec1-D1.5 script in
+        Book 06 Runbook R02; and HostNotFound (no computer object in the forest has the SPN's
+        host as its name or DNS host name, and DNS has no record of it either), usually a
+        decommissioned host or a retired alias. Hosts that aren't host names (kadmin/changepw,
+        the replication SPNs' GUIDs, IP addresses) aren't checked. DNS is asked with
+        Resolve-DnsName -DnsOnly, once per host, only for hosts the directory doesn't know;
+        -SkipDnsCheck leaves DNS out, and then a host missing from the directory is reported
+        as HostNotInDirectory with HostInDns 'not checked', not as an orphan. Default read rights.
 
         Each domain is read one partition at a time, paged and retried, and every SPN row is
         streamed to disk; duplicates and counts are kept in hash tables, so memory grows with
@@ -1729,12 +1736,45 @@ function Get-FMPKerberosSpnMap {
         [string[]]$Domain,
         [string]$RootDomain,
         [int]$OrphanDays = 180,
-        [datetime]$AsOf = (Get-Date)
+        [datetime]$AsOf = (Get-Date),
+        [switch]$SkipDnsCheck,
+        [string]$DnsServer
     )
     $null = Resolve-FMPOutputRoot -OutputPath $OutputPath
     if (-not $Domain) { $Domain = @((Get-ADForest).Domains) }
     if (-not $RootDomain) { $RootDomain = $Domain[0] }
     $path = Get-FMPDomainPath -OutputPath $OutputPath -Domain $RootDomain -Area 'Kerberos'
+
+    # Every computer's name and DNS host name in the domains read: a light, paged read.
+    $knownHosts = @{}
+    foreach ($d in $Domain) {
+        foreach ($p in @(Get-FMPAdPartition -Domain $d)) {
+            $names = Invoke-FMPWithRetry -Activity "SPN hosts ($d) $($p.Label)" -ScriptBlock {
+                @(Get-ADObject -LDAPFilter '(objectCategory=computer)' -SearchBase $p.SearchBase -SearchScope $p.SearchScope -Server $d -Properties dNSHostName -ResultPageSize (Get-FMPRunContext).PageSize -ErrorAction Stop |
+                        & { process { "$($_.Name)"; "$($_.dNSHostName)" } })
+            }
+            foreach ($n in $names) { if ($n) { $knownHosts[$n.ToLowerInvariant()] = $true } }
+        }
+    }
+    $dnsAvailable = (-not $SkipDnsCheck) -and (Test-FMPCommand -Name 'Resolve-DnsName')
+    $dnsCache = @{}
+    $hostState = {
+        # 'Directory', 'Dns', 'NotFound', 'NotInDirectory' (DNS not asked) or $null (not a host name).
+        param([string]$h)
+        if (-not $h -or $h -eq 'changepw' -or $h -match '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}' -or $h -match '^\d{1,3}(\.\d{1,3}){3}$' -or $h.Contains(':')) { return $null }
+        $short = $h.Split('.')[0]
+        if ($knownHosts.ContainsKey($h) -or $knownHosts.ContainsKey($short)) { return 'Directory' }
+        if (-not $dnsAvailable) { return 'NotInDirectory' }
+        if (-not $dnsCache.ContainsKey($h)) {
+            $dnsArgs = @{ Name = $h; DnsOnly = $true; QuickTimeout = $true; ErrorAction = 'Stop' }
+            if ($DnsServer) { $dnsArgs.Server = $DnsServer }
+            $found = $false
+            try { $found = @(Resolve-DnsName @dnsArgs | Where-Object { $_.Type -in 'A', 'AAAA', 'CNAME' }).Count -gt 0 } catch { $found = $false }
+            $dnsCache[$h] = $found
+        }
+        if ($dnsCache[$h]) { 'Dns' } else { 'NotFound' }
+    }
+
     $partsDir = Initialize-FMPPath -Path (Join-Path $path '_parts\Spns')
     $cutoff = $AsOf.ToUniversalTime().AddDays(-$OrphanDays)
 
@@ -1772,6 +1812,11 @@ function Get-FMPKerberosSpnMap {
                             foreach ($spn in @($o.servicePrincipalName)) {
                                 $class, $rest = "$spn".Split('/', 2)
                                 $hostPart = if ($rest) { ($rest.Split('/')[0]).Split(':')[0].ToLowerInvariant() } else { $null }
+                                $state = & $hostState $hostPart
+                                $reasons = @()
+                                if ($enabled -eq $false) { $reasons += 'Disabled' }
+                                if ((-not $last) -or ($last -lt $cutoff)) { $reasons += 'NoRecentLogon' }
+                                if ($state -eq 'NotFound') { $reasons += 'HostNotFound' }
                                 $row = [ordered]@{
                                     Spn          = "$spn"
                                     ServiceClass = $class
@@ -1781,7 +1826,10 @@ function Get-FMPKerberosSpnMap {
                                     Domain       = $d
                                     Enabled      = $enabled
                                     LastLogonUtc = if ($last) { $last.ToString('o') } else { $null }
-                                    Orphan       = ($enabled -eq $false) -or (-not $last) -or ($last -lt $cutoff)
+                                    HostInDirectory = if ($null -eq $state) { $null } else { $state -eq 'Directory' }
+                                    HostInDns    = switch ($state) { 'Dns' { $true } 'NotFound' { $false } 'NotInDirectory' { 'not checked' } default { $null } }
+                                    Orphan       = $reasons.Count -gt 0
+                                    Reason       = $reasons -join '; '
                                 }
                                 if ($js) { $w.WriteLine($js.Serialize($row)) } else { $w.WriteLine((ConvertTo-Json -InputObject $row -Compress)) }
                                 $l.Rows.Add($row)
@@ -1833,6 +1881,13 @@ function Get-FMPKerberosSpnMap {
         UserAccountSpnCount = $userSpns
         DuplicateCount      = $dupes.Count
         OrphanCount         = $orphans.Count
+        OrphansByReason     = [ordered]@{
+            Disabled      = @($orphans | Where-Object { $_.Reason -match 'Disabled' }).Count
+            NoRecentLogon = @($orphans | Where-Object { $_.Reason -match 'NoRecentLogon' }).Count
+            HostNotFound  = @($orphans | Where-Object { $_.Reason -match 'HostNotFound' }).Count
+        }
+        HostsCheckedInDns   = $dnsCache.Count
+        DnsChecked          = $dnsAvailable
         ByServiceClass      = $classRows
     }
     Write-FMPJson -InputObject $doc -Path (Join-Path $path 'KerberosSpnSummary.json') -Depth 5
@@ -2124,6 +2179,7 @@ function Get-FMPStartKitSummary {
     $dhcp = if ($forestDir) { Read-FMPJsonFile (Join-Path (Join-Path $forestDir.FullName 'DHCP') 'DHCPInventory.json') } else { $null }
     $schema = if ($forestDir) { Read-FMPJsonFile (Join-Path (Join-Path $forestDir.FullName 'Schema') 'SchemaExtensions.json') } else { $null }
     $sql = Read-FMPJsonFile (Join-Path (Join-Path $root 'SQL') 'SqlEstateSummary.json')
+    $svc = Read-FMPJsonFile (Join-Path (Join-Path $root 'ServerServices') 'ServerServiceSummary.json')
     $nps = Read-FMPJsonFile (Join-Path (Join-Path $root 'NPS') 'NpsSummary.json')
     $tx = Read-FMPJsonFile (Join-Path (Join-Path $root 'transaction-profiles') 'TransactionSummary.json')
     $txRead = $tx -and $tx.Status -eq 'Read'
@@ -2188,6 +2244,9 @@ function Get-FMPStartKitSummary {
         PrivilegedDelegable = & $sumOrNc @($domainDirs | ForEach-Object { $p = Join-Path (Join-Path $_.FullName 'Objects') 'PrivilegedDelegable.csv'; if (Test-Path -LiteralPath $p) { @(Read-FMPCsvFile $p).Count } })
         SQLInstances       = if ($sql) { $sql.InstanceCount } else { $nc }
         SQLHosts           = if ($sql) { $sql.HostCount } else { $nc }
+        ServiceInventoryServers     = if ($svc) { $svc.ServersRead } else { $nc }
+        ServiceInventoryUnreachable = if ($svc) { $svc.ServersUnreachable } else { $nc }
+        DomainAccountsRunningServices = if ($svc) { $svc.DomainServiceAccounts } else { $nc }
         SQLUnconstrainedDelegation = if ($null -ne $sqlRows -and $haveComputers -and $haveUsers) { @($sqlUc).Count } else { $nc }
         NPSServers         = if ($nps) { $nps.NpsServers } else { $nc }
         NPSServersRead     = if ($nps) { $nps.NpsServersRead } else { $nc }
@@ -2248,6 +2307,8 @@ function Get-FMPStartKitSummary {
         UnconstrainedDelegationAccounts = 'User and service accounts with unconstrained delegation'
         PrivilegedDelegable = 'Privileged users whose credentials can be delegated (not sensitive, not in Protected Users)'
         SchemaVersion = 'Schema version'; SQLInstances = 'SQL Server instances'; SQLHosts = 'SQL Server hosts'
+        ServiceInventoryServers = 'Servers whose services were read'; ServiceInventoryUnreachable = 'Servers whose services could not be read'
+        DomainAccountsRunningServices = 'Domain and managed service accounts running a service on a server read'
         SQLUnconstrainedDelegation = 'SQL Server instances whose host or service account has unconstrained delegation'
         NPSServers = 'NPS servers (RAS and IAS Servers members and named)'; NPSServersRead = 'NPS servers whose configuration was read'
         RADIUSClients = 'RADIUS clients (unique addresses)'; NetworkPolicies = 'NPS network policies (all servers)'

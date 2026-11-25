@@ -9,6 +9,13 @@ BeforeAll {
     Import-Module (Join-Path (Join-Path $KitRoot 'powershell') 'FMPAttributeSurvey') -Force
     Register-KitAdMocks -ModuleName FMPADAssessment
     Register-KitAdMocks -ModuleName FMPSqlEstate
+    # Tier B runs the server-service inventory: the servers come from the fixture's directory,
+    # and none answers, so each is reported unreachable.
+    Import-Module (Join-Path (Join-Path $KitRoot 'powershell') 'FMPServerService') -Force
+    Register-KitAdMocks -ModuleName FMPServerService
+    Mock -ModuleName FMPServerService Get-CimInstance -RemoveParameterType CimSession { throw 'WinRM cannot complete the operation.' }
+    Mock -ModuleName FMPServerService New-CimSessionOption { [pscustomobject]@{} }
+    Mock -ModuleName FMPServerService New-CimSession -RemoveParameterType SessionOption { throw 'The RPC server is unavailable.' }
     Register-KitSqlMocks
     Register-KitNpsMocks
     Register-KitSurveyMocks
