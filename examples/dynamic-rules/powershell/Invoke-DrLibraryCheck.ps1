@@ -27,10 +27,11 @@ try {
 
     $diffs = @()
     if ($BaseRef) {
-        $root = (git rev-parse --show-toplevel).Trim()
+        # The repository and path of the library itself, so a copy of the rules in its own repository works too
+        $root = (git -C (Resolve-Path -LiteralPath $Library).Path rev-parse --show-toplevel).Trim()
         Push-Location $root
         try {
-            $libFromRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..\rules') -Relative) -replace '\\', '/' -replace '^\./', ''
+            $libFromRoot = (Resolve-Path -LiteralPath $Library -Relative) -replace '\\', '/' -replace '^\./', ''
             $changed = @(git diff --name-only "$BaseRef" -- "$libFromRoot" | Where-Object { $_ -like '*.json' })
             foreach ($path in $changed) {
                 $name = Split-Path -Leaf $path
