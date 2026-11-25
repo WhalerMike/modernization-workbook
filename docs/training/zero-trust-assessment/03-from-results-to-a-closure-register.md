@@ -69,29 +69,33 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\zta-results
 
+$Run = "C:\FMWLabs\results\zero-trust-assessment-03-from-results-to-a-closure-register\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
 # Step 1: Normalize the first run
-./Invoke-ZtaNormalize.ps1 -ExportPath tests/fixtures/run-2026-10-27 -OutputPath out/run1
+./Invoke-ZtaNormalize.ps1 -ExportPath tests/fixtures/run-2026-10-27 -OutputPath "$Run\run1"
 
 # Step 2: Read the dispositions
-Import-Csv out/run1/dispositions.csv | Format-Table testId, normalized, skippedBecause
+Import-Csv "$Run\run1\dispositions.csv" | Format-Table testId, normalized, skippedBecause
 
 # Step 3: Write the register for the first run
-./Invoke-ZtaRegister.ps1 -RunPath out/run1 -OutputPath out/run1-register
+./Invoke-ZtaRegister.ps1 -RunPath "$Run\run1" -OutputPath "$Run\run1-register"
 
 # Step 4: Read the top of the register
-Import-Csv out/run1-register/register.csv | Select-Object -First 5 | Format-Table testId, family, bucket, priority, owner
+Import-Csv "$Run\run1-register\register.csv" | Select-Object -First 5 | Format-Table testId, family, bucket, priority, owner
 
 # Step 5: Normalize the second run with the review recorded
 Get-Content -Raw tests/fixtures/inputs/reviews.csv
-./Invoke-ZtaNormalize.ps1 -ExportPath tests/fixtures/run-2026-11-10 -OutputPath out/run2 -ReviewsPath tests/fixtures/inputs/reviews.csv
+./Invoke-ZtaNormalize.ps1 -ExportPath tests/fixtures/run-2026-11-10 -OutputPath "$Run\run2" -ReviewsPath tests/fixtures/inputs/reviews.csv
 
 # Step 6: Write the second register with the exceptions
 Get-Content -Raw tests/fixtures/inputs/exceptions.csv
-./Invoke-ZtaRegister.ps1 -RunPath out/run2 -OutputPath out/run2-register -ExceptionsPath tests/fixtures/inputs/exceptions.csv
-Import-Csv out/run2-register/register.csv | Where-Object disposition -NE 'actionable' | Format-Table testId, disposition, exceptionApprover, exceptionExpires
+./Invoke-ZtaRegister.ps1 -RunPath "$Run\run2" -OutputPath "$Run\run2-register" -ExceptionsPath tests/fixtures/inputs/exceptions.csv
+Import-Csv "$Run\run2-register\register.csv" | Where-Object disposition -NE 'actionable' | Format-Table testId, disposition, exceptionApprover, exceptionExpires
 
-# Step 7: Clean up
-Remove-Item -Recurse -Force out
+# Step 7
+Get-ChildItem C:\FMWLabs\results\zero-trust-assessment-03-from-results-to-a-closure-register\lab1 -Name
 ```
 
 :::
@@ -104,12 +108,28 @@ Every step runs in PowerShell 7 (7.1 or later), so you can follow it top to bott
 Set-Location C:\FMWLabs\zta-results
 ```
 
-Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/zta-results`, then type `pwsh` to start PowerShell 7: every step is a PowerShell command. In a clone of the repository, use the `examples` folder of the same name.
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
+
+```powershell
+$Run = "C:\FMWLabs\results\zero-trust-assessment-03-from-results-to-a-closure-register\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\zero-trust-assessment-03-from-results-to-a-closure-register\lab1\<run>
+```
+
+The run's date is only the folder's name. The data's dates are the fixture exports' own (`run-2026-10-27` and `run-2026-11-10`), which stay the same, so every run's results match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
+
+Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/zta-results`, then type `pwsh` to start PowerShell 7 and make the run folder there: every step is a PowerShell command. In a clone of the repository, use the `examples` folder of the same name.
 
 1. **Normalize the first run.**
 
     ```powershell
-    ./Invoke-ZtaNormalize.ps1 -ExportPath tests/fixtures/run-2026-10-27 -OutputPath out/run1
+    ./Invoke-ZtaNormalize.ps1 -ExportPath tests/fixtures/run-2026-10-27 -OutputPath "$Run\run1"
     ```
 
     Expected output:
@@ -124,7 +144,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/zta-results`, then type `p
       Skipped-Not-Applicable      2
       Unable-to-Evaluate          2
     Findings: 17 (1 Investigate)
-    Written to out/run1: results.json, results.csv, summary.json, summary.md, dispositions.csv, manifest.json
+    Written to C:\FMWLabs\results\zero-trust-assessment-03-from-results-to-a-closure-register\lab1\<run>\run1: results.json, results.csv, summary.json, summary.md, dispositions.csv, manifest.json
     ```
 
     Sixteen tests the tool marked Failed and one Investigate make 17 findings. The eight that are neither are in their own columns.
@@ -132,7 +152,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/zta-results`, then type `p
 2. **Read the dispositions.**
 
     ```powershell
-    Import-Csv out/run1/dispositions.csv | Format-Table testId, normalized, skippedBecause
+    Import-Csv "$Run\run1\dispositions.csv" | Format-Table testId, normalized, skippedBecause
     ```
 
     Expected output:
@@ -155,7 +175,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/zta-results`, then type `p
 3. **Write the register for the first run.**
 
     ```powershell
-    ./Invoke-ZtaRegister.ps1 -RunPath out/run1 -OutputPath out/run1-register
+    ./Invoke-ZtaRegister.ps1 -RunPath "$Run\run1" -OutputPath "$Run\run1-register"
     ```
 
     Expected output:
@@ -164,7 +184,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/zta-results`, then type `p
     Register: 17 findings  P1 3  P2 10  P3 4  P4 0
     Governed exceptions: 0
     WARNING: Unrouted (assign a family): 41032
-    Written to out/run1-register: register.json, register.csv, manifest.json
+    Written to C:\FMWLabs\results\zero-trust-assessment-03-from-results-to-a-closure-register\lab1\<run>\run1-register: register.json, register.csv, manifest.json
     ```
 
     `41032`, the Safe Links test, has no finding family: the program lead routes it.
@@ -172,7 +192,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/zta-results`, then type `p
 4. **Read the top of the register.**
 
     ```powershell
-    Import-Csv out/run1-register/register.csv | Select-Object -First 5 | Format-Table testId, family, bucket, priority, owner
+    Import-Csv "$Run\run1-register\register.csv" | Select-Object -First 5 | Format-Table testId, family, bucket, priority, owner
     ```
 
     Expected output:
@@ -193,7 +213,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/zta-results`, then type `p
 
     ```powershell
     Get-Content -Raw tests/fixtures/inputs/reviews.csv
-    ./Invoke-ZtaNormalize.ps1 -ExportPath tests/fixtures/run-2026-11-10 -OutputPath out/run2 -ReviewsPath tests/fixtures/inputs/reviews.csv
+    ./Invoke-ZtaNormalize.ps1 -ExportPath tests/fixtures/run-2026-11-10 -OutputPath "$Run\run2" -ReviewsPath tests/fixtures/inputs/reviews.csv
     ```
 
     Expected output:
@@ -211,15 +231,15 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/zta-results`, then type `p
       Skipped-Not-Applicable      2
       Unable-to-Evaluate          1
     Findings: 15 (1 Investigate)
-    Written to out/run2: results.json, results.csv, summary.json, summary.md, dispositions.csv, manifest.json
+    Written to C:\FMWLabs\results\zero-trust-assessment-03-from-results-to-a-closure-register\lab1\<run>\run2: results.json, results.csv, summary.json, summary.md, dispositions.csv, manifest.json
     ```
 
 6. **Write the second register with the exceptions.**
 
     ```powershell
     Get-Content -Raw tests/fixtures/inputs/exceptions.csv
-    ./Invoke-ZtaRegister.ps1 -RunPath out/run2 -OutputPath out/run2-register -ExceptionsPath tests/fixtures/inputs/exceptions.csv
-    Import-Csv out/run2-register/register.csv | Where-Object disposition -NE 'actionable' | Format-Table testId, disposition, exceptionApprover, exceptionExpires
+    ./Invoke-ZtaRegister.ps1 -RunPath "$Run\run2" -OutputPath "$Run\run2-register" -ExceptionsPath tests/fixtures/inputs/exceptions.csv
+    Import-Csv "$Run\run2-register\register.csv" | Where-Object disposition -NE 'actionable' | Format-Table testId, disposition, exceptionApprover, exceptionExpires
     ```
 
     Expected output:
@@ -232,7 +252,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/zta-results`, then type `p
     Register: 15 findings  P1 1  P2 10  P3 4  P4 0
     Governed exceptions: 1
     WARNING: Exceptions to fix (lapsed or wrong approver): 21885
-    Written to out/run2-register: register.json, register.csv, manifest.json
+    Written to C:\FMWLabs\results\zero-trust-assessment-03-from-results-to-a-closure-register\lab1\<run>\run2-register: register.json, register.csv, manifest.json
 
     testId disposition        exceptionApprover exceptionExpires
     ------ -----------        ----------------- ----------------
@@ -242,10 +262,16 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/zta-results`, then type `p
 
     The `21885` exception has no end date, so it is a standing risk acceptance: only the authorizing official can approve it.
 
-7. **Clean up.** Delete the `out` folder, so the next run starts clean; Module 4's Lab 1 rebuilds the runs it needs.
+7. Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
 
     ```powershell
-    Remove-Item -Recurse -Force out
+    Get-ChildItem C:\FMWLabs\results\zero-trust-assessment-03-from-results-to-a-closure-register\lab1 -Name
+    ```
+
+    Expected output: one line per run, oldest first, the last one this run:
+
+    ```text
+    <run>
     ```
 
 ## Exercise: Lab 2, your test tenant's export {#zta-lab-2}
