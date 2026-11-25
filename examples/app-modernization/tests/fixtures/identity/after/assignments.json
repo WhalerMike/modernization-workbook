@@ -1,0 +1,18 @@
+[
+  {
+    "id": "e0000000-0000-4000-8000-000000000801",
+    "principalId": "a0000000-0000-4000-8000-000000000301",
+    "principalType": "Group",
+    "principalDisplayName": "Case Triage Users (fictional)",
+    "resourceId": "a0000000-0000-4000-8000-000000000102",
+    "appRoleId": "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "id": "e0000000-0000-4000-8000-000000000802",
+    "principalId": "a0000000-0000-4000-8000-000000000302",
+    "principalType": "ServicePrincipal",
+    "principalDisplayName": "Case Reports Job (fictional)",
+    "resourceId": "a0000000-0000-4000-8000-000000000102",
+    "appRoleId": "00000000-0000-0000-0000-000000000000"
+  }
+]

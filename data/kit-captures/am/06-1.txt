@@ -1,0 +1,11 @@
+PS> Import-Module ./powershell/AppModernization/AppModernization.psm1
+PS> Get-AmAppSnapshot -AppId 00001111-aaaa-2222-bbbb-3333cccc4444 -OutDir out/pack -Stage before -FixturePath tests/fixtures/identity | Format-List
+Stage              : before
+App                : Case Triage (fictional)
+Owners             : 1
+AppPermissions     : 1
+DelegatedGrants    : 1
+Assignments        : 0
+RedirectUris       : 7
+Secrets            : 1
+AssignmentRequired : False

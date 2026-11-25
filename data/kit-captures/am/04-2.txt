@@ -1,0 +1,9 @@
+PS> ./mvnw -q -pl service test "-Dtest=AgentGuardrailTest,TriageAndApprovalTest,LabRecordsTest"
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+PS> Import-Module ./powershell/AppModernization/AppModernization.psm1
+PS> Get-AmTestResult -Path service/target/surefire-reports | Format-Table
+Class                 Tests Failures Errors Skipped
+-----                 ----- -------- ------ -------
+AgentGuardrailTest        4        0      0       0
+LabRecordsTest            3        0      0       0
+TriageAndApprovalTest    11        0      0       0

@@ -1,0 +1,6 @@
+PS> Write-AmEvidenceRecord -Step PROVE -Path migration/target/lab/load-full.json, migration/target/lab/damage-amount.json, migration/target/lab/damage-delete.json, migration/target/lab/damage-truncate.json, migration/target/lab/delta-2-after.json -OutputPath out/evidence -AsOf 2026-11-24T00:00:00Z | Format-List Record, Step, Files, Controls, KSIs
+Record   : record-001-PROVE.json
+Step     : PROVE
+Files    : 5
+Controls : CM-3(2) CM-4(2)
+KSIs     : KSI-CMT-VTD

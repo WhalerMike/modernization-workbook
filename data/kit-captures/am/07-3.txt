@@ -1,0 +1,8 @@
+PS> Get-AmSignInCheck -AppId $appId -ChangeTime 2026-11-18T14:00:00Z -OutDir out/pack -FixturePath $fx/signins.json | Format-List
+SignInsAfter : 5
+Failures     : 2
+Triggers     : 50105
+PS> Import-Csv out/pack/wp6-backout-triggers.csv | Format-Table
+Error SignIns NewSinceChange Explained BackoutTrigger
+----- ------- -------------- --------- --------------
+50105 2       True           False     True

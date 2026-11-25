@@ -1,0 +1,8 @@
+PS> Set-Location ..
+PS> Write-AmEvidenceRecord -Step A11Y -Path web/out/a11y-report.json, web/out/vitest.json, web/package-lock.json -OutputPath out/evidence -AsOf 2026-11-24T00:00:00Z | Format-List Record, Step, Files, Controls, KSIs, Other
+Record   : record-001-A11Y.json
+Step     : A11Y
+Files    : 3
+Controls : CM-3(2)
+KSIs     : KSI-CMT-VTD
+Other    : Section 508 (29 U.S.C. 794d); the Revised 508 Standards, 36 CFR part 1194 (WCAG 2.0 Level AA); OMB M-24-08, automated testing alongside manual testing

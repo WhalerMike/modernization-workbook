@@ -1,0 +1,4 @@
+PS> Get-AmValidationSummary -Path migration/target/lab/damage-truncate.json | Where-Object { -not $_.Passed } | Format-Table Table, Check, Detail
+Table     Check           Detail
+-----     -----           ------
+applicant checksum_sha256 differ 1 [7]; missing from target 0; extra in target 0

@@ -1,0 +1,4 @@
+PS> Invoke-Pester -Path tests/Identity.Tests.ps1 -FullNameFilter 'The snapshot*', 'WP4*', 'WP5*', 'The write path*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+PassedCount FailedCount
+----------- -----------
+         26           0

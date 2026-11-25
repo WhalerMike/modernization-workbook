@@ -1,0 +1,49 @@
+{
+  "id": "a0000000-0000-4000-8000-000000000101",
+  "appId": "00001111-aaaa-2222-bbbb-3333cccc4444",
+  "displayName": "Case Triage (fictional)",
+  "signInAudience": "AzureADMyOrg",
+  "serviceManagementReference": null,
+  "web": {
+    "redirectUris": [
+      "https://cases.contoso.example/signin-oidc",
+      "https://*.contoso.example/signin-oidc",
+      "http://cases-test.contoso.example/signin-oidc",
+      "https://cases-old.contoso.example/signin-oidc",
+      "https://cases.fabrikam.example/signin-oidc"
+    ]
+  },
+  "spa": {
+    "redirectUris": [
+      "https://cases.contoso.example/",
+      "http://localhost:5173/"
+    ]
+  },
+  "publicClient": {
+    "redirectUris": []
+  },
+  "requiredResourceAccess": [
+    {
+      "resourceAppId": "00000003-0000-0000-c000-000000000000",
+      "resourceAccess": [
+        {
+          "id": "df021288-bdef-4463-88db-98f22de89214",
+          "type": "Role"
+        },
+        {
+          "id": "e1fe6dd8-ba31-4d61-89e7-88639da4683d",
+          "type": "Scope"
+        }
+      ]
+    }
+  ],
+  "passwordCredentials": [
+    {
+      "keyId": "b0000000-0000-4000-8000-000000000501",
+      "displayName": "legacy-secret",
+      "endDateTime": "2027-03-01T00:00:00Z",
+      "hint": "Ab1"
+    }
+  ],
+  "keyCredentials": []
+}
