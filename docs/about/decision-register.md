@@ -11,7 +11,7 @@ doc-type: section-landing
 
 This register lists the decisions behind the workbook, from the repository's first pull request on, one entry each. Each entry gives the question, the options that were considered, the choice, the reason for it, its basis, its sources and the pages it shaped. The [Reviewers' Guide](reviewers-guide.md) explains how to check an entry and how to tell us you agree or disagree with it. Use the entry's ID when you do.
 
-There are **175** workbook decisions: 165 settled, 0 challenged and 10 superseded. Below them are the **109** decision points the sample project plans leave to the agency that adopts them.
+There are **176** workbook decisions: 165 settled, 0 challenged and 11 superseded. Below them are the **109** decision points the sample project plans leave to the agency that adopts them.
 
 ::: {.callout-note}
 ## How to read the basis
@@ -208,7 +208,8 @@ There are **175** workbook decisions: 165 settled, 0 challenged and 10 supersede
 | [WD-172](#wd-172) | 2026-11-24 | Which tags join an AWS GovCloud (US) or OCI workload identity to its record, and does the validation kit check those identities? | Workbook design | settled |
 | [WD-173](#wd-173) | 2026-11-25 | What are the managed service account standard's detailed naming and configuration rules, beyond WD-159's prefixes and 15 characters? | Workbook design | settled |
 | [WD-174](#wd-174) | 2026-11-25 | Where is the managed service account standard enforced? | Workbook design | settled |
-| [WD-175](#wd-175) | 2026-11-25 | Which tags does every non-person identity carry for its move to Microsoft Entra, do owners go into AD, and does Entra's naming inform the managed service account names? | Workbook design | settled |
+| [WD-175](#wd-175) | 2026-11-25 | Which tags does every non-person identity carry for its move to Microsoft Entra, do owners go into AD, and does Entra's naming inform the managed service account names? | Workbook design | superseded by WD-176 |
+| [WD-176](#wd-176) | 2026-11-25 | Where do WD-175's tags live on the Entra side while no Microsoft Learn page confirms custom security attributes for Microsoft 365 GCC tenants? | Workbook design | settled |
 
 : Workbook decisions, oldest first {.striped .hover}
 
@@ -3061,11 +3062,29 @@ There are **175** workbook decisions: 165 settled, 0 challenged and 10 supersede
 | **Sources** | [Microsoft Learn, What are custom security attributes in Microsoft Entra ID?](https://learn.microsoft.com/entra/fundamentals/custom-security-attributes-overview); [Microsoft Learn, Governing Microsoft Entra service accounts](https://learn.microsoft.com/entra/architecture/govern-service-accounts); [Microsoft Learn, Cloud Adoption Framework, Define your naming convention](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming); [Microsoft Learn, Microsoft Entra Connect Sync default configuration](https://learn.microsoft.com/entra/identity/hybrid/connect/concept-azure-ad-connect-sync-default-configuration) |
 | **Pages affected** | [Requesting a Managed Service Account](../books/guides/msa-request-pack.md), [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../books/guides/service-account-migration.md), [Non-Person Identity: An Implementation Guide](../books/guides/non-person-identity-implementation.md), [Chapter 12 — The Managed Service Account Standard](../project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.md) |
 | **Date** | 2026-11-25 |
-| **Status** | settled |
+| **Status** | superseded |
 | **Defined in** | — |
+| **Superseded by** | [WD-176](#wd-176): Where do WD-175's tags live on the Entra side while no Microsoft Learn page confirms custom security attributes for Microsoft 365 GCC tenants? |
 | **Note** | Basis: workbook owner decision, November 25, 2026. Asked for a request document set, said "For future integration, when they move to EntraID, we tag everything" and asked whether Entra's standards should inform MSA naming; shown one tag set, owners in AD (a change to [WD-173](#wd-173)) and a request pack, he answered "Yes to all three". Not yet in the kits: Chapter 06 writing the tags, and VK-NPI-10 reading the three new keys. |
 
 [Agree, disagree or send evidence on WD-175](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-175%3A+)
+
+### WD-176: Where do WD-175's tags live on the Entra side while no Microsoft Learn page confirms custom security attributes for Microsoft 365 GCC tenants? {#wd-176}
+
+| | |
+|---|---|
+| **Options considered** | Custom security attributes now, after checking the tenant (WD-175); Treat custom security attributes as unavailable in GCC until a tenant check confirms them, with a stated fallback until then |
+| **Choice** | WD-175 stands except where its tags live in Entra. Custom security attributes are treated as unavailable in the program's GCC tenant until a tenant check confirms them, and the rule is program-wide: any design that relies on them (Conditional Access filters for applications, Azure ABAC conditions, Lifecycle Workflow scopes, HR attributes provisioned to them) states its fallback until then. Until the check confirms them, the seven tags live on a service principal as one npi:<Key>=<Value> string per key in its tags property, which Microsoft Graph can filter, with the whole key=value string, request and change included, in its notes; on a user-assigned managed identity as Azure resource tags; and on a system-assigned managed identity as Azure resource tags on the resource it belongs to, because that identity takes no tags of its own and a managed identity's service principal can't be updated directly. SailPoint and the register stay the source of record. The tenant check: in the GCC tenant, an Attribute Definition Administrator creates the NonPersonIdentity attribute set with one attribute, and an Attribute Assignment Administrator assigns it to a test service principal and reads it back; when that works, the workbook owner records it and custom security attributes become the Entra carrier, as WD-175 set, with the fallback's values copied across. The request pack's checker writes both forms. |
+| **Rationale** | Learn's Graph pages list the custom security attribute APIs for the worldwide service, which Microsoft 365 GCC tenants use, but Learn's US Government feature-availability page has no row for them and no page confirms them for GCC. A service principal's tags and notes are standard properties that the same worldwide endpoint updates in every cloud; tags accept free strings and can be filtered, and notes holds up to 1,024 characters for operational use. Azure Resource Manager supports tags on user-assigned managed identities but not on the system-assigned identity type. |
+| **Basis** | Workbook design |
+| **Sources** | [Microsoft Learn, Microsoft Graph national cloud deployments](https://learn.microsoft.com/graph/deployments); [Microsoft Learn, Create customSecurityAttributeDefinition (Microsoft Graph v1.0)](https://learn.microsoft.com/graph/api/directory-post-customsecurityattributedefinitions); [Microsoft Learn, servicePrincipal resource type (Microsoft Graph v1.0)](https://learn.microsoft.com/graph/api/resources/serviceprincipal); [Microsoft Learn, Update servicePrincipal (Microsoft Graph v1.0)](https://learn.microsoft.com/graph/api/serviceprincipal-update); [Microsoft Learn, Tag support for Azure resources](https://learn.microsoft.com/azure/azure-resource-manager/management/tag-support) |
+| **Pages affected** | [Requesting a Managed Service Account](../books/guides/msa-request-pack.md), [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../books/guides/service-account-migration.md), [Non-Person Identity: An Implementation Guide](../books/guides/non-person-identity-implementation.md) |
+| **Date** | 2026-11-25 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 25, 2026, on custom security attributes in GCC: "Lets say no until we can confirm yes." He chose to apply it in two pull requests: this one for [WD-175](#wd-175) and the non-person identity and managed service account pages, and a second for the other pages, decks and kits that rely on custom security attributes. |
+
+[Agree, disagree or send evidence on WD-176](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-176%3A+)
 
 ## Decision points in the sample project plans {#plan-decisions}
 
