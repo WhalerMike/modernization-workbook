@@ -32,7 +32,7 @@ Each row shows what a topic has. A cell that says **gap** is something readers n
 | [Endpoints](endpoints.md) | 8 | 2 | 5 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 14 | 3 zips |
 | [Information Protection](information-protection.md) | 6 | 1 | 1 | 9 chapters | 5 modules | yes | 1 | 1 zip |
 | [Compliance and Evidence](compliance-evidence.md) | 13 | 2 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 14 | 2 zips |
-| [Application Modernization](application-modernization.md) | 7 | [not needed](#gaps) | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | 3 | 1 zip |
+| [Application Modernization](application-modernization.md) | 7 | [not needed](#gaps) | [not needed](#gaps) | 7 chapters | [gap](#gaps) | yes | 3 | 1 zip |
 
 : Topic hubs {.striped .hover}
 
@@ -69,9 +69,7 @@ A gap is filled only where readers need it. Where nothing is needed, the note sa
 | [Compliance and Evidence](compliance-evidence.md#gaps) | Labs | Not needed, because those modules carry the labs. |
 | [Application Modernization](application-modernization.md#gaps) | Project plan | Not needed, because Book 18's Chapter 10, listed under Plan, runs the portfolio in waves, and each application gets its own plan from the triage. |
 | [Application Modernization](application-modernization.md#gaps) | Guide | Not needed, because Book 18's Chapter 08 and the kit's README are the build guide for the reference implementation. |
-| [Application Modernization](application-modernization.md#gaps) | Developer workbook | Needed: decide with the learning path plan. |
-| [Application Modernization](application-modernization.md#gaps) | Learning path | Needed: ranked in the learning path plan. |
-| [Application Modernization](application-modernization.md#gaps) | Labs | Needed: they come with the learning path. |
+| [Application Modernization](application-modernization.md#gaps) | Learning path | Needed: the learning path for Building Application Modernization, one module per chapter. |
 
 : What each topic lacks {.striped .hover}
 

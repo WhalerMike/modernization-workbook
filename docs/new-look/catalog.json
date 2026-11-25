@@ -1202,7 +1202,7 @@
    "url": "docs/project-plans/developer-workbooks/application-modernization/index.html",
    "count": 7,
    "unit": "chapters",
-   "reading_minutes": 77,
+   "reading_minutes": 91,
    "reading_source": "estimate",
    "videos": 0,
    "video_minutes": 0,
@@ -2281,6 +2281,31 @@
    ],
    "status": "Approved",
    "family": "one-page-ask",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#am",
+   "type": "Lab",
+   "title": "Labs: Building Application Modernization",
+   "description": "14 hands-on labs across 7 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building Application Modernization.",
+   "url": "docs/training/labs.html#am",
+   "count": 14,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Unrated",
+   "level_source": "path",
+   "roles": [
+    "Developer",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Application modernization"
+   ],
+   "status": "Approved",
+   "family": "application-modernization",
    "featured": false
   },
   {

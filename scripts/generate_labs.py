@@ -86,6 +86,8 @@ WORKBOOKS = [
              "information-protection-code.zip", "docs/books/guides/information-protection-implementation.md",
              "docs/training/information-protection", gates={"1": ["01", "03"], "2": ["04"], "3": ["04"], "4": ["04"], "5": ["05"], "6": ["05"], "7": ["05"],
                     "8": ["06"], "9": ["06"], "10": ["01", "07"], "11": ["06", "07"], "12": ["02", "08", "09"]}),
+    Workbook("am", "Building Application Modernization", "docs/project-plans/developer-workbooks/application-modernization",
+             "app-modernization.zip"),
 ]
 # Learning paths whose modules have their own exercises but no developer workbook behind them.
 MS_AUTOMATION = ["docs/training/ms-automation-foundations.md", "docs/training/ms-automation-entra.md",

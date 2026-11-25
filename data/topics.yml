@@ -857,6 +857,7 @@ topics:
   - id: application-modernization
     title: Application Modernization
     subject: application modernization
+    workbook: am
     kit: app-modernization
     summary: >-
       Modernizing an application portfolio, not rewriting it: triage, the target reference
@@ -900,9 +901,7 @@ topics:
       guide: >-
         Not needed, because Book 18's Chapter 08 and the kit's README are the build guide for the
         reference implementation.
-      workbook: "Needed: decide with the learning path plan."
-      path: "Needed: ranked in the learning path plan."
-      labs: "Needed: they come with the learning path."
+      path: "Needed: the learning path for Building Application Modernization, one module per chapter."
 
 folded:
   - title: AI identity (Book 17)
