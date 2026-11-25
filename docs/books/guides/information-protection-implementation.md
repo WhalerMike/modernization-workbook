@@ -11,7 +11,9 @@ lifecycle_review: 2027-05-01
 research-status: draft
 research-type: implementation guide
 research-book: "Book 20"
-review-status: pending
+review-status: approved
+reviewed-sha256: b971eaa78b59737ebabc899e0bb3bad7d4d681f5ffbe55d099a36d1e547a396f
+last-reviewed: 2026-11-25
 ---
 # Information Protection with Microsoft Purview: An Implementation Guide
 

@@ -6,7 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 08"
 series-order: 6
-review-status: pending
+review-status: approved
+reviewed-sha256: ccf5c27acc39a96852bb9f167bbd11a3c0f222cc03fdc24d43cf122990dc0dd4
+last-reviewed: 2026-11-25
 ---
 # Module 6: Operate the control plane with evidence {.unnumbered}
 

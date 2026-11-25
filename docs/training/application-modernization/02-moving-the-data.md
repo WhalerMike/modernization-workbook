@@ -6,9 +6,10 @@ research-status: draft
 research-type: training module
 research-book: "Book 18"
 series-order: 2
-review-status: pending
+review-status: approved
+reviewed-sha256: 02fd7d8f2ae062052be6d777a0cae57f4bc1f16ea0ad4ba7931f05c3074d8239
+last-reviewed: 2026-11-25
 ---
-
 # Module 2: Moving the data {.unnumbered}
 
 *Part of the [Application Modernization learning path](index.md). Book 18, [Chapter 04](../../books/b18-application-modernization/04-moving-the-data.md). Workbook [Chapter 02](../../project-plans/developer-workbooks/application-modernization/02-moving-the-data-the-transform-and-the-load.md). About 50 minutes.*

@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: dd9ac4781364d6488787523612e2d1f544544e30281206d9193a61852e9622d2
+last-reviewed: 2026-11-25
 ---
 # Chapter 03 — Proving the Move
 

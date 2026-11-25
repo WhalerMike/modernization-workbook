@@ -18,7 +18,9 @@ listing:
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: c6e69e11635b8c750a1a1c9a8fd24bb9e3389b2c14a063eaf606a45a12be1ebc
+last-reviewed: 2026-11-25
 ---
 # Building Information Protection {.unnumbered}
 

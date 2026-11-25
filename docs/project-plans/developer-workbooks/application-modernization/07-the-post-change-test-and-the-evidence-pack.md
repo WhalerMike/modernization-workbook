@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 84bdda88afbafdec472bdd39b23221049b18219cb366d4f65eacb4b08969546d
+last-reviewed: 2026-11-25
 ---
 # Chapter 07 — The Post-Change Test and the Evidence Pack
 

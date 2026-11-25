@@ -17,8 +17,8 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: 71151477db8ee58dbc0ab45a4b383217149548cb003477da38a17b57dedb0b99
-last-reviewed: 2026-11-18
+reviewed-sha256: 4f69d456da2eb1fb3bb08d3d1f108e6633bb51d45beff9a4dcb86470708a31dc
+last-reviewed: 2026-11-25
 ---
 # Learning path: Azure Security Engineering {.unnumbered}
 
