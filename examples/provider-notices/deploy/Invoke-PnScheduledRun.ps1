@@ -5,7 +5,8 @@
     settings file's routing.send is true and -Send is given), write the digest, and record each step as
     evidence. Run folders go under <outputRoot>/runs/<time>; the routing state is <outputRoot>/state.json
     and the evidence <outputRoot>/evidence. Schedule it with the agency's own scheduler; the kit doesn't
-    register one. -FixturePath reads a fixture folder and sends nothing.
+    register one. -FixturePath reads a fixture folder and sends nothing. -OutputRoot replaces the
+    settings file's outputRoot.
 .EXAMPLE
     ./deploy/Invoke-PnScheduledRun.ps1 -SettingsPath deploy/tests/fixtures/settings.test.json -FixturePath tests/fixtures/day1 -AsOf 2026-11-09T12:00:00Z
 #>
@@ -15,6 +16,7 @@ param(
     [string]$FixturePath,
     [switch]$Send,
     [switch]$AllowUnverified,
+    [string]$OutputRoot,
     [string]$AsOf = ([DateTime]::UtcNow.ToString('o'))
 )
 $ErrorActionPreference = 'Stop'
@@ -22,6 +24,7 @@ Import-Module (Join-Path $PSScriptRoot 'PnDeploy.psm1') -Force
 $kit = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 
 $s = Read-PnSettings -Path $SettingsPath
+if ($OutputRoot) { $s['outputRoot'] = $OutputRoot }   # in place of the settings file's outputRoot, for a lab's run folder
 $AsOf = ConvertTo-PnUtc $AsOf
 $root = "$($s['outputRoot'])"
 if (-not $root) { throw 'The settings file has no outputRoot.' }

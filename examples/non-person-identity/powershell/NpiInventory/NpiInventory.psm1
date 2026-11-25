@@ -250,7 +250,9 @@ function Get-NpiEntraWorkloadIdentity {
     $spByAppId = @{}; foreach ($sp in $sps) { if ($sp.appId) { $spByAppId[$sp.appId] = $sp } }
 
     $apps = Invoke-NpiList -Reader $Reader -CallId 'graph-applications' -Query '$select=id,appId,displayName,signInAudience,passwordCredentials,keyCredentials,serviceManagementReference'
+    $tracker = @{ Activity = 'App registrations: owners and federated credentials'; Total = @($apps).Count }
     foreach ($app in $apps) {
+        Write-NpiProgress -Tracker $tracker
         $owners = Get-NpiOwnerSummary (Invoke-NpiList -Reader $Reader -CallId 'graph-application-owners' -Bind @{ id = $app.id } -Query '$select=id')
         $fics = @(Invoke-NpiList -Reader $Reader -CallId 'graph-application-fics' -Bind @{ id = $app.id })
         $cred = Get-NpiCredentialSummary $app.passwordCredentials $app.keyCredentials $AsOf
@@ -269,8 +271,11 @@ function Get-NpiEntraWorkloadIdentity {
         foreach ($kv in (& $permCols $(if ($sp) { $sp.id } else { $null })).GetEnumerator()) { $values[$kv.Key] = $kv.Value }
         $rows.Add((New-NpiRow $values))
     }
+    Write-NpiProgress -Tracker $tracker -Completed
 
+    $tracker = @{ Activity = 'Service principals and managed identities'; Total = @($sps).Count }
     foreach ($sp in $sps) {
+        Write-NpiProgress -Tracker $tracker
         if ($sp.appId -eq $Config.microsoftGraphAppId) { continue }
         $spType = "$($sp.servicePrincipalType)"
         $own = ("$(Get-NpiValue $sp 'appOwnerOrganizationId')" -eq $TenantId)
@@ -322,6 +327,7 @@ function Get-NpiEntraWorkloadIdentity {
         else { $values.Note = 'Permissions, owners and credentials are on its app registration row' }
         $rows.Add((New-NpiRow $values))
     }
+    Write-NpiProgress -Tracker $tracker -Completed
     $rows.ToArray()
 }
 

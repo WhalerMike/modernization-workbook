@@ -70,6 +70,7 @@ The learning path and its hands-on labs.
 
 | Page | What it is |
 |---|---|
+| [Learning path: Data Platform and SQL Server Identity](../training/data-platform/index.md) | A learning path in ten modules for database administrators, identity engineers, application owners and ISSO reviewers, built on Book 06 and its runbooks R01 to R10: classifying the SQL Server estate retain, consolidate, retire or review;… |
 | [Labs](../training/labs.md#sql) | Every lab in Building SQL Server Identity: what each needs, where it runs, and its commands. |
 | [Microsoft Automation, Module 4: Azure Arc through Azure Resource Manager and Resource Graph](../training/ms-automation-arc.md) | Microsoft Automation, Module 4, reads Arc-enabled SQL Server through Azure Resource Graph. |
 
@@ -102,6 +103,7 @@ Word editions and code, rebuilt on every site deploy.
 | [sql-server-identity-code.zip](../../downloads/sql-server-identity-code.zip) | Code: the scripts, tests and fixtures, as committed |
 | [start-kit.zip](../../downloads/start-kit.zip) | Code: the scripts, tests and fixtures, as committed |
 | [building-sql-server-identity-bundle.docx](../../downloads/building-sql-server-identity-bundle.docx) | Word edition: Building SQL Server Identity |
+| [training-data-platform-bundle.docx](../../downloads/training-data-platform-bundle.docx) | Word edition: Learning path: Data Platform and SQL Server Identity |
 | [b06-data-platform-bundle.docx](../../downloads/b06-data-platform-bundle.docx) | Word edition: Book 06 — Data Platform: SQL Server Identity |
 | [b06-data-platform-runbooks.docx](../../downloads/b06-data-platform-runbooks.docx) | Word edition: b06-data-platform-runbooks.docx |
 
@@ -128,6 +130,5 @@ What the workbook doesn't have on the data platform and SQL Server, and whether 
 | Missing | Why |
 |---|---|
 | Guide | Not needed, because Book 06's ten runbooks (R01 to R10), listed under Build, are its step-by-step implementation guide. |
-| Learning path | Needed: the learning path is phase 2 of filling this topic's gaps (decided Nov 24, 2026). |
 
 : Not here {.striped .hover}
