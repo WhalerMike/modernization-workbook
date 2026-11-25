@@ -28,7 +28,7 @@ $byInstance = $rows | Group-Object Instance | ForEach-Object {
         External = @($_.Group | Where-Object Status -eq 'external').Count
         Record = if ($notMet) { 'open' } else { 'ready for the assessor, with the external evidence' } }
 }
-($byInstance | Format-Table -AutoSize | Out-String -Width 160).TrimEnd() | Write-Host
+($byInstance | Format-Table -AutoSize | Out-String -Width 400).TrimEnd() | Write-Host
 Write-Host ''
 $open = @($rows | Where-Object Status -eq 'NOT MET')
 Write-Host 'Conditions not met:'

@@ -18,7 +18,7 @@ review-status: pending
 
 ::: {.callout-note}
 ## In this chapter
-The code behind [Runbook R02, Step 3](../../../books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.md#step-3--the-retain--consolidate--retire-decision-the-gate) and the decision [Book 06, Chapter 06](../../../books/b06-data-platform/06-retain-consolidate-retire.md) describes. Discovery isn't rebuilt here: the Start Kit's SQL Server count finds the instances, and this chapter classifies what it found. You read `Get-SqlEstateClassification` and its rules, then Lab 1 classifies a fictional eight-instance estate, checks the run against its manifest and shows that an edited file is caught. Lab 2 turns the Start Kit's output for a test instance into the kit's inventory and classifies it.
+The code behind [Runbook R02, Step 3](../../../books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.md#step-3-the-retain-consolidate-retire-decision-the-gate) and the decision [Book 06, Chapter 06](../../../books/b06-data-platform/06-retain-consolidate-retire.md) describes. Discovery isn't rebuilt here: the Start Kit's SQL Server count finds the instances, and this chapter classifies what it found. You read `Get-SqlEstateClassification` and its rules, then Lab 1 classifies a fictional eight-instance estate, checks the run against its manifest and shows that an edited file is caught. Lab 2 turns the Start Kit's output for a test instance into the kit's inventory and classifies it.
 :::
 
 ## Goal and audience
@@ -31,7 +31,7 @@ The code behind [Runbook R02, Step 3](../../../books/b06-data-platform/r02-estat
 
 ### What Microsoft gives you
 
-Microsoft Entra authentication for SQL Server starts with SQL Server 2022, on standalone instances and Always On availability groups; failover cluster instances don't support it.[^sq01-entra-sql] The `FROM EXTERNAL PROVIDER` login, which maps a login to an Entra principal, is "available for Arc-enabled SQL Server 2022 and later versions".[^sq01-create-login] Those two facts are why version and clustering decide so much of the gate. For the last-use signal, `sys.dm_db_index_usage_stats` records the last seek, scan, lookup and update per index, but its counters "are initialized to empty whenever the database engine is started", and a database's rows go when it's detached or shut down, for example by `AUTO_CLOSE`.[^sq01-index-usage] [Book 06, Chapter 04](../../../books/b06-data-platform/04-estate-inventory.md#discovery-instruments) lists the discovery instruments Learn documents, and [Chapter 05](../../../books/b06-data-platform/05-rationalization.md) the three rationalization lenses; this chapter doesn't repeat them.
+Microsoft Entra authentication for SQL Server starts with SQL Server 2022, on standalone instances and Always On availability groups; failover cluster instances don't support it.[^sq01-entra-sql] The `FROM EXTERNAL PROVIDER` login, which maps a login to an Entra principal, is "available for Arc-enabled SQL Server 2022 and later versions".[^sq01-create-login] Those two facts are why version and clustering decide so much of the gate. For the last-use signal, `sys.dm_db_index_usage_stats` records the last seek, scan, lookup and update per index, but its counters "are initialized to empty whenever the database engine is started", and a database's rows go when it's detached or shut down, for example by `AUTO_CLOSE`.[^sq01-index-usage] [Book 06, Chapter 04](../../../books/b06-data-platform/04-the-estate-inventory.md#discovery-instruments) lists the discovery instruments Learn documents, and [Chapter 05](../../../books/b06-data-platform/05-rationalization.md) the three rationalization lenses; this chapter doesn't repeat them.
 
 ### What it leaves to you
 
@@ -127,12 +127,10 @@ Remove-Item -Recurse -Force out
    SQLPRD01 2022    retain                   yes             SQL Server 2022, in use
    SQLPRD02 2022    retain                   yes             SQL Server 2022, in use
    SQLLEG03 2016    consolidate    shared    at the target   SQL Server 2016 can't take Entra logins
-   SQLFCI04 2019    retain                   yes             Constraint: The vendor certifies SQL Server 2019 only, through its 2027 release. Retained in place;
-                                                             upgrade or exception needed
+   SQLFCI04 2019    retain                   yes             Constraint: The vendor certifies SQL Server 2019 only, through its 2027 release. Retained in place; upgrade or exception needed
    SQLOLD05 2014    retire                   no              Every database idle 400 days or more
    SQLPRD06 2025    retain                   yes             SQL Server 2025, in use; consolidation target
-   SQLLEG07 2017    consolidate    dedicated at the target   Constraint (collation): GrantsTracking uses Latin1_General_CI_AS; the shared target uses
-                                                             SQL_Latin1_General_CP1_CI_AS.
+   SQLLEG07 2017    consolidate    dedicated at the target   Constraint (collation): GrantsTracking uses Latin1_General_CI_AS; the shared target uses SQL_Latin1_General_CP1_CI_AS.
    SQLDEV08 unknown review                   no              No version: discovery found the instance but nothing read it
 
    Wrote 2 files and manifest.json to out/estate

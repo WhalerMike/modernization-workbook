@@ -32,5 +32,5 @@ $files = foreach ($part in 'Create', 'Cutover', 'Rollback') {
 $pj = Join-Path $OutputPath 'plan.json'
 Write-SqlText -Path $pj -Text ((ConvertTo-Json -Depth 5 -InputObject ([ordered]@{ asOf = $audit.asOf; environment = $s.environment; instance = $s.instance; server = $s.server; approver = $s.approver; phases = $phases })) + "`n")
 $rows = foreach ($k in $phases.Keys) { [pscustomobject]@{ Phase = $k; File = $phases[$k].file; Statements = $phases[$k].statements; Sha256 = $phases[$k].sha256 } }
-Complete-SqlRun -Rows @($rows) -Name phases -Step PLAN -OutputPath $OutputPath -AsOf $audit.asOf -Extra (@($files) + $pj) -Mode 'dry run' -Show Phase, Statements, Sha256 -Width 120
+Complete-SqlRun -Rows @($rows) -Name phases -Step PLAN -OutputPath $OutputPath -AsOf $audit.asOf -Extra (@($files) + $pj) -Mode 'dry run' -Show Phase, Statements, Sha256
 Write-Host "Approve the create hash, then run: ./deploy/Invoke-SqlDeploy.ps1 -PlanPath $($OutputPath.Replace([char]92, [char]47)) -Phase create -ApprovedHash <hash>"

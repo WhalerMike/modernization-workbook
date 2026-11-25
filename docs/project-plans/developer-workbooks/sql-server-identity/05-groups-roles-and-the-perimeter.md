@@ -114,15 +114,13 @@ Remove-Item -Recurse -Force out
    ```
 
    ```text
-   Group                    Pattern Target
-   -----                    ------- ------
-   CONTOSO\PayrollUsers           1 Dynamic group, rule (user.extensionAttribute10 -in ["FIN-PAY"]) -and (user.accountEnabled -eq true) -and (user.userType -eq
-                                    "Member"); never department or jobTitle
+   Group                    Pattern Target                                                                                                                                                              Flags
+   -----                    ------- ------                                                                                                                                                              -----
+   CONTOSO\PayrollUsers           1 Dynamic group, rule (user.extensionAttribute10 -in ["FIN-PAY"]) -and (user.accountEnabled -eq true) -and (user.userType -eq "Member"); never department or jobTitle
    CONTOSO\SQL-Admins             2 Assigned group, eligible through PIM (privileged server role)
    CONTOSO\SQL-Agent-Alerts       3 Mail-only group; update the SQL Server Agent operator address; no login
    CONTOSO\ClaimsTeam             4 Split: a mail-only group plus an assigned security group; record the pairing in both descriptions
-   CONTOSO\HR-Analysts            1 Dynamic group, rule (user.extensionAttribute10 -in ["HR-ANL"]) -and (user.accountEnabled -eq true) -and (user.userType -eq
-                                    "Member"); never department or jobTitle
+   CONTOSO\HR-Analysts            1 Dynamic group, rule (user.extensionAttribute10 -in ["HR-ANL"]) -and (user.accountEnabled -eq true) -and (user.userType -eq "Member"); never department or jobTitle  nested: flatten (CONTOSO\HR-Leads)
 
    Wrote 2 files and manifest.json to out/groups
    Evidence for GROUPS (Map each AD group pattern to its Entra group): AC-2, AC-6; KSI-IAM-ELP

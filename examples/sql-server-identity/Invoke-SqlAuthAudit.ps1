@@ -21,7 +21,7 @@ Import-Module (Join-Path $PSScriptRoot 'powershell/SqlIdentity/SqlIdentity.psd1'
 $audit = Read-SqlJson $AuditPath
 $census = @($audit.instances | ForEach-Object { Get-SqlLoginCensus -Instance $_ })
 $censusFiles = Write-SqlOutput -Rows $census -OutputPath $OutputPath -Name census
-($census | Format-Table -AutoSize | Out-String -Width 160).TrimEnd() | Write-Host
+($census | Format-Table -AutoSize | Out-String -Width 400).TrimEnd() | Write-Host
 Write-Host ''
 $findings = @($audit.instances | ForEach-Object { Get-SqlAuthFinding -Instance $_ } | Where-Object { $_.Severity -ne 'info' -or $_.Finding -eq 'Arc-eligibility' })
 Complete-SqlRun -Rows $findings -Name findings -Step AUDIT -OutputPath $OutputPath -AsOf $audit.asOf -Extra $censusFiles -Show Instance, Severity, Finding, Detail

@@ -161,8 +161,7 @@ Remove-Item -Recurse -Force out
    Instance Version Agent                  Extension Entra           Category Next
    -------- ------- -----                  --------- -----           -------- ----
    SQLPRD01 2022    Connected              deployed  appRegistration        1 Ready: plan the logins (Chapter 04)
-   SQLPRD02 2022    not installed          missing   not configured         2 Deploy Arc (Runbook R04): agent not installed; SQL extension not deployed; Entra
-                                                                              authentication not configured
+   SQLPRD02 2022    not installed          missing   not configured         2 Deploy Arc (Runbook R04): agent not installed; SQL extension not deployed; Entra authentication not configured
    SQLFCI04 2019    cluster: see its nodes missing   not configured         3 Re-platform as a standalone instance or availability group, or record an exception
    SQLPRD06 2025    Connected              deployed  managedIdentity        1 Ready: plan the logins (Chapter 04)
 

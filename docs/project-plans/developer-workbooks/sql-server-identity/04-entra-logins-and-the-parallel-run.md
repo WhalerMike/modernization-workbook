@@ -57,7 +57,7 @@ Each row is pinned by a test in the `Chapter 04` block of `tests/SqlIdentity.Tes
 
 `New-SqlLoginPlan` reads one instance from an audit snapshot and the reviewed mapping CSV (`WindowsLogin, EntraPrincipal, EntraType, Note`). The legacy set is every enabled type `U`, `G` or `S` login that isn't `sa` and doesn't match `builtinLoginPattern` in `config/thresholds.json`. It returns five things: the create script, the cutover, the rollback, the list of unresolved logins, and warnings. `New-SqlLoginPlan.ps1` writes the three scripts as `<instance>-create.sql`, `-cutover.sql` and `-rollback.sql`, writes `plan.csv` and `plan.json`, prints the create script's SHA-256, which is what [Chapter 10](10-deploying-to-test-and-production.md) approves, and prints each warning as a `Warning: …` line. It executes nothing.
 
-**The cutover.** A Windows user or SQL login is disabled (`ALTER LOGIN … DISABLE`) and the rollback enables it, as [Runbook R05, Step 4](../../../books/b06-data-platform/r05-login-migration-and-parallel-run.md#step-4--cutover) shows for the user `CONTOSO\jdoe`; that stays right for users. A Windows group can't be disabled that way (Learn: error 15151), so the kit writes `DENY CONNECT SQL TO [group];` for a type `G` login, and the rollback writes `GRANT CONNECT SQL TO [group];`. Both keep the login, its server roles and its database users, so the rollback is as immediate as R05's.
+**The cutover.** A Windows user or SQL login is disabled (`ALTER LOGIN … DISABLE`) and the rollback enables it, as [Runbook R05, Step 4](../../../books/b06-data-platform/r05-login-migration-and-parallel-run.md#step-4-cutover) shows for the user `CONTOSO\jdoe`; that stays right for users. A Windows group can't be disabled that way (Learn: error 15151), so the kit writes `DENY CONNECT SQL TO [group];` for a type `G` login, and the rollback writes `GRANT CONNECT SQL TO [group];`. Both keep the login, its server roles and its database users, so the rollback is as immediate as R05's.
 
 **The warnings.** [Book 06, Chapter 16](../../../books/b06-data-platform/16-groups-roles-and-membership.md#one-group-one-role) gives each Entra group exactly one role, on one database, in one environment. The plan warns when the mapping would give a principal more than one database role, and when it would give one `db_owner` or `sysadmin`. A warning doesn't stop the plan: it's for the identity engineer to split the group or record why not.
 
@@ -257,8 +257,7 @@ Remove-Item -Recurse -Force out
    Legacy               Entra                 LegacySessions EntraSessions Ready Why
    ------               -----                 -------------- ------------- ----- ---
    CONTOSO\PayrollUsers SQL-Payroll-Users                 12             0 False Entra principal not seen connecting; still arrives only on the legacy login
-   CONTOSO\svc-payroll  payroll-web-mi                    41             0 False Entra principal not seen connecting; 41 remote NTLM sessions; still arrives only
-                                                                                 on the legacy login
+   CONTOSO\svc-payroll  payroll-web-mi                    41             0 False Entra principal not seen connecting; 41 remote NTLM sessions; still arrives only on the legacy login
    CONTOSO\SQL-Admins   SQL-DBA-Admins                     0             0 False Entra principal not seen connecting
    payroll_report       payroll-reporting-app              3             0 False Entra principal not seen connecting; still arrives only on the legacy login
 

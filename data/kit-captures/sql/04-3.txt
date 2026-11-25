@@ -7,8 +7,8 @@ PS> $plan.Create | Select-String UNRESOLVED
 PS> $plan.Cutover
 USE master;
 GO
-DENY CONNECT SQL TO [CONTOSO/PayrollUsers];  -- group: superseded by SQL-Payroll-Users
-ALTER LOGIN [CONTOSO/svc-payroll] DISABLE;  -- superseded by payroll-web-mi
-ALTER SERVER ROLE [sysadmin] DROP MEMBER [CONTOSO/SQL-Admins];  -- DENY doesn't bind sysadmin members
-DENY CONNECT SQL TO [CONTOSO/SQL-Admins];  -- group: superseded by SQL-DBA-Admins
+DENY CONNECT SQL TO [CONTOSO\PayrollUsers];  -- group: superseded by SQL-Payroll-Users
+ALTER LOGIN [CONTOSO\svc-payroll] DISABLE;  -- superseded by payroll-web-mi
+ALTER SERVER ROLE [sysadmin] DROP MEMBER [CONTOSO\SQL-Admins];  -- DENY doesn't bind sysadmin members
+DENY CONNECT SQL TO [CONTOSO\SQL-Admins];  -- group: superseded by SQL-DBA-Admins
 GO

@@ -2,5 +2,5 @@ PS> Import-Module ./powershell/SqlIdentity/SqlIdentity.psd1
 PS> (Read-SqlJson tests/fixtures/audit-day30/exceptions.json).exceptions | Format-Table instance, login, approvedBy, expires -AutoSize
 instance login                  approvedBy           expires
 -------- -----                  ----------           -------
-*        CONTOSO/SQL-BreakGlass Authorizing official
+*        CONTOSO\SQL-BreakGlass Authorizing official
 SQLFCI04 vendorhr_app           ISSO                 2027-06-30

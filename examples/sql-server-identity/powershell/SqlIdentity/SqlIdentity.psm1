@@ -783,13 +783,13 @@ function Complete-SqlRun {
     [CmdletBinding()]
     param([Parameter(Mandatory)][AllowEmptyCollection()]$Rows, [Parameter(Mandatory)][string]$Name, [Parameter(Mandatory)][string]$Step,
           [Parameter(Mandatory)][string]$OutputPath, [Parameter(Mandatory)][string]$AsOf, [string[]]$Extra = @(), [string]$Mode = 'read-only',
-          [string[]]$Show, [int]$Width = 160, [object[]]$DisplayRows)
+          [string[]]$Show, [int]$Width = 400, [object[]]$DisplayRows)
     $files = @(Write-SqlOutput -Rows $Rows -OutputPath $OutputPath -Name $Name) + @($Extra)
     $manifest = Write-SqlManifest -Step $Step -OutputPath $OutputPath -Files $files -AsOf $AsOf -Mode $Mode
     $rows = if ($PSBoundParameters.ContainsKey('DisplayRows')) { @($DisplayRows) } else { @($Rows) }
     if ($rows.Count) {
         $view = if ($Show) { $rows | Select-Object -Property $Show } else { $rows }
-        ($view | Format-Table -AutoSize -Wrap | Out-String -Width $Width).TrimEnd() | Write-Host
+        ($view | Format-Table -AutoSize | Out-String -Width $Width).TrimEnd() | Write-Host
     } else { Write-Host 'Nothing found.' }
     $s = (Get-SqlKitConfig requirements).steps.$Step
     Write-Host ''

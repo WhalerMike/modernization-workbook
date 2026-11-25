@@ -142,6 +142,10 @@ def bash_lines(code: str) -> list[str]:
     return out
 
 
+# A backslash that follows a NetBIOS domain or a built-in account prefix belongs to an account name.
+ACCOUNT = re.compile(r"(?:\b[A-Z][A-Z0-9-]{1,14}|\bNT SERVICE|\bNT AUTHORITY)\Z")
+
+
 def clean(out: str, cwd: Path, root: Path) -> str:
     """One command's output, made stable: no timings, no scratch paths (the lab's folder becomes relative,
     the scratch copy's root "<scratch>"), and on Windows forward slashes."""
@@ -154,7 +158,10 @@ def clean(out: str, cwd: Path, root: Path) -> str:
         for p in sorted({str(d), d.as_posix()}, key=len, reverse=True):
             out = out.replace(p + "\\", to).replace(p + "/", to).replace(p, to.rstrip("/") or ".")
     if os.name == "nt":
-        out = out.replace("\\", "/")
+        # Path separators become "/", as Linux prints them; a Windows account name (CONTOSO\svc,
+        # NT SERVICE\MSSQLSERVER) keeps its backslash, which Linux prints too.
+        src = out
+        out = re.sub(r"\\", lambda m: "\\" if ACCOUNT.search(src, 0, m.start()) else "/", src)
     # pytest, node and Pester print their own timings; keep the counts, drop the times.
     out = re.sub(r" in \d+(?:\.\d+)?m?s\b(?: \(\d+:\d\d:\d\d\))?", "", out)    # pytest adds (h:mm:ss) past a minute
     out = re.sub(r"^(. duration_ms) [\d.]+$", r"\1 …", out, flags=re.M)

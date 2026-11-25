@@ -19,6 +19,6 @@ param([Parameter(Mandatory)][string]$Path, [Parameter(Mandatory)][string]$Output
 $ErrorActionPreference = 'Stop'
 Import-Module (Join-Path $PSScriptRoot 'powershell/SqlIdentity/SqlIdentity.psd1') -Force
 $rows = @(Find-SqlConnectionString -Path $Path)
-Complete-SqlRun -Rows $rows -Name connections -Step CONN -OutputPath $OutputPath -AsOf $AsOf -Show Application, File, Finding, Driver, Column, Target -Width 200
+Complete-SqlRun -Rows $rows -Name connections -Step CONN -OutputPath $OutputPath -AsOf $AsOf -Show Application, File, Finding, Driver, Column, Target
 $stored = @($rows | Where-Object Finding -eq 'Stored password').Count
 Write-Host "Stored passwords: $stored. Column A (configuration only): $(@($rows | Where-Object Column -eq 'A').Count)."

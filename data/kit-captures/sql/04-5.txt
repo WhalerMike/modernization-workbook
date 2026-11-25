@@ -1,9 +1,9 @@
 PS> ./Test-SqlParallelRun.ps1 -AuditPath tests/fixtures/audit-day30/audit.json -Instance SQLPRD01 -MappingPath tests/fixtures/mapping/sqlprd01-mapping.csv -OutputPath out/parallel-day30
 Legacy               Entra                 LegacySessions EntraSessions Ready Why
 ------               -----                 -------------- ------------- ----- ---
-CONTOSO/PayrollUsers SQL-Payroll-Users                  0            11  True already cut over (disabled or denied): observe 30 days, then drop
-CONTOSO/svc-payroll  payroll-web-mi                     0            44  True already cut over (disabled or denied): observe 30 days, then drop
-CONTOSO/SQL-Admins   SQL-DBA-Admins                     0             2  True already cut over (disabled or denied): observe 30 days, then drop
+CONTOSO\PayrollUsers SQL-Payroll-Users                  0            11  True already cut over (disabled or denied): observe 30 days, then drop
+CONTOSO\svc-payroll  payroll-web-mi                     0            44  True already cut over (disabled or denied): observe 30 days, then drop
+CONTOSO\SQL-Admins   SQL-DBA-Admins                     0             2  True already cut over (disabled or denied): observe 30 days, then drop
 payroll_report       payroll-reporting-app              0             3  True already cut over (disabled or denied): observe 30 days, then drop
 
 Wrote 2 files and manifest.json to out/parallel-day30
