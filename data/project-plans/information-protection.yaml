@@ -1,0 +1,188 @@
+# Sample project plan: Information Protection (Microsoft Purview).
+# scripts/project_plans/build.py reads this file and writes the page, the
+# Gantt chart and the downloads. Edit this file, never the outputs.
+#
+# Durations are working days and illustrative. Book 20 gives no calendar of
+# its own; it gives each control a pilot ring, a report-only or simulation
+# phase and enforcement rings, mostly two weeks each, and its Chapter 12
+# checklist puts them in one list. This plan sequences that list: classes and
+# the audit floor first, then labels, then the containers and mail that carry
+# them, then DLP and auto-labeling, then insider risk and AI, then operations.
+# It takes three dates from other plans: the program's Conditional Access
+# baseline and pilot devices, and the Privileged Access plan's PIM foundation
+# for the super user procedure.
+
+slug: information-protection
+title: "Information Protection: Classes, Labels, DLP and Evidence in Microsoft Purview"
+short_title: "Information Protection"
+subtitle: "A sample project plan for Book 20: the data classes and the audit floor, sensitivity labels and Rights Management, containers and message encryption, DLP and auto-labeling from simulation to enforcement, insider risk and AI data security under a charter, then operations with evidence"
+description: "A sample PMP-style project plan for classifying and protecting the agency's data in Microsoft Purview, built from Book 20: a work breakdown by control from the class register to the assessor's package, a computed critical path, a gate per stage with its approver and criteria, and the decisions (root key, defaults, containers, label integration, message scenarios, DLP outcomes, auto-labeling, the insider risk charter, AI data) with owners and decide-by weeks."
+plan_type: "Project"
+covers: "Book 20, Chapters 01 to 12, from the class register to the assessor's package"
+books: "Book 20"
+sponsor: "Executive sponsor and CIO; CISO"
+manager: "Platform owner (the Microsoft 365 and Purview engineering lead), with the CUI program manager as policy owner"
+start_label: "Week 1 = the program's Phase 0 approval"
+project_start: 2027-01-04
+
+purpose: |
+  This plan sequences [Book 20](../books/b20-information-protection/index.md): classifying and protecting the agency's data in Microsoft Purview so the protection travels with the data. Book 20 gives each control a pilot, a report-only or simulation phase, enforcement rings and a rollback, and its [implementation checklist](../books/b20-information-protection/12-operations-and-evidence.md#implementation-checklist) lists them; this plan puts them in order and dates them. Its roles are Book 20's [RACI](../books/b20-information-protection/12-operations-and-evidence.md#raci): the policy owner decides what the data is and how it's handled, the platform owner configures it, security operations watches it, and the ISSO and assessor read the evidence.
+
+  The order follows the book's dependencies. The class register and the audit floor come first, because labels are built from classes and every later control is proved from the audit log. Labels come next, then the containers, SharePoint libraries and mail that carry them, then DLP and auto-labeling, which act on labels and sensitive information types, and then insider risk and AI data security, which wait for a written charter and for the oversharing work on containers. It takes three dates from other plans: the program's Conditional Access baseline (P1.6) for container labels, the program's pilot devices (P2.3) for endpoint DLP, and the [Privileged Access plan](privileged-access.md)'s Gate 1 for the PIM-gated super user procedure.
+
+critical_path_note: |
+  The computed path runs through the labels and then the DLP that insider risk reads. It starts with the class register, which takes three weeks because each CUI category needs its authority recorded, then runs through the label taxonomy in a test tenant, the defaults decision, ring 1, label integration in SharePoint and OneDrive (which has to be on before an encrypting label leaves the pilot), ring 2 and Gate 1 in week 11. From there it runs through workload DLP in simulation across a business cycle and its enforcement rings, then Insider Risk Management's 30-day audit phase, which waits for DLP because DLP alerts are among its signals, then Gate 4 and the assessor's package to Gate 5 in week 25. Containers carry about two weeks of float, auto-labeling about four and message encryption about eight; endpoint DLP waits for the program's pilot devices (P2.3) and still has about a week and a half. The decisions that look early on the chart, the insider risk charter and the AI data decisions, have weeks of float, but they need the privacy office, counsel and labor relations, so the plan starts the charter at Gate 0 rather than when its float runs out.
+
+assumptions:
+  - "The tenant is GCC-Moderate. Purview features differ between the commercial cloud and GCC and change often; each chapter of Book 20 states availability per feature as read on November 11, 2026, and a feature Learn doesn't list for GCC isn't scheduled until it is."
+  - "Licensing covers the controls in scope: sensitivity labels and DLP for every user in scope, Audit (Premium) retention for users whose actions must be kept beyond 180 days, endpoint DLP, auto-labeling, Insider Risk Management and Communication Compliance. Each chapter's decision record names the license it needs."
+  - "The AI rows (D-IP9, IP4.2, IP4.3) apply only where Microsoft 365 Copilot is licensed or third-party AI sites are reachable ([Chapter 11](../books/b20-information-protection/11-ai-data-security.md#the-ai-data-decisions))."
+  - "Each ring lasts the two weeks Book 20's chapters give it. Ring 3, everyone in scope, is a policy change rather than a waved move, so it takes days, not weeks."
+  - "The insider risk charter needs the privacy office, counsel and the labor relations office; this plan gives it six weeks, which a represented workforce can exceed."
+  - "Durations are illustrative. Book 20 gives no calendar; the ring lengths are its own, the rest are sized to its How sections."
+
+risks:
+  - risk: "The class register stalls on which CUI categories the agency holds"
+    impact: "No label can be built; every gate moves week for week"
+    response: "Start it on day one with the CUI program manager, and record each category's authority as it's settled (Chapter 01)"
+  - risk: "A label applied in the pilot has the wrong encryption settings"
+    impact: "Content labeled in the pilot keeps the settings it was labeled with; users lose access or keep too much"
+    response: "Build and test the taxonomy in a test tenant first (Chapter 02), and run the decryption-continuity test before ring 1"
+  - risk: "DLP or auto-labeling false positives exceed what the help desk can absorb"
+    impact: "Enforcement rings stall; Gate 3 waits"
+    response: "Run simulation across a full business cycle and tune from overrides and justifications before each ring (Chapters 08 and 09)"
+  - risk: "The insider risk charter isn't agreed with the privacy office, counsel or labor relations"
+    impact: "Insider Risk Management and Communication Compliance can't be configured; Gate 4 waits"
+    response: "Start the charter at Gate 0 (IP4.1); Gate 4 can sign for AI data security alone if the authorizing official accepts that"
+  - risk: "Copilot reaches a population before its oversharing is remediated"
+    impact: "Copilot answers from content users can open but shouldn't"
+    response: "Run the data risk assessment and fix container sharing before Copilot DLP leaves simulation (Chapter 11)"
+
+tasks:
+  # ------------------------------------------------- Phase 0 — classes, decisions and the audit floor
+  - {id: IP0.1, phase: 0, name: "Class register: CUI categories held (Basic or Specified), Privacy Act records, retention, impact level and cloud, each with its source", dur: 15, owner: "Policy owner (CUI program manager)",
+     source: "../books/b20-information-protection/01-data-inventory-and-classification.md#b20-01-the-federal-overlay-decisions"}
+  - {id: IP0.2, phase: 0, name: "Inventory: where each class already sits, from content and activity explorer under narrowly granted role groups", dur: 10, owner: "Platform owner",
+     source: "../books/b20-information-protection/01-data-inventory-and-classification.md#b20-01-inventory-find-where-the-data-already-is"}
+  - {id: IP0.3, phase: 0, name: "Unified audit on and retained, routed to the log platform; a synthetic audit event found by search within the target time", dur: 10, owner: "Platform owner",
+     source: "../books/b20-information-protection/10-audit-insider-risk-and-communication-compliance.md#audit-is-the-floor"}
+  - {id: D-IP1, kind: decision, phase: 0, name: "Tenant root key for Rights Management", after: [IP0.1], owner: "Policy owner, with the CISO",
+     options: "Microsoft-managed key; bring your own key (BYOK), per Book 12, Chapter 09. Decided before the first encrypting label is published",
+     late: "Rights Management can't be activated, and no encrypting label can be published",
+     source: "../books/b20-information-protection/05-rights-management-and-recovery.md#b20-05-decide-activation-onboarding-and-recovery"}
+  - {id: IPG0, kind: gate, phase: 0, name: "Gate 0 — Classes decided, audit on", after: [IP0.1, IP0.2, IP0.3], owner: "ISSO",
+     criteria: "Class register with every federal overlay decision and its source; inventory showing where each class sits; unified audit on, retention set and routed to the log platform, with a synthetic event found within the target time; the decision record template in use",
+     source: "../books/b20-information-protection/01-data-inventory-and-classification.md#decision-record-template"}
+  # ------------------------------------------------- Phase 1 — labels, defaults and Rights Management
+  - {id: IP1.1, phase: 1, name: "Label taxonomy built in a test tenant: classes to labels, scopes, priority, encryption settings, markings, publishing policies", dur: 15, after: [IPG0], owner: "Platform owner",
+     source: "../books/b20-information-protection/02-sensitivity-label-architecture.md#b20-02-how-build-the-taxonomy-in-a-test-tenant"}
+  - {id: D-IP2, kind: decision, phase: 1, name: "Default labels and mandatory labeling for files, email, meetings and containers", after: [IP1.1], owner: "Policy owner",
+     options: "A non-encrypting default per item type, with mandatory labeling and a justification for every downgrade; mandatory labeling with no default",
+     late: "The pilot policy has no defaults, and ring 1 waits",
+     source: "../books/b20-information-protection/03-label-publication-and-defaults.md#b20-03-defaults-the-agency-can-justify"}
+  - {id: IP1.2, phase: 1, name: "Rights Management activated and staged: onboarding limited to the label pilot; super user feature off; two recovery operators named", dur: 5, after: [D-IP1, IPG0], owner: "Platform owner",
+     source: "../books/b20-information-protection/05-rights-management-and-recovery.md"}
+  - {id: X-AG1, kind: external, phase: 1, name: "Privileged Access Gate 1 — Foundation ready (PIM role settings for every tier)", ref: "privileged-access:AG1",
+     late: "Recovery operators can't be made eligible through PIM, so the super user procedure can't be rehearsed",
+     source: "privileged-access.md"}
+  - {id: IP1.3, phase: 1, name: "Super user recovery rehearsed in the test tenant with PIM-eligible operators; decryption-continuity test passed", dur: 3, after: [IP1.2, X-AG1], owner: "Platform owner",
+     source: "../books/b20-information-protection/05-rights-management-and-recovery.md#validate-the-decryption-continuity-test"}
+  - {id: IP1.4, phase: 1, name: "Ring 1: label policy and pilot defaults for 25 to 50 users, two weeks; label events and downgrade justifications read; labeled sample passes", dur: 10, after: [D-IP2, IP1.2], owner: "Operator",
+     source: "../books/b20-information-protection/03-label-publication-and-defaults.md#b20-03-validate-a-labeled-sample"}
+  - {id: IP1.5, phase: 1, name: "Ring 2: one or two offices per CUI program, two weeks; then the production policy for everyone in scope", dur: 12, after: [IP1.4, IP2.2], owner: "Operator",
+     source: "../books/b20-information-protection/03-label-publication-and-defaults.md#b20-03-enforcement"}
+  - {id: IPG1, kind: gate, phase: 1, name: "Gate 1 — Labels in use", after: [IP1.5, IP1.3], owner: "ISSO",
+     criteria: "Label policy widened past ring 2 on its recorded criteria; labeled sample file and email with the label in the audit log; defaults set; users outside the policy recorded; super user off with no standing members, recovery rehearsed and the decryption-continuity test passed",
+     source: "../books/b20-information-protection/12-operations-and-evidence.md#implementation-checklist"}
+  # ------------------------------------------------- Phase 2 — containers, SharePoint and OneDrive, and mail
+  - {id: D-IP4, kind: decision, phase: 2, name: "Label integration for SharePoint and OneDrive, legacy IRM libraries, PDFs and co-authoring", after: [IP1.1], owner: "Policy owner, with the records officer",
+     options: "Integration on before the first encrypting label leaves the pilot; PDFs only after Chapter 09's simulations include them; each IRM library migrated, then IRM off (in GCC, kept until its files are labeled); co-authoring only when every tool that reads labels supports it",
+     late: "Encrypted files in SharePoint can't be searched, co-authored or scanned, and ring 2 waits",
+     source: "../books/b20-information-protection/07-sharepoint-and-onedrive.md"}
+  - {id: IP2.2, phase: 2, name: "Label integration on for SharePoint and OneDrive, after labels have replicated to the service", dur: 3, after: [D-IP4, IP1.4], owner: "Operator",
+     source: "../books/b20-information-protection/07-sharepoint-and-onedrive.md"}
+  - {id: IP2.3, phase: 2, name: "Legacy IRM libraries moved to sensitivity labels one by one, a volunteer library first; IRM turned off on each", dur: 20, after: [IP2.2], owner: "Operator",
+     source: "../books/b20-information-protection/07-sharepoint-and-onedrive.md"}
+  - {id: D-IP3, kind: decision, phase: 2, name: "Container classes and who may create Teams, groups and sites", after: [IP1.1], owner: "Policy owner",
+     options: "A container label per class with its privacy, guest and unmanaged-device settings; creation open to all, or limited to a group, for each class",
+     late: "Container labels can't be piloted, and the oversharing work Copilot waits for can't start",
+     source: "../books/b20-information-protection/04-teams-groups-and-sharepoint-containers.md#b20-04-who-may-create-containers"}
+  - {id: X-P16, kind: external, phase: 2, name: "Conditional Access baseline enforced; emergency access accounts tested (program P1.6)", ref: "program-master-schedule:P1.6",
+     late: "Container labels' unmanaged-device setting has no Conditional Access baseline to work with",
+     source: "program-master-schedule.md"}
+  - {id: IP2.1, phase: 2, name: "Container labels: pilot sites for two weeks with Conditional Access in report-only, then required for new containers and applied to CUI-bearing sites for two", dur: 20, after: [D-IP3, IPG1, X-P16], owner: "Operator",
+     source: "../books/b20-information-protection/04-teams-groups-and-sharepoint-containers.md#b20-04-enforcement"}
+  - {id: D-IP5, kind: decision, phase: 2, name: "Approved message-encryption scenarios, and the recipient experience", after: [IPG0], owner: "Policy owner",
+     options: "Sender opt-in, named offices, Do Not Forward to a partner, expiring mail where Advanced Message Encryption is licensed; one-time passcodes on or off; social IDs on or off; branding",
+     late: "Transport rules can't be written, and message encryption waits",
+     source: "../books/b20-information-protection/06-exchange-message-encryption.md"}
+  - {id: IP2.4, phase: 2, name: "Message encryption verified and branded; each transport rule in Audit for two weeks, enforced for ring 1 for one, then rings 2 and 3", dur: 25, after: [D-IP5, IP1.2], owner: "Operator",
+     source: "../books/b20-information-protection/06-exchange-message-encryption.md"}
+  - {id: IPG2, kind: gate, phase: 2, name: "Gate 2 — Containers, libraries and mail protected", after: [IP2.1, IP2.3, IP2.4], owner: "ISSO",
+     criteria: "Container labels required for new sites and applied to CUI sites, with guest add and unmanaged-device access tested; label integration on and IRM libraries migrated or dated; an encrypted test message opened by an external recipient, with the rule hit in the message trace",
+     source: "../books/b20-information-protection/12-operations-and-evidence.md#implementation-checklist"}
+  # ------------------------------------------------- Phase 3 — DLP and auto-labeling
+  - {id: D-IP6, kind: decision, phase: 3, name: "DLP outcomes for each class and surface: block, warn, or allow with justification", after: [IPG0], owner: "Policy owner",
+     options: "Outcome statements per class for mail, Teams, SharePoint and OneDrive, and Windows devices, each with its exceptions and their expiry",
+     late: "DLP policies can't be written, and simulation waits",
+     source: "../books/b20-information-protection/08-dlp-and-endpoint-controls.md"}
+  - {id: IP3.4, phase: 3, name: "Custom sensitive information types written as code; exact data match where the class needs it", dur: 15, after: [D-IP6], owner: "Platform owner",
+     source: "../books/b20-information-protection/09-auto-labeling-and-sensitive-information-types.md"}
+  - {id: IP3.1, phase: 3, name: "Workload DLP in simulation for the pilot across a business cycle; matched items exported before the 30 days are up", dur: 15, after: [D-IP6, IPG1, IP3.4], owner: "Operator",
+     source: "../books/b20-information-protection/08-dlp-and-endpoint-controls.md"}
+  - {id: IP3.2, phase: 3, name: "Workload DLP enforced ring by ring: ring 2 with override and justification, ring 3 everyone in scope; false positives tuned", dur: 20, after: [IP3.1], owner: "Operator",
+     source: "../books/b20-information-protection/08-dlp-and-endpoint-controls.md"}
+  - {id: X-P23, kind: external, phase: 3, name: "Pilot devices moved by pattern (program P2.3)", ref: "program-master-schedule:P2.3",
+     late: "Endpoint DLP has no managed pilot devices to onboard",
+     source: "program-master-schedule.md"}
+  - {id: IP3.3, phase: 3, name: "Endpoint DLP on Windows: pilot devices onboarded, rules in Audit for two weeks, then enforced ring by ring", dur: 25, after: [X-P23, IP3.1], owner: "Operator",
+     source: "../books/b20-information-protection/08-dlp-and-endpoint-controls.md#b20-08-enforcement-endpoint"}
+  - {id: IP3.5, phase: 3, name: "Service-side auto-labeling in simulation over pilot sites, PDFs in scope; precision recorded; automatic turn-on left off", dur: 15, after: [IP3.4, IPG1], owner: "Operator",
+     source: "../books/b20-information-protection/09-auto-labeling-and-sensitive-information-types.md"}
+  - {id: D-IP7, kind: decision, phase: 3, name: "Move each auto-labeling policy from simulation to labeling", after: [IP3.5], owner: "Policy owner",
+     options: "Turn the policy on once its false positives are resolved; keep it in simulation",
+     late: "Existing content stays unlabeled, and PDF support in SharePoint stays off",
+     source: "../books/b20-information-protection/09-auto-labeling-and-sensitive-information-types.md"}
+  - {id: IP3.6, phase: 3, name: "Auto-labeling policies on; PDF support turned on in SharePoint and OneDrive", dur: 10, after: [D-IP7], owner: "Operator",
+     source: "../books/b20-information-protection/07-sharepoint-and-onedrive.md"}
+  - {id: IPG3, kind: gate, phase: 3, name: "Gate 3 — DLP and auto-labeling enforced", after: [IP3.2, IP3.3, IP3.6], owner: "ISSO",
+     criteria: "Synthetic sensitive content blocked on each surface and the alert received by security operations; every rule exception with an expiry; auto-labeling precision recorded and sample files labeled as designed",
+     source: "../books/b20-information-protection/12-operations-and-evidence.md#implementation-checklist"}
+  # ------------------------------------------------- Phase 4 — insider risk and AI data security
+  - {id: IP4.1, phase: 4, name: "Insider risk charter drafted: purpose and templates, notice and privacy documentation, bargaining obligations, investigator powers, roles, retention", dur: 30, after: [IPG0], owner: "Senior agency official for privacy",
+     source: "../books/b20-information-protection/10-audit-insider-risk-and-communication-compliance.md#the-charter-comes-first"}
+  - {id: D-IP8, kind: decision, phase: 4, name: "Adopt the insider risk charter", after: [IP4.1], owner: "CISO, with the senior agency official for privacy and general counsel",
+     options: "Adopt it, then configure; don't configure Insider Risk Management or Communication Compliance",
+     late: "Neither tool can be configured, and Gate 4 waits",
+     source: "../books/b20-information-protection/10-audit-insider-risk-and-communication-compliance.md#the-charter-comes-first"}
+  - {id: IP4.2, phase: 4, name: "Insider Risk Management and Communication Compliance for a pilot scope: a 30-day audit phase, alerts triaged, a tuning record", dur: 22, after: [D-IP8, IP3.2], owner: "Security operations",
+     source: "../books/b20-information-protection/10-audit-insider-risk-and-communication-compliance.md#b20-10-enforcement-irm"}
+  - {id: D-IP9, kind: decision, phase: 4, name: "AI data decisions: approved AI apps and their data, labels Copilot mustn't process, oversharing remediation, who may read prompts", after: [IP1.1], owner: "Policy owner",
+     options: "Per app class (Copilot in the tenant, enterprise AI apps, third-party AI sites): approve for named classes, or block. Prompt and response access settled with the privacy official and counsel",
+     late: "AI policies can't leave simulation, and Copilot reaches users before oversharing is fixed",
+     source: "../books/b20-information-protection/11-ai-data-security.md#the-ai-data-decisions"}
+  - {id: IP4.3, phase: 4, name: "Data risk assessment for oversharing read; DSPM and Copilot DLP in simulation for at least two weeks across a month-end", dur: 15, after: [D-IP9, IPG2], owner: "Platform owner",
+     source: "../books/b20-information-protection/11-ai-data-security.md"}
+  - {id: IP4.4, phase: 4, name: "Copilot DLP enforced; paste to unapproved AI sites blocked; a labeled file cited but not summarized", dur: 10, after: [IP4.3, IP3.3], owner: "Operator",
+     source: "../books/b20-information-protection/11-ai-data-security.md#b20-11-enforcement-ai"}
+  - {id: IPG4, kind: gate, phase: 4, name: "Gate 4 — Insider risk and AI data governed", after: [IP4.2, IP4.4], owner: "ISSO",
+     criteria: "Charter adopted before configuration; Insider Risk Management and Communication Compliance on for their scope after the audit phase, with users excluded only by the privacy official's approval; Copilot DLP enforced and AI-site paste blocked; approved AI apps and label exclusions recorded",
+     source: "../books/b20-information-protection/12-operations-and-evidence.md#implementation-checklist"}
+  # ------------------------------------------------- Phase 5 — operations and evidence
+  - {id: IP5.1, phase: 5, name: "Configuration baseline exported and reviewed; drift run scheduled; first drift run with no unexplained differences", dur: 10, after: [IPG3], owner: "Platform owner",
+     source: "../books/b20-information-protection/12-operations-and-evidence.md"}
+  - {id: IP5.2, phase: 5, name: "Operating cadence written into the day-two runbook; quarterly synthetic tests run once; help desk briefed", dur: 5, after: [IPG3], owner: "Platform owner",
+     source: "../books/b20-information-protection/12-operations-and-evidence.md#operating-cadence"}
+  - {id: IP5.3, phase: 5, name: "Assessor's package assembled from the evidence catalog; Zero Trust Assessment rerun", dur: 10, after: [IP5.1, IP5.2, IPG4], owner: "ISSO",
+     source: "../books/b20-information-protection/12-operations-and-evidence.md#evidence-catalog"}
+  - {id: IPG5, kind: gate, phase: 5, name: "Gate 5 — Operated with evidence", after: [IP5.3], owner: "ISSO",
+     criteria: "Every row of the implementation checklist ticked with the evidence the catalog names; first drift run clean; quarterly synthetic tests passed once; assessor's package assembled (closure is the authorizing official's decision)",
+     source: "../books/b20-information-protection/12-operations-and-evidence.md#evidence-catalog"}
+
+phases:
+  0: "Phase 0 — Classes, decisions and the audit floor"
+  1: "Phase 1 — Labels, defaults and Rights Management"
+  2: "Phase 2 — Containers, SharePoint and OneDrive, and mail"
+  3: "Phase 3 — DLP and auto-labeling"
+  4: "Phase 4 — Insider risk and AI data security"
+  5: "Phase 5 — Operations and evidence"

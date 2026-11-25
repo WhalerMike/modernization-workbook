@@ -110,6 +110,8 @@ Other plans that take a date from this one. *Waits for it*: that plan can't move
 
 | This plan's item | When | Linked plan | Relationship | Float or margin |
 |---|---|---|---|---|
+| N0.1  Naming-plane owner confirmed; pilot population defined; remote-access paths and residual VPN use inventoried | wk 1 | [Global Secure Access](global-secure-access.md) (X-N01) | Waits for it | 25 d |
+| D-N5  Egress pattern for each pilot site | end of wk 8 | [Global Secure Access](global-secure-access.md) (X-ND5) | Must finish D-GA1 by it | 32 d margin |
 | NG3  Gate 3 — Pilot governed and evidenced | end of wk 22 | [Content Delivery Modernization](content-delivery.md) (X-NG3) | Waits for it | 11 d |
 
 : Plans that take a date from this one {.striped .hover}

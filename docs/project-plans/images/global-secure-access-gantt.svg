@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="754" viewBox="0 0 980 754" role="img" aria-labelledby="t d" font-family="Inter, 'DM Sans', Arial, sans-serif">
+<title id="t">Global Secure Access: schedule</title>
+<desc id="d">Gantt chart of 35 tasks over 37 weeks. Critical-path tasks are red; other tasks are blue, with a grey line for their float. Gates are violet diamonds, decisions amber diamonds, and milestones from another plan green diamonds.</desc>
+<rect width="980" height="754" fill="#ffffff"/>
+<line x1="360.0" y1="28" x2="360.0" y2="714" stroke="#e2e8f0" stroke-width="1"/>
+<text x="362.0" y="22" font-size="10" fill="#64748b">wk 1</text>
+<line x1="424.9" y1="28" x2="424.9" y2="714" stroke="#e2e8f0" stroke-width="1"/>
+<text x="426.9" y="22" font-size="10" fill="#64748b">wk 5</text>
+<line x1="489.7" y1="28" x2="489.7" y2="714" stroke="#e2e8f0" stroke-width="1"/>
+<text x="491.7" y="22" font-size="10" fill="#64748b">wk 9</text>
+<line x1="554.6" y1="28" x2="554.6" y2="714" stroke="#e2e8f0" stroke-width="1"/>
+<text x="556.6" y="22" font-size="10" fill="#64748b">wk 13</text>
+<line x1="619.5" y1="28" x2="619.5" y2="714" stroke="#e2e8f0" stroke-width="1"/>
+<text x="621.5" y="22" font-size="10" fill="#64748b">wk 17</text>
+<line x1="684.3" y1="28" x2="684.3" y2="714" stroke="#e2e8f0" stroke-width="1"/>
+<text x="686.3" y="22" font-size="10" fill="#64748b">wk 21</text>
+<line x1="749.2" y1="28" x2="749.2" y2="714" stroke="#e2e8f0" stroke-width="1"/>
+<text x="751.2" y="22" font-size="10" fill="#64748b">wk 25</text>
+<line x1="814.1" y1="28" x2="814.1" y2="714" stroke="#e2e8f0" stroke-width="1"/>
+<text x="816.1" y="22" font-size="10" fill="#64748b">wk 29</text>
+<line x1="878.9" y1="28" x2="878.9" y2="714" stroke="#e2e8f0" stroke-width="1"/>
+<text x="880.9" y="22" font-size="10" fill="#64748b">wk 33</text>
+<line x1="943.8" y1="28" x2="943.8" y2="714" stroke="#e2e8f0" stroke-width="1"/>
+<text x="945.8" y="22" font-size="10" fill="#64748b">wk 37</text>
+<rect x="0" y="34" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="46.5" font-size="11" font-weight="600" fill="#1e293b">Phase 0 — Decision, architecture and logging</text>
+<text x="14" y="63" font-size="10.5" fill="#64748b">X-N01  Remote-access paths and residual VPN use inventor…</text>
+<path d="M376.2 54.0 L381.7 59.5 L376.2 65.0 L370.7 59.5 Z" fill="#059669"/>
+<text x="14" y="80" font-size="10.5" fill="#64748b">GA0.1  Tenant licenses and onboarding state read; curren…</text>
+<line x1="376.2" y1="76.5" x2="457.3" y2="76.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="72" width="16.2" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="97" font-size="10.5" fill="#64748b">D-GA1  Adopt Global Secure Access, per function: Microso…</text>
+<path d="M376.2 88.0 L381.7 93.5 L376.2 99.0 L370.7 93.5 Z" fill="#D97706"/>
+<text x="14" y="114" font-size="10.5" fill="#64748b">X-ND5  Egress pattern decided for each pilot site (Netwo…</text>
+<path d="M480.0 105.0 L485.5 110.5 L480.0 116.0 L474.5 110.5 Z" fill="#059669"/>
+<text x="14" y="131" font-size="10.5" fill="#64748b">GA0.2  Reference architecture recorded: profiles per pop…</text>
+<line x1="392.4" y1="127.5" x2="473.5" y2="127.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="376.2" y="123" width="16.2" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="148" font-size="10.5" fill="#64748b">GA0.3  Network log categories exported by diagnostic set…</text>
+<line x1="385.9" y1="144.5" x2="473.5" y2="144.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="376.2" y="140" width="9.7" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="165" font-size="10.5" fill="#64748b">GAG0  Gate 0 — Decided per function, logging before any…</text>
+<path d="M392.4 156.0 L397.9 161.5 L392.4 167.0 L386.9 161.5 Z" fill="#7C3AED"/>
+<rect x="0" y="170" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="182.5" font-size="11" font-weight="600" fill="#1e293b">Phase 1 — Client, Microsoft traffic and the pilot ring</text>
+<text x="14" y="199" font-size="10.5" fill="#64748b">GA1.1  Client packaged as an Intune Win32 app with Learn…</text>
+<line x1="408.6" y1="195.5" x2="489.7" y2="195.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="392.4" y="191" width="16.2" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="216" font-size="10.5" fill="#64748b">GA1.2  Microsoft traffic profile on for ring 0; source I…</text>
+<line x1="424.9" y1="212.5" x2="505.9" y2="212.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="408.6" y="208" width="16.2" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="233" font-size="10.5" fill="#64748b">GA1.3  Universal tenant restrictions (TRv2) policy appro…</text>
+<line x1="441.1" y1="229.5" x2="538.4" y2="229.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="424.9" y="225" width="16.2" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="250" font-size="10.5" fill="#64748b">X-P16  Conditional Access baseline enforced; emergency a…</text>
+<path d="M467.0 241.0 L472.5 246.5 L467.0 252.0 L461.5 246.5 Z" fill="#059669"/>
+<text x="14" y="267" font-size="10.5" fill="#64748b">GA1.4  Compliant network policy in report-only for 10 bu…</text>
+<line x1="499.5" y1="263.5" x2="538.4" y2="263.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="467.0" y="259" width="32.4" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="284" font-size="10.5" fill="#64748b">D-GA3  Turn the compliant network policy On for ring 1</text>
+<path d="M499.5 275.0 L505.0 280.5 L499.5 286.0 L494.0 280.5 Z" fill="#D97706"/>
+<text x="14" y="301" font-size="10.5" fill="#64748b">X-P22  Pilot Conditional Access and Intune policies assi…</text>
+<path d="M538.4 292.0 L543.9 297.5 L538.4 303.0 L532.9 297.5 Z" fill="#059669"/>
+<text x="14" y="318" font-size="10.5" fill="#1e293b">GA1.5  Ring 1, fewer than 20 users across roles and site…</text>
+<rect x="538.4" y="310" width="32.4" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="335" font-size="10.5" fill="#1e293b">GAG1  Gate 1 — Ring 1 exited on Microsoft traffic</text>
+<path d="M570.8 326.0 L576.3 331.5 L570.8 337.0 L565.3 331.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="0" y="340" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="352.5" font-size="11" font-weight="600" fill="#1e293b">Phase 2 — Private Access and administrative paths</text>
+<text x="14" y="369" font-size="10.5" fill="#64748b">D-GA4  First private applications, and Quick Access as a…</text>
+<path d="M392.4 360.0 L397.9 365.5 L392.4 371.0 L386.9 365.5 Z" fill="#D97706"/>
+<text x="14" y="386" font-size="10.5" fill="#64748b">GA2.1  Connector groups deployed: two outbound-only conn…</text>
+<line x1="424.9" y1="382.5" x2="570.8" y2="382.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="392.4" y="378" width="32.4" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="403" font-size="10.5" fill="#1e293b">GA2.2  First private applications published per app with…</text>
+<rect x="570.8" y="395" width="48.6" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="420" font-size="10.5" fill="#1e293b">GA2.3  Administrative hosts behind phishing-resistant po…</text>
+<rect x="619.5" y="412" width="32.4" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="437" font-size="10.5" fill="#1e293b">GAG2  Gate 2 — Private applications per app for ring 1</text>
+<path d="M651.9 428.0 L657.4 433.5 L651.9 439.0 L646.4 433.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="0" y="442" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="454.5" font-size="11" font-weight="600" fill="#1e293b">Phase 3 — Internet Access and TLS inspection</text>
+<text x="14" y="471" font-size="10.5" fill="#64748b">D-GA5  Web categories the acceptable-use policy blocks</text>
+<path d="M392.4 462.0 L397.9 467.5 L392.4 473.0 L386.9 467.5 Z" fill="#D97706"/>
+<text x="14" y="488" font-size="10.5" fill="#64748b">GA3.1  Security profiles with web content filtering and…</text>
+<line x1="603.2" y1="484.5" x2="619.5" y2="484.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="570.8" y="480" width="32.4" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="505" font-size="10.5" fill="#64748b">D-GA6  TLS inspection scope and its certificate authority</text>
+<path d="M392.4 496.0 L397.9 501.5 L392.4 507.0 L386.9 501.5 Z" fill="#D97706"/>
+<text x="14" y="522" font-size="10.5" fill="#64748b">GA3.2  Inspection intermediate signed; root and intermed…</text>
+<line x1="424.9" y1="518.5" x2="619.5" y2="518.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="408.6" y="514" width="16.2" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="539" font-size="10.5" fill="#64748b">GA3.3  TLS inspection on for the pilot security profile;…</text>
+<line x1="635.7" y1="535.5" x2="651.9" y2="535.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="603.2" y="531" width="32.4" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="556" font-size="10.5" fill="#64748b">GAG3  Gate 3 — Internet traffic filtered and inspected f…</text>
+<path d="M635.7 547.0 L641.2 552.5 L635.7 558.0 L630.2 552.5 Z" fill="#7C3AED"/>
+<rect x="0" y="561" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="573.5" font-size="11" font-weight="600" fill="#1e293b">Phase 4 — Rings 2 and 3, and the VPN&#x27;s retirement</text>
+<text x="14" y="590" font-size="10.5" fill="#64748b">GA4.1  Client hardening from ring 2: Disable hidden, non…</text>
+<line x1="580.5" y1="586.5" x2="651.9" y2="586.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="570.8" y="582" width="9.7" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="607" font-size="10.5" fill="#1e293b">GA4.2  Ring 2, about 10% of users including one branch,…</text>
+<rect x="651.9" y="599" width="64.9" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="624" font-size="10.5" fill="#64748b">D-GA2  CISA telemetry path for the new access layer, agr…</text>
+<path d="M392.4 615.0 L397.9 620.5 L392.4 626.0 L386.9 620.5 Z" fill="#D97706"/>
+<text x="14" y="641" font-size="10.5" fill="#64748b">X-P31S  Program starts rollout wave 1 (start of P3.1)</text>
+<path d="M619.5 632.0 L625.0 637.5 L619.5 643.0 L614.0 637.5 Z" fill="#059669"/>
+<text x="14" y="658" font-size="10.5" fill="#1e293b">GA4.3  Ring 3, everyone in scope in waves with the progr…</text>
+<rect x="716.8" y="650" width="194.6" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="675" font-size="10.5" fill="#1e293b">GA4.4  VPN routes removed per application after 10 busin…</text>
+<rect x="911.4" y="667" width="32.4" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="692" font-size="10.5" fill="#1e293b">GA4.5  Zero Trust Assessment rerun; each network finding…</text>
+<rect x="943.8" y="684" width="16.2" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="709" font-size="10.5" fill="#1e293b">GAG4  Gate 4 — Every ring exited, evidence complete</text>
+<path d="M960.0 700.0 L965.5 705.5 L960.0 711.0 L954.5 705.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="14" y="727" width="18" height="9" rx="2" fill="#DC2626"/>
+<text x="38" y="736" font-size="10.5" fill="#1e293b">Critical path</text>
+<rect x="140.60000000000002" y="727" width="18" height="9" rx="2" fill="#2563EB"/>
+<text x="164.60000000000002" y="736" font-size="10.5" fill="#1e293b">Other task</text>
+<line x1="248.60000000000002" y1="731.5" x2="266.6" y2="731.5" stroke="#cbd5e1" stroke-width="2"/>
+<text x="272.6" y="736" font-size="10.5" fill="#1e293b">Float</text>
+<path d="M334.6 726 L340.1 731.5 L334.6 737 L329.1 731.5 Z" fill="#7C3AED"/>
+<text x="349.6" y="736" font-size="10.5" fill="#1e293b">Gate</text>
+<path d="M405.40000000000003 726 L410.90000000000003 731.5 L405.40000000000003 737 L399.90000000000003 731.5 Z" fill="#D97706"/>
+<text x="420.40000000000003" y="736" font-size="10.5" fill="#1e293b">Decision</text>
+<path d="M501.0 726 L506.5 731.5 L501.0 737 L495.5 731.5 Z" fill="#059669"/>
+<text x="516.0" y="736" font-size="10.5" fill="#1e293b">From another plan</text>
+<text x="966" y="736" font-size="10.5" fill="#64748b" text-anchor="end">A red outline marks a milestone on the critical path</text>
+</svg>

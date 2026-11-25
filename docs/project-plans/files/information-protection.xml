@@ -1,0 +1,1184 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Project xmlns="http://schemas.microsoft.com/project">
+  <Name>information-protection.xml</Name>
+  <Title>Information Protection: Classes, Labels, DLP and Evidence in Microsoft Purview</Title>
+  <ScheduleFromStart>1</ScheduleFromStart>
+  <StartDate>2027-01-04T08:00:00</StartDate>
+  <DefaultStartTime>08:00:00</DefaultStartTime>
+  <DefaultFinishTime>17:00:00</DefaultFinishTime>
+  <MinutesPerDay>480</MinutesPerDay>
+  <MinutesPerWeek>2400</MinutesPerWeek>
+  <DaysPerMonth>20</DaysPerMonth>
+  <DurationFormat>7</DurationFormat>
+  <CalendarUID>1</CalendarUID>
+  <Calendars>
+    <Calendar>
+      <UID>1</UID>
+      <Name>Standard</Name>
+      <IsBaseCalendar>1</IsBaseCalendar>
+      <BaseCalendarUID>-1</BaseCalendarUID>
+      <WeekDays>
+        <WeekDay>
+          <DayType>1</DayType>
+          <DayWorking>0</DayWorking>
+        </WeekDay>
+        <WeekDay>
+          <DayType>2</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>3</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>4</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>5</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>6</DayType>
+          <DayWorking>1</DayWorking>
+          <WorkingTimes>
+            <WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime>
+            <WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime>
+          </WorkingTimes>
+        </WeekDay>
+        <WeekDay>
+          <DayType>7</DayType>
+          <DayWorking>0</DayWorking>
+        </WeekDay>
+      </WeekDays>
+    </Calendar>
+  </Calendars>
+  <Tasks>
+    <Task>
+      <UID>1</UID>
+      <ID>1</ID>
+      <Name>Phase 0 — Classes, decisions and the audit floor</Name>
+      <OutlineNumber>1</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-22T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>2</UID>
+      <ID>2</ID>
+      <Name>IP0.1 Class register: CUI categories held (Basic or Specified), Privacy Act records, retention, impact level and cloud, each with its source</Name>
+      <OutlineNumber>1.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-22T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Policy owner (CUI program manager)</Contact>
+      <Notes>Owner or approver: Policy owner (CUI program manager)
+Source: ../books/b20-information-protection/01-data-inventory-and-classification.md#b20-01-the-federal-overlay-decisions</Notes>
+    </Task>
+    <Task>
+      <UID>3</UID>
+      <ID>3</ID>
+      <Name>IP0.2 Inventory: where each class already sits, from content and activity explorer under narrowly granted role groups</Name>
+      <OutlineNumber>1.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-15T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform owner</Contact>
+      <Notes>Owner or approver: Platform owner
+Source: ../books/b20-information-protection/01-data-inventory-and-classification.md#b20-01-inventory-find-where-the-data-already-is</Notes>
+    </Task>
+    <Task>
+      <UID>4</UID>
+      <ID>4</ID>
+      <Name>IP0.3 Unified audit on and retained, routed to the log platform; a synthetic audit event found by search within the target time</Name>
+      <OutlineNumber>1.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-04T08:00:00</Start>
+      <Finish>2027-01-15T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform owner</Contact>
+      <Notes>Owner or approver: Platform owner
+Source: ../books/b20-information-protection/10-audit-insider-risk-and-communication-compliance.md#audit-is-the-floor</Notes>
+    </Task>
+    <Task>
+      <UID>5</UID>
+      <ID>5</ID>
+      <Name>D-IP1 Tenant root key for Rights Management</Name>
+      <OutlineNumber>1.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-22T17:00:00</Start>
+      <Finish>2027-01-22T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Policy owner, with the CISO</Contact>
+      <Notes>Owner or approver: Policy owner, with the CISO
+Options: Microsoft-managed key; bring your own key (BYOK), per Book 12, Chapter 09. Decided before the first encrypting label is published
+If decided late: Rights Management can't be activated, and no encrypting label can be published
+Source: ../books/b20-information-protection/05-rights-management-and-recovery.md#b20-05-decide-activation-onboarding-and-recovery</Notes>
+      <PredecessorLink>
+        <PredecessorUID>2</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>6</UID>
+      <ID>6</ID>
+      <Name>IPG0 Gate 0 — Classes decided, audit on</Name>
+      <OutlineNumber>1.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-22T17:00:00</Start>
+      <Finish>2027-01-22T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Criteria: Class register with every federal overlay decision and its source; inventory showing where each class sits; unified audit on, retention set and routed to the log platform, with a synthetic event found within the target time; the decision record template in use
+Source: ../books/b20-information-protection/01-data-inventory-and-classification.md#decision-record-template</Notes>
+      <PredecessorLink>
+        <PredecessorUID>2</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>3</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>4</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>7</UID>
+      <ID>7</ID>
+      <Name>Phase 1 — Labels, defaults and Rights Management</Name>
+      <OutlineNumber>2</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-25T08:00:00</Start>
+      <Finish>2027-03-19T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>8</UID>
+      <ID>8</ID>
+      <Name>IP1.1 Label taxonomy built in a test tenant: classes to labels, scopes, priority, encryption settings, markings, publishing policies</Name>
+      <OutlineNumber>2.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-25T08:00:00</Start>
+      <Finish>2027-02-12T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform owner</Contact>
+      <Notes>Owner or approver: Platform owner
+Source: ../books/b20-information-protection/02-sensitivity-label-architecture.md#b20-02-how-build-the-taxonomy-in-a-test-tenant</Notes>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>9</UID>
+      <ID>9</ID>
+      <Name>D-IP2 Default labels and mandatory labeling for files, email, meetings and containers</Name>
+      <OutlineNumber>2.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-12T17:00:00</Start>
+      <Finish>2027-02-12T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Policy owner</Contact>
+      <Notes>Owner or approver: Policy owner
+Options: A non-encrypting default per item type, with mandatory labeling and a justification for every downgrade; mandatory labeling with no default
+If decided late: The pilot policy has no defaults, and ring 1 waits
+Source: ../books/b20-information-protection/03-label-publication-and-defaults.md#b20-03-defaults-the-agency-can-justify</Notes>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>10</UID>
+      <ID>10</ID>
+      <Name>IP1.2 Rights Management activated and staged: onboarding limited to the label pilot; super user feature off; two recovery operators named</Name>
+      <OutlineNumber>2.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-25T08:00:00</Start>
+      <Finish>2027-01-29T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform owner</Contact>
+      <Notes>Owner or approver: Platform owner
+Source: ../books/b20-information-protection/05-rights-management-and-recovery.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>5</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>11</UID>
+      <ID>11</ID>
+      <Name>X-AG1 Privileged Access Gate 1 — Foundation ready (PIM role settings for every tier)</Name>
+      <OutlineNumber>2.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-01T17:00:00</Start>
+      <Finish>2027-03-01T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO (Privileged Access &amp; Administrative Identity plan)</Contact>
+      <Notes>Owner or approver: CISO (Privileged Access &amp; Administrative Identity plan)
+If decided late: Recovery operators can't be made eligible through PIM, so the super user procedure can't be rehearsed
+Source: privileged-access.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-03-01T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>12</UID>
+      <ID>12</ID>
+      <Name>IP1.3 Super user recovery rehearsed in the test tenant with PIM-eligible operators; decryption-continuity test passed</Name>
+      <OutlineNumber>2.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-02T08:00:00</Start>
+      <Finish>2027-03-04T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform owner</Contact>
+      <Notes>Owner or approver: Platform owner
+Source: ../books/b20-information-protection/05-rights-management-and-recovery.md#validate-the-decryption-continuity-test</Notes>
+      <PredecessorLink>
+        <PredecessorUID>10</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>11</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>13</UID>
+      <ID>13</ID>
+      <Name>IP1.4 Ring 1: label policy and pilot defaults for 25 to 50 users, two weeks; label events and downgrade justifications read; labeled sample passes</Name>
+      <OutlineNumber>2.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-15T08:00:00</Start>
+      <Finish>2027-02-26T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Operator</Contact>
+      <Notes>Owner or approver: Operator
+Source: ../books/b20-information-protection/03-label-publication-and-defaults.md#b20-03-validate-a-labeled-sample</Notes>
+      <PredecessorLink>
+        <PredecessorUID>9</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>10</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>14</UID>
+      <ID>14</ID>
+      <Name>IP1.5 Ring 2: one or two offices per CUI program, two weeks; then the production policy for everyone in scope</Name>
+      <OutlineNumber>2.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-04T08:00:00</Start>
+      <Finish>2027-03-19T17:00:00</Finish>
+      <Duration>PT96H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Operator</Contact>
+      <Notes>Owner or approver: Operator
+Source: ../books/b20-information-protection/03-label-publication-and-defaults.md#b20-03-enforcement</Notes>
+      <PredecessorLink>
+        <PredecessorUID>13</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>18</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>15</UID>
+      <ID>15</ID>
+      <Name>IPG1 Gate 1 — Labels in use</Name>
+      <OutlineNumber>2.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-19T17:00:00</Start>
+      <Finish>2027-03-19T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Criteria: Label policy widened past ring 2 on its recorded criteria; labeled sample file and email with the label in the audit log; defaults set; users outside the policy recorded; super user off with no standing members, recovery rehearsed and the decryption-continuity test passed
+Source: ../books/b20-information-protection/12-operations-and-evidence.md#implementation-checklist</Notes>
+      <PredecessorLink>
+        <PredecessorUID>14</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>12</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>16</UID>
+      <ID>16</ID>
+      <Name>Phase 2 — Containers, SharePoint and OneDrive, and mail</Name>
+      <OutlineNumber>3</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-25T08:00:00</Start>
+      <Finish>2027-04-16T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>17</UID>
+      <ID>17</ID>
+      <Name>D-IP4 Label integration for SharePoint and OneDrive, legacy IRM libraries, PDFs and co-authoring</Name>
+      <OutlineNumber>3.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-12T17:00:00</Start>
+      <Finish>2027-02-12T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Policy owner, with the records officer</Contact>
+      <Notes>Owner or approver: Policy owner, with the records officer
+Options: Integration on before the first encrypting label leaves the pilot; PDFs only after Chapter 09's simulations include them; each IRM library migrated, then IRM off (in GCC, kept until its files are labeled); co-authoring only when every tool that reads labels supports it
+If decided late: Encrypted files in SharePoint can't be searched, co-authored or scanned, and ring 2 waits
+Source: ../books/b20-information-protection/07-sharepoint-and-onedrive.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>18</UID>
+      <ID>18</ID>
+      <Name>IP2.2 Label integration on for SharePoint and OneDrive, after labels have replicated to the service</Name>
+      <OutlineNumber>3.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-01T08:00:00</Start>
+      <Finish>2027-03-03T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Operator</Contact>
+      <Notes>Owner or approver: Operator
+Source: ../books/b20-information-protection/07-sharepoint-and-onedrive.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>17</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>13</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>19</UID>
+      <ID>19</ID>
+      <Name>IP2.3 Legacy IRM libraries moved to sensitivity labels one by one, a volunteer library first; IRM turned off on each</Name>
+      <OutlineNumber>3.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-04T08:00:00</Start>
+      <Finish>2027-03-31T17:00:00</Finish>
+      <Duration>PT160H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Operator</Contact>
+      <Notes>Owner or approver: Operator
+Source: ../books/b20-information-protection/07-sharepoint-and-onedrive.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>18</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>20</UID>
+      <ID>20</ID>
+      <Name>D-IP3 Container classes and who may create Teams, groups and sites</Name>
+      <OutlineNumber>3.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-12T17:00:00</Start>
+      <Finish>2027-02-12T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Policy owner</Contact>
+      <Notes>Owner or approver: Policy owner
+Options: A container label per class with its privacy, guest and unmanaged-device settings; creation open to all, or limited to a group, for each class
+If decided late: Container labels can't be piloted, and the oversharing work Copilot waits for can't start
+Source: ../books/b20-information-protection/04-teams-groups-and-sharepoint-containers.md#b20-04-who-may-create-containers</Notes>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>21</UID>
+      <ID>21</ID>
+      <Name>X-P16 Conditional Access baseline enforced; emergency access accounts tested (program P1.6)</Name>
+      <OutlineNumber>3.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-17T17:00:00</Start>
+      <Finish>2027-02-17T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
+If decided late: Container labels' unmanaged-device setting has no Conditional Access baseline to work with
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-02-17T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>22</UID>
+      <ID>22</ID>
+      <Name>IP2.1 Container labels: pilot sites for two weeks with Conditional Access in report-only, then required for new containers and applied to CUI-bearing sites for two</Name>
+      <OutlineNumber>3.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-22T08:00:00</Start>
+      <Finish>2027-04-16T17:00:00</Finish>
+      <Duration>PT160H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Operator</Contact>
+      <Notes>Owner or approver: Operator
+Source: ../books/b20-information-protection/04-teams-groups-and-sharepoint-containers.md#b20-04-enforcement</Notes>
+      <PredecessorLink>
+        <PredecessorUID>20</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>15</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>21</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>23</UID>
+      <ID>23</ID>
+      <Name>D-IP5 Approved message-encryption scenarios, and the recipient experience</Name>
+      <OutlineNumber>3.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-22T17:00:00</Start>
+      <Finish>2027-01-22T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Policy owner</Contact>
+      <Notes>Owner or approver: Policy owner
+Options: Sender opt-in, named offices, Do Not Forward to a partner, expiring mail where Advanced Message Encryption is licensed; one-time passcodes on or off; social IDs on or off; branding
+If decided late: Transport rules can't be written, and message encryption waits
+Source: ../books/b20-information-protection/06-exchange-message-encryption.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>24</UID>
+      <ID>24</ID>
+      <Name>IP2.4 Message encryption verified and branded; each transport rule in Audit for two weeks, enforced for ring 1 for one, then rings 2 and 3</Name>
+      <OutlineNumber>3.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-01T08:00:00</Start>
+      <Finish>2027-03-05T17:00:00</Finish>
+      <Duration>PT200H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Operator</Contact>
+      <Notes>Owner or approver: Operator
+Source: ../books/b20-information-protection/06-exchange-message-encryption.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>23</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>10</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>25</UID>
+      <ID>25</ID>
+      <Name>IPG2 Gate 2 — Containers, libraries and mail protected</Name>
+      <OutlineNumber>3.9</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-16T17:00:00</Start>
+      <Finish>2027-04-16T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Criteria: Container labels required for new sites and applied to CUI sites, with guest add and unmanaged-device access tested; label integration on and IRM libraries migrated or dated; an encrypted test message opened by an external recipient, with the rule hit in the message trace
+Source: ../books/b20-information-protection/12-operations-and-evidence.md#implementation-checklist</Notes>
+      <PredecessorLink>
+        <PredecessorUID>22</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>19</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>24</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>26</UID>
+      <ID>26</ID>
+      <Name>Phase 3 — DLP and auto-labeling</Name>
+      <OutlineNumber>4</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-25T08:00:00</Start>
+      <Finish>2027-05-14T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>27</UID>
+      <ID>27</ID>
+      <Name>D-IP6 DLP outcomes for each class and surface: block, warn, or allow with justification</Name>
+      <OutlineNumber>4.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-22T17:00:00</Start>
+      <Finish>2027-01-22T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Policy owner</Contact>
+      <Notes>Owner or approver: Policy owner
+Options: Outcome statements per class for mail, Teams, SharePoint and OneDrive, and Windows devices, each with its exceptions and their expiry
+If decided late: DLP policies can't be written, and simulation waits
+Source: ../books/b20-information-protection/08-dlp-and-endpoint-controls.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>28</UID>
+      <ID>28</ID>
+      <Name>IP3.4 Custom sensitive information types written as code; exact data match where the class needs it</Name>
+      <OutlineNumber>4.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-25T08:00:00</Start>
+      <Finish>2027-02-12T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform owner</Contact>
+      <Notes>Owner or approver: Platform owner
+Source: ../books/b20-information-protection/09-auto-labeling-and-sensitive-information-types.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>27</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>29</UID>
+      <ID>29</ID>
+      <Name>IP3.1 Workload DLP in simulation for the pilot across a business cycle; matched items exported before the 30 days are up</Name>
+      <OutlineNumber>4.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-22T08:00:00</Start>
+      <Finish>2027-04-09T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Operator</Contact>
+      <Notes>Owner or approver: Operator
+Source: ../books/b20-information-protection/08-dlp-and-endpoint-controls.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>27</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>15</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>28</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>30</UID>
+      <ID>30</ID>
+      <Name>IP3.2 Workload DLP enforced ring by ring: ring 2 with override and justification, ring 3 everyone in scope; false positives tuned</Name>
+      <OutlineNumber>4.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-12T08:00:00</Start>
+      <Finish>2027-05-07T17:00:00</Finish>
+      <Duration>PT160H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Operator</Contact>
+      <Notes>Owner or approver: Operator
+Source: ../books/b20-information-protection/08-dlp-and-endpoint-controls.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>29</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>31</UID>
+      <ID>31</ID>
+      <Name>X-P23 Pilot devices moved by pattern (program P2.3)</Name>
+      <OutlineNumber>4.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-31T17:00:00</Start>
+      <Finish>2027-03-31T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Platform teams (program)</Contact>
+      <Notes>Owner or approver: Platform teams (program)
+If decided late: Endpoint DLP has no managed pilot devices to onboard
+Source: program-master-schedule.md</Notes>
+      <ConstraintType>4</ConstraintType>
+      <ConstraintDate>2027-03-31T17:00:00</ConstraintDate>
+    </Task>
+    <Task>
+      <UID>32</UID>
+      <ID>32</ID>
+      <Name>IP3.3 Endpoint DLP on Windows: pilot devices onboarded, rules in Audit for two weeks, then enforced ring by ring</Name>
+      <OutlineNumber>4.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-12T08:00:00</Start>
+      <Finish>2027-05-14T17:00:00</Finish>
+      <Duration>PT200H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Operator</Contact>
+      <Notes>Owner or approver: Operator
+Source: ../books/b20-information-protection/08-dlp-and-endpoint-controls.md#b20-08-enforcement-endpoint</Notes>
+      <PredecessorLink>
+        <PredecessorUID>31</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>29</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>33</UID>
+      <ID>33</ID>
+      <Name>IP3.5 Service-side auto-labeling in simulation over pilot sites, PDFs in scope; precision recorded; automatic turn-on left off</Name>
+      <OutlineNumber>4.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-22T08:00:00</Start>
+      <Finish>2027-04-09T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Operator</Contact>
+      <Notes>Owner or approver: Operator
+Source: ../books/b20-information-protection/09-auto-labeling-and-sensitive-information-types.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>28</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>15</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>34</UID>
+      <ID>34</ID>
+      <Name>D-IP7 Move each auto-labeling policy from simulation to labeling</Name>
+      <OutlineNumber>4.8</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-09T17:00:00</Start>
+      <Finish>2027-04-09T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Policy owner</Contact>
+      <Notes>Owner or approver: Policy owner
+Options: Turn the policy on once its false positives are resolved; keep it in simulation
+If decided late: Existing content stays unlabeled, and PDF support in SharePoint stays off
+Source: ../books/b20-information-protection/09-auto-labeling-and-sensitive-information-types.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>33</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>35</UID>
+      <ID>35</ID>
+      <Name>IP3.6 Auto-labeling policies on; PDF support turned on in SharePoint and OneDrive</Name>
+      <OutlineNumber>4.9</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-12T08:00:00</Start>
+      <Finish>2027-04-23T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Operator</Contact>
+      <Notes>Owner or approver: Operator
+Source: ../books/b20-information-protection/07-sharepoint-and-onedrive.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>34</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>36</UID>
+      <ID>36</ID>
+      <Name>IPG3 Gate 3 — DLP and auto-labeling enforced</Name>
+      <OutlineNumber>4.10</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-05-14T17:00:00</Start>
+      <Finish>2027-05-14T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Criteria: Synthetic sensitive content blocked on each surface and the alert received by security operations; every rule exception with an expiry; auto-labeling precision recorded and sample files labeled as designed
+Source: ../books/b20-information-protection/12-operations-and-evidence.md#implementation-checklist</Notes>
+      <PredecessorLink>
+        <PredecessorUID>30</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>32</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>35</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>37</UID>
+      <ID>37</ID>
+      <Name>Phase 4 — Insider risk and AI data security</Name>
+      <OutlineNumber>5</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-01-25T08:00:00</Start>
+      <Finish>2027-06-08T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>38</UID>
+      <ID>38</ID>
+      <Name>IP4.1 Insider risk charter drafted: purpose and templates, notice and privacy documentation, bargaining obligations, investigator powers, roles, retention</Name>
+      <OutlineNumber>5.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-01-25T08:00:00</Start>
+      <Finish>2027-03-05T17:00:00</Finish>
+      <Duration>PT240H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Senior agency official for privacy</Contact>
+      <Notes>Owner or approver: Senior agency official for privacy
+Source: ../books/b20-information-protection/10-audit-insider-risk-and-communication-compliance.md#the-charter-comes-first</Notes>
+      <PredecessorLink>
+        <PredecessorUID>6</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>39</UID>
+      <ID>39</ID>
+      <Name>D-IP8 Adopt the insider risk charter</Name>
+      <OutlineNumber>5.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-03-05T17:00:00</Start>
+      <Finish>2027-03-05T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>CISO, with the senior agency official for privacy and general counsel</Contact>
+      <Notes>Owner or approver: CISO, with the senior agency official for privacy and general counsel
+Options: Adopt it, then configure; don't configure Insider Risk Management or Communication Compliance
+If decided late: Neither tool can be configured, and Gate 4 waits
+Source: ../books/b20-information-protection/10-audit-insider-risk-and-communication-compliance.md#the-charter-comes-first</Notes>
+      <PredecessorLink>
+        <PredecessorUID>38</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>40</UID>
+      <ID>40</ID>
+      <Name>IP4.2 Insider Risk Management and Communication Compliance for a pilot scope: a 30-day audit phase, alerts triaged, a tuning record</Name>
+      <OutlineNumber>5.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-05-10T08:00:00</Start>
+      <Finish>2027-06-08T17:00:00</Finish>
+      <Duration>PT176H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Security operations</Contact>
+      <Notes>Owner or approver: Security operations
+Source: ../books/b20-information-protection/10-audit-insider-risk-and-communication-compliance.md#b20-10-enforcement-irm</Notes>
+      <PredecessorLink>
+        <PredecessorUID>39</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>30</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>41</UID>
+      <ID>41</ID>
+      <Name>D-IP9 AI data decisions: approved AI apps and their data, labels Copilot mustn't process, oversharing remediation, who may read prompts</Name>
+      <OutlineNumber>5.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-02-12T17:00:00</Start>
+      <Finish>2027-02-12T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>Policy owner</Contact>
+      <Notes>Owner or approver: Policy owner
+Options: Per app class (Copilot in the tenant, enterprise AI apps, third-party AI sites): approve for named classes, or block. Prompt and response access settled with the privacy official and counsel
+If decided late: AI policies can't leave simulation, and Copilot reaches users before oversharing is fixed
+Source: ../books/b20-information-protection/11-ai-data-security.md#the-ai-data-decisions</Notes>
+      <PredecessorLink>
+        <PredecessorUID>8</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>42</UID>
+      <ID>42</ID>
+      <Name>IP4.3 Data risk assessment for oversharing read; DSPM and Copilot DLP in simulation for at least two weeks across a month-end</Name>
+      <OutlineNumber>5.5</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-04-19T08:00:00</Start>
+      <Finish>2027-05-07T17:00:00</Finish>
+      <Duration>PT120H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform owner</Contact>
+      <Notes>Owner or approver: Platform owner
+Source: ../books/b20-information-protection/11-ai-data-security.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>41</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>25</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>43</UID>
+      <ID>43</ID>
+      <Name>IP4.4 Copilot DLP enforced; paste to unapproved AI sites blocked; a labeled file cited but not summarized</Name>
+      <OutlineNumber>5.6</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-05-17T08:00:00</Start>
+      <Finish>2027-05-28T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Operator</Contact>
+      <Notes>Owner or approver: Operator
+Source: ../books/b20-information-protection/11-ai-data-security.md#b20-11-enforcement-ai</Notes>
+      <PredecessorLink>
+        <PredecessorUID>42</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>32</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>44</UID>
+      <ID>44</ID>
+      <Name>IPG4 Gate 4 — Insider risk and AI data governed</Name>
+      <OutlineNumber>5.7</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-08T17:00:00</Start>
+      <Finish>2027-06-08T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Criteria: Charter adopted before configuration; Insider Risk Management and Communication Compliance on for their scope after the audit phase, with users excluded only by the privacy official's approval; Copilot DLP enforced and AI-site paste blocked; approved AI apps and label exclusions recorded
+Source: ../books/b20-information-protection/12-operations-and-evidence.md#implementation-checklist</Notes>
+      <PredecessorLink>
+        <PredecessorUID>40</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>43</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>45</UID>
+      <ID>45</ID>
+      <Name>Phase 5 — Operations and evidence</Name>
+      <OutlineNumber>6</OutlineNumber>
+      <OutlineLevel>1</OutlineLevel>
+      <Summary>1</Summary>
+      <Start>2027-05-17T08:00:00</Start>
+      <Finish>2027-06-22T17:00:00</Finish>
+    </Task>
+    <Task>
+      <UID>46</UID>
+      <ID>46</ID>
+      <Name>IP5.1 Configuration baseline exported and reviewed; drift run scheduled; first drift run with no unexplained differences</Name>
+      <OutlineNumber>6.1</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-05-17T08:00:00</Start>
+      <Finish>2027-05-28T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform owner</Contact>
+      <Notes>Owner or approver: Platform owner
+Source: ../books/b20-information-protection/12-operations-and-evidence.md</Notes>
+      <PredecessorLink>
+        <PredecessorUID>36</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>47</UID>
+      <ID>47</ID>
+      <Name>IP5.2 Operating cadence written into the day-two runbook; quarterly synthetic tests run once; help desk briefed</Name>
+      <OutlineNumber>6.2</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-05-17T08:00:00</Start>
+      <Finish>2027-05-21T17:00:00</Finish>
+      <Duration>PT40H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>Platform owner</Contact>
+      <Notes>Owner or approver: Platform owner
+Source: ../books/b20-information-protection/12-operations-and-evidence.md#operating-cadence</Notes>
+      <PredecessorLink>
+        <PredecessorUID>36</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>48</UID>
+      <ID>48</ID>
+      <Name>IP5.3 Assessor's package assembled from the evidence catalog; Zero Trust Assessment rerun</Name>
+      <OutlineNumber>6.3</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-09T08:00:00</Start>
+      <Finish>2027-06-22T17:00:00</Finish>
+      <Duration>PT80H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>0</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Source: ../books/b20-information-protection/12-operations-and-evidence.md#evidence-catalog</Notes>
+      <PredecessorLink>
+        <PredecessorUID>46</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>47</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+      <PredecessorLink>
+        <PredecessorUID>44</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+    <Task>
+      <UID>49</UID>
+      <ID>49</ID>
+      <Name>IPG5 Gate 5 — Operated with evidence</Name>
+      <OutlineNumber>6.4</OutlineNumber>
+      <OutlineLevel>2</OutlineLevel>
+      <Start>2027-06-22T17:00:00</Start>
+      <Finish>2027-06-22T17:00:00</Finish>
+      <Duration>PT0H0M0S</Duration>
+      <DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone>
+      <Contact>ISSO</Contact>
+      <Notes>Owner or approver: ISSO
+Criteria: Every row of the implementation checklist ticked with the evidence the catalog names; first drift run clean; quarterly synthetic tests passed once; assessor's package assembled (closure is the authorizing official's decision)
+Source: ../books/b20-information-protection/12-operations-and-evidence.md#evidence-catalog</Notes>
+      <PredecessorLink>
+        <PredecessorUID>48</PredecessorUID>
+        <Type>1</Type>
+        <LinkLag>0</LinkLag>
+        <LagFormat>7</LagFormat>
+      </PredecessorLink>
+    </Task>
+  </Tasks>
+</Project>

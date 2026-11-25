@@ -106,6 +106,7 @@ Other plans that take a date from this one. *Waits for it*: that plan can't move
 | This plan's item | When | Linked plan | Relationship | Float or margin |
 |---|---|---|---|---|
 | A0.3  App registrations, owners, credentials and granted permissions inventoried, read-only; automation on the protected permissions found | wk 1–2 | [Non-Person Identity Modernization](non-person-identity.md) (X-A03) | Waits for it | 0 |
+| AG1  Gate 1 — Foundation ready | end of wk 9 | [Information Protection](information-protection.md) (X-AG1) | Waits for it | 11 d |
 | A3.4  Non-human privileged identities: two named owners each, credentials off secrets, over-consented apps swept | wk 17–24 | [Non-Person Identity Modernization](non-person-identity.md) (X-A34) | Waits for it | 28 d |
 
 : Plans that take a date from this one {.striped .hover}
