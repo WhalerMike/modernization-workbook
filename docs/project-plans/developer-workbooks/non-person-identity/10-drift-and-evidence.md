@@ -11,7 +11,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 93400c4bdb3c366c1ca52feb21d9e0208615c1e6a248fb849c3c8351a648ff8d
+reviewed-sha256: 9d6ef372abb6e8147fffdb1dc3bafa131469a446b21f80f409ea799fad24eb71
 last-reviewed: 2026-11-25
 ---
 # Chapter 10 — Drift and Evidence for the ISSO
@@ -521,7 +521,7 @@ rm -rf out
 
     <!-- capture:end -->
 
-**Expected result:** the Pester run passes 555 tests, and the pytest run passes 139. Delete `out` in both folders when you're done. In `examples/non-person-identity`:
+**Expected result:** the Pester run passes 564 tests, and the pytest run passes 139. Delete `out` in both folders when you're done. In `examples/non-person-identity`:
 
 ```powershell
 Remove-Item -Recurse -Force out

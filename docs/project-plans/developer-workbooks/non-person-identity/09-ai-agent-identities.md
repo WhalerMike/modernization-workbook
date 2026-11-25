@@ -407,7 +407,7 @@ They print the lines of Chapter 01's step 3 and Chapter 02's step 3, ending `Pla
 
    <!-- capture:end -->
 
-**Expected result:** 555 tests passing, and `out/agent-id/manifest.json` listing 45 requests, the D-NP6 mode, the SHA-256 of the register, of Chapter 02's sponsor fields and of each input. Delete `out` when you're done:
+**Expected result:** 564 tests passing, and `out/agent-id/manifest.json` listing 45 requests, the D-NP6 mode, the SHA-256 of the register, of Chapter 02's sponsor fields and of each input. Delete `out` when you're done:
 
 ```powershell
 Remove-Item -Recurse -Force out
@@ -582,7 +582,7 @@ The AI identity checks are the guide's [AI agents](../../../books/guides/non-per
 | The reviewed policy JSON matches what the admin center makes (Lab 2, step 4: the beta read-back compared with the reviewed file) | CM-6 Configuration Settings | KSI-SVC-ACM, KSI-MLA-EVC | Identity engineering |
 | One governed agent exists with a sponsor who isn't its owner and a managed identity as its credential (Lab 2, step 2: the blueprint, its principal and the agent identity, read back by the step 3 run) | AC-2; AC-5; IA-5(2) | KSI-IAM-SNU; KSI-IAM-JIT; KSI-SVC-ASM | The sponsor; identity engineering |
 | Every run records the tenant, the cloud, the D-NP6 mode, every request, and the SHA-256 of the register, of Chapter 02's sponsor fields and of each input (`manifest.json` in each output folder) | AU-9 Protection of Audit Information; SI-7 Software, Firmware, and Information Integrity | KSI-MLA-OSM (AU-9); KSI-SVC-VRI (SI-7) | The ISSO |
-| The code passes its tests (Lab 1, step 9: `Invoke-Pester -Path tests`, 555 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
+| The code passes its tests (Lab 1, step 9: `Invoke-Pester -Path tests`, 564 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
 
 KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column names the indicators whose related controls, as FedRAMP lists them, include the row's control or one of its enhancements; which output supports which indicator is the program's mapping (design guidance), and the SCuBA and M-25-21 rows are mapped through their controls.[^np09-ksi] The agency authorizes its own system and lines this evidence up with what its providers report against KSIs; it doesn't report KSIs itself ([Book 00, Appendix B](../../../books/b00-orientation/appendix-b-engagement-archetype.md)). Lab steps that only run Chapters 01 and 02, back out test objects by hand or delete `out` have no row. The track-wide mapping is the guide's [Evidence](../../../books/guides/non-person-identity-implementation.md#evidence) table.
 

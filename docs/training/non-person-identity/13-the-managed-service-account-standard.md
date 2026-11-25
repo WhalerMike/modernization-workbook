@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Books 02, 13"
 series-order: 13
 review-status: approved
-reviewed-sha256: 3e7d1c4f7d71fbb2b954858ffc1af1dda0b1b5038c954693d97acdb8524dd753
+reviewed-sha256: 27ccb21a5176065be65111b56f6110a76cb6303dd6820e7ad92f48cc3344e355
 last-reviewed: 2026-11-25
 ---
 # Module 13: Run the managed service account standard {.unnumbered}

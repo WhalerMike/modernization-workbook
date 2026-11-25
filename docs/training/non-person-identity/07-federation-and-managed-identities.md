@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Books 02, 04"
 series-order: 7
 review-status: approved
-reviewed-sha256: e11f465ecb0936473d579be8f626f14490d6d98400f49236bac519f003add98f
+reviewed-sha256: 71eb6aecc314ac6741a01a550ae77bcd954633e5f5f23496d6214381c257b194
 last-reviewed: 2026-11-25
 ---
 # Module 7: Convert to managed identities and federation {.unnumbered}
@@ -311,7 +311,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
     It prints a line for each test file, with the time it took, then this last line:
 
     ```text
-    Tests Passed: 555, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
+    Tests Passed: 564, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
     ```
 
 Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
