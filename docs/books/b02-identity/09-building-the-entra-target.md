@@ -129,7 +129,7 @@ OUs serve three governance functions in Active Directory: Group Policy scoping, 
 |---|---|---|
 | Group Policy scoping | Conditional Access policies and Intune configuration profiles | Target by group membership, not container |
 | Administrative delegation | Administrative units (AUs) | Creating AUs is free; each AU-scoped administrator needs Entra ID P1. Dynamic AU membership needs P1 for each member.[^c09-au-licensing] |
-| Logical organization | Dynamic groups and attributes | Attribute-driven grouping replaces the container hierarchy |
+| Logical organization | Dynamic groups and attributes | Attribute-driven grouping does the organizing the container hierarchy did; there's no container to place an object in *(design guidance)* |
 
 [Chapter 05](05-delegation-without-ous.md) works through the delegation design in detail.
 

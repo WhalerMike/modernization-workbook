@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this appendix
-CISA's Zero Trust Maturity Model pillars and cross-cutting capabilities, OMB M-22-09's objectives and actions, the adjacent binding instruments, and the NIST SP 800-53 controls a Zero Trust program asserts. For each: what the source asks, where this book addresses it, the workbook book that closes it, and the evidence an assessor can expect. Then the requirements that are cited but don't exist, notes on reading the controls, and the source list.
+CISA's Zero Trust Maturity Model pillars and cross-cutting capabilities, OMB M-22-09's objectives and actions, the adjacent binding instruments, the NIST SP 800-207 tenets, and the NIST SP 800-53 controls a Zero Trust program asserts. For each: what the source asks, where this book addresses it, the workbook book that closes it, and the evidence an assessor can expect. Then the requirements that are cited but don't exist, notes on reading the controls, and the source list.
 :::
 
 ::: {.callout-important}
@@ -72,6 +72,22 @@ These bind particular surfaces of a Zero Trust program rather than the program a
 | Asset visibility (CISA BOD 23-01) | Automated asset discovery every 7 days; vulnerability enumeration every 14 days across discovered assets, including cloud-operated virtual machines; results to the CDM Agency Dashboard within 72 hours[^aA-bod2301] | Ch 06, Ch 09 | [Book 05](../b05-devices/index.md); [Book 08, Chapter 07](../b08-ddi/07-cloud-private-endpoints-and-ipam.md) | Discovery and enumeration schedules; CDM dashboard coverage by estate |
 | Logging (OMB M-26-14, which rescinds M-21-31) | Prioritize continuous event monitoring and threat hunting, investigation, response and forensics; the Logging Reference Architecture "will align with the Zero Trust Maturity Model"[^aA-m2614] | Ch 03, Ch 09 | [Book 12](../b12-security-operations/index.md) for telemetry and security operations; [Book 09](../b09-network/index.md) for network telemetry; Book 11 for assessment evidence | The agency logging plan; maturity self-assessment per system |
 | Cloud service certification (FedRAMP Consolidated Rules for 2026) | FedRAMP certifies the cloud service offering; "each agency still authorizes its own federal information systems" and accepts risk for its use of the service, including the configuration selected and the integrations enabled[^aA-fedramp] | Ch 06 | [Book 10](../b10-cloud-boundary/index.md) | FedRAMP Marketplace listing for each service; the agency's own system authorization and configuration evidence |
+
+## NIST SP 800-207 tenets
+
+SP 800-207 sets out seven tenets of Zero Trust in its Section 2.1, and calls them the ideal goal: not every tenet may be met in its purest form in a given strategy.[^aA-sp800207] They describe an architecture rather than requirements, so the table names where the workbook designs each one, not evidence. The ZTMM rows above carry the evidence. *(design guidance)*
+
+| Tenet (SP 800-207, Section 2.1, paraphrased) | Addressed in | Closed by |
+|---|---|---|
+| 1. All data sources and computing services are resources | Ch 01, Ch 06 | [Book 13, Chapter 03](../b13-governance/03-one-authoritative-record.md) for the authoritative record; [Book 05](../b05-devices/index.md) for devices and servers |
+| 2. All communication is secured regardless of network location | Ch 01, Ch 06 | [Book 09](../b09-network/index.md) for governed transport; [Book 07](../b07-pki/index.md) for the certificates that secure it |
+| 3. Access to each resource is granted per session | Ch 03 | [Book 04](../b04-access/index.md): Conditional Access and just-in-time activation through PIM |
+| 4. Access is decided by dynamic policy: the observable state of the client's identity, the application or service and the requesting asset, and possibly behavioral and environmental attributes | Ch 03 | [Book 04, Chapter 03](../b04-access/03-the-conditional-access-model.md); [Book 03](../b03-hr-identity/index.md) for the attributes the policy reads |
+| 5. The enterprise monitors and measures the integrity and security posture of every owned and associated asset | Ch 06, Ch 09 | [Book 05](../b05-devices/index.md) for device compliance; [Book 12, Chapters 06 to 08](../b12-security-operations/06-vulnerability-management.md) |
+| 6. Authentication and authorization are dynamic and strictly enforced before access is allowed | Ch 03 | [Book 02](../b02-identity/index.md), [Book 04](../b04-access/index.md) |
+| 7. The enterprise collects as much information as it can about its assets, network and communications, and uses it to improve its security posture | Ch 06, Ch 09, Ch 10 | [Book 12](../b12-security-operations/index.md); [Book 13](../b13-governance/index.md) for drift |
+
+: NIST SP 800-207 tenets and where the workbook designs each {.striped .hover}
 
 ## NIST SP 800-53 controls a Zero Trust program asserts
 
@@ -161,6 +177,7 @@ Every URL below was opened on October 21, 2026. Chapters cite product and incide
 [^aA-bod2301]: Cybersecurity and Infrastructure Security Agency, Binding Operational Directive 23-01, *Improving Asset Visibility and Vulnerability Detection on Federal Networks*, October 3, 2022, <https://www.cisa.gov/news-events/directives/bod-23-01-improving-asset-visibility-and-vulnerability-detection-federal-networks> (accessed Oct 21, 2026).
 [^aA-m2614]: Office of Management and Budget, M-26-14, *Ensuring Effective and Efficient Agency Logging and Network Visibility to Defend Against Evolving Cyber Threats*, May 22, 2026, Appendix A, <https://www.whitehouse.gov/wp-content/uploads/2026/05/M-26-14-Ensuring-Effective-and-Efficient-Agency-Logging-and-Network-Visibility-to-Defend-Against-Evolving-Cyber-Threats.pdf> (accessed Oct 21, 2026).
 [^aA-fedramp]: FedRAMP, "Using a FedRAMP Certified Cloud Service," *FedRAMP Consolidated Rules for 2026*, <https://www.fedramp.gov/2026/agencies/use/> (accessed Oct 21, 2026).
+[^aA-sp800207]: Scott Rose, Oliver Borchert, Stu Mitchell and Sean Connelly, NIST Special Publication 800-207, *Zero Trust Architecture*, August 2020, Section 2.1, "Tenets of Zero Trust" (seven tenets; "These tenets are the ideal goal, though it must be acknowledged that not all tenets may be fully implemented in their purest form for a given strategy"), <https://doi.org/10.6028/NIST.SP.800-207> (accessed Nov 25, 2026).
 [^aA-53]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, release 5.2.0, OSCAL catalog, <https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5> (accessed Oct 21, 2026).
 [^aA-53b]: National Institute of Standards and Technology, SP 800-53B, Moderate baseline, OSCAL profile `NIST_SP-800-53_rev5_MODERATE-baseline_profile.json`, <https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5> (accessed Oct 21, 2026).
 [^aA-aws]: Amazon Web Services, "NIST SP 800-53 Revision 5 in Security Hub CSPM," *AWS Security Hub User Guide*, <https://docs.aws.amazon.com/securityhub/latest/userguide/standards-reference-nist-800-53.html> (accessed Oct 21, 2026).
