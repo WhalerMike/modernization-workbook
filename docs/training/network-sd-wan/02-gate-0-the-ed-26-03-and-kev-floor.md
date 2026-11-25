@@ -345,5 +345,5 @@ You read the directive's order of actions, turned the advisories' tables into a 
 
 ::: {.callout-tip}
 ## Continue the path
-[Learning path](index.md) · [Module 1](01-the-governor-before-the-traffic.md)
+[Learning path](index.md) · [Previous: Module 1](01-the-governor-before-the-traffic.md) · [Next: Module 3, The hunt, hardening and logs off the box →](03-the-hunt-hardening-and-logs-off-the-box.md)
 :::

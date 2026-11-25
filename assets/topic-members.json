@@ -3217,6 +3217,18 @@
    "title": "Network and SD-WAN"
   }
  ],
+ "docs/training/network-sd-wan/03-the-hunt-hardening-and-logs-off-the-box.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
+ "docs/training/network-sd-wan/04-path-classes-change-rings-and-the-evidence.md": [
+  {
+   "id": "network-sd-wan",
+   "title": "Network and SD-WAN"
+  }
+ ],
  "docs/training/network-sd-wan/index.md": [
   {
    "id": "network-sd-wan",
