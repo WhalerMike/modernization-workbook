@@ -841,6 +841,31 @@
    "featured": false
   },
   {
+   "id": "docs/books/guides/information-protection-implementation.md",
+   "type": "Implementation guide",
+   "title": "Information Protection with Microsoft Purview: An Implementation Guide",
+   "description": "A gated guide for building Book 20's information protection in a Microsoft 365 GCC tenant: twelve gates, one for each chapter of the book, from the data classes and the inventory through the label taxonomy, publication and defaults…",
+   "url": "docs/books/guides/information-protection-implementation.html",
+   "count": 12,
+   "unit": "steps",
+   "reading_minutes": 36,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "audience",
+   "roles": [
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Information protection"
+   ],
+   "status": "Draft",
+   "family": "information-protection",
+   "featured": false
+  },
+  {
    "id": "docs/books/guides/snow-sailpoint-integration-kit.md",
    "type": "Implementation guide",
    "title": "Integrating ServiceNow and SailPoint: An Implementation Example (Pass 1)",

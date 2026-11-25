@@ -774,16 +774,18 @@ topics:
         - page: docs/books/b12-security-operations/09-data-protection-and-classification.md
       plan:
         - page: docs/project-plans/information-protection.md
+      build:
+        - page: docs/books/guides/information-protection-implementation.md
       evidence:
         - page: docs/books/b20-information-protection/12-operations-and-evidence.md
         - page: docs/books/b20-information-protection/appendix-a-requirements-mapping.md
     downloads:
       - b20-information-protection-bundle.docx
+      - information-protection-implementation-guide.docx
     members:
       - docs/books/b20-information-protection/*.md
     gaps:
-      guide: "Needed: Book 20 has no step-by-step guide with Validate commands."
-      workbook: "Needed: decide with the learning path plan; there is no code to build on."
+      workbook: "Needed: the implementation guide's twelve gates have no kit or developer workbook yet."
       path: "Needed: ranked in the learning path plan."
       labs: "Needed: they come with the learning path."
       code: "Needed: no kit collects Book 20's label, DLP or audit evidence yet."
