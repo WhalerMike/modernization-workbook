@@ -1,0 +1,2 @@
+PS> Get-ChildItem C:\FMWLabs\results\daily-checks-02\lab1 -Name
+<run>
