@@ -105,3 +105,9 @@ Zero Trust closure update, November 11, 2026, Phase 4: the conventions in Book 0
 ## AWS GovCloud restored (November 16, 2026)
 
 Under WD-157 the program's AWS workloads run in AWS GovCloud (US). The AWS GovCloud changes made on November 15, 2026 under WD-156 (PR #627) were reversed on this page: its GovCloud claims, footnotes and wording are back as verified before that date, and the rest of this record stands. Google Assured Workloads still appears only in the cross-provider comparison table (IN-12).
+
+## Revision 2026-11-25 — outside review: wording and crosswalks
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Eight design areas, each mapped to where the workbook covers it | New table after the design-areas paragraph | verified (design areas, against the existing c05-design-areas source); mapping is design guidance | Learn, Azure landing zone design areas |

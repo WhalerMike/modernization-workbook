@@ -1,23 +1,4 @@
-PS> Get-Content out/estate/manifest.json
-{
-  "step": "ESTATE",
-  "title": "Classify every instance retain, consolidate, retire or review",
-  "mode": "read-only",
-  "asOf": "2026-11-20",
-  "controls": [
-    "CM-8"
-  ],
-  "ksis": [
-    "KSI-PIY-GIV"
-  ],
-  "files": [
-    {
-      "file": "estate.csv",
-      "sha256": "b5f09922d75718dce89151ce72bc8376df2e6db029d072c4ce4370243c4b38ad"
-    },
-    {
-      "file": "estate.json",
-      "sha256": "b9e75284a7ed6c29b9f10fe128aa1cd249753cf2b9b7920d27b671d38b3fe940"
-    }
-  ]
-}
+PS> $Run = "C:\FMWLabs\results\sql-server-identity-01\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+PS> New-Item -ItemType Directory -Path $Run -Force | Out-Null
+PS> $Run
+C:/FMWLabs/results/sql-server-identity-01/lab1/<run>

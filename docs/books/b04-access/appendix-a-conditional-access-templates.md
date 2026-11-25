@@ -696,7 +696,7 @@ CA024, browser-only limited session for web-only users:[^aA-tpl-app-enforced][^a
 }
 ```
 
-CA030, block production applications for everyone but production operators. The application filter's rule is built in the admin center filter editor against the `FMPAccess` attribute set and copied from an export, because the attribute set and values are tenant-specific; filters for applications accept string custom security attributes only.[^aA-app-filter]
+CA030, block production applications for everyone but production operators. The application filter's rule is built in the admin center filter editor against the `FMPAccess` attribute set and copied from an export, because the attribute set and values are tenant-specific; filters for applications accept string custom security attributes only.[^aA-app-filter] Until a tenant check confirms custom security attributes in the program's GCC tenant ([WD-176](../../about/decision-register.md#wd-176)), replace the filter with the production applications listed by name.
 
 ```json
 {

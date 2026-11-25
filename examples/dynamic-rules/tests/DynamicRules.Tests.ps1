@@ -154,7 +154,9 @@ Describe "Book 03, Chapter 10's rule pattern table" {
     }
     It 'matches the table in Book 03, Chapter 10, row for row' {
         # The book writes the direct reports rule with a placeholder; the fixture uses a fictional manager ID.
-        $md = (Get-Content (Join-Path $script:Kit '../../docs/books/b03-hr-identity/10-from-attributes-to-access.md') -Raw).Replace('<manager object ID>', '00000000-0000-0000-0001-000000000009')
+        $page = Join-Path $script:Kit '../../docs/books/b03-hr-identity/10-from-attributes-to-access.md'
+        if (-not (Test-Path $page)) { Set-ItResult -Skipped -Because 'the kit runs outside the workbook repository'; return }
+        $md = (Get-Content $page -Raw).Replace('<manager object ID>', '00000000-0000-0000-0001-000000000009')
         $published = @([regex]::Matches($md, '(?m)^\| ([^|]+?) \| `([^`]+)` \|') | ForEach-Object { "$($_.Groups[1].Value)=$($_.Groups[2].Value)" })
         @($script:Book | ForEach-Object { "$($_.pattern)=$($_.membershipRule)" }) | Should -Be $published
     }

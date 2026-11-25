@@ -199,7 +199,7 @@ The program's identity modernization specification is the cross-adapter contract
 ### Contract requirements
 
 1. Dynamic groups are defined by rules over directory attributes.
-2. Administrative units and scoped roles replace delegation through organizational units.
+2. Administrative units and scoped roles carry the delegation that organizational units carried; policy targeting moves to groups.
 3. Access is computed from attributes, not assigned by hand.
 4. The rule set that turns attributes into access is itself the audit evidence.
 

@@ -11,10 +11,10 @@ review-status: pending
 
 ## Week 1: boundary and landing zone
 
-- [Book 10 — Cloud Boundary & Landing Zone](../../books/b10-cloud-boundary/index.md) (Book, 13 chapters, about 4 hr 58 min). Why the authorization boundary, not the product catalog, decides what an agency can use: what changed at FedRAMP, what GCC leaves out, how the landing zone makes the boundary concrete, who owns it, and how to compensate and evidence it.
+- [Book 10 — Cloud Boundary & Landing Zone](../../books/b10-cloud-boundary/index.md) (Book, 13 chapters, about 4 hr 59 min). Why the authorization boundary, not the product catalog, decides what an agency can use: what changed at FedRAMP, what GCC leaves out, how the landing zone makes the boundary concrete, who owns it, and how to compensate and evidence it.
 - [Azure Security Engineering](../../training/azure-security/index.md) (Learning path, 5 modules, 5 hr 16 min). Five modules: the baseline and the exposure register, DDoS protection and the WAF, the edge and the egress, Private Link, DNS and Key Vault, and policy, drift and evidence, each with a lab of the guide's checks in your own test subscription.
 
-*Milestone 1: about 10 hr 14 min.*
+*Milestone 1: about 10 hr 15 min.*
 
 ## Week 2: network and DNS
 
@@ -32,10 +32,10 @@ review-status: pending
 
 ## Week 4: Global Secure Access
 
-- [Global Secure Access & Zero Trust Network Engineering: An Implementation Guide](../../books/guides/global-secure-access-implementation.md) (Implementation guide, 12 steps, about 1 hr 29 min). A gated guide for deploying Microsoft Entra Internet Access and Private Access as the agency's identity-aware network layer, in twelve steps that match the twelve network topics of the Zero Trust closure update: the decision and….
+- [Global Secure Access & Zero Trust Network Engineering: An Implementation Guide](../../books/guides/global-secure-access-implementation.md) (Implementation guide, 12 steps, about 1 hr 31 min). A gated guide for deploying Microsoft Entra Internet Access and Private Access as the agency's identity-aware network layer, in twelve steps that match the twelve network topics of the Zero Trust closure update: the decision and….
 - [Labs: Building Azure Security](../../training/labs.md#azs) (Lab, 16 labs). 16 hands-on labs across 8 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building Azure Security.
 
-*Milestone 4: about 1 hr 29 min.*
+*Milestone 4: about 1 hr 31 min.*
 
-**Whole plan:** about 35 hr 2 min of reading and video, plus the labs.
+**Whole plan:** about 35 hr 5 min of reading and video, plus the labs.
 

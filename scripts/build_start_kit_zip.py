@@ -98,6 +98,8 @@ BUNDLES = {
         "third_party/msi-fic-rest-examples", "third_party/sentinel-app-credential-rule",
         "third_party/windows-server-msa-pages", "third_party/azure-login-action",
         "third_party/azure-login-oidc-sample",
+        # The finding contract the managed service account standard's payloads follow (a test reads it).
+        "servicenow-sailpoint/clients/python",
     ),
     "microsoft-automation-code": ("ms-automation", "third_party/msgraph-snippets-python"),
     # The task catalog pack: the workbook and its checker, with the integration kit's clients

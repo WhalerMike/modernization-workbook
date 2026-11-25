@@ -195,3 +195,9 @@ Note for the reviewer: the All resources bullet says the baseline-scope change i
 | G5 | A third-party PIV or MFA route can't reach the Phishing-resistant MFA strength, so it's transitional; PIV reaches it through Entra CBA | Same, second paragraph | restated-as-design (from G4 and the strengths table) | c03-external-mfa-provider; c03-auth-strengths |
 | G6 | Migration steps: register provider for a test group, report-only require-MFA policy, exclude test group from the custom-control policy, check logs, phase out, keep old policy Off at least two weeks | Same | verified (new) | c03-custom-migrate |
 | G7 | Read-only Graph PowerShell to list policies that use custom controls (`grantControls.customAuthenticationFactors`) | Same, code block | command (read-only) | conditionalAccessGrantControls resource type, c03-graph-grant |
+
+## Revision 2026-11-25 — custom security attributes in GCC (WD-176)
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| CSA-1 | Filter for applications: used once a tenant check confirms custom security attributes in GCC; until then policies list their applications | see the change | changed *(design guidance)* | WD-176; Mike, November 25, 2026 |

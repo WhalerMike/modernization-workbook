@@ -23,7 +23,8 @@ ROLES = {
 }
 
 # WD-175: the tag keys and the closed values. The same keys go on the AD account (its description),
-# on the Entra identity (custom security attributes in the NonPersonIdentity set) and on Azure,
+# on the Entra identity (its service principal's tags and notes until a tenant check confirms custom
+# security attributes in GCC, WD-176; then the NonPersonIdentity set) and on Azure,
 # AWS and OCI resources.
 TAG_KEYS = ["SystemId", "Owner1", "Owner2", "Sponsor", "Environment", "Tier", "EntraTarget"]
 ENVIRONMENTS = ["prod", "test", "dev"]
@@ -156,7 +157,7 @@ FORMS = [
      [("Account", "The managed service account's name"),
       ("Why", "Workload retired, or moved to Entra (name the new identity)"),
       ("Hosts to uninstall from", "Every host where the account is installed"),
-      ("Replaced by", "The new Entra identity, if any; its custom security attributes carry the same tags")],
+      ("Replaced by", "The new Entra identity, if any; it carries the same tags")],
      ["The pipeline disables the account and moves it to the holding OU. After 90 days with no sign-in, "
       "a person uninstalls and deletes it, and SailPoint's next aggregation confirms it's gone."]),
     ("05-approver-checklist.docx", "SailPoint approver checklist",

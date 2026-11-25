@@ -37,3 +37,9 @@ New appendix, written November 11, 2026, from the workbook owner's anonymized "Z
 | Instructions, G-07 Change safety | Change safety; block `#block-change-safety` |
 | Instructions, G-08 Assessment mapping | Assessment mapping; block `#block-assessment-mapping` |
 | Instructions, editorial principle (design, implementation, validation, operational evidence, residual-risk acceptance) | Control states, and Book 11 Chapter 10's closure chain |
+
+## Revision 2026-11-25 — outside review: wording and crosswalks
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | The four kinds of statement map to the authority labels, the inline labels, decision records and the Decision Register | Authority labels, new paragraph | verified (by link): restates this appendix, Sources and verification (Labels in the text) and the Decision Register's Basis column | Internal |

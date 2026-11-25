@@ -127,3 +127,18 @@ Every Microsoft fact and command was read on Microsoft Learn on November 11, 202
 ## Revision 2026-11-24 — service accounts behind SPNs
 
 A paragraph in Step 10 says that service accounts sit behind the protected SPNs, that service-to-service Kerberos needs SPN exclusions, and that an application published with Kerberos SSO keeps its own service account; it links *Non-Person Identity: Zero Trust, SASE and Other Clouds* and the service accounts guide's SPN section. Learn's domain controller page names synchronized users and doesn't say whether service accounts are covered (see that page's log, ZS-04).
+
+## Revision 2026-11-25 — SQL Server behind Private Access
+
+Approved by Mike on Nov 25, 2026 ("Go with all five recommendations"), after a claim check of an outside Arc SQL Zero Trust analysis. Learn pages read Nov 25, 2026.
+
+| # | Claim (short) | Where | Verdict | Source | Read |
+|---|---|---|---|---|---|
+| R1 | Default instance listens on TCP 1433; named instances use dynamic ports by default; set a fixed port to pass a firewall | Step 6, SQL Server behind Private Access | verified | Configure SQL Server to listen on a specific TCP port | Nov 25, 2026 |
+| R2 | SQL Server Browser claims UDP 1434 and returns a named instance's port | Same | verified | SQL Server Browser service | Nov 25, 2026 |
+| R3 | Per-app access carries TCP and UDP; segment = destination (IPv4, FQDN with wildcards, CIDR, IP range), ports, protocol; up to 500 segments | Same | verified | What is Global Secure Access?; How to configure per-app access | Nov 25, 2026 |
+| R4 | Conditional Access isn't supported on Private Access traffic as a whole; apply it to Quick Access and Global Secure Access applications; no compliant network check for Private Access applications | Same | verified | Known limitations, Access controls limitations | Nov 25, 2026 |
+| R5 | The engine decides database access with the Entra token and its roles | Same | verified (by link) | Book 06 Chapters 11–12, Runbook R07 | — |
+| R6 | Windows-authenticated SQL clients need Kerberos to the DCs over the same client | Same | verified (by link) | Book 09 Chapter 06, Ways to provide the path | — |
+| R7 | Application servers don't run the client and connect as workloads | Same | restated-as-design | Book 06 Chapter 18 | — |
+| R8 | Assessment mapping: CISA ZTMM pillar changed from Applications and Workloads to Networks | Step 6 assessment mapping | corrected | Learn, CISA ZTMM networks pillar: Entra Private Access under 3.2 Network traffic management, Optimal (updated Nov 4, 2026) | Nov 25, 2026 |

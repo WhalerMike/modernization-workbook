@@ -1,12 +1,1 @@
-PS> ./Invoke-SqlCertDependency.ps1 -CertsPath tests/fixtures/certs/certs.json -OutputPath out/certs
-Instance Class                                    ADCS ExpiresInDays Warning
--------- -----                                    ---- ------------- -------
-SQLPRD01 TLS for client connections               yes             72 expires within 90 days
-SQLPRD06 TLS for client connections               no             481
-SQLPRD02 Certificate-mapped login                 yes             41 expires within 90 days
-SQLPRD02 Certificate-mapped endpoint              yes            254
-SQLFCI04 Certificate-based sign-in (NTLM interim) yes            100
-
-Wrote 2 files and manifest.json to out/certs
-Evidence for CERTS (Find the AD CS certificates SQL Server depends on): SC-8, SC-12, SC-17; KSI-SVC-SIN, KSI-SVC-ASM
-Blocking an AD CS decommission: 4 of 5
+PS> Set-Location C:\FMWLabs\sql-server-identity-code\sql-server-identity

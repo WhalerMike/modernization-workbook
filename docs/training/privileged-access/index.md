@@ -17,7 +17,7 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: 48f4da121ca678e559073e01cd79147f5b9f1c467676eaa52c136b06c61ff8bd
+reviewed-sha256: 84b2a741582f80f1dd8e2850176870e5811b22a154f5b5aa7a62c6228e660396
 last-reviewed: 2026-11-25
 ---
 # Learning path: Privileged Access in Microsoft Entra ID and Azure {.unnumbered}
@@ -72,11 +72,11 @@ So Module 2 checks the emergency access accounts before any module changes a set
 - The project plan's [gates](../../project-plans/privileged-access.md#gates) and [decision points](../../project-plans/privileged-access.md#decision-points): five minutes, and the modules refer back to them.
 - [Microsoft Automation, Module 1: Graph and Azure Foundations](../ms-automation-foundations.md): the clouds and endpoints, signing in from a script, permissions and paging.
 - [Microsoft Automation, Module 2: Microsoft Entra ID through Microsoft Graph](../ms-automation-entra.md): reading Conditional Access, PIM and logs through Graph.
-- PowerShell 7: you can run a script and read its output. Module 8 also uses Python and a POSIX shell.
+- PowerShell 7: you can run a script and read its output. Module 8 also uses Python.
 
 ## Get the code {#get-the-code}
 
-Download [privileged-access-code.zip](../../../downloads/privileged-access-code.zip) to your Downloads folder. It holds `privileged-access`, the kit the labs use, with `drift-pipeline` and `validation-kit` beside it, and in `third_party` the Learn pages and samples the chapters start from, pinned unmodified. Unzip it into `C:\FMWLabs\privileged-access-code` (in Windows' **Extract All**, type that folder in place of the one it suggests), so you work in `C:\FMWLabs\privileged-access-code\privileged-access`. Every lab command runs from there, as it does from `examples/privileged-access` in a clone of the repository. Module 8's POSIX steps run in the `drift-pipeline` folder beside `privileged-access`. The kit is PowerShell 7.1 or later, with Pester 5; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
+Download [privileged-access-code.zip](../../../downloads/privileged-access-code.zip) to your Downloads folder. It holds `privileged-access`, the kit the labs use, with `drift-pipeline` and `validation-kit` beside it, and in `third_party` the Learn pages and samples the chapters start from, pinned unmodified. Unzip it into `C:\FMWLabs\privileged-access-code` (in Windows' **Extract All**, type that folder in place of the one it suggests), so you work in `C:\FMWLabs\privileged-access-code\privileged-access`. Every lab command runs from there, as it does from `examples/privileged-access` in a clone of the repository. Module 8's Python steps run in the `drift-pipeline` folder beside `privileged-access`, in the same PowerShell window. The kit is PowerShell 7.1 or later, with Pester 5; it has no Python steps. [Get a path's code](../index.md#get-the-code) says why each step is there.
 
 In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
 
@@ -153,9 +153,9 @@ Each module follows the same units: an introduction with the federal requirement
 
 - a copy of the repository, or the code as one zip from the [Labs page](../labs.md#pa);
 - PowerShell 7.1 or later with Pester 5;
-- for Module 8 only: Python 3.10 or later with pytest and PyYAML, and a shell with `sha256sum` (Linux, macOS or Git Bash).
+- for Module 8 only: Python 3.10 or later with pytest and PyYAML.
 
-Run every PowerShell command from `examples/privileged-access`, in one PowerShell 7 session per module: later steps use the module and variables an earlier step loaded. Module 8's POSIX steps run in `examples/drift-pipeline`. Each lab writes to an `out` folder; delete it when you're done, because it names the fixture's privileged holders.
+Run every PowerShell command from `examples/privileged-access`, in one PowerShell 7 session per module: later steps use the module and variables an earlier step loaded. Module 8's Python steps run in `examples/drift-pipeline`, in the same session. Each lab writes to an `out` folder; delete it when you're done, because it names the fixture's privileged holders.
 
 **Lab 2: your own test tenant.** Lab 2 needs a test tenant in the worldwide or GCC cloud for learning, never production, with fictional people (before a gate passes, rehearse once in your agency's own cloud, as [Book 16](../../books/b16-people/06-vendor-training-and-labs.md#what-changes-in-the-government-clouds) describes). Depending on the module you also need a test Azure subscription, Microsoft Entra ID P1, P2 or Microsoft Entra ID Governance licenses, and a Log Analytics workspace; each module says which. Lab 2 is a pointer to the workbook chapter's Lab 2, which gives every step as a command or a portal path and ends with a back-out. The workbook has no hosted sandbox: you bring the tenant. **This path's authors didn't run the Lab 2 steps,** and the workbook says its code hasn't been run against a production tenant.
 

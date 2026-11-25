@@ -846,15 +846,52 @@ function Read-FMPPkiSnapshot {
 
 function Get-FMPCARegistryText {
     # From a snapshot, the recorded certutil -getreg output; live, certutil itself.
-    param([Parameter(Mandatory)]$CA, [Parameter(Mandatory)][ValidateSet('EditFlags', 'AuditFilter')][string]$Value, [switch]$Snapshot)
+    param([Parameter(Mandatory)]$CA, [Parameter(Mandatory)][ValidateSet('EditFlags', 'AuditFilter', 'CRLPublicationURLs', 'CACertPublicationURLs')][string]$Value, [switch]$Snapshot)
     $config = "$($CA.dNSHostName)\$($CA.cn)"
     if ($Snapshot) {
-        $p = $CA.PSObject.Properties[$(if ($Value -eq 'EditFlags') { 'editFlags' } else { 'auditFilter' })]
+        $name = switch ($Value) {
+            'EditFlags' { 'editFlags' } 'AuditFilter' { 'auditFilter' }
+            'CRLPublicationURLs' { 'crlPublicationUrls' } 'CACertPublicationURLs' { 'caCertPublicationUrls' }
+        }
+        $p = $CA.PSObject.Properties[$name]
         if (-not $p -or $null -eq $p.Value) { return $null }
         if ($Value -eq 'AuditFilter') { return ConvertFrom-FMPAuditFilter -Text "$($p.Value)" }
         return "$($p.Value)"
     }
-    if ($Value -eq 'EditFlags') { Get-FMPCAEditFlags -Config $config } else { Get-FMPCAAuditFilter -Config $config }
+    switch ($Value) {
+        'EditFlags' { Get-FMPCAEditFlags -Config $config }
+        'AuditFilter' { Get-FMPCAAuditFilter -Config $config }
+        default {
+            try { $out = & certutil.exe -config $config -getreg "CA\$Value" 2>&1 | Out-String } catch { return $null }
+            if ($LASTEXITCODE -ne 0) { return $null }
+            $out
+        }
+    }
+}
+
+function ConvertFrom-FMPPublicationUrls {
+    # certutil -getreg prints a REG_MULTI_SZ publication list as "  <index>: <flags>:<url>" lines,
+    # each followed by the flag names it decodes. Flags are certsrv.h's CSURL_* bits:
+    # 0x1 the CA publishes there, 0x2 the URL goes into issued certificates (CDP or AIA extension),
+    # 0x4 freshest CRL, 0x8 the CRL's own CDP, 0x20 the OCSP location in the AIA extension.
+    param([AllowNull()][string]$Text, [Parameter(Mandatory)][ValidateSet('CDP', 'AIA')][string]$Kind)
+    if (-not $Text) { return @() }
+    foreach ($m in [regex]::Matches($Text, '(?m)^\s*(\d+):\s*(\d+):(\S.*?)\s*$')) {
+        $flags = [int]$m.Groups[2].Value
+        $url = $m.Groups[3].Value
+        $scheme = if ($url -match '^(ldap|https?|file):') { $Matches[1].ToLowerInvariant() }
+                  elseif ($url -match '^[A-Za-z]:\\') { 'local' } else { 'other' }
+        [pscustomobject]@{
+            Kind                 = $Kind
+            Index                = [int]$m.Groups[1].Value
+            Flags                = $flags
+            Url                  = $url
+            Scheme               = $scheme
+            Publishes            = ($flags -band 0x1) -ne 0
+            InIssuedCertificates = ($flags -band 0x2) -ne 0
+            Ocsp                 = $Kind -eq 'AIA' -and ($flags -band 0x20) -ne 0
+        }
+    }
 }
 
 function Get-PKISecurityFindings {
@@ -1104,6 +1141,286 @@ function Get-FMPTemplateClassification {
     }
     Write-FMPCsv -InputObject @($rows) -Path (Join-Path $pkiPath 'TemplateClassification.csv')
     $rows
+}
+
+function ConvertFrom-FMPCACertificate {
+    # A CA's cACertificate value (bytes, or base64 in a snapshot) as an X509Certificate2, or $null.
+    param($Raw)
+    $first = @($Raw) | Select-Object -First 1
+    if (-not $first) { return $null }
+    try {
+        [byte[]]$bytes = if ($first -is [string]) { [Convert]::FromBase64String($first) } else { [byte[]]$first }
+        [System.Security.Cryptography.X509Certificates.X509Certificate2]::new($bytes)
+    } catch { $null }
+}
+
+function Get-FMPCAPublicationReview {
+    <#
+    .SYNOPSIS
+        Each enterprise CA's CRL and AIA locations, checked for what Entra certificate-based
+        authentication and a Cloud PKI BYOCA issuing CA need from it (Book 07, Chapter 04).
+    .DESCRIPTION
+        Reads each CA's CRLPublicationURLs and CACertPublicationURLs with certutil -getreg, and
+        its certificate from the Enrollment Services object. With -PkiDataPath, all of it comes
+        from a snapshot such as tests\fixtures\pki-contoso.json, and nothing is read from a
+        directory or a CA. Entra CBA needs an HTTP CRL location for each CA in its trust store
+        and fails sign-in when it can't fetch the CRL; a BYOCA issuing CA's AIA is whatever its
+        signing CA's AIA configuration says; Cloud PKI doesn't support 1024-bit keys or SHA-1.
+        Findings:
+          NO-HTTP-CDP      no HTTP CRL location goes into the certificates the CA issues
+          NO-HTTP-AIA      no HTTP AIA location goes into the certificates the CA issues
+          HTTP-ON-CA-HOST  the only HTTP location in issued certificates is the CA server (%1)
+          WEAK-KEY         the CA's RSA key is shorter than 2048 bits
+          SHA1             the CA certificate is signed with SHA-1
+          CA-UNREADABLE    the CA's publication settings couldn't be read
+    .OUTPUTS
+        PKI\CAPublication.json, PKI\CAPublicationUrls.csv
+    .EXAMPLE
+        Get-FMPCAPublicationReview -OutputPath .\out\run1 -PkiDataPath .\tests\fixtures\pki-contoso.json
+    .EXAMPLE
+        Get-FMPCAPublicationReview -OutputPath D:\Assessment\run1 -Domain contoso.example
+    #>
+    [CmdletBinding(DefaultParameterSetName = 'Directory')]
+    param(
+        [Parameter(Mandatory)][string]$OutputPath,
+        [Parameter(ParameterSetName = 'Directory')][string]$Domain,
+        [Parameter(Mandatory, ParameterSetName = 'Snapshot')][string]$PkiDataPath
+    )
+    $snapshot = $PSCmdlet.ParameterSetName -eq 'Snapshot'
+    if ($snapshot) {
+        $pki = Read-FMPPkiSnapshot -Path $PkiDataPath
+        $Domain = $pki.Domain
+    } else {
+        if (-not $Domain) { $Domain = (Get-ADDomain).DNSRoot }
+        $pki = Get-FMPPkiData -Server $Domain
+    }
+    $null = Resolve-FMPOutputRoot -OutputPath $OutputPath
+    $pkiPath = Get-FMPDomainPath -OutputPath $OutputPath -Domain $Domain -Area 'PKI'
+
+    $urlRows = @(); $caRows = @(); $findings = @()
+    foreach ($ca in $pki.CAs) {
+        $crlText = Get-FMPCARegistryText -CA $ca -Value CRLPublicationURLs -Snapshot:$snapshot
+        $aiaText = Get-FMPCARegistryText -CA $ca -Value CACertPublicationURLs -Snapshot:$snapshot
+        $parsed = @(ConvertFrom-FMPPublicationUrls -Text $crlText -Kind CDP) + @(ConvertFrom-FMPPublicationUrls -Text $aiaText -Kind AIA)
+        $rows = @(foreach ($p in $parsed) {
+                [pscustomobject]@{
+                    CAName = $ca.cn; Kind = $p.Kind; Index = $p.Index; Flags = $p.Flags; Scheme = $p.Scheme
+                    InIssuedCertificates = $p.InIssuedCertificates; Publishes = $p.Publishes; Ocsp = $p.Ocsp; Url = $p.Url
+                } })
+        $urlRows += $rows
+        $cert = ConvertFrom-FMPCACertificate -Raw $ca.cACertificate
+        $keySize = $null; $sigAlg = $null
+        if ($cert) {
+            $keySize = Get-FMPRsaKeySize -Certificate $cert
+            $sigAlg = $cert.SignatureAlgorithm.FriendlyName
+        }
+        $add = { param($f, $d) [pscustomobject]@{ Finding = $f; CAName = $ca.cn; Detail = $d } }
+        $readable = [bool]$crlText -and [bool]$aiaText
+        $inCert = @{}
+        foreach ($kind in 'CDP', 'AIA') {
+            $inCert[$kind] = @($rows | Where-Object { $_.Kind -eq $kind -and $_.InIssuedCertificates })
+        }
+        if (-not $readable) {
+            $findings += & $add 'CA-UNREADABLE' 'The CA''s CRLPublicationURLs or CACertPublicationURLs could not be read with certutil -getreg.'
+        } else {
+            foreach ($kind in 'CDP', 'AIA') {
+                $http = @($inCert[$kind] | Where-Object { $_.Scheme -in 'http', 'https' })
+                $label = if ($kind -eq 'CDP') { 'CRL' } else { 'AIA' }
+                if (-not $http) {
+                    $why = if ($kind -eq 'CDP') { 'Entra CBA needs an HTTP CRL location for each CA in its trust store, and fails sign-in when it can''t fetch the CRL.' }
+                           else { 'A BYOCA issuing CA''s AIA comes from the CA that signs it: add an HTTP AIA location before this CA signs one.' }
+                    $findings += & $add "NO-HTTP-$kind" "No HTTP $label location goes into the certificates this CA issues. $why"
+                } elseif (-not @($http | Where-Object { $_.Url -notmatch '^https?://%1/' })) {
+                    $findings += & $add 'HTTP-ON-CA-HOST' "The HTTP $label location in issued certificates is the CA server itself (%1), which Entra ID and devices off the network can't reach."
+                }
+            }
+        }
+        if ($null -ne $keySize -and $keySize -lt 2048) {
+            $findings += & $add 'WEAK-KEY' "The CA key is $keySize bits; Cloud PKI doesn't support 1024-bit keys."
+        }
+        if ($sigAlg -match '^sha1') {
+            $findings += & $add 'SHA1' 'The CA certificate is signed with SHA-1, which Cloud PKI doesn''t support.'
+        }
+        $caRows += [pscustomobject]@{
+            CAName             = $ca.cn
+            ComputerName       = $ca.dNSHostName
+            KeySize            = $keySize
+            SignatureAlgorithm = $sigAlg
+            Readable           = $readable
+            CdpInCertificates  = [string[]]@($inCert['CDP'] | ForEach-Object { $_.Url })
+            AiaInCertificates  = [string[]]@($inCert['AIA'] | ForEach-Object { $_.Url })
+        }
+    }
+    $doc = [ordered]@{
+        AssessmentTimestamp      = (Get-Date -Format 'o')
+        Domain                   = $Domain
+        CertificationAuthorities = @($caRows)
+        Findings                 = @($findings)
+    }
+    Write-FMPJson -InputObject $doc -Path (Join-Path $pkiPath 'CAPublication.json') -Depth 6
+    Write-FMPCsv -InputObject @($urlRows) -Path (Join-Path $pkiPath 'CAPublicationUrls.csv')
+    Write-Verbose "CA publication review written to $pkiPath with $($findings.Count) findings."
+}
+
+function ConvertTo-FMPMappingForm {
+    # One altSecurityIdentities value, named by KB5014754's mapping forms.
+    param([Parameter(Mandatory)][AllowEmptyString()][string]$Value)
+    $forms = @(
+        @('^X509:<I>.*<SR>', 'X509IssuerSerialNumber', 'Strong'),
+        @('^X509:<SKI>', 'X509SKI', 'Strong'),
+        @('^X509:<SHA1-PUKEY>', 'X509SHA1PublicKey', 'Strong'),
+        @('^X509:<I>.*<S>', 'X509IssuerSubject', 'Weak'),
+        @('^X509:<S>', 'X509SubjectOnly', 'Weak'),
+        @('^X509:<RFC822>', 'X509RFC822', 'Weak')
+    )
+    foreach ($f in $forms) {
+        if ($Value -match $f[0]) { return [pscustomobject]@{ Form = $f[1]; Strength = $f[2] } }
+    }
+    if ($Value -match '^Kerberos:') { return [pscustomobject]@{ Form = 'Kerberos'; Strength = 'Not a certificate' } }
+    [pscustomobject]@{ Form = 'Unknown'; Strength = 'Unknown' }
+}
+
+function Get-FMPKdcMappingMeaning {
+    # KB5014754's KDC events. Windows Server 2008 and 2008 R2 log the same three under other IDs.
+    param([Parameter(Mandatory)][int]$Id, [string]$OperatingSystem)
+    $legacy = "$OperatingSystem" -match '2008'
+    $map = if ($legacy) { @{ 41 = 'No strong mapping'; 48 = 'Certificate predates the account'; 49 = 'SID extension does not match the account' } }
+           else { @{ 39 = 'No strong mapping'; 40 = 'Certificate predates the account'; 41 = 'SID extension does not match the account' } }
+    $map[$Id]
+}
+
+function Get-FMPCertificateMappingReport {
+    <#
+    .SYNOPSIS
+        Strong certificate mapping (KB5014754) evidence: each account's altSecurityIdentities
+        mappings, strong or weak, the KDC's mapping events on each domain controller, and the
+        CAs in the forest's NTAuth store (Book 07, Chapter 06).
+    .DESCRIPTION
+        Reads users and computers with altSecurityIdentities, the NTAuthCertificates object, and
+        events 39, 40 and 41 (41, 48 and 49 on Windows Server 2008 and 2008 R2) from each domain
+        controller's System log. Needs Event Log Readers on the domain controllers for the events.
+        With -MappingDataPath, everything comes from a snapshot file such as the fictional
+        tests\fixtures\cert-mapping-contoso.json, and nothing is read from a directory.
+        Findings:
+          WEAK-ONLY      an account whose certificate mappings are all weak forms
+          KDC-EVENT      a strong-mapping event a domain controller logged
+          DC-UNREADABLE  a domain controller whose System log couldn't be read
+    .OUTPUTS
+        PKI\CertificateMapping.json, PKI\AccountMappings.csv, PKI\KdcMappingEvents.csv
+    .EXAMPLE
+        Get-FMPCertificateMappingReport -OutputPath .\out\run1 -MappingDataPath .\tests\fixtures\cert-mapping-contoso.json
+    .EXAMPLE
+        Get-FMPCertificateMappingReport -OutputPath D:\Assessment\run1 -Domain contoso.example -Days 30
+    #>
+    [CmdletBinding(DefaultParameterSetName = 'Directory')]
+    param(
+        [Parameter(Mandatory)][string]$OutputPath,
+        [Parameter(ParameterSetName = 'Directory')][string]$Domain,
+        [Parameter(ParameterSetName = 'Directory')][int]$Days = 30,
+        [Parameter(ParameterSetName = 'Directory')][int]$MaxEvents = 5000,
+        [Parameter(Mandatory, ParameterSetName = 'Snapshot')][string]$MappingDataPath
+    )
+    $snapshot = $PSCmdlet.ParameterSetName -eq 'Snapshot'
+    if ($snapshot) {
+        if (-not (Test-Path -LiteralPath $MappingDataPath)) { throw "Mapping snapshot not found: $MappingDataPath" }
+        $s = Get-Content -LiteralPath $MappingDataPath -Raw | ConvertFrom-Json
+        if (-not $s.domain) { throw "Mapping snapshot $MappingDataPath has no 'domain'." }
+        $Domain = "$($s.domain)"
+        $dcs = @($s.domainControllers | ForEach-Object { [pscustomobject]@{ HostName = $_.hostName; OperatingSystem = $_.operatingSystem } })
+        $accounts = @($s.accounts | ForEach-Object {
+                [pscustomobject]@{ Account = $_.sAMAccountName; ObjectClass = $_.objectClass; Values = @($_.altSecurityIdentities) } })
+        $ntAuthRaw = @($s.ntAuth)
+        $rawEvents = @($s.kdcEvents | ForEach-Object {
+                [pscustomobject]@{ DomainController = $_.domainController; Id = [int]$_.id; TimeCreated = [datetime]$_.timeCreated; Message = "$($_.message)" } })
+        $readableDcs = @($dcs | ForEach-Object { $_.HostName })
+        $dcErrors = @{}
+    } else {
+        if (-not $Domain) { $Domain = (Get-ADDomain).DNSRoot }
+        $dcs = @(Get-ADDomainController -Filter * -Server $Domain | ForEach-Object { [pscustomobject]@{ HostName = $_.HostName; OperatingSystem = $_.OperatingSystem } })
+        $accounts = @(Get-ADObject -Server $Domain -LDAPFilter '(&(|(objectClass=user)(objectClass=computer))(altSecurityIdentities=*))' -Properties sAMAccountName, objectClass, altSecurityIdentities |
+                ForEach-Object { [pscustomobject]@{ Account = $_.sAMAccountName; ObjectClass = @($_.objectClass)[-1]; Values = @($_.altSecurityIdentities) } })
+        $config = (Get-ADRootDSE -Server $Domain).configurationNamingContext
+        $ntAuthRaw = @()
+        try {
+            $nt = Get-ADObject -Identity "CN=NTAuthCertificates,CN=Public Key Services,CN=Services,$config" -Server $Domain -Properties cACertificate -ErrorAction Stop
+            $ntAuthRaw = @($nt.cACertificate)
+        } catch { Write-Warning "NTAuthCertificates not readable: $($_.Exception.Message)" }
+        $rawEvents = @(); $readableDcs = @(); $dcErrors = @{}
+        foreach ($dc in $dcs) {
+            try {
+                $rawEvents += @(Get-WinEvent -ComputerName $dc.HostName -MaxEvents $MaxEvents -ErrorAction Stop -FilterHashtable @{
+                            LogName = 'System'; Id = 39, 40, 41, 48, 49; StartTime = (Get-Date).AddDays(-$Days) } |
+                        Where-Object { $_.ProviderName -match 'Kdc|Key-Distribution-Center' } |
+                        ForEach-Object { [pscustomobject]@{ DomainController = $dc.HostName; Id = $_.Id; TimeCreated = $_.TimeCreated; Message = $_.Message } })
+                $readableDcs += $dc.HostName
+            } catch {
+                $msg = $_.Exception.Message
+                if ($msg -match '(?i)no events were found') { $readableDcs += $dc.HostName } else { $dcErrors[$dc.HostName] = $msg }
+            }
+        }
+    }
+    $null = Resolve-FMPOutputRoot -OutputPath $OutputPath
+    $pkiPath = Get-FMPDomainPath -OutputPath $OutputPath -Domain $Domain -Area 'PKI'
+
+    $mappingRows = @(foreach ($a in $accounts) {
+            foreach ($v in $a.Values) {
+                $f = ConvertTo-FMPMappingForm -Value "$v"
+                [pscustomobject]@{ Account = $a.Account; ObjectClass = $a.ObjectClass; Form = $f.Form; Strength = $f.Strength; Value = "$v" }
+            } })
+    $findings = @()
+    $accountRows = @(foreach ($g in @($mappingRows | Where-Object { $_.Strength -in 'Strong', 'Weak' } | Group-Object Account | Sort-Object Name)) {
+            $strong = @($g.Group | Where-Object Strength -eq 'Strong').Count -gt 0
+            $forms = (@($g.Group | ForEach-Object { $_.Form } | Sort-Object -Unique) -join ', ')
+            if (-not $strong) {
+                $findings += [pscustomobject]@{ Finding = 'WEAK-ONLY'; Subject = $g.Name
+                    Detail = "Only weak certificate mappings ($forms). Under Full Enforcement the KDC rejects a certificate that relies on them unless it carries the account's SID." }
+            }
+            [pscustomobject]@{ Account = $g.Name; StrongMapping = $strong; Forms = $forms }
+        })
+
+    $osByDc = @{}; foreach ($dc in $dcs) { $osByDc[$dc.HostName] = $dc.OperatingSystem }
+    $eventRows = @(foreach ($e in @($rawEvents | Sort-Object TimeCreated)) {
+            $meaning = Get-FMPKdcMappingMeaning -Id $e.Id -OperatingSystem $osByDc[$e.DomainController]
+            if (-not $meaning) { continue }
+            $user = if ($e.Message -match '(?m)^\s*User:\s*(.+?)\s*$') { $Matches[1] } else { '' }
+            $thumb = if ($e.Message -match '(?m)^\s*Certificate Thumbprint:\s*(.+?)\s*$') { $Matches[1] } else { '' }
+            [pscustomobject]@{
+                DomainController = $e.DomainController; TimeCreated = ([datetime]$e.TimeCreated).ToUniversalTime().ToString('o')
+                EventId = $e.Id; Meaning = $meaning; User = $user; CertificateThumbprint = $thumb
+            } })
+    foreach ($e in $eventRows) {
+        $findings += [pscustomobject]@{ Finding = 'KDC-EVENT'; Subject = $e.User; Detail = "Event $($e.EventId) on $($e.DomainController): $($e.Meaning)." }
+    }
+    foreach ($k in @($dcErrors.Keys | Sort-Object)) {
+        $findings += [pscustomobject]@{ Finding = 'DC-UNREADABLE'; Subject = $k; Detail = $dcErrors[$k] }
+    }
+
+    $ntAuth = @(foreach ($r in $ntAuthRaw) {
+            $c = ConvertFrom-FMPCACertificate -Raw (, $r)
+            if ($c) {
+                [pscustomobject]@{ Subject = $c.Subject; Issuer = $c.Issuer; Thumbprint = $c.Thumbprint; NotAfter = $c.NotAfter.ToUniversalTime().ToString('o') }
+            } })
+
+    $doc = [ordered]@{
+        AssessmentTimestamp = (Get-Date -Format 'o')
+        Domain              = $Domain
+        DomainControllers   = @($dcs | ForEach-Object {
+                [pscustomobject]@{ HostName = $_.HostName; OperatingSystem = $_.OperatingSystem; Readable = $readableDcs -contains $_.HostName } })
+        Summary             = [ordered]@{
+            AccountsWithCertificateMappings = $accountRows.Count
+            StrongMapping                   = @($accountRows | Where-Object StrongMapping).Count
+            WeakOnly                        = @($accountRows | Where-Object { -not $_.StrongMapping }).Count
+            KdcEvents                       = $eventRows.Count
+            NTAuthCertificates              = $ntAuth.Count
+        }
+        Accounts            = @($accountRows)
+        NTAuth              = @($ntAuth)
+        Findings            = @($findings)
+    }
+    Write-FMPJson -InputObject $doc -Path (Join-Path $pkiPath 'CertificateMapping.json') -Depth 6
+    Write-FMPCsv -InputObject @($mappingRows) -Path (Join-Path $pkiPath 'AccountMappings.csv')
+    Write-FMPCsv -InputObject @($eventRows) -Path (Join-Path $pkiPath 'KdcMappingEvents.csv')
+    Write-Verbose "Certificate mapping report written to $pkiPath with $($findings.Count) findings."
 }
 
 function Get-FMPDerivedBuckets {
@@ -2430,5 +2747,5 @@ Export-ModuleMember -Function @(
     'Export-FMPGPOSettings', 'Get-FMPDNSAssessment', 'Get-FMPPKIAssessment', 'Get-FMPComputerInventory',
     'Get-FMPUserInventory', 'Get-FMPGroupInventory', 'Get-FMPTrustMap', 'Get-FMPSchemaExtensions', 'Get-FMPDHCPInventory',
     'Get-FMPKerberosSpnMap', 'Get-FMPLdapBindingEvent', 'Invoke-FMPADAssessment', 'Compare-FMPAssessments',
-    'Get-FMPTemplateClassification', 'Get-FMPStartKitSummary'
+    'Get-FMPTemplateClassification', 'Get-FMPCAPublicationReview', 'Get-FMPCertificateMappingReport', 'Get-FMPStartKitSummary'
 )

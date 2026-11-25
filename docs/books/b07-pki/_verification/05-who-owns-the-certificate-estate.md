@@ -74,3 +74,10 @@ Re-checked after the weekly source watch (issue #499) reported a change in a cit
 | Finding | Change |
 |---|---|
 | The vendor's documentation now opens at version 26.2, where the landing page is titled "Palo Alto Networks Certificate Manager - Self-Hosted Introduction" and the platform is "Palo Alto Networks Trust Protection Foundation"; the 26.1 page ("CyberArk Certificate Manager - Self-Hosted Introduction") is still at /Docs/26.1/. Discovery, renewal before expiry, multiple CAs and the four roles cited are unchanged in 26.2; the Microsoft CA account still needs Read, Issue and Manage Certificates, and Request Certificates. | Row 16's "built on the CyberArk Trust Protection Foundation" corrected to the 26.2 names; `[^c05-cyberark-sh]` now gives the 26.1 address and the 26.2 title. The program's product name in the text is unchanged (open question). |
+
+## Revision 2026-11-25 — outside review: wording and crosswalks
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Relying-party and revocation columns added to the renewal-ownership table | Renewal ownership table | verified (by link): each cell restates Chapter 04 (PIV revocation reaches CBA by CRL), Chapter 06 (CBA as relying party, Cloud PKI CRL), Chapter 07 (SCEP unassignment revokes; CRL reachability per CA) and Chapter 08 (offline root on a witnessed schedule) | Chapters 04, 06, 07, 08 |
+| R2 | A root CA is withdrawn from trust stores, not revoked | CA certificates row | inference (standard X.509 practice: a self-signed root has no issuer to revoke it) | — |

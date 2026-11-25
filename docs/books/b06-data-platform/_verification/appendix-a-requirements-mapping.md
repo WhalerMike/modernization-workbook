@@ -41,3 +41,27 @@ Source: the existing page `appendix-a-requirements-mapping.md`. Control text and
 | § Notes on the mapping (4 notes) | Kept all four; MFA note extended; new note on IA-2(8)/SC-23 | edited |
 | Footnotes `[^a-…]` | Renamed `[^aA-…]`, reformatted, re-opened | edited |
 | Continue-the-series callout | Previous is Runbook R10 per reading order; Next Appendix B | edited |
+
+## Revision 2026-11-25 — Zero Trust across the pillars
+
+New section, approved by Mike on Nov 25, 2026 ("Go with all five recommendations"), after a claim check of an outside analysis proposing an "Arc SQL Zero Trust Control Crosswalk". Placed here instead of a new page because this appendix already maps the book to the CISA model, SP 800-207 and SP 800-53. Learn pages read Nov 25, 2026. KSI values are reused from the kits' `requirements.json` (`examples/sql-server-identity`, `examples/global-secure-access`); no new KSI mapping was made.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| Z1 | CISA ZTMM v2 has five pillars and three cross-cutting capabilities, not eight pillars | Lead | verified | CISA ZTMM v2.0; Learn CISA ZTMM intro |
+| Z2 | Learn maps cloud services to each pillar; Private Access and Internet Access under Networks 3.2 Network traffic management, Optimal | Lead; Networks row | verified | Learn CISA ZTMM pillar pages (updated Nov 4, 2026) |
+| Z3 | Arc confers no Zero Trust stage or control on its own | Lead | restated-as-design | Workbook claim-language rule; Chapter 09 |
+| Z4 | SQL 2025 primary managed identity = Arc server's system-assigned identity; Windows only; no FCI; SQL 2022 app registration and certificate | Identity rows | verified | Learn, Managed identity for SQL Server enabled by Azure Arc (updated Nov 18, 2025) |
+| Z5 | Least-privilege mode on by default from extension 1.1.3518.465; Windows only | Devices row | verified | Learn, Enable Least Privilege (updated Aug 21, 2026) |
+| Z6 | Defender for SQL Servers on Machines generally available | Devices row | verified | Learn, Enable Microsoft Defender for SQL Servers on Machines (updated Nov 5, 2026) |
+| Z7 | Global Secure Access available in GCC; Conditional Access per application, not on Private Access traffic as a whole; no compliant network check for Private Access | Networks row | verified | Learn, Known limitations for Global Secure Access (updated Nov 18, 2026) |
+| Z8 | Private Link scope: Entra ID and Resource Manager stay public; Private Link to the Arc data processing service isn't supported | Networks row | verified | Learn, Private Link for Arc servers (updated May 4, 2026); Prerequisites - SQL Server enabled by Azure Arc (updated Apr 16, 2026) |
+| Z9 | Azure RBAC governs the Arc resource; database permissions are granted in the engine | Data row | verified (inference stated as the setup tutorial's rule) | Learn, Set up Microsoft Entra authentication with app registration, Create logins and users ("All other SQL Server permissions must be explicitly granted by authorized grantors") |
+| Z10 | Purview data governance retiring: no new accounts; maintenance mode through Nov 12, 2027; data security and compliance unaffected | Data row | verified | Learn, Connect to and manage Azure Arc-enabled SQL Server (updated Oct 13, 2026); Data sources that connect to Purview Data Map |
+| Z11 | Activity log records control-plane create, update and delete operations; not script output | Visibility row | verified | Learn, Activity log in Azure Monitor (updated Nov 3, 2026) |
+| Z12 | Run Command on Arc-enabled servers is preview | Visibility row | verified | Learn, Run command on Azure Arc-enabled servers (preview) (updated Feb 24, 2026) |
+| Z13 | Zero Trust Assessment reads the tenant, not the engine | Notes | verified (by link) | Book 11 Chapter 05 |
+| Z14 | FedRAMP 20x KSIs are provider indicators; the agency estate is authorized by its own AO | Notes | verified (by link) | This appendix's caveat; Runbook R02 |
+| Z15 | All controls in the new table are Moderate except IA-9 and AC-16 | Baseline sentence | verified | Existing baseline table (row 17) |
+| Z16 | "KSI" means FedRAMP 20x Key Security Indicators, not SCuBA; "ZTTT" is internal shorthand for Microsoft's Zero Trust Assessment | Column headers | verified | Repository usage; Book 11 Chapter 05 |
+| Z17 | CA "users only" statement is documented for Azure SQL Database and Managed Instance; applying it to Arc-enabled SQL Server is the program's working assumption | Notes, MFA bullet | restated-as-inference (Nov 25, 2026): the source names Azure SQL Database and Managed Instance, not Arc; same audience `https://database.windows.net/` | Learn, Conditional access (Azure SQL); Runbook R07 |

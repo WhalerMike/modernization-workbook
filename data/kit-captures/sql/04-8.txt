@@ -1,4 +1,24 @@
-PS> Invoke-Pester -Path tests/SqlIdentity.Tests.ps1 -FullNameFilter 'Chapter 04*' -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-         11           0
+PS> Get-Content "$Run/parallel-day30/manifest.json"
+{
+  "step": "PARALLEL",
+  "title": "Judge the parallel run against its exit criteria",
+  "mode": "read-only",
+  "asOf": "2026-12-20",
+  "controls": [
+    "AC-2",
+    "CA-7"
+  ],
+  "ksis": [
+    "KSI-MLA-EVC"
+  ],
+  "files": [
+    {
+      "file": "parallel.csv",
+      "sha256": "490883551938ba52b8b555aba926ee195f40df206157296184c1bfb838a481d1"
+    },
+    {
+      "file": "parallel.json",
+      "sha256": "dd26856210cc9e210f69ec416c62f86c8a79b7ff7b239eb41eda978ab28bbdc7"
+    }
+  ]
+}

@@ -1,35 +1,8 @@
-PS> Get-Content out/audit/manifest.json
-{
-  "step": "AUDIT",
-  "title": "Login census, authentication mode, sa and service-account findings",
-  "mode": "read-only",
-  "asOf": "2026-11-20",
-  "controls": [
-    "AC-2",
-    "IA-5",
-    "CM-6"
-  ],
-  "ksis": [
-    "KSI-PIY-GIV",
-    "KSI-IAM-SNU",
-    "KSI-SVC-ACM"
-  ],
-  "files": [
-    {
-      "file": "findings.csv",
-      "sha256": "da5b8ba35d5e2bbf58d70c67c0bd90b675b6b60f08f58ee2466e09394b383fa7"
-    },
-    {
-      "file": "findings.json",
-      "sha256": "602f0212f881b4792c3236f271081db984bcbcf7dc1c46e77a93b0b9b27dd493"
-    },
-    {
-      "file": "census.csv",
-      "sha256": "839fa208e96a91fd930de8e06d526e224851acd8ea1543ee0a0ff6b4768c7ba9"
-    },
-    {
-      "file": "census.json",
-      "sha256": "90b7de1333ecff1d0f3ed20299b0cb1f1b30a75871f45a61a37ffe10292367ec"
-    }
-  ]
-}
+PS> Import-Module ./powershell/SqlIdentity/SqlIdentity.psd1
+PS> (Read-SqlJson tests/fixtures/audit-day1/audit.json).instances | Select-Object name, productVersion, isIntegratedSecurityOnly, registryLoginMode, isClustered, serviceAccount | Format-Table
+name     productVersion isIntegratedSecurityOnly registryLoginMode isClustered serviceAccount
+----     -------------- ------------------------ ----------------- ----------- --------------
+SQLPRD01 16.0.4135.4                           0                 1           0 CONTOSO\svc-sqlprd01
+SQLPRD02 16.0.4135.4                           1                 1           0 CONTOSO\svc-sqlprd02
+SQLFCI04 15.0.4375.4                           0                 2           1 CONTOSO\svc-sqlfci04
+SQLPRD06 17.0.1000.7                           1                 1           0 CONTOSO\gmsa-sqlprd06$

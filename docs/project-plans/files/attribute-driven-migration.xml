@@ -365,7 +365,7 @@ Source: identity-lifecycle.md</Notes>
       <Milestone>1</Milestone>
       <Contact>Data architect</Contact>
       <Notes>Owner or approver: Data architect
-Options: Native properties first, then extension attributes 1–15 for what rules read, directory extensions for more slots, custom security attributes for sensitive values rules don't need, device properties, Azure tags and certificateUserIds (the store table); or a broader use of directory extensions from the start
+Options: Native properties first, then extension attributes 1–15 for what rules read, directory extensions for more slots, custom security attributes for sensitive values rules don't need (once a tenant check confirms them in GCC, WD-176), device properties, Azure tags and certificateUserIds (the store table); or a broader use of directory extensions from the start
 If decided late: No slot can be assigned, and every group rule, persona and targeting convention waits
 Source: ../books/guides/attribute-driven-migration.md#attributes</Notes>
       <PredecessorLink>
@@ -1159,7 +1159,7 @@ Source: endpoint-device.md</Notes>
     <Task>
       <UID>51</UID>
       <ID>51</ID>
-      <Name>AT5.4 Non-person conventions: owners and sponsors recorded by the enterprise person key; custom security attributes for service principals (system, environment, tier) defined</Name>
+      <Name>AT5.4 Non-person conventions: owners and sponsors recorded by the enterprise person key; the seven non-person tags on service principals defined (tags and notes until a tenant check confirms custom security attributes in GCC, WD-176)</Name>
       <OutlineNumber>6.8</OutlineNumber>
       <OutlineLevel>2</OutlineLevel>
       <Start>2027-01-21T08:00:00</Start>

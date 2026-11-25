@@ -23,12 +23,17 @@ Describe 'The worked examples' {
         $r.Exit | Should -Be 0
         $r.Findings.Count | Should -Be 0
         foreach ($e in $script:Examples) {
-            foreach ($f in 'request.json', 'ad-description.txt', 'entra-custom-security-attributes.json') { Join-Path $r.Out $e.RequestId $f | Should -Exist }
+            foreach ($f in 'request.json', 'ad-description.txt', 'entra-tags.json', 'entra-custom-security-attributes.json') { Join-Path $r.Out $e.RequestId $f | Should -Exist }
         }
         Get-Content (Join-Path $r.Out 'REQ-2026-0403' 'ad-description.txt') -Raw | Should -Match '^SystemId=SYS-0233; Owner1=hrdb.dba@contoso.example; .*EntraTarget=KeepKerberos; Request=REQ-2026-0403; Change=PENDING'
         $csa = Get-Content (Join-Path $r.Out 'REQ-2026-0402' 'entra-custom-security-attributes.json') -Raw | ConvertFrom-Json -AsHashtable
         $csa.customSecurityAttributes.NonPersonIdentity.'@odata.type' | Should -Be '#Microsoft.DirectoryServices.CustomSecurityAttributeValue'
         $csa.customSecurityAttributes.NonPersonIdentity.EntraTarget | Should -Be 'AppRegistrationFederated'
+        $t = Get-Content (Join-Path $r.Out 'REQ-2026-0402' 'entra-tags.json') -Raw | ConvertFrom-Json -AsHashtable
+        $t.servicePrincipal.tags | Should -HaveCount 7
+        $t.servicePrincipal.tags | Should -Contain 'npi:EntraTarget=AppRegistrationFederated'
+        $t.servicePrincipal.notes | Should -Match '; Request=REQ-2026-0402; Change=PENDING$'
+        $t.azureResourceTags.Keys | Should -HaveCount 7
         $q = Get-Content (Join-Path $r.Out 'REQ-2026-0403' 'request.json') -Raw | ConvertFrom-Json
         $q.proposedName | Should -Be 'gmsa-hrdb-sql$'
         $q.status | Should -Be 'SUBMITTED'
