@@ -60,7 +60,8 @@ Q_MACHINES = """resources
     osName = tostring(properties.osName), osSku = tostring(properties.osSku), osVersion = tostring(properties.osVersion),
     privateLinkScopeResourceId = tostring(properties.privateLinkScopeResourceId),
     esuEligibility = tostring(properties.licenseProfile.esuProfile.esuEligibility),
-    esuAssignment = tostring(properties.licenseProfile.esuProfile.licenseAssignmentState)
+    esuAssignment = tostring(properties.licenseProfile.esuProfile.licenseAssignmentState),
+    sqlDiscovered = coalesce(tobool(properties.detectedProperties.mssqldiscovered), false)
 | order by id asc"""
 Q_EXTENSIONS = """resources
 | where type =~ 'microsoft.hybridcompute/machines/extensions'
@@ -70,7 +71,8 @@ Q_EXTENSIONS = """resources
 | order by id asc"""
 Q_SQL = """resources
 | where type =~ 'microsoft.azurearcdata/sqlserverinstances'
-| project id = tolower(id), name, version = tostring(properties.version), edition = tostring(properties.edition),
+| project id = tolower(id), name, subscriptionId, resourceGroup, serviceType = tostring(properties.serviceType),
+    version = tostring(properties.version), edition = tostring(properties.edition),
     status = tostring(properties.status), hostId = tolower(tostring(properties.containerResourceId)),
     licenseType = tostring(properties.licenseType), currentVersion = tostring(properties.currentVersion)
 | order by id asc"""
@@ -179,8 +181,10 @@ def _lifecycle_state(row: dict, as_of: dt.datetime, window: int, esu_assigned: b
 
 
 def evaluate_lifecycle(machines: list[dict], sql_instances: list[dict], table: list[dict], as_of: dt.datetime, window_days: int = 180) -> dict:
-    """Arc servers and SQL Server instances on products past, or near, the end of support.
-    The OS is matched on osSku, then osName (Microsoft's own sample uses that order)."""
+    """Arc servers and SQL Server Database Engine instances on products past, or near, the end of
+    support. The OS is matched on osSku, then osName (Microsoft's own sample uses that order).
+    Associated services (SSAS, SSIS, SSRS, PBIRS) are left out: their lifecycle is the SQL Server
+    installation's, which its Engine instance already reports."""
     rows, unknown = [], []
     for m in sorted(machines, key=lambda m: m["name"].lower()):
         label = m.get("osSku") or m.get("osName") or ""
@@ -191,7 +195,7 @@ def evaluate_lifecycle(machines: list[dict], sql_instances: list[dict], table: l
         assigned = {"Assigned": True, "NotAssigned": False}.get(m.get("esuAssignment", ""))
         state, date = _lifecycle_state(product, as_of, window_days, assigned)
         rows.append({"id": m["id"], "name": m["name"], "kind": "os", "product": product["product"], "state": state, "date": date})
-    for s in sorted(sql_instances, key=lambda s: s["name"].lower()):
+    for s in sorted(filter(is_engine, sql_instances), key=lambda s: s["name"].lower()):
         product = _product(s.get("version", ""), table, "sql")
         if product is None:
             unknown.append({"id": s["id"], "name": s["name"], "kind": "sql", "label": s.get("version", "")})
@@ -208,10 +212,28 @@ def evaluate_lifecycle(machines: list[dict], sql_instances: list[dict], table: l
 # ------------------------------------------------------------ sql-inventory
 
 
+def is_engine(s: dict) -> bool:
+    """A sqlServerInstances resource is a Database Engine instance unless serviceType names an
+    associated service (SSAS, SSIS, SSRS, PBIRS). Learn gives Engine as the default."""
+    return (s.get("serviceType") or "Engine").lower() == "engine"
+
+
+def _tally(rows: list[dict], key) -> dict:
+    return dict(sorted(Counter(key(r) for r in rows).items()))
+
+
 def evaluate_sql(machines: list[dict], sql_instances: list[dict]) -> dict:
-    """SQL Server instances enabled by Arc: counts by version and edition, and instances whose
-    host isn't a connected Arc machine the caller can read."""
+    """SQL Server enabled by Arc: Database Engine instances and the machines that host them,
+    counted separately, with breakdowns; associated services counted apart; and findings for
+    resources whose host isn't a connected Arc machine the caller can read.
+
+    instances counts Engine resources only. hostMachines counts the distinct containerResourceId
+    values among them: one machine can host several instances. machinesSqlDiscovered counts the
+    Arc machines whose detectedProperties say SQL Server is installed (Learn's sample query);
+    discoveredWithoutInstance lists those with no instance resource, where the Azure extension
+    for SQL Server may be missing or the instances excluded."""
     hosts = {m["id"]: m for m in machines}
+    engine = [s for s in sql_instances if is_engine(s)]
     findings = []
     for s in sorted(sql_instances, key=lambda s: s["name"].lower()):
         host = hosts.get(s.get("hostId", ""))
@@ -223,11 +245,24 @@ def evaluate_sql(machines: list[dict], sql_instances: list[dict]) -> dict:
         elif host.get("status") != "Connected":
             reasons.append(f"host status {host.get('status') or 'missing'}")
         if reasons:
-            findings.append({"id": s["id"], "name": s["name"], "version": s.get("version", ""), "host": host["name"] if host else None, "reasons": reasons})
+            findings.append({"id": s["id"], "name": s["name"], "serviceType": s.get("serviceType") or "Engine", "version": s.get("version", ""),
+                             "host": host["name"] if host else None, "reasons": reasons})
+    host_ids = {s.get("hostId", "") for s in sql_instances if s.get("hostId")}
+    discovered = [m for m in machines if m.get("sqlDiscovered") is True]
     return {
-        "instances": len(sql_instances),
-        "byVersion": dict(sorted(Counter(s.get("version") or "Unknown" for s in sql_instances).items())),
-        "byEdition": dict(sorted(Counter(s.get("edition") or "Unknown" for s in sql_instances).items())),
+        **_scope_note(machines),
+        "resources": len(sql_instances),
+        "instances": len(engine),
+        "associatedServices": _tally([s for s in sql_instances if not is_engine(s)], lambda s: s["serviceType"]),
+        "hostMachines": len({s.get("hostId", "") for s in engine if s.get("hostId")}),
+        "machinesSqlDiscovered": len(discovered),
+        "discoveredWithoutInstance": sorted((m["name"] for m in discovered if m["id"] not in host_ids), key=str.lower),
+        "byVersion": _tally(engine, lambda s: s.get("version") or "Unknown"),
+        "byEdition": _tally(engine, lambda s: s.get("edition") or "Unknown"),
+        "byStatus": _tally(engine, lambda s: s.get("status") or "Unknown"),
+        "byLicenseType": _tally(engine, lambda s: s.get("licenseType") or "Unknown"),
+        "bySubscription": _tally(engine, lambda s: s.get("subscriptionId") or "Unknown"),
+        "byResourceGroup": _tally(engine, lambda s: f"{s.get('subscriptionId') or 'Unknown'}/{(s.get('resourceGroup') or 'Unknown').lower()}"),
         "findings": findings,
     }
 

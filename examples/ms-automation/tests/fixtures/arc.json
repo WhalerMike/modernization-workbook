@@ -1,5 +1,5 @@
 {
-  "_comment": "A fictional estate in one subscription: seven Arc-enabled servers, five SQL Server instances, four policy assignments. Rows have the shape the Resource Graph queries in python/arc_tasks.py project.",
+  "_comment": "A fictional estate in one subscription: seven Arc-enabled servers, seven SQL Server resources (six Database Engine instances on five machines, and one Reporting Services install), four policy assignments. Rows have the shape the Resource Graph queries in python/arc_tasks.py project.",
   "machines": [
     {
       "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app-01",
@@ -13,7 +13,8 @@
       "osVersion": "10.0.20348",
       "privateLinkScopeResourceId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-network/providers/microsoft.hybridcompute/privatelinkscopes/pls-arc-east",
       "esuEligibility": "",
-      "esuAssignment": ""
+      "esuAssignment": "",
+      "sqlDiscovered": true
     },
     {
       "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app-02",
@@ -27,7 +28,8 @@
       "osVersion": "10.0.14393",
       "privateLinkScopeResourceId": "",
       "esuEligibility": "",
-      "esuAssignment": ""
+      "esuAssignment": "",
+      "sqlDiscovered": true
     },
     {
       "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-leg-01",
@@ -41,7 +43,8 @@
       "osVersion": "6.3.9600",
       "privateLinkScopeResourceId": "",
       "esuEligibility": "",
-      "esuAssignment": "Assigned"
+      "esuAssignment": "Assigned",
+      "sqlDiscovered": true
     },
     {
       "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-db-01",
@@ -55,7 +58,8 @@
       "osVersion": "10.0.17763",
       "privateLinkScopeResourceId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-network/providers/microsoft.hybridcompute/privatelinkscopes/pls-arc-east",
       "esuEligibility": "",
-      "esuAssignment": ""
+      "esuAssignment": "",
+      "sqlDiscovered": true
     },
     {
       "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/lnx-web-01",
@@ -69,7 +73,8 @@
       "osVersion": "22.04",
       "privateLinkScopeResourceId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-network/providers/microsoft.hybridcompute/privatelinkscopes/pls-arc-east",
       "esuEligibility": "",
-      "esuAssignment": ""
+      "esuAssignment": "",
+      "sqlDiscovered": false
     },
     {
       "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/lnx-web-02",
@@ -83,7 +88,8 @@
       "osVersion": "9.4",
       "privateLinkScopeResourceId": "",
       "esuEligibility": "",
-      "esuAssignment": ""
+      "esuAssignment": "",
+      "sqlDiscovered": false
     },
     {
       "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-new-01",
@@ -97,7 +103,8 @@
       "osVersion": "10.0.26100",
       "privateLinkScopeResourceId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-network/providers/microsoft.hybridcompute/privatelinkscopes/pls-arc-east",
       "esuEligibility": "",
-      "esuAssignment": ""
+      "esuAssignment": "",
+      "sqlDiscovered": true
     }
   ],
   "extensions": [
@@ -205,6 +212,9 @@
     {
       "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.azurearcdata/sqlserverinstances/srv-db-01_mssqlserver",
       "name": "SRV-DB-01_MSSQLSERVER",
+      "subscriptionId": "00000000-0000-0000-0000-00000000000a",
+      "resourceGroup": "rg-servers",
+      "serviceType": "Engine",
       "version": "SQL Server 2016",
       "edition": "Enterprise",
       "status": "Connected",
@@ -215,6 +225,9 @@
     {
       "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.azurearcdata/sqlserverinstances/srv-db-01_reports",
       "name": "SRV-DB-01_REPORTS",
+      "subscriptionId": "00000000-0000-0000-0000-00000000000a",
+      "resourceGroup": "rg-servers",
+      "serviceType": "Engine",
       "version": "SQL Server 2019",
       "edition": "Standard",
       "status": "Connected",
@@ -225,6 +238,9 @@
     {
       "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.azurearcdata/sqlserverinstances/srv-leg-01_mssqlserver",
       "name": "SRV-LEG-01_MSSQLSERVER",
+      "subscriptionId": "00000000-0000-0000-0000-00000000000a",
+      "resourceGroup": "rg-servers",
+      "serviceType": "Engine",
       "version": "SQL Server 2014",
       "edition": "Standard",
       "status": "Disconnected",
@@ -235,6 +251,9 @@
     {
       "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.azurearcdata/sqlserverinstances/old-sql-07_mssqlserver",
       "name": "OLD-SQL-07_MSSQLSERVER",
+      "subscriptionId": "00000000-0000-0000-0000-00000000000a",
+      "resourceGroup": "rg-servers",
+      "serviceType": "Engine",
       "version": "SQL Server 2012",
       "edition": "Standard",
       "status": "Connected",
@@ -245,12 +264,41 @@
     {
       "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.azurearcdata/sqlserverinstances/srv-app-01_sqlexpress",
       "name": "SRV-APP-01_SQLEXPRESS",
+      "subscriptionId": "00000000-0000-0000-0000-00000000000a",
+      "resourceGroup": "rg-servers",
+      "serviceType": "",
       "version": "Unknown",
       "edition": "Express",
       "status": "Connected",
       "hostId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-app-01",
       "licenseType": "Free",
       "currentVersion": ""
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.azurearcdata/sqlserverinstances/srv-db-01_ssrs",
+      "name": "SRV-DB-01_SSRS",
+      "subscriptionId": "00000000-0000-0000-0000-00000000000a",
+      "resourceGroup": "rg-servers",
+      "serviceType": "SSRS",
+      "version": "SQL Server 2019",
+      "edition": "Standard",
+      "status": "Connected",
+      "hostId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-db-01",
+      "licenseType": "Paid",
+      "currentVersion": ""
+    },
+    {
+      "id": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.azurearcdata/sqlserverinstances/srv-new-01_mssqlserver",
+      "name": "SRV-NEW-01_MSSQLSERVER",
+      "subscriptionId": "00000000-0000-0000-0000-00000000000a",
+      "resourceGroup": "rg-servers",
+      "serviceType": "Engine",
+      "version": "SQL Server 2025",
+      "edition": "Standard Developer",
+      "status": "Connected",
+      "hostId": "/subscriptions/00000000-0000-0000-0000-00000000000a/resourcegroups/rg-servers/providers/microsoft.hybridcompute/machines/srv-new-01",
+      "licenseType": "Free",
+      "currentVersion": "17.0.1000.7"
     }
   ],
   "assignments": [

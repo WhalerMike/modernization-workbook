@@ -47,6 +47,20 @@ Describe 'Rules' {
         $f.state | Should -Be 'esuNotConfirmed'
         $f.date | Should -BeNullOrEmpty
     }
+    It 'counts Engine instances and their host machines apart from associated services' {
+        $r = Test-FmwArcSql -Machines $arc.machines -SqlInstances $arc.sqlInstances
+        $r.instances | Should -Be 6
+        $r.hostMachines | Should -Be 5
+        $r.associatedServices.SSRS | Should -Be 1
+        $r.discoveredWithoutInstance | Should -Be @('SRV-APP-02')
+    }
+    It 'leaves associated services out of lifecycle and classifies SQL Server 2025' {
+        $r = Test-FmwArcLifecycle -Machines $arc.machines -SqlInstances $arc.sqlInstances -AsOf $asOf
+        $names = @($r.findings | ForEach-Object { $_.name }) + @($r.notInTable | ForEach-Object { $_.name })
+        $names | Should -Not -Contain 'SRV-DB-01_SSRS'
+        $names | Should -Not -Contain 'SRV-NEW-01_MSSQLSERVER'
+        $r.counts.supported | Should -Be 5
+    }
     It 'reads the lifecycle table longest product first' {
         (Get-FmwArcLifecycleTable)[0].product.Length | Should -BeGreaterOrEqual (Get-FmwArcLifecycleTable)[-1].product.Length
     }
