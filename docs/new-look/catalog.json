@@ -208,6 +208,33 @@
    "featured": true
   },
   {
+   "id": "docs/training/dns-dhcp-ipam/index.md",
+   "type": "Learning path",
+   "title": "Learning path: DNS, DHCP and IPAM",
+   "description": "Modules on Book 08's naming plane: read it from the evidence, sort what Active Directory DNS does into where it goes, with a lab on fixtures and a lab in your own test domain",
+   "url": "docs/training/dns-dhcp-ipam/index.html",
+   "count": 2,
+   "unit": "modules",
+   "reading_minutes": 105,
+   "reading_source": "page",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Identity engineer",
+    "Cloud and platform engineer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Active Directory",
+    "DNS and DDI"
+   ],
+   "status": "Draft",
+   "family": "dns-dhcp-ipam",
+   "featured": false
+  },
+  {
    "id": "docs/training/global-secure-access/index.md",
    "type": "Learning path",
    "title": "Learning path: Global Secure Access as the Identity-Aware Network",
@@ -1121,7 +1148,7 @@
    "url": "docs/project-plans/developer-workbooks/application-modernization/index.html",
    "count": 7,
    "unit": "chapters",
-   "reading_minutes": 77,
+   "reading_minutes": 91,
    "reading_source": "estimate",
    "videos": 0,
    "video_minutes": 0,
@@ -2201,6 +2228,31 @@
    "featured": false
   },
   {
+   "id": "docs/training/labs.md#am",
+   "type": "Lab",
+   "title": "Labs: Building Application Modernization",
+   "description": "14 hands-on labs across 7 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building Application Modernization.",
+   "url": "docs/training/labs.html#am",
+   "count": 14,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Unrated",
+   "level_source": "path",
+   "roles": [
+    "Developer",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Application modernization"
+   ],
+   "status": "Approved",
+   "family": "application-modernization",
+   "featured": false
+  },
+  {
    "id": "docs/training/labs.md#azs",
    "type": "Lab",
    "title": "Labs: Building Azure Security",
@@ -2502,6 +2554,33 @@
    ],
    "status": "Approved",
    "family": "ticket-to-machine",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#ddi",
+   "type": "Lab",
+   "title": "Labs: DNS, DHCP and IPAM learning path",
+   "description": "4 hands-on labs across 2 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The DNS, DHCP and IPAM learning path.",
+   "url": "docs/training/labs.html#ddi",
+   "count": 4,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "Identity engineer",
+    "Cloud and platform engineer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Active Directory",
+    "DNS and DDI"
+   ],
+   "status": "Draft",
+   "family": "dns-dhcp-ipam",
    "featured": false
   },
   {

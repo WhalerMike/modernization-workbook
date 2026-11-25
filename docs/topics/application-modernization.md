@@ -50,12 +50,23 @@ The implementation guides, the developer workbook and its code.
 
 | Page | What it is |
 |---|---|
+| [Building Application Modernization](../project-plans/developer-workbooks/application-modernization/index.md) | A developer workbook for Book 18, Application Modernization: a code-first companion for the developers who build a modernized application and move its data. |
 | [Chapter 08 — The Reference Implementation](../books/b18-application-modernization/08-the-reference-implementation.md) | A small, runnable slice of the book's target architecture in the repository's examples/app-modernization folder: a Spring Boot REST service over PostgreSQL with an OpenAPI contract the build checks against the code, a React front end, a… |
 | [Appendix A — Identity Remediation Work Packages](../books/b18-application-modernization/appendix-a-identity-remediation-work-packages.md) | The identity remediation factory's six work packages as copy-paste procedures: owner assignment, permission reduction, secret-to-managed-identity conversion, redirect URI cleanup with DNS proof and an OAuth regression test, assignment… |
 
 : Build {.striped .hover}
 
 The code is in [`examples/app-modernization`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/app-modernization) on GitHub, and in the code zip under [Download](#download).
+
+## Learn {#learn}
+
+The learning path and its hands-on labs.
+
+| Page | What it is |
+|---|---|
+| [Labs](../training/labs.md#am) | Every lab in Building Application Modernization: what each needs, where it runs, and its commands. |
+
+: Learn {.striped .hover}
 
 ## Watch {#watch}
 
@@ -90,8 +101,6 @@ What the workbook doesn't have on application modernization, and whether it shou
 |---|---|
 | Project plan | Not needed, because Book 18's Chapter 10, listed under Plan, runs the portfolio in waves, and each application gets its own plan from the triage. |
 | Guide | Not needed, because Book 18's Chapter 08 and the kit's README are the build guide for the reference implementation. |
-| Developer workbook | Needed: decide with the learning path plan. |
-| Learning path | Needed: ranked in the learning path plan. |
-| Labs | Needed: they come with the learning path. |
+| Learning path | Needed: the learning path for Building Application Modernization, one module per chapter. |
 
 : Not here {.striped .hover}

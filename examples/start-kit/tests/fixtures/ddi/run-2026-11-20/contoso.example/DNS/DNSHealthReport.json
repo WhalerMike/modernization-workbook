@@ -1,0 +1,257 @@
+{
+  "AssessmentTimestamp": "2026-11-20T09:14:03.0000000-05:00",
+  "ZonesByServer": [
+    {
+      "ZoneName": "contoso.example",
+      "ZoneType": "Primary",
+      "IsAutoCreated": false,
+      "IsDsIntegrated": true,
+      "IsReverseLookupZone": false,
+      "IsSigned": false,
+      "DynamicUpdate": "Secure",
+      "DnsServer": "dc01.contoso.example",
+      "Partition": "DomainDnsZones"
+    },
+    {
+      "ZoneName": "_msdcs.contoso.example",
+      "ZoneType": "Primary",
+      "IsAutoCreated": false,
+      "IsDsIntegrated": true,
+      "IsReverseLookupZone": false,
+      "IsSigned": false,
+      "DynamicUpdate": "Secure",
+      "DnsServer": "dc01.contoso.example",
+      "Partition": "ForestDnsZones"
+    },
+    {
+      "ZoneName": "10.in-addr.arpa",
+      "ZoneType": "Primary",
+      "IsAutoCreated": false,
+      "IsDsIntegrated": true,
+      "IsReverseLookupZone": true,
+      "IsSigned": false,
+      "DynamicUpdate": "Secure",
+      "DnsServer": "dc01.contoso.example",
+      "Partition": "DomainDnsZones"
+    },
+    {
+      "ZoneName": "16.172.in-addr.arpa",
+      "ZoneType": "Primary",
+      "IsAutoCreated": false,
+      "IsDsIntegrated": true,
+      "IsReverseLookupZone": true,
+      "IsSigned": false,
+      "DynamicUpdate": "NonsecureAndSecure",
+      "DnsServer": "dc01.contoso.example",
+      "Partition": "DomainDnsZones"
+    },
+    {
+      "ZoneName": "GlobalNames",
+      "ZoneType": "Primary",
+      "IsAutoCreated": false,
+      "IsDsIntegrated": true,
+      "IsReverseLookupZone": false,
+      "IsSigned": false,
+      "DynamicUpdate": "None",
+      "DnsServer": "dc01.contoso.example",
+      "Partition": "ForestDnsZones"
+    },
+    {
+      "ZoneName": "apps.contoso.example",
+      "ZoneType": "Primary",
+      "IsAutoCreated": false,
+      "IsDsIntegrated": false,
+      "IsReverseLookupZone": false,
+      "IsSigned": false,
+      "DynamicUpdate": "None",
+      "DnsServer": "dc01.contoso.example",
+      "Partition": "File-backed"
+    },
+    {
+      "ZoneName": "legacy.contoso.example",
+      "ZoneType": "Secondary",
+      "IsAutoCreated": false,
+      "IsDsIntegrated": false,
+      "IsReverseLookupZone": false,
+      "IsSigned": false,
+      "DynamicUpdate": "None",
+      "DnsServer": "dc01.contoso.example",
+      "Partition": "File-backed"
+    },
+    {
+      "ZoneName": "partner.example",
+      "ZoneType": "Forwarder",
+      "IsAutoCreated": false,
+      "IsDsIntegrated": true,
+      "IsReverseLookupZone": false,
+      "IsSigned": false,
+      "DynamicUpdate": "None",
+      "DnsServer": "dc01.contoso.example",
+      "Partition": "ForestDnsZones"
+    },
+    {
+      "ZoneName": "oldvendor.example",
+      "ZoneType": "Forwarder",
+      "IsAutoCreated": false,
+      "IsDsIntegrated": false,
+      "IsReverseLookupZone": false,
+      "IsSigned": false,
+      "DynamicUpdate": "None",
+      "DnsServer": "dc01.contoso.example",
+      "Partition": "File-backed"
+    },
+    {
+      "ZoneName": "blob.core.windows.net",
+      "ZoneType": "Forwarder",
+      "IsAutoCreated": false,
+      "IsDsIntegrated": true,
+      "IsReverseLookupZone": false,
+      "IsSigned": false,
+      "DynamicUpdate": "None",
+      "DnsServer": "dc01.contoso.example",
+      "Partition": "DomainDnsZones"
+    },
+    {
+      "ZoneName": "hr.contoso.example",
+      "ZoneType": "Stub",
+      "IsAutoCreated": false,
+      "IsDsIntegrated": true,
+      "IsReverseLookupZone": false,
+      "IsSigned": false,
+      "DynamicUpdate": "None",
+      "DnsServer": "dc01.contoso.example",
+      "Partition": "DomainDnsZones"
+    },
+    {
+      "ZoneName": "secure.contoso.example",
+      "ZoneType": "Primary",
+      "IsAutoCreated": false,
+      "IsDsIntegrated": true,
+      "IsReverseLookupZone": false,
+      "IsSigned": true,
+      "DynamicUpdate": "None",
+      "DnsServer": "dc01.contoso.example",
+      "Partition": "DomainDnsZones"
+    },
+    {
+      "ZoneName": null,
+      "DnsServer": "dc02.contoso.example",
+      "Error": "The RPC server is unavailable."
+    },
+    {
+      "ZoneName": "contoso.example",
+      "ZoneType": "Primary",
+      "IsAutoCreated": false,
+      "IsDsIntegrated": true,
+      "IsReverseLookupZone": false,
+      "IsSigned": false,
+      "DynamicUpdate": "Secure",
+      "DnsServer": "dc03.contoso.example",
+      "Partition": "DomainDnsZones"
+    },
+    {
+      "ZoneName": "_msdcs.contoso.example",
+      "ZoneType": "Primary",
+      "IsAutoCreated": false,
+      "IsDsIntegrated": true,
+      "IsReverseLookupZone": false,
+      "IsSigned": false,
+      "DynamicUpdate": "Secure",
+      "DnsServer": "dc03.contoso.example",
+      "Partition": "ForestDnsZones"
+    },
+    {
+      "ZoneName": "10.in-addr.arpa",
+      "ZoneType": "Primary",
+      "IsAutoCreated": false,
+      "IsDsIntegrated": true,
+      "IsReverseLookupZone": true,
+      "IsSigned": false,
+      "DynamicUpdate": "Secure",
+      "DnsServer": "dc03.contoso.example",
+      "Partition": "DomainDnsZones"
+    },
+    {
+      "ZoneName": "GlobalNames",
+      "ZoneType": "Primary",
+      "IsAutoCreated": false,
+      "IsDsIntegrated": true,
+      "IsReverseLookupZone": false,
+      "IsSigned": false,
+      "DynamicUpdate": "None",
+      "DnsServer": "dc03.contoso.example",
+      "Partition": "ForestDnsZones"
+    },
+    {
+      "ZoneName": "partner.example",
+      "ZoneType": "Forwarder",
+      "IsAutoCreated": false,
+      "IsDsIntegrated": true,
+      "IsReverseLookupZone": false,
+      "IsSigned": false,
+      "DynamicUpdate": "None",
+      "DnsServer": "dc03.contoso.example",
+      "Partition": "ForestDnsZones"
+    },
+    {
+      "ZoneName": "blob.core.windows.net",
+      "ZoneType": "Forwarder",
+      "IsAutoCreated": false,
+      "IsDsIntegrated": true,
+      "IsReverseLookupZone": false,
+      "IsSigned": false,
+      "DynamicUpdate": "None",
+      "DnsServer": "dc03.contoso.example",
+      "Partition": "DomainDnsZones"
+    },
+    {
+      "ZoneName": "hr.contoso.example",
+      "ZoneType": "Stub",
+      "IsAutoCreated": false,
+      "IsDsIntegrated": true,
+      "IsReverseLookupZone": false,
+      "IsSigned": false,
+      "DynamicUpdate": "None",
+      "DnsServer": "dc03.contoso.example",
+      "Partition": "DomainDnsZones"
+    },
+    {
+      "ZoneName": "secure.contoso.example",
+      "ZoneType": "Primary",
+      "IsAutoCreated": false,
+      "IsDsIntegrated": true,
+      "IsReverseLookupZone": false,
+      "IsSigned": true,
+      "DynamicUpdate": "None",
+      "DnsServer": "dc03.contoso.example",
+      "Partition": "DomainDnsZones"
+    }
+  ],
+  "SRVChecks": [
+    {
+      "SRVRecord": "_ldap._tcp.contoso.example",
+      "RecordCount": 3,
+      "Status": "PASS",
+      "Targets": "dc01.contoso.example, dc02.contoso.example, dc03.contoso.example"
+    },
+    {
+      "SRVRecord": "_kerberos._tcp.contoso.example",
+      "RecordCount": 3,
+      "Status": "PASS",
+      "Targets": "dc01.contoso.example, dc02.contoso.example, dc03.contoso.example"
+    },
+    {
+      "SRVRecord": "_gc._tcp.contoso.example",
+      "RecordCount": 2,
+      "Status": "PASS",
+      "Targets": "dc01.contoso.example, dc03.contoso.example"
+    },
+    {
+      "SRVRecord": "_kpasswd._tcp.contoso.example",
+      "RecordCount": 0,
+      "Status": "FAIL",
+      "Targets": ""
+    }
+  ],
+  "StaleThresholdDays": 90
+}
