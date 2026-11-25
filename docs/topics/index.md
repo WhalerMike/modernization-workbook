@@ -30,7 +30,7 @@ Each row shows what a topic has. A cell that says **gap** is something readers n
 | [DNS, DHCP and IPAM](dns-dhcp-ipam.md) | 8 | 1 | 1 | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | 11 | 1 zip |
 | [Network and SD-WAN](network-sd-wan.md) | 8 | 1 | 3 | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | 7 | 1 zip |
 | [Endpoints](endpoints.md) | 8 | 2 | 5 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 14 | 3 zips |
-| [Information Protection](information-protection.md) | 6 | [gap](#gaps) | 1 | 9 chapters | [gap](#gaps) | yes | 1 | 1 zip |
+| [Information Protection](information-protection.md) | 6 | [gap](#gaps) | 1 | 9 chapters | 5 modules | yes | 1 | 1 zip |
 | [Compliance and Evidence](compliance-evidence.md) | 13 | 2 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 14 | 2 zips |
 | [Application Modernization](application-modernization.md) | 7 | [not needed](#gaps) | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | 3 | 1 zip |
 
@@ -70,7 +70,6 @@ A gap is filled only where readers need it. Where nothing is needed, the note sa
 | [Endpoints](endpoints.md#gaps) | Learning path | Not needed, because the modules listed under Learn (three from the Attribute-Driven Migration path, two from Microsoft Automation) already teach it. |
 | [Endpoints](endpoints.md#gaps) | Labs | Not needed, because those modules carry the labs. |
 | [Information Protection](information-protection.md#gaps) | Project plan | Needed: no project plan sequences Book 20's rollout. |
-| [Information Protection](information-protection.md#gaps) | Learning path | Needed: the developer workbook's labs have no learning path around them yet. |
 | [Compliance and Evidence](compliance-evidence.md#gaps) | Guide | Not needed, because every implementation guide carries its own Evidence section, and Book 15's day-two runbook, under Build, is the operating guide. |
 | [Compliance and Evidence](compliance-evidence.md#gaps) | Developer workbook | Not needed, because Book 19's Chapters 03 and 09, under Build, are the validation kit and drift pipeline build. |
 | [Compliance and Evidence](compliance-evidence.md#gaps) | Learning path | Not needed, because the two modules under Learn teach the validation kit and the drift pipeline, and each topic's own path teaches that topic's evidence. |

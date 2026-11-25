@@ -3225,6 +3225,42 @@
    "title": "DNS, DHCP and IPAM"
   }
  ],
+ "docs/training/information-protection/01-classes-access-and-the-baseline.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/training/information-protection/02-labels-publication-and-containers.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/training/information-protection/03-encryption-and-recovery.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/training/information-protection/04-dlp-auto-labeling-and-ai.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/training/information-protection/05-audit-drift-and-evidence.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
+ "docs/training/information-protection/index.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
  "docs/training/lab-setup.md": [
   {
    "id": "microsoft-automation",

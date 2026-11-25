@@ -24,7 +24,7 @@ How an agency builds the information protection that [Book 20](../b20-informatio
 
 ::: {.callout-tip}
 ## Watch, present or train
-**Narrated deck:** planned, not yet built. **Developer workbook:** [*Building Information Protection*](../../project-plans/developer-workbooks/information-protection/index.md) builds the read-only checks behind the gates, in nine chapters, each with a lab on fixtures and a lab in a test tenant. **Training path:** planned.
+**Narrated deck:** planned, not yet built. **Developer workbook:** [*Building Information Protection*](../../project-plans/developer-workbooks/information-protection/index.md) builds the read-only checks behind the gates, in nine chapters, each with a lab on fixtures and a lab in a test tenant. **Training:** the learning path [*Information Protection with Microsoft Purview*](../../training/information-protection/index.md) teaches this guide in five modules, each with a lab on fixtures, a lab in a test tenant and a knowledge check.
 :::
 
 ## How to read this guide
@@ -67,7 +67,7 @@ An implementation guide is finished when it has its deck series, developer workb
 | This guide | Draft, November 24, 2026; awaiting review |
 | Narrated deck and video | Planned |
 | Developer workbook with Lab 1 on fixtures and Lab 2 in a test tenant | Draft, November 24, 2026; awaiting review: [*Building Information Protection*](../../project-plans/developer-workbooks/information-protection/index.md), nine chapters on the kit in `examples/information-protection` (read-only checks of the Purview configuration baseline against the agency's plan), each with Lab 1 on fixtures and Lab 2 in a test tenant, and a runbook for test and production |
-| Training path | Planned |
+| Training path | Draft, November 24, 2026; awaiting review: [Information Protection with Microsoft Purview](../../training/information-protection/index.md), five modules |
 
 : The guide's pieces {.striped .hover}
 
@@ -220,8 +220,11 @@ The agency decides what its data classes are, who owns each, and which federal o
 ## Try it: G1 Classes, decisions and inventory
 - **On a laptop, no tenant:** [Chapter 01, Lab 1](../../project-plans/developer-workbooks/information-protection/01-access-and-the-read-path.md#lab-1-fixtures-no-tenant) of *Access and the Read Path*
 - **In a test tenant:** [Chapter 01, Lab 2](../../project-plans/developer-workbooks/information-protection/01-access-and-the-read-path.md#lab-2-a-test-tenant)
+- **On a laptop, no tenant:** [Chapter 02, Lab 1](../../project-plans/developer-workbooks/information-protection/02-the-baseline-export.md#lab-1-fixtures-no-tenant) of *The Baseline Export*
+- **In a test tenant:** [Chapter 02, Lab 2](../../project-plans/developer-workbooks/information-protection/02-the-baseline-export.md#lab-2-a-test-tenant)
 - **On a laptop, no tenant:** [Chapter 03, Lab 1](../../project-plans/developer-workbooks/information-protection/03-the-data-inventory.md#lab-1-fixtures-no-tenant) of *The Data Inventory*
 - **In a test tenant:** [Chapter 03, Lab 2](../../project-plans/developer-workbooks/information-protection/03-the-data-inventory.md#lab-2-a-test-tenant)
+- **As training:** [Module 1: Classes, access and the baseline](../../training/information-protection/01-classes-access-and-the-baseline.md), with a knowledge check
 :::
 
 <!-- labs:end -->
@@ -256,6 +259,7 @@ The classes become a small set of sensitivity labels with content markings and e
 ## Try it: G2 The label taxonomy
 - **On a laptop, no tenant:** [Chapter 04, Lab 1](../../project-plans/developer-workbooks/information-protection/04-labels-policies-and-containers.md#lab-1-fixtures-no-tenant) of *Labels, Policies and Containers*
 - **In a test tenant:** [Chapter 04, Lab 2](../../project-plans/developer-workbooks/information-protection/04-labels-policies-and-containers.md#lab-2-a-test-tenant)
+- **As training:** [Module 2: Labels, publication and containers](../../training/information-protection/02-labels-publication-and-containers.md), with a knowledge check
 :::
 
 <!-- labs:end -->
@@ -299,6 +303,7 @@ Labels reach users through label policies, a pilot first, with defaults for docu
 ## Try it: G3 Publication and defaults
 - **On a laptop, no tenant:** [Chapter 04, Lab 1](../../project-plans/developer-workbooks/information-protection/04-labels-policies-and-containers.md#lab-1-fixtures-no-tenant) of *Labels, Policies and Containers*
 - **In a test tenant:** [Chapter 04, Lab 2](../../project-plans/developer-workbooks/information-protection/04-labels-policies-and-containers.md#lab-2-a-test-tenant)
+- **As training:** [Module 2: Labels, publication and containers](../../training/information-protection/02-labels-publication-and-containers.md), with a knowledge check
 :::
 
 <!-- labs:end -->
@@ -341,6 +346,7 @@ Labels applied to teams, Microsoft 365 groups and SharePoint sites set their pri
 ## Try it: G4 Container labels
 - **On a laptop, no tenant:** [Chapter 04, Lab 1](../../project-plans/developer-workbooks/information-protection/04-labels-policies-and-containers.md#lab-1-fixtures-no-tenant) of *Labels, Policies and Containers*
 - **In a test tenant:** [Chapter 04, Lab 2](../../project-plans/developer-workbooks/information-protection/04-labels-policies-and-containers.md#lab-2-a-test-tenant)
+- **As training:** [Module 2: Labels, publication and containers](../../training/information-protection/02-labels-publication-and-containers.md), with a knowledge check
 :::
 
 <!-- labs:end -->
@@ -378,6 +384,7 @@ The Azure Rights Management service encrypts labeled content and mail. The agenc
 ## Try it: G5 Rights Management and recovery
 - **On a laptop, no tenant:** [Chapter 05, Lab 1](../../project-plans/developer-workbooks/information-protection/05-rights-management-and-message-encryption.md#lab-1-fixtures-no-tenant) of *Rights Management and Message Encryption*
 - **In a test tenant:** [Chapter 05, Lab 2](../../project-plans/developer-workbooks/information-protection/05-rights-management-and-message-encryption.md#lab-2-a-test-tenant)
+- **As training:** [Module 3: Encryption and recovery](../../training/information-protection/03-encryption-and-recovery.md), with a knowledge check
 :::
 
 <!-- labs:end -->
@@ -414,6 +421,7 @@ Mail that leaves the agency is encrypted by a label the sender chooses or by a m
 ## Try it: G6 Message encryption
 - **On a laptop, no tenant:** [Chapter 05, Lab 1](../../project-plans/developer-workbooks/information-protection/05-rights-management-and-message-encryption.md#lab-1-fixtures-no-tenant) of *Rights Management and Message Encryption*
 - **In a test tenant:** [Chapter 05, Lab 2](../../project-plans/developer-workbooks/information-protection/05-rights-management-and-message-encryption.md#lab-2-a-test-tenant)
+- **As training:** [Module 3: Encryption and recovery](../../training/information-protection/03-encryption-and-recovery.md), with a knowledge check
 :::
 
 <!-- labs:end -->
@@ -453,6 +461,7 @@ Until label integration is on, SharePoint and OneDrive can't search, scan, co-au
 ## Try it: G7 SharePoint and OneDrive
 - **On a laptop, no tenant:** [Chapter 05, Lab 1](../../project-plans/developer-workbooks/information-protection/05-rights-management-and-message-encryption.md#lab-1-fixtures-no-tenant) of *Rights Management and Message Encryption*
 - **In a test tenant:** [Chapter 05, Lab 2](../../project-plans/developer-workbooks/information-protection/05-rights-management-and-message-encryption.md#lab-2-a-test-tenant)
+- **As training:** [Module 3: Encryption and recovery](../../training/information-protection/03-encryption-and-recovery.md), with a knowledge check
 :::
 
 <!-- labs:end -->
@@ -494,6 +503,7 @@ Each DLP policy starts from a data outcome ("CUI isn't sent outside the agency e
 ## Try it: G8 DLP and endpoint DLP
 - **On a laptop, no tenant:** [Chapter 06, Lab 1](../../project-plans/developer-workbooks/information-protection/06-dlp-and-auto-labeling.md#lab-1-fixtures-no-tenant) of *DLP and Auto-Labeling*
 - **In a test tenant:** [Chapter 06, Lab 2](../../project-plans/developer-workbooks/information-protection/06-dlp-and-auto-labeling.md#lab-2-a-test-tenant)
+- **As training:** [Module 4: DLP, auto-labeling and AI](../../training/information-protection/04-dlp-auto-labeling-and-ai.md), with a knowledge check
 :::
 
 <!-- labs:end -->
@@ -534,6 +544,7 @@ What users didn't label is found by sensitive information types, custom types ke
 ## Try it: G9 Auto-labeling and sensitive information types
 - **On a laptop, no tenant:** [Chapter 06, Lab 1](../../project-plans/developer-workbooks/information-protection/06-dlp-and-auto-labeling.md#lab-1-fixtures-no-tenant) of *DLP and Auto-Labeling*
 - **In a test tenant:** [Chapter 06, Lab 2](../../project-plans/developer-workbooks/information-protection/06-dlp-and-auto-labeling.md#lab-2-a-test-tenant)
+- **As training:** [Module 4: DLP, auto-labeling and AI](../../training/information-protection/04-dlp-auto-labeling-and-ai.md), with a knowledge check
 :::
 
 <!-- labs:end -->
@@ -585,10 +596,13 @@ Audit is the floor: on, retained and routed to the log platform. Insider Risk Ma
 
 ::: {.callout-tip}
 ## Try it: G10 Audit, insider risk and communication compliance
-- **On a laptop, no tenant:** [Chapter 01, Lab 1](../../project-plans/developer-workbooks/information-protection/01-access-and-the-read-path.md#lab-1-fixtures-no-tenant) of *Access and the Read Path*
-- **In a test tenant:** [Chapter 01, Lab 2](../../project-plans/developer-workbooks/information-protection/01-access-and-the-read-path.md#lab-2-a-test-tenant)
 - **On a laptop, no tenant:** [Chapter 07, Lab 1](../../project-plans/developer-workbooks/information-protection/07-audit-and-the-synthetic-events.md#lab-1-fixtures-no-tenant) of *Audit and the Synthetic Events*
 - **In a test tenant:** [Chapter 07, Lab 2](../../project-plans/developer-workbooks/information-protection/07-audit-and-the-synthetic-events.md#lab-2-a-test-tenant)
+- **On a laptop, no tenant:** [Chapter 08, Lab 1](../../project-plans/developer-workbooks/information-protection/08-drift-metrics-and-the-monthly-evidence-run.md#lab-1-fixtures-no-tenant) of *Drift, Metrics and the Monthly Evidence Run*
+- **In a test tenant:** [Chapter 08, Lab 2](../../project-plans/developer-workbooks/information-protection/08-drift-metrics-and-the-monthly-evidence-run.md#lab-2-a-test-tenant)
+- **On a laptop, no tenant:** [Chapter 09, Lab 1](../../project-plans/developer-workbooks/information-protection/09-deploying-to-test-and-production.md#lab-1-stand-ins-no-tenant) of *Deploying to Test and Production*
+- **In a test tenant:** [Chapter 09, Lab 2](../../project-plans/developer-workbooks/information-protection/09-deploying-to-test-and-production.md#lab-2-a-test-tenant)
+- **As training:** [Module 5: Audit, drift and evidence](../../training/information-protection/05-audit-drift-and-evidence.md), with a knowledge check
 :::
 
 <!-- labs:end -->
@@ -629,8 +643,7 @@ Microsoft 365 Copilot works in the user's security context and honors labels and
 ## Try it: G11 AI data security
 - **On a laptop, no tenant:** [Chapter 06, Lab 1](../../project-plans/developer-workbooks/information-protection/06-dlp-and-auto-labeling.md#lab-1-fixtures-no-tenant) of *DLP and Auto-Labeling*
 - **In a test tenant:** [Chapter 06, Lab 2](../../project-plans/developer-workbooks/information-protection/06-dlp-and-auto-labeling.md#lab-2-a-test-tenant)
-- **On a laptop, no tenant:** [Chapter 07, Lab 1](../../project-plans/developer-workbooks/information-protection/07-audit-and-the-synthetic-events.md#lab-1-fixtures-no-tenant) of *Audit and the Synthetic Events*
-- **In a test tenant:** [Chapter 07, Lab 2](../../project-plans/developer-workbooks/information-protection/07-audit-and-the-synthetic-events.md#lab-2-a-test-tenant)
+- **As training:** [Module 4: DLP, auto-labeling and AI](../../training/information-protection/04-dlp-auto-labeling-and-ai.md), with a knowledge check
 :::
 
 <!-- labs:end -->
@@ -662,12 +675,20 @@ The configuration is exported monthly as a dated baseline, compared with the las
 
 ::: {.callout-tip}
 ## Try it: G12 Operations and evidence
+- **On a laptop, no tenant:** [Chapter 01, Lab 1](../../project-plans/developer-workbooks/information-protection/01-access-and-the-read-path.md#lab-1-fixtures-no-tenant) of *Access and the Read Path*
+- **In a test tenant:** [Chapter 01, Lab 2](../../project-plans/developer-workbooks/information-protection/01-access-and-the-read-path.md#lab-2-a-test-tenant)
 - **On a laptop, no tenant:** [Chapter 02, Lab 1](../../project-plans/developer-workbooks/information-protection/02-the-baseline-export.md#lab-1-fixtures-no-tenant) of *The Baseline Export*
 - **In a test tenant:** [Chapter 02, Lab 2](../../project-plans/developer-workbooks/information-protection/02-the-baseline-export.md#lab-2-a-test-tenant)
+- **On a laptop, no tenant:** [Chapter 03, Lab 1](../../project-plans/developer-workbooks/information-protection/03-the-data-inventory.md#lab-1-fixtures-no-tenant) of *The Data Inventory*
+- **In a test tenant:** [Chapter 03, Lab 2](../../project-plans/developer-workbooks/information-protection/03-the-data-inventory.md#lab-2-a-test-tenant)
+- **As training:** [Module 1: Classes, access and the baseline](../../training/information-protection/01-classes-access-and-the-baseline.md), with a knowledge check
+- **On a laptop, no tenant:** [Chapter 07, Lab 1](../../project-plans/developer-workbooks/information-protection/07-audit-and-the-synthetic-events.md#lab-1-fixtures-no-tenant) of *Audit and the Synthetic Events*
+- **In a test tenant:** [Chapter 07, Lab 2](../../project-plans/developer-workbooks/information-protection/07-audit-and-the-synthetic-events.md#lab-2-a-test-tenant)
 - **On a laptop, no tenant:** [Chapter 08, Lab 1](../../project-plans/developer-workbooks/information-protection/08-drift-metrics-and-the-monthly-evidence-run.md#lab-1-fixtures-no-tenant) of *Drift, Metrics and the Monthly Evidence Run*
 - **In a test tenant:** [Chapter 08, Lab 2](../../project-plans/developer-workbooks/information-protection/08-drift-metrics-and-the-monthly-evidence-run.md#lab-2-a-test-tenant)
 - **On a laptop, no tenant:** [Chapter 09, Lab 1](../../project-plans/developer-workbooks/information-protection/09-deploying-to-test-and-production.md#lab-1-stand-ins-no-tenant) of *Deploying to Test and Production*
 - **In a test tenant:** [Chapter 09, Lab 2](../../project-plans/developer-workbooks/information-protection/09-deploying-to-test-and-production.md#lab-2-a-test-tenant)
+- **As training:** [Module 5: Audit, drift and evidence](../../training/information-protection/05-audit-drift-and-evidence.md), with a knowledge check
 :::
 
 <!-- labs:end -->

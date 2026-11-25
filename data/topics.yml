@@ -787,7 +787,6 @@ topics:
       - docs/books/b20-information-protection/*.md
     gaps:
       plan: "Needed: no project plan sequences Book 20's rollout."
-      path: "Needed: the developer workbook's labs have no learning path around them yet."
 
   - id: compliance-evidence
     title: Compliance and Evidence

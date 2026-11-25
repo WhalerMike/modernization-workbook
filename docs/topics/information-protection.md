@@ -47,6 +47,7 @@ The learning path and its hands-on labs.
 
 | Page | What it is |
 |---|---|
+| [Learning path: Information Protection with Microsoft Purview](../training/information-protection/index.md) | A learning path in five modules for Purview and Microsoft 365 engineers, operators, security monitors, records and privacy officials and ISSO reviewers, built from the information protection implementation guide and Book 20: the data… |
 | [Labs](../training/labs.md#ip) | Every lab in Building Information Protection: what each needs, where it runs, and its commands. |
 
 : Learn {.striped .hover}
@@ -93,6 +94,5 @@ What the workbook doesn't have on information protection, and whether it should.
 | Missing | Why |
 |---|---|
 | Project plan | Needed: no project plan sequences Book 20's rollout. |
-| Learning path | Needed: the developer workbook's labs have no learning path around them yet. |
 
 : Not here {.striped .hover}
