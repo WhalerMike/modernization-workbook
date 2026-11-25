@@ -179,3 +179,4 @@ Mike, November 24, 2026, answering the Chapter 13 change's three questions: "VK-
 | # | Change | Where | Verdict | Source |
 |---|---|---|---|---|
 | R-24o | The "Which guide?" box names *Non-Person Identity: Zero Trust, SASE and Other Clouds* | Which guide? | added | Mike, November 24, 2026 |
+| R-24p | Step 1f: custom security attributes in the `NonPersonIdentity` set are required, with the seven WD-175 keys; GCC availability not stated | Step 1f | changed *(design guidance)* | WD-175; Learn, custom security attributes overview |
