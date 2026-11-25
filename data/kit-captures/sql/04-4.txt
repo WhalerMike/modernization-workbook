@@ -1,11 +1,17 @@
-PS> ./Test-SqlParallelRun.ps1 -AuditPath tests/fixtures/audit-day1/audit.json -Instance SQLPRD01 -MappingPath tests/fixtures/mapping/sqlprd01-mapping.csv -OutputPath out/parallel-day1
-Legacy               Entra                 LegacySessions EntraSessions Ready Why
-------               -----                 -------------- ------------- ----- ---
-CONTOSO\PayrollUsers SQL-Payroll-Users                 12             0 False Entra principal not seen connecting; still arrives only on the legacy login
-CONTOSO\svc-payroll  payroll-web-mi                    41             0 False Entra principal not seen connecting; 41 remote NTLM sessions; still arrives only on the legacy login
-CONTOSO\SQL-Admins   SQL-DBA-Admins                     0             0 False Entra principal not seen connecting
-payroll_report       payroll-reporting-app              3             0 False Entra principal not seen connecting; still arrives only on the legacy login
-
-Wrote 2 files and manifest.json to out/parallel-day1
-Evidence for PARALLEL (Judge the parallel run against its exit criteria): AC-2, CA-7; KSI-MLA-EVC
-Cutover-ready: 0 of 4: keep the parallel run going
+PS> Get-Content "$Run/logins/sqlprd01-cutover.sql", "$Run/logins/sqlprd01-rollback.sql"
+USE master;
+GO
+DENY CONNECT SQL TO [CONTOSO\PayrollUsers];  -- group: superseded by SQL-Payroll-Users
+ALTER LOGIN [CONTOSO\svc-payroll] DISABLE;  -- superseded by payroll-web-mi
+ALTER LOGIN [payroll_report] DISABLE;  -- superseded by payroll-reporting-app
+ALTER SERVER ROLE [sysadmin] DROP MEMBER [CONTOSO\SQL-Admins];  -- DENY doesn't bind sysadmin members
+DENY CONNECT SQL TO [CONTOSO\SQL-Admins];  -- group: superseded by SQL-DBA-Admins
+GO
+USE master;
+GO
+GRANT CONNECT SQL TO [CONTOSO\PayrollUsers];
+ALTER LOGIN [CONTOSO\svc-payroll] ENABLE;
+ALTER LOGIN [payroll_report] ENABLE;
+GRANT CONNECT SQL TO [CONTOSO\SQL-Admins];
+ALTER SERVER ROLE [sysadmin] ADD MEMBER [CONTOSO\SQL-Admins];
+GO

@@ -1,25 +1,4 @@
-PS> Import-Csv out/certs/certificates.csv | Select-Object Instance, Class, Issuer, Action | Format-List
-Instance : SQLPRD01
-Class    : TLS for client connections
-Issuer   : CONTOSO-ISSUING-CA01
-Action   : Retained AD CS issues it through the CLM platform (Book 07, Ch 04); move it before this CA is retired
-
-Instance : SQLPRD06
-Class    : TLS for client connections
-Issuer   : Federal Bridge Test Issuer (fictional)
-Action   : Not AD CS: track it in the certificate lifecycle platform
-
-Instance : SQLPRD02
-Class    : Certificate-mapped login
-Issuer   : CONTOSO-ISSUING-CA01
-Action   : Not renewed by the CLM platform: replace or re-map before this CA is retired (Chapter 22)
-
-Instance : SQLPRD02
-Class    : Certificate-mapped endpoint
-Issuer   : CONTOSO-ISSUING-CA01
-Action   : Not renewed by the CLM platform: replace or re-map before this CA is retired (Chapter 22)
-
-Instance : SQLFCI04
-Class    : Certificate-based sign-in (NTLM interim)
-Issuer   : CONTOSO-ISSUING-CA01
-Action   : NTLM interim: it also depends on the domain controllers certificates; retire it with the interim posture
+PS> $Run = "C:\FMWLabs\results\sql-server-identity-08\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+PS> New-Item -ItemType Directory -Path $Run -Force | Out-Null
+PS> $Run
+C:/FMWLabs/results/sql-server-identity-08/lab1/<run>
