@@ -2257,6 +2257,61 @@
   "page": "index.docx",
   "title": "Building Provider Notices"
  },
+ "docs/project-plans/developer-workbooks/sql-server-identity/01-the-estate-and-the-consolidation-gate.md": {
+  "bundle": "building-sql-server-identity-bundle.docx",
+  "page": "01-the-estate-and-the-consolidation-gate.docx",
+  "title": "Building SQL Server Identity"
+ },
+ "docs/project-plans/developer-workbooks/sql-server-identity/02-the-authentication-audit.md": {
+  "bundle": "building-sql-server-identity-bundle.docx",
+  "page": "02-the-authentication-audit.docx",
+  "title": "Building SQL Server Identity"
+ },
+ "docs/project-plans/developer-workbooks/sql-server-identity/03-arc-and-the-engines-identity.md": {
+  "bundle": "building-sql-server-identity-bundle.docx",
+  "page": "03-arc-and-the-engines-identity.docx",
+  "title": "Building SQL Server Identity"
+ },
+ "docs/project-plans/developer-workbooks/sql-server-identity/04-entra-logins-and-the-parallel-run.md": {
+  "bundle": "building-sql-server-identity-bundle.docx",
+  "page": "04-entra-logins-and-the-parallel-run.docx",
+  "title": "Building SQL Server Identity"
+ },
+ "docs/project-plans/developer-workbooks/sql-server-identity/05-groups-roles-and-the-perimeter.md": {
+  "bundle": "building-sql-server-identity-bundle.docx",
+  "page": "05-groups-roles-and-the-perimeter.docx",
+  "title": "Building SQL Server Identity"
+ },
+ "docs/project-plans/developer-workbooks/sql-server-identity/06-ntlm-and-the-spns.md": {
+  "bundle": "building-sql-server-identity-bundle.docx",
+  "page": "06-ntlm-and-the-spns.docx",
+  "title": "Building SQL Server Identity"
+ },
+ "docs/project-plans/developer-workbooks/sql-server-identity/07-the-application-chain.md": {
+  "bundle": "building-sql-server-identity-bundle.docx",
+  "page": "07-the-application-chain.docx",
+  "title": "Building SQL Server Identity"
+ },
+ "docs/project-plans/developer-workbooks/sql-server-identity/08-ad-cs-dependencies.md": {
+  "bundle": "building-sql-server-identity-bundle.docx",
+  "page": "08-ad-cs-dependencies.docx",
+  "title": "Building SQL Server Identity"
+ },
+ "docs/project-plans/developer-workbooks/sql-server-identity/09-closure-drift-and-evidence.md": {
+  "bundle": "building-sql-server-identity-bundle.docx",
+  "page": "09-closure-drift-and-evidence.docx",
+  "title": "Building SQL Server Identity"
+ },
+ "docs/project-plans/developer-workbooks/sql-server-identity/10-deploying-to-test-and-production.md": {
+  "bundle": "building-sql-server-identity-bundle.docx",
+  "page": "10-deploying-to-test-and-production.docx",
+  "title": "Building SQL Server Identity"
+ },
+ "docs/project-plans/developer-workbooks/sql-server-identity/index.md": {
+  "bundle": "building-sql-server-identity-bundle.docx",
+  "page": "index.docx",
+  "title": "Building SQL Server Identity"
+ },
  "docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.md": {
   "bundle": "building-ticket-to-machine-bundle.docx",
   "page": "01-the-loop-and-the-typed-task.docx",

@@ -1,0 +1,155 @@
+{
+  "asOf": "2026-11-20",
+  "domain": "contoso.example",
+  "netbiosDomain": "CONTOSO",
+  "note": "A fictional estate. Every name, address and number is invented.",
+  "instances": [
+    {
+      "name": "SQLPRD01",
+      "host": "sqlprd01.contoso.example",
+      "productVersion": "16.0.4135.4",
+      "edition": "Enterprise",
+      "clustered": false,
+      "utilizationPct": 62,
+      "databases": [
+        {
+          "name": "Payroll",
+          "lastAccessDays": 0,
+          "application": "payroll-web",
+          "applicationStatus": "active"
+        },
+        {
+          "name": "PayrollArchive",
+          "lastAccessDays": 45,
+          "application": "payroll-web",
+          "applicationStatus": "active"
+        }
+      ],
+      "constraints": []
+    },
+    {
+      "name": "SQLPRD02",
+      "host": "sqlprd02.contoso.example",
+      "productVersion": "16.0.4135.4",
+      "edition": "Standard",
+      "clustered": false,
+      "utilizationPct": 38,
+      "databases": [
+        {
+          "name": "Claims",
+          "lastAccessDays": 0,
+          "application": "claims-batch",
+          "applicationStatus": "active"
+        }
+      ],
+      "constraints": []
+    },
+    {
+      "name": "SQLLEG03",
+      "host": "sqlleg03.contoso.example",
+      "productVersion": "13.0.6435.1",
+      "edition": "Standard",
+      "clustered": false,
+      "utilizationPct": 4,
+      "databases": [
+        {
+          "name": "Reports",
+          "lastAccessDays": 3,
+          "application": "reports-odbc",
+          "applicationStatus": "active"
+        }
+      ],
+      "constraints": []
+    },
+    {
+      "name": "SQLFCI04",
+      "host": "sqlfci04.contoso.example",
+      "productVersion": "15.0.4375.4",
+      "edition": "Enterprise",
+      "clustered": true,
+      "utilizationPct": 55,
+      "databases": [
+        {
+          "name": "VendorHR",
+          "lastAccessDays": 0,
+          "application": "vendor-hr",
+          "applicationStatus": "active"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "vendor-lock",
+          "detail": "The vendor certifies SQL Server 2019 only, through its 2027 release."
+        }
+      ]
+    },
+    {
+      "name": "SQLOLD05",
+      "host": "sqlold05.contoso.example",
+      "productVersion": "12.0.6449.1",
+      "edition": "Standard",
+      "clustered": false,
+      "utilizationPct": 1,
+      "databases": [
+        {
+          "name": "Inventory2009",
+          "lastAccessDays": 912,
+          "application": "inventory-2009",
+          "applicationStatus": "decommissioned"
+        }
+      ],
+      "constraints": []
+    },
+    {
+      "name": "SQLPRD06",
+      "host": "sqlprd06.contoso.example",
+      "productVersion": "17.0.1000.7",
+      "edition": "Enterprise",
+      "clustered": false,
+      "utilizationPct": 20,
+      "consolidationTarget": true,
+      "databases": [
+        {
+          "name": "Payments",
+          "lastAccessDays": 0,
+          "application": "payments-api",
+          "applicationStatus": "active"
+        }
+      ],
+      "constraints": []
+    },
+    {
+      "name": "SQLLEG07",
+      "host": "sqlleg07.contoso.example",
+      "productVersion": "14.0.3485.1",
+      "edition": "Standard",
+      "clustered": false,
+      "utilizationPct": 9,
+      "databases": [
+        {
+          "name": "GrantsTracking",
+          "lastAccessDays": 1,
+          "application": "grants-tracking",
+          "applicationStatus": "active"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "collation",
+          "detail": "GrantsTracking uses Latin1_General_CI_AS; the shared target uses SQL_Latin1_General_CP1_CI_AS."
+        }
+      ]
+    },
+    {
+      "name": "SQLDEV08",
+      "host": "sqldev08.contoso.example",
+      "productVersion": null,
+      "edition": null,
+      "clustered": null,
+      "utilizationPct": null,
+      "databases": [],
+      "constraints": [],
+      "discoveredBy": "MSSQLSvc SPN only"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "_comment": "The program's defaults. Each is a design value from Book 06; change it in a copy, never in the kit, and record why.",
+  "zombieDays": 400,
+  "entraMinimumMajor": 2022,
+  "parallelRunDays": 30,
+  "observeAfterDisableDays": 30,
+  "certificateWarningDays": 90,
+  "builtinLoginPattern": "^(NT SERVICE|NT AUTHORITY|BUILTIN)\\\\|^##"
+}

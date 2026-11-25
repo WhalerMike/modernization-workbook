@@ -18,7 +18,8 @@ Assessment guide and learning path the results kit (--kit zta-results), the Glob
 workbook its kit (--kit global-secure-access-code), the Azure Security Engineering guide and its
 developer workbook their kit (--kit azure-security-code), and the Defender XDR guide and developer
 workbook the Defender XDR kit (--kit defender-xdr-code), and the Daily Checks Dashboard guide and
-developer workbook the daily checks workbook kit (--kit daily-checks-workbook-code).
+developer workbook the daily checks workbook kit (--kit daily-checks-workbook-code), and
+Building SQL Server Identity its kit (--kit sql-server-identity-code).
 This packs the folder as
 it is in the repository, scripts, README, fixtures and tests, under a top-level <kit>/
 folder. The archive is reproducible: entries are sorted, timestamps fixed and
@@ -48,7 +49,7 @@ KITS = ("start-kit", "copilot-agent-pack", "app-modernization", "ansible", "vali
         "privileged-access-code", "non-person-identity-code", "microsoft-automation-code",
         "cisco-sdwan", "ticket-to-machine-task-catalog", "dp-consolidation", "provider-notices-code",
         "zta-results", "global-secure-access-code", "azure-security-code", "defender-xdr-code",
-        "daily-checks-workbook-code")
+        "daily-checks-workbook-code", "sql-server-identity-code")
 # Kits packed from several examples folders, each kept under its own path, instead of
 # from examples/<kit>. The Attribute-Driven Migration developer workbook's chapters 01-09
 # build on these folders and the Microsoft samples pinned under third_party/.
@@ -107,6 +108,8 @@ BUNDLES = {
     "defender-xdr-code": ("defender-xdr", "zta-results/config"),
     # The daily checks workbook kit (Building the Daily Checks Workbook).
     "daily-checks-workbook-code": ("daily-checks-workbook",),
+    # The SQL Server identity kit (Building SQL Server Identity, Book 06).
+    "sql-server-identity-code": ("sql-server-identity",),
 }
 # Kits whose download name differs from their folder name.
 ZIP_NAMES = {"ansible": "ansible-examples"}

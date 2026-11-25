@@ -45,6 +45,7 @@ WORKBOOKS = {
     "gsa": ("docs/project-plans/developer-workbooks/global-secure-access", "examples/global-secure-access"),
     "azs": ("docs/project-plans/developer-workbooks/azure-security", "examples/azure-security"),
     "dc": ("docs/project-plans/developer-workbooks/daily-checks", "examples/daily-checks-workbook"),
+    "sql": ("docs/project-plans/developer-workbooks/sql-server-identity", "examples/sql-server-identity"),
     "hr": ("docs/project-plans/developer-workbooks/hr-driven-identity", "examples/hr-lifecycle"),
     "adm": ("docs/books/b19-developer-workbook", "examples"),
 }

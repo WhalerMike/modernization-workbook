@@ -486,7 +486,8 @@ topics:
   - id: data-platform
     title: Data Platform and SQL Server
     subject: the data platform and SQL Server
-    kit: start-kit
+    workbook: sql
+    kit: [sql-server-identity, start-kit]
     summary: >-
       Ending SQL Server's inheritance of Windows Authentication: the estate inventory and the
       retain, consolidate or retire decision, the authentication audit, Azure Arc and a managed
@@ -530,6 +531,7 @@ topics:
         - page: docs/books/b06-data-platform/appendix-b-ato-kit.md
     downloads:
       - start-kit.zip
+      - building-sql-server-identity-bundle.docx
       - b06-data-platform-bundle.docx
       - b06-data-platform-runbooks.docx
     members:
@@ -538,12 +540,7 @@ topics:
       guide: >-
         Not needed, because Book 06's ten runbooks (R01 to R10), listed under Build, are its
         step-by-step implementation guide.
-      workbook: >-
-        Needed: decide with the learning path plan. The Start Kit's SQL Server discovery is the only
-        code in examples/; nothing there runs the login migration, the parallel run or NTLM
-        remediation.
-      path: "Needed: the first new learning path to be planned (decided Nov 24, 2026)."
-      labs: "Needed: they come with the learning path."
+      path: "Needed: the learning path is phase 2 of filling this topic's gaps (decided Nov 24, 2026)."
 
   - id: pki
     title: PKI and Certificates

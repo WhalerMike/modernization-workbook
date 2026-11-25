@@ -2753,6 +2753,72 @@
    "title": "Provider Notices"
   }
  ],
+ "docs/project-plans/developer-workbooks/sql-server-identity/01-the-estate-and-the-consolidation-gate.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/sql-server-identity/02-the-authentication-audit.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/sql-server-identity/03-arc-and-the-engines-identity.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/sql-server-identity/04-entra-logins-and-the-parallel-run.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/sql-server-identity/05-groups-roles-and-the-perimeter.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/sql-server-identity/06-ntlm-and-the-spns.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/sql-server-identity/07-the-application-chain.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/sql-server-identity/08-ad-cs-dependencies.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/sql-server-identity/09-closure-drift-and-evidence.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/sql-server-identity/10-deploying-to-test-and-production.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/sql-server-identity/index.md": [
+  {
+   "id": "data-platform",
+   "title": "Data Platform and SQL Server"
+  }
+ ],
  "docs/project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.md": [
   {
    "id": "ticket-to-machine",
@@ -3157,6 +3223,12 @@
   {
    "id": "dns-dhcp-ipam",
    "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/training/lab-setup.md": [
+  {
+   "id": "microsoft-automation",
+   "title": "Microsoft Automation"
   }
  ],
  "docs/training/ms-automation-arc.md": [

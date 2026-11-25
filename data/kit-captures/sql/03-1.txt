@@ -1,0 +1,10 @@
+PS> Import-Module ./powershell/SqlIdentity/SqlIdentity.psd1
+PS> $arc = Read-SqlJson tests/fixtures/arc/arc.json
+PS> $arc.environment
+AzureCloud
+PS> $arc.machines | Format-Table
+name        status       agentVersion
+----        ------       ------------
+sqlprd01    Connected    1.58
+sqlprd06    Connected    1.58
+sqlfci04-n1 Disconnected 1.49

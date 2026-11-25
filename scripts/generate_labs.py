@@ -82,6 +82,9 @@ WORKBOOKS = [
     Workbook("dc", "Building the Daily Checks Workbook", "docs/project-plans/developer-workbooks/daily-checks",
              "daily-checks-workbook-code.zip", "docs/books/guides/daily-checks-dashboard-implementation.md",
              "docs/training/daily-checks-dashboard"),
+    # Book 06's runbooks R01 to R10 are its implementation guide; the learning path comes in a later PR.
+    Workbook("sql", "Building SQL Server Identity", "docs/project-plans/developer-workbooks/sql-server-identity",
+             "sql-server-identity-code.zip"),
 ]
 # Learning paths whose modules have their own exercises but no developer workbook behind them.
 MS_AUTOMATION = ["docs/training/ms-automation-foundations.md", "docs/training/ms-automation-entra.md",

@@ -1,0 +1,8 @@
+PS> ./Compare-SqlAuditRun.ps1 -BeforePath tests/fixtures/audit-day1/audit.json -AfterPath tests/fixtures/audit-day30/audit.json -ExceptionsPath tests/fixtures/audit-day30/exceptions.json -OutputPath out/drift
+Instance Drift            Detail
+-------- -----            ------
+SQLPRD06 New legacy login CONTOSO/jdoe (U), sysadmin
+
+Wrote 2 files and manifest.json to out/drift
+Evidence for DRIFT (Compare two audit runs for regressions): CA-7, CM-6; KSI-MLA-EVC, KSI-SVC-ACM
+Drift is a compliance finding: open a task for each row (Building Ticket-to-Machine routes it).

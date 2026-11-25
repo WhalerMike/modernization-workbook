@@ -1,0 +1,8 @@
+PS> Import-Csv out/groups/groups.csv | Format-Table Group, Members, Grants, Flags -Wrap
+Group                    Members Grants              Flags
+-----                    ------- ------              -----
+CONTOSO/PayrollUsers     214     SQLPRD01
+CONTOSO/SQL-Admins       6       SQLPRD01 (sysadmin)
+CONTOSO/SQL-Agent-Alerts 9
+CONTOSO/ClaimsTeam       31      SQLPRD02
+CONTOSO/HR-Analysts      18      SQLFCI04            nested: flatten (CONTOSO/HR-Leads)

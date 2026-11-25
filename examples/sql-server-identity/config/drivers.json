@@ -1,0 +1,66 @@
+{
+  "_comment": "Entra authentication support by driver family and the version that added each mode, from Book 06, Chapter 19's 'Entra options by driver' table (which cites Microsoft Learn for each row). A driver family not in that table, such as System.Data.SqlClient or the deprecated SQLOLEDB provider, has no Entra path in the kit's reading: moving to a listed driver is a code or deployment change. Re-check a row against the chapter's sources before relying on it.",
+  "families": [
+    {
+      "id": "Microsoft.Data.SqlClient",
+      "match": [
+        "Microsoft.Data.SqlClient"
+      ],
+      "managedIdentity": "2.1",
+      "servicePrincipal": "2.0",
+      "credentialChain": "3.0",
+      "managedIdentityKeyword": "Authentication=Active Directory Managed Identity",
+      "defaultKeyword": "Authentication=Active Directory Default",
+      "servicePrincipalKeyword": "Authentication=Active Directory Service Principal"
+    },
+    {
+      "id": "ODBC",
+      "match": [
+        "ODBC Driver 17 for SQL Server",
+        "ODBC Driver 18 for SQL Server"
+      ],
+      "managedIdentity": "17.3.1.1",
+      "servicePrincipal": "17.7",
+      "credentialChain": null,
+      "managedIdentityKeyword": "Authentication=ActiveDirectoryMsi",
+      "servicePrincipalKeyword": "Authentication=ActiveDirectoryServicePrincipal"
+    },
+    {
+      "id": "MSOLEDBSQL",
+      "match": [
+        "MSOLEDBSQL",
+        "MSOLEDBSQL19"
+      ],
+      "managedIdentity": "18.3",
+      "servicePrincipal": "18.5",
+      "credentialChain": null,
+      "managedIdentityKeyword": "Authentication=ActiveDirectoryMSI",
+      "servicePrincipalKeyword": "Authentication=ActiveDirectoryServicePrincipal"
+    },
+    {
+      "id": "mssql-jdbc",
+      "match": [
+        "mssql-jdbc"
+      ],
+      "managedIdentity": "12.2",
+      "servicePrincipal": "12.2",
+      "credentialChain": "12.2",
+      "managedIdentityKeyword": "authentication=ActiveDirectoryManagedIdentity",
+      "servicePrincipalKeyword": "authentication=ActiveDirectoryServicePrincipal"
+    }
+  ],
+  "noEntraPath": [
+    "System.Data.SqlClient",
+    "SQLOLEDB",
+    "SQLNCLI",
+    "SQLNCLI11",
+    "SQL Server",
+    "ODBC Driver 11 for SQL Server",
+    "ODBC Driver 13 for SQL Server",
+    "ODBC Driver 13.1 for SQL Server"
+  ],
+  "deprecatedModes": [
+    "Active Directory Password",
+    "ActiveDirectoryPassword"
+  ]
+}

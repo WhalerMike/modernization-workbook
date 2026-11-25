@@ -265,6 +265,8 @@ website:
             text: "Building Azure Security"
           - href: docs/project-plans/developer-workbooks/daily-checks/index.md
             text: "Building the Daily Checks Workbook"
+          - href: docs/project-plans/developer-workbooks/sql-server-identity/index.md
+            text: "Building SQL Server Identity"
       - href: docs/evaluations/index.md
         text: "Evaluations"
       - href: docs/training/index.md
@@ -504,6 +506,10 @@ website:
               href: docs/project-plans/developer-workbooks/daily-checks/index.md
               contents:
                 - auto: "docs/project-plans/developer-workbooks/daily-checks/*-*.md"
+            - section: "Building SQL Server Identity"
+              href: docs/project-plans/developer-workbooks/sql-server-identity/index.md
+              contents:
+                - auto: "docs/project-plans/developer-workbooks/sql-server-identity/*-*.md"
     - id: books
       title: "The Workbook Books"
       style: docked

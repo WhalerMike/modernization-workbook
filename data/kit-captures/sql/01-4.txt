@@ -1,0 +1,5 @@
+PS> (Read-SqlJson tests/fixtures/estate/estate.json).instances | Where-Object name -in 'SQLOLD05', 'SQLDEV08' | Select-Object name, productVersion, discoveredBy, @{ n = 'idleDays'; e = { $_.databases.lastAccessDays } }
+name     productVersion discoveredBy      idleDays
+----     -------------- ------------      --------
+SQLOLD05 12.0.6449.1                           912
+SQLDEV08                MSSQLSvc SPN only

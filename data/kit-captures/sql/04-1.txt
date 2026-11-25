@@ -1,0 +1,50 @@
+PS> ./New-SqlLoginPlan.ps1 -AuditPath tests/fixtures/audit-day1/audit.json -Instance SQLPRD01 -MappingPath tests/fixtures/mapping/sqlprd01-mapping.csv -OutputPath out/logins
+-- Login plan for SQLPRD01. Dry run: review every line; nothing here has run.
+USE master;
+GO
+IF NOT EXISTS (SELECT 1 FROM sys.server_principals WHERE name = N'payroll-reporting-app')
+    CREATE LOGIN [payroll-reporting-app] FROM EXTERNAL PROVIDER;
+GO
+IF NOT EXISTS (SELECT 1 FROM sys.server_principals WHERE name = N'payroll-web-mi')
+    CREATE LOGIN [payroll-web-mi] FROM EXTERNAL PROVIDER;
+GO
+IF NOT EXISTS (SELECT 1 FROM sys.server_principals WHERE name = N'SQL-DBA-Admins')
+    CREATE LOGIN [SQL-DBA-Admins] FROM EXTERNAL PROVIDER;
+ALTER SERVER ROLE [sysadmin] ADD MEMBER [SQL-DBA-Admins];
+GO
+IF NOT EXISTS (SELECT 1 FROM sys.server_principals WHERE name = N'SQL-Payroll-Users')
+    CREATE LOGIN [SQL-Payroll-Users] FROM EXTERNAL PROVIDER;
+GO
+USE [Payroll];
+GO
+IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = N'payroll-reporting-app')
+    CREATE USER [payroll-reporting-app] FROM LOGIN [payroll-reporting-app];
+ALTER ROLE [db_datareader] ADD MEMBER [payroll-reporting-app];
+IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = N'payroll-web-mi')
+    CREATE USER [payroll-web-mi] FROM LOGIN [payroll-web-mi];
+ALTER ROLE [db_datareader] ADD MEMBER [payroll-web-mi];
+ALTER ROLE [db_datawriter] ADD MEMBER [payroll-web-mi];
+ALTER ROLE [db_executor] ADD MEMBER [payroll-web-mi];
+IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = N'SQL-Payroll-Users')
+    CREATE USER [SQL-Payroll-Users] FROM LOGIN [SQL-Payroll-Users];
+ALTER ROLE [db_datareader] ADD MEMBER [SQL-Payroll-Users];
+ALTER ROLE [db_datawriter] ADD MEMBER [SQL-Payroll-Users];
+GO
+USE [PayrollArchive];
+GO
+IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = N'SQL-Payroll-Users')
+    CREATE USER [SQL-Payroll-Users] FROM LOGIN [SQL-Payroll-Users];
+ALTER ROLE [db_datareader] ADD MEMBER [SQL-Payroll-Users];
+GO
+
+
+Instance MappedLogins EntraPrincipals Unresolved
+-------- ------------ --------------- ----------
+SQLPRD01            4               4 none
+
+Wrote 5 files and manifest.json to out/logins
+Evidence for LOGINS (Plan the Entra logins and database users (dry run)): AC-2, IA-2, CM-3, CM-4; KSI-CMT-LMC, KSI-CMT-RVP
+Create script SHA-256: deed30db5cccb0248289c1d62b013f092514bd6fb858406e068c8ec7adc3f709
+Warning: payroll-web-mi would hold 3 database roles (Payroll:db_datareader, Payroll:db_datawriter, Payroll:db_executor): Book 06, Chapter 16 gives each group one role on one database
+Warning: SQL-DBA-Admins would hold db_owner or sysadmin: confirm it's needed (Chapter 16)
+Warning: SQL-Payroll-Users would hold 3 database roles (Payroll:db_datareader, Payroll:db_datawriter, PayrollArchive:db_datareader): Book 06, Chapter 16 gives each group one role on one database

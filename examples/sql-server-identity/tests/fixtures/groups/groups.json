@@ -1,0 +1,94 @@
+{
+  "asOf": "2026-11-20",
+  "groups": [
+    {
+      "name": "CONTOSO\\PayrollUsers",
+      "category": "Security",
+      "mailEnabled": false,
+      "membershipBasis": "org-chart",
+      "orgCodes": [
+        "FIN-PAY"
+      ],
+      "members": 214,
+      "nestedGroups": [],
+      "grants": [
+        {
+          "instance": "SQLPRD01",
+          "serverRoles": [],
+          "databases": [
+            "Payroll",
+            "PayrollArchive"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CONTOSO\\SQL-Admins",
+      "category": "Security",
+      "mailEnabled": false,
+      "membershipBasis": "explicit",
+      "orgCodes": [],
+      "members": 6,
+      "nestedGroups": [],
+      "grants": [
+        {
+          "instance": "SQLPRD01",
+          "serverRoles": [
+            "sysadmin"
+          ],
+          "databases": []
+        }
+      ]
+    },
+    {
+      "name": "CONTOSO\\SQL-Agent-Alerts",
+      "category": "Distribution",
+      "mailEnabled": true,
+      "membershipBasis": "explicit",
+      "orgCodes": [],
+      "members": 9,
+      "nestedGroups": [],
+      "grants": []
+    },
+    {
+      "name": "CONTOSO\\ClaimsTeam",
+      "category": "Security",
+      "mailEnabled": true,
+      "membershipBasis": "explicit",
+      "orgCodes": [],
+      "members": 31,
+      "nestedGroups": [],
+      "grants": [
+        {
+          "instance": "SQLPRD02",
+          "serverRoles": [],
+          "databases": [
+            "Claims"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CONTOSO\\HR-Analysts",
+      "category": "Security",
+      "mailEnabled": false,
+      "membershipBasis": "org-chart",
+      "orgCodes": [
+        "HR-ANL"
+      ],
+      "members": 18,
+      "nestedGroups": [
+        "CONTOSO\\HR-Leads"
+      ],
+      "grants": [
+        {
+          "instance": "SQLFCI04",
+          "serverRoles": [],
+          "databases": [
+            "VendorHR"
+          ]
+        }
+      ]
+    }
+  ]
+}

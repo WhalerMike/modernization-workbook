@@ -1,0 +1,56 @@
+{
+  "asOf": "2026-11-20",
+  "enterpriseCAs": [
+    "CONTOSO-ISSUING-CA01"
+  ],
+  "certificates": [
+    {
+      "instance": "SQLPRD01",
+      "use": "tls",
+      "subject": "CN=sqlprd01.contoso.example",
+      "issuer": "CONTOSO-ISSUING-CA01",
+      "template": "SQLServerTLS",
+      "thumbprint": "A1B2C3D4E5F60718293A4B5C6D7E8F9012345678",
+      "notAfter": "2027-01-31"
+    },
+    {
+      "instance": "SQLPRD06",
+      "use": "tls",
+      "subject": "CN=sqlprd06.contoso.example",
+      "issuer": "Federal Bridge Test Issuer (fictional)",
+      "template": null,
+      "thumbprint": "0F1E2D3C4B5A69788796A5B4C3D2E1F00F1E2D3C",
+      "notAfter": "2028-03-15"
+    },
+    {
+      "instance": "SQLPRD02",
+      "use": "login",
+      "login": "claims_cert_login",
+      "subject": "CN=claims-signing",
+      "issuer": "CONTOSO-ISSUING-CA01",
+      "template": "CodeSigning",
+      "thumbprint": "1122334455667788990011223344556677889900",
+      "notAfter": "2026-12-31"
+    },
+    {
+      "instance": "SQLPRD02",
+      "use": "endpoint",
+      "endpoint": "Mirroring",
+      "subject": "CN=sqlprd02-endpoint",
+      "issuer": "CONTOSO-ISSUING-CA01",
+      "template": "SQLEndpoint",
+      "thumbprint": "99AA88BB77CC66DD55EE44FF3300221100998877",
+      "notAfter": "2027-08-01"
+    },
+    {
+      "instance": "SQLFCI04",
+      "use": "client-auth",
+      "subject": "CN=vendorhr-client",
+      "issuer": "CONTOSO-ISSUING-CA01",
+      "template": "ClientAuth",
+      "thumbprint": "ABCDEFABCDEFABCDEFABCDEFABCDEFABCDEFABCD",
+      "notAfter": "2027-02-28",
+      "note": "Certificate-based sign-in held as the NTLM interim posture (Book 06, Chapter 22)."
+    }
+  ]
+}

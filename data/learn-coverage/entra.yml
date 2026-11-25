@@ -9460,6 +9460,8 @@ pages:
   - docs/books/b20-information-protection/_verification/05-rights-management-and-recovery.md
   - docs/books/guides/privileged-access-implementation.md
   - docs/project-plans/developer-workbooks/privileged-access/05-pim-for-groups.md
+  - docs/project-plans/developer-workbooks/sql-server-identity/05-groups-roles-and-the-perimeter.md
+  - docs/project-plans/developer-workbooks/sql-server-identity/_verification/05-groups-roles-and-the-perimeter.md
   - docs/reference/source-register.md
 - path: docs/id-governance/privileged-identity-management/groups-activate-roles.md
   url: https://learn.microsoft.com/entra/id-governance/privileged-identity-management/groups-activate-roles
@@ -20075,6 +20077,8 @@ pages:
   - docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md
   - docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md
+  - docs/project-plans/developer-workbooks/sql-server-identity/05-groups-roles-and-the-perimeter.md
+  - docs/project-plans/developer-workbooks/sql-server-identity/_verification/05-groups-roles-and-the-perimeter.md
   - docs/reference/source-register.md
   - docs/training/non-person-identity/_verification/learning-path.md
   - examples/third_party/entra-workload-identity-ca-page/SNAPSHOT.md
@@ -28834,6 +28838,8 @@ pages:
   - docs/books/b19-developer-workbook/index.md
   - docs/books/guides/attribute-driven-migration.md
   - docs/books/guides/intune-track-implementation.md
+  - docs/project-plans/developer-workbooks/sql-server-identity/05-groups-roles-and-the-perimeter.md
+  - docs/project-plans/developer-workbooks/sql-server-identity/_verification/05-groups-roles-and-the-perimeter.md
   - docs/reference/source-register.md
 - path: docs/identity/users/groups-dynamic-rule-member-of.md
   url: https://learn.microsoft.com/entra/identity/users/groups-dynamic-rule-member-of

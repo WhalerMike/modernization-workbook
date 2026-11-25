@@ -1,0 +1,25 @@
+PS> Get-Content out/drift/manifest.json
+{
+  "step": "DRIFT",
+  "title": "Compare two audit runs for regressions",
+  "mode": "read-only",
+  "asOf": "2026-12-20",
+  "controls": [
+    "CA-7",
+    "CM-6"
+  ],
+  "ksis": [
+    "KSI-MLA-EVC",
+    "KSI-SVC-ACM"
+  ],
+  "files": [
+    {
+      "file": "drift.csv",
+      "sha256": "307892c2e129ac27c959e0ed382de9c140fe43fa730ec5343a0767f8f8d19abf"
+    },
+    {
+      "file": "drift.json",
+      "sha256": "bd14b8d6dad23232956213f7f9fbb1f60bd0e7ec327e58e8ace1f2075c70b2ea"
+    }
+  ]
+}

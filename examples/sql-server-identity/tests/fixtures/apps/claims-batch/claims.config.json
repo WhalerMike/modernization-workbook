@@ -1,0 +1,3 @@
+{
+  "database": "Data Source=sqlprd02.contoso.example;Initial Catalog=Claims;User ID=claims_batch;Password=Fict1onal-Only;Encrypt=True"
+}

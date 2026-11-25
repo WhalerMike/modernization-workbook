@@ -25,7 +25,7 @@ Each row shows what a topic has. A cell that says **gap** is something readers n
 | [Microsoft Automation](microsoft-automation.md) | 2 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 4 modules | yes | 5 | 1 zip |
 | [Zero Trust Assessment](zero-trust-assessment.md) | 6 | [not needed](#gaps) | 1 | [not needed](#gaps) | 4 modules | yes | 8 | 1 zip |
 | [Daily Checks Dashboard](daily-checks-dashboard.md) | 4 | [not needed](#gaps) | 1 | 4 chapters | 2 modules | yes | 8 | 1 zip |
-| [Data Platform and SQL Server](data-platform.md) | 11 | 1 | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | 4 | 1 zip |
+| [Data Platform and SQL Server](data-platform.md) | 11 | 1 | [not needed](#gaps) | 10 chapters | [gap](#gaps) | yes | 4 | 2 zips |
 | [PKI and Certificates](pki.md) | 8 | [gap](#gaps) | 1 | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | 5 | 1 zip |
 | [DNS, DHCP and IPAM](dns-dhcp-ipam.md) | 8 | 1 | 1 | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | 11 | 1 zip |
 | [Network and SD-WAN](network-sd-wan.md) | 8 | 1 | 3 | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | 7 | 1 zip |
@@ -53,9 +53,7 @@ A gap is filled only where readers need it. Where nothing is needed, the note sa
 | [Zero Trust Assessment](zero-trust-assessment.md#gaps) | Developer workbook | Not needed, because the learning path's four modules teach the results kit directly, with Lab 1 on its fixtures. |
 | [Daily Checks Dashboard](daily-checks-dashboard.md#gaps) | Project plan | Not needed, because it is one workbook template with a four-chapter build, and the guide sequences it. |
 | [Data Platform and SQL Server](data-platform.md#gaps) | Guide | Not needed, because Book 06's ten runbooks (R01 to R10), listed under Build, are its step-by-step implementation guide. |
-| [Data Platform and SQL Server](data-platform.md#gaps) | Developer workbook | Needed: decide with the learning path plan. The Start Kit's SQL Server discovery is the only code in examples/; nothing there runs the login migration, the parallel run or NTLM remediation. |
-| [Data Platform and SQL Server](data-platform.md#gaps) | Learning path | Needed: the first new learning path to be planned (decided Nov 24, 2026). |
-| [Data Platform and SQL Server](data-platform.md#gaps) | Labs | Needed: they come with the learning path. |
+| [Data Platform and SQL Server](data-platform.md#gaps) | Learning path | Needed: the learning path is phase 2 of filling this topic's gaps (decided Nov 24, 2026). |
 | [PKI and Certificates](pki.md#gaps) | Project plan | Needed: no project plan sequences AD CS hardening, Cloud PKI and the lifecycle platform; the other plans schedule only their own certificates. |
 | [PKI and Certificates](pki.md#gaps) | Developer workbook | Not needed, because the only code today is the Start Kit's AD CS checks (ESC1, ESC2, ESC4, ESC6); revisit when its learning path is planned. |
 | [PKI and Certificates](pki.md#gaps) | Learning path | Needed: ranked in the learning path plan. |
