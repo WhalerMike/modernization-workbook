@@ -1,2 +1,14 @@
-PS> (Get-AzsLiveCommand -CallId arg-platform-resources -Settings (Read-AzsSettings -Path tests/fixtures/settings.lab.json)) -join ' '
-graph query -q Resources | where type in~ ('microsoft.network/azurefirewalls','microsoft.network/applicationgateways','microsoft.cdn/profiles','microsoft.keyvault/vaults','microsoft.network/publicipaddresses') | project id, type, subscriptionId | order by id asc --first 1000 --management-groups contoso --output json
+PS> Import-Csv "$Run/week1/baseline/findings.csv" | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+AZS-BL-01 Finding hierarchy settings: requireAuthorizationForGroupCreation is false
+AZS-BL-05 Finding afw-hub: microsoft.network/azurefirewalls: no enabled log to the platform workspace
+AZS-BL-05 Finding pip-afw-hub: microsoft.network/publicipaddresses: no enabled log to the platform workspace
+AZS-BL-05 Finding pip-nat-egress: microsoft.network/publicipaddresses: no enabled log to the platform workspace
+AZS-BL-05 Finding pip-vpngw: microsoft.network/publicipaddresses: no enabled log to the platform workspace
+AZS-BL-05 Finding appgw-intranet: microsoft.network/applicationgateways: no enabled log to the platform workspace
+AZS-BL-05 Finding afd-careers: microsoft.cdn/profiles: no enabled log to the platform workspace
+AZS-BL-05 Finding kv-portal: microsoft.keyvault/vaults: no enabled log to the platform workspace
+AZS-BL-05 Finding pip-jump: microsoft.network/publicipaddresses: no enabled log to the platform workspace
+AZS-BL-05 Finding pip-lb-portal: microsoft.network/publicipaddresses: no enabled log to the platform workspace
+AZS-BL-05 Finding pip-orphan: microsoft.network/publicipaddresses: no enabled log to the platform workspace
+AZS-BL-06 Finding sub-online-portal: Free or absent: KeyVaults
+AZS-BL-04 Info    azs-fedramp-mod: enforcementMode DoNotEnforce (audit); Step 9 enforces

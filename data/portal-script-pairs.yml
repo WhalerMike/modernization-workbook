@@ -531,7 +531,7 @@ pairs:
   tab: related
   relation: The kit checks that an enabled alert on the DDoS metric exists; the guide's Azure CLI block creates
     it.
-  capture: azs/03-4
+  capture: azs/03-6
   requirements:
     file: examples/azure-security/config/requirements.json
     step: DDOS
@@ -550,7 +550,7 @@ pairs:
   tab: related
   relation: The kit checks that the public IP's DDoS logs and metrics reach the workspace; the guide's Azure CLI
     block creates the setting.
-  capture: azs/03-4
+  capture: azs/03-6
   requirements:
     file: examples/azure-security/config/requirements.json
     step: DDOS

@@ -1,4 +1,8 @@
-PS> Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'Firewall*' -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-          2           0
+PS> Import-Csv "$Run/week1/firewall/findings.csv" | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+AZS-FW-01 Finding afwp-hub: threatIntelMode Alert
+AZS-FW-02 Finding afwp-hub: intrusionDetection.mode Alert
+AZS-FW-05 Finding afw-hub: no enabled log to the platform workspace
+AZS-FW-03 Finding vnet-payroll/snet-data: no route table
+AZS-FW-03 Finding vnet-portal/snet-web: 0.0.0.0/0 next hop Internet
+AZS-FW-07 Warn    afwp-hub: no transportSecurity (TLS inspection) configured
+AZS-FW-04 Warn    vnet-portal/snet-jump: 0.0.0.0/0 to 10.9.9.9, which isn't an Azure Firewall the kit read

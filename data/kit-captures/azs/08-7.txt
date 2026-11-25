@@ -1,14 +1,14 @@
-PS> Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
-PS> Test-AzsEvidence -EvidencePath out/evidence -Stage test | Where-Object Check -like 'STEP-*' | ForEach-Object { "{0,-14} {1}  {2}" -f $_.Check, $_.Status, $_.Detail }
-STEP-PRE       Fail  no passing live record
-STEP-RUN       Fail  no passing live record
-STEP-BL        Fail  no passing live record
-STEP-EXP       Fail  no passing live record
-STEP-DDOS      Fail  no passing live record
-STEP-WAF       Fail  no passing live record
-STEP-EDGE      Fail  no passing live record
-STEP-FW        Fail  no passing live record
-STEP-PL        Fail  no passing live record
-STEP-KV        Fail  no passing live record
-STEP-POL       Fail  no passing live record
-STEP-METRICS   Fail  no passing live record
+PS> ./Invoke-AzsMetrics.ps1 -RunPath "$Run/week2" -OutputPath "$Run/metrics" -AsOf 2026-11-16T12:00:00Z
+Exposure ownership       84.2%                      target 100%
+DDoS coverage            57.1%                      target 100%
+WAF prevention coverage  66.7%                      target 100%
+Origin lock-down         60%                        target 100%
+Egress inspection        60%                        target 100%
+Private PaaS             6 public                   target Agency target, rising
+Vault posture            33.3%                      target 100%
+Policy compliance        63.2%                      target Rising each month
+Exemption hygiene        1 expired                  target 0
+Detection to page        from the exercise record   target Agency target
+Exercise currency        from the exercise records  target Under 365 and 183
+WAF effectiveness        from the workspace         target Trend
+Written to C:/FMWLabs/results/azure-security-08/lab1/<run>/metrics: metrics.json, metrics.csv (with the numbers behind each)

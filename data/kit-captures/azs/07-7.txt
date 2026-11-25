@@ -1,0 +1,4 @@
+PS> Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'Private*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+PassedCount FailedCount
+----------- -----------
+          2           0

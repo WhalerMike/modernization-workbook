@@ -110,8 +110,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: build the first week's register",
       body: [
-        { terminal: "02-1", label: "examples/azure-security  ·  fixture data  ·  real output" },
-        { terminal: "02-2", lines: "1-3,6,8,10-14" },
+        { terminal: "02-3", label: "examples/azure-security  ·  fixture data  ·  real output" },
+        { terminal: "02-4", lines: "1-3,6,8,10-14" },
       ],
       sources: "Sources: examples/azure-security (fictional fixtures). Chapter 02, “Lab 1: fixtures, no subscription,” steps 1–2.",
       say: `Lab 1 needs PowerShell 7 with Pester, in the kit's folder. The fixture estate is read twice, a week apart, and a small file stands in for Defender for Cloud's export. Step 1 builds the first week's register: nineteen exposures, eight public IPs, three Front Door profiles, two application gateways and six PaaS resources, sixteen with an owner. Step 2 reads it. The application gateway's public IP carries the gateway's WAF policy. The careers Front Door profile has no WAF, the legacy profile is classic, and three rows have no owner.`,
@@ -122,8 +122,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: findings now, and a week later",
       body: [
-        { terminal: "02-3" },
         { terminal: "02-5" },
+        { terminal: "02-7" },
       ],
       sources: "Sources: examples/azure-security (fictional fixtures). Chapter 02, “Lab 1: fixtures, no subscription,” steps 3–5.",
       say: `Step 3 reads the findings: three exposures with no owner, a public IP attached to nothing, and one resource Defender reports that no query finds. It's a container group with a public address that isn't a public IP resource, so it's a gap in the queries. Step 4 builds the register again a week later, against the first one, and step 5 reads what changed. One public IP is new, and has no owner. The orphan is gone, with the reminder to remove any DNS record that still points at its address. Step 6 runs the chapter's tests.`,

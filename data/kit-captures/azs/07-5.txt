@@ -1,4 +1,4 @@
-PS> Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'Private*' -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-          2           0
+PS> (Read-AzsJson -Path "$Run/week1/private/private.json") | Where-Object kind -EQ private-endpoint | ForEach-Object { "{0,-20} {1,-22} {2}" -f $_.name, $_.target, ($_.zones -join ', ') }
+pe-kv-payroll        kv-payroll/vault       privatelink.vaultcore.azure.net
+pe-st-payroll-blob   stpayrolldata/blob     privatelink.blob.core.windows.net
+pe-st-payroll-queue  stpayrolldata/queue

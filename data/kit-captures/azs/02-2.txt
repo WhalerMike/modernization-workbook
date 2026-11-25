@@ -1,20 +1,4 @@
-PS> Import-Csv out/week1/exposure/register.csv | ForEach-Object { "{0,-38} {1,-20} {2,-13} {3}" -f $_.type, $_.name, $(if ($_.owner) { $_.owner } else { '(none)' }), $_.waf }
-PublicIP                               pip-afw-hub          platform-team n/a
-PublicIP                               pip-appgw-portal     portal-team   wafp-portal
-PublicIP                               pip-nat-egress       platform-team n/a
-PublicIP                               pip-vpngw            platform-team n/a
-PublicIP                               pip-jump             (none)        n/a
-PublicIP                               pip-lb-portal        portal-team   n/a
-PublicIP                               pip-orphan           (none)        n/a
-PublicIP                               pip-test-app         portal-team   n/a
-FrontDoor Premium                      afd-portal           portal-team   afdwafportal
-FrontDoor Standard                     afd-careers          hr-web-team   none
-FrontDoor classic                      fd-legacy-intranet   payroll-team  unknown (classic)
-ApplicationGateway WAF_v2              appgw-portal         portal-team   wafp-portal
-ApplicationGateway Standard_v2         appgw-intranet       payroll-team  none
-PaaS microsoft.keyvault/vaults         kv-hub-certs         platform-team n/a
-PaaS microsoft.storage/storageaccounts stpayrolldata        (none)        n/a
-PaaS microsoft.storage/storageaccounts stcareersweb         hr-web-team   n/a
-PaaS microsoft.keyvault/vaults         kv-portal            portal-team   n/a
-PaaS microsoft.web/sites               app-portal-east      portal-team   n/a
-PaaS microsoft.web/sites               app-portal-west      portal-team   n/a
+PS> $Run = "C:\FMWLabs\results\azure-security-02\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+PS> New-Item -ItemType Directory -Path $Run -Force | Out-Null
+PS> $Run
+C:/FMWLabs/results/azure-security-02/lab1/<run>
