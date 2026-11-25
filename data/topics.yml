@@ -588,6 +588,7 @@ topics:
       - start-kit.zip
       - b07-pki-bundle.docx
       - training-pki-bundle.docx
+      - validation-kit.zip
     members:
       - docs/books/b07-pki/*.md
     gaps:

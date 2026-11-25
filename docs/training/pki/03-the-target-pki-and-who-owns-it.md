@@ -174,7 +174,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/start-kit` and make the ru
     Expected output:
 
     ```text
-    1.8.0
+    1.9.0
     ```
 
 2. **Map each published template to its target issuer.** Inventory the snapshot and classify its templates, as in Module 1, then list the published ones by target:

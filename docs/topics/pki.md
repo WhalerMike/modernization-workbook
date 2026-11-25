@@ -98,6 +98,7 @@ Word editions and code, rebuilt on every site deploy.
 | [start-kit.zip](../../downloads/start-kit.zip) | Code: the scripts, tests and fixtures, as committed |
 | [b07-pki-bundle.docx](../../downloads/b07-pki-bundle.docx) | Word edition: Book 07 — PKI & Certificates |
 | [training-pki-bundle.docx](../../downloads/training-pki-bundle.docx) | Word edition: Learning path: PKI and Certificates |
+| [validation-kit.zip](../../downloads/validation-kit.zip) | Code: the scripts, tests and fixtures, as committed |
 
 : Downloads {.striped .hover}
 

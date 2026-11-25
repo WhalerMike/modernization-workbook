@@ -1,0 +1,7 @@
+"Issued Request ID","Requester Name","Certificate Template","Certificate Expiration Date"
+"1043","CONTOSO\alice","User","12/20/2026 12:00 PM"
+"1051","CONTOSO\WS0142$","Machine","3/1/2027 12:00 PM"
+"1066","CONTOSO\webadmin","WebServerLegacy","1/10/2027 12:00 PM"
+"1012","CONTOSO\bob","User","10/1/2026 12:00 PM"
+"1078","CONTOSO\DC01$","KerberosAuthentication","6/30/2027 12:00 PM"
+"1090","CONTOSO\WS0177$","Machine","11/2/2027 12:00 PM"

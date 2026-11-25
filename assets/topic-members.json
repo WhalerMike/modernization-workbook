@@ -3751,6 +3751,24 @@
    "title": "PKI and Certificates"
   }
  ],
+ "docs/training/pki/05-coexistence-and-migration.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/training/pki/06-lifecycle-monitoring-and-decommissioning.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/training/pki/07-piv-and-derived-piv.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
  "docs/training/pki/index.md": [
   {
    "id": "pki",

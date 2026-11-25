@@ -1,8 +1,8 @@
 # Verification — Learning path: PKI and Certificates
 
-Files: `docs/training/pki/index.md` and its modules, `01-what-ad-cs-holds-up.md` and `02-hardening-what-stays.md` (phase 1 of the path), `03-the-target-pki-and-who-owns-it.md` and `04-device-and-user-certificates.md` (phase 2).
-Example code: `examples/start-kit` (module `FMPADAssessment` 1.8.0, kit 1.7.0).
-Verified: 2026-11-24 (phase 1); 2026-11-25 (phase 2)
+Files: `docs/training/pki/index.md` and its modules, `01-what-ad-cs-holds-up.md` and `02-hardening-what-stays.md` (phase 1 of the path), `03-the-target-pki-and-who-owns-it.md` and `04-device-and-user-certificates.md` (phase 2), `05-coexistence-and-migration.md`, `06-lifecycle-monitoring-and-decommissioning.md` and `07-piv-and-derived-piv.md` (phase 3).
+Example code: `examples/start-kit` (module `FMPADAssessment` 1.9.0, kit 1.8.0; Module 7 uses `examples/validation-kit`, module `ValidationKit` 0.1.0).
+Verified: 2026-11-24 (phase 1); 2026-11-25 (phases 2 and 3)
 
 Method:
 - The path adds no new facts about PKI. Every fact a module states is carried by link from Book 07 (`docs/books/b07-pki/`, Chapters 01, 02 and 03 and Appendix B, as on `origin/main` on November 24, 2026) and relies on those chapters' verification logs and footnotes (Microsoft Learn's AD CS, Cloud PKI, Intune certificate and Defender for Identity pages; SpecterOps's 2021 research for the ESC labels). New writing is limited to the path, the module framing, objectives, unit glue, the table of what the Start Kit collects, knowledge-check questions and time estimates.
@@ -33,6 +33,21 @@ Method:
 - **Lab 2** in both modules reads only: the kit against the test forest, `certutil -getreg` on a CA and the offline root, `certutil -viewstore -enterprise NTAuth`, Chapter 06's event sweep and an HTTP fetch of a CRL. Nothing changes a CA or the forest. The authors didn't run it.
 - **Requirements and KSIs.** Only Book 13, Appendix A's pairs: SC-17 to KSI-SVC-ASM; CM-6 to KSI-SVC-ACM and KSI-MLA-EVC; AC-5 to KSI-IAM-JIT, KSI-PIY-RIS and KSI-PIY-RSD; IA-5(2) to KSI-IAM-APM, KSI-IAM-ELP, KSI-IAM-SNU and KSI-SVC-ASM; AU-6 to KSI-MLA-RVL. AC-5's evidence (the signed matrix and the role mapping) isn't produced by the kit, and Module 3 says so.
 
+## Phase 3: Modules 5, 6 and 7, November 25, 2026
+
+- **Sources.** As before, every fact the three modules state is carried by link from Book 07, Chapters 07, 08 and 09 and Appendix C, and the guide *Certificate Lifecycle on CyberArk Certificate Manager*, as on `origin/main` on November 25, 2026, and relies on their verification logs and footnotes. No Learn page or NIST, OMB or FIPS document was read again. New writing is the module framing, objectives, unit glue, the lab steps, the knowledge checks and the time estimates.
+- **Existing content.** The CyberArk guide builds the CLM platform; Module 6 links to it rather than repeating it. HR-Driven Identity, Module 5 checks the CBA tenant settings, and the Attribute-Driven Migration guide's Gate 6 names VK-PIV-01; no training lab ran VK-PIV-01 before, so Module 7's lab is new. No kit read CRL files or a CA database export before.
+- **Kit changes**, each with Pester tests (`tests/powershell/PkiLifecycle.Tests.ps1`):
+  - `Get-FMPCrlReport` reads CRL files (DER or PEM) with a small DER reader: issuer, this and next update (UTCTime and GeneralizedTime), the revoked entries and the delta CRL indicator (OID 2.5.29.27). It doesn't check the signature, and Module 5's Lab 2 uses `certutil -verify` for that. Flags: expired, fewer than 24 hours left (a parameter, the program's choice, not a figure from the book), no next update, and over 20 MB, Chapter 07's limit for interactive sign-in in the commercial cloud, which includes GCC. It never fetches a URL.
+  - `Get-FMPIssuedCertificateReport` reads one `certutil -view ... csv` export per CA, the export Module 1's Lab 2 makes, with certutil's display names or the schema names as columns, and reports unexpired certificates per template, those within 60 days, the last expiry, and, for a retiring CA's final CRL, whether its next update outlasts the last certificate (Chapter 08's decommissioning steps 4 and 7). The export's dates are the CA's local time and are converted to UTC. A template shown as an OID followed by a name is reported by name; the authors haven't confirmed which form certutil prints for version 2 templates.
+  - `FMPADAssessment` 1.9.0, kit 1.8.0. Every page that prints the version shows 1.9.0. The kit stays read-only: the safety tests pass on every source file.
+- **Fixtures.** `tests/fixtures/crl` holds three CRLs built with .NET's `CertificateRevocationListBuilder` for this repository, each signed by a newly generated key under the fictional CA's name, not by the key of the CA certificate in `pki-contoso.json`, so their signatures don't verify against those certificates. `tests/fixtures/issued-certificates` holds two fictional `certutil -view` exports with US-format dates at noon, so the UTC date is the same in every time zone from UTC-11 to UTC+11.
+- **Module 7** uses the validation kit's existing `Invoke-VkPiv01` and its `fail` and `pass` fixture tenants, unchanged. The step-by-step lab calls the check directly, because `Invoke-ValidationKit.ps1` names its run folder after the computer and the time, which a page can't show verbatim; Lab 2 uses the runner.
+- **Lab 1.** Modules 5, 6 and 7 follow the approved lab-procedure format with dated run folders. Each was checked with `lab_check.py` in Windows PowerShell 5.1 and PowerShell 7, every expected block found: Module 5, 8 of 8; Module 6, 7 of 7; Module 7, 8 of 8, from `validation-kit.zip`. Modules 1 to 4 were checked again after the version change: Module 1, 9 of 9 in 5.1 (7 of 9 in PowerShell 7, the documented date and blank-line differences); Modules 2 to 4, every block in both.
+- **Tests.** 393 Pester tests pass in PowerShell 7 and in Windows PowerShell 5.1.
+- **Lab 2** in Modules 5 and 6 reads only: the kit against the test forest, CRLs downloaded over HTTP, `certutil -verify`, `certutil -getreg` and `certutil -view` on the CA. Module 7's Lab 2 runs VK-PIV-01 against a test tenant with delegated `User.Read.All`. The authors didn't run any of them.
+- **Requirements and KSIs.** Only Book 13, Appendix A's pairs: IA-5(2), SC-17, CM-3, SC-12, CM-6, CA-7 and AC-2 as listed on each page. IA-2(12) has no pairing there, and Module 7 says so.
+
 ## Review gate
 
 `review-status: pending` on every page. The path waits for the owner's review; it isn't approved here.
@@ -52,3 +67,8 @@ Each figure is reused from the page named in its caption and carries that page's
 | 7 | Figure `b07-pki/ch05-four-permission-planes` (reused) | Module 3, Unit 5 | carried | Book 07, Chapter 05 and its log |
 | 8 | Figure `b07-pki/ch06-delivery-paths` (reused) | Module 4, Unit 1 | carried | Book 07, Chapter 06 and its log |
 | 9 | Figure `b07-pki/ch06-cba-sign-in` (reused) | Module 4, Unit 4 | carried | Book 07, Chapter 06 and its log |
+| 10 | Figure `b07-pki/ch07-trust-directions` (reused) | Module 5, Unit 1 | carried | Book 07, Chapter 07 and its log |
+| 11 | Figure `b07-pki/ch07-migration-waves` (reused) | Module 5, Unit 5 | carried | Book 07, Chapter 07 and its log |
+| 12 | Figure `b07-pki/ch08-lifecycle-loop` (reused) | Module 6, Unit 1 | carried | Book 07, Chapter 08 and its log |
+| 13 | Figure `b07-pki/ch08-adcs-decommission` (reused) | Module 6, Unit 4 | carried | Book 07, Chapter 08 and its log |
+| 14 | Figure `b07-pki/ch09-piv-under-cloud` (reused) | Module 7, Unit 1 | carried | Book 07, Chapter 09 and its log |

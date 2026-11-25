@@ -1,0 +1,5 @@
+"Issued Request ID","Requester Name","Certificate Template","Certificate Expiration Date"
+"2004","CONTOSO\carol","ExchangeUser","4/15/2027 12:00 PM"
+"2011","CONTOSO\release-svc","CodeSigning","9/30/2028 12:00 PM"
+"2019","CONTOSO\dave","ContosoVPNUser","12/5/2026 12:00 PM"
+"2001","CONTOSO\WS0099$","Machine","8/1/2025 12:00 PM"

@@ -1423,6 +1423,232 @@ function Get-FMPCertificateMappingReport {
     Write-Verbose "Certificate mapping report written to $pkiPath with $($findings.Count) findings."
 }
 
+function Read-FMPDerTlv {
+    # One DER tag-length-value at $Offset: the tag, where its content starts, and its length.
+    param([Parameter(Mandatory)][byte[]]$Bytes, [Parameter(Mandatory)][int]$Offset)
+    $tag = $Bytes[$Offset]
+    $len = [int]$Bytes[$Offset + 1]
+    $start = $Offset + 2
+    if ($len -band 0x80) {
+        $n = $len -band 0x7f
+        $len = 0
+        for ($i = 0; $i -lt $n; $i++) { $len = ($len * 256) + $Bytes[$start + $i] }
+        $start += $n
+    }
+    [pscustomobject]@{ Tag = $tag; Start = $start; Length = $len; End = $start + $len }
+}
+
+function ConvertFrom-FMPDerTime {
+    # UTCTime (0x17, YYMMDDHHMMSSZ; years 50-99 are 19xx) or GeneralizedTime (0x18), as UTC.
+    param([Parameter(Mandatory)][byte[]]$Bytes, [Parameter(Mandatory)]$Tlv)
+    $s = [System.Text.Encoding]::ASCII.GetString($Bytes, $Tlv.Start, $Tlv.Length)
+    $fmt = if ($Tlv.Tag -eq 0x17) { 'yyMMddHHmmss\Z' } else { 'yyyyMMddHHmmss\Z' }
+    $d = [datetime]::ParseExact($s, $fmt, [System.Globalization.CultureInfo]::InvariantCulture,
+        [System.Globalization.DateTimeStyles]::AdjustToUniversal -bor [System.Globalization.DateTimeStyles]::AssumeUniversal)
+    if ($Tlv.Tag -eq 0x17 -and $d.Year -ge 2050) { $d = $d.AddYears(-100) }
+    [datetime]::SpecifyKind($d, [DateTimeKind]::Utc)
+}
+
+function ConvertFrom-FMPCrl {
+    # A CRL (DER, or PEM with BEGIN X509 CRL) read field by field: issuer, this and next update,
+    # the number of revoked entries, and whether it's a delta CRL. The signature isn't checked.
+    param([Parameter(Mandatory)][byte[]]$Bytes)
+    $text = [System.Text.Encoding]::ASCII.GetString($Bytes)
+    if ($text -match '-----BEGIN X509 CRL-----([\s\S]+?)-----END X509 CRL-----') {
+        $Bytes = [Convert]::FromBase64String(($Matches[1] -replace '\s', ''))
+    }
+    $outer = Read-FMPDerTlv -Bytes $Bytes -Offset 0
+    $tbs = Read-FMPDerTlv -Bytes $Bytes -Offset $outer.Start
+    if ($outer.Tag -ne 0x30 -or $tbs.Tag -ne 0x30) { throw 'Not a CRL: expected a DER SEQUENCE.' }
+    $p = Read-FMPDerTlv -Bytes $Bytes -Offset $tbs.Start
+    if ($p.Tag -eq 0x02) { $p = Read-FMPDerTlv -Bytes $Bytes -Offset $p.End }       # skip the version; $p is the signature algorithm
+    $issuerStart = $p.End
+    $p = Read-FMPDerTlv -Bytes $Bytes -Offset $issuerStart                          # the issuer Name, a whole TLV
+    $issuerBytes = [byte[]]::new($p.End - $issuerStart)
+    [Array]::Copy($Bytes, $issuerStart, $issuerBytes, 0, $issuerBytes.Length)
+    $issuer = [System.Security.Cryptography.X509Certificates.X500DistinguishedName]::new($issuerBytes).Name
+    $t = Read-FMPDerTlv -Bytes $Bytes -Offset $p.End
+    $thisUpdate = ConvertFrom-FMPDerTime -Bytes $Bytes -Tlv $t
+    $nextUpdate = $null
+    $revoked = 0
+    $delta = $false
+    $q = if ($t.End -lt $tbs.End) { Read-FMPDerTlv -Bytes $Bytes -Offset $t.End } else { $null }
+    if ($q -and ($q.Tag -eq 0x17 -or $q.Tag -eq 0x18)) {
+        $nextUpdate = ConvertFrom-FMPDerTime -Bytes $Bytes -Tlv $q
+        $q = if ($q.End -lt $tbs.End) { Read-FMPDerTlv -Bytes $Bytes -Offset $q.End } else { $null }
+    }
+    if ($q -and $q.Tag -eq 0x30) {
+        $o = $q.Start
+        while ($o -lt $q.End) { $e = Read-FMPDerTlv -Bytes $Bytes -Offset $o; $revoked++; $o = $e.End }
+        $q = if ($q.End -lt $tbs.End) { Read-FMPDerTlv -Bytes $Bytes -Offset $q.End } else { $null }
+    }
+    if ($q -and $q.Tag -eq 0xA0) {
+        # Extensions: the delta CRL indicator is OID 2.5.29.27 (DER 06 03 55 1D 1B).
+        for ($i = $q.Start; $i -lt $q.End - 4; $i++) {
+            if ($Bytes[$i] -eq 0x06 -and $Bytes[$i + 1] -eq 0x03 -and $Bytes[$i + 2] -eq 0x55 -and $Bytes[$i + 3] -eq 0x1D -and $Bytes[$i + 4] -eq 0x1B) { $delta = $true }
+        }
+    }
+    [pscustomobject]@{ Issuer = $issuer; ThisUpdate = $thisUpdate; NextUpdate = $nextUpdate; RevokedCount = $revoked; Delta = $delta }
+}
+
+function Get-FMPCrlReport {
+    <#
+    .SYNOPSIS
+        CRL freshness and size (Book 07, Chapters 07 and 08): each CRL's issuer, this and next
+        update, the hours left before it goes stale, its size against Entra ID's limit for
+        interactive sign-in, and how many certificates it revokes.
+    .DESCRIPTION
+        Reads CRL files you've downloaded (DER or PEM), so it never fetches anything itself.
+        -AsOf fixes the time the CRLs are judged against. Findings:
+          CRL-EXPIRED     the CRL is past its next update, so relying parties that check it fail
+          CRL-NEAR-NEXT   fewer than -WarnHours hours left before its next update
+          CRL-NO-NEXT     the CRL has no next update
+          CRL-TOO-LARGE   larger than -MaxBytes (20 MB, Entra ID's limit for interactive sign-in in
+                          the commercial cloud, which includes GCC)
+          CRL-UNREADABLE  the file isn't a CRL the kit can read
+    .OUTPUTS
+        CRL\CrlReport.json, CRL\CrlReport.csv
+    .EXAMPLE
+        Get-FMPCrlReport -OutputPath .\out\run1 -Path .\tests\fixtures\crl\*.crl -AsOf '2026-11-20T12:00:00Z'
+    #>
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string]$OutputPath,
+        [Parameter(Mandatory)][string[]]$Path,
+        [datetime]$AsOf = (Get-Date),
+        [int]$WarnHours = 24,
+        [long]$MaxBytes = 20MB
+    )
+    $root = Resolve-FMPOutputRoot -OutputPath $OutputPath
+    $dir = Initialize-FMPPath -Path (Join-Path $root 'CRL')
+    $asOfUtc = $AsOf.ToUniversalTime()
+    $files = @(foreach ($p in $Path) { Get-ChildItem -Path $p -File -ErrorAction Stop }) | Sort-Object Name
+    $rows = @(); $findings = @()
+    foreach ($f in $files) {
+        $size = $f.Length
+        try { $c = ConvertFrom-FMPCrl -Bytes ([System.IO.File]::ReadAllBytes($f.FullName)) }
+        catch {
+            $findings += [pscustomobject]@{ Finding = 'CRL-UNREADABLE'; File = $f.Name; Detail = $_.Exception.Message }
+            continue
+        }
+        $hours = if ($c.NextUpdate) { [int][math]::Floor(($c.NextUpdate - $asOfUtc).TotalHours) } else { $null }
+        $rows += [pscustomobject]@{
+            File = $f.Name; Issuer = $c.Issuer; Delta = $c.Delta
+            ThisUpdate = $c.ThisUpdate.ToString('o'); NextUpdate = $(if ($c.NextUpdate) { $c.NextUpdate.ToString('o') })
+            HoursToNextUpdate = $hours; RevokedCount = $c.RevokedCount; SizeBytes = $size
+        }
+        $add = { param($k, $d) [pscustomobject]@{ Finding = $k; File = $f.Name; Detail = $d } }
+        if (-not $c.NextUpdate) { $findings += & $add 'CRL-NO-NEXT' 'The CRL has no next update.' }
+        elseif ($hours -le 0) { $findings += & $add 'CRL-EXPIRED' "The CRL's next update passed $([math]::Abs($hours)) hours ago: relying parties that check it fail." }
+        elseif ($hours -lt $WarnHours) { $findings += & $add 'CRL-NEAR-NEXT' "$hours hours left before the CRL's next update." }
+        if ($size -gt $MaxBytes) { $findings += & $add 'CRL-TOO-LARGE' "$size bytes, over the $MaxBytes-byte limit." }
+    }
+    $doc = [ordered]@{ AssessmentTimestamp = (Get-Date -Format 'o'); AsOf = $asOfUtc.ToString('o'); WarnHours = $WarnHours; MaxBytes = $MaxBytes; Crls = @($rows); Findings = @($findings) }
+    Write-FMPJson -InputObject $doc -Path (Join-Path $dir 'CrlReport.json') -Depth 5
+    Write-FMPCsv -InputObject @($rows) -Path (Join-Path $dir 'CrlReport.csv')
+    Write-Verbose "CRL report written to $dir with $($findings.Count) findings."
+}
+
+function Get-FMPIssuedCertificateReport {
+    <#
+    .SYNOPSIS
+        What each CA's database still holds (Book 07, Chapter 08): unexpired certificates per
+        template, those expiring within -WithinDays, and the last expiry, which decides how long
+        a retired CA's CRL and AIA endpoints must keep serving.
+    .DESCRIPTION
+        Reads one certutil -view export per CA from -ExportFolder, named <CA name>.csv, made by the
+        CA administrator with:
+          certutil -view -restrict "Disposition=20" -out "RequestID,RequesterName,CertificateTemplate,NotAfter" csv
+        Column names may be certutil's display names (Issued Request ID, Requester Name,
+        Certificate Template, Certificate Expiration Date) or the schema names. A template shown as
+        an OID followed by its name is reported by name. With -FinalCrlPath, each CRL whose issuer
+        names a CA is checked against that CA's last expiry (decommissioning step 4): pass only the
+        final CRL of a CA you're retiring, since a working CA's regular CRL is always shorter. Findings:
+          UNEXPIRED           the CA still has unexpired certificates; it can't be retired yet
+          EXPIRING            certificates expire within -WithinDays
+          FINAL-CRL-SHORT     the CRL's next update comes before the CA's last certificate expires
+    .OUTPUTS
+        PKI\IssuedCertificates.json, PKI\IssuedCertificatesByTemplate.csv
+    .EXAMPLE
+        Get-FMPIssuedCertificateReport -OutputPath .\out\run1 -Domain contoso.example -ExportFolder .\tests\fixtures\issued-certificates -AsOf '2026-11-20T12:00:00Z'
+    #>
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string]$OutputPath,
+        [Parameter(Mandatory)][string]$Domain,
+        [Parameter(Mandatory)][string]$ExportFolder,
+        [datetime]$AsOf = (Get-Date),
+        [int]$WithinDays = 60,
+        [string[]]$FinalCrlPath
+    )
+    $null = Resolve-FMPOutputRoot -OutputPath $OutputPath
+    $pkiPath = Get-FMPDomainPath -OutputPath $OutputPath -Domain $Domain -Area 'PKI'
+    $asOfUtc = $AsOf.ToUniversalTime()
+    $col = {
+        param($Row, [string[]]$Names)
+        foreach ($n in $Names) { $p = $Row.PSObject.Properties[$n]; if ($p) { return "$($p.Value)" } }
+        ''
+    }
+    $parseDate = {
+        param([string]$s)
+        $styles = [System.Globalization.DateTimeStyles]::AssumeLocal
+        $d = [datetime]::MinValue
+        if ([datetime]::TryParse($s, [System.Globalization.CultureInfo]::InvariantCulture, $styles, [ref]$d)) { return $d.ToUniversalTime() }
+        if ([datetime]::TryParse($s, [System.Globalization.CultureInfo]::CurrentCulture, $styles, [ref]$d)) { return $d.ToUniversalTime() }
+        $null
+    }
+    $crls = @()
+    foreach ($p in @($FinalCrlPath | Where-Object { $_ })) {
+        foreach ($f in @(Get-ChildItem -Path $p -File -ErrorAction Stop)) {
+            try { $crls += ConvertFrom-FMPCrl -Bytes ([System.IO.File]::ReadAllBytes($f.FullName)) } catch { Write-Warning "$($f.Name): $($_.Exception.Message)" }
+        }
+    }
+    $caRows = @(); $tplRows = @(); $findings = @()
+    foreach ($file in @(Get-ChildItem -Path $ExportFolder -Filter '*.csv' -File -ErrorAction Stop | Sort-Object Name)) {
+        $ca = [System.IO.Path]::GetFileNameWithoutExtension($file.Name)
+        $certs = @(foreach ($r in @(Import-Csv -LiteralPath $file.FullName)) {
+                $tpl = & $col $r @('Certificate Template', 'CertificateTemplate')
+                if ($tpl -match '^\d+(\.\d+)+\s+(.+)$') { $tpl = $Matches[2] }
+                $na = & $parseDate (& $col $r @('Certificate Expiration Date', 'NotAfter'))
+                if ($null -eq $na) { continue }
+                [pscustomobject]@{ Template = $tpl; NotAfter = $na }
+            })
+        $live = @($certs | Where-Object { $_.NotAfter -gt $asOfUtc })
+        $soon = @($live | Where-Object { $_.NotAfter -le $asOfUtc.AddDays($WithinDays) })
+        $last = if ($live) { ($live | Sort-Object NotAfter | Select-Object -Last 1).NotAfter } else { $null }
+        foreach ($g in @($live | Group-Object Template | Sort-Object Name)) {
+            $tplRows += [pscustomobject]@{
+                CAName = $ca; Template = $g.Name; Unexpired = $g.Count
+                ExpiringWithinWindow = @($g.Group | Where-Object { $_.NotAfter -le $asOfUtc.AddDays($WithinDays) }).Count
+                LastExpiry = ($g.Group | Sort-Object NotAfter | Select-Object -Last 1).NotAfter.ToString('o')
+            }
+        }
+        if ($live) {
+            $findings += [pscustomobject]@{ Finding = 'UNEXPIRED'; CAName = $ca; Detail = "$($live.Count) unexpired certificate$(if ($live.Count -ne 1) { 's' }); the last expires $($last.ToString('yyyy-MM-dd'))." }
+        }
+        if ($soon) {
+            $findings += [pscustomobject]@{ Finding = 'EXPIRING'; CAName = $ca; Detail = "$($soon.Count) certificate$(if ($soon.Count -ne 1) { 's expire' } else { ' expires' }) within $WithinDays days." }
+        }
+        $crl = $crls | Where-Object { $_.Issuer -match ('(^|, )CN=' + [regex]::Escape($ca) + '(,|$)') } | Sort-Object NextUpdate | Select-Object -Last 1
+        if ($crl -and $last -and $crl.NextUpdate -and $crl.NextUpdate -lt $last) {
+            $findings += [pscustomobject]@{ Finding = 'FINAL-CRL-SHORT'; CAName = $ca
+                Detail = "The CRL's next update, $($crl.NextUpdate.ToString('yyyy-MM-dd')), comes before the last certificate expires, $($last.ToString('yyyy-MM-dd'))." }
+        }
+        $caRows += [pscustomobject]@{
+            CAName = $ca; Issued = $certs.Count; Unexpired = $live.Count; ExpiringWithinWindow = $soon.Count
+            LastExpiry = $(if ($last) { $last.ToString('o') })
+            CrlNextUpdate = $(if ($crl -and $crl.NextUpdate) { $crl.NextUpdate.ToString('o') })
+        }
+    }
+    $doc = [ordered]@{
+        AssessmentTimestamp = (Get-Date -Format 'o'); Domain = $Domain; AsOf = $asOfUtc.ToString('o'); WithinDays = $WithinDays
+        CertificationAuthorities = @($caRows); Findings = @($findings)
+    }
+    Write-FMPJson -InputObject $doc -Path (Join-Path $pkiPath 'IssuedCertificates.json') -Depth 5
+    Write-FMPCsv -InputObject @($tplRows) -Path (Join-Path $pkiPath 'IssuedCertificatesByTemplate.csv')
+    Write-Verbose "Issued certificate report written to $pkiPath with $($findings.Count) findings."
+}
+
 function Get-FMPDerivedBuckets {
     # Sums one bucket map (name -> count) across every partition's derived data.
     param([Parameter(Mandatory)][AllowEmptyCollection()][object[]]$Parts, [Parameter(Mandatory)][string]$Key)
@@ -2623,5 +2849,5 @@ Export-ModuleMember -Function @(
     'Export-FMPGPOSettings', 'Get-FMPDNSAssessment', 'Get-FMPPKIAssessment', 'Get-FMPComputerInventory',
     'Get-FMPUserInventory', 'Get-FMPGroupInventory', 'Get-FMPTrustMap', 'Get-FMPSchemaExtensions', 'Get-FMPDHCPInventory',
     'Get-FMPKerberosSpnMap', 'Get-FMPLdapBindingEvent', 'Invoke-FMPADAssessment', 'Compare-FMPAssessments',
-    'Get-FMPTemplateClassification', 'Get-FMPCAPublicationReview', 'Get-FMPCertificateMappingReport', 'Get-FMPStartKitSummary'
+    'Get-FMPTemplateClassification', 'Get-FMPCAPublicationReview', 'Get-FMPCertificateMappingReport', 'Get-FMPCrlReport', 'Get-FMPIssuedCertificateReport', 'Get-FMPStartKitSummary'
 )

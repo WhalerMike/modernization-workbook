@@ -179,7 +179,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/start-kit` and make the ru
     Expected output:
 
     ```text
-    1.8.0
+    1.9.0
     ```
 
 2. **List the templates whose target is an Intune profile.**
@@ -437,5 +437,5 @@ You listed the templates moving to Intune delivery, then read the strong-mapping
 
 ::: {.callout-tip}
 ## Continue the path
-[← Previous: Module 3](03-the-target-pki-and-who-owns-it.md) · [Learning path](index.md)
+[← Previous: Module 3](03-the-target-pki-and-who-owns-it.md) · [Learning path](index.md) · [Next: Module 5 →](05-coexistence-and-migration.md)
 :::
