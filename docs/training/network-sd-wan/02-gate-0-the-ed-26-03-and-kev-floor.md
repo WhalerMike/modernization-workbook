@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Book 09"
 series-order: 2
 review-status: approved
-reviewed-sha256: 4a28aac2dc4898e148d33fa47cb55dd81ccb325c0741b11673cbc680203305ea
+reviewed-sha256: d4ce70ed88fdfcdbb2618b5381a77cdb9870ec87bbb265019b08b3319bcdacf6
 last-reviewed: 2026-11-25
 ---
 # Module 2: Gate 0: the ED 26-03 and KEV floor {.unnumbered}

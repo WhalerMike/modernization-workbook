@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Book 09"
 series-order: 4
 review-status: approved
-reviewed-sha256: 4bbe0cc3bb71082103670128929811ca22c1694e26f63e442402adf7cf18da86
+reviewed-sha256: 7bab0ac2a156db47f4d326bcde2eb75a8e0439b4d6f09c25f2251502eacccecd
 last-reviewed: 2026-11-25
 ---
 # Module 4: Path classes, change rings and the evidence {.unnumbered}
