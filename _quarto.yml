@@ -422,6 +422,11 @@ website:
             - docs/training/global-secure-access/04-private-apps-and-admin-paths.md
             - docs/training/global-secure-access/05-internet-access-and-tls-inspection.md
             - docs/training/global-secure-access/06-rings-rollback-and-the-evidence-package.md
+        - section: "SD-WAN Governor learning path"
+          href: docs/training/network-sd-wan/index.md
+          contents:
+            - docs/training/network-sd-wan/01-the-governor-before-the-traffic.md
+            - docs/training/network-sd-wan/02-gate-0-the-ed-26-03-and-kev-floor.md
         - section: "Azure Security Engineering learning path"
           href: docs/training/azure-security/index.md
           contents:
