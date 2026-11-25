@@ -6,9 +6,10 @@ research-status: draft
 research-type: training module
 research-book: "Book 18"
 series-order: 3
-review-status: pending
+review-status: approved
+reviewed-sha256: f6c271fec2c11f57fb876f9f27278d51d192c57f7d6ad95e3dbaae6fa38679ad
+last-reviewed: 2026-11-25
 ---
-
 # Module 3: Proving the move {.unnumbered}
 
 *Part of the [Application Modernization learning path](index.md). Book 18, [Chapter 04](../../books/b18-application-modernization/04-moving-the-data.md). Workbook [Chapter 03](../../project-plans/developer-workbooks/application-modernization/03-proving-the-move.md). About 50 minutes.*

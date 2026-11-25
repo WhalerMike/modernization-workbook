@@ -1,0 +1,5 @@
+[ODBC]
+DRIVER=ODBC Driver 13 for SQL Server
+SERVER=sqlleg03.contoso.example
+DATABASE=Reports
+Trusted_Connection=Yes

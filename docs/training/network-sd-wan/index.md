@@ -16,6 +16,9 @@ listing:
     sort: "series-order asc"
     sort-ui: false
     filter-ui: false
+review-status: approved
+reviewed-sha256: e41e65c0203b7e6c24f5b4ea90e7ae6b9b478d748b00c53c6d70e55777dadf3b
+last-reviewed: 2026-11-25
 ---
 # Learning path: The SD-WAN Governor and Its Evidence {.unnumbered}
 

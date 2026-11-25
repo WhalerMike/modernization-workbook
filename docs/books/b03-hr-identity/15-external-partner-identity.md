@@ -1,6 +1,6 @@
 ---
 title: "Chapter 15 — External Partner Identity"
-description: "The External Partner Person as a workforce identity class: people whose affiliation record and primary credential belong to another organization, such as a state, a tribal government, another agency, a financial institution or an academic partner. Covers the authority split between partner and agency, the boundary to employees, contractors, public users, privileged, non-person, AI agent and break-glass identities, how class, worker type and persona relate, the responsibility table with one agency decider per row, a short technology-neutral standard in nine control areas, assurance selection by transaction risk under NIST SP 800-63-4 and 63C-4, M-22-09's partner scope and FIPS 201-3's limits, the invitation route with automatic provisioning as a recorded exception, privacy, records and redress, eleven readiness checks, and the requirements and KSI map."
+description: "The External Partner Person as a workforce identity class: people whose affiliation record and primary credential belong to another organization, such as a state, a tribal government, another agency, a financial institution or an academic partner. Covers the authority split between partner and agency, the boundary to employees, contractors, public users, privileged, non-person, AI agent and break-glass identities, how class, worker type and persona relate, how the e-government relationships (G2G, G2B, G2C and G2E, including federal-to-state and other intergovernmental cases) map to the classes and to Entra's B2B and external tenants, with the terms defined, the responsibility table with one agency decider per row, a short technology-neutral standard in nine control areas, assurance selection by transaction risk under NIST SP 800-63-4 and 63C-4, M-22-09's partner scope and FIPS 201-3's limits, the invitation route with automatic provisioning as a recorded exception, privacy, records and redress, eleven readiness checks, and the requirements and KSI map."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b03-hr-identity
@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-Why a partner is neither an employee nor a contractor, and how authority splits. The External Partner Person class, its boundary to the other classes, and how class, worker type and persona relate. Who does what, a short neutral standard, assurance by transaction risk, the route into the tenant, and privacy, records and redress. Eleven readiness checks, the requirements and KSI map, and what is not verified.
+Why a partner is neither an employee nor a contractor, and how authority splits. The External Partner Person class, its boundary to the other classes, and how class, worker type and persona relate. How the e-government names G2G, G2B and G2C, the levels of government, and Entra's B2B and B2C map to the classes, with the terms defined. Who does what, a short neutral standard, assurance by transaction risk, the route into the tenant, and privacy, records and redress. Eleven readiness checks, the requirements and KSI map, and what is not verified.
 :::
 
 Every earlier chapter rests on one rule: the agency's own authoritative source says who works here, and access follows. Employees come from HR ([Chapter 02](02-why-hr-is-the-source-of-authority.md)); contractors from the source the agency designates ([Chapter 06](06-canonical-attribute-schema.md#contractors-and-vendors-the-population-hrit-doesnt-cover)). Many people who sign in to agency systems are neither. A state benefits examiner, a tribal health officer, an analyst at another agency, a compliance officer at a regulated bank: each is employed, proofed and credentialed by someone else.
@@ -90,6 +90,59 @@ The workbook now has three words for populations. They don't compete; each is a 
 The Externals persona is the class as Conditional Access sees it, and the two must match one to one. A partner with a record but missing from the tenant list gets treated as an ad hoc guest; a listed tenant with no record is access with no owner. Both are drift findings.
 
 User type is where the views can silently diverge.[^c15-learn-mt-considerations] The workbook's member baselines, such as the compliant-device policies, exclude guests, so a partner person created as a member would fall into the internal baselines and out of the partner ones. So partner persons are **Guest by default**; a Member partner person needs an exception record with a reason, an approver and a review date *(design guidance)*.
+
+### Who the counterparty is: G2G, G2B, G2C and Entra's B2B
+
+Federal e-government writing names a relationship by who is on the other side. The Congressional Research Service's primer identifies three sectors, "government-to-government (G2G), government-to-business (G2B), and government-to-citizen (G2C)," and notes that some observers add a fourth, government-to-employee (G2E), which it counts as part of G2G. Its G2G sector covers exchanges inside the federal level "as well as exchanges between the federal, state, and local levels."[^c15-crs-egov]
+
+Microsoft Entra uses the same letters for something else. **B2B** and **B2C** there name products and tenant models, not counterparties: B2B collaboration puts a partner's people in the agency's workforce tenant as guests, and an external tenant serves apps "that you want to publish to consumers or business customers."[^c15-learn-external-id] So a `fabrikam.example` examiner is G2G in policy terms and a B2B collaboration guest in the tenant. The table maps each relationship to this chapter's classes and to the Entra mechanism.
+
+| Relationship | Counterparty | Class in this workbook | Entra mechanism | Basis of trust |
+|---|---|---|---|---|
+| G2G, federal | Another federal agency | External Partner Person | B2B collaboration guest through entitlement management; B2B direct connect for Teams shared channels | The agreement and the partner record; another agency's PIV accepted by federation ([Book 07, Chapter 09](../b07-pki/09-federal-workforce-credentials.md#accepting-another-agencys-piv)) |
+| G2G, intergovernmental | A state, local, tribal or territorial government | External Partner Person | B2B collaboration guest through entitlement management | The agreement and the partner record |
+| G2B | A business, such as a regulated institution or a grant recipient | External Partner Person when its people use an agency system in a shared program; Contractor when the agency holds the contract and the work is agency business | B2B collaboration guest; a contractor follows [Chapter 06](06-canonical-attribute-schema.md#contractors-and-vendors-the-population-hrit-doesnt-cover) | The agreement, or the contract |
+| G2E | The agency's own employees and contractors | Federal employee; Contractor | Members of the workforce tenant | HR, or the contractor source the agency designates |
+| G2C | Members of the public | Public or beneficiary | An external tenant (Microsoft Entra External ID), not the workforce tenant | Out of the workbook's scope; public services offer Login.gov ([Book 00, Chapter 02](../b00-orientation/02-how-to-use-this-workbook.md#what-the-workbook-covers-and-what-it-doesnt)) |
+
+: E-government relationships, workbook classes and Entra mechanisms {.striped .hover}
+
+**Levels of government.** Federal sources separate the levels in words, not in acronyms. Statute defines an SLTT entity as a domestic government entity that is a state, local, tribal or territorial government, or a subdivision of one.[^c15-sltt] Login.gov's support for state and local programs rests on Title III of the Intergovernmental Cooperation Act and OMB Circular A-97.[^c15-logingov-sltt] Shorthand such as "F2S" (federal-to-state) or "F2L" (federal-to-local) doesn't appear in the OMB, CRS, UN or OECD sources checked for this chapter, so the workbook writes "federal-to-state" or "intergovernmental" and labels the relationship G2G. The level doesn't change the class: a tribal health officer and an analyst at another agency are both External Partner Persons, and each partner gets its own record and its own assurance selection *(design guidance)*.
+
+The terms, for reference:
+
+Azure AD B2C
+: Microsoft's earlier customer identity service. Effective May 1, 2025, it "is no longer available for new customers to purchase"; External ID external tenants are the current route for customer apps.[^c15-learn-external-id]
+
+B2B collaboration
+: The Entra feature that invites a partner's people into the agency's workforce tenant as guest users, signing in with their own organization's identity. Cross-tenant access settings, set by default and per organization, govern it.[^c15-learn-b2b][^c15-learn-xta] It is the default route in this chapter.
+
+B2B direct connect
+: A mutual trust between two Entra organizations in which users reach shared resources without a guest account; both organizations must enable it, and Learn lists Teams Connect shared channels as what it supports.[^c15-learn-b2b-direct]
+
+B2G
+: A term from commerce writing for the G2B relationship seen from the business side. The federal sources checked for this chapter use G2B, and so does the workbook.
+
+External tenant
+: An Entra tenant configured for apps published to consumers or business customers, separate from the workforce tenant.[^c15-learn-external-id] It serves G2C, which is outside the workbook's scope.
+
+G2B (government-to-business)
+: One of the three e-government sectors CRS names: an agency's electronic dealings with businesses.[^c15-crs-egov] In this chapter, a business whose people use an agency system.
+
+G2C (government-to-citizen)
+: One of the three e-government sectors CRS names: an agency's electronic dealings with members of the public.[^c15-crs-egov] Outside the workbook's scope.
+
+G2E (government-to-employee)
+: An agency's dealings with its own workforce; CRS counts it as part of G2G.[^c15-crs-egov] In this workbook it is the employee and contractor classes.
+
+G2G (government-to-government)
+: Electronic exchanges between government organizations, within the federal level and between the federal, state and local levels.[^c15-crs-egov]
+
+Intergovernmental Cooperation Act (IGCA)
+: The statute whose Title III, with OMB Circular A-97, Login.gov cites as the authority for its support of state and local government programs.[^c15-logingov-sltt]
+
+SLTT
+: State, local, tribal and territorial. The statutory term for domestic governments other than the federal government.[^c15-sltt]
 
 ## Who does what: partner and agency
 
@@ -271,3 +324,9 @@ Key Security Indicators describe what cloud service providers report for their o
 [^c15-learn-em-tutorial]: Microsoft Learn, "Tutorial - Onboard external users to Microsoft Entra ID through an approval process" (approval before external users gain access to the directory; removal when the last access package expires), <https://learn.microsoft.com/entra/id-governance/entitlement-management-onboard-external-user> (accessed Nov 9, 2026).
 [^c15-learn-guest-deploy]: Microsoft Learn, "Microsoft Entra ID Governance deployment guide to govern guest and partner access" (external users who request access are invited to the directory and assigned access), <https://learn.microsoft.com/entra/architecture/governance-deployment-guest-access> (accessed Nov 9, 2026).
 [^c15-learn-xts-gov]: Microsoft Learn, "Governance and cross-tenant synchronization" (synchronization is configured in the source tenant, whose administrators control which users are provisioned), <https://learn.microsoft.com/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-governance> (accessed Nov 9, 2026).
+[^c15-crs-egov]: Congressional Research Service, RL31057, *A Primer on E-Government: Sectors, Stages, Opportunities, and Challenges of Online Governance*, updated January 28, 2003 (summary and "Sectors of E-Government": the three sectors, G2E as a fourth sector and a subset of G2G, and G2G exchanges between the federal, state and local levels), <https://www.everycrsreport.com/reports/RL31057.html> (accessed Nov 25, 2026).
+[^c15-learn-external-id]: Microsoft Learn, "Microsoft Entra External ID Overview" (business guests in the same directory as employees; workforce and external tenants, the external tenant exclusively for apps published to consumers or business customers; Azure AD B2C no longer available to new customers from May 1, 2025), <https://learn.microsoft.com/entra/external-id/external-identities-overview> (accessed Nov 25, 2026).
+[^c15-learn-xta]: Microsoft Learn, "Overview: Cross-tenant access with Microsoft Entra External ID" (B2B collaboration and B2B direct connect with other Microsoft Entra organizations; default settings, and organizational settings that take precedence over them), <https://learn.microsoft.com/entra/external-id/cross-tenant-access-overview> (accessed Nov 25, 2026).
+[^c15-learn-b2b-direct]: Microsoft Learn, "B2B direct connect overview" (both organizations must mutually enable it; B2B direct connect users have no presence in the resource organization; currently supports Teams Connect shared channels), <https://learn.microsoft.com/entra/external-id/b2b-direct-connect-overview> (accessed Nov 25, 2026).
+[^c15-sltt]: State and Local Government Cybersecurity Act of 2021, Pub. L. 117-150, §2, June 21, 2022 (adds the definition of "SLTT entity" to section 2201 of the Homeland Security Act of 2002, 6 U.S.C. 651), <https://www.govinfo.gov/content/pkg/PLAW-117publ150/html/PLAW-117publ150.htm> (accessed Nov 25, 2026).
+[^c15-logingov-sltt]: General Services Administration, "Login.gov to provide authentication and identity proofing services to a limited number of federally funded state and local government programs," February 18, 2021, archived (state and local support authorized under Title III of the Intergovernmental Cooperation Act and OMB Circular A-97; engagements limited to work linked to federal programs), <https://www.gsa.gov/blog/2021/02/18/logingov-to-provide-authentication-and-identity-proofing-services-to-a-limited-number-of-federally-funded-state-and-local-government-programs> (accessed Nov 25, 2026).

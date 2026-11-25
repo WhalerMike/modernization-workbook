@@ -8,8 +8,8 @@ research-book: "Books 13, 15"
 series-order: 0
 date-modified: 2026-11-01
 review-status: approved
-reviewed-sha256: 688e68cf816bcbe3808d1236688e9291b8105c8ccfe49d4af6837f81f8e766dd
-last-reviewed: 2026-11-07
+reviewed-sha256: 54e6f7fdae40287adfdd6d93931647b1161f235245ac1a3136511202a61c3bf1
+last-reviewed: 2026-11-25
 ---
 # Learning path: Ticket-to-Machine on ServiceNow and SailPoint {.unnumbered}
 

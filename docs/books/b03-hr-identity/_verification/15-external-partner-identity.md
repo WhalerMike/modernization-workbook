@@ -100,3 +100,25 @@ Done for the chapter and profile drafts (Book 03 chapter 15, Book 04 Appendix C,
 | L14 | When the last assignment expires or is removed, the account is removed from the tenant | §The route into the tenant, step 4 | verified (Learn read Nov 9, 2026) | https://learn.microsoft.com/entra/id-governance/scenarios/govern-guest-lifecycle-new-project |
 | L15 | Automatic provisioning moves the eligibility decision to whoever controls the partner's groups | §The route into the tenant | verified (Learn read Nov 9, 2026) | https://learn.microsoft.com/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-governance |
 | L16 | Automatic provisioning moves the eligibility decision to whoever controls the source groups in synchronization scope | §The route into the tenant | verified (Learn read Nov 9, 2026) | https://learn.microsoft.com/entra/architecture/multi-tenant-common-considerations |
+
+## Revision 2026-11-25 — counterparty crosswalk and terms
+
+Mike approved adding a short crosswalk of the e-government relationship names (G2G, G2B, G2C, G2E) to this chapter, with the terms defined in place, after a research report on the taxonomy. Each source was read on Nov 25, 2026. The research notes are kept in the separate research repository; nothing here depends on them.
+
+| # | Claim | Where | Verdict | Source |
+|---|---|---|---|---|
+| T1 | CRS names three sectors, G2G, G2B and G2C; some observers add G2E, which CRS counts as a subset of G2G | §Who the counterparty is | verified (read Nov 25, 2026; the everycrsreport.com copy of RL31057, updated Jan 28, 2003; the author name is scrubbed on that copy) | https://www.everycrsreport.com/reports/RL31057.html |
+| T2 | CRS's G2G covers exchanges within the federal level and between the federal, state and local levels | §Who the counterparty is; G2G term | verified (read Nov 25, 2026) | https://www.everycrsreport.com/reports/RL31057.html |
+| T3 | Business guests are created in the same directory as employees; an external tenant is exclusively for apps published to consumers or business customers | §Who the counterparty is; External tenant term | verified (Learn read Nov 25, 2026) | https://learn.microsoft.com/entra/external-id/external-identities-overview |
+| T4 | Azure AD B2C is no longer available for new customers to purchase, effective May 1, 2025 | Azure AD B2C term | verified (Learn read Nov 25, 2026) | https://learn.microsoft.com/entra/external-id/external-identities-overview |
+| T5 | Cross-tenant access settings govern B2B collaboration and B2B direct connect, with default and organization-specific settings | B2B collaboration term | verified (Learn read Nov 25, 2026) | https://learn.microsoft.com/entra/external-id/cross-tenant-access-overview |
+| T6 | B2B direct connect needs both organizations to enable it; its users have no presence in the resource organization; it currently supports Teams Connect shared channels | B2B direct connect term; table row G2G, federal | verified (Learn read Nov 25, 2026). The page says "supports", not "only"; the text follows it | https://learn.microsoft.com/entra/external-id/b2b-direct-connect-overview |
+| T7 | Statutory definition of an SLTT entity | Levels of government; SLTT term | verified (read Nov 25, 2026): Pub. L. 117-150 §2, adding paragraph (7) to section 2201 of the Homeland Security Act (6 U.S.C. 651), approved June 21, 2022 | https://www.govinfo.gov/content/pkg/PLAW-117publ150/html/PLAW-117publ150.htm |
+| T8 | Login.gov's state and local support rests on Title III of the Intergovernmental Cooperation Act and OMB Circular A-97 | Levels of government; IGCA term | verified (read Nov 25, 2026) on a GSA post of Feb 18, 2021 marked archived. Login.gov's current partner page for state and local governments could not be read (redirect, then 403); check it before adding agreement terms | https://www.gsa.gov/blog/2021/02/18/logingov-to-provide-authentication-and-identity-proofing-services-to-a-limited-number-of-federally-funded-state-and-local-government-programs |
+| T9 | "F2S" and "F2L" don't appear in the OMB, CRS, UN or OECD sources checked | Levels of government | verified as a negative finding: searches of those sources and of federal data-exchange pages (IRS FedState and benefit-program computer matching agreements with states) found the plain-language terms "federal-to-state", "intergovernmental" and SLTT, and no F2S or F2L shorthand | Research notes (search record) |
+| T10 | Mapping of each relationship to a class and an Entra mechanism | Table | design guidance; follows the chapter's existing class table, route and WD-050 scope | This chapter; decision register WD-050 |
+
+### Not verified in this revision
+
+1. The names of the four portfolios in OMB's February 2002 E-Government Strategy (the archived PDF returned no text). The chapter doesn't use them.
+2. Whether External ID external tenants are offered to a GCC Moderate tenant. The chapter doesn't claim it; G2C is out of scope.

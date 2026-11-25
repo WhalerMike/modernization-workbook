@@ -1492,6 +1492,31 @@
    "featured": false
   },
   {
+   "id": "docs/project-plans/developer-workbooks/sql-server-identity/index.md",
+   "type": "Developer workbook",
+   "title": "Building SQL Server Identity",
+   "description": "A developer workbook for Book 06, Data Platform: SQL Server Identity",
+   "url": "docs/project-plans/developer-workbooks/sql-server-identity/index.html",
+   "count": 10,
+   "unit": "chapters",
+   "reading_minutes": 162,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Advanced",
+   "level_source": "audience",
+   "roles": [
+    "Cloud and platform engineer",
+    "Developer"
+   ],
+   "topics": [
+    "Data platform"
+   ],
+   "status": "Draft",
+   "family": "sql-server-identity",
+   "featured": false
+  },
+  {
    "id": "docs/project-plans/developer-workbooks/daily-checks/index.md",
    "type": "Developer workbook",
    "title": "Building the Daily Checks Workbook",
@@ -2592,6 +2617,30 @@
    ],
    "status": "Approved",
    "family": "provider-notices",
+   "featured": false
+  },
+  {
+   "id": "docs/training/labs.md#sql",
+   "type": "Lab",
+   "title": "Labs: Building SQL Server Identity",
+   "description": "18 hands-on labs across 9 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building SQL Server Identity.",
+   "url": "docs/training/labs.html#sql",
+   "count": 18,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Unrated",
+   "level_source": "path",
+   "roles": [
+    "Cloud and platform engineer"
+   ],
+   "topics": [
+    "Data platform"
+   ],
+   "status": "Approved",
+   "family": "sql-server-identity",
    "featured": false
   },
   {

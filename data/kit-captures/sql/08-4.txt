@@ -1,0 +1,26 @@
+PS> Get-Content out/certs/manifest.json
+{
+  "step": "CERTS",
+  "title": "Find the AD CS certificates SQL Server depends on",
+  "mode": "read-only",
+  "asOf": "2026-11-20",
+  "controls": [
+    "SC-8",
+    "SC-12",
+    "SC-17"
+  ],
+  "ksis": [
+    "KSI-SVC-SIN",
+    "KSI-SVC-ASM"
+  ],
+  "files": [
+    {
+      "file": "certificates.csv",
+      "sha256": "daeb5397c44c213e7b106f47eb57416578a4b27e28e3a71e49c17a50b5f622b1"
+    },
+    {
+      "file": "certificates.json",
+      "sha256": "e44433e5c534443c6bcffeaad45ce0acda5fa343613b791dd35eccd2bda34a84"
+    }
+  ]
+}

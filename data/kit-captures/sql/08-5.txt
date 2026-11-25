@@ -1,0 +1,5 @@
+PS> Invoke-Pester -Path tests/SqlIdentity.Tests.ps1 -FullNameFilter 'Chapter 08*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+PassedCount FailedCount
+----------- -----------
+          3           0
+PS> Remove-Item -Recurse -Force out

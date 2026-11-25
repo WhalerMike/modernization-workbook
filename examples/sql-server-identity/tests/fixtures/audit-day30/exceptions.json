@@ -1,0 +1,19 @@
+{
+  "asOf": "2026-11-20",
+  "exceptions": [
+    {
+      "instance": "*",
+      "login": "CONTOSO\\SQL-BreakGlass",
+      "reason": "Break-glass group for when Microsoft Entra ID can't be reached; empty by default (Book 06, Appendix B).",
+      "approvedBy": "Authorizing official",
+      "expires": null
+    },
+    {
+      "instance": "SQLFCI04",
+      "login": "vendorhr_app",
+      "reason": "Vendor supports SQL authentication only until its 2027 release.",
+      "approvedBy": "ISSO",
+      "expires": "2027-06-30"
+    }
+  ]
+}

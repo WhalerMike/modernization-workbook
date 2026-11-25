@@ -18,7 +18,9 @@ listing:
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 1f5c5a17f70ac39c672d12e7f2d14c08856bf5b7d0a23beb91d30d4404f72158
+last-reviewed: 2026-11-25
 ---
 # Building Application Modernization {.unnumbered}
 

@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 0f62ecd74eeb1ae973ca1ccd2439dc5e918dbb02a3f2202dd488be5097de55dc
+last-reviewed: 2026-11-25
 ---
 # Chapter 07 — Audit and the Synthetic Events
 

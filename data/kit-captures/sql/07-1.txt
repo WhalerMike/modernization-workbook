@@ -1,0 +1,12 @@
+PS> ./Invoke-SqlConnectionScan.ps1 -Path tests/fixtures/apps -OutputPath out/connections -AsOf 2026-11-20
+Application  File                                    Finding            Driver                        Column Target
+-----------  ----                                    -------            ------                        ------ ------
+claims-batch claims-batch/claims.config.json         Stored password    System.Data.SqlClient         B      Move to Microsoft.Data.SqlClient, ODBC Driver 18 or MSOLEDBSQL first
+payroll-web  payroll-web/appsettings.Production.json Entra already      Microsoft.Data.SqlClient      done
+payroll-web  payroll-web/web.config                  Windows integrated Microsoft.Data.SqlClient      A      Authentication=Active Directory Managed Identity
+reports-odbc reports-odbc/reports.dsn                Windows integrated ODBC Driver 13 for SQL Server B      Move to Microsoft.Data.SqlClient, ODBC Driver 18 or MSOLEDBSQL first
+vendor-hr    vendor-hr/vendorhr.ini                  Stored password    SQLOLEDB                      C      Move to Microsoft.Data.SqlClient, ODBC Driver 18 or MSOLEDBSQL first
+
+Wrote 2 files and manifest.json to out/connections
+Evidence for CONN (Find stored credentials and classify each connection string): IA-5, CM-6; KSI-IAM-SNU, KSI-SVC-ACM
+Stored passwords: 2. Column A (configuration only): 1.

@@ -1,0 +1,7 @@
+PS> Copy-Item -Recurse out/estate out/estate-tampered
+PS> Add-Content -Path out/estate-tampered/estate.csv -Value '"SQLNEW09","2022","unknown","retain","","yes","added by hand"'
+PS> Test-SqlManifest -OutputPath out/estate-tampered
+File        Recorded     Now          Match
+----        --------     ---          -----
+estate.csv  b5f09922d757 a9fe6ab8be3b False
+estate.json b9e75284a7ed b9e75284a7ed  True

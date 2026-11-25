@@ -1,0 +1,30 @@
+{
+  "asOf": "2026-11-20",
+  "note": "setspn -T * -F -Q MSSQLSvc/* output, parsed: one row per SPN and the account that holds it.",
+  "spns": [
+    {
+      "spn": "MSSQLSvc/sqlprd01.contoso.example:1433",
+      "account": "CONTOSO\\svc-sqlprd01"
+    },
+    {
+      "spn": "MSSQLSvc/sqlprd01.contoso.example",
+      "account": "CONTOSO\\svc-sqlprd01"
+    },
+    {
+      "spn": "MSSQLSvc/sqlfci04.contoso.example:1433",
+      "account": "CONTOSO\\svc-oldsql"
+    },
+    {
+      "spn": "MSSQLSvc/sqlprd06.contoso.example:1433",
+      "account": "CONTOSO\\gmsa-sqlprd06$"
+    },
+    {
+      "spn": "MSSQLSvc/sqlprd06.contoso.example:1433",
+      "account": "CONTOSO\\SQLPRD06$"
+    },
+    {
+      "spn": "MSSQLSvc/sqldev08.contoso.example:1433",
+      "account": "CONTOSO\\svc-sqldev"
+    }
+  ]
+}

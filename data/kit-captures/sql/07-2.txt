@@ -1,0 +1,20 @@
+PS> Import-Csv out/connections/connections.csv | Select-Object Application, Server, Masked | Format-List
+Application : claims-batch
+Server      : sqlprd02.contoso.example
+Masked      : Data Source=sqlprd02.contoso.example;Initial Catalog=Claims;User ID=claims_batch;Password=********;Encrypt=True
+
+Application : payroll-web
+Server      : tcp:sqlprd01.contoso.example,1433
+Masked      : Server=tcp:sqlprd01.contoso.example,1433;Database=PayrollArchive;Authentication=Active Directory Managed Identity;Encrypt=True
+
+Application : payroll-web
+Server      : sqlprd01.contoso.example
+Masked      : Server=sqlprd01.contoso.example;Database=Payroll;Integrated Security=SSPI;Encrypt=True
+
+Application : reports-odbc
+Server      : sqlleg03.contoso.example
+Masked      : DRIVER=ODBC Driver 13 for SQL Server;SERVER=sqlleg03.contoso.example;DATABASE=Reports;Trusted_Connection=Yes
+
+Application : vendor-hr
+Server      : sqlfci04.contoso.example
+Masked      : Provider=SQLOLEDB;Data Source=sqlfci04.contoso.example;Initial Catalog=VendorHR;User ID=vendorhr_app;Password=********

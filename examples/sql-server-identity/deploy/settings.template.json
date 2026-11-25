@@ -1,0 +1,14 @@
+{
+  "_comment": "One settings file per environment: copy to settings.test.json and settings.production.json, fill in, and keep the filled files inside your boundary. No secrets go here: the deployer signs in with its own Entra account (Invoke-Sqlcmd -AccessToken or an interactive Entra sign-in).",
+  "environment": "test",
+  "cloud": "AzureCloud",
+  "instance": "<instance name as the audit names it>",
+  "server": "<host.domain.example,1433>",
+  "auditPath": "<audit snapshot from Export-SqlAuditSnapshot.ps1>",
+  "arcPath": "<Arc snapshot from Export-SqlArcSnapshot.ps1>",
+  "exceptionsPath": "<exception registry JSON>",
+  "mappingPath": "<reviewed mapping CSV>",
+  "chainPath": "evidence/chain.jsonl",
+  "breakGlassLogin": "<the break-glass group in the exception registry>",
+  "approver": "<name of the change approver>"
+}

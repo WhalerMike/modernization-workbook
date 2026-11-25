@@ -1,0 +1,6 @@
+PS> Get-Content out/ntlm/spn-fixes.txt
+# Review each line; run with Domain Admin rights in a change window. Nothing here has run.
+setspn -S MSSQLSvc/sqlprd02.contoso.example:1433 CONTOSO\svc-sqlprd02
+setspn -D MSSQLSvc/sqlfci04.contoso.example:1433 CONTOSO\svc-oldsql
+setspn -S MSSQLSvc/sqlfci04.contoso.example:1433 CONTOSO\svc-sqlfci04
+setspn -D MSSQLSvc/sqlprd06.contoso.example:1433 CONTOSO\SQLPRD06$

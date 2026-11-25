@@ -100,7 +100,8 @@ KIT_ZIPS = {"start-kit": "start-kit.zip", "copilot-agent-pack": "copilot-agent-p
             "privileged-access": "privileged-access-code.zip", "non-person-identity": "non-person-identity-code.zip",
             "ms-automation": "microsoft-automation-code.zip", "global-secure-access": "global-secure-access-code.zip",
             "azure-security": "azure-security-code.zip",
-            "daily-checks-workbook": "daily-checks-workbook-code.zip"}
+            "daily-checks-workbook": "daily-checks-workbook-code.zip",
+            "sql-server-identity": "sql-server-identity-code.zip"}
 KIT_REF = re.compile(r"examples/([A-Za-z0-9_-]+)")
 
 GROUPS = [

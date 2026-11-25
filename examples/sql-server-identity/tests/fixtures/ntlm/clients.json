@@ -1,0 +1,20 @@
+{
+  "asOf": "2026-11-20",
+  "note": "Remote NTLM sessions joined to the client's directory state.",
+  "clients": [
+    {
+      "instance": "SQLPRD06",
+      "principal": "CONTOSO\\Reports-Readers",
+      "clientHost": "dmz-web01",
+      "clientAddress": "192.0.2.15",
+      "domainJoined": false
+    },
+    {
+      "instance": "SQLPRD01",
+      "principal": "CONTOSO\\svc-payroll",
+      "clientHost": "payweb01.contoso.example",
+      "clientAddress": "198.51.100.21",
+      "domainJoined": true
+    }
+  ]
+}
