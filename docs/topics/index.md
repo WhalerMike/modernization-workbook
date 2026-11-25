@@ -30,7 +30,7 @@ Each row shows what a topic has. A cell that says **gap** is something readers n
 | [DNS, DHCP and IPAM](dns-dhcp-ipam.md) | 8 | 1 | 1 | [not needed](#gaps) | 4 modules | yes | 11 | 1 zip |
 | [Network and SD-WAN](network-sd-wan.md) | 8 | 1 | 3 | [not needed](#gaps) | 4 modules | yes | 7 | 1 zip |
 | [Endpoints](endpoints.md) | 8 | 2 | 5 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 14 | 3 zips |
-| [Information Protection](information-protection.md) | 6 | 1 | 1 | 9 chapters | 5 modules | yes | 1 | 1 zip |
+| [Information Protection](information-protection.md) | 6 | 1 | 2 | 9 chapters | 5 modules | yes | 1 | 1 zip |
 | [Compliance and Evidence](compliance-evidence.md) | 13 | 2 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 14 | 2 zips |
 | [Application Modernization](application-modernization.md) | 7 | [not needed](#gaps) | [not needed](#gaps) | 7 chapters | [gap](#gaps) | yes | 3 | 1 zip |
 
