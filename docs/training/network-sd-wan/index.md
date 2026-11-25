@@ -91,8 +91,8 @@ Work through them in order.
 |---|---|---|---|---|
 | 1 | [The governor before the traffic](01-the-governor-before-the-traffic.md) | Orientation, the hosted-or-on-premises decision | Lab 1, Lab 2 | 45 min, plus Lab 2 |
 | 2 | [Gate 0: the ED 26-03 and KEV floor](02-gate-0-the-ed-26-03-and-kev-floor.md) | Gate 0 | Lab 1, Lab 2 | 50 min, plus Lab 2 |
-| 3 | The hunt, hardening and logs off the box *(next phase)* | Gate 0's hunt, Hardening, Getting logs off the box | Lab 1, Lab 2 | 45 min, plus Lab 2 |
-| 4 | Path classes, change rings and the evidence *(next phase)* | Policy, TIC 3.0, SSE and Microsoft 365, Evidence and telemetry, Control states | Lab 1, Lab 2 | 50 min, plus Lab 2 |
+| 3 | [The hunt, hardening and logs off the box](03-the-hunt-hardening-and-logs-off-the-box.md) | Gate 0's hunt, Hardening, Getting logs off the box | Lab 1, Lab 2 | 45 min, plus Lab 2 |
+| 4 | [Path classes, change rings and the evidence](04-path-classes-change-rings-and-the-evidence.md) | Policy, TIC 3.0, SSE and Microsoft 365, Evidence and telemetry, Control states | Lab 1, Lab 2 | 50 min, plus Lab 2 |
 
 : The modules of the SD-WAN governor learning path {.striped .hover}
 
