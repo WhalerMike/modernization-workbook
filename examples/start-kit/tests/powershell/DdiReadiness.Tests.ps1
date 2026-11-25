@@ -232,6 +232,125 @@ Describe 'The address plan (Book 08, Chapter 07; Book 10, Chapter 06)' {
     }
 }
 
+Describe 'The Phase 5 gates (Book 08, Chapter 10)' {
+    BeforeAll {
+        $script:Gate = Join-Path (Join-Path $FixturePath 'ddi') 'gate'
+        $script:GateArgs = @{
+            Path = $Run; TargetInventoryPath = (Join-Path $Gate 'target-inventory.csv'); SrvCheckPath = (Join-Path $Gate 'srv-checks')
+            IntervalMinutes = 60; ParallelStart = [datetime]'2026-08-01'; FailoverTestPath = (Join-Path $Gate 'failover-tests.csv')
+            LegacyQueryPath = (Join-Path $Gate 'legacy-queries.csv'); AsOf = [datetime]'2026-11-20'
+        }
+        $script:G = Test-FMPDdiDecommissionGate @GateArgs
+        function Get-Gate($R, $N) { @($R.Gates | Where-Object Gate -eq $N)[0] }
+    }
+    It 'holds when any gate fails' {
+        $G.Passed | Should -BeFalse
+        @($G.Gates.Status) | Should -Be @('Fail', 'Fail', 'Pass', 'Pass', 'Fail')
+    }
+    It 'reconciles the inventory both ways, with the signed and locator zones'' rules' {
+        $d = (Get-Gate $G 1).Detail
+        $d | Should -Match 'GlobalNames: missing from the target'
+        $d | Should -Match 'secure\.contoso\.example: signed'
+        $d | Should -Match 'cloud\.contoso\.example: in the target, not in the Phase 1 inventory, and not explained'
+        $d | Should -Not -Match '_msdcs'
+    }
+    It 'passes gate 1 once every zone is accounted for' {
+        $fixed = Join-Path $TestDrive 'target.csv'
+        $rows = @(Import-Csv $GateArgs.TargetInventoryPath)
+        foreach ($r in $rows) { if ($r.Zone -eq 'secure.contoso.example') { $r.ChainValidates = 'Yes' }; if ($r.Zone -eq 'cloud.contoso.example') { $r.Reason = 'A new delegated subdomain for the cloud team' } }
+        $rows += [pscustomobject]@{ Zone = 'GlobalNames'; Disposition = 'Moved'; Reason = ''; ChainValidates = '' }
+        $rows | Export-Csv -Path $fixed -NoTypeInformation
+        (Get-Gate (Test-FMPDdiDecommissionGate -Path $Run -TargetInventoryPath $fixed -AsOf '2026-11-20') 1).Status | Should -Be 'Pass'
+    }
+    It 'fails gate 1 if the locator zone is moved' {
+        $moved = Join-Path $TestDrive 'msdcs.csv'
+        (Get-Content $GateArgs.TargetInventoryPath) -replace '^_msdcs\.contoso\.example,StaysOnAdDns', '_msdcs.contoso.example,Moved' | Set-Content $moved
+        (Get-Gate (Test-FMPDdiDecommissionGate -Path $Run -TargetInventoryPath $moved -AsOf '2026-11-20') 1).Detail | Should -Match 'locator zone stays'
+    }
+    It 'restarts the SRV clock after a failure and after a gap' {
+        $d = (Get-Gate $G 2).Detail
+        $d | Should -Match 'azure-hub: 17 clean days since a failure at 2026-11-02 08:00Z \(_kpasswd\._tcp\.contoso\.example\)'
+        $d | Should -Match 'branch: 9 clean days since a 6-hour gap'
+        $d | Should -Match 'hq-dc: clean for 30 days'
+    }
+    It 'treats hourly checks as gaps against the 15-minute interval' {
+        $a = $GateArgs.Clone(); $a.IntervalMinutes = 15
+        (Get-Gate (Test-FMPDdiDecommissionGate @a) 2).Detail | Should -Match 'hq-dc: \d+ clean days since a 1-hour gap'
+    }
+    It 'counts the parallel period and the idle servers' {
+        (Get-Gate $G 3).Detail | Should -Be '111 days of 90, since 2026-08-01'
+        (Get-Gate $G 5).Detail | Should -Be 'dns01.contoso.example: 3 direct queries in the last 7 days'
+    }
+    It 'fails gate 4 without a passing DHCP failover test' {
+        $fo = Join-Path $TestDrive 'fo.csv'
+        "Component,Date,Result`nDNS resolvers,2026-11-06,PASS`nDHCP,2026-11-06,FAIL" | Set-Content $fo
+        $a = $GateArgs.Clone(); $a.FailoverTestPath = $fo
+        (Get-Gate (Test-FMPDdiDecommissionGate @a) 4).Detail | Should -Be 'DHCP on 2026-11-06: FAIL; no passing test for DHCP'
+    }
+    It 'holds every gate it has no evidence for' {
+        $x = Test-FMPDdiDecommissionGate -Path $Run -AsOf '2026-11-20'
+        $x.Passed | Should -BeFalse
+        @($x.Gates | Where-Object Status -eq 'Not evidenced') | Should -HaveCount 5
+    }
+    It 'writes the gates under -OutputPath only' {
+        $out = Join-Path $TestDrive 'gate-out'
+        $a = $GateArgs.Clone(); $a.OutputPath = $out
+        $null = Test-FMPDdiDecommissionGate @a
+        @(Import-Csv (Join-Path (Join-Path (Join-Path $out 'contoso.example') 'DDI') 'DecommissionGate.csv')) | Should -HaveCount 5
+    }
+}
+
+Describe 'The locator record probe' {
+    BeforeAll {
+        $script:OnWindows = $PSVersionTable.PSEdition -eq 'Desktop' -or $IsWindows
+        if ($OnWindows) {
+            Mock -ModuleName FMPDdiReadiness Resolve-DnsName {
+                if ($Name -like '_kpasswd*' -and $Server -eq '10.0.0.11') { throw 'DNS name does not exist' }
+                @([pscustomobject]@{ Type = 'SRV'; NameTarget = 'dc01.contoso.example' })
+            }
+        }
+    }
+    It 'checks every record against each resolver and writes one file per check' {
+        if (-not $OnWindows) { Set-ItResult -Skipped -Because 'Resolve-DnsName exists only on Windows'; return }
+        $out = Join-Path $TestDrive 'probe'
+        $r = Test-FMPLocatorResolution -Domain 'contoso.example' -Resolver 10.0.0.10, 10.0.0.11 -Location 'hq dc' -Site 'HQ' -OutputPath $out
+        $r | Should -HaveCount 2
+        $r[0].Result | Should -Be 'PASS'
+        $r[0].Records | Should -Be 8
+        $r[1].Failed | Should -Be '_kpasswd._tcp.contoso.example'
+        $f = @(Get-ChildItem (Join-Path $out 'srv-checks') -Filter '*-hq_dc.csv')
+        $f | Should -HaveCount 1
+        @(Import-Csv $f[0].FullName) | Should -HaveCount 2
+        Should -Invoke -ModuleName FMPDdiReadiness Resolve-DnsName -Times 16 -Exactly
+    }
+}
+
+Describe 'The evidence index (Book 08, Chapter 11)' {
+    BeforeAll {
+        $script:Ev = Join-Path $TestDrive 'evidence'
+        Copy-Run (Join-Path $Ev 'contoso.example')
+        $null = New-Item -ItemType Directory -Force -Path (Join-Path $Ev 'srv-checks')
+        Copy-Item (Join-Path (Join-Path (Join-Path (Join-Path $FixturePath 'ddi') 'gate') 'srv-checks') 'hq-dc.csv') (Join-Path $Ev 'srv-checks')
+        'notes' | Set-Content (Join-Path $Ev 'readme.txt')
+        $script:I = Get-FMPDdiEvidenceIndex -Path $Ev -OutputPath (Join-Path $TestDrive 'index')
+    }
+    It 'classifies each file the kit wrote, and keeps the others as Unrecognized' {
+        @($I.Files | Where-Object File -eq 'contoso.example/DNS/DNSInventory.json')[0].Kind | Should -Be 'Configuration'
+        @($I.Files | Where-Object File -eq 'srv-checks/hq-dc.csv')[0].Kind | Should -Be 'Operational'
+        @($I.Files | Where-Object File -eq 'readme.txt')[0].Kind | Should -Be 'Unrecognized'
+    }
+    It 'hashes each file' {
+        $row = @($I.Files | Where-Object File -eq 'srv-checks/hq-dc.csv')[0]
+        $row.SHA256 | Should -Be (Get-FileHash (Join-Path (Join-Path $Ev 'srv-checks') 'hq-dc.csv') -Algorithm SHA256).Hash.ToLowerInvariant()
+    }
+    It 'lists what Chapter 11 asks for that the kit does not produce' {
+        @($I.NotFromTheKit.Kind) | Should -Be @('Configuration', 'Operational', 'Test', 'Exception', 'Assessor-ready artifact')
+    }
+    It 'writes the index under -OutputPath only' {
+        @(Import-Csv (Join-Path (Join-Path $TestDrive 'index') 'EvidenceIndex.csv')).Count | Should -Be @($I.Files).Count
+    }
+}
+
 Describe 'Reading what the DNS collector writes' {
     BeforeAll {
         $script:OnWindows = $PSVersionTable.PSEdition -eq 'Desktop' -or $IsWindows

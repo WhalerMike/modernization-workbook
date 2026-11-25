@@ -2169,6 +2169,12 @@
    "title": "DNS, DHCP and IPAM"
   }
  ],
+ "docs/books/guides/information-protection-implementation.md": [
+  {
+   "id": "information-protection",
+   "title": "Information Protection"
+  }
+ ],
  "docs/books/guides/intune-track-implementation.md": [
   {
    "id": "attribute-driven-migration",
@@ -3192,6 +3198,18 @@
   }
  ],
  "docs/training/dns-dhcp-ipam/04-cloud-private-dns-and-one-address-plan.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/training/dns-dhcp-ipam/05-move-authority-zone-by-zone.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/training/dns-dhcp-ipam/06-operate-the-control-plane-with-evidence.md": [
   {
    "id": "dns-dhcp-ipam",
    "title": "DNS, DHCP and IPAM"

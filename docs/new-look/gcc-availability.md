@@ -24,6 +24,7 @@ The workbook covers Microsoft 365 GCC (Moderate) with commercial Azure. Pages sa
 | [Distribution Point Consolidation: A Decision Guide Before You Fund a Refresh](../books/guides/dp-consolidation.md) | [GCC availability and the interim path](../books/guides/dp-consolidation.md#gcc-availability) |
 | [Global Secure Access & Zero Trust Network Engineering: An Implementation Guide](../books/guides/global-secure-access-implementation.md) | [GCC and licensing, feature by feature](../books/guides/global-secure-access-implementation.md#availability) |
 | [Building Book 03's HR Pipeline: Oracle Fusion Cloud HCM to Microsoft Entra ID](../books/guides/hcm-entra-implementation.md) | [GCC](../books/guides/hcm-entra-implementation.md#gcc) |
+| [Information Protection with Microsoft Purview: An Implementation Guide](../books/guides/information-protection-implementation.md) | [GCC availability by feature](../books/guides/information-protection-implementation.md#government-cloud-availability) |
 | [Zero Trust Assessment: An Implementation Guide](../books/guides/zero-trust-assessment-implementation.md) | [GCC availability](../books/guides/zero-trust-assessment-implementation.md#zta-gov-availability), [Step 4: Connect in the GCC tenant](../books/guides/zero-trust-assessment-implementation.md#zta-step-4) |
 
 : Guides: GCC availability sections {.striped .hover}
