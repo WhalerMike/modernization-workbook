@@ -355,5 +355,5 @@ You saw how Azure, AWS and Oracle Cloud each run private DNS and take queries fr
 
 ::: {.callout-tip}
 ## Continue the path
-[Learning path](index.md) · [← Module 3, DHCP, encrypted DNS and the edge](03-dhcp-encrypted-dns-and-the-edge.md)
+[Learning path](index.md) · [← Module 3, DHCP, encrypted DNS and the edge](03-dhcp-encrypted-dns-and-the-edge.md) · [Next: Module 5, Move authority zone by zone →](05-move-authority-zone-by-zone.md)
 :::

@@ -1,0 +1,13 @@
+Zone,Disposition,Reason,ChainValidates
+contoso.example,Moved,,
+_msdcs.contoso.example,StaysOnAdDns,Domain controllers register here until the last one goes,
+10.in-addr.arpa,Moved,,
+16.172.in-addr.arpa,Moved,,
+apps.contoso.example,Moved,,
+legacy.contoso.example,Retired,Its primary moved with apps.contoso.example,
+partner.example,Moved,,
+oldvendor.example,Retired,The vendor contract ended; the target answered no DNS query,
+blob.core.windows.net,Moved,,
+hr.contoso.example,Moved,,
+secure.contoso.example,Moved,,No
+cloud.contoso.example,New,,

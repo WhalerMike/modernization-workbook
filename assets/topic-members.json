@@ -3083,6 +3083,18 @@
    "title": "DNS, DHCP and IPAM"
   }
  ],
+ "docs/training/dns-dhcp-ipam/05-move-authority-zone-by-zone.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/training/dns-dhcp-ipam/06-operate-the-control-plane-with-evidence.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
  "docs/training/dns-dhcp-ipam/index.md": [
   {
    "id": "dns-dhcp-ipam",
