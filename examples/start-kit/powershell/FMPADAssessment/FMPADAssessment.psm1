@@ -849,6 +849,33 @@ function Get-PKISecurityFindings {
     $findings
 }
 
+function Get-FMPRsaKeySize {
+    # The modulus length in bits of an RSA certificate's public key, parsed from its DER
+    # RSAPublicKey (SEQUENCE { INTEGER modulus, INTEGER exponent }). $null for other key types.
+    param([Parameter(Mandatory)]$Certificate)
+    if ("$($Certificate.PublicKey.Oid.Value)" -ne '1.2.840.113549.1.1.1') { return $null }
+    $b = [byte[]]$Certificate.PublicKey.EncodedKeyValue.RawData
+    $i = 0
+    $readLength = {
+        $first = [int]$b[$script:pos]; $script:pos++
+        if ($first -lt 0x80) { return $first }
+        $n = $first -band 0x7f; $len = 0
+        for ($k = 0; $k -lt $n; $k++) { $len = ($len * 256) + [int]$b[$script:pos]; $script:pos++ }
+        $len
+    }
+    $script:pos = $i
+    if ($b[$script:pos] -ne 0x30) { return $null }
+    $script:pos++; $null = & $readLength
+    if ($b[$script:pos] -ne 0x02) { return $null }
+    $script:pos++; $len = & $readLength
+    $start = $script:pos
+    while ($len -gt 0 -and $b[$start] -eq 0) { $start++; $len-- }
+    if ($len -le 0) { return $null }
+    $bits = $len * 8; $top = [int]$b[$start]
+    while ($top -lt 0x80) { $bits--; $top = $top * 2 }
+    $bits
+}
+
 function Get-FMPPKIAssessment {
     <#
     .SYNOPSIS
@@ -901,10 +928,10 @@ function Get-FMPPKIAssessment {
             } catch { $cert = $null }
         }
         $keySize = $null
-        # PublicKey.Key isn't supported by .NET on Linux or macOS; the RSA extension works on both
-        # editions (called statically, because Windows PowerShell 5.1 doesn't bind extension methods).
+        # Read from the encoded public key, so no crypto provider is needed: PublicKey.Key
+        # returns nothing on .NET outside Windows. Non-RSA keys fall back to the provider.
         if ($cert) {
-            try { $rsa = [System.Security.Cryptography.X509Certificates.RSACertificateExtensions]::GetRSAPublicKey($cert); if ($rsa) { $keySize = $rsa.KeySize } } catch { $keySize = $null }
+            $keySize = Get-FMPRsaKeySize -Certificate $cert
             if ($null -eq $keySize) { try { $keySize = $cert.PublicKey.Key.KeySize } catch { $keySize = $null } }
         }
         [pscustomobject]@{
