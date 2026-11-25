@@ -221,6 +221,8 @@ Every lab opens with the list of every command it runs, in order: follow it top 
 |---|---|---|
 | [Module 1: The governor before the traffic](network-sd-wan/01-the-governor-before-the-traffic.md) | [Lab 1](network-sd-wan/01-the-governor-before-the-traffic.md#nsw-m1-lab-1) | [Lab 2](network-sd-wan/01-the-governor-before-the-traffic.md#nsw-m1-lab-2) |
 | [Module 2: Gate 0: the ED 26-03 and KEV floor](network-sd-wan/02-gate-0-the-ed-26-03-and-kev-floor.md) | [Lab 1](network-sd-wan/02-gate-0-the-ed-26-03-and-kev-floor.md#nsw-m2-lab-1) | [Lab 2](network-sd-wan/02-gate-0-the-ed-26-03-and-kev-floor.md#nsw-m2-lab-2) |
+| [Module 3: The hunt, hardening and logs off the box](network-sd-wan/03-the-hunt-hardening-and-logs-off-the-box.md) | [Lab 1](network-sd-wan/03-the-hunt-hardening-and-logs-off-the-box.md#nsw-m3-lab-1) | [Lab 2](network-sd-wan/03-the-hunt-hardening-and-logs-off-the-box.md#nsw-m3-lab-2) |
+| [Module 4: Path classes, change rings and the evidence](network-sd-wan/04-path-classes-change-rings-and-the-evidence.md) | [Lab 1](network-sd-wan/04-path-classes-change-rings-and-the-evidence.md#nsw-m4-lab-1) | [Lab 2](network-sd-wan/04-path-classes-change-rings-and-the-evidence.md#nsw-m4-lab-2) |
 
 : The SD-WAN governor: labs by module {.striped .hover}
 
