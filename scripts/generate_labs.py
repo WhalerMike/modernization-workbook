@@ -86,9 +86,9 @@ WORKBOOKS = [
              "information-protection-code.zip", "docs/books/guides/information-protection-implementation.md",
              "docs/training/information-protection", gates={"1": ["01", "03"], "2": ["04"], "3": ["04"], "4": ["04"], "5": ["05"], "6": ["05"], "7": ["05"],
                     "8": ["06"], "9": ["06"], "10": ["01", "07"], "11": ["06", "07"], "12": ["02", "08", "09"]}),
-    # Book 06's runbooks R01 to R10 are its implementation guide; the learning path comes in a later PR.
+    # Book 06's runbooks R01 to R10 are its implementation guide, so there is no guide here.
     Workbook("sql", "Building SQL Server Identity", "docs/project-plans/developer-workbooks/sql-server-identity",
-             "sql-server-identity-code.zip"),
+             "sql-server-identity-code.zip", training="docs/training/data-platform"),
     Workbook("am", "Building Application Modernization", "docs/project-plans/developer-workbooks/application-modernization",
              "app-modernization.zip", training="docs/training/application-modernization"),
 ]

@@ -6,7 +6,7 @@ doc-type: reference
 fmw-eyebrow: "Reference"
 date-modified: 2026-11-09
 review-status: approved
-reviewed-sha256: 47a643362e1f827e4769b1c101112ddac9dd14ed62f2d35fc4d7926a85f7874c
+reviewed-sha256: 245191d35a89e0ece3f4374dc0442d0184e68124bfec58891b99ce368a7745da
 last-reviewed: 2026-11-25
 ---
 # Learn Coverage Map {.unnumbered}
@@ -2005,7 +2005,7 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [Global Secure Access support in China](https://learn.microsoft.com/entra/global-secure-access/reference-china-user-support) | — | Out of scope |
 | [Ciphers for Microsoft Entra Private Access](https://learn.microsoft.com/entra/global-secure-access/reference-ciphers) | [Book 10, Chapter 04 — GCC and the Commercial Feature Gap](../books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md) | Cited |
 | [Global Secure Access change communication plan template](https://learn.microsoft.com/entra/global-secure-access/reference-communication-plan) | — | Not covered |
-| [Known Limitations for Global Secure Access](https://learn.microsoft.com/entra/global-secure-access/reference-current-known-limitations) | [Book 01, Chapter 08 — The Access Plane](../books/b01-transformation-arc/08-access-plane.md); [Book 02, Appendix A — Federal Requirements Crosswalk](../books/b02-identity/appendix-a-federal-requirements-crosswalk.md); and 23 more | Cited |
+| [Known Limitations for Global Secure Access](https://learn.microsoft.com/entra/global-secure-access/reference-current-known-limitations) | [Book 01, Chapter 08 — The Access Plane](../books/b01-transformation-arc/08-access-plane.md); [Book 02, Appendix A — Federal Requirements Crosswalk](../books/b02-identity/appendix-a-federal-requirements-crosswalk.md); and 24 more | Cited |
 | [Global Secure Access daily health check](https://learn.microsoft.com/entra/global-secure-access/reference-daily-health-check) | — | Not covered |
 | [Microsoft Entra Private Access and Microsoft Entra Internet Access data storage and privacy](https://learn.microsoft.com/entra/global-secure-access/reference-data-storage-and-privacy) | [Book 10, Chapter 04 — GCC and the Commercial Feature Gap](../books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md) | Cited |
 | [Global Secure Access egress IP ranges](https://learn.microsoft.com/entra/global-secure-access/reference-egress-ip-ranges) | [Book 10, Chapter 04 — GCC and the Commercial Feature Gap](../books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md) | Cited |

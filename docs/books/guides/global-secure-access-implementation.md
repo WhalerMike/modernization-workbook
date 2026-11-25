@@ -609,12 +609,30 @@ NetworkAccessTraffic
 
 And for least privilege, Quick Access should shrink to nothing: list what is left in it from application discovery, and move each into its own app.
 
+### SQL Server behind Private Access {#sql-server-behind-private-access}
+
+A SQL Server instance is a private application like any other: one Private Access application per instance or availability group listener, one segment with the listener's fully qualified name and its TCP port, the group of people who query it, and Conditional Access on the application. A default instance listens on TCP 1433. A named instance uses a dynamic port by default, and clients find it by asking the SQL Server Browser on UDP 1434.[^gsai-sql-port][^gsai-sql-browser] Give each named instance a fixed port before publishing it, so the segment names one TCP port and leaves UDP 1434 out. Per-app access carries TCP and UDP and takes an FQDN or IP destination with a list of ports.[^gsai-perapp]
+
+```powershell
+# Steps 6.1 to 6.4 with the SQL Server listener: one segment, its fixed TCP port
+Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/beta/applications/<app-object-id>/onPremisesPublishing/segmentsConfiguration/microsoft.graph.ipSegmentConfiguration/applicationSegments" `
+  -ContentType "application/json" -Body '{"destinationHost":"<sql-listener-fqdn>","destinationType":"fqdn","port":0,"ports":["1433-1433"],"protocol":"tcp"}'
+```
+
+Three points are particular to SQL Server:
+
+- **The policy guards the network path; the token guards the database.** Conditional Access on the Private Access application decides who reaches the port. Conditional Access applies at the application, to Quick Access and Global Secure Access applications, not to Private Access traffic as a whole, and the compliant network check doesn't apply to Private Access applications.[^gsai-limits] Who gets into the database is decided again by the instance, which accepts the Entra token and grants only what its roles allow ([Book 06, Chapters 11–12](../b06-data-platform/11-three-principal-types.md), [Runbook R07](../b06-data-platform/r07-groups-aus-and-the-conditional-access-perimeter.md)).
+- **Windows authentication needs Kerberos through the same client.** Until a database takes only Entra logins, a client that signs in with Windows authentication needs its Kerberos traffic to the domain controllers carried too ([Book 09, Chapter 06](../b09-network/06-legacy-protocols-on-re-routed-paths.md#ways-to-provide-the-path)).
+- **Applications don't go through the client.** An application server that connects to the database is a workload, not a person, and doesn't run the Global Secure Access client; it reaches the instance on the server network and authenticates with its own Entra identity ([Book 06, Chapter 18](../b06-data-platform/18-the-four-class-pattern-for-applications.md)).
+
+[Book 06, Appendix A](../b06-data-platform/appendix-a-requirements-mapping.md#zero-trust-across-the-pillars) maps this path, with the rest of an Arc-enabled SQL Server estate, across the Zero Trust pillars.
+
 **How-section.** **Prerequisites:** connectors per Book 09, Chapter 05 (Windows Server 2019 or later, TLS 1.2, no inline TLS inspection of connector traffic); Step 3. **Pilot:** one application, the pilot group. **Report-only or audit:** the Conditional Access policy in `enabledForReportingButNotEnforced` for five business days, read in the sign-in log's report-only results. **Enforcement:** set the policy to `enabled`; add ring groups to the assignment; then turn off the VPN route for that application ([Step 11](#step-11-coexistence-and-migration)). **Rollback:** remove the group's app role assignment, or set the policy back to report-only; the VPN route stays until Step 11's exit criteria are met. **Exclusions:** emergency access accounts from the policy; no exclusions from the assignment (an unassigned user has no path, by design). **Telemetry:** `NetworkAccessTraffic` with `TrafficType == "private"`, sign-in logs for the app, connector health. **Evidence:** app, segment, assignment and policy exports; the reachable and unreachable port tests; the Quick Access residual list. **Day-two ownership:** the application owner reviews the assignment each quarter (an access review, [Book 04, Chapter 09](../b04-access/09-access-governance.md)); the platform owner keeps at least two healthy, current connectors per group.[^gsai-ops-pa]
 
 ::: {.callout-note appearance="simple"}
 ## Assessment mapping: Step 6
 - **Microsoft Zero Trust pillar:** Networks
-- **CISA ZTMM pillar:** Applications and Workloads
+- **CISA ZTMM pillar:** Networks (Network Traffic Management, as Learn's CISA networks-pillar page maps Private Access)
 - **Depends on:** Conditional Access and device compliance ([Book 04](../b04-access/index.md), [Book 05](../b05-devices/index.md)); connectors on the program's server standard
 - **Attack chain interrupted:** a compromised user or device moving laterally across a VPN address pool (Lateral Movement, Discovery)
 :::
@@ -1156,6 +1174,8 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 [^gsai-graph-pa]: Microsoft Learn, "Configure Microsoft Entra Private Access using Microsoft Graph APIs," Steps 1 to 8 (template instantiation, `onPremisesPublishing`, connector groups, application segments, app role assignment, forwarding profile, private DNS), <https://learn.microsoft.com/graph/tutorial-entra-private-access> (accessed Nov 11, 2026).
 [^gsai-pa-ca]: Microsoft Learn, "How to Apply Conditional Access Policies to Microsoft Entra Private Access Apps," verified for Book 09, Chapter 05 on Nov 9, 2026, <https://learn.microsoft.com/entra/global-secure-access/how-to-target-resource-private-access-apps> (accessed Nov 9, 2026).
 [^gsai-perapp]: Microsoft Learn, "How to configure per-app access using Global Secure Access applications," application segments (common ports, overlap with Quick Access), rule priority in the client and Policy tester, RDP flow, <https://learn.microsoft.com/entra/global-secure-access/how-to-configure-per-app-access> (accessed Nov 11, 2026).
+[^gsai-sql-port]: Microsoft Learn, "Configure SQL Server to listen on a specific TCP port," <https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/configure-a-server-to-listen-on-a-specific-tcp-port?view=sql-server-ver17> (accessed Nov 25, 2026).
+[^gsai-sql-browser]: Microsoft Learn, "SQL Server Browser service (Database Engine and SSAS)," <https://learn.microsoft.com/en-us/sql/tools/configuration-manager/sql-server-browser-service?view=sql-server-ver17> (accessed Nov 25, 2026).
 [^gsai-ops-pa]: Microsoft Learn, "Microsoft Entra Global Secure Access operations guide," Private Access operations (connector health, segment management), <https://learn.microsoft.com/entra/global-secure-access/overview-operations> (accessed Nov 11, 2026).
 [^gsai-compliant]: Microsoft Learn, "Enable compliant network check with Conditional Access," enforcement (authentication and data plane), prerequisites, enabling signaling, the caution on disabling it, the example policy (Intune exclusions; emergency access), automatic exclusions, mobile app support, trying the policy, <https://learn.microsoft.com/entra/global-secure-access/how-to-compliant-network> (accessed Nov 11, 2026).
 [^gsai-cn-tutorial]: Microsoft Learn, "Tutorial: Enable the compliant network check," Step 1 (pilot group and test application) and Step 2 (validate by disabling the client), <https://learn.microsoft.com/entra/global-secure-access/tutorial-microsoft-traffic-compliant-network> (accessed Nov 11, 2026).

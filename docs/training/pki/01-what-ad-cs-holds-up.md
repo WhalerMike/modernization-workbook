@@ -96,17 +96,20 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\start-kit
 
+$Run = "C:\FMWLabs\results\pki-01-what-ad-cs-holds-up\lab1\$((Get-Date).ToUniversalTime().ToString('yyyy-MM-ddTHHmmssZ'))"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
 # Step 1: Load the kit
 Import-Module .\powershell\FMPADAssessment -Force
 (Get-Module FMPADAssessment).Version.ToString()
 
 # Step 2: Run the PKI assessment on the snapshot
-if (Test-Path $HOME\fmp-labs\pki\run1) { Remove-Item -Recurse -Force $HOME\fmp-labs\pki\run1 }
-Get-FMPPKIAssessment -OutputPath $HOME\fmp-labs\pki\run1 -PkiDataPath .\tests\fixtures\pki-contoso.json
-Get-ChildItem $HOME\fmp-labs\pki\run1\contoso.example\PKI | Format-Table Name
+Get-FMPPKIAssessment -OutputPath "$Run" -PkiDataPath .\tests\fixtures\pki-contoso.json
+Get-ChildItem "$Run\contoso.example\PKI" | Format-Table Name
 
 # Step 3: Read the CA records
-$inv = Get-Content -Raw $HOME\fmp-labs\pki\run1\contoso.example\PKI\PKIInventory.json | ConvertFrom-Json
+$inv = Get-Content -Raw "$Run\contoso.example\PKI\PKIInventory.json" | ConvertFrom-Json
 $inv.CertificationAuthorities | Format-List CAName, CertIssuer, NotAfter, KeySize, SignatureAlgorithm, @{ n = 'Templates'; e = { @($_.PublishedTemplates).Count } }
 
 # Step 4: List every template, published or not
@@ -118,10 +121,13 @@ $inv.CertificateTemplates | Sort-Object Name | Format-Table Name, DisplayName, P
 'CDP: ' + ($inv.CDPObjects.Name -join ', ')
 
 # Step 6: Give every template its starting class
-Get-FMPTemplateClassification -OutputPath $HOME\fmp-labs\pki\run1 -Domain contoso.example | Format-Table Template, Published, StartingClass, Status -AutoSize
+Get-FMPTemplateClassification -OutputPath "$Run" -Domain contoso.example | Format-Table Template, Published, StartingClass, Status -AutoSize
 
 # Step 7: List the templates only an owner can classify
-Import-Csv $HOME\fmp-labs\pki\run1\contoso.example\PKI\TemplateClassification.csv | Where-Object Status -eq 'Owner classifies' | Format-Table Template, DisplayName, Published -AutoSize
+Import-Csv "$Run\contoso.example\PKI\TemplateClassification.csv" | Where-Object Status -eq 'Owner classifies' | Format-Table Template, DisplayName, Published -AutoSize
+
+# Step 7: List the templates only an owner can classify
+Get-ChildItem C:\FMWLabs\results\pki-01-what-ad-cs-holds-up\lab1 -Name
 ```
 
 :::
@@ -133,6 +139,22 @@ Every step runs in Windows PowerShell 5.1, so you can follow it top to bottom in
 ```powershell
 Set-Location C:\FMWLabs\start-kit
 ```
+
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
+
+```powershell
+$Run = "C:\FMWLabs\results\pki-01-what-ad-cs-holds-up\lab1\$((Get-Date).ToUniversalTime().ToString('yyyy-MM-ddTHHmmssZ'))"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\pki-01-what-ad-cs-holds-up\lab1\<run>
+```
+
+The run's date is only the folder's name. The data's date is the snapshot's, which stays the same, so every run's findings match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
 
 In Git Bash, `cd /c/FMWLabs/start-kit` reaches the same folder, but every step is a PowerShell command (type `powershell` to start Windows PowerShell there). In a clone of the repository, use the `examples` folder of the same name.
 
@@ -149,12 +171,11 @@ In Git Bash, `cd /c/FMWLabs/start-kit` reaches the same folder, but every step i
     1.6.0
     ```
 
-2. **Run the PKI assessment on the snapshot.** `-PkiDataPath` reads the snapshot instead of a directory and a CA; everything else is the code that runs against a forest. The first line deletes an earlier run of this lab, if there is one, so the folder holds only this run's files.
+2. **Run the PKI assessment on the snapshot.** `-PkiDataPath` reads the snapshot instead of a directory and a CA; everything else is the code that runs against a forest.
 
     ```powershell
-    if (Test-Path $HOME\fmp-labs\pki\run1) { Remove-Item -Recurse -Force $HOME\fmp-labs\pki\run1 }
-    Get-FMPPKIAssessment -OutputPath $HOME\fmp-labs\pki\run1 -PkiDataPath .\tests\fixtures\pki-contoso.json
-    Get-ChildItem $HOME\fmp-labs\pki\run1\contoso.example\PKI | Format-Table Name
+    Get-FMPPKIAssessment -OutputPath "$Run" -PkiDataPath .\tests\fixtures\pki-contoso.json
+    Get-ChildItem "$Run\contoso.example\PKI" | Format-Table Name
     ```
 
     Expected output:
@@ -173,7 +194,7 @@ In Git Bash, `cd /c/FMWLabs/start-kit` reaches the same folder, but every step i
 3. **Read the CA records.**
 
     ```powershell
-    $inv = Get-Content -Raw $HOME\fmp-labs\pki\run1\contoso.example\PKI\PKIInventory.json | ConvertFrom-Json
+    $inv = Get-Content -Raw "$Run\contoso.example\PKI\PKIInventory.json" | ConvertFrom-Json
     $inv.CertificationAuthorities | Format-List CAName, CertIssuer, NotAfter, KeySize, SignatureAlgorithm, @{ n = 'Templates'; e = { @($_.PublishedTemplates).Count } }
     ```
 
@@ -252,7 +273,7 @@ In Git Bash, `cd /c/FMWLabs/start-kit` reaches the same folder, but every step i
 6. **Give every template its starting class.**
 
     ```powershell
-    Get-FMPTemplateClassification -OutputPath $HOME\fmp-labs\pki\run1 -Domain contoso.example | Format-Table Template, Published, StartingClass, Status -AutoSize
+    Get-FMPTemplateClassification -OutputPath "$Run" -Domain contoso.example | Format-Table Template, Published, StartingClass, Status -AutoSize
     ```
 
     Expected output:
@@ -282,7 +303,7 @@ In Git Bash, `cd /c/FMWLabs/start-kit` reaches the same folder, but every step i
 7. **List the templates only an owner can classify.**
 
     ```powershell
-    Import-Csv $HOME\fmp-labs\pki\run1\contoso.example\PKI\TemplateClassification.csv | Where-Object Status -eq 'Owner classifies' | Format-Table Template, DisplayName, Published -AutoSize
+    Import-Csv "$Run\contoso.example\PKI\TemplateClassification.csv" | Where-Object Status -eq 'Owner classifies' | Format-Table Template, DisplayName, Published -AutoSize
     ```
 
     Expected output:
@@ -298,7 +319,17 @@ In Git Bash, `cd /c/FMWLabs/start-kit` reaches the same folder, but every step i
 
     Appendix B has rows for custom templates of these kinds, a custom NDES SCEP template is BRIDGE until Cloud PKI SCEP replaces it, and a VPN client certificate is MIGRATE, but only the owner knows what each one serves. Three of the four also turn up in [Module 2](02-hardening-what-stays.md)'s findings.
 
-Keep `$HOME\fmp-labs\pki\run1`: Module 2 reads it.
+    Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
+
+    ```powershell
+    Get-ChildItem C:\FMWLabs\results\pki-01-what-ad-cs-holds-up\lab1 -Name
+    ```
+
+    Expected output: one line per run, oldest first, the last one this run:
+
+    ```text
+    <run>
+    ```
 
 ## Exercise: Lab 2, a test forest {#pki-lab-2}
 *Not timed. Not run by the authors. Never production.*

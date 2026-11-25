@@ -536,6 +536,7 @@ topics:
     downloads:
       - start-kit.zip
       - building-sql-server-identity-bundle.docx
+      - training-data-platform-bundle.docx
       - b06-data-platform-bundle.docx
       - b06-data-platform-runbooks.docx
     members:
@@ -544,7 +545,6 @@ topics:
       guide: >-
         Not needed, because Book 06's ten runbooks (R01 to R10), listed under Build, are its
         step-by-step implementation guide.
-      path: "Needed: the learning path is phase 2 of filling this topic's gaps (decided Nov 24, 2026)."
 
   - id: pki
     title: PKI and Certificates

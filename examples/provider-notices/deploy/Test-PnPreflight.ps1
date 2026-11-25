@@ -5,6 +5,7 @@
     the signed-in cloud, the reader's first call (for AWS also the support plan), the named notice contacts,
     the output root and, in production, the test stage's evidence. Writes results.json and a manifest.
     Exit code 1 on any Fail. -FixturePath serves the tools, sessions and reads from a file; nothing is sent.
+    -OutputRoot replaces the settings file's outputRoot, the folder PF-06 checks.
 .EXAMPLE
     # Dry run against the fixture: nothing leaves the machine.
     ./deploy/Test-PnPreflight.ps1 -SettingsPath deploy/tests/fixtures/settings.test.json -Stage test -FixturePath deploy/tests/fixtures/environment-test.json -OutputPath out/deploy-test/preflight -AsOf 2026-11-09T12:00:00Z
@@ -16,12 +17,14 @@ param(
     [Parameter(Mandatory)][string]$OutputPath,
     [string]$FixturePath,
     [string]$TestEvidencePath,
+    [string]$OutputRoot,
     [string]$AsOf = ([DateTime]::UtcNow.ToString('o'))
 )
 $ErrorActionPreference = 'Stop'
 Import-Module (Join-Path $PSScriptRoot 'PnDeploy.psm1') -Force
 
 $s = Read-PnSettings -Path $SettingsPath
+if ($OutputRoot) { $s['outputRoot'] = $OutputRoot }   # in place of the settings file's outputRoot, for a lab's run folder
 $inv = if ($FixturePath) { Use-PnDeployFixture -Path $FixturePath } else { New-PnLiveInvoker -Settings $s -SkipContextCheck }
 $results = @(Invoke-PnPreflight -Settings $s -Stage $Stage -Invoker $inv -TestEvidencePath $TestEvidencePath)
 Write-PnDeployRun -OutputPath $OutputPath -Task preflight -Results $results -Settings $s -Mode $inv.Mode -AsOf $AsOf -CallIds @($inv.Calls)

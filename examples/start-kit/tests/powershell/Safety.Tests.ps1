@@ -26,7 +26,7 @@ BeforeAll {
         'Import-GPO', 'Enter-PSSession', 'Start-Process', 'Start-Job', 'iex', 'ni', 'rm', 'del', 'mv', 'cp', 'sc', 'ac', 'Backup-GPO',
         'dsacls', 'setspn', 'netdom', 'ntdsutil', 'repadmin', 'dnscmd', 'netsh', 'reg', 'sqlcmd', 'bcp', 'icacls', 'wmic')
     # The only functions allowed to write files: the guarded writers in StartKit.Common.ps1.
-    $script:Writers = 'Resolve-FMPOutputRoot', 'Initialize-FMPPath', 'Write-FMPJson', 'Write-FMPCsv', 'Write-FMPText', 'Write-FMPBytes'
+    $script:Writers = 'Resolve-FMPOutputRoot', 'Initialize-FMPPath', 'Write-FMPJson', 'Write-FMPCsv', 'Write-FMPText', 'Write-FMPBytes', 'Write-FMPLog', 'Open-FMPStream'
     $script:WriteMembers = 'WriteAllText|WriteAllBytes|WriteAllLines|AppendAllText|AppendAllLines|AppendText|CreateText|Create|CreateDirectory|Delete|Move|Copy|Replace|Encrypt|Decrypt|SetAccessControl|SetAttributes|OpenWrite'
 
     function Get-Ast([string]$Path) {

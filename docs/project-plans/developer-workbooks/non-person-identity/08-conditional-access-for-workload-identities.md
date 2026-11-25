@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 5ffa0e44ca7291995f6f2b7beea834e1b383bbf3e76cd08c578f866dce4ce862
-last-reviewed: 2026-11-20
+reviewed-sha256: 9b7fe4b07d0b43032b2852c5725e75df6918dd2515e93bf656c67d4ee8a6643c
+last-reviewed: 2026-11-25
 ---
 # Chapter 08 — Conditional Access for Workload Identities
 

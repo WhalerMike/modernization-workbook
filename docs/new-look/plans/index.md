@@ -14,11 +14,11 @@ Each plan is a short list of milestones, about a week each, following Microsoft 
 | Role | What the plan covers | Milestones | Time |
 |---|---|---:|---|
 | [ISSO and assessor](isso.md) | What each control area asks for, what evidence the kits produce, and how to read it. | 4 | about 29 hr 2 min |
-| [Identity engineer](identity-engineer.md) | From Active Directory to Entra ID: the target, privileged and non-person identities, and HR-driven lifecycle. | 4 | about 53 hr 34 min |
-| [Endpoint engineer](endpoint-engineer.md) | Devices without Group Policy: Intune first, Arc for servers, and Defender for Endpoint on top. | 4 | about 13 hr 21 min |
+| [Identity engineer](identity-engineer.md) | From Active Directory to Entra ID: the target, privileged and non-person identities, and HR-driven lifecycle. | 4 | about 53 hr 35 min |
+| [Endpoint engineer](endpoint-engineer.md) | Devices without Group Policy: Intune first, Arc for servers, and Defender for Endpoint on top. | 4 | about 13 hr 22 min |
 | [Security operations](security-operations.md) | What you can see, what you detect, and what you hand the ISSO. | 5 | about 16 hr 47 min |
-| [Cloud and platform engineer](cloud-platform-engineer.md) | The authorization boundary, the landing zone, the network and DNS, and what the providers tell you. | 4 | about 35 hr 2 min |
-| [Developer](developer.md) | The tested code behind each kit: workbooks with labs on fixtures, then a test tenant. | 4 | about 27 hr 27 min |
+| [Cloud and platform engineer](cloud-platform-engineer.md) | The authorization boundary, the landing zone, the network and DNS, and what the providers tell you. | 4 | about 35 hr 4 min |
+| [Developer](developer.md) | The tested code behind each kit: workbooks with labs on fixtures, then a test tenant. | 4 | about 27 hr 28 min |
 | [Program lead and service owner](program-lead.md) | Why, in what order, who owns what, and how the program proves progress. | 4 | about 30 hr 31 min |
 | [HR and governance analyst](hr-governance.md) | How HR and contractor records drive access, and how AI agents get owners. | 4 | about 20 hr 53 min |
 | [Executive](executive.md) | The decisions to bring, the clocks that can't move, and what each book asks of leadership. | 3 | about 9 hr 30 min |

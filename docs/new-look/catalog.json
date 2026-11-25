@@ -207,6 +207,35 @@
    "featured": true
   },
   {
+   "id": "docs/training/data-platform/index.md",
+   "type": "Learning path",
+   "title": "Learning path: Data Platform and SQL Server Identity",
+   "description": "Ten modules, one per chapter of Building SQL Server Identity: the estate and its consolidation gate, the authentication audit, Azure Arc, Microsoft Entra logins and the parallel run, groups, NTLM, the application chain, AD CS, closure…",
+   "url": "docs/training/data-platform/index.html",
+   "count": 10,
+   "unit": "modules",
+   "reading_minutes": 525,
+   "reading_source": "page",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Identity engineer",
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Entra ID",
+    "Active Directory",
+    "Azure",
+    "Data platform"
+   ],
+   "status": "Draft",
+   "family": "data-platform",
+   "featured": false
+  },
+  {
    "id": "docs/training/defender-xdr/index.md",
    "type": "Learning path",
    "title": "Learning path: Defender XDR Engineering and Operations",
@@ -356,7 +385,7 @@
    "url": "docs/training/ms-automation-foundations.html",
    "count": 4,
    "unit": "modules",
-   "reading_minutes": 132,
+   "reading_minutes": 133,
    "reading_source": "estimate",
    "videos": 4,
    "video_minutes": 55,
@@ -848,7 +877,7 @@
    "url": "docs/books/guides/global-secure-access-implementation.html",
    "count": 12,
    "unit": "steps",
-   "reading_minutes": 73,
+   "reading_minutes": 75,
    "reading_source": "estimate",
    "videos": 1,
    "video_minutes": 16,
@@ -1129,7 +1158,7 @@
     "Active Directory",
     "Non-person identity"
    ],
-   "status": "Not tracked",
+   "status": "Approved",
    "family": "msa-request-pack",
    "featured": false
   },
@@ -1655,7 +1684,7 @@
    "url": "docs/books/b02-identity/index.html",
    "count": 15,
    "unit": "chapters",
-   "reading_minutes": 463,
+   "reading_minutes": 464,
    "reading_source": "estimate",
    "videos": 3,
    "video_minutes": 52,
@@ -1764,7 +1793,7 @@
    "url": "docs/books/b06-data-platform/index.html",
    "count": 26,
    "unit": "chapters",
-   "reading_minutes": 261,
+   "reading_minutes": 268,
    "reading_source": "estimate",
    "videos": 3,
    "video_minutes": 49,

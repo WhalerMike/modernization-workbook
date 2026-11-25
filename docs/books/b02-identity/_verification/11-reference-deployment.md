@@ -68,3 +68,13 @@ Internal-consistency fixes from the Book 02 deck review. Sources were opened aga
 | K1 | Phase 5 SPN host/port change with no provenance record: severity P2 -> P1, matching Phase 4's "DRIFT-PROVENANCE is critical (P1)" and the Drift Engine severity model (P1 = active-use claim with provenance or identity drift). Sentence added that severity derives from class plus liveness | Phase 5 intro (line 93) and table (line 98) | design consistency; no new note | docs/architecture/drift-engine.md, Severity model |
 | K2 | Not changed, flagged: row 4 (`DRIFT-IDENTITY`, P2) is also below what the severity model gives identity drift on a live claim; left for the author because the row is a decision gap, not a confirmed identity mismatch | Phase 5 table | open | — |
 | R2-6b | Phase 5 row 4 severity (P2) | Phase 5 table | design-consistency (no new note) | Kept P2 and stated why: no claim in active use has broken; the finding is a missing decision, unlike rows 1-3 |
+
+## Revision 2026-11-25 — Purview data governance retirement
+
+Approved by Mike on Nov 25, 2026 ("Go with all five recommendations"), after a claim check found that the Learn page behind row 24 now carries a retirement notice. Nothing was cut: the Data Map paragraph and the evidence bullet stay, with the retirement and its date added.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Purview data governance capabilities (classic and Unified Catalog) retiring: no new governance accounts; maintenance mode through Nov 12, 2027; consolidating into Microsoft Fabric; Purview data security and compliance unaffected | The Azure SSOT bridge | verified (Nov 25, 2026) | Learn, Connect to and manage Azure Arc-enabled SQL Server; Data sources that connect to Microsoft Purview Data Map (both updated Oct 13, 2026) |
+| R2 | Learn doesn't yet say that Fabric scans Arc-enabled SQL Server | Same | verified (absence, Nov 25, 2026) | Learn Fabric governance pages searched |
+| R3 | Row 24 (Data Map registers Arc-enabled SQL Server) | Same | still verified, now time-limited by R1 | Same |
