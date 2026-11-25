@@ -75,13 +75,14 @@ unzip -o ~/Downloads/cisco-sdwan.zip -d ~/FMWLabs/cisco-sdwan
 cd ~/FMWLabs/cisco-sdwan
 ```
 
-Check it works, with Module 1, Lab 1, Step 3 (use `python3` in Bash on Linux or macOS):
+Check it works, in PowerShell 7, with Module 1, Lab 1, Step 3:
 
 ```powershell
-python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures --out out
+$Run = "C:\FMWLabs\results\network-sd-wan-check\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures --out "$Run\out"
 ```
 
-It prints `gate: fail  evidence: out/sdwan-evidence.json  findings: out/ed-26-03-gate.csv`. The fictional fabric fails its gate on purpose; Module 2 says why.
+It prints `gate: fail  evidence: C:/FMWLabs/results/network-sd-wan-check/<run>/out/sdwan-evidence.json  findings: C:/FMWLabs/results/network-sd-wan-check/<run>/out/ed-26-03-gate.csv`, where `<run>` is the date and time you ran it. The kit's folder stays as you unzipped it. The fictional fabric fails its gate on purpose; Module 2 says why.
 
 ## What you'll be able to do
 

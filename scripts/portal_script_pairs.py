@@ -121,14 +121,19 @@ def evidence(page: Path, req: dict) -> str:
             f"[{Path(req['file']).name}]({GH}/{req['file']})).")
 
 
-def lab_link(page: Path, e: dict) -> str:
+RUN_NOTE = (r" `$Run` is the lab's dated run folder under `C:\FMWLabs\results`, which its first steps set, so each run "
+            "keeps its own results and the kit's folder stays as you unzipped it.")
+
+
+def lab_link(page: Path, e: dict, code: str = "") -> str:
     if "capture" in e:
         wb, key = e["capture"].split("/")
         chapter = next((ROOT / kc.WORKBOOKS[wb][0]).glob(f"{key[:2]}-*.md"))
         fm = yaml.safe_load(chapter.read_text(encoding="utf-8").split("---", 2)[1]) or {}
         title = str(fm.get("title") or chapter.stem)
         return (f"From Lab 1 of [{title}]({rel(page, chapter)}), run on the kit's fixtures "
-                f"([the same output as text]({GH}/data/kit-captures/{wb}/{key}.txt)); the lab's earlier steps come first.")
+                f"([the same output as text]({GH}/data/kit-captures/{wb}/{key}.txt)); the lab's earlier steps come first."
+                + (RUN_NOTE if "$Run" in code else ""))
     if "run" in e:
         return f"Run from `{e['run']['cwd']}` on the kit's own fixtures ([the same output as text]({GH}/data/kit-captures/guides/{run_id(e)}.txt))."
     return f"Needs {e['needs']}, so there's no captured output."
@@ -153,7 +158,7 @@ def tabset(page: Path, e: dict, figure: str) -> str:
         cmd = (first if len(first) <= 80 else first[:77] + "…").replace('"', "'")
         out += [f"![What it prints, run on the kit's fixtures]({rel(page, files[1])})"
                 "{.lightbox " f'fig-alt="Terminal window showing {cmd} and what it printed"}}', ""]
-    out += [lab_link(page, e), ""]
+    out += [lab_link(page, e, code), ""]
     if e.get("requirements"):
         out += [evidence(page, e["requirements"]), ""]
     out += [":::", "", END]
