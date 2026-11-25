@@ -1,0 +1,167 @@
+# Sample project plan: Global Secure Access.
+# scripts/project_plans/build.py reads this file and writes the page, the
+# Gantt chart and the downloads. Edit this file, never the outputs.
+#
+# Durations are working days and illustrative. The steps are the twelve of
+# the Global Secure Access implementation guide, run in the order its
+# recommendation gives (Microsoft traffic, compliant network and tenant
+# restrictions first, then Private Access, then Internet Access and TLS
+# inspection), and the rings are its Step 11 rings. It is a plan of its own,
+# not a phase of the Network & Access plan: that plan's unit is the site
+# (circuits, edges, NAC ports), this one's is the user and the device, with
+# other owners and its own license decision. The two meet at three points,
+# each a linked milestone: the remote-access inventory (Network N0.1), the
+# egress pattern for the pilot sites (Network D-N5) and the program's pilot
+# cohort and waves.
+
+slug: global-secure-access
+title: "Global Secure Access: Identity-Aware Network Access, Ring by Ring"
+short_title: "Global Secure Access"
+subtitle: "A sample project plan for the Global Secure Access implementation guide: the decision per function, logs before enforcement, the Microsoft traffic profile and compliant network for a pilot ring, per-app Private Access, Internet Access with TLS inspection, then rings 2 and 3 and the VPN's retirement"
+description: "A sample PMP-style project plan for rolling out Microsoft Entra Internet Access and Private Access, built from the Global Secure Access implementation guide and Book 09, Chapter 05: a work breakdown by function, a computed critical path tied to the program's pilot cohort and waves, a gate per function with its approver and criteria, and the decisions (adoption per function, compliant network enforcement, first private applications, web categories, TLS inspection scope, CISA telemetry) with owners and decide-by weeks."
+plan_type: "Project"
+covers: "The decision and licensing, the pilot ring, Private Access, Internet Access and TLS inspection, and rings 2 and 3 to the VPN's retirement"
+books: "Global Secure Access guide; Book 09"
+sponsor: "Executive sponsor and CIO; CISO"
+manager: "Technical program manager, with the service owner, the network security engineer and the identity engineer"
+start_label: "Week 1 = the program's Phase 0 approval"
+project_start: 2027-01-04
+
+purpose: |
+  This plan schedules the [Global Secure Access implementation guide](../books/guides/global-secure-access-implementation.md): Microsoft Entra Internet Access and Private Access as the agency's identity-aware network layer, from the decision per function to every user in scope and the VPN's retirement. [Book 09, Chapter 05](../books/b09-network/05-sd-wan-sase-and-governed-transport.md#microsofts-security-service-edge-global-secure-access) holds the argument and the gates; the guide's twelve steps hold the commands; the developer workbook [*Building Global Secure Access*](developer-workbooks/global-secure-access/index.md) holds the labs. The plan follows the guide's recommendation for order: the Microsoft traffic profile, the compliant network check and universal tenant restrictions first, because they come with Entra ID P1; then Private Access for the VPN's most-used applications; then Internet Access and TLS inspection, the step most likely to break applications and the one that needs the privacy officer. Its rings are the guide's [Step 11](../books/guides/global-secure-access-implementation.md#step-11-coexistence-and-migration) rings, and its last ring moves with the [program master schedule](program-master-schedule.md)'s waves.
+
+  It is a plan of its own rather than a phase of the [Network & Access plan](network-access.md), because the two move different things. That plan moves sites (circuits, edges, the path to a domain controller, NAC on each port) and is owned by network engineering; this one moves users and devices through Conditional Access and the client, and the guide's [RACI](../books/guides/global-secure-access-implementation.md#raci) gives it a service owner and identity engineers as well. They meet at three linked milestones rather than repeated work: this plan reads the remote-access inventory from the Network plan's N0.1, decides adoption per function before that plan picks each pilot site's egress pattern (D-N5, where agent-delivered SASE is pattern D), and takes its pilot cohort and its waves from the program.
+
+critical_path_note: |
+  The computed path runs through the pilot ring, not the decision. The decision, the architecture and the logging are done by week 2, but ring 1 waits for the program's pilot Conditional Access and Intune policies (P2.2, end of week 11), because the pilot ring is the program's pilot cohort on managed devices. From there it runs through ring 1's ten business days, Gate 1, the per-app publication of the first private applications and the administrative paths, Gate 2, ring 2's twenty business days, ring 3 in waves with the program's divisions, the VPN's retirement and the Zero Trust Assessment rerun. A week lost in the program's pilot moves this plan's finish week for week. Internet Access and TLS inspection run beside Private Access with a week of float, so they are near-critical; the TLS inspection scope (D-GA6) needs the privacy officer, so it is booked early. The adoption decision has to be made before the Network plan's egress decision (D-N5, week 8) and has several weeks of margin.
+
+assumptions:
+  - "The tenant is GCC-Moderate. Learn states that Global Secure Access is available in GCC for the whole product and narrows it for no feature, so every generally available feature here is treated as available in GCC; preview features (cloud firewall for clients, the Purview DLP integration, Intelligent Local Access) aren't scheduled ([guide](../books/guides/global-secure-access-implementation.md#availability))."
+  - "Internet Access and Private Access are licensed per user, standalone or in Microsoft Entra Suite, on top of Entra ID P1 or P2; the Microsoft traffic profile, compliant network and universal tenant restrictions need only P1 ([Book 09, Chapter 05](../books/b09-network/05-sd-wan-sase-and-governed-transport.md#the-gates-come-first))."
+  - "Ring 1 is drawn from the program's pilot cohort, whose devices are Intune-managed once the program's P2.2 is done. If the agency pilots on devices it already manages, ring 1 can start about two weeks sooner, when the compliant network decision (D-GA3) is made."
+  - "Ring 3 runs in four waves with the program's divisions (D07), about three weeks each. The agency's own wave count sets this length."
+  - "Remote networks (branch IPsec tunnels) aren't scheduled: the guide keeps the client on managed devices at branches for TIC parity and uses a remote network only for devices without one. Branch transport is the Network & Access plan's."
+  - "Durations are illustrative. Ring 1's ten business days and ring 2's twenty are the guide's exit criteria; the rest are sized to the guide's steps."
+
+risks:
+  - risk: "TLS inspection breaks pinned or mission applications"
+    impact: "Gate 3 can't sign; ring 2 waits for it"
+    response: "Inspect only the pilot's security profile first, keep Learn's recommended bypass categories, and add custom bypass rules for pinned destinations (guide, Step 9)"
+  - risk: "The privacy officer's approval of the inspection scope takes longer than the plan allows"
+    impact: "TLS inspection slips, and with it Gate 3 and ring 2"
+    response: "Book D-GA6 at Gate 0; ring 2 can carry Internet Access without inspection if the authorizing official accepts it as an interim state"
+  - risk: "CISA telemetry for the new path isn't agreed with the TIC delegates"
+    impact: "The VPN's web path can't be retired; Gate 4 waits"
+    response: "Raise D-GA2 at Gate 0 and agree the path (CLAW or another CISA confirms) before ring 3 starts (guide, Step 12)"
+  - risk: "Users disable the client to reach a site or a parallel VPN"
+    impact: "Compliant network sign-ins fail and help desk volume breaches the ring's threshold"
+    response: "Hide Disable and restrict non-privileged users from ring 2, with a help desk elevation path (guide, Step 3)"
+  - risk: "An expired inspection certificate turns off TLS inspection across the tenant"
+    impact: "Inspection stops for every ring at once"
+    response: "Track the intermediate's expiry in the certificate lifecycle platform and roll it with Learn's procedure: trust first, then activation"
+
+tasks:
+  # ------------------------------------------------- Phase 0 — decision, architecture and logging
+  - {id: X-N01, kind: external, phase: 0, name: "Remote-access paths and residual VPN use inventoried (Network & Access N0.1)", ref: "network-access:N0.1",
+     late: "The adoption decision has no inventory of the VPN's applications and users to weigh",
+     source: "network-access.md"}
+  - {id: GA0.1, phase: 0, name: "Tenant licenses and onboarding state read; current VPN and SSE functions mapped to the four traffic types", dur: 5, owner: "Network security engineering",
+     source: "../books/guides/global-secure-access-implementation.md#step-1-decision-and-licensing"}
+  - {id: D-GA1, kind: decision, phase: 0, name: "Adopt Global Secure Access, per function: Microsoft traffic, internet, private, branch", after: [GA0.1, X-N01], owner: "Service owner, approved by the authorizing official",
+     options: "Adopt the function; keep the current VPN or SSE for it; run both with each traffic type sent to one service. Recorded with license count, availability quote, compensating controls and exit criteria",
+     late: "No license count can be ordered, and the Network plan's egress decision (D-N5) can't weigh agent-delivered SASE",
+     source: "../books/guides/global-secure-access-implementation.md#step-1-decision-and-licensing"}
+  - {id: X-ND5, kind: external, phase: 0, name: "Egress pattern decided for each pilot site (Network & Access D-N5)", ref: "network-access:D-N5", after: [D-GA1],
+     late: "The pilot sites' egress is chosen without knowing whether pattern D, agent-delivered SASE, is available",
+     source: "network-access.md"}
+  - {id: GA0.2, phase: 0, name: "Reference architecture recorded: profiles per population, connector groups, branch pattern; first configuration export with its hash manifest", dur: 5, after: [D-GA1], owner: "Network security engineering",
+     source: "../books/guides/global-secure-access-implementation.md#step-2-reference-architecture"}
+  - {id: GA0.3, phase: 0, name: "Network log categories exported by diagnostic setting; Sentinel solution installed; traffic-drop alert on; freshness query clean", dur: 3, after: [GA0.1], owner: "Security operations",
+     source: "../books/guides/global-secure-access-implementation.md#step-12-telemetry-and-evidence"}
+  - {id: GAG0, kind: gate, phase: 0, name: "Gate 0 — Decided per function, logging before any pilot traffic", after: [GA0.2, GA0.3], owner: "Service owner",
+     criteria: "Decision record approved per function, with a license count no smaller than the pilot and first ring, an availability quote dated within 30 days and an approver; architecture record and the first configuration export with its hash manifest; the four network log categories reaching the workspace",
+     source: "../books/guides/global-secure-access-implementation.md#checklist"}
+  # ------------------------------------------------- Phase 1 — client, Microsoft traffic and the pilot ring
+  - {id: GA1.1, phase: 1, name: "Client packaged as an Intune Win32 app with Learn's commands and detection rule; DoH off; ring 0, the implementing team", dur: 5, after: [GAG0], owner: "Platform operations",
+     source: "../books/guides/global-secure-access-implementation.md#step-3-client-deployment"}
+  - {id: GA1.2, phase: 1, name: "Microsoft traffic profile on for ring 0; source IP restoration and Conditional Access signaling on; sign-in share measured", dur: 5, after: [GA1.1], owner: "Network security engineering",
+     source: "../books/guides/global-secure-access-implementation.md#step-4-microsoft-traffic"}
+  - {id: GA1.3, phase: 1, name: "Universal tenant restrictions (TRv2) policy approved, tagging on, four-case test recorded", dur: 5, after: [GA1.2], owner: "Identity engineering",
+     source: "../books/guides/global-secure-access-implementation.md#step-8-tenant-restrictions"}
+  - {id: X-P16, kind: external, phase: 1, name: "Conditional Access baseline enforced; emergency access accounts vaulted and tested (program P1.6)", ref: "program-master-schedule:P1.6",
+     late: "The compliant network policy has no tested emergency access exclusion, and its report-only run waits",
+     source: "program-master-schedule.md"}
+  - {id: GA1.4, phase: 1, name: "Compliant network policy in report-only for 10 business days; break-glass scripts staged", dur: 10, after: [GA1.2, X-P16], owner: "Identity engineering",
+     source: "../books/guides/global-secure-access-implementation.md#step-7-compliant-network"}
+  - {id: D-GA3, kind: decision, phase: 1, name: "Turn the compliant network policy On for ring 1", after: [GA1.4], owner: "Service owner",
+     options: "On, ring by ring; stay in report-only until every reportOnlyFailure is explained",
+     late: "Ring 1 runs without the network condition, and its exit waits",
+     source: "../books/guides/global-secure-access-implementation.md#step-7-compliant-network"}
+  - {id: X-P22, kind: external, phase: 1, name: "Pilot Conditional Access and Intune policies assigned (program P2.2)", ref: "program-master-schedule:P2.2",
+     late: "The pilot cohort's devices can't take the client through Intune, and ring 1 waits",
+     source: "program-master-schedule.md"}
+  - {id: GA1.5, phase: 1, name: "Ring 1, fewer than 20 users across roles and sites: client, Microsoft traffic, TRv2 and compliant network for 10 business days; emergency access exclusion tested at ring start", dur: 10, after: [GA1.3, D-GA3, X-P22], owner: "Network security engineering",
+     source: "../books/guides/global-secure-access-implementation.md#step-11-coexistence-and-migration"}
+  - {id: GAG1, kind: gate, phase: 1, name: "Gate 1 — Ring 1 exited on Microsoft traffic", after: [GA1.5], owner: "Service owner",
+     criteria: "Every step's Validate passed for ring 0 and break-glass rehearsed; ring 1 for 10 business days with no unresolved Sev-2 ticket; client active on every pilot device; report-only results clean; compliant network On for ring 1",
+     source: "../books/guides/global-secure-access-implementation.md#step-11-coexistence-and-migration"}
+  # ------------------------------------------------- Phase 2 — Private Access and administrative paths
+  - {id: D-GA4, kind: decision, phase: 2, name: "First private applications, and Quick Access as a bridge or per-app from the start", after: [GAG0], owner: "Service owner",
+     options: "Quick Access over the VPN's ranges as a transition, then per-app; per-app from the start for the VPN's most-used applications. DirectAccess can't coexist with Private Access on the same device",
+     late: "Connector groups can't be sized or placed, and Private Access waits",
+     source: "../books/b09-network/05-sd-wan-sase-and-governed-transport.md#private-access-as-the-vpn-and-directaccess-replacement"}
+  - {id: GA2.1, phase: 2, name: "Connector groups deployed: two outbound-only connectors per group on Windows Server 2019 or later, TLS 1.2, no inline inspection; private DNS", dur: 10, after: [D-GA4], owner: "Platform operations",
+     source: "../books/guides/global-secure-access-implementation.md#step-6-private-applications"}
+  - {id: GA2.2, phase: 2, name: "First private applications published per app with their own segments, assignment and Conditional Access, for ring 1; application discovery run", dur: 15, after: [GA2.1, GAG1], owner: "Network security engineering",
+     source: "../books/guides/global-secure-access-implementation.md#step-6-private-applications"}
+  - {id: GA2.3, phase: 2, name: "Administrative hosts behind phishing-resistant policies; domain controller sensors moved from Audit to Enforce for application SPNs", dur: 10, after: [GA2.2], owner: "Identity engineering",
+     source: "../books/guides/global-secure-access-implementation.md#step-10-privileged-protocols"}
+  - {id: GAG2, kind: gate, phase: 2, name: "Gate 2 — Private applications per app for ring 1", after: [GA2.3], owner: "Service owner",
+     criteria: "Each published application has its own segments, group assignment and Conditional Access; Quick Access residual at zero for the moved applications; administrative hosts reachable only under phishing-resistant policies; sensors enforcing",
+     source: "../books/guides/global-secure-access-implementation.md#checklist"}
+  # ------------------------------------------------- Phase 3 — Internet Access and TLS inspection
+  - {id: D-GA5, kind: decision, phase: 3, name: "Web categories the acceptable-use policy blocks", after: [GAG0], owner: "Service owner, with the ISSO",
+     options: "Block the categories the acceptable-use policy names; decide AI categories separately; every bypass to the exception register",
+     late: "Security profiles can't be built, and Internet Access waits",
+     source: "../books/guides/global-secure-access-implementation.md#step-5-internet-traffic"}
+  - {id: GA3.1, phase: 3, name: "Security profiles with web content filtering and threat intelligence, linked by Conditional Access for ring 1; the baseline profile last", dur: 10, after: [D-GA5, GAG1], owner: "Network security engineering",
+     source: "../books/guides/global-secure-access-implementation.md#step-5-internet-traffic"}
+  - {id: D-GA6, kind: decision, phase: 3, name: "TLS inspection scope and its certificate authority", after: [GAG0], owner: "Service owner, approved by the privacy officer",
+     options: "Microsoft-managed certificate; the agency's own intermediate signed by a dedicated CA, not the production PKI. Learn's recommended bypass categories kept, plus those the privacy officer names; no prompt or file content capture without a separate decision",
+     late: "Inspection can't start, URL and file rules stay unavailable, and Gate 3 waits",
+     source: "../books/guides/global-secure-access-implementation.md#step-9-tls-inspection"}
+  - {id: GA3.2, phase: 3, name: "Inspection intermediate signed; root and intermediate trusted on pilot devices by Intune profile; user notice sent", dur: 5, after: [D-GA6, GA1.1], owner: "PKI and CA administrators",
+     source: "../books/guides/global-secure-access-implementation.md#step-9-tls-inspection"}
+  - {id: GA3.3, phase: 3, name: "TLS inspection on for the pilot security profile; pinned applications bypassed; failure rate measured", dur: 10, after: [GA3.1, GA3.2], owner: "Network security engineering",
+     source: "../books/guides/global-secure-access-implementation.md#step-9-tls-inspection"}
+  - {id: GAG3, kind: gate, phase: 3, name: "Gate 3 — Internet traffic filtered and inspected for ring 1", after: [GA3.3], owner: "CISO and ISSO",
+     criteria: "Security profiles with web filtering and threat intelligence; bypasses in the exception register; TLS inspection from a dedicated CA with the privacy officer's approval and user notice; TLS failure rate under 1%",
+     source: "../books/guides/global-secure-access-implementation.md#checklist"}
+  # ------------------------------------------------- Phase 4 — rings 2 and 3, and the VPN's retirement
+  - {id: GA4.1, phase: 4, name: "Client hardening from ring 2: Disable hidden, non-privileged users restricted, help desk elevation path", dur: 3, after: [GAG1], owner: "Platform operations",
+     source: "../books/guides/global-secure-access-implementation.md#step-3-client-deployment"}
+  - {id: GA4.2, phase: 4, name: "Ring 2, about 10% of users including one branch, for 20 business days, every function at once", dur: 20, after: [GAG2, GAG3, GA4.1], owner: "Network security engineering",
+     source: "../books/guides/global-secure-access-implementation.md#step-11-coexistence-and-migration"}
+  - {id: D-GA2, kind: decision, phase: 4, name: "CISA telemetry path for the new access layer, agreed with the TIC delegates", after: [GAG0], owner: "ISSO, with the agency's TIC delegates",
+     options: "CLAW; another path CISA confirms. Agreed before the VPN's web path is retired",
+     late: "The VPN's web path can't be retired, and Gate 4 waits",
+     source: "../books/guides/global-secure-access-implementation.md#tic-alignment"}
+  - {id: X-P31S, kind: external, phase: 4, name: "Program starts rollout wave 1 (start of P3.1)", ref: "program-master-schedule:P3.1:start",
+     late: "Ring 3 has no divisions to follow",
+     source: "program-master-schedule.md"}
+  - {id: GA4.3, phase: 4, name: "Ring 3, everyone in scope in waves with the program's divisions; each wave on the ring 2 criteria", dur: 60, after: [GA4.2, X-P31S], owner: "Network security engineering",
+     source: "../books/guides/global-secure-access-implementation.md#step-11-coexistence-and-migration"}
+  - {id: GA4.4, phase: 4, name: "VPN routes removed per application after 10 business days with no VPN traffic; the VPN's web path retired; residual VPN use in the exception register", dur: 10, after: [GA4.3, D-GA2], owner: "Network engineering",
+     source: "../books/guides/global-secure-access-implementation.md#step-11-coexistence-and-migration"}
+  - {id: GA4.5, phase: 4, name: "Zero Trust Assessment rerun; each network finding's closure chain updated with evidence for every applicable state", dur: 5, after: [GA4.4], owner: "ISSO",
+     source: "../books/guides/global-secure-access-implementation.md#control-states"}
+  - {id: GAG4, kind: gate, phase: 4, name: "Gate 4 — Every ring exited, evidence complete", after: [GA4.5], owner: "Service owner, with the ISSO",
+     criteria: "Each ring exited on its recorded criteria with measured values; VPN routes removed only after each wave held; CISA telemetry agreed; emergency access exclusion tested at each ring start; evidence package for each finding ready for the assessor (closure is the authorizing official's decision)",
+     source: "../books/guides/global-secure-access-implementation.md#checklist"}
+
+phases:
+  0: "Phase 0 — Decision, architecture and logging"
+  1: "Phase 1 — Client, Microsoft traffic and the pilot ring"
+  2: "Phase 2 — Private Access and administrative paths"
+  3: "Phase 3 — Internet Access and TLS inspection"
+  4: "Phase 4 — Rings 2 and 3, and the VPN's retirement"

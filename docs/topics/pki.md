@@ -37,6 +37,7 @@ The project plan and the decisions the program has made.
 
 | Page | What it is |
 |---|---|
+| [PKI and Certificates: Hardening, Cloud PKI and the Lifecycle Platform](../project-plans/pki-certificates.md) | Book 07's six waves, from AD CS hardening to decommissioning, tied to the program's certificate tasks. |
 | [Decision WD-029](../about/decision-register.md#wd-029) | How many certificate-lifecycle platforms the PKI book recommends. |
 | [Decision WD-052](../about/decision-register.md#wd-052) | How certificates are handled outside the PKI book. |
 | [Decision WD-119](../about/decision-register.md#wd-119) | How the PKI book frames PIV and cloud authentication. |
@@ -96,7 +97,6 @@ What the workbook doesn't have on PKI and certificates, and whether it should. [
 
 | Missing | Why |
 |---|---|
-| Project plan | Needed: no project plan sequences AD CS hardening, Cloud PKI and the lifecycle platform; the other plans schedule only their own certificates. |
 | Developer workbook | Not needed, because the only code today is the Start Kit's AD CS checks (ESC1, ESC2, ESC4, ESC6); revisit when its learning path is planned. |
 | Learning path | Needed: ranked in the learning path plan. |
 | Labs | Needed: they come with the learning path. |

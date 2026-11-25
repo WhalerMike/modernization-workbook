@@ -306,13 +306,13 @@ topics:
         - page: docs/books/b04-access/07-the-conditional-access-policy-library.md
         - page: docs/books/b04-access/appendix-c-partner-access-profile-entra.md
         - page: docs/books/b10-cloud-boundary/04-gcc-and-the-feature-gap.md
+      plan:
+        - page: docs/project-plans/global-secure-access.md
+          note: >-
+            The rollout ring by ring, as a plan of its own beside the Network & Access plan, which
+            moves sites rather than users and devices.
       evidence:
         - page: docs/books/b11-zero-trust/10-evidence-not-verdicts.md
-    gaps:
-      plan: >-
-        Needed: no project plan schedules the rollout. The nearest, the
-        [Network & Access plan](../project-plans/network-access.md), covers the governed-transport
-        pilot but not Global Secure Access.
 
   - id: defender-xdr
     title: Defender XDR
@@ -567,6 +567,8 @@ topics:
         - page: docs/books/b03-hr-identity/09-credentials-and-certificates.md
           note: Certificates across joiner, mover and leaver.
       plan:
+        - page: docs/project-plans/pki-certificates.md
+          note: Book 07's six waves, from AD CS hardening to decommissioning, tied to the program's certificate tasks.
         - page: docs/about/decision-register.md#wd-029
           note: How many certificate-lifecycle platforms the PKI book recommends.
         - page: docs/about/decision-register.md#wd-052
@@ -585,9 +587,6 @@ topics:
     members:
       - docs/books/b07-pki/*.md
     gaps:
-      plan: >-
-        Needed: no project plan sequences AD CS hardening, Cloud PKI and the lifecycle platform;
-        the other plans schedule only their own certificates.
       workbook: >-
         Not needed, because the only code today is the Start Kit's AD CS checks (ESC1, ESC2, ESC4,
         ESC6); revisit when its learning path is planned.
@@ -777,6 +776,8 @@ topics:
         - page: docs/books/b20-information-protection/08-dlp-and-endpoint-controls.md
         - page: docs/books/b20-information-protection/11-ai-data-security.md
         - page: docs/books/b12-security-operations/09-data-protection-and-classification.md
+      plan:
+        - page: docs/project-plans/information-protection.md
       evidence:
         - page: docs/books/b20-information-protection/12-operations-and-evidence.md
         - page: docs/books/b20-information-protection/appendix-a-requirements-mapping.md
@@ -786,7 +787,6 @@ topics:
     members:
       - docs/books/b20-information-protection/*.md
     gaps:
-      plan: "Needed: no project plan sequences Book 20's rollout."
       path: "Needed: the developer workbook's labs have no learning path around them yet."
 
   - id: compliance-evidence

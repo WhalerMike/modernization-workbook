@@ -28,6 +28,16 @@ The design, in the books: why this topic matters and what the target is.
 
 : Understand {.striped .hover}
 
+## Plan {#plan}
+
+The project plan and the decisions the program has made.
+
+| Page | What it is |
+|---|---|
+| [Information Protection: Classes, Labels, DLP and Evidence in Microsoft Purview](../project-plans/information-protection.md) | A sample PMP-style project plan for classifying and protecting the agency's data in Microsoft Purview, built from Book 20: a work breakdown by control from the class register to the assessor's package, a computed critical path, a gate per… |
+
+: Plan {.striped .hover}
+
 ## Build {#build}
 
 The implementation guides, the developer workbook and its code.
@@ -92,7 +102,6 @@ What the workbook doesn't have on information protection, and whether it should.
 
 | Missing | Why |
 |---|---|
-| Project plan | Needed: no project plan sequences Book 20's rollout. |
 | Learning path | Needed: the developer workbook's labs have no learning path around them yet. |
 
 : Not here {.striped .hover}
