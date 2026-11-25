@@ -1,0 +1,9 @@
+PS> Get-AmWorkPackage -SnapshotDir out/pack -OwnedDomainsPath tests/fixtures/identity/owned-domains.txt -DnsPath tests/fixtures/identity/dns.json | Format-Table WorkPackage, Needed, Why, BuiltIn -Wrap
+WorkPackage Needed Why                                              BuiltIn
+----------- ------ ---                                              -------
+WP1           True owners 1; service record none                    Non-Person Identity workbook, Chapter 02
+WP2           True application permissions 1; tenant-wide grants 1  Non-Person Identity workbook, Chapter 07
+WP3           True secrets 1                                        Non-Person Identity workbook, Chapter 05
+WP4           True URIs with findings 5                             This kit: Test-AmRedirectUri, New-AmRedirectPlan
+WP5           True assignment required False; user consent grants 0 This kit: New-AmAssignmentPlan
+WP6           True every application                                This kit: Get-AmSignInCheck, Protect-AmEvidencePack

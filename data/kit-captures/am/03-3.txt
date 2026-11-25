@@ -1,0 +1,5 @@
+PS> Get-AmValidationSummary -Path migration/target/lab/damage-amount.json | Where-Object { -not $_.Passed } | Format-Table Table, Check, Detail
+Table       Check           Detail
+-----       -----           ------
+case_record checksum_sha256 differ 1 [C-000010]; missing from target 0; extra in target 0
+case_record aggregate

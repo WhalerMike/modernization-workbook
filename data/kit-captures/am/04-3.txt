@@ -1,0 +1,6 @@
+PS> (Read-AmJson -Path service/target/lab/triage-C-000001.json).body.proposals | Format-List action, status, agentId, sponsor, rationale
+action    : FLAG_FOR_REVIEW
+status    : PENDING
+agentId   : agent-case-triage-01
+sponsor   : case-operations-owner
+rationale : Open more than 365 days (opened 2025-06-01) with no closing date.

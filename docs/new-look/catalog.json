@@ -208,6 +208,33 @@
    "featured": true
   },
   {
+   "id": "docs/training/dns-dhcp-ipam/index.md",
+   "type": "Learning path",
+   "title": "Learning path: DNS, DHCP and IPAM",
+   "description": "Modules on Book 08's naming plane: read it from the evidence, sort what Active Directory DNS does into where it goes, with a lab on fixtures and a lab in your own test domain",
+   "url": "docs/training/dns-dhcp-ipam/index.html",
+   "count": 2,
+   "unit": "modules",
+   "reading_minutes": 105,
+   "reading_source": "page",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Identity engineer",
+    "Cloud and platform engineer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Active Directory",
+    "DNS and DDI"
+   ],
+   "status": "Draft",
+   "family": "dns-dhcp-ipam",
+   "featured": false
+  },
+  {
    "id": "docs/training/global-secure-access/index.md",
    "type": "Learning path",
    "title": "Learning path: Global Secure Access as the Identity-Aware Network",
@@ -447,7 +474,7 @@
    "title": "Learning path: The SD-WAN Governor and Its Evidence",
    "description": "Four modules: the governor before the traffic, the ED 26-03 and KEV gate, the hunt and the logs, and path classes, change rings and the evidence, with labs on the Cisco kit's fixtures and in a test fabric",
    "url": "docs/training/network-sd-wan/index.html",
-   "count": 2,
+   "count": 4,
    "unit": "modules",
    "reading_minutes": 180,
    "reading_source": "page",
@@ -1137,6 +1164,31 @@
    ],
    "status": "Approved",
    "family": "attribute-driven-migration",
+   "featured": false
+  },
+  {
+   "id": "docs/project-plans/developer-workbooks/application-modernization/index.md",
+   "type": "Developer workbook",
+   "title": "Building Application Modernization",
+   "description": "A developer workbook for Book 18's reference implementation and its identity remediation work packages",
+   "url": "docs/project-plans/developer-workbooks/application-modernization/index.html",
+   "count": 7,
+   "unit": "chapters",
+   "reading_minutes": 77,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Advanced",
+   "level_source": "audience",
+   "roles": [
+    "Developer",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Application modernization"
+   ],
+   "status": "Draft",
+   "family": "application-modernization",
    "featured": false
   },
   {
@@ -2457,6 +2509,33 @@
    "featured": false
   },
   {
+   "id": "docs/training/labs.md#ddi",
+   "type": "Lab",
+   "title": "Labs: DNS, DHCP and IPAM learning path",
+   "description": "4 hands-on labs across 2 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The DNS, DHCP and IPAM learning path.",
+   "url": "docs/training/labs.html#ddi",
+   "count": 4,
+   "unit": "labs",
+   "reading_minutes": null,
+   "reading_source": null,
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "path",
+   "roles": [
+    "Identity engineer",
+    "Cloud and platform engineer",
+    "ISSO and assessor"
+   ],
+   "topics": [
+    "Active Directory",
+    "DNS and DDI"
+   ],
+   "status": "Draft",
+   "family": "dns-dhcp-ipam",
+   "featured": false
+  },
+  {
    "id": "docs/training/labs.md#ms-automation",
    "type": "Lab",
    "title": "Labs: Microsoft Automation learning path",
@@ -2516,9 +2595,9 @@
    "id": "docs/training/labs.md#network-sd-wan",
    "type": "Lab",
    "title": "Labs: SD-WAN governor learning path",
-   "description": "4 hands-on labs across 2 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The SD-WAN governor learning path.",
+   "description": "8 hands-on labs across 4 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. The SD-WAN governor learning path.",
    "url": "docs/training/labs.html#network-sd-wan",
-   "count": 4,
+   "count": 8,
    "unit": "labs",
    "reading_minutes": null,
    "reading_source": null,

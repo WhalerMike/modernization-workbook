@@ -1,0 +1,166 @@
+{
+  "AssessmentTimestamp": "2026-11-20T09:14:03.0000000-05:00",
+  "AuthorizedServers": [
+    {
+      "DnsName": "dhcp01.contoso.example",
+      "IPAddress": "10.0.0.30"
+    },
+    {
+      "DnsName": "dhcp02.contoso.example",
+      "IPAddress": "10.1.0.30"
+    }
+  ],
+  "ServerCount": 2,
+  "ReadableServerCount": 2,
+  "ScopeCount": 5,
+  "ReservationCount": 2,
+  "Servers": [
+    {
+      "Server": "dhcp01.contoso.example",
+      "Readable": true,
+      "Error": null,
+      "ScopeCount": 3,
+      "Scopes": [
+        {
+          "Server": "dhcp01.contoso.example",
+          "ScopeId": "10.0.5.0",
+          "Name": "HQ clients",
+          "SubnetMask": "255.255.255.0",
+          "StartRange": "10.0.5.10",
+          "EndRange": "10.0.5.250",
+          "State": "Active",
+          "LeaseDuration": "8.00:00:00",
+          "ReservationCount": 0,
+          "Reservations": []
+        },
+        {
+          "Server": "dhcp01.contoso.example",
+          "ScopeId": "10.0.6.0",
+          "Name": "HQ printers",
+          "SubnetMask": "255.255.255.0",
+          "StartRange": "10.0.6.10",
+          "EndRange": "10.0.6.100",
+          "State": "Active",
+          "LeaseDuration": "8.00:00:00",
+          "ReservationCount": 2,
+          "Reservations": [
+            {
+              "IPAddress": "10.0.6.20",
+              "ClientId": "00-11-22-33-44-55",
+              "Name": "printer-1",
+              "Description": "Floor 1"
+            },
+            {
+              "IPAddress": "10.0.6.21",
+              "ClientId": "00-11-22-33-44-56",
+              "Name": "printer-2",
+              "Description": "Floor 2"
+            }
+          ]
+        },
+        {
+          "Server": "dhcp01.contoso.example",
+          "ScopeId": "10.1.5.0",
+          "Name": "Branch clients",
+          "SubnetMask": "255.255.255.0",
+          "StartRange": "10.1.5.10",
+          "EndRange": "10.1.5.250",
+          "State": "Active",
+          "LeaseDuration": "1.00:00:00",
+          "ReservationCount": 0,
+          "Reservations": []
+        }
+      ],
+      "V6Scopes": [],
+      "ServerOptions": [
+        {
+          "OptionId": 6,
+          "Name": "DNS Servers",
+          "Value": [
+            "10.0.0.10",
+            "10.0.0.11"
+          ]
+        },
+        {
+          "OptionId": 15,
+          "Name": "DNS Domain Name",
+          "Value": [
+            "contoso.example"
+          ]
+        }
+      ],
+      "Failover": [
+        {
+          "Name": "hq-branch",
+          "PartnerServer": "dhcp02.contoso.example",
+          "Mode": "LoadBalance",
+          "State": "Normal",
+          "ScopeId": [
+            "10.1.5.0"
+          ]
+        }
+      ]
+    },
+    {
+      "Server": "dhcp02.contoso.example",
+      "Readable": true,
+      "Error": null,
+      "ScopeCount": 2,
+      "Scopes": [
+        {
+          "Server": "dhcp02.contoso.example",
+          "ScopeId": "10.1.5.0",
+          "Name": "Branch clients",
+          "SubnetMask": "255.255.255.0",
+          "StartRange": "10.1.5.10",
+          "EndRange": "10.1.5.250",
+          "State": "Active",
+          "LeaseDuration": "1.00:00:00",
+          "ReservationCount": 0,
+          "Reservations": []
+        },
+        {
+          "Server": "dhcp02.contoso.example",
+          "ScopeId": "10.1.7.0",
+          "Name": "Branch guest",
+          "SubnetMask": "255.255.255.0",
+          "StartRange": "10.1.7.10",
+          "EndRange": "10.1.7.250",
+          "State": "Active",
+          "LeaseDuration": "04:00:00",
+          "ReservationCount": 0,
+          "Reservations": []
+        }
+      ],
+      "V6Scopes": [],
+      "ServerOptions": [
+        {
+          "OptionId": 6,
+          "Name": "DNS Servers",
+          "Value": [
+            "10.1.0.10",
+            "203.0.113.53"
+          ]
+        },
+        {
+          "OptionId": 15,
+          "Name": "DNS Domain Name",
+          "Value": [
+            "contoso.example"
+          ]
+        }
+      ],
+      "Failover": [
+        {
+          "Name": "hq-branch",
+          "PartnerServer": "dhcp01.contoso.example",
+          "Mode": "LoadBalance",
+          "State": "Normal",
+          "ScopeId": [
+            "10.1.5.0"
+          ]
+        }
+      ]
+    }
+  ]
+}

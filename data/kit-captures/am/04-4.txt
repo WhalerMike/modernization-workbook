@@ -1,0 +1,6 @@
+PS> Import-Csv service/target/lab/audit-triage.csv | Format-Table
+agent_id             tool               case_number allowed detail
+--------             ----               ----------- ------- ------
+agent-case-triage-01 get_case           C-000001    true    ran
+agent-case-triage-01 list_related_cases C-000001    true    ran
+agent-case-triage-01 propose_action     C-000001    true    ran

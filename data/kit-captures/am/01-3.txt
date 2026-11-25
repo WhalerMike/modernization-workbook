@@ -1,0 +1,6 @@
+PS> Get-AmTestResult -Path service/target/surefire-reports | Format-Table
+Class               Tests Failures Errors Skipped
+-----               ----- -------- ------ -------
+LabRecordsTest          3        0      0       0
+CaseApiTest             8        0      0       0
+OpenApiContractTest     2        0      0       0

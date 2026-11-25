@@ -93,6 +93,12 @@ The [Attribute-Driven Migration implementation guide](../../docs/books/guides/at
 
 `ad-user-export.csv` is the one AD export the other attribute tools read: the validation kit's VK-SYNC-01 (its `EmployeeId` and slot columns) and VK-SYNC-03, and the [HCM-to-Entra correlation tool](../hcm-entra/README.md). `waves.csv` is what the validation kit reads to run its HR checks on one wave. **The export holds personal data** (names, UPNs, mail, keys): keep the run folder in the access-controlled evidence store, as with `UserInventory.json`.
 
+### How it checks DNS readiness
+
+[Book 08, Chapter 10](../../docs/books/b08-ddi/10-migration-sequence.md#where-each-component-goes) sorts every component of Active Directory DNS into a target, an Azure-native equivalent, a method and a risk before anything moves. `Get-FMPDnsDepartureRegister`, in the `FMPDdiReadiness` module, writes that table for one domain from the files `Get-FMPDNSAssessment` already wrote: one row per zone on the PDC emulator's DNS server (AD-integrated internal or external, file-backed, secondary, stub or conditional forwarder, GlobalNames, reverse, signed, the `_msdcs` locator zone), plus one for dynamic registration when any zone takes dynamic updates, in the chapter's words. Each row carries notes from the run: the zone's storage and dynamic-update setting, its stale records, its forwarding targets, and any readable DNS server that lacks an AD-integrated zone. The findings are Phase 1's: locator records that don't resolve, DNS servers that couldn't be read, scavenging off or not read, stale records, duplicate host names among them, and the server-level forwarders to test over DNS. AD can't say which zones the internet also sees, so a zone is internal unless `-ExternalZone` names it.
+
+The module reads files and nothing else, so it runs on a laptop against a copied run or the fixture in `tests/fixtures/ddi`, a fictional domain the [DNS, DHCP and IPAM learning path](../../docs/training/dns-dhcp-ipam/index.md)'s labs read. It decides nothing: the architects confirm or change every row. With `-OutputPath` it writes `<OutputPath>\<domain>\DDI\DepartureRegister.csv` and `DepartureRegister.json`.
+
 ## Pointing the kit at your own forest
 
 Nothing in the kit is tied to a forest name. `contoso.example`, `child.contoso.example` and `partner.example` appear only in the test fixtures (`tests/fixtures/`) and in examples; at run time the kit asks Active Directory which forest it's in and reads every domain of it.
@@ -198,6 +204,10 @@ Import-Module .\powershell\FMPAttributeSurvey
 Get-FMPAttributeSurvey -OutputPath D:\Assessment\attributes -KeyPattern '^MP\d{7}$'
 Get-FMPWaveList -OutputPath D:\Assessment\attributes
 
+# The DNS departure register for one domain, from a run's files (reads files only).
+Import-Module .\powershell\FMPDdiReadiness
+Get-FMPDnsDepartureRegister -Path D:\Assessment\<run-id>\agency.example -OutputPath D:\Assessment\ddi
+
 # Only the SQL Server count, sweeping every enabled Windows Server for Express instances.
 Import-Module .\powershell\FMPSqlEstate
 Invoke-FMPSqlEstateDiscovery -OutputPath D:\Assessment\sql -ProbeAllServers -QueryInstances
@@ -302,6 +312,7 @@ examples/start-kit/
   powershell/FMPNpsInventory/             NPS servers, RADIUS clients, policies, groups, findings
   powershell/FMPTransactionProfile/       round-trip measurement, profiles, the separation gate
   powershell/FMPAttributeSurvey/          attribute survey through the Global Catalog, wave lists
-  tests/fixtures/                         the fictional forest, SQL estate, NPS configuration, transaction catalog, the attribute survey's two-tree forest
-  tests/powershell/                       Pester 5: safety, SQL, AD, NPS, transaction profiles, attribute survey, end to end
+  powershell/FMPDdiReadiness/             DNS readiness from a run's files: Book 08's departure register
+  tests/fixtures/                         the fictional forest, SQL estate, NPS configuration, transaction catalog, the attribute survey's two-tree forest, a DNS and DHCP run (ddi)
+  tests/powershell/                       Pester 5: safety, SQL, AD, NPS, transaction profiles, attribute survey, DNS readiness, end to end
 ```

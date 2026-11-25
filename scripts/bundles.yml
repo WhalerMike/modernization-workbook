@@ -478,6 +478,12 @@ bundles:
     root: docs/training/defender-xdr
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: training-dns-dhcp-ipam-bundle.docx
+    title: "Learning path: DNS, DHCP and IPAM"
+    subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
+    root: docs/training/dns-dhcp-ipam
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
   - output: training-global-secure-access-bundle.docx
     title: "Learning path: Global Secure Access as the Identity-Aware Network"
     subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
@@ -544,6 +550,12 @@ bundles:
     pages: [infoblox-training.md]
   # ---------------------------------------------------------------------
   # Developer workbooks that had no Word edition yet.
+  - output: building-application-modernization-bundle.docx
+    title: "Building Application Modernization"
+    subtitle: "A developer workbook — Federal Modernization Workbook, combined edition"
+    root: docs/project-plans/developer-workbooks/application-modernization
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
   - output: building-azure-security-bundle.docx
     title: "Building Azure Security"
     subtitle: "A developer workbook — Federal Modernization Workbook, combined edition"

@@ -47,7 +47,7 @@ Describe 'Invoke-FMPStartKit.ps1' {
         $manifest.ModuleVersions.FMPTransactionProfile | Should -Be '1.0.0'
         $manifest.ModuleVersions.FMPSqlEstate | Should -Be '1.1.0'
         $manifest.Parameters.TransactionCatalog | Should -BeTrue
-        $manifest.KitVersion | Should -Be '1.4.0'
+        $manifest.KitVersion | Should -Be '1.5.0'
     }
     It 'hashes every file in the run, and the hashes match' {
         $files = @(Get-ChildItem -Path $runDir.FullName -Recurse -File | Where-Object Name -ne 'AssessmentManifest.json')

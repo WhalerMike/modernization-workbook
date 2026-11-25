@@ -1,7 +1,7 @@
 ---
 title: "Training"
 subtitle: "Learning paths: modules to work through in order, and the vendors' own training mapped to the workbook's roles"
-description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in four modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in eleven modules, the Provider Notices learning path in nine modules, the Zero Trust Assessment learning path in four modules, the Defender XDR learning path in five modules, the Global Secure Access learning path in six modules, the Azure Security Engineering learning path in five modules, the Daily Checks Dashboard learning path in two modules, and external learning paths from product vendors."
+description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in four modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in eleven modules, the Provider Notices learning path in nine modules, the Zero Trust Assessment learning path in four modules, the Defender XDR learning path in five modules, the Global Secure Access learning path in six modules, the Azure Security Engineering learning path in five modules, the Daily Checks Dashboard learning path in two modules, the DNS, DHCP and IPAM learning path in two modules, and external learning paths from product vendors."
 doc-type: section-landing
 fmw-eyebrow: "Training"
 listing:
@@ -45,6 +45,7 @@ listing:
       - "!azure-security/**"
       - "!daily-checks-dashboard/**"
       - "!pki/**"
+      - "!dns-dhcp-ipam/**"
     type: table
     fields: [title, research-status, last-reviewed, description]
     field-display-names: *names
@@ -83,6 +84,7 @@ Each learning path's code downloads as one zip, rebuilt from the repository on e
 | SD-WAN Governor | [cisco-sdwan.zip](../../downloads/cisco-sdwan.zip) | `Downloads\cisco-sdwan\cisco-sdwan` | Python 3.10; PowerShell 5.1 or 7 to read the output |
 | Azure Security Engineering | [azure-security-code.zip](../../downloads/azure-security-code.zip) | `Downloads\azure-security-code\azure-security-code\azure-security` | PowerShell 7.1 |
 | Daily Checks Dashboard | [daily-checks-workbook-code.zip](../../downloads/daily-checks-workbook-code.zip) | `Downloads\daily-checks-workbook-code\daily-checks-workbook-code\daily-checks-workbook` | PowerShell 7.1 |
+| DNS, DHCP and IPAM | [start-kit.zip](../../downloads/start-kit.zip) | `Downloads\start-kit\start-kit` | Windows PowerShell 5.1 or PowerShell 7 |
 
 : Each learning path's code, and the folder its labs run from {.striped .hover}
 
@@ -264,6 +266,12 @@ Five modules on engineering and proving the security of an agency's Azure estate
 Two modules on putting the operator runbook's daily checks on one Azure Monitor workbook in the Sentinel workspace, from the [Daily Checks Dashboard implementation guide](../books/guides/daily-checks-dashboard-implementation.md): which checks fit a workbook and from which table, which ones link out, GCC availability, and the template kept as reviewed code with its validator; then reading each tab (a stale source never shows clear), the reachability check, deployment with what-if and an approved hash, and the evidence, which never includes the workbook itself. Each module links its chapters' Lab 1 on fixtures and Lab 2 in a test workspace, and ends with a knowledge check. Start at the [learning path](daily-checks-dashboard/index.md).
 
 **Code:** [daily-checks-workbook-code.zip](../../downloads/daily-checks-workbook-code.zip), or [`examples/daily-checks-workbook`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/daily-checks-workbook) in the repository. The path's page says [how to unzip it and where](daily-checks-dashboard/index.md#get-the-code).
+
+## DNS, DHCP and IPAM learning path
+
+Two modules on [Book 08](../books/b08-ddi/index.md)'s naming plane, run with the Start Kit's DNS and DHCP collectors and its readiness checks: reading a domain's zones, DNS servers, locator records, zone health and DHCP scopes as one plane, with what to clear before anything moves; and sorting every Active Directory DNS component into Chapter 10's target, method and risk, with the DHCP registration settings to decide. Each module's Lab 1 runs on a fictional domain's files with no server; its Lab 2 runs in your own test domain; each module ends with a knowledge check. Start at the [learning path](dns-dhcp-ipam/index.md). Once the agency has chosen Infoblox, the vendor's own courses are under [External learning paths](#external-learning-paths).
+
+**Code:** [start-kit.zip](../../downloads/start-kit.zip), or [`examples/start-kit`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit) in the repository. The path's page says [how to unzip it and where](dns-dhcp-ipam/index.md#get-the-code).
 
 ## External learning paths
 

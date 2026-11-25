@@ -1,0 +1,7 @@
+PS> @(Test-AmEvidencePack -OutDir out/pack | Where-Object State -ne 'ok').Count
+0
+PS> Add-Content out/pack/test-record.csv '"edited after sealing"'
+PS> Test-AmEvidencePack -OutDir out/pack | Where-Object State -ne 'ok' | Format-Table
+File            State
+----            -----
+test-record.csv changed
