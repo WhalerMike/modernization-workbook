@@ -127,6 +127,7 @@ Other plans that take a date from this one. *Waits for it*: that plan can't move
 
 | This plan's item | When | Linked plan | Relationship | Float or margin |
 |---|---|---|---|---|
+| D-D9  Replacement CA and the AD CS decommission date for SQL Server's certificates | end of wk 11 | [PKI and Certificates](pki-certificates.md) (X-DD9) | Must finish D-K1 by it | 32 d margin |
 | DG4  Gate 4 — Application chain on Entra principals | end of wk 29 | [Non-Person Identity Modernization](non-person-identity.md) (X-DG4) | Reference only | — |
 
 : Plans that take a date from this one {.striped .hover}

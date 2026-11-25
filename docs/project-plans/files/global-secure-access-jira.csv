@@ -1,0 +1,143 @@
+﻿Work item ID,Work type,Parent,Summary,Description,Labels,Labels,Labels,Labels,Labels,Labels,Start date,Due date,Blocks,Blocks,Blocks,Blocks,Blocks
+1,Epic,,"Global Secure Access: Phase 0 — Decision, architecture and logging","Phase 0 — Decision, architecture and logging of the sample plan Global Secure Access: Identity-Aware Network Access, Ring by Ring.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/global-secure-access.html",fmw,fmw-global-secure-access,phase,,,,2027-01-04,2027-02-23,,,,,
+2,Task,1,X-N01 Remote-access paths and residual VPN use inventoried (Network & Access N0.1),"X-N01 · External · owner or approver: Executive sponsor and CIO (Network & Access Modernization plan)
+Duration 0 working days · end of wk 1 · total float 25 d · predecessors: —
+If decided late: The adoption decision has no inventory of the VPN's applications and users to weigh
+Comes from network-access:N0.1 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/network-access.html",fmw,fmw-global-secure-access,fmw-id-x-n01,external,owner-executive-sponsor-and-cio-network-access-modernization-plan,,2027-01-11,2027-01-08,4,,,,
+3,Task,1,GA0.1 Tenant licenses and onboarding state read; current VPN and SSE functions mapped to the four traffic types,"GA0.1 · Task · owner or approver: Network security engineering
+Duration 5 working days · wk 1 · total float 25 d · predecessors: —
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-1-decision-and-licensing",fmw,fmw-global-secure-access,fmw-id-ga0.1,task,owner-network-security-engineering,,2027-01-04,2027-01-08,4,7,,,
+4,Task,1,"D-GA1 Adopt Global Secure Access, per function: Microsoft traffic, internet, private, branch","D-GA1 · Decision · owner or approver: Service owner, approved by the authorizing official
+Duration 0 working days · end of wk 1 · total float 25 d · predecessors: GA0.1, X-N01
+Options: Adopt the function; keep the current VPN or SSE for it; run both with each traffic type sent to one service. Recorded with license count, availability quote, compensating controls and exit criteria
+If decided late: No license count can be ordered, and the Network plan's egress decision (D-N5) can't weigh agent-delivered SASE
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-1-decision-and-licensing",fmw,fmw-global-secure-access,fmw-id-d-ga1,decision,owner-service-owner-approved-by-the-authorizing-official,,2027-01-11,2027-01-08,5,6,,,
+5,Task,1,X-ND5 Egress pattern decided for each pilot site (Network & Access D-N5),"X-ND5 · External · owner or approver: Network engineering (Network & Access Modernization plan)
+Duration 0 working days · end of wk 8 · total float fixed date · predecessors: D-GA1
+If decided late: The pilot sites' egress is chosen without knowing whether pattern D, agent-delivered SASE, is available
+Comes from network-access:D-N5 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/network-access.html",fmw,fmw-global-secure-access,fmw-id-x-nd5,external,owner-network-engineering-network-access-modernization-plan,,2027-02-24,2027-02-23,,,,,
+6,Task,1,"GA0.2 Reference architecture recorded: profiles per population, connector groups, branch pattern; first configuration export with its hash manifest","GA0.2 · Task · owner or approver: Network security engineering
+Duration 5 working days · wk 2 · total float 25 d · predecessors: D-GA1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-2-reference-architecture",fmw,fmw-global-secure-access,fmw-id-ga0.2,task,owner-network-security-engineering,,2027-01-11,2027-01-15,8,,,,
+7,Task,1,GA0.3 Network log categories exported by diagnostic setting; Sentinel solution installed; traffic-drop alert on; freshness query clean,"GA0.3 · Task · owner or approver: Security operations
+Duration 3 working days · wk 2 · total float 27 d · predecessors: GA0.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-12-telemetry-and-evidence",fmw,fmw-global-secure-access,fmw-id-ga0.3,task,owner-security-operations,,2027-01-11,2027-01-13,8,,,,
+8,Task,1,"GAG0 Gate 0 — Decided per function, logging before any pilot traffic","GAG0 · Gate · owner or approver: Service owner
+Duration 0 working days · end of wk 2 · total float 25 d · predecessors: GA0.2, GA0.3
+Criteria: Decision record approved per function, with a license count no smaller than the pilot and first ring, an availability quote dated within 30 days and an approver; architecture record and the first configuration export with its hash manifest; the four network log categories reaching the workspace
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#checklist",fmw,fmw-global-secure-access,fmw-id-gag0,gate,owner-service-owner,,2027-01-18,2027-01-15,10,20,26,28,35
+9,Epic,,"Global Secure Access: Phase 1 — Client, Microsoft traffic and the pilot ring","Phase 1 — Client, Microsoft traffic and the pilot ring of the sample plan Global Secure Access: Identity-Aware Network Access, Ring by Ring.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/global-secure-access.html",fmw,fmw-global-secure-access,phase,,,,2027-01-18,2027-04-02,,,,,
+10,Task,9,"GA1.1 Client packaged as an Intune Win32 app with Learn's commands and detection rule; DoH off; ring 0, the implementing team","GA1.1 · Task · owner or approver: Platform operations
+Duration 5 working days · wk 3 · total float 25 d · predecessors: GAG0
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-3-client-deployment",fmw,fmw-global-secure-access,fmw-id-ga1.1,task,owner-platform-operations,,2027-01-18,2027-01-22,11,29,,,
+11,Task,9,GA1.2 Microsoft traffic profile on for ring 0; source IP restoration and Conditional Access signaling on; sign-in share measured,"GA1.2 · Task · owner or approver: Network security engineering
+Duration 5 working days · wk 4 · total float 25 d · predecessors: GA1.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-4-microsoft-traffic",fmw,fmw-global-secure-access,fmw-id-ga1.2,task,owner-network-security-engineering,,2027-01-25,2027-01-29,12,14,,,
+12,Task,9,"GA1.3 Universal tenant restrictions (TRv2) policy approved, tagging on, four-case test recorded","GA1.3 · Task · owner or approver: Identity engineering
+Duration 5 working days · wk 5 · total float 30 d · predecessors: GA1.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-8-tenant-restrictions",fmw,fmw-global-secure-access,fmw-id-ga1.3,task,owner-identity-engineering,,2027-02-01,2027-02-05,17,,,,
+13,Task,9,X-P16 Conditional Access baseline enforced; emergency access accounts vaulted and tested (program P1.6),"X-P16 · External · owner or approver: Platform teams (program)
+Duration 0 working days · end of wk 7 · total float 12 d · predecessors: —
+If decided late: The compliant network policy has no tested emergency access exclusion, and its report-only run waits
+Comes from program-master-schedule:P1.6 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-global-secure-access,fmw-id-x-p16,external,owner-platform-teams-program,,2027-02-18,2027-02-17,14,,,,
+14,Task,9,GA1.4 Compliant network policy in report-only for 10 business days; break-glass scripts staged,"GA1.4 · Task · owner or approver: Identity engineering
+Duration 10 working days · wk 7–9 · total float 12 d · predecessors: GA1.2, X-P16
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-7-compliant-network",fmw,fmw-global-secure-access,fmw-id-ga1.4,task,owner-identity-engineering,,2027-02-18,2027-03-03,15,,,,
+15,Task,9,D-GA3 Turn the compliant network policy On for ring 1,"D-GA3 · Decision · owner or approver: Service owner
+Duration 0 working days · end of wk 9 · total float 12 d · predecessors: GA1.4
+Options: On, ring by ring; stay in report-only until every reportOnlyFailure is explained
+If decided late: Ring 1 runs without the network condition, and its exit waits
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-7-compliant-network",fmw,fmw-global-secure-access,fmw-id-d-ga3,decision,owner-service-owner,,2027-03-04,2027-03-03,17,,,,
+16,Task,9,X-P22 Pilot Conditional Access and Intune policies assigned (program P2.2),"X-P22 · External · owner or approver: Platform teams (program)
+Duration 0 working days · end of wk 11 · total float 0 · predecessors: —
+If decided late: The pilot cohort's devices can't take the client through Intune, and ring 1 waits
+Comes from program-master-schedule:P2.2 in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-global-secure-access,fmw-id-x-p22,external,owner-platform-teams-program,,2027-03-22,2027-03-19,17,,,,
+17,Task,9,"GA1.5 Ring 1, fewer than 20 users across roles and sites: client, Microsoft traffic, TRv2 and compliant network for 10 business days; emergency access exclusion tested at ring start","GA1.5 · Task · owner or approver: Network security engineering
+Duration 10 working days · wk 12–13 · total float 0 · predecessors: GA1.3, D-GA3, X-P22
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-11-coexistence-and-migration",fmw,fmw-global-secure-access,fmw-id-ga1.5,task,owner-network-security-engineering,critical-path,2027-03-22,2027-04-02,18,,,,
+18,Task,9,GAG1 Gate 1 — Ring 1 exited on Microsoft traffic,"GAG1 · Gate · owner or approver: Service owner
+Duration 0 working days · end of wk 13 · total float 0 · predecessors: GA1.5
+Criteria: Every step's Validate passed for ring 0 and break-glass rehearsed; ring 1 for 10 business days with no unresolved Sev-2 ticket; client active on every pilot device; report-only results clean; compliant network On for ring 1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-11-coexistence-and-migration",fmw,fmw-global-secure-access,fmw-id-gag1,gate,owner-service-owner,critical-path,2027-04-05,2027-04-02,22,27,33,,
+19,Epic,,Global Secure Access: Phase 2 — Private Access and administrative paths,"Phase 2 — Private Access and administrative paths of the sample plan Global Secure Access: Identity-Aware Network Access, Ring by Ring.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/global-secure-access.html",fmw,fmw-global-secure-access,phase,,,,2027-01-18,2027-05-07,,,,,
+20,Task,19,"D-GA4 First private applications, and Quick Access as a bridge or per-app from the start","D-GA4 · Decision · owner or approver: Service owner
+Duration 0 working days · end of wk 2 · total float 45 d · predecessors: GAG0
+Options: Quick Access over the VPN's ranges as a transition, then per-app; per-app from the start for the VPN's most-used applications. DirectAccess can't coexist with Private Access on the same device
+If decided late: Connector groups can't be sized or placed, and Private Access waits
+Source: https://whalermike.github.io/modernization-workbook/docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html#private-access-as-the-vpn-and-directaccess-replacement",fmw,fmw-global-secure-access,fmw-id-d-ga4,decision,owner-service-owner,,2027-01-18,2027-01-15,21,,,,
+21,Task,19,"GA2.1 Connector groups deployed: two outbound-only connectors per group on Windows Server 2019 or later, TLS 1.2, no inline inspection; private DNS","GA2.1 · Task · owner or approver: Platform operations
+Duration 10 working days · wk 3–4 · total float 45 d · predecessors: D-GA4
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-6-private-applications",fmw,fmw-global-secure-access,fmw-id-ga2.1,task,owner-platform-operations,,2027-01-18,2027-01-29,22,,,,
+22,Task,19,"GA2.2 First private applications published per app with their own segments, assignment and Conditional Access, for ring 1; application discovery run","GA2.2 · Task · owner or approver: Network security engineering
+Duration 15 working days · wk 14–16 · total float 0 · predecessors: GA2.1, GAG1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-6-private-applications",fmw,fmw-global-secure-access,fmw-id-ga2.2,task,owner-network-security-engineering,critical-path,2027-04-05,2027-04-23,23,,,,
+23,Task,19,GA2.3 Administrative hosts behind phishing-resistant policies; domain controller sensors moved from Audit to Enforce for application SPNs,"GA2.3 · Task · owner or approver: Identity engineering
+Duration 10 working days · wk 17–18 · total float 0 · predecessors: GA2.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-10-privileged-protocols",fmw,fmw-global-secure-access,fmw-id-ga2.3,task,owner-identity-engineering,critical-path,2027-04-26,2027-05-07,24,,,,
+24,Task,19,GAG2 Gate 2 — Private applications per app for ring 1,"GAG2 · Gate · owner or approver: Service owner
+Duration 0 working days · end of wk 18 · total float 0 · predecessors: GA2.3
+Criteria: Each published application has its own segments, group assignment and Conditional Access; Quick Access residual at zero for the moved applications; administrative hosts reachable only under phishing-resistant policies; sensors enforcing
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#checklist",fmw,fmw-global-secure-access,fmw-id-gag2,gate,owner-service-owner,critical-path,2027-05-10,2027-05-07,34,,,,
+25,Epic,,Global Secure Access: Phase 3 — Internet Access and TLS inspection,"Phase 3 — Internet Access and TLS inspection of the sample plan Global Secure Access: Identity-Aware Network Access, Ring by Ring.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/global-secure-access.html",fmw,fmw-global-secure-access,phase,,,,2027-01-18,2027-04-30,,,,,
+26,Task,25,D-GA5 Web categories the acceptable-use policy blocks,"D-GA5 · Decision · owner or approver: Service owner, with the ISSO
+Duration 0 working days · end of wk 2 · total float 60 d · predecessors: GAG0
+Options: Block the categories the acceptable-use policy names; decide AI categories separately; every bypass to the exception register
+If decided late: Security profiles can't be built, and Internet Access waits
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-5-internet-traffic",fmw,fmw-global-secure-access,fmw-id-d-ga5,decision,owner-service-owner-with-the-isso,,2027-01-18,2027-01-15,27,,,,
+27,Task,25,"GA3.1 Security profiles with web content filtering and threat intelligence, linked by Conditional Access for ring 1; the baseline profile last","GA3.1 · Task · owner or approver: Network security engineering
+Duration 10 working days · wk 14–15 · total float 5 d · predecessors: D-GA5, GAG1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-5-internet-traffic",fmw,fmw-global-secure-access,fmw-id-ga3.1,task,owner-network-security-engineering,,2027-04-05,2027-04-16,30,,,,
+28,Task,25,D-GA6 TLS inspection scope and its certificate authority,"D-GA6 · Decision · owner or approver: Service owner, approved by the privacy officer
+Duration 0 working days · end of wk 2 · total float 65 d · predecessors: GAG0
+Options: Microsoft-managed certificate; the agency's own intermediate signed by a dedicated CA, not the production PKI. Learn's recommended bypass categories kept, plus those the privacy officer names; no prompt or file content capture without a separate decision
+If decided late: Inspection can't start, URL and file rules stay unavailable, and Gate 3 waits
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-9-tls-inspection",fmw,fmw-global-secure-access,fmw-id-d-ga6,decision,owner-service-owner-approved-by-the-privacy-officer,,2027-01-18,2027-01-15,29,,,,
+29,Task,25,GA3.2 Inspection intermediate signed; root and intermediate trusted on pilot devices by Intune profile; user notice sent,"GA3.2 · Task · owner or approver: PKI and CA administrators
+Duration 5 working days · wk 4 · total float 60 d · predecessors: D-GA6, GA1.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-9-tls-inspection",fmw,fmw-global-secure-access,fmw-id-ga3.2,task,owner-pki-and-ca-administrators,,2027-01-25,2027-01-29,30,,,,
+30,Task,25,GA3.3 TLS inspection on for the pilot security profile; pinned applications bypassed; failure rate measured,"GA3.3 · Task · owner or approver: Network security engineering
+Duration 10 working days · wk 16–17 · total float 5 d · predecessors: GA3.1, GA3.2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-9-tls-inspection",fmw,fmw-global-secure-access,fmw-id-ga3.3,task,owner-network-security-engineering,,2027-04-19,2027-04-30,31,,,,
+31,Task,25,GAG3 Gate 3 — Internet traffic filtered and inspected for ring 1,"GAG3 · Gate · owner or approver: CISO and ISSO
+Duration 0 working days · end of wk 17 · total float 5 d · predecessors: GA3.3
+Criteria: Security profiles with web filtering and threat intelligence; bypasses in the exception register; TLS inspection from a dedicated CA with the privacy officer's approval and user notice; TLS failure rate under 1%
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#checklist",fmw,fmw-global-secure-access,fmw-id-gag3,gate,owner-ciso-and-isso,,2027-05-03,2027-04-30,34,,,,
+32,Epic,,"Global Secure Access: Phase 4 — Rings 2 and 3, and the VPN's retirement","Phase 4 — Rings 2 and 3, and the VPN's retirement of the sample plan Global Secure Access: Identity-Aware Network Access, Ring by Ring.
+https://whalermike.github.io/modernization-workbook/docs/project-plans/global-secure-access.html",fmw,fmw-global-secure-access,phase,,,,2027-01-18,2027-09-17,,,,,
+33,Task,32,"GA4.1 Client hardening from ring 2: Disable hidden, non-privileged users restricted, help desk elevation path","GA4.1 · Task · owner or approver: Platform operations
+Duration 3 working days · wk 14 · total float 22 d · predecessors: GAG1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-3-client-deployment",fmw,fmw-global-secure-access,fmw-id-ga4.1,task,owner-platform-operations,,2027-04-05,2027-04-07,34,,,,
+34,Task,32,"GA4.2 Ring 2, about 10% of users including one branch, for 20 business days, every function at once","GA4.2 · Task · owner or approver: Network security engineering
+Duration 20 working days · wk 19–22 · total float 0 · predecessors: GAG2, GAG3, GA4.1
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-11-coexistence-and-migration",fmw,fmw-global-secure-access,fmw-id-ga4.2,task,owner-network-security-engineering,critical-path,2027-05-10,2027-06-04,37,,,,
+35,Task,32,"D-GA2 CISA telemetry path for the new access layer, agreed with the TIC delegates","D-GA2 · Decision · owner or approver: ISSO, with the agency's TIC delegates
+Duration 0 working days · end of wk 2 · total float 160 d · predecessors: GAG0
+Options: CLAW; another path CISA confirms. Agreed before the VPN's web path is retired
+If decided late: The VPN's web path can't be retired, and Gate 4 waits
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#tic-alignment",fmw,fmw-global-secure-access,fmw-id-d-ga2,decision,owner-isso-with-the-agency-s-tic-delegates,,2027-01-18,2027-01-15,38,,,,
+36,Task,32,X-P31S Program starts rollout wave 1 (start of P3.1),"X-P31S · External · owner or approver: Platform teams (program)
+Duration 0 working days · end of wk 16 · total float 30 d · predecessors: —
+If decided late: Ring 3 has no divisions to follow
+Comes from program-master-schedule:P3.1:start in another plan; its date is set there.
+Source: https://whalermike.github.io/modernization-workbook/docs/project-plans/program-master-schedule.html",fmw,fmw-global-secure-access,fmw-id-x-p31s,external,owner-platform-teams-program,,2027-04-26,2027-04-23,37,,,,
+37,Task,32,"GA4.3 Ring 3, everyone in scope in waves with the program's divisions; each wave on the ring 2 criteria","GA4.3 · Task · owner or approver: Network security engineering
+Duration 60 working days · wk 23–34 · total float 0 · predecessors: GA4.2, X-P31S
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-11-coexistence-and-migration",fmw,fmw-global-secure-access,fmw-id-ga4.3,task,owner-network-security-engineering,critical-path,2027-06-07,2027-08-27,38,,,,
+38,Task,32,GA4.4 VPN routes removed per application after 10 business days with no VPN traffic; the VPN's web path retired; residual VPN use in the exception register,"GA4.4 · Task · owner or approver: Network engineering
+Duration 10 working days · wk 35–36 · total float 0 · predecessors: GA4.3, D-GA2
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#step-11-coexistence-and-migration",fmw,fmw-global-secure-access,fmw-id-ga4.4,task,owner-network-engineering,critical-path,2027-08-30,2027-09-10,39,,,,
+39,Task,32,GA4.5 Zero Trust Assessment rerun; each network finding's closure chain updated with evidence for every applicable state,"GA4.5 · Task · owner or approver: ISSO
+Duration 5 working days · wk 37 · total float 0 · predecessors: GA4.4
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#control-states",fmw,fmw-global-secure-access,fmw-id-ga4.5,task,owner-isso,critical-path,2027-09-13,2027-09-17,40,,,,
+40,Task,32,"GAG4 Gate 4 — Every ring exited, evidence complete","GAG4 · Gate · owner or approver: Service owner, with the ISSO
+Duration 0 working days · end of wk 37 · total float 0 · predecessors: GA4.5
+Criteria: Each ring exited on its recorded criteria with measured values; VPN routes removed only after each wave held; CISA telemetry agreed; emergency access exclusion tested at each ring start; evidence package for each finding ready for the assessor (closure is the authorizing official's decision)
+Source: https://whalermike.github.io/modernization-workbook/docs/books/guides/global-secure-access-implementation.html#checklist",fmw,fmw-global-secure-access,fmw-id-gag4,gate,owner-service-owner-with-the-isso,critical-path,2027-09-20,2027-09-17,,,,,
