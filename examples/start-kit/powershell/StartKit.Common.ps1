@@ -20,7 +20,7 @@
     the same file for the run folder and the manifest.
 #>
 
-$script:FMPKitVersion = '1.5.0'
+$script:FMPKitVersion = '1.6.0'
 $script:FMPAllowedRoots = [System.Collections.Generic.List[string]]::new()
 $script:FMPUtf8 = [System.Text.UTF8Encoding]::new($false)
 

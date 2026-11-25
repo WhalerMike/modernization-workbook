@@ -2984,6 +2984,16 @@
   "page": "02-hardening-what-stays.docx",
   "title": "Learning path: PKI and Certificates"
  },
+ "docs/training/pki/03-the-target-pki-and-who-owns-it.md": {
+  "bundle": "training-pki-bundle.docx",
+  "page": "03-the-target-pki-and-who-owns-it.docx",
+  "title": "Learning path: PKI and Certificates"
+ },
+ "docs/training/pki/04-device-and-user-certificates.md": {
+  "bundle": "training-pki-bundle.docx",
+  "page": "04-device-and-user-certificates.docx",
+  "title": "Learning path: PKI and Certificates"
+ },
  "docs/training/pki/index.md": {
   "bundle": "training-pki-bundle.docx",
   "page": "index.docx",
