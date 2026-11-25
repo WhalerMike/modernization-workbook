@@ -1,0 +1,43 @@
+{
+  "_comment": "The lab tenant's protection plan (fictional). Labels and policies follow Book 20, Chapters 02 and 03; the stages follow Chapters 06, 08, 09 and 11. 'properties' are compared as written with the export.",
+  "labels": [
+    { "name": "Public", "priority": 0, "encryption": false, "header": "" },
+    { "name": "Internal", "priority": 1, "encryption": false, "header": "" },
+    { "name": "CUI", "priority": 2, "encryption": false, "header": "" },
+    { "name": "CUI Basic", "priority": 3, "encryption": true, "header": "CUI", "rightsTo": ["contoso.example"] },
+    { "name": "CUI//SP-TAX", "priority": 4, "encryption": true, "header": "CUI//SP-TAX", "rightsTo": ["fti-holders@contoso.example"] },
+    { "name": "Internal site", "priority": 5, "properties": { "SiteAndGroupProtectionPrivacy": "Private", "SiteAndGroupProtectionAllowAccessToGuestUsers": "True" } },
+    { "name": "CUI site", "priority": 6, "properties": { "SiteAndGroupProtectionPrivacy": "Private", "SiteAndGroupProtectionAllowAccessToGuestUsers": "True" } },
+    { "name": "CUI Specified site", "priority": 7, "properties": { "SiteAndGroupProtectionPrivacy": "Private", "SiteAndGroupProtectionAllowAccessToGuestUsers": "False" } }
+  ],
+  "labelPolicies": [
+    { "name": "B20-Labels-All", "scope": "All", "exclusion": "b20-label-exclusions@contoso.example",
+      "labels": ["Public", "Internal", "CUI", "CUI Basic", "Internal site", "CUI site", "CUI Specified site"],
+      "settings": { "mandatory": "true", "defaultlabelid": "Internal", "outlookdefaultlabel": "Internal", "teamworkdefaultlabelid": "Internal site", "teamworkmandatory": "true" } },
+    { "name": "B20-Labels-CUI-SP", "scope": "fti-holders@contoso.example", "labels": ["CUI//SP-TAX"] }
+  ],
+  "rightsManagement": { "superUserFeature": "Disabled" },
+  "irm": { "AzureRMSLicensingEnabled": true, "SimplifiedClientAccessEnabled": true, "DecryptAttachmentForEncryptOnly": false },
+  "ome": [ { "identity": "OME Configuration", "properties": { "OTPEnabled": true, "SocialIdSignIn": false } } ],
+  "transportRules": [
+    { "name": "Encrypt external [secure]", "stage": "enforce", "template": "Encrypt" },
+    { "name": "Partner Do Not Forward", "stage": "enforce", "template": "Do Not Forward" }
+  ],
+  "policyConfig": { "EnableLabelCoauth": true },
+  "dlpPolicies": [
+    { "name": "FMP-DLP-CUI-ExternalEmail-v2", "stage": "enforce" },
+    { "name": "FMP-DLP-CUI-ExternalEmail-v1", "stage": "retired" },
+    { "name": "FMP-DLP-Endpoint-CUI-SP-v1", "stage": "enforce" },
+    { "name": "B20-Copilot-Exclude-CUI-SP", "stage": "simulation" }
+  ],
+  "copilotPolicies": ["B20-Copilot-Exclude-CUI-SP"],
+  "autoLabelPolicies": [
+    { "name": "FMP-Auto-CUIBasic-Batch1-v1", "stage": "enforce" },
+    { "name": "FMP-Auto-CUIBasic-Batch2-v1", "stage": "simulation" }
+  ],
+  "customSits": ["Contoso Case Number"],
+  "audit": {
+    "retention": [ { "name": "FMP-Audit-InfoProtection-1y", "duration": "TwelveMonths" } ],
+    "synthetic": { "operations": ["FileSensitivityLabelApplied", "FileSensitivityLabelRemoved", "CopilotInteraction"], "withinHours": 4 }
+  }
+}

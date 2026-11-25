@@ -1,0 +1,30 @@
+{
+  "startedAt": "2026-11-24T09:00:00Z",
+  "searchedAt": "2026-11-24T15:00:00Z",
+  "user": "test.user@contoso.example",
+  "operations": [
+    "FileSensitivityLabelApplied",
+    "FileSensitivityLabelRemoved",
+    "CopilotInteraction"
+  ],
+  "events": [
+    {
+      "CreationDate": "2026-11-24T10:12:00Z",
+      "UserIds": "test.user@contoso.example",
+      "Operations": "FileSensitivityLabelApplied",
+      "RecordType": "SharePointFileOperation"
+    },
+    {
+      "CreationDate": "2026-11-24T09:48:00Z",
+      "UserIds": "test.user@contoso.example",
+      "Operations": "CopilotInteraction",
+      "RecordType": "CopilotInteraction"
+    },
+    {
+      "CreationDate": "2026-11-24T14:30:00Z",
+      "UserIds": "test.user@contoso.example",
+      "Operations": "FileSensitivityLabelRemoved",
+      "RecordType": "SharePointFileOperation"
+    }
+  ]
+}

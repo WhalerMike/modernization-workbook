@@ -1,0 +1,65 @@
+[
+  {
+    "class": "CUI-PRIVACY",
+    "tagType": "SensitiveInformationType",
+    "tagName": "U.S. Social Security Number (SSN)",
+    "workload": "EXO",
+    "totalCount": 412
+  },
+  {
+    "class": "CUI-PRIVACY",
+    "tagType": "SensitiveInformationType",
+    "tagName": "U.S. Social Security Number (SSN)",
+    "workload": "ODB",
+    "totalCount": 1290
+  },
+  {
+    "class": "CUI-PRIVACY",
+    "tagType": "SensitiveInformationType",
+    "tagName": "U.S. Social Security Number (SSN)",
+    "workload": "SharePoint",
+    "totalCount": 3874
+  },
+  {
+    "class": "CUI-SP-TAX",
+    "tagType": "SensitiveInformationType",
+    "tagName": "U.S. Individual Taxpayer Identification Number (ITIN)",
+    "workload": "EXO",
+    "totalCount": 37
+  },
+  {
+    "class": "CUI-SP-TAX",
+    "tagType": "SensitiveInformationType",
+    "tagName": "U.S. Individual Taxpayer Identification Number (ITIN)",
+    "workload": "ODB",
+    "totalCount": 12
+  },
+  {
+    "class": "CUI-SP-TAX",
+    "tagType": "SensitiveInformationType",
+    "tagName": "U.S. Individual Taxpayer Identification Number (ITIN)",
+    "workload": "SharePoint",
+    "totalCount": 205
+  },
+  {
+    "class": "CASE-RECORDS",
+    "tagType": "SensitiveInformationType",
+    "tagName": "Contoso Case Number",
+    "workload": "EXO",
+    "totalCount": 0
+  },
+  {
+    "class": "CASE-RECORDS",
+    "tagType": "SensitiveInformationType",
+    "tagName": "Contoso Case Number",
+    "workload": "ODB",
+    "totalCount": 88
+  },
+  {
+    "class": "CASE-RECORDS",
+    "tagType": "SensitiveInformationType",
+    "tagName": "Contoso Case Number",
+    "workload": "SharePoint",
+    "totalCount": 1561
+  }
+]

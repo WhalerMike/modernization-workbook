@@ -1,0 +1,4 @@
+"id","kind","policy","target","approver","expires","reason"
+"EXC-001","dlp-recipient-domain","FMP-DLP-CUI-ExternalEmail-v2","partner.example","CUI program manager","2027-06-30","Partner agreement on file"
+"EXC-002","dlp-recipient-domain","FMP-DLP-CUI-ExternalEmail-v2","oldpartner.example","CUI program manager","2026-10-31","Agreement ended; remove the exception"
+"EXC-003","dlp-sender-group","FMP-DLP-CUI-ExternalEmail-v2","dlp-exceptions@contoso.example","Platform owner","2027-03-31","Mailroom scanning service"

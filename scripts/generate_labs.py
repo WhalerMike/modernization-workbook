@@ -82,6 +82,10 @@ WORKBOOKS = [
     Workbook("dc", "Building the Daily Checks Workbook", "docs/project-plans/developer-workbooks/daily-checks",
              "daily-checks-workbook-code.zip", "docs/books/guides/daily-checks-dashboard-implementation.md",
              "docs/training/daily-checks-dashboard"),
+    Workbook("ip", "Building Information Protection", "docs/project-plans/developer-workbooks/information-protection",
+             "information-protection-code.zip", "docs/books/guides/information-protection-implementation.md",
+             gates={"1": ["01", "03"], "2": ["04"], "3": ["04"], "4": ["04"], "5": ["05"], "6": ["05"], "7": ["05"],
+                    "8": ["06"], "9": ["06"], "10": ["01", "07"], "11": ["06", "07"], "12": ["02", "08", "09"]}),
 ]
 # Learning paths whose modules have their own exercises but no developer workbook behind them.
 MS_AUTOMATION = ["docs/training/ms-automation-foundations.md", "docs/training/ms-automation-entra.md",

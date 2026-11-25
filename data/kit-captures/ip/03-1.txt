@@ -1,0 +1,6 @@
+PS> ./Invoke-IpInventory.ps1 -SettingsPath tests/fixtures/settings.lab.json -SnapshotPath tests/fixtures/snapshots/2026-11-24 -OutputPath out/inventory -AsOf 2026-11-24T12:00:00Z
+INV-01     Pass  CUI-PRIVACY: 5576 item(s): EXO 412, ODB 1290, SharePoint 3874
+INV-02     Fail  CUI-SP-TAX: not in the tenant's catalog: Federal Tax Account Number; 254 item(s): EXO 37, ODB 12, SharePoint 205
+INV-03     Fail  CASE-RECORDS: no owner; 1649 item(s): EXO 0, ODB 88, SharePoint 1561
+INV-04     Warn  INTERNAL: no sensitive information type named: the class is labeled by default or by hand, not found by detection; no content counts for this class
+inventory: Fail (1 pass, 2 fail, 1 other). Written to ./out/inventory

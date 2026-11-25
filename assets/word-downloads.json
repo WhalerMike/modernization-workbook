@@ -2095,6 +2095,56 @@
   "page": "index.docx",
   "title": "Building HR-Driven Identity"
  },
+ "docs/project-plans/developer-workbooks/information-protection/01-access-and-the-read-path.md": {
+  "bundle": "building-information-protection-bundle.docx",
+  "page": "01-access-and-the-read-path.docx",
+  "title": "Building Information Protection"
+ },
+ "docs/project-plans/developer-workbooks/information-protection/02-the-baseline-export.md": {
+  "bundle": "building-information-protection-bundle.docx",
+  "page": "02-the-baseline-export.docx",
+  "title": "Building Information Protection"
+ },
+ "docs/project-plans/developer-workbooks/information-protection/03-the-data-inventory.md": {
+  "bundle": "building-information-protection-bundle.docx",
+  "page": "03-the-data-inventory.docx",
+  "title": "Building Information Protection"
+ },
+ "docs/project-plans/developer-workbooks/information-protection/04-labels-policies-and-containers.md": {
+  "bundle": "building-information-protection-bundle.docx",
+  "page": "04-labels-policies-and-containers.docx",
+  "title": "Building Information Protection"
+ },
+ "docs/project-plans/developer-workbooks/information-protection/05-rights-management-and-message-encryption.md": {
+  "bundle": "building-information-protection-bundle.docx",
+  "page": "05-rights-management-and-message-encryption.docx",
+  "title": "Building Information Protection"
+ },
+ "docs/project-plans/developer-workbooks/information-protection/06-dlp-and-auto-labeling.md": {
+  "bundle": "building-information-protection-bundle.docx",
+  "page": "06-dlp-and-auto-labeling.docx",
+  "title": "Building Information Protection"
+ },
+ "docs/project-plans/developer-workbooks/information-protection/07-audit-and-the-synthetic-events.md": {
+  "bundle": "building-information-protection-bundle.docx",
+  "page": "07-audit-and-the-synthetic-events.docx",
+  "title": "Building Information Protection"
+ },
+ "docs/project-plans/developer-workbooks/information-protection/08-drift-metrics-and-the-monthly-evidence-run.md": {
+  "bundle": "building-information-protection-bundle.docx",
+  "page": "08-drift-metrics-and-the-monthly-evidence-run.docx",
+  "title": "Building Information Protection"
+ },
+ "docs/project-plans/developer-workbooks/information-protection/09-deploying-to-test-and-production.md": {
+  "bundle": "building-information-protection-bundle.docx",
+  "page": "09-deploying-to-test-and-production.docx",
+  "title": "Building Information Protection"
+ },
+ "docs/project-plans/developer-workbooks/information-protection/index.md": {
+  "bundle": "building-information-protection-bundle.docx",
+  "page": "index.docx",
+  "title": "Building Information Protection"
+ },
  "docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md": {
   "bundle": "building-non-person-identity-bundle.docx",
   "page": "01-non-person-identity-inventory-as-code.docx",

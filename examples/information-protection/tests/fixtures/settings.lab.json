@@ -1,0 +1,16 @@
+{
+  "_comment": "The lab's settings: the fictional contoso.example tenant in GCC. Inputs resolve against this file's folder.",
+  "environment": "lab",
+  "cloud": "gcc",
+  "tenantId": "00000000-0000-4000-8000-0000000000c0",
+  "tenantDomain": "contoso.example",
+  "adminUpn": "ip-reader@contoso.example",
+  "reads": { "rightsManagement": true, "inventory": true },
+  "inputs": {
+    "plan": "inputs/protection-plan.json",
+    "roleRegister": "inputs/role-register.csv",
+    "classRegister": "inputs/class-register.csv",
+    "exceptions": "inputs/exceptions.csv",
+    "changes": "inputs/changes.csv"
+  }
+}

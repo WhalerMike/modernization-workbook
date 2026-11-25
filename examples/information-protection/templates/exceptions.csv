@@ -1,0 +1,2 @@
+"id","kind","policy","target","approver","expires","reason"
+"<EXC-nnn>","<dlp-recipient-domain | dlp-sender-group>","<DLP policy name>","<domain or group>","<approver role>","<yyyy-mm-dd>","<reason and compensating control>"

@@ -550,6 +550,12 @@ bundles:
     root: docs/project-plans/developer-workbooks/defender-xdr
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: building-information-protection-bundle.docx
+    title: "Building Information Protection"
+    subtitle: "A developer workbook — Federal Modernization Workbook, combined edition"
+    root: docs/project-plans/developer-workbooks/information-protection
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
   - output: building-global-secure-access-bundle.docx
     title: "Building Global Secure Access"
     subtitle: "A developer workbook — Federal Modernization Workbook, combined edition"

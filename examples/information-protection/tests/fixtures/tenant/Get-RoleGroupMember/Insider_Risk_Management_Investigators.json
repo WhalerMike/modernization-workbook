@@ -1,0 +1,10 @@
+[
+  {
+    "Name": "inv.one",
+    "WindowsLiveID": "inv.one@contoso.example"
+  },
+  {
+    "Name": "extra.person",
+    "WindowsLiveID": "extra.person@contoso.example"
+  }
+]

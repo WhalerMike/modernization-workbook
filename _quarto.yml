@@ -261,6 +261,8 @@ website:
             text: "Building Provider Notices"
           - href: docs/project-plans/developer-workbooks/defender-xdr/index.md
             text: "Building Defender XDR"
+          - href: docs/project-plans/developer-workbooks/information-protection/index.md
+            text: "Building Information Protection"
           - href: docs/project-plans/developer-workbooks/global-secure-access/index.md
             text: "Building Global Secure Access"
           - href: docs/project-plans/developer-workbooks/azure-security/index.md
@@ -494,6 +496,10 @@ website:
               href: docs/project-plans/developer-workbooks/defender-xdr/index.md
               contents:
                 - auto: "docs/project-plans/developer-workbooks/defender-xdr/*-*.md"
+            - section: "Building Information Protection"
+              href: docs/project-plans/developer-workbooks/information-protection/index.md
+              contents:
+                - auto: "docs/project-plans/developer-workbooks/information-protection/*-*.md"
             - section: "Building Global Secure Access"
               href: docs/project-plans/developer-workbooks/global-secure-access/index.md
               contents:

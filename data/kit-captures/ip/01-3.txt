@@ -1,0 +1,19 @@
+PS> Import-Csv out/access/permissions.csv | Format-Table Read, Shell, Cmdlet, Role -AutoSize
+Read              Shell Cmdlet                             Role
+----              ----- ------                             ----
+labels            scc   Get-Label                          Compliance Administrator, or Information Protection Admin
+labelPolicies     scc   Get-LabelPolicy                    Compliance Administrator, or Information Protection Admin
+autoLabelPolicies scc   Get-AutoSensitivityLabelPolicy     Compliance Administrator
+autoLabelRules    scc   Get-AutoSensitivityLabelRule       Compliance Administrator
+dlpPolicies       scc   Get-DlpCompliancePolicy            Compliance Administrator, or the DLP Compliance Management role group
+dlpRules          scc   Get-DlpComplianceRule              Compliance Administrator, or the DLP Compliance Management role group
+sitCatalog        scc   Get-DlpSensitiveInformationType    Compliance Administrator, or the DLP Compliance Management role group
+policyConfig      scc   Get-PolicyConfig                   Compliance Administrator
+auditRetention    scc   Get-UnifiedAuditLogRetentionPolicy Compliance Administrator, or Organization Management
+roleGroups        scc   Get-RoleGroupMember                Compliance Administrator, or Organization Management
+contentExplorer   scc   Export-ContentExplorerData         Content Explorer List viewer
+irmConfiguration  exo   Get-IRMConfiguration               Organization Management, or View-Only Configuration
+auditStatus       exo   Get-AdminAuditLogConfig            Audit Logs, or View-Only Audit Logs
+transportRules    exo   Get-TransportRule                  Organization Management, or View-Only Configuration
+omeConfiguration  exo   Get-OMEConfiguration               Organization Management, or View-Only Configuration
+aipConfiguration  aip   Get-AipServiceConfiguration        Global Reader, or another role Connect-AipService accepts

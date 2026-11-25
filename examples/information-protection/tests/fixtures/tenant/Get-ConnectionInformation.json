@@ -1,0 +1,14 @@
+[
+  {
+    "State": "Connected",
+    "IsEopSession": true,
+    "TenantID": "00000000-0000-4000-8000-0000000000c0",
+    "UserPrincipalName": "ip-reader@contoso.example"
+  },
+  {
+    "State": "Connected",
+    "IsEopSession": false,
+    "TenantID": "00000000-0000-4000-8000-0000000000c0",
+    "UserPrincipalName": "ip-reader@contoso.example"
+  }
+]
