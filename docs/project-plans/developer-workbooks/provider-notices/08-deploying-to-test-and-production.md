@@ -53,6 +53,8 @@ Nobody has run this runbook against a live tenant, account, tenancy or project. 
 
 **What isn't in the kit.** The kit doesn't register a schedule, doesn't sign in to any provider, and doesn't build the ServiceNow endpoint. This runbook gives the commands for the first two; the endpoint is the agency's (not yet specified here).
 
+**Where it runs.** The weekly run is a Windows scheduled task on a member server the agency manages inside its boundary, not a domain controller or a person's workstation. It runs as a gMSA that holds no role in any cloud and can read only the run's credential folder. Each reader signs in from that folder: the reader app's certificate for Microsoft 365 and Azure, an API signing key for OCI, and IAM Roles Anywhere for AWS GovCloud (US) ([WD-179](../../../about/decision-register.md#wd-179)). The operator's workstation runs Lab 1 and the dry run only.
+
 ### Which cloud, for these steps
 
 Every command reads the cloud from the settings file: `AzureCloud`; `gcc`; `oc1` or `oc2`; `aws` or `aws-us-gov`; Google's `global`. Any other name throws, and the live invoker refuses a session signed in to another cloud, tenant, partition or realm. The estate this runbook writes for is Microsoft 365 GCC with commercial Azure: `graph.microsoft.com` and `management.azure.com`.[^pn08-deployments]
@@ -84,12 +86,14 @@ Each step ends with the requirements it supports, the FedRAMP 20x KSI it aligns 
 | Who | Holds | Steps |
 |---|---|---|
 | Operator | Runs the commands; holds no write role in any cloud except as the steps below say | All |
-| Azure reader | Reader on each subscription, Service Health Security Reader | 1.1, 1.3, the weekly run |
+| Azure reader | The reader app (the same app as the Microsoft 365 reader), with Reader on each subscription and Service Health Security Reader | 1.1, 1.3, the weekly run |
 | Azure policy writer (a person) | Permission to create policy assignments and role assignments at the scope, activated for the change window | 1.6, 1.9, 2.3, 2.6 |
-| Microsoft 365 reader | `ServiceMessage.Read.All`, `ServiceHealth.Read.All` (application permissions for the scheduled run, with a certificate) | 1.1, 1.3, the weekly run |
-| OCI reader | A group with `read announcements in tenancy` | 1.1, 1.3, the weekly run |
-| AWS reader | A role with the three `health:Describe*` actions; the account has a qualifying support plan | 1.1, 1.3, the weekly run |
-| Google Cloud reader | `roles/servicehealth.viewer` on the project | 1.1, 1.3, the weekly run |
+| Microsoft 365 reader | The reader app: `ServiceMessage.Read.All`, `ServiceHealth.Read.All` (application permissions for the scheduled run, with a certificate) | 1.1, 1.3, the weekly run |
+| OCI reader | A reader user in a group with `read announcements in tenancy`, with an API signing key for the weekly run | 1.1, 1.3, the weekly run |
+| AWS reader | A role with the three `health:Describe*` actions, which the weekly run assumes through IAM Roles Anywhere; the account has a qualifying support plan | 1.1, 1.3, the weekly run |
+| Google Cloud reader (optional gate) | `roles/servicehealth.viewer` on the project | 1.1, 1.3; the weekly run once its unattended sign-in is set |
+| Server administrator | Administers the run's server; creates the credential folder and registers the task | 1.7 |
+| Run-as gMSA | No role in any cloud; reads the credential folder; requested through the managed service account standard | The weekly run |
 | Change manager | Approves each plan's SHA-256 and the routing | Before you start, 1.6, 1.9, 2.3 |
 | ISSO | Approves promotion; keeps the evidence | Go/no-go, 2.7 |
 
@@ -141,7 +145,10 @@ These are the only values you replace in this chapter's commands:
 | `<project-id>` | The Google Cloud project |
 | `<plan-sha256>`, `<rollback-sha256>` | The alert plan's and the rollback plan's SHA-256, as the reviewer approved them |
 | `<run-script>` | The path of the weekly run's sign-in script (Step 1.7) |
-| `<run-as-account>` | The Windows account the scheduled task runs as |
+| `<domain>`, `<run-as-gmsa>` | The domain's NetBIOS name, and the run's gMSA, named `gmsa-<app>` as the managed service account standard sets out (WD-159, WD-173) |
+| `<credential-folder>` | The folder on the run's server that holds the readers' sign-in material (Step 1.7) |
+| `<oci-reader-user-ocid>`, `<oci-key-fingerprint>` | The OCI reader user and its API signing key's fingerprint |
+| `<signing-helper>`, `<trust-anchor-arn>`, `<roles-anywhere-profile-arn>`, `<aws-reader-role-arn>` | AWS's IAM Roles Anywhere credential helper on the server, and the trust anchor, profile and role it uses |
 
 ### Create and check the file
 
@@ -360,21 +367,93 @@ az monitor activity-log alert list --resource-group rg-serviceHealthAlert --outp
 
 ### Step 1.7: The weekly run, on a schedule (G7)
 
-The scheduled run needs every reader's sign-in in its own session. Write a small sign-in script for the run-as account, run it once by hand, then register it. The kit doesn't register a schedule; this uses Windows Task Scheduler's own cmdlets, and the task name the rollback removes.[^pn08-tasks] *Design guidance.*
+The weekly run is a Windows scheduled task on the run's server, under the run-as gMSA ([WD-179](../../../about/decision-register.md#wd-179)). The kit doesn't register a schedule; this step uses Windows Task Scheduler's own cmdlets and the task name the rollback removes.[^pn08-tasks] Run every block on the run's server, in PowerShell 7, as a server administrator. *Design guidance.*
+
+**1. The gMSA.** Request `<run-as-gmsa>` through the managed service account standard, as the [managed service account request pack](../../../books/guides/msa-request-pack.md) describes, with the run's server in its retriever group (WD-160). It holds no role in any cloud. On the server, install it and check that the server can retrieve its password:[^pn08-gmsa]
+
+```powershell
+Install-ADServiceAccount -Identity <run-as-gmsa>
+Test-ADServiceAccount -Identity <run-as-gmsa>
+```
+
+**Expected:** `Test-ADServiceAccount` prints `True`.
+
+**2. The credential folder, and the folders the run writes.** Only the gMSA and the server's administrators can open the credential folder. The gMSA reads the kit and the settings file and writes the output folder:[^pn08-icacls]
+
+```powershell
+New-Item -ItemType Directory -Path '<credential-folder>' -Force
+icacls '<credential-folder>' /inheritance:r /grant:r 'BUILTIN\Administrators:(OI)(CI)F' '<domain>\<run-as-gmsa>$:(OI)(CI)RX'
+icacls '<kit-folder>' /grant '<domain>\<run-as-gmsa>$:(OI)(CI)RX'
+icacls $out /grant '<domain>\<run-as-gmsa>$:(OI)(CI)M'
+```
+
+**Expected:** `Successfully processed 1 files` after each `icacls`.
+
+**3. Each reader's sign-in material, in the credential folder.** Each file follows its provider's own documentation:
+
+- **Microsoft 365 and Azure: the reader app's certificate.** One Entra app, the reader app, holds the Graph application permissions (Step 1.1) and, through its service principal, Reader and Service Health Security Reader on each subscription in scope. Save its certificate and private key, unencrypted, in one PEM file, `<credential-folder>\pn-reader.pem`. The Azure CLI signs in with that file, and Graph takes the same certificate as an object.[^pn08-az-sp][^pn08-app-only][^pn08-pem] Grant the Azure roles once:
+
+    ```powershell
+    $sp = az ad sp show --id <reader-app-id> --query id --output tsv
+    az role assignment create --assignee-object-id $sp --assignee-principal-type ServicePrincipal --role Reader --scope /subscriptions/<subscription-id>
+    az role assignment create --assignee-object-id $sp --assignee-principal-type ServicePrincipal --role 'Service Health Security Reader' --scope /subscriptions/<subscription-id>
+    ```
+
+- **OCI: an API signing key.** The reader user's key goes in `<credential-folder>\oci_api_key.pem`. The configuration file below names it. An instance principal works only on an OCI compute instance, and this server isn't one.[^pn08-oci-config]
+
+    ```powershell
+    Set-Content -Path '<credential-folder>\oci-config' -Value @'
+    [DEFAULT]
+    user=<oci-reader-user-ocid>
+    fingerprint=<oci-key-fingerprint>
+    key_file=<credential-folder>\oci_api_key.pem
+    tenancy=<tenancy-ocid>
+    region=<home-region>
+    '@
+    ```
+
+- **AWS GovCloud (US): IAM Roles Anywhere.** The trust anchor, profile and role are the [Non-Person Identity guide's](../../../books/guides/non-person-identity-implementation.md) workload identities in `aws-us-gov`. AWS lists Roles Anywhere endpoints in `us-gov-west-1`. The server's certificate and key go in the credential folder. The AWS CLI runs AWS's credential helper for the profile the settings name, `providers.aws.profile`:[^pn08-rolesanywhere][^pn08-aws-process]
+
+    ```powershell
+    Set-Content -Path '<credential-folder>\aws-config' -Value @'
+    [profile <aws-profile>]
+    credential_process = "<signing-helper>" credential-process --certificate "<credential-folder>\aws-reader.pem" --private-key "<credential-folder>\aws-reader.key" --trust-anchor-arn <trust-anchor-arn> --profile-arn <roles-anywhere-profile-arn> --role-arn <aws-reader-role-arn>
+    region = us-gov-west-1
+    '@
+    ```
+
+- **Google Cloud (an optional gate).** Its unattended sign-in is not yet specified. Leave `providers.google.enabled` false in production until it is.
+
+**4. The run script, run once by hand.** The script holds no secret: it points each CLI at the credential folder, signs in, and runs the week:[^pn08-az-sp][^pn08-app-only][^pn08-oci-env][^pn08-aws-env]
 
 ```powershell
 Set-Content -Path <run-script> -Value @'
-Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <reader-app-id> -CertificateThumbprint <reader-thumbprint> -NoWelcome
+$cred = '<credential-folder>'
+$pem = Join-Path $cred 'pn-reader.pem'
+az login --service-principal --username <reader-app-id> --certificate $pem --tenant <tenant-id> --output none
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <reader-app-id> -Certificate ([System.Security.Cryptography.X509Certificates.X509Certificate2]::CreateFromPemFile($pem)) -NoWelcome
+$env:OCI_CLI_CONFIG_FILE = Join-Path $cred 'oci-config'
+$env:AWS_CONFIG_FILE = Join-Path $cred 'aws-config'
 Set-Location '<kit-folder>'
 ./deploy/Invoke-PnScheduledRun.ps1 -SettingsPath '<settings-file>'
 '@
 pwsh -NoProfile -File <run-script>
-$action = New-ScheduledTaskAction -Execute 'pwsh.exe' -Argument '-NoProfile -File "<run-script>"'
-$trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Monday -At 6am
-Register-ScheduledTask -TaskName $s.schedule.taskName -Action $action -Trigger $trigger -User '<run-as-account>'
 ```
 
-**Expected:** the run prints `RUN-COLLECT`, `RUN-ROUTE` and `RUN-DIGEST`, each `Pass`, and the run and evidence folders under `outputRoot`; the task is registered for Mondays. The other providers' sign-ins (Azure CLI, OCI configuration, AWS profile, Google Cloud credentials) must already belong to the run-as account; how each signs in unattended is the provider's own procedure and is not yet specified in the kit. Send the digest (`runs/<time>/digest/digest.md`) to the owners.
+**Expected:** the run prints `RUN-COLLECT`, `RUN-ROUTE` and `RUN-DIGEST`, each `Pass`, and writes the run and evidence folders under `outputRoot`.
+
+**5. Register the task under the gMSA, and start it once.** A gMSA has no password to type. The principal names the account with its trailing `$`:[^pn08-tasks][^pn08-principal]
+
+```powershell
+$action = New-ScheduledTaskAction -Execute 'pwsh.exe' -Argument '-NoProfile -File "<run-script>"'
+$trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Monday -At 6am
+$principal = New-ScheduledTaskPrincipal -UserId '<domain>\<run-as-gmsa>$' -LogonType Password
+Register-ScheduledTask -TaskName $s.schedule.taskName -Action $action -Trigger $trigger -Principal $principal
+Start-ScheduledTask -TaskName $s.schedule.taskName
+Get-ScheduledTaskInfo -TaskName $s.schedule.taskName | Select-Object LastRunTime, LastTaskResult
+```
+
+**Expected:** the task is registered for Mondays. After the started run ends, `LastTaskResult` is `0`, and a second run folder and its records sit under `outputRoot`. Learn shows no example of a gMSA principal. If the task doesn't start, record the error in the change record and stop. The registration form, and whether the gMSA needs the *Log on as a batch job* right on the server, are what this test stage proves. Send the digest (`runs/<time>/digest/digest.md`) to the owners.
 
 | Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
 |---|---|---|---|
@@ -502,9 +581,15 @@ Each folder holds `records/`, `runs/`, `records.csv` and `SHA256SUMS`, with the 
 | Assignment, remediation and checks from the CLI | `az policy assignment create` with `--mi-system-assigned`, `--location`, `--role`, `--identity-scope`; `az policy remediation create` and `show`; `az monitor activity-log alert list` | [^pn08-cli] |
 | App-only Graph | `Connect-MgGraph` with a client ID, tenant ID and certificate | [^pn08-app-only] |
 | Scheduled task | `New-ScheduledTaskAction`, `New-ScheduledTaskTrigger -Weekly -DaysOfWeek -At`, `Register-ScheduledTask`, `Unregister-ScheduledTask -Confirm:$false` | [^pn08-tasks] |
+| Task principal | `New-ScheduledTaskPrincipal -UserId -LogonType`, with `Password` among its logon types; no gMSA example | [^pn08-principal] |
+| The run-as gMSA | Task Scheduler tasks can run as a gMSA; `Install-ADServiceAccount` on each host; `Test-ADServiceAccount` checks the host can retrieve the password | [^pn08-gmsa] |
+| Azure sign-in, unattended | `az login --service-principal --username --certificate --tenant`, with the certificate and private key in one PEM file; `az role assignment create` | [^pn08-az-sp] [^pn08-role] |
+| Graph sign-in, unattended | `Connect-MgGraph -Certificate` takes an `X509Certificate2`; `CreateFromPemFile` reads the key from the certificate's file when no key path is given | [^pn08-app-only] [^pn08-pem] |
+| OCI sign-in, unattended | A configuration file with `user`, `fingerprint`, `key_file`, `tenancy` and `region`; `OCI_CLI_CONFIG_FILE`; instance principals belong to compute instances | [^pn08-oci-config] [^pn08-oci-env] |
+| AWS sign-in, unattended | `credential_process` with the credential helper's `--certificate`, `--private-key`, `--trust-anchor-arn`, `--profile-arn`, `--role-arn`; full quoted paths on Windows; `AWS_CONFIG_FILE`; Roles Anywhere endpoints in `us-gov-west-1` | [^pn08-rolesanywhere] [^pn08-aws-process] [^pn08-aws-env] |
 | Each provider's reader, endpoint and government cloud | As Chapters 01 to 05 and the guide record them | Chapters 01 to 05 |
 
-Not yet specified: the ServiceNow endpoint's shape; how each provider's CLI signs in unattended under the run-as account; and the items each provider chapter lists.
+Not yet specified: the ServiceNow endpoint's shape; registering a task under a gMSA (Learn shows no example, so the test stage proves the `-LogonType Password` form) and whether the gMSA needs the *Log on as a batch job* right; Google Cloud's unattended sign-in; and the items each provider chapter lists. Nobody has run the four sign-ins under a gMSA. The `icacls` grants are design guidance: Oracle's and AWS's pages give no Windows permission steps for key files.
 
 ## Dangers
 
@@ -516,6 +601,7 @@ Not yet specified: the ServiceNow endpoint's shape; how each provider's CLI sign
 | A plan changed after approval | Different writes from the ones reviewed | `-Apply` refuses any hash but the plan's |
 | A secret in the settings file | Filed with the change record, readable by many | `Read-PnSettings` refuses secret-like values; the token is an environment variable |
 | The scheduled run loses a sign-in | The run stops silently | No new `RUN` record; the weekly `-Check -Stage production` fails |
+| The credential folder readable by others | Anyone who can read it signs in as every reader | Only the gMSA and the server's administrators; `icacls` removes inherited access (Step 1.7) |
 | Rollback stops at a missing schedule | The policy assignment stays | RB-01 unregisters only if the task exists, then RB-02 runs |
 | Remediation's resources deleted blindly | Alerts someone else relies on disappear | RB-03 is manual; the change record decides |
 
@@ -540,5 +626,16 @@ Not yet specified: the ServiceNow endpoint's shape; how each provider's CLI sign
 [^pn08-cli]: Microsoft Learn, "Remediate non-compliant resources with Azure Policy," <https://learn.microsoft.com/azure/governance/policy/how-to/remediate-resources>, and the Azure CLI references for `az policy assignment`, <https://learn.microsoft.com/cli/azure/policy/assignment>, `az policy remediation`, <https://learn.microsoft.com/cli/azure/policy/remediation>, and `az monitor activity-log alert`, <https://learn.microsoft.com/cli/azure/monitor/activity-log/alert> (read November 9, 2026).
 [^pn08-app-only]: Microsoft Learn, "Use app-only authentication with the Microsoft Graph PowerShell SDK," <https://learn.microsoft.com/powershell/microsoftgraph/app-only>, and "Connect-MgGraph," <https://learn.microsoft.com/powershell/module/microsoft.graph.authentication/connect-mggraph> (read November 9, 2026).
 [^pn08-tasks]: Microsoft Learn, "New-ScheduledTaskTrigger" (example 4, a weekly trigger), <https://learn.microsoft.com/powershell/module/scheduledtasks/new-scheduledtasktrigger>, "New-ScheduledTaskAction," <https://learn.microsoft.com/powershell/module/scheduledtasks/new-scheduledtaskaction>, "Register-ScheduledTask," <https://learn.microsoft.com/powershell/module/scheduledtasks/register-scheduledtask>, and "Unregister-ScheduledTask" (example 2, `-Confirm:$false`), <https://learn.microsoft.com/powershell/module/scheduledtasks/unregister-scheduledtask> (read November 9, 2026).
+[^pn08-principal]: Microsoft Learn, "New-ScheduledTaskPrincipal" (`-UserId`, `-LogonType` values None, Password, S4U, Interactive, Group, ServiceAccount, InteractiveOrPassword), <https://learn.microsoft.com/powershell/module/scheduledtasks/new-scheduledtaskprincipal> (read November 25, 2026).
+[^pn08-gmsa]: Microsoft Learn, "Manage group Managed Service Accounts" (tasks using Task Scheduler; `Install-ADServiceAccount`; `Test-ADServiceAccount`), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts> (read November 25, 2026).
+[^pn08-icacls]: Microsoft Learn, "icacls," <https://learn.microsoft.com/windows-server/administration/windows-commands/icacls> (the grants are design guidance).
+[^pn08-az-sp]: Microsoft Learn, "Sign in with Azure CLI using a service principal" (`--certificate`, a PEM file with the certificate appended to the private key), <https://learn.microsoft.com/cli/azure/authenticate-azure-cli-service-principal> (read November 25, 2026).
+[^pn08-role]: Microsoft Learn, "az role assignment create," <https://learn.microsoft.com/cli/azure/role/assignment#az-role-assignment-create>.
+[^pn08-pem]: Microsoft Learn, ".NET API: X509Certificate2.CreateFromPemFile" (if no key path is given, the certificate's file is used to load the private key), <https://learn.microsoft.com/dotnet/api/system.security.cryptography.x509certificates.x509certificate2.createfrompemfile> (read November 25, 2026); Microsoft Learn, "Connect-MgGraph" (`-Certificate`, an X.509 certificate supplied during invocation), <https://learn.microsoft.com/powershell/module/microsoft.graph.authentication/connect-mggraph> (read November 25, 2026).
+[^pn08-oci-config]: Oracle, "SDK and CLI Configuration File," <https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm>, and "Calling Services from an Instance," <https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/callingservicesfrominstances.htm> (read November 25, 2026).
+[^pn08-oci-env]: Oracle, "CLI Environment Variables" (`OCI_CLI_CONFIG_FILE`), <https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/clienvironmentvariables.htm> (read November 25, 2026).
+[^pn08-rolesanywhere]: AWS, IAM Roles Anywhere User Guide, "Get temporary security credentials from IAM Roles Anywhere" (the credential helper and its required options), <https://docs.aws.amazon.com/rolesanywhere/latest/userguide/credential-helper.html>, and AWS General Reference, "IAM Roles Anywhere endpoints and quotas" (`rolesanywhere.us-gov-west-1.amazonaws.com`), <https://docs.aws.amazon.com/general/latest/gr/rolesanywhere.html> (read November 25, 2026).
+[^pn08-aws-process]: AWS, AWS CLI User Guide, "Sourcing credentials with an external process" (`credential_process`; quote a Windows path with spaces; no environment variables or `~` in the path), <https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sourcing-external.html> (read November 25, 2026).
+[^pn08-aws-env]: AWS, AWS CLI User Guide, "Environment variables" (`AWS_CONFIG_FILE`), <https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html> (read November 25, 2026).
 [^pn08-oscal]: National Institute of Standards and Technology, SP 800-53 Rev. 5 OSCAL catalog, release 5.2.0, <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (read November 9, 2026).
 [^pn08-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, <https://www.fedramp.gov/2026/providers/20x/key-security-indicators/> (read November 9, 2026).

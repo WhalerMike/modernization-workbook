@@ -23,7 +23,7 @@ const GUIDE = "Global Secure Access & Zero Trust Network Engineering: An Impleme
 const BANNED = /\bUIAO\b|\bSSA\b|Social Security|Mainframe PIN|\bDISA\b|\bSTIGs?\b|\bsatisf(y|ies)\b|\bmeets\b|GCC[ -]?High|\bGCCH\b|\bDoD\b|Azure Government|\bCAC\b/i;
 
 // ------------------------------------------------------------------ captures
-// cap("01-5", [0, 1, 5]) returns those lines (0-based) of data/kit-captures/pn/01-5.txt, each cut to max characters
+// cap("01-7", [0, 1, 5]) returns those lines (0-based) of data/kit-captures/pn/01-5.txt, each cut to max characters
 // with "…" (the slide's label says lines are cut). A prompt line longer than max is continued PowerShell-style.
 const CAP = path.join(__dirname, "..", "..", "data", "kit-captures", "gsa");
 const MAX = 146; // characters that fit a full-width panel at 10.5 pt
@@ -192,7 +192,7 @@ const S1 = "Scene 1 — The decision";
 }
 tryIt(S1, "Try it: check the decision records",
   "WORKBOOK CH 01, LAB 1, STEPS 4–5, IN examples/global-secure-access (PASSING ROWS LEFT OUT)",
-  [...cap("01-4", [0, 13, 14, 16, 21, 25]), ...cap("01-5", [0, 1, 2, 3])],
+  [...cap("01-6", [0, 13, 14, 16, 21, 25]), ...cap("01-7", [0, 1, 2, 3])],
   "four failures. The preview's fix is the guide's interim path, not “enable the preview.”",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 01, “Lab 1: fixtures, no tenant,” steps 4–5.",
   `Try it. From the kit's folder, check the pilot's four decision records. Four failures: the internet decision's stale quote, its short licenses and its preview feature, and the branch decision, which defers remote networks without naming what protects branches meanwhile. Then read the preview finding in full. Look at the fix. It isn't "enable the preview": it's the guide's interim path, piloted first and recorded in the architecture record.`,
@@ -229,7 +229,7 @@ const S2 = "Scene 2 — Export and logs";
 }
 tryIt(S2, "Try it: the baseline, and a changed file",
   "WORKBOOK CH 02, LAB 1, STEPS 4 AND 6 (LONG LINES CUT)",
-  [...cap("02-4", [0, 1, 2, 3, 4, 5, 6, 8]), ...cap("02-6", [0, 1, 2, 3])],
+  [...cap("02-6", [0, 1, 2, 3, 4, 5, 6, 8]), ...cap("02-8", [0, 1, 2, 3])],
   "the setting misses RemoteNetworkHealthLogs; one space added to one file, and the collection is refused.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 02, “Lab 1: fixtures, no tenant,” steps 4 and 6.",
   `Try it. Run the baseline checks on the pilot collection. Both connector groups are in the architecture record with two hosts, the forest is in the DNS suffixes, the workspace is named, the export is complete, and the one failure is the missing category. Then copy the collection, add one space to one file, and try to read it. The read is refused: the licenses file changed since its manifest. Every later chapter reads the collection through that check.`,
@@ -267,7 +267,7 @@ const S3 = "Scene 3 — The client";
 }
 tryIt(S3, "Try it: coverage and the four devices",
   "WORKBOOK CH 03, LAB 1, STEP 4 (PASSING AND INFORMATION ROWS LEFT OUT; LONG LINES CUT)",
-  cap("03-4", [0, 1, 12, 13, 14, 20, 22, 24]),
+  cap("03-6", [0, 1, 12, 13, 14, 20, 22, 24]),
   "83.3% coverage; PC-PILOT-03 fails three checks, PC-PILOT-04 one; the Hyper-V exclusion is governed.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 03, “Lab 1: fixtures, no tenant,” step 4.",
   `Try it. Run the client checks. Coverage fails at eighty-three point three percent. Pilot 3 fails three checks: the old client, IPv6 preferred, and DNS over HTTPS left on in Chrome. Pilot 4 fails on health: disconnected. And the one client exclusion, a lab machine with a Hyper-V external switch, passes, because it has an owner, an approver and an expiry. The pilot isn't ready to exit, and Scene eight will say so.`,
@@ -305,7 +305,7 @@ const S4 = "Scene 4 — Microsoft traffic";
 }
 tryIt(S4, "Try it: the traffic checks and the pilot's plan",
   "WORKBOOK CH 04, LAB 1, STEPS 3 AND 5 (MAN-ASSIGN LINES LEFT OUT; LONG LINES CUT)",
-  [...cap("04-3", [0, 1, 2, 3, 7]), ...cap("04-5", [0, 1, 2, 6, 7])],
+  [...cap("04-5", [0, 1, 2, 3, 7]), ...cap("04-7", [0, 1, 2, 6, 7])],
   "91.2% fails; the plan turns the internet profile off and restores the RDP policy, and changes nothing yet.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 04, “Lab 1: fixtures, no tenant,” steps 3 and 5.",
   `Try it. Run the traffic checks: the profile passes, signaling passes, and the sign-in share fails at ninety-one point two percent. Then plan the pilot from its desired state. Two Graph steps: the internet profile goes off, and the administrator RDP policy goes back to its reviewed file, which Scene six explains. The plan's hash is printed, and it's a dry run: nothing changed. In fixture mode, applying it is refused outright.`,
@@ -343,7 +343,7 @@ const S5 = "Scene 5 — Compliant network";
 }
 tryIt(S5, "Try it: not ready, and the plan holds it",
   "WORKBOOK CH 05, LAB 1, STEPS 3, 4 AND 6 (PASSING AND MANUAL LINES LEFT OUT; LONG LINES CUT)",
-  [...cap("05-3", [0, 6]), ...cap("05-4", [0, 1, 2, 3, 4, 5]), ...cap("05-6", [0, 2, 8])],
+  [...cap("05-5", [0, 6]), ...cap("05-6", [0, 1, 2, 3, 4, 5]), ...cap("05-8", [0, 2, 8])],
   "three failures with Through true: not ready. The ring 1 plan leaves the policy report-only (MAN-ENF).",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 05, “Lab 1: fixtures, no tenant,” steps 3, 4 and 6.",
   `Try it. Check the compliant network policy: built right, ten business days in report-only, and three failures carried by the service, so not ready. Read the guide's report-only query: eighteen hundred thirty successes, forty-one failures off the service, three on it. Then plan ring 1, whose desired state wants the policy enforced. The plan leaves it report-only and says why on a manual line: enforcing needs the switch, after the results are clean.`,
@@ -381,7 +381,7 @@ const S6 = "Scene 6 — Private apps";
 }
 tryIt(S6, "Try it: the private access checks",
   "WORKBOOK CH 06, LAB 1, STEP 4 (PASSING ROWS LEFT OUT; LONG LINES CUT)",
-  cap("06-4", [0, 3, 4, 8, 9, 10, 11, 15, 16, 19]),
+  cap("06-6", [0, 3, 4, 8, 9, 10, 11, 15, 16, 19]),
   "seven failures, one warning: Finance is a VPN range; the RDP app lacks the strength; Quick Access isn't empty.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 06, “Lab 1: fixtures, no tenant,” step 4.",
   `Try it. Run the private access checks. The cloud connector group has one of two connectors active, and the active one is old. Finance fails four ways: the wide segment, the direct assignment, the missing emergency exclusion, and an administrative path without the phishing-resistant strength. The RDP app fails the same strength check. And Quick Access still holds two segments. Two weeks later, in the workbook, every one of these passes.`,
@@ -419,7 +419,7 @@ const S7 = "Scene 7 — Web and TLS";
 }
 tryIt(S7, "Try it: bypasses and the TLS checks",
   "WORKBOOK CH 07, LAB 1, STEPS 4 AND 6 (PASSING ROWS LEFT OUT; LONG LINES CUT)",
-  [...cap("07-4", [0, 4, 5, 6, 9]), ...cap("07-6", [0, 1, 4, 6, 8])],
+  [...cap("07-6", [0, 4, 5, 6, 9]), ...cap("07-8", [0, 1, 4, 6, 8])],
   "two bypasses fail; QUIC's interim block passes; the certificate, the payroll bypass and the failure share fail.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 07, “Lab 1: fixtures, no tenant,” steps 4 and 6.",
   `Try it. Run the Internet Access checks: the two bypasses fail, and the QUIC check passes on the interim block, with the preview's GCC state written into the finding. Then the TLS checks: the certificate fails on both counts, the pinned payroll site's bypass is the expired one, and the failure share is one and a half percent against a threshold of one. Two weeks later the certificate has been rolled, the bypasses renewed and approved, and all thirteen checks pass.`,
@@ -457,7 +457,7 @@ const S8 = "Scene 8 — Rings and evidence";
 }
 tryIt(S8, "Try it: the pilot's exit, then ring 1's",
   "WORKBOOK CH 08, LAB 1, STEPS 3 AND 4 (METRIC ROWS LEFT OUT; LONG LINES CUT)",
-  [...cap("08-3", [11, 12, 14, 15, 16, 19]), ...cap("08-4", [33, 36, 37, 40, 42])],
+  [...cap("08-5", [11, 12, 14, 15, 16, 19]), ...cap("08-6", [33, 36, 37, 40, 42])],
   "No-go for the pilot, with each reason; Go for ring 1, every criterion passing.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 08, “Lab 1: fixtures, no tenant,” steps 3–4.",
   `Try it. Compute the pilot's metrics and exit. The failing criteria are on the slide: time in the ring, the open severity-two, coverage, the report-only defects, and the TLS failures. Pilot: no-go. Then the same for ring 1, two weeks later: time in the ring passes at ten business days, coverage is a hundred percent, report-only is clean, the emergency exclusion was tested on the ring's start date, and the ring says go.`,

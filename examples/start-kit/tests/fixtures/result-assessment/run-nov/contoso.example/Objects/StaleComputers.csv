@@ -1,0 +1,2 @@
+"Name","DNSHostName","OperatingSystem","Enabled","LastLogonDate","PasswordLastSet","DistinguishedName","DaysSinceLogon"
+"WS002","ws002.contoso.example","Windows 11 Enterprise","True","","","CN=WS002,OU=Workstations,DC=contoso,DC=example","Never"

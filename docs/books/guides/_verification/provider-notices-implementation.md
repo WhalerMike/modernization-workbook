@@ -93,3 +93,19 @@ Applied the conventions of Book 00, Appendix D to the guide's procedure gates, a
 - **Added** the five-kind evidence checklist to `#evidence`.
 - **Authority labels:** no "must", "shall" or "required" in the guide's own voice is a recommendation; the matches are provider field names (`ACTION_REQUIRED`, `actionRequiredByDateTime`) and "action required" as a notice state. None relabeled.
 - **Sources:** the additions make no new product, licensing or government-cloud claim; they restate the guide's gates. Every product claim above already carries its read date (November 9, 2026), so nothing was re-read.
+
+## Where the collector runs (November 25, 2026, WD-179)
+
+An outside review (an AI assistant's analysis and a Copilot-generated architecture note, both shared by the workbook owner) found that the guide didn't say what the collector is or where it runs in production. Its claims were checked against the kit on main, commit 77cd4c395. The full findings are in the session notes, not in the repository. Every API, endpoint and permission it named is the one the kit uses, with one exception. The kit doesn't call AWS Health's `...ForOrganization` operations, and AWS's GovCloud (US) Health page, read November 25, names only the single `us-gov-west-1` endpoint and says nothing of the organizational view, so none was added. The workbook owner approved the host, identity and sign-ins on November 25 ("Go with all your recommendations, keep Google G5 optional"), and chose the reader app's certificate for Azure.
+
+| # | Claim (short) | Where in the guide | Verdict | Source |
+|---|---|---|---|---|
+| W1 | The collector is the workbook's code, not a provider's product; providers create the notices and the kit reads them | What the collector is and where it runs | restated from the kit and the guide's own gates | kit |
+| W2 | Production runs as a Windows scheduled task on an agency-managed member server, under a gMSA with no cloud role, readers signed in from a protected credential folder | Where it runs; G6; G7 prerequisites | workbook design, WD-179 | Chapter 08, Step 1.7 |
+| W3 | Task Scheduler tasks can run as a gMSA | Where it runs | verified November 25 (Learn, Manage group Managed Service Accounts); no Learn example of the principal | Chapter 08 `pn08-gmsa` |
+| W4 | Unattended sign-ins: reader app certificate (`az login --service-principal --certificate`, `Connect-MgGraph -Certificate`), OCI API signing key, AWS IAM Roles Anywhere | What couldn't be verified | each verified on its provider's page November 25; none run under a gMSA | Chapter 08 footnotes |
+| W5 | Azure Arc-enabled server's managed identity for the Azure CLI | Not used | Learn documents the Arc identity endpoint (`IDENTITY_ENDPOINT`, the Hybrid Agent Extension Applications group) but no page says `az login --identity` works on an Arc-enabled server | WD-179 |
+
+N12 (the scheduler) is replaced by the two new "What couldn't be verified" items: the gMSA task principal and the *Log on as a batch job* right, and each reader's unattended sign-in.
+
+The page's body changed, so its review gate is waiting for the owner's review again.
