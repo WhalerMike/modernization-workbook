@@ -1,4 +1,7 @@
-PS> Invoke-Pester -Path tests/SqlIdentity.Tests.ps1 -FullNameFilter 'Chapter 03*' -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-          5           0
+PS> $arc = Read-SqlJson tests/fixtures/arc/arc.json
+PS> $arc.environment = 'not-recorded'
+PS> $arc | ConvertTo-Json -Depth 6 | Set-Content "$Run/arc-unknown-cloud.json"
+PS> try { ./Invoke-SqlArcCheck.ps1 -AuditPath tests/fixtures/audit-day1/audit.json -ArcPath "$Run/arc-unknown-cloud.json" -OutputPath "$Run/arc-refused" } catch { $_.Exception.Message }
+The Arc results came from 'not-recorded'. A GCC (Moderate) tenant's Arc resources are in AzureCloud (WD-028).
+PS> Test-Path "$Run/arc-refused"
+False

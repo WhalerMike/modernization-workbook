@@ -1,24 +1,8 @@
-PS> Get-Content out/groups/manifest.json
-{
-  "step": "GROUPS",
-  "title": "Map each AD group pattern to its Entra group",
-  "mode": "read-only",
-  "asOf": "2026-11-20",
-  "controls": [
-    "AC-2",
-    "AC-6"
-  ],
-  "ksis": [
-    "KSI-IAM-ELP"
-  ],
-  "files": [
-    {
-      "file": "groups.csv",
-      "sha256": "39363fb3f917b69eee3b9130ea3d4116ccc7b9326866f3b1bdc189cc505a377f"
-    },
-    {
-      "file": "groups.json",
-      "sha256": "fe56744856c5a4e5a3a70b63d2ded19a21feba928b374db4727613e0aac76340"
-    }
-  ]
-}
+PS> Import-Csv "$Run/groups/groups.csv" | Format-Table Group, Members, Grants, Flags -Wrap
+Group                    Members Grants              Flags
+-----                    ------- ------              -----
+CONTOSO\PayrollUsers     214     SQLPRD01
+CONTOSO\SQL-Admins       6       SQLPRD01 (sysadmin)
+CONTOSO\SQL-Agent-Alerts 9
+CONTOSO\ClaimsTeam       31      SQLPRD02
+CONTOSO\HR-Analysts      18      SQLFCI04            nested: flatten (CONTOSO\HR-Leads)

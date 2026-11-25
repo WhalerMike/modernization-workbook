@@ -1,28 +1,4 @@
-PS> ./Invoke-SqlAuthAudit.ps1 -AuditPath tests/fixtures/audit-day1/audit.json -OutputPath out/audit
-Instance U G S C K E X Disabled Usable
--------- - - - - - - - -------- ------
-SQLPRD01 1 2 2 0 0 0 0        0      5
-SQLPRD02 1 1 0 0 0 0 0        1      2
-SQLFCI04 0 1 2 0 0 0 0        0      3
-SQLPRD06 0 1 0 0 0 1 1        1      3
-
-
-Instance Severity Finding          Detail
--------- -------- -------          ------
-SQLPRD01 highest  sa enabled       sa is enabled under the name 'sa'
-SQLPRD01 critical Usable SQL login payroll_report: migrate to an Entra login or record an exception
-SQLPRD01 high     Mixed mode       SQL authentication is accepted (IsIntegratedSecurityOnly = 0)
-SQLPRD01 high     Mode anomaly     Registry LoginMode 1, running mode 2: changed without a restart; resolve before migrating
-SQLPRD01 medium   Service account  CONTOSO\svc-sqlprd01 is a user account with a password: the Data Platform project converts it (service account guide)
-SQLPRD01 info     Arc-eligibility  Category 1 or 2 (run the Arc check)
-SQLPRD02 medium   Service account  CONTOSO\svc-sqlprd02 is a user account with a password: the Data Platform project converts it (service account guide)
-SQLPRD02 info     Arc-eligibility  Category 1 or 2 (run the Arc check)
-SQLFCI04 highest  sa enabled       sa is enabled under the name 'sa'
-SQLFCI04 critical Usable SQL login vendorhr_app: migrate to an Entra login or record an exception
-SQLFCI04 high     Mixed mode       SQL authentication is accepted (IsIntegratedSecurityOnly = 0)
-SQLFCI04 medium   Service account  CONTOSO\svc-sqlfci04 is a user account with a password: the Data Platform project converts it (service account guide)
-SQLFCI04 info     Arc-eligibility  Category 3 (failover cluster instance)
-SQLPRD06 info     Arc-eligibility  Category 1 or 2 (run the Arc check)
-
-Wrote 4 files and manifest.json to out/audit
-Evidence for AUDIT (Login census, authentication mode, sa and service-account findings): AC-2, IA-5, CM-6; KSI-PIY-GIV, KSI-IAM-SNU, KSI-SVC-ACM
+PS> $Run = "C:\FMWLabs\results\sql-server-identity-02\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+PS> New-Item -ItemType Directory -Path $Run -Force | Out-Null
+PS> $Run
+C:/FMWLabs/results/sql-server-identity-02/lab1/<run>

@@ -1,2 +1,1 @@
-PS> ./New-DcWorkbookTemplate.ps1 -Check
-workbook/daily-checks.workbook.json matches the manifest and queries
+PS> Set-Location C:\FMWLabs\daily-checks-workbook-code\daily-checks-workbook

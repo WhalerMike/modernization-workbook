@@ -15,13 +15,16 @@ $stubNames = @(
     'Get-DnsServerZone', 'Get-DnsServerResourceRecord', 'Get-DnsServerDnsSecZoneSetting', 'Get-DnsServerScavenging',
     'Get-DnsServerForwarder', 'Get-DhcpServerInDC', 'Get-DhcpServerv4Scope', 'Get-DhcpServerv4Reservation',
     'Get-DhcpServerv6Scope', 'Get-DhcpServerv4OptionValue', 'Get-DhcpServerv4Failover', 'Get-DhcpServerv4DnsSetting',
-    'Get-DhcpServerDnsCredential', 'Find-DbaInstance'
+    'Get-DhcpServerDnsCredential', 'Find-DbaInstance',
+    # CimCmdlets exists only on Windows: the server-service tests run on Linux too.
+    'Get-CimInstance', 'New-CimSessionOption', 'New-CimSession', 'Remove-CimSession'
 )
 $stubBody = {
     [CmdletBinding()]
     param($Filter, $LDAPFilter, $Identity, $Server, $Properties, $SearchBase, $SearchScope, $Domain, $DomainName,
         [switch]$All, $Guid, $ReportType, $ComputerName, $ZoneName, [switch]$Recursive, $Target, $ResultSetSize,
-        [switch]$IncludeDeletedObjects, $ScopeId, [switch]$Discover, $Type, $Name, $Service, $ResultPageSize)
+        [switch]$IncludeDeletedObjects, $ScopeId, [switch]$Discover, $Type, $Name, $Service, $ResultPageSize,
+        $ClassName, $Property, $OperationTimeoutSec, $CimSession, $Protocol, $SessionOption)
     throw "Stub $($MyInvocation.MyCommand.Name) was called without a mock."
 }
 foreach ($n in $stubNames) {
@@ -174,7 +177,12 @@ function global:Register-KitAdMocks([string]$ModuleName) {
     Mock @m Get-DnsServerScavenging { throw 'Access is denied.' }
     Mock @m Get-DnsServerForwarder { [pscustomobject]@{ IPAddress = @('192.0.2.1'); UseRootHint = $true } }
     Mock @m Get-DnsServerDnsSecZoneSetting { @() }
-    Mock @m Resolve-DnsName { @([pscustomobject]@{ Type = 'SRV'; NameTarget = 'dc01.contoso.example' }) }
+    Mock @m Resolve-DnsName {
+        if ("$Type" -eq 'SRV') { return @([pscustomobject]@{ Type = 'SRV'; NameTarget = 'dc01.contoso.example' }) }
+        # web.contoso.example is an alias with no computer object; retired-app has neither.
+        if ($Name -eq 'web.contoso.example') { return @([pscustomobject]@{ Type = 'CNAME'; Name = $Name; NameHost = 'app01.contoso.example' }) }
+        throw "${Name} : DNS name does not exist"
+    }
     Mock @m Get-DhcpServerInDC { $global:FMPFix.dhcp.authorized }
     Mock @m Get-DhcpServerv4Scope {
         $s = $global:FMPFix.dhcp.scopes.PSObject.Properties["$ComputerName"]

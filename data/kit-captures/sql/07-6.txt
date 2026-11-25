@@ -1,5 +1,7 @@
-PS> Invoke-Pester -Path tests/SqlIdentity.Tests.ps1 -FullNameFilter 'Chapter 07*' -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-          7           0
-PS> Remove-Item -Recurse -Force out
+PS> (Get-Content config/drivers.json -Raw | ConvertFrom-Json).families | Format-Table id, managedIdentity, servicePrincipal, credentialChain
+id                       managedIdentity servicePrincipal credentialChain
+--                       --------------- ---------------- ---------------
+Microsoft.Data.SqlClient 2.1             2.0              3.0
+ODBC                     17.3.1.1        17.7
+MSOLEDBSQL               18.3            18.5
+mssql-jdbc               12.2            12.2             12.2

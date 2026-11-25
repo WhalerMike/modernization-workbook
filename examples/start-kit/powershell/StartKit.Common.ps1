@@ -160,7 +160,7 @@ function Get-FMPFileManifest {
 
 function Get-FMPModuleVersions {
     # Versions of the modules the kit relies on, as installed on this host (null when absent).
-    $names = 'ActiveDirectory', 'GroupPolicy', 'DnsServer', 'DhcpServer', 'dbatools', 'FMPADAssessment', 'FMPSqlEstate', 'FMPNpsInventory', 'FMPTransactionProfile'
+    $names = 'ActiveDirectory', 'GroupPolicy', 'DnsServer', 'DhcpServer', 'dbatools', 'FMPADAssessment', 'FMPSqlEstate', 'FMPNpsInventory', 'FMPTransactionProfile', 'FMPServerService'
     $o = [ordered]@{}
     foreach ($n in $names) {
         $m = Get-Module -Name $n | Select-Object -First 1

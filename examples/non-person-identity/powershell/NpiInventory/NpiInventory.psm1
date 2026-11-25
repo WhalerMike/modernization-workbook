@@ -88,7 +88,7 @@ function New-NpiRow {
     param([hashtable]$Values)
     $row = [ordered]@{
         IdentityId = $null; Source = $null; Type = $null; Name = $null; ObjectId = $null; AppId = $null; Enabled = $null
-        DetectedBy = ''; WorkloadLocation = ''; Hosts = ''
+        DetectedBy = ''; WorkloadLocation = ''; Hosts = ''; HostsFrom = ''; Services = ''
         PasswordNeverExpires = $null; PasswordAgeDays = $null; LastLogon = $null; StaleLead = $false; StaleNote = ''
         SpnCount = 0; Spns = ''; Delegation = 'None'; PrivilegedGroups = ''
         HomeTenant = ''; SignInAudience = ''; OwnerCount = $null; OwnerIds = ''; OwnerTypes = ''; ServiceManagementReference = ''
@@ -163,6 +163,7 @@ function Get-NpiAdServiceAccount {
         $rows.Add((New-NpiRow @{
                     IdentityId = "ad:$($m.ObjectGUID)"; Source = 'AD'; Type = $type; Name = $m.SamAccountName; ObjectId = "$($m.ObjectGUID)"
                     Enabled = [bool]$m.Enabled; DetectedBy = 'ManagedServiceAccount'; WorkloadLocation = 'OnPremises'; Hosts = (Join-NpiList $hosts)
+                    HostsFrom = if ($hosts.Count) { 'Directory' } else { '' }
                     PasswordNeverExpires = $false; SpnCount = $spns.Count; Spns = (Join-NpiList $spns)
                     PrivilegedGroups = (Join-NpiList (& $privOf $m.MemberOf)); CredentialKind = 'ManagedByAD'
                     LastLogon = if ($m.LastLogonDate) { $m.LastLogonDate.ToString('yyyy-MM-dd') } else { '' }
@@ -287,6 +288,7 @@ function Get-NpiEntraWorkloadIdentity {
                 $user = [bool]($rid -and $rid[0] -match '/providers/Microsoft\.ManagedIdentity/userAssignedIdentities/[^/]+$')
                 $values.IdentityId = "mi:$($sp.id)"; $values.Type = if ($user) { 'ManagedIdentityUserAssigned' } else { 'ManagedIdentitySystemAssigned' }
                 $values.HomeTenant = 'Own'; $values.WorkloadLocation = 'Azure'; $values.Hosts = if ($rid) { "$($rid[0])" } else { '' }; $values.CredentialKind = 'ManagedByAzure'
+                $values.HostsFrom = if ($rid) { 'ResourceId' } else { '' }
                 if ($user) {
                     if ($SkipAzure) { $values.Note = 'Federated credentials not read (-SkipAzure)' }
                     elseif ($rid[0] -notmatch '^/subscriptions/[0-9a-fA-F-]{36}/resourceGroups/[^/]+/providers/Microsoft\.ManagedIdentity/userAssignedIdentities/[^/]+$') { $values.Note = "Federated credentials not read: unexpected resource ID $($rid[0])" }
@@ -329,6 +331,42 @@ function Get-NpiEntraWorkloadIdentity {
     }
     Write-NpiProgress -Tracker $tracker -Completed
     $rows.ToArray()
+}
+
+# ----------------------------------------------------------------------------- server services
+
+function Import-NpiServiceInventory {
+    <#
+    .SYNOPSIS
+        Reads a server-to-service inventory: the Start Kit's ServerServices\ServerServices.csv
+        (Get-FMPServerServiceInventory), or any CSV with Server, ServiceName and either
+        SamAccountName or LogonAccount. Returns a hashtable from each account's
+        sAMAccountName, lower case, to its servers and services.
+    .DESCRIPTION
+        Only domain accounts and managed service accounts are kept: LocalSystem, the service
+        accounts built into Windows, virtual accounts (NT SERVICE\...) and local accounts aren't
+        directory identities. DOMAIN\name and name@domain both match on the name.
+    .EXAMPLE
+        # Which servers run a service as svc-hrsync, in the fixture inventory.
+        (Import-NpiServiceInventory -Path tests/fixtures/inputs/server-services.csv)['svc-hrsync'].Servers
+    #>
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][string]$Path)
+    $map = @{}
+    foreach ($r in @(Import-Csv -LiteralPath $Path)) {
+        $sam = if ($r.PSObject.Properties['SamAccountName'] -and $r.SamAccountName) { "$($r.SamAccountName)" } else {
+            $l = "$($r.LogonAccount)".Trim()
+            if ($l -match '^(?i)(NT AUTHORITY|NT SERVICE)\\' -or $l -match '^(?i)LocalSystem$' -or $l -match '^\.\\') { '' }
+            elseif ($l -match '^[^\\]+\\(.+)$') { $Matches[1] } elseif ($l -match '^([^@]+)@') { $Matches[1] } else { $l }
+        }
+        $type = if ($r.PSObject.Properties['AccountType']) { "$($r.AccountType)" } else { 'Domain' }
+        if (-not $sam -or ($type -and $type -notin 'Domain', 'ManagedServiceAccount')) { continue }
+        $k = $sam.ToLowerInvariant()
+        if (-not $map.ContainsKey($k)) { $map[$k] = @{ Servers = [Collections.Generic.SortedSet[string]]::new([StringComparer]::OrdinalIgnoreCase); Services = [Collections.Generic.SortedSet[string]]::new([StringComparer]::OrdinalIgnoreCase) } }
+        $null = $map[$k].Servers.Add("$($r.Server)")
+        $null = $map[$k].Services.Add("$($r.Server)/$($r.ServiceName)")
+    }
+    $map
 }
 
 # ----------------------------------------------------------------------------- classification
@@ -424,10 +462,27 @@ function Get-NpiRegister {
         [Parameter(Mandatory)][datetime]$AsOf,
         $Config = (Get-NpiRegisterConfig),
         [switch]$SkipAd,
-        [switch]$SkipAzure
+        [switch]$SkipAzure,
+        # The server-to-service inventory (Import-NpiServiceInventory): fills Hosts and Services
+        # for AD user accounts, and Services for MSAs, gMSAs and dMSAs.
+        [string]$ServiceInventoryPath
     )
     $rows = [Collections.Generic.List[object]]::new()
     if (-not $SkipAd) { foreach ($r in (Get-NpiAdServiceAccount -Reader $Reader -AsOf $AsOf -Config $Config)) { $rows.Add($r) } }
+    if ($ServiceInventoryPath) {
+        $svc = Import-NpiServiceInventory -Path $ServiceInventoryPath
+        foreach ($r in $rows) {
+            if ($r.Source -ne 'AD') { continue }
+            $k = "$($r.Name)".ToLowerInvariant()
+            if (-not $svc.ContainsKey($k)) {
+                if ($r.Type -eq 'Traditional') { $r.HostsFrom = 'ServiceInventory: none' }
+                continue
+            }
+            $r.Services = Join-NpiList $svc[$k].Services
+            if ($r.Type -eq 'Traditional') { $r.Hosts = Join-NpiList $svc[$k].Servers; $r.HostsFrom = 'ServiceInventory' }
+            elseif (-not $r.Hosts) { $r.Hosts = Join-NpiList $svc[$k].Servers; $r.HostsFrom = 'ServiceInventory' }
+        }
+    }
     foreach ($r in (Get-NpiEntraWorkloadIdentity -Reader $Reader -TenantId $TenantId -AsOf $AsOf -Config $Config -SkipAzure:$SkipAzure)) { $rows.Add($r) }
     foreach ($r in $rows) {
         $risk = Get-NpiRisk -Row $r -Config $Config
@@ -444,7 +499,8 @@ function Get-NpiRegister {
 function Test-NpiRegister {
     <#
     .SYNOPSIS
-        The register's findings, NPI-INV-01 to NPI-INV-09, each with a stable ID (rule:identity).
+        The register's findings, NPI-INV-01 to NPI-INV-10, each with a stable ID (rule:identity).
+        NPI-INV-10 appears only when the register was built with -ServiceInventoryPath.
     .EXAMPLE
         # Findings for a register built by Get-NpiRegister.
         $findings = Test-NpiRegister -Register $register
@@ -464,9 +520,10 @@ function Test-NpiRegister {
         if ($r.Handoff -eq 'DataPlatform') { $f.Add((New-NpiFinding 'NPI-INV-07' 'Info' $k $n 'SQL Server account: handed to the Data Platform plan (task NP0.4)')) }
         if ($r.Note -like 'Detected only by a password that never expires*') { $f.Add((New-NpiFinding 'NPI-INV-08' 'Warn' $k $n $r.Note)) }
         if ($r.Type -in @('UnknownServiceAccount', 'UnknownServicePrincipal')) { $f.Add((New-NpiFinding 'NPI-INV-09' 'Warn' $k $n $r.Note)) }
+        if ($r.HostsFrom -eq 'ServiceInventory: none' -and $r.Enabled) { $f.Add((New-NpiFinding 'NPI-INV-10' 'Warn' $k $n 'No server in the server-service inventory runs a service as this account: confirm what uses it (a scheduled task, an application pool, a client that signs in with it) before any change')) }
     }
     $f.ToArray()
 }
 
-Export-ModuleMember -Function Get-NpiRegisterConfig, Get-NpiServiceUserLdapFilter, Get-NpiAdServiceAccount, Get-NpiEntraWorkloadIdentity, Get-NpiRisk,
+Export-ModuleMember -Function Import-NpiServiceInventory, Get-NpiRegisterConfig, Get-NpiServiceUserLdapFilter, Get-NpiAdServiceAccount, Get-NpiEntraWorkloadIdentity, Get-NpiRisk,
     Get-NpiCandidateTarget, Get-NpiRegister, Test-NpiRegister, New-NpiRow

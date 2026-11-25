@@ -116,8 +116,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the build, and all 89 checks",
       body: [
-        { terminal: "02-1" },
-        { terminal: "02-2" },
+        { terminal: "02-3" },
+        { terminal: "02-4" },
       ],
       sources: "Sources: examples/daily-checks-workbook (fictional fixtures). Chapter 02, “Lab 1: fixtures, no tenant,” steps 1–2.",
       say: `Lab 1, in the kit's folder, with no tenant. Step 1 confirms the committed template matches the build of the manifest and the queries. Step 2 validates it: ten checks, eighty-nine results across the twelve tabs, and all of them pass.`,
@@ -128,8 +128,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: four edits in a portal export",
       body: [
-        { terminal: "02-3", lines: "1,5-8,11-16" },
-        { terminal: "02-4" },
+        { terminal: "02-5", lines: "1,5-8,11-16" },
+        { terminal: "02-6" },
       ],
       sources: "Sources: examples/daily-checks-workbook (fictional fixtures). Chapter 02, “Lab 1,” steps 3–4; Learn, workbooks and ARM templates.",
       say: `Step 3 is the one to remember. A copy was exported after someone edited the workbook in the portal. Four edits, four failures: one risk query reads a workspace path instead of the parameter; the devices query looks back seven hundred and twenty hours; the grants tab lost its banner; and the file carries a G U I D and a subscription path. Step 4 shows what the export carried: the workspace's full resource path, exactly what Microsoft Learn says to mask.`,
@@ -140,8 +140,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: record the validation",
       body: [
-        { terminal: "02-5", lines: "1,12-15" },
-        { terminal: "02-6" },
+        { terminal: "02-7", lines: "1,12-15" },
+        { terminal: "02-8" },
       ],
       sources: "Sources: examples/daily-checks-workbook (fictional fixtures). Chapter 02, “Lab 1,” steps 5–6.",
       say: `Step 5 records a validation of the kit's template: the same eighty-nine checks pass, and the results go to a folder with a hashed manifest, ready for Chapter 4's evidence record. Step 6 runs this chapter's tests: ten passed, none failed. Then delete the output folder.`,
