@@ -1,4 +1,4 @@
-PS> Get-Content out/week1/waf/plan-prevention.txt
-# Reviewed commands the kit did NOT run. Read the guide's Step 4 first; run each in a change window, from a session signed in to AzureCloud.
-
-az network application-gateway waf-policy policy-setting update --policy-name wafp-portal --resource-group rg-hub --subscription 11111111-1111-4111-8111-111111111111 --mode Prevention --state Enabled --request-body-check true
+PS> Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
+PS> (Read-AzsJson -Path "$Run/week1/waf/waf.json") | ForEach-Object { "{0,-13} {1,-6} {2,-11} body: {3,-5} DRS: {4,-4} bot: {5,-5} rate limit: {6}" -f $_.name, $_.kind, $_.mode, $_.requestBodyCheck, $_.defaultRuleSet, $_.botRules, $_.rateLimit }
+wafp-portal   appgw  Detection   body: True  DRS: 2.1  bot: True  rate limit: True
+afdwafportal  afd    Prevention  body: True  DRS: 2.1  bot: False rate limit: True

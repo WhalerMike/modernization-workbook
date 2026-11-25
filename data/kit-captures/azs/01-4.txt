@@ -1,17 +1,4 @@
-PS> Get-Content out/week1/baseline/summary.json
-{
-  "area": "baseline",
-  "asOf": "2026-11-09T12:00:00Z",
-  "environment": "lab",
-  "findings": {
-    "Finding": 12,
-    "Warn": 0,
-    "Info": 1
-  },
-  "platformResources": 16,
-  "platformResourcesLogged": 6,
-  "platformLoggingPercent": 37.5,
-  "subscriptions": 4,
-  "subscriptionsWithRequiredPlans": 3,
-  "requiredAssignments": 2
-}
+PS> ./Invoke-AzsCheck.ps1 -Area baseline -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath "$Run/week1/baseline"
+Read: hierarchy settings, 4 policy assignments, 16 platform resources, 4 subscriptions
+Findings: 12 Finding, 0 Warn, 1 Info
+Written to C:/FMWLabs/results/azure-security-01/lab1/<run>/week1/baseline (6 calls, every one a read; manifest.json lists each file's SHA-256)

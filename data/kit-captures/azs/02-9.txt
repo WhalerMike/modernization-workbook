@@ -1,0 +1,2 @@
+PS> Get-ChildItem C:\FMWLabs\results\azure-security-02\lab1 -Name
+<run>

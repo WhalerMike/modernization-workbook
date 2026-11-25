@@ -1,4 +1,2 @@
-PS> Invoke-Pester -Path tests/Areas.Tests.ps1 -FullNameFilter 'DDoS*' -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-          3           0
+PS> (Read-AzsJson -Path "$Run/week1/ddos/summary.json").byStatus | ConvertTo-Json -Compress
+{"IpProtection":1,"Inherited":3,"Unprotected":1,"Unknown":1,"NatGateway":1,"Unattached":1}

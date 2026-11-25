@@ -1,5 +1,4 @@
-PS> Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
-PS> (Read-AzsJson -Path out/week1/private/private.json) | Where-Object kind -EQ vault | ForEach-Object { "{0,-13} rbac: {1,-5} purge: {2,-5} firewall: {3,-5} public: {4,-8} endpoints: {5} audit: {6,-5} posture: {7}" -f $_.name, $_.rbac, $_.purgeProtection, $_.defaultAction, $_.publicNetworkAccess, $_.privateEndpoints, $_.auditToWorkspace, $_.posture }
-kv-hub-certs  rbac: True  purge: True  firewall: Deny  public: Enabled  endpoints: 0 audit: True  posture: False
-kv-payroll    rbac: True  purge: True  firewall: Deny  public: Disabled endpoints: 1 audit: True  posture: True
-kv-portal     rbac: False purge: False firewall: Allow public: Enabled  endpoints: 0 audit: False posture: False
+PS> $Run = "C:\FMWLabs\results\azure-security-07\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+PS> New-Item -ItemType Directory -Path $Run -Force | Out-Null
+PS> $Run
+C:/FMWLabs/results/azure-security-07/lab1/<run>

@@ -1,6 +1,4 @@
-PS> Import-Csv out/week1/policy/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
-AZS-POL-06 Finding allowed-locations: notScopes: contoso-sandbox
-AZS-POL-04 Finding ex-legacy-fd: Waiver, expired 2026-10-31; DR-AZS-009: classic Front Door until migration
-AZS-POL-03 Finding ex-payroll-ddos: Mitigated; DR-AZS-011: no public IPs in the payroll spoke
-AZS-POL-02 Warn    azs-security: DoNotEnforce; the settings' enforce-by date was 2026-11-01
-AZS-POL-05 Warn    ex-portal-waf: Waiver, expires 2026-12-01; DR-AZS-012: WAF tuning for the portal
+PS> $Run = "C:\FMWLabs\results\azure-security-08\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+PS> New-Item -ItemType Directory -Path $Run -Force | Out-Null
+PS> $Run
+C:/FMWLabs/results/azure-security-08/lab1/<run>

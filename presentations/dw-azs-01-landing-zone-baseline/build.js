@@ -131,8 +131,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the calls, and the check on week one",
       body: [
-        { terminal: "01-1", label: "examples/azure-security  ·  fixture data  ·  real output" },
-        { terminal: "01-2" },
+        { terminal: "01-3", label: "examples/azure-security  ·  fixture data  ·  real output" },
+        { terminal: "01-4" },
       ],
       sources: "Sources: examples/azure-security (fictional fixtures). Chapter 01, “Lab 1: fixtures, no subscription,” steps 1–2.",
       say: `Lab 1 needs only PowerShell 7 with Pester, in the kit's folder, against the fictional Contoso estate: an intermediate root, four subscriptions and a platform workspace. No subscription. Step 1 lists the six calls this chapter makes, every one Reader, every one verified. Step 2 runs the baseline check on the first week's estate: hierarchy settings, four policy assignments, sixteen platform resources and four subscriptions read. Twelve findings and one information row, from six calls, every one a read, with a manifest that lists each file's hash.`,
@@ -143,8 +143,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the findings, the summary, the command",
       body: [
-        { terminal: "01-3", lines: "1-4,9,13-14" },
-        { cols: [[{ terminal: "01-4", lines: "1,11-15" }], [{ terminal: "01-5" }]], split: 0.45 },
+        { terminal: "01-5", lines: "1-4,9,13-14" },
+        { cols: [[{ terminal: "01-6", lines: "1,11-15" }], [{ terminal: "01-7" }]], split: 0.45 },
       ],
       sources: "Sources: examples/azure-security (fictional fixtures). Chapter 01, “Lab 1: fixtures, no subscription,” steps 3–5.",
       say: `Step 3 reads the findings. Creating management groups doesn't need authorization. Ten resources send no log to the platform workspace; one of them, the firewall's public IP, does send logs, but to an application team's workspace, which doesn't count. The online subscription's Key Vault plan is Free. And the FedRAMP initiative is in audit, as Step 1 intends. Step 4 reads the summary the metrics use: six of sixteen platform resources log to the workspace. Step 5 prints, without sending it, the exact command a live run would send: the guide's own query, scoped to the intermediate root.`,

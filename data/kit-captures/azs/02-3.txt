@@ -1,6 +1,5 @@
-PS> Import-Csv out/week1/exposure/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
-AZS-EX-01 Finding pip-jump: PublicIP has no owner tag
-AZS-EX-01 Finding pip-orphan: PublicIP has no owner tag
-AZS-EX-01 Finding stpayrolldata: PaaS microsoft.storage/storageaccounts has no owner tag
-AZS-EX-02 Warn    pip-orphan: 198.51.100.30 is attached to nothing
-AZS-EX-05 Warn    ci-batch-export: in Defender for Cloud's export (internet exposure analysis), not in the register: a gap in the queries
+PS> ./Invoke-AzsCheck.ps1 -Area exposure -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath "$Run/week1/exposure" -DefenderExposurePath tests/fixtures/defender-exposure.csv
+Register: 19 exposures (8 public IPs, 3 Front Door, 2 application gateways, 6 PaaS); 16 with an owner
+Findings: 3 Finding, 2 Warn, 0 Info
+The register is a map of the attack surface: keep it inside the boundary, never in a public repository.
+Written to C:/FMWLabs/results/azure-security-02/lab1/<run>/week1/exposure (9 calls, every one a read; manifest.json lists each file's SHA-256)
