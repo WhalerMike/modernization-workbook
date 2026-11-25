@@ -27,6 +27,14 @@ Example (from the kit root; copy config/config.example.json to config/config.jso
 and edit it first, and set the credential environment variables it names):
 
   python python/sdwan_evidence.py --config config/config.json
+
+Replay (no Manager, no sign-in, no network): --replay DIR reads DIR/devices.json and
+DIR/auditlog.json, the response bodies of the two GETs above as Manager returns them,
+and evaluates them exactly as a live run would. The evaluation time is the capture's
+own header.generatedOn, so the same capture always gives the same output. The labs
+use it on the fictional fixtures in tests/fixtures:
+
+  python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures --out out
 """
 
 from __future__ import annotations
@@ -205,6 +213,48 @@ class ManagerClient:
         resp = self._send("GET", path)
         _raise_for_status(resp, "/dataservice/auditlog")
         return resp.json().get("data", [])
+
+
+class ReplayClient:
+    """Answers the collector's two reads from saved Manager responses; never opens a connection."""
+
+    def __init__(self, folder: str | Path):
+        self.folder = Path(folder)
+        self.mode = "replay"
+        self.devices_body = self._read("devices.json")
+        self.audit_body = self._read("auditlog.json")
+
+    def _read(self, name: str) -> dict[str, Any]:
+        path = self.folder / name
+        if not path.is_file():
+            raise ConfigError(f"replay folder has no {name}: {path}")
+        body = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(body, dict) or not isinstance(body.get("data"), list):
+            raise ConfigError(f"{path} is not a Manager response body (no 'data' list)")
+        return body
+
+    def generated_on(self) -> datetime | None:
+        """When Manager produced the device list (its header.generatedOn, in milliseconds)."""
+        value = self.devices_body.get("header", {}).get("generatedOn")
+        try:
+            return datetime.fromtimestamp(int(value) / 1000, tz=timezone.utc)
+        except (TypeError, ValueError):
+            return None
+
+    def login_jwt(self, username: str, password: str, duration: int = 1800) -> None:
+        return None
+
+    def login_session(self, username: str, password: str) -> None:
+        return None
+
+    def logout(self) -> None:
+        return None
+
+    def get_devices(self) -> list[dict[str, Any]]:
+        return self.devices_body["data"]
+
+    def get_audit_log(self, lookback_hours: int) -> list[dict[str, Any]]:
+        return self.audit_body["data"]
 
 
 def _find_header(headers: dict[str, str], name: str) -> str | None:
@@ -450,7 +500,7 @@ def gate_status(findings: list[dict[str, Any]]) -> str:
     return "pass" if findings else "confirm"
 
 
-def run(cfg: dict[str, Any], client: ManagerClient, floor_data: dict[str, Any],
+def run(cfg: dict[str, Any], client: ManagerClient | ReplayClient, floor_data: dict[str, Any],
         username: str, password: str, now: datetime | None = None) -> dict[str, Any]:
     observed_at = (now or datetime.now(timezone.utc)).isoformat().replace("+00:00", "Z")
     if cfg["auth_mode"] == "jwt":
@@ -481,7 +531,8 @@ def write_outputs(result: dict[str, Any], out_dir: str | Path) -> tuple[Path, Pa
     out.mkdir(parents=True, exist_ok=True)
     json_path = out / "sdwan-evidence.json"
     csv_path = out / "ed-26-03-gate.csv"
-    json_path.write_text(json.dumps(result, indent=2), encoding="utf-8")
+    # Written with LF line endings on every platform, so a run's hash is the same on Windows and Linux.
+    json_path.write_bytes((json.dumps(result, indent=2) + "\n").encode("utf-8"))
     fields = ["record_kind", "host_name", "system_ip", "role", "software_version",
               "advisory_id", "status", "reason"]
     with csv_path.open("w", newline="", encoding="utf-8") as handle:
@@ -494,23 +545,36 @@ def write_outputs(result: dict[str, Any], out_dir: str | Path) -> tuple[Path, Pa
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Read-only Catalyst SD-WAN evidence collector (illustrative)")
     parser.add_argument("--config", required=True, help="path to config.json")
+    parser.add_argument("--replay", metavar="DIR",
+                        help="evaluate saved Manager responses (DIR/devices.json, DIR/auditlog.json) instead of "
+                             "signing in; nothing connects to anything")
+    parser.add_argument("--out", metavar="DIR", help="output folder (default: the config's output_dir, "
+                                                     "relative to the config file)")
     args = parser.parse_args(argv)
     try:
         cfg = load_config(args.config)
         base = Path(args.config).resolve().parent
         floor_data = json.loads((base / cfg["fixed_release_file"]).read_text(encoding="utf-8"))
-        username = os.environ.get(cfg.get("username_env", "SDWAN_API_USERNAME"), "")
-        password = os.environ.get(cfg.get("password_env", "SDWAN_API_PASSWORD"), "")
-        if not username or not password:
-            raise ConfigError("set the username and password environment variables named in the config")
-        client = ManagerClient(cfg["manager_url"],
-                               urllib_transport(cfg.get("ca_bundle") or None, int(cfg.get("timeout_seconds", 30))))
-        result = run(cfg, client, floor_data, username, password)
-        json_path, csv_path = write_outputs(result, base / cfg.get("output_dir", "./out"))
+        if args.replay:
+            client = ReplayClient(args.replay)
+            username = password = ""
+            result = run(cfg, client, floor_data, username, password, now=client.generated_on())
+            result["replayed_from"] = Path(args.replay).as_posix()
+            result["status_note"] = "replay of saved Manager responses; no fabric was contacted"
+        else:
+            username = os.environ.get(cfg.get("username_env", "SDWAN_API_USERNAME"), "")
+            password = os.environ.get(cfg.get("password_env", "SDWAN_API_PASSWORD"), "")
+            if not username or not password:
+                raise ConfigError("set the username and password environment variables named in the config")
+            client = ManagerClient(cfg["manager_url"],
+                                   urllib_transport(cfg.get("ca_bundle") or None, int(cfg.get("timeout_seconds", 30))))
+            result = run(cfg, client, floor_data, username, password)
+        out_dir = Path(args.out) if args.out else base / cfg.get("output_dir", "./out")
+        json_path, csv_path = write_outputs(result, out_dir)
     except Exception as err:  # noqa: BLE001 - report and exit non-zero
         print(f"error: {err}", file=sys.stderr)
         return 1
-    print(f"gate: {result['gate']}  evidence: {json_path}  findings: {csv_path}")
+    print(f"gate: {result['gate']}  evidence: {json_path.as_posix()}  findings: {csv_path.as_posix()}")
     return 0 if result["gate"] == "pass" else 2
 
 
