@@ -823,12 +823,12 @@ function Get-PKISecurityFindings {
         }
         $anyOrNone = ($eku.Count -eq 0) -or ('2.5.29.37.0' -in $eku)
         if ($isPub -and $anyOrNone -and $broadEnroll) {
-            $findings += [pscustomobject]@{ Finding = 'ESC2'; Severity = 'High'; Template = $name
+            $findings += [pscustomobject]@{ Finding = 'ESC2'; Severity = 'Critical'; Template = $name
                 Description = 'Published template with Any Purpose or no EKU is enrollable by broad groups.'
                 Remediation = 'Restrict the EKUs to the intended purposes or restrict enrollment.' }
         }
         if ($broadWrite) {
-            $findings += [pscustomobject]@{ Finding = 'ESC4'; Severity = 'Critical'; Template = $name
+            $findings += [pscustomobject]@{ Finding = 'ESC4'; Severity = 'High'; Template = $name
                 Description = 'Template ACL grants write or control rights to broad groups.'
                 Remediation = 'Remove the entries; limit template write rights to PKI administrators.' }
         }

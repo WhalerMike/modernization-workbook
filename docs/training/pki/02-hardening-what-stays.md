@@ -95,7 +95,7 @@ Every command in this lab, in order, from `examples/start-kit`. Each step below 
 # Step 1: Read the findings
 Import-Module .\powershell\FMPADAssessment -Force
 $f = Get-Content -Raw $HOME\fmp-labs\pki\run1\contoso.example\PKI\PKISecurityReport.json | ConvertFrom-Json
-$f | Format-Table Finding, Template -AutoSize
+$f | Format-Table Finding, Severity, Template -AutoSize
 
 # Step 2: Read what a finding asks for
 $f | Where-Object Finding -eq 'ESC1' | Format-List Description, Remediation
@@ -120,7 +120,7 @@ $s | ConvertTo-Json -Depth 10 | Set-Content -Encoding UTF8 -Path $HOME\fmp-labs\
 
 # Step 6: Run the assessment again
 Get-FMPPKIAssessment -OutputPath $HOME\fmp-labs\pki\run2 -PkiDataPath $HOME\fmp-labs\pki\pki-contoso-fixed.json
-Get-Content -Raw $HOME\fmp-labs\pki\run2\contoso.example\PKI\PKISecurityReport.json | ConvertFrom-Json | Format-Table Finding, Template -AutoSize
+Get-Content -Raw $HOME\fmp-labs\pki\run2\contoso.example\PKI\PKISecurityReport.json | ConvertFrom-Json | Format-Table Finding, Severity, Template -AutoSize
 
 # Step 7: Compare the two runs, finding by finding
 Compare-FMPAssessments -BaselinePath $HOME\fmp-labs\pki\run1\contoso.example -CurrentPath $HOME\fmp-labs\pki\run2\contoso.example | Where-Object File -like 'PKI*' | Format-List File, Status, Added, Removed
@@ -135,21 +135,21 @@ Compare-FMPAssessments -BaselinePath $HOME\fmp-labs\pki\run1\contoso.example -Cu
     ```powershell
     Import-Module .\powershell\FMPADAssessment -Force
     $f = Get-Content -Raw $HOME\fmp-labs\pki\run1\contoso.example\PKI\PKISecurityReport.json | ConvertFrom-Json
-    $f | Format-Table Finding, Template -AutoSize
+    $f | Format-Table Finding, Severity, Template -AutoSize
     ```
 
     Expected output:
 
     ```text
-    Finding Template
-    ------- --------
-    ESC1    Web Server Legacy
-    ESC2    Legacy Any Purpose
-    ESC4    Contoso SCEP (NDES)
-    ESC6    N/A (ca01.contoso.example\Contoso Issuing CA 1)
+    Finding Severity Template
+    ------- -------- --------
+    ESC1    Critical Web Server Legacy
+    ESC2    Critical Legacy Any Purpose
+    ESC4    High     Contoso SCEP (NDES)
+    ESC6    Critical N/A (ca01.contoso.example\Contoso Issuing CA 1)
     ```
 
-    Look up each class's risk level and remediation priority in Chapter 03's [risk-scoring matrix](../../books/b07-pki/03-hardening-what-stays.md#the-risk-scoring-matrix). Every row is a migration blocker until it's verified closed.
+    `Severity` is the risk level in Chapter 03's [risk-scoring matrix](../../books/b07-pki/03-hardening-what-stays.md#the-risk-scoring-matrix), which also gives each class its remediation priority: Immediate for the three Critical rows, within two weeks for ESC4. Every row is a migration blocker until it's verified closed.
 
 2. **Read what a finding asks for.**
 
@@ -226,17 +226,19 @@ Compare-FMPAssessments -BaselinePath $HOME\fmp-labs\pki\run1\contoso.example -Cu
 
     ```powershell
     Get-FMPPKIAssessment -OutputPath $HOME\fmp-labs\pki\run2 -PkiDataPath $HOME\fmp-labs\pki\pki-contoso-fixed.json
-    Get-Content -Raw $HOME\fmp-labs\pki\run2\contoso.example\PKI\PKISecurityReport.json | ConvertFrom-Json | Format-Table Finding, Template -AutoSize
+    Get-Content -Raw $HOME\fmp-labs\pki\run2\contoso.example\PKI\PKISecurityReport.json | ConvertFrom-Json | Format-Table Finding, Severity, Template -AutoSize
     ```
 
     Expected output:
 
     ```text
-    Finding Template
-    ------- --------
-    ESC2    Legacy Any Purpose
-    ESC4    Contoso SCEP (NDES)
+    Finding Severity Template
+    ------- -------- --------
+    ESC2    Critical Legacy Any Purpose
+    ESC4    High     Contoso SCEP (NDES)
     ```
+
+    Both still block the migration: the gate covers Critical and High.
 
 7. **Compare the two runs, finding by finding.**
 

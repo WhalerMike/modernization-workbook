@@ -48,6 +48,10 @@ Describe 'The assessment on a snapshot' {
         @($Findings | ForEach-Object { "$($_.Finding) $($_.Template)" } | Sort-Object) | Should -Be @(
             'ESC1 Web Server Legacy', 'ESC2 Legacy Any Purpose', 'ESC4 Contoso SCEP (NDES)', 'ESC6 N/A (ca01.contoso.example\Contoso Issuing CA 1)')
     }
+    It 'rates each finding as Book 07 Chapter 03''s risk-scoring matrix does' {
+        @($Findings | ForEach-Object { "$($_.Finding) $($_.Severity)" } | Sort-Object) |
+            Should -Be @('ESC1 Critical', 'ESC2 Critical', 'ESC4 High', 'ESC6 Critical')
+    }
     It 'refuses a snapshot without a domain' {
         $bad = Join-Path $TestDrive 'bad.json'
         Set-Content -Path $bad -Value '{ "cas": [] }'
