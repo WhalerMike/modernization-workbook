@@ -39,7 +39,7 @@ After this module, you'll be able to:
 
 ## Prerequisites (1 minute)
 
-- [Module 1](01-the-governor-before-the-traffic.md), and its Lab 1's `out` folder (Lab 1 below re-creates it if you don't have it).
+- [Module 1](01-the-governor-before-the-traffic.md). Lab 1 below replays the same capture into its own results folder.
 
 ## Unit 1: What the directive requires (10 minutes)
 
@@ -85,29 +85,33 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\cisco-sdwan
 
+$Run = "C:\FMWLabs\results\network-sd-wan-02-gate-0-the-ed-26-03-and-kev-floor\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
 # Step 1: Read the floor file's provenance
 $f = Get-Content -Raw data/ed-26-03-fixed-releases.json | ConvertFrom-Json
 $f | Select-Object as_of, kev_catalog_version, @{ n = 'Advisories'; e = { $_.advisories.Count } }, @{ n = 'KEV CVEs'; e = { ($_.advisories.kev_cves | Sort-Object -Unique).Count } } | Format-List
 $f.advisories | Format-Table id, @{ n = 'kev_cves'; e = { $_.kev_cves -join ', ' } }, @{ n = 'products'; e = { $_.products -join ', ' } }
 
 # Step 2: Replay the October capture and count the gate's rows
-python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures --out out
+python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures --out "$Run\out"
 "exit code: $LASTEXITCODE"
-Import-Csv out/ed-26-03-gate.csv | Group-Object status -NoElement | Sort-Object Name | Format-Table Name, Count
+Import-Csv "$Run\out\ed-26-03-gate.csv" | Group-Object status -NoElement | Sort-Object Name | Format-Table Name, Count
 
 # Step 3: Read the rows that stop the gate
-Import-Csv out/ed-26-03-gate.csv | Where-Object status -ne 'pass' | Format-List host_name, role, software_version, advisory_id, status, reason
+Import-Csv "$Run\out\ed-26-03-gate.csv" | Where-Object status -ne 'pass' | Format-List host_name, role, software_version, advisory_id, status, reason
 
 # Step 4: Apply the release rule yourself
 python -c "import json, sys; sys.path.insert(0, 'python'); import sdwan_evidence as se; f = json.load(open('data/ed-26-03-fixed-releases.json')); a = {x['id']: x for x in f['advisories']}['cisco-sa-sdwan-rpa-EHchtZk']; [print(f'{v:<10}', *se.check_release(v, a, f['end_of_maintenance_trains'])) for v in ('20.12.5.3', '20.12.6.0', '20.12.6.1', '20.11.1.0', '26.1.1.0')]"
 
 # Step 5: Replay the fabric a week later, after the upgrade
-python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures/after-upgrade --out out-after
+python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures/after-upgrade --out "$Run\out-after"
 "exit code: $LASTEXITCODE"
-Import-Csv out-after/ed-26-03-gate.csv | Group-Object role, status -NoElement | Sort-Object Name | Format-Table Name, Count
+Import-Csv "$Run\out-after\ed-26-03-gate.csv" | Group-Object role, status -NoElement | Sort-Object Name | Format-Table Name, Count
 
-# Step 6: Clean up
-Remove-Item -Recurse -Force out, out-after
+# Step 6: List your runs
+Get-ChildItem C:\FMWLabs\results\network-sd-wan-02-gate-0-the-ed-26-03-and-kev-floor\lab1 -Name
 ```
 
 :::
@@ -120,7 +124,23 @@ Every step runs in PowerShell 7, the Python commands included, so you can follow
 Set-Location C:\FMWLabs\cisco-sdwan
 ```
 
-Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`; the `python` commands run the same there, and every other command needs PowerShell 7 (type `pwsh` to start it). In a clone of the repository, use the `examples` folder of the same name.
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
+
+```powershell
+$Run = "C:\FMWLabs\results\network-sd-wan-02-gate-0-the-ed-26-03-and-kev-floor\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\network-sd-wan-02-gate-0-the-ed-26-03-and-kev-floor\lab1\<run>
+```
+
+The run's date is only the folder's name. The data's date is the capture's own time, which stays the same, so every run's findings match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
+
+Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`, make the run folder with `Run=/c/FMWLabs/results/network-sd-wan-02-gate-0-the-ed-26-03-and-kev-floor/lab1/$(date -u +%Y-%m-%dT%H%M%SZ); mkdir -p "$Run"`, and the `python` commands run the same there; every other command needs PowerShell 7 (type `pwsh` to start it). In a clone of the repository, use the `examples` folder of the same name.
 
 1. **Read the floor file's provenance.**
 
@@ -155,15 +175,15 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`; the `python`
 2. **Replay the October capture and count the gate's rows.**
 
     ```powershell
-    python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures --out out
+    python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures --out "$Run\out"
     "exit code: $LASTEXITCODE"
-    Import-Csv out/ed-26-03-gate.csv | Group-Object status -NoElement | Sort-Object Name | Format-Table Name, Count
+    Import-Csv "$Run\out\ed-26-03-gate.csv" | Group-Object status -NoElement | Sort-Object Name | Format-Table Name, Count
     ```
 
     Expected output:
 
     ```text
-    gate: fail  evidence: out/sdwan-evidence.json  findings: out/ed-26-03-gate.csv
+    gate: fail  evidence: C:/FMWLabs/results/network-sd-wan-02-gate-0-the-ed-26-03-and-kev-floor/lab1/<run>/out/sdwan-evidence.json  findings: C:/FMWLabs/results/network-sd-wan-02-gate-0-the-ed-26-03-and-kev-floor/lab1/<run>/out/ed-26-03-gate.csv
     exit code: 2
 
     Name Count
@@ -177,7 +197,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`; the `python`
 3. **Read the rows that stop the gate.**
 
     ```powershell
-    Import-Csv out/ed-26-03-gate.csv | Where-Object status -ne 'pass' | Format-List host_name, role, software_version, advisory_id, status, reason
+    Import-Csv "$Run\out\ed-26-03-gate.csv" | Where-Object status -ne 'pass' | Format-List host_name, role, software_version, advisory_id, status, reason
     ```
 
     Expected output:
@@ -221,15 +241,15 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`; the `python`
 5. **Replay the fabric a week later, after the upgrade.** The Validators moved to 20.18.3.1, a second Controller and Validator joined, and `unknown-peer` was validated and removed.
 
     ```powershell
-    python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures/after-upgrade --out out-after
+    python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures/after-upgrade --out "$Run\out-after"
     "exit code: $LASTEXITCODE"
-    Import-Csv out-after/ed-26-03-gate.csv | Group-Object role, status -NoElement | Sort-Object Name | Format-Table Name, Count
+    Import-Csv "$Run\out-after\ed-26-03-gate.csv" | Group-Object role, status -NoElement | Sort-Object Name | Format-Table Name, Count
     ```
 
     Expected output:
 
     ```text
-    gate: pass  evidence: out-after/sdwan-evidence.json  findings: out-after/ed-26-03-gate.csv
+    gate: pass  evidence: C:/FMWLabs/results/network-sd-wan-02-gate-0-the-ed-26-03-and-kev-floor/lab1/<run>/out-after/sdwan-evidence.json  findings: C:/FMWLabs/results/network-sd-wan-02-gate-0-the-ed-26-03-and-kev-floor/lab1/<run>/out-after/ed-26-03-gate.csv
     exit code: 0
 
     Name             Count
@@ -241,10 +261,16 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`; the `python`
 
     Every row passes and the exit code is `0`: gate lines 1 and 2 are evidenced for this capture. Lines 3 to 6 aren't the kit's to close.
 
-6. **Clean up.** Delete the `out` and `out-after` folders Steps 2 and 5 wrote, so the next run starts clean.
+6. **List your runs.** Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
 
     ```powershell
-    Remove-Item -Recurse -Force out, out-after
+    Get-ChildItem C:\FMWLabs\results\network-sd-wan-02-gate-0-the-ed-26-03-and-kev-floor\lab1 -Name
+    ```
+
+    Expected output: one line per run, oldest first, the last one this run:
+
+    ```text
+    <run>
     ```
 
 ## Exercise: Lab 2, a test fabric {#nsw-m2-lab-2}

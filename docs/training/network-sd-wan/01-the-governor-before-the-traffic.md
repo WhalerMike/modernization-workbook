@@ -89,6 +89,10 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\cisco-sdwan
 
+$Run = "C:\FMWLabs\results\network-sd-wan-01-the-governor-before-the-traffic\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
 # Step 1: Run the kit's tests
 python -m pytest -q -p no:cacheprovider tests
 
@@ -97,12 +101,12 @@ $d = Get-Content -Raw tests/fixtures/devices.json | ConvertFrom-Json
 $d.data | Format-Table 'host-name', 'system-ip', 'device-type', version
 
 # Step 3: Replay the capture through the kit
-python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures --out out
+python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures --out "$Run\out"
 "exit code: $LASTEXITCODE"
 
 # Step 4: Read the run's header and the fleet inventory
-Select-String -Path out/sdwan-evidence.json -Pattern '^  "(generated_at|status_note|gate|replayed_from)"' | ForEach-Object { $_.Line.Trim() }
-$r = Get-Content -Raw out/sdwan-evidence.json | ConvertFrom-Json
+Select-String -Path "$Run\out\sdwan-evidence.json" -Pattern '^  "(generated_at|status_note|gate|replayed_from)"' | ForEach-Object { $_.Line.Trim() }
+$r = Get-Content -Raw "$Run\out\sdwan-evidence.json" | ConvertFrom-Json
 $r.records | Where-Object record_kind -eq 'fleet_inventory' | Format-Table host_name, role, site_id, software_version, @{ n = 'controls'; e = { $_.control_refs -join ', ' } }
 
 # Step 5: Compare the inventory with the build record
@@ -110,8 +114,8 @@ $cfg = Get-Content -Raw config/config.example.json | ConvertFrom-Json
 $seen = $r.records | Where-Object record_kind -eq 'fleet_inventory' | ForEach-Object system_ip
 $cfg.expected_control_components | Where-Object { $_.system_ip -notin $seen } | Format-Table system_ip, device_type
 
-# Step 6: Clean up
-Remove-Item -Recurse -Force out
+# Step 6: List your runs
+Get-ChildItem C:\FMWLabs\results\network-sd-wan-01-the-governor-before-the-traffic\lab1 -Name
 ```
 
 :::
@@ -124,7 +128,23 @@ Every step runs in PowerShell 7, the Python commands included, so you can follow
 Set-Location C:\FMWLabs\cisco-sdwan
 ```
 
-Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`; the `python` commands run the same there, and every other command needs PowerShell 7 (type `pwsh` to start it). In a clone of the repository, use the `examples` folder of the same name.
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
+
+```powershell
+$Run = "C:\FMWLabs\results\network-sd-wan-01-the-governor-before-the-traffic\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\network-sd-wan-01-the-governor-before-the-traffic\lab1\<run>
+```
+
+The run's date is only the folder's name. The data's date is the capture's own time, which stays the same, so every run's findings match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
+
+Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`, make the run folder with `Run=/c/FMWLabs/results/network-sd-wan-01-the-governor-before-the-traffic/lab1/$(date -u +%Y-%m-%dT%H%M%SZ); mkdir -p "$Run"`, and the `python` commands run the same there; every other command needs PowerShell 7 (type `pwsh` to start it). In a clone of the repository, use the `examples` folder of the same name.
 
 1. **Run the kit's tests.** Every HTTP call in them is answered from the fixtures.
 
@@ -160,22 +180,22 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`; the `python`
 3. **Replay the capture through the kit.** `--replay` reads the saved responses instead of signing in; nothing connects to anything.
 
     ```powershell
-    python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures --out out
+    python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures --out "$Run\out"
     "exit code: $LASTEXITCODE"
     ```
 
     Expected output:
 
     ```text
-    gate: fail  evidence: out/sdwan-evidence.json  findings: out/ed-26-03-gate.csv
+    gate: fail  evidence: C:/FMWLabs/results/network-sd-wan-01-the-governor-before-the-traffic/lab1/<run>/out/sdwan-evidence.json  findings: C:/FMWLabs/results/network-sd-wan-01-the-governor-before-the-traffic/lab1/<run>/out/ed-26-03-gate.csv
     exit code: 2
     ```
 
 4. **Read the run's header and the fleet inventory.** The evaluation time is the capture's own time, so a replay always gives the same output.
 
     ```powershell
-    Select-String -Path out/sdwan-evidence.json -Pattern '^  "(generated_at|status_note|gate|replayed_from)"' | ForEach-Object { $_.Line.Trim() }
-    $r = Get-Content -Raw out/sdwan-evidence.json | ConvertFrom-Json
+    Select-String -Path "$Run\out\sdwan-evidence.json" -Pattern '^  "(generated_at|status_note|gate|replayed_from)"' | ForEach-Object { $_.Line.Trim() }
+    $r = Get-Content -Raw "$Run\out\sdwan-evidence.json" | ConvertFrom-Json
     $r.records | Where-Object record_kind -eq 'fleet_inventory' | Format-Table host_name, role, site_id, software_version, @{ n = 'controls'; e = { $_.control_refs -join ', ' } }
     ```
 
@@ -219,10 +239,16 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`; the `python`
 
     The build record lists two Controllers and two Validators; Manager reports one of each. The kit flags components Manager knows about that the record doesn't list. It doesn't flag the reverse, so this comparison is yours: a missing Controller or Validator is a resilience question to answer before the fabric carries traffic.
 
-6. **Clean up.** Delete the `out` folder Step 3 wrote, so the next run starts clean.
+6. **List your runs.** Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
 
     ```powershell
-    Remove-Item -Recurse -Force out
+    Get-ChildItem C:\FMWLabs\results\network-sd-wan-01-the-governor-before-the-traffic\lab1 -Name
+    ```
+
+    Expected output: one line per run, oldest first, the last one this run:
+
+    ```text
+    <run>
     ```
 
 ## Exercise: Lab 2, a test fabric {#nsw-m1-lab-2}
