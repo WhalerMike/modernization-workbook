@@ -15,13 +15,16 @@ $stubNames = @(
     'Get-DnsServerZone', 'Get-DnsServerResourceRecord', 'Get-DnsServerDnsSecZoneSetting', 'Get-DnsServerScavenging',
     'Get-DnsServerForwarder', 'Get-DhcpServerInDC', 'Get-DhcpServerv4Scope', 'Get-DhcpServerv4Reservation',
     'Get-DhcpServerv6Scope', 'Get-DhcpServerv4OptionValue', 'Get-DhcpServerv4Failover', 'Get-DhcpServerv4DnsSetting',
-    'Get-DhcpServerDnsCredential', 'Find-DbaInstance'
+    'Get-DhcpServerDnsCredential', 'Find-DbaInstance',
+    # CimCmdlets exists only on Windows: the server-service tests run on Linux too.
+    'Get-CimInstance', 'New-CimSessionOption', 'New-CimSession', 'Remove-CimSession'
 )
 $stubBody = {
     [CmdletBinding()]
     param($Filter, $LDAPFilter, $Identity, $Server, $Properties, $SearchBase, $SearchScope, $Domain, $DomainName,
         [switch]$All, $Guid, $ReportType, $ComputerName, $ZoneName, [switch]$Recursive, $Target, $ResultSetSize,
-        [switch]$IncludeDeletedObjects, $ScopeId, [switch]$Discover, $Type, $Name, $Service, $ResultPageSize)
+        [switch]$IncludeDeletedObjects, $ScopeId, [switch]$Discover, $Type, $Name, $Service, $ResultPageSize,
+        $ClassName, $Property, $OperationTimeoutSec, $CimSession, $Protocol, $SessionOption)
     throw "Stub $($MyInvocation.MyCommand.Name) was called without a mock."
 }
 foreach ($n in $stubNames) {
