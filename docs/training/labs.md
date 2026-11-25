@@ -231,6 +231,17 @@ Every lab opens with the list of every command it runs, in order: follow it top 
 
 : The Zero Trust Assessment: labs by module {.striped .hover}
 
+## The SD-WAN governor learning path {#network-sd-wan}
+
+[The learning path](network-sd-wan/index.md) · [its implementation guide](../books/guides/cisco-sdwan-implementation.md) · [the code: cisco-sdwan.zip](../../downloads/cisco-sdwan.zip)
+
+| Module | Lab 1, no tenant | Lab 2 |
+|---|---|---|
+| [Module 1: The governor before the traffic](network-sd-wan/01-the-governor-before-the-traffic.md) | [Lab 1](network-sd-wan/01-the-governor-before-the-traffic.md#nsw-m1-lab-1) | [Lab 2](network-sd-wan/01-the-governor-before-the-traffic.md#nsw-m1-lab-2) |
+| [Module 2: Gate 0: the ED 26-03 and KEV floor](network-sd-wan/02-gate-0-the-ed-26-03-and-kev-floor.md) | [Lab 1](network-sd-wan/02-gate-0-the-ed-26-03-and-kev-floor.md#nsw-m2-lab-1) | [Lab 2](network-sd-wan/02-gate-0-the-ed-26-03-and-kev-floor.md#nsw-m2-lab-2) |
+
+: The SD-WAN governor: labs by module {.striped .hover}
+
 ## What Lab 2 needs {#lab-2-environments}
 
 Each Lab 2 names its environment and its prerequisites in its first paragraph. Use synthetic data like the kit's fixtures, and never production:
@@ -238,4 +249,5 @@ Each Lab 2 names its environment and its prerequisites in its first paragraph. U
 - **A Microsoft Entra test tenant**, in the worldwide or GCC cloud for learning, with the licenses the lab names; then rehearse in the agency's own cloud, as [Book 16's two-step lab path](../books/b16-people/06-vendor-training-and-labs.md) describes. Some labs add an Azure test subscription or a disposable server.
 - **A ServiceNow Personal Developer Instance**, free to members of ServiceNow's Developer Program, or a sub-production instance. [Chapter 01 of Building Ticket-to-Machine](../project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.md#lab-2-a-servicenow-developer-instance) says how its instance is reset.
 - **A SailPoint Identity Security Cloud sandbox tenant**, the agency's own.
+- **A Catalyst SD-WAN test fabric**: a Manager in a lab overlay or a vendor sandbox, with a read-only Manager account, for the SD-WAN governor path.
 

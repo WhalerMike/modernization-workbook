@@ -44,13 +44,24 @@ python python\sdwan_evidence.py --config config\config.json
 - The loader refuses config keys that look like secrets, and refuses a Manager URL that isn't `https://`. Certificate verification is always on; set `ca_bundle` to your enterprise CA bundle if Manager's web certificate is issued by it, as CISA's hardening guidance asks.
 - Run it from a host on the management network. Book 09 and the hardening guidance put Manager's management interface on an isolated management VLAN, reachable only from jump hosts.
 
+## Replay it, with no fabric
+
+`--replay DIR` evaluates saved Manager responses instead of signing in: `DIR/devices.json` and `DIR/auditlog.json`, the bodies of the two `GET` calls above as Manager returns them. Nothing connects to anything and no credentials are read. The evaluation time is the capture's own `header.generatedOn`, so the same capture always gives the same files, byte for byte, on Windows and Linux. `--out DIR` sets the output folder (otherwise it is the config's `output_dir`, relative to the config file).
+
+```text
+python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures --out out
+python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures/after-upgrade --out out-after
+```
+
+The first capture is a fictional fabric with a Validator below the CVE-2026-20245 fix and a Controller nobody expected, so it prints `gate: fail` and exits `2`. The second is the same fabric a week later, upgraded and with the extra Controller gone, so it prints `gate: pass` and exits `0`. The [Network and SD-WAN learning path](../../docs/training/network-sd-wan/index.md) runs both in its labs. Replay also lets you re-evaluate a capture you saved from your own Manager against a newer `ed-26-03-fixed-releases.json`.
+
 ## Test it
 
 ```text
 python -m pytest -q -p no:cacheprovider tests
 ```
 
-The tests answer every HTTP call from `tests/fixtures/` and cover the release logic, the read-only guard, both sign-in modes, the audit query, the end-to-end output and the configuration checks. They prove the code does what it says against the fixtures; they don't prove the fixtures match your Manager release.
+The tests answer every HTTP call from `tests/fixtures/` and cover the release logic, the read-only guard, both sign-in modes, the audit query, the end-to-end output, replay and the configuration checks. They prove the code does what it says against the fixtures; they don't prove the fixtures match your Manager release.
 
 ## Known limits
 
@@ -67,4 +78,5 @@ examples/cisco-sdwan/
   python/sdwan_evidence.py            the collector (read-only)
   tests/test_sdwan_evidence.py        pytest, mocked HTTP
   tests/fixtures/                     device list, audit log and JWT sign-in samples
+  tests/fixtures/after-upgrade/       the same fabric after the upgrade, for replay
 ```
