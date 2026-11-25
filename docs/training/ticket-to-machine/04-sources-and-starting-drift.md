@@ -72,27 +72,31 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\ticket-to-machine-code\servicenow-sailpoint
 
+$Run = "C:\FMWLabs\results\ticket-to-machine-04-sources-and-starting-drift\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
 # Step 1
 python -m pytest -q -p no:cacheprovider tests/python/test_identity_drift.py tests/python/test_drift_compare.py
 
 # Step 2
-python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract.csv --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --entra-audit-json tests/fixtures/entra_audit.json --out-json out/day1.json --out-csv out/day1.csv
+python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract.csv --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --entra-audit-json tests/fixtures/entra_audit.json --out-json "$Run\day1.json" --out-csv "$Run\day1.csv"
 
 # Step 2
-python -c "import csv, json; [print(r['drift_class'], r['system'], r['employee_id'], r['attribute'], r['expected'], '->', r['observed'], json.loads(r['evidence']).get('initiated_by', '')) for r in csv.DictReader(open('out/day1.csv', encoding='utf-8')) if r['employee_id'] in ('E1002', 'E1004')]"
+python -c "import csv, json, sys; [print(r['drift_class'], r['system'], r['employee_id'], r['attribute'], r['expected'], '->', r['observed'], json.loads(r['evidence']).get('initiated_by', '')) for r in csv.DictReader(open(sys.argv[1], encoding='utf-8')) if r['employee_id'] in ('E1002', 'E1004')]" "$Run\day1.csv"
 
 # Step 3
-python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract_day2.csv --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --entra-audit-json tests/fixtures/entra_audit.json --out-json out/day2.json --out-csv out/day2.csv
+python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract_day2.csv --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --entra-audit-json tests/fixtures/entra_audit.json --out-json "$Run\day2.json" --out-csv "$Run\day2.csv"
 
 # Step 4
-python clients/python/drift_compare.py --previous out/day1.json --current out/day2.json
+python clients/python/drift_compare.py --previous "$Run\day1.json" --current "$Run\day2.json"
 
 # Step 5
-python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract_day2.csv --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --out-json out/day2-noaudit.json --out-csv out/day2-noaudit.csv
-python clients/python/drift_compare.py --previous out/day1.json --current out/day2-noaudit.json
+python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract_day2.csv --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --out-json "$Run\day2-noaudit.json" --out-csv "$Run\day2-noaudit.csv"
+python clients/python/drift_compare.py --previous "$Run\day1.json" --current "$Run\day2-noaudit.json"
 
 # Step 6
-Remove-Item -Recurse -Force out
+Get-ChildItem C:\FMWLabs\results\ticket-to-machine-04-sources-and-starting-drift\lab1 -Name
 ```
 
 :::
@@ -107,7 +111,23 @@ Every step runs in PowerShell 7, the Python commands included, so you can follow
 Set-Location C:\FMWLabs\ticket-to-machine-code\servicenow-sailpoint
 ```
 
-Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/servicenow-sailpoint`; every step except the last one runs the same there, and in Git Bash the last one is `rm -rf out`. In a clone of the repository, use the `examples` folder of the same name.
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
+
+```powershell
+$Run = "C:\FMWLabs\results\ticket-to-machine-04-sources-and-starting-drift\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\ticket-to-machine-04-sources-and-starting-drift\lab1\<run>
+```
+
+The run's date is only the folder's name. The data's dates are the fixtures' own, which stay the same, so every run's results match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
+
+Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/servicenow-sailpoint`, make the run folder with `Run=/c/FMWLabs/results/ticket-to-machine-04-sources-and-starting-drift/lab1/$(date -u +%Y-%m-%dT%H%M%SZ); mkdir -p "$Run"`, and Steps 1 to 5 run the same there, with `/` in place of `\` after `$Run`; list the runs with `ls`. In a clone of the repository, use the `examples` folder of the same name.
 
 1. Run the drift tests.
 
@@ -120,7 +140,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/ser
 2. Run day one.
 
    ```powershell
-   python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract.csv --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --entra-audit-json tests/fixtures/entra_audit.json --out-json out/day1.json --out-csv out/day1.csv
+   python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract.csv --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --entra-audit-json tests/fixtures/entra_audit.json --out-json "$Run\day1.json" --out-csv "$Run\day1.csv"
    ```
 
    Expected output:
@@ -138,15 +158,15 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/ser
        "credential_drift": "needs the card management system and Intune certificate reports",
        "schema_drift": "needs the provisioning middleware's validation output"
      },
-     "out_json": "out/day1.json",
-     "out_csv": "out/day1.csv"
+     "out_json": "C:\\FMWLabs\\results\\ticket-to-machine-04-sources-and-starting-drift\\lab1\\<run>\\day1.json",
+     "out_csv": "C:\\FMWLabs\\results\\ticket-to-machine-04-sources-and-starting-drift\\lab1\\<run>\\day1.csv"
    }
    ```
 
-   Print Erin's (`E1004`) and Carol's (`E1002`) rows from `out/day1.csv`, to find Erin's department and Carol's enabled accounts:
+   Print Erin's (`E1004`) and Carol's (`E1002`) rows from `day1.csv`, to find Erin's department and Carol's enabled accounts:
 
    ```powershell
-   python -c "import csv, json; [print(r['drift_class'], r['system'], r['employee_id'], r['attribute'], r['expected'], '->', r['observed'], json.loads(r['evidence']).get('initiated_by', '')) for r in csv.DictReader(open('out/day1.csv', encoding='utf-8')) if r['employee_id'] in ('E1002', 'E1004')]"
+   python -c "import csv, json, sys; [print(r['drift_class'], r['system'], r['employee_id'], r['attribute'], r['expected'], '->', r['observed'], json.loads(r['evidence']).get('initiated_by', '')) for r in csv.DictReader(open(sys.argv[1], encoding='utf-8')) if r['employee_id'] in ('E1002', 'E1004')]" "$Run\day1.csv"
    ```
 
    Expected output:
@@ -163,7 +183,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/ser
 3. Run day two, after HR's correction.
 
    ```powershell
-   python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract_day2.csv --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --entra-audit-json tests/fixtures/entra_audit.json --out-json out/day2.json --out-csv out/day2.csv
+   python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract_day2.csv --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --entra-audit-json tests/fixtures/entra_audit.json --out-json "$Run\day2.json" --out-csv "$Run\day2.csv"
    ```
 
    Expected output:
@@ -181,8 +201,8 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/ser
        "credential_drift": "needs the card management system and Intune certificate reports",
        "schema_drift": "needs the provisioning middleware's validation output"
      },
-     "out_json": "out/day2.json",
-     "out_csv": "out/day2.csv"
+     "out_json": "C:\\FMWLabs\\results\\ticket-to-machine-04-sources-and-starting-drift\\lab1\\<run>\\day2.json",
+     "out_csv": "C:\\FMWLabs\\results\\ticket-to-machine-04-sources-and-starting-drift\\lab1\\<run>\\day2.csv"
    }
    ```
 
@@ -191,7 +211,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/ser
 4. Compare the two days.
 
    ```powershell
-   python clients/python/drift_compare.py --previous out/day1.json --current out/day2.json
+   python clients/python/drift_compare.py --previous "$Run\day1.json" --current "$Run\day2.json"
    ```
 
    Expected output:
@@ -206,8 +226,8 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/ser
 5. Run day two without the audit, then compare.
 
    ```powershell
-   python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract_day2.csv --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --out-json out/day2-noaudit.json --out-csv out/day2-noaudit.csv
-   python clients/python/drift_compare.py --previous out/day1.json --current out/day2-noaudit.json
+   python clients/python/identity_drift.py --hr-csv tests/fixtures/hr_extract_day2.csv --config tests/fixtures/config.fixtures.json --graph-users-json tests/fixtures/graph_users.json --isc-identities-json tests/fixtures/isc_identities.json --isc-accounts-json tests/fixtures/isc_uncorrelated_accounts.json --out-json "$Run\day2-noaudit.json" --out-csv "$Run\day2-noaudit.csv"
+   python clients/python/drift_compare.py --previous "$Run\day1.json" --current "$Run\day2-noaudit.json"
    ```
 
    Expected output of the first command:
@@ -225,8 +245,8 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/ser
        "schema_drift": "needs the provisioning middleware's validation output",
        "unauthorized_write": "no Entra audit extract supplied (--entra-audit-json or --include-audit)"
      },
-     "out_json": "out/day2-noaudit.json",
-     "out_csv": "out/day2-noaudit.csv"
+     "out_json": "C:\\FMWLabs\\results\\ticket-to-machine-04-sources-and-starting-drift\\lab1\\<run>\\day2-noaudit.json",
+     "out_csv": "C:\\FMWLabs\\results\\ticket-to-machine-04-sources-and-starting-drift\\lab1\\<run>\\day2-noaudit.csv"
    }
    ```
 
@@ -238,10 +258,16 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/ticket-to-machine-code/ser
 
    The first command lists `unauthorized_write` under `not_computed`, so the second refuses to compare the runs.
 
-6. Delete the `out` folder, so the next run starts clean.
+6. Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
 
    ```powershell
-   Remove-Item -Recurse -Force out
+   Get-ChildItem C:\FMWLabs\results\ticket-to-machine-04-sources-and-starting-drift\lab1 -Name
+   ```
+
+   Expected output: one line per run, oldest first, the last one this run:
+
+   ```text
+   <run>
    ```
 
 **Check your work:** you can say what changed between two runs, and why a run that skipped a class can't be compared with one that didn't.

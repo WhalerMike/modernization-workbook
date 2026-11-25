@@ -9,7 +9,7 @@
     accounts reconciled with an Active Directory read of every gMSA and dMSA; certifications due
     by risk tier (WD-166) and each REVOKE turned into a typed ServiceNow finding; Defender for
     Identity's service account list compared with the register; and the 90-day retirement window
-    for disabled accounts (WD-167). Findings NPI-STD-01 to NPI-STD-29.
+    for disabled accounts (WD-167). Findings NPI-STD-01 to NPI-STD-30.
 
     Read only. Its one Active Directory read is declared in config/calls-ch12.json; it writes
     nothing to any system. A run folder holds findings.json, the generated files, evidence.json
@@ -36,6 +36,14 @@ $script:Task = 'msa-standard'
 $script:MaxNameLength = 15
 # WD-173: lowercase letters and digits, starting with a letter, and a role suffix only from this list.
 $script:RoleSuffixes = @('sql', 'agt', 'rs', 'is', 'web', 'svc', 'task')
+# WD-175: the program's tag keys, written as key=value pairs in each account's AD description,
+# and the values the closed keys take. SailPoint is the source for owners; AD carries a copy.
+$script:TagKeys = @('SystemId', 'Owner1', 'Owner2', 'Sponsor', 'Environment', 'Tier', 'EntraTarget', 'Request', 'Change')
+$script:TagValues = @{
+    Environment = @('prod', 'test', 'dev')
+    Tier        = @('R1', 'R2', 'R3')
+    EntraTarget = @('ManagedIdentity', 'AppRegistrationFederated', 'AppRegistrationCertificate', 'GmsaPlusAppRegistration', 'KeepKerberos', 'Retire', 'Undecided')
+}
 $script:AccountTypes = @('gMSA', 'dMSA')
 $script:Workloads = @('Service', 'IisAppPool', 'ScheduledTask')
 $script:RiskTiers = [ordered]@{ R1 = 3; R2 = 6; R3 = 12 }   # WD-166: months between certifications
@@ -373,6 +381,43 @@ function Test-NpiStdEncryptionAes256Only {
     $v.Count -eq 1 -and $v[0] -eq 'AES256'
 }
 
+function ConvertTo-NpiStdTagString {
+    <#
+    .SYNOPSIS
+        Writes the program's tags (WD-175) as the AD description: key=value pairs in the fixed key
+        order, joined by '; '. Throws on a missing key, a value outside a closed list, or a value with
+        '=' or ';' in it.
+    .EXAMPLE
+        ConvertTo-NpiStdTagString @{ SystemId = 'SYS-0412'; Owner1 = 'a@contoso.example'; Owner2 = 'b@contoso.example'; Sponsor = 'c@contoso.example'; Environment = 'prod'; Tier = 'R2'; EntraTarget = 'ManagedIdentity'; Request = 'REQ-2026-0201'; Change = 'CHG0041201' }
+    #>
+    param([Parameter(Mandatory)][System.Collections.IDictionary]$Tags)
+    $parts = foreach ($k in $script:TagKeys) {
+        $v = "$($Tags[$k])".Trim()
+        if (-not $v) { throw "Tag $k has no value (WD-175)." }
+        if ($v -match '[=;]') { throw "Tag $k's value '$v' contains '=' or ';'." }
+        if ($script:TagValues.ContainsKey($k) -and $v -cnotin $script:TagValues[$k]) { throw "Tag $k's value '$v' isn't one of $($script:TagValues[$k] -join ', ') (WD-175)." }
+        "$k=$v"
+    }
+    $parts -join '; '
+}
+
+function ConvertFrom-NpiStdTagString {
+    <#
+    .SYNOPSIS
+        Reads the program's tags back from an AD description. Returns an ordered dictionary, empty
+        when the description carries no SystemId= pair (an account Chapter 06 hasn't tagged yet).
+    .EXAMPLE
+        ConvertFrom-NpiStdTagString 'SystemId=SYS-0412; Owner1=a@contoso.example; Tier=R2'
+    #>
+    param([AllowEmptyString()][string]$Description)
+    $t = [ordered]@{}
+    if ("$Description" -notmatch '(^|;\s*)SystemId=') { return $t }
+    foreach ($pair in ("$Description" -split ';')) {
+        if ($pair -match '^\s*([A-Za-z0-9]+)=(.*?)\s*$') { $t[$Matches[1]] = $Matches[2] }
+    }
+    $t
+}
+
 function Test-NpiStdReconciliation {
     <#
     .SYNOPSIS
@@ -381,7 +426,8 @@ function Test-NpiStdReconciliation {
         NPI-STD-19: not aggregated, no owner correlated, retrievers not one DL group, password
         interval not 30 days, not AES256 only, no SPN and not outbound-only without a recorded
         reason, a privileged group, outside the service-account OU, unexplained (no request in the
-        register: drift), and an aggregated account that isn't in AD. The retriever rule applies to
+        register: drift), and an aggregated account that isn't in AD; NPI-STD-30, AD tags (WD-175)
+        that disagree with the register. The retriever rule applies to
         gMSAs only: a dMSA learns its hosts during its migration (Learn).
     .EXAMPLE
         $r = Test-NpiStdReconciliation -Ad $in.Ad -SailPoint $in.SailPoint -Register $in.Register -Standard $std -OutboundOnlyReasons @{}
@@ -445,6 +491,22 @@ function Test-NpiStdReconciliation {
 
         $requestId = if ($r) { "$($r.RequestId)" } else { '' }
         if (-not $requestId) { $f.Add((New-NpiFinding 'NPI-STD-18' 'Finding' $name $lbl 'Unexplained: no approved request in the register for an account that exists in AD. Drift (Book 13, Chapter 04): find the change that made it, or open a request')) }
+
+        # NPI-STD-30: the AD tags (WD-175) disagree with the register, which follows SailPoint. An
+        # account with no tags yet isn't a finding here: Chapter 06's plan doesn't write them yet.
+        $tags = ConvertFrom-NpiStdTagString "$(Get-NpiStdProp $a 'description' '')"
+        if ($tags.Count -and $r) {
+            $d = [Collections.Generic.List[string]]::new()
+            $regOwners = @("$($r.Owners)" -split ';' | ForEach-Object { $_.Trim().ToLowerInvariant() } | Where-Object { $_ } | Sort-Object)
+            $tagOwners = @(@($tags['Owner1'], $tags['Owner2']) | ForEach-Object { "$_".Trim().ToLowerInvariant() } | Where-Object { $_ } | Sort-Object)
+            if (($regOwners -join ';') -ne ($tagOwners -join ';')) { $d.Add("Owner1/Owner2 '$($tagOwners -join ', ')' but the register says '$($regOwners -join ', ')'") }
+            if ("$($tags['Sponsor'])".ToLowerInvariant() -ne "$($r.Sponsor)".ToLowerInvariant()) { $d.Add("Sponsor '$($tags['Sponsor'])' but the register says '$($r.Sponsor)'") }
+            if ("$($tags['Tier'])" -ne "$($r.RiskTier)") { $d.Add("Tier '$($tags['Tier'])' but the register says '$($r.RiskTier)'") }
+            if ("$($tags['Request'])" -ne "$($r.RequestId)") { $d.Add("Request '$($tags['Request'])' but the register says '$($r.RequestId)'") }
+            foreach ($k in $script:TagKeys) { if (-not "$($tags[$k])") { $d.Add("no $k tag") } }
+            foreach ($k in $script:TagValues.Keys | Sort-Object) { if ("$($tags[$k])" -and "$($tags[$k])" -cnotin $script:TagValues[$k]) { $d.Add("$k '$($tags[$k])' isn't one of $($script:TagValues[$k] -join ', ')") } }
+            if ($d.Count) { $f.Add((New-NpiFinding 'NPI-STD-30' 'Finding' $name $lbl "AD tags disagree with the register, which follows SailPoint (WD-175): $($d -join '; '). Rewrite the description through an approved Chapter 06 plan")) }
+        }
 
         $rows.Add([pscustomobject][ordered]@{
                 Account = $name; Type = $type; Enabled = (Get-NpiStdProp $a 'enabled' $null); RequestId = $requestId; Aggregated = [bool]$s; Owner = $owner
@@ -689,6 +751,7 @@ function ConvertTo-NpiStdAdRecord {
         distinguishedName                          = "$(Get-NpiStdProp $Account 'DistinguishedName' '')"
         'msDS-ManagedAccountPrecededByLink'        = $(if ("$(Get-NpiStdProp $Account 'msDS-ManagedAccountPrecededByLink' '')") { "$(Get-NpiStdProp $Account 'msDS-ManagedAccountPrecededByLink')" } else { $null })
         lastLogonTimestamp                         = $llText
+        description                                = "$(Get-NpiStdProp $Account 'Description' '')"
         RestrictToOutboundAuthenticationOnly       = $null
     }
 }
@@ -852,7 +915,7 @@ function Export-NpiStdRun {
     Get-Item -LiteralPath (Join-Path $out 'manifest.json')
 }
 
-Export-ModuleMember -Function ConvertTo-NpiStdDate, Get-NpiStdRetrieverGroupDn, Get-NpiStdCallList, Get-NpiStdRequiredRight, Get-NpiStdRequirement,
+Export-ModuleMember -Function ConvertTo-NpiStdDate, ConvertTo-NpiStdTagString, ConvertFrom-NpiStdTagString, Get-NpiStdRetrieverGroupDn, Get-NpiStdCallList, Get-NpiStdRequiredRight, Get-NpiStdRequirement,
     Import-NpiStdStandard, Import-NpiStdInput, Test-NpiStdRequest, ConvertTo-NpiStdReplatformCsv, Test-NpiStdReconciliation, New-NpiStdServiceNowFinding,
     Test-NpiStdCertification, Test-NpiStdMdi, Get-NpiStdRetirementList, ConvertTo-NpiStdAdRecord, Export-NpiStdAdManagedAccount, New-NpiStdLiveAdInvoker,
     Invoke-NpiStdRun, Export-NpiStdRun

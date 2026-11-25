@@ -215,7 +215,7 @@ class NonSiteTasks(unittest.TestCase):
     def test_the_runner_adds_the_kits_that_test_a_kits_output(self):
         import run_example_tests as ret
         self.assertEqual(ret.expand(["non-person-identity", "privileged-access"]),
-                         ["non-person-identity", "drift-pipeline", "privileged-access"])
+                         ["non-person-identity", "drift-pipeline", "msa-request-pack", "privileged-access"])
 
     def test_the_runner_finds_a_kits_deploy_suite(self):
         import run_example_tests as ret

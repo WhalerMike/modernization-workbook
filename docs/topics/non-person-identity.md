@@ -51,6 +51,7 @@ The implementation guides, the developer workbook and its code.
 | [Building Non-Person Identity](../project-plans/developer-workbooks/non-person-identity/index.md) | A developer workbook for the Non-Person Identity Modernization project: a code-first companion for the developers who build its register of service accounts, service principals, managed identities and AI agents, the ownership check and… |
 | [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../books/guides/service-account-migration.md) | One service account at a time, from a user account to a gMSA, a dMSA or a Microsoft Entra workload identity; the detail under the implementation guide's Steps 2 and 5. |
 | [Non-Person Identity: Zero Trust, SASE and Other Clouds](../books/guides/non-person-identity-zero-trust-sase.md) | What keeping a service account costs in Zero Trust and SASE terms, against moving the workload to a Microsoft Entra workload identity, including AWS GovCloud (US) and Oracle Cloud. |
+| [Requesting a Managed Service Account](../books/guides/msa-request-pack.md) | The forms, CSV template and checker for requesting a gMSA or dMSA, and the tags every account carries for its move to Entra. |
 
 : Build {.striped .hover}
 
@@ -136,9 +137,11 @@ Word editions and code, rebuilt on every site deploy.
 |---|---|
 | [non-person-identity-implementation-guide.docx](../../downloads/non-person-identity-implementation-guide.docx) | Word edition: Non-Person Identity: An Implementation Guide |
 | [non-person-identity-zero-trust-sase-guide.docx](../../downloads/non-person-identity-zero-trust-sase-guide.docx) | Word edition: Non-Person Identity: Zero Trust, SASE and Other Clouds |
+| [msa-request-pack-guide.docx](../../downloads/msa-request-pack-guide.docx) | Word edition: Requesting a Managed Service Account |
 | [building-non-person-identity-bundle.docx](../../downloads/building-non-person-identity-bundle.docx) | Word edition: Building Non-Person Identity |
 | [b17-ai-identity-bundle.docx](../../downloads/b17-ai-identity-bundle.docx) | Word edition: Book 17 — AI Identity Governance |
 | [non-person-identity-code.zip](../../downloads/non-person-identity-code.zip) | Code: the scripts, tests and fixtures, as committed |
+| [msa-request-pack.zip](../../downloads/msa-request-pack.zip) | Code: the scripts, tests and fixtures, as committed |
 | [validation-kit.zip](../../downloads/validation-kit.zip) | Code: the scripts, tests and fixtures, as committed |
 
 : Downloads {.striped .hover}
