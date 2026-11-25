@@ -77,30 +77,34 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\cisco-sdwan
 
+$Run = "C:\FMWLabs\results\network-sd-wan-03-the-hunt-hardening-and-logs-off-the-box\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
 # Step 1: Replay both captures
-python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures --out out
-python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures/after-upgrade --out out-after
+python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures --out "$Run\out"
+python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures/after-upgrade --out "$Run\out-after"
 
 # Step 2: Look at every gate row for the unexpected Controller
-Import-Csv out/ed-26-03-gate.csv | Where-Object system_ip -eq '10.255.0.99' | Group-Object record_kind, status -NoElement | Sort-Object Name | Format-Table Name, Count
+Import-Csv "$Run\out\ed-26-03-gate.csv" | Where-Object system_ip -eq '10.255.0.99' | Group-Object record_kind, status -NoElement | Sort-Object Name | Format-Table Name, Count
 
 # Step 3: Read what Manager says about it
 $d = Get-Content -Raw tests/fixtures/devices.json | ConvertFrom-Json
 $d.data | Where-Object 'system-ip' -eq '10.255.0.99' | Format-List 'host-name', 'system-ip', 'device-type', 'site-id', 'device-model', 'board-serial', version
 
 # Step 4: Review the October audit records
-$r = Get-Content -Raw out/sdwan-evidence.json | ConvertFrom-Json
+$r = Get-Content -Raw "$Run\out\sdwan-evidence.json" | ConvertFrom-Json
 $r.records | Where-Object record_kind -eq 'management_audit' | Format-List actor, source_ip, module, feature, message, @{ n = 'review_flags'; e = { $_.review_flags -join ', ' } }, @{ n = 'controls'; e = { $_.control_refs -join ', ' } }
 
 # Step 5: Read the management network the flag is judged against
 (Get-Content -Raw config/config.example.json | ConvertFrom-Json).management_source_cidrs
 
 # Step 6: Review the November audit records
-$a = Get-Content -Raw out-after/sdwan-evidence.json | ConvertFrom-Json
+$a = Get-Content -Raw "$Run\out-after\sdwan-evidence.json" | ConvertFrom-Json
 $a.records | Where-Object record_kind -eq 'management_audit' | Format-Table actor, source_ip, feature, @{ n = 'review_flags'; e = { $_.review_flags -join ', ' } } -Wrap
 
-# Step 7: Clean up
-Remove-Item -Recurse -Force out, out-after
+# Step 7: List your runs
+Get-ChildItem C:\FMWLabs\results\network-sd-wan-03-the-hunt-hardening-and-logs-off-the-box\lab1 -Name
 ```
 
 :::
@@ -113,26 +117,42 @@ Every step runs in PowerShell 7, the Python commands included, so you can follow
 Set-Location C:\FMWLabs\cisco-sdwan
 ```
 
-Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`; the `python` commands run the same there, and every other command needs PowerShell 7 (type `pwsh` to start it). In a clone of the repository, use the `examples` folder of the same name.
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
+
+```powershell
+$Run = "C:\FMWLabs\results\network-sd-wan-03-the-hunt-hardening-and-logs-off-the-box\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\network-sd-wan-03-the-hunt-hardening-and-logs-off-the-box\lab1\<run>
+```
+
+The run's date is only the folder's name. The data's date is the capture's own time, which stays the same, so every run's findings match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
+
+Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`, make the run folder with `Run=/c/FMWLabs/results/network-sd-wan-03-the-hunt-hardening-and-logs-off-the-box/lab1/$(date -u +%Y-%m-%dT%H%M%SZ); mkdir -p "$Run"`, and the `python` commands run the same there; every other command needs PowerShell 7 (type `pwsh` to start it). In a clone of the repository, use the `examples` folder of the same name.
 
 1. **Replay both captures.**
 
     ```powershell
-    python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures --out out
-    python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures/after-upgrade --out out-after
+    python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures --out "$Run\out"
+    python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures/after-upgrade --out "$Run\out-after"
     ```
 
     Expected output:
 
     ```text
-    gate: fail  evidence: out/sdwan-evidence.json  findings: out/ed-26-03-gate.csv
-    gate: pass  evidence: out-after/sdwan-evidence.json  findings: out-after/ed-26-03-gate.csv
+    gate: fail  evidence: C:/FMWLabs/results/network-sd-wan-03-the-hunt-hardening-and-logs-off-the-box/lab1/<run>/out/sdwan-evidence.json  findings: C:/FMWLabs/results/network-sd-wan-03-the-hunt-hardening-and-logs-off-the-box/lab1/<run>/out/ed-26-03-gate.csv
+    gate: pass  evidence: C:/FMWLabs/results/network-sd-wan-03-the-hunt-hardening-and-logs-off-the-box/lab1/<run>/out-after/sdwan-evidence.json  findings: C:/FMWLabs/results/network-sd-wan-03-the-hunt-hardening-and-logs-off-the-box/lab1/<run>/out-after/ed-26-03-gate.csv
     ```
 
 2. **Look at every gate row for the unexpected Controller.**
 
     ```powershell
-    Import-Csv out/ed-26-03-gate.csv | Where-Object system_ip -eq '10.255.0.99' | Group-Object record_kind, status -NoElement | Sort-Object Name | Format-Table Name, Count
+    Import-Csv "$Run\out\ed-26-03-gate.csv" | Where-Object system_ip -eq '10.255.0.99' | Group-Object record_kind, status -NoElement | Sort-Object Name | Format-Table Name, Count
     ```
 
     Expected output:
@@ -170,7 +190,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`; the `python`
 4. **Review the October audit records.** Each is one Manager audit-log entry, with the kit's review flags.
 
     ```powershell
-    $r = Get-Content -Raw out/sdwan-evidence.json | ConvertFrom-Json
+    $r = Get-Content -Raw "$Run\out\sdwan-evidence.json" | ConvertFrom-Json
     $r.records | Where-Object record_kind -eq 'management_audit' | Format-List actor, source_ip, module, feature, message, @{ n = 'review_flags'; e = { $_.review_flags -join ', ' } }, @{ n = 'controls'; e = { $_.control_refs -join ', ' } }
     ```
 
@@ -213,7 +233,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`; the `python`
 6. **Review the November audit records.**
 
     ```powershell
-    $a = Get-Content -Raw out-after/sdwan-evidence.json | ConvertFrom-Json
+    $a = Get-Content -Raw "$Run\out-after\sdwan-evidence.json" | ConvertFrom-Json
     $a.records | Where-Object record_kind -eq 'management_audit' | Format-Table actor, source_ip, feature, @{ n = 'review_flags'; e = { $_.review_flags -join ', ' } } -Wrap
     ```
 
@@ -228,10 +248,16 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`; the `python`
 
     A named administrator, from the management network, signing in and running the upgrade. The sign-in still carries its flag: every successful sign-in is reviewed, not only the strange ones.
 
-7. **Clean up.** Delete the `out` and `out-after` folders Step 1 wrote, so the next run starts clean.
+7. **List your runs.** Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
 
     ```powershell
-    Remove-Item -Recurse -Force out, out-after
+    Get-ChildItem C:\FMWLabs\results\network-sd-wan-03-the-hunt-hardening-and-logs-off-the-box\lab1 -Name
+    ```
+
+    Expected output: one line per run, oldest first, the last one this run:
+
+    ```text
+    <run>
     ```
 
 ## Exercise: Lab 2, a test fabric {#nsw-m3-lab-2}

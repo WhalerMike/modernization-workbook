@@ -94,9 +94,13 @@ Every command in this lab, in order. Each step below says what it does and what 
 ```powershell
 Set-Location C:\FMWLabs\cisco-sdwan
 
+$Run = "C:\FMWLabs\results\network-sd-wan-04-path-classes-change-rings-and-the-evidence\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+
 # Step 1: Replay the October capture and count its evidence records
-python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures --out out
-$r = Get-Content -Raw out/sdwan-evidence.json | ConvertFrom-Json
+python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures --out "$Run\out"
+$r = Get-Content -Raw "$Run\out\sdwan-evidence.json" | ConvertFrom-Json
 $r.records | Group-Object record_kind -NoElement | Sort-Object Name | Format-Table Name, Count
 $r.records | ForEach-Object { $_.control_refs } | Group-Object -NoElement | Sort-Object Name | Format-Table Name, Count
 
@@ -104,19 +108,19 @@ $r.records | ForEach-Object { $_.control_refs } | Group-Object -NoElement | Sort
 'sdwan_decision records: {0}' -f @($r.records | Where-Object record_kind -eq 'sdwan_decision').Count
 
 # Step 3: Seal the November run
-python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures/after-upgrade --out out-after
-Get-FileHash out-after/sdwan-evidence.json, out-after/ed-26-03-gate.csv -Algorithm SHA256 | Select-Object @{ n = 'File'; e = { Split-Path $_.Path -Leaf } }, Algorithm, Hash | Export-Csv out-after/hashes.csv -NoTypeInformation
-Import-Csv out-after/hashes.csv | Format-List
+python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures/after-upgrade --out "$Run\out-after"
+Get-FileHash "$Run\out-after\sdwan-evidence.json", "$Run\out-after\ed-26-03-gate.csv" -Algorithm SHA256 | Select-Object @{ n = 'File'; e = { Split-Path $_.Path -Leaf } }, Algorithm, Hash | Export-Csv "$Run\out-after\hashes.csv" -NoTypeInformation
+Import-Csv "$Run\out-after\hashes.csv" | Format-List
 
 # Step 4: Prove the seal is repeatable
-python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures/after-upgrade --out out-again
-(Get-FileHash out-after/sdwan-evidence.json).Hash -eq (Get-FileHash out-again/sdwan-evidence.json).Hash
+python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures/after-upgrade --out "$Run\out-again"
+(Get-FileHash "$Run\out-after\sdwan-evidence.json").Hash -eq (Get-FileHash "$Run\out-again\sdwan-evidence.json").Hash
 
 # Step 5: Use the gate as ring 0's exit criterion
-foreach ($cap in 'tests/fixtures', 'tests/fixtures/after-upgrade') { python python/sdwan_evidence.py --config config/config.example.json --replay $cap --out out-ring | Out-Null; '{0,-28} exit {1}: {2}' -f $cap, $LASTEXITCODE, $(if ($LASTEXITCODE -eq 0) { 'ring 0 exit criterion met' } else { 'hold at ring 0' }) }
+foreach ($cap in 'tests/fixtures', 'tests/fixtures/after-upgrade') { python python/sdwan_evidence.py --config config/config.example.json --replay $cap --out "$Run\out-ring" | Out-Null; '{0,-28} exit {1}: {2}' -f $cap, $LASTEXITCODE, $(if ($LASTEXITCODE -eq 0) { 'ring 0 exit criterion met' } else { 'hold at ring 0' }) }
 
-# Step 6: Clean up
-Remove-Item -Recurse -Force out, out-after, out-again, out-ring
+# Step 6: List your runs
+Get-ChildItem C:\FMWLabs\results\network-sd-wan-04-path-classes-change-rings-and-the-evidence\lab1 -Name
 ```
 
 :::
@@ -129,13 +133,29 @@ Every step runs in PowerShell 7, the Python commands included, so you can follow
 Set-Location C:\FMWLabs\cisco-sdwan
 ```
 
-Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`; the `python` commands run the same there, and every other command needs PowerShell 7 (type `pwsh` to start it). In a clone of the repository, use the `examples` folder of the same name.
+Then make this run's results folder. Its name is the date and time you start, in UTC, so each run keeps its own results and running the lab again never overwrites them:
+
+```powershell
+$Run = "C:\FMWLabs\results\network-sd-wan-04-path-classes-change-rings-and-the-evidence\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+New-Item -ItemType Directory -Path $Run -Force | Out-Null
+$Run
+```
+
+Expected output, where `<run>` is your start time, such as `2026-11-25T143005Z`:
+
+```text
+C:\FMWLabs\results\network-sd-wan-04-path-classes-change-rings-and-the-evidence\lab1\<run>
+```
+
+The run's date is only the folder's name. The data's date is the capture's own time, which stays the same, so every run's findings match this page. The results folder sits outside the kit, so unzipping a newer copy of the kit never touches it.
+
+Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`, make the run folder with `Run=/c/FMWLabs/results/network-sd-wan-04-path-classes-change-rings-and-the-evidence/lab1/$(date -u +%Y-%m-%dT%H%M%SZ); mkdir -p "$Run"`, and the `python` commands run the same there; every other command needs PowerShell 7 (type `pwsh` to start it). In a clone of the repository, use the `examples` folder of the same name.
 
 1. **Replay the October capture and count its evidence records.**
 
     ```powershell
-    python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures --out out
-    $r = Get-Content -Raw out/sdwan-evidence.json | ConvertFrom-Json
+    python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures --out "$Run\out"
+    $r = Get-Content -Raw "$Run\out\sdwan-evidence.json" | ConvertFrom-Json
     $r.records | Group-Object record_kind -NoElement | Sort-Object Name | Format-Table Name, Count
     $r.records | ForEach-Object { $_.control_refs } | Group-Object -NoElement | Sort-Object Name | Format-Table Name, Count
     ```
@@ -143,7 +163,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`; the `python`
     Expected output:
 
     ```text
-    gate: fail  evidence: out/sdwan-evidence.json  findings: out/ed-26-03-gate.csv
+    gate: fail  evidence: C:/FMWLabs/results/network-sd-wan-04-path-classes-change-rings-and-the-evidence/lab1/<run>/out/sdwan-evidence.json  findings: C:/FMWLabs/results/network-sd-wan-04-path-classes-change-rings-and-the-evidence/lab1/<run>/out/ed-26-03-gate.csv
 
     Name             Count
     ----             -----
@@ -179,15 +199,15 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`; the `python`
 3. **Seal the November run.** The hashes are taken as soon as the files are written.
 
     ```powershell
-    python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures/after-upgrade --out out-after
-    Get-FileHash out-after/sdwan-evidence.json, out-after/ed-26-03-gate.csv -Algorithm SHA256 | Select-Object @{ n = 'File'; e = { Split-Path $_.Path -Leaf } }, Algorithm, Hash | Export-Csv out-after/hashes.csv -NoTypeInformation
-    Import-Csv out-after/hashes.csv | Format-List
+    python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures/after-upgrade --out "$Run\out-after"
+    Get-FileHash "$Run\out-after\sdwan-evidence.json", "$Run\out-after\ed-26-03-gate.csv" -Algorithm SHA256 | Select-Object @{ n = 'File'; e = { Split-Path $_.Path -Leaf } }, Algorithm, Hash | Export-Csv "$Run\out-after\hashes.csv" -NoTypeInformation
+    Import-Csv "$Run\out-after\hashes.csv" | Format-List
     ```
 
     Expected output:
 
     ```text
-    gate: pass  evidence: out-after/sdwan-evidence.json  findings: out-after/ed-26-03-gate.csv
+    gate: pass  evidence: C:/FMWLabs/results/network-sd-wan-04-path-classes-change-rings-and-the-evidence/lab1/<run>/out-after/sdwan-evidence.json  findings: C:/FMWLabs/results/network-sd-wan-04-path-classes-change-rings-and-the-evidence/lab1/<run>/out-after/ed-26-03-gate.csv
 
     File      : sdwan-evidence.json
     Algorithm : SHA256
@@ -203,14 +223,14 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`; the `python`
 4. **Prove the seal is repeatable.** Replay the same capture into a new folder and compare.
 
     ```powershell
-    python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures/after-upgrade --out out-again
-    (Get-FileHash out-after/sdwan-evidence.json).Hash -eq (Get-FileHash out-again/sdwan-evidence.json).Hash
+    python python/sdwan_evidence.py --config config/config.example.json --replay tests/fixtures/after-upgrade --out "$Run\out-again"
+    (Get-FileHash "$Run\out-after\sdwan-evidence.json").Hash -eq (Get-FileHash "$Run\out-again\sdwan-evidence.json").Hash
     ```
 
     Expected output:
 
     ```text
-    gate: pass  evidence: out-again/sdwan-evidence.json  findings: out-again/ed-26-03-gate.csv
+    gate: pass  evidence: C:/FMWLabs/results/network-sd-wan-04-path-classes-change-rings-and-the-evidence/lab1/<run>/out-again/sdwan-evidence.json  findings: C:/FMWLabs/results/network-sd-wan-04-path-classes-change-rings-and-the-evidence/lab1/<run>/out-again/ed-26-03-gate.csv
     True
     ```
 
@@ -219,7 +239,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`; the `python`
 5. **Use the gate as ring 0's exit criterion,** on both captures.
 
     ```powershell
-    foreach ($cap in 'tests/fixtures', 'tests/fixtures/after-upgrade') { python python/sdwan_evidence.py --config config/config.example.json --replay $cap --out out-ring | Out-Null; '{0,-28} exit {1}: {2}' -f $cap, $LASTEXITCODE, $(if ($LASTEXITCODE -eq 0) { 'ring 0 exit criterion met' } else { 'hold at ring 0' }) }
+    foreach ($cap in 'tests/fixtures', 'tests/fixtures/after-upgrade') { python python/sdwan_evidence.py --config config/config.example.json --replay $cap --out "$Run\out-ring" | Out-Null; '{0,-28} exit {1}: {2}' -f $cap, $LASTEXITCODE, $(if ($LASTEXITCODE -eq 0) { 'ring 0 exit criterion met' } else { 'hold at ring 0' }) }
     ```
 
     Expected output:
@@ -231,10 +251,16 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/cisco-sdwan`; the `python`
 
     The exit code is one of ring 0's criteria, not all of them: the hunt, the hardening record and the logs off the box (Module 3) close the rest.
 
-6. **Clean up.** Delete the four folders this lab wrote, so the next run starts clean.
+6. **List your runs.** Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
 
     ```powershell
-    Remove-Item -Recurse -Force out, out-after, out-again, out-ring
+    Get-ChildItem C:\FMWLabs\results\network-sd-wan-04-path-classes-change-rings-and-the-evidence\lab1 -Name
+    ```
+
+    Expected output: one line per run, oldest first, the last one this run:
+
+    ```text
+    <run>
     ```
 
 ## Exercise: Lab 2, a test fabric {#nsw-m4-lab-2}
