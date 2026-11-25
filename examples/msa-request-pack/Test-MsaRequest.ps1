@@ -2,7 +2,7 @@
 <#
 .SYNOPSIS
     Checks filled-in managed service account requests (request_template.csv) before they're submitted,
-    and writes each request's AD tags and Entra custom security attributes.
+    and writes each request's AD tags and the same tags for its Entra identity.
 .DESCRIPTION
     Runs the Non-Person Identity kit's Chapter 12 request check (NPI-STD-03 to NPI-STD-09: the name
     standard, two owners and a sponsor, the hosts, SPNs and outbound-only, the dMSA rules and the other
@@ -13,7 +13,12 @@
     For each row it writes, under -OutputPath:
       <RequestId>/request.json                         Chapter 12's request import format, status SUBMITTED
       <RequestId>/ad-description.txt                    the tags as the account's AD description
-      <RequestId>/entra-custom-security-attributes.json the same tags for the Entra identity it moves to
+      <RequestId>/entra-tags.json                       the same tags for the Entra identity it moves to, as GCC
+                                                        holds them until the tenant check confirms custom security
+                                                        attributes (WD-176): the service principal's tags and notes,
+                                                        and Azure resource tags for a managed identity
+      <RequestId>/entra-custom-security-attributes.json the same tags as custom security attributes, the target
+                                                        once the tenant check confirms them
     and findings.json for all rows. It exits 1 when any row has a Finding.
 
     Read only: it reads the CSV and writes files. It calls no system.
@@ -92,6 +97,15 @@ foreach ($w in $requests) {
         foreach ($k in 'SystemId', 'Owner1', 'Owner2', 'Sponsor', 'Environment', 'Tier', 'EntraTarget') { $csa[$k] = $tags[$k] }
         [ordered]@{ customSecurityAttributes = [ordered]@{ $AttributeSet = $csa } } | ConvertTo-Json -Depth 5 |
             Set-Content -LiteralPath (Join-Path $dir 'entra-custom-security-attributes.json') -Encoding utf8NoBOM
+        # Until then (WD-176): Graph's servicePrincipal tags (one npi:Key=Value string per key, filterable)
+        # and notes (the whole string, at most 1,024 characters); Azure resource tags (values at most 256).
+        $keys = 'SystemId', 'Owner1', 'Owner2', 'Sponsor', 'Environment', 'Tier', 'EntraTarget'
+        if ($desc.Length -gt 1024) { throw "notes would be $($desc.Length) characters; a service principal's notes hold 1,024" }
+        $az = [ordered]@{}; foreach ($k in $keys) { $az[$k] = $tags[$k] }
+        [ordered]@{
+            servicePrincipal  = [ordered]@{ tags = @(foreach ($k in $keys) { "npi:$k=$($tags[$k])" }); notes = $desc }
+            azureResourceTags = $az
+        } | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $dir 'entra-tags.json') -Encoding utf8NoBOM
     } catch { & $add 'MSA-REQ-06' 'Finding' "The tags can't be written: $($_.Exception.Message)" }
 }
 

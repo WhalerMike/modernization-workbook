@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Book 18"
 series-order: 2
 review-status: approved
-reviewed-sha256: 02fd7d8f2ae062052be6d777a0cae57f4bc1f16ea0ad4ba7931f05c3074d8239
+reviewed-sha256: 63c0abccae7924403ffb32ad514bdc7c96cd2ce81e6974268cc1bd1bb933618c
 last-reviewed: 2026-11-25
 ---
 # Module 2: Moving the data {.unnumbered}

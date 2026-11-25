@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 04"
 series-order: 5
 review-status: approved
-reviewed-sha256: 36d878a7490ed64b4ed9d979b0ae7d0b2c29cab9b0b178d30efa8107fd59f00e
-last-reviewed: 2026-11-22
+reviewed-sha256: 756f6712d62fab69de7e5f6bddcf79c3006b0c3d2734b267e2081361e3efc410
+last-reviewed: 2026-11-25
 ---
 # Module 5: PIM for Groups and the PRV groups {.unnumbered}
 

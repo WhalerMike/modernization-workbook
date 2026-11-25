@@ -24,5 +24,15 @@ New page, November 25, 2026. Mike asked to "Create document set for requesting",
 | MR-08 | CAF: `id-<app>-<environment>-<region>-<###>`; `id` for a user-assigned managed identity; constant information in names, tags for the rest; no abbreviation for app registrations | Names | supported by the source | Learn, CAF "Define your naming convention" and "Abbreviation recommendations" |
 | MR-09 | The checker runs Chapter 12's NPI-STD-03 to -09 and MSA-REQ-01 to -06; the five examples pass; each check fires | Fill in and check | confirmed by running the pack (`tests/MsaRequestPack.Tests.ps1`, 10 passed) | examples/msa-request-pack |
 | MR-10 | NPI-STD-30 flags AD tags that disagree with the register, only on a tagged account | Tags | confirmed by running the kit (`tests/NpiGmsaStandard.Tests.ps1`) | examples/non-person-identity |
-| MR-11 | Custom security attributes' availability in Microsoft 365 GCC tenants | What couldn't be verified | open: Learn's US Government feature page has no row | — |
+| MR-11 | Custom security attributes' availability in Microsoft 365 GCC tenants | What couldn't be verified | open: Learn's US Government feature page has no row. Treated as unavailable until a tenant check confirms them (WD-176, MR-13) | — |
 | MR-12 | AD cloud extension attributes on a gMSA | What couldn't be verified | open: Learn's class pages don't list them | — |
+
+## Revision 2026-11-25 — custom security attributes in GCC (WD-176)
+
+Mike, November 25, 2026: "Lets say no until we can confirm yes." Sources read November 25, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| MR-13 | Where the tags live in Entra: the service principal's `tags` and `notes` until the tenant check, custom security attributes after; a system-assigned managed identity's tags on its resource | Tags | changed *(design guidance)* | WD-176 |
+| MR-14 | `tags` filterable, `notes` at most 1,024 characters; Update servicePrincipal in the global service, which GCC tenants use | Tags | supported by the source | `mrp-sp-props` |
+| MR-15 | The checker writes `entra-tags.json` (seven `npi:` tags, the notes string, the Azure resource tags) as well as the custom security attribute body, and refuses notes over 1,024 characters (MSA-REQ-06) | Tags | confirmed by running it (`tests/MsaRequestPack.Tests.ps1`, 10 passed) | — |
