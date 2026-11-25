@@ -31,8 +31,11 @@ $script:ModuleVersion = '1.0.0'
 $script:CallsPath = Join-Path $PSScriptRoot '../../config/calls-ch12.json'
 $script:RequirementsPath = Join-Path $PSScriptRoot '../../config/requirements-ch12.json'
 $script:Task = 'msa-standard'
-# WD-159: 15 characters or fewer before the trailing $ (the kit's limit; Learn states no maximum).
+# WD-159: 15 characters or fewer before the trailing $ (Learn's New-ADServiceAccount recommends a
+# SAM account name of 15 characters or less for older operating systems).
 $script:MaxNameLength = 15
+# WD-173: lowercase letters and digits, starting with a letter, and a role suffix only from this list.
+$script:RoleSuffixes = @('sql', 'agt', 'rs', 'is', 'web', 'svc', 'task')
 $script:AccountTypes = @('gMSA', 'dMSA')
 $script:Workloads = @('Service', 'IisAppPool', 'ScheduledTask')
 $script:RiskTiers = [ordered]@{ R1 = 3; R2 = 6; R3 = 12 }   # WD-166: months between certifications
@@ -257,12 +260,15 @@ function Test-NpiStdRequest {
 
         # NPI-STD-03: the name (WD-159).
         $why = [Collections.Generic.List[string]]::new()
-        if ($app -notmatch '^[A-Za-z0-9]+$') { $why.Add("appShortName '$app' must be letters and digits") }
+        if ($app -cnotmatch '^[a-z][a-z0-9]*$') { $why.Add("appShortName '$app' must be lowercase letters and digits, starting with a letter (WD-173)") }
         $prefix = if ($type -eq 'dMSA') { 'dmsa' } else { 'gmsa' }
         if ($name -notmatch '\$$') { $why.Add('the name must end in $') }
         $bare = $name.TrimEnd('$')
         if ($bare.Length -gt $script:MaxNameLength) { $why.Add("$($bare.Length) characters before the `$; the standard allows $($script:MaxNameLength)") }
+        $roles = ($script:RoleSuffixes | ForEach-Object { [regex]::Escape($_) }) -join '|'
         if ($app -and $bare -notmatch "^(?i)$prefix-$([regex]::Escape($app))(-[a-z0-9]+)?$") { $why.Add("expected $prefix-$app (with a role suffix only where the system needs more than one account)") }
+        elseif ($bare -cnotmatch '^[a-z0-9-]+$') { $why.Add('lowercase letters, digits and hyphens only (WD-173)') }
+        elseif ($bare -match "^(?i)$prefix-$([regex]::Escape($app))-(.+)$" -and $Matches[1] -notmatch "^($roles)$") { $why.Add("role suffix '-$($Matches[1])' isn't one of $(($script:RoleSuffixes | ForEach-Object { "-$_" }) -join ', ') (WD-173)") }
         if ($names.ContainsKey($name.ToLowerInvariant()) -and $names[$name.ToLowerInvariant()] -gt 1) { $why.Add('another request names the same account') }
         if ($why.Count) { & $add 'NPI-STD-03' 'Finding' "Name '$name' isn't to the standard (WD-159): $($why -join '; ')" }
 
