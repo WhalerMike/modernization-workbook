@@ -84,7 +84,7 @@ WORKBOOKS = [
              "docs/training/daily-checks-dashboard"),
     Workbook("ip", "Building Information Protection", "docs/project-plans/developer-workbooks/information-protection",
              "information-protection-code.zip", "docs/books/guides/information-protection-implementation.md",
-             gates={"1": ["01", "03"], "2": ["04"], "3": ["04"], "4": ["04"], "5": ["05"], "6": ["05"], "7": ["05"],
+             "docs/training/information-protection", gates={"1": ["01", "03"], "2": ["04"], "3": ["04"], "4": ["04"], "5": ["05"], "6": ["05"], "7": ["05"],
                     "8": ["06"], "9": ["06"], "10": ["01", "07"], "11": ["06", "07"], "12": ["02", "08", "09"]}),
     Workbook("am", "Building Application Modernization", "docs/project-plans/developer-workbooks/application-modernization",
              "app-modernization.zip", training="docs/training/application-modernization"),

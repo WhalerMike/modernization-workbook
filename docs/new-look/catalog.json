@@ -321,6 +321,34 @@
    "featured": true
   },
   {
+   "id": "docs/training/information-protection/index.md",
+   "type": "Learning path",
+   "title": "Learning path: Information Protection with Microsoft Purview",
+   "description": "Five modules: classes, access and the baseline; labels, publication and containers; encryption and recovery; DLP, auto-labeling and AI; and audit, drift and evidence, each with a lab on fixtures and a lab in your own test tenant",
+   "url": "docs/training/information-protection/index.html",
+   "count": 5,
+   "unit": "modules",
+   "reading_minutes": 31,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "page",
+   "roles": [
+    "Cloud and platform engineer",
+    "ISSO and assessor",
+    "Program lead and service owner"
+   ],
+   "topics": [
+    "Azure",
+    "Information protection",
+    "Compliance and authorization"
+   ],
+   "status": "Draft",
+   "family": "information-protection",
+   "featured": false
+  },
+  {
    "id": "path:ms-automation",
    "type": "Learning path",
    "title": "Learning path: Microsoft Automation",
@@ -900,13 +928,14 @@
    "url": "docs/books/guides/information-protection-implementation.html",
    "count": 12,
    "unit": "steps",
-   "reading_minutes": 39,
+   "reading_minutes": 41,
    "reading_source": "estimate",
    "videos": 0,
    "video_minutes": 0,
    "level": "Intermediate",
    "level_source": "audience",
    "roles": [
+    "Cloud and platform engineer",
     "ISSO and assessor",
     "Program lead and service owner"
    ],
@@ -1369,6 +1398,7 @@
    "level": "Advanced",
    "level_source": "audience",
    "roles": [
+    "Cloud and platform engineer",
     "Developer",
     "ISSO and assessor",
     "Program lead and service owner"
@@ -2461,16 +2491,19 @@
    "reading_source": null,
    "videos": 0,
    "video_minutes": 0,
-   "level": "Unrated",
+   "level": "Intermediate",
    "level_source": "path",
    "roles": [
+    "Cloud and platform engineer",
     "ISSO and assessor",
     "Program lead and service owner"
    ],
    "topics": [
-    "Information protection"
+    "Azure",
+    "Information protection",
+    "Compliance and authorization"
    ],
-   "status": "Approved",
+   "status": "Draft",
    "family": "information-protection",
    "featured": false
   },

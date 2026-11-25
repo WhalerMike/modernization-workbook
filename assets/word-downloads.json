@@ -2761,6 +2761,36 @@
  "docs/training/infoblox-training.md": {
   "page": "infoblox-training.docx"
  },
+ "docs/training/information-protection/01-classes-access-and-the-baseline.md": {
+  "bundle": "training-information-protection-bundle.docx",
+  "page": "01-classes-access-and-the-baseline.docx",
+  "title": "Learning path: Information Protection with Microsoft Purview"
+ },
+ "docs/training/information-protection/02-labels-publication-and-containers.md": {
+  "bundle": "training-information-protection-bundle.docx",
+  "page": "02-labels-publication-and-containers.docx",
+  "title": "Learning path: Information Protection with Microsoft Purview"
+ },
+ "docs/training/information-protection/03-encryption-and-recovery.md": {
+  "bundle": "training-information-protection-bundle.docx",
+  "page": "03-encryption-and-recovery.docx",
+  "title": "Learning path: Information Protection with Microsoft Purview"
+ },
+ "docs/training/information-protection/04-dlp-auto-labeling-and-ai.md": {
+  "bundle": "training-information-protection-bundle.docx",
+  "page": "04-dlp-auto-labeling-and-ai.docx",
+  "title": "Learning path: Information Protection with Microsoft Purview"
+ },
+ "docs/training/information-protection/05-audit-drift-and-evidence.md": {
+  "bundle": "training-information-protection-bundle.docx",
+  "page": "05-audit-drift-and-evidence.docx",
+  "title": "Learning path: Information Protection with Microsoft Purview"
+ },
+ "docs/training/information-protection/index.md": {
+  "bundle": "training-information-protection-bundle.docx",
+  "page": "index.docx",
+  "title": "Learning path: Information Protection with Microsoft Purview"
+ },
  "docs/training/ms-automation-arc.md": {
   "bundle": "training-microsoft-automation-bundle.docx",
   "page": "ms-automation-arc.docx",

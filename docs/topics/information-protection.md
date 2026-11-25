@@ -58,6 +58,7 @@ The learning path and its hands-on labs.
 
 | Page | What it is |
 |---|---|
+| [Learning path: Information Protection with Microsoft Purview](../training/information-protection/index.md) | A learning path in five modules for Purview and Microsoft 365 engineers, operators, security monitors, records and privacy officials and ISSO reviewers, built from the information protection implementation guide and Book 20: the data… |
 | [Labs](../training/labs.md#ip) | Every lab in Building Information Protection: what each needs, where it runs, and its commands. |
 
 : Learn {.striped .hover}
@@ -96,13 +97,3 @@ The federal requirements each step supports, and the evidence it keeps.
 | [Appendix A — Requirements Mapping: Controls, KSIs and Chapters](../books/b20-information-protection/appendix-a-requirements-mapping.md) | A compliance-enabling map, not a compliance claim: the NIST SP 800-53 Rev. |
 
 : Evidence {.striped .hover}
-
-## Not here {#gaps}
-
-What the workbook doesn't have on information protection, and whether it should. [All topics](index.md#gaps) shows the same for every topic.
-
-| Missing | Why |
-|---|---|
-| Learning path | Needed: the developer workbook's labs have no learning path around them yet. |
-
-: Not here {.striped .hover}

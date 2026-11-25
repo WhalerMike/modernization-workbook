@@ -787,8 +787,6 @@ topics:
       - information-protection-implementation-guide.docx
     members:
       - docs/books/b20-information-protection/*.md
-    gaps:
-      path: "Needed: the developer workbook's labs have no learning path around them yet."
 
   - id: compliance-evidence
     title: Compliance and Evidence
