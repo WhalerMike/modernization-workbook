@@ -25,6 +25,7 @@ One run produces a one-page summary (`Summary/StartKitSummary.md`) with these co
 | DNS zones, stale records, DC locator records | `Get-FMPDNSAssessment` | DNS infrastructure (stream 8) |
 | DHCP servers and scopes, reservations, failover (Tier B) | `Get-FMPDHCPInventory` | DHCP (stream 9) |
 | Enterprise CAs, certificate templates, ESC1, ESC2, ESC4 and ESC6 | `Get-FMPPKIAssessment` | PKI and AD CS (stream 10) |
+| Each template's starting class (MIGRATE, BRIDGE, RETAIN, RETIRE) from Book 07, Appendix B, for its owner to confirm | `Get-FMPTemplateClassification` | Book 07, Chapter 02 |
 | Schema version and extensions | `Get-FMPSchemaExtensions` | Schema extensions (stream 1) |
 | **SQL Server instances and hosts**, by version, edition, domain and authentication mode | `Invoke-FMPSqlEstateDiscovery` | Book 06, Runbooks R02 and R03 |
 | **NPS servers, RADIUS clients, network and connection request policies**, the AD groups and certificates each policy authorizes against, and the KB5040268 hardening state | `Invoke-FMPNpsInventory` | RADIUS and NPS inventory (Book 00 Chapter 08, M-009; Book 02 Chapter 04, DM_030; Book 09 Chapter 07) |
@@ -102,6 +103,10 @@ The module reads files and nothing else, so it runs on a laptop against a copied
 
 `Test-FMPAddressPlan` applies [Chapter 07](../../docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.md#sdnipam-consistency-across-cloud-providers-and-vmware) and [Book 10, Chapter 06](../../docs/books/b10-cloud-boundary/06-ipam-and-network-as-code.md): the IPAM export (`Prefix`, `Name`, `Use` of `On-premises`, `Azure`, `AWS` or `OCI`) is the plan, and the run's DHCP scopes and the JSON of `az network vnet list`, `aws ec2 describe-vpcs` and `oci network vcn list` are the networks that exist. It reports networks no allocation holds, networks inside another platform's allocation, and every pair that overlaps, for IPv4 and IPv6, and places each conditional forwarder's target in the network that holds it. With `-OutputPath` it writes `address-plan\AddressPlan.csv` and `AddressPlanFindings.csv`.
 
+`Test-FMPDdiDecommissionGate` runs [Chapter 10's Phase 5 gates](../../docs/books/b08-ddi/10-migration-sequence.md#phase-5-decommission-ad-dns-and-dhcp), each Pass, Fail or Not evidenced from its own input: the Phase 1 run against a target inventory (`Zone`, `Disposition` of `Moved`, `Retired`, `StaysOnAdDns` or `New`, `Reason`, `ChainValidates`), reconciled both ways, with signed zones held until their chain validates and the `_msdcs` zone kept where domain controllers register; the locator record history for 30 consecutive clean days from every location, restarting after a failure or a gap longer than two intervals (`-IntervalMinutes`, 15); 90 days of parallel operation; a passing failover test for the DNS resolvers and for DHCP; and no direct queries to the legacy servers in the last 7 days. `Test-FMPLocatorResolution` builds that history: it resolves Chapter 04's critical SRV records (and each site's) against each resolver with `Resolve-DnsName -DnsOnly`, read-only, and writes one CSV per check to `srv-checks\`, for a scheduled task every 15 minutes from each location.
+
+`Get-FMPDdiEvidenceIndex` walks an evidence folder and lists every file these checks and the collectors wrote, with its kind of evidence (Book 00, Appendix D), the requirement it supports, its KSI where the workbook has a verified pairing, the Book 08 section that asks for it, its size and its SHA-256; files it doesn't recognize are listed as such, and it lists what [Chapter 11's checklist](../../docs/books/b08-ddi/11-operating-the-control-plane.md#sample-evidence-checklist) asks for that the kit can't produce (the platform's running configuration and logs, the validation matrix, the exceptions, the mapping).
+
 ## Pointing the kit at your own forest
 
 Nothing in the kit is tied to a forest name. `contoso.example`, `child.contoso.example` and `partner.example` appear only in the test fixtures (`tests/fixtures/`) and in examples; at run time the kit asks Active Directory which forest it's in and reads every domain of it.
@@ -122,11 +127,13 @@ Nothing in the kit is tied to a forest name. `contoso.example`, `child.contoso.e
 | Survey against your own key format, code lists and UPN suffixes | `-KeyPattern '^MP\d{7}$' -CodeListPath D:\Inputs\code-lists.csv -UpnSuffix agency.example` |
 | Build waves from your own plan, with devices and servers | `-WavePlan D:\Inputs\wave-plan.csv -AssetOwnership D:\Inputs\asset-ownership.csv`; or `Get-FMPWaveList -GroupBy City` for candidate waves by location |
 | Read a particular Global Catalog | `Get-FMPAttributeSurvey -OutputPath <folder> -GlobalCatalog gc01.corp.agency.example` |
+| Review AD CS from a snapshot, with no directory or CA | `Get-FMPPKIAssessment -OutputPath <folder> -PkiDataPath <snapshot.json>`, with a snapshot in the shape of `tests/fixtures/pki-contoso.json`: the Public Key Services objects and each CA's `certutil -getreg` output for `policy\EditFlags` and `CA\AuditFilter`. The [PKI and Certificates learning path](../../docs/training/pki/index.md)'s Lab 1 runs it on that fictional fixture |
+| Start each template's classification | `Get-FMPTemplateClassification -OutputPath <folder> -Domain <forest root>` after the PKI assessment; it reads `TemplateMatrix.csv` beside the module, Appendix B's rows for the AD CS default templates, and writes `PKI\TemplateClassification.csv` |
 | Recognize your own schema extensions | Add a line to `$script:FMPKnownExtensions` in `FMPADAssessment.psm1` |
 | Count a different set of privileged groups | Edit `$script:FMPPrivilegedGroups` in `FMPADAssessment.psm1` |
 | Run the tests against your own data shapes | Copy `tests/fixtures/ad-forest.json`, replace the objects with sanitized exports of your own (`Get-ADUser ... \| ConvertTo-Json`), keep the same keys, and adjust the expected counts in `tests/powershell/ADAssessment.Tests.ps1`. Never commit real exports. |
 
-The output folders are named after the real domains (`<run>\corp.agency.example\Objects\...`), so a second run compares file by file with `Compare-FMPAssessments`.
+The output folders are named after the real domains (`<run>\corp.agency.example\Objects\...`), so a second run compares file by file with `Compare-FMPAssessments`. Objects compare by key, and AD CS findings by finding and template, so a remediation shows as the findings it removed.
 
 ## Prerequisites
 
@@ -313,7 +320,7 @@ examples/start-kit/
   powershell/FMPNpsInventory/             NPS servers, RADIUS clients, policies, groups, findings
   powershell/FMPTransactionProfile/       round-trip measurement, profiles, the separation gate
   powershell/FMPAttributeSurvey/          attribute survey through the Global Catalog, wave lists
-  powershell/FMPDdiReadiness/             DNS, DHCP and IPAM readiness from a run's files: the departure register, the DHCP edge, the address plan
-  tests/fixtures/                         the fictional forest, SQL estate, NPS configuration, transaction catalog, the attribute survey's two-tree forest, a DNS and DHCP run with a DHCP snooping export and IPAM and cloud network exports (ddi)
+  powershell/FMPDdiReadiness/             DNS, DHCP and IPAM readiness from a run's files: the departure register, the DHCP edge, the address plan, the decommissioning gates, the evidence index
+  tests/fixtures/                         the fictional forest, SQL estate, NPS configuration, transaction catalog, the attribute survey's two-tree forest, a DNS and DHCP run with a DHCP snooping export and IPAM and cloud network exports, and the decommissioning gates' evidence (ddi)
   tests/powershell/                       Pester 5: safety, SQL, AD, NPS, transaction profiles, attribute survey, DNS readiness, end to end
 ```

@@ -60,6 +60,7 @@ The source module was flattened onto single lines during conversion, and several
 | Gitea | One commit per file; labels never resolved | One multi-file commit on a run branch; label IDs looked up | One run, one commit; the API takes label IDs[^aB-gitea] |
 | Credentials | Token in a text file; user account with typed password | Token from the credential store; gMSA | No stored secrets |
 | Hashtable values (found October 27, 2026, packaging the Start Kit) | `CertSubject = if ($cert) { ... }` with no `else` | `CertSubject = $(if ($cert) { ... })` | Windows PowerShell 5.1 can't parse an `if` without `else` as a hashtable value followed by another key, so the module didn't load on the version it declares |
+| ESC severities (decided November 24, 2026) | ESC2 `High`, ESC4 `Critical` | ESC2 `Critical`, ESC4 `High` | The program's risk-scoring matrix in [Book 07, Chapter 03](../b07-pki/03-hardening-what-stays.md#the-risk-scoring-matrix) rates them the other way; the module now matches it, so the Gitea step opens issues for ESC2 findings and not for ESC4 |
 | Trust attribute decoding (same) | `[ordered]` dictionary looked up by flag value | Plain hashtable, keys sorted | Indexing an ordered dictionary with an integer reads by position, so `0x8` decoded as `UsesAESKeys` instead of `ForestTransitive` |
 | GPO conflicts (same) | Key on `$node.Name` | Key on the node's own `<Name>` child; skip nodes without one | For a node with no `<Name>` child, `$node.Name` is the element's tag name, so unrelated settings were grouped as conflicts |
 
@@ -801,12 +802,12 @@ function Get-PKISecurityFindings {
         }
         $anyOrNone = (@($eku).Count -eq 0) -or ('2.5.29.37.0' -in $eku)
         if ($isPub -and $anyOrNone -and $broadEnroll) {
-            $findings += [pscustomobject]@{ Finding = 'ESC2'; Severity = 'High'; Template = $name
+            $findings += [pscustomobject]@{ Finding = 'ESC2'; Severity = 'Critical'; Template = $name
                 Description = 'Published template with Any Purpose or no EKU is enrollable by broad groups.'
                 Remediation = 'Restrict the EKUs to the intended purposes or restrict enrollment.' }
         }
         if ($broadWrite) {
-            $findings += [pscustomobject]@{ Finding = 'ESC4'; Severity = 'Critical'; Template = $name
+            $findings += [pscustomobject]@{ Finding = 'ESC4'; Severity = 'High'; Template = $name
                 Description = 'Template ACL grants write or control rights to broad groups.'
                 Remediation = 'Remove the entries; limit template write rights to PKI administrators.' }
         }

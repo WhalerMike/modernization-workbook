@@ -411,6 +411,11 @@ website:
             - docs/training/zero-trust-assessment/02-running-the-assessment-safely.md
             - docs/training/zero-trust-assessment/03-from-results-to-a-closure-register.md
             - docs/training/zero-trust-assessment/04-reconcile-re-run-and-keep-the-evidence.md
+        - section: "PKI and Certificates learning path"
+          href: docs/training/pki/index.md
+          contents:
+            - docs/training/pki/01-what-ad-cs-holds-up.md
+            - docs/training/pki/02-hardening-what-stays.md
         - section: "Defender XDR learning path"
           href: docs/training/defender-xdr/index.md
           contents:
@@ -455,6 +460,18 @@ website:
             - docs/training/dns-dhcp-ipam/02-the-active-directory-dns-departure.md
             - docs/training/dns-dhcp-ipam/03-dhcp-encrypted-dns-and-the-edge.md
             - docs/training/dns-dhcp-ipam/04-cloud-private-dns-and-one-address-plan.md
+            - docs/training/dns-dhcp-ipam/05-move-authority-zone-by-zone.md
+            - docs/training/dns-dhcp-ipam/06-operate-the-control-plane-with-evidence.md
+        - section: "Application Modernization learning path"
+          href: docs/training/application-modernization/index.md
+          contents:
+            - docs/training/application-modernization/01-the-contract-and-the-schema.md
+            - docs/training/application-modernization/02-moving-the-data.md
+            - docs/training/application-modernization/03-proving-the-move.md
+            - docs/training/application-modernization/04-an-agent-that-only-proposes.md
+            - docs/training/application-modernization/05-the-front-end-and-section-508.md
+            - docs/training/application-modernization/06-the-applications-identity.md
+            - docs/training/application-modernization/07-the-evidence-pack.md
         - section: "External learning paths"
           contents:
             - docs/training/infoblox-training.md
