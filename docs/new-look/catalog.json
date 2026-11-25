@@ -356,7 +356,7 @@
    "url": "docs/training/ms-automation-foundations.html",
    "count": 4,
    "unit": "modules",
-   "reading_minutes": 120,
+   "reading_minutes": 132,
    "reading_source": "estimate",
    "videos": 4,
    "video_minutes": 55,
@@ -1107,6 +1107,33 @@
    "featured": false
   },
   {
+   "id": "docs/books/guides/msa-request-pack.md",
+   "type": "Implementation guide",
+   "title": "Requesting a Managed Service Account",
+   "description": "The forms, the CSV template and the checker an owner uses to ask for a gMSA or dMSA, and the tags every account carries for its move to Microsoft Entra",
+   "url": "docs/books/guides/msa-request-pack.html",
+   "count": null,
+   "unit": "steps",
+   "reading_minutes": 8,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "audience",
+   "roles": [
+    "Identity engineer",
+    "Developer"
+   ],
+   "topics": [
+    "Entra ID",
+    "Active Directory",
+    "Non-person identity"
+   ],
+   "status": "Not tracked",
+   "family": "msa-request-pack",
+   "featured": false
+  },
+  {
    "id": "docs/books/guides/service-account-migration.md",
    "type": "Implementation guide",
    "title": "Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities",
@@ -1418,7 +1445,7 @@
    "url": "docs/project-plans/developer-workbooks/non-person-identity/index.html",
    "count": 13,
    "unit": "chapters",
-   "reading_minutes": 538,
+   "reading_minutes": 539,
    "reading_source": "estimate",
    "videos": 13,
    "video_minutes": 155,
