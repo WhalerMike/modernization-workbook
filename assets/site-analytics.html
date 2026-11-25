@@ -1,0 +1,26 @@
+<!--
+  Page-view counting with GoatCounter (https://www.goatcounter.com/).
+  GoatCounter sets no cookies and stores no personal data: it records the page,
+  the referrer, and coarse browser, screen-size and country figures. What is
+  counted, and how to opt out, is on the Privacy page (docs/about/privacy.md).
+
+  Nothing loads when:
+    - GOATCOUNTER_CODE below is still the placeholder,
+    - the visitor sends Do Not Track or Global Privacy Control,
+    - the visitor has opted out on the Privacy page (localStorage "fmw-no-analytics"),
+    - the page is served from anywhere but the published site (local previews).
+-->
+<script>
+  (function () {
+    var GOATCOUNTER_CODE = "REPLACE-WITH-SITE-CODE";
+    if (!GOATCOUNTER_CODE || GOATCOUNTER_CODE.indexOf("REPLACE") === 0) return;
+    if (location.hostname !== "whalermike.github.io") return;
+    if (navigator.doNotTrack === "1" || window.doNotTrack === "1" || navigator.globalPrivacyControl === true) return;
+    try { if (localStorage.getItem("fmw-no-analytics") === "1") return; } catch (e) { /* storage blocked: count */ }
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://gc.zgo.at/count.js";
+    s.setAttribute("data-goatcounter", "https://" + GOATCOUNTER_CODE + ".goatcounter.com/count");
+    document.body.appendChild(s);
+  })();
+</script>

@@ -320,6 +320,8 @@ website:
             text: "Decision Register"
           - href: docs/about/archive.md
             text: "Archive: every edition"
+          - href: docs/about/privacy.md
+            text: "Privacy"
       - href: workbook-map.qmd
         text: "Workbook Map"
     right:
@@ -715,6 +717,8 @@ website:
         text: "Source"
       - href: https://github.com/WhalerMike/modernization-workbook/blob/main/LICENSE.md
         text: "© 2026 Michael F. Stratton · License"
+      - href: docs/about/privacy.md
+        text: "Privacy"
 
 format:
   html:
@@ -729,6 +733,8 @@ format:
       - file: assets/table-cards.html
       # Site search in the navbar: Pagefind (assets/site-search.html, pagefind.yml).
       - file: assets/site-search.html
+      # Cookie-free page-view counts (GoatCounter); see docs/about/privacy.md (assets/site-analytics.html).
+      - file: assets/site-analytics.html
       - text: |
           <script>
             document.querySelectorAll("section#footnotes").forEach(function (s) {
