@@ -1,11 +1,4 @@
-PS> Get-Content out/exposure/exposure-management.json
-{
-  "feature": "Microsoft Security Exposure Management (attack paths, exposure graph, critical asset management)",
-  "cloud": "gcc",
-  "availability": "not available",
-  "source": "https://learn.microsoft.com/security-exposure-management/microsoft-security-exposure-management (read November 11, 2026: available in Public Cloud only, not in US Government clouds)",
-  "normalizedResult": "Skipped-Not-Applicable",
-  "disposition": "not applicable: unavailable in the tenant's cloud; a disposition, not a failed control",
-  "interimPath": "Prioritize by DeviceInfo ExposureLevel, IsInternetFacing and AssetValue and by Defender Vulnerability Management recommendations; use the Tier 0 inventory of the access and privilege book as the critical-asset list.",
-  "recordedAt": "2026-11-16T12:00:00Z"
-}
+PS> $Run = "C:\FMWLabs\results\defender-xdr-05\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+PS> New-Item -ItemType Directory -Path $Run -Force | Out-Null
+PS> $Run
+C:/FMWLabs/results/defender-xdr-05/lab1/<run>

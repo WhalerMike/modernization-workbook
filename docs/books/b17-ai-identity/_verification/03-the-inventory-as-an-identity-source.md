@@ -121,3 +121,9 @@ The claim language was narrowed under the workbook's supports-not-satisfies rule
 | Before | After | Source |
 |---|---|---|
 | The inventory describes the use; the controls are met in the directory. | The inventory describes the use; the directory is where the controls are implemented and evidenced. | no source change |
+
+## Revision 2026-11-25 — custom security attributes in GCC (WD-176)
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| CSA-1 | The inventory reference: in a service principal's tags and notes, with the register holding the join, until a tenant check confirms custom security attributes in GCC | see the change | changed *(design guidance)* | WD-176; Mike, November 25, 2026 |

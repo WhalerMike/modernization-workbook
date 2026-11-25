@@ -29,7 +29,8 @@ import org.junit.jupiter.api.Test;
 class LabReportsTest {
 
     static final Instant LAB_DATE = Instant.parse("2026-11-24T00:00:00Z");
-    static final Path LAB = Path.of("target", "lab");
+    /** target/lab, or the folder -Dlab.dir names (the training labs put it in their run folder). */
+    static final Path LAB = Path.of(System.getProperty("lab.dir", "target/lab"));
 
     private String legacy;
 

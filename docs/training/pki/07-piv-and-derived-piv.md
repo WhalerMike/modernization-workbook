@@ -33,7 +33,7 @@ After this module, you'll be able to:
 - say what HSPD-12, FIPS 201-3 and M-19-17 require, and which certificate on the card matters for logical access;
 - follow the card's lifecycle, and say why the leaver gate disables the account before the revocation reaches Entra ID;
 - say what a derived PIV credential is, which document governs it, and what Intune and Entra ID each do with it;
-- name the four CBA settings that make acceptance faithful, and how they meet M-22-09;
+- name the four CBA settings that make acceptance faithful, and how they support M-22-09;
 - say what makes the PIV certificate count for an administrator;
 - read VK-PIV-01's result, and match each tenant-side finding to its forest-side cause.
 
@@ -65,7 +65,7 @@ Read [Chapter 09](../../books/b07-pki/09-federal-workforce-credentials.md), sect
 1. **Trust the issuing CAs, each with its CRL**, and require CRL validation. Module 3 checked a CA's CRL location and Module 5 its freshness and size.
 2. **Bind the certificate to one person** with a high-affinity value in `certificateUserIds`, written by the card management system on every issuance and reissue. The program departs, on Microsoft's advice, from IDManagement.gov's low-affinity `PrincipalName` recommendation.
 3. **Make the PIV authentication certificate multifactor** with a binding rule by issuer and policy OID, leaving the tenant default single-factor.
-4. **Require the phishing-resistant strength.** That meets M-22-09's requirement for phishing-resistant MFA at the application layer.
+4. **Require the phishing-resistant strength.** That supports M-22-09's requirement for phishing-resistant MFA at the application layer.
 
 [HR-Driven Identity, Module 5](../hr-driven-identity/05-certificate-based-authentication.md) checks the tenant side of settings 1, 3 and 4. This module's lab checks setting 2 per card holder, with the validation kit's **VK-PIV-01**: for each holder on the pilot list, it reads `certificateUserIds` and reports holders not found, holders with no value, and, when high affinity is required, holders with only low-affinity values. It reports each account and the binding types, never a value.
 

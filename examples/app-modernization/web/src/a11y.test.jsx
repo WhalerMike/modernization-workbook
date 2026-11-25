@@ -3,12 +3,14 @@ import { render, screen, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import axe from 'axe-core';
 import { mkdirSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
 import App from './App.jsx';
 import { PROPOSAL, fakeService } from './fakeService.js';
 
 /*
  * An automated accessibility check of each screen state, with axe-core's WCAG 2.0 Level A and AA rules:
- * the level the Revised 508 Standards require. It writes out/a11y-report.json for the evidence record.
+ * the level the Revised 508 Standards require. It writes out/a11y-report.json for the evidence record
+ * (or a11y-report.json in the folder the A11Y_REPORT_DIR environment variable names).
  *
  * What it can't do: decide conformance. Automated rules find some failures; keyboard-only use, a screen
  * reader, magnification and the error paths still need a trained tester (Book 18, Chapter 06).
@@ -38,8 +40,9 @@ describe('Accessibility (automated rules only)', () => {
   });
 
   afterAll(() => {
-    mkdirSync('out', { recursive: true });
-    writeFileSync('out/a11y-report.json', JSON.stringify(report, null, 2) + '\n');
+    const dir = process.env.A11Y_REPORT_DIR || 'out';
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, 'a11y-report.json'), JSON.stringify(report, null, 2) + '\n');
   });
 
   it('the case list has no WCAG 2.0 A or AA rule violations', async () => {

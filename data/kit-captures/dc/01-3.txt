@@ -1,7 +1,16 @@
-PS> ./Show-DcManifest.ps1 -Id grants
-Consents, roles and grants (grants): workbook, fit partial
-Daily check: Any consent, role or access grant with no ticket alerted (by-family table, Applications)
-Tables:      AuditLogs
-Link-out:    Entra audit logs: https://entra.microsoft.com > Entra ID > Monitoring & health > Audit logs
-GCC:         Available. The match to a ticket isn't in the workbook: the ticket data stays in the ITSM tool.
-Action:      Each row is matched to its ticket in the ITSM tool; a grant with no ticket opens a finding.
+PS> ./Show-DcManifest.ps1
+Id               Kind     Fit      Queries Tables
+--               ----     ---      ------- ------
+telemetry        workbook strong         2 SigninLogs, AuditLogs, AADRiskyUsers, SecurityAlert, SecurityIncident, IntuneDeviceComplianceOrg, CommonSecurityLog,
+                                           DailySyncProbe_CL, Heartbeat, Event, SecurityEvent, DcReplicationProbe_CL, AzureActivity, SentinelHealth
+sync             workbook strong         3 DailySyncProbe_CL, Event, Heartbeat
+active-directory workbook good           5 Heartbeat, DcReplicationProbe_CL, SecurityEvent, Event, SecurityAlert
+entra-health     link-out link-out       0
+risk             workbook strong         2 AADRiskyUsers, SigninLogs
+emergency-access workbook strong         1 SigninLogs
+devices          workbook good           1 IntuneDeviceComplianceOrg
+grants           workbook partial        1 AuditLogs
+admin-changes    workbook partial        2 AuditLogs, AzureActivity
+data             workbook good           1 SecurityAlert
+tasks            link-out weak           0
+log-review       workbook partial        1 SecurityIncident

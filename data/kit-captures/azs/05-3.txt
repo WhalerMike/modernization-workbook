@@ -1,9 +1,4 @@
-PS> Import-Csv out/week1/edge/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
-AZS-EDGE-01 Finding fd-legacy-intranet: migrate to Standard or Premium before March 31, 2027
-AZS-EDGE-05 Finding afd-portal/og-api: Private Link and public origins in one origin group
-AZS-EDGE-03 Finding afd-portal/og-portal/origin-west: the AzureFrontDoor.Backend rule on app-portal-west has no X-Azure-FDID header
-AZS-EDGE-06 Finding careers.contoso.example: minimumTlsVersion TLS10
-AZS-EDGE-07 Finding appgw-intranet: TLS policy Predefined AppGwSslPolicy20150501
-AZS-EDGE-04 Warn    afd-portal/og-api/api-public: api-public.contoso.example: test a direct request by hand
-AZS-EDGE-04 Warn    afd-careers/og-careers/careers-static: Microsoft.Storage/storageAccounts: test a direct request by hand
-AZS-EDGE-08 Warn    afd-careers/og-careers: 1 enabled origin
+PS> ./Invoke-AzsCheck.ps1 -Area edge -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath "$Run/week1/edge"
+Read: 5 origins, 2 custom domains, 2 application gateways, classic Front Door: 1. Origins locked by configuration: 2 of 5
+Findings: 5 Finding, 3 Warn, 0 Info
+Written to C:/FMWLabs/results/azure-security-05/lab1/<run>/week1/edge (7 calls, every one a read; manifest.json lists each file's SHA-256)

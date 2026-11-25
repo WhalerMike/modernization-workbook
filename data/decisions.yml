@@ -2313,5 +2313,55 @@
   - {title: 'Microsoft Learn, Microsoft Entra Connect Sync default configuration', url: 'https://learn.microsoft.com/entra/identity/hybrid/connect/concept-azure-ad-connect-sync-default-configuration'}
   pages: [docs/books/guides/msa-request-pack.md, docs/books/guides/service-account-migration.md, docs/books/guides/non-person-identity-implementation.md, docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.md]
   prs: []
-  status: settled
+  status: superseded
+  superseded_by: WD-176
   note: "Basis: workbook owner decision, November 25, 2026. Asked for a request document set, said \"For future integration, when they move to EntraID, we tag everything\" and asked whether Entra's standards should inform MSA naming; shown one tag set, owners in AD (a change to WD-173) and a request pack, he answered \"Yes to all three\". Not yet in the kits: Chapter 06 writing the tags, and VK-NPI-10 reading the three new keys."
+
+- id: WD-176
+  date: 2026-11-25
+  question: Where do WD-175's tags live on the Entra side while no Microsoft Learn page confirms custom security attributes for Microsoft 365 GCC tenants?
+  options: ["Custom security attributes now, after checking the tenant (WD-175)", "Treat custom security attributes as unavailable in GCC until a tenant check confirms them, with a stated fallback until then"]
+  choice: "WD-175 stands except where its tags live in Entra. Custom security attributes are treated as unavailable in the program's GCC tenant until a tenant check confirms them, and the rule is program-wide: any design that relies on them (Conditional Access filters for applications, Azure ABAC conditions, Lifecycle Workflow scopes, HR attributes provisioned to them) states its fallback until then. Until the check confirms them, the seven tags live on a service principal as one npi:<Key>=<Value> string per key in its tags property, which Microsoft Graph can filter, with the whole key=value string, request and change included, in its notes; on a user-assigned managed identity as Azure resource tags; and on a system-assigned managed identity as Azure resource tags on the resource it belongs to, because that identity takes no tags of its own and a managed identity's service principal can't be updated directly. SailPoint and the register stay the source of record. The tenant check: in the GCC tenant, an Attribute Definition Administrator creates the NonPersonIdentity attribute set with one attribute, and an Attribute Assignment Administrator assigns it to a test service principal and reads it back; when that works, the workbook owner records it and custom security attributes become the Entra carrier, as WD-175 set, with the fallback's values copied across. The request pack's checker writes both forms."
+  rationale: "Learn's Graph pages list the custom security attribute APIs for the worldwide service, which Microsoft 365 GCC tenants use, but Learn's US Government feature-availability page has no row for them and no page confirms them for GCC. A service principal's tags and notes are standard properties that the same worldwide endpoint updates in every cloud; tags accept free strings and can be filtered, and notes holds up to 1,024 characters for operational use. Azure Resource Manager supports tags on user-assigned managed identities but not on the system-assigned identity type."
+  basis: workbook-design
+  sources:
+  - {title: 'Microsoft Learn, Microsoft Graph national cloud deployments', url: 'https://learn.microsoft.com/graph/deployments'}
+  - {title: 'Microsoft Learn, Create customSecurityAttributeDefinition (Microsoft Graph v1.0)', url: 'https://learn.microsoft.com/graph/api/directory-post-customsecurityattributedefinitions'}
+  - {title: 'Microsoft Learn, servicePrincipal resource type (Microsoft Graph v1.0)', url: 'https://learn.microsoft.com/graph/api/resources/serviceprincipal'}
+  - {title: 'Microsoft Learn, Update servicePrincipal (Microsoft Graph v1.0)', url: 'https://learn.microsoft.com/graph/api/serviceprincipal-update'}
+  - {title: 'Microsoft Learn, Tag support for Azure resources', url: 'https://learn.microsoft.com/azure/azure-resource-manager/management/tag-support'}
+  pages: [docs/books/guides/msa-request-pack.md, docs/books/guides/service-account-migration.md, docs/books/guides/non-person-identity-implementation.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 25, 2026, on custom security attributes in GCC: \"Lets say no until we can confirm yes.\" He chose to apply it in two pull requests: this one for WD-175 and the non-person identity and managed service account pages, and a second for the other pages, decks and kits that rely on custom security attributes."
+
+- id: WD-177
+  date: 2026-11-25
+  question: What is the reference design for the host that holds the program's authoritative repository?
+  options: ["Gitea behind IIS on Windows Server 2025, joined to AD and signed into through Microsoft Entra ID", "IIS serving Git directly through the git-http-backend CGI", "GitHub Enterprise Server", "GitLab self-managed or Bitbucket Data Center", "Azure DevOps Server", "A SaaS repository (GitHub Enterprise Cloud, GitLab Dedicated for Government, Azure DevOps Services)", "Plain bare repositories over SSH"]
+  choice: "Gitea behind IIS on Windows Server 2025 is the program's reference design: IIS terminates TLS on 443 and forwards to Gitea on loopback, Gitea runs as a Windows service under a gMSA with its own SSH listener, signs in through an LDAPS source and an Entra ID OpenID Connect source, and keeps its metadata in PostgreSQL (full production) or SQLite (single host). It is one well-understood way to meet the single-authoritative-writer requirement, not the only one. The CGI option stays for lab use only, and any other choice, or promoting a CGI host to production, is a recorded decision that supersedes this one. Appendix B of Book 10 lists the interfaces the design exposes, and any interface outside that list is a finding."
+  rationale: "The requirement is one authoritative writer that the agency controls, on supported components it can harden as Tier 0. Gitea runs as a Windows service and documents IIS as its reverse proxy, and it brings a web UI, REST API, LFS, OpenID Connect and LDAP sign-in, teams, protected branches and signed webhooks that the CGI option lacks. GitHub Enterprise Server, GitLab and Bitbucket Data Center add Linux appliances or more components to govern without more governance value at this scale; Azure DevOps Server is current but needs a heavier Windows and SQL Server footprint; SaaS repositories move the authoritative copy off a host the agency controls, which is a design choice, not a boundary prohibition."
+  basis: workbook-design
+  sources:
+  - {title: 'Gitea Documentation, Reverse Proxies', url: 'https://docs.gitea.com/administration/reverse-proxies'}
+  - {title: 'Gitea Documentation, Register as a Windows Service', url: 'https://docs.gitea.com/installation/windows-service'}
+  - {title: 'Microsoft Learn, Reverse Proxy with URL Rewrite v2 and Application Request Routing', url: 'https://learn.microsoft.com/iis/extensions/url-rewrite-module/reverse-proxy-with-url-rewrite-v2-and-application-request-routing'}
+  - {title: 'Microsoft Learn, Windows Server release information', url: 'https://learn.microsoft.com/windows/release-health/windows-server-release-info'}
+  - {title: 'Microsoft Learn, Azure DevOps Server Release Notes', url: 'https://learn.microsoft.com/azure/devops/server/release-notes/azuredevopsserver?view=azure-devops'}
+  pages: [docs/books/b01-transformation-arc/03-platform-foundation.md, docs/books/b00-orientation/08-pre-flight-and-assessment.md, docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 25, 2026. Asked whether Book 10's Appendix B should have its own topic and be fully fleshed out, he was shown that Book 01, Chapter 03 asks for the reverse-proxy choice and the standby model to be recorded and that the register held neither; he answered \"Go on Phase 1, use your recommendations\". This records the design the books already describe; it doesn't change it."
+
+- id: WD-178
+  date: 2026-11-25
+  question: Which standby model does the platform host use?
+  options: ["Cold standby with manual failover and stated recovery objectives", "Hot standby with automatic, witness-gated failover", "An active-active pair"]
+  choice: "The baseline is a cold standby with manual failover, nightly backup and stated recovery objectives: a 24-hour recovery point and a 4-hour recovery time for a cold restore, with an off-premises copy for total-site loss. Where an agency needs high availability, it opts in to a hot standby with automatic, witness-gated failover, so only one node accepts commits at a time, aiming for near-zero data loss and a recovery time in minutes. Both nodes are Tier 0 assets. An active-active pair is ruled out, because two writers would diverge."
+  rationale: "The design's one requirement is a single authoritative writer, so replication serves recovery, not load-sharing. A cold standby meets the program's recovery objectives at the least cost and complexity; a witness keeps an automatic failover from producing two writers. Making the hot standby opt-in lets an agency pay for availability only where its own impact analysis asks for it."
+  basis: workbook-design
+  sources: []
+  pages: [docs/books/b01-transformation-arc/03-platform-foundation.md, docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md]
+  prs: []
+  status: settled
+  note: "Basis: workbook owner decision, November 25, 2026, in the same answer as WD-177. This records the standby model Book 01, Chapter 03 and Book 10, Appendix B already describe."

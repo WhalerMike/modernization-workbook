@@ -20,7 +20,8 @@ One run produces a one-page summary (`Summary/StartKitSummary.md`) with these co
 | Computers by operating system, servers, stale computers, delegation | `Get-FMPComputerInventory` | Computer objects (stream 4) |
 | Service accounts (users with SPNs, MSAs, gMSAs) | `Get-FMPUserInventory` | Service accounts (stream 5) |
 | **Unconstrained Kerberos delegation** on computers (domain controllers excluded) and on user and service accounts; constrained delegation on accounts; privileged users whose credentials can be delegated (neither marked sensitive nor in Protected Users); and the SQL Server instances whose host or service account has unconstrained delegation | `Get-FMPComputerInventory`, `Get-FMPUserInventory`, `Get-FMPStartKitSummary` | Service accounts and delegation (stream 5); Book 02 Chapter 08; Book 06 Runbook R06 |
-| Service principal names, duplicates and orphans, forest-wide | `Get-FMPKerberosSpnMap` | Kerberos SPN map (stream 11) |
+| Service principal names, duplicates and orphans, forest-wide, each orphan with its reasons: disabled, no recent logon, or a host with no computer object and no DNS record | `Get-FMPKerberosSpnMap` | Kerberos SPN map (stream 11) |
+| **Servers and the services on them**: each service's logon account, start mode, state and path, the domain and managed service accounts each server depends on, and the servers that couldn't be read (Tier B, or `-ServerServices`) | `Get-FMPServerServiceInventory` | The server-to-service crosswalk: service accounts (stream 5) |
 | LDAP clients binding unsigned or in clear text (Tier B) | `Get-FMPLdapBindingEvent` | LDAP bindings (stream 11) |
 | DNS zones, stale records, DC locator records | `Get-FMPDNSAssessment` | DNS infrastructure (stream 8) |
 | DHCP servers and scopes, reservations, failover (Tier B) | `Get-FMPDHCPInventory` | DHCP (stream 9) |
@@ -97,6 +98,12 @@ The [Attribute-Driven Migration implementation guide](../../docs/books/guides/at
 
 `ad-user-export.csv` is the one AD export the other attribute tools read: the validation kit's VK-SYNC-01 (its `EmployeeId` and slot columns) and VK-SYNC-03, and the [HCM-to-Entra correlation tool](../hcm-entra/README.md). `waves.csv` is what the validation kit reads to run its HR checks on one wave. **The export holds personal data** (names, UPNs, mail, keys): keep the run folder in the access-controlled evidence store, as with `UserInventory.json`.
 
+### How it maps servers to services
+
+The directory says where Kerberos expects a service account (its SPNs) and, for a gMSA, which computers may retrieve its password. It doesn't say which servers actually run a service as an ordinary user account. `Get-FMPServerServiceInventory`, in the `FMPServerService` module, asks each server: `Win32_Service` read over CIM with only the properties it needs (name, display name, logon account, start mode, state, path), by WS-Management first and DCOM when WS-Management doesn't answer, each try limited by `-OperationTimeoutSec` (60). The servers come from `-ServerListPath` (a text file of names, or a CSV with a `ComputerName`, `DNSHostName` or `Name` column), or from the directory: every enabled computer whose operating system names a server.
+
+Each service's logon account is classified (`LocalSystem`, `LocalService`, `NetworkService`, `Virtual` for `NT SERVICE\<name>`, `Local`, `Domain`, or `ManagedServiceAccount` for a domain account ending in `$`), and the domain ones are crosswalked in `ServiceAccountHosts.csv`: one row per account, with its servers and services. A server that answers neither protocol goes to `ServerServiceErrors.csv` with both errors, and the run carries on. The Non-Person Identity kit's register reads `ServerServices.csv` to fill the hosts and services of user accounts used as service accounts (`Invoke-NpiInventory.ps1 -ServiceInventoryPath`). The path of a service can hold arguments its installer put on the command line; the run folder is already handled as sensitive.
+
 ### How it checks DNS readiness
 
 [Book 08, Chapter 10](../../docs/books/b08-ddi/10-migration-sequence.md#where-each-component-goes) sorts every component of Active Directory DNS into a target, an Azure-native equivalent, a method and a risk before anything moves. `Get-FMPDnsDepartureRegister`, in the `FMPDdiReadiness` module, writes that table for one domain from the files `Get-FMPDNSAssessment` already wrote: one row per zone on the PDC emulator's DNS server (AD-integrated internal or external, file-backed, secondary, stub or conditional forwarder, GlobalNames, reverse, signed, the `_msdcs` locator zone), plus one for dynamic registration when any zone takes dynamic updates, in the chapter's words. Each row carries notes from the run: the zone's storage and dynamic-update setting, its stale records, its forwarding targets, and any readable DNS server that lacks an AD-integrated zone. The findings are Phase 1's: locator records that don't resolve, DNS servers that couldn't be read, scavenging off or not read, stale records, duplicate host names among them, and the server-level forwarders to test over DNS. AD can't say which zones the internet also sees, so a zone is internal unless `-ExternalZone` names it.
@@ -170,7 +177,7 @@ The assessment never uses Domain Admins, DnsAdmins, the CA administrator role or
 
 **Which SQL Servers aren't in Azure Arc.** `SqlHosts.csv`, and the `Hosts` list in `SqlEstate.json`, give each SQL Server host's computer object: operating system, enabled state, last logon, and a `DirectoryState` of `Active`, `Stale` (disabled, or no logon or machine password change in `-StaleThresholdDays`, default 90), `NoComputerObject` or `Ambiguous`. The Microsoft Automation kit's `sql-inventory --estate SqlEstate.json` compares that file with Azure Arc and lists the hosts that aren't in Arc ([Book 06, Runbook R02](../../docs/books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.md#reconcile-the-forest-with-azure-arc)).
 
-**What the SQL Server pass doesn't read.** The kit reads no host: no WMI, no service control manager, no registry. `SqlServiceAccounts.csv` lists the user and managed service accounts whose name or description contains the name hint, and whether each holds an `MSSQLSvc` SPN. It doesn't say which account each SQL Server service actually runs as. Confirming that needs local administrator on each host, or a narrower delegation, which [Book 06, Runbook R02](../../docs/books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.md#the-rights-each-depth-of-discovery-needs) describes, and it's the program's audit in [Runbook R03](../../docs/books/b06-data-platform/r03-the-authentication-audit.md) that reads it. Grant the T-SQL pass's login the permissions in the table, or the `##MS_DefinitionReader##` role, not `##MS_SecurityDefinitionReader##`, which also shows SQL login password hashes.
+**What the SQL Server pass doesn't read.** The SQL Server pass reads no host: no WMI, no service control manager, no registry. `SqlServiceAccounts.csv` lists the user and managed service accounts whose name or description contains the name hint, and whether each holds an `MSSQLSvc` SPN. It doesn't say which account each SQL Server service actually runs as; the server-service inventory below does, for every service on every server it can read. Confirming that needs local administrator on each host, or a narrower delegation, which [Book 06, Runbook R02](../../docs/books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.md#the-rights-each-depth-of-discovery-needs) describes, and it's the program's audit in [Runbook R03](../../docs/books/b06-data-platform/r03-the-authentication-audit.md) that reads it. Grant the T-SQL pass's login the permissions in the table, or the `##MS_DefinitionReader##` role, not `##MS_SecurityDefinitionReader##`, which also shows SQL login password hashes.
 
 | Part | Tier A (default read) | Tier B (narrow addition) |
 |---|---|---|
@@ -188,6 +195,7 @@ The assessment never uses Domain Admins, DnsAdmins, the CA administrator role or
 | NPS KB5040268 events | — | Event Log Readers on each NPS server |
 | Transaction profiles from captures or declared figures | No account: the kit reads files the team supplies | — (the capture itself is taken by the application's administrators, under change control) |
 | Transaction profiles from SQL Server counters (`Measure-FMPSqlRoundTrip`) | — | A login with `VIEW SERVER STATE` (2022 and later: `VIEW SERVER PERFORMANCE STATE`) on the application's instance |
+| Server-service inventory (`Win32_Service` over CIM) | — | Remote read of WMI's `root\cimv2` namespace on each server: local administrator, or the narrower WMI namespace permissions (Enable Account and Remote Enable) for the assessment account with membership of Remote Management Users for WS-Management or Distributed COM Users for DCOM. Try it on one server first: a server the account can't read is listed in `ServerServiceErrors.csv`, not fatal. Network: WS-Management (TCP 5985) and, for the DCOM fallback, RPC (TCP 135 and the dynamic range) |
 | SQL Server T-SQL pass | — | A login on each instance with `VIEW SERVER STATE` (SQL Server 2019 and earlier) or `VIEW SERVER PERFORMANCE STATE` (2022 and later) for the usage DMVs; `VIEW ANY DEFINITION` (2022 and later: `VIEW ANY SECURITY DEFINITION`) to see every login, without which the login list is silently partial; `VIEW SERVER SECURITY STATE` on 2022 and later for `sys.linked_logins` |
 
 Book 06 Runbook R03 names the same T-SQL requirement: confirm the login count against an instance you know. The Tier B items Book 00 lists that the kit doesn't collect (the CA's issued-certificate database, the Deleted Objects container contents, replication health, a native GPO backup) are best taken as administrator-run exports, which Book 02 Chapter 07 prefers to granting a right.
@@ -225,6 +233,10 @@ Get-FMPWaveList -OutputPath D:\Assessment\attributes
 # The DNS departure register for one domain, from a run's files (reads files only).
 Import-Module .\powershell\FMPDdiReadiness
 Get-FMPDnsDepartureRegister -Path D:\Assessment\<run-id>\agency.example -OutputPath D:\Assessment\ddi
+
+# Only the server-service inventory, for the servers in a list, WS-Management only.
+Import-Module .\powershell\FMPServerService
+Get-FMPServerServiceInventory -OutputPath D:\Assessment\services -ComputerListPath D:\Inputs\servers.txt -NoDcom
 
 # Only the SQL Server count, sweeping every enabled Windows Server for Express instances.
 Import-Module .\powershell\FMPSqlEstate
@@ -273,9 +285,14 @@ Everything goes under `<OutputPath>\<run-id>`, where the run identifier is Book 
 ├── RunLog.txt                every step, heartbeat, retry and pre-flight check, in UTC
 ├── RunState.json             each step's status, objects and seconds (what -Resume reads)
 ├── Preflight.json            the pre-flight checks
+├── InputManifest.json        written before any read: every input file (catalogs, measurements,
+│                             NPS exports, code lists, wave plans, server lists) and every kit
+│                             script and module, each with its size and SHA-256, and the forest,
+│                             domains and domain controllers read
 ├── AssessmentManifest.json   who, when (UTC), host, forest, the DC that served each domain,
 │                             tier, parameters, PowerShell and module versions, every step's
-│                             status, and the size and SHA-256 of every other file
+│                             status, the size and SHA-256 of every other file, and
+│                             InputsChanged: any input file whose hash changed during the run
 ├── Summary\        StartKitSummary.md, StartKitSummary.json
 ├── Preflight\      ReadAccess.json, DelegationRequest.md
 ├── SQL\            SqlEstate.csv, SqlEstate.json, SqlEstateSummary.json, SqlSignals.json,
@@ -290,6 +307,10 @@ Everything goes under `<OutputPath>\<run-id>`, where the run identifier is Book 
 │                   applications\<name>.json (one per application, for its plan review),
 │                   measurements\ (what each capture showed); with no catalog, only
 │                   TransactionCatalog.template.csv and TransactionSummary.json
+├── ServerServices\  ServerServices.csv (server, service, display name, logon account and its type,
+│                   start mode, state, path, protocol), ServiceAccountHosts.csv (each domain or
+│                   managed service account's servers and services), ServerServiceErrors.csv,
+│                   ServerServiceSummary.json
 ├── AttributeSurvey\  ad-user-export.csv (personal data), FillRate.csv, ValueQuality.csv,
 │                   SlotUsage.csv, GcCoverage.csv, AttributeSurvey.json
 ├── Waves\          waves.csv, wave-summary.csv, wave-exclusions.csv, WaveSummary.json
@@ -297,7 +318,7 @@ Everything goes under `<OutputPath>\<run-id>`, where the run identifier is Book 
 └── <each domain>\  OUs\, GPOs\, DNS\, Objects\, ServiceAccounts\, Trusts\, Ldap\
 ```
 
-`Objects\` also holds `UserCounts.json`, `ComputerCounts.json` and `GroupCounts.json`, and `Kerberos\` holds `KerberosSpnSummary.json`: the counts without the rows. The `_parts\` folders hold each partition's streamed rows and the checkpoints; the joined files are complete without them, and they can be deleted once the run has its manifest.
+`ServiceAccounts\IdentityEvidence.json` holds one directory evidence record per service identity (each user with an SPN or delegation, each MSA and gMSA): the attributes exactly as the collector read them, the query, the domain and the time, and `AttributesSha256`, the SHA-256 of `AttributesJson`, the exact text hashed, so a record can be checked later without the directory. `Objects\` also holds `UserCounts.json`, `ComputerCounts.json` and `GroupCounts.json`, and `Kerberos\` holds `KerberosSpnSummary.json`: the counts without the rows. The `_parts\` folders hold each partition's streamed rows and the checkpoints; the joined files are complete without them, and they can be deleted once the run has its manifest.
 
 The per-domain layout is Book 02 Appendix B's, so its output schema reference applies. Book 00's deliverable names map onto it: `ForestTopology.json`, `OUHierarchy.json`, `GPOInventory.json`, `DNSInventory.json`, `PKIInventory.json`, `ComputerInventory.json`, `UserInventory.json`, `GroupInventory.json`, `ServiceAccounts.csv`, `TrustMap.json`, `OUDelegations.json`, `SchemaExtensions.json` and `AssessmentManifest.json`; `PKISecurityReport.json` holds the escalation findings Book 00 calls `ESCVulnerabilities.csv`. The set is sensitive (privileged accounts, delegation, PKI weaknesses): store it encrypted and handle it under the agency's data classification policy.
 

@@ -121,3 +121,9 @@ Applied the conventions of Book 00, Appendix D (`docs/books/b00-orientation/appe
 **G-05 musts relabeled.** One: Gate 1, step 2, "`distinguishedName` ... must never drive policy" becomes "should never drive policy *(risk-based recommended: the program's position)*". The others are product constraints, descriptive ("what must not change") or the *required affinity* setting's name.
 
 **G-03 re-verification.** None. The guide still adds no new external claims: the new section is carried from its own gates, Where the kits stop and Rollback at a glance, and from the privileged access guide's G2.
+
+## Revision 2026-11-25 — custom security attributes in GCC (WD-176)
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| CSA-1 | D-AT1's custom security attributes and AT5.4's non-person tags wait for the tenant check; the tags go in service principal tags and notes until then | see the change | changed *(design guidance)* | WD-176; Mike, November 25, 2026 |

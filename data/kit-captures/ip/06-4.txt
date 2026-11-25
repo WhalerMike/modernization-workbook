@@ -1,4 +1,6 @@
-PS> Invoke-Pester -Path tests/Kit.Tests.ps1 -TagFilter ch06 -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-          3           0
+PS> Import-Csv "$Run/dlp/exceptions.csv" | Format-Table -AutoSize
+Kind                 Policy                       Target                         Register Expires    Status
+----                 ------                       ------                         -------- -------    ------
+dlp-recipient-domain FMP-DLP-CUI-ExternalEmail-v2 partner.example                EXC-001  2027-06-30 Pass
+dlp-recipient-domain FMP-DLP-CUI-ExternalEmail-v2 oldpartner.example             EXC-002  2026-10-31 Fail
+dlp-sender-group     FMP-DLP-CUI-ExternalEmail-v2 dlp-exceptions@contoso.example EXC-003  2027-03-31 Pass

@@ -109,7 +109,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: validate, test and plan the repository",
       body: [
-        { terminal: "06-2", lines: "2-4,7-14,17-22,24", pt: 10.5 },
+        { terminal: "06-4", lines: "2-4,7-14,17-22,24", pt: 10.5 },
       ],
       sources: "Sources: examples/defender-xdr (fictional fixtures). Chapter 06, “Lab 1: fixtures, no tenant,” steps 1–2.",
       say: `Lab 1, in the kit's folder. Step 1 reads one rule's test file: one table, a known-bad day that must return a row, and a quiet day that must return none. Step 2 validates, tests and plans. The admin-share rule fails validation: it would isolate devices on its own. It also fails its quiet day, three rows where one is allowed, so it would have been noisy too. The plan creates the LSASS dump-tool rule. It updates only the status of the encoded PowerShell rule, which is deployed disabled and now enabled in its file after a passing test. It holds the admin-share rule. And it reports a legacy rule, made in the portal and in no file, as an orphan.`,
@@ -120,8 +120,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the plan's hash, and the portal path",
       body: [
-        { terminal: "06-3", pt: 10.5 },
-        { terminal: "06-4", lines: "4,27-28", pt: 10.5 },
+        { terminal: "06-5", pt: 10.5 },
+        { terminal: "06-6", lines: "4,27-28", pt: 10.5 },
         { callout: "the update's body holds status and nothing else: Learn's PATCH supplies only what changes.", label: "Read it: ", icon: "FaListCheck", color: "teal" },
       ],
       sources: "Sources: Learn, Update detectionRule. examples/defender-xdr (fictional fixtures). Chapter 06, “Lab 1: fixtures, no tenant,” steps 3–4.",

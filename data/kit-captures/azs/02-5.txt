@@ -1,3 +1,6 @@
-PS> Import-Csv out/week2/exposure/findings.csv | Where-Object rule -in 'AZS-EX-03', 'AZS-EX-04' | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
-AZS-EX-04 Warn    pip-orphan: was PublicIP 198.51.100.30; remove any DNS record that still points at it
-AZS-EX-03 Info    pip-new-api: new PublicIP 198.51.100.50
+PS> Import-Csv "$Run/week1/exposure/findings.csv" | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+AZS-EX-01 Finding pip-jump: PublicIP has no owner tag
+AZS-EX-01 Finding pip-orphan: PublicIP has no owner tag
+AZS-EX-01 Finding stpayrolldata: PaaS microsoft.storage/storageaccounts has no owner tag
+AZS-EX-02 Warn    pip-orphan: 198.51.100.30 is attached to nothing
+AZS-EX-05 Warn    ci-batch-export: in Defender for Cloud's export (internet exposure analysis), not in the register: a gap in the queries

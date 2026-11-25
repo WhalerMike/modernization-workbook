@@ -12,6 +12,9 @@ import pytest
 
 HERE = Path(__file__).resolve().parents[1]
 HRL = HERE.parent / "hr-lifecycle"
+if not (HRL / "python").is_dir():
+    # A path's zip that doesn't carry the HR lifecycle kit beside this one
+    pytest.skip("needs examples/hr-lifecycle beside this kit", allow_module_level=True)
 sys.path.insert(0, str(HERE / "python"))
 sys.path.insert(0, str(HRL / "python"))
 import contractor_source  # noqa: E402

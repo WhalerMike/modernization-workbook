@@ -1,9 +1,12 @@
-PS> Import-Module ./powershell/SqlIdentity/SqlIdentity.psd1
-PS> Get-SqlCertificateDependency -Certs (Read-SqlJson tests/fixtures/certs/certs.json) -WarningDays 365 | Format-Table Instance, Class, ExpiresInDays, Warning -AutoSize
-Instance Class                                    ExpiresInDays Warning
--------- -----                                    ------------- -------
-SQLPRD01 TLS for client connections                          72 expires within 365 days
-SQLPRD06 TLS for client connections                         481
-SQLPRD02 Certificate-mapped login                            41 expires within 365 days
-SQLPRD02 Certificate-mapped endpoint                        254 expires within 365 days
-SQLFCI04 Certificate-based sign-in (NTLM interim)           100 expires within 365 days
+PS> ./Invoke-SqlCertDependency.ps1 -CertsPath tests/fixtures/certs/certs.json -OutputPath "$Run/certs"
+Instance Class                                    ADCS ExpiresInDays Warning
+-------- -----                                    ---- ------------- -------
+SQLPRD01 TLS for client connections               yes             72 expires within 90 days
+SQLPRD06 TLS for client connections               no             481
+SQLPRD02 Certificate-mapped login                 yes             41 expires within 90 days
+SQLPRD02 Certificate-mapped endpoint              yes            254
+SQLFCI04 Certificate-based sign-in (NTLM interim) yes            100
+
+Wrote 2 files and manifest.json to C:/FMWLabs/results/sql-server-identity-08/lab1/<run>/certs
+Evidence for CERTS (Find the AD CS certificates SQL Server depends on): SC-8, SC-12, SC-17; KSI-SVC-SIN, KSI-SVC-ASM
+Blocking an AD CS decommission: 4 of 5

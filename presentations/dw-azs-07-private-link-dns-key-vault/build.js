@@ -125,8 +125,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: run the check, read each vault",
       body: [
-        { terminal: "07-1", label: "examples/azure-security  ·  fixture data  ·  real output" },
-        { terminal: "07-2" },
+        { terminal: "07-3", label: "examples/azure-security  ·  fixture data  ·  real output" },
+        { terminal: "07-4" },
       ],
       sources: "Sources: examples/azure-security (fictional fixtures). Chapter 07, “Lab 1: fixtures, no subscription,” steps 1–2.",
       say: `Lab 1 needs PowerShell 7 with Pester, in the kit's folder, and no subscription. Contoso's vault zone is central and linked to the hub; the payroll team created its own blob zone in its workload subscription. Step 1 runs the check: one of three vaults has the full posture. Step 2 reads each vault. The payroll vault has everything. The hub certificates vault has no private endpoint, and its public access is on. And the portal vault misses every part: access policies, no purge protection, an open firewall, public access, no endpoint and no audit log.`,
@@ -137,8 +137,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: endpoints and the findings",
       body: [
-        { terminal: "07-3" },
-        { terminal: "07-4", lines: "1-7,13" },
+        { terminal: "07-5" },
+        { terminal: "07-6", lines: "1-7,13" },
       ],
       sources: "Sources: examples/azure-security (fictional fixtures). Chapter 07, “Lab 1: fixtures, no subscription,” steps 3–4.",
       say: `Step 3 reads each private endpoint and the zone it registers in. The vault's endpoint registers in the central vault zone. The blob endpoint registers in the payroll team's own zone. And the queue endpoint has no zone group at all: nothing registers its record. Step 4 reads the findings. The blob zone is in the payroll subscription and not linked to the hub; the blob endpoint registers there; the queue endpoint has no zone group; the storage account has two endpoints and public access still on. Then the vault findings, and warnings for public services with no endpoint. Step 5 runs this chapter's two tests.`,

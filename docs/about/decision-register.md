@@ -11,7 +11,7 @@ doc-type: section-landing
 
 This register lists the decisions behind the workbook, from the repository's first pull request on, one entry each. Each entry gives the question, the options that were considered, the choice, the reason for it, its basis, its sources and the pages it shaped. The [Reviewers' Guide](reviewers-guide.md) explains how to check an entry and how to tell us you agree or disagree with it. Use the entry's ID when you do.
 
-There are **175** workbook decisions: 165 settled, 0 challenged and 10 superseded. Below them are the **109** decision points the sample project plans leave to the agency that adopts them.
+There are **178** workbook decisions: 167 settled, 0 challenged and 11 superseded. Below them are the **109** decision points the sample project plans leave to the agency that adopts them.
 
 ::: {.callout-note}
 ## How to read the basis
@@ -208,7 +208,10 @@ There are **175** workbook decisions: 165 settled, 0 challenged and 10 supersede
 | [WD-172](#wd-172) | 2026-11-24 | Which tags join an AWS GovCloud (US) or OCI workload identity to its record, and does the validation kit check those identities? | Workbook design | settled |
 | [WD-173](#wd-173) | 2026-11-25 | What are the managed service account standard's detailed naming and configuration rules, beyond WD-159's prefixes and 15 characters? | Workbook design | settled |
 | [WD-174](#wd-174) | 2026-11-25 | Where is the managed service account standard enforced? | Workbook design | settled |
-| [WD-175](#wd-175) | 2026-11-25 | Which tags does every non-person identity carry for its move to Microsoft Entra, do owners go into AD, and does Entra's naming inform the managed service account names? | Workbook design | settled |
+| [WD-175](#wd-175) | 2026-11-25 | Which tags does every non-person identity carry for its move to Microsoft Entra, do owners go into AD, and does Entra's naming inform the managed service account names? | Workbook design | superseded by WD-176 |
+| [WD-176](#wd-176) | 2026-11-25 | Where do WD-175's tags live on the Entra side while no Microsoft Learn page confirms custom security attributes for Microsoft 365 GCC tenants? | Workbook design | settled |
+| [WD-177](#wd-177) | 2026-11-25 | What is the reference design for the host that holds the program's authoritative repository? | Workbook design | settled |
+| [WD-178](#wd-178) | 2026-11-25 | Which standby model does the platform host use? | Workbook design | settled |
 
 : Workbook decisions, oldest first {.striped .hover}
 
@@ -3061,11 +3064,63 @@ There are **175** workbook decisions: 165 settled, 0 challenged and 10 supersede
 | **Sources** | [Microsoft Learn, What are custom security attributes in Microsoft Entra ID?](https://learn.microsoft.com/entra/fundamentals/custom-security-attributes-overview); [Microsoft Learn, Governing Microsoft Entra service accounts](https://learn.microsoft.com/entra/architecture/govern-service-accounts); [Microsoft Learn, Cloud Adoption Framework, Define your naming convention](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming); [Microsoft Learn, Microsoft Entra Connect Sync default configuration](https://learn.microsoft.com/entra/identity/hybrid/connect/concept-azure-ad-connect-sync-default-configuration) |
 | **Pages affected** | [Requesting a Managed Service Account](../books/guides/msa-request-pack.md), [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../books/guides/service-account-migration.md), [Non-Person Identity: An Implementation Guide](../books/guides/non-person-identity-implementation.md), [Chapter 12 — The Managed Service Account Standard](../project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.md) |
 | **Date** | 2026-11-25 |
-| **Status** | settled |
+| **Status** | superseded |
 | **Defined in** | — |
+| **Superseded by** | [WD-176](#wd-176): Where do WD-175's tags live on the Entra side while no Microsoft Learn page confirms custom security attributes for Microsoft 365 GCC tenants? |
 | **Note** | Basis: workbook owner decision, November 25, 2026. Asked for a request document set, said "For future integration, when they move to EntraID, we tag everything" and asked whether Entra's standards should inform MSA naming; shown one tag set, owners in AD (a change to [WD-173](#wd-173)) and a request pack, he answered "Yes to all three". Not yet in the kits: Chapter 06 writing the tags, and VK-NPI-10 reading the three new keys. |
 
 [Agree, disagree or send evidence on WD-175](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-175%3A+)
+
+### WD-176: Where do WD-175's tags live on the Entra side while no Microsoft Learn page confirms custom security attributes for Microsoft 365 GCC tenants? {#wd-176}
+
+| | |
+|---|---|
+| **Options considered** | Custom security attributes now, after checking the tenant (WD-175); Treat custom security attributes as unavailable in GCC until a tenant check confirms them, with a stated fallback until then |
+| **Choice** | WD-175 stands except where its tags live in Entra. Custom security attributes are treated as unavailable in the program's GCC tenant until a tenant check confirms them, and the rule is program-wide: any design that relies on them (Conditional Access filters for applications, Azure ABAC conditions, Lifecycle Workflow scopes, HR attributes provisioned to them) states its fallback until then. Until the check confirms them, the seven tags live on a service principal as one npi:<Key>=<Value> string per key in its tags property, which Microsoft Graph can filter, with the whole key=value string, request and change included, in its notes; on a user-assigned managed identity as Azure resource tags; and on a system-assigned managed identity as Azure resource tags on the resource it belongs to, because that identity takes no tags of its own and a managed identity's service principal can't be updated directly. SailPoint and the register stay the source of record. The tenant check: in the GCC tenant, an Attribute Definition Administrator creates the NonPersonIdentity attribute set with one attribute, and an Attribute Assignment Administrator assigns it to a test service principal and reads it back; when that works, the workbook owner records it and custom security attributes become the Entra carrier, as WD-175 set, with the fallback's values copied across. The request pack's checker writes both forms. |
+| **Rationale** | Learn's Graph pages list the custom security attribute APIs for the worldwide service, which Microsoft 365 GCC tenants use, but Learn's US Government feature-availability page has no row for them and no page confirms them for GCC. A service principal's tags and notes are standard properties that the same worldwide endpoint updates in every cloud; tags accept free strings and can be filtered, and notes holds up to 1,024 characters for operational use. Azure Resource Manager supports tags on user-assigned managed identities but not on the system-assigned identity type. |
+| **Basis** | Workbook design |
+| **Sources** | [Microsoft Learn, Microsoft Graph national cloud deployments](https://learn.microsoft.com/graph/deployments); [Microsoft Learn, Create customSecurityAttributeDefinition (Microsoft Graph v1.0)](https://learn.microsoft.com/graph/api/directory-post-customsecurityattributedefinitions); [Microsoft Learn, servicePrincipal resource type (Microsoft Graph v1.0)](https://learn.microsoft.com/graph/api/resources/serviceprincipal); [Microsoft Learn, Update servicePrincipal (Microsoft Graph v1.0)](https://learn.microsoft.com/graph/api/serviceprincipal-update); [Microsoft Learn, Tag support for Azure resources](https://learn.microsoft.com/azure/azure-resource-manager/management/tag-support) |
+| **Pages affected** | [Requesting a Managed Service Account](../books/guides/msa-request-pack.md), [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../books/guides/service-account-migration.md), [Non-Person Identity: An Implementation Guide](../books/guides/non-person-identity-implementation.md) |
+| **Date** | 2026-11-25 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 25, 2026, on custom security attributes in GCC: "Lets say no until we can confirm yes." He chose to apply it in two pull requests: this one for [WD-175](#wd-175) and the non-person identity and managed service account pages, and a second for the other pages, decks and kits that rely on custom security attributes. |
+
+[Agree, disagree or send evidence on WD-176](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-176%3A+)
+
+### WD-177: What is the reference design for the host that holds the program's authoritative repository? {#wd-177}
+
+| | |
+|---|---|
+| **Options considered** | Gitea behind IIS on Windows Server 2025, joined to AD and signed into through Microsoft Entra ID; IIS serving Git directly through the git-http-backend CGI; GitHub Enterprise Server; GitLab self-managed or Bitbucket Data Center; Azure DevOps Server; A SaaS repository (GitHub Enterprise Cloud, GitLab Dedicated for Government, Azure DevOps Services); Plain bare repositories over SSH |
+| **Choice** | Gitea behind IIS on Windows Server 2025 is the program's reference design: IIS terminates TLS on 443 and forwards to Gitea on loopback, Gitea runs as a Windows service under a gMSA with its own SSH listener, signs in through an LDAPS source and an Entra ID OpenID Connect source, and keeps its metadata in PostgreSQL (full production) or SQLite (single host). It is one well-understood way to meet the single-authoritative-writer requirement, not the only one. The CGI option stays for lab use only, and any other choice, or promoting a CGI host to production, is a recorded decision that supersedes this one. Appendix B of *Cloud Boundary and Landing Zone* lists the interfaces the design exposes, and any interface outside that list is a finding. |
+| **Rationale** | The requirement is one authoritative writer that the agency controls, on supported components it can harden as Tier 0. Gitea runs as a Windows service and documents IIS as its reverse proxy, and it brings a web UI, REST API, LFS, OpenID Connect and LDAP sign-in, teams, protected branches and signed webhooks that the CGI option lacks. GitHub Enterprise Server, GitLab and Bitbucket Data Center add Linux appliances or more components to govern without more governance value at this scale; Azure DevOps Server is current but needs a heavier Windows and SQL Server footprint; SaaS repositories move the authoritative copy off a host the agency controls, which is a design choice, not a boundary prohibition. |
+| **Basis** | Workbook design |
+| **Sources** | [Gitea Documentation, Reverse Proxies](https://docs.gitea.com/administration/reverse-proxies); [Gitea Documentation, Register as a Windows Service](https://docs.gitea.com/installation/windows-service); [Microsoft Learn, Reverse Proxy with URL Rewrite v2 and Application Request Routing](https://learn.microsoft.com/iis/extensions/url-rewrite-module/reverse-proxy-with-url-rewrite-v2-and-application-request-routing); [Microsoft Learn, Windows Server release information](https://learn.microsoft.com/windows/release-health/windows-server-release-info); [Microsoft Learn, Azure DevOps Server Release Notes](https://learn.microsoft.com/azure/devops/server/release-notes/azuredevopsserver?view=azure-devops) |
+| **Pages affected** | [Chapter 03 — The Platform Foundation](../books/b01-transformation-arc/03-platform-foundation.md), [Chapter 08 — Pre-Flight: Platform and Assessment](../books/b00-orientation/08-pre-flight-and-assessment.md), [Appendix B — Platform Host Interface Reference](../books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md) |
+| **Date** | 2026-11-25 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 25, 2026. Asked whether *Cloud Boundary and Landing Zone*'s Appendix B should have its own topic and be fully fleshed out, he was shown that *The Transformation Arc*, Chapter 03 asks for the reverse-proxy choice and the standby model to be recorded and that the register held neither; he answered "Go on Phase 1, use your recommendations". This records the design the books already describe; it doesn't change it. |
+
+[Agree, disagree or send evidence on WD-177](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-177%3A+)
+
+### WD-178: Which standby model does the platform host use? {#wd-178}
+
+| | |
+|---|---|
+| **Options considered** | Cold standby with manual failover and stated recovery objectives; Hot standby with automatic, witness-gated failover; An active-active pair |
+| **Choice** | The baseline is a cold standby with manual failover, nightly backup and stated recovery objectives: a 24-hour recovery point and a 4-hour recovery time for a cold restore, with an off-premises copy for total-site loss. Where an agency needs high availability, it opts in to a hot standby with automatic, witness-gated failover, so only one node accepts commits at a time, aiming for near-zero data loss and a recovery time in minutes. Both nodes are Tier 0 assets. An active-active pair is ruled out, because two writers would diverge. |
+| **Rationale** | The design's one requirement is a single authoritative writer, so replication serves recovery, not load-sharing. A cold standby meets the program's recovery objectives at the least cost and complexity; a witness keeps an automatic failover from producing two writers. Making the hot standby opt-in lets an agency pay for availability only where its own impact analysis asks for it. |
+| **Basis** | Workbook design |
+| **Sources** | None external: the choice rests on the pages it shaped. |
+| **Pages affected** | [Chapter 03 — The Platform Foundation](../books/b01-transformation-arc/03-platform-foundation.md), [Appendix B — Platform Host Interface Reference](../books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md) |
+| **Date** | 2026-11-25 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 25, 2026, in the same answer as [WD-177](#wd-177). This records the standby model *The Transformation Arc*, Chapter 03 and *Cloud Boundary and Landing Zone*, Appendix B already describe. |
+
+[Agree, disagree or send evidence on WD-178](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-178%3A+)
 
 ## Decision points in the sample project plans {#plan-decisions}
 
@@ -3077,7 +3132,7 @@ Defined in [the plan's decision points](../project-plans/attribute-driven-migrat
 
 | ID | Decision | Decides | Options | Basis | Workbook decision |
 |---|---|---|---|---|---|
-| D-AT1 | Attribute schema: the store and the single writer for every attribute that drives access, in all four tracks | Data architect | Native properties first, then extension attributes 1–15 for what rules read, directory extensions for more slots, custom security attributes for sensitive values rules don't need, device properties, Azure tags and certificateUserIds (the store table); or a broader use of directory extensions from the start | [Source chapter](../books/guides/attribute-driven-migration.md#attributes) | Left to the agency |
+| D-AT1 | Attribute schema: the store and the single writer for every attribute that drives access, in all four tracks | Data architect | Native properties first, then extension attributes 1–15 for what rules read, directory extensions for more slots, custom security attributes for sensitive values rules don't need (once a tenant check confirms them in GCC, WD-176), device properties, Azure tags and certificateUserIds (the store table); or a broader use of directory extensions from the start | [Source chapter](../books/guides/attribute-driven-migration.md#attributes) | Left to the agency |
 | D-AT2 | The coded slot register: which extension attribute carries which code, on users and on devices | Data architect, with HR for the code lists | The program attribute map (organization, worker type and position category in extensionAttribute10 to 12; region, cost center, division, account type, clearance and DoNotSync in their slots; device tier, role and environment on the device object); or an agency map that keeps the same rule: codes, never names, one writer per slot | [Source chapter](../books/b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map) | Left to the agency |
 | D-AT3 | Correlation threshold before any rule grants access | Authorizing official, through the agency's risk governance | 99% of the pilot cohort correlated (a proposed starting point); a risk-tiered threshold, stricter for privileged and leaver-sensitive populations; 100% with a dated exception list | [Source chapter](../books/b03-hr-identity/12-execution-plan.md#sequencing-principle) | Left to the agency |
 | D-AT4 | Restricted management, unit by unit, before each unit exists | Identity engineering | No (the default): the unit scopes writes and stays in governance automation; yes, for a small set of sensitive accounts, accepting that they leave PIM, entitlement management, Lifecycle Workflows and access reviews | [Source chapter](../books/b02-identity/05-delegation-without-ous.md#restricted-management-a-per-au-decision) | Left to the agency |

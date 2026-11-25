@@ -268,3 +268,9 @@ Mike's approval, Nov 13, 2026. The dates and events for each protocol now live i
 ## Revision 2026-11-20 — managed service account standard
 
 The non-person identity track's end state and "Done when" now name dMSAs beside gMSAs and the dated Kerberos island (`Keep` or `KeepKerberos` with an end date the authorizing official accepts, WD-165), and ask for two named owners and a sponsor (WD-164). The service-account targets follow the service account guide's decision path: dMSA or gMSA for workloads that stay on Kerberos, then managed identity, federated credential and certificate, in that order, when the workload moves. No new Learn fact; the dMSA prerequisites are the service account guide's, footnoted there.
+
+## Revision 2026-11-25 — custom security attributes in GCC (WD-176)
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| CSA-1 | Custom security attributes: GCC caveat at the definition; sensitive values stay out of Entra, and Book 04's filters list applications, until a tenant check confirms them | see the change | changed *(design guidance)* | WD-176; Mike, November 25, 2026 |

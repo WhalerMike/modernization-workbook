@@ -1,4 +1,13 @@
-PS> Invoke-Pester -Path tests/SqlIdentity.Tests.ps1 -FullNameFilter 'Chapter 06*' -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-          7           0
+PS> ./Invoke-SqlNtlmAudit.ps1 -AuditPath tests/fixtures/audit-day30/audit.json -EstatePath tests/fixtures/estate/estate.json -NtlmPath tests/fixtures/ntlm -OutputPath "$Run/ntlm-day30"
+Instance Pattern                   Effect
+-------- -------                   ------
+SQLPRD02 Missing SPN               Remote connections fall back to NTLM
+SQLFCI04 SPN on the wrong account  Held by CONTOSO\svc-oldsql, service runs as CONTOSO\svc-sqlfci04: authentication fails
+SQLPRD06 Duplicate SPN             Held by CONTOSO\gmsa-sqlprd06$ and CONTOSO\SQLPRD06$: Kerberos can't choose
+SQLPRD06 Remote NTLM observed      6 remote NTLM sessions in the sample
+SQLPRD01 Linked-server passthrough Calls to SQLLEG03 pass the caller's credentials: NTLM unless delegation is set
+SQLPRD06 Non-domain-joined client  dmz-web01 (192.0.2.15) can't get a Kerberos ticket
+
+Wrote 3 files and manifest.json to C:/FMWLabs/results/sql-server-identity-06/lab1/<run>/ntlm-day30
+Evidence for NTLM (Find the NTLM patterns and plan the SPN fixes): IA-2, CM-6; KSI-SVC-ACM
+SPN fixes to review: 4, in C:/FMWLabs/results/sql-server-identity-06/lab1/<run>/ntlm-day30/spn-fixes.txt

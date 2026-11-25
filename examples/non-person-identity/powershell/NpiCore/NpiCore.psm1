@@ -823,6 +823,85 @@ function Export-NpiRun {
     Get-Item -LiteralPath (Join-Path $OutputPath 'manifest.json')
 }
 
-Export-ModuleMember -Function Get-NpiCloud, Get-NpiCallList, Get-NpiCall, Get-NpiTask, Get-NpiRequiredPermission, New-NpiReader, Resolve-NpiUri,
+
+function Write-NpiInputManifest {
+    <#
+    .SYNOPSIS
+        Writes input-manifest.json before a run reads anything: every input file (settings, call
+        list, fixture, server-service inventory) and the kit's own modules and scripts, each with
+        its size and SHA-256, and the sources it will read (cloud, tenant, domain). Returns the
+        file, whose hash Export-NpiRun records in manifest.json.
+    .EXAMPLE
+        Write-NpiInputManifest -OutputPath out/inventory -Task inventory -Cloud gcc -TenantId c0ffee00-0000-4000-8000-000000000001 -Domain corp.contoso.example -InputPath @{ config = 'config/register.json' }
+    #>
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string]$OutputPath,
+        [Parameter(Mandatory)][string]$Task,
+        [Parameter(Mandatory)][string]$Cloud,
+        [string]$TenantId,
+        [string]$Domain,
+        [string]$Mode = 'Fixture',
+        [hashtable]$InputPath = @{}
+    )
+    $OutputPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($OutputPath)
+    New-Item -ItemType Directory -Force -Path $OutputPath | Out-Null
+    $kitRoot = (Resolve-Path (Join-Path $PSScriptRoot '../..')).Path
+    $kit = @(Get-ChildItem -LiteralPath $kitRoot -Recurse -File -Include *.ps1, *.psm1, *.psd1 |
+            Where-Object { $_.FullName -notmatch '[\\/](tests[^\\/]*|deploy)[\\/]' } | Sort-Object FullName | ForEach-Object {
+                [ordered]@{ path = [IO.Path]::GetRelativePath($kitRoot, $_.FullName).Replace('\', '/'); sizeBytes = $_.Length; sha256 = Get-NpiFileHash -Path $_.FullName }
+            })
+    $inputs = @(foreach ($k in ($InputPath.Keys | Sort-Object)) {
+            $p = $InputPath[$k]
+            if (-not $p) { continue }
+            if (Test-Path -LiteralPath $p -PathType Leaf) {
+                $i = Get-Item -LiteralPath $p
+                [ordered]@{ input = $k; path = $i.FullName; sizeBytes = $i.Length; lastWriteUtc = $i.LastWriteTimeUtc.ToString('o'); sha256 = Get-NpiFileHash -Path $i.FullName }
+            } else { [ordered]@{ input = $k; path = "$p"; sizeBytes = $null; lastWriteUtc = $null; sha256 = $null } }
+        })
+    $m = [ordered]@{
+        task = $Task; mode = $Mode; cloud = $Cloud; tenantId = $TenantId; domain = $Domain
+        created = [DateTime]::UtcNow.ToString('o'); inputs = $inputs; kit = $kit
+    }
+    $path = Join-Path $OutputPath 'input-manifest.json'
+    Write-NpiJson -Path $path -Value $m
+    Get-Item -LiteralPath $path
+}
+
+function ConvertTo-NpiDirectoryEvidence {
+    <#
+    .SYNOPSIS
+        One directory evidence record for one AD identity: the attributes as the declared read
+        returned them, the read that returned them (call ID, cmdlet and parameters, time), and a
+        SHA-256 of the attributes (over attributesJson, the exact text hashed), so the record can
+        be checked against the directory later.
+    .EXAMPLE
+        $read = [pscustomobject]@{ Call = 'ad-service-users'; Target = 'Get-ADUser -LDAPFilter (...)'; At = '2026-10-30T12:00:00Z' }
+        ConvertTo-NpiDirectoryEvidence -Object ([pscustomobject]@{ SamAccountName = 'svc-x'; ObjectGUID = 'ad000000-0000-4000-8000-000000000099'; Enabled = $true }) -Properties SamAccountName, Enabled -Read $read
+    #>
+    param([Parameter(Mandatory)]$Object, [Parameter(Mandatory)][string[]]$Properties, $Read)
+    $attrs = [ordered]@{}
+    foreach ($n in (@('SamAccountName', 'DistinguishedName', 'ObjectClass') + $Properties | Select-Object -Unique)) {
+        $p = $Object.PSObject.Properties[$n]
+        if (-not $p -or $null -eq $p.Value) { continue }
+        $v = $p.Value
+        if ($v -is [datetime]) { $v = $v.ToUniversalTime().ToString('o') }
+        elseif ($v -is [Collections.IEnumerable] -and $v -isnot [string]) { $v = @($v | ForEach-Object { "$_" } | Sort-Object) }
+        elseif ($v -is [guid]) { $v = "$v" }
+        $attrs[$n] = $v
+    }
+    $canonical = ConvertTo-Json -InputObject $attrs -Depth 5 -Compress
+    $bytes = [Text.Encoding]::UTF8.GetBytes($canonical)
+    $hash = -join ([Security.Cryptography.SHA256]::HashData($bytes) | ForEach-Object { $_.ToString('x2') })
+    [ordered]@{
+        identityId = "ad:$($Object.ObjectGUID)"; samAccountName = "$($Object.SamAccountName)"; objectClass = "$(@($Object.ObjectClass)[-1])"
+        readBy = if ($Read) { $Read.Call } else { $null }; read = if ($Read) { $Read.Target } else { $null }; readAt = if ($Read) { $Read.At } else { $null }
+        attributes = $attrs
+        # The exact text hashed: check a record with SHA-256 over attributesJson as UTF-8.
+        attributesJson = $canonical; attributesSha256 = $hash
+    }
+}
+
+Export-ModuleMember -Function Write-NpiInputManifest, ConvertTo-NpiDirectoryEvidence, Get-NpiCloud, Get-NpiCallList, Get-NpiCall, Get-NpiTask, Get-NpiRequiredPermission, New-NpiReader, Resolve-NpiUri,
     Assert-NpiHost, Invoke-NpiList, Invoke-NpiGetOne, Invoke-NpiAdRead, New-NpiLiveInvoker, New-NpiLiveAdInvoker, New-NpiFixtureInvoker,
     Invoke-NpiFake, Test-NpiLdapFilter, Test-NpiTransientError, Invoke-NpiRetry, Set-NpiProgressPreference, Write-NpiProgress, New-NpiFixtureAdInvoker, Invoke-NpiFakeAd, New-NpiFinding, Write-NpiJson, Get-NpiFileHash, Export-NpiRun

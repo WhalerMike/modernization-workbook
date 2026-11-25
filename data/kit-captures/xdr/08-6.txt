@@ -1,5 +1,3 @@
-PS> Add-Content -Path out/evidence/runs/0002-coverage/tickets.csv -Value '"edited after it was recorded"'
-PS> ./Invoke-XdrEvidence.ps1 -EvidencePath out/evidence -Check
-SUMS               Fail  runs/0002-coverage/tickets.csv changed
-CHAIN              Fail  runs/0002-coverage/tickets.csv doesn't match 0002-coverage.json
-(exit code 1)
+PS> ./Invoke-XdrEvidence.ps1 -EvidencePath "$Run/evidence" -Check
+SUMS               Pass  86 files match SHA256SUMS
+CHAIN              Pass  10 records, chain unbroken

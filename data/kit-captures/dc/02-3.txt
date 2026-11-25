@@ -1,17 +1,2 @@
-PS> ./Test-DcWorkbook.ps1 -TemplatePath tests/fixtures/exported/edited.workbook.json
-DC-V-01   1 checked  pass
-DC-V-02   1 checked  pass
-DC-V-03  10 checked  pass
-DC-V-04  19 checked  1 FAILED
-DC-V-05  19 checked  1 FAILED
-DC-V-06  12 checked  1 FAILED
-DC-V-07  13 checked  pass
-DC-V-08  12 checked  pass
-DC-V-09   1 checked  pass
-DC-V-10   1 checked  1 FAILED
-FAIL DC-V-05 risk: risk-2 isn't scoped to the {Workspace} parameter as a Logs query
-FAIL DC-V-04 devices: query 'devices-1' looks back 720 h, more than 72 h
-FAIL DC-V-06 grants: the not-evidence banner is missing
-FAIL DC-V-10 (workbook): the template carries a GUID, a subscription path, fallbackResourceIds set: the deployment plan fills IDs, never the template
-4 of 89 checks failed
-(exit code 1)
+PS> ./New-DcWorkbookTemplate.ps1 -Check
+workbook/daily-checks.workbook.json matches the manifest and queries

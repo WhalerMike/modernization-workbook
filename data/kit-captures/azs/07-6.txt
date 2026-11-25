@@ -1,1 +1,17 @@
-PS> Remove-Item -Recurse -Force out
+PS> Import-Csv "$Run/week1/private/findings.csv" | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+AZS-PL-01 Finding privatelink.blob.core.windows.net: in subscription 33333333-3333-4333-8333-333333333333
+AZS-PL-02 Finding privatelink.blob.core.windows.net: not linked to vnet-hub
+AZS-PL-04 Finding pe-st-payroll-blob: registers in privatelink.blob.core.windows.net in subscription 33333333-3333-4333-8333-333333333333
+AZS-PL-03 Finding pe-st-payroll-queue: to stpayrolldata/queue
+AZS-PL-05 Finding stpayrolldata: publicNetworkAccess Enabled with 2 private endpoints
+AZS-KV-05 Finding kv-hub-certs: no approved private endpoint connection
+AZS-KV-01 Finding kv-portal: enableRbacAuthorization is not true
+AZS-KV-02 Finding kv-portal: enablePurgeProtection is not true
+AZS-KV-03 Finding kv-portal: networkAcls.defaultAction Allow
+AZS-KV-05 Finding kv-portal: no approved private endpoint connection
+AZS-KV-06 Finding kv-portal: no AuditEvent (or audit, allLogs) to the platform workspace
+AZS-PL-06 Warn    stcareersweb: microsoft.storage/storageaccounts, publicNetworkAccess Enabled
+AZS-PL-06 Warn    app-portal-east: microsoft.web/sites, publicNetworkAccess Enabled
+AZS-PL-06 Warn    app-portal-west: microsoft.web/sites, publicNetworkAccess Enabled
+AZS-KV-04 Warn    kv-hub-certs: publicNetworkAccess Enabled
+AZS-KV-04 Warn    kv-portal: publicNetworkAccess Enabled

@@ -1,25 +1,13 @@
-PS> ./Invoke-GsaCheck.ps1 -Area client -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/client -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-client -AsOf 2026-11-16T12:00:00Z
-GSA-CLI-01  Fail  client coverage: 15 active of 18 in-scope devices (83.3%), target 98%
-GSA-CLI-02  Pass  device PC-PILOT-01: client 2.6.112.0, minimum 1.8.239.0
-GSA-CLI-03  Pass  device PC-PILOT-01: DisabledComponents = 0x20 (0x20 is IPv4 preferred)
-GSA-CLI-04  Pass  device PC-PILOT-01: DNS over HTTPS off in Edge and Chrome
-GSA-CLI-05  Pass  device PC-PILOT-01: health: Connected
-GSA-CLI-06  Info  device PC-PILOT-01: 4 of 4 hardening values set; the guide deploys the remediation from ring 2, not in the pilot
-GSA-CLI-02  Pass  device PC-PILOT-02: client 2.6.112.0, minimum 1.8.239.0
-GSA-CLI-03  Pass  device PC-PILOT-02: DisabledComponents = 0x20 (0x20 is IPv4 preferred)
-GSA-CLI-04  Pass  device PC-PILOT-02: DNS over HTTPS off in Edge and Chrome
-GSA-CLI-05  Pass  device PC-PILOT-02: health: Connected
-GSA-CLI-06  Info  device PC-PILOT-02: 0 of 4 hardening values set; the guide deploys the remediation from ring 2, not in the pilot
-GSA-CLI-02  Fail  device PC-PILOT-03: client 1.7.669.0, minimum 1.8.239.0
-GSA-CLI-03  Fail  device PC-PILOT-03: DisabledComponents = 0x0 (0x20 is IPv4 preferred)
-GSA-CLI-04  Fail  device PC-PILOT-03: DNS over HTTPS not off in: Chrome
-GSA-CLI-05  Pass  device PC-PILOT-03: health: Connected
-GSA-CLI-06  Info  device PC-PILOT-03: 0 of 4 hardening values set; the guide deploys the remediation from ring 2, not in the pilot
-GSA-CLI-02  Pass  device PC-PILOT-04: client 2.6.112.0, minimum 1.8.239.0
-GSA-CLI-03  Pass  device PC-PILOT-04: DisabledComponents = 0x20 (0x20 is IPv4 preferred)
-GSA-CLI-04  Pass  device PC-PILOT-04: DNS over HTTPS off in Edge and Chrome
-GSA-CLI-05  Fail  device PC-PILOT-04: health: Disconnected
-GSA-CLI-06  Info  device PC-PILOT-04: 0 of 4 hardening values set; the guide deploys the remediation from ring 2, not in the pilot
-GSA-CLI-07  Pass  exclusion EX-06 LAB-HYPERV-01: owner Endpoint engineer, approver Policy owner, expires 2027-01-31
+PS> ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/pilot -Area client -OutputPath "$Run/client" -AsOf 2026-11-16T12:00:00Z
+Collected as of 2026-11-16T12:00:00Z (Fixture mode, environment lab, cloud gcc, ring pilot)
 
-client: 22 checks (5 Fail, 4 Info, 13 Pass). Written to out/check-client: findings.json, findings.csv, manifest.json
+Call                     Method  Beta  Verified  Least-privileged permission
+device-usage             GET     True  True      NetworkAccessPolicy.Read.All
+
+1 calls sent (1 reads in all). Written to C:/FMWLabs/results/global-secure-access-03/lab1/<run>/client: collection.json, raw/, manifest.json (2 files hashed)
+PS> Read-GsaJson -Path "$Run/client/raw/device-usage.json"
+Name                           Value
+----                           -----
+totalDeviceCount               18
+activeDeviceCount              15
+inactiveDeviceCount            3

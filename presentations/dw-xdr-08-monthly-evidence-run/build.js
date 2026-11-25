@@ -129,7 +129,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: run the month, read the metrics",
       body: [
-        { cols: [[{ terminal: "08-1", lines: "4-13", pt: 10.5 }], [{ terminal: "08-2", lines: "7-9,11,13-14", pt: 10 }]], split: 0.32 },
+        { cols: [[{ terminal: "08-3", lines: "4-13", pt: 10.5 }], [{ terminal: "08-4", lines: "7-9,11,13-14", pt: 10 }]], split: 0.32 },
       ],
       sources: "Sources: examples/defender-xdr (fictional fixtures). Chapter 08, “Lab 1: fixtures, no tenant,” steps 1–2.",
       say: `Lab 1, in the kit's folder. Step 1 runs the month and records every run, with a lab change record. Ten run folders, ten records. Only signals and the metrics pass their own checks; every other run found something, as the earlier chapters showed. Step 2 reads the metrics. Protected coverage, sixty-four point three percent. Two of eleven onboarded devices have every rule in block. One of one enabled detection has a passing test. Four of five synthetic events did what they should. And mean time to triage says not computed, and why.`,
@@ -140,7 +140,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the records, the chain, the go/no-go",
       body: [
-        { cols: [[{ terminal: "08-3", lines: "1-13", pt: 10 }, { terminal: "08-4", pt: 10 }], [{ terminal: "08-5", lines: "1-8,15-17", pt: 10 }]], split: 0.52 },
+        { cols: [[{ terminal: "08-5", lines: "1-13", pt: 10 }, { terminal: "08-6", pt: 10 }], [{ terminal: "08-7", lines: "1-8,15-17", pt: 10 }]], split: 0.52 },
       ],
       sources: "Sources: examples/defender-xdr (fictional fixtures). Chapter 08, “Lab 1: fixtures, no tenant,” steps 3–5.",
       say: `Step 3 reads the records' index. Result is the files' integrity, and every record passes. Check result is what the run found, and most fail. Step 4 checks the chain: every file matches its hash, ten records, chain unbroken. Step 5 runs the production stage's go or no-go, and it fails, saying why for each step: no pre-flight record, runs whose own checks failed, and no scheduled run yet. Only signals and the metrics pass. The command exits with an error, which is what a go or no-go should see.`,
@@ -151,8 +151,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: change a recorded file; run the tests",
       body: [
-        { terminal: "08-6", pt: 11 },
-        { cols: [[{ terminal: "08-7", pt: 11 }], [{ bullets: [
+        { terminal: "08-8", pt: 11 },
+        { cols: [[{ terminal: "08-9", pt: 11 }], [{ bullets: [
           "Both checks fail, and name tickets.csv",
           "Before step 6, a folder whose SHA256SUMS you could hand to the ISSO",
           "Delete out when you're done",

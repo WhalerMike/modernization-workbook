@@ -1,4 +1,5 @@
-PS> Invoke-Pester -Path tests/Kit.Tests.ps1 -TagFilter ch01 -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-          8           0
+PS> Import-Csv "$Run/access/role-groups.csv" | Format-Table -AutoSize
+RoleGroup                              Member                       Finding
+---------                              ------                       -------
+Communication Compliance Investigators cc.one@contoso.example       review overdue
+Insider Risk Management Investigators  extra.person@contoso.example holds the role but is not in the register

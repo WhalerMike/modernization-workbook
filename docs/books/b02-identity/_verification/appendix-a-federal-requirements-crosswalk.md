@@ -75,3 +75,9 @@ Microsoft Learn pages listed as covered but uncited for this appendix were read 
 | L3 | Entra ID configuration guidance exists for IA-2 and enhancements, IA-3, IA-5, IA-8 (aA-fedramp-entra) | NIST control mapping, intro | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/standards/fedramp-identification-and-authentication-controls> |
 | L4 | Entra ID configuration guidance exists for AU-2, AU-6, SI-4 (aA-fedramp-entra) | NIST control mapping, intro | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/standards/fedramp-other-controls> |
 | L5 | Certificate-based and FIDO2 credentials are replay resistant (nonce or challenge) and phishing resistant, addressing IA-2(8) (aA-aal2) | NIST control mapping, IA-2(8) row | verified (Learn read Nov 9, 2026) | <https://learn.microsoft.com/entra/standards/nist-authenticator-assurance-level-2> |
+
+## Revision 2026-11-25 — outside review: wording and crosswalks
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | AUs and scoped roles carry OU delegation; policy targeting moves to groups | Contract requirement 2 | restated-as-design (was "replace delegation through OUs") | Program design; Chapter 05 |

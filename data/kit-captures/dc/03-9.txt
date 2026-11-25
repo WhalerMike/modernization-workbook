@@ -1,1 +1,10 @@
-PS> Remove-Item -Recurse -Force out
+PS> ./Invoke-DcEvidence.ps1 -EvidencePath "$Run/evidence" -RunPath "$Run/reach" -AsOf 2026-11-16T07:32:00Z
+Record 1: reachability Fail (REACH, EVIDENCE)
+Controls: AU-9, CA-7, SI-4
+KSIs:     KSI-MLA-EVC, KSI-MLA-LET, KSI-MLA-OSM
+Written to C:/FMWLabs/results/daily-checks-03/lab1/<run>/evidence: records/, runs/, records.csv, SHA256SUMS
+PS> ./Invoke-DcEvidence.ps1 -EvidencePath "$Run/evidence" -RunPath "$Run/probe" -AsOf 2026-11-16T07:33:00Z
+Record 2: probe Fail (PROBE, EVIDENCE)
+Controls: AU-9, CA-7, SI-4
+KSIs:     KSI-MLA-EVC, KSI-MLA-LET, KSI-MLA-OSM
+Written to C:/FMWLabs/results/daily-checks-03/lab1/<run>/evidence: records/, runs/, records.csv, SHA256SUMS

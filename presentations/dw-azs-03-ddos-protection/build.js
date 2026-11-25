@@ -126,8 +126,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: run the check, read each address",
       body: [
-        { terminal: "03-1", label: "examples/azure-security  ·  fixture data  ·  real output" },
-        { terminal: "03-2", lines: "2-10" },
+        { terminal: "03-3", label: "examples/azure-security  ·  fixture data  ·  real output" },
+        { terminal: "03-4", lines: "2-10" },
       ],
       sources: "Sources: examples/azure-security (fictional fixtures). Chapter 03, “Lab 1: fixtures, no subscription,” steps 1–2.",
       say: `Lab 1 needs PowerShell 7 with Pester, in the kit's folder. Contoso's hub network is linked to its DDoS plan; the portal spoke isn't. Step 1 runs the check: four of six addresses in scope are protected. Step 2 reads each address. The firewall's, the application gateway's and the VPN gateway's addresses inherit from the hub. The test app's address has IP Protection. The jump box's address inherits from the portal spoke, which has no plan. And only the application gateway's address has both logs and an alert.`,
@@ -138,8 +138,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the statuses and the findings",
       body: [
-        { terminal: "03-3" },
-        { terminal: "03-4" },
+        { terminal: "03-5" },
+        { terminal: "03-6" },
       ],
       sources: "Sources: examples/azure-security (fictional fixtures). Chapter 03, “Lab 1: fixtures, no subscription,” steps 3–5.",
       say: `Step 3 counts the statuses: one with IP Protection, three inherited, one unprotected, one unknown, one on a NAT gateway and one unattached. Step 4 reads the findings. The firewall's address sends its logs to an application team's workspace, so the missing-logs finding still fires. The test app's alert exists but is disabled, so the missing-alert finding fires too. The load balancer is reported as unknown, not guessed. And the trial plan is a second plan with no networks. Step 5 runs the chapter's three tests.`,

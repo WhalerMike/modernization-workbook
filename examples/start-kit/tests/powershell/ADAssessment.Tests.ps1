@@ -48,7 +48,7 @@ Describe 'The one-page summary' {
         @{ Item = 'Computers'; Expected = 12 }
         @{ Item = 'Servers'; Expected = 9 }
         @{ Item = 'ServiceAccounts'; Expected = 5 }
-        @{ Item = 'SPNs'; Expected = 15 }
+        @{ Item = 'SPNs'; Expected = 16 }
         @{ Item = 'DuplicateSPNs'; Expected = 1 }
         @{ Item = 'DNSZones'; Expected = 5 }
         @{ Item = 'DHCPServers'; Expected = 2 }
@@ -186,12 +186,50 @@ Describe 'Collector results' {
         @($s.Scopes)[0].DnsSetting.DynamicUpdates | Should -Be 'OnClientRequest'
         @($s.DnsCredential.PSObject.Properties.Name) | Should -Be @('UserName', 'DomainName')
     }
+    It 'writes one directory evidence record per service identity, with a hash of its attributes' {
+        $e = Get-Content -Raw (Join-Path $root 'ServiceAccounts\IdentityEvidence.json') | ConvertFrom-Json
+        @($e.Records.SamAccountName | Sort-Object) | Should -Be @('gmsa-sql02$', 'krbtgt', 'svc-sql01', 'svc-web')
+        $e.RecordCount | Should -Be 4
+        $r = $e.Records | Where-Object SamAccountName -eq 'svc-sql01'
+        $r.IdentityId | Should -Match '^S-1-5-21-1000-1000-1000-'
+        $r.Query | Should -Match '^Get-ADUser -Filter \* -Properties '
+        @($r.Attributes.SPNs) | Should -Contain 'MSSQLSvc/sql01.contoso.example:1433'
+        foreach ($rec in @($e.Records)) {
+            $sha = [System.Security.Cryptography.SHA256]::Create()
+            (-join ($sha.ComputeHash([System.Text.Encoding]::UTF8.GetBytes($rec.AttributesJson)) | ForEach-Object { $_.ToString('x2') })) | Should -Be $rec.AttributesSha256
+            ($rec.AttributesJson | ConvertFrom-Json).SamAccountName | Should -Be $rec.SamAccountName
+        }
+    }
     It 'maps SPNs forest-wide with duplicates and orphans' {
         $k = Read-Out (Join-Path $root 'Kerberos\KerberosSpnMap.json')
         @(Import-Csv (Join-Path $root 'Kerberos\SpnDuplicates.csv')).Spn | Should -Be @('HTTP/web.contoso.example')
         $orphans = @(Import-Csv (Join-Path $root 'Kerberos\SpnOrphans.csv'))
-        $orphans.Account | Sort-Object -Unique | Should -Be @('krbtgt', 'OLD01$')
+        $orphans.Account | Sort-Object -Unique | Should -Be @('krbtgt', 'OLD01$', 'svc-legacyapp')
         @($k.ByServiceClass | Where-Object ServiceClass -eq 'MSSQLSvc')[0].SpnCount | Should -Be 5
+    }
+    It 'stops asking DNS at -MaxDnsLookups and reports the rest as not checked, not as orphans' {
+        $capped = Join-Path $TestDrive 'capped'
+        $doc = Get-FMPKerberosSpnMap -OutputPath $capped -Domain 'contoso.example' -RootDomain 'contoso.example' -AsOf $FMPAsOf -MaxDnsLookups 0 3>$null 6>$null
+        $doc.DnsLookupsCapped | Should -BeTrue
+        $doc.HostsCheckedInDns | Should -Be 0
+        $o = @(Import-Csv (Join-Path $capped 'contoso.example\Kerberos\SpnOrphans.csv'))
+        $o.Account | Should -Not -Contain 'svc-legacyapp'
+    }
+    It 'keeps each orphan''s reasons apart: disabled, no recent logon, host not found' {
+        $orphans = @(Import-Csv (Join-Path $root 'Kerberos\SpnOrphans.csv'))
+        ($orphans | Where-Object Account -eq 'krbtgt').Reason | Should -Be 'Disabled; NoRecentLogon'
+        @($orphans | Where-Object Account -eq 'OLD01$' | Select-Object -ExpandProperty Reason -Unique) | Should -Be 'NoRecentLogon'
+        $gone = $orphans | Where-Object Account -eq 'svc-legacyapp'
+        $gone.Reason | Should -Be 'HostNotFound'
+        $gone.HostInDirectory | Should -Be 'False'
+        $gone.HostInDns | Should -Be 'False'
+        # An alias that DNS knows is not an orphan, though no computer object has its name.
+        $map = @(Get-Content -Raw (Join-Path $root 'Kerberos\KerberosSpnMap.json') | ConvertFrom-Json).Spns
+        ($map | Where-Object { $_.Account -eq 'svc-web' }).HostInDns | Should -BeTrue
+        ($map | Where-Object { $_.Account -eq 'svc-web' }).Orphan | Should -BeFalse
+        $sum = Get-Content -Raw (Join-Path $root 'Kerberos\KerberosSpnSummary.json') | ConvertFrom-Json
+        $sum.OrphansByReason.HostNotFound | Should -Be 1
+        $sum.OrphansByReason.Disabled | Should -Be 1
     }
     It 'groups unsigned and clear-text LDAP binds by client' {
         $l = Read-Out (Join-Path $root 'Ldap\LdapBindings.json')

@@ -30,7 +30,8 @@ import gov.example.modernization.cases.ProposalRepository;
  */
 class LabRecordsTest extends PostgresTestBase {
 
-    static final Path LAB = Path.of("target", "lab");
+    /** target/lab, or the folder -Dlab.dir names (the training labs put it in their run folder). */
+    static final Path LAB = Path.of(System.getProperty("lab.dir", "target/lab"));
 
     @Autowired
     CaseRepository cases;

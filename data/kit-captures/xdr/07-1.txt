@@ -1,9 +1,1 @@
-PS> ./Invoke-XdrSignals.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/signals -AsOf 2026-11-16T12:00:00Z
-AccountUpn                                  Sources Alerts Action
-----------                                  ------- ------ ------
-breakglass01@contosoexample.onmicrosoft.com       2      2 Emergency access account: page the IR lead; a human decides any containment
-j.rivera@contosoexample.onmicrosoft.com           3      5 Priority: three or more sources
-a.chen@contosoexample.onmicrosoft.com             2      2 Review in the weekly hunt
-
-Signals: 3 user(s) with alerts from more than one source; 1 emergency access account(s); identity or cloud-app sources are feeding alerts.
-Written to out/signals: priority.csv, summary.json, raw/, manifest.json
+PS> Set-Location C:\FMWLabs\defender-xdr-code\defender-xdr

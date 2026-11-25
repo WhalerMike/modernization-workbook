@@ -163,6 +163,8 @@ A recommendation states its authority and where it applies. "Must" is kept for w
 
 A Microsoft recommendation is never presented as a federal mandate, and a mandated baseline is never softened to a recommendation. A license-dependent control that a tenant isn't licensed for is a licensing decision, not a failed control; an assessment tool that skips it hasn't found a gap ([Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md#a-normalized-result-taxonomy)).
 
+Together with the inline labels, these keep four kinds of statement apart on every page. **What Microsoft documents** is Microsoft-recommended, or a plain statement with a Learn note; a preview feature or one not yet in GCC is Environment-dependent. **What a federal rule or standard requires** is Mandated, with the passage in a note. **What the workbook concludes or designs** is Risk-based recommended, or marked *(design guidance)* or *(inference)* in the text ([Labels in the text](../../about/sources-and-verification.md#labels-in-the-text)). **What the agency decides** is a decision record with an owner (the Designed state above), and the workbook's own choices are in the [Decision Register](../../about/decision-register.md), each with its basis. Each chapter's claims log in its `_verification` folder records which kind every checked claim is.
+
 ### Copy-ready block: authority label {#block-authority-label}
 
 ```markdown
