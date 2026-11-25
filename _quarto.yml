@@ -453,6 +453,8 @@ website:
             - docs/training/dns-dhcp-ipam/02-the-active-directory-dns-departure.md
             - docs/training/dns-dhcp-ipam/03-dhcp-encrypted-dns-and-the-edge.md
             - docs/training/dns-dhcp-ipam/04-cloud-private-dns-and-one-address-plan.md
+            - docs/training/dns-dhcp-ipam/05-move-authority-zone-by-zone.md
+            - docs/training/dns-dhcp-ipam/06-operate-the-control-plane-with-evidence.md
         - section: "External learning paths"
           contents:
             - docs/training/infoblox-training.md

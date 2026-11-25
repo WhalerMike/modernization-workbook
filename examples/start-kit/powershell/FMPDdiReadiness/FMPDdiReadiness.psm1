@@ -631,4 +631,270 @@ function Test-FMPAddressPlan {
     [pscustomobject]@{ Networks = $out; Findings = @($findings); ForwarderTargets = $targets }
 }
 
-Export-ModuleMember -Function Read-FMPDdiRun, Get-FMPDnsDepartureRegister, Test-FMPDhcpEdge, Test-FMPAddressPlan
+function Get-FMPLocatorRecordName {
+    # Book 08, Chapter 04's critical locator records for a domain (and its forest's global catalog).
+    param([Parameter(Mandatory)][string]$Domain, [string]$Forest = $Domain, [string[]]$Site = @())
+    $names = @(
+        "_ldap._tcp.dc._msdcs.$Domain", "_kerberos._tcp.dc._msdcs.$Domain", "_kerberos._tcp.$Domain",
+        "_ldap._tcp.pdc._msdcs.$Domain", "_kpasswd._tcp.$Domain", "_ldap._tcp.gc._msdcs.$Forest", "_gc._tcp.$Forest"
+    )
+    foreach ($s in $Site) { $names += "_ldap._tcp.$s._sites.dc._msdcs.$Domain" }
+    $names
+}
+
+function Test-FMPLocatorResolution {
+    <#
+    .SYNOPSIS
+        One check of Book 08's critical locator records against each resolver a location uses: the
+        record Chapter 10's Phase 5 gate needs, every 15 minutes, from every site and network.
+    .DESCRIPTION
+        Resolves each SRV record of Chapter 04's table (and each site's, with -Site) against each
+        -Resolver with Resolve-DnsName -DnsOnly, and returns one row per resolver: the time (UTC),
+        the location, how many records resolved and which didn't. With -OutputPath it writes the rows
+        to <OutputPath>\srv-checks\<time>-<location>.csv, one file per check, so a scheduled task
+        run every 15 minutes from each location builds the history Test-FMPDdiDecommissionGate reads.
+        Read-only: it sends DNS queries and nothing else.
+    .EXAMPLE
+        Test-FMPLocatorResolution -Domain lab.contoso.example -Resolver 10.50.0.10 -Location lab-dc -OutputPath C:\fmp-lab\gate
+    #>
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string]$Domain,
+        [string]$Forest,
+        [Parameter(Mandatory)][string[]]$Resolver,
+        [Parameter(Mandatory)][string]$Location,
+        [string[]]$Site = @(),
+        [string]$OutputPath
+    )
+    Assert-FMPCommand -Name 'Resolve-DnsName' -Module 'DnsClient'
+    if (-not $Forest) { $Forest = $Domain }
+    $records = @(Get-FMPLocatorRecordName -Domain $Domain -Forest $Forest -Site $Site)
+    $now = (Get-Date).ToUniversalTime()
+    $rows = foreach ($r in $Resolver) {
+        $failed = @()
+        foreach ($name in $records) {
+            $ok = $false
+            try { $ok = @(Resolve-DnsName -Name $name -Type SRV -Server $r -DnsOnly -QuickTimeout -ErrorAction Stop | Where-Object { "$($_.Type)" -eq 'SRV' }).Count -gt 0 }
+            catch { $ok = $false }
+            if (-not $ok) { $failed += $name }
+        }
+        [pscustomobject][ordered]@{
+            Timestamp = $now.ToString('yyyy-MM-ddTHH:mm:ssZ'); Location = $Location; Resolver = $r
+            Records = $records.Count; Failed = ($failed -join ';'); Result = if ($failed.Count -eq 0) { 'PASS' } else { 'FAIL' }
+        }
+    }
+    if ($OutputPath) {
+        $root = Resolve-FMPOutputRoot -OutputPath $OutputPath
+        $dir = Initialize-FMPPath -Path (Join-Path $root 'srv-checks')
+        $safe = ($Location -replace '[^\w.-]', '_')
+        Write-FMPCsv -InputObject @($rows) -Path (Join-Path $dir ("{0}-{1}.csv" -f $now.ToString('yyyyMMddTHHmmssZ'), $safe))
+    }
+    @($rows)
+}
+
+function Read-FMPDdiCsv {
+    # A CSV the gate reads, or $null when no path was given.
+    param([string]$Path, [string]$What)
+    if (-not $Path) { return $null }
+    if (-not (Test-Path -LiteralPath $Path)) { throw "No $What at $Path." }
+    @(Import-Csv -LiteralPath $Path)
+}
+
+function Test-FMPDdiDecommissionGate {
+    <#
+    .SYNOPSIS
+        Book 08, Chapter 10's Phase 5 gates, from the evidence: AD DNS and DHCP are decommissioned only
+        when all five pass.
+    .DESCRIPTION
+        Each gate reads its own evidence and is Pass, Fail, or Not evidenced (no input given, so the
+        gate holds):
+
+          1 Inventory reconciles   The Phase 1 run's zones against -TargetInventoryPath (Zone,
+                                   Disposition of Moved, Retired, StaysOnAdDns or New, Reason,
+                                   ChainValidates for signed zones), in both directions. A signed zone
+                                   counts as moved only when its new chain validates; the _msdcs zone
+                                   stays where domain controllers register.
+          2 SRV resolution holds   The srv-checks history (Test-FMPLocatorResolution) for -SrvDays
+                                   (30): every location, every check passing, no gap longer than twice
+                                   -IntervalMinutes (15). After a failure or a gap the clock restarts.
+          3 Parallel operation     -ParallelStart at least -ParallelDays (90) before -AsOf.
+          4 Failover tested        -FailoverTestPath (Component, Date, Result): a passing test for the
+                                   DNS resolvers and one for DHCP, none failing.
+          5 Old servers idle       -LegacyQueryPath (Server, Date, DirectQueries): no direct queries in
+                                   the last 7 days to the legacy servers that don't host locator zones.
+    .EXAMPLE
+        Test-FMPDdiDecommissionGate -Path tests/fixtures/ddi/run-2026-11-20/contoso.example -TargetInventoryPath tests/fixtures/ddi/gate/target-inventory.csv -AsOf 2026-11-20
+    #>
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string]$Path,
+        [string]$TargetInventoryPath,
+        [string]$SrvCheckPath,
+        [Nullable[datetime]]$ParallelStart,
+        [string]$FailoverTestPath,
+        [string]$LegacyQueryPath,
+        [int]$SrvDays = 30,
+        [int]$IntervalMinutes = 15,
+        [int]$ParallelDays = 90,
+        [datetime]$AsOf = (Get-Date),
+        [string]$OutputPath
+    )
+    $run = Read-FMPDdiRun -Path $Path
+    if ($null -eq $run.DnsInventory) { throw "No DNS\DNSInventory.json under $($run.Path): the gate reconciles against the Phase 1 run." }
+    # A date given without a zone (-AsOf 2026-11-20) is UTC, so the result doesn't depend on the host's zone.
+    $asOfUtc = if ($AsOf.Kind -eq [DateTimeKind]::Local) { $AsOf.ToUniversalTime() } else { [datetime]::SpecifyKind($AsOf, [DateTimeKind]::Utc) }
+    $gates = @()
+    function ConvertTo-FMPGateRow($n, $name, $status, $detail) { [pscustomobject][ordered]@{ Gate = $n; Name = $name; Status = $status; Detail = $detail } }
+
+    # Gate 1
+    $target = Read-FMPDdiCsv -Path $TargetInventoryPath -What 'target inventory'
+    if ($null -eq $target) { $gates += ConvertTo-FMPGateRow 1 'Inventory reconciles' 'Not evidenced' 'No target inventory given' }
+    else {
+        $problems = @()
+        $byZone = @{}
+        foreach ($t in $target) { $byZone["$($t.Zone)".ToLowerInvariant()] = $t }
+        $baseline = @(Get-FMPDdiProperty $run.DnsInventory 'Zones' @())
+        foreach ($z in $baseline) {
+            $key = "$($z.ZoneName)".ToLowerInvariant()
+            if (-not $byZone.ContainsKey($key)) { $problems += "$($z.ZoneName): missing from the target"; continue }
+            $t = $byZone[$key]; $d = "$($t.Disposition)"
+            if ($d -notin 'Moved', 'Retired', 'StaysOnAdDns') { $problems += "$($z.ZoneName): disposition '$d' isn't Moved, Retired or StaysOnAdDns" }
+            if ($key -like '_msdcs.*' -and $d -ne 'StaysOnAdDns') { $problems += "$($z.ZoneName): the locator zone stays where domain controllers register" }
+            if ((Get-FMPDdiProperty $z 'IsSigned' $false) -and $d -eq 'Moved' -and "$(Get-FMPDdiProperty $t 'ChainValidates' '')" -ne 'Yes') { $problems += "$($z.ZoneName): signed, and the new chain of trust doesn't validate yet" }
+        }
+        $known = @($baseline | ForEach-Object { "$($_.ZoneName)".ToLowerInvariant() })
+        foreach ($t in $target) {
+            if ($known -notcontains "$($t.Zone)".ToLowerInvariant() -and -not ("$($t.Disposition)" -eq 'New' -and "$(Get-FMPDdiProperty $t 'Reason' '')")) {
+                $problems += "$($t.Zone): in the target, not in the Phase 1 inventory, and not explained"
+            }
+        }
+        $gates += if ($problems.Count) { ConvertTo-FMPGateRow 1 'Inventory reconciles' 'Fail' ($problems -join '; ') } else { ConvertTo-FMPGateRow 1 'Inventory reconciles' 'Pass' "$($baseline.Count) zones accounted for" }
+    }
+
+    # Gate 2
+    if (-not $SrvCheckPath) { $gates += ConvertTo-FMPGateRow 2 'SRV resolution holds' 'Not evidenced' 'No SRV check history given' }
+    else {
+        if (-not (Test-Path -LiteralPath $SrvCheckPath)) { throw "No SRV check history at $SrvCheckPath." }
+        $checks = @(Get-ChildItem -LiteralPath $SrvCheckPath -Filter *.csv -Recurse -File | ForEach-Object { Import-Csv -LiteralPath $_.FullName } |
+            ForEach-Object { [pscustomobject]@{ Time = ([datetime]::Parse("$($_.Timestamp)", [Globalization.CultureInfo]::InvariantCulture, [Globalization.DateTimeStyles]::AdjustToUniversal)); Location = "$($_.Location)"; Result = "$($_.Result)"; Failed = "$($_.Failed)" } } |
+            Where-Object { $_.Time -le $asOfUtc })
+        $need = $asOfUtc.AddDays(-$SrvDays)
+        $maxGap = [timespan]::FromMinutes(2 * $IntervalMinutes)
+        $notes = @(); $ok = $checks.Count -gt 0
+        foreach ($g in @($checks | Group-Object Location | Sort-Object Name)) {
+            $series = @($g.Group | Sort-Object Time)
+            # The clean streak: from the last failure or gap, forward to the last check.
+            $start = $series[0].Time; $why = 'since the first check'
+            for ($i = 0; $i -lt $series.Count; $i++) {
+                if ($series[$i].Result -ne 'PASS') { $start = if ($i + 1 -lt $series.Count) { $series[$i + 1].Time } else { $asOfUtc }; $why = "since a failure at $($series[$i].Time.ToString('yyyy-MM-dd HH:mm'))Z ($($series[$i].Failed))" }
+                elseif ($i -gt 0 -and ($series[$i].Time - $series[$i - 1].Time) -gt $maxGap) { $start = $series[$i].Time; $why = "since a $([math]::Round(($series[$i].Time - $series[$i - 1].Time).TotalHours, 1))-hour gap ending $($series[$i].Time.ToString('yyyy-MM-dd HH:mm'))Z" }
+            }
+            if (($asOfUtc - $series[-1].Time) -gt $maxGap) { $start = $asOfUtc; $why = "no check since $($series[-1].Time.ToString('yyyy-MM-dd HH:mm'))Z" }
+            $days = [math]::Floor(($asOfUtc - $start).TotalDays)
+            if ($start -gt $need) { $ok = $false; $notes += "$($g.Name): $days clean days $why" } else { $notes += "$($g.Name): clean for $SrvDays days" }
+        }
+        $gates += ConvertTo-FMPGateRow 2 'SRV resolution holds' $(if ($ok) { 'Pass' } else { 'Fail' }) ($notes -join '; ')
+    }
+
+    # Gate 3
+    if ($null -eq $ParallelStart) { $gates += ConvertTo-FMPGateRow 3 'Parallel operation' 'Not evidenced' 'No start of parallel operation given' }
+    else {
+        $parallel = [math]::Floor(($AsOf.Date - ([datetime]$ParallelStart).Date).TotalDays)
+        $gates += ConvertTo-FMPGateRow 3 'Parallel operation' $(if ($parallel -ge $ParallelDays) { 'Pass' } else { 'Fail' }) "$parallel days of $ParallelDays, since $(([datetime]$ParallelStart).ToString('yyyy-MM-dd'))"
+    }
+
+    # Gate 4
+    $fo = Read-FMPDdiCsv -Path $FailoverTestPath -What 'failover test record'
+    if ($null -eq $fo) { $gates += ConvertTo-FMPGateRow 4 'Failover tested' 'Not evidenced' 'No failover test record given' }
+    else {
+        $bad = @($fo | Where-Object { "$($_.Result)" -ne 'PASS' } | ForEach-Object { "$($_.Component) on $($_.Date): $($_.Result)" })
+        $missing = @('DNS resolvers', 'DHCP' | Where-Object { $c = $_; -not @($fo | Where-Object { "$($_.Component)" -eq $c -and "$($_.Result)" -eq 'PASS' }).Count })
+        $detail = @($bad) + @($missing | ForEach-Object { "no passing test for $_" })
+        $gates += if ($detail.Count) { ConvertTo-FMPGateRow 4 'Failover tested' 'Fail' ($detail -join '; ') } else { ConvertTo-FMPGateRow 4 'Failover tested' 'Pass' "$(@($fo).Count) tests passed" }
+    }
+
+    # Gate 5
+    $lq = Read-FMPDdiCsv -Path $LegacyQueryPath -What 'legacy query summary'
+    if ($null -eq $lq) { $gates += ConvertTo-FMPGateRow 5 'Old servers idle' 'Not evidenced' 'No legacy query summary given' }
+    else {
+        $since = $AsOf.Date.AddDays(-7)
+        $busy = @($lq | Where-Object { [datetime]::Parse("$($_.Date)", [Globalization.CultureInfo]::InvariantCulture) -gt $since -and [int]"$($_.DirectQueries)" -gt 0 } |
+            Group-Object Server | ForEach-Object { "$($_.Name): $((($_.Group | ForEach-Object { [int]"$($_.DirectQueries)" }) | Measure-Object -Sum).Sum) direct queries in the last 7 days" })
+        $gates += if ($busy.Count) { ConvertTo-FMPGateRow 5 'Old servers idle' 'Fail' ($busy -join '; ') } else { ConvertTo-FMPGateRow 5 'Old servers idle' 'Pass' 'No direct queries in the last 7 days' }
+    }
+
+    $passed = @($gates | Where-Object Status -ne 'Pass').Count -eq 0
+    if ($OutputPath) {
+        $root = Resolve-FMPOutputRoot -OutputPath $OutputPath
+        $dir = Get-FMPDomainPath -OutputPath $root -Domain $run.Domain -Area 'DDI'
+        Write-FMPCsv -InputObject $gates -Path (Join-Path $dir 'DecommissionGate.csv')
+    }
+    [pscustomobject]@{ Domain = $run.Domain; AsOf = $AsOf; Passed = $passed; Gates = $gates }
+}
+
+# Book 08, Chapter 11's evidence, by the file each check writes: the kind of evidence (Book 00,
+# Appendix D's five), what it supports, its KSI where the workbook has a verified pairing, and where
+# Book 08 asks for it.
+$script:FMPEvidenceMap = @(
+    [pscustomobject]@{ Pattern = 'DNSInventory.json|DNSHealthReport.json|DNSRecordInventory.json'; Kind = 'Configuration'; Supports = 'CM-8, SC-22: zones, servers, locator records'; KSI = 'KSI-PIY-GIV'; Book08 = 'Chapter 10, Phase 1' }
+    [pscustomobject]@{ Pattern = 'DHCPInventory.json|DHCPScopes.csv|DHCPReservations.csv'; Kind = 'Configuration'; Supports = 'CM-8: DHCP servers, scopes and options'; KSI = 'KSI-PIY-GIV'; Book08 = 'Chapter 10, Phase 1' }
+    [pscustomobject]@{ Pattern = 'DepartureRegister.csv|DepartureRegister.json'; Kind = 'Configuration'; Supports = 'CM-3, CM-8: each component''s target, method and risk'; KSI = 'KSI-CMT-LMC, KSI-PIY-GIV'; Book08 = 'Chapter 10, Where each component goes' }
+    [pscustomobject]@{ Pattern = 'DhcpEdge.csv'; Kind = 'Configuration'; Supports = 'M-22-09 and Protective DNS: option 6; CM-8: unauthorized DHCP servers'; KSI = 'KSI-PIY-GIV'; Book08 = 'Chapter 05; Chapter 11 checklist, option 6 and rogue DHCP' }
+    [pscustomobject]@{ Pattern = 'AddressPlan.csv|AddressPlanFindings.csv'; Kind = 'Operational'; Supports = 'CM-8, BOD 23-01: the address plan reconciled'; KSI = 'KSI-PIY-GIV'; Book08 = 'Chapter 07; Chapter 11 checklist, IPAM inventory' }
+    [pscustomobject]@{ Pattern = 'srv-checks'; Kind = 'Operational'; Supports = 'SC-22: locator resolution history'; KSI = 'None'; Book08 = 'Chapter 10, Phase 5 gate 2; Chapter 11, SRV check history' }
+    [pscustomobject]@{ Pattern = 'DecommissionGate.csv'; Kind = 'Test'; Supports = 'CM-3, CP-2: the Phase 5 gates'; KSI = 'KSI-CMT-LMC, KSI-RPL-ARP'; Book08 = 'Chapter 10, Phase 5' }
+)
+# What Chapter 11's checklist asks for that the kit doesn't produce: the platform's and the SOC's.
+$script:FMPEvidenceElsewhere = @(
+    @('Configuration', 'Decisions 1 to 5 as running configuration; Protective DNS and encrypted DNS settings; delegated roles and scopes'),
+    @('Operational', 'Query, lease and change logs at M-26-14 retention; anomaly reports with their tickets'),
+    @('Test', 'The Phase 4 validation matrix from every origin; the resolution-path consistency test'),
+    @('Exception', 'Unsigned internal zones, retired zones and privileged memberships kept by justification, each with its approver'),
+    @('Assessor-ready artifact', 'The control mapping in Chapter 03 and Appendix B, each row pointing at the evidence')
+)
+
+function Get-FMPDdiEvidenceIndex {
+    <#
+    .SYNOPSIS
+        An index of the evidence the Start Kit's DNS, DHCP and IPAM checks wrote, for the ISSO: each
+        file's kind, what it supports, its KSI, its size and its SHA-256, and what Book 08, Chapter 11's
+        checklist asks for that has to come from somewhere else.
+    .DESCRIPTION
+        Walks -Path (an evidence folder holding the runs and the checks' output), recognizes each file
+        the kit writes, and hashes it. Files the kit didn't write are listed as Unrecognized, never
+        dropped. With -OutputPath it writes EvidenceIndex.csv and EvidenceIndex.json there.
+    .EXAMPLE
+        Get-FMPDdiEvidenceIndex -Path D:\Evidence\ddi -OutputPath D:\Evidence\ddi-index
+    #>
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][string]$Path, [string]$OutputPath)
+    if (-not (Test-Path -LiteralPath $Path -PathType Container)) { throw "No evidence folder at $Path." }
+    $root = (ConvertTo-FMPFullPath -Path $Path).TrimEnd('\', '/')
+    $files = @(Get-ChildItem -LiteralPath $root -Recurse -File | Sort-Object FullName)
+    $rows = foreach ($f in $files) {
+        $rel = $f.FullName.Substring($root.Length + 1) -replace '\\', '/'
+        $entry = $null
+        foreach ($m in $script:FMPEvidenceMap) {
+            if ($f.Name -match "^($($m.Pattern -replace '\.', '\.'))$" -or ($m.Pattern -eq 'srv-checks' -and $rel -match '(^|/)srv-checks/')) { $entry = $m; break }
+        }
+        [pscustomobject][ordered]@{
+            File = $rel
+            Kind = if ($entry) { $entry.Kind } else { 'Unrecognized' }
+            Supports = if ($entry) { $entry.Supports } else { '' }
+            KSI = if ($entry) { $entry.KSI } else { '' }
+            Book08 = if ($entry) { $entry.Book08 } else { '' }
+            Bytes = $f.Length
+            SHA256 = (Get-FileHash -LiteralPath $f.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+        }
+    }
+    $elsewhere = @($script:FMPEvidenceElsewhere | ForEach-Object { [pscustomobject][ordered]@{ Kind = $_[0]; NotFromTheKit = $_[1] } })
+    if ($OutputPath) {
+        $out = Resolve-FMPOutputRoot -OutputPath $OutputPath
+        Write-FMPCsv -InputObject @($rows) -Path (Join-Path $out 'EvidenceIndex.csv')
+        Write-FMPJson -InputObject ([ordered]@{ Source = $root; Files = @($rows); NotFromTheKit = $elsewhere }) -Path (Join-Path $out 'EvidenceIndex.json') -Depth 5
+    }
+    [pscustomobject]@{ Files = @($rows); NotFromTheKit = $elsewhere }
+}
+
+Export-ModuleMember -Function Read-FMPDdiRun, Get-FMPDnsDepartureRegister, Test-FMPDhcpEdge, Test-FMPAddressPlan,
+    Test-FMPLocatorResolution, Test-FMPDdiDecommissionGate, Get-FMPDdiEvidenceIndex
