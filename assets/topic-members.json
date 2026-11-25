@@ -2185,6 +2185,12 @@
    "title": "Endpoints"
   }
  ],
+ "docs/books/guides/msa-request-pack.md": [
+  {
+   "id": "non-person-identity",
+   "title": "Non-Person Identity"
+  }
+ ],
  "docs/books/guides/non-person-identity-implementation.md": [
   {
    "id": "non-person-identity",

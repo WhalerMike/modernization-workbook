@@ -1426,6 +1426,9 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/decisions.yml
+  - docs/about/decision-register.md
+  - docs/books/guides/msa-request-pack.md
   - docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md
   - docs/project-plans/developer-workbooks/non-person-identity/10-drift-and-evidence.md
 - path: docs/architecture/governance-deployment-employee-access.md
@@ -4681,10 +4684,13 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/decisions.yml
+  - docs/about/decision-register.md
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/_verification/09-building-the-entra-target.md
   - docs/books/b03-hr-identity/06-canonical-attribute-schema.md
   - docs/books/guides/attribute-driven-migration.md
+  - docs/books/guides/msa-request-pack.md
 - path: docs/fundamentals/custom-security-attributes-troubleshoot.md
   url: https://learn.microsoft.com/entra/fundamentals/custom-security-attributes-troubleshoot
   title: Troubleshoot custom security attributes in Microsoft Entra ID
@@ -21979,12 +21985,13 @@ pages:
   ms_date: '2025-03-05'
   ms_topic: how-to
   description: Assign, update, list, or remove custom security attributes for an application that is registered with your Microsoft Entra tenant.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Application ownership, assignment and removal: Book 04 Ch06 and Ch09, Book 15 Ch06. Learn pass Nov 9, 2026: Book 04 Ch09 doesn''t cover this task.'
   workbook:
   - docs/books/b04-access/06-who-decides-access.md
   - docs/books/b15-day2-operations/06-saas-integration-governance.md
-  cited_by: []
+  cited_by:
+  - docs/books/guides/msa-request-pack.md
 - path: docs/identity/enterprise-apps/datawiza-configure-sha.md
   url: https://learn.microsoft.com/entra/identity/enterprise-apps/datawiza-configure-sha
   title: Tutorial to configure Secure Hybrid Access with Microsoft Entra ID and Datawiza
@@ -24088,8 +24095,11 @@ pages:
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
   cited_by:
+  - data/decisions.yml
+  - docs/about/decision-register.md
   - docs/books/b02-identity/09-building-the-entra-target.md
   - docs/books/b02-identity/_verification/09-building-the-entra-target.md
+  - docs/books/guides/msa-request-pack.md
 - path: docs/identity/hybrid/connect/concept-azure-ad-connect-sync-user-and-contacts.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/concept-azure-ad-connect-sync-user-and-contacts
   title: 'Microsoft Entra Connect Sync: Understanding Users, Groups, and Contacts'
@@ -28413,6 +28423,7 @@ pages:
   - docs/books/b06-data-platform/13-who-owns-the-data-platform.md
   - docs/books/b15-day2-operations/01-the-help-desk-decides.md
   - docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
+  - docs/books/guides/msa-request-pack.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/08-deploying-to-test-and-production.md
   - docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md
   - docs/reference/source-register.md

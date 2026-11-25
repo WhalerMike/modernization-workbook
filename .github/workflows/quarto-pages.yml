@@ -126,7 +126,7 @@ jobs:
         # pack (the catalog kit with the finding contract it reads) and the provider notices kit, linked from the Downloads page,
         # the workbooks' landing pages and the Watch page.
         run: |
-          for kit in ticket-to-machine-code hr-driven-identity-code privileged-access-code non-person-identity-code microsoft-automation-code cisco-sdwan ticket-to-machine-task-catalog dp-consolidation provider-notices-code zta-results global-secure-access-code azure-security-code defender-xdr-code daily-checks-workbook-code information-protection-code sql-server-identity-code; do
+          for kit in ticket-to-machine-code hr-driven-identity-code privileged-access-code non-person-identity-code microsoft-automation-code cisco-sdwan ticket-to-machine-task-catalog dp-consolidation provider-notices-code zta-results global-secure-access-code azure-security-code defender-xdr-code daily-checks-workbook-code information-protection-code sql-server-identity-code msa-request-pack; do
             python3 scripts/build_start_kit_zip.py --kit "$kit" --out _site/downloads
           done
 

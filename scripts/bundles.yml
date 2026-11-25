@@ -679,6 +679,11 @@ bundles:
     subtitle: "Federal Modernization Workbook companion guide"
     root: docs/books/guides
     pages: [provider-notices-implementation.md]
+  - output: msa-request-pack-guide.docx
+    title: "Requesting a Managed Service Account"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [msa-request-pack.md]
   - output: service-account-migration-guide.docx
     title: "Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities"
     subtitle: "Federal Modernization Workbook companion guide"
