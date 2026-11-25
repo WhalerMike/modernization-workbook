@@ -1689,10 +1689,11 @@ pages:
   ms_topic: how-to
   description: Learn how to create a Key Distribution Service root key on a domain controller by using Windows PowerShell to generate group Managed Service Account passwords in Windows Server 2012 or later.
   coverage: cited
-  note: ''
+  note: 'Every fact audited Nov 25, 2026: the procedure and its cautions in the Service Accounts guide, step A2; the facts table in Non-Person Identity Chapter 06'
   cited_by:
   - data/source-register.json
   - docs/books/b02-identity/08-assessing-the-forest.md
+  - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
   - docs/books/guides/non-person-identity-implementation.md
   - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
