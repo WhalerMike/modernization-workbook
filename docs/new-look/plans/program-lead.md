@@ -11,10 +11,10 @@ review-status: pending
 
 ## Week 1: orientation
 
-- [Book 00 — Orientation & Program](../../books/b00-orientation/index.md) (Book, 14 chapters, about 4 hr 56 min). Why modernize, and why now: the case for one governed program, how the workbook is organized, and the program's charter, principles, plan, projects and decision rights.
+- [Book 00 — Orientation & Program](../../books/b00-orientation/index.md) (Book, 14 chapters, about 4 hr 57 min). Why modernize, and why now: the case for one governed program, how the workbook is organized, and the program's charter, principles, plan, projects and decision rights.
 - [The One-Page Ask](../../books/guides/one-page-ask.md) (Companion guide, about 3 min). A fill-in page for the meeting where leadership approves the pre-flight.
 
-*Milestone 1: about 4 hr 59 min.*
+*Milestone 1: about 5 hr.*
 
 ## Week 2: the transformation arc
 
@@ -25,17 +25,17 @@ review-status: pending
 
 ## Week 3: Zero Trust as a program
 
-- [Book 11 — Zero Trust & Assessment](../../books/b11-zero-trust/index.md) (Book, 11 chapters, about 4 hr 25 min). Why Zero Trust is a property of the whole agency, not a product: what the mandates actually require, how SCuBA and the assessment tools fit, who owns it, and how to assess honestly and turn the findings into a program.
+- [Book 11 — Zero Trust & Assessment](../../books/b11-zero-trust/index.md) (Book, 11 chapters, about 4 hr 27 min). Why Zero Trust is a property of the whole agency, not a product: what the mandates actually require, how SCuBA and the assessment tools fit, who owns it, and how to assess honestly and turn the findings into a program.
 - [The Zero Trust Assessment as Evidence](../../training/zero-trust-assessment/index.md) (Learning path, 4 modules, 3 hr 47 min). Four modules: what the assessment is and isn't, running it safely, turning its results into a closure register, and reconciling and re-running it, with labs on fixtures and in your own test tenant.
 
-*Milestone 3: about 8 hr 12 min.*
+*Milestone 3: about 8 hr 14 min.*
 
 ## Week 4: people and change
 
-- [Book 16 — People: Training & Education](../../books/b16-people/index.md) (Book, 11 chapters, about 4 hr 30 min). Why people, not tools, close the gap: what federal workforce rules require, the compliance and implementation tracks, assessment and certification, vendor training and labs, end-user training, who owns readiness, and how to run and….
+- [Book 16 — People: Training & Education](../../books/b16-people/index.md) (Book, 11 chapters, about 4 hr 31 min). Why people, not tools, close the gap: what federal workforce rules require, the compliance and implementation tracks, assessment and certification, vendor training and labs, end-user training, who owns readiness, and how to run and….
 - [Book 15 — Compliance Automation & Day-2 Operations](../../books/b15-day2-operations/index.md) (Book, 16 chapters, about 8 hr 3 min). Why modernization succeeds or fails at the help desk: intake and triage, help-desk authority in Entra ID, the service catalogs, SaaS integration governance, the CMDB, control compliance automation across clouds, who runs day two….
 
-*Milestone 4: about 12 hr 33 min.*
+*Milestone 4: about 12 hr 34 min.*
 
-**Whole plan:** about 30 hr 31 min of reading and video, plus the labs.
+**Whole plan:** about 30 hr 35 min of reading and video, plus the labs.
 

@@ -20,10 +20,10 @@ review-status: pending
 
 ## Week 2: why, and why now
 
-- [Book 00 — Orientation & Program](../../books/b00-orientation/index.md) (Book, 14 chapters, about 4 hr 56 min). Why modernize, and why now: the case for one governed program, how the workbook is organized, and the program's charter, principles, plan, projects and decision rights.
+- [Book 00 — Orientation & Program](../../books/b00-orientation/index.md) (Book, 14 chapters, about 4 hr 57 min). Why modernize, and why now: the case for one governed program, how the workbook is organized, and the program's charter, principles, plan, projects and decision rights.
 - [The One-Page Ask](../../books/guides/one-page-ask.md) (Companion guide, about 3 min). A fill-in page for the meeting where leadership approves the pre-flight.
 
-*Milestone 2: about 4 hr 59 min.*
+*Milestone 2: about 5 hr.*
 
 ## Week 3: the hard parts
 
@@ -31,5 +31,5 @@ review-status: pending
 
 *Milestone 3: about 4 hr 23 min.*
 
-**Whole plan:** about 9 hr 30 min of reading and video, plus the labs.
+**Whole plan:** about 9 hr 31 min of reading and video, plus the labs.
 

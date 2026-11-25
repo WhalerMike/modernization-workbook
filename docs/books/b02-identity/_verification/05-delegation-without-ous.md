@@ -135,3 +135,9 @@ Microsoft Learn pages listed as covered but uncited for this chapter were read o
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | R1 | Administrative units take over the OU's delegation job only; they don't link policy or place objects | Opening | restated-as-design (was "AUs are the replacement", which overstated) | Learn, Administrative units in Microsoft Entra ID (already cited as c05-isolation) |
+
+## Revision 2026-11-25 — custom security attributes in GCC (WD-176)
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| CSA-1 | The AU row: protecting sensitive values with custom security attributes waits for a tenant check in GCC; until then they stay out of Entra | see the change | changed *(design guidance)* | WD-176; Mike, November 25, 2026 |
