@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Books 02, 04"
 series-order: 1
 review-status: approved
-reviewed-sha256: 8f8839312819dc9516ecd3d6ce24b7599668b8bf630849a13d4885246d823a75
+reviewed-sha256: dc10fd1aa572447d64b1d7a14c6d99556cbc303cb0457fdf03da01e75330c58e
 last-reviewed: 2026-11-25
 ---
 # Module 1: Inventory every non-person identity {.unnumbered}

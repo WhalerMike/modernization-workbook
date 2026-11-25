@@ -1,8 +1,8 @@
 # Verification — Learning path: PKI and Certificates
 
-Files: `docs/training/pki/index.md` and its modules, `01-what-ad-cs-holds-up.md` and `02-hardening-what-stays.md` (phase 1 of the path).
-Example code: `examples/start-kit` (module `FMPADAssessment` 1.6.0, kit 1.5.0).
-Verified: 2026-11-24
+Files: `docs/training/pki/index.md` and its modules, `01-what-ad-cs-holds-up.md` and `02-hardening-what-stays.md` (phase 1 of the path), `03-the-target-pki-and-who-owns-it.md` and `04-device-and-user-certificates.md` (phase 2).
+Example code: `examples/start-kit` (module `FMPADAssessment` 1.8.0, kit 1.7.0).
+Verified: 2026-11-24 (phase 1); 2026-11-25 (phase 2)
 
 Method:
 - The path adds no new facts about PKI. Every fact a module states is carried by link from Book 07 (`docs/books/b07-pki/`, Chapters 01, 02 and 03 and Appendix B, as on `origin/main` on November 24, 2026) and relies on those chapters' verification logs and footnotes (Microsoft Learn's AD CS, Cloud PKI, Intune certificate and Defender for Identity pages; SpecterOps's 2021 research for the ESC labels). New writing is limited to the path, the module framing, objectives, unit glue, the table of what the Start Kit collects, knowledge-check questions and time estimates.
@@ -19,11 +19,25 @@ Method:
 - Time estimates are the program's planning figures *(design guidance)*, not measurements.
 - Claim wording: the outputs *support* the controls; the assessor decides them. KSIs are written as indicators for cloud service providers that the agency lines its evidence up with. Only control-to-KSI pairs in Book 13, Appendix A appear; AU-2 and AU-12 have none there, and the module says so.
 
+## Phase 2: Modules 3 and 4, November 25, 2026
+
+- **Sources.** As in phase 1, every fact the two modules state is carried by link from Book 07, Chapters 04, 05 and 06 and Appendix A, as on `origin/main` on November 25, 2026, and relies on their verification logs and footnotes. No Learn page was read again. New writing is the module framing, objectives, unit glue, the lab steps, the knowledge checks and the time estimates.
+- **Existing content.** HR-Driven Identity, Module 5 already teaches the Entra CBA tenant check (`cba_check.py`), and the validation kit's VK-PIV-01 checks binding coverage and affinity. Module 4 links to both rather than repeating them; its labs cover the forest side, strong certificate mapping, which no kit checked before.
+- **Kit changes**, each with Pester tests (`tests/powershell/PkiTarget.Tests.ps1`):
+  - `Get-FMPCAPublicationReview` reads each CA's `CA\CRLPublicationURLs` and `CA\CACertPublicationURLs` with `certutil -getreg` (or from the snapshot) and flags a CA whose issued certificates carry no HTTP CRL or AIA location, an HTTP location that is only the CA host (`%1`), a key under 2048 bits or a SHA-1 signature: the requirements Chapter 04 gives for Entra CBA and a BYOCA signing CA. The flag bits are `certsrv.h`'s `CSURL_*` values (`0x1` publish, `0x2` add to issued certificates, `0x4` freshest CRL, `0x8` CRL's own CDP, `0x20` OCSP). The parser reads the `<index>: <flags>:<url>` lines certutil prints and skips the flag names it prints under each; the live form hasn't been run against a CA by the authors.
+  - `Get-FMPCertificateMappingReport` names each `altSecurityIdentities` value by KB5014754's forms (strong: `X509IssuerSerialNumber`, `X509SKI`, `X509SHA1PublicKey`; weak: `X509IssuerSubject`, `X509SubjectOnly`, `X509RFC822`), reads KDC events 39, 40 and 41 from each domain controller's System log with its operating system, so 41, 48 and 49 on Windows Server 2008 and 2008 R2 are read as Chapter 06's table says, and lists the NTAuth store. It reads the account and thumbprint from the event's `User:` and `Certificate Thumbprint:` lines. Its provider filter matches `Kdc` or `Key-Distribution-Center`; Chapter 06's sweep matches `Kdc` only. Which provider name a current domain controller reports for these events hasn't been checked against a real one by the authors: if it's `Microsoft-Windows-Kerberos-Key-Distribution-Center`, the chapter's filter needs the same change.
+  - `FMPADAssessment` 1.8.0, kit 1.7.0, after the large-directory changes took 1.7.0 and 1.6.0. Module 1's Lab 1, step 1 and the path's Get the code check print the new version. The kit stays read-only: the safety tests pass on every source file.
+- **Fixtures.** `tests/fixtures/pki-contoso.json` gains each CA's `CRLPublicationURLs` and `CACertPublicationURLs` output. Issuing CA 1 keeps HTTP locations with flags `0`, so its certificates carry only LDAP locations; Issuing CA 2 adds an HTTP location under `pki.contoso.example` to its certificates. The new fields don't change Modules 1 and 2's output. `tests/fixtures/cert-mapping-contoso.json` is fictional: two domain controllers, six accounts, three KDC events whose messages are abbreviated to one opening sentence and the field lines the kit parses, and the two issuing CA certificates from `pki-contoso.json` as the NTAuth store.
+- **Lab 1.** Modules 3 and 4 follow the approved lab-procedure format with dated run folders. Each was checked with `lab_check.py` (the generated command list run as printed from a fresh stand-in for `C:\FMWLabs\start-kit`) in Windows PowerShell 5.1 and PowerShell 7: every expected block found, 9 of 9 in each module, no errors. Each was then run a second time in the same stand-in: two run folders, each complete, and the kit folder unchanged. Modules 1 and 2 were checked again after the version change: Module 1 7 of 7 in 5.1, Module 2 6 of 6 in both shells, as before.
+- **Tests.** 381 Pester tests pass (with the large-directory tests from main) in PowerShell 7 and in Windows PowerShell 5.1 (Pester 5.9 loaded by path).
+- **Lab 2** in both modules reads only: the kit against the test forest, `certutil -getreg` on a CA and the offline root, `certutil -viewstore -enterprise NTAuth`, Chapter 06's event sweep and an HTTP fetch of a CRL. Nothing changes a CA or the forest. The authors didn't run it.
+- **Requirements and KSIs.** Only Book 13, Appendix A's pairs: SC-17 to KSI-SVC-ASM; CM-6 to KSI-SVC-ACM and KSI-MLA-EVC; AC-5 to KSI-IAM-JIT, KSI-PIY-RIS and KSI-PIY-RSD; IA-5(2) to KSI-IAM-APM, KSI-IAM-ELP, KSI-IAM-SNU and KSI-SVC-ASM; AU-6 to KSI-MLA-RVL. AC-5's evidence (the signed matrix and the role mapping) isn't produced by the kit, and Module 3 says so.
+
 ## Review gate
 
 `review-status: pending` on every page. The path waits for the owner's review; it isn't approved here.
 
-## Figures, November 24, 2026
+## Figures, November 24 and 25, 2026
 
 Each figure is reused from the page named in its caption and carries that page's own verification.
 
@@ -32,3 +46,9 @@ Each figure is reused from the page named in its caption and carries that page's
 | 1 | Figure `b07-pki/ch02-classification` (reused) | Module 1, Unit 5 | carried | Book 07, Chapter 02 and its log |
 | 2 | Figure `b07-pki/ch03-esc-control-points` (reused) | Module 2, Unit 2 | carried | Book 07, Chapter 03 and its log |
 | 3 | Figure `b07-pki/ch03-ca-audit-path` (reused) | Module 2, Unit 3 | carried | Book 07, Chapter 03 and its log |
+| 4 | Figure `b07-pki/ch04-issuer-map` (reused) | Module 3, Unit 1 | carried | Book 07, Chapter 04 and its log |
+| 5 | Figure `b07-pki/ch04-cloud-root-vs-byoca` (reused) | Module 3, Unit 2 | carried | Book 07, Chapter 04 and its log |
+| 6 | Figure `b07-pki/ch05-certificate-estate-owners` (reused) | Module 3, Unit 4 | carried | Book 07, Chapter 05 and its log |
+| 7 | Figure `b07-pki/ch05-four-permission-planes` (reused) | Module 3, Unit 5 | carried | Book 07, Chapter 05 and its log |
+| 8 | Figure `b07-pki/ch06-delivery-paths` (reused) | Module 4, Unit 1 | carried | Book 07, Chapter 06 and its log |
+| 9 | Figure `b07-pki/ch06-cba-sign-in` (reused) | Module 4, Unit 4 | carried | Book 07, Chapter 06 and its log |

@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Books 02, 04"
 series-order: 12
 review-status: approved
-reviewed-sha256: ec634a7cbc677f57c48a266b928999b12991cd700e7d4128dbd33d597671bd5b
-last-reviewed: 2026-11-22
+reviewed-sha256: 352e2af4b5ea0d7e8dba1da610f9e7e2a28a51790e19308c23f663fdfc91f0c4
+last-reviewed: 2026-11-25
 ---
 # Module 12: Migrate a service account, from a user account to a gMSA, a dMSA or Microsoft Entra {.unnumbered}
 
