@@ -28,6 +28,16 @@ The design, in the books: why this topic matters and what the target is.
 
 : Understand {.striped .hover}
 
+## Plan {#plan}
+
+The project plan and the decisions the program has made.
+
+| Page | What it is |
+|---|---|
+| [Information Protection: Classes, Labels, DLP and Evidence in Microsoft Purview](../project-plans/information-protection.md) | A sample PMP-style project plan for classifying and protecting the agency's data in Microsoft Purview, built from Book 20: a work breakdown by control from the class register to the assessor's package, a computed critical path, a gate per… |
+
+: Plan {.striped .hover}
+
 ## Build {#build}
 
 The implementation guides, the developer workbook and its code.
@@ -86,13 +96,3 @@ The federal requirements each step supports, and the evidence it keeps.
 | [Appendix A — Requirements Mapping: Controls, KSIs and Chapters](../books/b20-information-protection/appendix-a-requirements-mapping.md) | A compliance-enabling map, not a compliance claim: the NIST SP 800-53 Rev. |
 
 : Evidence {.striped .hover}
-
-## Not here {#gaps}
-
-What the workbook doesn't have on information protection, and whether it should. [All topics](index.md#gaps) shows the same for every topic.
-
-| Missing | Why |
-|---|---|
-| Project plan | Needed: no project plan sequences Book 20's rollout. |
-
-: Not here {.striped .hover}

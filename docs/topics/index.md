@@ -19,18 +19,18 @@ Each row shows what a topic has. A cell that says **gap** is something readers n
 | [Privileged Access](privileged-access.md) | 8 | 1 | 1 | 9 chapters | 8 modules | yes | 19 | 1 zip |
 | [Ticket-to-Machine](ticket-to-machine.md) | 4 | 1 | 3 | 9 chapters | 7 modules | yes | 21 | 2 zips |
 | [HR-Driven Identity](hr-driven-identity.md) | 7 | 1 | 2 | 8 chapters | 7 modules | yes | 25 | 1 zip |
-| [Global Secure Access](global-secure-access.md) | 7 | [gap](#gaps) | 1 | 9 chapters | 6 modules | yes | 17 | 1 zip |
+| [Global Secure Access](global-secure-access.md) | 7 | 1 | 1 | 9 chapters | 6 modules | yes | 17 | 1 zip |
 | [Defender XDR](defender-xdr.md) | 5 | [not needed](#gaps) | 1 | 9 chapters | 5 modules | yes | 19 | 1 zip |
 | [Azure Security](azure-security.md) | 6 | [not needed](#gaps) | 1 | 9 chapters | 5 modules | yes | 19 | 1 zip |
 | [Microsoft Automation](microsoft-automation.md) | 2 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 4 modules | yes | 5 | 1 zip |
 | [Zero Trust Assessment](zero-trust-assessment.md) | 6 | [not needed](#gaps) | 1 | [not needed](#gaps) | 4 modules | yes | 8 | 1 zip |
 | [Daily Checks Dashboard](daily-checks-dashboard.md) | 4 | [not needed](#gaps) | 1 | 4 chapters | 2 modules | yes | 8 | 1 zip |
 | [Data Platform and SQL Server](data-platform.md) | 11 | 1 | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | 4 | 1 zip |
-| [PKI and Certificates](pki.md) | 8 | [gap](#gaps) | 1 | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | 5 | 1 zip |
+| [PKI and Certificates](pki.md) | 8 | 1 | 1 | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | 5 | 1 zip |
 | [DNS, DHCP and IPAM](dns-dhcp-ipam.md) | 8 | 1 | 1 | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | 11 | 1 zip |
 | [Network and SD-WAN](network-sd-wan.md) | 8 | 1 | 3 | [not needed](#gaps) | 2 modules | yes | 7 | 1 zip |
 | [Endpoints](endpoints.md) | 8 | 2 | 5 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 14 | 3 zips |
-| [Information Protection](information-protection.md) | 6 | [gap](#gaps) | 1 | 9 chapters | 5 modules | yes | 1 | 1 zip |
+| [Information Protection](information-protection.md) | 6 | 1 | 1 | 9 chapters | 5 modules | yes | 1 | 1 zip |
 | [Compliance and Evidence](compliance-evidence.md) | 13 | 2 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 14 | 2 zips |
 | [Application Modernization](application-modernization.md) | 7 | [not needed](#gaps) | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | 3 | 1 zip |
 
@@ -43,7 +43,6 @@ A gap is filled only where readers need it. Where nothing is needed, the note sa
 | Topic | Missing | Why |
 |---|---|---|
 | [Provider Notices](provider-notices.md#gaps) | Project plan | Not needed, because the implementation guide's seven gates and the developer workbook's chapters already sequence the work, and it runs inside day-two operations (Book 15). |
-| [Global Secure Access](global-secure-access.md#gaps) | Project plan | Needed: no project plan schedules the rollout. The nearest, the [Network & Access plan](../project-plans/network-access.md), covers the governed-transport pilot but not Global Secure Access. |
 | [Defender XDR](defender-xdr.md#gaps) | Project plan | Not needed, because the implementation guide's ten gates sequence the rollout, and it is an operating capability of security operations (Book 12) rather than a project with an end. |
 | [Azure Security](azure-security.md#gaps) | Project plan | Not needed, because the implementation guide's ten steps sequence the work and the landing zone it hardens is Book 10's; a project plan would repeat the guide. |
 | [Microsoft Automation](microsoft-automation.md#gaps) | Project plan | Not needed, because this is a learning path for the people who build the other topics, not a project. |
@@ -56,7 +55,6 @@ A gap is filled only where readers need it. Where nothing is needed, the note sa
 | [Data Platform and SQL Server](data-platform.md#gaps) | Developer workbook | Needed: decide with the learning path plan. The Start Kit's SQL Server discovery is the only code in examples/; nothing there runs the login migration, the parallel run or NTLM remediation. |
 | [Data Platform and SQL Server](data-platform.md#gaps) | Learning path | Needed: the first new learning path to be planned (decided Nov 24, 2026). |
 | [Data Platform and SQL Server](data-platform.md#gaps) | Labs | Needed: they come with the learning path. |
-| [PKI and Certificates](pki.md#gaps) | Project plan | Needed: no project plan sequences AD CS hardening, Cloud PKI and the lifecycle platform; the other plans schedule only their own certificates. |
 | [PKI and Certificates](pki.md#gaps) | Developer workbook | Not needed, because the only code today is the Start Kit's AD CS checks (ESC1, ESC2, ESC4, ESC6); revisit when its learning path is planned. |
 | [PKI and Certificates](pki.md#gaps) | Learning path | Needed: ranked in the learning path plan. |
 | [PKI and Certificates](pki.md#gaps) | Labs | Needed: they come with the learning path. |
@@ -67,7 +65,6 @@ A gap is filled only where readers need it. Where nothing is needed, the note sa
 | [Endpoints](endpoints.md#gaps) | Developer workbook | Not needed, because Book 19's Chapters 06 to 08, listed under Build, are the Intune, Arc and Ansible build. |
 | [Endpoints](endpoints.md#gaps) | Learning path | Not needed, because the modules listed under Learn (three from the Attribute-Driven Migration path, two from Microsoft Automation) already teach it. |
 | [Endpoints](endpoints.md#gaps) | Labs | Not needed, because those modules carry the labs. |
-| [Information Protection](information-protection.md#gaps) | Project plan | Needed: no project plan sequences Book 20's rollout. |
 | [Compliance and Evidence](compliance-evidence.md#gaps) | Guide | Not needed, because every implementation guide carries its own Evidence section, and Book 15's day-two runbook, under Build, is the operating guide. |
 | [Compliance and Evidence](compliance-evidence.md#gaps) | Developer workbook | Not needed, because Book 19's Chapters 03 and 09, under Build, are the validation kit and drift pipeline build. |
 | [Compliance and Evidence](compliance-evidence.md#gaps) | Learning path | Not needed, because the two modules under Learn teach the validation kit and the drift pipeline, and each topic's own path teaches that topic's evidence. |

@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="907" viewBox="0 0 980 907" role="img" aria-labelledby="t d" font-family="Inter, 'DM Sans', Arial, sans-serif">
+<title id="t">Information Protection: schedule</title>
+<desc id="d">Gantt chart of 43 tasks over 25 weeks. Critical-path tasks are red; other tasks are blue, with a grey line for their float. Gates are violet diamonds, decisions amber diamonds, and milestones from another plan green diamonds.</desc>
+<rect width="980" height="907" fill="#ffffff"/>
+<line x1="360.0" y1="28" x2="360.0" y2="867" stroke="#e2e8f0" stroke-width="1"/>
+<text x="362.0" y="22" font-size="10" fill="#64748b">wk 1</text>
+<line x1="456.0" y1="28" x2="456.0" y2="867" stroke="#e2e8f0" stroke-width="1"/>
+<text x="458.0" y="22" font-size="10" fill="#64748b">wk 5</text>
+<line x1="552.0" y1="28" x2="552.0" y2="867" stroke="#e2e8f0" stroke-width="1"/>
+<text x="554.0" y="22" font-size="10" fill="#64748b">wk 9</text>
+<line x1="648.0" y1="28" x2="648.0" y2="867" stroke="#e2e8f0" stroke-width="1"/>
+<text x="650.0" y="22" font-size="10" fill="#64748b">wk 13</text>
+<line x1="744.0" y1="28" x2="744.0" y2="867" stroke="#e2e8f0" stroke-width="1"/>
+<text x="746.0" y="22" font-size="10" fill="#64748b">wk 17</text>
+<line x1="840.0" y1="28" x2="840.0" y2="867" stroke="#e2e8f0" stroke-width="1"/>
+<text x="842.0" y="22" font-size="10" fill="#64748b">wk 21</text>
+<line x1="936.0" y1="28" x2="936.0" y2="867" stroke="#e2e8f0" stroke-width="1"/>
+<text x="938.0" y="22" font-size="10" fill="#64748b">wk 25</text>
+<rect x="0" y="34" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="46.5" font-size="11" font-weight="600" fill="#1e293b">Phase 0 — Classes, decisions and the audit floor</text>
+<text x="14" y="63" font-size="10.5" fill="#1e293b">IP0.1  Class register: CUI categories held (Basic or Spe…</text>
+<rect x="360.0" y="55" width="72.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="80" font-size="10.5" fill="#64748b">IP0.2  Inventory: where each class already sits, from co…</text>
+<line x1="408.0" y1="76.5" x2="432.0" y2="76.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="72" width="48.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="97" font-size="10.5" fill="#64748b">IP0.3  Unified audit on and retained, routed to the log…</text>
+<line x1="408.0" y1="93.5" x2="432.0" y2="93.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="360.0" y="89" width="48.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="114" font-size="10.5" fill="#64748b">D-IP1  Tenant root key for Rights Management</text>
+<path d="M432.0 105.0 L437.5 110.5 L432.0 116.0 L426.5 110.5 Z" fill="#D97706"/>
+<text x="14" y="131" font-size="10.5" fill="#1e293b">IPG0  Gate 0 — Classes decided, audit on</text>
+<path d="M432.0 122.0 L437.5 127.5 L432.0 133.0 L426.5 127.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="0" y="136" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="148.5" font-size="11" font-weight="600" fill="#1e293b">Phase 1 — Labels, defaults and Rights Management</text>
+<text x="14" y="165" font-size="10.5" fill="#1e293b">IP1.1  Label taxonomy built in a test tenant: classes to…</text>
+<rect x="432.0" y="157" width="72.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="182" font-size="10.5" fill="#1e293b">D-IP2  Default labels and mandatory labeling for files,…</text>
+<path d="M504.0 173.0 L509.5 178.5 L504.0 184.0 L498.5 178.5 Z" fill="#D97706" stroke="#DC2626" stroke-width="1.6"/>
+<text x="14" y="199" font-size="10.5" fill="#64748b">IP1.2  Rights Management activated and staged: onboardin…</text>
+<line x1="456.0" y1="195.5" x2="504.0" y2="195.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="432.0" y="191" width="24.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="216" font-size="10.5" fill="#64748b">X-AG1  Privileged Access Gate 1 — Foundation ready (PIM…</text>
+<path d="M556.8 207.0 L562.3 212.5 L556.8 218.0 L551.3 212.5 Z" fill="#059669"/>
+<text x="14" y="233" font-size="10.5" fill="#64748b">IP1.3  Super user recovery rehearsed in the test tenant…</text>
+<line x1="571.2" y1="229.5" x2="624.0" y2="229.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="556.8" y="225" width="14.4" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="250" font-size="10.5" fill="#1e293b">IP1.4  Ring 1: label policy and pilot defaults for 25 to…</text>
+<rect x="504.0" y="242" width="48.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="267" font-size="10.5" fill="#1e293b">IP1.5  Ring 2: one or two offices per CUI program, two w…</text>
+<rect x="566.4" y="259" width="57.6" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="284" font-size="10.5" fill="#1e293b">IPG1  Gate 1 — Labels in use</text>
+<path d="M624.0 275.0 L629.5 280.5 L624.0 286.0 L618.5 280.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="0" y="289" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="301.5" font-size="11" font-weight="600" fill="#1e293b">Phase 2 — Containers, SharePoint and OneDrive, and mail</text>
+<text x="14" y="318" font-size="10.5" fill="#64748b">D-IP4  Label integration for SharePoint and OneDrive, le…</text>
+<path d="M504.0 309.0 L509.5 314.5 L504.0 320.0 L498.5 314.5 Z" fill="#D97706"/>
+<text x="14" y="335" font-size="10.5" fill="#1e293b">IP2.2  Label integration on for SharePoint and OneDrive,…</text>
+<rect x="552.0" y="327" width="14.4" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="352" font-size="10.5" fill="#64748b">IP2.3  Legacy IRM libraries moved to sensitivity labels…</text>
+<line x1="662.4" y1="348.5" x2="777.6" y2="348.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="566.4" y="344" width="96.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="369" font-size="10.5" fill="#64748b">D-IP3  Container classes and who may create Teams, group…</text>
+<path d="M504.0 360.0 L509.5 365.5 L504.0 371.0 L498.5 365.5 Z" fill="#D97706"/>
+<text x="14" y="386" font-size="10.5" fill="#64748b">X-P16  Conditional Access baseline enforced; emergency a…</text>
+<path d="M518.4 377.0 L523.9 382.5 L518.4 388.0 L512.9 382.5 Z" fill="#059669"/>
+<text x="14" y="403" font-size="10.5" fill="#64748b">IP2.1  Container labels: pilot sites for two weeks with…</text>
+<line x1="720.0" y1="399.5" x2="777.6" y2="399.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="624.0" y="395" width="96.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="420" font-size="10.5" fill="#64748b">D-IP5  Approved message-encryption scenarios, and the re…</text>
+<path d="M432.0 411.0 L437.5 416.5 L432.0 422.0 L426.5 416.5 Z" fill="#D97706"/>
+<text x="14" y="437" font-size="10.5" fill="#64748b">IP2.4  Message encryption verified and branded; each tra…</text>
+<line x1="576.0" y1="433.5" x2="777.6" y2="433.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="456.0" y="429" width="120.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="454" font-size="10.5" fill="#64748b">IPG2  Gate 2 — Containers, libraries and mail protected</text>
+<path d="M720.0 445.0 L725.5 450.5 L720.0 456.0 L714.5 450.5 Z" fill="#7C3AED"/>
+<rect x="0" y="459" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="471.5" font-size="11" font-weight="600" fill="#1e293b">Phase 3 — DLP and auto-labeling</text>
+<text x="14" y="488" font-size="10.5" fill="#64748b">D-IP6  DLP outcomes for each class and surface: block, w…</text>
+<path d="M432.0 479.0 L437.5 484.5 L432.0 490.0 L426.5 484.5 Z" fill="#D97706"/>
+<text x="14" y="505" font-size="10.5" fill="#64748b">IP3.4  Custom sensitive information types written as cod…</text>
+<line x1="504.0" y1="501.5" x2="624.0" y2="501.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="432.0" y="497" width="72.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="522" font-size="10.5" fill="#1e293b">IP3.1  Workload DLP in simulation for the pilot across a…</text>
+<rect x="624.0" y="514" width="72.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="539" font-size="10.5" fill="#1e293b">IP3.2  Workload DLP enforced ring by ring: ring 2 with o…</text>
+<rect x="696.0" y="531" width="96.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="556" font-size="10.5" fill="#64748b">X-P23  Pilot devices moved by pattern (program P2.3)</text>
+<path d="M662.4 547.0 L667.9 552.5 L662.4 558.0 L656.9 552.5 Z" fill="#059669"/>
+<text x="14" y="573" font-size="10.5" fill="#64748b">IP3.3  Endpoint DLP on Windows: pilot devices onboarded,…</text>
+<line x1="816.0" y1="569.5" x2="849.6" y2="569.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="696.0" y="565" width="120.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="590" font-size="10.5" fill="#64748b">IP3.5  Service-side auto-labeling in simulation over pil…</text>
+<line x1="696.0" y1="586.5" x2="801.6" y2="586.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="624.0" y="582" width="72.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="607" font-size="10.5" fill="#64748b">D-IP7  Move each auto-labeling policy from simulation to…</text>
+<path d="M696.0 598.0 L701.5 603.5 L696.0 609.0 L690.5 603.5 Z" fill="#D97706"/>
+<text x="14" y="624" font-size="10.5" fill="#64748b">IP3.6  Auto-labeling policies on; PDF support turned on…</text>
+<line x1="744.0" y1="620.5" x2="849.6" y2="620.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="696.0" y="616" width="48.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="641" font-size="10.5" fill="#64748b">IPG3  Gate 3 — DLP and auto-labeling enforced</text>
+<path d="M816.0 632.0 L821.5 637.5 L816.0 643.0 L810.5 637.5 Z" fill="#7C3AED"/>
+<rect x="0" y="646" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="658.5" font-size="11" font-weight="600" fill="#1e293b">Phase 4 — Insider risk and AI data security</text>
+<text x="14" y="675" font-size="10.5" fill="#64748b">IP4.1  Insider risk charter drafted: purpose and templat…</text>
+<line x1="576.0" y1="671.5" x2="792.0" y2="671.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="432.0" y="667" width="144.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="692" font-size="10.5" fill="#64748b">D-IP8  Adopt the insider risk charter</text>
+<path d="M576.0 683.0 L581.5 688.5 L576.0 694.0 L570.5 688.5 Z" fill="#D97706"/>
+<text x="14" y="709" font-size="10.5" fill="#1e293b">IP4.2  Insider Risk Management and Communication Complia…</text>
+<rect x="792.0" y="701" width="105.6" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="726" font-size="10.5" fill="#64748b">D-IP9  AI data decisions: approved AI apps and their dat…</text>
+<path d="M504.0 717.0 L509.5 722.5 L504.0 728.0 L498.5 722.5 Z" fill="#D97706"/>
+<text x="14" y="743" font-size="10.5" fill="#64748b">IP4.3  Data risk assessment for oversharing read; DSPM a…</text>
+<line x1="792.0" y1="739.5" x2="849.6" y2="739.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="720.0" y="735" width="72.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="760" font-size="10.5" fill="#64748b">IP4.4  Copilot DLP enforced; paste to unapproved AI site…</text>
+<line x1="864.0" y1="756.5" x2="897.6" y2="756.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="816.0" y="752" width="48.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="777" font-size="10.5" fill="#1e293b">IPG4  Gate 4 — Insider risk and AI data governed</text>
+<path d="M897.6 768.0 L903.1 773.5 L897.6 779.0 L892.1 773.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="0" y="782" width="980" height="17" fill="#f8fafc"/>
+<text x="6" y="794.5" font-size="11" font-weight="600" fill="#1e293b">Phase 5 — Operations and evidence</text>
+<text x="14" y="811" font-size="10.5" fill="#64748b">IP5.1  Configuration baseline exported and reviewed; dri…</text>
+<line x1="864.0" y1="807.5" x2="897.6" y2="807.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="816.0" y="803" width="48.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="828" font-size="10.5" fill="#64748b">IP5.2  Operating cadence written into the day-two runboo…</text>
+<line x1="840.0" y1="824.5" x2="897.6" y2="824.5" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="816.0" y="820" width="24.0" height="9" rx="2" fill="#2563EB"/>
+<text x="14" y="845" font-size="10.5" fill="#1e293b">IP5.3  Assessor&#x27;s package assembled from the evidence ca…</text>
+<rect x="897.6" y="837" width="48.0" height="9" rx="2" fill="#DC2626"/>
+<text x="14" y="862" font-size="10.5" fill="#1e293b">IPG5  Gate 5 — Operated with evidence</text>
+<path d="M945.6 853.0 L951.1 858.5 L945.6 864.0 L940.1 858.5 Z" fill="#7C3AED" stroke="#DC2626" stroke-width="1.6"/>
+<rect x="14" y="880" width="18" height="9" rx="2" fill="#DC2626"/>
+<text x="38" y="889" font-size="10.5" fill="#1e293b">Critical path</text>
+<rect x="140.60000000000002" y="880" width="18" height="9" rx="2" fill="#2563EB"/>
+<text x="164.60000000000002" y="889" font-size="10.5" fill="#1e293b">Other task</text>
+<line x1="248.60000000000002" y1="884.5" x2="266.6" y2="884.5" stroke="#cbd5e1" stroke-width="2"/>
+<text x="272.6" y="889" font-size="10.5" fill="#1e293b">Float</text>
+<path d="M334.6 879 L340.1 884.5 L334.6 890 L329.1 884.5 Z" fill="#7C3AED"/>
+<text x="349.6" y="889" font-size="10.5" fill="#1e293b">Gate</text>
+<path d="M405.40000000000003 879 L410.90000000000003 884.5 L405.40000000000003 890 L399.90000000000003 884.5 Z" fill="#D97706"/>
+<text x="420.40000000000003" y="889" font-size="10.5" fill="#1e293b">Decision</text>
+<path d="M501.0 879 L506.5 884.5 L501.0 890 L495.5 884.5 Z" fill="#059669"/>
+<text x="516.0" y="889" font-size="10.5" fill="#1e293b">From another plan</text>
+<text x="966" y="889" font-size="10.5" fill="#64748b" text-anchor="end">A red outline marks a milestone on the critical path</text>
+</svg>

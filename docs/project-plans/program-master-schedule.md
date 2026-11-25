@@ -145,6 +145,7 @@ Other plans that take a date from this one. *Waits for it*: that plan can't move
 | G0 — Ready to Plan | end of wk 4 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) (X-G0) | Reference only | — |
 | G0 — Ready to Plan | end of wk 4 | [Non-Person Identity Modernization](non-person-identity.md) (X-G0) | Must finish NP0.1 by it | 10 d margin |
 | D11  Provisional target end state: AD retired, or a dated Kerberos island | end of wk 4 | [Non-Person Identity Modernization](non-person-identity.md) (X-D11) | Waits for it | 133 d |
+| D04  Root of trust for device certificates | end of wk 4 | [PKI and Certificates](pki-certificates.md) (X-D04) | Must finish K1.1 by it | 15 d margin |
 | G0 — Ready to Plan | end of wk 4 | [Privileged Access & Administrative Identity](privileged-access.md) (X-G0) | Waits for it | 10 d |
 | G0 — Ready to Plan | end of wk 4 | [Supply Chain & SBOM](supply-chain-sbom.md) (X-G0) | Waits for it | 3 d |
 | P1.1  Attribute taxonomy finalized (M-014) | wk 5 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P11) | Must finish ATG1 by it | 8 d margin |
@@ -153,6 +154,10 @@ Other plans that take a date from this one. *Waits for it*: that plan can't move
 | P1.7  Sync and DNS Private Resolver designs; resolver deployed (M-018, M-019) | wk 5–6 | [Network & Access Modernization](network-access.md) (X-P17) | Waits for it | 2 d |
 | P1.2  Dynamic group design tested; enterprise groups and administrative units built (M-015) | wk 6–7 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P12) | Must finish ATG4 by it | 8 d margin |
 | P1.2  Dynamic group design tested; enterprise groups and administrative units built (M-015) | wk 6–7 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) (X-P12) | Waits for it | 0 |
+| P1.6  Baseline enforced; emergency access accounts vaulted and tested | wk 7 | [Global Secure Access](global-secure-access.md) (X-P16) | Waits for it | 12 d |
+| P1.6  Baseline enforced; emergency access accounts vaulted and tested | wk 7 | [Information Protection](information-protection.md) (X-P16) | Waits for it | 34 d |
+| start of P1.8  Cloud PKI design; issuing CA created (M-020) | wk 6–7 | [PKI and Certificates](pki-certificates.md) (X-P18S) | Must finish KG1 by it | 5 d margin |
+| P1.8  Cloud PKI design; issuing CA created (M-020) | wk 6–7 | [PKI and Certificates](pki-certificates.md) (X-P18) | Waits for it | 7 d |
 | G1 — Foundation Complete | end of wk 8 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) (X-G1) | Must finish M4.1 by it | 4 d margin |
 | P1.13  Pilot servers connected through Arc with machine configuration applied (M-030) | wk 7–8 | [Data Platform Identity Transformation](data-platform.md) (X-ARC) | Waits for it | 2 d |
 | G1 — Foundation Complete | end of wk 8 | [Data Platform Identity Transformation](data-platform.md) (X-G1) | Waits for it | 86 d |
@@ -164,12 +169,18 @@ Other plans that take a date from this one. *Waits for it*: that plan can't move
 | G1 — Foundation Complete | end of wk 8 | [Supply Chain & SBOM](supply-chain-sbom.md) (X-G1) | Waits for it | 13 d |
 | start of P2.1  Sync deployed; pilot attributes, groups, AUs and delegated roles live (M-022) | wk 9–10 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P21S) | Waits for it | 2 d |
 | start of P2.2  Pilot Conditional Access and Intune policies assigned (M-024, M-025) | wk 11 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P22) | Must finish AT4.4 by it | 2 d margin |
+| P2.2  Pilot Conditional Access and Intune policies assigned (M-024, M-025) | wk 11 | [Global Secure Access](global-secure-access.md) (X-P22) | Waits for it | 0 |
 | start of P2.6  Division DNS migrated, DHCP re-homed, hybrid resolution validated (M-027) | wk 9–11 | [Network & Access Modernization](network-access.md) (X-P26S) | Must finish N1.1 by it | 2 d margin |
 | P2.6  Division DNS migrated, DHCP re-homed, hybrid resolution validated (M-027) | wk 9–11 | [Network & Access Modernization](network-access.md) (X-P26) | Waits for it | 49 d |
 | P2.5  PIM for every pilot administrator (M-026) | wk 11 | [Privileged Access & Administrative Identity](privileged-access.md) (X-P25) | Reference only | — |
 | P2.8  Certificate-based authentication for PIV holders (M-029) | wk 11–12 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P28) | Must finish AT6.2 by it | 8 d margin |
+| start of P2.8  Certificate-based authentication for PIV holders (M-029) | wk 11–12 | [PKI and Certificates](pki-certificates.md) (X-P28S) | Must finish K3.1 by it | 7 d margin |
+| P2.8  Certificate-based authentication for PIV holders (M-029) | wk 11–12 | [PKI and Certificates](pki-certificates.md) (X-P28) | Waits for it | 17 d |
 | P2.3  Pilot devices moved by pattern (M-023) | wk 12–13 | [Continuous Monitoring & Evidence Fabric](continuous-monitoring.md) (X-P23) | Waits for it | 4 d |
+| P2.3  Pilot devices moved by pattern (M-023) | wk 12–13 | [Information Protection](information-protection.md) (X-P23) | Waits for it | 14 d |
 | P2.7  Cloud PKI certificates issued; Wi-Fi and VPN verified (M-028) | wk 13–14 | [Network & Access Modernization](network-access.md) (X-P27) | Waits for it | 47 d |
+| start of P2.7  Cloud PKI certificates issued; Wi-Fi and VPN verified (M-028) | wk 13–14 | [PKI and Certificates](pki-certificates.md) (X-P27S) | Must finish KG2 by it | 19 d margin |
+| P2.7  Cloud PKI certificates issued; Wi-Fi and VPN verified (M-028) | wk 13–14 | [PKI and Certificates](pki-certificates.md) (X-P27) | Waits for it | 5 d |
 | G2 — Pilot Clean | end of wk 16 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-G2) | Must finish ATG7 by it | 15 d margin |
 | D07  Wave plan: which divisions, in which order | end of wk 16 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-D07) | Must finish AT8.1 by it | 12 d margin |
 | start of P2.11  Drift-clean hold (14 days, illustrative); success criteria met (M-031) | wk 15–16 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P211) | Must finish AT9.1 by it | 25 d margin |
@@ -179,8 +190,11 @@ Other plans that take a date from this one. *Waits for it*: that plan can't move
 | G2 — Pilot Clean | end of wk 16 | [Endpoint & Device Modernization](endpoint-device.md) (X-G2) | Must finish EG2 by it | **no margin** |
 | D08  End dates for legacy authentication and NTLM | end of wk 16 | [Endpoint & Device Modernization](endpoint-device.md) (X-D08) | Waits for it | 137 d |
 | D08  End dates for legacy authentication and NTLM | end of wk 16 | [Non-Person Identity Modernization](non-person-identity.md) (X-D08) | Waits for it | 68 d |
+| G2 — Pilot Clean | end of wk 16 | [PKI and Certificates](pki-certificates.md) (X-G2) | Must finish KG3 by it | 5 d margin |
 | G2 — Pilot Clean | end of wk 16 | [Privileged Access & Administrative Identity](privileged-access.md) (X-G2) | Must finish AG2 by it | 12 d margin |
 | P3.1  Wave 1, first region, about 25% (M-032) | wk 17–21 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P31) | Must finish AT8.2 by it | 29 d margin |
+| start of P3.1  Wave 1, first region, about 25% (M-032) | wk 17–21 | [Global Secure Access](global-secure-access.md) (X-P31S) | Waits for it | 30 d |
+| start of P3.1  Wave 1, first region, about 25% (M-032) | wk 17–21 | [PKI and Certificates](pki-certificates.md) (X-P31S) | Waits for it | 23 d |
 | P3.7  Every server Arc-connected or excepted | wk 17–28 | [Endpoint & Device Modernization](endpoint-device.md) (X-P37) | Must finish EG4 by it | 5 d margin |
 | P3.5  GPO links off migrated OUs after 7 clean days (M-036) | wk 33–34 | [Endpoint & Device Modernization](endpoint-device.md) (X-P35) | Must finish E3.8 by it | 18 d margin |
 | G3 — Rollout Complete | end of wk 36 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-G3) | Waits for it | 0 |
@@ -190,8 +204,11 @@ Other plans that take a date from this one. *Waits for it*: that plan can't move
 | P4.2  OU-based security groups retired | wk 38 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P42) | Waits for it | 0 |
 | start of P4.5  User and device issuance off AD CS; smart-card logon GPO retired | wk 37–39 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P45) | Must finish D-AT7 by it | 130 d margin |
 | P4.3  AD-integrated DNS zones moved, except the domain's own zones | wk 37–39 | [Network & Access Modernization](network-access.md) (X-P43) | Waits for it | 0 |
+| start of P4.5  User and device issuance off AD CS; smart-card logon GPO retired | wk 37–39 | [PKI and Certificates](pki-certificates.md) (X-P45S) | Must finish KG5 by it | 25 d margin |
+| P4.5  User and device issuance off AD CS; smart-card logon GPO retired | wk 37–39 | [PKI and Certificates](pki-certificates.md) (X-P45) | Waits for it | 0 |
 | P4.6  AD-bound service principal names migrated, retired or islanded, app by app | wk 37–42 | [Data Platform Identity Transformation](data-platform.md) (X-P46) | Must finish DG4 by it | 66 d margin |
 | P4.6  AD-bound service principal names migrated, retired or islanded, app by app | wk 37–42 | [Non-Person Identity Modernization](non-person-identity.md) (X-P46) | Must finish NPG3 by it | 57 d margin |
+| G4 — Legacy Quiet | end of wk 44 | [PKI and Certificates](pki-certificates.md) (X-G4) | Must finish KG6 by it | 9 d margin |
 | start of P5.1  AD changes frozen; final assessment and evidence packet | wk 45 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-P51) | Must finish ATG8 by it | 20 d margin |
 | G5 — AD Retired | end of wk 48 | [Attribute-Driven Migration](attribute-driven-migration.md) (X-G5) | Must finish ATG9 by it | 40 d margin |
 | G5 — AD Retired | end of wk 48 | [Non-Person Identity Modernization](non-person-identity.md) (X-G5) | Must finish NP7.3 by it | 72 d margin |
