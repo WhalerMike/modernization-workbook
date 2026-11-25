@@ -226,6 +226,17 @@ Every lab opens with the list of every command it runs, in order: follow it top 
 
 : The SD-WAN governor: labs by module {.striped .hover}
 
+## The DNS, DHCP and IPAM learning path {#ddi}
+
+[The learning path](dns-dhcp-ipam/index.md) · [its implementation guide](../books/guides/infoblox-nios-implementation.md) · [the code: start-kit.zip](../../downloads/start-kit.zip)
+
+| Module | Lab 1, no tenant | Lab 2 |
+|---|---|---|
+| [Module 1: Read the naming plane](dns-dhcp-ipam/01-read-the-naming-plane.md) | [Lab 1](dns-dhcp-ipam/01-read-the-naming-plane.md#ddi-m1-lab-1) | [Lab 2](dns-dhcp-ipam/01-read-the-naming-plane.md#ddi-m1-lab-2) |
+| [Module 2: The Active Directory DNS departure](dns-dhcp-ipam/02-the-active-directory-dns-departure.md) | [Lab 1](dns-dhcp-ipam/02-the-active-directory-dns-departure.md#ddi-m2-lab-1) | [Lab 2](dns-dhcp-ipam/02-the-active-directory-dns-departure.md#ddi-m2-lab-2) |
+
+: DNS, DHCP and IPAM: labs by module {.striped .hover}
+
 ## What Lab 2 needs {#lab-2-environments}
 
 Each Lab 2 names its environment and its prerequisites in its first paragraph. Use synthetic data like the kit's fixtures, and never production:
@@ -233,5 +244,6 @@ Each Lab 2 names its environment and its prerequisites in its first paragraph. U
 - **A Microsoft Entra test tenant**, in the worldwide or GCC cloud for learning, with the licenses the lab names; then rehearse in the agency's own cloud, as [Book 16's two-step lab path](../books/b16-people/06-vendor-training-and-labs.md) describes. Some labs add an Azure test subscription or a disposable server.
 - **A ServiceNow Personal Developer Instance**, free to members of ServiceNow's Developer Program, or a sub-production instance. [Chapter 01 of Building Ticket-to-Machine](../project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.md#lab-2-a-servicenow-developer-instance) says how its instance is reset.
 - **A SailPoint Identity Security Cloud sandbox tenant**, the agency's own.
+- **A test Active Directory domain** on a Windows Server 2019 or later virtual machine you can checkpoint and throw away, with the DNS Server and DHCP Server roles, for the DNS, DHCP and IPAM labs. [Module 1](dns-dhcp-ipam/01-read-the-naming-plane.md#ddi-m1-lab-2) builds it.
 - **A Catalyst SD-WAN test fabric**: a Manager in a lab overlay or a vendor sandbox, with a read-only Manager account, for the SD-WAN governor path.
 

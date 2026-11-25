@@ -27,7 +27,7 @@ Each row shows what a topic has. A cell that says **gap** is something readers n
 | [Daily Checks Dashboard](daily-checks-dashboard.md) | 4 | [not needed](#gaps) | 1 | 4 chapters | 2 modules | yes | 8 | 1 zip |
 | [Data Platform and SQL Server](data-platform.md) | 11 | 1 | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | 4 | 1 zip |
 | [PKI and Certificates](pki.md) | 8 | 1 | 1 | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | 5 | 1 zip |
-| [DNS, DHCP and IPAM](dns-dhcp-ipam.md) | 8 | 1 | 1 | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | 11 | 1 zip |
+| [DNS, DHCP and IPAM](dns-dhcp-ipam.md) | 8 | 1 | 1 | [not needed](#gaps) | 2 modules | yes | 11 | 1 zip |
 | [Network and SD-WAN](network-sd-wan.md) | 8 | 1 | 3 | [not needed](#gaps) | 4 modules | yes | 7 | 1 zip |
 | [Endpoints](endpoints.md) | 8 | 2 | 5 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 14 | 3 zips |
 | [Information Protection](information-protection.md) | 6 | 1 | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | 1 | [gap](#gaps) |
@@ -58,9 +58,7 @@ A gap is filled only where readers need it. Where nothing is needed, the note sa
 | [PKI and Certificates](pki.md#gaps) | Developer workbook | Not needed, because the only code today is the Start Kit's AD CS checks (ESC1, ESC2, ESC4, ESC6); revisit when its learning path is planned. |
 | [PKI and Certificates](pki.md#gaps) | Learning path | Needed: ranked in the learning path plan. |
 | [PKI and Certificates](pki.md#gaps) | Labs | Needed: they come with the learning path. |
-| [DNS, DHCP and IPAM](dns-dhcp-ipam.md#gaps) | Developer workbook | Not needed, because the only code today is the Start Kit's DNS and DHCP inventory; revisit when its learning path is planned. |
-| [DNS, DHCP and IPAM](dns-dhcp-ipam.md#gaps) | Learning path | Needed: ranked in the learning path plan. Until then the Infoblox training page, under Learn, lists the vendor's paths. |
-| [DNS, DHCP and IPAM](dns-dhcp-ipam.md#gaps) | Labs | Needed: they come with the learning path. |
+| [DNS, DHCP and IPAM](dns-dhcp-ipam.md#gaps) | Developer workbook | Not needed, because the code is the Start Kit's DNS and DHCP collectors and the readiness checks beside them, and the learning path's labs run the kit directly. |
 | [Network and SD-WAN](network-sd-wan.md#gaps) | Developer workbook | Not needed, because the Cisco kit is one read-only collector, and the learning path's modules teach it directly, with Lab 1 replaying its fixtures. |
 | [Endpoints](endpoints.md#gaps) | Developer workbook | Not needed, because Book 19's Chapters 06 to 08, listed under Build, are the Intune, Arc and Ansible build. |
 | [Endpoints](endpoints.md#gaps) | Learning path | Not needed, because the modules listed under Learn (three from the Attribute-Driven Migration path, two from Microsoft Automation) already teach it. |

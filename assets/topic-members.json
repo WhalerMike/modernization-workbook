@@ -3125,6 +3125,24 @@
    "title": "Defender XDR"
   }
  ],
+ "docs/training/dns-dhcp-ipam/01-read-the-naming-plane.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/training/dns-dhcp-ipam/02-the-active-directory-dns-departure.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
+ "docs/training/dns-dhcp-ipam/index.md": [
+  {
+   "id": "dns-dhcp-ipam",
+   "title": "DNS, DHCP and IPAM"
+  }
+ ],
  "docs/training/global-secure-access/01-decide-design-and-log-first.md": [
   {
    "id": "global-secure-access",
