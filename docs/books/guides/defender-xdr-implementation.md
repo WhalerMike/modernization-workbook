@@ -898,11 +898,11 @@ Get-ChildItem <evidence-folder> -File | Get-FileHash -Algorithm SHA256 | Export-
 
 ::: {.callout-tip}
 ## Try it: G10 Operations and evidence
-- **On a laptop, no tenant:** [Chapter 01, Lab 1](../../project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.md#lab-1-fixtures-no-tenant) of *Access and the Graph Read Path*
-- **In a test tenant:** [Chapter 01, Lab 2](../../project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.md#lab-2-a-test-tenant)
-- **On a laptop, no tenant:** [Chapter 02, Lab 1](../../project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.md#lab-1-fixtures-no-tenant) of *Onboarding Coverage and Sensor Health*
-- **In a test tenant:** [Chapter 02, Lab 2](../../project-plans/developer-workbooks/defender-xdr/02-onboarding-coverage-and-sensor-health.md#lab-2-a-test-tenant)
-- **As training:** [Module 1: Architecture, access and onboarding](../../training/defender-xdr/01-architecture-access-and-onboarding.md), with a knowledge check
+- **On a laptop, no tenant:** [Chapter 07, Lab 1](../../project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.md#lab-1-fixtures-no-tenant) of *Identity Signals and Automation Boundaries*
+- **In a test tenant:** [Chapter 07, Lab 2](../../project-plans/developer-workbooks/defender-xdr/07-identity-signals-and-automation-boundaries.md#lab-2-a-test-tenant)
+- **On a laptop, no tenant:** [Chapter 08, Lab 1](../../project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.md#lab-1-fixtures-no-tenant) of *The Monthly Evidence Run*
+- **In a test tenant:** [Chapter 08, Lab 2](../../project-plans/developer-workbooks/defender-xdr/08-the-monthly-evidence-run.md#lab-2-a-test-tenant)
+- **As training:** [Module 5: Automation, operations and evidence](../../training/defender-xdr/05-automation-operations-and-evidence.md), with a knowledge check
 :::
 
 <!-- labs:end -->

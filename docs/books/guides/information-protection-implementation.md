@@ -587,8 +587,8 @@ Audit is the floor: on, retained and routed to the log platform. Insider Risk Ma
 ## Try it: G10 Audit, insider risk and communication compliance
 - **On a laptop, no tenant:** [Chapter 01, Lab 1](../../project-plans/developer-workbooks/information-protection/01-access-and-the-read-path.md#lab-1-fixtures-no-tenant) of *Access and the Read Path*
 - **In a test tenant:** [Chapter 01, Lab 2](../../project-plans/developer-workbooks/information-protection/01-access-and-the-read-path.md#lab-2-a-test-tenant)
-- **On a laptop, no tenant:** [Chapter 03, Lab 1](../../project-plans/developer-workbooks/information-protection/03-the-data-inventory.md#lab-1-fixtures-no-tenant) of *The Data Inventory*
-- **In a test tenant:** [Chapter 03, Lab 2](../../project-plans/developer-workbooks/information-protection/03-the-data-inventory.md#lab-2-a-test-tenant)
+- **On a laptop, no tenant:** [Chapter 07, Lab 1](../../project-plans/developer-workbooks/information-protection/07-audit-and-the-synthetic-events.md#lab-1-fixtures-no-tenant) of *Audit and the Synthetic Events*
+- **In a test tenant:** [Chapter 07, Lab 2](../../project-plans/developer-workbooks/information-protection/07-audit-and-the-synthetic-events.md#lab-2-a-test-tenant)
 :::
 
 <!-- labs:end -->
@@ -627,10 +627,10 @@ Microsoft 365 Copilot works in the user's security context and honors labels and
 
 ::: {.callout-tip}
 ## Try it: G11 AI data security
-- **On a laptop, no tenant:** [Chapter 01, Lab 1](../../project-plans/developer-workbooks/information-protection/01-access-and-the-read-path.md#lab-1-fixtures-no-tenant) of *Access and the Read Path*
-- **In a test tenant:** [Chapter 01, Lab 2](../../project-plans/developer-workbooks/information-protection/01-access-and-the-read-path.md#lab-2-a-test-tenant)
-- **On a laptop, no tenant:** [Chapter 03, Lab 1](../../project-plans/developer-workbooks/information-protection/03-the-data-inventory.md#lab-1-fixtures-no-tenant) of *The Data Inventory*
-- **In a test tenant:** [Chapter 03, Lab 2](../../project-plans/developer-workbooks/information-protection/03-the-data-inventory.md#lab-2-a-test-tenant)
+- **On a laptop, no tenant:** [Chapter 06, Lab 1](../../project-plans/developer-workbooks/information-protection/06-dlp-and-auto-labeling.md#lab-1-fixtures-no-tenant) of *DLP and Auto-Labeling*
+- **In a test tenant:** [Chapter 06, Lab 2](../../project-plans/developer-workbooks/information-protection/06-dlp-and-auto-labeling.md#lab-2-a-test-tenant)
+- **On a laptop, no tenant:** [Chapter 07, Lab 1](../../project-plans/developer-workbooks/information-protection/07-audit-and-the-synthetic-events.md#lab-1-fixtures-no-tenant) of *Audit and the Synthetic Events*
+- **In a test tenant:** [Chapter 07, Lab 2](../../project-plans/developer-workbooks/information-protection/07-audit-and-the-synthetic-events.md#lab-2-a-test-tenant)
 :::
 
 <!-- labs:end -->
@@ -662,10 +662,12 @@ The configuration is exported monthly as a dated baseline, compared with the las
 
 ::: {.callout-tip}
 ## Try it: G12 Operations and evidence
-- **On a laptop, no tenant:** [Chapter 01, Lab 1](../../project-plans/developer-workbooks/information-protection/01-access-and-the-read-path.md#lab-1-fixtures-no-tenant) of *Access and the Read Path*
-- **In a test tenant:** [Chapter 01, Lab 2](../../project-plans/developer-workbooks/information-protection/01-access-and-the-read-path.md#lab-2-a-test-tenant)
-- **On a laptop, no tenant:** [Chapter 03, Lab 1](../../project-plans/developer-workbooks/information-protection/03-the-data-inventory.md#lab-1-fixtures-no-tenant) of *The Data Inventory*
-- **In a test tenant:** [Chapter 03, Lab 2](../../project-plans/developer-workbooks/information-protection/03-the-data-inventory.md#lab-2-a-test-tenant)
+- **On a laptop, no tenant:** [Chapter 02, Lab 1](../../project-plans/developer-workbooks/information-protection/02-the-baseline-export.md#lab-1-fixtures-no-tenant) of *The Baseline Export*
+- **In a test tenant:** [Chapter 02, Lab 2](../../project-plans/developer-workbooks/information-protection/02-the-baseline-export.md#lab-2-a-test-tenant)
+- **On a laptop, no tenant:** [Chapter 08, Lab 1](../../project-plans/developer-workbooks/information-protection/08-drift-metrics-and-the-monthly-evidence-run.md#lab-1-fixtures-no-tenant) of *Drift, Metrics and the Monthly Evidence Run*
+- **In a test tenant:** [Chapter 08, Lab 2](../../project-plans/developer-workbooks/information-protection/08-drift-metrics-and-the-monthly-evidence-run.md#lab-2-a-test-tenant)
+- **On a laptop, no tenant:** [Chapter 09, Lab 1](../../project-plans/developer-workbooks/information-protection/09-deploying-to-test-and-production.md#lab-1-stand-ins-no-tenant) of *Deploying to Test and Production*
+- **In a test tenant:** [Chapter 09, Lab 2](../../project-plans/developer-workbooks/information-protection/09-deploying-to-test-and-production.md#lab-2-a-test-tenant)
 :::
 
 <!-- labs:end -->
