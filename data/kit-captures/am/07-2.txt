@@ -1,0 +1,6 @@
+PS> Get-AmAppSnapshot -AppId $appId -OutDir out/pack -Stage after -FixturePath $fx | Out-Null
+PS> 'before', 'after' | ForEach-Object { Get-AmSnapshotSummary -SnapshotDir out/pack -Stage $_ } | Format-Table
+Stage  App                     Owners AppPermissions DelegatedGrants Assignments RedirectUris Secrets AssignmentRequired
+-----  ---                     ------ -------------- --------------- ----------- ------------ ------- ------------------
+before Case Triage (fictional)      1              1               1           0            7       1              False
+after  Case Triage (fictional)      2              0               1           2            2       0               True

@@ -1,0 +1,22 @@
+PS> Import-Csv migration/target/lab/edge-cases.csv | Format-Table
+table       key      column         legacy                           target
+-----       ---      ------         ------                           ------
+case_record C-000001 case_number    'C-000001  '                     'C-000001'
+case_record C-000001 status         C                                CLOSED
+case_record C-000001 closed_on      2024-02-03                       2024-02-03
+case_record C-000001 amount_claimed 1234.56                          1234.56
+case_record C-000001 updated_at     2026-02-02 01:07:13.001234       2026-02-02T01:07:13.001234Z
+case_record C-000002 case_number    'C-000002  '                     'C-000002'
+case_record C-000002 status         P                                PENDING
+case_record C-000002 closed_on      0001-01-01                       NULL
+case_record C-000002 amount_claimed 0.01                             0.01
+case_record C-000002 updated_at     2026-03-03 02:14:26.002468       2026-03-03T02:14:26.002468Z
+case_record C-000003 case_number    'C-000003  '                     'C-000003'
+case_record C-000003 status         O                                OPEN
+case_record C-000003 closed_on      0001-01-01                       NULL
+case_record C-000003 amount_claimed 999999999.99                     999999999.99
+case_record C-000003 updated_at     2026-04-04 03:21:39.003702       2026-04-04T03:21:39.003702Z
+applicant   7        last_name      'Peña-Applicant                ' 'Peña-Applicant'
+applicant   7        first_name     'Test                '           'Test'
+applicant   13       last_name      'Applicant-0013                ' 'Applicant-0013'
+applicant   13       first_name     'Zoë                 '           'Zoë'

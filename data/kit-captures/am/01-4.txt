@@ -1,0 +1,18 @@
+PS> foreach ($f in 'api-not-found', 'api-bad-number', 'api-bad-status') { $r = Read-AmJson -Path "service/target/lab/$f.json"; [pscustomobject]@{ File = $f; Status = $r.httpStatus; ContentType = $r.contentType; Title = $r.body.title; Detail = $r.body.detail } }
+File        : api-not-found
+Status      : 404
+ContentType : application/problem+json
+Title       : Not found
+Detail      : Case C-999999 not found
+
+File        : api-bad-number
+Status      : 400
+ContentType : application/problem+json
+Title       : Invalid request
+Detail      : Case number must match ^C-[0-9]{6}$
+
+File        : api-bad-status
+Status      : 400
+ContentType : application/problem+json
+Title       : Bad Request
+Detail      : Failed to convert 'status' with value: 'LOST'

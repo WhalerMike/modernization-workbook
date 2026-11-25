@@ -1,0 +1,2 @@
+PS> New-AmRedirectPlan -SnapshotDir out/pack -CheckPath out/pack/wp4-redirect-check.csv -Keep 'https://cases-old.contoso.example/signin-oidc' -ChangeId CHG-0001 -OutDir out/pack
+Exception: AM-RU-PLAN: https://cases-old.contoso.example/signin-oidc can't be kept: AM-RU-04, AM-RU-05. Fix the host, or remove the URI.

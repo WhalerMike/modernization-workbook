@@ -14,10 +14,11 @@
 | `migration/` | Command-line tool that reads a legacy Db2 or Oracle schema over JDBC, transforms it, upserts it into PostgreSQL in batches, supports a delta mode for the coexistence period, and validates the result three ways. | [Chapter 04, moving the data](../../docs/books/b18-application-modernization/04-moving-the-data.md) |
 | `web/` | React front end: case list with a status filter, case detail, **Run triage**, and a pending-proposals panel with **Approve** and **Reject**. | [Chapter 03](../../docs/books/b18-application-modernization/03-the-target-reference-architecture.md) |
 | `docker-compose.yml` | PostgreSQL, the API and the web front end (nginx) as containers. | [Chapter 03](../../docs/books/b18-application-modernization/03-the-target-reference-architecture.md) |
+| `powershell/`, `Invoke-AmIdentityApply.ps1`, `config/` | The application's own Microsoft Entra identity: Appendix A's before and after snapshot, WP4 redirect URI cleanup with DNS proof and an OAuth regression test, WP5 assignment enforcement, WP6's sign-in check and sealed evidence pack, one write path gated on a plan's approved SHA-256, and an evidence record for every step of the kit with its controls and KSIs. | [Appendix A](../../docs/books/b18-application-modernization/appendix-a-identity-remediation-work-packages.md) |
 
 ## Versions
 
-Checked against Maven Central, the npm registry and Docker Hub on October 28, 2026.
+Checked against Maven Central, the npm registry and Docker Hub on October 28, 2026; axe-core on November 24, 2026.
 
 | Component | Version |
 |---|---|
@@ -29,6 +30,8 @@ Checked against Maven Central, the npm registry and Docker Hub on October 28, 20
 | H2 (legacy stand-in in tests only) | 2.5.252 |
 | React | 19.3.1 |
 | Vite / Vitest | 8.3.5 / 5.0.5, with Testing Library and jsdom 30.1.3 |
+| axe-core (accessibility rules, tests only) | 4.14.1 |
+| PowerShell (the identity module and the lab helpers) | 7.4 or later, with Pester 5 for its tests; the Microsoft Graph PowerShell SDK for the live paths |
 | Container images | `postgres:18`, `eclipse-temurin:21-jdk` and `21-jre`, `node:24-alpine`, `nginx:1.30-alpine` |
 
 jsdom 30 asks for Node.js 24.15 or later. The tests also pass on 24.14.1 with an engine warning.
@@ -41,13 +44,15 @@ You need Java 21 and Node.js 24. You don't need Maven, Docker or a PostgreSQL se
 # from examples/app-modernization
 ./mvnw verify            # Windows: mvnw.cmd verify
 cd web && npm ci && npm test && npm run build
+cd .. && pwsh -c "Invoke-Pester -Path tests"
 ```
 
 | Part | Tests | Against |
 |---|---|---|
-| `service` | 25: list, filter, get, 404 and 400 problem details, health, contract-versus-code, triage creates a PENDING proposal and leaves the case alone, re-triage doesn't duplicate, approval applies, rejection doesn't, a proposal is decided once, the agent can't approve its own proposal, a disallowed tool is denied and audited, a known tool left off the allow-list is neither offered nor run, the step limit stops a looping model, invalid arguments are rejected | Real PostgreSQL 18 (embedded), schema applied by Flyway at startup |
-| `migration` | 12: full load through the CLI passes and writes the report, edge cases (padding, sentinel date, non-ASCII names, amounts), source time zone, a changed amount, a deleted row and a truncated name each fail the right checks, non-zero exit on mismatch, delta mode, idempotent re-run, Oracle-dialect stand-in, canonical form | Source: H2 in Db2 or Oracle mode. Target: real PostgreSQL 18 (embedded) with the service's own `V1__baseline.sql` |
-| `web` | 6: renders the list, filters by status, shows a not-found message, runs triage and shows the proposal, approve and reject post the right body | jsdom, with `fetch` mocked |
+| `service` | 28. 25: list, filter, get, 404 and 400 problem details, health, contract-versus-code, triage creates a PENDING proposal and leaves the case alone, re-triage doesn't duplicate, approval applies, rejection doesn't, a proposal is decided once, the agent can't approve its own proposal, a disallowed tool is denied and audited, a known tool left off the allow-list is neither offered nor run, the step limit stops a looping model, invalid arguments are rejected. And 3 lab record writers (`LabRecordsTest`): the API's answers and the agent's audit rows in `service/target/lab/` | Real PostgreSQL 18 (embedded), schema applied by Flyway at startup |
+| `migration` | 15. 12: full load through the CLI passes and writes the report, edge cases (padding, sentinel date, non-ASCII names, amounts), source time zone, a changed amount, a deleted row and a truncated name each fail the right checks, non-zero exit on mismatch, delta mode, idempotent re-run, Oracle-dialect stand-in, canonical form. And 3 lab report writers (`LabReportsTest`): the full load with its edge cases, three kinds of damage, and a delta, in `migration/target/lab/` | Source: H2 in Db2 or Oracle mode. Target: real PostgreSQL 18 (embedded) with the service's own `V1__baseline.sql` |
+| `web` | 10. 6: renders the list, filters by status, shows a not-found message, runs triage and shows the proposal, approve and reject post the right body. 4 accessibility: axe-core's WCAG 2.0 A and AA rules find no violation on the case list, a case with the agent result and a pending proposal, or the not-found message, and do find an unnamed button and an unlabeled input; writes `web/out/a11y-report.json` | jsdom, with `fetch` mocked; color contrast needs a browser and is checked by hand |
+| `tests` (Pester) | 37: the snapshot, the work package list, every redirect URI finding, the plans and their refusals, the OAuth regression, the gated write path, the rollback, the sign-in check, the seal and the evidence chain | The fictional application in `tests/fixtures/identity`; DNS answers and sign-in replies are fixtures |
 
 The migration tests apply the service's Flyway folder (`service/src/main/resources/db/migration`) directly, so the target schema exists in exactly one file.
 
@@ -220,6 +225,24 @@ The web front end is on `http://localhost:8081`; nginx serves the built React ap
 | The containers start | **Not verified** (see above) |
 | The agent works with a real model | **Not verified.** Only the deterministic stub runs. The guard tests use the stub and scripted replies |
 | The web front end works against the real API | Unit-tested with a mocked `fetch` only; the request shapes match the OpenAPI contract, but no end-to-end browser test runs |
+| The front end meets Section 508 | **Not decided by any test.** The automated check runs the WCAG 2.0 A and AA rules axe-core can test in jsdom; contrast, keyboard use, screen readers and magnification need a trained tester (Book 18, Chapter 06) |
+| The identity module works against a tenant | **Not verified.** The Pester tests use fixtures for Graph, DNS and the sign-in endpoint; the live paths follow Appendix A's commands but haven't been run |
+
+## The application's identity and the evidence records
+
+`powershell/AppModernization/AppModernization.psm1` runs Book 18, Appendix A's work packages for one application's own app registration and enterprise application, in PowerShell 7. WP1 to WP3 (owners, permissions, secrets) are built by the [Non-Person Identity kit](../non-person-identity/README.md); `Get-AmWorkPackage` says which work packages an application needs and where each is built. Every function has a fixture mode that reads files; the live mode reads Microsoft Graph and never writes. Writes go only through `Invoke-AmIdentityApply.ps1`, a dry run unless given `-Apply` and the plan's approved SHA-256.
+
+| Function | Work package | Writes |
+|---|---|---|
+| `Get-AmAppSnapshot` | Snapshot | `before-` or `after-` `application.json`, `serviceprincipal.json`, `owners.json`, `app-permissions.json`, `delegated-grants.json`, `assignments.json` |
+| `Test-AmRedirectUri` | WP4, step 1 | `wp4-redirect-check.csv`: findings AM-RU-01 wildcard, -02 `http`, -03 not on an owned domain, -04 doesn't resolve, -05 dangling CNAME, -06 development loopback |
+| `New-AmRedirectPlan`, `Test-AmOAuthRegression` | WP4, steps 3 and 4 | `wp4-redirect-plan.json`, `wp4-oauth-regression.csv` |
+| `New-AmAssignmentPlan` | WP5 | `wp5-assignment-plan.json`; refuses with nobody assigned (AM-AS-01) or with user consent grants (AM-AS-02) |
+| `New-AmRollbackPlan` | Rollback | `rollback-plan.json`; never restores a URI that failed ownership or dangles |
+| `Get-AmSignInCheck`, `New-AmTestRecord`, `Protect-AmEvidencePack`, `Test-AmEvidencePack` | WP6 | `wp6-signins-after.csv`, `wp6-backout-triggers.csv`, `test-record.csv`, `SHA256SUMS.txt` |
+| `Write-AmEvidenceRecord`, `Test-AmEvidenceChain` | Every step | `record-NNN-<step>.json`: the step's controls and KSIs from `config/requirements.json`, each file's SHA-256, and the previous record's SHA-256 |
+
+The lab helpers `Get-AmTestResult`, `Get-AmVitestResult`, `Get-AmContractOperation` and `Get-AmValidationSummary` read what the builds wrote. The developer workbook [*Building Application Modernization*](../../docs/project-plans/developer-workbooks/application-modernization/index.md) runs all of it, a chapter at a time.
 
 ## Security notes
 
@@ -238,5 +261,9 @@ app-modernization/
   docker-compose.yml, .env.example
   service/    Spring Boot service; Dockerfile; db/migration/V1__baseline.sql; static/openapi.yaml
   migration/  migration CLI; legacy/ schemas and seed
-  web/        React app (Vite); Dockerfile; nginx.conf
+  web/        React app (Vite); Dockerfile; nginx.conf; accessibility check in src/a11y.test.jsx
+  powershell/ AppModernization module: lab helpers, Appendix A WP4 to WP6, evidence records
+  config/     requirements.json: each step's controls and KSIs
+  tests/      Pester tests and the fictional identity fixtures
+  Invoke-AmIdentityApply.ps1   the only write path, gated on a plan's approved SHA-256
 ```

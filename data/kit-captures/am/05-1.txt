@@ -1,0 +1,2 @@
+PS> Set-Location web
+PS> npm ci --no-audit --no-fund --silent

@@ -1,0 +1,12 @@
+PS> Write-AmEvidenceRecord -Step SNAPSHOT -Path (Get-ChildItem out/pack -Filter 'before-*.json' | ForEach-Object { "out/pack/$($_.Name)" }) -OutputPath out/evidence -AsOf 2026-11-24T00:00:00Z | Format-Table Record, Step, Files, KSIs
+Record                   Step     Files KSIs
+------                   ----     ----- ----
+record-001-SNAPSHOT.json SNAPSHOT     6 KSI-PIY-GIV KSI-SVC-ACM
+PS> Write-AmEvidenceRecord -Step WP4 -Path out/pack/wp4-redirect-check.csv, out/pack/wp4-redirect-plan.json, out/pack/wp4-oauth-regression.csv -OutputPath out/evidence -AsOf 2026-11-24T00:00:00Z | Format-Table Record, Step, Files, KSIs
+Record              Step Files KSIs
+------              ---- ----- ----
+record-002-WP4.json WP4      3 KSI-CNA-MAT KSI-CMT-VTD
+PS> Write-AmEvidenceRecord -Step WP5 -Path out/pack/wp5-assignment-plan.json -OutputPath out/evidence -AsOf 2026-11-24T00:00:00Z | Format-Table Record, Step, Files, KSIs
+Record              Step Files KSIs
+------              ---- ----- ----
+record-003-WP5.json WP5      1 KSI-IAM-AAM KSI-IAM-ELP

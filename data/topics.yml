@@ -899,6 +899,7 @@ topics:
       - b18-application-modernization-bundle.docx
     members:
       - docs/books/b18-application-modernization/*.md
+      - docs/project-plans/developer-workbooks/application-modernization/*.md
     gaps:
       plan: >-
         Not needed, because Book 18's Chapter 10, listed under Plan, runs the portfolio in waves,

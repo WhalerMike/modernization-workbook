@@ -1,0 +1,10 @@
+PS> New-AmRollbackPlan -SnapshotDir out/pack -CheckPath out/pack/wp4-redirect-check.csv -ChangeId CHG-0001 -OutDir out/pack | Format-List
+Plan       : rollback-plan.json
+Kind       : rollback
+Commands   : 2
+PlanSha256 : 95e545862d646d4afb8a6a4c5e750da76fe37c5d3e2a5fcf37914304bb2876ef
+PS> (Read-AmJson -Path out/pack/rollback-plan.json).notRestored
+https://cases-old.contoso.example/signin-oidc
+https://cases.fabrikam.example/signin-oidc
+PS> ./Invoke-AmIdentityApply.ps1 -PlanPath out/pack/wp5-assignment-plan.json -ApprovedSha256 0000 -Apply
+Exception: AM-APPLY-02: the plan's SHA-256 is abff2e32f31a61dac348de8631d1434b899eeb8f84dc7b022f7746c38cd1d67f, not the approved 0000. Review the plan again.
