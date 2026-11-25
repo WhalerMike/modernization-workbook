@@ -193,6 +193,47 @@ Describe 'SailPoint and Active Directory (NPI-STD-10 to NPI-STD-19)' {
         $r = Test-NpiStdReconciliation -Ad @($copy) -SailPoint $script:In.SailPoint -Register $script:In.Register -Standard $script:Std
         @($r.Findings | Where-Object Rule -EQ 'NPI-STD-15')[0].Severity | Should -Be 'Warn'
     }
+    It 'NPI-STD-30: AD tags that agree with the register raise nothing; a changed owner, tier or closed value does (WD-175)' {
+        $tags = [ordered]@{ SystemId = 'SYS-0101'; Owner1 = 'intranet.owner@contoso.example'; Owner2 = 'intranet.backup@contoso.example'; Sponsor = 'comms.sponsor@contoso.example'
+            Environment = 'prod'; Tier = 'R2'; EntraTarget = 'ManagedIdentity'; Request = 'REQ-2026-0101'; Change = 'CHG0040101' }
+        $a = @{ name = 'gmsa-intranet$'; objectClass = 'msDS-GroupManagedServiceAccount'; enabled = $true; 'msDS-ManagedPasswordInterval' = 30; KerberosEncryptionType = @('AES256')
+            PrincipalsAllowedToRetrieveManagedPassword = @('CN=DL-gMSA-intranet-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example')
+            ServicePrincipalNames = @('HTTP/x'); memberOf = @(); distinguishedName = 'CN=gmsa-intranet,OU=Service Accounts,DC=corp,DC=contoso,DC=example'; RestrictToOutboundAuthenticationOnly = $false
+            description = (ConvertTo-NpiStdTagString $tags) }
+        $r = Test-NpiStdReconciliation -Ad @($a) -SailPoint $script:In.SailPoint -Register $script:In.Register -Standard $script:Std
+        @($r.Findings | Where-Object Rule -EQ 'NPI-STD-30').Count | Should -Be 0
+        $a.description = $a.description.Replace('intranet.backup@', 'someone.else@').Replace('Tier=R2', 'Tier=R1').Replace('EntraTarget=ManagedIdentity', 'EntraTarget=Cloud')
+        $r = Test-NpiStdReconciliation -Ad @($a) -SailPoint $script:In.SailPoint -Register $script:In.Register -Standard $script:Std
+        $i = @($r.Findings | Where-Object Rule -EQ 'NPI-STD-30')[0].Issue
+        $i | Should -Match 'Owner1/Owner2'
+        $i | Should -Match "Tier 'R1' but the register says 'R2'"
+        $i | Should -Match "EntraTarget 'Cloud' isn't one of"
+        $a.description = 'Payroll service account'
+        $r = Test-NpiStdReconciliation -Ad @($a) -SailPoint $script:In.SailPoint -Register $script:In.Register -Standard $script:Std
+        @($r.Findings | Where-Object Rule -EQ 'NPI-STD-30').Count | Should -Be 0   # untagged: Chapter 06 doesn't write tags yet
+    }
+}
+
+Describe 'The tag string (WD-175)' {
+    It 'writes the keys in order and reads them back' {
+        $t = [ordered]@{ Change = 'CHG0041201'; SystemId = 'SYS-0412'; Owner1 = 'a@contoso.example'; Owner2 = 'b@contoso.example'; Sponsor = 'c@contoso.example'; Environment = 'prod'; Tier = 'R2'; EntraTarget = 'Undecided'; Request = 'REQ-2026-0201' }
+        $s = ConvertTo-NpiStdTagString $t
+        $s | Should -Be 'SystemId=SYS-0412; Owner1=a@contoso.example; Owner2=b@contoso.example; Sponsor=c@contoso.example; Environment=prod; Tier=R2; EntraTarget=Undecided; Request=REQ-2026-0201; Change=CHG0041201'
+        $back = ConvertFrom-NpiStdTagString $s
+        @($back.Keys) | Should -Be @('SystemId', 'Owner1', 'Owner2', 'Sponsor', 'Environment', 'Tier', 'EntraTarget', 'Request', 'Change')
+        $back.Owner2 | Should -Be 'b@contoso.example'
+    }
+    It 'refuses a missing key, a value outside a closed list and a value with a separator' {
+        $t = @{ SystemId = 'SYS-0412'; Owner1 = 'a'; Owner2 = 'b'; Sponsor = 'c'; Environment = 'prod'; Tier = 'R2'; EntraTarget = 'Undecided'; Request = 'R'; Change = 'C' }
+        { ConvertTo-NpiStdTagString (@{} + $t + @{}) } | Should -Not -Throw
+        $x = @{} + $t; $x.Remove('Sponsor'); { ConvertTo-NpiStdTagString $x } | Should -Throw '*Sponsor*'
+        $x = @{} + $t; $x.Environment = 'Production'; { ConvertTo-NpiStdTagString $x } | Should -Throw '*Environment*'
+        $x = @{} + $t; $x.Owner1 = 'a;b'; { ConvertTo-NpiStdTagString $x } | Should -Throw '*Owner1*'
+    }
+    It 'returns nothing for a description with no SystemId pair' {
+        (ConvertFrom-NpiStdTagString 'Payroll service account').Count | Should -Be 0
+        (ConvertFrom-NpiStdTagString '').Count | Should -Be 0
+    }
 }
 
 Describe 'Certification (NPI-STD-20 to NPI-STD-23)' {
@@ -283,7 +324,7 @@ Describe 'The retirement window (NPI-STD-27 to NPI-STD-29)' {
 }
 
 Describe 'Every finding ID' {
-    It 'the fixture run raises each of NPI-STD-01 to NPI-STD-29, and nothing else' {
+    It 'the fixture run raises each of NPI-STD-01 to NPI-STD-29, and nothing else (NPI-STD-30 needs tagged accounts, tested above)' {
         $ids = 1..29 | ForEach-Object { 'NPI-STD-{0:00}' -f $_ }
         @($script:Run.Findings | ForEach-Object Rule | Sort-Object -Unique) | Should -Be $ids
         foreach ($f in $script:Run.Findings) { $f.Id | Should -Be "$($f.Rule):$($f.ObjectKey)"; $f.Severity | Should -BeIn @('Finding', 'Warn', 'Info') }

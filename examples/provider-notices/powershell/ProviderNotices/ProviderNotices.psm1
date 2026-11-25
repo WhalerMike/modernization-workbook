@@ -126,6 +126,8 @@ function Write-PnJson {
     $dir = Split-Path -Parent $Path
     if ($dir) { New-Item -ItemType Directory -Force -Path $dir | Out-Null }
     $json = (ConvertTo-Json -InputObject $Value -Depth 50) -replace "`r`n", "`n"
+    # .NET resolves a relative path against the process folder, not Set-Location: resolve it here
+    $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
     [IO.File]::WriteAllText($Path, $json + "`n", [Text.UTF8Encoding]::new($false))
 }
 
@@ -133,6 +135,7 @@ function Write-PnText {
     param([Parameter(Mandatory)][string]$Path, [Parameter(Mandatory)][AllowEmptyString()][string]$Text)
     $dir = Split-Path -Parent $Path
     if ($dir) { New-Item -ItemType Directory -Force -Path $dir | Out-Null }
+    $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
     [IO.File]::WriteAllText($Path, ($Text -replace "`r`n", "`n"), [Text.UTF8Encoding]::new($false))
 }
 
@@ -1480,7 +1483,7 @@ function Write-PnEvidence {
     $csv = Join-Path $EvidencePath 'records.csv'
     if (-not (Test-Path -LiteralPath $csv)) { Write-PnText -Path $csv -Text "sequence,recordedAt,task,environment,result,steps,controls,ksis,recordSha256,previousRecordSha256`n" }
     $line = (@($seq, $AsOf, $t.Manifest.task, "$($t.Manifest.environment)", $rec.result, ($steps -join ' '), ($controls -join ' '), ($ksis -join ' '), (Get-PnFileHash -Path $recPath), "$prev") | ForEach-Object { '"' + ("$_" -replace '"', '""') + '"' }) -join ','
-    [IO.File]::AppendAllText($csv, $line + "`n", [Text.UTF8Encoding]::new($false))
+    [IO.File]::AppendAllText($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($csv), $line + "`n", [Text.UTF8Encoding]::new($false))
     $null = Update-PnEvidenceSums -EvidencePath $EvidencePath
     [pscustomobject]@{ Record = $recPath; Sequence = $seq; Result = $rec.result; Steps = $steps; Controls = $controls; Ksis = $ksis }
 }
