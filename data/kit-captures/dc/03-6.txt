@@ -1,2 +1,11 @@
-PS> ./Invoke-DcEvidence.ps1 -EvidencePath out/evidence -RunPath out/day1 -AsOf 2026-11-16T07:31:00Z
-Exception: A rendered view is not evidence. Record the check's own output instead (the probe's result, the alert, the closed task), or the kit's validate, plan, deploy and reachability runs.
+PS> ./Invoke-DcReplicationProbe.ps1 -SettingsPath tests/fixtures/settings.lab.json -InputPath tests/fixtures/repl/showrepl-day1.csv -OutputPath "$Run/probe" -AsOf 2026-11-16T06:00:00Z
+DestinationDc SourceDc  Failures LastSuccessUtc       LastFailureStatus Verdict
+------------- --------  -------- --------------       ----------------- -------
+CTX-DC-01     CTX-DC-02        0 2026-11-16T05:45:12Z 0                 healthy
+CTX-DC-01     CTX-DC-03        9 2026-11-15T19:02:08Z 1722              failing
+CTX-DC-02     CTX-DC-01        0 2026-11-16T05:44:51Z 0                 healthy
+CTX-DC-02     CTX-DC-03        9 2026-11-15T19:01:40Z 1722              failing
+
+
+4 links, 2 failing; not sent (no -Send). Written to C:/FMWLabs/results/daily-checks-03/lab1/<run>/probe: probe.json, manifest.json
+(exit code 1)
