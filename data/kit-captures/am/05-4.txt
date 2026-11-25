@@ -1,0 +1,15 @@
+PS> npm run build --silent
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 17 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.39 kB │ gzip:  0.26 kB
+dist/assets/index-Dhamckhq.css    1.43 kB │ gzip:  0.74 kB
+dist/assets/index-Bm0iidD0.js   226.57 kB │ gzip: 70.62 kB
+
+✓ built
+PS> Get-ChildItem dist -Recurse -File | ForEach-Object { $_.FullName.Substring((Resolve-Path dist).Path.Length + 1) -replace '\\', '/' } | Sort-Object
+assets/index-Bm0iidD0.js
+assets/index-Dhamckhq.css
+index.html

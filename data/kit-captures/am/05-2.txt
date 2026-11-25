@@ -1,0 +1,8 @@
+PS> npx vitest run --reporter=json --outputFile=out/vitest.json
+JSON report written to web/out/vitest.json
+PS> Import-Module ../powershell/AppModernization/AppModernization.psm1
+PS> Get-AmVitestResult -Path out/vitest.json | Format-Table
+File          Tests Passed Failed
+----          ----- ------ ------
+a11y.test.jsx     4      4      0
+App.test.jsx      6      6      0

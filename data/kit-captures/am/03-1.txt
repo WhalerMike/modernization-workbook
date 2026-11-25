@@ -1,0 +1,2 @@
+PS> ./mvnw -q -pl migration test "-Dtest=LabReportsTest"
+PS> Import-Module ./powershell/AppModernization/AppModernization.psm1

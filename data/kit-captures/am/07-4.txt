@@ -1,0 +1,12 @@
+PS> Get-AmSignInCheck -AppId $appId -ChangeTime 2026-11-18T14:00:00Z -OutDir out/pack -FixturePath $fx/signins.json -Explained 50105 | Format-List
+SignInsAfter : 5
+Failures     : 2
+Triggers     :
+PS> Import-Csv out/pack/wp6-signins-after.csv | Format-Table
+CreatedDateTime      Error ClientCredentialType Principal
+---------------      ----- -------------------- ---------
+2026-11-18T15:10:00Z 0                          a0000000-0000-4000-8000-000000000901
+2026-11-18T15:20:00Z 50105                      a0000000-0000-4000-8000-000000000903
+2026-11-18T15:21:00Z 50105                      a0000000-0000-4000-8000-000000000903
+2026-11-19T02:00:00Z 0     certificate          a0000000-0000-4000-8000-000000000302
+2026-11-19T15:00:00Z 0                          a0000000-0000-4000-8000-000000000902

@@ -1,0 +1,6 @@
+PS> Write-AmEvidenceRecord -Step LOAD -Path migration/target/lab/load-full.json, migration/target/lab/edge-cases.csv, migration/target/surefire-reports/TEST-gov.example.modernization.migration.MigrationTest.xml -OutputPath out/evidence -AsOf 2026-11-24T00:00:00Z | Format-List Record, Step, Files, Controls, KSIs
+Record   : record-001-LOAD.json
+Step     : LOAD
+Files    : 3
+Controls : CM-3 CM-3(2)
+KSIs     : KSI-CMT-LMC KSI-CMT-VTD

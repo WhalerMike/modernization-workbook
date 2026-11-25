@@ -1,0 +1,5 @@
+PS> Select-String -Path service/src/main/resources/application.yml -Pattern '^\s+(id|sponsor|allowed-tools|max-steps):' | ForEach-Object { $_.Line.Trim() }
+id: agent-case-triage-01
+sponsor: case-operations-owner
+allowed-tools: get_case, list_related_cases, propose_action
+max-steps: 5

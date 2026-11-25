@@ -1,0 +1,7 @@
+PS> Write-AmEvidenceRecord -Step AGENT -Path service/src/main/resources/application.yml, service/target/lab/audit-triage.csv, service/target/lab/audit-guardrails.csv, service/target/surefire-reports/TEST-gov.example.modernization.ai.AgentGuardrailTest.xml, service/target/surefire-reports/TEST-gov.example.modernization.TriageAndApprovalTest.xml -OutputPath out/evidence -AsOf 2026-11-24T00:00:00Z | Format-List Record, Step, Files, Controls, KSIs, Other
+Record   : record-001-AGENT.json
+Step     : AGENT
+Files    : 5
+Controls : AC-6 AU-2 AU-12
+KSIs     : KSI-IAM-ELP KSI-MLA-LET
+Other    : OMB M-25-21, human oversight of high-impact AI (Book 18, Chapter 05)

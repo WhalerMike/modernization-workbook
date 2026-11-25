@@ -1,0 +1,2 @@
+PS> Protect-AmEvidencePack -OutDir out/pack
+Exception: AM-PACK-01: the pack is missing test-record.csv.
