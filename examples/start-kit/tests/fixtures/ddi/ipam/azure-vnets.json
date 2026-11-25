@@ -1,0 +1,47 @@
+[
+  {
+    "name": "vnet-hub-eastus",
+    "location": "eastus",
+    "resourceGroup": "rg-network",
+    "addressSpace": {
+      "addressPrefixes": [
+        "10.2.0.0/22",
+        "fd12:3456:789a:1::/64"
+      ]
+    },
+    "provisioningState": "Succeeded"
+  },
+  {
+    "name": "vnet-hub-westus2",
+    "location": "westus2",
+    "resourceGroup": "rg-network",
+    "addressSpace": {
+      "addressPrefixes": [
+        "10.2.4.0/22"
+      ]
+    },
+    "provisioningState": "Succeeded"
+  },
+  {
+    "name": "vnet-app-01",
+    "location": "eastus",
+    "resourceGroup": "rg-network",
+    "addressSpace": {
+      "addressPrefixes": [
+        "10.2.16.0/24"
+      ]
+    },
+    "provisioningState": "Succeeded"
+  },
+  {
+    "name": "vnet-app-02",
+    "location": "eastus",
+    "resourceGroup": "rg-network",
+    "addressSpace": {
+      "addressPrefixes": [
+        "10.1.5.0/24"
+      ]
+    },
+    "provisioningState": "Succeeded"
+  }
+]

@@ -1439,8 +1439,9 @@ function Get-FMPSchemaExtensions {
 function Get-FMPDHCPInventory {
     <#
     .SYNOPSIS
-        DHCP servers authorized in the forest, with their scopes, reservations, options and
-        failover relationships (Book 01 stream 9, Tier B).
+        DHCP servers authorized in the forest, with their scopes, reservations, server and scope options,
+        failover relationships, DNS registration settings and the registration account's name
+        (Book 01 stream 9, Tier B; Book 08, Chapters 04 and 05).
     .DESCRIPTION
         The authorized-server list comes from the configuration partition (default read).
         Each server's own data needs membership of its DHCP Users group; a server that can't
@@ -1470,19 +1471,28 @@ function Get-FMPDHCPInventory {
             $scopes = @(Get-DhcpServerv4Scope -ComputerName $s -ErrorAction Stop)
             $scopeRows = foreach ($sc in $scopes) {
                 $res = @(Get-DhcpServerv4Reservation -ComputerName $s -ScopeId $sc.ScopeId -ErrorAction SilentlyContinue)
+                $scopeId = $sc.ScopeId
+                # Options set on the scope itself (they override the server's), and the scope's DNS
+                # registration settings (Book 08, Chapters 04 and 05).
+                $scOpts = Get-FMPReadOrError { @(Get-DhcpServerv4OptionValue -ComputerName $s -ScopeId $scopeId -ErrorAction Stop | Select-Object OptionId, Name, @{ N = 'Value'; E = { @($_.Value) } }) }
+                $scDns = Get-FMPReadOrError { Get-DhcpServerv4DnsSetting -ComputerName $s -ScopeId $scopeId -ErrorAction Stop | Select-Object DynamicUpdates, DeleteDnsRROnLeaseExpiry, NameProtection }
                 [pscustomobject]@{
                     Server = $s; ScopeId = "$($sc.ScopeId)"; Name = $sc.Name; SubnetMask = "$($sc.SubnetMask)"
                     StartRange = "$($sc.StartRange)"; EndRange = "$($sc.EndRange)"; State = "$($sc.State)"
                     LeaseDuration = "$($sc.LeaseDuration)"; ReservationCount = $res.Count
                     Reservations = @($res | ForEach-Object { [pscustomobject]@{ IPAddress = "$($_.IPAddress)"; ClientId = $_.ClientId; Name = $_.Name; Description = $_.Description } })
+                    Options = $scOpts; DnsSetting = $scDns
                 }
             }
             $v6 = Get-FMPReadOrError { @(Get-DhcpServerv6Scope -ComputerName $s -ErrorAction Stop | Select-Object @{ N = 'Prefix'; E = { "$($_.Prefix)" } }, Name, State) }
             $opts = Get-FMPReadOrError { @(Get-DhcpServerv4OptionValue -ComputerName $s -ErrorAction Stop | Select-Object OptionId, Name, @{ N = 'Value'; E = { @($_.Value) } }) }
             $fo = Get-FMPReadOrError { @(Get-DhcpServerv4Failover -ComputerName $s -ErrorAction Stop | Select-Object Name, PartnerServer, Mode, State, @{ N = 'ScopeId'; E = { @($_.ScopeId | ForEach-Object { "$_" }) } }) }
-            [pscustomobject]@{ Server = $s; Readable = $true; Error = $null; ScopeCount = @($scopeRows).Count; Scopes = @($scopeRows); V6Scopes = $v6; ServerOptions = $opts; Failover = $fo }
+            $dnsSet = Get-FMPReadOrError { Get-DhcpServerv4DnsSetting -ComputerName $s -ErrorAction Stop | Select-Object DynamicUpdates, DeleteDnsRROnLeaseExpiry, NameProtection }
+            # The account the server registers DNS records with: its name only, never a secret.
+            $cred = Get-FMPReadOrError { Get-DhcpServerDnsCredential -ComputerName $s -ErrorAction Stop | Select-Object UserName, DomainName }
+            [pscustomobject]@{ Server = $s; Readable = $true; Error = $null; ScopeCount = @($scopeRows).Count; Scopes = @($scopeRows); V6Scopes = $v6; ServerOptions = $opts; Failover = $fo; DnsSetting = $dnsSet; DnsCredential = $cred }
         } catch {
-            [pscustomobject]@{ Server = $s; Readable = $false; Error = $_.Exception.Message; ScopeCount = $null; Scopes = @(); V6Scopes = $null; ServerOptions = $null; Failover = $null }
+            [pscustomobject]@{ Server = $s; Readable = $false; Error = $_.Exception.Message; ScopeCount = $null; Scopes = @(); V6Scopes = $null; ServerOptions = $null; Failover = $null; DnsSetting = $null; DnsCredential = $null }
         }
     }
     $allScopes = @($servers | ForEach-Object { $_.Scopes })

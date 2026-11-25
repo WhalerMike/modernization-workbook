@@ -82,6 +82,8 @@ WORKBOOKS = [
     Workbook("dc", "Building the Daily Checks Workbook", "docs/project-plans/developer-workbooks/daily-checks",
              "daily-checks-workbook-code.zip", "docs/books/guides/daily-checks-dashboard-implementation.md",
              "docs/training/daily-checks-dashboard"),
+    Workbook("am", "Building Application Modernization", "docs/project-plans/developer-workbooks/application-modernization",
+             "app-modernization.zip"),
 ]
 # Learning paths whose modules have their own exercises but no developer workbook behind them.
 MS_AUTOMATION = ["docs/training/ms-automation-foundations.md", "docs/training/ms-automation-entra.md",
@@ -311,7 +313,7 @@ def page_text() -> str:
             "- **A ServiceNow Personal Developer Instance**, free to members of ServiceNow's Developer Program, or a sub-production instance. [Chapter 01 of Building Ticket-to-Machine](../project-plans/developer-workbooks/ticket-to-machine/01-the-loop-and-the-typed-task.md#lab-2-a-servicenow-developer-instance) says how its instance is reset.",
             "- **A SailPoint Identity Security Cloud sandbox tenant**, the agency's own.",
             "- **A test forest with an enterprise CA**, never production, and a domain-joined host with the RSAT Active Directory module, for the PKI and Certificates path; its Lab 2 steps on the CA run as the test CA's administrator.",
-            "- **A test Active Directory domain** on a Windows Server 2019 or later virtual machine you can checkpoint and throw away, with the DNS Server and DHCP Server roles, for the DNS, DHCP and IPAM labs. [Module 1](dns-dhcp-ipam/01-read-the-naming-plane.md#ddi-m1-lab-2) builds it.",
+            "- **A test Active Directory domain** on a Windows Server 2019 or later virtual machine you can checkpoint and throw away, with the DNS Server and DHCP Server roles, for the DNS, DHCP and IPAM labs. [Module 1](dns-dhcp-ipam/01-read-the-naming-plane.md#ddi-m1-lab-2) builds it. Module 4's Lab 2 reads an Azure test subscription, an AWS GovCloud (US) account and an OCI tenancy that aren't production instead.",
             "- **A Catalyst SD-WAN test fabric**: a Manager in a lab overlay or a vendor sandbox, with a read-only Manager account, for the SD-WAN governor path.", ""]
     return "\n".join(out)
 

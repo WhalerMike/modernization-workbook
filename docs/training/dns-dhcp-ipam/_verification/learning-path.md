@@ -1,6 +1,6 @@
 # Verification — Learning path: DNS, DHCP and IPAM
 
-Files: `docs/training/dns-dhcp-ipam/index.md` and its modules, `01-read-the-naming-plane.md` and `02-the-active-directory-dns-departure.md`.
+Files: `docs/training/dns-dhcp-ipam/index.md` and its modules, `01-read-the-naming-plane.md` to `04-cloud-private-dns-and-one-address-plan.md`.
 Example code: `examples/start-kit` (the `FMPADAssessment` DNS and DHCP collectors, and the `FMPDdiReadiness` module this path added, with its tests and the fixture `tests/fixtures/ddi`).
 Verified: 2026-11-24
 
@@ -15,6 +15,14 @@ Method:
 - Time estimates are the program's planning figures *(design guidance)*, not measurements.
 - Claim wording: the outputs *support* the controls; the assessor decides them. KSIs are written as indicators for cloud service providers that the agency lines its evidence up with. Only control-to-KSI pairs already verified in the workbook appear: CM-8 to KSI-PIY-GIV (Book 10, Chapter 06; Book 13, Appendix A), CM-3 to KSI-CMT-LMC and KSI-CMT-RVP, and CP-2 to KSI-RPL-ARP (the provider notices guide's and Book 13's logs). SC-20, SC-21, SC-22 and CM-2 have no pairing in those mappings, and the tables say so rather than naming one.
 
+## Phase 2, November 24, 2026: Modules 3 and 4
+
+- Module 3 carries Book 08 Chapter 05's facts (the option table, the transports, Windows and browser DoH, the limit of AD authorization) and Chapter 04's DHCP settings by link. Module 4 carries Chapter 07's platform-table rows for Azure, AWS and Oracle Cloud, its estate bullets and its SDN–IPAM section, and Book 10 Chapter 06's BOD 23-01 quotation, by link. No new external facts in the units.
+- Code: `Get-FMPDHCPInventory` (FMPADAssessment 1.5.0) also reads scope options (`Get-DhcpServerv4OptionValue -ScopeId`), DNS settings (`Get-DhcpServerv4DnsSetting`) and the registration account's names (`Get-DhcpServerDnsCredential`). FMPDdiReadiness 1.1.0 adds `Test-FMPDhcpEdge` and `Test-FMPAddressPlan`. The Start Kit suite (300 tests) passed in PowerShell 7.6 and Windows PowerShell 5.1 with Pester 5.9.
+- The cloud fixtures follow the JSON the three CLIs print: `az network vnet list` (`name`, `addressSpace.addressPrefixes`), `aws ec2 describe-vpcs` (`Vpcs[].CidrBlockAssociationSet[].CidrBlock` with `CidrBlockState.State`, `Ipv6CidrBlockAssociationSet`, `Tags`) and `oci network vcn list` (`data[].cidr-blocks`, `display-name`). The values are fictional.
+- Every Lab 1 command of Modules 2, 3 and 4 was run as printed in both editions on November 24, 2026; the expected-output comparison found no differences. Lab 2 wasn't run.
+- Lab 2 facts checked on November 24, 2026: `Set-DhcpServerv4OptionValue -Force` "Specifies that the DNS server validation is skipped" (Learn, Set-DhcpServerv4OptionValue); the DNS client supports DoH starting with Windows Server 2022 (Learn, Secure DNS Client over HTTPS (DoH) on Windows Server); a default VPC's IPv4 block is `172.31.0.0/16` (AWS, Amazon VPC User Guide, default VPC components).
+
 ## Review gate
 
-`review-status: pending` on the index and both modules. Not approved here.
+`review-status: pending` on the index and all four modules. Not approved here.

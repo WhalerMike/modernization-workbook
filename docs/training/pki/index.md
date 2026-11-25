@@ -62,7 +62,7 @@ Import-Module .\powershell\FMPADAssessment -Force
 (Get-Module FMPADAssessment).Version.ToString()
 ```
 
-It prints `1.5.0`. The labs write their output under `$HOME\fmp-labs\pki`, outside the kit's folder, so the kit's own tests still pass after you run them.
+It prints `1.6.0`. The labs write their output under `$HOME\fmp-labs\pki`, outside the kit's folder, so the kit's own tests still pass after you run them.
 
 ## What you'll be able to do
 

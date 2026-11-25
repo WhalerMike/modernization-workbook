@@ -99,6 +99,10 @@ The [Attribute-Driven Migration implementation guide](../../docs/books/guides/at
 
 The module reads files and nothing else, so it runs on a laptop against a copied run or the fixture in `tests/fixtures/ddi`, a fictional domain the [DNS, DHCP and IPAM learning path](../../docs/training/dns-dhcp-ipam/index.md)'s labs read. It decides nothing: the architects confirm or change every row. With `-OutputPath` it writes `<OutputPath>\<domain>\DDI\DepartureRegister.csv` and `DepartureRegister.json`.
 
+`Test-FMPDhcpEdge` applies [Book 08, Chapter 05](../../docs/books/b08-ddi/05-edge-interception-and-bypass.md#dhcp-option-6-and-rogue-dhcp) and Chapter 04's DHCP settings to the run's DHCP file. `Get-FMPDHCPInventory` reads each scope's own options as well as the server's, and each server's DNS registration settings and the name of the account it registers with (`Get-DhcpServerDnsCredential`'s user and domain names; never a password). For each scope the check takes the scope's option, else the server's, as Windows does, and reports resolvers in option 6 that aren't on `-ApprovedResolver`, servers of one scope that hand out different resolvers, an option 15 domain that isn't a zone, option 252 (WPAD), scopes in no failover relationship, servers with no dedicated registration account, failover partners that register with different accounts, and name protection off. With `-ObservedDhcpServerPath` (a CSV with an `Address` column, from DHCP snooping bindings or a discovery scan) it also lists every address seen answering DHCP that isn't an authorized server's.
+
+`Test-FMPAddressPlan` applies [Chapter 07](../../docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.md#sdnipam-consistency-across-cloud-providers-and-vmware) and [Book 10, Chapter 06](../../docs/books/b10-cloud-boundary/06-ipam-and-network-as-code.md): the IPAM export (`Prefix`, `Name`, `Use` of `On-premises`, `Azure`, `AWS` or `OCI`) is the plan, and the run's DHCP scopes and the JSON of `az network vnet list`, `aws ec2 describe-vpcs` and `oci network vcn list` are the networks that exist. It reports networks no allocation holds, networks inside another platform's allocation, and every pair that overlaps, for IPv4 and IPv6, and places each conditional forwarder's target in the network that holds it. With `-OutputPath` it writes `address-plan\AddressPlan.csv` and `AddressPlanFindings.csv`.
+
 ## Pointing the kit at your own forest
 
 Nothing in the kit is tied to a forest name. `contoso.example`, `child.contoso.example` and `partner.example` appear only in the test fixtures (`tests/fixtures/`) and in examples; at run time the kit asks Active Directory which forest it's in and reads every domain of it.
@@ -312,7 +316,7 @@ examples/start-kit/
   powershell/FMPNpsInventory/             NPS servers, RADIUS clients, policies, groups, findings
   powershell/FMPTransactionProfile/       round-trip measurement, profiles, the separation gate
   powershell/FMPAttributeSurvey/          attribute survey through the Global Catalog, wave lists
-  powershell/FMPDdiReadiness/             DNS readiness from a run's files: Book 08's departure register
-  tests/fixtures/                         the fictional forest, SQL estate, NPS configuration, transaction catalog, the attribute survey's two-tree forest, a DNS and DHCP run (ddi)
+  powershell/FMPDdiReadiness/             DNS, DHCP and IPAM readiness from a run's files: the departure register, the DHCP edge, the address plan
+  tests/fixtures/                         the fictional forest, SQL estate, NPS configuration, transaction catalog, the attribute survey's two-tree forest, a DNS and DHCP run with a DHCP snooping export and IPAM and cloud network exports (ddi)
   tests/powershell/                       Pester 5: safety, SQL, AD, NPS, transaction profiles, attribute survey, DNS readiness, end to end
 ```

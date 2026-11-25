@@ -133,7 +133,7 @@ Import-Csv $HOME\fmp-labs\pki\run1\contoso.example\PKI\TemplateClassification.cs
     Expected output:
 
     ```text
-    1.5.0
+    1.6.0
     ```
 
 2. **Run the PKI assessment on the snapshot.** `-PkiDataPath` reads the snapshot instead of a directory and a CA; everything else is the code that runs against a forest.
