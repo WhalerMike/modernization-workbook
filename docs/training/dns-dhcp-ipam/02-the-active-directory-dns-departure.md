@@ -121,7 +121,7 @@ Remove-Item -Recurse -Force out
 
 <!-- labs:end -->
 
-1. **Import the readiness module.** It reads the collectors' files and nothing else.
+1. **Import the readiness module.** It reads the collectors' files and nothing else. This module uses its first two commands; Modules 3 and 4 use the other two.
 
     ```powershell
     Import-Module ./powershell/FMPDdiReadiness/FMPDdiReadiness.psd1
@@ -133,8 +133,10 @@ Remove-Item -Recurse -Force out
     ```text
     Name                        Version
     ----                        -------
-    Get-FMPDnsDepartureRegister 1.0.0
-    Read-FMPDdiRun              1.0.0
+    Get-FMPDnsDepartureRegister 1.1.0
+    Read-FMPDdiRun              1.1.0
+    Test-FMPAddressPlan         1.1.0
+    Test-FMPDhcpEdge            1.1.0
     ```
 
 2. **Build the register,** and count its rows by risk.
@@ -434,5 +436,5 @@ You saw what each component of AD DNS does for a domain, why the locator records
 
 ::: {.callout-tip}
 ## Continue the path
-[Learning path](index.md) · [← Module 1, Read the naming plane](01-read-the-naming-plane.md)
+[Learning path](index.md) · [← Module 1, Read the naming plane](01-read-the-naming-plane.md) · [Next: Module 3, DHCP, encrypted DNS and the edge →](03-dhcp-encrypted-dns-and-the-edge.md)
 :::

@@ -31,7 +31,13 @@
           "State": "Active",
           "LeaseDuration": "8.00:00:00",
           "ReservationCount": 0,
-          "Reservations": []
+          "Reservations": [],
+          "Options": [],
+          "DnsSetting": {
+            "DynamicUpdates": "Always",
+            "DeleteDnsRROnLeaseExpiry": true,
+            "NameProtection": true
+          }
         },
         {
           "Server": "dhcp01.contoso.example",
@@ -56,7 +62,21 @@
               "Name": "printer-2",
               "Description": "Floor 2"
             }
-          ]
+          ],
+          "Options": [
+            {
+              "OptionId": 6,
+              "Name": "DNS Servers",
+              "Value": [
+                "10.0.0.11"
+              ]
+            }
+          ],
+          "DnsSetting": {
+            "DynamicUpdates": "Always",
+            "DeleteDnsRROnLeaseExpiry": true,
+            "NameProtection": true
+          }
         },
         {
           "Server": "dhcp01.contoso.example",
@@ -68,7 +88,13 @@
           "State": "Active",
           "LeaseDuration": "1.00:00:00",
           "ReservationCount": 0,
-          "Reservations": []
+          "Reservations": [],
+          "Options": [],
+          "DnsSetting": {
+            "DynamicUpdates": "Always",
+            "DeleteDnsRROnLeaseExpiry": true,
+            "NameProtection": true
+          }
         }
       ],
       "V6Scopes": [],
@@ -99,7 +125,16 @@
             "10.1.5.0"
           ]
         }
-      ]
+      ],
+      "DnsSetting": {
+        "DynamicUpdates": "Always",
+        "DeleteDnsRROnLeaseExpiry": true,
+        "NameProtection": true
+      },
+      "DnsCredential": {
+        "UserName": "svc-dhcp-dns",
+        "DomainName": "CONTOSO"
+      }
     },
     {
       "Server": "dhcp02.contoso.example",
@@ -117,7 +152,21 @@
           "State": "Active",
           "LeaseDuration": "1.00:00:00",
           "ReservationCount": 0,
-          "Reservations": []
+          "Reservations": [],
+          "Options": [
+            {
+              "OptionId": 15,
+              "Name": "DNS Domain Name",
+              "Value": [
+                "branch.contoso.example"
+              ]
+            }
+          ],
+          "DnsSetting": {
+            "DynamicUpdates": "Always",
+            "DeleteDnsRROnLeaseExpiry": true,
+            "NameProtection": false
+          }
         },
         {
           "Server": "dhcp02.contoso.example",
@@ -129,7 +178,21 @@
           "State": "Active",
           "LeaseDuration": "04:00:00",
           "ReservationCount": 0,
-          "Reservations": []
+          "Reservations": [],
+          "Options": [
+            {
+              "OptionId": 252,
+              "Name": "WPAD",
+              "Value": [
+                "http://wpad.oldvendor.example/wpad.dat"
+              ]
+            }
+          ],
+          "DnsSetting": {
+            "DynamicUpdates": "Always",
+            "DeleteDnsRROnLeaseExpiry": true,
+            "NameProtection": false
+          }
         }
       ],
       "V6Scopes": [],
@@ -160,7 +223,16 @@
             "10.1.5.0"
           ]
         }
-      ]
+      ],
+      "DnsSetting": {
+        "DynamicUpdates": "Always",
+        "DeleteDnsRROnLeaseExpiry": true,
+        "NameProtection": false
+      },
+      "DnsCredential": {
+        "UserName": "",
+        "DomainName": ""
+      }
     }
   ]
 }

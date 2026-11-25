@@ -2618,6 +2618,16 @@
   "page": "02-the-active-directory-dns-departure.docx",
   "title": "Learning path: DNS, DHCP and IPAM"
  },
+ "docs/training/dns-dhcp-ipam/03-dhcp-encrypted-dns-and-the-edge.md": {
+  "bundle": "training-dns-dhcp-ipam-bundle.docx",
+  "page": "03-dhcp-encrypted-dns-and-the-edge.docx",
+  "title": "Learning path: DNS, DHCP and IPAM"
+ },
+ "docs/training/dns-dhcp-ipam/04-cloud-private-dns-and-one-address-plan.md": {
+  "bundle": "training-dns-dhcp-ipam-bundle.docx",
+  "page": "04-cloud-private-dns-and-one-address-plan.docx",
+  "title": "Learning path: DNS, DHCP and IPAM"
+ },
  "docs/training/dns-dhcp-ipam/index.md": {
   "bundle": "training-dns-dhcp-ipam-bundle.docx",
   "page": "index.docx",
