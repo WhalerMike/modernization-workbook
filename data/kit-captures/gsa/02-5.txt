@@ -1,7 +1,2 @@
-PS> (Read-GsaJson -Path out/pilot/raw/diagnostic-settings.json).value | Where-Object { $_.name -eq 'gsa-network-telemetry' } | ForEach-Object { $_.properties.logs } | ForEach-Object { [pscustomobject]$_ } | Format-Table category, enabled
-category                      enabled
---------                      -------
-NetworkAccessTrafficLogs         True
-NetworkAccessConnectionEvents    True
-RemoteNetworkHealthLogs         False
-NetworkAccessAlerts              True
+PS> (Test-GsaRunFolder -Path "$Run/pilot").Detail
+18 files match the manifest

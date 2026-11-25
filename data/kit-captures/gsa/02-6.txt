@@ -1,4 +1,9 @@
-PS> Copy-Item -Recurse out/pilot out/tampered
-PS> Add-Content -Path out/tampered/raw/licenses.json -Value ' '
-PS> Read-GsaCollection -Path out/tampered
-Exception: Collection out/tampered doesn't match its manifest: raw/licenses.json changed since its manifest
+PS> ./Invoke-GsaCheck.ps1 -Area baseline -SettingsPath tests/fixtures/settings.lab.json -CollectionPath "$Run/pilot" -InputsPath tests/fixtures/pilot/inputs -OutputPath "$Run/check-baseline" -AsOf 2026-11-16T12:00:00Z
+GSA-ARC-01  Pass  connector group CG-HQ: in the architecture record with 2 hosts
+GSA-ARC-01  Pass  connector group CG-Cloud-East: in the architecture record with 2 hosts
+GSA-ARC-02  Pass  private DNS: suffixes: contoso.example; forest: corp.contoso.example
+GSA-ARC-03  Pass  telemetry: workspace: law-security
+GSA-LOG-01  Fail  diagnostic setting gsa-network-telemetry: not sent: RemoteNetworkHealthLogs
+GSA-ARC-04  Pass  configuration export: all 12 baseline reads present
+
+baseline: 6 checks (1 Fail, 5 Pass). Written to C:/FMWLabs/results/global-secure-access-02/lab1/<run>/check-baseline: findings.json, findings.csv, manifest.json

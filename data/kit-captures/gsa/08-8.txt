@@ -1,4 +1,7 @@
-PS> Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Chapter 08*', 'Evidence*' -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-         10           0
+PS> Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
+PS> (Read-GsaJson -Path (New-GsaRollbackPlan -CollectionPath "$Run/ring1" -Settings (Read-GsaSettings -Path tests/fixtures/settings.lab-ring1.json) -OutputPath "$Run/rollback-signaling" -AsOf 2026-11-30T12:00:00Z -DisableSignaling).FullName).steps | ForEach-Object { $_.why }
+Step 7: NET-CN-Require-Compliant-Network-Pilot enabled -> report-only
+Step 6: NET-PA-PA-Finance-Device-MFA enabled -> report-only
+Step 5: NET-IA-SecurityProfile-Pilot enabled -> report-only
+Step 8: universal tenant restrictions tagging disabled (the TRv2 policy stays)
+Last: signaling disabled, after no policy depends on it

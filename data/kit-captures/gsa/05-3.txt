@@ -1,9 +1,15 @@
-PS> ./Invoke-GsaCheck.ps1 -Area compliant-network -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-cn -AsOf 2026-11-16T12:00:00Z
-GSA-CN-01   Pass  named location: All Compliant Network locations
-GSA-CN-02   Pass  NET-CN-Require-Compliant-Network-Pilot: block: True; compliant location excluded: True
-GSA-CN-03   Pass  NET-CN-Require-Compliant-Network-Pilot: emergency access group excluded
-GSA-CN-04   Pass  NET-CN-Require-Compliant-Network-Pilot: both Intune applications excluded
-GSA-CN-05   Pass  NET-CN-Require-Compliant-Network-Pilot: no Private Access app targeted
-GSA-CN-06   Info  NET-CN-Require-Compliant-Network-Pilot: report-only for 10 business days; 3 failures carried by the service: not ready to enforce
-
-compliant-network: 6 checks (1 Info, 5 Pass). Written to out/check-cn: findings.json, findings.csv, manifest.json
+PS> Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
+PS> Get-GsaRequiredPermission -Area compliant-network | Format-Table -AutoSize | Out-String -Width 250
+Call            Method Permission                                                                                    Beta Verified
+----            ------ ----------                                                                                    ---- --------
+ca-signaling    GET    NetworkAccess.Read.All                                                                        True     True
+ca-policies     GET    Policy.Read.All                                                                              False     True
+named-locations GET    Policy.Read.All                                                                               True     True
+law-query       QUERY  Read access to the workspace; Log Analytics Reader is the program's choice (design guidance) False     True
+PS> Get-GsaRequiredPermission -Area tenant-restrictions | Format-Table -AutoSize | Out-String -Width 250
+Call           Method Permission                                                                                    Beta Verified
+----           ------ ----------                                                                                    ---- --------
+tenant-tagging GET    NetworkAccess.Read.All                                                                        True     True
+trv2-default   GET    Policy.Read.All                                                                               True     True
+trv2-partners  GET    Policy.Read.All                                                                               True    False
+law-query      QUERY  Read access to the workspace; Log Analytics Reader is the program's choice (design guidance) False     True
