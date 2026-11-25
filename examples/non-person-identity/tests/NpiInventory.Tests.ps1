@@ -254,3 +254,42 @@ Describe 'The run and its manifest' {
         { & (Join-Path $PSScriptRoot '../Invoke-NpiInventory.ps1') -Cloud gcc -OutputPath $script:Out } | Should -Throw '*-TenantId*'
     }
 }
+
+Describe 'Hosts and services from the server-service inventory' {
+    BeforeAll {
+        $svcPath = (Resolve-Path (Join-Path $PSScriptRoot 'fixtures/inputs/server-services.csv')).Path
+        $fake = New-NpiFixtureInvoker -Path $script:Fixture
+        $ad = New-NpiFixtureAdInvoker -Path $script:Fixture
+        $reader = New-NpiReader -Cloud gcc -Task inventory -Invoke $fake.Invoke -AdInvoke $ad.Invoke
+        $script:SvcRegister = Get-NpiRegister -Reader $reader -TenantId $script:Tenant -AsOf $script:AsOf -ServiceInventoryPath $svcPath
+        $script:SvcRows = @($script:SvcRegister.Rows)
+        $script:SvcFindings = @(Test-NpiRegister -Register $script:SvcRegister)
+        function Get-SvcRow([string]$Name) { @($script:SvcRows | Where-Object Name -EQ $Name)[0] }
+    }
+    It 'fills Hosts and Services for a user account from every server that runs it, DOMAIN\name or UPN' {
+        $r = Get-SvcRow 'svc-hrsync'
+        $r.Hosts | Should -Be 'app01.corp.contoso.example; app02.corp.contoso.example'
+        $r.Services | Should -Be 'app01.corp.contoso.example/HRSync; app02.corp.contoso.example/HRSync'
+        $r.HostsFrom | Should -Be 'ServiceInventory'
+    }
+    It 'keeps a gMSA''s hosts from the directory and adds the services it runs' {
+        $r = Get-SvcRow 'gmsa-web$'
+        $r.Hosts | Should -Be 'WEB01; WEB02'
+        $r.HostsFrom | Should -Be 'Directory'
+        $r.Services | Should -Be 'web01.corp.contoso.example/WebAgent'
+    }
+    It 'marks a user account no server runs, and raises NPI-INV-10 only for enabled ones' {
+        (Get-SvcRow 'svc-backup').HostsFrom | Should -Be 'ServiceInventory: none'
+        $ids = @($script:SvcFindings | Where-Object Rule -EQ 'NPI-INV-10' | ForEach-Object { ($_.Object -split ' ')[0] })
+        $ids | Should -Not -Contain 'svc-hrsync'
+        $ids | Should -Not -Contain 'svc-sqlprod'
+        foreach ($n in $ids) { (Get-SvcRow $n).Enabled | Should -BeTrue }
+    }
+    It 'raises no NPI-INV-10 without an inventory' {
+        @(Get-Rule 'NPI-INV-10').Count | Should -Be 0
+    }
+    It 'leaves out built-in, virtual and local accounts' {
+        $m = Import-NpiServiceInventory -Path (Join-Path $PSScriptRoot 'fixtures/inputs/server-services.csv')
+        @($m.Keys | Sort-Object) | Should -Be @('gmsa-web$', 'svc-hrsync', 'svc-sqlprod')
+    }
+}

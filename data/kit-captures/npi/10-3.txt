@@ -4,5 +4,5 @@ PS> $lab = @{ Cloud = 'gcc'; TenantId = 'c0ffee00-0000-4000-8000-000000000001'; 
 PS> ./Invoke-NpiDriftRun.ps1 @lab -FixturePath tests/fixtures/ch10/estate-day1.json -AsOf 2026-10-29T06:00:00Z
 Run 2026-10-29T0600Z-fixture (Fixture, gcc): inventory OK, ownership OK, drift OK
 Audit window 2026-10-28T06:00:00Z to 2026-10-29T06:00:00Z; baseline none: this run is a baseline candidate
-Drift findings: 14 Finding, 4 Warn, 5 Info; baseline candidate SHA-256 604ee088ae43a964072671234833aeb71bccd082fa9ce4032a55d2fc4b146cc8
+Drift findings: 14 Finding, 4 Warn, 5 Info; baseline candidate SHA-256 861b7a6dd007bcf555a1797632f7b08aef56b5621c3224ddb72abbd06489f4fc
 Written to out/runs/2026-10-29T0600Z-fixture (run.json lists each task's manifest hash)

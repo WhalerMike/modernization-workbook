@@ -19,8 +19,11 @@
                                      -SkipAttributeSurvey)
       7. Get-FMPWaveList             migration waves from those attributes: from -WavePlan,
                                      or one per organization code
-      8. Get-FMPStartKitSummary      Summary\StartKitSummary.md and .json
-      9. AssessmentManifest.json     who, when, where, module versions, SHA-256 of every file
+      8. Get-FMPServerServiceInventory  which account runs each service on each server
+                                     (Win32_Service over CIM; at Tier B, or with
+                                     -ServerServices; -ServerListPath to name the servers)
+      9. Get-FMPStartKitSummary      Summary\StartKitSummary.md and .json
+     10. AssessmentManifest.json     who, when, where, module versions, SHA-256 of every file
 
     Nothing here writes to Active Directory, DNS, DHCP, AD CS, NPS or SQL Server. Every file
     goes under the run folder. Tier B adds the collectors that need the narrow delegations
@@ -93,6 +96,12 @@ param(
     # wave-plan.csv (WaveId, Attribute, Value) and asset-ownership.csv for the wave lists.
     [string]$WavePlan,
     [string]$AssetOwnership,
+    # The server-to-service inventory: on by default at Tier B. Servers from the directory
+    # unless -ServerListPath names them (text, one per line, or CSV with ComputerName).
+    [switch]$ServerServices,
+    [switch]$SkipServerServices,
+    [string]$ServerListPath,
+    [switch]$NoDcom,
     # Large directories: carry on an unfinished run, page size, retries, console output.
     [switch]$Resume,
     [switch]$Quiet,
@@ -140,7 +149,7 @@ if ($failedChecks.Count -gt 0) {
 }
 
 # Imported once; a session that already loaded them (the tests, or a signed copy) keeps its own.
-foreach ($m in 'FMPADAssessment', 'FMPSqlEstate', 'FMPNpsInventory', 'FMPTransactionProfile', 'FMPAttributeSurvey') {
+foreach ($m in 'FMPADAssessment', 'FMPSqlEstate', 'FMPNpsInventory', 'FMPTransactionProfile', 'FMPAttributeSurvey', 'FMPServerService') {
     if (-not (Get-Module -Name $m)) { Import-Module (Join-Path (Join-Path $PSScriptRoot 'powershell') $m) }
 }
 # The run script uses the shared helpers directly for the run folder and the manifest.
@@ -246,6 +255,13 @@ if (-not $SkipAttributeSurvey) {
         Get-FMPWaveList -OutputPath $runPath -WavePlanPath $WavePlan -OwnershipPath $AssetOwnership -AsOf $start
     }
 }
+if (-not $SkipServerServices -and ($Tier -eq 'B' -or $ServerServices -or $ServerListPath)) {
+    $steps += Invoke-FMPStep 'Server services' {
+        $svcArgs = @{ OutputPath = $runPath; NoDcom = [bool]$NoDcom }
+        if ($ServerListPath) { $svcArgs.ComputerListPath = $ServerListPath } else { $svcArgs.Domain = $Domain }
+        Get-FMPServerServiceInventory @svcArgs
+    }
+}
 $steps += Invoke-FMPStep 'Summary' { Get-FMPStartKitSummary -RunPath $runPath }
 
 $parameters = @{
@@ -257,6 +273,7 @@ $parameters = @{
     TransactionMeasurementPathCount = @($TransactionMeasurementPath).Count
     SkipAttributeSurvey = [bool]$SkipAttributeSurvey; KeyPattern = [bool]$KeyPattern; CodeList = [bool]$CodeListPath
     UpnSuffixCount = @($UpnSuffix).Count; WavePlan = [bool]$WavePlan; AssetOwnership = [bool]$AssetOwnership
+    ServerServices = [bool]($Tier -eq 'B' -or $ServerServices -or $ServerListPath) -and -not $SkipServerServices; ServerList = [bool]$ServerListPath; NoDcom = [bool]$NoDcom
     Resume = [bool]$Resume; Quiet = [bool]$Quiet; PageSize = $PageSize; MaxRetries = $MaxRetries; ResolveIPv4 = [bool]$ResolveIPv4
 }
 # The last log line comes before the manifest, which hashes the log with everything else.
