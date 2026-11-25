@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Book 08"
 series-order: 5
 review-status: approved
-reviewed-sha256: 56dd1f3edc04f7f089b8cae512c189301cd236618fc26d1ff6a4536582dcb2af
+reviewed-sha256: 50921849d31d017dbcb55bb23c8749da2ef6d240ba236f892e621c59c64d5bba
 last-reviewed: 2026-11-25
 ---
 # Module 5: Move authority zone by zone {.unnumbered}

@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Book 18"
 series-order: 5
 review-status: approved
-reviewed-sha256: d0c36cdb29f606f703c532fb4e5a4739b16f0b31997c08ce892c8c72f0c4da68
+reviewed-sha256: 39971c769be1bf5f9b3175f0cb0a1dbe95eeefa4d0d90dfb1333528381dd95a5
 last-reviewed: 2026-11-25
 ---
 # Module 5: The front end and Section 508 {.unnumbered}

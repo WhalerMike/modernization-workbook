@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 04"
 series-order: 6
 review-status: approved
-reviewed-sha256: d7ebaa247abd17e48a288815c727c6638493fa0aa5a6b016ba4ad00673cb3b5b
-last-reviewed: 2026-11-22
+reviewed-sha256: af26e465f1f8d90906c889b23a120a9e5680e8cccb1126679f0281f4a5776414
+last-reviewed: 2026-11-25
 ---
 # Module 6: PIM for Azure resources {.unnumbered}
 
