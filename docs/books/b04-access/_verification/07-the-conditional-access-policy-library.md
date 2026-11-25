@@ -263,3 +263,9 @@ New subsections "Privileged sessions" (after Wave 2) and "The policy design matr
 | Z9 | Conditional Access and session lifetime management on Learn's Entra feature-availability page | Applies | verified | https://learn.microsoft.com/entra/identity/authentication/feature-availability | Nov 11, 2026 |
 | Z10 | Matrix values (durations, rings, exclusions) carried from the waves and rollout cycle | Design matrix | restated-as-design | this chapter | Nov 11, 2026 |
 | Z11 | Reauthentication KQL | Privileged sessions, Telemetry | unverifiable (illustrative, not run) | labelled illustrative | Nov 11, 2026 |
+
+## Revision 2026-11-25 — custom security attributes in GCC (WD-176)
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| CSA-1 | CA030 to CA032: each policy lists its environment's applications by name until a tenant check confirms custom security attributes in GCC | see the change | changed *(design guidance)* | WD-176; Mike, November 25, 2026 |

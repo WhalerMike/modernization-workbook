@@ -1,28 +1,10 @@
-PS> Get-Content out/ntlm/manifest.json
-{
-  "step": "NTLM",
-  "title": "Find the NTLM patterns and plan the SPN fixes",
-  "mode": "read-only",
-  "asOf": "2026-11-20",
-  "controls": [
-    "IA-2",
-    "CM-6"
-  ],
-  "ksis": [
-    "KSI-SVC-ACM"
-  ],
-  "files": [
-    {
-      "file": "ntlm.csv",
-      "sha256": "42c98c3f64661de7c2940a4d6823818e5da9742e877064718cef3f688c5b285e"
-    },
-    {
-      "file": "ntlm.json",
-      "sha256": "662a82a45a542c34cb44b20b55c595a6624a1267a8f7b1ba30685e08c27b374f"
-    },
-    {
-      "file": "spn-fixes.txt",
-      "sha256": "5e1709df086a9db913f7a34eaae5231f1057ac361a368cc34b411d872536e521"
-    }
-  ]
-}
+PS> Import-Csv "$Run/ntlm/ntlm.csv" | Format-Table Instance, Pattern, Fix | Out-String -Width 400
+Instance Pattern                   Fix
+-------- -------                   ---
+SQLPRD01 Remote NTLM observed      Find each client (the clients rows, or sys.dm_exec_connections client_net_address); local sessions are excluded
+SQLPRD02 Missing SPN               setspn -S MSSQLSvc/sqlprd02.contoso.example:1433 CONTOSO\svc-sqlprd02
+SQLFCI04 SPN on the wrong account  setspn -D MSSQLSvc/sqlfci04.contoso.example:1433 CONTOSO\svc-oldsql; setspn -S MSSQLSvc/sqlfci04.contoso.example:1433 CONTOSO\svc-sqlfci04
+SQLPRD06 Duplicate SPN             setspn -D MSSQLSvc/sqlprd06.contoso.example:1433 CONTOSO\SQLPRD06$
+SQLPRD06 Remote NTLM observed      Find each client (the clients rows, or sys.dm_exec_connections client_net_address); local sessions are excluded
+SQLPRD01 Linked-server passthrough Constrained delegation, a mapped login, or the SQL Server 2025 managed-identity linked server
+SQLPRD06 Non-domain-joined client  Move CONTOSO\Reports-Readers to an Entra login with a token-based connection (Chapter 07)

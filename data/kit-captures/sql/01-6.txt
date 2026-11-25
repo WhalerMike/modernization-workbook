@@ -1,4 +1,5 @@
-PS> Invoke-Pester -Path tests/SqlIdentity.Tests.ps1 -FullNameFilter 'Chapter 01*' -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-          8           0
+PS> (Read-SqlJson tests/fixtures/estate/estate.json).instances | Where-Object name -in 'SQLOLD05', 'SQLDEV08' | Select-Object name, productVersion, discoveredBy, @{ n = 'idleDays'; e = { $_.databases.lastAccessDays } } | Format-Table
+name     productVersion discoveredBy      idleDays
+----     -------------- ------------      --------
+SQLOLD05 12.0.6449.1                           912
+SQLDEV08                MSSQLSvc SPN only

@@ -1,27 +1,10 @@
-PS> Get-Content out/arc/manifest.json
-{
-  "step": "ARC",
-  "title": "Arc agent, SQL extension and Entra configuration: the Arc-eligibility category",
-  "mode": "read-only",
-  "asOf": "2026-11-20",
-  "controls": [
-    "CM-8",
-    "CM-6",
-    "IA-5"
-  ],
-  "ksis": [
-    "KSI-PIY-GIV",
-    "KSI-SVC-ACM",
-    "KSI-IAM-SNU"
-  ],
-  "files": [
-    {
-      "file": "arc.csv",
-      "sha256": "366ecdc0a8d24fffd2440bc5c145116296f7048d2454e0ac3518bc94126be565"
-    },
-    {
-      "file": "arc.json",
-      "sha256": "6659fc238edc10a2df5e57479b8996e37bcdb9abcd3fdb5147c151e80e82ddf2"
-    }
-  ]
-}
+PS> Import-Module ./powershell/SqlIdentity/SqlIdentity.psd1
+PS> $arc = Read-SqlJson tests/fixtures/arc/arc.json
+PS> $arc.environment
+AzureCloud
+PS> $arc.machines | Format-Table
+name        status       agentVersion
+----        ------       ------------
+sqlprd01    Connected    1.58
+sqlprd06    Connected    1.58
+sqlfci04-n1 Disconnected 1.49

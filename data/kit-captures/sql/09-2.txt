@@ -1,14 +1,4 @@
-PS> Import-Csv out/closure/closure.csv | Where-Object Instance -eq SQLPRD01 | Format-Table -AutoSize
-Instance Condition                    Status
--------- ---------                    ------
-SQLPRD01 1 No usable Windows login    met
-SQLPRD01 2 SQL logins refused         met
-SQLPRD01 2 No usable SQL login        met
-SQLPRD01 2 sa disabled and renamed    met
-SQLPRD01 3 Only Entra logins remain   met
-SQLPRD01 3 No remote NTLM or Kerberos met
-SQLPRD01 3 Entra sign-ins and audit   external
-SQLPRD01 4 Arc agent connected        met
-SQLPRD01 4 SQL extension deployed     met
-SQLPRD01 4 Entra configured           met
-SQLPRD01 5 MFA for every human        external
+PS> $Run = "C:\FMWLabs\results\sql-server-identity-09\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+PS> New-Item -ItemType Directory -Path $Run -Force | Out-Null
+PS> $Run
+C:/FMWLabs/results/sql-server-identity-09/lab1/<run>

@@ -1,12 +1,4 @@
-PS> ./Test-DcWorkbook.ps1
-DC-V-01   1 checked  pass
-DC-V-02   1 checked  pass
-DC-V-03  10 checked  pass
-DC-V-04  19 checked  pass
-DC-V-05  19 checked  pass
-DC-V-06  12 checked  pass
-DC-V-07  13 checked  pass
-DC-V-08  12 checked  pass
-DC-V-09   1 checked  pass
-DC-V-10   1 checked  pass
-All 89 checks pass
+PS> $Run = "C:\FMWLabs\results\daily-checks-02\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+PS> New-Item -ItemType Directory -Path $Run -Force | Out-Null
+PS> $Run
+C:/FMWLabs/results/daily-checks-02/lab1/<run>

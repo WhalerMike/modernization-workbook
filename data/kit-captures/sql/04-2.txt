@@ -1,17 +1,4 @@
-PS> Get-Content out/logins/sqlprd01-cutover.sql, out/logins/sqlprd01-rollback.sql
-USE master;
-GO
-DENY CONNECT SQL TO [CONTOSO\PayrollUsers];  -- group: superseded by SQL-Payroll-Users
-ALTER LOGIN [CONTOSO\svc-payroll] DISABLE;  -- superseded by payroll-web-mi
-ALTER LOGIN [payroll_report] DISABLE;  -- superseded by payroll-reporting-app
-ALTER SERVER ROLE [sysadmin] DROP MEMBER [CONTOSO\SQL-Admins];  -- DENY doesn't bind sysadmin members
-DENY CONNECT SQL TO [CONTOSO\SQL-Admins];  -- group: superseded by SQL-DBA-Admins
-GO
-USE master;
-GO
-GRANT CONNECT SQL TO [CONTOSO\PayrollUsers];
-ALTER LOGIN [CONTOSO\svc-payroll] ENABLE;
-ALTER LOGIN [payroll_report] ENABLE;
-GRANT CONNECT SQL TO [CONTOSO\SQL-Admins];
-ALTER SERVER ROLE [sysadmin] ADD MEMBER [CONTOSO\SQL-Admins];
-GO
+PS> $Run = "C:\FMWLabs\results\sql-server-identity-04\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+PS> New-Item -ItemType Directory -Path $Run -Force | Out-Null
+PS> $Run
+C:/FMWLabs/results/sql-server-identity-04/lab1/<run>
