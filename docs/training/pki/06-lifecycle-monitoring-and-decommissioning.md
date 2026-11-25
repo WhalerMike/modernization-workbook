@@ -6,7 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 07"
 series-order: 6
-review-status: pending
+review-status: approved
+reviewed-sha256: f80cec694dc0e15b6c34490ffc75bf8d3b68541ce6e1e537c7a021e434c00de4
+last-reviewed: 2026-11-25
 ---
 # Module 6: Lifecycle, monitoring and decommissioning {.unnumbered}
 

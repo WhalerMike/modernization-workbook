@@ -6,7 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 07"
 series-order: 7
-review-status: pending
+review-status: approved
+reviewed-sha256: 5bcce1bf87971d87c27d6c7b3e6031e2a504385fe152d631f44beadcc237a75b
+last-reviewed: 2026-11-25
 ---
 # Module 7: PIV and derived PIV {.unnumbered}
 

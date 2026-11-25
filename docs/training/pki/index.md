@@ -17,7 +17,7 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: 68fa4a3430238e4f5d91b6e20f659dc5eff31bc4d9cfe70cd4d77ce3ce6ef6d8
+reviewed-sha256: cf559b31771901d49ca28fe041ee9ad0242b1765d3c6866310056537178802ba
 last-reviewed: 2026-11-25
 ---
 # Learning path: PKI and Certificates {.unnumbered}

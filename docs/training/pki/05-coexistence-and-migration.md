@@ -6,7 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 07"
 series-order: 5
-review-status: pending
+review-status: approved
+reviewed-sha256: 1eda9c94a71e0ba6dbe5d0e4e889d1a9832f5f630f7bdbc03bc6c11d38c92e93
+last-reviewed: 2026-11-25
 ---
 # Module 5: Coexistence and migration {.unnumbered}
 

@@ -6,7 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 07"
 series-order: 4
-review-status: pending
+review-status: approved
+reviewed-sha256: e62866111f6d0619e627a41fc85b4d9c2bb88ccf19537df73a4a14ca9fb30b93
+last-reviewed: 2026-11-25
 ---
 # Module 4: Device and user certificates {.unnumbered}
 
