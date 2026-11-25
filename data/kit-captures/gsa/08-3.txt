@@ -1,20 +1,23 @@
-PS> ./Invoke-GsaMetrics.ps1 -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/metrics -AsOf 2026-11-16T12:00:00Z
-Client coverage                  Not  83.3%  (target 98%)
-Sign-ins through the service     Not  91.2%  (target 95%)
-Compliant network enforcement    Not  Report-only or none  (target On by ring)
-Private Access least privilege   Not  2 Quick Access segments; 1 apps without a group; 0 without a policy  (target 0; 0; 0)
-Connector resilience             Not  50%  (target 100%)
-Bypass exposure                  Not  1 bypasses past expiry; 1 exceptions without an approver  (target 0; 0)
-TLS inspection health            Not  1.50% failures; 74 days to expiry  (target Under 1%; over 90)
-Telemetry freshness              Not  2 tables with no rows in 24 hours  (target 0)
+PS> ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/pilot -OutputPath "$Run/pilot" -AsOf 2026-11-16T12:00:00Z
+Collected as of 2026-11-16T12:00:00Z (Fixture mode, environment lab, cloud gcc, ring pilot)
 
-RX-01 time in ring                             Fail  5 business days since 2026-11-09 (needs 10)
-RX-02 Sev-2 tickets                            Fail  1 unresolved
-RX-03 help desk volume                         Pass  9 tickets (threshold 10)
-RX-04 client active on every in-scope device   Fail  83.3% of in-scope devices
-RX-05 report-only results clean                Fail  3 report-only failures carried by the service; 0 compliant network checks fail
-RX-06 TLS failure share under 1%               Fail  1.50% failures; 74 days to expiry
-RX-07 emergency exclusion tested at ring start Pass  tested 2026-11-09; ring started 2026-11-09
-RX-08 break-glass rehearsed                    Pass  rehearsed 2026-11-06
+Call                     Method  Beta  Verified  Least-privileged permission
+ca-policies              GET     False True      Policy.Read.All
+ca-signaling             GET     True  True      NetworkAccess.Read.All
+connector-group-members  GET     True  True      Directory.ReadWrite.All
+connector-groups         GET     True  True      Directory.ReadWrite.All
+device-usage             GET     True  True      NetworkAccessPolicy.Read.All
+diagnostic-settings      GET     False True      Security Administrator (Microsoft Entra role), as the guide's Step 12.1 uses
+filtering-policies       GET     True  True      NetworkAccess.Read.All
+filtering-profiles       GET     True  True      NetworkAccess.Read.All
+forwarding-profiles      GET     True  True      NetworkAccess.Read.All
+law-query                QUERY   False True      Read access to the workspace; Log Analytics Reader is the program's choice (design guidance)
+licenses                 GET     False True      LicenseAssignment.Read.All
+named-locations          GET     True  True      Policy.Read.All
+private-apps             GET     True  False     Application.Read.All
+tenant-status            GET     True  True      NetworkAccessPolicy.Read.All
+tenant-tagging           GET     True  True      NetworkAccess.Read.All
+trv2-default             GET     True  True      Policy.Read.All
+trv2-partners            GET     True  False     Policy.Read.All
 
-Ring pilot: No-go. Written to out/metrics: metrics.json, ring-exit.json, manifest.json
+17 calls sent (24 reads in all). Written to C:/FMWLabs/results/global-secure-access-08/lab1/<run>/pilot: collection.json, raw/, manifest.json (18 files hashed)

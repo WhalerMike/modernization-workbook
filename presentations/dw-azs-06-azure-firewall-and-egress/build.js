@@ -127,8 +127,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: run the check, read each subnet",
       body: [
-        { terminal: "06-1", label: "examples/azure-security  ·  fixture data  ·  real output" },
-        { terminal: "06-2" },
+        { terminal: "06-3", label: "examples/azure-security  ·  fixture data  ·  real output" },
+        { terminal: "06-4" },
       ],
       sources: "Sources: examples/azure-security (fictional fixtures). Chapter 06, “Lab 1: fixtures, no subscription,” steps 1–2.",
       say: `Lab 1 needs PowerShell 7 with Pester, in the kit's folder, and no subscription. Contoso's hub firewall has the private IP ten dot zero dot zero dot four and a Premium policy still in alert. Two workload networks hold five workload subnets. Step 1 runs the firewall check: two of five subnets route to the firewall, and the plan file is written. Step 2 reads each subnet. The payroll data subnet has no route table. The portal web subnet sends its default route to the internet. And the jump subnet sends it to ten dot nine dot nine dot nine, an appliance the kit doesn't know.`,
@@ -139,8 +139,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the findings and the plan",
       body: [
-        { terminal: "06-3" },
-        { terminal: "06-4", lines: "1-2,4-7" },
+        { terminal: "06-5" },
+        { terminal: "06-6", lines: "1-2,4-7" },
       ],
       sources: "Sources: examples/azure-security (fictional fixtures). Chapter 06, “Lab 1: fixtures, no subscription,” steps 3–4.",
       say: `Step 3 reads the findings: threat intelligence and intrusion detection both in alert, no firewall logs, two subnets with no route to the firewall, an unknown appliance, and no TLS inspection. Step 4 reads the plan the kit wrote and didn't run: Learn's four draft and deployment commands for the hub policy, with its resource group and subscription, under a header that says the kit did not run them, and points at the guide's Step 6 and a change window. Step 5 runs this chapter's two tests.`,

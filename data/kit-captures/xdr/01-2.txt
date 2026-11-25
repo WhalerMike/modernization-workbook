@@ -1,8 +1,4 @@
-PS> Import-Csv out/access/permissions.csv | Format-Table Call, Method, Permission, Writes -AutoSize
-Call                  Method Permission                    Writes
-----                  ------ ----------                    ------
-incidents-list        GET    SecurityIncident.Read.All     False
-hunting-query         POST   ThreatHunting.Read.All        False
-detection-rules-list  GET    CustomDetection.Read.All      False
-detection-rule-create POST   CustomDetection.ReadWrite.All True
-detection-rule-update PATCH  CustomDetection.ReadWrite.All True
+PS> $Run = "C:\FMWLabs\results\defender-xdr-01\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+PS> New-Item -ItemType Directory -Path $Run -Force | Out-Null
+PS> $Run
+C:/FMWLabs/results/defender-xdr-01/lab1/<run>

@@ -1,0 +1,4 @@
+PS> Invoke-Pester -Path tests/Core.Tests.ps1 -Output None -PassThru | Select-Object PassedCount, FailedCount
+PassedCount FailedCount
+----------- -----------
+         23           0

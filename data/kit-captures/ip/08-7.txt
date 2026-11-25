@@ -1,1 +1,15 @@
-PS> Remove-Item -Recurse -Force out
+PS> ./Invoke-IpEvidence.ps1 -EvidencePath "$Run/evidence" -Check
+SUMS               Pass  38 files match SHA256SUMS
+CHAIN              Pass  9 records, chain unbroken
+PS> ./Invoke-IpEvidence.ps1 -EvidencePath "$Run/evidence" -Check -Stage test
+SUMS               Pass  38 files match SHA256SUMS
+CHAIN              Pass  9 records, chain unbroken
+STEP-PREFLIGHT     Fail  no record
+STEP-EXPORT        Fail  no record
+STEP-ACCESS        Fail  recorded, but the run's own check failed: close its findings and run it again
+STEP-LABELS        Fail  recorded, but the run's own check failed: close its findings and run it again
+STEP-PROTECTION    Fail  recorded, but the run's own check failed: close its findings and run it again
+STEP-DLP           Fail  recorded, but the run's own check failed: close its findings and run it again
+STEP-AUTOLABEL     Fail  recorded, but the run's own check failed: close its findings and run it again
+STEP-AUDIT         Fail  recorded, but the run's own check failed: close its findings and run it again
+(exit code 1)

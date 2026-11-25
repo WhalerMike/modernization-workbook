@@ -1,7 +1,4 @@
-PS> ./Invoke-IpAudit.ps1 -SettingsPath tests/fixtures/settings.lab.json -SnapshotPath tests/fixtures/snapshots/2026-11-24 -SyntheticPath out/synthetic.json -OutputPath out/audit -AsOf 2026-11-24T15:00:00Z
-AUD-01     Pass  Unified audit ingestion: on
-RET-01     Pass  FMP-Audit-InfoProtection-1y: TwelveMonths, priority 200
-SYN-01     Pass  FileSensitivityLabelApplied: found, 1.2 h after the test started
-SYN-02     Fail  FileSensitivityLabelRemoved: found 5.5 h after the test started; target 4 h
-SYN-03     Pass  CopilotInteraction: found, 0.8 h after the test started
-audit: Fail (4 pass, 1 fail, 0 other). Written to ./out/audit
+PS> $Run = "C:\FMWLabs\results\information-protection-07\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+PS> New-Item -ItemType Directory -Path $Run -Force | Out-Null
+PS> $Run
+C:/FMWLabs/results/information-protection-07/lab1/<run>

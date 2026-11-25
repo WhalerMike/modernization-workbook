@@ -25,7 +25,7 @@ const CHECKS = 9;
 const BANNED = /\bUIAO\b|\bSSA\b|Social Security|Mainframe PIN|\bDISA\b|\bSTIGs?\b|\bsatisf(y|ies)\b|\bmeets\b|GCC[ -]?High|\bGCCH\b|\bDoD\b|Azure Government|AzureUSGovernment|\busgov/i;
 
 // ------------------------------------------------------------------ captures
-// cap("01-5", [0, 1, 5]) returns those lines (0-based) of data/kit-captures/pn/01-5.txt, each cut to max characters
+// cap("01-7", [0, 1, 5]) returns those lines (0-based) of data/kit-captures/pn/01-5.txt, each cut to max characters
 // with "…" (the slide's label says lines are cut). A prompt line longer than max is continued PowerShell-style.
 const CAP = path.join(__dirname, "..", "..", "data", "kit-captures", "azs");
 const MAX = 146; // characters that fit a full-width panel at 10.5 pt
@@ -195,7 +195,7 @@ const S1 = "Scene 1 — The baseline";
 }
 tryIt(S1, "Try it: the baseline check on week one",
   "WORKBOOK CH 01, LAB 1, STEPS 2–3, IN examples/azure-security (SEVEN OF THE TEN AZS-BL-05 ROWS LEFT OUT)",
-  [...cap("01-2", [0, 1, 2, 3]), ...cap("01-3", [0, 1, 2, 3, 12, 13])],
+  [...cap("01-4", [0, 1, 2, 3]), ...cap("01-5", [0, 1, 2, 3, 12, 13])],
   "pip-afw-hub logs, but to the wrong workspace; the portal's subscription has KeyVaults on Free; the FedRAMP initiative is in audit, as intended.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 01, “Lab 1: fixtures, no subscription,” steps 2–3.",
   `Try it. From the kit's folder, run the baseline check on the first week's estate. It reads the hierarchy settings, four policy assignments, sixteen platform resources and four subscriptions, from six calls, every one a read. Twelve findings and one information row. Read them: creating management groups doesn't need authorization; the firewall and its public IP send nothing to the platform workspace; the online subscription, the portal's, has its Key Vault plan on Free; and the FedRAMP initiative is in audit, exactly as Step 1 intends.`,
@@ -233,7 +233,7 @@ const S2 = "Scene 2 — The register";
 }
 tryIt(S2, "Try it: the register, then a week later",
   "WORKBOOK CH 02, LAB 1, STEPS 1, 2 AND 5 (THE PORTAL'S ROWS; OTHER ROWS LEFT OUT)",
-  [...cap("02-1", [1, 2]), ...cap("02-2", [0, 2, 5, 6, 8, 9, 12, 17, 18, 19]), ...cap("02-5", [0, 1, 2])],
+  [...cap("02-3", [1, 2]), ...cap("02-4", [0, 2, 5, 6, 8, 9, 12, 17, 18, 19]), ...cap("02-7", [0, 1, 2])],
   "pip-jump has no owner; pip-appgw-portal carries its gateway's WAF; in week 2 pip-new-api is new and pip-orphan is gone.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 02, “Lab 1: fixtures, no subscription,” steps 1, 2 and 5.",
   `Try it. Build the first week's register: nineteen exposures, sixteen with an owner. Read the portal's rows. The gateway's public address carries the gateway's web application firewall policy, wafp-portal. The Front Door profile carries its own. The jump box's address has no owner. Then build the register again a week later, against the first one. The new address, pip-new-api, is reported as new, and the orphan as gone, with the reminder to remove any DNS record that still points at its old address.`,
@@ -271,7 +271,7 @@ const S3 = "Scene 3 — DDoS";
 }
 tryIt(S3, "Try it: each public IP's protection",
   "WORKBOOK CH 03, LAB 1, STEPS 2 AND 4 (FIVE OF THE NINE FINDINGS SHOWN)",
-  [...cap("03-2", [1, 2, 3, 4, 5, 6, 7, 8, 9]), ...cap("03-4", [0, 5, 2, 6, 7])],
+  [...cap("03-4", [1, 2, 3, 4, 5, 6, 7, 8, 9]), ...cap("03-6", [0, 5, 2, 6, 7])],
   "pip-jump is Unprotected in vnet-portal; pip-appgw-portal is Inherited from vnet-hub with logs and an alert; pip-test-app's alert is off.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 03, “Lab 1: fixtures, no subscription,” steps 2 and 4.",
   `Try it. Read each public address's status. The hub's three addresses inherit from the hub network. The test application's address has IP Protection on the address itself. The jump box's inherits from the portal's spoke, which has no plan, so it's unprotected. The load balancer's is unknown: its protection depends on a backend network the frontend doesn't name, and the kit says so rather than guessing. Then the findings: the jump box unprotected, the firewall's address with no logs to the workspace and no alert, and the test application's alert, which exists but is disabled.`,
@@ -309,7 +309,7 @@ const S4 = "Scene 4 — WAF";
 }
 tryIt(S4, "Try it: the portal's WAF policies, and the plan",
   "WORKBOOK CH 04, LAB 1, STEPS 2 AND 4 (THE PLAN'S LONG LINE CUT)",
-  [...cap("04-2", [1, 2, 3]), ...cap("04-4", [0, 1, 3])],
+  [...cap("04-4", [1, 2, 3]), ...cap("04-6", [0, 1, 3])],
   "wafp-portal is in Detection; afdwafportal blocks but has no bot rules; the switch is a plan line nobody has run.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 04, “Lab 1: fixtures, no subscription,” steps 2 and 4.",
   `Try it. Read each policy. The gateway's policy, wafp-portal: detection, body inspection on, rule set 2.1, bot rules and a rate limit. The Front Door policy: prevention, body inspection on, rule set 2.1, no bot rules. Then read the plan the kit wrote: a header that says the kit did not run it, then Microsoft Learn's own switch command for wafp-portal, with its resource group and subscription, setting prevention, the state and body inspection. One of three internet-facing endpoints is behind a firewall in prevention this week.`,
@@ -347,7 +347,7 @@ const S5 = "Scene 5 — The origin";
 }
 tryIt(S5, "Try it: each origin's lock-down",
   "WORKBOOK CH 05, LAB 1, STEPS 2–3 (THREE OF THE EIGHT FINDINGS SHOWN)",
-  [...cap("05-2", [1, 2, 3, 4, 5, 6]), ...cap("05-3", [0, 2, 3, 6])],
+  [...cap("05-4", [1, 2, 3, 4, 5, 6]), ...cap("05-5", [0, 2, 3, 6])],
   "origin-east is locked with the tag and this profile's ID; origin-west has the tag only; api-public is one the kit can't check.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 05, “Lab 1: fixtures, no subscription,” steps 2–3.",
   `Try it. Read each origin's lock-down. In the portal's origin group, the east web app is locked with the service tag and the Front Door ID; the west one has the tag only. In the API group, one origin reaches its back end over Private Link and one is a public host the kit can't check, so it says to test a direct request by hand. Then the findings: the west origin's rule has no header, and the API group mixes a private and a public origin, which Learn says not to do.`,
@@ -385,7 +385,7 @@ const S6 = "Scene 6 — Egress";
 }
 tryIt(S6, "Try it: default routes, and the draft to Deny",
   "WORKBOOK CH 06, LAB 1, STEPS 2 AND 4 (THE PLAN'S LONG LINES CUT)",
-  [...cap("06-2", [1, 2, 3, 4, 5, 6]), ...cap("06-4", [0, 1, 3, 4, 5, 6])],
+  [...cap("06-4", [1, 2, 3, 4, 5, 6]), ...cap("06-6", [0, 1, 3, 4, 5, 6])],
   "snet-web goes to the Internet and snet-jump to an unknown appliance; the plan stages Deny in a draft nobody has deployed.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 06, “Lab 1: fixtures, no subscription,” steps 2 and 4.",
   `Try it. Read each workload subnet's default route. Two go to the hub firewall at 10.0.0.4. The payroll data subnet has no route table at all. The portal's jump subnet goes to an unknown appliance, and its web subnet straight to the internet. Two of five route to the firewall. Then read the plan: Microsoft Learn's four commands, create a draft, set threat intelligence and intrusion detection to deny, show it, and deploy it, each with the policy's resource group and subscription, under a header that says the kit did not run them.`,
@@ -423,7 +423,7 @@ const S7 = "Scene 7 — The vault";
 }
 tryIt(S7, "Try it: the vaults",
   "WORKBOOK CH 07, LAB 1, STEPS 2 AND 4 (THE PORTAL VAULT'S FINDINGS; OTHER ROWS LEFT OUT)",
-  [...cap("07-2", [1, 2, 3, 4]), ...cap("07-4", [0, 7, 8, 9, 10, 11, 16])],
+  [...cap("07-4", [1, 2, 3, 4]), ...cap("07-6", [0, 7, 8, 9, 10, 11, 16])],
   "kv-portal misses every part of the posture; kv-payroll has all of it; one of three vaults has the full posture.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 07, “Lab 1: fixtures, no subscription,” steps 2 and 4.",
   `Try it. Read each vault. The hub's certificate vault has role-based access, purge protection, a closed firewall and audit logs, but public access on and no private endpoint. The payroll vault has everything. The portal's vault has nothing: no role-based access, no purge protection, a firewall that allows all networks, public access, no endpoints, no audit. Then its findings, one per missing part, from access policies to the missing audit events. One of three vaults has the full posture.`,
@@ -461,7 +461,7 @@ const S8 = "Scene 8 — Policy, drift, evidence";
 }
 tryIt(S8, "Try it: the exemption, the drift, the records",
   "WORKBOOK CH 08, LAB 1, STEPS 2, 4, 6 AND 7 (SELECTED LINES; THE PORTAL'S ROWS)",
-  [...cap("08-2", [0, 5]), ...cap("08-4", [9, 15, 19, 20, 21, 24, 26]), ...cap("08-6", [0, 1, 15, 17]), ...cap("08-7", [1, 2, 3])],
+  [...cap("08-4", [0, 5]), ...cap("08-6", [9, 15, 19, 20, 21, 24, 26]), ...cap("08-8", [0, 1, 15, 17]), ...cap("08-9", [1, 2, 3])],
   "ex-portal-waf is due; the portal's four fixes show as fixed and pip-new-api as new; the chain holds, and a stage check still refuses it.",
   "Sources: kit fixtures (fictional), captured output. Workbook Ch 08, “Lab 1: fixtures, no subscription,” steps 2, 4, 6 and 7.",
   `Try it. The policy check flags the portal's waiver, due December first. Compare the two weeks: thirteen fixed, four new. Among the fixed, the portal's firewall policy, the west origin, the web subnet's route and the vault's purge protection. Among the new, the arriving address, with no owner and no protection plan. Record the run as evidence: it covers all nine area steps, and the check shows the hashes match and the chain is unbroken. Then ask whether this evidence could promote anything to production. Every stage step fails: no passing live record.`,

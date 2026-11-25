@@ -1,1 +1,2 @@
-PS> Remove-Item -Recurse -Force out
+PS> (Get-AzsLiveCommand -CallId arg-platform-resources -Settings (Read-AzsSettings -Path tests/fixtures/settings.lab.json)) -join ' '
+graph query -q Resources | where type in~ ('microsoft.network/azurefirewalls','microsoft.network/applicationgateways','microsoft.cdn/profiles','microsoft.keyvault/vaults','microsoft.network/publicipaddresses') | project id, type, subscriptionId | order by id asc --first 1000 --management-groups contoso --output json

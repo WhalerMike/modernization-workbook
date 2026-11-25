@@ -1,0 +1,17 @@
+PS> Import-Csv "$Run/asr/matrix.csv" | Format-Table Rule, Warn, ring0, ring1, ring2, ring3, servers -AutoSize | Out-String -Width 250
+Rule                                                                          Warn ring0 ring1 ring2 ring3 servers
+----                                                                          ---- ----- ----- ----- ----- -------
+Block abuse of exploited vulnerable signed drivers                            yes  block warn  audit audit audit
+Block persistence through WMI event subscription                              yes  block warn  audit audit audit
+Block executable content from email client and webmail                        yes  block warn  audit audit audit
+Block all Office applications from creating child processes                   yes  block warn  audit audit audit
+Block JavaScript or VBScript from launching downloaded executable content     yes  block warn  audit audit audit
+Block execution of potentially obfuscated scripts                             yes  block warn  audit audit audit
+Block Win32 API calls from Office macros                                      yes  block warn  audit audit notConfigured
+Block credential stealing from the Windows local security authority subsystem no   block block audit warn  audit
+Block process creations originating from PSExec and WMI commands              yes  block warn  audit audit audit
+Block untrusted and unsigned processes that run from USB                      yes  block warn  audit audit audit
+Block Office applications from creating executable content                    yes  block warn  audit audit audit
+Block Office applications from injecting code into other processes            no   block audit audit audit audit
+Block Adobe Reader from creating child processes                              yes  block warn  audit audit audit
+Use advanced protection against ransomware                                    yes  block warn  audit audit audit

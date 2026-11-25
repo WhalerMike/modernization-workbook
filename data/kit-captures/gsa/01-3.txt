@@ -1,8 +1,6 @@
-PS> ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/pilot -Area decision -OutputPath out/decision -AsOf 2026-11-16T12:00:00Z
-Collected as of 2026-11-16T12:00:00Z (Fixture mode, environment lab, cloud gcc, ring pilot)
-
-Call                     Method  Beta  Verified  Least-privileged permission
-licenses                 GET     False True      LicenseAssignment.Read.All
-tenant-status            GET     True  True      NetworkAccessPolicy.Read.All
-
-2 calls sent (2 reads in all). Written to out/decision: collection.json, raw/, manifest.json (3 files hashed)
+PS> Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
+PS> Get-GsaRequiredPermission -Area decision | Format-Table
+Call          Method Permission                    Beta Verified
+----          ------ ----------                    ---- --------
+licenses      GET    LicenseAssignment.Read.All   False     True
+tenant-status GET    NetworkAccessPolicy.Read.All  True     True

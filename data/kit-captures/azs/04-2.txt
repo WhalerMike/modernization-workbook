@@ -1,4 +1,4 @@
-PS> Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
-PS> (Read-AzsJson -Path out/week1/waf/waf.json) | ForEach-Object { "{0,-13} {1,-6} {2,-11} body: {3,-5} DRS: {4,-4} bot: {5,-5} rate limit: {6}" -f $_.name, $_.kind, $_.mode, $_.requestBodyCheck, $_.defaultRuleSet, $_.botRules, $_.rateLimit }
-wafp-portal   appgw  Detection   body: True  DRS: 2.1  bot: True  rate limit: True
-afdwafportal  afd    Prevention  body: True  DRS: 2.1  bot: False rate limit: True
+PS> $Run = "C:\FMWLabs\results\azure-security-04\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+PS> New-Item -ItemType Directory -Path $Run -Force | Out-Null
+PS> $Run
+C:/FMWLabs/results/azure-security-04/lab1/<run>

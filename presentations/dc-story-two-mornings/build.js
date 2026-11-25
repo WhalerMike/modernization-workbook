@@ -46,7 +46,7 @@ require("../_build/devwb.js")({
     {
       part: "What", title: "Scene 1: twelve checks, twelve tabs",
       body: [
-        { terminal: "01-1", lines: "1-3,6-16" },
+        { terminal: "01-3", lines: "1-3,6-16" },
         { callout: "Entra Health's alerts aren't in Log Analytics, and its GCC availability is not yet specified: its tab is a link out to the Entra admin center.", label: "Why a link-out: ", color: "teal" },
       ],
       sources: "Sources: Chapter 01, “The code,” “Lab 1,” step 1 (fictional fixtures); Learn, Entra Health monitoring.",
@@ -74,7 +74,7 @@ require("../_build/devwb.js")({
     {
       part: "What", title: "Scene 2: an export edited in the portal",
       body: [
-        { terminal: "02-3", lines: "1,12-17" },
+        { terminal: "02-5", lines: "1,12-17" },
         { callout: "an exported template often embeds the subscription and resource group: mask them. The kit's check fails them instead.", label: "Microsoft Learn: ", color: "amber", icon: "FaTriangleExclamation" },
       ],
       sources: "Sources: Chapter 02, “Lab 1,” step 3 (fictional fixtures); Learn, workbooks and ARM templates.",
@@ -103,7 +103,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Scene 3: the morning the logs stopped",
       body: [
-        { terminal: "03-1", lines: "1-15" },
+        { terminal: "03-3", lines: "1-15" },
       ],
       sources: "Sources: Chapter 03, “Lab 1,” step 1 (fictional fixtures, November 16, 2026).",
       say: `The answer to check one is B: an empty tab proves only that its query returned nothing. Scene three: November sixteenth. At ten past five the evening before, the Entra diagnostic setting stopped, and this morning's probe didn't run. Telemetry flags four rows: three dark tables and a failing connector. And look at risk, emergency access, sync, grants and admin changes. They're not clear. They're stale. On a plain dashboard, the risk and emergency access tabs would have shown two calm, empty queues. The Active Directory tab's sources are fresh, and it shows why that matters: the third domain controller stopped sending at seven the evening before, and both replication links from it are failing.`,
@@ -118,7 +118,7 @@ require("../_build/devwb.js")({
           "./Invoke-DcRender.ps1 -FixturePath tests/fixtures/day1 -AsOf 2026-11-16T07:30:00Z -OutputPath out/day1",
           "Get-Content tests/fixtures/day1/risk.json",
         ], label: "From examples/daily-checks-workbook, PowerShell 7: no tenant", pt: 12 },
-        { terminal: "03-2" },
+        { terminal: "03-4" },
       ],
       sources: "Sources: Chapter 03, “Lab 1,” steps 1–2 (fictional fixtures).",
       say: `Try it. From the kit's folder, render the first morning, then read what the risk tab's query returned. No rows at all. But its source, the sign-in logs, last arrived at ten past five the evening before. Shown as a quiet queue, this is the morning a risky sign-in goes unseen.`,
@@ -129,7 +129,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Scene 4: what the empty queues were hiding",
       body: [
-        { terminal: "03-3", lines: "1-15" },
+        { terminal: "03-5", lines: "1-15" },
       ],
       sources: "Sources: Chapter 03, “Lab 1,” step 3 (fictional fixtures, November 17, 2026).",
       say: `Scene four: the next morning. The diagnostic setting is back, and telemetry is clear. Now the queues show what they were hiding. One user at high risk. One emergency access sign-in, which turns out to be the quarterly validation drill, and the review records it as a drill. One synchronization conflict, and a staging synchronization server that wrote no backup event. And the admin changes tab lists yesterday's five request-driven changes, each to be matched to its ticket. Grants, D L P alerts and Active Directory are clear, and this time clear means something, because their sources are fresh.`,
@@ -156,8 +156,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Scene 5: a refused render, a kept record",
       body: [
-        { terminal: "03-6" },
-        { terminal: "03-7" },
+        { terminal: "03-8" },
+        { terminal: "03-9" },
       ],
       sources: "Sources: Chapter 03, “Lab 1,” steps 4–7 (fictional fixtures).",
       say: `The answer is C. Scene five. The kit refuses to record the render: a rendered view is not evidence. Instead it records the reachability check, which asked the workspace for each table's newest record, and the replication probe, which found the third domain controller's two failing links. Both results are Fail, and that's the point: each record keeps what its check found, tagged with continuous monitoring and system monitoring and their indicators. A failing record is evidence of the gap; a screenshot is only a picture of it.`,

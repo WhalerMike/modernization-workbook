@@ -1,10 +1,1 @@
-PS> ./Invoke-AzsCheck.ps1 -Area all -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath out/week1 -DefenderExposurePath tests/fixtures/defender-exposure.csv
-baseline   12 Finding,   0 Warn,   1 Info
-exposure    3 Finding,   2 Warn,   0 Info
-ddos        6 Finding,   2 Warn,   1 Info
-waf         3 Finding,   3 Warn,   0 Info
-edge        5 Finding,   3 Warn,   0 Info
-firewall    5 Finding,   2 Warn,   0 Info
-private    11 Finding,   5 Warn,   0 Info
-policy      3 Finding,   2 Warn,   0 Info
-Total:     48 Finding,  19 Warn,   2 Info. Written to out/week1
+PS> Set-Location C:\FMWLabs\azure-security-code\azure-security

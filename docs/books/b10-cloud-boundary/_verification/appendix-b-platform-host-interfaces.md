@@ -159,3 +159,13 @@ Item 19 of the Nov 7 sort: Book 00's R-018 and Chapter 08 say the drift reporter
 | 1 | Drift reporter checks the upstream pull mirror's last sync; a hook can't, because mirror syncs don't pass through receive hooks | D.3 | verified (mechanism, settled) | git-scm githooks; F.1 (#47, #66, #79) |
 | 2 | `GET /api/v1/repos/{owner}/{repo}` returns `mirror_updated` and `mirror_last_sync_at` date-time fields | D.3 | verified (new) | Gitea API definition, `Repository` definition, [^aB-gitea-mirror-sync]. The definition gives no description of either field; text asks to confirm which one moves on **Synchronize Now** |
 | 3 | 24-hour stale threshold | D.3 | restated-as-design | Program threshold, Book 00 Appendix A R-018 and Ch08 repository conventions |
+
+## Platform Host topic, November 25, 2026
+
+The appendix joins the new Platform Host topic (and leaves Azure Security's). Its build steps were numbered by a 14-phase build guide the workbook doesn't publish; they now use Book 00, Chapter 08's milestones. Two family D components had no implementation behind them. Decisions WD-177 and WD-178 record the reference design and the standby model.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| T1 | Build-step references (Phases 0.5, 1–13, 2 and 5, 8, 9, 11, 12, 13, 14, 14.4) replaced with milestones M-001 to M-007, or with what the step does where it comes after the Phase 0 build | A.4 table, C.1, C.3, C.4, D.3, E.3, F.1, F.3, egress allowlist, group governance | restated-as-design | Book 00 Ch08, seven build milestones |
+| T2 | Arc tags `DeviceRole` and `DeviceTier` replaced with Book 05's server taxonomy, `Workload=GitServer`, `Criticality=High`; Book 00 Ch08's M-007 (Region, Site, Department, Role) changed to match | C.1 | corrected (conflict between three pages; Book 05 owns the server taxonomy) | Book 05 Ch09, resource groups and tags |
+| T3 | Drift reporter and conformance adapter stated as designs with no published implementation | What this reference covers, D.3, D.4, group governance | corrected (overstated as running) | No implementation in the workbook's kits |

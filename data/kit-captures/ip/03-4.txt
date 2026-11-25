@@ -1,1 +1,12 @@
-PS> Remove-Item -Recurse -Force out
+PS> Import-Csv "$Run/inventory/inventory.csv" | Format-Table -AutoSize
+Class        SensitiveInformationType                              Workload   Items
+-----        ------------------------                              --------   -----
+CUI-PRIVACY  U.S. Social Security Number (SSN)                     EXO        412
+CUI-PRIVACY  U.S. Social Security Number (SSN)                     ODB        1290
+CUI-PRIVACY  U.S. Social Security Number (SSN)                     SharePoint 3874
+CUI-SP-TAX   U.S. Individual Taxpayer Identification Number (ITIN) EXO        37
+CUI-SP-TAX   U.S. Individual Taxpayer Identification Number (ITIN) ODB        12
+CUI-SP-TAX   U.S. Individual Taxpayer Identification Number (ITIN) SharePoint 205
+CASE-RECORDS Contoso Case Number                                   EXO        0
+CASE-RECORDS Contoso Case Number                                   ODB        88
+CASE-RECORDS Contoso Case Number                                   SharePoint 1561

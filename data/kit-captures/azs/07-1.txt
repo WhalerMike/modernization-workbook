@@ -1,4 +1,1 @@
-PS> ./Invoke-AzsCheck.ps1 -Area private -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath out/week1/private
-Read: 2 private DNS zones, 3 private endpoints, 6 public PaaS resources, 3 vaults. Vaults with the full posture: 1 of 3
-Findings: 11 Finding, 5 Warn, 0 Info
-Written to out/week1/private (7 calls, every one a read; manifest.json lists each file's SHA-256)
+PS> Set-Location C:\FMWLabs\azure-security-code\azure-security

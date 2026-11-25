@@ -1,8 +1,1 @@
-PS> Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
-PS> Get-GsaRequiredPermission -Area internet-access | Format-Table
-Call               Method Permission                                                                                    Beta Verified
-----               ------ ----------                                                                                    ---- --------
-filtering-profiles GET    NetworkAccess.Read.All                                                                        True     True
-filtering-policies GET    NetworkAccess.Read.All                                                                        True     True
-ca-policies        GET    Policy.Read.All                                                                              False     True
-law-query          QUERY  Read access to the workspace; Log Analytics Reader is the program's choice (design guidance) False     True
+PS> Set-Location C:\FMWLabs\global-secure-access-code\global-secure-access

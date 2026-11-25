@@ -114,8 +114,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the tabs, and the edited export",
       body: [
-        { terminal: "01-2", lines: "1-4" },
-        { terminal: "02-3", lines: "1,12-17" },
+        { terminal: "01-4", lines: "1-4" },
+        { terminal: "02-5", lines: "1,12-17" },
       ],
       sources: "Sources: Building the Daily Checks Workbook, Ch 01 and 02, “Lab 1” (fictional fixtures).",
       say: `Lab 1 runs on a laptop with no tenant, in the developer workbook's Chapters 1 and 2. You'll list the twelve tabs and open the Entra Health tab: a link-out, with no table, to the Entra admin center. Then you'll validate a copy someone exported after editing the workbook in the portal. Four edits, four failures: a query on a workspace path, a thirty-day look-back, a missing banner, and a subscription path in the file.`,

@@ -126,8 +126,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: run the check, read each policy",
       body: [
-        { terminal: "04-1", label: "examples/azure-security  ·  fixture data  ·  real output" },
-        { terminal: "04-2", lines: "2-4" },
+        { terminal: "04-3", label: "examples/azure-security  ·  fixture data  ·  real output" },
+        { terminal: "04-4", lines: "2-4" },
       ],
       sources: "Sources: examples/azure-security (fictional fixtures). Chapter 04, “Lab 1: fixtures, no subscription,” steps 1–2.",
       say: `Lab 1 needs PowerShell 7 with Pester, in the kit's folder. Contoso has two WAF policies: one on its portal application gateway, and one on its portal Front Door profile. A second Front Door profile, for careers, has none. Step 1 runs the check: one of three internet-facing endpoints is behind a WAF in prevention, and the plan file is written. Step 2 reads each policy. The gateway's policy is still in detection. The Front Door policy blocks, but has no bot rule set. Both are on Default Rule Set two point one.`,
@@ -138,8 +138,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the findings, and the unsent plan",
       body: [
-        { terminal: "04-3" },
-        { terminal: "04-4", lines: "1,4" },
+        { terminal: "04-5" },
+        { terminal: "04-6", lines: "1,4" },
       ],
       sources: "Sources: examples/azure-security (fictional fixtures). Chapter 04, “Lab 1: fixtures, no subscription,” steps 3–4.",
       say: `Step 3 reads the findings. The gateway's policy is in detection. The careers Front Door profile has no WAF and sends no logs. Both policies are a rule-set version behind the baseline, and the Front Door policy has no bot protection. The intranet gateway has a private frontend only, so it isn't counted. Step 4 reads the plan the kit wrote and didn't run: Learn's switch command for the gateway's policy, with its resource group and subscription, ready for the application owner. Step 5 runs the chapter's tests.`,

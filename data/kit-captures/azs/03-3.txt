@@ -1,2 +1,4 @@
-PS> (Read-AzsJson -Path out/week1/ddos/summary.json).byStatus | ConvertTo-Json -Compress
-{"IpProtection":1,"Inherited":3,"Unprotected":1,"Unknown":1,"NatGateway":1,"Unattached":1}
+PS> ./Invoke-AzsCheck.ps1 -Area ddos -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath "$Run/week1/ddos"
+Read: 8 public IPs, 3 virtual networks, 2 DDoS plans, 2 metric alerts. Protected: 4 of 6 in scope (66.7%)
+Findings: 6 Finding, 2 Warn, 1 Info
+Written to C:/FMWLabs/results/azure-security-03/lab1/<run>/week1/ddos (7 calls, every one a read; manifest.json lists each file's SHA-256)

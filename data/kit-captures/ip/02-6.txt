@@ -1,0 +1,4 @@
+PS> Invoke-Pester -Path tests/Kit.Tests.ps1 -TagFilter ch02 -Output None -PassThru | Select-Object PassedCount, FailedCount
+PassedCount FailedCount
+----------- -----------
+          8           0

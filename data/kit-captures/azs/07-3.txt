@@ -1,4 +1,4 @@
-PS> (Read-AzsJson -Path out/week1/private/private.json) | Where-Object kind -EQ private-endpoint | ForEach-Object { "{0,-20} {1,-22} {2}" -f $_.name, $_.target, ($_.zones -join ', ') }
-pe-kv-payroll        kv-payroll/vault       privatelink.vaultcore.azure.net
-pe-st-payroll-blob   stpayrolldata/blob     privatelink.blob.core.windows.net
-pe-st-payroll-queue  stpayrolldata/queue
+PS> ./Invoke-AzsCheck.ps1 -Area private -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath "$Run/week1/private"
+Read: 2 private DNS zones, 3 private endpoints, 6 public PaaS resources, 3 vaults. Vaults with the full posture: 1 of 3
+Findings: 11 Finding, 5 Warn, 0 Info
+Written to C:/FMWLabs/results/azure-security-07/lab1/<run>/week1/private (7 calls, every one a read; manifest.json lists each file's SHA-256)

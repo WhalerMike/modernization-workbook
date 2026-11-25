@@ -1,15 +1,4 @@
-PS> Get-Content out/month/metrics/metrics.md
-# Defender XDR metrics
-
-As of 2026-11-16T12:00:00Z, environment lab.
-
-| Metric | Value | Formula | From |
-|---|---|---|---|
-| Protected coverage | 64.3% (9 of 14) | Onboarded devices with an active sensor / in-scope devices in the inventory | coverage/summary.json |
-| Exception exposure | 1 device(s) under an exception of 14 in scope | Devices under an active exception / in-scope devices; expired exceptions are tickets | coverage/summary.json |
-| Enforcement depth | 2 of 11 onboarded device(s) with every applicable ASR rule in block | Devices with every ASR rule in block / onboarded devices | asr/summary.json, coverage/summary.json |
-| Prevention effectiveness | 1,275.8 blocks per 1,000 devices per week | Blocks by ASR (30 days, scaled to a week), network protection and controlled folder access (7 days) per 1,000 onboarded devices | prevention/summary.json, asr/raw/asr-events.json |
-| Expired ASR exclusions | 1 | Exclusions past their expiry in the ASR register | asr/summary.json |
-| Mean time to triage and to contain | not computed | Incident creation to first assignment, and to containment, by severity | the Graph incident carries no assignment or containment time; take it from the ticketing system or the Action center history |
-| Detection validity | 1 of 1 enabled detection(s) with a passing test this run | Enabled custom detections with a passing known-bad test / enabled detections | detections/summary.json |
-| Synthetic-event success | 4 of 5 | Synthetic events that produced their expected alert or event / events run | exercise.csv |
+PS> $Run = "C:\FMWLabs\results\defender-xdr-08\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+PS> New-Item -ItemType Directory -Path $Run -Force | Out-Null
+PS> $Run
+C:/FMWLabs/results/defender-xdr-08/lab1/<run>
