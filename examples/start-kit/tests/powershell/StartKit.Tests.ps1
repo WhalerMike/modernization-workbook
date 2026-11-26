@@ -50,13 +50,13 @@ Describe 'Invoke-FMPStartKit.ps1' {
         $manifest.ComputerName | Should -Not -BeNullOrEmpty
         $manifest.StartTimeUtc | Should -Not -BeNullOrEmpty
         $manifest.ServedBy.'child.contoso.example' | Should -Be 'cdc01.child.contoso.example'
-        $manifest.ModuleVersions.FMPADAssessment | Should -Be '1.8.0'
+        $manifest.ModuleVersions.FMPADAssessment | Should -Be '1.9.0'
         $manifest.Parameters.QueryInstances | Should -BeTrue
         $manifest.ModuleVersions.FMPNpsInventory | Should -Be '1.0.0'
         $manifest.ModuleVersions.FMPTransactionProfile | Should -Be '1.0.0'
         $manifest.ModuleVersions.FMPSqlEstate | Should -Be '1.2.0'
         $manifest.Parameters.TransactionCatalog | Should -BeTrue
-        $manifest.KitVersion | Should -Be '1.7.0'
+        $manifest.KitVersion | Should -Be '1.8.0'
     }
     It 'hashes every file in the run, and the hashes match' {
         $files = @(Get-ChildItem -Path $runDir.FullName -Recurse -File | Where-Object Name -ne 'AssessmentManifest.json')

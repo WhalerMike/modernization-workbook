@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Book 07"
 series-order: 1
 review-status: approved
-reviewed-sha256: b7e9bdd7e851533c402847ef9c855caffb72b56ad36e498de3079fd4586e70d0
+reviewed-sha256: ddfdd47f69247f82d9a8169cc3f7e6283cc683fefd7f8de8b1822bc804915237
 last-reviewed: 2026-11-25
 ---
 # Module 1: What AD CS holds up: the inventory {.unnumbered}
@@ -168,7 +168,7 @@ In Git Bash, `cd /c/FMWLabs/start-kit` reaches the same folder, but every step i
     Expected output:
 
     ```text
-    1.8.0
+    1.9.0
     ```
 
 2. **Run the PKI assessment on the snapshot.** `-PkiDataPath` reads the snapshot instead of a directory and a CA; everything else is the code that runs against a forest.

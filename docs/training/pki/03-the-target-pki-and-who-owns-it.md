@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Book 07"
 series-order: 3
 review-status: approved
-reviewed-sha256: 86d02078caa1ba2fbce76c105f626646472ee8e38e3e50e2b6b92079dc9a60d3
+reviewed-sha256: c31cf58be7539d7d3e0e1c632cb888f8bc3c76030fe16cade62748afc6c732a1
 last-reviewed: 2026-11-25
 ---
 # Module 3: The target PKI and who owns it {.unnumbered}
@@ -176,7 +176,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/start-kit` and make the ru
     Expected output:
 
     ```text
-    1.8.0
+    1.9.0
     ```
 
 2. **Map each published template to its target issuer.** Inventory the snapshot and classify its templates, as in Module 1, then list the published ones by target:

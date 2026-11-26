@@ -1,7 +1,7 @@
 ---
 title: "Learning path: PKI and Certificates"
-subtitle: "Modules on the certificate estate that outlives every migration: what AD CS holds up, hardening what stays, the target PKI and who owns it, and device and user certificates, with labs on a fictional PKI snapshot and in your own test forest"
-description: "A learning path for PKI owners, AD CS administrators, identity and endpoint engineers and ISSO reviewers, built from Book 07, PKI & Certificates, and the Start Kit's AD CS assessment: inventorying the CAs, templates and Public Key Services objects AD CS keeps in the forest, and giving every template a starting MIGRATE, BRIDGE, RETAIN or RETIRE class from Appendix B for its owner to confirm; then finding the ESC1, ESC2, ESC4 and ESC6 misconfigurations the kit checks, reading the CA audit filter, remediating under the migration gate and proving the fix with a second run; mapping each template to its issuer in the target, checking each CA's CRL and AIA locations for Entra certificate-based authentication and a Cloud PKI BYOCA issuing CA, and naming a renewal owner for each certificate class; and reading the strong certificate mapping evidence, from weak altSecurityIdentities values to the KDC's events and the NTAuth store. Each module has a knowledge check; Lab 1 runs the kit on a fictional Contoso PKI snapshot with no directory, and Lab 2 runs it in your own test forest."
+subtitle: "Modules on the certificate estate that outlives every migration: what AD CS holds up, hardening what stays, the target PKI and who owns it, device and user certificates, coexistence and migration, lifecycle and decommissioning, and PIV, with labs on a fictional PKI snapshot and in your own test forest"
+description: "A learning path for PKI owners, AD CS administrators, identity and endpoint engineers and ISSO reviewers, built from Book 07, PKI & Certificates, and the Start Kit's AD CS assessment: inventorying the CAs, templates and Public Key Services objects AD CS keeps in the forest, and giving every template a starting MIGRATE, BRIDGE, RETAIN or RETIRE class from Appendix B for its owner to confirm; then finding the ESC1, ESC2, ESC4 and ESC6 misconfigurations the kit checks, reading the CA audit filter, remediating under the migration gate and proving the fix with a second run; mapping each template to its issuer in the target, checking each CA's CRL and AIA locations for Entra certificate-based authentication and a Cloud PKI BYOCA issuing CA, and naming a renewal owner for each certificate class; and reading the strong certificate mapping evidence, from weak altSecurityIdentities values to the KDC's events and the NTAuth store; checking the domain controller template and reading CRLs for freshness and size during coexistence; reading what each CA's database still holds before it retires, and whether its final CRL outlasts its last certificate; and checking each PIV card holder's binding with the validation kit. Each module has a knowledge check; Lab 1 runs the kits on fictional Contoso data with no directory or tenant, and Lab 2 runs them in your own test forest or tenant."
 doc-type: training-path
 research-status: draft
 research-type: training module
@@ -17,7 +17,7 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: b69f388ff42a581a3648a387352d9d94371728745dd3ca4527e22f1c30dc0377
+reviewed-sha256: cf559b31771901d49ca28fe041ee9ad0242b1765d3c6866310056537178802ba
 last-reviewed: 2026-11-25
 ---
 # Learning path: PKI and Certificates {.unnumbered}
@@ -64,7 +64,19 @@ Import-Module .\powershell\FMPADAssessment -Force
 (Get-Module FMPADAssessment).Version.ToString()
 ```
 
-It prints `1.8.0`. Each Lab 1 writes its output to a dated run folder under `C:\FMWLabs\results`. Lab 2 writes under `$HOME\fmp-labs\pki` in Modules 1 and 2, and to a dated run folder under `C:\FMWLabs\results` in Modules 3 and 4. All of them are outside the kit's folder, so the kit's own tests still pass after you run them.
+It prints `1.9.0`. Each Lab 1 writes its output to a dated run folder under `C:\FMWLabs\results`. Lab 2 writes under `$HOME\fmp-labs\pki` in Modules 1 and 2, and to a dated run folder under `C:\FMWLabs\results` from Module 3 on. All of them are outside the kit's folder, so the kit's own tests still pass after you run them.
+
+**Module 7 uses the validation kit.** Its labs run the validation kit's PIV binding check, so download [validation-kit.zip](../../../downloads/validation-kit.zip) too and unzip it into `C:\FMWLabs\validation-kit`; in a clone of the repository it's `examples/validation-kit`. It runs in Windows PowerShell 5.1 or PowerShell 7:
+
+```powershell
+Expand-Archive -Path $HOME\Downloads\validation-kit.zip -DestinationPath C:\FMWLabs\validation-kit -Force
+Get-ChildItem C:\FMWLabs\validation-kit -Recurse -File | Unblock-File
+Set-Location C:\FMWLabs\validation-kit
+Import-Module .\powershell\ValidationKit -Force
+(Get-Module ValidationKit).Version.ToString()
+```
+
+It prints `0.1.0`, as Module 7's Lab 1, Step 1 does.
 
 ## What you'll be able to do
 
@@ -78,7 +90,10 @@ When you finish the path, you'll be able to:
 - remediate under the migration gate, then prove the fix with a second run and a finding-by-finding comparison;
 - map each template to its issuer in the target, and check that each CA's certificates carry the HTTP CRL and AIA locations Entra certificate-based authentication and a BYOCA issuing CA need;
 - name the renewal owner of each certificate class, and the four permission systems a certificate role spans;
-- read strong certificate mapping evidence: weak and strong `altSecurityIdentities` forms, the KDC's events 39, 40 and 41, and the CAs in the NTAuth store.
+- read strong certificate mapping evidence: weak and strong `altSecurityIdentities` forms, the KDC's events 39, 40 and 41, and the CAs in the NTAuth store;
+- check the domain controller certificate template and its CA, and read a CRL's freshness and size wherever relying parties fetch it;
+- read what a CA's database still holds, and say what keeps a CA from retiring and how long its final CRL and endpoints must last;
+- explain what the PIV credential and derived PIV are, the settings that make Entra certificate-based authentication accept them faithfully, and read the PIV binding check.
 
 ## Modules
 
@@ -90,14 +105,15 @@ Work through them in order.
 | 2 | [Hardening what stays](02-hardening-what-stays.md) | Chapter 03 | Lab 1, Lab 2 | 55 min |
 | 3 | [The target PKI and who owns it](03-the-target-pki-and-who-owns-it.md) | Chapters 04 and 05 | Lab 1, Lab 2 | 55 min |
 | 4 | [Device and user certificates](04-device-and-user-certificates.md) | Chapter 06, Appendix A | Lab 1, Lab 2 | 60 min |
+| 5 | [Coexistence and migration](05-coexistence-and-migration.md) | Chapter 07 | Lab 1, Lab 2 | 55 min |
+| 6 | [Lifecycle, monitoring and decommissioning](06-lifecycle-monitoring-and-decommissioning.md) | Chapter 08, Appendix C | Lab 1, Lab 2 | 55 min |
+| 7 | [PIV and derived PIV](07-piv-and-derived-piv.md) | Chapter 09 | Lab 1, Lab 2 | 50 min |
 
 : The modules of the PKI and Certificates learning path {.striped .hover}
 
-**Planned.** Three more modules follow: coexistence and migration (Chapter 07); lifecycle, monitoring and decommissioning, with the [CyberArk certificate lifecycle guide](../../books/guides/cyberark-certificate-lifecycle.md) (Chapter 08 and Appendix C); and PIV and derived PIV (Chapter 09).
+**Total time:** about 6 hours 20 minutes with each module's Lab 1. Lab 2, in your own test forest or tenant, isn't counted.
 
-**Total time:** about 3 hours 40 minutes with each module's Lab 1. Lab 2, in your own test forest, isn't counted.
-
-**Labs.** Lab 1 runs the kit against a fictional Contoso PKI snapshot, `tests\fixtures\pki-contoso.json`: two issuing CAs under an offline root, fifteen templates and each CA's `certutil -getreg` output. Module 4's Lab 1 adds a strong-mapping snapshot of the same forest, `tests\fixtures\cert-mapping-contoso.json`. Nothing reads a directory or a CA, and nothing leaves your laptop. The output shown in Modules 1 and 2 is what the commands printed on November 24, 2026, and in Modules 3 and 4 what they printed on November 25, 2026, in Windows PowerShell 5.1. Lab 2 runs the same commands in a test forest; the authors haven't run it, and each Lab 2 says how to back out what it did. [The Labs page](../labs.md#pki) lists every lab in the path.
+**Labs.** Lab 1 runs the kit against a fictional Contoso PKI snapshot, `tests\fixtures\pki-contoso.json`: two issuing CAs under an offline root, fifteen templates and each CA's `certutil -getreg` output. Later modules add more of the same fictional forest: a strong-mapping snapshot (Module 4), three CRLs and two CAs' `certutil -view` exports (Modules 5 and 6), all under `tests\fixtures`, and Module 7 uses the validation kit's two fictional tenants. Nothing reads a directory, a CA or a tenant, and nothing leaves your laptop. The output shown in Modules 1 and 2 is what the commands printed on November 24, 2026, and in Modules 3 to 7 what they printed on November 25, 2026, in Windows PowerShell 5.1. Lab 2 runs the same commands in a test forest or, for Module 7, a test tenant; the authors haven't run it, and each Lab 2 says how to back out what it did. [The Labs page](../labs.md#pki) lists every lab in the path.
 
 ::: {#pki-modules}
 :::

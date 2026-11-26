@@ -232,10 +232,12 @@ A read-only sweep of one domain controller's System log for those events:
 ```powershell
 # Read-only: list strong-mapping failures logged by the KDC on this domain controller.
 Get-WinEvent -FilterHashtable @{ LogName = 'System'; Id = 39, 40, 41 } -ErrorAction SilentlyContinue |
-    Where-Object { $_.ProviderName -match 'Kdc' } |
+    Where-Object { $_.ProviderName -match 'Kdc|Key-Distribution-Center' } |
     Select-Object TimeCreated, Id, ProviderName, Message |
     Sort-Object TimeCreated -Descending
 ```
+
+The filter matches both names the KDC's events can carry: Kdcsvc, the source KB5014754 names, and Microsoft-Windows-Kerberos-Key-Distribution-Center, the provider's full name. Which one a current domain controller reports hasn't been checked against a real one.
 
 Run it on every domain controller, or better, forward the events to the log workspace and alert on them ([Chapter 08](08-lifecycle-monitoring-and-decommissioning.md)). Each hit is a certificate the migration has to reissue or map.
 

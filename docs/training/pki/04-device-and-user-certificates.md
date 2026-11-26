@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Book 07"
 series-order: 4
 review-status: approved
-reviewed-sha256: 0c94690c078cdc208fccb2c5dd2a70b26c5fb25217877a0e49de3acf2d3ced4a
+reviewed-sha256: e62866111f6d0619e627a41fc85b4d9c2bb88ccf19537df73a4a14ca9fb30b93
 last-reviewed: 2026-11-25
 ---
 # Module 4: Device and user certificates {.unnumbered}
@@ -181,7 +181,7 @@ Prefer Git Bash? Go to the folder with `cd /c/FMWLabs/start-kit` and make the ru
     Expected output:
 
     ```text
-    1.8.0
+    1.9.0
     ```
 
 2. **List the templates whose target is an Intune profile.**
@@ -368,7 +368,7 @@ You read the same evidence in the test forest, sweep one domain controller's log
 
     `-viewstore` opens a window listing the certificates; close it when you've compared. Every CA there should be one approved to issue logon certificates for the forest.
 
-3. **Sweep one domain controller's log**, on the domain controller, elevated. This is Chapter 06's read-only sweep, and the kit's report should match it for that domain controller. Its provider filter also matches `Key-Distribution-Center`, as the kit's does, because the KDC's provider can appear by its full name, Microsoft-Windows-Kerberos-Key-Distribution-Center, rather than as Kdcsvc; Chapter 06's version matches `Kdc` only:
+3. **Sweep one domain controller's log**, on the domain controller, elevated. This is Chapter 06's read-only sweep, and the kit's report should match it for that domain controller. Like the kit, it matches `Kdc` or `Key-Distribution-Center`, because the KDC's provider can appear by its full name, Microsoft-Windows-Kerberos-Key-Distribution-Center, rather than as Kdcsvc. Which name a current domain controller reports hasn't been checked against a real one:
 
     ```powershell
     Get-WinEvent -FilterHashtable @{ LogName = 'System'; Id = 39, 40, 41 } -ErrorAction SilentlyContinue |
@@ -439,5 +439,5 @@ You listed the templates moving to Intune delivery, then read the strong-mapping
 
 ::: {.callout-tip}
 ## Continue the path
-[← Previous: Module 3](03-the-target-pki-and-who-owns-it.md) · [Learning path](index.md)
+[← Previous: Module 3](03-the-target-pki-and-who-owns-it.md) · [Learning path](index.md) · [Next: Module 5 →](05-coexistence-and-migration.md)
 :::
