@@ -22,7 +22,8 @@ developer workbook the daily checks workbook kit (--kit daily-checks-workbook-co
 the platform host guide its interface check (--kit platform-host-code), and
 Building SQL Server Identity its kit (--kit sql-server-identity-code), and the
 managed service account request guide its pack (--kit msa-request-pack: the forms and checker with
-the Non-Person Identity kit's Chapter 12 module).
+the Non-Person Identity kit's Chapter 12 module), and the Downloads page offers every kit in one
+zip (--kit all-kits, published as fmw-all-kits.zip: every examples folder once).
 This packs the folder as
 it is in the repository, scripts, README, fixtures and tests, at the top of the zip, with
 no folder of the zip's own name around it (a bundle's top level is its examples folders):
@@ -56,7 +57,7 @@ KITS = ("start-kit", "copilot-agent-pack", "app-modernization", "ansible", "vali
         "cisco-sdwan", "ticket-to-machine-task-catalog", "dp-consolidation", "provider-notices-code",
         "zta-results", "global-secure-access-code", "azure-security-code", "defender-xdr-code",
         "daily-checks-workbook-code", "information-protection-code",
-        "sql-server-identity-code", "msa-request-pack", "platform-host-code")
+        "sql-server-identity-code", "msa-request-pack", "platform-host-code", "all-kits")
 # Kits packed from several examples folders, each kept under its own path, instead of
 # from examples/<kit>. The Attribute-Driven Migration developer workbook's chapters 01-09
 # build on these folders and the Microsoft samples pinned under third_party/.
@@ -127,11 +128,15 @@ BUNDLES = {
     "msa-request-pack": ("msa-request-pack", "non-person-identity/powershell/NpiGmsaStandard", "non-person-identity/powershell/NpiCore"),
 }
 # Kits whose download name differs from their folder name.
-ZIP_NAMES = {"ansible": "ansible-examples"}
+# Every kit in one zip: every examples folder once, under its own name. Each kit zip above is
+# built from some of these folders, so this holds all of them with nothing repeated.
+BUNDLES["all-kits"] = tuple(sorted(d.name for d in (REPO / "examples").iterdir() if d.is_dir()))
+ZIP_NAMES = {"ansible": "ansible-examples", "all-kits": "fmw-all-kits"}
 # Files that must stay executable once extracted, beyond shell scripts: Ansible runs an
 # inventory script only if it has the execute bit.
 EXECUTABLES = {"ansible": {"inventory/cmdb_inventory.py"},
-               "attribute-driven-migration-code": {"ansible/inventory/cmdb_inventory.py"}}
+               "attribute-driven-migration-code": {"ansible/inventory/cmdb_inventory.py"},
+               "all-kits": {"ansible/inventory/cmdb_inventory.py"}}
 FIXED_TIME = (2026, 1, 1, 0, 0, 0)
 SKIP_PARTS = {"__pycache__", ".pytest_cache", "node_modules", "target", "dist", "reports"}
 # Windows can't create these names, so a file called one would break extraction there.
