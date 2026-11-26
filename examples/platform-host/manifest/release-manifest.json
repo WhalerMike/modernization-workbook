@@ -1,0 +1,42 @@
+{
+  "_comment": "The platform host's release manifest (Book 10, Appendix B, F.3): every binary the build downloads, pinned to a URL and a SHA-256. Gitea's hash is the one its release publishes (the .sha256 file beside the binary). Microsoft publishes no hash for the IIS extension installers, so their hashes were recorded from the lab build's own download after Get-AuthenticodeSignature reported a valid Microsoft signature; the build refuses a file whose hash or signer differs. An agency with an internal artifact mirror substitutes its URLs and keeps the hashes. Review the versions at every release: this file is the change record's attachment for an upgrade.",
+  "version": "2026.11.26",
+  "components": [
+    {
+      "id": "gitea",
+      "name": "Gitea",
+      "version": "28.4.0",
+      "released": "2026-11-15",
+      "url": "https://github.com/go-gitea/gitea/releases/download/v28.4.0/gitea-28.4.0-windows-amd64.exe",
+      "sha256": "f67cfc9179dbcf43d730622df5006ee2fa64f626422c734cea89af50f7ad7cc3",
+      "hashSource": "published by the release (gitea-28.4.0-windows-amd64.exe.sha256)"
+    },
+    {
+      "id": "git",
+      "name": "Git for Windows (Gitea needs git.exe on the PATH)",
+      "version": "2.56.1",
+      "released": "2026-11-10",
+      "url": "https://github.com/git-for-windows/git/releases/download/v2.56.1.windows.1/Git-2.56.1-64-bit.exe",
+      "sha256": "c330c72e10b408cc39994bfefdb63542b0d93d21699325c3e0bd874af8a5a559",
+      "hashSource": "published in the release notes"
+    },
+    {
+      "id": "urlrewrite",
+      "name": "IIS URL Rewrite 2.1 (x64)",
+      "version": "2.1",
+      "url": "https://download.microsoft.com/download/1/2/8/128E2E22-C1B9-44A4-BE2A-5859ED1D4592/rewrite_amd64_en-US.msi",
+      "sha256": "",
+      "signer": "Microsoft Corporation",
+      "hashSource": "recorded from the lab build's download after a valid Microsoft Authenticode signature"
+    },
+    {
+      "id": "arr",
+      "name": "IIS Application Request Routing 3.0 (x64)",
+      "version": "3.0",
+      "url": "https://go.microsoft.com/fwlink/?LinkID=615136",
+      "sha256": "",
+      "signer": "Microsoft Corporation",
+      "hashSource": "recorded from the lab build's download after a valid Microsoft Authenticode signature"
+    }
+  ]
+}

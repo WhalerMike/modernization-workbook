@@ -1,0 +1,59 @@
+{
+  "_comment": "The lab host: a disposable Windows Server 2025 machine (the kit's GitHub-hosted lab runs on windows-2025) built by lab/Build-PhLabHost.ps1 with the single-host SQLite profile. No domain, so Gitea runs as Local System and the certificate is self-signed; production uses settings.template.json. Fictional names under contoso.test.",
+  "environment": "lab",
+  "host": {
+    "site": "FMPReverseProxy",
+    "hostName": "git.fmp.lab.contoso.test",
+    "service": "gitea",
+    "giteaExe": "C:\\FMPLab\\Gitea\\gitea.exe",
+    "appIni": "C:\\FMPLab\\Gitea\\custom\\conf\\app.ini",
+    "firewallGroup": "Platform host",
+    "backupPattern": "gitea-dump-*.zip"
+  },
+  "gitea": {
+    "baseUrl": "https://git.fmp.lab.contoso.test",
+    "tokenVariable": "PH_GITEA_TOKEN",
+    "skipCertificateCheck": true
+  },
+  "expected": {
+    "hostName": "git.fmp.lab.contoso.test",
+    "giteaHttpPort": 3000,
+    "giteaSshPort": 2222,
+    "allowPort80": false,
+    "forbiddenPorts": [22],
+    "minCertificateDays": 30,
+    "minKeySize": 4096,
+    "allowSelfSigned": true,
+    "maxAllowedContentLength": 524288000,
+    "logFields": ["Date", "Time", "ClientIP", "UserName", "ServerIP", "Method", "UriStem", "UriQuery", "HttpStatus", "Win32Status", "TimeTaken", "ServerPort", "UserAgent", "HttpSubStatus", "Host", "BytesSent", "BytesRecv"],
+    "appIni": [
+      { "section": "server", "key": "PROTOCOL", "value": "http" },
+      { "section": "server", "key": "HTTP_ADDR", "value": "127.0.0.1" },
+      { "section": "server", "key": "HTTP_PORT", "value": "3000" },
+      { "section": "server", "key": "ROOT_URL", "value": "https://git.fmp.lab.contoso.test/" },
+      { "section": "server", "key": "START_SSH_SERVER", "value": "true" },
+      { "section": "server", "key": "SSH_PORT", "value": "2222" },
+      { "section": "server", "key": "SSH_LISTEN_PORT", "value": "2222" },
+      { "section": "server", "key": "LFS_START_SERVER", "value": "true" },
+      { "section": "service", "key": "DISABLE_REGISTRATION", "value": "true" },
+      { "section": "service", "key": "REQUIRE_SIGNIN_VIEW", "value": "true" },
+      { "section": "security", "key": "INSTALL_LOCK", "value": "true" },
+      { "section": "security", "key": "DISABLE_GIT_HOOKS", "value": "true" },
+      { "section": "security", "key": "SECRET_KEY", "value": "<set>" },
+      { "section": "security", "key": "INTERNAL_TOKEN", "value": "<set>" },
+      { "section": "database", "key": "DB_TYPE", "value": "sqlite3" },
+      { "section": "mirror", "key": "MIN_INTERVAL", "value": "10m" }
+    ],
+    "serviceAccount": "LocalSystem",
+    "runUser": "{COMPUTERNAME}$",
+    "serviceAccountAcl": "NT AUTHORITY\\SYSTEM",
+    "governedPaths": ["C:\\FMPLab\\Gitea", "C:\\FMPLab\\GitRepos", "C:\\FMPLab\\Backups"],
+    "broadPrincipals": ["Everyone", "BUILTIN\\Users", "NT AUTHORITY\\Authenticated Users"],
+    "webhookHosts": ["drift.fmp.lab.contoso.test", "docs-build.fmp.lab.contoso.test"],
+    "maxMirrorAgeHours": 24,
+    "maxLocalAdmins": 1,
+    "backupPath": "C:\\FMPLab\\Backups",
+    "recoveryPointHours": 24,
+    "requireArc": false
+  }
+}
