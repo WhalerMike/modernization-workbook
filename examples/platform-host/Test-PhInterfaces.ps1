@@ -38,3 +38,4 @@ if ($EvidencePath) {
     "KSIs:     {0}" -f ($e.Ksis -join ', ')
 }
 if (@($rows | Where-Object Status -EQ 'Finding').Count) { exit 1 }
+exit 0

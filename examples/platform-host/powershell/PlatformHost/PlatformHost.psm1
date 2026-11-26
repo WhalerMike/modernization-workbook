@@ -315,7 +315,8 @@ function Test-PhSnapshot {
         }
         $admins = @(Get-PhProp $Gitea 'admins' @())
         if ($admins.Count -gt [int]$exp.maxLocalAdmins) { $q += "$($admins.Count) Gitea administrators (limit $($exp.maxLocalAdmins))" }
-        $sum = "anonymous read refused ($($Gitea.anonymousStatus)); $(@($Gitea.webhooks).Count) webhooks to listed hosts; $(@($Gitea.mirrors).Count) mirrors under $($exp.maxMirrorAgeHours) h; $($admins.Count) administrators"
+        $hn = @($Gitea.webhooks).Count; $mn = @($Gitea.mirrors).Count
+        $sum = "anonymous read refused ($($Gitea.anonymousStatus)); $hn webhook$(if ($hn -ne 1) { 's' }) to listed hosts; $mn mirror$(if ($mn -ne 1) { 's' }) synced within $($exp.maxMirrorAgeHours) h; $($admins.Count) administrator$(if ($admins.Count -ne 1) { 's' })"
         $rows.Add((New-PhRow 'PH-10' $(if ($q.Count) { 'Finding' } else { 'Pass' }) $(if ($q.Count) { $q -join '; ' } else { $sum }) 'A.4, D.2, F.1'))
     }
 
@@ -346,7 +347,7 @@ function Format-PhRows {
     $f = @($Rows | Where-Object Status -EQ 'Finding').Count
     $nc = @($Rows | Where-Object Status -EQ 'NotChecked').Count
     $p = @($Rows | Where-Object Status -EQ 'Pass').Count
-    "{0} pass, {1} findings, {2} not checked" -f $p, $f, $nc
+    "{0} pass, {1} finding{3}, {2} not checked" -f $p, $f, $nc, $(if ($f -ne 1) { 's' } else { '' })
 }
 
 function Write-PhEvidence {
