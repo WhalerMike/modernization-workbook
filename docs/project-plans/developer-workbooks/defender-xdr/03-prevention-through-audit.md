@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: e3af0f0725554259824a143e77eec1daf418b337843f57e20d236ac5cd937407
-last-reviewed: 2026-11-18
+reviewed-sha256: 093e51af798e0a0d86db9ad206933888e7638f7261932c91c6c92325f362a4cd
+last-reviewed: 2026-11-25
 ---
 # Chapter 03 — Prevention Through Audit
 

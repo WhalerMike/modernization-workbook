@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 12"
 series-order: 1
 review-status: approved
-reviewed-sha256: f45206b27ac31c38c78b03f7ee9acf73c151b44a01476790af4acdb2148db0ab
-last-reviewed: 2026-11-22
+reviewed-sha256: da5258221a6dd8e28743671f1b9f94f7ff4b613a191b96291730b53f90f99262
+last-reviewed: 2026-11-25
 ---
 # Module 1: Architecture, access and onboarding {.unnumbered}
 

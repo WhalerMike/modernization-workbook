@@ -7,7 +7,9 @@ research-type: training module
 research-book: "Book 06"
 series-order: 10
 date-modified: 2026-11-25
-review-status: pending
+review-status: approved
+reviewed-sha256: 09b9371115e1bfff15f6586b0e8255cb53e56873f8ef7075656a3e27b52c1887
+last-reviewed: 2026-11-25
 ---
 # Data Platform, Module 10: Deploying to Test and Production {.unnumbered}
 

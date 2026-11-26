@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 50ed70043bebd74815f0b16326d7c2b67ce6f5bf59c4b34f9aab07e8db1a01b9
-last-reviewed: 2026-11-18
+reviewed-sha256: 913435e4c81b5674e8b1e51052840f4b2dd286b003892bb619cb4b9aba5b40a2
+last-reviewed: 2026-11-25
 ---
 # Chapter 04 — Attack Surface Reduction: Audit, Warn, Block
 

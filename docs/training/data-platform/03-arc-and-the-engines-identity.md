@@ -7,7 +7,9 @@ research-type: training module
 research-book: "Book 06"
 series-order: 3
 date-modified: 2026-11-25
-review-status: pending
+review-status: approved
+reviewed-sha256: 4f9f274e97c656c5c0e0b29d6093893722138a4813fd384b1df28ca8ebb652c7
+last-reviewed: 2026-11-25
 ---
 # Data Platform, Module 3: Arc and the Engine's Identity {.unnumbered}
 

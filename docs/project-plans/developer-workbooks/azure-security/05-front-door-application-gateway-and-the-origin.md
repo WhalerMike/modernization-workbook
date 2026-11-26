@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 69830e070486a65d9a53a3b82c8b01c5c8c1d66a37780d6d0d5be7d27e2ab4a2
-last-reviewed: 2026-11-18
+reviewed-sha256: 7d205aa3fa2d99c0e4017b6506bec32782fabe2c68fb7f4f3c9dcab8b4a0325e
+last-reviewed: 2026-11-25
 ---
 # Chapter 05 — Front Door, Application Gateway and the Origin
 

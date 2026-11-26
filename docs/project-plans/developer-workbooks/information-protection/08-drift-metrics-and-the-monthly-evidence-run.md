@@ -11,7 +11,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 3581cce607656acbb4011e8e97d0f9bdd23626ef696782d073f970c50a59ef0c
+reviewed-sha256: c07c5163a244089e020c8b7d13a9e5fb0b7f87b134463bae52e6990f6bb289d5
 last-reviewed: 2026-11-25
 ---
 # Chapter 08 — Drift, Metrics and the Monthly Evidence Run

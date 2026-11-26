@@ -7,7 +7,9 @@ research-type: training module
 research-book: "Book 06"
 series-order: 6
 date-modified: 2026-11-25
-review-status: pending
+review-status: approved
+reviewed-sha256: 5dfd2cbec363bca1969a403ba0ea3aa284fbf50f51864bd5cea86f0d353be0c7
+last-reviewed: 2026-11-25
 ---
 # Data Platform, Module 6: NTLM and the SPNs {.unnumbered}
 

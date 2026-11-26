@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 12"
 series-order: 2
 review-status: approved
-reviewed-sha256: a36ac9b172394026893f7cbe4cf8de3bdceccccc04d9c69faff5dd2a490b7169
-last-reviewed: 2026-11-22
+reviewed-sha256: 38306656f886dd8cff1258e04eaef9d7fa727aa6c0d63e3590b473f9130046c0
+last-reviewed: 2026-11-25
 ---
 # Module 2: Prevention and Attack Surface Reduction {.unnumbered}
 

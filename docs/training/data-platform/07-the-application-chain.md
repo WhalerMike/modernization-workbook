@@ -7,7 +7,9 @@ research-type: training module
 research-book: "Book 06"
 series-order: 7
 date-modified: 2026-11-25
-review-status: pending
+review-status: approved
+reviewed-sha256: ec084fbe310aef7b16a633d371124b3dfa682e307cf1668443d2d26118f40783
+last-reviewed: 2026-11-25
 ---
 # Data Platform, Module 7: The Application Chain {.unnumbered}
 

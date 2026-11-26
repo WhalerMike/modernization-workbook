@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 17ceb45e3dba62c479bcfa336bc540abe0b54bc301de7d6b06ae423180930828
-last-reviewed: 2026-11-18
+reviewed-sha256: 3e2f70cec4e336a1362d6c2f5aad014d61c1126da279ef8568f0e67e6c755459
+last-reviewed: 2026-11-25
 ---
 # Chapter 04 — The Web Application Firewall
 

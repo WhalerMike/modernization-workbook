@@ -11,7 +11,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 5e53045a0de63c876e89cae594ac8af13e19915bf3c172c61613c4f64adfa630
+reviewed-sha256: ebd7ade0e52f460ef3730f42b1b42ba44dffeac3592b113600b50fc872153451
 last-reviewed: 2026-11-25
 ---
 # Chapter 01 — Access and the Read Path

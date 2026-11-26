@@ -7,7 +7,9 @@ research-type: training module
 research-book: "Book 06"
 series-order: 1
 date-modified: 2026-11-25
-review-status: pending
+review-status: approved
+reviewed-sha256: 1c1dc1450b104a96961fbc855041df3dcf99d7ce7f7f7aa76119083fa57af79d
+last-reviewed: 2026-11-25
 ---
 # Data Platform, Module 1: The Estate and the Consolidation Gate {.unnumbered}
 

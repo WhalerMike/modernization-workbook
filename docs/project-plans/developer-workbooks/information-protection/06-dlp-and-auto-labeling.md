@@ -11,7 +11,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: fb74573d1ae1e15978fd8ee37291fddb8d4f0748b37355784146a9d0c63393bb
+reviewed-sha256: 6a87920619a93f1b11365b09f1fb3dcb30282ecaca2358d8d0dab7b6dc583633
 last-reviewed: 2026-11-25
 ---
 # Chapter 06 — DLP and Auto-Labeling

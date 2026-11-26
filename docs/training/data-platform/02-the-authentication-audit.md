@@ -7,7 +7,9 @@ research-type: training module
 research-book: "Book 06"
 series-order: 2
 date-modified: 2026-11-25
-review-status: pending
+review-status: approved
+reviewed-sha256: 02c9daae1e9136181e54cf3e41c8c10f73fc1b48ebc9b9f78297a491605babc1
+last-reviewed: 2026-11-25
 ---
 # Data Platform, Module 2: The Authentication Audit {.unnumbered}
 
