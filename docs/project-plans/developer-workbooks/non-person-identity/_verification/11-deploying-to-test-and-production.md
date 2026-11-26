@@ -96,4 +96,4 @@ The kit's deploy code changed with decisions [WD-159 to WD-170](../../../../abou
 | M4 | Step 1.4's expected apply line (`Apply as Pipeline: 1 Sent` and the result row) | Step 1.4 | the format the write path prints, shown with the test fixture's values; the deploy tests apply the same plan against a fake test forest (`Sent`, verified), but no command on the page runs it against a fixture | `Invoke-NpiKerberosIslandAction.ps1`; `deploy/tests/NpiDeploy.Tests.ps1` |
 | M5 | `deploy/tests/NpiDeploy.Tests.ps1` has 60 tests | The code this chapter adds | updated by running it | local run, November 20, 2026 |
 | M6 | Continue the book links to Chapter 12 | Continue the book | link added | — |
-
+| M7 | The settings file's `ad.gmsaTags` (seven keys, WD-175) become the smoke-test gMSA's description, so the dry run's values changed: PF-01's settings hashes `e8ba832db418` (test) and `7cf7da50dd45` (production), the smoke-test gMSA's plan `923aa507…` and the rollback plan `ec3fb73c…`; every other line is unchanged | Settings rules; Dry run on the kit's fixtures | updated by running the commands as written | local run, November 25, 2026 |

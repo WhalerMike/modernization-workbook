@@ -17,5 +17,7 @@
   "sponsor": "sales.sponsor@contoso.example",
   "sponsorIsFederalEmployee": true,
   "riskTier": "R4",
+  "environment": "prod",
+  "entraTarget": "Undecided",
   "supersedes": "svc-crm"
 }

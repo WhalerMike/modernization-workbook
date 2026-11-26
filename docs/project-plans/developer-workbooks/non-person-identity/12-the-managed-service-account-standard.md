@@ -11,7 +11,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 02fc1e5cfdf28f9e723ace9d5983ccab439621722a674e183f9a8c779ff034ea
+reviewed-sha256: 64a9cc33940ee7cd75082a7e1c9ee1b979270cf470c735b682fc661c87f8f249
 last-reviewed: 2026-11-25
 ---
 # Chapter 12 — The Managed Service Account Standard
@@ -80,14 +80,14 @@ SailPoint's and Defender for Identity's own export field names weren't specified
 | Check | Findings | What it enforces |
 |---|---|---|
 | Request | NPI-STD-01 to -09 | Approved in SailPoint (WD-162); a ServiceNow change record; the name standard (WD-159, and WD-173's lowercase letters, digits and hyphens, an app short name that starts with a letter, and a role suffix only from the list); exactly two owners and a federal-employee sponsor who isn't one of them (WD-164); the `DL-gMSA-<app>-Hosts` group (WD-160); SPNs consistent with the request; a dMSA run by a person and superseding an account (WD-163); a known workload, type and risk tier |
-| Reconciliation | NPI-STD-10 to -19, -30 | Every gMSA and dMSA aggregated by SailPoint with one owner; retrievers one domain local group; interval 30; AES256 only; a no-SPN gMSA outbound-only or with a recorded reason (WD-154); no privileged group; in the service-account OU (WD-161); every account explained by a request (the drift rule of [Book 13, Chapter 04](../../../books/b13-governance/04-change-control-and-provenance.md)); AD tags in the description that disagree with the register, which follows SailPoint ([WD-175](../../../about/decision-register.md#wd-175)): checked only on an account that has tags, because Chapter 06's plan doesn't write them yet |
+| Reconciliation | NPI-STD-10 to -19, -30 | Every gMSA and dMSA aggregated by SailPoint with one owner; retrievers one domain local group; interval 30; AES256 only; a no-SPN gMSA outbound-only or with a recorded reason (WD-154); no privileged group; in the service-account OU (WD-161); every account explained by a request (the drift rule of [Book 13, Chapter 04](../../../books/b13-governance/04-change-control-and-provenance.md)); AD tags in the description that disagree with the register, which follows SailPoint ([WD-175](../../../about/decision-register.md#wd-175)): checked only on an account that has tags, because an account created before WD-175 has none; Chapter 06's plan writes them on every new account |
 | Certification | NPI-STD-20 to -23 | Due by risk tier: R1 every 3 months, R2 every 6, R3 every 12 (WD-166); each `REVOKE` a ServiceNow `stale_access` finding; a decision by someone who isn't an owner doesn't count |
 | Defender for Identity | NPI-STD-24 to -26 | A user account still serving as a service account; an sMSA; an account Defender for Identity sees that the register doesn't |
 | Retirement | NPI-STD-27 to -29 | A delete candidate only after 90 days disabled with no sign-in since (WD-167), and never an account a dMSA superseded, which stays disabled because Learn says never to delete it;[^np12-dmsa-setup] a sign-in after the disable; the register and Active Directory disagreeing |
 
 : What Chapter 12 checks {.striped .hover}
 
-**What it hands to Chapter 06.** For each request that passes, a `kerberos-replatform.csv` row with Chapter 06's twelve columns, including `RequestId` and `ChangeRecord`, and, for a gMSA, a `password-retrievers.json` entry naming its one group. They go into Chapter 06's reviewed inputs in a reviewed pull request; Chapter 06's plan refuses a write with no request or change record.
+**What it hands to Chapter 06.** For each request that passes, a `kerberos-replatform.csv` row with Chapter 06's thirteen columns, including `RequestId`, `ChangeRecord` and `Tags` (the request's tags with `Request=` and `Change=`, which Chapter 06 writes as the new account's AD description, [WD-175](../../../about/decision-register.md#wd-175)), and, for a gMSA, a `password-retrievers.json` entry naming its one group. They go into Chapter 06's reviewed inputs in a reviewed pull request; Chapter 06's plan refuses a write with no request or change record, and a create with no tags.
 
 **What it never does.** It writes nothing to Active Directory, SailPoint, ServiceNow or Defender for Identity, and it deletes nothing. `servicenow-findings.json` is the payload a ServiceNow import or the integration kit's client posts; this chapter doesn't post it.
 
@@ -148,7 +148,7 @@ Retirement: 1 DeleteCandidate, 1 EnabledInAd, 1 SignInSinceDisable, 1 Wait; noth
   NPI-STD-01  REQ-2026-0203
   ...
   NPI-STD-29  gmsa-report$
-Manifest SHA-256: ba82552844d983981a0651d463253e3830707959b23467d73c8acc41d011b2ee
+Manifest SHA-256: 39aae5247108f57fd6aba9bdc56491b63a29370fc94dcf45aa5ada6da1dd53f2
 ```
 
 **Step 2: Read the findings.** Look for `gmsa-ops$`: it's in Domain Admins (NPI-STD-16), SailPoint never aggregated it (NPI-STD-10), and no request explains it (NPI-STD-18).
@@ -163,7 +163,7 @@ Get-Content out/msa-standard/findings.json -Raw | ConvertFrom-Json | Sort-Object
 
 <!-- capture:end -->
 
-**Step 3: Read what the code hands to Chapter 06.** The approved gMSA gets its retriever group, and both rows carry the SailPoint request and the ServiceNow change.
+**Step 3: Read what the code hands to Chapter 06.** The approved gMSA gets its retriever group, and both rows carry the SailPoint request, the ServiceNow change and the tags.
 
 ```powershell
 Get-Content out/msa-standard/kerberos-replatform.csv
@@ -179,9 +179,9 @@ Get-Content out/msa-standard/password-retrievers.json
 **Expected:**
 
 ```text
-"SamAccountName","NewAccount","Workload","Hosts","SpnOwnerUpn","EndDate","Reference","HostChangedOn","MigrationStartedOn","OutboundOnlyReason","RequestId","ChangeRecord"
-"svc-billing","dmsa-billing$","ScheduledTask","BILL01","","2027-09-30","","","","","REQ-2026-0202","CHG0041202"
-"svc-payroll","gmsa-payroll$","Service","PAY01;PAY02","payroll.owner@contoso.example","2028-12-31","","","","","REQ-2026-0201","CHG0041201"
+"SamAccountName","NewAccount","Workload","Hosts","SpnOwnerUpn","EndDate","Reference","HostChangedOn","MigrationStartedOn","OutboundOnlyReason","RequestId","ChangeRecord","Tags"
+"svc-billing","dmsa-billing$","ScheduledTask","BILL01","","2027-09-30","","","","","REQ-2026-0202","CHG0041202","SystemId=SYS-0533; Owner1=billing.owner@contoso.example; Owner2=billing.backup@contoso.example; Sponsor=revenue.sponsor@contoso.example; Environment=prod; Tier=R1; EntraTarget=Undecided; Request=REQ-2026-0202; Change=CHG0041202"
+"svc-payroll","gmsa-payroll$","Service","PAY01;PAY02","payroll.owner@contoso.example","2028-12-31","","","","","REQ-2026-0201","CHG0041201","SystemId=SYS-0412; Owner1=payroll.owner@contoso.example; Owner2=payroll.backup@contoso.example; Sponsor=finance.sponsor@contoso.example; Environment=prod; Tier=R2; EntraTarget=AppRegistrationFederated; Request=REQ-2026-0201; Change=CHG0041201"
 ```
 
 and a `password-retrievers.json` whose `accounts` has `gmsa-payroll$` with `CN=DL-gMSA-payroll-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example`. The dMSA has no entry: a dMSA learns its hosts during its migration.

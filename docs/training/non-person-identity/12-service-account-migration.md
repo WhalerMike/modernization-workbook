@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Books 02, 04"
 series-order: 12
 review-status: approved
-reviewed-sha256: 352e2af4b5ea0d7e8dba1da610f9e7e2a28a51790e19308c23f663fdfc91f0c4
+reviewed-sha256: 302973e30ae4cb0a6d341301c57631d68a5e5e4ba15c3438fee0ac145faa49eb
 last-reviewed: 2026-11-25
 ---
 # Module 12: Migrate a service account, from a user account to a gMSA, a dMSA or Microsoft Entra {.unnumbered}
@@ -204,7 +204,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
     Run by: 1 person, 4 pipeline
     Island list: 6 accounts, 4 ready for P4.6; hand-off ready: False
     Reconciliation (D11 KerberosIsland): 1 HandedOff, 4 OnIslandList, 1 Unreconciled
-    Plan SHA-256: 35c1efff8a8030b9e1d784578db673302817c3ee34e6e211638c1898b7b15b61
+    Plan SHA-256: 4021225078c239e5c842fc3f0563222cff13b2099a33ca088cdc026601b8268f
     ```
 
     `KDS root key Ready` is the guide's step A2: the check reads the key's start time, with a delegated read, and never creates a key.

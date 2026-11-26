@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Books 02, 04"
 series-order: 6
 review-status: approved
-reviewed-sha256: f94c898b3c0d7520e43b56ec9a6021b4fa34d53f0ce0333f31dfc3d9a83f0e63
+reviewed-sha256: 0a8014c5ebde304f7f75fd88c7d673857f5ccdcecf50c03e121cf1e148051cdd
 last-reviewed: 2026-11-25
 ---
 # Module 6: Conditional Access for workload identities {.unnumbered}
@@ -386,7 +386,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
     It prints a line for each test file, with the time it took, then this last line:
 
     ```text
-    Tests Passed: 554, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
+    Tests Passed: 564, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
     ```
 
 Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:

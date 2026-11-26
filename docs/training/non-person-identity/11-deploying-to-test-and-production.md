@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Books 02, 04"
 series-order: 11
 review-status: approved
-reviewed-sha256: 8c402eb08591eb7ad7978220921c0f83d6c14b5ac2ba0f1af35ed02eedb771f5
+reviewed-sha256: b4a86cd33d64c90b52252446f0dbe68a5f53e071dc8ca58c660d222666ceac14
 last-reviewed: 2026-11-25
 ---
 # Module 11: Deploy to test, then production {.unnumbered}
@@ -240,7 +240,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
 
     ```text
     Preflight (Fixture, test, CHG-2026-1102-T): 12 Pass, 1 Warn
-      PF-01 Pass   All       Settings file: no secret, no placeholder, this stage: test, gcc, sha256 bea7ef8879f0
+      PF-01 Pass   All       Settings file: no secret, no placeholder, this stage: test, gcc, sha256 e8ba832db418
       PF-02 Pass   G3        Deployment identity uses a certificate or federated credential, no secret: 0 secret(s), 1 certificate(s)
       PF-03 Pass   G4        Workload ID Premium, to create or change workload Conditional Access: Workload_Identities_P2, 5 enabled unit(s)
       PF-04 Pass   G6        Entra ID P1 or P2, for the service principal sign-in logs: SPE_E5
@@ -271,7 +271,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
     ```text
     Plan: CreateGmsa gmsa-npismoke$ in OU=Service Accounts,DC=corp-test,DC=contoso,DC=example, retriever CN=DL-gMSA-npismoke-Hosts,OU=Groups,DC=corp-test,DC=contoso,DC=example; runBy pipeline; request SP-REQ-0002001, change CHG-2026-1102-T
     Outbound-only: yes
-    Plan SHA-256: 0bcf2917c6845ce4b55f19fa578ee44be84c73166715747d0f89039307734f6a
+    Plan SHA-256: 923aa50754993d543c39c342ccbf441373fe3d0ad89a04a16cd7118fc7c15bfe
     ```
 
     The plan is the pipeline's: in a live stage a reviewer approves its hash and the pipeline's gMSA applies it with Chapter 06's write path. It writes nothing here.
@@ -317,7 +317,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
       RB-05 G5      AdEnable               svc-payexport
       RB-06 Cleanup SpDisable              synthetic service principal
       RB-07 Cleanup AdDisable              svc-npi-smoke
-    Plan SHA-256 for the reviewer: 00105622acf1165bd55d606ea781b908d700f79f9f82cba5e67bd4f0d3081b81
+    Plan SHA-256 for the reviewer: ec3fb73c41e06d40fd7c5a484564579884dd0fac6f9255a02f2e787d6d940afa
     ```
 
     No action is a delete.
@@ -331,7 +331,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
     Expected output:
 
     ```text
-    The plan's SHA-256 is 00105622acf1165bd55d606ea781b908d700f79f9f82cba5e67bd4f0d3081b81, not the approved 0000000000000000000000000000000000000000000000000000000000000000. Nothing was sent.
+    The plan's SHA-256 is ec3fb73c41e06d40fd7c5a484564579884dd0fac6f9255a02f2e787d6d940afa, not the approved 0000000000000000000000000000000000000000000000000000000000000000. Nothing was sent.
     ```
 
 7. **Dry-run the rollback with the approved hash:**
@@ -367,7 +367,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
 
     ```text
     Preflight (Fixture, production, CHG-2026-1116-P): 14 Pass
-      PF-01 Pass   All       Settings file: no secret, no placeholder, this stage: production, gcc, sha256 3c55fa49e63c
+      PF-01 Pass   All       Settings file: no secret, no placeholder, this stage: production, gcc, sha256 7cf7da50dd45
       PF-02 Pass   G3        Deployment identity uses a certificate or federated credential, no secret: 0 secret(s), 1 certificate(s)
       PF-03 Pass   G4        Workload ID Premium, to create or change workload Conditional Access: Workload_Identities_P2, 5 enabled unit(s)
       PF-04 Pass   G6        Entra ID P1 or P2, for the service principal sign-in logs: SPE_E5
@@ -448,7 +448,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
              60           0           0
     ```
 
-    The tests sit outside `tests/`, so the 554 every other module's Lab 1 counts doesn't change.
+    The tests sit outside `tests/`, so the 564 every other module's Lab 1 counts doesn't change.
 
 Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
 
