@@ -69,6 +69,8 @@ body.quarto-dark.fmw-new-look {
 .nl-tile-title a { color: var(--nl-navy); text-decoration: none; }
 .nl-tile-title a::after { content: ""; position: absolute; inset: 0; }
 .nl-tile-title a:hover, .nl-tile-title a:focus-visible { text-decoration: underline; }
+/* The topic cards' titles read as links: teal, as every other link on the page. */
+.nl-topic-tiles .nl-tile-title a { color: var(--nl-teal-text); }
 .nl-tile-desc { font-size: .92rem; margin: 0 0 .5rem; }
 .nl-tile-count { font-family: "IBM Plex Mono", monospace; font-size: .78rem; color: var(--nl-teal-text); margin: 0; }
 .nl-more { margin-top: .75rem; font-weight: 600; }
