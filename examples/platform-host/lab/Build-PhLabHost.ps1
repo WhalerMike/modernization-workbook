@@ -21,14 +21,17 @@
 #>
 [CmdletBinding()]
 param(
-    [string]$SettingsPath = (Join-Path (Split-Path -Parent $PSScriptRoot) 'config/settings.lab.json'),
-    [string]$ManifestPath = (Join-Path (Split-Path -Parent $PSScriptRoot) 'manifest/release-manifest.json'),
+    [string]$SettingsPath,
+    [string]$ManifestPath,
     [string]$Root = 'C:\FMPLab',
     [string]$UpstreamUrl = 'https://github.com/octocat/Hello-World.git'
 )
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 Import-Module (Join-Path (Split-Path -Parent $PSScriptRoot) 'powershell/PlatformHost/PlatformHost.psm1') -Force
+# Windows PowerShell 5.1 leaves $PSScriptRoot empty in a param block's defaults under -File, so defaults are set here.
+if (-not $SettingsPath) { $SettingsPath = Join-Path (Split-Path -Parent $PSScriptRoot) 'config/settings.lab.json' }
+if (-not $ManifestPath) { $ManifestPath = Join-Path (Split-Path -Parent $PSScriptRoot) 'manifest/release-manifest.json' }
 $settings = Read-PhJson -Path $SettingsPath
 $manifest = Read-PhJson -Path $ManifestPath
 $hostName = $settings.expected.hostName
@@ -79,6 +82,9 @@ foreach ($p in @(@{ n = 'Platform host HTTPS (443)'; port = 443 }, @{ n = "Platf
 }
 Set-NetFirewallProfile -Profile Domain, Private, Public -Enabled True -DefaultInboundAction Block
 "  Firewall: every profile on, inbound blocked by default; allow 443 and $($settings.expected.giteaSshPort)"
+# Appendix B: Gitea runs its own SSH server and the operating system's OpenSSH server isn't used. The runner image has one.
+$sshd = Get-Service -Name sshd -ErrorAction SilentlyContinue
+if ($sshd) { Stop-Service sshd; Set-Service sshd -StartupType Disabled; "  OpenSSH Server (sshd) was $($sshd.Status.ToString().ToLower()): stopped and disabled, so nothing answers on 22" } else { "  OpenSSH Server (sshd): not installed" }
 Add-Content -Path "$env:windir\System32\drivers\etc\hosts" -Value "`n127.0.0.1 $hostName"
 "  hosts: $hostName -> 127.0.0.1"
 

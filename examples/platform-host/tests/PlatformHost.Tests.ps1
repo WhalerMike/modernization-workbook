@@ -9,7 +9,7 @@ BeforeAll {
     $script:Fix = Join-Path $PSScriptRoot 'fixtures/lab'
     function Get-Fresh { , (Read-PhJson -Path (Join-Path $Fix 'snapshot-windows.json')), (Read-PhJson -Path (Join-Path $Fix 'snapshot-gitea.json')) }
     function Invoke-Check($w, $g, $s = $Settings, $asOf) {
-        if (-not $asOf) { $asOf = $w.takenAt }
+        if (-not $asOf) { $asOf = Format-PhUtc $w.takenAt }
         Test-PhSnapshot -Settings $s -Windows $w -Gitea $g -Manifest $Manifest -AsOf $asOf
     }
     function Get-Row($rows, $id) { @($rows | Where-Object Check -EQ $id)[0] }
@@ -49,7 +49,7 @@ Describe 'Each check finds its drift' {
     }
     It 'PH-03 when the certificate is close to expiry' {
         $w, $g = Get-Fresh
-        $asOf = ([DateTime]::Parse($w.tls.notAfter).ToUniversalTime().AddDays(-10)).ToString('yyyy-MM-ddTHH:mm:ssZ')
+        $asOf = ((ConvertTo-PhUtc $w.tls.notAfter).AddDays(-10)).ToString('yyyy-MM-ddTHH:mm:ssZ')
         $w.backup.newestTime = $asOf; $g.mirrors | ForEach-Object { $_.mirrorUpdated = $asOf }
         (Get-Row (Invoke-Check $w $g $Settings $asOf) 'PH-03').Detail | Should -Match 'expires in 1\d days|expires in [0-9] days'
     }
@@ -97,7 +97,7 @@ Describe 'Each check finds its drift' {
     }
     It 'PH-07 when RUN_USER disagrees with the account' {
         $w, $g = Get-Fresh
-        $w.appIni.''.RUN_USER = 'someone'
+        $w.appIni._root.RUN_USER = 'someone'
         (Get-Row (Invoke-Check $w $g) 'PH-07').Detail | Should -Match 'RUN_USER is someone'
     }
     It 'PH-08 when Users can modify the repositories' {
@@ -123,7 +123,7 @@ Describe 'Each check finds its drift' {
     }
     It 'PH-10 when the mirror is more than 24 hours old' {
         $w, $g = Get-Fresh
-        $asOf = ([DateTime]::Parse($g.mirrors[0].mirrorUpdated).ToUniversalTime().AddHours(30)).ToString('yyyy-MM-ddTHH:mm:ssZ')
+        $asOf = ((ConvertTo-PhUtc $g.mirrors[0].mirrorUpdated).AddHours(30)).ToString('yyyy-MM-ddTHH:mm:ssZ')
         $w.backup.newestTime = $asOf
         (Get-Row (Invoke-Check $w $g $Settings $asOf) 'PH-10').Detail | Should -Match 'last synced 30.0 hours ago'
     }
@@ -133,7 +133,7 @@ Describe 'Each check finds its drift' {
     }
     It 'PH-11 when the newest backup is older than the recovery point' {
         $w, $g = Get-Fresh
-        $w.backup.newestTime = ([DateTime]::Parse($w.takenAt).ToUniversalTime().AddHours(-25)).ToString('yyyy-MM-ddTHH:mm:ssZ')
+        $w.backup.newestTime = ((ConvertTo-PhUtc $w.takenAt).AddHours(-25)).ToString('yyyy-MM-ddTHH:mm:ssZ')
         (Get-Row (Invoke-Check $w $g) 'PH-11').Status | Should -Be 'Finding'
     }
     It 'PH-12 is a finding when the settings require Arc' {
@@ -145,7 +145,7 @@ Describe 'Each check finds its drift' {
 Describe 'app.ini parsing' {
     It 'reduces secrets to <set> and keeps the rest' {
         $ini = ConvertFrom-PhIni -Text "RUN_USER = x`n[security]`nINSTALL_LOCK = true`nSECRET_KEY = abc`nINTERNAL_TOKEN =`n[database]`nPASSWD = `"p w`"`nHOST = pg01:5432"
-        $ini[''].RUN_USER | Should -Be 'x'
+        $ini['_root'].RUN_USER | Should -Be 'x'
         $ini.security.INSTALL_LOCK | Should -Be 'true'
         $ini.security.SECRET_KEY | Should -Be '<set>'
         $ini.security.INTERNAL_TOKEN | Should -Be '<empty>'

@@ -14,13 +14,15 @@
 param(
     [Parameter(Mandatory)][string]$SettingsPath,
     [Parameter(Mandatory)][string]$RunPath,
-    [string]$ManifestPath = (Join-Path $PSScriptRoot 'manifest/release-manifest.json'),
+    [string]$ManifestPath,
     [string]$EvidencePath,
     [string]$AsOf = ([DateTime]::UtcNow.ToString('yyyy-MM-ddTHH:mm:ssZ')),
     [string]$ChangeRecord = ''
 )
 $ErrorActionPreference = 'Stop'
 Import-Module (Join-Path $PSScriptRoot 'powershell/PlatformHost/PlatformHost.psm1') -Force
+# Windows PowerShell 5.1 leaves $PSScriptRoot empty in a param block's defaults under -File, so defaults are set here.
+if (-not $ManifestPath) { $ManifestPath = Join-Path $PSScriptRoot 'manifest/release-manifest.json' }
 $settings = Read-PhJson -Path $SettingsPath
 $windows = Read-PhJson -Path (Join-Path $RunPath 'snapshot-windows.json')
 $giteaPath = Join-Path $RunPath 'snapshot-gitea.json'

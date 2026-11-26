@@ -23,6 +23,14 @@ $settings = Read-PhJson -Path $SettingsPath
 $h = $settings.host
 
 function Get-Value($o, $n) { $p = $o.PSObject.Properties[$n]; if ($p) { $p.Value } }
+function Get-AttrText($element, [string]$name) {
+    # Microsoft.Web.Administration returns an enum attribute as its number; give its name, as the schema spells it.
+    $a = $element.Attributes[$name]
+    if ($null -eq $a) { return '' }
+    $v = $a.Value
+    if ($a.Schema -and $a.Schema.Type -eq 'enum') { $e = @($a.Schema.GetEnumValues() | Where-Object { $_.Value -eq [int]$v })[0]; if ($e) { return "$($e.Name)" } }
+    "$v"
+}
 
 # Listeners, with the owning process name (System is http.sys, which serves IIS).
 $procs = @{}
@@ -68,7 +76,7 @@ $web = $sm.GetWebConfiguration($h.site)
 $rulesSection = $web.GetSection('system.webServer/rewrite/rules')
 $rewrite = @(foreach ($rule in $rulesSection.GetCollection()) {
         $action = $rule.GetChildElement('action'); $match = $rule.GetChildElement('match')
-        [ordered]@{ name = "$($rule['name'])"; stopProcessing = [bool]$rule['stopProcessing']; matchUrl = "$($match['url'])"; actionType = "$($action['type'])"; actionUrl = "$($action['url'])" }
+        [ordered]@{ name = "$($rule['name'])"; stopProcessing = [bool]$rule['stopProcessing']; matchUrl = "$($match['url'])"; actionType = (Get-AttrText $action 'type'); actionUrl = "$($action['url'])" }
     })
 $limits = $web.GetSection('system.webServer/security/requestFiltering').GetChildElement('requestLimits')
 $apphost = $sm.GetApplicationHostConfiguration()

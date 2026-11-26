@@ -55,10 +55,23 @@ function Get-PhProp {
     $p.Value
 }
 
+function ConvertTo-PhUtc {
+    <#
+    .SYNOPSIS
+        Returns a UTC DateTime from a snapshot's time, whether ConvertFrom-Json left it a string (Windows
+        PowerShell 5.1) or already made it a DateTime (PowerShell 7).
+    #>
+    param([Parameter(Mandatory)]$Value)
+    if ($Value -is [DateTime]) { if ($Value.Kind -eq [DateTimeKind]::Unspecified) { return [DateTime]::SpecifyKind($Value, [DateTimeKind]::Utc) } ; return $Value.ToUniversalTime() }
+    [DateTime]::Parse("$Value", [Globalization.CultureInfo]::InvariantCulture, [Globalization.DateTimeStyles]::AdjustToUniversal -bor [Globalization.DateTimeStyles]::AssumeUniversal)
+}
+
+function Format-PhUtc { param([Parameter(Mandatory)]$Value) (ConvertTo-PhUtc $Value).ToString('yyyy-MM-ddTHH:mm:ssZ', [Globalization.CultureInfo]::InvariantCulture) }
+
 function ConvertFrom-PhIni {
     <#
     .SYNOPSIS
-        Parses Gitea's app.ini into an ordered dictionary of sections (the keys before any [section] go under '').
+        Parses Gitea's app.ini into an ordered dictionary of sections (the keys before any [section] go under '_root', since JSON can't carry an empty name to Windows PowerShell).
         Keys that hold secrets (SECRET, TOKEN, PASSWD, PASSWORD, KEY) keep only the fact that they're set: the
         value becomes '<set>' or '<empty>', so a snapshot never carries a secret.
     .EXAMPLE
@@ -66,8 +79,8 @@ function ConvertFrom-PhIni {
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][AllowEmptyString()][string]$Text)
-    $out = [ordered]@{ '' = [ordered]@{} }
-    $section = ''
+    $out = [ordered]@{ '_root' = [ordered]@{} }
+    $section = '_root'
     foreach ($raw in ($Text -split "`r?`n")) {
         $line = $raw.Trim()
         if (-not $line -or $line.StartsWith(';') -or $line.StartsWith('#')) { continue }
@@ -131,7 +144,7 @@ function Test-PhSnapshot {
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Settings, [Parameter(Mandatory)]$Windows, $Gitea, $Manifest, [Parameter(Mandatory)][string]$AsOf)
-    $now = [DateTime]::Parse($AsOf, [Globalization.CultureInfo]::InvariantCulture, [Globalization.DateTimeStyles]::AdjustToUniversal -bor [Globalization.DateTimeStyles]::AssumeUniversal)
+    $now = ConvertTo-PhUtc $AsOf
     $rows = New-Object Collections.Generic.List[object]
     $exp = $Settings.expected
 
@@ -140,9 +153,13 @@ function Test-PhSnapshot {
     $problems = @()
     $giteaPids = @($listen | Where-Object { "$($_.process)" -match '^gitea' } | ForEach-Object { $_.pid } | Select-Object -Unique)
     $giteaPorts = @($listen | Where-Object { "$($_.process)" -match '^gitea' })
+    # A loopback listener in Windows' dynamic port range (49152 to 65535) isn't reachable from the network; the lab's Gitea
+    # opened one. It's reported in the detail, not as a finding.
+    $loopbackDynamic = @()
     foreach ($l in $giteaPorts) {
         $okHttp = ([int]$l.port -eq [int]$exp.giteaHttpPort -and "$($l.address)" -eq '127.0.0.1')
         $okSsh = ([int]$l.port -eq [int]$exp.giteaSshPort)
+        if ("$($l.address)" -in @('127.0.0.1', '::1') -and [int]$l.port -ge 49152 -and -not ($okHttp -or $okSsh)) { $loopbackDynamic += "$($l.address):$($l.port)"; continue }
         if (-not ($okHttp -or $okSsh)) { $problems += "gitea listens on $($l.address):$($l.port)" }
     }
     if (-not @($giteaPorts | Where-Object { [int]$_.port -eq [int]$exp.giteaHttpPort -and "$($_.address)" -eq '127.0.0.1' }).Count) { $problems += "nothing from gitea on 127.0.0.1:$($exp.giteaHttpPort)" }
@@ -150,7 +167,7 @@ function Test-PhSnapshot {
     if (-not @($listen | Where-Object { [int]$_.port -eq 443 }).Count) { $problems += 'nothing listens on 443' }
     if (-not [bool](Get-PhProp $exp 'allowPort80' $false) -and @($listen | Where-Object { [int]$_.port -eq 80 }).Count) { $problems += 'something listens on port 80' }
     foreach ($p in @(Get-PhProp $exp 'forbiddenPorts' @())) { if (@($listen | Where-Object { [int]$_.port -eq [int]$p }).Count) { $problems += "something listens on port $p" } }
-    $rows.Add((New-PhRow 'PH-01' $(if ($problems.Count) { 'Finding' } else { 'Pass' }) $(if ($problems.Count) { $problems -join '; ' } else { "gitea on 127.0.0.1:$($exp.giteaHttpPort) and port $($exp.giteaSshPort) only; 443 answers; nothing on 80" }) 'A.1, A.2'))
+    $rows.Add((New-PhRow 'PH-01' $(if ($problems.Count) { 'Finding' } else { 'Pass' }) $(if ($problems.Count) { $problems -join '; ' } else { "gitea on 127.0.0.1:$($exp.giteaHttpPort) and port $($exp.giteaSshPort)$(if ($loopbackDynamic.Count) { " (and loopback only: $($loopbackDynamic -join ', '))" }); 443 answers; nothing on 80 or $(@($exp.forbiddenPorts) -join ', ')" }) 'A.1, A.2'))
 
     # PH-02 Firewall: every profile on, inbound blocked by default, and allow rules only for the published ports.
     $profiles = @(Get-PhProp $Windows 'firewallProfiles' @())
@@ -169,7 +186,7 @@ function Test-PhSnapshot {
     $t = @()
     if ($null -eq $tls -or -not (Get-PhProp $tls 'thumbprint')) { $t += 'no certificate bound to 443' }
     else {
-        $days = [math]::Floor(([DateTime]::Parse("$($tls.notAfter)", [Globalization.CultureInfo]::InvariantCulture, [Globalization.DateTimeStyles]::AdjustToUniversal) - $now).TotalDays)
+        $days = [math]::Floor(((ConvertTo-PhUtc $tls.notAfter) - $now).TotalDays)
         if ($days -lt [int]$exp.minCertificateDays) { $t += "certificate expires in $days days (limit $($exp.minCertificateDays))" }
         if ([int]$tls.keySize -lt [int]$exp.minKeySize) { $t += "key is $($tls.keySize) bits (minimum $($exp.minKeySize))" }
         if ([bool]$tls.selfSigned -and -not [bool](Get-PhProp $exp 'allowSelfSigned' $false)) { $t += 'certificate is self-signed' }
@@ -182,7 +199,7 @@ function Test-PhSnapshot {
             elseif ($state -eq 'default' -and $build -lt 26100) { $t += "$proto isn't set and this build ($build) predates Windows Server 2025's default; set Enabled=0" }
         }
     }
-    $rows.Add((New-PhRow 'PH-03' $(if ($t.Count) { 'Finding' } else { 'Pass' }) $(if ($t.Count) { $t -join '; ' } else { "$($tls.subject), $($tls.keyAlgorithm) $($tls.keySize), expires $($tls.notAfter.Substring(0,10)); TLS 1.0 and 1.1 off" }) 'A.1'))
+    $rows.Add((New-PhRow 'PH-03' $(if ($t.Count) { 'Finding' } else { 'Pass' }) $(if ($t.Count) { $t -join '; ' } else { "$($tls.subject), $($tls.keyAlgorithm) $($tls.keySize), expires $((Format-PhUtc $tls.notAfter).Substring(0,10)); TLS 1.0 and 1.1 off" }) 'A.1'))
 
     # PH-04 Reverse proxy: one catch-all rule to loopback, ARR on without host rewrite, request size, HSTS, WebSockets.
     $iis = Get-PhProp $Windows 'iis'
@@ -244,7 +261,7 @@ function Test-PhSnapshot {
         if ("$($svc.startMode)" -ne 'Auto') { $s += "start mode $($svc.startMode)" }
         if (-not [bool](Get-PhProp $svc 'delayedAutoStart' $false)) { $s += 'not delayed start' }
         # Gitea doesn't compare RUN_USER with the account on Windows, so the check does: the two must agree.
-        $runUser = Get-PhIniValue -Ini $ini -Section '' -Key 'RUN_USER'
+        $runUser = Get-PhIniValue -Ini $ini -Section '_root' -Key 'RUN_USER'
         $runUserExp = "$($exp.runUser)".Replace('{COMPUTERNAME}', "$(Get-PhProp $Windows 'computer' '')")
         if ("$runUser" -ne $runUserExp) { $s += "RUN_USER is $runUser (expected $runUserExp)" }
     }
@@ -290,9 +307,10 @@ function Test-PhSnapshot {
             if ("$($h.url)" -notmatch '^https://') { $q += "webhook $($h.scope) $($h.id) isn't HTTPS" }
         }
         foreach ($mr in @(Get-PhProp $Gitea 'mirrors' @())) {
-            $last = "$($mr.mirrorUpdated)"
-            if (-not $last -or $last.StartsWith('0001')) { $q += "mirror $($mr.fullName) has never synced"; continue }
-            $age = ($now - [DateTime]::Parse($last, [Globalization.CultureInfo]::InvariantCulture, [Globalization.DateTimeStyles]::AdjustToUniversal)).TotalHours
+            if (-not "$($mr.mirrorUpdated)") { $q += "mirror $($mr.fullName) has never synced"; continue }
+            $lastUtc = ConvertTo-PhUtc $mr.mirrorUpdated
+            if ($lastUtc.Year -lt 2000) { $q += "mirror $($mr.fullName) has never synced"; continue }
+            $age = ($now - $lastUtc).TotalHours
             if ($age -gt [double]$exp.maxMirrorAgeHours) { $q += ("mirror {0} last synced {1:n1} hours ago" -f $mr.fullName, $age) }
         }
         $admins = @(Get-PhProp $Gitea 'admins' @())
@@ -305,7 +323,7 @@ function Test-PhSnapshot {
     $bk = Get-PhProp $Windows 'backup'
     if ($null -eq $bk -or -not (Get-PhProp $bk 'newest')) { $rows.Add((New-PhRow 'PH-11' 'Finding' "no backup in $($exp.backupPath)" 'C.4')) }
     else {
-        $age = ($now - [DateTime]::Parse("$($bk.newestTime)", [Globalization.CultureInfo]::InvariantCulture, [Globalization.DateTimeStyles]::AdjustToUniversal)).TotalHours
+        $age = ($now - (ConvertTo-PhUtc $bk.newestTime)).TotalHours
         $st = $(if ($age -gt [double]$exp.recoveryPointHours) { 'Finding' } else { 'Pass' })
         $rows.Add((New-PhRow 'PH-11' $st ("{0}, {1:n1} hours old (recovery point {2} h)" -f $bk.newest, $age, $exp.recoveryPointHours) 'C.4'))
     }
@@ -417,4 +435,4 @@ function Test-PhEvidence {
     $rows
 }
 
-Export-ModuleMember -Function Read-PhJson, Write-PhJson, Write-PhText, Get-PhFileHash, ConvertFrom-PhIni, Test-PhWebhookSignature, Get-PhRequirements, Test-PhSnapshot, Format-PhRows, Write-PhEvidence, Test-PhEvidence
+Export-ModuleMember -Function ConvertTo-PhUtc, Format-PhUtc, Read-PhJson, Write-PhJson, Write-PhText, Get-PhFileHash, ConvertFrom-PhIni, Test-PhWebhookSignature, Get-PhRequirements, Test-PhSnapshot, Format-PhRows, Write-PhEvidence, Test-PhEvidence

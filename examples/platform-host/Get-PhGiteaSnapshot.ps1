@@ -31,7 +31,8 @@ function Get-PhApi([string]$Path) {
     $out = @(); $page = 1
     do {
         $sep = $(if ($Path.Contains('?')) { '&' } else { '?' })
-        $batch = @(Invoke-RestMethod -Uri "$base/api/v1$Path$($sep)limit=50&page=$page" -Headers $auth @common)
+        # An empty JSON array can come back as one empty item; keep only real objects.
+        $batch = @(Invoke-RestMethod -Uri "$base/api/v1$Path$($sep)limit=50&page=$page" -Headers $auth @common | ForEach-Object { $_ } | Where-Object { $null -ne $_ -and $_.PSObject.Properties.Count })
         $out += $batch; $page++
     } while ($batch.Count -eq 50)
     $out
@@ -42,15 +43,15 @@ $anon = Invoke-WebRequest -Uri "$base/api/v1/version" -SkipHttpErrorCheck @commo
 $version = (Invoke-RestMethod -Uri "$base/api/v1/version" -Headers $auth @common).version
 
 $hooks = @()
-foreach ($h in @(Get-PhApi '/admin/hooks')) { $hooks += [ordered]@{ scope = 'system'; id = $h.id; type = $h.type; url = $h.config.url; active = [bool]$h.active; events = @($h.events) } }
+foreach ($h in @(Get-PhApi '/admin/hooks' | Where-Object { $_.id })) { $hooks += [ordered]@{ scope = 'system'; id = $h.id; type = $h.type; url = $h.config.url; active = [bool]$h.active; events = @($h.events) } }
 $repos = @(Get-PhApi '/repos/search' | ForEach-Object { $_.data })
 $mirrors = @()
 foreach ($r in $repos) {
-    foreach ($h in @(Invoke-RestMethod -Uri "$base/api/v1/repos/$($r.full_name)/hooks" -Headers $auth @common)) {
+    foreach ($h in @(Invoke-RestMethod -Uri "$base/api/v1/repos/$($r.full_name)/hooks" -Headers $auth @common | ForEach-Object { $_ } | Where-Object { $null -ne $_ -and $_.id })) {
         $hooks += [ordered]@{ scope = $r.full_name; id = $h.id; type = $h.type; url = $h.config.url; active = [bool]$h.active; events = @($h.events) }
     }
     if ($r.mirror) {
-        $mirrors += [ordered]@{ fullName = $r.full_name; interval = $r.mirror_interval; mirrorUpdated = $(if ($r.mirror_updated) { ([DateTime]$r.mirror_updated).ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ') } else { '' }) }
+        $mirrors += [ordered]@{ fullName = $r.full_name; interval = $r.mirror_interval; mirrorUpdated = $(if ($r.mirror_updated) { Format-PhUtc $r.mirror_updated } else { '' }) }
     }
 }
 $admins = @(Get-PhApi '/admin/users' | Where-Object { $_.is_admin } | ForEach-Object { [ordered]@{ login = $_.login; prohibitLogin = [bool]$_.prohibit_login; sourceId = $_.source_id } })
