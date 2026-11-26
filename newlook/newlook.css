@@ -2,11 +2,23 @@
    adds to every page. The workbook's own theme (assets/fmw-theme.scss) still
    sets the fonts and colors. */
 
+/* One notice line: the disclaimer and the preview links (newlook/preview-banner.html).
+   The current site's two-line disclaimer band is hidden here; its text is in the line. */
+.fmw-disclaimer { display: none; }
 .nl-preview-banner {
-  background: #e6f4f1; color: #0D1B2E; border-bottom: 1px solid #b9ddd6;
-  font-size: .85rem; line-height: 1.45; padding: .4rem 1rem; text-align: center;
+  background: #fff7e6; color: #5c3b00; border-bottom: 1px solid #f0d9a8;
+  font-size: .8rem; line-height: 1.4; padding: .3rem 1rem; text-align: center;
 }
-.nl-preview-banner a { color: #16706F; font-weight: 600; }
+.nl-preview-banner strong { color: #3d2700; }
+.nl-preview-banner .nl-preview { white-space: nowrap; margin-left: .5rem; }
+.nl-preview-banner a { color: #0f5f5e; font-weight: 600; }
+
+/* The New Look's navbar has twelve items: they need about 1,190px, so it collapses
+   below xl (scripts/newlook/render.py) and the items sit closer together above it. */
+@media (min-width: 1200px) {
+  .navbar .navbar-nav .nav-link { padding-left: .45rem; padding-right: .45rem; }
+  .navbar .navbar-brand { margin-right: .5rem; }
+}
 
 .nl-sidebar-filter { padding: .5rem .5rem .25rem; }
 .nl-sidebar-filter input {
