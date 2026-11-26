@@ -51,7 +51,7 @@ Access policy is held as declarative files, applied idempotently, and guarded by
 
 | Artifact | Realizes | Deployed example | Multi-CSP substitution |
 |---|---|---|---|
-| Conditional Access policy set (as code via Graph) | IA-2, AC-3 access decisions | Entra CA JSON/Bicep/Terraform | Okta/Ping policy-as-code |
+| Conditional Access policy set (as code via Graph) | IA-2, AC-3 access decisions | Entra CA policy JSON through Microsoft Graph, or Terraform | Okta/Ping policy-as-code |
 | PIM / JIT role configuration | AC-5/6 separation of duties and least privilege, IA-11 re-auth | Entra PIM as code | CyberArk/BeyondTrust JIT config |
 | Port-authentication profiles (802.1X EAP-TLS, MAB) | IA-3 device identity at the edge | NPS/RADIUS + switch profiles (NPS for the hybrid-joined phase only) | Cisco ISE / Aruba ClearPass profiles |
 | Certificate lifecycle automation (ACME, short-lived certs) | IA-5(2), SC-17 | Keyfactor/Sectigo + ACME as code | Venafi / AppViewX |
