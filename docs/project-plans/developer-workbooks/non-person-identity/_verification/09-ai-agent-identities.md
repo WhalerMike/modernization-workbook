@@ -97,3 +97,4 @@ The kit now prints the plan's NP IDs, Chapter 06 follows Chapter 03's end-date a
 | # | Change | Where | Verdict | Source |
 |---|---|---|---|---|
 | CSA-1 | NP6.6 and the dangers table: in GCC, approved agents are excluded by name until the tenant check; not yet in the kit, which builds and checks the attribute form | see the change | changed *(design guidance)* | WD-176; Mike, November 25, 2026 |
+| CSA-2 | The kit now has Named approval mode: in `gcc` it checks and plans exclusion by name (NPI-AI-18, NPI-AI-20, `New-NpiAgentCaPlan -ApprovedIds`); in `global` the attribute form stays. Lab 1 now prints `Unapproved Differs` (the fixture excludes …018, which has no complete handshake), plan SHA-256 `383d5c83…`, 64 Chapter 09 tests (12 + 52), 567 across the kit | NP6.6, rule rows, Lab 1 steps 3, 4, 7 and 9 | updated by running the commands as written | captures 09-2, 09-5 and 09-9, `python scripts/kit_captures.py npi --images`, November 26, 2026 |

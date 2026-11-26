@@ -448,7 +448,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
              60           0           0
     ```
 
-    The tests sit outside `tests/`, so the 564 every other module's Lab 1 counts doesn't change.
+    The tests sit outside `tests/`, so the 567 every other module's Lab 1 counts doesn't change.
 
 Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
 

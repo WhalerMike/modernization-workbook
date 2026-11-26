@@ -2,5 +2,5 @@ PS> ./Invoke-NpiAgentId.ps1 -Cloud gcc -RegisterRun out/inventory -OwnershipRun 
 D-NP6 (Proposed): AgentId mode in cloud 'gcc'; agent Conditional Access Preview (policy builder label); agent risk Preview
 AI identities: 8 checked (4 AgentIdentity, 3 AgentIdentityBlueprint, 1 ServicePrincipal); Chapter 02 sponsor fields filled: 2 of 2
 Findings: 22 Finding (4 P1, 2 P2), 6 Warn, 4 Info. Orphan candidates for Chapter 02: 2
-Agent CA plan: Unapproved InPlace, HighRisk Create; nothing sent
-Plan SHA-256: 5a8002467655390a12ee9f8967a82d52e40234adf3a9a74ea37952b34b14073b
+Agent CA plan: Unapproved Differs, HighRisk Create; nothing sent
+Plan SHA-256: 383d5c83c3df7c1100e5b8afb4a346b7b6ac31173d48ffd91562147aa1546b80

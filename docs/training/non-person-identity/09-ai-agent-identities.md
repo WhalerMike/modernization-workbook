@@ -186,7 +186,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
     ```text
     PassedCount FailedCount NotRunCount
     ----------- ----------- -----------
-             12           0          49
+             12           0          52
     ```
 
 3. **List what each task needs:**
@@ -233,9 +233,11 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
     D-NP6 (Proposed): AgentId mode in cloud 'gcc'; agent Conditional Access Preview (policy builder label); agent risk Preview
     AI identities: 8 checked (4 AgentIdentity, 3 AgentIdentityBlueprint, 1 ServicePrincipal); Chapter 02 sponsor fields filled: 2 of 2
     Findings: 22 Finding (4 P1, 2 P2), 6 Warn, 4 Info. Orphan candidates for Chapter 02: 2
-    Agent CA plan: Unapproved InPlace, HighRisk Create; nothing sent
-    Plan SHA-256: 5a8002467655390a12ee9f8967a82d52e40234adf3a9a74ea37952b34b14073b
+    Agent CA plan: Unapproved Differs, HighRisk Create; nothing sent
+    Plan SHA-256: 383d5c83c3df7c1100e5b8afb4a346b7b6ac31173d48ffd91562147aa1546b80
     ```
+
+    In GCC, custom security attributes aren't confirmed yet (WD-176), so the block policy excludes approved agents by name. `Unapproved Differs` because the fixture's policy also excludes agent `5b000000-0000-4000-8000-000000000018`, whose handshake isn't complete.
 
 6. **Read the findings:**
 
@@ -317,7 +319,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
     ```text
     Apply: 1 Sent
       Sent HighRisk Created ca000000-0000-4000-8000-000000000103 report-only; review its report-only results before any change of state
-    The plan's SHA-256 is 5a8002467655390a12ee9f8967a82d52e40234adf3a9a74ea37952b34b14073b, not the approved 0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.
+    The plan's SHA-256 is 383d5c83c3df7c1100e5b8afb4a346b7b6ac31173d48ffd91562147aa1546b80, not the approved 0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.
     ```
 
 10. **Run the tests:**
@@ -329,7 +331,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
     It prints a line for each test file, with the time it took, then this last line:
 
     ```text
-    Tests Passed: 564, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
+    Tests Passed: 567, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
     ```
 
 Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
