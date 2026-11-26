@@ -11,7 +11,9 @@ lifecycle_review: 2027-05-01
 research-status: draft
 research-type: implementation guide
 research-book: "Book 00"
-review-status: pending
+review-status: approved
+reviewed-sha256: 4bf99b2ace5781ff84b2c6d4cf3df0b632e937a22a8054a2e12188d565cb0ef1
+last-reviewed: 2026-11-26
 ---
 # The Platform Host: An Implementation Guide
 
