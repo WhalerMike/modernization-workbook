@@ -12,8 +12,8 @@ research-status: draft
 research-type: implementation guide
 research-book: "Book 15"
 review-status: approved
-reviewed-sha256: 1f6ac9824366d3430af6d59091a3f692747727a77fb332195d97609274612548
-last-reviewed: 2026-11-23
+reviewed-sha256: 37dad73c605886f0268972ac5b8c538c98ceff668f14af1d20b04eb5793e4938
+last-reviewed: 2026-11-26
 ---
 # Provider Notices: An Implementation Guide
 
