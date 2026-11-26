@@ -49,7 +49,7 @@ Run the developer workbook's [Chapter 05 Lab 1](../../project-plans/developer-wo
 
 - **What you'll see:** the super user feature on with a standing super user, social ID sign-in on, and a partner rule still in `Audit`.
 - **What to look for:** the super user rows, which Module 5's drift run raises to P1.
-- **Back-out:** the lab ends by deleting `out`.
+- **Back-out:** nothing to delete. The lab leaves the kit's folder as you unzipped it and keeps its results in a dated run folder under `C:\FMWLabs\results`, so you can run it again and compare.
 
 ## Exercise: Lab 2, a test tenant {#ip-m3-lab-2}
 *Not timed. Not run by the authors. Never production.*

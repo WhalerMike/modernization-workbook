@@ -365,7 +365,7 @@ Needs a device with the client installed, so there's no captured output.
 
 ![What it prints, run on the kit's fixtures](../../project-plans/developer-workbooks/global-secure-access/captures/03-6.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCheck.ps1 -Area client -SettingsPath tests/fixtures/settings.lab.… and what it printed"}
 
-From Lab 1 of [Chapter 03 — The Client and Its Coverage](../../project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/03-6.txt)); the lab's earlier steps come first.
+From Lab 1 of [Chapter 03 — The Client and Its Coverage](../../project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/03-6.txt)); the lab's earlier steps come first. `$Run` is the lab's dated run folder under `C:\FMWLabs\results`, which its first steps set, so each run keeps its own results and the kit's folder stays as you unzipped it.
 
 **Evidence this step supports:** NIST SP 800-53 Rev. 5 CM-6, CM-7, SI-4; FedRAMP 20x KSIs KSI-MLA-EVC, KSI-CNA-RNT (step `CLIENT` in [requirements.json](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/global-secure-access/config/requirements.json)).
 

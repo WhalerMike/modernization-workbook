@@ -49,7 +49,7 @@ Run the developer workbook's [Chapter 01 Lab 1](../../project-plans/developer-wo
 
 - **What you'll see:** a person holding an investigator role the register doesn't name; an export of a fictional tenant, one shell at a time; a class naming a sensitive information type the tenant doesn't have, and one with no owner.
 - **What to look for:** the manifest of the export, which lists each read and its count, and where most of the content sits.
-- **Back-out:** each lab ends by deleting `out`.
+- **Back-out:** nothing to delete. Each lab leaves the kit's folder as you unzipped it and keeps its results in a dated run folder under `C:\FMWLabs\results`, so you can run it again and compare.
 
 ## Exercise: Lab 2, a test tenant {#ip-m1-lab-2}
 *Not timed. Not run by the authors. Never production.*

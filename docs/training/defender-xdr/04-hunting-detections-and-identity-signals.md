@@ -62,7 +62,7 @@ Run the developer workbook's [Chapter 06, Detections as Code](../../project-plan
 
 - **What you'll see:** the detection check holds a rule with automated isolation, tests each rule over its known-bad and known-good windows, and plans a create and an update by its SHA-256; the signals check puts an emergency access account at the top of the cross-source list.
 - **What to look for:** each finding names the device, rule, incident or group, and the run folder's manifest records the call and its permission. Compare what you see with this module's units.
-- **Back-out:** each lab ends by deleting `out`.
+- **Back-out:** nothing to delete. Each lab leaves the kit's folder as you unzipped it and keeps its results in a dated run folder under `C:\FMWLabs\results`, so you can run it again and compare.
 
 ## Exercise: Lab 2, a test tenant {#xdr-m4-lab-2}
 *Not timed. Not run by the authors. Never production.*
