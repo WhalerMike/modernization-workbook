@@ -969,3 +969,5 @@ outside_topics:
     reason: A program practice guide for running any project's meetings, not one subject's.
   - path: docs/books/guides/one-page-ask.md
     reason: The Start series' fill-in page for the pre-flight approval; Start here links it.
+  - path: examples/all-kits
+    reason: Every kit in one zip (fmw-all-kits.zip); each topic links its own kit zip instead.
