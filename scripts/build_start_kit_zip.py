@@ -19,6 +19,7 @@ workbook its kit (--kit global-secure-access-code), the Azure Security Engineeri
 developer workbook their kit (--kit azure-security-code), and the Defender XDR guide and developer
 workbook the Defender XDR kit (--kit defender-xdr-code), and the Daily Checks Dashboard guide and
 developer workbook the daily checks workbook kit (--kit daily-checks-workbook-code), and
+the platform host guide its interface check (--kit platform-host-code), and
 Building SQL Server Identity its kit (--kit sql-server-identity-code), and the
 managed service account request guide its pack (--kit msa-request-pack: the forms and checker with
 the Non-Person Identity kit's Chapter 12 module).
@@ -55,7 +56,7 @@ KITS = ("start-kit", "copilot-agent-pack", "app-modernization", "ansible", "vali
         "cisco-sdwan", "ticket-to-machine-task-catalog", "dp-consolidation", "provider-notices-code",
         "zta-results", "global-secure-access-code", "azure-security-code", "defender-xdr-code",
         "daily-checks-workbook-code", "information-protection-code",
-        "sql-server-identity-code", "msa-request-pack")
+        "sql-server-identity-code", "msa-request-pack", "platform-host-code")
 # Kits packed from several examples folders, each kept under its own path, instead of
 # from examples/<kit>. The Attribute-Driven Migration developer workbook's chapters 01-09
 # build on these folders and the Microsoft samples pinned under third_party/.
@@ -118,6 +119,8 @@ BUNDLES = {
     "daily-checks-workbook-code": ("daily-checks-workbook",),
     # The information protection kit (Building Information Protection).
     "information-protection-code": ("information-protection",),
+    # The platform host's interface check and lab build (The Platform Host: An Implementation Guide).
+    "platform-host-code": ("platform-host",),
     # The SQL Server identity kit (Building SQL Server Identity, Book 06).
     "sql-server-identity-code": ("sql-server-identity",),
     # The managed service account request pack: the forms and checker, with the Chapter 12 module the checker calls.

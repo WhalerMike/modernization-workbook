@@ -316,11 +316,12 @@ pages:
   ms_date: '2025-04-18'
   ms_topic: how-to
   description: Learn about supported registry setting information for the Windows implementation of the Transport Layer Security (TLS) protocol.
-  coverage: covered-uncited
+  coverage: cited
   note: TLS 1.0 and 1.1 are audited off through Schannel registry settings in the machine configuration packages
   workbook:
   - docs/books/b19-developer-workbook/07-machine-configuration-packages.md
-  cited_by: []
+  cited_by:
+  - docs/books/guides/platform-host-implementation.md
 - path: WindowsServerDocs/security/tls/tls-schannel-ssp-changes-in-windows-10-and-windows-server.md
   url: https://learn.microsoft.com/windows-server/security/tls/tls-schannel-ssp-changes-in-windows-10-and-windows-server
   title: TLS (Schannel SSP)

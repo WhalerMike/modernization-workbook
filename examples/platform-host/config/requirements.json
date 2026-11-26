@@ -1,0 +1,39 @@
+{
+  "_comment": "Each check of the platform host's interface check, with the NIST SP 800-53 Rev 5 controls whose statements it supports and the FedRAMP 20x Key Security Indicators. Every control-to-KSI pair reuses one another kit's requirements file already uses (for example CM-7 to KSI-CNA-RNT, SC-7 to KSI-CNA-MAT, SC-8 and SC-12 to KSI-SVC-SIN and KSI-SVC-ASM, AU-2 and AU-12 to KSI-MLA-LET, CM-6 to KSI-SVC-ACM, AC-3 and AC-6 to KSI-IAM-ELP, IA-5 to KSI-IAM-SNU, CM-2 and SI-7 to KSI-SVC-ACM and KSI-SVC-VRI, CA-7 to KSI-MLA-EVC, SI-4 to KSI-MLA-LET, CP-10 to KSI-RPL-ABO, CM-8 to KSI-PIY-GIV, AU-9 to KSI-MLA-OSM); CP-9 is listed with the backup check without a KSI of its own. Book 10, Appendix B's control crosswalk names the controls per interface. Which check supports which control is the program's reading (design guidance); the agency's assessor decides. KSIs are FedRAMP's indicators for cloud service providers: the agency lines its own evidence up with what its providers report against them and doesn't report KSIs itself.",
+  "version": 1,
+  "controls": {
+    "AC-3": { "title": "Access Enforcement" },
+    "AC-6": { "title": "Least Privilege" },
+    "AU-2": { "title": "Event Logging" },
+    "AU-9": { "title": "Protection of Audit Information" },
+    "AU-12": { "title": "Audit Record Generation" },
+    "CA-7": { "title": "Continuous Monitoring" },
+    "CM-2": { "title": "Baseline Configuration" },
+    "CM-6": { "title": "Configuration Settings" },
+    "CM-7": { "title": "Least Functionality" },
+    "CM-8": { "title": "System Component Inventory" },
+    "CP-9": { "title": "System Backup" },
+    "CP-10": { "title": "System Recovery and Reconstitution" },
+    "IA-5": { "title": "Authenticator Management" },
+    "SC-7": { "title": "Boundary Protection" },
+    "SC-8": { "title": "Transmission Confidentiality and Integrity" },
+    "SC-12": { "title": "Cryptographic Key Establishment and Management" },
+    "SI-4": { "title": "System Monitoring" },
+    "SI-7": { "title": "Software, Firmware, and Information Integrity" }
+  },
+  "checks": {
+    "PH-01": { "title": "Listeners: Gitea on loopback HTTP and its SSH port only, IIS on 443, nothing on 80", "controls": ["CM-7", "SC-7"], "ksis": ["KSI-CNA-RNT", "KSI-CNA-MAT"] },
+    "PH-02": { "title": "Firewall: every profile on, inbound blocked by default, allow rules for the published ports", "controls": ["SC-7", "CM-7"], "ksis": ["KSI-CNA-MAT", "KSI-CNA-RNT"] },
+    "PH-03": { "title": "TLS: the 443 certificate's key, expiry and name; TLS 1.0 and 1.1 off", "controls": ["SC-8", "SC-12"], "ksis": ["KSI-SVC-SIN", "KSI-SVC-ASM"] },
+    "PH-04": { "title": "Reverse proxy: one catch-all rule to loopback, ARR without host rewrite, request size, HSTS, WebSockets", "controls": ["CM-6", "SC-8"], "ksis": ["KSI-SVC-ACM", "KSI-SVC-SIN"] },
+    "PH-05": { "title": "IIS log: W3C on a local drive, hourly, with the fields the evidence needs", "controls": ["AU-2", "AU-12"], "ksis": ["KSI-MLA-LET"] },
+    "PH-06": { "title": "Gitea app.ini: the expected settings, secrets present but never read", "controls": ["CM-6", "AC-3"], "ksis": ["KSI-SVC-ACM", "KSI-IAM-ELP"] },
+    "PH-07": { "title": "Service identity: the gitea service's account, start mode and RUN_USER", "controls": ["AC-6", "IA-5"], "ksis": ["KSI-IAM-ELP", "KSI-IAM-SNU"] },
+    "PH-08": { "title": "Storage: no broad principal can write to the data, repository or backup folders", "controls": ["AC-3", "AC-6"], "ksis": ["KSI-IAM-ELP"] },
+    "PH-09": { "title": "Release manifest: gitea.exe and the running version are the pinned release", "controls": ["CM-2", "SI-7"], "ksis": ["KSI-SVC-ACM", "KSI-SVC-VRI"] },
+    "PH-10": { "title": "Gitea API: sign-in required, webhooks only to listed receivers, mirrors fresh, few administrators", "controls": ["AC-3", "CA-7", "SI-4"], "ksis": ["KSI-IAM-ELP", "KSI-MLA-EVC", "KSI-MLA-LET"] },
+    "PH-11": { "title": "Backup: the newest dump is inside the recovery point", "controls": ["CP-9", "CP-10"], "ksis": ["KSI-RPL-ABO"] },
+    "PH-12": { "title": "Azure Arc: the Connected Machine agent is connected", "controls": ["CM-8", "CA-7"], "ksis": ["KSI-PIY-GIV", "KSI-MLA-EVC"] },
+    "EVIDENCE": { "title": "Record the run: snapshots and results hashed and chained", "controls": ["AU-9"], "ksis": ["KSI-MLA-OSM"] }
+  }
+}

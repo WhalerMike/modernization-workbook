@@ -30,7 +30,7 @@ That question belongs in a book about the boundary because the host's interfaces
 
 The reference architecture runs Gitea behind IIS. Gitea and IIS are the program's example components, chosen over IIS serving Git directly through the `git-http-backend` CGI for authentication integration and operational reasons; the reduced surface of that alternative is summarized at the end. Host names use `contoso` as the example domain throughout.
 
-Build steps are named by the seven milestones in [Book 00, Chapter 08](../b00-orientation/08-pre-flight-and-assessment.md#seven-build-milestones), M-001 to M-007; steps that come after the Phase 0 build, such as the nightly backup and the drift reporter, are named by what they do. Two pieces of family D are designs the workbook doesn't yet implement: the drift reporter (D.3) and the conformance adapter (D.4). This appendix describes what they're for and what they read, not code you can run.
+Build steps are named by the seven milestones in [Book 00, Chapter 08](../b00-orientation/08-pre-flight-and-assessment.md#seven-build-milestones), M-001 to M-007; steps that come after the Phase 0 build, such as the nightly backup and the drift reporter, are named by what they do. Two pieces of family D are designs the workbook only partly implements: the drift reporter (D.3) has no implementation yet, and the conformance adapter (D.4) has one in part, the read-only interface check in [The Platform Host: An Implementation Guide](../guides/platform-host-implementation.md). Where this appendix describes what they're for and what they read, it isn't describing code you can run unless it says so.
 
 ![The platform host's six interface families: one TLS endpoint at IIS and Gitea's own SSH listener for clients, two identity sources, the Azure management planes as a documented exception, and a read-only upstream mirror.](../../images/diagrams/b10-cloud-boundary/svg/apB-interface-families.svg){#fig-apB-interface-families fig-alt="Top to bottom. A slate card for family A, client transport, contributors and automation, using HTTPS 443 through IIS and SSH 2222 to Gitea directly. A violet frame labeled platform host, Windows Server 2025, contains three cards: a slate reverse proxy card, IIS with URL Rewrite and ARR, doing TLS, security headers and the W3C log; a green source-of-truth card, Gitea on 127.0.0.1:3000, with web UI, REST API, LFS, server-side hooks and outbound webhooks; and a violet card for family E, local management, signed PowerShell and the Gitea CLI, with WinRM 5986 from the admin subnet. Clients reach IIS on 443 and Gitea directly on 2222 by a dashed line; IIS forwards to Gitea over loopback. From Gitea, an arrow labeled LDAPS leads to a slate family B card, Active Directory, LDAPS 636 with a read-only bind, and a blue arrow labeled OIDC leads to a blue family B card, Microsoft Entra ID, OIDC sign-in with groups claim. A dashed arrow labeled fetch leads to a slate family F card, GitHub upstream, read-only pull mirror. From local management, an amber arrow labeled D, telemetry and backup, leads to an amber family C card, Azure Arc, Monitor and Blob in Azure commercial, a documented exception."}
 
@@ -102,7 +102,7 @@ The SSH plane is equivalent to HTTPS for `git` operations but bypasses IIS, so i
 
 ```ini
 ; Illustrative: D:\Gitea\custom\conf\app.ini (excerpt)
-RUN_USER = svc-fmp-gitea$
+RUN_USER = gmsa-fmpgitea$
 
 [server]
 PROTOCOL         = http
@@ -245,7 +245,7 @@ When the optional API is on, IIS authenticates callers with Negotiate (Kerberos 
 
 Three identities matter, and they're different things:
 
-- **The Gitea service account** is a group managed service account (`CORP\svc-fmp-gitea$`). Services configured through the Service Control Manager, IIS application pools and scheduled tasks can all run as a gMSA, and Windows rotates its password automatically.[^aB-gmsa] Gitea's own Windows service instructions register the service with `sc.exe` and run it as the local system account by default, so the service account is set separately (family E).[^aB-gitea-winsvc]
+- **The Gitea service account** is a group managed service account (`CORP\gmsa-fmpgitea$`), named and requested under the program's managed service account standard (WD-159 and WD-173: the `gmsa-` prefix, the system's short name `fmpgitea`, 15 characters or fewer before the `$`), with the retriever group `DL-gMSA-fmpgitea-Hosts`. Services configured through the Service Control Manager, IIS application pools and scheduled tasks can all run as a gMSA, and Windows rotates its password automatically.[^aB-gmsa] Gitea's own Windows service instructions register the service with `sc.exe` and run it as the local system account by default, so the service account is set separately (family E).[^aB-gitea-winsvc]
 - **The Arc managed identity** is the host's identity in Azure. Arc creates a system-assigned managed identity whose tokens come from a local endpoint, `http://localhost:40342`.[^aB-arc-mi] A local process can request a token only if it can read the challenge file in the agent's token directory, which is limited to administrators and members of the **Hybrid agent extension applications** group,[^aB-arc-identity] so the account that runs backups and the drift reporter must be in that group. The managed identity has no Azure permissions until role assignments grant them.
 - **A device object in Entra ID** isn't one of them: the host isn't hybrid joined, so it has no device `extensionAttributes` to carry its organizational attributes. Microsoft's supported devices for hybrid join are Windows 11, Windows 10, and Windows Server 2016, 2019 and 2022; Windows Server 2025 isn't on the list.[^aB-hybrid-join] The host's organizational attributes therefore live as tags on its Arc resource, as Book 01 describes. The underlying distinction still holds where a device object exists: device `extensionAttributes` are managed only in Entra ID, while a synced user's `onPremisesExtensionAttributes` are read-only in Microsoft Graph because their source of authority is on-premises AD.[^aB-graph-ext]
 
@@ -261,7 +261,7 @@ The hook chain rejects unsigned pushes to `main`, `canon/*` and any path under t
 | Administrator | Client certificate over mutual TLS at the IIS reverse proxy, required for administrative access | Enterprise PKI, per Book 01, Chapter 03; the certificate template and the mapping of a certificate to an administrator are not yet specified | The administrative access that IIS's SSL settings gate |
 | AD-only contributor | LDAPS bind through the Gitea source | Forest user in the governed Users OU | `IT-INF-PLATFORM-CanonStewards` admin filter |
 | Optional API caller | IIS Negotiate (Kerberos, then NTLM) | Forest user, impersonated in the API process | NTFS ACLs on what the API touches |
-| Gitea service | gMSA `CORP\svc-fmp-gitea$` | Forest service account | `D:\GitRepos`, `D:\Gitea` |
+| Gitea service | gMSA `CORP\gmsa-fmpgitea$` | Forest service account | `D:\GitRepos`, `D:\Gitea` |
 | IIS reverse-proxy app pool | `IIS AppPool\FMPReverseProxy` | Built-in app pool identity | TLS private key (read), nothing else |
 | Backup and drift tasks | Arc system-assigned managed identity, used by the gMSA | Arc resource's service principal | Storage account and Arc resource scope, by role assignment |
 | GitHub upstream mirror | Anonymous HTTPS fetch | None; the upstream is public | None |
@@ -337,7 +337,7 @@ The drift reporter is designed as a scheduled task that runs as the gMSA (schedu
 
 ### D.4 Conformance adapter
 
-The program's read-only conformance adapter is designed to emit four evidence files per polling interval: service health (IIS app pool, Gitea service), TLS certificate inventory (expiry, chain, key algorithm, subject alternative names), repository inventory (size, last push, branch count, quota, LFS bytes), and IIS access summaries (request volume, response codes, top principals). It supports CA-7, CM-8, AU-2, AU-6 and SI-4.
+The program's read-only conformance adapter is designed to emit four evidence files per polling interval: service health (IIS app pool, Gitea service), TLS certificate inventory (expiry, chain, key algorithm, subject alternative names), repository inventory (size, last push, branch count, quota, LFS bytes), and IIS access summaries (request volume, response codes, top principals). It supports CA-7, CM-8, AU-2, AU-6 and SI-4. Part of it now exists: the platform host kit's interface check (`examples/platform-host`, in [the implementation guide](../guides/platform-host-implementation.md)) reads the service and the TLS certificate, and with them the listeners, firewall, reverse proxy, IIS log settings, `app.ini`, folder ACLs, the release manifest, Gitea's API, the newest backup and the Arc agent, and records each run as hashed evidence. The repository inventory and the IIS access summaries are still designs.
 
 ### D.5 IIS W3C extended logs
 
@@ -357,19 +357,19 @@ Signed-only execution comes from application control, not from the execution pol
 
 ```powershell
 # Illustrative: install and test the gMSA on the host, then register Gitea as a service under it
-Install-ADServiceAccount -Identity 'svc-fmp-gitea$'
-Test-ADServiceAccount   -Identity 'svc-fmp-gitea$'
+Install-ADServiceAccount -Identity 'gmsa-fmpgitea$'
+Test-ADServiceAccount   -Identity 'gmsa-fmpgitea$'
 
 sc.exe create gitea start= auto binPath= '"D:\Gitea\gitea.exe" web --config "D:\Gitea\custom\conf\app.ini"'
 # A gMSA logs on with an empty password; Windows retrieves the managed password
-sc.exe config gitea obj= 'CORP\svc-fmp-gitea$' password= ''
+sc.exe config gitea obj= 'CORP\gmsa-fmpgitea$' password= ''
 sc.exe config gitea start= delayed-auto
 
 # Let the gMSA request Arc managed identity tokens for backup and drift reporting
-Add-LocalGroupMember -Group 'Hybrid agent extension applications' -Member 'CORP\svc-fmp-gitea$'
+Add-LocalGroupMember -Group 'Hybrid agent extension applications' -Member 'CORP\gmsa-fmpgitea$'
 ```
 
-`RUN_USER` in `app.ini` must name the same account (A.2). Gitea's guidance also suggests a delayed start if the service times out at boot.[^aB-gitea-winsvc] There's no SSH-into-the-host workflow: Tier 0 administration uses WinRM over HTTPS on 5986, restricted to the admin subnet `10.1.20.0/24`, from a privileged access workstation.
+`RUN_USER` in `app.ini` names the same account, without the domain (A.2). Gitea skips its own check of `RUN_USER` against the running account on Windows,[^aB-gitea-runuser] so nothing stops the two from disagreeing; the platform host kit's interface check compares them ([the implementation guide](../guides/platform-host-implementation.md)). Gitea's guidance also suggests a delayed start if the service times out at boot.[^aB-gitea-winsvc] There's no SSH-into-the-host workflow: Tier 0 administration uses WinRM over HTTPS on 5986, restricted to the admin subnet `10.1.20.0/24`, from a privileged access workstation.
 
 ### E.3 IIS management
 
@@ -568,6 +568,7 @@ The conformance adapter's TLS inventory (D.4) duplicates what the CLM platform a
 [^aB-dynamic]: Microsoft Learn, "Understand and manage dynamic group processing in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/users/manage-dynamic-group> (accessed Oct 21, 2026).
 [^aB-gmsa]: Microsoft Learn, "Manage group Managed Service Accounts," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts> (accessed Oct 21, 2026).
 [^aB-gitea-winsvc]: Gitea Documentation, "Register as a Windows Service," <https://docs.gitea.com/installation/windows-service> (accessed Oct 21, 2026).
+[^aB-gitea-runuser]: Gitea source code, `modules/setting/setting.go`, `IsRunUserMatchCurrentUser` ("This check is ignored under Windows"), tag v28.4.0, <https://github.com/go-gitea/gitea/blob/v28.4.0/modules/setting/setting.go> (accessed Nov 26, 2026). On Windows Gitea also drops the domain from the account name (`modules/user/user.go`, `CurrentUsername`), so `RUN_USER` takes the name without `CORP\`.
 [^aB-arc-mi]: Microsoft Learn, "Access Azure resources by using managed identity on Azure Arc-enabled servers," <https://learn.microsoft.com/azure/azure-arc/servers/managed-identity-authentication> (accessed Oct 21, 2026).
 [^aB-arc-identity]: Microsoft Learn, "Identity and authorization" (Azure Arc-enabled servers security), section "Microsoft Entra ID managed identity," <https://learn.microsoft.com/azure/azure-arc/servers/security-identity-authorization> (accessed Oct 21, 2026).
 [^aB-hybrid-join]: Microsoft Learn, "Plan your Microsoft Entra hybrid join implementation," section "Review supported devices," <https://learn.microsoft.com/entra/identity/devices/hybrid-join-plan> (accessed Oct 21, 2026).

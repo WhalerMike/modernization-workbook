@@ -1809,6 +1809,9 @@
   "page": "one-page-ask.docx",
   "title": "Meeting Templates and Leadership Briefs"
  },
+ "docs/books/guides/platform-host-implementation.md": {
+  "page": "platform-host-implementation.docx"
+ },
  "docs/books/guides/privileged-access-implementation.md": {
   "page": "privileged-access-implementation.docx"
  },

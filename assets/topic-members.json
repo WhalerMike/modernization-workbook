@@ -2223,6 +2223,12 @@
    "title": "Non-Person Identity"
   }
  ],
+ "docs/books/guides/platform-host-implementation.md": [
+  {
+   "id": "platform-host",
+   "title": "Platform Host"
+  }
+ ],
  "docs/books/guides/privileged-access-implementation.md": [
   {
    "id": "privileged-access",

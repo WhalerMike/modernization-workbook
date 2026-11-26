@@ -37,6 +37,31 @@ The project plan and the decisions the program has made.
 
 : Plan {.striped .hover}
 
+## Build {#build}
+
+The implementation guides, the developer workbook and its code.
+
+| Page | What it is |
+|---|---|
+| [The Platform Host: An Implementation Guide](../books/guides/platform-host-implementation.md) | The build, milestone by milestone, the backup and restore, and the read-only interface check with real lab output. |
+
+: Build {.striped .hover}
+
+The code is in [`examples/platform-host`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/platform-host) on GitHub, and in the code zip under [Download](#download).
+
+## Download {#download}
+
+Word editions and code, rebuilt on every site deploy.
+
+| File | What it is |
+|---|---|
+| [platform-host-implementation-guide.docx](../../downloads/platform-host-implementation-guide.docx) | Word edition: The Platform Host: An Implementation Guide |
+| [platform-host-code.zip](../../downloads/platform-host-code.zip) | Code: the scripts, tests and fixtures, as committed |
+
+: Downloads {.striped .hover}
+
+[Downloads](../downloads.md) lists every file the workbook publishes.
+
 ## Not here {#gaps}
 
 What the workbook doesn't have on the platform host, and whether it should. [All topics](index.md#gaps) shows the same for every topic.
@@ -44,11 +69,9 @@ What the workbook doesn't have on the platform host, and whether it should. [All
 | Missing | Why |
 |---|---|
 | Project plan | Not needed, because the build is task P0.2 in the Program master schedule plan, and Book 00, Chapter 08 breaks it into milestones M-001 to M-007 with owners and gate criteria. |
-| Guide | Needed: a PowerShell-first build guide that follows milestones M-001 to M-007, with the federal requirements, KSIs and evidence for each step. |
 | Developer workbook | Not needed, because the build guide and the learning path's labs cover building and checking the host; it has no code base of its own to teach. |
 | Learning path | Needed: a short learning path whose modules are the labs. |
 | Labs | Needed: labs that build a lab host (Gitea behind IIS, single-host profile) and run the interface check. |
 | Videos | Needed: a narrated deck for the build guide. |
-| Code | Needed: a read-only kit that checks the host's interfaces against Appendix B's closed list and writes the evidence. |
 
 : Not here {.striped .hover}

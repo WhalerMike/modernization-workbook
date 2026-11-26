@@ -166,7 +166,7 @@ Drift detection re-validates every integration on a schedule. The books that own
 
 ## Build and decision records
 
-Build procedures belong in a separate, PowerShell-first runbook. Record the reverse-proxy choice, the standby model and the actuation stage in the project's own decision log.
+Build procedures belong in a separate, PowerShell-first runbook: [The Platform Host: An Implementation Guide](../guides/platform-host-implementation.md), which follows Book 00's build milestones and ends with a read-only check of the host's interfaces. Record the reverse-proxy choice, the standby model and the actuation stage in the project's own decision log; the workbook's own are WD-177 and WD-178 in the [decision register](../../about/decision-register.md#wd-177).
 
 ## Key takeaways
 
