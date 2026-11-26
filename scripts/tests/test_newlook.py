@@ -37,9 +37,14 @@ class Compose(unittest.TestCase):
     def test_navbar_is_replaced_not_appended(self) -> None:
         left = self.cfg["website"]["navbar"]["left"]
         texts = [i.get("text") for i in left]
-        self.assertEqual(texts[:3], ["Home", "Browse", "Plans"])
+        self.assertEqual(texts[:4], ["Home", "Topics", "Browse", "Plans"])
         self.assertEqual(len(texts), len(set(texts)))
         self.assertNotIn("Projects", texts)
+
+    def test_topics_menu_is_the_current_sites(self) -> None:
+        current = next(i["menu"] for i in self.base["website"]["navbar"]["left"] if i.get("text") == "Topics")
+        menus = {i["text"]: i.get("menu", []) for i in self.cfg["website"]["navbar"]["left"]}
+        self.assertEqual(menus["Topics"], current)
 
     def test_new_paths_and_workbooks_appear_by_folder(self) -> None:
         menus = {i["text"]: i.get("menu", []) for i in self.cfg["website"]["navbar"]["left"]}
