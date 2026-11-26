@@ -13,10 +13,10 @@
 .nl-preview-banner .nl-preview { white-space: nowrap; margin-left: .5rem; }
 .nl-preview-banner a { color: #0f5f5e; font-weight: 600; }
 
-/* The New Look's navbar has twelve items: they need about 1,190px, so it collapses
+/* The New Look's navbar has thirteen items, so it collapses
    below xl (scripts/newlook/render.py) and the items sit closer together above it. */
 @media (min-width: 1200px) {
-  .navbar .navbar-nav .nav-link { padding-left: .45rem; padding-right: .45rem; }
+  .navbar .navbar-nav .nav-link { padding-left: .35rem; padding-right: .35rem; font-size: .95rem; }
   .navbar .navbar-brand { margin-right: .5rem; }
 }
 
