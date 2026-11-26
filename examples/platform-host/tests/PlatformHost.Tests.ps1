@@ -7,7 +7,7 @@ BeforeAll {
     $script:Settings = Read-PhJson -Path (Join-Path $Kit 'config/settings.lab.json')
     $script:Manifest = Read-PhJson -Path (Join-Path $Kit 'manifest/release-manifest.json')
     $script:Fix = Join-Path $PSScriptRoot 'fixtures/lab'
-    function Get-Fresh { , (Read-PhJson -Path (Join-Path $Fix 'snapshot-windows.json')), (Read-PhJson -Path (Join-Path $Fix 'snapshot-gitea.json')) }
+    function Get-Fresh { @((Read-PhJson -Path (Join-Path $Fix 'snapshot-windows.json')), (Read-PhJson -Path (Join-Path $Fix 'snapshot-gitea.json'))) }
     function Invoke-Check($w, $g, $s = $Settings, $asOf) {
         if (-not $asOf) { $asOf = Format-PhUtc $w.takenAt }
         Test-PhSnapshot -Settings $s -Windows $w -Gitea $g -Manifest $Manifest -AsOf $asOf
@@ -24,10 +24,11 @@ Describe 'The lab snapshots' {
         (Get-Row $rows 'PH-12').Status | Should -Be 'NotChecked'
     }
     It 'carry no secret values' {
-        $text = Get-Content -Raw (Join-Path $Fix 'snapshot-windows.json')
-        $text | Should -Match '"SECRET_KEY":\s*"<set>"'
-        $text | Should -Match '"INTERNAL_TOKEN":\s*"<set>"'
-        $text | Should -Not -Match 'eyJ'
+        $w, $g = Get-Fresh
+        $w.appIni.security.SECRET_KEY | Should -Be '<set>'
+        $w.appIni.security.INTERNAL_TOKEN | Should -Be '<set>'
+        $w.appIni.oauth2.JWT_SECRET | Should -Be '<set>'
+        Get-Content -Raw (Join-Path $Fix 'snapshot-windows.json') | Should -Not -Match 'eyJ'
     }
 }
 

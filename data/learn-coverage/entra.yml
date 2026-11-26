@@ -13229,11 +13229,12 @@ pages:
   ms_date: '2025-02-03'
   ms_topic: reference
   description: Describes the Microsoft Entra app manifest (Microsoft Graph format), which represents an application's identity configuration in a Microsoft Entra tenant.
-  coverage: covered-uncited
+  coverage: cited
   note: 'App registration vs service principal, tenancy and inventory: Book 04 Ch05'
   workbook:
   - docs/books/b04-access/05-applications-and-workload-identities.md
-  cited_by: []
+  cited_by:
+  - docs/books/guides/platform-host-implementation.md
 - path: docs/identity-platform/reference-msa-server-side-api.md
   url: https://learn.microsoft.com/entra/identity-platform/reference-msa-server-side-api
   title: Microsoft account (MSA) Server Side API Reference
@@ -19655,6 +19656,7 @@ pages:
   - docs/books/b04-access/_verification/07-the-conditional-access-policy-library.md
   - docs/books/b04-access/_verification/appendix-a-conditional-access-templates.md
   - docs/books/b04-access/appendix-a-conditional-access-templates.md
+  - docs/books/guides/platform-host-implementation.md
 - path: docs/identity/conditional-access/policy-all-users-persistent-browser.md
   url: https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-persistent-browser
   title: Require reauthentication with Conditional Access

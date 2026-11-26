@@ -1220,6 +1220,31 @@
    "featured": false
   },
   {
+   "id": "docs/books/guides/platform-host-implementation.md",
+   "type": "Implementation guide",
+   "title": "The Platform Host: An Implementation Guide",
+   "description": "An implementation guide for building the program's one governed server, Gitea behind IIS on Windows Server 2025, and proving its interfaces.",
+   "url": "docs/books/guides/platform-host-implementation.html",
+   "count": 8,
+   "unit": "steps",
+   "reading_minutes": 38,
+   "reading_source": "estimate",
+   "videos": 0,
+   "video_minutes": 0,
+   "level": "Intermediate",
+   "level_source": "audience",
+   "roles": [
+    "Program lead and service owner",
+    "Executive"
+   ],
+   "topics": [
+    "Program and people"
+   ],
+   "status": "Draft",
+   "family": "platform-host",
+   "featured": false
+  },
+  {
    "id": "docs/books/guides/ttm-servicenow-sailpoint.md",
    "type": "Implementation guide",
    "title": "Ticket-to-Machine on ServiceNow and SailPoint: An Example Implementation Guide",
@@ -1896,7 +1921,7 @@
    "url": "docs/books/b10-cloud-boundary/index.html",
    "count": 13,
    "unit": "chapters",
-   "reading_minutes": 244,
+   "reading_minutes": 245,
    "reading_source": "estimate",
    "videos": 3,
    "video_minutes": 56,

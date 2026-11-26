@@ -766,6 +766,7 @@ topics:
   - id: platform-host
     title: Platform Host
     subject: the platform host
+    kit: platform-host
     summary: >-
       The program's one governed server: Windows Server 2025 running Gitea behind IIS, with a
       standby, that holds the authoritative repository and runs every analysis, plan, delivery and
@@ -787,15 +788,16 @@ topics:
           note: The reference design for the authoritative repository host.
         - page: docs/about/decision-register.md#wd-178
           note: The standby model, cold by default with an opt-in hot standby.
+      build:
+        - page: docs/books/guides/platform-host-implementation.md
+          note: The build, milestone by milestone, the backup and restore, and the read-only interface check with real lab output.
+    downloads: [platform-host-implementation-guide.docx, platform-host-code.zip]
     members:
       - docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md
     gaps:
       plan: >-
         Not needed, because the build is task P0.2 in the Program master schedule plan, and Book 00,
         Chapter 08 breaks it into milestones M-001 to M-007 with owners and gate criteria.
-      guide: >-
-        Needed: a PowerShell-first build guide that follows milestones M-001 to M-007, with the
-        federal requirements, KSIs and evidence for each step.
       workbook: >-
         Not needed, because the build guide and the learning path's labs cover building and
         checking the host; it has no code base of its own to teach.
@@ -804,9 +806,6 @@ topics:
         Needed: labs that build a lab host (Gitea behind IIS, single-host profile) and run the
         interface check.
       videos: "Needed: a narrated deck for the build guide."
-      code: >-
-        Needed: a read-only kit that checks the host's interfaces against Appendix B's closed list
-        and writes the evidence.
 
   - id: information-protection
     title: Information Protection

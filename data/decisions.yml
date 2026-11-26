@@ -2348,7 +2348,7 @@
   - {title: 'Microsoft Learn, Reverse Proxy with URL Rewrite v2 and Application Request Routing', url: 'https://learn.microsoft.com/iis/extensions/url-rewrite-module/reverse-proxy-with-url-rewrite-v2-and-application-request-routing'}
   - {title: 'Microsoft Learn, Windows Server release information', url: 'https://learn.microsoft.com/windows/release-health/windows-server-release-info'}
   - {title: 'Microsoft Learn, Azure DevOps Server Release Notes', url: 'https://learn.microsoft.com/azure/devops/server/release-notes/azuredevopsserver?view=azure-devops'}
-  pages: [docs/books/b01-transformation-arc/03-platform-foundation.md, docs/books/b00-orientation/08-pre-flight-and-assessment.md, docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md]
+  pages: [docs/books/b01-transformation-arc/03-platform-foundation.md, docs/books/b00-orientation/08-pre-flight-and-assessment.md, docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md, docs/books/guides/platform-host-implementation.md]
   prs: []
   status: settled
   note: "Basis: workbook owner decision, November 25, 2026. Asked whether Book 10's Appendix B should have its own topic and be fully fleshed out, he was shown that Book 01, Chapter 03 asks for the reverse-proxy choice and the standby model to be recorded and that the register held neither; he answered \"Go on Phase 1, use your recommendations\". This records the design the books already describe; it doesn't change it."
@@ -2361,7 +2361,7 @@
   rationale: "The design's one requirement is a single authoritative writer, so replication serves recovery, not load-sharing. A cold standby meets the program's recovery objectives at the least cost and complexity; a witness keeps an automatic failover from producing two writers. Making the hot standby opt-in lets an agency pay for availability only where its own impact analysis asks for it."
   basis: workbook-design
   sources: []
-  pages: [docs/books/b01-transformation-arc/03-platform-foundation.md, docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md]
+  pages: [docs/books/b01-transformation-arc/03-platform-foundation.md, docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md, docs/books/guides/platform-host-implementation.md]
   prs: []
   status: settled
   note: "Basis: workbook owner decision, November 25, 2026, in the same answer as WD-177. This records the standby model Book 01, Chapter 03 and Book 10, Appendix B already describe."

@@ -212,9 +212,10 @@ pages:
   ms_date: '2025-07-02'
   ms_topic: concept-article
   description: Review the minimum hardware requirements for CPU, memory (RAM), storage, and network needed to install and run Windows Server.
-  coverage: not-covered
+  coverage: cited
   note: The 2016 retirement (January 12, 2027) needs an upgrade-or-replace path; the workbook states the 2019 minimum but has no upgrade steps
-  cited_by: []
+  cited_by:
+  - docs/books/guides/platform-host-implementation.md
 - path: WindowsServerDocs/get-started/hotpatch.md
   url: https://learn.microsoft.com/windows-server/get-started/hotpatch
   title: Hotpatch for Windows Server

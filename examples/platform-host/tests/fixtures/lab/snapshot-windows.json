@@ -1,0 +1,473 @@
+{
+    "schema":  "fmp-ph-snapshot-windows/1",
+    "takenAt":  "2026-11-26T05:52:50Z",
+    "computer":  "runnervmbpeip",
+    "os":  {
+               "caption":  "Microsoft Windows Server 2025 Datacenter",
+               "version":  "10.0.26100",
+               "build":  26100
+           },
+    "edition":  "Windows PowerShell 5.1.26100.33822",
+    "listeners":  [
+                      {
+                          "address":  "172.25.240.1",
+                          "port":  53,
+                          "pid":  3848,
+                          "process":  "dockerd"
+                      },
+                      {
+                          "address":  "::",
+                          "port":  135,
+                          "pid":  1096,
+                          "process":  "svchost"
+                      },
+                      {
+                          "address":  "0.0.0.0",
+                          "port":  135,
+                          "pid":  1096,
+                          "process":  "svchost"
+                      },
+                      {
+                          "address":  "10.1.0.101",
+                          "port":  139,
+                          "pid":  4,
+                          "process":  "System"
+                      },
+                      {
+                          "address":  "172.25.240.1",
+                          "port":  139,
+                          "pid":  4,
+                          "process":  "System"
+                      },
+                      {
+                          "address":  "::",
+                          "port":  443,
+                          "pid":  4,
+                          "process":  "System"
+                      },
+                      {
+                          "address":  "::",
+                          "port":  445,
+                          "pid":  4,
+                          "process":  "System"
+                      },
+                      {
+                          "address":  "::",
+                          "port":  1801,
+                          "pid":  3920,
+                          "process":  "mqsvc"
+                      },
+                      {
+                          "address":  "0.0.0.0",
+                          "port":  1801,
+                          "pid":  3920,
+                          "process":  "mqsvc"
+                      },
+                      {
+                          "address":  "::",
+                          "port":  2103,
+                          "pid":  3920,
+                          "process":  "mqsvc"
+                      },
+                      {
+                          "address":  "0.0.0.0",
+                          "port":  2103,
+                          "pid":  3920,
+                          "process":  "mqsvc"
+                      },
+                      {
+                          "address":  "::",
+                          "port":  2105,
+                          "pid":  3920,
+                          "process":  "mqsvc"
+                      },
+                      {
+                          "address":  "0.0.0.0",
+                          "port":  2105,
+                          "pid":  3920,
+                          "process":  "mqsvc"
+                      },
+                      {
+                          "address":  "::",
+                          "port":  2107,
+                          "pid":  3920,
+                          "process":  "mqsvc"
+                      },
+                      {
+                          "address":  "0.0.0.0",
+                          "port":  2107,
+                          "pid":  3920,
+                          "process":  "mqsvc"
+                      },
+                      {
+                          "address":  "::",
+                          "port":  2179,
+                          "pid":  2032,
+                          "process":  "vmms"
+                      },
+                      {
+                          "address":  "0.0.0.0",
+                          "port":  2179,
+                          "pid":  2032,
+                          "process":  "vmms"
+                      },
+                      {
+                          "address":  "::",
+                          "port":  2222,
+                          "pid":  6700,
+                          "process":  "gitea"
+                      },
+                      {
+                          "address":  "127.0.0.1",
+                          "port":  3000,
+                          "pid":  6700,
+                          "process":  "gitea"
+                      },
+                      {
+                          "address":  "::",
+                          "port":  3389,
+                          "pid":  1312,
+                          "process":  "svchost"
+                      },
+                      {
+                          "address":  "0.0.0.0",
+                          "port":  3389,
+                          "pid":  1312,
+                          "process":  "svchost"
+                      },
+                      {
+                          "address":  "::",
+                          "port":  5985,
+                          "pid":  4,
+                          "process":  "System"
+                      },
+                      {
+                          "address":  "::",
+                          "port":  5986,
+                          "pid":  4,
+                          "process":  "System"
+                      },
+                      {
+                          "address":  "::",
+                          "port":  47001,
+                          "pid":  4,
+                          "process":  "System"
+                      },
+                      {
+                          "address":  "::",
+                          "port":  49664,
+                          "pid":  984,
+                          "process":  "lsass"
+                      },
+                      {
+                          "address":  "0.0.0.0",
+                          "port":  49664,
+                          "pid":  984,
+                          "process":  "lsass"
+                      },
+                      {
+                          "address":  "::",
+                          "port":  49665,
+                          "pid":  864,
+                          "process":  "wininit"
+                      },
+                      {
+                          "address":  "0.0.0.0",
+                          "port":  49665,
+                          "pid":  864,
+                          "process":  "wininit"
+                      },
+                      {
+                          "address":  "::",
+                          "port":  49666,
+                          "pid":  2732,
+                          "process":  "svchost"
+                      },
+                      {
+                          "address":  "0.0.0.0",
+                          "port":  49666,
+                          "pid":  2732,
+                          "process":  "svchost"
+                      },
+                      {
+                          "address":  "::",
+                          "port":  49667,
+                          "pid":  2568,
+                          "process":  "svchost"
+                      },
+                      {
+                          "address":  "0.0.0.0",
+                          "port":  49667,
+                          "pid":  2568,
+                          "process":  "svchost"
+                      },
+                      {
+                          "address":  "::",
+                          "port":  49668,
+                          "pid":  2588,
+                          "process":  "svchost"
+                      },
+                      {
+                          "address":  "0.0.0.0",
+                          "port":  49668,
+                          "pid":  2588,
+                          "process":  "svchost"
+                      },
+                      {
+                          "address":  "::",
+                          "port":  49670,
+                          "pid":  3416,
+                          "process":  "spoolsv"
+                      },
+                      {
+                          "address":  "0.0.0.0",
+                          "port":  49670,
+                          "pid":  3416,
+                          "process":  "spoolsv"
+                      },
+                      {
+                          "address":  "::",
+                          "port":  49671,
+                          "pid":  3920,
+                          "process":  "mqsvc"
+                      },
+                      {
+                          "address":  "0.0.0.0",
+                          "port":  49671,
+                          "pid":  3920,
+                          "process":  "mqsvc"
+                      },
+                      {
+                          "address":  "::",
+                          "port":  49683,
+                          "pid":  956,
+                          "process":  "services"
+                      },
+                      {
+                          "address":  "0.0.0.0",
+                          "port":  49683,
+                          "pid":  956,
+                          "process":  "services"
+                      },
+                      {
+                          "address":  "127.0.0.1",
+                          "port":  52992,
+                          "pid":  6700,
+                          "process":  "gitea"
+                      }
+                  ],
+    "firewallProfiles":  [
+                             {
+                                 "name":  "Domain",
+                                 "enabled":  true,
+                                 "defaultInboundAction":  "Block"
+                             },
+                             {
+                                 "name":  "Private",
+                                 "enabled":  true,
+                                 "defaultInboundAction":  "Block"
+                             },
+                             {
+                                 "name":  "Public",
+                                 "enabled":  true,
+                                 "defaultInboundAction":  "Block"
+                             }
+                         ],
+    "firewallRules":  [
+                          {
+                              "name":  "Platform host HTTPS (443)",
+                              "protocol":  "TCP",
+                              "localPort":  "443"
+                          },
+                          {
+                              "name":  "Platform host Gitea SSH (2222)",
+                              "protocol":  "TCP",
+                              "localPort":  "2222"
+                          }
+                      ],
+    "tls":  {
+                "thumbprint":  "80FAFE3ED3DFACCA245B9D06D99F1A1612AD5CA4",
+                "subject":  "CN=git.fmp.lab.contoso.test",
+                "issuer":  "CN=git.fmp.lab.contoso.test",
+                "selfSigned":  true,
+                "notAfter":  "2027-12-28T05:52:21Z",
+                "keyAlgorithm":  "RSA",
+                "keySize":  4096,
+                "dnsNames":  [
+                                 "git.fmp.lab.contoso.test"
+                             ],
+                "sslFlags":  "Sni",
+                "protocols":  {
+                                  "TLS 1.0":  "disabled",
+                                  "TLS 1.1":  "disabled",
+                                  "TLS 1.2":  "enabled",
+                                  "TLS 1.3":  "default"
+                              }
+            },
+    "iis":  {
+                "site":  "FMPReverseProxy",
+                "siteId":  1056098939,
+                "state":  "Started",
+                "rewriteRules":  [
+                                     {
+                                         "name":  "ReverseProxyToGitea",
+                                         "stopProcessing":  true,
+                                         "matchUrl":  "(.*)",
+                                         "actionType":  "Rewrite",
+                                         "actionUrl":  "http://127.0.0.1:3000{UNENCODED_URL}"
+                                     }
+                                 ],
+                "useOriginalURLEncoding":  false,
+                "proxyEnabled":  true,
+                "reverseRewriteHostInResponseHeaders":  false,
+                "maxAllowedContentLength":  524288000,
+                "hstsEnabled":  true,
+                "hstsMaxAge":  31536000,
+                "hstsIncludeSubDomains":  true,
+                "webSockets":  true,
+                "log":  {
+                            "format":  "W3c",
+                            "period":  "Hourly",
+                            "directory":  "C:\\inetpub\\logs\\LogFiles",
+                            "fields":  "Date,Time,ClientIP,UserName,ServerIP,Method,UriStem,UriQuery,HttpStatus,Win32Status,BytesSent,BytesRecv,TimeTaken,ServerPort,UserAgent,Host,HttpSubStatus"
+                        }
+            },
+    "appIni":  {
+                   "_root":  {
+                                 "APP_NAME":  "Platform host (lab)",
+                                 "RUN_USER":  "runnervmbpeip$",
+                                 "RUN_MODE":  "prod",
+                                 "WORK_PATH":  "C:/FMPLab/Gitea"
+                             },
+                   "server":  {
+                                  "PROTOCOL":  "http",
+                                  "HTTP_ADDR":  "127.0.0.1",
+                                  "HTTP_PORT":  "3000",
+                                  "DOMAIN":  "git.fmp.lab.contoso.test",
+                                  "ROOT_URL":  "https://git.fmp.lab.contoso.test/",
+                                  "DISABLE_SSH":  "false",
+                                  "START_SSH_SERVER":  "true",
+                                  "SSH_DOMAIN":  "git.fmp.lab.contoso.test",
+                                  "SSH_PORT":  "2222",
+                                  "SSH_LISTEN_PORT":  "2222",
+                                  "LFS_START_SERVER":  "true",
+                                  "OFFLINE_MODE":  "true",
+                                  "APP_DATA_PATH":  "C:/FMPLab/Gitea/data",
+                                  "LFS_JWT_SECRET":  "\u003cset\u003e"
+                              },
+                   "database":  {
+                                    "DB_TYPE":  "sqlite3",
+                                    "PATH":  "C:/FMPLab/Gitea/data/gitea.db"
+                                },
+                   "repository":  {
+                                      "ROOT":  "C:/FMPLab/GitRepos"
+                                  },
+                   "lfs":  {
+                               "PATH":  "C:/FMPLab/Gitea/data/lfs"
+                           },
+                   "service":  {
+                                   "DISABLE_REGISTRATION":  "true",
+                                   "REQUIRE_SIGNIN_VIEW":  "true"
+                               },
+                   "security":  {
+                                    "INSTALL_LOCK":  "true",
+                                    "DISABLE_GIT_HOOKS":  "true",
+                                    "SECRET_KEY":  "\u003cset\u003e",
+                                    "INTERNAL_TOKEN":  "\u003cset\u003e"
+                                },
+                   "oauth2":  {
+                                  "JWT_SECRET":  "\u003cset\u003e"
+                              },
+                   "mirror":  {
+                                  "MIN_INTERVAL":  "10m"
+                              },
+                   "webhook":  {
+                                   "ALLOWED_HOST_LIST":  "*.fmp.lab.contoso.test"
+                               },
+                   "log":  {
+                               "MODE":  "file",
+                               "LEVEL":  "Info",
+                               "ROOT_PATH":  "C:/FMPLab/Gitea/log"
+                           }
+               },
+    "service":  {
+                    "name":  "gitea",
+                    "startName":  "LocalSystem",
+                    "startMode":  "Auto",
+                    "state":  "Running",
+                    "delayedAutoStart":  true,
+                    "pathName":  "C:\\FMPLab\\Gitea\\gitea.exe web --config C:\\FMPLab\\Gitea\\custom\\conf\\app.ini"
+                },
+    "acls":  [
+                 {
+                     "path":  "C:\\FMPLab\\Gitea",
+                     "exists":  true,
+                     "owner":  "BUILTIN\\Administrators",
+                     "access":  [
+                                    {
+                                        "identity":  "NT AUTHORITY\\SYSTEM",
+                                        "rights":  "FullControl",
+                                        "type":  "Allow",
+                                        "inherited":  false
+                                    },
+                                    {
+                                        "identity":  "BUILTIN\\Administrators",
+                                        "rights":  "FullControl",
+                                        "type":  "Allow",
+                                        "inherited":  false
+                                    }
+                                ]
+                 },
+                 {
+                     "path":  "C:\\FMPLab\\GitRepos",
+                     "exists":  true,
+                     "owner":  "BUILTIN\\Administrators",
+                     "access":  [
+                                    {
+                                        "identity":  "NT AUTHORITY\\SYSTEM",
+                                        "rights":  "FullControl",
+                                        "type":  "Allow",
+                                        "inherited":  false
+                                    },
+                                    {
+                                        "identity":  "BUILTIN\\Administrators",
+                                        "rights":  "FullControl",
+                                        "type":  "Allow",
+                                        "inherited":  false
+                                    }
+                                ]
+                 },
+                 {
+                     "path":  "C:\\FMPLab\\Backups",
+                     "exists":  true,
+                     "owner":  "BUILTIN\\Administrators",
+                     "access":  [
+                                    {
+                                        "identity":  "NT AUTHORITY\\SYSTEM",
+                                        "rights":  "FullControl",
+                                        "type":  "Allow",
+                                        "inherited":  false
+                                    },
+                                    {
+                                        "identity":  "BUILTIN\\Administrators",
+                                        "rights":  "FullControl",
+                                        "type":  "Allow",
+                                        "inherited":  false
+                                    }
+                                ]
+                 }
+             ],
+    "binaries":  {
+                     "giteaPath":  "C:\\FMPLab\\Gitea\\gitea.exe",
+                     "giteaSha256":  "f67cfc9179dbcf43d730622df5006ee2fa64f626422c734cea89af50f7ad7cc3"
+                 },
+    "backup":  {
+                   "path":  "C:\\FMPLab\\Backups",
+                   "newest":  "gitea-dump-20261126T055238Z.zip",
+                   "newestTime":  "2026-11-26T05:52:39Z",
+                   "bytes":  22244752
+               },
+    "arc":  {
+                "installed":  false
+            }
+}

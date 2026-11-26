@@ -81,3 +81,9 @@ Sources: the series chapter itself (`03-platform-foundation.md`, upgraded in pla
 | Whitepaper — Principle 4 (active reconciliation, CISA ZT stage table, AO callout) | The control plane over the data planes | Stage mapping labelled as program design; AO expectation claim removed (claim 23) |
 | Whitepaper — Figure 13 (rId94.png) | `ch03-decide-and-act.flow.yaml` (separation and gate) and the ladder table | Word extract not reused |
 | Whitepaper — Principle 1, Principle 3, mainframe section | Chapter 04 | See its ledger |
+
+## Platform host guide, November 26, 2026
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| PH1 | "Build procedures belong in a separate, PowerShell-first runbook" now links that runbook, The Platform Host: An Implementation Guide, and names WD-177 and WD-178 as the workbook's own records of the reverse-proxy choice and the standby model | Records and gates (the runbook sentence) | link added | `docs/books/guides/platform-host-implementation.md`; decision register |

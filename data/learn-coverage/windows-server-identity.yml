@@ -1738,6 +1738,7 @@ pages:
   - docs/books/b02-identity/appendix-b-forest-assessment-module.md
   - docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md
   - docs/books/guides/non-person-identity-implementation.md
+  - docs/books/guides/platform-host-implementation.md
   - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
   - docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md

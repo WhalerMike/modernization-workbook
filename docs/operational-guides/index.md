@@ -59,7 +59,7 @@ from AD's hidden governance surface to the Hybrid-Cloud access plane.
 
 | Section | Scope | Leaf count |
 |---|---|---|
-| [A. Platform Substrate](platform-substrate/index.html) | WS2025, IIS, Gitea, Kerberos, PKI, backup, hardening — the host that runs everything | 8 |
+| [A. Platform Substrate](../books/guides/platform-host-implementation.html) | WS2025, IIS, Gitea, Kerberos, PKI, backup, hardening — the host that runs everything | 8 |
 | [B. Transformation Engine](transformation-engine/index.html) | PowerShell + Python + API scripts that analyse, plan, and deliver | 7 |
 | C. Identity (MOD_\*) | Dynamic groups, AUs, delegation, migration runbook | 11 |
 | [D. Directory Migration (DM_\*)](../books/b02-identity/04-the-hidden-migration-surface.html) | IPAM, DNS, DHCP, PKI, RADIUS, LDAP, sync, devices, NTP, DFS, SPN, Trusts | 12 |

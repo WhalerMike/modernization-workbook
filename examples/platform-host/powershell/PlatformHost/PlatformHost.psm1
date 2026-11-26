@@ -11,9 +11,17 @@ Set-StrictMode -Version 2.0
 
 $script:SecretKeyPattern = '(?i)(SECRET|TOKEN|PASSWD|PASSWORD|_KEY$|^KEY$)'
 
-function Get-PhKitRoot { Split-Path -Parent (Split-Path -Parent $PSScriptRoot) }
+function Get-PhKitRoot {
+    Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
+}
 
 function Read-PhJson {
+    <#
+    .SYNOPSIS
+        Reads a JSON file (a settings file, a snapshot, the manifest) into objects.
+    .EXAMPLE
+        $settings = Read-PhJson -Path config/settings.lab.json
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path)
     if (-not (Test-Path -LiteralPath $Path)) { throw "File not found: $Path" }
@@ -21,6 +29,12 @@ function Read-PhJson {
 }
 
 function Write-PhText {
+    <#
+    .SYNOPSIS
+        Writes text as UTF-8 without a byte-order mark, with LF line endings, creating the folder.
+    .EXAMPLE
+        Write-PhText -Path out/note.txt -Text 'done'
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path, [Parameter(Mandatory)][AllowEmptyString()][string]$Text)
     $dir = Split-Path -Parent $Path
@@ -30,12 +44,24 @@ function Write-PhText {
 }
 
 function Write-PhJson {
+    <#
+    .SYNOPSIS
+        Writes a value as JSON, UTF-8 without a byte-order mark, with LF line endings.
+    .EXAMPLE
+        Write-PhJson -Path out/results.json -Value $results
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path, [Parameter(Mandatory)]$Value)
     Write-PhText -Path $Path -Text (($Value | ConvertTo-Json -Depth 12) + "`n")
 }
 
 function Get-PhFileHash {
+    <#
+    .SYNOPSIS
+        Returns a file's SHA-256 as lowercase hex, the same in Windows PowerShell 5.1 and PowerShell 7.
+    .EXAMPLE
+        Get-PhFileHash -Path D:\Gitea\gitea.exe
+    #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path)
     $sha = [Security.Cryptography.SHA256]::Create()
@@ -60,13 +86,24 @@ function ConvertTo-PhUtc {
     .SYNOPSIS
         Returns a UTC DateTime from a snapshot's time, whether ConvertFrom-Json left it a string (Windows
         PowerShell 5.1) or already made it a DateTime (PowerShell 7).
+    .EXAMPLE
+        ConvertTo-PhUtc '2026-11-26T05:52:58Z'
     #>
     param([Parameter(Mandatory)]$Value)
     if ($Value -is [DateTime]) { if ($Value.Kind -eq [DateTimeKind]::Unspecified) { return [DateTime]::SpecifyKind($Value, [DateTimeKind]::Utc) } ; return $Value.ToUniversalTime() }
     [DateTime]::Parse("$Value", [Globalization.CultureInfo]::InvariantCulture, [Globalization.DateTimeStyles]::AdjustToUniversal -bor [Globalization.DateTimeStyles]::AssumeUniversal)
 }
 
-function Format-PhUtc { param([Parameter(Mandatory)]$Value) (ConvertTo-PhUtc $Value).ToString('yyyy-MM-ddTHH:mm:ssZ', [Globalization.CultureInfo]::InvariantCulture) }
+function Format-PhUtc {
+    <#
+    .SYNOPSIS
+        Formats a snapshot's time as UTC, yyyy-MM-ddTHH:mm:ssZ, in either edition.
+    .EXAMPLE
+        Format-PhUtc $snapshot.takenAt
+    #>
+    param([Parameter(Mandatory)]$Value)
+    (ConvertTo-PhUtc $Value).ToString('yyyy-MM-ddTHH:mm:ssZ', [Globalization.CultureInfo]::InvariantCulture)
+}
 
 function ConvertFrom-PhIni {
     <#
@@ -124,6 +161,12 @@ function Test-PhWebhookSignature {
 }
 
 function Get-PhRequirements {
+    <#
+    .SYNOPSIS
+        Reads config/requirements.json: each check's SP 800-53 controls and KSIs.
+    .EXAMPLE
+        (Get-PhRequirements).checks.'PH-03'
+    #>
     [CmdletBinding()]
     param([string]$Path = (Join-Path (Get-PhKitRoot) 'config/requirements.json'))
     Read-PhJson -Path $Path
@@ -342,6 +385,12 @@ function Test-PhSnapshot {
 }
 
 function Format-PhRows {
+    <#
+    .SYNOPSIS
+        Formats the check's rows as one line each, then the pass, finding and not-checked counts.
+    .EXAMPLE
+        Format-PhRows -Rows (Test-PhSnapshot -Settings $s -Windows $w -Gitea $g -Manifest $m -AsOf $now)
+    #>
     param([Parameter(Mandatory)][object[]]$Rows)
     foreach ($r in $Rows) { '{0}  {1,-10}  {2}' -f $r.Check, $r.Status, $r.Detail }
     $f = @($Rows | Where-Object Status -EQ 'Finding').Count
@@ -357,6 +406,8 @@ function Write-PhEvidence {
         the time, environment, the checks with their SP 800-53 controls and FedRAMP 20x KSIs (config/requirements.json),
         every file's SHA-256 and the SHA-256 of the record before it, then refreshes SHA256SUMS. Secrets never reach
         a snapshot (ConvertFrom-PhIni keeps only '<set>').
+    .EXAMPLE
+        Write-PhEvidence -EvidencePath D:\Evidence\platform-host\evidence -RunPath $Run -AsOf (Get-Date).ToUniversalTime().ToString('o') -Environment production
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$EvidencePath, [Parameter(Mandatory)][string]$RunPath, [Parameter(Mandatory)][string]$AsOf, [Parameter(Mandatory)][string]$Environment, [string]$ChangeRecord = '', $Requirements = (Get-PhRequirements))
@@ -409,6 +460,8 @@ function Test-PhEvidence {
     .SYNOPSIS
         Checks an evidence folder: SHA256SUMS lists every file unchanged, each record's files match it, and the
         chain of records is unbroken. One row per check.
+    .EXAMPLE
+        Test-PhEvidence -EvidencePath D:\Evidence\platform-host\evidence
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$EvidencePath)
