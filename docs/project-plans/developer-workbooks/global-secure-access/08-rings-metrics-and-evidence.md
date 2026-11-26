@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: e8a7b1107d630c76728a46c9b208dd98090c76b6a66d53242c60174237c26cd9
-last-reviewed: 2026-11-18
+reviewed-sha256: 1a1d1428b6acec25bdf241d5c31d525064eead96303dbe6cfe9a5ef6a5de2e01
+last-reviewed: 2026-11-25
 ---
 # Chapter 08 — Rings, Metrics and the Evidence Package
 

@@ -17,7 +17,7 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: 3887c756d7479582410d416adfd8d51779c6c996895e80215e792ce1c4770dc1
+reviewed-sha256: 31d0d00857071216c09fae93b1e01e1818cff5272705cfed30736c3c02def4c1
 last-reviewed: 2026-11-25
 ---
 # Learning path: Information Protection with Microsoft Purview {.unnumbered}

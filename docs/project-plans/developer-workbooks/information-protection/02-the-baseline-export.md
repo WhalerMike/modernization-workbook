@@ -11,7 +11,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: adbae6e5c20d44eea7a2a8b7b20a3db5feaf50cffafcebdb78ba096ef622318b
+reviewed-sha256: 12e0fe6aad51961d1cc21cf7b350de8fe4d65397f77dc2749e423f939fa137c2
 last-reviewed: 2026-11-25
 ---
 # Chapter 02 — The Baseline Export

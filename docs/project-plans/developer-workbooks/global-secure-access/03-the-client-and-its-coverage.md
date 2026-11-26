@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 9b339aca4ef8c1a7c30eb9f185b2bea210c227d1a494d4998771cf0f0b311166
-last-reviewed: 2026-11-18
+reviewed-sha256: c2b34aa35ad97365c290f6e6e91ac945757c8cabc022947b1d0d52c441a52343
+last-reviewed: 2026-11-25
 ---
 # Chapter 03 — The Client and Its Coverage
 

@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 07eee4176abdce09ba30e2bcfa5b61622aaac8ab2012c4ace0e4e07c5da31926
+last-reviewed: 2026-11-25
 ---
 # Chapter 03 — Arc and the Engine's Identity
 

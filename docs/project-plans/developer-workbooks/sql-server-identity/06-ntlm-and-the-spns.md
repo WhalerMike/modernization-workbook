@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: e994bd6fabd054c6815b932dfbb02c07960d215f31eb651d6589e15069afd201
+last-reviewed: 2026-11-25
 ---
 # Chapter 06 — NTLM and the SPNs
 

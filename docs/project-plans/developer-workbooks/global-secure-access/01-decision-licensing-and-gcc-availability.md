@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: d4b6b2b380d320942f676e2fd518b9b241557d33aa90bf288b25c01f3a61846c
-last-reviewed: 2026-11-18
+reviewed-sha256: bc6fad182e39cf4ec0dc19af7b7a05c96297fd35c68a3f57da82c1360fe8160d
+last-reviewed: 2026-11-25
 ---
 # Chapter 01 — Decision, Licensing and GCC Availability
 

@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 390ae2d4cc478549251c4e322a3ff87dd03e6aa87f4678228187eb6ca52c032d
-last-reviewed: 2026-11-18
+reviewed-sha256: 1e51cd79ec51219f24140d174915e40dbcd46dc9165d2595ffafe4e0177c8f48
+last-reviewed: 2026-11-25
 ---
 # Chapter 05 — Exposure and Incidents
 

@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Book 09"
 series-order: 1
 review-status: approved
-reviewed-sha256: 652648f3f416d61bb163a57c76db6908094b3632794d96aa34b92107f6a4b788
+reviewed-sha256: ba114c6f560e0cfe593dfcebc623582d209cebbe6de0a1fc1b6877b867826c39
 last-reviewed: 2026-11-25
 ---
 # Module 1: The governor before the traffic {.unnumbered}

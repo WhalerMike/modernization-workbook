@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 7c46c454ac0015227526507cb62f3c1345402aeec6a6305886668165d0c38858
-last-reviewed: 2026-11-20
+reviewed-sha256: 3cb22a6aa1577a540adbc43cd206b15de4323af0bcbc3160749da08fc92ba5b8
+last-reviewed: 2026-11-25
 ---
 # Chapter 01 — The Daily Checks and Where Each One Lives
 

@@ -17,7 +17,7 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: 82873fba522b0adeb377b0c5f4535846960cc3a47cfa42168a95e433ad7312bf
+reviewed-sha256: 505d22e186913e13e2b6d44001322eb1732ddc772db1c84ae234dc08771dec39
 last-reviewed: 2026-11-25
 ---
 # Learning path: Defender XDR Engineering and Operations {.unnumbered}

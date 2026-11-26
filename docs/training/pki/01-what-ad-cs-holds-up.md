@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Book 07"
 series-order: 1
 review-status: approved
-reviewed-sha256: ee8e97c27d74a2d00daa48dfbd93edcb7b57786df8b73911c9f87c6313f9258d
+reviewed-sha256: b7e9bdd7e851533c402847ef9c855caffb72b56ad36e498de3079fd4586e70d0
 last-reviewed: 2026-11-25
 ---
 # Module 1: What AD CS holds up: the inventory {.unnumbered}

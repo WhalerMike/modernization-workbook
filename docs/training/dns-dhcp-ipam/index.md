@@ -17,7 +17,7 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: 6a05035259ba44a0bee7465d5d82f44a4ff6d4db05c5acda89a46f3fd275bf42
+reviewed-sha256: 80d38ba506d1ae80d03693df6ccc6ac0a670ddc6d2709ebd26e720a884ab2860
 last-reviewed: 2026-11-25
 ---
 # Learning path: DNS, DHCP and IPAM {.unnumbered}

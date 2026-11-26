@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: dd34429327700de671ff0988aaa8c963a43c63010b29d4f28b8112897e3cbb32
-last-reviewed: 2026-11-18
+reviewed-sha256: 4973f3b534c06b61c40813fa33c20415868e405beb766b90be822607ac5e5f59
+last-reviewed: 2026-11-25
 ---
 # Chapter 01 — Access and the Graph Read Path
 

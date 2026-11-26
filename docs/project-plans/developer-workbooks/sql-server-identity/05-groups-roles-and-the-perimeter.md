@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 6ff7be27988dcf1d97dbd325425df64d2dcb05ded8a1a30924513b0e41b8bc3f
+last-reviewed: 2026-11-25
 ---
 # Chapter 05 — Groups, Roles and the Perimeter
 

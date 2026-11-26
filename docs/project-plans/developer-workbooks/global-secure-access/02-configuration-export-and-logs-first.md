@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 2dfa9d6b9cc4c4e5f34195989ddaa5d9d7f0038779a9c099186f6c20464fdf8d
-last-reviewed: 2026-11-18
+reviewed-sha256: b45fd2955a5c67a22a895809c517877e03dab4bf0bbf86992f7a8f069ec1b762
+last-reviewed: 2026-11-25
 ---
 # Chapter 02 — The Configuration Export and Logs First
 

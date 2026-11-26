@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 6cdfed58393ef0e309bf30f8f52e1fe992097b09d711d12759fc28c8802bf92a
+last-reviewed: 2026-11-25
 ---
 # Chapter 08 — AD CS Dependencies
 

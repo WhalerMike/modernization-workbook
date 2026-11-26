@@ -7,7 +7,9 @@ research-type: training module
 research-book: "Book 06"
 series-order: 5
 date-modified: 2026-11-25
-review-status: pending
+review-status: approved
+reviewed-sha256: 15b2e3ff407c3a09ac9d9f3c2f7d63718b13e7f9d113021392a0a25d481ecda4
+last-reviewed: 2026-11-25
 ---
 # Data Platform, Module 5: Groups, Roles and the Perimeter {.unnumbered}
 

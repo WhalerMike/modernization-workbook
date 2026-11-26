@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Book 20"
 series-order: 2
 review-status: approved
-reviewed-sha256: 04ecf193232288a448e954408d560fda9cf43167db460cb82ba8635b4eeae755
+reviewed-sha256: e69d42e93654ab8b32c889d80937517a5f058da95cfb3882d51d5f059225247b
 last-reviewed: 2026-11-25
 ---
 # Module 2: Labels, publication and containers {.unnumbered}

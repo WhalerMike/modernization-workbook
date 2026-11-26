@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Book 07"
 series-order: 2
 review-status: approved
-reviewed-sha256: 5442706ce3c76c7b9722d31cd2f664be4d59fde408ac57e4f81df329bc6126b8
+reviewed-sha256: 32eaefe4f452d10a2b5220ef9e7fe435b5cc13fdbab018351ebd8ebde52a7bb4
 last-reviewed: 2026-11-25
 ---
 # Module 2: Hardening what stays {.unnumbered}

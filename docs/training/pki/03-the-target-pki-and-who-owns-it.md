@@ -6,7 +6,9 @@ research-status: draft
 research-type: training module
 research-book: "Book 07"
 series-order: 3
-review-status: pending
+review-status: approved
+reviewed-sha256: 86d02078caa1ba2fbce76c105f626646472ee8e38e3e50e2b6b92079dc9a60d3
+last-reviewed: 2026-11-25
 ---
 # Module 3: The target PKI and who owns it {.unnumbered}
 
