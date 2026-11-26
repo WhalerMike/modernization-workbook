@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 1d7599495ac418f6a0b100913052c940e1891efa266c2d6d06d50e9e8fadff6e
-last-reviewed: 2026-11-18
+reviewed-sha256: e59419e81adc11966d2dd66888c48296fed013093b16f7fa39787be93b52e436
+last-reviewed: 2026-11-25
 ---
 # Chapter 01 — The Landing-Zone Baseline
 

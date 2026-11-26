@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: e50c9952b8e861cd7317c8bf4eea4daed42c31d05775124098272f1144c3f7fd
+last-reviewed: 2026-11-25
 ---
 # Chapter 04 — Entra Logins and the Parallel Run
 

@@ -7,7 +7,9 @@ research-type: training module
 research-book: "Book 06"
 series-order: 9
 date-modified: 2026-11-25
-review-status: pending
+review-status: approved
+reviewed-sha256: e5c7b9bb4b13f0c0207928830f17b03ab227851bc7254d5af65843870eb8de90
+last-reviewed: 2026-11-25
 ---
 # Data Platform, Module 9: Closure, Drift and Evidence {.unnumbered}
 

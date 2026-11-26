@@ -231,9 +231,9 @@
     "Azure",
     "Data platform"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "data-platform",
-   "featured": false
+   "featured": true
   },
   {
    "id": "docs/training/defender-xdr/index.md",
@@ -1568,7 +1568,7 @@
    "topics": [
     "Data platform"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "sql-server-identity",
    "featured": false
   },

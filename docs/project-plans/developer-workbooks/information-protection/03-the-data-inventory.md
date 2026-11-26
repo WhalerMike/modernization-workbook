@@ -11,7 +11,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: e8294f7d72d6749c3854e37c0321c437b235dbf1facf938bcfb81f1d0b6c270d
+reviewed-sha256: 0143d2fd4c24d928f58bc59b18568f62bf25ee641c055eb150b0527fce97286e
 last-reviewed: 2026-11-25
 ---
 # Chapter 03 — The Data Inventory

@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: f80ef3ebe9bbb78a73848048e28d27c02f891dd0ba48d3c1b56776e2026f31ba
+last-reviewed: 2026-11-25
 ---
 # Chapter 09 — Closure, Drift and Evidence
 

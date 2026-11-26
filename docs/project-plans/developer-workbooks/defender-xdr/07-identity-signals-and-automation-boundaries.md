@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: ce0b78eaa5425a40cecd36a2b7ad420d6a545317dbb7ec48b8131ad8d10a21db
-last-reviewed: 2026-11-18
+reviewed-sha256: 207881115a267d05ccb1b435e3a858d0862f02a177a1c7d04abd3fb47a0e266e
+last-reviewed: 2026-11-25
 ---
 # Chapter 07 — Identity Signals and Automation Boundaries
 

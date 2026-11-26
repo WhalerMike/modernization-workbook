@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 783a1aa2690cd13c32733f935d92d4d9e9ca53bae0974a045aab32bc07ce635d
+last-reviewed: 2026-11-25
 ---
 # Chapter 02 — The Authentication Audit
 

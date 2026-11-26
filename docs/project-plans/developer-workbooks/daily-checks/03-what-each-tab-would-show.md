@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: f46e6e724d89685319f6071a4da643d86813d5121ed707899a232fb5ca226eef
-last-reviewed: 2026-11-19
+reviewed-sha256: c56ad968ce9278fdb9c328ef1254634459ea245d94ef7a67dc6c3a62a934bb4f
+last-reviewed: 2026-11-25
 ---
 # Chapter 03 — What Each Tab Would Show
 

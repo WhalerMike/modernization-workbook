@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: b7d83a39497a5afca35b5b958cdbacc2a95d08a03f85d02e213e8bad8bb64c03
+last-reviewed: 2026-11-25
 ---
 # Chapter 01 — The Estate and the Consolidation Gate
 

@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 60202c545ebb51b61c3e252166cd4b7f8276e51017bc8f3e5271b2e0183e9c6f
-last-reviewed: 2026-11-18
+reviewed-sha256: ba0d4f8a7fc9b0a1aae98c8f6b2c8707dbbc311cd40ebab3ca4a95dcdeb66836
+last-reviewed: 2026-11-25
 ---
 # Chapter 08 — The Monthly Evidence Run
 

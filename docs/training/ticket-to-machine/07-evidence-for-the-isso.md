@@ -8,7 +8,7 @@ research-book: "Books 13, 15"
 series-order: 7
 date-modified: 2026-11-01
 review-status: approved
-reviewed-sha256: ffca63fb4e192398dee019ce13db5d629877812ca8d6616c85467d517057acc8
+reviewed-sha256: 9c402845ac7cef21a4f457f89edbb49ad4aa47ebc2cf0aa41fa6d75415250caf
 last-reviewed: 2026-11-25
 ---
 # Ticket-to-Machine, Module 7: Evidence for the ISSO {.unnumbered}

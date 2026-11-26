@@ -7,7 +7,9 @@ research-type: training module
 research-book: "Book 06"
 series-order: 8
 date-modified: 2026-11-25
-review-status: pending
+review-status: approved
+reviewed-sha256: 041c9896a28f182931227af3e4c4a18cb920c780ed3d402f3e2bfef8499e531f
+last-reviewed: 2026-11-25
 ---
 # Data Platform, Module 8: AD CS Dependencies {.unnumbered}
 

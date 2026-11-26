@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 309eca7882366c03c50761f5d2e33f22181049489ba8748d9246d45ae7763ee1
+last-reviewed: 2026-11-25
 ---
 # Chapter 07 — The Application Chain
 
