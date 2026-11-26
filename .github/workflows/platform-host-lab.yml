@@ -139,6 +139,15 @@ jobs:
           Import-Module "$env:KIT\powershell\PlatformHost\PlatformHost.psm1"
           Test-PhEvidence -EvidencePath "$env:OUT\evidence" | ForEach-Object { '{0,-6} {1,-8} {2}' -f $_.Check, $_.Status, $_.Detail } | Tee-Object -FilePath "$env:OUT\console\08-evidence.txt"
 
+      - name: Console files as UTF-8 (Windows PowerShell 5.1's Tee-Object writes UTF-16)
+        if: always()
+        shell: pwsh
+        run: |
+          Get-ChildItem "$env:OUT\console" -Filter *.txt -ErrorAction SilentlyContinue | ForEach-Object {
+            $t = Get-Content -Raw -LiteralPath $_.FullName
+            [IO.File]::WriteAllText($_.FullName, ($t -replace "`r`n", "`n"), [Text.UTF8Encoding]::new($false))
+          }
+
       - uses: actions/upload-artifact@v4
         if: always()
         with:

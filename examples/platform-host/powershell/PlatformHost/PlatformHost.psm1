@@ -272,11 +272,11 @@ function Test-PhSnapshot {
     else {
         $pin = @($Manifest.components | Where-Object { $_.id -eq 'gitea' })[0]
         $hash = "$(Get-PhProp (Get-PhProp $Windows 'binaries') 'giteaSha256')"
-        if (-not $hash) { $m += 'gitea.exe not hashed' } elseif ($hash -ne "$($pin.sha256)") { $m += "gitea.exe hash $($hash.Substring(0,12))… isn't the pinned $($pin.version)" }
+        if (-not $hash) { $m += 'gitea.exe not hashed' } elseif ($hash -ne "$($pin.sha256)") { $m += "gitea.exe hash $($hash.Substring(0,12))... isn't the pinned $($pin.version)" }
         $ver = "$(Get-PhProp $Gitea 'version')"
         if ($null -ne $Gitea -and $ver -and $ver -ne "$($pin.version)") { $m += "Gitea reports $ver, pinned $($pin.version)" }
     }
-    $rows.Add((New-PhRow 'PH-09' $(if ($m.Count) { 'Finding' } else { 'Pass' }) $(if ($m.Count) { $m -join '; ' } else { "gitea.exe is the pinned $($pin.version) (SHA-256 $($pin.sha256.Substring(0,12))…)" }) 'F.3'))
+    $rows.Add((New-PhRow 'PH-09' $(if ($m.Count) { 'Finding' } else { 'Pass' }) $(if ($m.Count) { $m -join '; ' } else { "gitea.exe is the pinned $($pin.version) (SHA-256 $($pin.sha256.Substring(0,12))...)" }) 'F.3'))
 
     # PH-10 Gitea API: sign-in required, webhooks only to listed receivers, mirrors fresh.
     if ($null -eq $Gitea) { $rows.Add((New-PhRow 'PH-10' 'NotChecked' 'no Gitea snapshot (run Get-PhGiteaSnapshot.ps1 in PowerShell 7.6)' 'A.4, D.2, F.1')) }

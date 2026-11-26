@@ -221,7 +221,7 @@ Set-WebConfigurationProperty -PSPath $pp -Filter "$sf/hsts" -Name includeSubDoma
 Set-WebConfigurationProperty -PSPath $pp -Filter "$sf/logFile" -Name period -Value Hourly
 Set-WebConfigurationProperty -PSPath $pp -Filter "$sf/logFile" -Name logExtFileFlags -Value 'Date,Time,ClientIP,UserName,ServerIP,Method,UriStem,UriQuery,HttpStatus,Win32Status,TimeTaken,ServerPort,UserAgent,HttpSubStatus,Host,BytesSent,BytesRecv'
 Start-Website -Name $site
-"  site $site on 443 ($hostName), certificate $($cert.Thumbprint.Substring(0,12))… RSA 4096; ARR proxy on, no host rewrite; HSTS; hourly W3C log"
+"  site $site on 443 ($hostName), certificate $($cert.Thumbprint.Substring(0,12))... RSA 4096; ARR proxy on, no host rewrite; HSTS; hourly W3C log"
 $code = & curl.exe -s -k -o NUL -w '%{http_code}' "https://$hostName/api/healthz"
 "  https://$hostName/api/healthz through IIS: $code"
 
@@ -253,6 +253,8 @@ Step 'Nightly backup (lab): gitea dump'
 $stamp = (Get-Date).ToUniversalTime().ToString('yyyyMMddTHHmmssZ')
 $dump = Join-Path $Root "Backups\gitea-dump-$stamp.zip"
 Stop-Service gitea
+# Stop-Service returns when the service reports stopped; wait for the process too, or its queue LOCK file is still open.
+Get-Process -Name gitea -ErrorAction SilentlyContinue | Wait-Process -Timeout 60
 Invoke-Gitea @('dump', '--file', $dump, '--type', 'zip', '--tempdir', (Join-Path $Root 'state')) | Out-Null
 Start-Service gitea
 do { Start-Sleep -Seconds 2; $ok = $false; try { $ok = (Invoke-WebRequest -Uri "http://127.0.0.1:$($settings.expected.giteaHttpPort)/api/healthz" -UseBasicParsing -TimeoutSec 5).StatusCode -eq 200 } catch { } } until ($ok)
