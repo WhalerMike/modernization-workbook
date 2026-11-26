@@ -108,17 +108,22 @@ def navbar(root: Path, base_nav: dict) -> dict:
                   {"href": "docs/downloads.md", "text": "Downloads"},
                   {"href": "workbook-map.qmd", "text": "Workbook Map"}]
 
+    # The current site's Topics menu (the topic hubs, grouped), as it is.
+    topics = next((copy.deepcopy(i["menu"]) for i in base_nav.get("left", [])
+                   if i.get("text") == "Topics" and i.get("menu")), None)
+
     right = [{"href": CLASSIC_URL, "text": "Current site"}]
     right += [copy.deepcopy(i) for i in base_nav.get("right", [])]
     return {
         # Short: the New Look's navbar has more items than the current site's.
         "title": "Workbook",
         "background": base_nav.get("background", "dark"),
-        # Twelve items need about 1,190px: below xl (1,200px) they go in the menu
-        # button instead of running off the right edge.
+        # Thirteen items: below xl (1,200px) they go in the menu button instead of
+        # running off the right edge (newlook/newlook.css tightens them above it).
         "collapse-below": "xl",
         "left": [
             {"href": "docs/new-look/index.md", "text": "Home"},
+            *([{"text": "Topics", "menu": topics}] if topics else []),
             {"href": "docs/new-look/browse.md", "text": "Browse"},
             {"href": "docs/new-look/plans/index.md", "text": "Plans"},
             {"text": "Learning paths", "menu": paths_menu},
