@@ -549,7 +549,9 @@ def topic_cards(root: Path = ROOT) -> str:
         n = count.get(t["id"], 0)
         lines += [
             '  <li class="nl-tile">',
-            f'    <h3 class="nl-tile-title"><a href="../topics/{esc(t["id"])}.html">{esc(t["title"])}</a></h3>',
+            # A <p> with a heading role, not an <h3>: Quarto gives a written heading an id and
+            # an anchor link of its own, which covered the card and took a tap to #<id>.
+            f'    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/{esc(t["id"])}.html">{esc(t["title"])}</a></p>',
             f'    <p class="nl-tile-desc">{esc(short)}</p>',
             f'    <p class="nl-tile-count">{n} {"page" if n == 1 else "pages"}</p>',
             "  </li>",

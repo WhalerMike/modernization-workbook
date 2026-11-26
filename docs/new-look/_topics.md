@@ -3,107 +3,107 @@
 ```{=html}
 <div class="nl-page"><ul class="nl-tiles nl-topic-tiles" aria-label="Topics">
   <li class="nl-tile">
-    <h3 class="nl-tile-title"><a href="../topics/non-person-identity.html">Non-Person Identity</a></h3>
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/non-person-identity.html">Non-Person Identity</a></p>
     <p class="nl-tile-desc">Service accounts, managed service accounts (gMSA and dMSA), Microsoft Entra workload identities…</p>
     <p class="nl-tile-count">55 pages</p>
   </li>
   <li class="nl-tile">
-    <h3 class="nl-tile-title"><a href="../topics/attribute-driven-migration.html">Attribute-Driven Migration</a></h3>
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/attribute-driven-migration.html">Attribute-Driven Migration</a></p>
     <p class="nl-tile-desc">Moving identity, policy and device management from Active Directory to Microsoft Entra ID, Intune and…</p>
     <p class="nl-tile-count">50 pages</p>
   </li>
   <li class="nl-tile">
-    <h3 class="nl-tile-title"><a href="../topics/provider-notices.html">Provider Notices</a></h3>
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/provider-notices.html">Provider Notices</a></p>
     <p class="nl-tile-desc">The notices cloud providers send about the agency&#x27;s own estate (Azure Service Health, the Microsoft 365…</p>
     <p class="nl-tile-count">26 pages</p>
   </li>
   <li class="nl-tile">
-    <h3 class="nl-tile-title"><a href="../topics/privileged-access.html">Privileged Access</a></h3>
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/privileged-access.html">Privileged Access</a></p>
     <p class="nl-tile-desc">Administrative identity without standing privilege</p>
     <p class="nl-tile-count">37 pages</p>
   </li>
   <li class="nl-tile">
-    <h3 class="nl-tile-title"><a href="../topics/ticket-to-machine.html">Ticket-to-Machine</a></h3>
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/ticket-to-machine.html">Ticket-to-Machine</a></p>
     <p class="nl-tile-desc">Closing drift by machine instead of by hand</p>
     <p class="nl-tile-count">29 pages</p>
   </li>
   <li class="nl-tile">
-    <h3 class="nl-tile-title"><a href="../topics/hr-driven-identity.html">HR-Driven Identity</a></h3>
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/hr-driven-identity.html">HR-Driven Identity</a></p>
     <p class="nl-tile-desc">HR as the source of workforce identity</p>
     <p class="nl-tile-count">46 pages</p>
   </li>
   <li class="nl-tile">
-    <h3 class="nl-tile-title"><a href="../topics/global-secure-access.html">Global Secure Access</a></h3>
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/global-secure-access.html">Global Secure Access</a></p>
     <p class="nl-tile-desc">Microsoft Entra Internet Access and Private Access as the agency&#x27;s identity-aware network layer</p>
     <p class="nl-tile-count">27 pages</p>
   </li>
   <li class="nl-tile">
-    <h3 class="nl-tile-title"><a href="../topics/defender-xdr.html">Defender XDR</a></h3>
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/defender-xdr.html">Defender XDR</a></p>
     <p class="nl-tile-desc">Engineering and operating Microsoft Defender XDR on Windows clients and Windows Server</p>
     <p class="nl-tile-count">33 pages</p>
   </li>
   <li class="nl-tile">
-    <h3 class="nl-tile-title"><a href="../topics/azure-security.html">Azure Security</a></h3>
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/azure-security.html">Azure Security</a></p>
     <p class="nl-tile-desc">Engineering and proving the security of the agency&#x27;s Azure estate</p>
     <p class="nl-tile-count">33 pages</p>
   </li>
   <li class="nl-tile">
-    <h3 class="nl-tile-title"><a href="../topics/microsoft-automation.html">Microsoft Automation</a></h3>
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/microsoft-automation.html">Microsoft Automation</a></p>
     <p class="nl-tile-desc">Automating Microsoft Entra ID, Intune and Azure Arc safely from code</p>
     <p class="nl-tile-count">12 pages</p>
   </li>
   <li class="nl-tile">
-    <h3 class="nl-tile-title"><a href="../topics/zero-trust-assessment.html">Zero Trust Assessment</a></h3>
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/zero-trust-assessment.html">Zero Trust Assessment</a></p>
     <p class="nl-tile-desc">Running Microsoft&#x27;s Zero Trust Assessment as evidence rather than a verdict</p>
     <p class="nl-tile-count">20 pages</p>
   </li>
   <li class="nl-tile">
-    <h3 class="nl-tile-title"><a href="../topics/daily-checks-dashboard.html">Daily Checks Dashboard</a></h3>
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/daily-checks-dashboard.html">Daily Checks Dashboard</a></p>
     <p class="nl-tile-desc">The operator runbook&#x27;s daily checks on one Azure Monitor workbook in the Sentinel workspace</p>
     <p class="nl-tile-count">13 pages</p>
   </li>
   <li class="nl-tile">
-    <h3 class="nl-tile-title"><a href="../topics/data-platform.html">Data Platform and SQL Server</a></h3>
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/data-platform.html">Data Platform and SQL Server</a></p>
     <p class="nl-tile-desc">Ending SQL Server&#x27;s inheritance of Windows Authentication</p>
     <p class="nl-tile-count">62 pages</p>
   </li>
   <li class="nl-tile">
-    <h3 class="nl-tile-title"><a href="../topics/pki.html">PKI and Certificates</a></h3>
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/pki.html">PKI and Certificates</a></p>
     <p class="nl-tile-desc">The certificate estate that outlives every migration</p>
     <p class="nl-tile-count">27 pages</p>
   </li>
   <li class="nl-tile">
-    <h3 class="nl-tile-title"><a href="../topics/dns-dhcp-ipam.html">DNS, DHCP and IPAM</a></h3>
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/dns-dhcp-ipam.html">DNS, DHCP and IPAM</a></p>
     <p class="nl-tile-desc">DNS as the control plane</p>
     <p class="nl-tile-count">34 pages</p>
   </li>
   <li class="nl-tile">
-    <h3 class="nl-tile-title"><a href="../topics/network-sd-wan.html">Network and SD-WAN</a></h3>
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/network-sd-wan.html">Network and SD-WAN</a></p>
     <p class="nl-tile-desc">Network and transport for a cloud-first agency</p>
     <p class="nl-tile-count">28 pages</p>
   </li>
   <li class="nl-tile">
-    <h3 class="nl-tile-title"><a href="../topics/endpoints.html">Endpoints</a></h3>
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/endpoints.html">Endpoints</a></p>
     <p class="nl-tile-desc">Devices and servers after Group Policy</p>
     <p class="nl-tile-count">29 pages</p>
   </li>
   <li class="nl-tile">
-    <h3 class="nl-tile-title"><a href="../topics/platform-host.html">Platform Host</a></h3>
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/platform-host.html">Platform Host</a></p>
     <p class="nl-tile-desc">The program&#x27;s one governed server</p>
     <p class="nl-tile-count">6 pages</p>
   </li>
   <li class="nl-tile">
-    <h3 class="nl-tile-title"><a href="../topics/information-protection.html">Information Protection</a></h3>
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/information-protection.html">Information Protection</a></p>
     <p class="nl-tile-desc">Classifying and protecting the agency&#x27;s data in Microsoft Purview</p>
     <p class="nl-tile-count">33 pages</p>
   </li>
   <li class="nl-tile">
-    <h3 class="nl-tile-title"><a href="../topics/compliance-evidence.html">Compliance and Evidence</a></h3>
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/compliance-evidence.html">Compliance and Evidence</a></p>
     <p class="nl-tile-desc">Proof, not a promise</p>
     <p class="nl-tile-count">64 pages</p>
   </li>
   <li class="nl-tile">
-    <h3 class="nl-tile-title"><a href="../topics/application-modernization.html">Application Modernization</a></h3>
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/application-modernization.html">Application Modernization</a></p>
     <p class="nl-tile-desc">Modernizing an application portfolio, not rewriting it</p>
     <p class="nl-tile-count">30 pages</p>
   </li>
