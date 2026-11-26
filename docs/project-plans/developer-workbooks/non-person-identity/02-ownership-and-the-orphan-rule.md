@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 0bccc35032bc319abdab82b95645591cf2d36c5915442ff4a234465d78c8e1b7
-last-reviewed: 2026-11-25
+reviewed-sha256: a00f18d831bd2e6aaaea427fbfc87540ecc22f6dd9b045c662cfc9a9c39e9d2a
+last-reviewed: 2026-11-26
 ---
 # Chapter 02 — Ownership and the Orphan Rule
 

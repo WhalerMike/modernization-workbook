@@ -6,7 +6,7 @@ doc-type: reference
 fmw-eyebrow: "Reference"
 date-modified: 2026-11-09
 review-status: approved
-reviewed-sha256: c742202a187095a51fdda57296bc475d8a8415c88716cbb5b4b8e8b0e6a7e2c9
+reviewed-sha256: 7a2264e1041aab30955c4629619d8acec40e42186c1556bf0cc9c13ab9f44d8b
 last-reviewed: 2026-11-26
 ---
 # Learn Coverage Map {.unnumbered}
