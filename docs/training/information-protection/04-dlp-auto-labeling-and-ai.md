@@ -49,7 +49,7 @@ Run the developer workbook's [Chapter 06 Lab 1](../../project-plans/developer-wo
 
 - **What you'll see:** a retired DLP ring policy back in simulation; a partner domain still excepted after its register entry expired; an auto-labeling policy labeling while the plan has it in simulation.
 - **What to look for:** the message says which way each policy moved: enforcing early, or enforcement off.
-- **Back-out:** the lab ends by deleting `out`.
+- **Back-out:** nothing to delete. The lab leaves the kit's folder as you unzipped it and keeps its results in a dated run folder under `C:\FMWLabs\results`, so you can run it again and compare.
 
 ## Exercise: Lab 2, a test tenant {#ip-m4-lab-2}
 *Not timed. Not run by the authors. Never production.*

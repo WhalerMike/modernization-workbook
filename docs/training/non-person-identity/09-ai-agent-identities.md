@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Books 04, 17"
 series-order: 9
 review-status: approved
-reviewed-sha256: 28000d0bd0b6abd16b9eb52c4af431bc9cbb46c3340a83a61397389fb361a248
+reviewed-sha256: 26188da24b3b2995717fd1a74f8f0ad15aaf137bddda89a13c3cb9615f4e07e9
 last-reviewed: 2026-11-25
 ---
 # Module 9: Govern AI agent identities {.unnumbered}
@@ -329,7 +329,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
     It prints a line for each test file, with the time it took, then this last line:
 
     ```text
-    Tests Passed: 554, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
+    Tests Passed: 564, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
     ```
 
 Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:

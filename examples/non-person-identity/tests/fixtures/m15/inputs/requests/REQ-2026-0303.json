@@ -17,5 +17,7 @@
   "sponsor": "facilities.sponsor@contoso.example",
   "sponsorIsFederalEmployee": true,
   "riskTier": "R3",
+  "environment": "prod",
+  "entraTarget": "Undecided",
   "endDate": ""
 }

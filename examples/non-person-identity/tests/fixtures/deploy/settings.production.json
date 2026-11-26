@@ -60,6 +60,7 @@
     "gmsaRetrieverGroupPath": "OU=Groups,DC=corp,DC=contoso,DC=example",
     "gmsaService": "NpiSmokeSvc",
     "gmsaRequestId": "SP-REQ-0002101",
+    "gmsaTags": { "SystemId": "SYS-0900", "Owner1": "npi.owner@contoso.example", "Owner2": "npi.backup@contoso.example", "Sponsor": "iam.sponsor@contoso.example", "Environment": "prod", "Tier": "R3", "EntraTarget": "Undecided" },
     "kerberosInputs": "tests/fixtures/deploy/kerberos-production"
   },
   "pilot": {

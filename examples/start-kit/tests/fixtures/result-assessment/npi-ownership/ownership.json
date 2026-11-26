@@ -1,0 +1,4 @@
+[
+  { "IdentityId": "ad:ad000000-0000-4000-8000-000000000011", "Name": "svc-sql01", "Type": "Traditional", "Enabled": true, "ValidHumanOwners": 2, "OwnerProblems": "" },
+  { "IdentityId": "ad:ad000000-0000-4000-8000-000000000012", "Name": "svc-web", "Type": "Traditional", "Enabled": true, "ValidHumanOwners": 0, "OwnerProblems": "No owner in the owners file" }
+]

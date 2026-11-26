@@ -34,4 +34,4 @@ Retirement: 1 DeleteCandidate, 1 EnabledInAd, 1 SignInSinceDisable, 1 Wait; noth
   NPI-STD-27  gmsa-legacy$
   NPI-STD-28  gmsa-batch$
   NPI-STD-29  gmsa-report$
-Manifest SHA-256: ba82552844d983981a0651d463253e3830707959b23467d73c8acc41d011b2ee
+Manifest SHA-256: 39aae5247108f57fd6aba9bdc56491b63a29370fc94dcf45aa5ada6da1dd53f2

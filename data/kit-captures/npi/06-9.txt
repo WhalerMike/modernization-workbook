@@ -13,4 +13,4 @@ Apply as Person: 4 Refused, 1 Sent
   Sent       person   CompleteDmsaMigration svc-hrsync      Complete-ADServiceAccountMigration
   Refused    pipeline CreateGmsa            svc-intranet    New-ADServiceAccount
 PS> ./Invoke-NpiKerberosIslandAction.ps1 -PlanPath out/kerberos/kerberos-plan.json -ApprovedSha256 ('0' * 64) -RunAs Pipeline -FixturePath tests/fixtures/estate.json -KerberosFixturePath tests/fixtures/ch06/ad-kerberos.json -OutputPath out/kerberos-x
-Exception: The plan's SHA-256 is 668ad2e4794704e929947b313b54b940e0af3db0d7d82f0923edefb877dc31ed, not the approved 0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.
+Exception: The plan's SHA-256 is 4021225078c239e5c842fc3f0563222cff13b2099a33ca088cdc026601b8268f, not the approved 0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.

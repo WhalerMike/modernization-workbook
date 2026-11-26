@@ -15,5 +15,7 @@
   "owners": ["time.owner@contoso.example", "time.backup@contoso.example"],
   "sponsor": "hr.sponsor@contoso.example",
   "sponsorIsFederalEmployee": true,
-  "riskTier": "R3"
+  "riskTier": "R3",
+  "environment": "prod",
+  "entraTarget": "ManagedIdentity"
 }

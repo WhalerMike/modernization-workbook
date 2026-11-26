@@ -38,7 +38,7 @@ Three more checks. Certification is due by risk tier: every three months for the
 
 ## Slide 10 — What it hands to Chapter 06, and what it never does
 
-For each request that passes, the code writes the row Chapter 6's plan reads, with all twelve columns, including the SailPoint request and the ServiceNow change. For a group managed account, it also names the one group allowed to retrieve the password. Those files go into Chapter 6's reviewed inputs through a reviewed pull request, and Chapter 6's plan refuses any write without a request or a change record. And just as important is what this chapter never does. It writes nothing to any of the four products, it deletes nothing, and it builds the ServiceNow findings payload without posting it.
+For each request that passes, the code writes the row Chapter 6's plan reads, with all thirteen columns, including the SailPoint request, the ServiceNow change and the tags, which Chapter 6 writes as the new account's description. For a group managed account, it also names the one group allowed to retrieve the password. Those files go into Chapter 6's reviewed inputs through a reviewed pull request, and Chapter 6's plan refuses any write without a request or a change record, and any new account without its tags. And just as important is what this chapter never does. It writes nothing to any of the four products, it deletes nothing, and it builds the ServiceNow findings payload without posting it.
 
 ## Slide 11 — The evidence: one row per step and control
 

@@ -17,5 +17,7 @@
   "sponsor": "hr.sponsor@contoso.example",
   "sponsorIsFederalEmployee": true,
   "riskTier": "R3",
+  "environment": "prod",
+  "entraTarget": "ManagedIdentity",
   "endDate": ""
 }

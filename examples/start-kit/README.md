@@ -104,6 +104,38 @@ The directory says where Kerberos expects a service account (its SPNs) and, for 
 
 Each service's logon account is classified (`LocalSystem`, `LocalService`, `NetworkService`, `Virtual` for `NT SERVICE\<name>`, `Local`, `Domain`, or `ManagedServiceAccount` for a domain account ending in `$`), and the domain ones are crosswalked in `ServiceAccountHosts.csv`: one row per account, with its servers and services. A server that answers neither protocol goes to `ServerServiceErrors.csv` with both errors, and the run carries on. The Non-Person Identity kit's register reads `ServerServices.csv` to fill the hosts and services of user accounts used as service accounts (`Invoke-NpiInventory.ps1 -ServiceInventoryPath`). The path of a service can hold arguments its installer put on the command line; the run folder is already handled as sensitive.
 
+### How it assesses a finished run
+
+`Invoke-FMPResultAssessment`, in the `FMPResultAssessment` module, reads a finished run's files, and nothing else, and writes one assessment to a separate folder (never inside the run, whose manifest hashes every file):
+
+- `ResultAssessment.md`: the counts, the top risks (`-Top`, 10: highest severity first, then the rules with the most findings), the changes since an earlier run, and every finding by severity.
+- `ResultFindings.csv`: one row per finding, with a stable `Id` (rule and object), the severity, the source file, and the NIST SP 800-53 controls and FedRAMP 20x KSI its evidence supports, for a tracker.
+- `ResultAssessment.json`: all of it, for the next tool.
+- `ResultDelta.csv`, with `-BaselineRunPath`: each count before and after, and each finding that is new or resolved, matched by `Id`.
+
+The counts are the ones a review asks for first: findings by severity; duplicate SPNs; orphan SPNs in total and by reason (disabled, no recent logon, host not found); service accounts with no host (from the server-service inventory) and with no owner (from the Non-Person Identity kit's `ownership.json`, `-NpiOwnershipPath`); computers with unconstrained delegation; stale computers. A count whose source the run didn't collect reads *not collected*, never zero. `-NpiPath` adds a Non-Person Identity kit inventory's findings. `Get-FMPAssessmentRule` lists every rule with its severity and requirements.
+
+| Rule | Severity | Finds |
+|---|---|---|
+| `RUN-INCOMPLETE` | High | A collector that failed: the run is partial |
+| `RUN-INPUT-CHANGED` | Medium | An input file whose hash changed during the run |
+| `SPN-DUPLICATE` | High | An SPN on more than one account |
+| `SPN-ORPHAN-HOST` | Medium | An account's SPNs whose host has no computer object and no DNS record |
+| `SPN-ORPHAN-ACCOUNT` | Low | SPNs on a disabled account or one with no recent logon |
+| `DELEG-UNCONSTRAINED-HOST`, `DELEG-UNCONSTRAINED-ACCOUNT` | High | Unconstrained delegation outside the domain controllers |
+| `PRIV-DELEGABLE` | High | A privileged user whose credentials can be delegated |
+| `PRIV-ADMINCOUNT-ORPHAN` | Medium | `adminCount` set with no privileged group |
+| `SVC-NO-HOST`, `SVC-NO-OWNER` | Medium | A service account no server read runs, or with no valid human owner |
+| `SVC-SERVER-UNREACHABLE` | Info | A server whose services couldn't be read |
+| `PKI-ESCALATION` | High | An AD CS escalation finding |
+| `COMPUTER-STALE`, `GROUP-CIRCULAR` | Low | Stale computer objects (one finding per domain), groups nested in themselves |
+| `NPI-FINDING`, `NPI-WARN`, `NPI-INFO` | High, Medium, Info | The Non-Person Identity kit's own findings, carried over |
+
+```powershell
+Import-Module .\powershell\FMPResultAssessment
+Invoke-FMPResultAssessment -RunPath D:\Assessment\<this run> -BaselineRunPath D:\Assessment\<last run> -OutputPath D:\Reviews\<date>
+```
+
 ### How it checks DNS readiness
 
 [Book 08, Chapter 10](../../docs/books/b08-ddi/10-migration-sequence.md#where-each-component-goes) sorts every component of Active Directory DNS into a target, an Azure-native equivalent, a method and a risk before anything moves. `Get-FMPDnsDepartureRegister`, in the `FMPDdiReadiness` module, writes that table for one domain from the files `Get-FMPDNSAssessment` already wrote: one row per zone on the PDC emulator's DNS server (AD-integrated internal or external, file-backed, secondary, stub or conditional forwarder, GlobalNames, reverse, signed, the `_msdcs` locator zone), plus one for dynamic registration when any zone takes dynamic updates, in the chapter's words. Each row carries notes from the run: the zone's storage and dynamic-update setting, its stale records, its forwarding targets, and any readable DNS server that lacks an AD-integrated zone. The findings are Phase 1's: locator records that don't resolve, DNS servers that couldn't be read, scavenging off or not read, stale records, duplicate host names among them, and the server-level forwarders to test over DNS. AD can't say which zones the internet also sees, so a zone is internal unless `-ExternalZone` names it.

@@ -49,7 +49,7 @@ Run the developer workbook's [Chapter 04 Lab 1](../../project-plans/developer-wo
 
 - **What you'll see:** a person added to the CUI Specified label's rights; guests allowed on the CUI Specified site label; a legacy label the plan doesn't have; the production policy missing a site label.
 - **What to look for:** the default label settings pass, because the check resolves the policy's GUIDs to label names.
-- **Back-out:** the lab ends by deleting `out`.
+- **Back-out:** nothing to delete. The lab leaves the kit's folder as you unzipped it and keeps its results in a dated run folder under `C:\FMWLabs\results`, so you can run it again and compare.
 
 ## Exercise: Lab 2, a test tenant {#ip-m2-lab-2}
 *Not timed. Not run by the authors. Never production.*

@@ -250,7 +250,7 @@ Learn documents the `ComplianceState`, `ProductName`, `Computer` and `Source` co
 
 ![What it prints, run on the kit's fixtures](../../project-plans/developer-workbooks/daily-checks/captures/03-3.png){.lightbox fig-alt="Terminal window showing ./Invoke-DcRender.ps1 -FixturePath tests/fixtures/day1 -AsOf 2026-11-16T07:30… and what it printed"}
 
-From Lab 1 of [Chapter 03 — What Each Tab Would Show](../../project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/03-3.txt)); the lab's earlier steps come first.
+From Lab 1 of [Chapter 03 — What Each Tab Would Show](../../project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/03-3.txt)); the lab's earlier steps come first. `$Run` is the lab's dated run folder under `C:\FMWLabs\results`, which its first steps set, so each run keeps its own results and the kit's folder stays as you unzipped it.
 
 :::
 
@@ -277,7 +277,7 @@ From Lab 1 of [Chapter 03 — What Each Tab Would Show](../../project-plans/deve
 
 ![What it prints, run on the kit's fixtures](../../project-plans/developer-workbooks/daily-checks/captures/03-6.png){.lightbox fig-alt="Terminal window showing ./Invoke-DcReplicationProbe.ps1 -SettingsPath tests/fixtures/settings.lab.jso… and what it printed"}
 
-From Lab 1 of [Chapter 03 — What Each Tab Would Show](../../project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/03-6.txt)); the lab's earlier steps come first.
+From Lab 1 of [Chapter 03 — What Each Tab Would Show](../../project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/03-6.txt)); the lab's earlier steps come first. `$Run` is the lab's dated run folder under `C:\FMWLabs\results`, which its first steps set, so each run keeps its own results and the kit's folder stays as you unzipped it.
 
 **Evidence this step supports:** NIST SP 800-53 Rev. 5 CA-7, SI-4; FedRAMP 20x KSIs KSI-MLA-EVC, KSI-MLA-LET (step `PROBE` in [requirements.json](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/daily-checks-workbook/config/requirements.json)).
 

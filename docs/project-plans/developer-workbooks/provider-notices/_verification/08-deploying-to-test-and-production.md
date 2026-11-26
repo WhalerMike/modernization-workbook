@@ -16,12 +16,12 @@ New material, written November 9, 2026. Code: `examples/provider-notices` as bui
 | 6 | Staged enable, the dry-run week, the smoke test (ST-01 to ST-04), the go/no-go criteria | Stage 1, Stage 2 | restated-as-design (labeled *design guidance*) | — |
 | 7 | Dry-run outputs (14 and 23 pre-flight checks, the scheduled run, the stage check, the rollback plans, the alert plan's SHA-256, the smoke test on the test fixture) | Dry run; Steps 1.3, 1.5 | verified by running the commands as written, November 9, 2026 | local run |
 | 8 | Notices routed during the dry-run week aren't sent again once sending is on | Step 2.5 | read in `Invoke-PnRouting` (the state keeps `taskKey`; only new or changed notices make payloads) | kit |
-| 9 | The run-as account must hold every CLI's sign-in; unattended sign-in per provider | Step 1.7 | not yet specified in the kit | — |
+| 9 | The run-as gMSA; the credential folder; each reader's unattended sign-in (reader app certificate for Azure and Graph, OCI API signing key, AWS IAM Roles Anywhere); the task registered with a `-LogonType Password` principal | Step 1.7 | verified on each provider's page November 25, 2026 (footnotes `pn08-gmsa`, `pn08-principal`, `pn08-az-sp`, `pn08-pem`, `pn08-oci-config`, `pn08-oci-env`, `pn08-rolesanywhere`, `pn08-aws-process`, `pn08-aws-env`); the gMSA principal has no Learn example and none was run; workbook design per WD-179 | Learn, Oracle, AWS |
 | 10 | Live results of every step | Stage 1, Stage 2 | not run against a live tenant, account, tenancy or project | — |
 
 ## Not yet specified
 
-The ServiceNow endpoint's shape (guide N11); the scheduler beyond Windows Task Scheduler (guide N12); unattended sign-in for the Azure CLI, OCI CLI, AWS CLI and Google Cloud CLI under the run-as account; and every item Chapters 01 to 05 list.
+The ServiceNow endpoint's shape (guide N11); registering the task under a gMSA and whether it needs the *Log on as a batch job* right (proved in the test stage); Google Cloud's unattended sign-in (an optional gate); Windows permissions on the key files (design guidance, since Oracle's and AWS's pages give none); and every item Chapters 01 to 05 list.
 
 ## Federal requirements and evidence
 

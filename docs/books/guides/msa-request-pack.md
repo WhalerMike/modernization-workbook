@@ -13,7 +13,7 @@ research-status: draft
 research-type: implementation guide
 research-book: "Books 02, 04, 13"
 review-status: approved
-reviewed-sha256: 9a1cb64b021bfaa762a82527f7344aa0e88c884542a04984399a87402d78d3fd
+reviewed-sha256: 8250f867279c5d07fa7a33d9d07c1dbb67726257a32561c3455a38d3e03281bb
 last-reviewed: 2026-11-25
 ---
 # Requesting a Managed Service Account {.unnumbered}
@@ -98,7 +98,7 @@ Every account carries the same seven tags, from the day it's created to the day 
 
 | Where | How the tags are held | Written by |
 |---|---|---|
-| The AD account | `key=value` pairs in its description, with the request and change numbers: `SystemId=SYS-0233; Owner1=…; Owner2=…; Sponsor=…; Environment=prod; Tier=R1; EntraTarget=KeepKerberos; Request=REQ-2026-0403; Change=CHG…` | The pipeline, from the approved request *(not yet in the kit: Chapter 06's plan doesn't write them yet)* |
+| The AD account | `key=value` pairs in its description, with the request and change numbers: `SystemId=SYS-0233; Owner1=…; Owner2=…; Sponsor=…; Environment=prod; Tier=R1; EntraTarget=KeepKerberos; Request=REQ-2026-0403; Change=CHG…` | The pipeline, from the approved request: Chapter 06's plan passes them as `-Description` when it creates the account, and won't create one without them |
 | The Entra identity it moves to, until a tenant check confirms custom security attributes in GCC ([WD-176](../../about/decision-register.md#wd-176)) | A service principal's `tags`, one `npi:<Key>=<Value>` string per key, which Microsoft Graph can filter, and its `notes`, the whole tag string with the request and change (at most 1,024 characters).[^mrp-sp-props] A managed identity's service principal can't be modified directly, so a managed identity carries them as Azure resource tags (next two rows) | Migration C's step that creates the identity ([service accounts guide](service-account-migration.md#migration-c)); the checker writes them as `entra-tags.json` |
 | The Entra identity it moves to, once the tenant check confirms them | Custom security attributes in the `NonPersonIdentity` attribute set, on the service principal or managed identity. They're free in every edition of Entra ID, can be assigned to service principals, and Attribute Assignment Administrator can set them on managed identities; a value is at most 64 characters[^mrp-csa] [^mrp-csa-role] | The same step, copying the values from the fallback; the checker writes the body as `entra-custom-security-attributes.json` |
 | A user-assigned managed identity's Azure resource | Azure resource tags with the same keys, which aren't inherited from the resource group[^mrp-azure-tags] | The same step |
