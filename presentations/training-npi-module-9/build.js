@@ -186,7 +186,7 @@ endModule(SC);
     "# Step 1 makes Chapter 01's register and Chapter 02's ownership run; its last line:",
     "Plan SHA-256: 1e1799d7181bd1a3dc271c645fff8a60fc741ab1ebc219bb3011cc25953bad3e",
     "# Step 2: Invoke-Pester -Path tests/NpiAgentId.Tests.ps1 -FullNameFilter '*Learn*' ...",
-    "PassedCount 12   FailedCount 0   NotRunCount 49",
+    "PassedCount 12   FailedCount 0   NotRunCount 52",
     "# Step 3: Get-NpiAgentRequiredPermission for each task",
     "agent-id : AgentIdentity.Read.All, AgentIdentityBlueprint.Read.All, Application.Read.All, AuditLog.Read.All, ...",
     "agent-ca-apply : Policy.Read.All, Policy.ReadWrite.ConditionalAccess",
@@ -212,8 +212,8 @@ endModule(SC);
     "AI identities: 8 checked (4 AgentIdentity, 3 AgentIdentityBlueprint, 1 ServicePrincipal); Chapter 02 sponsor fields",
     "  filled: 2 of 2",
     "Findings: 22 Finding (4 P1, 2 P2), 6 Warn, 4 Info. Orphan candidates for Chapter 02: 2",
-    "Agent CA plan: Unapproved InPlace, HighRisk Create; nothing sent",
-    "Plan SHA-256: 5a8002467655390a12ee9f8967a82d52e40234adf3a9a74ea37952b34b14073b",
+    "Agent CA plan: Unapproved Differs, HighRisk Create; nothing sent",
+    "Plan SHA-256: 383d5c83c3df7c1100e5b8afb4a346b7b6ac31173d48ffd91562147aa1546b80",
     "# Step 6: the Findings grouped by rule (Name, Count): 16 rules, among them",
     "NPI-AI-10 2   NPI-AI-13 1   NPI-AI-16 1   NPI-AI-21 1   NPI-AI-22 2   NPI-AI-23 1   (and ten more: ...)",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED: \"...\" MARKS CUTS; WRAPPED)", pt: 10.5 });
@@ -261,7 +261,7 @@ endModule(SC);
     "Apply: 1 Sent",
     "  Sent HighRisk Created ca000000-0000-4000-8000-000000000103 report-only; review its report-only results",
     "  before any change of state",
-    "The plan's SHA-256 is 5a8002467655390a12ee9f8967a82d52e40234adf3a9a74ea37952b34b14073b, not the approved",
+    "The plan's SHA-256 is 383d5c83c3df7c1100e5b8afb4a346b7b6ac31173d48ffd91562147aa1546b80, not the approved",
     "  0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RUN NOVEMBER 3, 2026 (TRIMMED: \"...\" MARKS CUTS; WRAPPED)", pt: 10.5 });
   line(s, "Tests", "Step 10: Invoke-Pester -Path tests prints 511 passed, 0 failed. Then Remove-Item -Recurse -Force out.", c + 0.25, 0.45, 13.5);

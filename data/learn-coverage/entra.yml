@@ -4691,6 +4691,7 @@ pages:
   - docs/books/b03-hr-identity/06-canonical-attribute-schema.md
   - docs/books/guides/attribute-driven-migration.md
   - docs/books/guides/msa-request-pack.md
+  - examples/non-person-identity/config/agent-id-capabilities-ch09.json
 - path: docs/fundamentals/custom-security-attributes-troubleshoot.md
   url: https://learn.microsoft.com/entra/fundamentals/custom-security-attributes-troubleshoot
   title: Troubleshoot custom security attributes in Microsoft Entra ID

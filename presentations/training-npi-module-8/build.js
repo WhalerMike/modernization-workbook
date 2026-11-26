@@ -294,7 +294,7 @@ endModule(SC);
     "The plan's SHA-256 is 4021225078c239e5c842fc3f0563222cff13b2099a33ca088cdc026601b8268f, not the approved",
     "  0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.",
   ], { label: "LAB 1 OUTPUT, RE-RUN NOVEMBER 20, 2026 (TRIMMED: \"...\" MARKS CUTS; WRAPPED)", pt: 10.5 });
-  line(s, "Tests", "Step 10: Invoke-Pester -Path tests prints 564 passed, 0 failed. Then Remove-Item -Recurse -Force out.", c + 0.25, 0.45, 13.5);
+  line(s, "Tests", "Step 10: Invoke-Pester -Path tests prints 567 passed, 0 failed. Then Remove-Item -Recurse -Force out.", c + 0.25, 0.45, 13.5);
   sources(s, "Sources: Module 8, \"Exercise: Lab 1,\" steps 8 to 10; examples/non-person-identity (Invoke-NpiKerberosIslandAction.ps1; tests).");
   notes(s,
 `Step eight is the write path's dry run, as the pipeline. You take the plan's hash, which in a real run a second person would review and pass to you, and give it to the action script. It reports four would-send lines, the pipeline's writes, and refuses the fifth: the D M S A's completion is a person's step. It sends nothing. Step nine applies it to the fake, first as the pipeline, which sends its four writes, then as a person, which sends the completed migration for svc h r sync and refuses the other four. Each run re-reads every write. Then you pass a hash of zeros, a hash nobody approved. The script refuses: the plan's hash isn't the approved one, and it won't run a plan nobody reviewed. Pasted line by line, your shell carries on after the refusal. Step ten runs every test: five hundred forty-nine pass, none fail. Then delete the output folder.`,

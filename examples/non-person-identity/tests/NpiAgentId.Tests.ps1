@@ -34,6 +34,8 @@ BeforeAll {
         $r = Test-NpiAgentId -Reader $reader -Estate $estate -Inputs $Inputs -Runs (New-Runs $Cloud) -Capability $cap -AsOf $script:AsOf
         [pscustomobject]@{ Result = $r; Fake = $fake; Estate = $estate; Reader = $reader }
     }
+    # The block-unapproved policy as it is where custom security attributes are confirmed (WD-176).
+    $script:ToAttributeForm = { param($e) $c = $e.conditionalAccessPolicies[0].conditions.clientApplications; $c.excludeAgentIdServicePrincipals = @(); $c.agentIdServicePrincipalFilter = @{ mode = 'exclude'; rule = 'CustomSecurityAttribute.AgentAttributes_AgentApprovalStatus -contains "Production_Approved"' } }
     # D-NP6's fallback, for a cloud where agent identities aren't available.
     $script:FallbackCap = [pscustomobject]@{
         Cloud = 'global'; Decision = 'D-NP6'; Status = 'Proposed'; Mode = 'Fallback'
@@ -356,19 +358,36 @@ Describe 'NP6.5: sponsor movers and leavers, ten business days' {
 }
 
 Describe 'NP6.6: agent Conditional Access in report-only' {
-    It 'NPI-AI-18: the block-unapproved policy in place and matching gives no finding; enforced, a warning; changed, a finding' {
+    It 'NPI-AI-18 in GCC (WD-176): the policy excluding approved agents by name gives no finding; enforced, a warning; the attribute filter, a finding' {
+        (Get-NpiAgentCapability -Cloud gcc).ApprovalMode | Should -Be 'Named'
         @(Get-F 'NPI-AI-18').Count | Should -Be 0
         (@((Invoke-TestCheck -Mutate { param($e) $e.conditionalAccessPolicies[0].state = 'enabled' }).Result.Findings | Where-Object Rule -EQ 'NPI-AI-18')[0]).Severity | Should -Be 'Warn'
-        $r = Invoke-TestCheck -Mutate { param($e) $e.conditionalAccessPolicies[0].conditions.clientApplications.excludeAgentIdServicePrincipals = @('5b000000-0000-4000-8000-000000000018') }
+        $r = Invoke-TestCheck -Mutate $script:ToAttributeForm
+        (@($r.Result.Findings | Where-Object Rule -EQ 'NPI-AI-18')[0]).Issue | Should -Match 'aren''t confirmed in this cloud \(WD-176\)'
+        @($r.Reader.Evidence.Call | Where-Object { $_ -eq 'agid-identity-attributes' }).Count | Should -Be 0
+    }
+    It 'NPI-AI-18 where custom security attributes are confirmed: the attribute filter matches; an agent excluded by name is a finding' {
+        (Get-NpiAgentCapability -Cloud global).ApprovalMode | Should -Be 'Attribute'
+        @((Invoke-TestCheck -Cloud global -Mutate $script:ToAttributeForm).Result.Findings | Where-Object Rule -EQ 'NPI-AI-18').Count | Should -Be 0
+        $r = Invoke-TestCheck -Cloud global -Mutate { param($e) & $script:ToAttributeForm $e; $e.conditionalAccessPolicies[0].conditions.clientApplications.excludeAgentIdServicePrincipals = @('5b000000-0000-4000-8000-000000000018') }
         (@($r.Result.Findings | Where-Object Rule -EQ 'NPI-AI-18')[0]).Issue | Should -Match 'one by one, outside the handshake'
     }
     It 'NPI-AI-19: the high-risk block is missing (a preview watch item, Warn)' {
         (Get-F 'NPI-AI-19').Severity | Should -Be 'Warn'
         (Get-F 'NPI-AI-19').Issue | Should -Match 'preview watch item'
     }
-    It 'NPI-AI-20: the approval attribute without a complete handshake lets an agent through the block' {
+    It 'NPI-AI-20 in GCC: an agent excluded by name without a complete handshake gets through the block; an approved one left out is blocked' {
         (Get-F 'NPI-AI-20' -Severity Finding).Object | Should -Be 'Sandbox Helper (AgentIdentity)'
-        $r = Invoke-TestCheck -Mutate { param($e) $e.customSecurityAttributes.Remove('5b000000-0000-4000-8000-000000000015') }
+        (Get-F 'NPI-AI-20' -Severity Finding).Issue | Should -Match 'Excluded by name'
+        $r = Invoke-TestCheck -Mutate { param($e) $c = $e.conditionalAccessPolicies[0].conditions.clientApplications; $c.excludeAgentIdServicePrincipals = @($c.excludeAgentIdServicePrincipals | Where-Object { $_ -ne '5b000000-0000-4000-8000-000000000015' }) }
+        $w = @($r.Result.Findings | Where-Object Rule -EQ 'NPI-AI-20' | Where-Object Object -Like 'Benefits*')[0]
+        $w.Severity | Should -Be 'Warn'
+        $w.Issue | Should -Match 'not excluded by name'
+    }
+    It 'NPI-AI-20 where custom security attributes are confirmed: the approval attribute without a complete handshake lets an agent through the block' {
+        $r = Invoke-TestCheck -Cloud global -Mutate $script:ToAttributeForm
+        (@($r.Result.Findings | Where-Object { $_.Rule -eq 'NPI-AI-20' -and $_.Severity -eq 'Finding' })[0]).Object | Should -Be 'Sandbox Helper (AgentIdentity)'
+        $r = Invoke-TestCheck -Cloud global -Mutate { param($e) & $script:ToAttributeForm $e; $e.customSecurityAttributes.Remove('5b000000-0000-4000-8000-000000000015') }
         (@($r.Result.Findings | Where-Object Rule -EQ 'NPI-AI-20' | Where-Object Object -Like 'Benefits*')[0]).Severity | Should -Be 'Warn'
     }
 }
@@ -396,14 +415,25 @@ Describe 'NP6.7: AI drift' {
 
 Describe 'The agent Conditional Access plan and its separate write path' {
     BeforeAll {
-        $script:Plan = New-NpiAgentCaPlan -Estate $script:Run.Estate -Cloud gcc -TenantId $script:Tenant -AsOf $script:AsOf
+        $script:Approved = @($script:Run.Result.Identities | Where-Object HandshakeComplete | ForEach-Object { $_.IdentityId -replace '^sp:' })
+        $script:Plan = New-NpiAgentCaPlan -Estate $script:Run.Estate -Cloud gcc -TenantId $script:Tenant -AsOf $script:AsOf -ApprovedIds $script:Approved
         function Save-Plan($Plan) { $p = Join-Path $script:Tmp ("plan-{0}.json" -f [guid]::NewGuid()); Write-NpiJson -Path $p -Value $Plan; [pscustomobject]@{ Path = $p; Sha = Get-NpiFileHash -Path $p } }
         function New-W([string]$Tenant = $script:Tenant) { $f = New-NpiAgentFixtureInvoker -Path $script:Fixture -AllowWrite; [pscustomobject]@{ Fake = $f; Writer = (New-NpiAgentCaWriter -Cloud gcc -TenantId $Tenant -Invoke $f.Invoke) } }
     }
     It 'creates only what is missing, report-only, and the same inputs give the same hash' {
-        @($script:Plan.actions | ForEach-Object { "$($_.Kind) $($_.Action)" }) | Should -Be @('Unapproved InPlace', 'HighRisk Create')
+        @($script:Plan.actions | ForEach-Object { "$($_.Kind) $($_.Action)" }) | Should -Be @('Unapproved Differs', 'HighRisk Create')
         ($script:Plan.actions | Where-Object Write).Body.state | Should -Be 'enabledForReportingButNotEnforced'
-        (Save-Plan $script:Plan).Sha | Should -Be (Save-Plan (New-NpiAgentCaPlan -Estate $script:Run.Estate -Cloud gcc -TenantId $script:Tenant -AsOf $script:AsOf)).Sha
+        (Save-Plan $script:Plan).Sha | Should -Be (Save-Plan (New-NpiAgentCaPlan -Estate $script:Run.Estate -Cloud gcc -TenantId $script:Tenant -AsOf $script:AsOf -ApprovedIds $script:Approved)).Sha
+    }
+    It 'in GCC (WD-176) it names the approved agents: a new policy excludes exactly them, with no attribute filter; a tenant policy that names another agent differs' {
+        $script:Plan.approvalMode | Should -Be 'Named'
+        ($script:Plan.actions | Where-Object Kind -EQ 'Unapproved').Reason | Should -Match 'excludes 5b000000-0000-4000-8000-000000000018, which has no complete handshake'
+        $none = Invoke-TestCheck -Mutate { param($e) $e.conditionalAccessPolicies = @($e.conditionalAccessPolicies | Select-Object -Skip 1) }
+        $p = New-NpiAgentCaPlan -Estate $none.Estate -Cloud gcc -TenantId $script:Tenant -AsOf $script:AsOf -ApprovedIds $script:Approved
+        $c = @($p.actions | Where-Object Kind -EQ 'Unapproved')[0]
+        $c.Action | Should -Be 'Create'
+        $c.Body.conditions.clientApplications.agentIdServicePrincipalFilter | Should -BeNullOrEmpty
+        @($c.Body.conditions.clientApplications.excludeAgentIdServicePrincipals) | Should -Be @($script:Approved | Sort-Object)
     }
     It 'refuses a reviewed policy file that isn''t report-only Block' {
         Mock -ModuleName NpiAgentId Test-NpiAgentCaPolicyShape { @('state is ''enabled'', not report-only') }

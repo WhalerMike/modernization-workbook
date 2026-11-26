@@ -91,7 +91,8 @@ function Get-NpiAgentCapability {
     .SYNOPSIS
         D-NP6 for one cloud: Mode 'AgentId' where agent identities are available, else 'Fallback'
         (service principals and managed identities under the same governance), with the stage and
-        watch flag of each capability.
+        watch flag of each capability. ApprovalMode 'Attribute' where custom security attributes are
+        confirmed in the cloud, else 'Named' (WD-176): the block policy excludes approved agents by name.
     .EXAMPLE
         # Mode says whether the checks run on agent identities or on the fallback service principals.
         (Get-NpiAgentCapability -Cloud gcc).Mode
@@ -105,6 +106,9 @@ function Get-NpiAgentCapability {
         Cloud = $Cloud; Decision = $cap.decision; Status = $cap.status
         Mode = $(if ($c.agentIdentities.available -eq $true) { 'AgentId' } else { 'Fallback' })
         AgentIdentities = $c.agentIdentities; AgentConditionalAccess = $c.agentConditionalAccess; AgentRisk = $c.agentRisk; SponsorWorkflows = $c.sponsorWorkflows
+        CustomSecurityAttributes = $c.customSecurityAttributes
+        # WD-176: where custom security attributes aren't confirmed, approved agents are excluded by name.
+        ApprovalMode = $(if ($c.customSecurityAttributes.available -eq $true) { 'Attribute' } else { 'Named' })
     }
 }
 
@@ -224,7 +228,7 @@ function Read-NpiAgentEstate {
             })
         $e.Identities = @(foreach ($a in @(Invoke-NpiList -Reader $Reader -CallId 'agid-identities' -Query '$expand=sponsors($select=id)')) {
                 $bind = @{ id = $a.id }
-                $attr = Invoke-NpiGetOne -Reader $Reader -CallId 'agid-identity-attributes' -Bind $bind -Query '$select=id,customSecurityAttributes'
+                $attr = if ((Get-NpiAgentValue $Capability 'ApprovalMode') -eq 'Named') { $null } else { Invoke-NpiGetOne -Reader $Reader -CallId 'agid-identity-attributes' -Bind $bind -Query '$select=id,customSecurityAttributes' }
                 [pscustomobject]@{
                     Object     = $a
                     Sponsors   = @(Get-NpiAgentValue $a 'sponsors' | Where-Object { $null -ne $_ })
@@ -338,15 +342,16 @@ function Test-NpiAgentCaPolicyShape {
     .SYNOPSIS
         Check one agent Conditional Access policy body against the program's design. Kind
         'Unapproved': all agent identities, all resources, Block, report-only, and approved agents
-        excluded only by the custom security attribute filter. Kind 'HighRisk': all agent
-        identities, all resources, Block, report-only, agent risk high. Returns the problems.
+        excluded only by the custom security attribute filter (-Mode Attribute) or only by name
+        (-Mode Named, WD-176; which names, NPI-AI-20 and the plan check). Kind 'HighRisk': all
+        agent identities, all resources, Block, report-only, agent risk high. Returns the problems.
     .EXAMPLE
         # No output: the reviewed policy file meets the design.
         $policy = Get-Content -LiteralPath config/agent-ca-ch09/block-unapproved-agents.json -Raw | ConvertFrom-Json -AsHashtable
         Test-NpiAgentCaPolicyShape -Policy $policy -Kind Unapproved -ApprovalRule (Get-NpiAgentConfig).Rules.approvalAttribute
     #>
     [CmdletBinding()]
-    param([Parameter(Mandatory)]$Policy, [Parameter(Mandatory)][ValidateSet('Unapproved', 'HighRisk')][string]$Kind, $ApprovalRule)
+    param([Parameter(Mandatory)]$Policy, [Parameter(Mandatory)][ValidateSet('Unapproved', 'HighRisk')][string]$Kind, $ApprovalRule, [ValidateSet('Attribute', 'Named')][string]$Mode = 'Attribute')
     $p = [Collections.Generic.List[string]]::new()
     $cond = Get-NpiAgentValue $Policy 'conditions'
     $ca = Get-NpiAgentValue $cond 'clientApplications'
@@ -357,9 +362,13 @@ function Test-NpiAgentCaPolicyShape {
     if (@(Get-NpiAgentValue $apps 'includeApplications') -notcontains 'All') { $p.Add("doesn't target All resources") }
     $controls = @(Get-NpiAgentValue $grant 'builtInControls')
     if ($controls.Count -ne 1 -or $controls[0] -ne 'block') { $p.Add('grant is not Block alone') }
-    if (@(Get-NpiAgentValue $ca 'excludeAgentIdServicePrincipals').Count) { $p.Add('excludes agent identities one by one, outside the handshake') }
+    $excluded = @(Get-NpiAgentValue $ca 'excludeAgentIdServicePrincipals')
     $filter = Get-NpiAgentValue $ca 'agentIdServicePrincipalFilter'
-    if ($Kind -eq 'Unapproved') {
+    if ($Kind -eq 'Unapproved' -and $Mode -eq 'Named') {
+        if ($filter) { $p.Add("excludes agents by a filter, but custom security attributes aren't confirmed in this cloud (WD-176): exclude the approved agents by name") }
+    } elseif ($excluded.Count) { $p.Add('excludes agent identities one by one, outside the handshake') }
+    if ($Kind -eq 'Unapproved' -and $Mode -eq 'Named') { }
+    elseif ($Kind -eq 'Unapproved') {
         $want = 'CustomSecurityAttribute.{0}_{1} -contains "{2}"' -f $ApprovalRule.set, $ApprovalRule.name, $ApprovalRule.value
         if (-not $filter) { $p.Add('no exclusion for approved agents: every approved agent would be blocked when enforced') }
         elseif ("$(Get-NpiAgentValue $filter 'mode')" -ne 'exclude' -or "$(Get-NpiAgentValue $filter 'rule')" -ne $want) { $p.Add("the exclusion isn't the approval attribute ($want)") }
@@ -476,6 +485,10 @@ function Test-NpiAgentId {
         $state
     }
 
+    $named = (Get-NpiAgentValue $Capability 'ApprovalMode') -eq 'Named'
+    $unapprovedName = (Get-Content -LiteralPath (Join-Path (Get-NpiAgentConfig).Root @($rules.desiredCaPolicies | Where-Object { $_ -notmatch 'high-risk' })[0]) -Raw | ConvertFrom-Json).displayName
+    $unapprovedPolicy = if ($policyNames.ContainsKey($unapprovedName)) { $policyNames[$unapprovedName] } else { $null }
+    $excludedByName = @(if ($unapprovedPolicy) { Get-NpiAgentValue (Get-NpiAgentValue $unapprovedPolicy.conditions 'clientApplications') 'excludeAgentIdServicePrincipals' })
     foreach ($a in @($Estate.Identities)) {
         $o = $a.Object; $key = "sp:$($o.id)"; $label = "$($o.displayName) (AgentIdentity)"
         $invRow = if ($invById.ContainsKey($o.id)) { $invById[$o.id] } else { $null }
@@ -514,10 +527,16 @@ function Test-NpiAgentId {
             elseif ($ar.appRoleId -notin $consented) { & $add 'NPI-AI-15' 'Warn' "$key/$($ar.appRoleId)" $label "Application permission $($ar.appRoleId) on $($ar.resourceDisplayName) isn't in the handshake's consent list" }
         }
 
-        # Approval attribute: set only by the handshake.
-        $approved = Test-NpiAgentApproved $a.Attributes $rules.approvalAttribute
-        if ($approved -and -not $handshakeOk) { & $add 'NPI-AI-20' 'Finding' $key $label 'Carries the approval attribute without a complete handshake: the block policy would let it through' }
-        elseif ($handshakeOk -and -not $approved) { & $add 'NPI-AI-20' 'Warn' $key $label 'Approved in the handshake but the approval attribute is missing: blocked once the policy is enforced' }
+        # Approval: set only by the handshake, as the attribute or, where WD-176 applies, by name.
+        if ($named) {
+            $approved = $o.id -in $excludedByName
+            if ($approved -and -not $handshakeOk) { & $add 'NPI-AI-20' 'Finding' $key $label 'Excluded by name from the block policy without a complete handshake: the policy lets it through' }
+            elseif ($handshakeOk -and -not $approved -and $unapprovedPolicy) { & $add 'NPI-AI-20' 'Warn' $key $label 'Approved in the handshake but not excluded by name from the block policy: blocked once the policy is enforced' }
+        } else {
+            $approved = Test-NpiAgentApproved $a.Attributes $rules.approvalAttribute
+            if ($approved -and -not $handshakeOk) { & $add 'NPI-AI-20' 'Finding' $key $label 'Carries the approval attribute without a complete handshake: the block policy would let it through' }
+            elseif ($handshakeOk -and -not $approved) { & $add 'NPI-AI-20' 'Warn' $key $label 'Approved in the handshake but the approval attribute is missing: blocked once the policy is enforced' }
+        }
 
         $state = & $sponsorEvents $key $label $sponsorUpns @($(if ($invRow) { $invRow.FederalSponsorUpn }))
         if ($state -eq 'Orphaned' -or -not $valid.Count) { $orphans.Add([pscustomobject]@{ IdentityId = $key; Name = $o.displayName; Type = 'AgentIdentity'; Reason = $(if ($state -eq 'Orphaned') { 'Sponsor transfer unconfirmed after ten business days' } else { 'No accountable human' }); Rule = 'D-NP2: the identity governance officer confirms, then a person disables; never automatic' }) }
@@ -526,7 +545,7 @@ function Test-NpiAgentId {
                 FederalSponsor = ($valid | Select-Object -First 1 | ForEach-Object userPrincipalName); SponsoringGroup = ($groupSponsors -join '; ')
                 TechnicalOwner = (@($a.Owners | ForEach-Object { $p = & $person $_.id; if ($p) { $p.userPrincipalName } else { $_.id } }) -join '; ')
                 InventoryRecord = "$(if ($invRow) { $invRow.RecordId })"; UseCaseId = "$(if ($invRow) { $invRow.UseCaseId })"; Handshake = "$(if ($h) { $h.HandshakeId })"
-                AccessMode = "$(if ($h) { $h.AccessMode })"; Approved = $approved; SponsorState = $state; Governance = 'Agent ID'
+                AccessMode = "$(if ($h) { $h.AccessMode })"; Approved = $approved; HandshakeComplete = [bool]$handshakeOk; SponsorState = $state; Governance = 'Agent ID'
             })
     }
 
@@ -628,7 +647,7 @@ function Test-NpiAgentId {
         $have = if ($policyNames.ContainsKey($want.displayName)) { $policyNames[$want.displayName] } else { $null }
         $watch = "preview watch item: $($Capability.AgentConditionalAccess.stage)"
         if (-not $have) { & $add $rule $sev "ca:$kind" $want.displayName "Not in the tenant ($watch): create it report-only through the reviewed plan" ; continue }
-        $problems = @(Test-NpiAgentCaPolicyShape -Policy $have -Kind $kind -ApprovalRule $rules.approvalAttribute)
+        $problems = @(Test-NpiAgentCaPolicyShape -Policy $have -Kind $kind -ApprovalRule $rules.approvalAttribute -Mode $(if ($named) { 'Named' } else { 'Attribute' }))
         if ($have.state -eq 'enabled') { & $add $rule 'Warn' "ca:$kind" $want.displayName "Enforced while agent targeting is a $watch; D-NP6 keeps it report-only until the label is removed in this cloud" }
         elseif ($problems.Count) { & $add $rule $sev "ca:$kind" $want.displayName ("Differs from the reviewed policy: {0}" -f ($problems -join '; ')) }
     }
@@ -661,14 +680,18 @@ function New-NpiAgentCaPlan {
         A dry-run plan for the two agent policies: Create (report-only) where the tenant has no
         policy of that name, InPlace or Differs where it has one. Nothing here writes. Refuses a
         reviewed policy file that isn't report-only Block, and a cloud where D-NP6 says agent
-        Conditional Access isn't available.
+        Conditional Access isn't available. Where custom security attributes aren't confirmed
+        (ApprovalMode Named, WD-176), the block-unapproved policy excludes -ApprovedIds by name
+        instead of the attribute filter: the agents whose handshake is complete.
     .EXAMPLE
-        $plan = New-NpiAgentCaPlan -Estate $estate -Cloud gcc -TenantId $runs.TenantId -AsOf ([datetime]'2026-10-30')
+        $plan = New-NpiAgentCaPlan -Estate $estate -Cloud gcc -TenantId $runs.TenantId -AsOf ([datetime]'2026-10-30') -ApprovedIds @($result.Identities | Where-Object HandshakeComplete | ForEach-Object { $_.IdentityId -replace '^sp:' })
         $plan.actions | Format-Table Policy, Action, Reason
     #>
     [CmdletBinding()]
-    param([Parameter(Mandatory)]$Estate, [Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][string]$TenantId, [Parameter(Mandatory)][datetime]$AsOf)
+    param([Parameter(Mandatory)]$Estate, [Parameter(Mandatory)][string]$Cloud, [Parameter(Mandatory)][string]$TenantId, [Parameter(Mandatory)][datetime]$AsOf, [string[]]$ApprovedIds = @())
     $cfg = Get-NpiAgentConfig; $cap = Get-NpiAgentCapability -Cloud $Cloud
+    $named = (Get-NpiAgentValue $cap 'ApprovalMode') -eq 'Named'
+    $ids = @($ApprovedIds | Where-Object { $_ } | Sort-Object -Unique)
     $graph = (Get-NpiCloud -Cloud $Cloud).Graph
     $actions = [Collections.Generic.List[object]]::new()
     foreach ($rel in @($cfg.Rules.desiredCaPolicies)) {
@@ -676,17 +699,29 @@ function New-NpiAgentCaPlan {
         $kind = if ($rel -match 'high-risk') { 'HighRisk' } else { 'Unapproved' }
         $bad = @(Test-NpiAgentCaPolicyShape -Policy $want -Kind $kind -ApprovalRule $cfg.Rules.approvalAttribute)
         if ($bad.Count) { throw "The reviewed policy $rel doesn't meet the design: $($bad -join '; ')" }
+        $mode = 'Attribute'
+        if ($named -and $kind -eq 'Unapproved') {
+            # WD-176: the reviewed policy with the attribute filter replaced by the approved agents' names.
+            $mode = 'Named'
+            $want.conditions.clientApplications.agentIdServicePrincipalFilter = $null
+            $want.conditions.clientApplications.excludeAgentIdServicePrincipals = $ids
+        }
         $have = @($Estate.CaPolicies | Where-Object { $_.displayName -eq $want.displayName })
         $a = [ordered]@{ ActionId = "$kind"; Policy = $want.displayName; Kind = $kind; Action = ''; Write = $false; Call = ''; Method = ''; Target = ''; Body = $null; Reason = '' }
         if ($cap.AgentConditionalAccess.available -eq $false) { $a.Action = 'NotAvailable'; $a.Reason = "D-NP6: agent Conditional Access isn't published for cloud '$Cloud'" }
         elseif (-not $have.Count) { $a.Action = 'Create'; $a.Write = $true; $a.Call = 'agid-ca-create'; $a.Method = 'POST'; $a.Target = "$graph/beta/identity/conditionalAccess/policies"; $a.Body = $want; $a.Reason = "Report-only; $($cap.AgentConditionalAccess.stage), a watch item" }
         else {
-            $diff = @(Test-NpiAgentCaPolicyShape -Policy $have[0] -Kind $kind -ApprovalRule $cfg.Rules.approvalAttribute)
+            $diff = @(Test-NpiAgentCaPolicyShape -Policy $have[0] -Kind $kind -ApprovalRule $cfg.Rules.approvalAttribute -Mode $mode)
+            if ($mode -eq 'Named') {
+                $ex = @(Get-NpiAgentValue (Get-NpiAgentValue (Get-NpiAgentValue $have[0] 'conditions') 'clientApplications') 'excludeAgentIdServicePrincipals')
+                foreach ($x in @($ids | Where-Object { $_ -notin $ex })) { $diff += "doesn't exclude approved agent $x" }
+                foreach ($x in @($ex | Where-Object { $_ -notin $ids })) { $diff += "excludes $x, which has no complete handshake" }
+            }
             if ($diff.Count) { $a.Action = 'Differs'; $a.Reason = ($diff -join '; ') } else { $a.Action = 'InPlace'; $a.Reason = "Policy $($have[0].id) is report-only and matches" }
         }
         $actions.Add([pscustomobject]$a)
     }
-    [ordered]@{ kind = 'agent-ca-plan'; tenantId = $TenantId; cloud = $Cloud; created = $AsOf.ToString('yyyy-MM-dd'); decision = $cap.Decision; actions = $actions.ToArray() }
+    [ordered]@{ kind = 'agent-ca-plan'; tenantId = $TenantId; cloud = $Cloud; created = $AsOf.ToString('yyyy-MM-dd'); decision = $cap.Decision; approvalMode = "$(Get-NpiAgentValue $cap 'ApprovalMode')"; actions = $actions.ToArray() }
 }
 
 function New-NpiAgentCaWriter {

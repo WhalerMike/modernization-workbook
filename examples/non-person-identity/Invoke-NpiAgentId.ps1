@@ -37,7 +37,7 @@ $reader = New-NpiAgentReader -Cloud $Cloud -Invoke $invoke
 $rules = (Get-NpiAgentConfig).Rules
 $estate = Read-NpiAgentEstate -Reader $reader -Capability $cap -AsOf $AsOf -Inventory $inputs.Inventory -AuditLookbackDays $rules.auditLookbackDays
 $result = Test-NpiAgentId -Reader $reader -Estate $estate -Inputs $inputs -Runs $runs -Capability $cap -AsOf $AsOf
-$plan = New-NpiAgentCaPlan -Estate $estate -Cloud $Cloud -TenantId $runs.TenantId -AsOf $AsOf
+$plan = New-NpiAgentCaPlan -Estate $estate -Cloud $Cloud -TenantId $runs.TenantId -AsOf $AsOf -ApprovedIds @($result.Identities | Where-Object HandshakeComplete | ForEach-Object { $_.IdentityId -replace '^sp:' })
 
 $filled = @($runs.SponsorFields | Where-Object { $_.IdentityId -in @($result.Identities.IdentityId) })
 $null = Export-NpiAgentRun -OutputPath $OutputPath -Task 'agent-id' -Cloud $Cloud -Mode $mode -TenantId $runs.TenantId -AsOf $AsOf.ToString('yyyy-MM-dd') -Evidence $reader.Evidence `

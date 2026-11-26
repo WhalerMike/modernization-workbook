@@ -414,7 +414,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
     Pester prints a line for each test file, with the time it took, then this line:
 
     ```text
-    Tests Passed: 564, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
+    Tests Passed: 567, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
     ```
 
     pytest prints a row of dots, then a last line of `133 passed` and the time it took.

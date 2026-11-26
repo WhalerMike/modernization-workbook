@@ -1240,7 +1240,7 @@
    "topics": [
     "Program and people"
    ],
-   "status": "Draft",
+   "status": "Approved",
    "family": "platform-host",
    "featured": false
   },
@@ -1499,7 +1499,7 @@
    "url": "docs/project-plans/developer-workbooks/non-person-identity/index.html",
    "count": 13,
    "unit": "chapters",
-   "reading_minutes": 541,
+   "reading_minutes": 542,
    "reading_source": "estimate",
    "videos": 13,
    "video_minutes": 155,
