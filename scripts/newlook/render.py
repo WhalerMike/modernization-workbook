@@ -114,7 +114,9 @@ def navbar(root: Path, base_nav: dict) -> dict:
         # Short: the New Look's navbar has more items than the current site's.
         "title": "Workbook",
         "background": base_nav.get("background", "dark"),
-        "collapse-below": base_nav.get("collapse-below", "lg"),
+        # Twelve items need about 1,190px: below xl (1,200px) they go in the menu
+        # button instead of running off the right edge.
+        "collapse-below": "xl",
         "left": [
             {"href": "docs/new-look/index.md", "text": "Home"},
             {"href": "docs/new-look/browse.md", "text": "Browse"},
