@@ -1,7 +1,7 @@
 ---
 title: "Find a path"
-subtitle: "Start from your role, pick a learning path, or browse everything the workbook offers by type, topic and level"
-description: "New Look preview: a home page that leads with learning paths. Start from your role, choose a featured learning path, or open the Browse catalog of every learning path, implementation guide, developer workbook, book, lab set and video series."
+subtitle: "Start from a topic or your role, pick a learning path, or browse everything the workbook offers by type and level"
+description: "New Look preview: a home page that leads with topics. Start from a topic hub or your role, choose a featured learning path, or open the Browse catalog of every learning path, implementation guide, developer workbook, book, lab set and video series."
 doc-type: section-landing
 research-status: draft
 review-status: pending
@@ -24,6 +24,12 @@ hide-description: true
   <p class="nl-stats" id="nl-stats"></p>
 </div>
 ```
+
+## Topics {#topic-hubs}
+
+Everything the workbook has on one subject, on one page: the book chapters, the plan, the guide, the developer workbook, the learning path, the labs, the videos and the code.
+
+{{< include _topics.md >}}
 
 ## Start with your role {#roles}
 
@@ -48,7 +54,7 @@ Each learning path is a short series of modules, in order, each with a lab you r
 <div class="nl-page"><ul class="nl-tiles nl-tiles-small" id="nl-types" aria-label="Types"></ul></div>
 ```
 
-## Browse by topic {#topics}
+## Browse the catalog by topic {#topics}
 
 ```{=html}
 <div class="nl-page">
@@ -66,7 +72,7 @@ A few weeks of reading and labs for each role, in order: [Reading plans](plans/i
 
 The New Look renders the same pages as the [current site](https://whalermike.github.io/modernization-workbook/), which is unchanged. No page's text is edited; everything below comes from the pages' own front matter, folders and links, and from data files kept for the New Look.
 
-- **Paths first.** This home page, the [Browse](browse.md) catalog with filters by type, role, topic, level and status, and [reading plans](plans/index.md) by role.
+- **Topics first, then paths.** This home page, led by the [topic hubs](../topics/index.md), the [Browse](browse.md) catalog with filters by type, role, topic, level and status, and [reading plans](plans/index.md) by role.
 - **A navbar by type of content:** Browse, Plans, Learning paths, Books, Guides, Workbooks, Watch, Reference and Search, built from the folders, so a new path, guide or workbook appears by itself.
 - **A content-type label above every title** (Book, Chapter, Implementation guide, Learning path, Module, Workbook chapter and others) and an **Applies to** line under it.
 - **"At a glance"** on each learning path, and **"Module N of M"** or **"Chapter N of M"** on modules and chapters.
