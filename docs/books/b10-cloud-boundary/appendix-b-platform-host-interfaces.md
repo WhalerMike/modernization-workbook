@@ -30,6 +30,8 @@ That question belongs in a book about the boundary because the host's interfaces
 
 The reference architecture runs Gitea behind IIS. Gitea and IIS are the program's example components, chosen over IIS serving Git directly through the `git-http-backend` CGI for authentication integration and operational reasons; the reduced surface of that alternative is summarized at the end. Host names use `contoso` as the example domain throughout.
 
+Build steps are named by the seven milestones in [Book 00, Chapter 08](../b00-orientation/08-pre-flight-and-assessment.md#seven-build-milestones), M-001 to M-007; steps that come after the Phase 0 build, such as the nightly backup and the drift reporter, are named by what they do. Two pieces of family D are designs the workbook only partly implements: the drift reporter (D.3) has no implementation yet, and the conformance adapter (D.4) has one in part, the read-only interface check in [The Platform Host: An Implementation Guide](../guides/platform-host-implementation.md). Where this appendix describes what they're for and what they read, it isn't describing code you can run unless it says so.
+
 ![The platform host's six interface families: one TLS endpoint at IIS and Gitea's own SSH listener for clients, two identity sources, the Azure management planes as a documented exception, and a read-only upstream mirror.](../../images/diagrams/b10-cloud-boundary/svg/apB-interface-families.svg){#fig-apB-interface-families fig-alt="Top to bottom. A slate card for family A, client transport, contributors and automation, using HTTPS 443 through IIS and SSH 2222 to Gitea directly. A violet frame labeled platform host, Windows Server 2025, contains three cards: a slate reverse proxy card, IIS with URL Rewrite and ARR, doing TLS, security headers and the W3C log; a green source-of-truth card, Gitea on 127.0.0.1:3000, with web UI, REST API, LFS, server-side hooks and outbound webhooks; and a violet card for family E, local management, signed PowerShell and the Gitea CLI, with WinRM 5986 from the admin subnet. Clients reach IIS on 443 and Gitea directly on 2222 by a dashed line; IIS forwards to Gitea over loopback. From Gitea, an arrow labeled LDAPS leads to a slate family B card, Active Directory, LDAPS 636 with a read-only bind, and a blue arrow labeled OIDC leads to a blue family B card, Microsoft Entra ID, OIDC sign-in with groups claim. A dashed arrow labeled fetch leads to a slate family F card, GitHub upstream, read-only pull mirror. From local management, an amber arrow labeled D, telemetry and backup, leads to an amber family C card, Azure Arc, Monitor and Blob in Azure commercial, a documented exception."}
 
 ## The six families at a glance
@@ -100,7 +102,7 @@ The SSH plane is equivalent to HTTPS for `git` operations but bypasses IIS, so i
 
 ```ini
 ; Illustrative: D:\Gitea\custom\conf\app.ini (excerpt)
-RUN_USER = svc-fmp-gitea$
+RUN_USER = gmsa-fmpgitea$
 
 [server]
 PROTOCOL         = http
@@ -147,12 +149,12 @@ The REST API is the machine-to-machine control plane for Gitea. What the web UI 
 
 | Endpoint | Method | Build step | Purpose |
 |---|---|---|---|
-| `/api/v1/orgs` | `POST` | Phase 8 | Create the `fmp` organization |
-| `/api/v1/repos/migrate` | `POST` | Phase 8 | Create the GitHub pull mirror (`mirror: true`, `mirror_interval`) |
-| `/api/v1/orgs/{org}/teams` | `GET` | Phase 14.4 | Drift reporter compares the team list with group claims |
+| `/api/v1/orgs` | `POST` | M-005 | Create the `fmp` organization |
+| `/api/v1/repos/migrate` | `POST` | M-005 | Create the GitHub pull mirror (`mirror: true`, `mirror_interval`) |
+| `/api/v1/orgs/{org}/teams` | `GET` | Runtime (D.3) | Drift reporter compares the team list with group claims |
 | `/api/v1/admin/users` | `GET` | Runtime | Audit and drift reporting |
 | `/api/v1/admin/users/{username}` | `PATCH` | Runtime | Leaver handling (`prohibit_login`) |
-| `/api/v1/repos/{owner}/{repo}/hooks` | `GET`, `POST` | Phase 9 | Webhook registration |
+| `/api/v1/repos/{owner}/{repo}/hooks` | `GET`, `POST` | M-006 | Webhook registration |
 
 All of these exist in Gitea's API definition.[^aB-gitea-api] There's no `/api/v1/admin/sources` endpoint, though, so authentication sources can't be registered through the REST API. Register them with the Gitea CLI (`gitea admin auth add-ldap` and `add-oauth`, shown in family B) or in the site administration pages.[^aB-gitea-cli] The REST surface isn't extended by the program; adapters that need new behavior add server-side hooks, not Gitea endpoints.
 
@@ -243,7 +245,7 @@ When the optional API is on, IIS authenticates callers with Negotiate (Kerberos 
 
 Three identities matter, and they're different things:
 
-- **The Gitea service account** is a group managed service account (`CORP\svc-fmp-gitea$`). Services configured through the Service Control Manager, IIS application pools and scheduled tasks can all run as a gMSA, and Windows rotates its password automatically.[^aB-gmsa] Gitea's own Windows service instructions register the service with `sc.exe` and run it as the local system account by default, so the service account is set separately (family E).[^aB-gitea-winsvc]
+- **The Gitea service account** is a group managed service account (`CORP\gmsa-fmpgitea$`), named and requested under the program's managed service account standard (WD-159 and WD-173: the `gmsa-` prefix, the system's short name `fmpgitea`, 15 characters or fewer before the `$`), with the retriever group `DL-gMSA-fmpgitea-Hosts`. Services configured through the Service Control Manager, IIS application pools and scheduled tasks can all run as a gMSA, and Windows rotates its password automatically.[^aB-gmsa] Gitea's own Windows service instructions register the service with `sc.exe` and run it as the local system account by default, so the service account is set separately (family E).[^aB-gitea-winsvc]
 - **The Arc managed identity** is the host's identity in Azure. Arc creates a system-assigned managed identity whose tokens come from a local endpoint, `http://localhost:40342`.[^aB-arc-mi] A local process can request a token only if it can read the challenge file in the agent's token directory, which is limited to administrators and members of the **Hybrid agent extension applications** group,[^aB-arc-identity] so the account that runs backups and the drift reporter must be in that group. The managed identity has no Azure permissions until role assignments grant them.
 - **A device object in Entra ID** isn't one of them: the host isn't hybrid joined, so it has no device `extensionAttributes` to carry its organizational attributes. Microsoft's supported devices for hybrid join are Windows 11, Windows 10, and Windows Server 2016, 2019 and 2022; Windows Server 2025 isn't on the list.[^aB-hybrid-join] The host's organizational attributes therefore live as tags on its Arc resource, as Book 01 describes. The underlying distinction still holds where a device object exists: device `extensionAttributes` are managed only in Entra ID, while a synced user's `onPremisesExtensionAttributes` are read-only in Microsoft Graph because their source of authority is on-premises AD.[^aB-graph-ext]
 
@@ -259,7 +261,7 @@ The hook chain rejects unsigned pushes to `main`, `canon/*` and any path under t
 | Administrator | Client certificate over mutual TLS at the IIS reverse proxy, required for administrative access | Enterprise PKI, per Book 01, Chapter 03; the certificate template and the mapping of a certificate to an administrator are not yet specified | The administrative access that IIS's SSL settings gate |
 | AD-only contributor | LDAPS bind through the Gitea source | Forest user in the governed Users OU | `IT-INF-PLATFORM-CanonStewards` admin filter |
 | Optional API caller | IIS Negotiate (Kerberos, then NTLM) | Forest user, impersonated in the API process | NTFS ACLs on what the API touches |
-| Gitea service | gMSA `CORP\svc-fmp-gitea$` | Forest service account | `D:\GitRepos`, `D:\Gitea` |
+| Gitea service | gMSA `CORP\gmsa-fmpgitea$` | Forest service account | `D:\GitRepos`, `D:\Gitea` |
 | IIS reverse-proxy app pool | `IIS AppPool\FMPReverseProxy` | Built-in app pool identity | TLS private key (read), nothing else |
 | Backup and drift tasks | Arc system-assigned managed identity, used by the gMSA | Arc resource's service principal | Storage account and Arc resource scope, by role assignment |
 | GitHub upstream mirror | Anonymous HTTPS fetch | None; the upstream is public | None |
@@ -270,7 +272,7 @@ These planes run in Azure commercial. That matters for the boundary: an agency's
 
 ### C.1 Azure Arc
 
-Phase 11 onboards the host as a `Microsoft.HybridCompute/machines` resource named `FMP-GIT01` in resource group `rg-fmp-governance`, with `DeviceRole` and `DeviceTier` tags so Azure Policy assignments can be scoped by tag. The Connected Machine agent's outbound endpoints in Azure public include:[^aB-arc-network]
+M-007 onboards the host as a `Microsoft.HybridCompute/machines` resource named `FMP-GIT01` in resource group `rg-fmp-governance`, tagged with [Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md#resource-groups-and-tags)'s server taxonomy (`Environment`, `Workload`, `Criticality`, `Owner`, `CostCenter`, `PatchGroup` and `ArcOnboardedDate`, with `Workload=GitServer` and `Criticality=High` for this host) so Azure Policy assignments can be scoped by tag. The Connected Machine agent's outbound endpoints in Azure public include:[^aB-arc-network]
 
 | Endpoint | Purpose | When |
 |---|---|---|
@@ -291,7 +293,7 @@ There is no Intune compliance policy (`windows10CompliancePolicy`) assigned to t
 
 ### C.3 Azure Monitor Agent
 
-Installed as the Arc extension `AzureMonitorWindowsAgent`, governed by data collection rules. It forwards the IIS log, Gitea's log, the Windows security audit categories set in Phase 13 (logon and logoff, object access, privilege use, system, account management, policy change) and the Defender event log to the agency's Log Analytics workspace. The agent's endpoints are `global.handler.control.monitor.azure.com`, `<region>.handler.control.monitor.azure.com`, `<workspace-id>.ods.opinsights.azure.com`, `<region>.monitoring.azure.com` and, where used, a data collection endpoint's `ingest.monitor.azure.com` address.[^aB-arc-proxy] `*.oms.opinsights.azure.com` isn't among them.
+Installed as the Arc extension `AzureMonitorWindowsAgent`, governed by data collection rules. It forwards the IIS log, Gitea's log, the Windows security audit categories set by the M-001 hardening baseline (logon and logoff, object access, privilege use, system, account management, policy change) and the Defender event log to the agency's Log Analytics workspace. The agent's endpoints are `global.handler.control.monitor.azure.com`, `<region>.handler.control.monitor.azure.com`, `<workspace-id>.ods.opinsights.azure.com`, `<region>.monitoring.azure.com` and, where used, a data collection endpoint's `ingest.monitor.azure.com` address.[^aB-arc-proxy] `*.oms.opinsights.azure.com` isn't among them.
 
 Three details of IIS log collection affect the evidence:[^aB-ama-iis]
 
@@ -301,7 +303,7 @@ Three details of IIS log collection affect the evidence:[^aB-ama-iis]
 
 ### C.4 Azure Blob backup target
 
-Phase 12's backup function uploads the nightly `gitea dump` archive (Gitea's single-archive backup of files and databases)[^aB-gitea-cli] and the zipped `D:\GitRepos\` to storage account `stfmpgovernance`, container `gitea-backups`, with 30-day retention, authenticating with the Arc managed identity (B.4). This is the default for the full-production (PostgreSQL) profile. The single-host SQLite profile, and any deployment without reachable Blob storage, instead quiesces Gitea, takes a Volume Shadow Copy-consistent snapshot of `gitea.db`, and ships the archive to local and SMB targets under the same retention.
+The nightly backup job uploads the nightly `gitea dump` archive (Gitea's single-archive backup of files and databases)[^aB-gitea-cli] and the zipped `D:\GitRepos\` to storage account `stfmpgovernance`, container `gitea-backups`, with 30-day retention, authenticating with the Arc managed identity (B.4). This is the default for the full-production (PostgreSQL) profile. The single-host SQLite profile, and any deployment without reachable Blob storage, instead quiesces Gitea, takes a Volume Shadow Copy-consistent snapshot of `gitea.db`, and ships the archive to local and SMB targets under the same retention.
 
 Both paths meet the program's cold-restore baseline of a 24-hour recovery point and 4-hour recovery time; the optional hot standby raises that to near-zero data loss and a recovery time in minutes, with witness-gated failover so only one node accepts commits at a time. For backup data, Blob is the only outbound path in the full-production profile; in the single-host profile, backups stay on-premises and none leaves the host. Logs (C.3) and the other planes on the egress allowlist are separate.
 
@@ -331,11 +333,11 @@ Two cautions. Gitea's webhook documentation describes manual redelivery of faile
 
 ### D.3 Drift reporter
 
-Phase 14.4 registers a scheduled task that runs as the gMSA (scheduled tasks support gMSAs)[^aB-gmsa] and authenticates to Azure and Graph with the Arc managed identity, so no interactive credential lives on the host. It collects the Arc resource's tags, the Gitea team list, administrative-unit membership through Graph, the Arc agent's last heartbeat, and the Gitea accounts whose Entra ID users are disabled, then submits them to the drift engine, which reports `DRIFT-SCHEMA`, `DRIFT-SEMANTIC`, `DRIFT-PROVENANCE`, `DRIFT-AUTHZ` and `DRIFT-IDENTITY` findings (the last two classes are design only and are not yet detected at runtime; see [Chapter 02](02-the-invisible-boundary.md)). It also checks the upstream pull mirror (F.1). A hook can't, because mirror syncs never pass through the receive hooks, so the reporter reads the mirror's repository record (`GET /api/v1/repos/fmp/fmp-upstream`), whose `mirror_updated` and `mirror_last_sync_at` fields carry date-times for the mirror's sync,[^aB-gitea-mirror-sync] and raises a stale-mirror finding when the last sync is more than 24 hours old. The 24 hours is the program's threshold, from the risk register's R-018 ([Book 00, Appendix A](../b00-orientation/appendix-a-risk-register-and-traceability.md#delivery-risks)). With the 15-minute interval in F.1 it catches a mirror that has stopped, not one that is briefly late. Gitea's API definition doesn't describe how the two fields differ, so confirm on the host's Gitea version which one changes after **Synchronize Now** before the reporter relies on it. Non-zero counts open service-level tickets. The build guide marks this Phase 14 capability as declared but still under operational validation.
+The drift reporter is designed as a scheduled task that runs as the gMSA (scheduled tasks support gMSAs)[^aB-gmsa] and authenticates to Azure and Graph with the Arc managed identity, so no interactive credential lives on the host. It collects the Arc resource's tags, the Gitea team list, administrative-unit membership through Graph, the Arc agent's last heartbeat, and the Gitea accounts whose Entra ID users are disabled, then submits them to the drift engine, which reports `DRIFT-SCHEMA`, `DRIFT-SEMANTIC`, `DRIFT-PROVENANCE`, `DRIFT-AUTHZ` and `DRIFT-IDENTITY` findings (the last two classes are design only and are not yet detected at runtime; see [Chapter 02](02-the-invisible-boundary.md)). It also checks the upstream pull mirror (F.1). A hook can't, because mirror syncs never pass through the receive hooks, so the reporter reads the mirror's repository record (`GET /api/v1/repos/fmp/fmp-upstream`), whose `mirror_updated` and `mirror_last_sync_at` fields carry date-times for the mirror's sync,[^aB-gitea-mirror-sync] and raises a stale-mirror finding when the last sync is more than 24 hours old. The 24 hours is the program's threshold, from the risk register's R-018 ([Book 00, Appendix A](../b00-orientation/appendix-a-risk-register-and-traceability.md#delivery-risks)). With the 15-minute interval in F.1 it catches a mirror that has stopped, not one that is briefly late. Gitea's API definition doesn't describe how the two fields differ, so confirm on the host's Gitea version which one changes after **Synchronize Now** before the reporter relies on it. Non-zero counts open service-level tickets. The drift reporter is a design: the workbook doesn't yet publish an implementation.
 
 ### D.4 Conformance adapter
 
-The program's read-only conformance adapter emits four evidence files per polling interval: service health (IIS app pool, Gitea service), TLS certificate inventory (expiry, chain, key algorithm, subject alternative names), repository inventory (size, last push, branch count, quota, LFS bytes), and IIS access summaries (request volume, response codes, top principals). It supports CA-7, CM-8, AU-2, AU-6 and SI-4.
+The program's read-only conformance adapter is designed to emit four evidence files per polling interval: service health (IIS app pool, Gitea service), TLS certificate inventory (expiry, chain, key algorithm, subject alternative names), repository inventory (size, last push, branch count, quota, LFS bytes), and IIS access summaries (request volume, response codes, top principals). It supports CA-7, CM-8, AU-2, AU-6 and SI-4. Part of it now exists: the platform host kit's interface check (`examples/platform-host`, in [the implementation guide](../guides/platform-host-implementation.md)) reads the service and the TLS certificate, and with them the listeners, firewall, reverse proxy, IIS log settings, `app.ini`, folder ACLs, the release manifest, Gitea's API, the newest backup and the Arc agent, and records each run as hashed evidence. The repository inventory and the IIS access summaries are still designs.
 
 ### D.5 IIS W3C extended logs
 
@@ -355,23 +357,23 @@ Signed-only execution comes from application control, not from the execution pol
 
 ```powershell
 # Illustrative: install and test the gMSA on the host, then register Gitea as a service under it
-Install-ADServiceAccount -Identity 'svc-fmp-gitea$'
-Test-ADServiceAccount   -Identity 'svc-fmp-gitea$'
+Install-ADServiceAccount -Identity 'gmsa-fmpgitea$'
+Test-ADServiceAccount   -Identity 'gmsa-fmpgitea$'
 
 sc.exe create gitea start= auto binPath= '"D:\Gitea\gitea.exe" web --config "D:\Gitea\custom\conf\app.ini"'
 # A gMSA logs on with an empty password; Windows retrieves the managed password
-sc.exe config gitea obj= 'CORP\svc-fmp-gitea$' password= ''
+sc.exe config gitea obj= 'CORP\gmsa-fmpgitea$' password= ''
 sc.exe config gitea start= delayed-auto
 
 # Let the gMSA request Arc managed identity tokens for backup and drift reporting
-Add-LocalGroupMember -Group 'Hybrid agent extension applications' -Member 'CORP\svc-fmp-gitea$'
+Add-LocalGroupMember -Group 'Hybrid agent extension applications' -Member 'CORP\gmsa-fmpgitea$'
 ```
 
-`RUN_USER` in `app.ini` must name the same account (A.2). Gitea's guidance also suggests a delayed start if the service times out at boot.[^aB-gitea-winsvc] There's no SSH-into-the-host workflow: Tier 0 administration uses WinRM over HTTPS on 5986, restricted to the admin subnet `10.1.20.0/24`, from a privileged access workstation.
+`RUN_USER` in `app.ini` names the same account, without the domain (A.2). Gitea skips its own check of `RUN_USER` against the running account on Windows,[^aB-gitea-runuser] so nothing stops the two from disagreeing; the platform host kit's interface check compares them ([the implementation guide](../guides/platform-host-implementation.md)). Gitea's guidance also suggests a delayed start if the service times out at boot.[^aB-gitea-winsvc] There's no SSH-into-the-host workflow: Tier 0 administration uses WinRM over HTTPS on 5986, restricted to the admin subnet `10.1.20.0/24`, from a privileged access workstation.
 
 ### E.3 IIS management
 
-IIS Manager, `appcmd` and the `IISAdministration` module are used at install (Phases 2 and 5) and during incident response. The conformance adapter's read access to IIS configuration comes from a scoped group membership for its identity, not from administrator rights.
+IIS Manager, `appcmd` and the `IISAdministration` module are used at install (M-002) and during incident response. The conformance adapter's read access to IIS configuration comes from a scoped group membership for its identity, not from administrator rights.
 
 ### E.4 Storage
 
@@ -387,7 +389,7 @@ NTFS ACLs are the only authorization boundary inside the host. In the full-produ
 
 ### F.1 GitHub upstream pull mirror
 
-Phase 8 creates a pull mirror of the public upstream `https://github.com/example-org/fmp.git` with `POST /api/v1/repos/migrate`, `mirror: true` and a 15-minute interval. Gitea's minimum mirror interval is 10 minutes and its default 8 hours.[^aB-gitea-cheat] Authentication is anonymous because the upstream is public.
+M-005 creates a pull mirror of the public upstream `https://github.com/example-org/fmp.git` with `POST /api/v1/repos/migrate`, `mirror: true` and a 15-minute interval. Gitea's minimum mirror interval is 10 minutes and its default 8 hours.[^aB-gitea-cheat] Authentication is anonymous because the upstream is public.
 
 ```powershell
 # Illustrative: create the upstream pull mirror through the Gitea REST API
@@ -417,7 +419,7 @@ The program sanctions two profiles for Gitea's metadata (users, teams, OAuth app
 
 ### F.3 Build-time supply chain
 
-Every binary the Phase 1–13 build downloads is pinned to a URL and SHA-256 hash in the release manifest. The hosts are `github.com`, `objects.githubusercontent.com`, `download.microsoft.com`, `aka.ms`, `dotnetcli.azureedge.net`, `packages.microsoft.com`, the Gpg4win site, `*.powershellgallery.com` and `timestamp.digicert.com`. Operators with an internal artifact mirror substitute its URLs; the hashes stay the same. This plane is build-only except for two hosts: after cutover, the hosts used only at build aren't on the runtime egress allowlist, while `github.com` (the mirror) and `download.microsoft.com` (Arc automatic updates, C.1) stay on it.
+Every binary the M-001 to M-007 build downloads is pinned to a URL and SHA-256 hash in the release manifest. The hosts are `github.com`, `objects.githubusercontent.com`, `download.microsoft.com`, `aka.ms`, `dotnetcli.azureedge.net`, `packages.microsoft.com`, the Gpg4win site, `*.powershellgallery.com` and `timestamp.digicert.com`. Operators with an internal artifact mirror substitute its URLs; the hashes stay the same. This plane is build-only except for two hosts: after cutover, the hosts used only at build aren't on the runtime egress allowlist, while `github.com` (the mirror) and `download.microsoft.com` (Arc automatic updates, C.1) stay on it.
 
 ## Boundary and egress posture
 
@@ -437,7 +439,7 @@ None of these planes is "GCC Moderate." The on-premises host is inside the agenc
 
 ### Runtime egress allowlist
 
-Phase 0.5 enumerates the runtime egress allowlist, and the proxy and firewall team permits only those host names through the agency's forward proxy; everything else is denied. The list is the union of family C's endpoints, the PostgreSQL host in the full-production profile, `graph.microsoft.com` for the drift reporter's Microsoft Graph calls, `github.com` for the mirror, and `api.github.com` for the CI notification (D.2). The proxy environment variables (`HTTPS_PROXY`, `HTTP_PROXY`, `NO_PROXY`) are set at machine scope so Git, PowerShell and the Arc agent use the same proxy; the Arc agent can also take its own proxy setting.[^aB-arc-proxy]
+Before M-001, the program enumerates the runtime egress allowlist, and the proxy and firewall team permits only those host names through the agency's forward proxy; everything else is denied. The list is the union of family C's endpoints, the PostgreSQL host in the full-production profile, `graph.microsoft.com` for the drift reporter's Microsoft Graph calls, `github.com` for the mirror, and `api.github.com` for the CI notification (D.2). The proxy environment variables (`HTTPS_PROXY`, `HTTP_PROXY`, `NO_PROXY`) are set at machine scope so Git, PowerShell and the Arc agent use the same proxy; the Arc agent can also take its own proxy setting.[^aB-arc-proxy]
 
 ### Inbound posture
 
@@ -481,7 +483,7 @@ Gitea roles map to three groups:
 | Write | `IT-INF-PLATFORM-Contributors` |
 | Read | `IT-INF-Users` |
 
-These groups are driven by user attributes, and a synced user's attributes are written in on-premises AD and reach Entra ID through directory sync before any group recalculates. The attributes have exactly one writer, the governance plane, and drift against it is a finding, not an accepted edit. A move in the HR feed reaches Gitea after directory sync, dynamic group processing (B.2) and the user's next sign-in, so the program measures it in hours and handles leavers directly. The group mapping is part of Phase 14, which the build guide marks as under operational validation. [Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md) covers the joiner-mover-leaver flow.
+These groups are driven by user attributes, and a synced user's attributes are written in on-premises AD and reach Entra ID through directory sync before any group recalculates. The attributes have exactly one writer, the governance plane, and drift against it is a finding, not an accepted edit. A move in the HR feed reaches Gitea after directory sync, dynamic group processing (B.2) and the user's next sign-in, so the program measures it in hours and handles leavers directly. The group mapping is set at M-004 and checked by the drift reporter, which is still a design (D.3). [Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md) covers the joiner-mover-leaver flow.
 
 The program's own posture-indicator library (the agency's checks of this host, not FedRAMP's provider Key Security Indicators) tests this host's posture on every evaluation run: continuous-monitoring presence and freshness (CA-7), repository and TLS inventory completeness (CM-8), IIS log presence and retention (AU-2, AU-6), and monitoring evidence freshness (SI-4). A failure opens a service-level ticket and gates the next authorization review.
 
@@ -566,6 +568,7 @@ The conformance adapter's TLS inventory (D.4) duplicates what the CLM platform a
 [^aB-dynamic]: Microsoft Learn, "Understand and manage dynamic group processing in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/users/manage-dynamic-group> (accessed Oct 21, 2026).
 [^aB-gmsa]: Microsoft Learn, "Manage group Managed Service Accounts," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts> (accessed Oct 21, 2026).
 [^aB-gitea-winsvc]: Gitea Documentation, "Register as a Windows Service," <https://docs.gitea.com/installation/windows-service> (accessed Oct 21, 2026).
+[^aB-gitea-runuser]: Gitea source code, `modules/setting/setting.go`, `IsRunUserMatchCurrentUser` ("This check is ignored under Windows"), tag v28.4.0, <https://github.com/go-gitea/gitea/blob/v28.4.0/modules/setting/setting.go> (accessed Nov 26, 2026). On Windows Gitea also drops the domain from the account name (`modules/user/user.go`, `CurrentUsername`), so `RUN_USER` takes the name without `CORP\`.
 [^aB-arc-mi]: Microsoft Learn, "Access Azure resources by using managed identity on Azure Arc-enabled servers," <https://learn.microsoft.com/azure/azure-arc/servers/managed-identity-authentication> (accessed Oct 21, 2026).
 [^aB-arc-identity]: Microsoft Learn, "Identity and authorization" (Azure Arc-enabled servers security), section "Microsoft Entra ID managed identity," <https://learn.microsoft.com/azure/azure-arc/servers/security-identity-authorization> (accessed Oct 21, 2026).
 [^aB-hybrid-join]: Microsoft Learn, "Plan your Microsoft Entra hybrid join implementation," section "Review supported devices," <https://learn.microsoft.com/entra/identity/devices/hybrid-join-plan> (accessed Oct 21, 2026).

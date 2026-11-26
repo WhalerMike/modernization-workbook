@@ -1,1 +1,14 @@
-PS> Remove-Item -Recurse -Force out
+PS> Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
+PS> Test-AzsEvidence -EvidencePath "$Run/evidence" -Stage test | Where-Object Check -like 'STEP-*' | ForEach-Object { "{0,-14} {1}  {2}" -f $_.Check, $_.Status, $_.Detail }
+STEP-PRE       Fail  no passing live record
+STEP-RUN       Fail  no passing live record
+STEP-BL        Fail  no passing live record
+STEP-EXP       Fail  no passing live record
+STEP-DDOS      Fail  no passing live record
+STEP-WAF       Fail  no passing live record
+STEP-EDGE      Fail  no passing live record
+STEP-FW        Fail  no passing live record
+STEP-PL        Fail  no passing live record
+STEP-KV        Fail  no passing live record
+STEP-POL       Fail  no passing live record
+STEP-METRICS   Fail  no passing live record

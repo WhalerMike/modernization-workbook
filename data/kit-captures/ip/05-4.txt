@@ -1,1 +1,5 @@
-PS> Remove-Item -Recurse -Force out
+PS> Import-Csv "$Run/protection/mail-flow-rules.csv" | Format-Table Rule, Stage, State, Mode, Template -AutoSize
+Rule                      Stage   State   Mode    Template
+----                      -----   -----   ----    --------
+Encrypt external [secure] enforce Enabled Enforce Encrypt
+Partner Do Not Forward    enforce Enabled Audit   Do Not Forward

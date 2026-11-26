@@ -126,8 +126,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: every area, week one, and the policy",
       body: [
-        { terminal: "08-1", label: "examples/azure-security  ·  fixture data  ·  real output" },
-        { terminal: "08-2" },
+        { terminal: "08-3", label: "examples/azure-security  ·  fixture data  ·  real output" },
+        { terminal: "08-4" },
       ],
       sources: "Sources: examples/azure-security (fictional fixtures). Chapter 08, “Lab 1: fixtures, no subscription,” steps 1–2.",
       say: `Lab 1 needs only PowerShell 7 with Pester, in the kit's folder. Between the two weeks, Contoso's platform team switched the WAF to prevention, moved the firewall to deny, routed a subnet to the firewall, added a missing header, turned on purge protection, enforced the security initiative and required authorization for new management groups; a new public IP appeared and an orphan went away. Step 1 runs every area on week one: forty-eight findings in all. Step 2 reads the policy findings: an assignment with excluded scopes, an exemption expired on October 31, one with no expiry, one due within thirty days, and the initiative still in audit after its November 1 enforce-by date.`,
@@ -138,8 +138,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: week two, and what changed",
       body: [
-        { terminal: "08-3", lines: "1,10" },
-        { terminal: "08-4", lines: "1-10,11-13,20-21,23" },
+        { terminal: "08-5", lines: "1,10" },
+        { terminal: "08-6", lines: "1-10,11-13,20-21,23" },
       ],
       sources: "Sources: examples/azure-security (fictional fixtures). Chapter 08, “Lab 1: fixtures, no subscription,” steps 3–4.",
       say: `Step 3 runs every area on the second week, with the first week's register: forty findings now. Step 4 compares the two weeks. Thirteen fixed, four new, and all four new rows come from the two public IPs that changed: the new one has no log, no owner and no DDoS protection, and the one that went away leaves a reminder to remove any DNS record still pointing at its address. Among the fixed: the hierarchy setting, the WAF in detection, the firewall's threat intelligence and intrusion detection, and the security initiative's enforcement.`,
@@ -150,8 +150,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the metrics and the evidence records",
       body: [
-        { terminal: "08-5", lines: "1-6,8-10" },
-        { terminal: "08-6", lines: "1-3,7,12,16-18" },
+        { terminal: "08-7", lines: "1-6,8-10" },
+        { terminal: "08-8", lines: "1-3,7,12,16-18" },
       ],
       sources: "Sources: examples/azure-security (fictional fixtures). Chapter 08, “Lab 1: fixtures, no subscription,” steps 5–6.",
       say: `Step 5 computes the metrics for the second week. DDoS coverage is fifty-seven percent, WAF prevention coverage sixty-seven, egress inspection sixty, vault posture thirty-three, and one exemption has expired. The rows that come from exercise records say so instead of inventing a number. Step 6 records the run, the comparison and the metrics as evidence, then checks the folder. The first record covers all nine area steps and lists sixteen controls. The comparison and the metrics each get their own record, and the chain of three records is unbroken.`,
@@ -162,8 +162,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: fixture evidence can't pass a stage",
       body: [
-        { terminal: "08-7", lines: "2-6,14" },
-        { terminal: "08-8" },
+        { terminal: "08-9", lines: "2-6,14" },
+        { terminal: "08-10" },
       ],
       sources: "Sources: examples/azure-security (fictional fixtures). Chapter 08, “Lab 1: fixtures, no subscription,” steps 7–8.",
       say: `Step 7 asks whether this evidence could pass the test stage's go or no-go. Every step fails, with the same reason: no passing live record. That's on purpose. Lab evidence can't promote anything, so nobody can take a fixture run to production by mistake. Step 8 runs this chapter's tests: ten pass, covering the policy check, the run folders, the comparison, the metrics and the evidence. When you're done, delete the output folder.`,

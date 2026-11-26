@@ -1,1 +1,36 @@
-PS> Remove-Item -Recurse -Force out
+PS> ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab-ring1.json -FixturePath tests/fixtures/ring1 -OutputPath "$Run/ring1" -AsOf 2026-11-30T12:00:00Z
+Collected as of 2026-11-30T12:00:00Z (Fixture mode, environment lab, cloud gcc, ring ring1)
+
+Call                     Method  Beta  Verified  Least-privileged permission
+ca-policies              GET     False True      Policy.Read.All
+ca-signaling             GET     True  True      NetworkAccess.Read.All
+connector-group-members  GET     True  True      Directory.ReadWrite.All
+connector-groups         GET     True  True      Directory.ReadWrite.All
+device-usage             GET     True  True      NetworkAccessPolicy.Read.All
+diagnostic-settings      GET     False True      Security Administrator (Microsoft Entra role), as the guide's Step 12.1 uses
+filtering-policies       GET     True  True      NetworkAccess.Read.All
+filtering-profiles       GET     True  True      NetworkAccess.Read.All
+forwarding-profiles      GET     True  True      NetworkAccess.Read.All
+law-query                QUERY   False True      Read access to the workspace; Log Analytics Reader is the program's choice (design guidance)
+licenses                 GET     False True      LicenseAssignment.Read.All
+named-locations          GET     True  True      Policy.Read.All
+private-apps             GET     True  False     Application.Read.All
+tenant-status            GET     True  True      NetworkAccessPolicy.Read.All
+tenant-tagging           GET     True  True      NetworkAccess.Read.All
+trv2-default             GET     True  True      Policy.Read.All
+trv2-partners            GET     True  False     Policy.Read.All
+
+17 calls sent (24 reads in all). Written to C:/FMWLabs/results/global-secure-access-05/lab1/<run>/ring1: collection.json, raw/, manifest.json (18 files hashed)
+PS> ./Invoke-GsaCheck.ps1 -Area compliant-network, tenant-restrictions -SettingsPath tests/fixtures/settings.lab-ring1.json -CollectionPath "$Run/ring1" -InputsPath tests/fixtures/ring1/inputs -OutputPath "$Run/check-ring1" -AsOf 2026-11-30T12:00:00Z
+GSA-CN-01   Pass  named location: All Compliant Network locations
+GSA-CN-02   Pass  NET-CN-Require-Compliant-Network-Pilot: block: True; compliant location excluded: True
+GSA-CN-03   Pass  NET-CN-Require-Compliant-Network-Pilot: emergency access group excluded
+GSA-CN-04   Pass  NET-CN-Require-Compliant-Network-Pilot: both Intune applications excluded
+GSA-CN-05   Pass  NET-CN-Require-Compliant-Network-Pilot: no Private Access app targeted
+GSA-CN-07   Pass  NET-CN-Require-Compliant-Network-Pilot: enforced; signaling enabled
+GSA-TR-01   Pass  TRv2 default: users: blocked; applications: blocked
+GSA-TR-02   Pass  partner 66666666-6666-4666-8666-666666666601: register EX-05, owner Identity engineer, review 2027-06-30
+GSA-TR-03   Pass  tagging: networkPacketTaggingStatus: enabled; TRv2 default blocking: True
+GSA-TR-04   Info  resource tenant 66666666-6666-4666-8666-666666666699: 7 blocks (Office 365 Exchange Online); not a registered partner: review weekly
+
+compliant-network, tenant-restrictions: 10 checks (1 Info, 9 Pass). Written to C:/FMWLabs/results/global-secure-access-05/lab1/<run>/check-ring1: findings.json, findings.csv, manifest.json

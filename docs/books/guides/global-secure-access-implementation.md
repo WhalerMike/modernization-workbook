@@ -12,8 +12,8 @@ research-status: draft
 research-type: implementation guide
 research-book: "Book 09"
 review-status: approved
-reviewed-sha256: 048d1841ade949233e0ee8ed5a9c0d7507b47499006cf016680585290c2b370c
-last-reviewed: 2026-11-24
+reviewed-sha256: 451f9c3ae6fb42a7558c1a49d966c98ce25a1426e5e3ee2d48a743c7c2b72e4c
+last-reviewed: 2026-11-26
 ---
 # Global Secure Access & Zero Trust Network Engineering: An Implementation Guide
 
@@ -392,12 +392,12 @@ Invoke-MgGraphRequest -Method PATCH -Uri "https://graph.microsoft.com/beta/netwo
 #### PowerShell 7
 
 ```powershell
-./Invoke-GsaCheck.ps1 -Area traffic -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-traffic -AsOf 2026-11-16T12:00:00Z
+./Invoke-GsaCheck.ps1 -Area traffic -SettingsPath tests/fixtures/settings.lab.json -CollectionPath "$Run/pilot" -InputsPath tests/fixtures/pilot/inputs -OutputPath "$Run/check-traffic" -AsOf 2026-11-16T12:00:00Z
 ```
 
-![What it prints, run on the kit's fixtures](../../project-plans/developer-workbooks/global-secure-access/captures/04-3.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCheck.ps1 -Area traffic -SettingsPath tests/fixtures/settings.lab… and what it printed"}
+![What it prints, run on the kit's fixtures](../../project-plans/developer-workbooks/global-secure-access/captures/04-5.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCheck.ps1 -Area traffic -SettingsPath tests/fixtures/settings.lab… and what it printed"}
 
-From Lab 1 of [Chapter 04 — Microsoft Traffic and Change Plans](../../project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/04-3.txt)); the lab's earlier steps come first.
+From Lab 1 of [Chapter 04 — Microsoft Traffic and Change Plans](../../project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/04-5.txt)); the lab's earlier steps come first. `$Run` is the lab's dated run folder under `C:\FMWLabs\results`, which its first steps set, so each run keeps its own results and the kit's folder stays as you unzipped it.
 
 **Evidence this step supports:** NIST SP 800-53 Rev. 5 AC-17, AU-3, SI-4; FedRAMP 20x KSIs KSI-IAM-ELP, KSI-MLA-OSM (step `TRAFFIC` in [requirements.json](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/global-secure-access/config/requirements.json)).
 
@@ -429,12 +429,12 @@ The same setting is the Conditional Access signaling Step 7 needs. Learn's cauti
 *Related script.* The script queries the same sign-in log for the share of sign-ins that went through Global Secure Access, rather than the two IP address columns.
 
 ```powershell
-(Read-GsaCollection -Path out/pilot)['law-query']['signin-share'] | ForEach-Object { [pscustomobject]$_ } | Format-Table TimeGenerated, Total, ThroughGSA, PctThroughGSA
+(Read-GsaCollection -Path "$Run/pilot")['law-query']['signin-share'] | ForEach-Object { [pscustomobject]$_ } | Format-Table TimeGenerated, Total, ThroughGSA, PctThroughGSA
 ```
 
-![What it prints, run on the kit's fixtures](../../project-plans/developer-workbooks/global-secure-access/captures/04-4.png){.lightbox fig-alt="Terminal window showing (Read-GsaCollection -Path out/pilot)['law-query']['signin-share'] | ForEach-O… and what it printed"}
+![What it prints, run on the kit's fixtures](../../project-plans/developer-workbooks/global-secure-access/captures/04-6.png){.lightbox fig-alt="Terminal window showing (Read-GsaCollection -Path '$Run/pilot')['law-query']['signin-share'] | ForEac… and what it printed"}
 
-From Lab 1 of [Chapter 04 — Microsoft Traffic and Change Plans](../../project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/04-4.txt)); the lab's earlier steps come first.
+From Lab 1 of [Chapter 04 — Microsoft Traffic and Change Plans](../../project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/04-6.txt)); the lab's earlier steps come first. `$Run` is the lab's dated run folder under `C:\FMWLabs\results`, which its first steps set, so each run keeps its own results and the kit's folder stays as you unzipped it.
 
 **Evidence this step supports:** NIST SP 800-53 Rev. 5 AC-17, AU-3, SI-4; FedRAMP 20x KSIs KSI-IAM-ELP, KSI-MLA-OSM (step `TRAFFIC` in [requirements.json](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/global-secure-access/config/requirements.json)).
 
@@ -704,12 +704,12 @@ If the agency uses the Explicit Forward Proxy (preview), also exclude the `GSA-E
 *Related script.* The screen is what the user sees; the script reads the same test's report-only results from the sign-in log.
 
 ```powershell
-(Read-GsaCollection -Path out/pilot)['law-query']['cn-report-only'] | ForEach-Object { [pscustomobject]$_ } | Format-Table Result, Through, count_
+(Read-GsaCollection -Path "$Run/pilot")['law-query']['cn-report-only'] | ForEach-Object { [pscustomobject]$_ } | Format-Table Result, Through, count_
 ```
 
-![What it prints, run on the kit's fixtures](../../project-plans/developer-workbooks/global-secure-access/captures/05-4.png){.lightbox fig-alt="Terminal window showing (Read-GsaCollection -Path out/pilot)['law-query']['cn-report-only'] | ForEach… and what it printed"}
+![What it prints, run on the kit's fixtures](../../project-plans/developer-workbooks/global-secure-access/captures/05-6.png){.lightbox fig-alt="Terminal window showing (Read-GsaCollection -Path '$Run/pilot')['law-query']['cn-report-only'] | ForE… and what it printed"}
 
-From Lab 1 of [Chapter 05 — The Compliant Network and Tenant Restrictions](../../project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/05-4.txt)); the lab's earlier steps come first.
+From Lab 1 of [Chapter 05 — The Compliant Network and Tenant Restrictions](../../project-plans/developer-workbooks/global-secure-access/05-compliant-network-and-tenant-restrictions.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/05-6.txt)); the lab's earlier steps come first. `$Run` is the lab's dated run folder under `C:\FMWLabs\results`, which its first steps set, so each run keeps its own results and the kit's folder stays as you unzipped it.
 
 **Evidence this step supports:** NIST SP 800-53 Rev. 5 AC-3, AC-12, SC-23; FedRAMP 20x KSIs KSI-IAM-ELP, KSI-CNA-ULN, KSI-IAM-APM (step `COMPLIANT` in [requirements.json](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/global-secure-access/config/requirements.json)).
 
@@ -819,12 +819,12 @@ Learn publishes AD CS and OpenSSL sample scripts for this step.[^gsai-tls-byoc] 
 *Related script.* The script reads the TLS inspection certificate configured in the tenant; the screen shows what a browser sees on an inspected site.
 
 ```powershell
-./Invoke-GsaCheck.ps1 -Area tls -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-tls -AsOf 2026-11-16T12:00:00Z
+./Invoke-GsaCheck.ps1 -Area tls -SettingsPath tests/fixtures/settings.lab.json -CollectionPath "$Run/pilot" -InputsPath tests/fixtures/pilot/inputs -OutputPath "$Run/check-tls" -AsOf 2026-11-16T12:00:00Z
 ```
 
-![What it prints, run on the kit's fixtures](../../project-plans/developer-workbooks/global-secure-access/captures/07-6.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCheck.ps1 -Area tls -SettingsPath tests/fixtures/settings.lab.jso… and what it printed"}
+![What it prints, run on the kit's fixtures](../../project-plans/developer-workbooks/global-secure-access/captures/07-8.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCheck.ps1 -Area tls -SettingsPath tests/fixtures/settings.lab.jso… and what it printed"}
 
-From Lab 1 of [Chapter 07 — Internet Access, QUIC and TLS Inspection](../../project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/07-6.txt)); the lab's earlier steps come first.
+From Lab 1 of [Chapter 07 — Internet Access, QUIC and TLS Inspection](../../project-plans/developer-workbooks/global-secure-access/07-internet-access-and-tls-inspection.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/07-8.txt)); the lab's earlier steps come first. `$Run` is the lab's dated run folder under `C:\FMWLabs\results`, which its first steps set, so each run keeps its own results and the kit's folder stays as you unzipped it.
 
 **Evidence this step supports:** NIST SP 800-53 Rev. 5 SC-8, SC-12, SC-17, SI-4; FedRAMP 20x KSIs KSI-SVC-SIN, KSI-SVC-ASM, KSI-CNA-MAT (step `TLS` in [requirements.json](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/global-secure-access/config/requirements.json)).
 

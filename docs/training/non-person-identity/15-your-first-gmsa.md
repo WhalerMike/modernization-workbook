@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Books 02, 13"
 series-order: 15
 review-status: approved
-reviewed-sha256: 04b5edc0d4f1a675e87bb04cddca97c667530437553f62ce8aa56f45013e077b
+reviewed-sha256: eaf6f2efaab1ad6b86819226125c9c2188ec3e874f6186fc9396ff0365009170
 last-reviewed: 2026-11-25
 ---
 # Module 15: Your first gMSA: set up the forest, then create a new gMSA {.unnumbered}

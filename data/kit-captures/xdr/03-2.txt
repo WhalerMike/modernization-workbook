@@ -1,18 +1,4 @@
-PS> ./Invoke-XdrPrevention.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/prevention -AsOf 2026-11-16T12:00:00Z
-DeviceName Ring    Check                          Expected  Actual
----------- ----    -----                          --------  ------
-WKS-R1-02  ring1   TamperProtection               True      False
-WKS-R2-01  ring2   NetworkProtection              2 (audit) 0 (off)
-SRV-FILE01 servers DatagramProcessing (file role) 0         1
-
-
-ActionType                             Events Devices
-----------                             ------ -------
-ExploitGuardNetworkProtectionAudited       12       4
-ExploitGuardNetworkProtectionBlocked        3       2
-ControlledFolderAccessViolationAudited      7       3
-ControlledFolderAccessViolationBlocked      1       1
-TamperingAttempt                            1       1
-
-Prevention: 11 device(s), 91 checks, 3 drift on 3 device(s); 3 with no state file. Last 7 days: 4 blocked, 19 audited, 1 tampering attempt(s).
-Written to out/prevention: device-checks.csv, drift.csv, events.csv, summary.json, raw/, manifest.json
+PS> $Run = "C:\FMWLabs\results\defender-xdr-03\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+PS> New-Item -ItemType Directory -Path $Run -Force | Out-Null
+PS> $Run
+C:/FMWLabs/results/defender-xdr-03/lab1/<run>

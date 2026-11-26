@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Books 02, 04"
 series-order: 8
 review-status: approved
-reviewed-sha256: 296121cad76341d709cc5e7fe8b5208727a20e1697fbc7b6d8430fd889f119ac
+reviewed-sha256: 458699449890bf1a06adc000b6761bab0ddb7b09506f015a467c69beff8bbc25
 last-reviewed: 2026-11-25
 ---
 # Module 8: Convert Kerberos accounts to gMSAs and dMSAs {.unnumbered}
@@ -225,7 +225,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
     Run by: 1 person, 4 pipeline
     Island list: 6 accounts, 4 ready for P4.6; hand-off ready: False
     Reconciliation (D11 KerberosIsland): 1 HandedOff, 4 OnIslandList, 1 Unreconciled
-    Plan SHA-256: ccd058b368e810f69d7fb728daedb76391dfdaf29bdb46979db9264f96aba00e
+    Plan SHA-256: 4021225078c239e5c842fc3f0563222cff13b2099a33ca088cdc026601b8268f
     ```
 
     `-MatrixRun` is Chapter 03's run, where the dispositions come from; `-ProgramDatesPath` is the one program-dates file, which the run refuses unless its SHA-256 is the one Chapter 03's run recorded. The plan's hash is the same on every run with these inputs. `Run by` counts the writes by who sends them.
@@ -354,7 +354,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
       Refused    pipeline CreateGmsa            msa-print01$    New-ADServiceAccount
       Sent       person   CompleteDmsaMigration svc-hrsync      Complete-ADServiceAccountMigration
       Refused    pipeline CreateGmsa            svc-intranet    New-ADServiceAccount
-    The plan's SHA-256 is ccd058b368e810f69d7fb728daedb76391dfdaf29bdb46979db9264f96aba00e, not the approved 0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.
+    The plan's SHA-256 is 4021225078c239e5c842fc3f0563222cff13b2099a33ca088cdc026601b8268f, not the approved 0000000000000000000000000000000000000000000000000000000000000000; refusing to run a plan nobody reviewed.
     ```
 
     Each run sends only its own writes and re-reads each one.
@@ -368,7 +368,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
     It prints a line for each test file, with the time it took, then this last line:
 
     ```text
-    Tests Passed: 555, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
+    Tests Passed: 564, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
     ```
 
 Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:

@@ -1,8 +1,15 @@
-PS> ./Invoke-GsaCheck.ps1 -Area traffic -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-traffic -AsOf 2026-11-16T12:00:00Z
-GSA-MS-01   Pass  Microsoft traffic profile: state: enabled
-GSA-MS-02   Pass  signaling: signalingStatus: enabled
-GSA-MS-03   Fail  sign-ins through the service: 2555 of 2800 sign-ins in 7 days (91.2%), target 95%
-GSA-MS-04   Pass  internet profile: enabled; approved decision: NET-GSA-03
-GSA-MS-04   Pass  private profile: enabled; approved decision: NET-GSA-02
-
-traffic: 5 checks (1 Fail, 4 Pass). Written to out/check-traffic: findings.json, findings.csv, manifest.json
+PS> Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
+PS> Get-GsaRequiredPermission -Area traffic | Format-Table -AutoSize | Out-String -Width 250
+Call                Method Permission                                                                                    Beta Verified
+----                ------ ----------                                                                                    ---- --------
+forwarding-profiles GET    NetworkAccess.Read.All                                                                        True     True
+ca-signaling        GET    NetworkAccess.Read.All                                                                        True     True
+law-query           QUERY  Read access to the workspace; Log Analytics Reader is the program's choice (design guidance) False     True
+PS> Get-GsaRequiredPermission -Writes | Format-Table
+Call          Method Permission                          Beta Verified
+----          ------ ----------                          ---- --------
+profile-state PATCH  NetworkAccess.ReadWrite.All         True     True
+signaling     PATCH  NetworkAccess.ReadWrite.All         True     True
+tagging       PATCH  NetworkAccess.ReadWrite.All         True     True
+ca-create     POST   Policy.ReadWrite.ConditionalAccess False     True
+ca-update     PATCH  Policy.ReadWrite.ConditionalAccess False     True

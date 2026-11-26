@@ -125,7 +125,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: run the ASR check mid-rollout",
       body: [
-        { terminal: "04-2", lines: "2-8,11-18,21-23,25", pt: 10.5 },
+        { terminal: "04-4", lines: "2-8,11-18,21-23,25", pt: 10.5 },
       ],
       sources: "Sources: examples/defender-xdr (fictional fixtures). Chapter 04, “Lab 1: fixtures, no tenant,” step 2.",
       say: `Lab 1, in the kit's folder. Step 1 lists the rules and which skip warn. Step 2 runs the check. Ring 0 is done. Ring 1 has twelve rules ready for block; the Office child-process rule is held, six of fourteen warn days. Ring 2 is ready to leave audit, except the same Office rule, with one audit hit nobody decided. The PSExec and WMI rule is a warning there, because Configuration Manager manages one device. Ring 3's plan puts the LSASS rule in warn, which it doesn't support: a plan error. And one server enforces none of the thirteen rules its plan puts in audit.`,
@@ -136,8 +136,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the held rule, and ring 1's next value",
       body: [
-        { terminal: "04-3", pt: 10.5 },
-        { cols: [[{ terminal: "04-4", pt: 10.5 }], [{ bullets: [
+        { terminal: "04-5", pt: 10.5 },
+        { cols: [[{ terminal: "04-6", pt: 10.5 }], [{ bullets: [
           "Two audit hits for the rule on ring 2: the line-of-business helper has per-rule exclusion EX-ASR-01; the macro runner has nothing",
           "Ring 1's next value: every rule at 1 (block), except the Office child-process rule still at 6 (warn)",
           "This is the string the change board pastes into the ring 1 policy",

@@ -12,7 +12,7 @@
   },
   "baseline": {
     "runId": "2026-10-29T0600Z-fixture",
-    "sha256": "604ee088ae43a964072671234833aeb71bccd082fa9ce4032a55d2fc4b146cc8"
+    "sha256": "861b7a6dd007bcf555a1797632f7b08aef56b5621c3224ddb72abbd06489f4fc"
   },
   "permissions": {
     "graphPermissions": [
@@ -32,17 +32,17 @@
     "inventory": {
       "folder": "inventory",
       "status": "OK",
-      "manifestSha256": "b3d7e09bc9f19748edf7325e2024da771756855d51b707352c8e370c4b2dd32d"
+      "manifestSha256": "8e4ff120467d4942adbf8c2a32bac9c61b88a264f93ad3f2b08e84291b34714a"
     },
     "ownership": {
       "folder": "ownership",
       "status": "OK",
-      "manifestSha256": "dd33b6abec3d252475424f6aa229cb719296d25a3f3dfd02993eaf03c8ed48c4"
+      "manifestSha256": "e69a9fb5bfeb7217fe466da499534a6a9d5ce21b6a6321a902e69c93438907df"
     },
     "drift": {
       "folder": "drift",
       "status": "OK",
-      "manifestSha256": "312d6ead8b9be3a87e170fd3f09bf2ddec12789b7de3984b3b214fcce9419d95"
+      "manifestSha256": "0f25f7c20600017d135b8ea43cc152b342b95286280543318d7033c0ba7454c1"
     }
   }
 }

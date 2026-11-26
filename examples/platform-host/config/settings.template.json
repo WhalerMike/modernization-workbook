@@ -1,0 +1,59 @@
+{
+  "_comment": "Copy to settings.production.json (or settings.test.json) and replace every example value with the host's own. Names follow Book 10, Appendix B and the managed service account standard (WD-159, WD-173): the Gitea service runs as the gMSA gmsa-fmpgitea. The certificate comes from the enterprise CA, so self-signed is refused, and Arc is required once M-007 is done.",
+  "environment": "production",
+  "host": {
+    "site": "FMPReverseProxy",
+    "hostName": "git.fmp.corp.contoso.com",
+    "service": "gitea",
+    "giteaExe": "D:\\Gitea\\gitea.exe",
+    "appIni": "D:\\Gitea\\custom\\conf\\app.ini",
+    "firewallGroup": "Platform host",
+    "backupPattern": "gitea-dump-*.zip"
+  },
+  "gitea": {
+    "baseUrl": "https://git.fmp.corp.contoso.com",
+    "tokenVariable": "PH_GITEA_TOKEN",
+    "skipCertificateCheck": false
+  },
+  "expected": {
+    "hostName": "git.fmp.corp.contoso.com",
+    "giteaHttpPort": 3000,
+    "giteaSshPort": 2222,
+    "allowPort80": false,
+    "forbiddenPorts": [22],
+    "minCertificateDays": 30,
+    "minKeySize": 4096,
+    "allowSelfSigned": false,
+    "maxAllowedContentLength": 524288000,
+    "logFields": ["Date", "Time", "ClientIP", "UserName", "ServerIP", "Method", "UriStem", "UriQuery", "HttpStatus", "Win32Status", "TimeTaken", "ServerPort", "UserAgent", "HttpSubStatus", "Host", "BytesSent", "BytesRecv"],
+    "appIni": [
+      { "section": "server", "key": "PROTOCOL", "value": "http" },
+      { "section": "server", "key": "HTTP_ADDR", "value": "127.0.0.1" },
+      { "section": "server", "key": "HTTP_PORT", "value": "3000" },
+      { "section": "server", "key": "ROOT_URL", "value": "https://git.fmp.corp.contoso.com/" },
+      { "section": "server", "key": "START_SSH_SERVER", "value": "true" },
+      { "section": "server", "key": "SSH_PORT", "value": "2222" },
+      { "section": "server", "key": "SSH_LISTEN_PORT", "value": "2222" },
+      { "section": "server", "key": "LFS_START_SERVER", "value": "true" },
+      { "section": "service", "key": "DISABLE_REGISTRATION", "value": "true" },
+      { "section": "service", "key": "REQUIRE_SIGNIN_VIEW", "value": "true" },
+      { "section": "security", "key": "INSTALL_LOCK", "value": "true" },
+      { "section": "security", "key": "DISABLE_GIT_HOOKS", "value": "true" },
+      { "section": "security", "key": "SECRET_KEY", "value": "<set>" },
+      { "section": "security", "key": "INTERNAL_TOKEN", "value": "<set>" },
+      { "section": "database", "key": "DB_TYPE", "value": "postgres" },
+      { "section": "mirror", "key": "MIN_INTERVAL", "value": "10m" }
+    ],
+    "serviceAccount": "CORP\\gmsa-fmpgitea$",
+    "runUser": "gmsa-fmpgitea$",
+    "serviceAccountAcl": "CORP\\gmsa-fmpgitea$",
+    "governedPaths": ["D:\\Gitea", "D:\\GitRepos", "E:\\Backups\\Staging"],
+    "broadPrincipals": ["Everyone", "BUILTIN\\Users", "NT AUTHORITY\\Authenticated Users"],
+    "webhookHosts": ["drift.fmp.corp.contoso.com", "docs-build.fmp.corp.contoso.com"],
+    "maxMirrorAgeHours": 24,
+    "maxLocalAdmins": 1,
+    "backupPath": "E:\\Backups\\Staging",
+    "recoveryPointHours": 24,
+    "requireArc": true
+  }
+}

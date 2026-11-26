@@ -6,8 +6,8 @@ doc-type: reference
 fmw-eyebrow: "Reference"
 date-modified: 2026-11-09
 review-status: approved
-reviewed-sha256: 245191d35a89e0ece3f4374dc0442d0184e68124bfec58891b99ce368a7745da
-last-reviewed: 2026-11-25
+reviewed-sha256: c742202a187095a51fdda57296bc475d8a8415c88716cbb5b4b8e8b0e6a7e2c9
+last-reviewed: 2026-11-26
 ---
 # Learn Coverage Map {.unnumbered}
 
@@ -56,11 +56,11 @@ The data lives in [`data/learn-coverage/`](https://github.com/WhalerMike/moderni
 | Side | Pages | Cited | Covered, not cited | Not covered | Out of scope | Not reviewed yet |
 |---|---:|---:|---:|---:|---:|---:|
 | Windows Server identity | 561 | 167 | 22 | 12 | 360 | 0 |
-| Microsoft Entra | 2,511 | 1,029 | 443 | 366 | 671 | 2 |
-| Windows Server releases | 45 | 5 | 4 | 7 | 29 | 0 |
-| Windows Server security | 47 | 7 | 16 | 10 | 14 | 0 |
+| Microsoft Entra | 2,511 | 1,030 | 442 | 366 | 671 | 2 |
+| Windows Server releases | 45 | 6 | 4 | 6 | 29 | 0 |
+| Windows Server security | 47 | 8 | 15 | 10 | 14 | 0 |
 | Windows Server file server and SMB | 26 | 3 | 1 | 11 | 11 | 0 |
-| **All sides** | 3,190 | 1,211 | 486 | 406 | 1,085 | 2 |
+| **All sides** | 3,190 | 1,214 | 484 | 405 | 1,085 | 2 |
 
 ## Windows Server identity {#windows-server-identity}
 
@@ -228,7 +228,7 @@ From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowss
 | [Configuring Kerberos Delegation for Group Managed Service Accounts](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/configure-kerberos-delegation-group-managed-service-accounts) | [Chapter 06 — gMSAs, dMSAs and the Kerberos Island](../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md); [Module 8: Convert Kerberos accounts to gMSAs and dMSAs](../training/non-person-identity/08-gmsa-dmsa-and-the-kerberos-island.md); and 1 more | Cited |
 | [Create a Key Distribution Service (KDS) Root Key](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/create-the-key-distribution-services-kds-root-key) | [Book 02, Chapter 08 — Assessing the Forest](../books/b02-identity/08-assessing-the-forest.md); [Book 14, Appendix H — Recovering Active Directory During the Hybrid Period](../books/b14-compliance/appendix-h-ad-forest-recovery.md); and 8 more | Cited |
 | [Group Managed Service Accounts overview](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/group-managed-service-accounts-overview) | [Book 01, Chapter 08 — The Access Plane](../books/b01-transformation-arc/08-access-plane.md); [Book 02, Chapter 08 — Assessing the Forest](../books/b02-identity/08-assessing-the-forest.md); and 5 more | Cited |
-| [Manage Group Managed Service Accounts](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts) | [Book 01, Chapter 08 — The Access Plane](../books/b01-transformation-arc/08-access-plane.md); [Book 02, Chapter 08 — Assessing the Forest](../books/b02-identity/08-assessing-the-forest.md); and 17 more | Cited |
+| [Manage Group Managed Service Accounts](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts) | [Book 01, Chapter 08 — The Access Plane](../books/b01-transformation-arc/08-access-plane.md); [Book 02, Chapter 08 — Assessing the Forest](../books/b02-identity/08-assessing-the-forest.md); and 19 more | Cited |
 | [Back Up and Restore Group Policy in Windows](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-policy/group-policy-backup-restore) | [Book 05, Chapter 08 — GPO to Intune Policy Migration](../books/b05-devices/08-gpo-to-intune-policy-migration.md) | Cited |
 | [Group Policy Management Console in Windows](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-policy/group-policy-management-console) | [Book 05, Chapter 01 — Why Group Policy Can't Come to the Cloud](../books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.md) | Cited |
 | [Group Policy Modeling and Results in Windows](https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-policy/group-policy-modeling-results) | [Book 05, Chapter 01 — Why Group Policy Can't Come to the Cloud](../books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.md) | Cited |
@@ -708,7 +708,7 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [id-governance](#entra-id-governance) | 236 | 165 | 38 | 25 | 8 | 0 |
 | [id-protection](#entra-id-protection) | 28 | 8 | 16 | 0 | 4 | 0 |
 | [identity](#entra-identity) | 1 | 0 | 0 | 0 | 1 | 0 |
-| [identity-platform](#entra-identity-platform) | 363 | 39 | 31 | 29 | 264 | 0 |
+| [identity-platform](#entra-identity-platform) | 363 | 40 | 30 | 29 | 264 | 0 |
 | [managed-identities-azure-resources](#entra-managed-identities-azure-resources) | 40 | 12 | 15 | 1 | 12 | 0 |
 | [monitoring-health](#entra-monitoring-health) | 81 | 40 | 29 | 7 | 5 | 0 |
 | [multi-tenant-organizations](#entra-multi-tenant-organizations) | 16 | 9 | 2 | 2 | 3 | 0 |
@@ -1336,7 +1336,7 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [How to Require Device Compliance with Conditional Access](https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-device-compliance) | [Book 01, Chapter 05 — Policy Transformation](../books/b01-transformation-arc/05-policy-transformation.md) | Cited |
 | [Require MFA for device registration](https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-device-registration) | — | Not covered |
 | [Block unsupported platforms with Conditional Access](https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-device-unknown-unsupported) | — | Not covered |
-| [Require MFA for all users with Conditional Access](https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-mfa-strength) | [Book 04, Appendix A — Conditional Access Policy Templates](../books/b04-access/appendix-a-conditional-access-templates.md); [Book 04, Chapter 07 — The Conditional Access Policy Library](../books/b04-access/07-the-conditional-access-policy-library.md); and 2 more | Cited |
+| [Require MFA for all users with Conditional Access](https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-mfa-strength) | [Book 04, Appendix A — Conditional Access Policy Templates](../books/b04-access/appendix-a-conditional-access-templates.md); [Book 04, Chapter 07 — The Conditional Access Policy Library](../books/b04-access/07-the-conditional-access-policy-library.md); and 3 more | Cited |
 | [Require reauthentication with Conditional Access](https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-persistent-browser) | [Book 04, Appendix A — Conditional Access Policy Templates](../books/b04-access/appendix-a-conditional-access-templates.md); [Book 04, Chapter 07 — The Conditional Access Policy Library](../books/b04-access/07-the-conditional-access-policy-library.md); and 2 more | Cited |
 | [Require Terms of Use at sign-in to Microsoft Admin Portals](https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-require-terms-of-use) | — | Not covered |
 | [Control security information registration with Conditional Access](https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-security-info-registration) | [Book 04, Appendix A — Conditional Access Policy Templates](../books/b04-access/appendix-a-conditional-access-templates.md); [Book 04, Chapter 07 — The Conditional Access Policy Library](../books/b04-access/07-the-conditional-access-policy-library.md); and 2 more | Cited |
@@ -2794,7 +2794,7 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [Microsoft Entra External ID credential management API reference](https://learn.microsoft.com/entra/identity-platform/reference-credential-management-api) | — | Out of scope |
 | [Microsoft Entra ID Windows Account Manager API reference](https://learn.microsoft.com/entra/identity-platform/reference-entra-id-wam-api) | [Intune Track Implementation: Attribute-Driven Management of End-User Devices](../books/guides/intune-track-implementation.md) | Cited |
 | [Microsoft Entra authentication & authorization error codes](https://learn.microsoft.com/entra/identity-platform/reference-error-codes) | [Chapter 08 — Conditional Access for Workload Identities](../project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md) | Cited |
-| [Understand the app manifest (Microsoft Graph format)](https://learn.microsoft.com/entra/identity-platform/reference-microsoft-graph-app-manifest) | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md) | Covered, not cited |
+| [Understand the app manifest (Microsoft Graph format)](https://learn.microsoft.com/entra/identity-platform/reference-microsoft-graph-app-manifest) | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md); [The Platform Host: An Implementation Guide](../books/guides/platform-host-implementation.md) | Cited |
 | [Microsoft account (MSA) Server Side API Reference](https://learn.microsoft.com/entra/identity-platform/reference-msa-server-side-api) | — | Out of scope |
 | [Native authentication API reference documentation](https://learn.microsoft.com/entra/identity-platform/reference-native-authentication-api) | — | Out of scope |
 | [Microsoft identity platform OIDC extensibility reference](https://learn.microsoft.com/entra/identity-platform/reference-oidc-extensibility) | — | Out of scope |
@@ -3376,7 +3376,7 @@ From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowss
 
 | Area | Pages | Cited | Covered, not cited | Not covered | Out of scope | Not reviewed yet |
 |---|---:|---:|---:|---:|---:|---:|
-| [general](#windows-server-get-started-general) | 45 | 5 | 4 | 7 | 29 | 0 |
+| [general](#windows-server-get-started-general) | 45 | 6 | 4 | 6 | 29 | 0 |
 
 ### general {#windows-server-get-started-general}
 
@@ -3401,7 +3401,7 @@ From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowss
 | [How to get Extended Security Updates (ESU) for Windows Server 2012, and 2012 R2](https://learn.microsoft.com/windows-server/get-started/extended-security-updates-deploy) | [Book 05, Chapter 09 — Servers Under Azure Arc](../books/b05-devices/09-servers-under-azure-arc.md); [Microsoft Automation, Module 4: Azure Arc through Azure Resource Manager and Resource Graph](../training/ms-automation-arc.md) | Covered, not cited |
 | [Overview of Extended Security Updates for Windows Server 2012, and 2012 R2](https://learn.microsoft.com/windows-server/get-started/extended-security-updates-overview) | [Microsoft Automation, Module 4: Azure Arc through Azure Resource Manager and Resource Graph](../training/ms-automation-arc.md); [`examples/ms-automation/arc-lifecycle.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/ms-automation/arc-lifecycle.json) | Cited |
 | [Get started with Windows Server Insiders Preview](https://learn.microsoft.com/windows-server/get-started/get-started-with-windows-server-insiders-preview) | — | Out of scope |
-| [Hardware Requirements for Windows Server](https://learn.microsoft.com/windows-server/get-started/hardware-requirements) | — | Not covered |
+| [Hardware Requirements for Windows Server](https://learn.microsoft.com/windows-server/get-started/hardware-requirements) | [The Platform Host: An Implementation Guide](../books/guides/platform-host-implementation.md) | Cited |
 | [Hotpatch for Windows Server](https://learn.microsoft.com/windows-server/get-started/hotpatch) | [Book 12, Chapter 07 — Patch, Configuration and Hardening Baselines](../books/b12-security-operations/07-patch-configuration-and-baselines.md); [Book 05, Chapter 09 — Servers Under Azure Arc](../books/b05-devices/09-servers-under-azure-arc.md) | Covered, not cited |
 | [Windows Server get started documentation](https://learn.microsoft.com/windows-server/get-started) | — | Out of scope |
 | [Server Core vs Server with Desktop Experience install options](https://learn.microsoft.com/windows-server/get-started/install-options-server-core-desktop-experience) | — | Out of scope |
@@ -3438,7 +3438,7 @@ From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowss
 | [general](#windows-server-security-general) | 7 | 0 | 1 | 1 | 5 | 0 |
 | [kerberos](#windows-server-security-kerberos) | 10 | 5 | 1 | 3 | 1 | 0 |
 | [osconfig](#windows-server-security-osconfig) | 3 | 0 | 0 | 3 | 0 | 0 |
-| [tls](#windows-server-security-tls) | 8 | 0 | 5 | 0 | 3 | 0 |
+| [tls](#windows-server-security-tls) | 8 | 1 | 4 | 0 | 3 | 0 |
 | [token-binding](#windows-server-security-token-binding) | 1 | 0 | 0 | 0 | 1 | 0 |
 | [user-account-control](#windows-server-security-user-account-control) | 2 | 0 | 0 | 0 | 2 | 0 |
 | [windows-authentication](#windows-server-security-windows-authentication) | 10 | 1 | 8 | 0 | 1 | 0 |
@@ -3496,7 +3496,7 @@ From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowss
 | [Datagram Transport Layer Security protocol](https://learn.microsoft.com/windows-server/security/tls/datagram-transport-layer-security-protocol) | — | Out of scope |
 | [Manage Transport Layer Security (TLS) in Windows Server](https://learn.microsoft.com/windows-server/security/tls/manage-tls) | [Book 19, Chapter 07 — Machine Configuration Packages](../books/b19-developer-workbook/07-machine-configuration-packages.md) | Covered, not cited |
 | [Schannel Security Support Provider Technical Reference](https://learn.microsoft.com/windows-server/security/tls/schannel-security-support-provider-technical-reference) | [Book 19, Chapter 07 — Machine Configuration Packages](../books/b19-developer-workbook/07-machine-configuration-packages.md) | Covered, not cited |
-| [Transport Layer Security (TLS) registry settings](https://learn.microsoft.com/windows-server/security/tls/tls-registry-settings) | [Book 19, Chapter 07 — Machine Configuration Packages](../books/b19-developer-workbook/07-machine-configuration-packages.md) | Covered, not cited |
+| [Transport Layer Security (TLS) registry settings](https://learn.microsoft.com/windows-server/security/tls/tls-registry-settings) | [Book 19, Chapter 07 — Machine Configuration Packages](../books/b19-developer-workbook/07-machine-configuration-packages.md); [The Platform Host: An Implementation Guide](../books/guides/platform-host-implementation.md) | Cited |
 | [TLS (Schannel SSP)](https://learn.microsoft.com/windows-server/security/tls/tls-schannel-ssp-changes-in-windows-10-and-windows-server) | — | Out of scope |
 | [TLS/SSL overview (Schannel SSP)](https://learn.microsoft.com/windows-server/security/tls/tls-ssl-schannel-ssp-overview) | [Book 19, Chapter 07 — Machine Configuration Packages](../books/b19-developer-workbook/07-machine-configuration-packages.md) | Covered, not cited |
 | [Transport Layer Security protocol](https://learn.microsoft.com/windows-server/security/tls/transport-layer-security-protocol) | [Book 19, Chapter 07 — Machine Configuration Packages](../books/b19-developer-workbook/07-machine-configuration-packages.md) | Covered, not cited |
@@ -3980,7 +3980,6 @@ Pages a reviewer marked **not covered** (the workbook should cover the topic and
 | [Frequently asked questions - Microsoft Entra Verified ID](https://learn.microsoft.com/entra/verified-id/verifiable-credentials-faq) | Microsoft Entra, verified-id | — | Verified ID for identity proofing and remote onboarding; workbook cites only the verified help desk pattern (Book 15 Ch03); check government-cloud availability |
 | [Microsoft Entra Verified ID-supported standards](https://learn.microsoft.com/entra/verified-id/verifiable-credentials-standards) | Microsoft Entra, verified-id | — | Verified ID for identity proofing and remote onboarding; workbook cites only the verified help desk pattern (Book 15 Ch03); check government-cloud availability |
 | [Microsoft server applications compatibility for Windows Server](https://learn.microsoft.com/windows-server/get-started/application-compatibility) | Windows Server releases, general | — | The 2016 retirement (January 12, 2027) needs an upgrade-or-replace path; the workbook states the 2019 minimum but has no upgrade steps |
-| [Hardware Requirements for Windows Server](https://learn.microsoft.com/windows-server/get-started/hardware-requirements) | Windows Server releases, general | — | The 2016 retirement (January 12, 2027) needs an upgrade-or-replace path; the workbook states the 2019 minimum but has no upgrade steps |
 | [Plan Your Windows Server Upgrade Path](https://learn.microsoft.com/windows-server/get-started/install-upgrade-migrate) | Windows Server releases, general | — | The 2016 retirement (January 12, 2027) needs an upgrade-or-replace path; the workbook states the 2019 minimum but has no upgrade steps |
 | [Upgrade Windows Server in Place](https://learn.microsoft.com/windows-server/get-started/upgrade-in-place) | Windows Server releases, general | — | The 2016 retirement (January 12, 2027) needs an upgrade-or-replace path; the workbook states the 2019 minimum but has no upgrade steps |
 | [Upgrade and migrate roles and features in Windows Server](https://learn.microsoft.com/windows-server/get-started/upgrade-migrate-roles-features) | Windows Server releases, general | — | The 2016 retirement (January 12, 2027) needs an upgrade-or-replace path; the workbook states the 2019 minimum but has no upgrade steps |
@@ -4183,7 +4182,6 @@ Pages a reviewer marked **not covered** (the workbook should cover the topic and
 | [Quickstart - Call a web API in a sample daemon app](https://learn.microsoft.com/entra/identity-platform/quickstart-daemon-app-call-api) | Microsoft Entra, identity-platform | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md#credentials); [Module 4: Set the credential rules](../training/non-person-identity/04-credential-rules.md); and 1 more | Application credentials and app-only access: Book 04 Ch05, Non-Person Identity Ch04 |
 | [How to Register an App in Microsoft Entra ID"](https://learn.microsoft.com/entra/identity-platform/quickstart-register-app) | Microsoft Entra, identity-platform | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md) | App registration vs service principal, tenancy and inventory: Book 04 Ch05 |
 | [Understanding the app manifest (Azure AD Graph format)](https://learn.microsoft.com/entra/identity-platform/reference-app-manifest) | Microsoft Entra, identity-platform | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md) | App registration vs service principal, tenancy and inventory: Book 04 Ch05 |
-| [Understand the app manifest (Microsoft Graph format)](https://learn.microsoft.com/entra/identity-platform/reference-microsoft-graph-app-manifest) | Microsoft Entra, identity-platform | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md) | App registration vs service principal, tenancy and inventory: Book 04 Ch05 |
 | [Secure access control using groups in Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/secure-group-access-control) | Microsoft Entra, identity-platform | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md); [Book 04, Chapter 06 — Who Decides Access](../books/b04-access/06-who-decides-access.md) | App roles and authorization model: Book 04 Ch05-06 |
 | [Single and multitenant apps in Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/single-and-multi-tenant-apps) | Microsoft Entra, identity-platform | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md) | App registration vs service principal, tenancy and inventory: Book 04 Ch05 |
 | [Validation differences by supported account types](https://learn.microsoft.com/entra/identity-platform/supported-accounts-validation) | Microsoft Entra, identity-platform | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md) | App registration vs service principal, tenancy and inventory: Book 04 Ch05 |
@@ -4485,7 +4483,6 @@ Pages a reviewer marked **not covered** (the workbook should cover the topic and
 | [Passwords Overview](https://learn.microsoft.com/windows-server/security/kerberos/passwords-overview) | Windows Server security, kerberos | [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md) | Windows password storage and use, as background for the NTLM work (the technical overview is cited) |
 | [Manage Transport Layer Security (TLS) in Windows Server](https://learn.microsoft.com/windows-server/security/tls/manage-tls) | Windows Server security, tls | [Book 19, Chapter 07 — Machine Configuration Packages](../books/b19-developer-workbook/07-machine-configuration-packages.md) | TLS 1.0 and 1.1 are audited off through Schannel registry settings in the machine configuration packages |
 | [Schannel Security Support Provider Technical Reference](https://learn.microsoft.com/windows-server/security/tls/schannel-security-support-provider-technical-reference) | Windows Server security, tls | [Book 19, Chapter 07 — Machine Configuration Packages](../books/b19-developer-workbook/07-machine-configuration-packages.md) | TLS 1.0 and 1.1 are audited off through Schannel registry settings in the machine configuration packages |
-| [Transport Layer Security (TLS) registry settings](https://learn.microsoft.com/windows-server/security/tls/tls-registry-settings) | Windows Server security, tls | [Book 19, Chapter 07 — Machine Configuration Packages](../books/b19-developer-workbook/07-machine-configuration-packages.md) | TLS 1.0 and 1.1 are audited off through Schannel registry settings in the machine configuration packages |
 | [TLS/SSL overview (Schannel SSP)](https://learn.microsoft.com/windows-server/security/tls/tls-ssl-schannel-ssp-overview) | Windows Server security, tls | [Book 19, Chapter 07 — Machine Configuration Packages](../books/b19-developer-workbook/07-machine-configuration-packages.md) | TLS 1.0 and 1.1 are audited off through Schannel registry settings in the machine configuration packages |
 | [Transport Layer Security protocol](https://learn.microsoft.com/windows-server/security/tls/transport-layer-security-protocol) | Windows Server security, tls | [Book 19, Chapter 07 — Machine Configuration Packages](../books/b19-developer-workbook/07-machine-configuration-packages.md) | TLS 1.0 and 1.1 are audited off through Schannel registry settings in the machine configuration packages |
 | [Credentials Processes in Windows Authentication](https://learn.microsoft.com/windows-server/security/windows-authentication/credentials-processes-in-windows-authentication) | Windows Server security, windows-authentication | [Book 06, Chapter 01 — What Windows Authentication Actually Is](../books/b06-data-platform/01-what-windows-authentication-actually-is.md) | Windows authentication: SSPI, Kerberos, NTLM and logon processes, as background for the NTLM work |

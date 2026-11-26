@@ -1,5 +1,20 @@
-PS> ./Invoke-AzsCheck.ps1 -Area exposure -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week2 -AsOf 2026-11-16T12:00:00Z -OutputPath out/week2/exposure -PreviousRegisterPath out/week1/exposure/register.json -DefenderExposurePath tests/fixtures/defender-exposure.csv
-Register: 19 exposures (8 public IPs, 3 Front Door, 2 application gateways, 6 PaaS); 16 with an owner
-Findings: 3 Finding, 2 Warn, 1 Info
-The register is a map of the attack surface: keep it inside the boundary, never in a public repository.
-Written to out/week2/exposure (9 calls, every one a read; manifest.json lists each file's SHA-256)
+PS> Import-Csv "$Run/week1/exposure/register.csv" | ForEach-Object { "{0,-38} {1,-20} {2,-13} {3}" -f $_.type, $_.name, $(if ($_.owner) { $_.owner } else { '(none)' }), $_.waf }
+PublicIP                               pip-afw-hub          platform-team n/a
+PublicIP                               pip-appgw-portal     portal-team   wafp-portal
+PublicIP                               pip-nat-egress       platform-team n/a
+PublicIP                               pip-vpngw            platform-team n/a
+PublicIP                               pip-jump             (none)        n/a
+PublicIP                               pip-lb-portal        portal-team   n/a
+PublicIP                               pip-orphan           (none)        n/a
+PublicIP                               pip-test-app         portal-team   n/a
+FrontDoor Premium                      afd-portal           portal-team   afdwafportal
+FrontDoor Standard                     afd-careers          hr-web-team   none
+FrontDoor classic                      fd-legacy-intranet   payroll-team  unknown (classic)
+ApplicationGateway WAF_v2              appgw-portal         portal-team   wafp-portal
+ApplicationGateway Standard_v2         appgw-intranet       payroll-team  none
+PaaS microsoft.keyvault/vaults         kv-hub-certs         platform-team n/a
+PaaS microsoft.storage/storageaccounts stpayrolldata        (none)        n/a
+PaaS microsoft.storage/storageaccounts stcareersweb         hr-web-team   n/a
+PaaS microsoft.keyvault/vaults         kv-portal            portal-team   n/a
+PaaS microsoft.web/sites               app-portal-east      portal-team   n/a
+PaaS microsoft.web/sites               app-portal-west      portal-team   n/a

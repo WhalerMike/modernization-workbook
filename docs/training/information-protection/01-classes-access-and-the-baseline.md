@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Book 20"
 series-order: 1
 review-status: approved
-reviewed-sha256: 37a6df98e9d48a088ab9523761b192035479182dd9492fb27f1d86a4393e6e31
+reviewed-sha256: 7eb6ab41d77ad18a63bac42f59422e0c2744f7847dc5b06f6121068552570533
 last-reviewed: 2026-11-25
 ---
 # Module 1: Classes, access and the baseline {.unnumbered}
@@ -49,7 +49,7 @@ Run the developer workbook's [Chapter 01 Lab 1](../../project-plans/developer-wo
 
 - **What you'll see:** a person holding an investigator role the register doesn't name; an export of a fictional tenant, one shell at a time; a class naming a sensitive information type the tenant doesn't have, and one with no owner.
 - **What to look for:** the manifest of the export, which lists each read and its count, and where most of the content sits.
-- **Back-out:** each lab ends by deleting `out`.
+- **Back-out:** nothing to delete. Each lab leaves the kit's folder as you unzipped it and keeps its results in a dated run folder under `C:\FMWLabs\results`, so you can run it again and compare.
 
 ## Exercise: Lab 2, a test tenant {#ip-m1-lab-2}
 *Not timed. Not run by the authors. Never production.*

@@ -17,7 +17,7 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: 3887c756d7479582410d416adfd8d51779c6c996895e80215e792ce1c4770dc1
+reviewed-sha256: 31d0d00857071216c09fae93b1e01e1818cff5272705cfed30736c3c02def4c1
 last-reviewed: 2026-11-25
 ---
 # Learning path: Information Protection with Microsoft Purview {.unnumbered}
@@ -77,10 +77,11 @@ cd ~/FMWLabs/information-protection-code/information-protection
 Check it works, in PowerShell 7.1 or later, with Step 1 of [Chapter 01's Lab 1](../../project-plans/developer-workbooks/information-protection/01-access-and-the-read-path.md#lab-1-fixtures-no-tenant):
 
 ```powershell
-./Invoke-IpAccess.ps1 -SettingsPath tests/fixtures/settings.lab.json -SnapshotPath tests/fixtures/snapshots/2026-11-24 -OutputPath out/access -AsOf 2026-11-24T12:00:00Z
+$Run = "C:\FMWLabs\results\information-protection-check\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+./Invoke-IpAccess.ps1 -SettingsPath tests/fixtures/settings.lab.json -SnapshotPath tests/fixtures/snapshots/2026-11-24 -OutputPath "$Run/access" -AsOf 2026-11-24T12:00:00Z
 ```
 
-It prints four rows and ends with `access: Fail (2 pass, 1 fail, 1 other). Written to ./out/access`. The failure and the warning are in the fixtures on purpose; the chapter's lab explains each.
+It prints four rows and ends with `access: Fail (2 pass, 1 fail, 1 other). Written to ../../results/information-protection-check/<run>/access`, where `<run>` is the date and time you ran it. The kit's folder stays as you unzipped it. The failure and the warning are in the fixtures on purpose; the chapter's lab explains each.
 
 ## What you'll be able to do {#ip-outcomes}
 

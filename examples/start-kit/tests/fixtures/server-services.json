@@ -1,0 +1,15 @@
+{
+  "_comment": "Fictional Win32_Service reads for the server-service inventory tests. app01 answers over WS-Management, sql01 only over DCOM, old01 over neither.",
+  "app01.contoso.example": [
+    { "Name": "W3SVC", "DisplayName": "World Wide Web Publishing Service", "StartName": "LocalSystem", "StartMode": "Auto", "State": "Running", "PathName": "C:\\Windows\\system32\\svchost.exe -k iissvcs" },
+    { "Name": "PayrollSync", "DisplayName": "Payroll Sync", "StartName": "CONTOSO\\svc-payroll", "StartMode": "Auto", "State": "Running", "PathName": "\"D:\\Apps\\Payroll\\sync.exe\"" },
+    { "Name": "ReportAgent", "DisplayName": "Report Agent", "StartName": "svc-reports@contoso.example", "StartMode": "Manual", "State": "Stopped", "PathName": "D:\\Apps\\Reports\\agent.exe" },
+    { "Name": "LocalTool", "DisplayName": "Local Tool", "StartName": ".\\tooluser", "StartMode": "Disabled", "State": "Stopped", "PathName": "C:\\Tools\\tool.exe" }
+  ],
+  "sql01.contoso.example": [
+    { "Name": "MSSQLSERVER", "DisplayName": "SQL Server (MSSQLSERVER)", "StartName": "CONTOSO\\svc-sql", "StartMode": "Auto", "State": "Running", "PathName": "\"C:\\Program Files\\Microsoft SQL Server\\MSSQL16.MSSQLSERVER\\MSSQL\\Binn\\sqlservr.exe\" -sMSSQLSERVER" },
+    { "Name": "SQLSERVERAGENT", "DisplayName": "SQL Server Agent (MSSQLSERVER)", "StartName": "CONTOSO\\gmsa-sqlagent$", "StartMode": "Auto", "State": "Running", "PathName": "\"C:\\Program Files\\Microsoft SQL Server\\MSSQL16.MSSQLSERVER\\MSSQL\\Binn\\SQLAGENT.EXE\" -i MSSQLSERVER" },
+    { "Name": "PayrollSync", "DisplayName": "Payroll Sync", "StartName": "CONTOSO\\svc-payroll", "StartMode": "Auto", "State": "Running", "PathName": "D:\\Apps\\Payroll\\sync.exe" },
+    { "Name": "MSSQLLaunchpad", "DisplayName": "SQL Server Launchpad", "StartName": "NT Service\\MSSQLLaunchpad", "StartMode": "Manual", "State": "Stopped", "PathName": "launchpad.exe" }
+  ]
+}

@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 12"
 series-order: 5
 review-status: approved
-reviewed-sha256: 6d021d67abc4d39ee23e64ff957543cc2506f780422e76855a98f637c85e587b
-last-reviewed: 2026-11-22
+reviewed-sha256: c412b3d7103ea89f08f31d232812f989b37a48b96ebc0adf11536fdf7a03fbe9
+last-reviewed: 2026-11-25
 ---
 # Module 5: Automation, operations and evidence {.unnumbered}
 
@@ -63,7 +63,7 @@ Run the developer workbook's [Chapter 07, Identity Signals and Automation Bounda
 
 - **What you'll see:** the automation check finds a workstation group off the ladder and an emergency access account not excluded; the monthly run records ten run folders, computes the guide's metrics, and its go/no-go fails until the findings are closed.
 - **What to look for:** each finding names the device, rule, incident or group, and the run folder's manifest records the call and its permission. Compare what you see with this module's units.
-- **Back-out:** each lab ends by deleting `out`.
+- **Back-out:** nothing to delete. Each lab leaves the kit's folder as you unzipped it and keeps its results in a dated run folder under `C:\FMWLabs\results`, so you can run it again and compare.
 
 ## Exercise: Lab 2, a test tenant {#xdr-m5-lab-2}
 *Not timed. Not run by the authors. Never production.*

@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 12"
 series-order: 3
 review-status: approved
-reviewed-sha256: 411a385ef30fd65c7aebf13525ec2261bb3507432e47318529f6b600771c18c4
-last-reviewed: 2026-11-22
+reviewed-sha256: 61c92757346847296ea6e902bfcd1c64d0f1c502970db7f2f34199d030041f7c
+last-reviewed: 2026-11-25
 ---
 # Module 3: Exposure and incidents {.unnumbered}
 
@@ -69,7 +69,7 @@ Run the developer workbook's [Chapter 05, Exposure and Incidents](../../project-
 
 - **What you'll see:** the exposure check finds an exposed device with no owner and records Security Exposure Management as not applicable in GCC; the incident check finds a high-severity incident past its one-hour window and one closed without a classification.
 - **What to look for:** each finding names the device, rule, incident or group, and the run folder's manifest records the call and its permission. Compare what you see with this module's units.
-- **Back-out:** each lab ends by deleting `out`.
+- **Back-out:** nothing to delete. Each lab leaves the kit's folder as you unzipped it and keeps its results in a dated run folder under `C:\FMWLabs\results`, so you can run it again and compare.
 
 ## Exercise: Lab 2, a test tenant {#xdr-m3-lab-2}
 *Not timed. Not run by the authors. Never production.*

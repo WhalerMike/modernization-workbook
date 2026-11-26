@@ -1,39 +1,5 @@
-PS> ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab-ring1.json -FixturePath tests/fixtures/ring1 -OutputPath out/ring1 -AsOf 2026-11-30T12:00:00Z
-Collected as of 2026-11-30T12:00:00Z (Fixture mode, environment lab, cloud gcc, ring ring1)
-
-Call                     Method  Beta  Verified  Least-privileged permission
-ca-policies              GET     False True      Policy.Read.All
-ca-signaling             GET     True  True      NetworkAccess.Read.All
-connector-group-members  GET     True  True      Directory.ReadWrite.All
-connector-groups         GET     True  True      Directory.ReadWrite.All
-device-usage             GET     True  True      NetworkAccessPolicy.Read.All
-diagnostic-settings      GET     False True      Security Administrator (Microsoft Entra role), as the guide's Step 12.1 uses
-filtering-policies       GET     True  True      NetworkAccess.Read.All
-filtering-profiles       GET     True  True      NetworkAccess.Read.All
-forwarding-profiles      GET     True  True      NetworkAccess.Read.All
-law-query                QUERY   False True      Read access to the workspace; Log Analytics Reader is the program's choice (design guidance)
-licenses                 GET     False True      LicenseAssignment.Read.All
-named-locations          GET     True  True      Policy.Read.All
-private-apps             GET     True  False     Application.Read.All
-tenant-status            GET     True  True      NetworkAccessPolicy.Read.All
-tenant-tagging           GET     True  True      NetworkAccess.Read.All
-trv2-default             GET     True  True      Policy.Read.All
-trv2-partners            GET     True  False     Policy.Read.All
-
-17 calls sent (24 reads in all). Written to out/ring1: collection.json, raw/, manifest.json (18 files hashed)
-PS> ./Invoke-GsaCheck.ps1 -Area internet-access, tls -SettingsPath tests/fixtures/settings.lab-ring1.json -CollectionPath out/ring1 -InputsPath tests/fixtures/ring1/inputs -OutputPath out/check-ring1 -AsOf 2026-11-30T12:00:00Z
-GSA-IA-01   Pass  NET-IA-SecurityProfile-Pilot: security profile: SP-Pilot; emergency group excluded: True
-GSA-IA-02   Pass  web content filtering: blocked: ArtificialIntelligence, Gambling
-GSA-IA-03   Pass  threat intelligence: policy NET-TI-Block-Malicious
-GSA-IA-04   Pass  bypass EX-03 *.payroll-partner.example: owner Platform owner, approver Policy owner, expires 2027-02-01
-GSA-IA-04   Pass  bypass EX-04 updates.vendor.example: owner Platform owner, approver Policy owner, expires 2027-03-01
-GSA-IA-05   Pass  QUIC: cloud firewall for clients: GCC not yet specified (preview); interim block: Intune firewall rule NET-QUIC-Block-UDP443, assigned to pilot
-GSA-IA-06   Pass  limits: 2 security profiles (limit 256), 2 filtering policies (limit 1,000)
-GSA-TLS-01  Pass  certificate contosotls1: 180 days left (renew 90 days ahead); valid for 210 days in all (Learn: at least six months)
-GSA-TLS-02  Pass  certificate contosotls1: issuer: Contoso TLS Inspection CA
-GSA-TLS-03  Pass  policy TLS-Pilot: linked to: SP-Pilot
-GSA-TLS-05  Pass  policy TLS-Pilot: custom bypass *.payroll-partner.example is EX-03, expires 2027-02-01
-GSA-TLS-04  Pass  privacy: approved 2026-11-05 by Privacy officer; user notice 2026-11-06
-GSA-TLS-06  Pass  TLS outcomes: failure share 0.5% of 10000 inspected or bypassed sessions (threshold 1%)
-
-internet-access, tls: 13 checks (13 Pass). Written to out/check-ring1: findings.json, findings.csv, manifest.json
+PS> Import-Csv tests/fixtures/pilot/inputs/exceptions.csv | Where-Object kind -EQ 'custom-bypass' | Format-Table id, target, reason, owner, approver, expires
+id    target                    reason              owner          approver     expires
+--    ------                    ------              -----          --------     -------
+EX-03 *.payroll-partner.example Certificate pinning Platform owner Policy owner 2026-11-01
+EX-04 updates.vendor.example    Large downloads     Platform owner              2027-03-01

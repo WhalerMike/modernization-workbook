@@ -1,18 +1,28 @@
-PS> ./Invoke-AzsEvidence.ps1 -EvidencePath out/evidence -RunPath out/week2 -AsOf 2026-11-16T12:00:00Z
-Record 1: Pass (BL, EXP, DDOS, WAF, EDGE, FW, PL, KV, POL, EVIDENCE)
-Controls: AC-4, AU-9, CA-7, CM-2, CM-6, CM-8, CP-2, IA-5, SC-12, SC-28, SC-5, SC-7, SC-7(5), SC-8, SI-10, SI-4
-KSIs:     KSI-CNA-EIS, KSI-CNA-MAT, KSI-CNA-RNT, KSI-CNA-RVP, KSI-CNA-ULN, KSI-IAM-SNU, KSI-MLA-EVC, KSI-MLA-LET, KSI-MLA-OSM, KSI-SVC-ACM, KSI-SVC-ASM, KSI-SVC-SIN
-Written to out/evidence: records/, runs/, records.csv, SHA256SUMS
-PS> ./Invoke-AzsEvidence.ps1 -EvidencePath out/evidence -RunPath out/drift -AsOf 2026-11-16T12:00:00Z
-Record 2: Pass (DRIFT, EVIDENCE)
-Controls: AU-9, CA-7, CM-6
-KSIs:     KSI-MLA-EVC, KSI-MLA-OSM, KSI-SVC-ACM
-Written to out/evidence: records/, runs/, records.csv, SHA256SUMS
-PS> ./Invoke-AzsEvidence.ps1 -EvidencePath out/evidence -RunPath out/metrics -AsOf 2026-11-16T12:00:00Z
-Record 3: Pass (METRICS, EVIDENCE)
-Controls: AU-6, AU-9, CA-7
-KSIs:     KSI-MLA-EVC, KSI-MLA-OSM
-Written to out/evidence: records/, runs/, records.csv, SHA256SUMS
-PS> ./Invoke-AzsEvidence.ps1 -EvidencePath out/evidence -Check
-SUMS           Pass  103 files match SHA256SUMS
-CHAIN          Pass  3 records, chain unbroken
+PS> ./Invoke-AzsCompare.ps1 -Before "$Run/week1" -After "$Run/week2" -OutputPath "$Run/drift" -AsOf 2026-11-16T12:00:00Z
+baseline  new  1  fixed  3  still open   9
+exposure  new  2  fixed  2  still open   3
+ddos      new  1  fixed  0  still open   8
+waf       new  0  fixed  1  still open   5
+edge      new  0  fixed  1  still open   7
+firewall  new  0  fixed  4  still open   3
+private   new  0  fixed  1  still open  15
+policy    new  0  fixed  1  still open   4
+Total:    new  4  fixed 13  still open  54. Written to C:/FMWLabs/results/azure-security-08/lab1/<run>/drift: drift.json, drift.md
+PS> Get-Content "$Run/drift/drift.md" | Where-Object { $_ -like '- *' }
+- **New** baseline AZS-BL-05 pip-new-api: microsoft.network/publicipaddresses: no enabled log to the platform workspace
+- **Fixed** baseline AZS-BL-01 hierarchy settings
+- **Fixed** baseline AZS-BL-05 afw-hub
+- **Fixed** baseline AZS-BL-05 pip-orphan
+- **New** exposure AZS-EX-01 pip-new-api: PublicIP has no owner tag
+- **New** exposure AZS-EX-04 pip-orphan: was PublicIP 198.51.100.30; remove any DNS record that still points at it
+- **Fixed** exposure AZS-EX-01 pip-orphan
+- **Fixed** exposure AZS-EX-02 pip-orphan
+- **New** ddos AZS-DD-01 pip-new-api: inherits from vnet-portal, which has no DDoS protection plan
+- **Fixed** waf AZS-WAF-01 wafp-portal
+- **Fixed** edge AZS-EDGE-03 afd-portal/og-portal/origin-west
+- **Fixed** firewall AZS-FW-01 afwp-hub
+- **Fixed** firewall AZS-FW-02 afwp-hub
+- **Fixed** firewall AZS-FW-03 vnet-portal/snet-web
+- **Fixed** firewall AZS-FW-05 afw-hub
+- **Fixed** private AZS-KV-02 kv-portal
+- **Fixed** policy AZS-POL-02 azs-security

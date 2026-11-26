@@ -1,4 +1,4 @@
-PS> Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Calls and availability*', 'Settings*', 'Chapter 01*' -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-         13           0
+PS> Import-Csv "$Run/check-decision/findings.csv" | Where-Object Id -EQ 'GSA-DEC-07' | Format-List Object, Detail, Fix | Out-String -Width 250
+Object : NET-GSA-03 (internet, adopt)
+Detail : uses 'cloud-firewall-clients' (GCC: not yet specified; preview) with no approved exception
+Fix    : Interim path: Block QUIC (outbound UDP 443) with an Intune-delivered Windows Firewall rule, piloted first (the guide's Step 5.6); record it in the architecture record's quicBlock.

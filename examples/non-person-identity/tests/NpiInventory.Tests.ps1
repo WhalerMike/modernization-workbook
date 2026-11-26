@@ -237,7 +237,7 @@ Describe 'The run and its manifest' {
     }
     It 'records a SHA-256 for every file, and the hashes match' {
         foreach ($k in $script:Manifest.files.Keys) { (Get-FileHash (Join-Path $script:Out $k) -Algorithm SHA256).Hash.ToLowerInvariant() | Should -Be $script:Manifest.files[$k] }
-        @($script:Manifest.files.Keys | Sort-Object) | Should -Be @('data-platform-handoff.csv', 'findings.json', 'register.csv', 'register.json')
+        @($script:Manifest.files.Keys | Sort-Object) | Should -Be @('data-platform-handoff.csv', 'directory-evidence.json', 'findings.json', 'register.csv', 'register.json')
     }
     It 'writes LF line endings on every platform, so the hashes match across platforms' {
         foreach ($k in @($script:Manifest.files.Keys) + 'manifest.json') { [IO.File]::ReadAllText((Join-Path $script:Out $k)).Contains("`r") | Should -BeFalse -Because $k }
@@ -252,5 +252,80 @@ Describe 'The run and its manifest' {
     }
     It 'refuses a live run with no tenant ID' {
         { & (Join-Path $PSScriptRoot '../Invoke-NpiInventory.ps1') -Cloud gcc -OutputPath $script:Out } | Should -Throw '*-TenantId*'
+    }
+}
+
+Describe 'Hosts and services from the server-service inventory' {
+    BeforeAll {
+        $svcPath = (Resolve-Path (Join-Path $PSScriptRoot 'fixtures/inputs/server-services.csv')).Path
+        $fake = New-NpiFixtureInvoker -Path $script:Fixture
+        $ad = New-NpiFixtureAdInvoker -Path $script:Fixture
+        $reader = New-NpiReader -Cloud gcc -Task inventory -Invoke $fake.Invoke -AdInvoke $ad.Invoke
+        $script:SvcRegister = Get-NpiRegister -Reader $reader -TenantId $script:Tenant -AsOf $script:AsOf -ServiceInventoryPath $svcPath
+        $script:SvcRows = @($script:SvcRegister.Rows)
+        $script:SvcFindings = @(Test-NpiRegister -Register $script:SvcRegister)
+        function Get-SvcRow([string]$Name) { @($script:SvcRows | Where-Object Name -EQ $Name)[0] }
+    }
+    It 'fills Hosts and Services for a user account from every server that runs it, DOMAIN\name or UPN' {
+        $r = Get-SvcRow 'svc-hrsync'
+        $r.Hosts | Should -Be 'app01.corp.contoso.example; app02.corp.contoso.example'
+        $r.Services | Should -Be 'app01.corp.contoso.example/HRSync; app02.corp.contoso.example/HRSync'
+        $r.HostsFrom | Should -Be 'ServiceInventory'
+    }
+    It 'keeps a gMSA''s hosts from the directory and adds the services it runs' {
+        $r = Get-SvcRow 'gmsa-web$'
+        $r.Hosts | Should -Be 'WEB01; WEB02'
+        $r.HostsFrom | Should -Be 'Directory'
+        $r.Services | Should -Be 'web01.corp.contoso.example/WebAgent'
+    }
+    It 'marks a user account no server runs, and raises NPI-INV-10 only for enabled ones' {
+        (Get-SvcRow 'svc-backup').HostsFrom | Should -Be 'ServiceInventory: none'
+        $ids = @($script:SvcFindings | Where-Object Rule -EQ 'NPI-INV-10' | ForEach-Object { ($_.Object -split ' ')[0] })
+        $ids | Should -Not -Contain 'svc-hrsync'
+        $ids | Should -Not -Contain 'svc-sqlprod'
+        foreach ($n in $ids) { (Get-SvcRow $n).Enabled | Should -BeTrue }
+    }
+    It 'raises no NPI-INV-10 without an inventory' {
+        @(Get-Rule 'NPI-INV-10').Count | Should -Be 0
+    }
+    It 'leaves out built-in, virtual and local accounts' {
+        $m = Import-NpiServiceInventory -Path (Join-Path $PSScriptRoot 'fixtures/inputs/server-services.csv')
+        @($m.Keys | Sort-Object) | Should -Be @('gmsa-web$', 'svc-hrsync', 'svc-sqlprod')
+    }
+}
+
+Describe 'Input manifest and directory evidence' {
+    BeforeAll {
+        $script:EvOut = Join-Path $TestDrive 'ev'
+        & (Join-Path $PSScriptRoot '../Invoke-NpiInventory.ps1') -Cloud gcc -FixturePath $script:Fixture -OutputPath $script:EvOut `
+            -ServiceInventoryPath (Join-Path $PSScriptRoot 'fixtures/inputs/server-services.csv') | Out-Null
+        $script:Im = Get-Content (Join-Path $script:EvOut 'input-manifest.json') -Raw | ConvertFrom-Json
+        $script:Mf = Get-Content (Join-Path $script:EvOut 'manifest.json') -Raw | ConvertFrom-Json
+        $script:Ev = @(Get-Content (Join-Path $script:EvOut 'directory-evidence.json') -Raw | ConvertFrom-Json)
+    }
+    It 'hashes every input before the run reads anything, and the run manifest records its hash' {
+        @($script:Im.inputs.input) | Should -Be @('callList', 'config', 'fixture', 'serviceInventory')
+        ($script:Im.inputs | Where-Object input -EQ 'fixture').sha256 | Should -Be (Get-NpiFileHash -Path $script:Fixture)
+        $script:Mf.inputManifestSha256 | Should -Be (Get-NpiFileHash -Path (Join-Path $script:EvOut 'input-manifest.json'))
+        [datetime]$script:Im.created | Should -BeLessOrEqual ([datetime]$script:Mf.requests[0].at)
+    }
+    It 'lists the kit''s own modules, and no tests' {
+        @($script:Im.kit.path) | Should -Contain 'powershell/NpiInventory/NpiInventory.psm1'
+        @($script:Im.kit.path | Where-Object { $_ -like 'tests*' }).Count | Should -Be 0
+    }
+    It 'writes one directory evidence record per AD identity, with the read that returned it' {
+        $adRows = @(Get-Content (Join-Path $script:EvOut 'register.json') -Raw | ConvertFrom-Json | Where-Object Source -EQ 'AD')
+        $script:Ev.Count | Should -Be $adRows.Count
+        @($script:Ev.identityId | Sort-Object) | Should -Be @($adRows.IdentityId | Sort-Object)
+        $r = $script:Ev | Where-Object samAccountName -EQ 'gmsa-web$'
+        $r.readBy | Should -Be 'ad-managed-service-accounts'
+        $r.read | Should -Match '^Get-ADServiceAccount'
+        $script:Mf.files.'directory-evidence.json' | Should -Be (Get-NpiFileHash -Path (Join-Path $script:EvOut 'directory-evidence.json'))
+    }
+    It 'hashes each record''s attributes so the record can be checked' {
+        foreach ($rec in $script:Ev) {
+            (-join ([Security.Cryptography.SHA256]::HashData([Text.Encoding]::UTF8.GetBytes($rec.attributesJson)) | ForEach-Object { $_.ToString('x2') })) | Should -Be $rec.attributesSha256
+            ($rec.attributesJson | ConvertFrom-Json).SamAccountName | Should -Be $rec.samAccountName
+        }
     }
 }

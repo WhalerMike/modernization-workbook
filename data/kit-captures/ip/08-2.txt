@@ -1,11 +1,4 @@
-PS> Import-Csv out/drift/drift.csv | Format-Table Item, Property, Signal, Severity, Ticket -AutoSize
-Item                         Property                    Signal      Severity Ticket
-----                         --------                    ------      -------- ------
-FMP-DLP-CUI-ExternalEmail-v1 Mode                        enforcement P2
-FMP-Auto-CUIBasic-Batch2-v1  Mode                        enforcement P2
-CUI Basic                    EncryptionRightsDefinitions rights      P2       CHG-1042
-CUI-SP-TAX                   EncryptionRightsDefinitions rights      P2
-B20-Labels-All               Labels                      published   P2
-(tenant)                     SuperUsersEnabled           superuser   P1
-(tenant)                     SuperUsers                  superuser   P1
-FMP-Audit-InfoProtection-1y  RetentionDuration           retention   P2       CHG-1050
+PS> $Run = "C:\FMWLabs\results\information-protection-08\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+PS> New-Item -ItemType Directory -Path $Run -Force | Out-Null
+PS> $Run
+C:/FMWLabs/results/information-protection-08/lab1/<run>

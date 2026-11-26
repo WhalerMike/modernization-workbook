@@ -171,6 +171,9 @@ def members(topic: dict) -> list[str]:
     for pattern in topic.get("members") or []:
         pages.update(glob.glob(pattern, root_dir=ROOT))
     pages = {p.replace("\\", "/") for p in pages}
+    # not_members takes pages back out of a members glob, when another hub holds them.
+    for pattern in topic.get("not_members") or []:
+        pages -= {p.replace("\\", "/") for p in glob.glob(pattern, root_dir=ROOT)}
     # Pages whose names start with "_" (briefs, verification logs) and the Training and Labs pages
     # (every topic's paths and labs) aren't members.
     return sorted(p for p in pages if not Path(p).name.startswith("_") and p not in SHARED)

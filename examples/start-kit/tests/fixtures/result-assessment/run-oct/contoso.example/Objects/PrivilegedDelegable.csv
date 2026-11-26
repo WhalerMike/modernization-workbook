@@ -1,0 +1,2 @@
+"SamAccountName","Enabled","AdminCount","AccountNotDelegated","InProtectedUsers","DistinguishedName"
+"Administrator","True","1","False","False","CN=Administrator,CN=Users,DC=contoso,DC=example"

@@ -4,7 +4,7 @@
   "cloud": "gcc",
   "tenantId": "c0ffee00-0000-4000-8000-000000000001",
   "asOf": "2026-10-29T06:00:00Z",
-  "generated": "2026-11-09T13:30:56.9948104Z",
+  "generated": "2026-11-25T16:56:37.5177934Z",
   "graphPermissions": [
     "AuditLog.Read.All"
   ],
@@ -15,65 +15,65 @@
       "call": "directory-audits",
       "method": "GET",
       "target": "https://graph.microsoft.com/v1.0/auditLogs/directoryAudits?$filter=activityDateTime ge 2026-10-28T06:00:00Z and activityDateTime le 2026-10-29T06:00:00Z and activityDisplayName eq 'Add app role assignment to service principal'",
-      "at": "2026-11-09T13:30:55.5491274Z"
+      "at": "2026-11-25T16:56:35.8205947Z"
     },
     {
       "call": "directory-audits",
       "method": "GET",
       "target": "https://graph.microsoft.com/v1.0/auditLogs/directoryAudits?$filter=activityDateTime ge 2026-10-28T06:00:00Z and activityDateTime le 2026-10-29T06:00:00Z and activityDisplayName eq 'Add delegated permission grant'",
-      "at": "2026-11-09T13:30:55.5968233Z"
+      "at": "2026-11-25T16:56:35.9115230Z"
     },
     {
       "call": "directory-audits",
       "method": "GET",
       "target": "https://graph.microsoft.com/v1.0/auditLogs/directoryAudits?$filter=activityDateTime ge 2026-10-28T06:00:00Z and activityDateTime le 2026-10-29T06:00:00Z and activityDisplayName eq 'Add service principal credentials'",
-      "at": "2026-11-09T13:30:55.6020887Z"
+      "at": "2026-11-25T16:56:35.9223471Z"
     },
     {
       "call": "directory-audits",
       "method": "GET",
       "target": "https://graph.microsoft.com/v1.0/auditLogs/directoryAudits?$filter=activityDateTime ge 2026-10-28T06:00:00Z and activityDateTime le 2026-10-29T06:00:00Z and activityDisplayName eq 'Consent to application'",
-      "at": "2026-11-09T13:30:55.6175230Z"
+      "at": "2026-11-25T16:56:35.9311307Z"
     },
     {
       "call": "directory-audits",
       "method": "GET",
       "target": "https://graph.microsoft.com/v1.0/auditLogs/directoryAudits?$filter=activityDateTime ge 2026-10-28T06:00:00Z and activityDateTime le 2026-10-29T06:00:00Z and activityDisplayName eq 'Remove service principal credentials'",
-      "at": "2026-11-09T13:30:55.6260518Z"
+      "at": "2026-11-25T16:56:35.9383383Z"
     },
     {
       "call": "directory-audits",
       "method": "GET",
       "target": "https://graph.microsoft.com/v1.0/auditLogs/directoryAudits?$filter=activityDateTime ge 2026-10-28T06:00:00Z and activityDateTime le 2026-10-29T06:00:00Z and activityDisplayName eq 'Update application - Certificates and secrets management'",
-      "at": "2026-11-09T13:30:55.6315480Z"
+      "at": "2026-11-25T16:56:35.9611394Z"
     },
     {
       "call": "sp-signin-activities",
       "method": "GET",
       "target": "https://graph.microsoft.com/beta/reports/servicePrincipalSignInActivities",
-      "at": "2026-11-09T13:30:55.6496523Z"
+      "at": "2026-11-25T16:56:35.9806089Z"
     },
     {
       "call": "sp-signin-activities",
       "method": "GET",
       "target": "https://graph.microsoft.com/beta/reports/servicePrincipalSignInActivities?$skiptoken=2",
-      "at": "2026-11-09T13:30:55.6531894Z"
+      "at": "2026-11-25T16:56:35.9841121Z"
     },
     {
       "call": "sp-signin-activities",
       "method": "GET",
       "target": "https://graph.microsoft.com/beta/reports/servicePrincipalSignInActivities?$skiptoken=4",
-      "at": "2026-11-09T13:30:55.6585829Z"
+      "at": "2026-11-25T16:56:35.9938282Z"
     },
     {
       "call": "sp-signin-activities",
       "method": "GET",
       "target": "https://graph.microsoft.com/beta/reports/servicePrincipalSignInActivities?$skiptoken=6",
-      "at": "2026-11-09T13:30:55.6606585Z"
+      "at": "2026-11-25T16:56:36.0092568Z"
     }
   ],
   "files": {
-    "baseline-candidate.json": "604ee088ae43a964072671234833aeb71bccd082fa9ce4032a55d2fc4b146cc8",
+    "baseline-candidate.json": "861b7a6dd007bcf555a1797632f7b08aef56b5621c3224ddb72abbd06489f4fc",
     "chapter-findings.json": "92f86908b913c45f9fa0b47a4a1aad299f9e6599d2c517915a2f1a7d612d82f9",
     "events.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
     "findings.json": "6c77c8849f2e2b68decaf36210e83c74c701bb581a65859aed2293a0185314bd",
@@ -81,7 +81,7 @@
     "signin-activity.json": "5d2669b5eadc3905700aaafc514df3cc03efc2f5576ca6a21464071306fe9255",
     "summary.json": "d5e6534c26b0c30f24e8691fdf87c3a904ff98be3e9d8e467356b081f801bab6"
   },
-  "registerSha256": "44b2c80e2edd56a9d1c2b053089abddd19da9efb618c86bd07339fc62b3e6c35",
+  "registerSha256": "49e6d05a2f4c469a86d2ea707ed4b54c5abbca4b7d718a7890e87ad9d526af67",
   "baselineSha256": null,
   "inputs": {
     "policy": "b35940ce52d0ce14f2090fb362c9d5b46f94209a3f216dbca393758bfd7929c5",

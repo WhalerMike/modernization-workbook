@@ -1,5 +1,9 @@
-PS> Invoke-Pester -Path tests/SqlIdentity.Tests.ps1 -FullNameFilter 'Chapter 08*' -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-          3           0
-PS> Remove-Item -Recurse -Force out
+PS> Import-Module ./powershell/SqlIdentity/SqlIdentity.psd1
+PS> Get-SqlCertificateDependency -Certs (Read-SqlJson tests/fixtures/certs/certs.json) -WarningDays 365 | Format-Table Instance, Class, ExpiresInDays, Warning -AutoSize
+Instance Class                                    ExpiresInDays Warning
+-------- -----                                    ------------- -------
+SQLPRD01 TLS for client connections                          72 expires within 365 days
+SQLPRD06 TLS for client connections                         481
+SQLPRD02 Certificate-mapped login                            41 expires within 365 days
+SQLPRD02 Certificate-mapped endpoint                        254 expires within 365 days
+SQLFCI04 Certificate-based sign-in (NTLM interim)           100 expires within 365 days

@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Books 04, 17"
 series-order: 4
 review-status: approved
-reviewed-sha256: c1a67d95ddd59423df365739812017ff5afba29ba3a5eedafb76046dfa03cf0a
+reviewed-sha256: 21c974aab8c08fd83993830c97210c0188b026a578683eb3e02c771a66b303ab
 last-reviewed: 2026-11-25
 ---
 # Module 4: Set the credential rules {.unnumbered}
@@ -340,7 +340,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
     It prints a line for each test file, with the time it took, then this last line:
 
     ```text
-    Tests Passed: 555, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
+    Tests Passed: 564, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
     ```
 
 Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:

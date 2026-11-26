@@ -9,6 +9,13 @@ BeforeAll {
     Import-Module (Join-Path (Join-Path $KitRoot 'powershell') 'FMPAttributeSurvey') -Force
     Register-KitAdMocks -ModuleName FMPADAssessment
     Register-KitAdMocks -ModuleName FMPSqlEstate
+    # Tier B runs the server-service inventory: the servers come from the fixture's directory,
+    # and none answers, so each is reported unreachable.
+    Import-Module (Join-Path (Join-Path $KitRoot 'powershell') 'FMPServerService') -Force
+    Register-KitAdMocks -ModuleName FMPServerService
+    Mock -ModuleName FMPServerService Get-CimInstance -RemoveParameterType CimSession { throw 'WinRM cannot complete the operation.' }
+    Mock -ModuleName FMPServerService New-CimSessionOption { [pscustomobject]@{} }
+    Mock -ModuleName FMPServerService New-CimSession -RemoveParameterType SessionOption { throw 'The RPC server is unavailable.' }
     Register-KitSqlMocks
     Register-KitNpsMocks
     Register-KitSurveyMocks
@@ -34,7 +41,7 @@ Describe 'Invoke-FMPStartKit.ps1' {
     }
     It 'completes every step' {
         @($manifest.Steps | Where-Object Status -ne 'Completed' | ForEach-Object { "$($_.Step): $($_.Error)" }) | Should -BeNullOrEmpty
-        @($manifest.Steps).Count | Should -Be 28
+        @($manifest.Steps).Count | Should -Be 29
     }
     It 'records provenance: who, when, where, with what' {
         $manifest.ReadOnly | Should -BeTrue
@@ -43,13 +50,13 @@ Describe 'Invoke-FMPStartKit.ps1' {
         $manifest.ComputerName | Should -Not -BeNullOrEmpty
         $manifest.StartTimeUtc | Should -Not -BeNullOrEmpty
         $manifest.ServedBy.'child.contoso.example' | Should -Be 'cdc01.child.contoso.example'
-        $manifest.ModuleVersions.FMPADAssessment | Should -Be '1.8.0'
+        $manifest.ModuleVersions.FMPADAssessment | Should -Be '1.9.0'
         $manifest.Parameters.QueryInstances | Should -BeTrue
         $manifest.ModuleVersions.FMPNpsInventory | Should -Be '1.0.0'
         $manifest.ModuleVersions.FMPTransactionProfile | Should -Be '1.0.0'
         $manifest.ModuleVersions.FMPSqlEstate | Should -Be '1.2.0'
         $manifest.Parameters.TransactionCatalog | Should -BeTrue
-        $manifest.KitVersion | Should -Be '1.7.0'
+        $manifest.KitVersion | Should -Be '1.8.0'
     }
     It 'hashes every file in the run, and the hashes match' {
         $files = @(Get-ChildItem -Path $runDir.FullName -Recurse -File | Where-Object Name -ne 'AssessmentManifest.json')
@@ -57,6 +64,20 @@ Describe 'Invoke-FMPStartKit.ps1' {
         foreach ($f in @($manifest.Files)) {
             (Get-FileHash -Path (Join-Path $runDir.FullName $f.RelativePath) -Algorithm SHA256).Hash | Should -Be $f.SHA256
         }
+    }
+    It 'records every input, the kit''s own files and the directory sources before reading' {
+        $im = Get-Content -Raw (Join-Path $runDir.FullName 'InputManifest.json') | ConvertFrom-Json
+        $cat = @($im.InputFiles | Where-Object Parameter -eq 'TransactionCatalog')
+        $cat.Count | Should -Be 1
+        $cat[0].SHA256 | Should -Be (Get-FileHash (Join-Path $FMPTxPath 'TransactionCatalog.csv') -Algorithm SHA256).Hash
+        @($im.InputFiles | Where-Object Parameter -eq 'TransactionMeasurementPath').Count | Should -BeGreaterThan 1
+        @($im.KitFiles.RelativePath) | Should -Contain 'Invoke-FMPStartKit.ps1'
+        @($im.KitFiles.RelativePath) | Should -Contain 'powershell/FMPADAssessment/FMPADAssessment.psm1'
+        @($im.KitFiles.RelativePath | Where-Object { $_ -like 'tests/*' }).Count | Should -Be 0
+        @($im.DirectorySources | Where-Object Kind -eq 'Domain').Name | Should -Be @('contoso.example', 'child.contoso.example')
+        ([datetime]$im.CreatedUtc) | Should -BeLessOrEqual ([datetime]$manifest.StartTimeUtc).AddMinutes(30)
+        @($manifest.InputsChanged).Count | Should -Be 0
+        $manifest.InputManifest | Should -Be 'InputManifest.json'
     }
     It 'writes the summary, the SQL estate, the NPS inventory and the pre-flight' {
         Join-Path $runDir.FullName 'Summary\StartKitSummary.md' | Should -Exist

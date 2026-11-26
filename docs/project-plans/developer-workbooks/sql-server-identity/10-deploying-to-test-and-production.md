@@ -10,7 +10,9 @@ status: draft
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: 29963079d7f2acd4024ac6289fea0df9cca96a05756e0263d802ff992dc4bad0
+last-reviewed: 2026-11-25
 ---
 # Chapter 10 — Deploying to Test and Production
 

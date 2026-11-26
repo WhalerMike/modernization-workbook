@@ -8,7 +8,7 @@ research-book: "Books 13, 15"
 series-order: 6
 date-modified: 2026-11-01
 review-status: approved
-reviewed-sha256: ed50aa7105de57d77b6da4840ebc75818585a4636b84beaf9eca9a5044f16a2f
+reviewed-sha256: 275a766ba77971227b70865478a762d441aa3d0e92ad25df38ec09684dd37bfd
 last-reviewed: 2026-11-25
 ---
 # Ticket-to-Machine, Module 6: Actuation and the Re-read Rule {.unnumbered}

@@ -645,6 +645,11 @@ bundles:
     subtitle: "Federal Modernization Workbook companion guide"
     root: docs/books/guides
     pages: [daily-checks-dashboard-implementation.md]
+  - output: platform-host-implementation-guide.docx
+    title: "The Platform Host: An Implementation Guide"
+    subtitle: "Federal Modernization Workbook companion guide"
+    root: docs/books/guides
+    pages: [platform-host-implementation.md]
   - output: defender-xdr-implementation-guide.docx
     title: "Defender XDR Engineering & Operations: An Implementation Guide"
     subtitle: "Federal Modernization Workbook companion guide"

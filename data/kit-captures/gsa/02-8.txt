@@ -1,1 +1,4 @@
-PS> Remove-Item -Recurse -Force out
+PS> Copy-Item -Recurse "$Run/pilot" "$Run/tampered"
+PS> Add-Content -Path "$Run/tampered/raw/licenses.json" -Value ' '
+PS> try { Read-GsaCollection -Path "$Run/tampered" } catch { $_.Exception.Message }
+Collection C:/FMWLabs/results/global-secure-access-02/lab1/<run>/tampered doesn't match its manifest: raw/licenses.json changed since its manifest

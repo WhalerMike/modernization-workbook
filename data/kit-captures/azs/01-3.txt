@@ -1,14 +1,8 @@
-PS> Import-Csv out/week1/baseline/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
-AZS-BL-01 Finding hierarchy settings: requireAuthorizationForGroupCreation is false
-AZS-BL-05 Finding afw-hub: microsoft.network/azurefirewalls: no enabled log to the platform workspace
-AZS-BL-05 Finding pip-afw-hub: microsoft.network/publicipaddresses: no enabled log to the platform workspace
-AZS-BL-05 Finding pip-nat-egress: microsoft.network/publicipaddresses: no enabled log to the platform workspace
-AZS-BL-05 Finding pip-vpngw: microsoft.network/publicipaddresses: no enabled log to the platform workspace
-AZS-BL-05 Finding appgw-intranet: microsoft.network/applicationgateways: no enabled log to the platform workspace
-AZS-BL-05 Finding afd-careers: microsoft.cdn/profiles: no enabled log to the platform workspace
-AZS-BL-05 Finding kv-portal: microsoft.keyvault/vaults: no enabled log to the platform workspace
-AZS-BL-05 Finding pip-jump: microsoft.network/publicipaddresses: no enabled log to the platform workspace
-AZS-BL-05 Finding pip-lb-portal: microsoft.network/publicipaddresses: no enabled log to the platform workspace
-AZS-BL-05 Finding pip-orphan: microsoft.network/publicipaddresses: no enabled log to the platform workspace
-AZS-BL-06 Finding sub-online-portal: Free or absent: KeyVaults
-AZS-BL-04 Info    azs-fedramp-mod: enforcementMode DoNotEnforce (audit); Step 9 enforces
+PS> Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
+PS> Get-AzsRequiredRole -Area baseline | ForEach-Object { "{0,-26} {1,-28} verified: {2}" -f $_.Call, $_.Role, $_.Verified }
+arg-subscriptions          Reader                       verified: True
+arg-platform-resources     Reader                       verified: True
+arg-policy-assignments     Reader                       verified: True
+rest-hierarchy-settings    Reader (tenant root group)   verified: True
+rest-defender-pricings     Reader                       verified: True
+rest-diagnostic-settings   Reader                       verified: True

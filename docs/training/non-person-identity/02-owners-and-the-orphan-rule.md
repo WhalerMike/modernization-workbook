@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Books 02, 04, 17"
 series-order: 2
 review-status: approved
-reviewed-sha256: 4b0f5fb87a0a152eafa6d8a5cc93c0467b7c0c918e91e38c29fb076c1cde87d4
+reviewed-sha256: ae6d56d62985511cdc92b8ae2248283e8c93a790b8e7e78c350df422b47a1d4e
 last-reviewed: 2026-11-25
 ---
 # Module 2: Owners, sponsors and the orphan rule {.unnumbered}
@@ -313,7 +313,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
     It prints a line for each test file, with the time it took, then this last line:
 
     ```text
-    Tests Passed: 555, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
+    Tests Passed: 564, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
     ```
 
 Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:

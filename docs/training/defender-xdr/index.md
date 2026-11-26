@@ -17,7 +17,7 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: 82873fba522b0adeb377b0c5f4535846960cc3a47cfa42168a95e433ad7312bf
+reviewed-sha256: 505d22e186913e13e2b6d44001322eb1732ddc772db1c84ae234dc08771dec39
 last-reviewed: 2026-11-25
 ---
 # Learning path: Defender XDR Engineering and Operations {.unnumbered}
@@ -76,10 +76,11 @@ cd ~/FMWLabs/defender-xdr-code/defender-xdr
 Check it works, in PowerShell 7.1 or later, with Step 1 of [Chapter 01's Lab 1](../../project-plans/developer-workbooks/defender-xdr/01-access-and-the-graph-read-path.md#lab-1-fixtures-no-tenant):
 
 ```powershell
-./Invoke-XdrAccess.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath out/access -AsOf 2026-11-16T12:00:00Z
+$Run = "C:\FMWLabs\results\defender-xdr-check\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+./Invoke-XdrAccess.ps1 -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/graph -OutputPath "$Run/access" -AsOf 2026-11-16T12:00:00Z
 ```
 
-It prints a table of 14 checks and ends with `Access: 14 checks, 3 failed.` The three failures are in the fixtures on purpose; the chapter's lab explains each.
+It prints a table of 14 checks and ends with `Access: 14 checks, 3 failed. Written to C:\FMWLabs\results\defender-xdr-check\<run>/access` and the files it wrote, where `<run>` is the date and time you ran it. The kit's folder stays as you unzipped it. The three failures are in the fixtures on purpose; the chapter's lab explains each.
 
 ## What you'll be able to do {#xdr-outcomes}
 

@@ -12,8 +12,8 @@ research-status: draft
 research-type: implementation guide
 research-book: "Book 15"
 review-status: approved
-reviewed-sha256: 4ae302a05e1b047c4f98f7f4f2d8e754eeef42d3a6fbce2697c5d7d0cb3ee0c1
-last-reviewed: 2026-11-23
+reviewed-sha256: 346a1918b8d1402f304e92cf6fb0bdcc787d51e923c37ba34c660a1fdcd79b1f
+last-reviewed: 2026-11-26
 ---
 # The Daily Checks on One Dashboard: An Implementation Guide
 
@@ -245,12 +245,12 @@ Learn documents the `ComplianceState`, `ProductName`, `Computer` and `Source` co
 *Related script.* The script prints what each tab of the daily checks workbook shows: the scripted read of the morning view.
 
 ```powershell
-./Invoke-DcRender.ps1 -FixturePath tests/fixtures/day1 -AsOf 2026-11-16T07:30:00Z -OutputPath out/day1
+./Invoke-DcRender.ps1 -FixturePath tests/fixtures/day1 -AsOf 2026-11-16T07:30:00Z -OutputPath "$Run/day1"
 ```
 
-![What it prints, run on the kit's fixtures](../../project-plans/developer-workbooks/daily-checks/captures/03-1.png){.lightbox fig-alt="Terminal window showing ./Invoke-DcRender.ps1 -FixturePath tests/fixtures/day1 -AsOf 2026-11-16T07:30… and what it printed"}
+![What it prints, run on the kit's fixtures](../../project-plans/developer-workbooks/daily-checks/captures/03-3.png){.lightbox fig-alt="Terminal window showing ./Invoke-DcRender.ps1 -FixturePath tests/fixtures/day1 -AsOf 2026-11-16T07:30… and what it printed"}
 
-From Lab 1 of [Chapter 03 — What Each Tab Would Show](../../project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/03-1.txt)); the lab's earlier steps come first.
+From Lab 1 of [Chapter 03 — What Each Tab Would Show](../../project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/03-3.txt)); the lab's earlier steps come first. `$Run` is the lab's dated run folder under `C:\FMWLabs\results`, which its first steps set, so each run keeps its own results and the kit's folder stays as you unzipped it.
 
 :::
 
@@ -272,12 +272,12 @@ From Lab 1 of [Chapter 03 — What Each Tab Would Show](../../project-plans/deve
 #### PowerShell 7
 
 ```powershell
-./Invoke-DcReplicationProbe.ps1 -SettingsPath tests/fixtures/settings.lab.json -InputPath tests/fixtures/repl/showrepl-day1.csv -OutputPath out/probe -AsOf 2026-11-16T06:00:00Z
+./Invoke-DcReplicationProbe.ps1 -SettingsPath tests/fixtures/settings.lab.json -InputPath tests/fixtures/repl/showrepl-day1.csv -OutputPath "$Run/probe" -AsOf 2026-11-16T06:00:00Z
 ```
 
-![What it prints, run on the kit's fixtures](../../project-plans/developer-workbooks/daily-checks/captures/03-4.png){.lightbox fig-alt="Terminal window showing ./Invoke-DcReplicationProbe.ps1 -SettingsPath tests/fixtures/settings.lab.jso… and what it printed"}
+![What it prints, run on the kit's fixtures](../../project-plans/developer-workbooks/daily-checks/captures/03-6.png){.lightbox fig-alt="Terminal window showing ./Invoke-DcReplicationProbe.ps1 -SettingsPath tests/fixtures/settings.lab.jso… and what it printed"}
 
-From Lab 1 of [Chapter 03 — What Each Tab Would Show](../../project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/03-4.txt)); the lab's earlier steps come first.
+From Lab 1 of [Chapter 03 — What Each Tab Would Show](../../project-plans/developer-workbooks/daily-checks/03-what-each-tab-would-show.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/dc/03-6.txt)); the lab's earlier steps come first. `$Run` is the lab's dated run folder under `C:\FMWLabs\results`, which its first steps set, so each run keeps its own results and the kit's folder stays as you unzipped it.
 
 **Evidence this step supports:** NIST SP 800-53 Rev. 5 CA-7, SI-4; FedRAMP 20x KSIs KSI-MLA-EVC, KSI-MLA-LET (step `PROBE` in [requirements.json](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/daily-checks-workbook/config/requirements.json)).
 

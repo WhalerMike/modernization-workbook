@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Books 02, 04, 17"
 series-order: 10
 review-status: approved
-reviewed-sha256: c2e43d2366b480add3b2d876590786f11bdf4f282bf0832aaf3fbf5f8578499c
+reviewed-sha256: f01bf797d6b4466a62652bc1a0cf9839d5fafd21776edcc9afc8153b388e8a9e
 last-reviewed: 2026-11-25
 ---
 # Module 10: Find drift and file the evidence {.unnumbered}
@@ -414,7 +414,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
     Pester prints a line for each test file, with the time it took, then this line:
 
     ```text
-    Tests Passed: 555, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
+    Tests Passed: 564, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
     ```
 
     pytest prints a row of dots, then a last line of `133 passed` and the time it took.

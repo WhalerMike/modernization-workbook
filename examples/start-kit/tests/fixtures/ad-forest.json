@@ -130,6 +130,7 @@
       { "sAMAccountName": "svc-sql01", "objectClass": ["top", "person", "organizationalPerson", "user"], "userAccountControl": 66048, "lastLogonTimestamp": 134373600000000000, "servicePrincipalName": ["MSSQLSvc/sql01.contoso.example:1433", "MSSQLSvc/sql01.contoso.example"] },
       { "sAMAccountName": "svc-web", "objectClass": ["top", "person", "organizationalPerson", "user"], "userAccountControl": 66048, "lastLogonTimestamp": 134369280000000000, "servicePrincipalName": ["HTTP/web.contoso.example"] },
       { "sAMAccountName": "gmsa-sql02$", "objectClass": ["top", "person", "organizationalPerson", "user", "computer", "msDS-GroupManagedServiceAccount"], "userAccountControl": 4096, "lastLogonTimestamp": 134373600000000000, "servicePrincipalName": ["MSSQLSvc/sql02.contoso.example:1433"] },
+      { "sAMAccountName": "svc-legacyapp", "objectClass": ["top", "person", "organizationalPerson", "user"], "userAccountControl": 66048, "lastLogonTimestamp": 134373600000000000, "servicePrincipalName": ["HTTP/retired-app.contoso.example"] },
       { "sAMAccountName": "krbtgt", "objectClass": ["top", "person", "organizationalPerson", "user"], "userAccountControl": 514, "lastLogonTimestamp": null, "servicePrincipalName": ["kadmin/changepw"] }
     ],
     "child.contoso.example": [

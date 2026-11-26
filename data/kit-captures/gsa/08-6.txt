@@ -1,7 +1,43 @@
-PS> Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
-PS> (Read-GsaJson -Path (New-GsaRollbackPlan -CollectionPath out/ring1 -Settings (Read-GsaSettings -Path tests/fixtures/settings.lab-ring1.json) -OutputPath out/rollback-signaling -AsOf 2026-11-30T12:00:00Z -DisableSignaling).FullName).steps | ForEach-Object { $_.why }
-Step 7: NET-CN-Require-Compliant-Network-Pilot enabled -> report-only
-Step 6: NET-PA-PA-Finance-Device-MFA enabled -> report-only
-Step 5: NET-IA-SecurityProfile-Pilot enabled -> report-only
-Step 8: universal tenant restrictions tagging disabled (the TRv2 policy stays)
-Last: signaling disabled, after no policy depends on it
+PS> ./Invoke-GsaCollect.ps1 -SettingsPath tests/fixtures/settings.lab-ring1.json -FixturePath tests/fixtures/ring1 -OutputPath "$Run/ring1" -AsOf 2026-11-30T12:00:00Z
+Collected as of 2026-11-30T12:00:00Z (Fixture mode, environment lab, cloud gcc, ring ring1)
+
+Call                     Method  Beta  Verified  Least-privileged permission
+ca-policies              GET     False True      Policy.Read.All
+ca-signaling             GET     True  True      NetworkAccess.Read.All
+connector-group-members  GET     True  True      Directory.ReadWrite.All
+connector-groups         GET     True  True      Directory.ReadWrite.All
+device-usage             GET     True  True      NetworkAccessPolicy.Read.All
+diagnostic-settings      GET     False True      Security Administrator (Microsoft Entra role), as the guide's Step 12.1 uses
+filtering-policies       GET     True  True      NetworkAccess.Read.All
+filtering-profiles       GET     True  True      NetworkAccess.Read.All
+forwarding-profiles      GET     True  True      NetworkAccess.Read.All
+law-query                QUERY   False True      Read access to the workspace; Log Analytics Reader is the program's choice (design guidance)
+licenses                 GET     False True      LicenseAssignment.Read.All
+named-locations          GET     True  True      Policy.Read.All
+private-apps             GET     True  False     Application.Read.All
+tenant-status            GET     True  True      NetworkAccessPolicy.Read.All
+tenant-tagging           GET     True  True      NetworkAccess.Read.All
+trv2-default             GET     True  True      Policy.Read.All
+trv2-partners            GET     True  False     Policy.Read.All
+
+17 calls sent (24 reads in all). Written to C:/FMWLabs/results/global-secure-access-08/lab1/<run>/ring1: collection.json, raw/, manifest.json (18 files hashed)
+PS> ./Invoke-GsaMetrics.ps1 -SettingsPath tests/fixtures/settings.lab-ring1.json -CollectionPath "$Run/ring1" -InputsPath tests/fixtures/ring1/inputs -OutputPath "$Run/metrics-ring1" -AsOf 2026-11-30T12:00:00Z
+Client coverage                  Met  100.0%  (target 98%)
+Sign-ins through the service     Met  97.8%  (target 95%)
+Compliant network enforcement    Met  On for the ring  (target On by ring)
+Private Access least privilege   Met  0 Quick Access segments; 0 apps without a group; 0 without a policy  (target 0; 0; 0)
+Connector resilience             Met  100%  (target 100%)
+Bypass exposure                  Met  0 bypasses past expiry; 0 exceptions without an approver  (target 0; 0)
+TLS inspection health            Met  0.50% failures; 180 days to expiry  (target Under 1%; over 90)
+Telemetry freshness              Met  0 tables with no rows in 24 hours  (target 0)
+
+RX-01 time in ring                             Pass  10 business days since 2026-11-16 (needs 10)
+RX-02 Sev-2 tickets                            Pass  0 unresolved
+RX-03 help desk volume                         Pass  6 tickets (threshold 10)
+RX-04 client active on every in-scope device   Pass  100.0% of in-scope devices
+RX-05 report-only results clean                Pass  0 report-only failures carried by the service; 0 compliant network checks fail
+RX-06 TLS failure share under 1%               Pass  0.50% failures; 180 days to expiry
+RX-07 emergency exclusion tested at ring start Pass  tested 2026-11-16; ring started 2026-11-16
+RX-08 break-glass rehearsed                    Pass  rehearsed 2026-11-13
+
+Ring ring1: Go, every exit criterion passes. Written to C:/FMWLabs/results/global-secure-access-08/lab1/<run>/metrics-ring1: metrics.json, ring-exit.json, manifest.json

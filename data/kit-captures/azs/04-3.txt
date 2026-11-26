@@ -1,7 +1,5 @@
-PS> Import-Csv out/week1/waf/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
-AZS-WAF-01 Finding wafp-portal: mode Detection, enabled
-AZS-WAF-06 Finding afd-careers: no security policy with a WAF policy
-AZS-WAF-07 Finding afd-careers: no access, health probe or WAF log to the platform workspace
-AZS-WAF-03 Warn    wafp-portal: Default Rule Set 2.1; the baseline is 2.2, validated in Detection first
-AZS-WAF-03 Warn    afdwafportal: Default Rule Set 2.1; the baseline is 2.2, validated in Detection first
-AZS-WAF-04 Warn    afdwafportal: no Microsoft_BotManagerRuleSet
+PS> ./Invoke-AzsCheck.ps1 -Area waf -SettingsPath tests/fixtures/settings.lab.json -FixturePath tests/fixtures/week1 -AsOf 2026-11-09T12:00:00Z -OutputPath "$Run/week1/waf"
+Read: 2 WAF policies, 3 internet-facing endpoints. Behind a WAF in Prevention: 1 of 3
+Findings: 3 Finding, 3 Warn, 0 Info
+Plan: plan-prevention.txt holds the reviewed commands to switch to Prevention; none was run.
+Written to C:/FMWLabs/results/azure-security-04/lab1/<run>/week1/waf (6 calls, every one a read; manifest.json lists each file's SHA-256)

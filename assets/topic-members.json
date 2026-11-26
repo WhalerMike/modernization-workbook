@@ -53,12 +53,28 @@
    "title": "Endpoints"
   },
   {
+   "id": "platform-host",
+   "title": "Platform Host"
+  },
+  {
    "id": "compliance-evidence",
    "title": "Compliance and Evidence"
   },
   {
    "id": "application-modernization",
    "title": "Application Modernization"
+  }
+ ],
+ "docs/books/b00-orientation/08-pre-flight-and-assessment.md": [
+  {
+   "id": "platform-host",
+   "title": "Platform Host"
+  }
+ ],
+ "docs/books/b01-transformation-arc/03-platform-foundation.md": [
+  {
+   "id": "platform-host",
+   "title": "Platform Host"
   }
  ],
  "docs/books/b01-transformation-arc/04-identity-transformation.md": [
@@ -1105,8 +1121,8 @@
  ],
  "docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md": [
   {
-   "id": "azure-security",
-   "title": "Azure Security"
+   "id": "platform-host",
+   "title": "Platform Host"
   }
  ],
  "docs/books/b10-cloud-boundary/index.md": [
@@ -1318,6 +1334,10 @@
   }
  ],
  "docs/books/b13-governance/03-one-authoritative-record.md": [
+  {
+   "id": "platform-host",
+   "title": "Platform Host"
+  },
   {
    "id": "compliance-evidence",
    "title": "Compliance and Evidence"
@@ -2201,6 +2221,12 @@
   {
    "id": "non-person-identity",
    "title": "Non-Person Identity"
+  }
+ ],
+ "docs/books/guides/platform-host-implementation.md": [
+  {
+   "id": "platform-host",
+   "title": "Platform Host"
   }
  ],
  "docs/books/guides/privileged-access-implementation.md": [
@@ -3746,6 +3772,24 @@
   }
  ],
  "docs/training/pki/04-device-and-user-certificates.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/training/pki/05-coexistence-and-migration.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/training/pki/06-lifecycle-monitoring-and-decommissioning.md": [
+  {
+   "id": "pki",
+   "title": "PKI and Certificates"
+  }
+ ],
+ "docs/training/pki/07-piv-and-derived-piv.md": [
   {
    "id": "pki",
    "title": "PKI and Certificates"

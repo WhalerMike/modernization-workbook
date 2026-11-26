@@ -20,7 +20,7 @@
     the same file for the run folder and the manifest.
 #>
 
-$script:FMPKitVersion = '1.7.0'
+$script:FMPKitVersion = '1.8.0'
 $script:FMPAllowedRoots = [System.Collections.Generic.List[string]]::new()
 $script:FMPUtf8 = [System.Text.UTF8Encoding]::new($false)
 
@@ -160,7 +160,7 @@ function Get-FMPFileManifest {
 
 function Get-FMPModuleVersions {
     # Versions of the modules the kit relies on, as installed on this host (null when absent).
-    $names = 'ActiveDirectory', 'GroupPolicy', 'DnsServer', 'DhcpServer', 'dbatools', 'FMPADAssessment', 'FMPSqlEstate', 'FMPNpsInventory', 'FMPTransactionProfile'
+    $names = 'ActiveDirectory', 'GroupPolicy', 'DnsServer', 'DhcpServer', 'dbatools', 'FMPADAssessment', 'FMPSqlEstate', 'FMPNpsInventory', 'FMPTransactionProfile', 'FMPServerService'
     $o = [ordered]@{}
     foreach ($n in $names) {
         $m = Get-Module -Name $n | Select-Object -First 1
@@ -191,7 +191,9 @@ function Write-FMPManifest {
         [string[]]$Domains = @(),
         [hashtable]$ServedBy = @{},
         [object[]]$Steps = @(),
-        [hashtable]$Parameters = @{}
+        [hashtable]$Parameters = @{},
+        # Added at the end: the input files that changed while the run read them, for example.
+        [hashtable]$Extra = @{}
     )
     $end = (Get-Date).ToUniversalTime()
     $files = @(Get-FMPFileManifest -Root $RunPath -Exclude 'AssessmentManifest.json')
@@ -216,6 +218,7 @@ function Write-FMPManifest {
         FileCount      = $files.Count
         Files          = $files
     }
+    foreach ($k in $Extra.Keys) { $manifest[$k] = $Extra[$k] }
     Write-FMPJson -InputObject $manifest -Path (Join-Path $RunPath 'AssessmentManifest.json') -Depth 6
     [pscustomobject]$manifest
 }
@@ -755,4 +758,73 @@ function Read-FMPJsonArray {
             $line = $r.ReadLine()
         }
     } finally { if ($r) { $r.Dispose() } }
+}
+
+# ----------------------------------------------------------------------------- input manifest
+
+function Get-FMPInputFileRecord {
+    # Path, size, last write time and SHA-256 of each file a run reads; a folder is expanded.
+    param([Parameter(Mandatory)][string]$Parameter, [Parameter(Mandatory)][string]$Path)
+    if (-not (Test-Path -LiteralPath $Path)) {
+        return [pscustomobject][ordered]@{ Parameter = $Parameter; Path = $Path; Exists = $false; SizeBytes = $null; LastWriteTimeUtc = $null; SHA256 = $null }
+    }
+    $items = if (Test-Path -LiteralPath $Path -PathType Container) { @(Get-ChildItem -LiteralPath $Path -Recurse -File | Sort-Object FullName) } else { @(Get-Item -LiteralPath $Path) }
+    foreach ($i in $items) {
+        [pscustomobject][ordered]@{
+            Parameter = $Parameter; Path = $i.FullName; Exists = $true; SizeBytes = $i.Length
+            LastWriteTimeUtc = $i.LastWriteTimeUtc.ToString('o'); SHA256 = (Get-FileHash -LiteralPath $i.FullName -Algorithm SHA256).Hash
+        }
+    }
+}
+
+function Write-FMPInputManifest {
+    <#
+    .SYNOPSIS
+        Writes InputManifest.json at the run root before anything is read: every input file
+        with its size, time and SHA-256, the kit's own scripts and modules with theirs, and
+        the directory sources (forest, domains and the domain controller serving each).
+    .DESCRIPTION
+        AssessmentManifest.json, written last, hashes what the run produced; this one, written
+        first, records what it started from, so a reviewer can tell whether two runs read the
+        same inputs with the same code. Test-FMPInputManifest re-hashes the files at the end.
+    .EXAMPLE
+        Write-FMPInputManifest -RunPath D:\Assessment\run1 -RunId run1 -KitRoot C:\FMWLabs\start-kit -InputPath @{ WavePlan = 'D:\Inputs\wave-plan.csv' }
+    #>
+    param(
+        [Parameter(Mandatory)][string]$RunPath,
+        [Parameter(Mandatory)][string]$RunId,
+        [Parameter(Mandatory)][string]$KitRoot,
+        [hashtable]$InputPath = @{},
+        [string]$Forest,
+        [string[]]$Domains = @(),
+        [hashtable]$ServedBy = @{}
+    )
+    $kit = [System.IO.Path]::GetFullPath($KitRoot).TrimEnd('\', '/')
+    $kitFiles = @(Get-ChildItem -LiteralPath $kit -Recurse -File -Include *.ps1, *.psm1, *.psd1, *.csv |
+            Where-Object { $_.FullName -notmatch '[\\/]tests[\\/]' } | Sort-Object FullName | ForEach-Object {
+                [pscustomobject][ordered]@{ RelativePath = ($_.FullName.Substring($kit.Length).TrimStart('\', '/') -replace '\\', '/'); SizeBytes = $_.Length; SHA256 = (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash }
+            })
+    $inputs = @(foreach ($k in ($InputPath.Keys | Sort-Object)) { foreach ($p in @($InputPath[$k])) { if ($p) { Get-FMPInputFileRecord -Parameter $k -Path $p } } })
+    $sources = @()
+    if ($Forest) { $sources += [pscustomobject][ordered]@{ Kind = 'Forest'; Name = $Forest; ServedBy = $null } }
+    foreach ($d in $Domains) { $sources += [pscustomobject][ordered]@{ Kind = 'Domain'; Name = $d; ServedBy = $ServedBy[$d] } }
+    $m = [ordered]@{
+        Schema = 'fmp-start-kit/input-manifest/1'; RunId = $RunId; KitVersion = $script:FMPKitVersion
+        CreatedUtc = (Get-Date).ToUniversalTime().ToString('o'); ExecutedBy = Get-FMPExecutor; ComputerName = [Environment]::MachineName
+        DirectorySources = $sources; InputFiles = $inputs; KitFiles = $kitFiles
+    }
+    Write-FMPJson -InputObject $m -Path (Join-Path $RunPath 'InputManifest.json') -Depth 5
+    [pscustomobject]$m
+}
+
+function Test-FMPInputManifest {
+    # Re-hashes the input files InputManifest.json lists; returns those that changed or vanished.
+    param([Parameter(Mandatory)][string]$RunPath)
+    $f = Join-Path $RunPath 'InputManifest.json'
+    if (-not (Test-Path -LiteralPath $f)) { return }
+    foreach ($i in @((Get-Content -LiteralPath $f -Raw | ConvertFrom-Json).InputFiles)) {
+        if (-not $i.Exists) { continue }
+        $now = if (Test-Path -LiteralPath $i.Path) { (Get-FileHash -LiteralPath $i.Path -Algorithm SHA256).Hash } else { $null }
+        if ($now -ne $i.SHA256) { [pscustomobject][ordered]@{ Parameter = $i.Parameter; Path = $i.Path; Before = $i.SHA256; After = $now } }
+    }
 }

@@ -1809,6 +1809,9 @@
   "page": "one-page-ask.docx",
   "title": "Meeting Templates and Leadership Briefs"
  },
+ "docs/books/guides/platform-host-implementation.md": {
+  "page": "platform-host-implementation.docx"
+ },
  "docs/books/guides/privileged-access-implementation.md": {
   "page": "privileged-access-implementation.docx"
  },
@@ -3047,6 +3050,21 @@
  "docs/training/pki/04-device-and-user-certificates.md": {
   "bundle": "training-pki-bundle.docx",
   "page": "04-device-and-user-certificates.docx",
+  "title": "Learning path: PKI and Certificates"
+ },
+ "docs/training/pki/05-coexistence-and-migration.md": {
+  "bundle": "training-pki-bundle.docx",
+  "page": "05-coexistence-and-migration.docx",
+  "title": "Learning path: PKI and Certificates"
+ },
+ "docs/training/pki/06-lifecycle-monitoring-and-decommissioning.md": {
+  "bundle": "training-pki-bundle.docx",
+  "page": "06-lifecycle-monitoring-and-decommissioning.docx",
+  "title": "Learning path: PKI and Certificates"
+ },
+ "docs/training/pki/07-piv-and-derived-piv.md": {
+  "bundle": "training-pki-bundle.docx",
+  "page": "07-piv-and-derived-piv.docx",
   "title": "Learning path: PKI and Certificates"
  },
  "docs/training/pki/index.md": {

@@ -1,9 +1,10 @@
-PS> ./Invoke-GsaCheck.ps1 -Area tls -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/pilot -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-tls -AsOf 2026-11-16T12:00:00Z
-GSA-TLS-01  Fail  certificate contosotls1: 74 days left (renew 90 days ahead); valid for 90 days in all (Learn: at least six months)
-GSA-TLS-02  Pass  certificate contosotls1: issuer: Contoso TLS Inspection CA
-GSA-TLS-03  Pass  policy TLS-Pilot: linked to: SP-Pilot
-GSA-TLS-05  Fail  policy TLS-Pilot: custom bypass *.payroll-partner.example is EX-03, expires 2026-11-01
-GSA-TLS-04  Pass  privacy: approved 2026-11-05 by Privacy officer; user notice 2026-11-06
-GSA-TLS-06  Fail  TLS outcomes: failure share 1.5% of 10000 inspected or bypassed sessions (threshold 1%)
+PS> ./Invoke-GsaCheck.ps1 -Area internet-access -SettingsPath tests/fixtures/settings.lab.json -CollectionPath "$Run/pilot" -InputsPath tests/fixtures/pilot/inputs -OutputPath "$Run/check-ia" -AsOf 2026-11-16T12:00:00Z
+GSA-IA-01   Pass  NET-IA-SecurityProfile-Pilot: security profile: SP-Pilot; emergency group excluded: True
+GSA-IA-02   Pass  web content filtering: blocked: ArtificialIntelligence, Gambling
+GSA-IA-03   Pass  threat intelligence: policy NET-TI-Block-Malicious
+GSA-IA-04   Fail  bypass EX-03 *.payroll-partner.example: owner Platform owner, approver Policy owner, expires 2026-11-01 (expired)
+GSA-IA-04   Fail  bypass EX-04 updates.vendor.example: owner Platform owner, approver none, expires 2027-03-01
+GSA-IA-05   Pass  QUIC: cloud firewall for clients: GCC not yet specified (preview); interim block: Intune firewall rule NET-QUIC-Block-UDP443, assigned to pilot
+GSA-IA-06   Pass  limits: 2 security profiles (limit 256), 2 filtering policies (limit 1,000)
 
-tls: 6 checks (3 Fail, 3 Pass). Written to out/check-tls: findings.json, findings.csv, manifest.json
+internet-access: 7 checks (2 Fail, 5 Pass). Written to C:/FMWLabs/results/global-secure-access-07/lab1/<run>/check-ia: findings.json, findings.csv, manifest.json

@@ -111,7 +111,7 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the signals check",
       body: [
-        { terminal: "07-1", lines: "1-6,8", pt: 11 },
+        { terminal: "07-3", lines: "1-6,8", pt: 11 },
         { callout: "an emergency access account with identity and cloud-app alerts in the same week. Nobody's playbook touches it; the IR lead decides.", label: "Read it: ", icon: "FaTriangleExclamation", color: "red" },
       ],
       sources: "Sources: examples/defender-xdr (fictional fixtures). Chapter 07, “Lab 1: fixtures, no tenant,” step 1.",
@@ -123,8 +123,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the automation check, and the ladder",
       body: [
-        { terminal: "07-2", lines: "2-8,11-14,17-19,21", pt: 10 },
-        { terminal: "07-3", lines: "2-4", pt: 10 },
+        { terminal: "07-4", lines: "2-8,11-14,17-19,21", pt: 10 },
+        { terminal: "07-5", lines: "2-4", pt: 10 },
       ],
       sources: "Sources: examples/defender-xdr (fictional fixtures; config/ladder.json). Chapter 07, “Lab 1: fixtures, no tenant,” steps 2–3.",
       say: `Step 2 runs the automation check, and finds four things. The ring 3 workstation group sits at a semi level with no exception: off the ladder. The scanner subnet's exclusion passed its review date in October. The second emergency access account isn't in the identity exclusions, so attack disruption could contain it. And one device runs a sensor below 10.8470, so Contain User won't act there. Step 3 reads the ladder the groups are checked against: full for workstations, semi for all folders for the pilot, and any semi level for servers.`,

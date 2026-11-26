@@ -1,5 +1,1 @@
-PS> Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
-PS> Get-GsaRequiredPermission -Area client | Format-Table
-Call         Method Permission                   Beta Verified
-----         ------ ----------                   ---- --------
-device-usage GET    NetworkAccessPolicy.Read.All True     True
+PS> Set-Location C:\FMWLabs\global-secure-access-code\global-secure-access

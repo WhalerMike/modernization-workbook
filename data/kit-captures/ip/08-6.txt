@@ -1,4 +1,26 @@
-PS> Invoke-Pester -Path tests/Evidence.Tests.ps1 -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-         15           0
+PS> Get-Content "$Run/month/metrics/metrics.md"
+# Information protection metrics, 2026-11-24 (lab)
+
+| Metric | Value | Source |
+|---|---|---|
+| Plan conformance: access | 2 of 3 checks pass | access/results.csv |
+| Plan conformance: inventory | 1 of 3 checks pass | inventory/results.csv |
+| Plan conformance: labels | 9 of 13 checks pass | labels/results.csv |
+| Plan conformance: protection | 4 of 8 checks pass | protection/results.csv |
+| Plan conformance: dlp | 6 of 9 checks pass | dlp/results.csv |
+| Plan conformance: autolabel | 3 of 4 checks pass | autolabel/results.csv |
+| Plan conformance: audit | 4 of 5 checks pass | audit/results.csv |
+| M8 Audit-search success for synthetic events | 2 of 3 | audit/results.csv |
+| M11 Unexplained drift | 6 | drift/results.csv |
+| M12 Expired exceptions | 1 of 3 | the exception register |
+| M1 Container label coverage of CUI-bearing sites | not computed by the kit | the SharePoint site list with labels (guide G4), joined to the inventory |
+| M2 Labeled share of sensitive content | not computed by the kit | content explorer by label and by type (Book 20, Chapter 09) |
+| M3 Encrypted share of CUI | not computed by the kit | content explorer by label, with the label definitions |
+| M4 DLP true-positive rate after tuning | not computed by the kit | DLP alert dispositions |
+| M5 Override rate | not computed by the kit | activity explorer DLP events |
+| M6 Mean time to triage | not computed by the kit | the alert queue's timestamps |
+| M7 Decryption-recovery test pass | not computed by the kit | the quarterly test records (guide G5) |
+| M9 Encrypted-mail test pass | not computed by the kit | the quarterly test records (guide G6) |
+| M10 Oversharing trend | not computed by the kit | DSPM data risk assessment exports |
+
+Metrics follow Book 20, Chapter 12. A metric the kit cannot compute is reported as such, never as zero.

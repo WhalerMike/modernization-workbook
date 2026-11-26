@@ -1,0 +1,4 @@
+[
+  { "Id": "NPI-INV-01:ad:ad000000-0000-4000-8000-000000000011", "Rule": "NPI-INV-01", "Severity": "Finding", "ObjectKey": "ad:ad000000-0000-4000-8000-000000000011", "Object": "svc-sql01 (Traditional)", "Issue": "HIGH risk: password never expires" },
+  { "Id": "NPI-INV-04:app:0a000000-0000-4000-8000-000000000002", "Rule": "NPI-INV-04", "Severity": "Warn", "ObjectKey": "app:0a000000-0000-4000-8000-000000000002", "Object": "HR Connector (AppRegistration)", "Issue": "Holds 1 client secret(s)" }
+]

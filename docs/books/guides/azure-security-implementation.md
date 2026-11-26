@@ -12,8 +12,8 @@ research-status: draft
 research-type: implementation guide
 research-book: "Book 10"
 review-status: approved
-reviewed-sha256: 61cb585be184d0a8bbdf34b6bc3ef971f3a9c3e996776ccbabf085bf1a1387c3
-last-reviewed: 2026-11-23
+reviewed-sha256: 7c1f908f1d3a953ffe072856ef87f655ed7f2e78258057eaa2859987c031df38
+last-reviewed: 2026-11-26
 ---
 # Azure Security Engineering
 
@@ -390,12 +390,12 @@ Every public IP in Azure gets DDoS infrastructure protection at no cost. DDoS Ne
 *Related script.* The kit checks that an enabled alert on the DDoS metric exists; the guide's Azure CLI block creates it.
 
 ```powershell
-Import-Csv out/week1/ddos/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+Import-Csv "$Run/week1/ddos/findings.csv" | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
 ```
 
-![What it prints, run on the kit's fixtures](../../project-plans/developer-workbooks/azure-security/captures/03-4.png){.lightbox fig-alt="Terminal window showing Import-Csv out/week1/ddos/findings.csv | ForEach-Object { '{0} {1,-7} {2}: {3… and what it printed"}
+![What it prints, run on the kit's fixtures](../../project-plans/developer-workbooks/azure-security/captures/03-6.png){.lightbox fig-alt="Terminal window showing Import-Csv '$Run/week1/ddos/findings.csv' | ForEach-Object { '{0} {1,-7} {2}:… and what it printed"}
 
-From Lab 1 of [Chapter 03 — DDoS Protection](../../project-plans/developer-workbooks/azure-security/03-ddos-protection.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/03-4.txt)); the lab's earlier steps come first.
+From Lab 1 of [Chapter 03 — DDoS Protection](../../project-plans/developer-workbooks/azure-security/03-ddos-protection.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/03-6.txt)); the lab's earlier steps come first. `$Run` is the lab's dated run folder under `C:\FMWLabs\results`, which its first steps set, so each run keeps its own results and the kit's folder stays as you unzipped it.
 
 **Evidence this step supports:** NIST SP 800-53 Rev. 5 SC-5, SI-4; FedRAMP 20x KSIs KSI-CNA-RVP, KSI-MLA-LET (step `DDOS` in [requirements.json](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/azure-security/config/requirements.json)).
 
@@ -416,12 +416,12 @@ From Lab 1 of [Chapter 03 — DDoS Protection](../../project-plans/developer-wor
 *Related script.* The kit checks that the public IP's DDoS logs and metrics reach the workspace; the guide's Azure CLI block creates the setting.
 
 ```powershell
-Import-Csv out/week1/ddos/findings.csv | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
+Import-Csv "$Run/week1/ddos/findings.csv" | ForEach-Object { "{0} {1,-7} {2}: {3}" -f $_.rule, $_.severity, $_.name, $_.detail }
 ```
 
-![What it prints, run on the kit's fixtures](../../project-plans/developer-workbooks/azure-security/captures/03-4.png){.lightbox fig-alt="Terminal window showing Import-Csv out/week1/ddos/findings.csv | ForEach-Object { '{0} {1,-7} {2}: {3… and what it printed"}
+![What it prints, run on the kit's fixtures](../../project-plans/developer-workbooks/azure-security/captures/03-6.png){.lightbox fig-alt="Terminal window showing Import-Csv '$Run/week1/ddos/findings.csv' | ForEach-Object { '{0} {1,-7} {2}:… and what it printed"}
 
-From Lab 1 of [Chapter 03 — DDoS Protection](../../project-plans/developer-workbooks/azure-security/03-ddos-protection.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/03-4.txt)); the lab's earlier steps come first.
+From Lab 1 of [Chapter 03 — DDoS Protection](../../project-plans/developer-workbooks/azure-security/03-ddos-protection.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/azs/03-6.txt)); the lab's earlier steps come first. `$Run` is the lab's dated run folder under `C:\FMWLabs\results`, which its first steps set, so each run keeps its own results and the kit's folder stays as you unzipped it.
 
 **Evidence this step supports:** NIST SP 800-53 Rev. 5 SC-5, SI-4; FedRAMP 20x KSIs KSI-CNA-RVP, KSI-MLA-LET (step `DDOS` in [requirements.json](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/azure-security/config/requirements.json)).
 

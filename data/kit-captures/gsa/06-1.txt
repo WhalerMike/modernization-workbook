@@ -1,9 +1,1 @@
-PS> Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
-PS> Get-GsaRequiredPermission -Area private-access | Format-Table
-Call                    Method Permission                                                                                    Beta Verified
-----                    ------ ----------                                                                                    ---- --------
-connector-groups        GET    Directory.ReadWrite.All                                                                       True     True
-connector-group-members GET    Directory.ReadWrite.All                                                                       True     True
-ca-policies             GET    Policy.Read.All                                                                              False     True
-private-apps            GET    Application.Read.All                                                                          True    False
-law-query               QUERY  Read access to the workspace; Log Analytics Reader is the program's choice (design guidance) False     True
+PS> Set-Location C:\FMWLabs\global-secure-access-code\global-secure-access

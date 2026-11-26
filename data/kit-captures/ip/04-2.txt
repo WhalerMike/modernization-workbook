@@ -1,11 +1,4 @@
-PS> Import-Csv out/labels/labels.csv | Format-Table Label, Priority, Encryption, Header, RightsTo -AutoSize
-Label              Priority Encryption Header      RightsTo
------              -------- ---------- ------      --------
-Public             0        False
-Internal           1        False
-CUI                2        False
-CUI Basic          3        True       CUI         contoso.example
-CUI//SP-TAX        4        True       CUI//SP-TAX fti-holders@contoso.example; j.doe@contoso.example
-Internal site      5        False
-CUI site           6        False
-CUI Specified site 7        False
+PS> $Run = "C:\FMWLabs\results\information-protection-04\lab1\$(Get-Date -AsUTC -Format 'yyyy-MM-ddTHHmmssZ')"
+PS> New-Item -ItemType Directory -Path $Run -Force | Out-Null
+PS> $Run
+C:/FMWLabs/results/information-protection-04/lab1/<run>

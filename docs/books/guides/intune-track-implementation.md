@@ -9,8 +9,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 678e2ddafb6c42f256d8f2658eb8806f1ef98a337618dd035cc77ac1f13adb9b
-last-reviewed: 2026-11-23
+reviewed-sha256: bd95fe7d3daf857c236bdab22cdfdc784b1c453b6e5d140ef3fb07473bbccbd8
+last-reviewed: 2026-11-26
 ---
 # Intune Track Implementation: Attribute-Driven Management of End-User Devices
 
@@ -360,12 +360,12 @@ Needs a device with the client installed, so there's no captured output.
 #### PowerShell 7
 
 ```powershell
-./Invoke-GsaCheck.ps1 -Area client -SettingsPath tests/fixtures/settings.lab.json -CollectionPath out/client -InputsPath tests/fixtures/pilot/inputs -OutputPath out/check-client -AsOf 2026-11-16T12:00:00Z
+./Invoke-GsaCheck.ps1 -Area client -SettingsPath tests/fixtures/settings.lab.json -CollectionPath "$Run/client" -InputsPath tests/fixtures/pilot/inputs -OutputPath "$Run/check-client" -AsOf 2026-11-16T12:00:00Z
 ```
 
-![What it prints, run on the kit's fixtures](../../project-plans/developer-workbooks/global-secure-access/captures/03-4.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCheck.ps1 -Area client -SettingsPath tests/fixtures/settings.lab.… and what it printed"}
+![What it prints, run on the kit's fixtures](../../project-plans/developer-workbooks/global-secure-access/captures/03-6.png){.lightbox fig-alt="Terminal window showing ./Invoke-GsaCheck.ps1 -Area client -SettingsPath tests/fixtures/settings.lab.… and what it printed"}
 
-From Lab 1 of [Chapter 03 — The Client and Its Coverage](../../project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/03-4.txt)); the lab's earlier steps come first.
+From Lab 1 of [Chapter 03 — The Client and Its Coverage](../../project-plans/developer-workbooks/global-secure-access/03-the-client-and-its-coverage.md), run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/gsa/03-6.txt)); the lab's earlier steps come first. `$Run` is the lab's dated run folder under `C:\FMWLabs\results`, which its first steps set, so each run keeps its own results and the kit's folder stays as you unzipped it.
 
 **Evidence this step supports:** NIST SP 800-53 Rev. 5 CM-6, CM-7, SI-4; FedRAMP 20x KSIs KSI-MLA-EVC, KSI-CNA-RNT (step `CLIENT` in [requirements.json](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/global-secure-access/config/requirements.json)).
 

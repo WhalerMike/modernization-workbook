@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Books 02, 04"
 series-order: 5
 review-status: approved
-reviewed-sha256: c2dd52b252467b6a87900cdea8417fa7413c9d80f1ecd816661e1583f6fc8c74
+reviewed-sha256: 290c3bf3d015caef8f4c7d3d31a21565c686d24bcd43f06f70a0fbda60e9a643
 last-reviewed: 2026-11-25
 ---
 # Module 5: Cut the privilege of service principals {.unnumbered}
@@ -339,7 +339,7 @@ Written to C:\FMWLabs\results\non-person-identity-05-least-privilege\lab1\<run>\
     It prints a line for each test file, with the time it took, then this last line:
 
     ```text
-    Tests Passed: 555, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
+    Tests Passed: 564, Failed: 0, Skipped: 0, Inconclusive: 0, NotRun: 0
     ```
 
 Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:

@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 12"
 series-order: 4
 review-status: approved
-reviewed-sha256: 61612ae1440b8d22832ae5e7d7463e786c51f777a692ebfd18ec13045f99192c
-last-reviewed: 2026-11-22
+reviewed-sha256: 4d0a447fd50b8e21d28ff76e2ae506612cd4e07a9e8cb92a36dad366f8128b21
+last-reviewed: 2026-11-25
 ---
 # Module 4: Hunting, detections as code and identity signals {.unnumbered}
 
@@ -62,7 +62,7 @@ Run the developer workbook's [Chapter 06, Detections as Code](../../project-plan
 
 - **What you'll see:** the detection check holds a rule with automated isolation, tests each rule over its known-bad and known-good windows, and plans a create and an update by its SHA-256; the signals check puts an emergency access account at the top of the cross-source list.
 - **What to look for:** each finding names the device, rule, incident or group, and the run folder's manifest records the call and its permission. Compare what you see with this module's units.
-- **Back-out:** each lab ends by deleting `out`.
+- **Back-out:** nothing to delete. Each lab leaves the kit's folder as you unzipped it and keeps its results in a dated run folder under `C:\FMWLabs\results`, so you can run it again and compare.
 
 ## Exercise: Lab 2, a test tenant {#xdr-m4-lab-2}
 *Not timed. Not run by the authors. Never production.*

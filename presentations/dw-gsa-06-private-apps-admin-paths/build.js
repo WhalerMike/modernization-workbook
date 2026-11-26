@@ -112,8 +112,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the connectors, group by group",
       body: [
-        { terminal: "06-3", lines: "3-8" },
-        { terminal: "06-4", lines: "2-5,9-12,16-17" },
+        { terminal: "06-5", lines: "3-8" },
+        { terminal: "06-6", lines: "2-5,9-12,16-17" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 06, “Lab 1: fixtures, no tenant,” steps 3–4.",
       say: `Lab 1, after listing the reads and collecting the pilot. Step 3 reads the connectors group by group. Headquarters has two active connectors on the current version. The cloud group has one active and one inactive, and the active one is old. Step 4 runs the checks. Both connector problems fail. The Finance app is a slash sixteen on every port, assigned to a person, under an enforced policy that doesn't exclude emergency access. Because every port includes RDP, it's an administrative path too. The RDP app asks only for MFA. And Quick Access still holds two segments.`,
@@ -124,8 +124,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: the plan restores the RDP policy",
       body: [
-        { terminal: "06-5", lines: "1-3,7-8" },
-        { terminal: "06-5", lines: "9-18", label: "examples/global-secure-access  ·  the ca-update step's grant controls  ·  real output" },
+        { terminal: "06-7", lines: "1-3,7-8" },
+        { terminal: "06-7", lines: "9-18", label: "examples/global-secure-access  ·  the ca-update step's grant controls  ·  real output" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures; config/policies). Chapter 06, “Lab 1,” step 5.",
       say: `Step 5 plans the pilot and reads the administrative policy's fix. The plan has two Graph steps: the internet profile off, and a patch for the RDP policy, because the tenant's copy differs from the reviewed file. The body of that patch sets the built-in phishing-resistant authentication strength, the one ending in four, and a compliant device. That's the guide's Step 10 policy, as written. Nothing is sent: it's a dry run, and fixture mode never applies.`,
@@ -136,8 +136,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: two weeks later, every app passes",
       body: [
-        { terminal: "06-6", lines: "24,27-28,32-34,38-39,42" },
-        { terminal: "06-7" },
+        { terminal: "06-8", lines: "24,27-28,32-34,38-39,42" },
+        { terminal: "06-9" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 06, “Lab 1,” steps 6–7.",
       say: `Step 6 checks the tenant two weeks later. Finance is one host on port 443 for the pilot group, with the emergency group excluded. Both cloud connectors are active and current. The RDP policy has its strength and a compliant device. And Quick Access is empty. Every check passes. Step 7 runs this chapter's tests: four passed, none failed. Then delete the output folder.`,

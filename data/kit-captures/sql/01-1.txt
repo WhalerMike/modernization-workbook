@@ -1,15 +1,1 @@
-PS> ./Invoke-SqlEstate.ps1 -EstatePath tests/fixtures/estate/estate.json -OutputPath out/estate
-Instance Version Classification Target    EntersMigration Reason
--------- ------- -------------- ------    --------------- ------
-SQLPRD01 2022    retain                   yes             SQL Server 2022, in use
-SQLPRD02 2022    retain                   yes             SQL Server 2022, in use
-SQLLEG03 2016    consolidate    shared    at the target   SQL Server 2016 can't take Entra logins
-SQLFCI04 2019    retain                   yes             Constraint: The vendor certifies SQL Server 2019 only, through its 2027 release. Retained in place; upgrade or exception needed
-SQLOLD05 2014    retire                   no              Every database idle 400 days or more
-SQLPRD06 2025    retain                   yes             SQL Server 2025, in use; consolidation target
-SQLLEG07 2017    consolidate    dedicated at the target   Constraint (collation): GrantsTracking uses Latin1_General_CI_AS; the shared target uses SQL_Latin1_General_CP1_CI_AS.
-SQLDEV08 unknown review                   no              No version: discovery found the instance but nothing read it
-
-Wrote 2 files and manifest.json to out/estate
-Evidence for ESTATE (Classify every instance retain, consolidate, retire or review): CM-8; KSI-PIY-GIV
-Denominator: 8 instances (consolidate 2, retain 4, retire 1, review 1)
+PS> Set-Location C:\FMWLabs\sql-server-identity-code\sql-server-identity

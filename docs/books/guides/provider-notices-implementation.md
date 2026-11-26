@@ -12,8 +12,8 @@ research-status: draft
 research-type: implementation guide
 research-book: "Book 15"
 review-status: approved
-reviewed-sha256: 1f6ac9824366d3430af6d59091a3f692747727a77fb332195d97609274612548
-last-reviewed: 2026-11-23
+reviewed-sha256: 37dad73c605886f0268972ac5b8c538c98ceff668f14af1d20b04eb5793e4938
+last-reviewed: 2026-11-26
 ---
 # Provider Notices: An Implementation Guide
 
@@ -21,7 +21,7 @@ last-reviewed: 2026-11-23
 
 ::: {.callout-note}
 ## In this guide
-How an agency collects the notices its cloud providers send about its own tenant, account, tenancy or project, gives each one that needs action an owner, and tracks it to closure, as gated steps an operator can run. First, how to read the guide and its checks, the track at a glance, prerequisites, a comparison of the five providers and the path on one page. Then seven gates: Azure Service Health, Microsoft 365, Oracle Cloud Infrastructure, AWS Health and Google Cloud, one per provider; routing notices to owners as Ticket-to-Machine tasks; and the digest and evidence. Each gate carries its federal requirements with their KSIs, the evidence the ISSO keeps, government-cloud availability, an interim path, a **Validate** step that names the kit's read-only check, a *Try it* box and rollback. Then the dangers, the evidence, rollback, a checklist and what couldn't be verified.
+How an agency collects the notices its cloud providers send about its own tenant, account, tenancy or project, gives each one that needs action an owner, and tracks it to closure, as gated steps an operator can run. First, how to read the guide and its checks, what the collector is and where it runs, the track at a glance, prerequisites, a comparison of the five providers and the path on one page. Then seven gates: Azure Service Health, Microsoft 365, Oracle Cloud Infrastructure, AWS Health and Google Cloud, one per provider; routing notices to owners as Ticket-to-Machine tasks; and the digest and evidence. Each gate carries its federal requirements with their KSIs, the evidence the ISSO keeps, government-cloud availability, an interim path, a **Validate** step that names the kit's read-only check, a *Try it* box and rollback. Then the dangers, the evidence, rollback, a checklist and what couldn't be verified.
 :::
 
 ## Watch or download
@@ -79,6 +79,14 @@ Every gate's hands-on work is a lab in the developer workbook [*Building Provide
 :::
 
 <!-- labs:end -->
+
+## What the collector is and where it runs {#pn-where-it-runs}
+
+**What it is.** The collector is the workbook's own code: the PowerShell entry scripts and module in the provider notices kit. It isn't a Microsoft, Oracle, AWS or Google product or service. Each provider creates its notices and keeps the record of them: Azure Service Health is Azure's record of Azure's events, for example. The kit only reads that record, through the provider's own API or CLI, as a reader that holds only the read role. From what it reads, the kit builds the agency's own copy: one notice record, the routing, the digest and the evidence.
+
+**Who owns it.** The agency copies the kit, reviews it, runs it and maintains its copy. Nothing runs on the workbook's side, and the routing, settings, notices and digests never leave the agency's boundary.
+
+**Where it runs.** In test and production, the kit runs once a week as a Windows scheduled task on a server the agency manages, inside its boundary. That server is a member server, not a domain controller and not a person's workstation. The task runs as a group managed service account (gMSA) that holds no role in any cloud. Each provider's reader signs in from a credential folder on that server, which only the gMSA and the server's administrators can open ([WD-179](../../about/decision-register.md#wd-179)). The developer workbook's [Chapter 08, Step 1.7](../../project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.md#step-1.7-the-weekly-run-on-a-schedule-g7) gives the commands. An operator's workstation runs the labs and the *Try it* boxes only *(design guidance)*.
 
 ## The track at a glance
 
@@ -641,7 +649,7 @@ A notice that needs action becomes a task with an owner; the rest go in the dige
 
 No KSI cites base CM-4; KSI-CMT-LMC and KSI-CMT-VTD cite CM-4(2).[^pn-ksi] CM-3 to KSI-CMT-LMC is also Book 13, Appendix A's row.
 
-**Government-cloud availability.** Routing runs on the operator's workstation or a scheduler and calls no cloud; the ServiceNow endpoint is the agency's own.
+**Government-cloud availability.** Routing runs in the weekly run on the agency's own server ([where it runs](#pn-where-it-runs)) and calls no cloud; the ServiceNow endpoint is the agency's own.
 
 **Interim path.** Before the endpoint exists, the service desk works from the dry run's `tasks/` folder and `routing.csv`, and records each task's number in the change record.
 
@@ -682,7 +690,7 @@ Day 1 writes 13 create payloads. Day 2 writes 1 create, 4 updates (two reschedul
 
 The digest is what the owners read every week; the evidence is what the ISSO keeps. The deployment runbook takes both to a test environment, then production, with the same commands and one settings file per environment.
 
-**Prerequisites.** G6. A settings file per environment, and a scheduler the agency runs; the kit doesn't register one.
+**Prerequisites.** G6. A settings file per environment. The server, the run-as gMSA and the credential folder that [where it runs](#pn-where-it-runs) describes. The kit doesn't register the scheduled task; the developer workbook's [Chapter 08, Step 1.7](../../project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.md#step-1.7-the-weekly-run-on-a-schedule-g7) does.
 
 **Steps.**
 
@@ -884,7 +892,8 @@ The kit's records support these controls; they don't by themselves decide them, 
 - **OCI CLI output keys** (camelCase or kebab-case): not shown in Oracle's CLI reference. The kit accepts both.
 - **The gcloud flags for organization events.** The REST call is verified; the kit marks the gcloud call unverified and runs it only with `-AllowUnverified`.
 - **The ServiceNow side.** The router's payload is the kit's; the endpoint that takes it is the agency's to build.
-- **The scheduler.** The kit doesn't register a schedule; rollback's step to unregister a Windows scheduled task assumes the agency used one.
+- **The scheduled task under a gMSA.** Learn lists Task Scheduler tasks among the services a gMSA can run. It shows no example of registering one, such as the `-LogonType Password` principal that Chapter 08 uses. It also doesn't say whether the gMSA needs the *Log on as a batch job* right on the server. Chapter 08's test stage proves both before production.
+- **Each reader's unattended sign-in.** The reader app's certificate for Graph and Azure, OCI's API signing key and AWS's IAM Roles Anywhere credential helper each follow their provider's documentation, but none has been run under a gMSA. Google Cloud's is not yet specified, because its gate is optional.
 - **Tenant behavior.** Nothing in this guide was run in a tenant, account, tenancy or project. The checks are fixture-tested, and every live command is unrun by the authors.
 
 ## Back to the books

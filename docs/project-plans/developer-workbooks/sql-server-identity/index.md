@@ -18,7 +18,9 @@ listing:
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
-review-status: pending
+review-status: approved
+reviewed-sha256: ab92acd8970c2c170094bd17428d1c1a9392e842792107033abf69465c3e919e
+last-reviewed: 2026-11-25
 ---
 # Building SQL Server Identity {.unnumbered}
 

@@ -7,7 +7,7 @@ research-type: training module
 research-book: "Books 02, 04"
 series-order: 11
 review-status: approved
-reviewed-sha256: 8c402eb08591eb7ad7978220921c0f83d6c14b5ac2ba0f1af35ed02eedb771f5
+reviewed-sha256: b4a86cd33d64c90b52252446f0dbe68a5f53e071dc8ca58c660d222666ceac14
 last-reviewed: 2026-11-25
 ---
 # Module 11: Deploy to test, then production {.unnumbered}
@@ -448,7 +448,7 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
              60           0           0
     ```
 
-    The tests sit outside `tests/`, so the 555 every other module's Lab 1 counts doesn't change.
+    The tests sit outside `tests/`, so the 564 every other module's Lab 1 counts doesn't change.
 
 Nothing to clean up: the kit's folder is as you unzipped it, and this run's results stay in `$Run`. List every run you've made of this lab:
 

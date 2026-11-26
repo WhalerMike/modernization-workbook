@@ -1,0 +1,6 @@
+"Server","ServiceName","DisplayName","LogonAccount","AccountType","AccountDomain","SamAccountName","StartMode","State","PathName","Protocol"
+"app01.corp.contoso.example","HRSync","HR Sync","CORP\svc-hrsync","Domain","CORP","svc-hrsync","Auto","Running","D:\Apps\HRSync\sync.exe","WSMan"
+"app02.corp.contoso.example","HRSync","HR Sync","svc-hrsync@corp.contoso.example","Domain","corp.contoso.example","svc-hrsync","Auto","Running","D:\Apps\HRSync\sync.exe","DCOM"
+"sql01.corp.contoso.example","MSSQLSERVER","SQL Server (MSSQLSERVER)","CORP\svc-sqlprod","Domain","CORP","svc-sqlprod","Auto","Running","C:\Program Files\Microsoft SQL Server\sqlservr.exe","WSMan"
+"web01.corp.contoso.example","WebAgent","Web Agent","CORP\gmsa-web$","ManagedServiceAccount","CORP","gmsa-web$","Auto","Running","D:\Apps\Web\agent.exe","WSMan"
+"web01.corp.contoso.example","W3SVC","World Wide Web Publishing Service","LocalSystem","LocalSystem","","","Auto","Running","C:\Windows\system32\svchost.exe -k iissvcs","WSMan"

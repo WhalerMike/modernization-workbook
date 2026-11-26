@@ -116,8 +116,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: built right, but not ready",
       body: [
-        { terminal: "05-3", lines: "2-7,9" },
-        { terminal: "05-4" },
+        { terminal: "05-5", lines: "2-7,9" },
+        { terminal: "05-6" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 05, “Lab 1: fixtures, no tenant,” steps 3–4.",
       say: `Lab 1, after listing the reads and collecting the pilot tenant. Step 3 checks the compliant network policy. It's built right: the location, the block, both exclusions, no Private Access app. And it has been in report-only for ten business days. But it isn't ready: the service carried three report-only failures. Step 4 reads the guide's query to see why that matters. Forty-one failures came from users off the service, which is exactly what the policy is for. The three with through equal true are defects: users on the service who would have been blocked.`,
@@ -128,8 +128,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: a partner nobody registered",
       body: [
-        { terminal: "05-5", lines: "2-6,8" },
-        { terminal: "05-6", lines: "1-3,8-9" },
+        { terminal: "05-7", lines: "2-6,8" },
+        { terminal: "05-8", lines: "1-3,8-9" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 05, “Lab 1,” steps 5–6.",
       say: `Step 5 checks the tenant restrictions. The default blocks, and tagging is on. But one partner tenant is allowed with no register entry, and the block query shows a tenant that isn't a registered partner, listed for the weekly review. Step 6 plans ring 1, whose desired state wants the compliant network policy enforced. Without the enforce switch, the plan leaves it report-only and says so on a manual line. A reviewer passes the switch only once step 3's check is clean, which it isn't yet.`,
@@ -140,8 +140,8 @@ require("../_build/devwb.js")({
     {
       part: "How", title: "Lab 1: two weeks later, enforced and clean",
       body: [
-        { terminal: "05-7", lines: "24-34,36" },
-        { terminal: "05-8" },
+        { terminal: "05-9", lines: "24-34,36" },
+        { terminal: "05-10" },
       ],
       sources: "Sources: examples/global-secure-access (fictional fixtures). Chapter 05, “Lab 1,” steps 7–8.",
       say: `Step 7 checks the same policy two weeks later, after ring 1's collection. It's enforced, and the check that only applies to an enforced policy passes: signaling is on. The unregistered partner is gone, and the blocked tenant is still listed for review, which is its job. Step 8 runs this chapter's tests: five passed, none failed. Then delete the output folder.`,

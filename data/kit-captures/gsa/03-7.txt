@@ -1,4 +1,9 @@
-PS> Invoke-Pester -Path tests/GlobalSecureAccess.Tests.ps1 -FullNameFilter 'Chapter 03*' -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-          3           0
+PS> $s = Read-GsaSettings -Path tests/fixtures/settings.lab.json
+PS> $s.ring = 'ring2'
+PS> Test-GsaClient -Collection (Read-GsaCollection -Path "$Run/client") -Inputs (Read-GsaInputs -Path tests/fixtures/pilot/inputs) -Settings $s -AsOf 2026-11-16 | Where-Object Id -EQ 'GSA-CLI-06' | Format-Table Object, Status, Detail
+Object             Status Detail
+------             ------ ------
+device PC-PILOT-01 Pass   4 of 4 hardening values set
+device PC-PILOT-02 Fail   0 of 4 hardening values set
+device PC-PILOT-03 Fail   0 of 4 hardening values set
+device PC-PILOT-04 Fail   0 of 4 hardening values set

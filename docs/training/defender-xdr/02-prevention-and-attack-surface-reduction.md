@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 12"
 series-order: 2
 review-status: approved
-reviewed-sha256: a36ac9b172394026893f7cbe4cf8de3bdceccccc04d9c69faff5dd2a490b7169
-last-reviewed: 2026-11-22
+reviewed-sha256: 38306656f886dd8cff1258e04eaef9d7fa727aa6c0d63e3590b473f9130046c0
+last-reviewed: 2026-11-25
 ---
 # Module 2: Prevention and Attack Surface Reduction {.unnumbered}
 
@@ -70,7 +70,7 @@ Run the developer workbook's [Chapter 03, Prevention Through Audit](../../projec
 
 - **What you'll see:** the prevention check finds tamper protection off, network protection off and a file server with datagram processing on; the ASR check says which rules each ring can move, holds one with an audit hit nobody decided, refuses a rule planned in warn that doesn't support it, and prints the OMA-URI value that moves ring 1.
 - **What to look for:** each finding names the device, rule, incident or group, and the run folder's manifest records the call and its permission. Compare what you see with this module's units.
-- **Back-out:** each lab ends by deleting `out`.
+- **Back-out:** nothing to delete. Each lab leaves the kit's folder as you unzipped it and keeps its results in a dated run folder under `C:\FMWLabs\results`, so you can run it again and compare.
 
 ## Exercise: Lab 2, a test tenant {#xdr-m2-lab-2}
 *Not timed. Not run by the authors. Never production.*

@@ -17,7 +17,9 @@ listing:
     sort: "series-order asc"
     sort-ui: false
     filter-ui: false
-review-status: pending
+review-status: approved
+reviewed-sha256: 15be01f15dc14df17a524931b04c516cffa376b68bdeaab582611f6cbe3bb7ee
+last-reviewed: 2026-11-25
 ---
 # Learning path: Data Platform and SQL Server Identity {.unnumbered}
 

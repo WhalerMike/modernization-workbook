@@ -1,3 +1,12 @@
-PS> Import-Module ./powershell/DailyChecks/DailyChecks.psm1
-PS> (Read-DcJson -Path tests/fixtures/exported/edited.workbook.json).fallbackResourceIds
-/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-contoso-sentinel/providers/Microsoft.OperationalInsights/workspaces/law-contoso-sentinel
+PS> ./Test-DcWorkbook.ps1
+DC-V-01   1 checked  pass
+DC-V-02   1 checked  pass
+DC-V-03  10 checked  pass
+DC-V-04  19 checked  pass
+DC-V-05  19 checked  pass
+DC-V-06  12 checked  pass
+DC-V-07  13 checked  pass
+DC-V-08  12 checked  pass
+DC-V-09   1 checked  pass
+DC-V-10   1 checked  pass
+All 89 checks pass

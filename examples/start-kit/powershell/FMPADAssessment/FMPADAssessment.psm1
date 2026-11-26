@@ -1423,6 +1423,232 @@ function Get-FMPCertificateMappingReport {
     Write-Verbose "Certificate mapping report written to $pkiPath with $($findings.Count) findings."
 }
 
+function Read-FMPDerTlv {
+    # One DER tag-length-value at $Offset: the tag, where its content starts, and its length.
+    param([Parameter(Mandatory)][byte[]]$Bytes, [Parameter(Mandatory)][int]$Offset)
+    $tag = $Bytes[$Offset]
+    $len = [int]$Bytes[$Offset + 1]
+    $start = $Offset + 2
+    if ($len -band 0x80) {
+        $n = $len -band 0x7f
+        $len = 0
+        for ($i = 0; $i -lt $n; $i++) { $len = ($len * 256) + $Bytes[$start + $i] }
+        $start += $n
+    }
+    [pscustomobject]@{ Tag = $tag; Start = $start; Length = $len; End = $start + $len }
+}
+
+function ConvertFrom-FMPDerTime {
+    # UTCTime (0x17, YYMMDDHHMMSSZ; years 50-99 are 19xx) or GeneralizedTime (0x18), as UTC.
+    param([Parameter(Mandatory)][byte[]]$Bytes, [Parameter(Mandatory)]$Tlv)
+    $s = [System.Text.Encoding]::ASCII.GetString($Bytes, $Tlv.Start, $Tlv.Length)
+    $fmt = if ($Tlv.Tag -eq 0x17) { 'yyMMddHHmmss\Z' } else { 'yyyyMMddHHmmss\Z' }
+    $d = [datetime]::ParseExact($s, $fmt, [System.Globalization.CultureInfo]::InvariantCulture,
+        [System.Globalization.DateTimeStyles]::AdjustToUniversal -bor [System.Globalization.DateTimeStyles]::AssumeUniversal)
+    if ($Tlv.Tag -eq 0x17 -and $d.Year -ge 2050) { $d = $d.AddYears(-100) }
+    [datetime]::SpecifyKind($d, [DateTimeKind]::Utc)
+}
+
+function ConvertFrom-FMPCrl {
+    # A CRL (DER, or PEM with BEGIN X509 CRL) read field by field: issuer, this and next update,
+    # the number of revoked entries, and whether it's a delta CRL. The signature isn't checked.
+    param([Parameter(Mandatory)][byte[]]$Bytes)
+    $text = [System.Text.Encoding]::ASCII.GetString($Bytes)
+    if ($text -match '-----BEGIN X509 CRL-----([\s\S]+?)-----END X509 CRL-----') {
+        $Bytes = [Convert]::FromBase64String(($Matches[1] -replace '\s', ''))
+    }
+    $outer = Read-FMPDerTlv -Bytes $Bytes -Offset 0
+    $tbs = Read-FMPDerTlv -Bytes $Bytes -Offset $outer.Start
+    if ($outer.Tag -ne 0x30 -or $tbs.Tag -ne 0x30) { throw 'Not a CRL: expected a DER SEQUENCE.' }
+    $p = Read-FMPDerTlv -Bytes $Bytes -Offset $tbs.Start
+    if ($p.Tag -eq 0x02) { $p = Read-FMPDerTlv -Bytes $Bytes -Offset $p.End }       # skip the version; $p is the signature algorithm
+    $issuerStart = $p.End
+    $p = Read-FMPDerTlv -Bytes $Bytes -Offset $issuerStart                          # the issuer Name, a whole TLV
+    $issuerBytes = [byte[]]::new($p.End - $issuerStart)
+    [Array]::Copy($Bytes, $issuerStart, $issuerBytes, 0, $issuerBytes.Length)
+    $issuer = [System.Security.Cryptography.X509Certificates.X500DistinguishedName]::new($issuerBytes).Name
+    $t = Read-FMPDerTlv -Bytes $Bytes -Offset $p.End
+    $thisUpdate = ConvertFrom-FMPDerTime -Bytes $Bytes -Tlv $t
+    $nextUpdate = $null
+    $revoked = 0
+    $delta = $false
+    $q = if ($t.End -lt $tbs.End) { Read-FMPDerTlv -Bytes $Bytes -Offset $t.End } else { $null }
+    if ($q -and ($q.Tag -eq 0x17 -or $q.Tag -eq 0x18)) {
+        $nextUpdate = ConvertFrom-FMPDerTime -Bytes $Bytes -Tlv $q
+        $q = if ($q.End -lt $tbs.End) { Read-FMPDerTlv -Bytes $Bytes -Offset $q.End } else { $null }
+    }
+    if ($q -and $q.Tag -eq 0x30) {
+        $o = $q.Start
+        while ($o -lt $q.End) { $e = Read-FMPDerTlv -Bytes $Bytes -Offset $o; $revoked++; $o = $e.End }
+        $q = if ($q.End -lt $tbs.End) { Read-FMPDerTlv -Bytes $Bytes -Offset $q.End } else { $null }
+    }
+    if ($q -and $q.Tag -eq 0xA0) {
+        # Extensions: the delta CRL indicator is OID 2.5.29.27 (DER 06 03 55 1D 1B).
+        for ($i = $q.Start; $i -lt $q.End - 4; $i++) {
+            if ($Bytes[$i] -eq 0x06 -and $Bytes[$i + 1] -eq 0x03 -and $Bytes[$i + 2] -eq 0x55 -and $Bytes[$i + 3] -eq 0x1D -and $Bytes[$i + 4] -eq 0x1B) { $delta = $true }
+        }
+    }
+    [pscustomobject]@{ Issuer = $issuer; ThisUpdate = $thisUpdate; NextUpdate = $nextUpdate; RevokedCount = $revoked; Delta = $delta }
+}
+
+function Get-FMPCrlReport {
+    <#
+    .SYNOPSIS
+        CRL freshness and size (Book 07, Chapters 07 and 08): each CRL's issuer, this and next
+        update, the hours left before it goes stale, its size against Entra ID's limit for
+        interactive sign-in, and how many certificates it revokes.
+    .DESCRIPTION
+        Reads CRL files you've downloaded (DER or PEM), so it never fetches anything itself.
+        -AsOf fixes the time the CRLs are judged against. Findings:
+          CRL-EXPIRED     the CRL is past its next update, so relying parties that check it fail
+          CRL-NEAR-NEXT   fewer than -WarnHours hours left before its next update
+          CRL-NO-NEXT     the CRL has no next update
+          CRL-TOO-LARGE   larger than -MaxBytes (20 MB, Entra ID's limit for interactive sign-in in
+                          the commercial cloud, which includes GCC)
+          CRL-UNREADABLE  the file isn't a CRL the kit can read
+    .OUTPUTS
+        CRL\CrlReport.json, CRL\CrlReport.csv
+    .EXAMPLE
+        Get-FMPCrlReport -OutputPath .\out\run1 -Path .\tests\fixtures\crl\*.crl -AsOf '2026-11-20T12:00:00Z'
+    #>
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string]$OutputPath,
+        [Parameter(Mandatory)][string[]]$Path,
+        [datetime]$AsOf = (Get-Date),
+        [int]$WarnHours = 24,
+        [long]$MaxBytes = 20MB
+    )
+    $root = Resolve-FMPOutputRoot -OutputPath $OutputPath
+    $dir = Initialize-FMPPath -Path (Join-Path $root 'CRL')
+    $asOfUtc = $AsOf.ToUniversalTime()
+    $files = @(foreach ($p in $Path) { Get-ChildItem -Path $p -File -ErrorAction Stop }) | Sort-Object Name
+    $rows = @(); $findings = @()
+    foreach ($f in $files) {
+        $size = $f.Length
+        try { $c = ConvertFrom-FMPCrl -Bytes ([System.IO.File]::ReadAllBytes($f.FullName)) }
+        catch {
+            $findings += [pscustomobject]@{ Finding = 'CRL-UNREADABLE'; File = $f.Name; Detail = $_.Exception.Message }
+            continue
+        }
+        $hours = if ($c.NextUpdate) { [int][math]::Floor(($c.NextUpdate - $asOfUtc).TotalHours) } else { $null }
+        $rows += [pscustomobject]@{
+            File = $f.Name; Issuer = $c.Issuer; Delta = $c.Delta
+            ThisUpdate = $c.ThisUpdate.ToString('o'); NextUpdate = $(if ($c.NextUpdate) { $c.NextUpdate.ToString('o') })
+            HoursToNextUpdate = $hours; RevokedCount = $c.RevokedCount; SizeBytes = $size
+        }
+        $add = { param($k, $d) [pscustomobject]@{ Finding = $k; File = $f.Name; Detail = $d } }
+        if (-not $c.NextUpdate) { $findings += & $add 'CRL-NO-NEXT' 'The CRL has no next update.' }
+        elseif ($hours -le 0) { $findings += & $add 'CRL-EXPIRED' "The CRL's next update passed $([math]::Abs($hours)) hours ago: relying parties that check it fail." }
+        elseif ($hours -lt $WarnHours) { $findings += & $add 'CRL-NEAR-NEXT' "$hours hours left before the CRL's next update." }
+        if ($size -gt $MaxBytes) { $findings += & $add 'CRL-TOO-LARGE' "$size bytes, over the $MaxBytes-byte limit." }
+    }
+    $doc = [ordered]@{ AssessmentTimestamp = (Get-Date -Format 'o'); AsOf = $asOfUtc.ToString('o'); WarnHours = $WarnHours; MaxBytes = $MaxBytes; Crls = @($rows); Findings = @($findings) }
+    Write-FMPJson -InputObject $doc -Path (Join-Path $dir 'CrlReport.json') -Depth 5
+    Write-FMPCsv -InputObject @($rows) -Path (Join-Path $dir 'CrlReport.csv')
+    Write-Verbose "CRL report written to $dir with $($findings.Count) findings."
+}
+
+function Get-FMPIssuedCertificateReport {
+    <#
+    .SYNOPSIS
+        What each CA's database still holds (Book 07, Chapter 08): unexpired certificates per
+        template, those expiring within -WithinDays, and the last expiry, which decides how long
+        a retired CA's CRL and AIA endpoints must keep serving.
+    .DESCRIPTION
+        Reads one certutil -view export per CA from -ExportFolder, named <CA name>.csv, made by the
+        CA administrator with:
+          certutil -view -restrict "Disposition=20" -out "RequestID,RequesterName,CertificateTemplate,NotAfter" csv
+        Column names may be certutil's display names (Issued Request ID, Requester Name,
+        Certificate Template, Certificate Expiration Date) or the schema names. A template shown as
+        an OID followed by its name is reported by name. With -FinalCrlPath, each CRL whose issuer
+        names a CA is checked against that CA's last expiry (decommissioning step 4): pass only the
+        final CRL of a CA you're retiring, since a working CA's regular CRL is always shorter. Findings:
+          UNEXPIRED           the CA still has unexpired certificates; it can't be retired yet
+          EXPIRING            certificates expire within -WithinDays
+          FINAL-CRL-SHORT     the CRL's next update comes before the CA's last certificate expires
+    .OUTPUTS
+        PKI\IssuedCertificates.json, PKI\IssuedCertificatesByTemplate.csv
+    .EXAMPLE
+        Get-FMPIssuedCertificateReport -OutputPath .\out\run1 -Domain contoso.example -ExportFolder .\tests\fixtures\issued-certificates -AsOf '2026-11-20T12:00:00Z'
+    #>
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string]$OutputPath,
+        [Parameter(Mandatory)][string]$Domain,
+        [Parameter(Mandatory)][string]$ExportFolder,
+        [datetime]$AsOf = (Get-Date),
+        [int]$WithinDays = 60,
+        [string[]]$FinalCrlPath
+    )
+    $null = Resolve-FMPOutputRoot -OutputPath $OutputPath
+    $pkiPath = Get-FMPDomainPath -OutputPath $OutputPath -Domain $Domain -Area 'PKI'
+    $asOfUtc = $AsOf.ToUniversalTime()
+    $col = {
+        param($Row, [string[]]$Names)
+        foreach ($n in $Names) { $p = $Row.PSObject.Properties[$n]; if ($p) { return "$($p.Value)" } }
+        ''
+    }
+    $parseDate = {
+        param([string]$s)
+        $styles = [System.Globalization.DateTimeStyles]::AssumeLocal
+        $d = [datetime]::MinValue
+        if ([datetime]::TryParse($s, [System.Globalization.CultureInfo]::InvariantCulture, $styles, [ref]$d)) { return $d.ToUniversalTime() }
+        if ([datetime]::TryParse($s, [System.Globalization.CultureInfo]::CurrentCulture, $styles, [ref]$d)) { return $d.ToUniversalTime() }
+        $null
+    }
+    $crls = @()
+    foreach ($p in @($FinalCrlPath | Where-Object { $_ })) {
+        foreach ($f in @(Get-ChildItem -Path $p -File -ErrorAction Stop)) {
+            try { $crls += ConvertFrom-FMPCrl -Bytes ([System.IO.File]::ReadAllBytes($f.FullName)) } catch { Write-Warning "$($f.Name): $($_.Exception.Message)" }
+        }
+    }
+    $caRows = @(); $tplRows = @(); $findings = @()
+    foreach ($file in @(Get-ChildItem -Path $ExportFolder -Filter '*.csv' -File -ErrorAction Stop | Sort-Object Name)) {
+        $ca = [System.IO.Path]::GetFileNameWithoutExtension($file.Name)
+        $certs = @(foreach ($r in @(Import-Csv -LiteralPath $file.FullName)) {
+                $tpl = & $col $r @('Certificate Template', 'CertificateTemplate')
+                if ($tpl -match '^\d+(\.\d+)+\s+(.+)$') { $tpl = $Matches[2] }
+                $na = & $parseDate (& $col $r @('Certificate Expiration Date', 'NotAfter'))
+                if ($null -eq $na) { continue }
+                [pscustomobject]@{ Template = $tpl; NotAfter = $na }
+            })
+        $live = @($certs | Where-Object { $_.NotAfter -gt $asOfUtc })
+        $soon = @($live | Where-Object { $_.NotAfter -le $asOfUtc.AddDays($WithinDays) })
+        $last = if ($live) { ($live | Sort-Object NotAfter | Select-Object -Last 1).NotAfter } else { $null }
+        foreach ($g in @($live | Group-Object Template | Sort-Object Name)) {
+            $tplRows += [pscustomobject]@{
+                CAName = $ca; Template = $g.Name; Unexpired = $g.Count
+                ExpiringWithinWindow = @($g.Group | Where-Object { $_.NotAfter -le $asOfUtc.AddDays($WithinDays) }).Count
+                LastExpiry = ($g.Group | Sort-Object NotAfter | Select-Object -Last 1).NotAfter.ToString('o')
+            }
+        }
+        if ($live) {
+            $findings += [pscustomobject]@{ Finding = 'UNEXPIRED'; CAName = $ca; Detail = "$($live.Count) unexpired certificate$(if ($live.Count -ne 1) { 's' }); the last expires $($last.ToString('yyyy-MM-dd'))." }
+        }
+        if ($soon) {
+            $findings += [pscustomobject]@{ Finding = 'EXPIRING'; CAName = $ca; Detail = "$($soon.Count) certificate$(if ($soon.Count -ne 1) { 's expire' } else { ' expires' }) within $WithinDays days." }
+        }
+        $crl = $crls | Where-Object { $_.Issuer -match ('(^|, )CN=' + [regex]::Escape($ca) + '(,|$)') } | Sort-Object NextUpdate | Select-Object -Last 1
+        if ($crl -and $last -and $crl.NextUpdate -and $crl.NextUpdate -lt $last) {
+            $findings += [pscustomobject]@{ Finding = 'FINAL-CRL-SHORT'; CAName = $ca
+                Detail = "The CRL's next update, $($crl.NextUpdate.ToString('yyyy-MM-dd')), comes before the last certificate expires, $($last.ToString('yyyy-MM-dd'))." }
+        }
+        $caRows += [pscustomobject]@{
+            CAName = $ca; Issued = $certs.Count; Unexpired = $live.Count; ExpiringWithinWindow = $soon.Count
+            LastExpiry = $(if ($last) { $last.ToString('o') })
+            CrlNextUpdate = $(if ($crl -and $crl.NextUpdate) { $crl.NextUpdate.ToString('o') })
+        }
+    }
+    $doc = [ordered]@{
+        AssessmentTimestamp = (Get-Date -Format 'o'); Domain = $Domain; AsOf = $asOfUtc.ToString('o'); WithinDays = $WithinDays
+        CertificationAuthorities = @($caRows); Findings = @($findings)
+    }
+    Write-FMPJson -InputObject $doc -Path (Join-Path $pkiPath 'IssuedCertificates.json') -Depth 5
+    Write-FMPCsv -InputObject @($tplRows) -Path (Join-Path $pkiPath 'IssuedCertificatesByTemplate.csv')
+    Write-Verbose "Issued certificate report written to $pkiPath with $($findings.Count) findings."
+}
+
 function Get-FMPDerivedBuckets {
     # Sums one bucket map (name -> count) across every partition's derived data.
     param([Parameter(Mandatory)][AllowEmptyCollection()][object[]]$Parts, [Parameter(Mandatory)][string]$Key)
@@ -1596,6 +1822,38 @@ $script:FMPUserProperties = @('UserPrincipalName', 'DisplayName', 'Enabled', 'La
     'PasswordExpired', 'LockedOut', 'AccountExpirationDate', 'MemberOf', 'AdminCount', 'TrustedForDelegation', 'TrustedToAuthForDelegation',
     'AccountNotDelegated', 'msDS-AllowedToDelegateTo', 'ServicePrincipalName', 'Created', 'Modified', 'Description', 'Department', 'Title')
 
+function ConvertTo-FMPIdentityEvidence {
+    <#
+    .SYNOPSIS
+        One directory evidence record for one identity: the attributes exactly as the
+        collector read them, where and when from, with which query, and a SHA-256 of the
+        attributes so the record can be checked later.
+    .EXAMPLE
+        ConvertTo-FMPIdentityEvidence -Row $row -ObjectClass user -Domain contoso.example -Query 'Get-ADUser -Filter *'
+    #>
+    param([Parameter(Mandatory)]$Row, [string]$ObjectClass, [Parameter(Mandatory)][string]$Domain, [string]$Query)
+    $names = 'SamAccountName', 'SID', 'DistinguishedName', 'Enabled', 'Created', 'Modified', 'PasswordLastSet', 'PasswordNeverExpires',
+        'LastLogonDate', 'AdminCount', 'TrustedForDelegation', 'TrustedToAuthForDelegation', 'AccountNotDelegated', 'AllowedToDelegateTo',
+        'SPNs', 'MemberOf', 'PrincipalsAllowedToRetrieveManagedPassword', 'HostComputers', 'Description'
+    $attrs = [ordered]@{}
+    foreach ($n in $names) {
+        $v = if ($Row -is [System.Collections.IDictionary]) { if ($Row.Contains($n)) { $Row[$n] } else { $null } } elseif ($Row.PSObject.Properties[$n]) { $Row.$n } else { $null }
+        if ($null -eq $v) { continue }
+        if ($v -is [datetime]) { $v = $v.ToUniversalTime().ToString('o') }
+        elseif ($v -is [System.Collections.IEnumerable] -and $v -isnot [string]) { $v = @($v | ForEach-Object { "$_" } | Sort-Object) }
+        $attrs[$n] = $v
+    }
+    $canonical = ConvertTo-Json -InputObject $attrs -Depth 4 -Compress
+    $sha = [System.Security.Cryptography.SHA256]::Create()
+    try { $hash = -join ($sha.ComputeHash([System.Text.Encoding]::UTF8.GetBytes($canonical)) | ForEach-Object { $_.ToString('x2') }) } finally { $sha.Dispose() }
+    [pscustomobject][ordered]@{
+        IdentityId = "$($attrs['SID'])"; SamAccountName = $attrs['SamAccountName']; ObjectClass = $ObjectClass; Domain = $Domain
+        ReadAtUtc = [DateTime]::UtcNow.ToString('o'); Query = $Query; Attributes = $attrs
+        # The exact text hashed: check a record with SHA-256 over AttributesJson as UTF-8.
+        AttributesJson = $canonical; AttributesSha256 = $hash
+    }
+}
+
 function Get-FMPUserInventory {
     <#
     .SYNOPSIS
@@ -1606,7 +1864,8 @@ function Get-FMPUserInventory {
     .OUTPUTS
         UserInventory.json, PrivilegedUsers.csv, AdminCountReport.csv, ServiceAccounts.csv,
         UserDelegationReport.csv, PrivilegedDelegable.csv, UserCounts.json,
-        ServiceAccounts\MSAInventory.json, ServiceAccounts\gMSAInventory.json
+        ServiceAccounts\MSAInventory.json, ServiceAccounts\gMSAInventory.json,
+        ServiceAccounts\IdentityEvidence.json (one directory evidence record per service identity)
     .EXAMPLE
         Get-FMPUserInventory -OutputPath D:\Assessment\run1 -Domain contoso.example -StaleThresholdDays 90
     #>
@@ -1701,6 +1960,10 @@ function Get-FMPUserInventory {
                     InPrivilegedGroup = $privileged.ContainsKey($r.SID); OrphanedAdminCount = -not $privileged.ContainsKey($r.SID)
                 })
         }
+        # One directory evidence record per service identity: a user with an SPN or delegation.
+        if (@($r.SPNs).Count -gt 0 -or $r.TrustedForDelegation -or @($r.AllowedToDelegateTo).Count -gt 0) {
+            Join-FMPDerived -Acc $acc -Key 'Evidence' -Row (ConvertTo-FMPIdentityEvidence -Row $r -ObjectClass 'user' -Domain $Domain -Query "Get-ADUser -Filter * -Properties $($script:FMPUserProperties -join ',')")
+        }
         if (@($r.SPNs).Count -gt 0) {
             Join-FMPDerived -Acc $acc -Key 'Service' -Row ([pscustomobject][ordered]@{
                     SamAccountName = $r.SamAccountName; Enabled = $r.Enabled; PasswordNeverExpires = $r.PasswordNeverExpires
@@ -1719,12 +1982,18 @@ function Get-FMPUserInventory {
             @(Get-ADServiceAccount -Filter * -Server $Domain -Properties Enabled, Created, PasswordLastSet, ServicePrincipalName, PrincipalsAllowedToRetrieveManagedPassword, HostComputers -ResultPageSize (Get-FMPRunContext).PageSize -ErrorAction Stop)
         } | ForEach-Object {
             [pscustomobject][ordered]@{
-                SamAccountName = $_.SamAccountName; Enabled = $_.Enabled; Created = $_.Created; PasswordLastSet = $_.PasswordLastSet
+                SamAccountName = $_.SamAccountName; SID = "$($_.SID)"; Enabled = $_.Enabled; Created = $_.Created; PasswordLastSet = $_.PasswordLastSet
                 DistinguishedName = $_.DistinguishedName; ObjectClass = "$($_.ObjectClass)"; SPNs = @($_.ServicePrincipalName)
                 PrincipalsAllowedToRetrieveManagedPassword = @($_.PrincipalsAllowedToRetrieveManagedPassword | Where-Object { $_ })
                 HostComputers = @($_.HostComputers | Where-Object { $_ })
             }
         })
+    $evidence = @(Get-FMPDerivedRows -Parts $parts -Key 'Evidence')
+    $evidence += @($managed | ForEach-Object { ConvertTo-FMPIdentityEvidence -Row $_ -ObjectClass $_.ObjectClass -Domain $Domain -Query 'Get-ADServiceAccount -Filter * -Properties Enabled,Created,PasswordLastSet,ServicePrincipalName,PrincipalsAllowedToRetrieveManagedPassword,HostComputers' })
+    Write-FMPJson -InputObject ([ordered]@{
+            Schema = 'fmp-start-kit/identity-evidence/1'; Domain = $Domain; GeneratedUtc = (Get-Date).ToUniversalTime().ToString('o')
+            RecordCount = $evidence.Count; Records = $evidence
+        }) -Path (Join-Path $saPath 'IdentityEvidence.json') -Depth 6
     Write-FMPJson -InputObject @($managed | Where-Object ObjectClass -eq 'msDS-ManagedServiceAccount')      -Path (Join-Path $saPath 'MSAInventory.json')
     Write-FMPJson -InputObject @($managed | Where-Object ObjectClass -eq 'msDS-GroupManagedServiceAccount') -Path (Join-Path $saPath 'gMSAInventory.json')
 
@@ -2027,9 +2296,18 @@ function Get-FMPKerberosSpnMap {
         service class, with duplicates and orphans.
     .DESCRIPTION
         A duplicate SPN (on more than one object, case-insensitive) breaks Kerberos and pushes
-        clients to NTLM. An orphan is an SPN on a disabled account or one with no logon in
-        -OrphanDays (default 180), usually a decommissioned host: the same definitions as
-        the program's Spec1-D1.5 script in Book 06 Runbook R02. Default read rights.
+        clients to NTLM. An orphan is an SPN with any of these reasons, each in the Reason
+        column: Disabled (the account is disabled), NoRecentLogon (no logon in -OrphanDays,
+        default 180, or never), the same definitions as the program's Spec1-D1.5 script in
+        Book 06 Runbook R02; and HostNotFound (no computer object in the forest has the SPN's
+        host as its name or DNS host name, and DNS has no record of it either), usually a
+        decommissioned host or a retired alias. Hosts that aren't host names (kadmin/changepw,
+        the replication SPNs' GUIDs, IP addresses) aren't checked. DNS is asked with
+        Resolve-DnsName -DnsOnly, once per host, only for hosts the directory doesn't know;
+        -SkipDnsCheck leaves DNS out, and then a host missing from the directory is reported
+        with HostInDns 'not checked', not as an orphan; so is every host past -MaxDnsLookups
+        (10,000). The lookups run after each partition's directory read, never inside it, so a
+        slow resolver can't hold the ADWS enumeration open. Default read rights.
 
         Each domain is read one partition at a time, paged and retried, and every SPN row is
         streamed to disk; duplicates and counts are kept in hash tables, so memory grows with
@@ -2046,12 +2324,54 @@ function Get-FMPKerberosSpnMap {
         [string[]]$Domain,
         [string]$RootDomain,
         [int]$OrphanDays = 180,
-        [datetime]$AsOf = (Get-Date)
+        [datetime]$AsOf = (Get-Date),
+        [switch]$SkipDnsCheck,
+        [string]$DnsServer,
+        # At most this many DNS lookups (one per distinct host the directory doesn't know).
+        [int]$MaxDnsLookups = 10000
     )
     $null = Resolve-FMPOutputRoot -OutputPath $OutputPath
     if (-not $Domain) { $Domain = @((Get-ADForest).Domains) }
     if (-not $RootDomain) { $RootDomain = $Domain[0] }
     $path = Get-FMPDomainPath -OutputPath $OutputPath -Domain $RootDomain -Area 'Kerberos'
+
+    # Every computer's name and DNS host name in the domains read: a light, paged read.
+    $knownHosts = @{}
+    foreach ($d in $Domain) {
+        foreach ($p in @(Get-FMPAdPartition -Domain $d)) {
+            $names = Invoke-FMPWithRetry -Activity "SPN hosts ($d) $($p.Label)" -ScriptBlock {
+                @(Get-ADObject -LDAPFilter '(objectCategory=computer)' -SearchBase $p.SearchBase -SearchScope $p.SearchScope -Server $d -Properties dNSHostName -ResultPageSize (Get-FMPRunContext).PageSize -ErrorAction Stop |
+                        & { process { "$($_.Name)"; "$($_.dNSHostName)" } })
+            }
+            foreach ($n in $names) { if ($n) { $knownHosts[$n.ToLowerInvariant()] = $true } }
+        }
+    }
+    $dnsAvailable = (-not $SkipDnsCheck) -and (Test-FMPCommand -Name 'Resolve-DnsName')
+    $dnsCache = @{}
+    $dnsCapped = [ref]$false
+    $dnsTracker = Initialize-FMPProgress -Activity 'SPN map: DNS lookups for hosts with no computer object' -Id 3
+    $hostState = {
+        # 'Directory', 'Dns', 'NotFound', 'NotInDirectory' (DNS not asked) or $null (not a host name).
+        param([string]$h)
+        if (-not $h -or $h -eq 'changepw' -or $h -match '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}' -or $h -match '^\d{1,3}(\.\d{1,3}){3}$' -or $h.Contains(':')) { return $null }
+        $short = $h.Split('.')[0]
+        if ($knownHosts.ContainsKey($h) -or $knownHosts.ContainsKey($short)) { return 'Directory' }
+        if (-not $dnsAvailable) { return 'NotInDirectory' }
+        if (-not $dnsCache.ContainsKey($h)) {
+            if ($dnsCache.Count -ge $MaxDnsLookups) {
+                if (-not $dnsCapped.Value) { $dnsCapped.Value = $true; Write-FMPLog -Level WARN -Message "SPN map: -MaxDnsLookups ($MaxDnsLookups) reached; further hosts missing from the directory are 'not checked'" }
+                return 'NotInDirectory'
+            }
+            Step-FMPProgress -Tracker $dnsTracker
+            $dnsArgs = @{ Name = $h; DnsOnly = $true; QuickTimeout = $true; ErrorAction = 'Stop' }
+            if ($DnsServer) { $dnsArgs.Server = $DnsServer }
+            $found = $false
+            try { $found = @(Resolve-DnsName @dnsArgs | Where-Object { $_.Type -in 'A', 'AAAA', 'CNAME' }).Count -gt 0 } catch { $found = $false }
+            $dnsCache[$h] = $found
+        }
+        if ($dnsCache[$h]) { 'Dns' } else { 'NotFound' }
+    }
+
     $partsDir = Initialize-FMPPath -Path (Join-Path $path '_parts\Spns')
     $cutoff = $AsOf.ToUniversalTime().AddDays(-$OrphanDays)
 
@@ -2074,41 +2394,56 @@ function Get-FMPKerberosSpnMap {
             $tracker.Partition = $p.Label
             $partFile = Join-Path $partsDir ('{0}-{1:D4}.jsonl' -f ($d -replace '[^A-Za-z0-9.-]', '_'), $i)
             $before = $tracker.Count
-            $local = Invoke-FMPWithRetry -Activity "SPN map ($d) $($p.Label)" -ScriptBlock {
+            # The directory read comes first, with nothing slow inside it: a DNS lookup per row
+            # would hold the ADWS enumeration open. Hosts are checked once the partition is read.
+            $raw = Invoke-FMPWithRetry -Activity "SPN map ($d) $($p.Label)" -ScriptBlock {
                 $tracker.Count = $before
-                $l = @{ Rows = [System.Collections.Generic.List[object]]::new() }
-                $w = Open-FMPStream -Path $partFile
-                $n = 0
-                try {
-                    Get-ADObject -LDAPFilter '(servicePrincipalName=*)' -SearchBase $p.SearchBase -SearchScope $p.SearchScope -Server $d -ErrorAction Stop `
-                        -Properties servicePrincipalName, sAMAccountName, objectClass, userAccountControl, lastLogonTimestamp, dNSHostName -ResultPageSize (Get-FMPRunContext).PageSize |
-                        ForEach-Object {
+                $r = [System.Collections.Generic.List[object]]::new()
+                $seen = @{ n = 0 }
+                Get-ADObject -LDAPFilter '(servicePrincipalName=*)' -SearchBase $p.SearchBase -SearchScope $p.SearchScope -Server $d -ErrorAction Stop `
+                    -Properties servicePrincipalName, sAMAccountName, objectClass, userAccountControl, lastLogonTimestamp, dNSHostName -ResultPageSize (Get-FMPRunContext).PageSize |
+                    & { process {
                             $o = $_
-                            $enabled = if ($null -ne $o.userAccountControl) { -not (([int64]$o.userAccountControl -band 0x2) -eq 0x2) } else { $null }
-                            $last = if ($o.lastLogonTimestamp -and [int64]$o.lastLogonTimestamp -gt 0) { [datetime]::FromFileTimeUtc([int64]$o.lastLogonTimestamp) } else { $null }
-                            foreach ($spn in @($o.servicePrincipalName)) {
-                                $class, $rest = "$spn".Split('/', 2)
-                                $hostPart = if ($rest) { ($rest.Split('/')[0]).Split(':')[0].ToLowerInvariant() } else { $null }
-                                $row = [ordered]@{
-                                    Spn          = "$spn"
-                                    ServiceClass = $class
-                                    Host         = $hostPart
-                                    Account      = $o.sAMAccountName
-                                    AccountClass = "$(@($o.objectClass)[-1])"
-                                    Domain       = $d
-                                    Enabled      = $enabled
-                                    LastLogonUtc = if ($last) { $last.ToString('o') } else { $null }
-                                    Orphan       = ($enabled -eq $false) -or (-not $last) -or ($last -lt $cutoff)
-                                }
-                                if ($js) { $w.WriteLine($js.Serialize($row)) } else { $w.WriteLine((ConvertTo-Json -InputObject $row -Compress)) }
-                                $l.Rows.Add($row)
-                                if ((++$n % 256) -eq 0) { Step-FMPProgress -Tracker $tracker -By 256 }
-                            }
-                        }
-                } finally { Close-FMPStream $w }
-                if ($n % 256) { Step-FMPProgress -Tracker $tracker -By ($n % 256) }
-                $l
+                            $r.Add([pscustomobject]@{ Spns = @($o.servicePrincipalName); Account = $o.sAMAccountName; AccountClass = "$(@($o.objectClass)[-1])"; Uac = $o.userAccountControl; Llt = $o.lastLogonTimestamp })
+                            $seen.n += @($o.servicePrincipalName).Count
+                            if ($seen.n -ge 256) { Step-FMPProgress -Tracker $tracker -By $seen.n; $seen.n = 0 }
+                        } }
+                if ($seen.n) { Step-FMPProgress -Tracker $tracker -By $seen.n }
+                $r
             }
+            $local = @{ Rows = [System.Collections.Generic.List[object]]::new() }
+            $w = Open-FMPStream -Path $partFile
+            try {
+                foreach ($o in $raw) {
+                    $enabled = if ($null -ne $o.Uac) { -not (([int64]$o.Uac -band 0x2) -eq 0x2) } else { $null }
+                    $last = if ($o.Llt -and [int64]$o.Llt -gt 0) { [datetime]::FromFileTimeUtc([int64]$o.Llt) } else { $null }
+                    foreach ($spn in $o.Spns) {
+                        $class, $rest = "$spn".Split('/', 2)
+                        $hostPart = if ($rest) { ($rest.Split('/')[0]).Split(':')[0].ToLowerInvariant() } else { $null }
+                        $state = & $hostState $hostPart
+                        $reasons = @()
+                        if ($enabled -eq $false) { $reasons += 'Disabled' }
+                        if ((-not $last) -or ($last -lt $cutoff)) { $reasons += 'NoRecentLogon' }
+                        if ($state -eq 'NotFound') { $reasons += 'HostNotFound' }
+                        $row = [ordered]@{
+                            Spn          = "$spn"
+                            ServiceClass = $class
+                            Host         = $hostPart
+                            Account      = $o.Account
+                            AccountClass = $o.AccountClass
+                            Domain       = $d
+                            Enabled      = $enabled
+                            LastLogonUtc = if ($last) { $last.ToString('o') } else { $null }
+                            HostInDirectory = if ($null -eq $state) { $null } else { $state -eq 'Directory' }
+                            HostInDns    = switch ($state) { 'Dns' { $true } 'NotFound' { $false } 'NotInDirectory' { 'not checked' } default { $null } }
+                            Orphan       = $reasons.Count -gt 0
+                            Reason       = $reasons -join '; '
+                        }
+                        if ($js) { $w.WriteLine($js.Serialize($row)) } else { $w.WriteLine((ConvertTo-Json -InputObject $row -Compress)) }
+                        $local.Rows.Add($row)
+                    }
+                }
+            } finally { Close-FMPStream $w }
             # Merged only once the partition has succeeded, so a retry never counts twice.
             foreach ($row in $local.Rows) {
                 $spnCount++
@@ -2133,6 +2468,7 @@ function Get-FMPKerberosSpnMap {
         $null = Complete-FMPProgress -Tracker $tracker
     }
 
+    if ($dnsCache.Count) { $null = Complete-FMPProgress -Tracker $dnsTracker -Note "$(@($dnsCache.Values | Where-Object { -not $_ }).Count) not found" }
     $dupes = @(foreach ($k in ($holders.Keys | Sort-Object)) {
             $h = $holders[$k]
             if ($h -isnot [string]) {
@@ -2150,6 +2486,14 @@ function Get-FMPKerberosSpnMap {
         UserAccountSpnCount = $userSpns
         DuplicateCount      = $dupes.Count
         OrphanCount         = $orphans.Count
+        OrphansByReason     = [ordered]@{
+            Disabled      = @($orphans | Where-Object { $_.Reason -match 'Disabled' }).Count
+            NoRecentLogon = @($orphans | Where-Object { $_.Reason -match 'NoRecentLogon' }).Count
+            HostNotFound  = @($orphans | Where-Object { $_.Reason -match 'HostNotFound' }).Count
+        }
+        HostsCheckedInDns   = $dnsCache.Count
+        DnsLookupsCapped    = $dnsCapped.Value
+        DnsChecked          = $dnsAvailable
         ByServiceClass      = $classRows
     }
     Write-FMPJson -InputObject $doc -Path (Join-Path $path 'KerberosSpnSummary.json') -Depth 5
@@ -2441,6 +2785,7 @@ function Get-FMPStartKitSummary {
     $dhcp = if ($forestDir) { Read-FMPJsonFile (Join-Path (Join-Path $forestDir.FullName 'DHCP') 'DHCPInventory.json') } else { $null }
     $schema = if ($forestDir) { Read-FMPJsonFile (Join-Path (Join-Path $forestDir.FullName 'Schema') 'SchemaExtensions.json') } else { $null }
     $sql = Read-FMPJsonFile (Join-Path (Join-Path $root 'SQL') 'SqlEstateSummary.json')
+    $svc = Read-FMPJsonFile (Join-Path (Join-Path $root 'ServerServices') 'ServerServiceSummary.json')
     $nps = Read-FMPJsonFile (Join-Path (Join-Path $root 'NPS') 'NpsSummary.json')
     $tx = Read-FMPJsonFile (Join-Path (Join-Path $root 'transaction-profiles') 'TransactionSummary.json')
     $txRead = $tx -and $tx.Status -eq 'Read'
@@ -2505,6 +2850,9 @@ function Get-FMPStartKitSummary {
         PrivilegedDelegable = & $sumOrNc @($domainDirs | ForEach-Object { $p = Join-Path (Join-Path $_.FullName 'Objects') 'PrivilegedDelegable.csv'; if (Test-Path -LiteralPath $p) { @(Read-FMPCsvFile $p).Count } })
         SQLInstances       = if ($sql) { $sql.InstanceCount } else { $nc }
         SQLHosts           = if ($sql) { $sql.HostCount } else { $nc }
+        ServiceInventoryServers     = if ($svc) { $svc.ServersRead } else { $nc }
+        ServiceInventoryUnreachable = if ($svc) { $svc.ServersUnreachable } else { $nc }
+        DomainAccountsRunningServices = if ($svc) { $svc.DomainServiceAccounts } else { $nc }
         SQLUnconstrainedDelegation = if ($null -ne $sqlRows -and $haveComputers -and $haveUsers) { @($sqlUc).Count } else { $nc }
         NPSServers         = if ($nps) { $nps.NpsServers } else { $nc }
         NPSServersRead     = if ($nps) { $nps.NpsServersRead } else { $nc }
@@ -2565,6 +2913,8 @@ function Get-FMPStartKitSummary {
         UnconstrainedDelegationAccounts = 'User and service accounts with unconstrained delegation'
         PrivilegedDelegable = 'Privileged users whose credentials can be delegated (not sensitive, not in Protected Users)'
         SchemaVersion = 'Schema version'; SQLInstances = 'SQL Server instances'; SQLHosts = 'SQL Server hosts'
+        ServiceInventoryServers = 'Servers whose services were read'; ServiceInventoryUnreachable = 'Servers whose services could not be read'
+        DomainAccountsRunningServices = 'Domain and managed service accounts running a service on a server read'
         SQLUnconstrainedDelegation = 'SQL Server instances whose host or service account has unconstrained delegation'
         NPSServers = 'NPS servers (RAS and IAS Servers members and named)'; NPSServersRead = 'NPS servers whose configuration was read'
         RADIUSClients = 'RADIUS clients (unique addresses)'; NetworkPolicies = 'NPS network policies (all servers)'
@@ -2623,5 +2973,5 @@ Export-ModuleMember -Function @(
     'Export-FMPGPOSettings', 'Get-FMPDNSAssessment', 'Get-FMPPKIAssessment', 'Get-FMPComputerInventory',
     'Get-FMPUserInventory', 'Get-FMPGroupInventory', 'Get-FMPTrustMap', 'Get-FMPSchemaExtensions', 'Get-FMPDHCPInventory',
     'Get-FMPKerberosSpnMap', 'Get-FMPLdapBindingEvent', 'Invoke-FMPADAssessment', 'Compare-FMPAssessments',
-    'Get-FMPTemplateClassification', 'Get-FMPCAPublicationReview', 'Get-FMPCertificateMappingReport', 'Get-FMPStartKitSummary'
+    'Get-FMPTemplateClassification', 'Get-FMPCAPublicationReview', 'Get-FMPCertificateMappingReport', 'Get-FMPCrlReport', 'Get-FMPIssuedCertificateReport', 'Get-FMPStartKitSummary'
 )

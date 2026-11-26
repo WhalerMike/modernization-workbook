@@ -1,1 +1,5 @@
-PS> Remove-Item -Recurse -Force out
+PS> Add-Content -Path "$Run/evidence/runs/0002-coverage/tickets.csv" -Value '"edited after it was recorded"'
+PS> ./Invoke-XdrEvidence.ps1 -EvidencePath "$Run/evidence" -Check
+SUMS               Fail  runs/0002-coverage/tickets.csv changed
+CHAIN              Fail  runs/0002-coverage/tickets.csv doesn't match 0002-coverage.json
+(exit code 1)

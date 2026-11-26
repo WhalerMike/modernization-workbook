@@ -1,8 +1,1 @@
-PS> Import-Module ./powershell/AzureSecurity/AzureSecurity.psm1
-PS> Get-AzsRequiredRole -Area baseline | ForEach-Object { "{0,-26} {1,-28} verified: {2}" -f $_.Call, $_.Role, $_.Verified }
-arg-subscriptions          Reader                       verified: True
-arg-platform-resources     Reader                       verified: True
-arg-policy-assignments     Reader                       verified: True
-rest-hierarchy-settings    Reader (tenant root group)   verified: True
-rest-defender-pricings     Reader                       verified: True
-rest-diagnostic-settings   Reader                       verified: True
+PS> Set-Location C:\FMWLabs\azure-security-code\azure-security

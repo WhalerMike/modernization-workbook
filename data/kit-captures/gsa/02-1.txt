@@ -1,16 +1,1 @@
-PS> Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
-PS> Get-GsaRequiredPermission -Area baseline | Format-Table
-Call                    Method Permission                                                                    Beta Verified
-----                    ------ ----------                                                                    ---- --------
-forwarding-profiles     GET    NetworkAccess.Read.All                                                        True     True
-filtering-profiles      GET    NetworkAccess.Read.All                                                        True     True
-filtering-policies      GET    NetworkAccess.Read.All                                                        True     True
-ca-signaling            GET    NetworkAccess.Read.All                                                        True     True
-tenant-tagging          GET    NetworkAccess.Read.All                                                        True     True
-connector-groups        GET    Directory.ReadWrite.All                                                       True     True
-connector-group-members GET    Directory.ReadWrite.All                                                       True     True
-ca-policies             GET    Policy.Read.All                                                              False     True
-named-locations         GET    Policy.Read.All                                                               True     True
-trv2-default            GET    Policy.Read.All                                                               True     True
-trv2-partners           GET    Policy.Read.All                                                               True    False
-diagnostic-settings     GET    Security Administrator (Microsoft Entra role), as the guide's Step 12.1 uses False     True
+PS> Set-Location C:\FMWLabs\global-secure-access-code\global-secure-access

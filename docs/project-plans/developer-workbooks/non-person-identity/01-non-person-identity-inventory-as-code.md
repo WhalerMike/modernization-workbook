@@ -11,7 +11,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: acc2d3830cf47387b0152543487ae78469fe57183407bba0ea7f428ba0ed074d
+reviewed-sha256: 1126b3a8d70d71230fea4f5d8131f84a5a61ff1b22d1a4c210901393a98c0f48
 last-reviewed: 2026-11-25
 ---
 # Chapter 01 — Non-Person Identity Inventory as Code
@@ -135,6 +135,9 @@ Two rows matter. Learn's least-privileged permission for listing delegated permi
 
 `Get-NpiRegister` returns one row per identity with the same columns for every type, so the register writes to one CSV: the identity (`ad:<objectGUID>`, `app:<appId>`, `sp:<id>` or `mi:<id>`), source, type and name; how it was found; where the workload runs and which hosts can use it; password age, last logon, SPNs, delegation and privileged groups for Active Directory; home tenant, sign-in audience, owner count and types, `serviceManagementReference`, secrets, certificates, expired credentials, the next expiry and the credential kind for Entra; federated credentials with issuer and subject; Graph application permissions, the high-privilege ones among them, delegated grants and tenant-wide consent; and the risk, its reasons, the candidate target and any hand-off.
 
+Where the hosts come from is in `HostsFrom`. For an MSA, gMSA or dMSA it's the directory (`PrincipalsAllowedToRetrieveManagedPassword` or `HostComputers`), and for a managed identity its resource ID. The directory doesn't say where an ordinary user account runs, so with `-ServiceInventoryPath` the register reads a server-to-service inventory: the Start Kit's `ServerServices\ServerServices.csv`, which `Get-FMPServerServiceInventory` writes from each server's `Win32_Service`, or any CSV with `Server`, `ServiceName` and `SamAccountName` or `LogonAccount`. A user account gets `Hosts` and `Services` (`<server>/<service>`) from every server that runs a service as it, matched on its `sAMAccountName` whether the logon account reads `DOMAIN
+ame` or `name@domain`; an MSA, gMSA or dMSA keeps its hosts from the directory and gets `Services`. An enabled user account no server runs is marked `ServiceInventory: none` and raises NPI-INV-10. The inventory sees services only: a scheduled task, an IIS application pool or a client that signs in with the account isn't a service, which is why NPI-INV-10 asks for a check rather than a change.
+
 An app's permissions are reported once, on its app registration row; its own service principal row says so, so a HIGH app isn't counted twice. Service principals of other tenants are typed `ExternalServicePrincipal`: their credentials are in their home tenant. Microsoft Graph's own service principal is read for its app roles and left out of the register.
 
 ### Risk, targets, stale leads and the hand-off
@@ -160,14 +163,15 @@ An account whose SPN starts with `MSSQLSvc/`, or whose name matches the program'
 | NPI-INV-07 | Info | A SQL Server or LDAP-bind account handed to the Data Platform plan | Project plan, NP0.4 |
 | NPI-INV-08 | Warn | An account found only by a password that never expires: may be a person | Learn: the criteria "might not find accounts", and find people too[^np01-user-svc] |
 | NPI-INV-09 | Warn | An object class or service principal type the register doesn't classify | *Design guidance* |
+| NPI-INV-10 | Warn | With `-ServiceInventoryPath` only: an enabled AD user account that no server in the inventory runs a service as | *Design guidance*: the server-to-service crosswalk |
 
 ### The run and its manifest
 
-`Invoke-NpiInventory.ps1` reads, classifies, finds and writes `register.json`, `register.csv`, `findings.json`, `data-platform-handoff.csv` and `manifest.json`. The manifest records the task, the mode (`Fixture` or `Live`), the cloud, the tenant ID, the domain, the as-of date, the permissions, roles and rights the task holds, every request and AD read with its time, the SHA-256 of `config/register.json`, and the SHA-256 of each file. A live run refuses to start without `-TenantId`. The manifest names no one; the register names accounts and owners' object IDs, so treat the run's folder as sensitive. Chapter 02 refuses a register whose hash doesn't match its manifest.
+`Invoke-NpiInventory.ps1` reads, classifies, finds and writes `register.json`, `register.csv`, `findings.json`, `data-platform-handoff.csv`, `directory-evidence.json` and `manifest.json`. Before it reads anything it writes `input-manifest.json`: the settings, the call list, the fixture or the server-service inventory it was given, and every module and script of the kit, each with its size and SHA-256, and the cloud, tenant and domain it will read; `manifest.json` records that file's hash as `inputManifestSha256`. `directory-evidence.json` holds one record per Active Directory identity: the attributes exactly as the declared read returned them, the read (call ID, cmdlet and parameters, time), and `attributesSha256`, the SHA-256 of `attributesJson`, the exact text hashed. The manifest records the task, the mode (`Fixture` or `Live`), the cloud, the tenant ID, the domain, the as-of date, the permissions, roles and rights the task holds, every request and AD read with its time, the SHA-256 of `config/register.json` (and of the server-service inventory, with `-ServiceInventoryPath`), and the SHA-256 of each file. A live run refuses to start without `-TenantId`. The manifest names no one; the register names accounts and owners' object IDs, so treat the run's folder as sensitive. Chapter 02 refuses a register whose hash doesn't match its manifest.
 
 ### The tests
 
-Pester 5 under PowerShell 7, 555 tests across the kit (Lab 1 runs them all), none needing a module, a tenant, a domain or a network. This chapter's are:
+Pester 5 under PowerShell 7, 564 tests across the kit (Lab 1 runs them all), none needing a module, a tenant, a domain or a network. This chapter's are:
 
 - `tests/MicrosoftSamples.Tests.ps1`, 20 tests in the Chapter 01 blocks: Learn's commands and script, run as published.
 - `tests/NpiInventory.Tests.ps1`, 36 tests: clouds, the call list (each task's declaration equals the union of its calls), refused calls, cmdlets, hosts and writes, paging with page sizes of 1, 3 and 50, the one LDAP query, every type in the register, credentials, permissions, risk, targets, the hand-off, stale leads, each finding, the manifest's hashes and the console output.
@@ -334,7 +338,7 @@ Remove-Item -Recurse -Force out
 
    <!-- capture:end -->
 
-**Expected result:** 555 tests passing, every row of the gap table seen with your own eyes, and `out/inventory/manifest.json` listing 36 requests: 34 GETs and 2 AD reads. The later labs make their own copy of `out/inventory`. Delete `out` when you're done:
+**Expected result:** 564 tests passing, every row of the gap table seen with your own eyes, and `out/inventory/manifest.json` listing 36 requests: 34 GETs and 2 AD reads. The later labs make their own copy of `out/inventory`. Delete `out` when you're done:
 
 ```powershell
 Remove-Item -Recurse -Force out
@@ -474,7 +478,7 @@ The register is the record the guide's [G1 Inventory](../../../books/guides/non-
 | The reader refuses a call the task doesn't declare, and a cloud name it doesn't know (Lab 1, step 5: the two error texts) | AC-6 Least Privilege | KSI-IAM-ELP | The repository's tests |
 | SQL Server and LDAP-bind accounts go to the Data Platform plan (Lab 1, step 6: `data-platform-handoff.csv`; NPI-INV-07) | CM-8 (accountability information for each component) | KSI-PIY-GIV | The Data Platform plan |
 | The run records the tenant, the cloud, every request and AD read, the SHA-256 of `config/register.json` and a SHA-256 per file, and Chapter 02 refuses a register that doesn't match (`manifest.json`) | AU-9 Protection of Audit Information; SI-7 Software, Firmware, and Information Integrity | KSI-MLA-OSM (AU-9); KSI-SVC-VRI (SI-7) | The ISSO, with the run's folder |
-| The code passes its tests (Lab 1, step 7: `Invoke-Pester -Path tests`, 555 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
+| The code passes its tests (Lab 1, step 7: `Invoke-Pester -Path tests`, 564 passed) | CM-3(2) Testing, Validation, and Documentation of Changes | KSI-CMT-VTD | The repository; the pull request's checks |
 | The reading app signs in with a certificate and holds only the two read permissions and Reader (Lab 2, steps 1 to 3: the app's **Certificates & secrets** and **API permissions** pages; the Reader role assignment) | AC-6; IA-5(2) | KSI-IAM-ELP, KSI-IAM-SNU | Identity engineering |
 | Federated credentials are read from Graph and from Resource Manager, and every Resource Manager request stays on the cloud's host (Lab 2, step 5: `register.csv` columns `FederatedCredentials` and `FederatedSubjects`; the `requests` list in `manifest.json`) | IA-5 Authenticator Management | KSI-IAM-SNU | Identity engineering |
 | A dMSA is classified as one, and an ordinary domain user's read returns password age, last logon and groups (Lab 2, step 6: the AD rows of `register.csv`) | CM-8 | KSI-PIY-GIV | AD engineering |

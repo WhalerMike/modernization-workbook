@@ -25,6 +25,10 @@ BeforeAll {
         'Invoke-Expression', 'Invoke-WebRequest', 'Invoke-RestMethod', 'Invoke-Item', 'Invoke-CimMethod', 'Invoke-WmiMethod', 'Invoke-Sqlcmd',
         'Import-GPO', 'Enter-PSSession', 'Start-Process', 'Start-Job', 'iex', 'ni', 'rm', 'del', 'mv', 'cp', 'sc', 'ac', 'Backup-GPO',
         'dsacls', 'setspn', 'netdom', 'ntdsutil', 'repadmin', 'dnscmd', 'netsh', 'reg', 'sqlcmd', 'bcp', 'icacls', 'wmic')
+    # Read-only commands whose verb would otherwise fail the check: the server-service
+    # inventory's DCOM fallback opens a CIM session to read Win32_Service and closes it. A CIM
+    # session is a client-side connection; it changes nothing on the server.
+    $script:AllowedCommands = @('New-CimSessionOption', 'New-CimSession', 'Remove-CimSession')
     # The only functions allowed to write files: the guarded writers in StartKit.Common.ps1.
     $script:Writers = 'Resolve-FMPOutputRoot', 'Initialize-FMPPath', 'Write-FMPJson', 'Write-FMPCsv', 'Write-FMPText', 'Write-FMPBytes', 'Write-FMPLog', 'Open-FMPStream'
     $script:WriteMembers = 'WriteAllText|WriteAllBytes|WriteAllLines|AppendAllText|AppendAllLines|AppendText|CreateText|Create|CreateDirectory|Delete|Move|Copy|Replace|Encrypt|Decrypt|SetAccessControl|SetAttributes|OpenWrite'
@@ -40,6 +44,7 @@ BeforeAll {
         foreach ($c in $commands) {
             $name = $c.GetCommandName()
             if (-not $name) { continue }
+            if ($AllowedCommands -contains $name) { continue }
             if ($name -match "^($ForbiddenVerbs)-" -or $ForbiddenCommands -contains $name -or $ForbiddenCommands -contains ($name -replace '\.exe$', '')) {
                 "command: line $($c.Extent.StartLineNumber): $name"
             }

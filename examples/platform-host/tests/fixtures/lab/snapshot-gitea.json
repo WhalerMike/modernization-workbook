@@ -1,0 +1,35 @@
+{
+  "schema": "fmp-ph-snapshot-gitea/1",
+  "takenAt": "2026-11-26T05:52:51Z",
+  "baseUrl": "https://git.fmp.lab.contoso.test",
+  "edition": "PowerShell 7.6.10",
+  "version": "28.4.0",
+  "anonymousStatus": 403,
+  "repositories": 2,
+  "webhooks": [
+    {
+      "scope": "fmp/canon",
+      "id": 1,
+      "type": "gitea",
+      "url": "https://drift.fmp.lab.contoso.test/hooks/gitea",
+      "active": true,
+      "events": [
+        "push"
+      ]
+    }
+  ],
+  "mirrors": [
+    {
+      "fullName": "fmp/fmp-upstream",
+      "interval": "15m0s",
+      "mirrorUpdated": "2026-11-26T05:52:38Z"
+    }
+  ],
+  "admins": [
+    {
+      "login": "lab-admin",
+      "prohibitLogin": false,
+      "sourceId": 0
+    }
+  ]
+}

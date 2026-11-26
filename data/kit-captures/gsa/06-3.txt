@@ -1,8 +1,9 @@
-PS> $c = Read-GsaCollection -Path out/pilot
-PS> $c['connector-groups'].value | ForEach-Object { $g = $_; $c['connector-group-members'][$g.id].value | ForEach-Object { [pscustomobject]@{ Group = $g.name; Connector = $_.machineName; Status = $_.status; Version = $_.version } } } | Format-Table
-Group         Connector             Status   Version
------         ---------             ------   -------
-CG-HQ         con01.contoso.example active   1.5.4522.0
-CG-HQ         con02.contoso.example active   1.5.4522.0
-CG-Cloud-East con11.contoso.example active   1.5.3437.0
-CG-Cloud-East con12.contoso.example inactive 1.5.4522.0
+PS> Import-Module ./powershell/GlobalSecureAccess/GlobalSecureAccess.psm1
+PS> Get-GsaRequiredPermission -Area private-access | Format-Table -AutoSize | Out-String -Width 250
+Call                    Method Permission                                                                                    Beta Verified
+----                    ------ ----------                                                                                    ---- --------
+connector-groups        GET    Directory.ReadWrite.All                                                                       True     True
+connector-group-members GET    Directory.ReadWrite.All                                                                       True     True
+ca-policies             GET    Policy.Read.All                                                                              False     True
+private-apps            GET    Application.Read.All                                                                          True    False
+law-query               QUERY  Read access to the workspace; Log Analytics Reader is the program's choice (design guidance) False     True
