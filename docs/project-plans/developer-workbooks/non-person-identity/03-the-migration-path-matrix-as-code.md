@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 22f08181f6b3639737e3caf8cb6394e662105dd6dd593d47d4235acc7bd5f657
-last-reviewed: 2026-11-25
+reviewed-sha256: 6c8614aa7bb9fb3094cd14893e740ac3bb1f41e3403ffea4faf1f42e2807ef30
+last-reviewed: 2026-11-26
 ---
 # Chapter 03 — The Migration Path Matrix as Code
 

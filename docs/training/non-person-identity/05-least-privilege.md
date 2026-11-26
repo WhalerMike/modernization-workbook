@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Books 02, 04"
 series-order: 5
 review-status: approved
-reviewed-sha256: 290c3bf3d015caef8f4c7d3d31a21565c686d24bcd43f06f70a0fbda60e9a643
-last-reviewed: 2026-11-25
+reviewed-sha256: f11975dbd659eb1d77adbd0427b6943ed7875e7f7366cac01102c7949d6021b1
+last-reviewed: 2026-11-26
 ---
 # Module 5: Cut the privilege of service principals {.unnumbered}
 

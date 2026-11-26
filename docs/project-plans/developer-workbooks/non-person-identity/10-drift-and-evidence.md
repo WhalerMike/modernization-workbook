@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 9d6ef372abb6e8147fffdb1dc3bafa131469a446b21f80f409ea799fad24eb71
-last-reviewed: 2026-11-25
+reviewed-sha256: eb4e4348896fee7542ca74aa3a2335aec0bb2903ac82391e4180952ec2b79f7a
+last-reviewed: 2026-11-26
 ---
 # Chapter 10 — Drift and Evidence for the ISSO
 
