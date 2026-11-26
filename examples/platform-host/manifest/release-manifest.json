@@ -25,18 +25,18 @@
       "name": "IIS URL Rewrite 2.1 (x64)",
       "version": "2.1",
       "url": "https://download.microsoft.com/download/1/2/8/128E2E22-C1B9-44A4-BE2A-5859ED1D4592/rewrite_amd64_en-US.msi",
-      "sha256": "",
+      "sha256": "37342ff2f585f263f34f48e9de59eb1051d61015a8e967dbde4075716230a32a",
       "signer": "Microsoft Corporation",
-      "hashSource": "recorded from the lab build's download after a valid Microsoft Authenticode signature"
+      "hashSource": "recorded from the lab build's download on November 26, 2026, after a valid Microsoft Authenticode signature"
     },
     {
       "id": "arr",
       "name": "IIS Application Request Routing 3.0 (x64)",
       "version": "3.0",
       "url": "https://go.microsoft.com/fwlink/?LinkID=615136",
-      "sha256": "",
+      "sha256": "fb61fdb7101795a34d5129cb37eee43ab675c7ed76ba3a3b23b039d8c90c2a4b",
       "signer": "Microsoft Corporation",
-      "hashSource": "recorded from the lab build's download after a valid Microsoft Authenticode signature"
+      "hashSource": "recorded from the lab build's download on November 26, 2026, after a valid Microsoft Authenticode signature"
     }
   ]
 }

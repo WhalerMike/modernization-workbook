@@ -52,9 +52,11 @@ function Get-Pinned([string]$id, [string]$dest) {
 }
 function Invoke-Gitea([string[]]$GiteaArgs) {
     # Run the CLI as the service does: same config, same work path.
-    $out = & $gitea --config $config --work-path (Join-Path $Root 'Gitea') @GiteaArgs 2>&1
-    if ($LASTEXITCODE -ne 0) { throw "gitea $($GiteaArgs -join ' ') failed: $out" }
-    $out
+    # Gitea logs to stderr; Windows PowerShell 5.1 would turn each line into an error under Stop, so collect them as text.
+    $eap = $ErrorActionPreference; $ErrorActionPreference = 'Continue'
+    try { $out = @(& $gitea --config $config --work-path (Join-Path $Root 'Gitea') @GiteaArgs 2>&1 | ForEach-Object { "$_" }) } finally { $ErrorActionPreference = $eap }
+    if ($LASTEXITCODE -ne 0) { throw "gitea $($GiteaArgs -join ' ') failed: $($out -join ' / ')" }
+    @($out | Where-Object { $_ -notmatch '^\d{4}/\d{2}/\d{2} \d{2}:\d{2}:\d{2} ' })
 }
 function Set-PhAcl([string]$Path) {
     # Owner-only: inheritance off, Administrators and SYSTEM full control, nothing for Users.
