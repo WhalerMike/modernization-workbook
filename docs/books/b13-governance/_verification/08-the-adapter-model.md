@@ -76,3 +76,13 @@ ScubaGear 2.0.0 was released October 22, 2026 (weekly source watch, issue #160).
 |---|---|---|---|---|
 | 1 | Graph application permissions all `.Read` (Directory.Read.All, Policy.Read.All, RoleManagement.Read.Directory among them); Global Reader for most products; Power Platform Administrator with Power Apps for Office 365 license; Global Administrator always sufficient (row 17) | Read-only first | verified (unchanged at v2.0.0) | ScubaGear v2.0.0 interactive.md |
 | 2 | Power BI needs Fabric Administrator (or Global Administrator) with a Power BI or Fabric license | Read-only first | verified (added) | ScubaGear v2.0.0 interactive.md |
+
+## The kits read as adapters, November 27, 2026
+
+Added the section "The workbook's kits, read as adapters" at the workbook owner's request ("add the adapter table", November 27, 2026). Each row was checked against the kit's own README in `examples/` on `main` the same day: what it reads, whether it has a change-making step, and what that step needs before it runs. The class and mission are the program's reading under this chapter's definitions (design guidance), not a declaration any kit makes.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | No adapter declaration lists, common record or provenance envelope exist in the workbook's code | Kits read as adapters | verified | `examples/` searched for adapter declarations; Honest limits already says most entries are reserved names |
+| 2 | Each kit's change-making step refuses to run without `-Apply`, and most also need the plan's approved SHA-256 | Kits read as adapters | verified | READMEs of non-person-identity, privileged-access, hcm-entra, sql-server-identity, azure-security, dp-consolidation, defender-xdr, global-secure-access, daily-checks-workbook, provider-notices, servicenow-sailpoint |
+| 3 | No kit has passed the second or third test level (a live non-production tenant on a schedule, a reference deployment) | Kits read as adapters | verified | Each README's status line: fixture-tested, not run against a live tenant |

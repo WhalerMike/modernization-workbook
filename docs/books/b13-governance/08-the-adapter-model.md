@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-What an adapter is and what it isn't. The two kinds, read-only and change-making, and why the program keeps them in separate lists. The five missions an adapter can serve. The contract every adapter declares and the invariants it can't opt out of. Why read-only comes first, how adapters are versioned against platform APIs that change underneath them, how an adapter earns active status and how it retires. How the model keeps the program platform-neutral, what an authorizing official gains from it, and its limits.
+What an adapter is and what it isn't. The two kinds, read-only and change-making, and why the program keeps them in separate lists. The five missions an adapter can serve. The contract every adapter declares and the invariants it can't opt out of. Why read-only comes first, how adapters are versioned against platform APIs that change underneath them, how an adapter earns active status and how it retires. Which of the workbook's kits fits which class and mission, and why none is active yet. How the model keeps the program platform-neutral, what an authorizing official gains from it, and its limits.
 :::
 
 ## An overlay, not a replacement
@@ -155,6 +155,38 @@ An adapter's status isn't self-asserted. In the program's design an entry moves 
 4. **Retired.** The adapter no longer runs. Any remaining reference to it, in a mapping or a rule, is a provenance drift finding, so nothing silently keeps depending on it. Its past evidence stays reproducible from archived inputs and the archived adapter version.
 
 Retirement is a transition in the record, not a deletion. That is what lets the program change vendors or replace an adapter without losing the history an authorizing official has already relied on.
+
+## The workbook's kits, read as adapters {#kits-as-adapters}
+
+The workbook publishes no adapter under this contract: there are no declaration lists, no common record and no provenance envelope in its code. Its kits do the same job in substance, though. Each one reads a platform through that platform's own interface, declares every call it makes, writes a manifest with a SHA-256 for every file, and, where it can change anything, keeps the change in a separate step that refuses to run without `-Apply` and, for most, the plan's approved SHA-256. Read through this chapter's two classes and five missions, they line up like this.
+
+| Kit | Read-only part (conformance) | Mission | Change-making part (modernization) | Mission |
+|---|---|---|---|---|
+| [Start Kit](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit) | The forest, the SQL Server estate, RADIUS and NPS | Identity | None | — |
+| [Non-Person Identity](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/non-person-identity) | The register of service accounts, apps, service principals and managed identities | Identity | Credential, orphan and least-privilege actions, a separate delegated path with the plan's approved SHA-256 | Identity |
+| [Privileged Access](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/privileged-access) | Role assignments, PIM eligibility and emergency access | Identity | The deployment's rollback, only with `-Apply` | Identity |
+| [HR-to-Entra middleware](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra) | The HR system's extract, validated and turned into SCIM requests, written as files | Identity | The provisioning batches, sent only with `-Apply` | Identity |
+| [SQL Server Identity](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/sql-server-identity) | Logins, authentication, SPNs and connection strings | Identity | The cutover and its rollback, only with `-Apply` and the approved hash | Identity |
+| [Validation kit](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit) | The implementation guides' checks against Graph, Resource Graph and AD | Policy | None | — |
+| [Zero Trust Assessment results](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/zta-results) | The assessment's export, normalized into a closure register | Policy | None | — |
+| [Information Protection](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/information-protection) | The Purview configuration against the plan | Policy | None | — |
+| [Azure Security](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/azure-security) | The landing zone, exposure and Azure Policy | Policy | The security initiative in `DoNotEnforce`, with the approved SHA-256 | Policy |
+| [Cisco SD-WAN](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/cisco-sdwan) | The release gate, through GET requests only | Policy | None | — |
+| [Distribution point consolidation](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/dp-consolidation) | Distribution points, boundary groups and clients against the sizing and retirement gates | Policy | The hub tier, boundary groups, peer cache and office retirement, only with `-Apply` | Policy |
+| [Defender XDR](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/defender-xdr) | Coverage, prevention settings and Attack Surface Reduction rules | Enforcement | Custom detections, published with the approved SHA-256 | Enforcement |
+| [Global Secure Access](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/global-secure-access) | The traffic profiles, client coverage and Conditional Access policies | Enforcement | A ring's changes, with the approved SHA-256 and a person signed in | Enforcement |
+| [Daily checks workbook](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/daily-checks-workbook) | What each daily-check tab would show | Telemetry | The workbook's deployment, after what-if and with the approved SHA-256 | Telemetry |
+| [Platform host interface check](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/platform-host) | The host against [Book 10, Appendix B](../b10-cloud-boundary/appendix-b-platform-host-interfaces.md)'s closed list: part of the conformance adapter it describes | Telemetry | None | — |
+| [Provider notices](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/provider-notices) | The cloud providers' service notices | Telemetry | Typed tasks for the notices that need action, dry run by default | Integration |
+| [Ticket-to-Machine](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint) | ServiceNow and SailPoint state, re-read before and after a change | Integration | The typed task's change, only with `-Apply` | Integration |
+
+: The workbook's kits by adapter class and mission {.striped .hover}
+
+Three things keep this an honest reading rather than a claim:
+
+- **None of them is active in this chapter's sense.** Each passes the first level of tests, recorded fixtures on every change with no network. None has run against a live non-production tenant on a schedule, or in a reference deployment inside a target boundary, so in the model's terms each is still proposed.
+- **A few would be split.** The Start Kit's AD CS checks are policy, not identity, and the model would give them an adapter of their own.
+- **They emit their own records, not one common record.** Each kit's manifest names every request and hashes every file, which is the provenance this chapter asks for, but in each kit's own format. Moving them onto one schema is the work [Chapter 03](03-one-authoritative-record.md) describes.
 
 ## Platform neutrality and lock-in
 
