@@ -790,6 +790,7 @@ site_only:
   - docs/evaluations/index.md
   - docs/reference/index.md
   - docs/reference/learn-coverage.md
+  - docs/reference/permissions-by-run.md
   - docs/research/index.md
   - docs/presentations/index.md
   - docs/presentations/watch.md
