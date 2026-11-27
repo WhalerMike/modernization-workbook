@@ -1,98 +1,98 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.662
+00:00:00.100 --> 00:00:04.262
 Active Directory shipped with Windows
 2000 as an identity directory.
 
 2
-00:00:04.662 --> 00:00:09.031
+00:00:04.262 --> 00:00:08.262
 Over twenty-five years every Windows-era
 service wired itself into it,
 
 3
-00:00:09.031 --> 00:00:13.174
+00:00:08.262 --> 00:00:12.101
 because it was the only governed,
 replicated namespace available.
 
 4
-00:00:13.174 --> 00:00:15.713
+00:00:12.101 --> 00:00:14.812
 Nobody wrote down how much
 governance it carried.
 
 5
-00:00:15.713 --> 00:00:19.988
+00:00:14.812 --> 00:00:18.799
 The organizational unit (OU)
 tree wasn't a folder system.
 
 6
-00:00:19.988 --> 00:00:24.386
+00:00:18.799 --> 00:00:23.269
 Placing one user in a branch set their
 administrators, their Group Policy,
 
 7
-00:00:24.386 --> 00:00:27.775
+00:00:23.269 --> 00:00:26.712
 their groups, their delegation
 and their audit boundary.
 
 8
-00:00:27.775 --> 00:00:29.662
+00:00:26.712 --> 00:00:28.700
 One act, five effects.
 
 9
-00:00:29.662 --> 00:00:35.301
+00:00:28.700 --> 00:00:33.512
 Entra ID has no OU tree, so each
 effect has to be rebuilt on purpose.
 
 10
-00:00:35.301 --> 00:00:40.287
+00:00:33.512 --> 00:00:38.463
 Most migration plans count users,
 computers, groups and Group Policy.
 
 11
-00:00:40.287 --> 00:00:46.079
+00:00:38.463 --> 00:00:44.034
 The program counts eleven categories,
 adding service accounts, DNS and DHCP,
 
 12
-00:00:46.079 --> 00:00:51.226
+00:00:44.034 --> 00:00:48.987
 certificate services, RADIUS,
 LDAP-bound applications and trusts.
 
 13
-00:00:51.226 --> 00:00:52.663
+00:00:48.987 --> 00:00:50.412
 Those fail silently.
 
 14
-00:00:52.663 --> 00:00:55.138
+00:00:50.412 --> 00:00:52.913
 No log line says governance has failed.
 
 15
-00:00:55.138 --> 00:00:58.236
+00:00:52.913 --> 00:00:55.822
 Microsoft hasn't deprecated
 Active Directory,
 
 16
-00:00:58.236 --> 00:01:02.526
+00:00:55.822 --> 00:00:59.851
 so there's no vendor deadline;
 retiring it is the agency's decision.
 
 17
-00:01:02.526 --> 00:01:05.973
+00:00:59.851 --> 00:01:03.083
 That makes scope a decision
 for the sponsor and the CIO,
 
 18
-00:01:05.973 --> 00:01:10.569
+00:01:03.083 --> 00:01:07.394
 when scope and funding are set: fund
 this as a governance transformation
 
 19
-00:01:10.569 --> 00:01:14.400
+00:01:07.394 --> 00:01:10.987
 across all eleven categories,
 not a users-and-groups project.
 
 20
-00:01:14.400 --> 00:01:17.590
+00:01:10.987 --> 00:01:14.020
 Next, what has to be true
 for the target to hold.

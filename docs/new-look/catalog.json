@@ -1037,7 +1037,7 @@
    "reading_minutes": 73,
    "reading_source": "estimate",
    "videos": 2,
-   "video_minutes": 34,
+   "video_minutes": 35,
    "level": "Intermediate",
    "level_source": "audience",
    "roles": [
@@ -1685,7 +1685,7 @@
    "reading_minutes": 222,
    "reading_source": "estimate",
    "videos": 2,
-   "video_minutes": 41,
+   "video_minutes": 40,
    "level": "Unrated",
    "level_source": "none",
    "roles": [
@@ -2970,7 +2970,7 @@
    "reading_minutes": null,
    "reading_source": null,
    "videos": 84,
-   "video_minutes": 848,
+   "video_minutes": 849,
    "level": "Unrated",
    "level_source": "none",
    "roles": [],

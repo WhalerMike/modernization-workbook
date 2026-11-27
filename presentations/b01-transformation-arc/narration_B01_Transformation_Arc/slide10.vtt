@@ -1,70 +1,70 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.834
+00:00:00.100 --> 00:00:03.959
 DNS, DHCP and address
 management are what agencies
 
 2
-00:00:03.834 --> 00:00:06.988
+00:00:03.959 --> 00:00:07.175
 most often put off,
 because they still work.
 
 3
-00:00:06.988 --> 00:00:10.125
+00:00:07.175 --> 00:00:10.100
 That's exactly how they keep
 the old directory alive.
 
 4
-00:00:10.125 --> 00:00:13.765
+00:00:10.100 --> 00:00:13.562
 AD-integrated zones replicate
 with Active Directory,
 
 5
-00:00:13.765 --> 00:00:19.184
+00:00:13.562 --> 00:00:18.717
 and domain-joined clients find their
 domain controllers through records in DNS,
 
 6
-00:00:19.184 --> 00:00:22.662
+00:00:18.717 --> 00:00:22.025
 so DNS and AD have to be
 retired together, in sequence.
 
 7
-00:00:22.662 --> 00:00:26.352
+00:00:22.025 --> 00:00:25.613
 The target is a governed
 DNS authority outside AD.
 
 8
-00:00:26.352 --> 00:00:29.951
+00:00:25.613 --> 00:00:29.113
 Windows DHCP servers check
 in with AD every hour,
 
 9
-00:00:29.951 --> 00:00:34.450
+00:00:29.113 --> 00:00:33.488
 but that only stops a rogue
 Windows server, not a rogue device.
 
 10
-00:00:34.450 --> 00:00:38.976
+00:00:33.488 --> 00:00:37.344
 And one address-management
 authority owns the address space,
 
 11
-00:00:38.976 --> 00:00:41.550
+00:00:37.344 --> 00:00:39.537
 with DNS and DHCP following from it.
 
 12
-00:00:41.550 --> 00:00:45.438
+00:00:39.537 --> 00:00:43.000
 Leave these three for “Phase
 2,” and it rarely comes.
 
 13
-00:00:45.438 --> 00:00:49.413
+00:00:43.000 --> 00:00:46.500
 A forest that still hosts
 DNS hasn't been retired.
 
 14
-00:00:49.413 --> 00:00:55.850
+00:00:46.500 --> 00:00:53.300
 The books on DNS, DHCP and IPAM, and on
 Network and Transport, carry the detail.

@@ -1,91 +1,91 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.937
+00:00:00.100 --> 00:00:01.888
 The book's framing is simple.
 
 2
-00:00:01.937 --> 00:00:06.276
+00:00:01.888 --> 00:00:06.087
 Microsoft provides the instruments;
 the program provides the orchestra.
 
 3
-00:00:06.276 --> 00:00:08.424
+00:00:06.087 --> 00:00:08.115
 Cloud identity, device management,
 
 4
-00:00:08.424 --> 00:00:12.425
+00:00:08.115 --> 00:00:11.888
 Conditional Access and the
 assessment tools are each excellent.
 
 5
-00:00:12.425 --> 00:00:14.475
+00:00:11.888 --> 00:00:14.037
 But look at what each one doesn't decide.
 
 6
-00:00:14.475 --> 00:00:18.900
+00:00:14.037 --> 00:00:18.337
 Cloud identity doesn't decide what your
 organizational structure should become.
 
 7
-00:00:18.900 --> 00:00:22.325
+00:00:18.337 --> 00:00:21.637
 The assessment tools don't decide
 what to do with the findings.
 
 8
-00:00:22.325 --> 00:00:25.875
+00:00:21.637 --> 00:00:24.737
 Every one of those gaps is a
 decision someone has to own.
 
 9
-00:00:25.875 --> 00:00:30.570
+00:00:24.737 --> 00:00:28.899
 And with no vendor deadline forcing
 it, organizations without leadership
 
 10
-00:00:30.570 --> 00:00:35.113
+00:00:28.899 --> 00:00:32.926
 migrate in pieces and end up unable to
 answer last year's audit questions.
 
 11
-00:00:35.113 --> 00:00:40.250
+00:00:32.926 --> 00:00:37.700
 The program needs no license of its own,
 but the services it orchestrates do.
 
 12
-00:00:40.250 --> 00:00:44.638
+00:00:37.700 --> 00:00:41.875
 Federal policy already says this
 belongs to more than the IT shop.
 
 13
-00:00:44.638 --> 00:00:48.598
+00:00:41.875 --> 00:00:45.347
 M-22-09 says the whole
 C-suite must be aligned,
 
 14
-00:00:48.598 --> 00:00:53.063
+00:00:45.347 --> 00:00:49.263
 and it required a zero trust
 implementation lead within 30 days.
 
 15
-00:00:53.063 --> 00:00:59.368
+00:00:49.263 --> 00:00:55.101
 M-19-17 requires an agency-wide identity
 governance structure that includes HR,
 
 16
-00:00:59.368 --> 00:01:02.162
+00:00:55.101 --> 00:00:57.688
 general counsel, privacy and acquisition.
 
 17
-00:01:02.162 --> 00:01:07.025
+00:00:57.688 --> 00:01:02.435
 So the first decision for the sponsor
 and the CIO, before Phase 0: confirm who
 
 18
-00:01:07.025 --> 00:01:12.200
+00:01:02.435 --> 00:01:07.488
 already holds those roles, and decide
 whether one becomes the program's steward.
 
 19
-00:01:12.200 --> 00:01:14.420
+00:01:07.488 --> 00:01:09.720
 Next, the decision matrix.

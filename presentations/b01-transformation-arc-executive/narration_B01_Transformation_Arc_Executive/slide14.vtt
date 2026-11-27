@@ -1,93 +1,93 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.975
+00:00:00.100 --> 00:00:02.725
 Three decisions often
 land on the wrong desk,
 
 2
-00:00:02.975 --> 00:00:05.425
+00:00:02.725 --> 00:00:04.925
 and the book moves each one on purpose.
 
 3
-00:00:05.425 --> 00:00:09.688
+00:00:04.925 --> 00:00:09.162
 First, end dates for legacy
 authentication and NTLM.
 
 4
-00:00:09.688 --> 00:00:14.774
+00:00:09.162 --> 00:00:14.206
 They sit with the authorizing official, not
 with the engineers who'd like more time,
 
 5
-00:00:14.774 --> 00:00:18.887
+00:00:14.206 --> 00:00:18.286
 because keeping legacy authentication
 open is a risk acceptance,
 
 6
-00:00:18.887 --> 00:00:22.926
-and BOD 25-01 makes blocking
-it a mandatory baseline.
+00:00:18.286 --> 00:00:23.924
+and BOD 25-01 makes blocking it a mandatory
+baseline for Microsoft 365 tenants.
 
 7
-00:00:22.926 --> 00:00:26.450
+00:00:23.924 --> 00:00:27.463
 Second, the help desk's
 identity-verification procedure.
 
 8
-00:00:26.450 --> 00:00:30.963
+00:00:27.463 --> 00:00:31.574
 The help desk supports users through
 every wave, and that makes it a target.
 
 9
-00:00:30.963 --> 00:00:34.978
+00:00:31.574 --> 00:00:35.160
 CISA's advisory on Scattered
 Spider describes attackers
 
 10
-00:00:34.978 --> 00:00:38.749
+00:00:35.160 --> 00:00:38.525
 phoning help desks to get
 passwords reset and MFA moved.
 
 11
-00:00:38.749 --> 00:00:43.446
+00:00:38.525 --> 00:00:43.120
 So the procedure for resets and temporary
 access passes is a CISO decision,
 
 12
-00:00:43.446 --> 00:00:46.875
+00:00:43.120 --> 00:00:46.475
 carried out by the help desk
 with narrowly scoped roles.
 
 13
-00:00:46.875 --> 00:00:48.462
+00:00:46.475 --> 00:00:48.200
 Third, records.
 
 14
-00:00:48.462 --> 00:00:52.562
+00:00:48.200 --> 00:00:52.037
 Retiring Active Directory
 retires years of access records.
 
 15
-00:00:52.562 --> 00:00:56.907
+00:00:52.037 --> 00:00:56.317
 NARA's schedule keeps some for six
 years after an account is terminated,
 
 16
-00:00:56.907 --> 00:01:00.737
+00:00:56.317 --> 00:01:00.088
 and once a domain controller is
 gone, its logs can't be recovered.
 
 17
-00:01:00.737 --> 00:01:05.550
+00:01:00.088 --> 00:01:04.893
 So the records officer decides retention
 before anything is decommissioned, and
 
 18
-00:01:05.550 --> 00:01:10.575
+00:01:04.893 --> 00:01:09.912
 the privacy office is consulted before any
 new attribute flow carries personal data.
 
 19
-00:01:10.575 --> 00:01:12.380
+00:01:09.912 --> 00:01:11.540
 Now, how to deliver it.
