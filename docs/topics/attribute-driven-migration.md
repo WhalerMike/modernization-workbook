@@ -57,7 +57,7 @@ The implementation guides, the developer workbook and its code.
 
 : Build {.striped .hover}
 
-The code is in [`examples/hcm-entra`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra), [`examples/ms-automation`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation), [`examples/validation-kit`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit), [`examples/dynamic-rules`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/dynamic-rules), [`examples/lifecycle-extensions`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/lifecycle-extensions), [`examples/group-policy-as-code`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/group-policy-as-code), [`examples/machine-configuration`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/machine-configuration), [`examples/ansible`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ansible) and [`examples/drift-pipeline`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline) on GitHub, and in the code zip under [Download](#download).
+The code is in [`examples/hcm-entra`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/hcm-entra), [`examples/ms-automation`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ms-automation), [`examples/validation-kit`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit), [`examples/dynamic-rules`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/dynamic-rules), [`examples/lifecycle-extensions`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/lifecycle-extensions), [`examples/group-policy-as-code`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/group-policy-as-code), [`examples/machine-configuration`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/machine-configuration), [`examples/ansible`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ansible), [`examples/drift-pipeline`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline) and [`examples/ad-retirement-evidence`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ad-retirement-evidence) on GitHub, and in the code zip under [Download](#download).
 
 ## Learn {#learn}
 
@@ -133,6 +133,7 @@ Word editions and code, rebuilt on every site deploy.
 | [b02-identity-bundle.docx](../../downloads/b02-identity-bundle.docx) | Word edition: Book 02 — Identity & Directory |
 | [ansible-examples.zip](../../downloads/ansible-examples.zip) | Code: the scripts, tests and fixtures, as committed |
 | [validation-kit.zip](../../downloads/validation-kit.zip) | Code: the scripts, tests and fixtures, as committed |
+| [ad-retirement-evidence.zip](../../downloads/ad-retirement-evidence.zip) | Code: the scripts, tests and fixtures, as committed |
 
 : Downloads {.striped .hover}
 
