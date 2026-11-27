@@ -1,0 +1,12 @@
+// Authentication still reaching the domain controllers (G5: "no live production dependency on AD authentication").
+// Kerberos TGT (4768) and service ticket (4769) requests and NTLM credential validation (4776), from the
+// Security log the domain controllers forward to the workspace (Microsoft Sentinel's SecurityEvent table).
+// One row per domain controller, event, account and client over the window. Illustrative: run it in your
+// workspace first; column_ifexists keeps it working whichever client columns the table has.
+let window = 30d;
+SecurityEvent
+| where TimeGenerated > ago(window)
+| where EventID in (4768, 4769, 4776)
+| extend Client = coalesce(column_ifexists("IpAddress", ""), column_ifexists("WorkstationName", ""), column_ifexists("Workstation", ""))
+| summarize Count = count(), Last = max(TimeGenerated) by Computer, EventID, TargetUserName, Client
+| order by Count desc
