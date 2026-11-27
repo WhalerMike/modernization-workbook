@@ -315,6 +315,24 @@ Use a test tenant in the worldwide or GCC cloud with a test Azure subscription, 
 Every command in this lab, in order, from `examples/privileged-access`. Each step below says what it does and what to look for.
 
 ```powershell
+# Step 1: Register the app in the tenant's own cloud
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.ReadWrite.All', 'AppRoleAssignment.ReadWrite.All' -NoWelcome
+$cert = New-SelfSignedCertificate -Subject 'CN=pa-lab-inventory-reader' -CertStoreLocation Cert:\CurrentUser\My -KeyExportPolicy NonExportable -KeySpec Signature -NotAfter (Get-Date).AddDays(30)
+$app = New-MgApplication -DisplayName 'pa-lab-inventory-reader' -SignInAudience AzureADMyOrg -KeyCredentials @(@{ Type = 'AsymmetricX509Cert'; Usage = 'Verify'; Key = $cert.RawData })
+$sp = New-MgServicePrincipal -AppId $app.AppId
+[pscustomobject]@{ AppId = $app.AppId; Thumbprint = $cert.Thumbprint; ServicePrincipalId = $sp.Id } | Format-List
+
+# Step 2: Grant the five application permissions
+$graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+foreach ($p in 'GroupMember.ReadBasic.All', 'RoleAssignmentSchedule.Read.Directory', 'RoleEligibilitySchedule.Read.Directory', 'RoleManagement.Read.Directory', 'User.ReadBasic.All') {
+    $role = $graph.AppRoles | Where-Object { $_.Value -eq $p -and $_.AllowedMemberTypes -contains 'Application' }
+    New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id -PrincipalId $sp.Id -ResourceId $graph.Id -AppRoleId $role.Id | Format-Table AppRoleId, ResourceDisplayName
+}
+
+# Step 3: Grant Reader
+Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id>
+New-AzRoleAssignment -ObjectId $sp.Id -ObjectType ServicePrincipal -RoleDefinitionName Reader -Scope /subscriptions/<test-subscription-id>
+
 # Step 4: Sign in and run
 Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
 Connect-AzAccount -ServicePrincipal -Environment AzureCloud -Tenant <tenant-id> -ApplicationId <app-id> -CertificateThumbprint <thumbprint>
@@ -342,13 +360,41 @@ Remove-Item -Recurse -Force out/inventory-test
    1. Open **Entra ID** > **App registrations** > **New registration**, name the app and select **Register**.
    2. In the app, open **Certificates & secrets** > **Certificates** > **Upload certificate** and upload the certificate's public key.
 
+   In PowerShell 7, as a test administrator: Privileged Role Administrator is the least-privileged role Learn names for granting Graph application permissions, and Learn says an application permission can be granted directly as an app role assignment, which takes the place of the consent prompt.[^pa01-grant] The block registers the app with the certificate's public key, creates its service principal and prints the values for `<app-id>` and `<thumbprint>`; step 2 grants the permissions, in the same session. The certificate is self-signed, valid 30 days, and its private key stays in your own certificate store:[^pa01-newapp]
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.ReadWrite.All', 'AppRoleAssignment.ReadWrite.All' -NoWelcome
+   $cert = New-SelfSignedCertificate -Subject 'CN=pa-lab-inventory-reader' -CertStoreLocation Cert:\CurrentUser\My -KeyExportPolicy NonExportable -KeySpec Signature -NotAfter (Get-Date).AddDays(30)
+   $app = New-MgApplication -DisplayName 'pa-lab-inventory-reader' -SignInAudience AzureADMyOrg -KeyCredentials @(@{ Type = 'AsymmetricX509Cert'; Usage = 'Verify'; Key = $cert.RawData })
+   $sp = New-MgServicePrincipal -AppId $app.AppId
+   [pscustomobject]@{ AppId = $app.AppId; Thumbprint = $cert.Thumbprint; ServicePrincipalId = $sp.Id } | Format-List
+   ```
+
 2. **Grant the five application permissions** from Lab 1, step 2, and grant admin consent. Nothing else.
 
    1. In the app, open **API permissions** > **Add a permission** > **Microsoft Graph** > **Application permissions**.
    2. Select `GroupMember.ReadBasic.All`, `RoleAssignmentSchedule.Read.Directory`, `RoleEligibilitySchedule.Read.Directory`, `RoleManagement.Read.Directory` and `User.ReadBasic.All`, then **Add permissions**.
    3. Select **Grant admin consent for** your tenant.
 
+   In PowerShell, in the same session as step 1. Each assignment is the grant and its admin consent:[^pa01-grant]
+
+   ```powershell
+   $graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+   foreach ($p in 'GroupMember.ReadBasic.All', 'RoleAssignmentSchedule.Read.Directory', 'RoleEligibilitySchedule.Read.Directory', 'RoleManagement.Read.Directory', 'User.ReadBasic.All') {
+       $role = $graph.AppRoles | Where-Object { $_.Value -eq $p -and $_.AllowedMemberTypes -contains 'Application' }
+       New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id -PrincipalId $sp.Id -ResourceId $graph.Id -AppRoleId $role.Id | Format-Table AppRoleId, ResourceDisplayName
+   }
+   ```
+
 3. **Grant Reader** to the app's service principal on the test subscription. In the Azure portal, open **Subscriptions** > the test subscription > **Access control (IAM)** > **Add** > **Add role assignment**, select **Reader**, then on **Members** select the app, and **Review + assign**.
+
+   In PowerShell, in the same session, as a test administrator who holds Owner or User Access Administrator on the test subscription:[^pa01-azassign]
+
+   ```powershell
+   Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id>
+   New-AzRoleAssignment -ObjectId $sp.Id -ObjectType ServicePrincipal -RoleDefinitionName Reader -Scope /subscriptions/<test-subscription-id>
+   ```
+
 4. **Sign in and run:**
 
    ```powershell
@@ -484,3 +530,6 @@ AC-2(7), which asks for privileged accounts under a role-based or attribute-base
 [^pa01-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator statements and "Related SP 800-53 Controls" for KSI-CMT-VTD, KSI-IAM-ELP, KSI-IAM-JIT, KSI-IAM-SNU and KSI-MLA-OSM, <https://www.fedramp.gov/2026/reference/key-security-indicators/> (accessed Nov 2, 2026).
 [^pa01-bod]: Cybersecurity and Infrastructure Security Agency, "BOD 25-01: Implementing Secure Practices for Cloud Services Required Configurations," Microsoft Entra ID policies MS.AAD.7.1v1 and MS.AAD.7.4v1, <https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations> (accessed Nov 2, 2026).
 [^pa01-scuba]: Cybersecurity and Infrastructure Security Agency, ScubaGear Microsoft Entra ID secure configuration baseline (`aad.md`), MS.AAD.7.1v1 (two to eight users, active or eligible, group members counted), MS.AAD.7.4v1 and its note that emergency access accounts needing perpetual access are an exception, and the list of highly privileged roles, <https://github.com/cisagov/ScubaGear/blob/main/PowerShell/ScubaGear/baselines/aad.md> (accessed Nov 2, 2026).
+[^pa01-newapp]: Microsoft Learn, "New-MgApplication," Microsoft.Graph.Applications module, the `KeyCredentials` parameter, <https://learn.microsoft.com/powershell/module/microsoft.graph.applications/new-mgapplication>, and "New-SelfSignedCertificate," PKI module, <https://learn.microsoft.com/powershell/module/pki/new-selfsignedcertificate> (both accessed Nov 27, 2026).
+[^pa01-grant]: Microsoft Learn, "Grant an appRoleAssignment to a service principal," permissions, the supported roles and the PowerShell example, <https://learn.microsoft.com/graph/api/serviceprincipal-post-approleassignments?view=graph-rest-1.0>, and "Grant or revoke API permissions programmatically," <https://learn.microsoft.com/graph/permissions-grant-via-msgraph> (both accessed Nov 27, 2026).
+[^pa01-azassign]: Microsoft Learn, "New-AzRoleAssignment," Az.Resources module, <https://learn.microsoft.com/powershell/module/az.resources/new-azroleassignment> (accessed Nov 27, 2026).
