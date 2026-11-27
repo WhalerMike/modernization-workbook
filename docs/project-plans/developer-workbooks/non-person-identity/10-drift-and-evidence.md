@@ -476,6 +476,38 @@ rm -rf out
 
    ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/npi/10-9.txt))](captures/10-9.png){.lightbox fig-alt="Terminal window showing python python/npi_evidence.py period --evidence out/evidence --since 2026-10-… and what it printed"}
 
+   ::: {.callout-note title="period-summary.md, formatted"}
+   **Non-person identity evidence for the period**
+
+   Period 2026-10-28T06:00:00Z to 2026-10-30T06:00:00Z; tenant c0ffee00-0000-4000-8000-000000000001 (gcc, Fixture); 2 package(s), chain breaks 0, coverage gaps 0, unverified task runs 0. Findings opened 19, closed 1, open at the end 85.
+
+   | Control | Open findings | Open warnings | Status |
+   |---|---|---|---|
+   | AC-2 Account Management | 20 | 15 | evidence incomplete: Chapter 03 |
+   | AC-6(5) Least Privilege, Privileged Accounts | 12 | 2 | evidence present; the assessor decides |
+   | IA-4 Identifier Management | 11 | 3 | evidence present; the assessor decides |
+   | IA-5 Authenticator Management | 6 | 8 | evidence incomplete: Chapter 04, Chapter 06 |
+   | IA-9 Service Identification and Authentication | 3 | 0 | evidence incomplete: Chapter 05, Chapter 08 |
+   | M-25-21 AI use-case inventory and governance (OMB) | 5 | 3 | evidence present; the assessor decides |
+
+   | Gate 7 criterion | From this code | Status |
+   |---|---|---|
+   | Every service account and service principal has an owner and sponsor, a reason and a target | ownerless 7 (NPI-DRF-03); agents without a sponsor attestation 1; Chapter 03 decisions not received | not decided by this code (Chapter 03) |
+   | None holds a password that never expires | 3 enabled AD account(s) (NPI-DRF-06) | not met |
+   | None is orphaned | 7 orphan candidate(s) (NPI-DRF-03) | not met |
+   | Drift checks and review cycles running | 2 package(s), coverage gaps 0, chain breaks 0, unverified task runs 0; review records missing 0, review findings 4 | not met |
+   | Every remaining gMSA and dMSA moved or in the dated Kerberos island | Chapter 06 findings not received | not decided by this code (Chapter 06) |
+
+   | Package | Audit window | EVIDENCE-MANIFEST.json SHA-256 |
+   |---|---|---|
+   | 2026-10-29T0600Z-fixture | 2026-10-28T06:00:00Z to 2026-10-29T06:00:00Z | `2b17cfef179f36ea90df0be2a0cace1f1302eea8bbd06afafe430de712a5673b` |
+   | 2026-10-30T0600Z-fixture | 2026-10-29T06:00:00Z to 2026-10-30T06:00:00Z | `b97d56e88d8b143ff521b4a931a43b523251198538fb81de2f74c9adf8cb1cb4` |
+
+   AI use-case inventory vintage 2026: 5 open finding(s); manifest SHA-256 `4146b751be8a8c96fcacac4bb4ad131f878f70f16fc6f12313b8cf09bfb08a96`.
+
+   Object keys and fingerprints only. The packages hold the names, under the evidence store's access control. The control mapping is the program's (design guidance); the assessor and the authorizing official decide each control.
+   :::
+
    <!-- capture:end -->
 
    Exit `2`: `{"chain_breaks": 0, "closed": 1, "complete": false, "coverage_gaps": 0, "opened": 19, "packages": 2, ...}`. The control table shows AC-2 incomplete without Chapter 03, IA-5 without Chapters 04 and 06, IA-9 without Chapters 05 and 08, and AC-6(5), IA-4 and M-25-21 with evidence present. In the Gate 7 table, "None holds a password that never expires" (three accounts) and "None is orphaned" (seven candidates) are not met, the review cycle is not met (four review findings), and the owner-and-reason and Kerberos island criteria are "not decided by this code" until Chapters 03 and 06 send their findings.
