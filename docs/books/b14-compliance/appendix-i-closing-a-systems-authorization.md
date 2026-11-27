@@ -72,7 +72,7 @@ Steps 5 to 8 are where a retirement usually stays half done: an account nobody d
 
 ## The closure record
 
-One record per retired system, filed in the repository with the final plans, so the closing decision rests on evidence rather than on a memo alone.
+One record per retired system, filed in the repository with the final plans, so the authorizing official decides from the evidence, not from a memo alone.
 
 | Field | What it holds |
 |---|---|
