@@ -179,3 +179,14 @@ The implementation guide and its kit landed. The appendix's service account take
 | T4 | Gitea's gMSA renamed `svc-fmp-gitea$` → `gmsa-fmpgitea$` (13 characters before the `$`), with the retriever group `DL-gMSA-fmpgitea-Hosts` | A.2, B.4, B.6, E.2 | corrected (naming standard) | WD-159 and WD-173 in the decision register; workbook owner's instruction, Nov 26, 2026, to rename it to fit the standard |
 | T5 | "`RUN_USER` must name the same account" replaced: Gitea skips the check on Windows and drops the domain, so the kit compares the two | E.2 | corrected (overstated) | Gitea source, tag v28.4.0: `modules/setting/setting.go` `IsRunUserMatchCurrentUser`, `modules/user/user.go` `CurrentUsername` [^aB-gitea-runuser] |
 | T6 | Conformance adapter: the kit's read-only interface check implements service health and the TLS inventory (plus listener, proxy, log, settings, ACL, release, API, backup and Arc checks); repository inventory and IIS access summaries stay designs | What this reference covers, D.4 | updated | `examples/platform-host`, lab output from the Platform host lab workflow on Windows Server 2025 |
+
+## The estate inventory on the host (WD-180), November 27, 2026
+
+Drafted at the workbook owner's request ("Yes, draft the decision", November 27, 2026) after a review found that Book 00, Chapter 08 and Book 01, Chapter 03 put the assessment on the host while this appendix's closed list left it out. The additions follow WD-180 and the estate inventory kit; Microsoft Learn was read the same day for the sign-ins.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| E1 | The estate inventory added to family D, with its identities, storage, boundaries, egress host names and controls | At a glance, B.4, B.6, D.6, E.4, boundaries, egress allowlist, control crosswalk | added (decision) | WD-180; `examples/estate-inventory/README.md` |
+| E2 | The assessment gMSA `gmsa-fmpassess$` and its retriever group, at Tier A only | B.4, B.6 | restated | Book 02, Chapter 08, The assessment account; Book 01, Chapter 10 (Tier A for continuous reassessment) |
+| E3 | ADWS (TCP 9389) is the port every ActiveDirectory module cmdlet uses; the other paths are those Book 02, Chapter 08's network table names for a Tier A run's reads, confirmed from the firewall log in the test stage | D.6 | restated, to be confirmed | Book 02, Chapter 08, Network paths |
+| E4 | Learn documents Connect-AzAccount with a PKCS#12 file (-CertificatePath) and Connect-MgGraph with a certificate object (-Certificate), and shows an Arc-enabled server's managed identity only through its local token endpoint | B.4 (why a certificate, not the Arc identity) | verified | Learn: Connect-AzAccount (updated November 18, 2026), Connect-MgGraph (September 4, 2026), Authenticate against Azure resources with Azure Arc-enabled servers |

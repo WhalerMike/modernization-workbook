@@ -41,7 +41,7 @@ Build steps are named by the seven milestones in [Book 00, Chapter 08](../b00-or
 | A. Client and operator transport | HTTPS Git (Smart HTTP), Gitea SSH, Gitea web UI, Gitea REST API, Git LFS, optional program API | Contributors, automation, auditors |
 | B. Identity and authentication | Active Directory over LDAPS, Entra ID over OpenID Connect, Windows Authentication for the optional API, the host's own identities, signed-commit verification | Operators and service identities |
 | C. Cloud management plane | Azure Arc agent, Azure Policy and machine configuration, Azure Monitor Agent, Azure Blob backup target | Platform engineering, security operations |
-| D. Governance and telemetry | Server-side Git hooks, Gitea webhooks, the drift reporter, the conformance adapter, IIS W3C logs | The program's governance pipeline and continuous monitoring |
+| D. Governance and telemetry | Server-side Git hooks, Gitea webhooks, the drift reporter, the conformance adapter, IIS W3C logs, the estate inventory | The program's governance pipeline and continuous monitoring |
 | E. Local management | PowerShell 7.6 (signed scripts only), Windows PowerShell 5.1 for legacy IIS cmdlets, the Gitea CLI, IIS Manager and `appcmd`, NTFS storage | Tier 0 administrators |
 | F. Outbound integrations | GitHub upstream pull mirror, PostgreSQL back end (or embedded SQLite), build-time package sources | Upstream ingest, supply chain |
 
@@ -243,10 +243,11 @@ When the optional API is on, IIS authenticates callers with Negotiate (Kerberos 
 
 ### B.4 The host's own identities
 
-Three identities matter, and they're different things:
+Four identities matter, and they're different things:
 
 - **The Gitea service account** is a group managed service account (`CORP\gmsa-fmpgitea$`), named and requested under the program's managed service account standard (WD-159 and WD-173: the `gmsa-` prefix, the system's short name `fmpgitea`, 15 characters or fewer before the `$`), with the retriever group `DL-gMSA-fmpgitea-Hosts`. Services configured through the Service Control Manager, IIS application pools and scheduled tasks can all run as a gMSA, and Windows rotates its password automatically.[^aB-gmsa] Gitea's own Windows service instructions register the service with `sc.exe` and run it as the local system account by default, so the service account is set separately (family E).[^aB-gitea-winsvc]
 - **The Arc managed identity** is the host's identity in Azure. Arc creates a system-assigned managed identity whose tokens come from a local endpoint, `http://localhost:40342`.[^aB-arc-mi] A local process can request a token only if it can read the challenge file in the agent's token directory, which is limited to administrators and members of the **Hybrid agent extension applications** group,[^aB-arc-identity] so the account that runs backups and the drift reporter must be in that group. The managed identity has no Azure permissions until role assignments grant them.
+- **The estate inventory's two identities** ([WD-180](../../about/decision-register.md#wd-180)). In the forest, the assessment gMSA `CORP\gmsa-fmpassess$` from [Book 02, Chapter 08](../b02-identity/08-assessing-the-forest.md#the-assessment-account), at Tier A: default read and none of the Tier B delegations, with the host's nodes in its retriever group `DL-gMSA-fmpassess-Hosts`. In Entra ID and Azure, the estate inventory reader app: read-only Graph application permissions and Reader at one management group, signed in with a certificate kept as a `.pfx` in `D:\EstateInventory\credentials\`. The gMSA holds no cloud role; it can only open that folder. Neither identity is shared with the Gitea service or the backup and drift tasks.
 - **A device object in Entra ID** isn't one of them: the host isn't hybrid joined, so it has no device `extensionAttributes` to carry its organizational attributes. Microsoft's supported devices for hybrid join are Windows 11, Windows 10, and Windows Server 2016, 2019 and 2022; Windows Server 2025 isn't on the list.[^aB-hybrid-join] The host's organizational attributes therefore live as tags on its Arc resource, as Book 01 describes. The underlying distinction still holds where a device object exists: device `extensionAttributes` are managed only in Entra ID, while a synced user's `onPremisesExtensionAttributes` are read-only in Microsoft Graph because their source of authority is on-premises AD.[^aB-graph-ext]
 
 ### B.5 Signed-commit verification
@@ -264,6 +265,7 @@ The hook chain rejects unsigned pushes to `main`, `canon/*` and any path under t
 | Gitea service | gMSA `CORP\gmsa-fmpgitea$` | Forest service account | `D:\GitRepos`, `D:\Gitea` |
 | IIS reverse-proxy app pool | `IIS AppPool\FMPReverseProxy` | Built-in app pool identity | TLS private key (read), nothing else |
 | Backup and drift tasks | Arc system-assigned managed identity, used by the gMSA | Arc resource's service principal | Storage account and Arc resource scope, by role assignment |
+| Estate inventory | gMSA `CORP\gmsa-fmpassess$` for Active Directory; the reader app's certificate, from `D:\EstateInventory\credentials\`, for Graph and Azure | Forest service account (Tier A); Entra app registration | Default read in the forest; the app's read-only Graph permissions and Reader at the named management group ([WD-180](../../about/decision-register.md#wd-180)) |
 | GitHub upstream mirror | Anonymous HTTPS fetch | None; the upstream is public | None |
 
 ## Family C — cloud management plane
@@ -343,6 +345,12 @@ The program's read-only conformance adapter is designed to emit four evidence fi
 
 The record of every request on port 443: authenticated principal, URL, user agent, response code and bytes. Files land under `%SystemDrive%\inetpub\logs\LogFiles\W3SVC<siteId>\` and feed the conformance adapter and the Azure Monitor Agent.[^aB-ama-iis] Set the rollover to hourly (C.3). They're evidence for AU-2 and AU-6.
 
+### D.6 Estate inventory
+
+The estate inventory ([`examples/estate-inventory`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/estate-inventory)) is a weekly scheduled task, run as `CORP\gmsa-fmpassess$`, that runs four kits read-only and writes one dated run folder under `D:\EstateInventory\runs\`: the Start Kit across the forest in Windows PowerShell 5.1 at Tier A, then the non-person identity inventory, the privileged access inventory and the validation kit, each in its own PowerShell 7 process signed in as the reader app. The run folder holds each kit's own manifest, `EstateInventoryManifest.json` with each step's status, controls and KSIs, and `SHA256SUMS`; it is committed to the repository as [Book 02, Chapter 08](../b02-identity/08-assessing-the-forest.md#git-integration-for-assessment-data) commits an assessment run. It changes nothing in Active Directory, Entra ID or Azure. It supports CM-8, AC-2, AC-6, IA-4, IA-5, CA-7 and AU-9. [WD-180](../../about/decision-register.md#wd-180) records why it runs here, under these identities.
+
+From the host it opens Active Directory Web Services (TCP 9389) to the domain controllers, which every ActiveDirectory module cmdlet uses, and the other paths [Book 02, Chapter 08's network table](../b02-identity/08-assessing-the-forest.md#network-paths) names for the reads a Tier A run makes; the host already uses Kerberos and DNS. The settings keep the Start Kit's network probes, SQL instance queries and server reads off, so it opens no path to member servers. Which paths a Tier A run opens is confirmed from the host's firewall log in the test stage, before the run is scheduled.
+
 ## Family E — local management
 
 ### E.1 PowerShell
@@ -382,6 +390,8 @@ IIS Manager, `appcmd` and the `IISAdministration` module are used at install (M-
 | `D:\GitRepos\` | gMSA (Modify, inherited) | Bare repositories and their hooks: the Git object store |
 | `D:\Gitea\` | gMSA (Modify, inherited) | `gitea.exe`, `custom\conf\app.ini`, `data\`, `data\lfs\`, `log\` |
 | `E:\Backups\Staging\` | Backup identity, opt-in | Staging before the Blob upload |
+| `D:\EstateInventory\` | `gmsa-fmpassess$` (Modify on `runs\`, Read elsewhere); Tier 0 administrators | The estate inventory's kits, settings and runs (D.6) |
+| `D:\EstateInventory\credentials\` | `gmsa-fmpassess$` (Read) and Tier 0 administrators only, inheritance off | The reader app's certificate as a `.pfx` |
 
 NTFS ACLs are the only authorization boundary inside the host. In the full-production profile the Gitea database is off-host on `pg01.corp.contoso.com:5432`; in the single-host profile it's `D:\Gitea\data\gitea.db`, under the same ACL as the rest of `D:\Gitea\`. Gitea recommends an absolute path for the SQLite file when running as a Windows service.[^aB-gitea-winsvc]
 
@@ -429,8 +439,10 @@ Every binary the M-001 to M-007 build downloads is pinned to a URL and SHA-256 h
 |---|---|
 | Gitea HTTPS, SSH, web UI, REST | The agency's own system boundary (on-premises, agency network) |
 | Active Directory LDAPS | The agency's own system boundary (the forest) |
+| Active Directory Web Services, for the estate inventory | The agency's own system boundary (the forest) |
 | Entra ID OIDC and Microsoft Graph | Microsoft Entra ID in Azure public, paired with the Microsoft 365 GCC tenant[^aB-gcc-entra] |
 | Azure Arc, Azure Policy and machine configuration | Azure commercial (Class D) — documented exception |
+| Azure Resource Graph and Resource Manager reads, for the estate inventory | Azure commercial (Class D) — documented exception |
 | Azure Monitor and Log Analytics | Azure commercial (Class D) — documented exception |
 | Azure Blob backup target | Azure commercial (Class D) — documented exception |
 | GitHub pull mirror | Public internet, read-only ingest |
@@ -439,7 +451,7 @@ None of these planes is "GCC Moderate." The on-premises host is inside the agenc
 
 ### Runtime egress allowlist
 
-Before M-001, the program enumerates the runtime egress allowlist, and the proxy and firewall team permits only those host names through the agency's forward proxy; everything else is denied. The list is the union of family C's endpoints, the PostgreSQL host in the full-production profile, `graph.microsoft.com` for the drift reporter's Microsoft Graph calls, `github.com` for the mirror, and `api.github.com` for the CI notification (D.2). The proxy environment variables (`HTTPS_PROXY`, `HTTP_PROXY`, `NO_PROXY`) are set at machine scope so Git, PowerShell and the Arc agent use the same proxy; the Arc agent can also take its own proxy setting.[^aB-arc-proxy]
+Before M-001, the program enumerates the runtime egress allowlist, and the proxy and firewall team permits only those host names through the agency's forward proxy; everything else is denied. The list is the union of family C's endpoints, the PostgreSQL host in the full-production profile, `graph.microsoft.com` for the drift reporter's and the estate inventory's Microsoft Graph calls, `login.microsoftonline.com` for the estate inventory's certificate sign-in and `management.azure.com` for its Azure Resource Graph and Resource Manager reads (D.6), `github.com` for the mirror, and `api.github.com` for the CI notification (D.2). The proxy environment variables (`HTTPS_PROXY`, `HTTP_PROXY`, `NO_PROXY`) are set at machine scope so Git, PowerShell and the Arc agent use the same proxy; the Arc agent can also take its own proxy setting.[^aB-arc-proxy]
 
 ### Inbound posture
 
@@ -466,6 +478,7 @@ Control identifiers are from NIST SP 800-53 Revision 5.[^aB-nist] The mapping is
 | Server-side hooks and branch protection | CM-3, CM-5, SI-7 | Pre-receive validation, signed-commit enforcement |
 | Drift reporter | CM-8, SI-4, IR-4 | Scheduled task, drift taxonomy |
 | Conformance adapter | CA-7, CM-8, AU-2, AU-6, SI-4 | Health, TLS, repository and access-log evidence |
+| Estate inventory | CM-8, AC-2, AC-6, IA-4, IA-5, CA-7, AU-9 | Weekly read-only run of four kits, one manifest and `SHA256SUMS` per run |
 | Azure Arc and machine configuration | CM-2, CM-6, CM-7 | Azure Policy assignments and baselines |
 | Azure Monitor Agent | AU-6, AU-9, SI-4 | Log Analytics forwarding |
 | Azure Blob backup | CP-9, CP-10 | Nightly archive and retention |
