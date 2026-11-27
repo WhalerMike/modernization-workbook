@@ -1,59 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:00.763
+00:00:00.100 --> 00:00:01.012
 Welcome.
 
 2
-00:00:00.763 --> 00:00:03.407
+00:00:01.012 --> 00:00:03.596
 This briefing comes from
 The Transformation Arc,
 
 3
-00:00:03.407 --> 00:00:06.374
+00:00:03.596 --> 00:00:06.551
 one of the books of the
 Federal Modernization Workbook.
 
 4
-00:00:06.374 --> 00:00:10.934
+00:00:06.551 --> 00:00:10.994
 It's about the move from a domain-joined
 client-server estate to cloud identity,
 
 5
-00:00:10.934 --> 00:00:14.300
+00:00:10.994 --> 00:00:14.275
 cloud device management and
 governed hybrid operations.
 
 6
-00:00:14.300 --> 00:00:17.988
+00:00:14.275 --> 00:00:17.625
 This book is the workbook's
 overview: each part of it points
 
 7
-00:00:17.988 --> 00:00:21.675
+00:00:17.625 --> 00:00:20.975
 to the book that carries the
 detail, so think of it as the map.
 
 8
-00:00:21.675 --> 00:00:25.265
+00:00:20.975 --> 00:00:24.506
 We'll take four questions:
 why modernization is so hard,
 
 9
-00:00:25.265 --> 00:00:29.175
+00:00:24.506 --> 00:00:28.350
 what actually has to change, who
 leads it, and how to get there.
 
 10
-00:00:29.175 --> 00:00:31.899
+00:00:28.350 --> 00:00:30.920
 And if you remember one
 thing, make it this:
 
 11
-00:00:31.899 --> 00:00:35.825
+00:00:30.920 --> 00:00:34.625
 modernization is a governance
 rebuild, not a platform swap.
 
 12
-00:00:35.825 --> 00:00:38.020
+00:00:34.625 --> 00:00:36.700
 Let's start with how the estate got here.

@@ -18,10 +18,10 @@ review-status: pending
 
 ## Week 2: the transformation arc
 
-- [Book 01 — The Transformation Arc](../../books/b01-transformation-arc/index.md) (Book, 14 chapters, about 4 hr 23 min). Client-server to hybrid cloud: why modernization is so hard, what changes across identity, policy, services, compute and access, who leads it, and how to analyze, plan and deliver it in gated phases.
+- [Book 01 — The Transformation Arc](../../books/b01-transformation-arc/index.md) (Book, 14 chapters, about 4 hr 22 min). Client-server to hybrid cloud: why modernization is so hard, what changes across identity, policy, services, compute and access, who leads it, and how to analyze, plan and deliver it in gated phases.
 - [Effective Meetings — Purpose, Agenda, Roles, and Follow-Through](../../books/guides/effective-meetings.md) (Companion guide, about 24 min). A practical standard for running program meetings: a real agenda, named roles, a parking lot, and written action items with owners and dates.
 
-*Milestone 2: about 4 hr 47 min.*
+*Milestone 2: about 4 hr 46 min.*
 
 ## Week 3: Zero Trust as a program
 
@@ -37,5 +37,5 @@ review-status: pending
 
 *Milestone 4: about 12 hr 34 min.*
 
-**Whole plan:** about 30 hr 35 min of reading and video, plus the labs.
+**Whole plan:** about 30 hr 34 min of reading and video, plus the labs.
 

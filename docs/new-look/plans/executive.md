@@ -27,9 +27,9 @@ review-status: pending
 
 ## Week 3: the hard parts
 
-- [Book 01 — The Transformation Arc](../../books/b01-transformation-arc/index.md) (Book, 14 chapters, about 4 hr 23 min). Client-server to hybrid cloud: why modernization is so hard, what changes across identity, policy, services, compute and access, who leads it, and how to analyze, plan and deliver it in gated phases.
+- [Book 01 — The Transformation Arc](../../books/b01-transformation-arc/index.md) (Book, 14 chapters, about 4 hr 22 min). Client-server to hybrid cloud: why modernization is so hard, what changes across identity, policy, services, compute and access, who leads it, and how to analyze, plan and deliver it in gated phases.
 
-*Milestone 3: about 4 hr 23 min.*
+*Milestone 3: about 4 hr 22 min.*
 
-**Whole plan:** about 9 hr 31 min of reading and video, plus the labs.
+**Whole plan:** about 9 hr 30 min of reading and video, plus the labs.
 

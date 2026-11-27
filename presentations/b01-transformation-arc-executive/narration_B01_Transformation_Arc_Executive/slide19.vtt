@@ -1,102 +1,102 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.225
+00:00:00.100 --> 00:00:04.000
 Two external clocks bear on the
 schedule, and they're easy to confuse.
 
 2
-00:00:04.225 --> 00:00:09.294
+00:00:04.000 --> 00:00:08.617
 FedRAMP's Consolidated Rules
 for 2026, announced on June 25,
 
 3
-00:00:09.294 --> 00:00:13.225
+00:00:08.617 --> 00:00:12.237
 2026, govern how cloud
 services are certified.
 
 4
-00:00:13.225 --> 00:00:16.199
+00:00:12.237 --> 00:00:15.206
 They become mandatory on January 1, 2027,
 
 5
-00:00:16.199 --> 00:00:22.688
+00:00:15.206 --> 00:00:21.681
 except that the Vulnerability Detection
 and Response and Vulnerability Evaluation
 
 6
-00:00:22.688 --> 00:00:27.554
+00:00:21.681 --> 00:00:26.538
 and Reporting rules became mandatory
 earlier, on December 7, 2026,
 
 7
-00:00:27.554 --> 00:00:32.150
+00:00:26.538 --> 00:00:31.125
 and new Rev5 certification
 applications stop on June 11, 2027.
 
 8
-00:00:32.150 --> 00:00:35.050
+00:00:31.125 --> 00:00:33.950
 None of that certifies
 the agency's own estate.
 
 9
-00:00:35.050 --> 00:00:38.232
+00:00:33.950 --> 00:00:36.791
 Each agency still
 authorizes its own systems;
 
 10
-00:00:38.232 --> 00:00:43.925
+00:00:36.791 --> 00:00:41.875
 what the 2027 date changes is the evidence
 your providers publish and you inherit.
 
 11
-00:00:43.925 --> 00:00:50.472
+00:00:41.875 --> 00:00:47.891
 The deadlines that bind the agency
 directly come from OMB and CISA: M-26-14's
 
 12
-00:00:50.472 --> 00:00:53.428
+00:00:47.891 --> 00:00:50.608
 logging plan and maturity levels,
 
 13
-00:00:53.428 --> 00:00:59.025
+00:00:50.608 --> 00:00:55.750
 and BOD 25-01's baselines
 for Microsoft 365 tenants.
 
 14
-00:00:59.025 --> 00:01:01.075
+00:00:55.750 --> 00:00:57.800
 The estate has its own dates too.
 
 15
-00:01:01.075 --> 00:01:06.183
+00:00:57.800 --> 00:01:02.547
 Windows 10 reached end of
 support on October 14, 2025,
 
 16
-00:01:06.183 --> 00:01:12.361
+00:01:02.547 --> 00:01:08.288
 Windows Server 2012 security
 updates ended on October 13, 2026,
 
 17
-00:01:12.361 --> 00:01:18.063
+00:01:08.288 --> 00:01:13.587
 and Windows Server 2016's end
 of support is January 12, 2027.
 
 18
-00:01:18.063 --> 00:01:23.362
+00:01:13.587 --> 00:01:18.563
 Mainframes join the access work late,
 and may need other zero trust mechanisms.
 
 19
-00:01:23.362 --> 00:01:28.301
+00:01:18.563 --> 00:01:23.317
 So the sponsor and the CIO sequence
 the program against the agency's own
 
 20
-00:01:28.301 --> 00:01:33.825
+00:01:23.317 --> 00:01:28.637
 deadlines and end-of-support dates, starting
 now, not against FedRAMP's 2027 date.
 
 21
-00:01:33.825 --> 00:01:36.550
+00:01:28.637 --> 00:01:31.300
 To close, the decisions in one place.
