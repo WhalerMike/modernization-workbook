@@ -1,0 +1,16 @@
+{
+  "_comment": "Settings for the request pipeline (WD-182). Copy outside the kit's folder, fill in every <placeholder>. No secret goes here: the worker app signs in with its certificate file, and the ServiceNow and SailPoint client secrets are in the environment variables named below, set for the pipeline's gMSA only.",
+  "tenantId": "<tenant id>",
+  "clientId": "<help desk request worker app's application id>",
+  "certificatePath": "D:\\HelpDeskRequests\\credentials\\worker.pfx",
+  "serviceNowUrl": "https://<instance>.service-now.com",
+  "serviceNowClientId": "<pipeline integration OAuth client id>",
+  "serviceNowSecretEnv": "HDA_SN_CLIENT_SECRET",
+  "iscApiUrl": "https://<tenant>.api.identitynow.com",
+  "iscClientId": "<pipeline API client id>",
+  "iscSecretEnv": "HDA_ISC_CLIENT_SECRET",
+  "runsPath": "D:\\HelpDeskRequests\\runs",
+  "configPath": "D:\\HelpDeskRequests\\config",
+  "runAs": "<domain>\\gmsa-fmphelpdesk$",
+  "kitPath": "D:\\HelpDeskRequests\\help-desk-automation"
+}
