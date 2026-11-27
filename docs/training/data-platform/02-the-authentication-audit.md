@@ -8,8 +8,8 @@ research-book: "Book 06"
 series-order: 2
 date-modified: 2026-11-25
 review-status: approved
-reviewed-sha256: 02c9daae1e9136181e54cf3e41c8c10f73fc1b48ebc9b9f78297a491605babc1
-last-reviewed: 2026-11-25
+reviewed-sha256: 8228946b062072bf3106a007d15eaba34c07a9a06c683f79177a629da9d63469
+last-reviewed: 2026-11-27
 ---
 # Data Platform, Module 2: The Authentication Audit {.unnumbered}
 

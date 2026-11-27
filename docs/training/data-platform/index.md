@@ -18,8 +18,8 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: 15be01f15dc14df17a524931b04c516cffa376b68bdeaab582611f6cbe3bb7ee
-last-reviewed: 2026-11-25
+reviewed-sha256: c682ead25fd5dd0df0cb6089713bb0dfa813a052cb8da4a7518c6b6af711481a
+last-reviewed: 2026-11-27
 ---
 # Learning path: Data Platform and SQL Server Identity {.unnumbered}
 

@@ -8,8 +8,8 @@ research-book: "Book 06"
 series-order: 8
 date-modified: 2026-11-25
 review-status: approved
-reviewed-sha256: 041c9896a28f182931227af3e4c4a18cb920c780ed3d402f3e2bfef8499e531f
-last-reviewed: 2026-11-25
+reviewed-sha256: 4f1f7004b55fadb6b32ba562c3cc4f66e9d15b4d97df995039b02b4f1c9125e8
+last-reviewed: 2026-11-27
 ---
 # Data Platform, Module 8: AD CS Dependencies {.unnumbered}
 
