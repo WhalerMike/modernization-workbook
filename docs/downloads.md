@@ -58,6 +58,8 @@ $Kits = 'fmw-all-kits', 'start-kit', 'validation-kit', 'attribute-driven-migrati
     'helpdesk-entra-operations-kit', 'ansible-examples', 'app-modernization', 'estate-inventory-code'
 $Tmp = Join-Path $Labs '.unzip'
 $Count = 0
+$FromBundle = @()
+$Bundle = Join-Path $Downloads 'fmw-all-kits.zip'
 function Copy-Kit($From, $Dest) {
     New-Item -ItemType Directory -Force -Path $Dest | Out-Null
     Copy-Item -Path "$From\*" -Destination $Dest -Recurse -Force
@@ -71,6 +73,10 @@ function Show-Leftover($Name, $Own) {
 foreach ($Kit in $Kits) {
     $Zip = Join-Path $Downloads "$Kit.zip"
     if (-not (Test-Path $Zip)) { continue }
+    if ($Kit -in $FromBundle -and (Get-Item $Zip).LastWriteTime -lt (Get-Item $Bundle).LastWriteTime) {
+        "Skipped $Kit.zip: it's older than fmw-all-kits.zip, which already unzipped this kit. Delete it, or download it again."
+        continue
+    }
     if (Test-Path $Tmp) { Remove-Item -Recurse -Force $Tmp }
     Expand-Archive -Path $Zip -DestinationPath $Tmp
     Get-ChildItem $Tmp -Recurse -File | Unblock-File
@@ -90,6 +96,7 @@ foreach ($Kit in $Kits) {
             }
             "Unzipped $Name from $Kit.zip to $Dest"
             Show-Leftover $Name $Own
+            $FromBundle += $Name
         }
         if (Test-Path (Join-Path $Labs $Kit)) {
             "  $(Join-Path $Labs $Kit) is from an earlier unzip; the labs don't use it. To delete it: Remove-Item -Recurse -Force $(Join-Path $Labs $Kit)"
@@ -120,7 +127,7 @@ What it does:
 
 - **Each kit's own zip** unzips into `C:\FMWLabs\<zip name>`.
 - **The zip with every kit** (`fmw-all-kits.zip`) unzips into the same folders: one `C:\FMWLabs\<zip name>` for each kit zip on this page, with the same files that kit's zip holds. A file inside it, `fmw-kit-layout.json`, lists which folders make up each kit. The Help Desk kit isn't in it.
-- **Zips you haven't downloaded** are skipped. Downloading both the zip with every kit and a kit's own zip does no harm: the files are the same.
+- **Zips you haven't downloaded** are skipped. Downloading both the zip with every kit and a kit's own zip does no harm: the files are the same. A kit's own zip that's older than the zip with every kit is skipped, with a line saying so, so an old download can't put back files the newer zip replaced; delete it, or download it again.
 - **Unblocking:** it unblocks the files, so Windows lets the scripts run.
 - **Running it again** overwrites each file with the zip's copy. It doesn't touch what the labs wrote under `C:\FMWLabs\results`.
 - **Older downloads:** a kit zip downloaded on or before November 25, 2026 may have an extra folder inside with the zip's name, so it unzipped to `C:\FMWLabs\start-kit\start-kit`, for example. The command unzips it without that folder and says so. A `fmw-all-kits.zip` downloaded before this command was added can't lay out the kits' folders: the command says so and skips it; download it again. If an earlier unzip left a doubled folder or a `C:\FMWLabs\fmw-all-kits` folder behind, it prints the `Remove-Item` command that deletes it. It doesn't delete anything itself.
