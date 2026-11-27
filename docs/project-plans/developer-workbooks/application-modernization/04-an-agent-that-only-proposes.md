@@ -240,6 +240,11 @@ Invoke-RestMethod -Method Post "http://localhost:8080/api/proposals/$id/decision
 
 # Step 3: Read the audit table
 psql -h <pg-host> -U <db-user> -d <database> -c 'select agent_id, tool, case_number, allowed, detail, at from agent_audit order by id'
+
+# Step 4: Back it out
+Stop-Process -Id $svc.Id
+psql -h <pg-host> -U <db-user> -d postgres -c 'DROP DATABASE <database>'
+Remove-Item service-test.log; Remove-Item Env:DB_URL, Env:DB_USER, Env:DB_PASSWORD
 ```
 
 :::
@@ -270,7 +275,13 @@ psql -h <pg-host> -U <db-user> -d <database> -c 'select agent_id, tool, case_num
    psql -h <pg-host> -U <db-user> -d <database> -c 'select agent_id, tool, case_number, allowed, detail, at from agent_audit order by id'
    ```
 
-4. **Back it out:** Chapter 01's Lab 2, step 5.
+4. **Back it out:** Chapter 01's Lab 2, step 5. In PowerShell, in the same session, from `examples/app-modernization`: the commands stop the service, drop the test database from the `postgres` database, and remove the log and the session's variables, as [that step](01-the-contract-and-the-schema-the-service-owns.md#lab-2-a-test-postgresql-server) does:
+
+   ```powershell
+   Stop-Process -Id $svc.Id
+   psql -h <pg-host> -U <db-user> -d postgres -c 'DROP DATABASE <database>'
+   Remove-Item service-test.log; Remove-Item Env:DB_URL, Env:DB_USER, Env:DB_PASSWORD
+   ```
 
 ## Verified facts
 

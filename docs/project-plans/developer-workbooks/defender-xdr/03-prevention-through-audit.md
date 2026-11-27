@@ -327,6 +327,14 @@ Every command in this lab, in order, from `examples/defender-xdr`. Each step bel
 Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes ThreatHunting.Read.All
 ./Invoke-XdrPrevention.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/prevention
 
+# Step 3: Test network protection the way Learn does
+try { (Invoke-WebRequest -Uri https://smartscreentestratings2.net -TimeoutSec 30).StatusCode } catch { $_.Exception.Message }
+Get-WinEvent -FilterHashtable @{ LogName = 'Microsoft-Windows-Windows Defender/Operational'; Id = 1125, 1126 } -MaxEvents 5 | Select-Object TimeCreated, Id, Message
+
+# Step 3: Test network protection the way Learn does
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes ThreatHunting.Read.All
+./Invoke-XdrPrevention.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/prevention
+
 # Step 4: Back it out
 Remove-Item <output-folder>/devices/*.json
 ```
@@ -349,6 +357,20 @@ Remove-Item <output-folder>/devices/*.json
    ```
 
 3. **Test network protection the way Learn does.** In a browser other than Edge, on the test device, open `https://smartscreentestratings2.net`. In audit mode the site opens and event 1125 is logged; in block mode it's blocked and event 1126 is logged.[^xdr03-np-eval] Run the check again the next day: the audited event appears in `events.csv`.
+
+   In PowerShell: network protection covers any application on the device, not only browsers, so PowerShell can make the same visit; then read the two events from the log Learn names.[^xdr03-np-eval] [^xdr03-iwr] [^xdr03-winevent] On the test device:
+
+   ```powershell
+   try { (Invoke-WebRequest -Uri https://smartscreentestratings2.net -TimeoutSec 30).StatusCode } catch { $_.Exception.Message }
+   Get-WinEvent -FilterHashtable @{ LogName = 'Microsoft-Windows-Windows Defender/Operational'; Id = 1125, 1126 } -MaxEvents 5 | Select-Object TimeCreated, Id, Message
+   ```
+
+   In audit mode the visit returns `200` and the newest event is 1125; in block mode the visit fails and the newest event is 1126. The next day, on your workstation, run the check again:
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes ThreatHunting.Read.All
+   ./Invoke-XdrPrevention.ps1 -SettingsPath <settings-file> -OutputPath <output-folder>/prevention
+   ```
 
 4. **Back it out.** Nothing changed on the device. Delete the state file if the device leaves ring 0:
 
@@ -407,6 +429,8 @@ The pairs are the guide's G3 row. KSIs are FedRAMP 20x indicators for cloud serv
 [^xdr03-tamper-ov]: Microsoft Learn, "Tamper protection overview," section "Query tampering attempts with advanced hunting," <https://learn.microsoft.com/defender-endpoint/tamper-protection-overview> (accessed November 11, 2026; carried).
 [^xdr03-np]: Microsoft Learn, "Configure network protection in Microsoft Defender Antivirus," <https://learn.microsoft.com/defender-endpoint/enable-network-protection> (accessed November 11, 2026; carried).
 [^xdr03-np-eval]: Microsoft Learn, "Evaluate network protection," <https://learn.microsoft.com/defender-endpoint/evaluate-network-protection> (accessed November 11, 2026; carried).
+[^xdr03-iwr]: Microsoft Learn, Microsoft.PowerShell.Utility module reference, `Invoke-WebRequest`, <https://learn.microsoft.com/powershell/module/microsoft.powershell.utility/invoke-webrequest> (accessed November 27, 2026).
+[^xdr03-winevent]: Microsoft Learn, Microsoft.PowerShell.Diagnostics module reference, `Get-WinEvent`, `-FilterHashtable` with `LogName` and `Id`, <https://learn.microsoft.com/powershell/module/microsoft.powershell.diagnostics/get-winevent> (accessed November 27, 2026).
 [^xdr03-np-hunt]: Microsoft Learn, "Use network protection to help prevent connections to malicious or suspicious sites," sections "Advanced hunting" and "Review network protection events in Windows Event Viewer," <https://learn.microsoft.com/defender-endpoint/network-protection> (accessed November 11, 2026; carried).
 [^xdr03-cfa]: Microsoft Learn, "Configure controlled folder access (CFA)," <https://learn.microsoft.com/defender-endpoint/controlled-folder-access-configure> (accessed November 11, 2026; carried).
 [^xdr03-cfa-mon]: Microsoft Learn, "Monitor controlled folder access (CFA) activity," <https://learn.microsoft.com/defender-endpoint/controlled-folder-access-monitor> (accessed November 11, 2026; carried).
