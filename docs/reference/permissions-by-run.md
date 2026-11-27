@@ -11,6 +11,7 @@ Each kit that calls a live service keeps a file that lists every call it makes, 
 - **Reads only** runs can be scheduled under a service identity. **Changes** runs are dry runs unless they're given `-Apply` (or the kit's equivalent) and an approved plan, and most are run by a person with a delegated role; the kit's chapter says which.
 - **Microsoft Graph permissions** are the least-privileged permission Microsoft Learn names for each call. **Roles** are Microsoft Entra, Azure, Defender or Purview roles: the least-privileged role a person running the run needs, or an Azure role on the scope the kit names. **Other rights** are Active Directory, SQL Server, ServiceNow, SailPoint and other clouds' rights.
 - A run that combines several kits, such as the estate inventory, needs the union of their rows.
+- **On the platform host** says which identity runs it there, under [WD-181](../about/decision-register.md#wd-181): the assessment gMSA, `gmsa-fmpassess$`, with default read in the forest, and for Microsoft Graph and Azure a reader app per assessment set holding only that set's read rows. A gMSA can't sign in to Microsoft Entra ID, so the cloud reads need the app. A run that changes something, needs a write permission to read, or needs an Active Directory delegation beyond default read isn't scheduled.
 - A role or permission listed for a run is what the kit's file names. Some calls accept any one of several roles; the kit's chapter gives the choice.
 
 ## At a glance {#at-a-glance}
@@ -33,142 +34,142 @@ Each kit that calls a live service keeps a file that lists every call it makes, 
 
 From [`examples/non-person-identity/config/calls-ch03.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/non-person-identity/config/calls-ch03.json), [`examples/non-person-identity/config/calls-ch04.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/non-person-identity/config/calls-ch04.json), [`examples/non-person-identity/config/calls-ch05.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/non-person-identity/config/calls-ch05.json), [`examples/non-person-identity/config/calls-ch06.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/non-person-identity/config/calls-ch06.json), [`examples/non-person-identity/config/calls-ch07.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/non-person-identity/config/calls-ch07.json), [`examples/non-person-identity/config/calls-ch08.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/non-person-identity/config/calls-ch08.json), [`examples/non-person-identity/config/calls-ch09.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/non-person-identity/config/calls-ch09.json), [`examples/non-person-identity/config/calls-ch10.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/non-person-identity/config/calls-ch10.json), [`examples/non-person-identity/config/calls-ch11.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/non-person-identity/config/calls-ch11.json), [`examples/non-person-identity/config/calls-ch12.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/non-person-identity/config/calls-ch12.json), [`examples/non-person-identity/config/calls-ch13.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/non-person-identity/config/calls-ch13.json), [`examples/non-person-identity/config/calls.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/non-person-identity/config/calls.json). Taught in [Non-Person Identity](../../docs/project-plans/developer-workbooks/non-person-identity/index.md).
 
-| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights |
-|---|---|---|---|---|---|
-| `inventory` | 01 | Reads only | `Application.Read.All`<br>`Directory.Read.All` | Reader | Read (default for authenticated domain users) |
-| `ownership` | 02 | Reads only | `User.Read.All` | — | — |
-| `orphan-apply` | 02 | Changes | `Application.Read.All`<br>`Application.ReadWrite.All`<br>`Directory.Read.All`<br>`User.Read.All` | Cloud Application Administrator | Delegated right to disable accounts in the account's OU<br>Read (default for authenticated domain users) |
-| `migration-matrix` | 03 | Reads only | `LicenseAssignment.Read.All`<br>`User.Read.All` | — | — |
-| `app-policy` | 04 | Reads only | `Application.Read.All`<br>`Policy.Read.All` | — | — |
-| `rotation` | 04 | Reads only | `Application.Read.All`<br>`User.Read.All` | Key Vault Reader | — |
-| `policy-apply` | 04 | Changes | `Application.Read.All`<br>`Application.ReadWrite.All`<br>`Policy.Read.All`<br>`Policy.ReadWrite.ApplicationConfiguration` | Cloud Application Administrator | — |
-| `rotation-apply` | 04 | Changes | `Application.Read.All`<br>`Application.ReadWrite.All` | Cloud Application Administrator<br>Key Vault Certificates Officer<br>Key Vault Reader | — |
-| `federation` | 05 | Reads only | `Application.Read.All`<br>`AuditLog.Read.All` | Reader | Read (default for authenticated domain users) |
-| `federation-apply` | 05 | Changes | `Application.Read.All`<br>`Application.ReadWrite.All` | Cloud Application Administrator<br>Managed Identity Contributor<br>Reader | Delegated right to disable accounts in the account's OU<br>Read (default for authenticated domain users) |
-| `kerberos-island` | 06 | Reads only | — | — | Delegated read of msKds-ProvRootKey objects in CN=Master Root Keys (List Contents; Read msKds-UseStartTime and msKds-CreateTime, never msKds-RootKeyData): the class's default security descriptor grants Enterprise Admins, Domain Admins and SYSTEM only<br>Read (default for authenticated domain users) |
-| `kerberos-apply` | 06 | Changes | — | gmsa-msapipe$ | Create msDS-GroupManagedServiceAccount objects in the service-account OU: the right delegated there to DL-gMSA-Creators (the pipeline's gMSA is a member), or Domain Admins<br>Delegated read of msKds-ProvRootKey objects in CN=Master Root Keys (List Contents; Read msKds-UseStartTime and msKds-CreateTime, never msKds-RootKeyData): the class's default security descriptor grants Enterprise Admins, Domain Admins and SYSTEM only<br>Delegated right to disable accounts in the account's OU<br>Delegated right to move objects from the account's OU into the holding OU<br>Domain Admins or Enterprise Admins, or equivalent permissions, to create or migrate to a dMSA, against a read-write domain controller<br>Read (default for authenticated domain users)<br>Write msDS-GroupMSAMembership on the managed service account |
-| `least-privilege` | 07 | Reads only | `Application.Read.All`<br>`Directory.Read.All`<br>`RoleManagement.Read.Directory` | Reader | — |
-| `least-privilege-apply` | 07 | Changes | `Application.Read.All`<br>`AppRoleAssignment.ReadWrite.All`<br>`DelegatedPermissionGrant.ReadWrite.All`<br>`Directory.Read.All` | Privileged Role Administrator | — |
-| `wca-read` | 08 | Reads only | `Application.Read.All`<br>`Policy.Read.All` | — | — |
-| `wca-signins` | 08 | Reads only | `AuditLog.Read.All`<br>`Policy.Read.ConditionalAccess` | Security Reader or Global Reader (reads sign-ins and the Conditional Access results in them) | — |
-| `wca-apply` | 08 | Changes | `Application.Read.All`<br>`Policy.Read.All`<br>`Policy.ReadWrite.ConditionalAccess` | Conditional Access Administrator | — |
-| `agent-id` | 09 | Reads only | `AgentIdentity.Read.All`<br>`AgentIdentityBlueprint.Read.All`<br>`Application.Read.All`<br>`AuditLog.Read.All`<br>`CustomSecAttributeAssignment.Read.All`<br>`LifecycleWorkflows-Workflow.Read.All`<br>`LifecycleWorkflows-Workflow.ReadBasic.All`<br>`Policy.Read.All`<br>`RoleManagement.Read.Directory`<br>`User.Read.All` | Agent ID Administrator<br>Attribute Assignment Reader<br>Global Reader<br>Reports Reader | — |
-| `agent-ca-apply` | 09 | Changes | `Policy.Read.All`<br>`Policy.ReadWrite.ConditionalAccess` | Conditional Access Administrator | — |
-| `drift` | 10 | Reads only | `AuditLog.Read.All` | Reports Reader<br>Security Administrator<br>Security Reader | — |
-| `deploy-preflight` | 11 | Reads only | `Application.Read.All`<br>`LicenseAssignment.Read.All`<br>`Policy.Read.All`<br>`RoleEligibilitySchedule.Read.Directory`<br>`RoleManagement.Read.Directory` | — | Read (default for authenticated domain users) |
-| `deploy-rollback` | 11 | Changes | `Application.ReadWrite.All`<br>`Policy.Read.All`<br>`Policy.ReadWrite.ApplicationConfiguration`<br>`Policy.ReadWrite.ConditionalAccess` | — | Delegated right to enable and disable accounts in the account's OU |
-| `deploy-smoke` | 11 | Changes | `Application.Read.All`<br>`Application.ReadWrite.All`<br>`AuditLog.Read.All`<br>`Policy.Read.All` | — | Read (default for authenticated domain users)<br>Run on a host allowed to retrieve the gMSA's password (PrincipalsAllowedToRetrieveManagedPassword) |
-| `msa-standard` | 12 | Reads only | — | — | Read (default for authenticated domain users) |
-| `cloud-workload` | 13 | Reads only | — | — | AWS: A role that can read IAM and IAM Roles Anywhere in the account (the guide's Step 1g)<br>Oracle Cloud: A user or principal that can read IAM in the tenancy's home region (the guide's Step 1h) |
+| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights | On the platform host (WD-181) |
+|---|---|---|---|---|---|---|
+| `inventory` | 01 | Reads only | `Application.Read.All`<br>`Directory.Read.All` | Reader | Read (default for authenticated domain users) | Weekly in the estate inventory: `gmsa-fmpassess$` and its reader app (WD-180) |
+| `ownership` | 02 | Reads only | `User.Read.All` | — | — | `gmsa-fmpassess$`; Graph and Azure as the Non-Person Identity reader app |
+| `orphan-apply` | 02 | Changes | `Application.Read.All`<br>`Application.ReadWrite.All`<br>`Directory.Read.All`<br>`User.Read.All` | Cloud Application Administrator | Delegated right to disable accounts in the account's OU<br>Read (default for authenticated domain users) | Not scheduled: run by the person or pipeline the kit's chapter names |
+| `migration-matrix` | 03 | Reads only | `LicenseAssignment.Read.All`<br>`User.Read.All` | — | — | `gmsa-fmpassess$`; Graph and Azure as the Non-Person Identity reader app |
+| `app-policy` | 04 | Reads only | `Application.Read.All`<br>`Policy.Read.All` | — | — | `gmsa-fmpassess$`; Graph and Azure as the Non-Person Identity reader app |
+| `rotation` | 04 | Reads only | `Application.Read.All`<br>`User.Read.All` | Key Vault Reader | — | `gmsa-fmpassess$`; Graph and Azure as the Non-Person Identity reader app |
+| `policy-apply` | 04 | Changes | `Application.Read.All`<br>`Application.ReadWrite.All`<br>`Policy.Read.All`<br>`Policy.ReadWrite.ApplicationConfiguration` | Cloud Application Administrator | — | Not scheduled: run by the person or pipeline the kit's chapter names |
+| `rotation-apply` | 04 | Changes | `Application.Read.All`<br>`Application.ReadWrite.All` | Cloud Application Administrator<br>Key Vault Certificates Officer<br>Key Vault Reader | — | Not scheduled: run by the person or pipeline the kit's chapter names |
+| `federation` | 05 | Reads only | `Application.Read.All`<br>`AuditLog.Read.All` | Reader | Read (default for authenticated domain users) | `gmsa-fmpassess$`; Graph and Azure as the Non-Person Identity reader app |
+| `federation-apply` | 05 | Changes | `Application.Read.All`<br>`Application.ReadWrite.All` | Cloud Application Administrator<br>Managed Identity Contributor<br>Reader | Delegated right to disable accounts in the account's OU<br>Read (default for authenticated domain users) | Not scheduled: run by the person or pipeline the kit's chapter names |
+| `kerberos-island` | 06 | Reads only | — | — | Delegated read of msKds-ProvRootKey objects in CN=Master Root Keys (List Contents; Read msKds-UseStartTime and msKds-CreateTime, never msKds-RootKeyData): the class's default security descriptor grants Enterprise Admins, Domain Admins and SYSTEM only<br>Read (default for authenticated domain users) | Not scheduled: needs an Active Directory delegation beyond default read; run by hand with a time-bound one |
+| `kerberos-apply` | 06 | Changes | — | gmsa-msapipe$ | Create msDS-GroupManagedServiceAccount objects in the service-account OU: the right delegated there to DL-gMSA-Creators (the pipeline's gMSA is a member), or Domain Admins<br>Delegated read of msKds-ProvRootKey objects in CN=Master Root Keys (List Contents; Read msKds-UseStartTime and msKds-CreateTime, never msKds-RootKeyData): the class's default security descriptor grants Enterprise Admins, Domain Admins and SYSTEM only<br>Delegated right to disable accounts in the account's OU<br>Delegated right to move objects from the account's OU into the holding OU<br>Domain Admins or Enterprise Admins, or equivalent permissions, to create or migrate to a dMSA, against a read-write domain controller<br>Read (default for authenticated domain users)<br>Write msDS-GroupMSAMembership on the managed service account | The pipeline's own gMSA, `gmsa-msapipe$`, after SailPoint approves (WD-163) |
+| `least-privilege` | 07 | Reads only | `Application.Read.All`<br>`Directory.Read.All`<br>`RoleManagement.Read.Directory` | Reader | — | `gmsa-fmpassess$`; Graph and Azure as the Non-Person Identity reader app |
+| `least-privilege-apply` | 07 | Changes | `Application.Read.All`<br>`AppRoleAssignment.ReadWrite.All`<br>`DelegatedPermissionGrant.ReadWrite.All`<br>`Directory.Read.All` | Privileged Role Administrator | — | Not scheduled: run by the person or pipeline the kit's chapter names |
+| `wca-read` | 08 | Reads only | `Application.Read.All`<br>`Policy.Read.All` | — | — | `gmsa-fmpassess$`; Graph and Azure as the Non-Person Identity reader app |
+| `wca-signins` | 08 | Reads only | `AuditLog.Read.All`<br>`Policy.Read.ConditionalAccess` | Security Reader or Global Reader (reads sign-ins and the Conditional Access results in them) | — | `gmsa-fmpassess$`; Graph and Azure as the Non-Person Identity reader app |
+| `wca-apply` | 08 | Changes | `Application.Read.All`<br>`Policy.Read.All`<br>`Policy.ReadWrite.ConditionalAccess` | Conditional Access Administrator | — | Not scheduled: run by the person or pipeline the kit's chapter names |
+| `agent-id` | 09 | Reads only | `AgentIdentity.Read.All`<br>`AgentIdentityBlueprint.Read.All`<br>`Application.Read.All`<br>`AuditLog.Read.All`<br>`CustomSecAttributeAssignment.Read.All`<br>`LifecycleWorkflows-Workflow.Read.All`<br>`LifecycleWorkflows-Workflow.ReadBasic.All`<br>`Policy.Read.All`<br>`RoleManagement.Read.Directory`<br>`User.Read.All` | Agent ID Administrator<br>Attribute Assignment Reader<br>Global Reader<br>Reports Reader | — | `gmsa-fmpassess$`; Graph and Azure as the Non-Person Identity reader app |
+| `agent-ca-apply` | 09 | Changes | `Policy.Read.All`<br>`Policy.ReadWrite.ConditionalAccess` | Conditional Access Administrator | — | Not scheduled: run by the person or pipeline the kit's chapter names |
+| `drift` | 10 | Reads only | `AuditLog.Read.All` | Reports Reader<br>Security Administrator<br>Security Reader | — | `gmsa-fmpassess$`; Graph and Azure as the Non-Person Identity reader app |
+| `deploy-preflight` | 11 | Reads only | `Application.Read.All`<br>`LicenseAssignment.Read.All`<br>`Policy.Read.All`<br>`RoleEligibilitySchedule.Read.Directory`<br>`RoleManagement.Read.Directory` | — | Read (default for authenticated domain users) | `gmsa-fmpassess$`; Graph and Azure as the Non-Person Identity reader app |
+| `deploy-rollback` | 11 | Changes | `Application.ReadWrite.All`<br>`Policy.Read.All`<br>`Policy.ReadWrite.ApplicationConfiguration`<br>`Policy.ReadWrite.ConditionalAccess` | — | Delegated right to enable and disable accounts in the account's OU | Not scheduled: run by the person or pipeline the kit's chapter names |
+| `deploy-smoke` | 11 | Changes | `Application.Read.All`<br>`Application.ReadWrite.All`<br>`AuditLog.Read.All`<br>`Policy.Read.All` | — | Read (default for authenticated domain users)<br>Run on a host allowed to retrieve the gMSA's password (PrincipalsAllowedToRetrieveManagedPassword) | Not scheduled: run by the person or pipeline the kit's chapter names |
+| `msa-standard` | 12 | Reads only | — | — | Read (default for authenticated domain users) | `gmsa-fmpassess$`; Graph and Azure as the Non-Person Identity reader app |
+| `cloud-workload` | 13 | Reads only | — | — | AWS: A role that can read IAM and IAM Roles Anywhere in the account (the guide's Step 1g)<br>Oracle Cloud: A user or principal that can read IAM in the tenancy's home region (the guide's Step 1h) | `gmsa-fmpassess$`; AWS and Oracle Cloud sign-ins aren't decided (Chapter 13) |
 
 ## Privileged Access {#privileged-access}
 
 From [`examples/privileged-access/config/calls-ch03.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/privileged-access/config/calls-ch03.json), [`examples/privileged-access/config/calls-ch04.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/privileged-access/config/calls-ch04.json), [`examples/privileged-access/config/calls-ch05.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/privileged-access/config/calls-ch05.json), [`examples/privileged-access/config/calls-ch06.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/privileged-access/config/calls-ch06.json), [`examples/privileged-access/config/calls-ch07.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/privileged-access/config/calls-ch07.json), [`examples/privileged-access/config/calls-ch08.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/privileged-access/config/calls-ch08.json), [`examples/privileged-access/config/calls.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/privileged-access/config/calls.json). Taught in [Privileged Access](../../docs/project-plans/developer-workbooks/privileged-access/index.md).
 
-| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights |
-|---|---|---|---|---|---|
-| `access-reviews-evidence` | — | Reads only | `AccessReview.Read.All` | Reader<br>Security Reader, Identity Governance Administrator, Privileged Role Administrator or Security Administrator<br>Security Reader, Identity Governance Administrator, Privileged Role Administrator or Security Administrator (reviews of Microsoft Entra roles) | — |
-| `access-reviews-plan` | — | Reads only | `AccessReview.Read.All` | Reader<br>Security Reader, Identity Governance Administrator, Privileged Role Administrator or Security Administrator (reviews of Microsoft Entra roles) | — |
-| `azure-pim-read` | — | Reads only | — | Reader | — |
-| `ca-read` | — | Reads only | `AuthenticationContext.Read.All`<br>`Policy.Read.All`<br>`Policy.Read.AuthenticationMethod` | — | — |
-| `emergency-access` | — | Reads only | `GroupMember.ReadBasic.All`<br>`Policy.Read.All`<br>`RoleAssignmentSchedule.Read.Directory`<br>`User.Read.All`<br>`User.ReadBasic.All`<br>`UserAuthenticationMethod.Read.All` | — | — |
-| `inventory` | — | Reads only | `GroupMember.ReadBasic.All`<br>`RoleAssignmentSchedule.Read.Directory`<br>`RoleEligibilitySchedule.Read.Directory`<br>`RoleManagement.Read.Directory`<br>`User.ReadBasic.All` | Reader | — |
-| `pim-alerts` | — | Reads only | `RoleAssignmentSchedule.Read.Directory`<br>`RoleEligibilitySchedule.Read.Directory`<br>`RoleManagementPolicy.Read.AzureADGroup`<br>`RoleManagementPolicy.Read.Directory` | Global Reader (read)<br>Global Reader, Security Operator, Security Reader, Security Administrator or Privileged Role Administrator<br>Privileged Role Administrator<br>Privileged Role Administrator, or an owner or member of the group: Learn's Configure PIM for Groups settings asks for a role with microsoft.directory/groupsAssignableToRoles/owners/update or members/update to read a role-assignable group's PIM policies, and the API page names no read-only role. Global Reader isn't enough. An app with the application permission avoids the role | — |
-| `pim-audit` | — | Reads only | `AuditLog.Read.All` | Reports Reader<br>Security Administrator<br>Security Reader | — |
-| `pim-groups-read` | — | Reads only | `Group.ReadBasic.All`<br>`PrivilegedAssignmentSchedule.Read.AzureADGroup`<br>`PrivilegedEligibilitySchedule.Read.AzureADGroup`<br>`RoleManagementPolicy.Read.AzureADGroup` | — | — |
-| `pim-plan` | — | Reads only | `RoleAssignmentSchedule.Read.Directory`<br>`RoleEligibilitySchedule.Read.Directory`<br>`RoleManagementPolicy.Read.Directory` | Global Reader (read)<br>Global Reader, Security Operator, Security Reader, Security Administrator or Privileged Role Administrator | — |
-| `access-reviews-apply` | — | Changes | `AccessReview.Read.All`<br>`AccessReview.ReadWrite.All` | as for create<br>Privileged Role Administrator for reviews of Microsoft Entra roles (PIM page); the API overview names User Administrator and the tutorial Identity Governance Administrator<br>Reader<br>Security Reader, Identity Governance Administrator, Privileged Role Administrator or Security Administrator (reviews of Microsoft Entra roles)<br>User Access Administrator | — |
-| `azure-pim-apply` | — | Changes | — | Reader<br>User Access Administrator | — |
-| `ca-apply` | — | Changes | `AuthenticationContext.Read.All`<br>`AuthenticationContext.ReadWrite.All`<br>`Policy.Read.All`<br>`Policy.Read.AuthenticationMethod`<br>`Policy.ReadWrite.ConditionalAccess` | — | — |
-| `pim-apply` | — | Changes | `RoleAssignmentSchedule.Read.Directory`<br>`RoleEligibilitySchedule.Read.Directory`<br>`RoleEligibilitySchedule.ReadWrite.Directory`<br>`RoleManagementPolicy.Read.Directory`<br>`RoleManagementPolicy.ReadWrite.Directory` | Global Reader (read)<br>Global Reader, Security Operator, Security Reader, Security Administrator or Privileged Role Administrator<br>Privileged Role Administrator | — |
-| `pim-convert` | — | Changes | `RoleAssignmentSchedule.Read.Directory`<br>`RoleAssignmentSchedule.ReadWrite.Directory`<br>`RoleEligibilitySchedule.Read.Directory`<br>`RoleManagementPolicy.Read.Directory` | Global Reader (read)<br>Global Reader, Security Operator, Security Reader, Security Administrator or Privileged Role Administrator<br>Privileged Role Administrator | — |
-| `pim-groups-apply` | — | Changes | `Group.Create`<br>`Group.ReadBasic.All`<br>`PrivilegedAssignmentSchedule.Read.AzureADGroup`<br>`PrivilegedAssignmentSchedule.ReadWrite.AzureADGroup`<br>`PrivilegedEligibilitySchedule.Read.AzureADGroup`<br>`PrivilegedEligibilitySchedule.ReadWrite.AzureADGroup`<br>`RoleManagement.ReadWrite.Directory`<br>`RoleManagementPolicy.Read.AzureADGroup`<br>`RoleManagementPolicy.ReadWrite.AzureADGroup` | — | — |
+| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights | On the platform host (WD-181) |
+|---|---|---|---|---|---|---|
+| `access-reviews-evidence` | — | Reads only | `AccessReview.Read.All` | Reader<br>Security Reader, Identity Governance Administrator, Privileged Role Administrator or Security Administrator<br>Security Reader, Identity Governance Administrator, Privileged Role Administrator or Security Administrator (reviews of Microsoft Entra roles) | — | `gmsa-fmpassess$`; Graph and Azure as the Privileged Access reader app |
+| `access-reviews-plan` | — | Reads only | `AccessReview.Read.All` | Reader<br>Security Reader, Identity Governance Administrator, Privileged Role Administrator or Security Administrator (reviews of Microsoft Entra roles) | — | `gmsa-fmpassess$`; Graph and Azure as the Privileged Access reader app |
+| `azure-pim-read` | — | Reads only | — | Reader | — | `gmsa-fmpassess$`; Graph and Azure as the Privileged Access reader app |
+| `ca-read` | — | Reads only | `AuthenticationContext.Read.All`<br>`Policy.Read.All`<br>`Policy.Read.AuthenticationMethod` | — | — | `gmsa-fmpassess$`; Graph and Azure as the Privileged Access reader app |
+| `emergency-access` | — | Reads only | `GroupMember.ReadBasic.All`<br>`Policy.Read.All`<br>`RoleAssignmentSchedule.Read.Directory`<br>`User.Read.All`<br>`User.ReadBasic.All`<br>`UserAuthenticationMethod.Read.All` | — | — | `gmsa-fmpassess$`; Graph and Azure as the Privileged Access reader app |
+| `inventory` | — | Reads only | `GroupMember.ReadBasic.All`<br>`RoleAssignmentSchedule.Read.Directory`<br>`RoleEligibilitySchedule.Read.Directory`<br>`RoleManagement.Read.Directory`<br>`User.ReadBasic.All` | Reader | — | Weekly in the estate inventory: `gmsa-fmpassess$` and its reader app (WD-180) |
+| `pim-alerts` | — | Reads only | `RoleAssignmentSchedule.Read.Directory`<br>`RoleEligibilitySchedule.Read.Directory`<br>`RoleManagementPolicy.Read.AzureADGroup`<br>`RoleManagementPolicy.Read.Directory` | Global Reader (read)<br>Global Reader, Security Operator, Security Reader, Security Administrator or Privileged Role Administrator<br>Privileged Role Administrator<br>Privileged Role Administrator, or an owner or member of the group: Learn's Configure PIM for Groups settings asks for a role with microsoft.directory/groupsAssignableToRoles/owners/update or members/update to read a role-assignable group's PIM policies, and the API page names no read-only role. Global Reader isn't enough. An app with the application permission avoids the role | — | `gmsa-fmpassess$`; Graph and Azure as the Privileged Access reader app |
+| `pim-audit` | — | Reads only | `AuditLog.Read.All` | Reports Reader<br>Security Administrator<br>Security Reader | — | `gmsa-fmpassess$`; Graph and Azure as the Privileged Access reader app |
+| `pim-groups-read` | — | Reads only | `Group.ReadBasic.All`<br>`PrivilegedAssignmentSchedule.Read.AzureADGroup`<br>`PrivilegedEligibilitySchedule.Read.AzureADGroup`<br>`RoleManagementPolicy.Read.AzureADGroup` | — | — | `gmsa-fmpassess$`; Graph and Azure as the Privileged Access reader app |
+| `pim-plan` | — | Reads only | `RoleAssignmentSchedule.Read.Directory`<br>`RoleEligibilitySchedule.Read.Directory`<br>`RoleManagementPolicy.Read.Directory` | Global Reader (read)<br>Global Reader, Security Operator, Security Reader, Security Administrator or Privileged Role Administrator | — | `gmsa-fmpassess$`; Graph and Azure as the Privileged Access reader app |
+| `access-reviews-apply` | — | Changes | `AccessReview.Read.All`<br>`AccessReview.ReadWrite.All` | as for create<br>Privileged Role Administrator for reviews of Microsoft Entra roles (PIM page); the API overview names User Administrator and the tutorial Identity Governance Administrator<br>Reader<br>Security Reader, Identity Governance Administrator, Privileged Role Administrator or Security Administrator (reviews of Microsoft Entra roles)<br>User Access Administrator | — | Not scheduled: run by the person or pipeline the kit's chapter names |
+| `azure-pim-apply` | — | Changes | — | Reader<br>User Access Administrator | — | Not scheduled: run by the person or pipeline the kit's chapter names |
+| `ca-apply` | — | Changes | `AuthenticationContext.Read.All`<br>`AuthenticationContext.ReadWrite.All`<br>`Policy.Read.All`<br>`Policy.Read.AuthenticationMethod`<br>`Policy.ReadWrite.ConditionalAccess` | — | — | Not scheduled: run by the person or pipeline the kit's chapter names |
+| `pim-apply` | — | Changes | `RoleAssignmentSchedule.Read.Directory`<br>`RoleEligibilitySchedule.Read.Directory`<br>`RoleEligibilitySchedule.ReadWrite.Directory`<br>`RoleManagementPolicy.Read.Directory`<br>`RoleManagementPolicy.ReadWrite.Directory` | Global Reader (read)<br>Global Reader, Security Operator, Security Reader, Security Administrator or Privileged Role Administrator<br>Privileged Role Administrator | — | Not scheduled: run by the person or pipeline the kit's chapter names |
+| `pim-convert` | — | Changes | `RoleAssignmentSchedule.Read.Directory`<br>`RoleAssignmentSchedule.ReadWrite.Directory`<br>`RoleEligibilitySchedule.Read.Directory`<br>`RoleManagementPolicy.Read.Directory` | Global Reader (read)<br>Global Reader, Security Operator, Security Reader, Security Administrator or Privileged Role Administrator<br>Privileged Role Administrator | — | Not scheduled: run by the person or pipeline the kit's chapter names |
+| `pim-groups-apply` | — | Changes | `Group.Create`<br>`Group.ReadBasic.All`<br>`PrivilegedAssignmentSchedule.Read.AzureADGroup`<br>`PrivilegedAssignmentSchedule.ReadWrite.AzureADGroup`<br>`PrivilegedEligibilitySchedule.Read.AzureADGroup`<br>`PrivilegedEligibilitySchedule.ReadWrite.AzureADGroup`<br>`RoleManagement.ReadWrite.Directory`<br>`RoleManagementPolicy.Read.AzureADGroup`<br>`RoleManagementPolicy.ReadWrite.AzureADGroup` | — | — | Not scheduled: run by the person or pipeline the kit's chapter names |
 
 ## HR-Driven Identity {#hr-lifecycle}
 
 From [`examples/hr-lifecycle/config/calls.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/hr-lifecycle/config/calls.json). Taught in [HR-Driven Identity](../../docs/project-plans/developer-workbooks/hr-driven-identity/index.md).
 
-| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights |
-|---|---|---|---|---|---|
-| `writers-scan` | 01 | Reads only | `AuditLog.Read.All`<br>`Directory.Read.All` | — | AuditLog.Read.All, Directory.Read.All |
-| `contractor-reconcile` | 02 | Reads only | `User-LifeCycleInfo.Read.All`<br>`User.Read.All` | — | User.Read.All, User-LifeCycleInfo.Read.All |
-| `joiner-plan` | 03 | Reads only | `LifecycleWorkflows-Workflow.Read.All` | — | — |
-| `joiner-readiness` | 03 | Reads only | `EntitlementManagement.Read.All`<br>`LifecycleWorkflows-Reports.Read.All`<br>`User-LifeCycleInfo.Read.All`<br>`User.Read.All` | — | User.Read.All, User-LifeCycleInfo.Read.All |
-| `access-read` | 04 | Reads only | `EntitlementManagement.Read.All`<br>`User.Read.All` | — | — |
-| `cba-read` | 05 | Reads only | `Policy.Read.All`<br>`Policy.Read.AuthenticationMethod`<br>`PublicKeyInfrastructure.Read.All` | — | — |
-| `separation-read` | 06 | Reads only | `AuditLog.Read.All`<br>`LifecycleWorkflows-Reports.Read.All` | — | — |
-| `drift-read` | 07 | Reads only | `User-LifeCycleInfo.Read.All`<br>`User.Read.All` | — | User.Read.All, User-LifeCycleInfo.Read.All |
-| `deploy-job` | 08 | Reads only | `Synchronization.Read.All` | — | — |
-| `deploy-preflight` | 08 | Reads only | `LicenseAssignment.Read.All`<br>`LifecycleWorkflows-Workflow.Read.All`<br>`RoleEligibilitySchedule.Read.Directory` | — | — |
-| `deploy-smoke` | 08 | Reads only | `AuditLog.Read.All`<br>`Directory.Read.All`<br>`LifecycleWorkflows-Reports.Read.All`<br>`User-LifeCycleInfo.Read.All`<br>`User.Read.All` | — | AuditLog.Read.All, Directory.Read.All<br>User.Read.All, User-LifeCycleInfo.Read.All |
+| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights | On the platform host (WD-181) |
+|---|---|---|---|---|---|---|
+| `writers-scan` | 01 | Reads only | `AuditLog.Read.All`<br>`Directory.Read.All` | — | AuditLog.Read.All, Directory.Read.All | `gmsa-fmpassess$`; Graph as the HR-Driven Identity reader app |
+| `contractor-reconcile` | 02 | Reads only | `User-LifeCycleInfo.Read.All`<br>`User.Read.All` | — | User.Read.All, User-LifeCycleInfo.Read.All | `gmsa-fmpassess$`; Graph as the HR-Driven Identity reader app |
+| `joiner-plan` | 03 | Reads only | `LifecycleWorkflows-Workflow.Read.All` | — | — | `gmsa-fmpassess$`; Graph as the HR-Driven Identity reader app |
+| `joiner-readiness` | 03 | Reads only | `EntitlementManagement.Read.All`<br>`LifecycleWorkflows-Reports.Read.All`<br>`User-LifeCycleInfo.Read.All`<br>`User.Read.All` | — | User.Read.All, User-LifeCycleInfo.Read.All | `gmsa-fmpassess$`; Graph as the HR-Driven Identity reader app |
+| `access-read` | 04 | Reads only | `EntitlementManagement.Read.All`<br>`User.Read.All` | — | — | `gmsa-fmpassess$`; Graph as the HR-Driven Identity reader app |
+| `cba-read` | 05 | Reads only | `Policy.Read.All`<br>`Policy.Read.AuthenticationMethod`<br>`PublicKeyInfrastructure.Read.All` | — | — | `gmsa-fmpassess$`; Graph as the HR-Driven Identity reader app |
+| `separation-read` | 06 | Reads only | `AuditLog.Read.All`<br>`LifecycleWorkflows-Reports.Read.All` | — | — | `gmsa-fmpassess$`; Graph as the HR-Driven Identity reader app |
+| `drift-read` | 07 | Reads only | `User-LifeCycleInfo.Read.All`<br>`User.Read.All` | — | User.Read.All, User-LifeCycleInfo.Read.All | `gmsa-fmpassess$`; Graph as the HR-Driven Identity reader app |
+| `deploy-job` | 08 | Reads only | `Synchronization.Read.All` | — | — | `gmsa-fmpassess$`; Graph as the HR-Driven Identity reader app |
+| `deploy-preflight` | 08 | Reads only | `LicenseAssignment.Read.All`<br>`LifecycleWorkflows-Workflow.Read.All`<br>`RoleEligibilitySchedule.Read.Directory` | — | — | `gmsa-fmpassess$`; Graph as the HR-Driven Identity reader app |
+| `deploy-smoke` | 08 | Reads only | `AuditLog.Read.All`<br>`Directory.Read.All`<br>`LifecycleWorkflows-Reports.Read.All`<br>`User-LifeCycleInfo.Read.All`<br>`User.Read.All` | — | AuditLog.Read.All, Directory.Read.All<br>User.Read.All, User-LifeCycleInfo.Read.All | `gmsa-fmpassess$`; Graph as the HR-Driven Identity reader app |
 
 ## Ticket-to-Machine (ServiceNow and SailPoint) {#servicenow-sailpoint}
 
 From [`examples/servicenow-sailpoint/config/calls.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/servicenow-sailpoint/config/calls.json). Taught in [Ticket-to-Machine (ServiceNow and SailPoint)](../../docs/project-plans/developer-workbooks/ticket-to-machine/index.md).
 
-| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights |
-|---|---|---|---|---|---|
-| `deploy-check` | — | Reads only | — | — | an inbound OAuth client (client credentials) with its own integration user<br>API client (client credentials) or a personal access token<br>sp:workflow:read<br>x_example_idkit.evidence_reader (read only on u_identity_finding) |
-| `drift` | — | Reads only | `AuditLog.Read.All`<br>`User.Read.All` | — | API client (client credentials) or a personal access token<br>app registration with a certificate (client credentials)<br>idn:accounts:read<br>sp:search:read |
-| `evidence` | — | Reads only | — | — | an inbound OAuth client (client credentials) with its own integration user<br>x_example_idkit.evidence_reader (read only on u_identity_finding) |
-| `writer-check` | — | Reads only | `CustomSecAttributeProvisioning.Read.All` | — | idn:provisioning-policy:read |
-| `drift-push` | — | Changes | — | — | an inbound OAuth client (client credentials) with its own integration user<br>x_example_idkit.finding_writer (REST_Endpoint ACL on the Scripted REST API) |
-| `reread` | — | Changes | `User.Read.All` | — | an inbound OAuth client (client credentials) with its own integration user<br>API client (client credentials) or a personal access token<br>app registration with a certificate (client credentials)<br>idn:accounts:read<br>sp:search:read<br>x_example_idkit.verifier (create on sys_attachment)<br>x_example_idkit.verifier (read on u_identity_finding)<br>x_example_idkit.verifier (write on u_identity_finding) |
-| `smoke-raise` | — | Changes | — | — | an inbound OAuth client (client credentials) with its own integration user<br>x_example_idkit.finding_writer (REST_Endpoint ACL on the Scripted REST API) |
-| `workflow-enable` | — | Changes | — | — | sp:workflow:manage |
-| `workflow-test` | — | Changes | — | — | sp:workflow-execute:external (user level ORG_ADMIN; the workflow must be disabled)<br>sp:workflow-execution:read (user level ORG_ADMIN) |
-| `workflows` | — | Changes | — | — | sp:workflow:manage |
+| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights | On the platform host (WD-181) |
+|---|---|---|---|---|---|---|
+| `deploy-check` | — | Reads only | — | — | an inbound OAuth client (client credentials) with its own integration user<br>API client (client credentials) or a personal access token<br>sp:workflow:read<br>x_example_idkit.evidence_reader (read only on u_identity_finding) | `gmsa-fmpassess$`; Graph as the Ticket-to-Machine reader app; ServiceNow and SailPoint as the kit's read clients |
+| `drift` | — | Reads only | `AuditLog.Read.All`<br>`User.Read.All` | — | API client (client credentials) or a personal access token<br>app registration with a certificate (client credentials)<br>idn:accounts:read<br>sp:search:read | `gmsa-fmpassess$`; Graph as the Ticket-to-Machine reader app; ServiceNow and SailPoint as the kit's read clients |
+| `evidence` | — | Reads only | — | — | an inbound OAuth client (client credentials) with its own integration user<br>x_example_idkit.evidence_reader (read only on u_identity_finding) | `gmsa-fmpassess$`; Graph as the Ticket-to-Machine reader app; ServiceNow and SailPoint as the kit's read clients |
+| `writer-check` | — | Reads only | `CustomSecAttributeProvisioning.Read.All` | — | idn:provisioning-policy:read | `gmsa-fmpassess$`; Graph as the Ticket-to-Machine reader app; ServiceNow and SailPoint as the kit's read clients |
+| `drift-push` | — | Changes | — | — | an inbound OAuth client (client credentials) with its own integration user<br>x_example_idkit.finding_writer (REST_Endpoint ACL on the Scripted REST API) | Not scheduled: run by the person or pipeline the kit's chapter names |
+| `reread` | — | Changes | `User.Read.All` | — | an inbound OAuth client (client credentials) with its own integration user<br>API client (client credentials) or a personal access token<br>app registration with a certificate (client credentials)<br>idn:accounts:read<br>sp:search:read<br>x_example_idkit.verifier (create on sys_attachment)<br>x_example_idkit.verifier (read on u_identity_finding)<br>x_example_idkit.verifier (write on u_identity_finding) | Not scheduled: run by the person or pipeline the kit's chapter names |
+| `smoke-raise` | — | Changes | — | — | an inbound OAuth client (client credentials) with its own integration user<br>x_example_idkit.finding_writer (REST_Endpoint ACL on the Scripted REST API) | Not scheduled: run by the person or pipeline the kit's chapter names |
+| `workflow-enable` | — | Changes | — | — | sp:workflow:manage | Not scheduled: run by the person or pipeline the kit's chapter names |
+| `workflow-test` | — | Changes | — | — | sp:workflow-execute:external (user level ORG_ADMIN; the workflow must be disabled)<br>sp:workflow-execution:read (user level ORG_ADMIN) | Not scheduled: run by the person or pipeline the kit's chapter names |
+| `workflows` | — | Changes | — | — | sp:workflow:manage | Not scheduled: run by the person or pipeline the kit's chapter names |
 
 ## Global Secure Access {#global-secure-access}
 
 From [`examples/global-secure-access/config/calls.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/global-secure-access/config/calls.json). Taught in [Global Secure Access](../../docs/project-plans/developer-workbooks/global-secure-access/index.md).
 
-| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights |
-|---|---|---|---|---|---|
-| `baseline` | — | Reads only | `Directory.ReadWrite.All`<br>`NetworkAccess.Read.All`<br>`Policy.Read.All` | Application Administrator<br>Conditional Access Administrator<br>Global Reader<br>Global Secure Access Administrator<br>Global Secure Access Log Reader<br>Security Administrator<br>Security Reader | Security Administrator (Microsoft Entra role), as the guide's Step 12.1 uses |
-| `client` | — | Reads only | `NetworkAccessPolicy.Read.All` | Global Reader<br>Global Secure Access Log Reader | — |
-| `compliant-network` | — | Reads only | `NetworkAccess.Read.All`<br>`Policy.Read.All` | Conditional Access Administrator<br>Global Reader<br>Global Secure Access Administrator<br>Global Secure Access Log Reader<br>Log Analytics Reader<br>Security Reader | Read access to the workspace; Log Analytics Reader is the program's choice (design guidance) |
-| `decision` | — | Reads only | `LicenseAssignment.Read.All`<br>`NetworkAccessPolicy.Read.All` | Directory Readers<br>Global Reader<br>Global Secure Access Log Reader | — |
-| `internet-access` | — | Reads only | `NetworkAccess.Read.All`<br>`Policy.Read.All` | Conditional Access Administrator<br>Global Reader<br>Global Secure Access Administrator<br>Global Secure Access Log Reader<br>Log Analytics Reader<br>Security Administrator<br>Security Reader | Read access to the workspace; Log Analytics Reader is the program's choice (design guidance) |
-| `private-access` | — | Reads only | `Application.Read.All`<br>`Directory.ReadWrite.All`<br>`Policy.Read.All` | Application Administrator<br>Conditional Access Administrator<br>Global Reader<br>Global Secure Access Administrator<br>Log Analytics Reader<br>Security Reader | Read access to the workspace; Log Analytics Reader is the program's choice (design guidance) |
-| `telemetry` | — | Reads only | — | Log Analytics Reader<br>Security Administrator | Read access to the workspace; Log Analytics Reader is the program's choice (design guidance)<br>Security Administrator (Microsoft Entra role), as the guide's Step 12.1 uses |
-| `tenant-restrictions` | — | Reads only | `NetworkAccess.Read.All`<br>`Policy.Read.All` | Global Reader<br>Global Secure Access Administrator<br>Global Secure Access Log Reader<br>Log Analytics Reader<br>Security Reader | Read access to the workspace; Log Analytics Reader is the program's choice (design guidance) |
-| `tls` | — | Reads only | `NetworkAccess.Read.All` | Global Reader<br>Global Secure Access Log Reader<br>Log Analytics Reader | Read access to the workspace; Log Analytics Reader is the program's choice (design guidance) |
-| `traffic` | — | Reads only | `NetworkAccess.Read.All` | Global Reader<br>Global Secure Access Log Reader<br>Log Analytics Reader | Read access to the workspace; Log Analytics Reader is the program's choice (design guidance) |
-| `plan` | — | Changes | `NetworkAccess.ReadWrite.All`<br>`Policy.ReadWrite.ConditionalAccess` | Conditional Access Administrator<br>Global Secure Access Administrator<br>Security Administrator | — |
+| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights | On the platform host (WD-181) |
+|---|---|---|---|---|---|---|
+| `baseline` | — | Reads only | `Directory.ReadWrite.All`<br>`NetworkAccess.Read.All`<br>`Policy.Read.All` | Application Administrator<br>Conditional Access Administrator<br>Global Reader<br>Global Secure Access Administrator<br>Global Secure Access Log Reader<br>Security Administrator<br>Security Reader | Security Administrator (Microsoft Entra role), as the guide's Step 12.1 uses | Not scheduled: its read needs a write permission, which no scheduled identity holds; run by hand |
+| `client` | — | Reads only | `NetworkAccessPolicy.Read.All` | Global Reader<br>Global Secure Access Log Reader | — | `gmsa-fmpassess$`; Graph as the Global Secure Access reader app |
+| `compliant-network` | — | Reads only | `NetworkAccess.Read.All`<br>`Policy.Read.All` | Conditional Access Administrator<br>Global Reader<br>Global Secure Access Administrator<br>Global Secure Access Log Reader<br>Log Analytics Reader<br>Security Reader | Read access to the workspace; Log Analytics Reader is the program's choice (design guidance) | `gmsa-fmpassess$`; Graph as the Global Secure Access reader app |
+| `decision` | — | Reads only | `LicenseAssignment.Read.All`<br>`NetworkAccessPolicy.Read.All` | Directory Readers<br>Global Reader<br>Global Secure Access Log Reader | — | `gmsa-fmpassess$`; Graph as the Global Secure Access reader app |
+| `internet-access` | — | Reads only | `NetworkAccess.Read.All`<br>`Policy.Read.All` | Conditional Access Administrator<br>Global Reader<br>Global Secure Access Administrator<br>Global Secure Access Log Reader<br>Log Analytics Reader<br>Security Administrator<br>Security Reader | Read access to the workspace; Log Analytics Reader is the program's choice (design guidance) | `gmsa-fmpassess$`; Graph as the Global Secure Access reader app |
+| `private-access` | — | Reads only | `Application.Read.All`<br>`Directory.ReadWrite.All`<br>`Policy.Read.All` | Application Administrator<br>Conditional Access Administrator<br>Global Reader<br>Global Secure Access Administrator<br>Log Analytics Reader<br>Security Reader | Read access to the workspace; Log Analytics Reader is the program's choice (design guidance) | Not scheduled: its read needs a write permission, which no scheduled identity holds; run by hand |
+| `telemetry` | — | Reads only | — | Log Analytics Reader<br>Security Administrator | Read access to the workspace; Log Analytics Reader is the program's choice (design guidance)<br>Security Administrator (Microsoft Entra role), as the guide's Step 12.1 uses | `gmsa-fmpassess$`; Graph as the Global Secure Access reader app |
+| `tenant-restrictions` | — | Reads only | `NetworkAccess.Read.All`<br>`Policy.Read.All` | Global Reader<br>Global Secure Access Administrator<br>Global Secure Access Log Reader<br>Log Analytics Reader<br>Security Reader | Read access to the workspace; Log Analytics Reader is the program's choice (design guidance) | `gmsa-fmpassess$`; Graph as the Global Secure Access reader app |
+| `tls` | — | Reads only | `NetworkAccess.Read.All` | Global Reader<br>Global Secure Access Log Reader<br>Log Analytics Reader | Read access to the workspace; Log Analytics Reader is the program's choice (design guidance) | `gmsa-fmpassess$`; Graph as the Global Secure Access reader app |
+| `traffic` | — | Reads only | `NetworkAccess.Read.All` | Global Reader<br>Global Secure Access Log Reader<br>Log Analytics Reader | Read access to the workspace; Log Analytics Reader is the program's choice (design guidance) | `gmsa-fmpassess$`; Graph as the Global Secure Access reader app |
+| `plan` | — | Changes | `NetworkAccess.ReadWrite.All`<br>`Policy.ReadWrite.ConditionalAccess` | Conditional Access Administrator<br>Global Secure Access Administrator<br>Security Administrator | — | Not scheduled: run by the person or pipeline the kit's chapter names |
 
 ## Defender XDR {#defender-xdr}
 
 From [`examples/defender-xdr/config/calls.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/defender-xdr/config/calls.json). Taught in [Defender XDR](../../docs/project-plans/developer-workbooks/defender-xdr/index.md).
 
-| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights |
-|---|---|---|---|---|---|
-| `access` | — | Reads only | `SecurityIncident.Read.All` | Global Reader<br>Security Administrator<br>Security Operator<br>Security Reader | — |
-| `asr` | — | Reads only | `ThreatHunting.Read.All` | a Defender role that can read the queried data (for example Security data basics in unified RBAC) | — |
-| `coverage` | — | Reads only | `ThreatHunting.Read.All` | a Defender role that can read the queried data (for example Security data basics in unified RBAC) | — |
-| `detections` | — | Reads only | `CustomDetection.Read.All`<br>`ThreatHunting.Read.All` | a Defender role that can read the queried data (for example Security data basics in unified RBAC)<br>Global Reader<br>Security Administrator<br>Security Operator<br>Security Reader | — |
-| `exposure` | — | Reads only | `ThreatHunting.Read.All` | a Defender role that can read the queried data (for example Security data basics in unified RBAC) | — |
-| `incidents` | — | Reads only | `SecurityIncident.Read.All` | Global Reader<br>Security Administrator<br>Security Operator<br>Security Reader | — |
-| `preflight` | — | Reads only | `SecurityIncident.Read.All` | Global Reader<br>Security Administrator<br>Security Operator<br>Security Reader | — |
-| `prevention` | — | Reads only | `ThreatHunting.Read.All` | a Defender role that can read the queried data (for example Security data basics in unified RBAC) | — |
-| `signals` | — | Reads only | `ThreatHunting.Read.All` | a Defender role that can read the queried data (for example Security data basics in unified RBAC) | — |
-| `publish` | — | Changes | `CustomDetection.Read.All`<br>`CustomDetection.ReadWrite.All` | Detection tuning (Manage) in Defender unified RBAC<br>Global Reader<br>Security Administrator<br>Security Operator<br>Security Operator only where Defender for Endpoint RBAC is off<br>Security Reader | — |
-| `rollback` | — | Changes | `CustomDetection.Read.All`<br>`CustomDetection.ReadWrite.All` | Detection tuning (Manage) in Defender unified RBAC<br>Global Reader<br>Security Administrator<br>Security Operator<br>Security Operator only where Defender for Endpoint RBAC is off<br>Security Reader | — |
+| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights | On the platform host (WD-181) |
+|---|---|---|---|---|---|---|
+| `access` | — | Reads only | `SecurityIncident.Read.All` | Global Reader<br>Security Administrator<br>Security Operator<br>Security Reader | — | `gmsa-fmpassess$`; Graph as the Defender XDR reader app |
+| `asr` | — | Reads only | `ThreatHunting.Read.All` | a Defender role that can read the queried data (for example Security data basics in unified RBAC) | — | `gmsa-fmpassess$`; Graph as the Defender XDR reader app |
+| `coverage` | — | Reads only | `ThreatHunting.Read.All` | a Defender role that can read the queried data (for example Security data basics in unified RBAC) | — | `gmsa-fmpassess$`; Graph as the Defender XDR reader app |
+| `detections` | — | Reads only | `CustomDetection.Read.All`<br>`ThreatHunting.Read.All` | a Defender role that can read the queried data (for example Security data basics in unified RBAC)<br>Global Reader<br>Security Administrator<br>Security Operator<br>Security Reader | — | `gmsa-fmpassess$`; Graph as the Defender XDR reader app |
+| `exposure` | — | Reads only | `ThreatHunting.Read.All` | a Defender role that can read the queried data (for example Security data basics in unified RBAC) | — | `gmsa-fmpassess$`; Graph as the Defender XDR reader app |
+| `incidents` | — | Reads only | `SecurityIncident.Read.All` | Global Reader<br>Security Administrator<br>Security Operator<br>Security Reader | — | `gmsa-fmpassess$`; Graph as the Defender XDR reader app |
+| `preflight` | — | Reads only | `SecurityIncident.Read.All` | Global Reader<br>Security Administrator<br>Security Operator<br>Security Reader | — | `gmsa-fmpassess$`; Graph as the Defender XDR reader app |
+| `prevention` | — | Reads only | `ThreatHunting.Read.All` | a Defender role that can read the queried data (for example Security data basics in unified RBAC) | — | `gmsa-fmpassess$`; Graph as the Defender XDR reader app |
+| `signals` | — | Reads only | `ThreatHunting.Read.All` | a Defender role that can read the queried data (for example Security data basics in unified RBAC) | — | `gmsa-fmpassess$`; Graph as the Defender XDR reader app |
+| `publish` | — | Changes | `CustomDetection.Read.All`<br>`CustomDetection.ReadWrite.All` | Detection tuning (Manage) in Defender unified RBAC<br>Global Reader<br>Security Administrator<br>Security Operator<br>Security Operator only where Defender for Endpoint RBAC is off<br>Security Reader | — | Not scheduled: run by the person or pipeline the kit's chapter names |
+| `rollback` | — | Changes | `CustomDetection.Read.All`<br>`CustomDetection.ReadWrite.All` | Detection tuning (Manage) in Defender unified RBAC<br>Global Reader<br>Security Administrator<br>Security Operator<br>Security Operator only where Defender for Endpoint RBAC is off<br>Security Reader | — | Not scheduled: run by the person or pipeline the kit's chapter names |
 
 ## Azure Security {#azure-security}
 
 From [`examples/azure-security/config/calls.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/azure-security/config/calls.json). Taught in [Azure Security](../../docs/project-plans/developer-workbooks/azure-security/index.md).
 
-| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights |
-|---|---|---|---|---|---|
-| `baseline` | — | Reads only | — | Reader<br>Reader (tenant root group) | — |
-| `ddos` | — | Reads only | — | Reader | — |
-| `edge` | — | Reads only | — | Reader | — |
-| `exposure` | — | Reads only | — | Reader | — |
-| `firewall` | — | Reads only | — | Reader | — |
-| `policy` | — | Reads only | — | Reader | — |
-| `private` | — | Reads only | — | Reader | — |
-| `waf` | — | Reads only | — | Reader | — |
+| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights | On the platform host (WD-181) |
+|---|---|---|---|---|---|---|
+| `baseline` | — | Reads only | — | Reader<br>Reader (tenant root group) | — | `gmsa-fmpassess$`; Azure as the Azure Security reader app, Reader at its scope |
+| `ddos` | — | Reads only | — | Reader | — | `gmsa-fmpassess$`; Azure as the Azure Security reader app, Reader at its scope |
+| `edge` | — | Reads only | — | Reader | — | `gmsa-fmpassess$`; Azure as the Azure Security reader app, Reader at its scope |
+| `exposure` | — | Reads only | — | Reader | — | `gmsa-fmpassess$`; Azure as the Azure Security reader app, Reader at its scope |
+| `firewall` | — | Reads only | — | Reader | — | `gmsa-fmpassess$`; Azure as the Azure Security reader app, Reader at its scope |
+| `policy` | — | Reads only | — | Reader | — | `gmsa-fmpassess$`; Azure as the Azure Security reader app, Reader at its scope |
+| `private` | — | Reads only | — | Reader | — | `gmsa-fmpassess$`; Azure as the Azure Security reader app, Reader at its scope |
+| `waf` | — | Reads only | — | Reader | — | `gmsa-fmpassess$`; Azure as the Azure Security reader app, Reader at its scope |
 
 These are the checks, which only read. The kit's one write, the deployment runbook's assignment of the security initiative in `DoNotEnforce` and its rollback (`deploy/New-AzsPolicyPlan.ps1 -Apply`, `deploy/Invoke-AzsRollback.ps1`), isn't in its call file; the deployment chapter names what it needs.
 
@@ -176,34 +177,34 @@ These are the checks, which only read. The kit's one write, the deployment runbo
 
 From [`examples/information-protection/config/calls.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/information-protection/config/calls.json). Taught in [Information Protection](../../docs/project-plans/developer-workbooks/information-protection/index.md).
 
-| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights |
-|---|---|---|---|---|---|
-| `access` | — | Reads only | — | Compliance Administrator, or Organization Management | — |
-| `audit` | — | Reads only | — | Audit Logs, or View-Only Audit Logs<br>Compliance Administrator, or Organization Management | — |
-| `autolabel` | — | Reads only | — | Compliance Administrator<br>Compliance Administrator, or the DLP Compliance Management role group | — |
-| `dlp` | — | Reads only | — | Compliance Administrator, or the DLP Compliance Management role group | — |
-| `drift` | — | Reads only | — | Audit Logs, or View-Only Audit Logs<br>Compliance Administrator<br>Compliance Administrator, or Information Protection Admin<br>Compliance Administrator, or Organization Management<br>Compliance Administrator, or the DLP Compliance Management role group<br>Global Reader, or another role Connect-AipService accepts<br>Organization Management, or View-Only Configuration | — |
-| `inventory` | — | Reads only | — | Compliance Administrator, or the DLP Compliance Management role group<br>Content Explorer List viewer | — |
-| `labels` | — | Reads only | — | Compliance Administrator, or Information Protection Admin | — |
-| `protection` | — | Reads only | — | Compliance Administrator<br>Compliance Administrator, or Information Protection Admin<br>Global Reader, or another role Connect-AipService accepts<br>Organization Management, or View-Only Configuration | — |
+| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights | On the platform host (WD-181) |
+|---|---|---|---|---|---|---|
+| `access` | — | Reads only | — | Compliance Administrator, or Organization Management | — | `gmsa-fmpassess$`; Purview's modules as the Information Protection reader app |
+| `audit` | — | Reads only | — | Audit Logs, or View-Only Audit Logs<br>Compliance Administrator, or Organization Management | — | `gmsa-fmpassess$`; Purview's modules as the Information Protection reader app |
+| `autolabel` | — | Reads only | — | Compliance Administrator<br>Compliance Administrator, or the DLP Compliance Management role group | — | `gmsa-fmpassess$`; Purview's modules as the Information Protection reader app |
+| `dlp` | — | Reads only | — | Compliance Administrator, or the DLP Compliance Management role group | — | `gmsa-fmpassess$`; Purview's modules as the Information Protection reader app |
+| `drift` | — | Reads only | — | Audit Logs, or View-Only Audit Logs<br>Compliance Administrator<br>Compliance Administrator, or Information Protection Admin<br>Compliance Administrator, or Organization Management<br>Compliance Administrator, or the DLP Compliance Management role group<br>Global Reader, or another role Connect-AipService accepts<br>Organization Management, or View-Only Configuration | — | `gmsa-fmpassess$`; Purview's modules as the Information Protection reader app |
+| `inventory` | — | Reads only | — | Compliance Administrator, or the DLP Compliance Management role group<br>Content Explorer List viewer | — | `gmsa-fmpassess$`; Purview's modules as the Information Protection reader app |
+| `labels` | — | Reads only | — | Compliance Administrator, or Information Protection Admin | — | `gmsa-fmpassess$`; Purview's modules as the Information Protection reader app |
+| `protection` | — | Reads only | — | Compliance Administrator<br>Compliance Administrator, or Information Protection Admin<br>Global Reader, or another role Connect-AipService accepts<br>Organization Management, or View-Only Configuration | — | `gmsa-fmpassess$`; Purview's modules as the Information Protection reader app |
 
 ## Provider Notices {#provider-notices}
 
 From [`examples/provider-notices/config/calls.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/provider-notices/config/calls.json). Taught in [Provider Notices](../../docs/project-plans/developer-workbooks/provider-notices/index.md).
 
-| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights |
-|---|---|---|---|---|---|
-| All the kit's calls | — | Reads only | `ServiceHealth.Read.All`<br>`ServiceMessage.Read.All` | — | Allow group <group> to inspect announcements in tenancy (list only)<br>Allow group <group> to read announcements in tenancy<br>health:DescribeAffectedEntities<br>health:DescribeEventDetails<br>health:DescribeEvents<br>Reader on each subscription in scope<br>roles/servicehealth.viewer (Personalized Service Health Viewer) on the project: servicehealth.events.list<br>roles/servicehealth.viewer on the organization: servicehealth.organizationEvents.list |
+| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights | On the platform host (WD-181) |
+|---|---|---|---|---|---|---|
+| All the kit's calls | — | Reads only | `ServiceHealth.Read.All`<br>`ServiceMessage.Read.All` | — | Allow group <group> to inspect announcements in tenancy (list only)<br>Allow group <group> to read announcements in tenancy<br>health:DescribeAffectedEntities<br>health:DescribeEventDetails<br>health:DescribeEvents<br>Reader on each subscription in scope<br>roles/servicehealth.viewer (Personalized Service Health Viewer) on the project: servicehealth.events.list<br>roles/servicehealth.viewer on the organization: servicehealth.organizationEvents.list | WD-179's server and reader app |
 
 ## SQL Server Identity {#sql-server-identity}
 
 From [`examples/sql-server-identity/config/permissions.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/sql-server-identity/config/permissions.json). Taught in [SQL Server Identity](../../docs/project-plans/developer-workbooks/sql-server-identity/index.md).
 
-| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights |
-|---|---|---|---|---|---|
-| `audit-snapshot` | R03 | Reads only | — | — | never `sysadmin`<br>SQL (SQL Server 2019 and earlier): VIEW SERVER STATE, VIEW ANY DEFINITION, CONNECT ANY DATABASE<br>SQL (SQL Server 2022 and later): VIEW SERVER PERFORMANCE STATE, VIEW SERVER SECURITY STATE, VIEW ANY SECURITY DEFINITION, CONNECT ANY DATABASE |
-| `arc-snapshot` | R04 | Reads only | — | Reader | — |
-| `login-apply` | R05 | Changes | — | — | SQL (Test instance): ALTER ANY LOGIN |
+| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights | On the platform host (WD-181) |
+|---|---|---|---|---|---|---|
+| `audit-snapshot` | R03 | Reads only | — | — | never `sysadmin`<br>SQL (SQL Server 2019 and earlier): VIEW SERVER STATE, VIEW ANY DEFINITION, CONNECT ANY DATABASE<br>SQL (SQL Server 2022 and later): VIEW SERVER PERFORMANCE STATE, VIEW SERVER SECURITY STATE, VIEW ANY SECURITY DEFINITION, CONNECT ANY DATABASE | `gmsa-fmpassess$`, through a Windows login on each instance with the read permissions |
+| `arc-snapshot` | R04 | Reads only | — | Reader | — | `gmsa-fmpassess$`; Azure as the SQL Server Identity reader app |
+| `login-apply` | R05 | Changes | — | — | SQL (Test instance): ALTER ANY LOGIN | Not scheduled: run by the person or pipeline the kit's chapter names |
 
 Lab 1 runs on fixtures and needs none of this. Grant the audit login these permissions, or the `##MS_DefinitionReader##` server role, not `##MS_SecurityDefinitionReader##`, which also shows SQL login password hashes. Which account each SQL Server service runs as is read on the host, not here: see Runbook R02 under Kits that state their needs in prose.
 
@@ -211,18 +212,18 @@ Lab 1 runs on fixtures and needs none of this. Grant the audit login these permi
 
 From [`examples/ms-automation/graph-calls.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/ms-automation/graph-calls.json). Taught in [Microsoft Automation](../../docs/training/ms-automation-foundations.md).
 
-| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights |
-|---|---|---|---|---|---|
-| `app-credentials` | — | Reads only | `Application.Read.All` | — | — |
-| `autopilot-profiles` | — | Reads only | `DeviceManagementServiceConfig.Read.All` | — | — |
-| `ca-export` | — | Reads only | `Policy.Read.All` | — | — |
-| `compliance-coverage` | — | Reads only | `DeviceManagementConfiguration.Read.All`<br>`DeviceManagementManagedDevices.Read.All` | — | — |
-| `device-posture` | — | Reads only | `DeviceManagementManagedDevices.Read.All` | — | — |
-| `mfa-registration` | — | Reads only | `AuditLog.Read.All` | — | — |
-| `noncompliant-devices` | — | Reads only | `DeviceManagementConfiguration.Read.All`<br>`DeviceManagementManagedDevices.Read.All` | — | — |
-| `pim-report` | — | Reads only | `RoleAssignmentSchedule.Read.Directory`<br>`RoleEligibilitySchedule.Read.Directory`<br>`RoleManagement.Read.Directory` | — | — |
-| `stale-checkin` | — | Reads only | `DeviceManagementManagedDevices.Read.All` | — | — |
-| `stale-users` | — | Reads only | `AuditLog.Read.All`<br>`User.Read.All` | — | — |
+| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights | On the platform host (WD-181) |
+|---|---|---|---|---|---|---|
+| `app-credentials` | — | Reads only | `Application.Read.All` | — | — | Not scheduled: a learning path's labs |
+| `autopilot-profiles` | — | Reads only | `DeviceManagementServiceConfig.Read.All` | — | — | Not scheduled: a learning path's labs |
+| `ca-export` | — | Reads only | `Policy.Read.All` | — | — | Not scheduled: a learning path's labs |
+| `compliance-coverage` | — | Reads only | `DeviceManagementConfiguration.Read.All`<br>`DeviceManagementManagedDevices.Read.All` | — | — | Not scheduled: a learning path's labs |
+| `device-posture` | — | Reads only | `DeviceManagementManagedDevices.Read.All` | — | — | Not scheduled: a learning path's labs |
+| `mfa-registration` | — | Reads only | `AuditLog.Read.All` | — | — | Not scheduled: a learning path's labs |
+| `noncompliant-devices` | — | Reads only | `DeviceManagementConfiguration.Read.All`<br>`DeviceManagementManagedDevices.Read.All` | — | — | Not scheduled: a learning path's labs |
+| `pim-report` | — | Reads only | `RoleAssignmentSchedule.Read.Directory`<br>`RoleEligibilitySchedule.Read.Directory`<br>`RoleManagement.Read.Directory` | — | — | Not scheduled: a learning path's labs |
+| `stale-checkin` | — | Reads only | `DeviceManagementManagedDevices.Read.All` | — | — | Not scheduled: a learning path's labs |
+| `stale-users` | — | Reads only | `AuditLog.Read.All`<br>`User.Read.All` | — | — | Not scheduled: a learning path's labs |
 
 ## Kits that state their needs in prose {#in-prose}
 
