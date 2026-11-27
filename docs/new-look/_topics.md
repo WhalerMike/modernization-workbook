@@ -25,7 +25,7 @@
   <li class="nl-tile">
     <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/ticket-to-machine.html">Ticket-to-Machine</a></p>
     <p class="nl-tile-desc">Closing drift by machine instead of by hand</p>
-    <p class="nl-tile-count">29 pages</p>
+    <p class="nl-tile-count">30 pages</p>
   </li>
   <li class="nl-tile">
     <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/hr-driven-identity.html">HR-Driven Identity</a></p>
@@ -100,7 +100,7 @@
   <li class="nl-tile">
     <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/compliance-evidence.html">Compliance and Evidence</a></p>
     <p class="nl-tile-desc">Proof, not a promise</p>
-    <p class="nl-tile-count">64 pages</p>
+    <p class="nl-tile-count">65 pages</p>
   </li>
   <li class="nl-tile">
     <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/application-modernization.html">Application Modernization</a></p>
