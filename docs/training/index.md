@@ -69,7 +69,7 @@ Each page keeps its status label (draft or in review) until it is reviewed and p
 
 ## Get a path's code {#get-the-code}
 
-Each learning path's code downloads as one zip, rebuilt from the repository on every site deploy. Every lab command runs from the kit's folder, `examples/<kit>` in a clone of the repository. To get the same folder from the zip, download it to your **Downloads** folder and unzip it into `C:\FMWLabs`, into a folder with the zip's name; on Linux or macOS, use `~/FMWLabs`. Windows' **Extract All** suggests a folder in Downloads: type the `C:\FMWLabs` folder in its place.
+Each learning path's code downloads as one zip, rebuilt from the repository on every site deploy. Every lab command runs from the kit's folder, `examples/<kit>` in a clone of the repository. To get the same folder from the zip, download it to your **Downloads** folder and unzip it into `C:\FMWLabs`, into a folder with the zip's name; on Linux or macOS, use `~/FMWLabs`. Windows' **Extract All** suggests a folder in Downloads: type the `C:\FMWLabs` folder in its place. To unzip every kit you've downloaded at once, paste the command in [Unzip the kits you downloaded](../downloads.md#unzip-kits).
 
 | Path | Download | The folder you work in | Language |
 |---|---|---|---|
