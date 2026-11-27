@@ -218,6 +218,33 @@ export SAILPOINT_API_BASE="https://<tenant>.api.identitynow.com"
 export SAILPOINT_ACCESS_TOKEN=$(curl -s -X POST "$SAILPOINT_API_BASE/oauth/token" -d grant_type=client_credentials -d client_id="<policy-client-id>" -d client_secret="<policy-client-secret>" | python -c "import json,sys; print(json.load(sys.stdin)['access_token'])")
 curl -s -H "Authorization: Bearer $SAILPOINT_ACCESS_TOKEN" -H "Accept: application/json" -o out/isc_entra_source_policies.json "$SAILPOINT_API_BASE/v3/sources/<source-id>/provisioning-policies"
 
+# Step 3: Build the alias list
+export SAILPOINT_API_BASE="https://<tenant>.api.identitynow.com"
+export SAILPOINT_ACCESS_TOKEN=$(curl -s -X POST "$SAILPOINT_API_BASE/oauth/token" -d grant_type=client_credentials -d client_id="<schema-pat-id>" -d client_secret="<schema-pat-secret>" | python -c "import json,sys; print(json.load(sys.stdin)['access_token'])")
+curl -s -H "Authorization: Bearer $SAILPOINT_ACCESS_TOKEN" -H "Accept: application/json" -o out/isc_entra_source_account_schema.json "$SAILPOINT_API_BASE/v3/sources/<source-id>/schemas?include-names=account"
+python - out/isc_entra_source_account_schema.json out/isc_entra_source_policies.json out/entra_inbound_schema.json out/writer_aliases.txt <<'EOF'
+import json, sys
+schemas = json.load(open(sys.argv[1], encoding="utf-8"))
+account = {a["name"].lower(): a["name"] for s in schemas for a in s.get("attributes") or []}
+policies = json.load(open(sys.argv[2], encoding="utf-8"))
+fields = sorted({f["name"] for p in policies for f in p.get("fields") or [] if f.get("name")}, key=str.lower)
+entra = json.load(open(sys.argv[3], encoding="utf-8"))
+targets = {a["targetAttributeName"].lower(): a["targetAttributeName"] for r in entra.get("synchronizationRules") or []
+           for m in r.get("objectMappings") or [] for a in m.get("attributeMappings") or [] if a.get("targetAttributeName")}
+lines = []
+for field in fields:
+    in_schema = "in the account schema" if field.lower() in account else "NOT in the account schema"
+    if field.lower() in targets:
+        print(f"{field}: {in_schema}; same name as the inbound attribute {targets[field.lower()]}")
+        lines.append(f"# {field}={targets[field.lower()]}   (same name: no --alias needed)")
+    else:
+        print(f"{field}: {in_schema}; no inbound attribute of that name: choose one")
+        lines.append(f"{field}=")
+open(sys.argv[4], "w", encoding="utf-8").write("\n".join(lines) + "\n")
+print("wrote", sys.argv[4], "; inbound attributes to choose from:", ", ".join(sorted(targets.values(), key=str.lower)))
+EOF
+rm -f out/isc_entra_source_account_schema.json
+
 # Step 4: Run the check
 python clients/python/writer_check.py --entra-schema out/entra_inbound_schema.json --isc-policies out/isc_entra_source_policies.json --entra-directory "<target-directory-name>" --alias "<sailpoint-field>=<entra-attribute>"
 
@@ -225,10 +252,6 @@ python clients/python/writer_check.py --entra-schema out/entra_inbound_schema.js
 rm -f out/entra_inbound_schema.json out/isc_entra_source_policies.json
 unset GRAPH_TENANT_ID GRAPH_CLIENT_ID GRAPH_CERT_PATH GRAPH_CLOUD GRAPH_ACCESS_TOKEN GRAPH_ROOT SAILPOINT_API_BASE SAILPOINT_ACCESS_TOKEN
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 3:** Build the alias list
 :::
 
 <!-- labs:end -->

@@ -334,6 +334,18 @@ The chapter's steps say what each command does and what to look for.
 **[Chapter 02, Lab 2](../../project-plans/developer-workbooks/ticket-to-machine/02-servicenow-client-and-least-privilege.md#lab-2-a-servicenow-developer-instance)**
 
 ```bash
+# Step 2: Create one integration user per role
+export SN_ADMIN="<admin-user>:<admin-password>"
+export SN_TABLE="https://<instance>.service-now.com/api/now/table"
+for pair in "<verifier-user>=x_example_idkit.verifier" "<reader-user>=x_example_idkit.evidence_reader"; do
+  user="${pair%%=*}"; role="${pair#*=}"
+  USER_ID=$(curl -s -u "$SN_ADMIN" -H "Content-Type: application/json" -H "Accept: application/json" -X POST --data "{\"user_name\": \"$user\", \"first_name\": \"Lab\", \"last_name\": \"$role\", \"web_service_access_only\": \"true\"}" "$SN_TABLE/sys_user" | python -c "import json,sys; print(json.load(sys.stdin)['result']['sys_id'])")
+  ROLE_ID=$(curl -s -u "$SN_ADMIN" -H "Accept: application/json" "$SN_TABLE/sys_user_role?sysparm_query=name=$role&sysparm_fields=sys_id" | python -c "import json,sys; print(json.load(sys.stdin)['result'][0]['sys_id'])")
+  curl -s -o /dev/null -w "$user gets $role: HTTP %{http_code}\n" -u "$SN_ADMIN" -H "Content-Type: application/json" -H "Accept: application/json" -X POST --data "{\"user\": \"$USER_ID\", \"role\": \"$ROLE_ID\"}" "$SN_TABLE/sys_user_has_role"
+done
+curl -s -u "$SN_ADMIN" -H "Accept: application/json" "$SN_TABLE/sys_user_has_role?sysparm_query=user.user_nameIN<writer-user>,<verifier-user>,<reader-user>&sysparm_fields=user.user_name,role.name"
+unset SN_ADMIN SN_TABLE USER_ID ROLE_ID
+
 # Step 3: Compare each user's roles
 python clients/python/kit_calls.py --task drift-push --system servicenow --granted "<writer-roles>"
 python clients/python/kit_calls.py --task reread --system servicenow --granted "<verifier-roles>"
@@ -354,7 +366,6 @@ unset SN_ACCESS_TOKEN
 Steps with no command, done in the portal or by hand as the chapter's step says:
 
 - **Step 1:** Create three custom roles
-- **Step 2:** Create one integration user per role
 
 **[Chapter 03, Lab 2](../../project-plans/developer-workbooks/ticket-to-machine/03-sailpoint-client-and-scopes.md#lab-2-a-sailpoint-sandbox-tenant)**
 

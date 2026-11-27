@@ -226,6 +226,54 @@ Replace each `<placeholder>` with your test environment's value.
 The chapter's steps say what each command does and what to look for.
 
 ```bash
+# Step 1: Configure the rule
+mkdir -p out
+python - servicenow/business-rule-await-verification.js out/lab2-05-rule.js "<verifier-user>" <<'EOF'
+import json, sys
+template = """// Ticket-to-Machine Lab 2, Chapter 05, step 1. Scripts - Background, scope x_example_idkit, Record for rollback checked.
+var RULE_SCRIPT = __RULE__;
+var PROPERTIES = __PROPERTIES__;
+var br = new GlideRecord('sys_script');
+br.addQuery('collection', 'u_identity_finding');
+br.addQuery('name', 'Close only on a re-read');
+br.query();
+if (!br.next()) { br.initialize(); }
+br.setValue('name', 'Close only on a re-read');
+br.setValue('collection', 'u_identity_finding');
+br.setValue('when', 'before');
+br.setValue('action_update', 'true');
+br.setValue('order', '1000');
+br.setValue('advanced', 'true');
+br.setValue('condition', 'current.state.changes()');
+br.setValue('script', RULE_SCRIPT);
+br.setValue('active', 'true');
+var id = br.isNewRecord() ? br.insert() : br.update();
+gs.info((id ? 'saved   ' : 'FAILED  ') + 'business rule Close only on a re-read');
+for (var name in PROPERTIES) {
+  var p = new GlideRecord('sys_properties');
+  if (!p.get('name', name)) { p.initialize(); p.setValue('name', name); p.setValue('type', 'string'); }
+  p.setValue('value', PROPERTIES[name]);
+  p.setValue('description', 'Ticket-to-Machine lab');
+  gs.info(((p.isNewRecord() ? p.insert() : p.update()) ? 'saved   ' : 'FAILED  ') + 'property ' + name + ' = ' + PROPERTIES[name]);
+}
+"""
+properties = {"x_example_idkit.state.awaiting_verification": "18",
+              "x_example_idkit.verifier_user": sys.argv[3],
+              "x_example_idkit.exception_role": "x_example_idkit.exception_approver"}
+script = (template.replace("__RULE__", json.dumps(open(sys.argv[1], encoding="utf-8").read()))
+          .replace("__PROPERTIES__", json.dumps(properties)))
+open(sys.argv[2], "w", encoding="utf-8").write(script)
+print("wrote", sys.argv[2])
+EOF
+
+# Step 1: Configure the rule
+curl -s -u "<admin-user>:<admin-password>" -H "Accept: application/json" "https://<instance>.service-now.com/api/now/table/sys_script?sysparm_query=collection=u_identity_finding^name=Close%20only%20on%20a%20re-read&sysparm_fields=name,when,action_update,order,advanced,condition,active"
+curl -s -u "<admin-user>:<admin-password>" -H "Accept: application/json" "https://<instance>.service-now.com/api/now/table/sys_properties?sysparm_query=nameSTARTSWITHx_example_idkit.&sysparm_fields=name,value"
+
+# Step 2: Close a finding as a person
+curl -s -w "\nHTTP %{http_code}\n" -u "<admin-user>:<admin-password>" -X PATCH -H "Content-Type: application/json" -H "Accept: application/json" --data '{"state": "3"}' "https://<instance>.service-now.com/api/now/table/u_identity_finding/<test-sys_id>?sysparm_fields=number,state"
+curl -s -u "<admin-user>:<admin-password>" -H "Accept: application/json" "https://<instance>.service-now.com/api/now/table/sys_journal_field?sysparm_query=element_id=<test-sys_id>^element=work_notes^ORDERBYDESCsys_created_on&sysparm_fields=sys_created_on,sys_created_by,value&sysparm_limit=1"
+
 # Step 3: Confirm who the verifier is
 export SN_ACCESS_TOKEN=$(curl -s -X POST "https://<instance>.service-now.com/oauth_token.do" -d grant_type=client_credentials -d client_id="<verifier-client-id>" -d client_secret="<verifier-client-secret>" | python -c "import json,sys; print(json.load(sys.stdin)['access_token'])")
 curl -s -w "\nHTTP %{http_code}\n" -X PATCH -H "Authorization: Bearer $SN_ACCESS_TOKEN" -H "Content-Type: application/json" -H "Accept: application/json" --data '{"work_notes": "lab: which user does ServiceNow record for the verifier?"}' "https://<instance>.service-now.com/api/now/table/u_identity_finding/<test-sys_id>"
@@ -249,11 +297,6 @@ python clients/python/reread_verification.py --apply --table u_identity_finding
 # Step 5: Back it out
 unset SN_INSTANCE SN_CLIENT_ID SN_CLIENT_SECRET GRAPH_TENANT_ID GRAPH_CLIENT_ID GRAPH_CERT_PATH
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 1:** Configure the rule
-- **Step 2:** Close a finding as a person
 :::
 
 <!-- labs:end -->

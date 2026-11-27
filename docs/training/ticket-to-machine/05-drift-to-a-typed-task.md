@@ -195,6 +195,15 @@ Replace each `<placeholder>` with your test environment's value.
 The chapter's steps say what each command does and what to look for.
 
 ```bash
+# Step 1: Turn on Native Change Detection
+mkdir -p out
+export SAILPOINT_API_BASE="https://<tenant>.api.identitynow.com"
+export SAILPOINT_ACCESS_TOKEN=$(curl -s -X POST "$SAILPOINT_API_BASE/oauth/token" -d grant_type=client_credentials -d client_id="<ncd-client-id>" -d client_secret="<ncd-client-secret>" | python -c "import json,sys; print(json.load(sys.stdin)['access_token'])")
+curl -s -H "Authorization: Bearer $SAILPOINT_ACCESS_TOKEN" -H "Accept: application/json" -o out/ncd-before.json "$SAILPOINT_API_BASE/v2025/sources/<source-id>/native-change-detection-config"
+cat out/ncd-before.json
+curl -s -w "\nHTTP %{http_code}\n" -X PUT -H "Authorization: Bearer $SAILPOINT_ACCESS_TOKEN" -H "Content-Type: application/json" -H "Accept: application/json" --data '{"enabled": true, "operations": ["ACCOUNT_UPDATED"], "allEntitlements": false, "allNonEntitlementAttributes": false, "selectedEntitlements": [], "selectedNonEntitlementAttributes": ["<attribute>"]}' "$SAILPOINT_API_BASE/v2025/sources/<source-id>/native-change-detection-config"
+curl -s -w "\nHTTP %{http_code}\n" -X POST -H "Authorization: Bearer $SAILPOINT_ACCESS_TOKEN" -H "Accept: application/json" --form-string "disableOptimization=false" "$SAILPOINT_API_BASE/v2025/sources/<source-id>/load-accounts"
+
 # Step 2: Build one HTTP Request step by hand
 python - sailpoint/workflows/drift-to-servicenow.json "<exported-workflow.json>" <<'EOF'
 import json, sys
@@ -222,12 +231,15 @@ export SN_ACCESS_TOKEN=$(curl -s -X POST "https://<instance>.service-now.com/oau
 curl -s -H "Authorization: Bearer $SN_ACCESS_TOKEN" -H "Accept: application/json" "https://<instance>.service-now.com/api/now/table/u_identity_finding?sysparm_query=u_source=sailpoint-isc&sysparm_fields=number,u_dedupe_key,u_occurrences"
 
 # Step 5: Back it out
+export SAILPOINT_API_BASE="https://<tenant>.api.identitynow.com"
+export SAILPOINT_ACCESS_TOKEN=$(curl -s -X POST "$SAILPOINT_API_BASE/oauth/token" -d grant_type=client_credentials -d client_id="<ncd-client-id>" -d client_secret="<ncd-client-secret>" | python -c "import json,sys; print(json.load(sys.stdin)['access_token'])")
+python -c "import json; s=json.load(open('out/ncd-before.json')); print(json.dumps(s if 'enabled' in s else {'enabled': False}))" | curl -s -w "\nHTTP %{http_code}\n" -X PUT -H "Authorization: Bearer $SAILPOINT_ACCESS_TOKEN" -H "Content-Type: application/json" -H "Accept: application/json" --data @- "$SAILPOINT_API_BASE/v2025/sources/<source-id>/native-change-detection-config"
+rm -f out/ncd-before.json
+unset SAILPOINT_API_BASE SAILPOINT_ACCESS_TOKEN
+
+# Step 5: Back it out
 unset SN_ACCESS_TOKEN
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 1:** Turn on Native Change Detection
 :::
 
 <!-- labs:end -->
