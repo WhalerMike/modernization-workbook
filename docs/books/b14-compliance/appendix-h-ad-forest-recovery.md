@@ -362,7 +362,7 @@ How-section coverage: the pilot is the lab drill; report-only and enforcement ar
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Appendix G — Prepare-Step Templates](appendix-g-prepare-step-templates.md) · [Book index](index.md) · [Chapter 06 — Contingency Planning and Business Continuity](06-contingency-and-continuity.md)
+[← Previous: Appendix G — Prepare-Step Templates](appendix-g-prepare-step-templates.md) · [Book index](index.md) · [Chapter 06 — Contingency Planning and Business Continuity](06-contingency-and-continuity.md) · [Next: Appendix I — Closing a Retired System's Authorization →](appendix-i-closing-a-systems-authorization.md)
 :::
 
 [^aH-guide]: Microsoft Learn, "Active Directory Forest Recovery Guide" (applies to Windows Server 2022, 2019, 2016, 2012 R2 and 2012; steps are a template), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-guide> (accessed Nov 9, 2026).

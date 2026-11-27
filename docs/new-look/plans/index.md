@@ -13,7 +13,7 @@ Each plan is a short list of milestones, about a week each, following Microsoft 
 
 | Role | What the plan covers | Milestones | Time |
 |---|---|---:|---|
-| [ISSO and assessor](isso.md) | What each control area asks for, what evidence the kits produce, and how to read it. | 4 | about 29 hr 6 min |
+| [ISSO and assessor](isso.md) | What each control area asks for, what evidence the kits produce, and how to read it. | 4 | about 29 hr 13 min |
 | [Identity engineer](identity-engineer.md) | From Active Directory to Entra ID: the target, privileged and non-person identities, and HR-driven lifecycle. | 4 | about 53 hr 37 min |
 | [Endpoint engineer](endpoint-engineer.md) | Devices without Group Policy: Intune first, Arc for servers, and Defender for Endpoint on top. | 4 | about 13 hr 23 min |
 | [Security operations](security-operations.md) | What you can see, what you detect, and what you hand the ISSO. | 5 | about 16 hr 48 min |
