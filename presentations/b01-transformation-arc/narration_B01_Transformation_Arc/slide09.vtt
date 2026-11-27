@@ -1,73 +1,73 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.298
+00:00:00.100 --> 00:00:04.339
 Group Policy was Active Directory's
 most ambitious delivery system,
 
 2
-00:00:04.298 --> 00:00:05.938
+00:00:04.339 --> 00:00:05.975
 and its most network-bound.
 
 3
-00:00:05.938 --> 00:00:09.188
+00:00:05.975 --> 00:00:09.037
 A client only gets it when it
 can reach a domain controller.
 
 4
-00:00:09.188 --> 00:00:14.475
+00:00:09.037 --> 00:00:13.812
 A cloud-native device, Entra joined
 and in Intune, has no such dependency.
 
 5
-00:00:14.475 --> 00:00:16.000
+00:00:13.812 --> 00:00:15.449
 Don't copy it across.
 
 6
-00:00:16.000 --> 00:00:20.201
+00:00:15.449 --> 00:00:19.532
 A fifty-setting GPO ported as
 fifty settings carries dead weight,
 
 7
-00:00:20.201 --> 00:00:25.725
+00:00:19.532 --> 00:00:24.900
 old conflicts and manual targeting, and
 Microsoft itself recommends starting fresh.
 
 8
-00:00:25.725 --> 00:00:30.997
+00:00:24.900 --> 00:00:29.881
 So the program regenerates one clean
 policy per category, keyed to attributes,
 
 9
-00:00:30.997 --> 00:00:34.241
+00:00:29.881 --> 00:00:32.947
 into Intune, Conditional
 Access and, for servers,
 
 10
-00:00:34.241 --> 00:00:39.350
+00:00:32.947 --> 00:00:37.775
 Azure machine configuration, because
 Intune doesn't manage Windows Server.
 
 11
-00:00:39.350 --> 00:00:42.643
+00:00:37.775 --> 00:00:40.962
 Every change passes four
 stages: validation,
 
 12
-00:00:42.643 --> 00:00:46.738
+00:00:40.962 --> 00:00:44.925
 a simulated tenant, a report-only
 pilot, then production.
 
 13
-00:00:46.738 --> 00:00:48.660
+00:00:44.925 --> 00:00:46.739
 And prefer require over block,
 
 14
-00:00:48.660 --> 00:00:52.274
+00:00:46.739 --> 00:00:50.150
 except where the federal SCuBA
 baseline demands a block.
 
 15
-00:00:52.274 --> 00:00:57.550
+00:00:50.150 --> 00:00:54.740
 The Devices and Endpoints book and the
 Access and Privilege book carry the detail.

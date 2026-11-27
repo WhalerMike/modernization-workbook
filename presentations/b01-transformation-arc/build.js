@@ -415,12 +415,12 @@ And compute stays with its data until profiling shows the round trips are reduce
     txt(s, `Panel text ${i + 1}`, bullets(p[4], 13.5), { x: x + 0.25, y: 3.55, w: 5.6, h: 1.42, paraSpaceAfter: 4 });
   });
   callout(s, "Apps", 5.25, 1.25, "FaLock", HEX.navy, "Log into applications, not networks: ",
-    "OMB M-22-09 requires phishing-resistant MFA for staff, contractors and partners, and BOD 25-01 makes blocking legacy authentication mandatory.");
+    "OMB M-22-09 requires phishing-resistant MFA for staff, contractors and partners, and BOD 25-01 makes blocking legacy authentication mandatory in Microsoft 365 tenants.");
   sources(s, "Sources: OMB M-22-09; NIST SP 800-207; CISA BOD 25-01, SCuBA, ZTMM v2.0, SASE guidance; Microsoft Learn — Entra CBA, AD CS enterprise CAs, PIM, continuous access evaluation. Book 01, Chapter 08.");
   narrate(s,
 `When Active Directory retires, being inside the network stops meaning anything. OMB M-22-09 says users should log into applications rather than networks.
 
-The replacement has four surfaces: Zero Trust as the model, Conditional Access as the per-request decision, SASE as the edge, and phishing-resistant MFA as the proof. M-22-09 requires that MFA for staff, contractors and partners, and BOD 25-01 makes blocking legacy authentication mandatory.
+The replacement has four surfaces: Zero Trust as the model, Conditional Access as the per-request decision, SASE as the edge, and phishing-resistant MFA as the proof. M-22-09 requires that MFA for staff, contractors and partners, and BOD 25-01 makes blocking legacy authentication mandatory in Microsoft 365 tenants.
 
 Smart cards stay. Entra certificate-based authentication moves validation from the domain controller to Entra ID, but a card counts as phishing-resistant only if the binding policy makes it multifactor. And issuance needs a successor first, because an enterprise CA depends on AD DS.
 

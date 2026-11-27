@@ -1004,7 +1004,7 @@
   "id": "B01_Transformation_Arc_Executive_Narrated",
   "title": "Book 01 — The Transformation Arc: executive briefing",
   "group": "book",
-  "minutes": 26,
+  "minutes": 25,
   "mp4": "https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/B01_Transformation_Arc_Executive_Narrated.mp4",
   "youtube": null,
   "vtt": "presentations/b01-transformation-arc-executive/B01_Transformation_Arc_Executive_Narrated.vtt",
@@ -1019,79 +1019,79 @@
     "Who Leads the Governance Rebuild?"
    ],
    [
-    64,
+    61,
     "Every new mandate assumes a foundation never built"
    ],
    [
-    136,
+    133,
     "Active Directory was the governance nobody wrote down"
    ],
    [
-    218,
+    211,
     "Five things must be true before the target holds"
    ],
    [
-    294,
+    287,
     "Platform: one governed host, one authoritative writer"
    ],
    [
-    373,
+    366,
     "Identity: the attributes have to be true first"
    ],
    [
-    449,
+    443,
     "Four tracks, four sources of truth, one end state"
    ],
    [
-    504,
+    497,
     "Policy: regenerate Group Policy; don't copy it"
    ],
    [
-    585,
+    578,
     "Network services: DNS, DHCP and IPAM move together"
    ],
    [
-    665,
+    659,
     "Compute: the domain join is the last thing to go"
    ],
    [
-    743,
+    736,
     "Access: log in to applications, not networks"
    ],
    [
-    825,
+    816,
     "Microsoft supplies the instruments, not the orchestra"
    ],
    [
-    904,
+    890,
     "One decider per decision; the AO signs for risk"
    ],
    [
-    981,
+    967,
     "Three decisions that land on the wrong desk"
    ],
    [
-    1057,
+    1042,
     "Analyze the estate first: read-only, with provenance"
    ],
    [
-    1130,
+    1116,
     "Analyze, plan, deliver: nothing moves without a plan"
    ],
    [
-    1205,
+    1190,
     "The roadmap: seven phases, six gates, five workstreams"
    ],
    [
-    1277,
+    1263,
     "Gates go green on data, and rollback has an end"
    ],
    [
-    1354,
+    1339,
     "The clocks: FedRAMP's dates don't set the agency's"
    ],
    [
-    1454,
+    1434,
     "Decisions, owners, and where to start"
    ]
   ],
@@ -1116,67 +1116,67 @@
     "Why Is Modernization So Hard?"
    ],
    [
-    42,
+    40,
     "Four eras built the estate; none kept one truth"
    ],
    [
-    95,
+    94,
     "Sessions carried trust; tokens are checked each time"
    ],
    [
-    143,
+    141,
     "The OU tree was the governance tree"
    ],
    [
-    196,
+    195,
     "Eleven categories, and the failures are silent"
    ],
    [
-    251,
+    249,
     "One governed host, five roles, one writer"
    ],
    [
-    302,
+    301,
     "Identity: one HR stamp drives five outcomes"
    ],
    [
-    360,
+    356,
     "Four tracks, each with its own source of truth"
    ],
    [
-    413,
+    409,
     "Policy: regenerate Group Policy, don't copy it"
    ],
    [
-    475,
+    468,
     "DNS, DHCP and IPAM move together, and with AD"
    ],
    [
-    535,
+    525,
     "Compute: the domain join is the last thing to go"
    ],
    [
-    591,
+    578,
     "The access plane: every request decided again"
    ],
    [
-    655,
+    640,
     "Instruments versus orchestra: who leads it"
    ],
    [
-    707,
+    692,
     "Inventory first: read-only, with provenance"
    ],
    [
-    762,
+    744,
     "Analyze, plan, deliver, under an actuation ceiling"
    ],
    [
-    816,
+    799,
     "The roadmap: seven phases, gated by data"
    ],
    [
-    869,
+    852,
     "Decisions to make, and next steps"
    ]
   ],

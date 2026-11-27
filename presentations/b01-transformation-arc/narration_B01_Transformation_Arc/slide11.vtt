@@ -1,70 +1,70 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.105
+00:00:00.100 --> 00:00:02.858
 Once identity, policy
 and services have moved,
 
 2
-00:00:03.105 --> 00:00:07.125
+00:00:02.858 --> 00:00:06.488
 the biggest remaining dependency
 is the domain join itself.
 
 3
-00:00:07.125 --> 00:00:10.612
+00:00:06.488 --> 00:00:09.476
 User PCs end up Entra
 joined and in Intune.
 
 4
-00:00:10.612 --> 00:00:14.038
+00:00:09.476 --> 00:00:12.775
 Servers come under Azure Arc
 and machine configuration.
 
 5
-00:00:14.038 --> 00:00:17.200
+00:00:12.775 --> 00:00:15.725
 Hybrid join is a waypoint,
 not a destination.
 
 6
-00:00:17.200 --> 00:00:20.855
+00:00:15.725 --> 00:00:19.082
 And there's no supported way to
 convert a hybrid-joined device
 
 7
-00:00:20.855 --> 00:00:24.725
+00:00:19.082 --> 00:00:22.637
 without resetting Windows, so time
 the move to a hardware refresh.
 
 8
-00:00:24.725 --> 00:00:29.608
+00:00:22.637 --> 00:00:27.342
 Every service principal name is an
 application that expects Kerberos,
 
 9
-00:00:29.608 --> 00:00:33.663
+00:00:27.342 --> 00:00:31.249
 and each needs a decision: move
 it to modern authentication,
 
 10
-00:00:33.663 --> 00:00:37.387
+00:00:31.249 --> 00:00:34.837
 retire it, or, as a last resort,
 isolate it with an end date.
 
 11
-00:00:37.387 --> 00:00:41.504
+00:00:34.837 --> 00:00:38.616
 No server leaves the domain
 until every one is resolved,
 
 12
-00:00:41.504 --> 00:00:43.651
+00:00:38.616 --> 00:00:40.587
 and NTLM goes in the same pass.
 
 13
-00:00:43.651 --> 00:00:47.525
+00:00:40.587 --> 00:00:44.100
 And compute stays with its data
 until the round trips are cut down.
 
 14
-00:00:47.525 --> 00:00:52.150
+00:00:44.100 --> 00:00:48.290
 The Devices and Endpoints book and the
 Data Platform book have the detail.

@@ -403,7 +403,7 @@ Only an application's owner can make that call and sign off its cutover. Keeping
   narrate(s,
 `The access plane. When Active Directory retires, being inside the network stops meaning anything. M-22-09 says users should log in to applications rather than networks, every application should be treated as internet-accessible, and multifactor authentication belongs at the application layer, not in a VPN.
 
-The replacement has four surfaces: Zero Trust as the model, Conditional Access deciding each request, a secure access service edge replacing the VPN, and phishing-resistant authentication as the proof. M-22-09 requires it for staff, contractors and partners, and BOD 25-01 makes blocking legacy authentication, and phishing-resistant MFA for all users, mandatory. FIDO2 keys, passkeys, Windows Hello, and PIV cards through certificate-based authentication qualify; SMS and voice don't.
+The replacement has four surfaces: Zero Trust as the model, Conditional Access deciding each request, a secure access service edge replacing the VPN, and phishing-resistant authentication as the proof. M-22-09 requires it for staff, contractors and partners, and BOD 25-01 makes blocking legacy authentication, and phishing-resistant MFA for all users, mandatory in Microsoft 365 tenants. FIDO2 keys, passkeys, Windows Hello, and PIV cards through certificate-based authentication qualify; SMS and voice don't.
 
 Two consequences need an executive eye. First, smart-card sign-in is anchored in Active Directory today. The card and PIN stay, and validation moves to Entra ID. But issuance is a separate decision: an enterprise certificate authority depends on AD DS, and Microsoft's cloud PKI covers only Intune-managed devices, so issuance needs a successor before Active Directory retires. Second, privilege: every human admin assignment becomes eligible and time-bound, standing credentials go through a vault, and emergency accounts are tested at least every 90 days.
 
@@ -502,7 +502,7 @@ The sponsor's decision, before the program starts: fill in the matrix with names
   narrate(s,
 `Three decisions often land on the wrong desk, and the book moves each one on purpose.
 
-First, end dates for legacy authentication and NTLM. They sit with the authorizing official, not with the engineers who'd like more time, because keeping legacy authentication open is a risk acceptance, and BOD 25-01 makes blocking it a mandatory baseline. Authorizing officials may accept risk for deviations from those policies, under agency policy.
+First, end dates for legacy authentication and NTLM. They sit with the authorizing official, not with the engineers who'd like more time, because keeping legacy authentication open is a risk acceptance, and BOD 25-01 makes blocking it a mandatory baseline for Microsoft 365 tenants. Authorizing officials may accept risk for deviations from those policies, under agency policy.
 
 Second, the help desk's identity-verification procedure. The help desk supports users through every wave, and that makes it a target. CISA's advisory on the Scattered Spider group describes attackers phoning help desks to get passwords reset and MFA tokens transferred. So the procedure for resets and temporary access passes is a CISO decision. The help desk carries it out with narrowly scoped roles.
 
