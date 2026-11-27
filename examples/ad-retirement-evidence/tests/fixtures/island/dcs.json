@@ -1,0 +1,2 @@
+[ { "Name": "DC-ISLAND01", "HostName": "DC-ISLAND01.corp.contoso.example", "Site": "HQ", "OperatingSystem": "Windows Server 2022 Datacenter" },
+  { "Name": "DC02", "HostName": "DC02.corp.contoso.example", "Site": "Field-East", "OperatingSystem": "Windows Server 2019 Datacenter" } ]

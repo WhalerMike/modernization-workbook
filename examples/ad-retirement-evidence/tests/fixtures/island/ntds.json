@@ -1,0 +1,3 @@
+[ { "Server": "DC-ISLAND01", "DistinguishedName": "CN=NTDS Settings,CN=DC-ISLAND01,CN=Servers,CN=HQ,CN=Sites,CN=Configuration,DC=corp,DC=contoso,DC=example" },
+  { "Server": "DC02", "DistinguishedName": "CN=NTDS Settings,CN=DC02,CN=Servers,CN=Field-East,CN=Sites,CN=Configuration,DC=corp,DC=contoso,DC=example" },
+  { "Server": "DC03", "DistinguishedName": "CN=NTDS Settings,CN=DC03,CN=Servers,CN=Field-West,CN=Sites,CN=Configuration,DC=corp,DC=contoso,DC=example" } ]

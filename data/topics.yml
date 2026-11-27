@@ -97,7 +97,7 @@ topics:
   - id: attribute-driven-migration
     title: Attribute-Driven Migration
     workbook: adm
-    kit: [hcm-entra, ms-automation, validation-kit, dynamic-rules, lifecycle-extensions, group-policy-as-code, machine-configuration, ansible, drift-pipeline]
+    kit: [hcm-entra, ms-automation, validation-kit, dynamic-rules, lifecycle-extensions, group-policy-as-code, machine-configuration, ansible, drift-pipeline, ad-retirement-evidence]
     summary: >-
       Moving identity, policy and device management from Active Directory to Microsoft Entra ID,
       Intune and Azure Arc by attribute rather than by organizational unit: HR attributes drive
@@ -147,6 +147,7 @@ topics:
       - b02-identity-bundle.docx
       - ansible-examples.zip
       - validation-kit.zip
+      - ad-retirement-evidence.zip
     members:
       - docs/books/b02-identity/*.md
 

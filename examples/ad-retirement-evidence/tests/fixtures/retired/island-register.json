@@ -1,0 +1,2 @@
+{ "_comment": "Full retirement: no domain controller kept (fictional).", "domain": "corp.contoso.example", "endOfLife": "", "owner": "Platform lead",
+  "domainControllers": [], "workloads": [], "trusts": [], "allowedHosts": [], "authWindowDays": 30 }
