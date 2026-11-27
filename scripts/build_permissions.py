@@ -64,6 +64,8 @@ KIT_NOTES = {
 IN_PROSE = [
     ("start-kit", "Start Kit (forest, SQL Server estate, RADIUS and NPS)",
      "examples/start-kit/README.md", "the table of rights for each depth of discovery, including the SQL Server T-SQL pass"),
+    ("estate-inventory", "Estate inventory (one scheduled run of four kits)", "examples/estate-inventory/README.md",
+     "the run account and the reader app: the union of its kits' read rows on this page (WD-180)"),
     ("validation-kit", "Validation kit", "examples/validation-kit/README.md", "Requirements"),
     ("daily-checks-workbook", "Daily checks workbook", "examples/daily-checks-workbook/README.md", "Requirements"),
     ("zta-results", "Zero Trust Assessment results", "examples/zta-results/README.md",

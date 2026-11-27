@@ -231,6 +231,7 @@ These kits don't keep a permission file; each states what it needs in the place 
 | Kit | Where it says what it needs |
 |---|---|
 | Start Kit (forest, SQL Server estate, RADIUS and NPS) | [start-kit README](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/start-kit/README.md): the table of rights for each depth of discovery, including the SQL Server T-SQL pass |
+| Estate inventory (one scheduled run of four kits) | [estate-inventory README](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/estate-inventory/README.md): the run account and the reader app: the union of its kits' read rows on this page (WD-180) |
 | Validation kit | [validation-kit README](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/validation-kit/README.md): Requirements |
 | Daily checks workbook | [daily-checks-workbook README](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/daily-checks-workbook/README.md): Requirements |
 | Zero Trust Assessment results | [zta-results README](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/zta-results/README.md): reads the assessment's exported file only; the assessment itself needs the roles Microsoft's module names |
