@@ -33,7 +33,7 @@ The order keeps the retirement reversible as long as it can be: nothing is delet
 | **R3 Records** | The records officer has signed off: each record class migrated, transferred or scheduled for destruction ([Chapter 06](06-compliance-by-design.md#records-from-design-to-decommissioning)) | Records officer | The disposition and its authority |
 | **R4 Switch off** | Sign-in is disabled and the service stopped, reversibly, for the reversible window (the program's design: 30 days) | Application owner, through a change | The change record |
 | **R5 Remove** | After the window, every item in the footprint is removed by its owning team | Each owning team | The removal records |
-| **R6 Close** | The authorization is closed and the CMDB item retired (Book 14, Appendix I, *Closing a Retired System's Authorization*) | Authorizing official; asset manager | The closing decision and the plan's manifest |
+| **R6 Close** | The authorization is closed and the CMDB item retired ([Book 14](../b14-compliance/index.md), closing a retired system's authorization) | Authorizing official; asset manager | The closing decision and the plan's manifest |
 
 ## The footprint
 
@@ -45,7 +45,7 @@ An application leaves things in systems it doesn't own. Each is an item to remov
 | DNS records | The DNS servers | DNS team | `Remove-DnsServerResourceRecord` |
 | Certificates | The certificate authority and the certificate lifecycle tool | PKI team | Revoke, and stop the renewal ([Book 07](../b07-pki/index.md)) |
 | Service accounts, gMSAs and their SPNs | Active Directory | Identity team | Disable at R4, delete at R5 ([Non-Person Identity](../guides/non-person-identity-implementation.md)) |
-| Firewall rules and other exchanges | The firewall and the interconnection agreements | Network team | Remove the rules; end the agreements (Book 14, Appendix I) |
+| Firewall rules and other exchanges | The firewall and the interconnection agreements | Network team | Remove the rules; end the agreements (CA-3; [Book 14](../b14-compliance/index.md) closes them with the authorization) |
 | Monitoring sources | The SIEM and the monitoring tools | Security operations | Remove the source so nothing alerts on its absence |
 | Licenses | The license portal | Asset manager | Release or reassign |
 | The CMDB item | The CMDB | Asset manager | Retire it ([Book 15, Chapter 07](../b15-day2-operations/07-the-cmdb-and-asset-identity.md)) |
