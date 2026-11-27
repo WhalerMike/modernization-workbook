@@ -187,7 +187,7 @@ Each domain controller leaves Active Directory by demotion, not by being switche
     ```
 
     Confirm the removal in the Server Remove Configuration dialog, then type `quit` at the `metadata cleanup:` and `ntdsutil:` prompts. If cleanup returns "Access is denied," clear **Protect object from accidental deletion** on the computer object and the NTDS Settings object.[^c10-metadata]
-4. **Verify and record.** The removed domain controller no longer appears under Domain Controllers in Active Directory Users and Computers, and its server object in Active Directory Sites and Services has no NTDS Settings object.[^c10-metadata] The result goes into the Phase 5 evidence packet with the retirement record.
+4. **Verify and record.** The removed domain controller no longer appears under Domain Controllers in Active Directory Users and Computers, and its server object in Active Directory Sites and Services has no NTDS Settings object.[^c10-metadata] The result goes into the Phase 5 evidence packet with the retirement record. The [AD retirement evidence kit](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ad-retirement-evidence) writes that packet: it checks each remaining domain controller against the island register, leftover NTDS Settings objects and DC locator records, trusts, SPNs, and the authentication still reaching the domain controllers, and hashes what it read.
 
 ### Records before hardware: the decommissioning checklist
 
