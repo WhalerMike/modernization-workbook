@@ -122,7 +122,7 @@ Start-ScheduledTask -TaskName 'FMW Estate Inventory'
 
 On a domain-joined Windows Server member server, not a domain controller and not a person's workstation, with RSAT's ActiveDirectory module, Windows PowerShell 5.1, PowerShell 7, Microsoft Graph PowerShell and Az.Accounts. It needs ADWS (TCP 9389) to the domain controllers for the Start Kit and the AD reads, and outbound HTTPS to `login.microsoftonline.com`, `graph.microsoft.com` and `management.azure.com`.
 
-Whether that server can be the platform host (Book 10, Appendix B) isn't decided: the host's closed list of interfaces doesn't yet include this run's account, its app certificate, ADWS to the domain controllers or `management.azure.com` for reads, and the list says anything outside it is a drift finding or a decision to record.
+On the platform host ([Book 10, Appendix B, D.6](../../docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md#d.6-estate-inventory)), as [WD-180](../../docs/about/decision-register.md#wd-180) sets out: a weekly scheduled task under the assessment gMSA `gmsa-fmpassess$` at Tier A, the reader app's certificate in `D:\EstateInventory\credentials\`, and the kits, settings and runs under `D:\EstateInventory\`. Appendix B lists each plane this adds: the identities, the storage, ADWS to the domain controllers and the egress host names.
 
 ## Not covered
 
