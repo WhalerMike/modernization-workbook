@@ -6262,9 +6262,10 @@ pages:
   ms_date: '2026-09-20'
   ms_topic: how-to
   description: Assign users, groups, devices, and device platforms to Global Secure Access traffic forwarding profiles.
-  coverage: not-covered
+  coverage: cited
   note: Traffic forwarding profile configuration
-  cited_by: []
+  cited_by:
+  - docs/project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md
 - path: docs/global-secure-access/how-to-migrate-direct-access-to-private-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-migrate-direct-access-to-private-access
   title: Migrate from DirectAccess to Microsoft Entra Private Access
@@ -7295,9 +7296,10 @@ pages:
   ms_date: '2025-06-24'
   ms_topic: troubleshooting
   description: Troubleshoot the Global Secure Access client using the health check tab in the advanced diagnostics utility.
-  coverage: not-covered
+  coverage: cited
   note: Client deployment (Windows, mobile, macOS) and troubleshooting; Intune deployment candidate
-  cited_by: []
+  cited_by:
+  - docs/project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.md
 - path: docs/global-secure-access/troubleshoot-global-secure-access-client-diagnostics-health-check.md
   url: https://learn.microsoft.com/entra/global-secure-access/troubleshoot-global-secure-access-client-diagnostics-health-check
   title: 'Troubleshoot the Windows Global Secure Access client: Health check'

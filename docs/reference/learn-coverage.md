@@ -56,11 +56,11 @@ The data lives in [`data/learn-coverage/`](https://github.com/WhalerMike/moderni
 | Side | Pages | Cited | Covered, not cited | Not covered | Out of scope | Not reviewed yet |
 |---|---:|---:|---:|---:|---:|---:|
 | Windows Server identity | 561 | 167 | 22 | 12 | 360 | 0 |
-| Microsoft Entra | 2,511 | 1,030 | 442 | 366 | 671 | 2 |
+| Microsoft Entra | 2,511 | 1,032 | 442 | 364 | 671 | 2 |
 | Windows Server releases | 45 | 6 | 4 | 6 | 29 | 0 |
 | Windows Server security | 47 | 8 | 15 | 10 | 14 | 0 |
 | Windows Server file server and SMB | 26 | 3 | 1 | 11 | 11 | 0 |
-| **All sides** | 3,190 | 1,214 | 484 | 405 | 1,085 | 2 |
+| **All sides** | 3,190 | 1,216 | 484 | 403 | 1,085 | 2 |
 
 ## Windows Server identity {#windows-server-identity}
 
@@ -703,7 +703,7 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [external-id](#entra-external-id) | 148 | 28 | 23 | 0 | 96 | 1 |
 | [fundamentals](#entra-fundamentals) | 62 | 29 | 5 | 6 | 22 | 0 |
 | [general](#entra-general) | 1 | 0 | 0 | 0 | 1 | 0 |
-| [global-secure-access](#entra-global-secure-access) | 199 | 81 | 3 | 108 | 7 | 0 |
+| [global-secure-access](#entra-global-secure-access) | 199 | 83 | 3 | 106 | 7 | 0 |
 | [hybrid](#entra-hybrid) | 242 | 109 | 80 | 18 | 35 | 0 |
 | [id-governance](#entra-id-governance) | 236 | 165 | 38 | 25 | 8 | 0 |
 | [id-protection](#entra-id-protection) | 28 | 8 | 16 | 0 | 4 | 0 |
@@ -1956,7 +1956,7 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [How to add device links to remote networks](https://learn.microsoft.com/entra/global-secure-access/how-to-manage-remote-network-device-links) | — | Not covered |
 | [How to Update and Delete Remote Networks for Global Secure Access](https://learn.microsoft.com/entra/global-secure-access/how-to-manage-remote-networks) | — | Not covered |
 | [Use SSH to administer servers with Microsoft Entra Private Access](https://learn.microsoft.com/entra/global-secure-access/how-to-manage-ssh-server-administration) | — | Not covered |
-| [Assign users and devices to traffic forwarding profiles](https://learn.microsoft.com/entra/global-secure-access/how-to-manage-users-groups-assignment) | — | Not covered |
+| [Assign users and devices to traffic forwarding profiles](https://learn.microsoft.com/entra/global-secure-access/how-to-manage-users-groups-assignment) | [Chapter 04 — Microsoft Traffic and Change Plans](../project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md) | Cited |
 | [Migrate from DirectAccess to Microsoft Entra Private Access](https://learn.microsoft.com/entra/global-secure-access/how-to-migrate-direct-access-to-private-access) | [Book 09, Chapter 05 — SD-WAN, SASE and Governed-Path Transport](../books/b09-network/05-sd-wan-sase-and-governed-transport.md); [`docs/books/b09-network/_verification/05-sd-wan-sase-and-governed-transport.md`](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/books/b09-network/_verification/05-sd-wan-sase-and-governed-transport.md) | Cited |
 | [Migrate web content filtering policies from V1 to V2](https://learn.microsoft.com/entra/global-secure-access/how-to-migrate-web-content-filtering-policies) | — | Not covered |
 | [Security Service Edge (SSE) Coexistence With Microsoft and Netskope](https://learn.microsoft.com/entra/global-secure-access/how-to-netskope-coexistence) | [Book 09, Chapter 05 — SD-WAN, SASE and Governed-Path Transport](../books/b09-network/05-sd-wan-sase-and-governed-transport.md) | Cited |
@@ -2045,7 +2045,7 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [Troubleshoot application access](https://learn.microsoft.com/entra/global-secure-access/troubleshoot-app-access) | — | Not covered |
 | [Troubleshoot problems installing the Microsoft Entra private network connector](https://learn.microsoft.com/entra/global-secure-access/troubleshoot-connectors) | — | Not covered |
 | [Learn how to solve an issue where Global Secure Access fails with a Distributed File System](https://learn.microsoft.com/entra/global-secure-access/troubleshoot-distributed-file-system) | — | Not covered |
-| [Troubleshoot the Global Secure Access Client for Windows: Advanced Diagnostics](https://learn.microsoft.com/entra/global-secure-access/troubleshoot-global-secure-access-client-advanced-diagnostics) | — | Not covered |
+| [Troubleshoot the Global Secure Access Client for Windows: Advanced Diagnostics](https://learn.microsoft.com/entra/global-secure-access/troubleshoot-global-secure-access-client-advanced-diagnostics) | [Chapter 06 — Private Applications and Administrative Paths](../project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.md) | Cited |
 | [Troubleshoot the Windows Global Secure Access client: Health check](https://learn.microsoft.com/entra/global-secure-access/troubleshoot-global-secure-access-client-diagnostics-health-check) | — | Not covered |
 | [Troubleshoot the Global Secure Access Client: Disabled by Your Organization](https://learn.microsoft.com/entra/global-secure-access/troubleshoot-global-secure-access-client-disabled) | — | Not covered |
 | [Troubleshoot the macOS Global Secure Access client: Health check](https://learn.microsoft.com/entra/global-secure-access/troubleshoot-global-secure-access-client-macos-health-check) | — | Not covered |
@@ -3684,7 +3684,6 @@ Pages a reviewer marked **not covered** (the workbook should cover the topic and
 | [How to add device links to remote networks](https://learn.microsoft.com/entra/global-secure-access/how-to-manage-remote-network-device-links) | Microsoft Entra, global-secure-access | — | Remote network (branch) connectivity to Global Secure Access; relevant to the SD-WAN and field-office chapters |
 | [How to Update and Delete Remote Networks for Global Secure Access](https://learn.microsoft.com/entra/global-secure-access/how-to-manage-remote-networks) | Microsoft Entra, global-secure-access | — | Remote network (branch) connectivity to Global Secure Access; relevant to the SD-WAN and field-office chapters |
 | [Use SSH to administer servers with Microsoft Entra Private Access](https://learn.microsoft.com/entra/global-secure-access/how-to-manage-ssh-server-administration) | Microsoft Entra, global-secure-access | — | Private Access features (DNS, local access, sign-in frequency, PIM, Conditional Access, SSH) |
-| [Assign users and devices to traffic forwarding profiles](https://learn.microsoft.com/entra/global-secure-access/how-to-manage-users-groups-assignment) | Microsoft Entra, global-secure-access | — | Traffic forwarding profile configuration |
 | [Migrate web content filtering policies from V1 to V2](https://learn.microsoft.com/entra/global-secure-access/how-to-migrate-web-content-filtering-policies) | Microsoft Entra, global-secure-access | — | Internet Access policy (web filtering, threat intelligence, firewall, DLP) |
 | [Operate Microsoft Entra Global Secure Access remote networks](https://learn.microsoft.com/entra/global-secure-access/how-to-operate-remote-networks) | Microsoft Entra, global-secure-access | — | Remote network (branch) connectivity to Global Secure Access; relevant to the SD-WAN and field-office chapters |
 | [Private Access segmentation strategies for Global Secure Access](https://learn.microsoft.com/entra/global-secure-access/how-to-private-access-segmentation-strategies) | Microsoft Entra, global-secure-access | — | Private Access per-app segmentation; workbook names Private Access only as the Kerberos bridge |
@@ -3732,7 +3731,6 @@ Pages a reviewer marked **not covered** (the workbook should cover the topic and
 | [Troubleshoot application access](https://learn.microsoft.com/entra/global-secure-access/troubleshoot-app-access) | Microsoft Entra, global-secure-access | — | Client deployment (Windows, mobile, macOS) and troubleshooting; Intune deployment candidate |
 | [Troubleshoot problems installing the Microsoft Entra private network connector](https://learn.microsoft.com/entra/global-secure-access/troubleshoot-connectors) | Microsoft Entra, global-secure-access | — | Private network connector deployment and operation |
 | [Learn how to solve an issue where Global Secure Access fails with a Distributed File System](https://learn.microsoft.com/entra/global-secure-access/troubleshoot-distributed-file-system) | Microsoft Entra, global-secure-access | — | Client deployment (Windows, mobile, macOS) and troubleshooting; Intune deployment candidate |
-| [Troubleshoot the Global Secure Access Client for Windows: Advanced Diagnostics](https://learn.microsoft.com/entra/global-secure-access/troubleshoot-global-secure-access-client-advanced-diagnostics) | Microsoft Entra, global-secure-access | — | Client deployment (Windows, mobile, macOS) and troubleshooting; Intune deployment candidate |
 | [Troubleshoot the Windows Global Secure Access client: Health check](https://learn.microsoft.com/entra/global-secure-access/troubleshoot-global-secure-access-client-diagnostics-health-check) | Microsoft Entra, global-secure-access | — | Client deployment (Windows, mobile, macOS) and troubleshooting; Intune deployment candidate |
 | [Troubleshoot the Global Secure Access Client: Disabled by Your Organization](https://learn.microsoft.com/entra/global-secure-access/troubleshoot-global-secure-access-client-disabled) | Microsoft Entra, global-secure-access | — | Client deployment (Windows, mobile, macOS) and troubleshooting; Intune deployment candidate |
 | [Troubleshoot the macOS Global Secure Access client: Health check](https://learn.microsoft.com/entra/global-secure-access/troubleshoot-global-secure-access-client-macos-health-check) | Microsoft Entra, global-secure-access | — | Client deployment (Windows, mobile, macOS) and troubleshooting; Intune deployment candidate |

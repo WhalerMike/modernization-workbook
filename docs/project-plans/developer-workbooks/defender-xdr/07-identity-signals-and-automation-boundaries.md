@@ -290,6 +290,8 @@ Disconnect-MgGraph
    1. In the Defender portal, **Settings** > **Endpoints** > **Device groups**: copy each group's name, rank and automation level into `templates/device-groups.csv`'s columns, and add the kind.
    2. **Settings** > **Microsoft Defender XDR** > **Automated response**: copy each **Identities** and **Devices** exclusion into `templates/automation-exclusions.csv`'s columns, with its approver and review date from the register.
 
+   There's no command for this step: Learn gives device groups' rank and remediation level, and the automated response exclusions, only as Defender portal pages and names no API that reads them, so the copy into the two templates stays by hand.[^xdr07-groups] [^xdr07-exclusions]
+
 3. **Run the automation check:**
 
    ```powershell
@@ -353,5 +355,6 @@ The pairs are the guide's G8 and G9 rows. KSIs are FedRAMP 20x indicators for cl
 [^xdr07-mdca]: Microsoft Learn, "Microsoft Defender for Cloud Apps for US Government offerings," <https://learn.microsoft.com/defender-cloud-apps/editions-cloud-app-security-gcc> (accessed November 11, 2026; carried).
 [^xdr07-schema]: Microsoft Learn, "Understand the advanced hunting schema," <https://learn.microsoft.com/defender-xdr/advanced-hunting-schema-tables> (accessed November 11, 2026; carried).
 [^xdr07-exclusions]: Microsoft Learn, "Exclude assets from automated responses in automatic attack disruption," <https://learn.microsoft.com/defender-xdr/automatic-attack-disruption-exclusions> (accessed November 11, 2026; carried).
+[^xdr07-groups]: Microsoft Learn, "Create and manage device groups in Microsoft Defender for Endpoint," <https://learn.microsoft.com/defender-endpoint/machine-groups> (accessed November 27, 2026).
 [^xdr07-disruption]: Microsoft Learn, "Configure automatic attack disruption in Microsoft Defender XDR," <https://learn.microsoft.com/defender-xdr/configure-attack-disruption> (accessed November 11, 2026; carried).
 [^xdr07-overview]: Microsoft Learn, "Automatic attack disruption in Microsoft Defender," <https://learn.microsoft.com/defender-xdr/automatic-attack-disruption> (accessed November 11, 2026; carried).

@@ -463,6 +463,8 @@ Remove-Item -Recurse -Force out/before, out/plan-test, out/after, out/check-traf
    2. **Microsoft traffic profile** > **User and group assignments** > **View**.
    3. **Add user/group**, select the pilot group, **Assign**.
 
+   There's no command for this step: Learn's assignment page gives only the admin center path, and the Graph `forwardingProfile` update documents its `associations` only for branches (`associatedBranch`), not for users or groups, so the kit's plan prints the assignment as a manual line instead of a request.[^gsa04-assign] [^gsa04-fpupd]
+
 5. **Validate.** Run Learn's test on the test device (sign in to SharePoint with the client on, then disabled, and compare the IP addresses in the sign-in log), then the guide's query, then collect again and check:
 
    ```powershell
@@ -524,6 +526,8 @@ TIC 3.0's Remote User Use Case, Pattern 2, is the guide's reading for this step 
 [^gsa04-ia]: Microsoft Learn, "Configure Microsoft Entra Internet Access using Microsoft Graph APIs," Step 1 (forwarding profile), <https://learn.microsoft.com/graph/tutorial-entra-internet-access> (read November 11, 2026, for the guide).
 [^gsa04-ms]: Microsoft Learn, "Tutorial: Enable the Microsoft traffic profile," <https://learn.microsoft.com/entra/global-secure-access/tutorial-microsoft-traffic-enable-profile> (read November 11, 2026, for the guide).
 [^gsa04-fp]: Microsoft Learn, "List forwardingProfiles" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/networkaccess-networkaccessroot-list-forwardingprofiles?view=graph-rest-beta> (accessed November 17, 2026).
+[^gsa04-assign]: Microsoft Learn, "Assign users and devices to traffic forwarding profiles," <https://learn.microsoft.com/entra/global-secure-access/how-to-manage-users-groups-assignment> (accessed November 27, 2026).
+[^gsa04-fpupd]: Microsoft Learn, "Update forwardingProfile" (Microsoft Graph beta), and "association resource type" (beta; its one derived type is `associatedBranch`), <https://learn.microsoft.com/graph/api/networkaccess-forwardingprofile-update?view=graph-rest-beta> and <https://learn.microsoft.com/graph/api/resources/networkaccess-association?view=graph-rest-beta> (accessed November 27, 2026).
 [^gsa04-sig]: Microsoft Learn, "Get conditionalAccessSettings" and "Update conditionalAccessSettings" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/networkaccess-conditionalaccesssettings-get?view=graph-rest-beta> (accessed November 17, 2026) and <https://learn.microsoft.com/graph/api/networkaccess-conditionalaccesssettings-update?view=graph-rest-beta> (read November 11, 2026, for the guide).
 [^gsa04-sip]: Microsoft Learn, "Source IP restoration," <https://learn.microsoft.com/entra/global-secure-access/how-to-source-ip-restoration> (read November 11, 2026, for the guide).
 [^gsa04-dg]: Microsoft Learn, "Microsoft Global Secure Access deployment guide for Microsoft Traffic," test and deploy, <https://learn.microsoft.com/entra/architecture/gsa-deployment-guide-microsoft-traffic> (read November 11, 2026, for the guide).
