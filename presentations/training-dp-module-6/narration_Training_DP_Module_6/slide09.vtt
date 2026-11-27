@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.775
+Step two reads the fix file: four lines
+for three instances, and nothing has run.
+
+2
+00:00:04.775 --> 00:00:07.267
+The first line says so: review each line,
+
+3
+00:00:07.267 --> 00:00:10.762
+and run it with Domain Admin
+rights in a change window.
+
+4
+00:00:10.762 --> 00:00:14.850
+SQL P R D oh two gets its S P
+N added on its service account.
+
+5
+00:00:14.850 --> 00:00:18.704
+On SQL F C I oh four, the S P N
+is deleted from the old account,
+
+6
+00:00:18.704 --> 00:00:21.300
+then added to the one the service runs as.
+
+7
+00:00:21.300 --> 00:00:24.955
+And on SQL P R D oh six, the
+S P N stays with the G M S
+
+8
+00:00:24.955 --> 00:00:28.975
+A the service runs as, and
+leaves the computer account.
+
+9
+00:00:28.975 --> 00:00:32.828
+That's the guard against a danger:
+a duplicate removed from the wrong
+
+10
+00:00:32.828 --> 00:00:36.890
+account takes the S P N away from the
+service account, and Kerberos stops.

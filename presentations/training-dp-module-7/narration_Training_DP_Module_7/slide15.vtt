@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.150
+Check yourself with two questions.
+
+2
+00:00:02.150 --> 00:00:06.425
+First: payroll web's web dot
+config uses integrated security.
+
+3
+00:00:06.425 --> 00:00:08.512
+Why does the scan put it in column A?
+
+4
+00:00:08.512 --> 00:00:13.800
+The answer is b: it runs on an Arc host
+with Microsoft Data SQL Client five point
+
+5
+00:00:13.800 --> 00:00:17.352
+two point two, at or above
+the managed identity release,
+
+6
+00:00:17.352 --> 00:00:19.799
+so the move is a configuration change.
+
+7
+00:00:19.799 --> 00:00:24.275
+Second: which three conditions must hold
+before a connection string changes?
+
+8
+00:00:24.275 --> 00:00:28.188
+The answer is a: the Entra login
+exists, it holds the database role,
+
+9
+00:00:28.188 --> 00:00:32.175
+and the change is tested in a
+production-equivalent environment.
+
+10
+00:00:32.175 --> 00:00:36.530
+The module page has two more questions,
+each linked to the section that answers it.

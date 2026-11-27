@@ -1,0 +1,64 @@
+[
+ {
+  "slide": 4,
+  "title": "The database axis, and the column the scan sets",
+  "links": [
+   {
+    "text": "Book 06, Ch 18",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/18-the-four-class-pattern-for-applications.html"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/07-the-authentication-audit.html"
+   }
+  ]
+ },
+ {
+  "slide": 5,
+  "title": "What Microsoft gives you: Entra modes by driver",
+  "links": [
+   {
+    "text": "Book 06, Ch 19",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/19-connection-string-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "The change, and the three gates in front of it",
+  "links": [
+   {
+    "text": "Book 06, Ch 19",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/19-connection-string-migration.html"
+   },
+   {
+    "text": "Chapter 07",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/07-the-authentication-audit.html"
+   }
+  ]
+ },
+ {
+  "slide": 11,
+  "title": "Try it: read the kit's driver table",
+  "links": [
+   {
+    "text": "Book 06, Ch 19",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/19-connection-string-migration.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The federal requirement and the evidence the ISSO keeps",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

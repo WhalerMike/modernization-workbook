@@ -1,0 +1,26 @@
+# Data Platform and SQL Server Identity learning path, Module 10: Deploying to Test and Production
+
+**Deck name: Training_DP_Module_10.** The narrated deck for [Module 10: Deploying to Test and Production](../../docs/training/data-platform/10-deploying-to-test-and-production.md), in the [Data Platform and SQL Server Identity learning path](../../docs/training/data-platform/index.md). It teaches the module the way Microsoft Learn does: the learning objectives, the concepts, **Try it** slides with the module page's Lab 1 commands and output, Lab 2, the federal requirement and the evidence an ISSO keeps, a two-question knowledge check, and the summary. It is built with the shared kit in [`../_build/`](../_build/README.md) and the training decks' helpers in [`../training-ms-automation-module-1/shared.js`](../training-ms-automation-module-1/shared.js). This folder sits outside `docs/`, so the site doesn't render it.
+
+| Part | Covers |
+|---|---|
+| Introduction | Title; why the same commands run twice, test then production, with nothing unapproved; learning objectives and prerequisites |
+| Concepts | One settings file per environment and preflight, PF-01 to PF-07; the plan's `create.sql`, `cutover.sql` and `rollback.sql`, the three hashes a second person approves, and the deployer's role; the create, parallel run, rollback dry run, cutover and observation, with the rollback triggers; go or no-go, the seal, production and Appendix B's break-glass path |
+| Lab | Try it: Lab 1 steps 1 to 16, a dry-run rehearsal of the test stage on the kit's example settings: the settings and preflight, the audit, the Arc check and the plan, the approved hashes, the create and a wrong hash, the parallel run, the rollback and the cutover, the seal refused twice and sealed as a rehearsal, production preflight failing PF-06, the tests and the runs; Lab 2, the real test stage of Chapter 10 (not run by the authors) |
+| Check and summary | The federal requirement (AC-6, CM-6, CM-3, CM-4, AC-2, CP-2, CA-7, AU-9) and evidence; two knowledge-check questions with answers; the summary and the way back to the learning path |
+
+| File | Use |
+|---|---|
+| `Training_DP_Module_10.pptx` | The deck: 17 narrated slides (the title and 16 content slides), then a backup section with the sources |
+| `Training_DP_Module_10_Narrated.vtt` | The video's caption track; the Watch page and the module page read it from here, and `scripts/generate_video_manifest.py` lists the video because it is here |
+| `Training_DP_Module_10_Narration_Script.md` | The spoken narration, slide by slide (about 2,100 words) |
+| `narration_Training_DP_Module_10/` | `durations.json`, `sentences.json` and the per-slide caption tracks (the MP3s are on the edition's Release, not in git) |
+| `build.js` | The slides and their notes |
+
+The narration was recorded on November 25, 2026. The MP4 is on the videos Release; the narrated deck and the plain deck join the next edition's Release. The video runs about 13 minutes.
+
+Build (Git Bash): `source /c/tmp/deckenv.sh`, then `FIT=1 node presentations/training-dp-module-10/build.js presentations/training-dp-module-10/Training_DP_Module_10.pptx`. Then `narrate.py` and `captions.py`, and on a workstation where PowerPoint is free, `qa_export.ps1`, `build_narrated.ps1` and `export_mp4.ps1`, as in the kit's README. The build runs the shared checks: title length and uniqueness, Sources length, and overflow warnings, including the code panel's width and height.
+
+## Notes and sourcing
+
+Each slide's speaker notes are the narration, then a `Workbook:` reference to the module's units, which isn't spoken. The narration names each source by its original publisher (NIST, FedRAMP) or by its title (*Data Platform: SQL Server Identity*, *Building SQL Server Identity*) and spells out the acronyms the voice would misread (P F oh six, S A, S H A two fifty-six, C M three, C P two, A U nine, K S I). Every fact on a slide comes from the module page, workbook [Chapter 10](../../docs/project-plans/developer-workbooks/sql-server-identity/10-deploying-to-test-and-production.md), [Runbook R05](../../docs/books/b06-data-platform/r05-login-migration-and-parallel-run.md), the data platform book's [Chapter 12](../../docs/books/b06-data-platform/12-the-engine-authentication-decision.md) and [Appendix B](../../docs/books/b06-data-platform/appendix-b-ato-kit.md#break-glass-design) that the module sends the learner to, or the code, example settings and fixtures in [`examples/sql-server-identity`](../../examples/sql-server-identity/) (`deploy/`, `powershell/SqlIdentity`, `tests/fixtures`); the deck adds none. The **Try it** output is the module page's Lab 1 expected output, recorded on November 25, 2026 by running the lab against the kit unzipped into `C:\FMWLabs`. Every Lab 1 step is a dry run: nothing connects to an instance and nothing runs with `-Apply`. Long commands and output are trimmed, wrapped and reflowed, with "..." marking each cut, and the kit's `C:/FMWLabs/results/...` paths are shortened to `$Run`, as the slides say. The chapter's labels carry over: a rehearsal record never stands in for a real test stage, and Lab 2, the real test stage, hasn't been run by the authors.

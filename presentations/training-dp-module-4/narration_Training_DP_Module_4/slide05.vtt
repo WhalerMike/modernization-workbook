@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.582
+The kit's login plan reads one
+instance from the audit snapshot,
+
+2
+00:00:03.582 --> 00:00:04.988
+and the reviewed mapping.
+
+3
+00:00:04.988 --> 00:00:08.351
+It leaves out the S A account
+and the built-in principals.
+
+4
+00:00:08.351 --> 00:00:12.488
+A login with no mapping is written
+as unresolved, instead of a guess.
+
+5
+00:00:12.488 --> 00:00:15.022
+It mirrors server and database roles,
+
+6
+00:00:15.022 --> 00:00:18.701
+and writes three scripts:
+create, cutover and rollback.
+
+7
+00:00:18.701 --> 00:00:20.188
+It executes nothing.
+
+8
+00:00:20.188 --> 00:00:24.333
+It also warns when a principal would
+hold more than one database role,
+
+9
+00:00:24.333 --> 00:00:27.969
+or D B owner or sys-admin, because
+the data platform book gives
+
+10
+00:00:27.969 --> 00:00:31.750
+each group exactly one role, on
+one database, in one environment.
+
+11
+00:00:31.750 --> 00:00:33.825
+A warning doesn't stop the plan.
+
+12
+00:00:33.825 --> 00:00:37.925
+It's for the identity engineer to
+split the group, or record why not.
+
+13
+00:00:37.925 --> 00:00:40.863
+What the plan doesn't mirror
+is explicit permissions,
+
+14
+00:00:40.863 --> 00:00:43.000
+default schemas and object ownership.
+
+15
+00:00:43.000 --> 00:00:47.400
+Runbook R five's queries read those,
+and the D B A adds them by hand.

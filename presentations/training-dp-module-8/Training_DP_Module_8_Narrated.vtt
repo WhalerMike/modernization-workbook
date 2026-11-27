@@ -1,0 +1,840 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.482
+Welcome to Module 8 of
+the Data Platform and SQL
+
+2
+00:00:03.482 --> 00:00:06.863
+Server Identity learning
+path: A D C S dependencies.
+
+3
+00:00:06.863 --> 00:00:10.962
+It goes with Runbook R ten and
+Chapter 08 of the developer workbook,
+
+4
+00:00:10.962 --> 00:00:13.075
+Building SQL Server Identity.
+
+5
+00:00:13.075 --> 00:00:17.084
+You'll list every certificate
+sequel server depends on, by class,
+
+6
+00:00:17.084 --> 00:00:21.925
+issuer and expiry, before anyone dates
+a change to the certificate authority.
+
+7
+00:00:21.925 --> 00:00:24.540
+Take this module after Module 7.
+
+8
+00:00:28.340 --> 00:00:29.677
+Why does this matter?
+
+9
+00:00:29.677 --> 00:00:32.728
+Sequel server depends on
+certificates that most
+
+10
+00:00:32.728 --> 00:00:35.677
+teams planning an A D C
+S decommission never see.
+
+11
+00:00:35.677 --> 00:00:38.366
+The T L S certificate the engine presents.
+
+12
+00:00:38.366 --> 00:00:42.028
+The certificates behind
+certificate-mapped logins and endpoints.
+
+13
+00:00:42.028 --> 00:00:46.139
+And the domain controller certificates
+that certificate-based sign-in needs.
+
+14
+00:00:46.139 --> 00:00:48.871
+The book P K I and
+Certificates owns the decision
+
+15
+00:00:48.871 --> 00:00:51.465
+about which issuer serves
+which certificate.
+
+16
+00:00:51.465 --> 00:00:54.702
+This module doesn't restate
+that decision; it feeds it.
+
+17
+00:00:54.702 --> 00:00:57.751
+Before any certificate
+authority's date is set,
+
+18
+00:00:57.751 --> 00:01:02.599
+you hand the P K I owner a list of every
+certificate sequel server depends on,
+
+19
+00:01:02.599 --> 00:01:06.652
+with its class, issuer, expiry
+and the action each one needs.
+
+20
+00:01:10.450 --> 00:01:13.166
+Here's what you'll be able to
+do by the end of this module,
+
+21
+00:01:13.166 --> 00:01:15.450
+which takes about forty
+minutes with the lab.
+
+22
+00:01:15.450 --> 00:01:20.148
+You'll name the three places sequel
+server can depend on certificates that
+
+23
+00:01:20.148 --> 00:01:24.513
+A D C S issued, and the issuer that P
+K I and Certificates assigns to each.
+
+24
+00:01:24.513 --> 00:01:28.124
+You'll explain why an expiring T
+L S certificate breaks clients,
+
+25
+00:01:28.124 --> 00:01:31.737
+while an expiring signing
+certificate doesn't lock anyone out.
+
+26
+00:01:31.737 --> 00:01:35.577
+You'll run the kit's certificate
+dependency list over fixtures
+
+27
+00:01:35.577 --> 00:01:38.974
+and read its class, issuer,
+expiry and action for each row.
+
+28
+00:01:38.974 --> 00:01:41.300
+And you'll say why certificate-mapped,
+
+29
+00:01:41.300 --> 00:01:44.075
+type C, logins aren't
+migrated to Entra logins.
+
+30
+00:01:44.075 --> 00:01:46.637
+Before you start, finish Module 7.
+
+31
+00:01:46.637 --> 00:01:51.132
+And remember from Module 6: an
+endpoint that authenticates
+
+32
+00:01:51.132 --> 00:01:54.526
+with NTLM or negotiate
+is also an NTLM source.
+
+33
+00:01:54.526 --> 00:02:00.280
+The lab runs in PowerShell 7, in the kit
+you unzipped into the F M W Labs folder.
+
+34
+00:02:04.080 --> 00:02:06.330
+Unit 2 is the three places.
+
+35
+00:02:06.330 --> 00:02:09.287
+The data platform book's
+chapter on where sequel
+
+36
+00:02:09.287 --> 00:02:12.218
+server touches A D C S
+names three dependencies.
+
+37
+00:02:12.218 --> 00:02:16.518
+First, the T L S certificate,
+which encrypts client connections.
+
+38
+00:02:16.518 --> 00:02:19.939
+Entra-authenticated connections
+are always encrypted,
+
+39
+00:02:19.939 --> 00:02:22.705
+so the Entra target depends
+on it more, not less.
+
+40
+00:02:22.705 --> 00:02:25.517
+Second, certificate-mapped type C logins.
+
+41
+00:02:25.517 --> 00:02:29.281
+They carry permissions for signed
+modules and can't be used to connect,
+
+42
+00:02:29.281 --> 00:02:33.693
+and certificates of the same kind secure
+Service Broker and mirroring endpoints.
+
+43
+00:02:33.693 --> 00:02:36.445
+So treating type C logins
+as connection logins,
+
+44
+00:02:36.445 --> 00:02:39.905
+and moving them to Entra logins,
+is effort they never needed.
+
+45
+00:02:39.905 --> 00:02:42.105
+Third, certificate-based sign-in.
+
+46
+00:02:42.105 --> 00:02:45.164
+It's the program's interim
+posture for connections that
+
+47
+00:02:45.164 --> 00:02:48.555
+can't reach Entra authentication
+but can negotiate Kerberos.
+
+48
+00:02:48.555 --> 00:02:51.574
+And it usually depends on
+A D C S through the domain
+
+49
+00:02:51.574 --> 00:02:55.570
+controllers' certificates, rather
+than through the piv card.
+
+50
+00:02:59.370 --> 00:03:01.408
+Here's what Microsoft Learn gives you.
+
+51
+00:03:01.408 --> 00:03:06.132
+A sequel server T L S certificate needs
+the Server Authentication enhanced key
+
+52
+00:03:06.132 --> 00:03:09.388
+usage, a key spec of key
+exchange from a legacy provider,
+
+53
+00:03:09.388 --> 00:03:12.644
+and every client name in the
+subject alternative name.
+
+54
+00:03:12.644 --> 00:03:16.626
+A certificate from a Key Storage
+Provider gives a key spec of zero,
+
+55
+00:03:16.626 --> 00:03:18.395
+which sequel server can't use.
+
+56
+00:03:18.395 --> 00:03:22.423
+Sequel server checks the certificate's
+validity only when it's configured,
+
+57
+00:03:22.423 --> 00:03:25.932
+but clients that validate the
+certificate fail on an expired one.
+
+58
+00:03:25.932 --> 00:03:27.883
+Signing certificates are different.
+
+59
+00:03:27.883 --> 00:03:31.956
+A certificate-mapped login shows as
+type C, used only for code signing,
+
+60
+00:03:31.956 --> 00:03:35.100
+and the built-in signing
+functions don't check expiry,
+
+61
+00:03:35.100 --> 00:03:37.958
+though Service Broker
+and backup encryption do.
+
+62
+00:03:37.958 --> 00:03:40.850
+So an expiring T L S
+certificate breaks clients,
+
+63
+00:03:40.850 --> 00:03:44.558
+and an expiring signing certificate
+doesn't lock anyone out.
+
+64
+00:03:44.558 --> 00:03:47.951
+One more fact: Microsoft
+Cloud P K I issues only to
+
+65
+00:03:47.951 --> 00:03:52.420
+devices enrolled in Intune,
+which excludes Windows Server.
+
+66
+00:03:56.220 --> 00:03:59.332
+Unit 3 is the issuer
+decision and the order.
+
+67
+00:03:59.332 --> 00:04:01.606
+P K I and Certificates gives each class of
+
+68
+00:04:01.606 --> 00:04:04.270
+certificate one issuer
+and one renewal engine.
+
+69
+00:04:04.270 --> 00:04:09.152
+Sequel server's T L S certificate comes
+from the retained A D C S hierarchy,
+
+70
+00:04:09.152 --> 00:04:12.407
+requested and renewed
+through the C L M platform.
+
+71
+00:04:12.407 --> 00:04:18.145
+Its deadline is the issuing C A it chains
+to being retired, not A D C S as a whole.
+
+72
+00:04:18.145 --> 00:04:22.494
+A certificate-mapped login or endpoint
+isn't renewed by the platform,
+
+73
+00:04:22.494 --> 00:04:26.233
+so it's replaced or re-mapped by
+hand before its C A is retired.
+
+74
+00:04:26.233 --> 00:04:30.963
+Domain controller certificates stay on
+A D C S autoenrollment until the last
+
+75
+00:04:30.963 --> 00:04:35.545
+domain controller retires, so the
+interim posture keeps what it depends on.
+
+76
+00:04:35.545 --> 00:04:39.257
+The kit turns each certificate's
+use into a class and an action.
+
+77
+00:04:39.257 --> 00:04:43.032
+It marks it yes when its issuer
+is one of your enterprise C As,
+
+78
+00:04:43.032 --> 00:04:47.660
+a list the P K I owner supplies, and
+it warns inside a ninety-day window.
+
+79
+00:04:51.460 --> 00:04:55.910
+Chapter 08 of the workbook names the
+dangers, and the guard against each.
+
+80
+00:04:55.910 --> 00:04:58.893
+If the T L S certificate
+expires after its C A goes,
+
+81
+00:04:58.893 --> 00:05:03.897
+clients that validate refuse to connect,
+and every Entra connection validates.
+
+82
+00:05:03.897 --> 00:05:08.678
+The guard is the class and window on
+every row, with the lifecycle platform
+
+83
+00:05:08.678 --> 00:05:13.772
+renewing it from the retained A D C S
+hierarchy before its issuing C A is retired.
+
+84
+00:05:13.772 --> 00:05:18.498
+An empty registry value read as no
+certificate hides a store certificate or
+
+85
+00:05:18.498 --> 00:05:22.923
+a self-generated one; Lab 2's second step
+and R ten's error-log check find it.
+
+86
+00:05:22.923 --> 00:05:27.499
+A replacement certificate from a Key
+Storage Provider has a key spec of zero,
+
+87
+00:05:27.499 --> 00:05:31.422
+which sequel server can't use, so
+check the key spec before renewal.
+
+88
+00:05:31.422 --> 00:05:36.297
+Type C logins treated as connection logins
+waste effort, because they sign code.
+
+89
+00:05:36.297 --> 00:05:40.533
+And an issuer missing from the
+enterprise C A list makes an A D
+
+90
+00:05:40.533 --> 00:05:44.920
+C S certificate read no, so the
+P K I owner supplies that list.
+
+91
+00:05:48.720 --> 00:05:49.607
+Try it.
+
+92
+00:05:49.607 --> 00:05:51.840
+Lab 1 runs in PowerShell 7 on the kit's
+
+93
+00:05:51.840 --> 00:05:54.958
+fictional certificate
+inventory, with no tenant.
+
+94
+00:05:54.958 --> 00:05:58.400
+Go to the kit's folder and make
+this run's results folder,
+
+95
+00:05:58.400 --> 00:06:00.542
+named for the time you start, in U T C.
+
+96
+00:06:00.542 --> 00:06:02.608
+Step one lists the certificates.
+
+97
+00:06:02.608 --> 00:06:05.968
+Four of the five came from
+the fictional enterprise C A,
+
+98
+00:06:05.968 --> 00:06:08.058
+and two expire inside ninety days.
+
+99
+00:06:08.058 --> 00:06:13.176
+The SQL P R D oh one T L S row matters
+most: in seventy-two days every client that
+
+100
+00:06:13.176 --> 00:06:18.845
+validates the certificate refuses to connect,
+and Entra connections always validate.
+
+101
+00:06:18.845 --> 00:06:22.086
+The SQL P R D oh two
+login row expires sooner,
+
+102
+00:06:22.086 --> 00:06:25.582
+in forty-one days, but
+signing doesn't check expiry.
+
+103
+00:06:25.582 --> 00:06:27.894
+The reason to replace it is its issuer.
+
+104
+00:06:27.894 --> 00:06:32.174
+The last line counts the rows an
+enterprise A D C S C A issued:
+
+105
+00:06:32.174 --> 00:06:37.040
+four of five, each needing its
+action before that C A is retired.
+
+106
+00:06:40.840 --> 00:06:43.665
+Step two reads the action
+for each certificate.
+
+107
+00:06:43.665 --> 00:06:48.515
+The SQL P R D oh one T L S certificate
+stays on the retained A D C S,
+
+108
+00:06:48.515 --> 00:06:53.415
+issued through the C L M platform;
+move it before its C A is retired.
+
+109
+00:06:53.415 --> 00:06:57.537
+The SQL P R D oh six T L S
+certificate isn't from A D C S at all,
+
+110
+00:06:57.537 --> 00:07:01.402
+so it's tracked in the
+certificate lifecycle platform.
+
+111
+00:07:01.402 --> 00:07:06.589
+The certificate-mapped login and endpoint
+on SQL P R D oh two aren't renewed by
+
+112
+00:07:06.589 --> 00:07:11.303
+the C L M platform, so they're replaced
+or re-mapped before the C A is retired.
+
+113
+00:07:11.303 --> 00:07:15.871
+And the certificate-based sign-in on
+SQL F C I oh four also depends on the
+
+114
+00:07:15.871 --> 00:07:21.120
+domain controllers' certificates, so it's
+retired with the NTLM interim posture.
+
+115
+00:07:24.920 --> 00:07:26.945
+Step three widens the window.
+
+116
+00:07:26.945 --> 00:07:30.068
+The ninety days is a default
+in the kit's thresholds file,
+
+117
+00:07:30.068 --> 00:07:32.207
+and a parameter changes it for one run.
+
+118
+00:07:32.207 --> 00:07:36.921
+With a window of three hundred sixty-five
+days, four of the five certificates warn.
+
+119
+00:07:36.921 --> 00:07:39.802
+Only SQL P R D oh six's T L S certificate,
+
+120
+00:07:39.802 --> 00:07:43.770
+with four hundred eighty-one
+days left, stays quiet.
+
+121
+00:07:47.570 --> 00:07:53.541
+Step four opens the manifest: the step,
+its mode, read-only, its controls,
+
+122
+00:07:53.541 --> 00:07:56.580
+S C eight, S C twelve and S C seventeen,
+
+123
+00:07:56.580 --> 00:08:00.770
+its two K S Is, and the S H
+A two fifty-six of each file.
+
+124
+00:08:00.770 --> 00:08:04.895
+Step five runs this chapter's
+tests: three pass, none fail.
+
+125
+00:08:04.895 --> 00:08:06.795
+And step six lists your runs.
+
+126
+00:08:06.795 --> 00:08:10.204
+There's nothing to clean up: the
+kit's folder is as you unzipped it,
+
+127
+00:08:10.204 --> 00:08:12.995
+and each run's results
+stay in their own folder.
+
+128
+00:08:16.790 --> 00:08:19.074
+Lab 2 runs Runbook R ten's reads on one
+
+129
+00:08:19.074 --> 00:08:21.890
+test instance and its
+host, never production.
+
+130
+00:08:21.890 --> 00:08:23.790
+It was not run by the authors.
+
+131
+00:08:23.790 --> 00:08:28.465
+Every step reads: nothing is
+issued, bound, changed or restarted.
+
+132
+00:08:28.465 --> 00:08:31.769
+Sign in as a test reader whose
+login holds the view-state and
+
+133
+00:08:31.769 --> 00:08:35.140
+view-definition permissions
+the page lists, never sysadmin.
+
+134
+00:08:35.140 --> 00:08:38.615
+Read the configured T L S
+thumbprint, the host's certificates,
+
+135
+00:08:38.615 --> 00:08:41.465
+the certificate-mapped
+logins and the endpoints.
+
+136
+00:08:41.465 --> 00:08:45.190
+An empty thumbprint means sequel
+server picked a certificate itself.
+
+137
+00:08:45.190 --> 00:08:49.615
+Save the reads by hand in the fixture's
+shape, and run the dependency list on them.
+
+138
+00:08:49.615 --> 00:08:51.217
+Then delete the lab folder,
+
+139
+00:08:51.217 --> 00:08:55.320
+or keep the saved reads inside
+your boundary as R ten's evidence.
+
+140
+00:08:59.120 --> 00:09:00.720
+The federal requirement.
+
+141
+00:09:00.720 --> 00:09:05.144
+Chapter 08 of the workbook maps the
+dependency list and Runbook R ten's
+
+142
+00:09:05.144 --> 00:09:11.470
+reads to S C eight, S C twelve and
+S C seventeen in NIST SP 800-53.
+
+143
+00:09:11.470 --> 00:09:13.256
+The list supports S C eight,
+
+144
+00:09:13.256 --> 00:09:18.694
+because the certificate that protects
+connections is known and dated; S C twelve,
+
+145
+00:09:18.694 --> 00:09:21.941
+key and certificate
+lifecycle; and S C seventeen,
+
+146
+00:09:21.941 --> 00:09:24.295
+which P K I issued each certificate.
+
+147
+00:09:24.295 --> 00:09:28.504
+R ten notes that S C eight and its
+enhancement one are in the moderate baseline,
+
+148
+00:09:28.504 --> 00:09:31.068
+and that every Microsoft
+Entra-authenticated
+
+149
+00:09:31.068 --> 00:09:33.633
+connection to sequel
+server needs encryption.
+
+150
+00:09:33.633 --> 00:09:37.530
+The I S S O keeps the certificates
+file and the manifest per instance,
+
+151
+00:09:37.530 --> 00:09:40.244
+and the saved reads with
+the date and the reader.
+
+152
+00:09:40.244 --> 00:09:44.473
+K S Is are FedRAMP twenty X indicators
+for cloud service providers;
+
+153
+00:09:44.473 --> 00:09:47.933
+your providers report against
+them, the agency doesn't.
+
+154
+00:09:47.933 --> 00:09:53.010
+The list supports these controls; the assessor
+decides whether each one is in place.
+
+155
+00:09:56.810 --> 00:09:58.860
+Check yourself with two questions.
+
+156
+00:09:58.860 --> 00:10:02.033
+First: the certificate
+behind SQL P R D oh two's
+
+157
+00:10:02.033 --> 00:10:05.498
+certificate-mapped login
+expires in forty-one days.
+
+158
+00:10:05.498 --> 00:10:06.685
+Why replace it?
+
+159
+00:10:06.685 --> 00:10:09.285
+The answer is a: because of its issuer.
+
+160
+00:10:09.285 --> 00:10:10.896
+Signing doesn't check expiry,
+
+161
+00:10:10.896 --> 00:10:14.723
+but the certificate came from the
+enterprise C A that will be retired.
+
+162
+00:10:14.723 --> 00:10:19.935
+Second: the run ends with blocking an
+A D C S decommission, four of five.
+
+163
+00:10:19.935 --> 00:10:21.048
+What does it count?
+
+164
+00:10:21.048 --> 00:10:25.097
+The answer is b: the rows an
+enterprise A D C S C A issued,
+
+165
+00:10:25.097 --> 00:10:28.959
+each needing its action
+before that C A is retired.
+
+166
+00:10:28.959 --> 00:10:33.610
+The module page has two more questions,
+each linked to the section that answers it.
+
+167
+00:10:37.410 --> 00:10:38.435
+To sum up.
+
+168
+00:10:38.435 --> 00:10:43.640
+You listed the certificates sequel server
+depends on, by class, issuer and expiry,
+
+169
+00:10:43.640 --> 00:10:48.110
+and read the action each class needs
+before its issuing C A is retired.
+
+170
+00:10:48.110 --> 00:10:51.540
+The list goes to the owners
+of P K I and Certificates
+
+171
+00:10:51.540 --> 00:10:55.460
+before any C A date is set; the
+issuer decision stays theirs.
+
+172
+00:10:55.460 --> 00:10:59.397
+The I S S O keeps the certificates
+file and the manifest per instance,
+
+173
+00:10:59.397 --> 00:11:02.772
+and Runbook R ten's saved reads
+with the date and the reader.
+
+174
+00:11:02.772 --> 00:11:06.247
+Before shipping, work through
+the Chapter 08 checklist.
+
+175
+00:11:06.247 --> 00:11:10.360
+Next is Module 9: closure,
+drift and evidence.

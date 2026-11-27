@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.700
+The federal requirement.
+
+2
+00:00:01.700 --> 00:00:06.311
+Chapter 07 of the workbook maps both
+the scan and the change to I A five,
+
+3
+00:00:06.311 --> 00:00:14.325
+Authenticator Management, and C M six,
+Configuration Settings, in NIST SP 800-53.
+
+4
+00:00:14.325 --> 00:00:18.987
+The scan supports I A five: a stored
+password found, then removed.
+
+5
+00:00:18.987 --> 00:00:21.237
+And it provides evidence for C M six:
+
+6
+00:00:21.237 --> 00:00:24.338
+each string's authentication
+setting, recorded.
+
+7
+00:00:24.338 --> 00:00:27.518
+For the scan, the I S S O
+keeps the connections file with
+
+8
+00:00:27.518 --> 00:00:31.350
+masked strings and the manifest,
+and each application's app file.
+
+9
+00:00:31.350 --> 00:00:33.689
+For a change, the gate queries' output,
+
+10
+00:00:33.689 --> 00:00:37.900
+the before and after scans, the
+session read, and the change record.
+
+11
+00:00:37.900 --> 00:00:41.637
+Runbook R oh eight lists the evidence
+for each state of the cutover.
+
+12
+00:00:41.637 --> 00:00:45.866
+K S Is are FedRAMP twenty X indicators
+for cloud service providers;
+
+13
+00:00:45.866 --> 00:00:49.326
+your providers report against
+them, the agency doesn't.
+
+14
+00:00:49.326 --> 00:00:51.754
+The scan's records support these controls;
+
+15
+00:00:51.754 --> 00:00:54.600
+the assessor decides whether
+each one is in place.

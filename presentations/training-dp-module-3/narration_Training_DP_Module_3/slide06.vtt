@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.788
+Unit 3 is the sequence and the gate.
+
+2
+00:00:02.788 --> 00:00:04.537
+Arc deployment runs in order.
+
+3
+00:00:04.537 --> 00:00:06.062
+Connectivity first.
+
+4
+00:00:06.062 --> 00:00:07.187
+Then the agent.
+
+5
+00:00:07.187 --> 00:00:09.663
+Then the Azure extension for SQL Server,
+
+6
+00:00:09.663 --> 00:00:13.238
+which Arc installs automatically
+on a host with SQL Server.
+
+7
+00:00:13.238 --> 00:00:16.308
+Then Entra authentication,
+turned on for the instance,
+
+8
+00:00:16.308 --> 00:00:18.013
+since it's disabled by default.
+
+9
+00:00:18.013 --> 00:00:21.374
+Verification is the gate between
+enrollment and migration.
+
+10
+00:00:21.374 --> 00:00:25.475
+The first check asks the agent's
+local identity endpoint for a token.
+
+11
+00:00:25.475 --> 00:00:29.000
+The second is a test Entra login
+that connects to the instance.
+
+12
+00:00:29.000 --> 00:00:33.350
+And the third is the next audit run, which
+should put the instance in Category 1.
+
+13
+00:00:33.350 --> 00:00:38.175
+A failed verification is an enrollment
+problem, solved before migration starts.
+
+14
+00:00:38.175 --> 00:00:42.604
+Pre-2022 instances and failover
+cluster instances upgrade,
+
+15
+00:00:42.604 --> 00:00:45.460
+re-platform, or carry a dated exception.

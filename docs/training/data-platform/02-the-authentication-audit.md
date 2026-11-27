@@ -8,12 +8,14 @@ research-book: "Book 06"
 series-order: 2
 date-modified: 2026-11-25
 review-status: approved
-reviewed-sha256: 02c9daae1e9136181e54cf3e41c8c10f73fc1b48ebc9b9f78297a491605babc1
-last-reviewed: 2026-11-25
+reviewed-sha256: 8228946b062072bf3106a007d15eaba34c07a9a06c683f79177a629da9d63469
+last-reviewed: 2026-11-27
 ---
 # Data Platform, Module 2: The Authentication Audit {.unnumbered}
 
 **Learning path:** [Data Platform and SQL Server Identity](index.md) · Module 2 of 10 · 50 minutes · Runbook [R03](../../books/b06-data-platform/r03-the-authentication-audit.md) · Workbook [Chapter 02](../../project-plans/developer-workbooks/sql-server-identity/02-the-authentication-audit.md)
+
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-dp-module-2) · [▶ Watch](../../presentations/watch.html?v=Training_DP_Module_2_Narrated) (about 12 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DP_Module_2_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-2/Training_DP_Module_2_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-2/Training_DP_Module_2_Narrated.vtt).
 
 ## Unit 1: Introduction
 

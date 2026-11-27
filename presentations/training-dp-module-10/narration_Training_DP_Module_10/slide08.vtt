@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:00.987
+Try it.
+
+2
+00:00:00.987 --> 00:00:05.482
+Lab 1 rehearses the whole test stage on
+the kit's example settings, as dry runs:
+
+3
+00:00:05.482 --> 00:00:09.738
+nothing connects to an instance, and
+nothing runs with the apply switch.
+
+4
+00:00:09.738 --> 00:00:14.600
+Open PowerShell 7, go to the kit's folder,
+and make this run's results folder.
+
+5
+00:00:14.600 --> 00:00:18.820
+Step one copies the kit's two example
+settings files, test and production,
+
+6
+00:00:18.820 --> 00:00:22.126
+into the run folder, and points
+their evidence chain at it,
+
+7
+00:00:22.126 --> 00:00:24.588
+so the kit's folder
+stays as you unzipped it.
+
+8
+00:00:24.588 --> 00:00:27.449
+They describe the fixtures'
+sequel P R D oh one.
+
+9
+00:00:27.449 --> 00:00:29.800
+Step two preflights the test stage.
+
+10
+00:00:29.800 --> 00:00:32.545
+Every check passes,
+and P F oh seven warns:
+
+11
+00:00:32.545 --> 00:00:37.287
+the example's S A account is still
+enabled under its own name on day one.
+
+12
+00:00:37.287 --> 00:00:38.963
+It doesn't stop the change.
+
+13
+00:00:38.963 --> 00:00:42.430
+P F oh six isn't run, because
+it's for production only.

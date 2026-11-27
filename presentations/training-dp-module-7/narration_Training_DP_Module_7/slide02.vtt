@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.437
+Why does this matter?
+
+2
+00:00:01.437 --> 00:00:03.425
+The engine is only half the chain.
+
+3
+00:00:03.425 --> 00:00:05.589
+The other half is a connection string,
+
+4
+00:00:05.589 --> 00:00:08.800
+and most of them hold a password
+or a Windows credential.
+
+5
+00:00:08.800 --> 00:00:10.968
+Until each string moves to an Entra mode,
+
+6
+00:00:10.968 --> 00:00:14.712
+the application keeps the instance
+tied to Windows Authentication.
+
+7
+00:00:14.712 --> 00:00:19.496
+In this module you list every sequel server
+connection string an application holds,
+
+8
+00:00:19.496 --> 00:00:21.888
+and say which ones
+carry a stored password.
+
+9
+00:00:21.888 --> 00:00:25.491
+Then you say whether each move
+is a configuration change,
+
+10
+00:00:25.491 --> 00:00:29.325
+a driver or code change, the
+vendor's decision, or already done.
+
+11
+00:00:29.325 --> 00:00:31.990
+No string changes until
+the three gates hold.

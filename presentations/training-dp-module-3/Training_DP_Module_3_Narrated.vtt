@@ -1,0 +1,874 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.661
+Welcome to Module 3 of the
+Data Platform and SQL Server
+
+2
+00:00:03.661 --> 00:00:06.925
+Identity learning path: Arc
+and the engine's identity.
+
+3
+00:00:06.925 --> 00:00:08.593
+It teaches Runbook R oh four,
+
+4
+00:00:08.593 --> 00:00:13.225
+with Chapter 3 of the developer
+workbook, Building SQL Server Identity.
+
+5
+00:00:13.225 --> 00:00:18.125
+Module 2 left every current, non-clustered
+instance at "Category 1 or 2".
+
+6
+00:00:18.125 --> 00:00:21.520
+In this module you settle
+that category from evidence.
+
+7
+00:00:25.320 --> 00:00:26.657
+Why does this matter?
+
+8
+00:00:26.657 --> 00:00:30.832
+An on-premises SQL Server host
+has no cloud identity of its own.
+
+9
+00:00:30.832 --> 00:00:35.038
+Connecting it to Azure Arc gives the
+machine a system-assigned managed identity,
+
+10
+00:00:35.038 --> 00:00:39.119
+and that identity is what lets the instance
+take part in Entra authentication.
+
+11
+00:00:39.119 --> 00:00:41.457
+No Arc, no machine identity.
+
+12
+00:00:41.457 --> 00:00:44.133
+No machine identity, no Entra login.
+
+13
+00:00:44.133 --> 00:00:48.284
+In this module you settle each
+instance's category from evidence:
+
+14
+00:00:48.284 --> 00:00:53.587
+the agent's status, the SQL extension's
+state, and the instance's own Entra setting,
+
+15
+00:00:53.587 --> 00:00:56.820
+read from the cloud a G
+C C Moderate tenant uses.
+
+16
+00:01:00.620 --> 00:01:03.389
+Here's what you'll be able to
+do by the end of this module,
+
+17
+00:01:03.389 --> 00:01:05.970
+which takes about fifty-five
+minutes with the lab.
+
+18
+00:01:05.970 --> 00:01:10.390
+You'll explain what the Arc agent's
+managed identity gives the engine,
+
+19
+00:01:10.390 --> 00:01:15.645
+and what the instance uses as its Entra
+identity on SQL Server 2022 and on 2025.
+
+20
+00:01:15.645 --> 00:01:19.365
+You'll explain why engine
+Entra authentication, Layer 1,
+
+21
+00:01:19.365 --> 00:01:22.358
+doesn't wait for O S level
+Entra sign-in, Layer 2.
+
+22
+00:01:22.358 --> 00:01:24.437
+You'll put the deployment steps in order,
+
+23
+00:01:24.437 --> 00:01:26.832
+and name the checks that
+gate login migration.
+
+24
+00:01:26.832 --> 00:01:30.433
+And you'll settle each audited
+instance's category with the kit,
+
+25
+00:01:30.433 --> 00:01:33.757
+and say why it refuses a snapshot
+from an unrecorded cloud.
+
+26
+00:01:33.757 --> 00:01:36.270
+Before you start, finish Module 2.
+
+27
+00:01:36.270 --> 00:01:38.408
+For Resource Graph and its paging,
+
+28
+00:01:38.408 --> 00:01:42.220
+see Module 4 of the Microsoft
+Automation learning path.
+
+29
+00:01:46.020 --> 00:01:48.332
+Unit 2 is what Arc gives the engine.
+
+30
+00:01:48.332 --> 00:01:52.786
+Installing the Connected Machine agent
+makes the server an Azure Resource Manager
+
+31
+00:01:52.786 --> 00:01:54.974
+resource, with a system-assigned managed
+
+32
+00:01:54.974 --> 00:01:57.419
+identity whose credential
+the agent manages.
+
+33
+00:01:57.419 --> 00:02:01.020
+What the instance uses as its Entra
+identity depends on the version.
+
+34
+00:02:01.020 --> 00:02:05.067
+On SQL Server 2025, it's the
+Arc server's managed identity,
+
+35
+00:02:05.067 --> 00:02:08.370
+used as the instance's
+primary managed identity.
+
+36
+00:02:08.370 --> 00:02:12.207
+Microsoft Learn says only
+system-assigned identities are supported.
+
+37
+00:02:12.207 --> 00:02:16.416
+On SQL Server 2022, it's an app
+registration with a certificate kept in
+
+38
+00:02:16.416 --> 00:02:20.483
+Azure Key Vault, which the agent
+downloads with the machine's identity.
+
+39
+00:02:20.483 --> 00:02:25.252
+On either version, Entra authentication
+needs SQL Server 2022 or later,
+
+40
+00:02:25.252 --> 00:02:29.945
+is disabled by default, and isn't
+supported on a failover cluster instance.
+
+41
+00:02:29.945 --> 00:02:34.245
+And neither replaces the Windows
+account the SQL Server service runs as.
+
+42
+00:02:38.040 --> 00:02:39.903
+Two distinctions matter here.
+
+43
+00:02:39.903 --> 00:02:41.903
+The first is the two layers.
+
+44
+00:02:41.903 --> 00:02:46.577
+Layer 1, engine Entra authentication,
+proceeds on a domain-joined host.
+
+45
+00:02:46.577 --> 00:02:50.965
+Layer 2, O S level Entra sign-in,
+is a separate transformation.
+
+46
+00:02:50.965 --> 00:02:55.211
+So a domain-joined Windows Server
+host running SQL Server 2022 with Arc
+
+47
+00:02:55.211 --> 00:02:59.115
+doesn't have to leave the domain
+before its engine takes Entra logins.
+
+48
+00:02:59.115 --> 00:03:00.765
+The second is the cloud.
+
+49
+00:03:00.765 --> 00:03:04.769
+Microsoft Learn says Office
+365 G C C is paired with
+
+50
+00:03:04.769 --> 00:03:08.677
+Microsoft Entra I D in
+Azure, the commercial cloud.
+
+51
+00:03:08.677 --> 00:03:12.446
+So a G C C Moderate tenant's Arc
+resources are in a commercial
+
+52
+00:03:12.446 --> 00:03:16.753
+Azure subscription in the same
+tenant, the cloud called Azure Cloud.
+
+53
+00:03:16.753 --> 00:03:19.380
+The program recorded that as a decision.
+
+54
+00:03:23.180 --> 00:03:25.868
+Unit 3 is the sequence and the gate.
+
+55
+00:03:25.868 --> 00:03:27.617
+Arc deployment runs in order.
+
+56
+00:03:27.617 --> 00:03:29.142
+Connectivity first.
+
+57
+00:03:29.142 --> 00:03:30.267
+Then the agent.
+
+58
+00:03:30.267 --> 00:03:32.743
+Then the Azure extension for SQL Server,
+
+59
+00:03:32.743 --> 00:03:36.318
+which Arc installs automatically
+on a host with SQL Server.
+
+60
+00:03:36.318 --> 00:03:39.388
+Then Entra authentication,
+turned on for the instance,
+
+61
+00:03:39.388 --> 00:03:41.093
+since it's disabled by default.
+
+62
+00:03:41.093 --> 00:03:44.454
+Verification is the gate between
+enrollment and migration.
+
+63
+00:03:44.454 --> 00:03:48.555
+The first check asks the agent's
+local identity endpoint for a token.
+
+64
+00:03:48.555 --> 00:03:52.080
+The second is a test Entra login
+that connects to the instance.
+
+65
+00:03:52.080 --> 00:03:56.430
+And the third is the next audit run, which
+should put the instance in Category 1.
+
+66
+00:03:56.430 --> 00:04:01.255
+A failed verification is an enrollment
+problem, solved before migration starts.
+
+67
+00:04:01.255 --> 00:04:05.684
+Pre-2022 instances and failover
+cluster instances upgrade,
+
+68
+00:04:05.684 --> 00:04:08.840
+re-platform, or carry a dated exception.
+
+69
+00:04:12.640 --> 00:04:15.830
+The kit reads three things
+for each instance, the agent,
+
+70
+00:04:15.830 --> 00:04:19.728
+the extension and the Entra setting,
+and names whatever is missing.
+
+71
+00:04:19.728 --> 00:04:24.454
+A failover cluster instance, or
+a version before SQL Server 2022,
+
+72
+00:04:24.454 --> 00:04:27.353
+is Category 3 before
+Arc is even looked at.
+
+73
+00:04:27.353 --> 00:04:31.239
+An agent that isn't connected, an
+extension that didn't succeed,
+
+74
+00:04:31.239 --> 00:04:35.889
+or Entra not configured makes it Category
+2, with each missing piece named.
+
+75
+00:04:35.889 --> 00:04:41.002
+All three, on 2022 or later, is
+Category 1: plan the logins.
+
+76
+00:04:41.002 --> 00:04:44.121
+It refuses any snapshot whose
+cloud isn't Azure Cloud,
+
+77
+00:04:44.121 --> 00:04:47.877
+because a snapshot from the wrong
+cloud judges the wrong estate.
+
+78
+00:04:47.877 --> 00:04:50.744
+And Resource Graph doesn't
+give it the Entra setting,
+
+79
+00:04:50.744 --> 00:04:53.590
+so that's confirmed in
+the portal and recorded.
+
+80
+00:04:57.390 --> 00:05:01.093
+Chapter 3 lists what Microsoft
+Learn's material leaves to you,
+
+81
+00:05:01.093 --> 00:05:02.328
+and what the kit adds.
+
+82
+00:05:02.328 --> 00:05:04.252
+Each row is pinned by a test.
+
+83
+00:05:04.252 --> 00:05:09.012
+The agent, the extension and the Entra
+setting are three resources and one setting,
+
+84
+00:05:09.012 --> 00:05:12.512
+so an instance with two of the
+three looks ready in the portal;
+
+85
+00:05:12.512 --> 00:05:15.591
+the kit reads all three, and
+names whatever is missing.
+
+86
+00:05:15.591 --> 00:05:19.659
+The category rules are in the
+data platform book, not in Learn,
+
+87
+00:05:19.659 --> 00:05:24.785
+so a pre-2022 instance or a cluster could
+be scheduled for Arc work it can't use;
+
+88
+00:05:24.785 --> 00:05:28.203
+the kit puts it in Category
+3 before Arc is looked at.
+
+89
+00:05:28.203 --> 00:05:32.891
+Resource Graph returns nothing, not an
+error, for what the caller can't read,
+
+90
+00:05:32.891 --> 00:05:36.580
+so the kit reports the agent
+as not installed and keeps the
+
+91
+00:05:36.580 --> 00:05:40.115
+instance in Category 2, and
+Lab 2 checks the sign-in first.
+
+92
+00:05:40.115 --> 00:05:41.932
+The cloud is a sign-in choice,
+
+93
+00:05:41.932 --> 00:05:45.803
+so the kit refuses a snapshot
+from any cloud but Azure Cloud.
+
+94
+00:05:45.803 --> 00:05:49.593
+And the managed identity
+method is SQL Server 2025's:
+
+95
+00:05:49.593 --> 00:05:52.960
+a 2022 instance recorded
+that way gets a note.
+
+96
+00:05:56.760 --> 00:05:57.647
+Try it.
+
+97
+00:05:57.647 --> 00:06:01.171
+Lab 1 runs in PowerShell 7 on
+the kit's fictional estate,
+
+98
+00:06:01.171 --> 00:06:03.473
+with no subscription and no tenant.
+
+99
+00:06:03.473 --> 00:06:06.568
+Go to the kit's folder, and
+make this run's results folder,
+
+100
+00:06:06.568 --> 00:06:10.834
+named for the time you start, so running
+the lab again never overwrites a run.
+
+101
+00:06:10.834 --> 00:06:14.164
+Step one reads the fictional
+Arc results: their cloud,
+
+102
+00:06:14.164 --> 00:06:17.947
+Azure Cloud, and the three
+machines Resource Graph returned.
+
+103
+00:06:17.947 --> 00:06:22.310
+Sequel P R D oh one and sequel
+P R D oh six are connected.
+
+104
+00:06:22.310 --> 00:06:25.718
+The cluster node, sequel
+F C I oh four dash N one,
+
+105
+00:06:25.718 --> 00:06:28.620
+is disconnected, on an older agent.
+
+106
+00:06:32.420 --> 00:06:34.670
+Step two settles the categories.
+
+107
+00:06:34.670 --> 00:06:39.492
+Sequel P R D oh one and sequel
+P R D oh six are Category 1:
+
+108
+00:06:39.492 --> 00:06:41.758
+ready, so plan the logins.
+
+109
+00:06:41.758 --> 00:06:43.383
+Notice the Entra column.
+
+110
+00:06:43.383 --> 00:06:48.957
+Sequel P R D oh one uses an app
+registration, as SQL Server 2022 does.
+
+111
+00:06:48.957 --> 00:06:53.807
+Sequel P R D oh six, on 2025,
+uses the managed identity.
+
+112
+00:06:53.807 --> 00:06:58.606
+Sequel P R D oh two is Category 2, and
+the next column names every missing piece:
+
+113
+00:06:58.606 --> 00:07:02.491
+the agent isn't installed, the
+SQL extension isn't deployed,
+
+114
+00:07:02.491 --> 00:07:05.233
+and Entra authentication isn't configured.
+
+115
+00:07:05.233 --> 00:07:09.146
+Sequel F C I oh four is
+Category 3 whatever Arc shows.
+
+116
+00:07:09.146 --> 00:07:13.471
+Its agent column reads "cluster: see
+its nodes", because a failover cluster
+
+117
+00:07:13.471 --> 00:07:17.508
+instance has no machine of its own
+name, so the check doesn't guess one.
+
+118
+00:07:17.508 --> 00:07:21.390
+Read its node machines in the
+snapshot for the re-platform plan.
+
+119
+00:07:25.190 --> 00:07:31.504
+Step three opens the manifest: the arc
+step, read-only, with its three controls,
+
+120
+00:07:31.504 --> 00:07:36.415
+C M eight, C M six and I A five, its
+three K S Is, and each file's hash.
+
+121
+00:07:36.415 --> 00:07:39.615
+Step four tries a snapshot
+whose cloud isn't recorded.
+
+122
+00:07:39.615 --> 00:07:43.200
+It copies the fixture, sets its
+environment to not recorded,
+
+123
+00:07:43.200 --> 00:07:44.590
+and runs the check on it.
+
+124
+00:07:44.590 --> 00:07:49.046
+The check throws: the Arc results came
+from a cloud that isn't recorded,
+
+125
+00:07:49.046 --> 00:07:52.877
+and a G C C Moderate tenant's
+Arc resources are in Azure Cloud.
+
+126
+00:07:52.877 --> 00:07:54.791
+Then Test-Path shows false.
+
+127
+00:07:54.791 --> 00:07:57.960
+The check refused the
+snapshot and wrote nothing.
+
+128
+00:08:01.760 --> 00:08:06.135
+Step five leaves sequel P R D oh
+one's Entra setting unconfirmed.
+
+129
+00:08:06.135 --> 00:08:10.085
+This is what every instance looks
+like in Lab 2, until you confirm it.
+
+130
+00:08:10.085 --> 00:08:13.100
+The agent is connected and
+the extension is deployed,
+
+131
+00:08:13.100 --> 00:08:17.212
+but with the Entra setting unconfirmed,
+the instance drops to Category 2,
+
+132
+00:08:17.212 --> 00:08:21.872
+and the next column names the missing
+piece: Entra authentication not configured.
+
+133
+00:08:21.872 --> 00:08:24.986
+An instance with two of the
+three looks ready in the portal;
+
+134
+00:08:24.986 --> 00:08:26.672
+the kit doesn't treat it as ready.
+
+135
+00:08:26.672 --> 00:08:30.734
+Step six runs this chapter's
+tests: five pass, none fail.
+
+136
+00:08:30.734 --> 00:08:32.535
+Step seven lists your runs.
+
+137
+00:08:32.535 --> 00:08:36.450
+There's nothing to clean up: the
+results stay in the run's own folder.
+
+138
+00:08:40.250 --> 00:08:42.925
+Lab 2 runs on your own test subscription.
+
+139
+00:08:42.925 --> 00:08:44.900
+It hasn't been run by the authors.
+
+140
+00:08:44.900 --> 00:08:48.661
+You need a commercial Azure test
+subscription in the test tenant,
+
+141
+00:08:48.661 --> 00:08:51.864
+which is where a G C C Moderate
+tenant's Arc resources live,
+
+142
+00:08:51.864 --> 00:08:56.600
+with at least one Arc-enabled test server
+running SQL Server, never production.
+
+143
+00:08:56.600 --> 00:09:01.119
+You need PowerShell 7 with the Az
+Accounts and Az Resource Graph modules,
+
+144
+00:09:01.119 --> 00:09:05.036
+a person who holds Reader on the
+subscription and nothing more,
+
+145
+00:09:05.036 --> 00:09:08.275
+and Module 2's Lab 2 snapshot
+from the same instances.
+
+146
+00:09:08.275 --> 00:09:12.814
+Sign in and confirm the cloud, export
+an Arc snapshot through Resource Graph,
+
+147
+00:09:12.814 --> 00:09:16.200
+and settle the categories as
+Resource Graph leaves them.
+
+148
+00:09:16.200 --> 00:09:19.381
+Then confirm one instance's
+Entra setting in the portal,
+
+149
+00:09:19.381 --> 00:09:22.838
+record it in a separate copy,
+and settle the categories again.
+
+150
+00:09:22.838 --> 00:09:24.563
+Nothing in Azure changes.
+
+151
+00:09:24.563 --> 00:09:28.090
+To back it out, sign out
+and delete the lab's files.
+
+152
+00:09:31.890 --> 00:09:33.490
+The federal requirement.
+
+153
+00:09:33.490 --> 00:09:39.340
+Chapter 3's table maps the check to
+three controls in NIST SP 800-53.
+
+154
+00:09:39.340 --> 00:09:44.104
+Recording each instance's agent, extension
+and host machine supports C M eight,
+
+155
+00:09:44.104 --> 00:09:45.863
+System Component Inventory,
+
+156
+00:09:45.863 --> 00:09:49.528
+with the snapshot as exported
+and the run's files as evidence.
+
+157
+00:09:49.528 --> 00:09:52.447
+Checking each instance's
+Entra configuration,
+
+158
+00:09:52.447 --> 00:09:56.039
+and refusing results from the
+wrong cloud, supports C M six,
+
+159
+00:09:56.039 --> 00:10:00.903
+Configuration Settings; keep the confirmed
+snapshot, naming who confirmed it.
+
+160
+00:10:00.903 --> 00:10:04.241
+And naming which instances can
+take Entra logins without a
+
+161
+00:10:04.241 --> 00:10:07.715
+stored password supports I A
+five, Authenticator Management.
+
+162
+00:10:07.715 --> 00:10:12.277
+Runbook R oh four lists the evidence
+for the deployment itself, ring by ring.
+
+163
+00:10:12.277 --> 00:10:16.902
+K S Is are FedRAMP twenty X indicators
+for cloud service providers.
+
+164
+00:10:16.902 --> 00:10:19.917
+The run's files provide
+evidence for each control;
+
+165
+00:10:19.917 --> 00:10:24.050
+the agency still sets its
+parameters, and the assessor decides.
+
+166
+00:10:27.850 --> 00:10:29.900
+Check yourself with two questions.
+
+167
+00:10:29.900 --> 00:10:34.150
+First: what does the check do with a snapshot
+whose environment isn't Azure Cloud?
+
+168
+00:10:34.150 --> 00:10:37.862
+The answer is a: it refuses
+it, and writes nothing.
+
+169
+00:10:37.862 --> 00:10:43.263
+Second: on SQL Server 2022, what does
+the instance use as its Entra identity?
+
+170
+00:10:43.263 --> 00:10:47.680
+The answer is c: an app registration
+with a certificate in Azure Key Vault,
+
+171
+00:10:47.680 --> 00:10:50.037
+downloaded to the host by the Arc agent.
+
+172
+00:10:50.037 --> 00:10:53.888
+The managed identity method
+is SQL Server 2025's.
+
+173
+00:10:53.888 --> 00:10:58.530
+The module page has two more questions,
+each linked to the section that answers it.
+
+174
+00:11:02.330 --> 00:11:03.355
+To sum up.
+
+175
+00:11:03.355 --> 00:11:08.136
+You learned what Arc gives the engine,
+how its Entra identity differs between
+
+176
+00:11:08.136 --> 00:11:13.268
+SQL Server 2022 and 2025, and the sequence
+and checks that gate login migration.
+
+177
+00:11:13.268 --> 00:11:16.297
+You settled four instances'
+categories from evidence,
+
+178
+00:11:16.297 --> 00:11:19.530
+and saw the check refuse results
+from an unrecorded cloud.
+
+179
+00:11:19.530 --> 00:11:24.335
+The evidence an I S S O keeps from this
+module is the Arc snapshot as Resource Graph
+
+180
+00:11:24.335 --> 00:11:28.781
+returned it, the run's files with their
+manifest, and the confirmed snapshot,
+
+181
+00:11:28.781 --> 00:11:33.442
+naming who confirmed the Entra setting
+and when, with the second run's manifest.
+
+182
+00:11:33.442 --> 00:11:36.455
+Before shipping, work through
+Chapter 3's checklist.
+
+183
+00:11:36.455 --> 00:11:40.220
+Next is Module 4, Entra
+logins and the parallel run.

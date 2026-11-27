@@ -8,12 +8,14 @@ research-book: "Book 06"
 series-order: 5
 date-modified: 2026-11-25
 review-status: approved
-reviewed-sha256: 15b2e3ff407c3a09ac9d9f3c2f7d63718b13e7f9d113021392a0a25d481ecda4
-last-reviewed: 2026-11-25
+reviewed-sha256: 07719e766f03e502405106f5c5ae8112db2f294ddb59cbdbf0fff807e5ff5414
+last-reviewed: 2026-11-27
 ---
 # Data Platform, Module 5: Groups, Roles and the Perimeter {.unnumbered}
 
 **Learning path:** [Data Platform and SQL Server Identity](index.md) · Module 5 of 10 · 45 minutes · Runbook [R07](../../books/b06-data-platform/r07-groups-aus-and-the-conditional-access-perimeter.md) · Workbook [Chapter 05](../../project-plans/developer-workbooks/sql-server-identity/05-groups-roles-and-the-perimeter.md)
+
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-dp-module-5) · [▶ Watch](../../presentations/watch.html?v=Training_DP_Module_5_Narrated) (about 10 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DP_Module_5_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-5/Training_DP_Module_5_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-5/Training_DP_Module_5_Narrated.vtt).
 
 ## Unit 1: Introduction
 

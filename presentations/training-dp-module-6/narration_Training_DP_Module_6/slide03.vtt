@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.816
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.816 --> 00:00:05.100
+which takes about fifty
+minutes with the lab.
+
+3
+00:00:05.100 --> 00:00:09.283
+You'll name the patterns that make
+sequel server connections use NTLM,
+
+4
+00:00:09.283 --> 00:00:12.787
+and the two S P N problems that
+fail instead of falling back.
+
+5
+00:00:12.787 --> 00:00:16.050
+You'll explain why local connections
+are left out of the count.
+
+6
+00:00:16.050 --> 00:00:19.233
+You'll run the kit's
+NTLM audit over fixtures
+
+7
+00:00:19.233 --> 00:00:22.063
+on day 1 and day 30 and read its findings.
+
+8
+00:00:22.063 --> 00:00:25.399
+And you'll read the fix file and
+say why nothing in it has run.
+
+9
+00:00:25.399 --> 00:00:28.540
+Before you start, finish
+Module 5, and Module 2,
+
+10
+00:00:28.540 --> 00:00:31.425
+whose audit snapshots this module reads.
+
+11
+00:00:31.425 --> 00:00:36.890
+The lab runs in PowerShell 7, in the kit
+you unzipped into the F M W Labs folder.

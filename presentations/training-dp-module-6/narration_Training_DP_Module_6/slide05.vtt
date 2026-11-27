@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.937
+Unit 2 is the patterns.
+
+2
+00:00:01.937 --> 00:00:07.037
+The data platform book's chapter on NTLM
+names four patterns at the sequel layer.
+
+3
+00:00:07.037 --> 00:00:08.748
+A missing or incorrect S P N.
+
+4
+00:00:08.748 --> 00:00:12.637
+Cross-site connections that
+can't reach a domain controller.
+
+5
+00:00:12.637 --> 00:00:14.175
+Linked-server passthrough.
+
+6
+00:00:14.175 --> 00:00:16.237
+And clients that aren't domain-joined.
+
+7
+00:00:16.237 --> 00:00:20.962
+Its triage point matters most: an
+S P N on the wrong account doesn't
+
+8
+00:00:20.962 --> 00:00:25.775
+fall back to NTLM, it fails, and a
+duplicate S P N breaks Kerberos too.
+
+9
+00:00:25.775 --> 00:00:31.137
+That shows up as an error, not as NTLM, so
+it gets triaged as a different problem.
+
+10
+00:00:31.137 --> 00:00:35.082
+And a linked server that passes
+the caller's credentials needs
+
+11
+00:00:35.082 --> 00:00:38.810
+Kerberos delegation, because
+NTLM can't make the second hop.

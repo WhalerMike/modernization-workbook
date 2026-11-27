@@ -1,0 +1,29 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.040
+Welcome to Module 2 of
+the Data Platform and SQL
+
+2
+00:00:03.040 --> 00:00:06.400
+Server Identity learning path:
+the authentication audit.
+
+3
+00:00:06.400 --> 00:00:08.108
+It teaches Runbook R oh three,
+
+4
+00:00:08.108 --> 00:00:12.650
+with Chapter 2 of the developer
+workbook, Building SQL Server Identity.
+
+5
+00:00:12.650 --> 00:00:15.438
+Module 1 decided which instances survive.
+
+6
+00:00:15.438 --> 00:00:18.120
+Now you measure how each
+survivor authenticates.

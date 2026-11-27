@@ -1,0 +1,61 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.550
+Chapter 08 of the workbook names the
+dangers, and the guard against each.
+
+2
+00:00:04.550 --> 00:00:07.533
+If the T L S certificate
+expires after its C A goes,
+
+3
+00:00:07.533 --> 00:00:12.537
+clients that validate refuse to connect,
+and every Entra connection validates.
+
+4
+00:00:12.537 --> 00:00:17.318
+The guard is the class and window on
+every row, with the lifecycle platform
+
+5
+00:00:17.318 --> 00:00:22.412
+renewing it from the retained A D C S
+hierarchy before its issuing C A is retired.
+
+6
+00:00:22.412 --> 00:00:27.138
+An empty registry value read as no
+certificate hides a store certificate or
+
+7
+00:00:27.138 --> 00:00:31.563
+a self-generated one; Lab 2's second step
+and R ten's error-log check find it.
+
+8
+00:00:31.563 --> 00:00:36.139
+A replacement certificate from a Key
+Storage Provider has a key spec of zero,
+
+9
+00:00:36.139 --> 00:00:40.062
+which sequel server can't use, so
+check the key spec before renewal.
+
+10
+00:00:40.062 --> 00:00:44.937
+Type C logins treated as connection logins
+waste effort, because they sign code.
+
+11
+00:00:44.937 --> 00:00:49.173
+And an issuer missing from the
+enterprise C A list makes an A D
+
+12
+00:00:49.173 --> 00:00:53.260
+C S certificate read no, so the
+P K I owner supplies that list.

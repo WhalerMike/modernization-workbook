@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:00.987
+Try it.
+
+2
+00:00:00.987 --> 00:00:06.088
+Lab 1 runs in PowerShell 7 on the kit's four
+fictional applications, with no tenant.
+
+3
+00:00:06.088 --> 00:00:09.593
+Go to the kit's folder and make
+this run's results folder,
+
+4
+00:00:09.593 --> 00:00:11.774
+named for the time you start, in U T C.
+
+5
+00:00:11.774 --> 00:00:14.188
+Step one scans the four applications.
+
+6
+00:00:14.188 --> 00:00:18.188
+Two strings hold a stored password,
+and one is already on Entra.
+
+7
+00:00:18.188 --> 00:00:22.613
+Payroll web's web dot config string
+uses Windows integrated authentication.
+
+8
+00:00:22.613 --> 00:00:27.819
+It runs on an Arc host with Microsoft
+Data SQL Client five point two point two,
+
+9
+00:00:27.819 --> 00:00:33.025
+at or above the managed identity release,
+so it's column A: a configuration change.
+
+10
+00:00:33.025 --> 00:00:35.993
+Claims batch and reports
+O D B C use drivers
+
+11
+00:00:35.993 --> 00:00:38.537
+with no Entra path, so they're column B.
+
+12
+00:00:38.537 --> 00:00:41.675
+Vendor H R is column C
+because a vendor owns it.
+
+13
+00:00:41.675 --> 00:00:46.200
+The target text there is the kit's generic
+advice; the vendor's release decides.

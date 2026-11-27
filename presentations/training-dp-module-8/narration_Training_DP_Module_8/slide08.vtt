@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:00.987
+Try it.
+
+2
+00:00:00.987 --> 00:00:03.220
+Lab 1 runs in PowerShell 7 on the kit's
+
+3
+00:00:03.220 --> 00:00:06.338
+fictional certificate
+inventory, with no tenant.
+
+4
+00:00:06.338 --> 00:00:09.780
+Go to the kit's folder and make
+this run's results folder,
+
+5
+00:00:09.780 --> 00:00:11.922
+named for the time you start, in U T C.
+
+6
+00:00:11.922 --> 00:00:13.988
+Step one lists the certificates.
+
+7
+00:00:13.988 --> 00:00:17.348
+Four of the five came from
+the fictional enterprise C A,
+
+8
+00:00:17.348 --> 00:00:19.438
+and two expire inside ninety days.
+
+9
+00:00:19.438 --> 00:00:24.556
+The SQL P R D oh one T L S row matters
+most: in seventy-two days every client that
+
+10
+00:00:24.556 --> 00:00:30.225
+validates the certificate refuses to connect,
+and Entra connections always validate.
+
+11
+00:00:30.225 --> 00:00:33.466
+The SQL P R D oh two
+login row expires sooner,
+
+12
+00:00:33.466 --> 00:00:36.962
+in forty-one days, but
+signing doesn't check expiry.
+
+13
+00:00:36.962 --> 00:00:39.274
+The reason to replace it is its issuer.
+
+14
+00:00:39.274 --> 00:00:43.554
+The last line counts the rows an
+enterprise A D C S C A issued:
+
+15
+00:00:43.554 --> 00:00:48.120
+four of five, each needing its
+action before that C A is retired.

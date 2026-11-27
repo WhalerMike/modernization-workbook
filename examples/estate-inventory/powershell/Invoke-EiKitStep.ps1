@@ -4,6 +4,10 @@
     One cloud step of the estate inventory, in its own PowerShell 7 process: sign in (app-only,
     unless -Fixture), run the kit's script unchanged at this script's scope, and write the step's
     result to -ResultPath. Invoke-EstateInventory.ps1 starts it; it isn't meant to be run by hand.
+.EXAMPLE
+    # What Invoke-EiKitProcess runs for the privileged access step of a fixture run.
+    ./powershell/Invoke-EiKitStep.ps1 -SettingsPath config/settings.fixture.json -Step privileged-access `
+        -RunPath C:\FMWLabs\results\estate-inventory\<run> -ResultPath C:\FMWLabs\results\estate-inventory\<run>\logs\privileged-access.result.json -Fixture
 #>
 [CmdletBinding()]
 param(

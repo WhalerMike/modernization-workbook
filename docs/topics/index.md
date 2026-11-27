@@ -25,7 +25,7 @@ Each row shows what a topic has. A cell that says **gap** is something readers n
 | [Microsoft Automation](microsoft-automation.md) | 2 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 4 modules | yes | 5 | 1 zip |
 | [Zero Trust Assessment](zero-trust-assessment.md) | 6 | [not needed](#gaps) | 1 | [not needed](#gaps) | 4 modules | yes | 8 | 1 zip |
 | [Daily Checks Dashboard](daily-checks-dashboard.md) | 4 | [not needed](#gaps) | 1 | 4 chapters | 2 modules | yes | 8 | 1 zip |
-| [Data Platform and SQL Server](data-platform.md) | 11 | 1 | [not needed](#gaps) | 10 chapters | 10 modules | yes | 4 | 2 zips |
+| [Data Platform and SQL Server](data-platform.md) | 11 | 1 | [not needed](#gaps) | 10 chapters | 10 modules | yes | 14 | 2 zips |
 | [PKI and Certificates](pki.md) | 8 | 1 | 1 | [not needed](#gaps) | 7 modules | yes | 5 | 2 zips |
 | [DNS, DHCP and IPAM](dns-dhcp-ipam.md) | 8 | 1 | 1 | [not needed](#gaps) | 6 modules | yes | 11 | 1 zip |
 | [Network and SD-WAN](network-sd-wan.md) | 8 | 1 | 3 | [not needed](#gaps) | 4 modules | yes | 7 | 1 zip |

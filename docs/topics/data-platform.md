@@ -90,6 +90,16 @@ Narrated videos. Each opens in the site's player, with chapters and captions.
 
 | Video | Minutes |
 |---|---|
+| [Data Platform and SQL Server Identity learning path, Module 1: The Estate and the Consolidation Gate](../presentations/watch.html?v=Training_DP_Module_1_Narrated) | 12 |
+| [Data Platform and SQL Server Identity learning path, Module 2: The Authentication Audit](../presentations/watch.html?v=Training_DP_Module_2_Narrated) | 12 |
+| [Data Platform and SQL Server Identity learning path, Module 3: Arc and the Engine's Identity](../presentations/watch.html?v=Training_DP_Module_3_Narrated) | 12 |
+| [Data Platform and SQL Server Identity learning path, Module 4: Entra logins and the parallel run](../presentations/watch.html?v=Training_DP_Module_4_Narrated) | 12 |
+| [Data Platform and SQL Server Identity learning path, Module 5: Groups, roles and the perimeter](../presentations/watch.html?v=Training_DP_Module_5_Narrated) | 10 |
+| [Data Platform and SQL Server Identity learning path, Module 6: NTLM and the SPNs](../presentations/watch.html?v=Training_DP_Module_6_Narrated) | 12 |
+| [Data Platform and SQL Server Identity learning path, Module 7: The Application Chain](../presentations/watch.html?v=Training_DP_Module_7_Narrated) | 12 |
+| [Data Platform and SQL Server Identity learning path, Module 8: AD CS Dependencies](../presentations/watch.html?v=Training_DP_Module_8_Narrated) | 11 |
+| [Data Platform and SQL Server Identity learning path, Module 9: Closure, Drift and Evidence](../presentations/watch.html?v=Training_DP_Module_9_Narrated) | 12 |
+| [Data Platform and SQL Server Identity learning path, Module 10: Deploying to Test and Production](../presentations/watch.html?v=Training_DP_Module_10_Narrated) | 13 |
 | [Microsoft Automation learning path, Module 4: Azure Arc through Azure Resource Manager and Resource Graph](../presentations/watch.html?v=Training_MS_Automation_Module_4_Narrated) | 15 |
 
 : Learning path modules {.striped .hover}

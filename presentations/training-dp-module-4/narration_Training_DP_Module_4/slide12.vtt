@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.825
+Step six opens the day-thirty manifest.
+
+2
+00:00:02.825 --> 00:00:07.793
+It names the step, parallel, its
+mode, read-only, its controls,
+
+3
+00:00:07.793 --> 00:00:12.812
+A C two and C A seven, its K S I,
+and the hash of each file it wrote.
+
+4
+00:00:12.812 --> 00:00:14.874
+Step seven re-hashes the plan.
+
+5
+00:00:14.874 --> 00:00:19.088
+Every file's recorded hash matches
+the file on disk, and that matters:
+
+6
+00:00:19.088 --> 00:00:22.775
+the hash a reviewer approves is
+the hash of the files on disk.
+
+7
+00:00:22.775 --> 00:00:26.675
+Step eight runs this chapter's
+tests: eleven pass, none fail.
+
+8
+00:00:26.675 --> 00:00:28.562
+And step nine lists your runs.
+
+9
+00:00:28.562 --> 00:00:30.100
+There's nothing to clean up.
+
+10
+00:00:30.100 --> 00:00:32.162
+The kit's folder is as you unzipped it,
+
+11
+00:00:32.162 --> 00:00:34.660
+and this run's results
+stay in its own folder.

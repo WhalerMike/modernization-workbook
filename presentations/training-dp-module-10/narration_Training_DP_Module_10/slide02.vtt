@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.437
+Why does this matter?
+
+2
+00:00:01.437 --> 00:00:05.468
+This is the change itself: one
+instance's logins move from Windows
+
+3
+00:00:05.468 --> 00:00:09.549
+to Microsoft Entra ID, first on a
+test instance, then in production.
+
+4
+00:00:09.549 --> 00:00:13.587
+The commands are the same both times;
+only the settings file changes.
+
+5
+00:00:13.587 --> 00:00:15.451
+Three rules hold it together.
+
+6
+00:00:15.451 --> 00:00:18.888
+Nothing runs that a second
+person didn't approve by hash.
+
+7
+00:00:18.888 --> 00:00:21.474
+The way back is planned
+before the cutover.
+
+8
+00:00:21.474 --> 00:00:24.822
+And production's preflight
+refuses to start until a real test
+
+9
+00:00:24.822 --> 00:00:28.037
+stage for the same instance is
+sealed in the evidence chain.
+
+10
+00:00:28.037 --> 00:00:31.610
+In this module you rehearse that
+whole test stage as a dry run.

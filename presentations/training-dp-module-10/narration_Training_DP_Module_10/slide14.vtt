@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.750
+This module has no Lab 2 of its own.
+
+2
+00:00:02.750 --> 00:00:05.667
+The real test-instance run
+is Chapter 10's Stage 1,
+
+3
+00:00:05.667 --> 00:00:09.303
+and it wasn't run by the authors:
+every command has run only as
+
+4
+00:00:09.303 --> 00:00:13.012
+a dry run on the kit's example
+settings and in its Pester tests.
+
+5
+00:00:13.012 --> 00:00:17.237
+You need a test instance in Arc-eligibility
+Category 1, never production;
+
+6
+00:00:17.237 --> 00:00:21.391
+a deployer activated under pim for
+the change window only; Reader on the
+
+7
+00:00:21.391 --> 00:00:25.475
+subscriptions to read Arc; and the
+tools signed in to commercial Azure.
+
+8
+00:00:25.475 --> 00:00:29.773
+You also need a filled test settings
+file with no secret, a reviewed mapping,
+
+9
+00:00:29.773 --> 00:00:32.684
+the exception registry with
+the break-glass group,
+
+10
+00:00:32.684 --> 00:00:35.387
+and a second person to
+approve the three hashes.
+
+11
+00:00:35.387 --> 00:00:38.166
+The run is Lab 1's steps
+against your test instance,
+
+12
+00:00:38.166 --> 00:00:41.960
+with the apply switch on the create
+and the cutover, the parallel run
+
+13
+00:00:41.960 --> 00:00:46.025
+and thirty days of observation, then
+a seal without the rehearsal switch.
+
+14
+00:00:46.025 --> 00:00:49.014
+To back it out, run the
+approved rollback with apply,
+
+15
+00:00:49.014 --> 00:00:52.075
+under its own change record
+and in its own run folder.
+
+16
+00:00:52.075 --> 00:00:56.830
+Run the test stage first, read every
+file you approve, and keep the evidence.

@@ -1,0 +1,35 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.700
+Step five compares day one with day thirty,
+with the exception registry applied.
+
+2
+00:00:04.700 --> 00:00:08.338
+One row comes back: a
+Windows user, contoso J doe,
+
+3
+00:00:08.338 --> 00:00:12.025
+added to the sys-admin role
+on sequel P R D oh six.
+
+4
+00:00:12.025 --> 00:00:16.500
+That's a new legacy login, and a
+compliance finding: open a task for it.
+
+5
+00:00:16.500 --> 00:00:21.088
+The break-glass group is in both runs
+and in the registry, so it isn't drift.
+
+6
+00:00:21.088 --> 00:00:23.126
+Notice what this run wasn't given:
+
+7
+00:00:23.126 --> 00:00:26.380
+either run's Arc snapshot, so
+it doesn't read Arc at all.

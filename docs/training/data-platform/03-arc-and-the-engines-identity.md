@@ -8,12 +8,14 @@ research-book: "Book 06"
 series-order: 3
 date-modified: 2026-11-25
 review-status: approved
-reviewed-sha256: 4f9f274e97c656c5c0e0b29d6093893722138a4813fd384b1df28ca8ebb652c7
-last-reviewed: 2026-11-25
+reviewed-sha256: 44b5e37fab46c42db25d4e1a67c7ee72eecb0f027a8afae7916644b43364ba6c
+last-reviewed: 2026-11-27
 ---
 # Data Platform, Module 3: Arc and the Engine's Identity {.unnumbered}
 
 **Learning path:** [Data Platform and SQL Server Identity](index.md) · Module 3 of 10 · 55 minutes · Runbook [R04](../../books/b06-data-platform/r04-arc-deployment-and-managed-identity.md) · Workbook [Chapter 03](../../project-plans/developer-workbooks/sql-server-identity/03-arc-and-the-engines-identity.md)
+
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-dp-module-3) · [▶ Watch](../../presentations/watch.html?v=Training_DP_Module_3_Narrated) (about 12 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DP_Module_3_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-3/Training_DP_Module_3_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-3/Training_DP_Module_3_Narrated.vtt).
 
 ## Unit 1: Introduction
 

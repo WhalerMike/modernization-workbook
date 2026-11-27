@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:00.987
+Try it.
+
+2
+00:00:00.987 --> 00:00:04.511
+Lab 1 runs in PowerShell 7 on
+the kit's fictional estate,
+
+3
+00:00:04.511 --> 00:00:06.813
+with no subscription and no tenant.
+
+4
+00:00:06.813 --> 00:00:09.908
+Go to the kit's folder, and
+make this run's results folder,
+
+5
+00:00:09.908 --> 00:00:14.174
+named for the time you start, so running
+the lab again never overwrites a run.
+
+6
+00:00:14.174 --> 00:00:17.504
+Step one reads the fictional
+Arc results: their cloud,
+
+7
+00:00:17.504 --> 00:00:21.287
+Azure Cloud, and the three
+machines Resource Graph returned.
+
+8
+00:00:21.287 --> 00:00:25.650
+Sequel P R D oh one and sequel
+P R D oh six are connected.
+
+9
+00:00:25.650 --> 00:00:29.058
+The cluster node, sequel
+F C I oh four dash N one,
+
+10
+00:00:29.058 --> 00:00:31.660
+is disconnected, on an older agent.

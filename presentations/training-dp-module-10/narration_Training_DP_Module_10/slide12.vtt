@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.538
+Step eleven tries to seal the
+stage without the parallel run.
+
+2
+00:00:03.538 --> 00:00:06.357
+The seal refuses a stage
+missing a step the kit's
+
+3
+00:00:06.357 --> 00:00:09.375
+requirements file requires,
+and writes no record.
+
+4
+00:00:09.375 --> 00:00:11.837
+Step twelve tries to seal the whole stage.
+
+5
+00:00:11.837 --> 00:00:15.115
+Every step is there, but the
+deployments were dry runs,
+
+6
+00:00:15.115 --> 00:00:19.063
+so the seal refuses again, and
+points you to the rehearsal switch.
+
+7
+00:00:19.063 --> 00:00:22.087
+Step thirteen runs the same
+command with that switch.
+
+8
+00:00:22.087 --> 00:00:24.689
+It writes the record,
+marked as a rehearsal,
+
+9
+00:00:24.689 --> 00:00:29.149
+with the eight steps it sealed and no
+previous record, since it's the first.
+
+10
+00:00:29.149 --> 00:00:31.820
+The record's short hash
+differs from run to run,
+
+11
+00:00:31.820 --> 00:00:34.370
+because the record names
+this run's folders.

@@ -1,0 +1,585 @@
+{
+ "1": [
+  [
+   0.1,
+   7.338,
+   "Welcome to Module 5 of the Data Platform and sequel Server Identity learning path: groups, roles and the perimeter."
+  ],
+  [
+   7.388,
+   7.75,
+   "You sort every Active Directory group that reaches Sequel Server into its Entra replacement, and keep privileged roles off rule-based groups."
+  ],
+  [
+   15.137,
+   6.6,
+   "The module follows runbook R seven, and Chapter 5 of the developer workbook, Building sequel Server Identity."
+  ],
+  [
+   21.738,
+   1.762,
+   "Take it after Module 4."
+  ]
+ ],
+ "2": [
+  [
+   0.1,
+   1.337,
+   "Why does this matter?"
+  ],
+  [
+   1.387,
+   3.163,
+   "Group-based access survives the move to Entra I D."
+  ],
+  [
+   4.55,
+   4.175,
+   "What changes is who keeps each group current, and what stands in front of it."
+  ],
+  [
+   8.725,
+   3.237,
+   "A group kept by hand from the org chart becomes a rule."
+  ],
+  [
+   11.963,
+   3.737,
+   "A group of named administrators becomes an assigned group under pim."
+  ],
+  [
+   15.7,
+   2.85,
+   "And a distribution list never becomes a login."
+  ],
+  [
+   18.55,
+   6.675,
+   "In this module you take every Active Directory group that reaches Sequel Server, and say which Entra group replaces it."
+  ]
+ ],
+ "3": [
+  [
+   0.1,
+   5.287,
+   "Here's what you'll be able to do by the end of this module, which takes about forty-five minutes with the lab."
+  ],
+  [
+   5.338,
+   8.9,
+   "You'll name the four Active Directory group patterns in the data platform book, Data Platform: sequel Server Identity, and the Entra replacement for each."
+  ],
+  [
+   14.238,
+   6.412,
+   "You'll explain why a dynamic rule reads an H R maintained code, and excludes disabled accounts and guests."
+  ],
+  [
+   20.65,
+   6.612,
+   "You'll run the kit's group map over fixtures, and read its flags for nesting and for a privileged role on a dynamic group."
+  ],
+  [
+   27.262,
+   4.475,
+   "And you'll say which check enforces one group, one role, and why the map doesn't."
+  ],
+  [
+   31.738,
+   5.688,
+   "Before you start, finish Module 4: its login plan is where the one-group-one-role warning comes from."
+  ],
+  [
+   37.425,
+   1.712,
+   "Lab 1 needs no tenant."
+  ]
+ ],
+ "4": [
+  [
+   0.1,
+   2.913,
+   "Unit 2 starts with how a group reaches the engine."
+  ],
+  [
+   2.962,
+   5.513,
+   "An Entra group reaches Sequel Server as a group login, then a database user added to a role."
+  ],
+  [
+   8.475,
+   7.175,
+   "The data platform book's Chapter 16, Groups, Roles and How Membership Reaches the Engine, makes one rule central."
+  ],
+  [
+   15.65,
+   7.037,
+   "Each Entra group grants exactly one role, on one database, in one environment, so the group's name says what it grants."
+  ],
+  [
+   22.688,
+   8.562,
+   "The model stays flat, because dynamic groups can't contain groups, and nesting builds on behavior that is unsupported, ending or undocumented."
+  ],
+  [
+   31.25,
+   3.5,
+   "Members are listed directly, by rule or by assignment."
+  ],
+  [
+   34.75,
+   5.625,
+   "One group, one role is checked where the roles are known: the login plan from Module 4 warns."
+  ],
+  [
+   40.375,
+   5.525,
+   "The group map carries grants per instance, not roles per database, so it doesn't repeat the check."
+  ]
+ ],
+ "5": [
+  [
+   0.1,
+   3.05,
+   "Each legacy group then lands in one of four patterns."
+  ],
+  [
+   3.1,
+   5.612,
+   "Pattern one: organization-derived groups, kept from the org chart, become dynamic."
+  ],
+  [
+   8.713,
+   9.438,
+   "The kit writes the rule on the H R organization code in extension attribute ten, with clauses that require an enabled account and a member, not a guest."
+  ],
+  [
+   18.15,
+   2.237,
+   "Never on department or job title."
+  ],
+  [
+   20.387,
+   13.05,
+   "Pattern two: explicit role groups become assigned, managed by a delegated administrator, and eligible through pim when the group holds sys-admin or security admin. Pattern three: distribution lists become mail-only."
+  ],
+  [
+   33.438,
+   4.425,
+   "Update the Sequel Server Agent operator's address, and give it no login."
+  ],
+  [
+   37.862,
+   8.963,
+   "Pattern four: mail-enabled security groups split in two, a mail-only group and an assigned security group, with the pairing recorded in both descriptions."
+  ],
+  [
+   46.825,
+   5.8,
+   "And when a group's codes aren't recorded, the target says to ask H R for the code before writing the rule."
+  ]
+ ],
+ "6": [
+  [
+   0.1,
+   3.6,
+   "Unit 3 is the attribute, pim and the perimeter."
+  ],
+  [
+   3.65,
+   5.275,
+   "Under dynamic membership, whoever can write the attribute a rule reads controls access."
+  ],
+  [
+   8.925,
+   9.762,
+   "So the book's Chapter 17 has rules read H R owned codes, such as the organization code in extension attribute ten, never display strings such as department."
+  ],
+  [
+   18.688,
+   3.525,
+   "And every access rule excludes disabled accounts and guests."
+  ],
+  [
+   22.212,
+   2.725,
+   "Groups that hold sys-admin are never dynamic."
+  ],
+  [
+   24.938,
+   6.388,
+   "Microsoft Learn says pim for Groups doesn't work on dynamic groups, or on groups synchronized from on premises."
+  ],
+  [
+   31.325,
+   3.0,
+   "So privileged groups are cloud-only and assigned."
+  ],
+  [
+   34.325,
+   7.287,
+   "Otherwise, whoever can write the attribute could make someone sys-admin. Conditional Access then sits in front of every user token."
+  ],
+  [
+   41.612,
+   8.787,
+   "But it applies to users, not to managed identities, so applications are covered by the application chain in Chapter 7, not by Conditional Access."
+  ]
+ ],
+ "7": [
+  [
+   0.1,
+   0.887,
+   "Try it."
+  ],
+  [
+   0.938,
+   5.0,
+   "Lab 1 runs in PowerShell 7, from the kit's folder, on the kit's fictional estate."
+  ],
+  [
+   5.938,
+   6.3,
+   "First, make this run's results folder, named for the time you start, so every run keeps its own results."
+  ],
+  [
+   12.238,
+   2.212,
+   "Step one maps the estate's groups."
+  ],
+  [
+   14.45,
+   4.35,
+   "There's one group of each pattern, and a second dynamic group with a nested group."
+  ],
+  [
+   18.8,
+   10.287,
+   "Contoso payroll users and Contoso H R analysts become dynamic groups, each rule on its own organization code, with the clauses that exclude disabled accounts and guests."
+  ],
+  [
+   29.087,
+   4.213,
+   "Contoso sequel admins becomes an assigned group, eligible through pim."
+  ],
+  [
+   33.3,
+   3.55,
+   "The agent alerts list becomes mail-only, with no login."
+  ],
+  [
+   36.85,
+   2.075,
+   "And the claims team splits in two."
+  ],
+  [
+   38.925,
+   5.8,
+   "Notice the flag on H R analysts: nested, flatten, because it contains H R leads."
+  ],
+  [
+   44.725,
+   6.237,
+   "The rules are long, so PowerShell drops the flags column from the table on screen; step two prints it."
+  ]
+ ],
+ "8": [
+  [
+   0.1,
+   2.312,
+   "Step two reads what each group grants."
+  ],
+  [
+   2.362,
+   4.325,
+   "Contoso sequel admins holds sys-admin on sequel P R D oh one."
+  ],
+  [
+   6.688,
+   2.25,
+   "The distribution list grants nothing."
+  ],
+  [
+   8.938,
+   2.85,
+   "And the nested flag shows on H R analysts."
+  ],
+  [
+   11.787,
+   2.35,
+   "Now look at Contoso payroll users."
+  ],
+  [
+   14.137,
+   3.275,
+   "It reaches two databases on sequel P R D oh one."
+  ],
+  [
+   17.413,
+   4.55,
+   "The data platform book's rule is one group, one role, one database."
+  ],
+  [
+   21.962,
+   1.762,
+   "The map doesn't check roles."
+  ],
+  [
+   23.725,
+   5.65,
+   "Module 4's login plan does: its warning for the payroll users group names the three roles."
+  ],
+  [
+   29.375,
+   2.837,
+   "Split a group like that before the mapping is approved."
+  ]
+ ],
+ "9": [
+  [
+   0.1,
+   3.875,
+   "Step three pretends the sys-admin group were kept by the org chart."
+  ],
+  [
+   3.925,
+   6.487,
+   "It loads the kit's module, reads Contoso sequel admins from the fixture, and marks its membership as org-chart."
+  ],
+  [
+   10.412,
+   3.413,
+   "The map now sorts it as pattern one, a dynamic group."
+  ],
+  [
+   13.825,
+   6.15,
+   "The group has no organization codes, so the target says to ask H R for the code rather than write a rule."
+  ],
+  [
+   19.975,
+   3.888,
+   "But the flag is what matters: a privileged role on a dynamic group."
+  ],
+  [
+   23.863,
+   2.362,
+   "Use an assigned group under pim instead."
+  ],
+  [
+   26.225,
+   2.388,
+   "A privileged role never sits on a rule."
+  ]
+ ],
+ "10": [
+  [
+   0.1,
+   2.175,
+   "Step four opens the manifest."
+  ],
+  [
+   2.225,
+   6.925,
+   "The step is groups, its mode is read-only, and it supports A C two and A C six, with one K S I."
+  ],
+  [
+   9.15,
+   2.462,
+   "It records the hash of each file it wrote."
+  ],
+  [
+   11.613,
+   3.85,
+   "Step five runs this chapter's tests: four pass, none fail."
+  ],
+  [
+   15.463,
+   1.9,
+   "And step six lists your runs."
+  ],
+  [
+   17.363,
+   1.538,
+   "There's nothing to clean up."
+  ],
+  [
+   18.9,
+   4.537,
+   "The kit's folder is as you unzipped it, and this run's results stay in its own folder."
+  ],
+  [
+   23.438,
+   8.6,
+   "Check your work: you can say which Entra group replaces each of the estate's five groups, and why the map refuses to make the sys-admin group dynamic."
+  ]
+ ],
+ "11": [
+  [
+   0.1,
+   2.55,
+   "Lab 2 compares the map with a real tenant."
+  ],
+  [
+   2.6,
+   1.788,
+   "It's not run by the authors."
+  ],
+  [
+   4.388,
+   4.65,
+   "Use a test tenant whose groups are synchronized from a test domain, never production."
+  ],
+  [
+   9.037,
+   12.875,
+   "You need PowerShell 7 with the Microsoft Graph PowerShell S D K's groups module, an account that can consent to the delegated group read all permission, and a groups file for your test domain's groups, in the shape of the kit's fixture."
+  ],
+  [
+   21.913,
+   1.85,
+   "Map your test groups with the kit."
+  ],
+  [
+   23.762,
+   2.612,
+   "Sign in to Microsoft Graph, read-only."
+  ],
+  [
+   26.375,
+   5.15,
+   "A Microsoft 365 G C C tenant uses the worldwide Graph endpoint."
+  ],
+  [
+   31.525,
+   8.65,
+   "List the tenant's groups with the properties that decide the pattern, put the kit's answer beside what the tenant has, and look for cloud groups that already exist."
+  ],
+  [
+   40.175,
+   2.188,
+   "Nothing in the lab writes to the tenant."
+  ],
+  [
+   42.362,
+   4.025,
+   "To back it out, sign out of Graph and delete the lab's output folder."
+  ]
+ ],
+ "12": [
+  [
+   0.1,
+   1.6,
+   "The federal requirement."
+  ],
+  [
+   1.65,
+   10.775,
+   "Chapter 5's table maps the group map to nist special publication eight hundred fifty-three A C two, Account Management, and A C six, Least Privilege, with one K S I."
+  ],
+  [
+   12.425,
+   8.475,
+   "The map provides evidence for both: which group grants what, how its membership is kept, and which privileged groups are eligible rather than standing."
+  ],
+  [
+   20.9,
+   11.887,
+   "The I S S O keeps the groups file and its manifest, which records the step, its controls and K S Is, and the hash of each file; the Lab 2 comparison; and the record of which groups went under pim."
+  ],
+  [
+   32.788,
+   4.287,
+   "Runbook R seven lists the evidence each state of the provisioning phase needs."
+  ],
+  [
+   37.075,
+   7.688,
+   "K S Is are fed-ramp twenty X indicators for cloud service providers; your providers report against them, the agency doesn't."
+  ],
+  [
+   44.763,
+   7.312,
+   "The agency still sets the parameters, policy and procedures, and the assessor decides whether each control is in place."
+  ]
+ ],
+ "13": [
+  [
+   0.1,
+   2.05,
+   "Check yourself with two questions."
+  ],
+  [
+   2.1,
+   4.213,
+   "First: Contoso H R analysts contains Contoso H R leads."
+  ],
+  [
+   6.312,
+   2.562,
+   "Why does the map flag it nested, flatten?"
+  ],
+  [
+   8.875,
+   1.4,
+   "The answer is a."
+  ],
+  [
+   10.275,
+   4.4,
+   "A dynamic rule can't select groups, so the inner group's members would drop out."
+  ],
+  [
+   14.675,
+   5.375,
+   "Second: Contoso payroll users reaches two databases on sequel P R D oh one."
+  ],
+  [
+   20.05,
+   2.413,
+   "Which check catches the one-group-one-role problem?"
+  ],
+  [
+   22.462,
+   5.0,
+   "The answer is b: Chapter 4's login plan, whose warning names the roles."
+  ],
+  [
+   27.462,
+   3.663,
+   "The map carries grants per instance, not roles per database."
+  ],
+  [
+   31.125,
+   4.338,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "14": [
+  [
+   0.1,
+   1.025,
+   "To sum up."
+  ],
+  [
+   1.075,
+   8.637,
+   "You sorted the fictional estate's groups into dynamic, assigned, mail-only and split targets, and saw the map refuse to put a privileged role on a rule."
+  ],
+  [
+   9.713,
+   7.787,
+   "Group logins, pim and Conditional Access now decide who reaches Sequel Server, in place of hand-kept Active Directory groups."
+  ],
+  [
+   17.5,
+   3.05,
+   "Before shipping, work through Chapter 5's checklist."
+  ],
+  [
+   20.55,
+   4.275,
+   "Next, Module 6: N T L M and the S P Ns."
+  ]
+ ]
+}

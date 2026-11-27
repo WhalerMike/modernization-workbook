@@ -1,0 +1,86 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.875
+Unit 2 is the five closure conditions.
+
+2
+00:00:02.875 --> 00:00:06.527
+The data platform book, Data
+Platform: SQL Server Identity,
+
+3
+00:00:06.527 --> 00:00:10.301
+defines the transformation as
+complete when five conditions
+
+4
+00:00:10.301 --> 00:00:13.350
+hold at the same time on
+every production instance.
+
+5
+00:00:13.350 --> 00:00:15.709
+One: no usable Windows-backed principal,
+
+6
+00:00:15.709 --> 00:00:19.212
+other than the break-glass
+group in the exception registry.
+
+7
+00:00:19.212 --> 00:00:21.987
+Two: SQL Authentication eliminated.
+
+8
+00:00:21.987 --> 00:00:26.924
+No SQL logins outside the registry,
+the S A account disabled and renamed,
+
+9
+00:00:26.924 --> 00:00:30.506
+and SQL logins refused,
+which on SQL Server 2025
+
+10
+00:00:30.506 --> 00:00:34.088
+also needs is external
+authentication only set to one.
+
+11
+00:00:34.088 --> 00:00:38.299
+Three: Entra authentication
+observed working, and nothing else:
+
+12
+00:00:38.299 --> 00:00:43.703
+every usable login is an Entra type, the
+sign-in logs and SQL Server Audit show it,
+
+13
+00:00:43.703 --> 00:00:47.200
+and there are no remote N T
+L M or Kerberos connections.
+
+14
+00:00:47.200 --> 00:00:52.357
+Four: a cloud identity for the engine:
+the Arc agent connected, the SQL extension
+
+15
+00:00:52.357 --> 00:00:57.362
+deployed, and Entra configured, which
+failover cluster instances don't support.
+
+16
+00:00:57.362 --> 00:00:59.762
+Five: M F A for every human.
+
+17
+00:00:59.762 --> 00:01:01.888
+None of them is a single engine setting.
+
+18
+00:01:01.888 --> 00:01:05.590
+Login mode one proves only
+that SQL logins are refused.

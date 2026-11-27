@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.437
+Why does this matter?
+
+2
+00:00:01.437 --> 00:00:04.303
+After twenty years across
+an Active Directory forest,
+
+3
+00:00:04.303 --> 00:00:07.414
+the SQL Server estate is larger
+than anyone's list of it,
+
+4
+00:00:07.414 --> 00:00:10.524
+and part of it shouldn't survive
+the transformation at all.
+
+5
+00:00:10.524 --> 00:00:15.200
+Migrating the logins of an instance you
+retire three months later is wasted work.
+
+6
+00:00:15.200 --> 00:00:19.493
+So the identity work starts with
+a count: one row per instance,
+
+7
+00:00:19.493 --> 00:00:24.987
+classified retain, consolidate, retire
+or review, before any login is touched.
+
+8
+00:00:24.987 --> 00:00:29.238
+Only retained instances and consolidation
+targets go on to the migration.
+
+9
+00:00:29.238 --> 00:00:32.006
+In this module you see
+how that gate is decided,
+
+10
+00:00:32.006 --> 00:00:35.140
+and run the kit's classifier
+over a fictional estate.

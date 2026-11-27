@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.412
+Step two reads what each group grants.
+
+2
+00:00:02.412 --> 00:00:06.687
+Contoso sequel admins holds
+sys-admin on sequel P R D oh one.
+
+3
+00:00:06.687 --> 00:00:08.938
+The distribution list grants nothing.
+
+4
+00:00:08.938 --> 00:00:11.788
+And the nested flag shows on H R analysts.
+
+5
+00:00:11.788 --> 00:00:14.137
+Now look at Contoso payroll users.
+
+6
+00:00:14.137 --> 00:00:17.412
+It reaches two databases
+on sequel P R D oh one.
+
+7
+00:00:17.412 --> 00:00:21.963
+The data platform book's rule is
+one group, one role, one database.
+
+8
+00:00:21.963 --> 00:00:23.724
+The map doesn't check roles.
+
+9
+00:00:23.724 --> 00:00:25.373
+Module 4's login plan does:
+
+10
+00:00:25.373 --> 00:00:29.375
+its warning for the payroll users
+group names the three roles.
+
+11
+00:00:29.375 --> 00:00:32.230
+Split a group like that before
+the mapping is approved.

@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.437
+Why does this matter?
+
+2
+00:00:01.437 --> 00:00:04.488
+Sequel server depends on
+certificates that most
+
+3
+00:00:04.488 --> 00:00:07.437
+teams planning an A D C
+S decommission never see.
+
+4
+00:00:07.437 --> 00:00:10.126
+The T L S certificate the engine presents.
+
+5
+00:00:10.126 --> 00:00:13.788
+The certificates behind
+certificate-mapped logins and endpoints.
+
+6
+00:00:13.788 --> 00:00:17.899
+And the domain controller certificates
+that certificate-based sign-in needs.
+
+7
+00:00:17.899 --> 00:00:20.631
+The book P K I and
+Certificates owns the decision
+
+8
+00:00:20.631 --> 00:00:23.225
+about which issuer serves
+which certificate.
+
+9
+00:00:23.225 --> 00:00:26.462
+This module doesn't restate
+that decision; it feeds it.
+
+10
+00:00:26.462 --> 00:00:29.511
+Before any certificate
+authority's date is set,
+
+11
+00:00:29.511 --> 00:00:34.359
+you hand the P K I owner a list of every
+certificate sequel server depends on,
+
+12
+00:00:34.359 --> 00:00:38.112
+with its class, issuer, expiry
+and the action each one needs.

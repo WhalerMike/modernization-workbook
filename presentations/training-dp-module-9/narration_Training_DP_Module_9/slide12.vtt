@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.675
+Lab 2 schedules the same runs
+against one test instance.
+
+2
+00:00:03.675 --> 00:00:05.425
+It wasn't run by the authors.
+
+3
+00:00:05.425 --> 00:00:08.908
+You need a test job host and a
+test instance, never production,
+
+4
+00:00:08.908 --> 00:00:11.625
+and a group managed service
+account on the host.
+
+5
+00:00:11.625 --> 00:00:16.102
+Its Windows login on the instance holds
+the read rights the audit exporter states,
+
+6
+00:00:16.102 --> 00:00:18.473
+never sys-admin, and it's
+recorded in the test
+
+7
+00:00:18.473 --> 00:00:21.238
+exception registry with an
+approver and an expiry.
+
+8
+00:00:21.238 --> 00:00:23.936
+Write a run script that
+takes one audit snapshot,
+
+9
+00:00:23.936 --> 00:00:28.050
+projects it onto the closure record,
+and compares it with the previous run.
+
+10
+00:00:28.050 --> 00:00:32.488
+Run it once by hand, then schedule it weekly
+as the group managed service account.
+
+11
+00:00:32.488 --> 00:00:33.999
+The runs are read-only.
+
+12
+00:00:33.999 --> 00:00:38.394
+For condition four, someone with Reader
+in commercial Azure exports an Arc
+
+13
+00:00:38.394 --> 00:00:42.787
+snapshot before each run, because the
+service account can't sign in to Azure.
+
+14
+00:00:42.787 --> 00:00:45.951
+Step five backs it out by
+removing the scheduled task.
+
+15
+00:00:45.951 --> 00:00:49.220
+The run folders stay as
+evidence, inside your boundary.

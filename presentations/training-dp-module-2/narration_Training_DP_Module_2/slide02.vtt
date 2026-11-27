@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.437
+Why does this matter?
+
+2
+00:00:01.437 --> 00:00:06.387
+For each instance that survived the gate,
+the audit records its authentication mode,
+
+3
+00:00:06.387 --> 00:00:09.387
+every usable login by type,
+the state of the S A login,
+
+4
+00:00:09.387 --> 00:00:11.387
+and the account the engine runs as.
+
+5
+00:00:11.387 --> 00:00:12.946
+Every later step, Arc,
+
+6
+00:00:12.946 --> 00:00:17.624
+login migration and N T L M
+elimination, depends on that record.
+
+7
+00:00:17.624 --> 00:00:20.888
+And it's re-run after every
+change, to measure progress.
+
+8
+00:00:20.888 --> 00:00:23.821
+In this module you audit
+four fictional instances,
+
+9
+00:00:23.821 --> 00:00:27.174
+rank their findings, and rerun
+the audit thirty days later.
+
+10
+00:00:27.174 --> 00:00:30.500
+Runbook R oh three is
+read-only from start to finish.

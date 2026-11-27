@@ -1,0 +1,46 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.925
+Step two reads the action
+for each certificate.
+
+2
+00:00:02.925 --> 00:00:07.775
+The SQL P R D oh one T L S certificate
+stays on the retained A D C S,
+
+3
+00:00:07.775 --> 00:00:12.675
+issued through the C L M platform;
+move it before its C A is retired.
+
+4
+00:00:12.675 --> 00:00:16.797
+The SQL P R D oh six T L S
+certificate isn't from A D C S at all,
+
+5
+00:00:16.797 --> 00:00:20.662
+so it's tracked in the
+certificate lifecycle platform.
+
+6
+00:00:20.662 --> 00:00:25.849
+The certificate-mapped login and endpoint
+on SQL P R D oh two aren't renewed by
+
+7
+00:00:25.849 --> 00:00:30.563
+the C L M platform, so they're replaced
+or re-mapped before the C A is retired.
+
+8
+00:00:30.563 --> 00:00:35.131
+And the certificate-based sign-in on
+SQL F C I oh four also depends on the
+
+9
+00:00:35.131 --> 00:00:40.080
+domain controllers' certificates, so it's
+retired with the NTLM interim posture.

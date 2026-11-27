@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.288
+Step five opens the manifest.
+
+2
+00:00:02.288 --> 00:00:05.612
+It names the step, says
+the run was read-only,
+
+3
+00:00:05.612 --> 00:00:09.662
+and lists the controls, I A two
+and C M six, with one K S I.
+
+4
+00:00:09.662 --> 00:00:14.074
+Then the S H A two fifty-six of
+each file, the fix file included.
+
+5
+00:00:14.074 --> 00:00:17.213
+That's the point: the fix file
+is hashed with the findings,
+
+6
+00:00:17.213 --> 00:00:20.487
+so the lines a change board
+approves are the lines that run.
+
+7
+00:00:20.487 --> 00:00:24.663
+Step six runs this chapter's
+tests: seven pass, none fail.
+
+8
+00:00:24.663 --> 00:00:26.538
+And step seven lists your runs.
+
+9
+00:00:26.538 --> 00:00:29.947
+There's nothing to clean up: the
+kit's folder is as you unzipped it,
+
+10
+00:00:29.947 --> 00:00:32.450
+and each run's results
+stay in their own folder.
