@@ -457,6 +457,10 @@ Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/servic
 ./Invoke-GsaPlan.ps1 -SettingsPath <settings-file> -CollectionPath out/pa-test -DesiredPath <desired-file> -OutputPath out/plan-pa
 ./Invoke-GsaPlan.ps1 -SettingsPath <settings-file> -CollectionPath out/pa-test -DesiredPath <desired-file> -OutputPath out/plan-pa -Apply -ApprovedSha256 <plan-sha256>
 
+# Step 5: Validate
+Test-NetConnection -ComputerName <app-fqdn> -Port 443 | Select-Object ComputerName, RemotePort, TcpTestSucceeded
+Test-NetConnection -ComputerName <app-fqdn> -Port 3389 | Select-Object ComputerName, RemotePort, TcpTestSucceeded
+
 # Step 6: Back it out
 Invoke-MgGraphRequest -Method DELETE -Uri "https://graph.microsoft.com/v1.0/identity/conditionalAccess/policies/<policy-id>"
 Invoke-MgGraphRequest -Method DELETE -Uri "https://graph.microsoft.com/v1.0/applications/<app-object-id>"
@@ -503,6 +507,15 @@ Remove-Item -Recurse -Force out/pa-test, out/check-pa-test, out/plan-pa
    ```
 
 5. **Validate** from a pilot device off the corporate network: reach `<app-fqdn>` on 443, confirm another port fails, and use the client's **Advanced diagnostics** > **Forwarding profile** > **Policy tester** to see which rule handles it.
+
+   In PowerShell, on the pilot device: the first test should succeed and the second (3389, outside the segment's 443) should fail:[^gsa06-tnc]
+
+   ```powershell
+   Test-NetConnection -ComputerName <app-fqdn> -Port 443 | Select-Object ComputerName, RemotePort, TcpTestSucceeded
+   Test-NetConnection -ComputerName <app-fqdn> -Port 3389 | Select-Object ComputerName, RemotePort, TcpTestSucceeded
+   ```
+
+   The Policy tester has no command: Learn documents it only as a control in the client's Advanced diagnostics window, so read the rule there.[^gsa06-diag]
 
 6. **Back it out:** delete the policy, then the application (which removes its segments and assignment):
 
@@ -565,3 +578,5 @@ M-22-09's application access without a VPN and its phishing-resistant MFA are th
 [^gsa06-conn]: Microsoft Learn, "connector resource type" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/resources/connector?view=graph-rest-beta> (accessed November 17, 2026).
 [^gsa06-zt]: Microsoft Learn, "Configure Microsoft Entra for Zero Trust: Protect networks," <https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-networks> (read November 11, 2026, for the guide).
 [^gsa06-dc]: Microsoft Learn, "Configure Microsoft Entra Private Access for Active Directory domain controllers," <https://learn.microsoft.com/entra/global-secure-access/how-to-configure-domain-controllers> (read November 11, 2026, for the guide).
+[^gsa06-tnc]: Microsoft Learn, NetTCPIP module reference, `Test-NetConnection`, `-Port` and `TcpTestSucceeded`, <https://learn.microsoft.com/powershell/module/nettcpip/test-netconnection> (accessed November 27, 2026).
+[^gsa06-diag]: Microsoft Learn, "Troubleshoot the Global Secure Access client: Advanced diagnostics," Forwarding profile, <https://learn.microsoft.com/entra/global-secure-access/troubleshoot-global-secure-access-client-advanced-diagnostics> (accessed November 27, 2026).
