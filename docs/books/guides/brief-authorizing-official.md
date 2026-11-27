@@ -10,8 +10,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 30c53b7a9b47f5e19237cfd580ea31369a20a253f2b2191fea37d9cc98737ee2
-last-reviewed: 2026-11-07
+reviewed-sha256: a4c6402007dab810a4f482ba9ab56a4c2f9ee89204e837bd6e2de857ecb602f7
+last-reviewed: 2026-11-27
 ---
 # For the Authorizing Official: Evidence over Attestation {.unnumbered}
 
