@@ -1,0 +1,8 @@
+{
+  "_comment": "The NIST SP 800-53 Rev 5 controls and FedRAMP 20x KSIs each step's evidence supports, from Book 15, Chapter 12. Program design: the assessor decides each control; KSIs are FedRAMP's provider indicators the agency lines its evidence up with.",
+  "steps": {
+    "typed-change-plan": { "controls": ["AC-2", "CM-3"], "ksis": ["KSI-CMT-LMC"] },
+    "typed-change-apply": { "controls": ["AC-2", "AC-6", "CM-3"], "ksis": ["KSI-CMT-LMC", "KSI-IAM-JIT"] },
+    "consent-requests": { "controls": ["AC-6", "AC-20", "CA-7", "SA-9"], "ksis": ["KSI-IAM-ELP"] }
+  }
+}

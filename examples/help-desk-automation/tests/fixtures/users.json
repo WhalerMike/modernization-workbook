@@ -1,0 +1,14 @@
+[
+  { "id": "a1000000-0000-4000-8000-000000000101", "userPrincipalName": "avery.lane@contoso.example", "accountEnabled": true, "onPremisesSyncEnabled": null,
+    "department": "Field Operations", "jobTitle": "Analyst", "officeLocation": "Building 2", "employeeType": "Employee",
+    "onPremisesExtensionAttributes": { "extensionAttribute10": null } },
+  { "id": "a1000000-0000-4000-8000-000000000102", "userPrincipalName": "blake.ortiz@contoso.example", "accountEnabled": true, "onPremisesSyncEnabled": true,
+    "department": "Finance", "jobTitle": "Accountant", "officeLocation": "Building 1", "employeeType": "Employee",
+    "onPremisesExtensionAttributes": { "extensionAttribute10": null } },
+  { "id": "a1000000-0000-4000-8000-000000000103", "userPrincipalName": "casey.diaz@contoso.example", "accountEnabled": false, "onPremisesSyncEnabled": null,
+    "department": "Field Operations", "jobTitle": "Technician", "officeLocation": "Building 2", "employeeType": "Contractor",
+    "onPremisesExtensionAttributes": { "extensionAttribute10": null } },
+  { "id": "a1000000-0000-4000-8000-000000000104", "userPrincipalName": "devon.park@contoso.example", "accountEnabled": true, "onPremisesSyncEnabled": null,
+    "department": "Records", "jobTitle": "Records Officer", "officeLocation": "Building 3", "employeeType": "Employee",
+    "onPremisesExtensionAttributes": { "extensionAttribute10": "RetainAll" } }
+]

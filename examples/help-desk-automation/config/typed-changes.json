@@ -1,0 +1,10 @@
+{
+  "_comment": "The changes a typed request may make to a user, and the value each accepts. A request names a change by its id and supplies a value; nothing else is accepted, and the script is the only thing that runs (Book 15, Chapter 12, task 5). Copy and edit at work. Every change is refused on a user synchronized from on-premises: its source of authority is the on-premises directory, so the change belongs there or in the HR record (Microsoft Learn, Update user).",
+  "changes": [
+    { "id": "set-department", "property": "department", "pattern": "^[A-Za-z0-9 &,.'()/-]{1,64}$", "description": "The department the user works in" },
+    { "id": "set-job-title", "property": "jobTitle", "pattern": "^[A-Za-z0-9 &,.'()/-]{1,128}$", "description": "The user's job title" },
+    { "id": "set-office-location", "property": "officeLocation", "pattern": "^[A-Za-z0-9 &,.'()/#-]{1,128}$", "description": "The user's office location" },
+    { "id": "set-employee-type", "property": "employeeType", "allowed": ["Employee", "Contractor", "Intern", "Partner"], "description": "The kind of worker" },
+    { "id": "set-records-flag", "property": "onPremisesExtensionAttributes", "extension": "extensionAttribute10", "allowed": ["RetainAll", ""], "description": "An example flag kept in an extension attribute, such as a records-retention marker a records system reads; an empty value clears it" }
+  ]
+}
