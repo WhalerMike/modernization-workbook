@@ -23,7 +23,9 @@ the platform host guide its interface check (--kit platform-host-code), and
 Building SQL Server Identity its kit (--kit sql-server-identity-code), and the
 managed service account request guide its pack (--kit msa-request-pack: the forms and checker with
 the Non-Person Identity kit's Chapter 12 module), and the Downloads page offers every kit in one
-zip (--kit all-kits, published as fmw-all-kits.zip: every examples folder once).
+zip (--kit all-kits, published as fmw-all-kits.zip: every examples folder once, with
+fmw-kit-layout.json at its top saying which of those folders make up each kit zip, so the Downloads
+page's unzip command lays out the labs folder the same from it as from the kit zips).
 This packs the folder as
 it is in the repository, scripts, README, fixtures and tests, at the top of the zip, with
 no folder of the zip's own name around it (a bundle's top level is its examples folders):
@@ -46,6 +48,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import json
 import sys
 import zipfile
 from pathlib import Path
@@ -137,6 +140,8 @@ ZIP_NAMES = {"ansible": "ansible-examples", "all-kits": "fmw-all-kits"}
 EXECUTABLES = {"ansible": {"inventory/cmdb_inventory.py"},
                "attribute-driven-migration-code": {"ansible/inventory/cmdb_inventory.py"},
                "all-kits": {"ansible/inventory/cmdb_inventory.py"}}
+# In the all-kits zip only: which of its folders make up each kit zip (kit_layout).
+LAYOUT_FILE = "fmw-kit-layout.json"
 FIXED_TIME = (2026, 1, 1, 0, 0, 0)
 SKIP_PARTS = {"__pycache__", ".pytest_cache", "node_modules", "target", "dist", "reports"}
 # Windows can't create these names, so a file called one would break extraction there.
@@ -185,6 +190,22 @@ def entries(kit: Path, files: list[Path]) -> list[tuple[str, Path]]:
     return sorted(out)
 
 
+def kit_layout() -> dict[str, dict[str, object]]:
+    """Each kit zip as folders of the all-kits zip, so unzipping that one zip can lay out
+    C:\\FMWLabs\\<zip name> for every kit exactly as the kit's own zip does.
+
+    {"start-kit": {"contents": "start-kit"}}: the zip holds that folder's contents at its top.
+    {"defender-xdr-code": {"folders": ["defender-xdr", "zta-results/config"]}}: the zip holds
+    those folders, each at the same path."""
+    layout: dict[str, dict[str, object]] = {}
+    for kit in KITS:
+        if kit == "all-kits":
+            continue
+        zip_name = ZIP_NAMES.get(kit, kit)
+        layout[zip_name] = {"folders": list(BUNDLES[kit])} if kit in BUNDLES else {"contents": kit}
+    return layout
+
+
 def build(out_dir: Path, name: str = "start-kit") -> Path:
     if name in BUNDLES:
         kit = REPO / "examples"
@@ -203,6 +224,11 @@ def build(out_dir: Path, name: str = "start-kit") -> Path:
     zip_name = ZIP_NAMES.get(name, name)
     target = out_dir / f"{zip_name}.zip"
     with zipfile.ZipFile(target, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
+        if name == "all-kits":
+            info = zipfile.ZipInfo(LAYOUT_FILE, date_time=FIXED_TIME)
+            info.compress_type = zipfile.ZIP_DEFLATED
+            info.external_attr = 0o644 << 16
+            zf.writestr(info, json.dumps(kit_layout(), indent=1, sort_keys=True) + "\n")
         for rel, path in entries(kit, files):
             info = zipfile.ZipInfo(rel, date_time=FIXED_TIME)
             info.compress_type = zipfile.ZIP_DEFLATED
