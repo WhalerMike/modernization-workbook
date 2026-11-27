@@ -60,7 +60,7 @@ KITS = ("start-kit", "copilot-agent-pack", "app-modernization", "ansible", "vali
         "cisco-sdwan", "ticket-to-machine-task-catalog", "dp-consolidation", "provider-notices-code",
         "zta-results", "global-secure-access-code", "azure-security-code", "defender-xdr-code",
         "daily-checks-workbook-code", "information-protection-code",
-        "sql-server-identity-code", "msa-request-pack", "platform-host-code", "all-kits")
+        "sql-server-identity-code", "msa-request-pack", "platform-host-code", "estate-inventory-code", "all-kits")
 # Kits packed from several examples folders, each kept under its own path, instead of
 # from examples/<kit>. The Attribute-Driven Migration developer workbook's chapters 01-09
 # build on these folders and the Microsoft samples pinned under third_party/.
@@ -129,6 +129,11 @@ BUNDLES = {
     "sql-server-identity-code": ("sql-server-identity",),
     # The managed service account request pack: the forms and checker, with the Chapter 12 module the checker calls.
     "msa-request-pack": ("msa-request-pack", "non-person-identity/powershell/NpiGmsaStandard", "non-person-identity/powershell/NpiCore"),
+    # The estate inventory: one unattended run of the Start Kit, the non-person identity and privileged
+    # access inventories and the validation kit, which it finds beside itself; with the finding
+    # contract the non-person identity kit reads (a test reads it).
+    "estate-inventory-code": ("estate-inventory", "start-kit", "non-person-identity", "privileged-access", "validation-kit",
+                              "servicenow-sailpoint/clients/python"),
 }
 # Kits whose download name differs from their folder name.
 # Every kit in one zip: every examples folder once, under its own name. Each kit zip above is

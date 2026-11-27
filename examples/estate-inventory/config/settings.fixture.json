@@ -1,0 +1,8 @@
+{
+  "_comment": "Lab 1: every kit on its own fixtures, with -Fixture. No forest, no tenant, no sign-in. Results go to C:\\FMWLabs\\results\\estate-inventory; tests point outputRoot elsewhere.",
+  "cloud": "gcc",
+  "outputRoot": "C:\\FMWLabs\\results\\estate-inventory",
+  "validation-kit": {
+    "tracks": ["NPI", "CA", "DG"]
+  }
+}
