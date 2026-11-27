@@ -12,6 +12,8 @@ body-classes: fmw-new-look
 hide-description: true
 ---
 
+{{< include _intro.md >}}
+
 ```{=html}
 <div class="nl-page nl-home">
   <form class="nl-hero-search" action="browse.html" method="get" role="search" aria-label="Search the catalog">
@@ -48,6 +50,8 @@ Each learning path is a short series of modules, in order, each with a lab you r
 </div>
 ```
 
+{{< include _checked.md >}}
+
 ## Browse by type {#types}
 
 ```{=html}
@@ -72,6 +76,7 @@ A few weeks of reading and labs for each role, in order: [Reading plans](plans/i
 
 The New Look renders the same pages as the [current site](https://whalermike.github.io/modernization-workbook/), which is unchanged. No page's text is edited; everything below comes from the pages' own front matter, folders and links, and from data files kept for the New Look.
 
+- **The current home's pitch, its three main buttons and its "Built to be checked" band**, read from the current home page when the New Look is built, so the two say the same thing.
 - **Topics first, then paths.** This home page, led by the [topic hubs](../topics/index.md), the [Browse](browse.md) catalog with filters by type, role, topic, level and status, and [reading plans](plans/index.md) by role.
 - **A navbar by type of content:** Browse, Plans, Learning paths, Books, Guides, Workbooks, Watch, Reference and Search, built from the folders, so a new path, guide or workbook appears by itself.
 - **A content-type label above every title** (Book, Chapter, Implementation guide, Learning path, Module, Workbook chapter and others) and an **Applies to** line under it.
