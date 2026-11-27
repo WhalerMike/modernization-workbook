@@ -541,618 +541,627 @@ The rest are the workbook's
 proposals, to confirm.
 
 114
-00:07:14.040 --> 00:07:19.577
+00:07:14.090 --> 00:07:19.553
 The rest of Gate 1 comes down to three
 rules: one store, one writer, one owner.
 
 115
-00:07:19.577 --> 00:07:22.591
+00:07:19.553 --> 00:07:22.291
 The data architect picks
 the store, in order.
 
 116
-00:07:22.591 --> 00:07:27.655
+00:07:22.291 --> 00:07:26.986
 Native properties come first, then extension
 attributes for anything a rule reads,
 
 117
-00:07:27.655 --> 00:07:30.665
+00:07:26.986 --> 00:07:29.777
 then directory extensions
 if you need more slots.
 
 118
-00:07:30.665 --> 00:07:35.152
+00:07:29.777 --> 00:07:34.177
 Custom security attributes hold
 sensitive values that no rule needs.
 
 119
-00:07:35.152 --> 00:07:39.465
+00:07:34.177 --> 00:07:37.223
+In G C C, until a tenant
+check confirms them,
+
+120
+00:07:37.223 --> 00:07:40.178
+those values stay in HR and the register.
+
+121
+00:07:40.178 --> 00:07:44.453
 The provisioning service becomes the
 only writer of every schema field.
 
-120
-00:07:39.465 --> 00:07:42.514
+122
+00:07:44.453 --> 00:07:47.374
 Every other path, the
 help desk, self-service,
 
-121
-00:07:42.514 --> 00:07:47.002
+123
+00:07:47.374 --> 00:07:51.677
 and Exchange administration, goes
 on a list for removal at Gate 2.
 
-122
-00:07:47.002 --> 00:07:49.404
+124
+00:07:51.677 --> 00:07:53.804
 Put codes, never display names,
 
-123
-00:07:49.404 --> 00:07:53.341
+125
+00:07:53.804 --> 00:07:57.290
 in anything a rule reads,
 and HR owns the code lists.
 
-124
-00:07:53.341 --> 00:07:57.379
+126
+00:07:57.290 --> 00:08:01.086
 To validate, run the two
 checks on the key's carrier,
 
-125
-00:07:57.379 --> 00:08:00.827
+127
+00:08:01.086 --> 00:08:04.327
 V K H R oh one and oh
 four, and expect findings.
 
-126
-00:08:00.827 --> 00:08:02.327
+128
+00:08:04.327 --> 00:08:06.027
 Sign the register early.
 
-127
-00:08:02.327 --> 00:08:07.740
+129
+00:08:06.027 --> 00:08:10.860
 Once a rule reads a slot, changing it
 means rewriting every rule that reads it.
 
-128
-00:08:11.490 --> 00:08:15.504
+130
+00:08:14.610 --> 00:08:18.624
 Gate 2 proves the attributes,
 starting with the kit's HR checks,
 
-129
-00:08:15.504 --> 00:08:18.102
+131
+00:08:18.624 --> 00:08:21.222
 first on the pilot and then on the estate.
 
-130
-00:08:18.102 --> 00:08:23.290
+132
+00:08:21.222 --> 00:08:26.410
 Run the validation kit with the HR and
 dynamic group tracks and an input folder.
 
-131
-00:08:23.290 --> 00:08:26.715
+133
+00:08:26.410 --> 00:08:29.835
 It signs in with only the read
 scopes those checks need.
 
-132
-00:08:26.715 --> 00:08:29.340
+134
+00:08:29.835 --> 00:08:32.460
 At this gate, read the HR rows.
 
-133
-00:08:29.340 --> 00:08:31.640
+135
+00:08:32.460 --> 00:08:34.760
 The input folder holds two files.
 
-134
-00:08:31.640 --> 00:08:34.093
+136
+00:08:34.760 --> 00:08:37.213
 The exceptions file lists accounts that
 
-135
-00:08:34.093 --> 00:08:36.690
+137
+00:08:37.213 --> 00:08:39.810
 legitimately have no
 key, each with an owner.
 
-136
-00:08:36.690 --> 00:08:39.203
+138
+00:08:39.810 --> 00:08:42.323
 An exception with no owner doesn't count.
 
-137
-00:08:39.203 --> 00:08:43.115
+139
+00:08:42.323 --> 00:08:46.235
 The HR export gives the worker
 count per organization code.
 
-138
-00:08:43.115 --> 00:08:47.740
+140
+00:08:46.235 --> 00:08:50.860
 Without it, the reconciliation check
 reports not applicable, never pass.
 
-139
-00:08:47.740 --> 00:08:52.665
+141
+00:08:50.860 --> 00:08:55.785
 Each check has one failure condition:
 an enabled account with no key,
 
-140
-00:08:52.665 --> 00:08:57.415
+142
+00:08:55.785 --> 00:09:00.535
 an empty coded slot, a count that
 differs from HR, or a key held twice.
 
-141
-00:08:57.415 --> 00:09:00.890
+143
+00:09:00.535 --> 00:09:04.010
 Fix each one at the
 source, never in the copy.
 
-142
-00:09:04.640 --> 00:09:09.065
+144
+00:09:07.760 --> 00:09:12.185
 Here's what a failing check looks like,
 using the kit's own fictional fixture.
 
-143
-00:09:09.065 --> 00:09:12.265
+145
+00:09:12.185 --> 00:09:15.385
 V K H R oh one fails
 with a count of three.
 
-144
-00:09:12.265 --> 00:09:13.765
+146
+00:09:15.385 --> 00:09:16.885
 One row is the trap.
 
-145
-00:09:13.765 --> 00:09:17.244
+147
+00:09:16.885 --> 00:09:20.364
 That account is in the exceptions
 file, but with no owner,
 
-146
-00:09:17.244 --> 00:09:19.815
+148
+00:09:20.364 --> 00:09:22.935
 so the check still
 reports it, and says why.
 
-147
-00:09:19.815 --> 00:09:23.277
+149
+00:09:22.935 --> 00:09:26.397
 The reconciliation check
 shows each organization code.
 
-148
-00:09:23.277 --> 00:09:24.553
+150
+00:09:26.397 --> 00:09:27.673
 One code agrees.
 
-149
-00:09:24.553 --> 00:09:27.440
+151
+00:09:27.673 --> 00:09:30.560
 One has fewer users in Entra than in HR.
 
-150
-00:09:27.440 --> 00:09:31.265
+152
+00:09:30.560 --> 00:09:34.385
 One exists in Entra but not
 in HR, so someone typed it.
 
-151
-00:09:31.265 --> 00:09:33.953
+153
+00:09:34.385 --> 00:09:37.073
 And one is in HR but missing from Entra.
 
-152
-00:09:33.953 --> 00:09:37.003
+154
+00:09:37.073 --> 00:09:40.123
 Every row is fixed at
 HR, not the directory.
 
-153
-00:09:37.003 --> 00:09:40.391
+155
+00:09:40.123 --> 00:09:43.511
 The duplicate check finds
 one key held by two users.
 
-154
-00:09:40.391 --> 00:09:42.240
+156
+00:09:43.511 --> 00:09:45.360
 Fail means at least one finding.
 
-155
-00:09:42.240 --> 00:09:45.102
+157
+00:09:45.360 --> 00:09:48.222
 Not applicable and error are never a pass.
 
-156
-00:09:45.102 --> 00:09:48.752
+158
+00:09:48.222 --> 00:09:51.872
 Everything lands in a run
 folder with a hashed manifest,
 
-157
-00:09:48.752 --> 00:09:51.400
+159
+00:09:51.872 --> 00:09:54.520
 and that folder is Gate 2's evidence.
 
-158
-00:09:55.150 --> 00:09:58.725
+160
+00:09:58.270 --> 00:10:01.845
 Three more steps close Gate
 2, each with its own owner.
 
-159
-00:09:58.725 --> 00:10:03.575
+161
+00:10:01.845 --> 00:10:06.695
 The authorizing official sets the correlation
 threshold through risk governance.
 
-160
-00:10:03.575 --> 00:10:07.387
+162
+00:10:06.695 --> 00:10:10.507
 Ninety-nine percent of the pilot
 is a proposed starting point,
 
-161
-00:10:07.387 --> 00:10:10.825
+163
+00:10:10.507 --> 00:10:13.945
 not a rule, and a risk-tiered
 threshold is usually better.
 
-162
-00:10:10.825 --> 00:10:13.548
+164
+00:10:13.945 --> 00:10:16.668
 Every enabled account is either correlated
 
-163
-00:10:13.548 --> 00:10:16.050
+165
+00:10:16.668 --> 00:10:19.170
 or on a dated exception
 list with an owner.
 
-164
-00:10:16.050 --> 00:10:20.548
+166
+00:10:19.170 --> 00:10:23.668
 Identity engineering removes the
 other writers: O U write rights and
 
-165
-00:10:20.548 --> 00:10:25.362
+167
+00:10:23.668 --> 00:10:28.482
 Exchange's commands in A D, and the help
 desk and self-service paths in Entra.
 
-166
-00:10:25.362 --> 00:10:27.808
+168
+00:10:28.482 --> 00:10:30.928
 Security operations routes the sign-in,
 
-167
-00:10:27.808 --> 00:10:31.737
+169
+00:10:30.928 --> 00:10:34.857
 audit and provisioning logs out
 before the pilot's first change.
 
-168
-00:10:31.737 --> 00:10:34.674
+170
+00:10:34.857 --> 00:10:37.794
 In the running example,
 a second account turns
 
-169
-00:10:34.674 --> 00:10:37.688
+171
+00:10:37.794 --> 00:10:40.808
 up holding the analyst's
 key, an old test account.
 
-170
-00:10:37.688 --> 00:10:42.575
+172
+00:10:40.808 --> 00:10:45.695
 HR confirms the real record, and the
 test account is disabled and listed.
 
-171
-00:10:42.575 --> 00:10:43.763
+173
+00:10:45.695 --> 00:10:46.883
 It isn't deleted.
 
-172
-00:10:43.763 --> 00:10:46.380
+174
+00:10:46.883 --> 00:10:49.500
 The C I S O owns this gate.
 
-173
-00:10:50.130 --> 00:10:54.780
+175
+00:10:53.250 --> 00:10:57.900
 Gate 3 maps the attributes through
 sync, and its failures are quiet.
 
-174
-00:10:54.780 --> 00:10:56.405
+176
+00:10:57.900 --> 00:10:59.525
 There are two landing zones.
 
-175
-00:10:56.405 --> 00:11:00.746
+177
+00:10:59.525 --> 00:11:03.866
 For most users, HR writes into A
 D through the provisioning agent,
 
-176
-00:11:00.746 --> 00:11:02.793
+178
+00:11:03.866 --> 00:11:05.913
 and sync carries the values up.
 
-177
-00:11:02.793 --> 00:11:06.605
+179
+00:11:05.913 --> 00:11:09.725
 For cloud-mastered users,
 HR writes Entra directly.
 
-178
-00:11:06.605 --> 00:11:08.382
+180
+00:11:09.725 --> 00:11:11.502
 Use the same carrier in both,
 
-179
-00:11:08.382 --> 00:11:11.705
+181
+00:11:11.502 --> 00:11:14.825
 so a rule never has to know
 which zone a user came from.
 
-180
-00:11:11.705 --> 00:11:15.398
+182
+00:11:14.825 --> 00:11:18.518
 Use Cloud Sync unless you need
 something only Connect Sync does,
 
-181
-00:11:15.398 --> 00:11:17.418
+183
+00:11:18.518 --> 00:11:20.538
 and password hash sync everywhere.
 
-182
-00:11:17.418 --> 00:11:18.879
+184
+00:11:20.538 --> 00:11:21.999
 Then map the slots.
 
-183
-00:11:18.879 --> 00:11:22.960
+185
+00:11:21.999 --> 00:11:26.080
 The two date slots map to the
 native hire and leave dates,
 
-184
-00:11:22.960 --> 00:11:25.355
+186
+00:11:26.080 --> 00:11:28.475
 in the format A D strings require.
 
-185
-00:11:25.355 --> 00:11:29.417
+187
+00:11:28.475 --> 00:11:32.537
 The transitional rule derives
 account type from O U placement.
 
-186
-00:11:29.417 --> 00:11:33.217
+188
+00:11:32.537 --> 00:11:36.337
 It's a bridge, not an end
 state, and Gate 8 removes it.
 
-187
-00:11:33.217 --> 00:11:36.510
+189
+00:11:36.337 --> 00:11:39.630
 And the Do Not Sync filter
 keys on slot fifteen.
 
-188
-00:11:40.260 --> 00:11:43.876
+190
+00:11:43.380 --> 00:11:46.996
 This is the record HR sends
 to the provisioning endpoint,
 
-189
-00:11:43.876 --> 00:11:46.723
+191
+00:11:46.996 --> 00:11:49.843
 one operation from the
 example code, trimmed.
 
-190
-00:11:46.723 --> 00:11:49.648
+192
+00:11:49.843 --> 00:11:52.768
 Each request holds at
 most fifty operations.
 
-191
-00:11:49.648 --> 00:11:52.451
+193
+00:11:52.768 --> 00:11:55.571
 The external I D carries
 the person number,
 
-192
-00:11:52.451 --> 00:11:55.173
+194
+00:11:55.571 --> 00:11:58.293
 and it matches the employee I D attribute.
 
-193
-00:11:55.173 --> 00:11:57.873
+195
+00:11:58.293 --> 00:12:00.993
 If nothing matches, a user is created.
 
-194
-00:11:57.873 --> 00:12:02.998
+196
+00:12:00.993 --> 00:12:06.118
 The enterprise extension carries department,
 division, cost center and manager.
 
-195
-00:12:02.998 --> 00:12:06.223
+197
+00:12:06.118 --> 00:12:09.343
 The agency's own extension
 carries the codes
 
-196
-00:12:06.223 --> 00:12:09.273
+198
+00:12:09.343 --> 00:12:12.393
 that land in the slots,
 plus the dates in U T C.
 
-197
-00:12:09.273 --> 00:12:14.472
+199
+00:12:12.393 --> 00:12:17.592
 The service answers two oh two accepted,
 with a link to the provisioning logs.
 
-198
-00:12:14.472 --> 00:12:17.173
+200
+00:12:17.592 --> 00:12:20.293
 Updates are just the same
 record posted again.
 
-199
-00:12:17.173 --> 00:12:21.026
+201
+00:12:20.293 --> 00:12:24.146
 And the rule that matters most:
 send the whole record every time,
 
-200
-00:12:21.026 --> 00:12:24.435
+202
+00:12:24.146 --> 00:12:27.555
 because a missing attribute
 can clear the target value.
 
-201
-00:12:24.435 --> 00:12:27.022
+203
+00:12:27.555 --> 00:12:30.142
 The example client dry-runs by default.
 
-202
-00:12:27.022 --> 00:12:30.550
+204
+00:12:30.142 --> 00:12:33.670
 Send five to ten records
 before the full extract.
 
-203
-00:12:34.300 --> 00:12:35.988
+205
+00:12:37.420 --> 00:12:39.108
 Two Gate 3 traps.
 
-204
-00:12:35.988 --> 00:12:37.388
+206
+00:12:39.108 --> 00:12:40.508
 The first is matching.
 
-205
-00:12:37.388 --> 00:12:41.153
+207
+00:12:40.508 --> 00:12:44.273
 When sync meets an object that
 already exists in the cloud,
 
-206
-00:12:41.153 --> 00:12:45.388
+208
+00:12:44.273 --> 00:12:48.508
 a hard match on the source anchor
 makes A D the source of authority.
 
-207
-00:12:45.388 --> 00:12:50.536
+209
+00:12:48.508 --> 00:12:53.656
 Failing that, a soft match on the user
 principal name and the email address applies,
 
-208
-00:12:50.536 --> 00:12:53.337
+210
+00:12:53.656 --> 00:12:56.457
 but only if the cloud
 object has no anchor yet.
 
-209
-00:12:53.337 --> 00:12:58.499
+211
+00:12:56.457 --> 00:13:01.619
 Either one overwrites the cloud values
 with A D's, the password hash included.
 
-210
-00:12:58.499 --> 00:13:03.075
+212
+00:13:01.619 --> 00:13:06.195
 So clean A D first, and keep both
 matches blocked outside a planned window.
 
-211
-00:13:03.075 --> 00:13:04.925
+213
+00:13:06.195 --> 00:13:08.045
 The second trap is a date.
 
-212
-00:13:04.925 --> 00:13:09.757
+214
+00:13:08.045 --> 00:13:12.877
 By April seventh, twenty twenty-seven,
 every Connect Sync server needs version
 
-213
-00:13:09.757 --> 00:13:14.737
+215
+00:13:12.877 --> 00:13:17.857
 two point six point eighty-four or later,
 plus application-based authentication.
 
-214
-00:13:14.737 --> 00:13:16.350
+216
+00:13:17.857 --> 00:13:19.470
 Otherwise sync stops.
 
-215
-00:13:16.350 --> 00:13:18.412
+217
+00:13:19.470 --> 00:13:21.532
 The upgrade alone isn't enough.
 
-216
-00:13:18.412 --> 00:13:20.225
+218
+00:13:21.532 --> 00:13:23.345
 You also have to run the wizard.
 
-217
-00:13:20.225 --> 00:13:23.650
+219
+00:13:23.345 --> 00:13:26.770
 And never run two active
 Connect Sync servers.
 
-218
-00:13:27.400 --> 00:13:31.300
+220
+00:13:30.520 --> 00:13:34.420
 Gate 3's proof starts with a
 kit check, V K sync oh one.
 
-219
-00:13:31.300 --> 00:13:36.572
+221
+00:13:34.420 --> 00:13:39.692
 Export a sample of users from A D, with
 the employee I D and the three coded slots,
 
-220
-00:13:36.572 --> 00:13:40.937
+222
+00:13:39.692 --> 00:13:44.057
 and the check compares those values
 with Entra, joined on the key.
 
-221
-00:13:40.937 --> 00:13:43.914
+223
+00:13:44.057 --> 00:13:47.034
 It flags a sample row with no Entra user,
 
-222
-00:13:43.914 --> 00:13:47.076
+224
+00:13:47.034 --> 00:13:50.196
 a key held twice, and
 any slot that differs.
 
-223
-00:13:47.076 --> 00:13:49.986
+225
+00:13:50.196 --> 00:13:53.106
 It reads values, not
 the sync configuration,
 
-224
-00:13:49.986 --> 00:13:53.463
+226
+00:13:53.106 --> 00:13:56.583
 so the reconciliation report
 still covers the rest.
 
-225
-00:13:53.463 --> 00:13:58.587
+227
+00:13:56.583 --> 00:14:01.707
 That means counts within one percent,
 no sync errors, a full sync reconciled
 
-226
-00:13:58.587 --> 00:14:04.125
+228
+00:14:01.707 --> 00:14:07.245
 before deltas, shadow-mode differences
 explained, and zero unmatched creations.
 
-227
-00:14:04.125 --> 00:14:05.753
+229
+00:14:07.245 --> 00:14:08.873
 In the running example,
 
-228
-00:14:05.753 --> 00:14:09.950
+230
+00:14:08.873 --> 00:14:13.070
 the analyst's codes land in A D
 and arrive in Entra unchanged.
 
-229
-00:14:09.950 --> 00:14:15.250
+231
+00:14:13.070 --> 00:14:18.370
 To back out, turn the scoping filter back
 and let the next cycle remove the values.
 
-230
-00:14:15.250 --> 00:14:19.588
+232
+00:14:18.370 --> 00:14:22.708
 Never delete synced users in Entra,
 because sync just restores them.
 
-231
-00:14:19.588 --> 00:14:21.224
+233
+00:14:22.708 --> 00:14:24.344
 Pause the provisioning job.
 
-232
-00:14:21.224 --> 00:14:24.910
+234
+00:14:24.344 --> 00:14:28.030
 Don't restart it, because
 restart purges what's waiting.
 
-233
-00:14:28.660 --> 00:14:32.972
+235
+00:14:31.780 --> 00:14:36.092
 To close, here's what each gate
 leaves in Git, and what comes next.
 
-234
-00:14:32.972 --> 00:14:37.722
+236
+00:14:36.092 --> 00:14:40.842
 Gate 0 leaves the Start Kit run, the
 group decisions and the unit map.
 
-235
-00:14:37.722 --> 00:14:42.773
+237
+00:14:40.842 --> 00:14:45.893
 Gate 1 leaves the signed slot register,
 which every rule and persona will read.
 
-236
-00:14:42.773 --> 00:14:46.296
+238
+00:14:45.893 --> 00:14:49.416
 Gate 2 leaves the validation
 run folder, the threshold,
 
-237
-00:14:46.296 --> 00:14:49.272
+239
+00:14:49.416 --> 00:14:52.392
 the owned exceptions,
 and the removed writers.
 
-238
-00:14:49.272 --> 00:14:53.398
+240
+00:14:52.392 --> 00:14:56.518
 Gate 3 leaves the sample check's
 result, the reconciliation report,
 
-239
-00:14:53.398 --> 00:14:56.248
+241
+00:14:56.518 --> 00:14:59.368
 and live pilot data for
 the shadow comparison.
 
-240
-00:14:56.248 --> 00:14:59.047
+242
+00:14:59.368 --> 00:15:02.167
 The attributes are now true and flowing.
 
-241
-00:14:59.047 --> 00:15:04.300
+243
+00:15:02.167 --> 00:15:07.420
 Part 2 takes Gates 4 to 6: the dynamic
 group library and administrative units,
 
-242
-00:15:04.300 --> 00:15:09.636
+244
+00:15:07.420 --> 00:15:12.756
 the Conditional Access personas and
 targeting conventions, and P I V binding.
 
-243
-00:15:09.636 --> 00:15:12.447
+245
+00:15:12.756 --> 00:15:15.567
 Those are the mechanisms
 that read the attributes.
 
-244
-00:15:12.447 --> 00:15:13.270
+246
+00:15:15.567 --> 00:15:16.390
 Thank you.

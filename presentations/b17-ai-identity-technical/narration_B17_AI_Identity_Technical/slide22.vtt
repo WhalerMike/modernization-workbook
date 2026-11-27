@@ -1,53 +1,63 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.100
+00:00:00.100 --> 00:00:03.264
 Conditional Access follows
 the token's subject,
 
 2
-00:00:03.100 --> 00:00:05.388
+00:00:03.264 --> 00:00:05.637
 so one policy rarely covers an agent.
 
 3
-00:00:05.388 --> 00:00:09.050
+00:00:05.637 --> 00:00:09.077
 For autonomous agents, the
 recommended pattern is simple:
 
 4
-00:00:09.050 --> 00:00:12.788
+00:00:09.077 --> 00:00:12.638
 block every agent identity
 except the ones you've approved.
 
 5
-00:00:12.788 --> 00:00:17.094
+00:00:12.638 --> 00:00:16.899
 The program builds that in report-only
-mode and sets the approval tag only
+mode and approves an agent only during
 
 6
-00:00:17.094 --> 00:00:21.824
-during the production handshake, so the
-report shows every agent that skipped it.
+00:00:16.899 --> 00:00:20.962
+the production handshake, so the report
+shows every agent that skipped it.
 
 7
-00:00:21.824 --> 00:00:26.687
+00:00:20.962 --> 00:00:24.541
+In G C C, until custom security
+attributes are confirmed,
+
+8
+00:00:24.541 --> 00:00:29.287
+the handshake adds each approved agent
+to the policy's exclusions by name.
+
+9
+00:00:29.287 --> 00:00:33.600
 It stays in report-only until the agent
 targets leave preview in your cloud.
 
-8
-00:00:26.687 --> 00:00:31.376
+10
+00:00:33.600 --> 00:00:38.225
 Plan around the known gaps, like the
 token exchange step that policy can't see.
 
-9
-00:00:31.376 --> 00:00:34.814
+11
+00:00:38.225 --> 00:00:41.538
 And when risk detection flags
 an agent, tell its sponsor too,
 
-10
-00:00:34.814 --> 00:00:37.200
+12
+00:00:41.538 --> 00:00:43.837
 because they know what normal looks like.
 
-11
-00:00:37.200 --> 00:00:38.950
+13
+00:00:43.837 --> 00:00:45.650
 Now, tools and data.

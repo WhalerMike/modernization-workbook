@@ -321,7 +321,7 @@ Slots 1 to 3 follow Microsoft's worksheet; the rest are the workbook's proposals
     "Native properties first",
     "extensionAttribute1–15 for what rules read",
     "Directory extensions when more slots are needed",
-    "Custom security attributes for sensitive values rules don't need",
+    "Custom security attributes for sensitive values rules don't need (in GCC once confirmed, WD-176)",
     "Devices: device properties; servers: Azure tags; PIV: certificateUserIds",
   ], 12.5);
   const b = panel(s, "Writers", 6.85, 1.45, 5.9, null, HEX.teal, HEX.tealTint, "AT1.3  ONE WRITER PER SLOT; LIST THE REST", null, [
@@ -339,7 +339,7 @@ Slots 1 to 3 follow Microsoft's worksheet; the rest are the workbook's proposals
   notes(s,
 `The rest of Gate 1 is three rules: one store, one writer, one owner per attribute.
 
-Decision D-AT1 picks the store, and the data architect decides it, using the store table in its order. Native properties first. Then extension attributes 1 to 15 for anything a rule has to read. Then directory extensions when more slots are needed. Custom security attributes hold sensitive values that rules don't need, because dynamic rules can't read them. Devices use device properties, servers Azure tags, and the PIV binding certificateUserIds. Pick the store by who has to read it.
+Decision D-AT1 picks the store, and the data architect decides it, using the store table in its order. Native properties first. Then extension attributes 1 to 15 for anything a rule has to read. Then directory extensions when more slots are needed. Custom security attributes hold sensitive values that rules don't need, because dynamic rules can't read them. Until a tenant check confirms them in the program's GCC tenant, a sensitive value stays in HR and the register and isn't written to Entra at all, because an extension slot would expose it to every reader. Devices use device properties, servers Azure tags, and the PIV binding certificateUserIds. Pick the store by who has to read it.
 
 Task AT1.3 names the single writer for every slot. The provisioning service is the only writer of every schema field: the API-driven inbound app for cloud-mastered users, and the provisioning agent plus sync for AD-mastered ones. Every other write path to the access slots, the help desk, self-service and Exchange administration, goes on a list for removal at Gate 2. Codes, never display strings, go in anything a rule reads, and HR owns the code lists. Task AT1.4 names the other tracks' authorities: the procurement record for devices, the asset record for servers, and the owning system's record for non-person identities. None of them is HR.
 

@@ -237,8 +237,8 @@ endModule(S0);
     "A contractor can build or run a workload, but can't be its only sponsor",
     "Book 17's rule for agents; the program applies it to all non-person identities (design guidance)",
   ], 12.5);
-  panel(s, "Interim", 0.6, Math.max(p1, p2, p3) + 0.2, FULL, null, HEX.amber, HEX.amberTint, "OPTIONAL TAGS, AND THE INTERIM PATH FOR AGENTS", null, [
-    "Optionally tag service principals with custom security attributes such as SystemId, Environment and Tier; G4 reuses them for Conditional Access filters",
+  panel(s, "Interim", 0.6, Math.max(p1, p2, p3) + 0.2, FULL, null, HEX.amber, HEX.amberTint, "THE SEVEN TAGS, AND THE INTERIM PATH FOR AGENTS", null, [
+    "Tag every service principal and managed identity with the seven program tags (WD-175); in GCC, until custom security attributes are confirmed, in SP tags and notes or Azure resource tags (WD-176)",
     "Where the tenant doesn't expose the agent features, run this guide on the service principals the agents run as",
   ], 12.5);
   sources(s, "Sources: Implementation guide, Step 1, 1f; \"AI agents\" (where the features aren't available); Book 02, Ch 09, 10; Book 04, Ch 05; Book 17, Ch 05.");
@@ -251,7 +251,7 @@ Owners. Two human owners for every app registration and service principal, never
 
 Sponsor. A sponsor who is a federal employee mastered in HR. A contractor can build or run a workload but can't be its only sponsor. That rule is Book 17's, for agents; the program applies it to every non-person identity, which is design guidance.
 
-Optionally, tag service principals with custom security attributes such as SystemId, Environment and Tier. Microsoft suggests it for a filterable inventory and for attribute-based decisions, and Step 4 uses the same attributes for Conditional Access filters.
+Tag every service principal and managed identity with the seven program tags: SystemId, Owner1, Owner2, Sponsor, Environment, Tier and EntraTarget, the same keys every AD managed service account and every AWS and OCI identity carries (WD-175). Where they live depends on custom security attributes, which the program treats as unavailable in its GCC tenant until a tenant check confirms them (WD-176). Until then: on a service principal, one npi:Key=Value string per key in its tags property and the whole tag string in its notes; on a user-assigned managed identity, Azure resource tags; on a system-assigned one, tags on the resource it belongs to. SailPoint and the register stay the source of record. Once confirmed, the tags move to custom security attributes in the NonPersonIdentity set, which Microsoft suggests for a filterable inventory and for ABAC decisions.
 
 And the interim path for AI. Where the tenant doesn't expose the agent features, the guide says to run its lifecycle on the service principals the agents run as.`,
   `${IG}, Step 1 — 1f; "AI agents"; Book 02, Chapter 09 — "Governing service principals"; Chapter 10 — "Phase 4"; Book 04, Chapter 05 — "Ownership"; Book 17, Chapter 05.`);

@@ -1,41 +1,51 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.862
+00:00:00.100 --> 00:00:04.788
 The only thing this chapter ever writes
 is the two agent policies, report-only.
 
 2
-00:00:04.862 --> 00:00:07.885
+00:00:04.788 --> 00:00:07.677
 The plan compares the reviewed
 files with the tenant,
 
 3
-00:00:07.885 --> 00:00:11.114
+00:00:07.677 --> 00:00:10.817
 and where the program's
 decision says agent Conditional
 
 4
-00:00:11.114 --> 00:00:14.412
+00:00:10.817 --> 00:00:14.024
 Access isn't published, it
 simply marks them not available.
 
 5
-00:00:14.412 --> 00:00:18.965
+00:00:14.024 --> 00:00:18.501
 The write path refuses unless the plan
 is the approved one, recent, and for
 
 6
-00:00:18.965 --> 00:00:23.974
+00:00:18.501 --> 00:00:23.425
 this tenant, and every write creates a
 report-only block policy and nothing else.
 
 7
-00:00:23.974 --> 00:00:27.988
+00:00:23.425 --> 00:00:28.828
+In G C C, until a tenant check confirms
+custom security attributes, the block policy
+
+8
+00:00:28.828 --> 00:00:33.913
+names the approved agents one by one:
+exactly those with a complete handshake.
+
+9
+00:00:33.913 --> 00:00:37.763
 It runs as a person with the
 Conditional Access administrator role.
 
-8
-00:00:27.988 --> 00:00:32.540
+10
+00:00:37.763 --> 00:00:42.140
 And it never turns a policy on; that
 waits until the feature leaves preview.

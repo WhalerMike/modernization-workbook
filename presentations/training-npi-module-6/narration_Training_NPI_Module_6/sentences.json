@@ -117,53 +117,58 @@
  ],
  "4": [
   [
-   0.05,
-   4.475,
+   0.1,
+   4.487,
    "Unit 1 is the guide's Step 4, sub-steps four d and four e."
   ],
   [
-   4.525,
-   2.6,
+   4.537,
+   2.788,
    "Four d is custom security attributes."
   ],
   [
-   7.125,
-   14.125,
+   7.325,
+   13.812,
    "You define an attribute set for applications, such as environment and data class, and, as Microsoft Learn's page on filtering for applications in Conditional Access says, a policy can then select target applications by attribute."
   ],
   [
-   21.25,
-   1.913,
+   21.137,
+   2.038,
    "Only string attributes work."
   ],
   [
-   23.163,
+   23.175,
    6.625,
    "And because service principals can't be members of dynamic groups, attributes are how this track targets by fact."
   ],
   [
-   29.788,
-   3.337,
+   29.8,
+   10.6,
+   "In G C C, four d waits for a tenant check that confirms custom security attributes, and until then each policy names its target applications and service principals one by one."
+  ],
+  [
+   40.4,
+   3.325,
    "Four e is the workload identity policies themselves."
   ],
   [
-   33.125,
-   11.037,
+   43.725,
+   10.787,
    "For each Tier 1 single-tenant service principal, assign it directly to a location block that allows only the networks it runs from, and to a high-risk block, both report-only first."
   ],
   [
-   44.163,
-   3.4,
+   54.513,
+   3.263,
    "The results appear in the service principal sign-in logs."
   ],
   [
-   47.562,
-   5.088,
+   57.775,
+   4.525,
    "Managed identities are governed through their role assignments and access reviews instead."
   ],
   [
-   52.65,
-   8.637,
+   62.3,
+   8.162,
    "And Microsoft Learn's Conditional Access for workload identities page says creating or changing these policies needs Workload I D Premium."
   ]
  ],

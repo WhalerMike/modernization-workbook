@@ -1,50 +1,60 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.775
+00:00:00.100 --> 00:00:03.825
 A use case is a scenario,
 and scenarios don't sign in.
 
 2
-00:00:03.775 --> 00:00:06.849
+00:00:03.825 --> 00:00:06.759
 One assistant can run on
 four different identities,
 
 3
-00:00:06.849 --> 00:00:11.425
+00:00:06.759 --> 00:00:11.200
 and one shared platform can serve dozens
 of use cases under a single identity.
 
 4
-00:00:11.425 --> 00:00:15.338
+00:00:11.200 --> 00:00:14.675
 The public file doesn't even
 have a stable key on every row.
 
 5
-00:00:15.338 --> 00:00:18.351
+00:00:14.675 --> 00:00:17.688
 So the program puts the
 join on the identity side.
 
 6
-00:00:18.351 --> 00:00:22.126
+00:00:17.688 --> 00:00:21.306
 Each AI system's identity record
 carries the inventory ID,
 
 7
-00:00:22.126 --> 00:00:26.137
+00:00:21.306 --> 00:00:25.151
 and every directory object it
 uses points back to that record.
 
 8
-00:00:26.137 --> 00:00:28.550
+00:00:25.151 --> 00:00:27.725
 That same tag can later drive policy.
 
 9
-00:00:28.550 --> 00:00:32.425
+00:00:27.725 --> 00:00:32.836
+In G C C, until a tenant check confirms
+custom security attributes, the reference
+
+10
+00:00:32.836 --> 00:00:38.025
+goes in the service principal's tags and
+notes, and policies name agents one by one.
+
+11
+00:00:38.025 --> 00:00:41.625
 Join against your agency's own
 submission, not the public file.
 
-10
-00:00:32.425 --> 00:00:36.600
+12
+00:00:41.625 --> 00:00:45.600
 Next, what the inventory can say
 about the high-impact practices.

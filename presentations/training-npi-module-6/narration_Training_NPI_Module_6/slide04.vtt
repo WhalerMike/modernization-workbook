@@ -1,84 +1,99 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.525
+00:00:00.100 --> 00:00:04.587
 Unit 1 is the guide's Step 4,
 sub-steps four d and four e.
 
 2
-00:00:04.525 --> 00:00:07.125
+00:00:04.587 --> 00:00:07.325
 Four d is custom security attributes.
 
 3
-00:00:07.125 --> 00:00:12.132
+00:00:07.325 --> 00:00:12.221
 You define an attribute set for applications,
 such as environment and data class,
 
 4
-00:00:12.132 --> 00:00:16.841
+00:00:12.221 --> 00:00:16.825
 and, as Microsoft Learn's page on
 filtering for applications in Conditional
 
 5
-00:00:16.841 --> 00:00:21.250
+00:00:16.825 --> 00:00:21.137
 Access says, a policy can then select
 target applications by attribute.
 
 6
-00:00:21.250 --> 00:00:23.163
+00:00:21.137 --> 00:00:23.175
 Only string attributes work.
 
 7
-00:00:23.163 --> 00:00:27.081
+00:00:23.175 --> 00:00:27.093
 And because service principals
 can't be members of dynamic groups,
 
 8
-00:00:27.081 --> 00:00:29.788
+00:00:27.093 --> 00:00:29.800
 attributes are how this
 track targets by fact.
 
 9
-00:00:29.788 --> 00:00:33.125
+00:00:29.800 --> 00:00:34.727
+In G C C, four d waits for a tenant check
+that confirms custom security attributes,
+
+10
+00:00:34.727 --> 00:00:37.414
+and until then each
+policy names its target
+
+11
+00:00:37.414 --> 00:00:40.400
+applications and service
+principals one by one.
+
+12
+00:00:40.400 --> 00:00:43.725
 Four e is the workload
 identity policies themselves.
 
-10
-00:00:33.125 --> 00:00:36.170
+13
+00:00:43.725 --> 00:00:46.701
 For each Tier 1 single-tenant
 service principal,
 
-11
-00:00:36.170 --> 00:00:41.270
+14
+00:00:46.701 --> 00:00:51.685
 assign it directly to a location block that
 allows only the networks it runs from,
 
-12
-00:00:41.270 --> 00:00:44.162
+15
+00:00:51.685 --> 00:00:54.512
 and to a high-risk block,
 both report-only first.
 
-13
-00:00:44.162 --> 00:00:47.563
+16
+00:00:54.512 --> 00:00:57.776
 The results appear in the
 service principal sign-in logs.
 
-14
-00:00:47.563 --> 00:00:50.171
+17
+00:00:57.776 --> 00:01:00.096
 Managed identities are
 governed through their
 
-15
-00:00:50.171 --> 00:00:52.650
+18
+00:01:00.096 --> 00:01:02.300
 role assignments and
 access reviews instead.
 
-16
-00:00:52.650 --> 00:00:57.079
+19
+00:01:02.300 --> 00:01:06.486
 And Microsoft Learn's Conditional
 Access for workload identities page
 
-17
-00:00:57.079 --> 00:01:01.340
+20
+00:01:06.486 --> 00:01:10.462
 says creating or changing these
 policies needs Workload I D Premium.

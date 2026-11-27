@@ -237,87 +237,92 @@
  ],
  "10": [
   [
-   0.05,
-   3.987,
+   0.1,
+   3.775,
    "The second half is about what an agent holds and how it's watched."
   ],
   [
-   4.037,
-   12.425,
+   3.825,
+   12.412,
    "Inheritance and directory roles come first: any directory role is a finding unless it's recorded with an end date, because Microsoft's list of roles an agent may hold includes some the program counts as privileged."
   ],
   [
-   16.462,
-   11.463,
+   16.238,
+   10.863,
    "Then the sponsor clock: ten business days, counted around federal holidays, and an unconfirmed transfer means the agent is orphaned and goes to Chapter 2's rule, where a person decides."
   ],
   [
-   27.925,
-   5.338,
-   "Then the two policies, the approval attribute, and the three top-priority drift checks."
+   27.1,
+   11.088,
+   "Then the two policies, how approved agents are excluded from the block, by name in G C C until custom security attributes are confirmed there, and the three top-priority drift checks."
   ]
  ],
  "11": [
   [
-   0.05,
-   4.812,
+   0.1,
+   4.688,
    "The only thing this chapter ever writes is the two agent policies, report-only."
   ],
   [
-   4.862,
-   9.55,
+   4.737,
+   9.287,
    "The plan compares the reviewed files with the tenant, and where the program's decision says agent Conditional Access isn't published, it simply marks them not available."
   ],
   [
-   14.412,
-   9.562,
+   14.025,
+   9.4,
    "The write path refuses unless the plan is the approved one, recent, and for this tenant, and every write creates a report-only block policy and nothing else."
   ],
   [
-   23.975,
-   4.013,
+   23.425,
+   10.488,
+   "In G C C, until a tenant check confirms custom security attributes, the block policy names the approved agents one by one: exactly those with a complete handshake."
+  ],
+  [
+   33.913,
+   3.85,
    "It runs as a person with the Conditional Access administrator role."
   ],
   [
-   27.988,
-   4.5,
+   37.763,
+   4.375,
    "And it never turns a policy on; that waits until the feature leaves preview."
   ]
  ],
  "12": [
   [
-   0.05,
-   1.05,
+   0.1,
+   1.113,
    "Who's involved?"
   ],
   [
-   1.1,
-   1.387,
+   1.163,
+   1.425,
    "Developers build it."
   ],
   [
-   2.487,
-   4.338,
+   2.587,
+   4.225,
    "The identity governance officer keeps the handshakes and confirms orphans."
   ],
   [
-   6.825,
-   9.113,
+   6.812,
+   8.7,
    "The Chief A I Officer's staff keep the use-case inventory, security operations own the drift findings, and the security officers review the evidence."
   ],
   [
-   15.938,
-   6.112,
+   15.512,
+   5.463,
    "The read task holds ten read permissions and nothing that ends in read-write; a test enforces that."
   ],
   [
-   22.05,
-   7.338,
-   "A person running it also needs a reader role for custom attributes, and the agent administrator role unless they own the agents."
+   20.975,
+   9.6,
+   "A person running it also needs the agent administrator role unless they own the agents, and, where custom security attributes are confirmed, a reader role to see them."
   ],
   [
-   29.387,
-   5.062,
+   30.575,
+   4.725,
    "The write task holds only the policy permissions, in a person's signed-in session."
   ]
  ],
@@ -355,28 +360,28 @@
  ],
  "16": [
   [
-   0.05,
-   4.8,
+   0.1,
+   4.487,
    "Lab 2 uses a licensed test tenant with fictional people, never production."
   ],
   [
-   4.85,
-   7.237,
+   4.537,
+   6.9,
    "Read the blueprint-creation setting yourself, since there's no Graph property for it, set it to No, and record the reading."
   ],
   [
-   12.088,
-   11.325,
-   "Then build one properly governed agent from Learn's sample: a sponsor who isn't the owner, a managed identity credential, a handshake, an inventory row, and the approval attribute."
+   11.438,
+   14.613,
+   "Then build one properly governed agent from Learn's sample: a sponsor who isn't the owner, a managed identity credential, a handshake, an inventory row, and its approval: in G C C, the plan adds it by name to the block policy's exclusions."
   ],
   [
-   23.413,
-   10.2,
+   26.05,
+   9.762,
    "Run the check with read permissions only, compare the policy shape with one made in the admin center, apply the plan as a person, and confirm both policies are report-only."
   ],
   [
-   33.612,
-   1.675,
+   35.812,
+   1.925,
    "Then remove it all by hand."
   ]
  ],
@@ -473,29 +478,34 @@
  ],
  "15": [
   [
-   0.05,
-   1.262,
+   0.1,
+   1.425,
    "Now the write path."
   ],
   [
-   1.312,
-   10.713,
+   1.475,
+   9.938,
    "The dry run, with the plan's approved hash, would send exactly one request: a report-only policy for high-risk agents, since the other one already exists in the tenant."
   ],
   [
-   12.025,
-   7.562,
+   11.412,
+   6.775,
+   "It differs, because it excludes an agent with no complete handshake, and that's a finding for a person, not a write."
+  ],
+  [
+   18.188,
+   7.2,
    "Applying it to the fake creates that policy, report-only, and reminds you to review its results before any change of state."
   ],
   [
-   19.587,
-   5.612,
+   25.387,
+   5.263,
    "Then try a hash nobody approved, and the write path refuses to run a plan nobody reviewed."
   ],
   [
-   25.2,
-   6.487,
-   "Finally, run the whole suite: five hundred eleven tests pass, with no tenant and no network."
+   30.65,
+   6.562,
+   "Finally, run the whole suite: five hundred sixty-seven tests pass, with no tenant and no network."
   ]
  ],
  "17": [
