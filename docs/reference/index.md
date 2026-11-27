@@ -7,11 +7,12 @@ doc-type: section-landing
 
 # Reference {.unnumbered}
 
-These pages are looked up rather than read in order. Each one except the Learn Coverage Map, a table of more than 3,000 rows, and the Zero Trust Closure Coverage tracker also downloads as a Word document, built from the same source as the page on every site deploy. The [Reference Set](../../downloads/reference-set.docx) has those six in one document, with a title page and a table of contents.
+These pages are looked up rather than read in order. Each one except the Learn Coverage Map, a table of more than 3,000 rows, the Zero Trust Closure Coverage tracker and Permissions by Run, both generated, also downloads as a Word document, built from the same source as the page on every site deploy. The [Reference Set](../../downloads/reference-set.docx) has those six in one document, with a title page and a table of contents.
 
 | Page | What it covers | Word edition |
 |---|---|---|
 | [Command Reference](commands.md) | Every command in the example kits: what it does, the pages that teach it, and how to get its help | [reference-commands.docx](../../downloads/reference-commands.docx) |
+| [Permissions by Run](permissions-by-run.md) | Every run of the example kits that calls a live service: whether it only reads or also changes something, and the Microsoft Graph permissions, roles and other rights it needs, built from the kits' own permission files | Site only |
 | [Federal Framework Crosswalk](federal-framework-crosswalk.md) | The books against federal modernization frameworks, with a coverage matrix and the gaps (under review) | [reference-federal-framework-crosswalk.docx](../../downloads/reference-federal-framework-crosswalk.docx) |
 | [Source Register](source-register.md) | The sources the slides and videos link to, each with a permanent address, its history and its latest weekly check | [reference-source-register.docx](../../downloads/reference-source-register.docx) |
 | [RMF Map](rmf-map.md) | The NIST Risk Management Framework's steps and tasks mapped to the books, with the evidence each produces (under review) | [reference-rmf-map.docx](../../downloads/reference-rmf-map.docx) |

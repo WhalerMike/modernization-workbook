@@ -1,0 +1,33 @@
+{
+  "_comment": "What each live step of the SQL Server identity kit needs, by task, for docs/reference/permissions-by-run.md (scripts/build_permissions.py). The kit's README, under Requirements, says the same in prose; scripts/tests/test_permissions.py fails if a permission here isn't named there. The fixtures (Lab 1) need none of this.",
+  "tasks": {
+    "audit-snapshot": {
+      "mode": "read",
+      "script": "Export-SqlAuditSnapshot.ps1",
+      "runbook": "R03",
+      "what": "Logins, users, linked servers and usage on each instance, SELECT only",
+      "sql": {
+        "SQL Server 2019 and earlier": ["VIEW SERVER STATE", "VIEW ANY DEFINITION", "CONNECT ANY DATABASE"],
+        "SQL Server 2022 and later": ["VIEW SERVER PERFORMANCE STATE", "VIEW SERVER SECURITY STATE", "VIEW ANY SECURITY DEFINITION", "CONNECT ANY DATABASE"]
+      },
+      "never": ["sysadmin"],
+      "identity": "A SQL login or an Entra token for a principal holding these permissions"
+    },
+    "arc-snapshot": {
+      "mode": "read",
+      "script": "Export-SqlArcSnapshot.ps1",
+      "runbook": "R04",
+      "what": "The instances' Azure Arc resources, through Azure Resource Graph",
+      "azureRoles": ["Reader"],
+      "scope": "The subscriptions that hold the Arc resources, in AzureCloud (WD-028)"
+    },
+    "login-apply": {
+      "mode": "write",
+      "script": "deploy/Invoke-SqlDeploy.ps1 -Apply, deploy/Invoke-SqlRollback.ps1 -Apply",
+      "runbook": "R05",
+      "what": "Create the Entra logins and users from the approved plan, disable the superseded ones, and the rollback",
+      "sql": {"Test instance": ["ALTER ANY LOGIN"]},
+      "identity": "An Entra account and its access token, on the test instance"
+    }
+  }
+}
