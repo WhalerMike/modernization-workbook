@@ -12,7 +12,9 @@ PowerShell statement, is echoed before its output:
   docs/<workbook folder>/captures/<NN>-<k>.png   the same, drawn as a terminal window (with --images)
 
 With --pages, each chapter shows the PNG after the command block (and after the ```text block that follows
-it, if any), between capture:begin and capture:end markers; the review gate leaves those blocks out, as it
+it, if any), between capture:begin and capture:end markers. When a command prints a Markdown file that holds
+a table (`cat out/x/summary.md`, `Get-Content "$Run/x/metrics.md"`), the block also shows that file
+formatted, under the image, so its tables read as tables rather than pipes; the review gate leaves those blocks out, as it
 does the tour blocks, because they are the kit's own output, not reviewed prose. The tours put the same
 captures on their Lab 1 slides (presentations/_build/devwb.js, element { terminal: "NN-k" }).
 
@@ -21,6 +23,7 @@ captures on their Lab 1 slides (presentations/_build/devwb.js, element { termina
     python scripts/kit_captures.py ttm --pages        # also put the PNGs on the chapter pages
     python scripts/kit_captures.py ttm --check        # exit 1 when a capture no longer matches the kit
     python scripts/kit_captures.py ttm --check --ci   # the same, leaving out labs CHAPTERS marks local-only
+    python scripts/kit_captures.py ttm --pages --saved  # place the committed captures, running nothing
 """
 from __future__ import annotations
 
@@ -86,6 +89,10 @@ WORK_IN = re.compile(r"(?:[Ww]orks? in|[Ff]rom) `(examples/[\w./-]+?)/?`")
 MARK = "\x1e"           # starts a marker line in a shell's output
 PROMPT = {"bash": "$ ", "powershell": "PS> "}
 CONT = {"bash": "> ", "powershell": ">> "}
+# A command that prints one Markdown file as it is, and a Markdown table's separator row.
+SHOWS_MD = re.compile(r'^(?:\$|PS>) (?:cat|Get-Content) "?([^\s|"]+\.md)"?\s*$')
+TABLE_RULE = re.compile(r"^\|[-:| ]+\|\s*$", re.M)
+GUID_TEXT = re.compile(r"(?<![`\w-])([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})(?![`\w-])")
 
 
 def lab_span(md: str) -> tuple[int, int] | None:
@@ -386,6 +393,38 @@ def wrapped(text: str, width: int = 100) -> list[str]:
     return lines
 
 
+def printed_markdown(text: str) -> list[tuple[str, str]]:
+    """The Markdown files a capture prints whole (cat or Get-Content), by name, when they hold a table."""
+    lines, found = text.split("\n"), []
+    for i, line in enumerate(lines):
+        m = SHOWS_MD.match(line)
+        if not m:
+            continue
+        out = []
+        for nxt in lines[i + 1:]:
+            if is_command(nxt) or nxt.startswith("(exit code"):
+                break
+            out.append(nxt)
+        body = "\n".join(out).strip("\n")
+        if TABLE_RULE.search(body):
+            found.append((m.group(1).rsplit("/", 1)[-1], body))
+    return found
+
+
+def formatted(name: str, body: str, ind: str) -> str:
+    """A printed Markdown file as a callout on the page. Its headings become bold lines, so they
+    don't enter the page's own outline."""
+    rows = []
+    for line in body.split("\n"):
+        h = re.match(r"^#{1,6} +(.*)$", line)
+        # IDs read as code, as everywhere else in the workbook (scripts/check_identifiers.py).
+        line = GUID_TEXT.sub(r"`\1`", line)
+        rows.append(f"**{h.group(1)}**" if h else line)
+    inner = "\n".join(f"{ind}{r}" if r else "" for r in rows)
+    return (f'{ind}::: {{.callout-note title="{name}, formatted"}}\n'
+            f"{inner}\n{ind}:::\n\n")
+
+
 def place(md: str, wb: str, nn: str, found: dict[str, str]) -> str:
     """The chapter with each Lab 1 command block followed by its capture."""
     md = MARKED.sub("", md)
@@ -412,7 +451,8 @@ def place(md: str, wb: str, nn: str, found: dict[str, str]) -> str:
                  f"([the same output as text]({GH}/data/kit-captures/{wb}/{key}.txt))](captures/{key}.png)"
                  "{.lightbox "
                  f'fig-alt="Terminal window showing {cmd} and what it printed"}}\n\n'
-                 f"{ind}{END}\n\n")
+                 + "".join(formatted(name, body, ind) for name, body in printed_markdown(found[key]))
+                 + f"{ind}{END}\n\n")
         pos = md.index("\n", pos) + 1
         assert md[pos:pos + 1] == "\n", f"{key}: a capture goes after a blank line"
         pos += 1
@@ -461,7 +501,21 @@ def main() -> int:
     ap.add_argument("--ci", action="store_true", help="leave out the labs CHAPTERS marks local-only")
     ap.add_argument("--images", action="store_true")
     ap.add_argument("--pages", action="store_true")
+    ap.add_argument("--saved", action="store_true",
+                    help="with --pages: place the committed captures (data/kit-captures) without running the labs")
     a = ap.parse_args()
+    if a.saved:
+        if not a.pages or a.check or a.images:
+            ap.error("--saved goes with --pages only")
+        docs = ROOT / WORKBOOKS[a.workbook][0]
+        found = {f.stem: f.read_bytes().decode("utf-8") for f in sorted((OUT / a.workbook).glob("*.txt"))}
+        for page in sorted(docs.glob("[0-9][0-9]-*.md")):
+            md = page.read_bytes().decode("utf-8")
+            new = place(md, a.workbook, page.name[:2], found)
+            if new != md:
+                page.write_bytes(new.encode("utf-8"))
+                print(f"placed the captures on {page.relative_to(ROOT).as_posix()}")
+        return 0
     found = capture(a.workbook, a.ci)
     folder = OUT / a.workbook
     stale = [k for k, t in found.items() if not (folder / f"{k}.txt").exists() or (folder / f"{k}.txt").read_text(encoding="utf-8") != t]
