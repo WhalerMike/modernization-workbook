@@ -3154,7 +3154,7 @@ There are **180** workbook decisions: 169 settled, 0 challenged and 11 supersede
 | **Date** | 2026-11-27 |
 | **Status** | settled |
 | **Defined in** | — |
-| **Note** | Basis: drafted November 27, 2026 at the workbook owner's request. Shown that Appendix B's closed list didn't cover the estate inventory, and that *The Transformation Arc*, Chapter 03, *Orientation and Program*, Chapter 08, *Identity and Directory*, Chapter 07 and Appendix B disagreed about where the assessment runs, which identity calls Graph and whether Tier B runs on a schedule, he answered "Yes, draft the decision". This entry takes effect when he approves its pull request. Not yet run on a live host: the gMSA task principal, the certificate file's sign-in without a password and the paths a Tier A run opens are proved in a test stage. |
+| **Note** | Basis: drafted November 27, 2026 at the workbook owner's request. Shown that Appendix B's closed list didn't cover the estate inventory, and that *The Transformation Arc*, Chapter 03, *Orientation and Program*, Chapter 08, *Identity and Directory*, Chapter 07 and Appendix B disagreed about where the assessment runs, which identity calls Graph and whether Tier B runs on a schedule, he answered "Yes, draft the decision". Shown the draft, with the four conflicts it settles, he answered "Approve [WD-180](#wd-180)" (November 27, 2026). Not yet run on a live host: the gMSA task principal, the certificate file's sign-in without a password and the paths a Tier A run opens are proved in a test stage. |
 
 [Agree, disagree or send evidence on WD-180](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-180%3A+)
 
