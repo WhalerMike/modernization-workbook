@@ -56,11 +56,11 @@ The data lives in [`data/learn-coverage/`](https://github.com/WhalerMike/moderni
 | Side | Pages | Cited | Covered, not cited | Not covered | Out of scope | Not reviewed yet |
 |---|---:|---:|---:|---:|---:|---:|
 | Windows Server identity | 561 | 167 | 22 | 12 | 360 | 0 |
-| Microsoft Entra | 2,511 | 1,030 | 442 | 366 | 671 | 2 |
+| Microsoft Entra | 2,511 | 1,031 | 441 | 366 | 671 | 2 |
 | Windows Server releases | 45 | 6 | 4 | 6 | 29 | 0 |
 | Windows Server security | 47 | 8 | 15 | 10 | 14 | 0 |
 | Windows Server file server and SMB | 26 | 3 | 1 | 11 | 11 | 0 |
-| **All sides** | 3,190 | 1,214 | 484 | 405 | 1,085 | 2 |
+| **All sides** | 3,190 | 1,215 | 483 | 405 | 1,085 | 2 |
 
 ## Windows Server identity {#windows-server-identity}
 
@@ -708,7 +708,7 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [id-governance](#entra-id-governance) | 236 | 165 | 38 | 25 | 8 | 0 |
 | [id-protection](#entra-id-protection) | 28 | 8 | 16 | 0 | 4 | 0 |
 | [identity](#entra-identity) | 1 | 0 | 0 | 0 | 1 | 0 |
-| [identity-platform](#entra-identity-platform) | 363 | 40 | 30 | 29 | 264 | 0 |
+| [identity-platform](#entra-identity-platform) | 363 | 41 | 29 | 29 | 264 | 0 |
 | [managed-identities-azure-resources](#entra-managed-identities-azure-resources) | 40 | 12 | 15 | 1 | 12 | 0 |
 | [monitoring-health](#entra-monitoring-health) | 81 | 40 | 29 | 7 | 5 | 0 |
 | [multi-tenant-organizations](#entra-multi-tenant-organizations) | 16 | 9 | 2 | 2 | 3 | 0 |
@@ -2687,7 +2687,7 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [How to configure app instance property lock in your applications](https://learn.microsoft.com/entra/identity-platform/howto-configure-app-instance-property-locks) | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md); [Chapter 04 — App Management Policies and Certificate Rotation](../project-plans/developer-workbooks/non-person-identity/04-app-management-policies-and-certificate-rotation.md) | Cited |
 | [Configure an app's publisher domain](https://learn.microsoft.com/entra/identity-platform/howto-configure-publisher-domain) | — | Not covered |
 | [Convert single-tenant app to multitenant on Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/howto-convert-app-to-be-multi-tenant) | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md) | Covered, not cited |
-| [Create a self-signed public certificate to authenticate your application](https://learn.microsoft.com/entra/identity-platform/howto-create-self-signed-certificate) | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md#credentials); [Module 4: Set the credential rules](../training/non-person-identity/04-credential-rules.md); and 1 more | Covered, not cited |
+| [Create a self-signed public certificate to authenticate your application](https://learn.microsoft.com/entra/identity-platform/howto-create-self-signed-certificate) | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md#credentials); [Module 4: Set the credential rules](../training/non-person-identity/04-credential-rules.md); and 3 more | Cited |
 | [Register a Microsoft Entra app and create a service principal](https://learn.microsoft.com/entra/identity-platform/howto-create-service-principal-portal) | [Microsoft Automation, Module 1: Graph and Azure Foundations](../training/ms-automation-foundations.md) | Cited |
 | [How to: Get a complete list of all apps using Active Directory Authentication Library (ADAL) in your tenant](https://learn.microsoft.com/entra/identity-platform/howto-get-list-of-all-auth-library-apps) | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md); [Book 18, Chapter 02 — Triaging the Portfolio](../books/b18-application-modernization/02-triaging-the-portfolio.md) | Cited |
 | [How to handle SameSite cookie changes in Chrome browser](https://learn.microsoft.com/entra/identity-platform/howto-handle-samesite-cookie-changes-chrome-browser) | — | Out of scope |
@@ -4174,7 +4174,6 @@ Pages a reviewer marked **not covered** (the workbook should cover the topic and
 | [Add app roles and get them from a token](https://learn.microsoft.com/entra/identity-platform/howto-add-app-roles-in-apps) | Microsoft Entra, identity-platform | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md); [Book 04, Chapter 06 — Who Decides Access](../books/b04-access/06-who-decides-access.md) | App roles and authorization model: Book 04 Ch05-06 |
 | [Create an Azure app identity (PowerShell)](https://learn.microsoft.com/entra/identity-platform/howto-authenticate-service-principal-powershell) | Microsoft Entra, identity-platform | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md#credentials); [Module 4: Set the credential rules](../training/non-person-identity/04-credential-rules.md); and 1 more | Application credentials and app-only access: Book 04 Ch05, Non-Person Identity Ch04 |
 | [Convert single-tenant app to multitenant on Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/howto-convert-app-to-be-multi-tenant) | Microsoft Entra, identity-platform | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md) | App registration vs service principal, tenancy and inventory: Book 04 Ch05 |
-| [Create a self-signed public certificate to authenticate your application](https://learn.microsoft.com/entra/identity-platform/howto-create-self-signed-certificate) | Microsoft Entra, identity-platform | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md#credentials); [Module 4: Set the credential rules](../training/non-person-identity/04-credential-rules.md); and 1 more | Application credentials and app-only access: Book 04 Ch05, Non-Person Identity Ch04 |
 | [Implement role-based access control in applications](https://learn.microsoft.com/entra/identity-platform/howto-implement-rbac-for-apps) | Microsoft Entra, identity-platform | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md); [Book 04, Chapter 06 — Who Decides Access](../books/b04-access/06-who-decides-access.md) | App roles and authorization model: Book 04 Ch05-06 |
 | [How to: Change the account types supported by an application](https://learn.microsoft.com/entra/identity-platform/howto-modify-supported-accounts) | Microsoft Entra, identity-platform | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md) | App registration vs service principal, tenancy and inventory: Book 04 Ch05 |
 | [How to: Remove a registered app from the Microsoft identity platform](https://learn.microsoft.com/entra/identity-platform/howto-remove-app) | Microsoft Entra, identity-platform | [Book 04, Chapter 05 — Applications and Workload Identities](../books/b04-access/05-applications-and-workload-identities.md) | App registration vs service principal, tenancy and inventory: Book 04 Ch05 |

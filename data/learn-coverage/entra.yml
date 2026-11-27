@@ -12104,13 +12104,15 @@ pages:
   ms_date: '2025-01-14'
   ms_topic: how-to
   description: Create a self-signed public certificate to authenticate your application.
-  coverage: covered-uncited
+  coverage: cited
   note: 'Application credentials and app-only access: Book 04 Ch05, Non-Person Identity Ch04'
   workbook:
   - docs/books/b04-access/05-applications-and-workload-identities.md#credentials
   - docs/training/non-person-identity/04-credential-rules.md
   - docs/books/guides/non-person-identity-implementation.md
-  cited_by: []
+  cited_by:
+  - docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md
+  - docs/project-plans/developer-workbooks/non-person-identity/08-conditional-access-for-workload-identities.md
 - path: docs/identity-platform/howto-create-service-principal-portal.md
   url: https://learn.microsoft.com/entra/identity-platform/howto-create-service-principal-portal
   title: Register a Microsoft Entra app and create a service principal
