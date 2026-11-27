@@ -1,0 +1,3 @@
+{ "syncEnabled": true, "lastSyncUtc": "2026-11-26T11:40:00Z", "ageMinutes": 20, "provisioningErrors": 1,
+  "errorObjects": ["a1000000-0000-4000-8000-000000000106"],
+  "services": [ { "service": "Exchange Online", "status": "serviceOperational" }, { "service": "Microsoft Entra", "status": "serviceOperational" }, { "service": "Microsoft Intune", "status": "serviceOperational" } ] }

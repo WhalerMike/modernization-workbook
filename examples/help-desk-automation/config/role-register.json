@@ -1,0 +1,10 @@
+{
+  "_comment": "The approved custom roles (Book 15, Chapter 12, task 8): each role's exact permissions, the group that holds it, the tasks it exists for and when it's next reviewed. The role review compares the tenant with this register. Fictional; copy and edit at work.",
+  "reviewEveryDays": 90,
+  "roles": [
+    { "provider": "intune", "displayName": "Help Desk Device Actions (fictional)", "permissions": ["Microsoft.Intune_ManagedDevices_Read", "Microsoft.Intune_RemoteTasks_ResetPasscode", "Microsoft.Intune_RemoteTasks_RemoteLock"],
+      "group": "GRP-HelpDesk-DeviceActions", "tasks": ["Reset a mobile device passcode", "Lock a lost device"], "lastReviewed": "2026-10-01" },
+    { "provider": "directory", "displayName": "Help Desk Password Reset Tier 2 (fictional)", "permissions": ["microsoft.directory/users/password/update", "microsoft.directory/users/basic/read"],
+      "group": "GRP-HelpDesk-Tier2", "tasks": ["Password reset for nonadmin users"], "lastReviewed": "2026-07-15" }
+  ]
+}

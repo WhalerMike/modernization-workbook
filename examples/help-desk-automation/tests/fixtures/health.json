@@ -1,0 +1,5 @@
+[
+  { "service": "Microsoft Entra", "status": "serviceOperational", "issues": [] },
+  { "service": "Exchange Online", "status": "serviceDegradation", "issues": [ { "id": "EX000001", "title": "Some users can't send mail (fictional)" } ] },
+  { "service": "Microsoft Intune", "status": "serviceOperational", "issues": [] }
+]

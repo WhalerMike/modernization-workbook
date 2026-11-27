@@ -1,0 +1,22 @@
+{
+  "appConsentRequests": [
+    { "id": "c2000000-0000-4000-8000-000000000201", "appId": "f3000000-0000-4000-8000-000000000301", "appDisplayName": "Contoso Dashboards (fictional)",
+      "pendingScopes": [ { "displayName": "User.Read" }, { "displayName": "openid" } ] },
+    { "id": "c2000000-0000-4000-8000-000000000202", "appId": "f3000000-0000-4000-8000-000000000302", "appDisplayName": "Fabrikam File Sync (fictional)",
+      "pendingScopes": [ { "displayName": "Files.ReadWrite.All" }, { "displayName": "Sites.Read.All" } ] },
+    { "id": "c2000000-0000-4000-8000-000000000203", "appId": "f3000000-0000-4000-8000-000000000303", "appDisplayName": "Northwind Survey (fictional)",
+      "pendingScopes": [ { "displayName": "User.Read" } ] }
+  ],
+  "userConsentRequests": {
+    "c2000000-0000-4000-8000-000000000201": [
+      { "id": "u1", "status": "InProgress", "reason": "Team dashboards", "createdDateTime": "2026-11-25T14:00:00Z", "createdBy": { "user": { "id": "a1000000-0000-4000-8000-000000000101" } } }
+    ],
+    "c2000000-0000-4000-8000-000000000202": [
+      { "id": "u2", "status": "InProgress", "reason": "Sync project files", "createdDateTime": "2026-11-12T09:30:00Z", "createdBy": { "user": { "id": "a1000000-0000-4000-8000-000000000104" } } },
+      { "id": "u3", "status": "InProgress", "reason": "Same", "createdDateTime": "2026-11-20T10:00:00Z", "createdBy": { "user": { "id": "a1000000-0000-4000-8000-000000000101" } } }
+    ],
+    "c2000000-0000-4000-8000-000000000203": [
+      { "id": "u4", "status": "Completed", "reason": "Old request", "createdDateTime": "2026-10-01T10:00:00Z", "createdBy": { "user": { "id": "a1000000-0000-4000-8000-000000000101" } } }
+    ]
+  }
+}

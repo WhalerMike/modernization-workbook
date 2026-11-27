@@ -100,6 +100,8 @@ Consent restriction governs *who* may approve an integration. It doesn't decide 
 4. **Declare the endpoints.** The application's sign-on and provisioning endpoints, ports and protocols are recorded, so network allow-lists derive from the declaration and an undeclared endpoint shows up as drift.
 5. **Close and re-check.** Closure records the verdict, the scoped consent and the endpoint declaration; the authorization is re-checked on a cadence and a lapse raises a task (CA-7).
 
+The [help desk automation pack](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/help-desk-automation) reads the pending requests on a schedule and flags those waiting too long and those asking for broad permissions; the verdict stays with the approver.
+
 ### 4. Creating an account
 
 **Catalog item:** `entra.jml.joiner` · **Supports:** AC-2, with AC-6 and IA-5
@@ -124,6 +126,8 @@ If the requester writes the command and the operator runs it under administrator
 2. **Originate and authorize.** The request resolves against the authoritative record for the objects it changes, and the change type's approval gate holds it.
 3. **Elevate and act.** The script acts through Graph under a just-in-time scoped role.
 4. **Close with provenance.** The closing record captures the exact parameters, the before-and-after state of each changed object, and a check confirming the intended change and nothing broader. A genuinely one-off bulk change outside the catalog is a change-managed, peer-reviewed, logged operation ([Book 13, Chapter 10](../b13-governance/10-ticket-to-machine.md)); never an emailed command.
+
+The [help desk automation pack](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/help-desk-automation) implements this for a change to one user: the request carries a change id, a user and a value, the plan records the value before and after, and the change applies only with the approved plan's SHA-256.
 
 ### 6. The morning synchronization check
 

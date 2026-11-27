@@ -1,0 +1,17 @@
+{
+  "directoryDefinitions": [
+    { "id": "d4000000-0000-4000-8000-000000000401", "displayName": "Help Desk Password Reset Tier 2 (fictional)", "isBuiltIn": false,
+      "rolePermissions": [ { "allowedResourceActions": [ "microsoft.directory/users/password/update", "microsoft.directory/users/basic/read" ] } ] },
+    { "id": "d4000000-0000-4000-8000-000000000402", "displayName": "Temporary Contractor Admin (fictional)", "isBuiltIn": false,
+      "rolePermissions": [ { "allowedResourceActions": [ "microsoft.directory/users/basic/update" ] } ] }
+  ],
+  "directoryAssignments": [
+    { "id": "ra1", "roleDefinitionId": "d4000000-0000-4000-8000-000000000401", "principalId": "e5000000-0000-4000-8000-000000000501", "principal": { "@odata.type": "#microsoft.graph.group" } },
+    { "id": "ra2", "roleDefinitionId": "d4000000-0000-4000-8000-000000000401", "principalId": "a1000000-0000-4000-8000-000000000101", "principal": { "@odata.type": "#microsoft.graph.user" } }
+  ],
+  "intuneDefinitions": [
+    { "id": "b6000000-0000-4000-8000-000000000601", "displayName": "Help Desk Device Actions (fictional)", "isBuiltIn": false,
+      "rolePermissions": [ { "resourceActions": [ { "allowedResourceActions": [ "Microsoft.Intune_ManagedDevices_Read", "Microsoft.Intune_RemoteTasks_ResetPasscode", "Microsoft.Intune_RemoteTasks_RemoteLock", "Microsoft.Intune_RemoteTasks_Wipe" ] } ] } ] },
+    { "id": "b6000000-0000-4000-8000-000000000602", "displayName": "Help Desk Operator", "isBuiltIn": true, "rolePermissions": [] }
+  ]
+}

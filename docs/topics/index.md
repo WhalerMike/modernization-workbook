@@ -17,7 +17,7 @@ Each row shows what a topic has. A cell that says **gap** is something readers n
 | [Attribute-Driven Migration](attribute-driven-migration.md) | 6 | 1 | 4 | 10 chapters | 9 modules | yes | 28 | 3 zips |
 | [Provider Notices](provider-notices.md) | 5 | [not needed](#gaps) | 1 | 8 chapters | 9 modules | yes | 20 | 1 zip |
 | [Privileged Access](privileged-access.md) | 8 | 1 | 1 | 9 chapters | 8 modules | yes | 19 | 1 zip |
-| [Ticket-to-Machine](ticket-to-machine.md) | 4 | 1 | 3 | 9 chapters | 7 modules | yes | 21 | 2 zips |
+| [Ticket-to-Machine](ticket-to-machine.md) | 4 | 1 | 3 | 9 chapters | 7 modules | yes | 21 | 3 zips |
 | [HR-Driven Identity](hr-driven-identity.md) | 7 | 1 | 2 | 8 chapters | 7 modules | yes | 25 | 1 zip |
 | [Global Secure Access](global-secure-access.md) | 7 | 1 | 1 | 9 chapters | 6 modules | yes | 17 | 1 zip |
 | [Defender XDR](defender-xdr.md) | 5 | [not needed](#gaps) | 1 | 9 chapters | 5 modules | yes | 19 | 1 zip |

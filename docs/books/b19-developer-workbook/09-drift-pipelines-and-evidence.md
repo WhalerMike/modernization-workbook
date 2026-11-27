@@ -311,6 +311,22 @@ python -m pytest oscal/tests -q
 
    ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/adm/09-5.txt))](captures/09-5.png){.lightbox fig-alt="Terminal window showing python python/drift_pipeline.py compare --previous $PREV --current $CURR --ou… and what it printed"}
 
+   ::: {.callout-note title="drift-summary.md, formatted"}
+   **Drift report**
+
+   Current run **2026-10-29-0617-fixture-runner-fixture** (gcc, Fixture); previous run **2026-10-28-0617-fixture-runner-fixture**.
+
+   New 3, resolved 1, changed 1, detail only 1, unchanged 6, unverified checks 2.
+
+   | Check | Before | After |
+   |---|---|---|
+   | VK-CA-01 | Pass | Fail |
+   | VK-NPI-03 | Fail | Error |
+   | VK-PIV-01 | Pass | not run |
+
+   Object names are in drift-report.json, which goes to the evidence store, not to the issue tracker.
+   :::
+
    <!-- capture:end -->
 
    Exit `2`: new 3, resolved 1, changed 1, detail only 1, unchanged 6, unverified checks 2. The table shows VK-CA-01 `Pass` to `Fail`, VK-NPI-03 `Fail` to `Error`, and VK-PIV-01 `Pass` to `not run`. VK-NPI-03's finding is unverified, not resolved: its read failed with a 403.
