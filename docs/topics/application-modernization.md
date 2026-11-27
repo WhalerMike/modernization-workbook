@@ -56,7 +56,7 @@ The implementation guides, the developer workbook and its code.
 
 : Build {.striped .hover}
 
-The code is in [`examples/app-modernization`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/app-modernization) on GitHub, and in the code zip under [Download](#download).
+The code is in [`examples/app-modernization`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/app-modernization) and [`examples/app-retirement`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/app-retirement) on GitHub, and in the code zip under [Download](#download).
 
 ## Learn {#learn}
 
@@ -89,6 +89,7 @@ Word editions and code, rebuilt on every site deploy.
 |---|---|
 | [app-modernization.zip](../../downloads/app-modernization.zip) | Code: the scripts, tests and fixtures, as committed |
 | [b18-application-modernization-bundle.docx](../../downloads/b18-application-modernization-bundle.docx) | Word edition: Book 18 — Application Modernization |
+| [app-retirement.zip](../../downloads/app-retirement.zip) | Code: the scripts, tests and fixtures, as committed |
 
 : Downloads {.striped .hover}
 

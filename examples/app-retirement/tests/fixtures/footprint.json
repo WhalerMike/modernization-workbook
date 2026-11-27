@@ -1,0 +1,16 @@
+{
+  "_comment": "A fictional application being retired: its decision, its records disposition, its schedule and everything it left behind, assembled from the CMDB, DNS, the certificate inventory, Active Directory, Entra ID, the firewall, the SIEM and license exports.",
+  "application": { "name": "Grants Tracker (fictional)", "cmdbId": "CI0045821", "owner": "grants.owner@contoso.example", "disposition": "Replace",
+                   "replacement": "Grants module of the shared service (fictional)", "decisionRecord": "PORT-2026-118", "decisionDate": "2026-08-14" },
+  "records": { "officerSignoff": "2026-09-02", "disposition": "migrated", "authority": "Agency schedule N1-000-00-1 (fictional)", "archiveLocation": "Grants module (migrated)", "confirmedDate": "2026-10-15" },
+  "schedule": { "quietFrom": "2026-10-20", "switchOff": "2026-11-03", "removeAfterDays": 30 },
+  "entraApps": [ { "appId": "f3000000-0000-4000-8000-000000000501", "displayName": "Grants Tracker (fictional)", "accountEnabled": false, "lastSignIn": "2026-10-18T16:02:00Z" } ],
+  "dns": [ { "zone": "corp.contoso.example", "name": "grants", "type": "A", "data": "10.40.2.17", "dnsServer": "DNS01", "removedOn": null } ],
+  "certificates": [ { "subject": "CN=grants.corp.contoso.example", "serial": "4f0000002a", "issuer": "Contoso Issuing CA 1 (fictional)", "notAfter": "2027-03-01", "revokedOn": null } ],
+  "accounts": [ { "sam": "svc-grants", "kind": "user", "spns": ["HTTP/grants.corp.contoso.example"], "disabledOn": "2026-11-03", "deletedOn": null },
+                { "sam": "gmsa-grantsjob$", "kind": "gmsa", "spns": [], "disabledOn": null, "deletedOn": null } ],
+  "firewallRules": [ { "id": "FW-2291", "description": "Users to grants:443", "removedOn": "2026-11-10" } ],
+  "monitoring": [ { "source": "Grants Tracker IIS logs (fictional)", "removedOn": null } ],
+  "licenses": [ { "sku": "Reporting add-on (fictional)", "count": 40, "releasedOn": null } ],
+  "dependents": [ { "system": "Budget Reporting (fictional)", "lastSeen": "2026-10-12" }, { "system": "Payments Gateway (fictional)", "lastSeen": "2026-10-28" } ]
+}

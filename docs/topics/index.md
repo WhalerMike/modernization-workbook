@@ -33,7 +33,7 @@ Each row shows what a topic has. A cell that says **gap** is something readers n
 | [Platform Host](platform-host.md) | 4 | [not needed](#gaps) | 1 | [not needed](#gaps) | [gap](#gaps) | [gap](#gaps) | [gap](#gaps) | 1 zip |
 | [Information Protection](information-protection.md) | 6 | 1 | 2 | 9 chapters | 5 modules | yes | 1 | 1 zip |
 | [Compliance and Evidence](compliance-evidence.md) | 13 | 2 | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | [not needed](#gaps) | 14 | 3 zips |
-| [Application Modernization](application-modernization.md) | 7 | [not needed](#gaps) | [not needed](#gaps) | 7 chapters | 7 modules | yes | 3 | 1 zip |
+| [Application Modernization](application-modernization.md) | 7 | [not needed](#gaps) | [not needed](#gaps) | 7 chapters | 7 modules | yes | 3 | 2 zips |
 
 : Topic hubs {.striped .hover}
 

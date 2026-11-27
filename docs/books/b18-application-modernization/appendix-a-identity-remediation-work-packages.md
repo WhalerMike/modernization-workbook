@@ -370,7 +370,7 @@ Control names are from NIST's release 5.2.0 catalog.[^b18aA-sp80053] The packs s
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 10 — Running the Portfolio in Waves](10-running-the-portfolio-in-waves.md) · [Book index](index.md)
+[← Previous: Chapter 10 — Running the Portfolio in Waves](10-running-the-portfolio-in-waves.md) · [Book index](index.md) · [Next: Appendix B — Shutting Down a Retired or Replaced Application →](appendix-b-shutting-down-a-retired-application.md)
 :::
 
 [^b18aA-graph-activity]: Microsoft Learn, "Access Microsoft Graph activity logs" (available in the global service; requires Entra ID P1 or P2; Security Administrator configures the diagnostic settings; `AppId` and `RequestUri` columns), <https://learn.microsoft.com/graph/microsoft-graph-activity-logs-overview> (accessed Nov 11, 2026).
