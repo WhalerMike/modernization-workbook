@@ -35,7 +35,7 @@ The pitch and the framing are this workbook's design guidance. The facts come fr
 
 - Authorization of systems and boundary changes, and acceptance of residual risk.
 - Approval of plans of action and milestones.
-- Legacy authentication and NTLM end dates, because keeping legacy authentication open is a risk acceptance and BOD 25-01 makes blocking it a mandatory baseline.
+- Legacy authentication and NTLM end dates, because keeping legacy authentication open is a risk acceptance and BOD 25-01 makes blocking it a mandatory baseline for Microsoft 365 tenants.
 - Deviations from the mandatory BOD 25-01 baselines, which agencies must explain when they report.
 
 **What you get in return**

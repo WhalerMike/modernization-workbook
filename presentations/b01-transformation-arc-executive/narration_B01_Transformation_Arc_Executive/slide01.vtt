@@ -1,82 +1,82 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:00.763
+00:00:00.100 --> 00:00:01.012
 Welcome.
 
 2
-00:00:00.763 --> 00:00:04.043
+00:00:01.012 --> 00:00:04.141
 This is the executive briefing
 for The Transformation Arc,
 
 3
-00:00:04.043 --> 00:00:07.124
+00:00:04.141 --> 00:00:07.125
 one of the books of the
 Federal Modernization Workbook.
 
 4
-00:00:07.124 --> 00:00:11.224
+00:00:07.125 --> 00:00:11.132
 It runs about thirty minutes, and it's
 for the people who sponsor, fund,
 
 5
-00:00:11.224 --> 00:00:15.836
+00:00:11.132 --> 00:00:15.640
 secure and authorize the move from a
 domain-joined estate to cloud identity,
 
 6
-00:00:15.836 --> 00:00:19.350
+00:00:15.640 --> 00:00:19.075
 cloud device management and
 governed hybrid operations.
 
 7
-00:00:19.350 --> 00:00:22.062
+00:00:19.075 --> 00:00:21.463
 The argument fits in three sentences.
 
 8
-00:00:22.062 --> 00:00:27.077
+00:00:21.463 --> 00:00:26.039
 For twenty years Active Directory
 quietly did governance nobody wrote down,
 
 9
-00:00:27.077 --> 00:00:31.074
+00:00:26.039 --> 00:00:29.687
 so modernization is a governance
 rebuild, not a platform swap.
 
 10
-00:00:31.074 --> 00:00:34.376
+00:00:29.687 --> 00:00:32.680
 The estate has to be analyzed
 before anything moves,
 
 11
-00:00:34.376 --> 00:00:38.675
+00:00:32.680 --> 00:00:36.576
 and the work delivered in gated
 phases with a rollback at every step.
 
 12
-00:00:38.675 --> 00:00:43.237
+00:00:36.576 --> 00:00:41.013
 And leadership's job is to conduct the
 orchestra, not to play the instruments.
 
 13
-00:00:43.237 --> 00:00:46.410
+00:00:41.013 --> 00:00:43.926
 I'll cover why this is hard,
 what changes, who leads,
 
 14
-00:00:46.410 --> 00:00:51.012
+00:00:43.926 --> 00:00:48.151
 and how to deliver it, all the way to
 the retirement of Active Directory.
 
 15
-00:00:51.012 --> 00:00:53.500
+00:00:48.151 --> 00:00:50.637
 There's no configuration on these slides.
 
 16
-00:00:53.500 --> 00:00:58.125
+00:00:50.637 --> 00:00:55.050
 Each decision slide names the decision,
 who owns it, and when it's needed.
 
 17
-00:00:58.125 --> 00:01:00.310
+00:00:55.050 --> 00:00:57.120
 Let's start with how the estate got here.

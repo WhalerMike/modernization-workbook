@@ -126,7 +126,7 @@ D = decides (accountable) · R = does the work · C = consulted · blank = infor
 | Retire domain controllers, AD FS and AD-dependent services | D | C | C | R | R | C | | | C |
 | Continuous monitoring evidence and drift findings | | D | C | R | R | | | | |
 
-Two rows need comment. Legacy-authentication end dates sit with the authorizing official because keeping legacy authentication open is a risk acceptance, and BOD 25-01 makes blocking it a mandatory baseline.[^c09-bod2501] Retention before decommissioning sits with the records officer because once a domain controller is gone, its logs can't be recovered for an audit or a legal hold.
+Two rows need comment. Legacy-authentication end dates sit with the authorizing official because keeping legacy authentication open is a risk acceptance, and BOD 25-01 makes blocking it a mandatory baseline for Microsoft 365 tenants.[^c09-bod2501] Retention before decommissioning sits with the records officer because once a domain controller is gone, its logs can't be recovered for an audit or a legal hold.
 
 ## Where each book assigns ownership
 

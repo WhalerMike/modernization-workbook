@@ -1,58 +1,58 @@
 {
  "1": [
   [
-   0.05,
-   0.713,
+   0.1,
+   0.912,
    "Welcome."
   ],
   [
-   0.762,
-   6.362,
+   0.963,
+   6.162,
    "This is the executive briefing for The Transformation Arc, one of the books of the Federal Modernization Workbook."
   ],
   [
    7.125,
-   12.225,
+   11.95,
    "It runs about thirty minutes, and it's for the people who sponsor, fund, secure and authorize the move from a domain-joined estate to cloud identity, cloud device management and governed hybrid operations."
   ],
   [
-   19.35,
-   2.712,
+   19.075,
+   2.388,
    "The argument fits in three sentences."
   ],
   [
-   22.062,
-   9.012,
+   21.462,
+   8.225,
    "For twenty years Active Directory quietly did governance nobody wrote down, so modernization is a governance rebuild, not a platform swap."
   ],
   [
-   31.075,
-   7.6,
+   29.688,
+   6.888,
    "The estate has to be analyzed before anything moves, and the work delivered in gated phases with a rollback at every step."
   ],
   [
-   38.675,
-   4.562,
+   36.575,
+   4.438,
    "And leadership's job is to conduct the orchestra, not to play the instruments."
   ],
   [
-   43.237,
-   7.775,
+   41.013,
+   7.138,
    "I'll cover why this is hard, what changes, who leads, and how to deliver it, all the way to the retirement of Active Directory."
   ],
   [
-   51.013,
+   48.15,
    2.487,
    "There's no configuration on these slides."
   ],
   [
-   53.5,
-   4.625,
+   50.638,
+   4.412,
    "Each decision slide names the decision, who owns it, and when it's needed."
   ],
   [
-   58.125,
-   2.138,
+   55.05,
+   2.062,
    "Let's start with how the estate got here."
   ]
  ],
@@ -130,73 +130,73 @@
  ],
  "3": [
   [
-   0.05,
-   4.612,
+   0.1,
+   4.162,
    "Active Directory shipped with Windows 2000 as an identity directory."
   ],
   [
-   4.662,
-   8.512,
+   4.213,
+   7.888,
    "Over twenty-five years every Windows-era service wired itself into it, because it was the only governed, replicated namespace available."
   ],
   [
-   13.175,
-   2.538,
+   12.1,
+   2.712,
    "Nobody wrote down how much governance it carried."
   ],
   [
-   15.713,
-   4.275,
+   14.812,
+   3.987,
    "The organizational unit (O U) tree wasn't a folder system."
   ],
   [
-   19.988,
-   7.787,
+   18.8,
+   7.912,
    "Placing one user in a branch set their administrators, their Group Policy, their groups, their delegation and their audit boundary."
   ],
   [
-   27.775,
-   1.887,
+   26.712,
+   1.988,
    "One act, five effects."
   ],
   [
-   29.663,
-   5.638,
+   28.7,
+   4.812,
    "Entra I D has no O U tree, so each effect has to be rebuilt on purpose."
   ],
   [
-   35.3,
-   4.987,
+   33.513,
+   4.95,
    "Most migration plans count users, computers, groups and Group Policy."
   ],
   [
-   40.288,
-   10.938,
+   38.462,
+   10.525,
    "The program counts eleven categories, adding service accounts, D N S and DHCP, certificate services, radius, el-dap-bound applications and trusts."
   ],
   [
-   51.225,
-   1.438,
+   48.987,
+   1.425,
    "Those fail silently."
   ],
   [
-   52.663,
-   2.475,
+   50.413,
+   2.5,
    "No log line says governance has failed."
   ],
   [
-   55.138,
-   7.388,
+   52.913,
+   6.938,
    "Microsoft hasn't deprecated Active Directory, so there's no vendor deadline; retiring it is the agency's decision."
   ],
   [
-   62.525,
-   11.875,
+   59.85,
+   11.137,
    "That makes scope a decision for the sponsor and the C I O, when scope and funding are set: fund this as a governance transformation across all eleven categories, not a users-and-groups project."
   ],
   [
-   74.4,
-   3.125,
+   70.987,
+   3.025,
    "Next, what has to be true for the target to hold."
   ]
  ],
@@ -661,73 +661,73 @@
  ],
  "12": [
   [
-   0.05,
-   1.887,
+   0.1,
+   1.788,
    "The book's framing is simple."
   ],
   [
-   1.938,
-   4.338,
+   1.837,
+   4.25,
    "Microsoft provides the instruments; the program provides the orchestra."
   ],
   [
-   6.275,
-   6.15,
+   6.088,
+   5.8,
    "Cloud identity, device management, Conditional Access and the assessment tools are each excellent."
   ],
   [
-   12.425,
-   2.05,
+   11.887,
+   2.15,
    "But look at what each one doesn't decide."
   ],
   [
-   14.475,
-   4.425,
+   14.037,
+   4.3,
    "Cloud identity doesn't decide what your organizational structure should become."
   ],
   [
-   18.9,
-   3.425,
+   18.337,
+   3.3,
    "The assessment tools don't decide what to do with the findings."
   ],
   [
-   22.325,
-   3.55,
+   21.637,
+   3.1,
    "Every one of those gaps is a decision someone has to own."
   ],
   [
-   25.875,
-   9.238,
+   24.738,
+   8.188,
    "And with no vendor deadline forcing it, organizations without leadership migrate in pieces and end up unable to answer last year's audit questions."
   ],
   [
-   35.112,
-   5.138,
+   32.925,
+   4.775,
    "The program needs no license of its own, but the services it orchestrates do."
   ],
   [
-   40.25,
-   4.388,
+   37.7,
+   4.175,
    "Federal policy already says this belongs to more than the IT shop."
   ],
   [
-   44.638,
-   8.425,
+   41.875,
+   7.388,
    "M twenty-two oh-nine says the whole C-suite must be aligned, and it required a zero trust implementation lead within 30 days."
   ],
   [
-   53.062,
-   9.1,
+   49.263,
+   8.425,
    "M nineteen seventeen requires an agency-wide identity governance structure that includes H R, general counsel, privacy and acquisition."
   ],
   [
-   62.163,
-   10.037,
+   57.688,
+   9.8,
    "So the first decision for the sponsor and the C I O, before Phase 0: confirm who already holds those roles, and decide whether one becomes the program's steward."
   ],
   [
-   72.2,
-   2.175,
+   67.487,
+   2.212,
    "Next, the decision matrix."
   ]
  ],
@@ -785,63 +785,63 @@
  ],
  "14": [
   [
-   0.05,
-   5.375,
+   0.1,
+   4.825,
    "Three decisions often land on the wrong desk, and the book moves each one on purpose."
   ],
   [
-   5.425,
-   4.263,
+   4.875,
+   4.287,
    "First, end dates for legacy authentication and N T L M."
   ],
   [
-   9.688,
-   13.238,
-   "They sit with the authorizing official, not with the engineers who'd like more time, because keeping legacy authentication open is a risk acceptance, and B O D twenty-five oh-one makes blocking it a mandatory baseline."
+   9.162,
+   14.762,
+   "They sit with the authorizing official, not with the engineers who'd like more time, because keeping legacy authentication open is a risk acceptance, and B O D twenty-five oh-one makes blocking it a mandatory baseline for Microsoft 365 tenants."
   ],
   [
-   22.925,
-   3.525,
+   23.925,
+   3.538,
    "Second, the help desk's identity-verification procedure."
   ],
   [
-   26.45,
-   4.513,
+   27.462,
+   4.112,
    "The help desk supports users through every wave, and that makes it a target."
   ],
   [
-   30.962,
-   7.787,
+   31.575,
+   6.95,
    "sis-uh's advisory on Scattered Spider describes attackers phoning help desks to get passwords reset and M F A moved."
   ],
   [
-   38.75,
-   8.125,
+   38.525,
+   7.95,
    "So the procedure for resets and temporary access passes is a see-so decision, carried out by the help desk with narrowly scoped roles."
   ],
   [
-   46.875,
-   1.587,
+   46.475,
+   1.725,
    "Third, records."
   ],
   [
-   48.462,
-   4.1,
+   48.2,
+   3.837,
    "Retiring Active Directory retires years of access records."
   ],
   [
-   52.562,
-   8.175,
+   52.038,
+   8.05,
    "NARA's schedule keeps some for six years after an account is terminated, and once a domain controller is gone, its logs can't be recovered."
   ],
   [
-   60.737,
-   9.838,
+   60.087,
+   9.825,
    "So the records officer decides retention before anything is decommissioned, and the privacy office is consulted before any new attribute flow carries personal data."
   ],
   [
-   70.575,
-   1.75,
+   69.912,
+   1.613,
    "Now, how to deliver it."
   ]
  ],
@@ -1120,192 +1120,192 @@
  ],
  "19": [
   [
-   0.05,
-   4.175,
+   0.1,
+   3.9,
    "Two external clocks bear on the schedule, and they're easy to confuse."
   ],
   [
-   4.225,
-   9.0,
+   3.95,
+   8.287,
    "fed-ramp's Consolidated Rules for 2026, announced on June 25, 2026, govern how cloud services are certified."
   ],
   [
-   13.225,
-   18.925,
+   12.238,
+   18.887,
    "They become mandatory on January 1, 2027, except that the Vulnerability Detection and Response and Vulnerability Evaluation and Reporting rules became mandatory earlier, on December 7, 2026, and new Rev5 certification applications stop on June 11, 2027."
   ],
   [
-   32.15,
-   2.9,
+   31.125,
+   2.825,
    "None of that certifies the agency's own estate."
   ],
   [
-   35.05,
-   8.875,
+   33.95,
+   7.925,
    "Each agency still authorizes its own systems; what the 2027 date changes is the evidence your providers publish and you inherit."
   ],
   [
-   43.925,
-   15.1,
+   41.875,
+   13.875,
    "The deadlines that bind the agency directly come from O M B and sis-uh: M-26-14's logging plan and maturity levels, and B O D twenty-five oh-one's baselines for Microsoft 365 tenants."
   ],
   [
-   59.025,
+   55.75,
    2.05,
    "The estate has its own dates too."
   ],
   [
-   61.075,
-   16.988,
+   57.8,
+   15.787,
    "Windows 10 reached end of support on October 14, 2025, Windows Server 2012 security updates ended on October 13, 2026, and Windows Server 2016's end of support is January 12, 2027."
   ],
   [
-   78.062,
-   5.3,
+   73.588,
+   4.975,
    "Mainframes join the access work late, and may need other zero trust mechanisms."
   ],
   [
-   83.362,
-   10.463,
+   78.562,
+   10.075,
    "So the sponsor and the C I O sequence the program against the agency's own deadlines and end-of-support dates, starting now, not against fed-ramp's 2027 date."
   ],
   [
-   93.825,
-   2.675,
+   88.638,
+   2.638,
    "To close, the decisions in one place."
   ]
  ],
  "20": [
   [
-   0.05,
-   2.7,
+   0.1,
+   2.487,
    "So, the decisions, with their owners."
   ],
   [
-   2.75,
-   9.15,
+   2.538,
+   8.887,
    "Agency leadership and the C I O name the sponsor, the steward and the authorizing official, and the sponsor fills the matrix with one decider per row."
   ],
   [
-   11.9,
-   11.275,
+   11.425,
+   11.175,
    "The sponsor and the C I O scope all eleven categories, with D N S, DHCP and address management in the core program, and at the end retire Active Directory on evidence."
   ],
   [
-   23.175,
-   6.4,
+   22.6,
+   6.05,
    "The steward stands up the platform host and commissions the read-only assessment, both in Phase 0."
   ],
   [
-   29.575,
-   4.162,
+   28.65,
+   3.975,
    "The see-so sets the control requirements, enforced at Gate G1."
   ],
   [
-   33.737,
-   2.737,
+   32.625,
+   2.837,
    "H R defines what the worker attributes mean."
   ],
   [
-   36.475,
-   5.362,
+   35.462,
+   4.763,
    "The authorizing official agrees the automation ceiling and every exception's end date."
   ],
   [
-   41.837,
-   4.55,
+   40.225,
+   4.225,
    "And the records officer settles retention before anything is decommissioned."
   ],
   [
-   46.388,
-   2.638,
+   44.45,
+   2.525,
    "None of this needs a vendor decision on day one."
   ],
   [
-   49.025,
-   8.588,
+   46.975,
+   8.238,
    "It needs an inventory, an owner and a date: the read-only assessment, a named sponsor and steward, and Gate G0 on the calendar."
   ],
   [
-   57.612,
-   2.475,
+   55.212,
+   2.438,
    "Microsoft has supplied the instruments."
   ],
   [
-   60.087,
-   4.625,
+   57.65,
+   4.638,
    "The program is the orchestra, and the people named in this briefing have to play it."
   ],
   [
-   64.713,
-   5.312,
+   62.288,
+   5.025,
    "Retiring Active Directory is a governance transformation, and it should be led as one."
   ],
   [
-   70.025,
-   4.675,
+   67.312,
+   3.825,
    "The Transformation Arc has the detail, with every claim footnoted."
   ],
   [
-   74.7,
-   0.762,
+   71.138,
+   0.887,
    "Thank you."
   ]
  ],
  "11": [
   [
-   0.05,
-   5.075,
+   0.1,
+   4.7,
    "When Active Directory retires, being inside the network stops meaning anything."
   ],
   [
-   5.125,
-   10.05,
+   4.75,
+   9.75,
    "M twenty-two oh-nine says users should log in to applications rather than networks, and multifactor authentication belongs at the application layer, not in a VPN."
   ],
   [
-   15.175,
-   11.912,
+   14.5,
+   11.175,
    "The replacement is Zero Trust as the model, Conditional Access deciding each request, a secure access service edge replacing the VPN, and phishing-resistant authentication as the proof."
   ],
   [
-   27.087,
-   8.575,
-   "B O D twenty-five oh-one makes blocking legacy authentication and phishing-resistant M F A for all users mandatory."
+   25.675,
+   9.675,
+   "B O D twenty-five oh-one makes blocking legacy authentication and phishing-resistant M F A for all users mandatory in Microsoft 365 tenants."
   ],
   [
-   35.663,
-   7.35,
+   35.35,
+   6.975,
    "fido two keys, passkeys, Windows Hello and piv cards qualify; SMS and voice don't."
   ],
   [
-   43.013,
-   2.525,
+   42.325,
+   2.5,
    "Two consequences need an executive eye."
   ],
   [
-   45.538,
-   3.6,
+   44.825,
+   3.375,
    "Smart-card sign-in is anchored in Active Directory today."
   ],
   [
-   49.138,
-   6.088,
+   48.2,
+   6.075,
    "The card and pin stay, but certificate issuance needs a successor before Active Directory retires."
   ],
   [
-   55.225,
-   8.412,
+   54.275,
+   7.912,
    "And privilege: every human admin assignment becomes eligible and time-bound, and emergency accounts are tested at least every 90 days."
   ],
   [
-   63.638,
-   13.312,
+   62.188,
+   12.9,
    "The see-so decides: phishing-resistant M F A as the end state for everyone, Tier 0 administrators first, opening in Phase 1, and certificate issuance moved off A D DS by Gate G4."
   ],
   [
-   76.95,
-   1.5,
+   75.088,
+   1.562,
    "Next, who leads."
   ]
  ]
