@@ -11,7 +11,7 @@ doc-type: section-landing
 
 This register lists the decisions behind the workbook, from the repository's first pull request on, one entry each. Each entry gives the question, the options that were considered, the choice, the reason for it, its basis, its sources and the pages it shaped. The [Reviewers' Guide](reviewers-guide.md) explains how to check an entry and how to tell us you agree or disagree with it. Use the entry's ID when you do.
 
-There are **182** workbook decisions: 171 settled, 0 challenged and 11 superseded. Below them are the **109** decision points the sample project plans leave to the agency that adopts them.
+There are **183** workbook decisions: 172 settled, 0 challenged and 11 superseded. Below them are the **109** decision points the sample project plans leave to the agency that adopts them.
 
 ::: {.callout-note}
 ## How to read the basis
