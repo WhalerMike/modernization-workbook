@@ -15476,6 +15476,7 @@ pages:
   - docs/books/guides/hcm-entra-implementation.md
   - docs/evaluations/oracle-contingent-worker-contractor-source.md
   - docs/images/learn/identity-app-provisioning-inbound-provisioning-api-configure-app/snapshot.json
+  - docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/08-deploying-to-test-and-production.md
 - path: docs/identity/app-provisioning/inbound-provisioning-api-curl-tutorial.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-curl-tutorial
@@ -15536,6 +15537,7 @@ pages:
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
   - docs/books/b03-hr-identity/appendix-b-security-and-privacy.md
   - docs/books/guides/hcm-entra-implementation.md
+  - docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.md
 - path: docs/identity/app-provisioning/inbound-provisioning-api-graph-explorer.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-graph-explorer
   title: Quickstart API-driven inbound provisioning with Graph Explorer
@@ -15586,6 +15588,7 @@ pages:
   - data/source-register.json
   - docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md
   - docs/books/guides/hcm-entra-implementation.md
+  - docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.md
   - docs/reference/source-register.md
   - examples/hcm-entra/README.md
   - examples/third_party/csv2scim/SNAPSHOT.md
