@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
+
 """Make the labs easy to find: the Labs page, and "Try it" links in the implementation guides.
+
+A training module whose Lab 1 or Lab 2 exercise links to developer workbook chapters' labs, rather than
+writing the commands out, gets each linked chapter's command list under the exercise, between
+labs:begin module-lab-N-commands markers (a deployment module's Lab 2 takes the chapter's live test stage).
+Steps that run no command are listed as such, so a portal-only step is visible.
 
 Every developer workbook chapter except the deployment runbooks ends with two labs: "Lab 1", on the kit's fixtures with no tenant, and
 "Lab 2", in a non-production tenant, instance or subscription. The learning paths' modules have exercises
@@ -461,6 +467,100 @@ def lab_commands(md: str) -> str:
     return md
 
 
+MODULE_LAB_LINK = re.compile(r"\[([^\]]+)\]\(([^)#\s]+\.md)(#[^)\s]*)?\)")
+STEP_NOTE = re.compile(r"^(?:#|REM|//) Step (\d+)", re.M)
+
+
+def chapter_lab(chapter: Path, anchor: str, n: str) -> list[str] | None:
+    """A chapter's Lab n as the lines of its generated command list, plus the steps that run no command
+    (done in a portal or by hand), in order."""
+    md = MARKED.sub("", chapter.read_bytes().decode("utf-8"))
+    for text, hid, pos in headings(md):
+        if not re.search(rf"\bLab {n}\b", text) or (anchor and hid != anchor):
+            continue
+        sec = section(md, pos)
+        listed = lab_commands(md)                       # the chapter's own generated command list
+        m = re.search(rf'::: \{{\.callout-note #lab-{n}-commands[^\n]*\}}\n[^\n]*\n\n(.*?)^:::\n', listed, re.S | re.M)
+        body = m.group(1).rstrip("\n").split("\n") if m else []
+        with_code = {int(s) for s in STEP_NOTE.findall("\n".join(body))}
+        manual = [f"- **Step {s.group(1)}:** {re.sub(r'[`*]', '', s.group(2)).rstrip(':., ')}"
+                  for s in STEP.finditer(sec) if s.group(2) and int(s.group(1)) not in with_code]
+        if manual:
+            body += ([""] if body else []) + [
+                "Steps with no command, done in the portal or by hand as the chapter's step says:", "", *manual]
+        return body
+    return None
+
+
+def module_labs(md: str, page: Path) -> str:
+    """A training module whose Lab 1 or Lab 2 exercise points to developer workbook chapters' labs instead of
+    writing the commands out gets each chapter's commands under it, generated from the chapter, so the module
+    says exactly what to run (on the fixtures, or against the test environment) and can't drift from the chapter."""
+    for text, hid, pos in reversed(headings(md)):
+        lab = re.search(r"\bLab ([12])\b", text)
+        if not lab or not text.startswith(("Unit", "Exercise")):
+            continue
+        n = lab.group(1)
+        sec = section(md, pos)
+        if FENCE.search(MARKED.sub("", sec)):
+            continue                                     # the module writes its own commands
+        parts, seen = [], set()
+        for link in MODULE_LAB_LINK.finditer(sec):
+            if not ((link.group(3) or "").startswith(f"#lab-{n}") or f"Lab {n}" in link.group(1)):
+                continue
+            target = f"{link.group(2)}{link.group(3) or ''}"
+            chapter = (page.parent / link.group(2)).resolve()
+            if target in seen or not chapter.exists():
+                continue
+            body = chapter_lab(chapter, (link.group(3) or "#")[1:], n)
+            if body:
+                seen.add(target)
+                parts.append((link.group(1), target, body))
+        if not parts and n == "2":
+            # A deployment module's Lab 2 points to the chapter's live test stage rather than a "Lab 2" section.
+            for link in MODULE_LAB_LINK.finditer(sec):
+                anchor = (link.group(3) or "")[1:]
+                chapter = (page.parent / link.group(2)).resolve()
+                if not anchor.startswith("stage-") or not chapter.exists():
+                    continue
+                cmd = MARKED.sub("", chapter.read_bytes().decode("utf-8"))
+                hit = next(((t, p) for t, h, p in headings(cmd) if h == anchor), None)
+                if not hit:
+                    continue
+                stage = section(cmd, hit[1])
+                head, rest = stage.split("\n", 1)
+                listed = lab_commands(f"{head.split(' ', 1)[0]} Lab 2 {hit[0]}\n{rest}")
+                m = re.search(r'::: \{\.callout-note #lab-2-commands[^\n]*\}\n[^\n]*\n\n(.*?)^:::\n', listed, re.S | re.M)
+                if m:
+                    parts.append((link.group(1), f"{link.group(2)}#{anchor}", m.group(1).rstrip("\n").split("\n")))
+                    break
+        if not parts:
+            continue
+        at = pos + len(sec.split("\n", 1)[0]) + 2
+        at = md.index("\n\n", at) + 2
+        if md[pos:at].rstrip().endswith("*") and not md[at:].startswith(("- ", "1. ")):
+            at = md.index("\n\n", at) + 2
+        where = "on the kit's fixtures, with no tenant" if n == "1" else "against your test environment, never production"
+        title = "The Lab 1 commands, on the fixtures" if n == "1" else "The Lab 2 commands, against your test environment"
+        out = []
+        if len(parts) == 1:
+            out += [f"Every command in [{parts[0][0]}]({parts[0][1]}), in order, {where}.", ""]
+        else:
+            out += [f"Every command in the {len(parts)} chapters' labs, chapter by chapter, in order, {where}.", ""]
+        if n == "2":
+            out += ["Replace each `<placeholder>` with your test environment's value.", ""]
+        out += ["The chapter's steps say what each command does and what to look for.", ""]
+        for i, (label, target, body) in enumerate(parts):
+            if len(parts) > 1:
+                out += [f"**[{label}]({target})**", ""]
+            out += [*body, ""]
+        new = "\n".join([BEGIN.format(f"module-lab-{n}-commands"), "",
+                         f'::: {{.callout-note #module-lab-{n}-commands collapse="false" title="{title}"}}',
+                         *out[:-1], ":::", "", END, "", ""])
+        md = md[:at] + new + md[at:]
+    return md
+
+
 def lab_pages() -> list[Path]:
     pages = []
     for wb in WORKBOOKS:
@@ -482,6 +582,8 @@ def main() -> int:
             files[p] = place(wb, p.read_bytes().decode("utf-8"))
     for p in lab_pages():
         files[p] = lab_commands(p.read_bytes().decode("utf-8"))
+        if "docs/training/" in p.as_posix():
+            files[p] = module_labs(files[p], p)
     stale = [p for p, t in files.items() if not p.exists() or p.read_bytes().decode("utf-8") != t]
     if a.check:
         if stale:
