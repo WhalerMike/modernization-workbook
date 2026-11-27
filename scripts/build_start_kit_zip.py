@@ -60,7 +60,7 @@ KITS = ("start-kit", "copilot-agent-pack", "app-modernization", "ansible", "vali
         "cisco-sdwan", "ticket-to-machine-task-catalog", "dp-consolidation", "provider-notices-code",
         "zta-results", "global-secure-access-code", "azure-security-code", "defender-xdr-code",
         "daily-checks-workbook-code", "information-protection-code",
-        "sql-server-identity-code", "msa-request-pack", "platform-host-code", "estate-inventory-code", "help-desk-automation", "app-retirement", "all-kits")
+        "sql-server-identity-code", "msa-request-pack", "platform-host-code", "estate-inventory-code", "help-desk-automation", "ad-retirement-evidence", "app-retirement", "all-kits")
 # Kits packed from several examples folders, each kept under its own path, instead of
 # from examples/<kit>. The Attribute-Driven Migration developer workbook's chapters 01-09
 # build on these folders and the Microsoft samples pinned under third_party/.

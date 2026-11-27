@@ -1,0 +1,13 @@
+{
+  "_comment": "The documented Kerberos island, if the agency keeps one at G5 (Book 01, Chapter 12; WD-065; WD-183): each domain controller kept, the workloads it still serves, their owner and the island's end-of-life date. Empty domainControllers means full retirement. Fictional; copy and edit at work.",
+  "domain": "corp.contoso.example",
+  "endOfLife": "2028-09-30",
+  "owner": "Platform lead",
+  "domainControllers": ["DC-ISLAND01"],
+  "workloads": [
+    { "name": "Legacy payroll interface (fictional)", "accounts": ["svc-payroll-if", "gmsa-payrollif$"], "spns": ["HTTP/payroll-if.corp.contoso.example"], "endOfLife": "2028-06-30" }
+  ],
+  "trusts": [],
+  "allowedHosts": ["PAYROLL-IF01", "DC-ISLAND01", "PLATFORM01"],
+  "authWindowDays": 30
+}
