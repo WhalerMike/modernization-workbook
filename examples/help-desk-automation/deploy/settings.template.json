@@ -1,0 +1,11 @@
+{
+  "_comment": "Settings for the scheduled jobs on the platform host (WD-181). Copy outside the kit's folder, fill in every <placeholder>, and keep the copy in the run's folder, which only the run account and the host's Tier 0 administrators can read. No secret goes in this file: the reader app signs in with the certificate file named here.",
+  "tenantId": "<tenant id>",
+  "clientId": "<help desk audit reader app's application id>",
+  "certificatePath": "D:\\HelpDeskAutomation\\credentials\\reader.pfx",
+  "subscriptionId": "<subscription holding the Arc machines and the workspace>",
+  "runsPath": "D:\\HelpDeskAutomation\\runs",
+  "configPath": "D:\\HelpDeskAutomation\\config",
+  "runAs": "<domain>\\gmsa-fmpassess$",
+  "kitPath": "D:\\HelpDeskAutomation\\help-desk-automation"
+}

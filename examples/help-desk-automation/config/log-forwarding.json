@@ -1,0 +1,7 @@
+{
+  "_comment": "Which servers must forward their Windows event logs to the Log Analytics workspace through Azure Monitor Agent, and how fresh their newest event must be (Book 15, Chapter 12, task 7). The servers are Azure Arc-enabled; the data collection rule is deploy/eventlog-dcr.json. Fictional; copy and edit at work.",
+  "workspaceId": "<workspace id>",
+  "dataCollectionRuleName": "dcr-windows-events-identity-servers",
+  "maxSilenceHours": 6,
+  "servers": ["SYNC01", "SYNC02"]
+}

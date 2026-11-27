@@ -1,0 +1,4 @@
+[
+  { "name": "SYNC01", "rule": "/subscriptions/00000000-0000-4000-8000-000000000000/resourceGroups/rg-identity/providers/Microsoft.Insights/dataCollectionRules/dcr-windows-events-identity-servers" },
+  { "name": "SYNC02", "rule": "" }
+]
