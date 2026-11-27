@@ -92,6 +92,7 @@ CONT = {"bash": "> ", "powershell": ">> "}
 # A command that prints one Markdown file as it is, and a Markdown table's separator row.
 SHOWS_MD = re.compile(r'^(?:\$|PS>) (?:cat|Get-Content) "?([^\s|"]+\.md)"?\s*$')
 TABLE_RULE = re.compile(r"^\|[-:| ]+\|\s*$", re.M)
+GUID_TEXT = re.compile(r"(?<![`\w-])([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})(?![`\w-])")
 
 
 def lab_span(md: str) -> tuple[int, int] | None:
@@ -416,6 +417,8 @@ def formatted(name: str, body: str, ind: str) -> str:
     rows = []
     for line in body.split("\n"):
         h = re.match(r"^#{1,6} +(.*)$", line)
+        # IDs read as code, as everywhere else in the workbook (scripts/check_identifiers.py).
+        line = GUID_TEXT.sub(r"`\1`", line)
         rows.append(f"**{h.group(1)}**" if h else line)
     inner = "\n".join(f"{ind}{r}" if r else "" for r in rows)
     return (f'{ind}::: {{.callout-note title="{name}, formatted"}}\n'

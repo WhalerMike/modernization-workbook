@@ -479,7 +479,7 @@ rm -rf out
    ::: {.callout-note title="period-summary.md, formatted"}
    **Non-person identity evidence for the period**
 
-   Period 2026-10-28T06:00:00Z to 2026-10-30T06:00:00Z; tenant c0ffee00-0000-4000-8000-000000000001 (gcc, Fixture); 2 package(s), chain breaks 0, coverage gaps 0, unverified task runs 0. Findings opened 19, closed 1, open at the end 85.
+   Period 2026-10-28T06:00:00Z to 2026-10-30T06:00:00Z; tenant `c0ffee00-0000-4000-8000-000000000001` (gcc, Fixture); 2 package(s), chain breaks 0, coverage gaps 0, unverified task runs 0. Findings opened 19, closed 1, open at the end 85.
 
    | Control | Open findings | Open warnings | Status |
    |---|---|---|---|

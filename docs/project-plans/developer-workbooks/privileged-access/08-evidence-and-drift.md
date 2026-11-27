@@ -386,7 +386,7 @@ rm -rf out
    ::: {.callout-note title="pa-drift-summary.md, formatted"}
    **Privileged access drift report**
 
-   Current run **2026-10-30T0600Z-fixture** (gcc, Fixture, tenant 11111111-1111-4111-8111-111111111111); previous run **2026-10-29T0600Z-fixture**.
+   Current run **2026-10-30T0600Z-fixture** (gcc, Fixture, tenant `11111111-1111-4111-8111-111111111111`); previous run **2026-10-29T0600Z-fixture**.
    Audit window 2026-10-29T06:00:00Z to 2026-10-30T06:00:00Z.
 
    Incidents (Tier 0) 6. Findings: new 2, changed 0, resolved 6, unchanged 20, unverified tasks 0. Assignments: added 1, removed 1, changed 0. Audit findings 3. Coverage gaps 0.
@@ -399,12 +399,12 @@ rm -rf out
 
    | Incident | Rule or role | Tier | Object ID | Fingerprint |
    |---|---|---|---|---|
-   | assignment added | Privileged Role Administrator | T0 | a0000000-0000-4000-8000-000000000020 | 4323bc029b188d13 |
-   | assignment removed | Global Administrator | T0 | a0000000-0000-4000-8000-000000000005 | 5928390622b60afd |
-   | finding new | PA-INV-01 | T0 | a0000000-0000-4000-8000-000000000020 | 98987fe7faba3739 |
-   | audit | PA-AUD-01 | T0 | a0000000-0000-4000-8000-000000000020 | 932d0eec891401bc |
-   | audit | PA-AUD-02 | T0 | a0000000-0000-4000-8000-000000000013 | 71b6976b97ac126b |
-   | audit | PA-AUD-04 | T0 | 62e90394-69f5-4237-9190-012177145e10 | be47f0e001bbf3b2 |
+   | assignment added | Privileged Role Administrator | T0 | `a0000000-0000-4000-8000-000000000020` | 4323bc029b188d13 |
+   | assignment removed | Global Administrator | T0 | `a0000000-0000-4000-8000-000000000005` | 5928390622b60afd |
+   | finding new | PA-INV-01 | T0 | `a0000000-0000-4000-8000-000000000020` | 98987fe7faba3739 |
+   | audit | PA-AUD-01 | T0 | `a0000000-0000-4000-8000-000000000020` | 932d0eec891401bc |
+   | audit | PA-AUD-02 | T0 | `a0000000-0000-4000-8000-000000000013` | 71b6976b97ac126b |
+   | audit | PA-AUD-04 | T0 | `62e90394-69f5-4237-9190-012177145e10` | be47f0e001bbf3b2 |
 
    Names are in pa-drift-report.json, which goes to the evidence store, not to the issue tracker.
    :::
@@ -459,7 +459,7 @@ rm -rf out
    ::: {.callout-note title="period-summary.md, formatted"}
    **Privileged access evidence for the period**
 
-   Period 2026-10-28T06:00:00Z to 2026-10-30T06:00:00Z; tenant 11111111-1111-4111-8111-111111111111 (gcc, Fixture); 2 package(s), chain breaks 0, audit coverage gaps 0, unverified task runs 0.
+   Period 2026-10-28T06:00:00Z to 2026-10-30T06:00:00Z; tenant `11111111-1111-4111-8111-111111111111` (gcc, Fixture); 2 package(s), chain breaks 0, audit coverage gaps 0, unverified task runs 0.
 
    Activations 3 (T0 2, T1 1, T2 0); requests 4, approved 2, denied 1; T0 or T1 activations without approval 1; role assignments outside PIM 2 event(s); role setting changes 1; Tier 0 incidents 6.
 
