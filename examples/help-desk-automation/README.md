@@ -2,7 +2,7 @@
 
 > **Status: illustrative.** Tested on its fictional fixtures (`tests/`), not run against a live tenant. Review every line, run it first in a test tenant, and run any change only with `-Apply` and the approved plan's SHA-256.
 
-Scripts for the everyday help desk and audit tasks in [Book 15, Chapter 12](../../docs/books/b15-day2-operations/12-the-day-two-runbook.md), so a task runs from a typed request or a schedule instead of from an email under standing administrator rights. This first part covers two of them:
+Scripts for the everyday help desk and audit tasks in [Book 15, Chapter 12](../../docs/books/b15-day2-operations/12-the-day-two-runbook.md), so a task runs from a typed request or a schedule instead of from an email under standing administrator rights. It covers all eight. The first two:
 
 | Task (Book 15, Chapter 12) | What the pack does | Reads or changes | Where it runs |
 |---|---|---|---|
@@ -150,6 +150,61 @@ New-AzResourceGroupDeployment -ResourceGroupName <rg> -TemplateFile ./deploy/eve
 
 Then remove the old scheduled event-log script and its share, and the `logs` job shows each server forwarding. Microsoft Sentinel's Windows Security Events connector uses the same agent and writes the Security log to the `SecurityEvent` table instead; use it if security operations reads that table.
 
-## Next
+## The request-driven tasks: ServiceNow, SailPoint and the pipeline
 
-The request-driven tasks follow in this kit: password reset, authenticator reset, account creation and the typed change. Each is requested in ServiceNow and approved in SailPoint through the agency's system access management tool, then runs as a pre-approved script.
+Four tasks run only from an approved request ([WD-182](../../docs/about/decision-register.md#wd-182)): a typed change, a password reset, an authenticator reset and a cloud account for a partner or lab user.
+
+```text
+ServiceNow catalog item (typed variables only)
+  -> agent records identity verification (resets)
+  -> business rule hands it to the system access management tool
+  -> SailPoint approves the task's access profile (two approvers for an authenticator reset)
+  -> the pipeline on the platform host (its own gMSA, every 5 minutes):
+       re-reads the approval from SailPoint, checks, runs the pre-approved script,
+       writes the result, work notes and evidence back to the ticket
+  -> the agent reads any one-time secret to the person on a separate channel; it's cleared after 2 hours
+```
+
+| Task | What the pipeline does | Least privilege (Microsoft Learn, November 27, 2026) |
+|---|---|---|
+| Typed user change | The typed change's own checks (HT-01 to HT-08), its plan and its hash, then the change | `User.Read.All`, `User.ReadUpdate.All` |
+| Password reset | A strong temporary password the user must change at next sign-in | `User-PasswordProfile.ReadWrite.All`, with the User Administrator role, which covers nonadmin users only |
+| Authenticator reset | Removes the Authenticator app and phone methods, keeps the password, and issues a single-use Temporary Access Pass for 60 minutes | `UserAuthenticationMethod.ReadWrite.All`, `UserAuthMethod-TAP.ReadWrite.All` |
+| Cloud account | Creates the user from the item's profile (usage location, groups) | `User.Create`, `GroupMember.ReadWrite.All` |
+
+Every item is checked first. The pipeline refuses:
+
+| Check | What it refuses |
+|---|---|
+| HT-RQ-01 | A reset with no identity verification recorded, or verified by the person who asked |
+| HT-RQ-02 | A request SailPoint hasn't approved (rejected, cancelled, expired or in error); one still pending stays in the queue |
+| HT-RQ-03 | A request its own requester approved |
+| HT-RQ-04 | A user who holds a directory role: a Privileged Authentication Administrator acts by hand |
+| HT-RQ-05 | Anything else invalid: an unknown catalog item, a variable it doesn't declare, a missing or disabled user, a usage location or profile not allowed |
+
+Run it on the fixtures, a dry run that changes nothing:
+
+```powershell
+Import-Module ./powershell/HelpDeskAutomation/HelpDeskAutomation.psm1 -Force
+Invoke-HtRequestQueue -OutputPath out/queue -FixturePath tests/fixtures | Format-Table Number, Task, State, Reason
+```
+
+Of the eleven fictional items, ten are ready: four run, one waits for a pending approval, and five are refused (HT-RQ-01 to HT-RQ-05).
+
+### What each system needs
+
+- **ServiceNow** ([`servicenow/`](servicenow/)): the four catalog items and the fields on the requested item ([`catalog-items.json`](servicenow/catalog-items.json)); the hand-off business rule ([`business-rule-hand-off-to-access-management.js`](servicenow/business-rule-hand-off-to-access-management.js)); the job that clears the one-time secret ([`scheduled-job-clear-one-time-secret.js`](servicenow/scheduled-job-clear-one-time-secret.js)); and the roles ([`acl.md`](servicenow/acl.md)).
+- **SailPoint** ([`sailpoint/access-profiles.json`](sailpoint/access-profiles.json)): one requestable access profile per task, with its approval scheme in SailPoint's own shape (`accessRequestConfig.approvalSchemes`), and the pipeline's API client, `idn:access-request-status:read` only.
+- **The platform host:** the pipeline's own gMSA, requested and approved like any managed service account (an example name is `gmsa-fmphelpdesk$`); the request worker app with its certificate and the permissions above; and the ServiceNow and SailPoint client secrets in environment variables for that gMSA. Then:
+
+  ```powershell
+  ./deploy/Invoke-HtRequestPipeline.ps1 -SettingsPath D:\HelpDeskRequests\settings.json -DryRun
+  ./deploy/Register-HtRequestPipeline.ps1 -SettingsPath D:\HelpDeskRequests\settings.json
+  ./deploy/Register-HtRequestPipeline.ps1 -SettingsPath D:\HelpDeskRequests\settings.json -Apply
+  ```
+
+  Settings: [`deploy/requests-settings.template.json`](deploy/requests-settings.template.json). Registration refuses a run-as account that isn't a gMSA, or that is the assessment gMSA.
+
+## Not yet proved
+
+Nothing here has run against a live tenant, ServiceNow instance or SailPoint tenant. In a test stage, prove: each app's certificate sign-in; the worker app's permissions (Learn's table for the Temporary Access Pass names a read permission as least privileged for the whole page, so the create is declared with the write permission until a test tenant shows otherwise); the hand-off through the access management tool; and the clearing job.

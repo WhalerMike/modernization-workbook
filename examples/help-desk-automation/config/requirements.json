@@ -67,6 +67,48 @@
         "KSI-MLA-LET",
         "KSI-MLA-RVL"
       ]
+    },
+    "password-reset": {
+      "controls": [
+        "IA-5",
+        "AC-2"
+      ],
+      "ksis": [
+        "KSI-IAM-JIT"
+      ]
+    },
+    "authenticator-reset": {
+      "controls": [
+        "IA-5",
+        "IA-2",
+        "IA-12",
+        "SI-4"
+      ],
+      "ksis": [
+        "KSI-IAM-JIT",
+        "KSI-IAM-SUS"
+      ]
+    },
+    "account-create": {
+      "controls": [
+        "AC-2",
+        "AC-6",
+        "IA-5"
+      ],
+      "ksis": [
+        "KSI-IAM-AAM"
+      ]
+    },
+    "typed-change": {
+      "controls": [
+        "AC-2",
+        "AC-6",
+        "CM-3"
+      ],
+      "ksis": [
+        "KSI-CMT-LMC",
+        "KSI-IAM-JIT"
+      ]
     }
   }
 }

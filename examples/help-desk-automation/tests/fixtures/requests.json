@@ -1,0 +1,454 @@
+{
+  "_comment": "A fictional ServiceNow queue and SailPoint approvals for the request pipeline (WD-182).",
+  "ritms": [
+    {
+      "sys_id": "00000000000000000000000000000001",
+      "number": "RITM0010001",
+      "cat_item": {
+        "value": "x",
+        "display_value": "Typed user change"
+      },
+      "opened_by": {
+        "value": "s1"
+      },
+      "requested_for": {
+        "value": "r"
+      },
+      "u_isc_access_request_id": "AR-1",
+      "u_identity_verified_by": "",
+      "u_identity_verification_method": "",
+      "u_automation_state": "ready"
+    },
+    {
+      "sys_id": "00000000000000000000000000000002",
+      "number": "RITM0010002",
+      "cat_item": {
+        "value": "x",
+        "display_value": "Password reset"
+      },
+      "opened_by": {
+        "value": "s1"
+      },
+      "requested_for": {
+        "value": "r"
+      },
+      "u_isc_access_request_id": "AR-2",
+      "u_identity_verified_by": "agent-7",
+      "u_identity_verification_method": "Callback to the phone number in the HR record",
+      "u_automation_state": "ready"
+    },
+    {
+      "sys_id": "00000000000000000000000000000003",
+      "number": "RITM0010003",
+      "cat_item": {
+        "value": "x",
+        "display_value": "Authenticator reset"
+      },
+      "opened_by": {
+        "value": "s1"
+      },
+      "requested_for": {
+        "value": "r"
+      },
+      "u_isc_access_request_id": "AR-3",
+      "u_identity_verified_by": "agent-7",
+      "u_identity_verification_method": "In person with a PIV card",
+      "u_automation_state": "ready"
+    },
+    {
+      "sys_id": "00000000000000000000000000000004",
+      "number": "RITM0010004",
+      "cat_item": {
+        "value": "x",
+        "display_value": "Authenticator reset"
+      },
+      "opened_by": {
+        "value": "s1"
+      },
+      "requested_for": {
+        "value": "r"
+      },
+      "u_isc_access_request_id": "AR-4",
+      "u_identity_verified_by": "agent-7",
+      "u_identity_verification_method": "Callback to the phone number in the HR record",
+      "u_automation_state": "ready"
+    },
+    {
+      "sys_id": "00000000000000000000000000000005",
+      "number": "RITM0010005",
+      "cat_item": {
+        "value": "x",
+        "display_value": "Password reset"
+      },
+      "opened_by": {
+        "value": "s1"
+      },
+      "requested_for": {
+        "value": "r"
+      },
+      "u_isc_access_request_id": "AR-5",
+      "u_identity_verified_by": "",
+      "u_identity_verification_method": "",
+      "u_automation_state": "ready"
+    },
+    {
+      "sys_id": "00000000000000000000000000000006",
+      "number": "RITM0010006",
+      "cat_item": {
+        "value": "x",
+        "display_value": "Cloud account for a partner or lab user"
+      },
+      "opened_by": {
+        "value": "s1"
+      },
+      "requested_for": {
+        "value": "r"
+      },
+      "u_isc_access_request_id": "AR-6",
+      "u_identity_verified_by": "",
+      "u_identity_verification_method": "",
+      "u_automation_state": "ready"
+    },
+    {
+      "sys_id": "00000000000000000000000000000007",
+      "number": "RITM0010007",
+      "cat_item": {
+        "value": "x",
+        "display_value": "Typed user change"
+      },
+      "opened_by": {
+        "value": "s1"
+      },
+      "requested_for": {
+        "value": "r"
+      },
+      "u_isc_access_request_id": "AR-7",
+      "u_identity_verified_by": "",
+      "u_identity_verification_method": "",
+      "u_automation_state": "ready"
+    },
+    {
+      "sys_id": "00000000000000000000000000000008",
+      "number": "RITM0010008",
+      "cat_item": {
+        "value": "x",
+        "display_value": "Typed user change"
+      },
+      "opened_by": {
+        "value": "s1"
+      },
+      "requested_for": {
+        "value": "r"
+      },
+      "u_isc_access_request_id": "AR-8",
+      "u_identity_verified_by": "",
+      "u_identity_verification_method": "",
+      "u_automation_state": "ready"
+    },
+    {
+      "sys_id": "00000000000000000000000000000009",
+      "number": "RITM0010009",
+      "cat_item": {
+        "value": "x",
+        "display_value": "Run this PowerShell for me"
+      },
+      "opened_by": {
+        "value": "s1"
+      },
+      "requested_for": {
+        "value": "r"
+      },
+      "u_isc_access_request_id": "AR-9",
+      "u_identity_verified_by": "",
+      "u_identity_verification_method": "",
+      "u_automation_state": "ready"
+    },
+    {
+      "sys_id": "0000000000000000000000000000000a",
+      "number": "RITM0010010",
+      "cat_item": {
+        "value": "x",
+        "display_value": "Typed user change"
+      },
+      "opened_by": {
+        "value": "s1"
+      },
+      "requested_for": {
+        "value": "r"
+      },
+      "u_isc_access_request_id": "AR-10",
+      "u_identity_verified_by": "",
+      "u_identity_verification_method": "",
+      "u_automation_state": "done"
+    },
+    {
+      "sys_id": "0000000000000000000000000000000b",
+      "number": "RITM0010011",
+      "cat_item": {
+        "value": "x",
+        "display_value": "Typed user change"
+      },
+      "opened_by": {
+        "value": "s1"
+      },
+      "requested_for": {
+        "value": "r"
+      },
+      "u_isc_access_request_id": "AR-11",
+      "u_identity_verified_by": "",
+      "u_identity_verification_method": "",
+      "u_automation_state": "ready"
+    }
+  ],
+  "variables": {
+    "00000000000000000000000000000001": {
+      "user_principal_name": "avery.lane@contoso.example",
+      "change_id": "set-department",
+      "value": "Records"
+    },
+    "00000000000000000000000000000002": {
+      "user_principal_name": "devon.park@contoso.example"
+    },
+    "00000000000000000000000000000003": {
+      "user_principal_name": "erin.quinn@contoso.example"
+    },
+    "00000000000000000000000000000004": {
+      "user_principal_name": "devon.park@contoso.example"
+    },
+    "00000000000000000000000000000005": {
+      "user_principal_name": "devon.park@contoso.example"
+    },
+    "00000000000000000000000000000006": {
+      "given_name": "Jordan",
+      "surname": "Reyes",
+      "user_principal_name": "jordan.reyes@contoso.example",
+      "usage_location": "US",
+      "profile": "lab-user"
+    },
+    "00000000000000000000000000000007": {
+      "user_principal_name": "avery.lane@contoso.example",
+      "change_id": "set-job-title",
+      "value": "Senior Analyst"
+    },
+    "00000000000000000000000000000008": {
+      "user_principal_name": "avery.lane@contoso.example",
+      "change_id": "set-job-title",
+      "value": "Lead Analyst"
+    },
+    "00000000000000000000000000000009": {
+      "command": "Set-EntraUser -UserId x -Department y"
+    },
+    "0000000000000000000000000000000b": {
+      "user_principal_name": "avery.lane@contoso.example",
+      "change_id": "set-office-location",
+      "value": "Building 4"
+    }
+  },
+  "isc": {
+    "AR-1": [
+      {
+        "accessRequestId": "AR-1",
+        "state": "EXECUTING",
+        "requester": {
+          "id": "idn-req-1"
+        },
+        "approvalDetails": [
+          {
+            "approvalId": "ap-AR-1",
+            "status": "APPROVED",
+            "currentOwner": {
+              "id": "idn-mgr-1"
+            }
+          }
+        ]
+      }
+    ],
+    "AR-2": [
+      {
+        "accessRequestId": "AR-2",
+        "state": "EXECUTING",
+        "requester": {
+          "id": "idn-req-1"
+        },
+        "approvalDetails": [
+          {
+            "approvalId": "ap-AR-2",
+            "status": "APPROVED",
+            "currentOwner": {
+              "id": "idn-mgr-1"
+            }
+          }
+        ]
+      }
+    ],
+    "AR-3": [
+      {
+        "accessRequestId": "AR-3",
+        "state": "EXECUTING",
+        "requester": {
+          "id": "idn-req-1"
+        },
+        "approvalDetails": [
+          {
+            "approvalId": "ap-AR-3",
+            "status": "APPROVED",
+            "currentOwner": {
+              "id": "idn-mgr-1"
+            }
+          }
+        ]
+      }
+    ],
+    "AR-4": [
+      {
+        "accessRequestId": "AR-4",
+        "state": "EXECUTING",
+        "requester": {
+          "id": "idn-req-1"
+        },
+        "approvalDetails": [
+          {
+            "approvalId": "ap-AR-4",
+            "status": "APPROVED",
+            "currentOwner": {
+              "id": "idn-mgr-1"
+            }
+          }
+        ]
+      }
+    ],
+    "AR-5": [
+      {
+        "accessRequestId": "AR-5",
+        "state": "EXECUTING",
+        "requester": {
+          "id": "idn-req-1"
+        },
+        "approvalDetails": [
+          {
+            "approvalId": "ap-AR-5",
+            "status": "APPROVED",
+            "currentOwner": {
+              "id": "idn-mgr-1"
+            }
+          }
+        ]
+      }
+    ],
+    "AR-6": [
+      {
+        "accessRequestId": "AR-6",
+        "state": "EXECUTING",
+        "requester": {
+          "id": "idn-req-1"
+        },
+        "approvalDetails": [
+          {
+            "approvalId": "ap-AR-6",
+            "status": "APPROVED",
+            "currentOwner": {
+              "id": "idn-mgr-1"
+            }
+          }
+        ]
+      }
+    ],
+    "AR-7": [
+      {
+        "accessRequestId": "AR-7",
+        "state": "REJECTED",
+        "requester": {
+          "id": "idn-req-1"
+        },
+        "approvalDetails": [
+          {
+            "approvalId": "ap-AR-7",
+            "status": "REJECTED",
+            "currentOwner": {
+              "id": "idn-mgr-1"
+            }
+          }
+        ]
+      }
+    ],
+    "AR-8": [
+      {
+        "accessRequestId": "AR-8",
+        "state": "EXECUTING",
+        "requester": {
+          "id": "idn-req-1"
+        },
+        "approvalDetails": [
+          {
+            "approvalId": "ap-AR-8",
+            "status": "APPROVED",
+            "currentOwner": {
+              "id": "idn-req-1"
+            }
+          }
+        ]
+      }
+    ],
+    "AR-9": [
+      {
+        "accessRequestId": "AR-9",
+        "state": "EXECUTING",
+        "requester": {
+          "id": "idn-req-1"
+        },
+        "approvalDetails": [
+          {
+            "approvalId": "ap-AR-9",
+            "status": "APPROVED",
+            "currentOwner": {
+              "id": "idn-mgr-1"
+            }
+          }
+        ]
+      }
+    ],
+    "AR-11": [
+      {
+        "accessRequestId": "AR-11",
+        "state": "EXECUTING",
+        "requester": {
+          "id": "idn-req-1"
+        },
+        "approvalDetails": [
+          {
+            "approvalId": "ap-11",
+            "status": "PENDING",
+            "currentOwner": {
+              "id": "idn-mgr-1"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "roleAssignments": {
+    "a1000000-0000-4000-8000-000000000107": [
+      {
+        "id": "ra9",
+        "roleDefinitionId": "fe930be7-5e62-47db-91af-98c3a49a38b1",
+        "principalId": "a1000000-0000-4000-8000-000000000107"
+      }
+    ]
+  },
+  "authMethods": {
+    "a1000000-0000-4000-8000-000000000104": [
+      {
+        "@odata.type": "#microsoft.graph.passwordAuthenticationMethod",
+        "id": "28c10230-6103-485e-b985-444c60001490"
+      },
+      {
+        "@odata.type": "#microsoft.graph.microsoftAuthenticatorAuthenticationMethod",
+        "id": "m1"
+      },
+      {
+        "@odata.type": "#microsoft.graph.phoneAuthenticationMethod",
+        "id": "3179e48a-750b-4051-897c-87b9720928f7"
+      }
+    ]
+  }
+}
