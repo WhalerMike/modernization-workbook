@@ -3172,7 +3172,7 @@ There are **181** workbook decisions: 170 settled, 0 challenged and 11 supersede
 | **Date** | 2026-11-27 |
 | **Status** | settled |
 | **Defined in** | — |
-| **Note** | Basis: drafted November 27, 2026 at the workbook owner's request. Asked whether PowerShell is still the right way to run assessments as scheduled tasks on the platform host, which identities several assessments need (gMSA, dMSA, Entra ID, Azure) and whether each assessment set uses its own permissions, and shown the choice between one union reader app and one per set, he answered "Yes, draft [WD-181](#wd-181) and add the platform column". Awaiting his approval. Not yet run on a live host: each reader app's certificate sign-in and the gMSA's Windows login on a SQL Server instance are proved in a test stage. |
+| **Note** | Basis: drafted November 27, 2026 at the workbook owner's request. Asked whether PowerShell is still the right way to run assessments as scheduled tasks on the platform host, which identities several assessments need (gMSA, dMSA, Entra ID, Azure) and whether each assessment set uses its own permissions, and shown the choice between one union reader app and one per set, he answered "Yes, draft [WD-181](#wd-181) and add the platform column". Shown the draft, with one reader app per set and the runs it leaves unscheduled, he answered "Approve [WD-181](#wd-181)" (November 27, 2026). Not yet run on a live host: each reader app's certificate sign-in and the gMSA's Windows login on a SQL Server instance are proved in a test stage. |
 
 [Agree, disagree or send evidence on WD-181](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-181%3A+)
 
