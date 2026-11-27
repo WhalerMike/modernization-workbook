@@ -159,35 +159,35 @@
    "Gate 1: one store, one writer, one owner"
   ],
   [
-   491,
+   494,
    "Gate 2: run the HR checks against an HR export"
   ],
   [
-   544,
+   547,
    "Reading a failing check: status, count, rows"
   ],
   [
-   595,
+   598,
    "Gate 2: threshold, writers out, logs out"
   ],
   [
-   650,
+   653,
    "Gate 3: two landing zones, one carrier, mapped"
   ],
   [
-   700,
+   703,
    "Gate 3: the /bulkUpload record, sent whole"
   ],
   [
-   754,
+   757,
    "Gate 3: the match trap and the April 7, 2027 deadline"
   ],
   [
-   807,
+   810,
    "Gate 3: proving it flowed, and backing it out"
   ],
   [
-   868,
+   871,
    "Handing Gates 0–3 to Part 2"
   ]
  ],
@@ -1613,95 +1613,95 @@
    "One library, numbered once"
   ],
   [
-   240,
+   247,
    "Personas decide who each policy reaches"
   ],
   [
-   298,
+   305,
    "Five enforcement waves, CA001 to CA090"
   ],
   [
-   355,
+   362,
    "Why the library looks like this: BOD 25-01"
   ],
   [
-   419,
+   425,
    "Module 2 — Rollout, exclusions and break-glass"
   ],
   [
-   442,
+   448,
    "Every policy passes the same gates"
   ],
   [
-   496,
+   503,
    "Reading report-only, rolling back without deleting"
   ],
   [
-   549,
+   556,
    "Exclusions are governed objects"
   ],
   [
-   602,
+   609,
    "Break-glass: the one standing exception"
   ],
   [
-   657,
+   664,
    "Monitoring: what the sign-in logs must show"
   ],
   [
-   709,
+   715,
    "Module 3 — PIM self-request with approval"
   ],
   [
-   729,
+   736,
    "Eligible, requested, approved: the activation gate"
   ],
   [
-   783,
+   790,
    "Activation controls, set per role and by tier"
   ],
   [
-   836,
+   843,
    "Build it in order: emergency access first"
   ],
   [
-   889,
+   896,
    "Approvers, alerts and the record PIM leaves"
   ],
   [
-   943,
+   950,
    "Module 4 — Access governance"
   ],
   [
-   964,
+   971,
    "Access packages: who requests, who approves, how long"
   ],
   [
-   1019,
+   1026,
    "Reviews on a calendar, removals by default"
   ],
   [
-   1075,
+   1081,
    "Lifecycle events and guest access"
   ],
   [
-   1131,
+   1138,
    "Module 5 — Access as code, and the evidence"
   ],
   [
-   1151,
+   1158,
    "One file per object, one writer per class"
   ],
   [
-   1204,
+   1211,
    "Change control, and closing drift at the source"
   ],
   [
-   1258,
+   1265,
    "What the assessor reads"
   ],
   [
-   1313,
+   1320,
    "Taking it back to the tenant"
   ]
  ],
@@ -5077,91 +5077,91 @@
    "A use case isn't an identity: join on the directory"
   ],
   [
-   374,
+   383,
    "High-impact fields report status, not evidence"
   ],
   [
-   416,
+   425,
    "Whose token does it present? Three subjects and a key"
   ],
   [
-   456,
+   465,
    "Agent ID: the blueprint is the credential boundary"
   ],
   [
-   495,
+   504,
    "What's GA, what's preview, and what GCC has"
   ],
   [
-   537,
+   546,
    "Six kinds of AI identity, and where the risk sits"
   ],
   [
-   578,
+   587,
    "Module 3: Owners, lifecycle, credentials and privilege"
   ],
   [
-   601,
+   610,
    "Owner, sponsor and manager, and the program's rule"
   ],
   [
-   643,
+   652,
    "The sponsor's HR events have to reach the agent"
   ],
   [
-   682,
+   691,
    "Retirement and orphans: disable first, then delete"
   ],
   [
-   728,
+   737,
    "Credential order: no stored secrets on the blueprint"
   ],
   [
-   768,
+   777,
    "Least privilege: Microsoft's block list is only a floor"
   ],
   [
-   812,
+   821,
    "Conditional Access follows the token subject"
   ],
   [
-   855,
+   870,
    "Three boundaries on what an agent can call"
   ],
   [
-   896,
+   912,
    "Module 4: Monitoring, the scan and authorization"
   ],
   [
-   915,
+   931,
    "Where AI sign-ins and changes land in the logs"
   ],
   [
-   957,
+   973,
    "Shadow AI: four surfaces, one reconciliation"
   ],
   [
-   999,
+   1015,
    "AI drift findings: class, severity and who decides"
   ],
   [
-   1042,
+   1058,
    "The inventory scan: answers first, then the directory"
   ],
   [
-   1082,
+   1098,
    "A central scan: CDM's split, not its tooling"
   ],
   [
-   1123,
+   1139,
    "Five questions the authorizing official asks"
   ],
   [
-   1167,
+   1183,
    "OSCAL, the AI clocks, and overlays still to come"
   ],
   [
-   1209,
+   1225,
    "Decisions, owners, and what to start on Monday"
   ]
  ],
@@ -8461,35 +8461,35 @@
    "The checks, part 2: privilege, sponsors, CA, drift"
   ],
   [
-   394,
+   399,
    "The agent CA plan and the separate write path"
   ],
   [
-   431,
+   445,
    "Who keeps the records, and what each task may hold"
   ],
   [
-   469,
+   485,
    "Lab 1: Learn's samples, D-NP6, then the check"
   ],
   [
-   508,
+   523,
    "Lab 1: reading the findings and the sponsor fields"
   ],
   [
-   547,
+   562,
    "Lab 1: a dry run, a refusal, and the tests"
   ],
   [
-   582,
+   603,
    "Lab 2: a test tenant, one governed agent"
   ],
   [
-   622,
+   645,
    "Dangers, and the guard for each"
   ],
   [
-   659,
+   682,
    "Done when: the chapter's checklist"
   ]
  ],
@@ -12235,47 +12235,47 @@
    "G1: join each identity to a record, owner and sponsor"
   ],
   [
-   314,
+   327,
    "G1 in code: one register, and the HIGH-risk rows"
   ],
   [
-   374,
+   387,
    "G1 in code: two human owners and the orphan plan"
   ],
   [
-   431,
+   443,
    "G1: requirement, evidence, availability, rollback"
   ],
   [
-   502,
+   515,
    "G2: five targets, decided by type and where it runs"
   ],
   [
-   566,
+   579,
    "G2 in code: propose, check each decision, plan waves"
   ],
   [
-   628,
+   641,
    "G2: requirement, evidence, availability, rollback"
   ],
   [
-   691,
+   704,
    "G3: the tenant policy blocks secrets, caps certificates"
   ],
   [
-   754,
+   767,
    "G3: the vault, the upload, and secrets by exception"
   ],
   [
-   817,
+   829,
    "G3 in code: compare the policy, plan the rotation"
   ],
   [
-   876,
+   889,
    "G3: requirement, evidence, availability, rollback"
   ],
   [
-   958,
+   971,
    "Handing G1–G3 to Part 2"
   ]
  ],
@@ -12293,59 +12293,59 @@
    "G4: cut privilege across five surfaces"
   ],
   [
-   188,
+   189,
    "G4 in code: sweep the grants, ring the policies"
   ],
   [
-   246,
+   247,
    "G4: requirement, evidence, availability, rollback"
   ],
   [
-   307,
+   308,
    "G5: build the target, run in parallel, then disable"
   ],
   [
-   365,
+   367,
    "G5 in code: test the exchange, plan the Kerberos moves"
   ],
   [
-   422,
+   423,
    "G5: the managed service account standard"
   ],
   [
-   492,
+   493,
    "G5: requirement, evidence, availability, rollback"
   ],
   [
-   564,
+   565,
    "G6: owner change, orphans and owner reviews"
   ],
   [
-   618,
+   619,
    "G6: disable first, then delete"
   ],
   [
-   680,
+   682,
    "G6 in code: drift, the review cycle, the evidence chain"
   ],
   [
-   736,
+   738,
    "G6: requirement, evidence, availability, rollback"
   ],
   [
-   798,
+   799,
    "SQL Server: the engine, the instance, the applications"
   ],
   [
-   859,
+   860,
    "AI agents: sponsors, blueprints and gated creation"
   ],
   [
-   920,
+   921,
    "Evidence and rollback across the track"
   ],
   [
-   985,
+   986,
    "The dangers to keep in view, and where to go next"
   ]
  ],
@@ -17065,55 +17065,55 @@
    "What Step 4 asks for: 4d attributes, 4e the policies"
   ],
   [
-   220,
+   229,
    "Two policies, two decisions, one policy per ring"
   ],
   [
-   278,
+   287,
    "The pre-merge check: NPI-WCA-01 to NPI-WCA-09"
   ],
   [
-   343,
+   352,
    "The plan: six actions, and no delete"
   ],
   [
-   396,
+   405,
    "Enforcement, ring by ring, and the sign-in reader"
   ],
   [
-   448,
+   457,
    "Try it: the permissions, and two pre-merge checks"
   ],
   [
-   505,
+   514,
    "Try it: check the tenant and plan, sending nothing"
   ],
   [
-   551,
+   560,
    "Try it: read and summarize the sign-ins"
   ],
   [
-   596,
+   605,
    "Try it: apply against the fake, twice"
   ],
   [
-   642,
+   651,
    "Try it: enforce Ring 1, then edit one byte"
   ],
   [
-   701,
+   710,
    "Lab 2: report-only, then one ring, in a test tenant"
   ],
   [
-   756,
+   765,
    "The federal requirement and evidence for this part"
   ],
   [
-   815,
+   824,
    "Check yourself: two questions on workload policies"
   ],
   [
-   861,
+   870,
    "Summary, and next: Module 7, conversions"
   ]
  ],
