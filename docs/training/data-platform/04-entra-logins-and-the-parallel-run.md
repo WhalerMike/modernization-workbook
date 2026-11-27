@@ -8,8 +8,8 @@ research-book: "Book 06"
 series-order: 4
 date-modified: 2026-11-25
 review-status: approved
-reviewed-sha256: 95146e5855d2492284ab97719899d801f9cc2fac3d7080c3c13126c3e1087fd7
-last-reviewed: 2026-11-25
+reviewed-sha256: d2afb0d653370245e3f7ae6609fe685525c1e2568bc004457061dcb842e590c5
+last-reviewed: 2026-11-27
 ---
 # Data Platform, Module 4: Entra Logins and the Parallel Run {.unnumbered}
 

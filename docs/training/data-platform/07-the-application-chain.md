@@ -8,8 +8,8 @@ research-book: "Book 06"
 series-order: 7
 date-modified: 2026-11-25
 review-status: approved
-reviewed-sha256: ec084fbe310aef7b16a633d371124b3dfa682e307cf1668443d2d26118f40783
-last-reviewed: 2026-11-25
+reviewed-sha256: d5486f5e40699e86f7b62757c42582342961a628460204e74ace367aa696b4f5
+last-reviewed: 2026-11-27
 ---
 # Data Platform, Module 7: The Application Chain {.unnumbered}
 
