@@ -430,6 +430,20 @@ $s.outOfScope += @{ objectId = '<object-id>'; name = '<name>'; class = '<class>'
 # Step 1: Write the scope
 $s | ConvertTo-Json -Depth 10 | Set-Content my-scope.json
 
+# Step 2: Register the reading app
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes Application.ReadWrite.All, AppRoleAssignment.ReadWrite.All -NoWelcome
+$cert = New-SelfSignedCertificate -Subject 'CN=<reading-app-name>' -CertStoreLocation Cert:\CurrentUser\My -KeyExportPolicy NonExportable -KeySpec Signature -KeyLength 2048 -KeyAlgorithm RSA -HashAlgorithm SHA256 -NotAfter (Get-Date).AddDays(90)
+$app = New-MgApplication -BodyParameter @{ displayName = '<reading-app-name>'; signInAudience = 'AzureADMyOrg' }
+Update-MgApplication -ApplicationId $app.Id -BodyParameter @{ keyCredentials = @(@{ type = 'AsymmetricX509Cert'; usage = 'Verify'; key = [Convert]::ToBase64String($cert.RawData); displayName = 'CN=<reading-app-name>' }) }
+$sp = New-MgServicePrincipal -BodyParameter @{ appId = $app.AppId }
+$graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+foreach ($p in 'Application.Read.All', 'Policy.Read.All') {
+    $role = $graph.AppRoles | Where-Object { $_.Value -eq $p -and $_.AllowedMemberTypes -contains 'Application' }
+    New-MgServicePrincipalAppRoleAssignedTo -ServicePrincipalId $graph.Id -BodyParameter @{ principalId = $sp.Id; resourceId = $graph.Id; appRoleId = $role.Id } | Out-Null
+}
+[pscustomobject]@{ AppId = $app.AppId; Thumbprint = $cert.Thumbprint }
+Get-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id | ForEach-Object { $id = $_.AppRoleId; ($graph.AppRoles | Where-Object Id -eq $id).Value }
+
 # Step 3: Plan, sending nothing
 Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
 ./Invoke-NpiWorkloadCa.ps1 -Mode Check -ScopePath my-scope.json
@@ -491,10 +505,6 @@ $planSha = (Get-Content out/wca-test-backout-dry/manifest.json -Raw | ConvertFro
 Remove-Item -Recurse -Force out/wca-test*
 Remove-Item my-scope.json
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 2:** Register the reading app
 :::
 
 <!-- labs:end -->

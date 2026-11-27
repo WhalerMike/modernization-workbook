@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: e4c997e73443f93c15bc119cdf52555991bbbee84bb52cc2ffb71be98a2eae07
-last-reviewed: 2026-11-25
+reviewed-sha256: af412d8abbef0126e1ba15d8b5f1f6ff8923f83701d9980d9194e27848ecc147
+last-reviewed: 2026-11-27
 ---
 # Chapter 02 — The Workbook Template and Its Validator
 

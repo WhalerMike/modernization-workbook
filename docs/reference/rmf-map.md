@@ -7,8 +7,8 @@ research-type: reference
 research-book: "Books 00–19"
 date-modified: 2026-11-08
 review-status: approved
-reviewed-sha256: c84a439f0ca196776bf820cd1770f09c267d47ecd48000ac4037bad1dfc2fe7b
-last-reviewed: 2026-11-18
+reviewed-sha256: f52005eba7aae7aa69d60b2fdb55d7221758858dd80790b7ae92998625f78fac
+last-reviewed: 2026-11-27
 ---
 # RMF Map {.unnumbered}
 

@@ -14,8 +14,8 @@ lifecycle_review: 2027-04-01
 aliases:
   - /docs/project-plans/developer-workbooks/attribute-driven-migration/09-drift-pipelines-and-evidence.html
 review-status: approved
-reviewed-sha256: 7be6e695eb2a1278ae8104eadffb9ea5dbf2147dd60e2bedbccc95c784071bd3
-last-reviewed: 2026-11-18
+reviewed-sha256: fbd0a158ded98da965ba5c755f7c1900bec8a37635b67735e0dbd60a5ff3b9bb
+last-reviewed: 2026-11-27
 ---
 # Chapter 09 — Drift Pipelines and Evidence to the ISSO
 

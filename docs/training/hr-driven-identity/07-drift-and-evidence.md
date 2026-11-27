@@ -386,6 +386,8 @@ Replace each `<placeholder>` with your test environment's value.
 
 The chapter's steps say what each command does and what to look for.
 
+In a POSIX shell (Git Bash on Windows):
+
 ```bash
 # Step 1: Export the workforce users
 python python/graph_export.py --task drift-read --list
@@ -393,6 +395,24 @@ python python/graph_export.py --task drift-read --list
 # Step 1: Export the workforce users
 export HRLC_GRAPH_TOKEN='<graph-token>'
 python python/graph_export.py --task drift-read --cloud gcc --out exports/drift
+
+# Step 2: Run Chapters 01, 02, 03, 04 and 06 against the test tenant's exports
+export HRLC_GRAPH_TOKEN='<ch01-graph-token>'
+python python/graph_export.py --task writers-scan --cloud gcc --param since=<since>T00:00:00Z --param until=<until>T00:00:00Z --out exports/ch01
+python python/writer_register.py scan --register my-register.json --audit exports/ch01/directory-audits.json --since <since> --until <until> --cloud gcc --out out/ch01-test
+python python/contractor_source.py extract --register my-register.csv --cards my-cards.csv --sponsors my-sponsors.csv --rules config/contractor-rules.json --as-of <today> --out out/ch02-test-extract
+export HRLC_GRAPH_TOKEN='<ch03-graph-token>'
+python python/graph_export.py --task joiner-readiness --cloud gcc --param workflowId=<prehire-workflow-id> --out exports/readiness
+python python/joiner_workflows.py readiness --hires my-hires.csv --users exports/readiness/hire-users.json \
+    --prehire-results exports/readiness/joiner-results.json --assignments exports/readiness/joiner-assignments.json \
+    --workflows config/workflows --as-of <start-date> --cloud gcc --out out/ch03/readiness-test
+export HRLC_GRAPH_TOKEN='<ch04-graph-token>'
+python python/graph_export.py --task access-read --cloud gcc --param userId=<test-user-id> --out exports/access-after
+python python/access_assignment.py residual --mover my-mover.json --assignments exports/access-after/mover-assignments.json \
+    --memberships exports/access-after/mover-memberships.json --policies my-access --as-of <now> --cloud gcc --out out/ch04/residual-test
+export HRLC_GRAPH_TOKEN='<ch06-graph-token>'
+python python/graph_export.py --task separation-read --cloud gcc --param since=<since>T00:00:00Z --param workflowId=<leaver-workflow-id> --out exports/separation
+python python/separation_timing.py measure --separations my-separations.csv --users my-leaver-users.json --audits exports/separation/separation-audits.json --results exports/separation/leaver-results.json --cards my-card-revocations.csv --devices my-device-actions.csv --role-holders my-role-holders.csv --config my-separation.json --as-of <now> --cloud gcc --out out/separation-test
 
 # Step 3: Write a run
 python python/lifecycle_drift.py run --hr <hr-export-csv> --contractors out/ch02-test-extract/decisions.json \
@@ -403,16 +423,65 @@ python python/lifecycle_drift.py run --hr <hr-export-csv> --contractors out/ch02
 
 # Step 3: Write a run
 python -c "import json; [print(r['Rule'], r['Severity'], r['Object'], '|', r['Issue']) for r in json.load(open('out/ch07-test/runs/<run-id>/lifecycle/findings.json'))]"
+```
+
+In PowerShell 7:
+
+```powershell
+# Step 4: Schedule it
+Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id> -Subscription <subscription-id>
+New-AzStorageAccount -ResourceGroupName <resource-group> -Name <storage-account> -Location <region> -SkuName Standard_LRS -Kind StorageV2 -AllowBlobPublicAccess $false
+New-AzRmStorageContainer -ResourceGroupName <resource-group> -StorageAccountName <storage-account> -Name hr-evidence
+Set-AzRmStorageContainerImmutabilityPolicy -ResourceGroupName <resource-group> -StorageAccountName <storage-account> -ContainerName hr-evidence -ImmutabilityPeriod 7
+New-AzRoleAssignment -ApplicationId <reader-app-id> -RoleDefinitionName 'Storage Blob Data Contributor' -Scope "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Storage/storageAccounts/<storage-account>/blobServices/default/containers/hr-evidence"
+
+# Step 4: Schedule it
+New-Item -ItemType Directory -Force my-schedule | Out-Null
+@'
+$ErrorActionPreference = 'Stop'
+Connect-AzAccount -ServicePrincipal -Environment AzureCloud -Tenant '<tenant-id>' -ApplicationId '<reader-app-id>' -CertificateThumbprint '<cert-thumbprint>' -SkipContextPopulation | Out-Null
+$env:HRLC_GRAPH_TOKEN = (Get-AzAccessToken -ResourceUrl 'https://graph.microsoft.com/').Token | ConvertFrom-SecureString -AsPlainText
+$now = (Get-Date).ToUniversalTime()
+$runId = $now.ToString("yyyy-MM-dd'T'HHmm'Z'")
+$since = $now.AddDays(-1).ToString('yyyy-MM-dd')
+$until = $now.ToString('yyyy-MM-dd')
+python python/graph_export.py --task drift-read --cloud gcc --out "exports/drift-$runId"
+python python/lifecycle_drift.py run --hr '<hr-export-csv>' --contractors out/ch02-test-extract/decisions.json --users "exports/drift-$runId/workforce-users.json" --exceptions '<exceptions-csv>' --cards '<cards-csv>' --derivation '<derivation-json>' --writers out/ch01-test --readiness out/ch03/readiness-test --residual out/ch04/residual-test --timing out/separation-test --config config/drift.json --since $since --until $until --cloud gcc --tenant-id '<tenant-id>' --mode tenant --out "out/ch07-test/runs/$runId"
+$last = Get-ChildItem out/ch07-test/evidence -Directory -ErrorAction SilentlyContinue | Sort-Object Name | Select-Object -Last 1
+$chain = if ($last) { @('--previous-manifest', (Join-Path $last.FullName 'EVIDENCE-MANIFEST.json')) } else { @() }
+python ../drift-pipeline/python/hr_evidence.py package --run "out/ch07-test/runs/$runId" @chain --out out/ch07-test/evidence
+python ../drift-pipeline/python/hr_evidence.py verify "out/ch07-test/evidence/$runId"
+if ($LASTEXITCODE -ne 0) { throw "The package for $runId didn't verify" }
+$ctx = New-AzStorageContext -StorageAccountName '<storage-account>' -UseConnectedAccount
+$pkg = (Resolve-Path "out/ch07-test/evidence/$runId").Path
+Get-ChildItem $pkg -File -Recurse | ForEach-Object { Set-AzStorageBlobContent -File $_.FullName -Container 'hr-evidence' -Blob ("$runId/" + [IO.Path]::GetRelativePath($pkg, $_.FullName).Replace('\', '/')) -Context $ctx | Out-Null }
+'@ | Set-Content my-schedule/hr-drift-daily.ps1
+
+# Step 4: Schedule it
+$kit = (Get-Location).Path
+$action = New-ScheduledTaskAction -Execute 'pwsh.exe' -Argument "-NoProfile -NonInteractive -File `"$kit\my-schedule\hr-drift-daily.ps1`"" -WorkingDirectory $kit
+$trigger = New-ScheduledTaskTrigger -Daily -At '06:00'
+$principal = New-ScheduledTaskPrincipal -UserId "$env:USERDOMAIN\$env:USERNAME" -LogonType S4U
+Register-ScheduledTask -TaskName 'HRLC drift test' -TaskPath '\FMW\' -Action $action -Trigger $trigger -Principal $principal
+Start-ScheduledTask -TaskName 'HRLC drift test' -TaskPath '\FMW\'
+Get-ScheduledTaskInfo -TaskName 'HRLC drift test' -TaskPath '\FMW\' | Select-Object LastRunTime, LastTaskResult
+
+# Step 5: Assemble a period
+Disable-ScheduledTask -TaskName 'HRLC drift test' -TaskPath '\FMW\'
+
+# Step 5: Assemble a period
+Enable-ScheduledTask -TaskName 'HRLC drift test' -TaskPath '\FMW\'
+```
+
+In a POSIX shell (Git Bash on Windows):
+
+```bash
+# Step 5: Assemble a period
+python ../drift-pipeline/python/hr_evidence.py period --evidence out/ch07-test/evidence --since <period-since> --until <period-until> --out out/ch07-test/periods
 
 # Step 6: Back it out
 rm -rf exports out
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 2:** Run Chapters 01, 02, 03, 04 and 06 against the test tenant's exports
-- **Step 4:** Schedule it
-- **Step 5:** Assemble a period
 :::
 
 <!-- labs:end -->

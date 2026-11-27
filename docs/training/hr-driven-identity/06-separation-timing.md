@@ -242,6 +242,36 @@ Replace each `<placeholder>` with your test environment's value.
 
 The chapter's steps say what each command does and what to look for.
 
+In PowerShell 7:
+
+```powershell
+# Step 1: Register the reader app
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.ReadWrite.All', 'AppRoleAssignment.ReadWrite.All' -NoWelcome
+$cert = New-SelfSignedCertificate -Subject 'CN=hrlc-ch06-reader' -CertStoreLocation Cert:\CurrentUser\My -KeyExportPolicy NonExportable -KeySpec Signature -NotAfter (Get-Date).AddDays(30)
+$app = New-MgApplication -DisplayName 'hrlc-ch06-reader' -SignInAudience AzureADMyOrg -KeyCredentials @(@{ Type = 'AsymmetricX509Cert'; Usage = 'Verify'; Key = $cert.RawData })
+$sp = New-MgServicePrincipal -AppId $app.AppId
+$graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+foreach ($p in 'AuditLog.Read.All', 'LifecycleWorkflows-Reports.Read.All') {
+    $role = $graph.AppRoles | Where-Object { $_.Value -eq $p -and $_.AllowedMemberTypes -contains 'Application' }
+    New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id -PrincipalId $sp.Id -ResourceId $graph.Id -AppRoleId $role.Id
+}
+
+# Step 2: Make a test leaver
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'User.Read.All', 'User-LifeCycleInfo.ReadWrite.All', 'LifecycleWorkflows-Workflow.ReadWrite.All', 'LifecycleWorkflows-Reports.Read.All' -NoWelcome
+$u1 = Get-MgUser -UserId '<test-user-1>'
+$u2 = Get-MgUser -UserId '<test-user-2>'
+Update-MgUser -UserId $u1.Id -BodyParameter @{ employeeLeaveDateTime = (Get-Date).ToUniversalTime().AddHours(2).ToString('yyyy-MM-ddTHH:mm:ssZ') }
+do {
+    Start-Sleep -Seconds 900
+    $r1 = Get-MgIdentityGovernanceLifecycleWorkflowUserProcessingResult -WorkflowId <leaver-workflow-id> -All | Where-Object { $_.Subject.Id -eq $u1.Id -and $_.WorkflowExecutionType -eq 'scheduled' }
+} until ($r1)
+Initialize-MgIdentityGovernanceLifecycleWorkflow -WorkflowId <leaver-workflow-id> -BodyParameter @{ subjects = @(@{ id = $u2.Id }) }
+Start-Sleep -Seconds 300
+Get-MgIdentityGovernanceLifecycleWorkflowUserProcessingResult -WorkflowId <leaver-workflow-id> -All | Where-Object { $_.Subject.Id -in $u1.Id, $u2.Id } | Format-Table @{ n = 'User'; e = { $_.Subject.Id } }, WorkflowExecutionType, ProcessingStatus, ScheduledDateTime, CompletedDateTime
+```
+
+In a POSIX shell (Git Bash on Windows):
+
 ```bash
 # Step 3: Export the logs
 export HRLC_GRAPH_TOKEN='<graph-token>'
@@ -266,11 +296,6 @@ python python/separation_timing.py measure --separations my-separations.csv --us
 # Step 5: Back it out
 rm -rf exports out my-separation.json my-separations.csv my-card-revocations.csv my-device-actions.csv my-role-holders.csv
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 1:** Register the reader app
-- **Step 2:** Make a test leaver
 :::
 
 <!-- labs:end -->

@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 15"
 series-order: 1
 review-status: approved
-reviewed-sha256: 9b24ff357d245896a645f82d405d32bd093a46ad86fc4cdc182909b321a6562c
-last-reviewed: 2026-11-22
+reviewed-sha256: ea5b1ad53d99bc8cb364e75ddf3e70d75263320de070d8a363f8edcaacdb478c
+last-reviewed: 2026-11-27
 ---
 # Module 1: One workbook, one tab per daily check {.unnumbered}
 
@@ -172,17 +172,25 @@ az logout
 **[Chapter 02, Lab 2](../../project-plans/developer-workbooks/daily-checks/02-the-workbook-template-and-its-validator.md#lab-2-a-test-workspace)**
 
 ```powershell
+# Step 1: Open the template in the portal
+az cloud set --name AzureCloud
+az login --tenant <tenant-id>
+az account set --subscription <subscription-id>
+az deployment group create --name daily-checks-lab --resource-group <resource-group> --template-file deploy/main.json --parameters "workbookDisplayName=Daily checks (lab)" workbookSourceId=<workspace-resource-id> serializedData=@workbook/daily-checks.workbook.json --query properties.outputs.workbookId.value -o tsv
+
+# Step 2: Save, edit, export
+$wb = az rest --method get --url "https://management.azure.com<workbook-id>?api-version=2023-06-01&canFetchContent=true" | Out-String | ConvertFrom-Json
+([regex]'ago\(1d\)').Replace($wb.properties.serializedData, 'ago(30d)', 1) | Set-Content <downloads-folder>/daily-checks-edited.json
+az deployment group create --name daily-checks-lab --resource-group <resource-group> --template-file deploy/main.json --parameters "workbookDisplayName=Daily checks (lab)" workbookSourceId=<workspace-resource-id> serializedData=@<downloads-folder>/daily-checks-edited.json -o none
+(az rest --method get --url "https://management.azure.com<workbook-id>?api-version=2023-06-01&canFetchContent=true" | Out-String | ConvertFrom-Json).properties.serializedData | Set-Content <downloads-folder>/daily-checks-export.json
+Remove-Item <downloads-folder>/daily-checks-edited.json
+
 # Step 3: Validate the export
 ./Test-DcWorkbook.ps1 -TemplatePath <downloads-folder>/daily-checks-export.json
 
 # Step 4: Back it out
 Remove-Item <downloads-folder>/daily-checks-export.json
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 1:** Open the template in the portal
-- **Step 2:** Save, edit, export
 :::
 
 <!-- labs:end -->

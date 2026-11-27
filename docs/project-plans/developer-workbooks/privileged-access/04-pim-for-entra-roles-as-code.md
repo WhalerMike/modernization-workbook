@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: d741fa3aa4ad061ee20ecbaa8764a1b2684958b5b54b57f4b9125d8cdcc7ffa1
-last-reviewed: 2026-11-18
+reviewed-sha256: 29743c4635f66be606f16e7339a02243ecc4b0924d60ea5eddac340ebf4620e6
+last-reviewed: 2026-11-27
 ---
 # Chapter 04 — PIM for Microsoft Entra Roles as Code
 

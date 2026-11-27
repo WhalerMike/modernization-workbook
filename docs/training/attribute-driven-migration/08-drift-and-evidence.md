@@ -409,6 +409,8 @@ Replace each `<placeholder>` with your test environment's value.
 
 The chapter's steps say what each command does and what to look for.
 
+In a POSIX shell (Git Bash on Windows):
+
 ```bash
 # Step 1: Register the app and trust the repository
 cat > credential.json <<'EOF'
@@ -420,25 +422,64 @@ cat > credential.json <<'EOF'
 }
 EOF
 az ad app federated-credential create --id <app-object-id> --parameters credential.json
+```
+
+In PowerShell 7:
+
+```powershell
+# Step 2: Grant only the reads
+Import-Module ./examples/validation-kit/powershell/ValidationKit/ValidationKit.psd1
+$perms = Get-VkRequiredScope -Checks (Get-VkCheckCatalog | Where-Object { $_.DelegatedRole -notmatch 'delegated only' })
+$perms
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.Read.All', 'AppRoleAssignment.ReadWrite.All' -NoWelcome
+$sp = Get-MgServicePrincipal -Filter "appId eq '<app-id>'"
+$graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+foreach ($p in $perms) {
+    $role = $graph.AppRoles | Where-Object { $_.Value -eq $p -and $_.AllowedMemberTypes -contains 'Application' }
+    if (-not $role) { Write-Warning "$p has no application permission; the check that needs it can't run app-only"; continue }
+    New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id -PrincipalId $sp.Id -ResourceId $graph.Id -AppRoleId $role.Id | Out-Null
+}
+Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id> -Subscription <subscription-id>
+New-AzRoleAssignment -ApplicationId <app-id> -RoleDefinitionName Reader -Scope /subscriptions/<subscription-id>
+```
+
+In a POSIX shell (Git Bash on Windows):
+
+```bash
+# Step 3: Make the evidence container
+export MSYS_NO_PATHCONV=1
+az account set --subscription <subscription-id>
+az storage account create --name <storage-account> --resource-group <resource-group> --location <region> --sku Standard_LRS --allow-blob-public-access false
+az storage container-rm create --storage-account <storage-account> --resource-group <resource-group> --name drift-evidence
+scope="$(az storage account show --name <storage-account> --resource-group <resource-group> --query id -o tsv)/blobServices/default/containers/drift-evidence"
+az role assignment create --assignee <app-id> --role "Storage Blob Data Contributor" --scope "$scope"
+az role assignment create --assignee <your-upn> --role "Storage Blob Data Reader" --scope "$scope"
+az storage container immutability-policy create --resource-group <resource-group> --account-name <storage-account> --container-name drift-evidence --period 1
+az storage container immutability-policy show --resource-group <resource-group> --account-name <storage-account> --container-name drift-evidence --query state -o tsv
 
 # Step 4: Set up the repository
 mkdir -p .github/workflows
 cp examples/drift-pipeline/workflow/drift-pipeline.yml .github/workflows/drift.yml
 python examples/drift-pipeline/python/workflow_lint.py .github/workflows/drift.yml
 
+# Step 5: Run it by hand
+gh workflow run drift.yml --repo contoso-example/estate-checks
+sleep 15
+run=$(gh run list --repo contoso-example/estate-checks --workflow drift.yml --event workflow_dispatch --limit 1 --json databaseId --jq '.[0].databaseId')
+gh run watch "$run" --repo contoso-example/estate-checks --exit-status
+az storage blob list --account-name <storage-account> --container-name drift-evidence --auth-mode login --query "[?ends_with(name, '/EVIDENCE-MANIFEST.json')].name" -o tsv
+gh issue list --repo contoso-example/estate-checks --label drift --state open
+
 # Step 6: Make a change and run again
 sha256sum -c SHA256SUMS
+
+# Step 7: Let the schedule run
+gh run list --repo contoso-example/estate-checks --workflow drift.yml --event schedule --limit 5
+az storage blob list --account-name <storage-account> --container-name drift-evidence --auth-mode login --query "[?ends_with(name, '/EVIDENCE-MANIFEST.json')].{name: name, created: properties.creationTime}" -o table
 
 # Step 8: Back it out
 az ad app federated-credential delete --id <app-object-id> --federated-credential-id drift-gcc
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 2:** Grant only the reads
-- **Step 3:** Make the evidence container
-- **Step 5:** Run it by hand
-- **Step 7:** Let the schedule run
 :::
 
 <!-- labs:end -->

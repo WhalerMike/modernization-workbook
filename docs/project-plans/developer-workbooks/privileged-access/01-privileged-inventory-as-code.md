@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 00095f5cf7f3f1ca612c26080cd4e73f9136ebb0dab07c5cba41cb3cbb80f899
-last-reviewed: 2026-11-18
+reviewed-sha256: a6abec91ce44b13e24f980c4d2788d4554bcd5a6cb8ca5a5970fdb2984c3fbdf
+last-reviewed: 2026-11-27
 ---
 # Chapter 01 — Privileged Inventory as Code
 
