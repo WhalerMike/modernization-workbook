@@ -25,9 +25,9 @@ review-status: pending
 ## Week 3: identity workbooks
 
 - [Building HR-Driven Identity](../../project-plans/developer-workbooks/hr-driven-identity/index.md) (Developer workbook, 8 chapters, about 5 hr 5 min). A developer workbook for the Identity Lifecycle & Provisioning project.
-- [Building Privileged Access](../../project-plans/developer-workbooks/privileged-access/index.md) (Developer workbook, 9 chapters, about 7 hr 5 min). A developer workbook for the Privileged Access & Administrative Identity project.
+- [Building Privileged Access](../../project-plans/developer-workbooks/privileged-access/index.md) (Developer workbook, 9 chapters, about 7 hr 7 min). A developer workbook for the Privileged Access & Administrative Identity project.
 
-*Milestone 3: about 12 hr 10 min.*
+*Milestone 3: about 12 hr 12 min.*
 
 ## Week 4: Ticket-to-Machine
 
@@ -36,5 +36,5 @@ review-status: pending
 
 *Milestone 4: about 4 hr 52 min.*
 
-**Whole plan:** about 27 hr 28 min of reading and video, plus the labs.
+**Whole plan:** about 27 hr 30 min of reading and video, plus the labs.
 
