@@ -360,7 +360,7 @@ And the unit is wrong. 1,818 counts deployed and piloted use cases, not systems;
   panel(s, "Join", 8.4, 1.5, 4.35, null, HEX.teal, HEX.tealTint, "THE JOIN (PROGRAM DESIGN)", null, [
     "One use case can run as many principals; one principal can serve many use cases",
     "The record carries the inventory ID; every directory object points back",
-    "Custom security attributes can hold the reference and later drive Conditional Access",
+    "Custom security attributes can hold the reference; in GCC, until confirmed, SP tags and notes do (WD-176)",
     "Join against the agency's own submission: the public file lacks 704 IDs",
   ], 13.5);
   sources(s, "Sources: OMB 2025 data dictionary, guidance and CSV; M-25-21 §4(b)(ii); NIST SP 800-53 Rev. 5; Microsoft Learn: agentIdentity resource, Conditional Access for agents. Book 17, Ch 03.");
@@ -369,7 +369,7 @@ And the unit is wrong. 1,818 counts deployed and piloted use cases, not systems;
 
 The harder problem is the unit. A use case is a scenario, and scenarios don't sign in. One assistant can have an app registration for its front end, a managed identity for its retrieval index, an agent identity for its actions and an API key for a third-party model. One shared platform, or a commercial product reported in aggregate, can serve dozens of use cases under one service principal. And the public file has no stable key: 704 rows lack an identifier and 13 repeat.
 
-So the program puts the join on the identity side. The identity record carries the inventory ID, and every directory object the system uses carries a reference back. In Entra ID, custom security attributes can hold that reference on service principals and agent identities, and Conditional Access can target agents by attribute, so the same tag can later drive policy. The join runs from the directory, where access is decided, and against the agency's internal submission, the only version guaranteed to carry the ID and the real contact.`,
+So the program puts the join on the identity side. The identity record carries the inventory ID, and every directory object the system uses carries a reference back. In Entra ID, custom security attributes can hold that reference on service principals and agent identities, and Conditional Access can target agents by attribute, so the same tag can later drive policy. In the program's GCC tenant, custom security attributes are treated as unavailable until a tenant check confirms them: until then the reference goes in a service principal's tags and notes, the register holds the join, and policies name agents one by one. The join runs from the directory, where access is decided, and against the agency's internal submission, the only version guaranteed to carry the ID and the real contact.`,
   "Book 17, Chapter 03 — \"Gaps,\" \"A use case isn't an identity.\"");
 }
 
@@ -684,7 +684,7 @@ And no AI identity holds a standing privileged role; an agent with Exchange Admi
   ], { fontSize: 12, limit: 3.65 });
   const a = panel(s, "Pattern", 0.6, tb + 0.2, 6.0, null, HEX.teal, HEX.tealTint, "BLOCK UNLESS APPROVED (PROGRAM DESIGN)", null, [
     "All agent identities, all resources, Block; exclude approved agents by attribute",
-    "Set the approval attribute only in the production handshake",
+    "Set the approval only in the production handshake; in GCC, exclude agents by name (WD-176)",
     "Report-only until agent targets leave preview in the agency's cloud",
   ], 13);
   const b = panel(s, "Bounds", 6.75, tb + 0.2, 6.0, null, HEX.red, HEX.redTint, "BOUNDARIES TO PLAN AROUND", null, [
@@ -697,7 +697,7 @@ And no AI identity holds a standing privileged role; an agent with Exchange Admi
   notes(s,
 `Conditional Access for agents evaluates whoever is the token's subject, so policy has to follow the subject. On-behalf-of: target the user; selecting an agent identity doesn't cover it. App-only: target all agent identities, selected ones, a blueprint, which covers its future agents, or a custom security attribute; Block is the only control and agent risk the only condition, in preview. Agent's user account: the preview agent-user targets; user-scoped policies don't apply; block or require a compliant device.
 
-The pattern Microsoft recommends for autonomous agents is the left panel: all agent identities, all resources, Block, excluding approved agents by a custom security attribute such as an approval status. The program builds it in report-only mode and sets the attribute only in the production handshake, so the report shows every agent that skipped the handshake. It stays report-only until agent targets leave preview in the agency's cloud. As of October 22 the policy builder still labels them preview, and in GCC the service description lists Conditional Access for agents with delegated access, not app-only targeting, so confirm it in the tenant.
+The pattern Microsoft recommends for autonomous agents is the left panel: all agent identities, all resources, Block, excluding approved agents by a custom security attribute such as an approval status. The program builds it in report-only mode and sets the attribute only in the production handshake, so the report shows every agent that skipped the handshake. Until a tenant check confirms custom security attributes in the program's GCC tenant, the policy excludes approved agents as selected agent identities instead, and the handshake adds each one to the exclusion. It stays report-only until agent targets leave preview in the agency's cloud. As of October 22 the policy builder still labels them preview, and in GCC the service description lists Conditional Access for agents with delegated access, not app-only targeting, so confirm it in the tenant.
 
 The right panel is what to plan around. No policy applies when a blueprint gets a Graph token to create agents, at the intermediate token exchange, or with security defaults on. Agents' user accounts can't be targeted by group, and agent-identity policies don't reach them. Review broad user policies, like MFA for all users, for side effects on agent flows.
 

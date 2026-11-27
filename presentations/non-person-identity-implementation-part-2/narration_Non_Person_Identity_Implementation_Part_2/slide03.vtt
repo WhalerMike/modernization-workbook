@@ -1,95 +1,100 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.653
+00:00:00.100 --> 00:00:02.538
 Least privilege applies to software too,
 
 2
-00:00:02.653 --> 00:00:06.175
+00:00:02.538 --> 00:00:05.837
 and a workload can use its
 access faster than any person.
 
 3
-00:00:06.175 --> 00:00:08.887
+00:00:05.837 --> 00:00:08.325
 The guide cuts privilege in five places.
 
 4
-00:00:08.887 --> 00:00:10.837
+00:00:08.325 --> 00:00:10.225
 First, Graph permissions.
 
 5
-00:00:10.837 --> 00:00:14.163
+00:00:10.225 --> 00:00:13.325
 Prefer delegated permissions
 where a user is present.
 
 6
-00:00:14.163 --> 00:00:16.752
+00:00:13.325 --> 00:00:15.656
 Judge each grant by
 its type, not its name,
 
 7
-00:00:16.752 --> 00:00:20.675
+00:00:15.656 --> 00:00:19.187
 because Mail Send as an
 application permission is critical.
 
 8
-00:00:20.675 --> 00:00:23.850
+00:00:19.187 --> 00:00:22.338
 An application permission
 reaches across the whole tenant.
 
 9
-00:00:23.850 --> 00:00:27.421
+00:00:22.338 --> 00:00:25.744
 And removing a permission from
 the app doesn't revoke the grant,
 
 10
-00:00:27.421 --> 00:00:29.550
+00:00:25.744 --> 00:00:27.775
 so revoke it on the enterprise app too.
 
 11
-00:00:29.550 --> 00:00:31.550
+00:00:27.775 --> 00:00:29.900
 Second, directory roles.
 
 12
-00:00:31.550 --> 00:00:35.200
+00:00:29.900 --> 00:00:33.275
 No standing privileged role
 unless the record justifies it.
 
 13
-00:00:35.200 --> 00:00:38.638
+00:00:33.275 --> 00:00:36.700
 A privileged service principal
 is a control-plane asset.
 
 14
-00:00:38.638 --> 00:00:43.513
+00:00:36.700 --> 00:00:40.888
 Third, Azure roles, scoped to
 the one resource a workload uses.
 
 15
-00:00:43.513 --> 00:00:48.800
+00:00:40.888 --> 00:00:46.263
 Fourth, custom security attributes, so
 Conditional Access can pick apps by fact.
 
 16
-00:00:48.800 --> 00:00:52.563
+00:00:46.263 --> 00:00:51.325
+In G C C that waits for a tenant check,
+and until then each policy names its apps.
+
+17
+00:00:51.325 --> 00:00:54.812
 Fifth, workload Conditional
 Access, with real limits.
 
-17
-00:00:52.563 --> 00:00:54.374
+18
+00:00:54.812 --> 00:00:56.637
 Block is the only control.
 
-18
-00:00:54.374 --> 00:00:58.437
+19
+00:00:56.637 --> 00:01:00.090
 It covers only single-tenant
 apps, never managed identities,
 
-19
-00:00:58.437 --> 00:01:01.362
+20
+00:01:00.090 --> 00:01:02.576
 and only when each one
 is assigned directly.
 
-20
-00:01:01.362 --> 00:01:03.720
+21
+00:01:02.576 --> 00:01:04.820
 And new grants go through
 the tiered approval.

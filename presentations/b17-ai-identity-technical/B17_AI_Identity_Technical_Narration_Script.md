@@ -38,7 +38,7 @@ The inventory is the only government-wide list of federal AI, but it was built t
 
 ## Slide 10 — A use case isn't an identity: join on the directory
 
-A use case is a scenario, and scenarios don't sign in. One assistant can run on four different identities, and one shared platform can serve dozens of use cases under a single identity. The public file doesn't even have a stable key on every row. So the program puts the join on the identity side. Each AI system's identity record carries the inventory ID, and every directory object it uses points back to that record. That same tag can later drive policy. Join against your agency's own submission, not the public file. Next, what the inventory can say about the high-impact practices.
+A use case is a scenario, and scenarios don't sign in. One assistant can run on four different identities, and one shared platform can serve dozens of use cases under a single identity. The public file doesn't even have a stable key on every row. So the program puts the join on the identity side. Each AI system's identity record carries the inventory ID, and every directory object it uses points back to that record. That same tag can later drive policy. In G C C, until a tenant check confirms custom security attributes, the reference goes in the service principal's tags and notes, and policies name agents one by one. Join against your agency's own submission, not the public file. Next, what the inventory can say about the high-impact practices.
 
 ## Slide 11 — High-impact fields report status, not evidence
 
@@ -86,7 +86,7 @@ Least privilege starts with choosing how the agent acts: for a user when someone
 
 ## Slide 22 — Conditional Access follows the token subject
 
-Conditional Access follows the token's subject, so one policy rarely covers an agent. For autonomous agents, the recommended pattern is simple: block every agent identity except the ones you've approved. The program builds that in report-only mode and sets the approval tag only during the production handshake, so the report shows every agent that skipped it. It stays in report-only until the agent targets leave preview in your cloud. Plan around the known gaps, like the token exchange step that policy can't see. And when risk detection flags an agent, tell its sponsor too, because they know what normal looks like. Now, tools and data.
+Conditional Access follows the token's subject, so one policy rarely covers an agent. For autonomous agents, the recommended pattern is simple: block every agent identity except the ones you've approved. The program builds that in report-only mode and approves an agent only during the production handshake, so the report shows every agent that skipped it. In G C C, until custom security attributes are confirmed, the handshake adds each approved agent to the policy's exclusions by name. It stays in report-only until the agent targets leave preview in your cloud. Plan around the known gaps, like the token exchange step that policy can't see. And when risk detection flags an agent, tell its sponsor too, because they know what normal looks like. Now, tools and data.
 
 ## Slide 23 — Three boundaries on what an agent can call
 

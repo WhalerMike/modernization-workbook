@@ -1,76 +1,96 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.325
+00:00:00.100 --> 00:00:04.137
 Next, every identity joins to a
 record in the system inventory.
 
 2
-00:00:04.325 --> 00:00:08.625
+00:00:04.137 --> 00:00:08.063
 For an app registration, use its service
 management reference where it's set.
 
 3
-00:00:08.625 --> 00:00:12.713
+00:00:08.063 --> 00:00:11.975
 Otherwise, search by name and
 owner, and then interview people.
 
 4
-00:00:12.713 --> 00:00:16.376
+00:00:11.975 --> 00:00:15.475
 Find the application owner before
 anyone touches the account.
 
 5
-00:00:16.376 --> 00:00:19.700
+00:00:15.475 --> 00:00:18.900
 An account nobody will own
 becomes a retirement candidate.
 
 6
-00:00:19.700 --> 00:00:22.511
+00:00:18.900 --> 00:00:21.540
 Every app registration
 and service principal
 
 7
-00:00:22.511 --> 00:00:25.250
+00:00:21.540 --> 00:00:24.113
 gets two human owners,
 never service accounts.
 
 8
-00:00:25.250 --> 00:00:29.963
+00:00:24.113 --> 00:00:28.313
 Keep that list short, because an owner
 can add a credential and act as the app.
 
 9
-00:00:29.963 --> 00:00:32.987
+00:00:28.313 --> 00:00:31.149
 The business approver goes
 in the registry instead.
 
 10
-00:00:32.987 --> 00:00:38.349
+00:00:31.149 --> 00:00:36.200
 Every identity also gets a sponsor, who
 is a federal employee mastered in HR.
 
 11
-00:00:38.349 --> 00:00:42.988
+00:00:36.200 --> 00:00:40.900
 A contractor can build or run a
 workload, but can't be its only sponsor.
 
 12
-00:00:42.988 --> 00:00:46.461
+00:00:40.900 --> 00:00:44.331
 The Federal Modernization Workbook
 sets that rule for agents,
 
 13
-00:00:46.461 --> 00:00:49.000
+00:00:44.331 --> 00:00:46.838
 and the program applies
 it to everything here.
 
 14
-00:00:49.000 --> 00:00:52.260
+00:00:46.838 --> 00:00:51.912
+Every service principal and managed identity
+also carries the program's seven tags.
+
+15
+00:00:51.912 --> 00:00:56.724
+In G C C, until a tenant check confirms
+custom security attributes, a service
+
+16
+00:00:56.724 --> 00:00:59.439
+principal holds them
+in its tags and notes,
+
+17
+00:00:59.439 --> 00:01:02.388
+and a managed identity
+in Azure resource tags.
+
+18
+00:01:02.388 --> 00:01:05.335
 And where the tenant doesn't
 expose the agent features,
 
-15
-00:00:52.260 --> 00:00:55.440
+19
+00:01:05.335 --> 00:01:08.160
 govern agents as the service
 principals they run as.

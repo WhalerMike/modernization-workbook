@@ -105,83 +105,88 @@
  ],
  "3": [
   [
-   0.05,
-   6.125,
+   0.1,
+   5.737,
    "Least privilege applies to software too, and a workload can use its access faster than any person."
   ],
   [
-   6.175,
-   2.712,
+   5.787,
+   2.538,
    "The guide cuts privilege in five places."
   ],
   [
-   8.887,
-   1.95,
+   8.325,
+   1.9,
    "First, Graph permissions."
   ],
   [
-   10.838,
-   3.325,
+   10.225,
+   3.1,
    "Prefer delegated permissions where a user is present."
   ],
   [
-   14.162,
-   6.513,
+   13.325,
+   5.862,
    "Judge each grant by its type, not its name, because Mail Send as an application permission is critical."
   ],
   [
-   20.675,
-   3.175,
+   19.188,
+   3.15,
    "An application permission reaches across the whole tenant."
   ],
   [
-   23.85,
-   5.7,
+   22.337,
+   5.438,
    "And removing a permission from the app doesn't revoke the grant, so revoke it on the enterprise app too."
   ],
   [
-   29.55,
-   2.0,
+   27.775,
+   2.125,
    "Second, directory roles."
   ],
   [
-   31.55,
-   3.65,
+   29.9,
+   3.375,
    "No standing privileged role unless the record justifies it."
   ],
   [
-   35.2,
-   3.438,
+   33.275,
+   3.425,
    "A privileged service principal is a control-plane asset."
   ],
   [
-   38.638,
-   4.875,
+   36.7,
+   4.188,
    "Third, Azure roles, scoped to the one resource a workload uses."
   ],
   [
-   43.513,
-   5.287,
+   40.888,
+   5.375,
    "Fourth, custom security attributes, so Conditional Access can pick apps by fact."
   ],
   [
-   48.8,
-   3.763,
+   46.263,
+   5.062,
+   "In G C C that waits for a tenant check, and until then each policy names its apps."
+  ],
+  [
+   51.325,
+   3.487,
    "Fifth, workload Conditional Access, with real limits."
   ],
   [
-   52.562,
-   1.812,
+   54.812,
+   1.825,
    "Block is the only control."
   ],
   [
-   54.375,
-   6.987,
+   56.638,
+   5.938,
    "It covers only single-tenant apps, never managed identities, and only when each one is assigned directly."
   ],
   [
-   61.362,
-   2.3,
+   62.575,
+   2.237,
    "And new grants go through the tiered approval."
   ]
  ],

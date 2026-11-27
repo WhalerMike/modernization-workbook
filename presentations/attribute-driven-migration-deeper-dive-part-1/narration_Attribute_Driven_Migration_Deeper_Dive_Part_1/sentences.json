@@ -427,53 +427,58 @@
  ],
  "9": [
   [
-   0.05,
-   5.537,
+   0.1,
+   5.463,
    "The rest of Gate 1 comes down to three rules: one store, one writer, one owner."
   ],
   [
-   5.588,
-   3.013,
+   5.513,
+   2.788,
    "The data architect picks the store, in order."
   ],
   [
-   8.6,
-   8.075,
+   8.3,
+   7.487,
    "Native properties come first, then extension attributes for anything a rule reads, then directory extensions if you need more slots."
   ],
   [
-   16.675,
-   4.487,
+   15.787,
+   4.4,
    "Custom security attributes hold sensitive values that no rule needs."
   ],
   [
-   21.163,
-   4.312,
+   20.188,
+   6.0,
+   "In G C C, until a tenant check confirms them, those values stay in H R and the register."
+  ],
+  [
+   26.188,
+   4.275,
    "The provisioning service becomes the only writer of every schema field."
   ],
   [
-   25.475,
-   7.537,
+   30.462,
+   7.225,
    "Every other path, the help desk, self-service, and Exchange administration, goes on a list for removal at Gate 2."
   ],
   [
-   33.013,
-   6.338,
-   "Put codes, never display names, in anything a rule reads, and HR owns the code lists."
+   37.688,
+   5.612,
+   "Put codes, never display names, in anything a rule reads, and H R owns the code lists."
   ],
   [
-   39.35,
-   7.487,
+   43.3,
+   7.037,
    "To validate, run the two checks on the key's carrier, V K H R oh one and oh four, and expect findings."
   ],
   [
-   46.837,
-   1.5,
+   50.337,
+   1.7,
    "Sign the register early."
   ],
   [
-   48.337,
-   5.05,
+   52.038,
+   4.525,
    "Once a rule reads a slot, changing it means rewriting every rule that reads it."
   ]
  ],

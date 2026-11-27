@@ -314,43 +314,48 @@
  ],
  "10": [
   [
-   0.05,
+   0.1,
    3.725,
    "A use case is a scenario, and scenarios don't sign in."
   ],
   [
    3.775,
-   7.65,
+   7.425,
    "One assistant can run on four different identities, and one shared platform can serve dozens of use cases under a single identity."
   ],
   [
-   11.425,
-   3.913,
+   11.2,
+   3.475,
    "The public file doesn't even have a stable key on every row."
   ],
   [
-   15.338,
+   14.675,
    3.013,
    "So the program puts the join on the identity side."
   ],
   [
-   18.35,
-   7.787,
-   "Each AI system's identity record carries the inventory ID, and every directory object it uses points back to that record."
+   17.688,
+   7.463,
+   "Each A I system's identity record carries the inventory I D, and every directory object it uses points back to that record."
   ],
   [
-   26.137,
-   2.413,
+   25.15,
+   2.575,
    "That same tag can later drive policy."
   ],
   [
-   28.55,
-   3.875,
+   27.725,
+   10.3,
+   "In G C C, until a tenant check confirms custom security attributes, the reference goes in the service principal's tags and notes, and policies name agents one by one."
+  ],
+  [
+   38.025,
+   3.6,
    "Join against your agency's own submission, not the public file."
   ],
   [
-   32.425,
-   4.125,
+   41.625,
+   3.975,
    "Next, what the inventory can say about the high-impact practices."
   ]
  ],
@@ -711,38 +716,43 @@
  ],
  "22": [
   [
-   0.05,
-   5.338,
+   0.1,
+   5.537,
    "Conditional Access follows the token's subject, so one policy rarely covers an agent."
   ],
   [
-   5.388,
-   7.4,
+   5.588,
+   7.05,
    "For autonomous agents, the recommended pattern is simple: block every agent identity except the ones you've approved."
   ],
   [
-   12.787,
-   9.037,
-   "The program builds that in report-only mode and sets the approval tag only during the production handshake, so the report shows every agent that skipped it."
+   12.637,
+   8.325,
+   "The program builds that in report-only mode and approves an agent only during the production handshake, so the report shows every agent that skipped it."
   ],
   [
-   21.825,
-   4.862,
+   20.962,
+   8.325,
+   "In G C C, until custom security attributes are confirmed, the handshake adds each approved agent to the policy's exclusions by name."
+  ],
+  [
+   29.288,
+   4.312,
    "It stays in report-only until the agent targets leave preview in your cloud."
   ],
   [
-   26.688,
-   4.688,
+   33.6,
+   4.625,
    "Plan around the known gaps, like the token exchange step that policy can't see."
   ],
   [
-   31.375,
-   5.825,
+   38.225,
+   5.612,
    "And when risk detection flags an agent, tell its sponsor too, because they know what normal looks like."
   ],
   [
-   37.2,
-   1.688,
+   43.837,
+   1.8,
    "Now, tools and data."
   ]
  ],

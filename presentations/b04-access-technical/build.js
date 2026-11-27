@@ -181,7 +181,7 @@ In the next four slides we'll cover how the library is numbered and what it assu
     [k("Named locations"), c("NL-TrustedNetworks, -TrustedCountries, -WorkloadEgress, -SyncServerEgress")],
     [k("Custom strength"), c("FMP-Privileged-SeparateDevice: FIDO2 keys by AAGUID, or certificate-based auth")],
     [k("Device label"), c("Device extensionAttribute12 = PAW, Kiosk or SharedDevice")],
-    [k("App attribute"), c("Custom security attribute FMPAccess.Environment on service principals")],
+    [k("App attribute"), c("FMPAccess.Environment attribute once confirmed in GCC; until then, apps listed (WD-176)")],
   ], [1.85, 4.65], { x: 6.25, y: 1.55, fontSize: 11.5, rowH: [0.38, 0.44, 0.44, 0.44, 0.44, 0.44, 0.44, 0.44] });
   callout(s, "Conventions", 5.3, 1.2, "FaListCheck", HEX.amber, "Every policy: ",
     "excludes the emergency access group; needs Entra ID P1 (P2 for risk, Workload ID Premium for service principals); starts in report-only; never uses the approved-client-app grant, read-only since June 30, 2026.");
@@ -190,7 +190,7 @@ In the next four slides we'll cover how the library is numbered and what it assu
 
 Every name follows one pattern: number, population, resource or condition, then control. You can read a policy on a call without opening it.
 
-On the right are the prerequisites, and missing ones are the most common reason a report-only policy shows failures that aren't real. The emergency access group. Persona groups, the two big ones dynamic from extension attributes in Book 03's attribute map. Access groups for restricted populations. Four named locations, the newest holding only the Connect servers' egress addresses, for CA039, the synchronization-account location restriction numbered on November 11, 2026. A custom authentication strength that accepts FIDO2 keys from an approved AAGUID list, or certificate-based authentication. It leaves out Windows Hello for Business on purpose: for privileged accounts, a credential held in the device gaining access doesn't count as a separate device. A device label in extension attribute twelve. And a custom security attribute that tags each application's environment.
+On the right are the prerequisites, and missing ones are the most common reason a report-only policy shows failures that aren't real. The emergency access group. Persona groups, the two big ones dynamic from extension attributes in Book 03's attribute map. Access groups for restricted populations. Four named locations, the newest holding only the Connect servers' egress addresses, for CA039, the synchronization-account location restriction numbered on November 11, 2026. A custom authentication strength that accepts FIDO2 keys from an approved AAGUID list, or certificate-based authentication. It leaves out Windows Hello for Business on purpose: for privileged accounts, a credential held in the device gaining access doesn't count as a separate device. A device label in extension attribute twelve. And a custom security attribute that tags each application's environment, once a tenant check confirms custom security attributes in the program's GCC tenant; until then each environment policy lists its applications by name, from the register (WD-176).
 
 Four conventions apply everywhere. The emergency access exclusion is implicit. Every policy needs Entra ID P1; risk policies need P2; workload identity policies need Workload ID Premium. Every policy is created in report-only. And none uses the approved client app grant, which became read-only on June 30, 2026.`, "Chapter 07 — The Conditional Access Policy Library; Chapter 03 — The Conditional Access Model.");
 }
@@ -230,7 +230,7 @@ Now the failure mode that drives one of the library's most important design choi
     [k("2 · Administrators", HEX.red), c("CA003–CA005, CA025–CA027"), c("Separate-device phishing-resistant MFA every 4 hours; compliant devices; trusted networks; PAWs only"), c("CA003 targets the persona and the highly privileged roles; CA027 keeps the Azure management plane to operators")],
     [k("3 · Everyone", HEX.teal), c("CA006–CA011, CA016–CA018, CA038"), c("Workforce MFA and managed devices; country block; partner and guest controls; mobile app protection"), c("CA018 is the catch-all; CA038 makes CA011's limited guest access true")],
     [k("4 · Risk and workloads", HEX.amber), c("CA012–CA015, CA019, CA036, CA037, CA039"), c("High-risk users and sign-ins; elevated insider risk; workloads off their egress or at high risk; sync identities off the Connect servers"), c("CA019 blocks high sign-in risk, so CA014 acts on medium; CA012 then retires")],
-    [k("5 · Segments, end state"), c("CA022–CA024, CA028–CA035"), c("Phishing-resistant MFA for all members; web-only, kiosk, production, staging, Power Platform, department apps"), c("CA030–CA032 select apps by custom security attribute; CA034 and CA035 are the grant-and-block template")],
+    [k("5 · Segments, end state"), c("CA022–CA024, CA028–CA035"), c("Phishing-resistant MFA for all members; web-only, kiosk, production, staging, Power Platform, department apps"), c("CA030–CA032 list their apps by name until attributes are confirmed in GCC (WD-176); CA034 and CA035 are the grant-and-block template")],
   ], [1.75, 2.15, 4.0, 4.25], { y: 1.5, fontSize: 11.5, rowH: [0.38, 0.66, 0.66, 0.66, 0.66, 0.66] });
   callout(s, "PAW", 5.55, 0.95, "FaLaptop", HEX.amber, "The PAW rule is two policies: ",
     "CA004 requires a compliant device; CA025 blocks admin portals on any device not labeled PAW.");
@@ -243,7 +243,7 @@ Wave two is administrators. CA003 requires the separate-device strength with a f
 
 Wave three is the one users notice: the workforce MFA baseline, managed devices, the country block, partner and guest policies, mobile app protection, the CA018 catch-all, and CA038, without which CA011's limited guest access isn't limited at all.
 
-Wave four is risk and workloads, including CA039, which blocks the synchronization identities anywhere but the Connect servers' own egress. Wave five is segments and the end state: CA022, phishing-resistant MFA for every member.`, "Chapter 07 — The Conditional Access Policy Library; Appendix A.");
+Wave four is risk and workloads, including CA039, which blocks the synchronization identities anywhere but the Connect servers' own egress. Wave five is segments and the end state: CA022, phishing-resistant MFA for every member. CA030 to CA032 isolate environments by an application filter on a custom security attribute; until a tenant check confirms those in the program's GCC tenant, each lists its environment's applications by name, and the change that registers an application adds it to the right policy.`, "Chapter 07 — The Conditional Access Policy Library; Appendix A.");
 }
 
 // ------------------------------------------------------------------ 8  BOD 25-01

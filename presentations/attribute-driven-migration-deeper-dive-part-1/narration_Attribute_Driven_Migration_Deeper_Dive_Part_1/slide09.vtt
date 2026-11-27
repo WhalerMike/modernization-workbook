@@ -1,69 +1,78 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.587
+00:00:00.100 --> 00:00:05.563
 The rest of Gate 1 comes down to three
 rules: one store, one writer, one owner.
 
 2
-00:00:05.587 --> 00:00:08.601
+00:00:05.563 --> 00:00:08.301
 The data architect picks
 the store, in order.
 
 3
-00:00:08.601 --> 00:00:13.665
+00:00:08.301 --> 00:00:12.996
 Native properties come first, then extension
 attributes for anything a rule reads,
 
 4
-00:00:13.665 --> 00:00:16.675
+00:00:12.996 --> 00:00:15.787
 then directory extensions
 if you need more slots.
 
 5
-00:00:16.675 --> 00:00:21.162
+00:00:15.787 --> 00:00:20.187
 Custom security attributes hold
 sensitive values that no rule needs.
 
 6
-00:00:21.162 --> 00:00:25.475
+00:00:20.187 --> 00:00:23.233
+In G C C, until a tenant
+check confirms them,
+
+7
+00:00:23.233 --> 00:00:26.188
+those values stay in HR and the register.
+
+8
+00:00:26.188 --> 00:00:30.463
 The provisioning service becomes the
 only writer of every schema field.
 
-7
-00:00:25.475 --> 00:00:28.524
+9
+00:00:30.463 --> 00:00:33.384
 Every other path, the
 help desk, self-service,
 
-8
-00:00:28.524 --> 00:00:33.012
+10
+00:00:33.384 --> 00:00:37.687
 and Exchange administration, goes
 on a list for removal at Gate 2.
 
-9
-00:00:33.012 --> 00:00:35.414
+11
+00:00:37.687 --> 00:00:39.814
 Put codes, never display names,
 
-10
-00:00:35.414 --> 00:00:39.351
+12
+00:00:39.814 --> 00:00:43.300
 in anything a rule reads,
 and HR owns the code lists.
 
-11
-00:00:39.351 --> 00:00:43.389
+13
+00:00:43.300 --> 00:00:47.096
 To validate, run the two
 checks on the key's carrier,
 
-12
-00:00:43.389 --> 00:00:46.837
+14
+00:00:47.096 --> 00:00:50.337
 V K H R oh one and oh
 four, and expect findings.
 
-13
-00:00:46.837 --> 00:00:48.337
+15
+00:00:50.337 --> 00:00:52.037
 Sign the register early.
 
-14
-00:00:48.337 --> 00:00:53.450
+16
+00:00:52.037 --> 00:00:56.570
 Once a rule reads a slot, changing it
 means rewriting every rule that reads it.

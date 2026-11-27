@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 8cf85b24d76a0100e104f6d8a2ff6624f0fb5f794be582a5ccc7d88c146f4530
-last-reviewed: 2026-11-26
+reviewed-sha256: 5d06ceb25939ce2f153735a7abe2dcc773a7385efb83f67ee2ac7425645e0579
+last-reviewed: 2026-11-27
 ---
 # Chapter 09 — AI Agent Identities
 
@@ -335,7 +335,7 @@ They print the lines of Chapter 01's step 3 and Chapter 02's step 3, ending `Pla
 
    <!-- capture:end -->
 
-   NPI-AI-05, -06, -12 and -14 once each, all on Case Triage Agent: its handshake lacks a sponsoring group, Conditional Access coverage and an access mode, names the sponsor as technical owner, was reviewed a month after the agent was created, and the agent holds Exchange Administrator with no end date. NPI-AI-07 twice (P2: Sandbox Helper and Pilot Sandbox Blueprint, whose only sponsor is a contractor), NPI-AI-08 once (Records Search: the record names Bob, the directory Carol), NPI-AI-09 four times, NPI-AI-10 twice (Case Triage Blueprint's secret; Correspondence Drafting's app registration), NPI-AI-13 once (Case Triage Blueprint inherits all Graph roles), NPI-AI-15 once (Correspondence Drafting holds `Directory.ReadWrite.All`), NPI-AI-16 once (Records Search: Bob left on October 9 and nobody confirmed by October 26), NPI-AI-17 once (the mover workflow has no transfer task), NPI-AI-20 once (Sandbox Helper carries the approval attribute with no handshake), and the P1 drift: NPI-AI-21 (Claims Summarizer, piloted, no identity), NPI-AI-22 twice (Sandbox Helper and Pilot Sandbox Blueprint) and NPI-AI-23 (a secret added to Case Triage Blueprint on October 20 by a person, outside any change window). Benefits Q&A Agent and its blueprint pass every rule.
+   NPI-AI-05, -06, -12 and -14 once each, all on Case Triage Agent: its handshake lacks a sponsoring group, Conditional Access coverage and an access mode, names the sponsor as technical owner, was reviewed a month after the agent was created, and the agent holds Exchange Administrator with no end date. NPI-AI-07 twice (P2: Sandbox Helper and Pilot Sandbox Blueprint, whose only sponsor is a contractor), NPI-AI-08 once (Records Search: the record names Bob, the directory Carol), NPI-AI-09 four times, NPI-AI-10 twice (Case Triage Blueprint's secret; Correspondence Drafting's app registration), NPI-AI-13 once (Case Triage Blueprint inherits all Graph roles), NPI-AI-15 once (Correspondence Drafting holds `Directory.ReadWrite.All`), NPI-AI-16 once (Records Search: Bob left on October 9 and nobody confirmed by October 26), NPI-AI-17 once (the mover workflow has no transfer task), NPI-AI-20 once (Sandbox Helper is excluded from the block policy by name with no complete handshake), and the P1 drift: NPI-AI-21 (Claims Summarizer, piloted, no identity), NPI-AI-22 twice (Sandbox Helper and Pilot Sandbox Blueprint) and NPI-AI-23 (a secret added to Case Triage Blueprint on October 20 by a person, outside any change window). Benefits Q&A Agent and its blueprint pass every rule.
 
 6. **Read the sponsor fields Chapter 02 recorded, filled:**
 

@@ -87,6 +87,7 @@ endModule(SI);
     "An attribute set for applications, such as Environment and DataClass",
     "A policy can select target applications by attribute; only string attributes work",
     "Service principals can't be dynamic group members, so attributes are how this track targets by fact",
+    "In GCC, 4d waits for a tenant check; until then policies name their apps (WD-176)",
   ], 12.5);
   const r = panel(s, "4e", 6.85, 1.45, 5.9, null, HEX.teal, HEX.tealTint, "4E", "Workload identity policies", [
     "For each Tier 1 single-tenant service principal: a location block and a high-risk block, assigned directly",
@@ -97,7 +98,7 @@ endModule(SI);
     "Conditional Access for workload identities needs Workload ID Premium.");
   sources(s, "Sources: Module 6, Unit 1; the guide, Step 4 (4d, 4e), \"Licenses\"; Microsoft Learn: Filter for applications; Conditional Access for workload identities.");
   notes(s,
-`Unit 1 is the guide's Step 4, sub-steps four d and four e. Four d is custom security attributes. You define an attribute set for applications, such as environment and data class, and, as Microsoft Learn's page on filtering for applications in Conditional Access says, a policy can then select target applications by attribute. Only string attributes work. And because service principals can't be members of dynamic groups, attributes are how this track targets by fact. Four e is the workload identity policies themselves. For each Tier 1 single-tenant service principal, assign it directly to a location block that allows only the networks it runs from, and to a high-risk block, both report-only first. The results appear in the service principal sign-in logs. Managed identities are governed through their role assignments and access reviews instead. And Microsoft Learn's Conditional Access for workload identities page says creating or changing these policies needs Workload I D Premium.`,
+`Unit 1 is the guide's Step 4, sub-steps four d and four e. Four d is custom security attributes. You define an attribute set for applications, such as environment and data class, and, as Microsoft Learn's page on filtering for applications in Conditional Access says, a policy can then select target applications by attribute. Only string attributes work. And because service principals can't be members of dynamic groups, attributes are how this track targets by fact. In G C C, four d waits for a tenant check that confirms custom security attributes, and until then each policy names its target applications and service principals one by one. Four e is the workload identity policies themselves. For each Tier 1 single-tenant service principal, assign it directly to a location block that allows only the networks it runs from, and to a high-risk block, both report-only first. The results appear in the service principal sign-in logs. Managed identities are governed through their role assignments and access reviews instead. And Microsoft Learn's Conditional Access for workload identities page says creating or changing these policies needs Workload I D Premium.`,
   `${M} — Unit 1 "What the gate asks for"; the guide — Step 4, 4d and 4e; "Licenses."`);
 }
 

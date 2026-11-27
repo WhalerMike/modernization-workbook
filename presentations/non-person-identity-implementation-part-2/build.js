@@ -129,7 +129,7 @@ endModule(S0);
     ["4a Graph permissions", "List application permissions and delegated grants; prefer delegated where a user is present. Judge by type, not name: Mail.Send as an application permission is critical. Removing a permission from the registration doesn't revoke the grant: revoke it on the enterprise application too"],
     ["4b Directory roles", "No standing privileged role unless the record justifies it; prefer a time-bound assignment through the ticket. Privileged service principals are control-plane (Tier 0) assets; review them with PIM access reviews"],
     ["4c Azure RBAC", "Scope each managed identity's role to the resource it uses, such as Key Vault Reader on one vault, never Owner or Contributor at a subscription"],
-    ["4d Attributes", "Custom security attributes on service principals let Conditional Access select applications by fact: string attributes only, evaluated at token issuance"],
+    ["4d Attributes", "Custom security attributes let Conditional Access select applications by fact (string only); in GCC this waits for a tenant check, and policies name their apps (WD-176)"],
     ["4e Workload CA", "For each Tier 1 single-tenant service principal: a location block and a high-risk block, report-only first"],
   ], { fontSize: 11.5, limit: 6.6 });
   const w = 5.95;
@@ -151,7 +151,7 @@ endModule(S0);
 
 4b, directory roles. Microsoft says service principals with highly privileged roles are control-plane, Tier 0, assets. No standing privileged role for a non-person identity unless the record justifies it; prefer a time-bound assignment approved through the ticket. Review them with PIM access reviews, which need Workload ID Premium for service principals.
 
-4c, Azure RBAC: scope each role to the resource it uses. 4d, custom security attributes, which let a Conditional Access policy select applications by attribute; only string attributes work. 4e, Conditional Access for workload identities, with its limits: block is the only grant, single-tenant service principals only, assigned directly, and Workload ID Premium to create or change a policy.`,
+4c, Azure RBAC: scope each role to the resource it uses. 4d, custom security attributes, which let a Conditional Access policy select applications by attribute; only string attributes work. Until a tenant check confirms them in GCC, this step waits: a policy names its target applications, and a workload identity policy its service principals, one by one, and the tags from Step 1f find them with a Graph filter. 4e, Conditional Access for workload identities, with its limits: block is the only grant, single-tenant service principals only, assigned directly, and Workload ID Premium to create or change a policy.`,
   `${IG}, Step 4 — 4a "Graph: application versus delegated permissions," 4b "Directory roles," 4c "Azure RBAC," 4d "Custom security attributes and Conditional Access app filters," 4e "Conditional Access for workload identities, and its limits."`);
 }
 
