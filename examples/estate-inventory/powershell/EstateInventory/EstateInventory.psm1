@@ -64,7 +64,7 @@ function Read-EiSettings {
         if ($s['tenantId'] -notmatch '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') { $problems.Add('tenantId must be the tenant''s GUID.') }
         $auth = $s['auth']
         if (-not $auth -or $auth['method'] -notin 'certificate', 'managedIdentity') { $problems.Add('auth.method must be certificate or managedIdentity.') }
-        elseif ($auth['method'] -eq 'certificate' -and (-not $auth['clientId'] -or -not $auth['certificateThumbprint'])) { $problems.Add('auth.certificate needs clientId and certificateThumbprint.') }
+        elseif ($auth['method'] -eq 'certificate' -and (-not $auth['clientId'] -or -not ($auth['certificatePath'] -or $auth['certificateThumbprint']))) { $problems.Add('auth.certificate needs clientId, and certificatePath (a .pfx in the credential folder) or certificateThumbprint.') }
     }
     if (-not $s['outputRoot']) { $problems.Add('outputRoot is required.') }
 
@@ -141,6 +141,19 @@ function Connect-EiCloud {
             $azArgs = @{ Identity = $true; Environment = 'AzureCloud'; Tenant = $tenant }
             if ($auth['clientId']) { $azArgs.AccountId = $auth['clientId'] }
             Connect-AzAccount @azArgs | Out-Null
+        }
+    } elseif ($auth['certificatePath']) {
+        # A PKCS#12 (.pfx) file in a credential folder only the run account and the server's
+        # administrators can open, as WD-179's run keeps its readers' files. Learn documents
+        # Connect-AzAccount -CertificatePath (pkcs#12) and Connect-MgGraph -Certificate (an X509Certificate2).
+        $pfx = Resolve-EiPath -Path $auth['certificatePath'] -Base $Settings['_base']
+        if (-not (Test-Path -LiteralPath $pfx -PathType Leaf)) { throw "No certificate file at $pfx." }
+        $cert = [System.Security.Cryptography.X509Certificates.X509Certificate2]::new($pfx, [string]$null,
+            [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]::EphemeralKeySet)
+        if (-not $cert.HasPrivateKey) { throw "The certificate file $pfx holds no private key." }
+        Connect-MgGraph -Environment Global -TenantId $tenant -ClientId $auth['clientId'] -Certificate $cert -NoWelcome | Out-Null
+        if ($NeedAzure) {
+            Connect-AzAccount -ServicePrincipal -Environment AzureCloud -Tenant $tenant -ApplicationId $auth['clientId'] -CertificatePath $pfx | Out-Null
         }
     } else {
         $cert = Get-EiCertificate -Thumbprint $auth['certificateThumbprint']

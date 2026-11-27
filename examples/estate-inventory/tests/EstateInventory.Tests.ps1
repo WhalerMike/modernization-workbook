@@ -113,3 +113,19 @@ Describe 'A live run without a forest or a certificate' -Skip:(-not $IsWindows) 
         Test-EiRun -Path $script:LiveRun | Should -BeNullOrEmpty
     }
 }
+
+Describe 'A live run with a certificate file that isn''t there' -Skip:(-not $IsWindows) {
+    It 'fails each cloud step on its own and names the file' {
+        $s = New-TestSettings @{
+            cloud = 'gcc'; tenantId = '00000000-0000-4000-8000-000000000000'
+            auth = @{ method = 'certificate'; clientId = '11111111-1111-4111-8111-111111111111'; certificatePath = 'credentials/reader-app.pfx' }
+            'start-kit' = @{ enabled = $false }; 'validation-kit' = @{ enabled = $false }
+            'non-person-identity' = @{ domains = @('corp.contoso.example') }
+        }
+        $r = Invoke-Entry -SettingsPath $s
+        $r.ExitCode | Should -Be 2
+        $m = Get-Content -LiteralPath (Join-Path (Get-Runs $s)[0].FullName 'EstateInventoryManifest.json') -Raw | ConvertFrom-Json
+        ($m.steps | ForEach-Object { "$($_.step)=$($_.status)" }) -join ' ' | Should -Be 'non-person-identity=Error privileged-access=Error'
+        $m.steps[0].detail | Should -Match 'No certificate file at .*reader-app\.pfx'
+    }
+}
