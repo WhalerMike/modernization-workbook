@@ -11,7 +11,7 @@ doc-type: section-landing
 
 This register lists the decisions behind the workbook, from the repository's first pull request on, one entry each. Each entry gives the question, the options that were considered, the choice, the reason for it, its basis, its sources and the pages it shaped. The [Reviewers' Guide](reviewers-guide.md) explains how to check an entry and how to tell us you agree or disagree with it. Use the entry's ID when you do.
 
-There are **181** workbook decisions: 170 settled, 0 challenged and 11 superseded. Below them are the **109** decision points the sample project plans leave to the agency that adopts them.
+There are **182** workbook decisions: 171 settled, 0 challenged and 11 superseded. Below them are the **109** decision points the sample project plans leave to the agency that adopts them.
 
 ::: {.callout-note}
 ## How to read the basis
@@ -215,6 +215,7 @@ There are **181** workbook decisions: 170 settled, 0 challenged and 11 supersede
 | [WD-179](#wd-179) | 2026-11-25 | Where does the Provider Notices kit run in production, as which identity, and how does each provider's reader sign in without a person? | Workbook design | settled |
 | [WD-180](#wd-180) | 2026-11-27 | Can the platform host run the estate inventory, the scheduled read-only run of the Start Kit, the non-person identity and privileged access inventories and the validation kit, and as which identities? | Workbook design | settled |
 | [WD-182](#wd-182) | 2026-11-27 | Where does an approved help desk request (a password reset, an authenticator reset, a cloud account or a typed change to a user) run, and as which identity? | Workbook design | settled |
+| [WD-183](#wd-183) | 2026-11-27 | How does the platform host's own dependence on Active Directory (its domain join, a read-only LDAP bind account and the gMSAs of WD-163 and WD-179 to WD-182) square with WD-065, which makes every new AD dependency after G0 a dated exception? | Workbook design | settled |
 
 : Workbook decisions, oldest first {.striped .hover}
 
@@ -3175,6 +3176,23 @@ There are **181** workbook decisions: 170 settled, 0 challenged and 11 supersede
 | **Note** | Basis: drafted November 27, 2026 at the workbook owner's request. Shown three places an approved help desk request could run (SailPoint's own workflow, a ServiceNow flow, or a pipeline on the platform host), he answered "Option 3, draft [WD-182](#wd-182) and build phase 3". Shown the draft, with the pipeline, its checks and its identities, he answered "Approve [WD-182](#wd-182) and the Learn coverage map" (November 27, 2026). Not yet run against a live tenant, instance or SailPoint tenant: the worker app's permissions (Learn's table for the Temporary Access Pass names a read permission as least privileged for the page, so the create is declared with the write permission until a test tenant shows otherwise), the hand-off and the clearing job are proved in a test stage. |
 
 [Agree, disagree or send evidence on WD-182](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-182%3A+)
+
+### WD-183: How does the platform host's own dependence on Active Directory (its domain join, a read-only LDAP bind account and the gMSAs of WD-163 and WD-179 to WD-182) square with WD-065, which makes every new AD dependency after G0 a dated exception? {#wd-183}
+
+| | |
+|---|---|
+| **Options considered** | One WD-065 exception covering all of the platform host's AD dependencies, with an owner, an end date and the Entra alternative considered, cited by the platform host guide and *Cloud Boundary and Landing Zone*, Appendix B; A decision that the program's own G0 tooling is outside WD-065's screen; Redesign the host without Active Directory: no domain join, Entra sign-in only and no gMSAs |
+| **Choice** | The platform host's Active Directory dependencies are one WD-065 exception, recorded for the authorizing official to approve: the host's computer account and its own OU; the read-only LDAP bind account Gitea's directory sign-in uses over LDAPS; the gMSAs gmsa-fmpgitea$ (the Gitea service, backup and check), gmsa-fmpassess$ (WD-180, WD-181) and gmsa-fmphelpdesk$ (WD-182), each with its retriever group; and each gMSA's delegated rights, nothing more. Owner: the platform lead. End date: gate G5, or the end-of-life date of the documented Kerberos island if the agency keeps one. Entra alternative considered: an Entra-joined host signing in to Gitea through OpenID Connect only, and Microsoft Entra workload identities in place of the gMSAs, which needs the scheduled tasks to run as an Entra identity on the server, not available to a Windows scheduled task today. Any further AD object the host needs joins this exception through a change, so the weekly assessment's comparison with the G0 baseline explains each one and flags anything else as drift (*Governance, Drift and Evidence*, Chapter 04). The platform host guide and *Cloud Boundary and Landing Zone*, Appendix B, B.4 cite this exception, and it covers the gMSAs WD-180 to WD-182 add. |
+| **Rationale** | *The Transformation Arc*, Chapter 03 puts the platform host at G0 and WD-065 screens every change from G0, so the host's AD objects are exactly the dependencies WD-065 describes; leaving them uncited makes the gMSAs and computer account unexplained new AD objects, which *Governance, Drift and Evidence*, Chapter 04 counts as drift. One exception keeps the host's whole AD footprint in one dated record instead of one per gMSA, and ending it at G5 (or the island's end of life) ties it to the gate that retires the forest. Exempting the program's own tooling would leave the drift check blind to it; removing AD from the host would break the gMSA scheduled-task identities WD-179 to WD-182 rely on. |
+| **Basis** | Workbook design |
+| **Sources** | None external: the choice rests on the pages it shaped. |
+| **Pages affected** | [The Platform Host: An Implementation Guide](../books/guides/platform-host-implementation.md), [Appendix B — Platform Host Interface Reference](../books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md), [Chapter 04 — Change Control and Provenance](../books/b13-governance/04-change-control-and-provenance.md) |
+| **Date** | 2026-11-27 |
+| **Status** | settled |
+| **Defined in** | — |
+| **Note** | Basis: workbook owner decision, November 27, 2026. Shown that the platform host guide adds a domain join, an LDAP bind account and gMSAs without citing [WD-065](#wd-065), and offered one exception, an exemption or an Entra-only host, he chose "One [WD-065](#wd-065) exception (Recommended)". The authorizing official's approval of the exception is the agency's; the workbook records the exception as program design. |
+
+[Agree, disagree or send evidence on WD-183](https://github.com/WhalerMike/modernization-workbook/issues/new?template=decision-feedback.yml&title=WD-183%3A+)
 
 ## Decision points in the sample project plans {#plan-decisions}
 

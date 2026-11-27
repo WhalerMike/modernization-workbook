@@ -12,8 +12,8 @@ research-status: draft
 research-type: implementation guide
 research-book: "Book 00"
 review-status: approved
-reviewed-sha256: 4bf99b2ace5781ff84b2c6d4cf3df0b632e937a22a8054a2e12188d565cb0ef1
-last-reviewed: 2026-11-26
+reviewed-sha256: e1ef77c3b1d2d105ee8a3d0983d03d677c0340e488cd68c50c33f095fd5e3ff6
+last-reviewed: 2026-11-27
 ---
 # The Platform Host: An Implementation Guide
 
@@ -62,7 +62,7 @@ The runner has no domain and no Entra tenant. So the lab runs Gitea as Local Sys
 | Server | Windows Server 2025 Standard, 4 vCPU, 8 GB RAM, 100 GB SSD, domain-joined in its own OU | [Book 00, Chapter 08](../b00-orientation/08-pre-flight-and-assessment.md#seven-build-milestones), M-001 |
 | Front door | IIS site `FMPReverseProxy` on 443 with URL Rewrite and ARR; one rule to `http://127.0.0.1:3000` | [Appendix B, A.1](../b10-cloud-boundary/appendix-b-platform-host-interfaces.md#a.1-https-git-over-smart-http-tcp-443) |
 | Gitea | Windows service `gitea`, bound to loopback, its own SSH server on 2222 | [Appendix B, A.2](../b10-cloud-boundary/appendix-b-platform-host-interfaces.md#a.2-ssh-git-transport-tcp-2222), [E.2](../b10-cloud-boundary/appendix-b-platform-host-interfaces.md#e.2-gitea-cli-and-the-service) |
-| Service account | gMSA `CORP\gmsa-fmpgitea$`, retriever group `DL-gMSA-fmpgitea-Hosts` | [Appendix B, B.4](../b10-cloud-boundary/appendix-b-platform-host-interfaces.md#b.4-the-hosts-own-identities); WD-159, WD-173 |
+| Service account | gMSA `CORP\gmsa-fmpgitea$`, retriever group `DL-gMSA-fmpgitea-Hosts` | [Appendix B, B.4](../b10-cloud-boundary/appendix-b-platform-host-interfaces.md#b.4-the-hosts-own-identities); WD-159, WD-173; the host's AD dependencies are one dated WD-065 exception, [WD-183](../../about/decision-register.md#wd-183) |
 | Database | PostgreSQL `fmp_gitea` (full production) or embedded SQLite (single host) | [Appendix B, F.2](../b10-cloud-boundary/appendix-b-platform-host-interfaces.md#f.2-database-postgresql-or-embedded-sqlite) |
 | Sign-in | Active Directory over LDAPS, Entra ID over OpenID Connect | [Appendix B, B.1, B.2](../b10-cloud-boundary/appendix-b-platform-host-interfaces.md#family-b-identity-and-authentication) |
 | Cloud management | Azure Arc, machine configuration, Azure Monitor Agent, Blob backup, in commercial Azure as a documented exception | [Appendix B, family C](../b10-cloud-boundary/appendix-b-platform-host-interfaces.md#family-c-cloud-management-plane) |
