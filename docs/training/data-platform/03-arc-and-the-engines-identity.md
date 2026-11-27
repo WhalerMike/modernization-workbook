@@ -8,8 +8,8 @@ research-book: "Book 06"
 series-order: 3
 date-modified: 2026-11-25
 review-status: approved
-reviewed-sha256: 4f9f274e97c656c5c0e0b29d6093893722138a4813fd384b1df28ca8ebb652c7
-last-reviewed: 2026-11-25
+reviewed-sha256: 44b5e37fab46c42db25d4e1a67c7ee72eecb0f027a8afae7916644b43364ba6c
+last-reviewed: 2026-11-27
 ---
 # Data Platform, Module 3: Arc and the Engine's Identity {.unnumbered}
 

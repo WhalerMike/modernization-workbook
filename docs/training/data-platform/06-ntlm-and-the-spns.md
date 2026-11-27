@@ -8,8 +8,8 @@ research-book: "Book 06"
 series-order: 6
 date-modified: 2026-11-25
 review-status: approved
-reviewed-sha256: 5dfd2cbec363bca1969a403ba0ea3aa284fbf50f51864bd5cea86f0d353be0c7
-last-reviewed: 2026-11-25
+reviewed-sha256: e795809b865a4e82ab7cca797e965b09b08280a2e3fa3e08f3adb69c75913214
+last-reviewed: 2026-11-27
 ---
 # Data Platform, Module 6: NTLM and the SPNs {.unnumbered}
 
