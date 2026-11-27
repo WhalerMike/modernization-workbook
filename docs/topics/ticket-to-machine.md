@@ -50,10 +50,11 @@ The implementation guides, the developer workbook and its code.
 | [Building Ticket-to-Machine](../project-plans/developer-workbooks/ticket-to-machine/index.md) | A developer workbook for the Ticket-to-Machine loop on ServiceNow and SailPoint Identity Security Cloud: a code-first companion for the developers who build the typed identity finding, the ServiceNow and SailPoint clients and their least… |
 | [Integrating ServiceNow and SailPoint: An Implementation Example (Pass 1)](../books/guides/snow-sailpoint-integration-kit.md) | The integration example the developer workbook builds on. |
 | [Building an internal Ticket-to-Machine task catalog](../books/guides/ttm-task-catalog.md) | A one-page guide to the Ticket-to-Machine task catalog pack: a macro-free Excel workbook, a CSV template, 27 fictional worked examples and a checker that turns each row into a sample ticket contract. |
+| [Chapter 12 — The Day-Two Operator Runbook and Validation](../books/b15-day2-operations/12-the-day-two-runbook.md) | The everyday help desk and audit tasks the help desk automation pack scripts. |
 
 : Build {.striped .hover}
 
-The code is in [`examples/servicenow-sailpoint`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint) and [`examples/ttm-task-catalog`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ttm-task-catalog) on GitHub, and in the code zip under [Download](#download).
+The code is in [`examples/servicenow-sailpoint`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/servicenow-sailpoint), [`examples/ttm-task-catalog`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ttm-task-catalog) and [`examples/help-desk-automation`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/help-desk-automation) on GitHub, and in the code zip under [Download](#download).
 
 ## Learn {#learn}
 
@@ -120,6 +121,7 @@ Word editions and code, rebuilt on every site deploy.
 | [ticket-to-machine-code.zip](../../downloads/ticket-to-machine-code.zip) | Code: the scripts, tests and fixtures, as committed |
 | [building-ticket-to-machine-bundle.docx](../../downloads/building-ticket-to-machine-bundle.docx) | Word edition: Building Ticket-to-Machine |
 | [ticket-to-machine-task-catalog.zip](../../downloads/ticket-to-machine-task-catalog.zip) | Code: the scripts, tests and fixtures, as committed |
+| [help-desk-automation.zip](../../downloads/help-desk-automation.zip) | Code: the scripts, tests and fixtures, as committed |
 
 : Downloads {.striped .hover}
 

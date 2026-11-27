@@ -1661,6 +1661,10 @@
  ],
  "docs/books/b15-day2-operations/12-the-day-two-runbook.md": [
   {
+   "id": "ticket-to-machine",
+   "title": "Ticket-to-Machine"
+  },
+  {
    "id": "daily-checks-dashboard",
    "title": "Daily Checks Dashboard"
   },

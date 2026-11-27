@@ -1,0 +1,14 @@
+{
+  "_comment": "Every Microsoft Graph call the pack makes, the task that makes it and the least privilege Microsoft Learn names for it (read November 27, 2026). docs/reference/permissions-by-run.md is built from this file, and tests/HelpDeskAutomation.Tests.ps1 fails if the module calls an endpoint not declared here.",
+  "tasks": {
+    "typed-change-plan": { "mode": "read", "graphPermissions": ["User.Read.All"], "azureRoles": [], "adRights": [] },
+    "typed-change-apply": { "mode": "write", "graphPermissions": ["User.Read.All", "User.ReadUpdate.All"], "azureRoles": [], "adRights": [], "delegatedRole": "User Administrator, activated through PIM against the ticket, or the approved write pipeline (WD-182)" },
+    "consent-requests": { "mode": "read", "graphPermissions": ["ConsentRequest.Read.All"], "azureRoles": [], "adRights": [] }
+  },
+  "calls": [
+    { "id": "user-get", "api": "graph", "method": "GET", "version": "v1.0", "path": "/users/{id}", "permissions": ["User.Read.All"], "stage": "v1.0", "tasks": ["typed-change-plan", "typed-change-apply"], "learn": "https://learn.microsoft.com/graph/api/user-get?view=graph-rest-1.0" },
+    { "id": "user-update", "api": "graph", "method": "PATCH", "version": "v1.0", "path": "/users/{id}", "permissions": ["User.ReadUpdate.All"], "stage": "v1.0", "tasks": ["typed-change-apply"], "learn": "https://learn.microsoft.com/graph/api/user-update?view=graph-rest-1.0" },
+    { "id": "consent-requests-list", "api": "graph", "method": "GET", "version": "v1.0", "path": "/identityGovernance/appConsent/appConsentRequests", "permissions": ["ConsentRequest.Read.All"], "stage": "v1.0", "tasks": ["consent-requests"], "learn": "https://learn.microsoft.com/graph/api/appconsentapprovalroute-list-appconsentrequests?view=graph-rest-1.0" },
+    { "id": "user-consent-requests-list", "api": "graph", "method": "GET", "version": "v1.0", "path": "/identityGovernance/appConsent/appConsentRequests/{id}/userConsentRequests", "permissions": ["ConsentRequest.Read.All"], "stage": "v1.0", "tasks": ["consent-requests"], "learn": "https://learn.microsoft.com/graph/api/appconsentrequest-list-userconsentrequests?view=graph-rest-1.0" }
+  ]
+}

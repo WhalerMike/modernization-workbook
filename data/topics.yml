@@ -216,7 +216,7 @@ topics:
     title: Ticket-to-Machine
     subject: Ticket-to-Machine
     workbook: ttm
-    kit: [servicenow-sailpoint, ttm-task-catalog]
+    kit: [servicenow-sailpoint, ttm-task-catalog, help-desk-automation]
     summary: >-
       Closing drift by machine instead of by hand: a drift finding becomes a typed task in
       ServiceNow, SailPoint Identity Security Cloud acts on it within its approval ceiling, the
@@ -242,11 +242,14 @@ topics:
         - page: docs/books/guides/snow-sailpoint-integration-kit.md
           note: The integration example the developer workbook builds on.
         - page: docs/books/guides/ttm-task-catalog.md
+        - page: docs/books/b15-day2-operations/12-the-day-two-runbook.md
+          note: The everyday help desk and audit tasks the help desk automation pack scripts.
       evidence:
         - page: docs/books/b13-governance/appendix-a-requirements-mapping.md
     downloads:
       - building-ticket-to-machine-bundle.docx
       - ticket-to-machine-task-catalog.zip
+      - help-desk-automation.zip
 
   - id: hr-driven-identity
     title: HR-Driven Identity

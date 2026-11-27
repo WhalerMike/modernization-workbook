@@ -127,7 +127,7 @@ jobs:
         # every kit in one zip (fmw-all-kits.zip), linked from the Downloads page,
         # the workbooks' landing pages and the Watch page.
         run: |
-          for kit in ticket-to-machine-code hr-driven-identity-code privileged-access-code non-person-identity-code microsoft-automation-code cisco-sdwan ticket-to-machine-task-catalog dp-consolidation provider-notices-code zta-results global-secure-access-code azure-security-code defender-xdr-code daily-checks-workbook-code platform-host-code information-protection-code sql-server-identity-code msa-request-pack estate-inventory-code all-kits; do
+          for kit in ticket-to-machine-code hr-driven-identity-code privileged-access-code non-person-identity-code microsoft-automation-code cisco-sdwan ticket-to-machine-task-catalog dp-consolidation provider-notices-code zta-results global-secure-access-code azure-security-code defender-xdr-code daily-checks-workbook-code platform-host-code information-protection-code sql-server-identity-code msa-request-pack estate-inventory-code all-kits help-desk-automation; do
             python3 scripts/build_start_kit_zip.py --kit "$kit" --out _site/downloads
           done
 
