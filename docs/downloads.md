@@ -15,7 +15,7 @@ Every command in these kits is listed, with what it does and the pages that teac
 
 | Kit | What's in it | Download |
 |---|---|---|
-| **Every kit in one zip** | Every folder under [`examples`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples), once each, under its own name: all the kits below, the shared folders the developer workbooks build on (the drift pipeline, the validation kit, dynamic rules, the Lifecycle Workflows extensions and others) and the Microsoft samples pinned unmodified with their licenses under `third_party`. About 6.5 MB. The kit zips below are each built from some of these folders, so a kit's own zip has the same files laid out for that kit alone. Every script also comes as a `.txt` copy. The Help Desk kit is a separate release asset and isn't in it. | [fmw-all-kits.zip](../downloads/fmw-all-kits.zip), rebuilt on every site deploy |
+| **Every kit in one zip** | Every folder under [`examples`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples), once each, under its own name: all the kits below, the shared folders the developer workbooks build on (the drift pipeline, the validation kit, dynamic rules, the Lifecycle Workflows extensions and others) and the Microsoft samples pinned unmodified with their licenses under `third_party`. About 6.5 MB. The kit zips below are each built from some of these folders, so a kit's own zip has the same files laid out for that kit alone. Every script also comes as a `.txt` copy. The Help Desk kit is a separate release asset and isn't in it. To unzip it, and any other kit you downloaded, use [the command below the table](#unzip-kits). | [fmw-all-kits.zip](../downloads/fmw-all-kits.zip), rebuilt on every site deploy |
 | **Start Kit** — read-only estate assessment | PowerShell scripts that count the forest, the SQL Server estate, and RADIUS and NPS, with a one-page summary traced to its sources. Read-only by policy; unit-tested against fixtures, not proven against a live estate. Every script also comes as a `.txt` copy for Copilot and mail systems that block `.ps1` files. See [Book 00, Chapter 08](books/b00-orientation/08-pre-flight-and-assessment.md). | [start-kit.zip](../downloads/start-kit.zip), rebuilt on every site deploy from [`examples/start-kit`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/start-kit) |
 | **Validation kit** — read-only checks for the track implementation guides | PowerShell checks for the **Validate** steps in the [Attribute-Driven Migration](books/guides/attribute-driven-migration-implementation.md), [Intune](books/guides/intune-track-implementation.md), [Azure Arc](books/guides/arc-track-implementation.md) and [non-person identity](books/guides/non-person-identity-implementation.md) implementation guides, plus the HR and dynamic-group checks from the [Attribute-Driven Migration guide](books/guides/attribute-driven-migration.md). They read Microsoft Graph, Azure Resource Graph and, optionally, Active Directory, and each returns a status with its evidence. Illustrative, fixture-tested, read-only; 42 checks. Not proven against a live tenant: run each check first in a test tenant. Every script also comes as a `.txt` copy for mail systems that block `.ps1` files. | [validation-kit.zip](../downloads/validation-kit.zip), rebuilt on every site deploy from [`examples/validation-kit`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit) |
 | **Attribute-Driven Migration code** — the code behind Book 19 | Every `examples` folder the nine code chapters of [Book 19, Building the Attribute-Driven Migration](books/b19-developer-workbook/index.md) build on: the HR-to-Entra middleware, the Graph client patterns, the validation kit, dynamic rules as code, the Lifecycle Workflows extensions, Group Policy and machine configuration as code, the Ansible examples and the drift pipeline, with the Microsoft samples each chapter starts from, pinned unmodified with their licenses. Illustrative and fixture-tested; not proven against a live tenant. Every script also comes as a `.txt` copy for mail systems that block scripts. | [attribute-driven-migration-code.zip](../downloads/attribute-driven-migration-code.zip) |
@@ -41,6 +41,100 @@ Every command in these kits is listed, with what it does and the pages that teac
 | **Help Desk / Cloud Services Entra ID Operations Kit v1.6.2** | Five Word documents (intake and routing flow, administrative responsibilities, application access governance, governance structure brief, and the implementation path and run guide for the scripts), the routing matrix as a PowerShell module, the scripts with plain-text copies for mail systems that block `.ps1` files, and Pester tests that need no tenant. Its read-only app inventory also flags apps consented to act as every user, the Entra ID counterpart of the Start Kit's unconstrained-delegation check. Applies the help-desk model in [Book 15](books/b15-day2-operations/index.md). Not tenant-tested: run every change script with `-WhatIf` first. | [helpdesk-entra-operations-kit.zip](https://github.com/WhalerMike/modernization-workbook/releases/download/helpdesk-entra-kit-v1.6.2/helpdesk-entra-operations-kit.zip) · [release notes](https://github.com/WhalerMike/modernization-workbook/releases/tag/helpdesk-entra-kit-v1.6.2)<br>SHA-256 `5d00dce2008ba01d73cbe15c782153d7d0c8c786ce6c81ccd474220035181676` |
 | **Ansible examples** — CMDB-driven inventory, assessment, Arc onboarding and drift | A dynamic inventory that reads a CMDB export and groups hosts by coverage tier, platform and configuration owner, and six small playbooks: the CM-8 inventory feed with Azure Arc agent status, Arc onboarding gated by check mode and an explicit `confirm_change=true`, a Linux baseline drift check pinned to check mode, read-only Cisco IOS and Infoblox NIOS facts, an Arc wave plan, and the same onboarding waves through Microsoft's own Arc role. Clean under `ansible-lint` (production profile) and `yamllint`, with tests that fail on any ungated write; run against a test control node, not proven against a live estate. See the companion guide [Ansible for Configuration Automation](books/guides/ansible-configuration-automation.md). | [ansible-examples.zip](../downloads/ansible-examples.zip), rebuilt on every site deploy from [`examples/ansible`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ansible), with a `.txt` copy of every playbook and script |
 | **Application modernization reference implementation** | A Spring Boot REST service over PostgreSQL with its OpenAPI contract, a React front end, a Db2/Oracle to PostgreSQL migration tool that proves the move with row counts, checksums and aggregate reconciliation, and an agentic AI pattern with a provider-neutral interface and a stub model, so no API key is needed. Tests run against a real embedded PostgreSQL engine; docker-compose runs the whole stack. Illustrative, not production code. See [Book 18, Chapter 08](books/b18-application-modernization/08-the-reference-implementation.md). | [app-modernization.zip](../downloads/app-modernization.zip), rebuilt on every site deploy from [`examples/app-modernization`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/app-modernization), with a `.txt` copy of every source file |
+
+### Unzip the kits you downloaded {#unzip-kits}
+
+Every lab starts in `C:\FMWLabs\<zip name>`, at the folder its first step names, such as `C:\FMWLabs\defender-xdr-code\defender-xdr`, and its scripts find their other folders from there. This command gives you that layout whether you downloaded the zip with every kit or each kit's own zip. Download the zips you want to your **Downloads** folder, open PowerShell (Windows PowerShell 5.1 or PowerShell 7), and paste this:
+
+```powershell
+$Downloads = "$HOME\Downloads"
+$Labs = 'C:\FMWLabs'
+$Kits = 'fmw-all-kits', 'start-kit', 'validation-kit', 'attribute-driven-migration-code', 'ticket-to-machine-code',
+    'ticket-to-machine-task-catalog', 'msa-request-pack', 'hr-driven-identity-code', 'privileged-access-code',
+    'non-person-identity-code', 'microsoft-automation-code', 'cisco-sdwan', 'dp-consolidation', 'provider-notices-code',
+    'zta-results', 'defender-xdr-code', 'information-protection-code', 'global-secure-access-code', 'azure-security-code',
+    'daily-checks-workbook-code', 'platform-host-code', 'sql-server-identity-code', 'copilot-agent-pack',
+    'helpdesk-entra-operations-kit', 'ansible-examples', 'app-modernization'
+$Tmp = Join-Path $Labs '.unzip'
+$Count = 0
+function Copy-Kit($From, $Dest) {
+    New-Item -ItemType Directory -Force -Path $Dest | Out-Null
+    Copy-Item -Path "$From\*" -Destination $Dest -Recurse -Force
+}
+function Show-Leftover($Name, $Own) {
+    $Nested = Join-Path (Join-Path $Labs $Name) $Name
+    if ((Test-Path $Nested) -and -not $Own) {
+        "  $Nested is left over from an older zip. To delete it: Remove-Item -Recurse -Force $Nested"
+    }
+}
+foreach ($Kit in $Kits) {
+    $Zip = Join-Path $Downloads "$Kit.zip"
+    if (-not (Test-Path $Zip)) { continue }
+    if (Test-Path $Tmp) { Remove-Item -Recurse -Force $Tmp }
+    Expand-Archive -Path $Zip -DestinationPath $Tmp
+    Get-ChildItem $Tmp -Recurse -File | Unblock-File
+    $Layout = Join-Path $Tmp 'fmw-kit-layout.json'
+    if ($Kit -eq 'fmw-all-kits' -and (Test-Path $Layout)) {
+        # The zip with every kit: give each kit the folder its own zip would.
+        $Map = Get-Content -Raw $Layout | ConvertFrom-Json
+        foreach ($Name in $Map.PSObject.Properties.Name) {
+            $Spec = $Map.$Name
+            $Dest = Join-Path $Labs $Name
+            if ($Spec.contents) {
+                Copy-Kit (Join-Path $Tmp $Spec.contents) $Dest
+                $Own = Test-Path (Join-Path (Join-Path $Tmp $Spec.contents) $Name)
+            } else {
+                foreach ($F in $Spec.folders) { Copy-Kit (Join-Path $Tmp $F) (Join-Path $Dest $F) }
+                $Own = $Spec.folders -contains $Name
+            }
+            "Unzipped $Name from $Kit.zip to $Dest"
+            Show-Leftover $Name $Own
+        }
+        if (Test-Path (Join-Path $Labs $Kit)) {
+            "  $(Join-Path $Labs $Kit) is from an earlier unzip; the labs don't use it. To delete it: Remove-Item -Recurse -Force $(Join-Path $Labs $Kit)"
+        }
+    } elseif ($Kit -eq 'fmw-all-kits') {
+        "$Kit.zip is an older download that can't lay out each kit's folder. Download it again, then run this again."
+        Remove-Item -Recurse -Force $Tmp
+        continue
+    } else {
+        $From = $Tmp
+        $Top = @(Get-ChildItem $Tmp -Force)
+        if ($Top.Count -eq 1 -and $Top[0].PSIsContainer -and $Top[0].Name -eq $Kit) {
+            $From = $Top[0].FullName
+            "$Kit.zip is an older download with an extra $Kit folder inside; unzipping without it"
+        }
+        $Dest = Join-Path $Labs $Kit
+        Copy-Kit $From $Dest
+        "Unzipped $Kit.zip to $Dest"
+        Show-Leftover $Kit (Test-Path (Join-Path $From $Kit))
+    }
+    Remove-Item -Recurse -Force $Tmp
+    $Count++
+}
+"$Count zip(s) unzipped from $Downloads"
+```
+
+What it does:
+
+- **Each kit's own zip** unzips into `C:\FMWLabs\<zip name>`.
+- **The zip with every kit** (`fmw-all-kits.zip`) unzips into the same folders: one `C:\FMWLabs\<zip name>` for each kit zip on this page, with the same files that kit's zip holds. A file inside it, `fmw-kit-layout.json`, lists which folders make up each kit. The Help Desk kit isn't in it.
+- **Zips you haven't downloaded** are skipped. Downloading both the zip with every kit and a kit's own zip does no harm: the files are the same.
+- **Unblocking:** it unblocks the files, so Windows lets the scripts run.
+- **Running it again** overwrites each file with the zip's copy. It doesn't touch what the labs wrote under `C:\FMWLabs\results`.
+- **Older downloads:** a kit zip downloaded on or before November 25, 2026 may have an extra folder inside with the zip's name, so it unzipped to `C:\FMWLabs\start-kit\start-kit`, for example. The command unzips it without that folder and says so. A `fmw-all-kits.zip` downloaded before this command was added can't lay out the kits' folders: the command says so and skips it; download it again. If an earlier unzip left a doubled folder or a `C:\FMWLabs\fmw-all-kits` folder behind, it prints the `Remove-Item` command that deletes it. It doesn't delete anything itself.
+
+It prints a line for each kit's folder and a count of zips. With only the zip with every kit in Downloads, it prints 24 lines, from `ansible-examples` to `zta-results`, and then the count:
+
+```text
+Unzipped ansible-examples from fmw-all-kits.zip to C:\FMWLabs\ansible-examples
+Unzipped app-modernization from fmw-all-kits.zip to C:\FMWLabs\app-modernization
+...
+Unzipped zta-results from fmw-all-kits.zip to C:\FMWLabs\zta-results
+1 zip(s) unzipped from C:\Users\<you>\Downloads
+```
+
+If the count is 0, the zips aren't in your Downloads folder, or the browser renamed one (for example `start-kit (1).zip`); move or rename it and run the command again.
 
 ## Meeting templates
 
