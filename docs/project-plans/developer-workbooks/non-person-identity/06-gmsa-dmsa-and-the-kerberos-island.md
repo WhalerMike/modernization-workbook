@@ -489,7 +489,8 @@ Remove-Item -Recurse -Force out
 
 ## Lab 2: test domain
 
-Use a test Active Directory domain, never production, with at least one Windows Server 2025 domain controller, a Windows Server 2025 member server, Chapter 01's Lab 2 test host, and the permissions Chapters 02 and 03's Lab 2 grant to Chapter 01's reading app, which this lab uses to run those chapters again over the test accounts. The KDS root key must already exist; in a test domain with one domain controller, Learn's KDS page shows how to create one usable at once.[^np06-kds] Work in `examples/non-person-identity` on Chapter 01's test host. You'll replace: `<tenant-id>`, `<inventory-app-id>` and `<inventory-thumbprint>` (Chapter 01's tenant, reading app and certificate), `<test-domain>` (the test domain's DNS name), `<test-dc>` (a writable test domain controller), `<inputs>`, `<ownership-inputs>` and `<matrix-inputs>` (folders for this lab's input files and for the ones it writes for Chapters 02 and 03), `<your-upn>` (your user principal name, as the owner who decides), `<test-account>` (the traditional test account's sAMAccountName), `<test-account-dn>` (its distinguished name), `<test-msa>` (the test MSA's name, without the `$`), `<new-dmsa>` and `<new-gmsa>` (names for the new dMSA and gMSA, without the `$`, by the name standard: `dmsa-<app>` and `gmsa-<app>`, 15 characters or fewer), `<msa-workload>` (`Service`, `IisAppPool` or `ScheduledTask`: what the MSA runs), `<member-server>` (the 2025 member server's name), `<retriever-group>` (the gMSA's retriever group, `DL-gMSA-<app>-Hosts` with the gMSA's `<app>`), `<groups-ou>` (the distinguished name of the OU the group goes in), `<retriever-dn>` (that group's distinguished name, `CN=<retriever-group>,<groups-ou>`: a gMSA's retriever is this one domain local group, never a computer account), `<service-account-ou>` and `<holding-ou>` (the distinguished names of the test domain's service-account OU and holding OU, made as in the guide's [Set it up once](../../../books/guides/service-account-migration.md#msa-standard-setup), step 2), `<request-id>` and `<change-record>` (a test SailPoint request ID and a test ServiceNow change number; any non-empty values in a test domain), `<dmsa-tags>` and `<gmsa-tags>` (each new account's tags, which become its AD description: `SystemId=<id>; Owner1=<upn>; Owner2=<upn>; Sponsor=<upn>; Environment=test; Tier=R3; EntraTarget=Undecided; Request=<request-id>; Change=<change-record>`, [WD-175](../../../about/decision-register.md#wd-175)), `<spn-owner-upn>` (a test SPN owner), `<end-date>` (an end date no later than your test program G5, as WD-165 bounds an account that stays: the authorizing official accepts it and the program records it by D08), `<test-d08>`, `<test-g5>` and `<island-eol>` (your test program's dates, in the one `program-dates.json` both chapters read), `<test-service>` (the test Windows service's name), and `<sha>`, `<sha2>`, `<sha3>` (each plan's SHA-256, as the reviewer passes it to you).
+Use a test Active Directory domain, never production, with at least one Windows Server 2025 domain controller, a Windows Server 2025 member server, Chapter 01's Lab 2 test host, and the permissions Chapters 02 and 03's Lab 2 grant to Chapter 01's reading app, which this lab uses to run those chapters again over the test accounts. The KDS root key must already exist; in a test domain with one domain controller, Learn's KDS page shows how to create one usable at once.[^np06-kds] Work in `examples/non-person-identity` on Chapter 01's test host. You'll replace: `<tenant-id>`, `<inventory-app-id>` and `<inventory-thumbprint>` (Chapter 01's tenant, reading app and certificate), `<test-domain>` (the test domain's DNS name), `<test-dc>` (a writable test domain controller), `<reader-account>` (the domain account that runs step 3's check, as `DOMAIN
+ame`), `<inputs>`, `<ownership-inputs>` and `<matrix-inputs>` (folders for this lab's input files and for the ones it writes for Chapters 02 and 03), `<your-upn>` (your user principal name, as the owner who decides), `<test-account>` (the traditional test account's sAMAccountName), `<test-account-dn>` (its distinguished name), `<test-msa>` (the test MSA's name, without the `$`), `<new-dmsa>` and `<new-gmsa>` (names for the new dMSA and gMSA, without the `$`, by the name standard: `dmsa-<app>` and `gmsa-<app>`, 15 characters or fewer), `<msa-workload>` (`Service`, `IisAppPool` or `ScheduledTask`: what the MSA runs), `<member-server>` (the 2025 member server's name), `<retriever-group>` (the gMSA's retriever group, `DL-gMSA-<app>-Hosts` with the gMSA's `<app>`), `<groups-ou>` (the distinguished name of the OU the group goes in), `<retriever-dn>` (that group's distinguished name, `CN=<retriever-group>,<groups-ou>`: a gMSA's retriever is this one domain local group, never a computer account), `<service-account-ou>` and `<holding-ou>` (the distinguished names of the test domain's service-account OU and holding OU, made as in the guide's [Set it up once](../../../books/guides/service-account-migration.md#msa-standard-setup), step 2), `<request-id>` and `<change-record>` (a test SailPoint request ID and a test ServiceNow change number; any non-empty values in a test domain), `<dmsa-tags>` and `<gmsa-tags>` (each new account's tags, which become its AD description: `SystemId=<id>; Owner1=<upn>; Owner2=<upn>; Sponsor=<upn>; Environment=test; Tier=R3; EntraTarget=Undecided; Request=<request-id>; Change=<change-record>`, [WD-175](../../../about/decision-register.md#wd-175)), `<spn-owner-upn>` (a test SPN owner), `<end-date>` (an end date no later than your test program G5, as WD-165 bounds an account that stays: the authorizing official accepts it and the program records it by D08), `<test-d08>`, `<test-g5>` and `<island-eol>` (your test program's dates, in the one `program-dates.json` both chapters read), `<test-service>` (the test Windows service's name), and `<sha>`, `<sha2>`, `<sha3>` (each plan's SHA-256, as the reviewer passes it to you).
 
 <!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
 
@@ -529,6 +530,16 @@ Get-Content tests/fixtures/ch06/inputs/kerberos-replatform.csv -TotalCount 1 | S
 Add-Content <inputs>/kerberos-replatform.csv '<test-account>,<new-dmsa>$,Service,<member-server>,<spn-owner-upn>,<end-date>,,,,,<request-id>,<change-record>,<dmsa-tags>', '<test-msa>$,<new-gmsa>$,<msa-workload>,<member-server>,<spn-owner-upn>,<end-date>,,,,,<request-id>,<change-record>,<gmsa-tags>'
 @{ accounts = @{ '<new-gmsa>$' = @('<retriever-dn>') } } | ConvertTo-Json -Depth 5 | Set-Content <inputs>/password-retrievers.json
 $a = Get-Content tests/fixtures/ch06/inputs/ad-standard.json -Raw | ConvertFrom-Json; $a.serviceAccountOu = '<service-account-ou>'; $a.holdingOu = '<holding-ou>'; $a | ConvertTo-Json | Set-Content <inputs>/ad-standard.json
+
+# Step 2: Grant the read
+$kds = "CN=Master Root Keys,CN=Group Key Distribution Service,CN=Services,$((Get-ADRootDSE -Server <test-dc>).configurationNamingContext)"
+dsacls "\\<test-dc>\$kds" /G '<reader-account>:LC'
+dsacls "\\<test-dc>\$kds" /G '<reader-account>:RP;msKds-UseStartTime' '<reader-account>:RP;msKds-CreateTime' /I:S
+dsacls "\\<test-dc>\$kds" | Select-String -SimpleMatch '<reader-account>'
+
+# Step 2: Grant the read
+$kds = "CN=Master Root Keys,CN=Group Key Distribution Service,CN=Services,$((Get-ADRootDSE -Server <test-dc>).configurationNamingContext)"
+Get-ADObject -SearchBase $kds -LDAPFilter '(objectClass=msKds-ProvRootKey)' -Properties msKds-UseStartTime, msKds-CreateTime -Server <test-dc> | Select-Object Name, msKds-UseStartTime, msKds-CreateTime
 
 # Step 3: Run the check
 ./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory-test -MatrixRun out/kerberos-test-matrix -ProgramDatesPath <matrix-inputs>/program-dates.json -InputPath <inputs> -Server <test-dc> -OutputPath out/kerberos-test
@@ -635,6 +646,23 @@ Remove-Item -Recurse -Force out/kerberos-test*
    ```
 
 2. **Grant the read:** give the account that runs the read a delegated read of `msKds-UseStartTime` and `msKds-CreateTime` on `CN=Master Root Keys,CN=Group Key Distribution Service,CN=Services,CN=Configuration,<forest>`, nothing else, and record whether the read works without access to the key data (research gaps, row 52). Record whether `PrincipalsAllowedToRetrieveManagedPassword` comes back for that account (row 53).
+
+   In PowerShell with the ActiveDirectory module, signed in to the domain as a member of the test forest's Domain Admins or Enterprise Admins (the class's default security descriptor grants only those and SYSTEM[^np06-kds-class]): Learn's `dsacls` grants List Contents on the container, then Read Property on the two attributes, inherited by the key objects only, and shows the result:[^np06-dsacls] [^np06-rootdse]
+
+   ```powershell
+   $kds = "CN=Master Root Keys,CN=Group Key Distribution Service,CN=Services,$((Get-ADRootDSE -Server <test-dc>).configurationNamingContext)"
+   dsacls "\\<test-dc>\$kds" /G '<reader-account>:LC'
+   dsacls "\\<test-dc>\$kds" /G '<reader-account>:RP;msKds-UseStartTime' '<reader-account>:RP;msKds-CreateTime' /I:S
+   dsacls "\\<test-dc>\$kds" | Select-String -SimpleMatch '<reader-account>'
+   ```
+
+   Then, signed in as `<reader-account>`, read the two attributes the way step 3's check does, and record whether the keys come back with both filled:[^np06-get-adobject]
+
+   ```powershell
+   $kds = "CN=Master Root Keys,CN=Group Key Distribution Service,CN=Services,$((Get-ADRootDSE -Server <test-dc>).configurationNamingContext)"
+   Get-ADObject -SearchBase $kds -LDAPFilter '(objectClass=msKds-ProvRootKey)' -Properties msKds-UseStartTime, msKds-CreateTime -Server <test-dc> | Select-Object Name, msKds-UseStartTime, msKds-CreateTime
+   ```
+
 3. **Run the check:**
 
    ```powershell
@@ -824,6 +852,9 @@ The requests that feed this chapter's inputs, and the certifications, monitoring
 [^np06-kds]: Microsoft Learn, "Create a Key Distribution Service (KDS) root key," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/create-the-key-distribution-services-kds-root-key> (accessed Oct 31, 2026).
 [^np06-kds-class]: Microsoft Learn, "ms-Kds-Prov-RootKey class," default security descriptor, <https://learn.microsoft.com/windows/win32/adschema/c-mskds-provrootkey> (accessed Oct 30, 2026).
 [^np06-kds-usestart]: Microsoft Learn, "ms-Kds-UseStartTime attribute," <https://learn.microsoft.com/windows/win32/adschema/a-mskds-usestarttime> (accessed Oct 30, 2026).
+[^np06-dsacls]: Microsoft Learn, "Dsacls," syntax; `/G`; `/I` (`S`: the child objects only); permissions `LC` and `RP`, <https://learn.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc771151(v=ws.11)> (accessed Nov 27, 2026).
+[^np06-rootdse]: Microsoft Learn, "Get-ADRootDSE," <https://learn.microsoft.com/powershell/module/activedirectory/get-adrootdse> (accessed Nov 27, 2026).
+[^np06-get-adobject]: Microsoft Learn, "Get-ADObject," `-SearchBase`; `-LDAPFilter`; `-Properties`, <https://learn.microsoft.com/powershell/module/activedirectory/get-adobject> (accessed Nov 27, 2026).
 [^np06-get-kdsrootkey]: Microsoft Learn, "Get-KdsRootKey," description, <https://learn.microsoft.com/powershell/module/kds/get-kdsrootkey> (accessed Oct 30, 2026).
 [^np06-new-adsa]: Microsoft Learn, "New-ADServiceAccount," description; `-CreateDelegatedServiceAccount`; `-Path`; `-ManagedPasswordIntervalInDays`; `-RestrictToOutboundAuthenticationOnly`; notes, <https://learn.microsoft.com/powershell/module/activedirectory/new-adserviceaccount> (accessed Oct 30, 2026; re-read Nov 20, 2026).
 [^np06-set-adsa]: Microsoft Learn, "Set-ADServiceAccount," syntax; `-PrincipalsAllowedToRetrieveManagedPassword`; notes, <https://learn.microsoft.com/powershell/module/activedirectory/set-adserviceaccount> (accessed Oct 30, 2026).
