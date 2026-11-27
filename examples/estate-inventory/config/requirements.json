@@ -1,0 +1,71 @@
+{
+  "_comment": "Each step of the estate inventory, with the NIST SP 800-53 Rev 5 controls whose statements it supports and the FedRAMP 20x Key Security Indicators. Every control-to-KSI pairing here is one the workbook's kits already record, none new: AC-2, CM-8 and IA-4 to KSI-PIY-GIV and KSI-IAM-SNU, and IA-5 to KSI-IAM-SNU (examples/non-person-identity config/requirements-ch11.json, as examples/sql-server-identity cites it); CM-8 to KSI-PIY-GIV (examples/platform-host); AC-2 to KSI-IAM-AAM (examples/app-modernization); AC-6 to KSI-IAM-ELP (examples/azure-security, examples/platform-host); CA-7 to KSI-MLA-EVC and AU-9 to KSI-MLA-OSM (examples/provider-notices, examples/platform-host). KSIs are FedRAMP's indicators for cloud service providers: the agency lines its own evidence up with what its providers report against them and doesn't report KSIs itself. Which step supports which control is the program's reading (design guidance); the agency's assessor decides.",
+  "version": 1,
+  "steps": [
+    {
+      "step": "start-kit",
+      "title": "The forest: topology, accounts, service accounts, SPNs, servers and their services, AD CS, DNS, DHCP, NPS",
+      "controls": [
+        "CM-8",
+        "AC-2"
+      ],
+      "ksi": [
+        "KSI-PIY-GIV",
+        "KSI-IAM-AAM"
+      ],
+      "evidence": "start-kit/<run>/AssessmentManifest.json and the files it hashes"
+    },
+    {
+      "step": "non-person-identity",
+      "title": "Non-person identities in AD, Entra ID and Azure, in one register with owners and risk",
+      "controls": [
+        "AC-2",
+        "CM-8",
+        "IA-4",
+        "IA-5"
+      ],
+      "ksi": [
+        "KSI-PIY-GIV",
+        "KSI-IAM-SNU"
+      ],
+      "evidence": "non-person-identity/<domain>/manifest.json, register.csv, findings.json"
+    },
+    {
+      "step": "privileged-access",
+      "title": "Privileged access: Entra role assignments, PIM eligibility, Azure role assignments, classified by tier",
+      "controls": [
+        "AC-2",
+        "AC-6"
+      ],
+      "ksi": [
+        "KSI-IAM-AAM",
+        "KSI-IAM-ELP"
+      ],
+      "evidence": "privileged-access/manifest.json, inventory.csv, findings.json"
+    },
+    {
+      "step": "validation-kit",
+      "title": "The track implementation guides' read-only checks",
+      "controls": [
+        "CA-7"
+      ],
+      "ksi": [
+        "KSI-MLA-EVC"
+      ],
+      "evidence": "validation-kit/<run>/ValidationManifest.json and its results"
+    },
+    {
+      "step": "manifest",
+      "title": "One manifest and SHA256SUMS over the whole run",
+      "controls": [
+        "AU-9",
+        "CA-7"
+      ],
+      "ksi": [
+        "KSI-MLA-OSM",
+        "KSI-MLA-EVC"
+      ],
+      "evidence": "EstateInventoryManifest.json, SHA256SUMS"
+    }
+  ]
+}

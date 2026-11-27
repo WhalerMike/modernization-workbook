@@ -1,0 +1,33 @@
+{
+  "_comment": "Copy to the run host (outside the kit's folder), fill in every <placeholder>, and pass it with -SettingsPath. No secret goes here: the run signs in with a certificate in the run account's or the machine's store, or with a managed identity. Paths are absolute or relative to this file. Leave 'kits' out when the four kits sit beside estate-inventory, as they do in the repository and in estate-inventory-code.zip.",
+  "cloud": "gcc",
+  "tenantId": "<tenant-id>",
+  "auth": {
+    "method": "certificate",
+    "clientId": "<app-id>",
+    "certificateThumbprint": "<thumbprint>"
+  },
+  "outputRoot": "D:\\EstateInventory\\runs",
+  "start-kit": {
+    "enabled": true,
+    "tier": "A",
+    "domain": [],
+    "skipSql": false,
+    "skipNps": false
+  },
+  "non-person-identity": {
+    "enabled": true,
+    "domains": ["<forest-root-domain>"],
+    "skipAzure": false
+  },
+  "privileged-access": {
+    "enabled": true,
+    "azureScope": ["/providers/Microsoft.Management/managementGroups/<management-group-id>"],
+    "exceptionsPath": "inputs/privileged-exceptions.csv"
+  },
+  "validation-kit": {
+    "enabled": true,
+    "tracks": ["NPI", "CA", "DG"],
+    "skipAD": true
+  }
+}

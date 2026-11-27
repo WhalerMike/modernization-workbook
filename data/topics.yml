@@ -885,6 +885,7 @@ topics:
         - page: docs/books/b14-compliance/appendix-a-control-crosswalk.md
     downloads:
       - validation-kit.zip
+      - estate-inventory-code.zip
       - copilot-agent-pack.zip
       - b14-compliance-bundle.docx
       - b15-day2-operations-bundle.docx

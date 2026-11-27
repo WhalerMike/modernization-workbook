@@ -115,6 +115,7 @@ Word editions and code, rebuilt on every site deploy.
 | File | What it is |
 |---|---|
 | [validation-kit.zip](../../downloads/validation-kit.zip) | Code: the scripts, tests and fixtures, as committed |
+| [estate-inventory-code.zip](../../downloads/estate-inventory-code.zip) | Code: the scripts, tests and fixtures, as committed |
 | [copilot-agent-pack.zip](../../downloads/copilot-agent-pack.zip) | Code: the scripts, tests and fixtures, as committed |
 | [b14-compliance-bundle.docx](../../downloads/b14-compliance-bundle.docx) | Word edition: Book 14 — Federal Compliance & Authorization |
 | [b15-day2-operations-bundle.docx](../../downloads/b15-day2-operations-bundle.docx) | Word edition: Book 15 — Compliance Automation & Day-2 Operations |
