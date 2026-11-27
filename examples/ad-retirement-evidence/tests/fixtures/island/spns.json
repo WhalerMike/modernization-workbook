@@ -1,0 +1,3 @@
+[ { "Account": "svc-payroll-if", "ObjectClass": "user", "Spn": "HTTP/payroll-if.corp.contoso.example" },
+  { "Account": "svc-reports", "ObjectClass": "user", "Spn": "MSSQLSvc/rpt-sql01.corp.contoso.example:1433" },
+  { "Account": "DC-ISLAND01$", "ObjectClass": "computer", "Spn": "ldap/DC-ISLAND01.corp.contoso.example" } ]
