@@ -41,6 +41,19 @@ body.quarto-dark.fmw-new-look {
 
 /* ------------------------------------------------------------ home */
 
+/* The current home's pitch and main buttons (_intro.md), and its verification band (_checked.md). */
+.nl-intro { margin: .25rem 0 1.5rem; }
+.nl-intro-title { font-family: "DM Serif Display", Georgia, serif; font-size: clamp(1.6rem, 4vw, 2.3rem); line-height: 1.15; color: var(--nl-navy); margin: 0 0 .6rem; }
+.nl-intro-title em { color: var(--nl-teal-text); }
+.nl-intro-sub { font-size: 1.05rem; max-width: 46rem; margin: 0 0 1rem; }
+.nl-intro-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+.nl-checked { background: var(--nl-paper2); border: 1px solid var(--nl-line); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.5rem 0; }
+.nl-checked-title { font-family: "DM Serif Display", Georgia, serif; font-size: 1.45rem; color: var(--nl-navy); margin: 0 0 .4rem; }
+.nl-checked-stats { list-style: none; padding: 0; margin: .75rem 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); gap: .75rem 1.25rem; }
+.nl-checked-num { display: block; font-family: "DM Serif Display", Georgia, serif; font-size: 2rem; line-height: 1; color: var(--nl-teal-text); }
+.nl-checked-name { display: block; font-weight: 600; color: var(--nl-navy); margin: .2rem 0; }
+.nl-checked-desc { display: block; font-size: .88rem; color: var(--nl-muted); }
+
 .nl-hero-search { max-width: 44rem; margin: .5rem 0 .25rem; }
 .nl-hero-search label { display: block; font-weight: 600; color: var(--nl-navy); margin-bottom: .35rem; }
 .nl-search-row { display: flex; gap: .5rem; }
