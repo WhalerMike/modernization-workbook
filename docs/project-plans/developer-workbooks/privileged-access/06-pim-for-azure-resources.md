@@ -352,6 +352,17 @@ Use a test tenant in the worldwide or GCC cloud, with a test management group, s
 Every command in this lab, in order, from `examples/privileged-access`. Each step below says what it does and what to look for.
 
 ```powershell
+# Step 1: Prepare the identity
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.ReadWrite.All' -NoWelcome
+$cert = New-SelfSignedCertificate -Subject 'CN=pa-lab-azure-pim' -CertStoreLocation Cert:\CurrentUser\My -KeyExportPolicy NonExportable -KeySpec Signature -NotAfter (Get-Date).AddDays(30)
+$app = New-MgApplication -DisplayName 'pa-lab-azure-pim' -SignInAudience AzureADMyOrg -KeyCredentials @(@{ Type = 'AsymmetricX509Cert'; Usage = 'Verify'; Key = $cert.RawData })
+$sp = New-MgServicePrincipal -AppId $app.AppId
+Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id>
+foreach ($scope in '/providers/Microsoft.Management/managementGroups/<test-mg-id>', '/subscriptions/<test-subscription-id>', '/subscriptions/<test-subscription-id>/resourceGroups/<test-rg>') {
+    New-AzRoleAssignment -ObjectId $sp.Id -ObjectType ServicePrincipal -RoleDefinitionName Reader -Scope $scope | Format-Table Scope, RoleDefinitionName
+}
+[pscustomobject]@{ AppId = $app.AppId; AppObjectId = $sp.Id; Thumbprint = $cert.Thumbprint } | Format-List
+
 # Step 2: Write the desired state
 $d = Get-Content tests/fixtures/ch06/desired.json -Raw | ConvertFrom-Json
 $d.scopes = @('/providers/Microsoft.Management/managementGroups/<test-mg-id>', '/subscriptions/<test-subscription-id>', '/subscriptions/<test-subscription-id>/resourceGroups/<test-rg>')
@@ -375,6 +386,44 @@ Connect-AzAccount -ServicePrincipal -Environment AzureCloud -Tenant <tenant-id> 
 ./Invoke-PaAzurePim.ps1 -Cloud gcc -DesiredPath desired-test.json -CallerPrincipalId <app-object-id> -OutputPath out/ch06-test-apply -TenantId <tenant-id> -Apply
 Get-Content out/ch06-test-apply/diff-after.txt
 
+# Step 5: Try the narrower role
+Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id>
+$mg = '/providers/Microsoft.Management/managementGroups/<test-mg-id>'
+$api = 'api-version=2020-10-01'
+$start = (Get-Date).ToUniversalTime().ToString('o')
+$assign = @{ properties = @{ principalId = '<app-object-id>'; roleDefinitionId = "$mg/providers/Microsoft.Authorization/roleDefinitions/f58310d9-a9f6-439a-9e8d-f62e7b41a168"; requestType = 'AdminAssign'
+    justification = 'Lab: try the narrower role (research gaps, row 62)'; scheduleInfo = @{ startDateTime = $start; expiration = @{ type = 'AfterDuration'; duration = 'P1D' } } } }
+$remove = @{ properties = @{ principalId = '<app-object-id>'; roleDefinitionId = "$mg/providers/Microsoft.Authorization/roleDefinitions/18d7d88d-d35e-4fb5-a5c3-7773c20a72d9"; requestType = 'AdminRemove' } }
+foreach ($b in $assign, $remove) {
+    $r = Invoke-AzRestMethod -Method PUT -Path "$mg/providers/Microsoft.Authorization/roleAssignmentScheduleRequests/$(New-Guid)?$api" -Payload ($b | ConvertTo-Json -Depth 5)
+    [pscustomobject]@{ Request = $b.properties.requestType; StatusCode = $r.StatusCode; Status = ($r.Content | ConvertFrom-Json).properties.status }
+}
+
+# Step 5: Try the narrower role
+Connect-AzAccount -ServicePrincipal -Environment AzureCloud -Tenant <tenant-id> -ApplicationId <app-id> -CertificateThumbprint <thumbprint>
+$rg = '/subscriptions/<test-subscription-id>/resourceGroups/<test-rg>'
+foreach ($scope in $mg, $rg) {
+    $b = @{ properties = @{ principalId = '<eligible-group-id>'; roleDefinitionId = "$scope/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7"; requestType = 'AdminAssign'
+        justification = 'Lab: research gaps, rows 62 and 63'; scheduleInfo = @{ startDateTime = (Get-Date).ToUniversalTime().ToString('o'); expiration = @{ type = 'AfterDuration'; duration = 'P1D' } } } }
+    $r = Invoke-AzRestMethod -Method PUT -Path "$scope/providers/Microsoft.Authorization/roleEligibilityScheduleRequests/$(New-Guid)?$api" -Payload ($b | ConvertTo-Json -Depth 5)
+    [pscustomobject]@{ Scope = $scope; StatusCode = $r.StatusCode; Status = ($r.Content | ConvertFrom-Json).properties.status; Error = ($r.Content | ConvertFrom-Json).error.code }
+}
+
+# Step 5: Try the narrower role
+Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id>
+$back = @(
+    @{ scope = $mg; kind = 'roleAssignmentScheduleRequests'; principalId = '<app-object-id>'; role = '18d7d88d-d35e-4fb5-a5c3-7773c20a72d9'; type = 'AdminAssign' }
+    @{ scope = $mg; kind = 'roleAssignmentScheduleRequests'; principalId = '<app-object-id>'; role = 'f58310d9-a9f6-439a-9e8d-f62e7b41a168'; type = 'AdminRemove' }
+    @{ scope = $mg; kind = 'roleEligibilityScheduleRequests'; principalId = '<eligible-group-id>'; role = 'acdd72a7-3385-48ef-bd42-f606fba81ae7'; type = 'AdminRemove' }
+    @{ scope = $rg; kind = 'roleEligibilityScheduleRequests'; principalId = '<eligible-group-id>'; role = 'acdd72a7-3385-48ef-bd42-f606fba81ae7'; type = 'AdminRemove' }
+)
+foreach ($x in $back) {
+    $p = @{ principalId = $x.principalId; roleDefinitionId = "$($x.scope)/providers/Microsoft.Authorization/roleDefinitions/$($x.role)"; requestType = $x.type }
+    if ($x.type -eq 'AdminAssign') { $p.justification = 'Lab: restore User Access Administrator for step 6'; $p.scheduleInfo = @{ startDateTime = (Get-Date).ToUniversalTime().ToString('o'); expiration = @{ type = 'AfterDuration'; duration = 'P1D' } } }
+    $r = Invoke-AzRestMethod -Method PUT -Path "$($x.scope)/providers/Microsoft.Authorization/$($x.kind)/$(New-Guid)?$api" -Payload (@{ properties = $p } | ConvertTo-Json -Depth 5)
+    [pscustomobject]@{ Scope = $x.scope; Request = "$($x.kind) $($x.type)"; StatusCode = $r.StatusCode }
+}
+
 # Step 6: Back it out
 Remove-Item -Recurse -Force out/ch06-test-*
 ```
@@ -388,6 +437,20 @@ Remove-Item -Recurse -Force out/ch06-test-*
    1. Open **Entra ID** > **App registrations** > **New registration**, name the app and select **Register**.
    2. In the app, open **Certificates & secrets** > **Certificates** > **Upload certificate** and upload the certificate's public key.
    3. In the Azure portal, on each test scope (the management group, the subscription and the resource group), open **Access control (IAM)** > **Add** > **Add role assignment**, select **Reader**, then on **Members** select the app, and **Review + assign**.
+
+   In PowerShell 7, as a test administrator who can register apps and holds Owner or User Access Administrator on the test scopes. The block makes a self-signed certificate in your own certificate store, valid 30 days, registers the app with its public key and no Graph permission, creates its service principal, grants it Reader on the three scopes and prints the values for `<app-id>`, `<app-object-id>` and `<thumbprint>`:[^pa06-newapp] [^pa06-azassign]
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.ReadWrite.All' -NoWelcome
+   $cert = New-SelfSignedCertificate -Subject 'CN=pa-lab-azure-pim' -CertStoreLocation Cert:\CurrentUser\My -KeyExportPolicy NonExportable -KeySpec Signature -NotAfter (Get-Date).AddDays(30)
+   $app = New-MgApplication -DisplayName 'pa-lab-azure-pim' -SignInAudience AzureADMyOrg -KeyCredentials @(@{ Type = 'AsymmetricX509Cert'; Usage = 'Verify'; Key = $cert.RawData })
+   $sp = New-MgServicePrincipal -AppId $app.AppId
+   Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id>
+   foreach ($scope in '/providers/Microsoft.Management/managementGroups/<test-mg-id>', '/subscriptions/<test-subscription-id>', '/subscriptions/<test-subscription-id>/resourceGroups/<test-rg>') {
+       New-AzRoleAssignment -ObjectId $sp.Id -ObjectType ServicePrincipal -RoleDefinitionName Reader -Scope $scope | Format-Table Scope, RoleDefinitionName
+   }
+   [pscustomobject]@{ AppId = $app.AppId; AppObjectId = $sp.Id; Thumbprint = $cert.Thumbprint } | Format-List
+   ```
 
 2. **Write the desired state** for the test scopes: two test groups for the approvers, a test group to be eligible, and one standing Owner assignment you create by hand on the test subscription for a test user, so there is something to convert. The command starts from the fixture's file, keeps its tier settings, and puts in your scopes, approver groups and eligible group (Owner, `8e3af657-a8ff-443c-a75c-2fe8c4bcb635`, on the test subscription), with no control-plane subscription and no standing exceptions:
 
@@ -427,6 +490,54 @@ Remove-Item -Recurse -Force out/ch06-test-*
 
    In the admin center, check one role's settings and the eligible assignments, then sign in as the test user and activate Owner: it should ask for the justification and ticket and wait for approval.[^pa06-activate][^pa06-approve]
 5. **Try the narrower role.** On one test scope, swap User Access Administrator for Role Based Access Control Administrator and send one eligibility request. Record whether Resource Manager accepts it (research gaps, row 62), and whether a request whose role definition ID is in the management group or resource group form is accepted (research gaps, row 63).
+
+   In PowerShell, with the management group as the one scope: it's the top of the three, so nothing above it still gives the app User Access Administrator there. The first block, as the test administrator, gives the app Role Based Access Control Administrator (`f58310d9-a9f6-439a-9e8d-f62e7b41a168`) on the management group for one day and removes its User Access Administrator (`18d7d88d-d35e-4fb5-a5c3-7773c20a72d9`) there, with Learn's active-assignment requests:[^pa06-rest-active]
+
+   ```powershell
+   Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id>
+   $mg = '/providers/Microsoft.Management/managementGroups/<test-mg-id>'
+   $api = 'api-version=2020-10-01'
+   $start = (Get-Date).ToUniversalTime().ToString('o')
+   $assign = @{ properties = @{ principalId = '<app-object-id>'; roleDefinitionId = "$mg/providers/Microsoft.Authorization/roleDefinitions/f58310d9-a9f6-439a-9e8d-f62e7b41a168"; requestType = 'AdminAssign'
+       justification = 'Lab: try the narrower role (research gaps, row 62)'; scheduleInfo = @{ startDateTime = $start; expiration = @{ type = 'AfterDuration'; duration = 'P1D' } } } }
+   $remove = @{ properties = @{ principalId = '<app-object-id>'; roleDefinitionId = "$mg/providers/Microsoft.Authorization/roleDefinitions/18d7d88d-d35e-4fb5-a5c3-7773c20a72d9"; requestType = 'AdminRemove' } }
+   foreach ($b in $assign, $remove) {
+       $r = Invoke-AzRestMethod -Method PUT -Path "$mg/providers/Microsoft.Authorization/roleAssignmentScheduleRequests/$(New-Guid)?$api" -Payload ($b | ConvertTo-Json -Depth 5)
+       [pscustomobject]@{ Request = $b.properties.requestType; StatusCode = $r.StatusCode; Status = ($r.Content | ConvertFrom-Json).properties.status }
+   }
+   ```
+
+   The second, as the app, sends one eligibility request for Reader (`acdd72a7-3385-48ef-bd42-f606fba81ae7`, a role the desired state doesn't govern) for the eligible group at the management group, under Role Based Access Control Administrator, and one at the resource group, where the app still holds User Access Administrator, each with the role definition ID in that scope's form, as the code builds it.[^pa06-rest-eligible] Record each status code and status:
+
+   ```powershell
+   Connect-AzAccount -ServicePrincipal -Environment AzureCloud -Tenant <tenant-id> -ApplicationId <app-id> -CertificateThumbprint <thumbprint>
+   $rg = '/subscriptions/<test-subscription-id>/resourceGroups/<test-rg>'
+   foreach ($scope in $mg, $rg) {
+       $b = @{ properties = @{ principalId = '<eligible-group-id>'; roleDefinitionId = "$scope/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7"; requestType = 'AdminAssign'
+           justification = 'Lab: research gaps, rows 62 and 63'; scheduleInfo = @{ startDateTime = (Get-Date).ToUniversalTime().ToString('o'); expiration = @{ type = 'AfterDuration'; duration = 'P1D' } } } }
+       $r = Invoke-AzRestMethod -Method PUT -Path "$scope/providers/Microsoft.Authorization/roleEligibilityScheduleRequests/$(New-Guid)?$api" -Payload ($b | ConvertTo-Json -Depth 5)
+       [pscustomobject]@{ Scope = $scope; StatusCode = $r.StatusCode; Status = ($r.Content | ConvertFrom-Json).properties.status; Error = ($r.Content | ConvertFrom-Json).error.code }
+   }
+   ```
+
+   Step 6 restores the management group's policies, which needs User Access Administrator there again. At least five minutes after the first block,[^pa06-assign] as the test administrator, swap back, and remove the two Reader eligibilities if they were created:
+
+   ```powershell
+   Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id>
+   $back = @(
+       @{ scope = $mg; kind = 'roleAssignmentScheduleRequests'; principalId = '<app-object-id>'; role = '18d7d88d-d35e-4fb5-a5c3-7773c20a72d9'; type = 'AdminAssign' }
+       @{ scope = $mg; kind = 'roleAssignmentScheduleRequests'; principalId = '<app-object-id>'; role = 'f58310d9-a9f6-439a-9e8d-f62e7b41a168'; type = 'AdminRemove' }
+       @{ scope = $mg; kind = 'roleEligibilityScheduleRequests'; principalId = '<eligible-group-id>'; role = 'acdd72a7-3385-48ef-bd42-f606fba81ae7'; type = 'AdminRemove' }
+       @{ scope = $rg; kind = 'roleEligibilityScheduleRequests'; principalId = '<eligible-group-id>'; role = 'acdd72a7-3385-48ef-bd42-f606fba81ae7'; type = 'AdminRemove' }
+   )
+   foreach ($x in $back) {
+       $p = @{ principalId = $x.principalId; roleDefinitionId = "$($x.scope)/providers/Microsoft.Authorization/roleDefinitions/$($x.role)"; requestType = $x.type }
+       if ($x.type -eq 'AdminAssign') { $p.justification = 'Lab: restore User Access Administrator for step 6'; $p.scheduleInfo = @{ startDateTime = (Get-Date).ToUniversalTime().ToString('o'); expiration = @{ type = 'AfterDuration'; duration = 'P1D' } } }
+       $r = Invoke-AzRestMethod -Method PUT -Path "$($x.scope)/providers/Microsoft.Authorization/$($x.kind)/$(New-Guid)?$api" -Payload (@{ properties = $p } | ConvertTo-Json -Depth 5)
+       [pscustomobject]@{ Scope = $x.scope; Request = "$($x.kind) $($x.type)"; StatusCode = $r.StatusCode }
+   }
+   ```
+
 6. **Back it out.** Wait at least five minutes after the last assignment: Learn says a role assignment can't be removed within five minutes of being made.[^pa06-assign] Remove the eligible assignments the run created, with `AdminRemove` or in the admin center; restore each policy from the rules saved in the dry run's `state.json`; remove the test user's eligibility and the hand-made Owner if it still exists; remove the app's User Access Administrator and Reader assignments (**Access control (IAM)** > **Role assignments**, select the row, **Remove**); delete the app registration and its certificate; and delete the `out/ch06-test-*` folders, which name the test holders.
 
    ```powershell
@@ -536,3 +647,5 @@ Lab 2, step 5, the test of the narrower role, is a single request recorded again
 [^pa06-sample-src]: Microsoft, Azure/azure-rest-api-specs, `specification/authorization/resource-manager/Microsoft.Authorization/Authorization/stable/2020-10-01/examples` at commit `411fb227a905864f972d26ab88b21ef69e1f67b2` (October 30, 2026; the files last changed February 12, 2026), MIT License, <https://github.com/Azure/azure-rest-api-specs/tree/411fb227a905864f972d26ab88b21ef69e1f67b2/specification/authorization/resource-manager/Microsoft.Authorization/Authorization/stable/2020-10-01/examples> (accessed Oct 30, 2026); pinned copy in `examples/third_party/azure-pim-rest-examples`.
 [^pa06-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AC-2, AC-6, AC-6(1), AC-6(5), CM-3, CM-3(2) and CM-4(2)), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (accessed Nov 2, 2026).
 [^pa06-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator statements and "Related SP 800-53 Controls" for KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-VTD, KSI-IAM-ELP and KSI-IAM-JIT, <https://www.fedramp.gov/2026/reference/key-security-indicators/> (accessed Nov 2, 2026).
+[^pa06-newapp]: Microsoft Learn, "New-MgApplication," Microsoft.Graph.Applications module, the `KeyCredentials` parameter, <https://learn.microsoft.com/powershell/module/microsoft.graph.applications/new-mgapplication>, and "New-SelfSignedCertificate," PKI module, <https://learn.microsoft.com/powershell/module/pki/new-selfsignedcertificate> (both accessed Nov 27, 2026).
+[^pa06-azassign]: Microsoft Learn, "New-AzRoleAssignment," Az.Resources module, <https://learn.microsoft.com/powershell/module/az.resources/new-azroleassignment> (accessed Nov 27, 2026).

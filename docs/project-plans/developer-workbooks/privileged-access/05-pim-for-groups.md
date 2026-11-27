@@ -418,6 +418,25 @@ Every command in this lab, in order, from `examples/privileged-access`. Each ste
 }
 '@ | Set-Content prv-groups.json
 
+# Step 2: Register two apps with certificates
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.ReadWrite.All', 'AppRoleAssignment.ReadWrite.All' -NoWelcome
+$graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+$apps = [ordered]@{
+    'pa-lab-pim-groups-reader' = @('Group.ReadBasic.All', 'PrivilegedAssignmentSchedule.Read.AzureADGroup', 'PrivilegedEligibilitySchedule.Read.AzureADGroup', 'RoleManagementPolicy.Read.AzureADGroup')
+    'pa-lab-pim-groups-writer' = @('Group.ReadBasic.All', 'PrivilegedAssignmentSchedule.Read.AzureADGroup', 'PrivilegedEligibilitySchedule.Read.AzureADGroup', 'RoleManagementPolicy.Read.AzureADGroup', 'PrivilegedAssignmentSchedule.ReadWrite.AzureADGroup', 'PrivilegedEligibilitySchedule.ReadWrite.AzureADGroup', 'RoleManagementPolicy.ReadWrite.AzureADGroup')
+}
+foreach ($name in $apps.Keys) {
+    $cert = New-SelfSignedCertificate -Subject "CN=$name" -CertStoreLocation Cert:\CurrentUser\My -KeyExportPolicy NonExportable -KeySpec Signature -NotAfter (Get-Date).AddDays(30)
+    $app = New-MgApplication -DisplayName $name -SignInAudience AzureADMyOrg -KeyCredentials @(@{ Type = 'AsymmetricX509Cert'; Usage = 'Verify'; Key = $cert.RawData })
+    $sp = New-MgServicePrincipal -AppId $app.AppId
+    Start-Sleep -Seconds 15
+    foreach ($p in $apps[$name]) {
+        $role = $graph.AppRoles | Where-Object { $_.Value -eq $p -and $_.AllowedMemberTypes -contains 'Application' }
+        $null = New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id -PrincipalId $sp.Id -ResourceId $graph.Id -AppRoleId $role.Id
+    }
+    [pscustomobject]@{ App = $name; AppId = $app.AppId; Thumbprint = $cert.Thumbprint; Permissions = $apps[$name] -join ', ' } | Format-List
+}
+
 # Step 3: Plan as the reader
 Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <reader-app-id> -CertificateThumbprint <thumbprint>
 ./Invoke-PaPimGroups.ps1 -Cloud gcc -DesiredPath prv-groups.json -OutputPath out/pim-groups-test -TenantId <tenant-id>
@@ -484,6 +503,28 @@ Remove-Item -Recurse -Force out/pim-groups-test
    1. Open **Entra ID** > **App registrations** > **New registration**, name the app and select **Register**.
    2. In the app, open **Certificates & secrets** > **Certificates** > **Upload certificate** and upload the certificate's public key.
    3. Open **API permissions** > **Add a permission** > **Microsoft Graph** > **Application permissions** and select `Group.ReadBasic.All`, `PrivilegedAssignmentSchedule.Read.AzureADGroup`, `PrivilegedEligibilitySchedule.Read.AzureADGroup` and `RoleManagementPolicy.Read.AzureADGroup`; for the writer, also `PrivilegedAssignmentSchedule.ReadWrite.AzureADGroup`, `PrivilegedEligibilitySchedule.ReadWrite.AzureADGroup` and `RoleManagementPolicy.ReadWrite.AzureADGroup`. Select **Add permissions**, then **Grant admin consent for** your tenant.
+
+   In PowerShell 7, as a test administrator: Privileged Role Administrator is the least-privileged role Learn names for granting Graph application permissions, and Learn says an application permission can be granted directly as an app role assignment, which takes the place of the consent prompt.[^pa05-grant] The block registers both apps, each with its own certificate, creates their service principals, grants each its permissions and prints the values for `<reader-app-id>`, `<writer-app-id>` and each app's thumbprint. The certificate is self-signed, valid 30 days, and its private key stays in your own certificate store:[^pa05-newapp]
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.ReadWrite.All', 'AppRoleAssignment.ReadWrite.All' -NoWelcome
+   $graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+   $apps = [ordered]@{
+       'pa-lab-pim-groups-reader' = @('Group.ReadBasic.All', 'PrivilegedAssignmentSchedule.Read.AzureADGroup', 'PrivilegedEligibilitySchedule.Read.AzureADGroup', 'RoleManagementPolicy.Read.AzureADGroup')
+       'pa-lab-pim-groups-writer' = @('Group.ReadBasic.All', 'PrivilegedAssignmentSchedule.Read.AzureADGroup', 'PrivilegedEligibilitySchedule.Read.AzureADGroup', 'RoleManagementPolicy.Read.AzureADGroup', 'PrivilegedAssignmentSchedule.ReadWrite.AzureADGroup', 'PrivilegedEligibilitySchedule.ReadWrite.AzureADGroup', 'RoleManagementPolicy.ReadWrite.AzureADGroup')
+   }
+   foreach ($name in $apps.Keys) {
+       $cert = New-SelfSignedCertificate -Subject "CN=$name" -CertStoreLocation Cert:\CurrentUser\My -KeyExportPolicy NonExportable -KeySpec Signature -NotAfter (Get-Date).AddDays(30)
+       $app = New-MgApplication -DisplayName $name -SignInAudience AzureADMyOrg -KeyCredentials @(@{ Type = 'AsymmetricX509Cert'; Usage = 'Verify'; Key = $cert.RawData })
+       $sp = New-MgServicePrincipal -AppId $app.AppId
+       Start-Sleep -Seconds 15
+       foreach ($p in $apps[$name]) {
+           $role = $graph.AppRoles | Where-Object { $_.Value -eq $p -and $_.AllowedMemberTypes -contains 'Application' }
+           $null = New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id -PrincipalId $sp.Id -ResourceId $graph.Id -AppRoleId $role.Id
+       }
+       [pscustomobject]@{ App = $name; AppId = $app.AppId; Thumbprint = $cert.Thumbprint; Permissions = $apps[$name] -join ', ' } | Format-List
+   }
+   ```
 
 3. **Plan as the reader:**
 
@@ -660,3 +701,5 @@ KSIs are FedRAMP 20x indicators for cloud service providers.[^pa05-ksi] The agen
 [^pa05-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AC-2, AC-5, AC-6, AC-6(5), CM-3, CM-3(2) and CM-4(2)), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (accessed Nov 2, 2026).
 [^pa05-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator statements and "Related SP 800-53 Controls" for KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-VTD, KSI-IAM-ELP and KSI-IAM-JIT, <https://www.fedramp.gov/2026/reference/key-security-indicators/> (accessed Nov 2, 2026).
 [^pa05-bod]: Cybersecurity and Infrastructure Security Agency, "BOD 25-01: Implementing Secure Practices for Cloud Services Required Configurations," Microsoft Entra ID policies MS.AAD.7.4v1 and MS.AAD.7.5v1, <https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations> (accessed Nov 2, 2026).
+[^pa05-newapp]: Microsoft Learn, "New-MgApplication," Microsoft.Graph.Applications module, the `KeyCredentials` parameter, <https://learn.microsoft.com/powershell/module/microsoft.graph.applications/new-mgapplication>, and "New-SelfSignedCertificate," PKI module, <https://learn.microsoft.com/powershell/module/pki/new-selfsignedcertificate> (both accessed Nov 27, 2026).
+[^pa05-grant]: Microsoft Learn, "Grant an appRoleAssignment to a service principal," permissions, the supported roles and the PowerShell example, <https://learn.microsoft.com/graph/api/serviceprincipal-post-approleassignments?view=graph-rest-1.0>, and "Grant or revoke API permissions programmatically," <https://learn.microsoft.com/graph/permissions-grant-via-msgraph> (both accessed Nov 27, 2026).

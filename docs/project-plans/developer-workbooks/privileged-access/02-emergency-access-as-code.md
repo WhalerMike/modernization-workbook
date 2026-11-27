@@ -314,6 +314,28 @@ Use a test tenant in the worldwide or GCC cloud with a test Azure subscription, 
 Every command in this lab, in order, from `examples/privileged-access`. Each step below says what it does and what to look for.
 
 ```powershell
+# Step 1: Send the logs
+Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id>
+$body = @{ properties = @{ workspaceId = '<workspace-resource-id>'; logs = @(foreach ($c in 'AuditLogs', 'SignInLogs', 'NonInteractiveUserSignInLogs') { @{ category = $c; enabled = $true } }) } }
+Invoke-AzRestMethod -Method PUT -Path '/providers/microsoft.aadiam/diagnosticSettings/pa-lab-entra-logs?api-version=2017-04-01' -Payload ($body | ConvertTo-Json -Depth 5) | Format-List StatusCode
+
+# Step 1: Send the logs
+$ws = (Get-AzResource -ResourceId '<workspace-resource-id>').Properties.customerId
+(Invoke-AzOperationalInsightsQuery -WorkspaceId $ws -Query 'union isfuzzy=true withsource=Table AuditLogs, SigninLogs, AADNonInteractiveUserSignInLogs | summarize Rows = count() by Table' -Timespan (New-TimeSpan -Days 1)).Results | Format-Table Table, Rows
+
+# Step 2: Register the reader app
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.ReadWrite.All', 'AppRoleAssignment.ReadWrite.All' -NoWelcome
+$cert = New-SelfSignedCertificate -Subject 'CN=pa-lab-emergency-reader' -CertStoreLocation Cert:\CurrentUser\My -KeyExportPolicy NonExportable -KeySpec Signature -NotAfter (Get-Date).AddDays(30)
+$app = New-MgApplication -DisplayName 'pa-lab-emergency-reader' -SignInAudience AzureADMyOrg -KeyCredentials @(@{ Type = 'AsymmetricX509Cert'; Usage = 'Verify'; Key = $cert.RawData })
+$sp = New-MgServicePrincipal -AppId $app.AppId
+Start-Sleep -Seconds 15
+$graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+foreach ($p in 'GroupMember.ReadBasic.All', 'Policy.Read.All', 'RoleAssignmentSchedule.Read.Directory', 'User.Read.All', 'User.ReadBasic.All', 'UserAuthenticationMethod.Read.All') {
+    $role = $graph.AppRoles | Where-Object { $_.Value -eq $p -and $_.AllowedMemberTypes -contains 'Application' }
+    New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id -PrincipalId $sp.Id -ResourceId $graph.Id -AppRoleId $role.Id | Format-Table AppRoleId, ResourceDisplayName
+}
+[pscustomobject]@{ AppId = $app.AppId; Thumbprint = $cert.Thumbprint; ServicePrincipalId = $sp.Id } | Format-List
+
 # Step 3: Run the check
 $ea = Get-Content tests/fixtures/inputs/emergency-access.json -Raw | ConvertFrom-Json
 $ea.accounts[0].id = '<ea1-object-id>'; $ea.accounts[0].userPrincipalName = '<ea1-upn>'
@@ -353,11 +375,40 @@ Remove-Item -Recurse -Force out/emergency-test
    1. Open **Entra ID** > **Monitoring & health** > **Diagnostic settings** > **Add diagnostic setting**.
    2. Select `AuditLogs`, `SignInLogs` and `NonInteractiveUserSignInLogs`, then **Send to Log Analytics workspace** and the test workspace, and **Save**.
 
+   In PowerShell, as at least Security Administrator. The first block writes the tenant's diagnostic setting, the tenant-scope resource `microsoft.aadiam/diagnosticSettings` at API version 2017-04-01, with Learn's template reference giving its properties.[^pa02-diag] The second counts the rows each table holds over the last day; run it until all three tables have rows. A table that never appears means the setting doesn't send it:[^pa02-laquery]
+
+   ```powershell
+   Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id>
+   $body = @{ properties = @{ workspaceId = '<workspace-resource-id>'; logs = @(foreach ($c in 'AuditLogs', 'SignInLogs', 'NonInteractiveUserSignInLogs') { @{ category = $c; enabled = $true } }) } }
+   Invoke-AzRestMethod -Method PUT -Path '/providers/microsoft.aadiam/diagnosticSettings/pa-lab-entra-logs?api-version=2017-04-01' -Payload ($body | ConvertTo-Json -Depth 5) | Format-List StatusCode
+   ```
+
+   ```powershell
+   $ws = (Get-AzResource -ResourceId '<workspace-resource-id>').Properties.customerId
+   (Invoke-AzOperationalInsightsQuery -WorkspaceId $ws -Query 'union isfuzzy=true withsource=Table AuditLogs, SigninLogs, AADNonInteractiveUserSignInLogs | summarize Rows = count() by Table' -Timespan (New-TimeSpan -Days 1)).Results | Format-Table Table, Rows
+   ```
+
 2. **Register the reader app** in the worldwide admin center with a certificate, grant the six application permissions from Lab 1, step 2, with admin consent, and nothing else.
 
    1. Open **Entra ID** > **App registrations** > **New registration**, name the app and select **Register**.
    2. In the app, open **Certificates & secrets** > **Certificates** > **Upload certificate** and upload the certificate's public key.
    3. Open **API permissions** > **Add a permission** > **Microsoft Graph** > **Application permissions**, select `GroupMember.ReadBasic.All`, `Policy.Read.All`, `RoleAssignmentSchedule.Read.Directory`, `User.Read.All`, `User.ReadBasic.All` and `UserAuthenticationMethod.Read.All`, then **Add permissions** and **Grant admin consent for** your tenant.
+
+   In PowerShell 7, as a test administrator: Privileged Role Administrator is the least-privileged role Learn names for granting Graph application permissions, and Learn says an application permission can be granted directly as an app role assignment, which takes the place of the consent prompt.[^pa02-grant] The block registers the app with the certificate's public key, creates its service principal, grants the six permissions and prints the values for `<app-id>` and `<thumbprint>`. The certificate is self-signed, valid 30 days, and its private key stays in your own certificate store:[^pa02-newapp]
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.ReadWrite.All', 'AppRoleAssignment.ReadWrite.All' -NoWelcome
+   $cert = New-SelfSignedCertificate -Subject 'CN=pa-lab-emergency-reader' -CertStoreLocation Cert:\CurrentUser\My -KeyExportPolicy NonExportable -KeySpec Signature -NotAfter (Get-Date).AddDays(30)
+   $app = New-MgApplication -DisplayName 'pa-lab-emergency-reader' -SignInAudience AzureADMyOrg -KeyCredentials @(@{ Type = 'AsymmetricX509Cert'; Usage = 'Verify'; Key = $cert.RawData })
+   $sp = New-MgServicePrincipal -AppId $app.AppId
+   Start-Sleep -Seconds 15
+   $graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+   foreach ($p in 'GroupMember.ReadBasic.All', 'Policy.Read.All', 'RoleAssignmentSchedule.Read.Directory', 'User.Read.All', 'User.ReadBasic.All', 'UserAuthenticationMethod.Read.All') {
+       $role = $graph.AppRoles | Where-Object { $_.Value -eq $p -and $_.AllowedMemberTypes -contains 'Application' }
+       New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id -PrincipalId $sp.Id -ResourceId $graph.Id -AppRoleId $role.Id | Format-Table AppRoleId, ResourceDisplayName
+   }
+   [pscustomobject]@{ AppId = $app.AppId; Thumbprint = $cert.Thumbprint; ServicePrincipalId = $sp.Id } | Format-List
+   ```
 
 3. **Run the check** with the test accounts' IDs in your own `emergency-access.json`. Create the action group first, in the portal as Learn describes, with a test mailbox.[^pa02-emergency] The first block writes the two input files from the fixture's: your accounts and exclusion group, and one row per account for its last validation drill. The second runs the check:
 
@@ -506,3 +557,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers.[^pa02-ksi] The agen
 [^pa02-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, indicator statements and "Related SP 800-53 Controls" for KSI-CMT-LMC, KSI-CMT-RMV, KSI-CMT-VTD, KSI-IAM-AAM, KSI-IAM-APM, KSI-IAM-ELP, KSI-IAM-JIT, KSI-IAM-SUS, KSI-MLA-LET, KSI-MLA-OSM and KSI-MLA-RVL, <https://www.fedramp.gov/2026/reference/key-security-indicators/> (accessed Nov 2, 2026).
 [^pa02-bod]: Cybersecurity and Infrastructure Security Agency, "BOD 25-01: Implementing Secure Practices for Cloud Services Required Configurations," Microsoft Entra ID policies MS.AAD.3.6v1, MS.AAD.7.3v1 and MS.AAD.7.4v1, <https://www.cisa.gov/resources-tools/services/bod-25-01-implementing-secure-practices-cloud-services-required-configurations> (accessed Nov 2, 2026).
 [^pa02-scuba]: Cybersecurity and Infrastructure Security Agency, ScubaGear Microsoft Entra ID secure configuration baseline (`aad.md`), MS.AAD.7.4v1 and its note that emergency access accounts needing perpetual access are an exception, and the list of highly privileged roles, <https://github.com/cisagov/ScubaGear/blob/main/PowerShell/ScubaGear/baselines/aad.md> (accessed Nov 2, 2026).
+[^pa02-newapp]: Microsoft Learn, "New-MgApplication," Microsoft.Graph.Applications module, the `KeyCredentials` parameter, <https://learn.microsoft.com/powershell/module/microsoft.graph.applications/new-mgapplication>, and "New-SelfSignedCertificate," PKI module, <https://learn.microsoft.com/powershell/module/pki/new-selfsignedcertificate> (both accessed Nov 27, 2026).
+[^pa02-grant]: Microsoft Learn, "Grant an appRoleAssignment to a service principal," permissions, the supported roles and the PowerShell example, <https://learn.microsoft.com/graph/api/serviceprincipal-post-approleassignments?view=graph-rest-1.0>, and "Grant or revoke API permissions programmatically," <https://learn.microsoft.com/graph/permissions-grant-via-msgraph> (both accessed Nov 27, 2026).
+[^pa02-diag]: Microsoft Learn, "microsoft.aadiam/diagnosticSettings - Bicep, ARM template & Terraform AzAPI reference," tenant scope, API version 2017-04-01, `workspaceId` and `logs`, <https://learn.microsoft.com/azure/templates/microsoft.aadiam/diagnosticsettings> (accessed Nov 27, 2026).
+[^pa02-laquery]: Microsoft Learn, "Invoke-AzOperationalInsightsQuery," Az.OperationalInsights module, <https://learn.microsoft.com/powershell/module/az.operationalinsights/invoke-azoperationalinsightsquery> (accessed Nov 27, 2026).
