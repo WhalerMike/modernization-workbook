@@ -17,17 +17,17 @@ review-status: pending
 
 ## Week 2: the attribute-driven migration
 
-- [Book 19 — Building the Attribute-Driven Migration](../../books/b19-developer-workbook/index.md) (Developer workbook, 10 chapters, about 7 hr 18 min). Why the Attribute-Driven Migration needs code with tests, not only runbooks: the HR middleware, Graph clients for GCC, validation kit checks, dynamic rules as code, Lifecycle Workflows extensions, Group Policy and machine configuration….
+- [Book 19 — Building the Attribute-Driven Migration](../../books/b19-developer-workbook/index.md) (Developer workbook, 10 chapters, about 7 hr 42 min). Why the Attribute-Driven Migration needs code with tests, not only runbooks: the HR middleware, Graph clients for GCC, validation kit checks, dynamic rules as code, Lifecycle Workflows extensions, Group Policy and machine configuration….
 - [Labs: Building the Attribute-Driven Migration (Book 19)](../../training/labs.md#adm) (Lab, 18 labs). 18 hands-on labs across 9 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building the Attribute-Driven Migration (Book 19).
 
-*Milestone 2: about 7 hr 18 min.*
+*Milestone 2: about 7 hr 42 min.*
 
 ## Week 3: identity workbooks
 
 - [Building HR-Driven Identity](../../project-plans/developer-workbooks/hr-driven-identity/index.md) (Developer workbook, 8 chapters, about 5 hr 5 min). A developer workbook for the Identity Lifecycle & Provisioning project.
-- [Building Privileged Access](../../project-plans/developer-workbooks/privileged-access/index.md) (Developer workbook, 9 chapters, about 7 hr 5 min). A developer workbook for the Privileged Access & Administrative Identity project.
+- [Building Privileged Access](../../project-plans/developer-workbooks/privileged-access/index.md) (Developer workbook, 9 chapters, about 7 hr 7 min). A developer workbook for the Privileged Access & Administrative Identity project.
 
-*Milestone 3: about 12 hr 10 min.*
+*Milestone 3: about 12 hr 12 min.*
 
 ## Week 4: Ticket-to-Machine
 
@@ -36,5 +36,5 @@ review-status: pending
 
 *Milestone 4: about 4 hr 52 min.*
 
-**Whole plan:** about 27 hr 28 min of reading and video, plus the labs.
+**Whole plan:** about 27 hr 54 min of reading and video, plus the labs.
 

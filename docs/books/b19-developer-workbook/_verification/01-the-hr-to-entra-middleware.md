@@ -74,3 +74,17 @@ New section before Dangers: 14 rows, one per Lab 1 and Lab 2 scripted step or ki
 | 4 | FedRAMP Marketplace listings, status, class and impact level | Federal requirements and evidence | verified | `products.json`, `last_change` 2026-11-01T05:02:56Z, downloaded and parsed November 2, 2026 |
 | 5 | KSIs are provider-side; the agency doesn't report them | Under the table | carried from verified source | Book 00, Appendix B |
 | 6 | M-22-09 statement cited in the section intro | Federal requirements and evidence | verified | M-22-09 PDF text extracted and read November 2, 2026 |
+
+## Lab 2 commands for the portal steps, November 27, 2026
+
+Each Lab 2 step that was done only in a portal or by hand now has a command block, with the portal path kept as the alternative. Learn pages opened on November 27, 2026 with the web fetch tool (the Microsoft Learn MCP tools weren't available in this session). Nothing was run against a tenant or subscription: the commands are checked against the pages, not executed, except the validation kit catalog call in Chapter 09, which was run on the kit's own files.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | The gallery app "API-driven provisioning to Microsoft Entra ID"; **Automatic** and **Save** create the job; a job started without a notification email quarantines; **Start provisioning** is listen mode | Lab 2, steps 1 and 4 | verified | Learn, Configure API-driven inbound provisioning app |
+| 2 | Graph sequence: find the application template, instantiate it, list the service principal's synchronization templates, create the job (starts disabled), start it | Lab 2, step 1 | verified (Learn shows it on beta with Graph Explorer and says v1.0 has the same calls; the commands use v1.0) | Learn, Configure provisioning using Microsoft Graph APIs |
+| 3 | API-driven job IDs start `API2AAD.` | Lab 2, step 1 | verified from the `Location` examples; the job template's ID isn't hard-coded, the commands read it | Learn, Perform bulkUpload |
+| 4 | Service principal owners can be service principals; `Application.ReadWrite.All` and `Directory.Read.All`; `New-MgServicePrincipalOwnerByRef` | Lab 2, step 3 | verified | Learn, servicePrincipal: Add owner |
+| 5 | Owning the provisioning service principal is what lets `SynchronizationData-User.Upload.OwnedBy` cover it | Lab 2, step 3 | inference: Learn says the `.OwnedBy` pair limits an ISV to the app it creates and the chapter already reads it as ownership; not tested | Learn, Grant access to inbound provisioning API; Perform bulkUpload |
+| 6 | App role assignment with `New-MgServicePrincipalAppRoleAssignment` grants the permission without the consent prompt | Lab 2, step 3 | verified | Learn, Grant access to inbound provisioning API (managed identity script); Grant or revoke API permissions programmatically |
+| 7 | `SyncNotificationSettings` secret with `Enabled`, `Recipients`, `DeleteThresholdEnabled`, `DeleteThresholdValue`; PUT replaces all secrets; GET reads them | Lab 2, step 4 | verified on the cloud sync page; its use on an API-driven app is an inference, stated in the step | Learn, How to programmatically configure cloud sync using MS Graph API |

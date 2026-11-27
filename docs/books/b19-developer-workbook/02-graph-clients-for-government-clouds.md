@@ -346,6 +346,33 @@ Every command in this lab, in order, from `examples/ms-automation`. Each step be
 In a POSIX shell (Git Bash on Windows):
 
 ```bash
+# Step 1: Register the app in the tenant's own cloud
+az login --tenant <tenant-id> --allow-no-subscriptions
+az ad sp create-for-rbac --name "fmw-ca-export-lab-$(date +%Y%m%d%H%M%S)" --create-cert
+cp "<pem-path>" app.pem
+```
+
+In PowerShell 7:
+
+```powershell
+# Step 1: Register the app in the tenant's own cloud
+$pem = [System.Security.Cryptography.X509Certificates.X509Certificate2]::CreateFromPemFile("$PWD/app.pem")
+$cert = [System.Security.Cryptography.X509Certificates.X509Certificate2]::new($pem.Export('Pkcs12'), [string]$null, 'UserKeySet,PersistKeySet')
+$store = [System.Security.Cryptography.X509Certificates.X509Store]::new('My', 'CurrentUser'); $store.Open('ReadWrite'); $store.Add($cert); $store.Close()
+$cert.Thumbprint
+
+# Step 2: Grant one permission
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.Read.All', 'AppRoleAssignment.ReadWrite.All' -NoWelcome
+$sp = Get-MgServicePrincipal -Filter "appId eq '<app-id>'"
+$graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+$role = $graph.AppRoles | Where-Object { $_.Value -eq 'Policy.Read.All' -and $_.AllowedMemberTypes -contains 'Application' }
+New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id -PrincipalId $sp.Id -ResourceId $graph.Id -AppRoleId $role.Id
+Get-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id | Select-Object ResourceDisplayName, AppRoleId
+```
+
+In a POSIX shell (Git Bash on Windows):
+
+```bash
 # Step 3: Run the task
 pip install azure-identity
 python python/entra_tasks.py --cloud gcc --tenant <tenant-id> --client <app-id> --cert app.pem ca-export --out ca
@@ -378,8 +405,36 @@ rm -rf ca ca-ps
 
 <!-- labs:end -->
 
-1. **Register the app in the tenant's own cloud.** An app for a GCC tenant is registered in the worldwide Microsoft Entra admin center.[^c02-sdk-clouds] Add a certificate credential. Don't add a secret.
-2. **Grant one permission.** Add the application permission `Policy.Read.All`, the one `ca-export` declares, and grant admin consent. Nothing else.
+1. **Register the app in the tenant's own cloud.** An app for a GCC tenant is registered in the worldwide Microsoft Entra admin center.[^c02-sdk-clouds] Add a certificate credential. Don't add a secret. In a POSIX shell (Git Bash on Windows), from `examples/ms-automation`, sign in to the test tenant with the Azure CLI's default cloud, `AzureCloud` (the worldwide one), and register the app with a new self-signed certificate. With no `--role` or `--scopes`, the service principal gets no access to Azure resources; the timestamp keeps the display name unique, because `create-for-rbac` changes an existing app that shares it. It prints the app's `appId` (your `<app-id>`) and `fileWithCertAndPrivateKey`, a PEM file with the certificate and its private key and no password:[^c02-clisp]
+
+   ```bash
+   az login --tenant <tenant-id> --allow-no-subscriptions
+   az ad sp create-for-rbac --name "fmw-ca-export-lab-$(date +%Y%m%d%H%M%S)" --create-cert
+   cp "<pem-path>" app.pem
+   ```
+
+   Replace `<pem-path>` with the `fileWithCertAndPrivateKey` value. For step 5, PowerShell signs in by thumbprint from the certificate store, so put the certificate there (PowerShell 7) and note the thumbprint it prints, your `<thumbprint>`:[^c02-azpsauth]
+
+   ```powershell
+   $pem = [System.Security.Cryptography.X509Certificates.X509Certificate2]::CreateFromPemFile("$PWD/app.pem")
+   $cert = [System.Security.Cryptography.X509Certificates.X509Certificate2]::new($pem.Export('Pkcs12'), [string]$null, 'UserKeySet,PersistKeySet')
+   $store = [System.Security.Cryptography.X509Certificates.X509Store]::new('My', 'CurrentUser'); $store.Open('ReadWrite'); $store.Add($cert); $store.Close()
+   $cert.Thumbprint
+   ```
+
+   `app.pem` holds a private key: keep it out of the repository and delete it in step 6.
+2. **Grant one permission.** Add the application permission `Policy.Read.All`, the one `ca-export` declares, and grant admin consent. Nothing else. In PowerShell 7, assign that one app role to the app's service principal. The assignment grants the permission without the consent prompt and takes effect at once, so it's the admin consent; the last command should list exactly one assignment:[^c02-grant]
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.Read.All', 'AppRoleAssignment.ReadWrite.All' -NoWelcome
+   $sp = Get-MgServicePrincipal -Filter "appId eq '<app-id>'"
+   $graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+   $role = $graph.AppRoles | Where-Object { $_.Value -eq 'Policy.Read.All' -and $_.AllowedMemberTypes -contains 'Application' }
+   New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id -PrincipalId $sp.Id -ResourceId $graph.Id -AppRoleId $role.Id
+   Get-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id | Select-Object ResourceDisplayName, AppRoleId
+   ```
+
+   Or in the admin center: **App registrations** > the app > **API permissions** > **Add a permission** > **Microsoft Graph** > **Application permissions** > `Policy.Read.All`, then **Grant admin consent**.
 3. **Run the task.** Install `azure-identity` first:
 
    ```bash
@@ -516,6 +571,9 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 [^c02-retryafter]: Microsoft Learn, "The Retry-After header: how long to wait before you retry," <https://learn.microsoft.com/microsoft-cloud/dev/dev-proxy/concepts/retry-after-header> (accessed Oct 30, 2026).
 [^c02-batching]: Microsoft Learn, "Combine multiple HTTP requests using JSON batching," batch size limitations, <https://learn.microsoft.com/graph/json-batching> (accessed Oct 30, 2026).
 [^c02-versioning]: Microsoft Learn, "Versioning, support, and breaking change policies for Microsoft Graph," <https://learn.microsoft.com/graph/versioning-and-support> (accessed Oct 30, 2026).
+[^c02-clisp]: Microsoft Learn, "Use an Azure service principal with certificate-based authentication" (`az ad sp create-for-rbac --create-cert` and the `fileWithCertAndPrivateKey` output), <https://learn.microsoft.com/cli/azure/azure-cli-sp-tutorial-3>, and "Create an Azure service principal with Azure CLI" (without a role and scope the service principal has no access to resources; the command can modify an existing application that shares the display name), <https://learn.microsoft.com/cli/azure/azure-cli-sp-tutorial-1> (accessed Nov 27, 2026).
+[^c02-azpsauth]: Microsoft Learn, "Use app-only authentication with the Microsoft Graph PowerShell SDK" (the certificate installed in the user's store on the machine that runs the script; `Connect-MgGraph` with `-CertificateThumbprint`), <https://learn.microsoft.com/powershell/microsoftgraph/app-only> (accessed Nov 27, 2026).
+[^c02-grant]: Microsoft Learn, "Grant or revoke API permissions programmatically" (grant an app role with an `appRoleAssignment`, signed in with `Application.Read.All` and `AppRoleAssignment.ReadWrite.All`; grants made this way aren't reviewed and take effect immediately), <https://learn.microsoft.com/graph/permissions-grant-via-msgraph> (accessed Nov 27, 2026).
 [^c02-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile, last modified October 22, 2026 (includes AC-2, AC-3, AC-6, CA-7, CM-2, CM-6, IA-5, SA-9, SA-11 and SR-3), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (accessed Nov 2, 2026).
 [^c02-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026* (indicators KSI-CMT-VTD, KSI-IAM-ELP, KSI-IAM-SNU, KSI-MLA-EVC, KSI-SCR-MIT and KSI-SVC-ACM; control mappings updated October 13, 2026), <https://www.fedramp.gov/2026/reference/key-security-indicators/> (accessed Nov 2, 2026).
 [^c02-fedramp]: FedRAMP Marketplace product data, <https://www.fedramp.gov/marketplace/products.json>, `last_change` 2026-11-01T05:02:56Z (accessed Nov 2, 2026): MSO365MT, Microsoft 365 Government Community Cloud & Supporting Services, FedRAMP Certified, Class C, Moderate; F1209051525, Azure Commercial Cloud, FedRAMP Certified, Class D, High.

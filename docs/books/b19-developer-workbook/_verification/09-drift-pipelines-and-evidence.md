@@ -62,3 +62,12 @@ New section before Dangers: 18 rows, one per Lab 1 and Lab 2 scripted step or ki
 | 4 | FedRAMP Marketplace listings, status, class and impact level | Federal requirements and evidence | verified | `products.json`, `last_change` 2026-11-01T05:02:56Z, downloaded and parsed November 2, 2026 |
 | 5 | KSIs are provider-side; the agency doesn't report them | Under the table | carried from verified source | Book 00, Appendix B |
 
+## Lab 2 commands for the portal steps, November 27, 2026
+
+Each Lab 2 step that was done only in a portal or by hand now has a command block, with the portal path kept as the alternative. Learn pages opened on November 27, 2026 with the web fetch tool (the Microsoft Learn MCP tools weren't available in this session). Nothing was run against a tenant or subscription: the commands are checked against the pages, not executed, except the validation kit catalog call in Chapter 09, which was run on the kit's own files.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | The workflow's checks need 16 Graph permissions; VK-DG-03 is the one check marked delegated only | Lab 2, step 2 | verified locally: `Get-VkCheckCatalog` and `Get-VkRequiredScope` run on the kit, November 27, 2026 | `examples/validation-kit` |
+| 2 | Container retention policy create and show with Azure CLI; `--period` in days; unlocked can be deleted | Lab 2, step 3 | verified | Learn, Configure immutability policies for containers |
+| 3 | `gh workflow run`, `gh run list`, `gh run watch --exit-status`, `gh issue list` | Lab 2, steps 5 and 7 | from the GitHub CLI manual; not a Learn topic | cli.github.com/manual |

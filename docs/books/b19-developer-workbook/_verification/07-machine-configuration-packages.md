@@ -78,3 +78,13 @@ Post-baseline items from the crosswalk's held list. Each source was opened on No
 | 1 | Office 365 GCC is paired with Microsoft Entra ID in Azure, so Lab 2 defaults to `AzureCloud` (item 927) | Lab 2, step 2 | verified | Learn, Cloud feature availability for US Government customers (Microsoft 365 integration) |
 | 2 | `Connect-AzAccount -Environment`; examples show `AzureCloud` | Lab 2, step 2 | verified | Learn, Connect-AzAccount |
 | 3 | Commercial endpoints: `*.guestconfiguration.azure.com` for Arc; `agentserviceapi.guestconfiguration.azure.com` and regional endpoints such as `eastus-gas` and `eus-gas`; `oaasguestconfig*.blob.core.windows.net` storage | Lab 2, step 2; Verified facts | verified | Learn, Azure Machine Configuration network requirements; Connected Machine agent network requirements |
+
+## Lab 2 commands for the portal steps, November 27, 2026
+
+Each Lab 2 step that was done only in a portal or by hand now has a command block, with the portal path kept as the alternative. Learn pages opened on November 27, 2026 with the web fetch tool (the Microsoft Learn MCP tools weren't available in this session). Nothing was run against a tenant or subscription: the commands are checked against the pages, not executed, except the validation kit catalog call in Chapter 09, which was run on the kit's own files.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | System-assigned identity: disable anonymous access and assign **Storage Blob Data Reader** on the storage account | Lab 2, step 4 | verified | Learn, How to create custom machine configuration policy definitions |
+| 2 | `New-AzPolicyAssignment` with `-PolicyDefinition`, `-Scope` and `-PolicyParameterObject` (hashtable); `Remove-AzPolicyAssignment` | Lab 2, steps 6 and 8 | verified | Learn, New-AzPolicyAssignment; Quickstart: Create policy assignment using Azure PowerShell |
+| 3 | The system-assigned identity read as `Identity.PrincipalId` from `Get-AzResource` | Lab 2, steps 4 and 8 | not run; `Get-AzConnectedMachine`'s Learn page doesn't list its output properties, so the generic resource read is used | Learn, Get-AzConnectedMachine (checked) |
