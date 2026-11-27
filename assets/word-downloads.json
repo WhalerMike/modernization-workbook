@@ -1549,6 +1549,11 @@
   "page": "appendix-a-identity-remediation-work-packages.docx",
   "title": "Book 18 — Application Modernization"
  },
+ "docs/books/b18-application-modernization/appendix-b-shutting-down-a-retired-application.md": {
+  "bundle": "b18-application-modernization-bundle.docx",
+  "page": "appendix-b-shutting-down-a-retired-application.docx",
+  "title": "Book 18 — Application Modernization"
+ },
  "docs/books/b18-application-modernization/index.md": {
   "bundle": "b18-application-modernization-bundle.docx",
   "page": "index.docx",
