@@ -49,6 +49,45 @@ KITS = [
     ("sql-server-identity", "SQL Server Identity", "docs/project-plans/developer-workbooks/sql-server-identity/index.md"),
     ("ms-automation", "Microsoft Automation", "docs/training/ms-automation-foundations.md"),
 ]
+# Which identity runs each kit's read runs on the platform host (WD-181). A run that changes something,
+# needs a write permission to read, or needs an Active Directory delegation beyond default read isn't
+# scheduled there; RUN_HOST overrides a single run.
+GMSA = "`gmsa-fmpassess$`"
+HOST = {
+    "non-person-identity": f"{GMSA}; Graph and Azure as the Non-Person Identity reader app",
+    "privileged-access": f"{GMSA}; Graph and Azure as the Privileged Access reader app",
+    "hr-lifecycle": f"{GMSA}; Graph as the HR-Driven Identity reader app",
+    "servicenow-sailpoint": f"{GMSA}; Graph as the Ticket-to-Machine reader app; ServiceNow and SailPoint as the kit's read clients",
+    "global-secure-access": f"{GMSA}; Graph as the Global Secure Access reader app",
+    "defender-xdr": f"{GMSA}; Graph as the Defender XDR reader app",
+    "azure-security": f"{GMSA}; Azure as the Azure Security reader app, Reader at its scope",
+    "information-protection": f"{GMSA}; Purview's modules as the Information Protection reader app",
+    "provider-notices": "WD-179's server and reader app",
+    "sql-server-identity": f"{GMSA}; Azure as the SQL Server Identity reader app",
+    "ms-automation": "Not scheduled: a learning path's labs",
+}
+RUN_HOST = {
+    ("non-person-identity", "inventory"): f"Weekly in the estate inventory: {GMSA} and its reader app (WD-180)",
+    ("privileged-access", "inventory"): f"Weekly in the estate inventory: {GMSA} and its reader app (WD-180)",
+    ("non-person-identity", "cloud-workload"): f"{GMSA}; AWS and Oracle Cloud sign-ins aren't decided (Chapter 13)",
+    ("non-person-identity", "kerberos-apply"): "The pipeline's own gMSA, `gmsa-msapipe$`, after SailPoint approves (WD-163)",
+    ("sql-server-identity", "audit-snapshot"): f"{GMSA}, through a Windows login on each instance with the read permissions",
+}
+BY_HAND = "Not scheduled: run by the person or pipeline the kit's chapter names"
+
+
+def on_host(r: "Run") -> str:
+    if (r.kit, r.name) in RUN_HOST:
+        return RUN_HOST[(r.kit, r.name)]
+    if r.changes:
+        return BY_HAND
+    if any("ReadWrite" in g for g in r.graph):
+        return "Not scheduled: its read needs a write permission, which no scheduled identity holds; run by hand"
+    if any(o.lower().startswith("delegated") for o in r.other):
+        return "Not scheduled: needs an Active Directory delegation beyond default read; run by hand with a time-bound one"
+    return HOST.get(r.kit, "—")
+
+
 # A sentence under a kit's table, for what its permission file doesn't cover.
 KIT_NOTES = {
     "azure-security": "These are the checks, which only read. The kit's one write, the deployment runbook's assignment "
@@ -219,6 +258,11 @@ def page() -> str:
         "running the run needs, or an Azure role on the scope the kit names. **Other rights** are Active Directory, "
         "SQL Server, ServiceNow, SailPoint and other clouds' rights.",
         "- A run that combines several kits, such as the estate inventory, needs the union of their rows.",
+        "- **On the platform host** says which identity runs it there, under [WD-181](../about/decision-register.md#wd-181): "
+        "the assessment gMSA, `gmsa-fmpassess$`, with default read in the forest, and for Microsoft Graph and Azure a "
+        "reader app per assessment set holding only that set's read rows. A gMSA can't sign in to Microsoft Entra ID, "
+        "so the cloud reads need the app. A run that changes something, needs a write permission to read, or needs an "
+        "Active Directory delegation beyond default read isn't scheduled.",
         "- A role or permission listed for a run is what the kit's file names. Some calls accept any one of "
         "several roles; the kit's chapter gives the choice.",
         "",
@@ -244,13 +288,14 @@ def page() -> str:
         src = ", ".join(f"[`{f.relative_to(ROOT).as_posix()}`]({GH}/{f.relative_to(ROOT).as_posix()})" for f in files)
         sec = [f"## {title} {{#{anchor}}}", "",
                f"From {src}. Taught in [{title}]({link(guide)}).", "",
-               "| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights |",
-               "|---|---|---|---|---|---|"]
+               "| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights "
+               "| On the platform host (WD-181) |",
+               "|---|---|---|---|---|---|---|"]
         order = sorted(runs.values(), key=lambda r: (r.chapter or "99", r.changes, r.name))
         for r in order:
             shown = "All the kit's calls" if r.name == EVERY else f"`{r.name}`"
             sec.append(f"| {shown} | {r.chapter or '—'} | {'Changes' if r.changes else 'Reads only'} | "
-                       f"{cell(r.graph)} | {cell(r.roles)} | {cell(r.other)} |")
+                       f"{cell(r.graph)} | {cell(r.roles)} | {cell(r.other)} | {on_host(r)} |")
         if kit in KIT_NOTES:
             sec += ["", KIT_NOTES[kit]]
         sections += sec + [""]
