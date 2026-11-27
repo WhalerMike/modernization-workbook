@@ -15,6 +15,8 @@ last-reviewed: 2026-11-25
 
 **Learning path:** [Data Platform and SQL Server Identity](index.md) · Module 10 of 10 · 70 minutes · Runbook [R05](../../books/b06-data-platform/r05-login-migration-and-parallel-run.md) and [Appendix B](../../books/b06-data-platform/appendix-b-ato-kit.md#break-glass-design) · Workbook [Chapter 10](../../project-plans/developer-workbooks/sql-server-identity/10-deploying-to-test-and-production.md)
 
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-dp-module-10) · [▶ Watch](../../presentations/watch.html?v=Training_DP_Module_10_Narrated) (about 13 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DP_Module_10_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-10/Training_DP_Module_10_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-10/Training_DP_Module_10_Narrated.vtt).
+
 ## Unit 1: Introduction
 
 *3 minutes, with the objectives and prerequisites*

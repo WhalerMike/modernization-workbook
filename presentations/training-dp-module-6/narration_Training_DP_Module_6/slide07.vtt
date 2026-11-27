@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.650
+Chapter 06 of the workbook names the
+dangers, and the guard against each.
+
+2
+00:00:04.650 --> 00:00:09.515
+Running the fix file as a script moves
+every S P N in it at once, outside review;
+
+3
+00:00:09.515 --> 00:00:13.875
+the guard is one reviewed line at a
+time, in a window, with its back-out.
+
+4
+00:00:13.875 --> 00:00:16.106
+For a virtual or built-in service account,
+
+5
+00:00:16.106 --> 00:00:19.782
+the S P N belongs on the computer
+account, and moving it to the service
+
+6
+00:00:19.782 --> 00:00:24.113
+account would break Kerberos, so the kit
+expects the computer account for those.
+
+7
+00:00:24.113 --> 00:00:29.482
+Cross-site NTLM read as a missing S P N
+leads to an S P N that changes nothing;
+
+8
+00:00:29.482 --> 00:00:33.150
+run K list get from the
+client's site before any fix.
+
+9
+00:00:33.150 --> 00:00:38.098
+A linked server fixed with unconstrained
+delegation leaves the first server holding
+
+10
+00:00:38.098 --> 00:00:42.083
+a reusable ticket for every caller;
+Runbook R oh six's options are Entra
+
+11
+00:00:42.083 --> 00:00:46.962
+authentication, constrained delegation, or
+a mapped login as a documented exception.
+
+12
+00:00:46.962 --> 00:00:49.758
+And because only the T
+C P S P N is checked,
+
+13
+00:00:49.758 --> 00:00:55.540
+named pipes or short-name clients can still
+use NTLM, so check those forms by hand.

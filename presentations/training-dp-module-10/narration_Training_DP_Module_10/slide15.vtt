@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.700
+The federal requirement.
+
+2
+00:00:01.700 --> 00:00:06.225
+Chapter 10 maps each
+step to NIST SP 800-53.
+
+3
+00:00:06.225 --> 00:00:11.425
+Preflight supports A C six, least privilege,
+and C M six, configuration settings:
+
+4
+00:00:11.425 --> 00:00:16.225
+keep the preflight file and its manifest,
+with the deployer's rights read.
+
+5
+00:00:16.225 --> 00:00:19.713
+The plan and its approval
+support C M three and C M four,
+
+6
+00:00:19.713 --> 00:00:23.993
+configuration change control and
+impact analysis: keep the plan,
+
+7
+00:00:23.993 --> 00:00:28.987
+the three sequel files, and the hashes
+in the change record with the approver.
+
+8
+00:00:28.987 --> 00:00:32.632
+The create and the cutover
+support C M three and A C two:
+
+9
+00:00:32.632 --> 00:00:36.938
+keep each deploy record with mode
+applied and the hash that ran.
+
+10
+00:00:36.938 --> 00:00:41.635
+The rollback plan supports C M three
+and C P two, the contingency plan:
+
+11
+00:00:41.635 --> 00:00:45.325
+keep the rollback dry run,
+written before the cutover.
+
+12
+00:00:45.325 --> 00:00:50.378
+And the seal supports C A seven and A U
+nine, protection of audit information:
+
+13
+00:00:50.378 --> 00:00:53.475
+keep the chain, each record
+holding the S H A two
+
+14
+00:00:53.475 --> 00:00:57.387
+fifty-six of every manifest
+and the previous record's hash.
+
+15
+00:00:57.387 --> 00:01:01.585
+K S Is are FedRAMP twenty X indicators
+for cloud service providers:
+
+16
+00:01:01.585 --> 00:01:05.400
+your cloud providers report
+against them, the agency doesn't.
+
+17
+00:01:05.400 --> 00:01:09.460
+These records provide evidence for
+the change; the assessor decides.

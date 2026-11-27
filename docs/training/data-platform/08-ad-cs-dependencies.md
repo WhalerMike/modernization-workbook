@@ -15,6 +15,8 @@ last-reviewed: 2026-11-25
 
 **Learning path:** [Data Platform and SQL Server Identity](index.md) · Module 8 of 10 · 40 minutes · Runbook [R10](../../books/b06-data-platform/r10-certificate-discovery-for-adcs.md) · Workbook [Chapter 08](../../project-plans/developer-workbooks/sql-server-identity/08-ad-cs-dependencies.md)
 
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-dp-module-8) · [▶ Watch](../../presentations/watch.html?v=Training_DP_Module_8_Narrated) (about 11 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DP_Module_8_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-8/Training_DP_Module_8_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-8/Training_DP_Module_8_Narrated.vtt).
+
 ## Unit 1: Introduction
 
 *3 minutes, with the objectives and prerequisites*

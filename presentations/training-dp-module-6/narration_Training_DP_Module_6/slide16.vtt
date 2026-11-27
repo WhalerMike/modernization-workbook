@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.125
+To sum up.
+
+2
+00:00:01.125 --> 00:00:05.358
+You found the missing, misplaced and
+duplicate S P Ns, the remote NTLM,
+
+3
+00:00:05.358 --> 00:00:10.712
+the linked-server passthrough and the client
+off the domain in the fictional estate.
+
+4
+00:00:10.712 --> 00:00:15.226
+And you saw that the S P N problems stay
+until someone runs the reviewed fixes.
+
+5
+00:00:15.226 --> 00:00:17.460
+The fix file is hashed with the findings,
+
+6
+00:00:17.460 --> 00:00:20.712
+so the lines a change board
+approves are the lines that run.
+
+7
+00:00:20.712 --> 00:00:24.746
+The I S S O keeps the findings and
+the fix file with the manifest,
+
+8
+00:00:24.746 --> 00:00:27.832
+the change record for each
+set S P N line that ran,
+
+9
+00:00:27.832 --> 00:00:32.499
+and the auth scheme and K list record
+from a remote client after each fix.
+
+10
+00:00:32.499 --> 00:00:35.975
+Before shipping, work through
+the Chapter 06 checklist.
+
+11
+00:00:35.975 --> 00:00:38.950
+Next is Module 7, the application chain.

@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.775
+Lab 2 runs on your own test subscription.
+
+2
+00:00:02.775 --> 00:00:04.750
+It hasn't been run by the authors.
+
+3
+00:00:04.750 --> 00:00:08.511
+You need a commercial Azure test
+subscription in the test tenant,
+
+4
+00:00:08.511 --> 00:00:11.714
+which is where a G C C Moderate
+tenant's Arc resources live,
+
+5
+00:00:11.714 --> 00:00:16.450
+with at least one Arc-enabled test server
+running SQL Server, never production.
+
+6
+00:00:16.450 --> 00:00:20.969
+You need PowerShell 7 with the Az
+Accounts and Az Resource Graph modules,
+
+7
+00:00:20.969 --> 00:00:24.886
+a person who holds Reader on the
+subscription and nothing more,
+
+8
+00:00:24.886 --> 00:00:28.125
+and Module 2's Lab 2 snapshot
+from the same instances.
+
+9
+00:00:28.125 --> 00:00:32.664
+Sign in and confirm the cloud, export
+an Arc snapshot through Resource Graph,
+
+10
+00:00:32.664 --> 00:00:36.050
+and settle the categories as
+Resource Graph leaves them.
+
+11
+00:00:36.050 --> 00:00:39.231
+Then confirm one instance's
+Entra setting in the portal,
+
+12
+00:00:39.231 --> 00:00:42.688
+record it in a separate copy,
+and settle the categories again.
+
+13
+00:00:42.688 --> 00:00:44.413
+Nothing in Azure changes.
+
+14
+00:00:44.413 --> 00:00:47.640
+To back it out, sign out
+and delete the lab's files.

@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:05.012
+Step three reads every fix, including
+the ones that aren't set S P N lines.
+
+2
+00:00:05.012 --> 00:00:09.380
+For remote NTLM, the fix is to find
+each client, from the client rows or
+
+3
+00:00:09.380 --> 00:00:14.113
+the client address in the connections
+view; local sessions are excluded.
+
+4
+00:00:14.113 --> 00:00:18.976
+For the linked-server passthrough on SQL
+P R D oh one, it's constrained delegation,
+
+5
+00:00:18.976 --> 00:00:21.443
+a mapped login, or the
+sequel server twenty
+
+6
+00:00:21.443 --> 00:00:24.051
+twenty-five managed-identity
+linked server.
+
+7
+00:00:24.051 --> 00:00:28.090
+And for the client off the domain, it's
+moving Reports Readers to an Entra
+
+8
+00:00:28.090 --> 00:00:32.062
+login with a token-based connection,
+which is the next module's subject.

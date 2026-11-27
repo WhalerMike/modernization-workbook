@@ -1,0 +1,38 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.631
+Welcome to Module 4 of the
+Data Platform and SQL Server
+
+2
+00:00:03.631 --> 00:00:07.162
+Identity learning path: Entra
+logins and the parallel run.
+
+3
+00:00:07.162 --> 00:00:09.025
+This is the migration itself.
+
+4
+00:00:09.025 --> 00:00:11.758
+You add the Entra login
+beside the Windows one,
+
+5
+00:00:11.758 --> 00:00:14.562
+prove it works, and only
+then turn the old one off.
+
+6
+00:00:14.562 --> 00:00:16.650
+The module follows runbook R five,
+
+7
+00:00:16.650 --> 00:00:21.200
+and Chapter 4 of the developer
+workbook, Building SQL Server Identity.
+
+8
+00:00:21.200 --> 00:00:22.940
+Take it after Module 3.

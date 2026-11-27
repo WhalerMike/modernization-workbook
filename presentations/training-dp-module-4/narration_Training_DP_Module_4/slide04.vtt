@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.350
+Unit 2 starts with the principals.
+
+2
+00:00:02.350 --> 00:00:07.388
+Create login, from external provider, maps
+a login to one of three Entra principals.
+
+3
+00:00:07.388 --> 00:00:09.863
+A user, named by its U P N.
+
+4
+00:00:09.863 --> 00:00:12.825
+A security group, named
+by its display name.
+
+5
+00:00:12.825 --> 00:00:15.625
+Or an application, also by display name.
+
+6
+00:00:15.625 --> 00:00:17.537
+In sys dot server principals,
+
+7
+00:00:17.537 --> 00:00:21.282
+users and applications show as
+type E, and groups as type X.
+
+8
+00:00:21.282 --> 00:00:25.425
+Group logins are the target,
+because they remove per-user churn.
+
+9
+00:00:25.425 --> 00:00:29.102
+And an application's sequel login
+with a stored password becomes
+
+10
+00:00:29.102 --> 00:00:32.438
+an Entra application login,
+preferably a managed identity.
+
+11
+00:00:32.438 --> 00:00:35.938
+Create user, from login, then
+makes the database user.
+
+12
+00:00:35.938 --> 00:00:39.838
+One more thing to keep in mind:
+the engine has no M F A logic.
+
+13
+00:00:39.838 --> 00:00:43.200
+Conditional Access decides
+before the token is issued.

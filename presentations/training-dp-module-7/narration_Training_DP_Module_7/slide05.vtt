@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.763
+Unit 3 starts with what
+Microsoft gives you.
+
+2
+00:00:02.763 --> 00:00:06.449
+Each driver family added Entra
+modes in specific releases.
+
+3
+00:00:06.449 --> 00:00:10.872
+Microsoft Data SQL Client added
+service principal in two point oh,
+
+4
+00:00:10.872 --> 00:00:14.837
+managed identity in two point one,
+and Default in three point oh.
+
+5
+00:00:14.837 --> 00:00:18.998
+The O D B C driver added managed
+identity in seventeen point three
+
+6
+00:00:18.998 --> 00:00:23.313
+point one point one and service
+principal in seventeen point seven.
+
+7
+00:00:23.313 --> 00:00:29.230
+The table gives the O L E D B driver eighteen
+point three and eighteen point five,
+
+8
+00:00:29.230 --> 00:00:31.962
+and the J D B C driver twelve point two.
+
+9
+00:00:31.962 --> 00:00:35.305
+In every family the Entra
+password mode is deprecated,
+
+10
+00:00:35.305 --> 00:00:37.237
+so it's never a migration target.
+
+11
+00:00:37.237 --> 00:00:41.777
+Microsoft also says a token doesn't
+grant database permissions by itself,
+
+12
+00:00:41.777 --> 00:00:46.837
+and to prefer a specific mode in production,
+such as managed identity, over Default.
+
+13
+00:00:46.837 --> 00:00:48.957
+And on an Arc-enabled Windows server,
+
+14
+00:00:48.957 --> 00:00:53.549
+a process can get the machine's managed
+identity token only if it runs as a local
+
+15
+00:00:53.549 --> 00:00:58.220
+administrator, or as a member of the
+Hybrid Agent Extension Applications group.

@@ -1,0 +1,38 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.813
+Step three leaves one login out of the
+mapping: the sequel login payroll report.
+
+2
+00:00:04.813 --> 00:00:07.807
+It loads the kit's module,
+reads the day-one snapshot,
+
+3
+00:00:07.807 --> 00:00:11.213
+drops that row from the mapping,
+and builds the plan again.
+
+4
+00:00:11.213 --> 00:00:14.410
+The create script now
+carries an unresolved line:
+
+5
+00:00:14.410 --> 00:00:16.750
+map it, or record why it isn't migrated.
+
+6
+00:00:16.750 --> 00:00:19.212
+And the cutover leaves payroll report out.
+
+7
+00:00:19.212 --> 00:00:23.812
+Its disable line is gone, so the login
+keeps working until someone maps it.
+
+8
+00:00:23.812 --> 00:00:26.330
+The plan never guesses an Entra principal.

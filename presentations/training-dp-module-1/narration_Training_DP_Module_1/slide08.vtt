@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.182
+The kit's classifier follows
+R oh two's first pass,
+
+2
+00:00:03.182 --> 00:00:05.725
+then applies the recorded constraints.
+
+3
+00:00:05.725 --> 00:00:09.576
+An instance whose every database
+is idle past the zombie threshold,
+
+4
+00:00:09.576 --> 00:00:13.337
+or whose every owning application
+is decommissioned, is retired.
+
+5
+00:00:13.337 --> 00:00:17.001
+An instance with no version goes
+to review, never to retain.
+
+6
+00:00:17.001 --> 00:00:22.260
+A version before SQL Server 2022
+consolidates into a shared target,
+
+7
+00:00:22.260 --> 00:00:24.400
+and 2022 or later is retained.
+
+8
+00:00:24.400 --> 00:00:25.763
+Then the constraints.
+
+9
+00:00:25.763 --> 00:00:30.618
+Collation conflicts, version-locked vendor
+applications, compliance isolation,
+
+10
+00:00:30.618 --> 00:00:34.617
+indivisible dependencies and
+failover cluster instances turn an
+
+11
+00:00:34.617 --> 00:00:38.687
+apparent consolidation into a
+dedicated target, or a retain in place.
+
+12
+00:00:38.687 --> 00:00:44.470
+It's a first pass: the architects confirm
+or override every row, and record why.

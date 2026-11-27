@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.700
+Unit 3 is the attribute,
+pim and the perimeter.
+
+2
+00:00:03.700 --> 00:00:05.240
+Under dynamic membership,
+
+3
+00:00:05.240 --> 00:00:08.925
+whoever can write the attribute
+a rule reads controls access.
+
+4
+00:00:08.925 --> 00:00:13.883
+So the book's Chapter 17 has rules read
+H R owned codes, such as the organization
+
+5
+00:00:13.883 --> 00:00:18.687
+code in extension attribute ten, never
+display strings such as department.
+
+6
+00:00:18.687 --> 00:00:22.213
+And every access rule excludes
+disabled accounts and guests.
+
+7
+00:00:22.213 --> 00:00:24.937
+Groups that hold sys-admin
+are never dynamic.
+
+8
+00:00:24.937 --> 00:00:28.799
+Microsoft Learn says pim for Groups
+doesn't work on dynamic groups,
+
+9
+00:00:28.799 --> 00:00:31.326
+or on groups synchronized
+from on premises.
+
+10
+00:00:31.326 --> 00:00:34.325
+So privileged groups are
+cloud-only and assigned.
+
+11
+00:00:34.325 --> 00:00:38.373
+Otherwise, whoever can write the
+attribute could make someone sys-admin.
+
+12
+00:00:38.373 --> 00:00:41.612
+Conditional Access then sits
+in front of every user token.
+
+13
+00:00:41.612 --> 00:00:45.931
+But it applies to users, not to
+managed identities, so applications are
+
+14
+00:00:45.931 --> 00:00:50.400
+covered by the application chain in
+Chapter 7, not by Conditional Access.

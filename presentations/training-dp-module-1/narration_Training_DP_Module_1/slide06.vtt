@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.762
+Runbook R oh two's first step sets out
+the rights each depth of discovery needs.
+
+2
+00:00:04.762 --> 00:00:09.613
+Read access to Active Directory finds
+candidates; it doesn't complete the inventory.
+
+3
+00:00:09.613 --> 00:00:14.695
+The directory depth gives candidate hosts
+and instances from S P Ns and directory
+
+4
+00:00:14.695 --> 00:00:16.639
+objects, and needs nothing more:
+
+5
+00:00:16.639 --> 00:00:20.226
+the SQL Server Browser probe
+needs only a network path.
+
+6
+00:00:20.226 --> 00:00:24.316
+The host depth gives the instances
+installed and each service's account,
+
+7
+00:00:24.316 --> 00:00:28.612
+and needs local administrator by default,
+or a least-privilege alternative.
+
+8
+00:00:28.612 --> 00:00:32.968
+The instance depth gives the version,
+the mode, every login and the databases,
+
+9
+00:00:32.968 --> 00:00:36.563
+and needs a Windows login with
+the Start Kit's read permissions.
+
+10
+00:00:36.563 --> 00:00:37.812
+Never sysadmin.
+
+11
+00:00:37.812 --> 00:00:40.325
+Azure Arc is an optional fourth depth.
+
+12
+00:00:40.325 --> 00:00:44.228
+Run every depth under one dedicated
+discovery identity per forest,
+
+13
+00:00:44.228 --> 00:00:48.897
+a group managed service account for
+scheduled runs, and add the host and instance
+
+14
+00:00:48.897 --> 00:00:53.300
+rights for the assessment window only,
+recording each grant and its removal.

@@ -1,0 +1,589 @@
+{
+ "1": [
+  [
+   0.1,
+   7.275,
+   "Welcome to Module 6 of the Data Platform and sequel Server Identity learning path: N T L M and the SPNs."
+  ],
+  [
+   7.325,
+   6.75,
+   "It goes with Runbook R oh six and Chapter 06 of the developer workbook, Building sequel Server Identity."
+  ],
+  [
+   14.075,
+   8.637,
+   "You'll find every reason an instance's connections use N T L M or fail Kerberos, and write each S P N fix for review instead of running it."
+  ],
+  [
+   22.712,
+   2.862,
+   "Take this module after Modules 5 and 2."
+  ]
+ ],
+ "2": [
+  [
+   0.1,
+   1.337,
+   "Why does this matter?"
+  ],
+  [
+   1.387,
+   6.037,
+   "You can't remove N T L M you haven't found, and most of what you find is a missing or misplaced name."
+  ],
+  [
+   7.425,
+   3.038,
+   "Windows Authentication tries Kerberos first."
+  ],
+  [
+   10.463,
+   4.825,
+   "When the client can't get a ticket for the instance's S P N, it uses N T L M."
+  ],
+  [
+   15.287,
+   4.588,
+   "And when the S P N sits on the wrong account, authentication fails outright."
+  ],
+  [
+   19.875,
+   11.6,
+   "In this module you list, per instance, every reason its connections use N T L M or fail Kerberos, with the set S P N line that would fix each S P N problem, ready for a change window."
+  ]
+ ],
+ "3": [
+  [
+   0.1,
+   5.0,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty minutes with the lab."
+  ],
+  [
+   5.05,
+   7.737,
+   "You'll name the patterns that make sequel server connections use N T L M, and the two S P N problems that fail instead of falling back."
+  ],
+  [
+   12.787,
+   3.263,
+   "You'll explain why local connections are left out of the count."
+  ],
+  [
+   16.05,
+   6.013,
+   "You'll run the kit's N T L M audit over fixtures on day 1 and day 30 and read its findings."
+  ],
+  [
+   22.062,
+   3.337,
+   "And you'll read the fix file and say why nothing in it has run."
+  ],
+  [
+   25.4,
+   6.025,
+   "Before you start, finish Module 5, and Module 2, whose audit snapshots this module reads."
+  ],
+  [
+   31.425,
+   5.45,
+   "The lab runs in PowerShell 7, in the kit you unzipped into the F M W Labs folder."
+  ]
+ ],
+ "4": [
+  [
+   0.1,
+   2.375,
+   "Start with what Microsoft Learn gives you."
+  ],
+  [
+   2.425,
+   2.638,
+   "The client builds an S P N for the instance."
+  ],
+  [
+   5.062,
+   9.412,
+   "For T C P it's M S sequel S V C, slash, the fully qualified name, colon, the port, registered on the account the service runs under."
+  ],
+  [
+   14.475,
+   3.188,
+   "Learn's table of S P N states is the triage key."
+  ],
+  [
+   17.663,
+   7.65,
+   "When the S P N maps to the account the service runs under, local connections use N T L M and remote ones use Kerberos."
+  ],
+  [
+   25.312,
+   3.45,
+   "When it maps to an incorrect account, authentication fails."
+  ],
+  [
+   28.762,
+   14.213,
+   "And when the lookup fails, or there's no S P N, local and remote connections both use N T L M. Notice the first row: a connection made on the server itself always reports N T L M, even when Kerberos is set up correctly."
+  ],
+  [
+   42.975,
+   2.4,
+   "So you judge only remote connections."
+  ]
+ ],
+ "5": [
+  [
+   0.1,
+   1.837,
+   "Unit 2 is the patterns."
+  ],
+  [
+   1.887,
+   5.15,
+   "The data platform book's chapter on N T L M names four patterns at the sequel layer."
+  ],
+  [
+   7.037,
+   5.6,
+   "A missing or incorrect S P N. Cross-site connections that can't reach a domain controller."
+  ],
+  [
+   12.637,
+   1.538,
+   "Linked-server passthrough."
+  ],
+  [
+   14.175,
+   2.062,
+   "And clients that aren't domain-joined."
+  ],
+  [
+   16.238,
+   9.537,
+   "Its triage point matters most: an S P N on the wrong account doesn't fall back to N T L M, it fails, and a duplicate S P N breaks Kerberos too."
+  ],
+  [
+   25.775,
+   5.362,
+   "That shows up as an error, not as N T L M, so it gets triaged as a different problem."
+  ],
+  [
+   31.137,
+   7.662,
+   "And a linked server that passes the caller's credentials needs Kerberos delegation, because N T L M can't make the second hop."
+  ]
+ ],
+ "6": [
+  [
+   0.1,
+   3.55,
+   "Unit 3 is discovery first, and fixes for review."
+  ],
+  [
+   3.6,
+   8.35,
+   "The data platform book's three phases of N T L M elimination start with discovery: the baseline that later phases measure against."
+  ],
+  [
+   11.95,
+   10.0,
+   "The kit's N T L M audit joins the audit snapshot, the estate, the domain's M S sequel S V C S P Ns, the linked servers and the client records."
+  ],
+  [
+   21.95,
+   5.3,
+   "It builds the expected T C P S P N for each instance and compares it with who holds it."
+  ],
+  [
+   27.25,
+   4.987,
+   "For a virtual or built-in service account, it expects the S P N on the computer account."
+  ],
+  [
+   32.237,
+   4.312,
+   "It writes each set S P N fix to a file for review, and never runs it."
+  ],
+  [
+   36.55,
+   3.95,
+   "Runbook R oh six puts each change in a window, with its back-out."
+  ],
+  [
+   40.5,
+   1.812,
+   "Two patterns aren't detected."
+  ],
+  [
+   42.312,
+   6.412,
+   "Cross-site connections look like a missing S P N in this data, so confirm with K list before changing anything."
+  ],
+  [
+   48.725,
+   3.25,
+   "And only the T C P form of the S P N is checked."
+  ]
+ ],
+ "7": [
+  [
+   0.1,
+   4.55,
+   "Chapter 06 of the workbook names the dangers, and the guard against each."
+  ],
+  [
+   4.6,
+   9.275,
+   "Running the fix file as a script moves every S P N in it at once, outside review; the guard is one reviewed line at a time, in a window, with its back-out."
+  ],
+  [
+   13.875,
+   10.238,
+   "For a virtual or built-in service account, the S P N belongs on the computer account, and moving it to the service account would break Kerberos, so the kit expects the computer account for those."
+  ],
+  [
+   24.113,
+   9.037,
+   "Cross-site N T L M read as a missing S P N leads to an S P N that changes nothing; run K list get from the client's site before any fix."
+  ],
+  [
+   33.15,
+   13.812,
+   "A linked server fixed with unconstrained delegation leaves the first server holding a reusable ticket for every caller; Runbook R oh six's options are Entra authentication, constrained delegation, or a mapped login as a documented exception."
+  ],
+  [
+   46.962,
+   8.562,
+   "And because only the T C P S P N is checked, named pipes or short-name clients can still use N T L M, so check those forms by hand."
+  ]
+ ],
+ "8": [
+  [
+   0.1,
+   0.887,
+   "Try it."
+  ],
+  [
+   0.938,
+   4.6,
+   "Lab 1 runs in PowerShell 7 on the kit's fictional estate, with no tenant."
+  ],
+  [
+   5.537,
+   8.275,
+   "Go to the kit's folder, and make this run's results folder, named for the time you start, in U T C, so every run keeps its own results."
+  ],
+  [
+   13.812,
+   4.275,
+   "Step one runs the audit on day 1: seven findings on four instances."
+  ],
+  [
+   18.087,
+   5.875,
+   "sequel P R D oh two is missing its S P N, so remote connections fall back to N T L M."
+  ],
+  [
+   23.962,
+   7.675,
+   "On sequel F C I oh four, the S P N is held by an old account, not the one the service runs as, so authentication fails."
+  ],
+  [
+   31.637,
+   5.312,
+   "On sequel P R D oh six, two accounts hold it, so Kerberos can't choose."
+  ],
+  [
+   36.95,
+   6.537,
+   "Then there's remote N T L M, a linked server passing the caller's credentials, and a client off the domain."
+  ],
+  [
+   43.487,
+   6.175,
+   "Look at sequel P R D oh one: its S P N is correct, yet forty-one sessions use N T L M."
+  ],
+  [
+   49.663,
+   8.975,
+   "The client file shows that host is domain-joined, so look on the client side: aliases, hosts file entries, D N S and old drivers."
+  ]
+ ],
+ "9": [
+  [
+   0.1,
+   4.675,
+   "Step two reads the fix file: four lines for three instances, and nothing has run."
+  ],
+  [
+   4.725,
+   6.037,
+   "The first line says so: review each line, and run it with Domain Admin rights in a change window."
+  ],
+  [
+   10.762,
+   4.088,
+   "sequel P R D oh two gets its S P N added on its service account."
+  ],
+  [
+   14.85,
+   6.45,
+   "On sequel F C I oh four, the S P N is deleted from the old account, then added to the one the service runs as."
+  ],
+  [
+   21.3,
+   7.675,
+   "And on sequel P R D oh six, the S P N stays with the G M S A the service runs as, and leaves the computer account."
+  ],
+  [
+   28.975,
+   7.912,
+   "That's the guard against a danger: a duplicate removed from the wrong account takes the S P N away from the service account, and Kerberos stops."
+  ]
+ ],
+ "10": [
+  [
+   0.1,
+   4.912,
+   "Step three reads every fix, including the ones that aren't set S P N lines."
+  ],
+  [
+   4.963,
+   9.15,
+   "For remote N T L M, the fix is to find each client, from the client rows or the client address in the connections view; local sessions are excluded."
+  ],
+  [
+   14.113,
+   9.938,
+   "For the linked-server passthrough on sequel P R D oh one, it's constrained delegation, a mapped login, or the sequel server twenty twenty-five managed-identity linked server."
+  ],
+  [
+   24.05,
+   8.012,
+   "And for the client off the domain, it's moving Reports Readers to an Entra login with a token-based connection, which is the next module's subject."
+  ]
+ ],
+ "11": [
+  [
+   0.1,
+   3.45,
+   "Step four runs the same audit on the day-30 snapshot."
+  ],
+  [
+   3.5,
+   7.737,
+   "sequel P R D oh one's remote N T L M is gone: its logins moved to Entra in Chapter 04 of the workbook."
+  ],
+  [
+   11.238,
+   5.263,
+   "But the S P N problems on the other instances are still there, because nobody ran the fixes."
+  ],
+  [
+   16.5,
+   2.575,
+   "The audit finds; it doesn't repair."
+  ],
+  [
+   19.075,
+   5.925,
+   "The linked-server and client findings come from the same fixture files on both days, so they're unchanged."
+  ]
+ ],
+ "12": [
+  [
+   0.1,
+   2.188,
+   "Step five opens the manifest."
+  ],
+  [
+   2.237,
+   7.425,
+   "It names the step, says the run was read-only, and lists the controls, I A two and C M six, with one K S I."
+  ],
+  [
+   9.662,
+   4.412,
+   "Then the S H A two fifty-six of each file, the fix file included."
+  ],
+  [
+   14.075,
+   6.412,
+   "That's the point: the fix file is hashed with the findings, so the lines a change board approves are the lines that run."
+  ],
+  [
+   20.488,
+   4.175,
+   "Step six runs this chapter's tests: seven pass, none fail."
+  ],
+  [
+   24.663,
+   1.875,
+   "And step seven lists your runs."
+  ],
+  [
+   26.538,
+   5.9,
+   "There's nothing to clean up: the kit's folder is as you unzipped it, and each run's results stay in their own folder."
+  ]
+ ],
+ "13": [
+  [
+   0.1,
+   4.763,
+   "Lab 2 runs the audit on your own test domain and test instance, never production."
+  ],
+  [
+   4.812,
+   1.95,
+   "It was not run by the authors."
+  ],
+  [
+   6.763,
+   17.887,
+   "You need PowerShell 7 on a domain-joined machine that isn't the sequel server host, because a connection made on the host itself always reports N T L M. Steps one to five only read: query the domain's S P Ns with set S P N, snapshot the instance, write the audit's other inputs, and run the audit."
+  ],
+  [
+   24.65,
+   1.863,
+   "Step six is a change."
+  ],
+  [
+   26.512,
+   7.638,
+   "Run the one reviewed fix only in an approved window, with its back-out line ready, then check the auth scheme and K list from a client."
+  ],
+  [
+   34.15,
+   7.5,
+   "If the window's checks fail, the set S P N delete line restores the old state, and step seven deletes the lab's output folder."
+  ]
+ ],
+ "14": [
+  [
+   0.1,
+   1.6,
+   "The federal requirement."
+  ],
+  [
+   1.65,
+   11.925,
+   "Chapter 06 of the workbook maps the audit and fix plan to C M six, Configuration Settings, in nist special publication eight hundred fifty-three, with the K S I S V C A C M."
+  ],
+  [
+   13.575,
+   7.088,
+   "The evidence is the findings file and the fix file with the manifest, and the change record for each set S P N line that ran."
+  ],
+  [
+   20.663,
+   8.488,
+   "It maps the same plan to I A two, Identification and Authentication for organizational users, which has no K S I pairing in the kit."
+  ],
+  [
+   29.15,
+   6.388,
+   "Its evidence is the same findings, and the auth scheme and K list record from a remote client after each fix."
+  ],
+  [
+   35.538,
+   3.775,
+   "Runbook R oh six lists the evidence for each remediation state."
+  ],
+  [
+   39.312,
+   7.688,
+   "K S Is are fed-ramp twenty X indicators for cloud service providers; your providers report against them, the agency doesn't."
+  ],
+  [
+   47.0,
+   6.713,
+   "The kit's records support these controls and provide evidence for them; the assessor decides whether each one is in place."
+  ]
+ ],
+ "15": [
+  [
+   0.1,
+   2.05,
+   "Check yourself with two questions."
+  ],
+  [
+   2.1,
+   7.25,
+   "First: on sequel F C I oh four, the S P N is held by the old account, but the service runs as its own account."
+  ],
+  [
+   9.35,
+   2.013,
+   "What happens to remote connections?"
+  ],
+  [
+   11.363,
+   2.875,
+   "The answer is b: authentication fails."
+  ],
+  [
+   14.238,
+   4.388,
+   "An S P N on the wrong account fails rather than falls back to N T L M."
+  ],
+  [
+   18.625,
+   4.112,
+   "Second: what has happened to the lines in the fix file when the audit finishes?"
+  ],
+  [
+   22.738,
+   2.975,
+   "The answer is b: nothing in the file has run."
+  ],
+  [
+   25.712,
+   3.888,
+   "Each line is reviewed and run in a change window, with its back-out."
+  ],
+  [
+   29.6,
+   4.338,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "16": [
+  [
+   0.1,
+   1.025,
+   "To sum up."
+  ],
+  [
+   1.075,
+   9.637,
+   "You found the missing, misplaced and duplicate S P Ns, the remote N T L M, the linked-server passthrough and the client off the domain in the fictional estate."
+  ],
+  [
+   10.713,
+   4.513,
+   "And you saw that the S P N problems stay until someone runs the reviewed fixes."
+  ],
+  [
+   15.225,
+   5.487,
+   "The fix file is hashed with the findings, so the lines a change board approves are the lines that run."
+  ],
+  [
+   20.712,
+   11.787,
+   "The I S S O keeps the findings and the fix file with the manifest, the change record for each set S P N line that ran, and the auth scheme and K list record from a remote client after each fix."
+  ],
+  [
+   32.5,
+   3.475,
+   "Before shipping, work through the Chapter 06 checklist."
+  ],
+  [
+   35.975,
+   2.975,
+   "Next is Module 7, the application chain."
+  ]
+ ]
+}

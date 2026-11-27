@@ -1,0 +1,38 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.600
+Step four shows what the registry does.
+
+2
+00:00:02.600 --> 00:00:06.444
+It builds the same instance's
+record with no exception registry
+
+3
+00:00:06.444 --> 00:00:09.750
+and no Arc snapshot, and lists
+every field that isn't met.
+
+4
+00:00:09.750 --> 00:00:14.355
+Without the registry, sequel P R D oh
+one's enabled break-glass group fails
+
+5
+00:00:14.355 --> 00:00:19.113
+conditions one and three: it's a usable
+Windows login, and it isn't an Entra one.
+
+6
+00:00:19.113 --> 00:00:23.738
+Without the Arc snapshot, all three
+fields of condition four become external.
+
+7
+00:00:23.738 --> 00:00:25.713
+Nothing about the instance changed.
+
+8
+00:00:25.713 --> 00:00:27.550
+Only what the record was given.

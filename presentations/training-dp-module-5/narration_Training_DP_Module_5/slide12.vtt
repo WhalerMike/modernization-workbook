@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.700
+The federal requirement.
+
+2
+00:00:01.700 --> 00:00:08.332
+Chapter 5's table maps the group
+map to NIST SP 800-53 A C two,
+
+3
+00:00:08.332 --> 00:00:12.425
+Account Management, and A C six,
+Least Privilege, with one K S I.
+
+4
+00:00:12.425 --> 00:00:16.868
+The map provides evidence for both: which
+group grants what, how its membership
+
+5
+00:00:16.868 --> 00:00:20.900
+is kept, and which privileged groups
+are eligible rather than standing.
+
+6
+00:00:20.900 --> 00:00:25.496
+The I S S O keeps the groups file and
+its manifest, which records the step,
+
+7
+00:00:25.496 --> 00:00:28.508
+its controls and K S Is,
+and the hash of each file;
+
+8
+00:00:28.508 --> 00:00:32.787
+the Lab 2 comparison; and the record
+of which groups went under pim.
+
+9
+00:00:32.787 --> 00:00:37.075
+Runbook R seven lists the evidence each
+state of the provisioning phase needs.
+
+10
+00:00:37.075 --> 00:00:41.303
+K S Is are FedRAMP twenty X indicators
+for cloud service providers;
+
+11
+00:00:41.303 --> 00:00:44.763
+your providers report against
+them, the agency doesn't.
+
+12
+00:00:44.763 --> 00:00:48.494
+The agency still sets the
+parameters, policy and procedures,
+
+13
+00:00:48.494 --> 00:00:52.080
+and the assessor decides whether
+each control is in place.

@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.125
+To sum up.
+
+2
+00:00:01.125 --> 00:00:05.446
+You learned what the audit reads on each
+surviving instance, how its findings rank,
+
+3
+00:00:05.446 --> 00:00:08.788
+and what each Arc-eligibility
+category means for the next step.
+
+4
+00:00:08.788 --> 00:00:11.390
+You audited four fictional instances,
+
+5
+00:00:11.390 --> 00:00:14.725
+and saw why one audit run, on
+its own, can't show drift.
+
+6
+00:00:14.725 --> 00:00:18.544
+The evidence an I S S O keeps from
+this module is the run folder,
+
+7
+00:00:18.544 --> 00:00:23.050
+the census and findings files, and
+the manifest holding each file's hash.
+
+8
+00:00:23.050 --> 00:00:25.975
+Before shipping, work through
+Chapter 2's checklist.
+
+9
+00:00:25.975 --> 00:00:29.425
+Next is Module 3, Arc and
+the engine's identity.

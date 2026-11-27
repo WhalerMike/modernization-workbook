@@ -1,0 +1,614 @@
+{
+ "1": [
+  [
+   0.1,
+   6.325,
+   "Welcome to Module 7 of the Data Platform and sequel Server Identity learning path: the application chain."
+  ],
+  [
+   6.375,
+   6.588,
+   "It goes with Runbook R oh eight and Chapter 07 of the developer workbook, Building sequel Server Identity."
+  ],
+  [
+   12.963,
+   7.438,
+   "You'll find every connection string, mask every stored password, and place each string on the database axis before anything changes."
+  ],
+  [
+   20.4,
+   2.913,
+   "Take this module after Modules 6 and 4."
+  ]
+ ],
+ "2": [
+  [
+   0.1,
+   1.337,
+   "Why does this matter?"
+  ],
+  [
+   1.387,
+   2.038,
+   "The engine is only half the chain."
+  ],
+  [
+   3.425,
+   5.375,
+   "The other half is a connection string, and most of them hold a password or a Windows credential."
+  ],
+  [
+   8.8,
+   5.912,
+   "Until each string moves to an Entra mode, the application keeps the instance tied to Windows Authentication."
+  ],
+  [
+   14.713,
+   7.175,
+   "In this module you list every sequel server connection string an application holds, and say which ones carry a stored password."
+  ],
+  [
+   21.887,
+   7.438,
+   "Then you say whether each move is a configuration change, a driver or code change, the vendor's decision, or already done."
+  ],
+  [
+   29.325,
+   2.663,
+   "No string changes until the three gates hold."
+  ]
+ ],
+ "3": [
+  [
+   0.1,
+   5.0,
+   "Here's what you'll be able to do by the end of this module, which takes about fifty minutes with the lab."
+  ],
+  [
+   5.05,
+   7.125,
+   "You'll place a connection string in column A, B, C or D of the database axis, and say who decides column D."
+  ],
+  [
+   12.175,
+   7.838,
+   "You'll name the managed identity and service-principal modes in each driver family, and say why the Entra password mode is never a target."
+  ],
+  [
+   20.012,
+   5.675,
+   "You'll run the kit's connection scan over fixtures and read its masked strings, columns and targets."
+  ],
+  [
+   25.688,
+   3.7,
+   "And you'll list the three gates that must hold before a string changes."
+  ],
+  [
+   29.387,
+   6.15,
+   "Before you start, finish Module 6, and Module 4, for the Entra login that gate one checks for."
+  ],
+  [
+   35.538,
+   5.45,
+   "The lab runs in PowerShell 7, in the kit you unzipped into the F M W Labs folder."
+  ]
+ ],
+ "4": [
+  [
+   0.1,
+   2.388,
+   "Unit 2 is the database axis."
+  ],
+  [
+   2.438,
+   10.963,
+   "The data platform book's chapter on the four-class pattern for applications describes two independent axes: how users sign in to the application, and how the application connects to the database."
+  ],
+  [
+   13.4,
+   4.7,
+   "On the database axis, evidence places each application in one of four columns."
+  ],
+  [
+   18.1,
+   1.925,
+   "A is configuration only."
+  ],
+  [
+   20.025,
+   1.625,
+   "B is a code change."
+  ],
+  [
+   21.65,
+   1.625,
+   "C is vendor-dependent."
+  ],
+  [
+   23.275,
+   1.962,
+   "And D is no Entra path today."
+  ],
+  [
+   25.238,
+   13.275,
+   "The kit's scan reads each application's configuration files, masks every stored password, and sets A, B, C or done, from the driver, its version, the host, and whether a vendor owns the application."
+  ],
+  [
+   38.513,
+   4.963,
+   "A string with no owner's file, or a driver the table doesn't know, goes to review."
+  ],
+  [
+   43.475,
+   1.95,
+   "The scan never sets column D."
+  ],
+  [
+   45.425,
+   8.625,
+   "Only the owner can say a vendor has no release coming or an application is to be retired, and that answer goes into the exception registry, with a date."
+  ]
+ ],
+ "5": [
+  [
+   0.1,
+   2.663,
+   "Unit 3 starts with what Microsoft gives you."
+  ],
+  [
+   2.712,
+   3.737,
+   "Each driver family added Entra modes in specific releases."
+  ],
+  [
+   6.45,
+   8.387,
+   "Microsoft Data sequel Client added service principal in two point oh, managed identity in two point one, and Default in three point oh."
+  ],
+  [
+   14.838,
+   8.475,
+   "The O D B C driver added managed identity in seventeen point three point one point one and service principal in seventeen point seven."
+  ],
+  [
+   23.312,
+   8.65,
+   "The table gives the O L E D B driver eighteen point three and eighteen point five, and the J D B C driver twelve point two."
+  ],
+  [
+   31.962,
+   5.275,
+   "In every family the Entra password mode is deprecated, so it's never a migration target."
+  ],
+  [
+   37.237,
+   9.6,
+   "Microsoft also says a token doesn't grant database permissions by itself, and to prefer a specific mode in production, such as managed identity, over Default."
+  ],
+  [
+   46.837,
+   11.375,
+   "And on an Arc-enabled Windows server, a process can get the machine's managed identity token only if it runs as a local administrator, or as a member of the Hybrid Agent Extension Applications group."
+  ]
+ ],
+ "6": [
+  [
+   0.1,
+   1.2,
+   "Then the change."
+  ],
+  [
+   1.25,
+   6.15,
+   "The data platform book's chapter on connection string migration gives it for an application on an Arc-enabled server."
+  ],
+  [
+   7.4,
+   9.625,
+   "Integrated Security becomes Authentication equals Active Directory Managed Identity, and the application's process account must be allowed to request the host's token."
+  ],
+  [
+   17.025,
+   6.588,
+   "Off Arc there's no managed identity, so the kit names the service-principal mode, with a certificate preferred."
+  ],
+  [
+   23.613,
+   1.7,
+   "It never suggests Default."
+  ],
+  [
+   25.312,
+   2.25,
+   "The change is simple, but gated."
+  ],
+  [
+   27.562,
+   2.55,
+   "Gate one: the Entra login exists."
+  ],
+  [
+   30.113,
+   2.212,
+   "Gate two: the role is granted."
+  ],
+  [
+   32.325,
+   4.075,
+   "Gate three: the change is tested in a production-equivalent environment."
+  ],
+  [
+   36.4,
+   3.275,
+   "A string changed before the gates hold fails at sign-in."
+  ],
+  [
+   39.675,
+   4.525,
+   "And the scan's target is advice, not a change: the kit rewrites nothing."
+  ]
+ ],
+ "7": [
+  [
+   0.1,
+   4.55,
+   "Chapter 07 of the workbook names the dangers, and the guard against each."
+  ],
+  [
+   4.6,
+   9.787,
+   "A password copied into a report turns the scan's output into a secret store, so the kit masks every password, and a test checks that no fixture password appears."
+  ],
+  [
+   14.387,
+   7.0,
+   "The password mode counted as done would leave a deprecated flow that can't do M F A in production, so the finding names it."
+  ],
+  [
+   21.387,
+   7.75,
+   "Active Directory Default in production makes the first connection slow, and the identity can change with host settings, so name the mode."
+  ],
+  [
+   29.137,
+   6.588,
+   "Every application on a host shares the Arc identity, so one login's grants cover everything allowed to ask for the token."
+  ],
+  [
+   35.725,
+   8.15,
+   "Keep the Hybrid Agent Extension Applications group to the accounts that need it, and give an application its own service principal where its grants differ."
+  ],
+  [
+   43.875,
+   6.487,
+   "And a string changed before the gates hold fails at sign-in, so Lab 2 checks gates one to three, in that order."
+  ]
+ ],
+ "8": [
+  [
+   0.1,
+   0.887,
+   "Try it."
+  ],
+  [
+   0.938,
+   5.15,
+   "Lab 1 runs in PowerShell 7 on the kit's four fictional applications, with no tenant."
+  ],
+  [
+   6.088,
+   8.1,
+   "Go to the kit's folder and make this run's results folder, named for the time you start, in U T C. Step one scans the four applications."
+  ],
+  [
+   14.188,
+   4.0,
+   "Two strings hold a stored password, and one is already on Entra."
+  ],
+  [
+   18.188,
+   4.425,
+   "Payroll web's web dot config string uses Windows integrated authentication."
+  ],
+  [
+   22.613,
+   10.412,
+   "It runs on an Arc host with Microsoft Data sequel Client five point two point two, at or above the managed identity release, so it's column A: a configuration change."
+  ],
+  [
+   33.025,
+   8.65,
+   "Claims batch and reports O D B C use drivers with no Entra path, so they're column B. Vendor H R is column C because a vendor owns it."
+  ],
+  [
+   41.675,
+   4.513,
+   "The target text there is the kit's generic advice; the vendor's release decides."
+  ]
+ ],
+ "9": [
+  [
+   0.1,
+   2.175,
+   "Step two reads the masked strings."
+  ],
+  [
+   2.225,
+   2.112,
+   "No password reaches the output."
+  ],
+  [
+   4.338,
+   6.025,
+   "The scan replaces every password value with stars, and never returns or writes the password itself."
+  ],
+  [
+   10.363,
+   6.4,
+   "That's the guard against a danger: a password copied into a report turns the scan's output into a secret store."
+  ],
+  [
+   16.762,
+   5.188,
+   "Look at the two stored passwords: claims batch's sequel login, and vendor H R's."
+  ],
+  [
+   21.95,
+   10.062,
+   "And look at payroll web's two strings: the archive database already uses Active Directory Managed Identity, and the payroll database still uses integrated security."
+  ]
+ ],
+ "10": [
+  [
+   0.1,
+   3.95,
+   "Step three parses a string that uses the deprecated password mode."
+  ],
+  [
+   4.0,
+   2.962,
+   "It parses as entra, because it is an Entra mode."
+  ],
+  [
+   6.963,
+   5.312,
+   "But the mode is the deprecated one, so the scan reports it as a finding, and never as done."
+  ],
+  [
+   12.275,
+   6.175,
+   "A careless scan would count it as done, and a deprecated flow that can't do M F A would stay in production."
+  ],
+  [
+   18.45,
+   4.763,
+   "The kit's driver configuration lists the deprecated modes, and the finding names it."
+  ],
+  [
+   23.212,
+   3.825,
+   "And notice the password: even here, it comes back masked."
+  ]
+ ],
+ "11": [
+  [
+   0.1,
+   8.65,
+   "Step four reads the driver table the scan uses: the first release of each mode, as the data platform book's chapter on connection string migration gives it."
+  ],
+  [
+   8.7,
+   4.25,
+   "Microsoft Data sequel Client has managed identity from two point one."
+  ],
+  [
+   12.95,
+   15.512,
+   "That's why payroll web, on five point two point two, is column A. O D B C has managed identity from seventeen point three point one point one, so the reports application's O D B C thirteen driver has no Entra path, and it's column B."
+  ],
+  [
+   28.462,
+   2.825,
+   "The last column is the credential chain mode."
+  ],
+  [
+   31.288,
+   5.463,
+   "Microsoft lists Default from three point oh in the sequel client, and the kit never suggests it."
+  ]
+ ],
+ "12": [
+  [
+   0.1,
+   11.988,
+   "Step five opens the manifest: the step, its mode, read-only, its controls, I A five and C M six, its two K S Is, and the S H A two fifty-six of each file."
+  ],
+  [
+   12.037,
+   2.763,
+   "The kit wrote its own output and rewrote nothing."
+  ],
+  [
+   14.8,
+   4.175,
+   "Step six runs this chapter's tests: seven pass, none fail."
+  ],
+  [
+   18.975,
+   1.875,
+   "And step seven lists your runs."
+  ],
+  [
+   20.85,
+   5.9,
+   "There's nothing to clean up: the kit's folder is as you unzipped it, and each run's results stay in their own folder."
+  ]
+ ],
+ "13": [
+  [
+   0.1,
+   4.088,
+   "Lab 2 changes one string in one test application, never production."
+  ],
+  [
+   4.138,
+   1.95,
+   "It was not run by the authors."
+  ],
+  [
+   6.088,
+   15.85,
+   "It must be a column-A case: an I I S application on an Arc-enabled Windows host, using Microsoft Data sequel Client two point one or later with integrated security, against a test instance on sequel server twenty twenty-two or later with Entra authentication configured."
+  ],
+  [
+   21.938,
+   1.887,
+   "Its owner writes the app file."
+  ],
+  [
+   23.825,
+   6.638,
+   "You copy the configuration and scan the copy, then check gates one and two: the login exists and holds a role."
+  ],
+  [
+   30.462,
+   6.362,
+   "You let the application pool ask for the token, keep the original file as the way back, and change the one string."
+  ],
+  [
+   36.825,
+   3.625,
+   "Gate three is seeing the application arrive on its Entra login."
+  ],
+  [
+   40.45,
+   3.312,
+   "Then a second scan should say Entra already, column done."
+  ],
+  [
+   43.763,
+   7.713,
+   "Step nine backs it all out: it restores the original file, restarts the pool, removes it from the group and signs out of Azure."
+  ]
+ ],
+ "14": [
+  [
+   0.1,
+   1.6,
+   "The federal requirement."
+  ],
+  [
+   1.65,
+   12.675,
+   "Chapter 07 of the workbook maps both the scan and the change to I A five, Authenticator Management, and C M six, Configuration Settings, in nist special publication eight hundred fifty-three."
+  ],
+  [
+   14.325,
+   4.662,
+   "The scan supports I A five: a stored password found, then removed."
+  ],
+  [
+   18.988,
+   5.35,
+   "And it provides evidence for C M six: each string's authentication setting, recorded."
+  ],
+  [
+   24.337,
+   7.013,
+   "For the scan, the I S S O keeps the connections file with masked strings and the manifest, and each application's app file."
+  ],
+  [
+   31.35,
+   6.55,
+   "For a change, the gate queries' output, the before and after scans, the session read, and the change record."
+  ],
+  [
+   37.9,
+   3.737,
+   "Runbook R oh eight lists the evidence for each state of the cutover."
+  ],
+  [
+   41.638,
+   7.688,
+   "K S Is are fed-ramp twenty X indicators for cloud service providers; your providers report against them, the agency doesn't."
+  ],
+  [
+   49.325,
+   5.275,
+   "The scan's records support these controls; the assessor decides whether each one is in place."
+  ]
+ ],
+ "15": [
+  [
+   0.1,
+   2.05,
+   "Check yourself with two questions."
+  ],
+  [
+   2.1,
+   4.325,
+   "First: payroll web's web dot config uses integrated security."
+  ],
+  [
+   6.425,
+   2.087,
+   "Why does the scan put it in column A?"
+  ],
+  [
+   8.512,
+   11.287,
+   "The answer is b: it runs on an Arc host with Microsoft Data sequel Client five point two point two, at or above the managed identity release, so the move is a configuration change."
+  ],
+  [
+   19.8,
+   4.475,
+   "Second: which three conditions must hold before a connection string changes?"
+  ],
+  [
+   24.275,
+   7.9,
+   "The answer is a: the Entra login exists, it holds the database role, and the change is tested in a production-equivalent environment."
+  ],
+  [
+   32.175,
+   4.338,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "16": [
+  [
+   0.1,
+   1.025,
+   "To sum up."
+  ],
+  [
+   1.075,
+   11.725,
+   "You scanned four fictional applications, found two stored passwords without writing either one out, and placed each string in column A, B, C or done, from its driver, host and owner."
+  ],
+  [
+   12.8,
+   3.825,
+   "The scan advises; no string changes until the three gates hold."
+  ],
+  [
+   16.625,
+   12.85,
+   "The I S S O keeps the connections files with masked strings and the manifest, each application's app file, and for a change, the gate queries' output, the before and after scans, the session read and the change record."
+  ],
+  [
+   29.475,
+   3.55,
+   "Before shipping, work through the Chapter 07 checklist."
+  ],
+  [
+   33.025,
+   3.513,
+   "Next is Module 8, A D C S dependencies."
+  ]
+ ]
+}

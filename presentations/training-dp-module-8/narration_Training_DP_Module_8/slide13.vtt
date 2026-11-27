@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.700
+The federal requirement.
+
+2
+00:00:01.700 --> 00:00:06.124
+Chapter 08 of the workbook maps the
+dependency list and Runbook R ten's
+
+3
+00:00:06.124 --> 00:00:12.450
+reads to S C eight, S C twelve and
+S C seventeen in NIST SP 800-53.
+
+4
+00:00:12.450 --> 00:00:14.236
+The list supports S C eight,
+
+5
+00:00:14.236 --> 00:00:19.674
+because the certificate that protects
+connections is known and dated; S C twelve,
+
+6
+00:00:19.674 --> 00:00:22.921
+key and certificate
+lifecycle; and S C seventeen,
+
+7
+00:00:22.921 --> 00:00:25.275
+which P K I issued each certificate.
+
+8
+00:00:25.275 --> 00:00:29.484
+R ten notes that S C eight and its
+enhancement one are in the moderate baseline,
+
+9
+00:00:29.484 --> 00:00:32.048
+and that every Microsoft
+Entra-authenticated
+
+10
+00:00:32.048 --> 00:00:34.613
+connection to sequel
+server needs encryption.
+
+11
+00:00:34.613 --> 00:00:38.510
+The I S S O keeps the certificates
+file and the manifest per instance,
+
+12
+00:00:38.510 --> 00:00:41.224
+and the saved reads with
+the date and the reader.
+
+13
+00:00:41.224 --> 00:00:45.453
+K S Is are FedRAMP twenty X indicators
+for cloud service providers;
+
+14
+00:00:45.453 --> 00:00:48.913
+your providers report against
+them, the agency doesn't.
+
+15
+00:00:48.913 --> 00:00:53.690
+The list supports these controls; the assessor
+decides whether each one is in place.

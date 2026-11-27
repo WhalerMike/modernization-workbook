@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.863
+Lab 2 runs the audit on your own test
+domain and test instance, never production.
+
+2
+00:00:04.863 --> 00:00:06.762
+It was not run by the authors.
+
+3
+00:00:06.762 --> 00:00:11.974
+You need PowerShell 7 on a domain-joined
+machine that isn't the sequel server host,
+
+4
+00:00:11.974 --> 00:00:16.173
+because a connection made on the
+host itself always reports NTLM.
+
+5
+00:00:16.173 --> 00:00:20.139
+Steps one to five only read: query
+the domain's S P Ns with set S P N,
+
+6
+00:00:20.139 --> 00:00:24.650
+snapshot the instance, write the
+audit's other inputs, and run the audit.
+
+7
+00:00:24.650 --> 00:00:26.513
+Step six is a change.
+
+8
+00:00:26.513 --> 00:00:29.538
+Run the one reviewed fix
+only in an approved window,
+
+9
+00:00:29.538 --> 00:00:34.150
+with its back-out line ready, then check
+the auth scheme and K list from a client.
+
+10
+00:00:34.150 --> 00:00:38.742
+If the window's checks fail, the set S
+P N delete line restores the old state,
+
+11
+00:00:38.742 --> 00:00:41.660
+and step seven deletes
+the lab's output folder.

@@ -1,0 +1,38 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.550
+Step four runs the same
+audit on the day-30 snapshot.
+
+2
+00:00:03.550 --> 00:00:06.656
+SQL P R D oh one's remote NTLM is gone:
+
+3
+00:00:06.656 --> 00:00:11.237
+its logins moved to Entra in
+Chapter 04 of the workbook.
+
+4
+00:00:11.237 --> 00:00:14.771
+But the S P N problems on the
+other instances are still there,
+
+5
+00:00:14.771 --> 00:00:16.501
+because nobody ran the fixes.
+
+6
+00:00:16.501 --> 00:00:19.075
+The audit finds; it doesn't repair.
+
+7
+00:00:19.075 --> 00:00:22.037
+The linked-server and client
+findings come from the
+
+8
+00:00:22.037 --> 00:00:25.010
+same fixture files on both
+days, so they're unchanged.

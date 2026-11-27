@@ -15,6 +15,8 @@ last-reviewed: 2026-11-25
 
 **Learning path:** [Data Platform and SQL Server Identity](index.md) · Module 6 of 10 · 50 minutes · Runbook [R06](../../books/b06-data-platform/r06-ntlm-detection-and-remediation.md) · Workbook [Chapter 06](../../project-plans/developer-workbooks/sql-server-identity/06-ntlm-and-the-spns.md)
 
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-dp-module-6) · [▶ Watch](../../presentations/watch.html?v=Training_DP_Module_6_Narrated) (about 12 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DP_Module_6_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-6/Training_DP_Module_6_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-6/Training_DP_Module_6_Narrated.vtt).
+
 ## Unit 1: Introduction
 
 *3 minutes, with the objectives and prerequisites*

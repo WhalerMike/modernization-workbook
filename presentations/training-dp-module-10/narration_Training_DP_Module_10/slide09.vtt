@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.400
+Step three runs the audit and the Arc
+check on the snapshots the settings name.
+
+2
+00:00:04.400 --> 00:00:08.275
+In a real stage these are the instance's
+own snapshots, taken that day.
+
+3
+00:00:08.275 --> 00:00:13.288
+The audit flags sequel P R D oh one's S
+A account, enabled under its own name,
+
+4
+00:00:13.288 --> 00:00:17.111
+and a usable SQL login, and
+the Arc check puts sequel
+
+5
+00:00:17.111 --> 00:00:20.425
+P R D oh one in Category 1:
+ready to plan the logins.
+
+6
+00:00:20.425 --> 00:00:22.325
+Step four plans the change.
+
+7
+00:00:22.325 --> 00:00:26.841
+It writes three sequel files: the
+create, with sixteen statements;
+
+8
+00:00:26.841 --> 00:00:30.187
+the cutover, with five; and
+the rollback, with five.
+
+9
+00:00:30.187 --> 00:00:32.925
+Each has its S H A two fifty-six.
+
+10
+00:00:32.925 --> 00:00:36.100
+Those are the three values
+a second person approves.

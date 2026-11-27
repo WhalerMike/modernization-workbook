@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.412
+Unit 2 is what Arc gives the engine.
+
+2
+00:00:02.412 --> 00:00:06.866
+Installing the Connected Machine agent
+makes the server an Azure Resource Manager
+
+3
+00:00:06.866 --> 00:00:09.054
+resource, with a system-assigned managed
+
+4
+00:00:09.054 --> 00:00:11.499
+identity whose credential
+the agent manages.
+
+5
+00:00:11.499 --> 00:00:15.100
+What the instance uses as its Entra
+identity depends on the version.
+
+6
+00:00:15.100 --> 00:00:19.147
+On SQL Server 2025, it's the
+Arc server's managed identity,
+
+7
+00:00:19.147 --> 00:00:22.450
+used as the instance's
+primary managed identity.
+
+8
+00:00:22.450 --> 00:00:26.287
+Microsoft Learn says only
+system-assigned identities are supported.
+
+9
+00:00:26.287 --> 00:00:30.496
+On SQL Server 2022, it's an app
+registration with a certificate kept in
+
+10
+00:00:30.496 --> 00:00:34.563
+Azure Key Vault, which the agent
+downloads with the machine's identity.
+
+11
+00:00:34.563 --> 00:00:39.332
+On either version, Entra authentication
+needs SQL Server 2022 or later,
+
+12
+00:00:39.332 --> 00:00:44.025
+is disabled by default, and isn't
+supported on a failover cluster instance.
+
+13
+00:00:44.025 --> 00:00:48.025
+And neither replaces the Windows
+account the SQL Server service runs as.

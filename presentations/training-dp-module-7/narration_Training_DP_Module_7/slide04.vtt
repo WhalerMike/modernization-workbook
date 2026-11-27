@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.488
+Unit 2 is the database axis.
+
+2
+00:00:02.488 --> 00:00:06.728
+The data platform book's chapter on
+the four-class pattern for applications
+
+3
+00:00:06.728 --> 00:00:10.609
+describes two independent axes: how
+users sign in to the application,
+
+4
+00:00:10.609 --> 00:00:13.401
+and how the application
+connects to the database.
+
+5
+00:00:13.401 --> 00:00:18.100
+On the database axis, evidence places
+each application in one of four columns.
+
+6
+00:00:18.100 --> 00:00:20.025
+A is configuration only.
+
+7
+00:00:20.025 --> 00:00:21.650
+B is a code change.
+
+8
+00:00:21.650 --> 00:00:23.275
+C is vendor-dependent.
+
+9
+00:00:23.275 --> 00:00:25.237
+And D is no Entra path today.
+
+10
+00:00:25.237 --> 00:00:29.520
+The kit's scan reads each
+application's configuration files,
+
+11
+00:00:29.520 --> 00:00:34.059
+masks every stored password, and sets
+A, B, C or done, from the driver,
+
+12
+00:00:34.059 --> 00:00:38.513
+its version, the host, and whether
+a vendor owns the application.
+
+13
+00:00:38.513 --> 00:00:43.476
+A string with no owner's file, or a driver
+the table doesn't know, goes to review.
+
+14
+00:00:43.476 --> 00:00:45.425
+The scan never sets column D.
+
+15
+00:00:45.425 --> 00:00:49.702
+Only the owner can say a vendor has no
+release coming or an application is
+
+16
+00:00:49.702 --> 00:00:54.050
+to be retired, and that answer goes into
+the exception registry, with a date.

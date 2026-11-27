@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.285
+The audit returns one row per finding,
+
+2
+00:00:02.285 --> 00:00:06.938
+with a severity from the data platform
+book's chapter, The Authentication Audit.
+
+3
+00:00:06.938 --> 00:00:10.359
+Highest is S A enabled:
+the login whose security
+
+4
+00:00:10.359 --> 00:00:14.276
+identifier is oh x oh one is
+enabled, whatever its name.
+
+5
+00:00:14.276 --> 00:00:16.950
+Critical is any other usable SQL login.
+
+6
+00:00:16.950 --> 00:00:20.503
+High is mixed mode, where SQL
+authentication is accepted,
+
+7
+00:00:20.503 --> 00:00:24.625
+and a mode anomaly, where the registry
+disagrees with the running mode.
+
+8
+00:00:24.625 --> 00:00:29.049
+Medium is the engine running as a domain
+user account or a built-in account,
+
+9
+00:00:29.049 --> 00:00:31.588
+and an S A that's disabled
+but keeps its name.
+
+10
+00:00:31.588 --> 00:00:36.350
+And at the bottom, an information row for
+each instance's Arc-eligibility category.
+
+11
+00:00:36.350 --> 00:00:40.163
+The kit's audit script writes
+the census and the findings,
+
+12
+00:00:40.163 --> 00:00:44.625
+each as a C S V and a jay-son file,
+and one manifest that hashes all four.
+
+13
+00:00:44.625 --> 00:00:47.279
+A disabled login still counts as existing:
+
+14
+00:00:47.279 --> 00:00:50.330
+Chapter 9's closure record
+decides when it's gone.

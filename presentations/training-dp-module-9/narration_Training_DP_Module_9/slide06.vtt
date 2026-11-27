@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.763
+Unit 3 is drift.
+
+2
+00:00:01.763 --> 00:00:04.464
+A drift event is a
+regression between two runs,
+
+3
+00:00:04.464 --> 00:00:09.100
+and the book treats each one as a compliance
+violation, not an advisory signal.
+
+4
+00:00:09.100 --> 00:00:14.407
+The kit's comparison returns a row
+for a new usable Windows or SQL login,
+
+5
+00:00:14.407 --> 00:00:19.887
+an Entra login removed, S A re-enabled,
+SQL authentication accepted again,
+
+6
+00:00:19.887 --> 00:00:24.063
+remote N T L M back after none,
+or an instance not seen before.
+
+7
+00:00:24.063 --> 00:00:28.337
+It applies the exception registry, so
+the break-glass group isn't drift.
+
+8
+00:00:28.337 --> 00:00:32.691
+The Arc agent going offline changes
+nothing in the audit, so the comparison
+
+9
+00:00:32.691 --> 00:00:36.624
+reports Arc regressed only when you
+give it both runs' Arc snapshots.
+
+10
+00:00:36.624 --> 00:00:40.375
+And a mode changed in the registry
+but not yet restarted is invisible,
+
+11
+00:00:40.375 --> 00:00:42.612
+because the audit reads the running mode.
+
+12
+00:00:42.612 --> 00:00:46.099
+Runbook R nine adds a registry
+check of login mode for that.
+
+13
+00:00:46.099 --> 00:00:48.988
+Each row is a finding: open a task for it.
+
+14
+00:00:48.988 --> 00:00:53.210
+The workbook Building Ticket-to-Machine
+turns a drift row into a typed task.

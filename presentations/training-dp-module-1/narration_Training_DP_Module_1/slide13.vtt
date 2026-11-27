@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.500
+Lab 2 runs on your own test domain.
+
+2
+00:00:02.500 --> 00:00:04.475
+It hasn't been run by the authors.
+
+3
+00:00:04.475 --> 00:00:09.542
+You need a test domain with at least one
+test SQL Server instance, never production;
+
+4
+00:00:09.542 --> 00:00:12.825
+a repository checkout, so the
+Start Kit is beside the kit;
+
+5
+00:00:12.825 --> 00:00:17.178
+PowerShell 7 with the Active Directory
+module on a domain-joined machine;
+
+6
+00:00:17.178 --> 00:00:21.032
+a network path to the instance's
+port and U D P fourteen thirty-four;
+
+7
+00:00:21.032 --> 00:00:24.600
+and a Windows login holding the
+Start Kit's read permissions.
+
+8
+00:00:24.600 --> 00:00:25.850
+Never sysadmin.
+
+9
+00:00:25.850 --> 00:00:27.616
+Run the Start Kit's discovery,
+
+10
+00:00:27.616 --> 00:00:31.000
+turn its output into the kit's
+inventory, and classify it.
+
+11
+00:00:31.000 --> 00:00:33.952
+Compare each row with the
+Start Kit's own first pass,
+
+12
+00:00:33.952 --> 00:00:38.100
+add the owners' constraints and
+application status, and classify again.
+
+13
+00:00:38.100 --> 00:00:40.125
+The second run is the one to keep.
+
+14
+00:00:40.125 --> 00:00:43.063
+Nothing on the instance or
+in the directory changes.
+
+15
+00:00:43.063 --> 00:00:46.458
+To back it out, delete the lab's
+files, and have the administrator
+
+16
+00:00:46.458 --> 00:00:49.730
+remove the read permissions if
+they were granted for the lab.

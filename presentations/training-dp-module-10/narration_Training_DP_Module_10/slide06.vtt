@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.400
+Unit 3 is the change itself.
+
+2
+00:00:02.400 --> 00:00:06.387
+The create adds the Entra logins
+and users beside the Windows ones,
+
+3
+00:00:06.387 --> 00:00:10.350
+and disables nothing, so both paths
+stay open for the parallel run.
+
+4
+00:00:10.350 --> 00:00:13.625
+The parallel run is judged
+against its exit criteria.
+
+5
+00:00:13.625 --> 00:00:18.287
+The rollback plan is dry-run before the
+cutover, so its record exists first.
+
+6
+00:00:18.287 --> 00:00:21.869
+The cutover disables the
+superseded users and SQL logins
+
+7
+00:00:21.869 --> 00:00:24.888
+and denies connect sequel
+to the superseded groups.
+
+8
+00:00:24.888 --> 00:00:26.437
+It never drops anything.
+
+9
+00:00:26.437 --> 00:00:28.838
+Then thirty days of observation follow.
+
+10
+00:00:28.838 --> 00:00:31.615
+The rollback triggers are
+set before the change:
+
+11
+00:00:31.615 --> 00:00:35.852
+any failed login on a just-disabled or
+just-denied login from a production
+
+12
+00:00:35.852 --> 00:00:39.117
+application, any job or linked
+server failing to connect,
+
+13
+00:00:39.117 --> 00:00:42.937
+or an application owner reporting
+an outage traced to the cutover.
+
+14
+00:00:42.937 --> 00:00:44.726
+Any one stops the stage.
+
+15
+00:00:44.726 --> 00:00:49.306
+Runbook R oh five keeps every cutover
+reversible: the Windows database users
+
+16
+00:00:49.306 --> 00:00:53.620
+are still there, so the approved rollback
+opens the old path again at once.

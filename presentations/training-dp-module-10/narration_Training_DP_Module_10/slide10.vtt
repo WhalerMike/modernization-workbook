@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.263
+Step five approves the hashes.
+
+2
+00:00:02.263 --> 00:00:05.473
+The approver re-hashes the
+three files after reading them,
+
+3
+00:00:05.473 --> 00:00:09.550
+and this lab keeps each hash in a
+variable, as a change record would keep it.
+
+4
+00:00:09.550 --> 00:00:13.000
+Step six dry-runs the create
+phase with the approved hash.
+
+5
+00:00:13.000 --> 00:00:15.574
+Without the apply switch
+it connects to nothing:
+
+6
+00:00:15.574 --> 00:00:19.050
+it checks the hash and prints the
+sixteen statements it would run.
+
+7
+00:00:19.050 --> 00:00:22.423
+Create login from external
+provider for each Entra login,
+
+8
+00:00:22.423 --> 00:00:27.062
+the Entra admin group added to sys-admin,
+then the database users and their roles.
+
+9
+00:00:27.062 --> 00:00:31.549
+Step seven tries a hash that isn't
+the approved one, sixty-four zeros.
+
+10
+00:00:31.549 --> 00:00:35.830
+The deploy stops before anything
+connects: re-plan and re-approve.

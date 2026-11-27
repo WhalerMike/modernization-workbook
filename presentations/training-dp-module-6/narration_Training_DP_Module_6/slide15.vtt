@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.150
+Check yourself with two questions.
+
+2
+00:00:02.150 --> 00:00:06.486
+First: on SQL F C I oh four, the
+S P N is held by the old account,
+
+3
+00:00:06.486 --> 00:00:09.350
+but the service runs as its own account.
+
+4
+00:00:09.350 --> 00:00:11.363
+What happens to remote connections?
+
+5
+00:00:11.363 --> 00:00:14.238
+The answer is b: authentication fails.
+
+6
+00:00:14.238 --> 00:00:18.626
+An S P N on the wrong account fails
+rather than falls back to NTLM.
+
+7
+00:00:18.626 --> 00:00:22.737
+Second: what has happened to the lines
+in the fix file when the audit finishes?
+
+8
+00:00:22.737 --> 00:00:25.713
+The answer is b: nothing
+in the file has run.
+
+9
+00:00:25.713 --> 00:00:29.600
+Each line is reviewed and run in a
+change window, with its back-out.
+
+10
+00:00:29.600 --> 00:00:33.940
+The module page has two more questions,
+each linked to the section that answers it.

@@ -1,0 +1,709 @@
+{
+ "1": [
+  [
+   0.1,
+   7.062,
+   "Welcome to Module 4 of the Data Platform and sequel Server Identity learning path: Entra logins and the parallel run."
+  ],
+  [
+   7.112,
+   1.913,
+   "This is the migration itself."
+  ],
+  [
+   9.025,
+   5.537,
+   "You add the Entra login beside the Windows one, prove it works, and only then turn the old one off."
+  ],
+  [
+   14.562,
+   6.638,
+   "The module follows runbook R five, and Chapter 4 of the developer workbook, Building sequel Server Identity."
+  ],
+  [
+   21.2,
+   1.725,
+   "Take it after Module 3."
+  ]
+ ],
+ "2": [
+  [
+   0.1,
+   1.562,
+   "Why does the order matter?"
+  ],
+  [
+   1.613,
+   5.438,
+   "On a Category 1 instance, every Windows and sequel login gets an Entra login beside it."
+  ],
+  [
+   7.05,
+   7.013,
+   "The new login is proven with a real sign-in, and only then is the old one disabled, observed for thirty days and dropped."
+  ],
+  [
+   14.062,
+   2.288,
+   "Two mistakes here can't be taken back."
+  ],
+  [
+   16.35,
+   4.513,
+   "A wrong mapping locks people out, and a dropped login can't be rolled back."
+  ],
+  [
+   20.863,
+   7.138,
+   "So the plan is written as reviewable T-sequel that executes nothing, and readiness is judged from evidence, not silence."
+  ],
+  [
+   28.0,
+   5.787,
+   "In this module you write a fictional instance's plan and judge its parallel run on day one and day thirty."
+  ]
+ ],
+ "3": [
+  [
+   0.1,
+   5.062,
+   "Here's what you'll be able to do by the end of this module, which takes about sixty minutes with the lab."
+  ],
+  [
+   5.112,
+   6.562,
+   "You'll name the three Entra principal types a login from an external provider maps to, and the login type each one shows."
+  ],
+  [
+   11.675,
+   8.838,
+   "You'll turn a reviewed mapping into create, cutover and rollback scripts, and say why a Windows group is denied connect sequel instead of being disabled."
+  ],
+  [
+   20.512,
+   5.65,
+   "You'll state the parallel run's order and its exit criteria, and why local sessions don't count."
+  ],
+  [
+   26.163,
+   4.525,
+   "And you'll judge a parallel run from snapshots, and say what comes after the disable."
+  ],
+  [
+   30.688,
+   2.475,
+   "Before you start, finish Module 3."
+  ],
+  [
+   33.163,
+   5.05,
+   "Lab 1 runs in PowerShell 7 on the kit's fixtures, with no instance and no tenant."
+  ]
+ ],
+ "4": [
+  [
+   0.1,
+   2.25,
+   "Unit 2 starts with the principals."
+  ],
+  [
+   2.3,
+   5.088,
+   "Create login, from external provider, maps a login to one of three Entra principals."
+  ],
+  [
+   7.388,
+   2.475,
+   "A user, named by its U P N."
+  ],
+  [
+   9.863,
+   2.962,
+   "A security group, named by its display name."
+  ],
+  [
+   12.825,
+   2.8,
+   "Or an application, also by display name."
+  ],
+  [
+   15.625,
+   9.8,
+   "In sys dot server principals, users and applications show as type E, and groups as type X. Group logins are the target, because they remove per-user churn."
+  ],
+  [
+   25.425,
+   7.013,
+   "And an application's sequel login with a stored password becomes an Entra application login, preferably a managed identity."
+  ],
+  [
+   32.438,
+   3.5,
+   "Create user, from login, then makes the database user."
+  ],
+  [
+   35.938,
+   3.9,
+   "One more thing to keep in mind: the engine has no M F A logic."
+  ],
+  [
+   39.837,
+   3.362,
+   "Conditional Access decides before the token is issued."
+  ]
+ ],
+ "5": [
+  [
+   0.1,
+   4.888,
+   "The kit's login plan reads one instance from the audit snapshot, and the reviewed mapping."
+  ],
+  [
+   4.938,
+   3.413,
+   "It leaves out the S A account and the built-in principals."
+  ],
+  [
+   8.35,
+   4.138,
+   "A login with no mapping is written as unresolved, instead of a guess."
+  ],
+  [
+   12.488,
+   6.213,
+   "It mirrors server and database roles, and writes three scripts: create, cutover and rollback."
+  ],
+  [
+   18.7,
+   1.488,
+   "It executes nothing."
+  ],
+  [
+   20.188,
+   11.562,
+   "It also warns when a principal would hold more than one database role, or D B owner or sys-admin, because the data platform book gives each group exactly one role, on one database, in one environment."
+  ],
+  [
+   31.75,
+   2.075,
+   "A warning doesn't stop the plan."
+  ],
+  [
+   33.825,
+   4.1,
+   "It's for the identity engineer to split the group, or record why not."
+  ],
+  [
+   37.925,
+   5.075,
+   "What the plan doesn't mirror is explicit permissions, default schemas and object ownership."
+  ],
+  [
+   43.0,
+   4.388,
+   "Runbook R five's queries read those, and the D B A adds them by hand."
+  ]
+ ],
+ "6": [
+  [
+   0.1,
+   2.288,
+   "Unit 3 is the parallel run."
+  ],
+  [
+   2.337,
+   7.412,
+   "The order is create, validate, disable, observe for thirty days, then drop, and it's required for production."
+  ],
+  [
+   9.75,
+   3.612,
+   "While both logins work, there are three exit criteria."
+  ],
+  [
+   13.363,
+   3.638,
+   "Every application and job also appears on its Entra login."
+  ],
+  [
+   17.0,
+   2.388,
+   "No remote N T L M remains."
+  ],
+  [
+   19.387,
+   2.925,
+   "And nothing still arrives only on the legacy login."
+  ],
+  [
+   22.312,
+   5.125,
+   "Connections made on the server itself always report N T L M, so they don't count."
+  ],
+  [
+   27.438,
+   2.1,
+   "A snapshot is only a moment."
+  ],
+  [
+   29.538,
+   3.938,
+   "Sequel Server Audit's successful login group records the whole window."
+  ],
+  [
+   33.475,
+   5.062,
+   "The cutover disables a Windows user or a sequel login, and the rollback enables it."
+  ],
+  [
+   38.538,
+   6.45,
+   "A Windows group can't be disabled that way, so the kit denies it connect sequel, and the rollback grants it back."
+  ],
+  [
+   44.987,
+   1.337,
+   "Nothing is dropped."
+  ],
+  [
+   46.325,
+   3.8,
+   "The S A account is disabled and renamed, never migrated."
+  ],
+  [
+   50.125,
+   3.375,
+   "And the kit's judge reports readiness for each legacy login."
+  ],
+  [
+   53.5,
+   1.788,
+   "It never disables anything."
+  ]
+ ],
+ "7": [
+  [
+   0.1,
+   0.887,
+   "Try it."
+  ],
+  [
+   0.938,
+   5.0,
+   "Lab 1 runs in PowerShell 7, from the kit's folder, on the kit's fictional estate."
+  ],
+  [
+   5.938,
+   7.625,
+   "First, make this run's results folder: its name is the time you start, in U T C, so every run keeps its own results."
+  ],
+  [
+   13.562,
+   3.212,
+   "Step one writes sequel P R D oh one's login plan."
+  ],
+  [
+   16.775,
+   3.15,
+   "Four legacy logins map to four Entra principals."
+  ],
+  [
+   19.925,
+   3.95,
+   "The create script starts with a dry-run comment: nothing here has run."
+  ],
+  [
+   23.875,
+   6.875,
+   "Notice that S Q L dash D B A dash Admins gets sys-admin, because the Windows group it replaces had it."
+  ],
+  [
+   30.75,
+   3.562,
+   "The S A account and the built-in service login aren't in the plan."
+  ],
+  [
+   34.312,
+   5.013,
+   "Then the summary: four logins mapped, none unresolved, and the create script's hash."
+  ],
+  [
+   39.325,
+   1.387,
+   "And three warnings."
+  ],
+  [
+   40.712,
+   6.588,
+   "Payroll web M I and the payroll users group would each hold three roles, and the D B A group would hold sys-admin."
+  ],
+  [
+   47.3,
+   1.613,
+   "The plan is still written."
+  ],
+  [
+   48.913,
+   6.037,
+   "Splitting the groups, or recording why not, is the identity engineer's call before the mapping is approved."
+  ]
+ ],
+ "8": [
+  [
+   0.1,
+   2.675,
+   "Step two reads the cutover and the rollback."
+  ],
+  [
+   2.725,
+   4.188,
+   "The user and the sequel login are disabled, and the rollback enables them."
+  ],
+  [
+   6.912,
+   7.7,
+   "Contoso payroll users and Contoso sequel admins are Windows groups, so their lines are deny connect sequel and grant connect sequel."
+  ],
+  [
+   14.613,
+   4.825,
+   "Alter login disable can't deny a Windows group, and a server-permission deny can."
+  ],
+  [
+   19.438,
+   6.013,
+   "Contoso sequel admins is also a sys-admin member, and a deny doesn't apply to members of sys-admin."
+  ],
+  [
+   25.45,
+   4.338,
+   "So the cutover takes the group out of the role first, and the rollback puts it back."
+  ],
+  [
+   29.788,
+   1.337,
+   "Nothing is dropped."
+  ]
+ ],
+ "9": [
+  [
+   0.1,
+   4.713,
+   "Step three leaves one login out of the mapping: the sequel login payroll report."
+  ],
+  [
+   4.763,
+   6.45,
+   "It loads the kit's module, reads the day-one snapshot, drops that row from the mapping, and builds the plan again."
+  ],
+  [
+   11.213,
+   5.537,
+   "The create script now carries an unresolved line: map it, or record why it isn't migrated."
+  ],
+  [
+   16.75,
+   2.462,
+   "And the cutover leaves payroll report out."
+  ],
+  [
+   19.212,
+   4.6,
+   "Its disable line is gone, so the login keeps working until someone maps it."
+  ],
+  [
+   23.812,
+   2.513,
+   "The plan never guesses an Entra principal."
+  ]
+ ],
+ "10": [
+  [
+   0.1,
+   2.725,
+   "Step four judges the parallel run on day one."
+  ],
+  [
+   2.775,
+   6.075,
+   "Nothing connects through Entra yet, so nothing is ready: zero of four, keep the parallel run going."
+  ],
+  [
+   8.85,
+   1.337,
+   "Read the Why column."
+  ],
+  [
+   10.188,
+   3.0,
+   "Every Entra principal is not yet seen connecting."
+  ],
+  [
+   13.188,
+   5.138,
+   "Contoso S V C payroll still has forty-one remote N T L M sessions."
+  ],
+  [
+   18.325,
+   4.0,
+   "And three legacy logins still carry traffic that arrives nowhere else."
+  ],
+  [
+   22.325,
+   2.35,
+   "Now look at Contoso sequel admins."
+  ],
+  [
+   24.675,
+   2.288,
+   "It shows zero legacy sessions."
+  ],
+  [
+   26.962,
+   5.8,
+   "Its one session was local, and local sessions always report N T L M, so they don't count."
+  ]
+ ],
+ "11": [
+  [
+   0.1,
+   1.988,
+   "Step five judges day thirty."
+  ],
+  [
+   2.038,
+   7.463,
+   "Every Entra principal is seen connecting, and no legacy session remains: four of four, every exit criterion met."
+  ],
+  [
+   9.5,
+   2.263,
+   "This snapshot is after the cutover."
+  ],
+  [
+   11.762,
+   6.237,
+   "Contoso S V C payroll and payroll report are disabled, and the two groups are denied connect sequel."
+  ],
+  [
+   18.0,
+   6.875,
+   "The judge reads that state, and says what runbook R five says comes next: observe for thirty days, then drop."
+  ],
+  [
+   24.875,
+   1.712,
+   "Nothing has been dropped yet."
+  ]
+ ],
+ "12": [
+  [
+   0.1,
+   2.725,
+   "Step six opens the day-thirty manifest."
+  ],
+  [
+   2.775,
+   10.037,
+   "It names the step, parallel, its mode, read-only, its controls, A C two and C A seven, its K S I, and the hash of each file it wrote."
+  ],
+  [
+   12.812,
+   2.062,
+   "Step seven re-hashes the plan."
+  ],
+  [
+   14.875,
+   7.9,
+   "Every file's recorded hash matches the file on disk, and that matters: the hash a reviewer approves is the hash of the files on disk."
+  ],
+  [
+   22.775,
+   3.9,
+   "Step eight runs this chapter's tests: eleven pass, none fail."
+  ],
+  [
+   26.675,
+   1.887,
+   "And step nine lists your runs."
+  ],
+  [
+   28.562,
+   1.538,
+   "There's nothing to clean up."
+  ],
+  [
+   30.1,
+   4.537,
+   "The kit's folder is as you unzipped it, and this run's results stay in its own folder."
+  ]
+ ],
+ "13": [
+  [
+   0.1,
+   3.038,
+   "Lab 2 runs one mapping on your own test instance."
+  ],
+  [
+   3.087,
+   1.788,
+   "It's not run by the authors."
+  ],
+  [
+   4.875,
+   15.225,
+   "You need a test instance, never production: Sequel Server 2022 or later, not a failover cluster instance, Arc-enabled in a commercial Azure test subscription, which is where a Microsoft 365 G C C Moderate tenant's Arc resources liv."
+  ],
+  [
+   20.1,
+   7.237,
+   "It needs Entra authentication configured, an Entra admin set, as in Module 3, and a certificate your client trusts."
+  ],
+  [
+   27.337,
+   5.675,
+   "Write a one-row mapping for one Windows login, read the create script, and run it as the Entra admin."
+  ],
+  [
+   33.013,
+   2.375,
+   "That's the only step that changes anything."
+  ],
+  [
+   35.388,
+   5.763,
+   "Then sign in as a member of the test Entra group, validate a real Entra connection, and judge the run."
+  ],
+  [
+   41.15,
+   7.9,
+   "To back it out, sign in as the Entra admin, drop the database users the script created, then the login, and delete the lab's files."
+  ],
+  [
+   49.05,
+   6.088,
+   "Drop login fails while the login is connected, so wait for the member's session to close and run that line again."
+  ]
+ ],
+ "14": [
+  [
+   0.1,
+   1.6,
+   "The federal requirement."
+  ],
+  [
+   1.65,
+   14.3,
+   "Chapter 4's table maps the login plan to nist special publication eight hundred fifty-three A C two, Account Management, C M three, Configuration Change Control, and C M four, Impact Analyses, with two K S Is."
+  ],
+  [
+   15.95,
+   8.588,
+   "The plan also supports I A two, Identification and Authentication for organizational users, which has no K S I pairing in the kit."
+  ],
+  [
+   24.538,
+   8.113,
+   "The evidence is the reviewed create, cutover and rollback scripts, the plan file, the mapping, and the manifest with each file's hash."
+  ],
+  [
+   32.65,
+   5.425,
+   "The parallel-run judge supports A C two and C A seven, Continuous Monitoring."
+  ],
+  [
+   38.075,
+   8.287,
+   "Its evidence is the parallel file for each snapshot with its manifest, kept with the Sequel Server Audit files runbook R five keeps for the window."
+  ],
+  [
+   46.362,
+   7.688,
+   "K S Is are fed-ramp twenty X indicators for cloud service providers; your providers report against them, the agency doesn't."
+  ],
+  [
+   54.05,
+   6.737,
+   "The records provide evidence for a control; the agency sets each control's parameters, and the assessor decides."
+  ]
+ ],
+ "15": [
+  [
+   0.1,
+   2.05,
+   "Check yourself with two questions."
+  ],
+  [
+   2.1,
+   7.925,
+   "First: why does sequel P R D oh one's cutover deny connect sequel to the Contoso payroll users group, instead of disabling the login?"
+  ],
+  [
+   10.025,
+   6.825,
+   "The answer is a. Alter login disable can't deny a Windows group: it returns error fifteen one fifty-one."
+  ],
+  [
+   16.85,
+   2.013,
+   "A server-permission deny can."
+  ],
+  [
+   18.863,
+   3.587,
+   "Second: a legacy login has been disabled at cutover."
+  ],
+  [
+   22.45,
+   1.35,
+   "When can it be dropped?"
+  ],
+  [
+   23.8,
+   8.5,
+   "The answer is b: after thirty days' observation, when the audit record, with failed logins for the disabled login, shows nothing still depends on it."
+  ],
+  [
+   32.3,
+   4.338,
+   "The module page has two more questions, each linked to the section that answers it."
+  ]
+ ],
+ "16": [
+  [
+   0.1,
+   1.025,
+   "To sum up."
+  ],
+  [
+   1.075,
+   6.888,
+   "A reviewed mapping becomes Entra logins beside the Windows ones, as T-sequel that executes nothing until it's approved."
+  ],
+  [
+   7.963,
+   7.237,
+   "The parallel run decides from evidence when a legacy login can be turned off, and nothing is dropped until thirty days' observation."
+  ],
+  [
+   15.2,
+   5.263,
+   "You wrote a fictional instance's plan and judged its parallel run before and after the cutover."
+  ],
+  [
+   20.462,
+   9.588,
+   "The I S S O keeps the reviewed scripts, the plan, the mapping and the manifest with each hash, and the parallel file for each snapshot, kept with the audit files."
+  ],
+  [
+   30.05,
+   2.975,
+   "Before shipping, work through Chapter 4's checklist."
+  ],
+  [
+   33.025,
+   4.475,
+   "Next, Module 5: groups, roles and the perimeter."
+  ]
+ ]
+}

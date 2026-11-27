@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.062
+What does the inventory have to hold?
+
+2
+00:00:02.062 --> 00:00:05.242
+The data platform book's
+chapter, The Estate Inventory,
+
+3
+00:00:05.242 --> 00:00:08.901
+lists a consistent set of facts
+for every instance it can find.
+
+4
+00:00:08.901 --> 00:00:14.088
+The version, edition and build number
+establish the support and licensing posture.
+
+5
+00:00:14.088 --> 00:00:18.476
+The host operating system version
+establishes the Arc and upgrade envelope.
+
+6
+00:00:18.476 --> 00:00:20.842
+The domain-join state
+and the owning domain
+
+7
+00:00:20.842 --> 00:00:23.275
+establish the forest-entanglement picture.
+
+8
+00:00:23.275 --> 00:00:27.725
+The service account and its source domain
+establish the credential dependencies.
+
+9
+00:00:27.725 --> 00:00:31.075
+And for every database, the
+size, the last-access timestamp,
+
+10
+00:00:31.075 --> 00:00:34.634
+the recovery model and the
+owning application establish the
+
+11
+00:00:34.634 --> 00:00:38.612
+utilization and zombie picture that
+the lenses turn into a decision.
+
+12
+00:00:38.612 --> 00:00:41.512
+The inventory isn't a
+point-in-time spreadsheet.
+
+13
+00:00:41.512 --> 00:00:45.664
+It's designed to be re-run, because
+instances appear and disappear across a
+
+14
+00:00:45.664 --> 00:00:50.090
+multi-month assessment, and the consolidation
+plan must track a moving estate.

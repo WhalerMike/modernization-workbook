@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.125
+To sum up.
+
+2
+00:00:01.125 --> 00:00:04.824
+You rehearsed one instance's login
+migration through the test stage,
+
+3
+00:00:04.824 --> 00:00:08.902
+from preflight and the approved hashes
+to the parallel run, the cutover and
+
+4
+00:00:08.902 --> 00:00:13.112
+its rollback, and sealed it as a rehearsal
+that production preflight refuses.
+
+5
+00:00:13.112 --> 00:00:16.894
+A real test stage, applied and
+sealed without the rehearsal switch,
+
+6
+00:00:16.894 --> 00:00:21.638
+is what lets production start, with the same
+commands and a different settings file.
+
+7
+00:00:21.638 --> 00:00:24.637
+Before shipping, work through
+the Chapter 10 checklist.
+
+8
+00:00:24.637 --> 00:00:28.699
+That's the end of the Data Platform
+and SQL Server Identity learning path.
+
+9
+00:00:28.699 --> 00:00:32.140
+Go back to the learning path's
+index for the modules and the code.

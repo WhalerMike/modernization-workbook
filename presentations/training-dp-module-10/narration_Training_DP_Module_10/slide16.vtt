@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.150
+Check yourself with two questions.
+
+2
+00:00:02.150 --> 00:00:04.749
+First: you run the create
+with an approved hash
+
+3
+00:00:04.749 --> 00:00:07.188
+that isn't the one the
+create file hashes to.
+
+4
+00:00:07.188 --> 00:00:08.226
+What happens?
+
+5
+00:00:08.226 --> 00:00:12.087
+The answer is b: it's refused
+before anything connects.
+
+6
+00:00:12.087 --> 00:00:13.938
+Re-plan and re-approve.
+
+7
+00:00:13.938 --> 00:00:17.226
+Second: the chain holds
+only the rehearsal record.
+
+8
+00:00:17.226 --> 00:00:19.363
+What does production preflight report?
+
+9
+00:00:19.363 --> 00:00:23.076
+The answer is b: P F oh six
+fails, because there's no sealed
+
+10
+00:00:23.076 --> 00:00:27.201
+test-stage record for sequel P R
+D oh one that isn't a rehearsal.
+
+11
+00:00:27.201 --> 00:00:28.238
+Stop here.
+
+12
+00:00:28.238 --> 00:00:32.590
+The module page has two more questions,
+each linked to the section that answers it.

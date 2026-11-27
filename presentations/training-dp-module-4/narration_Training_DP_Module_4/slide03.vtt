@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.850
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.850 --> 00:00:05.162
+which takes about sixty
+minutes with the lab.
+
+3
+00:00:05.162 --> 00:00:08.359
+You'll name the three Entra
+principal types a login from an
+
+4
+00:00:08.359 --> 00:00:11.674
+external provider maps to, and
+the login type each one shows.
+
+5
+00:00:11.674 --> 00:00:15.917
+You'll turn a reviewed mapping into
+create, cutover and rollback scripts,
+
+6
+00:00:15.917 --> 00:00:20.513
+and say why a Windows group is denied
+connect sequel instead of being disabled.
+
+7
+00:00:20.513 --> 00:00:24.080
+You'll state the parallel run's
+order and its exit criteria,
+
+8
+00:00:24.080 --> 00:00:26.162
+and why local sessions don't count.
+
+9
+00:00:26.162 --> 00:00:28.692
+And you'll judge a parallel
+run from snapshots,
+
+10
+00:00:28.692 --> 00:00:30.688
+and say what comes after the disable.
+
+11
+00:00:30.688 --> 00:00:33.163
+Before you start, finish Module 3.
+
+12
+00:00:33.163 --> 00:00:38.230
+Lab 1 runs in PowerShell 7 on the kit's
+fixtures, with no instance and no tenant.

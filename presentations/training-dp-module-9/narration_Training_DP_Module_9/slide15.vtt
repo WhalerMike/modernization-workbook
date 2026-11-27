@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.125
+To sum up.
+
+2
+00:00:01.125 --> 00:00:04.493
+You projected an audit run onto
+the five closure conditions,
+
+3
+00:00:04.493 --> 00:00:07.706
+saw which fields wait on
+evidence from outside the audit,
+
+4
+00:00:07.706 --> 00:00:11.124
+saw what the exception registry
+and the Arc snapshot change,
+
+5
+00:00:11.124 --> 00:00:14.200
+and compared two runs so a
+regression became a finding.
+
+6
+00:00:14.200 --> 00:00:17.936
+Closure is the record that keeps
+coming back clean on a schedule,
+
+7
+00:00:17.936 --> 00:00:19.487
+and each drift row is a task.
+
+8
+00:00:19.487 --> 00:00:22.563
+Before shipping, work through
+the Chapter 9 checklist.
+
+9
+00:00:22.563 --> 00:00:26.180
+Next, Module 10: deploying
+to test and production.

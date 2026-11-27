@@ -1,0 +1,750 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.847
+Welcome to Module 5 of the
+Data Platform and SQL Server
+
+2
+00:00:03.847 --> 00:00:07.438
+Identity learning path: groups,
+roles and the perimeter.
+
+3
+00:00:07.438 --> 00:00:11.263
+You sort every Active Directory
+group that reaches Sequel Server into
+
+4
+00:00:11.263 --> 00:00:15.138
+its Entra replacement, and keep
+privileged roles off rule-based groups.
+
+5
+00:00:15.138 --> 00:00:17.264
+The module follows runbook R seven,
+
+6
+00:00:17.264 --> 00:00:21.737
+and Chapter 5 of the developer
+workbook, Building SQL Server Identity.
+
+7
+00:00:21.737 --> 00:00:23.820
+Take it after Module 4.
+
+8
+00:00:27.620 --> 00:00:28.957
+Why does this matter?
+
+9
+00:00:28.957 --> 00:00:32.070
+Group-based access survives
+the move to Entra I D.
+
+10
+00:00:32.070 --> 00:00:36.245
+What changes is who keeps each group
+current, and what stands in front of it.
+
+11
+00:00:36.245 --> 00:00:39.482
+A group kept by hand from
+the org chart becomes a rule.
+
+12
+00:00:39.482 --> 00:00:43.220
+A group of named administrators
+becomes an assigned group under pim.
+
+13
+00:00:43.220 --> 00:00:46.070
+And a distribution list
+never becomes a login.
+
+14
+00:00:46.070 --> 00:00:50.634
+In this module you take every Active
+Directory group that reaches Sequel Server,
+
+15
+00:00:50.634 --> 00:00:53.045
+and say which Entra group replaces it.
+
+16
+00:00:56.840 --> 00:00:59.577
+Here's what you'll be able to
+do by the end of this module,
+
+17
+00:00:59.577 --> 00:01:02.127
+which takes about forty-five
+minutes with the lab.
+
+18
+00:01:02.127 --> 00:01:06.669
+You'll name the four Active Directory
+group patterns in the data platform book,
+
+19
+00:01:06.669 --> 00:01:10.978
+Data Platform: SQL Server Identity,
+and the Entra replacement for each.
+
+20
+00:01:10.978 --> 00:01:14.706
+You'll explain why a dynamic rule
+reads an H R maintained code,
+
+21
+00:01:14.706 --> 00:01:17.390
+and excludes disabled accounts and guests.
+
+22
+00:01:17.390 --> 00:01:19.801
+You'll run the kit's
+group map over fixtures,
+
+23
+00:01:19.801 --> 00:01:24.002
+and read its flags for nesting and for
+a privileged role on a dynamic group.
+
+24
+00:01:24.002 --> 00:01:28.477
+And you'll say which check enforces one
+group, one role, and why the map doesn't.
+
+25
+00:01:28.477 --> 00:01:30.398
+Before you start, finish Module 4:
+
+26
+00:01:30.398 --> 00:01:34.166
+its login plan is where the
+one-group-one-role warning comes from.
+
+27
+00:01:34.166 --> 00:01:36.180
+Lab 1 needs no tenant.
+
+28
+00:01:39.980 --> 00:01:42.893
+Unit 2 starts with how a
+group reaches the engine.
+
+29
+00:01:42.893 --> 00:01:46.165
+An Entra group reaches Sequel
+Server as a group login,
+
+30
+00:01:46.165 --> 00:01:48.355
+then a database user added to a role.
+
+31
+00:01:48.355 --> 00:01:51.115
+The data platform book's
+Chapter 16, Groups,
+
+32
+00:01:51.115 --> 00:01:55.530
+Roles and How Membership Reaches
+the Engine, makes one rule central.
+
+33
+00:01:55.530 --> 00:01:59.048
+Each Entra group grants exactly
+one role, on one database,
+
+34
+00:01:59.048 --> 00:02:02.567
+in one environment, so the
+group's name says what it grants.
+
+35
+00:02:02.567 --> 00:02:06.520
+The model stays flat, because
+dynamic groups can't contain groups,
+
+36
+00:02:06.520 --> 00:02:11.130
+and nesting builds on behavior that is
+unsupported, ending or undocumented.
+
+37
+00:02:11.130 --> 00:02:14.630
+Members are listed directly,
+by rule or by assignment.
+
+38
+00:02:14.630 --> 00:02:18.097
+One group, one role is checked
+where the roles are known:
+
+39
+00:02:18.097 --> 00:02:20.255
+the login plan from Module 4 warns.
+
+40
+00:02:20.255 --> 00:02:22.734
+The group map carries grants per instance,
+
+41
+00:02:22.734 --> 00:02:26.090
+not roles per database, so
+it doesn't repeat the check.
+
+42
+00:02:29.890 --> 00:02:32.940
+Each legacy group then lands
+in one of four patterns.
+
+43
+00:02:32.940 --> 00:02:38.502
+Pattern one: organization-derived groups,
+kept from the org chart, become dynamic.
+
+44
+00:02:38.502 --> 00:02:43.531
+The kit writes the rule on the H R
+organization code in extension attribute ten,
+
+45
+00:02:43.531 --> 00:02:47.941
+with clauses that require an enabled
+account and a member, not a guest.
+
+46
+00:02:47.941 --> 00:02:50.177
+Never on department or job title.
+
+47
+00:02:50.177 --> 00:02:54.649
+Pattern two: explicit role groups
+become assigned, managed by a delegated
+
+48
+00:02:54.649 --> 00:02:57.435
+administrator, and
+eligible through pim when
+
+49
+00:02:57.435 --> 00:03:00.074
+the group holds sys-admin
+or security admin.
+
+50
+00:03:00.074 --> 00:03:03.227
+Pattern three: distribution
+lists become mail-only.
+
+51
+00:03:03.227 --> 00:03:07.653
+Update the Sequel Server Agent operator's
+address, and give it no login.
+
+52
+00:03:07.653 --> 00:03:11.920
+Pattern four: mail-enabled security
+groups split in two, a mail-only group
+
+53
+00:03:11.920 --> 00:03:16.615
+and an assigned security group, with the
+pairing recorded in both descriptions.
+
+54
+00:03:16.615 --> 00:03:18.878
+And when a group's codes aren't recorded,
+
+55
+00:03:18.878 --> 00:03:22.720
+the target says to ask H R for
+the code before writing the rule.
+
+56
+00:03:26.520 --> 00:03:30.120
+Unit 3 is the attribute,
+pim and the perimeter.
+
+57
+00:03:30.120 --> 00:03:31.660
+Under dynamic membership,
+
+58
+00:03:31.660 --> 00:03:35.345
+whoever can write the attribute
+a rule reads controls access.
+
+59
+00:03:35.345 --> 00:03:40.303
+So the book's Chapter 17 has rules read
+H R owned codes, such as the organization
+
+60
+00:03:40.303 --> 00:03:45.107
+code in extension attribute ten, never
+display strings such as department.
+
+61
+00:03:45.107 --> 00:03:48.633
+And every access rule excludes
+disabled accounts and guests.
+
+62
+00:03:48.633 --> 00:03:51.357
+Groups that hold sys-admin
+are never dynamic.
+
+63
+00:03:51.357 --> 00:03:55.219
+Microsoft Learn says pim for Groups
+doesn't work on dynamic groups,
+
+64
+00:03:55.219 --> 00:03:57.746
+or on groups synchronized
+from on premises.
+
+65
+00:03:57.746 --> 00:04:00.745
+So privileged groups are
+cloud-only and assigned.
+
+66
+00:04:00.745 --> 00:04:04.793
+Otherwise, whoever can write the
+attribute could make someone sys-admin.
+
+67
+00:04:04.793 --> 00:04:08.032
+Conditional Access then sits
+in front of every user token.
+
+68
+00:04:08.032 --> 00:04:12.351
+But it applies to users, not to
+managed identities, so applications are
+
+69
+00:04:12.351 --> 00:04:17.120
+covered by the application chain in
+Chapter 7, not by Conditional Access.
+
+70
+00:04:20.920 --> 00:04:21.807
+Try it.
+
+71
+00:04:21.807 --> 00:04:26.758
+Lab 1 runs in PowerShell 7, from the kit's
+folder, on the kit's fictional estate.
+
+72
+00:04:26.758 --> 00:04:29.091
+First, make this run's results folder,
+
+73
+00:04:29.091 --> 00:04:33.058
+named for the time you start, so
+every run keeps its own results.
+
+74
+00:04:33.058 --> 00:04:35.270
+Step one maps the estate's groups.
+
+75
+00:04:35.270 --> 00:04:39.620
+There's one group of each pattern, and a
+second dynamic group with a nested group.
+
+76
+00:04:39.620 --> 00:04:43.882
+Contoso payroll users and Contoso
+H R analysts become dynamic groups,
+
+77
+00:04:43.882 --> 00:04:46.233
+each rule on its own organization code,
+
+78
+00:04:46.233 --> 00:04:49.907
+with the clauses that exclude
+disabled accounts and guests.
+
+79
+00:04:49.907 --> 00:04:54.120
+Contoso sequel admins becomes an
+assigned group, eligible through pim.
+
+80
+00:04:54.120 --> 00:04:57.670
+The agent alerts list becomes
+mail-only, with no login.
+
+81
+00:04:57.670 --> 00:04:59.745
+And the claims team splits in two.
+
+82
+00:04:59.745 --> 00:05:05.545
+Notice the flag on H R analysts: nested,
+flatten, because it contains H R leads.
+
+83
+00:05:05.545 --> 00:05:08.625
+The rules are long, so
+PowerShell drops the flags
+
+84
+00:05:08.625 --> 00:05:12.100
+column from the table on
+screen; step two prints it.
+
+85
+00:05:15.900 --> 00:05:18.212
+Step two reads what each group grants.
+
+86
+00:05:18.212 --> 00:05:22.487
+Contoso sequel admins holds
+sys-admin on sequel P R D oh one.
+
+87
+00:05:22.487 --> 00:05:24.738
+The distribution list grants nothing.
+
+88
+00:05:24.738 --> 00:05:27.588
+And the nested flag shows on H R analysts.
+
+89
+00:05:27.588 --> 00:05:29.937
+Now look at Contoso payroll users.
+
+90
+00:05:29.937 --> 00:05:33.212
+It reaches two databases
+on sequel P R D oh one.
+
+91
+00:05:33.212 --> 00:05:37.763
+The data platform book's rule is
+one group, one role, one database.
+
+92
+00:05:37.763 --> 00:05:39.524
+The map doesn't check roles.
+
+93
+00:05:39.524 --> 00:05:41.173
+Module 4's login plan does:
+
+94
+00:05:41.173 --> 00:05:45.175
+its warning for the payroll users
+group names the three roles.
+
+95
+00:05:45.175 --> 00:05:48.330
+Split a group like that before
+the mapping is approved.
+
+96
+00:05:52.130 --> 00:05:56.005
+Step three pretends the sys-admin
+group were kept by the org chart.
+
+97
+00:05:56.005 --> 00:06:00.182
+It loads the kit's module, reads
+Contoso sequel admins from the fixture,
+
+98
+00:06:00.182 --> 00:06:02.442
+and marks its membership as org-chart.
+
+99
+00:06:02.442 --> 00:06:05.855
+The map now sorts it as
+pattern one, a dynamic group.
+
+100
+00:06:05.855 --> 00:06:08.105
+The group has no organization codes,
+
+101
+00:06:08.105 --> 00:06:12.005
+so the target says to ask H R for
+the code rather than write a rule.
+
+102
+00:06:12.005 --> 00:06:15.893
+But the flag is what matters: a
+privileged role on a dynamic group.
+
+103
+00:06:15.893 --> 00:06:18.255
+Use an assigned group under pim instead.
+
+104
+00:06:18.255 --> 00:06:20.960
+A privileged role never sits on a rule.
+
+105
+00:06:24.760 --> 00:06:26.935
+Step four opens the manifest.
+
+106
+00:06:26.935 --> 00:06:30.144
+The step is groups, its mode is read-only,
+
+107
+00:06:30.144 --> 00:06:33.810
+and it supports A C two and
+A C six, with one K S I.
+
+108
+00:06:33.810 --> 00:06:36.272
+It records the hash of each file it wrote.
+
+109
+00:06:36.272 --> 00:06:40.123
+Step five runs this chapter's
+tests: four pass, none fail.
+
+110
+00:06:40.123 --> 00:06:42.023
+And step six lists your runs.
+
+111
+00:06:42.023 --> 00:06:43.561
+There's nothing to clean up.
+
+112
+00:06:43.561 --> 00:06:45.622
+The kit's folder is as you unzipped it,
+
+113
+00:06:45.622 --> 00:06:48.097
+and this run's results
+stay in its own folder.
+
+114
+00:06:48.097 --> 00:06:52.506
+Check your work: you can say which Entra
+group replaces each of the estate's
+
+115
+00:06:52.506 --> 00:06:57.000
+five groups, and why the map refuses
+to make the sys-admin group dynamic.
+
+116
+00:07:00.800 --> 00:07:03.350
+Lab 2 compares the map with a real tenant.
+
+117
+00:07:03.350 --> 00:07:05.088
+It's not run by the authors.
+
+118
+00:07:05.088 --> 00:07:07.745
+Use a test tenant whose
+groups are synchronized
+
+119
+00:07:07.745 --> 00:07:09.738
+from a test domain, never production.
+
+120
+00:07:09.738 --> 00:07:14.188
+You need PowerShell 7 with the Microsoft
+Graph PowerShell S D K's groups module,
+
+121
+00:07:14.188 --> 00:07:18.229
+an account that can consent to the
+delegated group read all permission,
+
+122
+00:07:18.229 --> 00:07:22.612
+and a groups file for your test domain's
+groups, in the shape of the kit's fixture.
+
+123
+00:07:22.612 --> 00:07:24.463
+Map your test groups with the kit.
+
+124
+00:07:24.463 --> 00:07:27.074
+Sign in to Microsoft Graph, read-only.
+
+125
+00:07:27.074 --> 00:07:32.225
+A Microsoft 365 G C C tenant uses
+the worldwide Graph endpoint.
+
+126
+00:07:32.225 --> 00:07:36.616
+List the tenant's groups with the properties
+that decide the pattern, put the kit's
+
+127
+00:07:36.616 --> 00:07:40.875
+answer beside what the tenant has, and
+look for cloud groups that already exist.
+
+128
+00:07:40.875 --> 00:07:43.063
+Nothing in the lab writes to the tenant.
+
+129
+00:07:43.063 --> 00:07:47.390
+To back it out, sign out of Graph
+and delete the lab's output folder.
+
+130
+00:07:51.190 --> 00:07:52.790
+The federal requirement.
+
+131
+00:07:52.790 --> 00:07:59.422
+Chapter 5's table maps the group
+map to NIST SP 800-53 A C two,
+
+132
+00:07:59.422 --> 00:08:03.515
+Account Management, and A C six,
+Least Privilege, with one K S I.
+
+133
+00:08:03.515 --> 00:08:07.958
+The map provides evidence for both: which
+group grants what, how its membership
+
+134
+00:08:07.958 --> 00:08:11.990
+is kept, and which privileged groups
+are eligible rather than standing.
+
+135
+00:08:11.990 --> 00:08:16.586
+The I S S O keeps the groups file and
+its manifest, which records the step,
+
+136
+00:08:16.586 --> 00:08:19.598
+its controls and K S Is,
+and the hash of each file;
+
+137
+00:08:19.598 --> 00:08:23.877
+the Lab 2 comparison; and the record
+of which groups went under pim.
+
+138
+00:08:23.877 --> 00:08:28.165
+Runbook R seven lists the evidence each
+state of the provisioning phase needs.
+
+139
+00:08:28.165 --> 00:08:32.393
+K S Is are FedRAMP twenty X indicators
+for cloud service providers;
+
+140
+00:08:32.393 --> 00:08:35.853
+your providers report against
+them, the agency doesn't.
+
+141
+00:08:35.853 --> 00:08:39.584
+The agency still sets the
+parameters, policy and procedures,
+
+142
+00:08:39.584 --> 00:08:43.470
+and the assessor decides whether
+each control is in place.
+
+143
+00:08:47.270 --> 00:08:49.320
+Check yourself with two questions.
+
+144
+00:08:49.320 --> 00:08:53.483
+First: Contoso H R analysts
+contains Contoso H R leads.
+
+145
+00:08:53.483 --> 00:08:56.044
+Why does the map flag it nested, flatten?
+
+146
+00:08:56.044 --> 00:08:57.445
+The answer is a.
+
+147
+00:08:57.445 --> 00:09:01.845
+A dynamic rule can't select groups, so
+the inner group's members would drop out.
+
+148
+00:09:01.845 --> 00:09:07.220
+Second: Contoso payroll users reaches
+two databases on sequel P R D oh one.
+
+149
+00:09:07.220 --> 00:09:09.633
+Which check catches the
+one-group-one-role problem?
+
+150
+00:09:09.633 --> 00:09:14.632
+The answer is b: Chapter 4's login
+plan, whose warning names the roles.
+
+151
+00:09:14.632 --> 00:09:18.295
+The map carries grants per
+instance, not roles per database.
+
+152
+00:09:18.295 --> 00:09:22.940
+The module page has two more questions,
+each linked to the section that answers it.
+
+153
+00:09:26.740 --> 00:09:27.765
+To sum up.
+
+154
+00:09:27.765 --> 00:09:32.069
+You sorted the fictional estate's groups
+into dynamic, assigned, mail-only
+
+155
+00:09:32.069 --> 00:09:36.352
+and split targets, and saw the map refuse
+to put a privileged role on a rule.
+
+156
+00:09:36.352 --> 00:09:41.267
+Group logins, pim and Conditional Access
+now decide who reaches Sequel Server,
+
+157
+00:09:41.267 --> 00:09:44.140
+in place of hand-kept
+Active Directory groups.
+
+158
+00:09:44.140 --> 00:09:47.190
+Before shipping, work through
+Chapter 5's checklist.
+
+159
+00:09:47.190 --> 00:09:51.480
+Next, Module 6: N T L M and the S P Ns.

@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.837
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.837 --> 00:00:05.387
+which takes about forty-five
+minutes with the lab.
+
+3
+00:00:05.387 --> 00:00:09.929
+You'll name the four Active Directory
+group patterns in the data platform book,
+
+4
+00:00:09.929 --> 00:00:14.238
+Data Platform: SQL Server Identity,
+and the Entra replacement for each.
+
+5
+00:00:14.238 --> 00:00:17.966
+You'll explain why a dynamic rule
+reads an H R maintained code,
+
+6
+00:00:17.966 --> 00:00:20.650
+and excludes disabled accounts and guests.
+
+7
+00:00:20.650 --> 00:00:23.061
+You'll run the kit's
+group map over fixtures,
+
+8
+00:00:23.061 --> 00:00:27.262
+and read its flags for nesting and for
+a privileged role on a dynamic group.
+
+9
+00:00:27.262 --> 00:00:31.737
+And you'll say which check enforces one
+group, one role, and why the map doesn't.
+
+10
+00:00:31.737 --> 00:00:33.658
+Before you start, finish Module 4:
+
+11
+00:00:33.658 --> 00:00:37.426
+its login plan is where the
+one-group-one-role warning comes from.
+
+12
+00:00:37.426 --> 00:00:39.140
+Lab 1 needs no tenant.

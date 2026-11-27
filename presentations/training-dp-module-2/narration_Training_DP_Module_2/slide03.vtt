@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.816
+Here's what you'll be able to
+do by the end of this module,
+
+2
+00:00:02.816 --> 00:00:05.100
+which takes about fifty
+minutes with the lab.
+
+3
+00:00:05.100 --> 00:00:08.163
+You'll explain what the
+audit reads on each instance,
+
+4
+00:00:08.163 --> 00:00:12.000
+and why it runs only on what Module
+1 retained or chose as a target.
+
+5
+00:00:12.000 --> 00:00:13.733
+You'll rank the audit's findings,
+
+6
+00:00:13.733 --> 00:00:16.800
+from an enabled S A down to
+the Arc-eligibility category.
+
+7
+00:00:16.800 --> 00:00:20.656
+You'll say what each Arc-eligibility
+category means for the next step,
+
+8
+00:00:20.656 --> 00:00:24.850
+and why engine Entra authentication
+doesn't wait for O S level Entra sign-in.
+
+9
+00:00:24.850 --> 00:00:27.865
+And you'll explain why a single
+audit run can't show drift,
+
+10
+00:00:27.865 --> 00:00:30.225
+and where the engine's
+service account goes.
+
+11
+00:00:30.225 --> 00:00:32.620
+Before you start, finish Module 1.

@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.437
+Why does this matter?
+
+2
+00:00:01.437 --> 00:00:05.124
+An instance brought to the
+Entra-exclusive posture can slide back.
+
+3
+00:00:05.124 --> 00:00:07.881
+An administrator can
+switch it to mixed mode,
+
+4
+00:00:07.881 --> 00:00:10.563
+create a SQL login, or
+add a Windows login.
+
+5
+00:00:10.563 --> 00:00:12.862
+So closure isn't a one-time action.
+
+6
+00:00:12.862 --> 00:00:15.826
+It's a record that keeps coming
+back clean on a schedule,
+
+7
+00:00:15.826 --> 00:00:17.538
+and drift is the run that doesn't.
+
+8
+00:00:17.538 --> 00:00:21.748
+In this module you project an audit
+run onto the five closure conditions,
+
+9
+00:00:21.748 --> 00:00:24.554
+see which fields the audit
+can't settle by itself,
+
+10
+00:00:24.554 --> 00:00:27.501
+and compare two runs so a
+regression becomes a task.
