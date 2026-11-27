@@ -1,0 +1,4 @@
+[ { "Name": "DC-ISLAND01", "OperatingSystem": "Windows Server 2022 Datacenter", "LastLogonUtc": "2026-11-26T10:00:00Z" },
+  { "Name": "PAYROLL-IF01", "OperatingSystem": "Windows Server 2019 Standard", "LastLogonUtc": "2026-11-25T08:00:00Z" },
+  { "Name": "FIN-PC-0442", "OperatingSystem": "Windows 11 Enterprise", "LastLogonUtc": "2026-11-20T14:00:00Z" },
+  { "Name": "OLD-KIOSK07", "OperatingSystem": "Windows 10 Enterprise", "LastLogonUtc": "2026-08-01T09:00:00Z" } ]
