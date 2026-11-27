@@ -44,7 +44,7 @@ Every command in these kits is listed, with what it does and the pages that teac
 
 ### Unzip the kits you downloaded {#unzip-kits}
 
-Download the kits you want to your **Downloads** folder, open PowerShell (Windows PowerShell 5.1 or PowerShell 7), and paste this:
+Every lab starts in `C:\FMWLabs\<zip name>`, at the folder its first step names, such as `C:\FMWLabs\defender-xdr-code\defender-xdr`, and its scripts find their other folders from there. This command gives you that layout whether you downloaded the zip with every kit or each kit's own zip. Download the zips you want to your **Downloads** folder, open PowerShell (Windows PowerShell 5.1 or PowerShell 7), and paste this:
 
 ```powershell
 $Downloads = "$HOME\Downloads"
@@ -55,29 +55,86 @@ $Kits = 'fmw-all-kits', 'start-kit', 'validation-kit', 'attribute-driven-migrati
     'zta-results', 'defender-xdr-code', 'information-protection-code', 'global-secure-access-code', 'azure-security-code',
     'daily-checks-workbook-code', 'platform-host-code', 'sql-server-identity-code', 'copilot-agent-pack',
     'helpdesk-entra-operations-kit', 'ansible-examples', 'app-modernization'
+$Tmp = Join-Path $Labs '.unzip'
 $Count = 0
+function Copy-Kit($From, $Dest) {
+    New-Item -ItemType Directory -Force -Path $Dest | Out-Null
+    Copy-Item -Path "$From\*" -Destination $Dest -Recurse -Force
+}
+function Show-Leftover($Name, $Own) {
+    $Nested = Join-Path (Join-Path $Labs $Name) $Name
+    if ((Test-Path $Nested) -and -not $Own) {
+        "  $Nested is left over from an older zip. To delete it: Remove-Item -Recurse -Force $Nested"
+    }
+}
 foreach ($Kit in $Kits) {
     $Zip = Join-Path $Downloads "$Kit.zip"
-    if (Test-Path $Zip) {
-        Expand-Archive -Path $Zip -DestinationPath (Join-Path $Labs $Kit) -Force
-        Get-ChildItem (Join-Path $Labs $Kit) -Recurse -File | Unblock-File
-        "Unzipped $Kit.zip to $(Join-Path $Labs $Kit)"
-        $Count++
+    if (-not (Test-Path $Zip)) { continue }
+    if (Test-Path $Tmp) { Remove-Item -Recurse -Force $Tmp }
+    Expand-Archive -Path $Zip -DestinationPath $Tmp
+    Get-ChildItem $Tmp -Recurse -File | Unblock-File
+    $Layout = Join-Path $Tmp 'fmw-kit-layout.json'
+    if ($Kit -eq 'fmw-all-kits' -and (Test-Path $Layout)) {
+        # The zip with every kit: give each kit the folder its own zip would.
+        $Map = Get-Content -Raw $Layout | ConvertFrom-Json
+        foreach ($Name in $Map.PSObject.Properties.Name) {
+            $Spec = $Map.$Name
+            $Dest = Join-Path $Labs $Name
+            if ($Spec.contents) {
+                Copy-Kit (Join-Path $Tmp $Spec.contents) $Dest
+                $Own = Test-Path (Join-Path (Join-Path $Tmp $Spec.contents) $Name)
+            } else {
+                foreach ($F in $Spec.folders) { Copy-Kit (Join-Path $Tmp $F) (Join-Path $Dest $F) }
+                $Own = $Spec.folders -contains $Name
+            }
+            "Unzipped $Name from $Kit.zip to $Dest"
+            Show-Leftover $Name $Own
+        }
+        if (Test-Path (Join-Path $Labs $Kit)) {
+            "  $(Join-Path $Labs $Kit) is from an earlier unzip; the labs don't use it. To delete it: Remove-Item -Recurse -Force $(Join-Path $Labs $Kit)"
+        }
+    } elseif ($Kit -eq 'fmw-all-kits') {
+        "$Kit.zip is an older download that can't lay out each kit's folder. Download it again, then run this again."
+        Remove-Item -Recurse -Force $Tmp
+        continue
+    } else {
+        $From = $Tmp
+        $Top = @(Get-ChildItem $Tmp -Force)
+        if ($Top.Count -eq 1 -and $Top[0].PSIsContainer -and $Top[0].Name -eq $Kit) {
+            $From = $Top[0].FullName
+            "$Kit.zip is an older download with an extra $Kit folder inside; unzipping without it"
+        }
+        $Dest = Join-Path $Labs $Kit
+        Copy-Kit $From $Dest
+        "Unzipped $Kit.zip to $Dest"
+        Show-Leftover $Kit (Test-Path (Join-Path $From $Kit))
     }
+    Remove-Item -Recurse -Force $Tmp
+    $Count++
 }
 "$Count zip(s) unzipped from $Downloads"
 ```
 
-It looks in your Downloads folder for each zip on this page and unzips the ones it finds into `C:\FMWLabs`, each into a folder with the zip's name, which is where every lab starts. It skips zips you haven't downloaded. It also unblocks the files, so Windows lets the scripts run. Running it again overwrites each file with the zip's copy. It doesn't touch what the labs wrote under `C:\FMWLabs\results`.
+What it does:
 
-It prints one line for each zip and a count. If you downloaded only the zip with every kit, it prints:
+- **Each kit's own zip** unzips into `C:\FMWLabs\<zip name>`.
+- **The zip with every kit** (`fmw-all-kits.zip`) unzips into the same folders: one `C:\FMWLabs\<zip name>` for each kit zip on this page, with the same files that kit's zip holds. A file inside it, `fmw-kit-layout.json`, lists which folders make up each kit. The Help Desk kit isn't in it.
+- **Zips you haven't downloaded** are skipped. Downloading both the zip with every kit and a kit's own zip does no harm: the files are the same.
+- **Unblocking:** it unblocks the files, so Windows lets the scripts run.
+- **Running it again** overwrites each file with the zip's copy. It doesn't touch what the labs wrote under `C:\FMWLabs\results`.
+- **Older downloads:** a kit zip downloaded on or before November 25, 2026 may have an extra folder inside with the zip's name, so it unzipped to `C:\FMWLabs\start-kit\start-kit`, for example. The command unzips it without that folder and says so. A `fmw-all-kits.zip` downloaded before this command was added can't lay out the kits' folders: the command says so and skips it; download it again. If an earlier unzip left a doubled folder or a `C:\FMWLabs\fmw-all-kits` folder behind, it prints the `Remove-Item` command that deletes it. It doesn't delete anything itself.
+
+It prints a line for each kit's folder and a count of zips. With only the zip with every kit in Downloads, it prints 24 lines, from `ansible-examples` to `zta-results`, and then the count:
 
 ```text
-Unzipped fmw-all-kits.zip to C:\FMWLabs\fmw-all-kits
+Unzipped ansible-examples from fmw-all-kits.zip to C:\FMWLabs\ansible-examples
+Unzipped app-modernization from fmw-all-kits.zip to C:\FMWLabs\app-modernization
+...
+Unzipped zta-results from fmw-all-kits.zip to C:\FMWLabs\zta-results
 1 zip(s) unzipped from C:\Users\<you>\Downloads
 ```
 
-A lab's first step goes to its kit's folder in the kit's own zip, such as `C:\FMWLabs\defender-xdr-code\defender-xdr`. From the zip with every kit, the same folder is `C:\FMWLabs\fmw-all-kits\defender-xdr`. If the count is 0, the zips aren't in your Downloads folder, or the browser renamed one (for example `start-kit (1).zip`); move or rename it and run the command again.
+If the count is 0, the zips aren't in your Downloads folder, or the browser renamed one (for example `start-kit (1).zip`); move or rename it and run the command again.
 
 ## Meeting templates
 
