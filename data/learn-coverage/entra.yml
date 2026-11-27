@@ -15029,6 +15029,7 @@ pages:
   cited_by:
   - docs/books/b03-hr-identity/appendix-a-lifecycle-rules.md
   - docs/books/b03-hr-identity/appendix-b-security-and-privacy.md
+  - docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md
   - docs/books/b19-developer-workbook/10-deploying-to-test-and-production.md
   - docs/books/guides/hcm-entra-implementation.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/08-deploying-to-test-and-production.md
@@ -15084,6 +15085,7 @@ pages:
   - docs/books/guides/hcm-entra-implementation.md
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
   cited_by:
+  - docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md
   - docs/books/guides/_verification/hcm-entra-implementation.md
   - docs/books/guides/hcm-entra-implementation.md
 - path: docs/identity/app-provisioning/application-provisioning-log-analytics.md
@@ -15476,6 +15478,7 @@ pages:
   cited_by:
   - docs/books/b03-hr-identity/07-who-owns-workforce-identity.md
   - docs/books/b03-hr-identity/appendix-a-lifecycle-rules.md
+  - docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md
   - docs/books/b19-developer-workbook/10-deploying-to-test-and-production.md
   - docs/books/guides/hcm-entra-implementation.md
   - docs/evaluations/oracle-contingent-worker-contractor-source.md
@@ -15540,6 +15543,7 @@ pages:
   cited_by:
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
   - docs/books/b03-hr-identity/appendix-b-security-and-privacy.md
+  - docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md
   - docs/books/guides/hcm-entra-implementation.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.md
 - path: docs/identity/app-provisioning/inbound-provisioning-api-graph-explorer.md
@@ -23518,11 +23522,12 @@ pages:
   ms_date: '2025-04-09'
   ms_topic: how-to
   description: This topic describes how to enable inbound synchronization using just the Graph API
-  coverage: covered-uncited
+  coverage: cited
   note: Cloud Sync agent, mapping and migration.
   workbook:
   - docs/books/b02-identity/09-building-the-entra-target.md
-  cited_by: []
+  cited_by:
+  - docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md
 - path: docs/identity/hybrid/cloud-sync/how-to-install-pshell.md
   url: https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/how-to-install-pshell
   title: Install the Microsoft Entra Connect cloud provisioning agent using a command-line interface (CLI) and PowerShell

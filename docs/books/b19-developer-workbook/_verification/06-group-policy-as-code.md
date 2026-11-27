@@ -60,3 +60,12 @@ New section before Dangers: 17 rows, one per Lab 1 and Lab 2 scripted step or ki
 | 4 | FedRAMP Marketplace listings, status, class and impact level | Federal requirements and evidence | verified | `products.json`, `last_change` 2026-11-01T05:02:56Z, downloaded and parsed November 2, 2026 |
 | 5 | KSIs are provider-side; the agency doesn't report them | Under the table | carried from verified source | Book 00, Appendix B |
 
+## Lab 2 commands for the portal steps, November 27, 2026
+
+Each Lab 2 step that was done only in a portal or by hand now has a command block, with the portal path kept as the alternative. Learn pages opened on November 27, 2026 with the web fetch tool (the Microsoft Learn MCP tools weren't available in this session). Nothing was run against a tenant or subscription: the commands are checked against the pages, not executed, except the validation kit catalog call in Chapter 09, which was run on the kit's own files.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | `createMigrationReport` (beta) with a `groupPolicyObjectFile`; `DeviceManagementConfiguration.ReadWrite.All` | Lab 2, step 1 | verified | Learn, createMigrationReport action; groupPolicyObjectFile resource type |
+| 2 | `content` sent as the Base64 of the report's bytes | Lab 2, step 1 | not verified: Learn doesn't state the encoding; the step says so and keeps the admin center path | Learn, groupPolicyObjectFile resource type |
+| 3 | `Get-GPOReport -ReportType Xml -Path` | Lab 2, step 1 | verified (carried) | Learn, Get-GPOReport (Book 02, Chapter 08) |

@@ -66,3 +66,14 @@ New section before Dangers: 13 rows, one per Lab 1 and Lab 2 scripted step or ki
 | 4 | FedRAMP Marketplace listings, status, class and impact level | Federal requirements and evidence | verified | `products.json`, `last_change` 2026-11-01T05:02:56Z, downloaded and parsed November 2, 2026 |
 | 5 | KSIs are provider-side; the agency doesn't report them | Under the table | carried from verified source | Book 00, Appendix B |
 | 6 | BOD 25-01's required Microsoft Entra ID configurations are assessed against Conditional Access policies | Federal requirements and evidence | carried from verified source | Book 02, Appendix A, and its CISA required-configurations note (read Oct 21 and Oct 26, 2026) |
+
+## Lab 2 commands for the portal steps, November 27, 2026
+
+Each Lab 2 step that was done only in a portal or by hand now has a command block, with the portal path kept as the alternative. Learn pages opened on November 27, 2026 with the web fetch tool (the Microsoft Learn MCP tools weren't available in this session). Nothing was run against a tenant or subscription: the commands are checked against the pages, not executed, except the validation kit catalog call in Chapter 09, which was run on the kit's own files.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | `az ad sp create-for-rbac --create-cert` prints `fileWithCertAndPrivateKey`; without a role and scope the service principal has no access; it can modify an app with the same display name | Lab 2, step 1 | verified | Learn, Use an Azure service principal with certificate-based authentication; Create Azure service principals using the Azure CLI |
+| 2 | PEM to certificate store: the PowerShell lines are the ones verified locally for *Microsoft Automation, Module 4* (Unit 9 step 4) | Lab 2, step 1 | carried from verified source | `docs/training/_verification/ms-automation-arc.md`, claim 65 |
+| 3 | Graph PowerShell app-only sign-in by thumbprint, certificate in the user's store | Lab 2, step 1 | verified | Learn, Use app-only authentication with the Microsoft Graph PowerShell SDK |
+| 4 | An app role assignment grants an application permission; `Application.Read.All` and `AppRoleAssignment.ReadWrite.All`; not reviewed, effective immediately | Lab 2, step 2 | verified | Learn, Grant or revoke API permissions programmatically |

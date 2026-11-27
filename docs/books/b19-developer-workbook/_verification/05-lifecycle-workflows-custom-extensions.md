@@ -65,3 +65,15 @@ New section before Dangers: 16 rows, one per Lab 1 and Lab 2 scripted step or ki
 | 4 | FedRAMP Marketplace listings, status, class and impact level | Federal requirements and evidence | verified | `products.json`, `last_change` 2026-11-01T05:02:56Z, downloaded and parsed November 2, 2026 |
 | 5 | KSIs are provider-side; the agency doesn't report them | Under the table | carried from verified source | Book 00, Appendix B |
 
+## Lab 2 commands for the portal steps, November 27, 2026
+
+Each Lab 2 step that was done only in a portal or by hand now has a command block, with the portal path kept as the alternative. Learn pages opened on November 27, 2026 with the web fetch tool (the Microsoft Learn MCP tools weren't available in this session). Nothing was run against a tenant or subscription: the commands are checked against the pages, not executed, except the validation kit catalog call in Chapter 09, which was run on the kit's own files.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Creating the Logic App with the extension is an admin center option; Graph's create links an existing Logic App | Lab 2, step 1 (no command, by design) | verified | Learn, Trigger Logic Apps based on custom task extensions; Create customTaskExtensions |
+| 2 | Logic Apps create-or-update takes `location`, `identity`, `tags`, `definition`, `parameters`, `accessControl`, `state` | Lab 2, steps 3 and 6 | verified | Learn, Workflows - Create Or Update (2016-06-01 and 2019-05-01) |
+| 3 | Run actions read by name; `properties.status` | Lab 2, step 5 | verified | Learn, Workflow Run Actions - Get (2016-06-01) |
+| 4 | `activate` with `subjects`; runs regardless of scope and trigger; `204` | Lab 2, steps 5 and 6 | verified | Learn, workflow: activate |
+| 5 | Task processing results per user: path and properties | Lab 2, steps 5 and 6 | verified | Learn, List taskProcessingResults (for a user) |
+| 6 | `createNewVersion` takes the whole workflow; permanent delete from `deletedItems/workflows` | Lab 2, step 7 | verified | Learn, workflow: createNewVersion; Delete deletedItemContainer |
