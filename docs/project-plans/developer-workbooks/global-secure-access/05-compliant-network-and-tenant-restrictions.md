@@ -464,6 +464,9 @@ az monitor log-analytics query --workspace <workspace-guid> --analytics-query "S
 ./Invoke-GsaCollect.ps1 -SettingsPath <settings-file> -OutputPath out/after -AllowUnverified
 ./Invoke-GsaCheck.ps1 -Area compliant-network, tenant-restrictions -SettingsPath <settings-file> -CollectionPath out/after -InputsPath <inputs-folder> -OutputPath out/check-test
 
+# Step 6: Run Learn's four-case test
+az monitor log-analytics query --workspace <workspace-guid> --analytics-query "SigninLogs | where TimeGenerated > ago(1d) | where Identity contains 'Tenant Restriction' | summarize count() by ResultType = tostring(ResultType), ResourceTenantId, AppDisplayName, ResourceDisplayName" -o table
+
 # Step 7: Back it out
 Invoke-MgGraphRequest -Method DELETE -Uri "https://graph.microsoft.com/v1.0/identity/conditionalAccess/policies/<policy-id>"
 Invoke-MgGraphRequest -Method PATCH -Uri "https://graph.microsoft.com/beta/networkAccess/settings/crossTenantAccess" -Body '{"networkPacketTaggingStatus":"disabled"}' -ContentType "application/json"
@@ -510,6 +513,12 @@ Remove-Item -Recurse -Force out/before, out/plan-cn, out/after, out/check-test
    ```
 
 6. **Run Learn's four-case test** from the test device with the client on: a member signs in normally; an account from the partner test tenant signs in; an account from a tenant the policy doesn't allow is blocked; a guest in the test tenant isn't evaluated. Record each outcome in the change record.
+
+   The four sign-ins themselves have no command: each is an interactive sign-in by a different account on the test device, which is what Learn's test checks.[^gsa05-utr] In PowerShell, read the outcomes the sign-in log recorded for the cross-tenant cases (Learn's two tenant restrictions queries, over the last day; the blocked case shows `5000211`):[^gsa05-opsms]
+
+   ```powershell
+   az monitor log-analytics query --workspace <workspace-guid> --analytics-query "SigninLogs | where TimeGenerated > ago(1d) | where Identity contains 'Tenant Restriction' | summarize count() by ResultType = tostring(ResultType), ResourceTenantId, AppDisplayName, ResourceDisplayName" -o table
+   ```
 
 7. **Back it out:** delete the lab's policy and turn tagging off if the lab turned it on. The TRv2 policy stays:
 

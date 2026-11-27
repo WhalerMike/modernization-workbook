@@ -6262,9 +6262,10 @@ pages:
   ms_date: '2026-09-20'
   ms_topic: how-to
   description: Assign users, groups, devices, and device platforms to Global Secure Access traffic forwarding profiles.
-  coverage: not-covered
+  coverage: cited
   note: Traffic forwarding profile configuration
-  cited_by: []
+  cited_by:
+  - docs/project-plans/developer-workbooks/global-secure-access/04-microsoft-traffic-and-change-plans.md
 - path: docs/global-secure-access/how-to-migrate-direct-access-to-private-access.md
   url: https://learn.microsoft.com/entra/global-secure-access/how-to-migrate-direct-access-to-private-access
   title: Migrate from DirectAccess to Microsoft Entra Private Access
@@ -7295,9 +7296,10 @@ pages:
   ms_date: '2025-06-24'
   ms_topic: troubleshooting
   description: Troubleshoot the Global Secure Access client using the health check tab in the advanced diagnostics utility.
-  coverage: not-covered
+  coverage: cited
   note: Client deployment (Windows, mobile, macOS) and troubleshooting; Intune deployment candidate
-  cited_by: []
+  cited_by:
+  - docs/project-plans/developer-workbooks/global-secure-access/06-private-apps-and-admin-paths.md
 - path: docs/global-secure-access/troubleshoot-global-secure-access-client-diagnostics-health-check.md
   url: https://learn.microsoft.com/entra/global-secure-access/troubleshoot-global-secure-access-client-diagnostics-health-check
   title: 'Troubleshoot the Windows Global Secure Access client: Health check'
@@ -15478,6 +15480,7 @@ pages:
   - docs/books/guides/hcm-entra-implementation.md
   - docs/evaluations/oracle-contingent-worker-contractor-source.md
   - docs/images/learn/identity-app-provisioning-inbound-provisioning-api-configure-app/snapshot.json
+  - docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.md
   - docs/project-plans/developer-workbooks/hr-driven-identity/08-deploying-to-test-and-production.md
 - path: docs/identity/app-provisioning/inbound-provisioning-api-curl-tutorial.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-curl-tutorial
@@ -15538,6 +15541,7 @@ pages:
   - docs/books/b03-hr-identity/05-the-provisioning-pipeline.md
   - docs/books/b03-hr-identity/appendix-b-security-and-privacy.md
   - docs/books/guides/hcm-entra-implementation.md
+  - docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.md
 - path: docs/identity/app-provisioning/inbound-provisioning-api-graph-explorer.md
   url: https://learn.microsoft.com/entra/identity/app-provisioning/inbound-provisioning-api-graph-explorer
   title: Quickstart API-driven inbound provisioning with Graph Explorer
@@ -15588,6 +15592,7 @@ pages:
   - data/source-register.json
   - docs/books/b19-developer-workbook/01-the-hr-to-entra-middleware.md
   - docs/books/guides/hcm-entra-implementation.md
+  - docs/project-plans/developer-workbooks/hr-driven-identity/02-contractor-sources-and-end-dates.md
   - docs/reference/source-register.md
   - examples/hcm-entra/README.md
   - examples/third_party/csv2scim/SNAPSHOT.md
