@@ -380,6 +380,16 @@ Use a test tenant in the worldwide or GCC cloud, never production, with fictiona
 Every command in this lab, in order, from `examples/non-person-identity`. Each step below says what it does and what to look for.
 
 ```powershell
+# Step 1: Grant the two application permissions
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes Application.Read.All, AppRoleAssignment.ReadWrite.All -NoWelcome
+$sp = Get-MgServicePrincipal -Filter "appId eq '<app-id>'"
+$graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+foreach ($p in 'LicenseAssignment.Read.All', 'User.Read.All') {
+    $role = $graph.AppRoles | Where-Object { $_.Value -eq $p -and $_.AllowedMemberTypes -contains 'Application' }
+    New-MgServicePrincipalAppRoleAssignedTo -ServicePrincipalId $graph.Id -BodyParameter @{ principalId = $sp.Id; resourceId = $graph.Id; appRoleId = $role.Id } | Out-Null
+}
+Get-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id | ForEach-Object { $id = $_.AppRoleId; ($graph.AppRoles | Where-Object Id -eq $id).Value }
+
 # Step 2: Write the inputs
 New-Item -ItemType Directory -Force <inputs> | Out-Null
 foreach ($f in 'workloads', 'dispositions', 'waves') { Get-Content tests/fixtures/ch03/inputs/$f.csv -TotalCount 1 | Set-Content <inputs>/$f.csv }
@@ -413,6 +423,19 @@ Remove-Item -Recurse -Force out/matrix-test
    1. **Entra ID** > **App registrations**, open the app, then **API permissions** > **Add a permission** > **Microsoft Graph** > **Application permissions**.
    2. Select `LicenseAssignment.Read.All` and `User.Read.All`, then **Add permissions**.
    3. Select **Grant admin consent for** your tenant, and confirm.
+
+   In PowerShell, signed in as the test administrator, Learn's programmatic grant: each permission is the Microsoft Graph app role of that name, assigned to the app's service principal, which is the admin consent. The last line lists what the service principal now holds, Chapter 01's two with these:[^np03-grant]
+
+   ```powershell
+   Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes Application.Read.All, AppRoleAssignment.ReadWrite.All -NoWelcome
+   $sp = Get-MgServicePrincipal -Filter "appId eq '<app-id>'"
+   $graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+   foreach ($p in 'LicenseAssignment.Read.All', 'User.Read.All') {
+       $role = $graph.AppRoles | Where-Object { $_.Value -eq $p -and $_.AllowedMemberTypes -contains 'Application' }
+       New-MgServicePrincipalAppRoleAssignedTo -ServicePrincipalId $graph.Id -BodyParameter @{ principalId = $sp.Id; resourceId = $graph.Id; appRoleId = $role.Id } | Out-Null
+   }
+   Get-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id | ForEach-Object { $id = $_.AppRoleId; ($graph.AppRoles | Where-Object Id -eq $id).Value }
+   ```
 
 2. **Write the inputs** for the test accounts: a `workloads.csv` row and a `dispositions.csv` row for each, a `waves.csv` with one wave and a rollback owner who is an enabled test user, `program-dates.json`, and a `workload-id-premium.json` listing one single-tenant test app as Tier 1. The first commands make the three CSV files with the fixture's headers and write `program-dates.json` from the fixture's, with your test program's three dates:
 
@@ -449,7 +472,7 @@ Remove-Item -Recurse -Force out/matrix-test
    (Get-Content out/matrix-test/workload-id-premium.json -Raw | ConvertFrom-Json).tenant | ConvertTo-Json -Depth 10
    ```
 
-5. **Check eligibility against the admin center.** On **Conditional Access**, start a new policy, choose **Workload identities**, and confirm the single-tenant test app can be selected and a managed identity can't; check whether a legacy service principal is offered (row 27). Discard the draft.
+5. **Check eligibility against the admin center.** On **Conditional Access**, start a new policy, choose **Workload identities**, and confirm the single-tenant test app can be selected and a managed identity can't; check whether a legacy service principal is offered (row 27). Discard the draft. This step has no command, because it checks what the admin center's own **Workload identities** picker offers, the portal steps Learn gives for these policies; a script would test what Graph accepts in a policy body, not the picker.[^np03-ca-wid]
 6. **Back it out.** Remove the two permissions, and delete `out/matrix-test`: it lists the accounts kept on Kerberos and who owns them.
 
    1. **Entra ID** > **App registrations**, open the app, then **API permissions**. For `LicenseAssignment.Read.All` and then `User.Read.All`, open the row's **...** menu, select **Remove permission**, and confirm.
@@ -548,6 +571,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers. The KSI column name
 [^np03-skus]: Microsoft Learn, "List subscribedSkus," national cloud table, permissions, optional query parameters, <https://learn.microsoft.com/graph/api/subscribedsku-list?view=graph-rest-1.0> (accessed Oct 30, 2026).
 [^np03-sku-ref]: Microsoft Learn, "Product names and service plan identifiers for licensing," Microsoft Entra Workload ID and Workload Identities Premium, <https://learn.microsoft.com/entra/identity/users/licensing-service-plan-reference> (accessed Oct 30, 2026).
 [^np03-user-get]: Microsoft Learn, "Get a user," permissions, <https://learn.microsoft.com/graph/api/user-get?view=graph-rest-1.0> (accessed Oct 30, 2026; read for Chapter 02).
+[^np03-grant]: Microsoft Learn, "Grant or revoke API permissions programmatically," grant an app role to a client service principal, <https://learn.microsoft.com/graph/permissions-grant-via-msgraph?pivots=grant-application-permissions> (accessed Nov 27, 2026).
 [^np03-deployments]: Microsoft Learn, "Microsoft Graph national cloud deployments," <https://learn.microsoft.com/graph/deployments> (accessed Oct 30, 2026).
 [^np03-src]: Microsoft, MicrosoftDocs/entra-docs, `docs/architecture/service-accounts-on-premises.md`, `docs/architecture/secure-service-accounts.md` and `docs/workload-id/workload-identities-faqs.md` at commit `7f78b50dce9d8cf119de57cbd6fd66e24a6c58d4` (October 30, 2026; the architecture pages last changed February 25, 2026, the FAQ June 15, 2026), MIT License, <https://github.com/MicrosoftDocs/entra-docs/tree/7f78b50dce9d8cf119de57cbd6fd66e24a6c58d4/docs> (accessed Oct 30, 2026); pinned copy in `examples/third_party/entra-service-account-choice-pages`.
 [^np03-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, release 5.2.0 OSCAL profile (includes AC-2, AC-3, AC-6, AC-6(5), AU-9, CA-7, CM-3, CM-3(2), IA-5 and SI-7), <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (read November 2, 2026).
