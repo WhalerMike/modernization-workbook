@@ -51,7 +51,7 @@ Most agencies run hundreds or thousands of mission applications, many of them wr
 | **Who** | Who governs the architecture: the review board, standards, patterns and gates | [07](07-who-governs-the-architecture.md) |
 | **How** | The reference implementation, the TOGAF and Zachman mapping, running the portfolio in waves, and the identity remediation work packages | [08](08-the-reference-implementation.md), [09](09-togaf-and-zachman.md), [10](10-running-the-portfolio-in-waves.md) |
 
-Appendix: [A — Identity remediation work packages](appendix-a-identity-remediation-work-packages.md)
+Appendices: [A — Identity remediation work packages](appendix-a-identity-remediation-work-packages.md) · [B — Shutting down a retired or replaced application](appendix-b-shutting-down-a-retired-application.md)
 
 ## Reading paths
 

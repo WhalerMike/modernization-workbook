@@ -25,7 +25,7 @@
   <li class="nl-tile">
     <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/ticket-to-machine.html">Ticket-to-Machine</a></p>
     <p class="nl-tile-desc">Closing drift by machine instead of by hand</p>
-    <p class="nl-tile-count">29 pages</p>
+    <p class="nl-tile-count">30 pages</p>
   </li>
   <li class="nl-tile">
     <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/hr-driven-identity.html">HR-Driven Identity</a></p>
@@ -105,7 +105,7 @@
   <li class="nl-tile">
     <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/application-modernization.html">Application Modernization</a></p>
     <p class="nl-tile-desc">Modernizing an application portfolio, not rewriting it</p>
-    <p class="nl-tile-count">30 pages</p>
+    <p class="nl-tile-count">31 pages</p>
   </li>
 </ul>
 <p class="nl-more"><a href="../topics/index.html">Every topic, and what each one lacks</a></p></div>

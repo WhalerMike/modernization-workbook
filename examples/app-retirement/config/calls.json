@@ -1,0 +1,10 @@
+{
+  "_comment": "Everything the retirement plan reads live (with -ReadEntra), with the least privilege Microsoft Learn names for it (read November 27, 2026). Read only: the plan prints the removal commands for the owning teams; the kit runs none of them. docs/reference/permissions-by-run.md reads this file.",
+  "tasks": {
+    "retirement-plan": { "mode": "read", "chapter": "", "graphPermissions": ["Application.Read.All", "AuditLog.Read.All"], "azureRoles": [], "adRights": [] }
+  },
+  "calls": [
+    { "id": "sp-by-appid", "api": "graph", "method": "GET", "version": "v1.0", "path": "/servicePrincipals(appId='{appId}')", "permissions": ["Application.Read.All"], "stage": "v1.0", "tasks": ["retirement-plan"], "learn": "https://learn.microsoft.com/graph/api/serviceprincipal-get?view=graph-rest-1.0", "note": "accountEnabled: whether sign-in is still enabled" },
+    { "id": "sp-sign-in-activity", "api": "graph", "method": "GET", "version": "beta", "path": "/reports/servicePrincipalSignInActivities", "permissions": ["AuditLog.Read.All"], "stage": "beta", "tasks": ["retirement-plan"], "learn": "https://learn.microsoft.com/graph/api/reportroot-list-serviceprincipalsigninactivities?view=graph-rest-beta", "note": "The application's last sign-in, for the quiet gate" }
+  ]
+}

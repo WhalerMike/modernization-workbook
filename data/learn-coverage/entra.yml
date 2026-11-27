@@ -22129,6 +22129,7 @@ pages:
   note: ''
   cited_by:
   - data/source-register.json
+  - docs/books/b18-application-modernization/appendix-b-shutting-down-a-retired-application.md
   - docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md
   - docs/reference/source-register.md
 - path: docs/identity/enterprise-apps/end-user-experiences.md
@@ -22770,6 +22771,7 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - docs/books/b18-application-modernization/appendix-b-shutting-down-a-retired-application.md
   - docs/books/guides/non-person-identity-implementation.md
 - path: docs/identity/enterprise-apps/restore-permissions.md
   url: https://learn.microsoft.com/entra/identity/enterprise-apps/restore-permissions

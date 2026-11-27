@@ -39,7 +39,7 @@ The six dispositions this book uses, and how they line up with AWS's 7 Rs and th
 
 The dispositions are listed in rising order of cost and risk. That ordering is the rubric's first rule: an application gets the cheapest disposition that meets its mission need, and every step up the list has to be justified by the scores.
 
-Two of them are decisions rather than projects. Retire and retain need a decision process, an owner's agreement and, for retire, a decommissioning checklist, but no engineering team. In most portfolios they are where the early savings are, which is why [Book 06's](../b06-data-platform/06-retain-consolidate-retire.md) treatment of SQL Server instances also starts with them.
+Two of them are decisions rather than projects. Retire and retain need a decision process, an owner's agreement and, for retire, a decommissioning checklist ([Appendix B](appendix-b-shutting-down-a-retired-application.md)), but no engineering team. In most portfolios they are where the early savings are, which is why [Book 06's](../b06-data-platform/06-retain-consolidate-retire.md) treatment of SQL Server instances also starts with them.
 
 ## Where the names come from
 
