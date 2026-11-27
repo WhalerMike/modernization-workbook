@@ -28,6 +28,7 @@ Each kit that calls a live service keeps a file that lists every call it makes, 
 | [Information Protection](#information-protection) | 8 | 8 | 0 | — |
 | [Provider Notices](#provider-notices) | 1 | 1 | 0 | `ServiceHealth.Read.All`<br>`ServiceMessage.Read.All` |
 | [SQL Server Identity](#sql-server-identity) | 3 | 2 | 1 | — |
+| [Help desk automation](#help-desk-automation) | 7 | 5 | 2 | `ConsentRequest.Read.All`<br>`DeviceManagementRBAC.Read.All`<br>`Organization.Read.All`<br>`RoleManagement.Read.Directory`<br>`ServiceHealth.Read.All`<br>`User.Read.All` |
 | [Microsoft Automation](#ms-automation) | 10 | 10 | 0 | `Application.Read.All`<br>`AuditLog.Read.All`<br>`DeviceManagementConfiguration.Read.All`<br>`DeviceManagementManagedDevices.Read.All`<br>`DeviceManagementServiceConfig.Read.All`<br>`Policy.Read.All`<br>`RoleAssignmentSchedule.Read.Directory`<br>`RoleEligibilitySchedule.Read.Directory`<br>`RoleManagement.Read.Directory`<br>`User.Read.All` |
 
 ## Non-Person Identity {#non-person-identity}
@@ -207,6 +208,20 @@ From [`examples/sql-server-identity/config/permissions.json`](https://github.com
 | `login-apply` | R05 | Changes | — | — | SQL (Test instance): ALTER ANY LOGIN | Not scheduled: run by the person or pipeline the kit's chapter names |
 
 Lab 1 runs on fixtures and needs none of this. Grant the audit login these permissions, or the `##MS_DefinitionReader##` server role, not `##MS_SecurityDefinitionReader##`, which also shows SQL login password hashes. Which account each SQL Server service runs as is read on the host, not here: see Runbook R02 under Kits that state their needs in prose.
+
+## Help desk automation {#help-desk-automation}
+
+From [`examples/help-desk-automation/config/calls.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/help-desk-automation/config/calls.json). Taught in [Help desk automation](../../docs/books/b15-day2-operations/12-the-day-two-runbook.md).
+
+| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights | On the platform host (WD-181) |
+|---|---|---|---|---|---|---|
+| `consent-requests` | — | Reads only | `ConsentRequest.Read.All` | — | — | `gmsa-fmpassess$`; Graph and Azure as the help desk audit reader app |
+| `log-forwarding-check` | — | Reads only | — | Log Analytics Reader<br>Reader | — | `gmsa-fmpassess$`; Graph and Azure as the help desk audit reader app |
+| `role-review` | — | Reads only | `DeviceManagementRBAC.Read.All`<br>`RoleManagement.Read.Directory` | — | — | `gmsa-fmpassess$`; Graph and Azure as the help desk audit reader app |
+| `sync-check` | — | Reads only | `Organization.Read.All`<br>`ServiceHealth.Read.All`<br>`User.Read.All` | — | — | `gmsa-fmpassess$`; Graph and Azure as the help desk audit reader app |
+| `typed-change-plan` | — | Reads only | `User.Read.All` | — | — | On request, not scheduled: planned for each ticket before approval |
+| `log-forwarding-deploy` | — | Changes | — | A person deploying the reviewed template, not the scheduled identity<br>A role that can create data collection rules and their associations on the Arc machines (confirm the built-in role in the test stage) | — | Not scheduled: run by the person or pipeline the kit's chapter names |
+| `typed-change-apply` | — | Changes | `User.Read.All`<br>`User.ReadUpdate.All` | User Administrator, activated through PIM against the ticket, or the approved write pipeline (WD-182) | — | Not scheduled: run by the person or pipeline the kit's chapter names |
 
 ## Microsoft Automation {#ms-automation}
 

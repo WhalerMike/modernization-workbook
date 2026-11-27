@@ -47,6 +47,7 @@ KITS = [
      "docs/project-plans/developer-workbooks/information-protection/index.md"),
     ("provider-notices", "Provider Notices", "docs/project-plans/developer-workbooks/provider-notices/index.md"),
     ("sql-server-identity", "SQL Server Identity", "docs/project-plans/developer-workbooks/sql-server-identity/index.md"),
+    ("help-desk-automation", "Help desk automation", "docs/books/b15-day2-operations/12-the-day-two-runbook.md"),
     ("ms-automation", "Microsoft Automation", "docs/training/ms-automation-foundations.md"),
 ]
 # Which identity runs each kit's read runs on the platform host (WD-181). A run that changes something,
@@ -64,6 +65,7 @@ HOST = {
     "information-protection": f"{GMSA}; Purview's modules as the Information Protection reader app",
     "provider-notices": "WD-179's server and reader app",
     "sql-server-identity": f"{GMSA}; Azure as the SQL Server Identity reader app",
+    "help-desk-automation": f"{GMSA}; Graph and Azure as the help desk audit reader app",
     "ms-automation": "Not scheduled: a learning path's labs",
 }
 RUN_HOST = {
@@ -71,6 +73,7 @@ RUN_HOST = {
     ("privileged-access", "inventory"): f"Weekly in the estate inventory: {GMSA} and its reader app (WD-180)",
     ("non-person-identity", "cloud-workload"): f"{GMSA}; AWS and Oracle Cloud sign-ins aren't decided (Chapter 13)",
     ("non-person-identity", "kerberos-apply"): "The pipeline's own gMSA, `gmsa-msapipe$`, after SailPoint approves (WD-163)",
+    ("help-desk-automation", "typed-change-plan"): "On request, not scheduled: planned for each ticket before approval",
     ("sql-server-identity", "audit-snapshot"): f"{GMSA}, through a Windows login on each instance with the read permissions",
 }
 BY_HAND = "Not scheduled: run by the person or pipeline the kit's chapter names"
