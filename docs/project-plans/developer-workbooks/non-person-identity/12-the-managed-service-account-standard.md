@@ -29,7 +29,7 @@ The code half of the [managed service account standard](../../../books/guides/se
 ## Narrated tour
 {{< fmw-video DW_NPI_12_MSA_Standard_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-npi-12-msa-standard) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-npi-12-msa-standard) (about 12 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-12-msa-standard/DW_NPI_12_MSA_Standard_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-12-msa-standard/DW_NPI_12_MSA_Standard_Narrated.vtt). Recorded on November 21, 2026 from the approved chapter.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-npi-12-msa-standard) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-npi-12-msa-standard) (about 12 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-12-msa-standard/DW_NPI_12_MSA_Standard_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-12-msa-standard/DW_NPI_12_MSA_Standard_Narrated.vtt). Recorded on November 27, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->
