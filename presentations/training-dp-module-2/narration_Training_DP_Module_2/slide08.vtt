@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.869
+Runbook R oh three's audit script
+degrades rather than crashing,
+
+2
+00:00:03.869 --> 00:00:05.575
+so know what each state means.
+
+3
+00:00:05.575 --> 00:00:09.632
+If the Active Directory module is
+absent, S P N discovery is skipped:
+
+4
+00:00:09.632 --> 00:00:14.037
+only the hosts you name are audited,
+and orphaned logins can't be checked.
+
+5
+00:00:14.037 --> 00:00:16.704
+If the domain controller is unreachable,
+
+6
+00:00:16.704 --> 00:00:20.312
+the S P N query returns nothing,
+so target a reachable one.
+
+7
+00:00:20.312 --> 00:00:22.971
+If a host can't be reached
+for its service details,
+
+8
+00:00:22.971 --> 00:00:25.962
+the service-account fields
+stay unknown for that host.
+
+9
+00:00:25.962 --> 00:00:30.173
+If the SQL connection fails, the
+instance is recorded as query failed,
+
+10
+00:00:30.173 --> 00:00:33.612
+with an empty login inventory,
+rather than aborting the run.
+
+11
+00:00:33.612 --> 00:00:38.300
+And a T C P timeout is recorded as
+timeout, as opposed to yes or no.
+
+12
+00:00:38.300 --> 00:00:42.550
+An empty or unknown field is a
+state to read, not a clean result.

@@ -19,7 +19,12 @@ $script:KitRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $script:Steps = 'start-kit', 'non-person-identity', 'privileged-access', 'validation-kit'
 
 function Get-EiRequirement {
-    <# The requirement rows (controls, KSIs) of each step, from config/requirements.json. #>
+    <#
+    .SYNOPSIS
+        The requirement rows (controls, KSIs) of each step, from config/requirements.json.
+    .EXAMPLE
+        (Get-EiRequirement)['privileged-access'].ksi
+    #>
     param([string]$Path = (Join-Path $script:KitRoot 'config/requirements.json'))
     $doc = Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json -AsHashtable
     $rows = @{}
@@ -45,6 +50,9 @@ function Read-EiSettings {
     .SYNOPSIS
         Reads and checks the settings file. Refuses a secret anywhere in it, a placeholder in a live
         run, an unknown cloud, and a kit folder that isn't there.
+
+    .EXAMPLE
+        $settings = Read-EiSettings -Path config/settings.fixture.json -Fixture
     #>
     param([Parameter(Mandatory)][string]$Path, [switch]$Fixture)
     $full = (Resolve-Path -LiteralPath $Path).Path
@@ -91,13 +99,24 @@ function Read-EiSettings {
 }
 
 function Test-EiStepEnabled {
+    <#
+    .SYNOPSIS
+        Whether the settings leave a step on: a step is on unless its section says enabled: false.
+    .EXAMPLE
+        Test-EiStepEnabled -Settings $settings -Step 'validation-kit'
+    #>
     param([Parameter(Mandatory)][hashtable]$Settings, [Parameter(Mandatory)][string]$Step)
     $c = $Settings[$Step]
     -not ($c -and $c['enabled'] -eq $false)
 }
 
 function New-EiRunFolder {
-    <# <outputRoot>\<UTC yyyy-MM-ddTHHmmssZ>; a second run in the same second waits for the next. #>
+    <#
+    .SYNOPSIS
+        <outputRoot>\<UTC yyyy-MM-ddTHHmmssZ>; a second run in the same second waits for the next.
+    .EXAMPLE
+        $run = New-EiRunFolder -OutputRoot C:\FMWLabs\results\estate-inventory
+    #>
     param([Parameter(Mandatory)][string]$OutputRoot, [datetime]$Now = [datetime]::UtcNow)
     $null = New-Item -ItemType Directory -Force -Path $OutputRoot
     do {
@@ -111,7 +130,12 @@ function New-EiRunFolder {
 }
 
 function Get-EiCertificate {
-    <# The sign-in certificate by thumbprint, from the run account's store, then the machine's. #>
+    <#
+    .SYNOPSIS
+        The sign-in certificate by thumbprint, from the run account's store, then the machine's.
+    .EXAMPLE
+        Get-EiCertificate -Thumbprint <thumbprint>
+    #>
     param([Parameter(Mandatory)][string]$Thumbprint)
     foreach ($store in 'Cert:\CurrentUser\My', 'Cert:\LocalMachine\My') {
         $c = Get-Item -LiteralPath (Join-Path $store $Thumbprint) -ErrorAction SilentlyContinue
@@ -129,6 +153,9 @@ function Connect-EiCloud {
         Signs in to Microsoft Graph and Azure once, app-only, and checks both sessions are in the
         settings' tenant. Microsoft 365 GCC (Moderate) uses the global Graph endpoint and commercial
         Azure, so both clouds sign in to Global and AzureCloud.
+
+    .EXAMPLE
+        Connect-EiCloud -Settings (Read-EiSettings -Path D:\EstateInventory\settings.json) -NeedAzure
     #>
     param([Parameter(Mandatory)][hashtable]$Settings, [switch]$NeedAzure)
     $auth = $Settings['auth']
@@ -176,6 +203,9 @@ function Invoke-EiStep {
     .SYNOPSIS
         Runs one step, logs everything it prints to logs\<step>.log, and turns an exception into an
         Error row instead of stopping the run.
+
+    .EXAMPLE
+        Invoke-EiStep -Name 'start-kit' -RunPath $run.Path -Action { Invoke-EiStartKit -Settings $settings -RunPath $run.Path -Fixture }
     #>
     param(
         [Parameter(Mandatory)][string]$Name,
@@ -216,7 +246,12 @@ function Invoke-EiStep {
 }
 
 function Find-EiStartKitRun {
-    <# The run folder the Start Kit wrote under its output folder (the newest with a manifest). #>
+    <#
+    .SYNOPSIS
+        The run folder the Start Kit wrote under its output folder (the newest with a manifest).
+    .EXAMPLE
+        Find-EiStartKitRun -Path (Join-Path $run.Path 'start-kit')
+    #>
     param([Parameter(Mandatory)][string]$Path)
     Get-ChildItem -LiteralPath $Path -Directory -ErrorAction SilentlyContinue |
         Where-Object { Test-Path -LiteralPath (Join-Path $_.FullName 'AssessmentManifest.json') } |
@@ -229,9 +264,12 @@ function Invoke-EiStartKit {
         The forest: the Start Kit in Windows PowerShell 5.1 (the edition it declares), as the run
         account, in a child process. A fixture run copies the kit's recorded run instead: the Start
         Kit reads a live forest only.
+
+    .EXAMPLE
+        Invoke-EiStartKit -Settings $settings -RunPath $run.Path -Fixture
     #>
     param([Parameter(Mandatory)][hashtable]$Settings, [Parameter(Mandatory)][string]$RunPath, [switch]$Fixture,
-        [string]$WindowsPowerShell = (Join-Path $env:SystemRoot 'System32\WindowsPowerShell\v1.0\powershell.exe'))
+        [string]$WindowsPowerShell)
     $kit = $Settings['_kits']['start-kit']
     $out = Join-Path $RunPath 'start-kit'
     $null = New-Item -ItemType Directory -Force -Path $out
@@ -242,6 +280,10 @@ function Invoke-EiStartKit {
         "Fixture run: copied the Start Kit's recorded run ($recorded); the Start Kit reads only a live forest."
         $run = Find-EiStartKitRun -Path $out
         return @{ _eiResult = $true; status = 'Recorded'; output = "start-kit/$($run.Name)"; manifest = "start-kit/$($run.Name)/AssessmentManifest.json"; runPath = $run.FullName }
+    }
+    if (-not $WindowsPowerShell) {
+        if (-not $IsWindows) { throw 'The Start Kit needs Windows PowerShell 5.1 on Windows; run the estate inventory on a Windows Server member server.' }
+        $WindowsPowerShell = Join-Path $env:SystemRoot 'System32\WindowsPowerShell\v1.0\powershell.exe'
     }
     $script = Join-Path $kit 'Invoke-FMPStartKit.ps1'
     # One command line for Windows PowerShell, every value single-quoted, so a list of domains
@@ -268,7 +310,12 @@ function Invoke-EiStartKit {
 }
 
 function Test-EiNeedsAzure {
-    <# Whether a cloud step reads Azure as well as Microsoft Graph. #>
+    <#
+    .SYNOPSIS
+        Whether a cloud step reads Azure as well as Microsoft Graph.
+    .EXAMPLE
+        Test-EiNeedsAzure -Settings $settings -Step 'privileged-access'
+    #>
     param([Parameter(Mandatory)][hashtable]$Settings, [Parameter(Mandatory)][string]$Step)
     $c = if ($Settings[$Step]) { $Settings[$Step] } else { @{} }
     switch ($Step) {
@@ -284,12 +331,15 @@ function Get-EiKitPlan {
         What a cloud step runs: each kit script with its parameters, unchanged, and where it writes.
 
         non-person-identity  Invoke-NpiInventory.ps1 once per domain in the settings. The first
-                             domain's run reads Entra ID and Azure as well; the others add -SkipAzure.
-                             The Start Kit's server-to-service inventory, when it wrote one, fills the
-                             hosts and services of AD accounts.
+        domain's run reads Entra ID and Azure as well; the others add -SkipAzure.
+        The Start Kit's server-to-service inventory, when it wrote one, fills the
+        hosts and services of AD accounts.
         privileged-access    Invoke-PaInventory.ps1, Entra roles and PIM, and Azure at the scopes.
         validation-kit       Invoke-ValidationKit.ps1 on the session this step signed in with
-                             (-SkipConnect).
+        (-SkipConnect).
+
+    .EXAMPLE
+        (Get-EiKitPlan -Settings $settings -Step 'privileged-access' -RunPath $run.Path -Fixture).Calls
     #>
     param([Parameter(Mandatory)][hashtable]$Settings, [Parameter(Mandatory)][string]$Step,
         [Parameter(Mandatory)][string]$RunPath, [switch]$Fixture, [string]$StartKitRun)
@@ -361,7 +411,12 @@ function Get-EiKitPlan {
 }
 
 function Complete-EiKitStep {
-    <# The step's result from what its kit wrote and returned: the validation kit is Partial when a check ended in Error. #>
+    <#
+    .SYNOPSIS
+        The step's result from what its kit wrote and returned: the validation kit is Partial when a check ended in Error.
+    .EXAMPLE
+        Complete-EiKitStep -Plan $plan -RunPath $run.Path -Returned $returned
+    #>
     param([Parameter(Mandatory)][pscustomobject]$Plan, [Parameter(Mandatory)][string]$RunPath, [object[]]$Returned = @())
     $outputs = @($Plan.Outputs)
     $manifests = @($Plan.Manifests)
@@ -386,6 +441,9 @@ function Invoke-EiKitProcess {
         Runs one cloud step in its own PowerShell 7 process (Invoke-EiKitStep.ps1): it signs in,
         runs the kit's script unchanged and writes logs\<step>.result.json. A process per kit keeps
         each kit's modules and session apart from the others'.
+
+    .EXAMPLE
+        Invoke-EiKitProcess -Settings $settings -Step 'validation-kit' -RunPath $run.Path -Fixture
     #>
     param([Parameter(Mandatory)][hashtable]$Settings, [Parameter(Mandatory)][string]$Step,
         [Parameter(Mandatory)][string]$RunPath, [switch]$Fixture, [string]$StartKitRun,
@@ -413,6 +471,9 @@ function Write-EiManifest {
         EstateInventoryManifest.json (the settings' hash, the host, the account, the tenant and
         forest, each step's status and requirement rows, each kit's manifest and its SHA-256),
         Summary.md, and SHA256SUMS over every file in the run folder.
+
+    .EXAMPLE
+        Write-EiManifest -Settings $settings -Run $run -Results $results -Mode Fixture
     #>
     param(
         [Parameter(Mandatory)][hashtable]$Settings,
@@ -481,7 +542,12 @@ function Write-EiManifest {
 }
 
 function Test-EiRun {
-    <# Rechecks SHA256SUMS and the manifest's kit manifest hashes. Returns the problems (none: intact). #>
+    <#
+    .SYNOPSIS
+        Rechecks SHA256SUMS and the manifest's kit manifest hashes. Returns the problems (none: intact).
+    .EXAMPLE
+        Test-EiRun -Path C:\FMWLabs\results\estate-inventory\<run>
+    #>
     param([Parameter(Mandatory)][string]$Path)
     $problems = [System.Collections.Generic.List[string]]::new()
     foreach ($line in Get-Content -LiteralPath (Join-Path $Path 'SHA256SUMS')) {

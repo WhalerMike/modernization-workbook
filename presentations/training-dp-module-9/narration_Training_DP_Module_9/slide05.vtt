@@ -1,0 +1,91 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.966
+The kit's closure record shows
+eleven fields per instance,
+
+2
+00:00:03.966 --> 00:00:06.462
+and each one is met, not met, or external.
+
+3
+00:00:06.462 --> 00:00:09.351
+Fields the audit can't
+see are external joins:
+
+4
+00:00:09.351 --> 00:00:13.800
+Entra sign-ins and audit, and M F A
+for every human, are always external.
+
+5
+00:00:13.800 --> 00:00:16.738
+The record points at those
+logs and doesn't copy them.
+
+6
+00:00:16.738 --> 00:00:20.888
+Condition four comes from the Arc
+snapshot, and is external without it.
+
+7
+00:00:20.888 --> 00:00:23.340
+The exception registry names a login,
+
+8
+00:00:23.340 --> 00:00:27.612
+an instance or a star for every
+instance, an approver and an expiry.
+
+9
+00:00:27.612 --> 00:00:31.151
+The record is narrower than the
+book's field set in two places,
+
+10
+00:00:31.151 --> 00:00:35.822
+so read those by hand: condition three
+checks login types but doesn't join them to
+
+11
+00:00:35.822 --> 00:00:39.502
+the Entra inventory, and the
+protocol field reads one snapshot,
+
+12
+00:00:39.502 --> 00:00:41.413
+not the whole validation period.
+
+13
+00:00:41.413 --> 00:00:44.633
+An instance with nothing not
+met is ready for the assessor,
+
+14
+00:00:44.633 --> 00:00:46.176
+with the external evidence.
+
+15
+00:00:46.176 --> 00:00:47.525
+It's never closed.
+
+16
+00:00:47.525 --> 00:00:50.225
+The book's Chapter 21,
+What Done Looks Like,
+
+17
+00:00:50.225 --> 00:00:55.784
+names six live evidence sets that close
+the transformation: the compliance records,
+
+18
+00:00:55.784 --> 00:00:59.834
+the Entra sign-in logs, the N T L
+M telemetry, the S A status report,
+
+19
+00:00:59.834 --> 00:01:03.740
+the Conditional Access report
+and the exception registry.

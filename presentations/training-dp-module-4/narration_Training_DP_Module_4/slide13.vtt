@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.138
+Lab 2 runs one mapping on
+your own test instance.
+
+2
+00:00:03.138 --> 00:00:04.875
+It's not run by the authors.
+
+3
+00:00:04.875 --> 00:00:09.597
+You need a test instance, never
+production: Sequel Server 2022 or later,
+
+4
+00:00:09.597 --> 00:00:14.401
+not a failover cluster instance,
+Arc-enabled in a commercial Azure test
+
+5
+00:00:14.401 --> 00:00:17.413
+subscription, which is
+where a Microsoft 365
+
+6
+00:00:17.413 --> 00:00:20.100
+G C C Moderate tenant's
+Arc resources live.
+
+7
+00:00:20.100 --> 00:00:24.069
+It needs Entra authentication
+configured, an Entra admin set,
+
+8
+00:00:24.069 --> 00:00:27.337
+as in Module 3, and a
+certificate your client trusts.
+
+9
+00:00:27.337 --> 00:00:29.995
+Write a one-row mapping
+for one Windows login,
+
+10
+00:00:29.995 --> 00:00:33.012
+read the create script, and
+run it as the Entra admin.
+
+11
+00:00:33.012 --> 00:00:35.388
+That's the only step
+that changes anything.
+
+12
+00:00:35.388 --> 00:00:38.125
+Then sign in as a member
+of the test Entra group,
+
+13
+00:00:38.125 --> 00:00:41.151
+validate a real Entra
+connection, and judge the run.
+
+14
+00:00:41.151 --> 00:00:45.217
+To back it out, sign in as the
+Entra admin, drop the database users
+
+15
+00:00:45.217 --> 00:00:49.050
+the script created, then the
+login, and delete the lab's files.
+
+16
+00:00:49.050 --> 00:00:51.620
+Drop login fails while
+the login is connected,
+
+17
+00:00:51.620 --> 00:00:55.150
+so wait for the member's session
+to close and run that line again.

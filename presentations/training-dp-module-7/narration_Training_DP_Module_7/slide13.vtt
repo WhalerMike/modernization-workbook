@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.188
+Lab 2 changes one string in one
+test application, never production.
+
+2
+00:00:04.188 --> 00:00:06.088
+It was not run by the authors.
+
+3
+00:00:06.088 --> 00:00:10.483
+It must be a column-A case: an I I S
+application on an Arc-enabled Windows host,
+
+4
+00:00:10.483 --> 00:00:15.526
+using Microsoft Data SQL Client two point
+one or later with integrated security,
+
+5
+00:00:15.526 --> 00:00:18.408
+against a test instance
+on sequel server twenty
+
+6
+00:00:18.408 --> 00:00:21.938
+twenty-two or later with Entra
+authentication configured.
+
+7
+00:00:21.938 --> 00:00:23.825
+Its owner writes the app file.
+
+8
+00:00:23.825 --> 00:00:26.648
+You copy the configuration
+and scan the copy,
+
+9
+00:00:26.648 --> 00:00:30.463
+then check gates one and two: the
+login exists and holds a role.
+
+10
+00:00:30.463 --> 00:00:33.148
+You let the application
+pool ask for the token,
+
+11
+00:00:33.148 --> 00:00:36.824
+keep the original file as the way
+back, and change the one string.
+
+12
+00:00:36.824 --> 00:00:40.450
+Gate three is seeing the application
+arrive on its Entra login.
+
+13
+00:00:40.450 --> 00:00:43.762
+Then a second scan should say
+Entra already, column done.
+
+14
+00:00:43.762 --> 00:00:47.311
+Step nine backs it all out: it
+restores the original file,
+
+15
+00:00:47.311 --> 00:00:51.480
+restarts the pool, removes it from
+the group and signs out of Azure.

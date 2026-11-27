@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.125
+To sum up.
+
+2
+00:00:01.125 --> 00:00:04.870
+A reviewed mapping becomes Entra
+logins beside the Windows ones,
+
+3
+00:00:04.870 --> 00:00:07.963
+as T-SQL that executes
+nothing until it's approved.
+
+4
+00:00:07.963 --> 00:00:12.185
+The parallel run decides from evidence
+when a legacy login can be turned off,
+
+5
+00:00:12.185 --> 00:00:15.200
+and nothing is dropped until
+thirty days' observation.
+
+6
+00:00:15.200 --> 00:00:17.899
+You wrote a fictional
+instance's plan and judged
+
+7
+00:00:17.899 --> 00:00:20.463
+its parallel run before
+and after the cutover.
+
+8
+00:00:20.463 --> 00:00:25.067
+The I S S O keeps the reviewed scripts,
+the plan, the mapping and the manifest
+
+9
+00:00:25.067 --> 00:00:30.050
+with each hash, and the parallel file for
+each snapshot, kept with the audit files.
+
+10
+00:00:30.050 --> 00:00:33.025
+Before shipping, work through
+Chapter 4's checklist.
+
+11
+00:00:33.025 --> 00:00:37.510
+Next, Module 5: groups,
+roles and the perimeter.

@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.475
+Start with what Microsoft Learn gives you.
+
+2
+00:00:02.475 --> 00:00:05.063
+The client builds an S
+P N for the instance.
+
+3
+00:00:05.063 --> 00:00:09.435
+For T C P it's M S SQL S V C,
+slash, the fully qualified name,
+
+4
+00:00:09.435 --> 00:00:14.474
+colon, the port, registered on the
+account the service runs under.
+
+5
+00:00:14.474 --> 00:00:17.663
+Learn's table of S P N
+states is the triage key.
+
+6
+00:00:17.663 --> 00:00:21.405
+When the S P N maps to the
+account the service runs under,
+
+7
+00:00:21.405 --> 00:00:25.313
+local connections use NTLM
+and remote ones use Kerberos.
+
+8
+00:00:25.313 --> 00:00:28.762
+When it maps to an incorrect
+account, authentication fails.
+
+9
+00:00:28.762 --> 00:00:31.638
+And when the lookup fails,
+or there's no S P N,
+
+10
+00:00:31.638 --> 00:00:34.684
+local and remote
+connections both use NTLM.
+
+11
+00:00:34.684 --> 00:00:40.268
+Notice the first row: a connection made
+on the server itself always reports NTLM,
+
+12
+00:00:40.268 --> 00:00:42.975
+even when Kerberos is set up correctly.
+
+13
+00:00:42.975 --> 00:00:45.380
+So you judge only remote connections.

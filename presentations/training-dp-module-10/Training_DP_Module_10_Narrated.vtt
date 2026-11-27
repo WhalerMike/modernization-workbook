@@ -1,0 +1,1028 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.077
+Welcome to Module 10, the last
+module of the Data Platform and SQL
+
+2
+00:00:04.077 --> 00:00:07.912
+Server Identity learning path:
+deploying to test and production.
+
+3
+00:00:07.912 --> 00:00:11.762
+It teaches Runbook R oh five, login
+migration and the parallel run,
+
+4
+00:00:11.762 --> 00:00:15.662
+and the break-glass design in
+Appendix B of the data platform book,
+
+5
+00:00:15.662 --> 00:00:20.212
+with Chapter 10 of the developer
+workbook, Building SQL Server Identity.
+
+6
+00:00:20.212 --> 00:00:22.574
+Everything in the earlier
+modules ends here.
+
+7
+00:00:22.574 --> 00:00:25.090
+Take this module after Module 9.
+
+8
+00:00:28.890 --> 00:00:30.227
+Why does this matter?
+
+9
+00:00:30.227 --> 00:00:34.258
+This is the change itself: one
+instance's logins move from Windows
+
+10
+00:00:34.258 --> 00:00:38.339
+to Microsoft Entra ID, first on a
+test instance, then in production.
+
+11
+00:00:38.339 --> 00:00:42.377
+The commands are the same both times;
+only the settings file changes.
+
+12
+00:00:42.377 --> 00:00:44.241
+Three rules hold it together.
+
+13
+00:00:44.241 --> 00:00:47.678
+Nothing runs that a second
+person didn't approve by hash.
+
+14
+00:00:47.678 --> 00:00:50.264
+The way back is planned
+before the cutover.
+
+15
+00:00:50.264 --> 00:00:53.612
+And production's preflight
+refuses to start until a real test
+
+16
+00:00:53.612 --> 00:00:56.827
+stage for the same instance is
+sealed in the evidence chain.
+
+17
+00:00:56.827 --> 00:01:00.700
+In this module you rehearse that
+whole test stage as a dry run.
+
+18
+00:01:04.500 --> 00:01:07.204
+Here's what you'll be able to
+do by the end of this module,
+
+19
+00:01:07.204 --> 00:01:09.600
+which takes about seventy
+minutes with the lab.
+
+20
+00:01:09.600 --> 00:01:11.994
+You'll name what preflight checks,
+
+21
+00:01:11.994 --> 00:01:14.962
+P F oh one to P F oh seven,
+and what it can't see.
+
+22
+00:01:14.962 --> 00:01:18.404
+You'll explain how three S
+H A two fifty-six hashes tie
+
+23
+00:01:18.404 --> 00:01:22.087
+the files a second person
+approved to the files that run.
+
+24
+00:01:22.087 --> 00:01:25.252
+You'll walk the test stage
+from preflight to the seal,
+
+25
+00:01:25.252 --> 00:01:27.238
+and say what makes it a go or a no-go.
+
+26
+00:01:27.238 --> 00:01:31.120
+You'll explain why a dry-run
+stage seals only as a rehearsal,
+
+27
+00:01:31.120 --> 00:01:34.437
+and why production preflight
+then fails P F oh six.
+
+28
+00:01:34.437 --> 00:01:38.425
+And you'll name the rollback triggers,
+and the path when Entra can't be reached.
+
+29
+00:01:38.425 --> 00:01:42.509
+Before you start, finish Module 9:
+its closure record and drift schedule
+
+30
+00:01:42.509 --> 00:01:46.800
+run during the observation, and
+production's seal needs the closure record.
+
+31
+00:01:46.800 --> 00:01:51.810
+This stage also runs Module 4's
+login plan and parallel run for real.
+
+32
+00:01:55.610 --> 00:01:58.385
+Unit 2 starts with the
+settings and preflight.
+
+33
+00:01:58.385 --> 00:02:00.333
+One settings file per environment,
+
+34
+00:02:00.333 --> 00:02:04.604
+filled from the template and kept inside
+your boundary, names the instance,
+
+35
+00:02:04.604 --> 00:02:08.048
+its snapshots, the exception
+registry, the reviewed mapping,
+
+36
+00:02:08.048 --> 00:02:10.597
+the evidence chain and
+the break-glass group.
+
+37
+00:02:10.597 --> 00:02:12.148
+No secret goes in it.
+
+38
+00:02:12.148 --> 00:02:14.185
+Preflight then checks seven things.
+
+39
+00:02:14.185 --> 00:02:16.873
+P F oh one, the settings are complete.
+
+40
+00:02:16.873 --> 00:02:18.977
+Oh two, the cloud is Azure Cloud,
+
+41
+00:02:18.977 --> 00:02:23.773
+the commercial cloud where a G C C
+Moderate tenant's Arc resources are.
+
+42
+00:02:23.773 --> 00:02:27.372
+Oh three, the instance is in
+Arc-eligibility Category 1.
+
+43
+00:02:27.372 --> 00:02:30.273
+Oh four, the mapping resolves every login.
+
+44
+00:02:30.273 --> 00:02:34.023
+Oh five, the break-glass path
+is in the exception registry.
+
+45
+00:02:34.023 --> 00:02:35.688
+Oh six, for production only,
+
+46
+00:02:35.688 --> 00:02:39.623
+a sealed test stage for the same
+instance that isn't a rehearsal.
+
+47
+00:02:39.623 --> 00:02:42.758
+And oh seven, the S A
+account disabled and renamed,
+
+48
+00:02:42.758 --> 00:02:45.659
+which is a warning and
+doesn't stop the change.
+
+49
+00:02:45.659 --> 00:02:47.975
+Preflight can't see the deployer's rights,
+
+50
+00:02:47.975 --> 00:02:51.272
+so the deployer reads them
+after activating the role.
+
+51
+00:02:55.070 --> 00:02:58.419
+The plan writes three
+files: create dot sequel,
+
+52
+00:02:58.419 --> 00:03:03.795
+cutover dot sequel and rollback dot
+sequel, each with its S H A two fifty-six.
+
+53
+00:03:03.795 --> 00:03:06.232
+A second person reads
+them line by line and
+
+54
+00:03:06.232 --> 00:03:08.933
+records the three hashes
+in the change record.
+
+55
+00:03:08.933 --> 00:03:13.188
+When the deploy runs, a file that doesn't
+hash to its approved value is refused
+
+56
+00:03:13.188 --> 00:03:17.646
+before anything connects, so the files
+that run are the files that were approved.
+
+57
+00:03:17.646 --> 00:03:20.489
+The deployer signs in as
+its own Entra account,
+
+58
+00:03:20.489 --> 00:03:25.354
+a member of the instance's Entra admin
+group, activated under pim for the change
+
+59
+00:03:25.354 --> 00:03:30.070
+window only, so that sys-admin, alter any
+login and control server all read one.
+
+60
+00:03:30.070 --> 00:03:34.043
+And the book's Chapter 12, What the
+Engine-Authentication Decision Settles,
+
+61
+00:03:34.043 --> 00:03:36.910
+makes the parallel run
+required for production.
+
+62
+00:03:40.710 --> 00:03:43.010
+Unit 3 is the change itself.
+
+63
+00:03:43.010 --> 00:03:46.997
+The create adds the Entra logins
+and users beside the Windows ones,
+
+64
+00:03:46.997 --> 00:03:50.960
+and disables nothing, so both paths
+stay open for the parallel run.
+
+65
+00:03:50.960 --> 00:03:54.235
+The parallel run is judged
+against its exit criteria.
+
+66
+00:03:54.235 --> 00:03:58.897
+The rollback plan is dry-run before the
+cutover, so its record exists first.
+
+67
+00:03:58.897 --> 00:04:02.479
+The cutover disables the
+superseded users and SQL logins
+
+68
+00:04:02.479 --> 00:04:05.498
+and denies connect sequel
+to the superseded groups.
+
+69
+00:04:05.498 --> 00:04:07.047
+It never drops anything.
+
+70
+00:04:07.047 --> 00:04:09.448
+Then thirty days of observation follow.
+
+71
+00:04:09.448 --> 00:04:12.225
+The rollback triggers are
+set before the change:
+
+72
+00:04:12.225 --> 00:04:16.462
+any failed login on a just-disabled or
+just-denied login from a production
+
+73
+00:04:16.462 --> 00:04:19.727
+application, any job or linked
+server failing to connect,
+
+74
+00:04:19.727 --> 00:04:23.547
+or an application owner reporting
+an outage traced to the cutover.
+
+75
+00:04:23.547 --> 00:04:25.336
+Any one stops the stage.
+
+76
+00:04:25.336 --> 00:04:29.916
+Runbook R oh five keeps every cutover
+reversible: the Windows database users
+
+77
+00:04:29.916 --> 00:04:34.530
+are still there, so the approved rollback
+opens the old path again at once.
+
+78
+00:04:38.330 --> 00:04:41.192
+The test stage is a go
+when five things hold.
+
+79
+00:04:41.192 --> 00:04:45.455
+Preflight passed, and the deployer's
+rights read one, one, one.
+
+80
+00:04:45.455 --> 00:04:49.080
+The three hashes in the change
+record match the files that ran.
+
+81
+00:04:49.080 --> 00:04:52.055
+The parallel run printed
+cutover-ready, N of N.
+
+82
+00:04:52.055 --> 00:04:55.353
+Thirty days of observation
+passed with no failed
+
+83
+00:04:55.353 --> 00:04:58.730
+login on a disabled or denied
+login, and no drift row.
+
+84
+00:04:58.730 --> 00:05:02.180
+And every deploy record
+says applied, not dry run.
+
+85
+00:05:02.180 --> 00:05:05.905
+A no-go is a finding with an
+owner, and the stage is repeated.
+
+86
+00:05:05.905 --> 00:05:08.012
+The seal re-hashes every run's files,
+
+87
+00:05:08.012 --> 00:05:12.734
+refuses a stage missing a required step
+or with a deploy run that wasn't applied,
+
+88
+00:05:12.734 --> 00:05:16.730
+and appends one record to the chain
+with the previous record's hash.
+
+89
+00:05:16.730 --> 00:05:19.993
+Sealed with the rehearsal
+switch, it records a rehearsal,
+
+90
+00:05:19.993 --> 00:05:22.493
+which production preflight never accepts.
+
+91
+00:05:22.493 --> 00:05:24.575
+Production then runs the same steps,
+
+92
+00:05:24.575 --> 00:05:27.768
+and its seal also needs the
+closure record from Module 9.
+
+93
+00:05:27.768 --> 00:05:32.000
+When Entra can't be reached, Appendix
+B's path is the registered break-glass
+
+94
+00:05:32.000 --> 00:05:36.393
+Windows group, empty by default, with
+every membership change alerting.
+
+95
+00:05:40.190 --> 00:05:41.077
+Try it.
+
+96
+00:05:41.077 --> 00:05:45.572
+Lab 1 rehearses the whole test stage on
+the kit's example settings, as dry runs:
+
+97
+00:05:45.572 --> 00:05:49.828
+nothing connects to an instance, and
+nothing runs with the apply switch.
+
+98
+00:05:49.828 --> 00:05:54.690
+Open PowerShell 7, go to the kit's folder,
+and make this run's results folder.
+
+99
+00:05:54.690 --> 00:05:58.910
+Step one copies the kit's two example
+settings files, test and production,
+
+100
+00:05:58.910 --> 00:06:02.216
+into the run folder, and points
+their evidence chain at it,
+
+101
+00:06:02.216 --> 00:06:04.678
+so the kit's folder
+stays as you unzipped it.
+
+102
+00:06:04.678 --> 00:06:07.539
+They describe the fixtures'
+sequel P R D oh one.
+
+103
+00:06:07.539 --> 00:06:09.890
+Step two preflights the test stage.
+
+104
+00:06:09.890 --> 00:06:12.635
+Every check passes,
+and P F oh seven warns:
+
+105
+00:06:12.635 --> 00:06:17.377
+the example's S A account is still
+enabled under its own name on day one.
+
+106
+00:06:17.377 --> 00:06:19.053
+It doesn't stop the change.
+
+107
+00:06:19.053 --> 00:06:22.820
+P F oh six isn't run, because
+it's for production only.
+
+108
+00:06:26.620 --> 00:06:30.920
+Step three runs the audit and the Arc
+check on the snapshots the settings name.
+
+109
+00:06:30.920 --> 00:06:34.795
+In a real stage these are the instance's
+own snapshots, taken that day.
+
+110
+00:06:34.795 --> 00:06:39.808
+The audit flags sequel P R D oh one's S
+A account, enabled under its own name,
+
+111
+00:06:39.808 --> 00:06:43.631
+and a usable SQL login, and
+the Arc check puts sequel
+
+112
+00:06:43.631 --> 00:06:46.945
+P R D oh one in Category 1:
+ready to plan the logins.
+
+113
+00:06:46.945 --> 00:06:48.845
+Step four plans the change.
+
+114
+00:06:48.845 --> 00:06:53.361
+It writes three sequel files: the
+create, with sixteen statements;
+
+115
+00:06:53.361 --> 00:06:56.707
+the cutover, with five; and
+the rollback, with five.
+
+116
+00:06:56.707 --> 00:06:59.445
+Each has its S H A two fifty-six.
+
+117
+00:06:59.445 --> 00:07:02.920
+Those are the three values
+a second person approves.
+
+118
+00:07:06.720 --> 00:07:08.883
+Step five approves the hashes.
+
+119
+00:07:08.883 --> 00:07:12.093
+The approver re-hashes the
+three files after reading them,
+
+120
+00:07:12.093 --> 00:07:16.170
+and this lab keeps each hash in a
+variable, as a change record would keep it.
+
+121
+00:07:16.170 --> 00:07:19.620
+Step six dry-runs the create
+phase with the approved hash.
+
+122
+00:07:19.620 --> 00:07:22.194
+Without the apply switch
+it connects to nothing:
+
+123
+00:07:22.194 --> 00:07:25.670
+it checks the hash and prints the
+sixteen statements it would run.
+
+124
+00:07:25.670 --> 00:07:29.043
+Create login from external
+provider for each Entra login,
+
+125
+00:07:29.043 --> 00:07:33.682
+the Entra admin group added to sys-admin,
+then the database users and their roles.
+
+126
+00:07:33.682 --> 00:07:38.169
+Step seven tries a hash that isn't
+the approved one, sixty-four zeros.
+
+127
+00:07:38.169 --> 00:07:42.750
+The deploy stops before anything
+connects: re-plan and re-approve.
+
+128
+00:07:46.550 --> 00:07:49.950
+Step eight judges the parallel
+run on day thirty's snapshot.
+
+129
+00:07:49.950 --> 00:07:53.086
+In the fixtures, day thirty
+is after the cutover,
+
+130
+00:07:53.086 --> 00:07:57.988
+so each legacy login reads as already
+cut over: cutover-ready, four of four.
+
+131
+00:07:57.988 --> 00:08:03.099
+Step nine dry-runs the rollback, before
+the cutover, so its record exists first.
+
+132
+00:08:03.099 --> 00:08:07.712
+It would grant connect sequel back to the
+groups, and enable the superseded logins.
+
+133
+00:08:07.712 --> 00:08:09.762
+Step ten dry-runs the cutover.
+
+134
+00:08:09.762 --> 00:08:14.549
+Users and SQL logins are disabled,
+and groups are denied connect sequel.
+
+135
+00:08:14.549 --> 00:08:17.945
+The Windows admin group leaves
+the sys-admin role first,
+
+136
+00:08:17.945 --> 00:08:20.675
+because a deny doesn't
+bind sys-admin members.
+
+137
+00:08:20.675 --> 00:08:24.740
+Nothing is dropped, which is why
+the rollback can reverse it at once.
+
+138
+00:08:28.540 --> 00:08:31.978
+Step eleven tries to seal the
+stage without the parallel run.
+
+139
+00:08:31.978 --> 00:08:34.797
+The seal refuses a stage
+missing a step the kit's
+
+140
+00:08:34.797 --> 00:08:37.815
+requirements file requires,
+and writes no record.
+
+141
+00:08:37.815 --> 00:08:40.277
+Step twelve tries to seal the whole stage.
+
+142
+00:08:40.277 --> 00:08:43.555
+Every step is there, but the
+deployments were dry runs,
+
+143
+00:08:43.555 --> 00:08:47.503
+so the seal refuses again, and
+points you to the rehearsal switch.
+
+144
+00:08:47.503 --> 00:08:50.527
+Step thirteen runs the same
+command with that switch.
+
+145
+00:08:50.527 --> 00:08:53.129
+It writes the record,
+marked as a rehearsal,
+
+146
+00:08:53.129 --> 00:08:57.589
+with the eight steps it sealed and no
+previous record, since it's the first.
+
+147
+00:08:57.589 --> 00:09:00.260
+The record's short hash
+differs from run to run,
+
+148
+00:09:00.260 --> 00:09:03.110
+because the record names
+this run's folders.
+
+149
+00:09:06.910 --> 00:09:09.247
+Step fourteen preflights production.
+
+150
+00:09:09.247 --> 00:09:12.560
+P F oh one to oh five
+pass, as they did for test.
+
+151
+00:09:12.560 --> 00:09:15.595
+P F oh six fails: the chain
+holds only a rehearsal,
+
+152
+00:09:15.595 --> 00:09:19.097
+and production needs a sealed
+test stage that isn't one.
+
+153
+00:09:19.097 --> 00:09:22.184
+Preflight says stop here,
+and exits with code one.
+
+154
+00:09:22.184 --> 00:09:26.297
+Step fifteen runs the deployment
+tests: ten pass, none fail.
+
+155
+00:09:26.297 --> 00:09:28.286
+Step sixteen lists your runs.
+
+156
+00:09:28.286 --> 00:09:32.060
+There's nothing to clean up: this
+run's results stay in the run folder.
+
+157
+00:09:32.060 --> 00:09:36.401
+Check your work: you can walk the test
+stage from preflight to the seal,
+
+158
+00:09:36.401 --> 00:09:41.351
+and say why a wrong hash is refused before
+anything connects, why a dry-run stage
+
+159
+00:09:41.351 --> 00:09:46.372
+seals only as a rehearsal, and why
+production preflight then fails P F oh six.
+
+160
+00:09:50.170 --> 00:09:52.820
+This module has no Lab 2 of its own.
+
+161
+00:09:52.820 --> 00:09:55.737
+The real test-instance run
+is Chapter 10's Stage 1,
+
+162
+00:09:55.737 --> 00:09:59.373
+and it wasn't run by the authors:
+every command has run only as
+
+163
+00:09:59.373 --> 00:10:03.082
+a dry run on the kit's example
+settings and in its Pester tests.
+
+164
+00:10:03.082 --> 00:10:07.307
+You need a test instance in Arc-eligibility
+Category 1, never production;
+
+165
+00:10:07.307 --> 00:10:11.461
+a deployer activated under pim for
+the change window only; Reader on the
+
+166
+00:10:11.461 --> 00:10:15.545
+subscriptions to read Arc; and the
+tools signed in to commercial Azure.
+
+167
+00:10:15.545 --> 00:10:19.843
+You also need a filled test settings
+file with no secret, a reviewed mapping,
+
+168
+00:10:19.843 --> 00:10:22.754
+the exception registry with
+the break-glass group,
+
+169
+00:10:22.754 --> 00:10:25.457
+and a second person to
+approve the three hashes.
+
+170
+00:10:25.457 --> 00:10:28.236
+The run is Lab 1's steps
+against your test instance,
+
+171
+00:10:28.236 --> 00:10:32.030
+with the apply switch on the create
+and the cutover, the parallel run
+
+172
+00:10:32.030 --> 00:10:36.095
+and thirty days of observation, then
+a seal without the rehearsal switch.
+
+173
+00:10:36.095 --> 00:10:39.084
+To back it out, run the
+approved rollback with apply,
+
+174
+00:10:39.084 --> 00:10:42.145
+under its own change record
+and in its own run folder.
+
+175
+00:10:42.145 --> 00:10:47.200
+Run the test stage first, read every
+file you approve, and keep the evidence.
+
+176
+00:10:51.000 --> 00:10:52.600
+The federal requirement.
+
+177
+00:10:52.600 --> 00:10:57.125
+Chapter 10 maps each
+step to NIST SP 800-53.
+
+178
+00:10:57.125 --> 00:11:02.325
+Preflight supports A C six, least privilege,
+and C M six, configuration settings:
+
+179
+00:11:02.325 --> 00:11:07.125
+keep the preflight file and its manifest,
+with the deployer's rights read.
+
+180
+00:11:07.125 --> 00:11:10.613
+The plan and its approval
+support C M three and C M four,
+
+181
+00:11:10.613 --> 00:11:14.893
+configuration change control and
+impact analysis: keep the plan,
+
+182
+00:11:14.893 --> 00:11:19.887
+the three sequel files, and the hashes
+in the change record with the approver.
+
+183
+00:11:19.887 --> 00:11:23.532
+The create and the cutover
+support C M three and A C two:
+
+184
+00:11:23.532 --> 00:11:27.838
+keep each deploy record with mode
+applied and the hash that ran.
+
+185
+00:11:27.838 --> 00:11:32.535
+The rollback plan supports C M three
+and C P two, the contingency plan:
+
+186
+00:11:32.535 --> 00:11:36.225
+keep the rollback dry run,
+written before the cutover.
+
+187
+00:11:36.225 --> 00:11:41.278
+And the seal supports C A seven and A U
+nine, protection of audit information:
+
+188
+00:11:41.278 --> 00:11:44.375
+keep the chain, each record
+holding the S H A two
+
+189
+00:11:44.375 --> 00:11:48.287
+fifty-six of every manifest
+and the previous record's hash.
+
+190
+00:11:48.287 --> 00:11:52.485
+K S Is are FedRAMP twenty X indicators
+for cloud service providers:
+
+191
+00:11:52.485 --> 00:11:56.300
+your cloud providers report
+against them, the agency doesn't.
+
+192
+00:11:56.300 --> 00:12:00.660
+These records provide evidence for
+the change; the assessor decides.
+
+193
+00:12:04.460 --> 00:12:06.510
+Check yourself with two questions.
+
+194
+00:12:06.510 --> 00:12:09.109
+First: you run the create
+with an approved hash
+
+195
+00:12:09.109 --> 00:12:11.548
+that isn't the one the
+create file hashes to.
+
+196
+00:12:11.548 --> 00:12:12.586
+What happens?
+
+197
+00:12:12.586 --> 00:12:16.447
+The answer is b: it's refused
+before anything connects.
+
+198
+00:12:16.447 --> 00:12:18.298
+Re-plan and re-approve.
+
+199
+00:12:18.298 --> 00:12:21.586
+Second: the chain holds
+only the rehearsal record.
+
+200
+00:12:21.586 --> 00:12:23.723
+What does production preflight report?
+
+201
+00:12:23.723 --> 00:12:27.436
+The answer is b: P F oh six
+fails, because there's no sealed
+
+202
+00:12:27.436 --> 00:12:31.561
+test-stage record for sequel P R
+D oh one that isn't a rehearsal.
+
+203
+00:12:31.561 --> 00:12:32.598
+Stop here.
+
+204
+00:12:32.598 --> 00:12:37.250
+The module page has two more questions,
+each linked to the section that answers it.
+
+205
+00:12:41.050 --> 00:12:42.075
+To sum up.
+
+206
+00:12:42.075 --> 00:12:45.774
+You rehearsed one instance's login
+migration through the test stage,
+
+207
+00:12:45.774 --> 00:12:49.852
+from preflight and the approved hashes
+to the parallel run, the cutover and
+
+208
+00:12:49.852 --> 00:12:54.062
+its rollback, and sealed it as a rehearsal
+that production preflight refuses.
+
+209
+00:12:54.062 --> 00:12:57.844
+A real test stage, applied and
+sealed without the rehearsal switch,
+
+210
+00:12:57.844 --> 00:13:02.588
+is what lets production start, with the same
+commands and a different settings file.
+
+211
+00:13:02.588 --> 00:13:05.587
+Before shipping, work through
+the Chapter 10 checklist.
+
+212
+00:13:05.587 --> 00:13:09.649
+That's the end of the Data Platform
+and SQL Server Identity learning path.
+
+213
+00:13:09.649 --> 00:13:13.090
+Go back to the learning path's
+index for the modules and the code.

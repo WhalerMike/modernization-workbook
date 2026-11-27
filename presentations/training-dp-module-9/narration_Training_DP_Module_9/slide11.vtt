@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.638
+Step six opens the drift manifest.
+
+2
+00:00:02.638 --> 00:00:08.963
+It records the step, drift; its mode,
+read-only; the snapshot's date; the controls,
+
+3
+00:00:08.963 --> 00:00:12.404
+C A seven and C M six; the
+K S Is to line up with;
+
+4
+00:00:12.404 --> 00:00:16.149
+and the S H A two fifty-six
+of each file it wrote.
+
+5
+00:00:16.149 --> 00:00:20.112
+Step seven runs this chapter's
+tests: eight pass, none fail.
+
+6
+00:00:20.112 --> 00:00:22.788
+Step eight lists your
+runs, one line per run.
+
+7
+00:00:22.788 --> 00:00:24.326
+There's nothing to clean up.
+
+8
+00:00:24.326 --> 00:00:26.382
+The kit's folder is as you unzipped it,
+
+9
+00:00:26.382 --> 00:00:28.850
+and this run's results
+stay in the run folder.
+
+10
+00:00:28.850 --> 00:00:33.763
+Check your work: you can say why sequel P
+R D oh one is ready for the assessor but
+
+11
+00:00:33.763 --> 00:00:37.661
+not closed, why sequel P R D oh
+six fails SQL logins refused,
+
+12
+00:00:37.661 --> 00:00:42.262
+and why the new sys-admin login is
+drift while the break-glass group isn't.

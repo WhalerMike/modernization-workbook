@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.388
+Unit 3 is the parallel run.
+
+2
+00:00:02.388 --> 00:00:06.732
+The order is create, validate,
+disable, observe for thirty days,
+
+3
+00:00:06.732 --> 00:00:09.749
+then drop, and it's
+required for production.
+
+4
+00:00:09.749 --> 00:00:13.362
+While both logins work, there
+are three exit criteria.
+
+5
+00:00:13.362 --> 00:00:17.001
+Every application and job also
+appears on its Entra login.
+
+6
+00:00:17.001 --> 00:00:19.388
+No remote N T L M remains.
+
+7
+00:00:19.388 --> 00:00:22.312
+And nothing still arrives
+only on the legacy login.
+
+8
+00:00:22.312 --> 00:00:27.437
+Connections made on the server itself
+always report N T L M, so they don't count.
+
+9
+00:00:27.437 --> 00:00:29.538
+A snapshot is only a moment.
+
+10
+00:00:29.538 --> 00:00:33.476
+Sequel Server Audit's successful
+login group records the whole window.
+
+11
+00:00:33.476 --> 00:00:38.537
+The cutover disables a Windows user or a
+sequel login, and the rollback enables it.
+
+12
+00:00:38.537 --> 00:00:41.002
+A Windows group can't
+be disabled that way,
+
+13
+00:00:41.002 --> 00:00:44.988
+so the kit denies it connect sequel,
+and the rollback grants it back.
+
+14
+00:00:44.988 --> 00:00:46.324
+Nothing is dropped.
+
+15
+00:00:46.324 --> 00:00:50.125
+The S A account is disabled
+and renamed, never migrated.
+
+16
+00:00:50.125 --> 00:00:53.500
+And the kit's judge reports
+readiness for each legacy login.
+
+17
+00:00:53.500 --> 00:00:55.300
+It never disables anything.

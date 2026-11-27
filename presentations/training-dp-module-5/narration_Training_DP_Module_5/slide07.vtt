@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:00.987
+Try it.
+
+2
+00:00:00.987 --> 00:00:05.938
+Lab 1 runs in PowerShell 7, from the kit's
+folder, on the kit's fictional estate.
+
+3
+00:00:05.938 --> 00:00:08.271
+First, make this run's results folder,
+
+4
+00:00:08.271 --> 00:00:12.238
+named for the time you start, so
+every run keeps its own results.
+
+5
+00:00:12.238 --> 00:00:14.450
+Step one maps the estate's groups.
+
+6
+00:00:14.450 --> 00:00:18.800
+There's one group of each pattern, and a
+second dynamic group with a nested group.
+
+7
+00:00:18.800 --> 00:00:23.062
+Contoso payroll users and Contoso
+H R analysts become dynamic groups,
+
+8
+00:00:23.062 --> 00:00:25.413
+each rule on its own organization code,
+
+9
+00:00:25.413 --> 00:00:29.087
+with the clauses that exclude
+disabled accounts and guests.
+
+10
+00:00:29.087 --> 00:00:33.300
+Contoso sequel admins becomes an
+assigned group, eligible through pim.
+
+11
+00:00:33.300 --> 00:00:36.850
+The agent alerts list becomes
+mail-only, with no login.
+
+12
+00:00:36.850 --> 00:00:38.925
+And the claims team splits in two.
+
+13
+00:00:38.925 --> 00:00:44.725
+Notice the flag on H R analysts: nested,
+flatten, because it contains H R leads.
+
+14
+00:00:44.725 --> 00:00:47.805
+The rules are long, so
+PowerShell drops the flags
+
+15
+00:00:47.805 --> 00:00:50.980
+column from the table on
+screen; step two prints it.

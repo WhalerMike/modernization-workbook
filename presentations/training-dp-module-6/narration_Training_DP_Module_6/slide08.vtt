@@ -1,0 +1,70 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:00.987
+Try it.
+
+2
+00:00:00.987 --> 00:00:05.538
+Lab 1 runs in PowerShell 7 on the
+kit's fictional estate, with no tenant.
+
+3
+00:00:05.538 --> 00:00:09.224
+Go to the kit's folder, and
+make this run's results folder,
+
+4
+00:00:09.224 --> 00:00:13.812
+named for the time you start, in U T
+C, so every run keeps its own results.
+
+5
+00:00:13.812 --> 00:00:18.087
+Step one runs the audit on day 1:
+seven findings on four instances.
+
+6
+00:00:18.087 --> 00:00:23.962
+SQL P R D oh two is missing its S P N,
+so remote connections fall back to NTLM.
+
+7
+00:00:23.962 --> 00:00:27.670
+On SQL F C I oh four, the S P
+N is held by an old account,
+
+8
+00:00:27.670 --> 00:00:31.637
+not the one the service runs
+as, so authentication fails.
+
+9
+00:00:31.637 --> 00:00:36.949
+On SQL P R D oh six, two accounts
+hold it, so Kerberos can't choose.
+
+10
+00:00:36.949 --> 00:00:40.100
+Then there's remote NTLM,
+a linked server passing
+
+11
+00:00:40.100 --> 00:00:43.487
+the caller's credentials,
+and a client off the domain.
+
+12
+00:00:43.487 --> 00:00:49.662
+Look at SQL P R D oh one: its S P N is
+correct, yet forty-one sessions use NTLM.
+
+13
+00:00:49.662 --> 00:00:55.138
+The client file shows that host is
+domain-joined, so look on the client side:
+
+14
+00:00:55.138 --> 00:00:58.660
+aliases, hosts file entries,
+D N S and old drivers.

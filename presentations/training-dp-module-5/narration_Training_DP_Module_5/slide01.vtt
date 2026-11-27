@@ -1,0 +1,34 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.847
+Welcome to Module 5 of the
+Data Platform and SQL Server
+
+2
+00:00:03.847 --> 00:00:07.438
+Identity learning path: groups,
+roles and the perimeter.
+
+3
+00:00:07.438 --> 00:00:11.263
+You sort every Active Directory
+group that reaches Sequel Server into
+
+4
+00:00:11.263 --> 00:00:15.138
+its Entra replacement, and keep
+privileged roles off rule-based groups.
+
+5
+00:00:15.138 --> 00:00:17.264
+The module follows runbook R seven,
+
+6
+00:00:17.264 --> 00:00:21.737
+and Chapter 5 of the developer
+workbook, Building SQL Server Identity.
+
+7
+00:00:21.737 --> 00:00:23.520
+Take it after Module 4.

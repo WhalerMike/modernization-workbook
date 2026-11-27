@@ -1,0 +1,40 @@
+[
+ {
+  "slide": 5,
+  "title": "The patterns that generate NTLM at the SQL layer",
+  "links": [
+   {
+    "text": "Book 06, Ch 14",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/14-ntlm-and-the-patterns-that-generate-it.html"
+   },
+   {
+    "text": "Chapter 06",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/06-retain-consolidate-retire.html"
+   }
+  ]
+ },
+ {
+  "slide": 6,
+  "title": "Discovery first: the NTLM audit and the fix file",
+  "links": [
+   {
+    "text": "Book 06, Ch 15",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.html"
+   }
+  ]
+ },
+ {
+  "slide": 14,
+  "title": "The federal requirement and the evidence the ISSO keeps",
+  "links": [
+   {
+    "text": "NIST SP 800-53",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#sp-800-53"
+   },
+   {
+    "text": "FedRAMP 20x KSIs",
+    "url": "https://whalermike.github.io/modernization-workbook/docs/reference/source-register.html#fedramp-ksi"
+   }
+  ]
+ }
+]

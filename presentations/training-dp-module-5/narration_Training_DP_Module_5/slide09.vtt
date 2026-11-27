@@ -1,0 +1,42 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.975
+Step three pretends the sys-admin
+group were kept by the org chart.
+
+2
+00:00:03.975 --> 00:00:08.152
+It loads the kit's module, reads
+Contoso sequel admins from the fixture,
+
+3
+00:00:08.152 --> 00:00:10.412
+and marks its membership as org-chart.
+
+4
+00:00:10.412 --> 00:00:13.825
+The map now sorts it as
+pattern one, a dynamic group.
+
+5
+00:00:13.825 --> 00:00:16.075
+The group has no organization codes,
+
+6
+00:00:16.075 --> 00:00:19.975
+so the target says to ask H R for
+the code rather than write a rule.
+
+7
+00:00:19.975 --> 00:00:23.863
+But the flag is what matters: a
+privileged role on a dynamic group.
+
+8
+00:00:23.863 --> 00:00:26.225
+Use an assigned group under pim instead.
+
+9
+00:00:26.225 --> 00:00:28.630
+A privileged role never sits on a rule.

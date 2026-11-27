@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:04.050
+Step three parses a string that
+uses the deprecated password mode.
+
+2
+00:00:04.050 --> 00:00:06.962
+It parses as entra, because
+it is an Entra mode.
+
+3
+00:00:06.962 --> 00:00:09.088
+But the mode is the deprecated one,
+
+4
+00:00:09.088 --> 00:00:12.275
+so the scan reports it as a
+finding, and never as done.
+
+5
+00:00:12.275 --> 00:00:14.581
+A careless scan would count it as done,
+
+6
+00:00:14.581 --> 00:00:18.450
+and a deprecated flow that can't
+do M F A would stay in production.
+
+7
+00:00:18.450 --> 00:00:23.213
+The kit's driver configuration lists the
+deprecated modes, and the finding names it.
+
+8
+00:00:23.213 --> 00:00:27.050
+And notice the password: even
+here, it comes back masked.

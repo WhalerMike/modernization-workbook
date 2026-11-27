@@ -29,7 +29,7 @@ The runbook that takes the kit from the second lab of Chapters 01 to 10 to a liv
 ## Narrated tour
 {{< fmw-video DW_NPI_11_Deploy_Test_Production_Narrated >}}
 
-[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-npi-11-deploy-test-production) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-npi-11-deploy-test-production) (about 12 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-11-deploy-test-production/DW_NPI_11_Deploy_Test_Production_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-11-deploy-test-production/DW_NPI_11_Deploy_Test_Production_Narrated.vtt). Recorded on November 21, 2026 from the approved chapter; slide 12 re-recorded on November 24, 2026.
+[Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-npi-11-deploy-test-production) · [Narrated deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/dw-npi-11-deploy-test-production) (about 12 minutes, captions) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-11-deploy-test-production/DW_NPI_11_Deploy_Test_Production_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/dw-npi-11-deploy-test-production/DW_NPI_11_Deploy_Test_Production_Narrated.vtt). Recorded on November 27, 2026 from the approved chapter.
 :::
 
 <!-- tour:end -->

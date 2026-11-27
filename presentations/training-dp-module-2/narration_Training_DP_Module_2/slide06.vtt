@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.238
+Unit 3 is reading the audit.
+
+2
+00:00:02.238 --> 00:00:06.088
+Its most consequential output is
+the Arc-eligibility category.
+
+3
+00:00:06.088 --> 00:00:08.813
+Category 1 is ready for Entra logins now.
+
+4
+00:00:08.813 --> 00:00:13.412
+Category 2 needs Arc deployed and
+Entra authentication configured first.
+
+5
+00:00:13.412 --> 00:00:16.637
+Within it, instances with
+many Windows logins,
+
+6
+00:00:16.637 --> 00:00:19.862
+active SQL logins or
+missing S P Ns go first.
+
+7
+00:00:19.862 --> 00:00:25.424
+Category 3 is a version before SQL Server
+2022, or a failover cluster instance
+
+8
+00:00:25.424 --> 00:00:30.238
+on any version, and must upgrade,
+re-platform or carry a dated exception.
+
+9
+00:00:30.238 --> 00:00:34.965
+Engine Entra authentication, Layer
+1, proceeds on a domain-joined host,
+
+10
+00:00:34.965 --> 00:00:38.225
+and never waits for O S
+level Entra sign-in, Layer 2.
+
+11
+00:00:38.225 --> 00:00:41.525
+The kit settles only the first pass here,
+
+12
+00:00:41.525 --> 00:00:45.125
+Category 3 or "1 or 2";
+Module 3 settles the rest.
+
+13
+00:00:45.125 --> 00:00:48.300
+And the audit names the engine's
+service account and stops.
+
+14
+00:00:48.300 --> 00:00:52.730
+Converting a user account used as a service
+belongs to the service account guide.

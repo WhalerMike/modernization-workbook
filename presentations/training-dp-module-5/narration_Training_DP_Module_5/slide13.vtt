@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.150
+Check yourself with two questions.
+
+2
+00:00:02.150 --> 00:00:06.313
+First: Contoso H R analysts
+contains Contoso H R leads.
+
+3
+00:00:06.313 --> 00:00:08.874
+Why does the map flag it nested, flatten?
+
+4
+00:00:08.874 --> 00:00:10.275
+The answer is a.
+
+5
+00:00:10.275 --> 00:00:14.675
+A dynamic rule can't select groups, so
+the inner group's members would drop out.
+
+6
+00:00:14.675 --> 00:00:20.050
+Second: Contoso payroll users reaches
+two databases on sequel P R D oh one.
+
+7
+00:00:20.050 --> 00:00:22.463
+Which check catches the
+one-group-one-role problem?
+
+8
+00:00:22.463 --> 00:00:27.462
+The answer is b: Chapter 4's login
+plan, whose warning names the roles.
+
+9
+00:00:27.462 --> 00:00:31.125
+The map carries grants per
+instance, not roles per database.
+
+10
+00:00:31.125 --> 00:00:35.470
+The module page has two more questions,
+each linked to the section that answers it.

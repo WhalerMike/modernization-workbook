@@ -8,12 +8,14 @@ research-book: "Book 06"
 series-order: 8
 date-modified: 2026-11-25
 review-status: approved
-reviewed-sha256: 041c9896a28f182931227af3e4c4a18cb920c780ed3d402f3e2bfef8499e531f
-last-reviewed: 2026-11-25
+reviewed-sha256: 4f1f7004b55fadb6b32ba562c3cc4f66e9d15b4d97df995039b02b4f1c9125e8
+last-reviewed: 2026-11-27
 ---
 # Data Platform, Module 8: AD CS Dependencies {.unnumbered}
 
 **Learning path:** [Data Platform and SQL Server Identity](index.md) · Module 8 of 10 · 40 minutes · Runbook [R10](../../books/b06-data-platform/r10-certificate-discovery-for-adcs.md) · Workbook [Chapter 08](../../project-plans/developer-workbooks/sql-server-identity/08-ad-cs-dependencies.md)
+
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-dp-module-8) · [▶ Watch](../../presentations/watch.html?v=Training_DP_Module_8_Narrated) (about 11 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DP_Module_8_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-8/Training_DP_Module_8_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-8/Training_DP_Module_8_Narrated.vtt).
 
 ## Unit 1: Introduction
 

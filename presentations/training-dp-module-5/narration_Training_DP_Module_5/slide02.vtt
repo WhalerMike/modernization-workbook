@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.437
+Why does this matter?
+
+2
+00:00:01.437 --> 00:00:04.550
+Group-based access survives
+the move to Entra I D.
+
+3
+00:00:04.550 --> 00:00:08.725
+What changes is who keeps each group
+current, and what stands in front of it.
+
+4
+00:00:08.725 --> 00:00:11.962
+A group kept by hand from
+the org chart becomes a rule.
+
+5
+00:00:11.962 --> 00:00:15.700
+A group of named administrators
+becomes an assigned group under pim.
+
+6
+00:00:15.700 --> 00:00:18.550
+And a distribution list
+never becomes a login.
+
+7
+00:00:18.550 --> 00:00:23.114
+In this module you take every Active
+Directory group that reaches Sequel Server,
+
+8
+00:00:23.114 --> 00:00:25.225
+and say which Entra group replaces it.

@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.290
+The kit reads three things
+for each instance, the agent,
+
+2
+00:00:03.290 --> 00:00:07.188
+the extension and the Entra setting,
+and names whatever is missing.
+
+3
+00:00:07.188 --> 00:00:11.914
+A failover cluster instance, or
+a version before SQL Server 2022,
+
+4
+00:00:11.914 --> 00:00:14.813
+is Category 3 before
+Arc is even looked at.
+
+5
+00:00:14.813 --> 00:00:18.699
+An agent that isn't connected, an
+extension that didn't succeed,
+
+6
+00:00:18.699 --> 00:00:23.349
+or Entra not configured makes it Category
+2, with each missing piece named.
+
+7
+00:00:23.349 --> 00:00:28.462
+All three, on 2022 or later, is
+Category 1: plan the logins.
+
+8
+00:00:28.462 --> 00:00:31.581
+It refuses any snapshot whose
+cloud isn't Azure Cloud,
+
+9
+00:00:31.581 --> 00:00:35.337
+because a snapshot from the wrong
+cloud judges the wrong estate.
+
+10
+00:00:35.337 --> 00:00:38.204
+And Resource Graph doesn't
+give it the Entra setting,
+
+11
+00:00:38.204 --> 00:00:40.750
+so that's confirmed in
+the portal and recorded.

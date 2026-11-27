@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.900
+Unit 3 is the gate.
+
+2
+00:00:01.900 --> 00:00:04.687
+Three lenses turn the
+inventory into a judgment.
+
+3
+00:00:04.687 --> 00:00:09.391
+Utilization finds zombies: a database
+with no connections in four hundred
+
+4
+00:00:09.391 --> 00:00:13.638
+or more days, no restores consumed,
+and a retired owning application.
+
+5
+00:00:13.638 --> 00:00:16.782
+Version decides what can
+take Entra logins at all,
+
+6
+00:00:16.782 --> 00:00:21.537
+since the FROM EXTERNAL PROVIDER
+syntax needs SQL Server 2022 or later.
+
+7
+00:00:21.537 --> 00:00:24.391
+And dependencies, such as linked servers,
+
+8
+00:00:24.391 --> 00:00:29.426
+replication and S S I S packages, are
+what most often overturn a naive plan.
+
+9
+00:00:29.426 --> 00:00:35.325
+The result is one class per instance:
+retain, consolidate into a target, or retire.
+
+10
+00:00:35.325 --> 00:00:37.100
+One caution from R oh two.
+
+11
+00:00:37.100 --> 00:00:40.238
+The index-usage counters
+reset when the engine starts,
+
+12
+00:00:40.238 --> 00:00:44.212
+so a database on an instance that
+restarted last week can look unused.
+
+13
+00:00:44.212 --> 00:00:48.598
+Read the start time, and take the
+long-horizon evidence from login auditing,
+
+14
+00:00:48.598 --> 00:00:53.350
+backup history and the application portfolio,
+before you call anything a zombie.

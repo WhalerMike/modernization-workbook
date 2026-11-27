@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.662
+Why does the order matter?
+
+2
+00:00:01.662 --> 00:00:03.167
+On a Category 1 instance,
+
+3
+00:00:03.167 --> 00:00:07.051
+every Windows and sequel login
+gets an Entra login beside it.
+
+4
+00:00:07.051 --> 00:00:09.560
+The new login is proven
+with a real sign-in,
+
+5
+00:00:09.560 --> 00:00:14.063
+and only then is the old one disabled,
+observed for thirty days and dropped.
+
+6
+00:00:14.063 --> 00:00:16.350
+Two mistakes here can't be taken back.
+
+7
+00:00:16.350 --> 00:00:20.863
+A wrong mapping locks people out, and
+a dropped login can't be rolled back.
+
+8
+00:00:20.863 --> 00:00:24.942
+So the plan is written as reviewable
+T-SQL that executes nothing,
+
+9
+00:00:24.942 --> 00:00:28.001
+and readiness is judged
+from evidence, not silence.
+
+10
+00:00:28.001 --> 00:00:30.928
+In this module you write a
+fictional instance's plan
+
+11
+00:00:30.928 --> 00:00:33.790
+and judge its parallel run
+on day one and day thirty.

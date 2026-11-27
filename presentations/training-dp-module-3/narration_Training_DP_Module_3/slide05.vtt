@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.963
+Two distinctions matter here.
+
+2
+00:00:01.963 --> 00:00:03.963
+The first is the two layers.
+
+3
+00:00:03.963 --> 00:00:08.637
+Layer 1, engine Entra authentication,
+proceeds on a domain-joined host.
+
+4
+00:00:08.637 --> 00:00:13.025
+Layer 2, O S level Entra sign-in,
+is a separate transformation.
+
+5
+00:00:13.025 --> 00:00:17.271
+So a domain-joined Windows Server
+host running SQL Server 2022 with Arc
+
+6
+00:00:17.271 --> 00:00:21.175
+doesn't have to leave the domain
+before its engine takes Entra logins.
+
+7
+00:00:21.175 --> 00:00:22.825
+The second is the cloud.
+
+8
+00:00:22.825 --> 00:00:26.829
+Microsoft Learn says Office
+365 G C C is paired with
+
+9
+00:00:26.829 --> 00:00:30.737
+Microsoft Entra I D in
+Azure, the commercial cloud.
+
+10
+00:00:30.737 --> 00:00:34.506
+So a G C C Moderate tenant's Arc
+resources are in a commercial
+
+11
+00:00:34.506 --> 00:00:38.813
+Azure subscription in the same
+tenant, the cloud called Azure Cloud.
+
+12
+00:00:38.813 --> 00:00:41.140
+The program recorded that as a decision.

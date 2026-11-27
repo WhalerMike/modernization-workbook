@@ -1,0 +1,35 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:06.256
+Step five opens the manifest: the step,
+its mode, read-only, its controls,
+
+2
+00:00:06.256 --> 00:00:12.088
+I A five and C M six, its two K S Is,
+and the S H A two fifty-six of each file.
+
+3
+00:00:12.088 --> 00:00:14.800
+The kit wrote its own
+output and rewrote nothing.
+
+4
+00:00:14.800 --> 00:00:18.975
+Step six runs this chapter's
+tests: seven pass, none fail.
+
+5
+00:00:18.975 --> 00:00:20.850
+And step seven lists your runs.
+
+6
+00:00:20.850 --> 00:00:24.259
+There's nothing to clean up: the
+kit's folder is as you unzipped it,
+
+7
+00:00:24.259 --> 00:00:26.760
+and each run's results
+stay in their own folder.

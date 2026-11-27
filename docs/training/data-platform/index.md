@@ -18,8 +18,8 @@ listing:
     sort-ui: false
     filter-ui: false
 review-status: approved
-reviewed-sha256: 15be01f15dc14df17a524931b04c516cffa376b68bdeaab582611f6cbe3bb7ee
-last-reviewed: 2026-11-25
+reviewed-sha256: c682ead25fd5dd0df0cb6089713bb0dfa813a052cb8da4a7518c6b6af711481a
+last-reviewed: 2026-11-27
 ---
 # Learning path: Data Platform and SQL Server Identity {.unnumbered}
 
@@ -127,6 +127,7 @@ Every step runs in PowerShell 7, top to bottom in one window. Each lab starts by
 | Why and what | [Book 06](../../books/b06-data-platform/index.md), the data platform book |
 | The step-by-step build | Book 06's runbooks, starting at [R01, Prerequisites](../../books/b06-data-platform/r01-prerequisites.md) |
 | The code and its labs | [*Building SQL Server Identity*](../../project-plans/developer-workbooks/sql-server-identity/index.md); every lab on the [Labs](../labs.md#sql) page |
+| The narrated decks | One per module, about 10 to 13 minutes each, with captions; each module links its own under **Watch**, and all of them are on the [Watch](../../presentations/watch.md) page |
 | Discovering instances | [R02: Run this step with the workbook's Start Kit](../../books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.md#run-this-step-with-the-workbooks-start-kit), whose output Module 1 classifies, and [1d: Reconcile the forest with Azure Arc](../../books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.md#reconcile-the-forest-with-azure-arc) |
 | Reading Arc in bulk | [Microsoft Automation, Module 4](../ms-automation-arc.md) |
 | SQL Server's service accounts | The [Non-Person Identity learning path](../non-person-identity/index.md) and the [service account migration guide](../../books/guides/service-account-migration.md) |

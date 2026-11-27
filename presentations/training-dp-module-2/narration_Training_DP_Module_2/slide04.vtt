@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.212
+Unit 2 is what the audit reads.
+
+2
+00:00:02.212 --> 00:00:06.676
+It runs only on instances classified
+retain or consolidation target.
+
+3
+00:00:06.676 --> 00:00:09.409
+For each, it reads the
+authentication mode,
+
+4
+00:00:09.409 --> 00:00:14.642
+and enumerates the logins from the server
+principals view by type: Windows users,
+
+5
+00:00:14.642 --> 00:00:19.953
+Windows groups, SQL logins, logins mapped
+to a certificate or an asymmetric key,
+
+6
+00:00:19.953 --> 00:00:23.937
+and the Entra types, E for a user
+or application and X for a group.
+
+7
+00:00:23.937 --> 00:00:29.026
+It flags the S A account, and captures the
+engine's service account and its S P N.
+
+8
+00:00:29.026 --> 00:00:33.329
+The running mode and the registry login
+mode are read in different places,
+
+9
+00:00:33.329 --> 00:00:37.350
+and a change takes effect only after
+a restart, so the two can disagree.
+
+10
+00:00:37.350 --> 00:00:39.763
+The kit reports that as a mode anomaly.
+
+11
+00:00:39.763 --> 00:00:42.454
+And watch for this: a
+reader without the right
+
+12
+00:00:42.454 --> 00:00:45.363
+permissions gets a short
+login list and no error.
+
+13
+00:00:45.363 --> 00:00:48.949
+A short list means a missing
+permission, not a clean instance.
+
+14
+00:00:48.949 --> 00:00:53.663
+The kit's census leaves out built-in
+principals, and counts only usable logins.

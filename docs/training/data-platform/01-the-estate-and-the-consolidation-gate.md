@@ -8,12 +8,14 @@ research-book: "Book 06"
 series-order: 1
 date-modified: 2026-11-25
 review-status: approved
-reviewed-sha256: 1c1dc1450b104a96961fbc855041df3dcf99d7ce7f7f7aa76119083fa57af79d
-last-reviewed: 2026-11-25
+reviewed-sha256: 2edc7edd5d120b542efb0500718e973d7625dc27eac1a8a71d287dc7e07c4aed
+last-reviewed: 2026-11-27
 ---
 # Data Platform, Module 1: The Estate and the Consolidation Gate {.unnumbered}
 
 **Learning path:** [Data Platform and SQL Server Identity](index.md) · Module 1 of 10 · 50 minutes · Runbook [R02](../../books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.md) · Workbook [Chapter 01](../../project-plans/developer-workbooks/sql-server-identity/01-the-estate-and-the-consolidation-gate.md)
+
+**Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/training-dp-module-1) · [▶ Watch](../../presentations/watch.html?v=Training_DP_Module_1_Narrated) (about 12 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_DP_Module_1_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-1/Training_DP_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-dp-module-1/Training_DP_Module_1_Narrated.vtt).
 
 ## Unit 1: Introduction
 

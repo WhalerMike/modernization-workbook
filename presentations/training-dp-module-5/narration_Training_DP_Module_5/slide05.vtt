@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.150
+Each legacy group then lands
+in one of four patterns.
+
+2
+00:00:03.150 --> 00:00:08.712
+Pattern one: organization-derived groups,
+kept from the org chart, become dynamic.
+
+3
+00:00:08.712 --> 00:00:13.741
+The kit writes the rule on the H R
+organization code in extension attribute ten,
+
+4
+00:00:13.741 --> 00:00:18.151
+with clauses that require an enabled
+account and a member, not a guest.
+
+5
+00:00:18.151 --> 00:00:20.387
+Never on department or job title.
+
+6
+00:00:20.387 --> 00:00:24.859
+Pattern two: explicit role groups
+become assigned, managed by a delegated
+
+7
+00:00:24.859 --> 00:00:27.645
+administrator, and
+eligible through pim when
+
+8
+00:00:27.645 --> 00:00:30.284
+the group holds sys-admin
+or security admin.
+
+9
+00:00:30.284 --> 00:00:33.437
+Pattern three: distribution
+lists become mail-only.
+
+10
+00:00:33.437 --> 00:00:37.863
+Update the Sequel Server Agent operator's
+address, and give it no login.
+
+11
+00:00:37.863 --> 00:00:42.130
+Pattern four: mail-enabled security
+groups split in two, a mail-only group
+
+12
+00:00:42.130 --> 00:00:46.825
+and an assigned security group, with the
+pairing recorded in both descriptions.
+
+13
+00:00:46.825 --> 00:00:49.088
+And when a group's codes aren't recorded,
+
+14
+00:00:49.088 --> 00:00:52.630
+the target says to ask H R for
+the code before writing the rule.

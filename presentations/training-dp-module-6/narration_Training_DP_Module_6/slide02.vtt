@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.437
+Why does this matter?
+
+2
+00:00:01.437 --> 00:00:03.849
+You can't remove NTLM you haven't found,
+
+3
+00:00:03.849 --> 00:00:07.424
+and most of what you find is
+a missing or misplaced name.
+
+4
+00:00:07.424 --> 00:00:10.463
+Windows Authentication
+tries Kerberos first.
+
+5
+00:00:10.463 --> 00:00:15.288
+When the client can't get a ticket for
+the instance's S P N, it uses NTLM.
+
+6
+00:00:15.288 --> 00:00:19.875
+And when the S P N sits on the wrong
+account, authentication fails outright.
+
+7
+00:00:19.875 --> 00:00:22.361
+In this module you list, per instance,
+
+8
+00:00:22.361 --> 00:00:27.084
+every reason its connections use NTLM
+or fail Kerberos, with the set S
+
+9
+00:00:27.084 --> 00:00:31.490
+P N line that would fix each S P N
+problem, ready for a change window.

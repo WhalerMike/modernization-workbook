@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.138
+Here's what Microsoft Learn gives you.
+
+2
+00:00:02.138 --> 00:00:06.862
+A sequel server T L S certificate needs
+the Server Authentication enhanced key
+
+3
+00:00:06.862 --> 00:00:10.118
+usage, a key spec of key
+exchange from a legacy provider,
+
+4
+00:00:10.118 --> 00:00:13.374
+and every client name in the
+subject alternative name.
+
+5
+00:00:13.374 --> 00:00:17.356
+A certificate from a Key Storage
+Provider gives a key spec of zero,
+
+6
+00:00:17.356 --> 00:00:19.125
+which sequel server can't use.
+
+7
+00:00:19.125 --> 00:00:23.153
+Sequel server checks the certificate's
+validity only when it's configured,
+
+8
+00:00:23.153 --> 00:00:26.662
+but clients that validate the
+certificate fail on an expired one.
+
+9
+00:00:26.662 --> 00:00:28.613
+Signing certificates are different.
+
+10
+00:00:28.613 --> 00:00:32.686
+A certificate-mapped login shows as
+type C, used only for code signing,
+
+11
+00:00:32.686 --> 00:00:35.830
+and the built-in signing
+functions don't check expiry,
+
+12
+00:00:35.830 --> 00:00:38.688
+though Service Broker
+and backup encryption do.
+
+13
+00:00:38.688 --> 00:00:41.580
+So an expiring T L S
+certificate breaks clients,
+
+14
+00:00:41.580 --> 00:00:45.288
+and an expiring signing certificate
+doesn't lock anyone out.
+
+15
+00:00:45.288 --> 00:00:48.681
+One more fact: Microsoft
+Cloud P K I issues only to
+
+16
+00:00:48.681 --> 00:00:52.850
+devices enrolled in Intune,
+which excludes Windows Server.

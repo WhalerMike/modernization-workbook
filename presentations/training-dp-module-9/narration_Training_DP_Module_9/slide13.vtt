@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:01.700
+The federal requirement.
+
+2
+00:00:01.700 --> 00:00:09.155
+Chapter 9 maps the closure record to
+three NIST SP 800-53 controls: C A seven,
+
+3
+00:00:09.155 --> 00:00:13.147
+continuous monitoring; C M six,
+the authentication settings,
+
+4
+00:00:13.147 --> 00:00:16.500
+read every run; and A C two,
+which accounts can sign in.
+
+5
+00:00:16.500 --> 00:00:20.362
+It maps the drift comparison
+to C A seven and C M six.
+
+6
+00:00:20.362 --> 00:00:24.406
+Keep the closure file and its manifest
+per instance per run, the exception
+
+7
+00:00:24.406 --> 00:00:28.913
+registry with its approvers, and the
+external evidence each external field names.
+
+8
+00:00:28.913 --> 00:00:33.775
+For drift, keep the drift file, its
+manifest, and the task opened for each row.
+
+9
+00:00:33.775 --> 00:00:37.922
+Each manifest records the
+step, its controls and K S Is,
+
+10
+00:00:37.922 --> 00:00:40.750
+and the S H A two fifty-six of each file.
+
+11
+00:00:40.750 --> 00:00:45.263
+Runbook R nine lists the evidence for the
+evidenced and operated control states.
+
+12
+00:00:45.263 --> 00:00:49.460
+K S Is are FedRAMP twenty X indicators
+for cloud service providers:
+
+13
+00:00:49.460 --> 00:00:53.275
+your cloud providers report
+against them, the agency doesn't.
+
+14
+00:00:53.275 --> 00:00:55.272
+The records support these controls;
+
+15
+00:00:55.272 --> 00:00:58.420
+the assessor decides whether
+the closure posture holds.

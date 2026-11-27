@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:03.013
+Unit 2 starts with how a
+group reaches the engine.
+
+2
+00:00:03.013 --> 00:00:06.285
+An Entra group reaches Sequel
+Server as a group login,
+
+3
+00:00:06.285 --> 00:00:08.475
+then a database user added to a role.
+
+4
+00:00:08.475 --> 00:00:11.235
+The data platform book's
+Chapter 16, Groups,
+
+5
+00:00:11.235 --> 00:00:15.650
+Roles and How Membership Reaches
+the Engine, makes one rule central.
+
+6
+00:00:15.650 --> 00:00:19.169
+Each Entra group grants exactly
+one role, on one database,
+
+7
+00:00:19.169 --> 00:00:22.687
+in one environment, so the
+group's name says what it grants.
+
+8
+00:00:22.687 --> 00:00:26.640
+The model stays flat, because
+dynamic groups can't contain groups,
+
+9
+00:00:26.640 --> 00:00:31.250
+and nesting builds on behavior that is
+unsupported, ending or undocumented.
+
+10
+00:00:31.250 --> 00:00:34.750
+Members are listed directly,
+by rule or by assignment.
+
+11
+00:00:34.750 --> 00:00:38.217
+One group, one role is checked
+where the roles are known:
+
+12
+00:00:38.217 --> 00:00:40.375
+the login plan from Module 4 warns.
+
+13
+00:00:40.375 --> 00:00:42.854
+The group map carries grants per instance,
+
+14
+00:00:42.854 --> 00:00:45.910
+not roles per database, so
+it doesn't repeat the check.

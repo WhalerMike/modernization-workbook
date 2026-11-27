@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.775
+Step five reruns the audit on day 30.
+
+2
+00:00:02.775 --> 00:00:05.888
+Sequel P R D oh one has
+moved to Entra logins.
+
+3
+00:00:05.888 --> 00:00:09.179
+Its S A, renamed, a
+Windows login and payroll
+
+4
+00:00:09.179 --> 00:00:12.375
+report are disabled, so disabled is three.
+
+5
+00:00:12.375 --> 00:00:16.317
+Its two superseded Windows groups
+were denied connect SQL instead,
+
+6
+00:00:16.317 --> 00:00:19.925
+so they leave the usable count
+without being counted as disabled.
+
+7
+00:00:19.925 --> 00:00:24.400
+Nothing was dropped, and only its
+service-account finding and category remain.
+
+8
+00:00:24.400 --> 00:00:26.975
+Now look at sequel P R D oh six.
+
+9
+00:00:26.975 --> 00:00:31.113
+Its Windows user count went from
+zero to one, and no finding says so.
+
+10
+00:00:31.113 --> 00:00:35.451
+A single audit doesn't compare
+runs; Chapter 9's drift check does.
+
+11
+00:00:35.451 --> 00:00:39.487
+Step six runs this chapter's
+tests: six pass, none fail.
+
+12
+00:00:39.487 --> 00:00:41.287
+Step seven lists your runs.
+
+13
+00:00:41.287 --> 00:00:44.900
+There's nothing to clean up: the
+results stay in the run's own folder.

@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.100 --> 00:00:02.962
+The test stage is a go
+when five things hold.
+
+2
+00:00:02.962 --> 00:00:07.225
+Preflight passed, and the deployer's
+rights read one, one, one.
+
+3
+00:00:07.225 --> 00:00:10.850
+The three hashes in the change
+record match the files that ran.
+
+4
+00:00:10.850 --> 00:00:13.825
+The parallel run printed
+cutover-ready, N of N.
+
+5
+00:00:13.825 --> 00:00:17.123
+Thirty days of observation
+passed with no failed
+
+6
+00:00:17.123 --> 00:00:20.500
+login on a disabled or denied
+login, and no drift row.
+
+7
+00:00:20.500 --> 00:00:23.950
+And every deploy record
+says applied, not dry run.
+
+8
+00:00:23.950 --> 00:00:27.675
+A no-go is a finding with an
+owner, and the stage is repeated.
+
+9
+00:00:27.675 --> 00:00:29.782
+The seal re-hashes every run's files,
+
+10
+00:00:29.782 --> 00:00:34.504
+refuses a stage missing a required step
+or with a deploy run that wasn't applied,
+
+11
+00:00:34.504 --> 00:00:38.500
+and appends one record to the chain
+with the previous record's hash.
+
+12
+00:00:38.500 --> 00:00:41.763
+Sealed with the rehearsal
+switch, it records a rehearsal,
+
+13
+00:00:41.763 --> 00:00:44.263
+which production preflight never accepts.
+
+14
+00:00:44.263 --> 00:00:46.345
+Production then runs the same steps,
+
+15
+00:00:46.345 --> 00:00:49.538
+and its seal also needs the
+closure record from Module 9.
+
+16
+00:00:49.538 --> 00:00:53.770
+When Entra can't be reached, Appendix
+B's path is the registered break-glass
+
+17
+00:00:53.770 --> 00:00:57.863
+Windows group, empty by default, with
+every membership change alerting.
