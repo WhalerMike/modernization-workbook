@@ -1,0 +1,2 @@
+{ "tenantId": "c0ffee00-0000-4000-8000-000000000001", "clientId": "f3000000-0000-4000-8000-000000000399", "certificatePath": "unused-with-fixtures.pfx",
+  "subscriptionId": "00000000-0000-4000-8000-000000000000", "runsPath": "out/runs", "configPath": "", "runAs": "CONTOSO\\gmsa-fmpassess$", "kitPath": "." }

@@ -1,0 +1,6 @@
+{
+  "_comment": "What the morning synchronization check flags (Book 15, Chapter 12, task 6). Microsoft Entra Connect synchronizes every 30 minutes by default, so lateMinutes of 90 is two missed cycles. A service whose status is in notOperational is a finding for the morning report. Copy and edit at work.",
+  "lateMinutes": 90,
+  "notOperational": ["investigating", "restoringService", "verifyingService", "serviceDegradation", "serviceInterruption", "extendedRecovery"],
+  "services": []
+}

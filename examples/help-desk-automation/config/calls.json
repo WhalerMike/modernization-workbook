@@ -1,14 +1,249 @@
 {
-  "_comment": "Every Microsoft Graph call the pack makes, the task that makes it and the least privilege Microsoft Learn names for it (read November 27, 2026). docs/reference/permissions-by-run.md is built from this file, and tests/HelpDeskAutomation.Tests.ps1 fails if the module calls an endpoint not declared here.",
+  "_comment": "Every Microsoft Graph call the pack makes, the task that makes it and the least privilege Microsoft Learn names for it (read November 27, 2026). Azure calls name the Azure role instead of a Graph permission. docs/reference/permissions-by-run.md is built from this file, and tests/HelpDeskAutomation.Tests.ps1 fails if the module calls an endpoint not declared here.",
   "tasks": {
-    "typed-change-plan": { "mode": "read", "graphPermissions": ["User.Read.All"], "azureRoles": [], "adRights": [] },
-    "typed-change-apply": { "mode": "write", "graphPermissions": ["User.Read.All", "User.ReadUpdate.All"], "azureRoles": [], "adRights": [], "delegatedRole": "User Administrator, activated through PIM against the ticket, or the approved write pipeline (WD-182)" },
-    "consent-requests": { "mode": "read", "graphPermissions": ["ConsentRequest.Read.All"], "azureRoles": [], "adRights": [] }
+    "typed-change-plan": {
+      "mode": "read",
+      "graphPermissions": [
+        "User.Read.All"
+      ],
+      "azureRoles": [],
+      "adRights": []
+    },
+    "typed-change-apply": {
+      "mode": "write",
+      "graphPermissions": [
+        "User.Read.All",
+        "User.ReadUpdate.All"
+      ],
+      "azureRoles": [],
+      "adRights": [],
+      "delegatedRole": "User Administrator, activated through PIM against the ticket, or the approved write pipeline (WD-182)"
+    },
+    "consent-requests": {
+      "mode": "read",
+      "graphPermissions": [
+        "ConsentRequest.Read.All"
+      ],
+      "azureRoles": [],
+      "adRights": []
+    },
+    "sync-check": {
+      "mode": "read",
+      "graphPermissions": [
+        "Organization.Read.All",
+        "User.Read.All",
+        "ServiceHealth.Read.All"
+      ],
+      "azureRoles": [],
+      "adRights": []
+    },
+    "role-review": {
+      "mode": "read",
+      "graphPermissions": [
+        "RoleManagement.Read.Directory",
+        "DeviceManagementRBAC.Read.All"
+      ],
+      "azureRoles": [],
+      "adRights": []
+    },
+    "log-forwarding-check": {
+      "mode": "read",
+      "graphPermissions": [],
+      "azureRoles": [
+        "Reader",
+        "Log Analytics Reader"
+      ],
+      "adRights": []
+    },
+    "log-forwarding-deploy": {
+      "mode": "write",
+      "graphPermissions": [],
+      "azureRoles": [
+        "A role that can create data collection rules and their associations on the Arc machines (confirm the built-in role in the test stage)"
+      ],
+      "adRights": [],
+      "delegatedRole": "A person deploying the reviewed template, not the scheduled identity"
+    }
   },
   "calls": [
-    { "id": "user-get", "api": "graph", "method": "GET", "version": "v1.0", "path": "/users/{id}", "permissions": ["User.Read.All"], "stage": "v1.0", "tasks": ["typed-change-plan", "typed-change-apply"], "learn": "https://learn.microsoft.com/graph/api/user-get?view=graph-rest-1.0" },
-    { "id": "user-update", "api": "graph", "method": "PATCH", "version": "v1.0", "path": "/users/{id}", "permissions": ["User.ReadUpdate.All"], "stage": "v1.0", "tasks": ["typed-change-apply"], "learn": "https://learn.microsoft.com/graph/api/user-update?view=graph-rest-1.0" },
-    { "id": "consent-requests-list", "api": "graph", "method": "GET", "version": "v1.0", "path": "/identityGovernance/appConsent/appConsentRequests", "permissions": ["ConsentRequest.Read.All"], "stage": "v1.0", "tasks": ["consent-requests"], "learn": "https://learn.microsoft.com/graph/api/appconsentapprovalroute-list-appconsentrequests?view=graph-rest-1.0" },
-    { "id": "user-consent-requests-list", "api": "graph", "method": "GET", "version": "v1.0", "path": "/identityGovernance/appConsent/appConsentRequests/{id}/userConsentRequests", "permissions": ["ConsentRequest.Read.All"], "stage": "v1.0", "tasks": ["consent-requests"], "learn": "https://learn.microsoft.com/graph/api/appconsentrequest-list-userconsentrequests?view=graph-rest-1.0" }
+    {
+      "id": "user-get",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/users/{id}",
+      "permissions": [
+        "User.Read.All"
+      ],
+      "stage": "v1.0",
+      "tasks": [
+        "typed-change-plan",
+        "typed-change-apply"
+      ],
+      "learn": "https://learn.microsoft.com/graph/api/user-get?view=graph-rest-1.0"
+    },
+    {
+      "id": "user-update",
+      "api": "graph",
+      "method": "PATCH",
+      "version": "v1.0",
+      "path": "/users/{id}",
+      "permissions": [
+        "User.ReadUpdate.All"
+      ],
+      "stage": "v1.0",
+      "tasks": [
+        "typed-change-apply"
+      ],
+      "learn": "https://learn.microsoft.com/graph/api/user-update?view=graph-rest-1.0"
+    },
+    {
+      "id": "consent-requests-list",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/identityGovernance/appConsent/appConsentRequests",
+      "permissions": [
+        "ConsentRequest.Read.All"
+      ],
+      "stage": "v1.0",
+      "tasks": [
+        "consent-requests"
+      ],
+      "learn": "https://learn.microsoft.com/graph/api/appconsentapprovalroute-list-appconsentrequests?view=graph-rest-1.0"
+    },
+    {
+      "id": "user-consent-requests-list",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/identityGovernance/appConsent/appConsentRequests/{id}/userConsentRequests",
+      "permissions": [
+        "ConsentRequest.Read.All"
+      ],
+      "stage": "v1.0",
+      "tasks": [
+        "consent-requests"
+      ],
+      "learn": "https://learn.microsoft.com/graph/api/appconsentrequest-list-userconsentrequests?view=graph-rest-1.0"
+    },
+    {
+      "id": "organization-get",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/organization",
+      "permissions": [
+        "Organization.Read.All"
+      ],
+      "stage": "v1.0",
+      "tasks": [
+        "sync-check"
+      ],
+      "learn": "https://learn.microsoft.com/graph/api/organization-get?view=graph-rest-1.0"
+    },
+    {
+      "id": "users-provisioning-errors",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/users",
+      "permissions": [
+        "User.Read.All"
+      ],
+      "stage": "v1.0",
+      "tasks": [
+        "sync-check"
+      ],
+      "learn": "https://learn.microsoft.com/graph/api/user-list?view=graph-rest-1.0",
+      "note": "Advanced query: $filter=onPremisesProvisioningErrors/any(o:o/category eq 'PropertyConflict') with ConsistencyLevel eventual and $count (Book 15, Chapter 12)"
+    },
+    {
+      "id": "health-overviews",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/admin/serviceAnnouncement/healthOverviews",
+      "permissions": [
+        "ServiceHealth.Read.All"
+      ],
+      "stage": "v1.0",
+      "tasks": [
+        "sync-check"
+      ],
+      "learn": "https://learn.microsoft.com/graph/api/serviceannouncement-list-healthoverviews?view=graph-rest-1.0"
+    },
+    {
+      "id": "directory-role-definitions",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/roleManagement/directory/roleDefinitions",
+      "permissions": [
+        "RoleManagement.Read.Directory"
+      ],
+      "stage": "v1.0",
+      "tasks": [
+        "role-review"
+      ],
+      "learn": "https://learn.microsoft.com/graph/api/rbacapplication-list-roledefinitions?view=graph-rest-1.0"
+    },
+    {
+      "id": "directory-role-assignments",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/roleManagement/directory/roleAssignments",
+      "permissions": [
+        "RoleManagement.Read.Directory"
+      ],
+      "stage": "v1.0",
+      "tasks": [
+        "role-review"
+      ],
+      "learn": "https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0"
+    },
+    {
+      "id": "intune-role-definitions",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/deviceManagement/roleDefinitions",
+      "permissions": [
+        "DeviceManagementRBAC.Read.All"
+      ],
+      "stage": "v1.0",
+      "tasks": [
+        "role-review"
+      ],
+      "learn": "https://learn.microsoft.com/graph/api/intune-rbac-roledefinition-list?view=graph-rest-1.0",
+      "note": "Needs an active Intune license for the tenant (Learn)"
+    },
+    {
+      "id": "arg-dcr-associations",
+      "api": "arm",
+      "method": "POST",
+      "path": "/providers/Microsoft.ResourceGraph/resources",
+      "azureRole": "Reader",
+      "stage": "GA",
+      "tasks": [
+        "log-forwarding-check"
+      ],
+      "learn": "https://learn.microsoft.com/azure/governance/resource-graph/overview",
+      "note": "A Resource Graph query: Arc machines and their data collection rule associations (insightsresources)"
+    },
+    {
+      "id": "law-query",
+      "api": "loganalytics",
+      "method": "POST",
+      "path": "/v1/workspaces/{workspaceId}/query",
+      "azureRole": "Log Analytics Reader",
+      "stage": "GA",
+      "tasks": [
+        "log-forwarding-check"
+      ],
+      "learn": "https://learn.microsoft.com/azure/azure-monitor/logs/api/overview",
+      "note": "The newest Event record per computer"
+    }
   ]
 }

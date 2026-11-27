@@ -126,3 +126,111 @@ Describe 'Declared calls only' {
         foreach ($t in 'typed-change-plan', 'consent-requests') { (Get-HtRequiredPermission -Task $t).GraphPermissions | Should -Not -Match 'Write|Update' }
     }
 }
+
+Describe 'Morning synchronization check' {
+    BeforeAll {
+        $script:SyncOut = Join-Path $script:Tmp 'sync'
+        $script:Sync = Invoke-HtSyncCheck -OutputPath $script:SyncOut -FixturePath $script:Fx -PreviousPath (Join-Path $script:Fx 'previous-sync') -AsOf $script:AsOf
+        $script:SyncFindings = @(Get-Content (Join-Path $script:SyncOut 'findings.json') -Raw | ConvertFrom-Json)
+    }
+    It 'a synchronization 18 minutes ago is on time' {
+        $script:Sync.LastSyncAgeMinutes | Should -Be 18
+        $script:SyncFindings.Rule | Should -Not -Contain 'HT-SY-01'
+    }
+    It 'HT-SY-02: each user with a provisioning error, by object id' {
+        @($script:SyncFindings | Where-Object Rule -eq 'HT-SY-02').Object | Should -Be @('a1000000-0000-4000-8000-000000000105', 'a1000000-0000-4000-8000-000000000106')
+    }
+    It 'HT-SY-03: a service that is not operational' {
+        ($script:SyncFindings | Where-Object Rule -eq 'HT-SY-03').Object | Should -Be 'Exchange Online'
+    }
+    It 'computes what changed since the last run, instead of bold text' {
+        $script:Sync.Changed | Should -Be 3
+        $r = Get-Content (Join-Path $script:SyncOut 'report.md') -Raw
+        $r | Should -Match 'Provisioning errors: 1 -> 2'
+        $r | Should -Match 'New error objects: a1000000-0000-4000-8000-000000000105'
+        $r | Should -Match 'Exchange Online: serviceOperational -> serviceDegradation'
+    }
+    It 'HT-SY-01: no synchronization for longer than the limit' {
+        $late = Join-Path $script:Tmp 'late'; Copy-Item $script:Fx $late -Recurse
+        '{ "id": "c0ffee00-0000-4000-8000-000000000001", "onPremisesSyncEnabled": true, "onPremisesLastSyncDateTime": "2026-11-27T08:00:00Z" }' | Set-Content (Join-Path $late 'organization.json')
+        $r = Invoke-HtSyncCheck -OutputPath (Join-Path $script:Tmp 'late-out') -FixturePath $late -AsOf $script:AsOf
+        (Get-Content (Join-Path $script:Tmp 'late-out/findings.json') -Raw | ConvertFrom-Json).Rule | Should -Contain 'HT-SY-01'
+    }
+    It 'writes a manifest with the controls and KSIs' {
+        $m = Get-Content (Join-Path $script:SyncOut 'manifest.json') -Raw | ConvertFrom-Json
+        $m.controls | Should -Contain 'CP-9'
+        $m.files.path | Should -Be @('findings.json', 'report.md', 'status.json')
+    }
+}
+
+Describe 'Custom role review' {
+    BeforeAll {
+        $script:RoleOut = Join-Path $script:Tmp 'roles'
+        $script:Roles = Invoke-HtRoleReview -OutputPath $script:RoleOut -FixturePath $script:Fx -AsOf $script:AsOf
+        $script:RoleFindings = @(Get-Content (Join-Path $script:RoleOut 'findings.json') -Raw | ConvertFrom-Json)
+    }
+    It 'reads custom directory and Intune roles, not built-in ones' { $script:Roles.CustomRoles | Should -Be 3 }
+    It 'HT-RR-01: a custom role that is not in the register' {
+        ($script:RoleFindings | Where-Object Rule -eq 'HT-RR-01').Object | Should -Be 'd4000000-0000-4000-8000-000000000402'
+    }
+    It 'HT-RR-02: permissions added since the register (a device wipe)' {
+        ($script:RoleFindings | Where-Object Rule -eq 'HT-RR-02').Issue | Should -Match 'Wipe'
+    }
+    It 'HT-RR-03: a review older than the cycle' {
+        ($script:RoleFindings | Where-Object Rule -eq 'HT-RR-03').Object | Should -Be 'd4000000-0000-4000-8000-000000000401'
+    }
+    It 'HT-RR-04: a person holding a custom role directly is a warning' {
+        $script:Roles.Warnings | Should -Be 1
+    }
+}
+
+Describe 'Event-log forwarding check' {
+    BeforeAll {
+        $script:LogOut = Join-Path $script:Tmp 'logs'
+        $script:Logs = Invoke-Command { Test-HtLogForwarding -OutputPath $script:LogOut -FixturePath $script:Fx -AsOf $script:AsOf }
+        $script:LogFindings = @(Get-Content (Join-Path $script:LogOut 'findings.json') -Raw | ConvertFrom-Json)
+    }
+    It 'a server associated with the rule and heard from recently has no finding' { $script:LogFindings.Object | Should -Not -Contain 'SYNC01' }
+    It 'HT-LF-02 and HT-LF-03: a server not associated, and silent for 16 hours' {
+        @($script:LogFindings | Where-Object Object -eq 'SYNC02').Rule | Should -Be @('HT-LF-02', 'HT-LF-03')
+    }
+}
+
+Describe 'The platform host jobs' {
+    BeforeAll {
+        $script:Run = Join-Path $script:Kit 'deploy/Invoke-HtScheduledRun.ps1'
+        $script:Settings = Join-Path $script:Tmp 'settings.json'
+        $s = Get-Content (Join-Path $script:Fx 'settings.fixture.json') -Raw | ConvertFrom-Json -AsHashtable
+        $s.runsPath = Join-Path $script:Tmp 'runs'
+        $s | ConvertTo-Json | Set-Content $script:Settings
+    }
+    It '<Job> runs into a dated folder and exits 2 on findings' -TestCases @(@{ Job = 'sync' }, @{ Job = 'consent' }, @{ Job = 'roles' }, @{ Job = 'logs' }) {
+        & pwsh -NoProfile -File $script:Run -Job $Job -SettingsPath $script:Settings -FixturePath $script:Fx -AsOf '2026-11-27T12:00:00Z' | Out-Null
+        $LASTEXITCODE | Should -Be 2
+        Join-Path $script:Tmp "runs/$Job/2026-11-27T120000Z/manifest.json" | Should -Exist
+    }
+    It 'refuses a settings file with a secret-like key' {
+        $bad = Join-Path $script:Tmp 'bad.json'
+        '{ "clientSecret": "x", "runsPath": "out" }' | Set-Content $bad
+        & pwsh -NoProfile -File $script:Run -Job sync -SettingsPath $bad -FixturePath $script:Fx 2>&1 | Out-Null
+        $LASTEXITCODE | Should -Not -Be 0
+    }
+    It 'registering is a dry run by default, under the gMSA' {
+        $r = & (Join-Path $script:Kit 'deploy/Register-HtScheduledJobs.ps1') -SettingsPath $script:Settings
+        $r.Count | Should -Be 4
+        $r.Registered | Should -Not -Contain $true
+        $r.RunAs | Sort-Object -Unique | Should -Be 'CONTOSO\gmsa-fmpassess$'
+    }
+    It 'refuses a run-as account that is not a gMSA' {
+        $s = Get-Content $script:Settings -Raw | ConvertFrom-Json -AsHashtable; $s.runAs = 'CONTOSO\svc-helpdesk'
+        $p = Join-Path $script:Tmp 'notgmsa.json'; $s | ConvertTo-Json | Set-Content $p
+        { & (Join-Path $script:Kit 'deploy/Register-HtScheduledJobs.ps1') -SettingsPath $p } | Should -Throw '*gMSA*'
+    }
+    It 'the log forwarding template is one rule for Windows events and an association per Arc machine' {
+        $t = Get-Content (Join-Path $script:Kit 'deploy/eventlog-dcr.json') -Raw | ConvertFrom-Json
+        $dcr = $t.resources | Where-Object type -eq 'Microsoft.Insights/dataCollectionRules'
+        $dcr.properties.dataSources.windowsEventLogs[0].streams | Should -Be 'Microsoft-Event'
+        $t.parameters.xPathQueries.defaultValue | ForEach-Object { $_ | Should -Match '^(Security|System|Application)!\*\[' }
+        ($t.resources | Where-Object type -eq 'Microsoft.Insights/dataCollectionRuleAssociations').scope | Should -Match 'Microsoft.HybridCompute/machines'
+    }
+}
