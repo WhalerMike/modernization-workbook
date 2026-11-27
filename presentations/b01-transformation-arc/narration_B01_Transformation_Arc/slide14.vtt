@@ -1,67 +1,67 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.075
+00:00:00.100 --> 00:00:01.300
 How do you get there?
 
 2
-00:00:01.075 --> 00:00:02.613
+00:00:01.300 --> 00:00:02.800
 Start with an inventory.
 
 3
-00:00:02.613 --> 00:00:06.707
+00:00:02.800 --> 00:00:06.755
 You can't modernize what you haven't
 counted, and nothing gets retired
 
 4
-00:00:06.707 --> 00:00:10.300
+00:00:06.755 --> 00:00:10.225
 until it's written down: read-only,
 with proof of how it was read.
 
 5
-00:00:10.300 --> 00:00:13.011
+00:00:10.225 --> 00:00:12.734
 The assessment account
 has no write rights,
 
 6
-00:00:13.011 --> 00:00:16.700
+00:00:12.734 --> 00:00:16.150
 the code can't issue write
 commands, and every call is logged.
 
 7
-00:00:16.700 --> 00:00:21.801
+00:00:16.150 --> 00:00:21.115
 An ordinary signed-in account already
 sees more than most teams expect:
 
 8
-00:00:21.801 --> 00:00:26.038
+00:00:21.115 --> 00:00:25.238
 the topology, the OU tree, most
 Group Policy, users and groups.
 
 9
-00:00:26.038 --> 00:00:31.463
+00:00:25.238 --> 00:00:29.788
 Every run records who, when, against
 what, and a hash of every file.
 
 10
-00:00:31.463 --> 00:00:33.850
+00:00:29.788 --> 00:00:31.988
 Eleven streams feed the risk scoring.
 
 11
-00:00:33.850 --> 00:00:38.837
+00:00:31.988 --> 00:00:36.870
 One example: Windows Server 2016's
 end of support is January 12, 2027,
 
 12
-00:00:38.837 --> 00:00:41.919
+00:00:36.870 --> 00:00:39.888
 so every such server needs a disposition,
 
 13
-00:00:41.919 --> 00:00:46.362
+00:00:39.888 --> 00:00:44.238
 and any that remains is an
 exception with a retirement date.
 
 14
-00:00:46.362 --> 00:00:50.660
+00:00:44.238 --> 00:00:48.380
 And no application leaves its data
 until its transactions are profiled.
