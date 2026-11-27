@@ -243,6 +243,8 @@ When the optional API is on, IIS authenticates callers with Negotiate (Kerberos 
 
 ### B.4 The host's own identities
 
+Every Active Directory object the host depends on in this section and in B.6 (its computer account, the read-only LDAP bind account and each gMSA with its retriever group) is part of one dated exception to WD-065's screen, [WD-183](../../about/decision-register.md#wd-183): owner the platform lead, ending at gate G5 or the Kerberos island's end of life. A new AD object for the host joins that exception through a change.
+
 Four identities matter, and they're different things:
 
 - **The Gitea service account** is a group managed service account (`CORP\gmsa-fmpgitea$`), named and requested under the program's managed service account standard (WD-159 and WD-173: the `gmsa-` prefix, the system's short name `fmpgitea`, 15 characters or fewer before the `$`), with the retriever group `DL-gMSA-fmpgitea-Hosts`. Services configured through the Service Control Manager, IIS application pools and scheduled tasks can all run as a gMSA, and Windows rotates its password automatically.[^aB-gmsa] Gitea's own Windows service instructions register the service with `sc.exe` and run it as the local system account by default, so the service account is set separately (family E).[^aB-gitea-winsvc]
