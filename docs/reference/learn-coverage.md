@@ -6,8 +6,8 @@ doc-type: reference
 fmw-eyebrow: "Reference"
 date-modified: 2026-11-09
 review-status: approved
-reviewed-sha256: 7a2264e1041aab30955c4629619d8acec40e42186c1556bf0cc9c13ab9f44d8b
-last-reviewed: 2026-11-26
+reviewed-sha256: 790874a31825e93a2177d5e1e2abf0f3bf727e89c33c6645fb9afa86f5734978
+last-reviewed: 2026-11-27
 ---
 # Learn Coverage Map {.unnumbered}
 
@@ -1219,7 +1219,7 @@ From [MicrosoftDocs/entra-docs](https://github.com/MicrosoftDocs/entra-docs), fo
 | [FIDO2 Security Key Sign-in to Windows](https://learn.microsoft.com/entra/identity/authentication/howto-authentication-passwordless-security-key-windows) | [Book 02, Chapter 10 — Migrating and Governing](../books/b02-identity/10-migrating-and-governing.md); [Book 07, Chapter 09 — Federal Workforce Credentials: PIV, Derived PIV and Cloud Authentication](../books/b07-pki/09-federal-workforce-credentials.md) | Covered, not cited |
 | [Known issues and troubleshooting for hybrid FIDO2 security keys](https://learn.microsoft.com/entra/identity/authentication/howto-authentication-passwordless-troubleshoot) | [Book 02, Chapter 10 — Migrating and Governing](../books/b02-identity/10-migrating-and-governing.md); [Book 07, Chapter 09 — Federal Workforce Credentials: PIV, Derived PIV and Cloud Authentication](../books/b07-pki/09-federal-workforce-credentials.md) | Covered, not cited |
 | [SMS-based user sign-in for Microsoft Entra ID](https://learn.microsoft.com/entra/identity/authentication/howto-authentication-sms-signin) | — | Out of scope |
-| [Configure a Temporary Access Pass in Microsoft Entra ID to register passwordless authentication methods](https://learn.microsoft.com/entra/identity/authentication/howto-authentication-temporary-access-pass) | [Book 02, Chapter 06 — Who Owns the Migration](../books/b02-identity/06-who-owns-the-migration.md); [Book 02, Chapter 10 — Migrating and Governing](../books/b02-identity/10-migrating-and-governing.md); and 15 more | Cited |
+| [Configure a Temporary Access Pass in Microsoft Entra ID to register passwordless authentication methods](https://learn.microsoft.com/entra/identity/authentication/howto-authentication-temporary-access-pass) | [Book 02, Chapter 06 — Who Owns the Migration](../books/b02-identity/06-who-owns-the-migration.md); [Book 02, Chapter 10 — Migrating and Governing](../books/b02-identity/10-migrating-and-governing.md); and 17 more | Cited |
 | [Sign-in to Microsoft Entra ID with email as an alternate login ID](https://learn.microsoft.com/entra/identity/authentication/howto-authentication-use-email-signin) | [Book 02, Chapter 09 — Building the Entra ID Target](../books/b02-identity/09-building-the-entra-target.md) | Cited |
 | [Secure resources with Microsoft Entra multifactor authentication and ADFS](https://learn.microsoft.com/entra/identity/authentication/howto-mfa-adfs) | — | Out of scope |
 | [Configure app passwords for Microsoft Entra multifactor authentication](https://learn.microsoft.com/entra/identity/authentication/howto-mfa-app-passwords) | — | Out of scope |

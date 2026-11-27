@@ -74,6 +74,11 @@ RUN_HOST = {
     ("non-person-identity", "cloud-workload"): f"{GMSA}; AWS and Oracle Cloud sign-ins aren't decided (Chapter 13)",
     ("non-person-identity", "kerberos-apply"): "The pipeline's own gMSA, `gmsa-msapipe$`, after SailPoint approves (WD-163)",
     ("help-desk-automation", "typed-change-plan"): "On request, not scheduled: planned for each ticket before approval",
+    ("help-desk-automation", "request-queue"): "The request pipeline (WD-182): `gmsa-fmphelpdesk$` and the request worker app, after SailPoint approves",
+    ("help-desk-automation", "password-reset"): "The request pipeline (WD-182): `gmsa-fmphelpdesk$` and the request worker app, after SailPoint approves",
+    ("help-desk-automation", "authenticator-reset"): "The request pipeline (WD-182): `gmsa-fmphelpdesk$` and the request worker app, after SailPoint approves",
+    ("help-desk-automation", "account-create"): "The request pipeline (WD-182): `gmsa-fmphelpdesk$` and the request worker app, after SailPoint approves",
+    ("help-desk-automation", "typed-change-apply"): "The request pipeline (WD-182): `gmsa-fmphelpdesk$` and the request worker app, after SailPoint approves",
     ("sql-server-identity", "audit-snapshot"): f"{GMSA}, through a Windows login on each instance with the read permissions",
 }
 BY_HAND = "Not scheduled: run by the person or pipeline the kit's chapter names"
@@ -265,7 +270,8 @@ def page() -> str:
         "the assessment gMSA, `gmsa-fmpassess$`, with default read in the forest, and for Microsoft Graph and Azure a "
         "reader app per assessment set holding only that set's read rows. A gMSA can't sign in to Microsoft Entra ID, "
         "so the cloud reads need the app. A run that changes something, needs a write permission to read, or needs an "
-        "Active Directory delegation beyond default read isn't scheduled.",
+        "Active Directory delegation beyond default read isn't scheduled; the help desk's approved requests run in "
+        "WD-182's request pipeline under their own gMSA and write app.",
         "- A role or permission listed for a run is what the kit's file names. Some calls accept any one of "
         "several roles; the kit's chapter gives the choice.",
         "",

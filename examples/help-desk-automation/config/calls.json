@@ -63,6 +63,46 @@
       ],
       "adRights": [],
       "delegatedRole": "A person deploying the reviewed template, not the scheduled identity"
+    },
+    "request-queue": {
+      "mode": "write",
+      "graphPermissions": [
+        "User.Read.All",
+        "RoleManagement.Read.Directory"
+      ],
+      "azureRoles": [],
+      "adRights": [],
+      "pipelineIdentity": "gmsa-fmphelpdesk$ and the help desk request worker app (WD-182)",
+      "servicenowRole": "An integration user that reads the four catalog items' requested items and their variables, and writes only their automation state, work notes, one-time secret field and attachments",
+      "iscScope": "idn:access-request-status:read (user level ORG_ADMIN to read others' requests)"
+    },
+    "password-reset": {
+      "mode": "write",
+      "graphPermissions": [
+        "User-PasswordProfile.ReadWrite.All"
+      ],
+      "azureRoles": [],
+      "adRights": [],
+      "delegatedRole": "The worker app also holds the User Administrator role, which covers nonadmin users only (Learn, Update user)"
+    },
+    "authenticator-reset": {
+      "mode": "write",
+      "graphPermissions": [
+        "UserAuthenticationMethod.ReadWrite.All",
+        "UserAuthMethod-TAP.ReadWrite.All"
+      ],
+      "azureRoles": [],
+      "adRights": [],
+      "delegatedRole": "Authentication Administrator covers members; admins need Privileged Authentication Administrator, so the pipeline refuses them"
+    },
+    "account-create": {
+      "mode": "write",
+      "graphPermissions": [
+        "User.Create",
+        "GroupMember.ReadWrite.All"
+      ],
+      "azureRoles": [],
+      "adRights": []
     }
   },
   "calls": [
@@ -244,6 +284,211 @@
       ],
       "learn": "https://learn.microsoft.com/azure/azure-monitor/logs/api/overview",
       "note": "The newest Event record per computer"
+    },
+    {
+      "id": "sn-ritm-list",
+      "api": "servicenow",
+      "method": "GET",
+      "path": "/api/now/table/sc_req_item",
+      "permissions": [
+        "Read on sc_req_item for the four catalog items"
+      ],
+      "tasks": [
+        "request-queue"
+      ],
+      "source": "ServiceNow Table API"
+    },
+    {
+      "id": "sn-ritm-variables",
+      "api": "servicenow",
+      "method": "GET",
+      "path": "/api/now/table/sc_item_option_mtom",
+      "permissions": [
+        "Read on sc_item_option_mtom and sc_item_option for those items"
+      ],
+      "tasks": [
+        "request-queue"
+      ],
+      "source": "ServiceNow Table API"
+    },
+    {
+      "id": "sn-ritm-update",
+      "api": "servicenow",
+      "method": "PATCH",
+      "path": "/api/now/table/sc_req_item/{sys_id}",
+      "permissions": [
+        "Write on the automation state, work notes and one-time secret fields only"
+      ],
+      "tasks": [
+        "request-queue"
+      ],
+      "source": "ServiceNow Table API"
+    },
+    {
+      "id": "sn-attach",
+      "api": "servicenow",
+      "method": "POST",
+      "path": "/api/now/attachment/file",
+      "permissions": [
+        "Create attachments on those requested items"
+      ],
+      "tasks": [
+        "request-queue"
+      ],
+      "source": "ServiceNow Attachment API"
+    },
+    {
+      "id": "isc-access-request-status",
+      "api": "isc",
+      "method": "GET",
+      "path": "/v3/access-request-status",
+      "permissions": [
+        "idn:access-request-status:read (user level ORG_ADMIN for others' requests)"
+      ],
+      "tasks": [
+        "request-queue"
+      ],
+      "source": "SailPoint API spec v3, listAccessRequestStatus (filters: accessRequestId eq)"
+    },
+    {
+      "id": "role-assignments-for-user",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/roleManagement/directory/roleAssignments",
+      "permissions": [
+        "RoleManagement.Read.Directory"
+      ],
+      "stage": "v1.0",
+      "tasks": [
+        "request-queue"
+      ],
+      "learn": "https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0",
+      "note": "Active assignments by principalId; the pipeline refuses a user who holds any directory role"
+    },
+    {
+      "id": "user-get-queue",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/users/{id}",
+      "permissions": [
+        "User.Read.All"
+      ],
+      "stage": "v1.0",
+      "tasks": [
+        "request-queue",
+        "account-create"
+      ],
+      "learn": "https://learn.microsoft.com/graph/api/user-get?view=graph-rest-1.0"
+    },
+    {
+      "id": "user-password-reset",
+      "api": "graph",
+      "method": "PATCH",
+      "version": "v1.0",
+      "path": "/users/{id}",
+      "permissions": [
+        "User-PasswordProfile.ReadWrite.All"
+      ],
+      "stage": "v1.0",
+      "tasks": [
+        "password-reset"
+      ],
+      "learn": "https://learn.microsoft.com/graph/api/user-update?view=graph-rest-1.0",
+      "note": "passwordProfile with forceChangePasswordNextSignIn; not for federated users; app-only also needs the User Administrator role, nonadmin users only"
+    },
+    {
+      "id": "auth-methods-list",
+      "api": "graph",
+      "method": "GET",
+      "version": "v1.0",
+      "path": "/users/{id}/authentication/methods",
+      "permissions": [
+        "UserAuthenticationMethod.Read.All"
+      ],
+      "stage": "v1.0",
+      "tasks": [
+        "authenticator-reset"
+      ],
+      "learn": "https://learn.microsoft.com/graph/api/authentication-list-methods?view=graph-rest-1.0"
+    },
+    {
+      "id": "authenticator-method-delete",
+      "api": "graph",
+      "method": "DELETE",
+      "version": "v1.0",
+      "path": "/users/{id}/authentication/microsoftAuthenticatorMethods/{methodId}",
+      "permissions": [
+        "UserAuthenticationMethod.ReadWrite.All"
+      ],
+      "stage": "v1.0",
+      "tasks": [
+        "authenticator-reset"
+      ],
+      "learn": "https://learn.microsoft.com/graph/api/microsoftauthenticatorauthenticationmethod-delete?view=graph-rest-1.0"
+    },
+    {
+      "id": "phone-method-delete",
+      "api": "graph",
+      "method": "DELETE",
+      "version": "v1.0",
+      "path": "/users/{id}/authentication/phoneMethods/{methodId}",
+      "permissions": [
+        "UserAuthenticationMethod.ReadWrite.All"
+      ],
+      "stage": "v1.0",
+      "tasks": [
+        "authenticator-reset"
+      ],
+      "learn": "https://learn.microsoft.com/graph/api/phoneauthenticationmethod-delete?view=graph-rest-1.0",
+      "note": "A phone that is the user's default MFA method can't be deleted (Learn); the request goes to a person"
+    },
+    {
+      "id": "tap-create",
+      "api": "graph",
+      "method": "POST",
+      "version": "v1.0",
+      "path": "/users/{id}/authentication/temporaryAccessPassMethods",
+      "permissions": [
+        "UserAuthMethod-TAP.ReadWrite.All"
+      ],
+      "stage": "v1.0",
+      "tasks": [
+        "authenticator-reset"
+      ],
+      "learn": "https://learn.microsoft.com/graph/api/authentication-post-temporaryaccesspassmethods?view=graph-rest-1.0",
+      "note": "Learn's table lists UserAuthMethod-TAP.Read.All as least privileged for the page; a create is declared with the ReadWrite permission until a test tenant shows otherwise"
+    },
+    {
+      "id": "user-create",
+      "api": "graph",
+      "method": "POST",
+      "version": "v1.0",
+      "path": "/users",
+      "permissions": [
+        "User.Create"
+      ],
+      "stage": "v1.0",
+      "tasks": [
+        "account-create"
+      ],
+      "learn": "https://learn.microsoft.com/graph/api/user-post-users?view=graph-rest-1.0"
+    },
+    {
+      "id": "group-member-add",
+      "api": "graph",
+      "method": "POST",
+      "version": "v1.0",
+      "path": "/groups/{id}/members/$ref",
+      "permissions": [
+        "GroupMember.ReadWrite.All"
+      ],
+      "stage": "v1.0",
+      "tasks": [
+        "account-create"
+      ],
+      "learn": "https://learn.microsoft.com/graph/api/group-post-members?view=graph-rest-1.0"
     }
   ]
 }

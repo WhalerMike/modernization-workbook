@@ -18382,6 +18382,8 @@ pages:
   coverage: cited
   note: ''
   cited_by:
+  - data/decisions.yml
+  - docs/about/decision-register.md
   - docs/books/b02-identity/06-who-owns-the-migration.md
   - docs/books/b02-identity/10-migrating-and-governing.md
   - docs/books/b04-access/03-the-conditional-access-model.md

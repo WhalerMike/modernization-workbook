@@ -234,3 +234,103 @@ Describe 'The platform host jobs' {
         ($t.resources | Where-Object type -eq 'Microsoft.Insights/dataCollectionRuleAssociations').scope | Should -Match 'Microsoft.HybridCompute/machines'
     }
 }
+
+Describe 'The approved-request pipeline (WD-182)' {
+    BeforeAll {
+        $script:QStore = New-HtFixtureStore -Path $script:Fx
+        Mock -ModuleName HelpDeskAutomation New-HtFixtureStore { $script:QStore }
+        $script:QOut = Join-Path $script:Tmp 'queue'
+        $script:Q = @(Invoke-HtRequestQueue -OutputPath $script:QOut -FixturePath $script:Fx -Apply -AsOf $script:AsOf)
+        function Get-Q($n) { $script:Q | Where-Object Number -eq $n }
+    }
+    It 'works only items marked ready with an access request id' {
+        $script:Q.Number | Should -Not -Contain 'RITM0010010'
+        $script:Q.Count | Should -Be 10
+    }
+    It 'an approval still pending in SailPoint leaves the item in the queue, untouched' {
+        (Get-Q 'RITM0010011').State | Should -Be 'waiting'
+        $script:QStore.Updates.uri | Should -Not -Match ('{0:x32}' -f 11)
+    }
+    It 'a typed change approved in SailPoint is planned, applied and verified' {
+        (Get-Q 'RITM0010001').State | Should -Be 'done'
+        $ev = Get-Content (Join-Path $script:QOut 'RITM0010001/evidence.json') -Raw | ConvertFrom-Json
+        $ev.result.after | Should -Be 'Records'
+        $ev.result.verified | Should -BeTrue
+    }
+    It 'a password reset forces a change at next sign-in and issues the secret only to the restricted field' {
+        $r = Get-Q 'RITM0010002'
+        $r.State | Should -Be 'done'; $r.SecretIssued | Should -BeTrue
+        ($script:QStore.Actions | Where-Object call -eq 'user-password-reset').forceChange | Should -BeTrue
+        $upd = $script:QStore.Updates | Where-Object { $_.uri -like '*/sc_req_item/*' -and $_.body.u_one_time_secret }
+        @($upd).Count | Should -BeGreaterOrEqual 1
+        Get-Content (Join-Path $script:QOut 'RITM0010002/evidence.json') -Raw | Should -Not -Match ([regex]::Escape(@($upd)[0].body.u_one_time_secret))
+    }
+    It 'HT-RQ-04: a user holding a directory role goes to a person' {
+        (Get-Q 'RITM0010003').State | Should -Be 'manual'
+        (Get-Q 'RITM0010003').Reason | Should -Match 'HT-RQ-04'
+    }
+    It 'an authenticator reset removes the app and phone methods, keeps the password, and issues a single-use pass' {
+        (Get-Q 'RITM0010004').State | Should -Be 'done'
+        @($script:QStore.Actions | Where-Object call -in 'authenticator-method-delete', 'phone-method-delete').Count | Should -Be 2
+        $tap = $script:QStore.Actions | Where-Object call -eq 'tap-create'
+        $tap.body.isUsableOnce | Should -BeTrue
+        $tap.body.lifetimeInMinutes | Should -Be 60
+    }
+    It 'HT-RQ-01: a reset with no identity verification is refused' { (Get-Q 'RITM0010005').Reason | Should -Match 'HT-RQ-01' }
+    It 'a cloud account is created from its profile, with its groups' {
+        (Get-Q 'RITM0010006').State | Should -Be 'done'
+        ($script:QStore.Actions | Where-Object call -eq 'user-create').body.usageLocation | Should -Be 'US'
+        ($script:QStore.Actions | Where-Object call -eq 'group-member-add').uri | Should -Match '9a000000-0000-4000-8000-000000000901'
+    }
+    It 'HT-RQ-02: a request SailPoint rejected is not run' { (Get-Q 'RITM0010007').Reason | Should -Match 'HT-RQ-02.*REJECTED' }
+    It 'HT-RQ-03: a request its own requester approved is not run' { (Get-Q 'RITM0010008').Reason | Should -Match 'HT-RQ-03' }
+    It 'HT-RQ-05: an item that carries a command goes to a person' { (Get-Q 'RITM0010009').State | Should -Be 'manual' }
+    It 'every item gets its state, work notes and evidence attached' {
+        @($script:QStore.Updates | Where-Object { $_.uri -like '*/sc_req_item/*' }).Count | Should -Be 9
+        @($script:QStore.Updates | Where-Object { $_.attachment }).Count | Should -Be 9
+    }
+    It 'a dry run changes nothing and writes nothing back' {
+        $store = New-HtFixtureStore -Path $script:Fx
+        Mock -ModuleName HelpDeskAutomation New-HtFixtureStore { $store }
+        $d = @(Invoke-HtRequestQueue -OutputPath (Join-Path $script:Tmp 'dry-queue') -FixturePath $script:Fx -AsOf $script:AsOf)
+        ($d | Where-Object Number -eq 'RITM0010002').State | Should -Be 'dry-run'
+        $store.Actions.Count | Should -Be 0
+        $store.Updates.Count | Should -Be 0
+    }
+    It 'the request worker''s calls are declared, and its reads hold no write permission' {
+        (Get-HtRequiredPermission -Task request-queue).GraphPermissions | Should -Not -Match 'Write|Update|Create'
+    }
+}
+
+Describe 'The request pipeline on the platform host' {
+    BeforeAll {
+        $script:RSettings = Join-Path $script:Tmp 'rsettings.json'
+        $s = Get-Content (Join-Path $script:Fx 'requests-settings.fixture.json') -Raw | ConvertFrom-Json -AsHashtable
+        $s.runsPath = Join-Path $script:Tmp 'request-runs'
+        $s | ConvertTo-Json | Set-Content $script:RSettings
+    }
+    It 'a dry run works the queue into a dated folder and exits 2 when an item failed' {
+        & pwsh -NoProfile -File (Join-Path $script:Kit 'deploy/Invoke-HtRequestPipeline.ps1') -SettingsPath $script:RSettings -FixturePath $script:Fx -DryRun -AsOf '2026-11-27T12:00:00Z' *>&1 | Out-Null
+        $LASTEXITCODE | Should -Be 2
+        Join-Path $script:Tmp 'request-runs/2026-11-27T120000Z/queue.json' | Should -Exist
+    }
+    It 'registering is a dry run by default, under the pipeline''s own gMSA' {
+        $r = & (Join-Path $script:Kit 'deploy/Register-HtRequestPipeline.ps1') -SettingsPath $script:RSettings
+        $r.Registered | Should -BeFalse
+        $r.RunAs | Should -Be 'CONTOSO\gmsa-fmphelpdesk$'
+    }
+    It 'refuses to run the pipeline as the assessment gMSA' {
+        $s = Get-Content $script:RSettings -Raw | ConvertFrom-Json -AsHashtable; $s.runAs = 'CONTOSO\gmsa-fmpassess$'
+        $p = Join-Path $script:Tmp 'assess.json'; $s | ConvertTo-Json | Set-Content $p
+        { & (Join-Path $script:Kit 'deploy/Register-HtRequestPipeline.ps1') -SettingsPath $p } | Should -Throw '*never runs as the assessment gMSA*'
+    }
+    It 'the ServiceNow and SailPoint templates parse, and the access profiles use SailPoint''s approval scheme shape' {
+        $ap = Get-Content (Join-Path $script:Kit 'sailpoint/access-profiles.json') -Raw | ConvertFrom-Json
+        $ap.accessProfiles.Count | Should -Be 4
+        $ap.accessProfiles.accessRequestConfig.approvalSchemes.approverType | ForEach-Object { $_ | Should -BeIn 'APP_OWNER', 'OWNER', 'SOURCE_OWNER', 'MANAGER', 'GOVERNANCE_GROUP', 'WORKFLOW' }
+        $ci = Get-Content (Join-Path $script:Kit 'servicenow/catalog-items.json') -Raw | ConvertFrom-Json
+        $items = (Get-HtConfig request-items).items.Keys
+        $ci.items.name | Sort-Object | Should -Be ($items | Sort-Object)
+        $ci.items.variables.name | Should -Not -Contain 'command'
+    }
+}

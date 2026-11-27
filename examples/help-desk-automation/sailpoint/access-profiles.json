@@ -1,0 +1,134 @@
+{
+  "_comment": "A requestable access profile per task in SailPoint Identity Security Cloud (template): the agency's system access management tool submits each ServiceNow request as a request for one of these, and SailPoint's approval scheme decides it (WD-174, WD-182). Approving the access profile approves that one task for that one person; it grants nothing standing. Names and governance groups are examples. Shapes follow SailPoint's published v3 AccessProfile schema (accessRequestConfig.approvalSchemes, approverType); each profile also needs the owner, source and entitlement your tenant models a help desk task with.",
+  "accessProfiles": [
+    {
+      "name": "Help Desk Task - Typed User Change",
+      "requestable": true,
+      "owner": {
+        "type": "IDENTITY",
+        "id": "<service desk manager identity id>"
+      },
+      "source": {
+        "type": "SOURCE",
+        "id": "<help desk tasks source id>"
+      },
+      "entitlements": [
+        {
+          "type": "ENTITLEMENT",
+          "id": "<entitlement id for this task>"
+        }
+      ],
+      "accessRequestConfig": {
+        "commentsRequired": true,
+        "denialCommentsRequired": true,
+        "approvalSchemes": [
+          {
+            "approverType": "MANAGER"
+          },
+          {
+            "approverType": "GOVERNANCE_GROUP",
+            "approverId": "<identity data owners group id>"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Help Desk Task - Password Reset",
+      "requestable": true,
+      "owner": {
+        "type": "IDENTITY",
+        "id": "<service desk manager identity id>"
+      },
+      "source": {
+        "type": "SOURCE",
+        "id": "<help desk tasks source id>"
+      },
+      "entitlements": [
+        {
+          "type": "ENTITLEMENT",
+          "id": "<entitlement id for this task>"
+        }
+      ],
+      "accessRequestConfig": {
+        "commentsRequired": true,
+        "denialCommentsRequired": true,
+        "approvalSchemes": [
+          {
+            "approverType": "GOVERNANCE_GROUP",
+            "approverId": "<service desk leads group id>"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Help Desk Task - Authenticator Reset",
+      "requestable": true,
+      "owner": {
+        "type": "IDENTITY",
+        "id": "<service desk manager identity id>"
+      },
+      "source": {
+        "type": "SOURCE",
+        "id": "<help desk tasks source id>"
+      },
+      "entitlements": [
+        {
+          "type": "ENTITLEMENT",
+          "id": "<entitlement id for this task>"
+        }
+      ],
+      "accessRequestConfig": {
+        "commentsRequired": true,
+        "denialCommentsRequired": true,
+        "approvalSchemes": [
+          {
+            "approverType": "MANAGER"
+          },
+          {
+            "approverType": "GOVERNANCE_GROUP",
+            "approverId": "<identity security group id>"
+          }
+        ]
+      },
+      "description": "Two approvers: the highest-risk task on the desk (Book 15, Chapter 12, task 2)"
+    },
+    {
+      "name": "Help Desk Task - Cloud Account",
+      "requestable": true,
+      "owner": {
+        "type": "IDENTITY",
+        "id": "<service desk manager identity id>"
+      },
+      "source": {
+        "type": "SOURCE",
+        "id": "<help desk tasks source id>"
+      },
+      "entitlements": [
+        {
+          "type": "ENTITLEMENT",
+          "id": "<entitlement id for this task>"
+        }
+      ],
+      "accessRequestConfig": {
+        "commentsRequired": true,
+        "denialCommentsRequired": true,
+        "approvalSchemes": [
+          {
+            "approverType": "MANAGER"
+          },
+          {
+            "approverType": "GOVERNANCE_GROUP",
+            "approverId": "<sponsor approvers group id>"
+          }
+        ]
+      }
+    }
+  ],
+  "pipelineApiClient": {
+    "scopes": [
+      "idn:access-request-status:read"
+    ],
+    "userLevel": "ORG_ADMIN (SailPoint requires it to read other users' request status)",
+    "note": "Read only; the pipeline never approves or submits"
+  }
+}

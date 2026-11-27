@@ -1,0 +1,24 @@
+{
+  "_comment": "The four catalog items the request pipeline works (WD-182), as a template for a ServiceNow administrator: each item's variables, and the fields added to sc_req_item. No item has a free-text command field. Names are examples (x_example_hda); match config/request-items.json if you change them.",
+  "requestedItemFields": [
+    { "name": "u_automation_state", "type": "choice", "choices": ["awaiting-approval", "ready", "done", "failed", "manual"], "default": "awaiting-approval", "writtenBy": "the access management hand-off (ready) and the pipeline (done, failed, manual)" },
+    { "name": "u_isc_access_request_id", "type": "string", "length": 64, "writtenBy": "the agency's system access management tool, when it submits the request to SailPoint" },
+    { "name": "u_identity_verified_by", "type": "reference", "reference": "sys_user", "writtenBy": "the service desk agent who verified the person (resets only)" },
+    { "name": "u_identity_verification_method", "type": "choice", "choices": ["Callback to the phone number in the HR record", "In person with a PIV card", "Video call with a government ID", "Manager confirmation through the HR record"], "writtenBy": "the same agent" },
+    { "name": "u_one_time_secret", "type": "password2", "writtenBy": "the pipeline only; readable only by the assigned agent's group (servicenow/acl.md); cleared by servicenow/scheduled-job-clear-one-time-secret.js" }
+  ],
+  "items": [
+    { "name": "Typed user change", "variables": [
+      { "name": "user_principal_name", "type": "single_line_text", "mandatory": true, "help": "The user's sign-in name" },
+      { "name": "change_id", "type": "select_box", "mandatory": true, "choicesFrom": "config/typed-changes.json changes[].id", "help": "The change; only these can run" },
+      { "name": "value", "type": "single_line_text", "mandatory": true, "help": "The new value; checked against the change's list or pattern" } ] },
+    { "name": "Password reset", "variables": [ { "name": "user_principal_name", "type": "single_line_text", "mandatory": true } ], "agentFields": ["u_identity_verified_by", "u_identity_verification_method"] },
+    { "name": "Authenticator reset", "variables": [ { "name": "user_principal_name", "type": "single_line_text", "mandatory": true } ], "agentFields": ["u_identity_verified_by", "u_identity_verification_method"] },
+    { "name": "Cloud account for a partner or lab user", "variables": [
+      { "name": "given_name", "type": "single_line_text", "mandatory": true },
+      { "name": "surname", "type": "single_line_text", "mandatory": true },
+      { "name": "user_principal_name", "type": "single_line_text", "mandatory": true, "help": "first initial and surname, in the cloud-only domain" },
+      { "name": "usage_location", "type": "select_box", "mandatory": true, "choicesFrom": "config/request-items.json usageLocations" },
+      { "name": "profile", "type": "select_box", "mandatory": true, "choicesFrom": "config/request-items.json accountProfiles" } ] }
+  ]
+}

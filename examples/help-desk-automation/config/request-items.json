@@ -1,0 +1,30 @@
+{
+  "_comment": "The request-driven tasks (WD-182): the ServiceNow catalog items the pipeline works, the variables each carries, and the fields it reads and writes on the requested item. The names are a template: copy and edit at work to match your instance. The requester fills in only these variables; no item takes a command.",
+  "servicenow": {
+    "table": "sc_req_item",
+    "readyQuery": "u_automation_state=ready^u_isc_access_request_idISNOTEMPTY",
+    "fields": {
+      "automationState": "u_automation_state",
+      "accessRequestId": "u_isc_access_request_id",
+      "requestedFor": "requested_for",
+      "verifiedBy": "u_identity_verified_by",
+      "verificationMethod": "u_identity_verification_method",
+      "oneTimeSecret": "u_one_time_secret",
+      "workNotes": "work_notes"
+    },
+    "states": { "ready": "ready", "done": "done", "failed": "failed", "manual": "manual" }
+  },
+  "items": {
+    "Typed user change": { "task": "typed-change", "variables": ["user_principal_name", "change_id", "value"], "verification": false },
+    "Password reset": { "task": "password-reset", "variables": ["user_principal_name"], "verification": true },
+    "Authenticator reset": { "task": "authenticator-reset", "variables": ["user_principal_name"], "verification": true },
+    "Cloud account for a partner or lab user": { "task": "account-create", "variables": ["given_name", "surname", "user_principal_name", "usage_location", "profile"], "verification": false }
+  },
+  "accountProfiles": {
+    "lab-user": { "groups": ["9a000000-0000-4000-8000-000000000901"], "description": "A test lab user: the lab users group only" },
+    "partner-user": { "groups": ["9a000000-0000-4000-8000-000000000902"], "description": "A partner organization's user: the partner policy group only" }
+  },
+  "usageLocations": ["US"],
+  "temporaryAccessPass": { "lifetimeInMinutes": 60, "isUsableOnce": true },
+  "secretClearMinutes": 120
+}
