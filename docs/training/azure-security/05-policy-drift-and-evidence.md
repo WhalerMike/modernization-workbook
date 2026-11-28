@@ -221,6 +221,8 @@ You export the evidence Step 9 files each month from a test management group whe
     Remove-Item -Recurse -Force out
     ```
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes) {#azs-m5-check}
 
 1. When does the security initiative move from `DoNotEnforce` to `Default`?

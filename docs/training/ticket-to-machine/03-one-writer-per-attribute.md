@@ -259,6 +259,8 @@ unset GRAPH_TENANT_ID GRAPH_CLIENT_ID GRAPH_CERT_PATH GRAPH_CLOUD GRAPH_ACCESS_T
 - **You need:** a test Entra tenant with an inbound provisioning job, and a SailPoint sandbox with an Entra source. Both reads are GET only.
 - **Back it out:** step 5 deletes the exports if they hold anything beyond mappings, and removes the Graph permission and the ISC API client.
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Unit 6: Knowledge check
 
 *5 minutes*

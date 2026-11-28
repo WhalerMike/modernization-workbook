@@ -323,6 +323,8 @@ rm -rf exports out/ch04 out/ch04-vk-before out/ch04-vk-after my-access my-access
 - **Permissions:** a reader app with a certificate holding `EntitlementManagement.Read.All` and `User.Read.All`; the Identity Governance Administrator role to create the policy.
 - **Back-out:** remove the test policy, choosing whether its assignments are removed; restore the test user's code through the pipeline; remove the reader app, its permissions and certificate; delete the export and output folders.
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes)
 
 1. From November 3, 2026, what happens to an automatic assignment policy whose rule uses `memberOf`?

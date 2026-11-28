@@ -525,6 +525,8 @@ rm -rf out/evidence-test
 - **What you do:** register a reader app with a certificate and the four read permissions, run a baseline and have it approved, make three changes by hand (two secrets and one consent grant), run the drift run, check the activity names against the admin center's audit log, then package and verify the test runs.
 - **Back-out:** step 7 removes both secrets and the consent grant, removes the four permissions and the Reader assignment, deletes the reader app and its certificate, and deletes `out/runs-test` and the packages.
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes)
 
 1. When does the drift run compare with a baseline?

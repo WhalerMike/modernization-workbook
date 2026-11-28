@@ -490,6 +490,8 @@ rm -rf exports out
 - **Permissions:** a reader app with a certificate or a federated credential, holding only the two permissions `graph_export.py --task drift-read --list` prints, with admin consent.
 - **Back-out:** remove the schedule, delete the reader app, its credential and its consent, delete the test container if you created it for the lab, and delete the local export and output folders.
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes)
 
 1. Which drift class is an enabled account for a worker HR has terminated?

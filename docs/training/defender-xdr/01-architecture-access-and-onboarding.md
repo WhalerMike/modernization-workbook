@@ -227,6 +227,8 @@ You read incidents through Graph in the tenant's cloud, check the sensor on one 
     Disconnect-MgGraph
     ```
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes) {#xdr-m1-knowledge-check}
 
 1. An Attack Surface Reduction policy in Intune is assigned to a user group. What happens?

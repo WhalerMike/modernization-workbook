@@ -256,6 +256,8 @@ You check each prevention setting and each Attack Surface Reduction rule on a ri
 
     Expected result: step 5's command now shows the rule at `2`. Intune overwrites the local value at the next policy refresh, which is the back-out: nothing else is needed.
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes) {#xdr-m2-knowledge-check}
 
 1. Which of these has an audit mode?

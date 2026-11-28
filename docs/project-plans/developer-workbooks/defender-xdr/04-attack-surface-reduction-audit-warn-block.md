@@ -390,6 +390,8 @@ Add-MpPreference -AttackSurfaceReductionRules_Ids <rule GUID> -AttackSurfaceRedu
    Add-MpPreference -AttackSurfaceReductionRules_Ids <rule GUID> -AttackSurfaceReductionRules_Actions AuditMode
    ```
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../../reference/permissions-by-run.md#production-assessments).
+
 ## Verified facts
 
 | Item | Value | Source |

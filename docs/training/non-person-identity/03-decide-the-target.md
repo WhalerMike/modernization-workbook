@@ -375,6 +375,8 @@ Steps with no command, done in the portal or by hand as the chapter's step says:
 - **What you do:** grant `User.Read.All` and `LicenseAssignment.Read.All` to Module 1's reader app, write the owners' inputs for the test accounts, run the matrix, record what the license read shows, and check in the admin center which principals Conditional Access can target.
 - **Back-out:** step 6 removes the two permissions and deletes `out/matrix-test`.
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes)
 
 1. Who decides an identity's disposition?

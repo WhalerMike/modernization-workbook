@@ -367,6 +367,8 @@ rm -rf exports out/ch03 out/ch03-vk
 - **Permissions:** a reader app with a certificate holding `LifecycleWorkflows-Workflow.Read.All` for the plan, plus `EntitlementManagement.Read.All`, `LifecycleWorkflows-Reports.Read.All`, `User-LifeCycleInfo.Read.All` and `User.Read.All` for the readiness measure; the Lifecycle Workflows Administrator role to send the change.
 - **Back-out:** delete a workflow the lab created (it can be restored for 30 days), or send the previous file's body as a further version; remove the reader app, its permission and certificate; delete the export and output folders.
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes)
 
 1. You change the pre-hire workflow's offset in its file. What does `plan` produce for it?

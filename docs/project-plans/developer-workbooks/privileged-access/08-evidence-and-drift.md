@@ -790,6 +790,8 @@ rm -rf out/test-day1 out/test-day2 out/test-evidence
 
 In production, lock the evidence container's retention policy once Lab 2 passes; Learn says an unlocked policy is for testing only.[^pa08-immutable]
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../../reference/permissions-by-run.md#production-assessments).
+
 ## Verified facts
 
 | Item | Value | Stage | Source |

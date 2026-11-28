@@ -308,6 +308,8 @@ rm -rf exports/ch01 out/ch01-test
 
 Lab 2 matters more here than in most modules: the property names in the register aren't documented on Learn, and a wrong name makes the scan report silence that looks clean ([Dangers](../../project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.md#dangers)).
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes)
 
 1. Your HR feed and the leaver workflow can both disable an account. What does the register record for the `disabled-at-separation` row?

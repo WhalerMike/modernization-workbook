@@ -329,6 +329,8 @@ unset GRAPH_TENANT_ID GRAPH_CLIENT_ID GRAPH_CERT_PATH GRAPH_CLOUD GRAPH_ACCESS_T
    unset GRAPH_TENANT_ID GRAPH_CLIENT_ID GRAPH_CERT_PATH GRAPH_CLOUD GRAPH_ACCESS_TOKEN GRAPH_ROOT SAILPOINT_API_BASE SAILPOINT_ACCESS_TOKEN
    ```
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../../reference/permissions-by-run.md#production-assessments).
+
 ## The verified facts
 
 | Item | Value | Source |

@@ -145,6 +145,8 @@ You read each DLP and auto-labeling policy's mode, as the guide's G8, G9 and G11
     Disconnect-ExchangeOnline -Confirm:$false
     ```
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes) {#ip-m4-knowledge-check}
 
 1. Where does a DLP policy start?

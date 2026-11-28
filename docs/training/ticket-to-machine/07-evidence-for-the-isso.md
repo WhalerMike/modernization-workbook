@@ -297,6 +297,8 @@ unset SN_INSTANCE SN_ACCESS_TOKEN
 - **You need:** the developer instance from the earlier modules, with at least one finding closed in Module 6's Lab 2.
 - **Back it out:** step 5 deletes `out/evidence-live` and the evidence reader's OAuth client, user and role.
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Unit 6: Knowledge check
 
 *5 minutes*

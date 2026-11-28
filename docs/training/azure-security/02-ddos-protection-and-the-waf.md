@@ -239,6 +239,8 @@ You run the guide's Step 3 and Step 4 checks in a test subscription where someon
 
 7. **Back it out.** The lab changed nothing in Azure, so there is nothing to undo. If step 5 returned anything but `403`, the WAF isn't blocking: report it to the application owner; don't fix it in the lab.
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes) {#azs-m2-check}
 
 1. A public IP is attached to a NAT gateway. What does DDoS Network Protection do for it?

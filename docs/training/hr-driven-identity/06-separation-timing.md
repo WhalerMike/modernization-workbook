@@ -304,6 +304,8 @@ rm -rf exports out my-separation.json my-separations.csv my-card-revocations.csv
 - **Permissions:** a reader app with a certificate holding `AuditLog.Read.All` and `LifecycleWorkflows-Reports.Read.All`, with admin consent, and nothing else.
 - **Back-out:** remove the test users' leave dates and re-enable or restore them if you need them, remove the permissions, delete the reader app and its certificate, and delete the export and output folders.
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes)
 
 1. What does the code take as the moment a leaver was *blocked*?

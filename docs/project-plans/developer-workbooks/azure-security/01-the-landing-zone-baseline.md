@@ -437,6 +437,8 @@ You'll replace: `<tenant-id>` (the test tenant, which is also the tenant root gr
    az logout
    ```
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../../reference/permissions-by-run.md#production-assessments).
+
 ## Verified facts
 
 | Item | Value | Source |

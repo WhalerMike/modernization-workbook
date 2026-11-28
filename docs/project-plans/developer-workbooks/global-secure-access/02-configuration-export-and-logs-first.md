@@ -437,6 +437,8 @@ Remove-Item -Recurse -Force out/baseline-test, out/check-baseline-test
    Remove-Item -Recurse -Force out/baseline-test, out/check-baseline-test
    ```
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../../reference/permissions-by-run.md#production-assessments).
+
 ## Verified facts
 
 | Item | Value | GCC | Stage | Source |

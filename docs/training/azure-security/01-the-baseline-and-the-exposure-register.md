@@ -267,6 +267,8 @@ You run the guide's Step 1 and Step 2 checks in a test subscription. Every comma
     Remove-Item -Recurse -Force out
     ```
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes) {#azs-m1-check}
 
 1. Why does Step 1 assign the security initiatives in `DoNotEnforce`?

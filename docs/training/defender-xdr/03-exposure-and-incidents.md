@@ -191,6 +191,8 @@ You file the vulnerability and exposure queries and export the open incidents, w
     Disconnect-MgGraph
     ```
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes) {#xdr-m3-knowledge-check}
 
 1. A GCC agency wants attack paths for its domain controllers. What does the program do?
