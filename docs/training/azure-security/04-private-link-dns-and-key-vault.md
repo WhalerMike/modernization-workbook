@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 10"
 series-order: 4
 review-status: approved
-reviewed-sha256: 1a0ac62909edd9fad0d2ff718f288b65efbb5bc255b5d38546457034148637ae
-last-reviewed: 2026-11-22
+reviewed-sha256: d7577054458550c98c6b74b90e13acd582ab2fc384109c71dd4e8362163c7ab5
+last-reviewed: 2026-11-27
 ---
 # Module 4: Private Link, DNS and Key Vault {.unnumbered}
 

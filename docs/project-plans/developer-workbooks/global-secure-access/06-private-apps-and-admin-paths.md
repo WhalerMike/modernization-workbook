@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: fa6197efc8435352eac1f2a400ec3dfbca475e18c64abb72cf5b5ade9cf4b396
-last-reviewed: 2026-11-25
+reviewed-sha256: a646cc1f6b49a49ba6c6385bf1bdd054af48e34863628ea88b05f9db9460a5dd
+last-reviewed: 2026-11-27
 ---
 # Chapter 06 — Private Applications and Administrative Paths
 

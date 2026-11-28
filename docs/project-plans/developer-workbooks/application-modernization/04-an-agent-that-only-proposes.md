@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 9cda1c511634c699ab18709017f94ed263899a79e00c92f3d9bcfddcac1a4400
-last-reviewed: 2026-11-25
+reviewed-sha256: 8118d438126a21bc377a3f7d0570251d1d927e3745335ac4682767b6ea3ec6ad
+last-reviewed: 2026-11-27
 ---
 # Chapter 04 — An Agent That Only Proposes
 

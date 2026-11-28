@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 10"
 series-order: 5
 review-status: approved
-reviewed-sha256: 0d6b731f6c9da57b3d0fa737cebb4d4eeb7ad65f32cb24e3a07238264717ced6
-last-reviewed: 2026-11-22
+reviewed-sha256: 6dec821a87281b333d182a58a3180ea0e45c1e589cec62fa085c132ee5dd187a
+last-reviewed: 2026-11-27
 ---
 # Module 5: Policy, drift and evidence {.unnumbered}
 
