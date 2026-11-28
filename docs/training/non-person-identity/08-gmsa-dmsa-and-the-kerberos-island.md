@@ -204,8 +204,8 @@ Prefer Git Bash? Every step is PowerShell 7: type `pwsh` to start it, then run t
     Expected output:
 
     ```text
-    kerberos-island : Get-ADComputer, Get-ADDomainController, Get-ADObject, Get-ADServiceAccount, Get-ADUser
-    kerberos-apply : Complete-ADServiceAccountMigration, Disable-ADAccount, Get-ADComputer, Get-ADDomainController, Get-ADObject, Get-ADServiceAccount, Get-ADUser, Move-ADObject, New-ADServiceAccount, Set-ADServiceAccount, Start-ADServiceAccountMigration
+    kerberos-island : Get-ADComputer, Get-ADDomainController, Get-ADGroup, Get-ADObject, Get-ADServiceAccount, Get-ADUser
+    kerberos-apply : Complete-ADServiceAccountMigration, Disable-ADAccount, Get-ADComputer, Get-ADDomainController, Get-ADGroup, Get-ADObject, Get-ADServiceAccount, Get-ADUser, Move-ADObject, New-ADServiceAccount, Set-ADGroup, Set-ADServiceAccount, setspn, Start-ADServiceAccountMigration
     ```
 
     The read task runs only `Get-AD*` cmdlets. No cmdlet that removes or undoes is on either list; `Move-ADObject` moves a disabled account to the holding OU.

@@ -574,10 +574,10 @@ Describe 'The separate write path' {
 }
 
 Describe 'Who sends each write (WD-163)' {
-    It 'every write call names runBy: the pipeline for the gMSA creation, retrievers, disable and move; a person for the dMSA steps' {
+    It 'every write call names runBy: the pipeline for the gMSA creation, retrievers, disable and move; a person for the dMSA steps and a change request''s writes (WD-185 is a draft)' {
         $by = @{}; foreach ($c in @((Get-NpiKrbCall -Task kerberos-apply) | Where-Object { $_.method -eq 'WRITE' })) { $by[$c.id] = $c.runBy }
         @($by.Keys | Where-Object { $by[$_] -eq 'pipeline' } | Sort-Object) | Should -Be @('krb-disable-superseded', 'krb-move-superseded', 'krb-new-gmsa', 'krb-set-retrievers')
-        @($by.Keys | Where-Object { $by[$_] -eq 'person' } | Sort-Object) | Should -Be @('krb-complete-migration', 'krb-new-dmsa', 'krb-start-migration')
+        @($by.Keys | Where-Object { $by[$_] -eq 'person' } | Sort-Object) | Should -Be @('krb-add-spn', 'krb-complete-migration', 'krb-new-dmsa', 'krb-remove-spn', 'krb-set-dmsa-retrievers', 'krb-set-retriever-hosts', 'krb-set-tags', 'krb-start-migration')
         $t = Get-NpiKrbTask -Task kerberos-apply
         $t.pipelineIdentity | Should -Be 'gmsa-msapipe$'
         @($t.runAs) | Should -Be @('Pipeline', 'Person')

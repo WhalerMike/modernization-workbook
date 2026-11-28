@@ -36,3 +36,18 @@ Mike, November 25, 2026: "Lets say no until we can confirm yes." Sources read No
 | MR-13 | Where the tags live in Entra: the service principal's `tags` and `notes` until the tenant check, custom security attributes after; a system-assigned managed identity's tags on its resource | Tags | changed *(design guidance)* | WD-176 |
 | MR-14 | `tags` filterable, `notes` at most 1,024 characters; Update servicePrincipal in the global service, which GCC tenants use | Tags | supported by the source | `mrp-sp-props` |
 | MR-15 | The checker writes `entra-tags.json` (seven `npi:` tags, the notes string, the Azure resource tags) as well as the custom security attribute body, and refuses notes over 1,024 characters (MSA-REQ-06) | Tags | confirmed by running it (`tests/MsaRequestPack.Tests.ps1`, 10 passed) | — |
+
+## Change requests and the name suggester (November 28, 2026)
+
+Mike asked for a change request type and a name suggester for the managed service account standard and answered "Proceed with all recommendations".
+
+**What the search of current content found (origin/main, November 28, 2026).** No change request existed: the pack had forms for an owner change (03) and a retirement (04) only, and the guide's standard had no step for a host, SPN, tier or end date change to an existing account. No name suggester existed; the rules were in WD-159, WD-173 and WD-175, `pack_schema.py` and Chapter 12's NPI-STD-03, which the suggester and the checker now share. One reading to settle, not a contradiction in a fact: WD-163 says the pipeline writes the accounts' retriever groups, while Chapter 06's `calls-ch06.json` and the service accounts guide say the pipeline never writes group membership and list no such right. The new writes follow the kit (a person sends them), and WD-185, a draft, asks Mike to decide. The pack guide already said "the pipeline rewrites the account's tags" for an owner change, which no call or right supported; it now says a person does while WD-185 is a draft.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| MR-16 | `setspn -S` adds an SPN after verifying that no duplicates exist; `-D` deletes the specified SPN; the right can be delegated as *Validated write to service principal name* | Changes | supported by the source | `mrp-setspn`, read November 28, 2026 |
+| MR-17 | The validated write permits an SPN compliant with the account's DNS host name, and applies to the Computer and ms-DS-Managed-Service-Account classes | Changes | supported by the source; that a service SPN such as `HTTP/payroll.corp.contoso.example` on `gmsa-payroll$` falls outside it is the program's reading | `mrp-validated-spn` |
+| MR-18 | SailPoint's HTTP Request workflow action calls an external system with DELETE, GET, PATCH, POST or PUT, by basic, custom, OAuth 2.0 client credentials or no authentication, and needs a JSON response | SailPoint calling the same rules | supported by the source | `mrp-sp-actions` |
+| MR-19 | The checker passes the twelve examples, refuses each MSA-REQ-07 and -08 case and reports the expected name on an NPI-STD-03 finding | Fill in and check | confirmed by running it (`tests/MsaRequestPack.Tests.ps1`, 15 passed, PowerShell 7) | — |
+| MR-20 | The suggester prints the same text in Windows PowerShell 5.1 and PowerShell 7, and its outputs on this page are its real output | Suggest the names | confirmed by running it in both (`tests/MsaNameSuggestion.Tests.ps1`, 10 passed in each) | — |
+| MR-21 | Chapter 06 plans each change type and a person's run sends it and re-reads it | Changes | confirmed by running it (`tests-msa-change/NpiMsaChange.Tests.ps1`, 22 passed) | — |

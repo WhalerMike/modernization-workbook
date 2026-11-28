@@ -8,7 +8,9 @@
     standard, two owners and a sponsor, the hosts, SPNs and outbound-only, the dMSA rules and the other
     fields) on every row, as SailPoint's pre-approval workflow does (WD-174). The approval and the
     change record (NPI-STD-01 and -02) don't exist yet, so they aren't checked here. It adds the pack's
-    own checks, MSA-REQ-01 to MSA-REQ-06, and builds the tags (WD-175).
+    own checks, MSA-REQ-01 to MSA-REQ-08 (07 and 08 for a RequestKind Change row: one change to an
+    existing account), and builds the tags (WD-175). Where NPI-STD-03 refuses a name, the finding
+    gives the name Get-MsaNameSuggestion.ps1 builds from the same fields.
 
     For each row it writes, under -OutputPath:
       <RequestId>/request.json                         Chapter 12's request import format, status SUBMITTED
@@ -40,6 +42,11 @@ Import-Module (Join-Path $PSScriptRoot '../non-person-identity/powershell/NpiGms
 
 $Columns = @('RequestId', 'RequestedOn', 'RequestKind', 'SystemId', 'AppShortName', 'AccountType', 'Role', 'Hosts', 'Workload', 'NeedsSpn', 'Spns',
     'OutboundOnlyReason', 'Owner1', 'Owner2', 'Sponsor', 'SponsorIsFederalEmployee', 'RiskTier', 'Environment', 'EntraTarget', 'EndDate', 'Supersedes', 'RunByPerson')
+# A Change row's two columns; a CSV copied from the template before they existed is read without them.
+$ChangeColumns = @('ChangeType', 'ChangeItems')
+$ChangeTypes = @('AddHost', 'RemoveHost', 'AddSpn', 'RemoveSpn', 'Tier', 'EndDate')
+$SpnPattern = '^[A-Za-z][A-Za-z0-9.-]*/[A-Za-z0-9][A-Za-z0-9.-]*(:[A-Za-z0-9$_-]+)?$'
+$Suggest = Join-Path $PSScriptRoot 'Get-MsaNameSuggestion.ps1'
 $RoleForWorkload = @{ web = 'IisAppPool'; task = 'ScheduledTask'; sql = 'Service'; agt = 'Service'; rs = 'Service'; is = 'Service'; svc = 'Service' }
 
 function Split-List([string]$s) { @("$s" -split ';' | ForEach-Object { $_.Trim() } | Where-Object { $_ }) }
@@ -62,6 +69,12 @@ $requests = foreach ($r in $rows) {
         sponsorIsFederalEmployee = (Test-Yes $r.SponsorIsFederalEmployee); riskTier = "$($r.RiskTier)".Trim()
         endDate = "$($r.EndDate)".Trim(); supersedes = "$($r.Supersedes)".Trim(); runByPerson = (Test-Yes $r.RunByPerson)
         environment = "$($r.Environment)".Trim(); entraTarget = "$($r.EntraTarget)".Trim()
+        requestKind = "$($r.RequestKind)".Trim()
+    }
+    # A change names its type and what it adds or removes (Chapter 06's New-NpiKrbChangePlan reads them).
+    if ($q.requestKind -eq 'Change') {
+        $q['changeType'] = "$(if ($r.PSObject.Properties['ChangeType']) { $r.ChangeType })".Trim()
+        $q['changeItems'] = @(Split-List $(if ($r.PSObject.Properties['ChangeItems']) { $r.ChangeItems }))
     }
     [pscustomobject]@{ File = "$Path#$($q.requestId)"; Request = $q; Row = $r }
 }
@@ -76,9 +89,41 @@ foreach ($w in $requests) {
     $q = $w.Request; $r = $w.Row; $id = $q.requestId
     $add = { param($rule, $sev, $issue) $findings.Add((New-NpiFinding $rule $sev $id $id $issue)) }
     $kind = "$($r.RequestKind)".Trim()
-    if ($kind -notin 'New', 'Migrate') { & $add 'MSA-REQ-01' 'Finding' "RequestKind '$kind' isn't New or Migrate (owner changes and retirements use their own forms)" }
+    if ($kind -notin 'New', 'Migrate', 'Change') { & $add 'MSA-REQ-01' 'Finding' "RequestKind '$kind' isn't New, Migrate or Change (owner changes and retirements use their own forms)" }
     elseif ($kind -eq 'Migrate' -and -not $q.supersedes) { & $add 'MSA-REQ-01' 'Finding' 'Migrate names no account in Supersedes' }
     elseif ($kind -eq 'New' -and $q.supersedes) { & $add 'MSA-REQ-01' 'Finding' "New names an account it supersedes ('$($q.supersedes)'): use Migrate" }
+
+    # MSA-REQ-07 and -08: a Change names one known change, and what it names fits the row (the account after the change).
+    $ct = "$(if ($r.PSObject.Properties['ChangeType']) { $r.ChangeType })".Trim()
+    $ci = @(Split-List $(if ($r.PSObject.Properties['ChangeItems']) { $r.ChangeItems }))
+    if ($kind -eq 'Change' -and $ct -notin $ChangeTypes) { & $add 'MSA-REQ-07' 'Finding' "ChangeType '$ct' isn't one of $($ChangeTypes -join ', '): an owner or sponsor change uses form 03, a retirement form 04" }
+    elseif ($kind -ne 'Change' -and ($ct -or $ci.Count)) { & $add 'MSA-REQ-07' 'Finding' "ChangeType or ChangeItems is filled in on a $kind row: they belong to RequestKind Change" }
+    elseif ($kind -eq 'Change') {
+        $bad = [Collections.Generic.List[string]]::new()
+        if ($ct -in 'AddHost', 'RemoveHost', 'AddSpn', 'RemoveSpn' -and -not $ci.Count) { $bad.Add("$ct names nothing in ChangeItems") }
+        if ($ct -in 'Tier', 'EndDate' -and $ci.Count) { $bad.Add("$ct takes its new value from $(if ($ct -eq 'Tier') { 'RiskTier' } else { 'EndDate' }); leave ChangeItems blank") }
+        foreach ($i in $ci) {
+            $inHosts = @($q.hosts | Where-Object { $_ -ieq $i }).Count; $inSpns = @($q.spns | Where-Object { $_ -ieq $i }).Count
+            switch ($ct) {
+                'AddHost' { if (-not $inHosts) { $bad.Add("$i isn't in Hosts, which lists the hosts after the change") } }
+                'RemoveHost' { if ($inHosts) { $bad.Add("$i is still in Hosts, which lists the hosts after the change") } }
+                'AddSpn' { if ($i -notmatch $SpnPattern) { $bad.Add("$i isn't <service-class>/<host>[:<port>]") } elseif (-not $inSpns) { $bad.Add("$i isn't in Spns, which lists the SPNs after the change") } }
+                'RemoveSpn' { if ($inSpns) { $bad.Add("$i is still in Spns, which lists the SPNs after the change") } }
+            }
+        }
+        if ($ct -eq 'AddSpn' -and -not $q.needsSpn) { $bad.Add('AddSpn on a row whose NeedsSpn is no') }
+        if ($ct -eq 'EndDate' -and ($q.entraTarget -ne 'KeepKerberos' -or -not $q.endDate)) { $bad.Add('an end date belongs to an account that stays on Kerberos: EntraTarget KeepKerberos, with the new EndDate (WD-165)') }
+        if ($bad.Count) { & $add 'MSA-REQ-08' 'Finding' ($bad -join '; ') }
+    }
+
+    # The name suggester's account name, so a name that breaks the standard is reported with the one it should be.
+    if ($q.accountType -in 'gMSA', 'dMSA') {
+        $s = & $Suggest -SystemId $q.systemId -AppShortName $q.appShortName -Role "$($r.Role)".Trim() -AccountType $q.accountType -Environment $q.environment -Hosts $q.hosts -StandardPath $StandardPath -AsObject
+        foreach ($f in @($findings | Where-Object { $_.Rule -eq 'NPI-STD-03' -and $_.ObjectKey -eq $id })) {
+            $why = @($s.Findings | Where-Object { $_.Rule -like 'NAME-*' -and $_.Severity -eq 'Finding' } | ForEach-Object Issue)
+            $f.Issue = "$($f.Issue); expected name $($s.AccountName) (Get-MsaNameSuggestion.ps1)$(if ($why.Count) { ": $($why -join '; ')" })"
+        }
+    }
     $role = "$($r.Role)".Trim()
     if ($role -and $RoleForWorkload.ContainsKey($role) -and $RoleForWorkload[$role] -ne $q.workload) { & $add 'MSA-REQ-02' 'Warn' "Role -$role usually runs as $($RoleForWorkload[$role]), not $($q.workload)" }
     if ($q.owners.Count -eq 2 -and $q.owners[0].ToLowerInvariant() -eq $q.owners[1].ToLowerInvariant()) { & $add 'MSA-REQ-03' 'Finding' 'Owner1 and Owner2 are the same person' }

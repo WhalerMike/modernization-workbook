@@ -1,0 +1,42 @@
+{
+  "requestId": "REQ-2026-0412",
+  "requestedOn": "2026-11-25",
+  "approvedOn": "2026-11-26",
+  "approvers": [
+    "billing.owner@contoso.example",
+    "iam.approver@contoso.example"
+  ],
+  "status": "APPROVED",
+  "changeRecord": "CHG0041212",
+  "requestKind": "Change",
+  "changeType": "AddHost",
+  "changeItems": [
+    "BILL02"
+  ],
+  "systemId": "SYS-0388",
+  "appShortName": "billing",
+  "accountType": "dMSA",
+  "proposedName": "dmsa-billing$",
+  "workload": "Service",
+  "needsSpn": true,
+  "owners": [
+    "billing.owner@contoso.example",
+    "billing.backup@contoso.example"
+  ],
+  "sponsor": "finance.sponsor@contoso.example",
+  "sponsorIsFederalEmployee": true,
+  "riskTier": "R2",
+  "environment": "prod",
+  "entraTarget": "Undecided",
+  "endDate": "",
+  "supersedes": "svc-billing",
+  "runByPerson": true,
+  "hosts": [
+    "BILL01",
+    "BILL02"
+  ],
+  "spns": [
+    "HTTP/billing.corp.contoso.example"
+  ],
+  "outboundOnlyReason": ""
+}

@@ -7,7 +7,7 @@ Code for the [developer workbook *Building Non-Person Identity*](../../docs/proj
 - **Chapter 03, the migration path matrix:** a proposed target per account from Book 02's matrix (`config/migration-matrix.json`), the owner's disposition checked, waves with HIGH-risk accounts first and a rollback per wave, the Workload ID Premium decision (D-NP4) checked against the tenant's licenses, and Gate 2. Findings NPI-MAT-01 to NPI-MAT-09. Read only.
 - **Chapter 04, app management policies and certificate rotation:** the tenant default and app-specific policies and the app instance property lock compared with `config/app-management-policy.json`, a plan that never loosens or drops a restriction, and one rotation step per certificate in Key Vault (`config/rotation.json`). Applied only by `Invoke-NpiCredentialAction.ps1 -Apply`.
 - **Chapter 05, workload identity federation and managed identities:** conversions in the plan's order (managed identity, then federated credential, then certificate), each credential's issuer, subject and audience checked before cutover, a token exchange test against a fake endpoint, and the 30-day parallel run before the legacy account is disabled, never deleted.
-- **Chapter 06, gMSAs, dMSAs and the Kerberos island:** the KDS root key and gMSA hosts read, MSA, gMSA and dMSA moves as a reviewed plan, the island list with SPN owners and end dates for the program's SPN retirement, and the reconciliation with the provisional end state. New gMSAs follow the reviewed AD standard in `ad-standard.json` (WD-159 to WD-161): named `gmsa-<app>` or `dmsa-<app>`, created in the service-account OU with the password interval and, where the old account had no SPN, outbound-only; a gMSA's retriever is one `DL-gMSA-<app>-Hosts` group, never a computer. Every write carries its SailPoint request and ServiceNow change, or it's blocked (NPI-KRB-10). Applied only by `Invoke-NpiKerberosIslandAction.ps1 -Apply -RunAs Pipeline|Person`: the pipeline's gMSA (`gmsa-msapipe$`) sends the gMSA creations, retriever changes, disables and moves to the holding OU; a person sends the dMSA steps (WD-163). No account is deleted.
+- **Chapter 06, gMSAs, dMSAs and the Kerberos island:** the KDS root key and gMSA hosts read, MSA, gMSA and dMSA moves as a reviewed plan, the island list with SPN owners and end dates for the program's SPN retirement, and the reconciliation with the provisional end state. New gMSAs follow the reviewed AD standard in `ad-standard.json` (WD-159 to WD-161): named `gmsa-<app>` or `dmsa-<app>`, created in the service-account OU with the password interval and, where the old account had no SPN, outbound-only; a gMSA's retriever is one `DL-gMSA-<app>-Hosts` group, never a computer. Every write carries its SailPoint request and ServiceNow change, or it's blocked (NPI-KRB-10). Applied only by `Invoke-NpiKerberosIslandAction.ps1 -Apply -RunAs Pipeline|Person`: the pipeline's gMSA (`gmsa-msapipe$`) sends the gMSA creations, retriever changes, disables and moves to the holding OU; a person sends the dMSA steps (WD-163). A change to an existing account (the request pack's change request: a host, an SPN, the tier or the end date) is planned one approved request at a time by `Invoke-NpiKerberosChange.ps1` and applied the same way; a person sends those writes while WD-185, a draft, is undecided. No account is deleted.
 - **Chapter 07, least privilege for service principals:** every service principal's application permissions, delegated grants and directory roles, and each managed identity's Azure role assignments, checked against `config/least-privilege.json`, privileged principals handed to the Privileged Access plan, the quarterly owner review, and a plan that only removes one app role assignment or narrows one grant. Applied only by `Invoke-NpiLeastPrivilegeAction.ps1 -Apply`.
 - **Chapter 08, Conditional Access for workload identities:** the scope file, CA015 and CA037 per ring created report-only, a pre-merge check (NPI-WCA-01 to NPI-WCA-09), a summary of service principal sign-ins (Graph beta), and enforcement only with `-AllowEnforce`, a D-NP5 record and a reviewed summary.
 - **Chapter 09, AI agent identities (preview):** agent identity blueprints and agent identities checked against the production handshake, credentials, least privilege, sponsors and drift rules, the D-NP6 mode (`config/agent-id-capabilities-ch09.json`), and the two agent block policies created report-only by `Invoke-NpiAgentCaAction.ps1`.
@@ -36,6 +36,7 @@ Invoke-NpiGmsaStandard.ps1
 Invoke-NpiInventory.ps1
 Invoke-NpiKerberosIsland.ps1
 Invoke-NpiKerberosIslandAction.ps1
+Invoke-NpiKerberosChange.ps1
 Invoke-NpiLeastPrivilege.ps1
 Invoke-NpiLeastPrivilegeAction.ps1
 Invoke-NpiMatrix.ps1
@@ -102,6 +103,8 @@ tests/test_cloud_workload.py            runs tests-ch13/NpiCloudWorkload.Tests.p
 tests-ch13/NpiCloudWorkload.Tests.ps1   Chapter 13's Pester tests
 tests/test_first_gmsa.py                runs tests-m15/NpiFirstGmsa.Tests.ps1 (kept out of tests/ for the same reason)
 tests-m15/NpiFirstGmsa.Tests.ps1        the learning path's Module 15: a new gMSA for a new workload (fixtures in tests/fixtures/m15)
+tests/test_msa_change.py                runs tests-msa-change/NpiMsaChange.Tests.ps1 (kept out of tests/ for the same reason)
+tests-msa-change/NpiMsaChange.Tests.ps1 a change to an existing account: Chapter 12's check and Chapter 06's change plan (fixtures in tests/fixtures/ch06/change)
 tests/fixtures/                         a fictional estate (contoso.example, corp.contoso.example); one folder per chapter from 03
 ```
 
@@ -148,6 +151,7 @@ Invoke-Pester -Path tests
 Invoke-Pester -Path deploy/tests
 Invoke-Pester -Path tests-ch13
 Invoke-Pester -Path tests-m15
+Invoke-Pester -Path tests-msa-change
 ```
 
 The second line is Chapter 11's suite; `python -m pytest tests` runs it too, as `scripts/run_example_tests.py` does in CI.
