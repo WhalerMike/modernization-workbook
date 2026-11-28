@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 20"
 series-order: 3
 review-status: approved
-reviewed-sha256: f0c35f709568c6510244bdc42c81c82dca190006fb5764633ce71cdaafb78958
-last-reviewed: 2026-11-25
+reviewed-sha256: 6ba1a70141fc2e9e62bc9c4f165aef64c31011f96487bccecdc5721b2721f733
+last-reviewed: 2026-11-27
 ---
 # Module 3: Encryption and recovery {.unnumbered}
 

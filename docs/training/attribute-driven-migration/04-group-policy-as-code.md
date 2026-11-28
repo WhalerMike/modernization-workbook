@@ -400,6 +400,15 @@ Replace each `<placeholder>` with your test environment's value.
 The chapter's steps say what each command does and what to look for.
 
 ```powershell
+# Step 1: Import a test GPO into Group Policy analytics
+New-Item -ItemType Directory -Force ./out/gpa | Out-Null
+Get-GPOReport -Name '<test-gpo-name>' -ReportType Xml -Path ./out/gpa/test-gpo.xml
+(Get-Item ./out/gpa/test-gpo.xml).Length -lt 4MB
+Connect-MgGraph -Environment Global -TenantId <test-tenant-id> -Scopes DeviceManagementConfiguration.ReadWrite.All -NoWelcome
+$file = @{ ouDistinguishedName = '<ou-distinguished-name>'; content = [Convert]::ToBase64String([IO.File]::ReadAllBytes("$PWD/out/gpa/test-gpo.xml")); roleScopeTagIds = @('<scope-tag-id>') }
+Invoke-MgGraphRequest -Method POST -Uri '/beta/deviceManagement/groupPolicyMigrationReports/createMigrationReport' -Body (@{ groupPolicyObjectFile = $file } | ConvertTo-Json -Depth 5) -ContentType 'application/json'
+(Invoke-MgGraphRequest -Method GET -Uri '/beta/deviceManagement/groupPolicyMigrationReports').value | Select-Object displayName, migrationReadiness
+
 # Step 2: Run the gate live
 pwsh -File ../validation-kit/Invoke-ValidationKit.ps1 -OutputPath ./out/vk -Track INT -CheckId VK-INT-07 -IncludeBeta
 
@@ -435,10 +444,6 @@ foreach ($id in $ids) { Invoke-MgGraphRequest -Method DELETE -Uri "/beta/deviceM
 # Step 8: Back it out
 pwsh ./powershell/Invoke-GpcSync.ps1 -Cloud gcc -TenantId <test-tenant-id> -WithPlan
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 1:** Import a test GPO into Group Policy analytics
 :::
 
 <!-- labs:end -->

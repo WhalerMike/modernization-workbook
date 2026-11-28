@@ -334,6 +334,19 @@ $map.'{aaguid:approved-key-model-1}' = '<key-model-1-aaguid>'
 $map.'{aaguid:approved-key-model-2}' = '<key-model-2-aaguid>'
 $map | ConvertTo-Json | Set-Content my-map.json
 
+# Step 2: Register the app
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.ReadWrite.All', 'AppRoleAssignment.ReadWrite.All' -NoWelcome
+$cert = New-SelfSignedCertificate -Subject 'CN=pa-lab-ca-admin' -CertStoreLocation Cert:\CurrentUser\My -KeyExportPolicy NonExportable -KeySpec Signature -NotAfter (Get-Date).AddDays(30)
+$app = New-MgApplication -DisplayName 'pa-lab-ca-admin' -SignInAudience AzureADMyOrg -KeyCredentials @(@{ Type = 'AsymmetricX509Cert'; Usage = 'Verify'; Key = $cert.RawData })
+$sp = New-MgServicePrincipal -AppId $app.AppId
+Start-Sleep -Seconds 15
+$graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+foreach ($p in 'AuthenticationContext.Read.All', 'Policy.Read.All', 'Policy.Read.AuthenticationMethod') {
+    $role = $graph.AppRoles | Where-Object { $_.Value -eq $p -and $_.AllowedMemberTypes -contains 'Application' }
+    New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id -PrincipalId $sp.Id -ResourceId $graph.Id -AppRoleId $role.Id | Format-Table AppRoleId, ResourceDisplayName
+}
+[pscustomobject]@{ AppId = $app.AppId; Thumbprint = $cert.Thumbprint; ServicePrincipalId = $sp.Id } | Format-List
+
 # Step 3: Plan, sending nothing
 Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
 ./Invoke-PaCaAdmin.ps1 -Cloud gcc -MapPath my-map.json -OutputPath out/ca-test -TenantId <tenant-id>
@@ -346,6 +359,18 @@ Get-Content out/ca-test/requests.json
 Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
 ./Invoke-PaCaAdmin.ps1 -Cloud gcc -MapPath my-map.json -OutputPath out/ca-test-apply1 -TenantId <tenant-id> -Apply
 ./Invoke-PaCaAdmin.ps1 -Cloud gcc -MapPath my-map.json -OutputPath out/ca-test-apply2 -TenantId <tenant-id> -Apply
+
+# Step 5: Watch report-only
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'AuditLog.Read.All', 'Policy.Read.ConditionalAccess' -NoWelcome
+$since = (Get-Date).ToUniversalTime().AddHours(-2).ToString('yyyy-MM-ddTHH:mm:ssZ')
+foreach ($upn in '<test-admin-upn>', '<ea1-upn>') {
+    $uri = "v1.0/auditLogs/signIns?`$filter=userPrincipalName eq '$upn' and createdDateTime ge $since"
+    (Invoke-MgGraphRequest -Method GET -Uri $uri -Headers @{ Prefer = 'include-unknown-enum-members' }).value | ForEach-Object {
+        $s = $_
+        $s.appliedConditionalAccessPolicies | Where-Object { $_.result -like 'reportOnly*' } |
+            ForEach-Object { [pscustomobject]@{ User = $upn; Time = $s.createdDateTime; Policy = $_.displayName; Result = $_.result } }
+    } | Format-Table User, Time, Policy, Result
+}
 
 # Step 6: Enforce the gate alone
 $f = 'ca-policies/policies/PIM-Activation-c1.json'
@@ -361,11 +386,6 @@ foreach ($f in 'ca-policies/contexts/c1.json', 'ca-policies/contexts/c2.json') {
 # Step 7: Back it out
 Remove-Item -Recurse -Force out/ca-test*
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 2:** Register the app
-- **Step 5:** Watch report-only
 :::
 
 <!-- labs:end -->

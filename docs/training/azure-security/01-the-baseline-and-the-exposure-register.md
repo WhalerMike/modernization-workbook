@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 10"
 series-order: 1
 review-status: approved
-reviewed-sha256: 79ce1b5189d11f9f17ef53b9b902e012ec8133eb0726e88fe66998734c7585ba
-last-reviewed: 2026-11-22
+reviewed-sha256: aca086b0e1e4449e644dc307990d6694dd0aabcc666a13a49f58539eeec674ec
+last-reviewed: 2026-11-27
 ---
 # Module 1: The baseline and the exposure register {.unnumbered}
 

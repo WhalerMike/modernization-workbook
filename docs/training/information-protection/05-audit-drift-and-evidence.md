@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 20"
 series-order: 5
 review-status: approved
-reviewed-sha256: 143b1eb7fb5a2a4a8af623f42374d3edd223a7d45b705b6d21675ac95a37e4eb
-last-reviewed: 2026-11-25
+reviewed-sha256: 9c169d51930f07c9577e8f7c270cb62e7e38192d93e23f22bea737b9134c7ede
+last-reviewed: 2026-11-27
 ---
 # Module 5: Audit, drift and evidence {.unnumbered}
 

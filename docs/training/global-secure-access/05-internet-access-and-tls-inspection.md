@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 09"
 series-order: 5
 review-status: approved
-reviewed-sha256: 2a5afd10daa7314a3a12d59e468f40900d5e0e5ccbbd986b4f58170db3fba397
-last-reviewed: 2026-11-22
+reviewed-sha256: b86e3f7bcf1d81e398ebd673d52bad2f6048b451e9d588fbe4c8c183d2255ce6
+last-reviewed: 2026-11-27
 ---
 # Module 5: Internet Access and TLS inspection {.unnumbered}
 

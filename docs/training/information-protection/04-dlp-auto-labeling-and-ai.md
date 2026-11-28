@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 20"
 series-order: 4
 review-status: approved
-reviewed-sha256: c41a7fbfbfea1d348cba267d56122a63ef77cdf735b95283a1864ab721389fc5
-last-reviewed: 2026-11-25
+reviewed-sha256: 702eafe3a484a5072ed0d0f2fe9cf078347ccd703b953ee94532453ab8e39926
+last-reviewed: 2026-11-27
 ---
 # Module 4: DLP, auto-labeling and AI {.unnumbered}
 

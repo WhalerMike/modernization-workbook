@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 09"
 series-order: 3
 review-status: approved
-reviewed-sha256: 75919476d70ca03875391798aec0572cb59dbe839199b681435565e6f4071a59
-last-reviewed: 2026-11-22
+reviewed-sha256: e64a0e68a4d69b59fc9a04cf365d1687f80068e5c52173060c60eb3c0bd9ab9a
+last-reviewed: 2026-11-27
 ---
 # Module 3: The compliant network and tenant restrictions {.unnumbered}
 

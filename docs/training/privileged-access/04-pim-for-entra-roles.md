@@ -321,6 +321,21 @@ Replace each `<placeholder>` with your test environment's value.
 The chapter's steps say what each command does and what to look for.
 
 ```powershell
+# Step 1: Check the prerequisites
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <ea-reader-app-id> -CertificateThumbprint <ea-thumbprint>
+./Invoke-PaEmergencyCheck.ps1 -Cloud gcc -ConfigPath emergency-access.json -ValidationsPath emergency-validations.csv -OutputPath out/lab-prereq-emergency -TenantId <tenant-id>
+Get-Content out/lab-prereq-emergency/findings.json -Raw | ConvertFrom-Json | Where-Object Severity -EQ 'Finding' | Format-Table Rule, Object, Message
+
+# Step 1: Check the prerequisites
+$f = 'ca-policies/policies/PIM-Activation-c1.json'
+(Get-Content $f -Raw) -replace '"state":\s*"[^"]+"', '"state": "enabled"' | Set-Content $f -NoNewline
+$c = 'ca-policies/contexts/c1.json'
+(Get-Content $c -Raw) -replace '"isAvailable":\s*false', '"isAvailable": true' | Set-Content $c -NoNewline
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <ca-app-id> -CertificateThumbprint <ca-thumbprint>
+./Invoke-PaCaAdmin.ps1 -Cloud gcc -MapPath my-map.json -OutputPath out/lab-prereq-ca1 -TenantId <tenant-id> -Apply -AllowEnforce
+./Invoke-PaCaAdmin.ps1 -Cloud gcc -MapPath my-map.json -OutputPath out/lab-prereq-ca2 -TenantId <tenant-id> -Apply -AllowEnforce
+Get-Content out/lab-prereq-ca2/findings.json -Raw | ConvertFrom-Json | Where-Object { $_.Rule -eq 'PA-CA-04' -and $_.Object -eq 'PIM-Activation-c1' } | Format-Table Rule, Object, Message
+
 # Step 2: Make the lab's role and groups
 New-Item -ItemType Directory lab-roles; Copy-Item config/pim-ch04/roles/teams-administrator.json lab-roles/
 
@@ -335,6 +350,25 @@ $b | ConvertTo-Json -Depth 5 | Set-Content lab-bindings.json
 # Step 2: Make the lab's role and groups
 'PrincipalId,Name,Reason,Owner', '<ea1-object-id>,Emergency Access 01,Emergency access account,<owner>', '<ea2-object-id>,Emergency Access 02,Emergency access account,<owner>' |
     Set-Content exceptions.csv
+
+# Step 3: Register two apps
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.ReadWrite.All', 'AppRoleAssignment.ReadWrite.All' -NoWelcome
+$graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+$apps = [ordered]@{
+    'pa-lab-pim-reader' = @('RoleAssignmentSchedule.Read.Directory', 'RoleEligibilitySchedule.Read.Directory', 'RoleManagementPolicy.Read.Directory')
+    'pa-lab-pim-writer' = @('RoleAssignmentSchedule.Read.Directory', 'RoleEligibilitySchedule.Read.Directory', 'RoleManagementPolicy.Read.Directory', 'RoleEligibilitySchedule.ReadWrite.Directory', 'RoleManagementPolicy.ReadWrite.Directory')
+}
+foreach ($name in $apps.Keys) {
+    $cert = New-SelfSignedCertificate -Subject "CN=$name" -CertStoreLocation Cert:\CurrentUser\My -KeyExportPolicy NonExportable -KeySpec Signature -NotAfter (Get-Date).AddDays(30)
+    $app = New-MgApplication -DisplayName $name -SignInAudience AzureADMyOrg -KeyCredentials @(@{ Type = 'AsymmetricX509Cert'; Usage = 'Verify'; Key = $cert.RawData })
+    $sp = New-MgServicePrincipal -AppId $app.AppId
+    Start-Sleep -Seconds 15
+    foreach ($p in $apps[$name]) {
+        $role = $graph.AppRoles | Where-Object { $_.Value -eq $p -and $_.AllowedMemberTypes -contains 'Application' }
+        $null = New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id -PrincipalId $sp.Id -ResourceId $graph.Id -AppRoleId $role.Id
+    }
+    [pscustomobject]@{ App = $name; AppId = $app.AppId; Thumbprint = $cert.Thumbprint; Permissions = $apps[$name] -join ', ' } | Format-List
+}
 
 # Step 4: Dry-run as the reader
 Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <reader-app-id> -CertificateThumbprint <thumbprint>
@@ -369,13 +403,8 @@ Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <writer-app-
     -Apply -RestoreFrom out/lab-apply
 
 # Step 7: Back it out
-Remove-Item -Recurse -Force out/lab-plan, out/lab-plan2, out/lab-apply, out/lab-convert, out/lab-restore
+Remove-Item -Recurse -Force out/lab-plan, out/lab-plan2, out/lab-apply, out/lab-convert, out/lab-restore, out/lab-prereq-*
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 1:** Check the prerequisites
-- **Step 3:** Register two apps
 :::
 
 <!-- labs:end -->

@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-04-01
 review-status: approved
-reviewed-sha256: 04555de11e08949d42819daf801f1362c230f309d8af2e63edfe47b1574d202d
-last-reviewed: 2026-11-18
+reviewed-sha256: ef7e25100e74d76270ed037a53a7a900b4a49399ba323c7fdb47dd5c207fa99d
+last-reviewed: 2026-11-27
 ---
 # Chapter 06 — PIM for Azure Resources
 

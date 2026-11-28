@@ -366,6 +366,16 @@ Add-Content <inputs>/kerberos-replatform.csv '<test-account>,<new-dmsa>$,Service
 @{ accounts = @{ '<new-gmsa>$' = @('<retriever-dn>') } } | ConvertTo-Json -Depth 5 | Set-Content <inputs>/password-retrievers.json
 $a = Get-Content tests/fixtures/ch06/inputs/ad-standard.json -Raw | ConvertFrom-Json; $a.serviceAccountOu = '<service-account-ou>'; $a.holdingOu = '<holding-ou>'; $a | ConvertTo-Json | Set-Content <inputs>/ad-standard.json
 
+# Step 2: Grant the read
+$kds = "CN=Master Root Keys,CN=Group Key Distribution Service,CN=Services,$((Get-ADRootDSE -Server <test-dc>).configurationNamingContext)"
+dsacls "\\<test-dc>\$kds" /G '<reader-account>:LC'
+dsacls "\\<test-dc>\$kds" /G '<reader-account>:RP;msKds-UseStartTime' '<reader-account>:RP;msKds-CreateTime' /I:S
+dsacls "\\<test-dc>\$kds" | Select-String -SimpleMatch '<reader-account>'
+
+# Step 2: Grant the read
+$kds = "CN=Master Root Keys,CN=Group Key Distribution Service,CN=Services,$((Get-ADRootDSE -Server <test-dc>).configurationNamingContext)"
+Get-ADObject -SearchBase $kds -LDAPFilter '(objectClass=msKds-ProvRootKey)' -Properties msKds-UseStartTime, msKds-CreateTime -Server <test-dc> | Select-Object Name, msKds-UseStartTime, msKds-CreateTime
+
 # Step 3: Run the check
 ./Invoke-NpiKerberosIsland.ps1 -Cloud gcc -RegisterRun out/inventory-test -MatrixRun out/kerberos-test-matrix -ProgramDatesPath <matrix-inputs>/program-dates.json -InputPath <inputs> -Server <test-dc> -OutputPath out/kerberos-test
 Get-Content out/kerberos-test/kerberos-plan.json -Raw | ConvertFrom-Json | Select-Object -ExpandProperty actions | Format-Table Action, Account, Write, Cmdlet
@@ -411,10 +421,6 @@ Enable-ADAccount -Identity <test-account>
 # Step 6: Complete, or back out
 Remove-Item -Recurse -Force out/kerberos-test*
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 2:** Grant the read
 :::
 
 <!-- labs:end -->

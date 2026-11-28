@@ -396,6 +396,25 @@ The chapter's steps say what each command does and what to look for.
 }
 '@ | Set-Content prv-groups.json
 
+# Step 2: Register two apps with certificates
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.ReadWrite.All', 'AppRoleAssignment.ReadWrite.All' -NoWelcome
+$graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+$apps = [ordered]@{
+    'pa-lab-pim-groups-reader' = @('Group.ReadBasic.All', 'PrivilegedAssignmentSchedule.Read.AzureADGroup', 'PrivilegedEligibilitySchedule.Read.AzureADGroup', 'RoleManagementPolicy.Read.AzureADGroup')
+    'pa-lab-pim-groups-writer' = @('Group.ReadBasic.All', 'PrivilegedAssignmentSchedule.Read.AzureADGroup', 'PrivilegedEligibilitySchedule.Read.AzureADGroup', 'RoleManagementPolicy.Read.AzureADGroup', 'PrivilegedAssignmentSchedule.ReadWrite.AzureADGroup', 'PrivilegedEligibilitySchedule.ReadWrite.AzureADGroup', 'RoleManagementPolicy.ReadWrite.AzureADGroup')
+}
+foreach ($name in $apps.Keys) {
+    $cert = New-SelfSignedCertificate -Subject "CN=$name" -CertStoreLocation Cert:\CurrentUser\My -KeyExportPolicy NonExportable -KeySpec Signature -NotAfter (Get-Date).AddDays(30)
+    $app = New-MgApplication -DisplayName $name -SignInAudience AzureADMyOrg -KeyCredentials @(@{ Type = 'AsymmetricX509Cert'; Usage = 'Verify'; Key = $cert.RawData })
+    $sp = New-MgServicePrincipal -AppId $app.AppId
+    Start-Sleep -Seconds 15
+    foreach ($p in $apps[$name]) {
+        $role = $graph.AppRoles | Where-Object { $_.Value -eq $p -and $_.AllowedMemberTypes -contains 'Application' }
+        $null = New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id -PrincipalId $sp.Id -ResourceId $graph.Id -AppRoleId $role.Id
+    }
+    [pscustomobject]@{ App = $name; AppId = $app.AppId; Thumbprint = $cert.Thumbprint; Permissions = $apps[$name] -join ', ' } | Format-List
+}
+
 # Step 3: Plan as the reader
 Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <reader-app-id> -CertificateThumbprint <thumbprint>
 ./Invoke-PaPimGroups.ps1 -Cloud gcc -DesiredPath prv-groups.json -OutputPath out/pim-groups-test -TenantId <tenant-id>
@@ -426,10 +445,6 @@ $d | ConvertTo-Json -Depth 6 | Set-Content prv-groups.json
 # Step 6: Back it out
 Remove-Item -Recurse -Force out/pim-groups-test
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 2:** Register two apps with certificates
 :::
 
 <!-- labs:end -->
